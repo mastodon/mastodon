@@ -18,6 +18,8 @@ gd:
           disable: Bac an cleachdaiche o chleachdadh a’ chunntais aca ach na sguab às no falaich an t-susbaint aca.
           none: Cleachd seo airson rabhadh a chur dhan chleachdaiche gun ghnìomh eile a ghabhail.
           sensitive: Èignich comharra gu bheil e frionasach air a h-uile ceanglachan meadhain a’ chleachdaiche seo.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Roghainneil. ’S urrainn dhut teacsa gnàthaichte a chur ri deireadh an ro-sheata fhathast
       announcement:
         all_day: Nuair a bhios cromag ris, cha nochd ach cinn-latha na rainse-ama
@@ -72,6 +74,7 @@ gd:
           hide: Falaich an t-susbaint chriathraichte uile gu lèir mar nach robh i ann idir
           warn: Falaich an t-susbaint chriathraichte air cùlaibh rabhaidh a dh’innseas tiotal na criathraige
       form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
         backups_retention_period: Cùm na tasg-lannan a chaidh a ghintinn dhan luchd-cleachdaidh rè an àireamh de làithean a shònraich thu.
         bootstrap_timeline_accounts: Thèid na cunntasan seo a phrìneachadh air bàrr nam molaidhean leantainn dhan luchd-cleachdaidh ùr.
         closed_registrations_message: Thèid seo a shealltainn nuair a bhios an clàradh dùinte
@@ -79,6 +82,7 @@ gd:
         custom_css: "’S urrainn dhut stoidhlean gnàthaichte a chur an sàs air an tionndadh-lìn de Mhastodon."
         mascot: Tar-àithnidh seo an sgead-dhealbh san eadar-aghaidh-lìn adhartach.
         media_cache_retention_period: Thèid na faidhlichean meadhain air an luchdadh a-nuas a sguabadh às às dèidh an àireamh de làithean a shònraich thu nuair a bhios luach dearbh air agus an ath-luachdadh nuair a thèid an iarraidh an uairsin.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: Seallaidh eòlaire nam pròifil liosta dhen luchd-cleachdaidh a dh’aontaich gun gabh an rùrachadh.
         require_invite_text: Nuair a bhios aontachadh a làimh riatanach dhan chlàradh, dèan an raon teacsa “Carson a bu mhiann leat ballrachd fhaighinn?” riatanach seach roghainneil
         site_contact_email: Mar a ruigear thu le ceistean laghail no taice.
@@ -92,6 +96,7 @@ gd:
         timeline_preview: "’S urrainn dha na h-aoighean gun chlàradh a-staigh na postaichean poblach as ùire a tha ri fhaighinn air an fhrithealaiche a bhrabhsadh."
         trendable_by_default: Geàrr leum thar lèirmheas a làimh na susbainte a’ treandadh. Gabhaidh nithean fa leth a thoirt far nan treandaichean fhathast an uairsin.
         trends: Seallaidh na treandaichean na postaichean, tagaichean hais is naidheachdan a tha fèill mhòr orra air an fhrithealaiche agad.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Tha thu a’ tighinn a-steach gu raon tèarainte
       imports:
@@ -227,6 +232,7 @@ gd:
           hide: Falaich uile gu lèir
           warn: Falaich le rabhadh
       form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
         backups_retention_period: Ùine glèidhidh aig tasg-lannan an luchd-cleachdaidh
         bootstrap_timeline_accounts: Mol na cunntasan seo do chleachdaichean ùra an-còmhnaidh
         closed_registrations_message: Teachdaireachd ghnàthaichte nuair nach eil clàradh ri fhaighinn
@@ -234,6 +240,7 @@ gd:
         custom_css: CSS gnàthaichte
         mascot: Suaichnean gnàthaichte (dìleabach)
         media_cache_retention_period: Ùine glèidhidh aig tasgadan nam meadhanan
+        peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Cuir eòlaire nam pròifil an comas
         registrations_mode: Cò dh’fhaodas clàradh
         require_invite_text: Iarr adhbhar clàraidh
@@ -250,6 +257,7 @@ gd:
         timeline_preview: Ceadaich inntrigeadh gun ùghdarrachadh air na loidhnichean-ama phoblach
         trendable_by_default: Ceadaich treandaichean gun lèirmheas ro làimh
         trends: Cuir na treandaichean an comas
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Bac na brathan nach eil o luchd-leantainn
         must_be_following: Bac na brathan o dhaoine nach lean thu

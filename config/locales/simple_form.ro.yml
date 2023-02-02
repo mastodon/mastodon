@@ -14,6 +14,12 @@ ro:
         send_email_notification: Utilizatorul va primi o explicație cu privire la ceea ce sa întâmplat cu contul lui
         text_html: Opțional. Poți utiliza sintaxe. Poți <a href="%{path}">adăuga avertismente predefinite</a> pentru a salva timp
         type_html: Alege ce se întâmplă cu <strong>%{acct}</strong>
+        types:
+          disable: Prevent the user from using their account, but do not delete or hide their contents.
+          none: Use this to send a warning to the user, without triggering any other action.
+          sensitive: Force all this user's media attachments to be flagged as sensitive.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Opțional. Poți adăuga text personalizat la sfârșitul presetului
       announcement:
         all_day: Când este bifat, numai datele intervalului de timp vor fi afișate
@@ -21,6 +27,8 @@ ro:
         scheduled_at: Lăsați necompletat pentru a publica anunțul imediat
         starts_at: Opțional. În cazul în care anunțul tău este legat de un anumit interval de timp
         text: Poți folosi sintaxa de postare. Te rugăm să fii atent la spațiul pe care anunțul îl va ocupa pe ecranul utilizatorului
+      appeal:
+        text: You can only appeal a strike once
       defaults:
         autofollow: Persoanele care se înregistrează datorită invitației tale te vor urmări automat
         avatar: PNG, GIF sau JPG. Cel mult %{size}. Va fi redimensionată la %{dimensions}px
@@ -29,6 +37,7 @@ ro:
         current_password: În scopuri de securitate, vă rugăm să introduceţi parola contului curent
         current_username: Pentru a confirma, vă rugăm să introduceţi numele de utilizator al contului curent
         digest: Este trimis doar după o lungă perioadă de inactivitate și numai dacă primești mesaje personale în perioada de absență
+        discoverable: Allow your account to be discovered by strangers through recommendations, trends and other features
         email: Vei primi un e-mail de confirmare
         fields: Poti afișa pană la maxim 4 adrese sub formă de tabel pe pofilul tău
         header: PNG, GIF sau JPG. Cel mult %{size}. Vor fi redimensionate la %{dimensions}px
@@ -40,6 +49,7 @@ ro:
         phrase: Vor fi potrivite indiferent de textul din casetă sau advertismentul unei postări
         scopes: La care API-uri aplicația are nevoie de acces. Dacă selectezi un scop principal nu mai e nevoie să selectezi fiecare sub-scop al acestuia.
         setting_aggregate_reblogs: Nu afișa impulsurile noi pentru postările care au fost deja recent impulsionate (afectează doar noile impulsuri primite)
+        setting_always_send_emails: Normally e-mail notifications won't be sent when you are actively using Mastodon
         setting_default_sensitive: Fișierele media sensibile sunt ascunse implicit și pot fi dezvăluite cu un clic
         setting_display_media_default: Ascunde conținutul media marcat ca sensibil (NSFW)
         setting_display_media_hide_all: Întotdeauna ascunde tot conținutul media
@@ -54,19 +64,73 @@ ro:
       domain_allow:
         domain: Acest domeniu va putea prelua date de pe acest server și datele primite de la el vor fi procesate și stocate
       email_domain_block:
+        domain: This can be the domain name that shows up in the e-mail address or the MX record it uses. They will be checked upon sign-up.
         with_dns_records: Se va face o încercare de a rezolva înregistrările DNS ale domeniului dat și rezultatele vor fi de asemenea afișate pe lista neagră
+      featured_tag:
+        name: 'Here are some of the hashtags you used the most recently:'
+      filters:
+        action: Chose which action to perform when a post matches the filter
+        actions:
+          hide: Completely hide the filtered content, behaving as if it did not exist
+          warn: Hide the filtered content behind a warning mentioning the filter's title
+      form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
+        backups_retention_period: Keep generated user archives for the specified number of days.
+        bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations.
+        closed_registrations_message: Displayed when sign-ups are closed
+        content_cache_retention_period: Posts from other servers will be deleted after the specified number of days when set to a positive value. This may be irreversible.
+        custom_css: You can apply custom styles on the web version of Mastodon.
+        mascot: Overrides the illustration in the advanced web interface.
+        media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
+        profile_directory: The profile directory lists all users who have opted-in to be discoverable.
+        require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
+        site_contact_email: How people can reach you for legal or support inquiries.
+        site_contact_username: How people can reach you on Mastodon.
+        site_extended_description: Any additional information that may be useful to visitors and your users. Can be structured with Markdown syntax.
+        site_short_description: A short description to help uniquely identify your server. Who is running it, who is it for?
+        site_terms: Use your own privacy policy or leave blank to use the default. Can be structured with Markdown syntax.
+        site_title: How people may refer to your server besides its domain name.
+        theme: Theme that logged out visitors and new users see.
+        thumbnail: A roughly 2:1 image displayed alongside your server information.
+        timeline_preview: Logged out visitors will be able to browse the most recent public posts available on the server.
+        trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
+        trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Ați intrat într-o zonă securizată
       imports:
         data: Fișierul CSV exportat de la o altă instanță
       invite_request:
         text: Acest lucru ne va ajuta să revizuim cererea dvs
+      ip_block:
+        comment: Optional. Remember why you added this rule.
+        expires_in: IP addresses are a finite resource, they are sometimes shared and often change hands. For this reason, indefinite IP blocks are not recommended.
+        ip: Enter an IPv4 or IPv6 address. You can block entire ranges using the CIDR syntax. Be careful not to lock yourself out!
+        severities:
+          no_access: Block access to all resources
+          sign_up_block: New sign-ups will not be possible
+          sign_up_requires_approval: New sign-ups will require your approval
+        severity: Choose what will happen with requests from this IP
+      rule:
+        text: Describe a rule or requirement for users on this server. Try to keep it short and simple
       sessions:
         otp: 'Introdu codul pentru dubla protecție generat de telefonul mobil sau unul din codurile de rezervă:'
+        webauthn: If it's an USB key be sure to insert it and, if necessary, tap it.
       tag:
         name: Poți doar să schimbi caseta literelor, de exemplu, pentru a o face mai lizibilă
       user:
         chosen_languages: Doar postările în limbile selectate vor fi afișate în fluxurile publice
+        role: The role controls which permissions the user has
+      user_role:
+        color: Color to be used for the role throughout the UI, as RGB in hex format
+        highlighted: This makes the role publicly visible
+        name: Public name of the role, if role is set to be displayed as a badge
+        permissions_as_keys: Users with this role will have access to...
+        position: Higher role decides conflict resolution in certain situations. Certain actions can only be performed on roles with a lower priority
+      webhook:
+        events: Select events to send
+        url: Where events will be sent to
     labels:
       account:
         fields:
@@ -87,6 +151,7 @@ ro:
         types:
           disable: Dezactivează
           none: Nu fă nimic
+          sensitive: Sensitive
           silence: Liniște
           suspend: Suspendă și șterge ireversibil datele contului
         warning_preset_id: Utilizează un avertisment predefinit
@@ -96,6 +161,8 @@ ro:
         scheduled_at: Programare publicare
         starts_at: Începerea evenimentului
         text: Anunţ
+      appeal:
+        text: Explain why this decision should be reversed
       defaults:
         autofollow: Invită să te urmărească
         avatar: Fotografie de profil
@@ -112,6 +179,7 @@ ro:
         expires_in: Expiră după
         fields: Rețele externe - Unde mai poți fi găsit
         header: Antet
+        honeypot: "%{label} (do not fill in)"
         inbox_url: Adresa URL a inbox-ului
         irreversible: Lasă înloc să ascunzi
         locale: Limbă
@@ -124,6 +192,7 @@ ro:
         phrase: Cuvânt sau frază
         setting_advanced_layout: Activează interfața web avansată
         setting_aggregate_reblogs: Grupează impulsurile în fluxuri
+        setting_always_send_emails: Always send e-mail notifications
         setting_auto_play_gif: Redă automat animațiile GIF
         setting_boost_modal: Arată dialogul de confirmare înainte de a impulsiona
         setting_crop_images: Decupează imaginile în postările non-extinse la 16x9
@@ -131,6 +200,7 @@ ro:
         setting_default_privacy: Cine vede postările tale
         setting_default_sensitive: Întotdeauna marchează conținutul media ca fiind sensibil
         setting_delete_modal: Arată dialogul de confirmare înainte de a șterge o postare
+        setting_disable_swiping: Disable swiping motions
         setting_display_media: Afișare media
         setting_display_media_default: Standard
         setting_display_media_hide_all: Ascunde toate
@@ -147,12 +217,47 @@ ro:
         setting_use_blurhash: Arată gradiente colorate pentru media ascunse
         setting_use_pending_items: Modul lent
         severity: Severitate
+        sign_in_token_attempt: Security code
+        title: Title
         type: Ce importați
         username: Nume de utilizator
         username_or_email: Numele de utilizator sau adresa de E-mail
         whole_word: Cuvânt întreg
       email_domain_block:
         with_dns_records: Include înregistrările MX și IP-urile domeniului
+      featured_tag:
+        name: Hashtag
+      filters:
+        actions:
+          hide: Hide completely
+          warn: Hide with a warning
+      form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
+        backups_retention_period: User archive retention period
+        bootstrap_timeline_accounts: Always recommend these accounts to new users
+        closed_registrations_message: Custom message when sign-ups are not available
+        content_cache_retention_period: Content cache retention period
+        custom_css: Custom CSS
+        mascot: Custom mascot (legacy)
+        media_cache_retention_period: Media cache retention period
+        peers_api_enabled: Publish list of discovered servers in the API
+        profile_directory: Enable profile directory
+        registrations_mode: Who can sign-up
+        require_invite_text: Require a reason to join
+        show_domain_blocks: Show domain blocks
+        show_domain_blocks_rationale: Show why domains were blocked
+        site_contact_email: Contact e-mail
+        site_contact_username: Contact username
+        site_extended_description: Extended description
+        site_short_description: Server description
+        site_terms: Privacy Policy
+        site_title: Server name
+        theme: Default theme
+        thumbnail: Server thumbnail
+        timeline_preview: Allow unauthenticated access to public timelines
+        trendable_by_default: Allow trends without prior review
+        trends: Enable trends
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Blochează notificările de la persoane care nu te urmăresc
         must_be_following: Blochează notificările de la persoane pe care nu le urmărești
@@ -161,7 +266,16 @@ ro:
         comment: Comentariu
       invite_request:
         text: De ce vrei să te alături?
+      ip_block:
+        comment: Comment
+        ip: IP
+        severities:
+          no_access: Block access
+          sign_up_block: Block sign-ups
+          sign_up_requires_approval: Limit sign-ups
+        severity: Rule
       notification_emails:
+        appeal: Someone appeals a moderator decision
         digest: Trimite rezumate
         favourite: Trimite e-mail când cineva favorizează unul din statusurile tale
         follow: Trimite e-mail când cineva te urmărește
@@ -169,12 +283,33 @@ ro:
         mention: Trimite e-mail când cineva te menționează
         pending_account: Noul cont trebuie revizuit
         reblog: Trimite e-mail când cineva impulsionează una din postările tale
+        report: New report is submitted
+        trending_tag: New trend requires review
+      rule:
+        text: Rule
       tag:
         listable: Permite acestui hashtag să apară în căutări și în directorul de profil
+        name: Hashtag
         trendable: Permite acestui hashtag să apară sub tendințe
         usable: Permite postărilor să folosească acest hashtag
+      user:
+        role: Role
+      user_role:
+        color: Badge color
+        highlighted: Display role as badge on user profiles
+        name: Name
+        permissions_as_keys: Permissions
+        position: Priority
+      webhook:
+        events: Enabled events
+        url: Endpoint URL
     'no': Nu
+    not_recommended: Not recommended
     recommended: Recomandat
     required:
+      mark: "*"
       text: obligatoriu
+    title:
+      sessions:
+        webauthn: Use one of your security keys to sign in
     'yes': Da

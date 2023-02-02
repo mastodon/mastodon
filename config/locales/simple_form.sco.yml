@@ -18,6 +18,8 @@ sco:
           disable: Stap the uiser fae uisin their accoont, but dinnae delete or hide their content.
           none: Uise this fir tae sen a warnin tae the uiser, athoot stertin onie ither actions.
           sensitive: Mak aw this uiser's media attachments hae a flag sayin it's sensitive.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Optional. Ye kin stull eik custom text tae the en o the preset
       announcement:
         all_day: Whan ticked, ainly the dates o the time range'll get shawn
@@ -72,6 +74,7 @@ sco:
           hide: Totally plank the filtert content, ackin as if it didnae exist
           warn: Plank the filtert content ahin a warnin menshiein the filter's title
       form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
         backups_retention_period: Haud generatit uiser archives fir the specified nummer o days.
         bootstrap_timeline_accounts: Thir accoonts wull get preenit tae the tap o new uisers' follae recommendations.
         closed_registrations_message: Displayit whan sign-ups is shut
@@ -79,6 +82,7 @@ sco:
         custom_css: Ye kin pit custom styles on tae the web version o Mastodon.
         mascot: Owerrides the illustration in the advanced web interface.
         media_cache_retention_period: Doonloadit media files wull be deletit efter the specified nummer o days whan set tae a positive value, an re-doonloadit on demand.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: The profile directory lists aw uisers thit hae opted-in fir tae be discoverable.
         require_invite_text: Whan sign-ups require approval bi haun, mak the “Hou dae ye want tae jyne?” text input mandatory raither nor optional
         site_contact_email: Hou fowk kin reach ye fir legal or support inquiries.
@@ -92,6 +96,7 @@ sco:
         timeline_preview: Logged oot visitors wull be able tae broose the maist recent public posts available on the server.
         trendable_by_default: Jouk the review bi haun o trendin content. Individual items kin stull get taen aff trends efter the fact.
         trends: Trends shaw whit posts, hashtags an news stories is gettin traction on yer server.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Ye'r enterin a secure area
       imports:
@@ -227,6 +232,7 @@ sco:
           hide: Plank awthegither
           warn: Plank wi a warnin
       form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
         backups_retention_period: Uiser archive retention period
         bootstrap_timeline_accounts: Aye recommend thir accoonts tae new uisers
         closed_registrations_message: Custom message whan sign-ups urnae available
@@ -234,6 +240,7 @@ sco:
         custom_css: Custom CSS
         mascot: Custom mascot (legacy)
         media_cache_retention_period: Media cache retention period
+        peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Enable profile directory
         registrations_mode: Wha kin sign-up
         require_invite_text: Require a raison fir tae jyne
@@ -250,6 +257,7 @@ sco:
         timeline_preview: Alloo unauthenticated access tae public timelines
         trendable_by_default: Alloo trends athoot prior review
         trends: Turn on trends
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Dingie notes fae non-follaers
         must_be_following: Dingie notes fae fowk ye dinnae follae

@@ -18,6 +18,8 @@ sv:
           disable: Förhindra användaren från att använda sitt konto, men radera eller dölj inte innehållet.
           none: Använd det här för att skicka en varning till användaren, utan att vidta någon ytterligare åtgärd.
           sensitive: Tvinga alla denna användares mediebilagor till att flaggas som känsliga.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Valfri. Du kan lägga till anpassad text i slutet av förinställningen
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
@@ -72,6 +74,7 @@ sv:
           hide: Dölj det filtrerade innehållet helt (beter sig som om det inte fanns)
           warn: Dölj det filtrerade innehållet bakom en varning som visar filtrets rubrik
       form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
         backups_retention_period: Behåll genererade användararkiv i det angivna antalet dagar.
         bootstrap_timeline_accounts: Dessa konton kommer fästas högst upp i nya användares följrekommendationer.
         closed_registrations_message: Visas när nyregistreringar är avstängda
@@ -79,6 +82,7 @@ sv:
         custom_css: Du kan använda anpassade stilar på webbversionen av Mastodon.
         mascot: Åsidosätter illustrationen i det avancerade webbgränssnittet.
         media_cache_retention_period: Nedladdade mediefiler kommer raderas efter det angivna antalet dagar, om inställt till ett positivt värde, och laddas ned på nytt vid behov.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: Profilkatalogen visar alla användare som har samtyckt till att bli upptäckbara.
         require_invite_text: Gör fältet "Varför vill du gå med?" obligatoriskt när nyregistreringar kräver manuellt godkännande
         site_contact_email: Hur människor kan nå dig för juridiska spörsmål eller supportfrågor.
@@ -92,6 +96,7 @@ sv:
         timeline_preview: Utloggade besökare kommer kunna bläddra bland de senaste offentliga inläggen som finns på servern.
         trendable_by_default: Hoppa över manuell granskning av trendande innehåll. Enskilda objekt kan ändå raderas från trender retroaktivt.
         trends: Trender visar vilka inlägg, hashtaggar och nyheter det pratas om på din server.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Du går in i ett säkert område
       imports:
@@ -227,6 +232,7 @@ sv:
           hide: Dölj helt
           warn: Dölj med en varning
       form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
         backups_retention_period: Lagringsperiod för användararkivet
         bootstrap_timeline_accounts: Rekommendera alltid dessa konton till nya användare
         closed_registrations_message: Anpassat meddelande när nyregistreringar inte är tillgängliga
@@ -234,6 +240,7 @@ sv:
         custom_css: Anpassad CSS
         mascot: Anpassad maskot (tekniskt arv)
         media_cache_retention_period: Tid för bibehållande av mediecache
+        peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Aktivera profilkatalog
         registrations_mode: Vem kan registrera sig
         require_invite_text: Kräv anledning för att gå med
@@ -250,6 +257,7 @@ sv:
         timeline_preview: Tillåt oautentiserad åtkomst till offentliga tidslinjer
         trendable_by_default: Tillåt trender utan föregående granskning
         trends: Aktivera trender
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Blockera notiser från icke-följare
         must_be_following: Blockera notiser från personer du inte följer

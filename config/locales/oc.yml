@@ -12,6 +12,7 @@ oc:
       one: Seguidor
       other: Seguidors
     following: Abonaments
+    instance_actor_flash: This account is a virtual actor used to represent the server itself and not any individual user. It is used for federation purposes and should not be suspended.
     last_active: darrièra activitat
     link_verified_on: La proprietat d’aqueste ligam foguèt verificada lo %{date}
     nothing_here: I a pas res aquí !
@@ -32,18 +33,22 @@ oc:
     accounts:
       add_email_domain_block: Metre lo domeni del corrièl en lista negra
       approve: Aprovar
+      approved_msg: Successfully approved %{username}'s sign-up application
       are_you_sure: Sètz segur ?
       avatar: Avatar
       by_domain: Domeni
       change_email:
+        changed_msg: Email successfully changed!
         current_email: Adreça actuala
         label: Cambiar d’adreça
         new_email: Novèla adreça
         submit: Cambiar l’adreça
         title: Cambiar l’adreça a %{username}
       change_role:
+        changed_msg: Role successfully changed!
         label: Cambiar lo ròtle
         no_role: Cap de ròtle
+        title: Change role for %{username}
       confirm: Confirmar
       confirmed: Confirmat
       confirming: Confirmacion
@@ -51,7 +56,9 @@ oc:
       delete: Suprimir donadas
       deleted: Suprimits
       demote: Retrogradar
+      destroyed_msg: "%{username}'s data is now queued to be deleted imminently"
       disable: Desactivar
+      disable_sign_in_token_auth: Disable e-mail token authentication
       disable_two_factor_authentication: Desactivar 2FA
       disabled: Desactivat
       display_name: Escais-nom
@@ -60,11 +67,14 @@ oc:
       email: Corrièl
       email_status: Estat de l’adreça
       enable: Activar
+      enable_sign_in_token_auth: Enable e-mail token authentication
       enabled: Activat
+      enabled_msg: Successfully unfroze %{username}'s account
       followers: Seguidors
       follows: Abonaments
       header: Bandièra
       inbox_url: URL de recepcion
+      invite_request_text: Reasons for joining
       invited_by: Convidat per
       ip: IP
       joined: Venguèt
@@ -77,10 +87,13 @@ oc:
       media_attachments: Mèdias enviats
       memorialize: Passar en memorial
       memorialized: Memorizat
+      memorialized_msg: Successfully turned %{username} into a memorial account
       moderation:
         active: Actius
         all: Totes
+        disabled: Disabled
         pending: En espèra
+        silenced: Limited
         suspended: Suspenduts
         title: Moderacion
       moderation_notes: Nòtas de moderacion
@@ -88,17 +101,28 @@ oc:
       most_recent_ip: IP mai recenta
       no_account_selected: Cap de compte pas cambiat estant que cap èra pas seleccionat
       no_limits_imposed: Cap de limit impausat
+      no_role_assigned: No role assigned
       not_subscribed: Pas seguidor
       pending: Revision en espèra
       perform_full_suspension: Suspendre
+      previous_strikes: Previous strikes
+      previous_strikes_description_html:
+        one: This account has <strong>one</strong> strike.
+        other: This account has <strong>%{count}</strong> strikes.
       promote: Promòure
       protocol: Protocòl
       public: Public
       push_subscription_expires: Fin de l’abonament PuSH
       redownload: Actualizar lo perfil
+      redownloaded_msg: Successfully refreshed %{username}'s profile from origin
       reject: Regetar
+      rejected_msg: Successfully rejected %{username}'s sign-up application
+      remote_suspension_irreversible: The data of this account has been irreversibly deleted.
+      remote_suspension_reversible_hint_html: The account has been suspended on their server, and the data will be fully removed on %{date}. Until then, the remote server can restore this account without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       remove_avatar: Supriir l’avatar
       remove_header: Levar la bandièra
+      removed_avatar_msg: Successfully removed %{username}'s avatar image
+      removed_header_msg: Successfully removed %{username}'s header image
       resend_confirmation:
         already_confirmed: Aqueste utilizaire es ja confirmat
         send: Tornar mandar lo corrièl de confirmacion
@@ -108,7 +132,9 @@ oc:
       resubscribe: Se tornar abonar
       role: Ròtle
       search: Cercar
+      search_same_email_domain: Other users with the same e-mail domain
       search_same_ip: Autres utilizaires amb la meteissa IP
+      security: Security
       security_measures:
         only_password: Sonque senhal
         password_and_2fa: Senhal e 2FA
@@ -121,55 +147,147 @@ oc:
       silence: Silenci
       silenced: Rescondut
       statuses: Estatuts
+      strikes: Previous strikes
       subscribe: S’abonar
       suspend: Suspendre
       suspended: Suspendut
+      suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable but it will not recover any data it previously had.
+      suspension_reversible_hint_html: The account has been suspended, and the data will be fully removed on %{date}. Until then, the account can be restored without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       title: Comptes
+      unblock_email: Unblock email address
+      unblocked_email_msg: Successfully unblocked %{username}'s email address
       unconfirmed_email: Adreça pas confirmada
       undo_sensitized: Desmarcar coma sensible
       undo_silenced: Levar lo silenci
       undo_suspension: Levar la suspension
+      unsilenced_msg: Successfully undid limit of %{username}'s account
       unsubscribe: Se desabonar
+      unsuspended_msg: Successfully unsuspended %{username}'s account
       username: Nom d’utilizaire
+      view_domain: View summary for domain
       warn: Avisar
       web: Web
       whitelisted: Mes en lista blanca
     action_logs:
       action_types:
+        approve_appeal: Approve Appeal
         approve_user: Aprobar l’utilizaire
         assigned_to_self_report: Assignar lo rapòrt
         change_email_user: Cambiar l’adreça de l’utilizaire
+        change_role_user: Change Role of User
         confirm_user: Confirmar l’utilizaire
         create_account_warning: Crear un avertiment
         create_announcement: Crear una anóncia
+        create_canonical_email_block: Create E-mail Block
         create_custom_emoji: Crear un emoji personalizat
+        create_domain_allow: Create Domain Allow
+        create_domain_block: Create Domain Block
+        create_email_domain_block: Create E-mail Domain Block
         create_ip_block: Crear una règla IP
+        create_unavailable_domain: Create Unavailable Domain
         create_user_role: Crear un ròtle
         demote_user: Retrogradar l’utilizaire
         destroy_announcement: Suprimir l’anóncia
+        destroy_canonical_email_block: Delete E-mail Block
         destroy_custom_emoji: Suprimir l’emoji personalizat
+        destroy_domain_allow: Delete Domain Allow
         destroy_domain_block: Suprimir lo blocatge de domeni
+        destroy_email_domain_block: Delete E-mail Domain Block
+        destroy_instance: Purge Domain
+        destroy_ip_block: Delete IP rule
         destroy_status: Suprimir l’estatut
+        destroy_unavailable_domain: Delete Unavailable Domain
         destroy_user_role: Destruire ròtle
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar l’emoji personalizat
+        disable_sign_in_token_auth_user: Disable E-mail Token Authentication for User
         disable_user: Desactivar l’utilizaire
         enable_custom_emoji: Activar l’emoji personalizat
+        enable_sign_in_token_auth_user: Enable E-mail Token Authentication for User
         enable_user: Activar l’utilizaire
+        memorialize_account: Memorialize Account
         promote_user: Promòure l’utilizaire
+        reject_appeal: Reject Appeal
+        reject_user: Reject User
         remove_avatar_user: Suprimir l’avatar
         reopen_report: Tornar dobrir lo rapòrt
+        resend_user: Resend Confirmation Mail
         reset_password_user: Reïnicializar lo senhal
         resolve_report: Resòlver lo rapòrt
+        sensitive_account: Force-Sensitive Account
         silence_account: " Metre en silenci lo compte"
         suspend_account: Suspendre lo compte
         unassigned_report: Desafectar lo rapòrt
+        unblock_email_account: Unblock email address
+        unsensitive_account: Undo Force-Sensitive Account
         unsilence_account: Levar lo silenci del compte
+        unsuspend_account: Unsuspend Account
         update_announcement: Actualizar l’anóncia
         update_custom_emoji: Actualizar l’emoji personalizat
+        update_domain_block: Update Domain Block
         update_ip_block: Actualizar règla IP
         update_status: Actualizar l’estatut
         update_user_role: Actualizar ròtle
+      actions:
+        approve_appeal_html: "%{name} approved moderation decision appeal from %{target}"
+        approve_user_html: "%{name} approved sign-up from %{target}"
+        assigned_to_self_report_html: "%{name} assigned report %{target} to themselves"
+        change_email_user_html: "%{name} changed the e-mail address of user %{target}"
+        change_role_user_html: "%{name} changed role of %{target}"
+        confirm_user_html: "%{name} confirmed e-mail address of user %{target}"
+        create_account_warning_html: "%{name} sent a warning to %{target}"
+        create_announcement_html: "%{name} created new announcement %{target}"
+        create_canonical_email_block_html: "%{name} blocked e-mail with the hash %{target}"
+        create_custom_emoji_html: "%{name} uploaded new emoji %{target}"
+        create_domain_allow_html: "%{name} allowed federation with domain %{target}"
+        create_domain_block_html: "%{name} blocked domain %{target}"
+        create_email_domain_block_html: "%{name} blocked e-mail domain %{target}"
+        create_ip_block_html: "%{name} created rule for IP %{target}"
+        create_unavailable_domain_html: "%{name} stopped delivery to domain %{target}"
+        create_user_role_html: "%{name} created %{target} role"
+        demote_user_html: "%{name} demoted user %{target}"
+        destroy_announcement_html: "%{name} deleted announcement %{target}"
+        destroy_canonical_email_block_html: "%{name} unblocked e-mail with the hash %{target}"
+        destroy_custom_emoji_html: "%{name} deleted emoji %{target}"
+        destroy_domain_allow_html: "%{name} disallowed federation with domain %{target}"
+        destroy_domain_block_html: "%{name} unblocked domain %{target}"
+        destroy_email_domain_block_html: "%{name} unblocked e-mail domain %{target}"
+        destroy_instance_html: "%{name} purged domain %{target}"
+        destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
+        destroy_status_html: "%{name} removed post by %{target}"
+        destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
+        destroy_user_role_html: "%{name} deleted %{target} role"
+        disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
+        disable_custom_emoji_html: "%{name} disabled emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} disabled e-mail token authentication for %{target}"
+        disable_user_html: "%{name} disabled login for user %{target}"
+        enable_custom_emoji_html: "%{name} enabled emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} enabled e-mail token authentication for %{target}"
+        enable_user_html: "%{name} enabled login for user %{target}"
+        memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
+        promote_user_html: "%{name} promoted user %{target}"
+        reject_appeal_html: "%{name} rejected moderation decision appeal from %{target}"
+        reject_user_html: "%{name} rejected sign-up from %{target}"
+        remove_avatar_user_html: "%{name} removed %{target}'s avatar"
+        reopen_report_html: "%{name} reopened report %{target}"
+        resend_user_html: "%{name} resent confirmation e-mail for %{target}"
+        reset_password_user_html: "%{name} reset password of user %{target}"
+        resolve_report_html: "%{name} resolved report %{target}"
+        sensitive_account_html: "%{name} marked %{target}'s media as sensitive"
+        silence_account_html: "%{name} limited %{target}'s account"
+        suspend_account_html: "%{name} suspended %{target}'s account"
+        unassigned_report_html: "%{name} unassigned report %{target}"
+        unblock_email_account_html: "%{name} unblocked %{target}'s email address"
+        unsensitive_account_html: "%{name} unmarked %{target}'s media as sensitive"
+        unsilence_account_html: "%{name} undid limit of %{target}'s account"
+        unsuspend_account_html: "%{name} unsuspended %{target}'s account"
+        update_announcement_html: "%{name} updated announcement %{target}"
+        update_custom_emoji_html: "%{name} updated emoji %{target}"
+        update_domain_block_html: "%{name} updated domain block for %{target}"
+        update_ip_block_html: "%{name} changed rule for IP %{target}"
+        update_status_html: "%{name} updated post by %{target}"
+        update_user_role_html: "%{name} changed %{target} role"
+      deleted_account: deleted account
       empty: Cap de jornal pas trobat.
       filter_by_action: Filtrar per accion
       filter_by_user: Filtrar per utilizaire
@@ -213,6 +331,8 @@ oc:
       listed: Listat
       new:
         title: Ajustar un nòu emoji personal
+      no_emoji_selected: No emojis were changed as none were selected
+      not_permitted: You are not permitted to perform this action
       overwrite: Remplaçar
       shortcode: Acorchi
       shortcode_hint: Almens 2 caractèrs, solament alfanumerics e jonhent bas
@@ -229,17 +349,36 @@ oc:
       media_storage: Emmagazinatge dels mèdias
       new_users: utilizaire novèl
       opened_reports: senhalaments dubèrts
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> pending appeal"
+        other: "<strong>%{count}</strong> pending appeals"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> pending report"
+        other: "<strong>%{count}</strong> pending reports"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> pending hashtag"
+        other: "<strong>%{count}</strong> pending hashtags"
+      pending_users_html:
+        one: "<strong>%{count}</strong> pending user"
+        other: "<strong>%{count}</strong> pending users"
       resolved_reports: senhalament resolguts
       software: Logicial
+      sources: Sign-up sources
       space: Utilizacion de l’espaci
       title: Tablèu de bòrd
       top_languages: Lengas mai activas
       top_servers: Servidors mai actius
       website: Site web
+    disputes:
+      appeals:
+        empty: No appeals found.
+        title: Appeals
     domain_allows:
       add_new: Plaçar en lista blanca
       created_msg: Lo domeni es corrèctament estat plaçat en lista blanca
       destroyed_msg: Lo domeni es corrèctament estat levat de la lista blanca
+      export: Export
+      import: Import
       undo: Levar de la lista blanca
     domain_blocks:
       add_new: Ajustar un novèl blocatge de domeni
@@ -247,17 +386,27 @@ oc:
       destroyed_msg: Lo blocatge del domeni es estat levat
       domain: Domeni
       edit: Modificar lo blocatge de domeni
+      existing_domain_block: You have already imposed stricter limits on %{name}.
       existing_domain_block_html: Impausèretz ja de limitas mai estrictas per %{name}, vos cal lo <a href="%{unblock_url}">desblocar</a>d’en primièr.
+      export: Export
+      import: Import
       new:
         create: Crear blocatge
         hint: Lo blocatge empacharà pas la creacion de compte dins la basa de donadas, mai aplicarà la moderacion sus aquestes comptes.
         severity:
+          desc_html: "<strong>Limit</strong> will make posts from accounts at this domain invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all content, media, and profile data for this domain's accounts from your server. Use <strong>None</strong> if you just want to reject media files."
           noop: Cap
+          silence: Limit
           suspend: Suspendre
         title: Nòu blocatge domeni
+      no_domain_block_selected: No domain blocks were changed as none were selected
+      not_permitted: You are not permitted to perform this action
+      obfuscate: Obfuscate domain name
+      obfuscate_hint: Partially obfuscate the domain name in the list if advertising the list of domain limitations is enabled
       private_comment: Comentari privat
       private_comment_hint: Comentari tocant la limitacion d’aqueste domeni per un usatge intèrn pels moderators.
       public_comment: Comentari public
+      public_comment_hint: Comment about this domain limitation for the general public, if advertising the list of domain limitations is enabled.
       reject_media: Regetar los fichièrs mèdias
       reject_media_hint: Lèva los fichièrs gardats localament e regèta las demandas de telecargament dins lo futur. Servís pas a res per las suspensions
       reject_reports: Regetar los senhalaments
@@ -266,35 +415,115 @@ oc:
       view: Veire lo blocatge de domeni
     email_domain_blocks:
       add_new: Ajustar
+      attempts_over_week:
+        one: "%{count} attempt over the last week"
+        other: "%{count} sign-up attempts over the last week"
       created_msg: Blocatge del domeni de corrièl ben plaçat
       delete: Suprimir
+      dns:
+        types:
+          mx: MX record
       domain: Domeni
       new:
         create: Crear un blocatge
+        resolve: Resolve domain
         title: Nòu blocatge de domeni de corrièl
+      no_email_domain_block_selected: No e-mail domain blocks were changed as none were selected
+      not_permitted: Not permitted
+      resolved_dns_records_hint_html: The domain name resolves to the following MX domains, which are ultimately responsible for accepting e-mail. Blocking an MX domain will block sign-ups from any e-mail address which uses the same MX domain, even if the visible domain name is different. <strong>Be careful not to block major e-mail providers.</strong>
+      resolved_through_html: Resolved through %{domain}
       title: Blocatge de domeni de corrièl
+    export_domain_allows:
+      new:
+        title: Import domain allows
+      no_file: No file selected
+    export_domain_blocks:
+      import:
+        description_html: You are about to import a list of domain blocks. Please review this list very carefully, especially if you have not authored this list yourself.
+        existing_relationships_warning: Existing follow relationships
+        private_comment_description_html: 'To help you track where imported blocks come from, imported blocks will be created with the following private comment: <q>%{comment}</q>'
+        private_comment_template: Imported from %{source} on %{date}
+        title: Import domain blocks
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
+      new:
+        title: Import domain blocks
+      no_file: No file selected
     follow_recommendations:
+      description_html: "<strong>Follow recommendations help new users quickly find interesting content</strong>. When a user has not interacted with others enough to form personalized follow recommendations, these accounts are recommended instead. They are re-calculated on a daily basis from a mix of accounts with the highest recent engagements and highest local follower counts for a given language."
       language: Per lenga
       status: Estat
+      suppress: Suppress follow recommendation
+      suppressed: Suppressed
+      title: Follow recommendations
+      unsuppress: Restore follow recommendation
     instances:
       availability:
+        description_html:
+          one: If delivering to the domain fails <strong>%{count} day</strong> without succeeding, no further delivery attempts will be made unless a delivery <em>from</em> the domain is received.
+          other: If delivering to the domain fails on <strong>%{count} different days</strong> without succeeding, no further delivery attempts will be made unless a delivery <em>from</em> the domain is received.
+        failure_threshold_reached: Failure threshold reached on %{date}.
+        failures_recorded:
+          one: Failed attempt on %{count} day.
+          other: Failed attempts on %{count} different days.
+        no_failures_recorded: No failures on record.
         title: Disponibilitat
+        warning: The last attempt to connect to this server has been unsuccessful
+      back_to_all: All
+      back_to_limited: Limited
+      back_to_warning: Warning
       by_domain: Domeni
+      confirm_purge: Are you sure you want to permanently delete data from this domain?
+      content_policies:
+        comment: Internal note
+        description_html: You can define content policies that will be applied to all accounts from this domain and any of its subdomains.
+        limited_federation_mode_description_html: Limited federation mode description html
+        policies:
+          reject_media: Reject media
+          reject_reports: Reject reports
+          silence: Limit
+          suspend: Suspend
+        policy: Policy
+        reason: Public reason
+        title: Content policies
       dashboard:
+        instance_accounts_dimension: Most followed accounts
+        instance_accounts_measure: stored accounts
+        instance_followers_measure: our followers there
+        instance_follows_measure: their followers here
         instance_languages_dimension: Lengas principalas
+        instance_media_attachments_measure: stored media attachments
+        instance_reports_measure: reports about them
+        instance_statuses_measure: stored posts
+      delivery:
+        all: All
+        clear: Clear delivery errors
+        failing: Failing
+        restart: Restart delivery
+        stop: Stop delivery
+        unavailable: Unavailable
       delivery_available: Liurason disponibla
+      delivery_error_days: Delivery error days
+      delivery_error_hint: If delivery is not possible for %{count} days, it will be automatically marked as undeliverable.
+      destroyed_msg: Data from %{domain} is now queued for imminent deletion.
+      empty: No domains found.
+      known_accounts:
+        one: "%{count} known account"
+        other: "%{count} known accounts"
       moderation:
         all: Totas
         limited: Limitat
         title: Moderacion
       private_comment: Comentari privat
       public_comment: Comentari public
+      purge: Purge
+      purge_description_html: If you believe this domain is offline for good, you can delete all account records and associated data from this domain from your storage. This may take a while.
       title: Federacion
       total_blocked_by_us: Avèm blocat
       total_followed_by_them: Sègon
       total_followed_by_us: Seguèm
       total_reported: Senhalament a prepaus d’eles
       total_storage: Fichièrs junts
+      totals_time_period_hint_html: The totals displayed below include data for all time.
     invites:
       deactivate_all: O desactivar tot
       filter:
@@ -305,6 +534,7 @@ oc:
       title: Convits
     ip_blocks:
       add_new: Crear una règla
+      created_msg: Successfully added new IP rule
       delete: Suprimir
       expires_in:
         '1209600': 2 setmanas
@@ -315,6 +545,7 @@ oc:
         '94670856': 3 ans
       new:
         title: Crear una règlas IP novèla
+      no_ip_block_selected: No IP rules were changed as none were selected
       title: Règlas IP
     relationships:
       title: Relacions de %{acct}
@@ -342,52 +573,186 @@ oc:
         notes:
           one: "%{count} nòta"
           other: "%{count} nòtas"
+      action_log: Audit log
       action_taken_by: Mesura menada per
+      actions:
+        delete_description_html: The reported posts will be deleted and a strike will be recorded to help you escalate on future infractions by the same account.
+        mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future infractions by the same account.
+        other_description_html: See more options for controlling the account's behaviour and customize communication to the reported account.
+        resolve_description_html: No action will be taken against the reported account, no strike recorded, and the report will be closed.
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
+      actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an e-mail notification will be sent to them, except when the <strong>Spam</strong> category is selected.
+      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
+      add_to_report: Add more to report
       are_you_sure: Es segur ?
       assign_to_self: Me l’assignar
       assigned: Moderador assignat
       by_target_domain: Domeni del compte senhalat
+      cancel: Cancel
       category: Categoria
+      category_description_html: The reason this account and/or content was reported will be cited in communication with the reported account
       comment:
         none: Pas cap
+      comment_description_html: 'To provide more information, %{name} wrote:'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: Creacion
+      delete_and_resolve: Delete posts
+      forwarded: Forwarded
+      forwarded_to: Forwarded to %{domain}
       mark_as_resolved: Marcar coma resolgut
+      mark_as_sensitive: Mark as sensitive
       mark_as_unresolved: Marcar coma pas resolgut
+      no_one_assigned: No one
       notes:
         create: Ajustar una nòta
         create_and_resolve: Resòlvre amb una nòta
         create_and_unresolve: Tornar dobrir amb una nòta
         delete: Escafar
         placeholder: Explicatz las accions que son estadas menadas o quicòm de ligat al senhalament…
+        title: Notes
+      notes_description_html: View and leave notes to other moderators and your future self
+      processed_msg: 'Report #%{id} successfully processed'
+      quick_actions_description_html: 'Take a quick action or scroll down to see reported content:'
+      remote_user_placeholder: the remote user from %{instance}
       reopen: Tornar dobrir lo rapòrt
       report: 'Senhalament #%{id}'
       reported_account: Compte senhalat
       reported_by: Senhalat per
       resolved: Resolgut
       resolved_msg: Rapòrt corrèctament resolgut !
+      skip_to_actions: Skip to actions
       status: Estatut
+      statuses: Reported content
+      statuses_description_html: Offending content will be cited in communication with the reported account
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
+      target_origin: Origin of reported account
       title: Senhalament
       unassign: Levar
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: Pas resolgut
       updated_at: Actualizat
       view_profile: Veire lo perfil
+    roles:
+      add_new: Add role
+      assigned_users:
+        one: "%{count} user"
+        other: "%{count} users"
+      categories:
+        administration: Administration
+        devops: DevOps
+        invites: Invites
+        moderation: Moderation
+        special: Special
+      delete: Delete
+      description_html: With <strong>user roles</strong>, you can customize which functions and areas of Mastodon your users can access.
+      edit: Edit '%{name}' role
+      everyone: Default permissions
+      everyone_full_description_html: This is the <strong>base role</strong> affecting <strong>all users</strong>, even those without an assigned role. All other roles inherit permissions from it.
+      permissions_count:
+        one: "%{count} permission"
+        other: "%{count} permissions"
+      privileges:
+        administrator: Administrator
+        administrator_description: Users with this permission will bypass every permission
+        delete_user_data: Delete User Data
+        delete_user_data_description: Allows users to delete other users' data without delay
+        invite_users: Invite Users
+        invite_users_description: Allows users to invite new people to the server
+        manage_announcements: Manage Announcements
+        manage_announcements_description: Allows users to manage announcements on the server
+        manage_appeals: Manage Appeals
+        manage_appeals_description: Allows users to review appeals against moderation actions
+        manage_blocks: Manage Blocks
+        manage_blocks_description: Allows users to block e-mail providers and IP addresses
+        manage_custom_emojis: Manage Custom Emojis
+        manage_custom_emojis_description: Allows users to manage custom emojis on the server
+        manage_federation: Manage Federation
+        manage_federation_description: Allows users to block or allow federation with other domains, and control deliverability
+        manage_invites: Manage Invites
+        manage_invites_description: Allows users to browse and deactivate invite links
+        manage_reports: Manage Reports
+        manage_reports_description: Allows users to review reports and perform moderation actions against them
+        manage_roles: Manage Roles
+        manage_roles_description: Allows users to manage and assign roles below theirs
+        manage_rules: Manage Rules
+        manage_rules_description: Allows users to change server rules
+        manage_settings: Manage Settings
+        manage_settings_description: Allows users to change site settings
+        manage_taxonomies: Manage Taxonomies
+        manage_taxonomies_description: Allows users to review trending content and update hashtag settings
+        manage_user_access: Manage User Access
+        manage_user_access_description: Allows users to disable other users' two-factor authentication, change their e-mail address, and reset their password
+        manage_users: Manage Users
+        manage_users_description: Allows users to view other users' details and perform moderation actions against them
+        manage_webhooks: Manage Webhooks
+        manage_webhooks_description: Allows users to set up webhooks for administrative events
+        view_audit_log: View Audit Log
+        view_audit_log_description: Allows users to see a history of administrative actions on the server
+        view_dashboard: View Dashboard
+        view_dashboard_description: Allows users to access the dashboard and various metrics
+        view_devops: DevOps
+        view_devops_description: Allows users to access Sidekiq and pgHero dashboards
+      title: Roles
     rules:
+      add_new: Add rule
+      delete: Delete
+      description_html: While most claim to have read and agree to the terms of service, usually people do not read through until after a problem arises. <strong>Make it easier to see your server's rules at a glance by providing them in a flat bullet point list.</strong> Try to keep individual rules short and simple, but try not to split them up into many separate items either.
+      edit: Edit rule
+      empty: No server rules have been defined yet.
       title: Règlas del servidor
     settings:
       about:
+        manage_rules: Manage server rules
+        preamble: Provide in-depth information about how the server is operated, moderated, funded.
+        rules_hint: There is a dedicated area for rules that your users are expected to adhere to.
         title: A prepaus
       appearance:
+        preamble: Customize Mastodon's web interface.
         title: Aparéncia
+      branding:
+        preamble: Your server's branding differentiates it from other servers in the network. This information may be displayed across a variety of environments, such as Mastodon's web interface, native applications, in link previews on other websites and within messaging apps, and so on. For this reason, it is best to keep this information clear, short and concise.
+        title: Branding
+      content_retention:
+        preamble: Control how user-generated content is stored in Mastodon.
+        title: Content retention
+      default_noindex:
+        desc_html: Affects all users who have not changed this setting themselves
+        title: Opt users out of search engine indexing by default
       discovery:
         follow_recommendations: Recomandacions d’abonaments
+        preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
         profile_directory: Annuari de perfils
         public_timelines: Fluxes d’actualitats publics
+        publish_discovered_servers: Publish discovered servers
+        publish_statistics: Publish statistics
         title: Descobèrta
         trends: Tendéncias
       domain_blocks:
         all: A tot lo monde
         disabled: A degun
         users: Als utilizaires locals connectats
+      registrations:
+        preamble: Control who can create an account on your server.
+        title: Registrations
       registrations_mode:
         modes:
           approved: Validacion necessària per s’inscriure
@@ -396,47 +761,164 @@ oc:
       title: Paramètres del servidor
     site_uploads:
       delete: Suprimir lo fichièr enviat
+      destroyed_msg: Site upload successfully deleted!
     statuses:
       account: Autor
       application: Aplicacion
       back_to_account: Tornar a la pagina Compte
+      back_to_report: Back to report page
+      batch:
+        remove_from_report: Remove from report
+        report: Report
       deleted: Suprimits
+      favourites: Favourites
+      history: Version history
+      in_reply_to: Replying to
       language: Lenga
       media:
         title: Mèdia
+      metadata: Metadata
       no_status_selected: Cap d’estatut pas cambiat estant que cap èra pas seleccionat
+      open: Open post
+      original_status: Original post
+      reblogs: Reblogs
+      status_changed: Post changed
       title: Estatuts del compte
+      trending: Trending
       visibility: Visibilitat
       with_media: Amb mèdia
+    strikes:
+      actions:
+        delete_statuses: "%{name} deleted %{target}'s posts"
+        disable: "%{name} froze %{target}'s account"
+        mark_statuses_as_sensitive: "%{name} marked %{target}'s posts as sensitive"
+        none: "%{name} sent a warning to %{target}"
+        sensitive: "%{name} marked %{target}'s account as sensitive"
+        silence: "%{name} limited %{target}'s account"
+        suspend: "%{name} suspended %{target}'s account"
+      appeal_approved: Appealed
+      appeal_pending: Appeal pending
+      appeal_rejected: Appeal rejected
     system_checks:
+      database_schema_check:
+        message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
+      elasticsearch_running_check:
+        message_html: Could not connect to Elasticsearch. Please check that it is running, or disable full-text search
+      elasticsearch_version_check:
+        message_html: 'Incompatible Elasticsearch version: %{value}'
+        version_comparison: Elasticsearch %{running_version} is running while %{required_version} is required
       rules_check:
         action: Gerir las règlas servidor
         message_html: Avètz pas definida cap de règla.
+      sidekiq_process_check:
+        message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
     tags:
       review: Repassar l’estatut
       updated_msg: Paramètres d’etiquetas corrèctament actualizats
     title: Administracion
     trends:
+      allow: Allow
+      approved: Approved
+      disallow: Disallow
+      links:
+        allow: Allow link
+        allow_provider: Allow publisher
+        description_html: These are links that are currently being shared a lot by accounts that your server sees posts from. It can help your users find out what's going on in the world. No links are displayed publicly until you approve the publisher. You can also allow or reject individual links.
+        disallow: Disallow link
+        disallow_provider: Disallow publisher
+        no_link_selected: No links were changed as none were selected
+        publishers:
+          no_publisher_selected: No publishers were changed as none were selected
+        shared_by_over_week:
+          one: Shared by one person over the last week
+          other: Shared by %{count} people over the last week
+        title: Trending links
+        usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
+      not_allowed_to_trend: Not allowed to trend
+      only_allowed: Only allowed
+      pending_review: Pending review
+      preview_card_providers:
+        allowed: Links from this publisher can trend
+        description_html: These are domains from which links are often shared on your server. Links will not trend publicly unless the domain of the link is approved. Your approval (or rejection) extends to subdomains.
+        rejected: Links from this publisher won't trend
+        title: Publishers
+      rejected: Rejected
       statuses:
+        allow: Allow post
+        allow_account: Allow author
+        description_html: These are posts that your server knows about that are currently being shared and favourited a lot at the moment. It can help your new and returning users to find more people to follow. No posts are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual posts.
+        disallow: Disallow post
+        disallow_account: Disallow author
+        no_status_selected: No trending posts were changed as none were selected
+        not_discoverable: Author has not opted-in to being discoverable
+        shared_by:
+          one: Shared or favourited one time
+          other: Shared and favourited %{friendly_count} times
         title: Publicacions endavant
       tags:
         current_score: Marca actuala %{score}
         dashboard:
+          tag_accounts_measure: unique uses
           tag_languages_dimension: Lengas principalas
           tag_servers_dimension: Servidors principals
+          tag_servers_measure: different servers
+          tag_uses_measure: total uses
+        description_html: These are hashtags that are currently appearing in a lot of posts that your server sees. It can help your users find out what people are talking the most about at the moment. No hashtags are displayed publicly until you approve them.
+        listable: Can be suggested
+        no_tag_selected: No tags were changed as none were selected
+        not_listable: Won't be suggested
+        not_trendable: Won't appear under trends
+        not_usable: Cannot be used
+        peaked_on_and_decaying: Peaked on %{date}, now decaying
+        title: Trending hashtags
+        trendable: Can appear under trends
+        trending_rank: 'Trending #%{rank}'
+        usable: Can be used
+        usage_comparison: Used %{today} times today, compared to %{yesterday} yesterday
+        used_by_over_week:
+          one: Used by one person over the last week
+          other: Used by %{count} people over the last week
+      title: Trends
+      trending: Trending
     warning_presets:
       add_new: N’ajustar un nòu
       delete: Escafar
       edit_preset: Modificar lo tèxt predefinit d’avertiment
+      empty: You haven't defined any warning presets yet.
       title: Gerir los tèxtes predefinits
     webhooks:
+      add_new: Add endpoint
       delete: Suprimir
+      description_html: A <strong>webhook</strong> enables Mastodon to push <strong>real-time notifications</strong> about chosen events to your own application, so your application can <strong>automatically trigger reactions</strong>.
       disable: Desactivar
       disabled: Desactivat
+      edit: Edit endpoint
+      empty: You don't have any webhook endpoints configured yet.
       enable: Activar
       enabled: Actiu
+      enabled_events:
+        one: 1 enabled event
+        other: "%{count} enabled events"
       events: Eveniments
+      new: New webhook
+      rotate_secret: Rotate secret
+      secret: Signing secret
+      status: Status
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: to delete their posts
+        disable: to freeze their account
+        mark_statuses_as_sensitive: to mark their posts as sensitive
+        none: a warning
+        sensitive: to mark their account as sensitive
+        silence: to limit their account
+        suspend: to suspend their account
+      body: "%{target} is appealing a moderation decision by %{action_taken_by} from %{date}, which was %{type}. They wrote:"
+      next_steps: You can approve the appeal to undo the moderation decision, or ignore it.
+      subject: "%{username} is appealing a moderation decision on %{instance}"
     new_pending_account:
       body: Los detalhs del nòu compte son çai-jos. Podètz validar o regetar aquesta demanda.
       subject: Nòu compte per repassar sus %{instance} (%{username})
@@ -444,8 +926,23 @@ oc:
       body: "%{reporter} a senhalat %{target}"
       body_remote: Qualqu’un de %{domain} senhalèt %{target}
       subject: Novèl senhalament per %{instance} (#%{id})
+    new_trends:
+      body: 'The following items need a review before they can be displayed publicly:'
+      new_trending_links:
+        title: Trending links
+      new_trending_statuses:
+        title: Trending posts
+      new_trending_tags:
+        no_approved_tags: There are currently no approved trending hashtags.
+        requirements: 'Any of these candidates could surpass the #%{rank} approved trending hashtag, which is currently #%{lowest_tag_name} with a score of %{lowest_tag_score}.'
+        title: Trending hashtags
+      subject: New trends up for review on %{instance}
   aliases:
     add_new: Crear un alias
+    created_msg: Successfully created a new alias. You can now initiate the move from the old account.
+    deleted_msg: Successfully removed the alias. Moving from that account to this one will no longer be possible.
+    empty: You have no aliases.
+    hint_html: If you want to move from another account to this one, here you can create an alias, which is required before you can proceed with moving followers from the old account to this one. This action by itself is <strong>harmless and reversible</strong>. <strong>The account migration is initiated from the old account</strong>.
     remove: Desligar l’alias
   appearance:
     advanced_web_interface: Interfàcia web avançada
@@ -455,6 +952,7 @@ oc:
     discovery: Descobèrta
     localization:
       body: Mastodon es traduch per de benevòls.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Tot lo monde pòt contribuïr.
     sensitive_content: Contengut sensible
     toot_layout: Disposicion del tut
@@ -468,20 +966,27 @@ oc:
   applications:
     created: Aplicacion ben creada
     destroyed: Aplication corrcètament suprimida
+    logout: Logout
     regenerate_token: Tornar generar lo geton d’accès
     token_regenerated: Geton d’accès ben regenerat
     warning: Mèfi ! Agachatz de partejar aquela donada amb degun !
     your_token: Vòstre geton d’accès
   auth:
+    apply_for_account: Request an account
     change_password: Senhal
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Suprimir lo compte
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
     description:
       prefix_invited_by_user: "@%{name} vos convida a rejónher aqueste servidor Mastodon !"
       prefix_sign_up: Marcatz-vos a Mostodon uèi !
+      suffix: With an account, you will be able to follow people, post updates and exchange messages with users from any Mastodon server and more!
     didnt_get_confirmation: Avètz pas recebut las instruccions de confirmacion ?
+    dont_have_your_security_key: Don't have your security key?
     forgot_password: Senhal oblidat ?
     invalid_reset_password_token: Lo geton de reïnicializacion es invalid o acabat. Tornatz demandar un geton se vos plai.
+    link_to_otp: Enter a two-factor code from your phone or a recovery code
     link_to_webauth: Utilizar un aparelh de claus de seguretat
     log_in_with: Connexion amb
     login: Se connectar
@@ -498,17 +1003,34 @@ oc:
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
     rules:
+      accept: Accept
+      back: Back
+      preamble: These are set and enforced by the %{domain} moderators.
       title: Unas règlas de basa.
     security: Seguretat
     set_new_password: Picar un nòu senhal
     setup:
+      email_below_hint_html: If the below e-mail address is incorrect, you can change it here and receive a new confirmation e-mail.
+      email_settings_hint_html: The confirmation e-mail was sent to %{email}. If that e-mail address is not correct, you can change it in account settings.
       title: Configuracion
+    sign_in:
+      preamble_html: Sign in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
+      title: Sign in to %{domain}
+    sign_up:
+      preamble: With an account on this Mastodon server, you'll be able to follow any other person on the network, regardless of where their account is hosted.
+      title: Let's get you set up on %{domain}.
     status:
       account_status: Estat del compte
+      confirming: Waiting for e-mail confirmation to be completed.
       functional: Vòstre compte es complètament foncional.
+      pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
+      redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
+      view_strikes: View past strikes against your account
+    too_fast: Form submitted too fast, try again.
     use_security_key: Utilizar clau de seguretat
   authorize_follow:
     already_following: Seguètz ja aqueste compte
+    already_requested: You have already sent a follow request to that account
     error: O planhèm, i a agut una error al moment de cercar lo compte
     follow: Sègre
     follow_request: 'Avètz demandat de sègre :'
@@ -523,6 +1045,10 @@ oc:
     hint_html: "<strong>Asutúcia :</strong> vos demandarem pas vòstre senhal de nòu d’aquí unas oras."
     invalid_password: Senhal invalid
     prompt: Confirmatz lo senhal per dire de contunhar
+  crypto:
+    errors:
+      invalid_key: is not a valid Ed25519 or Curve25519 key
+      invalid_signature: is not a valid Ed25519 signature
   date:
     formats:
       default: "%-d %B de %Y"
@@ -551,14 +1077,42 @@ oc:
       caches: Lo contengut en cache suls autres servidors pòt demorar
       data_removal: Vòstras publicacions e las autras donadas seràn suprimidas per totjorn
       email_change_html: Podètz <a href="%{path}">cambiar vòstra adreça electronia</a>sens suprimir vòstre compte
+      email_contact_html: If it still doesn't arrive, you can e-mail <a href="mailto:%{email}">%{email}</a> for help
+      email_reconfirmation_html: If you are not receiving the confirmation e-mail, you can <a href="%{path}">request it again</a>
       irreversible: Poiretz pas restaurar o reactivar vòstre compte
       more_details_html: Per mai d’informacion, vejatz la <a href="%{terms_path}">politica de confidencialitat</a>.
       username_available: Vòstre nom d’utilizaire serà disponible de nòu
       username_unavailable: Vòstre nom d’utilizaire demorarà pas disponible
   disputes:
     strikes:
+      action_taken: Action taken
+      appeal: Appeal
+      appeal_approved: This strike has been successfully appealed and is no longer valid
+      appeal_rejected: The appeal has been rejected
+      appeal_submitted_at: Appeal submitted
+      appealed_msg: Your appeal has been submitted. If it is approved, you will be notified.
+      appeals:
+        submit: Submit appeal
+      approve_appeal: Approve appeal
+      associated_report: Associated report
+      created_at: Dated
+      description_html: These are actions taken against your account and warnings that have been sent to you by the staff of %{instance}.
+      recipient: Addressed to
+      reject_appeal: Reject appeal
+      status: 'Post #%{id}'
+      status_removed: Post already removed from system
+      title: "%{action} from %{date}"
       title_actions:
+        delete_statuses: Post removal
+        disable: Freezing of account
+        mark_statuses_as_sensitive: Marking of posts as sensitive
         none: Avertiment
+        sensitive: Marking of account as sensitive
+        silence: Limitation of account
+        suspend: Suspension of account
+      your_appeal_approved: Your appeal has been approved
+      your_appeal_pending: You have submitted an appeal
+      your_appeal_rejected: Your appeal has been rejected
   domain_validator:
     invalid_domain: es pas un nom de domeni valid
   errors:
@@ -598,6 +1152,7 @@ oc:
     add_new: Ajustar una etiqueta nòva
     errors:
       limit: Avètz ja utilizat lo maximum d’etiquetas
+    hint_html: "<strong>What are featured hashtags?</strong> They are displayed prominently on your public profile and allow people to browse your public posts specifically under those hashtags. They are a great tool for keeping track of creative works or long-term projects."
   filters:
     contexts:
       account: Perfils
@@ -608,10 +1163,14 @@ oc:
     edit:
       add_keyword: Apondre un mot clau
       keywords: Mots clau
+      statuses: Individual posts
+      statuses_hint_html: This filter applies to select individual posts regardless of whether they match the keywords below. <a href="%{path}">Review or remove posts from the filter</a>.
       title: Modificar lo filtre
     errors:
+      deprecated_api_multiple_keywords: These parameters cannot be changed from this application because they apply to more than one filter keyword. Use a more recent application or the web interface.
       invalid_context: Cap de contèxte o contèxte invalid fornit
     index:
+      contexts: Filters in %{contexts}
       delete: Suprimir
       empty: Avètz pas cap de filtre.
       expires_in: Expira d’aquí %{distance}
@@ -622,18 +1181,40 @@ oc:
       statuses:
         one: "%{count} publicacion"
         other: "%{count} publicacions"
+      statuses_long:
+        one: "%{count} individual post hidden"
+        other: "%{count} individual posts hidden"
       title: Filtres
     new:
+      save: Save new filter
       title: Ajustar un nòu filtre
+    statuses:
+      back_to_filter: Back to filter
+      batch:
+        remove: Remove from filter
+      index:
+        hint: This filter applies to select individual posts regardless of other criteria. You can add more posts to this filter from the web interface.
+        title: Filtered posts
   footer:
     trending_now: Tendéncia del moment
   generic:
     all: Tot
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> item on this page is selected."
+      other: All <strong>%{count}</strong> items on this page are selected.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> item matching your search is selected."
+      other: All <strong>%{count}</strong> items matching your search are selected.
     changes_saved_msg: Cambiaments ben realizats !
     copy: Copiar
     delete: Suprimir
+    deselect: Deselect all
+    none: None
     order_by: Triar per
     save_changes: Salvar los cambiaments
+    select_all_matching_items:
+      one: Select %{count} item matching your search.
+      other: Select all %{count} items matching your search.
     today: uèi
     validation_errors:
       one: I a quicòm que truca ! Mercés de corregir l’error çai-jos
@@ -641,6 +1222,9 @@ oc:
   html_validator:
     invalid_markup: 'conten un balisatge HTML invalid : %{error}'
   imports:
+    errors:
+      invalid_csv_file: 'Invalid CSV file. Error: %{error}'
+      over_rows_processing_limit: contains more than %{count} rows
     modes:
       merge: Fondre
       merge_long: Gardar los enregistraments existents e ajustar los nòus
@@ -682,18 +1266,28 @@ oc:
       limit: Avètz atengut lo maximum de listas
   login_activities:
     authentication_methods:
+      otp: two-factor authentication app
       password: senhal
       sign_in_token: còdi de seguretat mail
       webauthn: claus de seguretat
+    description_html: If you see activity that you don't recognize, consider changing your password and enabling two-factor authentication.
+    empty: No authentication history available
+    failed_sign_in_html: Failed sign-in attempt with %{method} from %{ip} (%{browser})
+    successful_sign_in_html: Successful sign-in with %{method} from %{ip} (%{browser})
+    title: Authentication history
   media_attachments:
     validations:
       images_and_video: Se pòt pas ajustar una vidèo a un estatut que ten ja d’imatges
+      not_ready: Cannot attach files that have not finished processing. Try again in a moment!
       too_many: Se pòt pas ajustar mai de 4 fichièrs
   migrations:
     acct: nomutilizaire@domeni del nòu compte
     cancel: Anullar la redireccion
+    cancel_explanation: Cancelling the redirect will re-activate your current account, but will not bring back followers that have been moved to that account.
     cancelled_msg: Redireccion corrèctament anullada.
     errors:
+      already_moved: is the same account you have already moved to
+      missing_also_known_as: is not an alias of this account
       move_to_self: pòt pas èsser lo compte actual
       not_found: impossible de trobar
       on_cooldown: Sètz en temps de recargament
@@ -702,18 +1296,33 @@ oc:
     incoming_migrations_html: Per venir d’un autre compte cap a aqueste, vos cal d’en primièr <a href="%{path}">crear un alias de compte</a>.
     moved_msg: Vòstre compte manda ara a %{acct} e vòstres seguidors son desplaçats.
     not_redirecting: Vòstre compte manda pas enlòc pel moment.
+    on_cooldown: You have recently migrated your account. This function will become available again in %{count} days.
     past_migrations: Migracions passadas
     proceed_with_move: Desplaçar los seguidors
+    redirected_msg: Your account is now redirecting to %{acct}.
     redirecting_to: Vòstre compte manda a %{acct}.
     set_redirect: Definir redireccion
     warning:
+      backreference_required: The new account must first be configured to back-reference this one
       before: 'Abans de contunhar, volgatz legir aquestas nòtas amb atencion :'
+      cooldown: After moving there is a waiting period during which you will not be able to move again
+      disabled_account: Your current account will not be fully usable afterwards. However, you will have access to data export as well as re-activation.
+      followers: This action will move all followers from the current account to the new account
       only_redirect_html: Autrament, podètz <a href="%{path}">solament definir una redireccion sus vòstre perfil</a>.
       other_data: Cap d’autra donada serà desplaçada automaticament
+      redirect: Your current account's profile will be updated with a redirect notice and be excluded from searches
   moderation:
     title: Moderacion
+  move_handler:
+    carry_blocks_over_text: This user moved from %{acct}, which you had blocked.
+    carry_mutes_over_text: This user moved from %{acct}, which you had muted.
+    copy_account_note_text: 'This user moved from %{acct}, here were your previous notes about them:'
+  navigation:
+    toggle_menu: Toggle menu
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} submitted a report"
       sign_up:
         subject: "%{name} se marquèt"
     favourite:
@@ -753,8 +1362,13 @@ oc:
       decimal_units:
         format: "%n%u"
   otp_authentication:
+    code_hint: Enter the code generated by your authenticator app to confirm
+    description_html: If you enable <strong>two-factor authentication</strong> using an authenticator app, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
     enable: Activar
+    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
+    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
     setup: Parametrar
+    wrong_code: The entered code was invalid! Are server time and device time correct?
   pagination:
     newer: Mai recents
     next: Seguent
@@ -783,7 +1397,11 @@ oc:
       unrecognized_emoji: es pas un emoji reconegut
   relationships:
     activity: Activitat del compte
+    confirm_follow_selected_followers: Are you sure you want to follow selected followers?
+    confirm_remove_selected_followers: Are you sure you want to remove selected followers?
+    confirm_remove_selected_follows: Are you sure you want to remove selected follows?
     dormant: Inactiu
+    follow_selected_followers: Follow selected followers
     followers: Seguidors
     following: Abonaments
     invited: Convidat
@@ -799,8 +1417,14 @@ oc:
     status: Estat del compte
   remote_follow:
     missing_resource: URL de redireccion pas trobada
+  reports:
+    errors:
+      invalid_rules: does not reference valid rules
   rss:
     content_warning: 'Avís de contengut :'
+    descriptions:
+      account: Public posts from @%{acct}
+      tag: 'Public posts tagged #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Avètz passat la limita de %{limit}  tuts programats per aquel jorn
     over_total_limit: Avètz passat la limita de %{limit}  tuts programats
@@ -842,6 +1466,7 @@ oc:
     revoke: Revocar
     revoke_success: Session ben revocada
     title: Sessions
+    view_authentication_history: View authentication history of your account
   settings:
     account: Compte
     account_settings: Paramètres de compte
@@ -862,6 +1487,7 @@ oc:
     profile: Perfil
     relationships: Abonaments e seguidors
     statuses_cleanup: Supression auto de las publicacions
+    strikes: Moderation strikes
     two_factor_authentication: Autentificacion en dos temps
     webauthn_authentication: Claus de seguretat
   statuses:
@@ -888,6 +1514,7 @@ oc:
     open_in_web: Dobrir sul web
     over_character_limit: limit de %{max} caractèrs passat
     pin_errors:
+      direct: Posts that are only visible to mentioned users cannot be pinned
       limit: Avètz ja lo maximum de tuts penjats
       ownership: Se pòt pas penjar lo tut de qualqu’un mai
       reblog: Se pòt pas penjar un tut partejat
@@ -916,10 +1543,12 @@ oc:
   statuses_cleanup:
     enabled: Supression automatica de publicacions ancianas
     enabled_hint: Suprimís automaticament vòstras publicacions quand correspondon al critèri d’atge causit, levat se correspondon tanben a las excepcions çai-jos
+    exceptions: Exceptions
     explanation: Perque la supression es una operacion costosa en ressorsa, es realizat doçament quand lo servidor es pas ocupat a quicòm mai. Per aquò, vòstras publicacions seràn benlèu pas suprimidas aprèp aver atengut lo critèri d’atge.
     ignore_favs: Ignorar los favorits
     ignore_reblogs: Ignorar los partatges
     interaction_exceptions: Excepcions basadas sus las interaccions
+    interaction_exceptions_explanation: Note that there is no guarantee for posts to be deleted if they go below the favourite or boost threshold after having once gone over them.
     keep_direct: Gardar los messatges dirèctes
     keep_direct_hint: Suprimís pas vòstres messatges dirèctes
     keep_media: Gardar las publicacions amb pèça-junta
@@ -950,6 +1579,9 @@ oc:
     pinned: Tut penjat
     reblogged: a partejat
     sensitive_content: Contengut sensible
+  strikes:
+    errors:
+      too_late: It is too late to appeal this strike
   tags:
     does_not_match_previous_name: correspond pas al nom precedent
   themes:
@@ -964,6 +1596,7 @@ oc:
   two_factor_authentication:
     add: Ajustar
     disable: Desactivar
+    disabled_success: Two-factor authentication successfully disabled
     edit: Modificar
     enabled: Autentificacion en dos temps activada
     enabled_success: L’autentificacion en dos temps es ben activada
@@ -978,28 +1611,61 @@ oc:
   user_mailer:
     appeal_approved:
       action: Anatz al vòstre compte
+      explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been approved. Your account is once again in good standing.
+      subject: Your appeal from %{date} has been approved
+      title: Appeal approved
+    appeal_rejected:
+      explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been rejected.
+      subject: Your appeal from %{date} has been rejected
+      title: Appeal rejected
     backup_ready:
       explanation: Avètz demandat una salvagarda complèta de vòstre compte Mastodon. Es prèsta per telecargament !
       subject: Vòstre archiu es prèst per telecargament
       title: Archiu per emportar
+    suspicious_sign_in:
+      change_password: change your password
+      details: 'Here are details of the sign-in:'
+      explanation: We've detected a sign-in to your account from a new IP address.
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
+      subject: Your account has been accessed from a new IP address
+      title: A new sign-in
     warning:
+      appeal: Submit an appeal
+      appeal_description: If you believe this is an error, you can submit an appeal to the staff of %{instance}.
+      categories:
+        spam: Spam
+        violation: Content violates the following community guidelines
+      explanation:
+        delete_statuses: Some of your posts have been found to violate one or more community guidelines and have been subsequently removed by the moderators of %{instance}.
+        disable: You can no longer use your account, but your profile and other data remains intact. You can request a backup of your data, change account settings or delete your account.
+        mark_statuses_as_sensitive: Some of your posts have been marked as sensitive by the moderators of %{instance}. This means that people will need to tap the media in the posts before a preview is displayed. You can mark media as sensitive yourself when posting in the future.
+        sensitive: From now on, all your uploaded media files will be marked as sensitive and hidden behind a click-through warning.
+        silence: You can still use your account but only people who are already following you will see your posts on this server, and you may be excluded from various discovery features. However, others may still manually follow you.
+        suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed in about 30 days, but we will retain some basic data to prevent you from evading the suspension.
       reason: 'Motiu :'
       statuses: 'Publicacion citada :'
       subject:
+        delete_statuses: Your posts on %{acct} have been removed
         disable: Vòstre compte %{acct} es gelat
+        mark_statuses_as_sensitive: Your posts on %{acct} have been marked as sensitive
         none: Avertiment per %{acct}
+        sensitive: Your posts on %{acct} will be marked as sensitive from now on
         silence: Vòstre compte %{acct} es limitat
         suspend: Vòstre compte %{acct} es suspendut
       title:
         delete_statuses: Publicacion levada
         disable: Compte gelat
+        mark_statuses_as_sensitive: Posts marked as sensitive
         none: Avertiment
+        sensitive: Account marked as sensitive
         silence: Compte limitat
         suspend: Compte suspendut
     welcome:
       edit_profile_action: Configuracion del perfil
+      edit_profile_step: You can customize your profile by uploading a profile picture, changing your display name and more. You can opt-in to review new followers before they’re allowed to follow you.
       explanation: Vaquí qualques astúcias per vos preparar
       final_action: Començar de publicar
+      final_step: 'Start posting! Even without followers, your public posts may be seen by others, for example on the local timeline or in hashtags. You may want to introduce yourself on the #introductions hashtag.'
       full_handle: Vòstre escais-nom complèt
       full_handle_hint: Es aquò que vos cal donar a vòstres amics per que pòscan vos escriure o sègre a partir d’un autre servidor.
       subject: Benvengut a Mastodon
@@ -1015,6 +1681,18 @@ oc:
     verification: Verificacion
   webauthn_credentials:
     add: Apondre una clau de seguretat novèla
+    create:
+      error: There was a problem adding your security key. Please try again.
+      success: Your security key was successfully added.
     delete: Suprimir
+    delete_confirmation: Are you sure you want to delete this security key?
+    description_html: If you enable <strong>security key authentication</strong>, logging in will require you to use one of your security keys.
+    destroy:
+      error: There was a problem deleting you security key. Please try again.
+      success: Your security key was successfully deleted.
     invalid_credential: Cau de seguretat invalida
+    nickname_hint: Enter the nickname of your new security key
+    not_enabled: You haven't enabled WebAuthn yet
+    not_supported: This browser doesn't support security keys
+    otp_required: To use security keys please enable two-factor authentication first.
     registered_on: Inscripcion del %{date}

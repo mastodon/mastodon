@@ -91,6 +91,7 @@ an:
       moderation:
         active: Activo
         all: Totz
+        disabled: Disabled
         pending: Pendient
         silenced: Limitau
         suspended: Suspendius
@@ -133,6 +134,7 @@ an:
       search: Buscar
       search_same_email_domain: Atros usuarios con o mesmo dominio de correu
       search_same_ip: Atros usuarios con a mesma IP
+      security: Security
       security_measures:
         only_password: Nomás clau
         password_and_2fa: Clau y 2FA
@@ -427,6 +429,7 @@ an:
         resolve: Resolver dominio
         title: Nueva dentrada en a lista negra de correu
       no_email_domain_block_selected: No s'ha cambiau bloqueyos de dominio ya que garra ha estau triau
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: Lo nombre de dominio resuelte los siguients dominios MX, los quals son responsables en zaguera instancia d'acceptar lo correu electronico. Blocar un dominio MX blocará los rechistros de qualsequier adreza de correu electronico que utilice lo mesmo dominio MX, mesmo si lo nombre de dominio visible ye diferent. <strong>Tienga cudiau de no blocar los prencipals furnidors de correu electronico.</strong>
       resolved_through_html: Resuelto a traviés de %{domain}
       title: Lista negra de correu
@@ -441,6 +444,7 @@ an:
         private_comment_description_html: 'Pa aduyar-le a rastriar d''án proceden los bloqueyos importaus, los bloqueyos importaus se creyarán con o siguient comentario privau: <q>%{comment}</q>'
         private_comment_template: Importau dende %{source} lo %{date}
         title: Importar bloqueyos de dominio
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
       new:
         title: Importar bloqueyos de dominio
       no_file: Garra fichero triau
@@ -472,6 +476,7 @@ an:
       content_policies:
         comment: Nota interna
         description_html: Puetz definir politicas de conteniu que s'aplicarán a totas las cuentas d'este dominio y a qualsequiera d'os suyos subdominios.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: Refusar multimedia
           reject_reports: Refusar informes
@@ -584,11 +589,14 @@ an:
       assign_to_self: Asignar-me-la
       assigned: Moderador asignau
       by_target_domain: Dominio d'a cuenta denunciada
+      cancel: Cancel
       category: Categoría
       category_description_html: La razón per la quala se reportó esta cuenta u conteniu será citada en as comunicacions con a cuenta denunciada
       comment:
         none: Garra
       comment_description_html: 'Pa proporcionar mas información, %{name} escribió:'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: Denunciau
       delete_and_resolve: Eliminar publicacions
       forwarded: Reninviau
@@ -605,6 +613,7 @@ an:
         placeholder: Especificar qué accions s'han preso u qualsequier atra novedat respective a esta denuncia...
         title: Notas
       notes_description_html: Veyer y deixar notas a atros moderadors y a lo tuyo yo futuro
+      processed_msg: 'Report #%{id} successfully processed'
       quick_actions_description_html: 'Prene una acción rapida u desplaza-te enta baixo pa veyer lo conteniu denunciau:'
       remote_user_placeholder: l'usuario remoto de %{instance}
       reopen: Reubrir denuncia
@@ -617,9 +626,28 @@ an:
       status: Estau
       statuses: Conteniu denunciau
       statuses_description_html: Lo conteniu ofensivo se citará en a comunicación con a cuenta denunciada
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: Orichen d'a cuenta denunciada
       title: Reportes
       unassign: Desasignar
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: No resuelto
       updated_at: Actualizau
       view_profile: Veyer perfil
@@ -770,6 +798,7 @@ an:
         suspend: "%{name} suspendió la cuenta de %{target}"
       appeal_approved: Apelado
       appeal_pending: Apelación pendient
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: I hai migracions pendients d'a base de datos. Per favor, executa-las pa asegurar-te que l'aplicación funciona como debería
@@ -805,6 +834,7 @@ an:
           other: Compartiu per %{count} personas entre la zaguera semana
         title: Vinclos en tendencia
         usage_comparison: Compartiu %{today} vegadas hue, comparau con %{yesterday} ahiere
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: Nomás las permitidas
       pending_review: Revisión pendient
       preview_card_providers:
@@ -936,6 +966,7 @@ an:
   applications:
     created: Aplicación creyada exitosament
     destroyed: Apicación eliminada exitosament
+    logout: Logout
     regenerate_token: Regenerar token d'acceso
     token_regenerated: Token d'acceso regenerado exitosament
     warning: Tiene muito cudiau con estes datos. No los compartas con dengún!
@@ -943,6 +974,8 @@ an:
   auth:
     apply_for_account: Solicitar una cuenta
     change_password: Clau
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Borrar cuenta
     delete_account_html: Si deseya eliminar la suya cuenta, puede <a href="%{path}">proceder aquí</a>. Será pediu d'una confirmación.
     description:
@@ -970,6 +1003,8 @@ an:
     resend_confirmation: Tornar a ninviar lo correu de confirmación
     reset_password: Restablir clau
     rules:
+      accept: Accept
+      back: Back
       preamble: Estas son establidas y aplicadas per los moderadors de %{domain}.
       title: Qualques reglas basicas.
     security: Cambiar clau

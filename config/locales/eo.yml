@@ -91,6 +91,7 @@ eo:
       moderation:
         active: Aktivaj
         all: Ĉio
+        disabled: Disabled
         pending: Pritraktata
         silenced: Limigita
         suspended: Suspendita
@@ -117,6 +118,7 @@ eo:
       reject: Malakcepti
       rejected_msg: Sukcese malaprobis aliĝ-peton de %{username}
       remote_suspension_irreversible: La informoj de ĉi tiu konto estis neinversigeble forigitaj.
+      remote_suspension_reversible_hint_html: The account has been suspended on their server, and the data will be fully removed on %{date}. Until then, the remote server can restore this account without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       remove_avatar: Forigi la profilbildon
       remove_header: Forigi kapan bildon
       removed_avatar_msg: La rolfiguro de %{username} estas sukcese forigita
@@ -132,6 +134,7 @@ eo:
       search: Serĉi
       search_same_email_domain: Aliaj uzantoj kun la sama domajno de retpoŝto
       search_same_ip: Aliaj uzantoj kun la sama IP
+      security: Security
       security_measures:
         only_password: Nur pasvorto
         password_and_2fa: Pasvorto kaj 2FA
@@ -426,6 +429,7 @@ eo:
         resolve: Solvi domajnon
         title: Nova blokado de retadresa domajno
       no_email_domain_block_selected: Neniuj retpoŝtoadresodomajnblokoj ŝanĝitas ĉar nenio elektitas
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: La domajnnomo referencas al la MX-domajnoj kiuj akceptas retpoŝton. <strong>Ne bloku grandajn retpoŝtoservilojn.</strong>
       resolved_through_html: Solvis tra %{domain}
       title: Nigra listo de retadresaj domajnoj
@@ -440,6 +444,7 @@ eo:
         private_comment_description_html: 'Por helpi vin, importitaj blokoj kreitas kun la privata komento: <q>%{comment}</q>'
         private_comment_template: Enportita el %{source} je %{date}
         title: Importi domajnblokojn
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
       new:
         title: Importi domajnblokojn
       no_file: Neniu dosiero elektita
@@ -471,6 +476,7 @@ eo:
       content_policies:
         comment: Interna noto
         description_html: Vi povas difini enhavopolitikojn al la ĉiuj kontoj.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: Malakcepti plurmediojn
           reject_reports: Malakcepti raportojn
@@ -574,17 +580,23 @@ eo:
         mark_as_sensitive_description_html: La audovidaĵo en la raportita mesaĝo markotas kiel sentema kaj admono rekorditas.
         other_description_html: Vidu pli da ebloj por regi la sintenon de la konto kaj por personigi la komunikadon kun la raportita konto.
         resolve_description_html: Nenio okazotas al la raportita konto kaj la raporto fermotas.
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
       actions_description_html: Decidu kiu ago por solvi ĉi tiuj raporto. <strong>Spamo</strong> kategorio elektitas.
+      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: Aldoni pli al raporto
       are_you_sure: Ĉu vi certas?
       assign_to_self: Asigni al mi
       assigned: Asignita kontrolanto
       by_target_domain: Domajno de la signalita konto
+      cancel: Cancel
       category: Kategorio
       category_description_html: La kialo pri ĉi tiuj konto kaj enhavo raportitaj sendotas al la raportita konto
       comment:
         none: Nenio
       comment_description_html: 'Por doni pli da informo, %{name} skribis:'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: Signalita
       delete_and_resolve: Forigi afiŝojn
       forwarded: Plusendita
@@ -601,6 +613,7 @@ eo:
         placeholder: Priskribu faritajn agojn, aŭ ajnan novan informon pri tiu signalo…
         title: Notoj
       notes_description_html: Vidi kaj lasi notojn por aliaj kontrolantoj kaj estonta vi
+      processed_msg: 'Report #%{id} successfully processed'
       quick_actions_description_html: 'Agu au movu malsupre por vidi raportitajn enhavojn:'
       remote_user_placeholder: la ekstera uzanto de %{instance}
       reopen: Remalfermi signalon
@@ -613,9 +626,28 @@ eo:
       status: Mesaĝoj
       statuses: Raportita enhavo
       statuses_description_html: Sentema enhavo referencitas kun la raportita konto
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: Origino de raportita konto
       title: Signaloj
       unassign: Malasigni
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: Nesolvitaj
       updated_at: Ĝisdatigita
       view_profile: Vidi profilon
@@ -710,6 +742,7 @@ eo:
         preamble: Interesa enhavo estas grava por novaj uzantoj kiuj eble ne konas ajn iun.
         profile_directory: Profilujo
         public_timelines: Publikaj templinioj
+        publish_discovered_servers: Publish discovered servers
         publish_statistics: Publikigi statistikojn
         title: Eltrovado
         trends: Tendencoj
@@ -765,6 +798,7 @@ eo:
         suspend: "%{name} suspendis la konton de %{target}"
       appeal_approved: Apelaciita
       appeal_pending: Apelacio pritraktiĝos
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: Estas pritraktataj datumbazaj migradoj. Bonvolu ekzekuti ilin por certigi, ke la apliko kondutas kiel atendite
@@ -800,6 +834,7 @@ eo:
           other: Diskonita de %{count} personoj ekde lasta semajno
         title: Tendencantaj ligiloj
         usage_comparison: Diskonita %{today}-foje hodiau, sed estas %{yesterday} hierau
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: Nur permesitas
       pending_review: Atendante revizion
       preview_card_providers:
@@ -931,6 +966,7 @@ eo:
   applications:
     created: Aplikaĵo sukcese kreita
     destroyed: Aplikaĵo sukcese forigita
+    logout: Logout
     regenerate_token: Regeneri aliran ĵetonon
     token_regenerated: Alira ĵetono sukcese regeneria
     warning: Estu tre atenta kun ĉi tiu datumo. Neniam diskonigu ĝin al iu ajn!
@@ -938,6 +974,8 @@ eo:
   auth:
     apply_for_account: Peti konton
     change_password: Pasvorto
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Forigi konton
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
     description:
@@ -965,6 +1003,8 @@ eo:
     resend_confirmation: Resendi la instrukciojn por konfirmi
     reset_password: Restarigi pasvorton
     rules:
+      accept: Accept
+      back: Back
       preamble: Ĉi tioj fiksitas kaj devigitas de kontrolantoj de %{domain}.
       title: Bazaj reguloj.
     security: Sekureco
@@ -974,6 +1014,7 @@ eo:
       email_settings_hint_html: La konfirmretpoŝto senditas al %{email}.
       title: Agordi
     sign_in:
+      preamble_html: Sign in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
       title: Saluti en %{domain}
     sign_up:
       preamble: Per konto ĉe ĉi tiu Mastodon-servilo, vi povas sekvi ajn personojn en la reto.
@@ -1366,6 +1407,9 @@ eo:
       unrecognized_emoji: ne estas rekonita emoĝio
   relationships:
     activity: Konta aktiveco
+    confirm_follow_selected_followers: Are you sure you want to follow selected followers?
+    confirm_remove_selected_followers: Are you sure you want to remove selected followers?
+    confirm_remove_selected_follows: Are you sure you want to remove selected follows?
     dormant: Dormanta
     follow_selected_followers: Sekvi selektitajn sekvantojn
     followers: Sekvantoj

@@ -18,6 +18,8 @@ io:
           disable: Preventez uzanto de uzar olia konto ma ne efacez o celez olia kontenaji.
           none: Uzez co por sendar averto a la uzanto sen eventigar irga altra ago.
           sensitive: Koaktez omna mediiatachaji da ca uzanto markizesar quale sentoza.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Neobligata. Vu povas ankore insertar kustume texto a extremajo di fixito
       announcement:
         all_day: Kande kontrolesas, nur tempoporteodato montresos
@@ -64,12 +66,15 @@ io:
       email_domain_block:
         domain: Co povas esas domennomo quo montresas che retposto o registrajo MX quon ol uzas. Oli kontrolesos kande registro.
         with_dns_records: Probo di rezolvar registri DNS di la domeno agesos e rezulti anke preventesos
+      featured_tag:
+        name: 'Here are some of the hashtags you used the most recently:'
       filters:
         action: Selektez ago kande posto parigas filtrilo
         actions:
           hide: Komplete celez filtrita kontenajo quale ol ne existas
           warn: Celez filtrita kontenajo dop avert quo montras titulo di filtrilo
       form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
         backups_retention_period: Retenez igita uzantoarkivi por la diiquanto.
         bootstrap_timeline_accounts: Ca konti pinglagesos a super sequorekomendi di nova uzanti.
         closed_registrations_message: Montresas kande registradi klozesas
@@ -77,6 +82,7 @@ io:
         custom_css: Vu povas pozar kustumizita staili en retverso di Mastodon.
         mascot: Remplas montreso en avanca retintervizajo.
         media_cache_retention_period: Deschargita mediifaili efacesos pos la diiquanto kande fixesas a positiva nombro, e rideschargesas irgatempe.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: La profilcheflisto montras omna uzanti quo voluntale volas esar deskovrebla.
         require_invite_text: Kande registradi bezonas manuala aprobo, ol kauzigas "Por quo vu volas juntas?" textoenpozo esar obliganta
         site_contact_email: Quale personi povas kontaktar vu por legala o suportquestioni.
@@ -90,6 +96,7 @@ io:
         timeline_preview: Ekirita vizitanti videsos maxim recenta publika posti quo esas displonebla en la servilo.
         trendable_by_default: Ignorez manuala kontrolar di tendencoza kontenajo. Singla kozi povas ankore efacesar de tendenci pose.
         trends: Tendenci montras quala posti, hashtagi e niuzrakonti famozeskas en ca servilo.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Vu eniras sekura areo
       imports:
@@ -225,6 +232,7 @@ io:
           hide: Tote celez
           warn: Celez kun averto
       form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
         backups_retention_period: Uzantoarkivretendurtempo
         bootstrap_timeline_accounts: Sempre rekomendez ca konti a nova uzanti
         closed_registrations_message: Kustumizita mesajo kande registradi ne esas disponebla
@@ -232,6 +240,7 @@ io:
         custom_css: Kustumizita CSS
         mascot: Kustumizita reprezentimajo (oldo)
         media_cache_retention_period: Mediimemorajretendurtempo
+        peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Aktivigez profilcheflisto
         registrations_mode: Qua povas registragar
         require_invite_text: Mustez pozar motivo por juntar
@@ -248,6 +257,7 @@ io:
         timeline_preview: Permisez neyurizita aceso a publika tempolineo
         trendable_by_default: Permisez tendenci sen bezonar kontrolo
         trends: Aktivigez tendenci
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Celar la savigi da homi, qui ne sequas tu
         must_be_following: Celar la savigi da homi, quin tu ne sequas

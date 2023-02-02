@@ -16,6 +16,10 @@ oc:
         type_html: Causir de qué far amb <strong>%{acct}</strong>
         types:
           disable: Empachar l’utilizaire d’utilizar son compte mas suprimir o amagar pas son contengut.
+          none: Use this to send a warning to the user, without triggering any other action.
+          sensitive: Force all this user's media attachments to be flagged as sensitive.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Opcional. Podètz ajustar un tèxt personalizat a a fin de çò predefinit
       announcement:
         all_day: Se son marcadas, solament las datas de l’interval de temps seràn mostrada
@@ -23,6 +27,8 @@ oc:
         scheduled_at: Daissar void per publicar l’anóncia immediatament
         starts_at: Opcional. Se per cas vòstra anóncia es ligada a un interval de temps especific
         text: Podètz utilizar la sintaxi dels tuts. Gardatz al cap qu’aquesta anóncia ocuparà la fenèstra de l’utilizaire
+      appeal:
+        text: You can only appeal a strike once
       defaults:
         autofollow: Lo mond que se marcan gràcia a l’invitacion vos segràn automaticament
         avatar: PNG, GIF o JPG. Maximum %{size}. Serà retalhat en %{dimensions}px
@@ -31,6 +37,7 @@ oc:
         current_password: Per de rasons de seguretat volgatz picar lo senhal del compte actual
         current_username: Per confirmar, volgatz picar lo nom d’utilizaire del compte actual
         digest: Solament enviat aprèp un long moment d’inactivitat e solament s’avètz recebut de messatges personals pendent vòstra abséncia
+        discoverable: Allow your account to be discovered by strangers through recommendations, trends and other features
         email: Vos mandarem un corrièl de confirmacion
         fields: Podètz far veire cap a 4 elements sus vòstre perfil
         header: PNG, GIF o JPG. Maximum %{size}. Serà retalhada en %{dimensions}px
@@ -57,7 +64,39 @@ oc:
       domain_allow:
         domain: Aqueste domeni poirà recuperar las donadas d’aqueste servidor estant e las donadas venent d’aqueste domeni seràn tractadas e gardadas
       email_domain_block:
+        domain: This can be the domain name that shows up in the e-mail address or the MX record it uses. They will be checked upon sign-up.
         with_dns_records: Un ensag de resolucion dels enregistraments DNS del domeni donat serà realizat e los resultats seràn tanben meses en lista negra
+      featured_tag:
+        name: 'Here are some of the hashtags you used the most recently:'
+      filters:
+        action: Chose which action to perform when a post matches the filter
+        actions:
+          hide: Completely hide the filtered content, behaving as if it did not exist
+          warn: Hide the filtered content behind a warning mentioning the filter's title
+      form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
+        backups_retention_period: Keep generated user archives for the specified number of days.
+        bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations.
+        closed_registrations_message: Displayed when sign-ups are closed
+        content_cache_retention_period: Posts from other servers will be deleted after the specified number of days when set to a positive value. This may be irreversible.
+        custom_css: You can apply custom styles on the web version of Mastodon.
+        mascot: Overrides the illustration in the advanced web interface.
+        media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
+        profile_directory: The profile directory lists all users who have opted-in to be discoverable.
+        require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
+        site_contact_email: How people can reach you for legal or support inquiries.
+        site_contact_username: How people can reach you on Mastodon.
+        site_extended_description: Any additional information that may be useful to visitors and your users. Can be structured with Markdown syntax.
+        site_short_description: A short description to help uniquely identify your server. Who is running it, who is it for?
+        site_terms: Use your own privacy policy or leave blank to use the default. Can be structured with Markdown syntax.
+        site_title: How people may refer to your server besides its domain name.
+        theme: Theme that logged out visitors and new users see.
+        thumbnail: A roughly 2:1 image displayed alongside your server information.
+        timeline_preview: Logged out visitors will be able to browse the most recent public posts available on the server.
+        trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
+        trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Dintratz dins una zòna segura
       imports:
@@ -70,8 +109,11 @@ oc:
         ip: Dintratz una adreça IPv4 o IPv6. Podètz blocar de plajas entièras en utilizant la sintaxi CIDR. Agachatz de pas vos blocar defòra !
         severities:
           no_access: Blocar l’accès a totas las ressorsas
+          sign_up_block: New sign-ups will not be possible
           sign_up_requires_approval: Las inscripcions novèlas requeriràn vòstra validacion
         severity: Causissètz que far amb las requèstas d’aquesta IP
+      rule:
+        text: Describe a rule or requirement for users on this server. Try to keep it short and simple
       sessions:
         otp: 'Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstra aplicacion mobil o utilizatz un de vòstres còdis de recuperacion :'
         webauthn: S’es una clau USB asseguratz-vos de l’inserir, e se cal de la picanhejar.
@@ -79,6 +121,16 @@ oc:
         name: Podètz pas que cambiar la talha de las letras, per exemple, per que sián de melhor legir
       user:
         chosen_languages: Quand seleccionadas, solament los tuts dins las lengas triadas seràn mostrats dins vòstre flux d’actualitat
+        role: The role controls which permissions the user has
+      user_role:
+        color: Color to be used for the role throughout the UI, as RGB in hex format
+        highlighted: This makes the role publicly visible
+        name: Public name of the role, if role is set to be displayed as a badge
+        permissions_as_keys: Users with this role will have access to...
+        position: Higher role decides conflict resolution in certain situations. Certain actions can only be performed on roles with a lower priority
+      webhook:
+        events: Select events to send
+        url: Where events will be sent to
     labels:
       account:
         fields:
@@ -109,6 +161,8 @@ oc:
         scheduled_at: Publicacions programadas
         starts_at: Debuta de l’eveniment
         text: Anóncia
+      appeal:
+        text: Explain why this decision should be reversed
       defaults:
         autofollow: Convidar a sègre vòstre compte
         avatar: Avatar
@@ -178,7 +232,13 @@ oc:
           hide: Rescondre complètament
           warn: Rescondre amb avertiment
       form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
+        backups_retention_period: User archive retention period
+        bootstrap_timeline_accounts: Always recommend these accounts to new users
+        closed_registrations_message: Custom message when sign-ups are not available
+        content_cache_retention_period: Content cache retention period
         custom_css: CSS personalizada
+        mascot: Custom mascot (legacy)
         media_cache_retention_period: Durada de conservacion dels mèdias en cache
         peers_api_enabled: Publicar la lista dels servidors coneguts dins l’API
         profile_directory: Activar l’annuari de perfils
@@ -197,6 +257,7 @@ oc:
         timeline_preview: Permtre l’accès a l’apercebut del flux public sens autentificacion
         trendable_by_default: Activar las tendéncias sens revision prealabla
         trends: Activar las tendéncias
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Blocar las notificacions del mond que vos sègon pas
         must_be_following: Blocar las notificacions del mond que seguètz pas

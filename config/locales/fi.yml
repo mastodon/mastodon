@@ -91,6 +91,7 @@ fi:
       moderation:
         active: Aktiivinen
         all: Kaikki
+        disabled: Disabled
         pending: Odottavat
         silenced: Rajoitettu
         suspended: Jäähyllä
@@ -133,6 +134,7 @@ fi:
       search: Hae
       search_same_email_domain: Muut käyttäjät, joilla on sama sähköpostin verkkotunnus
       search_same_ip: Muut käyttäjät, joilla on sama IP-osoite
+      security: Security
       security_measures:
         only_password: Vain salasana
         password_and_2fa: Salasana ja kaksivaiheinen tunnistautuminen
@@ -427,6 +429,7 @@ fi:
         resolve: Ratkaise verkkotunnus
         title: Uusi sähköpostiestolistan merkintä
       no_email_domain_block_selected: Sähköpostin verkkotunnuksia ei muutettu, koska yhtään ei valittu
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: Verkkotunnuksen nimi määräytyy seuraaviin MX-verkkotunnuksiin, jotka ovat viime kädessä vastuussa sähköpostin vastaanottamisesta. MX-verkkotunnuksen estäminen estää kirjautumisen mistä tahansa sähköpostiosoitteesta, joka käyttää samaa MX-verkkotunnusta, vaikka näkyvä verkkotunnuksen nimi olisikin erilainen. <strong>Varo estämästä suuria sähköpostin palveluntarjoajia.</strong>
       resolved_through_html: Ratkaistu %{domain} kautta
       title: Sähköpostiestolista
@@ -441,6 +444,7 @@ fi:
         private_comment_description_html: 'Tuodun estolistan alkuperän selvillä pitämiseksi, lisätään tietojen yhteyteen seuraava yksityinen kommentti: <q>%{comment}</q>'
         private_comment_template: Tuotu lähteestä %{source}, pvm %{date}
         title: Tuo luettelo verkkoalue-estoista
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
       new:
         title: Tuo luettelo verkkoalue-estoista
       no_file: Yhtäkään tiedostoa ei ole valittu
@@ -472,6 +476,7 @@ fi:
       content_policies:
         comment: Sisäinen huomautus
         description_html: Voit määrittää sisältökäytännöt, joita sovelletaan kaikkiin tämän verkkotunnuksen ja sen aliverkkotunnuksien tileihin.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: Hylkää media
           reject_reports: Hylkää raportit
@@ -575,17 +580,22 @@ fi:
         mark_as_sensitive_description_html: Ilmoitettujen viestien media merkitään arkaluonteisiksi ja varoitus tallennetaan, jotta voit kärjistää saman tilin tulevia rikkomuksia.
         other_description_html: Katso lisää vaihtoehtoja tilin käytöksen hallitsemiseksi ja ilmoitetun tilin viestinnän mukauttamiseksi.
         resolve_description_html: Ilmoitettua tiliä vastaan ei ryhdytä toimenpiteisiin, varoitusta ei kirjata ja raportti suljetaan.
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
       actions_description_html: Päätä, mihin toimiin ryhdyt tämän ilmoituksen ratkaisemiseksi. Jos ryhdyt rangaistustoimeen ilmoitettua tiliä vastaan, heille lähetetään sähköposti-ilmoitus, paitsi jos <strong>Roskaposti</strong> luokka on valittuna.
+      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: Lisää raporttiin
       are_you_sure: Oletko varma?
       assign_to_self: Ota tehtäväksi
       assigned: Määritetty valvoja
       by_target_domain: Ilmoitetun tilin verkkotunnus
+      cancel: Cancel
       category: Kategoria
       category_description_html: Syy, miksi tämä tili ja/tai sisältö ilmoitettiin, mainitaan yhteydenotossa ilmoitettuun tiliin
       comment:
         none: Ei mitään
       comment_description_html: 'Antaakseen lisätietoja %{name} kirjoitti:'
+      confirm: Confirm
       confirm_action: Vahvista moderointitoiminto käyttäjää @%{acct} kohtaan
       created_at: Raportoitu
       delete_and_resolve: Poista viestejä
@@ -629,7 +639,9 @@ fi:
           suspend_html: Rajoita <strong>@%{acct}</strong>, jolloin heidän profiilinsa ja sisällönsä ei ole käytettävissä ja on mahdotonta olla vuorovaikutuksessa
         close_report: 'Merkitse raportti #%{id} selvitetyksi'
         close_reports_html: Merkitse <strong>kaikki</strong> käyttäjään <strong>@%{acct}</strong> kohdistuvat raportit ratkaistuiksi
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
         preview_preamble_html: "<strong>@%{acct}</strong> saa varoituksen, jonka sisältö on seuraava:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
         send_email_html: Lähetä käyttäjälle <strong>@%{acct}</strong> varoitus sähköpostitse
         warning_placeholder: Valinnaiset lisäperustelut moderointitoimenpiteelle.
       target_origin: Raportoidun tilin alkuperä
@@ -730,6 +742,7 @@ fi:
         preamble: Mielenkiintoisen sisällön esille tuominen auttaa saamaan uusia käyttäjiä, jotka eivät ehkä tunne ketään Mastodonista. Määrittele, kuinka erilaiset etsintäominaisuudet toimivat palvelimellasi.
         profile_directory: Profiilihakemisto
         public_timelines: Julkiset aikajanat
+        publish_discovered_servers: Publish discovered servers
         publish_statistics: Julkaise tilastot
         title: Löytäminen
         trends: Trendit
@@ -785,6 +798,7 @@ fi:
         suspend: "%{name} jäädytti käyttäjän %{target} tilin"
       appeal_approved: Valitti
       appeal_pending: Valitus vireillä
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: Tietokannan siirto on vireillä. Suorita ne varmistaaksesi, että sovellus toimii odotetulla tavalla
@@ -820,6 +834,7 @@ fi:
           other: Jakanut %{count} henkilöä viimeisen viikon aikana
         title: Suositut linkit
         usage_comparison: Jaettu %{today} kertaa tänään verrattuna eilen %{yesterday}
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: Vain sallittu
       pending_review: Odottaa tarkistusta
       preview_card_providers:
@@ -951,6 +966,7 @@ fi:
   applications:
     created: Sovelluksen luonti onnistui
     destroyed: Sovelluksen poisto onnistui
+    logout: Logout
     regenerate_token: Luo pääsytunnus uudelleen
     token_regenerated: Pääsytunnuksen uudelleenluonti onnistui
     warning: Säilytä tietoa hyvin. Älä milloinkaan jaa sitä muille!
@@ -987,6 +1003,8 @@ fi:
     resend_confirmation: Lähetä vahvistusohjeet uudestaan
     reset_password: Palauta salasana
     rules:
+      accept: Accept
+      back: Back
       preamble: "%{domain} valvojat määrittävät ja valvovat sääntöjä."
       title: Joitakin perussääntöjä.
     security: Tunnukset

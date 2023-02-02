@@ -5,6 +5,7 @@ si:
     contact_missing: සකස් කර නැත
     contact_unavailable: අ/නොවේ
     hosted_on: Mastodon %{domain}හි සත්කාරකත්වය දරයි
+    title: About
   accounts:
     follow: අනුගමනය
     followers:
@@ -37,11 +38,17 @@ si:
       avatar: අවතාරය
       by_domain: වසම
       change_email:
+        changed_msg: Email successfully changed!
         current_email: වත්මන් වි-තැපෑල
         label: වි-තැපෑල වෙනස් කරන්න
         new_email: නව විද්‍යුත් තැපෑල
         submit: වි-තැපෑල වෙනස් කරන්න
         title: "%{username} සඳහා වි-තැපෑල වෙනස් කරන්න"
+      change_role:
+        changed_msg: Role successfully changed!
+        label: Change role
+        no_role: No role
+        title: Change role for %{username}
       confirm: සනාථ කරන්න
       confirmed: තහවුරු කර ඇත
       confirming: සනාථ කරමින්
@@ -84,7 +91,9 @@ si:
       moderation:
         active: සක්‍රීයයි
         all: සියල්ල
+        disabled: Disabled
         pending: පොරොත්තුවෙන්
+        silenced: Limited
         suspended: අත්හිටුවන ලදි
         title: මධ්යස්ථභාවය
       moderation_notes: මධ්‍යස්ථ සටහන්
@@ -92,6 +101,7 @@ si:
       most_recent_ip: ඊට වඩා අ.ජා.කේ.(IP)
       no_account_selected: කිසිවක් තෝරා නොගත් බැවින් ගිණුම් කිසිවක් වෙනස් කර නැත
       no_limits_imposed: සීමාවන් පනවා නැත
+      no_role_assigned: No role assigned
       not_subscribed: දායක වී නැත
       pending: පොරොත්තු සමාලෝචනය
       perform_full_suspension: අත්හිටුවන්න
@@ -107,6 +117,8 @@ si:
       redownloaded_msg: මූලාරම්භයේ සිට %{username}හි පැතිකඩ සාර්ථකව නැවුම් කරන ලදී
       reject: ප්‍රතික්ෂේප
       rejected_msg: "%{username}හි ලියාපදිංචි වීමේ අයදුම්පත සාර්ථකව ප්‍රතික්ෂේප විය"
+      remote_suspension_irreversible: The data of this account has been irreversibly deleted.
+      remote_suspension_reversible_hint_html: The account has been suspended on their server, and the data will be fully removed on %{date}. Until then, the remote server can restore this account without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       remove_avatar: අවතාරය ඉවත් කරන්න
       remove_header: ශීර්ෂය ඉවත්කරන්න
       removed_avatar_msg: "%{username}ගේ අවතාර රූපය සාර්ථකව ඉවත් කරන ලදී"
@@ -118,9 +130,11 @@ si:
       reset: නැවත සකසන්න
       reset_password: මුරපදය නැවතසකසන්න
       resubscribe: නැවත දායක වන්න
+      role: Role
       search: සොයන්න
       search_same_email_domain: එකම විද්‍යුත් තැපැල් වසම සහිත වෙනත් පරිශීලකයන්
       search_same_ip: එකම IP සහිත වෙනත් පරිශීලකයන්
+      security: Security
       security_measures:
         only_password: මුරපදය පමණි
         password_and_2fa: මුරපදය සහ 2FA
@@ -160,17 +174,21 @@ si:
         approve_user: පරිශීලක අනුමත කරන්න
         assigned_to_self_report: වාර්තාව පැවරීම
         change_email_user: පරිශීලකයින්ට වි-තැපෑල වෙනස් කරන්න
+        change_role_user: Change Role of User
         confirm_user: පරිශීලක තහවුරු කරන්න
         create_account_warning: අවවාදයක් සාදන්න
         create_announcement: නිවේදනය සාදන්න
+        create_canonical_email_block: Create E-mail Block
         create_custom_emoji: අභිරුචි ඉමොජි සාදන්න
         create_domain_allow: වසම් ඉඩදීමක් සාදන්න
         create_domain_block: වසම් අවහිරයක් සාදන්න
         create_email_domain_block: ඊමේල් ඩොමේන් බ්ලොක් එකක් සාදන්න
         create_ip_block: අ.ජා. කෙ. (IP) නීතියක් සාදන්න
         create_unavailable_domain: ලබා ගත නොහැකි වසම සාදන්න
+        create_user_role: Create Role
         demote_user: පරිශීලකයා පහත් කරන්න
         destroy_announcement: නිවේදනය මකන්න
+        destroy_canonical_email_block: Delete E-mail Block
         destroy_custom_emoji: අභිරුචි ඉමොජි මකන්න
         destroy_domain_allow: වසම මකන්න ඉඩ දෙන්න
         destroy_domain_block: වසම් වාරණය මකන්න
@@ -179,6 +197,7 @@ si:
         destroy_ip_block: IP රීතිය මකන්න
         destroy_status: පළ කිරීම මකන්න
         destroy_unavailable_domain: ලබා ගත නොහැකි වසම මකන්න
+        destroy_user_role: Destroy Role
         disable_2fa_user: 2FA අබල කරන්න
         disable_custom_emoji: අභිරුචි ඉමොජි අබල කරන්න
         disable_sign_in_token_auth_user: පරිශීලකයා සඳහා ඊමේල් ටෝකන් සත්‍යාපනය අක්‍රීය කරන්න
@@ -192,6 +211,7 @@ si:
         reject_user: පරිශීලක ප්‍රතික්ෂේප කරන්න
         remove_avatar_user: Avatar ඉවත් කරන්න
         reopen_report: වාර්තාව නැවත විවෘත කරන්න
+        resend_user: Resend Confirmation Mail
         reset_password_user: මුරපදය නැවතසකසන්න
         resolve_report: වාර්තාව විසඳන්න
         sensitive_account: බල සංවේදී ගිණුම
@@ -205,23 +225,30 @@ si:
         update_announcement: නිවේදනය යාවත්කාල කරන්න
         update_custom_emoji: අභිරුචි ඉමොජි යාවත්කාලීන කරන්න
         update_domain_block: ඩොමේන් බ්ලොක් යාවත්කාලීන කරන්න
+        update_ip_block: Update IP rule
         update_status: පළ කිරීම යාවත්කාලීන කරන්න
+        update_user_role: Update Role
       actions:
         approve_appeal_html: "%{name} අනුමත මධ්‍යස්ථ තීරණ අභියාචනය %{target}සිට"
         approve_user_html: "%{name} අනුමත ලියාපදිංචිය %{target}සිට"
         assigned_to_self_report_html: "%{name} වාර්තාව %{target} තමන්ටම පවරා ඇත"
         change_email_user_html: "%{name} පරිශීලක %{target}ගේ ඊමේල් ලිපිනය වෙනස් කළේය"
+        change_role_user_html: "%{name} changed role of %{target}"
         confirm_user_html: "%{name} පරිශීලකයාගේ තහවුරු කරන ලද විද්‍යුත් තැපැල් ලිපිනය %{target}"
         create_account_warning_html: "%{name} %{target}අනතුරු ඇඟවීමක් යවා ඇත"
         create_announcement_html: "%{name} නව නිවේදනයක් තනන %{target}"
+        create_canonical_email_block_html: "%{name} blocked e-mail with the hash %{target}"
         create_custom_emoji_html: "%{name} නව ඉමොජි %{target}උඩුගත කරන ලදී"
         create_domain_allow_html: "%{name} වසම %{target}සමඟ ෆෙඩරේෂණයට අවසර දී ඇත"
         create_domain_block_html: "%{name} අවහිර කළ වසම %{target}"
         create_email_domain_block_html: "%{name} අවහිර කරන ලද විද්‍යුත් තැපැල් වසම %{target}"
         create_ip_block_html: "%{name} IP %{target}සඳහා රීතිය සාදන ලදී"
         create_unavailable_domain_html: "%{name} වසම %{target}වෙත බෙදා හැරීම නැවැත්වීය"
+        create_user_role_html: "%{name} created %{target} role"
         demote_user_html: "%{name} පහත හෙලන ලද පරිශීලක %{target}"
         destroy_announcement_html: "%{name} මකා දැමූ නිවේදනය %{target}"
+        destroy_canonical_email_block_html: "%{name} unblocked e-mail with the hash %{target}"
+        destroy_custom_emoji_html: "%{name} deleted emoji %{target}"
         destroy_domain_allow_html: වසම %{target}සමඟ %{name} අවසර නොදුන් සම්මේලනය
         destroy_domain_block_html: "%{name} අවහිර නොකළ වසම %{target}"
         destroy_email_domain_block_html: "%{name} අවහිර නොකළ විද්‍යුත් තැපැල් වසම %{target}"
@@ -229,6 +256,7 @@ si:
         destroy_ip_block_html: IP %{target}සඳහා %{name} මකා දැමූ රීතිය
         destroy_status_html: "%{name} පෝස්ට් %{target}විසින් ඉවත් කරන ලදී"
         destroy_unavailable_domain_html: "%{name} වසම %{target}වෙත බෙදා හැරීම නැවත ආරම්භ විය"
+        destroy_user_role_html: "%{name} deleted %{target} role"
         disable_2fa_user_html: "%{name} පරිශීලක %{target}සඳහා සාධක දෙකක අවශ්‍යතාවය අක්‍රීය කර ඇත"
         disable_custom_emoji_html: "%{name} ආබාධිත ඉමොජි %{target}"
         disable_sign_in_token_auth_user_html: "%{name} අක්‍රීය කරන ලද විද්‍යුත් තැපෑල ටෝකන් සත්‍යාපනය සඳහා %{target}"
@@ -242,6 +270,7 @@ si:
         reject_user_html: "%{name} %{target}සිට ලියාපදිංචි වීම ප්‍රතික්ෂේප විය"
         remove_avatar_user_html: "%{name} %{target}ගේ අවතාරය ඉවත් කරන ලදී"
         reopen_report_html: "%{name} නැවත විවෘත කළ වාර්තාව %{target}"
+        resend_user_html: "%{name} resent confirmation e-mail for %{target}"
         reset_password_user_html: "%{name} පරිශීලක %{target}හි මුරපදය යළි පිහිටුවන්න"
         resolve_report_html: "%{name} විසඳන ලද වාර්තාව %{target}"
         sensitive_account_html: "%{name} %{target}හි මාධ්‍ය සංවේදී ලෙස සලකුණු කර ඇත"
@@ -255,7 +284,10 @@ si:
         update_announcement_html: "%{name} යාවත්කාලීන නිවේදනය %{target}"
         update_custom_emoji_html: "%{name} යාවත්කාලීන කළ ඉමොජි %{target}"
         update_domain_block_html: "%{target}සඳහා %{name} යාවත්කාලීන කරන ලද වසම් වාරණ"
+        update_ip_block_html: "%{name} changed rule for IP %{target}"
         update_status_html: "%{name} %{target}යාවත්කාලීන කරන ලද පළ කිරීම"
+        update_user_role_html: "%{name} changed %{target} role"
+      deleted_account: deleted account
       empty: ලඝු-සටහන් හමු නොවිණි.
       filter_by_action: ක්‍රියාව අනුව පෙරන්න
       filter_by_user: පරිශීලක අනුව පෙරන්න
@@ -299,6 +331,7 @@ si:
       listed: ලැයිස්තුගත කර ඇත
       new:
         title: නව අභිරුචි ඉමොජි එක් කරන්න
+      no_emoji_selected: No emojis were changed as none were selected
       not_permitted: මෙම ක්‍රියාව සිදු කිරීමට ඔබට අවසර නැත
       overwrite: උඩින් ලියන්න
       shortcode: කෙටිකේතය
@@ -344,6 +377,8 @@ si:
       add_new: වසම සමඟ සම්මේලනයට ඉඩ දෙන්න
       created_msg: ෆෙඩරේෂන් සඳහා වසම සාර්ථකව අවසර දී ඇත
       destroyed_msg: ෆෙඩරේෂන් වෙතින් වසම අනුමත කර නැත
+      export: Export
+      import: Import
       undo: වසම සමඟ සම්මේලනයට ඉඩ නොදෙන්න
     domain_blocks:
       add_new: නව වසම් වාරණ එක් කරන්න
@@ -353,13 +388,19 @@ si:
       edit: වසම් වාරණය සංස්කරණය කරන්න
       existing_domain_block: ඔබ දැනටමත් %{name}මත දැඩි සීමාවන් පනවා ඇත.
       existing_domain_block_html: ඔබ දැනටමත් %{name}මත දැඩි සීමාවන් පනවා ඇත, ඔබට <a href="%{unblock_url}">එය අවහිර කිරීම ඉවත් කිරීමට අවශ්‍යයි</a>.
+      export: Export
+      import: Import
       new:
         create: බ්ලොක් එකක් සාදන්න
         hint: ඩොමේන් බ්ලොක් එක දත්ත සමුදාය තුල ගිණුම් ඇතුලත් කිරීම් නිර්මාණය වීම වලක්වන්නේ නැත, නමුත් එම ගිණුම් වලට ප්‍රතික්‍රියාශීලීව සහ ස්වයංක්‍රීයව විශේෂිත මධ්‍යස්ථ ක්‍රම යොදනු ඇත.
         severity:
+          desc_html: "<strong>Limit</strong> will make posts from accounts at this domain invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all content, media, and profile data for this domain's accounts from your server. Use <strong>None</strong> if you just want to reject media files."
           noop: කිසිවක් නැත
+          silence: Limit
           suspend: අත්හිටුවන්න
         title: නව වසම් වාරණ
+      no_domain_block_selected: No domain blocks were changed as none were selected
+      not_permitted: You are not permitted to perform this action
       obfuscate: අපැහැදිලි වසම් නාමය
       obfuscate_hint: වසම් සීමාවන් ලැයිස්තුව ප්‍රචාරණය කිරීම සබල කර ඇත්නම් ලැයිස්තුවේ වසම් නාමය අර්ධ වශයෙන් අපැහැදිලි කරන්න
       private_comment: පුද්ගලික අදහස
@@ -388,9 +429,25 @@ si:
         resolve: වසම විසඳන්න
         title: නව විද්‍යුත් තැපැල් වසම අවහිර කරන්න
       no_email_domain_block_selected: කිසිවක් තෝරා නොගත් බැවින් විද්‍යුත් තැපැල් වසම් වාරණ කිසිවක් වෙනස් කර නැත
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: ඩොමේන් නාමය පහත දැක්වෙන MX වසම් වලට විසඳයි, ඒවා අවසානයේ ඊමේල් පිළිගැනීම සඳහා වගකිව යුතුය. MX වසමක් අවහිර කිරීම දෘශ්‍ය වසම් නාමය වෙනස් වුවද, එකම MX වසම භාවිතා කරන ඕනෑම විද්‍යුත් තැපැල් ලිපිනයකින් ලියාපදිංචි වීම අවහිර කරයි. <strong>ප්‍රධාන විද්‍යුත් තැපැල් සපයන්නන් අවහිර නොකිරීමට ප්‍රවේශම් වන්න.</strong>
       resolved_through_html: "%{domain}හරහා විසඳා ඇත"
       title: අවහිර කළ වි-තැපැල් වසම්
+    export_domain_allows:
+      new:
+        title: Import domain allows
+      no_file: No file selected
+    export_domain_blocks:
+      import:
+        description_html: You are about to import a list of domain blocks. Please review this list very carefully, especially if you have not authored this list yourself.
+        existing_relationships_warning: Existing follow relationships
+        private_comment_description_html: 'To help you track where imported blocks come from, imported blocks will be created with the following private comment: <q>%{comment}</q>'
+        private_comment_template: Imported from %{source} on %{date}
+        title: Import domain blocks
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
+      new:
+        title: Import domain blocks
+      no_file: No file selected
     follow_recommendations:
       description_html: "<strong>නව පරිශීලකයින්ට රසවත් අන්තර්ගතයන් ඉක්මනින් සොයා ගැනීමට උපකාර වන නිර්දේශ අනුගමනය කරන්න</strong>. පෞද්ගලීකරණය කළ පසු විපරම් නිර්දේශ සැකසීමට තරම් පරිශීලකයෙකු අන් අය සමඟ අන්තර් ක්‍රියා කර නොමැති විට, ඒ වෙනුවට මෙම ගිණුම් නිර්දේශ කෙරේ. දී ඇති භාෂාවක් සඳහා ඉහළම මෑත කාලීන නියැලීම් සහ ඉහළම දේශීය අනුගාමික සංඛ්‍යාව සහිත ගිණුම් මිශ්‍රණයකින් ඒවා දෛනික පදනමින් නැවත ගණනය කෙරේ."
       language: භාෂාව සඳහා
@@ -419,6 +476,7 @@ si:
       content_policies:
         comment: අභ්යන්තර සටහන
         description_html: ඔබට මෙම වසම සහ එහි ඕනෑම උප වසමකින් සියලුම ගිණුම් වලට අදාළ වන අන්තර්ගත ප්‍රතිපත්ති නිර්වචනය කළ හැක.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: මාධ්‍ය ප්‍රතික්ෂේප කරන්න
           reject_reports: වාර්තා ප්‍රතික්ෂේප කරන්න
@@ -522,17 +580,23 @@ si:
         mark_as_sensitive_description_html: වාර්තා කරන ලද පළ කිරීම් වල මාධ්‍ය සංවේදී ලෙස සලකුණු කරනු ලබන අතර එම ගිණුම මගින් අනාගත උල්ලංඝනයන් උත්සන්න කිරීමට ඔබට උපකාර කිරීමට වර්ජනයක් වාර්තා කරනු ඇත.
         other_description_html: ගිණුමේ හැසිරීම පාලනය කිරීම සහ වාර්තා කළ ගිණුමට සන්නිවේදනය අභිරුචිකරණය කිරීම සඳහා තවත් විකල්ප බලන්න.
         resolve_description_html: වාර්තා කරන ලද ගිණුමට එරෙහිව කිසිදු ක්‍රියාමාර්ගයක් නොගනු ඇත, වැඩ වර්ජනයක් වාර්තා නොකෙරේ, වාර්තාව වසා දමනු ඇත.
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
       actions_description_html: මෙම වාර්තාව විසඳීමට ගත යුතු ක්‍රියාමාර්ගය තීරණය කරන්න. ඔබ වාර්තා කරන ලද ගිණුමට එරෙහිව දණ්ඩනීය ක්‍රියාමාර්ගයක් ගන්නේ නම්, <strong>Spam</strong> කාණ්ඩය තෝරාගත් විට හැර, ඔවුන්ට විද්‍යුත් තැපෑලෙන් දැනුම්දීමක් යවනු ලැබේ.
+      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: වාර්තා කිරීමට තවත් එක් කරන්න
       are_you_sure: ඔබට විශ්වාසද?
       assign_to_self: මට පවරන්න
       assigned: පවරා ඇති උපපරිපාලක
       by_target_domain: වාර්තා කළ ගිණුමෙහි වසම
+      cancel: Cancel
       category: වර්ගය
       category_description_html: මෙම ගිණුම සහ/හෝ අන්තර්ගතය වාර්තා කළ හේතුව වාර්තා කළ ගිණුම සමඟ සන්නිවේදනයේ සඳහන් කරනු ඇත
       comment:
         none: කිසිවක් නැත
       comment_description_html: 'වැඩි විස්තර සැපයීම සඳහා, %{name} ලිවීය:'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: වාර්තා කර ඇත
       delete_and_resolve: පළ කිරීම් මකන්න
       forwarded: යොමු කළා
@@ -549,6 +613,7 @@ si:
         placeholder: ගෙන ඇති ක්‍රියාමාර්ග, හෝ වෙනත් අදාළ යාවත්කාලීන විස්තර කරන්න...
         title: සටහන්
       notes_description_html: අනෙකුත් උපපරිපාලකයින්ට සහ ඔබේ අනාගතයට සටහන් බලන්න සහ තබන්න
+      processed_msg: 'Report #%{id} successfully processed'
       quick_actions_description_html: 'වාර්තා කළ අන්තර්ගතය බැලීමට ඉක්මන් ක්‍රියාමාර්ගයක් ගන්න හෝ පහළට අනුචලනය කරන්න:'
       remote_user_placeholder: "%{instance}සිට දුරස්ථ පරිශීලකයා"
       reopen: වාර්තාව නැවත විවෘත කරන්න
@@ -561,12 +626,92 @@ si:
       status: තත්වය
       statuses: වාර්තා කළ අන්තර්ගතය
       statuses_description_html: වාර්තා කරන ලද ගිණුම සමඟ සන්නිවේදනය කිරීමේදී වැරදි අන්තර්ගතයන් උපුටා දක්වනු ඇත
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: වාර්තා කළ ගිණුමේ ආරම්භය
       title: වාර්තා
       unassign: පැවරීම ඉවත් කරන්න
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: නොවිසඳී ඇත
       updated_at: යාවත්කාලීන කරන ලදී
       view_profile: පැතිකඩ බලන්න
+    roles:
+      add_new: Add role
+      assigned_users:
+        one: "%{count} user"
+        other: "%{count} users"
+      categories:
+        administration: Administration
+        devops: DevOps
+        invites: Invites
+        moderation: Moderation
+        special: Special
+      delete: Delete
+      description_html: With <strong>user roles</strong>, you can customize which functions and areas of Mastodon your users can access.
+      edit: Edit '%{name}' role
+      everyone: Default permissions
+      everyone_full_description_html: This is the <strong>base role</strong> affecting <strong>all users</strong>, even those without an assigned role. All other roles inherit permissions from it.
+      permissions_count:
+        one: "%{count} permission"
+        other: "%{count} permissions"
+      privileges:
+        administrator: Administrator
+        administrator_description: Users with this permission will bypass every permission
+        delete_user_data: Delete User Data
+        delete_user_data_description: Allows users to delete other users' data without delay
+        invite_users: Invite Users
+        invite_users_description: Allows users to invite new people to the server
+        manage_announcements: Manage Announcements
+        manage_announcements_description: Allows users to manage announcements on the server
+        manage_appeals: Manage Appeals
+        manage_appeals_description: Allows users to review appeals against moderation actions
+        manage_blocks: Manage Blocks
+        manage_blocks_description: Allows users to block e-mail providers and IP addresses
+        manage_custom_emojis: Manage Custom Emojis
+        manage_custom_emojis_description: Allows users to manage custom emojis on the server
+        manage_federation: Manage Federation
+        manage_federation_description: Allows users to block or allow federation with other domains, and control deliverability
+        manage_invites: Manage Invites
+        manage_invites_description: Allows users to browse and deactivate invite links
+        manage_reports: Manage Reports
+        manage_reports_description: Allows users to review reports and perform moderation actions against them
+        manage_roles: Manage Roles
+        manage_roles_description: Allows users to manage and assign roles below theirs
+        manage_rules: Manage Rules
+        manage_rules_description: Allows users to change server rules
+        manage_settings: Manage Settings
+        manage_settings_description: Allows users to change site settings
+        manage_taxonomies: Manage Taxonomies
+        manage_taxonomies_description: Allows users to review trending content and update hashtag settings
+        manage_user_access: Manage User Access
+        manage_user_access_description: Allows users to disable other users' two-factor authentication, change their e-mail address, and reset their password
+        manage_users: Manage Users
+        manage_users_description: Allows users to view other users' details and perform moderation actions against them
+        manage_webhooks: Manage Webhooks
+        manage_webhooks_description: Allows users to set up webhooks for administrative events
+        view_audit_log: View Audit Log
+        view_audit_log_description: Allows users to see a history of administrative actions on the server
+        view_dashboard: View Dashboard
+        view_dashboard_description: Allows users to access the dashboard and various metrics
+        view_devops: DevOps
+        view_devops_description: Allows users to access Sidekiq and pgHero dashboards
+      title: Roles
     rules:
       add_new: නීතිය එකතු කරන්න
       delete: මකන්න
@@ -575,29 +720,72 @@ si:
       empty: තවමත් සේවාදායක රීති නිර්වචනය කර නොමැත.
       title: සේවාදායකයේ නීති
     settings:
+      about:
+        manage_rules: Manage server rules
+        preamble: Provide in-depth information about how the server is operated, moderated, funded.
+        rules_hint: There is a dedicated area for rules that your users are expected to adhere to.
+        title: About
+      appearance:
+        preamble: Customize Mastodon's web interface.
+        title: Appearance
+      branding:
+        preamble: Your server's branding differentiates it from other servers in the network. This information may be displayed across a variety of environments, such as Mastodon's web interface, native applications, in link previews on other websites and within messaging apps, and so on. For this reason, it is best to keep this information clear, short and concise.
+        title: Branding
+      content_retention:
+        preamble: Control how user-generated content is stored in Mastodon.
+        title: Content retention
+      default_noindex:
+        desc_html: Affects all users who have not changed this setting themselves
+        title: Opt users out of search engine indexing by default
+      discovery:
+        follow_recommendations: Follow recommendations
+        preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
+        profile_directory: Profile directory
+        public_timelines: Public timelines
+        publish_discovered_servers: Publish discovered servers
+        publish_statistics: Publish statistics
+        title: Discovery
+        trends: Trends
       domain_blocks:
         all: හැමෝටම
         disabled: කාටවත් නෑ
         users: පුරනය වී ඇති දේශීය පරිශීලකයින් වෙත
+      registrations:
+        preamble: Control who can create an account on your server.
+        title: Registrations
       registrations_mode:
         modes:
           approved: ලියාපදිංචි වීමට අනුමැතිය අවශ්‍යයි
           none: කිසිවෙකුට ලියාපදිංචි විය නොහැක
           open: ඕනෑම කෙනෙකුට ලියාපදිංචි විය හැක
+      title: Server Settings
     site_uploads:
       delete: උඩුගත කළ ගොනුව මකන්න
       destroyed_msg: අඩවිය උඩුගත කිරීම සාර්ථකව මකා ඇත!
     statuses:
+      account: Author
+      application: Application
       back_to_account: ගිණුම් පිටුවට ආපසු යන්න
       back_to_report: වාර්තා පිටුවට ආපසු යන්න
       batch:
         remove_from_report: වාර්තාවෙන් ඉවත් කරන්න
         report: වාර්තාව
       deleted: මකා දමන ලදී
+      favourites: Favourites
+      history: Version history
+      in_reply_to: Replying to
+      language: Language
       media:
         title: මාධ්‍යය
+      metadata: Metadata
       no_status_selected: කිසිවක් තෝරා නොගත් බැවින් තනතුරු කිසිවක් වෙනස් කර නැත
+      open: Open post
+      original_status: Original post
+      reblogs: Reblogs
+      status_changed: Post changed
       title: ගිණුම් තනතුරු
+      trending: Trending
+      visibility: Visibility
       with_media: මාධ්‍ය දායකත්වය
     strikes:
       actions:
@@ -610,6 +798,7 @@ si:
         suspend: "%{name} %{target}ගේ ගිණුම අත්හිටුවා ඇත"
       appeal_approved: අභියාචනා කළා
       appeal_pending: අභියාචනය පොරොත්තුවෙන්
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: පොරොත්තු දත්ත සමුදා සංක්‍රමණයන් ඇත. යෙදුම අපේක්ෂිත පරිදි ක්‍රියා කරන බව සහතික කිරීමට කරුණාකර ඒවා ධාවනය කරන්න
@@ -637,11 +826,15 @@ si:
         description_html: මේවා ඔබගේ සේවාදායකය විසින් පළ කිරීම් දකින ගිණුම් මගින් දැනට බොහෝ සෙයින් බෙදා ගන්නා සබැඳි වේ. එය ඔබගේ පරිශීලකයින්ට ලෝකයේ සිදුවෙමින් පවතින දේ සොයා ගැනීමට උදවු කළ හැක. ඔබ ප්‍රකාශකයා අනුමත කරන තුරු සබැඳි කිසිවක් ප්‍රසිද්ධියේ ප්‍රදර්ශනය නොවේ. ඔබට තනි සබැඳිවලට ඉඩ දීමට හෝ ප්‍රතික්ෂේප කිරීමටද හැකිය.
         disallow: සබැඳියට ඉඩ නොදෙන්න
         disallow_provider: ප්‍රකාශකයාට ඉඩ නොදෙන්න
+        no_link_selected: No links were changed as none were selected
+        publishers:
+          no_publisher_selected: No publishers were changed as none were selected
         shared_by_over_week:
           one: පසුගිය සතිය පුරා එක් පුද්ගලයෙකු විසින් බෙදා ගන්නා ලදී
           other: පසුගිය සතිය පුරා පුද්ගලයින් %{count} දෙනෙකු විසින් බෙදා ගන්නා ලදී
         title: නැඟී එන සබැඳි
         usage_comparison: ඊයේ %{yesterday} හා සසඳන විට අද %{today} වරක් බෙදා ගන්නා ලදී
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: අවසර දී ඇත
       pending_review: පොරොත්තු සමාලෝචනය
       preview_card_providers:
@@ -656,6 +849,7 @@ si:
         description_html: මේ වන විට ඔබේ සේවාදායකය දන්නා පෝස්ට් මේ වන විට බොහෝ බෙදාහරින සහ මේ මොහොතේ වැඩි කැමැත්තක් දක්වයි. එය ඔබගේ නව සහ නැවත පැමිණෙන පරිශීලකයින්ට අනුගමනය කිරීමට තවත් පුද්ගලයින් සොයා ගැනීමට උදවු කළ හැක. ඔබ කර්තෘ අනුමත කරන තෙක් පළ කිරීම් කිසිවක් ප්‍රසිද්ධියේ නොපෙන්වන අතර, කර්තෘ තම ගිණුම අන් අයට යෝජනා කිරීමට ඉඩ දෙයි. ඔබට තනි පළ කිරීම්වලට ඉඩ දීමට හෝ ප්‍රතික්ෂේප කිරීමටද හැකිය.
         disallow: පළ කිරීමට ඉඩ නොදෙන්න
         disallow_account: කතුවරයාට ඉඩ නොදෙන්න
+        no_status_selected: No trending posts were changed as none were selected
         not_discoverable: කර්තෘ සොයා ගත හැකි බව තෝරාගෙන නැත
         shared_by:
           one: එක් වරක් බෙදාගත් හෝ ප්‍රිය කරන ලදී
@@ -671,6 +865,7 @@ si:
           tag_uses_measure: සම්පූර්ණ භාවිතය
         description_html: මේවා දැනට ඔබගේ සේවාදායකය දකින බොහෝ පළ කිරීම් වල දිස්වන හැෂ් ටැග් වේ. මේ මොහොතේ මිනිසුන් වැඩිපුරම කතා කරන්නේ කුමක් දැයි සොයා ගැනීමට එය ඔබගේ පරිශීලකයින්ට උදවු කළ හැක. ඔබ ඒවා අනුමත කරන තුරු හෑෂ් ටැග් ප්‍රසිද්ධියේ නොපෙන්වයි.
         listable: යෝජනා කළ හැක
+        no_tag_selected: No tags were changed as none were selected
         not_listable: යෝජනා නොකරනු ඇත
         not_trendable: ප්‍රවණතා යටතේ දිස් නොවනු ඇත
         not_usable: භාවිතා කළ නොහැක
@@ -709,6 +904,7 @@ si:
       rotate_secret: රහස කරකවන්න
       secret: අත්සන් කිරීමේ රහස
       status: තත්‍වය
+      title: Webhooks
       webhook: වෙබ්හුක්
   admin_mailer:
     new_appeal:
@@ -770,12 +966,16 @@ si:
   applications:
     created: යෙදුම සාර්ථකව නිර්මාණය කරන ලදී
     destroyed: යෙදුම සාර්ථකව මකා ඇත
+    logout: Logout
     regenerate_token: ප්‍රවේශ ටෝකනය නැවත උත්පාදනය කරන්න
     token_regenerated: ප්‍රවේශ ටෝකනය සාර්ථකව ප්‍රතිජනනය කරන ලදී
     warning: මෙම දත්ත සමඟ ඉතා ප්රවේශම් වන්න. එය කිසි විටෙක කිසිවෙකු සමඟ බෙදා නොගන්න!
     your_token: ඔබේ ප්‍රවේශ ටෝකනය
   auth:
+    apply_for_account: Request an account
     change_password: මුර පදය
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: ගිණුම මකන්න
     delete_account_html: ඔබට ඔබගේ ගිණුම මකා දැමීමට අවශ්‍ය නම්, ඔබට <a href="%{path}">මෙතැනින් ඉදිරියට යා හැක</a>. තහවුරු කිරීම සඳහා ඔබෙන් අසනු ඇත.
     description:
@@ -794,16 +994,28 @@ si:
     migrate_account: වෙනත් ගිණුමකට යන්න
     migrate_account_html: ඔබට මෙම ගිණුම වෙනත් එකකට හරවා යැවීමට අවශ්‍ය නම්, ඔබට එය <a href="%{path}">මෙහි වින්‍යාසගත කළ හැක</a>.
     or_log_in_with: හෝ සමඟින් පිවිසෙන්න
+    privacy_policy_agreement_html: I have read and agree to the <a href="%{privacy_policy_path}" target="_blank">privacy policy</a>
     register: ලියාපදිංචිය
     registration_closed: "%{instance} නව සාමාජිකයින් පිළිගන්නේ නැත"
     resend_confirmation: තහවුරු කිරීමේ උපදෙස් නැවත යවන්න
     reset_password: මුරපදය නැවත සකසන්න
+    rules:
+      accept: Accept
+      back: Back
+      preamble: These are set and enforced by the %{domain} moderators.
+      title: Some ground rules.
     security: ආරක්ෂාව
     set_new_password: නව මුරපදය සකසන්න
     setup:
       email_below_hint_html: පහත විද්‍යුත් තැපැල් ලිපිනය වැරදි නම්, ඔබට එය මෙතැනින් වෙනස් කර නව තහවුරු කිරීමේ විද්‍යුත් තැපෑලක් ලබා ගත හැක.
       email_settings_hint_html: තහවුරු කිරීමේ විද්‍යුත් තැපෑල %{email}වෙත යවන ලදී. එම විද්‍යුත් තැපැල් ලිපිනය නිවැරදි නොවේ නම්, ඔබට එය ගිණුම් සැකසුම් තුළ වෙනස් කළ හැක.
       title: සැලසුම
+    sign_in:
+      preamble_html: Sign in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
+      title: Sign in to %{domain}
+    sign_up:
+      preamble: With an account on this Mastodon server, you'll be able to follow any other person on the network, regardless of where their account is hosted.
+      title: Let's get you set up on %{domain}.
     status:
       account_status: ගිණුමේ තත්වය
       confirming: විද්‍යුත් තැපෑල තහවුරු කිරීම සම්පූර්ණ කිරීම සඳහා රැඳී සිටිමින්.
@@ -925,6 +1137,7 @@ si:
       size: ප්‍රමාණය
     blocks: ඔබ අවහිර කරන්න
     bookmarks: පොත් යොමු කරන්න
+    csv: CSV
     domain_blocks: වසම් අවහිර කිරීම්
     lists: ලැයිස්තුව
     mutes: ඔබ නිහඬ කරන්න
@@ -944,6 +1157,8 @@ si:
     edit:
       add_keyword: මූල පදය එක් කරන්න
       keywords: මූල පද
+      statuses: Individual posts
+      statuses_hint_html: This filter applies to select individual posts regardless of whether they match the keywords below. <a href="%{path}">Review or remove posts from the filter</a>.
       title: පෙරහන සංස්කරණය
     errors:
       deprecated_api_multiple_keywords: මෙම පරාමිති පෙරහන් මූල පද එකකට වඩා අදාළ වන බැවින් මෙම යෙදුමෙන් වෙනස් කළ නොහැක. වඩාත් මෑත යෙදුමක් හෝ වෙබ් අතුරු මුහුණතක් භාවිතා කරන්න.
@@ -957,20 +1172,43 @@ si:
       keywords:
         one: "%{count} මූල පදය"
         other: "%{count} මූල පද"
+      statuses:
+        one: "%{count} post"
+        other: "%{count} posts"
+      statuses_long:
+        one: "%{count} individual post hidden"
+        other: "%{count} individual posts hidden"
       title: පෙරහන්
     new:
       save: නව පෙරහන සුරකින්න
       title: නව පෙරහනක් එකතු කරන්න
+    statuses:
+      back_to_filter: Back to filter
+      batch:
+        remove: Remove from filter
+      index:
+        hint: This filter applies to select individual posts regardless of other criteria. You can add more posts to this filter from the web interface.
+        title: Filtered posts
   footer:
     trending_now: දැන් ප්‍රවණතාවය
   generic:
     all: සියල්ල
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> item on this page is selected."
+      other: All <strong>%{count}</strong> items on this page are selected.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> item matching your search is selected."
+      other: All <strong>%{count}</strong> items matching your search are selected.
     changes_saved_msg: වෙනස්කම් සාර්ථකව සුරකින ලදී!
     copy: පිටපතක්
     delete: මකන්න
+    deselect: Deselect all
     none: කිසිවක් නැත
     order_by: විසින් ඇණවුම් කරන්න
     save_changes: වෙනස්කම් සුරකින්න
+    select_all_matching_items:
+      one: Select %{count} item matching your search.
+      other: Select all %{count} items matching your search.
     today: අද
     validation_errors:
       one: යමක් තවමත් හරි නැත! කරුණාකර පහත දෝෂය සමාලෝචනය කරන්න
@@ -979,6 +1217,7 @@ si:
     invalid_markup: 'වලංගු නොවන HTML සලකුණු අඩංගු වේ: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Invalid CSV file. Error: %{error}'
       over_rows_processing_limit: පේළි %{count} කට වඩා අඩංගු වේ
     modes:
       merge: ඒකාබද්ධ කරන්න
@@ -1072,6 +1311,8 @@ si:
     carry_blocks_over_text: මෙම පරිශීලකයා ඔබ අවහිර කර තිබූ %{acct}සිට මාරු විය.
     carry_mutes_over_text: මෙම පරිශීලකයා ඔබ නිශ්ශබ්ද කර තිබූ %{acct}වෙතින් මාරු විය.
     copy_account_note_text: 'මෙම පරිශීලකයා %{acct}සිට මාරු විය, මෙන්න ඔවුන් ගැන ඔබේ පෙර සටහන්:'
+  navigation:
+    toggle_menu: Toggle menu
   notification_mailer:
     admin:
       report:
@@ -1149,12 +1390,17 @@ si:
     other: වෙනත්
     posting_defaults: පෙරනිමි පළ කිරීම
     public_timelines: පොදු කාලරේඛා
+  privacy_policy:
+    title: Privacy Policy
   reactions:
     errors:
       limit_reached: විවිධ ප්‍රතික්‍රියා වල සීමාව ළඟා විය
       unrecognized_emoji: පිළිගත් ඉමොජියක් නොවේ
   relationships:
     activity: ගිණුමේ ක්‍රියාකාරකම්
+    confirm_follow_selected_followers: Are you sure you want to follow selected followers?
+    confirm_remove_selected_followers: Are you sure you want to remove selected followers?
+    confirm_remove_selected_follows: Are you sure you want to remove selected follows?
     dormant: නිදිමතයි
     follow_selected_followers: තෝරාගත් අනුගාමිකයින් අනුගමනය කරන්න
     followers: අනුගාමිකයින්
@@ -1411,8 +1657,10 @@ si:
         suspend: ගිණුම අත්හිටුවා ඇත
     welcome:
       edit_profile_action: සැකසුම් පැතිකඩ
+      edit_profile_step: You can customize your profile by uploading a profile picture, changing your display name and more. You can opt-in to review new followers before they’re allowed to follow you.
       explanation: ඔබ ආරම්භ කිරීමට උපදෙස් කිහිපයක් මෙන්න
       final_action: පළ කිරීම ආරම්භ කරන්න
+      final_step: 'Start posting! Even without followers, your public posts may be seen by others, for example on the local timeline or in hashtags. You may want to introduce yourself on the #introductions hashtag.'
       full_handle: ඔබේ සම්පූර්ණ හසුරුව
       full_handle_hint: මෙය ඔබ ඔබේ මිතුරන්ට පවසනු ඇත, එවිට ඔවුන්ට වෙනත් සේවාදායකයකින් ඔබට පණිවිඩ යැවීමට හෝ අනුගමනය කිරීමට හැකිය.
       subject: Mastodon වෙත සාදරයෙන් පිළිගනිමු

@@ -89,6 +89,7 @@ zh-HK:
       moderation:
         active: 活躍
         all: 全部
+        disabled: Disabled
         pending: 處理中
         silenced: 受限
         suspended: 已停權
@@ -130,6 +131,7 @@ zh-HK:
       search: 搜尋
       search_same_email_domain: 其他有相同電郵網域的使用者
       search_same_ip: 其他有相同 IP 位址的使用者
+      security: Security
       security_measures:
         only_password: 僅密碼
         password_and_2fa: 密碼和兩步認證
@@ -419,6 +421,7 @@ zh-HK:
         resolve: 解析網域
         title: 新增電郵網域阻隔
       no_email_domain_block_selected: 未選取任何電郵網域限制，因此並未變更
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: 域名解析為以下 MX 網域，這些網域主要用來接收電子郵件。封鎖一個 MX 網域，即使域名看起來不同，也會阻止任何用相同 MX 網域的電郵地址進行註冊。<strong>注意不要封鎖主要的電子郵件供應商。</strong>
       resolved_through_html: 透過 %{domain} 解析
       title: 電郵網域阻隔
@@ -433,6 +436,7 @@ zh-HK:
         private_comment_description_html: 為了幫助你追蹤匯入封鎖的源頭，匯入的封鎖會在建立時將會有以下的私密備註：<q>%{comment}</q>
         private_comment_template: 於 %{date} 從 %{source} 匯入
         title: 匯入封鎖的網域
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
       new:
         title: 匯入封鎖的網域
       no_file: 未選擇檔案
@@ -462,6 +466,7 @@ zh-HK:
       content_policies:
         comment: 內部備註
         description_html: 你可以自行制訂內容政策，政策將用於此網域和其子網域的所有帳號。
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: 拒絕接收媒體
           reject_reports: 拒絕檢舉
@@ -563,17 +568,23 @@ zh-HK:
         mark_as_sensitive_description_html: 被檢舉的帖文中的媒體會被標記為敏感內容，並記錄一次警告，以便日後加快處理同一帳號的違規行為。
         other_description_html: 查看更多控制帳號行為，以及自訂與被檢舉帳號溝通的選項。
         resolve_description_html: 不會對被檢舉的帳號採取任何動作，也不會記錄警告，檢舉報告將會結案。
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
       actions_description_html: 決定對此檢舉採取哪種措施。如果對被檢舉帳號採取懲罰措施，除非選取了<strong>垃圾訊息</strong>分類，否則將向他們發送一封電郵通知。
+      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: 加入更多到檢舉
       are_you_sure: 你確認嗎？
       assign_to_self: 指派給自己
       assigned: 指派版主
       by_target_domain: 被舉報帳號的域名
+      cancel: Cancel
       category: 分類
       category_description_html: 此帳號及/或內容被檢舉的原因，將會被引用在與被檢舉帳號的通訊中。
       comment:
         none: 沒有
       comment_description_html: 為了提供更多資訊，%{name} 寫道：
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: 日期
       delete_and_resolve: 刪除帖文
       forwarded: 已轉寄
@@ -590,6 +601,7 @@ zh-HK:
         placeholder: 記錄已執行的動作，或其他相關的更新……
         title: 筆記
       notes_description_html: 查看並給其他管理員和日後的自己留下筆記
+      processed_msg: 'Report #%{id} successfully processed'
       quick_actions_description_html: 採取快捷操作或向下捲動以查看檢舉內容：
       remote_user_placeholder: 來自 %{instance} 的遠端使用者
       reopen: 重開舉報個案
@@ -602,9 +614,28 @@ zh-HK:
       status: 狀態
       statuses: 被檢舉的內容
       statuses_description_html: 違規內容將被引用在被檢舉帳號的通訊中
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: 被檢舉帳號來源
       title: 舉報
       unassign: 取消指派
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: 未處理
       updated_at: 更新
       view_profile: 查看個人檔案
@@ -697,6 +728,8 @@ zh-HK:
         preamble: 呈現有趣的內容有助於吸引不認識 Mastodon 的使用者新手上路。控制各種探索功能在你的伺服器上的運作方式。
         profile_directory: 個人檔案目錄
         public_timelines: 公共時間軸
+        publish_discovered_servers: Publish discovered servers
+        publish_statistics: Publish statistics
         title: 探索
         trends: 熱門
       domain_blocks:
@@ -751,6 +784,7 @@ zh-HK:
         suspend: "%{name} 將 %{target} 的帳號停權"
       appeal_approved: 已申訴
       appeal_pending: 申訴待審中
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: 有待處理的資料庫轉移 (database migration) 。請執行以確保應用程式行為合乎預期
@@ -785,6 +819,7 @@ zh-HK:
           other: 上週有 %{count} 人分享
         title: 熱門連結
         usage_comparison: 今天被分享了 %{today} 次，相較於昨天 %{yesterday} 次
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: 僅允許
       pending_review: 等待審核中
       preview_card_providers:
@@ -913,6 +948,7 @@ zh-HK:
   applications:
     created: 已建立應用程式
     destroyed: 已刪除應用程式
+    logout: Logout
     regenerate_token: 重設 token
     token_regenerated: 已重設 token
     warning: 警告，不要把它分享給任何人！
@@ -920,6 +956,8 @@ zh-HK:
   auth:
     apply_for_account: 申請帳號
     change_password: 密碼
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: 刪除帳號
     delete_account_html: 如果你想刪除你的帳號，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
     description:
@@ -947,6 +985,8 @@ zh-HK:
     resend_confirmation: 重發確認指示電郵
     reset_password: 重設密碼
     rules:
+      accept: Accept
+      back: Back
       preamble: 這些是由 %{domain} 管理員制訂和執行的。
       title: 一些基本規則。
     security: 登入資訊
@@ -1339,6 +1379,9 @@ zh-HK:
       unrecognized_emoji: 不能識別這個emoji
   relationships:
     activity: 帳戶活動
+    confirm_follow_selected_followers: Are you sure you want to follow selected followers?
+    confirm_remove_selected_followers: Are you sure you want to remove selected followers?
+    confirm_remove_selected_follows: Are you sure you want to remove selected follows?
     dormant: 潛在
     follow_selected_followers: 關注所選的追隨者
     followers: 追隨者

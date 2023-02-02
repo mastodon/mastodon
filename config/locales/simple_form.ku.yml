@@ -18,6 +18,8 @@ ku:
           disable: Nehêle bikarhêner ajimêrê xwe bi kar bîne lê naverokan jê nabe an jî veneşêre.
           none: Ji bo ku tu hişyariyekê ji bikarhêner re bişînî vê bi kar bîne, bêyî ku çalakiyeke din bikî.
           sensitive: Neçar bihêle ku ev bikarhêner hemû pêvekên medyayê hestiyar nîşan bike.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Bi dilê xwe ye. Tu hîn jî dikarî dawîya pêşsazkirî de nivîsek teybet li zêde bikî
       announcement:
         all_day: Dema were nîşankirin, tenê dîrokên navbera demê dê werin nîşan kirin
@@ -74,6 +76,7 @@ ku:
           hide: Naveroka parzûnkirî bi tevahî veşêre, mîna ku ew tune be tevbigere
           warn: Naveroka parzûnkirî li pişt hişyariyek ku sernavê parzûnê qal dike veşêre
       form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
         backups_retention_period: Arşîvên bikarhênerên çêkirî ji bo rojên diyarkirî tomar bike.
         bootstrap_timeline_accounts: Ev ajimêr wê di pêşnîyarên şopandina bikarhênerên nû de werin derzîkirin.
         closed_registrations_message: Dema ku tomarkirin girtî bin têne xuyakirin
@@ -81,6 +84,7 @@ ku:
         custom_css: Tu dikarî awayên kesane li ser guhertoya malperê ya Mastodon bicîh bikî.
         mascot: Îlustrasyona navrûyê webê yê pêşketî bêbandor dike.
         media_cache_retention_period: Pelên medyayê yên daxistî wê piştî çend rojên diyarkirî dema ku li ser nirxek erênî were danîn werin jêbirin, û li gorî daxwazê ​​ji nû ve werin daxistin.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: Pelrêça profîlê hemû bikarhênerên keşfbûnê hilbijartine lîste dike.
         require_invite_text: Gava ku tomarkirin pêdiviya pejirandina destan dike, Têketina nivîsê "Tu çima dixwazî beşdar bibî?" Bike sereke ji devla vebijêrkî
         site_contact_email: Mirov dikarin ji bo pirsên qanûnî yan jî yên piştgiriyê çawa xwe digihînin te.
@@ -94,6 +98,7 @@ ku:
         timeline_preview: Mêvanên têneketî wê karibin li şandiyên gelemperî yên herî dawî yên ku li ser rajekarê peyda dibin bigerin.
         trendable_by_default: Nirxandina destan a naveroka rojevê derbas bike. Tiştên kesane dîsa jî dikarin piştî rastiyê ji rojevê werin derxistin.
         trends: Rojev nîşan dide ka kîjan şandî, hashtag û çîrokê nûçeyan balê dikişîne li ser rajekarê te.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Tu dikevî qadeke ewledar
       imports:
@@ -229,6 +234,7 @@ ku:
           hide: Bi tevahî veşêre
           warn: Bi hişyariyekê veşêre
       form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
         backups_retention_period: Serdema tomarkirina arşîva bikarhêner
         bootstrap_timeline_accounts: Van ajimêran ji bikarhênerên nû re pêşniyar bike
         closed_registrations_message: Peyama kesane dema ku tomarkirin peyda nebin
@@ -236,6 +242,7 @@ ku:
         custom_css: CSS a kesanekirî
         mascot: Mascot a kesanekirî (legacy)
         media_cache_retention_period: Serdema tomarkirina bîrdanka medyayê
+        peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Rêgeha profilê çalak bike
         registrations_mode: Kî dikare tomar bibe
         require_invite_text: Ji bo tevlêbûnê sedemek pêdivî ye
@@ -252,6 +259,7 @@ ku:
         timeline_preview: Mafê bide gihîştina ne naskirî bo demnameya gelemperî
         trendable_by_default: Mafê bide rojevê bêyî ku were nirxandin
         trends: Rojevê çalak bike
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Danezanên ji kesên ku ne şopînerên min tên asteng bike
         must_be_following: Agahdariyan asteng bike ji kesên ku tu wan naşopînî

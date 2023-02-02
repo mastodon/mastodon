@@ -91,6 +91,7 @@ et:
       moderation:
         active: Aktiivne
         all: Kõik
+        disabled: Disabled
         pending: Ootel
         silenced: Vaigistatud
         suspended: Kustutatud
@@ -133,6 +134,7 @@ et:
       search: Otsi
       search_same_email_domain: Muud kasutajad sama e-posti domeeniga
       search_same_ip: Teised kasutajad, kellel on sama IP
+      security: Security
       security_measures:
         only_password: Ainult salasõna
         password_and_2fa: Salasõna ja 2-etapine autentimine (2FA)
@@ -427,6 +429,7 @@ et:
         resolve: Domeeni lahendamine
         title: Blokeeri uus e-posti domeen
       no_email_domain_block_selected: Ühtegi e-posti domeeni keeldu ei muudetud, kuna midagi polnud valitud
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: Domeeninimi lahendub järgnevateks MX-domeenideks, mis vastutavad e-kirjade vastuvõtmise eest. MX-domeeni blokeerimine blokeerib liitumistaotlused kõigilt e-postiaadressidelt, mis kasutavad sama MX-domeeni, kuigi kasutatav domeeninimi on erinev. <strong>Ole tähelepanelik, et mitte blokeerida suuremaid e-postiteenuse pakkujaid.</strong>
       resolved_through_html: Lahendatud %{domain} kaudu
       title: E-posti keelunimekiri
@@ -473,6 +476,7 @@ et:
       content_policies:
         comment: Sisemine märge
         description_html: On võimalik kirjeldada sisureeglid kõigile kontodele sellelt domeenilt ja alamdomeenidelt.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: Meedia hülgamine
           reject_reports: Lükka raportid tagasi
@@ -585,11 +589,13 @@ et:
       assign_to_self: Määra mulle
       assigned: Määratud moderaator
       by_target_domain: Teavitatud konto domeen
+      cancel: Cancel
       category: Kategooria
       category_description_html: Põhjus, miks sellest kontost ja/või sisust teatati, kaasatakse raporteeritud kontoga suhtlemisel
       comment:
         none: Pole
       comment_description_html: 'Täiendava infona kirjutas %{name}:'
+      confirm: Confirm
       confirm_action: Kinnita @%{acct} modereering
       created_at: Teavitatud
       delete_and_resolve: Kustuta postitused
@@ -792,6 +798,7 @@ et:
         suspend: "%{name} kustutas %{target} konto"
       appeal_approved: Vaidlustatud
       appeal_pending: Vaidlustus on ootel
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: On ootel andmebaasi migreerimisi. Rakenduse ootuspäraseks toimimiseks palun käivita need
@@ -827,6 +834,7 @@ et:
           other: Jagatud %{count} kasutaja poolt viimase nädala jooksul
         title: Trendikad viited
         usage_comparison: Jagatud %{today} korda täna, eile %{yesterday} korda
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: Ainult lubatud
       pending_review: Ootab ülevaatust
       preview_card_providers:
@@ -958,6 +966,7 @@ et:
   applications:
     created: Rakenduse loomine õnnestus
     destroyed: Rakenduse kustutamine õnnestus
+    logout: Logout
     regenerate_token: Loo uus access token
     token_regenerated: Access tokeni loomine õnnestus
     warning: Ole nende andmetega ettevaatlikud. Ära jaga neid kellegagi!
@@ -994,6 +1003,8 @@ et:
     resend_confirmation: Saada kinnitusjuhendid uuesti
     reset_password: Salasõna lähtestamine
     rules:
+      accept: Accept
+      back: Back
       preamble: Neist kinnipidamist jälgivad %{domain} moderaatorid.
       title: Mõned põhireeglid.
     security: Turvalisus

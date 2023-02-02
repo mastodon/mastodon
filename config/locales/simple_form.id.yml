@@ -18,6 +18,8 @@ id:
           disable: Cegah pengguna menggunakan akun mereka, tetapi jangan menghapus atau menyembunyikan konten mereka.
           none: Gunakan ini untuk mengirim peringatan kepada pengguna, tanpa memicu tindakan lainnya.
           sensitive: Paksa semua lampiran media pengguna sebagai sensitif.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Opsional. Anda tetap dapat menambahkan teks kustom pada akhir preset
       announcement:
         all_day: Saat dicentang, hanya tanggal dalam rentang waktu tertentu yang akan ditampilkan
@@ -72,6 +74,7 @@ id:
           hide: Sembunyikan konten yang disaring, seperti itu tidak ada
           warn: Sembunyikan konten yang disaring di belakang sebuah peringatan menyebutkan judul saringan
       form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
         backups_retention_period: Simpan arsip pengguna yang dibuat untuk jumlah hari yang ditetapkan.
         bootstrap_timeline_accounts: Akun ini akan disematkan di atas rekomendasi ikut pengguna baru.
         closed_registrations_message: Ditampilkan ketika pendaftaran ditutup
@@ -79,6 +82,7 @@ id:
         custom_css: Anda dapat menerapkan gaya kustom di versi web Mastodon.
         mascot: Menimpa ilustrasi di antarmuka web tingkat lanjut.
         media_cache_retention_period: File media yang diunduh akan dihapus setelah beberapa hari yang ditentukan ketika ditetapkan ke nilai yang positif, dan diunduh ulang pada permintaan.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: Direktori profil mendaftarka semua pengguna yang ingin untuk dapat ditemukan.
         require_invite_text: Ketika pendaftaran membutuhkan persetujuan manual, buat masukan teks "Mengapa Anda ingin bergabung?" dibutuhkan daripada opsional
         site_contact_email: Bagaimana orang dapat menghubungi Anda untuk kebutuhan hukum atau dukungan.
@@ -92,6 +96,7 @@ id:
         timeline_preview: Pengunjung yang keluar akan dapat menjelajahi kiriman publik terkini yang tersedia di server.
         trendable_by_default: Lewati tinjauan manual dari konten tren. Item individu masih dapat dihapus dari tren setelah faktanya.
         trends: Tren yang menampilkan kiriman, tagar, dan cerita berita apa yang sedang tren di server Anda.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Anda memasuki area aman
       imports:
@@ -227,6 +232,7 @@ id:
           hide: Sembunyikan seluruhnya
           warn: Sembunyikan dengan peringatan
       form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
         backups_retention_period: Rentang retensi arsip pengguna
         bootstrap_timeline_accounts: Selalu rekomendasikan akun ini ke pengguna baru
         closed_registrations_message: Pesan kustom ketika pendaftaran tidak tersedia
@@ -234,6 +240,7 @@ id:
         custom_css: CSS kustom
         mascot: Maskot kustom (lawas)
         media_cache_retention_period: Rentang retensi tembolok media
+        peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Aktifkan direktori profil
         registrations_mode: Siapa yang dapat mendaftar
         require_invite_text: Membutuhkan alasan untuk bergabung
@@ -250,6 +257,7 @@ id:
         timeline_preview: Perbolehkan akses tidak terotentikasi ke linimasa publik
         trendable_by_default: Perbolehkan tren tanpa tinjauan
         trends: Aktifkan tren
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Blokir notifikasi dari non-pengikut
         must_be_following: Blokir notifikasi dari orang yang tidak Anda ikuti

@@ -8,12 +8,27 @@ sk:
         acct: Urči prezyvku@domenu účtu, na ktorý sa chceš presunúť
       account_warning_preset:
         text: Môžeš používať rovnakú syntaxiu ako v rámci príspevkov, čiže URL, haštagy, a spomenutia
+        title: Optional. Not visible to the recipient
       admin_account_action:
         include_statuses: Užívateľ uvidí, ktoré príspevky majú za následok moderačný zásah, alebo upozornenie
         send_email_notification: Užívateľ dostane vysvetlenie ohľadom toho, čo sa stalo s ich účtom
         text_html: Voliteľné. Môžeš používať rovnakú syntaxiu ako v príspevkoch. Môžeš pridať <a href="%{path}">varovné predlohy</a> a ušetriť tak čas
         type_html: Vyber si, čo urobiť s účtom <strong>%{acct}</strong>
+        types:
+          disable: Prevent the user from using their account, but do not delete or hide their contents.
+          none: Use this to send a warning to the user, without triggering any other action.
+          sensitive: Force all this user's media attachments to be flagged as sensitive.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Voliteľné. Stále môžeš vložiť vlastný text na samý koniec predlohy
+      announcement:
+        all_day: When checked, only the dates of the time range will be displayed
+        ends_at: Optional. Announcement will be automatically unpublished at this time
+        scheduled_at: Leave blank to publish the announcement immediately
+        starts_at: Optional. In case your announcement is bound to a specific time range
+        text: You can use post syntax. Please be mindful of the space the announcement will take up on the user's screen
+      appeal:
+        text: You can only appeal a strike once
       defaults:
         autofollow: Ľudia ktorí sa zaregistrujú prostredníctvom pozvánky, ťa budú inheď následovať
         avatar: PNG, GIF alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
@@ -22,6 +37,7 @@ sk:
         current_password: Z bezpečtnostných dôvodov prosím zadaj heslo súčasného účtu
         current_username: Pre potvrdenie prosím zadaj prezývku súčasného účtu
         digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdržal/a nejaké osobné správy kým si bol/a preč
+        discoverable: Allow your account to be discovered by strangers through recommendations, trends and other features
         email: Bude ti odoslaný potvrdzujúci email
         fields: Až štyri položky môžeš mať na svojom profile zobrazené vo forme tabuľky
         header: PNG, GIF, alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
@@ -33,6 +49,7 @@ sk:
         phrase: Zhoda sa nájde nezávisle od toho, či je text napísaný, veľkými, alebo malými písmenami, či už v tele, alebo v hlavičke
         scopes: Ktoré API budú povolené aplikácii pre prístup. Ak vyberieš vrcholný stupeň, nemusíš už potom vyberať po jednom.
         setting_aggregate_reblogs: Nezobrazuj nové vyzdvihnutia pre príspevky, ktoré už boli len nedávno povýšené (týka sa iba nanovo získaných povýšení)
+        setting_always_send_emails: Normally e-mail notifications won't be sent when you are actively using Mastodon
         setting_default_sensitive: Chúlostivé médiá sú štandardne ukryté, a môžu byť zobrazené kliknutím
         setting_display_media_default: Ukry médiá označené ako chúlostivé
         setting_display_media_hide_all: Vždy ukry všetky médiá
@@ -46,6 +63,40 @@ sk:
         whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel, bude použité iba ak sa zhoduje s celým výrazom
       domain_allow:
         domain: Táto doména bude schopná získavať dáta z tohto servera, a prichádzajúce dáta ním budú spracovávané a uložené
+      email_domain_block:
+        domain: This can be the domain name that shows up in the e-mail address or the MX record it uses. They will be checked upon sign-up.
+        with_dns_records: An attempt to resolve the given domain's DNS records will be made and the results will also be blocked
+      featured_tag:
+        name: 'Here are some of the hashtags you used the most recently:'
+      filters:
+        action: Chose which action to perform when a post matches the filter
+        actions:
+          hide: Completely hide the filtered content, behaving as if it did not exist
+          warn: Hide the filtered content behind a warning mentioning the filter's title
+      form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
+        backups_retention_period: Keep generated user archives for the specified number of days.
+        bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations.
+        closed_registrations_message: Displayed when sign-ups are closed
+        content_cache_retention_period: Posts from other servers will be deleted after the specified number of days when set to a positive value. This may be irreversible.
+        custom_css: You can apply custom styles on the web version of Mastodon.
+        mascot: Overrides the illustration in the advanced web interface.
+        media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
+        profile_directory: The profile directory lists all users who have opted-in to be discoverable.
+        require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
+        site_contact_email: How people can reach you for legal or support inquiries.
+        site_contact_username: How people can reach you on Mastodon.
+        site_extended_description: Any additional information that may be useful to visitors and your users. Can be structured with Markdown syntax.
+        site_short_description: A short description to help uniquely identify your server. Who is running it, who is it for?
+        site_terms: Use your own privacy policy or leave blank to use the default. Can be structured with Markdown syntax.
+        site_title: How people may refer to your server besides its domain name.
+        theme: Theme that logged out visitors and new users see.
+        thumbnail: A roughly 2:1 image displayed alongside your server information.
+        timeline_preview: Logged out visitors will be able to browse the most recent public posts available on the server.
+        trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
+        trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Vstupuješ do zabezpečenej časti
       imports:
@@ -53,14 +104,33 @@ sk:
       invite_request:
         text: Toto pomôže s vyhodnocovaním tvojej žiadosti
       ip_block:
+        comment: Optional. Remember why you added this rule.
+        expires_in: IP addresses are a finite resource, they are sometimes shared and often change hands. For this reason, indefinite IP blocks are not recommended.
+        ip: Enter an IPv4 or IPv6 address. You can block entire ranges using the CIDR syntax. Be careful not to lock yourself out!
         severities:
+          no_access: Block access to all resources
           sign_up_block: Nové registrácie nebudú možné
+          sign_up_requires_approval: New sign-ups will require your approval
+        severity: Choose what will happen with requests from this IP
+      rule:
+        text: Describe a rule or requirement for users on this server. Try to keep it short and simple
       sessions:
         otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích obnovovacích kódov:'
+        webauthn: If it's an USB key be sure to insert it and, if necessary, tap it.
       tag:
         name: Zmeniť môžeš iba veľkosť písmen, napríklad aby boli ľahšie čítateľné
       user:
         chosen_languages: Keď je zaškrtnuté, vo verejnej osi budú zobrazené iba príspevky vo vybraných jazykoch
+        role: The role controls which permissions the user has
+      user_role:
+        color: Color to be used for the role throughout the UI, as RGB in hex format
+        highlighted: This makes the role publicly visible
+        name: Public name of the role, if role is set to be displayed as a badge
+        permissions_as_keys: Users with this role will have access to...
+        position: Higher role decides conflict resolution in certain situations. Certain actions can only be performed on roles with a lower priority
+      webhook:
+        events: Select events to send
+        url: Where events will be sent to
     labels:
       account:
         fields:
@@ -81,14 +151,18 @@ sk:
         types:
           disable: Deaktivuj
           none: Neurob nič
+          sensitive: Sensitive
           silence: Utíš
           suspend: Vylúč a nenávratne vymaž dáta na účte
         warning_preset_id: Použi varovnú predlohu
       announcement:
         all_day: Celodenná udalosť
         ends_at: Koniec udalosti
+        scheduled_at: Schedule publication
         starts_at: Začiatok udalosti
         text: Oboznámenie
+      appeal:
+        text: Explain why this decision should be reversed
       defaults:
         autofollow: Pozvi k následovaniu tvojho profilu
         avatar: Maskot
@@ -105,6 +179,7 @@ sk:
         expires_in: Expiruj po
         fields: Metadáta profilu
         header: Obrázok v hlavičke
+        honeypot: "%{label} (do not fill in)"
         inbox_url: URL adresa prechodnej schránky
         irreversible: Zahoď, namiesto ukrytia
         locale: Jazyk rozhrania
@@ -117,6 +192,7 @@ sk:
         phrase: Kľúčové slovo, alebo fráza
         setting_advanced_layout: Zapni pokročilé užívateľské rozhranie
         setting_aggregate_reblogs: Zoskupuj vyzdvihnutia v časovej osi
+        setting_always_send_emails: Always send e-mail notifications
         setting_auto_play_gif: Automaticky prehrávaj animované GIFy
         setting_boost_modal: Zobrazuj potvrdzovacie okno pred povýšením
         setting_crop_images: Orež obrázky v nerozbalených príspevkoch na 16x9
@@ -124,6 +200,7 @@ sk:
         setting_default_privacy: Súkromie príspevkov
         setting_default_sensitive: Označ všetky mediálne súbory ako chúlostivé
         setting_delete_modal: Zobrazuj potvrdzovacie okno pred vymazaním toot-u
+        setting_disable_swiping: Disable swiping motions
         setting_display_media: Zobrazovanie médií
         setting_display_media_default: Štandard
         setting_display_media_hide_all: Ukry všetky
@@ -141,14 +218,46 @@ sk:
         setting_use_pending_items: Pomalý režim
         severity: Závažnosť
         sign_in_token_attempt: Bezpečnostný kód
+        title: Title
         type: Typ importu
         username: Prezývka
         username_or_email: Prezývka, alebo email
         whole_word: Celé slovo
+      email_domain_block:
+        with_dns_records: Include MX records and IPs of the domain
       featured_tag:
         name: Haštag
+      filters:
+        actions:
+          hide: Hide completely
+          warn: Hide with a warning
       form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
+        backups_retention_period: User archive retention period
+        bootstrap_timeline_accounts: Always recommend these accounts to new users
+        closed_registrations_message: Custom message when sign-ups are not available
+        content_cache_retention_period: Content cache retention period
+        custom_css: Custom CSS
+        mascot: Custom mascot (legacy)
+        media_cache_retention_period: Media cache retention period
         peers_api_enabled: Zverejni zoznam objavených serverov v API
+        profile_directory: Enable profile directory
+        registrations_mode: Who can sign-up
+        require_invite_text: Require a reason to join
+        show_domain_blocks: Show domain blocks
+        show_domain_blocks_rationale: Show why domains were blocked
+        site_contact_email: Contact e-mail
+        site_contact_username: Contact username
+        site_extended_description: Extended description
+        site_short_description: Server description
+        site_terms: Privacy Policy
+        site_title: Server name
+        theme: Default theme
+        thumbnail: Server thumbnail
+        timeline_preview: Allow unauthenticated access to public timelines
+        trendable_by_default: Allow trends without prior review
+        trends: Enable trends
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Blokuj oboznámenia od užívateľov, ktorí ma nenasledujú
         must_be_following: Blokuj oboznámenia od ľudí, ktorých nesledujem
@@ -159,8 +268,14 @@ sk:
         text: Prečo sa k nám chceš pridať?
       ip_block:
         comment: Komentár
+        ip: IP
+        severities:
+          no_access: Block access
+          sign_up_block: Block sign-ups
+          sign_up_requires_approval: Limit sign-ups
         severity: Pravidlo
       notification_emails:
+        appeal: Someone appeals a moderator decision
         digest: Zasielať súhrnné emaily
         favourite: Zaslať email, ak si niekto obľúbi tvoj príspevok
         follow: Niekto ťa začal nasledovať
@@ -168,13 +283,33 @@ sk:
         mention: Zaslať email, ak ťa niekto spomenie vo svojom príspevku
         pending_account: Zaslať email, ak treba prehodnotiť nový účet
         reblog: Zaslať email, ak niekto re-tootne tvoj príspevok
+        report: New report is submitted
+        trending_tag: New trend requires review
+      rule:
+        text: Rule
       tag:
         listable: Povoľ zobrazovanie tohto haštagu v návrhoch vyhľadávaní
         name: Haštag
         trendable: Povoľ zobrazovanie tohto haštagu medzi trendujúcimi
         usable: Povoľ používanie tohto haštagu v príspevkoch
+      user:
+        role: Role
+      user_role:
+        color: Badge color
+        highlighted: Display role as badge on user profiles
+        name: Name
+        permissions_as_keys: Permissions
+        position: Priority
+      webhook:
+        events: Enabled events
+        url: Endpoint URL
     'no': Nie
+    not_recommended: Not recommended
     recommended: Odporúčané
     required:
+      mark: "*"
       text: povinné
+    title:
+      sessions:
+        webauthn: Use one of your security keys to sign in
     'yes': Áno

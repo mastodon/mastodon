@@ -18,6 +18,8 @@ ms:
           disable: Halang pengguna daripada menggunakan akaun mereka, tetapi jangan hapus atau sorokkan kandungan mereka.
           none: Gunakan ini untuk menghantar amaran kepada pengguna, tanpa mencetuskan sebarang tindakan lain.
           sensitive: Memaksa semua lampiran media pengguna ini ditandakan sebagai sensitif.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Pilihan. Anda masih boleh menambah teks tersuai pada akhir praset
       announcement:
         all_day: Apabila diperiksa, hanya tarikh dalam julat masa yang akan dipaparkan
@@ -30,20 +32,71 @@ ms:
       defaults:
         autofollow: Orang yang mendaftar melalui undangan akan mengikuti anda secara automatik
         avatar: PNG, GIF atau JPG. Kebanyakannya %{size}. Saiz akan dikecilkan kepada %{dimensions}px
+        bot: Signal to others that the account mainly performs automated actions and might not be monitored
+        context: One or multiple contexts where the filter should apply
+        current_password: For security purposes please enter the password of the current account
+        current_username: To confirm, please enter the username of the current account
+        digest: Only sent after a long period of inactivity and only if you have received any personal messages in your absence
+        discoverable: Allow your account to be discovered by strangers through recommendations, trends and other features
         email: Anda akan dihantar e-mel pengesahan
+        fields: You can have up to 4 items displayed as a table on your profile
+        header: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
+        inbox_url: Copy the URL from the frontpage of the relay you want to use
+        irreversible: Filtered posts will disappear irreversibly, even if filter is later removed
         locale: Bahasa untuk antara muka pengguna, e-mel dan pemberitahuan segera
+        locked: Manually control who can follow you by approving follow requests
         password: Gunakan sekurang-kurangnya 8 aksara
+        phrase: Will be matched regardless of casing in text or content warning of a post
+        scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
+        setting_aggregate_reblogs: Do not show new boosts for posts that have been recently boosted (only affects newly-received boosts)
         setting_always_send_emails: Biasanya pemberitahuan e-mel tidak akan dihantar apabila anda selalu menggunakan Mastodon
+        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: Sembunyikan media yang ditanda sebagai sensitif
         setting_display_media_hide_all: Sentiasa sembunyikan media
         setting_display_media_show_all: Sentiasa paparkan media
         setting_hide_network: Sesiapa yang anda ikuti dan sesiapa yang mengikuti anda akan disembunyi daripada profil anda
         setting_noindex: Menjejaskan profil awam dan laman hantaran anda
+        setting_show_application: The application you use to post will be displayed in the detailed view of your posts
+        setting_use_blurhash: Gradients are based on the colors of the hidden visuals but obfuscate any details
+        setting_use_pending_items: Hide timeline updates behind a click instead of automatically scrolling the feed
+        username: Your username will be unique on %{domain}
+        whole_word: When the keyword or phrase is alphanumeric only, it will only be applied if it matches the whole word
+      domain_allow:
+        domain: This domain will be able to fetch data from this server and incoming data from it will be processed and stored
+      email_domain_block:
+        domain: This can be the domain name that shows up in the e-mail address or the MX record it uses. They will be checked upon sign-up.
+        with_dns_records: An attempt to resolve the given domain's DNS records will be made and the results will also be blocked
+      featured_tag:
+        name: 'Here are some of the hashtags you used the most recently:'
+      filters:
+        action: Chose which action to perform when a post matches the filter
+        actions:
+          hide: Completely hide the filtered content, behaving as if it did not exist
+          warn: Hide the filtered content behind a warning mentioning the filter's title
       form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
+        backups_retention_period: Keep generated user archives for the specified number of days.
+        bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations.
         closed_registrations_message: Dipaparkan semasa pendaftaran ditutup
+        content_cache_retention_period: Posts from other servers will be deleted after the specified number of days when set to a positive value. This may be irreversible.
+        custom_css: You can apply custom styles on the web version of Mastodon.
+        mascot: Overrides the illustration in the advanced web interface.
+        media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
+        profile_directory: The profile directory lists all users who have opted-in to be discoverable.
+        require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
+        site_contact_email: How people can reach you for legal or support inquiries.
         site_contact_username: Bagaimana orang boleh menghubungi anda pada Mastodon.
         site_extended_description: Apa-apa maklumat tambahan yang mungkin berguna untuk pelawat dan pengguna anda. Boleh distruktur dengan sintaks Markdown.
+        site_short_description: A short description to help uniquely identify your server. Who is running it, who is it for?
         site_terms: Gunakan dasar polisi anda atau biarkan kosong untuk menggunakan lalai. Boleh distruktur dengan sintaks Markdown.
+        site_title: How people may refer to your server besides its domain name.
+        theme: Theme that logged out visitors and new users see.
+        thumbnail: A roughly 2:1 image displayed alongside your server information.
+        timeline_preview: Logged out visitors will be able to browse the most recent public posts available on the server.
+        trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
+        trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Anda sedang memasuki kawasan selamat
       imports:
@@ -51,34 +104,68 @@ ms:
       invite_request:
         text: Ini akan membantu kami menyemak permohonan anda
       ip_block:
+        comment: Optional. Remember why you added this rule.
+        expires_in: IP addresses are a finite resource, they are sometimes shared and often change hands. For this reason, indefinite IP blocks are not recommended.
+        ip: Enter an IPv4 or IPv6 address. You can block entire ranges using the CIDR syntax. Be careful not to lock yourself out!
         severities:
           no_access: Menyekat akses kepada semua sumber
           sign_up_block: Pendaftaran baru tidak akan dibenarkan
           sign_up_requires_approval: Pendaftaran baru akan memerlukan kelulusan anda
+        severity: Choose what will happen with requests from this IP
+      rule:
+        text: Describe a rule or requirement for users on this server. Try to keep it short and simple
+      sessions:
+        otp: 'Enter the two-factor code generated by your phone app or use one of your recovery codes:'
+        webauthn: If it's an USB key be sure to insert it and, if necessary, tap it.
+      tag:
+        name: You can only change the casing of the letters, for example, to make it more readable
+      user:
+        chosen_languages: When checked, only posts in selected languages will be displayed in public timelines
+        role: The role controls which permissions the user has
       user_role:
         color: Warna yang akan digunakan untuk peranan ini dalam seluruh UI, sebagai RGB dalam format hex
         highlighted: Ini menjadikan peranan ini dipaparkan secara umum
+        name: Public name of the role, if role is set to be displayed as a badge
         permissions_as_keys: Pengguna dengan peranan ini akan mempunyai akses kepada...
+        position: Higher role decides conflict resolution in certain situations. Certain actions can only be performed on roles with a lower priority
+      webhook:
+        events: Select events to send
+        url: Where events will be sent to
     labels:
       account:
         fields:
+          name: Label
           value: Kandungan
+      account_alias:
+        acct: Handle of the old account
+      account_migration:
+        acct: Handle of the new account
       account_warning_preset:
+        text: Preset text
         title: Tajuk
       admin_account_action:
+        include_statuses: Include reported posts in the e-mail
+        send_email_notification: Notify the user per e-mail
         text: Amaran tersuai
         type: Tindakan
         types:
+          disable: Freeze
           none: Hantar amaran
           sensitive: Sensitif
           silence: Hadkan
           suspend: Gantung
         warning_preset_id: Gunakan amaran yang ditetapkan
       announcement:
+        all_day: All-day event
+        ends_at: End of event
+        scheduled_at: Schedule publication
+        starts_at: Start of event
         text: Pengumuman
       appeal:
         text: Jelaskan mengapa keputusan ini patut diterbalikkan
       defaults:
+        autofollow: Invite to follow your account
+        avatar: Avatar
         bot: Ini ialah akaun bot
         chosen_languages: Tapis bahasa
         confirm_new_password: Sahkan kata laluan baru
@@ -91,28 +178,53 @@ ms:
         email: Alamat e-mel
         expires_in: Tamat tempoh selepas
         fields: Metadata profil
+        header: Header
+        honeypot: "%{label} (do not fill in)"
+        inbox_url: URL of the relay inbox
+        irreversible: Drop instead of hide
         locale: Bahasa antara muka
+        locked: Require follow requests
+        max_uses: Max number of uses
         new_password: Kata laluan baru
+        note: Bio
         otp_attempt: Kod dua faktor
         password: Kata laluan
         phrase: Kata kunci atau frasa
         setting_advanced_layout: Dayakan antara muka web lanjutan
+        setting_aggregate_reblogs: Group boosts in timelines
+        setting_always_send_emails: Always send e-mail notifications
+        setting_auto_play_gif: Auto-play animated GIFs
+        setting_boost_modal: Show confirmation dialog before boosting
+        setting_crop_images: Crop images in non-expanded posts to 16x9
         setting_default_language: Bahasa hantaran
         setting_default_privacy: Privasi hantaran
         setting_default_sensitive: Selalu tandakan media sebagai sensitif
+        setting_delete_modal: Show confirmation dialog before deleting a post
+        setting_disable_swiping: Disable swiping motions
         setting_display_media: Paparan media
         setting_display_media_default: Lalai
         setting_display_media_hide_all: Sembunyikan semua
         setting_display_media_show_all: Paparkan semua
+        setting_expand_spoilers: Always expand posts marked with content warnings
+        setting_hide_network: Hide your social graph
+        setting_noindex: Opt-out of search engine indexing
+        setting_reduce_motion: Reduce motion in animations
+        setting_show_application: Disclose application used to send posts
         setting_system_font_ui: Gunakan fon lalai sistem
         setting_theme: Tema halaman
         setting_trends: Paparkan trend hari ini
+        setting_unfollow_modal: Show confirmation dialog before unfollowing someone
+        setting_use_blurhash: Show colorful gradients for hidden media
+        setting_use_pending_items: Slow mode
+        severity: Severity
         sign_in_token_attempt: Kod keselamatan
         title: Tajuk
         type: Jenis import
         username: Nama pengguna
         username_or_email: Nama Pengguna atau E-mel
         whole_word: Seluruh perkataan
+      email_domain_block:
+        with_dns_records: Include MX records and IPs of the domain
       featured_tag:
         name: Tanda pagar
       filters:
@@ -120,7 +232,15 @@ ms:
           hide: Sembunyikan sepenuhnya
           warn: Sembunyikan dengan amaran
       form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
+        backups_retention_period: User archive retention period
+        bootstrap_timeline_accounts: Always recommend these accounts to new users
+        closed_registrations_message: Custom message when sign-ups are not available
+        content_cache_retention_period: Content cache retention period
         custom_css: CSS tersuai
+        mascot: Custom mascot (legacy)
+        media_cache_retention_period: Media cache retention period
+        peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Dayakan direktori profil
         registrations_mode: Siapa boleh mendaftar
         require_invite_text: Memerlukan sebab penyertaan
@@ -133,7 +253,15 @@ ms:
         site_terms: Dasar Privasi
         site_title: Nama pelayan
         theme: Tema asal
+        thumbnail: Server thumbnail
+        timeline_preview: Allow unauthenticated access to public timelines
+        trendable_by_default: Allow trends without prior review
         trends: Dayakan trend
+        trends_as_landing_page: Use trends as the landing page
+      interactions:
+        must_be_follower: Block notifications from non-followers
+        must_be_following: Block notifications from people you don't follow
+        must_be_following_dm: Block direct messages from people you don't follow
       invite:
         comment: Komen
       invite_request:
@@ -147,6 +275,8 @@ ms:
           sign_up_requires_approval: Hadkan pendaftaran
         severity: Peraturan
       notification_emails:
+        appeal: Someone appeals a moderator decision
+        digest: Send digest e-mails
         favourite: Seorang menggemarkan hantaran anda
         follow: Seorang mengikuti anda
         follow_request: Seorang meminta untuk mengikuti anda
@@ -158,18 +288,28 @@ ms:
       rule:
         text: Peraturan
       tag:
+        listable: Allow this hashtag to appear in searches and suggestions
         name: Tanda pagar
+        trendable: Allow this hashtag to appear under trends
         usable: Benarkan siaran untuk menggunakan tanda pagar ini
       user:
         role: Peranan
       user_role:
         color: Warna lencana
+        highlighted: Display role as badge on user profiles
         name: Nama
         permissions_as_keys: Kebenaran
         position: Keutamaan
+      webhook:
+        events: Enabled events
+        url: Endpoint URL
     'no': Tidak
     not_recommended: Tidak disyorkan
     recommended: Disyorkan
     required:
+      mark: "*"
       text: diperlukan
+    title:
+      sessions:
+        webauthn: Use one of your security keys to sign in
     'yes': Ya

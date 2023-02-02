@@ -18,6 +18,8 @@ sr-Latn:
           disable: Spreči korisnika da koristi svoj nalog, ali nemoj brisati ili sakrivati njegov sadržaj.
           none: Koristi ovo da pošalješ upozorenje korisniku, bez pokretanja bilo koje druge akcije.
           sensitive: Učini da svi medijski prilozi ovog korisnika prisilno budu označeni kao osetljivi.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Opcionalno. Možete i dalje dodati prilagođeni tekst na kraj preseta
       announcement:
         all_day: Biće prikazani samo datumi vremenskog opsega koji su označeni
@@ -72,6 +74,7 @@ sr-Latn:
           hide: Potpuno sakrij filtrirani sadržaj, ponašajući se kao da ne postoji
           warn: Sakrij filtrirani sadržaj iza upozorenja u kome se navodi naziv filtera
       form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
         backups_retention_period: Čuvaj generisane korisničke arhive navedeni broj dana.
         bootstrap_timeline_accounts: Ovi nalozi će biti zakačeni na vrh preporuka za praćenje novih korisnika.
         closed_registrations_message: Prikazuje se kada su prijave zatvorene
@@ -79,6 +82,7 @@ sr-Latn:
         custom_css: Možeš da primeniš prilagođene stilove na veb verziji Mastodona.
         mascot: Zamenjuje ilustraciju u naprednom veb interfejsu.
         media_cache_retention_period: Kada se postavi na pozitivnu vrednost, preuzete medijske datoteke će biti izbrisane nakon navedenog broja dana, i ponovo preuzete na zahtev.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: Direktorijum profila navodi sve korisnike koji su se opredelili da budu vidljivi.
         require_invite_text: Kada registracije zahtevaju ručno odobrenje, postavi da unos teksta „Zašto želiš da se pridružiš?“ bude obavezan, a ne opcioni
         site_contact_email: Kako korisnici mogu da te kontaktiraju za pravna pitanja ili pitanja u vezi podrške.
@@ -92,6 +96,7 @@ sr-Latn:
         timeline_preview: Posetioci koji nisu prijavljeni će moći da pregledaju najnovije javne objave dostupne na serveru.
         trendable_by_default: Preskoči ručni pregled sadržaja koji je u trendu. Pojedinačne stavke se nakon toga i dalje mogu ukloniti iz trendova.
         trends: Trendovi pokazuju koje objave, heš oznake i vesti postaju sve popularniji na tvom serveru.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Ulaziš u bezbedno područje
       imports:
@@ -227,6 +232,7 @@ sr-Latn:
           hide: Sakrij u potpunosti
           warn: Sakrij uz upozorenje
       form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
         backups_retention_period: Period čuvanja korisničke arhive
         bootstrap_timeline_accounts: Uvek preporuči ove naloge novim korisnicima
         closed_registrations_message: Prilagođena poruka kada prijave nisu moguće
@@ -234,6 +240,7 @@ sr-Latn:
         custom_css: Prilagođeni CSS
         mascot: Prilagođena maskota (nasleđe)
         media_cache_retention_period: Period čuvanja keša medija
+        peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Omogući direktorijum profila
         registrations_mode: Ko može da se prijavi
         require_invite_text: Zatraži razlog za pristupanje
@@ -250,6 +257,7 @@ sr-Latn:
         timeline_preview: Dozvoli neautorizovan pristup javnim vremenskim osama
         trendable_by_default: Dozvoli trendove bez prethodnog pregleda
         trends: Omogući trendove
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Blokiraj obaveštenja od korisnika koji me ne prate
         must_be_following: Blokiraj obaveštenja od ljudi koje ne pratim

@@ -18,6 +18,8 @@
           disable: Forhindre brukeren fra å bruke kontoen sin, men ikke slett eller skjul innholdet deres.
           none: Bruk dette for å sende en advarsel til brukeren uten å utløse noen andre handlinger.
           sensitive: Tving alle denne brukerens medievedlegg til å bli merket som følsomme.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Valgfritt. Du kan fortsatt legge til tilpasset tekst til slutten av forhåndsinnstillingen
       announcement:
         all_day: Hvis noen av dem er valgt, vil kun datoene av tidsrammen bli vist
@@ -72,6 +74,7 @@
           hide: Skjul filtrert innhold fullstendig, som om det ikke eksisterte
           warn: Skjul det filtrerte innholdet bak et varsel som omtaler filterets tittel
       form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
         backups_retention_period: Behold genererte brukerarkiv i det angitte antall dager.
         bootstrap_timeline_accounts: Disse kontoene vil bli festet til toppen av nye brukeres følge-anbefalinger.
         closed_registrations_message: Vises når det er stengt for registrering
@@ -79,6 +82,7 @@
         custom_css: Du kan bruke egendefinerte stiler på nettversjonen av Mastodon.
         mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
         media_cache_retention_period: Mediafiler som lastes ned vil bli slettet etter det angitte antall dager når det settes til en positiv verdi, og blir lastet ned på nytt ved behov.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: Profilkatalogen viser alle brukere som har valgt å kunne bli oppdaget.
         require_invite_text: Når registreringer krever manuell godkjenning, må du gjøre «Hvorfor vil du bli med?»-tekstinput obligatorisk i stedet for valgfritt
         site_contact_email: Hvordan mennesker får tak i deg for rettslige spørsmål eller brukerstøtte.
@@ -88,6 +92,11 @@
         site_terms: Bruk dine egne personvernregler eller la stå tom for å bruke standarden. Kan struktureres med Markdown-syntaks.
         site_title: Hva man kan kalle tjeneren din utover domenenavnet.
         theme: Tema som vises for nye brukere og besøkende som ikke er logget inn.
+        thumbnail: A roughly 2:1 image displayed alongside your server information.
+        timeline_preview: Logged out visitors will be able to browse the most recent public posts available on the server.
+        trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
+        trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Du går inn i et sikkert område
       imports:
@@ -107,10 +116,12 @@
         text: Beskriv en regel eller krav til brukere på denne serveren. Prøv å holde den kort og enkelt
       sessions:
         otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+        webauthn: If it's an USB key be sure to insert it and, if necessary, tap it.
       tag:
         name: Du kan bare forandre bruken av store/små bokstaver, f.eks. for å gjøre det mer lesbart
       user:
         chosen_languages: Hvis noen av dem er valgt, vil kun innlegg i de valgte språkene bli vist i de offentlige tidslinjene
+        role: The role controls which permissions the user has
       user_role:
         color: Farge som skal brukes for rollen gjennom hele UI, som RGB i hex-format
         highlighted: Dette gjør rollen offentlig synlig
@@ -221,12 +232,15 @@
           hide: Skjul fullstendig
           warn: Skjul med en advarsel
       form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
         backups_retention_period: Brukers oppbevaringsperiode for arkiv
         bootstrap_timeline_accounts: Anbefaler alltid disse kontoene til nye brukere
         closed_registrations_message: Egendefinert melding når registrering ikke er tilgjengelig
         content_cache_retention_period: Oppbevaringsperiode for innholdsbuffer
         custom_css: Egendefinert CSS
+        mascot: Custom mascot (legacy)
         media_cache_retention_period: Oppbevaringsperiode for mediebuffer
+        peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Aktiver profilkatalog
         registrations_mode: Hvem kan opprette konto
         require_invite_text: Krev en grunn for å bli med
@@ -240,8 +254,10 @@
         site_title: Servernavn
         theme: Standard tema
         thumbnail: Miniatyrbilde til server
+        timeline_preview: Allow unauthenticated access to public timelines
         trendable_by_default: Tillat trender uten foregående vurdering
         trends: Aktiver trender
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Blokker varslinger fra ikke-følgere
         must_be_following: Blokker varslinger fra personer du ikke følger
@@ -286,6 +302,7 @@
         position: Prioritet
       webhook:
         events: Aktiverte hendelser
+        url: Endpoint URL
     'no': Nei
     not_recommended: Ikke anbefalt
     recommended: Anbefalt

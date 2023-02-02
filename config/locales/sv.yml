@@ -91,6 +91,7 @@ sv:
       moderation:
         active: Aktiv
         all: Alla
+        disabled: Disabled
         pending: Väntande
         silenced: Begränsad
         suspended: Avstängda
@@ -133,6 +134,7 @@ sv:
       search: Sök
       search_same_email_domain: Andra användare med samma e-postdomän
       search_same_ip: Annan användare med samma IP-adress
+      security: Security
       security_measures:
         only_password: Endast lösenord
         password_and_2fa: Lösenord och 2FA
@@ -427,6 +429,7 @@ sv:
         resolve: Slå upp domän
         title: Blockera ny e-postdomän
       no_email_domain_block_selected: Inga blockeringar av e-postdomäner ändrades eftersom inga valdes
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: Domännamnet ger uppslag till följande MX-domäner, vilka är ytterst ansvariga för att e-post tas emot. Att blockera en MX-domän blockerar även registreringar från alla e-postadresser som använder samma MX-domän, även om det synliga domännamnet är annorlunda. <strong>Var noga med att inte blockera stora e-postleverantörer.</strong>
       resolved_through_html: Uppslagen genom %{domain}
       title: Blockerade e-postdomäner
@@ -473,6 +476,7 @@ sv:
       content_policies:
         comment: Intern anteckning
         description_html: Du kan definiera innehållspolicyer som kommer tillämpas på alla konton från denna domän samt alla dess underdomäner.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: Avvisa media
           reject_reports: Avvisa rapporter
@@ -585,11 +589,13 @@ sv:
       assign_to_self: Tilldela till mig
       assigned: Tilldelad moderator
       by_target_domain: Domän för rapporterat konto
+      cancel: Cancel
       category: Kategori
       category_description_html: Anledningen till att kontot och/eller innehållet rapporterades kommer att visas i kommunikation med det rapporterade kontot
       comment:
         none: Ingen
       comment_description_html: 'För att ge mer information, skrev %{name}:'
+      confirm: Confirm
       confirm_action: Bekräfta modereringsåtgärd mot @%{acct}
       created_at: Anmäld
       delete_and_resolve: Ta bort inlägg
@@ -628,9 +634,20 @@ sv:
           suspend_html: 'Du håller på att <strong>stänga av</strong> <strong>@%{acct}</strong>s konto. Detta kommer:'
         actions:
           delete_html: Ta bort kränkande inlägg
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: Ursprung för anmält konto
       title: Anmälningar
       unassign: Otilldela
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: Olösta
       updated_at: Uppdaterad
       view_profile: Visa profil
@@ -781,6 +798,7 @@ sv:
         suspend: "%{name} stängde av %{target}s konto"
       appeal_approved: Överklagad
       appeal_pending: Överklagande väntar
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: Det finns väntande databasmigreringar. Vänligen kör dem för att säkerställa att programmet beter sig som förväntat
@@ -816,6 +834,7 @@ sv:
           other: Delad av %{count} personer under den senaste veckan
         title: Trendande länkar
         usage_comparison: Delade %{today} gånger idag, jämfört med %{yesterday} igår
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: Endast tillåtna
       pending_review: Väntar på granskning
       preview_card_providers:
@@ -947,6 +966,7 @@ sv:
   applications:
     created: Ansökan är framgångsrikt skapad
     destroyed: Ansökan är framgångsrikt borttagen
+    logout: Logout
     regenerate_token: Regenerera access token
     token_regenerated: Access token lyckades regenereras
     warning: Var mycket försiktig med denna data. Dela aldrig den med någon!
@@ -954,6 +974,8 @@ sv:
   auth:
     apply_for_account: Ansök om konto
     change_password: Lösenord
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Radera konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
     description:
@@ -981,6 +1003,8 @@ sv:
     resend_confirmation: Skicka instruktionerna om bekräftelse igen
     reset_password: Återställ lösenord
     rules:
+      accept: Accept
+      back: Back
       preamble: Dessa bestäms och upprätthålls av moderatorerna för %{domain}.
       title: Några grundregler.
     security: Säkerhet
@@ -1381,6 +1405,9 @@ sv:
       unrecognized_emoji: är inte en igenkänd emoji
   relationships:
     activity: Kontoaktivitet
+    confirm_follow_selected_followers: Are you sure you want to follow selected followers?
+    confirm_remove_selected_followers: Are you sure you want to remove selected followers?
+    confirm_remove_selected_follows: Are you sure you want to remove selected follows?
     dormant: Vilande
     follow_selected_followers: Följ valda personer
     followers: Följare

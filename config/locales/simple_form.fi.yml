@@ -18,6 +18,8 @@ fi:
           disable: Estä käyttäjää käyttämästä tiliään, mutta älä poista tai piilota sen sisältöä.
           none: Käytä tätä lähettääksesi varoituksen käyttäjälle käynnistämättä mitään muita toimintoja.
           sensitive: Pakota kaikki tämän käyttäjän mediatiedostot arkaluontoisiksi.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Valinnainen. Voit silti lisätä mukautetun tekstin esiasetuksen loppuun
       announcement:
         all_day: Kun valittu, vain valittu aikaväli näytetään
@@ -94,6 +96,7 @@ fi:
         timeline_preview: Uloskirjautuneet vierailijat voivat selata uusimpia julkisia viestejä, jotka ovat saatavilla palvelimella.
         trendable_by_default: Ohita suositun sisällön manuaalinen tarkistus. Yksittäisiä kohteita voidaan edelleen poistaa jälkikäteen.
         trends: Trendit osoittavat, mitkä julkaisut, aihetunnisteet ja uutiset ovat saamassa vetoa palvelimellasi.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Olet menossa suojatulle alueelle
       imports:
@@ -254,6 +257,7 @@ fi:
         timeline_preview: Salli todentamaton pääsy julkiselle aikajanalle
         trendable_by_default: Salli trendit ilman ennakkotarkastusta
         trends: Trendit käyttöön
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Estä ilmoitukset käyttäjiltä, jotka eivät seuraa sinua
         must_be_following: Estä ilmoitukset käyttäjiltä, joita et seuraa

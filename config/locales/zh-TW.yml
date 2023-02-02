@@ -89,6 +89,7 @@ zh-TW:
       moderation:
         active: 活躍
         all: 全部
+        disabled: Disabled
         pending: 等待中
         silenced: 受限的
         suspended: 已停權
@@ -130,6 +131,7 @@ zh-TW:
       search: 搜尋
       search_same_email_domain: 其他有同個電子郵件網域的使用者
       search_same_ip: 其他有同個 IP 的使用者
+      security: Security
       security_measures:
         only_password: 僅使用密碼
         password_and_2fa: 密碼及二重因素驗證
@@ -419,6 +421,7 @@ zh-TW:
         resolve: 解析網域
         title: 新增電子郵件黑名單項目
       no_email_domain_block_selected: 因未選取項目，而未更改電子郵件網域黑名單
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: 網域名稱解析為以下 MX 網域，這些網域最終負責接收電子郵件。封鎖 MX 網域將會封鎖任何來自使用相同 MX 網域的電子郵件註冊，即便可見的域名是不同的也一樣。<strong>請注意，不要封鎖主要的電子郵件服務提供商。</strong>
       resolved_through_html: 透過 %{domain} 解析
       title: 電子郵件黑名單
@@ -465,6 +468,7 @@ zh-TW:
       content_policies:
         comment: 內部備註
         description_html: 您可以定義對所有此網域帳號及其子網域所實施之內容政策。
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: 拒絕多媒體
           reject_reports: 拒絕檢舉
@@ -575,11 +579,13 @@ zh-TW:
       assign_to_self: 指派給自己
       assigned: 指派負責人
       by_target_domain: 檢舉帳號之網域
+      cancel: Cancel
       category: 分類
       category_description_html: 此帳號及/或被檢舉內容之原因會被引用在檢舉帳號通知中
       comment:
         none: 無
       comment_description_html: 提供更多資訊，%{name} 寫道：
+      confirm: Confirm
       confirm_action: 確認對 @%{acct} 執行站務動作
       created_at: 日期
       delete_and_resolve: 刪除嘟文
@@ -780,6 +786,7 @@ zh-TW:
         suspend: "%{name} 將 %{target} 的帳號停權"
       appeal_approved: 已申訴
       appeal_pending: 申訴待審中
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: 有挂起的数据库迁移，请运行它们以确保应用程序按照预期运行。
@@ -814,6 +821,7 @@ zh-TW:
           other: 上週被 %{count} 名使用者分享
         title: 熱門連結
         usage_comparison: 於今日被 %{today} 人分享，相較於昨日 %{yesterday} 人
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: 僅允許
       pending_review: 等待審核中
       preview_card_providers:
@@ -942,6 +950,7 @@ zh-TW:
   applications:
     created: 已建立應用
     destroyed: 已刪除應用
+    logout: Logout
     regenerate_token: 重設 token
     token_regenerated: 已重設 token
     warning: 警告，不要把它分享給任何人!
@@ -978,6 +987,8 @@ zh-TW:
     resend_confirmation: 重新寄送確認指引
     reset_password: 重設密碼
     rules:
+      accept: Accept
+      back: Back
       preamble: 這些被 %{domain} 的管管們制定以及實施。
       title: 一些基本守則。
     security: 登入資訊

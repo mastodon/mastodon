@@ -95,6 +95,7 @@ gd:
       moderation:
         active: Gnìomhach
         all: Na h-uile
+        disabled: Disabled
         pending: Ri dhèiligeadh
         silenced: Cuingichte
         suspended: À rèim
@@ -122,6 +123,8 @@ gd:
       redownloaded_msg: Chaidh a’ phròifil aig %{username} on tùs
       reject: Diùlt
       rejected_msg: Chaidh an t-iarrtas clàraidh aig %{username} a dhiùltadh
+      remote_suspension_irreversible: The data of this account has been irreversibly deleted.
+      remote_suspension_reversible_hint_html: The account has been suspended on their server, and the data will be fully removed on %{date}. Until then, the remote server can restore this account without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       remove_avatar: Thoir air falbh an t-avatar
       remove_header: Thoir air falbh am bann-cinn
       removed_avatar_msg: Chaidh dealbh an avatar aig %{username} a thoirt air falbh
@@ -137,6 +140,7 @@ gd:
       search: Lorg
       search_same_email_domain: Cleachdaichean eile aig a bheil an aon àrainn puist-d
       search_same_ip: Cleachdaichean eile aig a bheil an t-aon IP
+      security: Security
       security_measures:
         only_password: Facal-faire a-mhàin
         password_and_2fa: Facal-faire ’s dà-cheumnach
@@ -404,6 +408,7 @@ gd:
         create: Cruthaich bacadh
         hint: Cha chuir bacadh na h-àrainne crìoch air cruthachadh chunntasan san stòr-dàta ach cuiridh e dòighean maorsainneachd sònraichte an sàs gu fèin-obrachail air a h-uile dàta a tha aig na cunntasan ud.
         severity:
+          desc_html: "<strong>Limit</strong> will make posts from accounts at this domain invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all content, media, and profile data for this domain's accounts from your server. Use <strong>None</strong> if you just want to reject media files."
           noop: Chan eil gin
           silence: Cuingich
           suspend: Cuir à rèim
@@ -440,6 +445,7 @@ gd:
         resolve: Fuasgail an àrainn
         title: Bac àrainn puist-d ùr
       no_email_domain_block_selected: Cha deach bacadh àrainn puist-d sam bith atharrachadh o nach deach gin dhiubh a thaghadh
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: Thèid ainm na h-àrainne fhuasgladh nan àrainnean MX a leanas agus an urra riutha-san gun gabh iad ri post-d. Ma bhacas tu àrainn MX, bacaidh seo an clàradh o sheòladh puist-d sam bith a chleachdas an aon àrainn MX fiù ’s ma bhios ainm àrainne eadar-dhealaichte ’ga sealltainn. <strong>Thoir an aire nach bac thu solaraichean puist-d mòra.</strong>
       resolved_through_html: Chaidh fuasgladh slighe %{domain}
       title: Àrainnean puist-d ’gam bacadh
@@ -449,9 +455,12 @@ gd:
       no_file: Cha deach faidhle a thaghadh
     export_domain_blocks:
       import:
+        description_html: You are about to import a list of domain blocks. Please review this list very carefully, especially if you have not authored this list yourself.
         existing_relationships_warning: Dàimhean leantainn làithreach
+        private_comment_description_html: 'To help you track where imported blocks come from, imported blocks will be created with the following private comment: <q>%{comment}</q>'
         private_comment_template: Chaidh ion-phortadh o %{source} %{date}
         title: Ion-phortaich bacaidhean àrainne
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
       new:
         title: Ion-phortaich bacaidhean àrainne
       no_file: Cha deach faidhle a thaghadh
@@ -487,6 +496,7 @@ gd:
       content_policies:
         comment: Nòta taobh a-staigh
         description_html: "’S urrainn dhut poileasaidhean susbainte a mhìneachadh a thèid a chur an sàs air a h-uile cunntas on àrainn seo ’s a fo-àrainnean-se."
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: Diùlt meadhanan
           reject_reports: Diùlt gearanan
@@ -594,17 +604,23 @@ gd:
         mark_as_sensitive_description_html: Thèid comharra an fhrionasachd a chur ris na meadhanan sna postaichean le gearan orra agus rabhadh a chlàradh gus do chuideachadh ach am bi thu nas teinne le droch-ghiùlan on aon chunntas sam àm ri teachd.
         other_description_html: Seall barrachd roghainnean airson giùlan a’ chunntais a stiùireadh agus an conaltradh leis a’ chunntas a chaidh gearan a dhèanamh mu dhèidhinn a ghnàthachadh.
         resolve_description_html: Cha dèid gnìomh sam bith a ghabhail an aghaidh a’ chunntais le gearan air agus thèid an gearan a dhùnadh gun rabhadh a chlàradh.
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
       actions_description_html: Socraich dè a nì thu airson an gearan seo fhuasgladh. Ma chuireas tu peanas air a’ chunntas le gearan air, gheibh iad brath air a’ phost-d mura tagh thu an roinn-seòrsa <strong>Spama</strong>.
+      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: Cuir barrachd ris a’ ghearan
       are_you_sure: A bheil thu cinnteach?
       assign_to_self: Iomruin dhomh-sa
       assigned: Maor iomruinte
       by_target_domain: Àrainn cunntas a’ ghearain
+      cancel: Cancel
       category: Roinn-seòrsa
       category_description_html: Thèid iomradh a thoirt air adhbhar a’ ghearain mun chunntas/susbaint seo sa chonaltradh leis a’ chunntas mun a chaidh an gearan a thogail
       comment:
         none: Chan eil gin
       comment_description_html: 'Airson barrachd fiosrachaidh a sholar, sgrìobh %{name}:'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: Chaidh an gearan a dhèanamh
       delete_and_resolve: Sguab às na postaichean
       forwarded: Chaidh a shìneadh air adhart
@@ -621,6 +637,7 @@ gd:
         placeholder: Mìnich dè na ghnìomhan a chaidh a ghabhail no naidheachd sam bith eile mu dhèidhinn…
         title: Nòtaichean
       notes_description_html: Seall is sgrìobh nòtaichean do mhaoir eile is dhut fhèin san àm ri teachd
+      processed_msg: 'Report #%{id} successfully processed'
       quick_actions_description_html: 'Gabh gnìomh luath no sgrolaich sìos a dh’fhaicinn susbaint a’ ghearain:'
       remote_user_placeholder: cleachdaiche cèin o %{instance}
       reopen: Fosgail an gearan a-rithist
@@ -633,9 +650,28 @@ gd:
       status: Staid
       statuses: Susbaint le gearan
       statuses_description_html: Thèid iomradh a thoirt air an t-susbaint oilbheumach sa chonaltradh leis a’ chunntas mun a chaidh an gearan a thogail
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: Tùs cunntas a’ ghearain
       title: Gearanan
       unassign: Dì-iomruin
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: Gun fhuasgladh
       updated_at: Air ùrachadh
       view_profile: Seall a’ phròifil
@@ -726,11 +762,16 @@ gd:
       content_retention:
         preamble: Stiùirich mar a tha susbaint an luchd-cleachdaidh ’ga stòradh ann am Mastodon.
         title: Glèidheadh na susbaint
+      default_noindex:
+        desc_html: Affects all users who have not changed this setting themselves
+        title: Opt users out of search engine indexing by default
       discovery:
         follow_recommendations: Molaidhean leantainn
         preamble: Tha tighinn an uachdar susbainte inntinniche fìor-chudromach airson toiseach-tòiseachaidh an luchd-cleachdaidh ùr nach eil eòlach air duine sam bith air Mastodon, ma dh’fhaoidte. Stiùirich mar a dh’obraicheas gleusan an rannsachaidh air an fhrithealaiche agad.
         profile_directory: Eòlaire nam pròifil
         public_timelines: Loidhnichean-ama poblach
+        publish_discovered_servers: Publish discovered servers
+        publish_statistics: Publish statistics
         title: Rùrachadh
         trends: Treandaichean
       domain_blocks:
@@ -785,6 +826,7 @@ gd:
         suspend: Chuir %{name} an cunntas aig %{target} à rèim
       appeal_approved: Air ath-thagradh
       appeal_pending: "’Ga ath-thagradh"
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: Tha imrichean stòir-dhàta ri dhèiligeadh ann. Ruith iad a dhèanamh cinnteach gum bi giùlan na h-aplacaid mar a bhiodhte ’n dùil
@@ -822,6 +864,7 @@ gd:
           two: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
         title: Ceanglaichean a’ treandadh
         usage_comparison: Chaidh a cho-roinneadh %{today} tura(i)s an-diugh an coimeas ri %{yesterday} an-dè
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: An fheadhainn cheadaichte a-mhàin
       pending_review: A’ feitheamh air lèirmheas
       preview_card_providers:
@@ -959,6 +1002,7 @@ gd:
   applications:
     created: Chaidh an t-iarrtas a chruthachadh
     destroyed: Chaidh an t-iarrtas a sguabadh às
+    logout: Logout
     regenerate_token: Ath-ghin an tòcan inntrigidh
     token_regenerated: Chaidh an tòcan inntrigidh ath-ghintinn
     warning: Bi glè chùramach leis an dàta seo. Na co-roinn le duine sam bith e!
@@ -966,6 +1010,8 @@ gd:
   auth:
     apply_for_account: Iarr cunntas
     change_password: Facal-faire
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Sguab às an cunntas
     delete_account_html: Nam bu mhiann leat an cunntas agad a sguabadh às, <a href="%{path}">nì thu an-seo e</a>. Thèid dearbhadh iarraidh ort.
     description:
@@ -993,6 +1039,8 @@ gd:
     resend_confirmation: Cuir an stiùireadh mun dearbhadh a-rithist
     reset_password: Ath-shuidhich am facal-faire
     rules:
+      accept: Accept
+      back: Back
       preamble: Tha iad ’gan stèidheachadh is a chur an gnìomh leis na maoir aig %{domain}.
       title: Riaghailtean bunasach.
     security: Tèarainteachd
@@ -1001,6 +1049,9 @@ gd:
       email_below_hint_html: Mur eil am post-d gu h-ìosal mar bu chòir, ’s urrainn dhut atharrachadh an-seo agus gheibh thu post-d dearbhaidh ùr.
       email_settings_hint_html: Chaidh am post-d dearbhaidh a chur gu %{email}. Mur eil an seòladh puist-d seo mar bu chòir, ’s urrainn dhut atharrachadh ann an roghainnean a’ chunntais.
       title: Suidheachadh
+    sign_in:
+      preamble_html: Sign in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
+      title: Sign in to %{domain}
     sign_up:
       preamble: Le cunntas air an fhrithealaiche Mastodon seo, ’s urrainn dhut neach sam bith a leantainn air an lìonra, ge b’ e càit a bheil an cunntas aca-san ’ga òstadh.
       title: Suidhicheamaid %{domain} dhut.
@@ -1406,6 +1457,9 @@ gd:
       unrecognized_emoji: "– chan aithne dhuinn an Emoji seo"
   relationships:
     activity: Gnìomhachd a’ chunntais
+    confirm_follow_selected_followers: Are you sure you want to follow selected followers?
+    confirm_remove_selected_followers: Are you sure you want to remove selected followers?
+    confirm_remove_selected_follows: Are you sure you want to remove selected follows?
     dormant: Na thàmh
     follow_selected_followers: Lean an luchd-leantainn a thagh thu
     followers: Luchd-leantainn

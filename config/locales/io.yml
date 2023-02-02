@@ -91,6 +91,7 @@ io:
       moderation:
         active: Aktiva
         all: Omna
+        disabled: Disabled
         pending: Vartanta
         silenced: Limitizita
         suspended: Restriktita
@@ -116,6 +117,8 @@ io:
       redownloaded_msg: Sucesoze rifreshis profilo di %{username} de origino
       reject: Refuzez
       rejected_msg: Sucesoze refuzis registroapliko di %{username}
+      remote_suspension_irreversible: The data of this account has been irreversibly deleted.
+      remote_suspension_reversible_hint_html: The account has been suspended on their server, and the data will be fully removed on %{date}. Until then, the remote server can restore this account without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       remove_avatar: Efacez profilimajo
       remove_header: Efacez kapimajo
       removed_avatar_msg: Sucesoze efacis profilimajo di %{username}
@@ -131,6 +134,7 @@ io:
       search: Trovez
       search_same_email_domain: Altra uzanti kun sama retpostodomeno
       search_same_ip: Altra uzanti kun sama IP
+      security: Security
       security_measures:
         only_password: Nur pasvorto
         password_and_2fa: Pasvorto e 2FA
@@ -207,6 +211,7 @@ io:
         reject_user: Refuzez uzanto
         remove_avatar_user: Efacez profilimajo
         reopen_report: Riapertez raporto
+        resend_user: Resend Confirmation Mail
         reset_password_user: Richanjez pasvorto
         resolve_report: Rezolvez raporto
         sensitive_account: Forcsentoza konto
@@ -265,6 +270,7 @@ io:
         reject_user_html: "%{name} refuzis registro de %{target}"
         remove_avatar_user_html: "%{name} efacis profilimajo de %{target}"
         reopen_report_html: "%{name} riapertis raporto %{target}"
+        resend_user_html: "%{name} resent confirmation e-mail for %{target}"
         reset_password_user_html: "%{name} richanjis pasvorto de uzanto %{target}"
         resolve_report_html: "%{name} rezolvis raporto %{target}"
         sensitive_account_html: "%{name} markizis medii di %{target} quale sentoza"
@@ -281,6 +287,7 @@ io:
         update_ip_block_html: "%{name} kreis regulo por IP %{target}"
         update_status_html: "%{name} novigis posto da %{target}"
         update_user_role_html: "%{name} chanjis rolo di %{target}"
+      deleted_account: deleted account
       empty: Nula logi.
       filter_by_action: Filtrez segun ago
       filter_by_user: Filtrez segun uzanto
@@ -387,6 +394,7 @@ io:
         create: Kreez obstrukto
         hint: Domenobstrukto ne preventos kreo di kontrekordaji en datumaturo, ma retroaktive e automate aplikos partikulara jermetodi a ta konti.
         severity:
+          desc_html: "<strong>Limit</strong> will make posts from accounts at this domain invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all content, media, and profile data for this domain's accounts from your server. Use <strong>None</strong> if you just want to reject media files."
           noop: Nulo
           silence: Limito
           suspend: Restriktez
@@ -421,9 +429,25 @@ io:
         resolve: Rezolvez domeno
         title: Obstruktez nova retpostodomeno
       no_email_domain_block_selected: Retpostodomenobstrukti ne chanjesis por ke nulo selektesis
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: Ca domennomo rezolvesas a ca MX-domeni, quale esas ultime responsanta por ganar retposto. Obstruktar MX-domeno obstruktos registri de irga retpostoadreso quo uzas sama MX-domeni, mem se la videbla domennomo esas diferanta. <strong>Sorgemez e ne obstruktez majora retpostositi.</strong>
       resolved_through_html: Rezolvesis tra %{domain}
       title: Obstruktita retpostodomeni
+    export_domain_allows:
+      new:
+        title: Import domain allows
+      no_file: No file selected
+    export_domain_blocks:
+      import:
+        description_html: You are about to import a list of domain blocks. Please review this list very carefully, especially if you have not authored this list yourself.
+        existing_relationships_warning: Existing follow relationships
+        private_comment_description_html: 'To help you track where imported blocks come from, imported blocks will be created with the following private comment: <q>%{comment}</q>'
+        private_comment_template: Imported from %{source} on %{date}
+        title: Import domain blocks
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
+      new:
+        title: Import domain blocks
+      no_file: No file selected
     follow_recommendations:
       description_html: "<strong>Sequorekomendi helpas nova uzanti rapide trovar interesanta kontenajo</strong>. Se uzanto ne interagas kun altra personi sate por igar personaligita sequorekomendi, ca konti rekomendas. Oli rikalkulesas die de mixo di konti kun maxim alta recenta interagi e maxim altra lokala sequantoquanto segun selektita linguo."
       language: Por linguo
@@ -452,6 +476,7 @@ io:
       content_policies:
         comment: Interna noto
         description_html: Vu povas fixar kontenajguidili quo aplikesos a omna konti de ca domeno e irga oli subdomeni.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: Refusez medii
           reject_reports: Refusez raporti
@@ -555,17 +580,23 @@ io:
         mark_as_sensitive_description_html: Medii en raportizita posti markizesos quale sentoza e streko rekordigesos por helpar vu intensigar en nexta malagi da la sama konto.
         other_description_html: Videz plu multa opcioni por dominacar konduto di konto e kustumizar komuniko a raportizita konto.
         resolve_description_html: Nulo agesos kontre raportizita konto, streko ne rekordizesos e raporto klozesos.
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
       actions_description_html: Decidez ago por rezolvar ca raporto. Se vu decidar puniso kontre raportizesis konto, retpostoavizo sendesos a ol, ecepte kande <strong>Spam</strong> kategorio selektesis.
+      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: Insertez pluse a raporto
       are_you_sure: Ka vu esas certa?
       assign_to_self: Taskigez me
       assigned: Taskigita jerero
       by_target_domain: Domeno di raportizita konto
+      cancel: Cancel
       category: Kategorio
       category_description_html: La motivo ke ca konto e kontenajo raportizesis citesos por komuniko kun raportizita konto
       comment:
         none: Nulo
       comment_description_html: 'Por donar plu multa informo, %{name} skribis:'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: Raportizesis
       delete_and_resolve: Efacez posti
       forwarded: Sendesis
@@ -582,6 +613,7 @@ io:
         placeholder: Deskriptez quo agesis o irga relatita novaji...
         title: Noti
       notes_description_html: Videz e pozez noti a altra jereri e vua su en futuro
+      processed_msg: 'Report #%{id} successfully processed'
       quick_actions_description_html: 'Agetez o volvez base por vidar raportizita kontenajo:'
       remote_user_placeholder: nelokala uzanti de %{instance}
       reopen: Riapertez raporto
@@ -594,9 +626,28 @@ io:
       status: Stando
       statuses: Raportizita kontenajo
       statuses_description_html: Ofensanta kontenajo citesos en komuniko kun raportizita konto
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: Fonto di raportizita konto
       title: Raporti
       unassign: Detaskigez
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: Nerezolvita
       updated_at: Novigesis
       view_profile: Videz profilo
@@ -607,6 +658,7 @@ io:
         other: "%{count} uzanti"
       categories:
         administration: Administro
+        devops: DevOps
         invites: Inviti
         moderation: Jero
         special: Specala
@@ -657,6 +709,7 @@ io:
         view_audit_log_description: Permisez uzanti vidar historio di administrala agi en la servilo
         view_dashboard: Videz chefpanelo
         view_dashboard_description: Permisez uzanti uzar chefpanelo e diversa opcioni
+        view_devops: DevOps
         view_devops_description: Permisez uzanti uzar chefpaneli Sidekiq e pgHero
       title: Roli
     rules:
@@ -681,11 +734,16 @@ io:
       content_retention:
         preamble: Dominacez quale uzantigita kontenajo retenesar en Mastodon.
         title: Kontenajreteneso
+      default_noindex:
+        desc_html: Affects all users who have not changed this setting themselves
+        title: Opt users out of search engine indexing by default
       discovery:
         follow_recommendations: Sequez rekomendaji
         preamble: Montrar interesanta kontenajo esas importanta ye voligar nova uzanti quo forsan ne savas irgu. Dominacez quale ca deskovrotraiti funcionar en ca servilo.
         profile_directory: Profilcheflisto
         public_timelines: Publika tempolinei
+        publish_discovered_servers: Publish discovered servers
+        publish_statistics: Publish statistics
         title: Deskovro
         trends: Tendenci
       domain_blocks:
@@ -705,16 +763,29 @@ io:
       delete: Efacez adchargita failo
       destroyed_msg: Sitadchargito sucesoze efacesis!
     statuses:
+      account: Author
+      application: Application
       back_to_account: Retrovenez a kontopagino
       back_to_report: Retrovenez a raportpagino
       batch:
         remove_from_report: Efacez de raporto
         report: Raportizez
       deleted: Efacesis
+      favourites: Favourites
+      history: Version history
+      in_reply_to: Replying to
+      language: Language
       media:
         title: Medii
+      metadata: Metadata
       no_status_selected: Nula posti chanjesis pro ke nulo selektesis
+      open: Open post
+      original_status: Original post
+      reblogs: Reblogs
+      status_changed: Post changed
       title: Kontoposti
+      trending: Trending
+      visibility: Visibility
       with_media: Kun medii
     strikes:
       actions:
@@ -727,6 +798,7 @@ io:
         suspend: "%{name} restriktis konto di %{target}"
       appeal_approved: Apelis
       appeal_pending: Vartata apelo
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: Existas vartanta datamaturmigri. Startez por certigar ke la softwaro kondutar quale expektita
@@ -762,6 +834,7 @@ io:
           other: Partigesis da %{count} personi de pos antea semano
         title: Tendencoza ligili
         usage_comparison: Partigesis %{today} foyi hodie, la nombro esas %{yesterday} hiere
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: Nur permisato
       pending_review: Vartas kontrolo
       preview_card_providers:
@@ -893,12 +966,16 @@ io:
   applications:
     created: Apliko sucesoze kreesas
     destroyed: Apliko sucesoze efacesas
+    logout: Logout
     regenerate_token: Rifacez acesficho
     token_regenerated: Acesficho sucesoze riganesas
     warning: Sorgemez per ca informi. Ne partigez kun irgu!
     your_token: Vua acesficho
   auth:
+    apply_for_account: Request an account
     change_password: Pasvorto
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Efacez konto
     delete_account_html: Se vu volas efacar vua konto, vu povas <a href="%{path}">irar hike</a>. Vu demandesos konfirmar.
     description:
@@ -926,6 +1003,8 @@ io:
     resend_confirmation: Risendar la instrucioni por konfirmar
     reset_password: Chanjar la pasvorto
     rules:
+      accept: Accept
+      back: Back
       preamble: Co igesas e exekutesas da jereri di %{domain}.
       title: Kelka bazala reguli.
     security: Chanjar pasvorto
@@ -934,6 +1013,9 @@ io:
       email_below_hint_html: Se suba retpostoadreso esas nekorekta, vu povas chanjar hike e ganar nova konfirmretposto.
       email_settings_hint_html: Konfirmretposto sendesis a %{email}. Se ta retpostoadreso ne esas korekta, vu povas chanjar en kontoopcioni.
       title: Komencoprocedo
+    sign_in:
+      preamble_html: Sign in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
+      title: Sign in to %{domain}
     sign_up:
       preamble: Per konto en ca servilo di Mastodon, on povas sequar irga persono en ca reto, ne ye ube ona konto hostagisas.
       title: Ni komencigez vu en %{domain}.
@@ -1142,6 +1224,7 @@ io:
     invalid_markup: 'kontenas nevalida kompozuro di HTML: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Invalid CSV file. Error: %{error}'
       over_rows_processing_limit: kontenas plu kam %{count} horizontala lineo
     modes:
       merge: Kombinez
@@ -1322,6 +1405,9 @@ io:
       unrecognized_emoji: ne esas rikonocita emocimajo
   relationships:
     activity: Kontoaktiveso
+    confirm_follow_selected_followers: Are you sure you want to follow selected followers?
+    confirm_remove_selected_followers: Are you sure you want to remove selected followers?
+    confirm_remove_selected_follows: Are you sure you want to remove selected follows?
     dormant: Neaktiva
     follow_selected_followers: Sequez kelka sequanti
     followers: Sequanti

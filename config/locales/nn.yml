@@ -91,6 +91,7 @@ nn:
       moderation:
         active: Aktiv
         all: Alle
+        disabled: Disabled
         pending: Ventar på svar
         silenced: Avgrensa
         suspended: Utvist
@@ -133,6 +134,7 @@ nn:
       search: Søk
       search_same_email_domain: Andre brukarar med same e-postdomene
       search_same_ip: Andre brukarar med same IP
+      security: Security
       security_measures:
         only_password: Kun passord
         password_and_2fa: Passord og 2FA
@@ -350,6 +352,12 @@ nn:
       pending_appeals_html:
         one: "<strong>%{count}</strong> ventande ankar"
         other: "<strong>%{count}</strong> ventande klagar"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> pending report"
+        other: "<strong>%{count}</strong> pending reports"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> pending hashtag"
+        other: "<strong>%{count}</strong> pending hashtags"
       pending_users_html:
         one: "<strong>%{count}</strong> ventande brukarar"
         other: "<strong>%{count}</strong> ventande brukarar"
@@ -421,6 +429,7 @@ nn:
         resolve: Løs domene
         title: Ny blokkeringsoppføring av e-postdomene
       no_email_domain_block_selected: Blokkering av e-post-domener vart ikkje endra sidan ingen var valde
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: Domenenamnet gjer oppslag til desse MX-domenene som til sist er ansvarlige for å motta e-post. Blokkering av eit MX-domene vil blokkere registreringar frå alle e-postadresser som bruker same MX-domene, sjølv om det synlige domenenavnet skulle vera noko anna. <strong>Pass på så du ikkje blokkerer dei store e-postleverandørane.</strong>
       resolved_through_html: Løyst gjennom %{domain}
       title: Blokkerte e-postadresser
@@ -435,6 +444,7 @@ nn:
         private_comment_description_html: 'For å hjelpa deg med å halda oversikt over kvar importerte blokkeringar kjem frå, vil dei bli oppretta med fylgjande private kommentar: <q>%{comment}</q>'
         private_comment_template: Importert frå %{source} den %{date}
         title: Importer domeneblokkeringar
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
       new:
         title: Importer domeneblokkeringar
       no_file: Inga fil vald
@@ -466,6 +476,7 @@ nn:
       content_policies:
         comment: Internt notat
         description_html: Du kan definere innholdsregler som vil bli brukt på alle kontoer fra dette domenet og hvilket som helst av underdomenene.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: Avvis media
           reject_reports: Avvis rapporter
@@ -569,17 +580,23 @@ nn:
         mark_as_sensitive_description_html: Mediene i dei rapporterte innlegga vil verte markerte som ømtolege, og ein merknad vil verte lagra for å hjelpe deg å eskalera ved framtidige regelbrot frå same konto.
         other_description_html: Sjå fleire alternativ når det gjeld kontroll av kontoåtferd og tilpassing av kommunikasjonen til den rapporterte kontoen.
         resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
       actions_description_html: Avgjer kva som skal gjerast med denne rapporteringa. Dersom du utfører straffetiltak mot den rapporterte kontoen, vil dei motta ein e-post – så sant du ikkje har valt kategorien <strong>Spam</strong>.
+      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: Legg til i rapporten
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
       assigned: Tilsett moderator
       by_target_domain: Domenet av rapportert bruker
+      cancel: Cancel
       category: Kategori
       category_description_html: Årsaka til at kontoen og/eller innhaldet vart rapportert vil bli inkludert i kommunikasjonen med den rapporterte kontoen
       comment:
         none: Ingen
       comment_description_html: 'For å gje meir informasjon, skreiv %{name}:'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: Rapportert
       delete_and_resolve: Slett innlegg
       forwarded: Videresendt
@@ -596,6 +613,7 @@ nn:
         placeholder: Beskriv hvilke handlinger som har blitt tatt, eller andre relaterte oppdateringer...
         title: Merknad
       notes_description_html: Sjå og skriv merknadar til andre moderatorar og ditt framtidige sjølv
+      processed_msg: 'Report #%{id} successfully processed'
       quick_actions_description_html: 'Utfør ei handling eller bla ned for å sjå det rapporterte innhaldet:'
       remote_user_placeholder: den eksterne brukaren frå %{instance}
       reopen: Opn rapport igjen
@@ -608,9 +626,28 @@ nn:
       status: Status
       statuses: Rapportert innhold
       statuses_description_html: Støytande innhald vil bli inkludert i kommunikasjonen med den rapporterte kontoen
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: Opprinnelse for innrapportert konto
       title: Rapportar
       unassign: Avset
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: Uløyst
       updated_at: Oppdatert
       view_profile: Vis profil
@@ -705,6 +742,8 @@ nn:
         preamble: Å framheva interessant innhald er vitalt i mottakinga av nye brukarar som ikkje nødvendigvis kjenner nokon på Mastodon. Kontroller korleis oppdagingsfunksjonane på tenaren din fungerar.
         profile_directory: Profilkatalog
         public_timelines: Offentlege tidsliner
+        publish_discovered_servers: Publish discovered servers
+        publish_statistics: Publish statistics
         title: Oppdaging
         trends: Trender
       domain_blocks:
@@ -759,6 +798,7 @@ nn:
         suspend: "%{name} utviste %{target} sin konto"
       appeal_approved: Klage tatt til følge
       appeal_pending: Klage behandles
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
@@ -794,6 +834,7 @@ nn:
           other: Delt av %{count} personer i løpet av den siste uken
         title: Populære lenkjer
         usage_comparison: Delt %{today} ganger i dag, sammenlignet med %{yesterday} i går
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: Kun tillatne
       pending_review: Avventer gjennomgang
       preview_card_providers:
@@ -824,6 +865,7 @@ nn:
           tag_uses_measure: samlet bruk
         description_html: Dette er emneknagger som for øyeblikket vises i mange innlegg som serveren din ser. Det kan hjelpe dine brukere med å finne ut hva folk snakker mest om i øyeblikket. Ingen emneknagger vises offentlig før du godkjenner dem.
         listable: Kan bli foreslått
+        no_tag_selected: No tags were changed as none were selected
         not_listable: Vil ikke bli foreslått
         not_trendable: Kunne ikke vises under trender
         not_usable: Kan ikke brukes
@@ -874,6 +916,9 @@ nn:
         sensitive: å merke kontoen sin som følsom
         silence: for å begrense deres konto
         suspend: for å suspendere kontoen deres
+      body: "%{target} is appealing a moderation decision by %{action_taken_by} from %{date}, which was %{type}. They wrote:"
+      next_steps: You can approve the appeal to undo the moderation decision, or ignore it.
+      subject: "%{username} is appealing a moderation decision on %{instance}"
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
       subject: Ny konto opp til vurdering på %{instance} (%{username})
@@ -882,11 +927,14 @@ nn:
       body_remote: Nokon frå %{domain} har meldt %{target}
       subject: Ny rapport for %{instance} (#%{id})
     new_trends:
+      body: 'The following items need a review before they can be displayed publicly:'
       new_trending_links:
         title: Populære lenker
       new_trending_statuses:
         title: Populære innlegg
       new_trending_tags:
+        no_approved_tags: There are currently no approved trending hashtags.
+        requirements: 'Any of these candidates could surpass the #%{rank} approved trending hashtag, which is currently #%{lowest_tag_name} with a score of %{lowest_tag_score}.'
         title: Populære emneknagger
       subject: Ny trender for gjennomsyn av %{instance}
   aliases:
@@ -918,6 +966,7 @@ nn:
   applications:
     created: Søknad laga
     destroyed: Søknad sletta
+    logout: Logout
     regenerate_token: Lag tilgangsnykel på nytt
     token_regenerated: Tilgangsnykel laga på nytt
     warning: Ver varsam med dette datumet. Aldri del det med nokon!
@@ -925,6 +974,8 @@ nn:
   auth:
     apply_for_account: Søk om ein konto
     change_password: Passord
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Slett konto
     delete_account_html: Om du vil sletta kontoen din, kan du <a href="%{path}">gå hit</a>. Du vert spurd etter stadfesting.
     description:
@@ -952,6 +1003,8 @@ nn:
     resend_confirmation: Send stadfestingsinstruksjonar på nytt
     reset_password: Attstill passord
     rules:
+      accept: Accept
+      back: Back
       preamble: Disse angis og håndheves av %{domain}-moderatorene.
       title: Noen grunnregler.
     security: Tryggleik
@@ -1112,8 +1165,10 @@ nn:
       add_keyword: Legg til stikkord
       keywords: Nøkkelord
       statuses: Individuelle innlegg
+      statuses_hint_html: This filter applies to select individual posts regardless of whether they match the keywords below. <a href="%{path}">Review or remove posts from the filter</a>.
       title: Endr filter
     errors:
+      deprecated_api_multiple_keywords: These parameters cannot be changed from this application because they apply to more than one filter keyword. Use a more recent application or the web interface.
       invalid_context: Ingen eller ugild kontekst gjeve
     index:
       contexts: Filtre i %{contexts}
@@ -1456,6 +1511,9 @@ nn:
       image:
         one: "%{count} bilete"
         other: "%{count} bilete"
+      video:
+        one: "%{count} video"
+        other: "%{count} videos"
     boosted_from_html: Framheva av %{acct_link}
     content_warning: 'Innhaldsåtvaring: %{warning}'
     default_language: Samme språk som brukergrensesnittet
@@ -1473,6 +1531,9 @@ nn:
       ownership: Du kan ikkje festa andre sine tut
       reblog: Ei framheving kan ikkje festast
     poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} people"
       total_votes:
         one: "%{count} røyst"
         other: "%{count} røyster"

@@ -14,6 +14,12 @@ co:
         send_email_notification: L'utilizatore hà da riceve una spiegazione di cio chì hè accadutu à u so contu
         text_html: In uzzione. Pudete utilizà a sintassa di i statuti. Pudete ancu <a href="%{path}">aghjustà preselezzione d'avertimentu</a> per piglià tempu
         type_html: Sceglie chì fà cù <strong>%{acct}</strong>
+        types:
+          disable: Prevent the user from using their account, but do not delete or hide their contents.
+          none: Use this to send a warning to the user, without triggering any other action.
+          sensitive: Force all this user's media attachments to be flagged as sensitive.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: In uzzione. Pudete sempre aghjustà un testu persunalizatu à a fine di a preselezzione
       announcement:
         all_day: Sole e date da st'intervallu di tempu saranu mustrate
@@ -21,6 +27,8 @@ co:
         scheduled_at: Lasciate viotu per pubblicà l'annunziu avà
         starts_at: In uzzione. S'e l'annunziu hè ligatu à un'intervallu di tempu specificu
         text: Pudete utilizà a sintassa di i statuti. Pensate à a piazza chì l'annunziu hà da piglià nant'à u screnu di l'utilizatore
+      appeal:
+        text: You can only appeal a strike once
       defaults:
         autofollow: Quelli·e chì s'arregistranu cù l'invitazione saranu autumaticamente abbunati·e à voi
         avatar: Furmatu PNG, GIF o JPG. %{size} o menu. Sarà ridottu à %{dimensions}px
@@ -29,6 +37,7 @@ co:
         current_password: Per ragione di sicurità, entrate a chjave d'accessu di stu contu
         current_username: Per cunfirmà, entrate u cugnome di questu contu
         digest: Solu mandatu dopu à una longa perioda d’inattività, è solu s’elli ci sò novi missaghji diretti
+        discoverable: Allow your account to be discovered by strangers through recommendations, trends and other features
         email: Avete da riceve un'e-mail di cunfirmazione
         fields: Pudete avè fin’à 4 elementi mustrati cum’un tavulone nant’à u vostru prufile
         header: Furmatu PNG, GIF o JPG. %{size} o menu. Sarà ridottu à %{dimensions}px
@@ -40,6 +49,7 @@ co:
         phrase: Sarà trovu senza primura di e maiuscule o di l'avertimenti
         scopes: L'API à quelle l'applicazione averà accessu. S'è voi selezziunate un parametru d'altu livellu, un c'hè micca bisognu di selezziunà quell'individuali.
         setting_aggregate_reblogs: Ùn mustrà micca e nove spartere per i statuti chì sò stati spartuti da pocu (tocca solu e spartere più ricente)
+        setting_always_send_emails: Normally e-mail notifications won't be sent when you are actively using Mastodon
         setting_default_sensitive: I media sensibili sò piattati, salvu un cambiamentu di i paramettri, è ponu esse visti cù un cliccu
         setting_display_media_default: Piattà i media marcati cum'è sensibili
         setting_display_media_hide_all: Sempre piattà tutti i media
@@ -54,7 +64,39 @@ co:
       domain_allow:
         domain: Stu duminiu puderà ricuperà i dati di stu servore è i dati ch'affaccanu da quallà saranu trattati è cunservati
       email_domain_block:
+        domain: This can be the domain name that shows up in the e-mail address or the MX record it uses. They will be checked upon sign-up.
         with_dns_records: Un tintativu di cunsultà i dati DNS di u duminiu sarà fattu, è i risultati saranu ancu messi nant'à a lista nera
+      featured_tag:
+        name: 'Here are some of the hashtags you used the most recently:'
+      filters:
+        action: Chose which action to perform when a post matches the filter
+        actions:
+          hide: Completely hide the filtered content, behaving as if it did not exist
+          warn: Hide the filtered content behind a warning mentioning the filter's title
+      form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
+        backups_retention_period: Keep generated user archives for the specified number of days.
+        bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations.
+        closed_registrations_message: Displayed when sign-ups are closed
+        content_cache_retention_period: Posts from other servers will be deleted after the specified number of days when set to a positive value. This may be irreversible.
+        custom_css: You can apply custom styles on the web version of Mastodon.
+        mascot: Overrides the illustration in the advanced web interface.
+        media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
+        profile_directory: The profile directory lists all users who have opted-in to be discoverable.
+        require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
+        site_contact_email: How people can reach you for legal or support inquiries.
+        site_contact_username: How people can reach you on Mastodon.
+        site_extended_description: Any additional information that may be useful to visitors and your users. Can be structured with Markdown syntax.
+        site_short_description: A short description to help uniquely identify your server. Who is running it, who is it for?
+        site_terms: Use your own privacy policy or leave blank to use the default. Can be structured with Markdown syntax.
+        site_title: How people may refer to your server besides its domain name.
+        theme: Theme that logged out visitors and new users see.
+        thumbnail: A roughly 2:1 image displayed alongside your server information.
+        timeline_preview: Logged out visitors will be able to browse the most recent public posts available on the server.
+        trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
+        trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Entrate in in una zona sicurizata
       imports:
@@ -67,6 +109,7 @@ co:
         ip: Entrate un'indirizzu IPv4 o IPv6. Pudete bluccà tutt'un'intervallu cù a sintassa CIDR. Fate attenzione, ùn vi bluccate micca!
         severities:
           no_access: Bluccà l'accessu à tutte e risorse
+          sign_up_block: New sign-ups will not be possible
           sign_up_requires_approval: E nove dumande d'arregistramente necessitaranu a vostr'appruvazione
         severity: Sceglie ciò chì si passerà cù e richieste di quest'IP
       rule:
@@ -78,6 +121,16 @@ co:
         name: Pudete solu cambià a cassa di i caratteri, per esempiu per u rende più lighjevule
       user:
         chosen_languages: Soli i statuti scritti in e lingue selezziunate saranu mustrati indè e linee pubbliche
+        role: The role controls which permissions the user has
+      user_role:
+        color: Color to be used for the role throughout the UI, as RGB in hex format
+        highlighted: This makes the role publicly visible
+        name: Public name of the role, if role is set to be displayed as a badge
+        permissions_as_keys: Users with this role will have access to...
+        position: Higher role decides conflict resolution in certain situations. Certain actions can only be performed on roles with a lower priority
+      webhook:
+        events: Select events to send
+        url: Where events will be sent to
     labels:
       account:
         fields:
@@ -108,6 +161,8 @@ co:
         scheduled_at: Pianificà publicazione
         starts_at: Principiu di l'avvenimentu
         text: Annunziu
+      appeal:
+        text: Explain why this decision should be reversed
       defaults:
         autofollow: Invità à siguità u vostru contu
         avatar: Ritrattu di prufile
@@ -137,6 +192,7 @@ co:
         phrase: Parolla-chjave o frasa
         setting_advanced_layout: Attivà l'interfaccia web avanzata
         setting_aggregate_reblogs: Gruppà e spartere indè e linee
+        setting_always_send_emails: Always send e-mail notifications
         setting_auto_play_gif: Lettura autumatica di i GIF animati
         setting_boost_modal: Mustrà una cunfirmazione per sparte un statutu
         setting_crop_images: Riquatrà i ritratti in 16x9 indè i statuti micca selezziunati
@@ -162,6 +218,7 @@ co:
         setting_use_pending_items: Modu lentu
         severity: Severità
         sign_in_token_attempt: Codice di sicurità
+        title: Title
         type: Tippu d’impurtazione
         username: Cugnome
         username_or_email: Cugnome o Email
@@ -170,6 +227,37 @@ co:
         with_dns_records: Inchjude intrate MX è indirizze IP di u duminiu
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Hide completely
+          warn: Hide with a warning
+      form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
+        backups_retention_period: User archive retention period
+        bootstrap_timeline_accounts: Always recommend these accounts to new users
+        closed_registrations_message: Custom message when sign-ups are not available
+        content_cache_retention_period: Content cache retention period
+        custom_css: Custom CSS
+        mascot: Custom mascot (legacy)
+        media_cache_retention_period: Media cache retention period
+        peers_api_enabled: Publish list of discovered servers in the API
+        profile_directory: Enable profile directory
+        registrations_mode: Who can sign-up
+        require_invite_text: Require a reason to join
+        show_domain_blocks: Show domain blocks
+        show_domain_blocks_rationale: Show why domains were blocked
+        site_contact_email: Contact e-mail
+        site_contact_username: Contact username
+        site_extended_description: Extended description
+        site_short_description: Server description
+        site_terms: Privacy Policy
+        site_title: Server name
+        theme: Default theme
+        thumbnail: Server thumbnail
+        timeline_preview: Allow unauthenticated access to public timelines
+        trendable_by_default: Allow trends without prior review
+        trends: Enable trends
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Piattà e nutificazione di quelli·e ch’ùn vi seguitanu
         must_be_following: Piattà e nutificazione di quelli·e ch’ùn seguitate
@@ -183,9 +271,11 @@ co:
         ip: IP
         severities:
           no_access: Bluccà l'accessu
+          sign_up_block: Block sign-ups
           sign_up_requires_approval: Limità l'arregistramenti
         severity: Regula
       notification_emails:
+        appeal: Someone appeals a moderator decision
         digest: Mandà e-mail di ricapitulazione
         favourite: Mandà un’e-mail quandu qualch’unu aghjunghje i mo statuti à i so favuriti
         follow: Mandà un’e-mail quandu qualch’unu mi seguita
@@ -193,6 +283,8 @@ co:
         mention: Mandà un’e-mail quandu qualch’unu mi mintuva
         pending_account: Mandà un'e-mail quandu un novu contu hà bisognu d'esse valutatu
         reblog: Mandà un’e-mail quandu qualch’unu sparte i mo statuti
+        report: New report is submitted
+        trending_tag: New trend requires review
       rule:
         text: Regula
       tag:
@@ -200,7 +292,19 @@ co:
         name: Hashtag
         trendable: Auturizà stu hashtag à esse vistu in e tendenze
         usable: Auturizà i statuti à utilizà stu hashtag
+      user:
+        role: Role
+      user_role:
+        color: Badge color
+        highlighted: Display role as badge on user profiles
+        name: Name
+        permissions_as_keys: Permissions
+        position: Priority
+      webhook:
+        events: Enabled events
+        url: Endpoint URL
     'no': Nò
+    not_recommended: Not recommended
     recommended: Ricumandati
     required:
       mark: "*"

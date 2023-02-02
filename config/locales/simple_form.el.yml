@@ -18,6 +18,8 @@ el:
           disable: Αποτρέψτε το χρήστη από τη χρήση του λογαριασμού του, αλλά όχι διαγραφή ή απόκρυψη των περιεχομένων του.
           none: Χρησιμοποιήστε αυτό για να στείλετε μια προειδοποίηση στον χρήστη, χωρίς να ενεργοποιήσετε οποιαδήποτε άλλη ενέργεια.
           sensitive: Εξαναγκάστε όλα τα συνημμένα πολυμέσα αυτού του χρήστη να επισημαίνονται ως ευαίσθητα.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Προαιρετικό. Μπορείς να προσθέσεις επιπλέον κείμενο μετά το προκαθορισμένο κείμενο
       announcement:
         all_day: Όταν είναι επιλεγμένο, θα εμφανίζονται μόνο οι ημερομηνίες εντός της χρονικής διάρκειας
@@ -25,6 +27,8 @@ el:
         scheduled_at: Αν μείνει κενό, η ενημέρωση θα δημοσιευτεί αμέσως
         starts_at: Προαιρετικό, για την περίπτωση που η ανακοίνωση αφορά συγκεκριμένη χρονική διάρκεια
         text: Δεκτό το συντακτικό των τουτ. Παρακαλούμε έχε υπόψιν σου το χώρο που θα καταλάβει η ανακοίνωση στην οθόνη του χρήστη
+      appeal:
+        text: You can only appeal a strike once
       defaults:
         autofollow: Όσοι εγγραφούν μέσω της πρόσκλησης θα σε ακολουθούν αυτόματα
         avatar: PNG, GIF ή JPG. Έως %{size}. Θα περιοριστεί σε διάσταση %{dimensions}px
@@ -33,6 +37,7 @@ el:
         current_password: Για λόγους ασφαλείας παρακαλώ γράψε τον κωδικό του τρέχοντος λογαριασμού
         current_username: Για επιβεβαίωση, παρακαλώ γράψε το όνομα χρήστη του τρέχοντος λογαριασμού
         digest: Αποστέλλεται μόνο μετά από μακρά περίοδο αδράνειας και μόνο αν έχεις λάβει προσωπικά μηνύματα κατά την απουσία σου
+        discoverable: Allow your account to be discovered by strangers through recommendations, trends and other features
         email: Θα σου σταλεί email επιβεβαίωσης
         fields: Μπορείς να έχεις έως 4 σημειώσεις σε μορφή πίνακα στο προφίλ σου
         header: PNG, GIF ή JPG. Έως %{size}. Θα περιοριστεί σε διάσταση %{dimensions}px
@@ -59,9 +64,39 @@ el:
       domain_allow:
         domain: Ο τομέας αυτός θα επιτρέπεται να ανακτά δεδομένα από αυτό τον διακομιστή και τα εισερχόμενα δεδομένα θα επεξεργάζονται και θα αποθηκεύονται
       email_domain_block:
+        domain: This can be the domain name that shows up in the e-mail address or the MX record it uses. They will be checked upon sign-up.
         with_dns_records: Θα γίνει απόπειρα ανάλυσης των εγγραφών DNS του τομέα και τα αποτελέσματα θα μπουν και αυτά σε μαύρη λίστα
       featured_tag:
         name: 'Εδώ είναι μερικά από τα hashtags που χρησιμοποιήσατε περισσότερο πρόσφατα:'
+      filters:
+        action: Chose which action to perform when a post matches the filter
+        actions:
+          hide: Completely hide the filtered content, behaving as if it did not exist
+          warn: Hide the filtered content behind a warning mentioning the filter's title
+      form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
+        backups_retention_period: Keep generated user archives for the specified number of days.
+        bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations.
+        closed_registrations_message: Displayed when sign-ups are closed
+        content_cache_retention_period: Posts from other servers will be deleted after the specified number of days when set to a positive value. This may be irreversible.
+        custom_css: You can apply custom styles on the web version of Mastodon.
+        mascot: Overrides the illustration in the advanced web interface.
+        media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
+        profile_directory: The profile directory lists all users who have opted-in to be discoverable.
+        require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
+        site_contact_email: How people can reach you for legal or support inquiries.
+        site_contact_username: How people can reach you on Mastodon.
+        site_extended_description: Any additional information that may be useful to visitors and your users. Can be structured with Markdown syntax.
+        site_short_description: A short description to help uniquely identify your server. Who is running it, who is it for?
+        site_terms: Use your own privacy policy or leave blank to use the default. Can be structured with Markdown syntax.
+        site_title: How people may refer to your server besides its domain name.
+        theme: Theme that logged out visitors and new users see.
+        thumbnail: A roughly 2:1 image displayed alongside your server information.
+        timeline_preview: Logged out visitors will be able to browse the most recent public posts available on the server.
+        trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
+        trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Μπαίνεις σε ασφαλή περιοχή
       imports:
@@ -86,6 +121,16 @@ el:
         name: Μπορείς να αλλάξεις μόνο το πλαίσιο των χαρακτήρων, για παράδειγμα για να γίνει περισσότερο ευανάγνωστο
       user:
         chosen_languages: Όταν ενεργοποιηθεί, στη δημόσια ροή θα εμφανίζονται τουτ μόνο από τις επιλεγμένες γλώσσες
+        role: The role controls which permissions the user has
+      user_role:
+        color: Color to be used for the role throughout the UI, as RGB in hex format
+        highlighted: This makes the role publicly visible
+        name: Public name of the role, if role is set to be displayed as a badge
+        permissions_as_keys: Users with this role will have access to...
+        position: Higher role decides conflict resolution in certain situations. Certain actions can only be performed on roles with a lower priority
+      webhook:
+        events: Select events to send
+        url: Where events will be sent to
     labels:
       account:
         fields:
@@ -116,6 +161,8 @@ el:
         scheduled_at: Προγραμματισμένη δημοσίευση
         starts_at: Έναρξη γεγονότος
         text: Ανακοίνωση
+      appeal:
+        text: Explain why this decision should be reversed
       defaults:
         autofollow: Προσκάλεσε για να ακολουθήσουν το λογαριασμό σου
         avatar: Αβατάρ
@@ -185,10 +232,32 @@ el:
           hide: Πλήρης απόκρυψη
           warn: Απόκρυψη με προειδοποίηση
       form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
+        backups_retention_period: User archive retention period
+        bootstrap_timeline_accounts: Always recommend these accounts to new users
+        closed_registrations_message: Custom message when sign-ups are not available
+        content_cache_retention_period: Content cache retention period
         custom_css: Προσαρμοσμένο CSS
+        mascot: Custom mascot (legacy)
+        media_cache_retention_period: Media cache retention period
+        peers_api_enabled: Publish list of discovered servers in the API
+        profile_directory: Enable profile directory
         registrations_mode: Ποιος μπορεί να εγγραφεί
+        require_invite_text: Require a reason to join
+        show_domain_blocks: Show domain blocks
+        show_domain_blocks_rationale: Show why domains were blocked
         site_contact_email: E-mail επικοινωνίας
         site_contact_username: Όνομα χρήστη επικοινωνίας
+        site_extended_description: Extended description
+        site_short_description: Server description
+        site_terms: Privacy Policy
+        site_title: Server name
+        theme: Default theme
+        thumbnail: Server thumbnail
+        timeline_preview: Allow unauthenticated access to public timelines
+        trendable_by_default: Allow trends without prior review
+        trends: Enable trends
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Μπλόκαρε τις ειδοποιήσεις από όσους δεν σε ακολουθούν
         must_be_following: Μπλόκαρε τις ειδοποιήσεις από όσους δεν ακολουθείς
@@ -206,6 +275,7 @@ el:
           sign_up_requires_approval: Περιορισμός εγγραφών
         severity: Κανόνας
       notification_emails:
+        appeal: Someone appeals a moderator decision
         digest: Αποστολή συνοπτικών email
         favourite: Αποστολή email όταν κάποιος σημειώνει ως αγαπημένη τη δημοσίευσή σου
         follow: Αποστολή email όταν κάποιος σε ακολουθεί
@@ -213,6 +283,8 @@ el:
         mention: Αποστολή email όταν κάποιος σε αναφέρει
         pending_account: Αποστολή email όταν υπάρχει νέος λογαριασμός για επιθεώρηση
         reblog: Αποστολή email όταν κάποιος προωθεί τη δημοσίευση σου
+        report: New report is submitted
+        trending_tag: New trend requires review
       rule:
         text: Κανόνας
       tag:
@@ -222,7 +294,17 @@ el:
         usable: Χρήση της ετικέτας σε τουτ
       user:
         role: Ρόλος
+      user_role:
+        color: Badge color
+        highlighted: Display role as badge on user profiles
+        name: Name
+        permissions_as_keys: Permissions
+        position: Priority
+      webhook:
+        events: Enabled events
+        url: Endpoint URL
     'no': Όχι
+    not_recommended: Not recommended
     recommended: Προτείνεται
     required:
       mark: "*"

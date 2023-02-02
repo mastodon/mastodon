@@ -18,6 +18,8 @@ sr:
           disable: Спречи корисника да користи свој налог, али немој брисати или сакривати његов садржај.
           none: Користи ово да пошаљеш упозорење кориснику, без покретања било које друге акције.
           sensitive: Учини да сви медијски прилози овог корисника присилно буду означени као осетљиви.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Опционално. Можете и даље додати прилагођени текст на крај пресета
       announcement:
         all_day: Биће приказани само датуми временског опсега који су означени
@@ -72,6 +74,7 @@ sr:
           hide: Потпуно сакриј филтрирани садржај, понашајући се као да не постоји
           warn: Сакриј филтрирани садржај иза упозорења у коме се наводи назив филтера
       form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
         backups_retention_period: Чувај генерисане корисничке архиве наведени број дана.
         bootstrap_timeline_accounts: Ови налози ће бити закачени на врх препорука за праћење нових корисника.
         closed_registrations_message: Приказује се када су пријаве затворене
@@ -79,6 +82,7 @@ sr:
         custom_css: Можеш да примениш прилагођене стилове на веб верзији Мастодона.
         mascot: Замењује илустрацију у напредном веб интерфејсу.
         media_cache_retention_period: Када се постави на позитивну вредност, преузете медијске датотеке ће бити избрисане након наведеног броја дана, и поново преузете на захтев.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: Директоријум профила наводи све кориснике који су се определили да буду видљиви.
         require_invite_text: Када регистрације захтевају ручно одобрење, постави да унос текста „Зашто желиш да се придружиш?“ буде обавезан, а не опциони
         site_contact_email: Како корисници могу да те контактирају за правна питања или питања у вези подршке.
@@ -92,6 +96,7 @@ sr:
         timeline_preview: Посетиоци који нису пријављени ће моћи да прегледају најновије јавне објаве доступне на серверу.
         trendable_by_default: Прескочи ручни преглед садржаја који је у тренду. Појединачне ставке се након тога и даље могу уклонити из трендова.
         trends: Трендови показују које објаве, хеш ознаке и вести постају све популарнији на твом серверу.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Улазиш у безбедно подручје
       imports:
@@ -227,6 +232,7 @@ sr:
           hide: Сакриј у потпуности
           warn: Сакриј уз упозорење
       form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
         backups_retention_period: Период чувања корисничке архиве
         bootstrap_timeline_accounts: Увек препоручи ове налоге новим корисницима
         closed_registrations_message: Прилагођена порука када пријаве нису могуће
@@ -234,6 +240,7 @@ sr:
         custom_css: Прилагођени CSS
         mascot: Прилагођена маскота (наслеђе)
         media_cache_retention_period: Период чувања кеша медија
+        peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Омогући директоријум профила
         registrations_mode: Ко може да се пријави
         require_invite_text: Затражи разлог за приступање
@@ -250,6 +257,7 @@ sr:
         timeline_preview: Дозволи неауторизован приступ јавним временским осама
         trendable_by_default: Дозволи трендове без претходног прегледа
         trends: Омогући трендове
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Блокирај обавештења од корисника који ме не прате
         must_be_following: Блокирај обавештења од људи које не пратим

@@ -91,6 +91,7 @@
       moderation:
         active: Aktive
         all: Alle
+        disabled: Disabled
         pending: Avventer
         silenced: Begrenset
         suspended: Utvist
@@ -133,6 +134,7 @@
       search: Søk
       search_same_email_domain: Andre brukere med samme E-postdomene
       search_same_ip: Andre brukere med den samme IP-en
+      security: Security
       security_measures:
         only_password: Bare passord
         password_and_2fa: Passord og 2FA
@@ -427,6 +429,7 @@
         resolve: Løs domene
         title: Ny blokkeringsoppføring av e-postdomene
       no_email_domain_block_selected: Ingen e-postdomeneblokker ble endret da ingen ble valgt
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: Domenenavnet løser seg til følgende MX-domener som er til slutt ansvarlige for å motta e-post. Blokkering av et MX-domene vil blokkere signaler fra en hvilken som helst e-postadresse som bruker samme MX-domene, selv om det synlige domenenavnet er annerledes. <strong>Vær forsiktig så du ikke blokkerer store e-posttilbydere.</strong>
       resolved_through_html: Løst gjennom %{domain}
       title: Blokkering av e-postdomene
@@ -441,6 +444,7 @@
         private_comment_description_html: 'For å hjelpe deg med å holde oversikt over hvor importerte blokkeringer kommer fra, vil de bli opprettet med følgende private kommentar: <q>%{comment}</q>'
         private_comment_template: Importert fra %{source} den %{date}
         title: Importer domeneblokkeringer
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
       new:
         title: Importer domeneblokkeringer
       no_file: Ingen fil valgt
@@ -472,6 +476,7 @@
       content_policies:
         comment: Internt notat
         description_html: Du kan definere innholdsregler som vil bli brukt på alle kontoer fra dette domenet og hvilket som helst av underdomenene.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: Avvis media
           reject_reports: Avvis rapporter
@@ -575,17 +580,23 @@
         mark_as_sensitive_description_html: Mediene i de rapporterte innleggene vil bli merket som følsomme, og en advarsel vil bli notert for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
         other_description_html: Se flere alternativer for å kontrollere kontoens atferd og tilpasse kommunikasjonen til den oppgitte kontoen.
         resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
       actions_description_html: Velg hvilke tiltak som skal treffes for å løse denne rapporten. Dersom du tar noen entydige tiltak mot den oppgitte kontoen, blir det sendt en e-post til dem, unntatt når <strong>Søppelpost</strong> -kategorien er valgt.
+      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: Legg til mer i rapporten
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
       assigned: Tilegnet moderator
       by_target_domain: Domenet av rapportert bruker
+      cancel: Cancel
       category: Kategori
       category_description_html: Årsaken til at denne kontoen og/eller innholdet er blitt rapportert vil bli henvist i forbindelse med den rapporterte kontoen
       comment:
         none: Ingen
       comment_description_html: 'For å gi mer informasjon, %{name} skrev:'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: Rapportert
       delete_and_resolve: Slettede innlegg
       forwarded: Videresendt
@@ -602,6 +613,7 @@
         placeholder: Beskriv hvilke handlinger som har blitt tatt, eller andre relaterte oppdateringer...
         title: Notater
       notes_description_html: Se og skriv notater til andre moderatorer og deg selv i fremtiden
+      processed_msg: 'Report #%{id} successfully processed'
       quick_actions_description_html: 'Ta en rask handling eller bla ned for å se rapportert innhold:'
       remote_user_placeholder: ekstern bruker fra %{instance}
       reopen: Gjenåpne rapporten
@@ -614,9 +626,28 @@
       status: Status
       statuses: Rapportert innhold
       statuses_description_html: Innholdet som tilbys, vil bli nevnt i forbindelse med den rapporterte kontoen
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: Opprinnelse for innrapportert konto
       title: Rapporter
       unassign: Fjern tilegning
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: Uløst
       updated_at: Oppdatert
       view_profile: Vis profil
@@ -648,7 +679,10 @@
         invite_users_description: Lar brukere invitere nye personer til serveren
         manage_announcements: Behandle Kunngjøringer
         manage_announcements_description: Lar brukere endre kunngjøringer på serveren
+        manage_appeals: Manage Appeals
+        manage_appeals_description: Allows users to review appeals against moderation actions
         manage_blocks: Behandle Blokker
+        manage_blocks_description: Allows users to block e-mail providers and IP addresses
         manage_custom_emojis: Administrer egendefinerte Emojier
         manage_custom_emojis_description: Lar brukere endre egendefinert emojis på serveren
         manage_federation: Administrer Føderasjon
@@ -658,15 +692,21 @@
         manage_reports: Administrer Rapporter
         manage_reports_description: Lar brukere se på rapporter og utføre moderasjonshandlinger mot dem
         manage_roles: Behandle Roller
+        manage_roles_description: Allows users to manage and assign roles below theirs
         manage_rules: Administrer Regler
         manage_rules_description: La brukere endre serverregler
         manage_settings: Administrer Innstillinger
         manage_settings_description: La brukere endre sideinnstillinger
+        manage_taxonomies: Manage Taxonomies
+        manage_taxonomies_description: Allows users to review trending content and update hashtag settings
         manage_user_access: Administrer Brukertilgang
         manage_user_access_description: Lar brukere deaktivere andre brukeres 2-trinnsinnlogging, endre sin e-postadresse, og tilbakestille passordet deres
         manage_users: Behandle Brukere
         manage_users_description: Lar brukere se detaljer om andre brukere og utføre moderasjonshandlinger mot dem
         manage_webhooks: Administrer Webhooks
+        manage_webhooks_description: Allows users to set up webhooks for administrative events
+        view_audit_log: View Audit Log
+        view_audit_log_description: Allows users to see a history of administrative actions on the server
         view_dashboard: Vis dashbord
         view_dashboard_description: Gir brukere tilgang til dashbordet og ulike metrikker
         view_devops: DevOps
@@ -689,15 +729,21 @@
         preamble: Tilpass Mastodons webgrensesnitt.
         title: Utseende
       branding:
+        preamble: Your server's branding differentiates it from other servers in the network. This information may be displayed across a variety of environments, such as Mastodon's web interface, native applications, in link previews on other websites and within messaging apps, and so on. For this reason, it is best to keep this information clear, short and concise.
         title: Merkevare
       content_retention:
         preamble: Kontroller hvordan brukergenerert innhold lagres i Mastodon.
+        title: Content retention
       default_noindex:
         desc_html: Påvirker alle brukerne som ikke selv har justert denne innstillingen
         title: Ikke la brukere indekseres av søkemotorer som standard
       discovery:
         follow_recommendations: Følg anbefalinger
+        preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
+        profile_directory: Profile directory
         public_timelines: Offentlige tidslinjer
+        publish_discovered_servers: Publish discovered servers
+        publish_statistics: Publish statistics
         title: Oppdagelse
         trends: Trender
       domain_blocks:
@@ -752,6 +798,7 @@
         suspend: "%{name} suspenderte %{target}s konto"
       appeal_approved: Klage tatt til følge
       appeal_pending: Klage behandles
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
@@ -787,10 +834,12 @@
           other: Delt av %{count} personer i løpet av den siste uken
         title: Populære lenker
         usage_comparison: Delt %{today} ganger i dag, sammenlignet med %{yesterday} i går
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: Kun tillatte
       pending_review: Avventer gjennomgang
       preview_card_providers:
         allowed: Lenker fra denne utgiveren kan "trende"
+        description_html: These are domains from which links are often shared on your server. Links will not trend publicly unless the domain of the link is approved. Your approval (or rejection) extends to subdomains.
         rejected: Lenker fra denne utgiveren vil ikke "trende"
         title: Utgivere
       rejected: Avvist
@@ -800,6 +849,11 @@
         description_html: Dette er innlegg som serveren din vet om at de blir delt og favorisert for øyeblikket. Dette kan hjelpe dine nye og returnerede brukere med å finne flere å følge. Ingen innlegg vises offentlig før du godkjenner forfatteren, og forfatteren tillater at kontoen deres foreslås til andre. Du kan også tillate eller avvise individuelle innlegg.
         disallow: Ikke tillat innlegg
         disallow_account: Forby forfatter
+        no_status_selected: No trending posts were changed as none were selected
+        not_discoverable: Author has not opted-in to being discoverable
+        shared_by:
+          one: Shared or favourited one time
+          other: Shared and favourited %{friendly_count} times
         title: Populære innlegg
       tags:
         current_score: Gjeldende poengsum %{score}
@@ -811,10 +865,16 @@
           tag_uses_measure: samlet bruk
         description_html: Dette er emneknagger som for øyeblikket vises i mange innlegg som serveren din ser. Det kan hjelpe dine brukere med å finne ut hva folk snakker mest om i øyeblikket. Ingen emneknagger vises offentlig før du godkjenner dem.
         listable: Kan bli foreslått
+        no_tag_selected: No tags were changed as none were selected
         not_listable: Vil ikke bli foreslått
         not_trendable: Kunne ikke vises under trender
         not_usable: Kan ikke brukes
+        peaked_on_and_decaying: Peaked on %{date}, now decaying
+        title: Trending hashtags
+        trendable: Can appear under trends
+        trending_rank: 'Trending #%{rank}'
         usable: Kan brukes
+        usage_comparison: Used %{today} times today, compared to %{yesterday} yesterday
         used_by_over_week:
           one: Brukt av en person i løpet av siste uke
           other: Brukes av %{count} personer i løpet av den siste uken
@@ -840,7 +900,12 @@
         one: 1 aktivert hendelse
         other: "%{count} aktiverte hendelser"
       events: Hendelser
+      new: New webhook
+      rotate_secret: Rotate secret
+      secret: Signing secret
       status: Status
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -851,6 +916,9 @@
         sensitive: å merke kontoen sin som følsom
         silence: for å begrense deres konto
         suspend: for å avslutte kontoen
+      body: "%{target} is appealing a moderation decision by %{action_taken_by} from %{date}, which was %{type}. They wrote:"
+      next_steps: You can approve the appeal to undo the moderation decision, or ignore it.
+      subject: "%{username} is appealing a moderation decision on %{instance}"
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
       subject: Ny konto opp til vurdering på %{instance} (%{username})
@@ -859,11 +927,14 @@
       body_remote: Noen fra %{domain} har rapportert %{target}
       subject: Ny rapport for %{instance} (#%{id})
     new_trends:
+      body: 'The following items need a review before they can be displayed publicly:'
       new_trending_links:
         title: Populære lenker
       new_trending_statuses:
         title: Populære innlegg
       new_trending_tags:
+        no_approved_tags: There are currently no approved trending hashtags.
+        requirements: 'Any of these candidates could surpass the #%{rank} approved trending hashtag, which is currently #%{lowest_tag_name} with a score of %{lowest_tag_score}.'
         title: Populære emneknagger
       subject: Ny trender for gjennomsyn av %{instance}
   aliases:
@@ -895,6 +966,7 @@
   applications:
     created: Søknaden ble vellykket oppretttet
     destroyed: Søknaden ble vellykket slettet
+    logout: Logout
     regenerate_token: Regenerer tilgangsnøkkel
     token_regenerated: Tilgangsnøkkel vellykket regenerert
     warning: Vær veldig forsiktig med denne data. Aldri del den med noen!
@@ -902,6 +974,8 @@
   auth:
     apply_for_account: Be om en konto
     change_password: Passord
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette kontoen din, kan du <a href="%{path}">gå hit</a>. Du vil bli spurt om bekreftelse.
     description:
@@ -929,6 +1003,8 @@
     resend_confirmation: Send bekreftelsesinstruksjoner på nytt
     reset_password: Tilbakestill passord
     rules:
+      accept: Accept
+      back: Back
       preamble: Disse angis og håndheves av %{domain}-moderatorene.
       title: Noen grunnregler.
     security: Sikkerhet
@@ -1089,7 +1165,11 @@
       add_keyword: Legg til stikkord
       keywords: Nøkkelord
       statuses: Individuelle innlegg
+      statuses_hint_html: This filter applies to select individual posts regardless of whether they match the keywords below. <a href="%{path}">Review or remove posts from the filter</a>.
       title: Rediger filter
+    errors:
+      deprecated_api_multiple_keywords: These parameters cannot be changed from this application because they apply to more than one filter keyword. Use a more recent application or the web interface.
+      invalid_context: None or invalid context supplied
     index:
       contexts: Filtre i %{contexts}
       delete: Slett
@@ -1325,6 +1405,9 @@
       unrecognized_emoji: er ikke en gjenkjent emoji
   relationships:
     activity: Kontoaktivitet
+    confirm_follow_selected_followers: Are you sure you want to follow selected followers?
+    confirm_remove_selected_followers: Are you sure you want to remove selected followers?
+    confirm_remove_selected_follows: Are you sure you want to remove selected follows?
     dormant: Dormende
     follow_selected_followers: Følg valgte tilhengere
     followers: Følgere

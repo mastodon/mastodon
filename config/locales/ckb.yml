@@ -91,6 +91,7 @@ ckb:
       moderation:
         active: چالاک
         all: هەموو
+        disabled: Disabled
         pending: چاوەڕوان
         silenced: سنووردار
         suspended: ڕاگرتن
@@ -105,6 +106,9 @@ ckb:
       pending: پێداچوونەوەی چاوەڕوان
       perform_full_suspension: ڕاگرتن
       previous_strikes: مانگرتنەکانی پێشوو
+      previous_strikes_description_html:
+        one: This account has <strong>one</strong> strike.
+        other: This account has <strong>%{count}</strong> strikes.
       promote: بەرزکردنەوە
       protocol: پرۆتۆکۆل
       public: گشتی
@@ -113,6 +117,8 @@ ckb:
       redownloaded_msg: پرۆفایلی %{username} لە بنەڕەتەوە بە سەرکەوتوویی نوێکرایەوە
       reject: ڕەتکردنەوە
       rejected_msg: بەرنامەی تۆمارکردنی %{username} بە سەرکەوتوویی ڕەتکرایەوە
+      remote_suspension_irreversible: The data of this account has been irreversibly deleted.
+      remote_suspension_reversible_hint_html: The account has been suspended on their server, and the data will be fully removed on %{date}. Until then, the remote server can restore this account without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       remove_avatar: لابردنی وێنۆجکە
       remove_header: سەرپەڕ لابدە
       removed_avatar_msg: وێنەی ئەڤاتار %{username} بە سەرکەوتوویی لابرا
@@ -128,6 +134,7 @@ ckb:
       search: گەڕان
       search_same_email_domain: بەکارهێنەرانی دیکە بە ئیمەیلی یەکسان
       search_same_ip: بەکارهێنەرانی تر بەهەمان ئای پی
+      security: Security
       security_measures:
         only_password: تەنها وشەی نهێنی
         password_and_2fa: وشەی نهێنی و 2FA
@@ -140,6 +147,7 @@ ckb:
       silence: سنوور
       silenced: سنوورکرا
       statuses: دۆخەکان
+      strikes: Previous strikes
       subscribe: ئابوونە
       suspend: ڕاگرتن
       suspended: ڕاگرتن
@@ -221,7 +229,65 @@ ckb:
         update_status: بەڕۆژکردنی دۆخ
         update_user_role: نوێکردنەوەی پلە
       actions:
+        approve_appeal_html: "%{name} approved moderation decision appeal from %{target}"
+        approve_user_html: "%{name} approved sign-up from %{target}"
+        assigned_to_self_report_html: "%{name} assigned report %{target} to themselves"
+        change_email_user_html: "%{name} changed the e-mail address of user %{target}"
+        change_role_user_html: "%{name} changed role of %{target}"
+        confirm_user_html: "%{name} confirmed e-mail address of user %{target}"
+        create_account_warning_html: "%{name} sent a warning to %{target}"
+        create_announcement_html: "%{name} created new announcement %{target}"
+        create_canonical_email_block_html: "%{name} blocked e-mail with the hash %{target}"
+        create_custom_emoji_html: "%{name} uploaded new emoji %{target}"
+        create_domain_allow_html: "%{name} allowed federation with domain %{target}"
+        create_domain_block_html: "%{name} blocked domain %{target}"
+        create_email_domain_block_html: "%{name} blocked e-mail domain %{target}"
+        create_ip_block_html: "%{name} created rule for IP %{target}"
+        create_unavailable_domain_html: "%{name} stopped delivery to domain %{target}"
+        create_user_role_html: "%{name} created %{target} role"
+        demote_user_html: "%{name} demoted user %{target}"
+        destroy_announcement_html: "%{name} deleted announcement %{target}"
+        destroy_canonical_email_block_html: "%{name} unblocked e-mail with the hash %{target}"
+        destroy_custom_emoji_html: "%{name} deleted emoji %{target}"
+        destroy_domain_allow_html: "%{name} disallowed federation with domain %{target}"
+        destroy_domain_block_html: "%{name} unblocked domain %{target}"
+        destroy_email_domain_block_html: "%{name} unblocked e-mail domain %{target}"
+        destroy_instance_html: "%{name} purged domain %{target}"
+        destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
+        destroy_status_html: "%{name} removed post by %{target}"
+        destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
+        destroy_user_role_html: "%{name} deleted %{target} role"
+        disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
+        disable_custom_emoji_html: "%{name} disabled emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} disabled e-mail token authentication for %{target}"
+        disable_user_html: "%{name} disabled login for user %{target}"
+        enable_custom_emoji_html: "%{name} enabled emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} enabled e-mail token authentication for %{target}"
+        enable_user_html: "%{name} enabled login for user %{target}"
+        memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
+        promote_user_html: "%{name} promoted user %{target}"
+        reject_appeal_html: "%{name} rejected moderation decision appeal from %{target}"
+        reject_user_html: "%{name} rejected sign-up from %{target}"
+        remove_avatar_user_html: "%{name} removed %{target}'s avatar"
+        reopen_report_html: "%{name} reopened report %{target}"
+        resend_user_html: "%{name} resent confirmation e-mail for %{target}"
+        reset_password_user_html: "%{name} reset password of user %{target}"
+        resolve_report_html: "%{name} resolved report %{target}"
+        sensitive_account_html: "%{name} marked %{target}'s media as sensitive"
+        silence_account_html: "%{name} limited %{target}'s account"
+        suspend_account_html: "%{name} suspended %{target}'s account"
+        unassigned_report_html: "%{name} unassigned report %{target}"
+        unblock_email_account_html: "%{name} unblocked %{target}'s email address"
+        unsensitive_account_html: "%{name} unmarked %{target}'s media as sensitive"
+        unsilence_account_html: "%{name} undid limit of %{target}'s account"
+        unsuspend_account_html: "%{name} unsuspended %{target}'s account"
+        update_announcement_html: "%{name} updated announcement %{target}"
+        update_custom_emoji_html: "%{name} updated emoji %{target}"
+        update_domain_block_html: "%{name} updated domain block for %{target}"
+        update_ip_block_html: "%{name} changed rule for IP %{target}"
         update_status_html: "%{name} پۆستی نوێکراوە لەلایەن %{target}"
+        update_user_role_html: "%{name} changed %{target} role"
+      deleted_account: deleted account
       empty: هیچ لاگی کارنەدۆزرایەوە.
       filter_by_action: فلتەر کردن بە کردار
       filter_by_user: فلتەر کردن بە کردار
@@ -265,6 +331,7 @@ ckb:
       listed: پێرستکراوە
       new:
         title: ئیمۆجی نوێی دڵخواز زیاد بکە
+      no_emoji_selected: No emojis were changed as none were selected
       not_permitted: تۆ ڕێگەپێدراو نین بۆ ئەنجامدانی ئەم کارە
       overwrite: نووسینەوە
       shortcode: کورتەکلیل
@@ -282,6 +349,18 @@ ckb:
       media_storage: هەمارگەی میدیا
       new_users: ئەندامی نوێ
       opened_reports: ڕاپۆرتەکان کرانەوە
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> pending appeal"
+        other: "<strong>%{count}</strong> pending appeals"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> pending report"
+        other: "<strong>%{count}</strong> pending reports"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> pending hashtag"
+        other: "<strong>%{count}</strong> pending hashtags"
+      pending_users_html:
+        one: "<strong>%{count}</strong> pending user"
+        other: "<strong>%{count}</strong> pending users"
       resolved_reports: ڕاپۆرتەکان چارەسەر کران
       software: نەرمەکالا
       sources: سەرچاوەی ناو تۆمارکردن
@@ -298,6 +377,8 @@ ckb:
       add_new: ڕێگە بە فیدراسیۆن بدە لەگەڵ دۆمەین
       created_msg: دۆمەین بە سەرکەوتوویی رێگەی پێدرا
       destroyed_msg: دۆمەین لە پێرستی رێگەی پێدرا لابرا
+      export: Export
+      import: Import
       undo: لابردن لە پێرستی ڕێپێدراو
     domain_blocks:
       add_new: زیادکردنی بلۆکی دۆمەینی نوێ
@@ -305,14 +386,21 @@ ckb:
       destroyed_msg: بلۆکی دۆمەین هەڵوەشاوەتەوە
       domain: دۆمەین
       edit: دەستکاری بلۆکی دۆمەینی نوێ
+      existing_domain_block: You have already imposed stricter limits on %{name}.
       existing_domain_block_html: ئێوە پێشتر سنووری دژوارتنا لە سەر%{name} جێبەجێکردووە، سەرەتا دەبێ <a href="%{unblock_url}">بلۆک هەڵوەشێنەوە</a>.
+      export: Export
+      import: Import
       new:
         create: دروستکردنی بلۆک
         hint: بلۆکی دۆمەین رێگری لە دروستکردنی هەژمارەی چوونەژوورەوە لە بنکەی زانیارێکان ناکات ، بەڵکو بە شێوەیەکی دووبارە و خۆکارانە رێوشێوازی پێشکەوتوو تایبەت لەسەر ئەو هەژمارانە جێبەجێ دەکات.
         severity:
+          desc_html: "<strong>Limit</strong> will make posts from accounts at this domain invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all content, media, and profile data for this domain's accounts from your server. Use <strong>None</strong> if you just want to reject media files."
           noop: هیچ
+          silence: Limit
           suspend: ڕاگرتن
         title: بلۆکی دۆمەینی نوێ
+      no_domain_block_selected: No domain blocks were changed as none were selected
+      not_permitted: You are not permitted to perform this action
       obfuscate: ناوی دۆمەینەکە تەمومژاوی بکە
       obfuscate_hint: ناوی دۆمەینەکە لە لیستی ریکلامەکاندا بەشێکی تەمومژاوی بکە لیستی سنووردارکردنی دۆمەینەکە چالاک کراوە
       private_comment: لێدوانی تایبەت
@@ -327,6 +415,9 @@ ckb:
       view: دیتنی بلۆکی دۆمەینی
     email_domain_blocks:
       add_new: زیادکردنی نوێ
+      attempts_over_week:
+        one: "%{count} attempt over the last week"
+        other: "%{count} sign-up attempts over the last week"
       created_msg: بە سەرکەوتوویی دۆمەینی ئیمەیڵ بلۆک کرا
       delete: سڕینەوە
       dns:
@@ -338,9 +429,25 @@ ckb:
         resolve: چارەسەرکردنی دۆمەین
         title: بلۆککردنی دۆمەینی ئیمەیڵی نوێ
       no_email_domain_block_selected: هیچ بلۆکێکی دۆمەینی ئیمەیڵ نەگۆڕدرا چونکە هیچیان هەڵنەبژێردرابوون
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: ناوی دۆمەینەکە چارەسەر دەبێت بۆ ئەم دۆمەینانەی خوارەوەی MX، کە لە کۆتاییدا بەرپرسیارن لە وەرگرتنی ئیمەیڵ. ڕێگریکردن لە دۆمەینی MX ڕێگری دەکات لە ناو تۆمارکردن لە هەر ناونیشانێکی ئیمەیڵەوە کە هەمان دۆمەینی MX بەکاردەهێنێت، تەنانەت ئەگەر ناوی دۆمەینی بینراو جیاواز بێت. <strong>ئاگاداربە کە دابینکەرانی ئیمەیڵی سەرەکی بلۆک نەکەیت.</strong>
       resolved_through_html: لە ڕێگەی %{domain} چارەسەر دەکرێت
       title: دۆمەینە بلۆککراوەکانی ئیمەیڵ
+    export_domain_allows:
+      new:
+        title: Import domain allows
+      no_file: No file selected
+    export_domain_blocks:
+      import:
+        description_html: You are about to import a list of domain blocks. Please review this list very carefully, especially if you have not authored this list yourself.
+        existing_relationships_warning: Existing follow relationships
+        private_comment_description_html: 'To help you track where imported blocks come from, imported blocks will be created with the following private comment: <q>%{comment}</q>'
+        private_comment_template: Imported from %{source} on %{date}
+        title: Import domain blocks
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
+      new:
+        title: Import domain blocks
+      no_file: No file selected
     follow_recommendations:
       description_html: "<strong>پەیڕەوکردنی پێشنیارەکان یارمەتی بەکارهێنەرانی نوێ دەدەن بە خێرایی ناوەڕۆکی سەرنجڕاکێش بدۆزنەوە</strong>. کاتێک بەکارهێنەرێک ئەوەندە کارلێکی لەگەڵ کەسانی دیکە نەکردووە کە پێشنیاری بەدواداچوونی کەسی پێکبهێنێت، لەبری ئەوە ئەم ئەکاونتانە پێشنیار دەکرێن. ئەوان ڕۆژانە لە تێکەڵەیەک لە ئەکاونتەکانەوە دووبارە حیساب دەکرێنەوە کە بەرزترین پەیوەندییەکانی ئەم دواییە و بەرزترین ژمارەی فۆڵۆوەری ناوخۆیی بۆ زمانێکی دیاریکراویان هەیە."
       language: بۆ زمان
@@ -351,7 +458,13 @@ ckb:
       unsuppress: گەڕاندنەوە بەدواداچوون بۆ پێشنیارەکان
     instances:
       availability:
+        description_html:
+          one: If delivering to the domain fails <strong>%{count} day</strong> without succeeding, no further delivery attempts will be made unless a delivery <em>from</em> the domain is received.
+          other: If delivering to the domain fails on <strong>%{count} different days</strong> without succeeding, no further delivery attempts will be made unless a delivery <em>from</em> the domain is received.
         failure_threshold_reached: ئاستی شکست گەیشتە %{date}.
+        failures_recorded:
+          one: Failed attempt on %{count} day.
+          other: Failed attempts on %{count} different days.
         no_failures_recorded: هیچ شکستێک لە تۆماردا نییە.
         title: بەردەست بوونی
         warning: دوایین هەوڵ بۆ پەیوەندیکردن بەم سێرڤەرە سەرکەوتوو نەبوو
@@ -363,6 +476,7 @@ ckb:
       content_policies:
         comment: تێبینی ناوخۆیی
         description_html: دەتوانیت سیاسەتی ناوەڕۆک پێناسە بکەیت کە بۆ هەموو ئەکاونتەکان لەم دۆمەین و هەر یەکێک لە دۆمەینەکانی لاوەکییەوە جێبەجێ دەکرێن.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: میدیا ڕەت بکەرەوە
           reject_reports: گوزارشتەکان ڕەت بکەوە
@@ -466,17 +580,23 @@ ckb:
         mark_as_sensitive_description_html: میدیاکان لە پۆستە ڕاپۆرتکراوەکاندا وەک هەستیار نیشانە دەکرێن و مانگرتنێک تۆمار دەکرێت بۆ ئەوەی یارمەتیت بدات لەسەر پێشێلکارییەکانی داهاتوو لەلایەن هەمان ئەکاونتەوە زیاد بکەیت.
         other_description_html: بژاردەی زیاتر ببینە بۆ کۆنترۆڵکردنی هەڵسوکەوتی ئەکاونتەکە و خۆکارکردنی پەیوەندی بۆ ئەژمێری ڕاپۆرتکراو.
         resolve_description_html: هیچ ئیجرائاتێک لە دژی ئەو حسابە ڕاپۆرت کراوە ناگیرێتەبەر، هیچ مانگرتنێک تۆمار ناکرێت، ڕاپۆرتەکەش دادەخرێت.
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
       actions_description_html: بڕیار بدە کام رێوشوێن بگیرێتەبەر بۆ چارەسەرکردنی ئەم راپۆرتە. ئەگەر تۆ ڕێوشوێنی سزادان لە دژی ئەژمێری ڕاپۆرتکراو بگریتەبەر، ئاگادارکردنەوەیەکی ئیمەیڵیان بۆ دەنێردرێت، تەنها کاتێک نەبێت کە پۆلی <strong>سپام</strong> هەڵبژێردرابێت.
+      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: زیاتر زیاد بکە بۆ ڕاپۆرت
       are_you_sure: دڵنیای?
       assign_to_self: دیاریکردن بۆ من
       assigned: بەڕێوەبەری بەرپرس
       by_target_domain: دۆمەینی هەژمارەی گوزارشتدراو
+      cancel: Cancel
       category: جۆر
       category_description_html: هۆکاری ڕاپۆرتکردنی ئەم ئەکاونتە و/یان ناوەڕۆکە لە پەیوەندی لەگەڵ ئەکاونتی ڕاپۆرتکراودا ئاماژەی پێدەکرێت
       comment:
         none: هیچ
       comment_description_html: 'بۆ پێدانی زانیاری زیاتر %{name} نووسیویەتی:'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: گوزارشتکرا
       delete_and_resolve: پۆستەکان بسڕەوە
       forwarded: پێشکەش دەکرێت
@@ -493,6 +613,7 @@ ckb:
         placeholder: باسی ئەو کردارانە بکە کە ئەنجام دراون، یان هەر نوێکردنەوەیەکی پەیوەندیداری ت...
         title: تێبینی
       notes_description_html: بینین و تێبینی بۆ بەڕێوەبەرانی تر و خودی داهاتووتان بەجێبهێڵە
+      processed_msg: 'Report #%{id} successfully processed'
       quick_actions_description_html: 'کارێکی خێرا ئەنجام بدە یان بچۆرە خوارەوە بۆ بینینی ناوەڕۆکی ڕاپۆرتکراو:'
       remote_user_placeholder: بەکارهێنەری دوور لە %{instance}
       reopen: دووبارە کردنەوەی گوزارشت
@@ -505,12 +626,92 @@ ckb:
       status: دۆخ
       statuses: ناوەڕۆکی ڕاپۆرتکراو
       statuses_description_html: ناوەڕۆکی توڕەکەر لە پەیوەندی لەگەڵ ئەکاونتی ڕاپۆرتکراودا ئاماژەی پێدەکرێت
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: سەرچاوەی ئەکاونتی ڕاپۆرتکراو
       title: گوزارشتکرا
       unassign: دیارینەکراوە
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: چارەسەر نەکراوە
       updated_at: نوێکرایەوە
       view_profile: نیشاندانی پڕۆفایل
+    roles:
+      add_new: Add role
+      assigned_users:
+        one: "%{count} user"
+        other: "%{count} users"
+      categories:
+        administration: Administration
+        devops: DevOps
+        invites: Invites
+        moderation: Moderation
+        special: Special
+      delete: Delete
+      description_html: With <strong>user roles</strong>, you can customize which functions and areas of Mastodon your users can access.
+      edit: Edit '%{name}' role
+      everyone: Default permissions
+      everyone_full_description_html: This is the <strong>base role</strong> affecting <strong>all users</strong>, even those without an assigned role. All other roles inherit permissions from it.
+      permissions_count:
+        one: "%{count} permission"
+        other: "%{count} permissions"
+      privileges:
+        administrator: Administrator
+        administrator_description: Users with this permission will bypass every permission
+        delete_user_data: Delete User Data
+        delete_user_data_description: Allows users to delete other users' data without delay
+        invite_users: Invite Users
+        invite_users_description: Allows users to invite new people to the server
+        manage_announcements: Manage Announcements
+        manage_announcements_description: Allows users to manage announcements on the server
+        manage_appeals: Manage Appeals
+        manage_appeals_description: Allows users to review appeals against moderation actions
+        manage_blocks: Manage Blocks
+        manage_blocks_description: Allows users to block e-mail providers and IP addresses
+        manage_custom_emojis: Manage Custom Emojis
+        manage_custom_emojis_description: Allows users to manage custom emojis on the server
+        manage_federation: Manage Federation
+        manage_federation_description: Allows users to block or allow federation with other domains, and control deliverability
+        manage_invites: Manage Invites
+        manage_invites_description: Allows users to browse and deactivate invite links
+        manage_reports: Manage Reports
+        manage_reports_description: Allows users to review reports and perform moderation actions against them
+        manage_roles: Manage Roles
+        manage_roles_description: Allows users to manage and assign roles below theirs
+        manage_rules: Manage Rules
+        manage_rules_description: Allows users to change server rules
+        manage_settings: Manage Settings
+        manage_settings_description: Allows users to change site settings
+        manage_taxonomies: Manage Taxonomies
+        manage_taxonomies_description: Allows users to review trending content and update hashtag settings
+        manage_user_access: Manage User Access
+        manage_user_access_description: Allows users to disable other users' two-factor authentication, change their e-mail address, and reset their password
+        manage_users: Manage Users
+        manage_users_description: Allows users to view other users' details and perform moderation actions against them
+        manage_webhooks: Manage Webhooks
+        manage_webhooks_description: Allows users to set up webhooks for administrative events
+        view_audit_log: View Audit Log
+        view_audit_log_description: Allows users to see a history of administrative actions on the server
+        view_dashboard: View Dashboard
+        view_dashboard_description: Allows users to access the dashboard and various metrics
+        view_devops: DevOps
+        view_devops_description: Allows users to access Sidekiq and pgHero dashboards
+      title: Roles
     rules:
       add_new: یاسا زیاد بکە
       delete: سڕینەوە
@@ -519,36 +720,205 @@ ckb:
       empty: هێشتا هیچ یاسایەکی سێرڤەر پێناسە نەکراوە.
       title: یاساکانی سێرڤەر
     settings:
+      about:
+        manage_rules: Manage server rules
+        preamble: Provide in-depth information about how the server is operated, moderated, funded.
+        rules_hint: There is a dedicated area for rules that your users are expected to adhere to.
+        title: About
+      appearance:
+        preamble: Customize Mastodon's web interface.
+        title: Appearance
+      branding:
+        preamble: Your server's branding differentiates it from other servers in the network. This information may be displayed across a variety of environments, such as Mastodon's web interface, native applications, in link previews on other websites and within messaging apps, and so on. For this reason, it is best to keep this information clear, short and concise.
+        title: Branding
+      content_retention:
+        preamble: Control how user-generated content is stored in Mastodon.
+        title: Content retention
+      default_noindex:
+        desc_html: Affects all users who have not changed this setting themselves
+        title: Opt users out of search engine indexing by default
+      discovery:
+        follow_recommendations: Follow recommendations
+        preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
+        profile_directory: Profile directory
+        public_timelines: Public timelines
+        publish_discovered_servers: Publish discovered servers
+        publish_statistics: Publish statistics
+        title: Discovery
+        trends: Trends
       domain_blocks:
         all: بۆ هەموو کەسێک
         disabled: بۆ هیچ کەسێک
         users: بۆ چوونە ژوورەوەی بەکارهێنەرانی ناوخۆ
+      registrations:
+        preamble: Control who can create an account on your server.
+        title: Registrations
       registrations_mode:
         modes:
           approved: پەسەندکردنی داواکراو بۆ ناوتۆمارکردن
           none: کەس ناتوانێت خۆی تۆمار بکات
           open: هەر کەسێک دەتوانێت خۆی تۆمار بکات
+      title: Server Settings
     site_uploads:
       delete: سڕینەوەی فایلی بارکراو
       destroyed_msg: بارکردنی ماڵپەڕ بە سەرکەوتوویی سڕدراوەتەوە!
     statuses:
+      account: Author
+      application: Application
       back_to_account: گەڕانەوە بۆ لاپەڕەی هەژمارە
+      back_to_report: Back to report page
+      batch:
+        remove_from_report: Remove from report
+        report: Report
       deleted: سڕینەوە
+      favourites: Favourites
+      history: Version history
+      in_reply_to: Replying to
+      language: Language
       media:
         title: میدیا
+      metadata: Metadata
       no_status_selected: هیچ دۆخیک نەگۆڕاوە وەک ئەوەی هیچ بارێک دەستنیشان نەکراوە
+      open: Open post
+      original_status: Original post
+      reblogs: Reblogs
+      status_changed: Post changed
       title: دۆخی ئەژمێر
+      trending: Trending
+      visibility: Visibility
       with_media: بە میدیا
+    strikes:
+      actions:
+        delete_statuses: "%{name} deleted %{target}'s posts"
+        disable: "%{name} froze %{target}'s account"
+        mark_statuses_as_sensitive: "%{name} marked %{target}'s posts as sensitive"
+        none: "%{name} sent a warning to %{target}"
+        sensitive: "%{name} marked %{target}'s account as sensitive"
+        silence: "%{name} limited %{target}'s account"
+        suspend: "%{name} suspended %{target}'s account"
+      appeal_approved: Appealed
+      appeal_pending: Appeal pending
+      appeal_rejected: Appeal rejected
+    system_checks:
+      database_schema_check:
+        message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
+      elasticsearch_running_check:
+        message_html: Could not connect to Elasticsearch. Please check that it is running, or disable full-text search
+      elasticsearch_version_check:
+        message_html: 'Incompatible Elasticsearch version: %{value}'
+        version_comparison: Elasticsearch %{running_version} is running while %{required_version} is required
+      rules_check:
+        action: Manage server rules
+        message_html: You haven't defined any server rules.
+      sidekiq_process_check:
+        message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
     tags:
       review: پێداچوونەوەی دۆخ
       updated_msg: ڕێکخستنی هاشتاگ بە سەرکەوتوویی نوێکرایەوە
     title: بەڕێوەبەر
+    trends:
+      allow: Allow
+      approved: Approved
+      disallow: Disallow
+      links:
+        allow: Allow link
+        allow_provider: Allow publisher
+        description_html: These are links that are currently being shared a lot by accounts that your server sees posts from. It can help your users find out what's going on in the world. No links are displayed publicly until you approve the publisher. You can also allow or reject individual links.
+        disallow: Disallow link
+        disallow_provider: Disallow publisher
+        no_link_selected: No links were changed as none were selected
+        publishers:
+          no_publisher_selected: No publishers were changed as none were selected
+        shared_by_over_week:
+          one: Shared by one person over the last week
+          other: Shared by %{count} people over the last week
+        title: Trending links
+        usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
+      not_allowed_to_trend: Not allowed to trend
+      only_allowed: Only allowed
+      pending_review: Pending review
+      preview_card_providers:
+        allowed: Links from this publisher can trend
+        description_html: These are domains from which links are often shared on your server. Links will not trend publicly unless the domain of the link is approved. Your approval (or rejection) extends to subdomains.
+        rejected: Links from this publisher won't trend
+        title: Publishers
+      rejected: Rejected
+      statuses:
+        allow: Allow post
+        allow_account: Allow author
+        description_html: These are posts that your server knows about that are currently being shared and favourited a lot at the moment. It can help your new and returning users to find more people to follow. No posts are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual posts.
+        disallow: Disallow post
+        disallow_account: Disallow author
+        no_status_selected: No trending posts were changed as none were selected
+        not_discoverable: Author has not opted-in to being discoverable
+        shared_by:
+          one: Shared or favourited one time
+          other: Shared and favourited %{friendly_count} times
+        title: Trending posts
+      tags:
+        current_score: Current score %{score}
+        dashboard:
+          tag_accounts_measure: unique uses
+          tag_languages_dimension: Top languages
+          tag_servers_dimension: Top servers
+          tag_servers_measure: different servers
+          tag_uses_measure: total uses
+        description_html: These are hashtags that are currently appearing in a lot of posts that your server sees. It can help your users find out what people are talking the most about at the moment. No hashtags are displayed publicly until you approve them.
+        listable: Can be suggested
+        no_tag_selected: No tags were changed as none were selected
+        not_listable: Won't be suggested
+        not_trendable: Won't appear under trends
+        not_usable: Cannot be used
+        peaked_on_and_decaying: Peaked on %{date}, now decaying
+        title: Trending hashtags
+        trendable: Can appear under trends
+        trending_rank: 'Trending #%{rank}'
+        usable: Can be used
+        usage_comparison: Used %{today} times today, compared to %{yesterday} yesterday
+        used_by_over_week:
+          one: Used by one person over the last week
+          other: Used by %{count} people over the last week
+      title: Trends
+      trending: Trending
     warning_presets:
       add_new: زیادکردنی نوێ
       delete: سڕینەوە
       edit_preset: دەستکاریکردنی ئاگاداری پێشگریمان
+      empty: You haven't defined any warning presets yet.
       title: بەڕێوەبردنی ئاگادارکردنەوە پێش‌سازدان
+    webhooks:
+      add_new: Add endpoint
+      delete: Delete
+      description_html: A <strong>webhook</strong> enables Mastodon to push <strong>real-time notifications</strong> about chosen events to your own application, so your application can <strong>automatically trigger reactions</strong>.
+      disable: Disable
+      disabled: Disabled
+      edit: Edit endpoint
+      empty: You don't have any webhook endpoints configured yet.
+      enable: Enable
+      enabled: Active
+      enabled_events:
+        one: 1 enabled event
+        other: "%{count} enabled events"
+      events: Events
+      new: New webhook
+      rotate_secret: Rotate secret
+      secret: Signing secret
+      status: Status
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: to delete their posts
+        disable: to freeze their account
+        mark_statuses_as_sensitive: to mark their posts as sensitive
+        none: a warning
+        sensitive: to mark their account as sensitive
+        silence: to limit their account
+        suspend: to suspend their account
+      body: "%{target} is appealing a moderation decision by %{action_taken_by} from %{date}, which was %{type}. They wrote:"
+      next_steps: You can approve the appeal to undo the moderation decision, or ignore it.
+      subject: "%{username} is appealing a moderation decision on %{instance}"
     new_pending_account:
       body: وردەکاریهەژمارە نوێیەکە لە خوارەوەیە. دەتوانیت ئەم نەرمەکالا پەسەند بکەیت یان ڕەت بکەیتەوە.
       subject: هەژمارەیەک نوێ بۆ پێداچوونەوە لەسەر %{instance} (%{username})
@@ -556,6 +926,17 @@ ckb:
       body: بەکارهێنەری %{reporter} گوزارشی لە بەکارهینەری%{target} دا
       body_remote: کەسێک لە %{domain} گوزارشتی %{target} ناردووە
       subject: گوزارشتێکی نوی لە %{instance} (#%{id})
+    new_trends:
+      body: 'The following items need a review before they can be displayed publicly:'
+      new_trending_links:
+        title: Trending links
+      new_trending_statuses:
+        title: Trending posts
+      new_trending_tags:
+        no_approved_tags: There are currently no approved trending hashtags.
+        requirements: 'Any of these candidates could surpass the #%{rank} approved trending hashtag, which is currently #%{lowest_tag_name} with a score of %{lowest_tag_score}.'
+        title: Trending hashtags
+      subject: New trends up for review on %{instance}
   aliases:
     add_new: دروستکردنی ناوی ساختە
     created_msg: نازناوێکی نوێیان سەرکەوتووانە دروستکرد. ئێستا دەتوانیت دەست بە گواستنەوە کەیت لە هەژمێرە کۆنەکەت.
@@ -571,6 +952,7 @@ ckb:
     discovery: دۆزینەوە
     localization:
       body: ماستۆدۆن لەلایەن خۆبەخشەوە وەردەگێڕێت.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: هەموو کەسێک دەتوانێت بەشداری بکات.
     sensitive_content: ناوەڕۆکی هەستیار
     toot_layout: لۆی توت
@@ -584,12 +966,16 @@ ckb:
   applications:
     created: بەرنامە بە سەرکەوتوویی دروست کرا
     destroyed: بەرنامە بە سەرکەوتوویی سڕدراوەتەوە
+    logout: Logout
     regenerate_token: دووبارە دروستکردنەوەی نیشانەی چوونە ژوورەوە
     token_regenerated: کۆدی دەستپێگەیشتن بە سەرکەوتوویی دروستکرا
     warning: زۆر ئاگاداربە لەم داتایە. هەرگیز لەگەڵ کەس دا هاوبەشی مەکە!
     your_token: کۆدی دەستپێگەیشتنی ئێوە
   auth:
+    apply_for_account: Request an account
     change_password: تێپەڕوشە
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: سڕینەوەی هەژمارە
     delete_account_html: گەر هەرەکتە هەژمارەکەت بسڕیتەوە، لە <a href="%{path}">لەم قوناغانە</a> بڕۆیتە پێشەوە. داوای پەسەند کردنتان لێدەگیرێت.
     description:
@@ -608,6 +994,7 @@ ckb:
     migrate_account: گواستنەوە بۆ ئەژمێرێکی تر
     migrate_account_html: ئەگەر دەتەوێت ئەم هەژمارە دووبارە ئاڕاستە بکەیت بۆ ئەژمێرێکی تر، دەتوانیت <href="%{path}"> کرتەیەک لێرە بکەی </a>.
     or_log_in_with: یان چوونە ژوورەوە بە
+    privacy_policy_agreement_html: I have read and agree to the <a href="%{privacy_policy_path}" target="_blank">privacy policy</a>
     providers:
       cas: CAS
       saml: SAML
@@ -615,12 +1002,23 @@ ckb:
     registration_closed: "%{instance} ئەندامانی نوێ قبووڵ ناکات"
     resend_confirmation: دووبارە ناردنی ڕێنماییەکانی دووپاتکردنەوە
     reset_password: گەڕانەوەی تێپەڕوشە
+    rules:
+      accept: Accept
+      back: Back
+      preamble: These are set and enforced by the %{domain} moderators.
+      title: Some ground rules.
     security: ئاسایش
     set_new_password: سازدانی تێپەڕوشەی نوێ
     setup:
       email_below_hint_html: ئەگەر ناونیشانی ئیمەیڵی خوارەوە نادروستە، دەتوانیت لێرە بیگۆڕیت و ئیمەیڵێکی پشتڕاستکردنەوەی نوێ وەربگۆڕیت.
       email_settings_hint_html: ئیمەیڵی پشتڕاستکردنەوە کە نێردرا بۆ %{email}. ئەگەر ناونیشانی ئیمەیڵ ڕاست نەبوو، دەتوانیت لە ڕێکبەندەکانی هەژمارەکەت بیگۆڕیت.
       title: دامەزراندن
+    sign_in:
+      preamble_html: Sign in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
+      title: Sign in to %{domain}
+    sign_up:
+      preamble: With an account on this Mastodon server, you'll be able to follow any other person on the network, regardless of where their account is hosted.
+      title: Let's get you set up on %{domain}.
     status:
       account_status: دۆخی هەژمارە
       confirming: چاوەڕوانی دڵنیاکردنەوەی ئیمەیڵ بۆ تەواوکردن.
@@ -688,8 +1086,34 @@ ckb:
       username_unavailable: ناوی تێپەڕبوونت بەردەست نییە
   disputes:
     strikes:
+      action_taken: Action taken
+      appeal: Appeal
+      appeal_approved: This strike has been successfully appealed and is no longer valid
+      appeal_rejected: The appeal has been rejected
+      appeal_submitted_at: Appeal submitted
+      appealed_msg: Your appeal has been submitted. If it is approved, you will be notified.
+      appeals:
+        submit: Submit appeal
+      approve_appeal: Approve appeal
+      associated_report: Associated report
+      created_at: Dated
+      description_html: These are actions taken against your account and warnings that have been sent to you by the staff of %{instance}.
+      recipient: Addressed to
+      reject_appeal: Reject appeal
+      status: 'Post #%{id}'
+      status_removed: Post already removed from system
+      title: "%{action} from %{date}"
       title_actions:
+        delete_statuses: Post removal
+        disable: Freezing of account
+        mark_statuses_as_sensitive: Marking of posts as sensitive
         none: ئاگاداری
+        sensitive: Marking of account as sensitive
+        silence: Limitation of account
+        suspend: Suspension of account
+      your_appeal_approved: Your appeal has been approved
+      your_appeal_pending: You have submitted an appeal
+      your_appeal_rejected: Your appeal has been rejected
   domain_validator:
     invalid_domain: ناوی دۆمەین بڕوادار نییە
   errors:
@@ -720,6 +1144,7 @@ ckb:
       size: قەبارە
     blocks: تۆ بلۆک دەکەیت
     bookmarks: نیشانکراوەکان
+    csv: CSV
     domain_blocks: دۆمەین قەپاتکرا
     lists: لیستەکان
     mutes: هەژمارە بێدەنگ کراوە
@@ -737,30 +1162,70 @@ ckb:
       public: پێرستی گشتی نووسراوەکان
       thread: گفتوگۆکان
     edit:
+      add_keyword: Add keyword
+      keywords: Keywords
+      statuses: Individual posts
+      statuses_hint_html: This filter applies to select individual posts regardless of whether they match the keywords below. <a href="%{path}">Review or remove posts from the filter</a>.
       title: دەستکاری فلتەر
     errors:
+      deprecated_api_multiple_keywords: These parameters cannot be changed from this application because they apply to more than one filter keyword. Use a more recent application or the web interface.
       invalid_context: هیچ دەقێکی نادروست نییە یان بێ بڕوایە
     index:
+      contexts: Filters in %{contexts}
       delete: سڕینەوە
       empty: هیچ پالێوەرێکت نیە.
+      expires_in: Expires in %{distance}
+      expires_on: Expires on %{date}
+      keywords:
+        one: "%{count} keyword"
+        other: "%{count} keywords"
+      statuses:
+        one: "%{count} post"
+        other: "%{count} posts"
+      statuses_long:
+        one: "%{count} individual post hidden"
+        other: "%{count} individual posts hidden"
       title: فلتەرەکان
     new:
+      save: Save new filter
       title: زیادکردنی فلتەری نوێ
+    statuses:
+      back_to_filter: Back to filter
+      batch:
+        remove: Remove from filter
+      index:
+        hint: This filter applies to select individual posts regardless of other criteria. You can add more posts to this filter from the web interface.
+        title: Filtered posts
   footer:
     trending_now: هەوادارانی ئێستا
   generic:
     all: هەموو
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> item on this page is selected."
+      other: All <strong>%{count}</strong> items on this page are selected.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> item matching your search is selected."
+      other: All <strong>%{count}</strong> items matching your search are selected.
     changes_saved_msg: گۆڕانکاریەکان بە سەرکەوتوویی هەڵگیرا!
     copy: ڕوونووس
     delete: سڕینەوە
+    deselect: Deselect all
+    none: None
     order_by: ڕێکخستن بەپێی
     save_changes: گۆڕانکاریەکان بپارێزە
+    select_all_matching_items:
+      one: Select %{count} item matching your search.
+      other: Select all %{count} items matching your search.
+    today: today
     validation_errors:
       one: شتێک هێشتا تەواو ڕاست نیە تکایە چاو بە هەڵەکەی خوارەوە بخشێنەوە
       other: هێشتا تەواو ڕاست نیە تکایە چاو بە هەڵەی %{count} خوارەوە بخشێنەوە
   html_validator:
     invalid_markup: 'نیشانەی HTML نادروستی تێدایە: %{error}'
   imports:
+    errors:
+      invalid_csv_file: 'Invalid CSV file. Error: %{error}'
+      over_rows_processing_limit: contains more than %{count} rows
     modes:
       merge: یەکخستن
       merge_long: هێشتنەوەی تۆمارەکانی بەردەست و زیادکردنی دانەنوێکان
@@ -800,6 +1265,17 @@ ckb:
   lists:
     errors:
       limit: تۆ گەیشتوویتە زۆرترین ڕێژەی لیستەکان
+  login_activities:
+    authentication_methods:
+      otp: two-factor authentication app
+      password: password
+      sign_in_token: e-mail security code
+      webauthn: security keys
+    description_html: If you see activity that you don't recognize, consider changing your password and enabling two-factor authentication.
+    empty: No authentication history available
+    failed_sign_in_html: Failed sign-in attempt with %{method} from %{ip} (%{browser})
+    successful_sign_in_html: Successful sign-in with %{method} from %{ip} (%{browser})
+    title: Authentication history
   media_attachments:
     validations:
       images_and_video: ناتوانرێت لەگەڵ ئەو نووسراوانە کە وێنەی لەگەڵە ،ڤیدیۆ بار بکەی
@@ -842,7 +1318,14 @@ ckb:
     carry_blocks_over_text: ئەم بەکارهێنەرە گواسترایەوە بۆ %{acct}، تۆ بلۆکت کردووە.
     carry_mutes_over_text: ئەم بەکارهێنەرە گواسترایەوە بۆ %{acct}، تۆ بێدەنگت کردووە.
     copy_account_note_text: 'ئەم بەکارهێنەرە لە %{acct} ەوە گواستیەوە، تێبینیەکانی پێشووت دەربارەیان بوون:'
+  navigation:
+    toggle_menu: Toggle menu
   notification_mailer:
+    admin:
+      report:
+        subject: "%{name} submitted a report"
+      sign_up:
+        subject: "%{name} signed up"
     favourite:
       body: 'دۆخت پەسەندکراوە لەلایەن %{name}:'
       subject: "%{name} دۆخی تۆی پەسەند کرد"
@@ -861,10 +1344,16 @@ ckb:
       body: "%{name} لێرە ناوی ئێووەی بردووە:"
       subject: "%{name} لێرە ناوی ئێووەی بردووە"
       title: ناوبراوەی نوێ
+    poll:
+      subject: A poll by %{name} has ended
     reblog:
       body: "%{name} نووسیسراوەکەی ئێوەی توتاندەوە:"
       subject: "%{name} نووسراوەکەتی دووبارە توتاند"
       title: توتاندنەوەی نوێ
+    status:
+      subject: "%{name} just posted"
+    update:
+      subject: "%{name} edited a post"
   notifications:
     email_events: رووداوەکان بۆ ئاگاداری ئیمەیلی
     email_events_hint: 'ئەو ڕووداوانە دیاریبکە کە دەتەوێت ئاگانامەکان وەربگری بۆ:'
@@ -897,12 +1386,17 @@ ckb:
     other: هی تر
     posting_defaults: بڵاوکردنی بنەڕەتەکان
     public_timelines: هێڵی کاتی گشتی
+  privacy_policy:
+    title: Privacy Policy
   reactions:
     errors:
       limit_reached: سنووری کاردانه وه ی جیاواز گه یشت
       unrecognized_emoji: ئیمۆجییەکی ناسراو نییە
   relationships:
     activity: چالاکی هەژمارە
+    confirm_follow_selected_followers: Are you sure you want to follow selected followers?
+    confirm_remove_selected_followers: Are you sure you want to remove selected followers?
+    confirm_remove_selected_follows: Are you sure you want to remove selected follows?
     dormant: ناچالاک
     follow_selected_followers: شوێنکەوتوان دیاریکراو بکە
     followers: شوێنکەوتوان
@@ -920,6 +1414,14 @@ ckb:
     status: دۆخی هەژمارە
   remote_follow:
     missing_resource: نەیتوانی URLی ئاراستەکردنەوەی پێویست بدۆزێتەوە بۆ ئەژمێرەکەت
+  reports:
+    errors:
+      invalid_rules: does not reference valid rules
+  rss:
+    content_warning: 'Content warning:'
+    descriptions:
+      account: Public posts from @%{acct}
+      tag: 'Public posts tagged #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: ئێوە لە سنووری ڕیپێدراوی %{limit} توتی ئەو رۆژە،خۆرتر ڕۆیشتوویت
     over_total_limit: تۆ سنووری خشتەکراوی %{limit} ت بەزاندووە
@@ -957,6 +1459,7 @@ ckb:
     revoke: بەتاڵکردن
     revoke_success: دانیشتن بەسەرکەوتوویی بەتاڵکرا
     title: کۆبوونەوەکان
+    view_authentication_history: View authentication history of your account
   settings:
     account: هەژمارە
     account_settings: ڕێکخستنەکانی هەژمارە
@@ -976,6 +1479,8 @@ ckb:
     preferences: پەسەندەکان
     profile: پرۆفایل
     relationships: شوێنکەوتوو و شوێنکەوتوان
+    statuses_cleanup: Automated post deletion
+    strikes: Moderation strikes
     two_factor_authentication: کۆدی دووقۆناغی هاتنەژوور
     webauthn_authentication: کلیلەکانی پاراستن
   statuses:
@@ -992,14 +1497,17 @@ ckb:
         other: "%{count} ڤیدیۆکان"
     boosted_from_html: توکراوەتەوە لەلایەن %{acct_link}
     content_warning: 'ئاگاداری ناوەڕۆک: %{warning}'
+    default_language: Same as interface language
     disallowed_hashtags:
       one: 'هاشتاگی ڕێگەپێنەدراوەی تێدابوو: %{tags}'
       other: 'هاشتاگەکانی ڕێگەپێنەدراوەی تێدابوو: %{tags}'
+    edited_at_html: Edited %{date}
     errors:
       in_reply_not_found: ئەو دۆخەی کە تۆ هەوڵی وەڵامدانەوەی دەدەیت وادەرناکەوێت کە هەبێت.
     open_in_web: کردنەوە لە وێب
     over_character_limit: سنووری نووسەی %{max} تێپەڕێنرا
     pin_errors:
+      direct: Posts that are only visible to mentioned users cannot be pinned
       limit: تۆ پێشتر زۆرترین ژمارەی توتتی چەسپیوەت هەیە
       ownership: نووسراوەکانی تر ناتوانرێ بسەلمێت
       reblog: بەهێزکردن ناتوانرێت بچەسپێ
@@ -1016,17 +1524,57 @@ ckb:
     show_older: پیشاندانی کۆنتر
     show_thread: نیشاندانی ڕشتە
     sign_in_to_participate: بچۆ ژوورەوە بۆ بەشداریکردن لە گفتوگۆکەدا
+    title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Direct
       private: شوێنکەوتوانی تەنها
       private_long: تەنها بۆ شوێنکەوتوانی پیشان بدە
       public: گشتی
       public_long: هەموو کەس دەتوانێت ببینێت
       unlisted: پێرست نەبووە
       unlisted_long: هەموو کەس دەتوانێت بیبینێت، بەڵام لە هێڵی کاتی گشتی دا نەریزراوە
+  statuses_cleanup:
+    enabled: Automatically delete old posts
+    enabled_hint: Automatically deletes your posts once they reach a specified age threshold, unless they match one of the exceptions below
+    exceptions: Exceptions
+    explanation: Because deleting posts is an expensive operation, this is done slowly over time when the server is not otherwise busy. For this reason, your posts may be deleted a while after they reach the age threshold.
+    ignore_favs: Ignore favourites
+    ignore_reblogs: Ignore boosts
+    interaction_exceptions: Exceptions based on interactions
+    interaction_exceptions_explanation: Note that there is no guarantee for posts to be deleted if they go below the favourite or boost threshold after having once gone over them.
+    keep_direct: Keep direct messages
+    keep_direct_hint: Doesn't delete any of your direct messages
+    keep_media: Keep posts with media attachments
+    keep_media_hint: Doesn't delete any of your posts that have media attachments
+    keep_pinned: Keep pinned posts
+    keep_pinned_hint: Doesn't delete any of your pinned posts
+    keep_polls: Keep polls
+    keep_polls_hint: Doesn't delete any of your polls
+    keep_self_bookmark: Keep posts you bookmarked
+    keep_self_bookmark_hint: Doesn't delete your own posts if you have bookmarked them
+    keep_self_fav: Keep posts you favourited
+    keep_self_fav_hint: Doesn't delete your own posts if you have favourited them
+    min_age:
+      '1209600': 2 weeks
+      '15778476': 6 months
+      '2629746': 1 month
+      '31556952': 1 year
+      '5259492': 2 months
+      '604800': 1 week
+      '63113904': 2 years
+      '7889238': 3 months
+    min_age_label: Age threshold
+    min_favs: Keep posts favourited at least
+    min_favs_hint: Doesn't delete any of your posts that has received at least this amount of favourites. Leave blank to delete posts regardless of their number of favourites
+    min_reblogs: Keep posts boosted at least
+    min_reblogs_hint: Doesn't delete any of your posts that has been boosted at least this number of times. Leave blank to delete posts regardless of their number of boosts
   stream_entries:
     pinned: توتی چەسپکراو
     reblogged: بەهێزکردن
     sensitive_content: ناوەڕۆکی هەستیار
+  strikes:
+    errors:
+      too_late: It is too late to appeal this strike
   tags:
     does_not_match_previous_name: لەگەڵ ناوی پێشوو یەک ناگرێتەوە
   themes:
@@ -1049,26 +1597,63 @@ ckb:
     recovery_instructions_html: گەر تەلەفۆنەکەت بزر کرد دەتوانی بە یەکێک لە کۆدەکانی خوارەوە چاودێری هەژمارەکەت لە دەست بگریت.<strong>ائەم کۆدانە لە شوێنێکی پاراو هەڵبگرە</strong> بۆ نموونە چاپی بکەن یان لەگەڵ بەڵگەنامە گرینگەکانت دایبنێ.
     webauthn: کلیلەکانی پاراستن
   user_mailer:
+    appeal_approved:
+      action: Go to your account
+      explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been approved. Your account is once again in good standing.
+      subject: Your appeal from %{date} has been approved
+      title: Appeal approved
+    appeal_rejected:
+      explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been rejected.
+      subject: Your appeal from %{date} has been rejected
+      title: Appeal rejected
     backup_ready:
       explanation: ئێوە وشانێکی پاڵپشتی تەواوت لە هەژمارەکەی خۆت داوا کردووە، ئەم پاڵپشتییە ئێستا ئامادەی بارکردنە!
       subject: ئارشیڤی ئێوە ئامادەی داگرتنە
       title: وەرگرتنی ئارشیڤ
+    suspicious_sign_in:
+      change_password: change your password
+      details: 'Here are details of the sign-in:'
+      explanation: We've detected a sign-in to your account from a new IP address.
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
+      subject: Your account has been accessed from a new IP address
+      title: A new sign-in
     warning:
+      appeal: Submit an appeal
+      appeal_description: If you believe this is an error, you can submit an appeal to the staff of %{instance}.
+      categories:
+        spam: Spam
+        violation: Content violates the following community guidelines
+      explanation:
+        delete_statuses: Some of your posts have been found to violate one or more community guidelines and have been subsequently removed by the moderators of %{instance}.
+        disable: You can no longer use your account, but your profile and other data remains intact. You can request a backup of your data, change account settings or delete your account.
+        mark_statuses_as_sensitive: Some of your posts have been marked as sensitive by the moderators of %{instance}. This means that people will need to tap the media in the posts before a preview is displayed. You can mark media as sensitive yourself when posting in the future.
+        sensitive: From now on, all your uploaded media files will be marked as sensitive and hidden behind a click-through warning.
+        silence: You can still use your account but only people who are already following you will see your posts on this server, and you may be excluded from various discovery features. However, others may still manually follow you.
+        suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed in about 30 days, but we will retain some basic data to prevent you from evading the suspension.
+      reason: 'Reason:'
+      statuses: 'Posts cited:'
       subject:
+        delete_statuses: Your posts on %{acct} have been removed
         disable: هەژمارەکەت %{acct} بەستراوە
+        mark_statuses_as_sensitive: Your posts on %{acct} have been marked as sensitive
         none: ئاگاداری بۆ %{acct}
+        sensitive: Your posts on %{acct} will be marked as sensitive from now on
         silence: هەژمارەکەی %{acct} سنووردار کراوە
         suspend: هەژمارەکەی %{acct} ڕاگیرا
       title:
+        delete_statuses: Posts removed
         disable: هەژمارە بەستراوە
+        mark_statuses_as_sensitive: Posts marked as sensitive
         none: ئاگاداری
         sensitive: هەژمارە وەک هەستیار نیشان کراوە
         silence: هەژماری سنووردار
         suspend: هەژمار ڕاگیرا
     welcome:
       edit_profile_action: پرۆفایلی جێگیرکردن
+      edit_profile_step: You can customize your profile by uploading a profile picture, changing your display name and more. You can opt-in to review new followers before they’re allowed to follow you.
       explanation: ئەمە چەند ئامۆژگارییەکن بۆ دەست پێکردنت
       final_action: دەست بکە بە بڵاوکردنەوە
+      final_step: 'Start posting! Even without followers, your public posts may be seen by others, for example on the local timeline or in hashtags. You may want to introduce yourself on the #introductions hashtag.'
       full_handle: ناوی بەکارهێنەری تەواوی ئێوە
       full_handle_hint: ئەمە ئەو شتەیە کە بە هاوڕێکانت دەلێی بۆ ئەوەی پەیام یان لە ڕاژەیەکی دیکەی ترەوە بەدوات بکەون.
       subject: بەخێربیت بۆ ماستۆدۆن

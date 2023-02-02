@@ -89,6 +89,7 @@ id:
       moderation:
         active: Aktif
         all: Semua
+        disabled: Disabled
         pending: Tertunda
         silenced: Terbatas
         suspended: Disuspen
@@ -130,6 +131,7 @@ id:
       search: Cari
       search_same_email_domain: Pengguna lain dengan domain email yang sama
       search_same_ip: Pengguna lain dengan IP yang sama
+      security: Security
       security_measures:
         only_password: Hanya kata sandi
         password_and_2fa: Kata sandi dan 2FA
@@ -419,6 +421,7 @@ id:
         resolve: Pembaruan domain
         title: Blokir domain email baru
       no_email_domain_block_selected: Tidak ada blokir domain email yang diubah sebab tidak ada yang dipilih
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: Pembaruan nama domain mengikuti domain MX, yang bertanggung jawab menerima email. Memblokir domain MX akan memblokir pendaftaran dari alamat email apapun yang menggunakan domain MX sama, meskipun nama domainnya beda. <strong>Hati-hati untuk tidak memblokir layanan email besar.</strong>
       resolved_through_html: Diperbarui melalui %{domain}
       title: Domain email terblokir
@@ -463,6 +466,7 @@ id:
       content_policies:
         comment: Catatan internal
         description_html: Anda dapat menentukan kebijakan konten yang akan diterapkan ke semua akun dari domain ini dan dari subdomainnya.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: Tolak media
           reject_reports: Tolak laporan
@@ -564,17 +568,23 @@ id:
         mark_as_sensitive_description_html: Media di dalam kiriman terlapor akan ditandai sebagai sensitif dan hukuman akan direkam untuk membantu menangani pelanggaran dari akun yang sama di masa mendatang.
         other_description_html: Lihat opsi lain untuk mengendalikan perilaku akun dan menyesuaikan komunikasi ke akun yang dilaporkan.
         resolve_description_html: Tidak ada tindakan untuk akun yang dilaporkan, tidak ada peringatan yang direkam, dan laporan akan ditutup.
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
       actions_description_html: Memutuskan tindakan yang tepat untuk menyelesaikan laporan ini. Jika Anda memutuskan tindakan hukuman kepada akun terlapor, notifikasi email akan dikirim ke mereka, kecuali saat kategori <strong>Spam</strong> dipilih.
+      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: Tambahkan lebih banyak untuk lapor
       are_you_sure: Apakah Anda yakin?
       assign_to_self: Tugaskan kpd saya
       assigned: Moderator tertugas
       by_target_domain: Domain akun yang dilaporkan
+      cancel: Cancel
       category: Kategori
       category_description_html: Alasan akun dan/atau konten ini dilaporkan akan disampaikan saat berkomunikasi dengan akun yang dilaporkan
       comment:
         none: Tidak ada
       comment_description_html: 'Untuk menyediakan lebih banyak informasi, %{name} menulis:'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: Dilaporkan
       delete_and_resolve: Hapus kiriman
       forwarded: Diteruskan
@@ -591,6 +601,7 @@ id:
         placeholder: Jelaskan aksi yang telah dilakukan, atau pembaruan lain yang berhubungan...
         title: Catatan
       notes_description_html: Lihat dan tinggalkan catatan kepada moderator lain dan Anda di masa depan
+      processed_msg: 'Report #%{id} successfully processed'
       quick_actions_description_html: 'Lakukan tindakan cepat atau gulir ke bawah untuk melihat konten yang dilaporkan:'
       remote_user_placeholder: pengguna jarak jauh dari %{instance}
       reopen: Buka lagi laporan
@@ -603,9 +614,28 @@ id:
       status: Status
       statuses: Konten yang dilaporkan
       statuses_description_html: Konten menyinggung akan disampaikan saat komunikasi dengan akun yang dilaporkan
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: Akun asal yang dilaporkan
       title: Laporan
       unassign: Bebas Tugas
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: Belum Terseleseikan
       updated_at: Diperbarui
       view_profile: Lihat profil
@@ -698,6 +728,8 @@ id:
         preamble: Menampilkan konten menarik penting dalam memandu pengguna baru yang mungkin tidak tahu siapa pun di Mastodon. Atur bagaimana berbagai fitur penemuan bekerja di server Anda.
         profile_directory: Direktori profil
         public_timelines: Linimasa publik
+        publish_discovered_servers: Publish discovered servers
+        publish_statistics: Publish statistics
         title: Penemuan
         trends: Tren
       domain_blocks:
@@ -752,6 +784,7 @@ id:
         suspend: "%{name} menangguhkan akun %{target}"
       appeal_approved: Banding disetujui
       appeal_pending: Banding ditunda
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: Ada proses migrasi basis data tertunda. Silakan jalankan untuk memastikan aplikasi bekerja seperti yang diharapkan
@@ -786,6 +819,7 @@ id:
           other: Dibagikan oleh %{count} orang selama seminggu terakhir
         title: Tautan sedang tren
         usage_comparison: Dibagikan %{today} kali hari ini, dibandingkan %{yesterday} kemarin
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: Yang diizinkan saja
       pending_review: Tinjauan tertunda
       preview_card_providers:
@@ -914,6 +948,7 @@ id:
   applications:
     created: Aplikasi berhasil dibuat
     destroyed: Aplikasi berhasil dihapus
+    logout: Logout
     regenerate_token: Buat ulang token akses
     token_regenerated: Token akses berhasil dibuat ulang
     warning: Hati-hati dengan data ini. Jangan bagikan kepada siapapun!
@@ -921,6 +956,8 @@ id:
   auth:
     apply_for_account: Permintaan akun
     change_password: Kata sandi
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Hapus akun
     delete_account_html: Jika Anda ingin menghapus akun Anda, Anda dapat <a href="%{path}">memproses ini</a>. Anda akan dikonfirmasi.
     description:
@@ -948,6 +985,8 @@ id:
     resend_confirmation: Kirim ulang email konfirmasi
     reset_password: Reset kata sandi
     rules:
+      accept: Accept
+      back: Back
       preamble: Ini diatur dan ditetapkan oleh moderator %{domain}.
       title: Beberapa aturan dasar.
     security: Identitas
@@ -957,6 +996,7 @@ id:
       email_settings_hint_html: Email konfirmasi telah dikirim ke %{email}. Jika alamat email tidak benar, Anda dapat mengubahnya di pengaturan akun.
       title: Atur
     sign_in:
+      preamble_html: Sign in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
       title: Masuk ke %{domain}
     sign_up:
       preamble: Dengan sebuah akun di server Mastodon ini, Anda akan dapat mengikuti orang lain dalam jaringan, di mana pun akun mereka berada.
@@ -1339,6 +1379,9 @@ id:
       unrecognized_emoji: bukan emoji yang dikenal
   relationships:
     activity: Aktivitas akun
+    confirm_follow_selected_followers: Are you sure you want to follow selected followers?
+    confirm_remove_selected_followers: Are you sure you want to remove selected followers?
+    confirm_remove_selected_follows: Are you sure you want to remove selected follows?
     dormant: Terbengkalai
     follow_selected_followers: Ikuti pengikut yang dipilih
     followers: Pengikut

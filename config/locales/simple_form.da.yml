@@ -18,6 +18,8 @@ da:
           disable: Forhindre brugeren i at bruge sin konto, men slet eller skjul ikke vedkommendes indhold.
           none: Brug dette til at sende en advarsel til brugeren uden at udløse nogen anden handling.
           sensitive: Gennemtving sensitivmarkering af alle denne brugers medievedhæftninger.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Valgfri. Du kan stadig tilføje tilpasset tekst til slutningen af forvalgene
       announcement:
         all_day: Hvis markeret, vil kun datoerne for tidsintervallet blive vist
@@ -80,6 +82,7 @@ da:
         custom_css: Man kan anvende tilpassede stilarter på Mastodon-webversionen.
         mascot: Tilsidesætter illustrationen i den avancerede webgrænseflade.
         media_cache_retention_period: Downloadede mediefiler slettes efter det angivne antal dage, når sat til en positiv værdi, og gendownloades på forlangende.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: Profilmappen oplister alle brugere, som har valgt at kunne opdages.
         require_invite_text: Når tilmelding kræver manuel godkendelse, så gør “Hvorfor ønsker du at deltage?” tekstinput obligatorisk i stedet for valgfrit
         site_contact_email: Hvordan folk kan opnå kontakt ifm. juridiske eller supportforespørgsler.
@@ -93,6 +96,7 @@ da:
         timeline_preview: Udloggede besøgende kan gennemse serverens seneste offentlige indlæg.
         trendable_by_default: Spring manuel gennemgang af trendindhold over. Individuelle elementer kan stadig fjernes fra trends efter kendsgerningen.
         trends: Tendenser viser, hvilke indlæg, hashtags og nyheder opnår momentum på serveren.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Du bevæger dig ind på et sikkert område
       imports:
@@ -236,6 +240,7 @@ da:
         custom_css: Tilpasset CSS
         mascot: Tilpasset maskot (ældre funktion)
         media_cache_retention_period: Media-cache opbevaringsperiode
+        peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Aktivér profiloversigt
         registrations_mode: Hvem, der kan tilmelde sig
         require_invite_text: Kræv tilmeldingsbegrundelse
@@ -252,6 +257,7 @@ da:
         timeline_preview: Tillad ikke-godkendt adgang til offentlige tidslinjer
         trendable_by_default: Tillad ikke-reviderede tendenser
         trends: Aktivér trends
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Blokér notifikationer fra ikke-følgere
         must_be_following: Blokér notifikationer fra folk, som ikke følges

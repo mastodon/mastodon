@@ -91,6 +91,7 @@ bg:
       moderation:
         active: Дейно
         all: Всичко
+        disabled: Disabled
         pending: Чака
         silenced: Ограничено
         suspended: Спряно
@@ -133,6 +134,7 @@ bg:
       search: Търсене
       search_same_email_domain: Други потребители със същия домейн за имейл
       search_same_ip: Други потребители със същия IP
+      security: Security
       security_measures:
         only_password: Само парола
         password_and_2fa: Парола и двуфакторно удостоверяване
@@ -427,6 +429,7 @@ bg:
         resolve: Преобразуване на домейна
         title: Блокиране на нов домейн на имейл
       no_email_domain_block_selected: Няма промяна, тъй като няма избрани блокирания на имейл домейн
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: Името на домейна се преобразува към следните MX домейни, които са основно отговорни за получаване на имейл. Блокирането на MX домейн блокира записването от всеки имейл, използващ същия MX домейн, дори видимото име на домейна да е различно. <strong>Бъдете внимателни и не блокирайте често-срещани доставчици на имейл</strong>
       resolved_through_html: Преобразувано чрез %{domain}
       title: Блокирани домейни на имейл
@@ -441,6 +444,7 @@ bg:
         private_comment_description_html: 'За по-лесно проследяване откъде идват внесените блокирания, те ще се създадат със следния личен коментар: <q>%{comment}</q>'
         private_comment_template: Внесено от %{source} на %{date}
         title: Внос на блокирания на домейни
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
       new:
         title: Внос на блокирания на домейни
       no_file: Няма избран файл
@@ -472,6 +476,7 @@ bg:
       content_policies:
         comment: Вътрешна бележка
         description_html: Може да определите политиките за съдържание, които ще се приложат към всички акаунти от този домейн и всеки от поддомейните му.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: Отхвърляне на мултимедия
           reject_reports: Отхвърляне на докладите
@@ -584,11 +589,14 @@ bg:
       assign_to_self: Назначаване на мен
       assigned: Назначен модератор
       by_target_domain: Домейн на докладвания акаунт
+      cancel: Cancel
       category: Категория
       category_description_html: Причината, поради която акаунтът и/или съдържанието е докладвано ще се цитира в комуникацията с докладвания акаунт
       comment:
         none: Нищо
       comment_description_html: 'За да предостави повече информация, %{name} написа:'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: Докладвано
       delete_and_resolve: Изтриване на публикациите
       forwarded: Препратено
@@ -605,6 +613,7 @@ bg:
         placeholder: Опишете какви действия са били предприети или всякакви други свързани нови неща...
         title: Бележки
       notes_description_html: Прегледайте и оставете бележки за други модератори и за вас самите след време
+      processed_msg: 'Report #%{id} successfully processed'
       quick_actions_description_html: 'Предприемете бързо действие или превъртете надолу, за да видите докладваното съдържание:'
       remote_user_placeholder: отдалеченият потребител от %{instance}
       reopen: Отваряне пак на доклад
@@ -617,9 +626,28 @@ bg:
       status: Състояние
       statuses: Докладвано съдържание
       statuses_description_html: Непристойно съдържание ще бъде цитирано в комуникацията с докладвания акаунт
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: Произход на докладвания акаунт
       title: Доклади
       unassign: Освобождаване
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: Неразрешено
       updated_at: Обновено
       view_profile: Преглед на профила
@@ -770,6 +798,7 @@ bg:
         suspend: "%{name} преустанови акаунта на %{target}"
       appeal_approved: Обжалвано
       appeal_pending: Чака се обжалването
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: Има миграции на базата данни, които чакат да бъдат изпълнени. Моля, изпълнете ги, за да осигурите изправността на приложението
@@ -805,6 +834,7 @@ bg:
           other: Споделено от %{count} души през последната седмица
         title: Нашумели линкове
         usage_comparison: Споделено %{today} пъти днес, в сравнение с %{yesterday} пъти вчера
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: Само позволените
       pending_review: В очакване на преглед
       preview_card_providers:
@@ -936,6 +966,7 @@ bg:
   applications:
     created: Успешно създадено приложение
     destroyed: Успешно изтрито приложение
+    logout: Logout
     regenerate_token: Регенериране на кода за достъп
     token_regenerated: Успешно генериране на код за достъп
     warning: Бъдете внимателни с тези данни. Никога не ги споделяйте с никого!
@@ -943,6 +974,8 @@ bg:
   auth:
     apply_for_account: Заявка за акаунт
     change_password: Парола
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Изтриване на акаунта
     delete_account_html: Ако желаете да изтриете акаунта си, може <a href="%{path}">да сторите това тук</a>. Ще ви се поиска потвърждение.
     description:
@@ -970,6 +1003,8 @@ bg:
     resend_confirmation: Изпрати отново инструкции за потвърждение
     reset_password: Нулиране на паролата
     rules:
+      accept: Accept
+      back: Back
       preamble: Тези са зададени и наложени от модераторите на %{domain}.
       title: Някои основни правила.
     security: Сигурност

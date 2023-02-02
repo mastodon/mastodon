@@ -95,6 +95,7 @@ cs:
       moderation:
         active: Aktivní
         all: Vše
+        disabled: Disabled
         pending: Čekající
         silenced: Omezeno
         suspended: Pozastavené
@@ -139,6 +140,7 @@ cs:
       search: Hledat
       search_same_email_domain: Ostatní uživatelé se stejnou e-mailovou doménou
       search_same_ip: Další uživatelé se stejnou IP adresou
+      security: Security
       security_measures:
         only_password: Pouze heslo
         password_and_2fa: Heslo a 2FA
@@ -443,6 +445,7 @@ cs:
         resolve: Přeložit doménu
         title: Blokovat novou e-mailovou doménu
       no_email_domain_block_selected: Žádné blokace e-mailové domény nebyly změněny, protože nebyly žádné vybrány
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: Doménové jméno vede na následující MX domény, které mají nakonec na starost přijímání e-mailů. Blokování MX domény zablokuje registrace z jakékoliv e-mailové adresy, která používá stejnou MX doménu, i když je viditelné doménové jméno jiné. <strong>Dejte si pozor, abyste nezablokovali velké e-mailové poskytovatele.</strong>
       resolved_through_html: Přeložena přes %{domain}
       title: Blokované e-mailové domény
@@ -457,6 +460,7 @@ cs:
         private_comment_description_html: 'Abychom vám pomohli sledovat, odkud pochází importované bloky, budou tyto importované bloky vytvořeny s následující soukromou poznámkou: <q>%{comment}</q>'
         private_comment_template: Importováno z %{source} dne %{date}
         title: Importovat blokované domény
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
       new:
         title: Importovat blokované domény
       no_file: Nebyl vybrán žádný soubor
@@ -492,6 +496,7 @@ cs:
       content_policies:
         comment: Interní poznámka
         description_html: Můžete definovat politiky obsahu, které budou aplikovány na všechny účty z této domény i jakoukoliv z jejích subdomén.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: Odmítat média
           reject_reports: Odmítat hlášení
@@ -608,11 +613,14 @@ cs:
       assign_to_self: Přidělit ke mně
       assigned: Přiřazený moderátor
       by_target_domain: Doména nahlášeného účtu
+      cancel: Cancel
       category: Kategorie
       category_description_html: Důvod nahlášení tohoto účtu a/nebo obsahu bude uveden v komunikaci s nahlášeným účtem
       comment:
         none: Žádné
       comment_description_html: 'Pro upřesnění uživatel %{name} napsal:'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: Nahlášené
       delete_and_resolve: Smazat příspěvky
       forwarded: Přeposláno
@@ -629,6 +637,7 @@ cs:
         placeholder: Popište, jaké akce byly vykonány, nebo jakékoliv jiné související aktuality…
         title: Poznámky
       notes_description_html: Zobrazit a zanechat poznámky pro ostatní moderátory i sebe v budoucnu
+      processed_msg: 'Report #%{id} successfully processed'
       quick_actions_description_html: 'Proveďte rychlou akci nebo skrolujte dolů pro nahlášený obsah:'
       remote_user_placeholder: vzdálený uživatel z %{instance}
       reopen: Znovu otevřít hlášení
@@ -641,6 +650,24 @@ cs:
       status: Stav
       statuses: Nahlášený obsah
       statuses_description_html: Obsah porušující pravidla bude uveden v komunikaci s nahlášeným účtem
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: Původ nahlášeného účtu
       title: Hlášení
       unassign: Odebrat
@@ -799,6 +826,7 @@ cs:
         suspend: Uživatel %{name} pozastavil účet %{target}
       appeal_approved: Podáno odvolání
       appeal_pending: Čekající odvolání
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: Na spuštění čekají databázové migrace. Nechte je prosím proběhnout pro zajištění očekávaného chování aplikace
@@ -836,6 +864,7 @@ cs:
           other: Sdílený %{count} lidmi za poslední týden
         title: Populární odkazy
         usage_comparison: Za dnešek %{today} sdílení, oproti %{yesterday} včera
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: Jen povolené
       pending_review: Čeká na posouzení
       preview_card_providers:
@@ -973,6 +1002,7 @@ cs:
   applications:
     created: Aplikace úspěšně vytvořena
     destroyed: Aplikace úspěšně smazána
+    logout: Logout
     regenerate_token: Znovu vygenerovat přístupový token
     token_regenerated: Přístupový token byl úspěšně vygenerován
     warning: Zacházejte s těmito daty opatrně. Nikdy je s nikým nesdílejte!
@@ -1009,6 +1039,8 @@ cs:
     resend_confirmation: Znovu odeslat pokyny pro potvrzení
     reset_password: Obnovit heslo
     rules:
+      accept: Accept
+      back: Back
       preamble: Tohle nastavují a prosazují moderátoři %{domain}.
       title: Některá základní pravidla.
     security: Zabezpečení

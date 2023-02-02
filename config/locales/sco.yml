@@ -91,6 +91,7 @@ sco:
       moderation:
         active: Active
         all: Aw
+        disabled: Disabled
         pending: Pendin
         silenced: Limitit
         suspended: Suspendit
@@ -116,6 +117,8 @@ sco:
       redownloaded_msg: Successfully refreshed %{username}'s profile fae origin
       reject: Rejeck
       rejected_msg: Successfully rejectit %{username}'s sign-up application
+      remote_suspension_irreversible: The data of this account has been irreversibly deleted.
+      remote_suspension_reversible_hint_html: The account has been suspended on their server, and the data will be fully removed on %{date}. Until then, the remote server can restore this account without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       remove_avatar: Remove avatar
       remove_header: Tak aff heider
       removed_avatar_msg: Successfully taen aff %{username}'s avatar image
@@ -131,6 +134,7 @@ sco:
       search: Seirch
       search_same_email_domain: Ither uisers wi the same email domain
       search_same_ip: Ither uisers wi the same IP
+      security: Security
       security_measures:
         only_password: Ainly passwird
         password_and_2fa: Passwird an 2FA
@@ -425,6 +429,7 @@ sco:
         resolve: Resolve domain
         title: Dingie new email domain
       no_email_domain_block_selected: Nae email domain dingies got chynged as naen wis selectit
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: The domain nemm resolves tae the follaein MX domains, thit ur ultimately responsible fir acceptin email. Dingiein a MX domain wull dingie sign-ups fae onie email address thit uises the same MX domain, even if the visible domain name is different. <strong>Caw canny no tae dingie major email providers.</strong>
       resolved_through_html: Resolvit throu %{domain}
       title: Dingied email domains
@@ -439,6 +444,7 @@ sco:
         private_comment_description_html: 'Tae help ye track whaur importit dingies come fae, importit dingies wull be makkit wi the follaein private comment: <q>%{comment}</q>'
         private_comment_template: Importit fae %{source} on %{date}
         title: Import domain dingies
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
       new:
         title: Import domain dingies
       no_file: Nae file selectit
@@ -470,6 +476,7 @@ sco:
       content_policies:
         comment: Internal note
         description_html: Ye kin define content policies thit'll be applied tae aw accoonts fae this domain an onie o its subdomains.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: Reject media
           reject_reports: Reject clypes
@@ -573,17 +580,23 @@ sco:
         mark_as_sensitive_description_html: The media in the clyped on posts will be mairked as sensitive an a strike wull be recordit fir tae help ye escalate on future infractions bi the same accoont.
         other_description_html: See mair options fir controllin the accoont's behaviour an customize communication tae the clyped on accoont.
         resolve_description_html: Nae action wull be taen aginst the clyped on accoont, nae strike recordit, an the clype wull be shut.
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
       actions_description_html: Decide whit action fir tae tak fir tae resolve this clype. If ye tak a punitive action agin the accoont thit wis clyped on, a email note wull be sent tae them, except whan the <strong>Mince</strong> caitegory is selectit.
+      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: Add mair tae yer clype
       are_you_sure: Ye sure?
       assign_to_self: Assign tae me
       assigned: Assignt moderator
       by_target_domain: Domain o clyped on accoont
+      cancel: Cancel
       category: Caitegory
       category_description_html: The raison thit this accoont an/or content wis clyped on wull be cited in communication wi the clyped on accoont
       comment:
         none: Naen
       comment_description_html: 'Fir tae gie mair information, %{name} wrate:'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: Clyped on
       delete_and_resolve: Delete posts
       forwarded: Forretit
@@ -600,6 +613,7 @@ sco:
         placeholder: Describe whit actions hae been taen, or onie ither relatit updates...
         title: Notes
       notes_description_html: View an lea notes tae ither moderators an yer future sel
+      processed_msg: 'Report #%{id} successfully processed'
       quick_actions_description_html: 'Tak a quick action or scrow doon fir tae see clyped on content:'
       remote_user_placeholder: the remote uiser fae %{instance}
       reopen: Reopen clype
@@ -612,9 +626,28 @@ sco:
       status: Status
       statuses: Clyped on content
       statuses_description_html: Offendin content wull be citit in communication wi the clyped on accoont
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: Origin o clyped on accoont
       title: Clypes
       unassign: Unassign
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: No resolvt
       updated_at: Updatit
       view_profile: Luik at profile
@@ -701,11 +734,16 @@ sco:
       content_retention:
         preamble: Control hou uiser-generatit content is stored in Mastodon.
         title: Content retention
+      default_noindex:
+        desc_html: Affects all users who have not changed this setting themselves
+        title: Opt users out of search engine indexing by default
       discovery:
         follow_recommendations: Follae recommendations
         preamble: Bringin forret interestin content helps ye tae bring in new uisers thit mibbie wullnae ken oniebody on Mastodon yit. Control hou various discovery features wirk on yer server.
         profile_directory: Profile directory
         public_timelines: Public timelines
+        publish_discovered_servers: Publish discovered servers
+        publish_statistics: Publish statistics
         title: Discovery
         trends: Trends
       domain_blocks:
@@ -760,6 +798,7 @@ sco:
         suspend: "%{name} suspendit %{target}'s accoont"
       appeal_approved: Appealt
       appeal_pending: Appeal pendin
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: There pendin database migrations. Please rin them fir tae mak siccar the application behaves as expectit
@@ -795,6 +834,7 @@ sco:
           other: Shared bi %{count} fowk ower the last week
         title: Trendin links
         usage_comparison: Shared %{today} times the day, compart tae %{yesterday} yisterday
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: Ainly allooed
       pending_review: Pendin review
       preview_card_providers:
@@ -926,6 +966,7 @@ sco:
   applications:
     created: Application successfully creatit
     destroyed: Application successfully deletit
+    logout: Logout
     regenerate_token: Regenerate access token
     token_regenerated: Access token successfully regeneratit
     warning: Be gey carefu wi this data. Never share it wi oniebody!
@@ -933,6 +974,8 @@ sco:
   auth:
     apply_for_account: Request a accoont
     change_password: Passwird
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Delete accoont
     delete_account_html: If ye'r wantin tae delete yer accoont, ye kin <a href="%{path}">dae it here</a>. Ye'll get asked fir confirmation.
     description:
@@ -960,6 +1003,8 @@ sco:
     resend_confirmation: Resen confirmation instructions
     reset_password: Reset yer passwird
     rules:
+      accept: Accept
+      back: Back
       preamble: Thir's set an enforced bi the %{domain} moderators.
       title: Some grun rules.
     security: Security
@@ -968,6 +1013,9 @@ sco:
       email_below_hint_html: If the email address ablow isnae correct, ye kin chynge it here an get a new confirmation email.
       email_settings_hint_html: The confirmation email wis sent tae %{email}. If that email address isnae correct, ye kin chynge it in accoont settins.
       title: Setup
+    sign_in:
+      preamble_html: Sign in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
+      title: Sign in to %{domain}
     sign_up:
       preamble: Wi a accoont on this Mastodon server, ye'll be able tae follae onie ither person on the netwirk, regairdless o whaur their accoont is hostit.
       title: Let's get ye set up on %{domain}.
@@ -1357,6 +1405,9 @@ sco:
       unrecognized_emoji: isnae a recognized emoji
   relationships:
     activity: Accoont activity
+    confirm_follow_selected_followers: Are you sure you want to follow selected followers?
+    confirm_remove_selected_followers: Are you sure you want to remove selected followers?
+    confirm_remove_selected_follows: Are you sure you want to remove selected follows?
     dormant: Dormant
     follow_selected_followers: Follae selectit follaers
     followers: Follaers

@@ -91,6 +91,7 @@ fr-QC:
       moderation:
         active: Actifs
         all: Tous
+        disabled: Disabled
         pending: En cours de traitement
         silenced: Limité
         suspended: Suspendus
@@ -133,6 +134,7 @@ fr-QC:
       search: Rechercher
       search_same_email_domain: Autres utilisateurs·trices avec le même domaine de courriel
       search_same_ip: Autres utilisateur·rice·s avec la même IP
+      security: Security
       security_measures:
         only_password: Mot de passe uniquement
         password_and_2fa: Mot de passe et 2FA
@@ -427,6 +429,7 @@ fr-QC:
         resolve: Résoudre le domaine
         title: Nouveau blocage de domaine de courriel
       no_email_domain_block_selected: Aucun blocage de domaine de courriel n'a été modifié car aucun n'a été sélectionné
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: Le nom de domaine est relié aux domaines MX suivants, qui ont la responsabilité ultime d'accepter les courriels. Bloquer un domaine MX empêchera les inscriptions à partir de toute adresse courriel utilisant le même domaine MX, même si le nom de domaine affiché est différent. <strong> Veillez à ne pas bloquer les fournisseurs de messagerie d'envergure.</strong>
       resolved_through_html: Résolu par %{domain}
       title: Blocage de domaines de courriel
@@ -441,6 +444,7 @@ fr-QC:
         private_comment_description_html: 'Pour vous aider à suivre d''où viennent les blocs importés, des blocs importés seront créés avec le commentaire privé suivant : <q>%{comment}</q>'
         private_comment_template: Importé depuis %{source} le %{date}
         title: Importer des blocs de domaine
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
       new:
         title: Importer des blocs de domaine
       no_file: Aucun fichier sélectionné
@@ -472,6 +476,7 @@ fr-QC:
       content_policies:
         comment: Note interne
         description_html: Vous pouvez définir des politiques de contenu qui seront appliquées à tous les comptes de ce domaine et à tous ses sous-domaines.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: Rejeter les médias
           reject_reports: Rejeter les signalements
@@ -584,11 +589,14 @@ fr-QC:
       assign_to_self: Me l’assigner
       assigned: Modérateur assigné
       by_target_domain: Domaine du compte signalé
+      cancel: Cancel
       category: Catégorie
       category_description_html: La raison pour laquelle ce compte et/ou ce contenu a été signalé sera citée dans la communication avec le compte signalé
       comment:
         none: Aucun
       comment_description_html: 'Pour fournir plus d''informations, %{name} a écrit :'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: Signalé
       delete_and_resolve: Supprimer les messages
       forwarded: Transféré
@@ -605,6 +613,7 @@ fr-QC:
         placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour…
         title: Remarques
       notes_description_html: Voir et laisser des notes aux autres modérateurs et à votre futur moi-même
+      processed_msg: 'Report #%{id} successfully processed'
       quick_actions_description_html: 'Faites une action rapide ou faites défiler vers le bas pour voir le contenu signalé :'
       remote_user_placeholder: l'utilisateur·rice distant·e de %{instance}
       reopen: Ré-ouvrir le signalement
@@ -617,9 +626,28 @@ fr-QC:
       status: Statut
       statuses: Contenu signalé
       statuses_description_html: Le contenu offensant sera cité dans la communication avec le compte signalé
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: Origine du compte signalé
       title: Signalements
       unassign: Dés-assigner
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: Non résolus
       updated_at: Mis à jour
       view_profile: Voir le profil
@@ -770,6 +798,7 @@ fr-QC:
         suspend: "%{name} a suspendu le compte de %{target}"
       appeal_approved: Appel soumis
       appeal_pending: Appel en attente
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
@@ -805,6 +834,7 @@ fr-QC:
           other: Partagé par %{count} personnes au cours de la dernière semaine
         title: Liens tendances
         usage_comparison: Partagé %{today} fois aujourd'hui, comparé à %{yesterday} hier
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: Autorisées seulement
       pending_review: En attente de révision
       preview_card_providers:
@@ -936,6 +966,7 @@ fr-QC:
   applications:
     created: Application créée avec succès
     destroyed: Application supprimée avec succès
+    logout: Logout
     regenerate_token: Régénérer le jeton d’accès
     token_regenerated: Jeton d’accès régénéré avec succès
     warning: Soyez prudent·e avec ces données. Ne les partagez pas !
@@ -943,6 +974,8 @@ fr-QC:
   auth:
     apply_for_account: Demander un compte
     change_password: Mot de passe
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
     description:
@@ -970,6 +1003,8 @@ fr-QC:
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
     reset_password: Réinitialiser le mot de passe
     rules:
+      accept: Accept
+      back: Back
       preamble: Celles-ci sont définies et appliqués par les modérateurs de %{domain}.
       title: Quelques règles de base.
     security: Sécurité

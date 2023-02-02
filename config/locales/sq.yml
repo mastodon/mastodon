@@ -91,6 +91,7 @@ sq:
       moderation:
         active: Aktiv
         all: Krejt
+        disabled: Disabled
         pending: Pezull
         silenced: I kufizuar
         suspended: Të pezulluara
@@ -133,6 +134,7 @@ sq:
       search: Kërkoni
       search_same_email_domain: Të tjerë përdorues me të njëjtën përkatësi email-i
       search_same_ip: Të tjerë përdorues me të njëjtën IP
+      security: Security
       security_measures:
         only_password: Vetëm fjalëkalim
         password_and_2fa: Fjalëkalim dhe 2FA
@@ -427,6 +429,7 @@ sq:
         resolve: Ftilloje përkatësinë
         title: Zë i ri email në listë bllokimesh
       no_email_domain_block_selected: S’u ndryshuan blloqe përkatësish email, ngaqë s’qe përzgjedhur ndonjë
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: Emri i përkatësisë jep u përket përkatësive vijuese MX, që janë përgjegjëset për pranim email-esh. Bllokimi i një përkatësie MX do të bllokojë regjistrime nga çfarëdo adrese email që përdor të njëjtën përkatësi MX, edhe nëse emri i dukshëm i përkatësisë është i ndryshëm. <strong>Jini i kujdesshëm të mos bllokoni shërbime të njohur email-esh.</strong>
       resolved_through_html: Zgjidhur përmes %{domain}
       title: Listë bllokimesh email-esh
@@ -463,6 +466,7 @@ sq:
           one: Përpjekje e dështuar në %{count} ditë.
           other: Përpjekje e dështuar në %{count} ditë të ndryshme.
         no_failures_recorded: S’ka dështime të regjistruara.
+        title: Availability
         warning: Përpjekja e fundit për t’u lidhur me këtë shërbyes ka qenë e pasuksesshme
       back_to_all: Krejt
       back_to_limited: E kufizuar
@@ -472,6 +476,7 @@ sq:
       content_policies:
         comment: Shënim i brendshëm
         description_html: Mund të përkufizoni rregulla lënde që do të zbatohen mbi krejt llogaritë prej kësaj përkatësie dhe cilësdo nënpërkatësi të saj.
+        limited_federation_mode_description_html: Limited federation mode description html
         policies:
           reject_media: Mos prano media
           reject_reports: Hidh tej raportimet
@@ -584,11 +589,13 @@ sq:
       assign_to_self: Caktojani vetes
       assigned: Iu caktua moderator
       by_target_domain: Përkatësi e llogarisë së raportuar
+      cancel: Cancel
       category: Kategori
       category_description_html: Arsyeja pse kjo llogari dhe/ose lëndë raportohet do të citohet te komunikimi me llogarinë e raportuar
       comment:
         none: Asnjë
       comment_description_html: 'Për të dhënë më tepër informacion, %{name} shkroi:'
+      confirm: Confirm
       confirm_action: Ripohoni veprim moderimi kundër @%{acct}
       created_at: Raportuar më
       delete_and_resolve: Fshiji postimet
@@ -651,6 +658,7 @@ sq:
         other: "%{count} përdorues"
       categories:
         administration: Administrim
+        devops: DevOps
         invites: Ftesa
         moderation: Moderim
         special: Special
@@ -701,6 +709,7 @@ sq:
         view_audit_log_description: U lejon përdoruesve të shohin një historik veprimesh administrative te shërbyesi
         view_dashboard: Shihni Pultin
         view_dashboard_description: U lejon përdoruesve të hyjnë te pulti dhe shohin shifra të ndryshme matjesh
+        view_devops: DevOps
         view_devops_description: U lejon përdoruesve të hyjnë në pultet Sidekiq dhe pgHero
       title: Role
     rules:
@@ -789,6 +798,7 @@ sq:
         suspend: "%{name} e pezulloi llogarinë e %{target}"
       appeal_approved: Apeluar
       appeal_pending: Apelim pezull
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: Ka migrime bazash të dhënash pezull. Ju lutemi, kryejini, për të qenë të sigurt se aplikacioni sillet siç priteet
@@ -824,6 +834,7 @@ sq:
           other: Ndarë me të tjerë nga %{count} vetë gjatë javës së kaluar
         title: Lidhje në modë
         usage_comparison: Ndarë %{today} herë sot, kundrejt %{yesterday} dje
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: Lejuar vetëm
       pending_review: Në pritje të shqyrtimit
       preview_card_providers:
@@ -861,6 +872,7 @@ sq:
         peaked_on_and_decaying: Kulmoi më %{date}, tani në rënie
         title: Hashtag-ë në modë
         trendable: Mund të shfaqet nën të modës
+        trending_rank: 'Trending #%{rank}'
         usable: Mund të përdoret
         usage_comparison: Përdorur %{today} herë sot, krahasuar me %{yesterday} dje
         used_by_over_week:
@@ -922,6 +934,7 @@ sq:
         title: Postime në modë
       new_trending_tags:
         no_approved_tags: Aktualisht s’ka hashtag-ë në modë të miratuar.
+        requirements: 'Any of these candidates could surpass the #%{rank} approved trending hashtag, which is currently #%{lowest_tag_name} with a score of %{lowest_tag_score}.'
         title: Hashtag-ë në modë
       subject: Gjëra të reja në modë për shqyrtim te %{instance}
   aliases:
@@ -953,6 +966,7 @@ sq:
   applications:
     created: Aplikimi u krijua me sukses
     destroyed: Aplikimi u fshi me sukses
+    logout: Logout
     regenerate_token: Riprodho token hyrjesh
     token_regenerated: Token-i i hyrjeve u riprodhua me sukses
     warning: Bëni shumë kujdes me ato të dhëna. Mos ia jepni kurrë njeriu!
@@ -989,6 +1003,8 @@ sq:
     resend_confirmation: Ridërgo udhëzime ripohimi
     reset_password: Ricaktoni fjalëkalimin
     rules:
+      accept: Accept
+      back: Back
       preamble: Këto vendosen dhe zbatimi i tyre është nën kujdesin e moderatorëve të %{domain}.
       title: Disa rregulla bazë.
     security: Siguri

@@ -18,6 +18,8 @@ si:
           disable: පරිශීලකයාගේ ගිණුම භාවිතා කිරීමෙන් වළක්වන්න, නමුත් ඔවුන්ගේ අන්තර්ගතය මකා දැමීම හෝ සඟවන්න එපා.
           none: වෙනත් ක්‍රියාවක් අවුලුවාලීමකින් තොරව, පරිශීලකයාට අනතුරු ඇඟවීමක් යැවීමට මෙය භාවිතා කරන්න.
           sensitive: මෙම පරිශීලකයාගේ සියලුම මාධ්‍ය ඇමුණුම් සංවේදී ලෙස සලකුණු කිරීමට බල කරන්න.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: විකල්ප. ඔබට තවමත් පෙරසිටුවීමේ අවසානයට අභිරුචි පෙළ එක් කළ හැක
       announcement:
         all_day: පරීක්ෂා කළ විට, කාල පරාසයේ දින පමණක් දර්ශනය වනු ඇත
@@ -64,11 +66,37 @@ si:
       email_domain_block:
         domain: මෙය විද්‍යුත් තැපැල් ලිපිනයේ හෝ එය භාවිතා කරන MX වාර්තාවේ පෙන්වන ඩොමේන් නාමය විය හැක. ලියාපදිංචි වූ පසු ඒවා පරීක්ෂා කරනු ලැබේ.
         with_dns_records: ලබා දී ඇති වසමේ DNS වාර්තා විසඳීමට උත්සාහ කරන අතර ප්‍රතිඵල ද අවහිර කරනු ලැබේ
+      featured_tag:
+        name: 'Here are some of the hashtags you used the most recently:'
       filters:
         action: පළ කිරීමක් පෙරහනට ගැළපෙන විට සිදු කළ යුතු ක්‍රියාව තෝරන්න
         actions:
           hide: පෙරහන් කළ අන්තර්ගතය සම්පූර්ණයෙන්ම සඟවන්න, එය නොපවතින ලෙස හැසිරෙන්න
           warn: පෙරහන මාතෘකාව සඳහන් කරන අනතුරු ඇඟවීමක් පිටුපස පෙරූ අන්තර්ගතය සඟවන්න
+      form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
+        backups_retention_period: Keep generated user archives for the specified number of days.
+        bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations.
+        closed_registrations_message: Displayed when sign-ups are closed
+        content_cache_retention_period: Posts from other servers will be deleted after the specified number of days when set to a positive value. This may be irreversible.
+        custom_css: You can apply custom styles on the web version of Mastodon.
+        mascot: Overrides the illustration in the advanced web interface.
+        media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
+        profile_directory: The profile directory lists all users who have opted-in to be discoverable.
+        require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
+        site_contact_email: How people can reach you for legal or support inquiries.
+        site_contact_username: How people can reach you on Mastodon.
+        site_extended_description: Any additional information that may be useful to visitors and your users. Can be structured with Markdown syntax.
+        site_short_description: A short description to help uniquely identify your server. Who is running it, who is it for?
+        site_terms: Use your own privacy policy or leave blank to use the default. Can be structured with Markdown syntax.
+        site_title: How people may refer to your server besides its domain name.
+        theme: Theme that logged out visitors and new users see.
+        thumbnail: A roughly 2:1 image displayed alongside your server information.
+        timeline_preview: Logged out visitors will be able to browse the most recent public posts available on the server.
+        trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
+        trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: ඔබ ආරක්ෂිත ප්‍රදේශයකට ඇතුල් වේ
       imports:
@@ -81,6 +109,7 @@ si:
         ip: IPv4 හෝ IPv6 ලිපිනයක් ඇතුළත් කරන්න. ඔබට CIDR සින්ටැක්ස් භාවිතයෙන් සම්පූර්ණ පරාසයන් අවහිර කළ හැක. ඔබව අගුලු නොදැමීමට ප්‍රවේශම් වන්න!
         severities:
           no_access: සියලු සම්පත් වෙත ප්‍රවේශය අවහිර කරන්න
+          sign_up_block: New sign-ups will not be possible
           sign_up_requires_approval: නව ලියාපදිංචි කිරීම් සඳහා ඔබේ අනුමැතිය අවශ්‍ය වනු ඇත
         severity: මෙම IP වෙතින් ඉල්ලීම් සමඟ කුමක් සිදුවේද යන්න තෝරන්න
       rule:
@@ -92,6 +121,13 @@ si:
         name: ඔබට අකුරු වල ආවරණය පමණක් වෙනස් කළ හැකිය, උදාහරණයක් ලෙස, එය වඩාත් කියවිය හැකි කිරීමට
       user:
         chosen_languages: පරීක්ෂා කළ විට, තෝරාගත් භාෂාවලින් පළ කිරීම් පමණක් පොදු කාලරේඛා තුළ සංදර්ශන කෙරේ
+        role: The role controls which permissions the user has
+      user_role:
+        color: Color to be used for the role throughout the UI, as RGB in hex format
+        highlighted: This makes the role publicly visible
+        name: Public name of the role, if role is set to be displayed as a badge
+        permissions_as_keys: Users with this role will have access to...
+        position: Higher role decides conflict resolution in certain situations. Certain actions can only be performed on roles with a lower priority
       webhook:
         events: යැවීමට සිදුවීම් තෝරන්න
         url: සිදුවීම් යවනු ලබන ස්ථානය
@@ -195,6 +231,33 @@ si:
         actions:
           hide: සම්පූර්ණයෙන්ම සඟවන්න
           warn: අනතුරු ඇඟවීමක් සමඟ සඟවන්න
+      form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
+        backups_retention_period: User archive retention period
+        bootstrap_timeline_accounts: Always recommend these accounts to new users
+        closed_registrations_message: Custom message when sign-ups are not available
+        content_cache_retention_period: Content cache retention period
+        custom_css: Custom CSS
+        mascot: Custom mascot (legacy)
+        media_cache_retention_period: Media cache retention period
+        peers_api_enabled: Publish list of discovered servers in the API
+        profile_directory: Enable profile directory
+        registrations_mode: Who can sign-up
+        require_invite_text: Require a reason to join
+        show_domain_blocks: Show domain blocks
+        show_domain_blocks_rationale: Show why domains were blocked
+        site_contact_email: Contact e-mail
+        site_contact_username: Contact username
+        site_extended_description: Extended description
+        site_short_description: Server description
+        site_terms: Privacy Policy
+        site_title: Server name
+        theme: Default theme
+        thumbnail: Server thumbnail
+        timeline_preview: Allow unauthenticated access to public timelines
+        trendable_by_default: Allow trends without prior review
+        trends: Enable trends
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: අනුගාමිකයින් නොවන අයගේ දැනුම්දීම් අවහිර කරන්න
         must_be_following: ඔබ අනුගමනය නොකරන පුද්ගලයින්ගේ දැනුම්දීම් අවහිර කරන්න
@@ -208,6 +271,7 @@ si:
         ip: අ.ජා. කෙ. (IP)
         severities:
           no_access: ප්රවේශය අවහිර කරන්න
+          sign_up_block: Block sign-ups
           sign_up_requires_approval: ලියාපදිංචි වීම සීමා කරන්න
         severity: නීතිය
       notification_emails:
@@ -228,10 +292,19 @@ si:
         name: හෑෂ් ටැගය
         trendable: මෙම හැෂ් ටැගය ප්‍රවණතා යටතේ දිස් වීමට ඉඩ දෙන්න
         usable: මෙම හැෂ් ටැගය භාවිතා කිරීමට පළ කිරීම් වලට ඉඩ දෙන්න
+      user:
+        role: Role
+      user_role:
+        color: Badge color
+        highlighted: Display role as badge on user profiles
+        name: Name
+        permissions_as_keys: Permissions
+        position: Priority
       webhook:
         events: සබල කළ සිදුවීම්
         url: අන්ත ලක්ෂ්‍ය URL
     'no': නැත
+    not_recommended: Not recommended
     recommended: නිර්දේශිත
     required:
       mark: "*"

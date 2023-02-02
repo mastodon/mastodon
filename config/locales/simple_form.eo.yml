@@ -18,6 +18,8 @@ eo:
           disable: Malhelpi la uzanton uzi sian konton, sed ne forigi aŭ kaŝi ties enhavojn.
           none: Uzu ĉi tion por sendi averton al la uzanto, sen ekigi alian agon.
           sensitive: Devigi ĉiujn da plurmediaj aldonaĵoj esti markitaj kiel sentemaj.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Malnepra. Vi povas ankoraŭ aldoni propran tekston al la fino de la antaŭagordo
       announcement:
         all_day: Kiam markita, nur la datoj de la tempointervalo estos montrataj
@@ -72,6 +74,7 @@ eo:
           hide: Tute kaŝigi la filtritajn enhavojn, kvazau ĝi ne ekzistis
           warn: Kaŝi la enhavon filtritan malantaŭ averto mencianta la nomon de la filtro
       form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
         backups_retention_period: Konservi generitajn uzantoarkivojn por la kvanto de tagoj.
         bootstrap_timeline_accounts: Ĉi tiuj kontoj pinglitas al la supro de sekvorekomendoj de novaj uzantoj.
         closed_registrations_message: Montrita kiam registroj fermitas
@@ -79,6 +82,7 @@ eo:
         custom_css: Vi povas meti propajn stilojn en la retversio de Mastodon.
         mascot: Anstatauigi la ilustraĵon en la altnivela retinterfaco.
         media_cache_retention_period: Elŝutitaj audovidaĵojn forigotas post la kvanto de tagoj kiam fiksitas al pozitiva nombro.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: La profilujo listigas ĉiujn uzantojn kiu volonte malkovrebli.
         require_invite_text: Kiam registroj bezonas permanan aprobon, igi la "Kial vi volas aliĝi?" tekstoenigon deviga anstau nedeviga
         site_contact_email: Kiel personoj povas kontakti vin por juraj au subtenaj demandoj.
@@ -92,6 +96,7 @@ eo:
         timeline_preview: Elsalutitaj vizitantoj povos vidi la plej lastajn publikajn mesaĝojn disponeblaj en la servilo.
         trendable_by_default: Ignori permanan kontrolon de tendenca enhavo.
         trends: Tendencoj montras kiu mesaĝoj, kradvortoj kaj novaĵoj populariĝas en via servilo.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: Vi eniras sekuran areon
       imports:
@@ -227,6 +232,7 @@ eo:
           hide: Kaŝi komplete
           warn: Kaŝi malantaŭ averto
       form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
         backups_retention_period: Uzantoarkivretendauro
         bootstrap_timeline_accounts: Ĉiam rekomendi ĉi tiujn kontojn al novaj uzantoj
         closed_registrations_message: Kutima mesaĝo kiam registroj ne estas disponeblaj
@@ -234,6 +240,7 @@ eo:
         custom_css: Propa CSS
         mascot: Propa maskoto
         media_cache_retention_period: Audovidaĵkaŝaĵretendauro
+        peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Ŝalti la profilujon
         registrations_mode: Kiu povas krei konton
         require_invite_text: Bezoni kialon por aliĝi
@@ -250,6 +257,7 @@ eo:
         timeline_preview: Permesi la neaŭtentigitan aliron al la publikaj templinioj
         trendable_by_default: Permesi tendencojn sen deviga kontrolo
         trends: Ŝalti furorojn
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Bloki sciigojn de nesekvantoj
         must_be_following: Bloki sciigojn de homoj, kiujn vi ne sekvas

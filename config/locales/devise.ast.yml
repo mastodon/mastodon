@@ -7,18 +7,24 @@ ast:
       send_paranoid_instructions: Si la direición de corréu electrónicu esiste na nuesa base de datos, nunos minutos vas recibir un mensaxe coles instrucciones pa saber cómo confirmala. Revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
     failure:
       already_authenticated: Xá aniciesti la sesión.
+      inactive: Your account is not activated yet.
+      invalid: Invalid %{authentication_keys} or password.
       last_attempt: Quédate un intentu más enantes de bloquiar la cuenta.
       locked: La cuenta ta bloquiada.
+      not_found_in_database: Invalid %{authentication_keys} or password.
       pending: La cuenta sigue en revisión.
       timeout: La sesión caducó. Volvi aniciala pa siguir.
       unauthenticated: Tienes d'aniciar la sesión o rexistrate enantes de siguir.
       unconfirmed: Tienes de confirmar la direición de corréu electrónicu enantes de siguir.
     mailer:
       confirmation_instructions:
+        action: Verify email address
+        action_with_app: Confirm and return to %{app}
         explanation: Creesti una cuenta en %{host} con esta direición de corréu electrónicu ya tas a un calcu d'activala. Si nun fixesti esta aición, inora esti mensaxe.
         explanation_when_pending: Solicitesti una invitación a %{host} con esta direición de corréu electrónicu. Namás que confirmes la direición de corréu electrónicu, vamos revisar la solicitú. Entrín ya non, pues aniciar la sesión pa camudar los detalles o desaniciar la cuenta, mas nun pues acceder a la mayoría de funciones hasta que la cuenta nun tea aprobada. Si se refuga la solicitú, nun ye necesario que faigas nada más o si, per otra parte, tu nun fixesti esta aición, inora esti mensaxe.
         extra_html: Revisa tamién <a href="%{terms_path}">les regles del sirvidor</a> ya <a href="%{policy_path}">los nuesos términos del serviciu</a>.
         subject: 'Mastodon: instrucciones de confirmación de «%{instance}»'
+        title: Verify email address
       email_changed:
         explanation: 'La direición de corréu electrónicu de la cuenta camudó a:'
         extra: Si nun camudesti la direición de corréu electrónicu, ye probable que daquién accediere a la cuenta. Camuda la contraseña agora mesmo o ponte en contautu cola alministración del sirvidor si nun yes a acceder a la cuenta.
@@ -28,6 +34,7 @@ ast:
         explanation: La contraseña de la cuenta camudó.
         extra: Si nun camudesti la contraseña, ye probable que daquién accediere a la cuenta. Camuda la contraseña agora mesmo o ponte en contautu cola alministración del sirvidor si nun yes a acceder a la cuenta.
         subject: 'Mastodon: la contraseña camudó'
+        title: Password changed
       reconfirmation_instructions:
         explanation: Confirma la direición nueva pa camudar la direición de corréu electrónicu.
         extra: Si tu nun aniciesti esti cambéu, inora esti mensaxe. La direición de corréu electrónicu de la cuenta de Mastodon nun va camudar hasta que nun accedas al enllaz d'arriba.
@@ -50,6 +57,7 @@ ast:
       two_factor_recovery_codes_changed:
         explanation: Invalidáronse los códigos de recuperación anteriores ya xeneráronse otros nuevos.
         subject: 'Mastodon: volvieron xenerase los códigos de recuperación de l''autenticación en dos pasos'
+        title: 2FA recovery codes changed
       unlock_instructions:
         subject: 'Mastodon: instrucciones de desbloquéu'
       webauthn_credential:
@@ -58,6 +66,8 @@ ast:
           subject: 'Mastodon: llave de seguranza nueva'
           title: Amestóse una llave de seguranza nueva
         deleted:
+          explanation: The following security key has been deleted from your account
+          subject: 'Mastodon: Security key deleted'
           title: Desanicióse una de les to llaves de seguranza
       webauthn_disabled:
         explanation: Desactivóse l'autenticación con llaves de seguranza na cuenta. Agora namás ye posible aniciar la sesión col pase xeneráu pola aplicación TOTP empareyada.
@@ -67,7 +77,11 @@ ast:
         explanation: Activóse l'autenticación con llaves de seguranza na cuenta. Agora pues usar la llave p'aniciar la sesión.
         subject: 'Mastodon: activóse l''autenticación con llaves de seguranza'
         title: Llaves de seguranza activaes
+    omniauth_callbacks:
+      failure: Could not authenticate you from %{kind} because “%{reason}”.
+      success: Successfully authenticated from %{kind} account.
     passwords:
+      no_token: You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided.
       send_instructions: Si la direición de corréu electrónicu esiste na nuesa base de datos, nunos minutos vas recibir un enllaz pa recuperar la contraseña. Revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
       send_paranoid_instructions: Si la direición de corréu electrónicu esiste na nuesa base de datos, nunos minutos vas recibir un enllaz pa recuperar la contraseña. Revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
       updated: La contraseña camudó correutamente. Xá aniciesti la sesión.
