@@ -73,9 +73,12 @@ class BackupService < BaseService
   def dump_media_attachments!(zipfile)
     MediaAttachment.attached.where(account: account).reorder(nil).find_in_batches do |media_attachments|
       media_attachments.each do |m|
-        next unless m.file&.path
+        path = m.file&.path
+        next unless path
 
-        download_to_zip(zipfile, m.file, m.file.path)
+        path = path.gsub(/\A.*\/system\//, '')
+        path = path.gsub(/\A\/+/, '')
+        download_to_zip(zipfile, m.file, path)
       end
 
       GC.start
