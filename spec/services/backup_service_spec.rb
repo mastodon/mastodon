@@ -12,15 +12,11 @@ RSpec.describe BackupService, type: :service do
   let!(:favourite)      { Fabricate(:favourite, account: user.account) }
   let!(:backup)         { Fabricate(:backup, user: user) }
 
-  def read_tgz_file(backup, filename)
+  def read_zip_file(backup, filename)
     file = Paperclip.io_adapters.for(backup.dump)
-    Zlib::GzipReader.wrap(file) do |gz|
-      Gem::Package::TarReader.new(gz) do |tar|
-        tar.each do |entry|
-          next unless entry.full_name == filename
-          return entry.read
-        end
-      end
+    Zip::File.open(file) do |zipfile|
+      entry = zipfile.glob(filename).first
+      return entry.get_input_stream.read
     end
   end
 
@@ -31,7 +27,7 @@ RSpec.describe BackupService, type: :service do
   it 'exports outbox.json as expected' do
     service_call
 
-    json = Oj.load(read_tgz_file(backup, 'outbox.json'))
+    json = Oj.load(read_zip_file(backup, 'outbox.json'))
     expect(json['type']).to eq 'OrderedCollection'
     expect(json['totalItems']).to eq 2
     expect(json['orderedItems'][0]).to include({
@@ -53,7 +49,7 @@ RSpec.describe BackupService, type: :service do
   it 'exports likes.json as expected' do
     service_call
 
-    json = Oj.load(read_tgz_file(backup, 'likes.json'))
+    json = Oj.load(read_zip_file(backup, 'likes.json'))
     expect(json['type']).to eq 'OrderedCollection'
     expect(json['totalItems']).to eq 1
     expect(json['orderedItems']).to eq [ActivityPub::TagManager.instance.uri_for(favourite.status)]
