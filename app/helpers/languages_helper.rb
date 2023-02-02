@@ -199,6 +199,8 @@ module LanguagesHelper
     sco: ['Scots', 'Scots'].freeze,
     sma: ['Southern Sami', 'Åarjelsaemien Gïele'].freeze,
     smj: ['Lule Sami', 'Julevsámegiella'].freeze,
+    szl: ['Silesian', 'ślůnsko godka'].freeze,
+    tai: ['Tai', 'ภาษาไท or ภาษาไต'].freeze,
     tok: ['Toki Pona', 'toki pona'].freeze,
     zba: ['Balaibalan', 'باليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
@@ -210,8 +212,10 @@ module LanguagesHelper
   # names, but for some translations, we need the names of the
   # regional variants specifically
   REGIONAL_LOCALE_NAMES = {
+    'en-GB': 'English (British)',
     'es-AR': 'Español (Argentina)',
     'es-MX': 'Español (México)',
+    'fr-QC': 'Français (Canadien)',
     'pt-BR': 'Português (Brasil)',
     'pt-PT': 'Português (Portugal)',
     'sr-Latn': 'Srpski (latinica)',
