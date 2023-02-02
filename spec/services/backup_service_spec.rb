@@ -28,8 +28,10 @@ RSpec.describe BackupService, type: :service do
     service_call
 
     json = Oj.load(read_zip_file(backup, 'outbox.json'))
+    expect(json['@context']).to_not be_nil
     expect(json['type']).to eq 'OrderedCollection'
     expect(json['totalItems']).to eq 2
+    expect(json['orderedItems'][0]['@context']).to be_nil
     expect(json['orderedItems'][0]).to include({
       'type' => 'Create',
       'object' => include({
