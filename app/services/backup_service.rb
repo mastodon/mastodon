@@ -112,40 +112,55 @@ class BackupService < BaseService
   end
 
   def dump_likes!(zipfile)
-    collection = serialize(ActivityPub::CollectionPresenter.new(id: 'likes.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
-
-    Status.reorder(nil).joins(:favourites).includes(:account).merge(account.favourites).find_in_batches do |statuses|
-      statuses.each do |status|
-        collection[:totalItems] += 1
-        collection[:orderedItems] << ActivityPub::TagManager.instance.uri_for(status)
-      end
-
-      GC.start
-    end
-
-    json = Oj.dump(collection)
+    skeleton = serialize(ActivityPub::CollectionPresenter.new(id: 'likes.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
+    skeleton.delete(:totalItems)
+    skeleton[:orderedItems] = ['!PLACEHOLDER!']
+    skeleton = Oj.dump(skeleton)
+    prepend, append = skeleton.split('"!PLACEHOLDER!"')
 
     zipfile.get_output_stream('likes.json') do |io|
-      io.write(json)
+      io.write(prepend)
+
+      add_comma = false
+
+      Status.reorder(nil).joins(:favourites).includes(:account).merge(account.favourites).find_in_batches do |statuses|
+        io.write(',') if add_comma
+        add_comma = true
+
+        io.write(statuses.map do |status|
+          Oj.dump(ActivityPub::TagManager.instance.uri_for(status))
+        end.join(','))
+
+        GC.start
+      end
+
+      io.write(append)
     end
   end
 
   def dump_bookmarks!(zipfile)
-    collection = serialize(ActivityPub::CollectionPresenter.new(id: 'bookmarks.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
-
-    Status.reorder(nil).joins(:bookmarks).includes(:account).merge(account.bookmarks).find_in_batches do |statuses|
-      statuses.each do |status|
-        collection[:totalItems] += 1
-        collection[:orderedItems] << ActivityPub::TagManager.instance.uri_for(status)
-      end
-
-      GC.start
-    end
-
-    json = Oj.dump(collection)
+    skeleton = serialize(ActivityPub::CollectionPresenter.new(id: 'bookmarks.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
+    skeleton.delete(:totalItems)
+    skeleton[:orderedItems] = ['!PLACEHOLDER!']
+    skeleton = Oj.dump(skeleton)
+    prepend, append = skeleton.split('"!PLACEHOLDER!"')
 
     zipfile.get_output_stream('bookmarks.json') do |io|
-      io.write(json)
+      io.write(prepend)
+
+      add_comma = false
+      Status.reorder(nil).joins(:bookmarks).includes(:account).merge(account.bookmarks).find_in_batches do |statuses|
+        io.write(',') if add_comma
+        add_comma = true
+
+        io.write(statuses.map do |status|
+          Oj.dump(ActivityPub::TagManager.instance.uri_for(status))
+        end.join(','))
+
+        GC.start
+      end
+
+      io.write(append)
     end
   end
 

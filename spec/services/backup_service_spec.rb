@@ -10,6 +10,7 @@ RSpec.describe BackupService, type: :service do
   let!(:status)         { Fabricate(:status, account: user.account, text: 'Hello', visibility: :public, media_attachments: [attachment]) }
   let!(:private_status) { Fabricate(:status, account: user.account, text: 'secret', visibility: :private) }
   let!(:favourite)      { Fabricate(:favourite, account: user.account) }
+  let!(:bookmark)       { Fabricate(:bookmark, account: user.account) }
   let!(:backup)         { Fabricate(:backup, user: user) }
 
   def read_zip_file(backup, filename)
@@ -53,7 +54,14 @@ RSpec.describe BackupService, type: :service do
 
     json = Oj.load(read_zip_file(backup, 'likes.json'))
     expect(json['type']).to eq 'OrderedCollection'
-    expect(json['totalItems']).to eq 1
     expect(json['orderedItems']).to eq [ActivityPub::TagManager.instance.uri_for(favourite.status)]
+  end
+
+  it 'exports bookmarks.json as expected' do
+    service_call
+
+    json = Oj.load(read_zip_file(backup, 'bookmarks.json'))
+    expect(json['type']).to eq 'OrderedCollection'
+    expect(json['orderedItems']).to eq [ActivityPub::TagManager.instance.uri_for(bookmark.status)]
   end
 end
