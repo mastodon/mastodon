@@ -113,19 +113,12 @@ class GettingStarted extends ImmutablePureComponent {
       navItems.push(
         <ColumnSubheading key='header-personal' text={intl.formatMessage(messages.personal)} />,
         <ColumnLink key='home' icon='home' text={intl.formatMessage(messages.home_timeline)} to='/home' />,
+        <ColumnLink key='direct' icon='at' text={intl.formatMessage(messages.direct)} to='/conversations' />,
+        <ColumnLink key='bookmark' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />,
+        <ColumnLink key='favourites' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
+        <ColumnLink key='lists' icon='list-ul' text={intl.formatMessage(messages.lists)} to='/lists' />,
+        <ColumnLink key='circles' icon='user-circle' text={intl.formatMessage(messages.circles)} to='/circles' />,
       );
-      height += 48;
-    }
-
-    navItems.push(
-      <ColumnLink key='direct' icon='at' text={intl.formatMessage(messages.direct)} to='/conversations' />,
-      <ColumnLink key='bookmark' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />,
-      <ColumnLink key='favourites' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
-      <ColumnLink key='lists' icon='list-ul' text={intl.formatMessage(messages.lists)} to='/lists' />,
-      <ColumnLink key='circles' icon='user-circle' text={intl.formatMessage(messages.circles)} to='/circles' />,
-    );
-
-    height += 48*5;
 
       if (myAccount.get('locked') || unreadFollowRequests > 0) {
         navItems.push(<ColumnLink key='follow_requests' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
