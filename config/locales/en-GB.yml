@@ -162,8 +162,19 @@ en-GB:
       unsuspended_msg: Successfully unsuspended %{username}'s account
       username: Username
       view_domain: View summary for domain
+      warn: Warn
+      web: Web
+      whitelisted: Allowed for federation
     action_logs:
       action_types:
+        approve_appeal: Approve Appeal
+        approve_user: Approve User
+        assigned_to_self_report: Assign Report
+        change_email_user: Change E-mail for User
+        change_role_user: Change Role of User
+        confirm_user: Confirm User
+        create_account_warning: Create Warning
+        create_announcement: Create Announcement
         unassigned_report: Unassign Report
     roles:
       categories:
@@ -216,3 +227,8 @@ en-GB:
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
+  webauthn_credentials:
+    not_enabled: You haven't enabled WebAuthn yet
+    not_supported: This browser doesn't support security keys
+    otp_required: To use security keys please enable two-factor authentication first.
+    registered_on: Registered on %{date}
