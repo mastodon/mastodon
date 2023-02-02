@@ -36,9 +36,9 @@
           = t('admin.site_uploads.delete')
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :logo, as: :file, wrapper: :with_block_label, label: t('admin.settings.logo.title'), hint: site_upload_delete_hint(t('admin.settings.logo.desc_html'), :logo)
+      = f.input :logo, as: :file, wrapper: :with_block_label, label: t('admin.settings.logo.title')
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :logo_transparent, as: :file, wrapper: :with_block_label, label: t('admin.settings.logo_transparent.title'), hint: site_upload_delete_hint(t('admin.settings.logo_transparent.desc_html'), :logo_transparent)
+      = f.input :logo_transparent, as: :file, wrapper: :with_block_label, label: t('admin.settings.logo_transparent.title')
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
