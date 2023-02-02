@@ -22,9 +22,8 @@ class BackupService < BaseService
     skeleton[:@context] = full_context
     skeleton[:orderedItems] = ['!PLACEHOLDER!']
     skeleton = Oj.dump(skeleton)
-    prepend    = skeleton.gsub(/"!PLACEHOLDER!".*/, '')
-    append     = skeleton.gsub(/.*"!PLACEHOLDER!"/, '')
-    add_comma  = false
+    prepend, append = skeleton.split('"!PLACEHOLDER!"')
+    add_comma = false
 
     file.write(prepend)
 
@@ -38,7 +37,7 @@ class BackupService < BaseService
 
         unless item[:type] == 'Announce' || item[:object][:attachment].blank?
           item[:object][:attachment].each do |attachment|
-            attachment[:url] = Addressable::URI.parse(attachment[:url]).path.gsub(/\A\/system\//, '')
+            attachment[:url] = Addressable::URI.parse(attachment[:url]).path.delete_prefix('/system/')
           end
         end
 
