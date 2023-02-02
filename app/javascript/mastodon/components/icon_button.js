@@ -128,7 +128,7 @@ export default class IconButton extends React.PureComponent {
 
     let contents = (
       <React.Fragment>
-        <Icon id={icon} fixedWidth aria-hidden='true' /> {typeof counter !== 'undefined' && <span className='icon-button__counter'><AnimatedNumber value={counter} obfuscate={obfuscateCount} /></span>}
+        <Icon id={icon} fixedWidth aria-hidden='true' /> {typeof counter !== 'undefined' && <span className='icon-button__counter'><AnimatedNumber value={counter} obfuscate={(obfuscateCount === true)} /></span>}
       </React.Fragment>
     );
 

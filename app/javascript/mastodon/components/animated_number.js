@@ -51,7 +51,7 @@ export default class AnimatedNumber extends React.PureComponent {
     const { direction } = this.state;
 
     if (reduceMotion) {
-      return obfuscate ? obfuscatedCount(value) : <ShortNumber value={value} />;
+      return (obfuscate === true) ? obfuscatedCount(value) : <ShortNumber value={value} />;
     }
 
     const styles = [{
@@ -65,7 +65,7 @@ export default class AnimatedNumber extends React.PureComponent {
         {items => (
           <span className='animated-number'>
             {items.map(({ key, data, style }) => (
-              <span key={key} style={{ position: (direction * style.y) > 0 ? 'absolute' : 'static', transform: `translateY(${style.y * 100}%)` }}>{obfuscate ? obfuscatedCount(data) : <ShortNumber value={data} />}</span>
+              <span key={key} style={{ position: (direction * style.y) > 0 ? 'absolute' : 'static', transform: `translateY(${style.y * 100}%)` }}>{(obfuscate === true) ? obfuscatedCount(data) : <ShortNumber value={data} />}</span>
             ))}
           </span>
         )}
