@@ -1,0 +1,25 @@
+# Chart values used for testing the Helm chart.
+#
+mastodon:
+  secrets:
+    secret_key_base: dummy-secret_key_base
+    otp_secret: dummy-otp_secret
+    vapid:
+      private_key: dummy-vapid-private_key
+      public_key: dummy-vapid-public_key
+
+# ref: https://github.com/bitnami/charts/tree/main/bitnami/redis#parameters
+redis:
+  replica:
+    replicaCount: 1
+
+# ref: https://github.com/bitnami/charts/tree/main/bitnami/elasticsearch#parameters
+elasticsearch:
+  master:
+    replicaCount: 1
+  data:
+    replicaCount: 1
+  coordinating:
+    replicaCount: 1
+  ingest:
+    replicaCount: 1

@@ -1,0 +1,21 @@
+{
+  "problemMatcher": [
+    {
+      "owner": "stylelint",
+      "pattern": [
+        {
+          "regexp": "^([^\\s].*)$",
+          "file": 1
+        },
+        {
+          "regexp": "^\\s+((\\d+):(\\d+))?\\s+(✖|×)\\s+(.*)\\s{2,}(.*)$",
+          "line": 2,
+          "column": 3,
+          "message": 5,
+          "code": 6,
+          "loop": true
+        }
+      ]
+    }
+  ]
+}

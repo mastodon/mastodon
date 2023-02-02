@@ -13,3 +13,4 @@ spec:
       name: streaming
   selector:
     {{- include "mastodon.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: streaming

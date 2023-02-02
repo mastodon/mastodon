@@ -10,7 +10,7 @@ eo:
         text: Vi povas uzi skribmanierojn de mesaĝoj, kiel URL-ojn, kradvortojn kaj menciojn
         title: Laŭvola. Ne videbla por la ricevanto
       admin_account_action:
-        include_statuses: La uzanto vidos, kiujn afiŝojn estas kaŭzintaj la moderigan agon aŭ averton
+        include_statuses: La uzanto vidos, kiujn afiŝojn kaŭzis la agon de moderigo aŭ de averto
         send_email_notification: La uzanto ricevos klarigon pri tio, kio okazis al ties konto
         text_html: Malnepra. Vi povas uzi skribmanierojn de mesaĝoj. Vi povas <a href="%{path}">aldoni avertajn antaŭagordojn</a> por ŝpari tempon
         type_html: Elektu kion fari kun <strong>%{acct}</strong>
@@ -26,7 +26,7 @@ eo:
         ends_at: Laŭvola. La anonco estos aŭtomate maleldonita ĉi tiam
         scheduled_at: Lasi malplena por eldoni la anoncon tuj
         starts_at: Laŭvola. Se via anonco estas ligita al specifa tempo
-        text: Vi povas uzi afiŝo-sintakson. Bonvolu mensemi pri la spaco, kiun la anonco okupos sur la ekrano de la uzanto
+        text: Vi povas uzi la sintakso de afiŝoj. Bonvolu zorgi pri la spaco, kiun la anonco okupos sur la ekrano de la uzanto
       defaults:
         autofollow: Homoj, kiuj registriĝos per la invito aŭtomate sekvos vin
         avatar: Formato PNG, GIF aŭ JPG. Ĝis %{size}. Estos malgrandigita al %{dimensions}px
@@ -35,32 +35,36 @@ eo:
         current_password: Pro sekuraj kialoj, bonvolu enigi la pasvorton de la nuna konto
         current_username: Por konfirmi, bonvolu enigi la uzantnomon de la nuna konto
         digest: Sendita nur post longa tempo de neaktiveco, kaj nur se vi ricevis personan mesaĝon en via foresto
-        email: Vi ricevos konfirman retmesaĝon
+        email: Vi ricevos retpoŝtaĵon de konfirmo
         fields: Vi povas havi ĝis 4 tabelajn elementojn en via profilo
         header: Formato PNG, GIF aŭ JPG. Ĝis %{size}. Estos malgrandigita al %{dimensions}px
         inbox_url: Kopiu la URL de la ĉefpaĝo de la ripetilo, kiun vi volas uzi
-        irreversible: Elfiltritaj mesaĝoj malaperos por ĉiam, eĉ se la filtrilo estas poste forigita
-        locale: La lingvo de la uzant-interfaco, retmesaĝoj kaj puŝ-sciigoj
+        irreversible: La filtritaj mesaĝoj malaperos por eterne, eĉ se la filtrilo poste estas forigita
+        locale: La lingvo de la fasado, de retpoŝtaĵoj, kaj de sciigoj
         locked: Vi devos aprobi ĉiun peton de sekvado mane
         password: Uzu almenaŭ 8 signojn
         phrase: Estos provita senzorge pri la uskleco de teksto aŭ averto pri enhavo de mesaĝo
         scopes: Kiujn API-ojn la aplikaĵo permesiĝos atingi. Se vi elektas supran amplekson, vi ne bezonas elekti la individuajn.
-        setting_aggregate_reblogs: Ne montri novajn diskonigojn de mesaĝoj laste diskonigitaj (nur efikas al novaj diskonigoj)
-        setting_default_sensitive: Tiklaj aŭdovidaĵoj estas defaŭlte kaŝita kaj povas esti malkiŝita per klako
-        setting_display_media_default: Kaŝi aŭdovidaĵojn markitajn kiel tiklaj
-        setting_display_media_hide_all: Ĉiam kaŝi ĉiujn aŭdovidaĵojn
-        setting_display_media_show_all: Ĉiam montri aŭdovidaĵojn markitajn kiel tiklaj
-        setting_hide_network: Tiuj, kiujn vi sekvas, kaj tiuj, kiuj sekvas vin ne estos videblaj en via profilo
+        setting_aggregate_reblogs: Ne montri novajn plusendojn de mesaĝoj lastatempe plusenditaj (nur efikas al nove ricevitaj plusendoj)
+        setting_always_send_emails: Normale, la sciigoj per retpoŝto ne estos senditaj kiam vi uzas Mastodon aktive
+        setting_default_sensitive: La tiklaj aŭdovidaĵoj estas kaŝitaj implicite, kaj povas esti montritaj per klako
+        setting_display_media_default: Kaŝi aŭdovidaĵojn markitajn kiel tikla
+        setting_display_media_hide_all: Ĉiam kaŝi la aŭdovidaĵojn
+        setting_display_media_show_all: Ĉiam montri la aŭdovidaĵojn
+        setting_hide_network: Tiuj kiujn vi sekvas, kaj tiuj kiuj sekvas vin estos kaŝitaj en via profilo
         setting_noindex: Influas vian publikan profilon kaj mesaĝajn paĝojn
         setting_show_application: La aplikaĵo, kiun vi uzas por afiŝi, estos montrita en la detala vido de viaj mesaĝoj
         setting_use_blurhash: Transirojn estas bazita sur la koloroj de la kaŝitaj aŭdovidaĵoj sed ne montri iun ajn detalon
         setting_use_pending_items: Kaŝi tempoliniajn ĝisdatigojn malantaŭ klako anstataŭ aŭtomate rulumi la fluon
-        username: Via uzantnomo estos unika ĉe %{domain}
+        username: Via uzantnomo estos unika en %{domain}
         whole_word: Kiam la vorto aŭ frazo estas nur litera aŭ cifera, ĝi estos uzata nur se ĝi kongruas kun la tuta vorto
       domain_allow:
         domain: Ĉi tiu domajno povos akiri datumon de ĉi tiu servilo kaj envenanta datumo estos prilaborita kaj konservita
       featured_tag:
-        name: 'Vi povus uzi iun el la jenaj:'
+        name: 'Jen kelkaj el la kradvortoj, kiujn vi uzis lastatempe:'
+      filters:
+        actions:
+          warn: Kaŝi la enhavon filtritan malantaŭ averto mencianta la nomon de la filtro
       form_challenge:
         current_password: Vi eniras sekuran areon
       imports:
@@ -71,7 +75,7 @@ eo:
         comment: Laŭvola. Memoru, kial vi aldonis ĉi tiun regulon.
         severities:
           no_access: Bloki aliron al ĉiuj rimedoj
-          sign_up_requires_approval: Novaj registriĝoj devigos vian aprobon
+          sign_up_requires_approval: Novaj registriĝoj bezonos vian aprobon
         severity: Elektu, kio okazos pri petoj de ĉi tiu IP
       rule:
         text: Priskribu regulon aŭ neceson por uzantoj en ĉi tiu servilo. Provu fari ĝin mallonga kaj simpla
@@ -104,7 +108,7 @@ eo:
           none: Fari nenion
           sensitive: Tikla
           silence: Silentigi
-          suspend: Haltigi kaj nemalfereble forigi kontajn datumojn
+          suspend: Suspendi
         warning_preset_id: Uzi antaŭagorditan averton
       announcement:
         all_day: Ĉiutaga evento
@@ -114,7 +118,7 @@ eo:
         text: Anonco
       defaults:
         autofollow: Inviti al sekvi vian konton
-        avatar: Profilbildo
+        avatar: Rolfiguro
         bot: Tio estas robota konto
         chosen_languages: Filtri lingvojn
         confirm_new_password: Konfirmi novan pasvorton
@@ -138,9 +142,10 @@ eo:
         note: Sinprezento
         otp_attempt: Kodo de dufaktora aŭtentigo
         password: Pasvorto
-        phrase: Vorto aŭ frazo
+        phrase: Ĉefvorto aŭ frazo
         setting_advanced_layout: Ebligi altnivelan retpaĝan interfacon
         setting_aggregate_reblogs: Grupigi diskonigojn en templinioj
+        setting_always_send_emails: Ĉiam sendi la sciigojn per retpoŝto
         setting_auto_play_gif: Aŭtomate ekigi GIF-ojn
         setting_boost_modal: Montri konfirman fenestron antaŭ ol diskonigi mesaĝon
         setting_crop_images: Stuci bildojn en negrandigitaj mesaĝoj al 16x9
@@ -150,28 +155,35 @@ eo:
         setting_delete_modal: Montri konfirman fenestron antaŭ ol forigi mesaĝon
         setting_disable_swiping: Malebligi svingajn movojn
         setting_display_media: Aŭdovidaĵa montrado
-        setting_display_media_default: Dekomenca
+        setting_display_media_default: Implicita
         setting_display_media_hide_all: Kaŝi ĉiujn
         setting_display_media_show_all: Montri ĉiujn
         setting_expand_spoilers: Ĉiam malfoldas mesaĝojn markitajn per averto pri enhavo
         setting_hide_network: Kaŝi viajn sekvantojn kaj sekvatojn
         setting_noindex: Ellistiĝi de retserĉila indeksado
-        setting_reduce_motion: Redukti movecon en la animacioj
+        setting_reduce_motion: Redukti la movecojn de la animacioj
         setting_show_application: Publikigi la aplikaĵon uzatan por sendi mesaĝojn
         setting_system_font_ui: Uzi la dekomencan tiparon de la sistemo
-        setting_theme: Reteja etoso
+        setting_theme: Etoso de la retejo
         setting_trends: Montri hodiaŭajn furoraĵojn
         setting_unfollow_modal: Montri konfirman fenestron antaŭ ol ĉesi sekvi iun
         setting_use_blurhash: Montri buntajn transirojn por kaŝitaj aŭdovidaĵoj
-        setting_use_pending_items: Malrapida reĝimo
+        setting_use_pending_items: Malrapida modo
         severity: Graveco
         sign_in_token_attempt: Sekureca kodo
+        title: Titolo
         type: Importa tipo
         username: Uzantnomo
         username_or_email: Uzantnomo aŭ Retadreso
         whole_word: Tuta vorto
       featured_tag:
         name: Kradvorto
+      filters:
+        actions:
+          hide: Kaŝi komplete
+          warn: Kaŝi malantaŭ averto
+      form_admin_settings:
+        registrations_mode: Kiu povas krei konton
       interactions:
         must_be_follower: Bloki sciigojn de nesekvantoj
         must_be_following: Bloki sciigojn de homoj, kiujn vi ne sekvas

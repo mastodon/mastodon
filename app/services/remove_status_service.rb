@@ -19,7 +19,9 @@ class RemoveStatusService < BaseService
     @options  = options
 
     with_lock("distribute:#{@status.id}") do
-      @status.discard
+      @status.discard_with_reblogs
+
+      StatusPin.find_by(status: @status)&.destroy
 
       remove_from_self if @account.local?
       remove_from_followers
@@ -55,13 +57,13 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_followers
-    @account.followers_for_local_distribution.reorder(nil).find_each do |follower|
+    @account.followers_for_local_distribution.includes(:user).reorder(nil).find_each do |follower|
       FeedManager.instance.unpush_from_home(follower, @status)
     end
   end
 
   def remove_from_lists
-    @account.lists_for_local_distribution.select(:id, :account_id).reorder(nil).find_each do |list|
+    @account.lists_for_local_distribution.select(:id, :account_id).includes(account: :user).reorder(nil).find_each do |list|
       FeedManager.instance.unpush_from_list(list, @status)
     end
   end
@@ -100,7 +102,7 @@ class RemoveStatusService < BaseService
     # because once original status is gone, reblogs will disappear
     # without us being able to do all the fancy stuff
 
-    @status.reblogs.includes(:account).reorder(nil).find_each do |reblog|
+    @status.reblogs.rewhere(deleted_at: [nil, @status.deleted_at]).includes(:account).reorder(nil).find_each do |reblog|
       RemoveStatusService.new.call(reblog, original_removed: true)
     end
   end

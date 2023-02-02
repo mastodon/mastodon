@@ -5,7 +5,7 @@ SHELL ["/bin/bash", "-c"]
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 # Install Node v16 (LTS)
-ENV NODE_VER="16.14.2"
+ENV NODE_VER="16.17.1"
 RUN ARCH= && \
     dpkgArch="$(dpkg --print-architecture)" && \
   case "${dpkgArch##*-}" in \
@@ -19,7 +19,7 @@ RUN ARCH= && \
   esac && \
     echo "Etc/UTC" > /etc/localtime && \
 	apt-get update && \
-	apt-get install -y --no-install-recommends ca-certificates wget python apt-utils && \
+	apt-get install -y --no-install-recommends ca-certificates wget python3 apt-utils && \
 	cd ~ && \
 	wget -q https://nodejs.org/download/release/v$NODE_VER/node-v$NODE_VER-linux-$ARCH.tar.gz && \
 	tar xf node-v$NODE_VER-linux-$ARCH.tar.gz && \
@@ -27,7 +27,7 @@ RUN ARCH= && \
 	mv node-v$NODE_VER-linux-$ARCH /opt/node
 
 # Install Ruby 3.0
-ENV RUBY_VER="3.0.3"
+ENV RUBY_VER="3.0.4"
 RUN apt-get update && \
   apt-get install -y --no-install-recommends build-essential \
     bison libyaml-dev libgdbm-dev libreadline-dev libjemalloc-dev \

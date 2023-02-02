@@ -32,7 +32,7 @@
       %p<
         %span.p-summary> #{prerender_custom_emojis(h(status.spoiler_text), status.emojis)}&nbsp;
         %button.status__content__spoiler-link= t('statuses.show_more')
-    .e-content
+    .e-content{ :lang => status.language }
       = prerender_custom_emojis(status_content_format(status), status.emojis)
 
       - if status.preloadable_poll
@@ -53,18 +53,18 @@
       = t 'statuses.show_thread'
 
   .status__action-bar
-    = link_to remote_interaction_path(status, type: :reply), class: 'status__action-bar-button icon-button icon-button--with-counter modal-button' do
+    %span.status__action-bar-button.icon-button.icon-button--with-counter
       - if status.in_reply_to_id.nil?
         = fa_icon 'reply fw'
       - else
         = fa_icon 'reply-all fw'
       %span.icon-button__counter= obscured_counter status.replies_count
-    = link_to remote_interaction_path(status, type: :reblog), class: 'status__action-bar-button icon-button modal-button' do
+    %span.status__action-bar-button.icon-button
       - if status.distributable?
         = fa_icon 'retweet fw'
       - elsif status.private_visibility? || status.limited_visibility?
         = fa_icon 'lock fw'
       - else
         = fa_icon 'at fw'
-    = link_to remote_interaction_path(status, type: :favourite), class: 'status__action-bar-button icon-button modal-button' do
+    %span.status__action-bar-button.icon-button
       = fa_icon 'star fw'

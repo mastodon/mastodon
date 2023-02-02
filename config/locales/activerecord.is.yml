@@ -21,6 +21,18 @@ is:
             username:
               invalid: má aðeins innihalda bókstafi, tölur og undirstrik
               reserved: er frátekið
+        admin/webhook:
+          attributes:
+            url:
+              invalid: er ekki gild vefslóð
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: er ekki gild vefslóð
+        import:
+          attributes:
+            data:
+              malformed: er rangt formað
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ is:
             email:
               blocked: notar óleyfilega tölvupóstþjónustu
               unreachable: virðist ekki vera til
+            role_id:
+              elevated: getur ekki verið veigameiri en núverandi hlutverk þitt
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: hefur heimildir sem ekki eru öruggar fyrir grunnhlutverk
+              elevated: getur ekki haft heimildir sem núverandi hlutverk þitt er ekki með
+              own_role: er ekki hægt að breyta með þinu hlutverki
+            position:
+              elevated: getur ekki verið veigameiri en núverandi hlutverk þitt
+              own_role: er ekki hægt að breyta með þinu hlutverki

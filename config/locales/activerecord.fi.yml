@@ -21,6 +21,18 @@ fi:
             username:
               invalid: saa sisältää vain kirjaimia, numeroita ja alaviivoja
               reserved: on varattu
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ei ole kelvollinen URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: ei ole kelvollinen URL
+        import:
+          attributes:
+            data:
+              malformed: on väärin muodostettu
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ fi:
             email:
               blocked: käyttää kiellettyä sähköpostipalvelun tarjoajaa
               unreachable: ei näytä olevan olemassa
+            role_id:
+              elevated: ei voi olla korkeampi kuin nykyinen roolisi
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: sisältää oikeudet, jotka eivät ole turvallisia perusroolille
+              elevated: ei voi sisältää oikeuksia, joita nykyisellä roolillasi ei ole
+              own_role: ei voi muuttaa nykyisellä roolillasi
+            position:
+              elevated: ei voi olla korkeampi kuin nykyinen roolisi
+              own_role: ei voi muuttaa nykyisellä roolillasi

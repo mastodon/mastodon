@@ -1,1 +1,164 @@
+---
 af:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Toepassing naam
+        redirect_uri: Herlei URI
+        scopes: Bestekke
+        website: Toepassing webtuiste
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: kan nie 'n vragment bevat nie.
+              invalid_uri: moet 'n geldige URI wees.
+              relative_uri: moet 'n absolute URI wees.
+              secured_uri: moet 'n HTTPS/SSL URI wees.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Magtig
+        cancel: Kanselleer
+        destroy: Vernietig
+        edit: Redigeer
+        submit: Dien in
+      confirmations:
+        destroy: Is jy seker?
+      edit:
+        title: Redigeer toepassing
+      form:
+        error: Oeps! Hersien jou vorm vir moontlike foute
+      help:
+        native_redirect_uri: Gebruik %{native_redirect_uri} vir plaaslike toetse
+        redirect_uri: Gebruik een lyn per URI
+        scopes: Verdeel omvang-grense met spasies. Los dit leeg om verstek omvange te gebruik.
+      index:
+        application: Toepassing
+        callback_url: Terugroep URL
+        delete: Wis uit
+        empty: Jy het geen toepassings nie.
+        name: Naam
+        new: Nuwe toepassing
+        scopes: Omvange
+        show: Vertoon
+        title: Jou toepassings
+      new:
+        title: Nuwe toepassing
+      show:
+        actions: Aksies
+        application_id: Kliënt sleutel
+        callback_urls: Terugroep URL'e
+        scopes: Omvange
+        secret: Kliënt geheim
+        title: 'Toepassing: %{name}'
+    authorizations:
+      buttons:
+        authorize: Magtig
+        deny: Weier
+      error:
+        title: "'n Fout het plaasgevind"
+      new:
+        prompt_html: "%{client_name} wil toegang hê tot jou rekening. Dit is a derde party toepassing. <strong>Indien jy dit nie vertrou nie, moet dit nie bemagtig word nie.</strong>"
+        review_permissions: Hersien toestemming
+        title: Benodig magtiging
+      show:
+        title: Kopieër hierdie magtigings kode en plaas dit in die toepassing.
+    authorized_applications:
+      buttons:
+        revoke: Herroep
+      confirmations:
+        revoke: Is jy seker?
+      index:
+        authorized_at: Bemagtig op %{date}
+        description_html: Hierdie is toepassings wat deur middel van die API toegang tot jou rekening kan verkry. As daar enige toepassings is wat jy nie herken nie, of 'n toepassing is wat wangedra, kan die bemagtiging herroep word.
+        last_used_at: Laas gebruik op %{date}
+        never_used: Noot gebruik nie
+        scopes: Magtiging
+        superapp: Intern
+        title: Jou gemagtigde toepassings
+    errors:
+      messages:
+        access_denied: Die hulpbron eienaar of magtigingsbediener het die aansoek afgekeur.
+        credential_flow_not_configured: Hulpbron Eienaar Wagwoord Geloofsbrewe vloei het gefaal omdat Doorkeeper.configure.resource_owner_from_credentials nie opgestel is nie.
+    flash:
+      applications:
+        create:
+          notice: Toepassing geskep.
+        destroy:
+          notice: Toepassing uitgewis.
+        update:
+          notice: Toepassing opdateer.
+      authorized_applications:
+        destroy:
+          notice: Toepassing herroep.
+    grouped_scopes:
+      access:
+        read: Slegs-lees toegang
+        read/write: Lees en skryf toegang
+        write: Slegs-skryf toegang
+      title:
+        accounts: Rekeninge
+        admin/accounts: Administrasie van rekeninge
+        admin/all: Alle administratiewe funksies
+        admin/reports: Administrasie van rapporteringe
+        all: Alles
+        blocks: Blokkeringe
+        bookmarks: Boekmerke
+        conversations: Gesprekke
+        crypto: End-tot-end enkripsie
+        favourites: Gunstelinge
+        filters: Filters
+        follow: Verhoudinge
+        lists: Lyste
+        media: Media aanhegsels
+        mutes: Dempinge
+        notifications: Kennisgewings
+        push: Stoot kennisgewings
+        reports: Rapporteringe
+        search: Soek
+        statuses: Plasings
+    layouts:
+      admin:
+        nav:
+          applications: Toepassings
+          oauth2_provider: OAuth2 Verskaffer
+      application:
+        title: Benodig OAuth bemagtiging
+    scopes:
+      admin:read: lees alle data op die bediener
+      admin:read:accounts: lees sensitiewe inligting vanaf alle rekeninge
+      admin:read:reports: lees sensitiewe inligting van alle verslae end aangeklaagde rekeninge
+      admin:write: verander alle data op die bediener
+      admin:write:accounts: voer modereer aksies uit op rekeninge
+      admin:write:reports: voer modereer aksies uit op verslae
+      crypto: gebruik end-tot-end enkripsie
+      follow: verander rekening verhoudinge
+      push: ontvang jou stootkennisgewings
+      read: lees die data van al jou rekeninge
+      read:accounts: sien rekening inligting
+      read:blocks: sien blokeringe
+      read:bookmarks: sien jou boekmerke
+      read:favourites: sien jou gunstelinge
+      read:filters: sien jou filters
+      read:lists: sien jou lyste
+      read:mutes: sien jou stilmake
+      read:notifications: sien jou kennisgewinge
+      read:reports: sien jou rapporteringe
+      read:search: soek namens jou
+      read:statuses: sien alle plasings
+      write: verander alle data van jou rekening
+      write:accounts: verander jou profiel
+      write:blocks: blokeer rekeninge en domeine
+      write:bookmarks: boekmerk plasings
+      write:conversations: demp en wis gesprekke uit
+      write:favourites: merk gunsteling plasings
+      write:filters: skep filters
+      write:follows: volg mense
+      write:lists: skep lyste
+      write:media: laai meda lêers op
+      write:mutes: demp mense en gesprekke
+      write:notifications: maak jou kennisgewings skoon
+      write:reports: rapporteer ander mense
+      write:statuses: publiseer plasings

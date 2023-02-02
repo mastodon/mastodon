@@ -30,7 +30,7 @@ pl:
       appeal:
         text: Możesz wysłać odwołanie do ostrzeżenia tylko raz
       defaults:
-        autofollow: Osoby, które zarejestrują się z Twojego zaproszenia automatycznie zaczną Cię śledzić
+        autofollow: Osoby, które zarejestrują się z Twojego zaproszenia automatycznie zaczną Cię obserwować
         avatar: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
         bot: To konto wykonuje głównie zautomatyzowane działania i może nie być monitorowane
         context: Jedno lub wiele miejsc, w których filtr zostanie zastosowany
@@ -44,7 +44,7 @@ pl:
         inbox_url: Skopiuj adres ze strony głównej przekaźnika, którego chcesz użyć
         irreversible: Filtrowane wpisy znikną bezpowrotnie, nawet gdy filtr zostanie usunięty
         locale: Język interfejsu, wiadomości e-mail i powiadomieniach push
-        locked: Musisz akceptować prośby o śledzenie
+        locked: Musisz akceptować prośby o możliwość obserwacji
         password: Użyj co najmniej 8 znaków
         phrase: Zostanie wykryte nawet, gdy znajduje się za ostrzeżeniem o zawartości
         scopes: Wybór API, do których aplikacja będzie miała dostęp. Jeżeli wybierzesz nadrzędny zakres, nie musisz wybierać jego elementów.
@@ -54,7 +54,7 @@ pl:
         setting_display_media_default: Ukrywaj zawartość multimedialną oznaczoną jako wrażliwa
         setting_display_media_hide_all: Zawsze ukrywaj zawartość multimedialną
         setting_display_media_show_all: Zawsze pokazuj zawartość multimedialną
-        setting_hide_network: Informacje o tym, kto Cię śledzi i kogo śledzisz nie będą widoczne
+        setting_hide_network: Informacje o tym, kto Cię obserwuje i kogo obserwujesz nie będą widoczne
         setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
         setting_show_application: W informacjach o wpisie będzie widoczna informacja o aplikacji, z której został wysłany
         setting_use_blurhash: Gradienty są oparte na kolorach ukrywanej zawartości, ale uniewidaczniają wszystkie szczegóły
@@ -67,7 +67,33 @@ pl:
         domain: To może być nazwa domeny, która pojawia się w adresie e-mail lub rekordzie MX, którego używa. Zostaną one sprawdzone przy rejestracji.
         with_dns_records: Zostanie wykonana próba rozwiązania rekordów DNS podanej domeny, a wyniki również zostaną dodane na czarną listę
       featured_tag:
-        name: 'Sugerujemy użycie jednego z następujących:'
+        name: 'Oto niektóre hasztagi, których były ostatnio przez ciebie użyte:'
+      filters:
+        action: Wybierz akcję do wykonania, gdy post pasuje do filtra
+        actions:
+          hide: Całkowicie ukryj przefiltrowaną zawartość, jakby nie istniała
+          warn: Ukryj filtrowaną zawartość za ostrzeżeniem wskazującym tytuł filtra
+      form_admin_settings:
+        backups_retention_period: Zachowaj wygenerowane archiwa użytkownika przez określoną liczbę dni.
+        bootstrap_timeline_accounts: Te konta zostaną przypięte na górze rekomendacji obserwacji nowych użytkowników.
+        closed_registrations_message: Wyświetlane po zamknięciu rejestracji
+        content_cache_retention_period: Posty z innych serwerów zostaną usunięte po określonej liczbie dni, kiedy liczba jest ustawiona na wartość dodatnią. Może to być nieodwracalne.
+        custom_css: Możesz zastosować niestandardowe style w internetowej wersji Mastodon.
+        mascot: Nadpisuje ilustrację w zaawansowanym interfejsie internetowym.
+        media_cache_retention_period: Pobrane pliki multimedialne zostaną usunięte po określonej liczbie dni po ustawieniu na wartość dodatnią i ponownie pobrane na żądanie.
+        profile_directory: Katalog profili zawiera listę wszystkich użytkowników, którzy zgodzili się na bycie znalezionymi.
+        require_invite_text: Kiedy rejestracje wymagają ręcznego zatwierdzenia, ustaw pole "Dlaczego chcesz dołączyć?" jako obowiązkowe, a nie opcjonalne
+        site_contact_email: Jak ludzie mogą się z Tobą skontaktować w celu uzyskania odpowiedzi na zapytania prawne lub wsparcie.
+        site_contact_username: Jak ludzie mogą do Ciebie dotrzeć na Mastodon.
+        site_extended_description: Wszelkie dodatkowe informacje, które mogą być przydatne dla odwiedzających i użytkowników. Można je formatować używając składni Markdown.
+        site_short_description: Krótki opis, który pomoże w unikalnym zidentyfikowaniu Twojego serwera. Kto go obsługuje, do kogo jest skierowany?
+        site_terms: Użyj własnej polityki prywatności lub zostaw puste, aby użyć domyślnej. Może być sformatowana za pomocą składni Markdown.
+        site_title: Jak ludzie mogą odwoływać się do Twojego serwera inaczej niże przez nazwę jego domeny.
+        theme: Motyw, który widzą wylogowani i nowi użytkownicy.
+        thumbnail: Obraz o proporcjach mniej więcej 2:1 wyświetlany obok informacji o serwerze.
+        timeline_preview: Wylogowani użytkownicy będą mogli przeglądać najnowsze publiczne wpisy dostępne na serwerze.
+        trendable_by_default: Pomiń ręczny przegląd treści trendów. Pojedyncze elementy nadal mogą być usuwane z trendów po fakcie.
+        trends: Tendencje pokazują, które posty, hasztagi i newsy zyskują popularność na Twoim serwerze.
       form_challenge:
         current_password: Wchodzisz w strefę bezpieczną
       imports:
@@ -80,6 +106,7 @@ pl:
         ip: Wprowadź adres IPv4 lub IPv6. Możesz zablokować całe zakresy za pomocą składni CIDR. Uważaj, aby się nie zablokować!
         severities:
           no_access: Zablokuj dostęp do wszystkich zasobów
+          sign_up_block: Nowe rejestracje nie będą możliwe
           sign_up_requires_approval: Nowe rejestracje będą wymagać twojej zgody
         severity: Wybierz co ma się stać z żadaniami z tego adresu IP
       rule:
@@ -91,6 +118,16 @@ pl:
         name: Możesz zmieniać tylko wielkość liter, np. aby były bardziej widoczne
       user:
         chosen_languages: Jeżeli zaznaczone, tylko wpisy w wybranych językach będą wyświetlane na publicznych osiach czasu
+        role: Rola kontroluje uprawnienia użytkownika
+      user_role:
+        color: Kolor używany dla roli w całym interfejsie użytkownika, wyrażony jako RGB w formacie szesnastkowym
+        highlighted: To sprawia, że rola jest widoczna publicznie
+        name: Publiczna nazwa roli, jeśli włączone jest wyświetlanie odznaki
+        permissions_as_keys: Użytkownicy z tą rolą będą mieli dostęp do...
+        position: Wyższa rola decyduje o rozwiązywaniu konfliktów w pewnych sytuacjach. Niektóre działania mogą być wykonywane tylko na rolach z niższym priorytetem
+      webhook:
+        events: Wybierz zdarzenia do wysłania
+        url: Dokąd będą wysłane zdarzenia
     labels:
       account:
         fields:
@@ -124,7 +161,7 @@ pl:
       appeal:
         text: Wyjaśnij, dlaczego ta decyzja powinna zostać cofnięta
       defaults:
-        autofollow: Zapraszaj do śledzenia swojego konta
+        autofollow: Zapraszaj do obserwacji swojego konta
         avatar: Awatar
         bot: To konto jest prowadzone przez bota
         chosen_languages: Filtrowanie języków
@@ -173,11 +210,12 @@ pl:
         setting_system_font_ui: Używaj domyślnej czcionki systemu
         setting_theme: Motyw strony
         setting_trends: Pokazuj dzisiejsze „Na czasie”
-        setting_unfollow_modal: Pytaj o potwierdzenie przed cofnięciem śledzenia
+        setting_unfollow_modal: Pytaj o potwierdzenie przed cofnięciem obserwacji
         setting_use_blurhash: Pokazuj kolorowe gradienty dla ukrytej zawartości multimedialnej
         setting_use_pending_items: Tryb spowolniony
         severity: Priorytet
         sign_in_token_attempt: Kod zabezpieczający
+        title: Tytuł
         type: Importowane dane
         username: Nazwa użytkownika
         username_or_email: Nazwa użytkownika lub adres e-mail
@@ -186,10 +224,38 @@ pl:
         with_dns_records: Uwzględnij rekordy MX i adresy IP domeny
       featured_tag:
         name: Hasztag
+      filters:
+        actions:
+          hide: Ukryj całkowicie
+          warn: Ukryj z ostrzeżeniem
+      form_admin_settings:
+        backups_retention_period: Okres przechowywania archiwum użytkownika
+        bootstrap_timeline_accounts: Zawsze rekomenduj te konta nowym użytkownikom
+        closed_registrations_message: Niestandardowa wiadomość, gdy rejestracje nie są dostępne
+        content_cache_retention_period: Okres przechowywania pamięci podręcznej
+        custom_css: Niestandardowy CSS
+        mascot: Własna ikona
+        media_cache_retention_period: Okres przechowywania pamięci podręcznej
+        profile_directory: Włącz katalog profilów
+        registrations_mode: Kto może się zarejestrować
+        require_invite_text: Wymagaj powodu, aby dołączyć
+        show_domain_blocks: Pokazuj zablokowane domeny
+        show_domain_blocks_rationale: Pokaż dlaczego domeny zostały zablokowane
+        site_contact_email: E-mail kontaktowy
+        site_contact_username: Nazwa użytkownika do kontaktu
+        site_extended_description: Rozszerzony opis
+        site_short_description: Opis serwera
+        site_terms: Polityka prywatności
+        site_title: Nazwa serwera
+        theme: Domyślny motyw
+        thumbnail: Miniaturka serwera
+        timeline_preview: Zezwalaj na nieuwierzytelniony dostęp do publicznych osi czasu
+        trendable_by_default: Zezwalaj na trendy bez wcześniejszego przeglądu
+        trends: Włącz trendy
       interactions:
-        must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie śledzą
-        must_be_following: Nie wyświetlaj powiadomień od osób, których nie śledzisz
-        must_be_following_dm: Nie wyświetlaj wiadomości bezpośrednich od osób, których nie śledzisz
+        must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie obserwują
+        must_be_following: Nie wyświetlaj powiadomień od osób, których nie obserwujesz
+        must_be_following_dm: Nie wyświetlaj wiadomości bezpośrednich od osób, których nie obserwujesz
       invite:
         comment: Komentarz
       invite_request:
@@ -199,14 +265,15 @@ pl:
         ip: Adres IP
         severities:
           no_access: Zablokuj dostęp
+          sign_up_block: Zablokuj nowe rejestracje
           sign_up_requires_approval: Ogranicz rejestracje
         severity: Reguła
       notification_emails:
         appeal: Ktoś odwołuje się od decyzji moderatora
         digest: Wysyłaj podsumowania e-mailem
         favourite: Powiadamiaj mnie e-mailem, gdy ktoś polubi mój wpis
-        follow: Powiadamiaj mnie e-mailem, gdy ktoś zacznie mnie śledzić
-        follow_request: Powiadamiaj mnie e-mailem, gdy ktoś poprosi o pozwolenie na śledzenie mnie
+        follow: Powiadamiaj mnie e-mailem, gdy ktoś zaobserwuje mnie
+        follow_request: Powiadamiaj mnie e-mailem, gdy ktoś poprosi o pozwolenie na obserwowanie mnie
         mention: Powiadamiaj mnie e-mailem, gdy ktoś o mnie wspomni
         pending_account: Wyślij e-mail kiedy nowe konto potrzebuje recenzji
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
@@ -219,7 +286,19 @@ pl:
         name: Hashtag
         trendable: Pozwól na wyświetlanie tego hashtagu w „Na czasie”
         usable: Pozwól na umieszczanie tego hashtagu we wpisach
+      user:
+        role: Rola
+      user_role:
+        color: Kolor odznaki
+        highlighted: Wyświetl rolę jako odznakę na profilach użytkowników
+        name: Nazwa
+        permissions_as_keys: Uprawnienia
+        position: Priorytet
+      webhook:
+        events: Włączone zdarzenia
+        url: Endpoint URL
     'no': Nie
+    not_recommended: Niezalecane
     recommended: Polecane
     required:
       mark: "*"

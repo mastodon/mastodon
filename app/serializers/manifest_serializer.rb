@@ -4,35 +4,43 @@ class ManifestSerializer < ActiveModel::Serializer
   include RoutingHelper
   include ActionView::Helpers::TextHelper
 
-  attributes :name, :short_name, :description,
+  ICON_SIZES = %w(
+    36
+    48
+    72
+    96
+    144
+    192
+    256
+    384
+    512
+  ).freeze
+
+  attributes :name, :short_name,
              :icons, :theme_color, :background_color,
              :display, :start_url, :scope,
              :share_target, :shortcuts
 
   def name
-    object.site_title
+    object.title
   end
 
   def short_name
-    object.site_title
-  end
-
-  def description
-    strip_tags(object.site_short_description.presence || I18n.t('about.about_mastodon_html'))
+    object.title
   end
 
   def icons
-    [
+    ICON_SIZES.map do |size|
       {
-        src: '/android-chrome-192x192.png',
-        sizes: '192x192',
+        src: full_pack_url("media/icons/android-chrome-#{size}x#{size}.png"),
+        sizes: "#{size}x#{size}",
         type: 'image/png',
-      },
-    ]
+      }
+    end
   end
 
   def theme_color
-    '#282c37'
+    '#191b22'
   end
 
   def background_color
@@ -44,7 +52,7 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def start_url
-    '/web/home'
+    '/home'
   end
 
   def scope
@@ -68,37 +76,12 @@ class ManifestSerializer < ActiveModel::Serializer
   def shortcuts
     [
       {
-        name: 'New toot',
-        url: '/web/publish',
-        icons: [
-          {
-            src: '/shortcuts/new-status.png',
-            type: 'image/png',
-            sizes: '192x192',
-          },
-        ],
+        name: 'Compose new post',
+        url: '/publish',
       },
       {
         name: 'Notifications',
-        url: '/web/notifications',
-        icons: [
-          {
-            src: '/shortcuts/notifications.png',
-            type: 'image/png',
-            sizes: '192x192',
-          },
-        ],
-      },
-      {
-        name: 'Direct messages',
-        url: '/web/conversations',
-        icons: [
-          {
-            src: '/shortcuts/direct.png',
-            type: 'image/png',
-            sizes: '192x192',
-          },
-        ],
+        url: '/notifications',
       },
     ]
   end

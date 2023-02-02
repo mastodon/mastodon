@@ -21,12 +21,35 @@ he:
             username:
               invalid: ספרות, אותיות לטיניות וקו תחתי בלבד
               reserved: שמור
+        admin/webhook:
+          attributes:
+            url:
+              invalid: כתובת לא חוקית
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: היא כתובת לא חוקית
+        import:
+          attributes:
+            data:
+              malformed: בתצורה לא תואמת
         status:
           attributes:
             reblog:
-              taken: של החצרוץ כבר קיים
+              taken: של ההודעה כבר קיים
         user:
           attributes:
             email:
               blocked: עושה שימוש בספק דוא"ל אסור
               unreachable: נראה שלא קיים
+            role_id:
+              elevated: לא יכול להיות גבוה יותר מתפקידך הנוכחי
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: לכלול הרשאות לא בטוחות לתפקיד הבסיסי
+              elevated: לא ניתן לכלול הרשאות שתפקידך הנוכחי לא כולל
+              own_role: לא ניתן למזג עם תפקידך הנוכחי
+            position:
+              elevated: לא יכול להיות גבוה יותר מתפקידך הנוכחי
+              own_role: לא ניתן לשנות באמצעות תפקידך הנוכחי

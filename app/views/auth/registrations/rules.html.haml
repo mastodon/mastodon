@@ -1,0 +1,21 @@
+- content_for :page_title do
+  = t('auth.register')
+
+- content_for :header_tags do
+  = render partial: 'shared/og', locals: { description: description_for_sign_up }
+
+.simple_form
+  %h1.title= t('auth.rules.title')
+  %p.lead= t('auth.rules.preamble', domain: site_hostname)
+
+  %ol.rules-list
+    - @rules.each do |rule|
+      %li
+        .rules-list__text= rule.text
+
+  .stacked-actions
+    - accept_path = @invite_code.present? ? public_invite_url(invite_code: @invite_code, accept: @accept_token) : new_user_registration_path(accept: @accept_token)
+    = link_to t('auth.rules.accept'), accept_path, class: 'button'
+    = link_to t('auth.rules.back'), root_path, class: 'button button-tertiary'
+
+.form-footer= render 'auth/shared/links'

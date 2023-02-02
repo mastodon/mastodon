@@ -1,4 +1,4 @@
-{{- if .Values.mastodon.createAdmin.enabled }}
+{{- if .Values.mastodon.createAdmin.enabled -}}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -13,6 +13,10 @@ spec:
   template:
     metadata:
       name: {{ include "mastodon.fullname" . }}-create-admin
+      {{- with .Values.jobAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
     spec:
       restartPolicy: Never
       {{- if (not .Values.mastodon.s3.enabled) }}
@@ -24,7 +28,7 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-                - key: component
+                - key: app.kubernetes.io/part-of
                   operator: In
                   values:
                     - rails
@@ -56,21 +60,17 @@ spec:
             - configMapRef:
                 name: {{ include "mastodon.fullname" . }}-env
             - secretRef:
-                name: {{ template "mastodon.fullname" . }}
+                name: {{ template "mastodon.secretName" . }}
           env:
             - name: "DB_PASS"
               valueFrom:
                 secretKeyRef:
-                  {{- if .Values.postgresql.enabled }}
-                  name: {{ .Release.Name }}-postgresql
-                  {{- else }}
-                  name: {{ template "mastodon.fullname" . }}
-                  {{- end }}
-                  key: postgresql-password
+                  name: {{ template "mastodon.postgresql.secretName" . }}
+                  key: password
             - name: "REDIS_PASSWORD"
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}-redis
+                  name: {{ template "mastodon.redis.secretName" . }}
                   key: redis-password
             - name: "PORT"
               value: {{ .Values.mastodon.web.port | quote }}

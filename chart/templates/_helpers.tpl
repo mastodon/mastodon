@@ -52,6 +52,15 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
+Rolling pod annotations
+*/}}
+{{- define "mastodon.rollingPodAnnotations" -}}
+rollme: {{ .Release.Revision | quote }}
+checksum/config-secrets: {{ include ( print $.Template.BasePath "/secrets.yaml" ) . | sha256sum | quote }}
+checksum/config-configmap: {{ include ( print $.Template.BasePath "/configmap-env.yaml" ) . | sha256sum | quote }}
+{{- end }}
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "mastodon.serviceAccountName" -}}
@@ -76,4 +85,54 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 
 {{- define "mastodon.postgresql.fullname" -}}
 {{- printf "%s-%s" .Release.Name "postgresql" | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+{{/*
+Get the mastodon secret.
+*/}}
+{{- define "mastodon.secretName" -}}
+{{- if .Values.mastodon.secrets.existingSecret }}
+    {{- printf "%s" (tpl .Values.mastodon.secrets.existingSecret $) -}}
+{{- else -}}
+    {{- printf "%s" (include "common.names.fullname" .) -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Get the postgresql secret.
+*/}}
+{{- define "mastodon.postgresql.secretName" -}}
+{{- if (and (or .Values.postgresql.enabled .Values.postgresql.postgresqlHostname) .Values.postgresql.auth.existingSecret) }}
+    {{- printf "%s" (tpl .Values.postgresql.auth.existingSecret $) -}}
+{{- else if .Values.postgresql.enabled -}}
+    {{- printf "%s-postgresql" (tpl .Release.Name $) -}}
+{{- else -}}
+    {{- printf "%s" (include "common.names.fullname" .) -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Get the redis secret.
+*/}}
+{{- define "mastodon.redis.secretName" -}}
+{{- if .Values.redis.auth.existingSecret }}
+    {{- printf "%s" (tpl .Values.redis.auth.existingSecret $) -}}
+{{- else if .Values.redis.existingSecret }}
+    {{- printf "%s" (tpl .Values.redis.existingSecret $) -}}
+{{- else -}}
+    {{- printf "%s-redis" (tpl .Release.Name $) -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Return true if a mastodon secret object should be created
+*/}}
+{{- define "mastodon.createSecret" -}}
+{{- if (or
+    (and .Values.mastodon.s3.enabled (not .Values.mastodon.s3.existingSecret))
+    (not .Values.mastodon.secrets.existingSecret )
+    (and (not .Values.postgresql.enabled) (not .Values.postgresql.auth.existingSecret))
+    ) -}}
+    {{- true -}}
+{{- end -}}
 {{- end -}}

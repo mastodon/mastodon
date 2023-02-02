@@ -14,6 +14,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :set_body_classes, only: [:new, :create, :edit, :update]
   before_action :require_not_suspended!, only: [:update]
   before_action :set_cache_headers, only: [:edit, :update]
+  before_action :set_rules, only: :new
+  before_action :require_rules_acceptance!, only: :new
   before_action :set_registration_form_time, only: :new
 
   skip_before_action :require_functional!, only: [:edit, :update]
@@ -55,7 +57,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up) do |u|
-      u.permit({ account_attributes: [:username], invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code, :agreement, :website, :confirm_password)
+      u.permit({ account_attributes: [:username, :display_name], invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code, :agreement, :website, :confirm_password)
     end
   end
 
@@ -82,7 +84,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path if single_user_mode? || omniauth_only? || !allowed_registrations?
+    redirect_to root_path if single_user_mode? || omniauth_only? || !allowed_registrations? || ip_blocked?
   end
 
   def allowed_registrations?
@@ -91,6 +93,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def omniauth_only?
     ENV['OMNIAUTH_ONLY'] == 'true'
+  end
+
+  def ip_blocked?
+    IpBlock.where(severity: :sign_up_block).where('ip >>= ?', request.remote_ip.to_s).exists?
   end
 
   def invite_code
@@ -132,6 +138,19 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def require_not_suspended!
     forbidden if current_account.suspended?
+  end
+
+  def set_rules
+    @rules = Rule.ordered
+  end
+
+  def require_rules_acceptance!
+    return if @rules.empty? || (session[:accept_token].present? && params[:accept] == session[:accept_token])
+
+    @accept_token = session[:accept_token] = SecureRandom.hex
+    @invite_code  = invite_code
+
+    set_locale { render :rules }
   end
 
   def set_cache_headers

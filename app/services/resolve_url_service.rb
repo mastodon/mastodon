@@ -4,6 +4,8 @@ class ResolveURLService < BaseService
   include JsonLdHelper
   include Authorization
 
+  USERNAME_STATUS_RE = %r{/@(?<username>#{Account::USERNAME_RE})/(?<status_id>[0-9]+)\Z}
+
   def call(url, on_behalf_of: nil)
     @url          = url
     @on_behalf_of = on_behalf_of
@@ -20,8 +22,8 @@ class ResolveURLService < BaseService
   private
 
   def process_url
-    if equals_or_includes_any?(type, ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES)
-      ActivityPub::FetchRemoteAccountService.new.call(resource_url, prefetched_body: body)
+    if equals_or_includes_any?(type, ActivityPub::FetchRemoteActorService::SUPPORTED_TYPES)
+      ActivityPub::FetchRemoteActorService.new.call(resource_url, prefetched_body: body)
     elsif equals_or_includes_any?(type, ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES)
       status = FetchRemoteStatusService.new.call(resource_url, body)
       authorize_with @on_behalf_of, status, :show? unless status.nil?
@@ -43,7 +45,7 @@ class ResolveURLService < BaseService
 
     # We don't have an index on `url`, so try guessing the `uri` from `url`
     parsed_url = Addressable::URI.parse(@url)
-    parsed_url.path.match(%r{/@(?<username>#{Account::USERNAME_RE})/(?<status_id>[0-9]+)\Z}) do |matched|
+    parsed_url.path.match(USERNAME_STATUS_RE) do |matched|
       parsed_url.path = "/users/#{matched[:username]}/statuses/#{matched[:status_id]}"
       scope = scope.or(Status.where(uri: parsed_url.to_s, url: @url))
     end

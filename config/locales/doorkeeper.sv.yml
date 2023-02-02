@@ -5,7 +5,7 @@ sv:
       doorkeeper/application:
         name: Applikationsnamn
         redirect_uri: Omdirigera URI
-        scopes: Omfattning
+        scopes: Omfattningar
         website: Applikationswebbplats
     errors:
       models:
@@ -15,13 +15,13 @@ sv:
               fragment_present: kan inte innehålla ett fragment.
               invalid_uri: måste vara en giltig URI.
               relative_uri: måste vara en absolut URI.
-              secured_uri: måste vara en HTTPS/SSL URI.
+              secured_uri: måste vara en HTTPS/SSL-URI.
   doorkeeper:
     applications:
       buttons:
-        authorize: Godkänna
+        authorize: Godkänn
         cancel: Ångra
-        destroy: Förstöra
+        destroy: Förstör
         edit: Redigera
         submit: Skicka
       confirmations:
@@ -29,52 +29,54 @@ sv:
       edit:
         title: Redigera applikation
       form:
-        error: Hoppsan! Kontrollera i formuläret efter eventuella fel
+        error: Hoppsan! Kolla ditt formulär efter eventuella fel
       help:
-        native_redirect_uri: Använd %{native_redirect_uri} för lokalt test
-        redirect_uri: Använd en per rad URI
-        scopes: Separera omfattningen med mellanslag. Lämna tomt för att använda standardomfattning.
+        native_redirect_uri: Använd %{native_redirect_uri} för lokala tester
+        redirect_uri: Använd en rad per URI
+        scopes: Separera omfattningar med mellanslag. Lämna tomt för att använda standardomfattningar.
       index:
         application: Applikation
-        callback_url: Återkalls URL
+        callback_url: URL för återanrop
         delete: Radera
-        empty: Du har inga program.
+        empty: Du har inga applikationer.
         name: Namn
         new: Ny applikation
-        scopes: Omfattning
+        scopes: Omfattningar
         show: Visa
         title: Dina applikationer
       new:
         title: Ny applikation
       show:
-        actions: Handlingar
+        actions: Åtgärder
         application_id: Klientnyckel
-        callback_urls: Återkalls URLs
-        scopes: Omfattning
-        secret: Kundhemlighet
-        title: 'Program: %{name}'
+        callback_urls: URL:er för återanrop
+        scopes: Omfattningar
+        secret: Klienthemlighet
+        title: 'Applikation: %{name}'
     authorizations:
       buttons:
-        authorize: Godkänna
+        authorize: Godkänn
         deny: Neka
       error:
         title: Ett fel har uppstått
       new:
-        review_permissions: Förhandsgranska behörigheter
+        prompt_html: "%{client_name} vill ha behörighet att komma åt ditt konto. Det är en applikation från tredje part. <strong>Du bör endast godkänna den om du litar på den.</strong>"
+        review_permissions: Granska behörigheter
         title: Godkännande krävs
       show:
-        title: Kopiera denna behörighetskod och klistra in den i programmet.
+        title: Kopiera denna behörighetskod och klistra in den i applikationen.
     authorized_applications:
       buttons:
         revoke: Återkalla
       confirmations:
         revoke: Är du säker?
       index:
-        authorized_at: Auktoriserades %{date}
+        authorized_at: Godkändes den %{date}
+        description_html: Dessa applikationer har åtkomst till ditt konto genom API:et. Om det finns applikationer du inte känner igen här, eller om en applikation inte fungerar, kan du återkalla dess åtkomst.
         last_used_at: Användes senast %{date}
         never_used: Aldrig använd
         scopes: Behörigheter
-        superapp: Internt
+        superapp: Intern
         title: Dina behöriga ansökningar
     errors:
       messages:
@@ -111,6 +113,10 @@ sv:
         destroy:
           notice: Applikation återkallas.
     grouped_scopes:
+      access:
+        read: Enbart rätt att läsa
+        read/write: Läs- och skrivbehörighet
+        write: Enbart rätt att skriva
       title:
         accounts: Konton
         admin/accounts: Administrering av konton
@@ -122,9 +128,12 @@ sv:
         conversations: Konversationer
         crypto: Ände-till-ände-kryptering
         favourites: Favoriter
+        filters: Filter
         follow: Relationer
         follows: Följer
         lists: Listor
+        media: Mediabilagor
+        mutes: Tystade användare
         notifications: Aviseringar
         push: Push-aviseringar
         reports: Rapporter
@@ -134,18 +143,19 @@ sv:
       admin:
         nav:
           applications: Applikationer
-          oauth2_provider: OAuth2 leverantör
+          oauth2_provider: OAuth2-leverantör
       application:
-        title: OAuth-behörighet krävs
+        title: OAuth-godkännande krävs
     scopes:
-      admin:read: läs all data på servern
-      admin:read:accounts: läs känslig information från alla konton
-      admin:read:reports: läs känslig information från alla rapporter och rapporterade konton
+      admin:read: läsa all data på servern
+      admin:read:accounts: läsa känslig information om alla konton
+      admin:read:reports: läsa känslig information om alla rapporter och rapporterade konton
       admin:write: ändra all data på servern
-      admin:write:accounts: utför alla aktiviteter för moderering på konton
-      admin:write:reports: utför alla aktiviteter för moderering i rapporter
-      follow: följa, blockera, ta bort blockerade och sluta följa konton
-      push: ta emot push-aviseringar för ditt konto
+      admin:write:accounts: utföra modereringsåtgärder på konton
+      admin:write:reports: utföra modereringsåtgärder på rapporter
+      crypto: använd obruten kryptering
+      follow: modifiera kontorelationer
+      push: ta emot dina push-notiser
       read: läsa dina kontodata
       read:accounts: se kontoinformation
       read:blocks: se dina blockeringar
@@ -155,20 +165,21 @@ sv:
       read:follows: se vem du följer
       read:lists: se dina listor
       read:mutes: se dina tystningar
-      read:notifications: se dina aviseringar
+      read:notifications: se dina notiser
       read:reports: se dina rapporter
       read:search: sök å dina vägnar
-      read:statuses: se alla statusar
-      write: posta åt dig
+      read:statuses: se alla inlägg
+      write: ändra all din kontodata
       write:accounts: ändra din profil
       write:blocks: blockera konton och domäner
-      write:bookmarks: bokmärkesstatusar
-      write:favourites: favoritmarkera statusar
+      write:bookmarks: bokmärka inlägg
+      write:conversations: tysta och radera konversationer
+      write:favourites: favoritmarkera inlägg
       write:filters: skapa filter
-      write:follows: följ människor
+      write:follows: följa folk
       write:lists: skapa listor
-      write:media: ladda upp mediafiler
-      write:mutes: tysta människor och konversationer
-      write:notifications: rensa dina aviseringar
-      write:reports: rapportera andra människor
-      write:statuses: publicera statusar
+      write:media: ladda upp mediefiler
+      write:mutes: tysta folk och konversationer
+      write:notifications: rensa dina notiser
+      write:reports: rapportera andra personer
+      write:statuses: publicera inlägg

@@ -63,7 +63,7 @@ el:
       email_domain_block:
         with_dns_records: Θα γίνει απόπειρα ανάλυσης των εγγραφών DNS του τομέα και τα αποτελέσματα θα μπουν και αυτά σε μαύρη λίστα
       featured_tag:
-        name: 'Ίσως να θες να χρησιμοποιήσεις μια από αυτές:'
+        name: 'Εδώ είναι μερικά από τα hashtags που χρησιμοποιήσατε περισσότερο πρόσφατα:'
       form_challenge:
         current_password: Μπαίνεις σε ασφαλή περιοχή
       imports:
@@ -76,6 +76,7 @@ el:
         ip: Εισάγετε μια διεύθυνση IPv4 ή IPv6. Μπορείτε να αποκλείσετε ολόκληρο το εύρος χρησιμοποιώντας τη σύνταξη CIDR. Προσέξτε να μην κλειδώσετε τον εαυτό σας!
         severities:
           no_access: Αποκλεισμός πρόσβασης σε όλους τους πόρους
+          sign_up_block: Νέες εγγραφές δεν θα είναι δυνατές
           sign_up_requires_approval: Νέες εγγραφές θα απαιτούν την έγκριση σας
         severity: Επιλέξτε τι θα γίνεται με αιτήσεις από αυτήν την διεύθυνση IP
       rule:
@@ -172,6 +173,7 @@ el:
         setting_use_pending_items: Αργή λειτουργία
         severity: Αυστηρότητα
         sign_in_token_attempt: Κωδικός ασφαλείας
+        title: Τίτλος
         type: Τύπος εισαγωγής
         username: Όνομα χρηστη
         username_or_email: Όνομα ή διεύθυνση email χρήστη
@@ -180,6 +182,15 @@ el:
         with_dns_records: Συμπερίληψη εγγραφών MX και διευθύνσεων IP του τομέα
       featured_tag:
         name: Ετικέτα
+      filters:
+        actions:
+          hide: Πλήρης απόκρυψη
+          warn: Απόκρυψη με προειδοποίηση
+      form_admin_settings:
+        custom_css: Προσαρμοσμένο CSS
+        registrations_mode: Ποιος μπορεί να εγγραφεί
+        site_contact_email: E-mail επικοινωνίας
+        site_contact_username: Όνομα χρήστη επικοινωνίας
       interactions:
         must_be_follower: Μπλόκαρε τις ειδοποιήσεις από όσους δεν σε ακολουθούν
         must_be_following: Μπλόκαρε τις ειδοποιήσεις από όσους δεν ακολουθείς
@@ -193,6 +204,7 @@ el:
         ip: Διεύθυνση IP
         severities:
           no_access: Αποκλεισμός πρόσβασης
+          sign_up_block: Αποκλεισμός εγγραφών
           sign_up_requires_approval: Περιορισμός εγγραφών
         severity: Κανόνας
       notification_emails:

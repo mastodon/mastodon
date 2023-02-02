@@ -47,7 +47,7 @@ id:
         locked: Anda harus menerima permintaan pengikut secara manual dan setting privasi postingan akan diubah khusus untuk pengikut
         password: Gunakan minimal 8 karakter
         phrase: Akan dicocokkan terlepas dari luaran dalam teks atau peringatan konten dari toot
-        scopes: API mana yang diizinkan untuk diakses aplikasi. Jika Anda memilih cakupan level-atas, Anda tak perlu memilih yang individual.
+        scopes: API mana yang diizinkan untuk diakses aplikasi. Jika Anda memilih cakupan level-atas, Anda tidak perlu memilih yang individu.
         setting_aggregate_reblogs: Jangan tampilkan boost baru untuk toot yang baru saja di-boost (hanya memengaruhi boost yang baru diterima)
         setting_always_send_emails: Secara normal, notifikasi email tidak akan dikirimkan kepada Anda ketika Anda sedang aktif menggunakan Mastodon
         setting_default_sensitive: Media sensitif disembunyikan secara bawaan dan akan ditampilkan dengan klik
@@ -67,7 +67,33 @@ id:
         domain: Ini bisa berupa nama domain yang tampil di alamat email atau data MX yang memakainya. Mereka akan diperiksa saat mendaftar.
         with_dns_records: Usaha untuk menyelesaikan data DNS domain yang diberikan akan dilakukan dan hasilnya akan masuk daftar hitam
       featured_tag:
-        name: 'Anda mungkin ingin pakai salah satu dari ini:'
+        name: 'Ini adalah beberapa tagar yang sering Anda gunakan:'
+      filters:
+        action: Pilih tindakan apa yang dilakukan ketika sebuah kiriman cocok dengan saringan
+        actions:
+          hide: Sembunyikan konten yang disaring, seperti itu tidak ada
+          warn: Sembunyikan konten yang disaring di belakang sebuah peringatan menyebutkan judul saringan
+      form_admin_settings:
+        backups_retention_period: Simpan arsip pengguna yang dibuat untuk jumlah hari yang ditetapkan.
+        bootstrap_timeline_accounts: Akun ini akan disematkan di atas rekomendasi ikut pengguna baru.
+        closed_registrations_message: Ditampilkan ketika pendaftaran ditutup
+        content_cache_retention_period: Kiriman dari server lain akan dihapus setelah jumlah hari yang ditentukan jika nilai positif ditetapkan. Ini mungkin tidak dapat diurungkan.
+        custom_css: Anda dapat menerapkan gaya kustom di versi web Mastodon.
+        mascot: Menimpa ilustrasi di antarmuka web tingkat lanjut.
+        media_cache_retention_period: File media yang diunduh akan dihapus setelah beberapa hari yang ditentukan ketika ditetapkan ke nilai yang positif, dan diunduh ulang pada permintaan.
+        profile_directory: Direktori profil mendaftarka semua pengguna yang ingin untuk dapat ditemukan.
+        require_invite_text: Ketika pendaftaran membutuhkan persetujuan manual, buat masukan teks "Mengapa Anda ingin bergabung?" dibutuhkan daripada opsional
+        site_contact_email: Bagaimana orang dapat menghubungi Anda untuk kebutuhan hukum atau dukungan.
+        site_contact_username: Bagaimana orang dapat menghubungi Anda di Mastodon.
+        site_extended_description: Informasi tambahan yang mungkin berguna bagi pengunjung dan pengguna Anda. Dapat distruktur dengan sintaks Markdown.
+        site_short_description: Sebuah deskripsi pendek untuk membantu mengenal server Anda secara unik. Siapa yang menjalankannya, untuk siapa itu?
+        site_terms: Gunakan kebijakan privasi Anda sendiri atau tinggalkan kosong untuk menggunakan bawaan. Dapat distruktur dengan sintaks Markdown.
+        site_title: Bagaimana orang dapat memberitahu tentang server selain nama domain.
+        theme: Tema yang dilihat oleh pengunjung yang keluar dan pengguna baru.
+        thumbnail: Gambar sekitar 2:1 yang ditampilkan di samping informasi server Anda.
+        timeline_preview: Pengunjung yang keluar akan dapat menjelajahi kiriman publik terkini yang tersedia di server.
+        trendable_by_default: Lewati tinjauan manual dari konten tren. Item individu masih dapat dihapus dari tren setelah faktanya.
+        trends: Tren yang menampilkan kiriman, tagar, dan cerita berita apa yang sedang tren di server Anda.
       form_challenge:
         current_password: Anda memasuki area aman
       imports:
@@ -80,17 +106,28 @@ id:
         ip: Masukkan alamat IPv4 atau IPv6. Anda dapat memblokir seluruh rentang dengan sintaks CIDR. Hati-hati, jangan mengunci Anda sendiri!
         severities:
           no_access: Blokir akses ke seluruh sumber daya
+          sign_up_block: Pendaftaran baru tidak akan dimungkinkan
           sign_up_requires_approval: Pendaftaran baru memerlukan persetujuan Anda
         severity: Pilih apa yang akan dilakukan dengan permintaan dari IP ini
       rule:
         text: Jelaskan aturan atau persyaratan untuk pengguna di server ini. Buatlah pendek dan sederhana
       sessions:
-        otp: Masukkan kode dua-faktor dari handphone atau gunakan kode pemulihan anda.
+        otp: 'Masukkan kode dua faktor dari aplikasi ponsel atau gunakan kode pemulihan Anda:'
         webauthn: Jika ini kunci USB pastikan dalam keadaan tercolok dan, jika perlu, ketuk.
       tag:
         name: Anda hanya dapat mengubahnya ke huruf kecil/besar, misalnya, agar lebih mudah dibaca
       user:
         chosen_languages: Ketika dicentang, hanya toot dalam bahasa yang dipilih yang akan ditampilkan di linimasa publik
+        role: Peran mengatur izin apa yang dimiliki pengguna
+      user_role:
+        color: Warna yang digunakan untuk peran di antarmuka pengguna, sebagai RGB dalam format hex
+        highlighted: Ini membuat peran terlihat secara publik
+        name: Nama publik peran, jika peran ditampilkan sebagai lencana
+        permissions_as_keys: Pengguna dengan peran ini mendapatkan akses ke...
+        position: Peran lebih tinggi dapat menyelesaikan konflik dalam beberapa situasi. Beberapa tindakan hanya dapat dilakukan pada peran dengan prioritas lebih rendah
+      webhook:
+        events: Pilih peristiwa untuk dikirim
+        url: Di mana peristiwa akan dikirim
     labels:
       account:
         fields:
@@ -165,7 +202,7 @@ id:
         setting_display_media_default: Bawaan
         setting_display_media_hide_all: Sembunyikan semua
         setting_display_media_show_all: Tunjukkan semua
-        setting_expand_spoilers: Selalu bentangkan toot yang bertanda peringatan konten
+        setting_expand_spoilers: Selalu bentangkan kiriman yang bertanda peringatan konten
         setting_hide_network: Sembunyikan jaringan Anda
         setting_noindex: Opt-out dari pengindeksan mesin pencari
         setting_reduce_motion: Kurangi gerakan animasi
@@ -178,6 +215,7 @@ id:
         setting_use_pending_items: Mode pelan
         severity: Keparahan
         sign_in_token_attempt: Kode keamanan
+        title: Judul
         type: Tipe impor
         username: Nama pengguna
         username_or_email: Nama pengguna atau Email
@@ -186,9 +224,37 @@ id:
         with_dns_records: Termasuk data MX dan IP domain
       featured_tag:
         name: Tagar
+      filters:
+        actions:
+          hide: Sembunyikan seluruhnya
+          warn: Sembunyikan dengan peringatan
+      form_admin_settings:
+        backups_retention_period: Rentang retensi arsip pengguna
+        bootstrap_timeline_accounts: Selalu rekomendasikan akun ini ke pengguna baru
+        closed_registrations_message: Pesan kustom ketika pendaftaran tidak tersedia
+        content_cache_retention_period: Rentang retensi tembolok konten
+        custom_css: CSS kustom
+        mascot: Maskot kustom (lawas)
+        media_cache_retention_period: Rentang retensi tembolok media
+        profile_directory: Aktifkan direktori profil
+        registrations_mode: Siapa yang dapat mendaftar
+        require_invite_text: Membutuhkan alasan untuk bergabung
+        show_domain_blocks: Tampilkan pemblokiran domain
+        show_domain_blocks_rationale: Tampilkan kenapa domain diblokir
+        site_contact_email: Surel kontak
+        site_contact_username: Nama pengguna kontak
+        site_extended_description: Deskripsi panjang
+        site_short_description: Deskripsi server
+        site_terms: Kebijakan Privasi
+        site_title: Nama server
+        theme: Tema bawaan
+        thumbnail: Gambar kecil server
+        timeline_preview: Perbolehkan akses tidak terotentikasi ke linimasa publik
+        trendable_by_default: Perbolehkan tren tanpa tinjauan
+        trends: Aktifkan tren
       interactions:
         must_be_follower: Blokir notifikasi dari non-pengikut
-        must_be_following: Blokir notifikasi dari orang yang tidak anda ikuti
+        must_be_following: Blokir notifikasi dari orang yang tidak Anda ikuti
         must_be_following_dm: Blokir pesan langsung dari orang yang tak Anda ikuti
       invite:
         comment: Komentar
@@ -199,17 +265,18 @@ id:
         ip: IP
         severities:
           no_access: Blok akses
+          sign_up_block: Blokir pendaftaran
           sign_up_requires_approval: Batasi pendaftaran
         severity: Aturan
       notification_emails:
         appeal: Seseorang mengajukan banding tehadap keputusan moderator
         digest: Kirim email berisi rangkuman
-        favourite: Kirim email saat seseorang menyukai status anda
-        follow: Kirim email saat seseorang mengikuti anda
-        follow_request: Kirim email saat seseorang meminta untuk mengikuti anda
-        mention: Kirim email saat seseorang menyebut anda
+        favourite: Seseorang memfavorit kiriman Anda
+        follow: Seseorang mengikuti Anda
+        follow_request: Seseorang meminta untuk mengikuti Anda
+        mention: Seseorang menyebutkan Anda
         pending_account: Kirim email ketika akun baru perlu ditinjau
-        reblog: Kirim email saat seseorang mem-boost status anda
+        reblog: Seseorang mem-boost kiriman Anda
         report: Laporan baru dikirim
         trending_tag: Tren baru harus ditinjau
       rule:
@@ -219,7 +286,19 @@ id:
         name: Tagar
         trendable: Izinkan tagar ini muncul di bawah tren
         usable: Izinkan toot memakai tagar ini
+      user:
+        role: Peran
+      user_role:
+        color: Warna lencana
+        highlighted: Tampilkan peran sebagai lencana di profil pengguna
+        name: Nama
+        permissions_as_keys: Izin
+        position: Prioritas
+      webhook:
+        events: Acara yang diaktifkan
+        url: URL Titik Akhir
     'no': Tidak
+    not_recommended: Tidak disarankan
     recommended: Direkomendasikan
     required:
       mark: "*"

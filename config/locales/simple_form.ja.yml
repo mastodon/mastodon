@@ -67,7 +67,33 @@ ja:
         domain: 電子メールアドレスのドメイン名、または使用されるMXレコードを指定できます。新規登録時にチェックされます。
         with_dns_records: 指定したドメインのDNSレコードを取得し、その結果もメールドメインブロックに登録されます
       featured_tag:
-        name: 'これらを使うといいかもしれません:'
+        name: 最近使用したハッシュタグ
+      filters:
+        action: 投稿がフィルタに一致したときに実行するアクションを選択
+        actions:
+          hide: フィルタリングしたコンテンツを完全に隠し、あたかも存在しないかのようにします
+          warn: フィルタリングされたコンテンツを、フィルタータイトルの警告の後ろに隠します。
+      form_admin_settings:
+        backups_retention_period: 生成されたユーザーのアーカイブを指定した日数の間保持します。
+        bootstrap_timeline_accounts: これらのアカウントは、新しいユーザーのフォロー推奨リストの一番上にピン留めされます。
+        closed_registrations_message: アカウント作成を停止している時に表示されます
+        content_cache_retention_period: 正の値に設定されている場合、他のサーバーの投稿は指定された日数の後に削除されます。元に戻せません。
+        custom_css: ウェブ版のMastodonでカスタムスタイルを適用できます。
+        mascot: 上級者向けWebインターフェースのイラストを上書きします。
+        media_cache_retention_period: 正の値に設定されている場合、ダウンロードされたメディアファイルは指定された日数の後に削除され、リクエストに応じて再ダウンロードされます。
+        profile_directory: プロフィールディレクトリには、掲載するよう設定したすべてのユーザーが一覧表示されます。
+        require_invite_text: アカウント登録が承認制の場合、「意気込みをお聞かせください」のテキストの入力を必須にする
+        site_contact_email: 法律またはサポートに関する問い合わせ先
+        site_contact_username: マストドンでの連絡方法
+        site_extended_description: 訪問者やユーザーに役立つかもしれない任意の追加情報。Markdownが使えます。
+        site_short_description: 誰が運営しているのか、誰に向けたものなのかなど、サーバーを特定する短い説明。
+        site_terms: 独自のプライバシーポリシーを使用するか空白にしてデフォルトのプライバシーポリシーを使用します。Markdownが使えます。
+        site_title: ドメイン名以外でサーバーを参照する方法です。
+        theme: ログインしていない人と新規ユーザーに表示されるテーマ。
+        thumbnail: サーバー情報と共に表示される、アスペクト比が約 2:1 の画像。
+        timeline_preview: ログアウトした人でも、サーバー上で利用可能な最新の公開投稿を閲覧することができます。
+        trendable_by_default: トレンドコンテンツの手動レビューをスキップする。個々のコンテンツは後でトレンドから削除できます。
+        trends: トレンドは、サーバー上でどの投稿、ハッシュタグ、ニュース記事が人気を集めているかを示します。
       form_challenge:
         current_password: セキュリティ上重要なエリアにアクセスしています
       imports:
@@ -80,6 +106,7 @@ ja:
         ip: IPv4またはIPv6アドレスを入力してください。CIDR構文を用いて範囲指定でブロックすることもできます。自分自身を締め出さないよう注意してください！
         severities:
           no_access: すべてのリソースへのアクセスをブロックします
+          sign_up_block: 新規のアカウント作成はできません
           sign_up_requires_approval: 承認するまで新規登録が完了しなくなります
         severity: このIPに対する措置を選択してください
       rule:
@@ -91,6 +118,16 @@ ja:
         name: 視認性向上などのためにアルファベット大文字小文字の変更のみ行うことができます
       user:
         chosen_languages: 選択すると、選択した言語の投稿のみが公開タイムラインに表示されるようになります
+        role: このロールはユーザーが持つ権限を管理します
+      user_role:
+        color: UI 全体で使用される色（RGB hex 形式）
+        highlighted: これによりロールが公開されます。
+        name: ロールのバッジを表示する際の表示名
+        permissions_as_keys: このロールを持つユーザーは次の機能にアクセスできます
+        position: 特定の状況では、より高いロールが競合の解決を決定します。特定のアクションは優先順位が低いロールでのみ実行できます。
+      webhook:
+        events: 送信するイベントを選択
+        url: イベントの送信先
     labels:
       account:
         fields:
@@ -178,6 +215,7 @@ ja:
         setting_use_pending_items: 手動更新モード
         severity: 重大性
         sign_in_token_attempt: セキュリティコード
+        title: タイトル
         type: インポートする項目
         username: ユーザー名
         username_or_email: ユーザー名またはメールアドレス
@@ -186,6 +224,34 @@ ja:
         with_dns_records: ドメインのMXレコードとIPアドレスを含む
       featured_tag:
         name: ハッシュタグ
+      filters:
+        actions:
+          hide: 完全に隠す
+          warn: 警告付きで隠す
+      form_admin_settings:
+        backups_retention_period: ユーザーアーカイブの保持期間
+        bootstrap_timeline_accounts: 新規ユーザーに必ずおすすめするアカウント
+        closed_registrations_message: サインアップできない場合のカスタムメッセージ
+        content_cache_retention_period: コンテンツキャッシュの保持期間
+        custom_css: カスタムCSS
+        mascot: カスタムマスコット（レガシー）
+        media_cache_retention_period: メディアキャッシュの保持期間
+        profile_directory: ディレクトリを有効にする
+        registrations_mode: 新規登録が可能な人
+        require_invite_text: 意気込み理由の入力を必須にする。
+        show_domain_blocks: ドメインブロックを表示
+        show_domain_blocks_rationale: ドメインがブロックされた理由を表示
+        site_contact_email: 連絡先メールアドレス
+        site_contact_username: 連絡先ユーザー名
+        site_extended_description: 詳細説明
+        site_short_description: サーバーの説明
+        site_terms: プライバシーポリシー
+        site_title: サーバーの名前
+        theme: デフォルトテーマ
+        thumbnail: サーバーのサムネイル
+        timeline_preview: 公開タイムラインへの未認証のアクセスを許可する
+        trendable_by_default: 審査前のハッシュタグのトレンドへの表示を許可する
+        trends: トレンドを有効にする
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック
@@ -199,6 +265,7 @@ ja:
         ip: IP
         severities:
           no_access: ブロック
+          sign_up_block: アカウント作成をブロック
           sign_up_requires_approval: 登録を制限
         severity: ルール
       notification_emails:
@@ -219,7 +286,19 @@ ja:
         name: ハッシュタグ
         trendable: トレンドへの表示を許可する
         usable: 投稿への使用を許可する
+      user:
+        role: ロール
+      user_role:
+        color: バッジの色
+        highlighted: プロフィールにロールのバッジを表示する
+        name: 名前
+        permissions_as_keys: 権限
+        position: 優先度
+      webhook:
+        events: 有効なイベント
+        url: エンドポイントURL
     'no': いいえ
+    not_recommended: 非推奨
     recommended: おすすめ
     required:
       mark: "*"

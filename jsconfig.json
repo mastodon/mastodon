@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": "./app/javascript",
+    "checkJs": false,
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "module": "ES2022",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "strict": false,
+    "target": "ES2022"
+  },
+  "exclude": [
+    "**/build/*",
+    "**/node_modules/*",
+    "**/public/*",
+    "**/vendor/*"
+  ]
+}

@@ -5,12 +5,10 @@ RSS::Builder.build do |doc|
   doc.image(full_asset_url(@account.avatar.url(:original)), display_name(@account), params[:tag].present? ? short_account_tag_url(@account, params[:tag]) : short_account_url(@account))
   doc.last_build_date(@statuses.first.created_at) if @statuses.any?
   doc.icon(full_asset_url(@account.avatar.url(:original)))
-  doc.logo(full_pack_url('media/images/logo_transparent_white.svg'))
   doc.generator("Mastodon v#{Mastodon::Version.to_s}")
 
   @statuses.each do |status|
     doc.item do |item|
-      item.title(l(status.created_at))
       item.link(ActivityPub::TagManager.instance.url_for(status))
       item.pub_date(status.created_at)
       item.description(rss_status_content_format(status))
@@ -30,7 +28,7 @@ RSS::Builder.build do |doc|
       end
 
       status.tags.each do |tag|
-        item.category(tag.name)
+        item.category(tag.display_name)
       end
     end
   end

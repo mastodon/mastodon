@@ -31,14 +31,14 @@ zh-TW:
       form:
         error: 唉呦！請看看表單以排查錯誤
       help:
-        native_redirect_uri: 請使用 %{native_redirect_uri} 作本機測試
+        native_redirect_uri: 請使用 %{native_redirect_uri} 作本站測試
         redirect_uri: 每行輸入一個 URI
         scopes: 請用半形空格分開範圍。空白表示使用預設的範圍。
       index:
         application: 應用程式
         callback_url: 回傳網址
         delete: 刪除
-        empty: 您沒有安裝 App。
+        empty: 您沒有安裝應用程式。
         name: 名稱
         new: 新增應用程式
         scopes: 範圍
@@ -48,10 +48,10 @@ zh-TW:
         title: 新增應用程式
       show:
         actions: 動作
-        application_id: 客戶端金鑰
+        application_id: 用戶端金鑰 (client key)
         callback_urls: 回傳網址
         scopes: 範圍
-        secret: 客戶端密碼
+        secret: 用戶端密碼 (client secret)
         title: 應用程式︰%{name}
     authorizations:
       buttons:
@@ -67,9 +67,9 @@ zh-TW:
         title: 複製此授權碼並貼上到應用程式中。
     authorized_applications:
       buttons:
-        revoke: 撤銷
+        revoke: 註銷
       confirmations:
-        revoke: 確定撤銷？
+        revoke: 您確定嗎？
       index:
         authorized_at: 於 %{date} 授權
         description_html: 這些應用程式能透過 API 存取您的帳號。若有您不認得之應用程式，或應用程式行為異常，您可以於此註銷其存取權限。
@@ -82,8 +82,8 @@ zh-TW:
       messages:
         access_denied: 資源持有者或授權伺服器拒絕請求。
         credential_flow_not_configured: 因為 Doorkeeper.configure.resource_owner_from_credentials 未設定，所以資源持有者密碼認證程序失敗。
-        invalid_client: 客戶端驗證失敗，可能是因為未知的客戶端程式、未包含客戶端驗證、或使用了不支援的認證方法。
-        invalid_grant: 授權申請不正確、逾期、已被取消、與授權請求內的重新導向 URI 不符、或屬於別的客戶端程式。
+        invalid_client: 用戶端驗證失敗，可能是因為未知的用戶端程式、未包含用戶端驗證、或使用了不支援的認證方法。
+        invalid_grant: 授權申請不正確、逾期、已被註銷、與授權請求內的重新導向 URI 不符、或屬於別的用戶端程式。
         invalid_redirect_uri: 包含的重新導向 URI 是不正確的。
         invalid_request:
           missing_param: 缺少必要的參數：%{value}.
@@ -98,7 +98,7 @@ zh-TW:
         resource_owner_authenticator_not_configured: 因為未設定 Doorkeeper.configure.resource_owner_authenticator，所以資源持有者尋找失敗。
         server_error: 認證伺服器發生未知錯誤。
         temporarily_unavailable: 認證伺服器暫時無法使用。
-        unauthorized_client: 客戶端程式沒有權限使用此方法請求。
+        unauthorized_client: 用戶端程式沒有權限使用此方法請求。
         unsupported_grant_type: 認證伺服器不支援這個授權類型。
         unsupported_response_type: 認證伺服器不支援這個回應類型。
     flash:
@@ -111,7 +111,7 @@ zh-TW:
           notice: 已更新應用程式。
       authorized_applications:
         destroy:
-          notice: 已撤銷應用程式。
+          notice: 已註銷應用程式。
     grouped_scopes:
       access:
         read: 唯讀權限
@@ -148,8 +148,8 @@ zh-TW:
         title: 需要 OAuth 授權
     scopes:
       admin:read: 讀取伺服器的所有資料
-      admin:read:accounts: 讀取所有帳號的敏感資訊
-      admin:read:reports: 讀取所有回報 / 被回報之帳號的敏感資訊
+      admin:read:accounts: 讀取所有帳號的敏感內容
+      admin:read:reports: 讀取所有回報 / 被回報之帳號的敏感內容
       admin:write: 修改伺服器的所有資料
       admin:write:accounts: 對帳號進行仲裁管理動作
       admin:write:reports: 對報告進行仲裁管理動作
@@ -177,7 +177,7 @@ zh-TW:
       write:favourites: 加到最愛
       write:filters: 建立過濾條件
       write:follows: 跟隨其他人
-      write:lists: 建立名單
+      write:lists: 建立列表
       write:media: 上傳媒體檔案
       write:mutes: 靜音使用者及對話
       write:notifications: 清除您的通知

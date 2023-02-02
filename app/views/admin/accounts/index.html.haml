@@ -4,48 +4,40 @@
 - content_for :header_tags do
   = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
 
-.filters
-  .filter-subset
-    %strong= t('admin.accounts.location.title')
-    %ul
-      %li= filter_link_to t('generic.all'), origin: nil
-      %li= filter_link_to t('admin.accounts.location.local'), origin: 'local'
-      %li= filter_link_to t('admin.accounts.location.remote'), origin: 'remote'
-  .filter-subset
-    %strong= t('admin.accounts.moderation.title')
-    %ul
-      %li= filter_link_to t('generic.all'), status: nil
-      %li= filter_link_to t('admin.accounts.moderation.active'), status: 'active'
-      %li= filter_link_to t('admin.accounts.moderation.suspended'), status: 'suspended'
-      %li= filter_link_to safe_join([t('admin.accounts.moderation.pending'), "(#{number_with_delimiter(User.pending.count)})"], ' '), status: 'pending'
-  .filter-subset
-    %strong= t('admin.accounts.role')
-    %ul
-      %li= filter_link_to t('admin.accounts.moderation.all'), permissions: nil
-      %li= filter_link_to t('admin.accounts.roles.staff'), permissions: 'staff'
-  .filter-subset
-    %strong= t 'generic.order_by'
-    %ul
-      %li= filter_link_to t('relationships.most_recent'), order: nil
-      %li= filter_link_to t('relationships.last_active'), order: 'active'
-
 = form_tag admin_accounts_url, method: 'GET', class: 'simple_form' do
-  .fields-group
-    - (AccountFilter::KEYS - %i(origin status permissions)).each do |key|
-      - if params[key].present?
-        = hidden_field_tag key, params[key]
+  .filters
+    .filter-subset.filter-subset--with-select
+      %strong= t('admin.accounts.location.title')
+      .input.select.optional
+        = select_tag :origin, options_for_select([[t('admin.accounts.location.local'), 'local'], [t('admin.accounts.location.remote'), 'remote']], params[:origin]), prompt: I18n.t('generic.all')
+    .filter-subset.filter-subset--with-select
+      %strong= t('admin.accounts.moderation.title')
+      .input.select.optional
+        = select_tag :status, options_for_select([[t('admin.accounts.moderation.active'), 'active'], [t('admin.accounts.moderation.silenced'), 'silenced'], [t('admin.accounts.moderation.suspended'), 'suspended'], [safe_join([t('admin.accounts.moderation.pending'), "(#{number_with_delimiter(User.pending.count)})"], ' '), 'pending']], params[:status]), prompt: I18n.t('generic.all')
+    .filter-subset.filter-subset--with-select
+      %strong= t('admin.accounts.role')
+      .input.select.optional
+        = select_tag :role_ids, options_from_collection_for_select(UserRole.assignable, :id, :name, params[:role_ids]), prompt: I18n.t('admin.accounts.moderation.all')
+    .filter-subset.filter-subset--with-select
+      %strong= t 'generic.order_by'
+      .input.select
+        = select_tag :order, options_for_select([[t('relationships.most_recent'), 'recent'], [t('relationships.last_active'), 'active']], params[:order])
 
+  .fields-group
     - %i(username by_domain display_name email ip).each do |key|
       - unless key == :by_domain && params[:origin] != 'remote'
         .input.string.optional
           = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.accounts.#{key}")
 
-    .actions
-      %button.button= t('admin.accounts.search')
-      = link_to t('admin.accounts.reset'), admin_accounts_path, class: 'button negative'
+  .actions
+    %button.button= t('admin.accounts.search')
+    = link_to t('admin.accounts.reset'), admin_accounts_path, class: 'button negative'
+
+%hr.spacer/
 
 = form_for(@form, url: batch_admin_accounts_path) do |f|
   = hidden_field_tag :page, params[:page] || 1
+  = hidden_field_tag :select_all_matching, '0'
 
   - AccountFilter::KEYS.each do |key|
     = hidden_field_tag key, params[key] if params[key].present?
@@ -61,6 +53,14 @@
           = f.button safe_join([fa_icon('times'), t('admin.accounts.reject')]), name: :reject, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
 
         = f.button safe_join([fa_icon('lock'), t('admin.accounts.perform_full_suspension')]), name: :suspend, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+    - if @accounts.total_count > @accounts.size
+      .batch-table__select-all
+        .not-selected.active
+          %span= t('generic.all_items_on_page_selected_html', count: @accounts.size)
+          %button{ type: 'button' }= t('generic.select_all_matching_items', count: @accounts.total_count)
+        .selected
+          %span= t('generic.all_matching_items_selected_html', count: @accounts.total_count)
+          %button{ type: 'button' }= t('generic.deselect')
     .batch-table__body
       - if @accounts.empty?
         = nothing_here 'nothing-here--under-tabs'

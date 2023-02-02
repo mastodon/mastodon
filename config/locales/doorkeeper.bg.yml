@@ -3,8 +3,8 @@ bg:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Име
-        redirect_uri: URI за пренасочване
+        name: Име на приложението
+        redirect_uri: Пренасочващ URI
         scopes: Обхват
         website: Уебсайт на приложение
     errors:
@@ -22,10 +22,10 @@ bg:
         authorize: Упълномощаване
         cancel: Отказ
         destroy: Унищожаване
-        edit: Редакция
+        edit: Редактиране
         submit: Изпращане
       confirmations:
-        destroy: Потвърждаваш ли изтриването?
+        destroy: Сигурни ли сте?
       edit:
         title: Редактиране на приложението
       form:
@@ -60,6 +60,8 @@ bg:
       error:
         title: Възникна грешка
       new:
+        prompt_html: "%{client_name} иска разрешение да има достъп до акаунта ви. Приложение от трета страна е.<strong>Ако не му се доверявате, то може да не го упълномощявате.</strong>"
+        review_permissions: Преглед на разрешенията
         title: Изисква се упълномощаване
       show:
         title: Копирайте този код за удостоверяване и го поставете в приложението.
@@ -67,16 +69,22 @@ bg:
       buttons:
         revoke: Отмяна
       confirmations:
-        revoke: Потвърждаваш ли отмяната?
+        revoke: Сигурни ли сте?
       index:
-        title: Твоите упълномощени приложения
+        authorized_at: Упълномощено на %{date}
+        description_html: Има приложения, можещи да имат достъп до акаунта ви, използвайки API. Ако тук има приложения, които не знаете, или работещи неправилно, то може да им откажете достъпа.
+        last_used_at: Последно обновено на %{date}
+        never_used: Никога използвано
+        scopes: Разрешения
+        superapp: Вътрешно
+        title: Упълномощените ви приложения
     errors:
       messages:
         access_denied: Заявката беше отказана от собственика на ресурса или от сървъра за упълномощаване.
         credential_flow_not_configured: Resource Owner Password Credentials предизвика грешка, заради това, че настройките за Doorkeeper.configure.resource_owner_from_credentials липсват.
         invalid_client: Удостоверяването на клиента предизвика грешка, поради непознат клиент, липсващо клиентско удостоверяване, или заради това, че методът на удостоверяване не се поддържа.
         invalid_grant: Предоставеното удостоверение за достъп е невалидно, изтекло, отхвърлено, не съвпада с пренасочващото URI, използвано в заявката за удостоверение, или е бил издадено от друг клиент.
-        invalid_redirect_uri: Наличното пренасочващо URI е невалидно.
+        invalid_redirect_uri: Включеният пренасочващ URI адрес е невалиден.
         invalid_request:
           missing_param: 'Липсва задължителен параметър: %{value}.'
           request_not_authorized: Заявката трябва да бъде упълномощена. Необходимият параметър за разрешаване на заявка липсва или е невалиден.
@@ -104,6 +112,33 @@ bg:
       authorized_applications:
         destroy:
           notice: Приложението е отказано.
+    grouped_scopes:
+      access:
+        read: Достъп само за четене
+        read/write: Достъп за четене и запис
+        write: Достъп само за запис
+      title:
+        accounts: Акаунти
+        admin/accounts: Администриране на акаунтите
+        admin/all: Всички административни функции
+        admin/reports: Администриране на докладите
+        all: Всичко
+        blocks: Блокирания
+        bookmarks: Отметки
+        conversations: Разговори
+        crypto: Криптиране от край до край
+        favourites: Любими
+        filters: Филтри
+        follow: Отношения
+        follows: Последвания
+        lists: Списъци
+        media: Прикачена мултимедия
+        mutes: Заглушения
+        notifications: Известия
+        push: Push-известия
+        reports: Доклади
+        search: Търсене
+        statuses: Публикации
     layouts:
       admin:
         nav:
@@ -118,6 +153,7 @@ bg:
       admin:write: промяна на всички данни на сървъра
       admin:write:accounts: извършване на действия за модериране на акаунти
       admin:write:reports: извършване на действия за модериране на докладвания
+      crypto: употреба на криптиране от край до край
       follow: следването, блокирането, деблокирането и отмяната на следването на акаунтите
       push: получаване на вашите изскачащи известия
       read: четенето на данните от твоя акаунт
@@ -132,12 +168,13 @@ bg:
       read:notifications: преглед на вашите известия
       read:reports: преглед на вашите докладвания
       read:search: търсене от ваше име
-      read:statuses: преглед на всички състояния
-      write: публикуването от твое име
+      read:statuses: преглед на всички публикации
+      write: промяна на всичките ви данни на акаунта
       write:accounts: промяна на вашия профил
       write:blocks: блокиране на акаунти и домейни
       write:bookmarks: отмятане на състояния
-      write:favourites: любими състояния
+      write:conversations: заглушаване и изтриване на разговорите
+      write:favourites: любими публикации
       write:filters: създаване на филтри
       write:follows: последване на хора
       write:lists: създаване на списъци

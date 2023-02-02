@@ -37,6 +37,7 @@ class Notification < ApplicationRecord
     poll
     update
     admin.sign_up
+    admin.report
   ).freeze
 
   TARGET_STATUS_INCLUDES_BY_TYPE = {
@@ -46,6 +47,7 @@ class Notification < ApplicationRecord
     favourite: [favourite: :status],
     poll: [poll: :status],
     update: :status,
+    'admin.report': [report: :target_account],
   }.freeze
 
   belongs_to :account, optional: true
@@ -58,6 +60,7 @@ class Notification < ApplicationRecord
   belongs_to :follow_request, foreign_key: 'activity_id', optional: true
   belongs_to :favourite,      foreign_key: 'activity_id', optional: true
   belongs_to :poll,           foreign_key: 'activity_id', optional: true
+  belongs_to :report,         foreign_key: 'activity_id', optional: true
 
   validates :type, inclusion: { in: TYPES }
 
@@ -146,7 +149,7 @@ class Notification < ApplicationRecord
     return unless new_record?
 
     case activity_type
-    when 'Status', 'Follow', 'Favourite', 'FollowRequest', 'Poll'
+    when 'Status', 'Follow', 'Favourite', 'FollowRequest', 'Poll', 'Report'
       self.from_account_id = activity&.account_id
     when 'Mention'
       self.from_account_id = activity&.status&.account_id

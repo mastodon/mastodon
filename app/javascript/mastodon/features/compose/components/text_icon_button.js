@@ -22,6 +22,7 @@ export default class TextIconButton extends React.PureComponent {
 
     return (
       <button
+        type='button'
         title={title}
         aria-label={title}
         className={`text-icon-button ${active ? 'active' : ''}`}

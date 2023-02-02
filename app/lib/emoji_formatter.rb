@@ -23,48 +23,40 @@ class EmojiFormatter
   def to_s
     return html if custom_emojis.empty? || html.blank?
 
-    i                     = -1
-    tag_open_index        = nil
-    inside_shortname      = false
-    shortname_start_index = -1
-    invisible_depth       = 0
-    last_index            = 0
-    result                = ''.dup
+    tree = Nokogiri::HTML.fragment(html)
+    tree.xpath('./text()|.//text()[not(ancestor[@class="invisible"])]').to_a.each do |node|
+      i                     = -1
+      inside_shortname      = false
+      shortname_start_index = -1
+      last_index            = 0
+      text                  = node.content
+      result                = Nokogiri::XML::NodeSet.new(tree.document)
 
-    while i + 1 < html.size
-      i += 1
+      while i + 1 < text.size
+        i += 1
 
-      if invisible_depth.zero? && inside_shortname && html[i] == ':'
-        inside_shortname = false
-        shortcode = html[shortname_start_index + 1..i - 1]
-        char_after = html[i + 1]
+        if inside_shortname && text[i] == ':'
+          inside_shortname = false
+          shortcode = text[shortname_start_index + 1..i - 1]
+          char_after = text[i + 1]
 
-        next unless (char_after.nil? || !DISALLOWED_BOUNDING_REGEX.match?(char_after)) && (emoji = emoji_map[shortcode])
+          next unless (char_after.nil? || !DISALLOWED_BOUNDING_REGEX.match?(char_after)) && (emoji = emoji_map[shortcode])
 
-        result << html[last_index..shortname_start_index - 1] if shortname_start_index.positive?
-        result << image_for_emoji(shortcode, emoji)
-        last_index = i + 1
-      elsif tag_open_index && html[i] == '>'
-        tag = html[tag_open_index..i]
-        tag_open_index = nil
+          result << Nokogiri::XML::Text.new(text[last_index..shortname_start_index - 1], tree.document) if shortname_start_index.positive?
+          result << Nokogiri::HTML.fragment(image_for_emoji(shortcode, emoji))
 
-        if invisible_depth.positive?
-          invisible_depth += count_tag_nesting(tag)
-        elsif tag == '<span class="invisible">'
-          invisible_depth = 1
+          last_index = i + 1
+        elsif text[i] == ':' && (i.zero? || !DISALLOWED_BOUNDING_REGEX.match?(text[i - 1]))
+          inside_shortname = true
+          shortname_start_index = i
         end
-      elsif html[i] == '<'
-        tag_open_index = i
-        inside_shortname = false
-      elsif !tag_open_index && html[i] == ':' && (i.zero? || !DISALLOWED_BOUNDING_REGEX.match?(html[i - 1]))
-        inside_shortname = true
-        shortname_start_index = i
       end
+
+      result << Nokogiri::XML::Text.new(text[last_index..-1], tree.document)
+      node.replace(result)
     end
 
-    result << html[last_index..-1]
-
-    result.html_safe # rubocop:disable Rails/OutputSafety
+    tree.to_html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   private

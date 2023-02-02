@@ -9,10 +9,6 @@ class StatusPolicy < ApplicationPolicy
 
   delegate :reply?, to: :record
 
-  def index?
-    staff?
-  end
-
   def show?
     return false if author.suspended?
 
@@ -34,17 +30,13 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def destroy?
-    staff? || owned?
+    owned?
   end
 
   alias unreblog? destroy?
 
   def update?
-    staff? || owned?
-  end
-
-  def review?
-    staff?
+    owned?
   end
 
   def show_mentions?

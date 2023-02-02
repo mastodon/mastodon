@@ -49,7 +49,7 @@ gl:
         phrase: Concordará independentemente das maiúsculas ou avisos de contido na publicación
         scopes: A que APIs terá acceso a aplicación. Se escolles un ámbito de alto nivel, non precisas seleccionar elementos individuais.
         setting_aggregate_reblogs: Non mostrar novas promocións de publicacións que foron promovidas recentemente (só afecta a promocións recén recibidas)
-        setting_always_send_emails: Como norma xeral non che enviamos emails se usas activamente Mastodon
+        setting_always_send_emails: Como norma xeral non che enviamos correos electrónicos se usas activamente Mastodon
         setting_default_sensitive: Medios sensibles marcados como ocultos por defecto e móstranse cun click
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Ocultar sempre os medios
@@ -57,7 +57,7 @@ gl:
         setting_hide_network: Non se mostrará no teu perfil quen te segue e a quen estás a seguir
         setting_noindex: Afecta ao teu perfil público e páxinas de publicación
         setting_show_application: A aplicación que estás a utilizar para enviar publicacións mostrarase na vista detallada da publicación
-        setting_use_blurhash: Os gradientes toman as cores da imaxe oculta pero esborranchando todos os detalles
+        setting_use_blurhash: Os gradientes toman as cores da imaxe oculta pero esvaecendo tódolos detalles
         setting_use_pending_items: Agochar actualizacións da cronoloxía tras un click no lugar de desprazar automáticamente os comentarios
         username: O teu nome de usuaria será único en %{domain}
         whole_word: Se a chave ou frase de paso é só alfanumérica, só se aplicará se concorda a palabra completa
@@ -67,7 +67,33 @@ gl:
         domain: Este pode ser o nome de dominio que aparece no enderezo de email ou o rexistro MX que utiliza. Será comprobado no momento do rexistro.
         with_dns_records: Vaise facer un intento de resolver os rexistros DNS proporcionados e os resultados tamén irán a lista de bloqueo
       featured_tag:
-        name: 'Poderías usar algún destos:'
+        name: 'Aquí tes algún dos cancelos que usaches recentemente:'
+      filters:
+        action: Elixe a acción a realizar cando algunha publicación coincida co filtro
+        actions:
+          hide: Agochar todo o contido filtrado, facer coma se non existise
+          warn: Agochar o contido filtrado tras un aviso que conteña o nome do filtro
+      form_admin_settings:
+        backups_retention_period: Gardar os arquivos xerados pola usuaria durante o número de días indicado.
+        bootstrap_timeline_accounts: Estas contas aparecerán fixas na parte superior das recomendacións para as usuarias.
+        closed_registrations_message: Móstrase cando non se admiten novas usuarias
+        content_cache_retention_period: As publicacións desde outros servidores serán eliminados despois do número de días indicados ao poñer un valor positivo. É unha acción irreversible.
+        custom_css: Podes aplicar deseños personalizados na versión web de Mastodon.
+        mascot: Sobrescribe a ilustración na interface web avanzada.
+        media_cache_retention_period: Os ficheiros multimedia descargados serán eliminados despois do número de días indicado ao establecer un valor positivo, e voltos a descargar baixo petición.
+        profile_directory: O directorio de perfís inclúe a tódalas usuarias que optaron por ser descubribles.
+        require_invite_text: Cando os rexistros requiren aprobación manual, facer que o texto "Por que te queres rexistrar?" do convite sexa obrigatorio en lugar de optativo
+        site_contact_email: De que xeito se pode contactar contigo para temas legais ou obter axuda.
+        site_contact_username: De que xeito se pode contactar contigo en Mastodon.
+        site_extended_description: Calquera información adicional que poida ser útil para visitantes e usuarias. Pode utilizarse sintaxe Markdown.
+        site_short_description: Breve descrición que axuda a identificar de xeito único o teu servidor. Quen o xestiona, a quen vai dirixido?
+        site_terms: Escribe a túa propia política de privacidade ou usa o valor por defecto. Podes usar sintaxe Markdow.
+        site_title: De que xeito se pode referir o teu servidor ademáis do seu nome de dominio.
+        theme: Decorado que verán visitantes e novas usuarias.
+        thumbnail: Imaxe con proporcións 2:1 mostrada xunto á información sobre o servidor.
+        timeline_preview: Visitantes e usuarias non conectadas poderán ver as publicacións públicas máis recentes do servidor.
+        trendable_by_default: Omitir a revisión manual das tendencias. Poderás igualmente eliminar manualmente os elementos que vaian aparecendo.
+        trends: As tendencias mostran publicacións, cancelos e novas historias que teñen popularidade no teu servidor.
       form_challenge:
         current_password: Estás entrando nun área segura
       imports:
@@ -80,6 +106,7 @@ gl:
         ip: Escribe un enderezo IPv4 ou IPv6. Podes bloquear rangos completos usando a sintaxe CIDR. Ten coidado e non te bloquees a ti mesma!
         severities:
           no_access: Bloquear acceso a tódolos recursos
+          sign_up_block: Non se poderán rexistrar novas contas
           sign_up_requires_approval: Os novos rexistros requerirán a túa aprobación
         severity: Escolle que acontecerá coas peticións desde este IP
       rule:
@@ -91,6 +118,16 @@ gl:
         name: Só podes cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
       user:
         chosen_languages: Se ten marca, só as publicacións nos idiomas seleccionados serán mostrados en cronoloxías públicas
+        role: O control dos roles adxudicados ás usuarias
+      user_role:
+        color: Cor que se usará para o rol a través da IU, como RGB en formato hex
+        highlighted: Esto fai o rol públicamente visible
+        name: Nome público do rol, se o rol se mostra como unha insignia
+        permissions_as_keys: As usuarias con este rol terá acceso a...
+        position: O rol superior decide nos conflitos en certas situacións. Algunhas accións só poden aplicarse sobre roles cunha prioridade menor
+      webhook:
+        events: Elixir eventos a enviar
+        url: A onde se enviarán os eventos
     labels:
       account:
         fields:
@@ -105,7 +142,7 @@ gl:
         title: Título
       admin_account_action:
         include_statuses: Incluír no correo as publicacións denunciadas
-        send_email_notification: Notificar a usuaria por correo-e
+        send_email_notification: Notificar á usuaria por email
         text: Aviso personalizado
         type: Acción
         types:
@@ -152,7 +189,7 @@ gl:
         phrase: Palabra chave ou frase
         setting_advanced_layout: Activar interface web avanzada
         setting_aggregate_reblogs: Agrupar promocións nas cronoloxías
-        setting_always_send_emails: Enviar sempre notificacións por email
+        setting_always_send_emails: Enviar sempre notificacións por correo electrónico
         setting_auto_play_gif: Reprodución automática de GIFs animados
         setting_boost_modal: Pedir confirmación antes de promocionar
         setting_crop_images: Recortar imaxes a 16x9 en publicacións non despregadas
@@ -174,18 +211,47 @@ gl:
         setting_theme: Decorado da instancia
         setting_trends: Mostrar as tendencias de hoxe
         setting_unfollow_modal: Solicitar confirmación antes de deixar de seguir alguén
-        setting_use_blurhash: Mostrar gradientes coloridos para medios ocultos
+        setting_use_blurhash: Mostrar gradientes coloridos para multimedia oculto
         setting_use_pending_items: Modo lento
         severity: Severidade
         sign_in_token_attempt: Código de seguridade
+        title: Título
         type: Tipo de importación
         username: Nome de usuaria
-        username_or_email: Nome de usuaria ou Correo-e
+        username_or_email: Identificador ou Email
         whole_word: Palabra completa
       email_domain_block:
         with_dns_records: Incluír rexistros MX e IPs do dominio
       featured_tag:
         name: Cancelo
+      filters:
+        actions:
+          hide: Agochar completamente
+          warn: Agochar tras un aviso
+      form_admin_settings:
+        backups_retention_period: Período de retención do arquivo da usuaria
+        bootstrap_timeline_accounts: Recomendar sempre estas contas ás novas usuarias
+        closed_registrations_message: Mensaxe personalizada para cando o rexistro está pechado
+        content_cache_retention_period: Período de retención da caché do contido
+        custom_css: CSS personalizado
+        mascot: Mascota propia (herdado)
+        media_cache_retention_period: Período de retención da caché multimedia
+        profile_directory: Activar o directorio de perfís
+        registrations_mode: Quen se pode rexistrar
+        require_invite_text: Pedir unha razón para unirse
+        show_domain_blocks: Amosar dominios bloqueados
+        show_domain_blocks_rationale: Explicar porque están bloqueados os dominios
+        site_contact_email: Email de contacto
+        site_contact_username: Nome do contacto
+        site_extended_description: Descrición ampla
+        site_short_description: Descrición do servidor
+        site_terms: Política de Privacidade
+        site_title: Nome do servidor
+        theme: Decorado por omisión
+        thumbnail: Icona do servidor
+        timeline_preview: Permitir acceso á cronoloxía pública sen autenticación
+        trendable_by_default: Permitir tendencias sen aprobación previa
+        trends: Activar tendencias
       interactions:
         must_be_follower: Bloquear as notificacións de non-seguidoras
         must_be_following: Bloquea as notificacións de persoas que non segues
@@ -199,6 +265,7 @@ gl:
         ip: IP
         severities:
           no_access: Bloquear acceso
+          sign_up_block: Bloquear novos rexistros
           sign_up_requires_approval: Limitar o rexistro
         severity: Regra
       notification_emails:
@@ -219,7 +286,19 @@ gl:
         name: Cancelo
         trendable: Permitir que este cancelo apareza en tendencias
         usable: Permitir que as publicacións utilicen este cancelo
+      user:
+        role: Rol
+      user_role:
+        color: Cor da insignia
+        highlighted: Mostrar rol como insignia en perfís de usuarias
+        name: Nome
+        permissions_as_keys: Permisos
+        position: Prioridade
+      webhook:
+        events: Eventos activados
+        url: URL do extremo
     'no': Non
+    not_recommended: Non é recomendable
     recommended: Recomendado
     required:
       mark: "*"

@@ -6,7 +6,7 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
   include SignatureVerification
   include AccountOwnedConcern
 
-  before_action :require_signature!, if: :authorized_fetch_mode?
+  before_action :require_account_signature!, if: :authorized_fetch_mode?
   before_action :set_statuses
   before_action :set_cache_headers
 

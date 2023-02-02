@@ -1,4 +1,4 @@
-{{- if (not .Values.mastodon.s3.enabled) }}
+{{- if (not .Values.mastodon.s3.enabled) -}}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -8,7 +8,9 @@ metadata:
 spec:
   accessModes:
     - {{ .Values.mastodon.persistence.system.accessMode }}
+  {{- with .Values.mastodon.persistence.assets.resources }}
   resources:
-    {{- toYaml .Values.mastodon.persistence.assets.resources | nindent 4}}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   storageClassName: {{ .Values.mastodon.persistence.assets.storageClassName }}
 {{- end }}

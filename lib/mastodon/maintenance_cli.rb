@@ -14,7 +14,7 @@ module Mastodon
     end
 
     MIN_SUPPORTED_VERSION = 2019_10_01_213028 # rubocop:disable Style/NumericLiterals
-    MAX_SUPPORTED_VERSION = 2022_03_16_233212 # rubocop:disable Style/NumericLiterals
+    MAX_SUPPORTED_VERSION = 2022_11_04_133904 # rubocop:disable Style/NumericLiterals
 
     # Stubs to enjoy ActiveRecord queries while not depending on a particular
     # version of the code/database
@@ -45,6 +45,7 @@ module Mastodon
     class FollowRecommendationSuppression < ApplicationRecord; end
     class CanonicalEmailBlock < ApplicationRecord; end
     class Appeal < ApplicationRecord; end
+    class Webhook < ApplicationRecord; end
 
     class PreviewCard < ApplicationRecord
       self.inheritance_column = false
@@ -182,6 +183,7 @@ module Mastodon
       deduplicate_accounts!
       deduplicate_tags!
       deduplicate_webauthn_credentials!
+      deduplicate_webhooks!
 
       Scenic.database.refresh_materialized_view('instances', concurrently: true, cascade: false) if ActiveRecord::Migrator.current_version >= 2020_12_06_004238
       Rails.cache.clear
@@ -497,6 +499,7 @@ module Mastodon
 
     def deduplicate_tags!
       remove_index_if_exists!(:tags, 'index_tags_on_name_lower')
+      remove_index_if_exists!(:tags, 'index_tags_on_name_lower_btree')
 
       @prompt.say 'Deduplicating tags…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM tags GROUP BY lower((name)::text) HAVING count(*) > 1").each do |row|
@@ -509,11 +512,10 @@ module Mastodon
       end
 
       @prompt.say 'Restoring tags indexes…'
-      ActiveRecord::Base.connection.add_index :tags, 'lower((name)::text)', name: 'index_tags_on_name_lower', unique: true
-
-      if ActiveRecord::Base.connection.indexes(:tags).any? { |i| i.name == 'index_tags_on_name_lower_btree' }
-        @prompt.say 'Reindexing textual indexes on tags…'
-        ActiveRecord::Base.connection.execute('REINDEX INDEX index_tags_on_name_lower_btree;')
+      if ActiveRecord::Migrator.current_version < 20210421121431
+        ActiveRecord::Base.connection.add_index :tags, 'lower((name)::text)', name: 'index_tags_on_name_lower', unique: true
+      else
+        ActiveRecord::Base.connection.execute 'CREATE UNIQUE INDEX CONCURRENTLY index_tags_on_name_lower_btree ON tags (lower(name) text_pattern_ops)'
       end
     end
 
@@ -529,6 +531,20 @@ module Mastodon
 
       @prompt.say 'Restoring webauthn_credentials indexes…'
       ActiveRecord::Base.connection.add_index :webauthn_credentials, ['external_id'], name: 'index_webauthn_credentials_on_external_id', unique: true
+    end
+
+    def deduplicate_webhooks!
+      return unless ActiveRecord::Base.connection.table_exists?(:webhooks)
+
+      remove_index_if_exists!(:webhooks, 'index_webhooks_on_url')
+
+      @prompt.say 'Deduplicating webhooks…'
+      ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM webhooks GROUP BY url HAVING count(*) > 1").each do |row|
+        Webhooks.where(id: row['ids'].split(',')).sort_by(&:id).reverse.drop(1).each(&:destroy)
+      end
+
+      @prompt.say 'Restoring webhooks indexes…'
+      ActiveRecord::Base.connection.add_index :webhooks, ['url'], name: 'index_webhooks_on_url', unique: true
     end
 
     def deduplicate_local_accounts!(accounts)

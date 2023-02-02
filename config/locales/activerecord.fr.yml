@@ -7,7 +7,7 @@ fr:
         options: Choix
       user:
         agreement: Contrat de service
-        email: Adresse courriel
+        email: Adresse de courriel
         locale: Langue
         password: Mot de passe
       user/account:
@@ -21,6 +21,18 @@ fr:
             username:
               invalid: seulement des lettres, des nombres et des tirets bas
               reserved: est réservé
+        admin/webhook:
+          attributes:
+            url:
+              invalid: n’est pas une URL valide
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: n’est pas une URL valide
+        import:
+          attributes:
+            data:
+              malformed: est mal formé
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ fr:
             email:
               blocked: utilise un fournisseur de courriel interdit
               unreachable: ne semble pas exister
+            role_id:
+              elevated: ne peut pas être supérieur à votre rôle actuel
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inclure des autorisations non sécurisées pour le rôle de base
+              elevated: ne peut pas inclure des autorisations que votre rôle actuel ne possède pas
+              own_role: ne peut pas être modifié avec votre rôle actuel
+            position:
+              elevated: ne peut pas être supérieur à votre rôle actuel
+              own_role: ne peut pas être modifié avec votre rôle actuel

@@ -1,94 +1,27 @@
 ---
 fr:
   about:
-    about_hashtag_html: Voici des messages publics tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec si vous avez un compte n’importe où dans le fédiverse.
     about_mastodon_html: 'Le réseau social de l''avenir : pas de publicité, pas de surveillance institutionnelle, conception éthique et décentralisation ! Gardez le contrôle de vos données avec Mastodon !'
-    about_this: À propos
-    active_count_after: actif·ve·s
-    active_footnote: Nombre mensuel d'utilisateur·rice·s actif·ve·s (NMUA)
-    administered_by: 'Administré par :'
-    api: API
-    apps: Applications mobiles
-    apps_platforms: Utilisez Mastodon depuis iOS, Android et d’autres plates-formes
-    browse_directory: Parcourir l’annuaire des profils et filtrer par centres d’intérêts
-    browse_local_posts: Parcourir en direct un flux de messages publics depuis ce serveur
-    browse_public_posts: Parcourir en direct un flux de messages publics sur Mastodon
-    contact: Contact
     contact_missing: Non défini
     contact_unavailable: Non disponible
-    continue_to_web: Continuer vers l’application web
-    discover_users: Découvrez des utilisateur·rice·s
-    documentation: Documentation
-    federation_hint_html: Avec un compte sur %{instance}, vous pourrez suivre des gens sur n’importe quel serveur Mastodon et au-delà.
-    get_apps: Essayez une application mobile
     hosted_on: Serveur Mastodon hébergé sur %{domain}
-    instance_actor_flash: |
-      Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un·e utilisateur·rice individuel·le.
-      Il est utilisé à des fins de fédération et ne doit pas être bloqué à moins que vous ne vouliez bloquer l’instance entière, auquel cas vous devriez utiliser un blocage de domaine.
-    learn_more: En savoir plus
-    logged_in_as_html: Vous êtes actuellement connecté·e en tant que %{username}.
-    logout_before_registering: Vous êtes déjà connecté·e.
-    privacy_policy: Politique de confidentialité
-    rules: Règles du serveur
-    rules_html: 'Voici un résumé des règles que vous devez suivre si vous voulez avoir un compte sur ce serveur de Mastodon :'
-    see_whats_happening: Quoi de neuf
-    server_stats: 'Statistiques du serveur :'
-    source_code: Code source
-    status_count_after:
-      one: message
-      other: messages
-    status_count_before: Qui a publié
-    tagline: Suivez vos ami·e·s et découvrez-en de nouveaux·elles
-    terms: Conditions d’utilisation
-    unavailable_content: Serveurs modérés
-    unavailable_content_description:
-      domain: Serveur
-      reason: Motif
-      rejecting_media: 'Les fichiers média de ces serveurs ne seront ni traités ni stockés, et aucune miniature ne sera affichée, rendant nécessaire de cliquer vers le fichier d’origine :'
-      rejecting_media_title: Médias filtrés
-      silenced: 'Les messages de ces serveurs seront cachés des flux publics et conversations, et les interactions de leurs utilisateur·rice·s ne donneront lieu à aucune notification, à moins que vous ne les suiviez :'
-      silenced_title: Serveurs limités
-      suspended: 'Aucune donnée venant de ces serveurs ne sera traitée, stockée ou échangée, rendant impossible toute interaction ou communication avec les utilisateur·rice·s de ces serveurs :'
-      suspended_title: Serveurs suspendus
-    unavailable_content_html: Mastodon vous permet généralement de visualiser le contenu et d'interagir avec les utilisateur·rice·s de n'importe quel autre serveur dans le fédiverse. Voici les exceptions qui ont été faites sur ce serveur en particulier.
-    user_count_after:
-      one: utilisateur
-      other: utilisateur·rice·s
-    user_count_before: Abrite
-    what_is_mastodon: Qu’est-ce que Mastodon ?
+    title: À propos
   accounts:
-    choices_html: "%{name} recommande :"
-    endorsements_hint: Vous pouvez recommander des personnes que vous suivez depuis l’interface web, et elles apparaîtront ici.
-    featured_tags_hint: Vous pouvez mettre en avant certains hashtags qui seront affichés ici.
     follow: Suivre
     followers:
       one: Abonné·e
       other: Abonné·e·s
     following: Abonnements
     instance_actor_flash: Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un utilisateur individuel. Il est utilisé à des fins de fédération et ne doit pas être suspendu.
-    joined: Inscrit·e en %{date}
     last_active: dernière activité
     link_verified_on: La propriété de ce lien a été vérifiée le %{date}
-    media: Médias
-    moved_html: "%{name} a changé de compte pour %{new_profile_link} :"
-    network_hidden: Cette information n’est pas disponible
     nothing_here: Rien à voir ici !
-    people_followed_by: Personnes suivies par %{name}
-    people_who_follow: Personnes qui suivent %{name}
     pin_errors:
       following: Vous devez être déjà abonné·e à la personne que vous désirez recommander
     posts:
       one: Message
       other: Messages
     posts_tab_heading: Messages
-    posts_with_replies: Messages et réponses
-    roles:
-      admin: Admin
-      bot: Robot
-      group: Groupe
-      moderator: Modérateur·trice
-    unavailable: Profil non disponible
-    unfollow: Ne plus suivre
   admin:
     account_actions:
       action: Effectuer l'action
@@ -105,12 +38,17 @@ fr:
       avatar: Avatar
       by_domain: Domaine
       change_email:
-        changed_msg: Courriel du compte modifié avec succès !
+        changed_msg: Courriel modifié avec succès !
         current_email: Courriel actuel
         label: Modifier le courriel
         new_email: Nouveau courriel
         submit: Modifier le courriel
         title: Modifier le courriel pour %{username}
+      change_role:
+        changed_msg: Rôle modifié avec succès !
+        label: Modifier le rôle
+        no_role: Aucun rôle
+        title: Modifier le rôle de %{username}
       confirm: Confirmer
       confirmed: Confirmé
       confirming: Confirmation
@@ -154,6 +92,7 @@ fr:
         active: Actifs
         all: Tous
         pending: En cours de traitement
+        silenced: Limité
         suspended: Suspendus
         title: Modération
       moderation_notes: Notes de modération
@@ -161,6 +100,7 @@ fr:
       most_recent_ip: Adresse IP la plus récente
       no_account_selected: Aucun compte n’a été modifié, car aucun n’a été sélectionné
       no_limits_imposed: Aucune limite imposée
+      no_role_assigned: Aucun rôle assigné
       not_subscribed: Non abonné
       pending: En attente d’approbation
       perform_full_suspension: Suspendre
@@ -187,12 +127,7 @@ fr:
       reset: Réinitialiser
       reset_password: Réinitialiser le mot de passe
       resubscribe: Se réabonner
-      role: Permissions
-      roles:
-        admin: Administrateur
-        moderator: Modérateur
-        staff: Équipe
-        user: Utilisateur
+      role: Rôle
       search: Rechercher
       search_same_email_domain: Autres utilisateurs·trices avec le même domaine de courriel
       search_same_ip: Autres utilisateur·rice·s avec la même IP
@@ -234,18 +169,22 @@ fr:
         approve_appeal: Approuver l'appel
         approve_user: Approuver l’utilisateur
         assigned_to_self_report: Affecter le signalement
-        change_email_user: Modifier le courriel pour
+        change_email_user: Modifier le courriel pour ce compte
+        change_role_user: Changer le rôle de l’utilisateur·rice
         confirm_user: Confirmer l’utilisateur
         create_account_warning: Créer une alerte
         create_announcement: Créer une annonce
+        create_canonical_email_block: Créer un blocage de domaine de courriel
         create_custom_emoji: Créer des émojis personnalisés
         create_domain_allow: Créer un domaine autorisé
         create_domain_block: Créer un blocage de domaine
         create_email_domain_block: Créer un blocage de domaine de courriel
         create_ip_block: Créer une règle IP
         create_unavailable_domain: Créer un domaine indisponible
+        create_user_role: Créer le rôle
         demote_user: Rétrograder l’utilisateur·ice
         destroy_announcement: Supprimer l’annonce
+        destroy_canonical_email_block: Supprimer le blocage de domaine de courriel
         destroy_custom_emoji: Supprimer des émojis personnalisés
         destroy_domain_allow: Supprimer le domaine autorisé
         destroy_domain_block: Supprimer le blocage de domaine
@@ -254,6 +193,7 @@ fr:
         destroy_ip_block: Supprimer la règle IP
         destroy_status: Supprimer le message
         destroy_unavailable_domain: Supprimer le domaine indisponible
+        destroy_user_role: Détruire le rôle
         disable_2fa_user: Désactiver l’A2F
         disable_custom_emoji: Désactiver les émojis personnalisés
         disable_sign_in_token_auth_user: Désactiver l'authentification basée sur les jetons envoyés par courriel pour l'utilisateur·rice
@@ -267,6 +207,7 @@ fr:
         reject_user: Rejeter l’utilisateur
         remove_avatar_user: Supprimer l’avatar
         reopen_report: Rouvrir le signalement
+        resend_user: Renvoyer l'e-mail de confirmation
         reset_password_user: Réinitialiser le mot de passe
         resolve_report: Résoudre le signalement
         sensitive_account: Marquer les médias de votre compte comme sensibles
@@ -280,24 +221,30 @@ fr:
         update_announcement: Modifier l’annonce
         update_custom_emoji: Mettre à jour les émojis personnalisés
         update_domain_block: Mettre à jour le blocage de domaine
+        update_ip_block: Mettre à jour la règle IP
         update_status: Mettre à jour le message
+        update_user_role: Mettre à jour le rôle
       actions:
         approve_appeal_html: "%{name} a approuvé l'appel de la décision de modération émis par %{target}"
         approve_user_html: "%{name} a approuvé l’inscription de %{target}"
         assigned_to_self_report_html: "%{name} s’est assigné·e le signalement de %{target}"
         change_email_user_html: "%{name} a modifié l'adresse de courriel de l'utilisateur·rice %{target}"
+        change_role_user_html: "%{name} a changé le rôle de %{target}"
         confirm_user_html: "%{name} a confirmé l'adresse courriel de l'utilisateur %{target}"
         create_account_warning_html: "%{name} a envoyé un avertissement à %{target}"
         create_announcement_html: "%{name} a créé une nouvelle annonce %{target}"
+        create_canonical_email_block_html: "%{name} a bloqué l’e-mail avec le hachage %{target}"
         create_custom_emoji_html: "%{name} a téléversé un nouvel émoji %{target}"
         create_domain_allow_html: "%{name} a autorisé la fédération avec le domaine %{target}"
         create_domain_block_html: "%{name} a bloqué le domaine %{target}"
         create_email_domain_block_html: "%{name} a bloqué de domaine de courriel %{target}"
         create_ip_block_html: "%{name} a créé une règle pour l'IP %{target}"
         create_unavailable_domain_html: "%{name} a arrêté la livraison vers le domaine %{target}"
+        create_user_role_html: "%{name} a créé le rôle %{target}"
         demote_user_html: "%{name} a rétrogradé l'utilisateur·rice %{target}"
         destroy_announcement_html: "%{name} a supprimé l'annonce %{target}"
-        destroy_custom_emoji_html: "%{name} a détruit l'émoji %{target}"
+        destroy_canonical_email_block_html: "%{name} a débloqué l'email avec le hash %{target}"
+        destroy_custom_emoji_html: "%{name} a supprimé l'émoji %{target}"
         destroy_domain_allow_html: "%{name} a rejeté la fédération avec le domaine %{target}"
         destroy_domain_block_html: "%{name} a débloqué le domaine %{target}"
         destroy_email_domain_block_html: "%{name} a débloqué le domaine de courriel %{target}"
@@ -305,6 +252,7 @@ fr:
         destroy_ip_block_html: "%{name} a supprimé la règle pour l'IP %{target}"
         destroy_status_html: "%{name} a supprimé le message de %{target}"
         destroy_unavailable_domain_html: "%{name} a repris la livraison au domaine %{target}"
+        destroy_user_role_html: "%{name} a supprimé le rôle %{target}"
         disable_2fa_user_html: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur·rice %{target}"
         disable_custom_emoji_html: "%{name} a désactivé l'émoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} a désactivé l'authentification basée sur les jetons envoyés par courriel pour %{target}"
@@ -318,6 +266,7 @@ fr:
         reject_user_html: "%{name} a rejeté l’inscription de %{target}"
         remove_avatar_user_html: "%{name} a supprimé l'avatar de %{target}"
         reopen_report_html: "%{name} a rouvert le signalement %{target}"
+        resend_user_html: "%{name} a renvoyé l'e-mail de confirmation pour %{target}"
         reset_password_user_html: "%{name} a réinitialisé le mot de passe de l'utilisateur·rice %{target}"
         resolve_report_html: "%{name} a résolu le signalement %{target}"
         sensitive_account_html: "%{name} a marqué le média de %{target} comme sensible"
@@ -331,8 +280,10 @@ fr:
         update_announcement_html: "%{name} a mis à jour l'annonce %{target}"
         update_custom_emoji_html: "%{name} a mis à jour l'émoji %{target}"
         update_domain_block_html: "%{name} a mis à jour le blocage de domaine pour %{target}"
+        update_ip_block_html: "%{name} a modifié la règle pour l'IP %{target}"
         update_status_html: "%{name} a mis à jour le message de %{target}"
-      deleted_status: "(message supprimé)"
+        update_user_role_html: "%{name} a changé le rôle %{target}"
+      deleted_account: compte supprimé
       empty: Aucun journal trouvé.
       filter_by_action: Filtrer par action
       filter_by_user: Filtrer par utilisateur·ice
@@ -376,6 +327,7 @@ fr:
       listed: Listé
       new:
         title: Ajouter un nouvel émoji personnalisé
+      no_emoji_selected: Aucun émoji n’a été modifié, car aucun n’a été sélectionné
       not_permitted: Vous n’êtes pas autorisé à effectuer cette action
       overwrite: Écraser
       shortcode: Raccourci
@@ -428,6 +380,7 @@ fr:
       destroyed_msg: Le blocage de domaine a été désactivé
       domain: Domaine
       edit: Modifier le blocage de domaine
+      existing_domain_block: Vous avez déjà imposé des limites plus strictes à %{name}.
       existing_domain_block_html: Vous avez déjà imposé des limites plus strictes à %{name}, vous devez d’abord le/la <a href="%{unblock_url}">débloquer</a>.
       new:
         create: Créer le blocage
@@ -480,8 +433,8 @@ fr:
     instances:
       availability:
         description_html:
-          one: Si la livraison au domaine échoue pendant <strong>%{count} jour</strong> sans succès, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine soit reçue.
-          other: Si la livraison au domaine échoue pendant <strong>%{count} jours différents</strong> sans succès, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine soit reçue.
+          one: Si la livraison au domaine échoue pendant <strong>%{count} jour</strong>, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine ne soit reçue.
+          other: Si la livraison au domaine échoue pendant <strong>%{count} jours différents</strong>, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine ne soit reçue.
         failure_threshold_reached: Le seuil de défaillance a été atteint le %{date}.
         failures_recorded:
           one: Tentative échouée pendant %{count} jour.
@@ -648,6 +601,67 @@ fr:
       unresolved: Non résolus
       updated_at: Mis à jour
       view_profile: Voir le profil
+    roles:
+      add_new: Ajouter un rôle
+      assigned_users:
+        one: "%{count} utilisateur·rice"
+        other: "%{count} utilisateur·rice·s"
+      categories:
+        administration: Administration
+        devops: DevOps
+        invites: Invitations
+        moderation: Modération
+        special: Spécial
+      delete: Supprimer
+      description_html: Les <strong>rôles utilisateur</strong> vous permettent de personnaliser les fonctions et les zones de Mastodon auxquelles vos utilisateur⋅rice⋅s peuvent accéder.
+      edit: Modifier le rôle '%{name}'
+      everyone: Autorisations par défaut
+      everyone_full_description_html: Ceci est le <strong>rôle de base</strong> qui impacte <strong>tou⋅te⋅s les utilisateur⋅rice⋅s</strong>, même celleux sans rôle assigné. Tous les autres rôles héritent des autorisations de celui-ci.
+      permissions_count:
+        one: "%{count} autorisation"
+        other: "%{count} autorisations"
+      privileges:
+        administrator: Administrateur·rice
+        administrator_description: Les utilisateur⋅rice⋅s ayant cette autorisation pourront contourner toutes les autorisations
+        delete_user_data: Supprimer les données de l'utilisateur⋅rice
+        delete_user_data_description: Permet aux utilisateur⋅rice⋅s de supprimer sans délai les données des autres utilisateur⋅rice⋅s
+        invite_users: Inviter des utilisateur⋅rice⋅s
+        invite_users_description: Permet aux utilisateur⋅rice⋅s d'inviter de nouvelles personnes sur le serveur
+        manage_announcements: Gérer les annonces
+        manage_announcements_description: Permet aux utilisateur⋅rice⋅s de gérer les annonces sur le serveur
+        manage_appeals: Gérer les contestations
+        manage_appeals_description: Permet aux utilisateur⋅rice⋅s d'examiner les appels contre les actions de modération
+        manage_blocks: Gérer les blocages
+        manage_blocks_description: Permet aux utilisateur⋅rice⋅s de bloquer des fournisseurs de courriel et des adresses IP
+        manage_custom_emojis: Gérer les émojis personnalisés
+        manage_custom_emojis_description: Permet aux utilisateur⋅rice⋅s de gérer les émoticônes personnalisées sur le serveur
+        manage_federation: Gérer de la féderation
+        manage_federation_description: Permet aux utilisateur⋅rice⋅s de bloquer ou d'autoriser la fédération avec d'autres domaines, et de contrôler la capacité de livraison
+        manage_invites: Gérer les invitations
+        manage_invites_description: Permet aux utilisateur⋅rice⋅s de parcourir et de désactiver les liens d'invitation
+        manage_reports: Gérer les rapports
+        manage_reports_description: Permet aux utilisateur⋅rice⋅s d'examiner les signalements et d'effectuer des actions de modération en conséquence
+        manage_roles: Gérer les rôles
+        manage_roles_description: Permet aux utilisateur⋅rice⋅s de gérer et d'assigner des rôles inférieurs au leur
+        manage_rules: Gérer les règles
+        manage_rules_description: Permet aux utilisateur·rice·s de modifier les règles du serveur
+        manage_settings: Gérer les paramètres
+        manage_settings_description: Permet aux utilisateur·rice·s de modifier les paramètres du site
+        manage_taxonomies: Gérer les taxonomies
+        manage_taxonomies_description: Permet aux utilisateur⋅rice⋅s d'examiner les contenus tendance et de mettre à jour les paramètres des hashtags
+        manage_user_access: Gérer l'accès utilisateur
+        manage_user_access_description: Permet aux utilisateur⋅rice⋅s de désactiver l'authentification à deux facteurs, de modifier l'adresse courriel et de réinitialiser le mot de passe des autres utilisateur⋅rice⋅s
+        manage_users: Gérer les utilisateur·rice·s
+        manage_users_description: Permet aux utilisateur⋅rice⋅s de voir les détails des autres utilisateur⋅rice⋅s et d'effectuer des actions de modération en conséquence
+        manage_webhooks: Gérer les points d’ancrage web
+        manage_webhooks_description: Permet aux utilisateur⋅rice⋅s de configurer des webhooks pour des événements d'administration
+        view_audit_log: Afficher le journal d'audit
+        view_audit_log_description: Permet aux utilisateur⋅rice⋅s de voir l'historique des opérations d'administration sur le serveur
+        view_dashboard: Voir le tableau de bord
+        view_dashboard_description: Permet aux utilisateur⋅rice⋅s d'accéder au tableau de bord et à diverses statistiques
+        view_devops: DevOps
+        view_devops_description: Permet aux utilisateur⋅rice⋅s d'accéder aux tableaux de bord Sidekiq et pgHero
+      title: Rôles
     rules:
       add_new: Ajouter une règle
       delete: Supprimer
@@ -656,108 +670,67 @@ fr:
       empty: Aucune règle de serveur n'a été définie pour l'instant.
       title: Règles du serveur
     settings:
-      activity_api_enabled:
-        desc_html: Nombre de messages publiés localement, de comptes actifs et de nouvelles inscriptions regroupés par semaine
-        title: Publier des statistiques agrégées sur l’activité des utilisateur·rice·s
-      bootstrap_timeline_accounts:
-        desc_html: Séparez les noms d'utilisateur·rice·s par des virgules. Ces comptes seront affichés dans les recommendations d'abonnement
-        title: Recommender ces comptes aux nouveaux·elles utilisateur·rice·s
-      contact_information:
-        email: Entrez une adresse courriel publique
-        username: Entrez un nom d’utilisateur·ice
-      custom_css:
-        desc_html: Modifier l’apparence avec une CSS chargée sur chaque page
-        title: CSS personnalisé
-      default_noindex:
-        desc_html: Affecte tous les utilisateurs qui n'ont pas changé eux-mêmes ce paramètre
-        title: Opter pour le retrait de l'indexation des moteurs de recherche par défaut
+      about:
+        manage_rules: Gérer les règles du serveur
+        preamble: Fournissez des informations détaillées sur le fonctionnement, la modération et le financement du serveur.
+        rules_hint: Il y a un espace dédié pour les règles auxquelles vos utilisateurs sont invités à adhérer.
+        title: À propos
+      appearance:
+        preamble: Personnaliser l'interface web de Mastodon.
+        title: Apparence
+      branding:
+        preamble: L'image de marque de votre serveur la différencie des autres serveurs du réseau. Ces informations peuvent être affichées dans nombre d'environnements, tels que l'interface web de Mastodon, les applications natives, dans les aperçus de liens sur d'autres sites Web et dans les applications de messagerie, etc. C'est pourquoi il est préférable de garder ces informations claires, courtes et concises.
+        title: Thème
+      content_retention:
+        preamble: Contrôle comment le contenu créé par les utilisateurs est enregistré et stocké dans Mastodon.
+        title: Rétention du contenu
+      discovery:
+        follow_recommendations: Suivre les recommandations
+        preamble: Faire apparaître un contenu intéressant est essentiel pour interagir avec de nouveaux utilisateurs qui ne connaissent peut-être personne sur Mastodonte. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
+        profile_directory: Annuaire des profils
+        public_timelines: Fils publics
+        title: Découverte
+        trends: Tendances
       domain_blocks:
         all: À tout le monde
         disabled: À personne
-        title: Afficher le blocage de domaines
         users: Aux utilisateur·rice·s connecté·e·s localement
-      domain_blocks_rationale:
-        title: Montrer la raison
-      hero:
-        desc_html: Affichée sur la page d’accueil. Au moins 600x100px recommandé. Lorsqu’elle n’est pas définie, se rabat sur la vignette du serveur
-        title: Image d’en-tête
-      mascot:
-        desc_html: Affiché sur plusieurs pages. Au moins 293×205px recommandé. Lorsqu’il n’est pas défini, retombe à la mascotte par défaut
-        title: Image de la mascotte
-      peers_api_enabled:
-        desc_html: Noms des domaines que ce serveur a découvert dans le fédiverse
-        title: Publier la liste des serveurs découverts dans l’API
-      preview_sensitive_media:
-        desc_html: Les aperçus de lien sur les autres sites web afficheront une vignette même si les médias sont marqués comme sensibles
-        title: Montrer les médias sensibles dans les prévisualisations OpenGraph
-      profile_directory:
-        desc_html: Permettre aux utilisateur·ice·s d’être découvert·e·s
-        title: Activer l’annuaire des profils
       registrations:
-        closed_message:
-          desc_html: Affiché sur la page d’accueil lorsque les inscriptions sont fermées. Vous pouvez utiliser des balises HTML
-          title: Message de fermeture des inscriptions
-        deletion:
-          desc_html: Permettre à tou·te·s les utilisateur·rice·s de supprimer leur compte
-          title: Autoriser les suppressions de compte
-        min_invite_role:
-          disabled: Personne
-          title: Autoriser les invitations par
-        require_invite_text:
-          desc_html: Lorsque les enregistrements nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
-          title: Exiger que les nouveaux utilisateurs remplissent un texte de demande d’invitation
+        preamble: Affecte qui peut créer un compte sur votre serveur.
+        title: Inscriptions
       registrations_mode:
         modes:
           approved: Approbation requise pour s’inscrire
           none: Personne ne peut s’inscrire
           open: N’importe qui peut s’inscrire
-        title: Mode d’enregistrement
-      show_known_fediverse_at_about_page:
-        desc_html: Lorsque désactivée, restreint le fil public accessible via la page d’accueil de l’instance pour ne montrer que le contenu local
-        title: Inclure le contenu fédéré sur la page de fil public sans authentification
-      show_staff_badge:
-        desc_html: Montrer un badge de responsable sur une page utilisateur·rice
-        title: Montrer un badge de responsable
-      site_description:
-        desc_html: Paragraphe introductif sur l'API. Décrivez les particularités de ce serveur Mastodon et précisez toute autre chose qui vous semble importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
-        title: Description du serveur
-      site_description_extended:
-        desc_html: L’endroit idéal pour afficher votre code de conduite, les règles, les guides et autres choses qui rendent votre serveur différent. Vous pouvez utiliser des balises HTML
-        title: Description étendue du serveur
-      site_short_description:
-        desc_html: Affichée dans la barre latérale et dans les méta-tags. Décrivez ce qui rend spécifique ce serveur Mastodon en un seul paragraphe. Si laissée vide, la description du serveur sera affiché par défaut.
-        title: Description courte du serveur
-      site_terms:
-        desc_html: Vous pouvez écrire votre propre politique de confidentialité, conditions d’utilisation ou autre jargon juridique. Vous pouvez utiliser des balises HTML
-        title: Politique de confidentialité
-      site_title: Nom du serveur
-      thumbnail:
-        desc_html: Utilisée pour les prévisualisations via OpenGraph et l’API. 1200x630px recommandé
-        title: Vignette du serveur
-      timeline_preview:
-        desc_html: Afficher un lien vers le fil public sur la page d’accueil et autoriser l'accès anonyme au fil public via l'API
-        title: Autoriser la prévisualisation anonyme du fil global
       title: Paramètres du serveur
-      trendable_by_default:
-        desc_html: Affecte les hashtags qui n'ont pas été précédemment non autorisés
-        title: Autoriser les hashtags à apparaître dans les tendances sans approbation préalable
-      trends:
-        desc_html: Afficher publiquement les hashtags approuvés qui sont populaires en ce moment
-        title: Hashtags populaires
     site_uploads:
       delete: Supprimer le fichier téléversé
       destroyed_msg: Téléversement sur le site supprimé avec succès !
     statuses:
+      account: Auteur·rice
+      application: Application
       back_to_account: Retour à la page du compte
       back_to_report: Retour à la page du rapport
       batch:
         remove_from_report: Retirer du rapport
         report: Signalement
       deleted: Supprimé
+      favourites: Favoris
+      history: Historique de version
+      in_reply_to: Répondre à
+      language: Langue
       media:
         title: Médias
+      metadata: Metadonnés
       no_status_selected: Aucun message n’a été modifié car aucun n’a été sélectionné
+      open: Ouvrir le message
+      original_status: Message original
+      reblogs: Partages
+      status_changed: Publication modifiée
       title: Messages du compte
+      trending: Tendances
+      visibility: Visibilité
       with_media: Avec médias
     strikes:
       actions:
@@ -797,6 +770,9 @@ fr:
         description_html: Ces liens sont actuellement énormément partagés par des comptes dont votre serveur voit les messages. Cela peut aider vos utilisateur⋅rice⋅s à découvrir ce qu'il se passe dans le monde. Aucun lien n'est publiquement affiché tant que vous n'avez pas approuvé le compte qui le publie. Vous pouvez également autoriser ou rejeter les liens individuellement.
         disallow: Interdire le lien
         disallow_provider: Interdire l'éditeur
+        no_link_selected: Aucun lien n'a été changé car aucun n'a été sélectionné
+        publishers:
+          no_publisher_selected: Aucun compte publicateur n'a été changé car aucun n'a été sélectionné
         shared_by_over_week:
           one: Partagé par %{count} personne au cours de la dernière semaine
           other: Partagé par %{count} personnes au cours de la dernière semaine
@@ -816,6 +792,7 @@ fr:
         description_html: Voici les messages dont votre serveur a connaissance qui sont beaucoup partagés et mis en favoris en ce moment. Cela peut aider vos utilisateur⋅rice⋅s, néophytes comme aguerri⋅e⋅s, à trouver plus de comptes à suivre. Aucun message n'est publiquement affiché tant que vous n'en avez pas approuvé l'auteur⋅rice, et seulement si icellui permet que son compte soit suggéré aux autres. Vous pouvez également autoriser ou rejeter les messages individuellement.
         disallow: Proscrire le message
         disallow_account: Proscrire l'auteur·rice
+        no_status_selected: Aucune publication en tendance n'a été changée car aucune n'a été sélectionnée
         not_discoverable: L'auteur⋅rice n'a pas choisi de pouvoir être découvert⋅e
         shared_by:
           one: Partagé ou ajouté aux favoris une fois
@@ -831,6 +808,7 @@ fr:
           tag_uses_measure: utilisations totales
         description_html: Ces hashtags apparaissent actuellement dans de nombreux messages que votre serveur voit. Cela peut aider vos utilisateur⋅rice⋅s à découvrir les sujets dont les gens parlent le plus en ce moment. Aucun hashtag n'est publiquement affiché tant que vous ne l'avez pas approuvé.
         listable: Peut être suggéré
+        no_tag_selected: Aucun tag n'a été changé car aucun n'a été sélectionné
         not_listable: Ne sera pas suggéré
         not_trendable: N'apparaîtra pas sous les tendances
         not_usable: Ne peut être utilisé
@@ -851,6 +829,26 @@ fr:
       edit_preset: Éditer les avertissements prédéfinis
       empty: Vous n'avez pas encore créé de paramètres prédéfinis pour les avertissements.
       title: Gérer les avertissements prédéfinis
+    webhooks:
+      add_new: Ajouter un point de terminaison
+      delete: Supprimer
+      description_html: Un <strong>point d'ancrage web</strong> permet à Mastodon d'envoyer des <strong>notifications en temps réel</strong> concernant des événements sélectionnés vers votre propre application, afin que celle-ci puisse <strong>déclencher automatiquement des réactions</strong>.
+      disable: Désactiver
+      disabled: Désactivé
+      edit: Modifier le point de terminaison
+      empty: Pour l'instant, vous n'avez configuré aucun lien d'ancrage web pour point de terminaison.
+      enable: Activer
+      enabled: Actif
+      enabled_events:
+        one: 1 événement activé
+        other: "%{count} événements activés"
+      events: Événements
+      new: Nouveau point d’ancrage web
+      rotate_secret: Effectuer une rotation du secret
+      secret: Jeton de connexion
+      status: État
+      title: Points d’ancrage web
+      webhook: Point d’ancrage web
   admin_mailer:
     new_appeal:
       actions:
@@ -874,12 +872,8 @@ fr:
     new_trends:
       body: 'Les éléments suivants doivent être approuvés avant de pouvoir être affichés publiquement :'
       new_trending_links:
-        no_approved_links: Il n'y a pas de lien tendance approuvé actuellement.
-        requirements: N'importe quel élément de la sélection pourrait surpasser le lien tendance approuvé n°%{rank}, qui est actuellement « %{lowest_link_title} » avec un résultat de %{lowest_link_score}.
         title: Liens tendance
       new_trending_statuses:
-        no_approved_statuses: Il n'y a pas de message tendance approuvé actuellement.
-        requirements: N'importe quel élément de la sélection pourrait surpasser le message tendance approuvé n°%{rank}, qui est actuellement « %{lowest_status_url} » avec un résultat de %{lowest_status_score}.
         title: Messages tendance
       new_trending_tags:
         no_approved_tags: Il n'y a pas de hashtag tendance approuvé actuellement.
@@ -915,16 +909,13 @@ fr:
   applications:
     created: Application créée avec succès
     destroyed: Application supprimée avec succès
-    invalid_url: L’URL fournie est invalide
     regenerate_token: Régénérer le jeton d’accès
     token_regenerated: Jeton d’accès régénéré avec succès
     warning: Soyez prudent·e avec ces données. Ne les partagez pas !
     your_token: Votre jeton d’accès
   auth:
-    apply_for_account: Demander une invitation
+    apply_for_account: S’inscrire sur la liste d’attente
     change_password: Mot de passe
-    checkbox_agreement_html: J’accepte les <a href="%{rules_path}" target="_blank">règles du serveur</a> et les <a href="%{terms_path}" target="_blank">conditions de service</a>
-    checkbox_agreement_without_rules_html: J’accepte les <a href="%{terms_path}" target="_blank">conditions d’utilisation</a>
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
     description:
@@ -943,6 +934,7 @@ fr:
     migrate_account: Déménager vers un compte différent
     migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez le <a href="%{path}">configurer ici</a>.
     or_log_in_with: Ou authentifiez-vous avec
+    privacy_policy_agreement_html: J’ai lu et j’accepte la <a href="%{privacy_policy_path}" target="_blank">politique de confidentialité</a>
     providers:
       cas: CAS
       saml: SAML
@@ -950,12 +942,18 @@ fr:
     registration_closed: "%{instance} a désactivé les inscriptions"
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
     reset_password: Réinitialiser le mot de passe
+    rules:
+      preamble: Celles-ci sont définies et appliqués par les modérateurs de %{domain}.
+      title: Quelques règles de base.
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
     setup:
       email_below_hint_html: Si l’adresse de courriel ci-dessous est incorrecte, vous pouvez la modifier ici et recevoir un nouveau courriel de confirmation.
       email_settings_hint_html: Le courriel de confirmation a été envoyé à %{email}. Si cette adresse de courriel n’est pas correcte, vous pouvez la modifier dans les paramètres du compte.
       title: Configuration
+    sign_up:
+      preamble: Avec un compte sur ce serveur Mastodon, vous serez en mesure de suivre toute autre personne sur le réseau, quel que soit l’endroit où son compte est hébergé.
+      title: Mettons les choses en place pour %{domain}.
     status:
       account_status: État du compte
       confirming: En attente de la confirmation par courriel à compléter.
@@ -964,7 +962,6 @@ fr:
       redirecting_to: Votre compte est inactif car il est actuellement redirigé vers %{acct}.
       view_strikes: Voir les sanctions précédemment appliquées à votre compte
     too_fast: Formulaire envoyé trop rapidement, veuillez réessayer.
-    trouble_logging_in: Vous avez un problème pour vous connecter ?
     use_security_key: Utiliser la clé de sécurité
   authorize_follow:
     already_following: Vous suivez déjà ce compte
@@ -1022,10 +1019,6 @@ fr:
       more_details_html: Pour plus de détails, voir la <a href="%{terms_path}">politique de confidentialité</a>.
       username_available: Votre nom d’utilisateur·rice sera à nouveau disponible
       username_unavailable: Votre nom d’utilisateur·rice restera indisponible
-  directories:
-    directory: Annuaire des profils
-    explanation: Découvrir des utilisateur·rice·s en fonction de leurs centres d’intérêt
-    explore_mastodon: Explorer %{title}
   disputes:
     strikes:
       action_taken: Mesure prise
@@ -1104,29 +1097,60 @@ fr:
       public: Fils publics
       thread: Discussions
     edit:
+      add_keyword: Ajouter un mot-clé
+      keywords: Mots-clés
+      statuses: Publications individuelles
+      statuses_hint_html: Ce filtre s'applique à la sélection de messages individuels, qu'ils correspondent ou non aux mots-clés ci-dessous. <a href="%{path}">Revoir ou supprimer des messages du filtre</a>.
       title: Éditer le filtre
     errors:
+      deprecated_api_multiple_keywords: Ces paramètres ne peuvent pas être modifiés depuis cette application, car ils s'appliquent à plus d'un filtre de mot-clé. Utilisez une application plus récente ou l'interface web.
       invalid_context: Contexte invalide ou insuffisant
-      invalid_irreversible: Le filtrage irréversible ne fonctionne que pour l’accueil et les notifications
     index:
+      contexts: Filtres dans %{contexts}
       delete: Supprimer
       empty: Vous n'avez aucun filtre.
+      expires_in: Expire dans %{distance}
+      expires_on: Expire le %{date}
+      keywords:
+        one: "%{count} mot-clé"
+        other: "%{count} mots-clés"
+      statuses:
+        one: "%{count} message"
+        other: "%{count} messages"
+      statuses_long:
+        one: "%{count} publication individuelle cachée"
+        other: "%{count} publications individuelles cachées"
       title: Filtres
     new:
+      save: Enregistrer le nouveau filtre
       title: Ajouter un nouveau filtre
+    statuses:
+      back_to_filter: Retour au filtre
+      batch:
+        remove: Retirer du filtre
+      index:
+        hint: Ce filtre s'applique à la sélection de messages individuels, indépendamment d'autres critères. Vous pouvez ajouter plus de messages à ce filtre à partir de l'interface Web.
+        title: Messages filtrés
   footer:
-    developers: Développeurs
-    more: Davantage…
-    resources: Ressources
     trending_now: Tendance en ce moment
   generic:
     all: Tous
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> élément de cette page est sélectionné."
+      other: L'ensemble des <strong>%{count}</strong> éléments de cette page est sélectionné.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> élément correspondant à votre recherche est sélectionné."
+      other: L'ensemble des <strong>%{count}</strong> éléments correspondant à votre recherche est sélectionné.
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
     copy: Copier
     delete: Supprimer
+    deselect: Tout déselectionner
     none: Aucun
     order_by: Classer par
     save_changes: Enregistrer les modifications
+    select_all_matching_items:
+      one: Sélectionnez %{count} élément correspondant à votre recherche.
+      other: Sélectionnez tous l'ensemble des %{count} éléments correspondant à votre recherche.
     today: aujourd’hui
     validation_errors:
       one: Quelque chose ne va pas ! Veuillez vérifiez l’erreur ci-dessous
@@ -1150,7 +1174,6 @@ fr:
       following: Liste d’utilisateur·rice·s suivi·e·s
       muting: Liste d’utilisateur·rice·s que vous masquez
     upload: Importer
-  in_memoriam_html: En mémoire de.
   invites:
     delete: Désactiver
     expired: Expiré
@@ -1229,21 +1252,14 @@ fr:
     carry_blocks_over_text: Cet utilisateur que vous aviez bloqué est parti de %{acct}.
     carry_mutes_over_text: Cet utilisateur que vous aviez masqué est parti de %{acct}.
     copy_account_note_text: 'Cet·te utilisateur·rice est parti·e de %{acct}, voici vos notes précédentes à son sujet :'
+  navigation:
+    toggle_menu: Basculer l'affichage du menu
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} a soumis un signalement"
       sign_up:
         subject: "%{name} s'est inscrit·e"
-    digest:
-      action: Voir toutes les notifications
-      body: Voici un bref résumé des messages que vous avez raté depuis votre dernière visite le %{since}
-      mention: "%{name} vous a mentionné⋅e dans :"
-      new_followers_summary:
-        one: De plus, vous avez un·e nouvel·le abonné·e ! Youpi !
-        other: De plus, vous avez %{count} abonné·e·s de plus ! Incroyable !
-      subject:
-        one: "Une nouvelle notification depuis votre dernière visite 🐘"
-        other: "%{count} nouvelles notifications depuis votre dernière visite 🐘"
-      title: Pendant votre absence…
     favourite:
       body: "%{name} a ajouté votre message à ses favoris :"
       subject: "%{name} a ajouté votre message à ses favoris"
@@ -1315,6 +1331,8 @@ fr:
     other: Autre
     posting_defaults: Paramètres de publication par défaut
     public_timelines: Fils publics
+  privacy_policy:
+    title: Politique de confidentialité
   reactions:
     errors:
       limit_reached: Limite de réactions différentes atteinte
@@ -1337,22 +1355,7 @@ fr:
     remove_selected_follows: Ne plus suivre les comptes sélectionnés
     status: État du compte
   remote_follow:
-    acct: Entrez l’adresse profil@serveur depuis laquelle vous voulez effectuer cette action
     missing_resource: L’URL de redirection requise pour votre compte n’a pas pu être trouvée
-    no_account_html: Vous n’avez pas de compte ? Vous pouvez <a href='%{sign_up_path}' target='_blank'>vous inscrire ici</a>
-    proceed: Confirmer l’abonnement
-    prompt: 'Vous allez suivre :'
-    reason_html: "<strong>Pourquoi cette étape est-elle nécessaire?</strong> <code>%{instance}</code> pourrait ne pas être le serveur sur lequel vous vous êtes inscrit·e, et nous devons donc vous rediriger vers votre serveur de base en premier."
-  remote_interaction:
-    favourite:
-      proceed: Confirmer l’ajout aux favoris
-      prompt: 'Vous souhaitez ajouter ce message à vos favoris :'
-    reblog:
-      proceed: Confirmer le partage
-      prompt: 'Vous souhaitez partager ce message :'
-    reply:
-      proceed: Confirmer la réponse
-      prompt: 'Vous souhaitez répondre à ce message :'
   reports:
     errors:
       invalid_rules: ne fait pas référence à des règles valides
@@ -1394,7 +1397,7 @@ fr:
       adobe_air: Adobe Air
       android: Android
       blackberry: BlackBerry
-      chrome_os: Chrome OS
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -1519,91 +1522,11 @@ fr:
     pinned: Message épinglé
     reblogged: a partagé
     sensitive_content: Contenu sensible
+  strikes:
+    errors:
+      too_late: Il est trop tard pour faire appel à cette sanction
   tags:
     does_not_match_previous_name: ne correspond pas au nom précédent
-  terms:
-    body_html: |
-      <h2>Politique de confidentialité</h2>
-      <h3 id="collect">Quelles informations collectons-nous ?</h3>
-
-      <ul>
-      <li><em>Informations de base sur votre compte</em> : si vous vous inscrivez sur ce serveur, il vous sera demandé de rentrer un identifiant, une adresse électronique et un mot de passe. Vous pourrez également ajouter des informations additionnelles sur votre profil, telles qu’un nom public et une biographie, ainsi que téléverser une image de profil et une image d’en-tête. Vos identifiant, nom public, biographie, image de profil et image d’en-tête seront toujours affichés publiquement.</li>
-      <li><em>Posts, liste d’abonnements et autres informations publiques</em> : la liste de vos abonnements ainsi que la liste de vos abonné·e·s sont publiques. Quand vous postez un message, la date et l’heure d’envoi ainsi que le nom de l’application utilisée pour sa transmission sont enregistré·e·s. Des médias, tels que des images ou des vidéos, peuvent être joints aux messages. Les posts publics et non listés sont affichés publiquement. Quand vous mettez en avant un post sur votre profil, ce post est également affiché publiquement. Vos messages sont délivrés à vos abonné·e·s, ce qui, dans certains cas, signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Quand vous supprimez un post, il est probable que l'action soit aussi délivrée à vos abonné·e·s. Partager un message ou le marquer comme favori est toujours une action publique.</li>
-      <li><em>Posts directs et abonné·e·s uniquement</em> : tous les posts sont stockés et traités par le serveur. Les messages abonné·e·s uniquement ne sont transmis qu’à vos abonné·e·s et aux personnes mentionnées dans le corps du message, tandis que les messages directs ne sont transmis qu’aux personnes mentionnées. Dans certains cas, cela signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Nous faisons un effort de bonne foi pour en limiter l’accès uniquement aux personnes autorisées, mais ce n’est pas nécessairement le cas des autres serveurs. Il est donc très important que vous vérifiiez les serveurs auxquels appartiennent vos abonné·e·s. Il vous est possible d’activer une option dans les paramètres afin d’approuver et de rejeter manuellement les nouveaux·lles abonné·e·s. <em>Gardez s’il vous plaît en mémoire que les opérateur·rice·s du serveur ainsi que celles et ceux de n’importe quel serveur récepteur peuvent voir ces messages</em> et qu’il est possible pour les destinataires de faire des captures d’écran, de copier et plus généralement de repartager ces messages. <em>Ne partagez aucune information sensible à l’aide de Mastodon !</em></li>
-      <li><em>IP et autres métadonnées</em> : quand vous vous connectez, nous enregistrons votre adresse IP ainsi que le nom de votre navigateur web. Toutes les sessions enregistrées peuvent être consultées dans les paramètres, afin que vous puissiez les surveiller et éventuellement les révoquer. La dernière adresse IP utilisée est conservée pour une durée de 12 mois. Nous sommes également susceptibles de conserver les journaux du serveur, ce qui inclut l’adresse IP de chaque requête reçue.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Que faisons-nous des informations que nous collectons ?</h3>
-
-      <p>Toutes les informations que nous collectons sur vous peuvent être utilisées des manières suivantes :</p>
-
-      <ul>
-      <li>pour vous fournir les fonctionnalités de base de Mastodon. Vous ne pouvez interagir avec le contenu des autres et poster votre propre contenu que lorsque vous êtes connecté·e. Par exemple, vous pouvez vous abonner à plusieurs autres comptes pour voir l’ensemble de leurs posts dans votre fil d’accueil personnalisé.</li>
-      <li>pour aider à la modération de la communauté : par exemple, comparer votre adresse IP avec d’autres afin de déterminer si un bannissement a été contourné ou si une autre violation aux règles a été commise.</li>
-      <li>l’adresse électronique que vous nous avez fournie peut être utilisée pour vous envoyer des informations, des notifications lorsque d’autres personnes interagissent avec votre contenu ou vous envoient des messages, pour répondre à des demandes de votre part ainsi que pour toutes autres requêtes ou questions.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Comment protégeons-nous vos informations ?</h3>
-
-      <p>Nous mettons en œuvre une variété de mesures de sécurité afin de garantir la sécurité de vos informations personnelles quand vous les saisissez, les soumettez et les consultez. Entre autres choses, votre session de navigation ainsi que le trafic entre votre application et l’API sont sécurisés à l’aide de TLS ; tandis que votre mot de passe est haché en utilisant un puissant algorithme à sens unique. Vous pouvez également activer l’authentification à deux facteurs pour sécuriser encore plus l’accès à votre compte.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Quelle est notre politique de conservation des données ?</h3>
-
-      <p>Nous ferons un effort de bonne foi :</p>
-
-      <ul>
-      <li>pour ne pas conserver plus de 90 jours les journaux systèmes contenant les adresses IP de toutes les requêtes reçues par ce serveur.</li>
-      <li>pour ne pas conserver plus de 12 mois les adresses IP associées aux utilisateur·ice·s enregistré·e·s.</li>
-      </ul>
-
-      <p>Vous pouvez demander une archive de votre contenu, incluant vos posts, vos médias joints, votre image de profil et votre image d’en-tête.</p>
-
-      <p>Vous pouvez, à n’importe quel moment, supprimer votre compte de manière définitive.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Utilisons-nous des témoins de connexion ?</h3>
-
-      <p>Oui. Les témoins de connexion sont de petits fichiers qu’un site ou un service transfère sur le disque dur de votre ordinateur via votre navigateur web (si vous l’avez autorisé). Ces témoins permettent au site de reconnaître votre navigateur et, dans le cas où vous possédez un compte, de vous associer avec ce dernier.</p>
-
-      <p>Nous utilisons les témoins de connexion comme un moyen de comprendre et de nous souvenir de vos préférences pour vos prochaines visites.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Divulguons-nous des informations à des tiers ?</h3>
-
-      <p>Nous ne vendons, n’échangeons ou ne transférons d’une quelconque manière que ce soit des informations permettant de vous identifier personnellement. Cela n’inclut pas les tiers de confiance qui nous aident à faire fonctionner ce site, à conduire nos activités commerciales ou à vous servir, du moment qu’ils acceptent de garder ces informations confidentielles. Nous sommes également susceptibles de partager vos informations quand nous pensons que cela est nécessaire pour nous conformer à la loi, pour faire respecter les règles de notre site, ainsi que pour défendre nos droits, notre propriété, notre sécurité, ou ceux d’autres personnes.</p>
-
-      <p>Votre contenu public peut être téléchargé par d’autres serveurs du réseau. Dans le cas où vos abonné·e·s et vos destinataires résideraient sur des serveurs différents du vôtre, vos posts publics et abonné·e·s uniquement peuvent être délivrés vers les serveurs de vos abonné·e·s tandis que vos messages directs sont délivrés aux serveurs de vos destinataires.</p>
-
-      <p>Quand vous autorisez une application à utiliser votre compte, en fonction de l’étendue des permissions que vous approuvez, il est possible qu’elle puisse accéder aux informations publiques de votre profil, à votre liste d’abonnements, votre liste d’abonné·e·s, vos listes, tous vos posts et vos favoris. Les applications ne peuvent en aucun cas accéder à votre adresse électronique et à votre mot de passe.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Utilisation de ce site par les enfants</h3>
-
-      <p>Si ce serveur est situé dans l’UE ou l’EEE : notre site, nos produits et nos services sont tous destinés à des personnes âgées de 16 ans ou plus. Si vous avez moins de 16 ans, en application du RGPD (<a href="https://fr.wikipedia.org/wiki/R%C3%A8glement_g%C3%A9n%C3%A9ral_sur_la_protection_des_donn%C3%A9es">Règlement Général sur la Protection des Données</a>), merci de ne pas utiliser ce site.</p>
-
-      <p>Si ce serveur est situé aux États-Unis d’Amérique : notre site, nos produits et nos services sont tous destinés à des personnes âgées de 13 ans ou plus. Si vous avez moins de 13 ans, en application du COPPA (<a href="https://fr.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>), merci de ne pas utiliser ce site.</p>
-
-      <p>Les exigences légales peuvent être différentes si ce serveur se trouve dans une autre juridiction.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Modifications de notre politique de confidentialité</h3>
-
-      <p>Dans le cas où nous déciderions de changer notre politique de confidentialité, nous posterons les modifications sur cette page.</p>
-
-      <p>Ce document est publié sous licence CC-BY-SA. Il a été mis à jour pour la dernière fois le 7 mars 2018.</p>
-
-      <p>Originellement adapté de la <a href="https://github.com/discourse/discourse">politique de confidentialité de Discourse</a>.</p>
-    title: Conditions d’utilisation et politique de confidentialité de %{instance}
   themes:
     contrast: Mastodon (Contraste élevé)
     default: Mastodon (Sombre)
@@ -1682,20 +1605,13 @@ fr:
         suspend: Compte suspendu
     welcome:
       edit_profile_action: Configuration du profil
-      edit_profile_step: Vous pouvez personnaliser votre profil en téléchargeant un avatar, une image d’en-tête, en changeant votre pseudo et plus encore. Si vous souhaitez examiner les nouveaux·lles abonné·e·s avant qu’iels ne soient autorisé·e·s à vous suivre, vous pouvez verrouiller votre compte.
+      edit_profile_step: Vous pouvez personnaliser votre profil en téléchargeant une photo de profil, en changant votre nom d'utilisateur, etc. Vous pouvez opter pour le passage en revue de chaque nouvelle demande d'abonnement à chaque fois qu'un utilisateur essaie de s'abonner à votre compte.
       explanation: Voici quelques conseils pour vous aider à démarrer
       final_action: Commencez à publier
-      final_step: 'Commencez à publier ! Même sans abonné·e·s, vos messages publics peuvent être vus par d’autres, par exemple sur le fil public local et dans les hashtags. Vous pouvez vous présenter sur le hashtag #introductions.'
+      final_step: 'Commencez à publier ! Même si vous n''avez pas encore d''abonnés, vos publications sont publiques et sont accessibles par les autres, par exemple grâce à la zone horaire locale ou par les hashtags. Vous pouvez vous présenter sur le hashtag #introductions.'
       full_handle: Votre identifiant complet
       full_handle_hint: C’est ce que vous diriez à vos ami·e·s pour leur permettre de vous envoyer un message ou vous suivre à partir d’un autre serveur.
-      review_preferences_action: Modifier les préférences
-      review_preferences_step: Assurez-vous de définir vos préférences, telles que les courriels que vous aimeriez recevoir ou le niveau de confidentialité auquel vous publier vos messages par défaut. Si vous n’avez pas le mal des transports, vous pouvez choisir d’activer la lecture automatique des GIF.
       subject: Bienvenue sur Mastodon
-      tip_federated_timeline: Le fil public global est une vue en direct du réseau Mastodon. Mais elle n’inclut que les personnes auxquelles vos voisin·e·s sont abonné·e·s, donc elle n’est pas complète.
-      tip_following: Vous suivez les administrateurs de votre serveur par défaut. Pour trouver d’autres personnes intéressantes, consultez les fils publics local et global.
-      tip_local_timeline: Le fil public local est une vue des personnes sur %{instance}. Ce sont vos voisines et voisins immédiats !
-      tip_mobile_webapp: Si votre navigateur mobile vous propose d’ajouter Mastodon à votre écran d’accueil, vous pouvez recevoir des notifications. Il agit comme une application native de bien des façons !
-      tips: Astuces
       title: Bienvenue à bord, %{name} !
   users:
     follow_limit_reached: Vous ne pouvez pas suivre plus de %{limit} personnes

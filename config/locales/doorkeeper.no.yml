@@ -3,7 +3,7 @@
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Navn
+        name: Applikasjonsnavn
         redirect_uri: Omdirigerings-URI
         scopes: Omfang
         website: Applikasjonsnettside
@@ -12,24 +12,24 @@
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: kan ikke inneholde ett fragment.
+              fragment_present: kan ikke inneholde et fragment.
               invalid_uri: må være en gyldig URI.
               relative_uri: må være en absolutt URI.
               secured_uri: må være en HTTPS/SSL URI.
   doorkeeper:
     applications:
       buttons:
-        authorize: Autoriser
+        authorize: Autorisér
         cancel: Avbryt
         destroy: Ødelegg
-        edit: Rediger
+        edit: Redigér
         submit: Send inn
       confirmations:
         destroy: Er du sikker?
       edit:
         title: Endre applikasjon
       form:
-        error: Oops! Sjekk skjemaet ditt for mulige feil
+        error: Oops! Sjekk om du har feil i skjemaet ditt
       help:
         native_redirect_uri: Bruk %{native_redirect_uri} for lokale tester
         redirect_uri: Bruk én linje per URI
@@ -60,6 +60,8 @@
       error:
         title: En feil oppstod
       new:
+        prompt_html: "%{client_name} ønsker tilgang til kontoen din. Det er en tredjeparts applikasjon. <strong>Hvis du ikke stoler på den, bør du ikke autorisere den.</strong>"
+        review_permissions: Gå gjennom tillatelser
         title: Autorisasjon påkrevd
       show:
         title: Kopier denne koden og lim den inn i programmet.
@@ -69,18 +71,24 @@
       confirmations:
         revoke: Opphev?
       index:
+        authorized_at: Autorisert %{date}
+        description_html: Dette er applikasjoner som kan få tilgang til kontoen din ved hjelp av API-et. Hvis det finnes applikasjoner du ikke gjenkjenner her, eller en applikasjon skaper problemer, kan du tilbakekalle tilgangen den har.
+        last_used_at: Sist brukt %{date}
+        never_used: Aldri brukt
+        scopes: Tillatelser
+        superapp: Internt
         title: Dine autoriserte applikasjoner
     errors:
       messages:
-        access_denied: Ressurseieren eller autoriseringstjeneren avviste forespørslen.
+        access_denied: Ressurseieren eller autoriseringsserveren avviste forespørselen.
         credential_flow_not_configured: Ressurseiers passordflyt feilet fordi Doorkeeper.configure.resource_owner_from_credentials ikke var konfigurert.
         invalid_client: Klientautentisering feilet på grunn av ukjent klient, ingen autentisering inkludert, eller autentiseringsmetode er ikke støttet.
-        invalid_grant: Autoriseringen er ugyldig, utløpt, opphevet, stemmer ikke overens med omdirigerings-URIen eller var utstedt til en annen klient.
+        invalid_grant: Autoriseringen er ugyldig, utløpt, opphevet, stemmer ikke overens med omdirigerings-URIen i autoriseringsforespørselen eller var utstedt til en annen klient.
         invalid_redirect_uri: Den inkluderte omdirigerings-URLen er ikke gyldig.
         invalid_request:
           missing_param: 'Mangler påkrevd parameter: %{value}.'
-          request_not_authorized: Forespørselen må godkjennes. Påkrevd parameter for godkjenningsforespørselen mangler eller er ugyldig.
-          unknown: Forespørselen mangler en påkrevd parameter, inkluderer en ukjent parameterverdi, eller er utformet for noe annet.
+          request_not_authorized: Forespørselen må autoriseres. Påkrevd parameter for autorisasjonsforespørselen mangler eller er ugyldig.
+          unknown: Forespørselen mangler en påkrevd parameter, inkluderer en parameterverdi som ikke støttes, eller har på annet vis feil struktur.
         invalid_resource_owner: Ressurseierens detaljer er ikke gyldige, eller så er det ikke mulig å finne eieren
         invalid_scope: Det etterspurte omfanget er ugyldig, ukjent eller har feil struktur.
         invalid_token:
@@ -89,10 +97,10 @@
           unknown: Tilgangsbeviset er ugyldig
         resource_owner_authenticator_not_configured: Ressurseier kunne ikke finnes fordi Doorkeeper.configure.resource_owner_authenticator ikke er konfigurert.
         server_error: Autoriseringstjeneren støtte på en uventet hendelse som hindret den i å svare på forespørslen.
-        temporarily_unavailable: Autoriseringstjeneren kan ikke håndtere forespørslen grunnet en midlertidig overbelastning eller tjenervedlikehold.
+        temporarily_unavailable: Autoriseringsserveren kan ikke håndtere forespørselen grunnet en midlertidig overbelastning eller vedlikehold av serveren.
         unauthorized_client: Klienten har ikke autorisasjon for å utføre denne forespørslen med denne metoden.
         unsupported_grant_type: Autorisasjonstildelingstypen er ikke støttet av denne autoriseringstjeneren.
-        unsupported_response_type: Autorisasjonsserveren støtter ikke denne typen av forespørsler.
+        unsupported_response_type: Autorisasjonsserveren støtter ikke denne respons-typen.
     flash:
       applications:
         create:
@@ -104,45 +112,74 @@
       authorized_applications:
         destroy:
           notice: Applikasjon opphevet.
+    grouped_scopes:
+      access:
+        read: Kun lesetilgang
+        read/write: Lese- og skrivetilgang
+        write: Kun skrivetilgang
+      title:
+        accounts: Kontoer
+        admin/accounts: Administrasjon av kontoer
+        admin/all: All administrativ funksjonalitet
+        admin/reports: Administrasjon av rapporteringer
+        all: Alt
+        blocks: Blokkeringer
+        bookmarks: Bokmerker
+        conversations: Samtaler
+        crypto: Ende-til-ende-kryptering
+        favourites: Favoritter
+        filters: Filtre
+        follow: Relasjoner
+        follows: Følger
+        lists: Lister
+        media: Mediavedlegg
+        mutes: Dempinger
+        notifications: Varslinger
+        push: Push-varslinger
+        reports: Rapporteringer
+        search: Søk
+        statuses: Innlegg
     layouts:
       admin:
         nav:
           applications: Applikasjoner
-          oauth2_provider: OAuth2-tilbyder
+          oauth2_provider: OAuth2-leverandør
       application:
         title: OAuth-autorisering påkrevet
     scopes:
       admin:read: lese alle data på tjeneren
-      admin:read:accounts: lese sensitiv informasjon om alle kontoer
-      admin:read:reports: lese sensitiv informasjon om alle rapporter og rapporterte kontoer
+      admin:read:accounts: lese sensitiv informasjon for alle kontoer
+      admin:read:reports: lese sensitiv informasjon for alle rapporter og rapporterte kontoer
       admin:write: modifisere alle data på tjeneren
       admin:write:accounts: utføre moderatorhandlinger på kontoer
       admin:write:reports: utføre moderatorhandlinger på rapporter
-      follow: følg, blokkér, avblokkér, avfølg brukere
-      push: motta dine varsler
+      crypto: bruk ende-til-ende-kryptering
+      follow: endre konto-relasjoner
+      push: motta push-varslingene dine
       read: lese dine data
       read:accounts: se informasjon om kontoer
-      read:blocks: se dine blokkeringer
-      read:bookmarks: se dine bokmerker
+      read:blocks: se blokkeringene dine
+      read:bookmarks: se bokmerkene dine
       read:favourites: se dine likinger
-      read:filters: se dine filtre
-      read:follows: se dine følginger
+      read:filters: se filtrene dine
+      read:follows: se hvem du følger
       read:lists: se listene dine
       read:mutes: se dine dempinger
-      read:notifications: se dine varslinger
-      read:reports: se dine rapporter
+      read:notifications: se varslingene dine
+      read:reports: se rapportene dine
       read:search: søke på dine vegne
-      read:statuses: se alle statuser
+      read:statuses: se alle innlegg
       write: poste på dine vegne
       write:accounts: endre på profilen din
       write:blocks: blokkere kontoer og domener
-      write:bookmarks: bokmerke statuser
-      write:favourites: like statuser
-      write:filters: opprett filtre
-      write:follows: følg personer
-      write:lists: opprett lister
-      write:media: last opp mediafiler
+      write:bookmarks: bokmerke innlegg
+      write:conversations: dempe og slette samtaler
+      write:favourites: like innlegg
+      write:filters: opprette filtre
+      write:follows: følge personer
+      write:lists: opprette lister
+      write:media: laste opp mediafiler
       write:mutes: dempe folk og samtaler
-      write:notifications: tømme dine varsler
+      write:notifications: tømme varslingene dine
       write:reports: rapportere andre folk
-      write:statuses: legg ut statuser
+      write:statuses: legge ut innlegg

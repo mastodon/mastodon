@@ -37,14 +37,14 @@ ko:
         current_password: 보안을 위해 현재 계정의 암호를 입력해주세요
         current_username: 확인을 위해, 현재 계정의 사용자명을 입력해주세요
         digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
-        discoverable: 추천, 트렌드 및 기타 기능을 통해 낯선 사람이 귀하의 계정을 찾을 수 있도록 허용합니다
+        discoverable: 추천, 트렌드 및 기타 기능을 통해 낯선 사람이 내 계정을 발견할 수 있도록 허용합니다
         email: 당신은 확인 메일을 받게 됩니다
         fields: 당신의 프로파일에 최대 4개까지 표 형식으로 나타낼 수 있습니다
         header: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
         inbox_url: 사용 할 릴레이 서버의 프론트페이지에서 URL을 복사합니다
         irreversible: 필터링 된 게시물은 나중에 필터가 사라지더라도 돌아오지 않게 됩니다
         locale: 사용자 인터페이스, 이메일, 푸시 알림 언어
-        locked: 팔로우 요청을 승인함으로써 누가 당신을 팔로우 할 수 있는지를 수동으로 제어합니다.
+        locked: 팔로우 요청을 승인제로 두어 누가 당신을 팔로우 할 수 있는지를 수동으로 제어합니다.
         password: 최소 8글자
         phrase: 게시물 내용이나 열람주의 내용 안에서 대소문자 구분 없이 매칭 됩니다
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
@@ -67,7 +67,33 @@ ko:
         domain: 이메일에 표시되는 도메인 네임이거나 그것이 사용하는 MX 레코드일 수 있습니다. 가입시에 검증됩니다.
         with_dns_records: 입력한 도메인의 DNS를 조회를 시도하여 나온 값도 차단됩니다
       featured_tag:
-        name: '이것들을 사용하면 좋을 것 같습니다:'
+        name: '이것들은 최근에 많이 쓰인 해시태그들입니다:'
+      filters:
+        action: 게시물이 필터에 걸러질 때 어떤 동작을 수행할 지 고르세요
+        actions:
+          hide: 필터에 걸러진 글을 처음부터 없었던 것처럼 완전히 가리기
+          warn: 필터에 걸러진 글을 필터 제목과 함께 경고 뒤에 가리기
+      form_admin_settings:
+        backups_retention_period: 생성된 사용자 아카이브를 며칠동안 저장할 지.
+        bootstrap_timeline_accounts: 이 계정들은 팔로우 추천 목록 상단에 고정됩니다.
+        closed_registrations_message: 새 가입을 차단했을 때 표시됩니다
+        content_cache_retention_period: 양수로 설정되었다면 다른 서버의 게시물은 여기서 설정된 일수가 지나면 삭제될 것입니다. 되돌릴 수 없는 작업일 수 있습니다.
+        custom_css: 사용자 지정 스타일을 웹 버전의 마스토돈에 지정할 수 있습니다.
+        mascot: 고급 사용자 인터페이스에 있는 일러스트를 교체합니다.
+        media_cache_retention_period: 양수로 설정된 경우 다운로드된 미디어 파일들은 지정된 일수가 지나면 삭제될 것이고 필요할 때 다시 다운로드 될 것입니다.
+        profile_directory: 프로필 책자는 발견되기를 희망하는 모든 사람들의 목록을 나열합니다.
+        require_invite_text: 가입이 수동 승인을 필요로 할 때, "왜 가입하려고 하나요?" 항목을 선택사항으로 두는 것보다는 필수로 두는 것이 낫습니다
+        site_contact_email: 사람들이 법적이나 도움 요청을 위해 당신에게 연락할 방법.
+        site_contact_username: 사람들이 마스토돈에서 당신에게 연락할 방법.
+        site_extended_description: 방문자와 사용자에게 유용할 수 있는 추가정보들. 마크다운 문법을 사용할 수 있습니다.
+        site_short_description: 이 서버를 특별하게 구분할 수 있는 짧은 설명. 누가 운영하고, 누구를 위한 것인가요?
+        site_terms: 자신만의 개인정보 정책을 사용하거나 비워두는 것으로 기본값을 사용할 수 있습니다. 마크다운 문법을 사용할 수 있습니다.
+        site_title: 사람들이 이 서버를 도메인 네임 대신에 부를 이름.
+        theme: 로그인 하지 않은 사용자나 새로운 사용자가 보게 될 테마.
+        thumbnail: 대략 2:1 비율의 이미지가 서버 정보 옆에 표시됩니다.
+        timeline_preview: 로그아웃 한 사용자들이 이 서버에 있는 최신 공개글들을 볼 수 있게 합니다.
+        trendable_by_default: 유행하는 콘텐츠에 대한 수동 승인을 건너뜁니다. 이 설정이 적용된 이후에도 각각의 항목들을 삭제할 수 있습니다.
+        trends: 트렌드는 어떤 게시물, 해시태그 그리고 뉴스 기사가 이 서버에서 인기를 끌고 있는지 보여줍니다.
       form_challenge:
         current_password: 당신은 보안 구역에 진입하고 있습니다
       imports:
@@ -80,6 +106,7 @@ ko:
         ip: IPv4 또는 IPv6 주소를 입력하세요. CIDR 문법을 사용해서 모든 범위를 차단할 수도 있습니다. 자기 자신을 잠가버리지 않도록 주의하세요!
         severities:
           no_access: 모든 자원에 대한 접근 차단
+          sign_up_block: 새 가입이 불가능하게 됩니다
           sign_up_requires_approval: 새 가입이 승인을 필요로 하도록 합니다
         severity: 해당 IP로부터의 요청에 대해 무엇이 일어나게 할 지 고르세요
       rule:
@@ -91,6 +118,16 @@ ko:
         name: 읽기 쉽게하기 위한 글자의 대소문자만 변경할 수 있습니다.
       user:
         chosen_languages: 체크하면, 선택 된 언어로 작성된 게시물들만 공개 타임라인에 보여집니다
+        role: 역할은 사용자가 어떤 권한을 가지게 될 지 결정합니다
+      user_role:
+        color: 색상은 사용자 인터페이스에서 역할을 나타내기 위해 사용되며, RGB 16진수 형식입니다
+        highlighted: 이 역할이 공개적으로 보이도록 설정합니다
+        name: 역할이 배지로 표시될 경우, 그 역할에 대한 공개적인 이름입니다
+        permissions_as_keys: 이 역할을 가진 사용자는 다음에 접근할 수 있게 됩니다...
+        position: 특정 상황에서 충돌이 발생할 경우 더 높은 역할이 충돌을 해결합니다. 특정 작업은 우선순위가 낮은 역할에 대해서만 수행될 수 있습니다
+      webhook:
+        events: 전송할 이벤트를 선택하세요
+        url: 이벤트가 어디로 전송될 지
     labels:
       account:
         fields:
@@ -158,7 +195,7 @@ ko:
         setting_crop_images: 확장되지 않은 게시물의 이미지를 16x9로 자르기
         setting_default_language: 게시물 언어
         setting_default_privacy: 게시물 프라이버시
-        setting_default_sensitive: 미디어를 언제나 민감한 컨텐츠로 설정
+        setting_default_sensitive: 미디어를 언제나 민감한 콘텐츠로 설정
         setting_delete_modal: 게시물 삭제 전 확인 창을 표시
         setting_disable_swiping: 스와이프 모션 비활성화
         setting_display_media: 미디어 표시
@@ -170,7 +207,7 @@ ko:
         setting_noindex: 검색엔진의 인덱싱을 거절
         setting_reduce_motion: 애니메이션 줄이기
         setting_show_application: 툿 작성에 사용한 앱을 공개
-        setting_system_font_ui: 시스템의 초기 설정 폰트를 사용
+        setting_system_font_ui: 시스템의 기본 글꼴을 사용
         setting_theme: 사이트 테마
         setting_trends: 오늘의 유행 보이기
         setting_unfollow_modal: 언팔로우 전 언팔로우 확인 표시
@@ -178,6 +215,7 @@ ko:
         setting_use_pending_items: 느린 모드
         severity: 심각도
         sign_in_token_attempt: 보안 코드
+        title: 제목
         type: 불러오기 종류
         username: 사용자명
         username_or_email: 사용자명 또는 이메일
@@ -186,6 +224,34 @@ ko:
         with_dns_records: 도메인의 IP와 MX 레코드 값을 포함
       featured_tag:
         name: 해시태그
+      filters:
+        actions:
+          hide: 완전히 숨기기
+          warn: 경고와 함께 숨기기
+      form_admin_settings:
+        backups_retention_period: 사용자 아카이브 유지 기한
+        bootstrap_timeline_accounts: 새로운 사용자들에게 추천할 계정들
+        closed_registrations_message: 가입이 불가능 할 때의 사용자 지정 메시지
+        content_cache_retention_period: 콘텐츠 캐시 유지 기한
+        custom_css: 사용자 정의 CSS
+        mascot: 사용자 정의 마스코트 (legacy)
+        media_cache_retention_period: 미디어 캐시 유지 기한
+        profile_directory: 프로필 책자 활성화
+        registrations_mode: 누가 가입할 수 있는지
+        require_invite_text: 가입 하는 이유를 필수로 입력하게 하기
+        show_domain_blocks: 도메인 차단 보여주기
+        show_domain_blocks_rationale: 왜 도메인이 차단되었는지 보여주기
+        site_contact_email: 연락처 이메일
+        site_contact_username: 연락 받을 관리자 사용자명
+        site_extended_description: 확장된 설명
+        site_short_description: 서버 설명
+        site_terms: 개인정보 정책
+        site_title: 서버 이름
+        theme: 기본 테마
+        thumbnail: 서버 썸네일
+        timeline_preview: 로그인 하지 않고 공개 타임라인에 접근하는 것을 허용
+        trendable_by_default: 사전 리뷰 없이 트렌드에 오르는 것을 허용
+        trends: 유행 활성화
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
@@ -199,6 +265,7 @@ ko:
         ip: IP
         severities:
           no_access: 접근 차단
+          sign_up_block: 가입 차단
           sign_up_requires_approval: 가입 제한
         severity: 규칙
       notification_emails:
@@ -206,10 +273,10 @@ ko:
         digest: 요약 이메일 보내기
         favourite: 누군가 내 상태를 마음에 들어했을 때
         follow: 누군가 나를 팔로우 했을 때
-        follow_request: 누군가 나를 팔로우 하길 원할 때
+        follow_request: 누군가 나를 팔로우 하길 요청할 때
         mention: 누군가 나를 언급했을 때
         pending_account: 새 계정이 심사가 필요할 때
-        reblog: 누군가 내 툿을 부스트 했을 때
+        reblog: 누군가 내 게시물을 부스트 했을 때
         report: 새 신고가 접수되었을 때
         trending_tag: 새 트렌드에 대한 리뷰가 필요할 때
       rule:
@@ -219,7 +286,19 @@ ko:
         name: 해시태그
         trendable: 이 해시태그가 유행에 보여지도록 허용
         usable: 이 해시태그를 게시물에 사용 가능하도록 허용
+      user:
+        role: 역할
+      user_role:
+        color: 배지 색상
+        highlighted: 역할 배지를 사용자 프로필에 표시
+        name: 이름
+        permissions_as_keys: 권한
+        position: 우선순위
+      webhook:
+        events: 활성화된 이벤트
+        url: 엔드포인트 URL
     'no': 아니오
+    not_recommended: 추천하지 않음
     recommended: 추천함
     required:
       mark: "*"

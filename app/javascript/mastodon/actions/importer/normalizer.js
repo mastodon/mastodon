@@ -42,6 +42,14 @@ export function normalizeAccount(account) {
   return account;
 }
 
+export function normalizeFilterResult(result) {
+  const normalResult = { ...result };
+
+  normalResult.filter = normalResult.filter.id;
+
+  return normalResult;
+}
+
 export function normalizeStatus(status, normalOldStatus) {
   const normalStatus   = { ...status };
   normalStatus.account = status.account.id;
@@ -52,6 +60,10 @@ export function normalizeStatus(status, normalOldStatus) {
 
   if (status.poll && status.poll.id) {
     normalStatus.poll = status.poll.id;
+  }
+
+  if (status.filtered) {
+    normalStatus.filtered = status.filtered.map(normalizeFilterResult);
   }
 
   // Only calculate these values when status first encountered and

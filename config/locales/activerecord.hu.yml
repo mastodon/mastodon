@@ -21,6 +21,18 @@ hu:
             username:
               invalid: csak betűket, számokat vagy alávonást tartalmazhat
               reserved: fenntartott
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nem érvényes URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nem érvényes URL
+        import:
+          attributes:
+            data:
+              malformed: hibás
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ hu:
             email:
               blocked: egy letiltott e-mail szolgáltatót használ
               unreachable: úgy tűnik, hogy nem létezik
+            role_id:
+              elevated: nem lehet magasabb, mint a jelenlegi szereped
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: tartalmaz olyan engedélyeket is, melyek az alap szerephez nem biztonságosak
+              elevated: nem tartalmazhat olyan engedélyeket, melyek nincsenek benne a jelenlegi szerepedben
+              own_role: nem megváltoztatható a jelenlegi szerepköröddel
+            position:
+              elevated: nem lehet magasabb, mint a jelenlegi szereped
+              own_role: nem megváltoztatható a jelenlegi szerepköröddel

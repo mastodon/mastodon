@@ -18,5 +18,5 @@ class Rule < ApplicationRecord
 
   validates :text, presence: true, length: { maximum: 300 }
 
-  scope :ordered, -> { kept.order(priority: :asc) }
+  scope :ordered, -> { kept.order(priority: :asc, id: :asc) }
 end

@@ -10,19 +10,22 @@ on:
     paths:
       - .github/workflows/build-image.yml
       - Dockerfile
+permissions:
+  contents: read
+
 jobs:
   build-image:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: docker/setup-qemu-action@v1
-      - uses: docker/setup-buildx-action@v1
-      - uses: docker/login-action@v1
+      - uses: actions/checkout@v3
+      - uses: docker/setup-qemu-action@v2
+      - uses: docker/setup-buildx-action@v2
+      - uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
         if: github.event_name != 'pull_request'
-      - uses: docker/metadata-action@v3
+      - uses: docker/metadata-action@v4
         id: meta
         with:
           images: tootsuite/mastodon
@@ -30,13 +33,14 @@ jobs:
             latest=auto
           tags: |
             type=edge,branch=main
-            type=match,pattern=v(.*),group=0
+            type=pep440,pattern={{raw}}
+            type=pep440,pattern=v{{major}}.{{minor}}
             type=ref,event=pr
-      - uses: docker/build-push-action@v2
+      - uses: docker/build-push-action@v3
         with:
           context: .
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
-          cache-from: type=registry,ref=tootsuite/mastodon:latest
+          cache-from: type=registry,ref=tootsuite/mastodon:edge
           cache-to: type=inline

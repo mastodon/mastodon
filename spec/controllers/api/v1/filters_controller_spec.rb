@@ -34,7 +34,7 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
     it 'creates a filter' do
       filter = user.account.custom_filters.first
       expect(filter).to_not be_nil
-      expect(filter.phrase).to eq 'magic'
+      expect(filter.keywords.pluck(:keyword)).to eq ['magic']
       expect(filter.context).to eq %w(home)
       expect(filter.irreversible?).to be true
       expect(filter.expires_at).to be_nil
@@ -42,21 +42,23 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:scopes) { 'read:filters' }
-    let(:filter) { Fabricate(:custom_filter, account: user.account) }
+    let(:scopes)  { 'read:filters' }
+    let(:filter)  { Fabricate(:custom_filter, account: user.account) }
+    let(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: filter) }
 
     it 'returns http success' do
-      get :show, params: { id: filter.id }
+      get :show, params: { id: keyword.id }
       expect(response).to have_http_status(200)
     end
   end
 
   describe 'PUT #update' do
-    let(:scopes) { 'write:filters' }
-    let(:filter) { Fabricate(:custom_filter, account: user.account) }
+    let(:scopes)  { 'write:filters' }
+    let(:filter)  { Fabricate(:custom_filter, account: user.account) }
+    let(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: filter) }
 
     before do
-      put :update, params: { id: filter.id, phrase: 'updated' }
+      put :update, params: { id: keyword.id, phrase: 'updated' }
     end
 
     it 'returns http success' do
@@ -64,16 +66,17 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
     end
 
     it 'updates the filter' do
-      expect(filter.reload.phrase).to eq 'updated'
+      expect(keyword.reload.phrase).to eq 'updated'
     end
   end
 
   describe 'DELETE #destroy' do
-    let(:scopes) { 'write:filters' }
-    let(:filter) { Fabricate(:custom_filter, account: user.account) }
+    let(:scopes)  { 'write:filters' }
+    let(:filter)  { Fabricate(:custom_filter, account: user.account) }
+    let(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: filter) }
 
     before do
-      delete :destroy, params: { id: filter.id }
+      delete :destroy, params: { id: keyword.id }
     end
 
     it 'returns http success' do
@@ -81,7 +84,7 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
     end
 
     it 'removes the filter' do
-      expect { filter.reload }.to raise_error ActiveRecord::RecordNotFound
+      expect { keyword.reload }.to raise_error ActiveRecord::RecordNotFound
     end
   end
 end

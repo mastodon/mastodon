@@ -44,7 +44,7 @@ ku:
         inbox_url: URLyê di rûpela pêşî de guhêrkerê ku tu dixwazî bi kar bînî jê bigire
         irreversible: Şandiyên parzûnkirî êdî bê veger wenda bibe, heger parzûn paşê were rakirin jî nabe
         locale: Zimanê navrûyê bikarhêner, agahdarîyên e-name û pêl kirin
-        locked: Bi destan daxwazên şopê hilbijêrîne da ku kî bikaribe te bişopîne
+        locked: Bi pejirandina daxwazên şopandinê, kî dikare te bişopîne bi destan kontrol bike
         password: Herî kêm 8 tîpan bi kar bîne
         phrase: Ji rewşa nivîsê tîpên girdek/hûrdek an jî ji hişyariya naveroka ya şandiyê wek serbixwe wê were hevbeş kirin
         scopes: |-
@@ -69,7 +69,27 @@ ku:
         domain: Ev dikare bibe navê navparek ku di navnîşana e-nameyê de an tomara MX ya ku ew bi kar tîne de xuya dike. Ew ê di dema tomarkirinê de werin kontrolkirin.
         with_dns_records: Hewl tê dayîn ku tomarên DNSê yên li qada jê re hatine dayîn were çareserkirin û encamên wê jî were astengkirin
       featured_tag:
-        name: 'Belkî tu yekê bi kar bînî çi van:'
+        name: 'Li virê çend haştag hene ku te demên dawî bi kar anîne:'
+      filters:
+        action: Hilbijêre ku dema şandiyek bi parzûnê re lihevhatî be bila kîjan çalakî were pêkanîn
+        actions:
+          hide: Naveroka parzûnkirî bi tevahî veşêre, mîna ku ew tune be tevbigere
+          warn: Naveroka parzûnkirî li pişt hişyariyek ku sernavê parzûnê qal dike veşêre
+      form_admin_settings:
+        backups_retention_period: Arşîvên bikarhênerên çêkirî ji bo rojên diyarkirî tomar bike.
+        bootstrap_timeline_accounts: Ev ajimêr wê di pêşnîyarên şopandina bikarhênerên nû de werin derzîkirin.
+        closed_registrations_message: Dema ku tomarkirin girtî bin têne xuyakirin
+        content_cache_retention_period: Şandiyên ji rajekarên din wê piştî çend rojên diyarkirî dema ku li ser nirxek erênî were danîn werin jêbirin. Dibe ku ev bê veger be.
+        custom_css: Tu dikarî awayên kesane li ser guhertoya malperê ya Mastodon bicîh bikî.
+        mascot: Îlustrasyona navrûyê webê yê pêşketî bêbandor dike.
+        media_cache_retention_period: Pelên medyayê yên daxistî wê piştî çend rojên diyarkirî dema ku li ser nirxek erênî were danîn werin jêbirin, û li gorî daxwazê ​​ji nû ve werin daxistin.
+        profile_directory: Pelrêça profîlê hemû bikarhênerên keşfbûnê hilbijartine lîste dike.
+        require_invite_text: Heke ji bo qeydkirinê pejirandina bi destan hewce bike, Nivîsa "Hûn çima dixwazin tevlê bibin?" li şûna vebijarkî bike mecbûrî
+        site_contact_email: Mirov dikarin ji bo pirsên qanûnî yan jî yên piştgiriyê çawa xwe digihînin te.
+        site_contact_username: Mirov dikarin li ser Mastodonê xwe çawa xwe bigihînin te.
+        site_extended_description: Her zanyariyek daxwazî dibe ku bibe alîkar bo mêvan û bikarhêneran re. Û dikarin bi hevoksaziya Markdown re werin sazkirin.
+        site_short_description: Danasîneke kurt ji bo ku bibe alîkar ku rajekara te ya bêhempa werê naskirin. Kî bi rê ve dibe, ji bo kê ye?
+        site_terms: Politîka taybetiyê ya xwe bi kar bîne an jî vala bihêle da ku berdest werê bikaranîn. Dikare bi hevoksaziya Markdown ve werê sazkirin.
       form_challenge:
         current_password: Tu dikevî qadeke ewledar
       imports:
@@ -82,6 +102,7 @@ ku:
         ip: Têkeve navnîşana IPv4 an jî IPv6'yek. Tu dikarî bi hevoksazî ya CIDR re hemî valahîyan asteng bikî. Hay ji xwe hebe ku xwe derve nehêle!
         severities:
           no_access: Gihîştina hemî çavkaniyan asteng bike
+          sign_up_block: Tomarkirinên nû wê ne pêkan bin
           sign_up_requires_approval: Tomarkirinên nû de pejirandina te pêwîste
         severity: Daxwazên ku ji vê IPyê tên dê çi bibe hilbijêre
       rule:
@@ -93,6 +114,16 @@ ku:
         name: Tîpan, mînak ji bo ku bêhtir paknivîs bibe, tenê rewşa tîpên girdek/hûrdek dikarî biguherînî
       user:
         chosen_languages: Dema were nîşankirin, tenê parvekirinên bi zimanên hilbijartî dê di rêzikên giştî de werin nîşandan
+        role: Rola kîjan mafdayînên bikarhêner heye kontrol dike
+      user_role:
+        color: Renga ku were bikaranîn ji bo rola li seranserê navrûya bikarhêneriyê, wekî RGB di forma hex
+        highlighted: Ev rola xwe ji raya giştî re xuya dike
+        name: Navê giştî yê rolê, ku rol wekî nîşanekê were nîşankirin
+        permissions_as_keys: Bikarhênerên bi vê rolê wê bigihîjin...
+        position: Rola bilind di hinek rewşan de biryara çareserkirina nakokiyan dide. Hinej çalakî tenê dikarin li ser rolên bi pêşanînek kêmtir bêne kirin
+      webhook:
+        events: Bûyeran hilbijêre bo şandinê
+        url: Cihê ku bûyer wê werin şandin
     labels:
       account:
         fields:
@@ -180,6 +211,7 @@ ku:
         setting_use_pending_items: Awayê hêdî
         severity: Asta girîngiyê
         sign_in_token_attempt: Koda ewlehiyê
+        title: Sernav
         type: Cureya têxistinê
         username: Navê bikarhêneriyê
         username_or_email: Navê bikarhêner an jî e-name
@@ -188,6 +220,32 @@ ku:
         with_dns_records: Tomarên MX û IP yên hundirê navper lê zêde bike
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Bi tevahî veşêre
+          warn: Bi hişyariyekê veşêre
+      form_admin_settings:
+        backups_retention_period: Serdema tomarkirina arşîva bikarhêner
+        bootstrap_timeline_accounts: Van ajimêran ji bikarhênerên nû re pêşniyar bike
+        content_cache_retention_period: Serdema tomarkirina bîrdanka naverokê
+        custom_css: CSS a kesanekirî
+        mascot: Mascot a kesanekirî (legacy)
+        media_cache_retention_period: Serdema tomarkirina bîrdanka medyayê
+        profile_directory: Rêgeha profilê çalak bike
+        registrations_mode: Kî dikare tomar bibe
+        require_invite_text: Ji bo tevlêbûnê sedemek pêdivî ye
+        show_domain_blocks: Astengkirinên navperê nîşan bide
+        site_contact_email: Bi me re biaxive bi riya e-name
+        site_contact_username: Bi bikarhêner re têkeve têkiliyê
+        site_extended_description: Danasîna berferhkirî
+        site_short_description: Danasîna rajekar
+        site_terms: Politîka taybetiyê
+        site_title: Navê rajekar
+        theme: Rûkara berdest
+        thumbnail: Wêneya piçûk a rajekar
+        timeline_preview: Mafê bide gihîştina ne naskirî bo demnameya gelemperî
+        trendable_by_default: Mafê bide rojevê bêyî ku were nirxandin
+        trends: Rojevê çalak bike
       interactions:
         must_be_follower: Danezanên ji kesên ku ne şopînerên min tên asteng bike
         must_be_following: Agahdariyan asteng bike ji kesên ku tu wan naşopînî
@@ -201,6 +259,7 @@ ku:
         ip: IP
         severities:
           no_access: Gihîştinê asteng bike
+          sign_up_block: Tomarkirinan asteng bike
           sign_up_requires_approval: Tomaran sînordar bike
         severity: Rêbaz
       notification_emails:
@@ -221,7 +280,19 @@ ku:
         name: Hashtag
         trendable: Bihêle ku ev hashtag werê xuyakirin di bin rojevê de
         usable: Bihêle ku şandî ev hashtag bi kar bînin
+      user:
+        role: Rol
+      user_role:
+        color: Rengê nîşanê
+        highlighted: Li ser profîlên bikarhêner rola wekî nîşan bide nîşankirin
+        name: Nav
+        permissions_as_keys: Maf
+        position: Pêşikî
+      webhook:
+        events: Bûyerên çalakkirî
+        url: Girêdana xala dawîbûnê
     'no': Na
+    not_recommended: Nayê pêşniyarkirin
     recommended: Pêşniyarkirî
     required:
       mark: "*"

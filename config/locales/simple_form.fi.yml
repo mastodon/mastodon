@@ -37,6 +37,7 @@ fi:
         current_password: Turvallisuussyistä kirjoita nykyisen tilin salasana
         current_username: Vahvista kirjoittamalla nykyisen tilin käyttäjätunnus
         digest: Lähetetään vain pitkän poissaolon jälkeen ja vain, jos olet saanut suoria viestejä poissaolosi aikana
+        discoverable: Salli tuntemattomien löytää tilisi suositusten, trendien ja muiden ominaisuuksien kautta
         email: Sinulle lähetetään vahvistussähköposti
         fields: Sinulla voi olla korkeintaan 4 asiaa profiilissasi taulukossa
         header: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
@@ -48,6 +49,7 @@ fi:
         phrase: Täytetään riippumatta julkaisun kirjainkoon tai sisällön varoituksesta
         scopes: Mihin sovellusliittymiin sovellus pääsee käsiksi. Jos valitset ylätason laajuuden, sinun ei tarvitse valita yksittäisiä.
         setting_aggregate_reblogs: Älä näytä uusia tehosteita viesteille, joita on äskettäin tehostettu (koskee vain äskettäin saatuja tehosteita)
+        setting_always_send_emails: Yleensä sähköposti-ilmoituksia ei lähetetä, kun käytät aktiivisesti Mastodonia
         setting_default_sensitive: Arkaluontoinen media on oletuksena piilotettu ja se voidaan näyttää yhdellä napsautuksella
         setting_display_media_default: Piilota arkaluonteiseksi merkitty media
         setting_display_media_hide_all: Piilota aina kaikki media
@@ -65,19 +67,46 @@ fi:
         domain: Tämä voi olla se verkkotunnus, joka näkyy sähköpostiosoitteessa tai MX tietueessa jota se käyttää. Ne tarkistetaan rekisteröitymisen yhteydessä.
         with_dns_records: Annetun verkkotunnuksen DNS-tietueet yritetään ratkaista ja tulokset myös estetään
       featured_tag:
-        name: 'Voit halutessasi käyttää jotakin näistä:'
+        name: 'Tässä muutamia aihetunnisteita, joita käytit viime aikoina:'
+      filters:
+        action: Valitse, mikä toiminto suoritetaan, kun viesti vastaa suodatinta
+        actions:
+          hide: Piilota suodatettu sisältö kokonaan ja käyttäydy ikään kuin sitä ei olisi olemassa
+          warn: Piilota suodatettu sisältö varoituksen taakse, jossa mainitaan suodattimen otsikko
+      form_admin_settings:
+        backups_retention_period: Säilytä luodut arkistot määritetyn määrän päiviä.
+        bootstrap_timeline_accounts: Nämä tilit kiinnitetään uusien käyttäjien suositusten yläpuolelle.
+        closed_registrations_message: Näkyy, kun ilmoittautuminen on suljettu
+        content_cache_retention_period: Viestit muilta palvelimilta poistetaan määritetyn määrän päiviä jälkeen, kun arvo on asetettu positiiviseksi. Tämä voi olla peruuttamatonta.
+        custom_css: Voit käyttää mukautettuja tyylejä Mastodonin verkkoversiossa.
+        mascot: Ohittaa kuvituksen edistyneessä käyttöliittymässä.
+        media_cache_retention_period: Ladatut mediatiedostot poistetaan määritetyn määrän päiviä jälkeen, kun arvo on positiivinen ja ladataan uudelleen pyynnöstä.
+        profile_directory: Profiilihakemisto lueteloi kaikki käyttäjät, jotka ovat ilmoittaneet olevansa löydettävissä.
+        require_invite_text: Kun kirjautuminen vaatii manuaalisen hyväksynnän, tee ”Miksi haluat liittyä?” teksti syötetään pakolliseksi eikä vapaaehtoiseksi
+        site_contact_email: Kuinka ihmiset voivat tavoittaa sinut oikeudellisissa tai tukikysymyksissä.
+        site_contact_username: Miten ihmiset voivat tavoittaa sinut Mastodonissa.
+        site_extended_description: Kaikki lisätiedot, jotka voivat olla hyödyllisiä kävijöille ja käyttäjille. Voidaan jäsentää Markdown-syntaksilla.
+        site_short_description: Lyhyt kuvaus auttaa yksilöimään palvelimesi. Kuka sitä johtaa, kenelle se on tarkoitettu?
+        site_terms: Käytä omaa tietosuojakäytäntöä tai jätä tyhjäksi, jos haluat käyttää oletusta. Voidaan jäsentää Markdown-syntaksilla.
+        site_title: Kuinka ihmiset voivat viitata palvelimeen sen verkkotunnuksen lisäksi.
+        theme: Teema, jonka uloskirjautuneet vierailijat ja uudet käyttäjät näkevät.
+        thumbnail: Noin 2:1 kuva näytetään palvelimen tietojen rinnalla.
+        timeline_preview: Uloskirjautuneet vierailijat voivat selata uusimpia julkisia viestejä, jotka ovat saatavilla palvelimella.
+        trendable_by_default: Ohita suositun sisällön manuaalinen tarkistus. Yksittäisiä kohteita voidaan edelleen poistaa jälkikäteen.
+        trends: Trendit osoittavat, mitkä viestit, hashtagit ja uutiset ovat saamassa vetoa palvelimellasi.
       form_challenge:
         current_password: Olet menossa suojatulle alueelle
       imports:
         data: Toisesta Mastodon-instanssista tuotu CSV-tiedosto
       invite_request:
-        text: Tämä auttaa meitä arvioimaan sovellustasi
+        text: Tämä auttaa meitä arvioimaan hakemustasi
       ip_block:
         comment: Valinnainen. Muista miksi lisäsit tämän säännön.
         expires_in: IP-osoitteet ovat rajallinen resurssi, joskus niitä jaetaan ja vaihtavat usein omistajaa. Tästä syystä epämääräisiä IP-lohkoja ei suositella.
         ip: Kirjoita IPv4- tai IPv6-osoite. Voit estää kokonaisia alueita käyttämällä CIDR-syntaksia. Varo, että et lukitse itseäsi!
         severities:
           no_access: Estä pääsy kaikkiin resursseihin
+          sign_up_block: Uudet kirjautumiset eivät ole mahdollisia
           sign_up_requires_approval: Uudet rekisteröitymiset edellyttävät hyväksyntääsi
         severity: Valitse, mitä tapahtuu tämän IP-osoitteen pyynnöille
       rule:
@@ -89,6 +118,16 @@ fi:
         name: Voit muuttaa esimerkiksi kirjaimia paremmin luettavaksi
       user:
         chosen_languages: Kun valittu, vain valituilla kielillä julkaistut viestit näkyvät julkisilla aikajanoilla
+        role: Rooli määrää, mitkä käyttöoikeudet käyttäjällä on
+      user_role:
+        color: Väri, jota käytetään roolin koko käyttöliittymässä, RGB heksamuodossa
+        highlighted: Tämä tekee roolista julkisesti näkyvän
+        name: Roolin julkinen nimi, jos rooli on asetettu näytettäväksi mekkinä
+        permissions_as_keys: Käyttäjillä, joilla on tämä rooli, on käyttöoikeus...
+        position: Korkeampi rooli ratkaisee konfliktit tietyissä tilanteissa. Tiettyjä toimintoja voidaan suorittaa vain rooleille, joiden prioriteetti on pienempi
+      webhook:
+        events: Valitse lähetettävät tapahtumat
+        url: Mihin tapahtumat lähetetään
     labels:
       account:
         fields:
@@ -148,8 +187,9 @@ fi:
         otp_attempt: Kaksivaiheisen tunnistuksen koodi
         password: Salasana
         phrase: Avainsana tai lause
-        setting_advanced_layout: Ota käyttöön edistynyt web käyttöliittymä
+        setting_advanced_layout: Ota käyttöön edistynyt selainkäyttöliittymä
         setting_aggregate_reblogs: Ryhmitä boostaukset aikajanalla
+        setting_always_send_emails: Lähetä aina sähköposti-ilmoituksia
         setting_auto_play_gif: Toista GIF-animaatiot automaattisesti
         setting_boost_modal: Kysy vahvistusta ennen buustausta
         setting_crop_images: Rajaa kuvat avaamattomissa tuuttauksissa 16:9 kuvasuhteeseen
@@ -175,6 +215,7 @@ fi:
         setting_use_pending_items: Hidastila
         severity: Vakavuus
         sign_in_token_attempt: Turvakoodi
+        title: Otsikko
         type: Tietojen laji
         username: Käyttäjänimi
         username_or_email: Käyttäjänimi tai sähköposti
@@ -183,6 +224,34 @@ fi:
         with_dns_records: Sisällytä toimialueen MX tietueet ja IP-osoite
       featured_tag:
         name: Aihetunniste
+      filters:
+        actions:
+          hide: Piilota kokonaan
+          warn: Piilota varoituksella
+      form_admin_settings:
+        backups_retention_period: Käyttäjän arkiston säilytysaika
+        bootstrap_timeline_accounts: Suosittele aina näitä tilejä uusille käyttäjille
+        closed_registrations_message: Mukautettu viesti, kun kirjautumisia ei ole saatavilla
+        content_cache_retention_period: Sisällön välimuistin säilytysaika
+        custom_css: Mukautettu CSS
+        mascot: Mukautettu maskotti (legacy)
+        media_cache_retention_period: Median välimuistin säilytysaika
+        profile_directory: Ota profiilihakemisto käyttöön
+        registrations_mode: Kuka voi rekisteröityä
+        require_invite_text: Vaadi syy liittyä
+        show_domain_blocks: Näytä domainestot
+        show_domain_blocks_rationale: Näytä miksi verkkotunnukset on estetty
+        site_contact_email: Ota yhteyttä sähköpostilla
+        site_contact_username: Kontaktin käyttäjänimi
+        site_extended_description: Laajennettu kuvaus
+        site_short_description: Palvelimen kuvaus
+        site_terms: Tietosuojakäytäntö
+        site_title: Palvelimen nimi
+        theme: Oletusteema
+        thumbnail: Palvelimen pikkukuva
+        timeline_preview: Salli todentamaton pääsy julkiselle aikajanalle
+        trendable_by_default: Salli trendit ilman ennakkotarkastusta
+        trends: Trendit käyttöön
       interactions:
         must_be_follower: Estä ilmoitukset käyttäjiltä, jotka eivät seuraa sinua
         must_be_following: Estä ilmoitukset käyttäjiltä, joita et seuraa
@@ -196,6 +265,7 @@ fi:
         ip: IP
         severities:
           no_access: Estä pääsy
+          sign_up_block: Estä kirjautumiset
           sign_up_requires_approval: Rajoita rekisteröitymisiä
         severity: Sääntö
       notification_emails:
@@ -216,7 +286,19 @@ fi:
         name: Aihetunniste
         trendable: Salli tämän aihetunnisteen näkyä trendeissä
         usable: Salli postauksien käyttää tätä aihetunnistetta
+      user:
+        role: Rooli
+      user_role:
+        color: Merkin väri
+        highlighted: Näyttä rooli merkkinä käyttäjäprofiileissa
+        name: Nimi
+        permissions_as_keys: Oikeudet
+        position: Prioriteetti
+      webhook:
+        events: Tapahtumat käytössä
+        url: Päätepisteen URL
     'no': Ei
+    not_recommended: Ei suositella
     recommended: Suositeltu
     required:
       mark: "*"

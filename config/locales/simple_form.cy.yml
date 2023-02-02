@@ -56,8 +56,6 @@ cy:
       email_domain_block:
         domain: Gall hwn fod yr enw parth sy'n ymddangos yn y cyfeiriad e-bost neu'r cofnod MX y mae'n ei ddefnyddio. Byddant yn cael eu gwirio wrth gofrestru.
         with_dns_records: Bydd ceisiad i adfer cofnodau DNS y parth penodol yn cael ei wneud, a bydd y canlyniadau hefyd yn cael ei gosbrestru
-      featured_tag:
-        name: 'Efallai hoffech defnyddio un o''r rhain:'
       form_challenge:
         current_password: Rydych chi'n mynd i mewn i ardal sicr
       imports:
@@ -73,6 +71,7 @@ cy:
     labels:
       account:
         fields:
+          name: Label
           value: Cynnwys
       account_alias:
         acct: Enw'r hen gyfrif
@@ -89,6 +88,7 @@ cy:
         types:
           disable: Analluogi
           none: Gwneud dim
+          sensitive: Sensitif
           silence: Tawelwch
           suspend: Dileu data cyfrif
         warning_preset_id: Defnyddiwch ragnod rhag rhybudd
@@ -107,6 +107,7 @@ cy:
         confirm_password: Cadarnhau cyfrinair
         context: Hidlo cyd-destunau
         current_password: Cyfrinair presennol
+        data: Data
         discoverable: Rhestrwch y cyfrif hwn ar y cyfeiriadur
         display_name: Enw arddangos
         email: Cyfeiriad e-bost
@@ -149,6 +150,7 @@ cy:
         setting_use_pending_items: Modd araf
         severity: Difrifoldeb
         sign_in_token_attempt: Cod dioelwch
+        title: Teitl
         type: Modd mewnforio
         username: Enw defnyddiwr
         username_or_email: Enw defnyddiwr neu e-bost
@@ -166,6 +168,8 @@ cy:
       invite_request:
         text: Pam hoffech ymuno?
       ip_block:
+        comment: Sylw
+        ip: IP
         severity: Rheol
       notification_emails:
         digest: Anfonwch e-byst crynhoi
@@ -183,6 +187,11 @@ cy:
         name: Hashnod
         trendable: Gadewch i'r hashnod hwn ymddangos o dan dueddiadau
         usable: Caniatáu i tŵtiau ddefnyddio'r hashnod hwn
+      user:
+        role: Rôl
+      user_role:
+        name: Enw
+        permissions_as_keys: Caniatâd
     'no': Na
     recommended: Argymhellwyd
     required:

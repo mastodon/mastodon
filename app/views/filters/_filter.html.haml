@@ -1,0 +1,41 @@
+.filters-list__item{ class: [filter.expired? && 'expired'] }
+  = link_to edit_filter_path(filter), class: 'filters-list__item__title' do
+    = filter.title
+
+    - if filter.expires?
+      .expiration{ title: t('filters.index.expires_on', date: l(filter.expires_at)) }
+        - if filter.expired?
+          = t('invites.expired')
+        - else
+          = t('filters.index.expires_in', distance: distance_of_time_in_words_to_now(filter.expires_at))
+
+  .filters-list__item__permissions
+    %ul.permissions-list
+      - unless filter.keywords.empty?
+        %li.permissions-list__item
+          .permissions-list__item__icon
+            = fa_icon('paragraph')
+          .permissions-list__item__text
+            .permissions-list__item__text__title
+              = t('filters.index.keywords', count: filter.keywords.size)
+            .permissions-list__item__text__type
+              - keywords = filter.keywords.map(&:keyword)
+              - keywords = keywords.take(5) + ['…'] if keywords.size > 5 # TODO
+              = keywords.join(', ')
+      - unless filter.statuses.empty?
+        %li.permissions-list__item
+          .permissions-list__item__icon
+            = fa_icon('comment')
+          .permissions-list__item__text
+            .permissions-list__item__text__title
+              = t('filters.index.statuses', count: filter.statuses.size)
+            .permissions-list__item__text__type
+              = t('filters.index.statuses_long', count: filter.statuses.size)
+
+  .announcements-list__item__action-bar
+    .announcements-list__item__meta
+      = t('filters.index.contexts', contexts: filter.context.map { |context| I18n.t("filters.contexts.#{context}") }.join(', '))
+
+    %div
+      = table_link_to 'pencil', t('filters.edit.title'), edit_filter_path(filter)
+      = table_link_to 'times', t('filters.index.delete'), filter_path(filter), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }

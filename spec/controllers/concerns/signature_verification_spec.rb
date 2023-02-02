@@ -3,6 +3,16 @@
 require 'rails_helper'
 
 describe ApplicationController, type: :controller do
+  class WrappedActor
+    attr_reader :wrapped_account
+
+    def initialize(wrapped_account)
+      @wrapped_account = wrapped_account
+    end
+
+    delegate :uri, :keypair, to: :wrapped_account
+  end
+
   controller do
     include SignatureVerification
 
@@ -69,6 +79,41 @@ describe ApplicationController, type: :controller do
         it 'returns nil when method does not match' do
           post :success
           expect(controller.signed_request_account).to be_nil
+        end
+      end
+    end
+
+    context 'with a valid actor that is not an Account' do
+      let(:actor) { WrappedActor.new(author) }
+
+      before do
+        get :success
+
+        fake_request = Request.new(:get, request.url)
+        fake_request.on_behalf_of(author)
+
+        request.headers.merge!(fake_request.headers)
+
+        allow(ActivityPub::TagManager.instance).to receive(:uri_to_actor).with(anything) do
+          actor
+        end
+      end
+
+      describe '#signed_request?' do
+        it 'returns true' do
+          expect(controller.signed_request?).to be true
+        end
+      end
+
+      describe '#signed_request_account' do
+        it 'returns nil' do
+          expect(controller.signed_request_account).to be_nil
+        end
+      end
+
+      describe '#signed_request_actor' do
+        it 'returns the expected actor' do
+          expect(controller.signed_request_actor).to eq actor
         end
       end
     end

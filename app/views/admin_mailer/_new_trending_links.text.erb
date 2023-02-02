@@ -2,13 +2,7 @@
 
 <% @links.each do |link| %>
 - <%= link.title %> • <%= link.url %>
-  <%= raw t('admin.trends.links.usage_comparison', today: link.history.get(Time.now.utc).accounts, yesterday: link.history.get(Time.now.utc - 1.day).accounts) %> • <%= t('admin.trends.tags.current_score', score: Trends.links.score(link.id).round(2)) %>
-<% end %>
-
-<% if @lowest_trending_link %>
-<%= raw t('admin_mailer.new_trends.new_trending_links.requirements', lowest_link_title: @lowest_trending_link.title, lowest_link_score: Trends.links.score(@lowest_trending_link.id).round(2), rank: Trends.links.options[:review_threshold]) %>
-<% else %>
-<%= raw t('admin_mailer.new_trends.new_trending_links.no_approved_links') %>
+  <%= standard_locale_name(link.language) %> • <%= raw t('admin.trends.links.usage_comparison', today: link.history.get(Time.now.utc).accounts, yesterday: link.history.get(Time.now.utc - 1.day).accounts) %> • <%= t('admin.trends.tags.current_score', score: link.trend.score.round(2)) %>
 <% end %>
 
 <%= raw t('application_mailer.view')%> <%= admin_trends_links_url %>

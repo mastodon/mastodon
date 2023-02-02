@@ -1,0 +1,8 @@
+- content_for :page_title do
+  = t('admin.roles.edit', name: @role.everyone? ? t('admin.roles.everyone') : @role.name)
+
+- content_for :heading_actions do
+  = link_to t('admin.roles.delete'), admin_role_path(@role), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button button--destructive' if can?(:destroy, @role)
+
+= render partial: 'form'
+

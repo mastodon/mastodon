@@ -3,7 +3,7 @@ it:
   simple_form:
     hints:
       account_alias:
-        acct: Indica il nomeutente@dominio dell'account da cui vuoi trasferirti
+        acct: Indica il nomeutente@dominio dell'account dal quale vuoi trasferirti
       account_migration:
         acct: Indica il nomeutente@dominio dell'account al quale vuoi trasferirti
       account_warning_preset:
@@ -67,7 +67,33 @@ it:
         domain: Questo può essere il nome di dominio che appare nell'indirizzo e-mail o nel record MX che utilizza. Verranno controllati al momento dell'iscrizione.
         with_dns_records: Sarà effettuato un tentativo di risolvere i record DNS del dominio in questione e i risultati saranno inseriti anche nella blacklist
       featured_tag:
-        name: 'Eccone alcuni che potresti usare:'
+        name: 'Ecco alcuni degli hashtag che hai usato di più recentemente:'
+      filters:
+        action: Scegli quale azione eseguire quando un post corrisponde al filtro
+        actions:
+          hide: Nascondi completamente il contenuto filtrato, come se non esistesse
+          warn: Nascondi il contenuto filtrato e mostra invece un avviso, citando il titolo del filtro
+      form_admin_settings:
+        backups_retention_period: Conserva gli archivi utente generati per il numero di giorni specificato.
+        bootstrap_timeline_accounts: Questi account verranno aggiunti in cima ai consigli da seguire dei nuovi utenti.
+        closed_registrations_message: Visualizzato alla chiusura delle iscrizioni
+        content_cache_retention_period: I post da altri server verranno eliminati dopo il numero di giorni specificato se impostato su un valore positivo. Questo potrebbe essere irreversibile.
+        custom_css: È possibile applicare stili personalizzati sulla versione web di Mastodon.
+        mascot: Sostituisce l'illustrazione nell'interfaccia web avanzata.
+        media_cache_retention_period: I file multimediali scaricati verranno eliminati dopo il numero di giorni specificato se impostati su un valore positivo e scaricati nuovamente su richiesta.
+        profile_directory: La directory del profilo elenca tutti gli utenti che hanno acconsentito ad essere individuabili.
+        require_invite_text: 'Quando le iscrizioni richiedono l''approvazione manuale, rendi la domanda: "Perché vuoi unirti?" obbligatoria anziché facoltativa'
+        site_contact_email: In che modo le persone possono contattarti per richieste legali o di supporto.
+        site_contact_username: In che modo le persone possono raggiungerti su Mastodon.
+        site_extended_description: Qualsiasi informazione aggiuntiva che possa essere utile ai visitatori e ai tuoi utenti. Può essere strutturata con la sintassi Markdown.
+        site_short_description: Una breve descrizione per aiutare a identificare in modo univoco il tuo server. Chi lo gestisce, a chi è rivolto?
+        site_terms: Usa la tua politica sulla privacy o lascia vuoto per usare l'impostazione predefinita. Può essere strutturata con la sintassi Markdown.
+        site_title: In che modo le persone possono fare riferimento al tuo server oltre al suo nome di dominio.
+        theme: Tema visualizzato dai visitatori e dai nuovi utenti disconnessi.
+        thumbnail: Un'immagine approssimativamente 2:1 visualizzata insieme alle informazioni del tuo server.
+        timeline_preview: I visitatori disconnessi potranno sfogliare i post pubblici più recenti disponibili sul server.
+        trendable_by_default: Salta la revisione manuale dei contenuti di tendenza. I singoli elementi possono ancora essere rimossi dalle tendenze dopo il fatto.
+        trends: Le tendenze mostrano quali post, hashtag e notizie stanno guadagnando popolarità sul tuo server.
       form_challenge:
         current_password: Stai entrando in un'area sicura
       imports:
@@ -80,6 +106,7 @@ it:
         ip: Inserisci un indirizzo IPv4 o IPv6. Puoi bloccare interi intervalli usando la sintassi CIDR. Fai attenzione a non bloccare te stesso!
         severities:
           no_access: Blocca l'accesso a tutte le risorse
+          sign_up_block: Le nuove iscrizioni non saranno possibili
           sign_up_requires_approval: Le nuove iscrizioni richiederanno la tua approvazione
         severity: Scegli cosa accadrà con le richieste da questo IP
       rule:
@@ -91,6 +118,16 @@ it:
         name: Puoi cambiare solo il minuscolo/maiuscolo delle lettere, ad esempio, per renderlo più leggibile
       user:
         chosen_languages: Quando una o più lingue sono contrassegnate, nelle timeline pubbliche vengono mostrati solo i toot nelle lingue selezionate
+        role: Il ruolo controlla quali permessi ha l'utente
+      user_role:
+        color: Colore da usare per il ruolo in tutta l'UI, come RGB in formato esadecimale
+        highlighted: Rende il ruolo visibile
+        name: Nome pubblico del ruolo, se il ruolo è impostato per essere visualizzato come distintivo
+        permissions_as_keys: Gli utenti con questo ruolo avranno accesso a...
+        position: Un ruolo più alto decide la risoluzione dei conflitti in determinate situazioni. Alcune azioni possono essere eseguite solo su ruoli con priorità più bassa
+      webhook:
+        events: Seleziona eventi da inviare
+        url: Dove gli eventi saranno inviati
     labels:
       account:
         fields:
@@ -178,6 +215,7 @@ it:
         setting_use_pending_items: Modalità lenta
         severity: Severità
         sign_in_token_attempt: Codice di sicurezza
+        title: Titolo
         type: Tipo importazione
         username: Nome utente
         username_or_email: Nome utente o email
@@ -186,6 +224,34 @@ it:
         with_dns_records: Includi record MX e indirizzi IP del dominio
       featured_tag:
         name: Etichetta
+      filters:
+        actions:
+          hide: Nascondi completamente
+          warn: Nascondi con avviso
+      form_admin_settings:
+        backups_retention_period: Periodo di conservazione dell'archivio utente
+        bootstrap_timeline_accounts: Consiglia sempre questi account ai nuovi utenti
+        closed_registrations_message: Messaggio personalizzato quando le iscrizioni non sono disponibili
+        content_cache_retention_period: Periodo di conservazione della cache dei contenuti
+        custom_css: Personalizza CSS
+        mascot: Personalizza mascotte (legacy)
+        media_cache_retention_period: Periodo di conservazione della cache multimediale
+        profile_directory: Abilita directory del profilo
+        registrations_mode: Chi può iscriversi
+        require_invite_text: Richiedi un motivo per unirsi
+        show_domain_blocks: Mostra i blocchi di dominio
+        show_domain_blocks_rationale: Mostra perché i domini sono stati bloccati
+        site_contact_email: Contatto email
+        site_contact_username: Nome utente di contatto
+        site_extended_description: Descrizione estesa
+        site_short_description: Descrizione del server
+        site_terms: Politica sulla privacy
+        site_title: Nome del server
+        theme: Tema predefinito
+        thumbnail: Miniatura del server
+        timeline_preview: Consenti l'accesso non autenticato alle timeline pubbliche
+        trendable_by_default: Consenti le tendenze senza revisione preventiva
+        trends: Abilita le tendenze
       interactions:
         must_be_follower: Blocca notifiche da chi non ti segue
         must_be_following: Blocca notifiche dalle persone che non segui
@@ -199,6 +265,7 @@ it:
         ip: IP
         severities:
           no_access: Blocca accesso
+          sign_up_block: Blocca iscrizioni
           sign_up_requires_approval: Limita iscrizioni
         severity: Regola
       notification_emails:
@@ -219,7 +286,19 @@ it:
         name: Hashtag
         trendable: Permetti a questo hashtag di apparire nelle tendenze
         usable: Permetti ai post di usare questo hashtag
+      user:
+        role: Ruolo
+      user_role:
+        color: Colore distintivo
+        highlighted: Mostra il ruolo come distintivo sui profili utente
+        name: Nome
+        permissions_as_keys: Permessi
+        position: Priorità
+      webhook:
+        events: Eventi abilitati
+        url: URL endpoint
     'no': 'No'
+    not_recommended: Non consigliato
     recommended: Consigliato
     required:
       mark: "*"

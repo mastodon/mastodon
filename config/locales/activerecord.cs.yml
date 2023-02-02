@@ -21,6 +21,18 @@ cs:
             username:
               invalid: musí obsahovat pouze písmena, číslice a podtržítka
               reserved: je vyhrazeno
+        admin/webhook:
+          attributes:
+            url:
+              invalid: není platná URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: není platná URL
+        import:
+          attributes:
+            data:
+              malformed: je chybný
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ cs:
             email:
               blocked: používá zakázanou e-mailovou službu
               unreachable: pravděpodobně neexistuje
+            role_id:
+              elevated: nemůže být vyšší než vaše aktuální role
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: obsahuje oprávnění, která nejsou bezpečná pro základní roli
+              elevated: nemůže obsahovat oprávnění, která vaše aktuální role nemá
+              own_role: nelze změnit s vaší aktuální rolí
+            position:
+              elevated: nemůže být vyšší než vaše aktuální role
+              own_role: nelze změnit s vaší aktuální rolí

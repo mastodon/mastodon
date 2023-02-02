@@ -21,6 +21,18 @@ sq:
             username:
               invalid: duhet të përmbajë vetëm shkronja, numra dhe nënvija
               reserved: është i rezervuar
+        admin/webhook:
+          attributes:
+            url:
+              invalid: s’është URL e vlefshme
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: s’është URL
+        import:
+          attributes:
+            data:
+              malformed: janë të keqformuara
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ sq:
             email:
               blocked: përdor një shërbim email të palejuar
               unreachable: s’duket se ekziston
+            role_id:
+              elevated: s’mund të jetë më i lartë sesa roli juaj i tanishëm
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: përfshi leje që s’janë të parrezik për rolin bazë
+              elevated: s’mund të përfshijë leje të cilat roli juaj i tanishëm s’i përfshin
+              own_role: s’mund të ndryshohet me rolin tuaj të tanishëm
+            position:
+              elevated: s’mund të jetë më i lartë sesa roli juaj i tanishëm
+              own_role: s’mund të ndryshohet me rolin tuaj të tanishëm

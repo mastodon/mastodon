@@ -1,9 +1,0 @@
-- content_for :page_title do
-  = t('terms.title', instance: site_hostname)
-
-.grid
-  .column-0
-    .box-widget
-      .rich-formatting= @instance_presenter.site_terms.html_safe.presence || t('terms.body_html')
-  .column-1
-    = render 'application/sidebar'

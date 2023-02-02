@@ -9,12 +9,15 @@ on:
 env:
   RAILS_ENV: test
 
+permissions:
+  contents: read
+
 jobs:
   check-i18n:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install system dependencies
         run: |
           sudo apt-get update

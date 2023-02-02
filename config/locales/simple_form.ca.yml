@@ -36,7 +36,7 @@ ca:
         context: Un o diversos contextos en què s'ha d'aplicar el filtre
         current_password: Per motius de seguretat, introdueix la contrasenya del compte actual
         current_username: Per confirmar-ho, introdueix el nom d'usuari del compte actual
-        digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
+        digest: Només s'envia després d'un llarg període d'inactivitat i només si has rebut algun missatge personal durant la teva absència
         discoverable: Permet que el teu compte sigui descobert per desconeguts a través de recomanacions, etiquetes i altres característiques
         email: Se t'enviarà un correu electrònic de confirmació
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
@@ -67,7 +67,33 @@ ca:
         domain: Aquest pot ser el nom del domini que es mostra en l'adreça de correu o el registre MX que utilitza. Es revisaran ql registrar-se.
         with_dns_records: Es procurarà resoldre els registres DNS del domini determinat i els resultats també es llistaran a la llista negra
       featured_tag:
-        name: 'És possible que vulguis utilitzar una d''aquestes:'
+        name: 'Aquí estan algunes de les etiquetes que més has usat recentment:'
+      filters:
+        action: Tria quina acció cal executar quan un apunt coincideixi amb el filtre
+        actions:
+          hide: Ocultar completament el contingut filtrat, comportant-se com si no existís
+          warn: Oculta el contingut filtrat rera un avís mencionant el títol del filtre
+      form_admin_settings:
+        backups_retention_period: Mantenir els arxius d'usuari generats durant el número de dies especificats.
+        bootstrap_timeline_accounts: Aquests comptes es fixaran en la part superior de les recomanacions de seguiment dels nous usuaris.
+        closed_registrations_message: Mostrat quan el registres estan tancats
+        content_cache_retention_period: Les publicacions d'altres servidors se suprimiran després del nombre de dies especificat quan s'estableix un valor positiu. Això pot ser irreversible.
+        custom_css: Pots aplicar estils personalitzats en la versió web de Mastodon.
+        mascot: Anul·la l'ilustració en l'interfície web avançada.
+        media_cache_retention_period: Els fitxers multimèdia descarregats s'esborraran després del número de dies especificat quan el valor configurat és positiu, i tornats a descarregats sota demanda.
+        profile_directory: El directori de perfils llista tots els usuaris que tenen activat ser descoberts.
+        require_invite_text: Quan el registre requereix aprovació manual, fer que sigui obligatori enlloc d'opcional escriure el text de la solicitud d'invitació "Perquè vols unirte?"
+        site_contact_email: Com pot la gent comunicar amb tu per a consultes legals o de recolzament.
+        site_contact_username: Com pot la gent trobar-te a Mastodon.
+        site_extended_description: Qualsevol informació adicional que pot ser útil per els visitants i els teus usuaris. Pot ser estructurat amb format Markdown.
+        site_short_description: Una descripció curta per ajudar a identificar de manera única el teu servidor. Qui el fa anar, per a qui és?
+        site_terms: Usa la teva pròpia política de privacitat o deixa-ho en blanc per a usar la per defecte. Pot ser estructurat amb format Markdown.
+        site_title: Com pot la gent referir-se al teu servidor a part del seu nom de domini.
+        theme: El tema que els visitants i els nous usuaris veuen.
+        thumbnail: Una imatge d'aproximadament 2:1 mostrada junt l'informació del teu servidor.
+        timeline_preview: Els visitants amb sessió no iniciada seran capaços de navegar per les publicacions més recents en el teu servidor.
+        trendable_by_default: Omet la revisió manual del contingut en tendència. Els articles individuals poden encara ser eliminats després del fet.
+        trends: Les tendències mostren quines publicacions, etiquetes i notícies estan guanyant força al vostre servidor.
       form_challenge:
         current_password: Estàs entrant en una àrea segura
       imports:
@@ -80,6 +106,7 @@ ca:
         ip: Introdueix una adreça IPv4 o IPv6. Pots bloquejar rangs complets amb la sintaxi CIDR. Ves a compte no et bloquegis a tu mateix!
         severities:
           no_access: Bloqueja l’accés a tots els recursos
+          sign_up_block: Els nous registres no seran possibles
           sign_up_requires_approval: Els nous registres requeriran la teva aprovació
         severity: Tria què passarà amb les sol·licituds des d’aquesta IP
       rule:
@@ -91,6 +118,16 @@ ca:
         name: Només pots canviar la caixa de les lletres, per exemple, per fer-la més llegible
       user:
         chosen_languages: Quan estigui marcat, només es mostraran les publicacions en les llengües seleccionades en les línies de temps públiques
+        role: El rol controla quines permissions té l'usuari
+      user_role:
+        color: Color que s'utilitzarà per al rol a tota la interfície d'usuari, com a RGB en format hexadecimal
+        highlighted: Això torno el rol visibile publicament
+        name: Nom públic del rol, si el rol està configurat per a ser mostrat com a insígnia
+        permissions_as_keys: Els usuaris amb aquest rol tingran accés a...
+        position: El rol superior decideix la resolució de conflictes en certes situacions. Certes accions només es poden realitzar amb rols amb menor prioritat
+      webhook:
+        events: Selecciona esdeveniments a enviar
+        url: On els esdeveniments seran enviats
     labels:
       account:
         fields:
@@ -178,6 +215,7 @@ ca:
         setting_use_pending_items: Mode lent
         severity: Severitat
         sign_in_token_attempt: Codi de seguretat
+        title: Títol
         type: Importa el tipus
         username: Nom d'usuari
         username_or_email: Nom d'usuari o adreça electrònica
@@ -186,6 +224,34 @@ ca:
         with_dns_records: Incloure registres MX i IP del domini
       featured_tag:
         name: Etiqueta
+      filters:
+        actions:
+          hide: Oculta completament
+          warn: Oculta amb un avís
+      form_admin_settings:
+        backups_retention_period: Període de retenció del arxiu d'usuari
+        bootstrap_timeline_accounts: Recomana sempre aquests comptes als nous usuaris
+        closed_registrations_message: Missatge personalitzat quan el registre està tancat
+        content_cache_retention_period: Periode de retenció de la memòria cau de contingut
+        custom_css: CSS personalitzat
+        mascot: Mascota personalitzada (llegat)
+        media_cache_retention_period: Període de retenció del cau multimèdia
+        profile_directory: Habilita el directori de perfils
+        registrations_mode: Qui es pot registrar
+        require_invite_text: Requereix un motiu per el registre
+        show_domain_blocks: Mostra els bloquejos de domini
+        show_domain_blocks_rationale: Mostra perquè estan bloquejats els dominis
+        site_contact_email: E-mail de contacte
+        site_contact_username: Nom d'usuari del contacte
+        site_extended_description: Descripció ampliada
+        site_short_description: Descripció del servidor
+        site_terms: Política de Privacitat
+        site_title: Nom del servidor
+        theme: Tema per defecte
+        thumbnail: Miniatura del servidor
+        timeline_preview: Permet l'accés no autenticat a les línies de temps públiques
+        trendable_by_default: Permet tendències sense revisió prèvia
+        trends: Activa les tendències
       interactions:
         must_be_follower: Bloqueja les notificacions de persones que no em segueixen
         must_be_following: Bloqueja les notificacions de persones no seguides
@@ -199,6 +265,7 @@ ca:
         ip: IP
         severities:
           no_access: Bloquejar l’accés
+          sign_up_block: Bloqueja registres
           sign_up_requires_approval: Limitar els registres
         severity: Regla
       notification_emails:
@@ -219,7 +286,19 @@ ca:
         name: Etiqueta
         trendable: Permet que aquesta etiqueta aparegui en les tendències
         usable: Permetre a les publicacions emprar aquesta etiqueta
+      user:
+        role: Rol
+      user_role:
+        color: Color de la insígnia
+        highlighted: Motra el rol com a insígnia en el perfil dels usuaris
+        name: Nom
+        permissions_as_keys: Permisos
+        position: Prioritat
+      webhook:
+        events: Esdeveniments activats
+        url: URL del extrem
     'no': 'No'
+    not_recommended: No recomanat
     recommended: Recomanat
     required:
       mark: "*"

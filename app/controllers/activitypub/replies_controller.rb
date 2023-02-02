@@ -7,7 +7,7 @@ class ActivityPub::RepliesController < ActivityPub::BaseController
 
   DESCENDANTS_LIMIT = 60
 
-  before_action :require_signature!, if: :authorized_fetch_mode?
+  before_action :require_account_signature!, if: :authorized_fetch_mode?
   before_action :set_status
   before_action :set_cache_headers
   before_action :set_replies

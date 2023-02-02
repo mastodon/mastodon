@@ -10,16 +10,16 @@ nl:
         text: Je kunt specifieke tekst voor berichten gebruiken, zoals URL's, hashtags en vermeldingen
         title: Optioneel. Niet zichtbaar voor de ontvanger
       admin_account_action:
-        include_statuses: De gebruiker ziet welke berichten verantwoordelijk zijn voor de moderatieactie of waarschuwing
+        include_statuses: De gebruiker ziet welke berichten verantwoordelijk zijn voor de moderatiemaatregel of waarschuwing
         send_email_notification: De gebruiker ontvangt een uitleg over wat er met diens account is gebeurd
         text_html: Optioneel. Je kunt specifieke tekst voor berichten gebruiken. Om tijd te besparen kun je <a href="%{path}">presets voor waarschuwingen toevoegen</a>
         type_html: Kies wat er met <strong>%{acct}</strong> moet gebeuren
         types:
           disable: Voorkom dat de gebruiker diens account gebruikt, maar verwijder of verberg de inhoud niet.
-          none: Gebruik dit om een waarschuwing naar de gebruiker te sturen, zonder dat nog een andere actie wordt uitgevoerd.
+          none: Gebruik dit om een waarschuwing naar de gebruiker te sturen, zonder dat nog een andere maatregel wordt genomen.
           sensitive: Forceer dat alle mediabijlagen van deze gebruiker als gevoelig worden gemarkeerd.
           silence: Voorkom dat de gebruiker openbare berichten kan versturen, verberg diens berichten en meldingen voor mensen die diegene niet volgen.
-          suspend: Alle interacties van en met dit account blokkeren en de inhoud verwijderen. Dit kan binnen dertig dagen worden teruggedraaid.
+          suspend: Alle interacties van en met dit account voorkomen, en de accountgegevens verwijderen. Dit kan binnen 30 dagen worden teruggedraaid.
         warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen aan het eind van de voorinstelling
       announcement:
         all_day: Wanneer dit is aangevinkt worden alleen de datums binnen het tijdvak getoond
@@ -27,6 +27,8 @@ nl:
         scheduled_at: Laat leeg om de mededeling meteen te publiceren
         starts_at: Optioneel. In het geval dat jouw mededeling aan een bepaald tijdvak is gebonden
         text: Je kunt specifieke tekst voor berichten gebruiken. Let op de ruimte die de mededeling op het scherm van de gebruiker inneemt
+      appeal:
+        text: Je kunt maar eenmalig bezwaar indienen tegen een vastgestelde overtreding
       defaults:
         autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
         avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
@@ -35,8 +37,9 @@ nl:
         current_password: Voer voor veiligheidsredenen het wachtwoord van je huidige account in
         current_username: Voer ter bevestiging de gebruikersnaam van je huidige account in
         digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
+        discoverable: Toestaan dat jouw account vindbaar is voor onbekenden, via aanbevelingen, trends en op andere manieren
         email: Je krijgt een bevestigingsmail
-        fields: Je kan maximaal 4 items als een tabel op je profiel weergeven
+        fields: Je kunt maximaal 4 items als een tabel op je profiel weergeven
         header: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
         inbox_url: Kopieer de URL van de voorpagina van de relayserver die je wil gebruiken
         irreversible: Gefilterde berichten verdwijnen onomkeerbaar, zelfs als de filter later wordt verwijderd
@@ -46,6 +49,7 @@ nl:
         phrase: Komt overeen ongeacht hoofd-/kleine letters of een inhoudswaarschuwing
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
         setting_aggregate_reblogs: Geen nieuwe boosts tonen voor berichten die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
+        setting_always_send_emails: Normaliter worden er geen e-mailmeldingen verstuurd wanneer je actief Mastodon gebruikt
         setting_default_sensitive: Gevoelige media wordt standaard verborgen en kan met één klik worden getoond
         setting_display_media_default: Als gevoelig gemarkeerde media verbergen
         setting_display_media_hide_all: Media altijd verbergen
@@ -60,9 +64,36 @@ nl:
       domain_allow:
         domain: Dit domein is in staat om gegevens van deze server op te halen, en binnenkomende gegevens worden verwerkt en opgeslagen
       email_domain_block:
+        domain: Dit kan de domeinnaam zijn die wordt weergegeven in het e-mailadres of in het MX-record dat het gebruikt. Ze worden gecontroleerd tijdens de registratie.
         with_dns_records: Er wordt een poging gewaagd om de desbetreffende DNS-records op te zoeken, waarna de resultaten ook worden geblokkeerd
       featured_tag:
-        name: 'Je wilt misschien een van deze gebruiken:'
+        name: 'Hier zijn enkele van de hashtags die je onlangs hebt gebruikt:'
+      filters:
+        action: Kies welke acties uitgevoerd moeten wanneer een bericht overeenkomt met het filter
+        actions:
+          hide: Verberg de gefilterde inhoud volledig, alsof het niet bestaat
+          warn: Verberg de gefilterde inhoud achter een waarschuwing, met de titel van het filter als waarschuwingstekst
+      form_admin_settings:
+        backups_retention_period: De aangemaakte gebruikersarchieven voor het opgegeven aantal dagen behouden.
+        bootstrap_timeline_accounts: Deze accounts worden bovenaan de aanbevelingen aan nieuwe gebruikers getoond. Meerdere gebruikersnamen met komma's scheiden.
+        closed_registrations_message: Weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld
+        content_cache_retention_period: 'Berichten van andere servers worden na het opgegeven aantal dagen verwijderd. Let op: Dit is onomkeerbaar.'
+        custom_css: Je kunt aangepaste CSS toepassen op de webversie van deze Mastodon-server.
+        mascot: Overschrijft de illustratie in de geavanceerde webomgeving.
+        media_cache_retention_period: Mediabestanden die van andere servers zijn gedownload worden na het opgegeven aantal dagen verwijderd en worden op verzoek opnieuw gedownload.
+        profile_directory: De gebruikersgids bevat een lijst van alle gebruikers die ervoor gekozen hebben om ontdekt te kunnen worden.
+        require_invite_text: Maak het invullen van "Waarom wil je je hier registreren?" verplicht in plaats van optioneel, wanneer registraties handmatig moeten worden goedgekeurd
+        site_contact_email: Hoe mensen je kunnen bereiken voor juridische vragen of support.
+        site_contact_username: Hoe mensen je op Mastodon kunnen bereiken.
+        site_extended_description: Alle aanvullende informatie die nuttig kan zijn voor bezoekers en jouw gebruikers. Kan worden opgemaakt met Markdown.
+        site_short_description: Een korte beschrijving om het unieke karakter van je server te tonen. Wie beheert de server, wat is de doelgroep?
+        site_terms: Gebruik je eigen privacybeleid of laat leeg om de standaardwaarde te gebruiken. Kan worden opgemaakt met Markdown.
+        site_title: Hoe mensen buiten de domeinnaam naar je server kunnen verwijzen.
+        theme: Thema die (niet ingelogde) bezoekers en nieuwe gebruikers zien.
+        thumbnail: Een afbeelding van ongeveer een verhouding van 2:1 die naast jouw serverinformatie wordt getoond.
+        timeline_preview: Bezoekers (die niet zijn ingelogd) kunnen de meest recente, op de server aanwezige openbare berichten bekijken.
+        trendable_by_default: Handmatige beoordeling van trends overslaan. Individuele items kunnen later alsnog worden afgekeurd.
+        trends: Trends laten zien welke berichten, hashtags en nieuwsberichten op jouw server aan populariteit winnen.
       form_challenge:
         current_password: Je betreedt een veilige omgeving
       imports:
@@ -75,6 +106,7 @@ nl:
         ip: Voer een IPv4- of IPv6-adres in. Je kunt hele reeksen blokkeren met de CIDR-methode. Pas op dat je jezelf niet buitensluit!
         severities:
           no_access: Toegang tot de hele server blokkeren
+          sign_up_block: Nieuwe registraties zijn niet mogelijk
           sign_up_requires_approval: Nieuwe registraties vereisen jouw goedkeuring
         severity: Kies wat er moet gebeuren met aanvragen van dit IP-adres
       rule:
@@ -86,6 +118,16 @@ nl:
         name: Je kunt elk woord met een hoofdletter beginnen, om zo bijvoorbeeld de tekst leesbaarder te maken
       user:
         chosen_languages: Alleen berichten in de aangevinkte talen worden op de openbare tijdlijnen getoond
+        role: De rol bepaalt welke rechten een gebruiker heeft
+      user_role:
+        color: Kleur die gebruikt wordt voor de rol in de UI, als RGB in hexadecimale formaat
+        highlighted: Dit maakt de rol openbaar zichtbaar
+        name: Openbare naam van de rol, wanneer de rol als badge op profielpagina's wordt getoond
+        permissions_as_keys: Gebruikers met deze rol hebben toegang tot...
+        position: Een hogere rol beslist in bepaalde situaties over het oplossen van conflicten. Bepaalde acties kunnen alleen worden uitgevoerd op rollen met een lagere prioriteit
+      webhook:
+        events: Selecteer de te verzenden gebeurtenissen
+        url: Waar gebeurtenissen naartoe worden verzonden
     labels:
       account:
         fields:
@@ -116,9 +158,11 @@ nl:
         scheduled_at: Mededeling inplannen
         starts_at: Begint
         text: Mededeling
+      appeal:
+        text: Leg uit waarom deze beslissing volgens jou teruggedraaid moet worden
       defaults:
         autofollow: Uitnodigen om jouw account te volgen
-        avatar: Avatar
+        avatar: Profielfoto
         bot: Dit is een bot-account
         chosen_languages: Talen filteren
         confirm_new_password: Nieuw wachtwoord bevestigen
@@ -145,6 +189,7 @@ nl:
         phrase: Trefwoord of zinsdeel
         setting_advanced_layout: Geavanceerde webomgeving inschakelen
         setting_aggregate_reblogs: Boosts in tijdlijnen groeperen
+        setting_always_send_emails: Altijd e-mailmeldingen verzenden
         setting_auto_play_gif: Speel geanimeerde GIF's automatisch af
         setting_boost_modal: Vraag voor het boosten van een bericht een bevestiging
         setting_crop_images: Afbeeldingen bijsnijden tot 16x9 in berichten op tijdlijnen
@@ -170,6 +215,7 @@ nl:
         setting_use_pending_items: Langzame modus
         severity: Zwaarte
         sign_in_token_attempt: Beveiligingscode
+        title: Titel
         type: Importtype
         username: Gebruikersnaam
         username_or_email: Gebruikersnaam of e-mailadres
@@ -178,6 +224,34 @@ nl:
         with_dns_records: MX-records en IP-adressen van het domein toevoegen
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Volledig verbergen
+          warn: Met een waarschuwing verbergen
+      form_admin_settings:
+        backups_retention_period: Bewaartermijn gebruikersarchief
+        bootstrap_timeline_accounts: Accounts die altijd aan nieuwe gebruikers worden aanbevolen
+        closed_registrations_message: Aangepast bericht wanneer registratie is uitgeschakeld
+        content_cache_retention_period: Bewaartermijn berichtencache
+        custom_css: Aangepaste CSS
+        mascot: Aangepaste mascotte (legacy)
+        media_cache_retention_period: Bewaartermijn mediacache
+        profile_directory: Gebruikersgids inschakelen
+        registrations_mode: Wie kan zich registreren
+        require_invite_text: Goedkeuring vereist om te kunnen registreren
+        show_domain_blocks: Domeinblokkades tonen
+        show_domain_blocks_rationale: Redenen voor domeinblokkades tonen
+        site_contact_email: E-mailadres contactpersoon
+        site_contact_username: Gebruikersnaam contactpersoon
+        site_extended_description: Uitgebreide omschrijving
+        site_short_description: Serveromschrijving
+        site_terms: Privacybeleid
+        site_title: Servernaam
+        theme: Standaardthema
+        thumbnail: Serverthumbnail
+        timeline_preview: Toegang tot de openbare tijdlijnen zonder in te loggen toestaan
+        trendable_by_default: Trends goedkeuren zonder voorafgaande beoordeling
+        trends: Trends inschakelen
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
@@ -191,24 +265,40 @@ nl:
         ip: IP
         severities:
           no_access: Toegang blokkeren
+          sign_up_block: Registraties blokkeren
           sign_up_requires_approval: Registraties beperken
         severity: Regel
       notification_emails:
+        appeal: Iemand heeft bezwaar ingediend tegen een beslissing van een moderator
         digest: Periodiek e-mails met een samenvatting versturen
-        favourite: Wanneer iemand jouw bericht aan diens favorieten heeft toegevoegd
+        favourite: Wanneer iemand jouw bericht als favoriet markeert
         follow: Wanneer iemand jou is gaan volgen
         follow_request: Wanneer iemand jou wil volgen
         mention: Wanneer iemand jou heeft vermeld
         pending_account: Wanneer een nieuw account moet worden beoordeeld
         reblog: Wanneer iemand jouw bericht heeft geboost
+        report: Nieuwe rapportage is ingediend
+        trending_tag: Nieuwe trend vereist beoordeling
       rule:
         text: Regel
       tag:
         listable: Toestaan dat deze hashtag in zoekopdrachten en aanbevelingen te zien valt
         name: Hashtag
-        trendable: Toestaan dat deze hashtag onder trends te zien valt
+        trendable: Goedkeuren dat deze hashtag onder trends te zien valt
         usable: Toestaan dat deze hashtag in berichten gebruikt mag worden
+      user:
+        role: Rol
+      user_role:
+        color: Kleur van badge
+        highlighted: Rol als badge op profielpagina's tonen
+        name: Naam
+        permissions_as_keys: Rechten
+        position: Prioriteit
+      webhook:
+        events: Ingeschakelde gebeurtenissen
+        url: Eindpunt URL
     'no': Nee
+    not_recommended: Niet aanbevolen
     recommended: Aanbevolen
     required:
       mark: "*"

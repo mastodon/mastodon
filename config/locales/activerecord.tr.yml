@@ -21,6 +21,18 @@ tr:
             username:
               invalid: sadece harfler, sayılar ve alt çizgiler
               reserved: kullanılamaz
+        admin/webhook:
+          attributes:
+            url:
+              invalid: geçerli bir URL değil
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: geçerli bir URL değil
+        import:
+          attributes:
+            data:
+              malformed: bozulmuştur
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ tr:
             email:
               blocked: izin verilmeyen bir e-posta sağlayıcı kullanıyor
               unreachable: mevcut gözükmüyor
+            role_id:
+              elevated: mevcut rolünüzden yüksek olamaz
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: temel rol için güvenli olmayan izinleri içerir
+              elevated: mevcut rolünüzün sahip olmadığı izinleri içeremez
+              own_role: mevcut rolünüzle değiştirilemez
+            position:
+              elevated: mevcut rolünüzden yüksek olamaz
+              own_role: mevcut rolünüzle değiştirilemez
