@@ -134,6 +134,15 @@ RSpec.describe FollowService, type: :service do
         expect(Follow.find_by(account: sender, target_account: bob)&.languages).to match_array %w(en es)
       end
     end
+
+    describe "following own account" do
+      it "raises a SelfFollowError exception and don't creates a following relation" do
+        expect { subject.call(sender, sender) }
+          .to raise_error(FollowService::SelfFollowError)
+          .and not_change { sender.following?(sender) }
+
+        expect(sender.following?(sender)).to be false
+      end
   end
 
   context 'remote ActivityPub account' do

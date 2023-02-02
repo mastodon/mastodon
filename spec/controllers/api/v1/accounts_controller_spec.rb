@@ -117,6 +117,27 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
         it_behaves_like 'forbidden for wrong scope', 'read:accounts'
       end
+
+      context 'following own account' do
+        let(:locked) { false }
+        let(:other_account) { user.account }
+
+        it 'returns http forbidden' do
+          expect(response).to have_http_status(403)
+        end
+
+        it 'returns JSON with an error message' do
+          json = body_as_json
+          
+          expect(json[:error]).to eq 'Follow your own account is not allowed'
+        end
+
+        it 'dont creates a following relation between user and target user' do
+          expect(user.account.following?(other_account)).to be false
+        end
+
+        it_behaves_like 'forbidden for wrong scope', 'read:accounts'
+      end
     end
 
     context 'modifying follow options' do
