@@ -53,9 +53,9 @@ class BackupService < BaseService
     tmp_file = Tempfile.new(%w(archive .tar.gz))
 
     File.open(tmp_file, 'wb') do |file|
+      dump_outbox!(file)
       Zlib::GzipWriter.wrap(file) do |gz|
         Gem::Package::TarWriter.new(gz) do |tar|
-          dump_outbox!(tar)
           dump_media_attachments!(tar)
           dump_likes!(tar)
           dump_bookmarks!(tar)
@@ -86,19 +86,40 @@ class BackupService < BaseService
     end
   end
 
-  def dump_outbox!(tar)
-    tmp_file = Tempfile.new(%w(outbox .json))
-    build_outbox_json!(tmp_file)
-
-    tar.add_file_simple('outbox.json', 0o444, tmp_file.size) do |io|
-      tmp_file.rewind
-      while (buffer = tmp_file.read(CHUNK_SIZE))
-        io.write(buffer)
-      end
+  def dump_outbox!(file)
+    # Placeholder for the tar header, with a compression level of 0 to ensure
+    # it has a fixed size
+    header_pos = file.pos
+    Zlib::GzipWriter.wrap(file, 0) do |gz|
+      gz.write("\0" * 512)
+      gz.finish
     end
-  ensure
-    tmp_file.close
-    tmp_file.unlink
+
+    # Output the contents of outbox.json itself
+    size = 0
+    Zlib::GzipWriter.wrap(file) do |gz|
+      start = gz.pos
+      build_outbox_json!(gz)
+      size = gz.pos - start
+      # Tar end padding
+      remainder = (512 - (size % 512)) % 512
+      gz.write("\0" * remainder)
+      gz.finish
+    end
+
+    end_pos = file.pos
+
+    # Patch the Tar header
+    file.pos = header_pos
+    Zlib::GzipWriter.wrap(file, 0) do |gz|
+      header = Gem::Package::TarHeader.new :name => 'outbox.json', :mode => 0o444,
+                                           :size => size, :prefix => '',
+                                           :mtime => Gem.source_date_epoch
+      gz.write(header)
+      gz.finish
+    end
+
+    file.pos = end_pos
   end
 
   def dump_actor!(tar)
