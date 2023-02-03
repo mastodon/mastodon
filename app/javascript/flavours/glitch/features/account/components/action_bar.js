@@ -21,7 +21,7 @@ class ActionBar extends React.PureComponent {
       return false;
     }
     return !location.pathname.match(/\/(followers|following)\/?$/);
-  }
+  };
 
   render () {
     const { account, intl } = this.props;
@@ -32,7 +32,7 @@ class ActionBar extends React.PureComponent {
           <div className='account__disclaimer'>
             <Icon id='info-circle' fixedWidth /> <FormattedMessage
               id='account.suspended_disclaimer_full'
-              defaultMessage="This user has been suspended by a moderator."
+              defaultMessage='This user has been suspended by a moderator.'
             />
           </div>
         </div>

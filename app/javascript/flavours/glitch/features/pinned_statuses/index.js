@@ -37,11 +37,11 @@ class PinnedStatuses extends ImmutablePureComponent {
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   render () {
     const { intl, statusIds, hasMore, multiColumn } = this.props;

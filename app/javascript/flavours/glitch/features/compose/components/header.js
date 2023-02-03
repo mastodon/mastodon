@@ -47,6 +47,7 @@ const messages = defineMessages({
 
 export default @injectIntl
 class Header extends ImmutablePureComponent {
+
   static propTypes = {
     columns: ImmutablePropTypes.list,
     unreadNotifications: PropTypes.number,
@@ -63,7 +64,7 @@ class Header extends ImmutablePureComponent {
     this.props.onLogout();
 
     return false;
-  }
+  };
 
   render () {
     const { intl, columns, unreadNotifications, showNotificationsBadge, onSettingsClick } = this.props;
@@ -71,8 +72,8 @@ class Header extends ImmutablePureComponent {
     //  Only renders the component if the column isn't being shown.
     const renderForColumn = conditionalRender.bind(null,
       columnId => !columns || !columns.some(
-        column => column.get('id') === columnId
-      )
+        column => column.get('id') === columnId,
+      ),
     );
 
     //  The result.
@@ -125,10 +126,11 @@ class Header extends ImmutablePureComponent {
         <a
           aria-label={intl.formatMessage(messages.logout)}
           onClick={this.handleLogoutClick}
-          href={ signOutLink }
+          href={signOutLink}
           title={intl.formatMessage(messages.logout)}
         ><Icon id='sign-out' /></a>
       </nav>
     );
-  };
+  }
+
 }

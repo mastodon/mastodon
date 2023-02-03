@@ -102,7 +102,7 @@ class ZoomableImage extends React.PureComponent {
     onClick: PropTypes.func,
     zoomButtonHidden: PropTypes.bool,
     intl: PropTypes.object.isRequired,
-  }
+  };
 
   static defaultProps = {
     alt: '',
@@ -132,7 +132,7 @@ class ZoomableImage extends React.PureComponent {
     dragged: false,
     lockScroll: { x: 0, y: 0 },
     lockTranslate: { x: 0, y: 0 },
-  }
+  };
 
   removers = [];
   container = null;
@@ -212,7 +212,7 @@ class ZoomableImage extends React.PureComponent {
 
     // lock horizontal scroll
     this.container.scrollLeft = Math.max(this.container.scrollLeft + event.pixelX, this.state.lockScroll.x);
-  }
+  };
 
   mouseDownHandler = e => {
     this.container.style.cursor = 'grabbing';
@@ -228,7 +228,7 @@ class ZoomableImage extends React.PureComponent {
 
     this.image.addEventListener('mousemove', this.mouseMoveHandler);
     this.image.addEventListener('mouseup', this.mouseUpHandler);
-  }
+  };
 
   mouseMoveHandler = e => {
     const dx = e.clientX - this.state.dragPosition.x;
@@ -238,7 +238,7 @@ class ZoomableImage extends React.PureComponent {
     this.container.scrollTop = Math.max(this.state.dragPosition.top - dy, this.state.lockScroll.y);
 
     this.setState({ dragged: true });
-  }
+  };
 
   mouseUpHandler = () => {
     this.container.style.cursor = 'grab';
@@ -246,13 +246,13 @@ class ZoomableImage extends React.PureComponent {
 
     this.image.removeEventListener('mousemove', this.mouseMoveHandler);
     this.image.removeEventListener('mouseup', this.mouseUpHandler);
-  }
+  };
 
   handleTouchStart = e => {
     if (e.touches.length !== 2) return;
 
     this.lastDistance = getDistance(...e.touches);
-  }
+  };
 
   handleTouchMove = e => {
     const { scrollTop, scrollHeight, clientHeight } = this.container;
@@ -275,7 +275,7 @@ class ZoomableImage extends React.PureComponent {
 
     this.lastMidpoint = midpoint;
     this.lastDistance = distance;
-  }
+  };
 
   zoom(nextScale, midpoint) {
     const { scale, zoomMatrix } = this.state;
@@ -314,11 +314,11 @@ class ZoomableImage extends React.PureComponent {
     const handler = this.props.onClick;
     if (handler) handler();
     this.setState({ navigationHidden: !this.state.navigationHidden });
-  }
+  };
 
   handleMouseDown = e => {
     e.preventDefault();
-  }
+  };
 
   initZoomMatrix = () => {
     const { width, height } = this.props;
@@ -350,7 +350,7 @@ class ZoomableImage extends React.PureComponent {
         translateY: translateY,
       },
     });
-  }
+  };
 
   handleZoomClick = e => {
     e.preventDefault();
@@ -392,15 +392,15 @@ class ZoomableImage extends React.PureComponent {
 
     this.container.style.cursor = 'grab';
     this.container.style.removeProperty('user-select');
-  }
+  };
 
   setContainerRef = c => {
     this.container = c;
-  }
+  };
 
   setImageRef = c => {
     this.image = c;
-  }
+  };
 
   render () {
     const { alt, src, width, height, intl } = this.props;

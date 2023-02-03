@@ -58,7 +58,7 @@ class ModifierPickerMenu extends React.PureComponent {
 
   handleClick = e => {
     this.props.onSelect(e.currentTarget.getAttribute('data-index') * 1);
-  }
+  };
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.active) {
@@ -76,7 +76,7 @@ class ModifierPickerMenu extends React.PureComponent {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
     }
-  }
+  };
 
   attachListeners () {
     document.addEventListener('click', this.handleDocumentClick, false);
@@ -90,7 +90,7 @@ class ModifierPickerMenu extends React.PureComponent {
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   render () {
     const { active } = this.props;
@@ -125,12 +125,12 @@ class ModifierPicker extends React.PureComponent {
     } else {
       this.props.onOpen();
     }
-  }
+  };
 
   handleSelect = modifier => {
     this.props.onChange(modifier);
     this.props.onClose();
-  }
+  };
 
   render () {
     const { active, modifier } = this.props;
@@ -175,7 +175,7 @@ class EmojiPickerMenu extends React.PureComponent {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
     }
-  }
+  };
 
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
@@ -199,7 +199,7 @@ class EmojiPickerMenu extends React.PureComponent {
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   getI18n = () => {
     const { intl } = this.props;
@@ -220,7 +220,7 @@ class EmojiPickerMenu extends React.PureComponent {
         custom: intl.formatMessage(messages.custom),
       },
     };
-  }
+  };
 
   handleClick = (emoji, event) => {
     if (!emoji.native) {
@@ -230,19 +230,19 @@ class EmojiPickerMenu extends React.PureComponent {
       this.props.onClose();
     }
     this.props.onPick(emoji);
-  }
+  };
 
   handleModifierOpen = () => {
     this.setState({ modifierOpen: true });
-  }
+  };
 
   handleModifierClose = () => {
     this.setState({ modifierOpen: false });
-  }
+  };
 
   handleModifierChange = modifier => {
     this.props.onSkinTone(modifier);
-  }
+  };
 
   render () {
     const { loading, style, intl, custom_emojis, skinTone, frequentlyUsedEmojis } = this.props;
@@ -327,7 +327,7 @@ class EmojiPickerDropdown extends React.PureComponent {
 
   setRef = (c) => {
     this.dropdown = c;
-  }
+  };
 
   onShowDropdown = () => {
     this.setState({ active: true });
@@ -344,11 +344,11 @@ class EmojiPickerDropdown extends React.PureComponent {
         this.setState({ loading: false, active: false });
       });
     }
-  }
+  };
 
   onHideDropdown = () => {
     this.setState({ active: false });
-  }
+  };
 
   onToggle = (e) => {
     if (!this.state.loading && (!e.key || e.key === 'Enter')) {
@@ -358,21 +358,21 @@ class EmojiPickerDropdown extends React.PureComponent {
         this.onShowDropdown(e);
       }
     }
-  }
+  };
 
   handleKeyDown = e => {
     if (e.key === 'Escape') {
       this.onHideDropdown();
     }
-  }
+  };
 
   setTargetRef = c => {
     this.target = c;
-  }
+  };
 
   findTarget = () => {
     return this.target;
-  }
+  };
 
   render () {
     const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis, button } = this.props;

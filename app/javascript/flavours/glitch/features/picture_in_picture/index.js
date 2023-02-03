@@ -35,7 +35,7 @@ class PictureInPicture extends React.Component {
   handleClose = () => {
     const { dispatch } = this.props;
     dispatch(removePictureInPicture());
-  }
+  };
 
   render () {
     const { type, src, currentTime, accountId, statusId, left } = this.props;

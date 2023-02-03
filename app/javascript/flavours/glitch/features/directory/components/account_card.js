@@ -118,7 +118,7 @@ class AccountCard extends ImmutablePureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-original');
     }
-  }
+  };
 
   handleMouseLeave = ({ currentTarget }) => {
     if (autoPlayGif) {
@@ -131,7 +131,7 @@ class AccountCard extends ImmutablePureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-static');
     }
-  }
+  };
 
   handleFollow = () => {
     this.props.onFollow(this.props.account);
@@ -143,11 +143,11 @@ class AccountCard extends ImmutablePureComponent {
 
   handleMute = () => {
     this.props.onMute(this.props.account);
-  }
+  };
 
   handleEditProfile = () => {
     window.open('/settings/profile', '_blank');
-  }
+  };
 
   handleDismiss = (e) => {
     const { account, onDismiss } = this.props;
@@ -155,7 +155,7 @@ class AccountCard extends ImmutablePureComponent {
 
     e.preventDefault();
     e.stopPropagation();
-  }
+  };
 
   render() {
     const { account, intl } = this.props;

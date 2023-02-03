@@ -68,75 +68,75 @@ class ActionBar extends React.PureComponent {
 
   handleReplyClick = () => {
     this.props.onReply(this.props.status);
-  }
+  };
 
   handleReblogClick = (e) => {
     this.props.onReblog(this.props.status, e);
-  }
+  };
 
   handleFavouriteClick = (e) => {
     this.props.onFavourite(this.props.status, e);
-  }
+  };
 
   handleBookmarkClick = (e) => {
     this.props.onBookmark(this.props.status, e);
-  }
+  };
 
   handleDeleteClick = () => {
     this.props.onDelete(this.props.status, this.context.router.history);
-  }
+  };
 
   handleRedraftClick = () => {
     this.props.onDelete(this.props.status, this.context.router.history, true);
-  }
+  };
 
   handleEditClick = () => {
     this.props.onEdit(this.props.status, this.context.router.history);
-  }
+  };
 
   handleDirectClick = () => {
     this.props.onDirect(this.props.status.get('account'), this.context.router.history);
-  }
+  };
 
   handleMentionClick = () => {
     this.props.onMention(this.props.status.get('account'), this.context.router.history);
-  }
+  };
 
   handleMuteClick = () => {
     this.props.onMute(this.props.status.get('account'));
-  }
+  };
 
   handleConversationMuteClick = () => {
     this.props.onMuteConversation(this.props.status);
-  }
+  };
 
   handleBlockClick = () => {
     this.props.onBlock(this.props.status);
-  }
+  };
 
   handleReport = () => {
     this.props.onReport(this.props.status);
-  }
+  };
 
   handlePinClick = () => {
     this.props.onPin(this.props.status);
-  }
+  };
 
   handleShare = () => {
     navigator.share({
       text: this.props.status.get('search_index'),
       url: this.props.status.get('url'),
     });
-  }
+  };
 
   handleEmbed = () => {
     this.props.onEmbed(this.props.status);
-  }
+  };
 
   handleCopy = () => {
     const url = this.props.status.get('url');
     navigator.clipboard.writeText(url);
-  }
+  };
 
   render () {
     const { status, intl } = this.props;

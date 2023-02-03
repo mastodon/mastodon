@@ -2,7 +2,9 @@
 
 import 'packs/public-path';
 import escapeTextContentForBrowser from 'escape-html';
+
 const { delegate } = require('@rails/ujs');
+
 import emojify from '../mastodon/features/emoji/emoji';
 
 delegate(document, '#account_display_name', 'input', ({ target }) => {
@@ -65,7 +67,7 @@ delegate(document, '.input-copy button', 'click', ({ target }) => {
       input.blur();
       target.parentNode.classList.add('copied');
 
-    setTimeout(() => {
+      setTimeout(() => {
         target.parentNode.classList.remove('copied');
       }, 700);
     }

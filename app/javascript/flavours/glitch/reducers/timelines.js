@@ -229,4 +229,4 @@ export default function timelines(state = initialState, action) {
   default:
     return state;
   }
-};
+}

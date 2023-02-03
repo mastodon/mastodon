@@ -63,16 +63,16 @@ class CommunityTimeline extends React.PureComponent {
     } else {
       dispatch(addColumn('COMMUNITY', { other: { onlyMedia } }));
     }
-  }
+  };
 
   handleMove = (dir) => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
-  }
+  };
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   componentDidMount () {
     const { dispatch, onlyMedia } = this.props;
@@ -112,13 +112,13 @@ class CommunityTimeline extends React.PureComponent {
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   handleLoadMore = maxId => {
     const { dispatch, onlyMedia } = this.props;
 
     dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
-  }
+  };
 
   render () {
     const { intl, hasUnread, columnId, multiColumn, onlyMedia } = this.props;

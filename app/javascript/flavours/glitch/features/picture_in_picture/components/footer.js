@@ -114,7 +114,7 @@ class Footer extends ImmutablePureComponent {
   _performReblog = (privacy) => {
     const { dispatch, status } = this.props;
     dispatch(reblog(status, privacy));
-  }
+  };
 
   handleReblogClick = e => {
     const { dispatch, status } = this.props;
@@ -151,7 +151,7 @@ class Footer extends ImmutablePureComponent {
     }
 
     router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
-  }
+  };
 
   render () {
     const { status, intl, showReplyCount, withOpenButton } = this.props;

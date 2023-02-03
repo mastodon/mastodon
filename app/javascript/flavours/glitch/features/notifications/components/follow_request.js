@@ -32,28 +32,28 @@ class FollowRequest extends ImmutablePureComponent {
   handleMoveUp = () => {
     const { notification, onMoveUp } = this.props;
     onMoveUp(notification.get('id'));
-  }
+  };
 
   handleMoveDown = () => {
     const { notification, onMoveDown } = this.props;
     onMoveDown(notification.get('id'));
-  }
+  };
 
   handleOpen = () => {
     this.handleOpenProfile();
-  }
+  };
 
   handleOpenProfile = () => {
     const { notification } = this.props;
     this.context.router.history.push(`/@${notification.getIn(['account', 'acct'])}`);
-  }
+  };
 
   handleMention = e => {
     e.preventDefault();
 
     const { notification, onMention } = this.props;
     onMention(notification.get('account'), this.context.router.history);
-  }
+  };
 
   getHandlers () {
     return {

@@ -55,4 +55,4 @@ class ComposePanel extends React.PureComponent {
     );
   }
 
-};
+}

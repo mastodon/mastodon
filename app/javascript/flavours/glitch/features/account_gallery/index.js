@@ -45,7 +45,7 @@ class LoadMoreMedia extends ImmutablePureComponent {
 
   handleLoadMore = () => {
     this.props.onLoadMore(this.props.maxId);
-  }
+  };
 
   render () {
     return (
@@ -109,13 +109,13 @@ class AccountGallery extends ImmutablePureComponent {
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   handleScrollToBottom = () => {
     if (this.props.hasMore) {
       this.handleLoadMore(this.props.attachments.size > 0 ? this.props.attachments.last().getIn(['status', 'id']) : undefined);
     }
-  }
+  };
 
   handleScroll = e => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -124,7 +124,7 @@ class AccountGallery extends ImmutablePureComponent {
     if (150 > offset && !this.props.isLoading) {
       this.handleScrollToBottom();
     }
-  }
+  };
 
   handleLoadMore = maxId => {
     this.props.dispatch(expandAccountMediaTimeline(this.props.accountId, { maxId }));
@@ -133,11 +133,11 @@ class AccountGallery extends ImmutablePureComponent {
   handleLoadOlder = e => {
     e.preventDefault();
     this.handleScrollToBottom();
-  }
+  };
 
   setColumnRef = c => {
     this.column = c;
-  }
+  };
 
   handleOpenMedia = attachment => {
     const { dispatch } = this.props;
@@ -153,13 +153,13 @@ class AccountGallery extends ImmutablePureComponent {
 
       dispatch(openModal('MEDIA', { media, index, statusId }));
     }
-  }
+  };
 
   handleRef = c => {
     if (c) {
       this.setState({ width: c.offsetWidth });
     }
-  }
+  };
 
   render () {
     const { attachments, isLoading, hasMore, isAccount, multiColumn, suspended } = this.props;

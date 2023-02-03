@@ -49,7 +49,7 @@ const PageTwo = ({ intl, myAccount }) => (
           privacy='public'
           text='Awoo! #introductions'
           spoilerText=''
-          suggestions={ [] }
+          suggestions={[]}
         />
       </div>
     </div>
@@ -195,7 +195,7 @@ class OnboardingModal extends React.PureComponent {
       <PageFour domain={domain} intl={intl} />,
       <PageSix admin={admin} domain={domain} />,
     ];
-  };
+  }
 
   componentDidMount() {
     window.addEventListener('keyup', this.handleKeyUp);
@@ -208,30 +208,30 @@ class OnboardingModal extends React.PureComponent {
   handleSkip = (e) => {
     e.preventDefault();
     this.props.onClose();
-  }
+  };
 
   handleDot = (e) => {
     const i = Number(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.setState({ currentIndex: i });
-  }
+  };
 
   handlePrev = () => {
     this.setState(({ currentIndex }) => ({
       currentIndex: Math.max(0, currentIndex - 1),
     }));
-  }
+  };
 
   handleNext = () => {
     const { pages } = this;
     this.setState(({ currentIndex }) => ({
       currentIndex: Math.min(currentIndex + 1, pages.length - 1),
     }));
-  }
+  };
 
   handleSwipe = (index) => {
     this.setState({ currentIndex: index });
-  }
+  };
 
   handleKeyUp = ({ key }) => {
     switch (key) {
@@ -242,11 +242,11 @@ class OnboardingModal extends React.PureComponent {
       this.handleNext();
       break;
     }
-  }
+  };
 
   handleClose = () => {
     this.props.onClose();
-  }
+  };
 
   render () {
     const { pages } = this;

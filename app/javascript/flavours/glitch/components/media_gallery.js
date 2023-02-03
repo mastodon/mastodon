@@ -60,14 +60,14 @@ class Item extends React.PureComponent {
     if (this.hoverToPlay()) {
       e.target.play();
     }
-  }
+  };
 
   handleMouseLeave = (e) => {
     if (this.hoverToPlay()) {
       e.target.pause();
       e.target.currentTime = 0;
     }
-  }
+  };
 
   getAutoPlay() {
     return this.props.autoplay || autoPlayGif;
@@ -91,11 +91,11 @@ class Item extends React.PureComponent {
     }
 
     e.stopPropagation();
-  }
+  };
 
   handleImageLoad = () => {
     this.setState({ loaded: true });
-  }
+  };
 
   render () {
     const { attachment, index, size, standalone, letterbox, displayWidth, visible } = this.props;
@@ -307,11 +307,11 @@ class MediaGallery extends React.PureComponent {
     } else {
       this.setState({ visible: !this.state.visible });
     }
-  }
+  };
 
   handleClick = (index) => {
     this.props.onOpenMedia(this.props.media, index);
-  }
+  };
 
   handleRef = (node) => {
     this.node = node;
@@ -319,11 +319,11 @@ class MediaGallery extends React.PureComponent {
     if (this.node) {
       this._setDimensions();
     }
-  }
+  };
 
   _setDimensions () {
     const width = this.node.offsetWidth;
- 
+
     if (width && width != this.state.width) {
       // offsetWidth triggers a layout, so only calculate when we need to
       if (this.props.cacheWidth) {
@@ -360,7 +360,7 @@ class MediaGallery extends React.PureComponent {
     } else if (width) {
       style.height = width / (16/9);
     } else {
-      return (<div className={computedClass} ref={this.handleRef}></div>);
+      return (<div className={computedClass} ref={this.handleRef} />);
     }
 
     if (this.isStandaloneEligible()) {

@@ -33,14 +33,14 @@ export function checkDeprecatedLocalSettings() {
       }));
     }
   };
-};
+}
 
 export function clearDeprecatedLocalSettings() {
   return (dispatch) => {
     dispatch(deleteLocalSetting(['content_warnings', 'auto_unfold']));
     dispatch(deleteLocalSetting(['swipe_to_change_columns']));
   };
-};
+}
 
 export function changeLocalSetting(key, value) {
   return dispatch => {
@@ -52,7 +52,7 @@ export function changeLocalSetting(key, value) {
 
     dispatch(saveLocalSettings());
   };
-};
+}
 
 export function deleteLocalSetting(key) {
   return dispatch => {
@@ -63,7 +63,7 @@ export function deleteLocalSetting(key) {
 
     dispatch(saveLocalSettings());
   };
-};
+}
 
 //  __TODO :__
 //  Right now `saveLocalSettings()` doesn't keep track of which user
@@ -74,4 +74,4 @@ export function saveLocalSettings() {
     const localSettings = getState().get('local_settings').toJS();
     localStorage.setItem('mastodon-settings', JSON.stringify(localSettings));
   };
-};
+}

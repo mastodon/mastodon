@@ -48,15 +48,15 @@ class Favourites extends ImmutablePureComponent {
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   handleRefresh = () => {
     this.props.dispatch(fetchFavourites(this.props.params.statusId));
-  }
+  };
 
   render () {
     const { intl, accountIds, multiColumn } = this.props;

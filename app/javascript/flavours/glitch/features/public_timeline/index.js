@@ -68,16 +68,16 @@ class PublicTimeline extends React.PureComponent {
     } else {
       dispatch(addColumn(onlyRemote ? 'REMOTE' : 'PUBLIC', { other: { onlyMedia, onlyRemote, allowLocalOnly } }));
     }
-  }
+  };
 
   handleMove = (dir) => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
-  }
+  };
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   componentDidMount () {
     const { dispatch, onlyMedia, onlyRemote, allowLocalOnly } = this.props;
@@ -116,13 +116,13 @@ class PublicTimeline extends React.PureComponent {
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   handleLoadMore = maxId => {
     const { dispatch, onlyMedia, onlyRemote, allowLocalOnly } = this.props;
 
     dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote, allowLocalOnly }));
-  }
+  };
 
   render () {
     const { intl, columnId, hasUnread, multiColumn, onlyMedia, onlyRemote, allowLocalOnly } = this.props;

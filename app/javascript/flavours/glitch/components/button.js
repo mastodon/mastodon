@@ -19,11 +19,11 @@ export default class Button extends React.PureComponent {
     if (!this.props.disabled) {
       this.props.onClick(e);
     }
-  }
+  };
 
   setRef = (c) => {
     this.node = c;
-  }
+  };
 
   focus() {
     this.node.focus();

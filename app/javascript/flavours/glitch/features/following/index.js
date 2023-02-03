@@ -107,11 +107,11 @@ class Following extends ImmutablePureComponent {
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   render () {
     const { accountId, accountIds, hasMore, isAccount, multiColumn, isLoading, suspended, hidden, remote, remoteUrl } = this.props;

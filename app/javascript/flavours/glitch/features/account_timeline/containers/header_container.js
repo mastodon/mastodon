@@ -12,7 +12,7 @@ import {
 } from 'flavours/glitch/actions/accounts';
 import {
   mentionCompose,
-  directCompose
+  directCompose,
 } from 'flavours/glitch/actions/compose';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initBlockModal } from 'flavours/glitch/actions/blocks';

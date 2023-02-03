@@ -279,7 +279,7 @@ class DoodleModal extends ImmutablePureComponent {
     this.swapped = false;
     window.addEventListener('keyup', this.handleKeyUp, false);
     window.addEventListener('keydown', this.handleKeyDown, false);
-  };
+  }
 
   /**
    * Tear component down
@@ -575,7 +575,7 @@ class DoodleModal extends ImmutablePureComponent {
             <div>
               <select aria-label='Canvas size' onInput={this.changeSize} defaultValue={this.size}>
                 { Object.values(mapValues(DOODLE_SIZES, (val, k) =>
-                  <option key={k} value={k}>{val[2]}</option>
+                  <option key={k} value={k}>{val[2]}</option>,
                 )) }
               </select>
             </div>
@@ -602,7 +602,7 @@ class DoodleModal extends ImmutablePureComponent {
                       'foreground': this.fg === c[0],
                       'background': this.bg === c[0],
                     })}
-                  />
+                  />,
               )
             }
           </div>

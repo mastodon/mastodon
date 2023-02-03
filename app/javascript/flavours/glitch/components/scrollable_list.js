@@ -137,7 +137,7 @@ class ScrollableList extends PureComponent {
     }
     this.mouseMovedRecently = false;
     this.scrollToTopOnMouseIdle = false;
-  }
+  };
 
   componentDidMount () {
     this.attachScrollListener();
@@ -154,29 +154,29 @@ class ScrollableList extends PureComponent {
     } else {
       return null;
     }
-  }
+  };
 
   getScrollTop = () => {
     return this.props.bindToDocument ? document.scrollingElement.scrollTop : this.node.scrollTop;
-  }
+  };
 
   getScrollHeight = () => {
     return this.props.bindToDocument ? document.scrollingElement.scrollHeight : this.node.scrollHeight;
-  }
+  };
 
   getClientHeight = () => {
     return this.props.bindToDocument ? document.scrollingElement.clientHeight : this.node.clientHeight;
-  }
+  };
 
   updateScrollBottom = (snapshot) => {
     const newScrollTop = this.getScrollHeight() - snapshot;
 
     this.setScrollTop(newScrollTop);
-  }
+  };
 
   cacheMediaWidth = (width) => {
     if (width && this.state.cachedMediaWidth != width) this.setState({ cachedMediaWidth: width });
-  }
+  };
 
   getSnapshotBeforeUpdate (prevProps, prevState) {
     const someItemInserted = React.Children.count(prevProps.children) > 0 &&
@@ -208,7 +208,7 @@ class ScrollableList extends PureComponent {
 
   onFullScreenChange = () => {
     this.setState({ fullscreen: isFullscreen() });
-  }
+  };
 
   attachIntersectionObserver () {
     this.intersectionObserverWrapper.connect({
@@ -256,12 +256,12 @@ class ScrollableList extends PureComponent {
 
   setRef = (c) => {
     this.node = c;
-  }
+  };
 
   handleLoadMore = e => {
     e.preventDefault();
     this.props.onLoadMore();
-  }
+  };
 
   handleLoadPending = e => {
     e.preventDefault();
@@ -273,7 +273,7 @@ class ScrollableList extends PureComponent {
     this.clearMouseIdleTimer();
     this.mouseIdleTimer = setTimeout(this.handleMouseIdle, MOUSE_IDLE_DELAY);
     this.mouseMovedRecently = true;
-  }
+  };
 
   render () {
     const { children, scrollKey, trackScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, append, emptyMessage, onLoadMore } = this.props;

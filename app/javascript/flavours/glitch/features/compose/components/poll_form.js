@@ -49,15 +49,15 @@ class Option extends React.PureComponent {
 
   onSuggestionsClearRequested = () => {
     this.props.onClearSuggestions();
-  }
+  };
 
   onSuggestionsFetchRequested = (token) => {
     this.props.onFetchSuggestions(token);
-  }
+  };
 
   onSuggestionSelected = (tokenStart, token, value) => {
     this.props.onSuggestionSelected(tokenStart, token, value, ['poll', 'options', this.props.index]);
-  }
+  };
 
   render () {
     const { isPollMultiple, title, lang, index, autoFocus, intl } = this.props;

@@ -8,7 +8,7 @@ import { profileLink, termsLink } from 'flavours/glitch/utils/backend_links';
 
 const buildHashtagRE = () => {
   try {
-    const HASHTAG_SEPARATORS = "_\\u00b7\\u200c";
+    const HASHTAG_SEPARATORS = '_\\u00b7\\u200c';
     const ALPHA = '\\p{L}\\p{M}';
     const WORD = '\\p{L}\\p{M}\\p{N}\\p{Pc}';
     return new RegExp(
@@ -22,7 +22,7 @@ const buildHashtagRE = () => {
       '[' + WORD + '_]*' +
       '[' + ALPHA + ']' +
       '[' + WORD + '_]*' +
-      '))', 'iu'
+      '))', 'iu',
     );
   } catch {
     return /(?:^|[^\/\)\w])#(\w*[a-zA-Z·]\w*)/i;

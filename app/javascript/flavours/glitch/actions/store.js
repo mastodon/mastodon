@@ -18,7 +18,7 @@ const applyMigrations = (state) => {
       if (state.getIn(['settings', 'notifications', 'showUnread']) !== false) {
         state.setIn(['settings', 'notifications', 'showUnread'], state.getIn(['local_settings', 'notifications', 'show_unread']));
       }
-      state.removeIn(['local_settings', 'notifications', 'show_unread'])
+      state.removeIn(['local_settings', 'notifications', 'show_unread']);
     }
   });
 };
@@ -36,4 +36,4 @@ export function hydrateStore(rawState) {
     dispatch(importFetchedAccounts(Object.values(rawState.accounts)));
     dispatch(saveSettings());
   };
-};
+}

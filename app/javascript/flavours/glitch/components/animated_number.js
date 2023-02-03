@@ -38,13 +38,13 @@ export default class AnimatedNumber extends React.PureComponent {
     const { direction } = this.state;
 
     return { y: -1 * direction };
-  }
+  };
 
   willLeave = () => {
     const { direction } = this.state;
 
     return { y: spring(1 * direction, { damping: 35, stiffness: 400 }) };
-  }
+  };
 
   render () {
     const { value, obfuscate } = this.props;

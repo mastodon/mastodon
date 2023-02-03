@@ -13,7 +13,7 @@ export default class SettingText extends React.PureComponent {
 
   handleChange = (e) => {
     this.props.onChange(this.props.settingPath, e.target.value);
-  }
+  };
 
   render () {
     const { settings, settingPath, label } = this.props;

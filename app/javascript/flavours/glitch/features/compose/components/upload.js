@@ -23,12 +23,12 @@ export default class Upload extends ImmutablePureComponent {
   handleUndoClick = e => {
     e.stopPropagation();
     this.props.onUndo(this.props.media.get('id'));
-  }
+  };
 
   handleFocalPointClick = e => {
     e.stopPropagation();
     this.props.onOpenFocalPoint(this.props.media.get('id'));
-  }
+  };
 
   render () {
     const { media } = this.props;
@@ -39,7 +39,7 @@ export default class Upload extends ImmutablePureComponent {
 
     return (
       <div className='compose-form__upload' tabIndex='0' role='button'>
-        <Motion defaultStyle={{ scale: 0.8 }} style={{ scale: spring(1, { stiffness: 180, damping: 12, }) }}>
+        <Motion defaultStyle={{ scale: 0.8 }} style={{ scale: spring(1, { stiffness: 180, damping: 12 }) }}>
           {({ scale }) => (
             <div className='compose-form__upload-thumbnail' style={{ transform: `scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})`, backgroundPosition: `${x}% ${y}%` }}>
               <div className='compose-form__upload__actions'>

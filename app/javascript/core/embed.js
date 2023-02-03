@@ -15,7 +15,7 @@ window.addEventListener('message', e => {
       id: data.id,
       height: document.getElementsByTagName('html')[0].scrollHeight,
     }, '*');
-  };
+  }
 
   if (['interactive', 'complete'].includes(document.readyState)) {
     setEmbedHeight();

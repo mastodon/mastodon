@@ -30,11 +30,11 @@ class DeprecatedSettingsModal extends React.PureComponent {
   handleClick = () => {
     this.props.onConfirm();
     this.props.onClose();
-  }
+  };
 
   setRef = (c) => {
     this.button = c;
-  }
+  };
 
   render () {
     const { settings, intl } = this.props;

@@ -48,15 +48,15 @@ class Reblogs extends ImmutablePureComponent {
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   handleRefresh = () => {
     this.props.dispatch(fetchReblogs(this.props.params.statusId));
-  }
+  };
 
   render () {
     const { intl, accountIds, multiColumn } = this.props;

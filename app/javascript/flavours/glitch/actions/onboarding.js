@@ -11,4 +11,4 @@ export function showOnboardingOnce() {
       dispatch(saveSettings());
     }
   };
-};
+}
