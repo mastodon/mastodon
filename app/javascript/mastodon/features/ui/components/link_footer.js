@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { domain, version, source_url, profile_directory as profileDirectory } from 'mastodon/initial_state';
+import { domain, version, source_url, profile_directory as profileDirectory, statusPageUrl } from 'mastodon/initial_state';
 import { logOut } from 'mastodon/utils/log_out';
 import { openModal } from 'mastodon/actions/modal';
 import { PERMISSION_INVITE_USERS } from 'mastodon/permissions';
@@ -74,6 +74,12 @@ class LinkFooter extends React.PureComponent {
           )}
           {DividingCircle}
           <Link key='privacy-policy' to='/privacy-policy'><FormattedMessage id='footer.privacy_policy' defaultMessage='Privacy policy' /></Link>
+          {statusPageUrl && (
+            <>
+              {DividingCircle}
+              <Link href={statusPageUrl} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.status' defaultMessage='Status' /></Link>
+            </>
+          )}
         </p>
 
         <p>

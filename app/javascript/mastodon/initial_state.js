@@ -81,6 +81,7 @@
  * @property {boolean=} use_pending_items
  * @property {string} version
  * @property {boolean} translation_enabled
+ * @property {string} status_page_url
  */
 
 /**
@@ -133,6 +134,7 @@ export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const version = getMeta('version');
 export const translationEnabled = getMeta('translation_enabled');
+export const statusPageUrl = getMeta('status_page_url');
 export const languages = initialState?.languages;
 
 export default initialState;

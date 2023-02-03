@@ -33,6 +33,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       single_user_mode: Rails.configuration.x.single_user_mode,
       translation_enabled: TranslationService.configured?,
       trends_as_landing_page: Setting.trends_as_landing_page,
+      status_page_url: ENV.fetch('STATUS_PAGE_URL', nil),
     }
 
     if object.current_account
