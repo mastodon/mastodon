@@ -77,7 +77,7 @@ class LinkFooter extends React.PureComponent {
           {statusPageUrl && (
             <>
               {DividingCircle}
-              <Link href={statusPageUrl} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.status' defaultMessage='Status' /></Link>
+              <a href={statusPageUrl} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.status' defaultMessage='Status' /></a>
             </>
           )}
         </p>
