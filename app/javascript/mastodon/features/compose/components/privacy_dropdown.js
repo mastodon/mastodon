@@ -222,10 +222,10 @@ class PrivacyDropdown extends React.PureComponent {
 
     this.options = [
       { icon: 'globe', value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
-      { icon: 'globe', value: 'portfolio', text: formatMessage(messages.portfolio_short), meta: formatMessage(messages.portfolio_long) },
+      { icon: 'vcard', value: 'portfolio', text: formatMessage(messages.portfolio_short), meta: formatMessage(messages.portfolio_long) },
       { icon: 'unlock', value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
       { icon: 'lock', value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
-      { icon: 'lock', value: 'nyan', text: formatMessage(messages.nyan_short), meta: formatMessage(messages.nyan_long) },
+      { icon: 'user-circle', value: 'nyan', text: formatMessage(messages.nyan_short), meta: formatMessage(messages.nyan_long) },
     ];
 
     if (!this.props.noDirect) {
