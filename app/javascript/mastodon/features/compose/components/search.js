@@ -58,11 +58,11 @@ class Search extends React.PureComponent {
 
   setRef = c => {
     this.searchForm = c;
-  }
+  };
 
   handleChange = (e) => {
     this.props.onChange(e.target.value);
-  }
+  };
 
   handleClear = (e) => {
     e.preventDefault();
@@ -70,7 +70,7 @@ class Search extends React.PureComponent {
     if (this.props.value.length > 0 || this.props.submitted) {
       this.props.onClear();
     }
-  }
+  };
 
   handleKeyUp = (e) => {
     if (e.key === 'Enter') {
@@ -84,7 +84,7 @@ class Search extends React.PureComponent {
     } else if (e.key === 'Escape') {
       document.querySelector('.ui').parentElement.focus();
     }
-  }
+  };
 
   handleFocus = () => {
     this.setState({ expanded: true });
@@ -96,15 +96,15 @@ class Search extends React.PureComponent {
         this.searchForm.scrollIntoView();
       }
     }
-  }
+  };
 
   handleBlur = () => {
     this.setState({ expanded: false });
-  }
+  };
 
   findTarget = () => {
     return this.searchForm;
-  }
+  };
 
   render () {
     const { intl, value, submitted } = this.props;

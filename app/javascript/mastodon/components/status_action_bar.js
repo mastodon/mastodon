@@ -97,7 +97,7 @@ class StatusActionBar extends ImmutablePureComponent {
     'status',
     'relationship',
     'withDismiss',
-  ]
+  ];
 
   handleReplyClick = () => {
     const { signedIn } = this.context.identity;
@@ -107,7 +107,7 @@ class StatusActionBar extends ImmutablePureComponent {
     } else {
       this.props.onInteractionModal('reply', this.props.status);
     }
-  }
+  };
 
   handleShareClick = () => {
     navigator.share({
@@ -116,7 +116,7 @@ class StatusActionBar extends ImmutablePureComponent {
     }).catch((e) => {
       if (e.name !== 'AbortError') console.error(e);
     });
-  }
+  };
 
   handleFavouriteClick = () => {
     const { signedIn } = this.context.identity;
@@ -126,7 +126,7 @@ class StatusActionBar extends ImmutablePureComponent {
     } else {
       this.props.onInteractionModal('favourite', this.props.status);
     }
-  }
+  };
 
   handleReblogClick = e => {
     const { signedIn } = this.context.identity;
@@ -136,35 +136,35 @@ class StatusActionBar extends ImmutablePureComponent {
     } else {
       this.props.onInteractionModal('reblog', this.props.status);
     }
-  }
+  };
 
   handleBookmarkClick = () => {
     this.props.onBookmark(this.props.status);
-  }
+  };
 
   handleDeleteClick = () => {
     this.props.onDelete(this.props.status, this.context.router.history);
-  }
+  };
 
   handleRedraftClick = () => {
     this.props.onDelete(this.props.status, this.context.router.history, true);
-  }
+  };
 
   handleEditClick = () => {
     this.props.onEdit(this.props.status, this.context.router.history);
-  }
+  };
 
   handlePinClick = () => {
     this.props.onPin(this.props.status);
-  }
+  };
 
   handleMentionClick = () => {
     this.props.onMention(this.props.status.get('account'), this.context.router.history);
-  }
+  };
 
   handleDirectClick = () => {
     this.props.onDirect(this.props.status.get('account'), this.context.router.history);
-  }
+  };
 
   handleMuteClick = () => {
     const { status, relationship, onMute, onUnmute } = this.props;
@@ -175,7 +175,7 @@ class StatusActionBar extends ImmutablePureComponent {
     } else {
       onMute(account);
     }
-  }
+  };
 
   handleBlockClick = () => {
     const { status, relationship, onBlock, onUnblock } = this.props;
@@ -186,50 +186,50 @@ class StatusActionBar extends ImmutablePureComponent {
     } else {
       onBlock(status);
     }
-  }
+  };
 
   handleBlockDomain = () => {
     const { status, onBlockDomain } = this.props;
     const account = status.get('account');
 
     onBlockDomain(account.get('acct').split('@')[1]);
-  }
+  };
 
   handleUnblockDomain = () => {
     const { status, onUnblockDomain } = this.props;
     const account = status.get('account');
 
     onUnblockDomain(account.get('acct').split('@')[1]);
-  }
+  };
 
   handleOpen = () => {
     this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}/${this.props.status.get('id')}`);
-  }
+  };
 
   handleEmbed = () => {
     this.props.onEmbed(this.props.status);
-  }
+  };
 
   handleReport = () => {
     this.props.onReport(this.props.status);
-  }
+  };
 
   handleConversationMuteClick = () => {
     this.props.onMuteConversation(this.props.status);
-  }
+  };
 
   handleFilterClick = () => {
     this.props.onAddFilter(this.props.status);
-  }
+  };
 
   handleCopy = () => {
     const url = this.props.status.get('url');
     navigator.clipboard.writeText(url);
-  }
+  };
 
   handleHideClick = () => {
     this.props.onFilter();
-  }
+  };
 
   render () {
     const { status, relationship, intl, withDismiss, withCounters, scrollKey } = this.props;

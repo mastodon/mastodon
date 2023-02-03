@@ -16,17 +16,17 @@ export default class ConversationsList extends ImmutablePureComponent {
     onLoadMore: PropTypes.func,
   };
 
-  getCurrentIndex = id => this.props.conversations.findIndex(x => x.get('id') === id)
+  getCurrentIndex = id => this.props.conversations.findIndex(x => x.get('id') === id);
 
   handleMoveUp = id => {
     const elementIndex = this.getCurrentIndex(id) - 1;
     this._selectChild(elementIndex, true);
-  }
+  };
 
   handleMoveDown = id => {
     const elementIndex = this.getCurrentIndex(id) + 1;
     this._selectChild(elementIndex, false);
-  }
+  };
 
   _selectChild (index, align_top) {
     const container = this.node.node;
@@ -44,7 +44,7 @@ export default class ConversationsList extends ImmutablePureComponent {
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   handleLoadOlder = debounce(() => {
     const last = this.props.conversations.last();
@@ -52,7 +52,7 @@ export default class ConversationsList extends ImmutablePureComponent {
     if (last && last.get('last_status')) {
       this.props.onLoadMore(last.get('last_status'));
     }
-  }, 300, { leading: true })
+  }, 300, { leading: true });
 
   render () {
     const { conversations, onLoadMore, ...other } = this.props;
