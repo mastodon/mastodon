@@ -1,4 +1,3 @@
----
 tr:
   simple_form:
     hints:
@@ -13,7 +12,7 @@ tr:
         include_statuses: Kullanıcı hangi gönderilerin denetleme eylemi veya uyarısına neden olduğunu görecektir
         send_email_notification: Kullanıcı, hesabına ne olduğuna dair bir açıklama alacak
         text_html: İsteğe bağlı. Gönderi sözdizimini kullanabilirsiniz. Zamandan kazanmak için <a href="%{path}">uyarı ön-ayarları ekleyebilirsiniz</a>
-        type_html: "<strong>%{acct}</strong> ile ne yapılacağını seçin"
+        type_html: <strong>%{acct}</strong> ile ne yapılacağını seçin
         types:
           disable: Kullanıcının hesabını kullanmasını engelle ama içeriklerini silme veya gizleme.
           none: Bunu, başka bir eylem tetiklemeden kullanıcıya bir uyarı göndermek için kullan.
@@ -91,11 +90,13 @@ tr:
         site_short_description: Sunucunuzu tekil olarak tanımlamaya yardımcı olacak kısa tanım. Kim işletiyor, kimin için?
         site_terms: Kendi gizlilik politikanızı kullanın veya varsayılanı kullanmak için boş bırakın. Markdown sözdizimiyle biçimlendirilebilir.
         site_title: İnsanlar sunucunuzu alan adı dışında nasıl isimlendirmeli.
+        status_page_url: İnsanların bir kesinti halinde sunucunun durumunu görebilecekleri bir sayfanın URL'si
         theme: Giriş yapmamış ziyaretçilerin ve yeni kullanıcıların gördüğü tema.
         thumbnail: Sunucu bilginizin yanında gösterilen yaklaşık 2:1'lik görüntü.
         timeline_preview: Giriş yapmamış ziyaretçiler, sunucuda mevcut olan en son genel gönderileri tarayabilecekler.
         trendable_by_default: Öne çıkan içeriğin elle incelenmesini atla. Tekil öğeler sonrada öne çıkanlardan kaldırılabilir.
         trends: Öne çıkanlar, sunucunuzda ilgi toplayan gönderileri, etiketleri ve haber yazılarını gösterir.
+        trends_as_landing_page: Giriş yapmış kullanıcılar ve ziyaretçilere sunucunun açıklması yerine öne çıkan içeriği göster. Öne çıkanların etkin olması gerekir.
       form_challenge:
         current_password: Güvenli bir bölgeye giriyorsunuz
       imports:
@@ -114,7 +115,7 @@ tr:
       rule:
         text: Bu sunucu üzerindeki kullanıcılar için bir kural veya gereksinimi tanımlayın. Kuralı kısa ve yalın tutmaya çalışın
       sessions:
-        otp: Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.
+        otp: 'Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.'
         webauthn: Bir USB anahtarıysa, taktığınızdan ve gerekirse üzerine tıkladığınızdan emin olun.
       tag:
         name: Harflerin, örneğin daha okunabilir yapmak için, sadece büyük/küçük harf durumlarını değiştirebilirsiniz
@@ -251,11 +252,13 @@ tr:
         site_short_description: Sunucu açıklaması
         site_terms: Gizlilik Politikası
         site_title: Sunucu adı
+        status_page_url: Durum sayfası URL'si
         theme: Öntanımlı tema
         thumbnail: Sunucu küçük resmi
         timeline_preview: Genel zaman çizelgelerine yetkisiz erişime izin ver
         trendable_by_default: Ön incelemesiz öne çıkanlara izin ver
         trends: Öne çıkanları etkinleştir
+        trends_as_landing_page: Giriş sayfası olarak öne çıkanları kullan
       interactions:
         must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
         must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle
@@ -301,7 +304,7 @@ tr:
       webhook:
         events: Etkin olaylar
         url: Uç nokta URL’si
-    'no': Hayır
+    'no': 'Hayır'
     not_recommended: Önerilmez
     recommended: Önerilen
     required:
@@ -310,4 +313,4 @@ tr:
     title:
       sessions:
         webauthn: Oturum açmak için güvenlik anahtarlarınızdan birini kullanın
-    'yes': Evet
+    'yes': 'Evet'
