@@ -110,6 +110,73 @@ en-GB:
         other: This account has <strong>%{count}</strong> strikes.
       promote: Promote
       protocol: Protocol
+      public: Public
+      push_subscription_expires: PuSH subscription expires
+      redownload: Refresh profile
+      redownloaded_msg: Successfully refreshed %{username}'s profile from origin
+      reject: Reject
+      rejected_msg: Successfully rejected %{username}'s sign-up application
+      remote_suspension_irreversible: The data of this account has been irreversibly deleted.
+      remote_suspension_reversible_hint_html: The account has been suspended on their server, and the data will be fully removed on %{date}. Until then, the remote server can restore this account without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
+      remove_avatar: Remove avatar
+      remove_header: Remove header
+      removed_avatar_msg: Successfully removed %{username}'s avatar image
+      removed_header_msg: Successfully removed %{username}'s header image
+      resend_confirmation:
+        already_confirmed: This user is already confirmed
+        send: Resend confirmation email
+        success: Confirmation email successfully sent!
+      reset: Reset
+      reset_password: Reset password
+      resubscribe: Resubscribe
+      role: Role
+      search: Search
+      search_same_email_domain: Other users with the same e-mail domain
+      search_same_ip: Other users with the same IP
+      security_measures:
+        only_password: Only password
+        password_and_2fa: Password and 2FA
+      sensitive: Force-sensitive
+      sensitized: Marked as sensitive
+      shared_inbox_url: Shared inbox URL
+      show:
+        created_reports: Made reports
+        targeted_reports: Reported by others
+      silence: Limit
+      silenced: Limited
+      statuses: Posts
+      strikes: Previous strikes
+      subscribe: Subscribe
+      suspend: Suspend
+      suspended: Suspended
+      suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable but it will not recover any data it previously had.
+      suspension_reversible_hint_html: The account has been suspended, and the data will be fully removed on %{date}. Until then, the account can be restored without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
+      title: Accounts
+      unblock_email: Unblock email address
+      unblocked_email_msg: Successfully unblocked %{username}'s email address
+      unconfirmed_email: Unconfirmed email
+      undo_sensitized: Undo force-sensitive
+      undo_silenced: Undo limit
+      undo_suspension: Undo suspension
+      unsilenced_msg: Successfully undid limit of %{username}'s account
+      unsubscribe: Unsubscribe
+      unsuspended_msg: Successfully unsuspended %{username}'s account
+      username: Username
+      view_domain: View summary for domain
+      warn: Warn
+      web: Web
+      whitelisted: Allowed for federation
+    action_logs:
+      action_types:
+        approve_appeal: Approve Appeal
+        approve_user: Approve User
+        assigned_to_self_report: Assign Report
+        change_email_user: Change E-mail for User
+        change_role_user: Change Role of User
+        confirm_user: Confirm User
+        create_account_warning: Create Warning
+        create_announcement: Create Announcement
+        unassigned_report: Unassign Report
     roles:
       categories:
         devops: DevOps
@@ -161,3 +228,8 @@ en-GB:
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
+  webauthn_credentials:
+    not_enabled: You haven't enabled WebAuthn yet
+    not_supported: This browser doesn't support security keys
+    otp_required: To use security keys please enable two-factor authentication first.
+    registered_on: Registered on %{date}
