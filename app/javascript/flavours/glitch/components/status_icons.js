@@ -60,22 +60,22 @@ class StatusIcons extends React.PureComponent {
       setCollapsed(!collapsed);
       e.preventDefault();
     }
-  }
+  };
 
   mediaIconTitleText (mediaIcon) {
     const { intl } = this.props;
 
     switch (mediaIcon) {
-      case 'link':
-        return intl.formatMessage(messages.previewCard);
-      case 'picture-o':
-        return intl.formatMessage(messages.pictures);
-      case 'tasks':
-        return intl.formatMessage(messages.poll);
-      case 'video-camera':
-        return intl.formatMessage(messages.video);
-      case 'music':
-        return intl.formatMessage(messages.audio);
+    case 'link':
+      return intl.formatMessage(messages.previewCard);
+    case 'picture-o':
+      return intl.formatMessage(messages.pictures);
+    case 'tasks':
+      return intl.formatMessage(messages.poll);
+    case 'video-camera':
+      return intl.formatMessage(messages.video);
+    case 'music':
+      return intl.formatMessage(messages.audio);
     }
   }
 

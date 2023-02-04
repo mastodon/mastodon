@@ -22,7 +22,7 @@ class PictureInPicturePlaceholder extends React.PureComponent {
   handleClick = () => {
     const { dispatch } = this.props;
     dispatch(removePictureInPicture());
-  }
+  };
 
   setRef = c => {
     this.node = c;
@@ -30,7 +30,7 @@ class PictureInPicturePlaceholder extends React.PureComponent {
     if (this.node) {
       this._setDimensions();
     }
-  }
+  };
 
   _setDimensions () {
     const width  = this.node.offsetWidth;

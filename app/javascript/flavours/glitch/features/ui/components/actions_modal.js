@@ -52,7 +52,7 @@ export default class ActionsModal extends ImmutablePureComponent {
         </a>
       </li>
     );
-  }
+  };
 
   render () {
     const status = this.props.status && (

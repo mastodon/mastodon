@@ -103,7 +103,7 @@ class SearchResults extends ImmutablePureComponent {
         <section className='search-results__section'>
           <h5><Icon id='quote-right' fixedWidth /><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></h5>
 
-          {results.get('statuses').map(statusId => <StatusContainer id={statusId} key={statusId}/>)}
+          {results.get('statuses').map(statusId => <StatusContainer id={statusId} key={statusId} />)}
 
           {results.get('statuses').size >= 5 && <LoadMore visible onClick={this.handleLoadMoreStatuses} />}
         </section>
@@ -136,5 +136,6 @@ class SearchResults extends ImmutablePureComponent {
         {hashtags}
       </div>
     );
-  };
+  }
+
 }

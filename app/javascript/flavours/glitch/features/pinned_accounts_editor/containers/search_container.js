@@ -4,7 +4,7 @@ import { injectIntl } from 'react-intl';
 import {
   fetchPinnedAccountsSuggestions,
   clearPinnedAccountsSuggestions,
-  changePinnedAccountsSuggestions
+  changePinnedAccountsSuggestions,
 } from '../../../actions/accounts';
 import Search from 'flavours/glitch/features/list_editor/components/search';
 

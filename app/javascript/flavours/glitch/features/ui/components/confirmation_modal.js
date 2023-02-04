@@ -34,24 +34,24 @@ class ConfirmationModal extends React.PureComponent {
     if (this.props.onDoNotAsk && this.doNotAskCheckbox.checked) {
       this.props.onDoNotAsk();
     }
-  }
+  };
 
   handleSecondary = () => {
     this.props.onClose();
     this.props.onSecondary();
-  }
+  };
 
   handleCancel = () => {
     this.props.onClose();
-  }
+  };
 
   setRef = (c) => {
     this.button = c;
-  }
+  };
 
   setDoNotAskRef = (c) => {
     this.doNotAskCheckbox = c;
-  }
+  };
 
   render () {
     const { message, confirm, secondary, onDoNotAsk } = this.props;

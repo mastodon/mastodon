@@ -33,7 +33,7 @@ class ReplyIndicator extends ImmutablePureComponent {
     if (onCancel) {
       onCancel();
     }
-  }
+  };
 
   //  Rendering.
   render () {

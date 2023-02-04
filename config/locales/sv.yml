@@ -441,6 +441,7 @@ sv:
         private_comment_description_html: 'För att hjälpa dig spåra var importerade blockeringar kommer från kommer importerade blockeringar att skapas med följande privata kommentar: <q>%{comment}</q>'
         private_comment_template: Importerad från %{source} den %{date}
         title: Importera domänblockeringar
+      invalid_domain_block: 'Ett eller flera domänblock hoppades över på grund av följande fel: %{error}'
       new:
         title: Importera domänblockeringar
       no_file: Ingen fil vald
@@ -589,6 +590,7 @@ sv:
       comment:
         none: Ingen
       comment_description_html: 'För att ge mer information, skrev %{name}:'
+      confirm_action: Bekräfta modereringsåtgärd mot @%{acct}
       created_at: Anmäld
       delete_and_resolve: Ta bort inlägg
       forwarded: Vidarebefordrad
@@ -605,6 +607,7 @@ sv:
         placeholder: Beskriv vilka åtgärder som vidtagits eller andra uppdateringar till den här anmälan.
         title: Anteckningar
       notes_description_html: Visa och lämna anteckningar till andra moderatorer och ditt framtida jag
+      processed_msg: 'Rapporten #%{id} har behandlats'
       quick_actions_description_html: 'Ta en snabb åtgärd eller bläddra ner för att se rapporterat innehåll:'
       remote_user_placeholder: fjärranvändaren från %{instance}
       reopen: Återuppta anmälan
@@ -617,6 +620,14 @@ sv:
       status: Status
       statuses: Rapporterat innehåll
       statuses_description_html: Stötande innehåll kommer att citeras i kommunikationen med det rapporterade kontot
+      summary:
+        action_preambles:
+          delete_html: 'Du håller på att <strong>ta bort</strong> några av <strong>@%{acct}</strong>s inlägg. Detta kommer:'
+          mark_as_sensitive_html: 'Du håller på att <strong>markera</strong> några av <strong>@%{acct}</strong>s inlägg som <strong>känsliga</strong>. Detta kommer:'
+          silence_html: 'Du håller på att <strong>begränsa</strong> <strong>@%{acct}</strong>s konto. Detta kommer:'
+          suspend_html: 'Du håller på att <strong>stänga av</strong> <strong>@%{acct}</strong>s konto. Detta kommer:'
+        actions:
+          delete_html: Ta bort kränkande inlägg
       target_origin: Ursprung för anmält konto
       title: Anmälningar
       unassign: Otilldela

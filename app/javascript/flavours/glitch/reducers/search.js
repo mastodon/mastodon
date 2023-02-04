@@ -64,4 +64,4 @@ export default function search(state = initialState, action) {
   default:
     return state;
   }
-};
+}

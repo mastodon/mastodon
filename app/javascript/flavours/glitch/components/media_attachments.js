@@ -30,7 +30,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
     return (
       <div className='media-gallery' style={{ height, width }} />
     );
-  }
+  };
 
   renderLoadingVideoPlayer = () => {
     const { height, width } = this.props;
@@ -38,7 +38,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
     return (
       <div className='video-player' style={{ height, width }} />
     );
-  }
+  };
 
   renderLoadingAudioPlayer = () => {
     const { height, width } = this.props;
@@ -46,7 +46,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
     return (
       <div className='audio-player' style={{ height, width }} />
     );
-  }
+  };
 
   render () {
     const { status, width, height, revealed } = this.props;

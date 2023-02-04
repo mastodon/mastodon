@@ -371,4 +371,4 @@ export default function notifications(state = initialState, action) {
   default:
     return state;
   }
-};
+}

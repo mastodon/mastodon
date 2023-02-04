@@ -39,4 +39,4 @@ export default function followed_tags(state = initialState, action) {
   default:
     return state;
   }
-};
+}

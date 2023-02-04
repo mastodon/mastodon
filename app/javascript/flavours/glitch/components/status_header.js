@@ -21,12 +21,12 @@ export default class StatusHeader extends React.PureComponent {
   handleClick = (acct, e) => {
     const { parseClick } = this.props;
     parseClick(e, `/@${acct}`);
-  }
+  };
 
   handleAccountClick = (e) => {
     const { status } = this.props;
     this.handleClick(status.getIn(['account', 'acct']), e);
-  }
+  };
 
   //  Rendering.
   render () {

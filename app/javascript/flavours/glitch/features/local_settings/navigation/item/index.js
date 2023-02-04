@@ -26,7 +26,7 @@ export default class LocalSettingsPage extends React.PureComponent {
       onNavigate(index);
       e.preventDefault();
     }
-  }
+  };
 
   render () {
     const { handleClick } = this;

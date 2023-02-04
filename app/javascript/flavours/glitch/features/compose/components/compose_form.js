@@ -21,10 +21,14 @@ import { length } from 'stringz';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
-  missingDescriptionMessage: {  id: 'confirmations.missing_media_description.message',
-                                defaultMessage: 'At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.' },
-  missingDescriptionConfirm: {  id: 'confirmations.missing_media_description.confirm',
-                                defaultMessage: 'Send anyway' },
+  missingDescriptionMessage: {
+    id: 'confirmations.missing_media_description.message',
+    defaultMessage: 'At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.',
+  },
+  missingDescriptionConfirm: {
+    id: 'confirmations.missing_media_description.confirm',
+    defaultMessage: 'Send anyway',
+  },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
 });
 
@@ -83,22 +87,22 @@ class ComposeForm extends ImmutablePureComponent {
 
   handleChange = (e) => {
     this.props.onChange(e.target.value);
-  }
+  };
 
   getFulltextForCharacterCounting = () => {
     return [
       this.props.spoiler? this.props.spoilerText: '',
       countableText(this.props.text),
-      this.props.advancedOptions && this.props.advancedOptions.get('do_not_federate') ? ' 👁️' : ''
+      this.props.advancedOptions && this.props.advancedOptions.get('do_not_federate') ? ' 👁️' : '',
     ].join('');
-  }
+  };
 
   canSubmit = () => {
     const { isSubmitting, isChangingUpload, isUploading, anyMedia } = this.props;
     const fulltext = this.getFulltextForCharacterCounting();
 
     return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > maxChars || (!fulltext.trim().length && !anyMedia));
-  }
+  };
 
   handleSubmit = (overriddenVisibility = null) => {
     const {
@@ -129,7 +133,7 @@ class ComposeForm extends ImmutablePureComponent {
       }
       onSubmit(this.context.router ? this.context.router.history : null);
     }
-  }
+  };
 
   //  Changes the text value of the spoiler.
   handleChangeSpoiler = ({ target: { value } }) => {
@@ -137,7 +141,7 @@ class ComposeForm extends ImmutablePureComponent {
     if (onChangeSpoilerText) {
       onChangeSpoilerText(value);
     }
-  }
+  };
 
   setRef = c => {
     this.composeForm = c;
@@ -150,7 +154,7 @@ class ComposeForm extends ImmutablePureComponent {
     if (onPickEmoji) {
       onPickEmoji(selectionStart, data);
     }
-  }
+  };
 
   //  Handles the secondary submit button.
   handleSecondarySubmit = () => {
@@ -158,16 +162,16 @@ class ComposeForm extends ImmutablePureComponent {
       sideArm,
     } = this.props;
     this.handleSubmit(sideArm === 'none' ? null : sideArm);
-  }
+  };
 
   //  Selects a suggestion from the autofill.
   onSuggestionSelected = (tokenStart, token, value) => {
     this.props.onSuggestionSelected(tokenStart, token, value, ['text']);
-  }
+  };
 
   onSpoilerSuggestionSelected = (tokenStart, token, value) => {
     this.props.onSuggestionSelected(tokenStart, token, value, ['spoiler_text']);
-  }
+  };
 
   handleKeyDown = (e) => {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
@@ -177,21 +181,21 @@ class ComposeForm extends ImmutablePureComponent {
     if (e.keyCode == 13 && e.altKey) {
       this.handleSecondarySubmit();
     }
-  }
+  };
 
   //  Sets a reference to the textarea.
   setAutosuggestTextarea = (textareaComponent) => {
     if (textareaComponent) {
       this.textarea = textareaComponent.textarea;
     }
-  }
+  };
 
   //  Sets a reference to the CW field.
   handleRefSpoilerText = (spoilerComponent) => {
     if (spoilerComponent) {
       this.spoilerText = spoilerComponent.input;
     }
-  }
+  };
 
   handleFocus = () => {
     if (this.composeForm && !this.props.singleColumn) {
@@ -200,7 +204,7 @@ class ComposeForm extends ImmutablePureComponent {
         this.composeForm.scrollIntoView();
       }
     }
-  }
+  };
 
   componentDidMount () {
     this._updateFocusAndSelection({ });
@@ -217,7 +221,7 @@ class ComposeForm extends ImmutablePureComponent {
   //      - Replying to more than one user, selects any usernames past
   //        the first; this provides a convenient shortcut to drop
   //        everyone else from the conversation.
-   _updateFocusAndSelection = (prevProps) => {
+  _updateFocusAndSelection = (prevProps) => {
     const {
       textarea,
       spoilerText,
@@ -271,7 +275,7 @@ class ComposeForm extends ImmutablePureComponent {
         }
       }
     }
-  }
+  };
 
 
   render () {

@@ -54,7 +54,7 @@ export const defaultMediaVisibility = (status, settings) => {
   }
 
   return (displayMedia !== 'hide_all' && !status.get('sensitive') || displayMedia === 'show_all');
-}
+};
 
 export default @injectIntl
 class Status extends ImmutablePureComponent {
@@ -117,7 +117,7 @@ class Status extends ImmutablePureComponent {
     revealBehindCW: undefined,
     showCard: false,
     forceFilter: undefined,
-  }
+  };
 
   // Avoid checking props that are functions (and whose equality will always
   // evaluate to false. See react-immutable-pure-component for usage.
@@ -132,14 +132,14 @@ class Status extends ImmutablePureComponent {
     'expanded',
     'unread',
     'pictureInPicture',
-  ]
+  ];
 
   updateOnStates = [
     'isExpanded',
     'isCollapsed',
     'showMedia',
     'forceFilter',
-  ]
+  ];
 
   //  If our settings have changed to disable collapsed statuses, then we
   //  need to make sure that we uncollapse every one. We do that by watching
@@ -302,7 +302,9 @@ class Status extends ImmutablePureComponent {
     if (this.node && this.props.getScrollPosition) {
       const position = this.props.getScrollPosition();
       if (position !== null && this.node.offsetTop < position.top) {
-         requestAnimationFrame(() => { this.props.updateScrollBottom(position.height - position.top); });
+        requestAnimationFrame(() => {
+          this.props.updateScrollBottom(position.height - position.top);
+        });
       }
     }
   }
@@ -321,7 +323,7 @@ class Status extends ImmutablePureComponent {
     } else {
       this.setState({ isCollapsed: false });
     }
-  }
+  };
 
   setExpansion = (value) => {
     if (this.props.settings.getIn(['content_warnings', 'shared_state']) && this.props.status.get('hidden') === value) {
@@ -332,7 +334,7 @@ class Status extends ImmutablePureComponent {
     if (value) {
       this.setCollapsed(false);
     }
-  }
+  };
 
   //  `parseClick()` takes a click event and responds appropriately.
   //  If our status is collapsed, then clicking on it should uncollapse it.
@@ -361,17 +363,17 @@ class Status extends ImmutablePureComponent {
             status.getIn(['reblog', 'id'], status.get('id'))
           }`;
         }
-        let state = {...router.history.location.state};
+        let state = { ...router.history.location.state };
         state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
         router.history.push(destination, state);
       }
       e.preventDefault();
     }
-  }
+  };
 
   handleToggleMediaVisibility = () => {
     this.setState({ showMedia: !this.state.showMedia });
-  }
+  };
 
   handleExpandedToggle = () => {
     if (this.props.settings.getIn(['content_warnings', 'shared_state'])) {
@@ -384,11 +386,11 @@ class Status extends ImmutablePureComponent {
   handleOpenVideo = (options) => {
     const { status } = this.props;
     this.props.onOpenVideo(status.get('id'), status.getIn(['media_attachments', 0]), options);
-  }
+  };
 
   handleOpenMedia = (media, index) => {
     this.props.onOpenMedia(this.props.status.get('id'), media, index);
-  }
+  };
 
   handleHotkeyOpenMedia = e => {
     const { status, onOpenMedia, onOpenVideo } = this.props;
@@ -403,84 +405,84 @@ class Status extends ImmutablePureComponent {
         onOpenMedia(statusId, status.get('media_attachments'), 0);
       }
     }
-  }
+  };
 
   handleDeployPictureInPicture = (type, mediaProps) => {
     const { deployPictureInPicture, status } = this.props;
 
     deployPictureInPicture(status, type, mediaProps);
-  }
+  };
 
   handleHotkeyReply = e => {
     e.preventDefault();
     this.props.onReply(this.props.status, this.context.router.history);
-  }
+  };
 
   handleHotkeyFavourite = (e) => {
     this.props.onFavourite(this.props.status, e);
-  }
+  };
 
   handleHotkeyBoost = e => {
     this.props.onReblog(this.props.status, e);
-  }
+  };
 
   handleHotkeyBookmark = e => {
     this.props.onBookmark(this.props.status, e);
-  }
+  };
 
   handleHotkeyMention = e => {
     e.preventDefault();
     this.props.onMention(this.props.status.get('account'), this.context.router.history);
-  }
+  };
 
   handleHotkeyOpen = () => {
-    let state = {...this.context.router.history.location.state};
+    let state = { ...this.context.router.history.location.state };
     state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
     const status = this.props.status;
     this.context.router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`, state);
-  }
+  };
 
   handleHotkeyOpenProfile = () => {
-    let state = {...this.context.router.history.location.state};
+    let state = { ...this.context.router.history.location.state };
     state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
     this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`, state);
-  }
+  };
 
   handleHotkeyMoveUp = e => {
     this.props.onMoveUp(this.props.containerId || this.props.id, e.target.getAttribute('data-featured'));
-  }
+  };
 
   handleHotkeyMoveDown = e => {
     this.props.onMoveDown(this.props.containerId || this.props.id, e.target.getAttribute('data-featured'));
-  }
+  };
 
   handleHotkeyCollapse = e => {
     if (!this.props.settings.getIn(['collapsed', 'enabled']))
       return;
 
     this.setCollapsed(!this.state.isCollapsed);
-  }
+  };
 
   handleHotkeyToggleSensitive = () => {
     this.handleToggleMediaVisibility();
-  }
+  };
 
   handleUnfilterClick = e => {
     this.setState({ forceFilter: false });
     e.preventDefault();
-  }
+  };
 
   handleFilterClick = () => {
     this.setState({ forceFilter: true });
-  }
+  };
 
   handleRef = c => {
     this.node = c;
-  }
+  };
 
   handleTranslate = () => {
     this.props.onTranslate(this.props.status);
-  }
+  };
 
   renderLoadingMediaGallery () {
     return <div className='media-gallery' style={{ height: '110px' }} />;

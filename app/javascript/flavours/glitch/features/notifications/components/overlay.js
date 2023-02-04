@@ -29,7 +29,7 @@ class NotificationOverlay extends ImmutablePureComponent {
     const mark = !this.props.notification.get('markedForDelete');
     const id = this.props.notification.get('id');
     this.props.onMarkForDelete(id, mark);
-  }
+  };
 
   render () {
     const { notification, show, intl } = this.props;

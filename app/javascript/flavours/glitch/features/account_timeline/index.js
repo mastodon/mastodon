@@ -140,15 +140,15 @@ class AccountTimeline extends ImmutablePureComponent {
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   handleLoadMore = maxId => {
     this.props.dispatch(expandAccountTimeline(this.props.accountId, { maxId, withReplies: this.props.withReplies, tagged: this.props.params.tagged }));
-  }
+  };
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   render () {
     const { accountId, statusIds, featuredStatusIds, isLoading, hasMore, suspended, isAccount, hidden, multiColumn, remote, remoteUrl } = this.props;

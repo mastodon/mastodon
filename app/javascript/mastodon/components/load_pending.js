@@ -7,7 +7,7 @@ export default class LoadPending extends React.PureComponent {
   static propTypes = {
     onClick: PropTypes.func,
     count: PropTypes.number,
-  }
+  };
 
   render() {
     const { count } = this.props;

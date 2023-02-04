@@ -31,7 +31,7 @@ export default class LocalSettingsPageItem extends React.PureComponent {
     if (options && options.length > 0) onChange(item, target.value);
     else if (placeholder) onChange(item, target.value);
     else onChange(item, target.checked);
-  }
+  };
 
   render () {
     const { handleChange } = this;
@@ -55,7 +55,7 @@ export default class LocalSettingsPageItem extends React.PureComponent {
         let optionId = `${id}--${opt.value}`;
         return (
           <label htmlFor={optionId}>
-            <input 
+            <input
               type='radio'
               name={id}
               id={optionId}
@@ -109,7 +109,7 @@ export default class LocalSettingsPageItem extends React.PureComponent {
             onChange={handleChange}
             disabled={!enabled}
             {...inputProps}
-	    />
+          />
           {children}
         </label>
       </div>

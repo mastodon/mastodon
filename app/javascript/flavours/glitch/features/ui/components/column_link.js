@@ -30,7 +30,7 @@ const ColumnLink = ({ icon, text, to, onClick, href, method, badge, transparent,
       e.preventDefault();
       e.stopPropagation();
       return onClick(e);
-    }
+    };
     return (
       <a href='#' onClick={onClick && handleOnClick} className={className} title={text} {...other} tabIndex='0'>
         {iconElement}

@@ -23,4 +23,4 @@ export default function alerts(state = initialState, action) {
   default:
     return state;
   }
-};
+}

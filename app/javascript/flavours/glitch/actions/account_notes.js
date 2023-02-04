@@ -21,27 +21,27 @@ export function submitAccountNote() {
       dispatch(submitAccountNoteSuccess(response.data));
     }).catch(error => dispatch(submitAccountNoteFail(error)));
   };
-};
+}
 
 export function submitAccountNoteRequest() {
   return {
     type: ACCOUNT_NOTE_SUBMIT_REQUEST,
   };
-};
+}
 
 export function submitAccountNoteSuccess(relationship) {
   return {
     type: ACCOUNT_NOTE_SUBMIT_SUCCESS,
     relationship,
   };
-};
+}
 
 export function submitAccountNoteFail(error) {
   return {
     type: ACCOUNT_NOTE_SUBMIT_FAIL,
     error,
   };
-};
+}
 
 export function initEditAccountNote(account) {
   return (dispatch, getState) => {
@@ -53,17 +53,17 @@ export function initEditAccountNote(account) {
       comment,
     });
   };
-};
+}
 
 export function cancelAccountNote() {
   return {
     type: ACCOUNT_NOTE_CANCEL,
   };
-};
+}
 
 export function changeAccountNoteComment(comment) {
   return {
     type: ACCOUNT_NOTE_CHANGE_COMMENT,
     comment,
   };
-};
+}

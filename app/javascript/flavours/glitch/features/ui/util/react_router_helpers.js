@@ -36,7 +36,7 @@ export class WrappedRoute extends React.Component {
     content: PropTypes.node,
     multiColumn: PropTypes.bool,
     componentParams: PropTypes.object,
-  }
+  };
 
   static defaultProps = {
     componentParams: {},
@@ -46,7 +46,7 @@ export class WrappedRoute extends React.Component {
     return {
       hasError: true,
     };
-  };
+  }
 
   state = {
     hasError: false,
@@ -80,17 +80,17 @@ export class WrappedRoute extends React.Component {
         {Component => <Component params={match.params} multiColumn={multiColumn} {...componentParams}>{content}</Component>}
       </BundleContainer>
     );
-  }
+  };
 
   renderLoading = () => {
     const { multiColumn } = this.props;
 
     return <ColumnLoading multiColumn={multiColumn} />;
-  }
+  };
 
   renderError = (props) => {
     return <BundleColumnError {...props} errorType='network' />;
-  }
+  };
 
   render () {
     const { component: Component, content, ...rest } = this.props;

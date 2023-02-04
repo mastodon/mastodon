@@ -29,7 +29,7 @@ class Suggestions extends React.PureComponent {
   handleDismiss = (accountId) => {
     const { dispatch } = this.props;
     dispatch(dismissSuggestion(accountId));
-  }
+  };
 
   render () {
     const { isLoading, suggestions } = this.props;

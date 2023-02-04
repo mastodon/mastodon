@@ -187,4 +187,4 @@ export default function userLists(state = initialState, action) {
   default:
     return state;
   }
-};
+}

@@ -60,7 +60,7 @@ class LocalSettingsPage extends React.PureComponent {
           onChange={onChange}
         >
           <FormattedMessage id='settings.hicolor_privacy_icons' defaultMessage='High color privacy icons' />
-          <span className='hint'><FormattedMessage id='settings.hicolor_privacy_icons.hint' defaultMessage="Display privacy icons in bright and easily distinguishable colors" /></span>
+          <span className='hint'><FormattedMessage id='settings.hicolor_privacy_icons.hint' defaultMessage='Display privacy icons in bright and easily distinguishable colors' /></span>
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
@@ -77,7 +77,7 @@ class LocalSettingsPage extends React.PureComponent {
           onChange={onChange}
         >
           <FormattedMessage id='settings.tag_misleading_links' defaultMessage='Tag misleading links' />
-          <span className='hint'><FormattedMessage id='settings.tag_misleading_links.hint' defaultMessage="Add a visual indication with the link target host to every link not mentioning it explicitly" /></span>
+          <span className='hint'><FormattedMessage id='settings.tag_misleading_links.hint' defaultMessage='Add a visual indication with the link target host to every link not mentioning it explicitly' /></span>
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
@@ -100,7 +100,7 @@ class LocalSettingsPage extends React.PureComponent {
             id='mastodon-settings--notifications-tab_badge'
             onChange={onChange}
           >
-            <FormattedMessage id='settings.notifications.tab_badge' defaultMessage="Unread notifications badge" />
+            <FormattedMessage id='settings.notifications.tab_badge' defaultMessage='Unread notifications badge' />
             <span className='hint'><FormattedMessage id='settings.notifications.tab_badge.hint' defaultMessage="Display a badge for unread notifications in the column icons when the notifications column isn't open" /></span>
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
@@ -110,7 +110,7 @@ class LocalSettingsPage extends React.PureComponent {
             onChange={onChange}
           >
             <FormattedMessage id='settings.notifications.favicon_badge' defaultMessage='Unread notifications favicon badge' />
-            <span className='hint'><FormattedMessage id='settings.notifications.favicon_badge.hint' defaultMessage="Add a badge for unread notifications to the favicon" /></span>
+            <span className='hint'><FormattedMessage id='settings.notifications.favicon_badge.hint' defaultMessage='Add a badge for unread notifications to the favicon' /></span>
           </LocalSettingsPageItem>
         </section>
 
@@ -306,7 +306,7 @@ class LocalSettingsPage extends React.PureComponent {
                         defaultMessage='user preferences'
                       />
                     </a>
-                  )
+                  ),
                 }}
               />
             </span>
@@ -414,7 +414,7 @@ class LocalSettingsPage extends React.PureComponent {
             onChange={onChange}
             dependsOn={[['collapsed', 'enabled']]}
             dependsOnNot={[['collapsed', 'auto', 'all']]}
-            inputProps={{type: 'number', min: '200', max: '999'}}
+            inputProps={{ type: 'number', min: '200', max: '999' }}
           >
             <FormattedMessage id='settings.auto_collapse_height' defaultMessage='Height (in pixels) for a toot to be considered lengthy' />
           </LocalSettingsPageItem>

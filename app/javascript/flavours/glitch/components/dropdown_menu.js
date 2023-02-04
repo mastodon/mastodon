@@ -36,7 +36,7 @@ class DropdownMenu extends React.PureComponent {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
     }
-  }
+  };
 
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
@@ -56,11 +56,11 @@ class DropdownMenu extends React.PureComponent {
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   setFocusRef = c => {
     this.focusedItem = c;
-  }
+  };
 
   handleKeyDown = e => {
     const items = Array.from(this.node.querySelectorAll('a, button'));
@@ -97,18 +97,18 @@ class DropdownMenu extends React.PureComponent {
       e.preventDefault();
       e.stopPropagation();
     }
-  }
+  };
 
   handleItemKeyPress = e => {
     if (e.key === 'Enter' || e.key === ' ') {
       this.handleClick(e);
     }
-  }
+  };
 
   handleClick = e => {
     const { onItemClick } = this.props;
     onItemClick(e);
-  }
+  };
 
   renderItem = (option, i) => {
     if (option === null) {
@@ -124,7 +124,7 @@ class DropdownMenu extends React.PureComponent {
         </a>
       </li>
     );
-  }
+  };
 
   render () {
     const { items, scrollable, renderHeader, loading } = this.props;
@@ -194,7 +194,7 @@ export default class Dropdown extends React.PureComponent {
     } else {
       this.props.onOpen(this.state.id, this.handleItemClick, type !== 'click');
     }
-  }
+  };
 
   handleClose = () => {
     if (this.activeElement) {
@@ -202,13 +202,13 @@ export default class Dropdown extends React.PureComponent {
       this.activeElement = null;
     }
     this.props.onClose(this.state.id);
-  }
+  };
 
   handleMouseDown = () => {
     if (!this.state.open) {
       this.activeElement = document.activeElement;
     }
-  }
+  };
 
   handleButtonKeyDown = (e) => {
     switch(e.key) {
@@ -217,7 +217,7 @@ export default class Dropdown extends React.PureComponent {
       this.handleMouseDown();
       break;
     }
-  }
+  };
 
   handleKeyPress = (e) => {
     switch(e.key) {
@@ -228,7 +228,7 @@ export default class Dropdown extends React.PureComponent {
       e.preventDefault();
       break;
     }
-  }
+  };
 
   handleItemClick = e => {
     const { onItemClick } = this.props;
@@ -247,25 +247,25 @@ export default class Dropdown extends React.PureComponent {
       e.preventDefault();
       this.context.router.history.push(item.to);
     }
-  }
+  };
 
   setTargetRef = c => {
     this.target = c;
-  }
+  };
 
   findTarget = () => {
     return this.target;
-  }
+  };
 
   componentWillUnmount = () => {
     if (this.state.id === this.props.openDropdownId) {
       this.handleClose();
     }
-  }
+  };
 
   close = () => {
     this.handleClose();
-  }
+  };
 
   render () {
     const {

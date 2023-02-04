@@ -54,10 +54,10 @@ export default function listEditorReducer(state = initialState, action) {
     });
   case LIST_CREATE_REQUEST:
   case LIST_UPDATE_REQUEST:
-      return state.withMutations(map => {
-        map.set('isSubmitting', true);
-        map.set('isChanged', false);
-      });
+    return state.withMutations(map => {
+      map.set('isSubmitting', true);
+      map.set('isChanged', false);
+    });
   case LIST_CREATE_FAIL:
   case LIST_UPDATE_FAIL:
     return state.set('isSubmitting', false);
@@ -93,4 +93,4 @@ export default function listEditorReducer(state = initialState, action) {
   default:
     return state;
   }
-};
+}

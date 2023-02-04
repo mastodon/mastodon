@@ -81,7 +81,7 @@ ko:
     errors:
       messages:
         access_denied: 리소스 소유자 또는 인증 서버가 요청을 거부했습니다.
-        credential_flow_not_configured: Doorkeeper.configure.resource_owner_from_credentials의 설정이 되어있지 않아 리소스 소유자 패스워드 자격증명이 실패하였습니다.
+        credential_flow_not_configured: Doorkeeper.configure.resource_owner_from_credentials의 설정이 되어있지 않아 리소스 소유자 암호 자격증명이 실패하였습니다.
         invalid_client: 알 수 없는 클라이언트이기 때문에 클라이언트 인증이 실패하였습니다, 클라이언트 자격증명이 포함되지 않았거나, 지원 되지 않는 메소드입니다.
         invalid_grant: 제공된 권한 부여가 잘못되거나, 만료되었거나, 취소되었거나, 권한 부여 요청에 사용된 리디렉션 URI가 일치하지 않거나, 다른 클라이언트에 지정되었습니다.
         invalid_redirect_uri: 리디렉션 URI가 올바르지 않습니다

@@ -79,9 +79,9 @@ const badgeDisplay = (number, limit) => {
 
 const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
 
- export default @connect(makeMapStateToProps, mapDispatchToProps)
+export default @connect(makeMapStateToProps, mapDispatchToProps)
  @injectIntl
- class GettingStarted extends ImmutablePureComponent {
+class GettingStarted extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
@@ -164,7 +164,7 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
         <div key='9'>
           <ColumnLink key='lists' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
           {lists.filter(list => !columns.find(item => item.get('id') === 'LIST' && item.getIn(['params', 'id']) === list.get('id'))).map(list =>
-            <ColumnLink key={`list-${list.get('id')}`} to={`/lists/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
+            <ColumnLink key={`list-${list.get('id')}`} to={`/lists/${list.get('id')}`} icon='list-ul' text={list.get('title')} />,
           )}
         </div>,
       ]);

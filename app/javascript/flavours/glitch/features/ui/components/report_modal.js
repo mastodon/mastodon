@@ -96,7 +96,7 @@ class ReportModal extends ImmutablePureComponent {
     } else {
       this.setState({ selectedRuleIds: selectedRuleIds.remove(ruleId) });
     }
-  }
+  };
 
   handleChangeCategory = category => {
     this.setState({ category });

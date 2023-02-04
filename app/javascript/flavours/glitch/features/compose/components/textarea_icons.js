@@ -51,9 +51,10 @@ class TextareaIcons extends ImmutablePureComponent {
                 id={icon}
               />
             </span>
-          ) : null
+          ) : null,
         ) : null}
       </div>
     );
   }
+
 }

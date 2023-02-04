@@ -24,12 +24,12 @@ export default class Permalink extends React.PureComponent {
 
       if (this.context.router) {
         e.preventDefault();
-        let state = {...this.context.router.history.location.state};
+        let state = { ...this.context.router.history.location.state };
         state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
         this.context.router.history.push(this.props.to, state);
       }
     }
-  }
+  };
 
   render () {
     const {

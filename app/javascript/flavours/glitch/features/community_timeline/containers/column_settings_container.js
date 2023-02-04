@@ -12,7 +12,7 @@ const mapStateToProps = (state, { columnId }) => {
     settings: (uuid && index >= 0) ? columns.get(index).get('params') : state.getIn(['settings', 'community']),
   };
 };
- 
+
 const mapDispatchToProps = (dispatch, { columnId }) => {
   return {
     onChange (key, checked) {

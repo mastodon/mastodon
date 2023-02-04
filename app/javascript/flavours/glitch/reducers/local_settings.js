@@ -78,4 +78,4 @@ export default function localSettings(state = initialState, action) {
   default:
     return state;
   }
-};
+}

@@ -64,7 +64,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
       }
       this.setState({ open: !this.state.open, openedViaKeyboard: type !== 'click' });
     }
-  }
+  };
 
   handleKeyDown = (e) => {
     switch (e.key) {
@@ -72,13 +72,13 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
       this.handleClose();
       break;
     }
-  }
+  };
 
   handleMouseDown = () => {
     if (!this.state.open) {
       this.activeElement = document.activeElement;
     }
-  }
+  };
 
   handleButtonKeyDown = (e) => {
     switch(e.key) {
@@ -87,7 +87,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
       this.handleMouseDown();
       break;
     }
-  }
+  };
 
   handleKeyPress = (e) => {
     switch(e.key) {
@@ -98,14 +98,14 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
       e.preventDefault();
       break;
     }
-  }
+  };
 
   handleClose = () => {
     if (this.state.open && this.activeElement) {
       this.activeElement.focus({ preventScroll: true });
     }
     this.setState({ open: false });
-  }
+  };
 
   handleItemClick = (e) => {
     const {
@@ -151,22 +151,22 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
           ...rest,
           active: value && name === value,
           name,
-        })
+        }),
       ),
     };
-  }
+  };
 
   setTargetRef = c => {
     this.target = c;
-  }
+  };
 
   findTarget = () => {
     return this.target;
-  }
+  };
 
   handleOverlayEnter = (state) => {
     this.setState({ placement: state.placement });
-  }
+  };
 
   //  Rendering.
   render () {

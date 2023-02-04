@@ -21,7 +21,7 @@ export default class ColumnBackButtonSlim extends React.PureComponent {
     } else {
       this.context.router.history.push('/');
     }
-  }
+  };
 
   render () {
     return (

@@ -41,7 +41,7 @@ class Header extends ImmutablePureComponent {
     } else if (e.keyCode === 27) {
       this.props.onCancelAccountNote();
     }
-  }
+  };
 
   render () {
     const { account, accountNote, isEditing, isSubmitting, intl } = this.props;

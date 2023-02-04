@@ -14,11 +14,11 @@ export default class SettingToggle extends React.PureComponent {
     onChange: PropTypes.func.isRequired,
     defaultValue: PropTypes.bool,
     disabled: PropTypes.bool,
-  }
+  };
 
   onChange = ({ target }) => {
     this.props.onChange(this.props.settingPath, target.checked);
-  }
+  };
 
   render () {
     const { prefix, settings, settingPath, label, meta, defaultValue, disabled } = this.props;

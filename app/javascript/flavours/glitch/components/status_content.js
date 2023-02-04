@@ -12,7 +12,7 @@ const textMatchesTarget = (text, origin, host) => {
   return (text === origin || text === host
           || text.startsWith(origin + '/') || text.startsWith(host + '/')
           || 'www.' + text === host || ('www.' + text).startsWith(host + '/'));
-}
+};
 
 const isLinkMisleading = (link) => {
   let linkTextParts = [];
@@ -168,8 +168,8 @@ class StatusContent extends React.PureComponent {
         link.setAttribute('title', link.href);
         link.classList.add('unhandled-link');
 
-      link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener nofollow noreferrer');
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener nofollow noreferrer');
 
         try {
           if (tagLinks && isLinkMisleading(link)) {
@@ -210,7 +210,7 @@ class StatusContent extends React.PureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-original');
     }
-  }
+  };
 
   handleMouseLeave = ({ currentTarget }) => {
     if (autoPlayGif) {
@@ -223,7 +223,7 @@ class StatusContent extends React.PureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-static');
     }
-  }
+  };
 
   componentDidMount () {
     this._updateStatusLinks();
@@ -238,13 +238,13 @@ class StatusContent extends React.PureComponent {
     if (this.props.collapsed) {
       if (this.props.parseClick) this.props.parseClick(e);
     }
-  }
+  };
 
   onMentionClick = (mention, e) => {
     if (this.props.parseClick) {
       this.props.parseClick(e, `/@${mention.get('acct')}`);
     }
-  }
+  };
 
   onHashtagClick = (hashtag, e) => {
     hashtag = hashtag.replace(/^#/, '');
@@ -252,11 +252,11 @@ class StatusContent extends React.PureComponent {
     if (this.props.parseClick) {
       this.props.parseClick(e, `/tags/${hashtag}`);
     }
-  }
+  };
 
   handleMouseDown = (e) => {
     this.startXY = [e.clientX, e.clientY];
-  }
+  };
 
   handleMouseUp = (e) => {
     const { parseClick, disabled } = this.props;
@@ -281,7 +281,7 @@ class StatusContent extends React.PureComponent {
     }
 
     this.startXY = null;
-  }
+  };
 
   handleSpoilerClick = (e) => {
     e.preventDefault();
@@ -291,15 +291,15 @@ class StatusContent extends React.PureComponent {
     } else {
       this.setState({ hidden: !this.state.hidden });
     }
-  }
+  };
 
   handleTranslate = () => {
     this.props.onTranslate();
-  }
+  };
 
   setContentsRef = (c) => {
     this.contentsNode = c;
-  }
+  };
 
   render () {
     const {

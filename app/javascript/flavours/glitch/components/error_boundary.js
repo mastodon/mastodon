@@ -18,7 +18,7 @@ export default class ErrorBoundary extends React.PureComponent {
     stackTrace: undefined,
     mappedStackTrace: undefined,
     componentStack: undefined,
-  }
+  };
 
   componentDidCatch(error, info) {
     this.setState({

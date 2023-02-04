@@ -44,12 +44,12 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
     }
-  }
+  };
 
   //  Stores our node in `this.node`.
   setRef = (node) => {
     this.node = node;
-  }
+  };
 
   //  On mounting, we add our listeners.
   componentDidMount () {
@@ -84,7 +84,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
       onClose();
     }
     onChange(name);
-  }
+  };
 
   // Handle changes differently whether the dropdown is a list of options or actions
   handleChange = (name) => {
@@ -93,7 +93,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
     } else {
       this.setState({ value: name });
     }
-  }
+  };
 
   handleKeyDown = (e) => {
     const index = Number(e.currentTarget.getAttribute('data-index'));
@@ -135,11 +135,11 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
       e.preventDefault();
       e.stopPropagation();
     }
-  }
+  };
 
   setFocusRef = c => {
     this.focusedItem = c;
-  }
+  };
 
   renderItem = (item, i) => {
     const { name, icon, meta, text } = item;
@@ -177,7 +177,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
         {contents}
       </div>
     );
-  }
+  };
 
   //  Rendering.
   render () {

@@ -40,7 +40,7 @@ class LanguageDropdownMenu extends React.PureComponent {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
     }
-  }
+  };
 
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
@@ -63,15 +63,15 @@ class LanguageDropdownMenu extends React.PureComponent {
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   setListRef = c => {
     this.listNode = c;
-  }
+  };
 
   handleSearchChange = ({ target }) => {
     this.setState({ searchValue: target.value });
-  }
+  };
 
   search () {
     const { languages, value, frequentlyUsedLanguages } = this.props;
@@ -122,7 +122,7 @@ class LanguageDropdownMenu extends React.PureComponent {
 
     this.props.onClose();
     this.props.onChange(value);
-  }
+  };
 
   handleKeyDown = e => {
     const { onClose } = this.props;
@@ -163,7 +163,7 @@ class LanguageDropdownMenu extends React.PureComponent {
       e.preventDefault();
       e.stopPropagation();
     }
-  }
+  };
 
   handleSearchKeyDown = e => {
     const { onChange, onClose } = this.props;
@@ -199,11 +199,11 @@ class LanguageDropdownMenu extends React.PureComponent {
 
       break;
     }
-  }
+  };
 
   handleClear = () => {
     this.setState({ searchValue: '' });
-  }
+  };
 
   renderItem = lang => {
     const { value } = this.props;
@@ -213,7 +213,7 @@ class LanguageDropdownMenu extends React.PureComponent {
         <span className='language-dropdown__dropdown__results__item__native-name'>{lang[2]}</span> <span className='language-dropdown__dropdown__results__item__common-name'>({lang[1]})</span>
       </div>
     );
-  }
+  };
 
   render () {
     const { intl } = this.props;
@@ -259,7 +259,7 @@ class LanguageDropdown extends React.PureComponent {
     }
 
     this.setState({ open: !this.state.open });
-  }
+  };
 
   handleClose = () => {
     const { value, onClose } = this.props;
@@ -270,24 +270,24 @@ class LanguageDropdown extends React.PureComponent {
 
     this.setState({ open: false });
     onClose(value);
-  }
+  };
 
   handleChange = value => {
     const { onChange } = this.props;
     onChange(value);
-  }
+  };
 
   setTargetRef = c => {
     this.target = c;
-  }
+  };
 
   findTarget = () => {
     return this.target;
-  }
+  };
 
   handleOverlayEnter = (state) => {
     this.setState({ placement: state.placement });
-  }
+  };
 
   render () {
     const { value, intl, frequentlyUsedLanguages } = this.props;

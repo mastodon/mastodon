@@ -43,6 +43,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 export default @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
 class Compose extends React.PureComponent {
+
   static propTypes = {
     multiColumn: PropTypes.bool,
     showSearch: PropTypes.bool,

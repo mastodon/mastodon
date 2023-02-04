@@ -35,11 +35,11 @@ class gettingStartedMisc extends ImmutablePureComponent {
 
   openOnboardingModal = (e) => {
     this.props.dispatch(openModal('ONBOARDING'));
-  }
+  };
 
   openFeaturedAccountsModal = (e) => {
     this.props.dispatch(openModal('PINNED_ACCOUNTS_EDITOR'));
-  }
+  };
 
   render () {
     const { intl } = this.props;

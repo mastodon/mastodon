@@ -6,6 +6,7 @@ import UploadContainer from '../containers/upload_container';
 import SensitiveButtonContainer from '../containers/sensitive_button_container';
 
 export default class UploadForm extends ImmutablePureComponent {
+
   static propTypes = {
     mediaIds: ImmutablePropTypes.list.isRequired,
   };

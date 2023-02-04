@@ -140,7 +140,7 @@ function statusToTextMentions(state, status) {
   }
 
   return set.union(status.get('mentions').filterNot(mention => mention.get('id') === me).map(mention => `@${mention.get('acct')} `)).join('');
-};
+}
 
 function apiStatusToTextMentions (state, status) {
   let set = ImmutableOrderedSet([]);
@@ -150,16 +150,16 @@ function apiStatusToTextMentions (state, status) {
   }
 
   return set.union(status.mentions.filter(
-    mention => mention.id !== me
+    mention => mention.id !== me,
   ).map(
-    mention => `@${mention.acct} `
+    mention => `@${mention.acct} `,
   )).join('');
 }
 
 function apiStatusToTextHashtags (state, status) {
   const text = unescapeHTML(status.content);
   return ImmutableOrderedSet([]).union(recoverHashtags(status.tags, text).map(
-    (name) => `#${name} `
+    (name) => `#${name} `,
   )).join('');
 }
 
@@ -175,7 +175,7 @@ function clearAll(state) {
     map.set('in_reply_to', null);
     map.update(
       'advanced_options',
-      map => map.mergeWith(overwrite, state.get('default_advanced_options'))
+      map => map.mergeWith(overwrite, state.get('default_advanced_options')),
     );
     map.set('privacy', state.get('default_privacy'));
     map.set('sensitive', state.get('default_sensitive'));
@@ -184,7 +184,7 @@ function clearAll(state) {
     map.set('poll', null);
     map.set('idempotencyKey', uuid());
   });
-};
+}
 
 function continueThread (state, status) {
   return state.withMutations(function (map) {
@@ -202,7 +202,7 @@ function continueThread (state, status) {
     map.set('in_reply_to', status.id);
     map.update(
       'advanced_options',
-      map => map.merge(new ImmutableMap({ do_not_federate: status.local_only }))
+      map => map.merge(new ImmutableMap({ do_not_federate: status.local_only })),
     );
     map.set('privacy', status.visibility);
     map.set('sensitive', false);
@@ -233,7 +233,7 @@ function appendMedia(state, media, file) {
       map.set('sensitive', true);
     }
   });
-};
+}
 
 function removeMedia(state, mediaId) {
   const prevSize = state.get('media_attachments').size;
@@ -246,7 +246,7 @@ function removeMedia(state, mediaId) {
       map.set('sensitive', false);
     }
   });
-};
+}
 
 const insertSuggestion = (state, position, token, completion, path) => {
   return state.withMutations(map => {
@@ -303,8 +303,8 @@ const insertEmoji = (state, position, emojiData) => {
 const hydrate = (state, hydratedState) => {
   state = clearAll(state.merge(hydratedState));
 
-  if (hydratedState.has('text')) {
-    state = state.set('text', hydratedState.get('text'));
+  if (hydratedState.get('text')) {
+    state = state.set('text', hydratedState.get('text')).set('focusDate', new Date());
   }
 
   return state;
@@ -414,7 +414,7 @@ export default function compose(state = initialState, action) {
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
       map.update(
         'advanced_options',
-        map => map.merge(new ImmutableMap({ do_not_federate: !!action.status.get('local_only') }))
+        map => map.merge(new ImmutableMap({ do_not_federate: !!action.status.get('local_only') })),
       );
       map.set('focusDate', new Date());
       map.set('caretPosition', null);
@@ -453,7 +453,7 @@ export default function compose(state = initialState, action) {
       map.set('poll', null);
       map.update(
         'advanced_options',
-        map => map.mergeWith(overwrite, state.get('default_advanced_options'))
+        map => map.mergeWith(overwrite, state.get('default_advanced_options')),
       );
       map.set('idempotencyKey', uuid());
     });
@@ -575,7 +575,7 @@ export default function compose(state = initialState, action) {
       map.set('language', action.status.get('language'));
       map.update(
         'advanced_options',
-        map => map.merge(new ImmutableMap({ do_not_federate }))
+        map => map.merge(new ImmutableMap({ do_not_federate })),
       );
       map.set('id', null);
 
@@ -646,4 +646,4 @@ export default function compose(state = initialState, action) {
   default:
     return state;
   }
-};
+}

@@ -20,7 +20,7 @@ export default class ColumnBackButton extends React.PureComponent {
     } else {
       this.context.router.history.goBack();
     }
-  }
+  };
 
   render () {
     const { multiColumn } = this.props;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import classNames from 'classnames'
+import classNames from 'classnames';
 
 export default class PillBarButton extends React.PureComponent {
 
@@ -12,12 +12,12 @@ export default class PillBarButton extends React.PureComponent {
     label: PropTypes.node.isRequired,
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
-  }
+  };
 
   onChange = () => {
     const { settings, settingPath } = this.props;
     this.props.onChange(settingPath, !settings.getIn(settingPath));
-  }
+  };
 
   render () {
     const { prefix, settings, settingPath, label, disabled } = this.props;

@@ -24,12 +24,12 @@ export default class Option extends React.PureComponent {
       e.preventDefault();
       onToggle(value, !checked);
     }
-  }
+  };
 
   handleChange = e => {
     const { value, onToggle } = this.props;
     onToggle(value, e.target.checked);
-  }
+  };
 
   render () {
     const { name, value, checked, label, labelComponent, description, multiple } = this.props;
