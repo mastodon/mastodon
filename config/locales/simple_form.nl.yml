@@ -1,4 +1,3 @@
----
 nl:
   simple_form:
     hints:
@@ -91,6 +90,7 @@ nl:
         site_short_description: Een korte beschrijving om het unieke karakter van je server te tonen. Wie beheert de server, wat is de doelgroep?
         site_terms: Gebruik je eigen privacybeleid of laat leeg om de standaardwaarde te gebruiken. Kan worden opgemaakt met Markdown.
         site_title: Hoe mensen buiten de domeinnaam naar je server kunnen verwijzen.
+        status_page_url: URL van een pagina waar mensen de status van deze server kunnen zien tijdens een uitval
         theme: Thema die (niet ingelogde) bezoekers en nieuwe gebruikers zien.
         thumbnail: Een afbeelding van ongeveer een verhouding van 2:1 die naast jouw serverinformatie wordt getoond.
         timeline_preview: Bezoekers (die niet zijn ingelogd) kunnen de meest recente, op de server aanwezige openbare berichten bekijken.
@@ -301,7 +301,7 @@ nl:
       webhook:
         events: Ingeschakelde gebeurtenissen
         url: Eindpunt URL
-    'no': Nee
+    'no': 'Nee'
     not_recommended: Niet aanbevolen
     recommended: Aanbevolen
     required:
@@ -310,4 +310,4 @@ nl:
     title:
       sessions:
         webauthn: Gebruik een van uw beveiligingssleutels om in te loggen
-    'yes': Ja
+    'yes': 'Ja'
