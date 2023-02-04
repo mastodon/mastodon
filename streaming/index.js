@@ -850,6 +850,18 @@ const startWorker = async (workerId) => {
     res.end('OK');
   });
 
+  app.get('/metrics', (req, res) => server.getConnections((err, count) => {
+    res.writeHeader(200, { 'Content-Type': 'application/openmetrics-text; version=1.0.0; charset=utf-8' });
+    res.write('# TYPE connected_clients gauge\n');
+    res.write('# HELP connected_clients The number of clients connected to the streaming server\n');
+    res.write(`connected_clients ${count}.0\n`);
+    res.write('# TYPE connected_channels gauge\n');
+    res.write('# HELP connected_channels The number of Redis channels the streaming server is subscribed to\n');
+    res.write(`connected_channels ${Object.keys(subs).length}.0\n`);
+    res.write('# EOF\n');
+    res.end();
+  }));
+
   app.use(authenticationMiddleware);
   app.use(errorMiddleware);
 
