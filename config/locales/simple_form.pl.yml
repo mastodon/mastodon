@@ -1,4 +1,3 @@
----
 pl:
   simple_form:
     hints:
@@ -96,6 +95,7 @@ pl:
         timeline_preview: Wylogowani użytkownicy będą mogli przeglądać najnowsze publiczne wpisy dostępne na serwerze.
         trendable_by_default: Pomiń ręczny przegląd treści trendów. Pojedyncze elementy nadal mogą być usuwane z trendów po fakcie.
         trends: Tendencje pokazują, które posty, hasztagi i newsy zyskują popularność na Twoim serwerze.
+        trends_as_landing_page: Pokaż najpopularniejsze treści niezalogowanym użytkownikom i odwiedzającym zamiast opisu tego serwera. Wymaga włączenia trendów.
       form_challenge:
         current_password: Wchodzisz w strefę bezpieczną
       imports:
@@ -251,11 +251,13 @@ pl:
         site_short_description: Opis serwera
         site_terms: Polityka prywatności
         site_title: Nazwa serwera
+        status_page_url: Adres URL strony statusu
         theme: Domyślny motyw
         thumbnail: Miniaturka serwera
         timeline_preview: Zezwalaj na nieuwierzytelniony dostęp do publicznych osi czasu
         trendable_by_default: Zezwalaj na trendy bez wcześniejszego przeglądu
         trends: Włącz trendy
+        trends_as_landing_page: Użyj trendów jako strony początkowej
       interactions:
         must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie obserwują
         must_be_following: Nie wyświetlaj powiadomień od osób, których nie obserwujesz
@@ -301,7 +303,7 @@ pl:
       webhook:
         events: Włączone zdarzenia
         url: Endpoint URL
-    'no': Nie
+    'no': 'Nie'
     not_recommended: Niezalecane
     recommended: Polecane
     required:
@@ -310,4 +312,4 @@ pl:
     title:
       sessions:
         webauthn: Użyj jednego ze swoich kluczy bezpieczeństwa, aby się zalogować
-    'yes': Tak
+    'yes': 'Tak'
