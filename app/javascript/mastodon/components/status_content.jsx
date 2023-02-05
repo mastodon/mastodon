@@ -198,7 +198,7 @@ class StatusContent extends React.PureComponent {
 
   handleClick = (e) => {
     e.preventDefault();
-  }
+  };
 
   handleSpoilerClick = (e) => {
     e.preventDefault();
