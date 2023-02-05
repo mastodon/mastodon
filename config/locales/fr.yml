@@ -37,12 +37,12 @@ fr:
       avatar: Avatar
       by_domain: Domaine
       change_email:
-        changed_msg: Courriel modifié avec succès !
-        current_email: Courriel actuel
-        label: Modifier le courriel
-        new_email: Nouveau courriel
+        changed_msg: Adresse de courriel modifiée avec succès !
+        current_email: Adresse de courriel actuelle
+        label: Modifier l’adresse de courriel
+        new_email: Nouvelle adresse de courriel
         submit: Modifier le courriel
-        title: Modifier le courriel pour %{username}
+        title: Modifier l’adresse de courriel pour %{username}
       change_role:
         changed_msg: Rôle modifié avec succès !
         label: Modifier le rôle
@@ -63,7 +63,7 @@ fr:
       display_name: Nom affiché
       domain: Domaine
       edit: Éditer
-      email: Courriel
+      email: Adresse de courriel
       email_status: État du courriel
       enable: Dégeler
       enable_sign_in_token_auth: Activer l'authentification basée sur les jetons envoyés par courriel
@@ -151,9 +151,9 @@ fr:
       suspension_irreversible: Les données de ce compte ont été irréversiblement supprimées. Vous pouvez annuler la suspension du compte pour le rendre utilisable, mais il ne récupérera aucune donnée qu’il avait auparavant.
       suspension_reversible_hint_html: Le compte a été suspendu et les données seront complètement supprimées le %{date}. D’ici là, le compte peut être restauré sans aucun effet néfaste. Si vous souhaitez supprimer toutes les données du compte immédiatement, vous pouvez le faire ci-dessous.
       title: Comptes
-      unblock_email: Débloquer l'adresse courriel
-      unblocked_email_msg: L'adresse courriel de %{username} a été débloquée avec succès
-      unconfirmed_email: Courriel non confirmé
+      unblock_email: Débloquer l’adresse de courriel
+      unblocked_email_msg: L’adresse de courriel de %{username} a été débloquée avec succès
+      unconfirmed_email: Adresse de courriel non confirmée
       undo_sensitized: Annuler sensible
       undo_silenced: Annuler la limitation
       undo_suspension: Annuler la suspension
@@ -168,11 +168,11 @@ fr:
     action_logs:
       action_types:
         approve_appeal: Approuver l'appel
-        approve_user: Approuver l’utilisateur
+        approve_user: Approuver le compte
         assigned_to_self_report: Affecter le signalement
-        change_email_user: Modifier le courriel pour ce compte
-        change_role_user: Changer le rôle de l’utilisateur·rice
-        confirm_user: Confirmer l’utilisateur
+        change_email_user: Modifier l’adresse de courriel pour ce compte
+        change_role_user: Changer le rôle du compte
+        confirm_user: Confirmer le compte
         create_account_warning: Créer une alerte
         create_announcement: Créer une annonce
         create_canonical_email_block: Créer un blocage de domaine de courriel
@@ -201,11 +201,11 @@ fr:
         disable_user: Désactiver le compte
         enable_custom_emoji: Activer les émojis personnalisées
         enable_sign_in_token_auth_user: Activer l'authentification basée sur les jetons envoyés par courriel pour l'utilisateur·rice
-        enable_user: Activer l’utilisateur
+        enable_user: Activer le compte
         memorialize_account: Ériger en mémorial
-        promote_user: Promouvoir l’utilisateur
+        promote_user: Promouvoir le compte
         reject_appeal: Rejeter l'appel
-        reject_user: Rejeter l’utilisateur
+        reject_user: Rejeter le compte
         remove_avatar_user: Supprimer l’avatar
         reopen_report: Rouvrir le signalement
         resend_user: Renvoyer l'e-mail de confirmation
@@ -215,7 +215,7 @@ fr:
         silence_account: Limiter le compte
         suspend_account: Suspendre le compte
         unassigned_report: Ne plus assigner le signalement
-        unblock_email_account: Débloquer l'adresse courriel
+        unblock_email_account: Débloquer l’adresse de courriel
         unsensitive_account: Ne pas marquer les médias de votre compte comme sensibles
         unsilence_account: Annuler la limitation du compte
         unsuspend_account: Annuler la suspension du compte
@@ -234,7 +234,7 @@ fr:
         confirm_user_html: "%{name} a confirmé l'adresse courriel de l'utilisateur %{target}"
         create_account_warning_html: "%{name} a envoyé un avertissement à %{target}"
         create_announcement_html: "%{name} a créé une nouvelle annonce %{target}"
-        create_canonical_email_block_html: "%{name} a bloqué l’e-mail avec le hachage %{target}"
+        create_canonical_email_block_html: "%{name} a bloqué le courriel avec le hachage %{target}"
         create_custom_emoji_html: "%{name} a téléversé un nouvel émoji %{target}"
         create_domain_allow_html: "%{name} a autorisé la fédération avec le domaine %{target}"
         create_domain_block_html: "%{name} a bloqué le domaine %{target}"
@@ -244,7 +244,7 @@ fr:
         create_user_role_html: "%{name} a créé le rôle %{target}"
         demote_user_html: "%{name} a rétrogradé l'utilisateur·rice %{target}"
         destroy_announcement_html: "%{name} a supprimé l'annonce %{target}"
-        destroy_canonical_email_block_html: "%{name} a débloqué l'email avec le hash %{target}"
+        destroy_canonical_email_block_html: "%{name} a débloqué le courriel avec le hachage %{target}"
         destroy_custom_emoji_html: "%{name} a supprimé l'émoji %{target}"
         destroy_domain_allow_html: "%{name} a rejeté la fédération avec le domaine %{target}"
         destroy_domain_block_html: "%{name} a débloqué le domaine %{target}"
@@ -274,7 +274,7 @@ fr:
         silence_account_html: "%{name} a limité le compte de %{target}"
         suspend_account_html: "%{name} a suspendu le compte de %{target}"
         unassigned_report_html: "%{name} a désassigné le signalement %{target}"
-        unblock_email_account_html: "%{name} a débloqué l'adresse courriel de %{target}"
+        unblock_email_account_html: "%{name} a débloqué l’adresse de courriel de %{target}"
         unsensitive_account_html: "%{name} a enlevé le marquage comme sensible du média de %{target}"
         unsilence_account_html: "%{name} a annulé la limitation du compte de %{target}"
         unsuspend_account_html: "%{name} a réactivé le compte de %{target}"
@@ -341,10 +341,10 @@ fr:
       updated_msg: Émoji mis à jour avec succès !
       upload: Téléverser
     dashboard:
-      active_users: utilisateurs actifs
+      active_users: comptes actifs
       interactions: interactions
       media_storage: Stockage des médias
-      new_users: nouveaux utilisateurs
+      new_users: nouveaux comptes
       opened_reports: rapports ouverts
       pending_appeals_html:
         one: "<strong>%{count}</strong> appel en attente"
@@ -729,7 +729,7 @@ fr:
         title: Rétention du contenu
       default_noindex:
         desc_html: Affecte tous les utilisateurs qui n'ont pas modifié ce paramètre eux-mêmes
-        title: Ne pas indexer par défaut les utilisateurs dans les moteurs de recherche
+        title: Retrait par défaut de l’indexation des comptes dans les moteurs de recherche
       discovery:
         follow_recommendations: Suivre les recommandations
         preamble: Il est essentiel de donner de la visibilité à des contenus intéressants pour attirer des utilisateur⋅rice⋅s néophytes qui ne connaissent peut-être personne sur Mastodon. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
@@ -965,7 +965,7 @@ fr:
     apply_for_account: Demander un compte
     change_password: Mot de passe
     confirmations:
-      wrong_email_hint: Si cette adresse courriel est incorrecte, vous pouvez la modifier dans vos paramètres de compte.
+      wrong_email_hint: Si cette adresse de courriel est incorrecte, vous pouvez la modifier dans vos paramètres de compte.
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
     description:
