@@ -397,7 +397,7 @@ fr:
           suspend: Suspendre
         title: Nouveau blocage de domaine
       no_domain_block_selected: Aucun blocage de domaine n'a été modifié car aucun n'a été sélectionné
-      not_permitted: Vous n’êtes pas autorisé à effectuer cette action
+      not_permitted: Vous n’êtes pas autorisé⋅e à effectuer cette action
       obfuscate: Obfusquer le nom de domaine
       obfuscate_hint: Obfusquer partiellement le nom de domaine dans la liste si la publication de la liste des limitations de domaine est activée
       private_comment: Commentaire privé
@@ -431,12 +431,12 @@ fr:
       title: Blocage de domaines de courriel
     export_domain_allows:
       new:
-        title: Autoriser l'importation de domaine
+        title: Importer les autorisations de domaine
       no_file: Aucun fichier sélectionné
     export_domain_blocks:
       import:
-        description_html: Vous êtes sur le point d'importer une liste de blocs de domaine. Veuillez examiner cette liste très attentivement, spécialement si vous n'êtes pas l'auteur de cette liste.
-        existing_relationships_warning: Relations de suivi existantes
+        description_html: Vous êtes sur le point d'importer une liste de bloqueurs de domaine. Veuillez examiner cette liste très attentivement, surtout si vous ne l'avez pas créée vous-même.
+        existing_relationships_warning: Relations d'abonnement existantes
         private_comment_description_html: 'Pour vous aider à savoir d''où proviennent les blocages importés, ceux-ci seront créés avec le commentaire privé suivant : <q>%{comment}</q>'
         private_comment_template: Importé depuis %{source} le %{date}
         title: Importer des blocages de domaine
@@ -557,7 +557,7 @@ fr:
       pending: En attente de l’approbation du relai
       save_and_enable: Sauvegarder et activer
       setup: Paramétrer une connexion de relais
-      signatures_not_enabled: Les relais ne fonctionneront pas correctement lorsque le mode sécurisé ou le mode liste blanche est activé
+      signatures_not_enabled: Les relais peuvent ne pas fonctionner correctement lorsque les modes sécurisé ou de fédération limitée sont activés
       status: Statut
       title: Relais
     report_notes:
@@ -728,7 +728,7 @@ fr:
         preamble: Contrôle comment le contenu créé par les utilisateurs est enregistré et stocké dans Mastodon.
         title: Rétention du contenu
       default_noindex:
-        desc_html: Affecte tous les utilisateurs qui n'ont pas modifié ce paramètre eux-mêmes
+        desc_html: Affecte tous les comptes qui n'ont pas modifié ce paramètre
         title: Par défaut, ne pas indexer les comptes dans les moteurs de recherche
       discovery:
         follow_recommendations: Suivre les recommandations
@@ -1002,7 +1002,7 @@ fr:
       email_settings_hint_html: Le courriel de confirmation a été envoyé à %{email}. Si cette adresse de courriel n’est pas correcte, vous pouvez la modifier dans les paramètres du compte.
       title: Configuration
     sign_in:
-      preamble_html: Connectez-vous avec vos identifiants <strong>%{domain}</strong> . Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
+      preamble_html: Connectez-vous avec vos identifiants sur <strong>%{domain}</strong>. Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
       title: Se connecter à %{domain}
     sign_up:
       preamble: Avec un compte sur ce serveur Mastodon, vous serez en mesure de suivre toute autre personne sur le réseau, quel que soit l’endroit où son compte est hébergé.
@@ -1395,7 +1395,7 @@ fr:
     activity: Activité du compte
     confirm_follow_selected_followers: Voulez-vous vraiment suivre les abonné⋅e⋅s sélectionné⋅e⋅s ?
     confirm_remove_selected_followers: Voulez-vous vraiment supprimer les abonné⋅e⋅s sélectionné⋅e⋅s ?
-    confirm_remove_selected_follows: Voulez-vous vraiment suivre les abonnements sélectionnés ?
+    confirm_remove_selected_follows: Voulez-vous vraiment supprimer les abonnements sélectionnés ?
     dormant: Dormant
     follow_selected_followers: Suivre les abonné·e·s sélectionné·e·s
     followers: Abonné·e
