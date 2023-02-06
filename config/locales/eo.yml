@@ -223,8 +223,8 @@ eo:
         update_custom_emoji: Ĝisdatigi proprajn emoĝiojn
         update_domain_block: Ĝigdatigi domajnan blokadon
         update_ip_block: Krei IP-regulon
-        update_status: Ĝisdatigi staton
-        update_user_role: Ĝisdatigi Rolon
+        update_status: Ĝisdatigi afiŝon
+        update_user_role: Ĝisdatigi rolon
       actions:
         approve_appeal_html: "%{name} aprobis kontroldecidapelacion de %{target}"
         approve_user_html: "%{name} aprobis registriĝon de %{target}"
@@ -278,12 +278,12 @@ eo:
         unsensitive_account_html: "%{name} malmarkis audovidaĵojn de %{target} kiel sentemaj"
         unsilence_account_html: "%{name} malfaris limon de konto de %{target}"
         unsuspend_account_html: "%{name} malsuspendis la konton de %{target}"
-        update_announcement_html: "%{name} ĝisdatigis anoncon %{target}"
-        update_custom_emoji_html: "%{name} ĝisdatigis emoĝion %{target}"
+        update_announcement_html: "%{name} ĝisdatigis la anoncon %{target}"
+        update_custom_emoji_html: "%{name} ĝisdatigis la emoĝion %{target}"
         update_domain_block_html: "%{name} ĝisdatigis domajnblokon por %{target}"
         update_ip_block_html: "%{name} ŝanĝis regulon por IP %{target}"
         update_status_html: "%{name} ĝisdatigis mesaĝon de %{target}"
-        update_user_role_html: "%{name} ŝanĝis rolon %{target}"
+        update_user_role_html: "%{name} ŝanĝis la rolon %{target}"
       deleted_account: forigita konto
       empty: Neniu ĵurnalo trovita.
       filter_by_action: Filtri per ago
@@ -556,7 +556,7 @@ eo:
       pending: Atendante aprobon de la ripetilo
       save_and_enable: Konservi kaj ebligi
       setup: Agordi konekton al ripetilo
-      signatures_not_enabled: Ripetiloj ne ĝuste funkcias dum sekura reĝimo au limigita federacio reĝimo ebligitas
+      signatures_not_enabled: Relajsoj eble ne funkcias ĝuste dum sekura reĝimo aŭ reĝimo de limigita federado estas ŝaltita
       status: Stato
       title: Ripetiloj
     report_notes:
@@ -601,6 +601,7 @@ eo:
         placeholder: Priskribu faritajn agojn, aŭ ajnan novan informon pri tiu signalo…
         title: Notoj
       notes_description_html: Vidi kaj lasi notojn por aliaj kontrolantoj kaj estonta vi
+      processed_msg: 'La raporto #%{id} sukcese prilaborita'
       quick_actions_description_html: 'Agu au movu malsupre por vidi raportitajn enhavojn:'
       remote_user_placeholder: la ekstera uzanto de %{instance}
       reopen: Remalfermi signalon
@@ -613,9 +614,21 @@ eo:
       status: Mesaĝoj
       statuses: Raportita enhavo
       statuses_description_html: Sentema enhavo referencitas kun la raportita konto
+      summary:
+        action_preambles:
+          delete_html: 'Vi ja tuj <strong>forigos</strong> kelke da afiŝoj de <strong>@%{acct}</strong>. Tio faros kiel jene:'
+          mark_as_sensitive_html: 'Vi ja tuj <strong>markos</strong> kelke da afiŝoj de <strong>@%{acct}</strong> kiel <strong>tiklaj</strong>. Tio faros kiel:'
+          silence_html: 'Vi ja tuj <strong>limigos</strong> kelke da afiŝoj de <strong>@%{acct}</strong>. Tio faros kiel:'
+          suspend_html: 'Vi ja tuj <strong>suspendos</strong> la konton de <strong>@%{acct}</strong>. Tio faros kiel:'
+        actions:
+          suspend_html: Suspendi <strong>@%{acct}</strong>, fari ties profilon kaj enhavojn neatingeblaj kaj maleblaj interagi kun
+        close_report: 'Marki la raporto #%{id} kiel solvita'
+        close_reports_html: Marki <strong>ĉiuj</strong> raportoj kontraŭ <strong>@%{acct}</strong> kiel solvitaj
+        send_email_html: Sendi al <strong>@%{acct}</strong> retpoŝtaĵon de averto
       target_origin: Origino de raportita konto
       title: Signaloj
       unassign: Malasigni
+      unknown_action_msg: 'Nekonata ago: %{action}'
       unresolved: Nesolvitaj
       updated_at: Ĝisdatigita
       view_profile: Vidi profilon
@@ -710,6 +723,7 @@ eo:
         preamble: Interesa enhavo estas grava por novaj uzantoj kiuj eble ne konas ajn iun.
         profile_directory: Profilujo
         public_timelines: Publikaj templinioj
+        publish_discovered_servers: Publikigi la malkovritajn servilojn
         publish_statistics: Publikigi statistikojn
         title: Eltrovado
         trends: Tendencoj
@@ -938,6 +952,8 @@ eo:
   auth:
     apply_for_account: Peti konton
     change_password: Pasvorto
+    confirmations:
+      wrong_email_hint: Se tiu retpoŝtadreso ne estas ĝusta, vi povas ŝanĝi ĝin en la agordoj pri la konto.
     delete_account: Forigi konton
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
     description:
@@ -1366,6 +1382,8 @@ eo:
       unrecognized_emoji: ne estas rekonita emoĝio
   relationships:
     activity: Konta aktiveco
+    confirm_remove_selected_followers: Ĉu vi certas, ke vi volas forigi la elektitajn sekvantojn?
+    confirm_remove_selected_follows: Ĉu vi certas, ke vi volas forigi la elektitajn sekvatojn?
     dormant: Dormanta
     follow_selected_followers: Sekvi selektitajn sekvantojn
     followers: Sekvantoj
