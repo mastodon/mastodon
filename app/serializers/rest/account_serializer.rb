@@ -125,10 +125,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def roles
-    if object.suspended?
+    if object.suspended? || object.user.nil?
       []
     else
-      [object.user.role].compact.filter { |role| role.highlighted? }
+      [object.user.role].compact.filter(&:highlighted?)
     end
   end
 
