@@ -35,8 +35,8 @@ example.com {
     file_server
   }
 
-  ## If you've been migrated media from local to object storage, this navigate old URL to new one.
-  redir @local_media https://cdn.example.com/mastodon/{http.regexp.1} permanent
+  # If you've been migrated media from local to object storage, this navigate old URL to new one.
+  # redir @local_media https://cdn.example.com/mastodon/{http.regexp.1} permanent
 
   reverse_proxy @streaming {
     to http://localhost:4000
