@@ -1,0 +1,61 @@
+example.com {
+  @local {
+    file
+    not path /
+  }
+  @local_media {
+    path_regexp /system/(.*)
+  }
+  @streaming {
+    path /api/v1/streaming/*
+  }
+  @cache_control {
+    path_regexp ^/(emoji|packs|/system/accounts/avatars|/system/media_attachments/files)
+  }
+
+  root * /home/mastodon/live/public
+  log {
+    output file /var/log/caddy/mastodon.log
+  }
+
+  encode zstd gzip
+
+  handle_errors {
+    rewrite 500.html
+    file_server
+  }
+
+  header {
+    Strict-Transport-Security "max-age=31536000"
+  }
+  header /sw.js Cache-Control "public, max-age=0"
+  header @cache_control Cache-Control "public, max-age=31536000, immutable"
+
+  handle @local {
+    file_server
+  }
+
+  ## If you've been migrated media from local to object storage, this navigate old URL to new one.
+  redir @local_media https://cdn.example.com/mastodon/{http.regexp.1} permanent
+
+  reverse_proxy @streaming {
+    to http://localhost:4000
+
+    transport http {
+      keepalive 5s
+      keepalive_idle_conns 10
+    }
+  }
+
+  reverse_proxy  {
+    to http://localhost:3000
+
+    header_up X-Forwarded-Port 443
+    header_up X-Forwarded-Proto https
+
+    transport http {
+      keepalive 5s
+      keepalive_idle_conns 10
+    }
+  }
+}
