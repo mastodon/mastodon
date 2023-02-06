@@ -1,4 +1,3 @@
----
 et:
   simple_form:
     hints:
@@ -91,6 +90,7 @@ et:
         site_short_description: Lühikirjeldus serveri unikaalseks identifitseerimiseks. Kes haldab, kellele mõeldud?
         site_terms: Lisa siia serveri isikuandmete kaitse põhimõtted või jäta tühjaks, et kasutada geneerilisi. Tekstis on lubatud Markdowni süntaks.
         site_title: Kuidas inimesed saavad serverile viidata, lisaks domeeninimele.
+        status_page_url: Lehe URL, kus saab serveri maas oleku ajal näha serveri olekut
         theme: Teema, mida näevad sisenemata ning uued kasutajad.
         thumbnail: Umbes 2:1 mõõdus pilt serveri informatsiooni kõrval.
         timeline_preview: Sisenemata külastajatel on võimalik sirvida viimaseid avalikke postitusi serveril.
@@ -301,7 +301,7 @@ et:
       webhook:
         events: Lubatud sündmused
         url: Lõpp-punkti URL
-    'no': Ei
+    'no': 'Ei'
     not_recommended: Pole soovitatav
     recommended: Soovituslik
     required:
@@ -310,4 +310,4 @@ et:
     title:
       sessions:
         webauthn: Kasuta sisenemiseks ühte turvavõtmeist
-    'yes': Jah
+    'yes': 'Jah'
