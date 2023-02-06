@@ -71,7 +71,7 @@ class ActivityPub::ProcessCollectionService < BaseService
     @account = ActivityPub::LinkedDataSignature.new(@json).verify_actor!
     @account = nil unless @account.is_a?(Account)
     @account
-  rescue JSON::LD::JsonLdError => e
+  rescue JSON::LD::JsonLdError, RDF::WriterError => e
     Rails.logger.debug "Could not verify LD-Signature for #{value_or_id(@json['actor'])}: #{e.message}"
     nil
   end
