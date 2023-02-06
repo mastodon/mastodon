@@ -441,6 +441,7 @@ es-MX:
         private_comment_description_html: 'Para ayudarle a rastrear de dónde proceden los bloqueos importados, los bloqueos importados se crearán con el siguiente comentario privado: <q>%{comment}</q>'
         private_comment_template: Importado desde %{source} el %{date}
         title: Importar bloqueos de dominio
+      invalid_domain_block: 'Uno o más bloques de dominio fueron omitidos debido a el/los siguiente(s) error(es): %{error}'
       new:
         title: Importar bloqueos de dominio
       no_file: No hay archivo seleccionado
@@ -589,6 +590,7 @@ es-MX:
       comment:
         none: Ninguno
       comment_description_html: 'Para proporcionar más información, %{name} escribió:'
+      confirm_action: Confirmar acción de moderación contra @%{acct}
       created_at: Denunciado
       delete_and_resolve: Eliminar publicaciones
       forwarded: Reenviado
@@ -605,6 +607,7 @@ es-MX:
         placeholder: Especificar qué acciones se han tomado o cualquier otra novedad respecto a esta denuncia…
         title: Notas
       notes_description_html: Ver y dejar notas a otros moderadores y a tu yo futuro
+      processed_msg: 'La denuncia #%{id} ha sido procesada con éxito'
       quick_actions_description_html: 'Toma una acción rápida o desplázate hacia abajo para ver el contenido denunciado:'
       remote_user_placeholder: el usuario remoto de %{instance}
       reopen: Reabrir denuncia
@@ -617,9 +620,28 @@ es-MX:
       status: Estado
       statuses: Contenido reportado
       statuses_description_html: El contenido ofensivo se citará en comunicación con la cuenta reportada
+      summary:
+        action_preambles:
+          delete_html: 'Estás a punto de <strong>eliminar</strong> algunas de la publicaciones de <strong>@%{acct}</strong>. Esto hará:'
+          mark_as_sensitive_html: 'Estás a punto de <strong>marcar</strong> algunas de las publicaciones de <strong>@%{acct}</strong>como <strong>sensibles</strong>. Esto hará:'
+          silence_html: 'Estás a punto de <strong>limitar</strong> la cuenta de <strong>@%{acct}</strong>. Esto hará:'
+          suspend_html: 'Estás a punto de <strong>suspender</strong> la cuenta de <strong>@%{acct}</strong>. Esto hará:'
+        actions:
+          delete_html: Eliminar las publicaciones ofensivas
+          mark_as_sensitive_html: Marcar las publicaciones ofensivas como sensibles
+          silence_html: Limitar severamente el alcance de <strong>@%{acct}</strong> haciendo que su perfil y contenido sólo sean visibles para las personas que ya lo siguen o que consulten manualmente su perfil
+          suspend_html: Suspender a <strong>@%{acct}</strong>, haciendo su perfil y contenido inaccesibles e imposible la interacción
+        close_report: 'Marcar denuncia #%{id} como resuelta'
+        close_reports_html: Marcar <strong>todas</strong> las denuncias contra <strong>@%{acct}</strong> como resueltas
+        delete_data_html: Eliminar el perfil y contenido de <strong>@%{acct}</strong> en 30 días a partir de ahora a menos que se revierta la suspensión en ese tiempo
+        preview_preamble_html: "<strong>@%{acct}</strong> recibirá una advertencia con el siguiente contenido:"
+        record_strike_html: Registra una amonestación contra <strong>@%{acct}</strong> para ayudarte a escalar futuras violaciones de esta cuenta
+        send_email_html: Enviar a <strong>@%{acct}</strong> un correo electrónico de advertencia
+        warning_placeholder: Razones adicionales opcionales para la acción de moderación.
       target_origin: Origen de la cuenta reportada
       title: Reportes
       unassign: Desasignar
+      unknown_action_msg: 'Acción desconocida: %{action}'
       unresolved: No resuelto
       updated_at: Actualizado
       view_profile: Ver perfil
@@ -943,6 +965,8 @@ es-MX:
   auth:
     apply_for_account: Solicitar una cuenta
     change_password: Contraseña
+    confirmations:
+      wrong_email_hint: Si esa dirección de correo electrónico no es correcta, puedes cambiarla en la configuración de la cuenta.
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
     description:

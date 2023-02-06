@@ -84,7 +84,7 @@ de:
         remote: Extern
         title: Herkunft
       login_status: Anmeldestatus
-      media_attachments: Medienanhänge
+      media_attachments: Speicherplatz
       memorialize: In Gedenkseite umwandeln
       memorialized: Gedenkseite
       memorialized_msg: "%{username} wurde erfolgreich in ein Gedenkseiten-Konto umgewandelt"
@@ -108,7 +108,7 @@ de:
       previous_strikes_description_html:
         one: Dieses Konto hat <strong>einen</strong> Verstoß.
         other: Dieses Konto hat <strong>%{count}</strong> Verstöße.
-      promote: Befördern
+      promote: Berechtigungen erweitern
       protocol: Protokoll
       public: Öffentlich
       push_subscription_expires: PuSH-Abonnement läuft aus
@@ -194,7 +194,7 @@ de:
         destroy_instance: Domain-Daten entfernen
         destroy_ip_block: IP-Regel löschen
         destroy_status: Beitrag löschen
-        destroy_unavailable_domain: Nicht verfügbare Domain löschen
+        destroy_unavailable_domain: Nicht-verfügbare Domain entfernen
         destroy_user_role: Rolle entfernen
         disable_2fa_user: 2FA deaktivieren
         disable_custom_emoji: Eigenes Emoji deaktivieren
@@ -270,7 +270,7 @@ de:
         reopen_report_html: "%{name} hat die Meldung %{target} wieder geöffnet"
         resend_user_html: "%{name} hat erneut eine Bestätigungs-E-Mail für %{target} gesendet"
         reset_password_user_html: "%{name} hat das Passwort von %{target} zurückgesetzt"
-        resolve_report_html: "%{name} hat die Meldung %{target} bearbeitet"
+        resolve_report_html: "%{name} hat die Meldung %{target} geklärt"
         sensitive_account_html: "%{name} hat die Medien von %{target} mit einer Inhaltswarnung versehen"
         silence_account_html: "%{name} hat das Konto von %{target} stummgeschaltet"
         suspend_account_html: "%{name} hat das Konto von %{target} gesperrt"
@@ -286,7 +286,7 @@ de:
         update_status_html: "%{name} hat einen Beitrag von %{target} aktualisiert"
         update_user_role_html: "%{name} hat die Rolle %{target} geändert"
       deleted_account: gelöschtes Konto
-      empty: Keine Protokolle gefunden.
+      empty: Protokolle nicht gefunden.
       filter_by_action: Nach Aktion filtern
       filter_by_user: Nach Benutzer*in filtern
       title: Protokoll
@@ -441,6 +441,7 @@ de:
         private_comment_description_html: 'Damit du später nachvollziehen kannst, woher die importierten Sperren stammen, kannst du diesem Eintrag eine private Notiz hinzufügen: <q>%{comment}</q>'
         private_comment_template: Importiert von %{source} am %{date}
         title: Domain-Sperren importieren
+      invalid_domain_block: 'Ein oder mehrere Domainsperren wurden wegen folgenden Fehler(n) übersprungen: %{error}'
       new:
         title: Domain-Sperren importieren
       no_file: Keine Datei ausgewählt
@@ -589,6 +590,7 @@ de:
       comment:
         none: Kein
       comment_description_html: 'Um weitere Informationen bereitzustellen, schrieb %{name} Folgendes:'
+      confirm_action: Moderationsaktion gegen @%{acct} bestätigen
       created_at: Gemeldet
       delete_and_resolve: Beiträge löschen
       forwarded: Weitergeleitet
@@ -602,10 +604,11 @@ de:
         create_and_resolve: Mit Kommentar lösen
         create_and_unresolve: Mit Kommentar wieder öffnen
         delete: Löschen
-        placeholder: Bitte beschreibe, welche Maßnahmen ergriffen wurden oder andere damit verbundene Aktualisierungen …
+        placeholder: Bitte beschreibe, welche Maßnahmen bzw. Sanktionen ergriffen worden sind, und führe alles auf, was es Erwähnenswertes zu diesem Profil zu berichten gibt …
         title: Notizen
       notes_description_html: Notiz an dich und andere Moderator*innen hinterlassen
-      quick_actions_description_html: 'Führe eine schnelle Aktion aus oder scrolle nach unten, um gemeldete Inhalte zu sehen:'
+      processed_msg: 'Meldung #%{id} erfolgreich bearbeitet'
+      quick_actions_description_html: 'Eine schnelle Aktion ausführen oder nach unten rolle, um gemeldete Inhalte zu sehen:'
       remote_user_placeholder: das externe Profil von %{instance}
       reopen: Meldung wieder eröffnen
       report: 'Meldung #%{id}'
@@ -617,9 +620,28 @@ de:
       status: Status
       statuses: Gemeldeter Inhalt
       statuses_description_html: Störende Inhalte werden in der Kommunikation mit dem gemeldeten Konto zitiert
+      summary:
+        action_preambles:
+          delete_html: 'Du bist dabei, einige Beiträge von <strong>@%{acct}</strong> zu <strong>entfernen</strong>. Dies wird:'
+          mark_as_sensitive_html: 'Du bist dabei, einige Beiträge von <strong>@%{acct}</strong> mit einer <strong>Inhaltswarnung</strong> zu <strong>versehen</strong>. Dies wird:'
+          silence_html: 'Du bist dabei, das Konto von <strong>@%{acct}</strong> <strong>einzuschränken</strong>. Dies wird:'
+          suspend_html: 'Du bist dabei, das Konto von <strong>@%{acct}</strong> zu <strong>sperren</strong>. Dies wird:'
+        actions:
+          delete_html: Die anstößigen Beiträge entfernen
+          mark_as_sensitive_html: Medien der anstößigen Beiträge mit einer Inhaltswarnung versehen
+          silence_html: Schränkt die Reichweite von <strong>@%{acct}</strong> stark ein, indem das Profil und dessen Inhalte nur für Personen sichtbar sind, die dem Profil bereits folgen oder es manuell aufrufen
+          suspend_html: "<strong>@%{acct}</strong> sperren, sodass das Profil und dessen Inhalte nicht mehr zugänglich sind und keine Interaktion mehr möglich ist"
+        close_report: 'Meldung #%{id} als erledigt markieren'
+        close_reports_html: "<strong>Alle</strong> Meldungen gegen <strong>@%{acct}</strong> als erledigt markieren"
+        delete_data_html: Das Profil und die Inhalte von <strong>@%{acct}</strong> werden in 30 Tagen gelöscht, es sei denn, sie werden in der Zwischenzeit entsperrt
+        preview_preamble_html: "<strong>@%{acct}</strong> wird eine Warnung mit folgenden Inhalten erhalten:"
+        record_strike_html: Einen Verstoß gegen <strong>@%{acct}</strong> eintragen, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können
+        send_email_html: "<strong>@%{acct}</strong> eine Warnung per E-Mail senden"
+        warning_placeholder: Optional zusätzliche Begründung für die Moderationsmaßnahme.
       target_origin: Domain des gemeldeten Kontos
       title: Meldungen
       unassign: Zuweisung entfernen
+      unknown_action_msg: 'Unbekannte Aktion: %{action}'
       unresolved: Ungelöst
       updated_at: Aktualisiert
       view_profile: Profil anzeigen
@@ -805,7 +827,7 @@ de:
           other: In der letzten Woche von %{count} Personen geteilt
         title: Angesagte Links
         usage_comparison: Heute %{today} Mal geteilt, gestern %{yesterday} Mal
-      only_allowed: Nur Erlaubte
+      only_allowed: Nur Genehmigte
       pending_review: Überprüfung ausstehend
       preview_card_providers:
         allowed: Links von diesem Herausgeber können angesagt sein
@@ -823,7 +845,7 @@ de:
         not_discoverable: Autor*in hat sich dafür entschieden, nicht entdeckt zu werden
         shared_by:
           one: Einmal geteilt oder favorisiert
-          other: "%{friendly_count} mal geteilt oder favorisiert"
+          other: "%{friendly_count}-mal geteilt oder favorisiert"
         title: Angesagte Beiträge
       tags:
         current_score: Aktuelle Punktzahl %{score}
@@ -943,6 +965,8 @@ de:
   auth:
     apply_for_account: Konto beantragen
     change_password: Passwort
+    confirmations:
+      wrong_email_hint: Wenn diese E-Mail-Adresse nicht korrekt ist, kann sie in den Kontoeinstellungen geändert werden.
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto endgültig löschen möchtest, kannst du das <a href="%{path}">hier vornehmen</a>. Du musst dies zusätzlich bestätigen.
     description:
