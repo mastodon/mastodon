@@ -35,6 +35,20 @@ Layout/EmptyLineBetweenDefs:
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
 
+Layout/LineLength:
+  Max: 140 # RuboCop default 120
+  AllowHeredoc: true
+  AllowURI: true
+  IgnoreCopDirectives: true
+  AllowedPatterns:
+    # Allow comments to be long lines
+    - !ruby/regexp / \# .*$/
+    - !ruby/regexp /^\# .*$/
+  Exclude:
+    - lib/**/*cli*.rb
+    - db/*migrate/**/*
+    - db/seeds/**/*
+
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: space
 
@@ -131,20 +145,6 @@ Metrics/CyclomaticComplexity:
     - set_fetchable_attributes!
     - setup_redis_env_url
     - update_media_attachments!
-
-Layout/LineLength:
-  Max: 140 # RuboCop default 120
-  AllowHeredoc: true
-  AllowURI: true
-  IgnoreCopDirectives: true
-  AllowedPatterns:
-    # Allow comments to be long lines
-    - !ruby/regexp / \# .*$/
-    - !ruby/regexp /^\# .*$/
-  Exclude:
-    - lib/**/*cli*.rb
-    - db/*migrate/**/*
-    - db/seeds/**/*
 
 Metrics/MethodLength:
   CountComments: false
