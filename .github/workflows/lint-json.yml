@@ -9,7 +9,6 @@ on:
       - '.prettier*'
       - '**/*.json'
       - '.github/workflows/lint-json.yml'
-      - '!app/javascript/mastodon/locales/*.json'
 
   pull_request:
     paths:
@@ -18,7 +17,6 @@ on:
       - '.prettier*'
       - '**/*.json'
       - '.github/workflows/lint-json.yml'
-      - '!app/javascript/mastodon/locales/*.json'
 
 jobs:
   lint:

@@ -93,7 +93,6 @@ class Option extends React.PureComponent {
             maxLength={50}
             value={title}
             lang={lang}
-            spellCheck
             onChange={this.handleOptionTitleChange}
             suggestions={this.props.suggestions}
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
