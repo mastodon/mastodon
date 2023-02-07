@@ -525,7 +525,10 @@ Metrics/AbcSize:
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, AllowedMethods, AllowedPatterns, IgnoredMethods, inherit_mode.
 # AllowedMethods: refine
 Metrics/BlockLength:
-  Max: 73
+  Exclude:
+    - db/post_migrate/20221101190723_backfill_admin_action_logs.rb
+    - db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb
+    - lib/tasks/mastodon.rake
 
 # Offense count: 1
 # Configuration parameters: CountBlocks.

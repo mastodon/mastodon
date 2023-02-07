@@ -96,9 +96,6 @@ Metrics/BlockLength:
   Max: 55
   Exclude:
     - 'lib/mastodon/*_cli.rb'
-    - db/post_migrate/20221101190723_backfill_admin_action_logs.rb
-    - db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb
-    - lib/tasks/mastodon.rake
   CountComments: false
   CountAsOne: [array, heredoc]
   AllowedMethods:
