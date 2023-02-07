@@ -67,36 +67,6 @@ Metrics/AbcSize:
     - db/*migrate/**/*
     - lib/paperclip/**/*
   CountRepeatedAttributes: false
-  AllowedMethods:
-    - update_media_attachments!
-    - account_link_to
-    - attempt_oembed
-    - build_crutches
-    - calculate_scores
-    - cc
-    - dump_actor!
-    - filter_from_home?
-    - hydrate
-    - import_bookmarks!
-    - import_relationships!
-    - initialize
-    - link_to_mention
-    - log_target
-    - matches_time_window?
-    - parse_metadata
-    - perform_statuses_search!
-    - privatize_media_attachments!
-    - process_update
-    - publish_media_attachments!
-    - remotable_attachment
-    - render_initial_state
-    - render_with_cache
-    - searchable_by
-    - self.cached_filters_for
-    - set_fetchable_attributes!
-    - signed_request_actor
-    - statuses_to_delete
-    - update_poll!
 
 Metrics/BlockLength:
   Max: 55
@@ -104,11 +74,6 @@ Metrics/BlockLength:
     - 'lib/mastodon/*_cli.rb'
   CountComments: false
   CountAsOne: [array, heredoc]
-  AllowedMethods:
-    - task
-    - namespace
-    - class_methods
-    - included
 
 Metrics/BlockNesting:
   Max: 3
@@ -127,28 +92,6 @@ Metrics/CyclomaticComplexity:
   Exclude:
     - lib/mastodon/*cli*.rb
     - db/*migrate/**/*
-  AllowedMethods:
-    - attempt_oembed
-    - blocked?
-    - build_crutches
-    - calculate_scores
-    - cc
-    - discover_endpoint!
-    - filter_from_home?
-    - hydrate
-    - klass
-    - link_to_mention
-    - log_target
-    - matches_time_window?
-    - patch_for_forwarding!
-    - preprocess_attributes!
-    - process_update
-    - remotable_attachment
-    - scan_text!
-    - self.cached_filters_for
-    - set_fetchable_attributes!
-    - setup_redis_env_url
-    - update_media_attachments!
 
 Metrics/MethodLength:
   CountComments: false
@@ -156,83 +99,11 @@ Metrics/MethodLength:
   Max: 25 # RuboCop default 10
   Exclude:
     - 'lib/mastodon/*_cli.rb'
-  AllowedMethods:
-    - account_link_to
-    - attempt_oembed
-    - body_with_limit
-    - build_crutches
-    - cached_filters_for
-    - calculate_scores
-    - check_webfinger!
-    - clean_feeds!
-    - collection_items
-    - collection_presenter
-    - copy_account_notes!
-    - deduplicate_accounts!
-    - deduplicate_conversations!
-    - deduplicate_local_accounts!
-    - deduplicate_statuses!
-    - deduplicate_tags!
-    - deduplicate_users!
-    - discover_endpoint!
-    - extract_extra_uris_with_indices
-    - extract_hashtags_with_indices
-    - extract_mentions_or_lists_with_indices
-    - filter_from_home?
-    - from_elasticsearch
-    - handle_explicit_update!
-    - handle_mark_as_sensitive!
-    - hsl_to_rgb
-    - import_bookmarks!
-    - import_domain_blocks!
-    - import_relationships!
-    - ldap_options
-    - matches_time_window?
-    - outbox_presenter
-    - pam_get_user
-    - parallelize_with_progress
-    - parse_and_transform
-    - patch_for_forwarding!
-    - populate_home
-    - post_process_style
-    - preload_cache_collection_target_statuses
-    - privatize_media_attachments!
-    - provides_callback_for
-    - publish_media_attachments!
-    - relevant_account_timestamp
-    - remotable_attachment
-    - rgb_to_hsl
-    - rss_status_content_format
-    - set_fetchable_attributes!
-    - setup_redis_env_url
-    - signed_request_actor
-    - to_preview_card_attributes
-    - upgrade_storage_filesystem
-    - upgrade_storage_s3
-    - user_settings_params
-    - hydrate
-    - cc
-    - self_destruct
 
 Metrics/ModuleLength:
   CountComments: false
   Max: 200
   CountAsOne: [array, heredoc]
-
-Metrics/PerceivedComplexity:
-  Max: 16 # RuboCop default 8
-  AllowedMethods:
-    - attempt_oembed
-    - build_crutches
-    - calculate_scores
-    - deduplicate_users!
-    - discover_endpoint!
-    - filter_from_home?
-    - hydrate
-    - patch_for_forwarding!
-    - process_update
-    - remove_orphans
-    - update_media_attachments!
 
 Rails/Exit:
   Exclude:
