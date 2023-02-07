@@ -204,6 +204,7 @@ Metrics/MethodLength:
     - db/migrate/20170604144747_add_foreign_keys_for_accounts.rb
     - db/migrate/20170918125918_ids_to_bigints.rb
     - db/migrate/20181024224956_migrate_account_conversations.rb
+    - db/post_migrate/20221101190723_backfill_admin_action_logs.rb
     - db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb
     - lib/paperclip/color_extractor.rb
     - lib/paperclip/gif_transcoder.rb
