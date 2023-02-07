@@ -224,6 +224,7 @@ Layout/LineContinuationSpacing:
 # URISchemes: http, https
 Layout/LineLength:
   Max: 701
+  Severity: info
 
 # Offense count: 47
 # This cop supports safe autocorrection (--autocorrect).
@@ -2438,3 +2439,7 @@ Style/YodaExpression:
     - 'app/workers/concerns/exponential_backoff.rb'
     - 'lib/paperclip/color_extractor.rb'
     - 'lib/paperclip/gif_transcoder.rb'
+
+# don't clean out the manual directives overridden by generated file
+Lint/RedundantCopDisableDirective:
+  Enabled: false
