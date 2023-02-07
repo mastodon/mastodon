@@ -46,20 +46,8 @@ Metrics/AbcSize:
   Max: 34 # RuboCop default 17
   Exclude:
     - 'lib/**/*cli*.rb'
-    - app/controllers/admin/export_domain_blocks_controller.rb
-    - app/lib/activitypub/activity/follow.rb
-    - app/lib/activitypub/tag_manager.rb
-    - app/lib/emoji_formatter.rb
-    - app/lib/request.rb
-    - app/models/custom_filter.rb
-    - app/services/activitypub/fetch*_service.rb
-    - app/services/activitypub/process_account_service.rb
-    - app/services/batched_remove_status_service.rb
-    - app/services/search_service.rb
-    - app/workers/scheduler/follow_recommendations_scheduler.rb
     - db/*migrate/**/*
     - lib/paperclip/**/*
-    - lib/paperclip/color_extractor.rb
   CountRepeatedAttributes: false
   AllowedMethods:
     - update_media_attachments!
