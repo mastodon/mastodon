@@ -1349,9 +1349,14 @@ Metrics/AbcSize:
 # AllowedMethods: refine
 Metrics/BlockLength:
   Exclude:
+    - app/models/concerns/account_interactions.rb
+    - app/models/concerns/omniauthable.rb
     - db/post_migrate/20221101190723_backfill_admin_action_logs.rb
     - db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb
+    - lib/tasks/branding.rake
     - lib/tasks/mastodon.rake
+    - lib/tasks/repo.rake
+    - lib/tasks/tests.rake
 
 # Offense count: 1
 # Configuration parameters: CountBlocks.
