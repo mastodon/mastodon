@@ -550,7 +550,24 @@ Metrics/BlockNesting:
 # Offense count: 17
 # Configuration parameters: AllowedMethods, AllowedPatterns, IgnoredMethods.
 Metrics/CyclomaticComplexity:
-  Max: 25
+  Exclude:
+    - app/lib/emoji_formatter.rb
+    - app/lib/request.rb
+    - app/models/custom_filter.rb
+    - app/presenters/account_relationships_presenter.rb
+    - app/presenters/status_relationships_presenter.rb
+    - app/serializers/initial_state_serializer.rb
+    - app/services/activitypub/fetch_featured_collection_service.rb
+    - app/services/activitypub/fetch_remote_actor_service.rb
+    - app/services/activitypub/fetch_remote_key_service.rb
+    - app/services/activitypub/fetch_remote_status_service.rb
+    - app/services/activitypub/process_account_service.rb
+    - app/services/activitypub/process_collection_service.rb
+    - app/services/batched_remove_status_service.rb
+    - app/services/resolve_account_service.rb
+    - app/services/search_service.rb
+    - app/workers/scheduler/follow_recommendations_scheduler.rb
+    - lib/paperclip/color_extractor.rb
 
 # Offense count: 25
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, AllowedMethods, AllowedPatterns, IgnoredMethods.
