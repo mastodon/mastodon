@@ -520,18 +520,53 @@ Lint/Void:
 # Configuration parameters: AllowedMethods, AllowedPatterns, IgnoredMethods, CountRepeatedAttributes.
 Metrics/AbcSize:
   Exclude:
-    - lib/paperclip/**/*
+    - app/controllers/admin/domain_blocks_controller.rb
     - app/controllers/admin/export_domain_blocks_controller.rb
+    - app/controllers/concerns/cache_concern.rb
+    - app/controllers/concerns/signature_verification.rb
+    - app/controllers/settings/two_factor_authentication/webauthn_credentials_controller.rb
+    - app/helpers/admin/action_logs_helper.rb
+    - app/helpers/application_helper.rb
+    - app/helpers/home_helper.rb
     - app/lib/activitypub/activity/follow.rb
     - app/lib/activitypub/tag_manager.rb
     - app/lib/emoji_formatter.rb
+    - app/lib/feed_manager.rb
+    - app/lib/permalink_redirector.rb
     - app/lib/request.rb
+    - app/lib/status_cache_hydrator.rb
+    - app/lib/text_formatter.rb
+    - app/lib/user_settings_decorator.rb
+    - app/lib/video_metadata_extractor.rb
+    - app/models/account_statuses_cleanup_policy.rb
+    - app/models/admin/status_batch_action.rb
+    - app/models/concerns/omniauthable.rb
+    - app/models/concerns/remotable.rb
     - app/models/custom_filter.rb
+    - app/models/status.rb
+    - app/models/trends/links.rb
+    - app/models/trends/statuses.rb
+    - app/models/trends/tags.rb
+    - app/presenters/account_relationships_presenter.rb
+    - app/presenters/activitypub/activity_presenter.rb
+    - app/presenters/status_relationships_presenter.rb
+    - app/serializers/initial_state_serializer.rb
     - app/services/activitypub/fetch*_service.rb
     - app/services/activitypub/process_account_service.rb
+    - app/services/activitypub/process_status_update_service.rb
+    - app/services/backup_service.rb
     - app/services/batched_remove_status_service.rb
+    - app/services/fetch_link_card_service.rb
+    - app/services/import_service.rb
     - app/services/search_service.rb
+    - app/services/suspend_account_service.rb
+    - app/services/unsuspend_account_service.rb
+    - app/services/update_status_service.rb
+    - app/validators/poll_validator.rb
     - app/workers/scheduler/follow_recommendations_scheduler.rb
+    - app/workers/web/push_notification_worker.rb
+    - lib/paperclip/**/*
+    - lib/tasks/emojis.rake
 
 # Offense count: 3
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, AllowedMethods, AllowedPatterns, IgnoredMethods, inherit_mode.
