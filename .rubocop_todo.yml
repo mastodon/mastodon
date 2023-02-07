@@ -533,7 +533,8 @@ Metrics/BlockLength:
 # Offense count: 1
 # Configuration parameters: CountBlocks.
 Metrics/BlockNesting:
-  Max: 4
+  Exclude:
+    - lib/tasks/mastodon.rake
 
 # Offense count: 17
 # Configuration parameters: AllowedMethods, AllowedPatterns, IgnoredMethods.
