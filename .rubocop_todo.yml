@@ -1315,6 +1315,15 @@ Rails/ActiveRecordCallbacksOrder:
     - 'app/models/session_activation.rb'
     - 'app/models/status.rb'
 
+# Offense count: 4
+# This cop supports unsafe autocorrection (--autocorrect-all).
+Rails/ApplicationController:
+  Exclude:
+    - 'app/controllers/health_controller.rb'
+    - 'app/controllers/well_known/host_meta_controller.rb'
+    - 'app/controllers/well_known/nodeinfo_controller.rb'
+    - 'app/controllers/well_known/webfinger_controller.rb'
+
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: NilOrEmpty, NotPresent, UnlessPresent.
@@ -2521,10 +2530,3 @@ Lint/RedundantCopDisableDirective:
 
 Style/RedundantConstantBase:
   Enabled: false
-
-Rails/ApplicationController:
-  Exclude:
-    - app/controllers/health_controller.rb
-    - app/controllers/well_known/host_meta_controller.rb
-    - app/controllers/well_known/nodeinfo_controller.rb
-    - app/controllers/well_known/webfinger_controller.rb
