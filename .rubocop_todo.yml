@@ -551,7 +551,11 @@ Metrics/ModuleLength:
 # Offense count: 1
 # Configuration parameters: CountKeywordArgs, MaxOptionalParameters.
 Metrics/ParameterLists:
-  Max: 6
+  Exclude:
+    - app/models/concerns/account_interactions.rb
+    - app/services/activitypub/fetch_remote_account_service.rb
+    - app/services/activitypub/fetch_remote_actor_service.rb
+    - app/services/activitypub/fetch_remote_status_service.rb
 
 # Offense count: 6
 # Configuration parameters: AllowedMethods, AllowedPatterns, IgnoredMethods.
