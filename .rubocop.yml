@@ -155,6 +155,30 @@ Metrics/MethodLength:
   Max: 25 # RuboCop default 10
   Exclude:
     - 'lib/mastodon/*_cli.rb'
+    - app/controllers/admin/export_domain_blocks_controller.rb
+    - app/controllers/admin/reports/actions_controller.rb
+    - app/helpers/admin/action_logs_helper.rb
+    - app/lib/activitypub/activity.rb
+    - app/lib/activitypub/activity/create.rb
+    - app/lib/emoji_formatter.rb
+    - app/lib/importer/statuses_index_importer.rb
+    - app/lib/request.rb
+    - app/models/concerns/account_merging.rb
+    - app/serializers/initial_state_serializer.rb
+    - app/serializers/rest/instance_serializer.rb
+    - app/services/activitypub/fetch_remote_key_service.rb
+    - app/services/activitypub/fetch_remote_status_service.rb
+    - app/services/activitypub/process_account_service.rb
+    - app/services/activitypub/process_status_update_service.rb
+    - app/workers/scheduler/follow_recommendations_scheduler.rb
+    - db/migrate/20160306172223_create_doorkeeper_tables.rb
+    - db/migrate/20170604144747_add_foreign_keys_for_accounts.rb
+    - db/migrate/20170918125918_ids_to_bigints.rb
+    - db/migrate/20181024224956_migrate_account_conversations.rb
+    - db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb
+    - lib/paperclip/color_extractor.rb
+    - lib/paperclip/gif_transcoder.rb
+    - lib/paperclip/transcoder.rb
   AllowedMethods:
     - account_link_to
     - attempt_oembed
