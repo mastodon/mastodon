@@ -5264,11 +5264,11 @@ Style/GuardClause:
     - 'app/lib/activitypub/activity/block.rb'
     - 'app/lib/activitypub/linked_data_signature.rb'
     - 'app/lib/connection_pool/shared_connection_pool.rb'
-    - 'app/lib/request.rb'
     - 'app/lib/request_pool.rb'
+    - 'app/lib/request.rb'
     - 'app/lib/status_finder.rb'
-    - 'app/lib/webfinger.rb'
     - 'app/lib/webfinger_resource.rb'
+    - 'app/lib/webfinger.rb'
     - 'app/models/concerns/account_counters.rb'
     - 'app/models/concerns/ldap_authenticable.rb'
     - 'app/models/tag.rb'
@@ -5290,6 +5290,8 @@ Style/GuardClause:
     - 'lib/mastodon/media_cli.rb'
     - 'lib/paperclip/attachment_extensions.rb'
     - 'lib/tasks/repo.rake'
+    - app/lib/activitypub/activity.rb
+    - app/models/account_statuses_cleanup_policy.rb
 
 # Offense count: 13
 # This cop supports safe autocorrection (--autocorrect).
