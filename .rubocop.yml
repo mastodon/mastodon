@@ -86,6 +86,9 @@ Metrics/ModuleLength:
   Max: 200 # Default 100
   CountAsOne: [array, heredoc]
 
+Metrics/PerceivedComplexity:
+  Max: 16 # RuboCop default 8
+
 Rails/Exit:
   Exclude:
     - 'lib/mastodon/*'
