@@ -2463,3 +2463,10 @@ Lint/RedundantCopDisableDirective:
 
 Style/RedundantConstantBase:
   Enabled: false
+
+Rails/ApplicationController:
+  Exclude:
+    - app/controllers/health_controller.rb
+    - app/controllers/well_known/host_meta_controller.rb
+    - app/controllers/well_known/nodeinfo_controller.rb
+    - app/controllers/well_known/webfinger_controller.rb
