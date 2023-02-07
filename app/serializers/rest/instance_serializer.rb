@@ -45,6 +45,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     {
       urls: {
         streaming: Rails.configuration.x.streaming_api_base_url,
+        status: object.status_page_url,
       },
 
       accounts: {
