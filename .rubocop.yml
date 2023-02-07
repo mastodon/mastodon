@@ -30,20 +30,11 @@ AllCops:
     - 'lib/json_ld/*'
     - 'lib/templates/**/*'
 
-Layout/AccessModifierIndentation:
-  EnforcedStyle: indent
-
-Layout/EmptyLineBetweenDefs:
-  AllowAdjacentOneLineDefs: true
-
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
 
 Layout/LineLength:
   Max: 140 # RuboCop default 120
-  AllowHeredoc: true
-  AllowURI: true
-  IgnoreCopDirectives: true
   AllowedPatterns:
     # Allow comments to be long lines
     - !ruby/regexp / \# .*$/
@@ -52,9 +43,6 @@ Layout/LineLength:
     - lib/**/*cli*.rb
     - db/*migrate/**/*
     - db/seeds/**/*
-
-Layout/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: space
 
 Lint/UselessAccessModifier:
   ContextCreatingMethods:
@@ -66,53 +54,43 @@ Metrics/AbcSize:
     - 'lib/**/*cli*.rb'
     - db/*migrate/**/*
     - lib/paperclip/**/*
-  CountRepeatedAttributes: false
 
 Metrics/BlockLength:
-  Max: 55
+  Max: 55 # Default 25
+  CountAsOne: [array, heredoc]
   Exclude:
     - 'lib/mastodon/*_cli.rb'
-  CountComments: false
-  CountAsOne: [array, heredoc]
 
 Metrics/BlockNesting:
-  Max: 3
   Exclude:
     - 'lib/mastodon/*_cli.rb'
 
 Metrics/ClassLength:
-  CountComments: false
-  Max: 500
+  Max: 500 # Default 100
   CountAsOne: [array, heredoc]
   Exclude:
     - 'lib/mastodon/*_cli.rb'
 
 Metrics/CyclomaticComplexity:
-  Max: 12
+  Max: 12 # Default 7
   Exclude:
     - lib/mastodon/*cli*.rb
     - db/*migrate/**/*
 
 Metrics/MethodLength:
-  CountComments: false
-  CountAsOne: [array, heredoc]
   Max: 25 # RuboCop default 10
+  CountAsOne: [array, heredoc]
   Exclude:
     - 'lib/mastodon/*_cli.rb'
 
 Metrics/ModuleLength:
-  CountComments: false
-  Max: 200
+  Max: 200 # Default 100
   CountAsOne: [array, heredoc]
 
 Rails/Exit:
   Exclude:
     - 'lib/mastodon/*'
     - 'lib/cli.rb'
-
-Style/CollectionMethods:
-  PreferredMethods:
-    find_all: 'select'
 
 Style/Copyright:
   Enabled: false
