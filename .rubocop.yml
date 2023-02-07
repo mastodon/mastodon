@@ -1,3 +1,5 @@
+inherit_from: .rubocop_todo.yml
+
 require:
   - rubocop-rails
   - rubocop-rspec
@@ -11,6 +13,7 @@ AllCops:
   UseCache: true
   CacheRootDirectory: tmp
   NewCops: enable
+  EnabledByDefault: true
   Exclude:
     - db/schema.rb
     - 'app/views/**/*'
@@ -23,50 +26,17 @@ AllCops:
     - 'lib/json_ld/*'
     - 'lib/templates/**/*'
 
-Bundler/OrderedGems:
-  Enabled: false
-
 Layout/AccessModifierIndentation:
   EnforcedStyle: indent
-
-Layout/EmptyLineAfterMagicComment:
-  Enabled: false
-
-Layout/EmptyLineAfterGuardClause:
-  Enabled: false
 
 Layout/EmptyLineBetweenDefs:
   AllowAdjacentOneLineDefs: true
 
-Layout/EmptyLinesAroundAttributeAccessor:
-  Enabled: true
-
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
 
-Layout/HashAlignment:
-  Enabled: false
-
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: space
-
-Lint/DeprecatedOpenSSLConstant:
-  Enabled: true
-
-Lint/DuplicateElsifCondition:
-  Enabled: true
-
-Lint/MixedRegexpCaptureTypes:
-  Enabled: true
-
-Lint/RaiseException:
-  Enabled: true
-
-Lint/StructNewOverride:
-  Enabled: true
 
 Lint/UselessAccessModifier:
   ContextCreatingMethods:
@@ -272,150 +242,24 @@ Metrics/PerceivedComplexity:
     - remove_orphans
     - update_media_attachments!
 
-Naming/MemoizedInstanceVariableName:
-  Enabled: false
-
-Naming/MethodParameterName:
-  Enabled: true
-
-Rails:
-  Enabled: true
-
 Rails/ApplicationController:
   Enabled: false
   Exclude:
     - 'app/controllers/well_known/**/*.rb'
-
-Rails/BelongsTo:
-  Enabled: false
-
-Rails/ContentTag:
-  Enabled: false
-
-Rails/EnumHash:
-  Enabled: false
 
 Rails/Exit:
   Exclude:
     - 'lib/mastodon/*'
     - 'lib/cli.rb'
 
-Rails/FilePath:
-  Enabled: false
-
-Rails/HasAndBelongsToMany:
-  Enabled: false
-
-Rails/HasManyOrHasOneDependent:
-  Enabled: false
-
-Rails/HelperInstanceVariable:
-  Enabled: false
-
-Rails/HttpStatus:
-  Enabled: false
-
-Rails/IndexBy:
-  Enabled: false
-
-Rails/InverseOf:
-  Enabled: false
-
-Rails/LexicallyScopedActionFilter:
-  Enabled: false
-
-Rails/OutputSafety:
-  Enabled: true
-
-Rails/RakeEnvironment:
-  Enabled: false
-
-Rails/RedundantForeignKey:
-  Enabled: false
-
-Rails/SkipsModelValidations:
-  Enabled: false
-
-Rails/UniqueValidationWithoutIndex:
-  Enabled: false
-
-Style/AccessorGrouping:
-  Enabled: true
-
-Style/AccessModifierDeclarations:
-  Enabled: false
-
-Style/ArrayCoercion:
-  Enabled: true
-
-Style/BisectedAttrAccessor:
-  Enabled: true
-
-Style/CaseLikeIf:
-  Enabled: false
-
-Style/ClassAndModuleChildren:
-  Enabled: false
-
 Style/CollectionMethods:
   Enabled: true
   PreferredMethods:
     find_all: 'select'
 
-Style/Documentation:
-  Enabled: false
-
-Style/DoubleNegation:
-  Enabled: true
-
-Style/ExpandPathArguments:
-  Enabled: false
-
-Style/ExponentialNotation:
-  Enabled: true
-
-Style/FormatString:
-  Enabled: false
-
-Style/FormatStringToken:
-  Enabled: false
-
-Style/FrozenStringLiteralComment:
-  Enabled: true
-
-Style/GuardClause:
-  Enabled: false
-
-Style/HashAsLastArrayItem:
-  Enabled: false
-
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashLikeCase:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: false
-
 Style/HashSyntax:
   Enabled: true
   EnforcedStyle: ruby19_no_mixed_keys
-
-Style/IfUnlessModifier:
-  Enabled: false
-
-Style/InverseMethods:
-  Enabled: false
-
-Style/Lambda:
-  Enabled: false
-
-Style/MutableConstant:
-  Enabled: false
 
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
@@ -425,55 +269,8 @@ Style/PercentLiteralDelimiters:
 Style/PerlBackrefs:
   AutoCorrect: false
 
-Style/RedundantFetchBlock:
-  Enabled: true
-
-Style/RedundantFileExtensionInRequire:
-  Enabled: true
-
-Style/RedundantRegexpCharacterClass:
-  Enabled: false
-
-Style/RedundantRegexpEscape:
-  Enabled: false
-
-Style/RedundantReturn:
-  Enabled: true
-
-Style/RedundantBegin:
-  Enabled: false
-
-Style/RegexpLiteral:
-  Enabled: false
-
-Style/RescueStandardError:
-  Enabled: true
-
-Style/SignalException:
-  Enabled: false
-
-Style/SlicingWithRange:
-  Enabled: true
-
-Style/SymbolArray:
-  Enabled: false
-
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: 'comma'
 
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: 'comma'
-
-Style/UnpackFirst:
-  Enabled: false
-
-RSpec/ScatteredSetup:
-  Enabled: false
-RSpec/ImplicitExpect:
-  Enabled: false
-RSpec/NamedSubject:
-  Enabled: false
-RSpec/DescribeClass:
-  Enabled: false
-RSpec/LetSetup:
-  Enabled: false
