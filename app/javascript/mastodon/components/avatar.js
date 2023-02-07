@@ -27,12 +27,12 @@ export default class Avatar extends React.PureComponent {
   handleMouseEnter = () => {
     if (this.props.animate) return;
     this.setState({ hovering: true });
-  }
+  };
 
   handleMouseLeave = () => {
     if (this.props.animate) return;
     this.setState({ hovering: false });
-  }
+  };
 
   render () {
     const { account, size, animate, inline } = this.props;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';
-import Overlay from 'react-overlays/lib/Overlay';
+import Overlay from 'react-overlays/Overlay';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { supportsPassiveEvents } from 'detect-passive-events';
@@ -57,7 +57,7 @@ class ModifierPickerMenu extends React.PureComponent {
 
   handleClick = e => {
     this.props.onSelect(e.currentTarget.getAttribute('data-index') * 1);
-  }
+  };
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.active) {
@@ -75,7 +75,7 @@ class ModifierPickerMenu extends React.PureComponent {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
     }
-  }
+  };
 
   attachListeners () {
     document.addEventListener('click', this.handleDocumentClick, false);
@@ -89,7 +89,7 @@ class ModifierPickerMenu extends React.PureComponent {
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   render () {
     const { active } = this.props;
@@ -124,12 +124,12 @@ class ModifierPicker extends React.PureComponent {
     } else {
       this.props.onOpen();
     }
-  }
+  };
 
   handleSelect = modifier => {
     this.props.onChange(modifier);
     this.props.onClose();
-  }
+  };
 
   render () {
     const { active, modifier } = this.props;
@@ -154,9 +154,6 @@ class EmojiPickerMenu extends React.PureComponent {
     onClose: PropTypes.func.isRequired,
     onPick: PropTypes.func.isRequired,
     style: PropTypes.object,
-    placement: PropTypes.string,
-    arrowOffsetLeft: PropTypes.string,
-    arrowOffsetTop: PropTypes.string,
     intl: PropTypes.object.isRequired,
     skinTone: PropTypes.number.isRequired,
     onSkinTone: PropTypes.func.isRequired,
@@ -177,7 +174,7 @@ class EmojiPickerMenu extends React.PureComponent {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
     }
-  }
+  };
 
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
@@ -201,7 +198,7 @@ class EmojiPickerMenu extends React.PureComponent {
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   getI18n = () => {
     const { intl } = this.props;
@@ -222,7 +219,7 @@ class EmojiPickerMenu extends React.PureComponent {
         custom: intl.formatMessage(messages.custom),
       },
     };
-  }
+  };
 
   handleClick = (emoji, event) => {
     if (!emoji.native) {
@@ -232,19 +229,19 @@ class EmojiPickerMenu extends React.PureComponent {
       this.props.onClose();
     }
     this.props.onPick(emoji);
-  }
+  };
 
   handleModifierOpen = () => {
     this.setState({ modifierOpen: true });
-  }
+  };
 
   handleModifierClose = () => {
     this.setState({ modifierOpen: false });
-  }
+  };
 
   handleModifierChange = modifier => {
     this.props.onSkinTone(modifier);
-  }
+  };
 
   render () {
     const { loading, style, intl, custom_emojis, skinTone, frequentlyUsedEmojis } = this.props;
@@ -324,14 +321,13 @@ class EmojiPickerDropdown extends React.PureComponent {
   state = {
     active: false,
     loading: false,
-    placement: null,
   };
 
   setRef = (c) => {
     this.dropdown = c;
-  }
+  };
 
-  onShowDropdown = ({ target }) => {
+  onShowDropdown = () => {
     this.setState({ active: true });
 
     if (!EmojiPicker) {
@@ -346,14 +342,11 @@ class EmojiPickerDropdown extends React.PureComponent {
         this.setState({ loading: false, active: false });
       });
     }
-
-    const { top } = target.getBoundingClientRect();
-    this.setState({ placement: top * 2 < innerHeight ? 'bottom' : 'top' });
-  }
+  };
 
   onHideDropdown = () => {
     this.setState({ active: false });
-  }
+  };
 
   onToggle = (e) => {
     if (!this.state.loading && (!e.key || e.key === 'Enter')) {
@@ -363,26 +356,26 @@ class EmojiPickerDropdown extends React.PureComponent {
         this.onShowDropdown(e);
       }
     }
-  }
+  };
 
   handleKeyDown = e => {
     if (e.key === 'Escape') {
       this.onHideDropdown();
     }
-  }
+  };
 
   setTargetRef = c => {
     this.target = c;
-  }
+  };
 
   findTarget = () => {
     return this.target;
-  }
+  };
 
   render () {
     const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis, button } = this.props;
     const title = intl.formatMessage(messages.emoji);
-    const { active, loading, placement } = this.state;
+    const { active, loading } = this.state;
 
     return (
       <div className='emoji-picker-dropdown' onKeyDown={this.handleKeyDown}>
@@ -394,16 +387,22 @@ class EmojiPickerDropdown extends React.PureComponent {
           />}
         </div>
 
-        <Overlay show={active} placement={placement} target={this.findTarget}>
-          <EmojiPickerMenu
-            custom_emojis={this.props.custom_emojis}
-            loading={loading}
-            onClose={this.onHideDropdown}
-            onPick={onPickEmoji}
-            onSkinTone={onSkinTone}
-            skinTone={skinTone}
-            frequentlyUsedEmojis={frequentlyUsedEmojis}
-          />
+        <Overlay show={active} placement={'bottom'} target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
+          {({ props, placement })=> (
+            <div {...props} style={{ ...props.style, width: 299 }}>
+              <div className={`dropdown-animation ${placement}`}>
+                <EmojiPickerMenu
+                  custom_emojis={this.props.custom_emojis}
+                  loading={loading}
+                  onClose={this.onHideDropdown}
+                  onPick={onPickEmoji}
+                  onSkinTone={onSkinTone}
+                  skinTone={skinTone}
+                  frequentlyUsedEmojis={frequentlyUsedEmojis}
+                />
+              </div>
+            </div>
+          )}
         </Overlay>
       </div>
     );

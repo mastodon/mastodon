@@ -49,7 +49,7 @@ zh-HK:
         title: 更改 %{username} 身份
       confirm: 確定
       confirmed: 已確定
-      confirming: 確定
+      confirming: 確定中
       custom: 自訂
       delete: 刪除資料
       deleted: 已刪除
@@ -113,6 +113,8 @@ zh-HK:
       redownloaded_msg: 成功重新載入 %{username} 的個人資料頁面
       reject: 拒絕
       rejected_msg: 成功拒絕了 %{username} 的新帳號申請
+      remote_suspension_irreversible: 帳戶已永久刪除
+      remote_suspension_reversible_hint_html: 此帳戶已被停權及所有數據將會於 %{date} 被刪除。在此之前，你仍可以完全回復帳號。如果你想即時刪除此帳戶的資料，可以在下面進行操作。
       remove_avatar: 刪除頭像
       remove_header: 移除頁面頂端
       removed_avatar_msg: 成功刪除 %{username} 的頭像
@@ -550,7 +552,6 @@ zh-HK:
     report_notes:
       created_msg: 舉報備註已建立！
       destroyed_msg: 舉報備註已刪除！
-      today_at: 今天 %{time}
     reports:
       account:
         notes:
@@ -562,8 +563,6 @@ zh-HK:
         mark_as_sensitive_description_html: 被檢舉的帖文中的媒體會被標記為敏感內容，並記錄一次警告，以便日後加快處理同一帳號的違規行為。
         other_description_html: 查看更多控制帳號行為，以及自訂與被檢舉帳號溝通的選項。
         resolve_description_html: 不會對被檢舉的帳號採取任何動作，也不會記錄警告，檢舉報告將會結案。
-        silence_description_html: 此個人檔案將會只有追蹤者和透過手動搜尋才可以看見，大幅限制了它的曝光。你可隨時恢復它。
-        suspend_description_html: 直到最後刪除之前，此個人檔案及其內容將無法被存取。你將無法與此帳號互動。這動作可以在 30 天內還原。
       actions_description_html: 決定對此檢舉採取哪種措施。如果對被檢舉帳號採取懲罰措施，除非選取了<strong>垃圾訊息</strong>分類，否則將向他們發送一封電郵通知。
       add_to_report: 加入更多到檢舉
       are_you_sure: 你確認嗎？
@@ -690,6 +689,9 @@ zh-HK:
       content_retention:
         preamble: 控制使用者生成的內容如何儲存在 Mastodon。
         title: 內容留存
+      default_noindex:
+        desc_html: 影響所有未自行設定的用戶
+        title: 預設用戶不在搜尋引擎索引之內
       discovery:
         follow_recommendations: 追蹤建議
         preamble: 呈現有趣的內容有助於吸引不認識 Mastodon 的使用者新手上路。控制各種探索功能在你的伺服器上的運作方式。
@@ -953,6 +955,9 @@ zh-HK:
       email_below_hint_html: 如果下面的電郵地址不正確，你可在此修改，然後接收電郵進行確認。
       email_settings_hint_html: 確認電郵已發送至 %{email}。電郵地址不正確的話，你可以在帳戶設置中進行更改。
       title: 設定
+    sign_in:
+      preamble_html: 請使用 <strong>%{domain}</strong> 的資料登入。如果您的帳戶託管在其他的伺服器，您將無法在此登入。
+      title: 登入 %{domain}
     sign_up:
       preamble: 有了這個 Mastodon 伺服器的帳號，無論將帳號託管在何處，你都可以追蹤網絡上任何人。
       title: 讓我為你在 %{domain} 上設定好。

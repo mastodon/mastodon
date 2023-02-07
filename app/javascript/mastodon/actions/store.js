@@ -21,4 +21,4 @@ export function hydrateStore(rawState) {
     dispatch(hydrateCompose());
     dispatch(importFetchedAccounts(Object.values(rawState.accounts)));
   };
-};
+}

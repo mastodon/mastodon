@@ -122,14 +122,12 @@ zh-HK:
         admin/accounts: 帳號管理
         admin/all: 所有管理功能
         admin/reports: 檢舉報告管理
-        all: 全部
         blocks: 封鎖
         bookmarks: 書籤
         conversations: 對話
         crypto: 端到端加密
         favourites: 最愛
         filters: 篩選器
-        follow: 關係
         follows: 追蹤
         lists: 名單
         media: 媒體附件
@@ -149,9 +147,19 @@ zh-HK:
     scopes:
       admin:read: 讀取伺服器的所有資料
       admin:read:accounts: 讀取所有帳戶的敏感資訊
+      admin:read:canonical_email_blocks: 讀取所有已封鎖標準電郵的敏感資訊
+      admin:read:domain_allows: 讀取所有允許網域的敏感資訊
+      admin:read:domain_blocks: 讀取所有已封鎖網域的敏感資訊
+      admin:read:email_domain_blocks: 讀取所有已封鎖電郵網域的敏感資訊
+      admin:read:ip_blocks: 讀取所有已封鎖 IP 的敏感資訊
       admin:read:reports: 讀取所有回報 / 被回報之帳戶的敏感資訊
       admin:write: 修改伺服器的所有資料
       admin:write:accounts: 對帳號進行仲裁管理動作
+      admin:write:canonical_email_blocks: 對已封鎖的標準電郵執行審核動作
+      admin:write:domain_allows: 對已允許的網域進行審核動作
+      admin:write:domain_blocks: 對已封鎖的網域進行審核動作
+      admin:write:email_domain_blocks: 對已封鎖的電郵網域執行審核動作
+      admin:write:ip_blocks: 對已封鎖的 IP 執行審核動作
       admin:write:reports: 對回報進行仲裁管理動作
       crypto: 使用端到端加密
       follow: 修改帳號的對外聯繫

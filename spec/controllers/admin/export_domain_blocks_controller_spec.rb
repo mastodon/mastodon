@@ -9,9 +9,9 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
 
   describe 'GET #export' do
     it 'renders instances' do
-      Fabricate(:domain_block, domain: 'bad.domain', severity: 'silence', public_comment: 'bad')
-      Fabricate(:domain_block, domain: 'worse.domain', severity: 'suspend', reject_media: true, reject_reports: true, public_comment: 'worse', obfuscate: true)
-      Fabricate(:domain_block, domain: 'reject.media', severity: 'noop', reject_media: true, public_comment: 'reject media')
+      Fabricate(:domain_block, domain: 'bad.domain', severity: 'silence', public_comment: 'bad server')
+      Fabricate(:domain_block, domain: 'worse.domain', severity: 'suspend', reject_media: true, reject_reports: true, public_comment: 'worse server', obfuscate: true)
+      Fabricate(:domain_block, domain: 'reject.media', severity: 'noop', reject_media: true, public_comment: 'reject media and test unicode characters ♥')
       Fabricate(:domain_block, domain: 'no.op', severity: 'noop', public_comment: 'noop')
 
       get :export, params: { format: :csv }
@@ -21,10 +21,32 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
   end
 
   describe 'POST #import' do
-    it 'blocks imported domains' do
-      post :import, params: { admin_import: { data: fixture_file_upload('domain_blocks.csv') } }
+    context 'with complete domain blocks CSV' do
+      before do
+        post :import, params: { admin_import: { data: fixture_file_upload('domain_blocks.csv') } }
+      end
 
-      expect(assigns(:domain_blocks).map(&:domain)).to match_array ['bad.domain', 'worse.domain', 'reject.media']
+      it 'renders page with expected domain blocks' do
+        expect(assigns(:domain_blocks).map { |block| [block.domain, block.severity.to_sym] }).to match_array [['bad.domain', :silence], ['worse.domain', :suspend], ['reject.media', :noop]]
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'with a list of only domains' do
+      before do
+        post :import, params: { admin_import: { data: fixture_file_upload('domain_blocks_list.txt') } }
+      end
+
+      it 'renders page with expected domain blocks' do
+        expect(assigns(:domain_blocks).map { |block| [block.domain, block.severity.to_sym] }).to match_array [['bad.domain', :suspend], ['worse.domain', :suspend], ['reject.media', :suspend]]
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
     end
   end
 

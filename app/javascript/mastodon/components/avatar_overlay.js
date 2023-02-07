@@ -29,12 +29,12 @@ export default class AvatarOverlay extends React.PureComponent {
   handleMouseEnter = () => {
     if (this.props.animate) return;
     this.setState({ hovering: true });
-  }
+  };
 
   handleMouseLeave = () => {
     if (this.props.animate) return;
     this.setState({ hovering: false });
-  }
+  };
 
   render() {
     const { account, friend, animate, size, baseSize, overlaySize } = this.props;

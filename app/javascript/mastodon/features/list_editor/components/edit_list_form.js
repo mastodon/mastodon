@@ -33,16 +33,16 @@ class ListForm extends React.PureComponent {
 
   handleChange = e => {
     this.props.onChange(e.target.value);
-  }
+  };
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.onSubmit();
-  }
+  };
 
   handleClick = () => {
     this.props.onSubmit();
-  }
+  };
 
   render () {
     const { value, disabled, intl } = this.props;

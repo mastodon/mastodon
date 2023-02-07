@@ -3,10 +3,10 @@ ko:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: 어플리케이션 이름
+        name: 애플리케이션 이름
         redirect_uri: 리다이렉트 URI
         scopes: 범위
-        website: 어플리케이션 웹사이트
+        website: 애플리케이션 웹사이트
     errors:
       models:
         doorkeeper/application:
@@ -27,18 +27,18 @@ ko:
       confirmations:
         destroy: 정말로 실행하시겠습니까?
       edit:
-        title: 어플리케이션 수정
+        title: 애플리케이션 수정
       form:
         error: 이런! 오류를 확인하세요
       help:
         native_redirect_uri: "%{native_redirect_uri} 을/를 이용해 로컬 테스트를 할 수 있습니다"
-        redirect_uri: 한 줄에 하나의 URI 를 작성하세요
+        redirect_uri: 한 줄에 하나의 URI를 작성하세요
         scopes: 스페이스로 범위를 구분하세요. 빈 칸으로 놔두면 기본 범위를 사용합니다.
       index:
-        application: 어플리케이션
+        application: 애플리케이션
         callback_url: 콜백 URL
         delete: 삭제
-        empty: 어플리케이션이 없습니다.
+        empty: 애플리케이션이 없습니다.
         name: 이름
         new: 새 애플리케이션
         scopes: 범위
@@ -58,7 +58,7 @@ ko:
         authorize: 승인
         deny: 거부
       error:
-        title: 에러가 발생하였습니다
+        title: 오류가 발생하였습니다
       new:
         prompt_html: "%{client_name}이 당신의 계정에 대한 접근 권한을 요청합니다. 이것은 제3자의 응용프로그램입니다. <strong>이것을 신뢰하지 않는다면, 권한을 승인하지 말아야 합니다.</strong>"
         review_permissions: 권한 검토
@@ -81,7 +81,7 @@ ko:
     errors:
       messages:
         access_denied: 리소스 소유자 또는 인증 서버가 요청을 거부했습니다.
-        credential_flow_not_configured: Doorkeeper.configure.resource_owner_from_credentials의 설정이 되어있지 않아 리소스 소유자 패스워드 자격증명이 실패하였습니다.
+        credential_flow_not_configured: Doorkeeper.configure.resource_owner_from_credentials의 설정이 되어있지 않아 리소스 소유자 암호 자격증명이 실패하였습니다.
         invalid_client: 알 수 없는 클라이언트이기 때문에 클라이언트 인증이 실패하였습니다, 클라이언트 자격증명이 포함되지 않았거나, 지원 되지 않는 메소드입니다.
         invalid_grant: 제공된 권한 부여가 잘못되거나, 만료되었거나, 취소되었거나, 권한 부여 요청에 사용된 리디렉션 URI가 일치하지 않거나, 다른 클라이언트에 지정되었습니다.
         invalid_redirect_uri: 리디렉션 URI가 올바르지 않습니다
@@ -122,14 +122,14 @@ ko:
         admin/accounts: 계정 관리
         admin/all: 모든 관리자 기능
         admin/reports: 신고 관리
-        all: 전체
+        all: 마스토돈 계정에 대한 모든 권한
         blocks: 차단
         bookmarks: 북마크
         conversations: 대화
         crypto: 종단간 암호화
         favourites: 좋아요
         filters: 필터
-        follow: 관계
+        follow: 팔로우, 뮤트와 차단
         follows: 팔로우
         lists: 리스트
         media: 첨부된 미디어
@@ -149,9 +149,19 @@ ko:
     scopes:
       admin:read: 서버의 모든 데이터 읽기
       admin:read:accounts: 모든 계정의 민감한 정보 읽기
+      admin:read:canonical_email_blocks: 정규화된 이메일 차단 전부에 대한 민감한 정보를 읽습니다
+      admin:read:domain_allows: 도메인 허용에 대한 민감한 정보를 읽습니다
+      admin:read:domain_blocks: 도메인 차단에 대한 민감한 정보를 읽습니다
+      admin:read:email_domain_blocks: 이메일 도메인 차단에 대한 민감한 정보를 읽습니다
+      admin:read:ip_blocks: IP 차단에 대한 민감한 정보를 읽습니다
       admin:read:reports: 신고와 신고 된 계정의 민감한 정보 읽기
       admin:write: 서버의 모든 데이터 수정
       admin:write:accounts: 계정에 모더레이션 조치 취하기
+      admin:write:canonical_email_blocks: 정규화된 이메일 차단에 모더레이션 조치 취하기
+      admin:write:domain_allows: 도메인 허용에 모더레이션 조치 취하기
+      admin:write:domain_blocks: 도메인 차단에 모더레이션 조치 취하기
+      admin:write:email_domain_blocks: 이메일 도메인 차단에 모더레이션 조치 취하기
+      admin:write:ip_blocks: IP 차단에 모더레이션 조치 취하기
       admin:write:reports: 신고에 모더레이션 조치 취하기
       crypto: 종단간 암호화 사용
       follow: 계정의 관계를 수정
