@@ -2063,7 +2063,12 @@ Style/NegatedIfElseCondition:
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: Strict, AllowedNumbers, AllowedPatterns.
 Style/NumericLiterals:
-  MinDigits: 15
+  Exclude:
+    - lib/mastodon/maintenance_cli.rb
+    - db/migrate/20180812173710_copy_status_stats.rb
+    - db/migrate/20181116173541_copy_account_stats.rb
+    - spec/controllers/api/v1/markers_controller_spec.rb
+    - spec/controllers/api/v1/markers_controller_spec.rb
 
 # Offense count: 46
 # Configuration parameters: SuspiciousParamNames, Allowlist.
