@@ -1411,19 +1411,31 @@ Metrics/MethodLength:
   Exclude:
     - app/controllers/admin/export_domain_blocks_controller.rb
     - app/controllers/admin/reports/actions_controller.rb
+    - app/controllers/settings/preferences_controller.rb
     - app/helpers/admin/action_logs_helper.rb
+    - app/helpers/formatting_helper.rb
+    - app/helpers/home_helper.rb
     - app/lib/activitypub/activity.rb
     - app/lib/activitypub/activity/create.rb
+    - app/lib/activitypub/tag_manager.rb
     - app/lib/emoji_formatter.rb
     - app/lib/importer/statuses_index_importer.rb
     - app/lib/request.rb
+    - app/lib/status_cache_hydrator.rb
     - app/models/concerns/account_merging.rb
+    - app/models/concerns/remotable.rb
+    - app/models/trends/links.rb
+    - app/models/trends/statuses.rb
     - app/serializers/initial_state_serializer.rb
     - app/serializers/rest/instance_serializer.rb
     - app/services/activitypub/fetch_remote_key_service.rb
     - app/services/activitypub/fetch_remote_status_service.rb
     - app/services/activitypub/process_account_service.rb
     - app/services/activitypub/process_status_update_service.rb
+    - app/services/fetch_link_card_service.rb
+    - app/services/import_service.rb
+    - app/services/suspend_account_service.rb
+    - app/services/unsuspend_account_service.rb
     - app/workers/scheduler/follow_recommendations_scheduler.rb
     - db/migrate/20160306172223_create_doorkeeper_tables.rb
     - db/migrate/20170604144747_add_foreign_keys_for_accounts.rb
@@ -1431,6 +1443,8 @@ Metrics/MethodLength:
     - db/migrate/20181024224956_migrate_account_conversations.rb
     - db/post_migrate/20221101190723_backfill_admin_action_logs.rb
     - db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb
+    - lib/cli.rb
+    - lib/mastodon/cli_helper.rb
     - lib/paperclip/color_extractor.rb
     - lib/paperclip/gif_transcoder.rb
     - lib/paperclip/transcoder.rb
