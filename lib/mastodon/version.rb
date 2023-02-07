@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def flags
-      'rc3'
+      'rc2'
     end
 
     def suffix

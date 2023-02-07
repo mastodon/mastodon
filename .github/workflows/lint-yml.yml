@@ -10,7 +10,6 @@ on:
       - '**/*.yaml'
       - '**/*.yml'
       - '.github/workflows/lint-yml.yml'
-      - '!config/locales/*.yml'
 
   pull_request:
     paths:
@@ -20,7 +19,6 @@ on:
       - '**/*.yaml'
       - '**/*.yml'
       - '.github/workflows/lint-yml.yml'
-      - '!config/locales/*.yml'
 
 jobs:
   lint:

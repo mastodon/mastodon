@@ -29,13 +29,7 @@ class Settings::ApplicationsController < Settings::BaseController
 
   def update
     if @application.update(application_params)
-      if @application.scopes_previously_changed?
-        @access_token = current_user.token_for_app(@application)
-        @access_token.destroy
-        redirect_to settings_application_path(@application), notice: I18n.t('applications.token_regenerated')
-      else
-        redirect_to settings_application_path(@application), notice: I18n.t('generic.changes_saved_msg')
-      end
+      redirect_to settings_applications_path, notice: I18n.t('generic.changes_saved_msg')
     else
       render :show
     end
