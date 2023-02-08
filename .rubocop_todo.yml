@@ -1560,13 +1560,6 @@ Performance/ArraySemiInfiniteRangeSlice:
     - 'lib/mastodon/domains_cli.rb'
     - 'lib/mastodon/media_cli.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Performance/BindCall:
-  Exclude:
-    - 'lib/active_record/database_tasks_extensions.rb'
-    - 'lib/rails/engine_extensions.rb'
-
 # Offense count: 5
 # This cop supports safe autocorrection (--autocorrect).
 Performance/BlockGivenWithExplicitBlock:
