@@ -5764,16 +5764,6 @@ Style/MutableConstant:
     - 'lib/mastodon/snowflake.rb'
     - 'spec/controllers/api/base_controller_spec.rb'
 
-# Offense count: 6
-# This cop supports safe autocorrection (--autocorrect).
-Style/NegatedIfElseCondition:
-  Exclude:
-    - 'app/controllers/api/v1/streaming_controller.rb'
-    - 'app/models/user.rb'
-    - 'app/services/fetch_oembed_service.rb'
-    - 'app/services/verify_link_service.rb'
-    - 'lib/tasks/mastodon.rake'
-
 # Offense count: 7
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: MinDigits, Strict, AllowedNumbers, AllowedPatterns.
