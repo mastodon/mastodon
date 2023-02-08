@@ -1701,12 +1701,6 @@ Performance/RedundantEqualityComparisonBlock:
   Exclude:
     - 'spec/requests/link_headers_spec.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Performance/RedundantSplitRegexpArgument:
-  Exclude:
-    - 'app/controllers/concerns/signature_verification.rb'
-
 # Offense count: 6
 Performance/SelectMap:
   Exclude:
