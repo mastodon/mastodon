@@ -1709,13 +1709,6 @@ Performance/MethodObjectAsBlock:
     - 'app/models/account_suggestions/source.rb'
     - 'spec/models/export_spec.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Performance/RedundantBlockCall:
-  Exclude:
-    - 'app/models/trends/history.rb'
-    - 'app/workers/import/relationship_worker.rb'
-
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Performance/RedundantEqualityComparisonBlock:
