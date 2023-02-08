@@ -1478,13 +1478,6 @@ Rails/HelperInstanceVariable:
     - 'app/helpers/instance_helper.rb'
     - 'app/helpers/jsonld_helper.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: Include.
-# Include: spec/**/*, test/**/*
-Rails/HttpPositionalArguments:
-  Exclude:
-    - 'spec/config/initializers/rack_attack_spec.rb'
-
 # Configuration parameters: Include.
 # Include: spec/**/*.rb, test/**/*.rb
 Rails/I18nLocaleAssignment:

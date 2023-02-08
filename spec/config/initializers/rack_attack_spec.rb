@@ -51,7 +51,7 @@ describe Rack::Attack do
     context 'through the website' do
       let(:limit)  { 25 }
       let(:period) { 5.minutes }
-      let(:request) { -> { post path, {}, 'REMOTE_ADDR' => remote_ip } }
+      let(:request) { -> { post path, session: { 'REMOTE_ADDR' => remote_ip } } }
 
       context 'for exact path' do
         let(:path) { '/auth' }
@@ -69,7 +69,7 @@ describe Rack::Attack do
     context 'through the API' do
       let(:limit)  { 5 }
       let(:period) { 30.minutes }
-      let(:request) { -> { post path, {}, 'REMOTE_ADDR' => remote_ip } }
+      let(:request) { -> { post path, session: { 'REMOTE_ADDR' => remote_ip } } }
 
       context 'for exact path' do
         let(:path) { '/api/v1/accounts' }
@@ -91,7 +91,7 @@ describe Rack::Attack do
   describe 'throttle excessive sign-in requests by IP address' do
     let(:limit)  { 25 }
     let(:period) { 5.minutes }
-    let(:request) { -> { post path, {}, 'REMOTE_ADDR' => remote_ip } }
+    let(:request) { -> { post path, session: { 'REMOTE_ADDR' => remote_ip } } }
 
     context 'for exact path' do
       let(:path) { '/auth/sign_in' }
