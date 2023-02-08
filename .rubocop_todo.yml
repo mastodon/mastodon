@@ -5134,13 +5134,6 @@ Style/EmptyMethod:
     - 'db/migrate/20190529143559_preserve_old_layout_for_existing_users.rb'
     - 'db/migrate/20200510110808_reset_web_app_secret.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Style/ExpandPathArguments:
-  Exclude:
-    - 'config.ru'
-    - 'spec/rails_helper.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Style/ExplicitBlockArgument:
