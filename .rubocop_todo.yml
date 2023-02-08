@@ -1669,13 +1669,6 @@ Performance/DeleteSuffix:
   Exclude:
     - 'lib/tasks/repo.rake'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: IncludeActiveSupportAliases.
-Performance/DoubleStartEndWith:
-  Exclude:
-    - 'app/lib/delivery_failure_tracker.rb'
-
 # Offense count: 19
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Performance/MapCompact:
