@@ -91,11 +91,13 @@ zh-CN:
         site_short_description: 有助于区分你的服务器独特性的简短描述。谁在管理？供谁使用？
         site_terms: 使用你自己的隐私政策或留空以使用默认版。可以使用 Markdown 语法。
         site_title: 除了域名，人们还可以如何指代你的服务器。
+        status_page_url: 配置一个网址，当服务中断时，人们可以通过该网址查看服务器的状态。
         theme: 给未登录访客和新用户使用的主题。
         thumbnail: 与服务器信息一并展示的约 2:1 比例的图像。
         timeline_preview: 未登录访客将能够浏览服务器上最新的公共嘟文。
         trendable_by_default: 跳过对热门内容的手工审核。个别项目仍可在之后从趋势中删除。
         trends: 趋势中会显示正在你服务器上受到关注的嘟文、标签和新闻故事。
+        trends_as_landing_page: 向注销的用户和访问者显示趋势内容，而不是对该服务器的描述，需要启用趋势。
       form_challenge:
         current_password: 你正在进入安全区域
       imports:
@@ -251,11 +253,13 @@ zh-CN:
         site_short_description: 本站简介
         site_terms: 隐私政策
         site_title: 本站名称
+        status_page_url: 静态页面地址
         theme: 默认主题
         thumbnail: 本站缩略图
         timeline_preview: 时间轴预览
         trendable_by_default: 允许在未审核的情况下将话题置为热门
         trends: 启用趋势
+        trends_as_landing_page: 使用趋势作为登陆页面
       interactions:
         must_be_follower: 屏蔽来自未关注我的用户的通知
         must_be_following: 屏蔽来自我未关注的用户的通知

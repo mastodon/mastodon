@@ -84,18 +84,20 @@ zh-TW:
         media_cache_retention_period: 當設定成正值時，已下載的多媒體檔案會於指定天數後被刪除，並且視需要重新下載。
         peers_api_enabled: 浩瀚聯邦宇宙中與此伺服器曾經擦肩而過的網域列表。不包含關於您是否與此伺服器是否有與之串連，僅僅表示您的伺服器已知此網域。這是供收集聯邦宇宙中一般性統計資料服務使用。
         profile_directory: 個人檔案目錄將會列出那些有選擇被發現的使用者。
-        require_invite_text: 如果已設定為手動審核註冊，請將「加入原因」設定為必填項目。
+        require_invite_text: 如果已設定為手動審核註冊，請將「為什麼想要加入呢？」設定為必填項目。
         site_contact_email: 其他人如何聯繫您關於法律或支援之諮詢。
         site_contact_username: 其他人如何於 Mastodon 上聯繫您。
         site_extended_description: 任何其他可能對訪客或使用者有用的額外資訊。可由 Markdown 語法撰寫。
         site_short_description: 一段有助於辨別您伺服器的簡短說明。例如：誰運行該伺服器、該伺服器是提供給哪些人群？
         site_terms: 使用您自己的隱私權政策，或者保留空白以使用預設值。可由 Markdown 語法撰寫。
         site_title: 除了網域外，其他人該如何指稱您的伺服器。
+        status_page_url: 當服務中斷時，可以提供使用者了解伺服器資訊頁面之 URL
         theme: 未登入之訪客或新使用者所見之佈景主題。
         thumbnail: 大約 2:1 圖片會顯示於您伺服器資訊之旁。
         timeline_preview: 未登入之訪客能夠瀏覽此伺服器上最新的公開嘟文。
         trendable_by_default: 跳過手動審核熱門內容。仍能在登上熱門趨勢後移除個別內容。
         trends: 熱門趨勢將顯示於您伺服器上正在吸引大量注意力的嘟文、主題標籤、或者新聞。
+        trends_as_landing_page: 顯示熱門趨勢內容給未登入使用者及訪客而不是關於此伺服器之描述。需要啟用熱門趨勢。
       form_challenge:
         current_password: 您正要進入安全區域
       imports:
@@ -251,11 +253,13 @@ zh-TW:
         site_short_description: 伺服器描述
         site_terms: 隱私權政策
         site_title: 伺服器名稱
+        status_page_url: 狀態頁面 URL
         theme: 預設佈景主題
         thumbnail: 伺服器縮圖
         timeline_preview: 允許未登入使用者瀏覽公開時間軸
         trendable_by_default: 允許熱門趨勢直接顯示，不需經過審核
         trends: 啟用熱門趨勢
+        trends_as_landing_page: 以熱門趨勢作為登陸頁面
       interactions:
         must_be_follower: 封鎖非跟隨者的通知
         must_be_following: 封鎖您未跟隨之使用者的通知
@@ -263,7 +267,7 @@ zh-TW:
       invite:
         comment: 備註
       invite_request:
-        text: 加入的原因
+        text: 為什麼想要加入呢？
       ip_block:
         comment: 備註
         ip: IP 位址

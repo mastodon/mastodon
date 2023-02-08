@@ -109,7 +109,7 @@ class Header extends ImmutablePureComponent {
 
   openEditProfile = () => {
     window.open('/settings/profile', '_blank');
-  }
+  };
 
   isStatusesPageActive = (match, location) => {
     if (!match) {
@@ -117,7 +117,7 @@ class Header extends ImmutablePureComponent {
     }
 
     return !location.pathname.match(/\/(followers|following)\/?$/);
-  }
+  };
 
   handleMouseEnter = ({ currentTarget }) => {
     if (autoPlayGif) {
@@ -130,7 +130,7 @@ class Header extends ImmutablePureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-original');
     }
-  }
+  };
 
   handleMouseLeave = ({ currentTarget }) => {
     if (autoPlayGif) {
@@ -143,14 +143,14 @@ class Header extends ImmutablePureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-static');
     }
-  }
+  };
 
   handleAvatarClick = e => {
     if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       this.props.onOpenAvatar();
     }
-  }
+  };
 
   handleShare = () => {
     const { account } = this.props;
@@ -161,7 +161,7 @@ class Header extends ImmutablePureComponent {
     }).catch((e) => {
       if (e.name !== 'AbortError') console.error(e);
     });
-  }
+  };
 
   render () {
     const { account, hidden, intl, domain } = this.props;
@@ -296,9 +296,9 @@ class Header extends ImmutablePureComponent {
       if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
         menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: `/admin/accounts/${account.get('id')}` });
       }
-        if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) {
-          menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: remoteDomain }), href: `/admin/instances/${remoteDomain}` });
-        }
+      if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) {
+        menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: remoteDomain }), href: `/admin/instances/${remoteDomain}` });
+      }
     }
 
     const content         = { __html: account.get('note_emojified') };

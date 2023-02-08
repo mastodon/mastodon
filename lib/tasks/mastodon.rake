@@ -463,10 +463,10 @@ namespace :mastodon do
           prompt.say 'Running `RAILS_ENV=production rails db:setup` ...'
           prompt.say "\n\n"
 
-          if !system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production', 'SAFETY_ASSURED' => '1' }), 'rails db:setup')
-            prompt.error 'That failed! Perhaps your configuration is not right'
-          else
+          if system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production', 'SAFETY_ASSURED' => '1' }), 'rails db:setup')
             prompt.ok 'Done!'
+          else
+            prompt.error 'That failed! Perhaps your configuration is not right'
           end
         end
 
@@ -479,10 +479,10 @@ namespace :mastodon do
             prompt.say 'Running `RAILS_ENV=production rails assets:precompile` ...'
             prompt.say "\n\n"
 
-            if !system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production' }), 'rails assets:precompile')
-              prompt.error 'That failed! Maybe you need swap space?'
-            else
+            if system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production' }), 'rails assets:precompile')
               prompt.say 'Done!'
+            else
+              prompt.error 'That failed! Maybe you need swap space?'
             end
           end
         end

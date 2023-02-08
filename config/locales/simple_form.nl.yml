@@ -18,6 +18,8 @@ nl:
           disable: Voorkom dat de gebruiker diens account gebruikt, maar verwijder of verberg de inhoud niet.
           none: Gebruik dit om een waarschuwing naar de gebruiker te sturen, zonder dat nog een andere maatregel wordt genomen.
           sensitive: Forceer dat alle mediabijlagen van deze gebruiker als gevoelig worden gemarkeerd.
+          silence: Voorkom dat de gebruiker berichten kan plaatsen met openbare zichtbaarheid, verberg diens berichten en meldingen van mensen die de gebruiker niet volgen. Sluit alle rapportages tegen dit account af.
+          suspend: Voorkom interactie van of naar dit account en verwijder de inhoud. Dit is omkeerbaar binnen 30 dagen. Dit sluit alle rapporten tegen dit account af.
         warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen aan het eind van de voorinstelling
       announcement:
         all_day: Wanneer dit is aangevinkt worden alleen de datums binnen het tijdvak getoond
@@ -72,6 +74,7 @@ nl:
           hide: Verberg de gefilterde inhoud volledig, alsof het niet bestaat
           warn: Verberg de gefilterde inhoud achter een waarschuwing, met de titel van het filter als waarschuwingstekst
       form_admin_settings:
+        activity_api_enabled: Aantallen lokaal gepubliceerde berichten, actieve gebruikers en nieuwe registraties per week
         backups_retention_period: De aangemaakte gebruikersarchieven voor het opgegeven aantal dagen behouden.
         bootstrap_timeline_accounts: Deze accounts worden bovenaan de aanbevelingen aan nieuwe gebruikers getoond. Meerdere gebruikersnamen met komma's scheiden.
         closed_registrations_message: Weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld
@@ -79,6 +82,7 @@ nl:
         custom_css: Je kunt aangepaste CSS toepassen op de webversie van deze Mastodon-server.
         mascot: Overschrijft de illustratie in de geavanceerde webomgeving.
         media_cache_retention_period: Mediabestanden die van andere servers zijn gedownload worden na het opgegeven aantal dagen verwijderd en worden op verzoek opnieuw gedownload.
+        peers_api_enabled: Een lijst met domeinnamen die deze server heeft aangetroffen in de fediverse. Er zijn hier geen gegevens inbegrepen over de vraag of je verbonden bent met een bepaalde server, alleen dat je server er van weet. Dit wordt gebruikt door diensten die statistieken over de federatie in algemene zin verzamelen.
         profile_directory: De gebruikersgids bevat een lijst van alle gebruikers die ervoor gekozen hebben om ontdekt te kunnen worden.
         require_invite_text: Maak het invullen van "Waarom wil je je hier registreren?" verplicht in plaats van optioneel, wanneer registraties handmatig moeten worden goedgekeurd
         site_contact_email: Hoe mensen je kunnen bereiken voor juridische vragen of support.
@@ -87,11 +91,13 @@ nl:
         site_short_description: Een korte beschrijving om het unieke karakter van je server te tonen. Wie beheert de server, wat is de doelgroep?
         site_terms: Gebruik je eigen privacybeleid of laat leeg om de standaardwaarde te gebruiken. Kan worden opgemaakt met Markdown.
         site_title: Hoe mensen buiten de domeinnaam naar je server kunnen verwijzen.
+        status_page_url: URL van een pagina waar mensen de status van deze server kunnen zien tijdens een storing
         theme: Thema die (niet ingelogde) bezoekers en nieuwe gebruikers zien.
         thumbnail: Een afbeelding van ongeveer een verhouding van 2:1 die naast jouw serverinformatie wordt getoond.
         timeline_preview: Bezoekers (die niet zijn ingelogd) kunnen de meest recente, op de server aanwezige openbare berichten bekijken.
         trendable_by_default: Handmatige beoordeling van trends overslaan. Individuele items kunnen later alsnog worden afgekeurd.
         trends: Trends laten zien welke berichten, hashtags en nieuwsberichten op jouw server aan populariteit winnen.
+        trends_as_landing_page: Toon trending inhoud aan uitgelogde gebruikers en bezoekers in plaats van een beschrijving van deze server. Vereist dat trends zijn ingeschakeld.
       form_challenge:
         current_password: Je betreedt een veilige omgeving
       imports:
@@ -227,6 +233,7 @@ nl:
           hide: Volledig verbergen
           warn: Met een waarschuwing verbergen
       form_admin_settings:
+        activity_api_enabled: Statistieken over gebruikersactiviteit via de API publiceren
         backups_retention_period: Bewaartermijn gebruikersarchief
         bootstrap_timeline_accounts: Accounts die altijd aan nieuwe gebruikers worden aanbevolen
         closed_registrations_message: Aangepast bericht wanneer registratie is uitgeschakeld
@@ -234,6 +241,7 @@ nl:
         custom_css: Aangepaste CSS
         mascot: Aangepaste mascotte (legacy)
         media_cache_retention_period: Bewaartermijn mediacache
+        peers_api_enabled: Lijst van bekende servers via de API publiceren
         profile_directory: Gebruikersgids inschakelen
         registrations_mode: Wie kan zich registreren
         require_invite_text: Opgeven van een reden is verplicht
@@ -245,11 +253,13 @@ nl:
         site_short_description: Serveromschrijving
         site_terms: Privacybeleid
         site_title: Servernaam
+        status_page_url: URL van statuspagina
         theme: Standaardthema
         thumbnail: Serverthumbnail
         timeline_preview: Toegang tot de openbare tijdlijnen zonder in te loggen toestaan
         trendable_by_default: Trends goedkeuren zonder voorafgaande beoordeling
         trends: Trends inschakelen
+        trends_as_landing_page: Laat trends op de startpagina zien
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren

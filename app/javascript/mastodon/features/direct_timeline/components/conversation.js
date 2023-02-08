@@ -55,7 +55,7 @@ class Conversation extends ImmutablePureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-original');
     }
-  }
+  };
 
   handleMouseLeave = ({ currentTarget }) => {
     if (autoPlayGif) {
@@ -68,7 +68,7 @@ class Conversation extends ImmutablePureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-static');
     }
-  }
+  };
 
   handleClick = () => {
     if (!this.context.router) {
@@ -82,35 +82,35 @@ class Conversation extends ImmutablePureComponent {
     }
 
     this.context.router.history.push(`/@${lastStatus.getIn(['account', 'acct'])}/${lastStatus.get('id')}`);
-  }
+  };
 
   handleMarkAsRead = () => {
     this.props.markRead();
-  }
+  };
 
   handleReply = () => {
     this.props.reply(this.props.lastStatus, this.context.router.history);
-  }
+  };
 
   handleDelete = () => {
     this.props.delete();
-  }
+  };
 
   handleHotkeyMoveUp = () => {
     this.props.onMoveUp(this.props.conversationId);
-  }
+  };
 
   handleHotkeyMoveDown = () => {
     this.props.onMoveDown(this.props.conversationId);
-  }
+  };
 
   handleConversationMute = () => {
     this.props.onMute(this.props.lastStatus);
-  }
+  };
 
   handleShowMore = () => {
     this.props.onToggleHidden(this.props.lastStatus);
-  }
+  };
 
   render () {
     const { accounts, lastStatus, unread, scrollKey, intl } = this.props;

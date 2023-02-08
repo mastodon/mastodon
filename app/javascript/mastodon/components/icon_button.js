@@ -43,7 +43,7 @@ export default class IconButton extends React.PureComponent {
   state = {
     activate: false,
     deactivate: false,
-  }
+  };
 
   componentWillReceiveProps (nextProps) {
     if (!nextProps.animate) return;
@@ -61,25 +61,25 @@ export default class IconButton extends React.PureComponent {
     if (!this.props.disabled) {
       this.props.onClick(e);
     }
-  }
+  };
 
   handleKeyPress = (e) => {
     if (this.props.onKeyPress && !this.props.disabled) {
       this.props.onKeyPress(e);
     }
-  }
+  };
 
   handleMouseDown = (e) => {
     if (!this.props.disabled && this.props.onMouseDown) {
       this.props.onMouseDown(e);
     }
-  }
+  };
 
   handleKeyDown = (e) => {
     if (!this.props.disabled && this.props.onKeyDown) {
       this.props.onKeyDown(e);
     }
-  }
+  };
 
   render () {
     const style = {

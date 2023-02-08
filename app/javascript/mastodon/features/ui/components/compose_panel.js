@@ -22,12 +22,12 @@ class ComposePanel extends React.PureComponent {
   onFocus = () => {
     const { dispatch } = this.props;
     dispatch(changeComposing(true));
-  }
+  };
 
   onBlur = () => {
     const { dispatch } = this.props;
     dispatch(changeComposing(false));
-  }
+  };
 
   componentDidMount () {
     const { dispatch } = this.props;
