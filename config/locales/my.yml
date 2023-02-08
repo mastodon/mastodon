@@ -17,10 +17,13 @@ my:
         current_email: လက်ရှိအီးမေးလ်
         new_email: အီးမေးလ်အသစ်
         submit: အီးမေးလ်ပြောင်းပါ။
+      confirm: အတည်ပြု
+      custom: စိတ်ကြိုက်
       domain: ဒိုမိန်း
       edit: ပြင်ဆင်ရန်
       email: အီးမေးလ်
       followers: စောင့်ကြည့်သူများ
+      ip: IP
       location:
         all: အားလုံး
         title: တည်နေရာ
@@ -30,10 +33,15 @@ my:
       public: အများမြင်
       reject: ဖယ်ရှားပါ
       remove_avatar: ကိုယ်စားပြုရုပ်ပုံကို ဖယ်ရှားပါ
+      reset: ပြန်သတ်မှတ်မည်
       search: ရှာရန်
       security_measures:
         only_password: စကားဝှက်ဖြင့်သာ
       statuses: ပို့စ်များ
+      subscribe: စာရင်းသွင်းပါ
+      title: အကောင့်များ
+      username: အသုံးပြုသူအမည်
+      web: ဝဘ်
     custom_emojis:
       by_domain: ဒိုမိန်း
       copy: ကူးယူပါ
@@ -59,6 +67,55 @@ my:
     ip_blocks:
       delete: ဖျက်ပါ
       title: IP စည်းမျဉ်းများ
+    rules:
+      title: ဆာဗာစည်းမျဉ်းများ
+    statuses:
+      language: ဘာသာစကား
+    trends:
+      allow: ခွင့်ပြု
+      disallow: ခွင့်မပြု
+      tags:
+        not_usable: အသုံးမပြုနိုင်ပါ
+        usable: အသုံးပြုနိုင်သည်
+  application_mailer:
+    view_profile: ပရိုဖိုင်ကိုကြည့်ရန်
+    view_status: ပို့စ်ကိုကြည့်ရန်
+  auth:
+    logout: ထွက်မယ်
+    providers:
+      cas: CAS
+      saml: SAML
+    set_new_password: စကားဝှက်အသစ် သတ်မှတ်ပါ။
+    status:
+      account_status: အကောင့်အခြေအနေ
+  authorize_follow:
+    post_follow:
+      web: ဝဘ်သို့ သွားပါ
+  challenge:
+    invalid_password: စကားဝှက် မမှန်ပါ
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: အခုလေးတင်
+      less_than_x_seconds: အခုလေးတင်
+      over_x_years: "%{count}y"
+      x_days: "%{count}y"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
+  deletes:
+    proceed: အကောင့်ဖျက်ပါ
+    success_msg: သင့်အကောင့်ကို အောင်မြင်စွာ ဖျက်လိုက်ပါပြီ
+  disputes:
+    strikes:
+      title: "%{date} မှ %{action}"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -69,3 +126,39 @@ my:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    archive_takeout:
+      date: ရက်စွဲ
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': ၁ နာရီ
+      '43200': ၁၂ နာရီ
+      '604800': ၁ ပတ်
+      '86400': ၁ ရက်
+  login_activities:
+    authentication_methods:
+      password: စကားဝှက်
+  media_attachments:
+    validations:
+      images_and_video: ရုပ်ပုံပါရှိပြီးသားပို့စ်တွင် ဗီဒီယို ပူးတွဲ၍မရပါ
+  notification_mailer:
+    follow:
+      title: စောင့်ကြည့်သူအသစ်
+    mention:
+      action: စာပြန်ရန်
+      subject: သင့်ကို %{name} မှ ဖော်ပြခဲ့သည်
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+  relationships:
+    followers: စောင့်ကြည့်သူများ
+    following: စောင့်ကြည့်နေသည်
