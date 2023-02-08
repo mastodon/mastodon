@@ -4286,15 +4286,6 @@ Rails/RootPathnameMethods:
     - 'spec/fabricators/site_upload_fabricator.rb'
     - 'spec/rails_helper.rb'
 
-# Offense count: 7
-# This cop supports safe autocorrection (--autocorrect).
-Rails/RootPublicPath:
-  Exclude:
-    - 'lib/mastodon/premailer_webpack_strategy.rb'
-    - 'lib/tasks/assets.rake'
-    - 'lib/tasks/branding.rake'
-    - 'lib/tasks/emojis.rake'
-
 # Offense count: 311
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: AllowImplicitReturn, AllowedReceivers.
