@@ -4778,13 +4778,6 @@ Rails/WhereExists:
     - 'spec/services/unallow_domain_service_spec.rb'
 
 # Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-Rails/WhereNot:
-  Exclude:
-    - 'app/lib/vacuum/access_tokens_vacuum.rb'
-    - 'app/models/session_activation.rb'
-
-# Offense count: 3
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Security/IoMethods:
   Exclude:
