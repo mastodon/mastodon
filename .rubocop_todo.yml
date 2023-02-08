@@ -5206,6 +5206,7 @@ Style/GuardClause:
     - 'app/controllers/auth/passwords_controller.rb'
     - 'app/controllers/filters/statuses_controller.rb'
     - 'app/controllers/settings/two_factor_authentication/webauthn_credentials_controller.rb'
+    - 'app/lib/activitypub/activity.rb'
     - 'app/lib/activitypub/activity/block.rb'
     - 'app/lib/activitypub/linked_data_signature.rb'
     - 'app/lib/connection_pool/shared_connection_pool.rb'
@@ -5214,10 +5215,12 @@ Style/GuardClause:
     - 'app/lib/status_finder.rb'
     - 'app/lib/webfinger_resource.rb'
     - 'app/lib/webfinger.rb'
+    - 'app/models/account_statuses_cleanup_policy.rb'
     - 'app/models/concerns/account_counters.rb'
     - 'app/models/concerns/ldap_authenticable.rb'
     - 'app/models/tag.rb'
     - 'app/models/user.rb'
+    - 'app/serializers/rest/instance_serializer.rb'
     - 'app/services/fan_out_on_write_service.rb'
     - 'app/services/post_status_service.rb'
     - 'app/services/process_hashtags_service.rb'
@@ -5235,8 +5238,6 @@ Style/GuardClause:
     - 'lib/mastodon/media_cli.rb'
     - 'lib/paperclip/attachment_extensions.rb'
     - 'lib/tasks/repo.rake'
-    - app/lib/activitypub/activity.rb
-    - app/models/account_statuses_cleanup_policy.rb
 
 # Offense count: 13
 # This cop supports safe autocorrection (--autocorrect).
@@ -5385,6 +5386,7 @@ Style/IfUnlessModifier:
     - 'lib/mastodon/statuses_cli.rb'
     - 'spec/support/matchers/model/model_have_error_on_field.rb'
     - app/lib/activitypub/activity.rb
+    - app/serializers/rest/instance_serializer.rb
     - app/services/resolve_account_service.rb
     - lib/mastodon/media_cli.rb
 
@@ -5554,8 +5556,8 @@ Style/MissingElse:
     - 'app/controllers/admin/report_notes_controller.rb'
     - 'app/controllers/admin/reports/actions_controller.rb'
     - 'app/controllers/admin/statuses_controller.rb'
-    - 'app/controllers/admin/trends/links/preview_card_providers_controller.rb'
     - 'app/controllers/admin/trends/links_controller.rb'
+    - 'app/controllers/admin/trends/links/preview_card_providers_controller.rb'
     - 'app/controllers/admin/trends/statuses_controller.rb'
     - 'app/controllers/admin/trends/tags_controller.rb'
     - 'app/controllers/api/v1/accounts/follower_accounts_controller.rb'
@@ -5573,10 +5575,10 @@ Style/MissingElse:
     - 'app/controllers/api/v1/lists/accounts_controller.rb'
     - 'app/controllers/api/v1/mutes_controller.rb'
     - 'app/controllers/api/v1/scheduled_statuses_controller.rb'
+    - 'app/controllers/api/v1/statuses_controller.rb'
     - 'app/controllers/api/v1/statuses/favourited_by_accounts_controller.rb'
     - 'app/controllers/api/v1/statuses/pins_controller.rb'
     - 'app/controllers/api/v1/statuses/reblogged_by_accounts_controller.rb'
-    - 'app/controllers/api/v1/statuses_controller.rb'
     - 'app/controllers/api/v2/admin/accounts_controller.rb'
     - 'app/controllers/auth/confirmations_controller.rb'
     - 'app/controllers/auth/passwords_controller.rb'
@@ -5628,9 +5630,9 @@ Style/MissingElse:
     - 'app/lib/status_cache_hydrator.rb'
     - 'app/lib/text_formatter.rb'
     - 'app/lib/video_metadata_extractor.rb'
-    - 'app/models/account.rb'
     - 'app/models/account_alias.rb'
     - 'app/models/account_statuses_cleanup_policy.rb'
+    - 'app/models/account.rb'
     - 'app/models/admin/account_action.rb'
     - 'app/models/admin/status_batch_action.rb'
     - 'app/models/concerns/account_counters.rb'
@@ -5659,6 +5661,7 @@ Style/MissingElse:
     - 'app/models/user.rb'
     - 'app/models/web/push_subscription.rb'
     - 'app/serializers/initial_state_serializer.rb'
+    - 'app/serializers/rest/instance_serializer.rb'
     - 'app/serializers/rest/media_attachment_serializer.rb'
     - 'app/services/account_search_service.rb'
     - 'app/services/activitypub/fetch_featured_collection_service.rb'
