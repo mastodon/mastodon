@@ -5878,13 +5878,6 @@ Style/RedundantArgument:
     - 'app/helpers/application_helper.rb'
     - 'lib/tasks/emojis.rake'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantAssignment:
-  Exclude:
-    - 'app/models/concerns/omniauthable.rb'
-    - 'app/models/setting.rb'
-
 # Offense count: 83
 # This cop supports safe autocorrection (--autocorrect).
 Style/RedundantBegin:
