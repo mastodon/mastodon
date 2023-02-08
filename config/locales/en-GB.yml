@@ -176,6 +176,8 @@ en-GB:
         confirm_user: Confirm User
         create_account_warning: Create Warning
         create_announcement: Create Announcement
+        create_canonical_email_block: Create E-mail Block
+        create_custom_emoji: Create Custom Emoji
         unassigned_report: Unassign Report
     roles:
       categories:
@@ -199,7 +201,15 @@ en-GB:
     platforms:
       blackberry: BlackBerry
       chrome_os: ChromeOS
+  two_factor_authentication:
+    recovery_codes_regenerated: Recovery codes successfully regenerated
+    recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>. For example, you may print them and store them with other important documents.
+    webauthn: Security keys
   user_mailer:
+    appeal_approved:
+      action: Go to your account
+      explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been approved. Your account is once again in good standing.
+      subject: Your appeal from %{date} has been approved
     warning:
       subject:
         silence: Your account %{acct} has been limited
