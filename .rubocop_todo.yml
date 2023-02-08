@@ -6598,3 +6598,8 @@ Lint/RedundantCopDisableDirective:
 
 Style/RedundantConstantBase:
   Enabled: false
+
+# Should be resolved by https://github.com/mastodon/mastodon/pull/23441
+Lint/UnusedMethodArgument:
+  Exclude:
+    - app/models/trends/history.rb
