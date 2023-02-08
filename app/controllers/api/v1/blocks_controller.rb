@@ -16,16 +16,33 @@ class Api::V1::BlocksController < Api::BaseController
     paginated_blocks.map(&:target_account)
   end
 
+  def all_blocks
+    Block.eager_load(target_account: :account_stat)
+         .joins(:target_account)
+         .where(account: current_account)
+  end
+
+  def blocks_from_unsuspended_accounts
+    Block.eager_load(target_account: :account_stat)
+         .joins(:target_account)
+         .merge(Account.without_suspended)
+         .where(account: current_account)
+  end
+
+  def load_blocks
+    if current_account.show_suspended?
+      return all_blocks
+    end
+    blocks_from_unsuspended_accounts
+  end
+
   def paginated_blocks
-    @paginated_blocks ||= Block.eager_load(target_account: :account_stat)
-                               .joins(:target_account)
-                               .merge(Account.without_suspended)
-                               .where(account: current_account)
-                               .paginate_by_max_id(
-                                 limit_param(DEFAULT_ACCOUNTS_LIMIT),
-                                 params[:max_id],
-                                 params[:since_id]
-                               )
+    @paginated_blocks ||= load_blocks
+                          .paginate_by_max_id(
+                            limit_param(DEFAULT_ACCOUNTS_LIMIT),
+                            params[:max_id],
+                            params[:since_id]
+                          )
   end
 
   def insert_pagination_headers

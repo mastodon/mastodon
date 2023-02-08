@@ -49,6 +49,7 @@
 #  trendable                     :boolean
 #  reviewed_at                   :datetime
 #  requested_review_at           :datetime
+#  show_suspended                :boolean
 #
 
 class Account < ApplicationRecord

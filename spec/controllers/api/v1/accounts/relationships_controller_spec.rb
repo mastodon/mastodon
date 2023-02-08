@@ -3,7 +3,8 @@ require 'rails_helper'
 describe Api::V1::Accounts::RelationshipsController do
   render_views
 
-  let(:user)  { Fabricate(:user) }
+  let(:user) { Fabricate(:user) }
+  let(:account) { user.account }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:follows') }
 
   before do
@@ -13,10 +14,39 @@ describe Api::V1::Accounts::RelationshipsController do
   describe 'GET #index' do
     let(:simon) { Fabricate(:account) }
     let(:lewis) { Fabricate(:account) }
+    let(:jane) { Fabricate(:account) }
 
     before do
-      user.account.follow!(simon)
-      lewis.follow!(user.account)
+      account.follow!(simon)
+      account.follow!(jane)
+      lewis.follow!(account)
+      jane.suspend!
+    end
+
+    context 'when an account has show_suspended enabled' do
+      before do
+        account.update(show_suspended: true)
+      end
+
+      context 'and there are relationships with suspended accounts' do
+        it 'returns all the accounts' do
+          get :index, params: { id: [simon.id, jane.id] }
+          expect(body_as_json.size).to eq 2
+        end
+      end
+    end
+
+    context 'when an account has show_suspended disabled' do
+      before do
+        account.update(show_suspended: false)
+      end
+
+      context 'and there are relationships with suspended accounts' do
+        it 'returns the accounts that are not suspended' do
+          get :index, params: { id: [simon.id, lewis.id] }
+          expect(body_as_json.size).to eq 2
+        end
+      end
     end
 
     context 'provided only one ID' do
