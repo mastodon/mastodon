@@ -226,6 +226,6 @@ module JsonLdHelper
 
     doc = JSON::LD::API::RemoteDocument.new(json, documentUrl: url)
 
-    block_given? ? yield(doc) : doc
+    _block ? yield(doc) : doc
   end
 end
