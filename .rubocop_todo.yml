@@ -1718,13 +1718,6 @@ Performance/StartWith:
   Exclude:
     - 'app/lib/extractor.rb'
 
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-Performance/StringIdentifierArgument:
-  Exclude:
-    - 'app/lib/scope_transformer.rb'
-    - 'lib/mastodon/statuses_cli.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Performance/StringReplacement:
