@@ -6,6 +6,7 @@ import Overlay from 'react-overlays/Overlay';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import classNames from 'classnames';
 import { CircularProgress } from 'mastodon/components/loading_indicator';
+import Icon from 'mastodon/components/icon';
 
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 let id = 0;
@@ -110,6 +111,18 @@ class DropdownMenu extends React.PureComponent {
     onItemClick(e);
   };
 
+  menuIcons = {
+    'Edit profile': 'pencil-square-o',
+    'Preferences': 'gear',
+    'Pinned posts': 'thumb-tack',
+    'Follow requests': 'user-plus',
+    'Favourites': 'star',
+    'Lists': 'list',
+    'Muted users': 'microphone-slash',
+    'Blocked users': 'ban',
+    'Blocked domains': 'shield',
+  }
+
   renderItem = (option, i) => {
     if (option === null) {
       return <li key={`sep-${i}`} className='dropdown-menu__separator' />;
@@ -117,9 +130,12 @@ class DropdownMenu extends React.PureComponent {
 
     const { text, href = '#', target = '_blank', method } = option;
 
+    const icon = this.menuIcons[text] ;
+
     return (
-      <li className='dropdown-menu__item' key={`${text}-${i}`}>
+      <li className={classNames('dropdown-menu__item', text)} key={`${text}-${i}`}>
         <a href={href} target={target} data-method={method} rel='noopener noreferrer' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyPress={this.handleItemKeyPress} data-index={i}>
+          <Icon id={icon} />
           {text}
         </a>
       </li>
