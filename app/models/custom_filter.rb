@@ -72,7 +72,7 @@ class CustomFilter < ApplicationRecord
             sb = /\A[[:word:]]/.match?(keyword.keyword) ? '\b' : ''
             eb = /[[:word:]]\z/.match?(keyword.keyword) ? '\b' : ''
 
-            /(?mix:#{sb}#{Regexp.escape(keyword.keyword)}#{eb})/
+            /(?mix:#{sb}#{Regexp.escape(keyword.keyword)}#{eb})/i
           else
             /#{Regexp.escape(keyword.keyword)}/i
           end
