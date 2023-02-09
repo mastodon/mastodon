@@ -7,8 +7,9 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
 import classNames from 'classnames';
 import { autoPlayGif, cropImages, displayMedia, useBlurhash } from '../initial_state';
-import { debounce } from 'lodash';
+import { debounce, isNil } from 'lodash';
 import Blurhash from 'mastodon/components/blurhash';
+import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: '{number, plural, one {Hide image} other {Hide images}}' },
@@ -316,6 +317,7 @@ class MediaGallery extends React.PureComponent {
     const width = this.state.width || defaultWidth;
 
     let children, spoilerButton;
+    let missingAltWarning;
 
     const style = {};
 
@@ -331,11 +333,20 @@ class MediaGallery extends React.PureComponent {
 
     const size     = media.take(4).size;
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
+    const missing_alt = media.every(attachment => attachment.get('description') === '' || isNil(attachment.get('description')));
 
     if (standalone && this.isFullSizeEligible()) {
       children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} displayWidth={width} visible={visible} />;
     } else {
       children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} size={size} displayWidth={width} visible={visible || uncached} />);
+    }
+
+    if (missing_alt) {
+      missingAltWarning = (
+        <div className='missing-alt-overlay'>
+          <span className='missing-alt-overlay__label'><Icon id='exclamation-triangle' aria-hidden='true' /> <FormattedMessage id='upload_form.description_missing' defaultMessage='No description added' /></span>
+        </div>
+      );
     }
 
     if (uncached) {
@@ -359,6 +370,7 @@ class MediaGallery extends React.PureComponent {
         <div className={classNames('spoiler-button', { 'spoiler-button--minified': visible && !uncached, 'spoiler-button--click-thru': uncached })}>
           {spoilerButton}
         </div>
+        {missingAltWarning}
 
         {children}
       </div>

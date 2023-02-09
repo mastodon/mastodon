@@ -1,0 +1,19 @@
+.missing-alt-overlay {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  display: block;
+  z-index: 100;
+  pointer-events: none;
+
+  &__label {
+    display: inline-block;
+    background: rgba($base-overlay-background, 0.6);
+    color: rgba($primary-text-color, 0.7);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+  }
+}
