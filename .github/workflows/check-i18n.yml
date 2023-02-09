@@ -30,7 +30,7 @@ jobs:
       - name: Check locale file normalization
         run: bundle exec i18n-tasks check-normalized
       - name: Check for unused strings
-        run: bundle exec i18n-tasks unused -l en
+        run: bundle exec i18n-tasks unused
       - name: Check for wrong string interpolations
         run: bundle exec i18n-tasks check-consistent-interpolations
       - name: Check that all required locale files exist
