@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { domain, version, source_url, profile_directory as profileDirectory } from 'mastodon/initial_state';
+import { domain, version, source_url, statusPageUrl, profile_directory as profileDirectory } from 'mastodon/initial_state';
 import { logOut } from 'mastodon/utils/log_out';
 import { openModal } from 'mastodon/actions/modal';
 import { PERMISSION_INVITE_USERS } from 'mastodon/permissions';
@@ -59,21 +59,27 @@ class LinkFooter extends React.PureComponent {
         <p>
           <strong>{domain}</strong>:
           {' '}
-          <Link key='about' to='/about'><FormattedMessage id='footer.about' defaultMessage='About' /></Link>
+          <Link to='/about'><FormattedMessage id='footer.about' defaultMessage='About' /></Link>
+          {statusPageUrl && (
+            <>
+              {DividingCircle}
+              <a href={statusPageUrl} target='_blank' rel='noopener'><FormattedMessage id='footer.status' defaultMessage='Status' /></a>
+            </>
+          )}
           {canInvite && (
             <>
               {DividingCircle}
-              <a key='invites' href='/invites' target='_blank'><FormattedMessage id='footer.invite' defaultMessage='Invite people' /></a>
+              <a href='/invites' target='_blank'><FormattedMessage id='footer.invite' defaultMessage='Invite people' /></a>
             </>
           )}
           {canProfileDirectory && (
             <>
               {DividingCircle}
-              <Link key='directory' to='/directory'><FormattedMessage id='footer.directory' defaultMessage='Profiles directory' /></Link>
+              <Link to='/directory'><FormattedMessage id='footer.directory' defaultMessage='Profiles directory' /></Link>
             </>
           )}
           {DividingCircle}
-          <Link key='privacy-policy' to='/privacy-policy'><FormattedMessage id='footer.privacy_policy' defaultMessage='Privacy policy' /></Link>
+          <Link to='/privacy-policy'><FormattedMessage id='footer.privacy_policy' defaultMessage='Privacy policy' /></Link>
         </p>
 
         <p>

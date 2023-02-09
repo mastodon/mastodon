@@ -213,7 +213,7 @@ module JsonLdHelper
     end
   end
 
-  def load_jsonld_context(url, _options = {}, &_block)
+  def load_jsonld_context(url, _options = {}, &block)
     json = Rails.cache.fetch("jsonld:context:#{url}", expires_in: 30.days, raw: true) do
       request = Request.new(:get, url)
       request.add_headers('Accept' => 'application/ld+json')
@@ -226,6 +226,6 @@ module JsonLdHelper
 
     doc = JSON::LD::API::RemoteDocument.new(json, documentUrl: url)
 
-    block_given? ? yield(doc) : doc
+    block ? yield(doc) : doc
   end
 end

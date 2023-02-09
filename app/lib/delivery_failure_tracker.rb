@@ -6,7 +6,7 @@ class DeliveryFailureTracker
   FAILURE_DAYS_THRESHOLD = 7
 
   def initialize(url_or_host)
-    @host = url_or_host.start_with?('https://') || url_or_host.start_with?('http://') ? Addressable::URI.parse(url_or_host).normalized_host : url_or_host
+    @host = url_or_host.start_with?('https://', 'http://') ? Addressable::URI.parse(url_or_host).normalized_host : url_or_host
   end
 
   def track_failure!
