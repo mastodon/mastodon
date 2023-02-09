@@ -266,7 +266,7 @@ class User < ApplicationRecord
   end
 
   def inactive_message
-    !approved? ? :pending : super
+    approved? ? super : :pending
   end
 
   def approve!

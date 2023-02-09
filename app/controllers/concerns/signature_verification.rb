@@ -227,7 +227,7 @@ module SignatureVerification
   end
 
   def to_header_name(name)
-    name.split(/-/).map(&:capitalize).join('-')
+    name.split('-').map(&:capitalize).join('-')
   end
 
   def missing_required_signature_parameters?

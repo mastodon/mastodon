@@ -38,7 +38,7 @@ class ActivityPub::FetchRemoteActorService < BaseService
 
     ActivityPub::ProcessAccountService.new.call(@username, @domain, @json, only_key: only_key, verified_webfinger: !only_key, request_id: request_id)
   rescue Error => e
-    Rails.logger.debug "Fetching actor #{uri} failed: #{e.message}"
+    Rails.logger.debug { "Fetching actor #{uri} failed: #{e.message}" }
     raise unless suppress_errors
   end
 
