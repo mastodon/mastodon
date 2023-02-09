@@ -393,6 +393,9 @@ ast:
     security: Seguranza
     setup:
       email_settings_hint_html: Unvióse'l mensaxe de confirmación a %{email}. Si la direición de corréu electrónicu nun ye correuta, pues camudala na configuración de la cuenta.
+    sign_in:
+      preamble_html: Anicia la sesión colos tos datos d'accesu en <strong>%{domain}</strong>. Si la cuenta ta agospiada n'otru sirvidor, nun vas ser a aniciar la sesión equí.
+      title: Aniciu de la sesión en «%{domain}»
     sign_up:
       preamble: Con una cuenta nesti sirvidor de Mastodon vas ser a siguir a cualesquier perfil de la rede, independientemente del sirvidor onde s'agospie la so cuenta.
       title: 'Creación d''una cuenta en: %{domain}.'
@@ -602,8 +605,10 @@ ast:
     code_hint: Introduz el códigu que xeneró l'aplicación autenticadora pa confirmar l'aición
     description_html: Si actives l'<strong>autenticación en dos pasos</strong> con una aplicación autenticadora, al aniciar la sesión va ser obligatorio que tengas el teléfonu a mano, preséu que xenera los pases que tienes d'introducir.
     enable: Activar
+    instructions_html: "<strong>Escania esti códigu QR con Google Authenticator o otra aplicación asemeyada nel móvil</strong>. Dende agora, esa aplicación va xenerar los pases que tienes d'introducir cuando anicies la sesión."
     manual_instructions: 'Si nun pues escaniar el códigu QR ya tienes d''introducilu manualmente, equí tienes el secretu en testu ensin formatu:'
     setup: Configurar
+    wrong_code: '¡El códigu introducíu nun yera válidu! ¿La hora del sirvidor y la del preséu son correutes?'
   pagination:
     next: Siguiente
     truncate: "&hellip;"
