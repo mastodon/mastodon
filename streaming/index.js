@@ -127,7 +127,6 @@ const startWorker = async (workerId) => {
       database: process.env.DB_NAME || 'mastodon_development',
       host:     process.env.DB_HOST || pg.defaults.host,
       port:     process.env.DB_PORT || pg.defaults.port,
-      max:      10,
     },
 
     production: {
@@ -136,20 +135,19 @@ const startWorker = async (workerId) => {
       database: process.env.DB_NAME || 'mastodon_production',
       host:     process.env.DB_HOST || 'localhost',
       port:     process.env.DB_PORT || 5432,
-      max:      10,
     },
   };
-
-  if (!!process.env.DB_SSLMODE && process.env.DB_SSLMODE !== 'disable') {
-    pgConfigs.development.ssl = true;
-    pgConfigs.production.ssl = true;
-  }
 
   const app = express();
 
   app.set('trust proxy', process.env.TRUSTED_PROXY_IP ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/) : 'loopback,uniquelocal');
 
-  const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL)));
+  const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL), {
+    max: process.env.DB_POOL || 10,
+    connectionTimeoutMillis: 15000,
+    ssl: !!process.env.DB_SSLMODE && process.env.DB_SSLMODE !== 'disable',
+  }));
+
   const server = http.createServer(app);
   const redisNamespace = process.env.REDIS_NAMESPACE || null;
 
