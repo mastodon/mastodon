@@ -8,15 +8,22 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - **Add support for importing/exporting server-wide domain blocks** ([enbylenore](https://github.com/mastodon/mastodon/pull/20597), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/21471), [dariusk](https://github.com/mastodon/mastodon/pull/22803), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/21470))
-- Add listing of followed hashtags ([connorshea](https://github.com/mastodon/mastodon/pull/21773))
-- Add support for editing media description and focus point of already-sent posts ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/20878))
-- Add follow request banner on account header ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/20785))
-- Add confirmation screen when handling reports ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/22375), [Gargron](https://github.com/mastodon/mastodon/pull/23156), [tribela](https://github.com/mastodon/mastodon/pull/23178))
+- **Add listing of followed hashtags** ([connorshea](https://github.com/mastodon/mastodon/pull/21773))
+- **Add support for editing media description and focus point of already-sent posts** ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/20878))
+  - Previously, you could add and remove attachments, but not edit media description of already-attached media
+  - REST API changes:
+    - `PUT /api/v1/statuses/:id` now takes an extra `media_attributes[]` array parameter with the `id` of the updated media and their updated `description`, `focus`, and `thumbnail`
+- **Add follow request banner on account header** ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/20785))
+  - REST API changes:
+    - `Relationship` entities have an extra `requested_by` boolean attribute representing whether the represented user has requested to follow you
+- **Add confirmation screen when handling reports** ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/22375), [Gargron](https://github.com/mastodon/mastodon/pull/23156), [tribela](https://github.com/mastodon/mastodon/pull/23178))
 - Add option to make the landing page be `/about` even when trends are enabled ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/20808))
 - Add `noindex` setting back to the admin interface ([prplecake](https://github.com/mastodon/mastodon/pull/22205))
 - Add instance peers API endpoint toggle back to the admin interface ([dariusk](https://github.com/mastodon/mastodon/pull/22810))
 - Add instance activity API endpoint toggle back to the admin interface ([dariusk](https://github.com/mastodon/mastodon/pull/22833))
 - Add setting for status page URL ([Gargron](https://github.com/mastodon/mastodon/pull/23390))
+  - REST API changes:
+    - Add `configuration.urls.status` attribute to the object returned by `GET /api/v1/instance`
 - Add `account.approved` webhook ([Saiv46](https://github.com/mastodon/mastodon/pull/22938))
 - Add 12 hours option to polls ([Pleclown](https://github.com/mastodon/mastodon/pull/21131))
 - Add dropdown menu item to open admin interface for remote domains ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/21895))
@@ -47,7 +54,7 @@ All notable changes to this project will be documented in this file.
 - Add `roles` attribute to `Account` entities in REST API ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23255), [tribela](https://github.com/mastodon/mastodon/pull/23428))
 - Add `reading:autoplay:gifs` to `/api/v1/preferences` ([j-f1](https://github.com/mastodon/mastodon/pull/22706))
 - Add `hide_collections` parameter to `/api/v1/accounts/credentials` ([CarlSchwan](https://github.com/mastodon/mastodon/pull/22790))
-- Add `policy` attribute to web push subscription objects in `/api/v1/push/subscriptions` ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23210))
+- Add `policy` attribute to web push subscription objects in REST API at `/api/v1/push/subscriptions` ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23210))
 - Add metrics endpoint to streaming API ([Gargron](https://github.com/mastodon/mastodon/pull/23388), [Gargron](https://github.com/mastodon/mastodon/pull/23469))
 - Add more specific error messages to HTTP signature verification ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/21617))
 - Add Storj DCS to cloud object storage options in the `mastodon:setup` rake task ([jtolio](https://github.com/mastodon/mastodon/pull/21929))
