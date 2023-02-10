@@ -45,6 +45,6 @@ class RedisConfiguration
   private
 
   def raw_connection
-    Redis.new(url: url, driver: :hiredis)
+    Redis.new(url: url)
   end
 end
