@@ -614,6 +614,7 @@ be:
       comment:
         none: Пуста
       comment_description_html: 'Каб даць больш інфармацыі, %{name} напісаў:'
+      confirm_action: Пацвердзіць мадэрацыю супраць @%{acct}
       created_at: Створана
       delete_and_resolve: Выдаліць допісы
       forwarded: Пераслана
@@ -644,10 +645,20 @@ be:
       statuses: Змесціва, на якое паскардзіліся
       statuses_description_html: Крыўднае змесціва будзе згадвацца ў зносінах з уліковым запісам, на які пададзена скарга
       summary:
+        actions:
+          delete_html: Выдаліць абразлівы допіс
+          mark_as_sensitive_html: Пазначыць медыя абразлівага допіса як далікатнае
+          suspend_html: Прыпыніць <strong>@%{acct}</strong>, зрабіць профіль і змесціва недаступным і не даваць магчымасці ўзаемадзейнічаць з імі
         close_report: 'Пазначыць скаргу #%{id} як вырашаную'
+        close_reports_html: Адзначыць <strong>усе</strong> скаргі супраць <strong>@%{acct}</strong> як вырашаныя
+        delete_data_html: Выдаліць профіль <strong>@%{acct}</strong> і змесціва праз 30 дзён, калі тым часам гэтае дзеянне не будзе адменена
+        preview_preamble_html: "<strong>@%{acct}</strong> атрымае папярэджанне наступнага зместу:"
+        send_email_html: Адправіць <strong>@%{acct}</strong> папярэджанне па электроннай пошце
+        warning_placeholder: Неабавязковае дадатковае абгрунтаванне мадэрацыі.
       target_origin: Крыніца уліковага запісу на які пададзена скарга
       title: Скаргі
       unassign: Скінуць
+      unknown_action_msg: 'Невядомае дзеянне: %{action}'
       unresolved: Нявырашаныя
       updated_at: Абноўлена
       view_profile: Паглядзець профіль
@@ -1430,6 +1441,7 @@ be:
     activity: Актыўнасць ул. запісу
     confirm_follow_selected_followers: Вы ўпэўнены, што жадаеце падпісацца на выбраных падпісчыкаў?
     confirm_remove_selected_followers: Вы ўпэўнены, што жадаеце выдаліць выбраных падпісчыкаў?
+    confirm_remove_selected_follows: Вы ўпэўнены, што жадаеце выдаліць выбраныя падпіскі?
     dormant: Занядбаны
     follow_selected_followers: Падпісацца на выбраных падпісчыкаў
     followers: Падпісчыкі
