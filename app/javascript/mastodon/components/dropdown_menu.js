@@ -112,6 +112,7 @@ class DropdownMenu extends React.PureComponent {
   };
 
   menuIcons = {
+    // self-menu
     'Edit profile': 'pencil-square-o',
     'Preferences': 'gear',
     'Pinned posts': 'thumb-tack',
@@ -121,7 +122,14 @@ class DropdownMenu extends React.PureComponent {
     'Muted users': 'microphone-slash',
     'Blocked users': 'ban',
     'Blocked domains': 'shield',
-  }
+    // other menu
+    'Mention': 'comment',
+    'Direct message': 'comment-o',
+    'Mute': 'microphone-slash',
+    'Block': 'ban',
+    'Report': 'flag',
+    'Open moderation interface for': 'gear',
+  };
 
   renderItem = (option, i) => {
     if (option === null) {
@@ -130,7 +138,8 @@ class DropdownMenu extends React.PureComponent {
 
     const { text, href = '#', target = '_blank', method } = option;
 
-    const icon = this.menuIcons[text] ;
+    const key = text.replace(/ @.*/, '');
+    const icon = this.menuIcons[key] ?? 'question-circle' ;
 
     return (
       <li className={classNames('dropdown-menu__item', text)} key={`${text}-${i}`}>
