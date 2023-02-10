@@ -1,7 +1,6 @@
 // @ts-check
 
 const os = require('os');
-const throng = require('throng');
 const dotenv = require('dotenv');
 const express = require('express');
 const http = require('http');
@@ -89,8 +88,6 @@ const redisUrlToClient = async (defaultConfig, redisUrl) => {
   return client;
 };
 
-const numWorkers = +process.env.STREAMING_CLUSTER_NUM || (env === 'development' ? 1 : Math.max(os.cpus().length - 1, 1));
-
 /**
  * @param {string} json
  * @param {any} req
@@ -109,17 +106,7 @@ const parseJSON = (json, req) => {
   }
 };
 
-const startMaster = () => {
-  if (!process.env.SOCKET && process.env.PORT && isNaN(+process.env.PORT)) {
-    log.warn('UNIX domain socket is now supported by using SOCKET. Please migrate from PORT hack.');
-  }
-
-  log.warn(`Starting streaming API server master with ${numWorkers} workers`);
-};
-
-const startWorker = async (workerId) => {
-  log.warn(`Starting worker ${workerId}`);
-
+const startWorker = async () => {
   const pgConfigs = {
     development: {
       user:     process.env.DB_USER || pg.defaults.user,
@@ -1243,11 +1230,10 @@ const startWorker = async (workerId) => {
   }, 30000);
 
   attachServerWithConfig(server, address => {
-    log.warn(`Worker ${workerId} now listening on ${address}`);
+    log.warn(`Streaming API now listening on ${address}`);
   });
 
   const onExit = () => {
-    log.warn(`Worker ${workerId} exiting`);
     server.close();
     process.exit(0);
   };
@@ -1285,34 +1271,4 @@ const attachServerWithConfig = (server, onSuccess) => {
   }
 };
 
-/**
- * @param {function(Error=): void} onSuccess
- */
-const onPortAvailable = onSuccess => {
-  const testServer = http.createServer();
-
-  testServer.once('error', err => {
-    onSuccess(err);
-  });
-
-  testServer.once('listening', () => {
-    testServer.once('close', () => onSuccess());
-    testServer.close();
-  });
-
-  attachServerWithConfig(testServer);
-};
-
-onPortAvailable(err => {
-  if (err) {
-    log.error('Could not start server, the port or socket is in use');
-    return;
-  }
-
-  throng({
-    workers: numWorkers,
-    lifetime: Infinity,
-    start: startWorker,
-    master: startMaster,
-  });
-});
+startWorker();

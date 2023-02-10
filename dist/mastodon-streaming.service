@@ -8,10 +8,10 @@ User=mastodon
 WorkingDirectory=/home/mastodon/live
 Environment="NODE_ENV=production"
 Environment="PORT=4000"
-Environment="STREAMING_CLUSTER_NUM=1"
 ExecStart=/usr/bin/node ./streaming
 TimeoutSec=15
 Restart=always
+LimitNOFILE=65536
 # Proc filesystem
 ProcSubset=pid
 ProtectProc=invisible
