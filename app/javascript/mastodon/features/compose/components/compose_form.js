@@ -243,6 +243,7 @@ class ComposeForm extends ImmutablePureComponent {
             id='cw-spoiler-input'
             className='spoiler-input__input'
             lang={this.props.lang}
+            spellCheck
           />
         </div>
 

@@ -24,6 +24,9 @@
       = f.input :show_domain_blocks_rationale, wrapper: :with_label, collection: %i(disabled users all), label_method: lambda { |value| t("admin.settings.domain_blocks.#{value}") }, include_blank: false, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
 
   .fields-group
+    = f.input :status_page_url, wrapper: :with_block_label, input_html: { placeholder: "https://status.#{Rails.configuration.x.local_domain}" }
+
+  .fields-group
     = f.input :site_terms, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }
 
   .actions

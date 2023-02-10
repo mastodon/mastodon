@@ -5,9 +5,9 @@ tr:
       account_alias:
         acct: Taşımak istediğiniz hesabı kullanıcıadı@alanadı şeklinde belirtin
       account_migration:
-        acct: Yeni hesabınızı kullanıcıadı@alanadını şeklinde belirtin
+        acct: Taşımak istediğiniz hesabın kullanıcıadı@alanadını belirtin
       account_warning_preset:
-        text: URL'ler, etiketler ve bahsedenler gibi gönderi sözdizimini kullanabilirsiniz
+        text: Bğlantılar, etiketler ve bahsedenler gibi gönderi sözdizimini kullanabilirsiniz
         title: İsteğe bağlı. Alıcıya görünmez
       admin_account_action:
         include_statuses: Kullanıcı hangi gönderilerin denetleme eylemi veya uyarısına neden olduğunu görecektir
@@ -91,11 +91,13 @@ tr:
         site_short_description: Sunucunuzu tekil olarak tanımlamaya yardımcı olacak kısa tanım. Kim işletiyor, kimin için?
         site_terms: Kendi gizlilik politikanızı kullanın veya varsayılanı kullanmak için boş bırakın. Markdown sözdizimiyle biçimlendirilebilir.
         site_title: İnsanlar sunucunuzu alan adı dışında nasıl isimlendirmeli.
+        status_page_url: İnsanların bir kesinti halinde sunucunun durumunu görebilecekleri bir sayfanın URL'si
         theme: Giriş yapmamış ziyaretçilerin ve yeni kullanıcıların gördüğü tema.
         thumbnail: Sunucu bilginizin yanında gösterilen yaklaşık 2:1'lik görüntü.
         timeline_preview: Giriş yapmamış ziyaretçiler, sunucuda mevcut olan en son genel gönderileri tarayabilecekler.
         trendable_by_default: Öne çıkan içeriğin elle incelenmesini atla. Tekil öğeler sonrada öne çıkanlardan kaldırılabilir.
         trends: Öne çıkanlar, sunucunuzda ilgi toplayan gönderileri, etiketleri ve haber yazılarını gösterir.
+        trends_as_landing_page: Giriş yapmış kullanıcılar ve ziyaretçilere sunucunun açıklması yerine öne çıkan içeriği göster. Öne çıkanların etkin olması gerekir.
       form_challenge:
         current_password: Güvenli bir bölgeye giriyorsunuz
       imports:
@@ -251,11 +253,13 @@ tr:
         site_short_description: Sunucu açıklaması
         site_terms: Gizlilik Politikası
         site_title: Sunucu adı
+        status_page_url: Durum sayfası URL'si
         theme: Öntanımlı tema
         thumbnail: Sunucu küçük resmi
         timeline_preview: Genel zaman çizelgelerine yetkisiz erişime izin ver
         trendable_by_default: Ön incelemesiz öne çıkanlara izin ver
         trends: Öne çıkanları etkinleştir
+        trends_as_landing_page: Giriş sayfası olarak öne çıkanları kullan
       interactions:
         must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
         must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle
