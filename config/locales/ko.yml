@@ -100,7 +100,7 @@ ko:
       no_limits_imposed: 제한 없음
       no_role_assigned: 할당된 역할 없음
       not_subscribed: 구독하지 않음
-      pending: 계류된 검토
+      pending: 심사 대기
       perform_full_suspension: 정지
       previous_strikes: 이전의 처벌들
       previous_strikes_description_html:
@@ -297,7 +297,7 @@ ko:
         create: 공지사항 생성
         title: 새 공지사항
       publish: 게시
-      published_msg: 공지사항을 잘 발행했습니다!
+      published_msg: 공지사항이 성공적으로 발행되었습니다!
       scheduled_for: "%{time}에 예약됨"
       scheduled_msg: 공지의 발행이 예약되었습니다!
       title: 공지사항
@@ -422,7 +422,7 @@ ko:
         title: 새 이메일 도메인 차단
       no_email_domain_block_selected: 아무 것도 선택 되지 않아 어떤 이메일 도메인 차단도 변경되지 않았습니다
       resolved_dns_records_hint_html: 도메인 네임은 다음의 MX 도메인으로 연결되어 있으며, 이메일을 받는데 필수적입니다. MX 도메인을 차단하면 같은 MX 도메인을 사용하는 어떤 이메일이라도 가입할 수 없게 되며, 보여지는 도메인이 다르더라도 적용됩니다. <strong>주요 이메일 제공자를 차단하지 않도록 조심하세요.</strong>
-      resolved_through_html: "%{domain}을 통해 해결됨"
+      resolved_through_html: "%{domain}을 통해 리졸빙됨"
       title: Email 도메인 차단
     export_domain_allows:
       new:
@@ -467,7 +467,7 @@ ko:
         description_html: 이 도메인과 하위 도메인의 모든 계정에 적용될 콘텐츠 정책을 정의할 수 있습니다.
         policies:
           reject_media: 미디어 거부
-          reject_reports: 신고 반려
+          reject_reports: 신고 거부
           silence: 제한
           suspend: 정지
         policy: 정책
@@ -558,7 +558,7 @@ ko:
     reports:
       account:
         notes:
-          other: "%{count}개의 참고사항"
+          other: "%{count} 개의 참고사항"
       action_log: 감사 기록
       action_taken_by: 신고 처리자
       actions:
@@ -590,9 +590,9 @@ ko:
       mark_as_unresolved: 미해결로 표시
       no_one_assigned: 아무도 없음
       notes:
-        create: 기록 추가
-        create_and_resolve: 종결 및 참고사항 기재
-        create_and_unresolve: 재검토 및 참고사항 기재
+        create: 참고사항 추가
+        create_and_resolve: 참고사항 기재 및 종결
+        create_and_unresolve: 참고사항 기재 및 재개
         delete: 삭제
         placeholder: 어떤 대응을 했는지 설명 또는 그 밖의 관련된 갱신 사항들
         title: 참고사항
@@ -794,7 +794,7 @@ ko:
       sidekiq_process_check:
         message_html: "%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요"
     tags:
-      review: 검토 상태
+      review: 심사 상태
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
     title: 관리
     trends:
@@ -815,7 +815,7 @@ ko:
         title: 유행하는 링크
         usage_comparison: 오늘은 %{today}회 공유되었고, 어제는 %{yesterday}회 공유되었습니다
       only_allowed: 허용된 것만
-      pending_review: 계류된 검토
+      pending_review: 심사 대기
       preview_card_providers:
         allowed: 이 출처의 링크는 유행 목록에 실릴 수 있습니다
         description_html: 당신의 서버에서 많은 링크가 공유되고 있는 도메인들입니다. 링크의 도메인이 승인되기 전까지는 링크들은 공개적으로 트렌드에 게시되지 않습니다. 당신의 승인(또는 거절)은 서브도메인까지 확장됩니다.
@@ -897,7 +897,7 @@ ko:
       subject: "%{username} 님이 %{instance}에서 발생한 중재 결정에 대해 소명을 제출했습니다"
     new_pending_account:
       body: 아래에 새 계정에 대한 상세정보가 있습니다. 이 가입을 승인하거나 거부할 수 있습니다.
-      subject: "%{instance}의 새 계정(%{username}) 검토"
+      subject: "%{instance}의 새 계정(%{username})에 대한 심사가 대기중입니다"
     new_report:
       body: "%{reporter} 님이 %{target}를 신고했습니다"
       body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
@@ -912,7 +912,7 @@ ko:
         no_approved_tags: 현재 승인된 유행 중인 해시태그가 없습니다.
         requirements: '이 후보들 중 어떤 것이라도 #%{rank}위의 승인된 유행 중인 해시태그를 앞지를 수 있으며, 이것은 현재 #%{lowest_tag_name}이고 %{lowest_tag_score}점을 기록하고 있습니다.'
         title: 유행하는 해시태그
-      subject: "%{instance}의 새 유행물 검토"
+      subject: 새 트렌드가 %{instance}에서 심사 대기 중입니다
   aliases:
     add_new: 별칭 만들기
     created_msg: 새 별칭이 성공적으로 만들어졌습니다. 이제 기존 계정에서 이주를 시작할 수 있습니다.
@@ -1009,7 +1009,7 @@ ko:
     follow_request: '당신은 다음 계정에 팔로우 신청을 했습니다:'
     following: '성공! 당신은 다음 계정을 팔로우 하고 있습니다:'
     post_follow:
-      close: 또한, 그저 이 창을 닫을 수도 있습니다.
+      close: 혹은, 그저 이 창을 닫을 수도 있습니다.
       return: 사용자 프로필 보기
       web: 웹으로 가기
     title: "%{acct} 를 팔로우"
@@ -1047,7 +1047,7 @@ ko:
     proceed: 계정 삭제
     success_msg: 계정이 성공적으로 삭제되었습니다
     warning:
-      before: '진행 전, 참고사항을 주의 깊게 읽기 바랍니다:'
+      before: '진행하기 전, 주의사항을 꼼꼼히 읽어보세요:'
       caches: 다른 서버에 캐싱된 정보들은 남아있을 수 있습니다
       data_removal: 당신의 게시물과 다른 정보들은 영구적으로 삭제 됩니다
       email_change_html: 계정을 지우지 않고도 <a href="%{path}">이메일 주소를 수정할 수 있습니다</a>
@@ -1218,7 +1218,7 @@ ko:
       '86400': 하루
     expires_in_prompt: 영원히
     generate: 생성
-    invited_by: '초대자:'
+    invited_by: '당신을 초대한 사람:'
     max_uses:
       other: "%{count}회"
     max_uses_prompt: 제한 없음
@@ -1270,7 +1270,7 @@ ko:
     set_redirect: 리디렉션 설정
     warning:
       backreference_required: 새 계정은 이 계정으로 역참조를 하도록 설정되어 있어야 합니다
-      before: '진행 전, 참고사항을 주의 깊게 읽기 바랍니다:'
+      before: '진행하기 전, 주의사항을 꼼꼼히 읽어보세요:'
       cooldown: 이주 뒤에는 새로운 이주를 하지 못하는 휴식기간이 존재합니다
       disabled_account: 이 계정은 완전한 사용이 불가능하게 됩니다. 하지만, 데이터 내보내기나 재활성화를 위해 접근할 수 있습니다.
       followers: 이 행동은 현재 계정의 모든 팔로워를 새 계정으로 이동시킵니다
@@ -1282,7 +1282,7 @@ ko:
   move_handler:
     carry_blocks_over_text: 이 사용자는 당신이 차단한 %{acct}로부터 이주 했습니다.
     carry_mutes_over_text: 이 사용자는 당신이 뮤트한 %{acct}로부터 이주 했습니다.
-    copy_account_note_text: '이 사용자는 %{acct}에서 옮겨왔으며 이전의 참고사항은 다음과 같습니다:'
+    copy_account_note_text: '이 사용자는 %{acct}로부터 이동하였습니다. 당신의 이전 노트는 이렇습니다:'
   navigation:
     toggle_menu: 토글 메뉴
   notification_mailer:

@@ -45,7 +45,7 @@ ko:
         irreversible: 필터링 된 게시물은 나중에 필터가 사라지더라도 돌아오지 않게 됩니다
         locale: 사용자 인터페이스, 이메일, 푸시 알림 언어
         locked: 팔로우 요청을 승인제로 두어 누가 당신을 팔로우 할 수 있는지를 수동으로 제어합니다.
-        password: 여덟 글자를 넘어야 합니다.
+        password: 최소 8글자
         phrase: 게시물 내용이나 열람주의 내용 안에서 대소문자 구분 없이 매칭 됩니다
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
         setting_aggregate_reblogs: 최근에 부스트 됐던 게시물은 새로 부스트 되어도 보여주지 않기 (새로 받은 부스트에만 적용됩니다)
@@ -97,7 +97,7 @@ ko:
         timeline_preview: 로그아웃 한 사용자들이 이 서버에 있는 최신 공개글들을 볼 수 있게 합니다.
         trendable_by_default: 유행하는 콘텐츠에 대한 수동 승인을 건너뜁니다. 이 설정이 적용된 이후에도 각각의 항목들을 삭제할 수 있습니다.
         trends: 트렌드는 어떤 게시물, 해시태그 그리고 뉴스 기사가 이 서버에서 인기를 끌고 있는지 보여줍니다.
-        trends_as_landing_page: 로그아웃한 사용자와 방문자에게 서버 설명 대신하여 유행하는 내용을 보여줍니다. 유행 기능을 활성화해야 합니다.
+        trends_as_landing_page: 로그아웃한 사용자와 방문자에게 서버 설명 대신 유행하는 내용을 보여줍니다. 유행 기능을 활성화해야 합니다.
       form_challenge:
         current_password: 당신은 보안 구역에 진입하고 있습니다
       imports:
@@ -283,7 +283,7 @@ ko:
         follow: 누군가 나를 팔로우 했을 때
         follow_request: 누군가 나를 팔로우 하길 요청할 때
         mention: 누군가 나를 언급했을 때
-        pending_account: 검토해야 할 새 계정
+        pending_account: 새 계정이 심사가 필요할 때
         reblog: 누군가 내 게시물을 부스트 했을 때
         report: 새 신고가 접수되었을 때
         trending_tag: 검토해야 할 새 유행
@@ -292,7 +292,7 @@ ko:
       tag:
         listable: 이 해시태그가 검색과 추천에 보여지도록 허용
         name: 해시태그
-        trendable: 이 해시태그를 유행에 나타나도록 허용
+        trendable: 이 해시태그가 유행에 나타날 수 있도록 허용
         usable: 이 해시태그를 게시물에 사용 가능하도록 허용
       user:
         role: 역할
