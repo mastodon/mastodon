@@ -140,13 +140,13 @@ class ListTimeline extends React.PureComponent {
     const { dispatch } = this.props;
     const { id } = this.props.params;
     dispatch(updateList(id, undefined, false, undefined, target.value));
-  }
+  };
 
-  onExclusiveToggle = () => {
-    const { dispatch, list } = this.props;
+  onExclusiveToggle = ({ target }) => {
+    const { dispatch } = this.props;
     const { id } = this.props.params;
-    dispatch(updateList(id, undefined, false, !list.get('is_exclusive'), undefined));
-  }
+    dispatch(updateList(id, undefined, false, target.checked, undefined));
+  };
 
   render () {
     const { hasUnread, columnId, multiColumn, list, intl } = this.props;
@@ -196,8 +196,8 @@ class ListTimeline extends React.PureComponent {
           </div>
 
           <div className='setting-toggle'>
-            <Toggle id='lists.exclusive' defaultChecked={isExclusive} onChange={this.onExclusiveToggle} />
-            <label htmlFor='lists.exclusive' className='setting-toggle__label'>
+            <Toggle id={`list-${id}-exclusive`} defaultChecked={isExclusive} onChange={this.onExclusiveToggle} />
+            <label htmlFor={`list-${id}-exclusive`} className='setting-toggle__label'>
               <FormattedMessage id='lists.exclusive' defaultMessage='Hide these posts from home' />
             </label>
           </div>

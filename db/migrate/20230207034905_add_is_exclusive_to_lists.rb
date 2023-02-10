@@ -1,4 +1,4 @@
-class AddIsExclusiveToLists < ActiveRecord::Migration[5.2]
+class AddIsExclusiveToLists < ActiveRecord::Migration[6.1]
   def change
     add_column :lists, :is_exclusive, :boolean
     change_column_default :lists, :is_exclusive, false
