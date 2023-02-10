@@ -197,7 +197,7 @@ class Poll extends ImmutablePureComponent {
     const timeRemaining = expired ? intl.formatMessage(messages.closed) : <RelativeTimestamp timestamp={poll.get('expires_at')} futureDate />;
     const showResults   = poll.get('voted') || expired;
     const disabled      = this.props.disabled || Object.entries(this.state.selected).every(item => !item);
-    const showRefresh   = showResults && !poll.get('expired') && !this.props.disabled;
+    const showRefresh   = showResults && !poll.get('final') && !this.props.disabled;
 
     let votesCount = null;
 

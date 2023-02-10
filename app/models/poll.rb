@@ -48,7 +48,12 @@ class Poll < ApplicationRecord
   end
 
   def possibly_stale?
-    remote? && last_fetched_before_expiration? && time_passed_since_last_fetch?
+    !final? && time_passed_since_last_fetch?
+  end
+
+  def final?
+    return false unless expired?
+    local? || fetched_after_expiration?
   end
 
   def voted?(account)
@@ -108,8 +113,9 @@ class Poll < ApplicationRecord
     Rails.cache.delete("statuses/#{status_id}")
   end
 
-  def last_fetched_before_expiration?
-    last_fetched_at.nil? || expires_at.nil? || last_fetched_at < expires_at
+  def fetched_after_expiration?
+    return false if last_fetched_at.nil? || expires_at.nil?
+    last_fetched_at >= expires_at
   end
 
   def time_passed_since_last_fetch?

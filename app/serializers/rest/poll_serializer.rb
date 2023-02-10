@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class REST::PollSerializer < ActiveModel::Serializer
-  attributes :id, :expires_at, :expired,
+  attributes :id, :expires_at, :expired, :final,
              :multiple, :votes_count, :voters_count
 
   has_many :loaded_options, key: :options
@@ -16,6 +16,10 @@ class REST::PollSerializer < ActiveModel::Serializer
 
   def expired
     object.expired?
+  end
+
+  def final
+    object.final?
   end
 
   def voted
