@@ -441,6 +441,7 @@ fi:
         private_comment_description_html: 'Tuodun estolistan alkuperän selvillä pitämiseksi, lisätään tietojen yhteyteen seuraava yksityinen kommentti: <q>%{comment}</q>'
         private_comment_template: Tuotu lähteestä %{source}, pvm %{date}
         title: Tuo luettelo verkkoalue-estoista
+      invalid_domain_block: 'Yksi tai useampi verkkotunnuksen lohko ohitettiin seuraavien virheiden vuoksi: %{error}'
       new:
         title: Tuo luettelo verkkoalue-estoista
       no_file: Yhtäkään tiedostoa ei ole valittu
@@ -575,7 +576,10 @@ fi:
         mark_as_sensitive_description_html: Ilmoitettujen viestien media merkitään arkaluonteisiksi ja varoitus tallennetaan, jotta voit kärjistää saman tilin tulevia rikkomuksia.
         other_description_html: Katso lisää vaihtoehtoja tilin käytöksen hallitsemiseksi ja ilmoitetun tilin viestinnän mukauttamiseksi.
         resolve_description_html: Ilmoitettua tiliä vastaan ei ryhdytä toimenpiteisiin, varoitusta ei kirjata ja raportti suljetaan.
+        silence_description_html: Tili näkyy vain niille, jotka jo seuraavat sitä tai estävät sen manuaalisesti, mikä rajoittaa merkittävästi sen kattavuutta. Se voidaan aina palauttaa. Sulkee kaikki raportit tätä tiliä vastaan.
+        suspend_description_html: Tili ja kaikki sen sisältö eivät ole käytettävissä ja vuorovaikutus sen kanssa on mahdotonta, sekä lopulta poistetaan. Palautettava 30 päivän kuluessa. Sulkee kaikki raportit tätä tiliä vastaan.
       actions_description_html: Päätä, mihin toimiin ryhdyt tämän ilmoituksen ratkaisemiseksi. Jos ryhdyt rangaistustoimeen ilmoitettua tiliä vastaan, heille lähetetään sähköposti-ilmoitus, paitsi jos <strong>Roskaposti</strong> luokka on valittuna.
+      actions_description_remote_html: Päätä, mihin toimiin ryhdyt tämän raportin ratkaisemiseksi. Tämä vaikuttaa vain siihen, miten <strong>palvelimesi</strong> kommunikoi tämän etätilin kanssa ja käsittelee sen sisältöä.
       add_to_report: Lisää raporttiin
       are_you_sure: Oletko varma?
       assign_to_self: Ota tehtäväksi
@@ -629,7 +633,9 @@ fi:
           suspend_html: Rajoita <strong>@%{acct}</strong>, jolloin heidän profiilinsa ja sisällönsä ei ole käytettävissä ja on mahdotonta olla vuorovaikutuksessa
         close_report: 'Merkitse raportti #%{id} selvitetyksi'
         close_reports_html: Merkitse <strong>kaikki</strong> käyttäjään <strong>@%{acct}</strong> kohdistuvat raportit ratkaistuiksi
+        delete_data_html: Poista <strong>@%{acct}</strong>profiili ja sisältö 30 päivän kuluttua, ellei jäädytystä tällä välin peruuteta
         preview_preamble_html: "<strong>@%{acct}</strong> saa varoituksen, jonka sisältö on seuraava:"
+        record_strike_html: Tallenna varoitus <strong>@%{acct}</strong> vastaan, joka auttaa sinua selvittämään tulevia rikkomuksia tältä tililtä
         send_email_html: Lähetä käyttäjälle <strong>@%{acct}</strong> varoitus sähköpostitse
         warning_placeholder: Valinnaiset lisäperustelut moderointitoimenpiteelle.
       target_origin: Raportoidun tilin alkuperä
@@ -730,6 +736,7 @@ fi:
         preamble: Mielenkiintoisen sisällön esille tuominen auttaa saamaan uusia käyttäjiä, jotka eivät ehkä tunne ketään Mastodonista. Määrittele, kuinka erilaiset etsintäominaisuudet toimivat palvelimellasi.
         profile_directory: Profiilihakemisto
         public_timelines: Julkiset aikajanat
+        publish_discovered_servers: Julkaise löydetyt palvelimet
         publish_statistics: Julkaise tilastot
         title: Löytäminen
         trends: Trendit

@@ -226,6 +226,7 @@ sk:
         destroy_domain_block_html: "%{name} odblokoval/i doménu %{target}"
         destroy_ip_block_html: "%{name} vymazal/a pravidlo pre IP %{target}"
         destroy_status_html: "%{name} zmazal/a príspevok od %{target}"
+        reject_appeal_html: "%{name} zamietol/la námietku moderovacieho rozhodnutia od %{target}"
       deleted_account: zmazaný účet
       empty: Žiadne záznamy nenájdené.
       filter_by_action: Filtruj podľa úkonu
@@ -385,6 +386,7 @@ sk:
       dashboard:
         instance_accounts_dimension: Najsledovanejšie účty
         instance_accounts_measure: uložené účty
+        instance_follows_measure: ich sledovatelia tu
         instance_statuses_measure: uložené príspevky
       delivery:
         all: Všetko
@@ -503,6 +505,7 @@ sk:
       categories:
         administration: Spravovanie
         invites: Pozvánky
+        moderation: Moderácia
       delete: Vymaž
       edit: Uprav postavenie %{name}
       privileges:
