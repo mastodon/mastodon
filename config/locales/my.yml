@@ -6,29 +6,41 @@ my:
     followers:
       other: စောင့်ကြည့်သူ
     following: စောင့်ကြည့်နေသည်
+    last_active: နောက်ဆုံးအသုံးပြုခဲ့သည့်အချိန်
     posts:
       other: ပို့စ်တင်မယ်
     posts_tab_heading: ပို့စ်များ
   admin:
     accounts:
+      are_you_sure: သေချာပါသလား။
       avatar: ကိုယ်စားပြုရုပ်ပုံ
       by_domain: ဒိုမိန်း
       change_email:
+        changed_msg: အီးမေးလ် ပြောင်းလဲပြီးပါပြီ။
         current_email: လက်ရှိအီးမေးလ်
         label: အီးမေးလ်ပြောင်းရန်
         new_email: အီးမေးလ်အသစ်
         submit: အီးမေးလ်ပြောင်းပါ။
+        title: '%{username} အတွက် အီးမေးလ်ပြောင်းပါ'
       confirm: အတည်ပြု
+      confirmed: အတည်ပြုပြီးပါပြီ
+      confirming: အတည်ပြုနေသည်
       custom: စိတ်ကြိုက်
+      delete: အချက်အလက်များဖျက်ပါ
+      deleted: ဖျက်ပြီးပါပြီ
+      disable_two_factor_authentication: 2FA ကို ပိတ်ပါ
       domain: ဒိုမိန်း
       edit: ပြင်ဆင်ရန်
       email: အီးမေးလ်
+      enabled: ဖွင့်ထားသည်
       followers: စောင့်ကြည့်သူများ
       ip: IP
       location:
         all: အားလုံး
+        remote: အဝေးမှ
         title: တည်နေရာ
       login_status: အကောင့်ဝင်ရောက်မှုအခြေအနေ
+      media_attachments: မီဒီယာ ပူးတွဲချက်များ
       moderation:
         all: အားလုံး
       public: အများမြင်
@@ -38,15 +50,71 @@ my:
       search: ရှာရန်
       security_measures:
         only_password: စကားဝှက်ဖြင့်သာ
+        password_and_2fa: စကားဝှက်နှင့် 2FA
+      silence: ကန့်သတ်
+      silenced: ကန့်သတ်ထားသည်
       statuses: ပို့စ်များ
       subscribe: စာရင်းသွင်းပါ
+      suspend: ရပ်ဆိုင်းပါ
+      suspended: ရပ်ဆိုင်းထားသည်
       title: အကောင့်များ
+      unsubscribe: စာရင်းမှထွက်ရန်
+      unsuspended_msg: '%{username} ၏ အကောင့်ကို ရပ်ဆိုင်းလိုက်ပါပြီ'
       username: အသုံးပြုသူအမည်
       web: ဝဘ်
+    action_logs:
+      action_types:
+        create_announcement: ကြေညာချက်ဖန်တီးပါ
+        create_custom_emoji: စိတ်ကြိုက်အီမိုဂျီ ဖန်တီးပါ
+        destroy_status: Post ကို ဖျက်ပါ
+        disable_2fa_user: 2FA ကို ပိတ်ပါ
+        disable_custom_emoji: စိတ်ကြိုက်အီမိုဂျီကို ပိတ်ပါ
+        remove_avatar_user: ကိုယ်စားပြုရုပ်ပုံကို ဖယ်ရှားပါ
+        silence_account: အကောင့် ကန့်သတ်ပါ
+        suspend_account: အကောင့် ရပ်ဆိုင်းပါ
+        update_status: ပို့စ်ပြင်ဆင်ရန်
+      deleted_account: အကောင့်ဖျက်ပြီးပါပြီ
+    announcements:
+      destroyed_msg: ကြေညာချက် ဖျက်ပြီးပါပြီ
+      edit:
+        title: ကြေညာချက် ပြင်ဆင်ရန်
+      empty: ကြေညာချက်များမတွေ့ပါ
+      new:
+        create: ကြေညာချက်ဖန်တီးပါ
+        title: ကြေညာချက်အသစ်
+      publish: ပို့စ်တင်မည်
+      title: ကြေညာချက်များ
+      unpublish: ပြန်ဖြုတ်ပါ
+      unpublished_msg: ကြေညာချက်ကို ဖြုတ်ပြီးပါပြီ
+      updated_msg: ကြေညာချက်ကို ပြင်ဆင်ပြီးပါပြီ။
     custom_emojis:
       by_domain: ဒိုမိန်း
       copy: ကူးယူပါ
       delete: ဖျက်ပါ
+      disable: ပိတ်ပါ
+      disabled: ပိတ်ပြီးပါပြီ
+      emoji: အီမိုဂျီ
+      enable: ဖွင့်ပါ
+      enabled: ဖွင့်ထားသည်
+      image_hint: PNG သို့မဟုတ် GIF %{size} အထိ
+      list: စာရင်း
+      listed: စာရင်းသွင်းထားသည်
+      new:
+        title: စိတ်ကြိုက်အီမိုဂျီအသစ် ထည့်ပါ
+      title: စိတ်ကြိုက်အီမိုဂျီများ
+      unlisted: စာရင်းမသွင်းထားပါ
+      update_failed_msg: ထိုအီမိုဂျီကို ပြင်ဆင်၍မရပါ
+      updated_msg: အီမိုဂျီကို ပြင်ဆင်ပြီးပါပြီ။
+    dashboard:
+      new_users: အသုံးပြုသူအသစ်များ
+      website: ဝဘ်ဆိုဒ်
+    domain_blocks:
+      domain: ဒိုမိန်း
+      new:
+        severity:
+          silence: ကန့်သတ်
+          suspend: ရပ်ဆိုင်းပါ
+      private_comment: သီးသန့်မှတ်ချက်
     email_domain_blocks:
       delete: ဖျက်ပါ
       domain: ဒိုမိန်း
@@ -54,10 +122,13 @@ my:
         create: ဒိုမိန်းထည့်ပါ
     export_domain_allows:
       no_file: ဖိုင်ရွေးထားခြင်းမရှိပါ။
+    export_domain_blocks:
+      no_file: ဖိုင်ရွေးထားခြင်းမရှိပါ
     follow_recommendations:
       language: ဘာသာစကားအတွက်
     instances:
       back_to_all: အားလုံး
+      back_to_limited: ကန့်သတ်ထားသည်
       content_policies:
         policy: မူဝါဒ
       delivery:
