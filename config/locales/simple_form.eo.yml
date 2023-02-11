@@ -18,6 +18,8 @@ eo:
           disable: Malhelpi la uzanton uzi sian konton, sed ne forigi aŭ kaŝi ties enhavojn.
           none: Uzu ĉi tion por sendi averton al la uzanto, sen ekigi alian agon.
           sensitive: Devigi ĉiujn da plurmediaj aldonaĵoj esti markitaj kiel sentemaj.
+          silence: Malhelpu la uzanton povi afiŝi kun publika videbleco, kaŝu iliajn afiŝojn kaj sciigojn de homoj, kiuj ne sekvas ilin. Fermas ĉiujn raportojn kontraŭ ĉi tiu konto.
+          suspend: Malhelpu ajnan interagadon de aŭ al ĉi tiu konto kaj forigu ĝian enhavon. Revertebla ene de 30 tagoj. Fermas ĉiujn raportojn kontraŭ ĉi tiu konto.
         warning_preset_id: Malnepra. Vi povas ankoraŭ aldoni propran tekston al la fino de la antaŭagordo
       announcement:
         all_day: Kiam markita, nur la datoj de la tempointervalo estos montrataj
@@ -72,6 +74,7 @@ eo:
           hide: Tute kaŝigi la filtritajn enhavojn, kvazau ĝi ne ekzistis
           warn: Kaŝi la enhavon filtritan malantaŭ averto mencianta la nomon de la filtro
       form_admin_settings:
+        activity_api_enabled: Nombroj de loke publikigitaj afiŝoj, aktivaj uzantoj kaj novaj registradoj en semajnaj siteloj
         backups_retention_period: Konservi generitajn uzantoarkivojn por la kvanto de tagoj.
         bootstrap_timeline_accounts: Ĉi tiuj kontoj pinglitas al la supro de sekvorekomendoj de novaj uzantoj.
         closed_registrations_message: Montrita kiam registroj fermitas
@@ -79,6 +82,7 @@ eo:
         custom_css: Vi povas meti propajn stilojn en la retversio de Mastodon.
         mascot: Anstatauigi la ilustraĵon en la altnivela retinterfaco.
         media_cache_retention_period: Elŝutitaj audovidaĵojn forigotas post la kvanto de tagoj kiam fiksitas al pozitiva nombro.
+        peers_api_enabled: Listo de domajnaj nomoj kiujn ĉi tiu servilo renkontis en la fediverso. Neniuj datumoj estas inkluditaj ĉi tie pri ĉu vi federacias kun donita servilo, nur ke via servilo scias pri ĝi. Ĉi tio estas uzata de servoj kiuj kolektas statistikojn pri federacio en ĝenerala signifo.
         profile_directory: La profilujo listigas ĉiujn uzantojn kiu volonte malkovrebli.
         require_invite_text: Kiam registroj bezonas permanan aprobon, igi la "Kial vi volas aliĝi?" tekstoenigon deviga anstau nedeviga
         site_contact_email: Kiel personoj povas kontakti vin por juraj au subtenaj demandoj.
@@ -87,11 +91,13 @@ eo:
         site_short_description: Mallonga priskribo por helpi unike identigi vian servilon. Kiu faras, por kiu?
         site_terms: Uzu vian sian privatecan politekon au ignoru por uzi la defaulton.
         site_title: Kiel personoj voki vian servilon anstatau ĝia domajnnomo.
+        status_page_url: URL de paĝo kie homoj povas vidi la staton de ĉi tiu servilo dum malfunkcio
         theme: Etoso kiun elsalutitaj vizitantoj kaj novaj uzantoj vidas.
         thumbnail: Ĉirkaua 2:1 bildo montritas kun via servilinformo.
         timeline_preview: Elsalutitaj vizitantoj povos vidi la plej lastajn publikajn mesaĝojn disponeblaj en la servilo.
         trendable_by_default: Ignori permanan kontrolon de tendenca enhavo.
         trends: Tendencoj montras kiu mesaĝoj, kradvortoj kaj novaĵoj populariĝas en via servilo.
+        trends_as_landing_page: Montru tendencan enhavon al elsalutitaj uzantoj kaj vizitantoj anstataŭ priskribo de ĉi tiu servilo. Necesas ke tendencoj estu ebligitaj.
       form_challenge:
         current_password: Vi eniras sekuran areon
       imports:
@@ -227,6 +233,7 @@ eo:
           hide: Kaŝi komplete
           warn: Kaŝi malantaŭ averto
       form_admin_settings:
+        activity_api_enabled: Publikigi entutajn statistikojn pri uzantagado en la API
         backups_retention_period: Uzantoarkivretendauro
         bootstrap_timeline_accounts: Ĉiam rekomendi ĉi tiujn kontojn al novaj uzantoj
         closed_registrations_message: Kutima mesaĝo kiam registroj ne estas disponeblaj
@@ -234,6 +241,7 @@ eo:
         custom_css: Propa CSS
         mascot: Propa maskoto
         media_cache_retention_period: Audovidaĵkaŝaĵretendauro
+        peers_api_enabled: Eldonu liston de malkovritaj serviloj en la API
         profile_directory: Ŝalti la profilujon
         registrations_mode: Kiu povas krei konton
         require_invite_text: Bezoni kialon por aliĝi
@@ -251,6 +259,7 @@ eo:
         timeline_preview: Permesi la neaŭtentigitan aliron al la publikaj templinioj
         trendable_by_default: Permesi tendencojn sen deviga kontrolo
         trends: Ŝalti furorojn
+        trends_as_landing_page: Uzu tendencojn kiel la landpaĝon
       interactions:
         must_be_follower: Bloki sciigojn de nesekvantoj
         must_be_following: Bloki sciigojn de homoj, kiujn vi ne sekvas
