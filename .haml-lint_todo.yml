@@ -19,22 +19,6 @@ linters:
   UnnecessaryStringOutput:
     enabled: false
 
-  # Offense count: 16
-  ImplicitDiv:
-    exclude:
-      - 'app/views/admin/accounts/show.html.haml'
-      - 'app/views/admin/action_logs/index.html.haml'
-      - 'app/views/admin/announcements/index.html.haml'
-      - 'app/views/admin/disputes/appeals/index.html.haml'
-      - 'app/views/admin/instances/index.html.haml'
-      - 'app/views/admin/rules/index.html.haml'
-      - 'app/views/admin/warning_presets/index.html.haml'
-      - 'app/views/admin/webhooks/index.html.haml'
-      - 'app/views/filters/index.html.haml'
-      - 'app/views/notification_mailer/_status.html.haml'
-      - 'app/views/settings/applications/index.html.haml'
-      - 'app/views/settings/login_activities/index.html.haml'
-
   # Offense count: 3
   ViewLength:
     exclude:

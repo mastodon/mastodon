@@ -26,11 +26,11 @@
                                       = "@#{status.account.pretty_acct}"
 
                               - if status.spoiler_text?
-                                %div.auto-dir
+                                .auto-dir
                                   %p
                                     = status.spoiler_text
 
-                              %div.auto-dir
+                              .auto-dir
                                 = status_content_format(status)
 
                                 - if status.ordered_media_attachments.size > 0
