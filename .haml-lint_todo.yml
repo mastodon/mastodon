@@ -65,12 +65,6 @@ linters:
       - 'app/views/settings/login_activities/_login_activity.html.haml'
       - 'app/views/statuses/_poll.html.haml'
 
-  # Offense count: 2
-  SpaceBeforeScript:
-    exclude:
-      - 'app/views/auth/sessions/two_factor.html.haml'
-      - 'app/views/settings/applications/index.html.haml'
-
   # Offense count: 3
   IdNames:
     exclude:
