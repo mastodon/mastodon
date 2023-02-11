@@ -79,8 +79,3 @@ linters:
       - 'app/views/layouts/modal.html.haml'
       - 'app/views/settings/applications/show.html.haml'
       - 'app/views/statuses/_poll.html.haml'
-
-  # Offense count: 1
-  ClassAttributeWithStaticValue:
-    exclude:
-      - 'app/views/oauth/authorizations/show.html.haml'
