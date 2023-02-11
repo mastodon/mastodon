@@ -1,5 +1,4 @@
-Contributing
-============
+# Contributing
 
 Thank you for considering contributing to Mastodon 🐘
 
@@ -28,9 +27,9 @@ You can submit translations via [Crowdin](https://crowdin.com/project/mastodon).
 
 Example:
 
-|Not ideal|Better|
-|---|----|
-|Fixed NoMethodError in RemovalWorker|Fix nil error when removing statuses caused by race condition|
+| Not ideal                            | Better                                                        |
+| ------------------------------------ | ------------------------------------------------------------- |
+| Fixed NoMethodError in RemovalWorker | Fix nil error when removing statuses caused by race condition |
 
 It is not always possible to phrase every change in such a manner, but it is desired.
 
