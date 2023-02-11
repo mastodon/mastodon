@@ -1,9 +1,5 @@
 inherits_from: .haml-lint_todo.yml
 
-# Whether to ignore frontmatter at the beginning of HAML documents for
-# frameworks such as Jekyll/Middleman
-skip_frontmatter: false
-
 exclude:
   - 'vendor/**/*'
   - lib/templates/haml/scaffold/_form.html.haml
