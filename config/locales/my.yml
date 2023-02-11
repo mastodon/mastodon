@@ -8,11 +8,16 @@ my:
     following: စောင့်ကြည့်နေသည်
     last_active: နောက်ဆုံးအသုံးပြုခဲ့သည့်အချိန်
     nothing_here: ဤနေရာတွင် မည်သည့်အရာမျှမရှိပါ။
+    pin_errors:
+      following: သင်ထောက်ခံလိုသောလူနောက်သို့ စောင့်ကြည့်ပြီးသားဖြစ်နေပါမည်
     posts:
       other: ပို့စ်တင်မယ်
     posts_tab_heading: ပို့စ်များ
   admin:
+    account_moderation_notes:
+      create: မှတ်စုချန်ခဲ့ရန်
     accounts:
+      approve: အတည်ပြုပါ
       are_you_sure: သေချာပါသလား။
       avatar: ကိုယ်စားပြုရုပ်ပုံ
       by_domain: ဒိုမိန်း
@@ -23,6 +28,10 @@ my:
         new_email: အီးမေးလ်အသစ်
         submit: အီးမေးလ်ပြောင်းပါ။
         title: '%{username} အတွက် အီးမေးလ်ပြောင်းပါ'
+      change_role:
+        label: အခန်းကဏ္ဍ ပြောင်းလဲရန်
+        no_role: အခန်းကဏ္ဍမရှိ
+        title: '%{username} အတွက် အခန်းကဏ္ဍပြောင်းပါ'
       confirm: အတည်ပြု
       confirmed: အတည်ပြုပြီးပါပြီ
       confirming: အတည်ပြုနေသည်
@@ -30,20 +39,31 @@ my:
       delete: အချက်အလက်များဖျက်ပါ
       deleted: ဖျက်ပြီးပါပြီ
       disable_two_factor_authentication: 2FA ကို ပိတ်ပါ
+      display_name: ဖော်ပြမည့်အမည်
       domain: ဒိုမိန်း
       edit: ပြင်ဆင်ရန်
       email: အီးမေးလ်
+      enable_sign_in_token_auth: အီးမေးတိုကင် စစ်မှန်ကြောင်းအတည်ပြုချက်ကို ဖွင့်ပါ
       enabled: ဖွင့်ထားသည်
       followers: စောင့်ကြည့်သူများ
+      follows: စောင့်ကြည့်မယ်
+      header: ခေါင်းစီး
+      invited_by: ဖိတ်ခေါ်ထားသည်
       ip: IP
+      joined: စတင်ဝင်ရောက်သည့်နေ့
       location:
         all: အားလုံး
+        local: ပြည်တွင်း
         remote: အဝေးမှ
         title: တည်နေရာ
       login_status: အကောင့်ဝင်ရောက်မှုအခြေအနေ
       media_attachments: မီဒီယာ ပူးတွဲချက်များ
+      memorialize: အမှတ်တရအဖြစ် ပြောင်းပါ
       moderation:
+        active: လက်ရှိအသုံးပြုလျက်ရှိခြင်း
         all: အားလုံး
+        pending: ဆိုင်းငံ့ထားခြင်း
+        silenced: ကန့်သတ်ထားသော
       public: အများမြင်
       reject: ဖယ်ရှားပါ
       remove_avatar: ကိုယ်စားပြုရုပ်ပုံကို ဖယ်ရှားပါ
