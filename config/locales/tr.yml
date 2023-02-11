@@ -3,7 +3,7 @@ tr:
   about:
     about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir.
     contact_missing: Ayarlanmadı
-    contact_unavailable: Yok
+    contact_unavailable: Bulunamadı
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
     title: Hakkında
   accounts:
@@ -11,7 +11,7 @@ tr:
     followers:
       one: Takipçi
       other: Takipçi
-    following: Takip edilenler
+    following: Takip ediliyor
     instance_actor_flash: Bu hesap, herhangi bir bireysel kullanıcı değil, sunucunun kendisini temsil etmek için kullanılan sanal bir aktördür. Birleştirme amacıyla kullanılmaktadır ve askıya alınmamalıdır.
     last_active: son etkinlik
     link_verified_on: Bu bağlantının mülkiyeti %{date} tarihinde kontrol edildi
@@ -34,7 +34,7 @@ tr:
       add_email_domain_block: E-posta alan adını engelle
       approve: Onayla
       approved_msg: "%{username} adlı kullanıcının kayıt başvurusu başarıyla onaylandı"
-      are_you_sure: Emin misiniz?
+      are_you_sure: Emin misin?
       avatar: Profil resmi
       by_domain: Alan adı
       change_email:
@@ -56,17 +56,17 @@ tr:
       delete: Veriyi sil
       deleted: Silindi
       demote: Düşür
-      destroyed_msg: "%{username} verilerinin hemen silinmesi için kuyruğa alındı"
-      disable: Devre dışı
+      destroyed_msg: "%{username} adlı kullanıcının verilerinin silinmesi sıraya alındı"
+      disable: Dondur
       disable_sign_in_token_auth: E-posta token doğrulamayı devre dışı bırak
-      disable_two_factor_authentication: 2AD kapat
+      disable_two_factor_authentication: 2 adımlı doğrulamayı kapat
       disabled: Kapalı
       display_name: Görünen isim
       domain: Alan adı
       edit: Düzenle
       email: E-posta
       email_status: E-posta durumu
-      enable: Etkinleştir
+      enable: Dondurmayı Kaldır
       enable_sign_in_token_auth: E-posta token doğrulamayı etkinleştir
       enabled: Etkin
       enabled_msg: "%{username} hesabı başarıyla çözüldü"
@@ -634,6 +634,8 @@ tr:
         close_reports_html: "<strong>@%{acct}</strong> hesabına yönelik <strong>tüm</strong> bildirimleri çözüldü olarak işaretle"
         delete_data_html: İlgili sürede askıdan alınması kaldırılmazsa <strong>@%{acct}</strong> hesabının profilini ve içeriğini şu andan itibaren 30 gün içinde sil
         preview_preamble_html: "<strong>@%{acct}</strong> aşağıdaki içerikle bir uyarı alacaktır:"
+        send_email_html: "<strong>@%{acct}</strong> adlı kullanıcıya uyarı e-maili gönder"
+        warning_placeholder: İsteğe bağlı ek nedenden denetim eylemi.
       target_origin: Şikayet edilen hesabın kökeni
       title: Şikayetler
       unassign: Atamayı geri al

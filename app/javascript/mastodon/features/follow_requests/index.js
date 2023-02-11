@@ -5,7 +5,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { debounce } from 'lodash';
-import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import AccountAuthorizeContainer from './containers/account_authorize_container';
@@ -53,16 +52,8 @@ class FollowRequests extends ImmutablePureComponent {
   render () {
     const { intl, accountIds, hasMore, multiColumn, locked, domain, isLoading } = this.props;
 
-    if (!accountIds) {
-      return (
-        <Column>
-          <LoadingIndicator />
-        </Column>
-      );
-    }
-
     const emptyMessage = <FormattedMessage id='empty_column.follow_requests' defaultMessage="You don't have any follow requests yet. When you receive one, it will show up here." />;
-    const unlockedPrependMessage = locked ? null : (
+    const unlockedPrependMessage = !locked && accountIds.size > 0 && (
       <div className='follow_requests-unlocked_explanation'>
         <FormattedMessage
           id='follow_requests.unlocked_explanation'
@@ -80,6 +71,7 @@ class FollowRequests extends ImmutablePureComponent {
           onLoadMore={this.handleLoadMore}
           hasMore={hasMore}
           isLoading={isLoading}
+          showLoading={isLoading && accountIds.size === 0}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
           prepend={unlockedPrependMessage}
