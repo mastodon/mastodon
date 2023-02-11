@@ -15,7 +15,7 @@
         %td
           %code= @application.secret
       %tr
-        %th{ rowspan: 2}= t('applications.your_token')
+        %th{ rowspan: 2 }= t('applications.your_token')
         %td
           %code= current_user.token_for_app(@application).token
       %tr
