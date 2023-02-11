@@ -31,6 +31,11 @@ export default class Upload extends ImmutablePureComponent {
 
   render () {
     const { media } = this.props;
+
+    if (!media) {
+      return null;
+    }
+
     const focusX = media.getIn(['meta', 'focus', 'x']);
     const focusY = media.getIn(['meta', 'focus', 'y']);
     const x = ((focusX /  2) + .5) * 100;
