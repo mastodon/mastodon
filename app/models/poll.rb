@@ -57,7 +57,7 @@ class Poll < ApplicationRecord
   end
 
   def voted?(account)
-    account.id == account_id || votes.where(account: account).exists?
+    account.id == account_id || votes.exists?(account: account)
   end
 
   def own_votes(account)
@@ -105,7 +105,7 @@ class Poll < ApplicationRecord
   end
 
   def prepare_options
-    self.options = options.map(&:strip).reject(&:blank?)
+    self.options = options.map(&:strip).compact_blank
   end
 
   def reset_parent_cache
