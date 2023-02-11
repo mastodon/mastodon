@@ -48,7 +48,7 @@ class Poll < ApplicationRecord
   end
 
   def possibly_stale?
-    !final? && time_passed_since_last_fetch?
+    remote? && !final? && time_passed_since_last_fetch?
   end
 
   def final?
