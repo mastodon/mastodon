@@ -7,7 +7,6 @@
 # versions of Haml-Lint, may require this file to be generated again.
 
 linters:
-
   # Offense count: 76
   RuboCop:
     enabled: false
@@ -23,76 +22,71 @@ linters:
   # Offense count: 16
   ImplicitDiv:
     exclude:
-      - "app/views/admin/accounts/show.html.haml"
-      - "app/views/admin/action_logs/index.html.haml"
-      - "app/views/admin/announcements/index.html.haml"
-      - "app/views/admin/disputes/appeals/index.html.haml"
-      - "app/views/admin/instances/index.html.haml"
-      - "app/views/admin/rules/index.html.haml"
-      - "app/views/admin/warning_presets/index.html.haml"
-      - "app/views/admin/webhooks/index.html.haml"
-      - "app/views/filters/index.html.haml"
-      - "app/views/notification_mailer/_status.html.haml"
-      - "app/views/settings/applications/index.html.haml"
-      - "app/views/settings/login_activities/index.html.haml"
+      - 'app/views/admin/accounts/show.html.haml'
+      - 'app/views/admin/action_logs/index.html.haml'
+      - 'app/views/admin/announcements/index.html.haml'
+      - 'app/views/admin/disputes/appeals/index.html.haml'
+      - 'app/views/admin/instances/index.html.haml'
+      - 'app/views/admin/rules/index.html.haml'
+      - 'app/views/admin/warning_presets/index.html.haml'
+      - 'app/views/admin/webhooks/index.html.haml'
+      - 'app/views/filters/index.html.haml'
+      - 'app/views/notification_mailer/_status.html.haml'
+      - 'app/views/settings/applications/index.html.haml'
+      - 'app/views/settings/login_activities/index.html.haml'
 
   # Offense count: 3
   ViewLength:
     exclude:
-      - "app/views/admin/accounts/show.html.haml"
-      - "app/views/admin/reports/show.html.haml"
-      - "app/views/disputes/strikes/show.html.haml"
+      - 'app/views/admin/accounts/show.html.haml'
+      - 'app/views/admin/reports/show.html.haml'
+      - 'app/views/disputes/strikes/show.html.haml'
 
   # Offense count: 43
   InstanceVariables:
     exclude:
-      - "app/views/admin/reports/_actions.html.haml"
-      - "app/views/admin/roles/_form.html.haml"
-      - "app/views/admin/webhooks/_form.html.haml"
-      - "app/views/application/_sidebar.html.haml"
-      - "app/views/auth/registrations/_sessions.html.haml"
-      - "app/views/auth/registrations/_status.html.haml"
-      - "app/views/auth/sessions/two_factor/_otp_authentication_form.html.haml"
-      - "app/views/authorize_interactions/_post_follow_actions.html.haml"
-      - "app/views/invites/_form.html.haml"
-      - "app/views/relationships/_account.html.haml"
-      - "app/views/shared/_og.html.haml"
-      - "app/views/statuses/_status.html.haml"
+      - 'app/views/admin/reports/_actions.html.haml'
+      - 'app/views/admin/roles/_form.html.haml'
+      - 'app/views/admin/webhooks/_form.html.haml'
+      - 'app/views/application/_sidebar.html.haml'
+      - 'app/views/auth/registrations/_sessions.html.haml'
+      - 'app/views/auth/registrations/_status.html.haml'
+      - 'app/views/auth/sessions/two_factor/_otp_authentication_form.html.haml'
+      - 'app/views/authorize_interactions/_post_follow_actions.html.haml'
+      - 'app/views/invites/_form.html.haml'
+      - 'app/views/relationships/_account.html.haml'
+      - 'app/views/shared/_og.html.haml'
+      - 'app/views/statuses/_status.html.haml'
 
   # Offense count: 6
   ConsecutiveSilentScripts:
     exclude:
-      - "app/views/admin/settings/shared/_links.html.haml"
-      - "app/views/settings/login_activities/_login_activity.html.haml"
-      - "app/views/statuses/_poll.html.haml"
+      - 'app/views/admin/settings/shared/_links.html.haml'
+      - 'app/views/settings/login_activities/_login_activity.html.haml'
+      - 'app/views/statuses/_poll.html.haml'
 
   # Offense count: 2
   SpaceBeforeScript:
     exclude:
-      - "app/views/auth/sessions/two_factor.html.haml"
-      - "app/views/settings/applications/index.html.haml"
+      - 'app/views/auth/sessions/two_factor.html.haml'
+      - 'app/views/settings/applications/index.html.haml'
 
   # Offense count: 3
   IdNames:
     exclude:
-      - "app/views/authorize_interactions/error.html.haml"
-      - "app/views/oauth/authorizations/error.html.haml"
-      - "app/views/shared/_error_messages.html.haml"
+      - 'app/views/authorize_interactions/error.html.haml'
+      - 'app/views/oauth/authorizations/error.html.haml'
+      - 'app/views/shared/_error_messages.html.haml'
 
   # Offense count: 4
   SpaceInsideHashAttributes:
     exclude:
-      - "app/views/filters/_filter_fields.html.haml"
-      - "app/views/layouts/modal.html.haml"
-      - "app/views/settings/applications/show.html.haml"
-      - "app/views/statuses/_poll.html.haml"
+      - 'app/views/filters/_filter_fields.html.haml'
+      - 'app/views/layouts/modal.html.haml'
+      - 'app/views/settings/applications/show.html.haml'
+      - 'app/views/statuses/_poll.html.haml'
 
   # Offense count: 1
   ClassAttributeWithStaticValue:
     exclude:
-      - "app/views/oauth/authorizations/show.html.haml"
-
-  # Offense count: 1
-  TrailingWhitespace:
-    exclude:
-      - "app/views/settings/applications/show.html.haml"
+      - 'app/views/oauth/authorizations/show.html.haml'
