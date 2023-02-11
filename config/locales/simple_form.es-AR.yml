@@ -18,8 +18,8 @@ es-AR:
           disable: Evitar que el usuario use su cuenta, pero no elimina ni oculta sus contenidos.
           none: Usá esto para enviarle una advertencia al usuario, sin ejecutar ninguna otra acción.
           sensitive: Forzar a que todos los adjuntos de medios de este usuario sean marcados como sensibles.
-          silence: Evitar que el usuario pueda publicar mensajes, ocultando sus publicaciones y notificaciones a cuentas que no lo siguen.
-          suspend: Evitar cualquier interacción desde o hacia esta cuenta, y eliminar su contenido. Reversible en un plazo de 30 días.
+          silence: Evitá que la cuenta pueda enviar mensajes con visibilidad pública, ocultá sus mensajes y notificaciones a personas que no la siguen. Esto cierra todas las denuncias contra esta cuenta.
+          suspend: Evitá cualquier interacción desde o hacia esta cuenta y eliminá su contenido. Revertible en 30 días. Esto cierra todas las denuncias contra esta cuenta.
         warning_preset_id: Opcional. Todavía podés agregar texto personalizado al final del preajuste
       announcement:
         all_day: Cuando esté seleccionado, sólo se mostrarán las fechas del rango de tiempo
@@ -74,6 +74,7 @@ es-AR:
           hide: Ocultar completamente el contenido filtrado, comportándose como si no existiera
           warn: Ocultar el contenido filtrado detrás de una advertencia mencionando el título del filtro
       form_admin_settings:
+        activity_api_enabled: Conteos de mensajes publicados localmente, cuentas activas y nuevos registros en tandas semanales
         backups_retention_period: Conservar los archivos historiales generados por el usuario durante el número de días especificado.
         bootstrap_timeline_accounts: Estas cuentas serán fijadas a la parte superior de las recomendaciones de cuentas a seguir para nuevos usuarios.
         closed_registrations_message: Mostrado cuando los registros están cerrados
@@ -81,6 +82,7 @@ es-AR:
         custom_css: Podés aplicar estilos personalizados a la versión web de Mastodon.
         mascot: Reemplaza la ilustración en la interface web avanzada.
         media_cache_retention_period: Los archivos de medios descargados se eliminarán después del número especificado de días cuando se establezca un valor positivo, y se volverán a descargar a pedido.
+        peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Acá no se incluye ningún dato sobre si federás con un servidor determinado, sólo que tu servidor lo conoce. Esto es usado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado a que su cuenta pueda ser descubierta.
         require_invite_text: Cuando registros aprobación manual, hacé que la solicitud de invitación "¿Por qué querés unirte?" sea obligatoria, en vez de opcional
         site_contact_email: Cómo la gente puede estar en contacto con vos para consultas legales o de ayuda.
@@ -89,11 +91,13 @@ es-AR:
         site_short_description: Una breve descripción para ayudar a identificar individualmente a tu servidor. ¿Quién lo administra, a quién va dirigido?
         site_terms: Usá tu propia política de privacidad o dejala en blanco para usar la predeterminada. Puede estructurarse con sintaxis Markdown.
         site_title: Cómo la gente puede referirse a tu servidor además de su nombre de dominio.
+        status_page_url: Dirección web de una página donde la gente puede ver el estado de este servidor durante un apagón
         theme: El tema que los visitantes no registrados y los nuevos usuarios ven.
         thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
         timeline_preview: Los visitantes no registrados podrán navegar por los mensajes públicos más recientes disponibles en el servidor.
         trendable_by_default: Omití la revisión manual del contenido en tendencia. Los elementos individuales aún podrán eliminarse de las tendencias.
         trends: Las tendencias muestran qué mensajes, etiquetas y noticias están ganando tracción en tu servidor.
+        trends_as_landing_page: Mostrar contenido en tendencia para usuarios que no iniciaron sesión y visitantes, en lugar de una descripción de este servidor. Requiere que las tendencias estén habilitadas.
       form_challenge:
         current_password: Estás ingresando en un área segura
       imports:
@@ -229,6 +233,7 @@ es-AR:
           hide: Ocultar completamente
           warn: Ocultar con una advertencia
       form_admin_settings:
+        activity_api_enabled: Publicar estadísticas agregadas sobre la actividad de la cuenta en la API
         backups_retention_period: Período de retención del archivo historial del usuario
         bootstrap_timeline_accounts: Siempre recomendar estas cuentas a usuarios nuevos
         closed_registrations_message: Mensaje personalizado cuando los registros no están disponibles
@@ -236,6 +241,7 @@ es-AR:
         custom_css: CSS personalizado
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Período de retención de la caché de medios
+        peers_api_enabled: Publicar lista de servidores descubiertos en la API
         profile_directory: Habilitar directorio de perfiles
         registrations_mode: Quién puede registrarse
         require_invite_text: Requerir un motivo para unirse
@@ -247,11 +253,13 @@ es-AR:
         site_short_description: Descripción del servidor
         site_terms: Política de privacidad
         site_title: Nombre del servidor
+        status_page_url: Dirección web de la página de estado
         theme: Tema predeterminado
         thumbnail: Miniatura del servidor
         timeline_preview: Permitir el acceso no autenticado a las líneas temporales públicas
         trendable_by_default: Permitir tendencias sin revisión previa
         trends: Habilitar tendencias
+        trends_as_landing_page: Usar las tendencias como la página de destino
       interactions:
         must_be_follower: Bloquear notificaciones de cuentas que no te siguen
         must_be_following: Bloquear notificaciones de cuentas que no seguís

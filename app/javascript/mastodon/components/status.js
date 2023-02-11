@@ -135,7 +135,7 @@ class Status extends ImmutablePureComponent {
 
   handleToggleMediaVisibility = () => {
     this.setState({ showMedia: !this.state.showMedia });
-  }
+  };
 
   handleClick = e => {
     if (e && (e.button !== 0 || e.ctrlKey || e.metaKey)) {
@@ -147,11 +147,11 @@ class Status extends ImmutablePureComponent {
     }
 
     this.handleHotkeyOpen();
-  }
+  };
 
   handlePrependAccountClick = e => {
     this.handleAccountClick(e, false);
-  }
+  };
 
   handleAccountClick = (e, proper = true) => {
     if (e && (e.button !== 0 || e.ctrlKey || e.metaKey))  {
@@ -163,19 +163,19 @@ class Status extends ImmutablePureComponent {
     }
 
     this._openProfile(proper);
-  }
+  };
 
   handleExpandedToggle = () => {
     this.props.onToggleHidden(this._properStatus());
-  }
+  };
 
   handleCollapsedToggle = isCollapsed => {
     this.props.onToggleCollapsed(this._properStatus(), isCollapsed);
-  }
+  };
 
   handleTranslate = () => {
     this.props.onTranslate(this._properStatus());
-  }
+  };
 
   renderLoadingMediaGallery () {
     return <div className='media-gallery' style={{ height: '110px' }} />;
@@ -192,11 +192,11 @@ class Status extends ImmutablePureComponent {
   handleOpenVideo = (options) => {
     const status = this._properStatus();
     this.props.onOpenVideo(status.get('id'), status.getIn(['media_attachments', 0]), options);
-  }
+  };
 
   handleOpenMedia = (media, index) => {
     this.props.onOpenMedia(this._properStatus().get('id'), media, index);
-  }
+  };
 
   handleHotkeyOpenMedia = e => {
     const { onOpenMedia, onOpenVideo } = this.props;
@@ -211,32 +211,32 @@ class Status extends ImmutablePureComponent {
         onOpenMedia(status.get('id'), status.get('media_attachments'), 0);
       }
     }
-  }
+  };
 
   handleDeployPictureInPicture = (type, mediaProps) => {
     const { deployPictureInPicture } = this.props;
     const status = this._properStatus();
 
     deployPictureInPicture(status, type, mediaProps);
-  }
+  };
 
   handleHotkeyReply = e => {
     e.preventDefault();
     this.props.onReply(this._properStatus(), this.context.router.history);
-  }
+  };
 
   handleHotkeyFavourite = () => {
     this.props.onFavourite(this._properStatus());
-  }
+  };
 
   handleHotkeyBoost = e => {
     this.props.onReblog(this._properStatus(), e);
-  }
+  };
 
   handleHotkeyMention = e => {
     e.preventDefault();
     this.props.onMention(this._properStatus().get('account'), this.context.router.history);
-  }
+  };
 
   handleHotkeyOpen = () => {
     if (this.props.onClick) {
@@ -252,11 +252,11 @@ class Status extends ImmutablePureComponent {
     }
 
     router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
-  }
+  };
 
   handleHotkeyOpenProfile = () => {
     this._openProfile();
-  }
+  };
 
   _openProfile = (proper = true) => {
     const { router } = this.context;
@@ -267,32 +267,32 @@ class Status extends ImmutablePureComponent {
     }
 
     router.history.push(`/@${status.getIn(['account', 'acct'])}`);
-  }
+  };
 
   handleHotkeyMoveUp = e => {
     this.props.onMoveUp(this.props.status.get('id'), e.target.getAttribute('data-featured'));
-  }
+  };
 
   handleHotkeyMoveDown = e => {
     this.props.onMoveDown(this.props.status.get('id'), e.target.getAttribute('data-featured'));
-  }
+  };
 
   handleHotkeyToggleHidden = () => {
     this.props.onToggleHidden(this._properStatus());
-  }
+  };
 
   handleHotkeyToggleSensitive = () => {
     this.handleToggleMediaVisibility();
-  }
+  };
 
   handleUnfilterClick = e => {
     this.setState({ forceFilter: false });
     e.preventDefault();
-  }
+  };
 
   handleFilterClick = () => {
     this.setState({ forceFilter: true });
-  }
+  };
 
   _properStatus () {
     const { status } = this.props;
@@ -306,7 +306,7 @@ class Status extends ImmutablePureComponent {
 
   handleRef = c => {
     this.node = c;
-  }
+  };
 
   render () {
     let media = null;

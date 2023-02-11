@@ -449,6 +449,7 @@ lv:
         private_comment_description_html: 'Lai palīdzētu tev izsekot, no kurienes nāk importētie bloki, tiks izveidoti importētie bloki ar šādu privātu komentāru: <q>%{comment}</q>'
         private_comment_template: Importēts no %{source} %{date}
         title: Importēt bloķētos domēnus
+      invalid_domain_block: 'Viens vai vairāki domēna bloķi tika izlaisti šādas kļūdas(-u) dēļ: %{error}'
       new:
         title: Importēt bloķētos domēnus
       no_file: Nav atlasīts neviens fails
@@ -587,9 +588,10 @@ lv:
         mark_as_sensitive_description_html: Multividesu faili ziņojumos, par kuriem ziņots, tiks atzīmēti kā sensitīvi, un tiks reģistrēts brīdinājums, lai palīdzētu tev izvērst turpmākus pārkāpumus saistībā ar to pašu kontu.
         other_description_html: Skatīt vairāk iespēju kontrolēt konta uzvedību un pielāgot saziņu ar paziņoto kontu.
         resolve_description_html: Pret norādīto kontu netiks veiktas nekādas darbības, netiks reģistrēts brīdinājums, un ziņojums tiks slēgts.
-        silence_description_html: Profils būs redzams tikai tiem, kas jau tam seko vai manuāli apskata, tādējādi ievērojami ierobežojot tā sasniedzamību. Šo izvēli vienmēr var mainīt.
-        suspend_description_html: Profils un viss tā saturs kļūs nepieejami, līdz tas beidzot tiek izdzēsts. Mijiedarbība ar kontu būs neiespējama. Atgriežams 30 dienu laikā.
+        silence_description_html: Konts būs redzams tikai tiem, kas tam jau seko vai meklē to manuāli, ievērojami ierobežojot tā sasniedzamību. To vienmēr var atgriezt. Tiek aizvērti visi šī konta pārskati.
+        suspend_description_html: Konts un viss tā saturs nebūs pieejams un galu galā tiks izdzēsts, un mijiedarbība ar to nebūs iespējama. Atgriežams 30 dienu laikā. Tiek aizvērti visi šī konta pārskati.
       actions_description_html: Izlem, kādas darbības jāveic, lai atrisinātu šo ziņojumu. Ja veiksi sodīšanas darbību pret kontu, par kuru ziņots, tam tiks nosūtīts e-pasta paziņojums, izņemot gadījumus, kad ir atlasīta kategorija <strong>Spam</strong>.
+      actions_description_remote_html: Izlem, kādas darbības jāveic, lai atrisinātu šo ziņojumu. Tas ietekmēs tikai to, kā <strong>tavs</strong> serveris sazinās ar šo attālo kontu un apstrādā tā saturu.
       add_to_report: Pievienot varāk paziņošanai
       are_you_sure: Vai esi pārliecināts?
       assign_to_self: Piešķirt man
@@ -600,6 +602,7 @@ lv:
       comment:
         none: Neviens
       comment_description_html: 'Lai sniegtu vairāk informācijas, %{name} rakstīja:'
+      confirm_action: Apstipriniet regulēšanas darbību pret @%{acct}
       created_at: Ziņoti
       delete_and_resolve: Izdzēst rakstus
       forwarded: Pārsūtīti
@@ -616,6 +619,7 @@ lv:
         placeholder: Apraksti veiktās darbības vai citus saistītus atjauninājumus...
         title: Piezīmes
       notes_description_html: Skati un atstāj piezīmes citiem moderatoriem un sev nākotnei
+      processed_msg: 'Pārskats #%{id} veiksmīgi apstrādāts'
       quick_actions_description_html: 'Veic ātro darbību vai ritini uz leju, lai skatītu saturu, par kuru ziņots:'
       remote_user_placeholder: attālais lietotājs no %{instance}
       reopen: Atkārtoti atvērt ziņojumu
@@ -628,9 +632,28 @@ lv:
       status: Statuss
       statuses: Ziņotais saturs
       statuses_description_html: Pārkāpuma saturs tiks minēts saziņā ar paziņoto kontu
+      summary:
+        action_preambles:
+          delete_html: 'Jūs gatavojaties <strong>noņemt</strong> dažas no lietotāja <strong>@%{acct}</strong> ziņām. Tas:'
+          mark_as_sensitive_html: 'Jūs gatavojaties <strong>atzīmēt</strong> dažas no lietotāja <strong>@%{acct}</strong> ziņām kā <strong>sensitīvas</strong>. Tas:'
+          silence_html: 'Jūs gatavojaties <strong>ierobežot</strong> <strong>@%{acct}</strong> kontu. Tas:'
+          suspend_html: 'Jūs gatavojaties <strong>apturēt</strong> <strong>@%{acct}</strong> kontu. Tas:'
+        actions:
+          delete_html: Noņemt aizskarošās ziņas
+          mark_as_sensitive_html: Atzīmēt aizskarošo ziņu multivides saturu kā sensitīvu
+          silence_html: Ievērojami ierobežojiet <strong>@%{acct}</strong> sasniedzamību, padarot viņa profilu un saturu redzamu tikai personām, kas jau seko viņiem vai manuāli meklē profilu
+          suspend_html: Apturēt <strong>@%{acct}</strong>, padarot viņu profilu un saturu nepieejamu un neiespējamu mijiedarbību ar
+        close_report: 'Atzīmēt ziņojumu #%{id} kā atrisinātu'
+        close_reports_html: Atzīmējiet <strong>visus</strong> pārskatus par <strong>@%{acct}</strong> kā atrisinātus
+        delete_data_html: Dzēsiet lietotāja <strong>@%{acct}</strong> profilu un saturu pēc 30 dienām, ja vien to darbība pa šo laiku netiks atcelta
+        preview_preamble_html: "<strong>@%{acct}</strong> saņems brīdinājumu ar šādu saturu:"
+        record_strike_html: Ierakstiet brīdinājumu pret <strong>@%{acct}</strong>, lai palīdzētu jums izvērst turpmākus pārkāpumus no šī konta
+        send_email_html: Nosūtiet <strong>@%{acct}</strong> brīdinājuma e-pastu
+        warning_placeholder: Izvēles papildu pamatojums regulēšanas darbībai.
       target_origin: Ziņotā konta izcelsme
       title: Ziņojumi
       unassign: Atsaukt
+      unknown_action_msg: 'Nezināms konts: %{action}'
       unresolved: Neatrisinātie
       updated_at: Atjaunināts
       view_profile: Skatīt profilu
@@ -681,7 +704,7 @@ lv:
         manage_rules: Pārvaldīt Noteikumus
         manage_rules_description: Ļauj lietotājiem mainīt servera noteikumus
         manage_settings: Pārvaldīt Iestatījumus
-        manage_settings_description: Ļauj lietotājiem mainīt vietnes uzstādījumus
+        manage_settings_description: Ļauj lietotājiem mainīt vietnes iestatījumus
         manage_taxonomies: Pārvaldīt Taksonomijas
         manage_taxonomies_description: Ļauj lietotājiem pārskatīt aktuālo saturu un atjaunināt atsauces iestatījumus
         manage_user_access: Pārvaldīt Lietotāju Piekļuves
@@ -727,6 +750,8 @@ lv:
         preamble: Interesanta satura parādīšana palīdz piesaistīt jaunus lietotājus, kuri, iespējams, nepazīst nevienu Mastodon. Kontrolē, kā tavā serverī darbojas dažādi atklāšanas līdzekļi.
         profile_directory: Profila direktorija
         public_timelines: Publiskās ziņu lentas
+        publish_discovered_servers: Publicēt atklātos serverus
+        publish_statistics: Publicēt statistiku
         title: Atklāt
         trends: Tendences
       domain_blocks:
@@ -796,7 +821,7 @@ lv:
         message_html: Rindā(s) %{value} nedarbojas neviens Sidekiq process. Lūdzu, pārskati savu Sidekiq konfigurāciju
     tags:
       review: Pārskatīt statusu
-      updated_msg: Tēmtura uzstādījumi ir veiksmīgi atjaunināti
+      updated_msg: Tēmtura iestatījumi ir veiksmīgi atjaunināti
     title: Administrēšana
     trends:
       allow: Atļaut
@@ -958,6 +983,8 @@ lv:
   auth:
     apply_for_account: Pieprasīt kontu
     change_password: Parole
+    confirmations:
+      wrong_email_hint: Ja šī e-pasta adrese nav pareiza, varat to mainīt konta iestatījumos.
     delete_account: Dzēst kontu
     delete_account_html: Ja vēlies dzēst savu kontu, tu vari <a href="%{path}">turpināt šeit</a>. Tev tiks lūgts apstiprinājums.
     description:
@@ -1393,6 +1420,9 @@ lv:
       unrecognized_emoji: nav atpazīta emocijzīme
   relationships:
     activity: Konta aktivitāte
+    confirm_follow_selected_followers: Vai tiešām vēlies sekot atlasītajiem sekotājiem?
+    confirm_remove_selected_followers: Vai tiešām vēlies noņemt atlasītos sekotājus?
+    confirm_remove_selected_follows: Vai tiešām vēlies noņemt atlasītos sekojumus?
     dormant: Snaudošie
     follow_selected_followers: Sekot atlasītajiem sekotājiem
     followers: Sekotāji

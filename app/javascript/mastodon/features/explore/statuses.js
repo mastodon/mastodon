@@ -33,7 +33,7 @@ class Statuses extends React.PureComponent {
   handleLoadMore = debounce(() => {
     const { dispatch } = this.props;
     dispatch(expandTrendingStatuses());
-  }, 300, { leading: true })
+  }, 300, { leading: true });
 
   render () {
     const { isLoading, hasMore, statusIds, multiColumn } = this.props;

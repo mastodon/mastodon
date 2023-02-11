@@ -30,6 +30,9 @@
     = f.input :open_deletion, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.deletion.title'), hint: t('admin.settings.registrations.deletion.desc_html')
 
   .fields-group
+    = f.input :status_page_url, wrapper: :with_block_label, input_html: { placeholder: "https://status.#{Rails.configuration.x.local_domain}" }
+
+  .fields-group
     = f.input :site_terms, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }
 
   .actions

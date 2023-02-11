@@ -114,6 +114,7 @@ id:
       reject: Tolak
       rejected_msg: Berhasil menolak permintaan pendaftaran %{username}
       remote_suspension_irreversible: Data akun ini telah dihapus permanen.
+      remote_suspension_reversible_hint_html: Akun ini telah ditangguhkan di server mereka, dan data akan dihapus total pada %{date}. Sebelum itu, server jarak jauh dapat memulihkan akun ini tanpa efek samping. Jika Anda ingin menghapus semua data akun langsung, Anda dapat mengikuti bawah ini.
       remove_avatar: Hapus avatar
       remove_header: Hapus header
       removed_avatar_msg: Berhasil menghapus gambar avatar %{username}
@@ -432,6 +433,7 @@ id:
         private_comment_description_html: 'Untuk membantu Anda melacak asal blok yang diimpor, blok yang diimpor akan dibuat dengan komentar pribadi berikut: <q>%{comment}</q>'
         private_comment_template: Diimpor dari %{source} pada %{date}
         title: Impor blok domain
+      invalid_domain_block: 'Satu atau lebih blokir domain dilewati karena kesalahan berikut: %{error}'
       new:
         title: Impor blok domain
       no_file: Tidak ada file dipilih
@@ -562,8 +564,6 @@ id:
         mark_as_sensitive_description_html: Media di dalam kiriman terlapor akan ditandai sebagai sensitif dan hukuman akan direkam untuk membantu menangani pelanggaran dari akun yang sama di masa mendatang.
         other_description_html: Lihat opsi lain untuk mengendalikan perilaku akun dan menyesuaikan komunikasi ke akun yang dilaporkan.
         resolve_description_html: Tidak ada tindakan untuk akun yang dilaporkan, tidak ada peringatan yang direkam, dan laporan akan ditutup.
-        silence_description_html: Profil hanya dapat terlihat oleh pengguna yang telah mengikuti atau melihatnya secara manual, yang sangat membatasi jangkauannya. Selalu dapat dipulihkan kembali.
-        suspend_description_html: Profil dan semua kontennya tidak dapat diakses sampai ia terhapus. Interaksi dengan akun tersebut tidak dimungkinkan. Dapat dipulihkan dalam waktu 30 hari.
       actions_description_html: Memutuskan tindakan yang tepat untuk menyelesaikan laporan ini. Jika Anda memutuskan tindakan hukuman kepada akun terlapor, notifikasi email akan dikirim ke mereka, kecuali saat kategori <strong>Spam</strong> dipilih.
       add_to_report: Tambahkan lebih banyak untuk lapor
       are_you_sure: Apakah Anda yakin?

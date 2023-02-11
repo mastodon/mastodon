@@ -7,7 +7,7 @@ et:
       account_migration:
         acct: Sisesta kasutajanimi@domeen, kuhu soovid konto siit kolida
       account_warning_preset:
-        text: Te saate kasutada postituse süntaksi, näiteks URLe, silte ja mainimisi
+        text: Saab kasutada postituse süntaksi, näiteks URLe, silte ja mainimisi
         title: Valikuline. Ei ole nähtav saajale
       admin_account_action:
         include_statuses: Kasutaja näeb, millised postitused on põhjustanud moderaatori otsuse või hoiatuse
@@ -18,15 +18,15 @@ et:
           disable: Keela kasutajal konto kasutamine, sisu kustutamata või varjamata.
           none: Hoiatuse saatmine kasutajale, ilma täiendavate tegevuste käivitamiseta.
           sensitive: Kogu kasutaja meediasisu märgitakse kui tundlik sisu.
-          silence: Takistab kasutajal avaliku nähtavusega postitamist, peidab tema postitused ja märguanded inimeste eest, kes ei jälgi.
-          suspend: Takistamaks suhtlust selle kontoga ja kustutamaks kogu sisu. Tagasivõetav 30 päeva jooksul.
-        warning_preset_id: Valikuline. Te saate ikka lisada mis tahes teksti eelseadistuse lõppu
+          silence: Välistab kasutaja võimaluse postitada avalikult, peita postitusi ning teavitusi mitte-jälgijate eest. Lõpetab kõik selle konto kohta esitatud kaebused.
+          suspend: Välistab igasuguse suhtluse selle kontoga või sellelt kontolt ning kustutab kogu konto sisu. Tagasipööratav 30 päeva jooksul. Lõpetab kõik selle konto vastu esitatud kaebused.
+        warning_preset_id: Valikuline. Saad ikka lisada mis tahes teksti eelseadistuse lõppu
       announcement:
         all_day: Kui valitud, kuvatakse vaid selle ajavahemiku kuupäevi
         ends_at: Valikuline. Teadaanne eemaldatakse automaatselt sellel ajal
         scheduled_at: Jäta tühjaks, et avaldada teadaande koheselt
-        starts_at: Valikuline. Juhul, kui teadaanne on limiteeritud kindlale ajavahemikule
-        text: Te saate kasutada postituse süntaksi. Tuleks silmas pidada, kui palju ruumi teadaanne võtab kasutaja ekraanil
+        starts_at: Valikuline. Juhul, kui teadaanne on piiratud kindla ajavahemikuga
+        text: Saad kasutada postituse süntaksi. Tuleks silmas pidada, kui palju teadaanne kasutaja ekraanil ruumi võtab
       appeal:
         text: Otsust on võimalik vaidlustada vaid 1 kord
       defaults:
@@ -35,19 +35,19 @@ et:
         bot: Teavita teisi, et see konto teeb enamjaolt automatiseeritud tegevusi ja ei pruugi olla järelvalve all
         context: Üks või mitu konteksti, mille vastu see filter peaks rakenduma
         current_password: Sisesta turvalisuse huvides oma siinse konto salasõna
-        current_username: Kinnitamiseks palun sisestage oma konto kasutajanimi
-        digest: Saadetakse ainult pärast pikka perioodi tegevusetust ja ainult siis, kui Teile on saadetud privaatseid sõnumeid
+        current_username: Kinnitamiseks palun sisesta oma konto kasutajanimi
+        digest: Saadetakse ainult pärast pikka tegevusetuse perioodi ja ainult siis, kui on saadetud otsesõnumeid
         discoverable: Konto on leitav võhivõõraste jaoks soovituste ja trendide sirvimise teel vm sarnaste vahenditega
-        email: Teile saadetakse kinnituskiri e-posti teel
-        fields: Te saate oma profiilil tabelina kuvada kuni 4 asja
+        email: Sulle saadetakse e-posti teel kinnituskiri
+        fields: Saad oma profiilil tabelina kuvada kuni 4 asja
         header: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
-        inbox_url: Kopeerige soovitud relee avalehe URL
+        inbox_url: Kopeeri soovitud vahendaja avalehe URL
         irreversible: Filtreeritud postitused kaovad taastamatult, isegi kui filter on hiljem eemaldatud
-        locale: Kasutajaliidese, e-kirjade ja push-teadete keel
+        locale: Kasutajaliidese, e-kirjade ja tõuketeadete keel
         locked: Nõuab käsitsi jälgijate kinnitamist
         password: Vajalik on vähemalt 8 märki
         phrase: Kattub olenemata postituse teksti suurtähtedest või sisuhoiatusest
-        scopes: Milliseid API-sid see rakendus tohib kasutada. Kui Te valite kõrgeima taseme, ei pea Te valima individuaalseid.
+        scopes: Milliseid API-sid see rakendus tohib kasutada. Kui valid kõrgeima taseme, ei pea üksikuid eraldi valima.
         setting_aggregate_reblogs: Ära kuva uusi postituste jagamisi, mis on hiljuti jagatud (kehtib vaid uutele jagamistele)
         setting_always_send_emails: Mastodoni aktiivsel kasutamisel sulle tavaliselt meilile teavitusi ei saadeta
         setting_default_sensitive: Tundlik meedia on vaikimisi peidetud ning seda saab avada sellele klikkides
@@ -55,11 +55,11 @@ et:
         setting_display_media_hide_all: Alati peida kõik meedia
         setting_display_media_show_all: Alati näita tundlikuks märgistatud meedia
         setting_hide_network: Profiilil ei kuvata Keda sa jälgid ja kes jälgib sind
-        setting_noindex: Mõjutab su avalikku profiili ja postituste lehekülgi
+        setting_noindex: Mõjutab avalikku profiili ja postituste lehekülgi
         setting_show_application: Postitamiseks kasutatud rakenduse infot kuvatakse postituse üksikasjavaates
         setting_use_blurhash: Värvid põhinevad peidetud visuaalidel, kuid hägustavad igasuguseid detaile
         setting_use_pending_items: Voo automaatse kerimise asemel peida ajajoone uuendused kliki taha
-        username: Su kasutajanimi on %{domain}-il unikaalne
+        username: Sinu kasutajanimi on %{domain}-il unikaalne
         whole_word: Kui võtmesõna või fraas on ainult tähtnumbriline, rakendub see ainult siis, kui see kattub terve sõnaga
       domain_allow:
         domain: See domeen saab tõmmata andmeid sellelt serverilt ning sissetulevad andmed sellelt domeenilt töödeldakse ning salvestatakse
@@ -74,6 +74,7 @@ et:
           hide: Filtreeritud sisu täielik peitmine, nagu seda polekski üldse olemas
           warn: Varja filtreeritud sisu hoiatusega, nimetades filtri pealkirja
       form_admin_settings:
+        activity_api_enabled: Kohalike postituste, aktiivsete kasutajate ja uute registreerumistr arv nädala kaupa grupeeritult
         backups_retention_period: Talleta genereeritud kasutajaarhiivid määratud arv päevi.
         bootstrap_timeline_accounts: Need kasutajad kinnitatakse uute kasutajate jälgimissoovituste esiritta.
         closed_registrations_message: Kuvatakse, kui liitumised pole võimalikud
@@ -81,6 +82,7 @@ et:
         custom_css: Kohandatud stiile on võimalik kasutada Mastodoni veebiliideses.
         mascot: Asendab kohandatud veebiliidese illustratsiooni.
         media_cache_retention_period: Positiivse väärtuse korral kustutatakse allalaetud meediafailid määratud päevade möödudes. Vajadusel laaditakse need uuesti alla.
+        peers_api_enabled: Domeeninimede loetelu, mida see server on Fediversumis kohanud. Mitte mingeid andmeid selle serveri födereerumise kohta antud serverite pole, vaid üksnes info, et sellest serverist ollakse teadlik. Seda kasutavad teenused, mis koguvad üldist födereerumise statistikat.
         profile_directory: Kasutajate kataloog kuvab nimekirja kasutajatest, kes on seda lubanud.
         require_invite_text: Kui liitumisi on tarvis kinnitada, oleks "Miks soovid liituda?" vastus vajalik
         site_contact_email: Kui peaks tekkima vajadus ühendust võtta täiendavate küsimuste osas.
@@ -89,17 +91,19 @@ et:
         site_short_description: Lühikirjeldus serveri unikaalseks identifitseerimiseks. Kes haldab, kellele mõeldud?
         site_terms: Lisa siia serveri isikuandmete kaitse põhimõtted või jäta tühjaks, et kasutada geneerilisi. Tekstis on lubatud Markdowni süntaks.
         site_title: Kuidas inimesed saavad serverile viidata, lisaks domeeninimele.
+        status_page_url: Lehe URL, kus saab serveri maas oleku ajal näha serveri olekut
         theme: Teema, mida näevad sisenemata ning uued kasutajad.
         thumbnail: Umbes 2:1 mõõdus pilt serveri informatsiooni kõrval.
         timeline_preview: Sisenemata külastajatel on võimalik sirvida viimaseid avalikke postitusi serveril.
         trendable_by_default: Populaarse sisu ülevaatuse vahele jätmine. Pärast seda on siiski võimalik üksikuid üksusi trendidest eemaldada.
         trends: Populaarsuse suunad näitavad millised postitused, sildid ja uudislood koguvad sinu serveris tähelepanu.
+        trends_as_landing_page: Näitab välja logitud kasutajatele ja külalistele serveri kirjelduse asemel populaarset sisu. Populaarne sisu (trendid) peab selleks olema sisse lülitatud.
       form_challenge:
         current_password: Turvalisse alasse sisenemine
       imports:
         data: CSV fail eksporditi teisest Mastodoni serverist
       invite_request:
-        text: See aitab meil su taotlust üle vaadata
+        text: See aitab meil sinu taotlust üle vaadata
       ip_block:
         comment: Valikuline. Talletamaks reegli lisamise põhjust.
         expires_in: IP-aadressid on lõplik ressurss ja on tihtipeale ühiskasutuses või vahetub kasutaja. Sel põhjusel pole kestvad IP-piirangud soovituslikud.
@@ -112,10 +116,10 @@ et:
       rule:
         text: Reegli või nõude kirjeldus selle serveri kasutajatele. Võimalikult lühidalt ja lihtsalt
       sessions:
-        otp: 'Kahe-etapise autentimise kood telefonirakendusest või mõni taastekood:'
+        otp: 'Kaheastmelise autentimise kood telefonirakendusest või mõni taastekood:'
         webauthn: Kui see on USB-võti, sisesta see ning vajadusel aktiveeri.
       tag:
-        name: Te saate ainult muuta tähtede tõstetust, näiteks selleks, et muuta seda rohkem loetavaks
+        name: Saad muuta ainult tähtede suurtähelisust, näiteks selleks, et muuta seda loetavamaks
       user:
         chosen_languages: Keelte valimisel näidatakse avalikel ajajoontel ainult neis keeltes postitusi
         role: See roll kontrollib, millised õigused kasutajal on
@@ -170,21 +174,21 @@ et:
         context: Filtreeri kontekste
         current_password: Kehtiv salasõna
         data: Andmed
-        discoverable: Lisage see konto kataloogi
+        discoverable: Lisa see konto kataloogi
         display_name: Kuvanimi
         email: E-posti aadress
         expires_in: Aegu pärast
         fields: Veebiviited
         header: Päis
         honeypot: "%{label} (ära sisesta)"
-        inbox_url: Relee sisendkausta URL
+        inbox_url: Vahendaja sisendkausta URL
         irreversible: Kustuta selle asemel, et peita
         locale: Kasutajaliidese keel
         locked: Lukusta konto
         max_uses: Maksimum kasutajate arv
         new_password: Uus salasõna
         note: Elulugu
-        otp_attempt: Kahe-etapine kood
+        otp_attempt: Kaheastmeline kood
         password: Salasõna
         phrase: Võtmesõna või fraas
         setting_advanced_layout: Aktiveeri kohandatud veebiliides
@@ -229,6 +233,7 @@ et:
           hide: Peida täielikult
           warn: Peida hoiatusega
       form_admin_settings:
+        activity_api_enabled: Avalda agregeeritud statistika kasutajaaktiivsuse kohta API-s
         backups_retention_period: Kasutajate arhiivi talletusperiood
         bootstrap_timeline_accounts: Alati soovita neid kontosid uutele kasutajatele
         closed_registrations_message: Kohandatud teade, kui liitumine pole võimalik
@@ -236,6 +241,7 @@ et:
         custom_css: Kohandatud CSS
         mascot: Kohandatud maskott (kunagine)
         media_cache_retention_period: Meediapuhvri talletusperiood
+        peers_api_enabled: Avalda avastatud serverite loetelu API kaudu
         profile_directory: Luba kasutajate kataloog
         registrations_mode: Kes saab liituda
         require_invite_text: Nõua liitumiseks põhjendust
@@ -247,11 +253,13 @@ et:
         site_short_description: Serveri lühikirjeldus
         site_terms: Isikuandmete kaitse
         site_title: Serveri nimi
+        status_page_url: Oleku lehe URL
         theme: Vaikmisi teema
         thumbnail: Serveri pisipilt
         timeline_preview: Luba autentimata ligipääs avalikele ajajoontele
         trendable_by_default: Luba trendid eelneva ülevaatuseta
         trends: Luba trendid
+        trends_as_landing_page: Kasuta maabumislehena lehte Populaarne
       interactions:
         must_be_follower: Keela teavitused mittejälgijatelt
         must_be_following: Keela teavitused kasutajatelt, keda sa ei jälgi
@@ -272,7 +280,7 @@ et:
         appeal: Moderaatori otsus on vaidlustatud
         digest: Saada ülevaatlike e-kirju
         favourite: Saada e-kiri, kui keegi lisab su postituse lemmikuks
-        follow: Saada e-kiri, kui keegi alustab Teie jälgimist
+        follow: Saada e-kiri, kui keegi alustab jälgimist
         follow_request: Saada e-kiri, kui keegi soovib Teid jälgida
         mention: Saada e-kiri, kui keegi mainib Teid
         pending_account: Saada e-kiri, kui uus konto vajab ülevaatlust

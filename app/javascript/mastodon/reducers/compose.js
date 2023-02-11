@@ -222,8 +222,8 @@ const privacyPreference = (a, b) => {
 const hydrate = (state, hydratedState) => {
   state = clearAll(state.merge(hydratedState));
 
-  if (hydratedState.has('text')) {
-    state = state.set('text', hydratedState.get('text'));
+  if (hydratedState.get('text')) {
+    state = state.set('text', hydratedState.get('text')).set('focusDate', new Date());
   }
 
   return state;
@@ -329,6 +329,8 @@ export default function compose(state = initialState, action) {
       map.set('caretPosition', null);
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
+
+      map.update('media_attachments', list => list.filter(media => media.get('unattached')));
 
       if (action.status.get('language') && !action.status.has('translation')) {
         map.set('language', action.status.get('language'));
@@ -444,7 +446,7 @@ export default function compose(state = initialState, action) {
       .setIn(['media_modal', 'dirty'], false)
       .update('media_attachments', list => list.map(item => {
         if (item.get('id') === action.media.id) {
-          return fromJS(action.media).set('unattached', true);
+          return fromJS(action.media).set('unattached', !action.attached);
         }
 
         return item;

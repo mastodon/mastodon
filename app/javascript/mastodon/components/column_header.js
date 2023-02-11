@@ -49,32 +49,32 @@ class ColumnHeader extends React.PureComponent {
     } else {
       this.context.router.history.goBack();
     }
-  }
+  };
 
   handleToggleClick = (e) => {
     e.stopPropagation();
     this.setState({ collapsed: !this.state.collapsed, animating: true });
-  }
+  };
 
   handleTitleClick = () => {
     this.props.onClick?.();
-  }
+  };
 
   handleMoveLeft = () => {
     this.props.onMove(-1);
-  }
+  };
 
   handleMoveRight = () => {
     this.props.onMove(1);
-  }
+  };
 
   handleBackClick = () => {
     this.historyBack();
-  }
+  };
 
   handleTransitionEnd = () => {
     this.setState({ animating: false });
-  }
+  };
 
   handlePin = () => {
     if (!this.props.pinned) {
@@ -82,7 +82,7 @@ class ColumnHeader extends React.PureComponent {
     }
 
     this.props.onPin();
-  }
+  };
 
   render () {
     const { title, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues } = this.props;

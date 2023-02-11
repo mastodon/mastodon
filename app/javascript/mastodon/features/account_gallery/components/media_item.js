@@ -22,20 +22,20 @@ export default class MediaItem extends ImmutablePureComponent {
 
   handleImageLoad = () => {
     this.setState({ loaded: true });
-  }
+  };
 
   handleMouseEnter = e => {
     if (this.hoverToPlay()) {
       e.target.play();
     }
-  }
+  };
 
   handleMouseLeave = e => {
     if (this.hoverToPlay()) {
       e.target.pause();
       e.target.currentTime = 0;
     }
-  }
+  };
 
   hoverToPlay () {
     return !autoPlayGif && ['gifv', 'video'].indexOf(this.props.attachment.get('type')) !== -1;
@@ -51,7 +51,7 @@ export default class MediaItem extends ImmutablePureComponent {
         this.setState({ visible: true });
       }
     }
-  }
+  };
 
   render () {
     const { attachment, displayWidth } = this.props;

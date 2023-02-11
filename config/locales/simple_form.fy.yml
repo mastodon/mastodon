@@ -18,8 +18,8 @@ fy:
           disable: Foarkom dat de brûker harren account brûkt, mar wiskje of ferstopje de ynhâld net.
           none: Brûk dit om in warskôging nei de brûker te stjoeren, sûnder dat noch in oare maatregel nommen wurdt.
           sensitive: Forsearje dat alle mediabylagen fan dizze brûker as gefoelich markearre wurde.
-          silence: Foarkom dat de brûker iepenbiere berjochten ferstjoere kin, ferstopje harren berjochten en meldingen foar minsken dy’t dyjinge net folgje.
-          suspend: Alle ynteraksjes fan en mei dizze account opkeare, en de accountgegevens fuortsmite. Dit kin binnen 30 dagen weromdraaid wurde.
+          silence: Foarkom dat de brûker iepenbiere berjochten ferstjoere kin, ferstopje harren berjochten en meldingen foar minsken dy’t dyjinge net folgje. Dit slút alle rapportaazjes oer dizze account.
+          suspend: Alle ynteraksjes fan en mei dizze account opkeare, en de accountgegevens fuortsmite. Dit kin binnen 30 dagen weromdraaid wurde. Dit slút alle rapportaazjes oer dizze account.
         warning_preset_id: Opsjoneel. Jo kinne noch hieltyd hânmjittich tekst tafoegje oan it ein fan de foarynstelling
       announcement:
         all_day: Wannear dit oanfinkt is, wurde allinnich de datums binnen it tiidrek toand
@@ -74,6 +74,7 @@ fy:
           hide: Ferstopje de filtere ynhâld folslein, as oft it net bestiet
           warn: Ferstopje de filtere ynhâld efter in warskôging, mei de titel fan it filter as warskôgingstekst
       form_admin_settings:
+        activity_api_enabled: Tal lokaal publisearre artikelen, aktive brûkers en nije registraasjes yn wyklikse werjefte
         backups_retention_period: De oanmakke brûkersargiven foar it opjûne oantal dagen behâlde.
         bootstrap_timeline_accounts: Dizze accounts wurde boppe oan de oanrekommandaasjes oan nije brûkers toand. Meardere brûkersnammen troch komma’s skiede.
         closed_registrations_message: Werjûn wannear’t registraasje fan nije accounts útskeakele is
@@ -81,6 +82,7 @@ fy:
         custom_css: Jo kinne oanpaste CSS tapasse op de webferzje fan dizze Mastodon-server.
         mascot: Oerskriuwt de yllustraasje yn de avansearre webomjouwing.
         media_cache_retention_period: Mediabestannen dy’t fan oare servers download binne wurde nei it opjûne oantal dagen fuortsmiten en wurde op fersyk opnij download.
+        peers_api_enabled: In list mei domeinnammen, dêr’t dizze server yn fediverse kontakt hân mei hat. Hjir wurdt gjin data dield, oft jo mei in bepaalde server federearrest, mar alinnich, dat jo server dat wit. Dit wurdt foar tsjinsten brûkt, dy’t statistiken oer federaasje yn algemiene sin sammelet.
         profile_directory: De brûkersgids befettet in list fan alle brûkers dy¥t derfoar keazen hawwe om ûntdekt wurde te kinnen.
         require_invite_text: Meitsje it ynfoljen fan "Wêrom wolle jo jo hjir registrearje?" ferplicht yn stee fan opsjoneel, wannear’t registraasjes hânmjittich goedkard wurde moatte
         site_contact_email: Hoe minsken jo berikke kinne foar juridyske fragen of stipe.
@@ -89,11 +91,13 @@ fy:
         site_short_description: In koarte beskriuwing om it unike karakter fan jo server te toanen. Wa beheart de server, wat is de doelgroep?
         site_terms: Brûk jo eigen privacybeleid of lit leech om de standertwearde te brûken. Kin mei Markdown opmakke wurde.
         site_title: Hoe minsken bûten de domeinnamme nei jo server ferwize kinne.
+        status_page_url: URL fan in side dêr’t minsken de steat fan dizze server sjen kinne wylst in steuring
         theme: Tema dy’t ôfmelde besikers en nije brûkers sjen.
         thumbnail: In ôfbylding fan ûngefear in ferhâlding fan 2:1 dy’t njonken jo serverynformaasje toand wurdt.
         timeline_preview: Net oanmelde besikers kinne de meast resinte, op de server oanwêzige iepenbiere berjochten besjen.
         trendable_by_default: Hânmjittige beoardieling fan trends oerslaan. Yndividuele items kinne letter dochs noch ôfkard wurde.
         trends: Trends toane hokker berjochten, hashtags en nijsberjochten op jo server oan populariteit winne.
+        trends_as_landing_page: Toan trending ynhâld oan ôfmelde brûkers en besikers yn stee fan in beskriuwing fan dizze server. Fereasket dat trends ynskeakele binne.
       form_challenge:
         current_password: Jo betrêdzje in feilige omjouwing
       imports:
@@ -229,6 +233,7 @@ fy:
           hide: Folslein ferstopje
           warn: Mei in warskôging ferstopje
       form_admin_settings:
+        activity_api_enabled: Publyklik meitsjen fan sammele statistiken oer brûkersaktiviteiten yn de API
         backups_retention_period: Bewartermyn brûkersargyf
         bootstrap_timeline_accounts: Accounts dy’t altyd oan nije brûkers oanrekommandearre wurde
         closed_registrations_message: Oanpast berjocht wannear registraasje útskeakele is
@@ -236,6 +241,7 @@ fy:
         custom_css: Oanpaste CSS
         mascot: Oanpaste maskotte (legacy)
         media_cache_retention_period: Bewartermyn mediabuffer
+        peers_api_enabled: Publyklik meitsjen fan ûntdekte servers yn de API
         profile_directory: Brûkersgids ynskeakelje
         registrations_mode: Wa kin harren registrearje
         require_invite_text: Opjaan fan in reden is ferplicht
@@ -247,11 +253,13 @@ fy:
         site_short_description: Serveromskriuwing
         site_terms: Privacybelied
         site_title: Servernamme
+        status_page_url: URL fan steatside
         theme: Standerttema
         thumbnail: Serverthumbnail
         timeline_preview: Tagong ta de iepenbiere tiidlinen sûnder oan te melden tastean
         trendable_by_default: Trends goedkarre sûnder yn it foar geande beoardieling
         trends: Trends ynskeakelje
+        trends_as_landing_page: Lit trends op de startside sjen
       interactions:
         must_be_follower: Meldingen fan minsken dy’t jo net folgje blokkearje
         must_be_following: Meldingen fan minsken dy’t jo net folgje blokkearje

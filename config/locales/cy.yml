@@ -2,7 +2,7 @@
 cy:
   about:
     about_mastodon_html: 'Rhwydwaith cymdeithasol y dyfodol: Dim hysbysebion, dim gwyliadwriaeth gorfforaethol, dylunio moesegol, a datganoli! Chi sy berchen eich data gyda Mastodon!'
-    contact_missing: Heb ei osod
+    contact_missing: Heb ei osodF
     contact_unavailable: Ddim yn berthnasol
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
     title: Ynghylch
@@ -473,6 +473,7 @@ cy:
         private_comment_description_html: 'Er mwyn eich helpu i olrhain o ble mae blociau a fewnforwyd yn dod, bydd blociau a fewnforwyd yn cael eu creu gyda''r sylw preifat canlynol: <q>%{comment}</q>'
         private_comment_template: Mewnforiwyd o %{source} ar %{date}
         title: Mewnforio blociau parth
+      invalid_domain_block: 'Cafodd un neu fwy o flociau parth eu hepgor oherwydd y gwall(au) canlynol: %{error}'
       new:
         title: Mewnforio blociau parth
       no_file: Heb ddewis ffeil
@@ -623,9 +624,10 @@ cy:
         mark_as_sensitive_description_html: Bydd y cyfryngau yn y postiadau sy'n cael eu hadrodd yn cael eu marcio'n sensitif a bydd rhybudd yn cael ei recordio i'ch helpu i gynyddu achosion o dorri rheolau yn y dyfodol gan yr un cyfrif.
         other_description_html: Gweld rhagor o ddewisiadau rheoli ymddygiad y cyfrif a chyfaddasu cyfathrebiad i'r cyfrif a adroddwyd.
         resolve_description_html: Ni fydd unrhyw gamau yn cael eu cymryd yn erbyn y cyfrif a adroddwyd, ni chofnodwyd rhybudd, a bydd yr adroddiad yn cael ei gau.
-        silence_description_html: Dim ond i'r rhai sydd eisoes yn ei ddilyn neu'n edrych arno â llaw y bydd y proffil yn weladwy, gan gyfyngu'n ddifrifol ar ei gyrhaeddiad. Mae modd ei ddychwelyd ar unrhyw adeg.
-        suspend_description_html: Bydd y proffil a'i holl gynnwys yn dod yn anhygyrch nes iddo gael ei ddileu yn y pen draw. Bydd rhyngweithio â'r cyfrif yn amhosibl. Mae modd ei adfer o fewn 30 diwrnod.
+        silence_description_html: Bydd y cyfrif yn weladwy i'r rhai sydd eisoes yn ei ddilyn neu'n edrych arno â llaw, gan gyfyngu'n ddifrifol ar ei gyrhaeddiad. Mae modd ei ddychwelyd bob amser. Yn cau pob adroddiad yn erbyn y cyfrif hwn.
+        suspend_description_html: Bydd y cyfrif a'i holl gynnwys yn anhygyrch ac yn cael ei ddileu yn y pen draw, a bydd rhyngweithio ag ef yn amhosibl. Yn gildroadwy o fewn 30 diwrnod. Yn cau pob adroddiad yn erbyn y cyfrif hwn.
       actions_description_html: Penderfynwch pa gamau i'w cymryd i ddatrys yr adroddiad hwn. Os byddwch yn cymryd camau cosbol yn erbyn y cyfrif a adroddwyd, bydd hysbysiad e-bost yn cael ei anfon atyn nhw, ac eithrio pan fydd y categori <strong>Sbam</strong> yn cael ei ddewis.
+      actions_description_remote_html: Penderfynwch pa gamau i'w cymryd i ddatrys yr adroddiad hwn. Bydd hyn ond yn effeithio ar sut <strong>mae'ch</strong> gweinydd yn cyfathrebu â'r cyfrif hwn o bell ac yn trin ei gynnwys.
       add_to_report: Ychwanegu rhagor i adroddiad
       are_you_sure: Ydych chi'n siŵr?
       assign_to_self: Neilltuo i mi
@@ -636,6 +638,7 @@ cy:
       comment:
         none: Dim
       comment_description_html: 'I ddarparu rhagor o wybodaeth, ysgrifennodd %{name}:'
+      confirm_action: Cadarnhau gweithred cymedroli yn erbyn @%{acct}
       created_at: Adroddwyd
       delete_and_resolve: Dileu postiadau
       forwarded: Wedi'i anfon ymlaen
@@ -652,6 +655,7 @@ cy:
         placeholder: Disgrifiwch pa weithredoedd sydd wedi eu cymryd, neu unrhyw ddiweddariadau perthnasol eraill...
         title: Nodiadau
       notes_description_html: Gweld a gadael nodiadau i gymedrolwyr eraill a chi eich hun yn y dyfodol
+      processed_msg: 'Adroddiad ar #%{id} wedi''i brosesu''n llwyddiannus'
       quick_actions_description_html: 'Cymerwch gamau cyflym neu sgroliwch i lawr i weld cynnwys yr adroddwyd amdano:'
       remote_user_placeholder: y defnyddiwr pell o %{instance}
       reopen: Ailagor adroddiad
@@ -664,9 +668,28 @@ cy:
       status: Statws
       statuses: Cynnwys wedi'i adrodd
       statuses_description_html: Bydd cynnwys tramgwyddus yn cael ei ddyfynnu wrth gyfathrebu â'r cyfrif a adroddwyd
+      summary:
+        action_preambles:
+          delete_html: 'Rydych ar fin <strong>dileu</strong> rhai o <strong>bostiadau @%{acct}</strong>. Bydd hyn yn:'
+          mark_as_sensitive_html: 'Rydych ar fin <strong>marcio</strong> rhai o <strong>bostiadau @%{acct}</strong> fel rhai <strong>sensitif</strong>. Bydd hyn yn:'
+          silence_html: 'Rydych ar fin <strong>cyfyngu ar</strong> gyfrif <strong>@%{acct}</strong>. Bydd hyn yn:'
+          suspend_html: 'Rydych ar fin <strong>atal</strong> cyfrif <strong>@%{acct}</strong>. Bydd hyn yn:'
+        actions:
+          delete_html: Tynnu'r postiadau tramgwyddus
+          mark_as_sensitive_html: Nodi fod cyfryngau'r postiadau tramgwyddus yn sensitif
+          silence_html: Cyfyngu'n sylweddol ar gyrhaeddiad <strong>@%{acct}</strong> trwy wneud ei ph/broffil a'i gynnwys ond yn weladwy i bobl sydd eisoes yn ei d/ddilyn neu edrych ar ei ph/broffil â llaw
+          suspend_html: Atal <strong>@%{acct}</strong>, gan wneud ei ph/broffil a'i gynnwys yn anhygyrch ac yn amhosibl rhyngweithio ag ef
+        close_report: 'Nodi adroddiad #%{id} fel wedi''i ddatrys'
+        close_reports_html: Nodi bod <strong>pob</strong> adroddiad yn erbyn <strong>@%{acct}</strong> wedi'i ddatrys
+        delete_data_html: Dileu proffil a chynnwys <strong>@%{acct}</strong> 30 diwrnod o nawr oni bai ei b/fod heb ei h/atal yn y cyfamser
+        preview_preamble_html: 'Bydd <strong>@%{acct}</strong> yn derbyn rhybudd gyda''r cynnwys canlynol:'
+        record_strike_html: Recordio rhybudd yn erbyn <strong>@%{acct}</strong> i'ch helpu i ddwysáu ar achosion o dorri rheolau yn y dyfodol o'r cyfrif hwn
+        send_email_html: Anfon e-bost rhybudd at <strong>@%{acct}</strong>
+        warning_placeholder: Rhesymeg ychwanegol dewisol ar gyfer y cam cymedroli.
       target_origin: Tarddiad y cyfrif a adroddwyd
       title: Adroddiadau
       unassign: Dadneilltuo
+      unknown_action_msg: 'Gweithred anhysbys: %{action}'
       unresolved: Heb ei ddatrys
       updated_at: Diweddarwyd
       view_profile: Gweld proffil
@@ -769,6 +792,8 @@ cy:
         preamble: Mae amlygu cynnwys diddorol yn allweddol ar gyfer derbyn defnyddwyr newydd nad ydynt efallai'n gyfarwydd ag unrhyw un Mastodon. Rheolwch sut mae nodweddion darganfod amrywiol yn gweithio ar eich gweinydd.
         profile_directory: Cyfeiriadur proffiliau
         public_timelines: Ffrydiau cyhoeddus
+        publish_discovered_servers: Cyhoeddi gweinyddion a ddarganfuwyd
+        publish_statistics: Cyhoeddi ystadegau
         title: Darganfod
         trends: Trendiau
       domain_blocks:
@@ -1012,6 +1037,8 @@ cy:
   auth:
     apply_for_account: Gofyn am gyfrif
     change_password: Cyfrinair
+    confirmations:
+      wrong_email_hint: Os nad yw'r cyfeiriad e-bost hwnnw'n gywir, gallwch ei newid yng ngosodiadau'r cyfrif.
     delete_account: Dileu cyfrif
     delete_account_html: Os hoffech chi ddileu eich cyfrif, mae modd <a href="%{path}">parhau yma</a>. Bydd gofyn i chi gadarnhau.
     description:
@@ -1471,6 +1498,9 @@ cy:
       unrecognized_emoji: nid yw'n emoji cydnabyddedig
   relationships:
     activity: Gweithgareddau cyfrif
+    confirm_follow_selected_followers: Ydych chi'n siŵr eich bod am ddilyn y dilynwyr a ddewiswyd?
+    confirm_remove_selected_followers: Ydych chi'n siŵr eich bod am ddileu'r dilynwyr a ddewiswyd?
+    confirm_remove_selected_follows: Ydych chi'n siŵr eich bod am ddileu'r canlynol?
     dormant: Segur
     follow_selected_followers: Dilynwch y dilynwyr a ddewiswyd
     followers: Dilynwyr

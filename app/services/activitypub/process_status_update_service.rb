@@ -94,7 +94,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
         @next_media_attachments << media_attachment
       rescue Addressable::URI::InvalidURIError => e
-        Rails.logger.debug "Invalid URL in attachment: #{e}"
+        Rails.logger.debug { "Invalid URL in attachment: #{e}" }
       end
     end
 

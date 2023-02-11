@@ -39,7 +39,7 @@ export default class MediaContainer extends PureComponent {
     document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
 
     this.setState({ media, index });
-  }
+  };
 
   handleOpenVideo = (options) => {
     const { components } = this.props;
@@ -50,7 +50,7 @@ export default class MediaContainer extends PureComponent {
     document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
 
     this.setState({ media: mediaList, options });
-  }
+  };
 
   handleCloseMedia = () => {
     document.body.classList.remove('with-modals--active');
@@ -63,11 +63,11 @@ export default class MediaContainer extends PureComponent {
       backgroundColor: null,
       options: null,
     });
-  }
+  };
 
   setBackgroundColor = color => {
     this.setState({ backgroundColor: color });
-  }
+  };
 
   render () {
     const { locale, components } = this.props;

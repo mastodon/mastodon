@@ -58,16 +58,16 @@ class ListTimeline extends React.PureComponent {
       dispatch(addColumn('LIST', { id: this.props.params.id }));
       this.context.router.history.push('/');
     }
-  }
+  };
 
   handleMove = (dir) => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
-  }
+  };
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   componentDidMount () {
     const { dispatch } = this.props;
@@ -105,16 +105,16 @@ class ListTimeline extends React.PureComponent {
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   handleLoadMore = maxId => {
     const { id } = this.props.params;
     this.props.dispatch(expandListTimeline(id, { maxId }));
-  }
+  };
 
   handleEditClick = () => {
     this.props.dispatch(openModal('LIST_EDITOR', { listId: this.props.params.id }));
-  }
+  };
 
   handleDeleteClick = () => {
     const { dispatch, columnId, intl } = this.props;
@@ -133,13 +133,13 @@ class ListTimeline extends React.PureComponent {
         }
       },
     }));
-  }
+  };
 
   handleRepliesPolicyChange = ({ target }) => {
     const { dispatch } = this.props;
     const { id } = this.props.params;
     dispatch(updateList(id, undefined, false, target.value));
-  }
+  };
 
   render () {
     const { hasUnread, columnId, multiColumn, list, intl } = this.props;

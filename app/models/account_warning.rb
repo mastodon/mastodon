@@ -26,6 +26,8 @@ class AccountWarning < ApplicationRecord
     suspend:                    4_000,
   }, _suffix: :action
 
+  before_validation :before_validate
+
   belongs_to :account, inverse_of: :account_warnings
   belongs_to :target_account, class_name: 'Account', inverse_of: :strikes
   belongs_to :report, optional: true
@@ -46,5 +48,11 @@ class AccountWarning < ApplicationRecord
 
   def to_log_human_identifier
     target_account.acct
+  end
+
+  private
+
+  def before_validate
+    self.text = '' if text.blank?
   end
 end

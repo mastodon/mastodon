@@ -46,7 +46,7 @@ class DisabledAccountBanner extends React.PureComponent {
     this.props.onLogout();
 
     return false;
-  }
+  };
 
   render () {
     const { disabledAcct, movedToAcct } = this.props;
