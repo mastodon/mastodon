@@ -330,6 +330,8 @@ export default function compose(state = initialState, action) {
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
 
+      map.update('media_attachments', list => list.filter(media => media.get('unattached')));
+
       if (action.status.get('language') && !action.status.has('translation')) {
         map.set('language', action.status.get('language'));
       } else {

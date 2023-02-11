@@ -149,9 +149,19 @@ eo:
     scopes:
       admin:read: legu ĉiujn datumojn en la servilo
       admin:read:accounts: legi konfidencajn informojn de ĉiuj kontoj
+      admin:read:canonical_email_blocks: legi sentemajn informojn de ĉiuj kanonikaj retpoŝtaj blokoj
+      admin:read:domain_allows: legi sentemajn informojn de ĉiuj domajno permesas
+      admin:read:domain_blocks: legi sentemajn informojn de ĉiuj domajnaj blokoj
+      admin:read:email_domain_blocks: legi sentemajn informojn pri ĉiuj retpoŝtaj domajnaj blokoj
+      admin:read:ip_blocks: legi sentivajn informojn de ĉiuj IP-blokoj
       admin:read:reports: legi konfidencajn informojn de ĉiuj signaloj kaj signalitaj kontoj
       admin:write: modifi ĉiujn datumojn en la servilo
       admin:write:accounts: plenumi agojn de kontrolo sur kontoj
+      admin:write:canonical_email_blocks: fari moderigajn agojn sur kanonikaj retpoŝtaj blokoj
+      admin:write:domain_allows: fari moderigajn agojn sur domajno permesas
+      admin:write:domain_blocks: fari moderigajn agojn sur domajnaj blokoj
+      admin:write:email_domain_blocks: fari moderigajn agojn pri retpoŝtaj domajnaj blokoj
+      admin:write:ip_blocks: fari moderigajn agojn pri IP-blokoj
       admin:write:reports: plenumi agojn de kontrolo sur signaloj
       crypto: uzi fin-al-finan ĉifradon
       follow: ŝanĝi rilatojn al aliaj kontoj

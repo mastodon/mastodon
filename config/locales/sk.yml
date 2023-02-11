@@ -226,6 +226,7 @@ sk:
         destroy_domain_block_html: "%{name} odblokoval/i doménu %{target}"
         destroy_ip_block_html: "%{name} vymazal/a pravidlo pre IP %{target}"
         destroy_status_html: "%{name} zmazal/a príspevok od %{target}"
+        reject_appeal_html: "%{name} zamietol/la námietku moderovacieho rozhodnutia od %{target}"
       deleted_account: zmazaný účet
       empty: Žiadne záznamy nenájdené.
       filter_by_action: Filtruj podľa úkonu
@@ -351,6 +352,7 @@ sk:
       no_file: Nevybraný žiaden súbor
     export_domain_blocks:
       import:
+        existing_relationships_warning: Existujúce vzťahy nasledovania
         title: Nahraj zákazy domén
       new:
         title: Nahraj zákazy domén
@@ -376,6 +378,7 @@ sk:
         policies:
           reject_media: Zamietni médiá
           reject_reports: Zamietni hlásenia
+          silence: Obmedzená
           suspend: Vylúč
         policy: Zásady
         reason: Verejné odôvodnenie
@@ -383,6 +386,7 @@ sk:
       dashboard:
         instance_accounts_dimension: Najsledovanejšie účty
         instance_accounts_measure: uložené účty
+        instance_follows_measure: ich sledovatelia tu
         instance_statuses_measure: uložené príspevky
       delivery:
         all: Všetko
@@ -472,6 +476,7 @@ sk:
         delete: Vymaž
         placeholder: Opíš aké opatrenia boli urobené, alebo akékoľvek iné súvisiace aktualizácie…
         title: Poznámky
+      remote_user_placeholder: vzdialený užívateľ z %{instance}
       reopen: Znovu otvor report
       report: 'Nahlásiť #%{id}'
       reported_account: Nahlásený účet
@@ -500,6 +505,7 @@ sk:
       categories:
         administration: Spravovanie
         invites: Pozvánky
+        moderation: Moderácia
       delete: Vymaž
       edit: Uprav postavenie %{name}
       privileges:
