@@ -6,9 +6,7 @@ skip_frontmatter: false
 
 exclude:
   - 'vendor/**/*'
-  - 'spec/**/*'
-  - 'lib/templates/**/*'
-  - 'app/views/kaminari/**/*'
+  - lib/templates/haml/scaffold/_form.html.haml
 
 linters:
   AltText:
