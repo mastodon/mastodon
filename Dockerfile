@@ -1,9 +1,7 @@
 # syntax=docker/dockerfile:1.4
 # This needs to be bullseye-slim because the Ruby image is built on bullseye-slim
-ARG NODE_VERSION="16.18.1-bullseye-slim"
-
 FROM ghcr.io/moritzheiber/ruby-jemalloc:3.0.4-slim as ruby
-FROM node:${NODE_VERSION} as build
+FROM node:16.18.1-bullseye-slim as build
 
 COPY --link --from=ruby /opt/ruby /opt/ruby
 
@@ -39,7 +37,7 @@ RUN apt-get update && \
     bundle install -j"$(nproc)" && \
     yarn install --pure-lockfile --network-timeout 600000
 
-FROM node:${NODE_VERSION}
+FROM node:16.18.1-bullseye-slim
 
 ARG UID="991"
 ARG GID="991"

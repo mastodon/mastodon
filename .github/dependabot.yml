@@ -21,6 +21,19 @@ updates:
     allow:
       - dependency-type: direct
 
+  - package-ecosystem: docker
+    directory: '/'
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 99
+    allow:
+      - dependency-type: direct
+    ignore:
+      - dependency-name: "node"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "moritzheiber/ruby-jemalloc"
+        update-types: ["version-update:semver-major","version-update:semver-minor"]
+
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
