@@ -6,6 +6,7 @@ ast:
       announcement:
         all_day: Al marcar la opción, namás apaecen les dates del intervalu de tiempu
         ends_at: Opcional. L'anunciu dexa de tar espublizáu na data qu'indiques
+        scheduled_at: Dexa esti campu como ta pa espublizar l'anunciu nel intre
         starts_at: Opcional. En casu de que l'anunciu tea arreyáu a un intervalu de tiempu específicu
         text: Pues usar la sintaxis de los artículos. Ten en cuenta l'espaciu que l'anunciu va ocupar na pantalla del usuariu/a
       defaults:
@@ -20,6 +21,7 @@ ast:
         locale: La llingua de la interfaz, los mensaxes per corréu electrónicu ya los avisos push
         locked: Controla manualmente quién pue siguite pente l'aprobación de les solicitúes de siguimientu
         password: Usa polo menos 8 caráuteres
+        setting_always_send_emails: Los avisos nun se suelen unviar per corréu electrónicu si uses activamente Mastodon
         setting_display_media_default: Anubrilu cuando se marque como sensible
         setting_display_media_hide_all: Anubrilu siempres
         setting_display_media_show_all: Amosalu siempres
@@ -93,6 +95,7 @@ ast:
         phrase: Pallabra clave o fras
         setting_advanced_layout: Activar la interfaz web avanzada
         setting_aggregate_reblogs: Agrupar los artículos compartíos nes llinies de tiempu
+        setting_always_send_emails: Unviar siempres los avisos per corréu electrónicu
         setting_auto_play_gif: Reproducir automáticamente los GIFs
         setting_boost_modal: Amosar el diálogu de confirmación enantes de compartir un artículu
         setting_default_language: Llingua de los artículos
@@ -162,6 +165,8 @@ ast:
         name: Nome
         permissions_as_keys: Permisos
         position: Prioridá
+      webhook:
+        events: Eventos activos
     'no': 'Non'
     not_recommended: Nun s'aconseya
     recommended: Aconséyase
