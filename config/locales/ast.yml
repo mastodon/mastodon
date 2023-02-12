@@ -19,6 +19,7 @@ ast:
     accounts:
       avatar: Avatar
       by_domain: Dominiu
+      confirming: En confirmación
       disabled: Conxelóse
       display_name: Nome visible
       domain: Dominiu
@@ -31,6 +32,7 @@ ast:
         local: Llocal
         remote: Remotu
         title: Llugar
+      login_status: Estáu del aniciu de la sesión
       moderation:
         pending: Pendiente
       most_recent_activity: L'actividá más recién
@@ -59,6 +61,7 @@ ast:
         confirm_user_html: "%{name} confirmó la direición de corréu electrónicu del perfil %{target}"
         create_account_warning_html: "%{name} unvió una alvertencia a %{target}"
         create_announcement_html: "%{name} creó l'anunciu «%{target}»"
+        create_custom_emoji_html: "%{name} xubió un fustaxe nuevu «%{target}»"
         create_domain_allow_html: "%{name} permitió la federación col dominiu %{target}"
         create_domain_block_html: "%{name} bloquió'l dominiu %{target}"
         create_user_role_html: "%{name} creó'l rol «%{target}»"
@@ -159,6 +162,7 @@ ast:
     export_domain_allows:
       no_file: Nun se seleicionó nengún ficheru
     follow_recommendations:
+      description_html: "<strong>La recomendación de cuentes ayuda a que los perfiles nuevos atopen aína conteníu interesante</strong>. Cuando una cuenta nun interactuó abondo con otros perfiles como pa formar recomendaciones personalizaes, estes cuentes van ser les que se recomienden. Recalcúlense caldía a partir d'un mecíu de cuentes con más actividá recién ya mayor númberu de siguidores llocales pa una llingua determinada."
       language: Pa la llingua
       status: Estáu
       title: Recomendación de cuentes
@@ -173,6 +177,15 @@ ast:
           suspend: Suspender
         policy: Política
         reason: Motivu públicu
+      dashboard:
+        instance_accounts_dimension: Les cuentes más siguíes
+        instance_accounts_measure: cuentes atroxaes
+        instance_followers_measure: siguidores de nueso ellí
+        instance_follows_measure: siguidores de so equí
+        instance_languages_dimension: Les llingües más usaes
+        instance_media_attachments_measure: ficheros multimedia atroxaos
+        instance_reports_measure: informes d'esa instancia
+        instance_statuses_measure: artículos atroxaos
       empty: Nun s'atopó nengún dominiu.
       known_accounts:
         one: "%{count} cuenta conocida"
@@ -180,6 +193,8 @@ ast:
       private_comment: Comentariu priváu
       public_comment: Comentariu públicu
       title: Federación
+    invites:
+      title: Invitaciones
     ip_blocks:
       expires_in:
         '1209600': 2 selmanes
@@ -271,7 +286,11 @@ ast:
         preamble: Controla cómo s'atroxa'l conteníu xeneráu polos perfiles en Mastodon.
         title: Retención del conteníu
       discovery:
+        follow_recommendations: Recomendación de cuentes
+        profile_directory: Direutoriu de perfiles
         public_timelines: Llinies de tiempu públiques
+        publish_discovered_servers: Espublizamientu de sirvidores descubiertos
+        publish_statistics: Espublizamientu d'estadístiques
         title: Descubrimientu
         trends: Tendencies
       domain_blocks:
@@ -307,20 +326,30 @@ ast:
         message_html: Nun se pudo conectar con Elasticsearch. Revisa que tea n'execución o desactiva la busca de testos completos
     title: Alministración
     trends:
+      allow: Permitir
+      disallow: Refugar
       links:
+        disallow: Refugar l'enllaz
         title: Enllaces en tendencia
       only_allowed: Namás lo permitío
       pending_review: Revisión pendiente
       preview_card_providers:
         title: Espublizadores
       statuses:
+        allow: Permitir l'artículu
+        disallow: Refugar l'artículu
         title: Artículos en tendencia
       tags:
         current_score: 'Puntuación total: %{score}'
         dashboard:
           tag_accounts_measure: usos únicos
+          tag_languages_dimension: Les llingües más usaes
+          tag_servers_dimension: Los sirvidores más destacaos
+          tag_servers_measure: sirvidores diferentes
+          tag_uses_measure: usos en total
         listable: Pue suxerise
         no_tag_selected: Nun camudó nenguna etiqueta darréu que nun se seleicionó nenguna
+        not_trendable: Nun apaez nes tendencies
         not_usable: Nun se pue usar
         title: Etiquetes en tendencia
         usable: Pue usase
@@ -557,8 +586,11 @@ ast:
     max_uses:
       one: 1 usu
       other: "%{count} usos"
+    prompt: Xenera ya comparti enllaces con otres persones pa conceder l'accesu a esti sirvidor
     table:
       expires_at: Data de caducidá
+      uses: Usos
+    title: Invitación
   lists:
     errors:
       limit: Algamesti la cantidá máxima de llistes
@@ -616,7 +648,7 @@ ast:
     instructions_html: "<strong>Escania esti códigu QR con Google Authenticator o otra aplicación asemeyada nel móvil</strong>. Dende agora, esa aplicación va xenerar los pases que tienes d'introducir cuando anicies la sesión."
     manual_instructions: 'Si nun pues escaniar el códigu QR ya tienes d''introducilu manualmente, equí tienes el secretu en testu ensin formatu:'
     setup: Configurar
-    wrong_code: '¡El códigu introducíu nun yera válidu! ¿La hora del sirvidor y la del preséu son correutes?'
+    wrong_code: '¡El códigu introducíu nun yera válidu! ¿La hora del sirvidor ya la del preséu son correutes?'
   pagination:
     next: Siguiente
     truncate: "&hellip;"
@@ -779,7 +811,7 @@ ast:
         suspend: Cuenta suspendida
     welcome:
       edit_profile_action: Configurar el perfil
-      edit_profile_step: Pues personalizar el perfil pente la xuba d'una semeya, el cambéu del nome visible y muncho más. Tamién, si lo prefieres, pues revisar los perfiles nuevos enantes de que puedan siguite.
+      edit_profile_step: Pues personalizar el perfil pente la xuba d'una semeya, el cambéu del nome visible ya muncho más. Tamién, si lo prefieres, pues revisar los perfiles nuevos enantes de que puedan siguite.
       explanation: Equí tienes dalgunos conseyos pa que comiences
       final_action: Comenzar a espublizar
       subject: Afáyate en Mastodon
