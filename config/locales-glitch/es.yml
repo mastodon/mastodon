@@ -1,6 +1,9 @@
 ---
 es:
   admin:
+    custom_emojis:
+      batch_copy_error: 'Se produjo un error cuando se copian algunos emojis seleccionados %{message}'
+      batch_error: 'Ocurrió un error %{message}'
     settings:
       hide_followers_count:
         desc_html: No mostrar el conteo de seguidorxs en perfiles de usuarix
@@ -14,6 +17,12 @@ es:
       show_replies_in_public_timelines:
         desc_html: Además de auto-respuestas públicas (hilos), mostrar respuestas públicas en las línea de tiempo local y pública.
         title: Mostrar respuestas en líneas de tiempo públicas
+      trending_status_cw:
+        title: Permitir que toots con advertencias de contenido sean tendencia
+  appearance:
+    localization:
+      glitch_guide_link: https://crowdin.com/project/glitch-soc
+      glitch_guide_link_text: Al igual que para glitch-soc!
   generic:
     use_this: Usar
   settings:
