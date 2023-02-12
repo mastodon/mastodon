@@ -246,11 +246,19 @@ my:
       account:
         notes:
           other: "%{count} မှတ်စု"
+      are_you_sure: သေချာပါသလား။
+      assign_to_self: ကျွန်ုပ်ကို တာဝန်ပေးရန်
+      assigned: စိစစ်သူကို တာဝန်ပေးရန်
+      category: အမျိုးအစား
       delete_and_resolve: ပို့စ်များကို ဖျက်ပါ
       notes:
         create: မှတ်စုထည့်ရန်
         delete: ဖျက်ပါ
         title: မှတ်စုများ
+      reopen: အစီရင်ခံစာပြန်ဖွင့်ရန်
+      report: '#%{id} အစီရင်ခံရန်'
+      resolved: ဖြေရှင်းပြီးပါပြီ
+      status: အခြေအနေ
       view_profile: ပရိုဖိုင်ကိုကြည့်ရန်
     roles:
       add_new: အခန်းကဏ္ဍထည့်ပါ
@@ -261,8 +269,12 @@ my:
       permissions_count:
         other: "%{count} ခွင့်ပြုချက်"
       privileges:
+        administrator: စီမံသူ
         delete_user_data: အသုံးပြုသူ၏အချက်အလက်ကို ဖျက်ပါ
+        invite_users: အသုံးပြုသူများကို ဖိတ်ခေါ်ရန်
+        invite_users_description: ဆာဗာသို့ လူသစ်များဖိတ်ခေါ်ရန်အတွက် အသုံးပြုသူအား ခွင့်ပြုရန်
         manage_announcements: ကြေညာချက်များကို စီမံပါ
+        manage_announcements_description: ဆာဗာပေါ်တွင် ကြေညာချက်များစီမံရန်အတွက် အသုံးပြုသူအား ခွင့်ပြုရန်
         manage_reports: အစီရင်ခံစာများကို စီမံပါ
         manage_roles: အခန်းကဏ္ဍများကို စီမံပါ
         manage_rules: စည်းမျဉ်းများကို စီမံပါ
@@ -275,6 +287,10 @@ my:
     settings:
       about:
         title: အကြောင်း
+      appearance:
+        title: ပုံပန်းသဏ္ဌာန်
+      domain_blocks:
+        all: လူတိုင်း
     statuses:
       account: ရေးသားသူ
       back_to_account: အကောင့်စာမျက်နှာသို့ ပြန်သွားရန်
@@ -283,6 +299,11 @@ my:
       media:
         title: မီဒီယာ
       original_status: မူရင်းပို့စ်
+      title: အကောင့်ပို့စ်များ
+      with_media: မီဒီယာနှင့်အတူ
+    system_checks:
+      rules_check:
+        action: ဆာဗာစည်းမျဉ်းများကို စီမံရန်
     trends:
       allow: ခွင့်ပြု
       approved: အတည်ပြုပြီးပါပြီ
@@ -292,6 +313,8 @@ my:
         dashboard:
           tag_languages_dimension: အသုံးများသည့်ဘာသာစကားများ
           tag_servers_dimension: အသုံးများသည့်ဆာဗာများ
+          tag_servers_measure: မတူညီသောဆာဗာများ
+          tag_uses_measure: စုစုပေါင်းအသုံးပြုမှု
         listable: အကြံပြုနိုင်ပါသည်
         not_usable: အသုံးမပြုနိုင်ပါ
         usable: အသုံးပြုနိုင်သည်
@@ -310,8 +333,11 @@ my:
       guide_link_text: လူတိုင်းပါဝင်ကူညီနိုင်ပါတယ်။
   application_mailer:
     salutation: "%{name}"
+    view: 'ကြည့်ရှုရန် -'
     view_profile: ပရိုဖိုင်ကိုကြည့်ရန်
     view_status: ပို့စ်ကိုကြည့်ရန်
+  applications:
+    created: အက်ပလီကေးရှင်းကို ဖန်တီးပြီးပါပြီ
   auth:
     change_password: စကားဝှက်
     delete_account: အကောင့်ဖျက်ပါ
@@ -319,6 +345,7 @@ my:
     providers:
       cas: CAS
       saml: SAML
+    security: လုံခြုံရေး
     set_new_password: စကားဝှက်အသစ် သတ်မှတ်ပါ။
     status:
       account_status: အကောင့်အခြေအနေ
@@ -326,6 +353,8 @@ my:
     follow: စောင့်ကြည့်မယ်
     follow_request: 'သင်သည် စောင့်ကြည့်မည် တောင်းဆိုချက်တစ်ခု ပေးပို့ထားသည်-'
     post_follow:
+      close: သို့မဟုတ် သင်သည် ဤဝင်းဒိုးကို ပိတ်နိုင်သည်
+      return: အသုံးပြုသူ၏ ကိုယ်ရေးမှတ်တမ်းကိုပြရန်
       web: ဝဘ်သို့ သွားပါ
     title: '%{acct} ကို စောင့်ကြည့်မယ်'
   challenge:
@@ -342,6 +371,7 @@ my:
       about_x_years: "%{count}y"
       almost_x_years: "%{count}y"
       half_a_minute: အခုလေးတင်
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: အခုလေးတင်
       over_x_years: "%{count}y"
       x_days: "%{count}y"
@@ -355,6 +385,8 @@ my:
     strikes:
       status: '#%{id} ပို့စ်'
       title: "%{date} မှ %{action}"
+      title_actions:
+        none: သတိပေးချက်
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -375,6 +407,8 @@ my:
     add_new: အသစ် ထည့်ပါ
   filters:
     contexts:
+      account: ကိုယ်ရေးမှတ်တမ်းများ
+      home: ပင်မနှင့် စာရင်းများ
       notifications: အကြောင်းကြားချက်များ
     index:
       delete: ဖျက်ပါ
