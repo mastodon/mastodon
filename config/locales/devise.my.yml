@@ -8,9 +8,40 @@ my:
     mailer:
       confirmation_instructions:
         action: အီးမေးလ်လိပ်စာကို အတည်ပြုပါ
+        action_with_app: အတည်ပြုပြီး %{app} သို့ပြန်သွားပါ
         title: အီးမေးလ်လိပ်စာကို အတည်ပြုပါ
       email_changed:
         subject: 'Mastodon: အီးမေးလ်ပြောင်းလဲသွားပြီ'
         title: အီးမေးလ်လိပ်စာအသစ်
       password_change:
         subject: 'Mastodon: စကားဝှက်ပြောင်းလဲသွားပြီ'
+        title: စကားဝှက်ပြောင်းလဲသွားပြီ
+      reconfirmation_instructions:
+        explanation: သင်၏အီးမေးလ်လိပ်စာပြောင်းရန် လိပ်စာအသစ်အတည်ပြုပါ။
+        subject: 'Mastodon: %{instance} အတွက်အီးမေးလ်အတည်ပြုပါ'
+        title: အီးမေးလ်လိပ်စာစစ်ဆေးပါ
+      reset_password_instructions:
+        action: စကားဝှက်ပြောင်းမည်
+        subject: 'Mastodon: စကားဝှက်ညွှန်ကြားချက် ပြန်လည်သတ်မှတ်မည်'
+        title: စကားဝှက်ပြန်လည်သတ်မှတ်မည်
+      two_factor_disabled:
+        subject: 'Mastodon: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်ပိတ်ထားသည်'
+        title: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်ပိတ်ထားသည်
+      two_factor_enabled:
+        subject: 'Mastodon: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်ဖွင့်ထားသည်'
+        title: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်ဖွင့်ထားသည်
+      webauthn_credential:
+        added:
+          subject: 'Mastodon: လုံခြုံရေးသော့ချက်အသစ်'
+          title: လုံခြုံရေးသော့ချက်အသစ် ထည့်လိုက်ပါပြီ
+        deleted:
+          subject: 'Mastodon: လုံခြုံရေးသော့ချက် ဖျက်လိုက်ပါပြီ'
+          title: လုံခြုံရေးသော့ချက်များထဲမှတစ်ခု ဖျက်လိုက်ပါပြီ
+      webauthn_disabled:
+        title: လုံခြုံရေးသော့ချက်များ ပိတ်ပြီးပါပြီ
+      webauthn_enabled:
+        title: လုံခြုံရေးသော့ချက်များ ဖွင့်ပြီးပါပြီ
+  errors:
+    messages:
+      expired: သည် သက်တမ်းကျော်လွန်သွားပြီ။ ကျေးဇူးပြု၍အသစ်တစ်ခု တောင်းဆိုပါ
+      not_found: ရှာမတွေ့ပါ
