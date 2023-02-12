@@ -426,8 +426,25 @@ my:
     edit_profile: ပရိုဖိုင်ပြင်ဆင်ရန်
     notifications: အသိပေးချက်များ
     profile: ကိုယ်ရေးမှတ်တမ်း
+    relationships: စောင့်ကြည့်သူများနှင့် စောင့်ကြည့်စာရင်း
+    statuses_cleanup: အလိုအလျောက်ပို့စ်ဖျက်ခြင်း
+    two_factor_authentication: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်
   statuses:
+    attached:
+      description: 'ပူးတွဲပါ- %{attached}'
+      image:
+        other: "%{count} ပုံ"
+      video:
+        other: "%{count} ဗီဒီယို"
+    edited_at_html: '%{date} ကို ပြင်ဆင်ပြီးပါပြီ'
+    open_in_web: ဝဘ်တွင် ဖွင့်ပါ
+    show_more: ပိုမိုပြရန်
+    show_newer: ပို့စ်အသစ်များပြရန်
+    show_older: ပို့စ်အဟောင်းများပြရန်
+    title: '%{name}: "%{quote}"'
     visibilities:
+      direct: တိုက်ရိုက်
+      private: စောင့်ကြည့်သူများသာ
       public: အများမြင်
   statuses_cleanup:
     min_age:
@@ -441,9 +458,18 @@ my:
       '7889238': ၃ လ
   time:
     formats:
+      default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
   two_factor_authentication:
+    add: ထည့်ရန်
     disable: 2FA ကို ပိတ်ပါ
+    edit: ပြင်ဆင်ရန်
     enabled: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်ကို ဖွင့်ထားသည်
     enabled_success: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်ကို ဖွင့်ပြီးပါပြီ
+    methods: နှစ်ဆင့်ခံလုံခြုံရေးနည်းလမ်းများ
+  user_mailer:
+    appeal_approved:
+      action: သင့်အကောင့်သို့ သွားပါ
+    suspicious_sign_in:
+      change_password: သင်၏ စကားဝှက်ပြောင်းလဲပါ
