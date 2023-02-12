@@ -197,8 +197,10 @@ el:
         destroy_user_role: Καταστροφή Ρόλου
         disable_2fa_user: Απενεργοποίηση 2FA
         disable_custom_emoji: Απενεργοποίηση Προσαρμοσμένων Emoji
+        disable_sign_in_token_auth_user: Απενεργοποίηση Ελέγχου Ταυτότητας Μέσω E-mail για το Χρήστη
         disable_user: Απενεργοποίηση Χρήστη
         enable_custom_emoji: Ενεργοποίηση Προσαρμοσμένων Emoji
+        enable_sign_in_token_auth_user: Ενεργοποίηση Ελέγχου Ταυτότητας Μέσω E-mail για το Χρήστη
         enable_user: Ενεργοποίηση Χρήστη
         memorialize_account: Μετατροπή Λογαριασμού σε Αναμνηστικό
         promote_user: Προαγωγή Χρήστη
@@ -219,10 +221,21 @@ el:
         unsuspend_account: Άρση Αναστολής Λογαριασμού
         update_announcement: Ενημέρωση Ανακοίνωσης
         update_custom_emoji: Ενημέρωση Προσαρμοσμένου Emoji
+        update_domain_block: Ενημέρωση Αποκλεισμού Τομέα
+        update_ip_block: Ενημέρωση κανόνα IP
         update_status: Ενημέρωση Κατάστασης
         update_user_role: Ενημέρωση ρόλου
       actions:
+        approve_appeal_html: "Ο/Η %{name} ενέκρινε την ένσταση της απόφασης των διαχειριστών από %{target}"
         approve_user_html: "%{name} εγκρίθηκε εγγραφή από %{target}"
+        assigned_to_self_report_html: "Ο/Η %{name} ανάθεσε την καταγγελία %{target} στον εαυτό του/της"
+        change_email_user_html: "Ο/Η %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}"
+        change_role_user_html: "Ο/Η %{name} άλλαξε ρόλο του/της %{target}"
+        confirm_user_html: "Ο/Η %{name} επιβεβαίωσε τη διεύθυνση email του χρήστη %{target}"
+        create_account_warning_html: "Ο/Η %{name} έστειλε προειδοποίηση προς %{target}"
+        create_announcement_html: "Ο/Η %{name} δημιούργησε νέα ανακοίνωση %{target}"
+        create_canonical_email_block_html: "Ο/Η %{name} απέκλεισε e-mail με το hash %{target}"
+        create_custom_emoji_html: "Ο/Η %{name} ανέβασε νέο emoji %{target}"
         destroy_email_domain_block_html: "Ο/Η %{name} ξεμπλόκαρε το email domain %{target}"
         destroy_instance_html: "Ο/Η %{name} εκκαθάρισε τον τομέα %{target}"
         destroy_ip_block_html: "Ο/Η %{name} διέγραψε τον κανόνα για την IP %{target}"
