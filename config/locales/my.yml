@@ -440,6 +440,7 @@ my:
     blocks: သင်ပိတ်ပင်ထားသည့်လူများစာရင်း
     csv: CSV
     lists: စာရင်းများ
+    storage: မီဒီယာသိုလှောင်မှု
   featured_tags:
     add_new: အသစ် ထည့်ပါ
   filters:
@@ -447,12 +448,21 @@ my:
       account: ကိုယ်ရေးမှတ်တမ်းများ
       home: ပင်မနှင့် စာရင်းများ
       notifications: အကြောင်းကြားချက်များ
+      thread: စကားဝိုင်းများ
+    edit:
+      statuses: တစ်ဦးချင်းတင်ထားသောပို့စ်များ
+      title: စစ်ထုတ်ခြင်းကို ပြင်ဆင်ရန်
     index:
+      contexts: '%{contexts} ရှိ စစ်ထုတ်ထားမှုများ'
       delete: ဖျက်ပါ
+      empty: သင့်တွင် စစ်ထုတ်ထားခြင်းများ မရှိပါ။
       statuses:
         other: "%{count} ပို့စ်"
+      title: စစ်ထုတ်ခြင်းများ
   generic:
     all: အားလုံး
+    copy: ကူးယူပါ
+    delete: ဖျက်ပါ
     today: ယနေ့
   invites:
     expires_in:
@@ -462,6 +472,7 @@ my:
       '43200': ၁၂ နာရီ
       '604800': ၁ ပတ်
       '86400': ၁ ရက်
+    max_uses_prompt: အကန့်အသတ်မဲ့
   login_activities:
     authentication_methods:
       otp: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်အက်ပ်
@@ -470,8 +481,10 @@ my:
     validations:
       images_and_video: ရုပ်ပုံပါရှိပြီးသားပို့စ်တွင် ဗီဒီယို ပူးတွဲ၍မရပါ
   migrations:
+    acct: သို့ ပြောင်းရွှေ့ရန်
     errors:
       not_found: ရှာမတွေ့ပါ
+    proceed_with_move: စောင့်ကြည့်သူများကို ရွှေ့ရန်
   notification_mailer:
     follow:
       title: စောင့်ကြည့်သူအသစ်
@@ -490,6 +503,10 @@ my:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    enable: ဖွင့်ပါ
+  pagination:
+    truncate: "&hellip;"
   preferences:
     other: အခြား
   privacy_policy:
@@ -497,15 +514,20 @@ my:
   relationships:
     followers: စောင့်ကြည့်သူများ
     following: စောင့်ကြည့်နေသည်
+    moved: ရွှေ့ပြီးပါပြီ
     mutual: အပြန်အလှန်စောင့်ကြည့်ထားခြင်း
+    status: အကောင့်အခြေအနေ
   sessions:
+    description: "%{platform} ပေါ်ရှိ %{browser}"
     platforms:
       ios: iOS
       linux: Linux
       mac: macOS
+    revoke: ပြန်ရုပ်သိမ်းရန်
   settings:
     account: အကောင့်
     account_settings: အကောင့်သတ်မှတ်ချက်များ
+    appearance: ပုံပန်းသဏ္ဌာန်
     delete: အကောင့်ဖျက်သိမ်းခြင်း
     edit_profile: ပရိုဖိုင်ပြင်ဆင်ရန်
     notifications: အသိပေးချက်များ
@@ -529,7 +551,9 @@ my:
     visibilities:
       direct: တိုက်ရိုက်
       private: စောင့်ကြည့်သူများသာ
+      private_long: စောင့်ကြည့်သူများကိုသာ ပြရန်
       public: အများမြင်
+      public_long: လူတိုင်းမြင်နိုင်ပါသည်
   statuses_cleanup:
     min_age:
       '1209600': ၂ ပတ်
@@ -561,3 +585,10 @@ my:
       action: သင့်အကောင့်သို့ သွားပါ
     suspicious_sign_in:
       change_password: သင်၏ စကားဝှက်ပြောင်းလဲပါ
+    warning:
+      reason: 'အကြောင်းပြချက် -'
+      subject:
+        none: '%{acct} အတွက် သတိပေးချက်'
+  webauthn_credentials:
+    delete: ဖျက်ရန်
+    registered_on: '%{date} တွင် စာရင်းသွင်းထားသည်'
