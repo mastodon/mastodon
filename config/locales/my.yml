@@ -48,7 +48,7 @@ my:
       enabled: ဖွင့်ထားသည်
       followers: စောင့်ကြည့်သူများ
       follows: စောင့်ကြည့်မယ်
-      header: ခေါင်းစီး
+      header: မျက်နှာဖုံးပုံ
       invited_by: ဖိတ်ခေါ်ထားသည်
       ip: IP
       joined: စတင်ဝင်ရောက်သည့်နေ့
@@ -71,11 +71,22 @@ my:
       most_recent_activity: နောက်ဆုံးအသုံးပြုခဲ့သည့်အချိန်
       most_recent_ip: အသုံးပြုလေ့ရှိသည့် IP လိပ်စာ
       no_account_selected: မည်သည့်အကောင့်ကိုမျှ ရွေးချယ်ထားခြင်းမရှိသောကြောင့် ပြောင်းလဲခြင်းမရှိပါ
+      perform_full_suspension: ရပ်ဆိုင်းရန်
+      promote: အထောက်အကူ
+      protocol: လုပ်ထုံးလုပ်နည်း
       public: အများမြင်
       reject: ဖယ်ရှားပါ
       remove_avatar: ကိုယ်စားပြုရုပ်ပုံကို ဖယ်ရှားပါ
+      remove_header: မျက်နှာဖုံးပုံ ဖယ်ရှားရန်
+      removed_avatar_msg: '%{username} ၏ ကိုယ်စားပြုရုပ်ပုံအား ဖယ်ရှားပြီးပါပြီ'
+      removed_header_msg: '%{username} ၏ မျက်နှာဖုံးပုံအား ဖယ်ရှားပြီးပါပြီ'
+      resend_confirmation:
+        already_confirmed: ဤအသုံးပြုသူကို အတည်ပြုပြီးပါပြီ
+        send: အတည်ပြုထားသောအီးမေးလ် ပြန်ပို့ပေးရန်
+        success: အတည်ပြုထားသောအီးမေးလ် ပို့ပြီးပါပြီ။
       reset: ပြန်သတ်မှတ်မည်
       search: ရှာရန်
+      search_same_ip: IP တူတူ အသုံးပြုသော အခြားသူများ
       security_measures:
         only_password: စကားဝှက်ဖြင့်သာ
         password_and_2fa: စကားဝှက်နှင့် 2FA
@@ -101,6 +112,7 @@ my:
         confirm_user: အသုံးပြုသူကို လက်ခံရန်
         create_announcement: ကြေညာချက်ဖန်တီးပါ
         create_custom_emoji: စိတ်ကြိုက်အီမိုဂျီ ဖန်တီးပါ
+        create_ip_block: IP စည်းမျဉ်း ဖန်တီးရန်
         create_user_role: အခန်းကဏ္ဍဖန်တီးပါ
         destroy_announcement: ကြေညာချက်ကို ဖျက်ပါ
         destroy_custom_emoji: စိတ်ကြိုက်အီမိုဂျီကို ဖျက်ရန်
