@@ -17,6 +17,7 @@ ast:
     account_moderation_notes:
       create: Dexar la nota
     accounts:
+      add_email_domain_block: Bloquiar el dominiu de corréu electrónicu
       avatar: Avatar
       by_domain: Dominiu
       confirming: En confirmación
@@ -195,6 +196,7 @@ ast:
       public_comment: Comentariu públicu
       title: Federación
     invites:
+      deactivate_all: Desactivalo too
       title: Invitaciones
     ip_blocks:
       expires_in:
@@ -231,6 +233,7 @@ ast:
       quick_actions_description_html: 'Toma una aición rápida o baxa pa ver el conteníu del que s''informó:'
       report: 'Informe #%{id}'
       reported_by: Perfil qu'informó
+      resolved: Resolvióse
       resolved_msg: '¡L''informe resolvióse correutamente!'
       skip_to_actions: Saltar a les aiciones
       status: Estáu
@@ -311,6 +314,7 @@ ast:
     site_uploads:
       delete: Desaniciar el ficheru xubíu
     statuses:
+      back_to_account: Volver a la páxina de la cuenta
       language: Llingua
       metadata: Metadatos
       original_status: Artículu orixinal
@@ -562,6 +566,8 @@ ast:
     save_changes: Guardar los cambeos
     today: güei
   imports:
+    errors:
+      over_rows_processing_limit: contién más de %{count} fileres
     modes:
       merge: Mecíu
       merge_long: Caltién los rexistros esistentes ya amiesta otros nuevos
