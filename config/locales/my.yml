@@ -103,6 +103,7 @@ my:
         create_custom_emoji: စိတ်ကြိုက်အီမိုဂျီ ဖန်တီးပါ
         create_user_role: အခန်းကဏ္ဍဖန်တီးပါ
         destroy_announcement: ကြေညာချက်ကို ဖျက်ပါ
+        destroy_custom_emoji: စိတ်ကြိုက်အီမိုဂျီကို ဖျက်ရန်
         destroy_ip_block: IP စည်းမျဉ်းကို ဖျက်ပါ
         destroy_status: Post ကို ဖျက်ပါ
         destroy_unavailable_domain: အသုံးမပြုနိုင်သောဒိုမိန်းကို ဖျက်ပါ
@@ -112,9 +113,13 @@ my:
         enable_custom_emoji: စိတ်ကြိုက်အီမိုဂျီကို ဖွင့်ပါ
         enable_user: အသုံးပြုသူကို ဖွင့်ပါ
         memorialize_account: အမှတ်တရအကောင့်
+        promote_user: အသုံးပြုသူ မြှင့်တင်ရန်
+        reject_user: အသုံးပြုသူ ဖယ်ရှားရန်
         remove_avatar_user: ကိုယ်စားပြုရုပ်ပုံကို ဖယ်ရှားပါ
         silence_account: အကောင့် ကန့်သတ်ပါ
         suspend_account: အကောင့် ရပ်ဆိုင်းပါ
+        update_announcement: ကြေညာချက်ပြင်ဆင်ရန်
+        update_custom_emoji: စိတ်ကြိုက်အီမိုဂျီကို ပြင်ဆင်ရန်
         update_ip_block: IP စည်းမျဉ်း ပြင်ဆင်ရန်
         update_status: ပို့စ်ပြင်ဆင်ရန်
         update_user_role: အခန်းကဏ္ဍပြင်ဆင်ရန်
@@ -122,6 +127,7 @@ my:
         destroy_custom_emoji_html: "%{name} ဖျက်လိုက်သော အီမိုဂျီ %{target}"
         disable_custom_emoji_html: "%{name} ပိတ်ထားသောအီမိုဂျီ %{target}"
       deleted_account: အကောင့်ဖျက်ပြီးပါပြီ
+      empty: မှတ်တမ်းများ မတွေ့ပါ။
     announcements:
       destroyed_msg: ကြေညာချက် ဖျက်ပြီးပါပြီ
       edit:
@@ -188,9 +194,11 @@ my:
     instances:
       back_to_all: အားလုံး
       back_to_limited: ကန့်သတ်ထားသည်
+      confirm_purge: ဤဒိုမိန်းမှ အချက်အလက်များကို အပြီးတိုင်ဖျက်လိုသည်မှာ သေချာပါသလား။
       content_policies:
         policies:
           silence: ကန့်သတ်
+          suspend: ရပ်ဆိုင်းပါ
         policy: မူဝါဒ
       dashboard:
         instance_followers_measure: ကျွန်ုပ်တို့၏စောင့်ကြည့်သူများ အဲ့ဒီနေရာမှာပါ
@@ -210,8 +218,10 @@ my:
       filter:
         all: အားလုံး
         available: ရရှိနိုင်သော
+        title: စစ်ထုတ်ခြင်း
     ip_blocks:
       add_new: စည်းမျဉ်းဖန်တီးပါ
+      created_msg: IP စည်းမျဉ်းအသစ် ထည့်သွင်းပြီးပါပြီ
       delete: ဖျက်ပါ
       expires_in:
         '1209600': ၂ ပတ်
@@ -223,12 +233,15 @@ my:
       new:
         title: IP စည်းမျဉ်းအသစ်ဖန်တီးပါ
       title: IP စည်းမျဉ်းများ
+    relationships:
+      title: "%{acct} နှင့် ပတ်သက်မှု"
     relays:
       delete: ဖျက်ပါ
       disable: ပိတ်ပါ
       disabled: ပိတ်ထားသည်
       enable: ဖွင့်ပါ
       enabled: ဖွင့်ထားသည်
+      status: အခြေအနေ
     reports:
       account:
         notes:
@@ -456,6 +469,8 @@ my:
       '604800': ၁ ပတ်
       '63113904': ၂ နှစ်
       '7889238': ၃ လ
+  stream_entries:
+    pinned: ပင်တွဲထားသောပို့စ်
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
