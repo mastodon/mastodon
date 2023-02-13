@@ -148,6 +148,8 @@ group :development do
   gem 'capistrano-yarn', '~> 2.0'
 
   gem 'stackprof'
+
+  gem 'twitter_cldr', '~> 6.11.4', require: false
 end
 
 group :production do

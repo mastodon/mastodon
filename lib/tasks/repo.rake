@@ -84,6 +84,37 @@ namespace :repo do
     end
   end
 
+  task languages: :environment do
+    require 'twitter_cldr'
+
+    languages = LanguagesHelper::SUPPORTED_LOCALES.keys
+
+    I18n.available_locales.each do |locale|
+      next unless TwitterCldr.supported_locale?(locale)
+
+      file = Rails.root.join("config/locales/languages.#{locale}.yml")
+      if file.exist?
+        data = YAML.load(File.read(file), symbolize_names: true)
+      else
+        data = { locale => { languages: {} } }
+      end
+
+      cldr_languages = TwitterCldr::Shared::Languages.all_for(locale)
+      cldr_languages.slice!(*languages)
+
+      if ENV['FORCE']
+        data[locale][:languages].merge!(cldr_languages)
+      else
+        data[locale][:languages].reverse_merge!(cldr_languages)
+      end
+
+      data[locale][:languages] = data[locale][:languages].sort_by { |language, translation| language.to_s }.to_h
+
+      yaml = YAML.dump(data.deep_stringify_keys)
+      File.write(file, yaml)
+    end
+  end
+
   task check_locales_files: :environment do
     pastel = Pastel.new
 
@@ -92,12 +123,12 @@ namespace :repo do
 
     locales_in_files = Dir[Rails.root.join('config', 'locales', '*.yml')].map do |path|
       file_name = File.basename(path)
-      file_name.gsub(/\A(doorkeeper|devise|activerecord|simple_form)\./, '').gsub(/\.yml\z/, '').to_sym
+      file_name.gsub(/\A(doorkeeper|devise|activerecord|languages|simple_form)\./, '').gsub(/\.yml\z/, '').to_sym
     end.uniq.compact
 
     missing_available_locales = locales_in_files - I18n.available_locales
-    supported_locale_codes    = Set.new(LanguagesHelper::SUPPORTED_LOCALES.keys + LanguagesHelper::REGIONAL_LOCALE_NAMES.keys)
-    missing_locale_names      = I18n.available_locales.reject { |locale| supported_locale_codes.include?(locale) }
+    missing_locale_names      = LanguagesHelper::SUPPORTED_LOCALES.keys - I18n.t('languages').keys
+    missing_supported_locales = I18n.t('languages').keys - LanguagesHelper::SUPPORTED_LOCALES.keys
 
     critical = false
 
@@ -123,8 +154,14 @@ namespace :repo do
     end
 
     unless missing_locale_names.empty?
-      puts pastel.yellow("You are missing human-readable names for these locales: #{pastel.bold(missing_locale_names.join(', '))}")
-      puts pastel.yellow("Add them to app/helpers/languages_helper.rb or remove the locales from #{pastel.bold('I18n.available_locales')} in config/application.rb")
+      puts pastel.yellow("You are missing translations of the names of these languages: #{pastel.bold(missing_locale_names.join(', '))}")
+      puts pastel.yellow("Add them to config/locales/en.yml or remove the locales from app/helpers/languages_helper.rb")
+      puts pastel.yellow("Run #{pastel.bold('rake repo:locale')} to populate with translations from CLDR")
+    end
+
+    unless missing_supported_locales.empty?
+      puts pastel.yellow("You have translations for these unsupported locales: #{pastel.bold(missing_supported_locales.join(', '))}")
+      puts pastel.yellow("Add them to app/helpers/languages_helper.rb or remove the entries from config/locale/en.yml")
     end
 
     if critical
