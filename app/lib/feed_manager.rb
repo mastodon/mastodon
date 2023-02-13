@@ -354,10 +354,9 @@ class FeedManager
   def filter_from_home?(status, receiver_id, crutches, timeline_type = :home)
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
-    # hometown: exclusive list rules
     unless timeline_type == :list
       # find all exclusive lists
-      lists = List.where(account_id: receiver_id, is_exclusive: true)
+      lists = List.where(account_id: receiver_id, exclusive: true)
       # is there a list the receiver owns with this account on it? if so, return true
       return true if ListAccount.where(list: lists, account_id: status.account_id).exists?
     end
