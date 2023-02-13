@@ -73,7 +73,7 @@ const stringFromCodePoint = _String.fromCodePoint || function () {
 
 const _JSON = JSON;
 
-const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/;
+const COLONS_REGEX = /^(?::([^:]+):)(?::skin-tone-(\d):)?$/;
 const SKINS = [
   '1F3FA', '1F3FB', '1F3FC',
   '1F3FD', '1F3FE', '1F3FF',

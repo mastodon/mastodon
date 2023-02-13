@@ -71,6 +71,9 @@ docker-compose.override.yml
 /app/javascript/mastodon/locales
 /config/locales
 
+# Ignore vendored CSS reset
+app/javascript/styles/mastodon/reset.scss
+
 # Ignore glitch-soc locale files
 /app/javascript/flavours/glitch/locales
 /config/locales-glitch
