@@ -105,7 +105,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   end
 
   def languages
-    LanguagesHelper::SUPPORTED_LOCALES.map { |(key, value)| [key, standard_locale_name(key), standard_locale_name(key)] }
+    LanguagesHelper::SUPPORTED_LOCALES.map { |(key, value)| [key, standard_locale_name(key), value] }
   end
 
   private
