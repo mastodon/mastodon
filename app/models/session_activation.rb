@@ -59,7 +59,7 @@ class SessionActivation < ApplicationRecord
     end
 
     def exclusive(id)
-      where('session_id != ?', id).destroy_all
+      where.not(session_id: id).destroy_all
     end
   end
 

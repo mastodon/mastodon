@@ -54,7 +54,7 @@ class HashtagTimeline extends React.PureComponent {
     } else {
       dispatch(addColumn('HASHTAG', { id: this.props.params.id }));
     }
-  }
+  };
 
   title = () => {
     const { id } = this.props.params;
@@ -73,7 +73,7 @@ class HashtagTimeline extends React.PureComponent {
     }
 
     return title;
-  }
+  };
 
   additionalFor = (mode) => {
     const { tags } = this.props.params;
@@ -83,16 +83,16 @@ class HashtagTimeline extends React.PureComponent {
     } else {
       return '';
     }
-  }
+  };
 
   handleMove = (dir) => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
-  }
+  };
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   _subscribe (dispatch, id, tags = {}, local) {
     const { signedIn } = this.context.identity;
@@ -157,14 +157,14 @@ class HashtagTimeline extends React.PureComponent {
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   handleLoadMore = maxId => {
     const { dispatch, params } = this.props;
     const { id, tags, local }  = params;
 
     dispatch(expandHashtagTimeline(id, { maxId, tags, local }));
-  }
+  };
 
   handleFollow = () => {
     const { dispatch, params, tag } = this.props;
@@ -180,7 +180,7 @@ class HashtagTimeline extends React.PureComponent {
     } else {
       dispatch(followHashtag(id));
     }
-  }
+  };
 
   render () {
     const { hasUnread, columnId, multiColumn, tag, intl } = this.props;

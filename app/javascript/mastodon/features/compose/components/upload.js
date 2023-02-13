@@ -22,15 +22,20 @@ export default class Upload extends ImmutablePureComponent {
   handleUndoClick = e => {
     e.stopPropagation();
     this.props.onUndo(this.props.media.get('id'));
-  }
+  };
 
   handleFocalPointClick = e => {
     e.stopPropagation();
     this.props.onOpenFocalPoint(this.props.media.get('id'));
-  }
+  };
 
   render () {
     const { media } = this.props;
+
+    if (!media) {
+      return null;
+    }
+
     const focusX = media.getIn(['meta', 'focus', 'x']);
     const focusY = media.getIn(['meta', 'focus', 'y']);
     const x = ((focusX /  2) + .5) * 100;

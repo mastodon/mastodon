@@ -22,20 +22,20 @@ export default class MediaItem extends ImmutablePureComponent {
 
   handleImageLoad = () => {
     this.setState({ loaded: true });
-  }
+  };
 
   handleMouseEnter = e => {
     if (this.hoverToPlay()) {
       e.target.play();
     }
-  }
+  };
 
   handleMouseLeave = e => {
     if (this.hoverToPlay()) {
       e.target.pause();
       e.target.currentTime = 0;
     }
-  }
+  };
 
   hoverToPlay () {
     return !autoPlayGif && ['gifv', 'video'].indexOf(this.props.attachment.get('type')) !== -1;
@@ -51,7 +51,7 @@ export default class MediaItem extends ImmutablePureComponent {
         this.setState({ visible: true });
       }
     }
-  }
+  };
 
   render () {
     const { attachment, displayWidth } = this.props;
@@ -130,7 +130,7 @@ export default class MediaItem extends ImmutablePureComponent {
 
     return (
       <div className='account-gallery__item' style={{ width, height }}>
-        <a className='media-gallery__item-thumbnail' href={`/@${status.getIn(['account', 'acct'])}\/${status.get('id')}`} onClick={this.handleClick} title={title} target='_blank' rel='noopener noreferrer'>
+        <a className='media-gallery__item-thumbnail' href={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`} onClick={this.handleClick} title={title} target='_blank' rel='noopener noreferrer'>
           <Blurhash
             hash={attachment.get('blurhash')}
             className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': visible && loaded })}

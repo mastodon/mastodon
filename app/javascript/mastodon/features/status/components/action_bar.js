@@ -82,39 +82,39 @@ class ActionBar extends React.PureComponent {
 
   handleReplyClick = () => {
     this.props.onReply(this.props.status);
-  }
+  };
 
   handleReblogClick = (e) => {
     this.props.onReblog(this.props.status, e);
-  }
+  };
 
   handleFavouriteClick = () => {
     this.props.onFavourite(this.props.status);
-  }
+  };
 
   handleBookmarkClick = (e) => {
     this.props.onBookmark(this.props.status, e);
-  }
+  };
 
   handleDeleteClick = () => {
     this.props.onDelete(this.props.status, this.context.router.history);
-  }
+  };
 
   handleRedraftClick = () => {
     this.props.onDelete(this.props.status, this.context.router.history, true);
-  }
+  };
 
   handleEditClick = () => {
     this.props.onEdit(this.props.status, this.context.router.history);
-  }
+  };
 
   handleDirectClick = () => {
     this.props.onDirect(this.props.status.get('account'), this.context.router.history);
-  }
+  };
 
   handleMentionClick = () => {
     this.props.onMention(this.props.status.get('account'), this.context.router.history);
-  }
+  };
 
   handleMuteClick = () => {
     const { status, relationship, onMute, onUnmute } = this.props;
@@ -125,7 +125,7 @@ class ActionBar extends React.PureComponent {
     } else {
       onMute(account);
     }
-  }
+  };
 
   handleBlockClick = () => {
     const { status, relationship, onBlock, onUnblock } = this.props;
@@ -136,49 +136,49 @@ class ActionBar extends React.PureComponent {
     } else {
       onBlock(status);
     }
-  }
+  };
 
   handleBlockDomain = () => {
     const { status, onBlockDomain } = this.props;
     const account = status.get('account');
 
     onBlockDomain(account.get('acct').split('@')[1]);
-  }
+  };
 
   handleUnblockDomain = () => {
     const { status, onUnblockDomain } = this.props;
     const account = status.get('account');
 
     onUnblockDomain(account.get('acct').split('@')[1]);
-  }
+  };
 
   handleConversationMuteClick = () => {
     this.props.onMuteConversation(this.props.status);
-  }
+  };
 
   handleReport = () => {
     this.props.onReport(this.props.status);
-  }
+  };
 
   handlePinClick = () => {
     this.props.onPin(this.props.status);
-  }
+  };
 
   handleShare = () => {
     navigator.share({
       text: this.props.status.get('search_index'),
       url: this.props.status.get('url'),
     });
-  }
+  };
 
   handleEmbed = () => {
     this.props.onEmbed(this.props.status);
-  }
+  };
 
   handleCopy = () => {
     const url = this.props.status.get('url');
     navigator.clipboard.writeText(url);
-  }
+  };
 
   render () {
     const { status, relationship, intl } = this.props;

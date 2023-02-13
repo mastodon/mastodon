@@ -433,6 +433,7 @@ vi:
         private_comment_description_html: 'Để giúp bạn theo dõi nguồn gốc của các chặn tên miền đã nhập, các tên miền chặn đã nhập sẽ được tạo bằng nhận xét riêng tư sau: <q>%{comment}</q>'
         private_comment_template: Nhập từ %{source} vào %{date}
         title: Nhập máy chủ chặn
+      invalid_domain_block: 'Một hoặc nhiều tên miền đã bị bỏ qua do (các) lỗi sau: %{error}'
       new:
         title: Nhập máy chủ chặn
       no_file: Không có tập tin nào được chọn
@@ -577,6 +578,7 @@ vi:
       comment:
         none: Không có mô tả
       comment_description_html: "%{name} cho biết thêm:"
+      confirm_action: Xác nhận kiểm duyệt với %{acct}
       created_at: Báo cáo lúc
       delete_and_resolve: Xóa tút
       forwarded: Chuyển tiếp
@@ -593,6 +595,7 @@ vi:
         placeholder: Mô tả vi phạm của người này, hướng xử lý và những cập nhật liên quan khác...
         title: Lưu ý
       notes_description_html: Xem và để lại lưu ý cho các kiểm duyệt viên khác
+      processed_msg: 'Báo cáo #%{id} đã được xử lý thành công'
       quick_actions_description_html: 'Kiểm duyệt nhanh hoặc kéo xuống để xem nội dung bị báo cáo:'
       remote_user_placeholder: người ở %{instance}
       reopen: Mở lại báo cáo
@@ -605,9 +608,28 @@ vi:
       status: Trạng thái
       statuses: Nội dung bị báo cáo
       statuses_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn khi giao tiếp với họ
+      summary:
+        action_preambles:
+          delete_html: 'Bạn sắp <strong>xóa</strong> vài tút của <strong>@%{acct}</strong>. Việc này sẽ:'
+          mark_as_sensitive_html: 'Bạn sắp <strong>đánh dấu</strong> vài tút của <strong>@%{acct}</strong> là <strong>nhạy cảm</strong>. Việc này sẽ:'
+          silence_html: 'Bạn sắp <strong>hạn chế</strong> <strong>@%{acct}</strong>. Việc này sẽ:'
+          suspend_html: 'Bạn sắp <strong>vô hiệu hóa</strong> <strong>@%{acct}</strong>. Việc này sẽ:'
+        actions:
+          delete_html: Xóa các tút vi phạm
+          mark_as_sensitive_html: Đánh dấu media trong tút vi phạm là nhạy cảm
+          silence_html: Hạn chế mức ảnh hưởng của <strong>@%{acct}</strong> bằng cách làm cho trang và nội dung của họ chỉ hiển thị với những người đã theo dõi họ hoặc tìm kiếm theo cách thủ công
+          suspend_html: Vô hiệu hóa <strong>@%{acct}</strong>, làm cho trang và nội dung của họ không thể truy cập và không thể tương tác
+        close_report: 'Đánh dấu báo cáo #%{id} đã xử lý xong'
+        close_reports_html: Đánh dấu <strong>tất cả</strong> báo cáo chống lại <strong>@%{acct}</strong> đã xử lý xong
+        delete_data_html: Xóa trang <strong>@%{acct}</strong> và nội dung 30 ngày kể từ bây giờ trừ khi bỏ vô hiệu hóa
+        preview_preamble_html: "<strong>@%{acct}</strong> sẽ nhận được cảnh báo với nội dung như sau:"
+        record_strike_html: Lưu lại cảnh cáo <strong>@%{acct}</strong> để giúp bạn đánh giá các vi phạm trong tương lai từ tài khoản này
+        send_email_html: Gửi <strong>@%{acct}</strong> một email cảnh báo
+        warning_placeholder: Lý do bổ sung cho hành động kiểm duyệt.
       target_origin: Nguồn báo cáo
       title: Báo cáo
       unassign: Bỏ qua
+      unknown_action_msg: 'Hành động chưa biết: %{action}'
       unresolved: Chờ xử lý
       updated_at: Cập nhật lúc
       view_profile: Xem trang
@@ -925,6 +947,8 @@ vi:
   auth:
     apply_for_account: Xin đăng ký
     change_password: Mật khẩu
+    confirmations:
+      wrong_email_hint: Nếu địa chỉ email đó không chính xác, bạn có thể thay đổi nó trong cài đặt tài khoản.
     delete_account: Xóa tài khoản
     delete_account_html: Nếu bạn muốn xóa tài khoản của mình, hãy <a href="%{path}">yêu cầu tại đây</a>. Bạn sẽ được yêu cầu xác nhận.
     description:

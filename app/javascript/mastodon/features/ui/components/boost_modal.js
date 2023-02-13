@@ -62,7 +62,7 @@ class BoostModal extends ImmutablePureComponent {
   handleReblog = () => {
     this.props.onReblog(this.props.status, this.props.privacy);
     this.props.onClose();
-  }
+  };
 
   handleAccountClick = (e) => {
     if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
@@ -70,7 +70,7 @@ class BoostModal extends ImmutablePureComponent {
       this.props.onClose();
       this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
     }
-  }
+  };
 
   _findContainer = () => {
     return document.getElementsByClassName('modal-root__container')[0];
@@ -78,7 +78,7 @@ class BoostModal extends ImmutablePureComponent {
 
   setRef = (c) => {
     this.button = c;
-  }
+  };
 
   render () {
     const { status, privacy, intl } = this.props;
@@ -98,7 +98,7 @@ class BoostModal extends ImmutablePureComponent {
         <div className='boost-modal__container'>
           <div className={classNames('status', `status-${status.get('visibility')}`, 'light')}>
             <div className='status__info'>
-              <a href={`/@${status.getIn(['account', 'acct'])}\/${status.get('id')}`} className='status__relative-time' target='_blank' rel='noopener noreferrer'>
+              <a href={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`} className='status__relative-time' target='_blank' rel='noopener noreferrer'>
                 <span className='status__visibility-icon'><Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></span>
                 <RelativeTimestamp timestamp={status.get('created_at')} />
               </a>

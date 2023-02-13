@@ -74,15 +74,15 @@ class Compose extends React.PureComponent {
     }));
 
     return false;
-  }
+  };
 
   onFocus = () => {
     this.props.dispatch(changeComposing(true));
-  }
+  };
 
   onBlur = () => {
     this.props.dispatch(changeComposing(false));
-  }
+  };
 
   render () {
     const { multiColumn, showSearch, intl } = this.props;
