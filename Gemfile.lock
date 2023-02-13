@@ -410,6 +410,8 @@ GEM
     msgpack (1.6.0)
     multi_json (1.15.0)
     multipart-post (2.1.1)
+    net-http (0.3.2)
+      uri
     net-imap (0.3.4)
       date
       net-protocol
@@ -716,6 +718,7 @@ GEM
     unf_ext (0.0.8.2)
     unicode-display_width (2.4.2)
     uniform_notifier (1.16.0)
+    uri (0.12.0)
     validate_email (0.1.6)
       activemodel (>= 3.0)
       mail (>= 2.2.5)
@@ -819,6 +822,7 @@ DEPENDENCIES
   mario-redis-lock (~> 1.2)
   memory_profiler
   mime-types (~> 3.4.1)
+  net-http (~> 0.3.2)
   net-ldap (~> 0.17)
   nokogiri (~> 1.14)
   nsa (~> 0.2)
