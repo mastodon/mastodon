@@ -98,7 +98,6 @@ module.exports = {
         ignoreRestSiblings: true,
       },
     ],
-    'no-useless-escape': 'off',
     'object-curly-spacing': ['error', 'always'],
     'padded-blocks': [
       'error',
