@@ -378,7 +378,7 @@ module Mastodon
 
       With the --all option, all remote accounts will be processed.
       Through the --domain option, this can be narrowed down to a
-      specific domain only. Otherwise, a remote accounts must be
+      specific domain only. Otherwise, remote accounts must be
       specified with space-separated USERNAMES.
     LONG_DESC
     def refresh(*usernames)
