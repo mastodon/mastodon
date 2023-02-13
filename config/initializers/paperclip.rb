@@ -136,12 +136,21 @@ elsif ENV['AZURE_ENABLED'] == 'true'
 
   Paperclip::Attachment.default_options.merge!(
     storage: :azure,
+    azure_options: {
+      protocol: 'https',
+    },
     azure_credentials: {
       storage_account_name: ENV['AZURE_STORAGE_ACCOUNT'],
       storage_access_key: ENV['AZURE_STORAGE_ACCESS_KEY'],
       container: ENV['AZURE_CONTAINER_NAME'],
     }
   )
+  if ENV.has_key?('AZURE_ALIAS_HOST')
+    Paperclip::Attachment.default_options.merge!(
+      url: ':azure_alias_url',
+      azure_host_alias: ENV['AZURE_ALIAS_HOST']
+    )
+  end
 else
   Paperclip::Attachment.default_options.merge!(
     storage: :filesystem,
