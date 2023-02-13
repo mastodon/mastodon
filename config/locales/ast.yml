@@ -267,7 +267,7 @@ ast:
         manage_invites: Xestionar les invitaciones
         manage_reports: Xestionar los informes
         manage_roles: Xestionar los roles
-        manage_rules: Xestionar les regles
+        manage_rules: Xestionar les normes
         manage_settings: Xestionar la configuración
         manage_taxonomies: Xestionar les taxonomíes
         manage_users: Xestionar los perfiles
@@ -277,10 +277,10 @@ ast:
       title: Roles
     rules:
       add_new: Amestar la regla
-      title: Regles del sirvidor
+      title: Normes del sirvidor
     settings:
       about:
-        manage_rules: Xestionar les regles del sirvidor
+        manage_rules: Xestionar les normes del sirvidor
         title: Tocante a
       appearance:
         preamble: Personaliza la interfaz web de Mastodon.
@@ -429,6 +429,7 @@ ast:
     login: Aniciar la sesión
     logout: Zarrar la sesión
     migrate_account: Cambéu de cuenta
+    migrate_account_html: Si quies redirixir esta cuenta a otra diferente, pues <a href="%{path}">configuralo equí</a>.
     privacy_policy_agreement_html: Lleí ya acepto la <a href="%{privacy_policy_path}" target="_blank">política de privacidá</a>
     providers:
       cas: CAS
@@ -561,6 +562,7 @@ ast:
     all_matching_items_selected_html:
       one: "Seleicionóse <strong>%{count}</strong> elementu que concasa cola busca."
       other: Seleicionáronse <strong>%{count}</strong> elementos que concasen cola busca.
+    changes_saved_msg: '¡Los cambeos guardáronse correutamente!'
     copy: Copiar
     delete: Desaniciar
     deselect: Deseleicionar too
@@ -640,6 +642,7 @@ ast:
     update:
       subject: "%{name} editó un artículu"
   notifications:
+    email_events: Unviu d'avisos per corréu electrónicu
     email_events_hint: 'Seleiciona los eventos de los que quies recibir avisos:'
     other_settings: Configuración d'otros avisos
   number:
@@ -669,6 +672,7 @@ ast:
       invalid_choice: La opción de votu escoyida nun esiste
       too_many_options: nun pue contener más de %{max} elementos
   preferences:
+    other: Otres preferencies
     public_timelines: Llinies de tiempu públiques
   privacy_policy:
     title: Política de privacidá
