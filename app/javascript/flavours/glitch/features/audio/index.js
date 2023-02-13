@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
-import { formatTime } from 'flavours/glitch/features/video';
+import { formatTime, getPointerPosition, fileNameFromURL } from 'flavours/glitch/features/video';
 import Icon from 'flavours/glitch/components/icon';
 import classNames from 'classnames';
-import { throttle } from 'lodash';
-import { getPointerPosition, fileNameFromURL } from 'flavours/glitch/features/video';
-import { debounce } from 'lodash';
+import { throttle, debounce } from 'lodash';
 import Visualizer from './visualizer';
 import { displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
 import Blurhash from 'flavours/glitch/components/blurhash';
