@@ -5,7 +5,7 @@ REPOSITORY_NAME = 'mastodon/mastodon'
 namespace :repo do
   desc 'Generate the AUTHORS.md file'
   task :authors do
-    file = File.open(Rails.root.join('AUTHORS.md'), 'w')
+    file = Rails.root.join('AUTHORS.md').open('w')
 
     file << <<~HEADER
       Authors
@@ -50,11 +50,11 @@ namespace :repo do
         file.each_line do |line|
           if line.start_with?('-')
             new_line = line.gsub(/#([[:digit:]]+)*/) do |pull_request_reference|
-              pull_request_number = pull_request_reference[1..-1]
+              pull_request_number = pull_request_reference[1..]
               response = nil
 
               loop do
-                response = HTTP.headers('Authorization' => "token #{ENV['GITHUB_API_TOKEN']}").get("https://api.github.com/repos/#{REPOSITORY_NAME}/pulls/#{pull_request_number}")
+                response = HTTP.headers('Authorization' => "token #{ENV.fetch('GITHUB_API_TOKEN', nil)}").get("https://api.github.com/repos/#{REPOSITORY_NAME}/pulls/#{pull_request_number}")
 
                 if response.code == 403
                   sleep_for = (response.headers['X-RateLimit-Reset'].to_i - Time.now.to_i).abs
@@ -92,12 +92,12 @@ namespace :repo do
     I18n.available_locales.each do |locale|
       next unless TwitterCldr.supported_locale?(locale)
 
-      file = Rails.root.join("config/locales/languages.#{locale}.yml")
-      if file.exist?
-        data = YAML.load(File.read(file), symbolize_names: true)
-      else
-        data = { locale => { languages: {} } }
-      end
+      file = Rails.root.join('config', 'locales', "languages.#{locale}.yml")
+      data = if file.exist?
+               YAML.safe_load(File.read(file), symbolize_names: true)
+             else
+               { locale => { languages: {} } }
+             end
 
       cldr_languages = TwitterCldr::Shared::Languages.all_for(locale)
       cldr_languages.slice!(*languages)
@@ -108,7 +108,7 @@ namespace :repo do
         data[locale][:languages].reverse_merge!(cldr_languages)
       end
 
-      data[locale][:languages] = data[locale][:languages].sort_by { |language, translation| language.to_s }.to_h
+      data[locale][:languages] = data[locale][:languages].sort_by { |language, _| language.to_s }.to_h
 
       yaml = YAML.dump(data.deep_stringify_keys)
       File.write(file, yaml)
@@ -118,12 +118,17 @@ namespace :repo do
   task check_locales_files: :environment do
     pastel = Pastel.new
 
-    missing_yaml_files = I18n.available_locales.reject { |locale| File.exist?(Rails.root.join('config', 'locales', "#{locale}.yml")) }
-    missing_json_files = I18n.available_locales.reject { |locale| File.exist?(Rails.root.join('app', 'javascript', 'mastodon', 'locales', "#{locale}.json")) }
+    missing_yaml_files = I18n.available_locales.reject do |locale|
+      Rails.root.join('config', 'locales', "#{locale}.yml").exist?
+    end
+
+    missing_json_files = I18n.available_locales.reject do |locale|
+      Rails.root.join('app', 'javascript', 'mastodon', 'locales', "#{locale}.json").exist?
+    end
 
     locales_in_files = Dir[Rails.root.join('config', 'locales', '*.yml')].map do |path|
       file_name = File.basename(path)
-      file_name.gsub(/\A(doorkeeper|devise|activerecord|languages|simple_form)\./, '').gsub(/\.yml\z/, '').to_sym
+      file_name.gsub(/\A(doorkeeper|devise|activerecord|languages|simple_form)\./, '').delete_suffix('.yml').to_sym
     end.uniq.compact
 
     missing_available_locales = locales_in_files - I18n.available_locales
@@ -155,13 +160,13 @@ namespace :repo do
 
     unless missing_locale_names.empty?
       puts pastel.yellow("You are missing translations of the names of these languages: #{pastel.bold(missing_locale_names.join(', '))}")
-      puts pastel.yellow("Add them to config/locales/en.yml or remove the locales from app/helpers/languages_helper.rb")
+      puts pastel.yellow('Add them to config/locales/en.yml or remove the locales from app/helpers/languages_helper.rb')
       puts pastel.yellow("Run #{pastel.bold('rake repo:locale')} to populate with translations from CLDR")
     end
 
     unless missing_supported_locales.empty?
       puts pastel.yellow("You have translations for these unsupported locales: #{pastel.bold(missing_supported_locales.join(', '))}")
-      puts pastel.yellow("Add them to app/helpers/languages_helper.rb or remove the entries from config/locale/en.yml")
+      puts pastel.yellow('Add them to app/helpers/languages_helper.rb or remove the entries from config/locale/en.yml')
     end
 
     if critical
