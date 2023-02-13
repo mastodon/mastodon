@@ -5,6 +5,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
+    'plugin:import/recommended',
   ],
 
   env: {
@@ -177,6 +178,7 @@ module.exports = {
       },
     ],
 
+    // See https://github.com/import-js/eslint-plugin-import/blob/main/config/recommended.js
     'import/extensions': [
       'error',
       'always',
@@ -195,7 +197,6 @@ module.exports = {
         ],
       },
     ],
-    'import/no-unresolved': 'error',
     'import/no-webpack-loader-syntax': 'error',
 
     'promise/catch-or-return': [
