@@ -370,7 +370,7 @@ body > [data-popper-placement] {
 
 .ellipsis {
   &::after {
-    content: "…";
+    content: '…';
   }
 }
 
@@ -480,11 +480,11 @@ body > [data-popper-placement] {
   justify-content: center;
   flex-direction: column;
   scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE 10+ */
+  -ms-overflow-style: none; /* IE 10+ */
 
   * {
     scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE 10+ */
+    -ms-overflow-style: none; /* IE 10+ */
   }
 
   &::-webkit-scrollbar,
@@ -950,7 +950,8 @@ body > [data-popper-placement] {
     overflow-y: auto;
   }
 
-  @supports(display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) {
+    // hack to fix Chrome <57
     contain: strict;
   }
 
@@ -971,7 +972,8 @@ body > [data-popper-placement] {
 }
 
 .scrollable.fullscreen {
-  @supports(display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) {
+    // hack to fix Chrome <57
     contain: none;
   }
 }
@@ -1014,7 +1016,8 @@ body > [data-popper-placement] {
   transition: background-color 0.2s ease;
 }
 
-.react-toggle:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
+.react-toggle:is(:hover, :focus-within):not(.react-toggle--disabled)
+  .react-toggle-track {
   background-color: darken($ui-base-color, 10%);
 }
 
@@ -1022,7 +1025,8 @@ body > [data-popper-placement] {
   background-color: darken($ui-highlight-color, 2%);
 }
 
-.react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
+.react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled)
+  .react-toggle-track {
   background-color: $ui-highlight-color;
 }
 
@@ -1654,8 +1658,8 @@ button.icon-button.active i.fa-retweet {
 .icon-badge {
   position: absolute;
   display: block;
-  right: -.25em;
-  top: -.25em;
+  right: -0.25em;
+  top: -0.25em;
   background-color: $ui-highlight-color;
   border-radius: 50%;
   font-size: 75%;
@@ -1688,7 +1692,7 @@ button.icon-button.active i.fa-retweet {
     border-radius: 50%;
     width: 0.625rem;
     height: 0.625rem;
-    margin: -.1ex .15em .1ex;
+    margin: -0.1ex 0.15em 0.1ex;
   }
 
   &__content {
@@ -1797,9 +1801,15 @@ noscript {
 }
 
 @keyframes flicker {
-  0% { opacity: 1; }
-  30% { opacity: 0.75; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @import 'boost';

@@ -74,9 +74,15 @@ docker-compose.override.yml
 # Ignore vendored CSS reset
 app/javascript/styles/mastodon/reset.scss
 
+# Ignore glitch-soc emoji map file
+/app/javascript/flavours/glitch/features/emoji/emoji_map.json
+
 # Ignore glitch-soc locale files
 /app/javascript/flavours/glitch/locales
 /config/locales-glitch
 
-# Ignore glitch-soc emoji map file
-/app/javascript/flavours/glitch/features/emoji/emoji_map.json
+# Ignore glitch-soc vendored CSS reset
+app/javascript/flavours/glitch/styles/reset.scss
+
+# Ignore win95 theme
+app/javascript/styles/win95.scss

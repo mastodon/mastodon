@@ -30,7 +30,9 @@
     border: 0;
     padding: 0;
 
-    & > .account__avatar-wrapper { margin: 0 8px 0 0 }
+    & > .account__avatar-wrapper {
+      margin: 0 8px 0 0;
+    }
 
     & > .display-name {
       height: 24px;
@@ -379,7 +381,7 @@
       &::before,
       &::after {
         display: block;
-        content: "";
+        content: '';
         position: absolute;
         bottom: 0;
         left: 50%;
@@ -710,22 +712,22 @@
         padding: 2px 6px;
         color: $darker-text-color;
 
-  &:hover,
-  &:active,
-  &:focus {
-    color: lighten($darker-text-color, 7%);
-    background-color: rgba($darker-text-color, 0.15);
-  }
+        &:hover,
+        &:active,
+        &:focus {
+          color: lighten($darker-text-color, 7%);
+          background-color: rgba($darker-text-color, 0.15);
+        }
 
-  &:focus {
-    background-color: rgba($darker-text-color, 0.3);
-  }
+        &:focus {
+          background-color: rgba($darker-text-color, 0.3);
+        }
 
-  &[disabled] {
-    color: darken($darker-text-color, 13%);
-    background-color: transparent;
-    cursor: default;
-  }
+        &[disabled] {
+          color: darken($darker-text-color, 13%);
+          background-color: transparent;
+          cursor: default;
+        }
       }
 
       .flex-spacer {

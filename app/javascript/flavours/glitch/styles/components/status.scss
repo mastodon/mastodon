@@ -67,7 +67,9 @@
     margin: -3px 0 0;
   }
 
-  p, pre, blockquote {
+  p,
+  pre,
+  blockquote {
     margin-bottom: 20px;
     white-space: pre-wrap;
     unicode-bidi: plaintext;
@@ -86,12 +88,17 @@
       margin-bottom: 20px;
     }
 
-    h1, h2, h3, h4, h5 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
       margin-top: 20px;
       margin-bottom: 20px;
     }
 
-    h1, h2 {
+    h1,
+    h2 {
       font-weight: 700;
       font-size: 1.2em;
     }
@@ -100,7 +107,9 @@
       font-size: 1.1em;
     }
 
-    h3, h4, h5 {
+    h3,
+    h4,
+    h5 {
       font-weight: 500;
     }
 
@@ -115,11 +124,13 @@
       }
     }
 
-    b, strong {
+    b,
+    strong {
       font-weight: 700;
     }
 
-    em, i {
+    em,
+    i {
       font-style: italic;
     }
 
@@ -133,7 +144,8 @@
       vertical-align: super;
     }
 
-    ul, ol {
+    ul,
+    ol {
       margin-left: 2em;
 
       p {
@@ -317,8 +329,12 @@
   }
 
   @keyframes fade {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   opacity: 1;
@@ -381,9 +397,14 @@
       right: 0;
       top: 0;
       bottom: 0;
-      background-image: linear-gradient(to bottom, rgba($base-shadow-color, .75), rgba($base-shadow-color, .65) 24px, rgba($base-shadow-color, .8));
+      background-image: linear-gradient(
+        to bottom,
+        rgba($base-shadow-color, 0.75),
+        rgba($base-shadow-color, 0.65) 24px,
+        rgba($base-shadow-color, 0.8)
+      );
       pointer-events: none;
-      content: "";
+      content: '';
     }
 
     .display-name:hover .display-name__html {
@@ -397,25 +418,34 @@
       padding-top: 0;
 
       &:after {
-        content: "";
+        content: '';
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-        background: linear-gradient(rgba($ui-base-color, 0), rgba($ui-base-color, 1));
+        background: linear-gradient(
+          rgba($ui-base-color, 0),
+          rgba($ui-base-color, 1)
+        );
         pointer-events: none;
       }
-      
+
       a:hover {
         text-decoration: none;
       }
     }
     &:focus > .status__content:after {
-      background: linear-gradient(rgba(lighten($ui-base-color, 4%), 0), rgba(lighten($ui-base-color, 4%), 1));
+      background: linear-gradient(
+        rgba(lighten($ui-base-color, 4%), 0),
+        rgba(lighten($ui-base-color, 4%), 1)
+      );
     }
     &.status-direct > .status__content:after {
-      background: linear-gradient(rgba(lighten($ui-base-color, 8%), 0), rgba(lighten($ui-base-color, 8%), 1));
+      background: linear-gradient(
+        rgba(lighten($ui-base-color, 8%), 0),
+        rgba(lighten($ui-base-color, 8%), 1)
+      );
     }
 
     .notification__message {
@@ -832,7 +862,8 @@ a.status__display-name,
       bottom: -1px;
     }
 
-    a .fa, a:hover .fa {
+    a .fa,
+    a:hover .fa {
       color: inherit;
     }
   }
@@ -850,9 +881,9 @@ a.status-card {
   cursor: zoom-in;
   display: block;
   text-decoration: none;
-    width: 100%;
-    height: auto;
-    margin: 0;
+  width: 100%;
+  height: auto;
+  margin: 0;
 }
 
 .status-card-video {
@@ -1063,7 +1094,7 @@ a.status-card.compact:hover {
 
   &.unread {
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;

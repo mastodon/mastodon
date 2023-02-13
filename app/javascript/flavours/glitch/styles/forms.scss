@@ -300,7 +300,7 @@ code {
       max-width: 100%;
       height: auto;
       border-radius: 4px;
-      background: url("images/void.png");
+      background: url('images/void.png');
 
       &:last-child {
         margin-bottom: 0;
@@ -385,7 +385,7 @@ code {
         flex: 1 1 auto;
       }
 
-      input[type=checkbox] {
+      input[type='checkbox'] {
         position: absolute;
         left: 0;
         top: 5px;
@@ -401,12 +401,12 @@ code {
     border-radius: 4px;
   }
 
-  input[type=text],
-  input[type=number],
-  input[type=email],
-  input[type=password],
-  input[type=url],
-  input[type=datetime-local],
+  input[type='text'],
+  input[type='number'],
+  input[type='email'],
+  input[type='password'],
+  input[type='url'],
+  input[type='datetime-local'],
   textarea {
     box-sizing: border-box;
     font-size: 16px;
@@ -444,11 +444,11 @@ code {
     }
   }
 
-  input[type=text],
-  input[type=number],
-  input[type=email],
-  input[type=password],
-  input[type=datetime-local] {
+  input[type='text'],
+  input[type='number'],
+  input[type='email'],
+  input[type='password'],
+  input[type='datetime-local'] {
     &:focus:invalid:not(:placeholder-shown),
     &:required:invalid:not(:placeholder-shown) {
       border-color: lighten($error-red, 12%);
@@ -460,11 +460,11 @@ code {
       color: lighten($error-red, 12%);
     }
 
-    input[type=text],
-    input[type=number],
-    input[type=email],
-    input[type=password],
-    input[type=datetime-local],
+    input[type='text'],
+    input[type='number'],
+    input[type='email'],
+    input[type='password'],
+    input[type='datetime-local'],
     textarea,
     select {
       border-color: lighten($error-red, 12%);
@@ -568,7 +568,9 @@ code {
     outline: 0;
     font-family: inherit;
     resize: vertical;
-    background: darken($ui-base-color, 10%) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>") no-repeat right 8px center / auto 16px;
+    background: darken($ui-base-color, 10%)
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>")
+      no-repeat right 8px center / auto 16px;
     border: 1px solid darken($ui-base-color, 14%);
     border-radius: 4px;
     padding-left: 10px;
@@ -608,7 +610,11 @@ code {
         right: 0;
         bottom: 1px;
         width: 5px;
-        background-image: linear-gradient(to right, rgba(darken($ui-base-color, 10%), 0), darken($ui-base-color, 10%));
+        background-image: linear-gradient(
+          to right,
+          rgba(darken($ui-base-color, 10%), 0),
+          darken($ui-base-color, 10%)
+        );
       }
     }
   }
@@ -996,7 +1002,7 @@ code {
     flex: 1 1 auto;
   }
 
-  input[type=text] {
+  input[type='text'] {
     background: transparent;
     border: 0;
     padding: 10px;

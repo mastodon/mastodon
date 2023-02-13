@@ -140,7 +140,7 @@
   .scrollable {
     overflow: visible;
 
-    @supports(display: grid) {
+    @supports (display: grid) {
       contain: content;
     }
   }

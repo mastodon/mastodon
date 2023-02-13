@@ -11,12 +11,14 @@
   max-height: 450px;
   overflow: hidden;
 
-  label, legend {
+  label,
+  legend {
     display: block;
     font-size: 14px;
   }
 
-  .boolean label, .radio_buttons label {
+  .boolean label,
+  .radio_buttons label {
     position: relative;
     padding-left: 28px;
     padding-top: 3px;
@@ -58,7 +60,7 @@
   cursor: pointer;
   text-decoration: none;
   outline: none;
-  transition: background .3s;
+  transition: background 0.3s;
 
   .text-icon-button {
     color: inherit;
@@ -74,7 +76,8 @@
     color: $primary-text-color;
   }
 
-  &.close, &.close:hover {
+  &.close,
+  &.close:hover {
     background: $error-value-color;
     color: $primary-text-color;
   }
