@@ -1,4 +1,3 @@
----
 ast:
   devise:
     confirmations:
@@ -17,7 +16,7 @@ ast:
       confirmation_instructions:
         explanation: Creesti una cuenta en %{host} con esta direición de corréu electrónicu ya tas a un calcu d'activala. Si nun fixesti esta aición, inora esti mensaxe.
         explanation_when_pending: Solicitesti una invitación a %{host} con esta direición de corréu electrónicu. Namás que confirmes la direición de corréu electrónicu, vamos revisar la solicitú. Entrín ya non, pues aniciar la sesión pa camudar los detalles o desaniciar la cuenta, mas nun pues acceder a la mayoría de funciones hasta que la cuenta nun tea aprobada. Si se refuga la solicitú, nun ye necesario que faigas nada más o si, per otra parte, tu nun fixesti esta aición, inora esti mensaxe.
-        extra_html: Revisa tamién <a href="%{terms_path}">les regles del sirvidor</a> ya <a href="%{policy_path}">los nuesos términos del serviciu</a>.
+        extra_html: Revisa tamién <a href="%{terms_path}">les normes del sirvidor</a> ya <a href="%{policy_path}">los nuesos términos del serviciu</a>.
         subject: 'Mastodon: instrucciones de confirmación de «%{instance}»'
       email_changed:
         explanation: 'La direición de corréu electrónicu de la cuenta camudó a:'
@@ -73,8 +72,8 @@ ast:
       updated: La contraseña camudó correutamente. Xá aniciesti la sesión.
       updated_not_active: La contraseña camudó correutamente.
     registrations:
-      destroyed: "¡Ta llueu! La cuenta anulóse correutamente. Esperamos volver vete pronto."
-      signed_up: "¡Afáyate! Rexistréstite correutamente."
+      destroyed: '¡Ta llueu! La cuenta anulóse correutamente. Esperamos volver vete pronto.'
+      signed_up: '¡Afáyate! Rexistréstite correutamente.'
       signed_up_but_inactive: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la cuenta entá nun s'activó.
       signed_up_but_locked: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la cuenta ta bloquiada.
       signed_up_but_pending: Unvióse un mensaxe a la direición de corréu electrónicu que contién un enllaz de confirmación. Darréu de calcar nel enllaz, vamos revisar la solicitú ya si s'aprueba, avisámoste.
