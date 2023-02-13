@@ -37,4 +37,4 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Prettier
-        run: yarn prettier --check "**/*.md"
+        run: yarn test:lint:md
