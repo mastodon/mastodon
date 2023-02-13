@@ -378,10 +378,10 @@ module Mastodon
 
       With the --all option, all remote accounts will be processed.
       Through the --domain option, this can be narrowed down to a
-      specific domain only. Otherwise, one or more remote accounts must
-      be specified with USERNAMES.
+      specific domain only. Otherwise, a remote accounts must be
+      specified with space-separated USERNAMES.
     LONG_DESC
-    def refresh(*username)
+    def refresh(*usernames)
       dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
 
       if options[:domain] || options[:all]
@@ -397,8 +397,8 @@ module Mastodon
         end
 
         say("Refreshed #{processed} accounts#{dry_run}", :green, true)
-      elsif username.length() > 0
-        username.each do |user|
+      elsif usernames.size > 0
+        usernames.each do |user|
           user, domain = user.split('@')
           account = Account.find_remote(user, domain)
 
@@ -408,9 +408,13 @@ module Mastodon
           end
 
           unless options[:dry_run]
-            account.reset_avatar!
-            account.reset_header!
-            account.save
+            begin
+              account.reset_avatar!
+              account.reset_header!
+              account.save
+            rescue Mastodon::UnexpectedResponseError
+              say('Account failed ' + user + "@" + domain, :red)
+            end
           end
         end
 
