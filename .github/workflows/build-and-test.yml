@@ -12,6 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version-file: '.nvmrc'
+
       - name: Install native Ruby dependencies
         run: sudo apt-get install -y libicu-dev libidn11-dev
 
@@ -25,13 +31,7 @@ jobs:
       - uses: './.github/actions/install-ruby-dependencies'
         with:
           ruby-version: '3.0'
-      - id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-      - uses: actions/cache@v3.2.2
-        with:
-          path: '${{ steps.yarn-cache-dir-path.outputs.dir }}'
-          key: "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
-          restore-keys: '${{ runner.os }}-yarn-'
+
       - run: yarn install --frozen-lockfile
       - name: Precompile assets
         run: |-
@@ -68,6 +68,12 @@ jobs:
           - '3.0'
     steps:
       - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version-file: '.nvmrc'
 
       - name: Install native Ruby dependencies
         run: sudo apt-get install -y libicu-dev libidn11-dev
@@ -106,6 +112,12 @@ jobs:
       - build
     steps:
       - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version-file: '.nvmrc'
 
       - name: Install native Ruby dependencies
         run: sudo apt-get install -y libicu-dev libidn11-dev
@@ -153,6 +165,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version-file: '.nvmrc'
+
       - name: Install native Ruby dependencies
         run: sudo apt-get install -y libicu-dev libidn11-dev
 
@@ -198,12 +216,12 @@ jobs:
       - build
     steps:
       - uses: actions/checkout@v3
-      - id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-      - uses: actions/cache@v3.2.2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          path: '${{ steps.yarn-cache-dir-path.outputs.dir }}'
-          key: "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
-          restore-keys: '${{ runner.os }}-yarn-'
+          cache: yarn
+          node-version-file: '.nvmrc'
+
       - run: yarn install --frozen-lockfile
       - run: yarn run test:jest
