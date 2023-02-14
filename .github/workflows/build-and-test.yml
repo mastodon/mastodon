@@ -37,7 +37,7 @@ jobs:
         run: |-
           export NODE_OPTIONS=--openssl-legacy-provider
           ./bin/rails assets:precompile
-      - uses: actions/upload-artifact@v3.1.1
+      - uses: actions/upload-artifact@v3
         with:
           path: |-
             ./public/assets
@@ -91,7 +91,7 @@ jobs:
       - uses: './.github/actions/install-ruby-dependencies'
         with:
           ruby-version: '${{ matrix.ruby-version }}'
-      - uses: actions/download-artifact@v3.0.1
+      - uses: actions/download-artifact@v3
         with:
           path: '.'
       - uses: './.github/actions/wait-db'
