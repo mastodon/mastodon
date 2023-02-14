@@ -132,7 +132,7 @@ jobs:
   test-two-step-migrations:
     runs-on: ubuntu-latest
     container:
-      image: ruby:${{ env.ruby-version }}
+      image: ruby:3.0
       env:
         BUNDLE_JOBS: 3
         BUNDLE_RETRY: 3
