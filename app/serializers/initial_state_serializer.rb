@@ -11,7 +11,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
   has_one :role, serializer: REST::RoleSerializer
 
-  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
   def meta
     store = {
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
@@ -69,7 +69,7 @@ class InitialStateSerializer < ActiveModel::Serializer
 
     store
   end
-  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
 
   def compose
     store = {}
@@ -89,15 +89,22 @@ class InitialStateSerializer < ActiveModel::Serializer
   def accounts
     store = {}
 
-    ActiveRecord::Associations::Preloader.new.preload([object.current_account, object.admin, object.owner, object.disabled_account, object.moved_to_account].compact, [:account_stat, :user, { moved_to_account: [:account_stat, :user] }])
+    ActiveRecord::Associations::Preloader.new.preload(
+      [object.current_account, object.admin, object.owner, object.disabled_account, object.moved_to_account].compact,
+      [:account_stat, :user, { moved_to_account: [:account_stat, :user] }]
+    )
 
-    store[object.current_account.id.to_s]  = ActiveModelSerializers::SerializableResource.new(object.current_account, serializer: REST::AccountSerializer) if object.current_account
-    store[object.admin.id.to_s]            = ActiveModelSerializers::SerializableResource.new(object.admin, serializer: REST::AccountSerializer) if object.admin
-    store[object.owner.id.to_s]            = ActiveModelSerializers::SerializableResource.new(object.owner, serializer: REST::AccountSerializer) if object.owner
-    store[object.disabled_account.id.to_s] = ActiveModelSerializers::SerializableResource.new(object.disabled_account, serializer: REST::AccountSerializer) if object.disabled_account
-    store[object.moved_to_account.id.to_s] = ActiveModelSerializers::SerializableResource.new(object.moved_to_account, serializer: REST::AccountSerializer) if object.moved_to_account
+    store[object.current_account.id.to_s]  = serializable_resource(object.current_account) if object.current_account
+    store[object.admin.id.to_s]            = serializable_resource(object.admin) if object.admin
+    store[object.owner.id.to_s]            = serializable_resource(object.owner) if object.owner
+    store[object.disabled_account.id.to_s] = serializable_resource(object.disabled_account) if object.disabled_account
+    store[object.moved_to_account.id.to_s] = serializable_resource(object.moved_to_account) if object.moved_to_account
 
     store
+  end
+
+  def serializable_resource(resource)
+    ActiveModelSerializers::SerializableResource.new(resource, serializer: REST::AccountSerializer)
   end
 
   def media_attachments
