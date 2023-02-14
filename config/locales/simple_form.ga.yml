@@ -13,12 +13,18 @@ ga:
         setting_display_media_hide_all: Folaítear meáin i gcónaí
         setting_display_media_show_all: Go dtaispeántar meáin i gcónaí
     labels:
+      account:
+        fields:
+          name: Lipéad
       account_warning_preset:
         title: Teideal
       admin_account_action:
         text: Rabhadh saincheaptha
         types:
+          disable: Reoigh
           none: Seol rabhadh
+          silence: Teorannaigh
+          suspend: Cuir ar fionraí
       announcement:
         text: Fógra
       defaults:
@@ -27,6 +33,7 @@ ga:
         display_name: Ainm taispeána
         email: Seoladh ríomhphoist
         header: Ceanntásc
+        new_password: Pasfhocal nua
         note: Beathaisnéis
         password: Pasfhocal
         setting_display_media_default: Réamhshocrú
@@ -47,13 +54,23 @@ ga:
         site_short_description: Cur síos freastalaí
         site_terms: Polasaí príobháideachais
         site_title: Ainm freastalaí
+      invite:
+        comment: Ráiteas
       ip_block:
+        comment: Ráiteas
         ip: IP
+        severity: Riail
       notification_emails:
+        follow: Lean duine éigin tú
         reblog: Mhol duine éigin do phostáil
+      rule:
+        text: Riail
       tag:
         name: Haischlib
+      user:
+        role: Ról
       user_role:
         name: Ainm
+    recommended: Molta
     required:
       mark: "*"

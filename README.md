@@ -16,7 +16,7 @@
 [crowdin]: https://crowdin.com/project/mastodon
 [docker]: https://hub.docker.com/r/tootsuite/mastodon/
 
-Mastodon is a **free, open-source social network server** based on ActivityPub where users can follow friends and discover new ones. On Mastodon, users can publish anything they want: links, pictures, text, video. All Mastodon servers are interoperable as a federated network (users on one server can seamlessly communicate with users from another one, including non-Mastodon software that implements ActivityPub)!
+Mastodon is a **free, open-source social network server** based on ActivityPub where users can follow friends and discover new ones. On Mastodon, users can publish anything they want: links, pictures, text, video. All Mastodon servers are interoperable as a federated network (users on one server can seamlessly communicate with users from another one, including non-Mastodon software that implements ActivityPub!)
 
 Click below to **learn more** in a video:
 
@@ -72,10 +72,10 @@ Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Stre
 
 - **PostgreSQL** 9.5+
 - **Redis** 4+
-- **Ruby** 2.6+
+- **Ruby** 2.7+
 - **Node.js** 14+
 
-The repository includes deployment configurations for **Docker and docker-compose** as well as specific platforms like **Heroku**, **Scalingo**, and **Nanobox**. The [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
+The repository includes deployment configurations for **Docker and docker-compose** as well as specific platforms like **Heroku**, **Scalingo**, and **Nanobox**. For Helm charts, reference the [mastodon/chart repository](https://github.com/mastodon/chart). The [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
 
 A **Vagrant** configuration is included for development purposes. To use it, complete following steps:
 

@@ -2,29 +2,43 @@
 fo:
   devise:
     confirmations:
-      confirmed: Tín teldupostadressa er blivin góðkend.
+      confirmed: Tín teldupostadressa er blivin vátta.
       send_instructions: Innanfyri fáar minuttir fer tú at fáa ein teldupost við vegleiðing til hvussu tú staðfestir tína teldupostadressu. Vinarliga leita í tínum spamfaldara um tú ikki móttekur hendan teldupostin.
+      send_paranoid_instructions: Um tín teldupostaddresa longu er í dátugrunninum, fær tú er um fáa minuttir ein teldupost, við frágreiðing um, hvussu hendan kann váttast. Kanna tín Spam faldara, um tú ikki sær henda.
     failure:
       already_authenticated: Tú ert longu innskrivað/ur.
       inactive: Kontan hjá tær er ikki virkin enn.
       invalid: Skeivt %{authentication_keys} ella loyniorð.
       last_attempt: Tú kanst royna einaferð afturat áðrenn kontan verður stongd.
       locked: Kontan hjá tær er læst.
+      not_found_in_database: Ogyldigur %{authentication_keys} ella loyniorð.
       pending: Kontan hjá tær verður kannað enn.
+      timeout: Tín innritan er útgingin. Innrita av nýggjum, fyri at hada fram.
       unauthenticated: Tú mást skriva teg inn aftur fyri at halda fram.
+      unconfirmed: Tú skal staðfesta tína teldupostasressu fyri at halda áfram.
     mailer:
       confirmation_instructions:
         action: Vátta teldupostadressuna
         action_with_app: Staðfest og far aftur til %{app}
         explanation: Tú hevur stovnað eina kontu hjá %{host} við hesari teldupostadressuni og tú ert eitt klikk frá at virkja hana. Um tað ikki vart tú, vinarliga sí burtur frá hesum teldupostinum.
+        explanation_when_pending: Tú hevur fingið innbjóðing tkl %{host}, við teldupostaddressu. Tá tú hevur vátta tín tína teldupostaddressu, verður umsóknin viðgjørd. Tú kann innrita og broyta ymsar stillingar, men flestu funkur kunnu ikki broytast, fyrr enn kontan er góðkend. Um kontan ikki verður góðkend, verða allar dátur um teg slettaðar. Um umsóknin ikki kom frá tær, skal tú síggja burtur frá teldupostinum.
+        extra_html: Kanna eisini <a href="%{terms_path}">reglurnar fyri henda ambætaran</a> og <a href="%{policy_path}">okkara nýtslu treytir</a>.
+        subject: 'Mastodon: Góðkenningartreytir fyri %{instance}'
         title: Vátta teldupostadressuna
       email_changed:
+        explanation: 'Telupostaddressan ryri kontina verður broytt til:'
+        extra: Um tú ikki hevur skift teldupostin, er sannlíkt at onkur annar hevur fingið atgongd til tína kontu. Vinarliga skift loyniorðið beinanvegin. Set teg í samband við fyrisitaran, um tú ikki sleppur inn á tína kontu.
         subject: 'Mastodon: Teldupostur broyttur'
         title: Nýggjur eldupostur
       password_change:
+        explanation: Loyniorðið til kontoina hjá tær er broytt.
         extra: Um tú ikki hevur skift loyniorðið, er sannlíkt at onkur annar hevur fingið atgongd til tína kontu. Vinarliga skift loyniorðið beinanvegin. Um tú ikki sleppur inn á tína kontu, hav samband við fyrisitarin.
+        subject: 'Mastodon: Loyniorð broytt'
         title: Loyniorðið er broytt
       reconfirmation_instructions:
+        explanation: Vátta nýggja bústaðin fyri at broyta teldupostin.
+        extra: Um henda broytingin ikki kemur frá tær, so skal tú ignorera hetta teldubrævið. Telduposturin til Mastodon kontuna verður ikki broytt, uttan so at tú fylgir leinkinum omanfyri.
+        subject: 'Mastodon: Vátta teldupost fyri %{instance}'
         title: Vátta teldupostadressu
       reset_password_instructions:
         action: Broyt loyniorð
@@ -32,7 +46,70 @@ fo:
         extra: Um tú ikki hevur umbiðið hetta, so skalt tú ikki gera nakað. Loyniorðið verður bert broytt, um tú brúkar leinkið omanfyri og gert eitt nýtt.
         subject: 'Mastodon: Vegleiðing at skifta loyniorð'
         title: Skift loyniorð
+      two_factor_disabled:
+        explanation: Tvey-faktor samgildi (2FA) fyri tína kontu er gjørt óvirkið. Nú er møguligt at rita inn við einans at nýta teldupost og loyniorð.
+        subject: 'Mastodon: Váttan í tveimum stigum er gjørd óvirkin'
+        title: 2FA óvirkið
+      two_factor_enabled:
+        explanation: Váttan í tveimum stigum er gjørd virkin fyri tína kontu. Eitt merki framleitt av paraðu TOTP appini verður framyvir kravt fyri at rita inn.
+        subject: 'Mastodon: Váttan í tveimum stigum er virkin'
+        title: 2FA virkið
+      two_factor_recovery_codes_changed:
+        explanation: Undanfarnu endurskapanarkodurnar eru ógildaðar og nýggjar eru framleiddar.
+        subject: 'Mastodon: Endurskapanarkodurnar til váttan í tveimum stigum eru framleiddar umaftur'
+        title: 2FA endurskapanarkodur eru broyttar
+      unlock_instructions:
+        subject: 'Mastodon: Vegleiðing í at læsa upp'
       webauthn_credential:
         added:
+          explanation: Hesir trygdarlyklarnir eru lagdir afturat kontu tínari
           subject: 'Mastodon: Nýggjur trygdarlykil'
           title: Nýggjur trygdarlykil er gjørdur
+        deleted:
+          explanation: Hesin trygdarlyklin er strikaður av kontu tíni
+          subject: 'Mastodon: Trygdarlykilin strikaður'
+          title: Ein av trygdarlyklunum hjá tær er strikaður
+      webauthn_disabled:
+        explanation: Váttan við trygdarlyklum er gjørd óvirkin fyri tína kontu. Nú ber til at rita inn einans við teknum, sum eru framleidd av paraðu TOTP appini.
+        subject: 'Mastodon: Váttan við trygdarlyklum er gjørd óvirkin'
+        title: Trygdarlyklar óvirknir
+      webauthn_enabled:
+        explanation: Váttan við trygdarlyklum er gjørd virkin á tínari kontu. Nú kann tín trygdarlykil nýtast at rita inn við.
+        subject: 'Mastodon: Váttan við trygdarlykli gjørd virkin'
+        title: Trygdarlyklar gjørdir virknir
+    omniauth_callbacks:
+      failure: Tað bar ikki til at vátta teg frá %{kind} av tí at “%{reason}”.
+      success: Váttan eydnaðist frá %{kind} kontu.
+    passwords:
+      no_token: Tú hevur ikki atgongd til hesa síðuna, uttan so at tú kemur frá einum teldubrævi at nullstilla loyniorð. Kemur tú frá einum tílíkum teldubrævi, vinarliga eftirkanna, at tú brúkti allan URLin.
+      send_instructions: Finst telduposturin hjá tær í okkara dátugrunni, so fer tú at móttaka eitt teldubræv við einum leinki at endurvinna loyniorðið um nakrar minuttir. Vinarliga eftirkanna mappuna við ruskposti, um tú ikki móttók teldubrævið.
+      send_paranoid_instructions: Finst telduposturin hjá tær í okkara dátugrunni, so fer tú at móttaka eitt teldubræv við einum leinki at endurvinna loyniorðið um nakrar minuttir. Vinarliga eftirkanna mappuna við ruskposti, um tú ikki móttók teldubrævið.
+      updated: Loyniorðið er broytt og tú er innritað/ur.
+      updated_not_active: Loyniorðið er broytt.
+    registrations:
+      destroyed: Farvæl! Konta tín er gjørd óvirkin. Vit vóna at síggja teg aftur skjótt.
+      signed_up: Vælkomin! Tú er nú tilmeldað/ur.
+      signed_up_but_inactive: Tú er tilmeldað/ur. Vit kunnu tó ikki rita teg inn, tí konta tín er ikki gjørd virkin enn.
+      signed_up_but_locked: Tú er tilmeldað/ur. Vit kunnu tó ikki rita teg inn, tí konta tín er læst.
+      signed_up_but_pending: Eini boð við einum váttanarleinki er send til teldupoststaðin hjá tær. Tá tú hevur klikt á leinkið, so fara vit at eftirkanna umsókn tína. Tú fær boð, um hon verður játtað.
+      signed_up_but_unconfirmed: Eini boð við einum váttanarleinki eru send til teldupoststaðin hjá tær. Vinarliga fylg leinkinum fyri at gera kontu tína virkna. Vinarliga eftirkanna mappuna við ruskposti, um tú ikki móttók teldupostin.
+      update_needs_confirmation: Tað eydnaðist tær at dagføra kontuna, men tað er neyðugt at vátta nýggja teldupoststaðin hjá tær. Vinarliga kanna teldupostin hjá tær og fylg váttanarleinkinum at vátta nýggja teldupostin. Vinarliga kanna mappuna við ruskposti, um tú ikki móttók teldubrævið.
+      updated: Tað eydnaðist at dagføra kontu tína.
+    sessions:
+      already_signed_out: Útritan eydnaðist.
+      signed_in: Innritan eydnaðist.
+      signed_out: Útritan eydnaðist.
+    unlocks:
+      send_instructions: Um nakrar minuttir móttekur tú eitt teldubræv við vegleiðing í at læsa kontu tína upp. Vinarliga eftirkanna mappuna við ruskposti, um tú ikki móttók teldubrævið.
+      send_paranoid_instructions: Um konta tín finst, móttekur tú um nakrar minuttir eitt teldubræv við vegleiðing í at læsa kontu tína upp. Vinarliga eftirkanna mappuna við ruskposti, um tú ikki móttók teldubrævið.
+      unlocked: Tað eydnaðist at læsa kontu tína upp. Vinarliga rita inn fyri at halda fram.
+  errors:
+    messages:
+      already_confirmed: var longu váttað, vinarliga royn at innrita
+      confirmation_period_expired: má váttast innan %{period}, vinarliga bið um eina nýggja
+      expired: er útgingin, vinarliga bið um eina nýggja
+      not_found: ikki funnið
+      not_locked: var ikki læst
+      not_saved:
+        one: '1 feilur forðaði hesum %{resource} í at vera goymd:'
+        other: "%{count} feilir forðaðu hesum %{resource} í at vera goymd:"

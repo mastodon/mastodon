@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { is } from 'immutable';
 import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { isIOS } from '../is_mobile';
 import classNames from 'classnames';
 import { autoPlayGif, cropImages, displayMedia, useBlurhash } from '../initial_state';
 import { debounce } from 'lodash';
@@ -41,14 +40,14 @@ class Item extends React.PureComponent {
     if (this.hoverToPlay()) {
       e.target.play();
     }
-  }
+  };
 
   handleMouseLeave = (e) => {
     if (this.hoverToPlay()) {
       e.target.pause();
       e.target.currentTime = 0;
     }
-  }
+  };
 
   getAutoPlay() {
     return this.props.autoplay || autoPlayGif;
@@ -72,11 +71,11 @@ class Item extends React.PureComponent {
     }
 
     e.stopPropagation();
-  }
+  };
 
   handleImageLoad = () => {
     this.setState({ loaded: true });
-  }
+  };
 
   render () {
     const { attachment, index, size, standalone, displayWidth, visible } = this.props;
@@ -181,7 +180,7 @@ class Item extends React.PureComponent {
         </a>
       );
     } else if (attachment.get('type') === 'gifv') {
-      const autoPlay = !isIOS() && this.getAutoPlay();
+      const autoPlay = this.getAutoPlay();
 
       thumbnail = (
         <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
@@ -195,6 +194,7 @@ class Item extends React.PureComponent {
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
             autoPlay={autoPlay}
+            playsInline
             loop
             muted
           />
@@ -277,11 +277,11 @@ class MediaGallery extends React.PureComponent {
     } else {
       this.setState({ visible: !this.state.visible });
     }
-  }
+  };
 
   handleClick = (index) => {
     this.props.onOpenMedia(this.props.media, index);
-  }
+  };
 
   handleRef = c => {
     this.node = c;
@@ -289,7 +289,7 @@ class MediaGallery extends React.PureComponent {
     if (this.node) {
       this._setDimensions();
     }
-  }
+  };
 
   _setDimensions () {
     const width = this.node.offsetWidth;
@@ -345,7 +345,7 @@ class MediaGallery extends React.PureComponent {
         </button>
       );
     } else if (visible) {
-      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible, { number: size })} icon='eye-slash' overlay onClick={this.handleOpen} />;
+      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible, { number: size })} icon='eye-slash' overlay onClick={this.handleOpen} ariaHidden />;
     } else {
       spoilerButton = (
         <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>

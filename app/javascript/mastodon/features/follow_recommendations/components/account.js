@@ -27,7 +27,7 @@ const makeMapStateToProps = () => {
 };
 
 const getFirstSentence = str => {
-  const arr = str.split(/(([\.\?!]+\s)|[．。？！\n•])/);
+  const arr = str.split(/(([.?!]+\s)|[．。？！\n•])/);
 
   return arr[0];
 };
@@ -50,7 +50,7 @@ class Account extends ImmutablePureComponent {
     } else {
       dispatch(followAccount(account.get('id')));
     }
-  }
+  };
 
   render () {
     const { account, intl } = this.props;

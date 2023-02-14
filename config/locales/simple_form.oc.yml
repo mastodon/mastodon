@@ -180,9 +180,12 @@ oc:
       form_admin_settings:
         custom_css: CSS personalizada
         media_cache_retention_period: Durada de conservacion dels mèdias en cache
+        peers_api_enabled: Publicar la lista dels servidors coneguts dins l’API
         profile_directory: Activar l’annuari de perfils
         registrations_mode: Qual se pòt marcar
         require_invite_text: Requerir una rason per s’inscriure
+        show_domain_blocks: Mostrar los blocatges de domeni
+        show_domain_blocks_rationale: Afichar perque los domenis foguèron blocats
         site_contact_email: Adreça de contacte
         site_contact_username: Nom d’utilizaire de contacte
         site_extended_description: Descripcion espandida
@@ -191,6 +194,9 @@ oc:
         site_title: Nom del servidor
         theme: Tèma per defaut
         thumbnail: Miniatura del servidor
+        timeline_preview: Permtre l’accès a l’apercebut del flux public sens autentificacion
+        trendable_by_default: Activar las tendéncias sens revision prealabla
+        trends: Activar las tendéncias
       interactions:
         must_be_follower: Blocar las notificacions del mond que vos sègon pas
         must_be_following: Blocar las notificacions del mond que seguètz pas
@@ -204,9 +210,11 @@ oc:
         ip: IP
         severities:
           no_access: Blocar l’accès
+          sign_up_block: Blocar las inscripcions
           sign_up_requires_approval: Limitar las inscripcions
         severity: Règla
       notification_emails:
+        appeal: Qualqu’un a fach apèl de la decision de moderacion
         digest: Enviar un corrièl recapitulatiu
         favourite: Enviar un corrièl quand qualqu’un plaça vòstre estatut en favorit
         follow: Enviar un corrièl quand qualqu’un vos sèc
@@ -214,6 +222,8 @@ oc:
         mention: Enviar un corrièl quand qualqu’un vos menciona
         pending_account: Enviar un corrièl quand cal validar un compte novèl
         reblog: Enviar un corrièl quand qualqu’un tòrna partejar vòstre estatut
+        report: Senhalament novèl somés
+        trending_tag: Nòva tendéncia requerís una supervision
       rule:
         text: Règla
       tag:
@@ -225,9 +235,13 @@ oc:
         role: Ròtle
       user_role:
         color: Color del badge
+        highlighted: Afichar lo ròtle coma badge pels perfils utilizaire
         name: Nom
         permissions_as_keys: Autorizacions
         position: Prioritat
+      webhook:
+        events: Eveniments activats
+        url: URL de ponch de terminason
     'no': Non
     not_recommended: Pas recomandat
     recommended: Recomandat

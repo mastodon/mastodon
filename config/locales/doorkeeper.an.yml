@@ -1,1 +1,195 @@
+---
 an:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nombre d'aplicación
+        redirect_uri: URI atura redirección
+        scopes: Ambitos
+        website: Puesto web
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: no puede contener un fragmento.
+              invalid_uri: ha d'estar un URI valido.
+              relative_uri: ha d'estar una URI absoluta.
+              secured_uri: ha d'estar un URI HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizar
+        cancel: Cancelar
+        destroy: Destruyir
+        edit: Editar
+        submit: Ninviar
+      confirmations:
+        destroy: Ye seguro?
+      edit:
+        title: Editar aplicación
+      form:
+        error: Uuups! Comprebe lo suyo formulario
+      help:
+        native_redirect_uri: Utilice %{native_redirect_uri} pa prebas locals
+        redirect_uri: Utilice una linia per URI
+        scopes: Desepare los ambitos con espacios. Lo deixe en blanco pa fer servir los ambitos per defecto.
+      index:
+        application: Aplicación
+        callback_url: URL de callback
+        delete: Eliminar
+        empty: No tiens aplicacions.
+        name: Nombre
+        new: Nueva aplicación
+        scopes: Ambitos
+        show: Amostrar
+        title: Las suyas aplicacions
+      new:
+        title: Nueva aplicación
+      show:
+        actions: Accions
+        application_id: ID de l'aplicación
+        callback_urls: URLs de callback
+        scopes: Ambitos
+        secret: Secreto
+        title: 'Aplicación: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorizar
+        deny: Desautorizar
+      error:
+        title: Ha ocurriu una error
+      new:
+        prompt_html: "%{client_name} deseya permiso pa acceder ta la tuya cuenta. Ye una aplicación de tercers. <strong>Si no confías en ella, no habrías d'autorizar-la.</strong>"
+        review_permissions: Revisar permisos
+        title: Se requiere autorización
+      show:
+        title: Copia este codigo d'autorización y apega-lo en l'aplicación.
+    authorized_applications:
+      buttons:
+        revoke: Revocar
+      confirmations:
+        revoke: Ye seguro?
+      index:
+        authorized_at: Autorizau lo %{date}
+        description_html: Estas son aplicacions que pueden acceder ta la tuya cuenta usando la API. Si i hai aplicacions que no se reconoixen aquí, u una aplicación no funciona correctament, puetz revocar lo suyo acceso.
+        last_used_at: Zaguer uso lo %{date}
+        never_used: Nunca usau
+        scopes: Permisos
+        superapp: Interno
+        title: Las suyas aplicacions autorizadas
+    errors:
+      messages:
+        access_denied: Lo propietario d'o recurso u servidor d'autorización denegó la petición.
+        credential_flow_not_configured: Las credencials de clau d'o propietario d'o recurso falló a causa que Doorkeeper.configure.resource_owner_from_credentials ye sin configurar.
+        invalid_client: L'autentificación d'o client falló debiu u a que ye un client desconoixiu u no ye incluyius l'autentificación d'o client u lo metodo d'autentificación no ye confirmau.
+        invalid_grant: La concesión d'autorización ofrida ye invalida, venció, se revocó, no coincide con a URI de redirección utilizada en a petición d'autorización, u estió emitida pa unatro client.
+        invalid_redirect_uri: La URI de redirección incluyida no ye valida.
+        invalid_request:
+          missing_param: 'Falta este parametro requeriu: %{value}.'
+          request_not_authorized: La solicitut ha d'estar autorizada. I hai un parametro requeriu pa autorizar la solicitut que falta u no ye valido.
+          unknown: Falta un parametro requeriu en a solicitut, u esta incluye una valor no admitida de parametro, u bien ye mal formulada.
+        invalid_resource_owner: Las credencials proporcionadas d'o propietario d'o recurso no son validas, u lo propietario d'o recurso no puede estar trobau
+        invalid_scope: L'ambito pediu ye invalido, desconoixiu u erronio.
+        invalid_token:
+          expired: Lo autentificador d'acceso expiró
+          revoked: Lo autentificador d'acceso estió revocado
+          unknown: Lo autentificador d'acceso ye invalido
+        resource_owner_authenticator_not_configured: Lo propietario d'o recurso falló a causa que Doorkeeper.configure.resource_owner_authenticator ye sin configurar.
+        server_error: Lo servidor de l'autorización entontró una condición inasperada que le impidió complir con a solicitut.
+        temporarily_unavailable: Lo servidor de l'autorización ye actualment incapaz de maniar la petición a causa d'una sobrecarga temporal u un treballo de mantenimiento d'o servidor.
+        unauthorized_client: Lo client no ye autorizau a realizar esta petición utilizando este metodo.
+        unsupported_grant_type: Lo tipo de concesión d'autorización no ye suportau per lo servidor d'autorización.
+        unsupported_response_type: Lo servidor d'autorización no suporta este tipo de respuesta.
+    flash:
+      applications:
+        create:
+          notice: Aplicación creyada.
+        destroy:
+          notice: Aplicación eliminada.
+        update:
+          notice: Aplicación actualizada.
+      authorized_applications:
+        destroy:
+          notice: Aplicación revocada.
+    grouped_scopes:
+      access:
+        read: Acceso de solo lectura
+        read/write: Acceso de lectura y escritura
+        write: Acceso de nomás escritura
+      title:
+        accounts: Cuentas
+        admin/accounts: Administración de cuentas
+        admin/all: Totas las funcions administrativas
+        admin/reports: Administración d'informes
+        all: Acceso completo a la tuya cuenta de Mastodon
+        blocks: Bloqueyos
+        bookmarks: Marcadors
+        conversations: Conversacions
+        crypto: Zifrau de cabo a cabo
+        favourites: Favoritos
+        filters: Filtros
+        follow: Seguius, silenciaus y blocaus
+        follows: Seguius
+        lists: Listas
+        media: Adjuntos multimedia
+        mutes: Silenciaus
+        notifications: Notificacions
+        push: Notificacions push
+        reports: Informes
+        search: Buscar
+        statuses: Publicacions
+    layouts:
+      admin:
+        nav:
+          applications: Aplicacions
+          oauth2_provider: Furnidor OAuth2
+      application:
+        title: OAuth autorización requerida
+    scopes:
+      admin:read: leyer totz los datos en o servidor
+      admin:read:accounts: leyer información sensible de totas las cuentas
+      admin:read:canonical_email_blocks: leyer información sensible de totz los bloqueyos canonicos de correu
+      admin:read:domain_allows: leyer información sensible de totz los dominios permesos
+      admin:read:domain_blocks: leyer información sensible de totz los bloqueyos de dominio
+      admin:read:email_domain_blocks: leyer información sensible de totz los bloqueyos de dominio de correu-e
+      admin:read:ip_blocks: leyer información sensible de totz los bloqueyos d'IP
+      admin:read:reports: leyer información sensible de totz los informes y cuentas denunciadas
+      admin:write: modificar totz los datos en o servidor
+      admin:write:accounts: realizar accions de moderación en cuentas
+      admin:write:canonical_email_blocks: executar accions de moderación en bloqueyos canonicos de correu electronico
+      admin:write:domain_allows: executar accions de moderación en os dominios permesos
+      admin:write:domain_blocks: executar accions de moderación en bloqueyos de dominio
+      admin:write:email_domain_blocks: executar accions de moderación en bloqueyos de dominio de correu-e
+      admin:write:ip_blocks: executar accions de moderación en bloqueyos d'IP
+      admin:write:reports: realizar accions de moderación en informes
+      crypto: usar zifrau de cabo a extremo
+      follow: seguir, blocar, desblocar y deixar de seguir cuentas
+      push: recibir las tuyas notificacions push
+      read: leyer los datos d'a tuya cuenta
+      read:accounts: veyer información de cuentas
+      read:blocks: veyer a quí has blocau
+      read:bookmarks: veyer los tuyos marcadors
+      read:favourites: veyer los tuyos favoritos
+      read:filters: veyer los tuyos filtros
+      read:follows: veyer a quí sigues
+      read:lists: veyer las tuyas listas
+      read:mutes: veyer a quí has silenciau
+      read:notifications: veyer las tuyas notificacions
+      read:reports: veyer las tuyas informes
+      read:search: buscar en o suyo nombre
+      read:statuses: veyer totz los estaus
+      write: publicar en o tuyo nombre
+      write:accounts: modifica lo tuyo perfil
+      write:blocks: blocar cuentas y dominios
+      write:bookmarks: alzar estaus como marcadors
+      write:conversations: silenciar y eliminar conversacions
+      write:favourites: publicacions favoritas
+      write:filters: creyar filtros
+      write:follows: seguir usuarios
+      write:lists: creyar listas
+      write:media: puyar fichers multimedia
+      write:mutes: silenciar usuarios y conversacions
+      write:notifications: limpia las tuyas notificacions
+      write:reports: denunciar a atras personas
+      write:statuses: publicar estaus

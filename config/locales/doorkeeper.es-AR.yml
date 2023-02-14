@@ -60,7 +60,7 @@ es-AR:
       error:
         title: Ocurrió un error
       new:
-        prompt_html: "%{client_name} solicitaa permiso para acceder a tu cuenta. Es una aplicación de terceros. <strong>Si no confiás en ella, no deberías autorizarla.</strong>"
+        prompt_html: "%{client_name} solicita permiso para acceder a tu cuenta. Es una aplicación de terceros. <strong>Si no confiás en ella, no deberías autorizarla.</strong>"
         review_permissions: Revisar permisos
         title: Autorización requerida
       show:
@@ -122,14 +122,14 @@ es-AR:
         admin/accounts: Administración de cuentas
         admin/all: Todas las funciones administrativas
         admin/reports: Administración de denuncias
-        all: Todo
+        all: Acceso total a tu cuenta de Mastodon
         blocks: Bloqueos
         bookmarks: Marcadores
         conversations: Conversaciones
         crypto: Cifrado de extremo a extremo
         favourites: Favoritos
         filters: Filtros
-        follow: Relaciones
+        follow: Seguimientos, silencios y bloqueos
         follows: Seguimientos
         lists: Listas
         media: Adjuntos de medios
@@ -149,9 +149,19 @@ es-AR:
     scopes:
       admin:read: leer todos los datos en el servidor
       admin:read:accounts: leer información sensible de todas las cuentas
+      admin:read:canonical_email_blocks: leer información sensible de todos los bloques canónicos de correo electrónico
+      admin:read:domain_allows: leer información sensible de todos los dominios permitidos
+      admin:read:domain_blocks: leer información sensible de todos los bloques de dominio
+      admin:read:email_domain_blocks: leer información sensible de todos los bloques de dominio de correo electrónico
+      admin:read:ip_blocks: leer información sensible de todos los bloques de direcciones IP
       admin:read:reports: leer información sensible de todos los informes y cuentas denunciadas
       admin:write: modificar todos los datos en el servidor
       admin:write:accounts: ejecutar acciones de moderación en cuentas
+      admin:write:canonical_email_blocks: ejecutar acciones de moderación en bloques canónicos de correo electrónico
+      admin:write:domain_allows: realizar acciones de moderación en el dominio permitido
+      admin:write:domain_blocks: ejecutar acciones de moderación en bloques de dominio
+      admin:write:email_domain_blocks: ejecutar acciones de moderación en bloques de dominio de correo electrónico
+      admin:write:ip_blocks: ejecutar acciones de moderación en bloques de direcciones IP
       admin:write:reports: ejecutar acciones de moderación en denuncias
       crypto: usar cifrado de extremo a extremo
       follow: modificar relaciones de cuenta

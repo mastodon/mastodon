@@ -7,7 +7,7 @@ fi:
       account_migration:
         acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus, johon haluat siirtyä
       account_warning_preset:
-        text: Voit käyttää julkaisun syntaksia, kuten URL-osoitteita, hashtageja ja mainintoja
+        text: Voit käyttää julkaisun syntaksia, kuten URL-osoitteita, aihetunnisteita ja mainintoja
         title: Vapaaehtoinen. Ei näytetä vastaanottajalle
       admin_account_action:
         include_statuses: Käyttäjä näkee mitkä viestit johtivat toimenpiteeseen tai varoitukseen
@@ -18,8 +18,8 @@ fi:
           disable: Estä käyttäjää käyttämästä tiliään, mutta älä poista tai piilota sen sisältöä.
           none: Käytä tätä lähettääksesi varoituksen käyttäjälle käynnistämättä mitään muita toimintoja.
           sensitive: Pakota kaikki tämän käyttäjän mediatiedostot arkaluontoisiksi.
-          silence: Estä käyttäjää pystymästä julkaisemaan julkisessa näkyvyydessä, piilota käyttäjän viestit ja ilmoitukset ihmisiltä, jotka eivät seuraa käyttäjää.
-          suspend: Estä vuorovaikutus tililtä tai tilille ja poista sen sisältö. Palautettavissa 30 päivän kuluessa.
+          silence: Estä käyttäjää lähettämästä viestejä julkisesti, piilota hänen viestinsä ja ilmoituksensa ihmisiltä, jotka eivät seuraa häntä. Sulkee kaikki tämän tilin raportit.
+          suspend: Estä kaikki vuorovaikutus tältä -tai tälle tilille ja poista sen kaikki sisältö. Päätös voidaan peruuttaa 30 päivän aikana. Sulkee kaikki raportit tätä tiliä vasten.
         warning_preset_id: Valinnainen. Voit silti lisätä mukautetun tekstin esiasetuksen loppuun
       announcement:
         all_day: Kun valittu, vain valittu aikaväli näytetään
@@ -41,7 +41,7 @@ fi:
         email: Sinulle lähetetään vahvistussähköposti
         fields: Sinulla voi olla korkeintaan 4 asiaa profiilissasi taulukossa
         header: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
-        inbox_url: Kopioi URL-osoite sen viestin etusivulta, jota haluat käyttää
+        inbox_url: Kopioi URL-osoite haluamasi välittäjän etusivulta
         irreversible: Suodatetut julkaisut katoavat lopullisesti, vaikka suodatin poistettaisiin myöhemmin
         locale: Käyttöliittymän, sähköpostien ja ilmoitusten kieli
         locked: Sinun täytyy hyväksyä seuraajat manuaalisesti
@@ -74,6 +74,7 @@ fi:
           hide: Piilota suodatettu sisältö kokonaan ja käyttäydy ikään kuin sitä ei olisi olemassa
           warn: Piilota suodatettu sisältö varoituksen taakse, jossa mainitaan suodattimen otsikko
       form_admin_settings:
+        activity_api_enabled: Paikallisesti julkaistujen julkaisujen, aktiivisten käyttäjien ja rekisteröitymisten viikoittainen määrä
         backups_retention_period: Säilytä luodut arkistot määritetyn määrän päiviä.
         bootstrap_timeline_accounts: Nämä tilit kiinnitetään uusien käyttäjien suositusten yläpuolelle.
         closed_registrations_message: Näkyy, kun ilmoittautuminen on suljettu
@@ -81,6 +82,7 @@ fi:
         custom_css: Voit käyttää mukautettuja tyylejä Mastodonin verkkoversiossa.
         mascot: Ohittaa kuvituksen edistyneessä käyttöliittymässä.
         media_cache_retention_period: Ladatut mediatiedostot poistetaan määritetyn määrän päiviä jälkeen, kun arvo on positiivinen ja ladataan uudelleen pyynnöstä.
+        peers_api_enabled: Lista verkkotunnuksista, joita tämä palvelin on kohdannut fediversessä. Täällä ei ole tietoja siitä, oletko liitossa tiettyjen palvelinten kanssa, vaan ainoastaan luettelo niistä verkkotunnuksista, joista palvelimesi on ylipäätään tietoinen. Tätä tietoa käytetään palveluissa, jotka keräävät liittotilastoja laajassa merkityksessä.
         profile_directory: Profiilihakemisto lueteloi kaikki käyttäjät, jotka ovat ilmoittaneet olevansa löydettävissä.
         require_invite_text: Kun kirjautuminen vaatii manuaalisen hyväksynnän, tee ”Miksi haluat liittyä?” teksti syötetään pakolliseksi eikä vapaaehtoiseksi
         site_contact_email: Kuinka ihmiset voivat tavoittaa sinut oikeudellisissa tai tukikysymyksissä.
@@ -89,11 +91,13 @@ fi:
         site_short_description: Lyhyt kuvaus auttaa yksilöimään palvelimesi. Kuka sitä johtaa, kenelle se on tarkoitettu?
         site_terms: Käytä omaa tietosuojakäytäntöä tai jätä tyhjäksi, jos haluat käyttää oletusta. Voidaan jäsentää Markdown-syntaksilla.
         site_title: Kuinka ihmiset voivat viitata palvelimeen sen verkkotunnuksen lisäksi.
+        status_page_url: URL-osoite, jonka kautta palvelimen tila voidaan tarkastaa sen ollessa tavoittamattomissa
         theme: Teema, jonka uloskirjautuneet vierailijat ja uudet käyttäjät näkevät.
         thumbnail: Noin 2:1 kuva näytetään palvelimen tietojen rinnalla.
         timeline_preview: Uloskirjautuneet vierailijat voivat selata uusimpia julkisia viestejä, jotka ovat saatavilla palvelimella.
         trendable_by_default: Ohita suositun sisällön manuaalinen tarkistus. Yksittäisiä kohteita voidaan edelleen poistaa jälkikäteen.
-        trends: Trendit osoittavat, mitkä viestit, hashtagit ja uutiset ovat saamassa vetoa palvelimellasi.
+        trends: Trendit osoittavat, mitkä julkaisut, aihetunnisteet ja uutiset ovat saamassa vetoa palvelimellasi.
+        trends_as_landing_page: Näytä suosittu sisältö uloskirjautuneille käyttäjille ja kävijöille palvelimen kuvauksen sijaan. Edellyttää suositun sisällön käyttöönottoa.
       form_challenge:
         current_password: Olet menossa suojatulle alueelle
       imports:
@@ -177,7 +181,7 @@ fi:
         fields: Profiilin metadata
         header: Otsakekuva
         honeypot: "%{label} (älä täytä)"
-        inbox_url: Välityspostilaatikon URL-osoite
+        inbox_url: Välittäjän postilaatikon URL-osoite
         irreversible: Pudota piilottamisen sijaan
         locale: Kieli
         locked: Lukitse tili
@@ -188,13 +192,13 @@ fi:
         password: Salasana
         phrase: Avainsana tai lause
         setting_advanced_layout: Ota käyttöön edistynyt selainkäyttöliittymä
-        setting_aggregate_reblogs: Ryhmitä boostaukset aikajanalla
+        setting_aggregate_reblogs: Ryhmitä tehostukset aikajanalla
         setting_always_send_emails: Lähetä aina sähköposti-ilmoituksia
         setting_auto_play_gif: Toista GIF-animaatiot automaattisesti
-        setting_boost_modal: Kysy vahvistusta ennen buustausta
+        setting_boost_modal: Kysy vahvistus ennen tehostusta
         setting_crop_images: Rajaa kuvat avaamattomissa tuuttauksissa 16:9 kuvasuhteeseen
         setting_default_language: Julkaisujen kieli
-        setting_default_privacy: Julkaisun näkyvyys
+        setting_default_privacy: Viestin näkyvyys
         setting_default_sensitive: Merkitse media aina arkaluontoiseksi
         setting_delete_modal: Kysy vahvistusta ennen viestin poistamista
         setting_disable_swiping: Poista pyyhkäisyt käytöstä
@@ -204,7 +208,7 @@ fi:
         setting_display_media_show_all: Näytä kaikki
         setting_expand_spoilers: Laajenna aina sisältövaroituksilla merkityt viestit
         setting_hide_network: Piilota verkkosi
-        setting_noindex: Jättäydy pois hakukoneindeksoinnista
+        setting_noindex: Jättäydy hakukoneindeksoinnin ulkopuolelle
         setting_reduce_motion: Vähennä animaatioiden liikettä
         setting_show_application: Näytä sovellus mistä lähetät viestejä
         setting_system_font_ui: Käytä järjestelmän oletusfonttia
@@ -229,6 +233,7 @@ fi:
           hide: Piilota kokonaan
           warn: Piilota varoituksella
       form_admin_settings:
+        activity_api_enabled: Julkaise yhteenlasketut tilastot käyttäjätoiminnasta rajapinnassa
         backups_retention_period: Käyttäjän arkiston säilytysaika
         bootstrap_timeline_accounts: Suosittele aina näitä tilejä uusille käyttäjille
         closed_registrations_message: Mukautettu viesti, kun kirjautumisia ei ole saatavilla
@@ -236,6 +241,7 @@ fi:
         custom_css: Mukautettu CSS
         mascot: Mukautettu maskotti (legacy)
         media_cache_retention_period: Median välimuistin säilytysaika
+        peers_api_enabled: Julkaise löydettyjen instanssien luettelo ohjelmointirajapinnassa
         profile_directory: Ota profiilihakemisto käyttöön
         registrations_mode: Kuka voi rekisteröityä
         require_invite_text: Vaadi syy liittyä
@@ -247,11 +253,13 @@ fi:
         site_short_description: Palvelimen kuvaus
         site_terms: Tietosuojakäytäntö
         site_title: Palvelimen nimi
+        status_page_url: Tilasivun URL-osoite
         theme: Oletusteema
         thumbnail: Palvelimen pikkukuva
         timeline_preview: Salli todentamaton pääsy julkiselle aikajanalle
         trendable_by_default: Salli trendit ilman ennakkotarkastusta
         trends: Trendit käyttöön
+        trends_as_landing_page: Käytä suosittua sisältöä aloitussivuna
       interactions:
         must_be_follower: Estä ilmoitukset käyttäjiltä, jotka eivät seuraa sinua
         must_be_following: Estä ilmoitukset käyttäjiltä, joita et seuraa
@@ -276,16 +284,16 @@ fi:
         follow_request: Lähetä sähköposti, kun joku pyytää seurata sinua
         mention: Lähetä sähköposti, kun sinut mainitaan
         pending_account: Uusi tili tarvitsee tarkastusta
-        reblog: Lähetä sähköposti, kun joku buustaa julkaisusi
+        reblog: Lähetä sähköposti, kun joku tehosti viestiäsi
         report: Uusi raportti on lähetetty
         trending_tag: Uusi trendi vaatii tarkastelua
       rule:
         text: Sääntö
       tag:
-        listable: Salli tämän hashtagin näkyä hauissa ja ehdotuksissa
+        listable: Salli tämän aihetunnisteen näkyä hauissa ja ehdotuksissa
         name: Aihetunniste
         trendable: Salli tämän aihetunnisteen näkyä trendeissä
-        usable: Salli postauksien käyttää tätä aihetunnistetta
+        usable: Salli julkaisujen käyttää tätä aihetunnistetta
       user:
         role: Rooli
       user_role:

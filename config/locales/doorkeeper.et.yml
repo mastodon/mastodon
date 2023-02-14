@@ -22,28 +22,28 @@ et:
         authorize: Autoriseeri
         cancel: Katkesta
         destroy: Hävita
-        edit: Redigeeri
-        submit: Saada
+        edit: Muuda
+        submit: Kinnita
       confirmations:
-        destroy: Olete kindel?
+        destroy: Oled kindel?
       edit:
-        title: Redigeeri rakendust
+        title: Avalduse muutmine
       form:
-        error: Oih! Kontrollige oma vormi võimalikest vigadest
+        error: Oih! Kontrolli vormi, ehk on mõni viga sees
       help:
-        native_redirect_uri: Kasutage %{native_redirect_uri} kohalikeks testideks
+        native_redirect_uri: Kasuta %{native_redirect_uri} kohalikeks testideks
         redirect_uri: Kasuta ühte rida iga URI jaoks
         scopes: Eralda ulatused tühikutega. Jäta tühjaks, et kasutada vaikimisi ulatusi.
       index:
         application: Rakendus
         callback_url: Ümbersuunamise URL
         delete: Kustuta
-        empty: Teil pole rakendusi.
+        empty: Sul pole rakendusi.
         name: Nimi
         new: Uus rakendus
         scopes: Ulatused
         show: Kuva
-        title: Teie rakendused
+        title: Kasutusel rakendused
       new:
         title: Uus rakendus
       show:
@@ -60,6 +60,8 @@ et:
       error:
         title: Ilmnes viga
       new:
+        prompt_html: "%{client_name} soovib luba kontole juurdepääsuks. See on kolmanda osapoole rakendus. <strong>Kui see pole usaldusväärne, siis ei tohiks seda lubada.</strong>"
+        review_permissions: Lubade ülevaade
         title: Autoriseerimine vajalik
       show:
         title: Kopeeri see autoriseerimisvõti ja kleebi see rakendusse.
@@ -67,16 +69,26 @@ et:
       buttons:
         revoke: Tühista
       confirmations:
-        revoke: Olete kindel?
+        revoke: Oled kindel?
       index:
+        authorized_at: Autoriseeritud %{date}
+        description_html: Need on rakendused, millel on API kaudu juurdepääs kontole. Kui on rakendusi, mis on tundmatud või rakendus käitub halvasti, saab selle juurdepääsu tühistada.
+        last_used_at: Viimati kasutatud %{date}
+        never_used: Pole kasutatud
+        scopes: Õigused
+        superapp: Sisemine
         title: Autoriseeritud rakendused
     errors:
       messages:
         access_denied: Ressursi omanik või autoriseerimisserver lükkas taotluse tagasi.
         credential_flow_not_configured: Resource Owner Password Credentials vool ebaõnnestus, kuna Doorkeeper.configure.resource_owner_from_credentials ei ole seadistatud.
-        invalid_client: Kliendi autentimine ebaõnnestus, kuna tundmatu klient, puudulik autentimine või mitte toetatud autentimismeetod.
+        invalid_client: Kliendi autentimine ebaõnnestus. Põhjus kas tundmatu klient, puudulik autentimine või toetamata autentimismeetod.
         invalid_grant: Antud autoriseerimisluba on vale, aegunud, tagasi võetud, ei kattu kasutatud ümbersuunamise URLid või oli antud teisele kliendile.
         invalid_redirect_uri: Antud ümbersuunamise URL ei ole õige.
+        invalid_request:
+          missing_param: 'Puudub nõutud parameeter: %{value}.'
+          request_not_authorized: Päring vajab autoriseerimist. Autoriseerimispäringuks vajalik parameeter puudub või on vigane.
+          unknown: Taotluses puudub nõutav parameeter, see sisaldab toetamata parameetri väärtust või on muul viisil valesti vormindatud.
         invalid_resource_owner: Antud ressursi omaniku andmed on valed või ressursi omanikku ei leitud
         invalid_scope: Soovitud ulatus on vale, tundmatu või vigane.
         invalid_token:
@@ -100,6 +112,33 @@ et:
       authorized_applications:
         destroy:
           notice: Rakendus tagasi lükatud.
+    grouped_scopes:
+      access:
+        read: Vaid lugemisõigus
+        read/write: Lugemis- ja kirjutusõigus
+        write: Vaid kirjutusõigus
+      title:
+        accounts: Kontod
+        admin/accounts: Kontode haldus
+        admin/all: Kõik haldusfunktsioonid
+        admin/reports: Raportite haldus
+        all: Täielik ligipääs Su Mastodoni kontole
+        blocks: Keelud
+        bookmarks: Järjehoidjad
+        conversations: Vestlused
+        crypto: Otspunktkrüpteerimine
+        favourites: Lemmikud
+        filters: Filtrid
+        follow: Jälgitavad, Vaigistatud ja Blokeeritud
+        follows: Jälgimised
+        lists: Nimekirjad
+        media: Lisatud meedia
+        mutes: Vaigistused
+        notifications: Teavitused
+        push: Tõuketeated
+        reports: Teavitused
+        search: Otsing
+        statuses: Postitused
     layouts:
       admin:
         nav:
@@ -110,35 +149,47 @@ et:
     scopes:
       admin:read: lugeda kõiki andmeid serveril
       admin:read:accounts: lugeda privaatset informatsiooni kõikidel kontodel
-      admin:read:reports: lugeda privaatset informatsiooni kõikide teavituste ja teavitatud kasutajate kohta
+      admin:read:canonical_email_blocks: loe kõigi kanooniliste e-posti blokeeringute tundlikku infot
+      admin:read:domain_allows: loe kõigi domeenide lubade tundliku infot
+      admin:read:domain_blocks: loe kõigi domeenide blokeeringute tundlikku infot
+      admin:read:email_domain_blocks: loe kõigi e-posti blokeeringute tundlikku infot
+      admin:read:ip_blocks: loe kõigi IP-blokeeringute tundlikku infot
+      admin:read:reports: lugeda privaatset infot kõikide teavituste ja teavitatud kasutajate kohta
       admin:write: muuta kõiki andmeid serveril
       admin:write:accounts: teostada moderaatori tegevusi kontodel
+      admin:write:canonical_email_blocks: modereeri kanoonilisi e-posti blokeeringuid
+      admin:write:domain_allows: modereeri domeeni lubasid
+      admin:write:domain_blocks: modereeri domeeni blokeeringuid
+      admin:write:email_domain_blocks: modereeri e-postidomeenide blokeeringuid
+      admin:write:ip_blocks: modereeri IP-blokeeringuid
       admin:write:reports: teostada moderaatori tegevusi teavitustel
+      crypto: kasuta otspunktkrüpeerimist
       follow: muuta kontode suhteid
-      push: saada Teie teateid
-      read: lugeda kogu Teie konto andmeid
+      push: saab tõuketeateid
+      read: lugeda konto kõiki andmeid
       read:accounts: näha konto informatsiooni
-      read:blocks: näha Teie blokeeringuid
+      read:blocks: näha su blokeeringuid
       read:bookmarks: näha järjehoidjaid
       read:favourites: näha Teie lemmikuid
-      read:filters: näha Teie filtreid
-      read:follows: näha Teie jälgimisi
-      read:lists: näha Teie nimekirju
-      read:mutes: näha Teie vaigistusi
-      read:notifications: näha Teie teateid
-      read:reports: näha Teie teavitusi
-      read:search: otsida Teie nimel
-      read:statuses: näha kõiki staatuseid
-      write: redigeerida kogu Teie konto andmeid
-      write:accounts: redigeerida Teie profiili
-      write:blocks: blokeerida kontosid ja domeene
-      write:bookmarks: lisada staatusele järjehoidjaid
-      write:favourites: lisada staatuseid lemmikuks
+      read:filters: näha su filtreid
+      read:follows: näha su jälgimisi
+      read:lists: näha su nimekirju
+      read:mutes: näha su vaigistusi
+      read:notifications: näha teateid
+      read:reports: näha teavitusi
+      read:search: otsida sinu nimel
+      read:statuses: näha kõiki postitusi
+      write: muuta kogu konto andmeid
+      write:accounts: muuta profiili
+      write:blocks: kontode ja domeenide blokeerimine
+      write:bookmarks: lisada postitusele järjehoidja
+      write:conversations: vaigista ja kustuta vestlused
+      write:favourites: lisada postitusi lemmikuks
       write:filters: luua filtreid
       write:follows: jälgida inimesi
       write:lists: luua nimekirju
       write:media: üles laadida meediafaile
       write:mutes: vaigista inimesi ja vestluseid
-      write:notifications: puhasta Teie teateid
+      write:notifications: tühjendada teateid
       write:reports: teavitada teistest inimestest
-      write:statuses: avaldada staatuseid
+      write:statuses: avaldada postitusi

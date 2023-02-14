@@ -200,21 +200,44 @@ module Mastodon
       end
     end
 
-    desc 'delete USERNAME', 'Delete a user'
+    option :email
+    option :dry_run, type: :boolean
+    desc 'delete [USERNAME]', 'Delete a user'
     long_desc <<-LONG_DESC
       Remove a user account with a given USERNAME.
-    LONG_DESC
-    def delete(username)
-      account = Account.find_local(username)
 
-      if account.nil?
-        say('No user with such username', :red)
+      With the --email option, the user is selected based on email
+      rather than username.
+    LONG_DESC
+    def delete(username = nil)
+      if username.present? && options[:email].present?
+        say('Use username or --email, not both', :red)
+        exit(1)
+      elsif username.blank? && options[:email].blank?
+        say('No username provided', :red)
         exit(1)
       end
 
-      say("Deleting user with #{account.statuses_count} statuses, this might take a while...")
-      DeleteAccountService.new.call(account, reserve_email: false)
-      say('OK', :green)
+      dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
+      account = nil
+
+      if username.present?
+        account = Account.find_local(username)
+        if account.nil?
+          say('No user with such username', :red)
+          exit(1)
+        end
+      else
+        account = Account.left_joins(:user).find_by(user: { email: options[:email] })
+        if account.nil?
+          say('No user with such email', :red)
+          exit(1)
+        end
+      end
+
+      say("Deleting user with #{account.statuses_count} statuses, this might take a while...#{dry_run}")
+      DeleteAccountService.new.call(account, reserve_email: false) unless options[:dry_run]
+      say("OK#{dry_run}", :green)
     end
 
     option :force, type: :boolean, aliases: [:f], description: 'Override public key check'
@@ -530,6 +553,116 @@ module Mastodon
       end
     end
 
+    option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :dry_run, type: :boolean
+    desc 'prune', 'Prune remote accounts that never interacted with local users'
+    long_desc <<-LONG_DESC
+      Prune remote account that
+      - follows no local accounts
+      - is not followed by any local accounts
+      - has no statuses on local
+      - has not been mentioned
+      - has not been favourited local posts
+      - not muted/blocked by us
+    LONG_DESC
+    def prune
+      dry_run = options[:dry_run] ? ' (dry run)' : ''
+
+      query = Account.remote.where.not(actor_type: %i(Application Service))
+      query = query.where('NOT EXISTS (SELECT 1 FROM mentions WHERE account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM favourites WHERE account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM statuses WHERE account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM follows WHERE account_id = accounts.id OR target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM blocks WHERE account_id = accounts.id OR target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM mutes WHERE target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM reports WHERE target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM follow_requests WHERE account_id = accounts.id OR target_account_id = accounts.id)')
+
+      _, deleted = parallelize_with_progress(query) do |account|
+        next if account.bot? || account.group?
+        next if account.suspended?
+        next if account.silenced?
+
+        account.destroy unless options[:dry_run]
+        1
+      end
+
+      say("OK, pruned #{deleted} accounts#{dry_run}", :green)
+    end
+
+    option :force, type: :boolean
+    option :replay, type: :boolean
+    option :target
+    desc 'migrate USERNAME', 'Migrate a local user to another account'
+    long_desc <<~LONG_DESC
+      With --replay, replay the last migration of the specified account, in
+      case some remote server may not have properly processed the associated
+      `Move` activity.
+
+      With --target, specify another account to migrate to.
+
+      With --force, perform the migration even if the selected account
+      redirects to a different account that the one specified.
+    LONG_DESC
+    def migrate(username)
+      if options[:replay].present? && options[:target].present?
+        say('Use --replay or --target, not both', :red)
+        exit(1)
+      end
+
+      if options[:replay].blank? && options[:target].blank?
+        say('Use either --replay or --target', :red)
+        exit(1)
+      end
+
+      account = Account.find_local(username)
+
+      if account.nil?
+        say("No such account: #{username}", :red)
+        exit(1)
+      end
+
+      migration = nil
+
+      if options[:replay]
+        migration = account.migrations.last
+        if migration.nil?
+          say('The specified account has not performed any migration', :red)
+          exit(1)
+        end
+
+        unless options[:force] || migration.target_acount_id == account.moved_to_account_id
+          say('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway', :red)
+          exit(1)
+        end
+      end
+
+      if options[:target]
+        target_account = ResolveAccountService.new.call(options[:target])
+
+        if target_account.nil?
+          say("The specified target account could not be found: #{options[:target]}", :red)
+          exit(1)
+        end
+
+        unless options[:force] || account.moved_to_account_id.nil? || account.moved_to_account_id == target_account.id
+          say('The specified account is redirecting to a different target account. Use --force if you want to change the migration target', :red)
+          exit(1)
+        end
+
+        begin
+          migration = account.migrations.create!(acct: target_account.acct)
+        rescue ActiveRecord::RecordInvalid => e
+          say("Error: #{e.message}", :red)
+          exit(1)
+        end
+      end
+
+      MoveService.new.call(migration)
+
+      say("OK, migrated #{account.acct} to #{migration.target_account.acct}", :green)
+    end
+
     private
 
     def rotate_keys_for_account(account, delay = 0)
@@ -541,7 +674,7 @@ module Mastodon
       old_key = account.private_key
       new_key = OpenSSL::PKey::RSA.new(2048)
       account.update(private_key: new_key.to_pem, public_key: new_key.public_key.to_pem)
-      ActivityPub::UpdateDistributionWorker.perform_in(delay, account.id, sign_with: old_key)
+      ActivityPub::UpdateDistributionWorker.perform_in(delay, account.id, { 'sign_with' => old_key })
     end
   end
 end

@@ -5,6 +5,7 @@ hy:
     contact_missing: Սահմանված չէ
     contact_unavailable: Ոչինչ չկա
     hosted_on: Մաստոդոնը տեղակայուած է %{domain}ում
+    title: Մասին
   accounts:
     follow: Հետևել
     followers:
@@ -45,6 +46,7 @@ hy:
       confirm: Հաստատել
       confirmed: Հաստատված է
       confirming: Հաստատման սպասող
+      custom: Յատուկ
       delete: Ջնջել տվյալները
       deleted: Ջնջված է
       demote: Աստիճանազրկել
@@ -248,6 +250,8 @@ hy:
     domain_allows:
       add_new: Թոյլատրել ֆեդերացիա տիրոյթի հետ
       created_msg: Տիրոյթը յաջողութեամբ թոյլատրուեց ֆեդերացուելու
+      export: Արտահանել
+      import: Ներմուծել
       undo: Չթոյլատրել ֆեդերացիան տիրոյթի հետ
     domain_blocks:
       add_new: Աւելացնել նոր տիրոյթի արգելափակում
@@ -255,6 +259,8 @@ hy:
       destroyed_msg: Տիրոյթի արգելափակումը ետարկուեց
       domain: Տիրոյթ
       edit: Խմբագրել տիրոյթի արգելափակումը
+      export: Արտահանել
+      import: Ներմուծել
       new:
         create: Ստեղծել արգելափակում
         severity:
@@ -281,10 +287,15 @@ hy:
       status: Կարգավիճակ
       title: Խորհուրդ ենք տալիս հետեւել
     instances:
+      availability:
+        title: Հասանելի
       back_to_all: Բոլորը
       back_to_limited: Սահամանփակ
       back_to_warning: Զգուշացում
       by_domain: Դոմեն
+      content_policies:
+        policies:
+          silence: Սահմանափակ
       delivery:
         all: Բոլորը
         unavailable: Անհասանելի է
@@ -335,8 +346,6 @@ hy:
       save_and_enable: Պահպանել եւ միացնել
       status: Կարգավիճակ
       title: Վերահեռարձակիչներ
-    report_notes:
-      today_at: Այսօր ժամը %{time}-ին
     reports:
       account:
         notes:
@@ -356,6 +365,7 @@ hy:
       notes:
         create: Ավելացնել նշում
         delete: Ջնջել
+        title: Նշում
       reopen: Վերաբացել բողոքը
       report: 'Բողոք #%{id}'
       reported_account: Բողոքարկուած հաշիւ
@@ -367,6 +377,14 @@ hy:
       unresolved: Չլուծուած
       updated_at: Թարմացուած
       view_profile: Նայել անձնական էջը
+    roles:
+      categories:
+        invites: Հրաւէրներ
+        moderation: Մոդերացիա
+        special: Յատուկ
+      delete: Ջնջել
+      privileges:
+        administrator: Ադմինիստրատոր
     rules:
       add_new: Աւելացնել կանոն
       delete: Ջնջել
@@ -374,6 +392,8 @@ hy:
       empty: Սերուերի կանոնները դեռեւս սահմանուած չեն։
       title: Սերուերի կանոնները
     settings:
+      about:
+        title: Մասին
       domain_blocks:
         all: Բոլորին
         disabled: Ոչ մէկին
@@ -519,7 +539,6 @@ hy:
     '404': Էջը, որը փնտրում ես գոյութիւն չունի։
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422': 
     '429': Չափազանց շատ հարցումներ
     '500':
       title: Էջը ճիշտ չէ

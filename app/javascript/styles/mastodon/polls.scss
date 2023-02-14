@@ -64,8 +64,8 @@
       max-width: calc(100% - 45px - 25px);
     }
 
-    input[type="radio"],
-    input[type="checkbox"] {
+    input[type='radio'],
+    input[type='checkbox'] {
       display: none;
     }
 
@@ -73,7 +73,7 @@
       flex: 1 1 auto;
     }
 
-    input[type="text"] {
+    input[type='text'] {
       display: block;
       box-sizing: border-box;
       width: 100%;
@@ -109,7 +109,7 @@
     box-sizing: border-box;
     width: 18px;
     height: 18px;
-    margin-right: 10px;
+    margin-inline-end: 10px;
     top: -1px;
     border-radius: 50%;
     vertical-align: middle;
@@ -204,7 +204,7 @@
   .button {
     height: 36px;
     padding: 0 16px;
-    margin-right: 10px;
+    margin-inline-end: 10px;
     font-size: 14px;
   }
 }
@@ -240,7 +240,7 @@
     line-height: inherit;
     color: $action-button-color;
     border-color: $action-button-color;
-    margin-right: 5px;
+    margin-inline-end: 5px;
   }
 
   li {
@@ -250,7 +250,7 @@
     .poll__option {
       flex: 0 0 auto;
       width: calc(100% - (23px + 6px));
-      margin-right: 6px;
+      margin-inline-end: 6px;
     }
   }
 
@@ -263,7 +263,9 @@
     width: auto;
     outline: 0;
     font-family: inherit;
-    background: $simple-background-color url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(darken($simple-background-color, 14%))}'/></svg>") no-repeat right 8px center / auto 16px;
+    background: $simple-background-color
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(darken($simple-background-color, 14%))}'/></svg>")
+      no-repeat right 8px center / auto 16px;
     border: 1px solid darken($simple-background-color, 14%);
     border-radius: 4px;
     padding: 6px 10px;
@@ -279,10 +281,10 @@
   color: $dark-text-color;
 
   &__chart {
-    background: rgba(darken($ui-primary-color, 14%), 0.2);
+    background: rgba(darken($ui-primary-color, 14%), 0.7);
 
     &.leading {
-      background: rgba($ui-highlight-color, 0.2);
+      background: rgba($ui-highlight-color, 0.5);
     }
   }
 }
