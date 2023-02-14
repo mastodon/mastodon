@@ -3,5 +3,6 @@ runs:
   using: composite
   steps:
     - name: Wait for PostgreSQL and Redis
-      run: dockerize -wait tcp://localhost:5432 -wait tcp://localhost:6379 -timeout 1m
+      # TODO: see if this is still needed
+      run: echo "dockerize -wait tcp://localhost:5432 -wait tcp://localhost:6379 -timeout 1m"
       shell: bash
