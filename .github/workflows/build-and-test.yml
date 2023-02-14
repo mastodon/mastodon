@@ -7,11 +7,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: cimg/ruby:3.0-node
-      env:
-        RAILS_ENV: test
+    env:
+      RAILS_ENV: test
     steps:
+      - uses: actions/checkout@v3
       - name: Set up bundler cache
         uses: ruby/setup-ruby@v1
         with:
@@ -64,12 +63,12 @@ jobs:
           - '2.7'
           - '3.0'
     steps:
+      - uses: actions/checkout@v3
       - name: Set up bundler cache
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: ${{ matrix.ruby-version}}
           bundler-cache: true
-      - uses: actions/checkout@v3
       - uses: './.github/actions/install-system-dependencies'
       - name: Install additional system dependencies
         run: sudo apt-get install -y ffmpeg imagemagick libpam-dev
@@ -87,25 +86,23 @@ jobs:
       - run: bundle exec rspec spec --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec/results.xml --format progress
   test-migrations:
     runs-on: ubuntu-latest
-    container:
-      image: ruby:3.0
-      env:
-        BUNDLE_JOBS: 3
-        BUNDLE_RETRY: 3
-        CONTINUOUS_INTEGRATION: true
-        DB_HOST: localhost
-        DB_USER: root
-        DISABLE_SIMPLECOV: true
-        RAILS_ENV: test
+    env:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      CONTINUOUS_INTEGRATION: true
+      DB_HOST: localhost
+      DB_USER: root
+      DISABLE_SIMPLECOV: true
+      RAILS_ENV: test
     needs:
       - build
     steps:
+      - uses: actions/checkout@v3
       - name: Set up bundler cache
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-      - uses: actions/checkout@v3
       - uses: './.github/actions/install-system-dependencies'
       - uses: './.github/actions/install-ruby-dependencies'
         with:
@@ -131,25 +128,23 @@ jobs:
         run: './bin/rails tests:migrations:check_database'
   test-two-step-migrations:
     runs-on: ubuntu-latest
-    container:
-      image: ruby:3.0
-      env:
-        BUNDLE_JOBS: 3
-        BUNDLE_RETRY: 3
-        CONTINUOUS_INTEGRATION: true
-        DB_HOST: localhost
-        DB_USER: root
-        DISABLE_SIMPLECOV: true
-        RAILS_ENV: test
+    env:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      CONTINUOUS_INTEGRATION: true
+      DB_HOST: localhost
+      DB_USER: root
+      DISABLE_SIMPLECOV: true
+      RAILS_ENV: test
     needs:
       - build
     steps:
+      - uses: actions/checkout@v3
       - name: Set up bundler cache
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-      - uses: actions/checkout@v3
       - uses: './.github/actions/install-system-dependencies'
       - uses: './.github/actions/install-ruby-dependencies'
         with:
