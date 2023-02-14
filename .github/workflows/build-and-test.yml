@@ -100,9 +100,23 @@ jobs:
 
   test-migrations:
     runs-on: ubuntu-latest
+
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres:14
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     env:
-      BUNDLE_JOBS: 3
-      BUNDLE_RETRY: 3
       CONTINUOUS_INTEGRATION: true
       DB_HOST: localhost
       DB_USER: root
@@ -128,7 +142,6 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - uses: './.github/actions/wait-db'
       - name: Create database
         run: './bin/rails db:create'
       - name: Run migrations up to v2.0.0
