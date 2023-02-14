@@ -397,7 +397,7 @@ module Mastodon
         end
 
         say("Refreshed #{processed} accounts#{dry_run}", :green, true)
-      elsif usernames.size > 0
+      elsif !usernames.empty?
         usernames.each do |user|
           user, domain = user.split('@')
           account = Account.find_remote(user, domain)
@@ -407,14 +407,14 @@ module Mastodon
             exit(1)
           end
 
-          unless options[:dry_run]
-            begin
-              account.reset_avatar!
-              account.reset_header!
-              account.save
-            rescue Mastodon::UnexpectedResponseError
-              say('Account failed ' + user + "@" + domain, :red)
-            end
+          next if options[:dry_run]
+
+          begin
+            account.reset_avatar!
+            account.reset_header!
+            account.save
+          rescue Mastodon::UnexpectedResponseError
+            say("Account failed: #{user}@#{domain}", :red)
           end
         end
 
