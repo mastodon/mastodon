@@ -47,19 +47,17 @@ jobs:
             ./public/packs-test
   test:
     runs-on: ubuntu-latest
-    container:
-      image: ruby:${{ matrix.ruby-version }}
-      env:
-        BUNDLE_JOBS: 3
-        BUNDLE_RETRY: 3
-        CONTINUOUS_INTEGRATION: true
-        DB_HOST: localhost
-        DB_USER: root
-        DISABLE_SIMPLECOV: true
-        RAILS_ENV: test
+
     needs:
       - build
     env:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      CONTINUOUS_INTEGRATION: true
+      DB_HOST: localhost
+      DB_USER: root
+      DISABLE_SIMPLECOV: true
+      RAILS_ENV: test
       ALLOW_NOPAM: true
       PAM_ENABLED: true
       PAM_DEFAULT_SERVICE: pam_test
@@ -68,7 +66,7 @@ jobs:
       matrix:
         ruby-version:
           - '2.7'
-          - '3.0'
+          - '.ruby-version'
     steps:
       - uses: actions/checkout@v3
 
