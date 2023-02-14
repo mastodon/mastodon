@@ -37,8 +37,9 @@ jobs:
 
       - run: yarn install --frozen-lockfile
       - name: Precompile assets
+        # Previously had set this, but it's not supported
+        # export NODE_OPTIONS=--openssl-legacy-provider
         run: |-
-          export NODE_OPTIONS=--openssl-legacy-provider
           ./bin/rails assets:precompile
       - uses: actions/upload-artifact@v3
         with:
