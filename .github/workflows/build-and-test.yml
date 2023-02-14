@@ -16,7 +16,7 @@ jobs:
       with:
         ruby-version: .ruby-version
         bundler-cache: true
-    - uses: actions/checkout@v3.3.0
+    - uses: actions/checkout@v3
     - uses: "./.github/actions/install-system-dependencies"
     - uses: "./.github/actions/install-ruby-dependencies"
       with:
@@ -68,7 +68,7 @@ jobs:
       with:
         ruby-version: .ruby-version
         bundler-cache: true
-    - uses: actions/checkout@v3.3.0
+    - uses: actions/checkout@v3
     - uses: "./.github/actions/install-system-dependencies"
     - name: Install additional system dependencies
       run: sudo apt-get install -y ffmpeg imagemagick libpam-dev
@@ -104,7 +104,7 @@ jobs:
       with:
         ruby-version: .ruby-version
         bundler-cache: true
-    - uses: actions/checkout@v3.3.0
+    - uses: actions/checkout@v3
     - uses: "./.github/actions/install-system-dependencies"
     - uses: "./.github/actions/install-ruby-dependencies"
       with:
@@ -148,7 +148,7 @@ jobs:
       with:
         ruby-version: .ruby-version
         bundler-cache: true
-    - uses: actions/checkout@v3.3.0
+    - uses: actions/checkout@v3
     - uses: "./.github/actions/install-system-dependencies"
     - uses: "./.github/actions/install-ruby-dependencies"
       with:
@@ -185,7 +185,7 @@ jobs:
     needs:
     - build
     steps:
-    - uses: actions/checkout@v3.3.0
+    - uses: actions/checkout@v3
     - id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
     - uses: actions/cache@v3.2.2
