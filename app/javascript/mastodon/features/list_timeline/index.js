@@ -154,7 +154,7 @@ class ListTimeline extends React.PureComponent {
     const pinned = !!columnId;
     const title  = list ? list.get('title') : id;
     const replies_policy = list ? list.get('replies_policy') : undefined;
-    const isExclusive = list ? list.get('is_exclusive') : undefined;
+    const isExclusive = list ? list.get('exclusive') : undefined;
 
     if (typeof list === 'undefined') {
       return (
