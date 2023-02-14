@@ -4,6 +4,12 @@ on:
   push:
   pull_request:
 
+env:
+  BUNDLE_CLEAN: true
+  BUNDLE_FROZEN: true
+  BUNDLE_WITHOUT: 'development production'
+  BUNDLE_DEPLOYMENT: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,9 +34,6 @@ jobs:
           bundler-cache: true
       - uses: actions/checkout@v3
       - uses: './.github/actions/install-system-dependencies'
-      - uses: './.github/actions/install-ruby-dependencies'
-        with:
-          ruby-version: '3.0'
 
       - run: yarn install --frozen-lockfile
       - name: Precompile assets
@@ -88,9 +91,7 @@ jobs:
         run: sudo apt-get install -y ffmpeg imagemagick libpam-dev
       - name: Enable PAM authentication
         run: bundle config with 'pam_authentication'
-      - uses: './.github/actions/install-ruby-dependencies'
-        with:
-          ruby-version: '${{ matrix.ruby-version }}'
+
       - uses: actions/download-artifact@v3
         with:
           path: '.'
@@ -128,9 +129,7 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
       - uses: './.github/actions/install-system-dependencies'
-      - uses: './.github/actions/install-ruby-dependencies'
-        with:
-          ruby-version: '3.0'
+
       - uses: './.github/actions/wait-db'
       - name: Create database
         run: './bin/rails db:create'
@@ -180,9 +179,7 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
       - uses: './.github/actions/install-system-dependencies'
-      - uses: './.github/actions/install-ruby-dependencies'
-        with:
-          ruby-version: '3.0'
+
       - uses: './.github/actions/wait-db'
       - name: Create database
         run: './bin/rails db:create'
