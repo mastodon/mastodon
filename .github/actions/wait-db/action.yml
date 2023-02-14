@@ -1,0 +1,7 @@
+name: wait-db
+runs:
+  using: composite
+  steps:
+  - name: Wait for PostgreSQL and Redis
+    run: dockerize -wait tcp://localhost:5432 -wait tcp://localhost:6379 -timeout 1m
+    shell: bash

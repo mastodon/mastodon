@@ -1,0 +1,17 @@
+name: install-ruby-dependencies
+inputs:
+  ruby-version:
+    required: false
+runs:
+  using: composite
+  steps:
+  - name: Set bundler settings
+    run: |-
+      bundle config clean 'true'
+      bundle config frozen 'true'
+      bundle config without 'development production'
+    shell: bash
+  - run: bundle check || bundle install
+    env:
+      BUNDLE_DEPLOYMENT: true
+    shell: bash
