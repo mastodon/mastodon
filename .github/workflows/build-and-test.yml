@@ -11,6 +11,10 @@ jobs:
       RAILS_ENV: test
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install native Ruby dependencies
+        run: sudo apt-get install -y libicu-dev libidn11-dev
+
       - name: Set up bundler cache
         uses: ruby/setup-ruby@v1
         with:
@@ -64,6 +68,10 @@ jobs:
           - '3.0'
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install native Ruby dependencies
+        run: sudo apt-get install -y libicu-dev libidn11-dev
+
       - name: Set up bundler cache
         uses: ruby/setup-ruby@v1
         with:
@@ -98,6 +106,10 @@ jobs:
       - build
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install native Ruby dependencies
+        run: sudo apt-get install -y libicu-dev libidn11-dev
+
       - name: Set up bundler cache
         uses: ruby/setup-ruby@v1
         with:
@@ -140,6 +152,10 @@ jobs:
       - build
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install native Ruby dependencies
+        run: sudo apt-get install -y libicu-dev libidn11-dev
+
       - name: Set up bundler cache
         uses: ruby/setup-ruby@v1
         with:
