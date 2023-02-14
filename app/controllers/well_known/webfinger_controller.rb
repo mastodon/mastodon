@@ -18,7 +18,12 @@ module WellKnown
     private
 
     def set_account
-      @account = Account.find_local!(username_from_resource)
+      username = username_from_resource
+      @account = Account.find_local!(username)
+    rescue ActiveRecord::RecordNotFound
+      raise unless username == Rails.configuration.x.local_domain
+
+      @account = Account.representative
     end
 
     def username_from_resource
