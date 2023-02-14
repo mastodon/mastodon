@@ -1,9 +1,0 @@
-name: install-system-dependencies
-runs:
-  using: composite
-  steps:
-    - name: Install system dependencies
-      run: |-
-        sudo apt-get update
-        sudo apt-get install -y libicu-dev libidn11-dev
-      shell: bash

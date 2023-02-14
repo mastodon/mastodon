@@ -33,7 +33,6 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
       - uses: actions/checkout@v3
-      - uses: './.github/actions/install-system-dependencies'
 
       - run: yarn install --frozen-lockfile
       - name: Precompile assets
@@ -87,7 +86,6 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version}}
           bundler-cache: true
-      - uses: './.github/actions/install-system-dependencies'
       - name: Install additional system dependencies
         run: sudo apt-get install -y ffmpeg imagemagick libpam-dev
       - name: Enable PAM authentication
@@ -129,7 +127,6 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-      - uses: './.github/actions/install-system-dependencies'
 
       - uses: './.github/actions/wait-db'
       - name: Create database
@@ -179,7 +176,6 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-      - uses: './.github/actions/install-system-dependencies'
 
       - uses: './.github/actions/wait-db'
       - name: Create database
