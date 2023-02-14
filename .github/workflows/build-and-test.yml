@@ -32,7 +32,6 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-      - uses: actions/checkout@v3
 
       - run: yarn install --frozen-lockfile
       - name: Precompile assets
@@ -40,6 +39,7 @@ jobs:
         # export NODE_OPTIONS=--openssl-legacy-provider
         run: |-
           ./bin/rails assets:precompile
+
       - uses: actions/upload-artifact@v3
         with:
           path: |-
