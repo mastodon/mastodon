@@ -107,7 +107,7 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
-          path: '.'
+          path: './public'
           name: ${{ github.sha }}
 
       - name: Set up Node.js
