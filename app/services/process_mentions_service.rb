@@ -3,12 +3,13 @@
 class ProcessMentionsService < BaseService
   include Payloadable
 
-  # Scan status for mentions and fetch remote mentioned users, create
-  # local mention pointers, send Salmon notifications to mentioned
-  # remote users
+  # Scan status for mentions and fetch remote mentioned users,
+  # and create local mention pointers
   # @param [Status] status
-  def call(status)
+  # @param [Boolean] save_records Whether to save records in database
+  def call(status, save_records: true)
     @status = status
+    @save_records = save_records
 
     return unless @status.local?
 
@@ -55,14 +56,15 @@ class ProcessMentionsService < BaseService
       next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended?
 
       mention   = @previous_mentions.find { |x| x.account_id == mentioned_account.id }
-      mention ||= mentioned_account.mentions.new(status: @status)
+      mention ||= @current_mentions.find  { |x| x.account_id == mentioned_account.id }
+      mention ||= @status.mentions.new(account: mentioned_account)
 
       @current_mentions << mention
 
       "@#{mentioned_account.acct}"
     end
 
-    @status.save!
+    @status.save! if @save_records
   end
 
   def assign_mentions!
@@ -73,11 +75,12 @@ class ProcessMentionsService < BaseService
       mentioned_account_ids = @current_mentions.map(&:account_id)
       blocked_account_ids = Set.new(@status.account.block_relationships.where(target_account_id: mentioned_account_ids).pluck(:target_account_id))
 
-      @current_mentions.select! { |mention| !(blocked_account_ids.include?(mention.account_id) || blocked_domains.include?(mention.account.domain)) }
+      dropped_mentions, @current_mentions = @current_mentions.partition { |mention| blocked_account_ids.include?(mention.account_id) || blocked_domains.include?(mention.account.domain) }
+      dropped_mentions.each(&:destroy)
     end
 
     @current_mentions.each do |mention|
-      mention.save if mention.new_record?
+      mention.save if mention.new_record? && @save_records
     end
 
     # If previous mentions are no longer contained in the text, convert them
