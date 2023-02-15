@@ -429,7 +429,7 @@ ast:
     login: Aniciar la sesión
     logout: Zarrar la sesión
     migrate_account: Cambéu de cuenta
-    migrate_account_html: Si quies redirixir esta cuenta a otra diferente, pues <a href="%{path}">configuralo equí</a>.
+    migrate_account_html: Si quies redirixir esta cuenta a otra diferente, pues <a href="%{path}">configurar esta opción equí</a>.
     privacy_policy_agreement_html: Lleí ya acepto la <a href="%{privacy_policy_path}" target="_blank">política de privacidá</a>
     providers:
       cas: CAS
@@ -552,6 +552,8 @@ ast:
         one: "%{count} artículu"
         other: "%{count} artículos"
       title: Peñeres
+    new:
+      title: Amestar una peñera
   footer:
     trending_now: En tendencia
   generic:
@@ -618,6 +620,7 @@ ast:
     errors:
       missing_also_known_as: nun ye un nomatu d'esta cuenta
       move_to_self: nun pue ser la cuenta actual
+    incoming_migrations_html: Pa migrar d'otra cuenta a esta, primero tienes de <a href="%{path}">crear un nomatu de cuenta</a>.
     warning:
       followers: Esta aición va mover tolos siguidores de la cuenta actual a la nueva
   notification_mailer:
@@ -673,6 +676,7 @@ ast:
       too_many_options: nun pue contener más de %{max} elementos
   preferences:
     other: Otres preferencies
+    posting_defaults: Configuración predeterminada del espublizamientu d'artículos
     public_timelines: Llinies de tiempu públiques
   privacy_policy:
     title: Política de privacidá
@@ -681,6 +685,8 @@ ast:
     followers: Siguidores
     last_active: Última actividá
     most_recent: Lo más recién
+    mutual: Mutua
+    primary: Principal
     relationship: Rellación
     remove_selected_follows: Dexar de siguir a los perfiles seleicionaos
   scheduled_statuses:
@@ -774,6 +780,7 @@ ast:
     title: '%{name}: «%{quote}»'
     visibilities:
       direct: Mensaxe direutu
+      private: Namás siguidores
       public_long: Tol mundu pue velos
       unlisted_long: Tol mundu pue velos, mas nun apaecen nes llinies de tiempu públiques
   statuses_cleanup:
