@@ -47,6 +47,8 @@ jobs:
           path: |-
             ./public/assets
             ./public/packs-test
+          name: ${{ github.sha }}
+          retention-days: 0
 
   test:
     runs-on: ubuntu-latest
@@ -79,7 +81,6 @@ jobs:
           - 6379:6379
 
     env:
-      CONTINUOUS_INTEGRATION: true
       DB_HOST: localhost
       DB_USER: postgres
       DB_PASS: postgres
@@ -100,6 +101,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: actions/download-artifact@v3
+        with:
+          path: '.'
+          name: ${{ github.sha }}
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -117,10 +123,6 @@ jobs:
 
       - name: Install additional system dependencies
         run: sudo apt-get install -y ffmpeg imagemagick libpam-dev
-
-      - uses: actions/download-artifact@v3
-        with:
-          path: '.'
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
@@ -285,6 +287,7 @@ jobs:
         run: './bin/rails db:migrate VERSION=20180707154237'
         env:
           SKIP_POST_DEPLOYMENT_MIGRATIONS: true
+
       - name: Populate database with test data
         run: './bin/rails tests:migrations:populate_v2_4_3'
 
@@ -313,4 +316,5 @@ jobs:
           node-version-file: '.nvmrc'
 
       - run: yarn install --frozen-lockfile
+
       - run: yarn run test:jest
