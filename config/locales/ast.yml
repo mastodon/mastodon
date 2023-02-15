@@ -46,6 +46,7 @@ ast:
       resend_confirmation:
         already_confirmed: Esti perfil xá ta confirmáu
         send: Volver unviar el mensaxe de confirmación
+        success: '¡El mensaxe de confirmación unvióse correutamente!'
       role: Rol
       search: Buscar
       search_same_email_domain: Otros perfiles col mesmu dominiu de corréu electrónicu
@@ -78,6 +79,7 @@ ast:
         enable_custom_emoji_html: "%{name} activó'l fustaxe «%{target}»"
         reject_user_html: "%{name} refugó'l rexistru de: %{target}"
         remove_avatar_user_html: "%{name} quitó l'avatar de: %{target}"
+        resend_user_html: "%{name} volvió unviar el mensaxe de confirmación pa: %{target}"
         unblock_email_account_html: "%{name} desbloquió la direición de corréu electrónicu de: %{target}"
         update_announcement_html: "%{name} anovó l'anunciu «%{target}»"
         update_custom_emoji_html: "%{name} anovó'l fustaxe «%{target}»"
@@ -278,7 +280,7 @@ ast:
         view_devops: DevOps
       title: Roles
     rules:
-      add_new: Amestar la regla
+      add_new: Amestar la norma
       title: Normes del sirvidor
     settings:
       about:
@@ -413,6 +415,8 @@ ast:
       guide_link_text: tol mundu pue collaborar.
     sensitive_content: Conteníu sensible
     toot_layout: Distribución de los artículos
+  application_mailer:
+    notification_preferences: Camudar les preferencies de los mensaxes de corréu electrónicu
   applications:
     created: L'aplicación creóse correutamente
     regenerate_token: Volver xenerar el pase d'accesu
@@ -421,6 +425,8 @@ ast:
     your_token: El pase d'accesu
   auth:
     change_password: Contraseña
+    confirmations:
+      wrong_email_hint: Si la direición de corréu electrónicu nun ye correuta, pues camudala na configuración de la cuenta.
     delete_account: Desaniciu de la cuenta
     delete_account_html: Si quies desaniciar la cuenta, pues facelo <a href="%{path}">equí</a>. Va pidísete que confirmes l'aición.
     description:
@@ -438,9 +444,12 @@ ast:
       saml: SAML
     register: Rexistrase
     registration_closed: "%{instance} nun acepta cuentes nueves"
+    resend_confirmation: Volver unviar les instrucciones de confirmación
     security: Seguranza
     setup:
+      email_below_hint_html: Si la direición de corréu electrónicu ye incorreuta, pues camudala equí ya recibir un mensaxes de confirmación nuevu.
       email_settings_hint_html: Unvióse'l mensaxe de confirmación a %{email}. Si la direición de corréu electrónicu nun ye correuta, pues camudala na configuración de la cuenta.
+      title: Configuración
     sign_in:
       preamble_html: Anicia la sesión colos tos datos d'accesu en <strong>%{domain}</strong>. Si la cuenta ta agospiada n'otru sirvidor, nun vas ser a aniciar la sesión equí.
       title: Aniciu de la sesión en «%{domain}»
