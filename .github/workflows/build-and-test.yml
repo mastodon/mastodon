@@ -312,20 +312,3 @@ jobs:
 
       - name: Check migration result
         run: './bin/rails tests:migrations:check_database'
-
-  node_run:
-    runs-on: ubuntu-latest
-    needs:
-      - build
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          cache: yarn
-          node-version-file: '.nvmrc'
-
-      - run: yarn install --frozen-lockfile
-
-      - run: yarn run test:jest
