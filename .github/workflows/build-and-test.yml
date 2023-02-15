@@ -107,8 +107,9 @@ jobs:
         # Docker Hub image
         image: postgres:14
         # Provide the password for postgres
-        # env:
-        #   POSTGRES_PASSWORD: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
@@ -122,7 +123,8 @@ jobs:
     env:
       CONTINUOUS_INTEGRATION: true
       DB_HOST: localhost
-      DB_USER: root
+      DB_USER: postgres
+      DB_PASS: postgres
       DISABLE_SIMPLECOV: true
       RAILS_ENV: test
     # needs:
