@@ -5,10 +5,11 @@ on:
   pull_request:
 
 env:
-  BUNDLE_CLEAN: '--force'
+  BUNDLE_CLEAN: true
   BUNDLE_FROZEN: true
   BUNDLE_WITHOUT: 'development production'
-  BUNDLE_DEPLOYMENT: true
+  BUNDLE_JOBS: 3
+  BUNDLE_RETRY: 3
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -129,6 +130,9 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version}}
           bundler-cache: true
+
+      - name: Clean system bundle for backward compat of system gems
+        run: bundle clean --force
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
