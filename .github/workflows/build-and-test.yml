@@ -126,6 +126,7 @@ jobs:
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
+
       - run: bundle exec rspec spec --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec/results.xml --format progress
 
   test-migrations:
