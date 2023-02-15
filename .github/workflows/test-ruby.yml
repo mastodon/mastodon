@@ -1,4 +1,4 @@
-name: CI
+name: Ruby Testing
 
 on:
   push:
@@ -130,9 +130,6 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version}}
           bundler-cache: true
-
-      - name: Clean system bundle for backward compat of system gems
-        run: bundle clean --force
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
