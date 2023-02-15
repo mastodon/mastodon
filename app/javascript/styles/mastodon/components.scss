@@ -6834,7 +6834,8 @@ noscript {
 }
 
 .moved-account-banner,
-.follow-request-banner {
+.follow-request-banner,
+.account-memorial-banner {
   padding: 20px;
   background: lighten($ui-base-color, 4%);
   display: flex;
@@ -6867,6 +6868,10 @@ noscript {
 
 .follow-request-banner .button {
   width: 100%;
+}
+
+.account-memorial-banner__message {
+  margin-bottom: 0;
 }
 
 .column-inline-form {
