@@ -5,7 +5,7 @@ on:
   pull_request:
 
 env:
-  BUNDLE_CLEAN: true
+  BUNDLE_CLEAN: '--force'
   BUNDLE_FROZEN: true
   BUNDLE_WITHOUT: 'development production'
   BUNDLE_DEPLOYMENT: true
