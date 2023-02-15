@@ -25,9 +25,9 @@ services:
 
   # es:
   #   restart: always
-  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.9
   #   environment:
-  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true"
+  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
   #     - "xpack.license.self_generated.type=basic"
   #     - "xpack.security.enabled=false"
   #     - "xpack.watcher.enabled=false"
@@ -37,6 +37,7 @@ services:
   #     - "cluster.name=es-mastodon"
   #     - "discovery.type=single-node"
   #     - "thread_pool.write.queue_size=1000"
+  #     - "ingest.geoip.downloader.enabled=false"
   #   networks:
   #      - external_network
   #      - internal_network
@@ -51,8 +52,6 @@ services:
   #     nofile:
   #       soft: 65536
   #       hard: 65536
-  #   ports:
-  #     - '127.0.0.1:9200:9200'
 
   web:
     build: .
