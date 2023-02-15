@@ -115,14 +115,14 @@ jobs:
       - name: Install native Ruby dependencies
         run: sudo apt-get install -y libicu-dev libidn11-dev
 
+      - name: Install additional system dependencies
+        run: sudo apt-get install -y ffmpeg imagemagick libpam-dev
+
       - name: Set up bundler cache
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby-version}}
           bundler-cache: true
-
-      - name: Install additional system dependencies
-        run: sudo apt-get install -y ffmpeg imagemagick libpam-dev
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
