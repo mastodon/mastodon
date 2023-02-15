@@ -90,6 +90,8 @@ class ActivityPub::ProcessAccountService < BaseService
     set_fetchable_attributes! unless @options[:only_key] || @account.suspended?
 
     @account.save_with_optional_media!
+
+    AccountsIndex.import! @account if Chewy.enabled?
   end
 
   def set_immediate_protocol_attributes!

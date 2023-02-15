@@ -35,7 +35,14 @@ class SearchService < BaseService
   end
 
   def perform_statuses_search!
-    definition = parsed_query.apply(StatusesIndex.filter(term: { searchable_by: @account.id }))
+    statuses_index = StatusesIndex.filter(term: { searchable_by: @account.id })
+    case Rails.configuration.x.search_scope
+    when :public
+      statuses_index = statuses_index.filter.or(term: { visibility: 'public' })
+    when :public_or_unlisted
+      statuses_index = statuses_index.filter.or(terms: { visibility: ['public', 'unlisted'] })
+    end
+    definition = parsed_query.apply(statuses_index, @account)
 
     if @options[:account_id].present?
       definition = definition.filter(term: { account_id: @options[:account_id] })

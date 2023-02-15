@@ -25,7 +25,9 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
           # on the results of the filter, so this filtering happens here instead
           bulk.map! do |entry|
             new_entry = begin
-              if entry[:index] && entry.dig(:index, :data, 'searchable_by').blank?
+              if entry[:index] &&
+                 entry.dig(:index, :data, 'searchable_by').blank? &&
+                 Rails.configuration.x.search_scope == :classic
                 { delete: entry[:index].except(:data) }
               else
                 entry
@@ -58,13 +60,21 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
   end
 
   def scopes
-    [
+    classic_scopes = [
       local_statuses_scope,
       local_mentions_scope,
       local_favourites_scope,
       local_votes_scope,
       local_bookmarks_scope,
     ]
+    case Rails.configuration.x.search_scope
+    when :public
+      classic_scopes + [public_scope]
+    when :public_or_unlisted
+      classic_scopes + [public_or_unlisted_scope]
+    else
+      classic_scopes
+    end
   end
 
   def local_mentions_scope
@@ -85,5 +95,13 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
 
   def local_statuses_scope
     Status.local.select('"statuses"."id", COALESCE("statuses"."reblog_of_id", "statuses"."id") AS status_id')
+  end
+
+  def public_scope
+    Status.with_public_visibility.select('"statuses"."id", "statuses"."id" AS status_id')
+  end
+
+  def public_or_unlisted_scope
+    Status.with_public_or_unlisted_visibility.select('"statuses"."id", "statuses"."id" AS status_id')
   end
 end
