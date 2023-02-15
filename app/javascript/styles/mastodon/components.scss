@@ -393,6 +393,8 @@ body > [data-popper-placement] {
 
 .compose-form {
   padding: 15px;
+  display: flex;
+  flex-direction: column;
 
   &__sensitive-button {
     padding: 10px;
@@ -472,6 +474,12 @@ body > [data-popper-placement] {
 
   .compose-form__autosuggest-wrapper {
     position: relative;
+    overflow: hidden;
+  }
+
+  .autosuggest-textarea {
+    overflow-y: auto;
+    max-height: 100%;
   }
 
   .autosuggest-textarea,
@@ -2795,22 +2803,15 @@ $ui-header-height: 55px;
   .compose-form {
     flex: 1;
     overflow-y: hidden;
-    display: flex;
-    flex-direction: column;
     min-height: 310px;
     padding-bottom: 71px;
     margin-bottom: -71px;
   }
 
   .compose-form__autosuggest-wrapper {
-    overflow-y: auto;
     background-color: $white;
     border-radius: 4px 4px 0 0;
     flex: 0 1 auto;
-  }
-
-  .autosuggest-textarea__textarea {
-    overflow-y: hidden;
   }
 
   .compose-form__upload-thumbnail {
