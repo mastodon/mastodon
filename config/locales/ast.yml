@@ -593,8 +593,10 @@ ast:
     preface: Pues importar los datos qu'esportares dende otru sirvidor, como la llista de perfiles bloquiaos o que sigas.
     types:
       blocking: Llista de perfiles bloquiaos
+      bookmarks: Marcadores
       domain_blocking: Llista de dominios bloquiaos
       following: Llista de siguidores
+      muting: Llista de perfiles colos avisos desactivaos
     upload: Xubir
   invites:
     expired: Caducó
@@ -644,6 +646,7 @@ ast:
       subject: "%{name} marcó'l to artículu como favoritu"
     follow:
       body: "¡Agora %{name} siguete!"
+      subject: "%{name} ta siguiéndote"
     follow_request:
       body: "%{name} solicitó siguite"
       title: Solicitú de siguimientu nueva
