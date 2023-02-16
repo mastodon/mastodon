@@ -178,7 +178,7 @@ RSpec.describe ImportService, type: :service do
   context 'utf-8 encoded domains' do
     subject { ImportService.new }
 
-    let!(:nare)     { Fabricate(:account, username: 'nare', domain: 'թութ.հայ', locked: false, protocol: :activitypub, inbox_url: 'https://թութ.հայ/inbox') }
+    let!(:nare) { Fabricate(:account, username: 'nare', domain: 'թութ.հայ', locked: false, protocol: :activitypub, inbox_url: 'https://թութ.հայ/inbox') }
 
     # Make sure to not actually go to the remote server
     before do
@@ -189,7 +189,7 @@ RSpec.describe ImportService, type: :service do
     let(:import) { Import.create(account: account, type: 'following', data: csv) }
 
     it 'follows the listed account' do
-    expect(account.follow_requests.count).to eq 0
+      expect(account.follow_requests.count).to eq 0
       subject.call(import)
       expect(account.follow_requests.count).to eq 1
     end

@@ -73,7 +73,7 @@ describe Settings::ApplicationsController do
             name: 'My New App',
             redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
             website: 'http://google.com',
-            scopes: [ 'read', 'write', 'follow' ]
+            scopes: ['read', 'write', 'follow']
           }
         }
         response
