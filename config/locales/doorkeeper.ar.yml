@@ -1,3 +1,4 @@
+---
 ar:
   activerecord:
     attributes:
@@ -59,7 +60,7 @@ ar:
       error:
         title: حدث هناك خطأ
       new:
-        prompt_html: "يريد %{client_name} الإذن للوصول إلى حسابك. إنه تطبيق طرف ثالث. <strong>إذا كنت لا تثق فيه، فلا ينبغي أن تأذن له بذلك.</strong>"
+        prompt_html: يريد %{client_name} الإذن للوصول إلى حسابك. إنه تطبيق طرف ثالث. <strong>إذا كنت لا تثق فيه، فلا ينبغي أن تأذن له بذلك.</strong>
         review_permissions: مراجعة الصلاحيات
         title: إذن بالتصريح
       show:
@@ -146,49 +147,49 @@ ar:
       application:
         title: طلب تصريح مفتوح OAuth
     scopes:
-      "admin:read": قراءة كافة البيانات على الخادم
-      "admin:read:accounts": قراءة المعلومات الحساسة عن كافة الحسابات
-      "admin:read:canonical_email_blocks": قراءة معلومات حساسة عن كل بريد إلكتروني أساسي
-      "admin:read:domain_allows": قراءة المعلومات الحساسة عن كافة النطاقات المسموحة
-      "admin:read:domain_blocks": قراءة المعلومات الحساسة عن كافة النطاقات المحجوبة
-      "admin:read:email_domain_blocks": قراءة المعلومات الحساسة عن كل بريد إلكتروني محجوبة
-      "admin:read:ip_blocks": قراءة المعلومات الحساسة عن كافة العناوين IP المحجوبة
-      "admin:read:reports": قراءة المعلومات الحساسة الواردة في جميع التقارير والحسابات المبلغ عنها
-      "admin:write": تعديل كافة البيانات على الخادم
-      "admin:write:accounts": اتخاذ إجراءات إشراف على الحسابات
-      "admin:write:canonical_email_blocks": اتخاذ إجراءات إشراف على البريد الإلكتروني الأساسيين المحجوبين
-      "admin:write:domain_allows": اتخاذ إجراءات إشراف على النطاقات المسموحين
-      "admin:write:domain_blocks": اتخاذ إجراءات إشراف على النطاقات المحجوبين
-      "admin:write:email_domain_blocks": اتخاذ إجراءات إشراف على نطاقات البريد الإلكتروني المحجوبين
-      "admin:write:ip_blocks": اتخاذ إجراءات إشراف على عناوين IP المحجوبين
-      "admin:write:reports": اتخاذ إجراءات إشراف على الإبلاغات
+      admin:read: قراءة كافة البيانات على الخادم
+      admin:read:accounts: قراءة المعلومات الحساسة عن كافة الحسابات
+      admin:read:canonical_email_blocks: قراءة معلومات حساسة عن كل بريد إلكتروني أساسي
+      admin:read:domain_allows: قراءة المعلومات الحساسة عن كافة النطاقات المسموحة
+      admin:read:domain_blocks: قراءة المعلومات الحساسة عن كافة النطاقات المحجوبة
+      admin:read:email_domain_blocks: قراءة المعلومات الحساسة عن كل بريد إلكتروني محجوبة
+      admin:read:ip_blocks: قراءة المعلومات الحساسة عن كافة العناوين IP المحجوبة
+      admin:read:reports: قراءة المعلومات الحساسة الواردة في جميع التقارير والحسابات المبلغ عنها
+      admin:write: تعديل كافة البيانات على الخادم
+      admin:write:accounts: اتخاذ إجراءات إشراف على الحسابات
+      admin:write:canonical_email_blocks: اتخاذ إجراءات إشراف على البريد الإلكتروني الأساسيين المحجوبين
+      admin:write:domain_allows: اتخاذ إجراءات إشراف على النطاقات المسموحين
+      admin:write:domain_blocks: اتخاذ إجراءات إشراف على النطاقات المحجوبين
+      admin:write:email_domain_blocks: اتخاذ إجراءات إشراف على نطاقات البريد الإلكتروني المحجوبين
+      admin:write:ip_blocks: اتخاذ إجراءات إشراف على عناوين IP المحجوبين
+      admin:write:reports: اتخاذ إجراءات إشراف على الإبلاغات
       crypto: استخدم التشفير من الطرف إلى نهاية الطرف
       follow: تعديل علاقات الحساب
       push: تلقي إشعاراتك
       read: قراءة كافة بيانات حسابك
-      "read:accounts": معاينة معلومات الحساب
-      "read:blocks": رؤية الحسابات التي قمت بحجبها
-      "read:bookmarks": اطّلع على فواصلك المرجعية
-      "read:favourites": رؤية مفضلاتك
-      "read:filters": رؤية عوامل التصفية الخاصة بك
-      "read:follows": رؤية متابِعيك
-      "read:lists": رؤية قوائمك
-      "read:mutes": رؤية الحسابات التي كَتمتَها
-      "read:notifications": رؤية إشعاراتك الخاصة
-      "read:reports": رؤية إبلاغاتك
-      "read:search": البحث مكانك
-      "read:statuses": رؤية كافة المنشورات
+      read:accounts: معاينة معلومات الحساب
+      read:blocks: رؤية الحسابات التي قمت بحجبها
+      read:bookmarks: اطّلع على فواصلك المرجعية
+      read:favourites: رؤية مفضلاتك
+      read:filters: رؤية عوامل التصفية الخاصة بك
+      read:follows: رؤية متابِعيك
+      read:lists: رؤية قوائمك
+      read:mutes: رؤية الحسابات التي كَتمتَها
+      read:notifications: رؤية إشعاراتك الخاصة
+      read:reports: رؤية إبلاغاتك
+      read:search: البحث مكانك
+      read:statuses: رؤية كافة المنشورات
       write: تغيير كافة بيانات حسابك
-      "write:accounts": تعديل صفحتك التعريفية
-      "write:blocks": حجب الحسابات و النطاقات
-      "write:bookmarks": الإحتفاظ بالمنشورات في الفواصل المرجعية
-      "write:conversations": كتم وحذف المحادثات
-      "write:favourites": الإعجاب بمنشورات
-      "write:filters": إنشاء عوامل تصفية
-      "write:follows": متابَعة الأشخاص
-      "write:lists": إنشاء القوائم
-      "write:media": إرسال الصور
-      "write:mutes": كتم الأشخاص و المحادثات
-      "write:notifications": مسح إشعاراتك
-      "write:reports": الإبلاغ عن الأشخاص نيابة عنك
-      "write:statuses": نشر منشورات
+      write:accounts: تعديل صفحتك التعريفية
+      write:blocks: حجب الحسابات و النطاقات
+      write:bookmarks: الإحتفاظ بالمنشورات في الفواصل المرجعية
+      write:conversations: كتم وحذف المحادثات
+      write:favourites: الإعجاب بمنشورات
+      write:filters: إنشاء عوامل تصفية
+      write:follows: متابَعة الأشخاص
+      write:lists: إنشاء القوائم
+      write:media: إرسال الصور
+      write:mutes: كتم الأشخاص و المحادثات
+      write:notifications: مسح إشعاراتك
+      write:reports: الإبلاغ عن الأشخاص نيابة عنك
+      write:statuses: نشر منشورات
