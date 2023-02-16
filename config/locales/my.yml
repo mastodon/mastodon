@@ -142,12 +142,21 @@ my:
         update_status: ပို့စ်ပြင်ဆင်ရန်
         update_user_role: အခန်းကဏ္ဍပြင်ဆင်ရန်
       actions:
-        create_user_role_html: "%{name} သည် %{target} အခန်းကဏ္ဍကို ဖန်တီးခဲ့သည်။"
-        demote_user_html: "%{name} သည် အသုံးပြုသူ %{target} ကို ဖြုတ်လိုက်သည်"
+        create_user_role_html: "%{name} သည် %{target} အခန်းကဏ္ဍကို ဖန်တီးပြီးပါပြီ"
+        demote_user_html: "%{name} သည် အသုံးပြုသူ %{target} ကို ဖြုတ်ပြီးပါပြီ"
         destroy_announcement_html: "%{name} ကြေညာချက် %{target} ကို ဖျက်လိုက်သည်"
         destroy_canonical_email_block_html: "ဟက်ရှ် %{target} ဖြင့် %{name} အီးမေးလ်ပိတ်သိမ်းထားခြင်းကို ဖယ်ရှားပြီးပါပြီ"
         destroy_custom_emoji_html: "%{name} ဖျက်လိုက်သော အီမိုဂျီ %{target}"
+        destroy_domain_block_html: "%{name} မှ ပြန်ဖွင့်လိုက်သော ဒိုမိန်း %{target}"
+        destroy_user_role_html: "%{name} မှ ဖျက်ထားသော အခန်းကဏ္ဍ %{target} "
+        disable_2fa_user_html: "%{name} မှ အသုံးပြုသူ %{target} အတွက် နှစ်ဆင့်ခံလုံခြုံရေးလိုအပ်ချက်ကို ပိတ်ထားသည်"
         disable_custom_emoji_html: "%{name} ပိတ်ထားသောအီမိုဂျီ %{target}"
+        disable_sign_in_token_auth_user_html: "%{name}  မှ %{target} အတွက် အီးမေးလ်တိုကင် အထောက်အထားပြခြင်းကို ပိတ်ထားသည်"
+        disable_user_html: "%{name} မှ အသုံးပြုသူ %{target} အတွက် အကောင့်ဝင်ခြင်းကို ပိတ်ထားသည်"
+        enable_custom_emoji_html: "%{name} မှ ဖွင့်ထားသည့် အီမိုဂျီ %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} မှ %{target} အတွက် အီးမေးလ်တိုကင် အထောက်အထားပြခြင်းကို ဖွင့်ထားသည်"
+        enable_user_html: "%{name} မှ အသုံးပြုသူ %{target} အတွက် အကောင့်ဝင်ခြင်းကို ဖွင့်ထားသည်"
+        memorialize_account_html: "%{name} မှ %{target} ၏ အကောင့်ကို အမှတ်တရ စာမျက်နှာအဖြစ် ပြောင်းလဲခဲ့သည်"
       deleted_account: အကောင့်ဖျက်ပြီးပါပြီ
       empty: မှတ်တမ်းများ မတွေ့ပါ။
     announcements:
