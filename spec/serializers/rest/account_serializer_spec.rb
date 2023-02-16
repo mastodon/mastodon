@@ -34,4 +34,14 @@ describe REST::AccountSerializer do
       expect(subject['roles']).to eq []
     end
   end
+
+  context 'when the account is memorialized' do
+    before do
+      account.memorialize!
+    end
+
+    it 'marks it as such' do
+      expect(subject['memorial']).to be true
+    end
+  end
 end

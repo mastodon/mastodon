@@ -1,4 +1,4 @@
-name: YML Linting
+name: JavaScript Testing
 on:
   push:
     branches-ignore:
@@ -6,24 +6,22 @@ on:
     paths:
       - 'package.json'
       - 'yarn.lock'
-      - '.prettier*'
-      - '**/*.yaml'
-      - '**/*.yml'
-      - '.github/workflows/lint-yml.yml'
-      - '!config/locales/*.yml'
+      - '.nvmrc'
+      - '**/*.js'
+      - '**/*.snap'
+      - '.github/workflows/test-js.yml'
 
   pull_request:
     paths:
       - 'package.json'
       - 'yarn.lock'
-      - '.prettier*'
-      - '**/*.yaml'
-      - '**/*.yml'
-      - '.github/workflows/lint-yml.yml'
-      - '!config/locales/*.yml'
+      - '.nvmrc'
+      - '**/*.js'
+      - '**/*.snap'
+      - '.github/workflows/test-js.yml'
 
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -39,5 +37,5 @@ jobs:
       - name: Install all yarn packages
         run: yarn --frozen-lockfile
 
-      - name: Prettier
-        run: yarn prettier --check "**/*.{yml,yaml}"
+      - name: Jest testing
+        run: yarn test:jest --reporters github-actions summary
