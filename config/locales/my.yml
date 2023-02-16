@@ -1,4 +1,3 @@
----
 my:
   about:
     title: အကြောင်း
@@ -29,11 +28,11 @@ my:
         label: အီးမေးလ်ပြောင်းရန်
         new_email: အီးမေးလ်အသစ်
         submit: အီးမေးလ်ပြောင်းပါ။
-        title: "%{username} အတွက် အီးမေးလ်ပြောင်းပါ"
+        title: '%{username} အတွက် အီးမေးလ်ပြောင်းပါ'
       change_role:
         label: အခန်းကဏ္ဍ ပြောင်းလဲရန်
         no_role: အခန်းကဏ္ဍမရှိ
-        title: "%{username} အတွက် အခန်းကဏ္ဍပြောင်းပါ"
+        title: '%{username} အတွက် အခန်းကဏ္ဍပြောင်းပါ'
       confirm: အတည်ပြု
       confirmed: အတည်ပြုပြီးပါပြီ
       confirming: အတည်ပြုနေသည်
@@ -82,8 +81,8 @@ my:
       reject: ဖယ်ရှားပါ
       remove_avatar: ကိုယ်စားပြုရုပ်ပုံကို ဖယ်ရှားပါ
       remove_header: မျက်နှာဖုံးပုံ ဖယ်ရှားရန်
-      removed_avatar_msg: "%{username} ၏ ကိုယ်စားပြုရုပ်ပုံအား ဖယ်ရှားပြီးပါပြီ"
-      removed_header_msg: "%{username} ၏ မျက်နှာဖုံးပုံအား ဖယ်ရှားပြီးပါပြီ"
+      removed_avatar_msg: '%{username} ၏ ကိုယ်စားပြုရုပ်ပုံအား ဖယ်ရှားပြီးပါပြီ'
+      removed_header_msg: '%{username} ၏ မျက်နှာဖုံးပုံအား ဖယ်ရှားပြီးပါပြီ'
       resend_confirmation:
         already_confirmed: ဤအသုံးပြုသူကို အတည်ပြုပြီးပါပြီ
         send: အတည်ပြုထားသောအီးမေးလ် ပြန်ပို့ပေးရန်
@@ -106,9 +105,9 @@ my:
       suspended: ရပ်ဆိုင်းထားသည်
       title: အကောင့်များ
       unblock_email: အီးမေးလ်ကိုပြန်ဖွင့်မည်
-      unblocked_email_msg: " %{username} အီးမေးလ်ကိုပြန်ဖွင့်လိုက်ပါပြီ"
+      unblocked_email_msg: ' %{username} အီးမေးလ်ကိုပြန်ဖွင့်လိုက်ပါပြီ'
       unsubscribe: စာရင်းမှထွက်ရန်
-      unsuspended_msg: "%{username} ၏ အကောင့်ကို ရပ်ဆိုင်းလိုက်ပါပြီ"
+      unsuspended_msg: '%{username} ၏ အကောင့်ကို ရပ်ဆိုင်းလိုက်ပါပြီ'
       username: အသုံးပြုသူအမည်
       web: ဝဘ်
     action_logs:
@@ -143,6 +142,10 @@ my:
         update_status: ပို့စ်ပြင်ဆင်ရန်
         update_user_role: အခန်းကဏ္ဍပြင်ဆင်ရန်
       actions:
+        create_user_role_html: "%{name} သည် %{target} အခန်းကဏ္ဍကို ဖန်တီးခဲ့သည်။"
+        demote_user_html: "%{name} သည် အသုံးပြုသူ %{target} ကို ဖြုတ်လိုက်သည်"
+        destroy_announcement_html: "%{name} ကြေညာချက် %{target} ကို ဖျက်လိုက်သည်"
+        destroy_canonical_email_block_html: "ဟက်ရှ် %{target} ဖြင့် %{name} အီးမေးလ်ပိတ်သိမ်းထားခြင်းကို ဖယ်ရှားပြီးပါပြီ"
         destroy_custom_emoji_html: "%{name} ဖျက်လိုက်သော အီမိုဂျီ %{target}"
         disable_custom_emoji_html: "%{name} ပိတ်ထားသောအီမိုဂျီ %{target}"
       deleted_account: အကောင့်ဖျက်ပြီးပါပြီ
@@ -282,13 +285,13 @@ my:
         delete: ဖျက်ပါ
         title: မှတ်စုများ
       reopen: အစီရင်ခံစာပြန်ဖွင့်ရန်
-      report: "#%{id} အစီရင်ခံရန်"
+      report: '#%{id} အစီရင်ခံရန်'
       resolved: ဖြေရှင်းပြီးပါပြီ
       status: အခြေအနေ
       summary:
         actions:
-          suspend_html: "<strong>@%{acct}</strong> ကို ဆိုင်းငံ့ထားသောကြောင့် ပရိုဖိုင်နှင့် အကြောင်းအရာများအား ဝင်ရောက်ခွင့်မရှိတော့သဖြင့် အပြန်အလှန် တုံ့ပြန်၍ မရတော့ခြင်း"
-        delete_data_html: "<strong>@%{acct}</strong> ၏ ပရိုဖိုင်နှင့် အကြောင်းအရာများကို ဆိုင်းငံ့ထားခြင်းမရှိပါက ယခုမှ ရက်ပေါင်း ၃၀ အတွင်း ဖျက်ရန်"
+          suspend_html: <strong>@%{acct}</strong> ကို ဆိုင်းငံ့ထားသောကြောင့် ပရိုဖိုင်နှင့် အကြောင်းအရာများအား ဝင်ရောက်ခွင့်မရှိတော့သဖြင့် အပြန်အလှန် တုံ့ပြန်၍ မရတော့ခြင်း
+        delete_data_html: <strong>@%{acct}</strong> ၏ ပရိုဖိုင်နှင့် အကြောင်းအရာများကို ဆိုင်းငံ့ထားခြင်းမရှိပါက ယခုမှ ရက်ပေါင်း ၃၀ အတွင်း ဖျက်ရန်
       updated_at: ပြင်ဆင်ပြီးပါပြီ
       view_profile: ပရိုဖိုင်ကြည့်ရန်
     roles:
@@ -374,7 +377,7 @@ my:
       guide_link_text: လူတိုင်းပါဝင်ကူညီနိုင်ပါတယ်။
   application_mailer:
     salutation: "%{name}"
-    view: ကြည့်ရှုရန် -
+    view: 'ကြည့်ရှုရန် -'
     view_profile: ပရိုဖိုင်ကိုကြည့်ရန်
     view_status: ပို့စ်ကိုကြည့်ရန်
   applications:
@@ -400,12 +403,12 @@ my:
       account_status: အကောင့်အခြေအနေ
   authorize_follow:
     follow: စောင့်ကြည့်မယ်
-    follow_request: သင်သည် စောင့်ကြည့်မည် တောင်းဆိုချက်တစ်ခု ပေးပို့ထားသည်-
+    follow_request: 'သင်သည် စောင့်ကြည့်မည် တောင်းဆိုချက်တစ်ခု ပေးပို့ထားသည်-'
     post_follow:
       close: သို့မဟုတ် သင်သည် ဤဝင်းဒိုးကို ပိတ်နိုင်သည်
       return: အသုံးပြုသူ၏ ပရိုဖိုင်ကိုပြရန်
       web: ဝဘ်သို့ သွားပါ
-    title: "%{acct} ကို စောင့်ကြည့်မယ်"
+    title: '%{acct} ကို စောင့်ကြည့်မယ်'
   challenge:
     confirm: ဆက်လုပ်မည်
     invalid_password: စကားဝှက် မမှန်ပါ
@@ -432,7 +435,7 @@ my:
     success_msg: သင့်အကောင့်ကို အောင်မြင်စွာ ဖျက်လိုက်ပါပြီ
   disputes:
     strikes:
-      status: "#%{id} ပို့စ်"
+      status: '#%{id} ပို့စ်'
       title: "%{date} မှ %{action}"
       title_actions:
         none: သတိပေးချက်
@@ -442,7 +445,9 @@ my:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
+    '422':
     '429': Too many requests
+    '500':
     '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
@@ -464,7 +469,7 @@ my:
       statuses: တစ်ဦးချင်းတင်ထားသောပို့စ်များ
       title: စစ်ထုတ်ခြင်းကို ပြင်ဆင်ရန်
     index:
-      contexts: "%{contexts} ရှိ စစ်ထုတ်ထားမှုများ"
+      contexts: '%{contexts} ရှိ စစ်ထုတ်ထားမှုများ'
       delete: ဖျက်ပါ
       empty: သင့်တွင် စစ်ထုတ်ထားခြင်းများ မရှိပါ။
       statuses:
@@ -532,6 +537,8 @@ my:
       over_character_limit: သတ်မှတ်ထားသောစာလုံးအရေအတွက် %{max} ထက်ပိုနေသည်
       too_few_options: တစ်ခုထက်ပိုနေသည်
       too_many_options: သတ်မှတ်ထားသောအရေအတွက် %{max} ကိုကျော်လွန်နေသည်
+  preferences:
+    other: အခြား
   privacy_policy:
     title: ကိုယ်ရေးအချက်အလက်မူဝါဒ
   relationships:
@@ -560,18 +567,18 @@ my:
     two_factor_authentication: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်
   statuses:
     attached:
-      description: ပူးတွဲပါ- %{attached}
+      description: 'ပူးတွဲပါ- %{attached}'
       image:
         other: "%{count} ပုံ"
       video:
         other: "%{count} ဗီဒီယို"
-    edited_at_html: "%{date} ကို ပြင်ဆင်ပြီးပါပြီ"
+    edited_at_html: '%{date} ကို ပြင်ဆင်ပြီးပါပြီ'
     open_in_web: ဝဘ်တွင် ဖွင့်ပါ
     poll:
       total_people:
         other: "%{count} ယောက်"
       total_votes:
-        other: မဲအရေအတွက် %{count} မဲ
+        other: "မဲအရေအတွက် %{count} မဲ"
       vote: မဲပေးမည်
     show_more: ပိုမိုပြရန်
     show_newer: ပို့စ်အသစ်များပြရန်
@@ -591,7 +598,7 @@ my:
       '15778476': ၆ လ
       '2629746': ၁ လ
       '31556952': ၁ နှစ်
-      '5259492': ၂ လ
+      '5259492': ၂ လ 
       '604800': ၁ ပတ်
       '63113904': ၂ နှစ်
       '7889238': ၃ လ
@@ -620,12 +627,12 @@ my:
       explanation:
         disable: သင့်အကောင့်ကို အသုံးမပြုနိုင်တော့သော်လည်း သင့်ပရိုဖိုင်နှင့် အခြားအချက်အလက်များမှာ ကျန်ရှိနေမည်ဖြစ်သည်။ သင့်အချက်အလက်ကို မိတ္တူကူးရန်၊ အကောင့်သတ်မှတ်ချက်များကို ပြောင်းလဲရန် သို့မဟုတ် သင့်အကောင့်ဖျက်သိမ်းရန်တို့အတွက် အရန်သိမ်းဆည်းမှုအား သင် တောင်းဆိုနိုင်သည်။
         suspend: သင့်အကောင့်ကို အသုံးမပြုနိုင်တော့သည့်အပြင် ပရိုဖိုင်နှင့် အခြားအချက်အလက်များကိုလည်း အသုံးပြု၍မရတော့ပါ။ သင့်အချက်အလက်ကို ရက်ပေါင်း ၃၀ ခန့်အတွင်း အပြည့်အဝ မဖယ်ရှားမချင်း အချက်အလက်များ အရန်ကူးယူရန်အတွက် အကောင့်သို့ ဝင်ရောက်နိုင်ပါသေးသည်။ သို့သော် အကောင့်ရပ်ဆိုင်းထားမှုရှောင်လွှဲခြင်းမှ ကာကွယ်ရန်အတွက် အခြေခံအချက်အလက်အချို့ကို ကျွန်ုပ်တို့ ထိန်းသိမ်းထားရပါမည်။
-      reason: အကြောင်းပြချက် -
+      reason: 'အကြောင်းပြချက် -'
       subject:
-        none: "%{acct} အတွက် သတိပေးချက်"
+        none: '%{acct} အတွက် သတိပေးချက်'
     welcome:
       edit_profile_action: ပရိုဖိုင်ထည့်သွင်းရန်
       edit_profile_step: ပရိုဖိုင်ဓာတ်ပုံတစ်ပုံ တင်ခြင်း၊ ဖော်ပြမည့်အမည် ပြောင်းလဲခြင်းနှင့် အခြားအရာများပြုလုပ်ခြင်းတို့ဖြင့် သင့်ပရိုဖိုင်ကို စိတ်ကြိုက်ပြင်ဆင်နိုင်ပါသည်။ စောင့်ကြည့်သူအသစ်များ သင့်ကိုစောင့်ကြည့်ခွင့်မပြုမီ ပြန်လည်သုံးသပ်ရန်အတွက် ဆုံးဖြတ်နိုင်ပါသည်။
   webauthn_credentials:
     delete: ဖျက်ရန်
-    registered_on: "%{date} တွင် စာရင်းသွင်းထားသည်"
+    registered_on: '%{date} တွင် စာရင်းသွင်းထားသည်'
