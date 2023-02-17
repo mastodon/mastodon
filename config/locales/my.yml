@@ -136,6 +136,7 @@ my:
         remove_avatar_user: ကိုယ်စားပြုရုပ်ပုံကို ဖယ်ရှားပါ
         silence_account: အကောင့် ကန့်သတ်ပါ
         suspend_account: အကောင့် ရပ်ဆိုင်းပါ
+        unassigned_report: အစီရင်ခံစာ ဖြုတ်ရန်
         update_announcement: ကြေညာချက်ပြင်ဆင်ရန်
         update_custom_emoji: စိတ်ကြိုက်အီမိုဂျီကို ပြင်ဆင်ရန်
         update_ip_block: IP စည်းမျဉ်း ပြင်ဆင်ရန်
@@ -159,13 +160,17 @@ my:
         memorialize_account_html: "%{name} မှ %{target} ၏ အကောင့်ကို အမှတ်တရ စာမျက်နှာအဖြစ် ပြောင်းလဲခဲ့သည်"
         reject_user_html: "%{name} မှ %{target} မှတစ်ဆင့် အကောင့်ဖွင့်ခြင်းကို ပယ်ချခဲ့သည်"
         remove_avatar_user_html: "%{name} မှ %{target} ၏ ကိုယ်စားပြုရုပ်ပုံကို ဖယ်ရှားခဲ့သည်"
+        reopen_report_html: "%{name} မှ အစီရင်ခံစာ %{target} ကို ပြန်ဖွင့်ခဲ့သည်"
         resend_user_html: "%{name} မှ %{target} အတွက် အတည်ပြုချက်အီးမေးလ်ကို  ပြန်ပို့ခဲ့သည်"
         reset_password_user_html: "%{name} မှ အသုံးပြုသူ %{target} ၏ စကားဝှက်ကို ပြန်လည်သတ်မှတ်ခဲ့သည်"
+        resolve_report_html: "%{name} မှ အစီရင်ခံစာ %{target} ကို ဖြေရှင်းထားသည်"
         silence_account_html: "%{name} မှ %{target} ၏ အကောင့်ကို ကန့်သတ်ထားသည်"
         suspend_account_html: "%{name} မှ %{target} ၏ အကောင့်ကို ဆိုင်းငံ့ထားသည်"
+        unassigned_report_html: "%{name} မှ အစီရင်ခံစာ %{target} ကို ဖြုတ်ထားသည်"
         unblock_email_account_html: "%{name} မှ %{target} ၏ အီးမေးလ်လိပ်စာကို ပြန်ဖွင့်ခဲ့သည်"
         update_announcement_html: "%{name} မှ ကြေညာချက် %{target} ကို ပြင်ဆင်ခဲ့သည်"
         update_custom_emoji_html: "%{name} မှ အီမိုဂျီ %{target} ကို ပြင်ဆင်ခဲ့သည်"
+        update_status_html: "%{name} မှ %{target} တင်ထားသောပို့စ်ကို ပြင်ဆင်ခဲ့သည်"
         update_user_role_html: "%{name} မှ %{target} အခန်းကဏ္ဍကို ပြောင်းလဲခဲ့ပါသည်"
       deleted_account: အကောင့်ဖျက်ပြီးပါပြီ
       empty: မှတ်တမ်းများ မတွေ့ပါ။
@@ -207,6 +212,7 @@ my:
         title: စိတ်ကြိုက်အီမိုဂျီအသစ် ထည့်ပါ
       no_emoji_selected: မည်သည့်အီမိုဂျီကိုမျှ ရွေးချယ်ထားခြင်းမရှိသောကြောင့် ပြောင်းလဲခြင်းမရှိပါ
       title: စိတ်ကြိုက်အီမိုဂျီများ
+      uncategorized: အမျိုးအစားခွဲခြားထားခြင်းမရှိပါ
       unlist: စာရင်းမသွင်းထားပါ
       unlisted: စာရင်းမသွင်းထားပါ
       update_failed_msg: ထိုအီမိုဂျီကို ပြင်ဆင်၍မရပါ
@@ -214,11 +220,18 @@ my:
       upload: တင္ရန်
     dashboard:
       active_users: လက်ရှိအသုံးပြုသူများ
+      interactions: အပြန်အလှန်ဆက်သွယ်မှုများ
       media_storage: မီဒီယာသိုလှောင်မှု
       new_users: အသုံးပြုသူအသစ်များ
+      space: နေရာလွတ်အသုံးပြုမှု
+      title: ဒက်ရှ်ဘုတ်မြင်ကွင်း
       top_languages: လက်ရှိအသုံးများလျက်ရှိသည့် ဘာသာစကား
       top_servers: လက်ရှိအသုံးများလျက်ရှိသည့် ဆာဗာများ
       website: ဝဘ်ဆိုဒ်
+    disputes:
+      appeals:
+        empty: အယူခံဝင်ထားခြင်းမရှိပါ။
+        title: အယူခံဝင်ထားခြင်းများ
     domain_blocks:
       domain: ဒိုမိန်း
       new:
@@ -347,6 +360,7 @@ my:
         invite_users_description: ဆာဗာသို့ လူသစ်များဖိတ်ခေါ်ရန်အတွက် အသုံးပြုသူအား ခွင့်ပြုရန်
         manage_announcements: ကြေညာချက်များကို စီမံပါ
         manage_announcements_description: ဆာဗာပေါ်တွင် ကြေညာချက်များစီမံရန်အတွက် အသုံးပြုသူအား ခွင့်ပြုရန်
+        manage_appeals: အယူခံဝင်ထားခြင်းများကို စီမံပါ
         manage_reports: အစီရင်ခံစာများကို စီမံပါ
         manage_roles: အခန်းကဏ္ဍများကို စီမံပါ
         manage_rules: စည်းမျဉ်းများကို စီမံပါ
@@ -496,6 +510,8 @@ my:
     success_msg: သင့်အကောင့်ကို အောင်မြင်စွာ ဖျက်လိုက်ပါပြီ
   disputes:
     strikes:
+      appeals:
+        submit: အယူခံဝင်ခွင့်ပြုရန်
       status: '#%{id} ပို့စ်'
       title: "%{date} မှ %{action}"
       title_actions:
