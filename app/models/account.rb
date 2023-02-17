@@ -539,6 +539,7 @@ class Account < ApplicationRecord
 
   def ensure_keys!
     return unless local? && private_key.blank? && public_key.blank?
+
     generate_keys
     save!
   end

@@ -30,6 +30,7 @@ class Setting < RailsSettings::Base
           default_value = default_settings[key]
 
           return default_value.with_indifferent_access.merge!(db_val.value) if default_value.is_a?(Hash)
+
           db_val.value
         else
           default_settings[key]
@@ -43,6 +44,7 @@ class Setting < RailsSettings::Base
 
       default_settings.each do |key, default_value|
         next if records.key?(key) || default_value.is_a?(Hash)
+
         records[key] = Setting.new(var: key, value: default_value)
       end
 
@@ -51,6 +53,7 @@ class Setting < RailsSettings::Base
 
     def default_settings
       return {} unless RailsSettings::Default.enabled?
+
       RailsSettings::Default.instance
     end
   end

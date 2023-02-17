@@ -14,52 +14,6 @@ Bundler/OrderedGems:
   Exclude:
     - 'Gemfile'
 
-# Offense count: 81
-# This cop supports safe autocorrection (--autocorrect).
-Layout/EmptyLineAfterGuardClause:
-  Exclude:
-    - 'app/controllers/api/v1/tags_controller.rb'
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/concerns/session_tracking_concern.rb'
-    - 'app/controllers/concerns/signature_verification.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/lib/activitypub/activity.rb'
-    - 'app/lib/activitypub/tag_manager.rb'
-    - 'app/lib/request.rb'
-    - 'app/lib/settings/scoped_settings.rb'
-    - 'app/lib/status_filter.rb'
-    - 'app/lib/tag_manager.rb'
-    - 'app/lib/webfinger.rb'
-    - 'app/models/account.rb'
-    - 'app/models/account_conversation.rb'
-    - 'app/models/admin/import.rb'
-    - 'app/models/custom_filter.rb'
-    - 'app/models/favourite.rb'
-    - 'app/models/form/admin_settings.rb'
-    - 'app/models/poll.rb'
-    - 'app/models/session_activation.rb'
-    - 'app/models/setting.rb'
-    - 'app/models/status_edit.rb'
-    - 'app/models/user.rb'
-    - 'app/models/user_role.rb'
-    - 'app/services/activitypub/fetch_remote_actor_service.rb'
-    - 'app/services/activitypub/fetch_remote_status_service.rb'
-    - 'app/services/activitypub/fetch_replies_service.rb'
-    - 'app/services/activitypub/process_account_service.rb'
-    - 'app/services/favourite_service.rb'
-    - 'app/services/notify_service.rb'
-    - 'app/services/post_status_service.rb'
-    - 'app/services/vote_service.rb'
-    - 'app/validators/follow_limit_validator.rb'
-    - 'app/validators/unreserved_username_validator.rb'
-    - 'app/workers/scheduler/accounts_statuses_cleanup_scheduler.rb'
-    - 'db/migrate/20190314181829_migrate_open_registrations_setting.rb'
-    - 'db/migrate/20190529143559_preserve_old_layout_for_existing_users.rb'
-    - 'db/migrate/20210421121431_add_case_insensitive_btree_index_to_tags.rb'
-    - 'db/post_migrate/20221101190723_backfill_admin_action_logs.rb'
-    - 'db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb'
-    - 'lib/mastodon/domains_cli.rb'
-
 # Offense count: 71
 # This cop supports safe autocorrection (--autocorrect).
 Layout/EmptyLineAfterMagicComment:

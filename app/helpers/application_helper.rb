@@ -105,6 +105,7 @@ module ApplicationHelper
 
   def can?(action, record)
     return false if record.nil?
+
     policy(record).public_send("#{action}?")
   end
 

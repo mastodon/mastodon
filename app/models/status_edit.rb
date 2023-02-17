@@ -45,6 +45,7 @@ class StatusEdit < ApplicationRecord
 
   def emojis
     return @emojis if defined?(@emojis)
+
     @emojis = CustomEmoji.from_text([spoiler_text, text].join(' '), status.account.domain)
   end
 

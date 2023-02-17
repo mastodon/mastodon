@@ -107,6 +107,7 @@ class AccountConversation < ApplicationRecord
 
   def push_to_streaming_api
     return if destroyed? || !subscribed_to_timeline?
+
     PushConversationWorker.perform_async(id)
   end
 

@@ -51,6 +51,7 @@ class SessionActivation < ApplicationRecord
 
     def deactivate(id)
       return unless id
+
       where(session_id: id).destroy_all
     end
 

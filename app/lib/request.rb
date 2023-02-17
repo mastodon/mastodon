@@ -182,6 +182,7 @@ class Request
 
       contents = truncated_body(limit)
       raise Mastodon::LengthValidationError if contents.bytesize > limit
+
       contents
     end
   end

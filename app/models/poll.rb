@@ -105,6 +105,7 @@ class Poll < ApplicationRecord
 
   def reset_parent_cache
     return if status_id.nil?
+
     Rails.cache.delete("statuses/#{status_id}")
   end
 
