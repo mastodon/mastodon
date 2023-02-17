@@ -1,4 +1,3 @@
----
 ko:
   simple_form:
     hints:
@@ -13,7 +12,7 @@ ko:
         include_statuses: 사용자는 어떤 게시물에 대해 경고나 조치가 취해졌는지 볼 수 있게 됩니다
         send_email_notification: 사용자는 어떤 일이 일어났는 지에 대한 설명을 받게 됩니다
         text_html: 선택사항. 게시물 문법을 사용할 수 있습니다. <a href="%{path}">경고 틀을 추가</a>하여 시간을 절약할 수 있습니다
-        type_html: "<strong>%{acct}</strong>에 대해 취할 행동 선택"
+        type_html: <strong>%{acct}</strong>에 대해 취할 행동 선택
         types:
           disable: 사용자가 계정을 사용하는 것을 막지만, 그의 게시물을 삭제하거나 숨기지는 않습니다.
           none: 이것을 사용해서 어떤 동작도 하지 않고, 사용자에게 경고를 보냅니다.
@@ -39,7 +38,7 @@ ko:
         digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
         discoverable: 추천, 트렌드 및 기타 기능을 통해 낯선 사람이 내 계정을 발견할 수 있도록 허용합니다
         email: 당신은 확인 메일을 받게 됩니다
-        fields: 당신의 프로파일에 최대 4개까지 표 형식으로 나타낼 수 있습니다
+        fields: 프로필에 최대 4개의 항목을 표로 표시할 수 있습니다.
         header: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
         inbox_url: 사용 할 릴레이 서버의 프론트페이지에서 URL을 복사합니다
         irreversible: 필터링 된 게시물은 나중에 필터가 사라지더라도 돌아오지 않게 됩니다
@@ -175,7 +174,7 @@ ko:
         current_password: 현재 암호 입력
         data: 데이터
         discoverable: 계정을 다른 사람들에게 추천하기
-        display_name: 표시되는 이름
+        display_name: 표시 이름
         email: 이메일 주소
         expires_in: 만료시각
         fields: 프로필 메타데이터
@@ -305,7 +304,7 @@ ko:
       webhook:
         events: 활성화된 이벤트
         url: 엔드포인트 URL
-    'no': 아니오
+    'no': '아니오'
     not_recommended: 추천하지 않음
     recommended: 추천함
     required:
@@ -314,4 +313,4 @@ ko:
     title:
       sessions:
         webauthn: 로그인하기 위해서 보안 키를 사용해 주세요
-    'yes': 네
+    'yes': '네'
