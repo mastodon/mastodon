@@ -37,7 +37,7 @@ describe Settings::ApplicationsController do
   end
 
   describe 'GET #new' do
-    it 'works' do
+    it 'returns http success' do
       get :new
       expect(response).to have_http_status(200)
     end
