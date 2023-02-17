@@ -252,9 +252,9 @@ RSpec.describe ActivityPub::Activity::Create do
             type: 'Note',
             content: 'Lorem ipsum',
             to: {
-              'type': 'OrderedCollection',
-              'id': 'http://example.com/followers',
-              'first': 'http://example.com/followers?page=true',
+              type: 'OrderedCollection',
+              id: 'http://example.com/followers',
+              first: 'http://example.com/followers?page=true',
             }
           }
         end
