@@ -11,6 +11,10 @@ module Admin
       @rule  = Rule.new
     end
 
+    def edit
+      authorize @rule, :update?
+    end
+
     def create
       authorize :rule, :create?
 
@@ -22,10 +26,6 @@ module Admin
         @rules = Rule.ordered
         render :index
       end
-    end
-
-    def edit
-      authorize @rule, :update?
     end
 
     def update

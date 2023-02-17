@@ -1257,32 +1257,6 @@ RSpec/VerifiedDoubles:
     - 'spec/workers/regeneration_worker_spec.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: ExpectedOrder, Include.
-# ExpectedOrder: index, show, new, edit, create, update, destroy
-# Include: app/controllers/**/*.rb
-Rails/ActionOrder:
-  Exclude:
-    - 'app/controllers/admin/announcements_controller.rb'
-    - 'app/controllers/admin/roles_controller.rb'
-    - 'app/controllers/admin/rules_controller.rb'
-    - 'app/controllers/admin/warning_presets_controller.rb'
-    - 'app/controllers/admin/webhooks_controller.rb'
-    - 'app/controllers/api/v1/admin/domain_allows_controller.rb'
-    - 'app/controllers/api/v1/admin/domain_blocks_controller.rb'
-    - 'app/controllers/api/v1/admin/email_domain_blocks_controller.rb'
-    - 'app/controllers/api/v1/admin/ip_blocks_controller.rb'
-    - 'app/controllers/api/v1/filters_controller.rb'
-    - 'app/controllers/api/v1/media_controller.rb'
-    - 'app/controllers/api/v1/push/subscriptions_controller.rb'
-    - 'app/controllers/api/v2/filters/keywords_controller.rb'
-    - 'app/controllers/api/v2/filters/statuses_controller.rb'
-    - 'app/controllers/api/v2/filters_controller.rb'
-    - 'app/controllers/auth/registrations_controller.rb'
-    - 'app/controllers/filters_controller.rb'
-    - 'app/controllers/settings/applications_controller.rb'
-    - 'app/controllers/settings/two_factor_authentication/webauthn_credentials_controller.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb
 Rails/ActiveRecordCallbacksOrder:

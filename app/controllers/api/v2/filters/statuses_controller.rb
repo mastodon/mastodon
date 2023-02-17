@@ -12,13 +12,13 @@ class Api::V2::Filters::StatusesController < Api::BaseController
     render json: @status_filters, each_serializer: REST::FilterStatusSerializer
   end
 
-  def create
-    @status_filter = current_account.custom_filters.find(params[:filter_id]).statuses.create!(resource_params)
-
+  def show
     render json: @status_filter, serializer: REST::FilterStatusSerializer
   end
 
-  def show
+  def create
+    @status_filter = current_account.custom_filters.find(params[:filter_id]).statuses.create!(resource_params)
+
     render json: @status_filter, serializer: REST::FilterStatusSerializer
   end
 
