@@ -3450,14 +3450,6 @@ Style/MutableConstant:
     - 'lib/mastodon/snowflake.rb'
     - 'spec/controllers/api/base_controller_spec.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowedMethods.
-# AllowedMethods: be, be_a, be_an, be_between, be_falsey, be_kind_of, be_instance_of, be_truthy, be_within, eq, eql, end_with, include, match, raise_error, respond_to, start_with
-Style/NestedParenthesizedCalls:
-  Exclude:
-    - 'spec/services/post_status_service_spec.rb'
-
 # Offense count: 7
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: MinDigits, Strict, AllowedNumbers, AllowedPatterns.
