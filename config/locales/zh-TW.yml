@@ -241,11 +241,11 @@ zh-TW:
         create_user_role_html: "%{name} 建立了 %{target} 角色"
         demote_user_html: "%{name} 將使用者 %{target} 降級"
         destroy_announcement_html: "%{name} 刪除了公告 %{target}"
-        destroy_canonical_email_block_html: "%{name} 取消了 hash 為 %{target} 之 e-mail 的封鎖"
+        destroy_canonical_email_block_html: "%{name} 已解除封鎖 hash 為 %{target} 的電子郵件"
         destroy_custom_emoji_html: "%{name} 刪除了表情符號 %{target}"
         destroy_domain_allow_html: "%{name} 不允許與網域 %{target} 加入聯邦宇宙"
-        destroy_domain_block_html: "%{name} 取消了對網域 %{target} 的封鎖"
-        destroy_email_domain_block_html: "%{name} 取消了對電子郵件網域 %{target} 的封鎖"
+        destroy_domain_block_html: "%{name} 已解除封鎖網域 %{target}"
+        destroy_email_domain_block_html: "%{name} 已解除封鎖電子郵件網域 %{target}"
         destroy_instance_html: "%{name} 清除了網域 %{target}"
         destroy_ip_block_html: "%{name} 刪除了 IP %{target} 的規則"
         destroy_status_html: "%{name} 刪除了 %{target} 的嘟文"
@@ -271,7 +271,7 @@ zh-TW:
         silence_account_html: "%{name} 靜音了使用者 %{target}"
         suspend_account_html: "%{name} 停權了使用者 %{target}"
         unassigned_report_html: "%{name} 取消指派 %{target} 的檢舉"
-        unblock_email_account_html: "%{name} 解除封鎖了 %{target} 的電子郵件地址"
+        unblock_email_account_html: "%{name} 已解除封鎖 %{target} 的電子郵件地址"
         unsensitive_account_html: "%{name} 將 %{target} 的媒體檔案的敏感狀態取消"
         unsilence_account_html: "%{name} 取消了使用者 %{target} 的靜音狀態"
         unsuspend_account_html: "%{name} 取消了使用者 %{target} 的停權狀態"
@@ -377,7 +377,7 @@ zh-TW:
       domain: 站點
       edit: 更改封鎖的站台
       existing_domain_block: 您已對 %{name} 施加了更嚴格的限制。
-      existing_domain_block_html: 您已經對 %{name} 施加了更嚴格的限制，您需要先把他<a href="%{unblock_url}">取消封鎖</a>。
+      existing_domain_block_html: 您已經對 %{name} 施加了更嚴格的限制，您需要先 <a href="%{unblock_url}">解除封鎖</a>。
       export: 匯出
       import: 匯入
       new:
