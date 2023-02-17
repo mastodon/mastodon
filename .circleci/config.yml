@@ -217,11 +217,3 @@ workflows:
       - test-two-step-migrations:
           requires:
             - build
-      - node/run:
-          cache-version: v1
-          name: test-webui
-          pkg-manager: yarn
-          requires:
-            - build
-          version: '16.19'
-          yarn-run: test:jest

@@ -23,6 +23,7 @@ ast:
         name: Nome
         new: Aplicación nueva
         scopes: Ámbitos
+        title: Les tos aplicaciones
       new:
         title: Aplicación nueva
       show:
@@ -66,11 +67,22 @@ ast:
         write: Accesu de namás escritura
       title:
         accounts: Cuentes
+        admin/accounts: Alministración de cuentes
         admin/all: Toles funciones alministratives
+        admin/reports: Alministración d'informes
+        all: Accesu completu a la cuenta de Mastodon
+        bookmarks: Marcadores
         conversations: Conversaciones
         crypto: Cifráu de puntu a puntu
+        favourites: Favoritos
         filters: Peñeres
+        lists: Llistes
+        media: Elementos multimedia
+        mutes: Perfiles colos avisos desativaos
         notifications: Avisos
+        reports: Informes
+        search: Busca
+        statuses: Artículos
     layouts:
       admin:
         nav:
@@ -97,6 +109,8 @@ ast:
       write: modifica los datos de les cuentes
       write:accounts: modifica los perfiles
       write:blocks: bloquia cuentes ya dominios
+      write:bookmarks: meter artículos en Marcadores
+      write:conversations: desaniciar ya desactivar los avisos de conversaciones
       write:favourites: artículos favoritos
       write:filters: crea peñeres
       write:follows: sigue a perfiles

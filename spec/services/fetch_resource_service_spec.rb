@@ -21,7 +21,7 @@ RSpec.describe FetchResourceService, type: :service do
 
     context 'when OpenSSL::SSL::SSLError is raised' do
       before do
-        request = double()
+        request = double
         allow(Request).to receive(:new).and_return(request)
         allow(request).to receive(:add_headers)
         allow(request).to receive(:on_behalf_of)
@@ -33,7 +33,7 @@ RSpec.describe FetchResourceService, type: :service do
 
     context 'when HTTP::ConnectionError is raised' do
       before do
-        request = double()
+        request = double
         allow(Request).to receive(:new).and_return(request)
         allow(request).to receive(:add_headers)
         allow(request).to receive(:on_behalf_of)

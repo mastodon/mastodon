@@ -317,7 +317,7 @@ describe AccountInteractions do
 
     context 'not muting the conversation' do
       it 'returns nil' do
-        is_expected.to be nil
+        is_expected.to be_nil
       end
     end
   end
