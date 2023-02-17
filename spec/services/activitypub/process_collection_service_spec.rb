@@ -212,8 +212,8 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
                 'id' => 'https://example.com/users/bob/fake-status'
               )
             ),
-            anything(),
-            anything()
+            anything,
+            anything
           )
 
           expect(ActivityPub::Activity).not_to receive(:factory).with(
@@ -222,8 +222,8 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
                 'content' => '<p>puck was here</p>'
               )
             ),
-            anything(),
-            anything()
+            anything,
+            anything
           )
 
           subject.call(json, forwarder)

@@ -3432,14 +3432,6 @@ Style/MapToHash:
   Exclude:
     - 'app/models/status.rb'
 
-# Offense count: 6
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowedMethods, AllowedPatterns.
-Style/MethodCallWithoutArgsParentheses:
-  Exclude:
-    - 'spec/services/activitypub/process_collection_service_spec.rb'
-    - 'spec/services/fetch_resource_service_spec.rb'
-
 # Offense count: 17
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle.
