@@ -5,13 +5,13 @@ on:
       - 'dependabot/**'
     paths:
       - 'Gemfile*'
-      - 'db/**'
+      - '**/*.rb'
       - '.github/workflows/test-migrations.yml'
 
   pull_request:
     paths:
       - 'Gemfile*'
-      - 'db/**'
+      - '**/*.rb'
       - '.github/workflows/test-migrations.yml'
 
 env:
