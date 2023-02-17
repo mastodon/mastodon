@@ -1164,13 +1164,6 @@ RSpec/EmptyExampleGroup:
     - 'spec/models/web/setting_spec.rb'
     - 'spec/services/unmute_service_spec.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowConsecutiveOneLiners.
-RSpec/EmptyLineAfterExample:
-  Exclude:
-    - 'spec/services/search_service_spec.rb'
-
 # Offense count: 25
 # This cop supports safe autocorrection (--autocorrect).
 RSpec/EmptyLineAfterFinalLet:
