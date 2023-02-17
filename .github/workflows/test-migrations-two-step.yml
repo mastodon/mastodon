@@ -53,6 +53,11 @@ jobs:
       DB_PASS: postgres
       DISABLE_SIMPLECOV: true
       RAILS_ENV: test
+      BUNDLE_CLEAN: true
+      BUNDLE_FROZEN: true
+      BUNDLE_WITHOUT: 'development production'
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
 
     steps:
       - uses: actions/checkout@v3
@@ -65,12 +70,6 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-        env:
-          BUNDLE_CLEAN: true
-          BUNDLE_FROZEN: true
-          BUNDLE_WITHOUT: 'development production'
-          BUNDLE_JOBS: 3
-          BUNDLE_RETRY: 3
 
       - name: Create database
         run: './bin/rails db:create'
