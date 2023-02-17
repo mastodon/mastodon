@@ -2,6 +2,9 @@ require 'rails_helper'
 require 'devise_two_factor/spec_helpers'
 
 RSpec.describe User, type: :model do
+  let(:password) { 'abcd1234' }
+  let(:account) { Fabricate(:account, username: 'alice') }
+
   it_behaves_like 'two_factor_backupable'
 
   describe 'otp_secret' do
@@ -95,9 +98,6 @@ RSpec.describe User, type: :model do
       end
     end
   end
-
-  let(:account) { Fabricate(:account, username: 'alice') }
-  let(:password) { 'abcd1234' }
 
   describe 'blacklist' do
     around(:each) do |example|
