@@ -19,6 +19,19 @@ class SearchPopout extends React.PureComponent {
         <h4><FormattedMessage id='search_popout.search_format' defaultMessage='Advanced search format' /></h4>
 
         <ul>
+          <li>Advanced Search - Operators can be inverted with <em>-</em></li>
+          <li>Operators:</li>
+          <li><em>domain:universeodon.com</em> search posts only from Universeodon.com</li>
+          <li><em>lang:es</em> Find posts in spanish</li>
+          <li><em>has:</em> Operator</li>
+          <li><em>has:cw</em> has content Warning</li>
+          <li><em>has:media</em> has media</li>
+          <li><em>has:link</em> has link</li>
+          <li><em>has:poll</em> has poll</li>
+          <li><em>has:tag</em> has tag</li>
+          <li><em>sort:</em> sort with <em>sort:newest</em> or <em>sort:oldest</em></li>
+          <li><em>before:</em> or <em>after:</em> Date range</li>
+          <li><em>scope:classic</em> Use the fields below for classic search</li>
           <li><em>#example</em> <FormattedMessage id='search_popout.tips.hashtag' defaultMessage='hashtag' /></li>
           <li><em>@username@domain</em> <FormattedMessage id='search_popout.tips.user' defaultMessage='user' /></li>
           <li><em>URL</em> <FormattedMessage id='search_popout.tips.user' defaultMessage='user' /></li>
@@ -118,6 +131,7 @@ class Search extends React.PureComponent {
           ref={this.setRef}
           className='search__input'
           type='text'
+          spellcheck='false'
           placeholder={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
           aria-label={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
           value={value}
