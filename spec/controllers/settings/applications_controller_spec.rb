@@ -180,7 +180,7 @@ describe Settings::ApplicationsController do
       post :regenerate, params: { id: app.id }
     end
 
-    it 'should create new token' do
+    it 'creates new token' do
       expect(user.token_for_app(app)).to_not eql(token)
     end
   end
