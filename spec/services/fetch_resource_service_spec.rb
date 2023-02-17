@@ -62,6 +62,7 @@ RSpec.describe FetchResourceService, type: :service do
 
       before do
         stub_request(:get, url).to_return(status: 200, body: body, headers: headers)
+        stub_request(:get, 'http://example.com/foo').to_return(status: 200, body: json, headers: { 'Content-Type' => 'application/activity+json' })
       end
 
       it 'signs request' do
@@ -87,11 +88,6 @@ RSpec.describe FetchResourceService, type: :service do
         let(:body) { json }
 
         it { is_expected.to eq [1, { prefetched_body: body, id: true }] }
-      end
-
-      before do
-        stub_request(:get, url).to_return(status: 200, body: body, headers: headers)
-        stub_request(:get, 'http://example.com/foo').to_return(status: 200, body: json, headers: { 'Content-Type' => 'application/activity+json' })
       end
 
       context 'when link header is present' do
