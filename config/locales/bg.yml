@@ -619,6 +619,11 @@ bg:
       statuses: Докладвано съдържание
       statuses_description_html: Непристойно съдържание ще бъде цитирано в комуникацията с докладвания акаунт
       summary:
+        action_preambles:
+          delete_html: 'На път сте да <strong>премахнете</strong> някои от публикациите на <strong>@%{acct}</strong>. Това ще:'
+          mark_as_sensitive_html: 'На път сте да <strong>означите</strong> някои от публикациите на <strong>@%{acct}</strong> като <strong>деликатни</strong>. Това ще:'
+          silence_html: 'На път сте да <strong>ограничите</strong> акаунта на <strong>@%{acct}</strong>. Това ще:'
+          suspend_html: 'На път сте да <strong>спрете</strong> акаунта на <strong>@%{acct}</strong>. Това ще:'
         actions:
           delete_html: Премахване на обидните публикации
         close_report: 'Отбелязване на доклад №%{id} като решен'
