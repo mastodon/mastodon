@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
+  subject { described_class.new }
+
   let(:actor) { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/account') }
 
   let(:payload) do
@@ -18,8 +20,6 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
   end
 
   let(:json) { Oj.dump(payload) }
-
-  subject { described_class.new }
 
   describe '#call' do
     context 'when actor is suspended' do

@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Account, type: :model do
   context do
-    let(:bob) { Fabricate(:account, username: 'bob') }
-
     subject { Fabricate(:account) }
+
+    let(:bob) { Fabricate(:account, username: 'bob') }
 
     describe '#suspend!' do
       it 'marks the account as suspended' do
@@ -87,13 +87,13 @@ RSpec.describe Account, type: :model do
   end
 
   describe 'Local domain user methods' do
+    subject { Fabricate(:account, domain: nil, username: 'alice') }
+
     around do |example|
       before = Rails.configuration.x.local_domain
       example.run
       Rails.configuration.x.local_domain = before
     end
-
-    subject { Fabricate(:account, domain: nil, username: 'alice') }
 
     describe '#to_webfinger_s' do
       it 'returns a webfinger string for the account' do
@@ -243,12 +243,12 @@ RSpec.describe Account, type: :model do
   end
 
   describe '#favourited?' do
+    subject { Fabricate(:account) }
+
     let(:original_status) do
       author = Fabricate(:account, username: 'original')
       Fabricate(:status, account: author)
     end
-
-    subject { Fabricate(:account) }
 
     context 'when the status is a reblog of another status' do
       let(:original_reblog) do
@@ -281,12 +281,12 @@ RSpec.describe Account, type: :model do
   end
 
   describe '#reblogged?' do
+    subject { Fabricate(:account) }
+
     let(:original_status) do
       author = Fabricate(:account, username: 'original')
       Fabricate(:status, account: author)
     end
-
-    subject { Fabricate(:account) }
 
     context 'when the status is a reblog of another status' do
       let(:original_reblog) do

@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
   include ActionView::Helpers::TextHelper
 
+  subject { described_class.new }
+
   let!(:sender) { Fabricate(:account, domain: 'foo.bar', uri: 'https://foo.bar') }
   let!(:recipient) { Fabricate(:account) }
 
@@ -17,8 +19,6 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
       attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
     }
   end
-
-  subject { described_class.new }
 
   before do
     stub_request(:get, 'https://foo.bar/watch?v=12345').to_return(status: 404, body: '')

@@ -142,9 +142,9 @@ RSpec.describe User, type: :model do
   end
 
   describe '#confirm' do
-    let(:new_email) { 'new-email@example.com' }
-
     subject { user.confirm }
+
+    let(:new_email) { 'new-email@example.com' }
 
     before do
       allow(TriggerWebhookWorker).to receive(:perform_async)

@@ -5,6 +5,8 @@ def poll_option_json(name, votes)
 end
 
 RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
+  subject { described_class.new }
+
   let!(:status) { Fabricate(:status, text: 'Hello world', account: Fabricate(:account, domain: 'example.com')) }
   let(:payload) do
     {
@@ -34,8 +36,6 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
     tags.each { |t| status.tags << t }
     media_attachments.each { |m| status.media_attachments << m }
   end
-
-  subject { described_class.new }
 
   describe '#call' do
     it 'updates text' do

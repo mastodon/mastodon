@@ -22,9 +22,9 @@ RSpec.describe ActivityPub::InboxesController, type: :controller do
       end
 
       context 'for a specific account' do
-        let(:account) { Fabricate(:account) }
-
         subject(:response) { post :create, params: { account_username: account.username }, body: '{}' }
+
+        let(:account) { Fabricate(:account) }
 
         context 'when account is permanently suspended' do
           before do

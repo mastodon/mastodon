@@ -752,6 +752,8 @@ RSpec.describe ActivityPub::Activity::Create do
     end
 
     context 'with an encrypted message' do
+      subject { described_class.new(json, sender, delivery: true, delivered_to_account_id: recipient.id) }
+
       let(:recipient) { Fabricate(:account) }
       let(:object_json) do
         {
@@ -775,8 +777,6 @@ RSpec.describe ActivityPub::Activity::Create do
         }
       end
       let(:target_device) { Fabricate(:device, account: recipient) }
-
-      subject { described_class.new(json, sender, delivery: true, delivered_to_account_id: recipient.id) }
 
       before do
         subject.perform
@@ -831,6 +831,8 @@ RSpec.describe ActivityPub::Activity::Create do
     end
 
     context 'when sender replies to local status' do
+      subject { described_class.new(json, sender, delivery: true) }
+
       let!(:local_status) { Fabricate(:status) }
       let(:object_json) do
         {
@@ -840,8 +842,6 @@ RSpec.describe ActivityPub::Activity::Create do
           inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status),
         }
       end
-
-      subject { described_class.new(json, sender, delivery: true) }
 
       before do
         subject.perform
@@ -856,6 +856,8 @@ RSpec.describe ActivityPub::Activity::Create do
     end
 
     context 'when sender targets a local user' do
+      subject { described_class.new(json, sender, delivery: true) }
+
       let!(:local_account) { Fabricate(:account) }
       let(:object_json) do
         {
@@ -865,8 +867,6 @@ RSpec.describe ActivityPub::Activity::Create do
           to: ActivityPub::TagManager.instance.uri_for(local_account),
         }
       end
-
-      subject { described_class.new(json, sender, delivery: true) }
 
       before do
         subject.perform
@@ -881,6 +881,8 @@ RSpec.describe ActivityPub::Activity::Create do
     end
 
     context 'when sender cc\'s a local user' do
+      subject { described_class.new(json, sender, delivery: true) }
+
       let!(:local_account) { Fabricate(:account) }
       let(:object_json) do
         {
@@ -890,8 +892,6 @@ RSpec.describe ActivityPub::Activity::Create do
           cc: ActivityPub::TagManager.instance.uri_for(local_account),
         }
       end
-
-      subject { described_class.new(json, sender, delivery: true) }
 
       before do
         subject.perform

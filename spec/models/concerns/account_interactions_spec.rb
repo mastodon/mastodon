@@ -225,9 +225,9 @@ describe AccountInteractions do
   end
 
   describe '#mute_conversation!' do
-    let(:conversation) { Fabricate(:conversation) }
-
     subject { account.mute_conversation!(conversation) }
+
+    let(:conversation) { Fabricate(:conversation) }
 
     it 'creates and returns ConversationMute' do
       expect do
@@ -237,9 +237,9 @@ describe AccountInteractions do
   end
 
   describe '#block_domain!' do
-    let(:domain) { 'example.com' }
-
     subject { account.block_domain!(domain) }
+
+    let(:domain) { 'example.com' }
 
     it 'creates and returns AccountDomainBlock' do
       expect do
@@ -303,9 +303,9 @@ describe AccountInteractions do
   end
 
   describe '#unmute_conversation!' do
-    let(:conversation) { Fabricate(:conversation) }
-
     subject { account.unmute_conversation!(conversation) }
+
+    let(:conversation) { Fabricate(:conversation) }
 
     context 'muting the conversation' do
       it 'returns destroyed ConversationMute' do
@@ -323,9 +323,9 @@ describe AccountInteractions do
   end
 
   describe '#unblock_domain!' do
-    let(:domain) { 'example.com' }
-
     subject { account.unblock_domain!(domain) }
+
+    let(:domain) { 'example.com' }
 
     context 'blocking the domain' do
       it 'returns destroyed AccountDomainBlock' do
@@ -395,9 +395,9 @@ describe AccountInteractions do
   end
 
   describe '#domain_blocking?' do
-    let(:domain)               { 'example.com' }
-
     subject { account.domain_blocking?(domain) }
+
+    let(:domain) { 'example.com' }
 
     context 'blocking the domain' do
       it 'returns true' do
@@ -433,9 +433,9 @@ describe AccountInteractions do
   end
 
   describe '#muting_conversation?' do
-    let(:conversation) { Fabricate(:conversation) }
-
     subject { account.muting_conversation?(conversation) }
+
+    let(:conversation) { Fabricate(:conversation) }
 
     context 'muting the conversation' do
       it 'returns true' do
@@ -452,12 +452,12 @@ describe AccountInteractions do
   end
 
   describe '#muting_notifications?' do
+    subject { account.muting_notifications?(target_account) }
+
     before do
       mute = Fabricate(:mute, target_account: target_account, account: account, hide_notifications: hide)
       account.mute_relationships << mute
     end
-
-    subject { account.muting_notifications?(target_account) }
 
     context 'muting notifications of target_account' do
       let(:hide) { true }
@@ -494,9 +494,9 @@ describe AccountInteractions do
   end
 
   describe '#favourited?' do
-    let(:status) { Fabricate(:status, account: account, favourites: favourites) }
-
     subject { account.favourited?(status) }
+
+    let(:status) { Fabricate(:status, account: account, favourites: favourites) }
 
     context 'favorited' do
       let(:favourites) { [Fabricate(:favourite, account: account)] }
@@ -516,9 +516,9 @@ describe AccountInteractions do
   end
 
   describe '#reblogged?' do
-    let(:status) { Fabricate(:status, account: account, reblogs: reblogs) }
-
     subject { account.reblogged?(status) }
+
+    let(:status) { Fabricate(:status, account: account, reblogs: reblogs) }
 
     context 'reblogged' do
       let(:reblogs) { [Fabricate(:status, account: account)] }
@@ -538,9 +538,9 @@ describe AccountInteractions do
   end
 
   describe '#pinned?' do
-    let(:status) { Fabricate(:status, account: account) }
-
     subject { account.pinned?(status) }
+
+    let(:status) { Fabricate(:status, account: account) }
 
     context 'pinned' do
       it 'returns true' do
