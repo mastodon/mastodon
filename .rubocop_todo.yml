@@ -914,25 +914,6 @@ RSpec/BeEq:
     - 'spec/workers/feed_insert_worker_spec.rb'
     - 'spec/workers/regeneration_worker_spec.rb'
 
-# Offense count: 22
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: be, be_nil
-RSpec/BeNil:
-  Exclude:
-    - 'spec/controllers/accounts_controller_spec.rb'
-    - 'spec/controllers/activitypub/collections_controller_spec.rb'
-    - 'spec/controllers/activitypub/outboxes_controller_spec.rb'
-    - 'spec/controllers/activitypub/replies_controller_spec.rb'
-    - 'spec/controllers/api/v1/apps_controller_spec.rb'
-    - 'spec/controllers/api/v1/statuses_controller_spec.rb'
-    - 'spec/controllers/instance_actors_controller_spec.rb'
-    - 'spec/controllers/statuses_controller_spec.rb'
-    - 'spec/models/account_statuses_cleanup_policy_spec.rb'
-    - 'spec/models/concerns/account_interactions_spec.rb'
-    - 'spec/models/session_activation_spec.rb'
-    - 'spec/models/user_spec.rb'
-
 # Offense count: 1
 RSpec/BeforeAfterAll:
   Exclude:

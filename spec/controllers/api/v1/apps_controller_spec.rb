@@ -28,7 +28,7 @@ RSpec.describe Api::V1::AppsController, type: :controller do
       end
 
       it 'creates an OAuth app' do
-        expect(Doorkeeper::Application.find_by(name: client_name)).to_not be nil
+        expect(Doorkeeper::Application.find_by(name: client_name)).to_not be_nil
       end
 
       it 'returns client ID and client secret' do
