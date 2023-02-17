@@ -183,17 +183,6 @@ Lint/AmbiguousBlockAssociation:
     - 'spec/services/unsuspend_account_service_spec.rb'
     - 'spec/workers/scheduler/accounts_statuses_cleanup_scheduler_spec.rb'
 
-# Offense count: 17
-# This cop supports safe autocorrection (--autocorrect).
-Lint/AmbiguousOperatorPrecedence:
-  Exclude:
-    - 'app/controllers/concerns/rate_limit_headers.rb'
-    - 'app/lib/rate_limiter.rb'
-    - 'app/models/system_key.rb'
-    - 'app/models/webauthn_credential.rb'
-    - 'app/workers/concerns/exponential_backoff.rb'
-    - 'lib/paperclip/color_extractor.rb'
-
 # Offense count: 15
 # Configuration parameters: AllowedMethods.
 # AllowedMethods: enums
