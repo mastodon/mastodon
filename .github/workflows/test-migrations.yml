@@ -3,18 +3,7 @@ on:
   push:
     branches-ignore:
       - 'dependabot/**'
-    paths:
-      - 'Gemfile*'
-      - '.ruby-version'
-      - '**/*.rb'
-      - '.github/workflows/test-migrations.yml'
-
   pull_request:
-    paths:
-      - 'Gemfile*'
-      - '.ruby-version'
-      - '**/*.rb'
-      - '.github/workflows/test-migrations.yml'
 
 env:
   BUNDLE_CLEAN: true
@@ -24,8 +13,21 @@ env:
   BUNDLE_RETRY: 3
 
 jobs:
+  pre_job:
+    runs-on: ubuntu-latest
+
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5
+        with:
+          paths: '["Gemfile*", ".ruby-version", "**/*.rb", ".github/workflows/test-migrations.yml"]'
+
   test-migrations:
     runs-on: ubuntu-latest
+    if: needs.pre_job.outputs.should_skip != 'true'
 
     services:
       postgres:
@@ -100,6 +102,7 @@ jobs:
 
   test-two-step-migrations:
     runs-on: ubuntu-latest
+    if: needs.pre_job.outputs.should_skip != 'true'
 
     services:
       postgres:
