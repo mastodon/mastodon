@@ -298,7 +298,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
               first: {
                 type: 'CollectionPage',
                 partOf: "https://foo.bar/@foo/#{i}/replies",
-                items: ["https://foo.bar/@foo/#{i+1}"],
+                items: ["https://foo.bar/@foo/#{i + 1}"],
               },
             },
             attributedTo: ActivityPub::TagManager.instance.uri_for(sender),

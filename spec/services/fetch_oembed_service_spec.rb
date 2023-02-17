@@ -151,7 +151,6 @@ describe FetchOEmbedService, type: :service do
           expect(subject.format).to eq :json
         end
       end
-
     end
 
     context 'when endpoint is cached' do

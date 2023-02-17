@@ -32,6 +32,5 @@ RSpec.describe BootstrapTimelineService, type: :service do
         expect(service).to_not have_received(:call)
       end
     end
-
   end
 end

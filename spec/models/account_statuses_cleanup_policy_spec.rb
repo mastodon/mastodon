@@ -16,16 +16,15 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
     context 'when widening a policy' do
       let!(:account_statuses_cleanup_policy) do
         Fabricate(:account_statuses_cleanup_policy,
-          account: account,
-          keep_direct: true,
-          keep_pinned: true,
-          keep_polls: true,
-          keep_media: true,
-          keep_self_fav: true,
-          keep_self_bookmark: true,
-          min_favs: 1,
-          min_reblogs: 1
-        )
+                  account: account,
+                  keep_direct: true,
+                  keep_pinned: true,
+                  keep_polls: true,
+                  keep_media: true,
+                  keep_self_fav: true,
+                  keep_self_bookmark: true,
+                  min_favs: 1,
+                  min_reblogs: 1)
       end
 
       before do
@@ -96,16 +95,15 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
     context 'when narrowing a policy' do
       let!(:account_statuses_cleanup_policy) do
         Fabricate(:account_statuses_cleanup_policy,
-          account: account,
-          keep_direct: false,
-          keep_pinned: false,
-          keep_polls: false,
-          keep_media: false,
-          keep_self_fav: false,
-          keep_self_bookmark: false,
-          min_favs: nil,
-          min_reblogs: nil
-        )
+                  account: account,
+                  keep_direct: false,
+                  keep_pinned: false,
+                  keep_polls: false,
+                  keep_media: false,
+                  keep_self_fav: false,
+                  keep_self_bookmark: false,
+                  min_favs: nil,
+                  min_reblogs: nil)
       end
 
       it 'does not unnecessarily invalidate last_inspected' do
@@ -232,7 +230,7 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
   end
 
   describe '#compute_cutoff_id' do
-    let!(:unrelated_status)  { Fabricate(:status, created_at: 3.years.ago) }
+    let!(:unrelated_status) { Fabricate(:status, created_at: 3.years.ago) }
     let(:account_statuses_cleanup_policy) { Fabricate(:account_statuses_cleanup_policy, account: account) }
 
     subject { account_statuses_cleanup_policy.compute_cutoff_id }

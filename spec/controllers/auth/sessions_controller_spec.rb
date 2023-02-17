@@ -339,11 +339,11 @@ RSpec.describe Auth::SessionsController, type: :controller do
             external_id: public_key_credential.id,
             public_key: public_key_credential.public_key,
             sign_count: '1000'
-           )
+          )
           user.webauthn_credentials.take
         end
 
-        let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http' }://#{Rails.configuration.x.web_domain}" }
+        let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http'}://#{Rails.configuration.x.web_domain}" }
 
         let(:fake_client) { WebAuthn::FakeClient.new(domain) }
 
@@ -400,7 +400,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
   describe 'GET #webauthn_options' do
     context 'with WebAuthn and OTP enabled as second factor' do
-      let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http' }://#{Rails.configuration.x.web_domain}" }
+      let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http'}://#{Rails.configuration.x.web_domain}" }
 
       let(:fake_client) { WebAuthn::FakeClient.new(domain) }
 
