@@ -3470,15 +3470,6 @@ Style/PreferredHashMethods:
   Exclude:
     - 'spec/support/matchers/model/model_have_error_on_field.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, AllowedCompactTypes.
-# SupportedStyles: compact, exploded
-Style/RaiseArgs:
-  Exclude:
-    - 'db/migrate/20200620164023_add_fixed_lowercase_index_to_accounts.rb'
-    - 'db/migrate/20210421121431_add_case_insensitive_btree_index_to_tags.rb'
-
 # Offense count: 5
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: Methods.
