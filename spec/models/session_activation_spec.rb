@@ -44,7 +44,7 @@ RSpec.describe SessionActivation, type: :model do
       let(:id) { nil }
 
       it 'returns nil' do
-        is_expected.to be nil
+        is_expected.to be_nil
       end
     end
 
@@ -89,7 +89,7 @@ RSpec.describe SessionActivation, type: :model do
       let(:id) { nil }
 
       it 'returns nil' do
-        expect(described_class.deactivate(id)).to be nil
+        expect(described_class.deactivate(id)).to be_nil
       end
     end
 

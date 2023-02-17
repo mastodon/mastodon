@@ -35,61 +35,61 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
       it 'invalidates last_inspected when widened because of keep_direct' do
         account_statuses_cleanup_policy.keep_direct = false
         account_statuses_cleanup_policy.save
-        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+        expect(account_statuses_cleanup_policy.last_inspected).to be_nil
       end
 
       it 'invalidates last_inspected when widened because of keep_pinned' do
         account_statuses_cleanup_policy.keep_pinned = false
         account_statuses_cleanup_policy.save
-        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+        expect(account_statuses_cleanup_policy.last_inspected).to be_nil
       end
 
       it 'invalidates last_inspected when widened because of keep_polls' do
         account_statuses_cleanup_policy.keep_polls = false
         account_statuses_cleanup_policy.save
-        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+        expect(account_statuses_cleanup_policy.last_inspected).to be_nil
       end
 
       it 'invalidates last_inspected when widened because of keep_media' do
         account_statuses_cleanup_policy.keep_media = false
         account_statuses_cleanup_policy.save
-        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+        expect(account_statuses_cleanup_policy.last_inspected).to be_nil
       end
 
       it 'invalidates last_inspected when widened because of keep_self_fav' do
         account_statuses_cleanup_policy.keep_self_fav = false
         account_statuses_cleanup_policy.save
-        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+        expect(account_statuses_cleanup_policy.last_inspected).to be_nil
       end
 
       it 'invalidates last_inspected when widened because of keep_self_bookmark' do
         account_statuses_cleanup_policy.keep_self_bookmark = false
         account_statuses_cleanup_policy.save
-        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+        expect(account_statuses_cleanup_policy.last_inspected).to be_nil
       end
 
       it 'invalidates last_inspected when widened because of higher min_favs' do
         account_statuses_cleanup_policy.min_favs = 5
         account_statuses_cleanup_policy.save
-        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+        expect(account_statuses_cleanup_policy.last_inspected).to be_nil
       end
 
       it 'invalidates last_inspected when widened because of disabled min_favs' do
         account_statuses_cleanup_policy.min_favs = nil
         account_statuses_cleanup_policy.save
-        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+        expect(account_statuses_cleanup_policy.last_inspected).to be_nil
       end
 
       it 'invalidates last_inspected when widened because of higher min_reblogs' do
         account_statuses_cleanup_policy.min_reblogs = 5
         account_statuses_cleanup_policy.save
-        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+        expect(account_statuses_cleanup_policy.last_inspected).to be_nil
       end
 
       it 'invalidates last_inspected when widened because of disable min_reblogs' do
         account_statuses_cleanup_policy.min_reblogs = nil
         account_statuses_cleanup_policy.save
-        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+        expect(account_statuses_cleanup_policy.last_inspected).to be_nil
       end
     end
 
