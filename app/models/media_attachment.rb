@@ -373,7 +373,7 @@ class MediaAttachment < ApplicationRecord
     return {} if width.nil?
 
     {
-      width:  width,
+      width: width,
       height: height,
       size: "#{width}x#{height}",
       aspect: width.to_f / height,

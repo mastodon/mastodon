@@ -399,14 +399,14 @@ namespace :mastodon do
           end
 
           ActionMailer::Base.smtp_settings = {
-            port:                 env['SMTP_PORT'],
-            address:              env['SMTP_SERVER'],
-            user_name:            env['SMTP_LOGIN'].presence,
-            password:             env['SMTP_PASSWORD'].presence,
-            domain:               env['LOCAL_DOMAIN'],
-            authentication:       env['SMTP_AUTH_METHOD'] == 'none' ? nil : env['SMTP_AUTH_METHOD'] || :plain,
-            openssl_verify_mode:  env['SMTP_OPENSSL_VERIFY_MODE'],
-            enable_starttls:      enable_starttls,
+            port: env['SMTP_PORT'],
+            address: env['SMTP_SERVER'],
+            user_name: env['SMTP_LOGIN'].presence,
+            password: env['SMTP_PASSWORD'].presence,
+            domain: env['LOCAL_DOMAIN'],
+            authentication: env['SMTP_AUTH_METHOD'] == 'none' ? nil : env['SMTP_AUTH_METHOD'] || :plain,
+            openssl_verify_mode: env['SMTP_OPENSSL_VERIFY_MODE'],
+            enable_starttls: enable_starttls,
             enable_starttls_auto: enable_starttls_auto,
           }
 

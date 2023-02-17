@@ -75,9 +75,9 @@ class Poll < ApplicationRecord
 
     def initialize(poll, id, title, votes_count)
       super(
-        poll:        poll,
-        id:          id,
-        title:       title,
+        poll: poll,
+        id: id,
+        title: title,
         votes_count: votes_count,
       )
     end
