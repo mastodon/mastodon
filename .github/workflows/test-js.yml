@@ -1,4 +1,4 @@
-name: JavaScript Linting
+name: JavaScript Testing
 on:
   push:
     branches-ignore:
@@ -7,23 +7,21 @@ on:
       - 'package.json'
       - 'yarn.lock'
       - '.nvmrc'
-      - '.prettier*'
-      - '.eslint*'
       - '**/*.js'
-      - '.github/workflows/lint-js.yml'
+      - '**/*.snap'
+      - '.github/workflows/test-js.yml'
 
   pull_request:
     paths:
       - 'package.json'
       - 'yarn.lock'
       - '.nvmrc'
-      - '.prettier*'
-      - '.eslint*'
       - '**/*.js'
-      - '.github/workflows/lint-js.yml'
+      - '**/*.snap'
+      - '.github/workflows/test-js.yml'
 
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -39,5 +37,5 @@ jobs:
       - name: Install all yarn packages
         run: yarn --frozen-lockfile
 
-      - name: ESLint
-        run: yarn test:lint:js
+      - name: Jest testing
+        run: yarn test:jest --reporters github-actions summary

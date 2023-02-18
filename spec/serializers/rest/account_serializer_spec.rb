@@ -5,7 +5,7 @@ require 'rails_helper'
 describe REST::AccountSerializer do
   let(:role)    { Fabricate(:user_role, name: 'Role', highlighted: true) }
   let(:user)    { Fabricate(:user, role: role) }
-  let(:account) { user.account}
+  let(:account) { user.account }
 
   subject { JSON.parse(ActiveModelSerializers::SerializableResource.new(account, serializer: REST::AccountSerializer).to_json) }
 
@@ -32,6 +32,16 @@ describe REST::AccountSerializer do
 
     it 'returns empty roles' do
       expect(subject['roles']).to eq []
+    end
+  end
+
+  context 'when the account is memorialized' do
+    before do
+      account.memorialize!
+    end
+
+    it 'marks it as such' do
+      expect(subject['memorial']).to be true
     end
   end
 end

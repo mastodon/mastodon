@@ -67,6 +67,6 @@ module RateLimitHeaders
   end
 
   def reset_period_offset
-    api_throttle_data[:period] - request_time.to_i % api_throttle_data[:period]
+    api_throttle_data[:period] - (request_time.to_i % api_throttle_data[:period])
   end
 end

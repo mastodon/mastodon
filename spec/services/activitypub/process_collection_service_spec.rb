@@ -95,11 +95,11 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
       context 'when receiving a fabricated status' do
         let!(:actor) do
           Fabricate(:account,
-            username: 'bob',
-            domain: 'example.com',
-            uri: 'https://example.com/users/bob',
-            public_key: "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuuYyoyfsRkYnXRotMsId\nW3euBDDfiv9oVqOxUVC7bhel8KednIMrMCRWFAkgJhbrlzbIkjVr68o1MP9qLcn7\nCmH/BXHp7yhuFTr4byjdJKpwB+/i2jNEsvDH5jR8WTAeTCe0x/QHg21V3F7dSI5m\nCCZ/1dSIyOXLRTWVlfDlm3rE4ntlCo+US3/7oSWbg/4/4qEnt1HC32kvklgScxua\n4LR5ATdoXa5bFoopPWhul7MJ6NyWCyQyScUuGdlj8EN4kmKQJvphKHrI9fvhgOuG\nTvhTR1S5InA4azSSchY0tXEEw/VNxraeX0KPjbgr6DPcwhPd/m0nhVDq0zVyVBBD\nMwIDAQAB\n-----END PUBLIC KEY-----\n",
-            private_key: nil)
+                    username: 'bob',
+                    domain: 'example.com',
+                    uri: 'https://example.com/users/bob',
+                    public_key: "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuuYyoyfsRkYnXRotMsId\nW3euBDDfiv9oVqOxUVC7bhel8KednIMrMCRWFAkgJhbrlzbIkjVr68o1MP9qLcn7\nCmH/BXHp7yhuFTr4byjdJKpwB+/i2jNEsvDH5jR8WTAeTCe0x/QHg21V3F7dSI5m\nCCZ/1dSIyOXLRTWVlfDlm3rE4ntlCo+US3/7oSWbg/4/4qEnt1HC32kvklgScxua\n4LR5ATdoXa5bFoopPWhul7MJ6NyWCyQyScUuGdlj8EN4kmKQJvphKHrI9fvhgOuG\nTvhTR1S5InA4azSSchY0tXEEw/VNxraeX0KPjbgr6DPcwhPd/m0nhVDq0zVyVBBD\nMwIDAQAB\n-----END PUBLIC KEY-----\n",
+                    private_key: nil)
         end
 
         let(:payload) do
@@ -107,23 +107,23 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
             '@context': [
               'https://www.w3.org/ns/activitystreams',
               nil,
-              {'object': 'https://www.w3.org/ns/activitystreams#object'}
+              { object: 'https://www.w3.org/ns/activitystreams#object' }
             ],
-            'id': 'https://example.com/users/bob/fake-status/activity',
-            'type': 'Create',
-            'actor': 'https://example.com/users/bob',
-            'published': '2022-01-22T15:00:00Z',
-            'to': [
+            id: 'https://example.com/users/bob/fake-status/activity',
+            type: 'Create',
+            actor: 'https://example.com/users/bob',
+            published: '2022-01-22T15:00:00Z',
+            to: [
               'https://www.w3.org/ns/activitystreams#Public'
             ],
-            'cc': [
+            cc: [
               'https://example.com/users/bob/followers'
             ],
-            'signature': {
-              'type': 'RsaSignature2017',
-              'creator': 'https://example.com/users/bob#main-key',
-              'created': '2022-03-09T21:57:25Z',
-              'signatureValue': 'WculK0LelTQ0MvGwU9TPoq5pFzFfGYRDCJqjZ232/Udj4CHqDTGOSw5UTDLShqBOyycCkbZGrQwXG+dpyDpQLSe1UVPZ5TPQtc/9XtI57WlS2nMNpdvRuxGnnb2btPdesXZ7n3pCxo0zjaXrJMe0mqQh5QJO22mahb4bDwwmfTHgbD3nmkD+fBfGi+UV2qWwqr+jlV4L4JqNkh0gWljF5KTePLRRZCuWiQ/FAt7c67636cdIPf7fR+usjuZltTQyLZKEGuK8VUn2Gkfsx5qns7Vcjvlz1JqlAjyO8HPBbzTTHzUG2nUOIgC3PojCSWv6mNTmRGoLZzOscCAYQA6cKw=='
+            signature: {
+              type: 'RsaSignature2017',
+              creator: 'https://example.com/users/bob#main-key',
+              created: '2022-03-09T21:57:25Z',
+              signatureValue: 'WculK0LelTQ0MvGwU9TPoq5pFzFfGYRDCJqjZ232/Udj4CHqDTGOSw5UTDLShqBOyycCkbZGrQwXG+dpyDpQLSe1UVPZ5TPQtc/9XtI57WlS2nMNpdvRuxGnnb2btPdesXZ7n3pCxo0zjaXrJMe0mqQh5QJO22mahb4bDwwmfTHgbD3nmkD+fBfGi+UV2qWwqr+jlV4L4JqNkh0gWljF5KTePLRRZCuWiQ/FAt7c67636cdIPf7fR+usjuZltTQyLZKEGuK8VUn2Gkfsx5qns7Vcjvlz1JqlAjyO8HPBbzTTHzUG2nUOIgC3PojCSWv6mNTmRGoLZzOscCAYQA6cKw=='
             },
             '@id': 'https://example.com/users/bob/statuses/107928807471117876/activity',
             '@type': 'https://www.w3.org/ns/activitystreams#Create',
@@ -133,22 +133,22 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
             'https://www.w3.org/ns/activitystreams#cc': {
               '@id': 'https://example.com/users/bob/followers'
             },
-            'object': {
-              'id': 'https://example.com/users/bob/fake-status',
-              'type': 'Note',
-              'published': '2022-01-22T15:00:00Z',
-              'url': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&feature=puck-was-here',
-              'attributedTo': 'https://example.com/users/bob',
-              'to': [
+            object: {
+              id: 'https://example.com/users/bob/fake-status',
+              type: 'Note',
+              published: '2022-01-22T15:00:00Z',
+              url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&feature=puck-was-here',
+              attributedTo: 'https://example.com/users/bob',
+              to: [
                 'https://www.w3.org/ns/activitystreams#Public'
               ],
-              'cc': [
+              cc: [
                 'https://example.com/users/bob/followers'
               ],
-              'sensitive': false,
-              'atomUri': 'https://example.com/users/bob/fake-status',
-              'conversation': 'tag:example.com,2022-03-09:objectId=15:objectType=Conversation',
-              'content': '<p>puck was here</p>',
+              sensitive: false,
+              atomUri: 'https://example.com/users/bob/fake-status',
+              conversation: 'tag:example.com,2022-03-09:objectId=15:objectType=Conversation',
+              content: '<p>puck was here</p>',
 
               '@id': 'https://example.com/users/bob/statuses/107928807471117876',
               '@type': 'https://www.w3.org/ns/activitystreams#Note',
@@ -212,8 +212,8 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
                 'id' => 'https://example.com/users/bob/fake-status'
               )
             ),
-            anything(),
-            anything()
+            anything,
+            anything
           )
 
           expect(ActivityPub::Activity).not_to receive(:factory).with(
@@ -222,8 +222,8 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
                 'content' => '<p>puck was here</p>'
               )
             ),
-            anything(),
-            anything()
+            anything,
+            anything
           )
 
           subject.call(json, forwarder)

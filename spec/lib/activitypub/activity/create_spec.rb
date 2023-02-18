@@ -252,9 +252,9 @@ RSpec.describe ActivityPub::Activity::Create do
             type: 'Note',
             content: 'Lorem ipsum',
             to: {
-              'type': 'OrderedCollection',
-              'id': 'http://example.com/followers',
-              'first': 'http://example.com/followers?page=true',
+              type: 'OrderedCollection',
+              id: 'http://example.com/followers',
+              first: 'http://example.com/followers?page=true',
             }
           }
         end
@@ -407,7 +407,6 @@ RSpec.describe ActivityPub::Activity::Create do
           expect(status.media_attachments.map(&:remote_url)).to include('http://example.com/attachment.png')
         end
       end
-
 
       context 'with media attachments with long description' do
         let(:object_json) do

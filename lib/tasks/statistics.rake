@@ -13,7 +13,7 @@ namespace :mastodon do
       %w(Validators app/validators),
       %w(Workers app/workers),
     ].each do |name, dir|
-      ::STATS_DIRECTORIES << [name, Rails.root.join(dir)]
+      STATS_DIRECTORIES << [name, Rails.root.join(dir)]
     end
   end
 end
