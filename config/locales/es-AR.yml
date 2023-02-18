@@ -90,6 +90,7 @@ es-AR:
       moderation:
         active: Activas
         all: Todas
+        disabled: Deshabilitadas
         pending: Pendientes
         silenced: Limitada
         suspended: Suspendidas
@@ -132,6 +133,7 @@ es-AR:
       search: Buscar
       search_same_email_domain: Otros usuarios con el mismo dominio de correo electrónico
       search_same_ip: Otros usuarios con la misma dirección IP
+      security: Seguridad
       security_measures:
         only_password: Sólo contraseña
         password_and_2fa: Contraseña y 2FA
@@ -426,6 +428,7 @@ es-AR:
         resolve: Resolver dominio
         title: Bloquear nuevo dominio de correo electrónico
       no_email_domain_block_selected: No se cambiaron bloques de dominio ya que no se seleccionó ninguno
+      not_permitted: No permitidos
       resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Tené cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
       resolved_through_html: Resuelto a través de %{domain}
       title: Dominios bloqueados de correo electrónico
@@ -472,6 +475,7 @@ es-AR:
       content_policies:
         comment: Nota interna
         description_html: Podés definir políticas de contenido que se aplicarán a todas las cuentas de este dominio y a cualquiera de sus subdominios.
+        limited_federation_mode_description_html: Podés elegir si permit´s la federación con este dominio.
         policies:
           reject_media: Rechazar medios
           reject_reports: Rechazar denuncias
@@ -584,11 +588,13 @@ es-AR:
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
       by_target_domain: Dominio de la cuenta denunciada
+      cancel: Cancelar
       category: Categoría
       category_description_html: El motivo por el que se denunció esta cuenta o contenido será citado en las comunicaciones con la cuenta denunciada
       comment:
         none: Ninguno
       comment_description_html: 'Para proporcionar más información, %{name} escribió:'
+      confirm: Confirmar
       confirm_action: Confirmar acción de moderación contra @%{acct}
       created_at: Denunciado
       delete_and_resolve: Eliminar mensajes
@@ -791,6 +797,7 @@ es-AR:
         suspend: "%{name} suspendió la cuenta de %{target}"
       appeal_approved: Apelado
       appeal_pending: Apelación pendiente
+      appeal_rejected: Apelación rechazada
     system_checks:
       database_schema_check:
         message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecutalas para asegurarte de que la aplicación funciona según lo esperado
@@ -826,6 +833,7 @@ es-AR:
           other: Compartido por %{count} personas durante la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado con la/s %{yesterday} vez/veces de ayer
+      not_allowed_to_trend: No se permite la tendencia
       only_allowed: Sólo permitidas
       pending_review: Revisión pendiente
       preview_card_providers:
@@ -957,6 +965,7 @@ es-AR:
   applications:
     created: Aplicación creada exitosamente
     destroyed: Aplicación eliminada exitosamente
+    logout: Cerrar sesión
     regenerate_token: Regenerar clave de acceso
     token_regenerated: Clave de acceso regenerada exitosamente
     warning: Ojo con estos datos. ¡Nunca los compartas con nadie!
@@ -993,6 +1002,8 @@ es-AR:
     resend_confirmation: Reenviar correo electrónico de confirmación
     reset_password: Cambiar contraseña
     rules:
+      accept: Aceptar
+      back: Volver
       preamble: Estas reglas son establecidas y aplicadas por los moderadores de %{domain}.
       title: Algunas reglas básicas.
     security: Seguridad
