@@ -90,6 +90,7 @@ ca:
       moderation:
         active: Actiu
         all: Tot
+        disabled: Desactivat
         pending: Pendent
         silenced: Limitat
         suspended: Suspès
@@ -132,6 +133,7 @@ ca:
       search: Cerca
       search_same_email_domain: Altres usuaris amb el mateix domini de correu
       search_same_ip: Altres usuaris amb la mateixa IP
+      security: Seguretat
       security_measures:
         only_password: Només contrasenya
         password_and_2fa: Contrasenya i 2FA
@@ -426,6 +428,7 @@ ca:
         resolve: Resol domini
         title: Nova adreça de correu en la llista negra
       no_email_domain_block_selected: No s'han canviat els bloquejos de domini perquè cap s'ha seleccionat
+      not_permitted: No permés
       resolved_dns_records_hint_html: El nom del domini resol als següents dominis MX, els quals son els responsables finals per a acceptar els correus. Bloquejar un domini MX bloquejarà els registres des de qualsevol adreça de correu que utilitzi el mateix domini MX, encara que el nom visible del domini sigui diferent. <strong>Ves amb compte no bloquegis els grans proveïdors de correu electrònic.</strong>
       resolved_through_html: Resolt mitjançant %{domain}
       title: Llista negra de correus electrònics
@@ -472,6 +475,7 @@ ca:
       content_policies:
         comment: Nota interna
         description_html: Pots definir polítiques de contingut que seran aplicades a tots els comptes d'aquest domini i a qualsevol dels seus subdominis.
+        limited_federation_mode_description_html: Pots escollir si permets la federació amb aquest servidor.
         policies:
           reject_media: Rebutja mèdia
           reject_reports: Rebutja informes
@@ -584,11 +588,13 @@ ca:
       assign_to_self: Assigna'm
       assigned: Moderador assignat
       by_target_domain: Domini del compte denunciat
+      cancel: Cancel·la
       category: Categoria
       category_description_html: El motiu pel qual aquest compte o contingut ha estat denunciat se citarà en la comunicació amb el compte denunciat
       comment:
         none: Cap
       comment_description_html: 'Per a donar més informació, %{name} ha escrit:'
+      confirm: Confirma
       confirm_action: Confirma l'acció de moderació contra @%{acct}
       created_at: Denunciat
       delete_and_resolve: Elimina les publicacions
@@ -791,6 +797,7 @@ ca:
         suspend: "%{name} ha suspès el compte de %{target}"
       appeal_approved: Apel·lat
       appeal_pending: Apel·lació pendent
+      appeal_rejected: Apel·lació rebutjada
     system_checks:
       database_schema_check:
         message_html: Hi ha pendents migracions de la base de dades. Si us plau executa-les per a assegurar que l'aplicació es comporta com s'espera
@@ -826,6 +833,7 @@ ca:
           other: Compartit per %{count} persones en la darrera setmana
         title: Enllaços en tendència
         usage_comparison: Compartit %{today} vegades avui, comparat amb %{yesterday} d'ahir
+      not_allowed_to_trend: No es permet la tendència
       only_allowed: Només permesos
       pending_review: Revisió pendent
       preview_card_providers:
@@ -957,6 +965,7 @@ ca:
   applications:
     created: L'aplicació s'ha creat correctament
     destroyed: L'aplicació s'ha suprimit correctament
+    logout: Surt
     regenerate_token: Torna a generar l'identificador d'accés
     token_regenerated: L'identificador d'accés s'ha generat correctament
     warning: Aneu amb compte amb aquestes dades. No les compartiu mai amb ningú!
@@ -993,6 +1002,8 @@ ca:
     resend_confirmation: Torna a enviar el correu de confirmació
     reset_password: Restableix la contrasenya
     rules:
+      accept: Accepta
+      back: Enrere
       preamble: Aquestes regles estan establertes i aplicades per els moderadors de %{domain}.
       title: Algunes regles bàsiques.
     security: Seguretat
