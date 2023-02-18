@@ -132,6 +132,7 @@ el:
       search: Αναζήτηση
       search_same_email_domain: Άλλοι χρήστες με τον ίδιο τομέα e-mail
       search_same_ip: Υπόλοιποι χρήστες με την ίδια διεύθυνση IP
+      security: Ασφάλεια
       security_measures:
         only_password: Μόνο κωδικός πρόσβασης
         password_and_2fa: Κωδικός πρόσβασης και 2FA
@@ -376,6 +377,7 @@ el:
       new:
         create: Πρόσθεση τομέα
         title: Νέα εγγραφή email στη μαύρη λίστα
+      not_permitted: Δεν επιτρέπεται
       title: Μαύρη λίστα email
     export_domain_allows:
       no_file: Δεν επιλέχθηκε αρχείο
@@ -464,9 +466,11 @@ el:
       assign_to_self: Ανάθεση σε μένα
       assigned: Αρμόδιος συντονιστής
       by_target_domain: Κόμβος του λογαριασμού υπό καταγγελία
+      cancel: Άκυρο
       category: Κατηγορία
       comment:
         none: Κανένα
+      confirm: Επιβεβαίωση
       created_at: Καταγγέλθηκε
       delete_and_resolve: Διαγραφή δημοσιεύσεων
       forwarded: Προωθημένα
@@ -582,6 +586,8 @@ el:
       trending: Δημοφιλή
       visibility: Ορατότητα
       with_media: Με πολυμέσα
+    strikes:
+      appeal_rejected: Η αίτηση απορρίφθηκε
     system_checks:
       database_schema_check:
         message_html: Υπάρχουν μετακινήσεις βάσης δεδομένων που εκκρεμούν. Παρακαλώ εκτελέστε τις για να βεβαιωθείτε ότι η εφαρμογή συμπεριφέρεται όπως αναμένεται
@@ -593,6 +599,7 @@ el:
       updated_msg: Οι ρυθμίσεις των ετικετών ενημερώθηκαν επιτυχώς
     title: Διαχείριση
     trends:
+      not_allowed_to_trend: Δεν επιτρέπεται η τάση
       only_allowed: Μόνο επιτρεπόμενα
       tags:
         dashboard:
@@ -652,6 +659,7 @@ el:
   applications:
     created: Η εφαρμογή δημιουργήθηκε επιτυχώς
     destroyed: Η εφαρμογή διαγράφηκε επιτυχώς
+    logout: Αποσύνδεση
     regenerate_token: Αναδημιουργία του διακριτικού πρόσβασης (access token)
     token_regenerated: Το διακριτικό πρόσβασης (access token) αναδημιουργήθηκε επιτυχώς
     warning: Μεγάλη προσοχή με αυτά τα στοιχεία. Μην τα μοιραστείς ποτέ με κανέναν!
@@ -685,6 +693,8 @@ el:
     resend_confirmation: Στείλε ξανά τις οδηγίες επιβεβαίωσης
     reset_password: Επαναφορά συνθηματικού
     rules:
+      accept: Αποδοχή
+      back: Πίσω
       title: Ορισμένοι βασικοί κανόνες.
     security: Ασφάλεια
     set_new_password: Ορισμός νέου συνθηματικού
