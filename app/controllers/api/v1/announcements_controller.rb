@@ -19,7 +19,7 @@ class Api::V1::AnnouncementsController < Api::BaseController
 
   def set_announcements
     @announcements = begin
-      Announcement.published.chronological
+      Announcement.published.reverse_chronological
     end
   end
 

@@ -21,7 +21,7 @@ class AnnouncementFilter
       scope.merge!(scope_for(key, value.to_s.strip)) if value.present?
     end
 
-    scope.chronological
+    scope.reverse_chronological
   end
 
   private
