@@ -90,6 +90,7 @@ is:
       moderation:
         active: Virkur
         all: Allt
+        disabled: Óvirkt
         pending: Í bið
         silenced: Takmarkað
         suspended: Í frysti
@@ -132,6 +133,7 @@ is:
       search: Leita
       search_same_email_domain: Aðra notendur með sama tölvupóstlén
       search_same_ip: Aðrir notendur með sama IP-vistfang
+      security: Öryggi
       security_measures:
         only_password: Aðeins lykilorð
         password_and_2fa: Lykilorð og 2-þátta auðkenning
@@ -426,6 +428,7 @@ is:
         resolve: Leysa lén
         title: Útiloka nýtt tölvupóstlén
       no_email_domain_block_selected: Engum útilokunum tölvupóstléna var breytt þar sem ekkert var valið
+      not_permitted: Ekki leyft
       resolved_dns_records_hint_html: Heiti lénsins vísar til eftirfarandi MX-léna, sem bera endanlega ábyrgð á að tölvupóstur skili sér. Útilokun á MX-léni mun koma í veg fyrir nýskráningar með hverju því tölvupóstfangi sem notar sama MX-lén, jafnvel þótt sýnilega lénsheitið sé frábrugðið. <strong>Farðu varlega svo þú útilokir ekki algengar tölvupóstþjónustur.</strong>
       resolved_through_html: Leyst í gegnum %{domain}
       title: Útilokuð tölvupóstlén
@@ -472,6 +475,7 @@ is:
       content_policies:
         comment: Innri minnispunktur
         description_html: Þú getur skilgreint stefnu varðandi efni sem verður beitt á alla aðganga frá þessu léni og öllum undirlénum þess.
+        limited_federation_mode_description_html: Þú getur valið hvort leyfa eigi skýjasamband við þetta lén.
         policies:
           reject_media: Hafna myndefni
           reject_reports: Hafna kærum
@@ -584,11 +588,13 @@ is:
       assign_to_self: Úthluta mér
       assigned: Úthlutaður umsjónarmaður
       by_target_domain: Lén kærða notandaaðgangsins
+      cancel: Hætta við
       category: Flokkur
       category_description_html: Ástæðan fyrir því að þessi notandaaðgangur og/eða efni hans var kært mun verða tiltekin í samskiptum við kærðan notandaaðgang
       comment:
         none: Ekkert
       comment_description_html: 'Til að gefa nánari upplýsingar skrifaði %{name}:'
+      confirm: Staðfesta
       confirm_action: Staðfesta umsjónaraðgerðir gagnvart @%{acct}
       created_at: Tilkynnt
       delete_and_resolve: Eyða færslum
@@ -791,6 +797,7 @@ is:
         suspend: "%{name} setti notandaaðganginn %{target} í frysti"
       appeal_approved: Áfrýjað
       appeal_pending: Áfrýjun í bið
+      appeal_rejected: Áfrýjun hafnað
     system_checks:
       database_schema_check:
         message_html: Það eru fyrirliggjandi yfirfærslur á gagnagrunnum. Keyrðu þær til að tryggja að forritið hegði sér eins og skyldi
@@ -826,6 +833,7 @@ is:
           other: Deilt af %{count} aðilum síðustu vikuna
         title: Vinsælir tenglar
         usage_comparison: Deilt %{today} sinnum í dag, samanborið við %{yesterday} í gær
+      not_allowed_to_trend: Ekki leyft að verða vinsælt
       only_allowed: Aðeins leyfð
       pending_review: Bíður eftir yfirlestri
       preview_card_providers:
@@ -957,6 +965,7 @@ is:
   applications:
     created: Það tókst að búa til forrit
     destroyed: Það tókst að eyða forriti
+    logout: Skrá út
     regenerate_token: Endurgera aðgangsteikn
     token_regenerated: Það tókst að endurgera aðgangsteiknið
     warning: Farðu mjög varlega með þessi gögn. Þú skalt aldrei deila þeim með neinum!
@@ -993,6 +1002,8 @@ is:
     resend_confirmation: Senda leiðbeiningar vegna staðfestingar aftur
     reset_password: Endursetja lykilorð
     rules:
+      accept: Samþykkja
+      back: Til baka
       preamble: Þær eru settar og þeim framfylgt af umsjónarmönnum %{domain}.
       title: Nokkrar grunnreglur.
     security: Öryggi
