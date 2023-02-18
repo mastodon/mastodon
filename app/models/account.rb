@@ -62,8 +62,8 @@ class Account < ApplicationRecord
     trust_level
   )
 
-  USERNAME_RE   = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
-  MENTION_RE    = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]\.\-]+[[:word:]]+)?)/i
+  USERNAME_RE   = /[a-z0-9_]+([a-z0-9_.-]+[a-z0-9_]+)?/i
+  MENTION_RE    = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:].-]+[[:word:]]+)?)/i
   URL_PREFIX_RE = /\Ahttp(s?):\/\/[^\/]+/
   USERNAME_ONLY_RE = /\A#{USERNAME_RE}\z/i
 

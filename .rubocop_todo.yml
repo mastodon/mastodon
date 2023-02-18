@@ -1486,17 +1486,6 @@ Style/RedundantFetchBlock:
     - 'config/puma.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
-Style/RedundantRegexpEscape:
-  Exclude:
-    - 'app/lib/webfinger_resource.rb'
-    - 'app/models/account.rb'
-    - 'app/models/tag.rb'
-    - 'app/services/fetch_link_card_service.rb'
-    - 'config/initializers/twitter_regex.rb'
-    - 'lib/paperclip/color_extractor.rb'
-    - 'lib/tasks/mastodon.rake'
-
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, AllowInnerSlashes.
 # SupportedStyles: slashes, percent_r, mixed
 Style/RegexpLiteral:

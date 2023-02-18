@@ -21,7 +21,7 @@ namespace :mastodon do
       env['LOCAL_DOMAIN'] = prompt.ask('Domain name:') do |q|
         q.required true
         q.modify :strip
-        q.validate(/\A[a-z0-9\.\-]+\z/i)
+        q.validate(/\A[a-z0-9.-]+\z/i)
         q.messages[:valid?] = 'Invalid domain. If you intend to use unicode characters, enter punycode here'
       end
 
