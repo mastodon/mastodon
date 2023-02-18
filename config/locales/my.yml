@@ -152,8 +152,10 @@ my:
         update_status: ပို့စ်ပြင်ဆင်ရန်
         update_user_role: အခန်းကဏ္ဍပြင်ဆင်ရန်
       actions:
+        create_canonical_email_block_html: "%{name} မှ ဟက်ရှ် %{target} ဖြင့် အီးမေးလ်ကို ပိတ်ပင်ထားသည်"
         create_domain_block_html: "%{name} မှ ဒိုမိန်း %{target} ကို ပိတ်ပင်ထားသည်"
         create_email_domain_block_html: "%{name} မှ အီးမေးလ်ဒိုမိန်း %{target} ကို ပိတ်ပင်ထားသည်"
+        create_ip_block_html: "%{name} မှ IP %{target} အတွက် စည်းမျဉ်းကို ဖန်တီးထားသည်"
         create_user_role_html: "%{name} သည် %{target} အခန်းကဏ္ဍကို ဖန်တီးပြီးပါပြီ"
         demote_user_html: "%{name} သည် အသုံးပြုသူ %{target} ကို ဖြုတ်ပြီးပါပြီ"
         destroy_announcement_html: "%{name} ကြေညာချက် %{target} ကို ဖျက်လိုက်သည်"
@@ -161,6 +163,7 @@ my:
         destroy_custom_emoji_html: "%{name} ဖျက်လိုက်သော အီမိုဂျီ %{target}"
         destroy_domain_block_html: "%{name} မှ ပြန်ဖွင့်လိုက်သော ဒိုမိန်း %{target}"
         destroy_email_domain_block_html: "%{name} မှ အီးမေးလ်ဒိုမိန်း %{target} ကို ပြန်ဖွင့်ထားသည်"
+        destroy_ip_block_html: "%{name} မှ IP %{target} အတွက် စည်းမျဉ်းကို ဖျက်ထားသည်"
         destroy_user_role_html: "%{name} မှ ဖျက်ထားသော အခန်းကဏ္ဍ %{target} "
         disable_2fa_user_html: "%{name} မှ အသုံးပြုသူ %{target} အတွက် နှစ်ဆင့်ခံလုံခြုံရေးလိုအပ်ချက်ကို ပိတ်ထားသည်"
         disable_custom_emoji_html: "%{name} ပိတ်ထားသောအီမိုဂျီ %{target}"
@@ -257,6 +260,8 @@ my:
       created_msg: ဒိုမိန်းပိတ်ပင်ခြင်းကို ယခုလုပ်ဆောင်နေပါသည်
       domain: ဒိုမိန်း
       edit: ဒိုမိန်းပိတ်ပင်ခြင်းကို ပြင်ဆင်ရန်
+      export: ထုတ်ယူခြင်း
+      import: ထည့်သွင်းခြင်း
       new:
         create: ပိတ်ပင်ခြင်း ဖန်တီးရန်
         severity:
@@ -264,7 +269,9 @@ my:
           suspend: ရပ်ဆိုင်းပါ
         title: ဒိုမိန်းပိတ်ပင်ထားခြင်းအသစ်
       no_domain_block_selected: မည်သည့်ဒိုမိန်းပိတ်ပင်ထားခြင်းကိုမျှ ရွေးချယ်ထားခြင်းမရှိသောကြောင့် ပြောင်းလဲခြင်းမရှိပါ
+      not_permitted: ဤလုပ်ဆောင်ချက်ကို ဆောင်ရွက်ရန် သင့်ကို ခွင့်မပြုပါ။
       private_comment: သီးသန့်မှတ်ချက်
+      private_comment_hint: စိစစ်သူများ၏အတွင်းပိုင်းအသုံးပြုမှုအတွက် ဤဒိုမိန်းကန့်သတ်ချက်ဆိုင်ရာမှတ်ချက်။
       public_comment: အများမြင်မှတ်ချက်
       reject_media: မီဒီယာဖိုင်များကို ဖယ်ရှားပါ
       undo: ဒိုမိန်းပိတ်ပင်ခြင်းကို ပြန်ဖျက်ရန်
@@ -279,9 +286,21 @@ my:
       domain: ဒိုမိန်း
       new:
         create: ဒိုမိန်းထည့်ပါ
+        resolve: ဒိုမိန်းကို ဖြေရှင်းရန်
+        title: အီးမေးလ်ဒိုမိန်းအသစ်ကို ပိတ်ရန်
+      no_email_domain_block_selected: မည်သည့်အီးမေးလ်ဒိုမိန်းပိတ်ပင်ခြင်းကိုမျှ ရွေးချယ်ထားခြင်းမရှိသောကြောင့် ပြောင်းလဲခြင်းမရှိပါ
+      not_permitted: ခွင့်ပြုထားခြင်းမရှိပါ
+      resolved_through_html: '%{domain} မှတစ်ဆင့် ဖြေရှင်းခဲ့သည်'
+      title: ပိတ်ပင်ထားသော အီးမေးလ်ဒိုမိန်းများ
     export_domain_allows:
       no_file: ဖိုင်ရွေးထားခြင်းမရှိပါ။
     export_domain_blocks:
+      import:
+        private_comment_template: '%{date} တွင် %{source} မှ ထည့်သွင်းခဲ့သည်'
+        title: ဒိုမိန်းပိတ်ပင်ထားမှုများကို ထည့်သွင်းရန်
+      invalid_domain_block: 'အောက်ပါအမှား(များ)ကြောင့် တစ်ခု သို့မဟုတ် တစ်ခုထက်ပိုသော ဒိုမိန်းပိတ်ပင်ထားမှုများကို ကျော်သွားခဲ့သည် - %{error}'
+      new:
+        title: ဒိုမိန်းပိတ်ပင်ထားမှုများကို ထည့်သွင်းရန်
       no_file: ဖိုင်ရွေးထားခြင်းမရှိပါ
     follow_recommendations:
       language: ဘာသာစကားအတွက်
@@ -315,6 +334,7 @@ my:
         title: စိစစ်ခြင်း
       private_comment: သီးသန့်မှတ်ချက်
       public_comment: အများမြင်မှတ်ချက်
+      total_blocked_by_us: ကျွန်ုပ်တို့မှ ပိတ်ပင်ထားခြင်း
       total_storage: မီဒီယာ ပူးတွဲချက်များ
     invites:
       filter:
@@ -334,6 +354,7 @@ my:
         '94670856': ၃ နှစ်
       new:
         title: IP စည်းမျဉ်းအသစ်ဖန်တီးပါ
+      no_ip_block_selected: မည်သည့် IP စည်းမျဉ်းကိုမျှ ရွေးချယ်ထားခြင်းမရှိသောကြောင့် ပြောင်းလဲခြင်းမရှိပါ
       title: IP စည်းမျဉ်းများ
     relationships:
       title: "%{acct} နှင့် ပတ်သက်မှု"
@@ -433,6 +454,8 @@ my:
         profile_directory: ပရိုဖိုင်လမ်းညွှန်
       domain_blocks:
         all: လူတိုင်း
+        disabled: မည်သူ့ကိုမျှ
+        users: အကောင့်ဝင်ထားသော ပြည်တွင်းအသုံးပြုသူများအတွက်
       registrations_mode:
         modes:
           open: မည်သူမဆို အကောင့်ဖွင့်နိုင်ပါသည်
@@ -576,6 +599,7 @@ my:
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422':
+      content: လုံခြုံရေး အတည်ပြုခြင်း မအောင်မြင်ပါ။ သင်သည် ကွတ်ကီးများကို ပိတ်ပင်ထားပါသလား။
     '429': တောင်းဆိုမှု များနေပါသည်
     '500':
       title: ဤစာမျက်နှာမှာ မမှန်ကန်ပါ
@@ -587,6 +611,7 @@ my:
       size: အရွယ်အစား
     blocks: သင်ပိတ်ပင်ထားသည့်လူများစာရင်း
     csv: CSV
+    domain_blocks: ဒိုမိန်းပိတ်ပင်ထားမှုများ
     lists: စာရင်းများ
     storage: မီဒီယာသိုလှောင်မှု
   featured_tags:
@@ -619,8 +644,10 @@ my:
     delete: ဖျက်ပါ
     today: ယနေ့
   imports:
+    preface: သင်စောင့်ကြည့်နေသည့်လူများစာရင်း သို့မဟုတ် ပိတ်ပင်ထားသည့်စာရင်းကဲ့သို့သော အခြားဆာဗာတစ်ခုမှ သင်ထုတ်ယူထားသည့်အချက်အလက်များကို ပြန်လည်ထည့်သွင်းနိုင်သည်။
     types:
-      blocking: ပိတ်ဆို့ထားသည့်စာရင်း
+      blocking: ပိတ်ပင်ထားသည့်စာရင်း
+      domain_blocking: ဒိုမိန်းပိတ်ပင်ထားသည့်စာရင်း
     upload: တင္ရန်
   invites:
     expires_in:
