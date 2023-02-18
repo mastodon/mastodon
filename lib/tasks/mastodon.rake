@@ -573,7 +573,7 @@ def dotenv_escape(value)
 
   # As long as the value doesn't include single quotes, we can safely
   # rely on single quotes
-  return "'#{value}'" unless /[']/.match?(value)
+  return "'#{value}'" unless value.include?("'")
 
   # If the value contains the string '\n' or '\r' we simply can't use
   # a double-quoted string, because Dotenv will expand \n or \r no

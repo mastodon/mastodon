@@ -1486,18 +1486,6 @@ Style/RedundantFetchBlock:
     - 'config/puma.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
-Style/RedundantRegexpCharacterClass:
-  Exclude:
-    - 'app/lib/link_details_extractor.rb'
-    - 'app/lib/tag_manager.rb'
-    - 'app/models/domain_allow.rb'
-    - 'app/models/domain_block.rb'
-    - 'app/services/fetch_oembed_service.rb'
-    - 'config/initializers/rack_attack.rb'
-    - 'lib/tasks/emojis.rake'
-    - 'lib/tasks/mastodon.rake'
-
-# This cop supports safe autocorrection (--autocorrect).
 Style/RedundantRegexpEscape:
   Exclude:
     - 'app/lib/webfinger_resource.rb'
