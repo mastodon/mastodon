@@ -7,7 +7,7 @@ RSpec.describe FetchRemoteStatusService, type: :service do
   let(:note) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
-      id: "https://example.org/@foo/1234",
+      id: 'https://example.org/@foo/1234',
       type: 'Note',
       content: 'Lorem ipsum',
       attributedTo: ActivityPub::TagManager.instance.uri_for(account),

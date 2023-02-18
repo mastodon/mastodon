@@ -5,8 +5,8 @@ describe ApplicationHelper do
     it 'returns active when on the current page' do
       allow(helper).to receive(:current_page?).and_return(true)
 
-      result = helper.active_nav_class("/test")
-      expect(result).to eq "active"
+      result = helper.active_nav_class('/test')
+      expect(result).to eq 'active'
     end
 
     it 'returns active when on a current page' do
@@ -14,14 +14,14 @@ describe ApplicationHelper do
       allow(helper).to receive(:current_page?).with('/test').and_return(true)
 
       result = helper.active_nav_class('/foo', '/test')
-      expect(result).to eq "active"
+      expect(result).to eq 'active'
     end
 
     it 'returns empty string when not on current page' do
       allow(helper).to receive(:current_page?).and_return(false)
 
-      result = helper.active_nav_class("/test")
-      expect(result).to eq ""
+      result = helper.active_nav_class('/test')
+      expect(result).to eq ''
     end
   end
 

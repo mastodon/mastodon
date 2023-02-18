@@ -6,9 +6,9 @@ describe FetchOEmbedService, type: :service do
   subject { described_class.new }
 
   before do
-    stub_request(:get, "https://host.test/provider.json").to_return(status: 404)
-    stub_request(:get, "https://host.test/provider.xml").to_return(status: 404)
-    stub_request(:get, "https://host.test/empty_provider.json").to_return(status: 200)
+    stub_request(:get, 'https://host.test/provider.json').to_return(status: 404)
+    stub_request(:get, 'https://host.test/provider.xml').to_return(status: 404)
+    stub_request(:get, 'https://host.test/empty_provider.json').to_return(status: 200)
   end
 
   describe 'discover_provider' do

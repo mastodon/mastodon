@@ -5,7 +5,7 @@ RSpec.describe PostStatusService, type: :service do
 
   it 'creates a new status' do
     account = Fabricate(:account)
-    text = "test status update"
+    text = 'test status update'
 
     status = subject.call(account, text: text)
 
@@ -16,7 +16,7 @@ RSpec.describe PostStatusService, type: :service do
   it 'creates a new response status' do
     in_reply_to_status = Fabricate(:status)
     account = Fabricate(:account)
-    text = "test status update"
+    text = 'test status update'
 
     status = subject.call(account, text: text, thread: in_reply_to_status)
 
@@ -58,7 +58,7 @@ RSpec.describe PostStatusService, type: :service do
     boosted_status = Fabricate(:status)
     in_reply_to_status = Fabricate(:status, reblog: boosted_status)
     account = Fabricate(:account)
-    text = "test status update"
+    text = 'test status update'
 
     status = subject.call(account, text: text, thread: in_reply_to_status)
 
@@ -75,7 +75,7 @@ RSpec.describe PostStatusService, type: :service do
   end
 
   it 'creates a status with spoiler text' do
-    spoiler_text = "spoiler text"
+    spoiler_text = 'spoiler text'
 
     status = create_status_with_options(spoiler_text: spoiler_text)
 
@@ -101,14 +101,14 @@ RSpec.describe PostStatusService, type: :service do
     status = create_status_with_options(visibility: :private)
 
     expect(status).to be_persisted
-    expect(status.visibility).to eq "private"
+    expect(status.visibility).to eq 'private'
   end
 
   it 'creates a status with limited visibility for silenced users' do
     status = subject.call(Fabricate(:account, silenced: true), text: 'test', visibility: :public)
 
     expect(status).to be_persisted
-    expect(status.visibility).to eq "unlisted"
+    expect(status.visibility).to eq 'unlisted'
   end
 
   it 'creates a status for the given application' do
@@ -135,7 +135,7 @@ RSpec.describe PostStatusService, type: :service do
     allow(ProcessMentionsService).to receive(:new).and_return(mention_service)
     account = Fabricate(:account)
 
-    status = subject.call(account, text: "test status update")
+    status = subject.call(account, text: 'test status update')
 
     expect(ProcessMentionsService).to have_received(:new)
     expect(mention_service).to have_received(:call).with(status, save_records: false)
@@ -166,7 +166,7 @@ RSpec.describe PostStatusService, type: :service do
     allow(ProcessHashtagsService).to receive(:new).and_return(hashtags_service)
     account = Fabricate(:account)
 
-    status = subject.call(account, text: "test status update")
+    status = subject.call(account, text: 'test status update')
 
     expect(ProcessHashtagsService).to have_received(:new)
     expect(hashtags_service).to have_received(:call).with(status)
@@ -178,7 +178,7 @@ RSpec.describe PostStatusService, type: :service do
 
     account = Fabricate(:account)
 
-    status = subject.call(account, text: "test status update")
+    status = subject.call(account, text: 'test status update')
 
     expect(DistributionWorker).to have_received(:perform_async).with(status.id)
     expect(ActivityPub::DistributionWorker).to have_received(:perform_async).with(status.id)
@@ -188,7 +188,7 @@ RSpec.describe PostStatusService, type: :service do
     allow(LinkCrawlWorker).to receive(:perform_async)
     account = Fabricate(:account)
 
-    status = subject.call(account, text: "test status update")
+    status = subject.call(account, text: 'test status update')
 
     expect(LinkCrawlWorker).to have_received(:perform_async).with(status.id)
   end
@@ -199,7 +199,7 @@ RSpec.describe PostStatusService, type: :service do
 
     status = subject.call(
       account,
-      text: "test status update",
+      text: 'test status update',
       media_ids: [media.id]
     )
 
@@ -212,7 +212,7 @@ RSpec.describe PostStatusService, type: :service do
 
     status = subject.call(
       account,
-      text: "test status update",
+      text: 'test status update',
       media_ids: [media.id]
     )
 
@@ -225,7 +225,7 @@ RSpec.describe PostStatusService, type: :service do
     expect do
       subject.call(
         account,
-        text: "test status update",
+        text: 'test status update',
         media_ids: [
           Fabricate(:media_attachment, account: account),
           Fabricate(:media_attachment, account: account),
@@ -250,7 +250,7 @@ RSpec.describe PostStatusService, type: :service do
     expect do
       subject.call(
         account,
-        text: "test status update",
+        text: 'test status update',
         media_ids: [
           video,
           image,

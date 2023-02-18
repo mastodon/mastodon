@@ -38,7 +38,7 @@ describe Api::V1::StreamingController do
         [:scheme, :path, :query, :fragment].each do |part|
           expect(redirect_to_uri.send(part)).to eq(request_uri.send(part)), "redirect target #{part}"
         end
-        expect(redirect_to_uri.host).to eq(@streaming_host), "redirect target host"
+        expect(redirect_to_uri.host).to eq(@streaming_host), 'redirect target host'
       end
     end
   end

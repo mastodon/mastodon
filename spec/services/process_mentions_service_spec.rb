@@ -62,7 +62,7 @@ RSpec.describe ProcessMentionsService, type: :service do
 
       context 'with an IDN domain' do
         let!(:remote_user) { Fabricate(:account, username: 'sneak', protocol: :activitypub, domain: 'xn--hresiar-mxa.ch', inbox_url: 'http://example.com/inbox') }
-        let!(:status) { Fabricate(:status, account: account, text: "Hello @sneak@hæresiar.ch") }
+        let!(:status) { Fabricate(:status, account: account, text: 'Hello @sneak@hæresiar.ch') }
 
         before do
           subject.call(status)
@@ -75,7 +75,7 @@ RSpec.describe ProcessMentionsService, type: :service do
 
       context 'with an IDN TLD' do
         let!(:remote_user) { Fabricate(:account, username: 'foo', protocol: :activitypub, domain: 'xn--y9a3aq.xn--y9a3aq', inbox_url: 'http://example.com/inbox') }
-        let!(:status) { Fabricate(:status, account: account, text: "Hello @foo@հայ.հայ") }
+        let!(:status) { Fabricate(:status, account: account, text: 'Hello @foo@հայ.հայ') }
 
         before do
           subject.call(status)
@@ -91,8 +91,8 @@ RSpec.describe ProcessMentionsService, type: :service do
       let!(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox', last_webfingered_at: nil) }
 
       before do
-        stub_request(:get, "https://example.com/.well-known/host-meta").to_return(status: 404)
-        stub_request(:get, "https://example.com/.well-known/webfinger?resource=acct:remote_user@example.com").to_return(status: 500)
+        stub_request(:get, 'https://example.com/.well-known/host-meta').to_return(status: 404)
+        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:remote_user@example.com').to_return(status: 500)
         subject.call(status)
       end
 

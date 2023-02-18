@@ -8,7 +8,7 @@ RSpec.describe ImportService, type: :service do
   let!(:eve)     { Fabricate(:account, username: 'eve', domain: 'example.com', locked: false, protocol: :activitypub, inbox_url: 'https://example.com/inbox') }
 
   before do
-    stub_request(:post, "https://example.com/inbox").to_return(status: 200)
+    stub_request(:post, 'https://example.com/inbox').to_return(status: 200)
   end
 
   context 'import old-style list of muted users' do
@@ -186,7 +186,7 @@ RSpec.describe ImportService, type: :service do
 
     # Make sure to not actually go to the remote server
     before do
-      stub_request(:post, "https://թութ.հայ/inbox").to_return(status: 200)
+      stub_request(:post, 'https://թութ.հայ/inbox').to_return(status: 200)
     end
 
     let(:csv) { attachment_fixture('utf8-followers.txt') }
