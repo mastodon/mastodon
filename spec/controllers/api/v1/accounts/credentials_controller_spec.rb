@@ -35,7 +35,7 @@ describe Api::V1::Accounts::CredentialsController do
             source: {
               privacy: 'unlisted',
               sensitive: true,
-            }
+            },
           }
         end
 

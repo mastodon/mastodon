@@ -123,15 +123,15 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
               type: 'RsaSignature2017',
               creator: 'https://example.com/users/bob#main-key',
               created: '2022-03-09T21:57:25Z',
-              signatureValue: 'WculK0LelTQ0MvGwU9TPoq5pFzFfGYRDCJqjZ232/Udj4CHqDTGOSw5UTDLShqBOyycCkbZGrQwXG+dpyDpQLSe1UVPZ5TPQtc/9XtI57WlS2nMNpdvRuxGnnb2btPdesXZ7n3pCxo0zjaXrJMe0mqQh5QJO22mahb4bDwwmfTHgbD3nmkD+fBfGi+UV2qWwqr+jlV4L4JqNkh0gWljF5KTePLRRZCuWiQ/FAt7c67636cdIPf7fR+usjuZltTQyLZKEGuK8VUn2Gkfsx5qns7Vcjvlz1JqlAjyO8HPBbzTTHzUG2nUOIgC3PojCSWv6mNTmRGoLZzOscCAYQA6cKw=='
+              signatureValue: 'WculK0LelTQ0MvGwU9TPoq5pFzFfGYRDCJqjZ232/Udj4CHqDTGOSw5UTDLShqBOyycCkbZGrQwXG+dpyDpQLSe1UVPZ5TPQtc/9XtI57WlS2nMNpdvRuxGnnb2btPdesXZ7n3pCxo0zjaXrJMe0mqQh5QJO22mahb4bDwwmfTHgbD3nmkD+fBfGi+UV2qWwqr+jlV4L4JqNkh0gWljF5KTePLRRZCuWiQ/FAt7c67636cdIPf7fR+usjuZltTQyLZKEGuK8VUn2Gkfsx5qns7Vcjvlz1JqlAjyO8HPBbzTTHzUG2nUOIgC3PojCSWv6mNTmRGoLZzOscCAYQA6cKw==',
             },
             '@id': 'https://example.com/users/bob/statuses/107928807471117876/activity',
             '@type': 'https://www.w3.org/ns/activitystreams#Create',
             'https://www.w3.org/ns/activitystreams#actor': {
-              '@id': 'https://example.com/users/bob'
+              '@id': 'https://example.com/users/bob',
             },
             'https://www.w3.org/ns/activitystreams#cc': {
-              '@id': 'https://example.com/users/bob/followers'
+              '@id': 'https://example.com/users/bob/followers',
             },
             object: {
               id: 'https://example.com/users/bob/fake-status',
@@ -156,21 +156,21 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
               'http://ostatus.org#conversation': 'tag:example.com,2022-03-09:objectId=15:objectType=Conversation',
               'https://www.w3.org/ns/activitystreams#attachment': [],
               'https://www.w3.org/ns/activitystreams#attributedTo': {
-                '@id': 'https://example.com/users/bob'
+                '@id': 'https://example.com/users/bob',
               },
               'https://www.w3.org/ns/activitystreams#cc': {
-                '@id': 'https://example.com/users/bob/followers'
+                '@id': 'https://example.com/users/bob/followers',
               },
               'https://www.w3.org/ns/activitystreams#content': [
                 '<p>hello world</p>',
                 {
                   '@value': '<p>hello world</p>',
-                  '@language': 'en'
+                  '@language': 'en',
                 }
               ],
               'https://www.w3.org/ns/activitystreams#published': {
                 '@type': 'http://www.w3.org/2001/XMLSchema#dateTime',
-                '@value': '2022-03-09T21:55:07Z'
+                '@value': '2022-03-09T21:55:07Z',
               },
               'https://www.w3.org/ns/activitystreams#replies': {
                 '@id': 'https://example.com/users/bob/statuses/107928807471117876/replies',
@@ -179,29 +179,29 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
                   '@type': 'https://www.w3.org/ns/activitystreams#CollectionPage',
                   'https://www.w3.org/ns/activitystreams#items': [],
                   'https://www.w3.org/ns/activitystreams#next': {
-                    '@id': 'https://example.com/users/bob/statuses/107928807471117876/replies?only_other_accounts=true&page=true'
+                    '@id': 'https://example.com/users/bob/statuses/107928807471117876/replies?only_other_accounts=true&page=true',
                   },
                   'https://www.w3.org/ns/activitystreams#partOf': {
-                    '@id': 'https://example.com/users/bob/statuses/107928807471117876/replies'
-                  }
-                }
+                    '@id': 'https://example.com/users/bob/statuses/107928807471117876/replies',
+                  },
+                },
               },
               'https://www.w3.org/ns/activitystreams#sensitive': false,
               'https://www.w3.org/ns/activitystreams#tag': [],
               'https://www.w3.org/ns/activitystreams#to': {
-                '@id': 'https://www.w3.org/ns/activitystreams#Public'
+                '@id': 'https://www.w3.org/ns/activitystreams#Public',
               },
               'https://www.w3.org/ns/activitystreams#url': {
-                '@id': 'https://example.com/@bob/107928807471117876'
-              }
+                '@id': 'https://example.com/@bob/107928807471117876',
+              },
             },
             'https://www.w3.org/ns/activitystreams#published': {
               '@type': 'http://www.w3.org/2001/XMLSchema#dateTime',
-              '@value': '2022-03-09T21:55:07Z'
+              '@value': '2022-03-09T21:55:07Z',
             },
             'https://www.w3.org/ns/activitystreams#to': {
-              '@id': 'https://www.w3.org/ns/activitystreams#Public'
-            }
+              '@id': 'https://www.w3.org/ns/activitystreams#Public',
+            },
           }
         end
 

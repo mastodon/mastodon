@@ -3417,34 +3417,6 @@ Style/TrailingCommaInArrayLiteral:
     - 'spec/services/activitypub/process_collection_service_spec.rb'
     - 'spec/workers/activitypub/move_distribution_worker_spec.rb'
 
-# Offense count: 61
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInHashLiteral:
-  Exclude:
-    - 'spec/controllers/admin/accounts_controller_spec.rb'
-    - 'spec/controllers/admin/domain_blocks_controller_spec.rb'
-    - 'spec/controllers/api/v1/accounts/credentials_controller_spec.rb'
-    - 'spec/controllers/api/v1/push/subscriptions_controller_spec.rb'
-    - 'spec/controllers/api/web/push_subscriptions_controller_spec.rb'
-    - 'spec/controllers/settings/applications_controller_spec.rb'
-    - 'spec/controllers/settings/imports_controller_spec.rb'
-    - 'spec/controllers/settings/preferences/notifications_controller_spec.rb'
-    - 'spec/controllers/settings/preferences/other_controller_spec.rb'
-    - 'spec/lib/activitypub/activity/announce_spec.rb'
-    - 'spec/lib/activitypub/activity/create_spec.rb'
-    - 'spec/services/activitypub/fetch_featured_collection_service_spec.rb'
-    - 'spec/services/activitypub/fetch_featured_tags_collection_service_spec.rb'
-    - 'spec/services/activitypub/fetch_remote_status_service_spec.rb'
-    - 'spec/services/activitypub/fetch_replies_service_spec.rb'
-    - 'spec/services/activitypub/process_account_service_spec.rb'
-    - 'spec/services/activitypub/process_collection_service_spec.rb'
-    - 'spec/services/activitypub/process_status_update_service_spec.rb'
-    - 'spec/services/activitypub/synchronize_followers_service_spec.rb'
-    - 'spec/services/fetch_resource_service_spec.rb'
-    - 'spec/spec_helper.rb'
-
 # Offense count: 4
 # This cop supports safe autocorrection (--autocorrect).
 Style/UnpackFirst:

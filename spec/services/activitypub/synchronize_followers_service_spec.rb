@@ -91,7 +91,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
             type: 'CollectionPage',
             partOf: collection_uri,
             items: items,
-          }
+          },
         }.with_indifferent_access
       end
 

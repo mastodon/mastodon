@@ -175,7 +175,7 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
               name: "@user#{i + 1}",
             }
           ],
-          to: ['as:Public', "https://foo.test/users/#{i + 1}"]
+          to: ['as:Public', "https://foo.test/users/#{i + 1}"],
         }.with_indifferent_access
         featured_json = {
           '@context': ['https://www.w3.org/ns/activitystreams'],

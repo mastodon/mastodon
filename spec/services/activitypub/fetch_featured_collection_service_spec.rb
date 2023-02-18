@@ -109,7 +109,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
             type: 'CollectionPage',
             partOf: actor.featured_collection_url,
             items: items,
-          }
+          },
         }.with_indifferent_access
       end
 

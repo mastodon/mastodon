@@ -91,7 +91,7 @@ RSpec.describe FetchResourceService, type: :service do
       end
 
       context 'when link header is present' do
-        let(:headers) { { 'Link' => '<http://example.com/foo>; rel="alternate"; type="application/activity+json"', } }
+        let(:headers) { { 'Link' => '<http://example.com/foo>; rel="alternate"; type="application/activity+json"' } }
 
         it { is_expected.to eq [1, { prefetched_body: json, id: true }] }
       end
