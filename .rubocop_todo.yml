@@ -3412,16 +3412,6 @@ Style/SymbolProc:
   Exclude:
     - 'spec/lib/request_spec.rb'
 
-# Offense count: 8
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInArguments:
-  Exclude:
-    - 'app/controllers/tags_controller.rb'
-    - 'spec/services/fetch_oembed_service_spec.rb'
-    - 'spec/services/post_status_service_spec.rb'
-
 # Offense count: 10
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyleForMultiline.
