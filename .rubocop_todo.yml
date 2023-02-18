@@ -1121,12 +1121,6 @@ RSpec/LeakyConstantDeclaration:
     - 'spec/lib/settings/extend_spec.rb'
     - 'spec/models/concerns/remotable_spec.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/LetBeforeExamples:
-  Exclude:
-    - 'spec/models/user_spec.rb'
-
 # Offense count: 108
 RSpec/LetSetup:
   Exclude:
