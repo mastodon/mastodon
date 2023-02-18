@@ -18,7 +18,7 @@ describe FetchOEmbedService, type: :service do
           stub_request(:get, 'https://www.youtube.com/watch?v=IPSbNdBmWKE').to_return(
             status: 200,
             headers: { 'Content-Type': 'text/html' },
-            body: request_fixture('oembed_youtube.html'),
+            body: request_fixture('oembed_youtube.html')
           )
           stub_request(:get, 'https://www.youtube.com/oembed?format=json&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DIPSbNdBmWKE').to_return(
             status: 200,
