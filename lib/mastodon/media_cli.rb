@@ -277,9 +277,7 @@ module Mastodon
         exit(1)
       end
 
-      if options[:days].present?
-        scope = scope.where('media_attachments.id > ?', Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false))
-      end
+      scope = scope.where('media_attachments.id > ?', Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false)) if options[:days].present?
 
       processed, aggregate = parallelize_with_progress(scope) do |media_attachment|
         next if media_attachment.remote_url.blank? || (!options[:force] && media_attachment.file_file_name.present?)
