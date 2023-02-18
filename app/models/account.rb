@@ -313,9 +313,7 @@ class Account < ApplicationRecord
 
         previous = old_fields.find { |item| item['value'] == attr[:value] }
 
-        if previous && previous['verified_at'].present?
-          attr[:verified_at] = previous['verified_at']
-        end
+        attr[:verified_at] = previous['verified_at'] if previous && previous['verified_at'].present?
 
         fields << attr
       end
