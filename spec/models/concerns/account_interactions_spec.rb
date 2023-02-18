@@ -400,7 +400,7 @@ describe AccountInteractions do
     subject { account.domain_blocking?(domain) }
 
     context 'blocking the domain' do
-      it ' returns true' do
+      it 'returns true' do
         account_domain_block = Fabricate(:account_domain_block, domain: domain)
         account.domain_blocks << account_domain_block
         is_expected.to be true
