@@ -115,7 +115,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
                     account: account,
                     multiple: false,
                     hide_totals: false,
-                    expires_at: expiration
+                    expires_at: expiration,
                   })
       end
 
@@ -166,7 +166,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
                     account: account,
                     multiple: false,
                     hide_totals: false,
-                    expires_at: expiration
+                    expires_at: expiration,
                   })
       end
 
@@ -342,7 +342,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
           updated: '2021-09-08T22:39:25Z',
           attachment: [
             { type: 'Image', mediaType: 'image/png', url: 'https://example.com/foo.png' },
-          ]
+          ],
         }
       end
 
@@ -374,7 +374,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
           updated: '2021-09-08T22:39:25Z',
           attachment: [
             { type: 'Image', mediaType: 'image/png', url: 'https://example.com/foo.png', name: 'A picture' },
-          ]
+          ],
         }
       end
 

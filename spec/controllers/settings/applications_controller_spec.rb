@@ -51,8 +51,8 @@ describe Settings::ApplicationsController do
             name: 'My New App',
             redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
             website: 'http://google.com',
-            scopes: 'read write follow'
-          }
+            scopes: 'read write follow',
+          },
         }
         response
       end
@@ -73,8 +73,8 @@ describe Settings::ApplicationsController do
             name: 'My New App',
             redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
             website: 'http://google.com',
-            scopes: ['read', 'write', 'follow']
-          }
+            scopes: ['read', 'write', 'follow'],
+          },
         }
         response
       end
@@ -95,8 +95,8 @@ describe Settings::ApplicationsController do
             name: '',
             redirect_uri: '',
             website: '',
-            scopes: []
-          }
+            scopes: [],
+          },
         }
       end
 
@@ -114,14 +114,14 @@ describe Settings::ApplicationsController do
     context 'success' do
       let(:opts) {
         {
-          website: 'https://foo.bar/'
+          website: 'https://foo.bar/',
         }
       }
 
       def call_update
         patch :update, params: {
           id: app.id,
-          doorkeeper_application: opts
+          doorkeeper_application: opts,
         }
         response
       end
@@ -144,8 +144,8 @@ describe Settings::ApplicationsController do
             name: '',
             redirect_uri: '',
             website: '',
-            scopes: []
-          }
+            scopes: [],
+          },
         }
       end
 

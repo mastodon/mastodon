@@ -26,9 +26,9 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
           domain_blocks_attributes: {
             '0' => { enabled: '1', domain: 'example.com', severity: 'silence' },
             '1' => { enabled: '0', domain: 'mastodon.social', severity: 'suspend' },
-            '2' => { enabled: '1', domain: 'mastodon.online', severity: 'suspend' }
-          }
-        }
+            '2' => { enabled: '1', domain: 'mastodon.online', severity: 'suspend' },
+          },
+        },
       }
 
       expect(DomainBlockWorker).to have_received(:perform_async).exactly(2).times

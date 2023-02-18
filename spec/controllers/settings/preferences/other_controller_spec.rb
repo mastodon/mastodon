@@ -34,7 +34,7 @@ describe Settings::Preferences::OtherController do
         user: {
           setting_boost_modal: '1',
           setting_delete_modal: '0',
-        }
+        },
       }
 
       expect(response).to redirect_to(settings_preferences_other_path)

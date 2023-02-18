@@ -255,7 +255,7 @@ RSpec.describe ActivityPub::Activity::Create do
               type: 'OrderedCollection',
               id: 'http://example.com/followers',
               first: 'http://example.com/followers?page=true',
-            }
+            },
           }
         end
 
@@ -686,7 +686,7 @@ RSpec.describe ActivityPub::Activity::Create do
                 replies: {
                   type: 'Collection',
                   totalItems: 3,
-                }
+                },
               },
             ],
           }
@@ -716,7 +716,7 @@ RSpec.describe ActivityPub::Activity::Create do
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
             type: 'Note',
             name: 'Yellow',
-            inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status)
+            inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status),
           }
         end
 
@@ -741,7 +741,7 @@ RSpec.describe ActivityPub::Activity::Create do
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
             type: 'Note',
             name: 'Yellow',
-            inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status)
+            inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status),
           }
         end
 

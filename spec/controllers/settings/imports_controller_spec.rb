@@ -21,8 +21,8 @@ RSpec.describe Settings::ImportsController, type: :controller do
       post :create, params: {
         import: {
           type: 'following',
-          data: fixture_file_upload('imports.txt')
-        }
+          data: fixture_file_upload('imports.txt'),
+        },
       }
 
       expect(response).to redirect_to(settings_import_path)
@@ -34,8 +34,8 @@ RSpec.describe Settings::ImportsController, type: :controller do
       post :create, params: {
         import: {
           type: 'blocking',
-          data: fixture_file_upload('imports.txt')
-        }
+          data: fixture_file_upload('imports.txt'),
+        },
       }
 
       expect(response).to redirect_to(settings_import_path)

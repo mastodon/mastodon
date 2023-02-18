@@ -115,7 +115,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
           id: "https://foo.bar/@foo/1234",
           type: 'Event',
           name: "Let's change the world",
-          attributedTo: ActivityPub::TagManager.instance.uri_for(sender)
+          attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
         }
       end
 

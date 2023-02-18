@@ -85,7 +85,7 @@ RSpec.describe ActivityPub::Activity::Announce do
               type: 'OrderedCollection',
               id: 'http://example.com/followers',
               first: 'http://example.com/followers?page=true',
-            }
+            },
           }
         end
 
