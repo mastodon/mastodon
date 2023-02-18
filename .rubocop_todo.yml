@@ -3194,14 +3194,6 @@ Style/RedundantBegin:
     - 'lib/sanitize_ext/sanitize_config.rb'
     - 'lib/tasks/db.rake'
 
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantConstantBase:
-  Exclude:
-    - 'config.ru'
-    - 'lib/tasks/statistics.rake'
-    - 'spec/rails_helper.rb'
-
 # Offense count: 16
 # This cop supports safe autocorrection (--autocorrect).
 Style/RedundantRegexpCharacterClass:
