@@ -1,4 +1,3 @@
----
 et:
   activerecord:
     attributes:
@@ -147,49 +146,49 @@ et:
       application:
         title: OAuth autoriseerimine vajalik
     scopes:
-      admin:read: lugeda kõiki andmeid serveril
-      admin:read:accounts: lugeda privaatset informatsiooni kõikidel kontodel
-      admin:read:canonical_email_blocks: loe kõigi kanooniliste e-posti blokeeringute tundlikku infot
-      admin:read:domain_allows: loe kõigi domeenide lubade tundliku infot
-      admin:read:domain_blocks: loe kõigi domeenide blokeeringute tundlikku infot
-      admin:read:email_domain_blocks: loe kõigi e-posti blokeeringute tundlikku infot
-      admin:read:ip_blocks: loe kõigi IP-blokeeringute tundlikku infot
-      admin:read:reports: lugeda privaatset infot kõikide teavituste ja teavitatud kasutajate kohta
-      admin:write: muuta kõiki andmeid serveril
-      admin:write:accounts: teostada moderaatori tegevusi kontodel
-      admin:write:canonical_email_blocks: modereeri kanoonilisi e-posti blokeeringuid
-      admin:write:domain_allows: modereeri domeeni lubasid
-      admin:write:domain_blocks: modereeri domeeni blokeeringuid
-      admin:write:email_domain_blocks: modereeri e-postidomeenide blokeeringuid
-      admin:write:ip_blocks: modereeri IP-blokeeringuid
-      admin:write:reports: teostada moderaatori tegevusi teavitustel
+      "admin:read": lugeda kõiki andmeid serveril
+      "admin:read:accounts": lugeda privaatset informatsiooni kõikidel kontodel
+      "admin:read:canonical_email_blocks": loe kõigi kanooniliste e-posti blokeeringute tundlikku infot
+      "admin:read:domain_allows": loe kõigi domeenide lubade tundliku infot
+      "admin:read:domain_blocks": loe kõigi domeenide blokeeringute tundlikku infot
+      "admin:read:email_domain_blocks": loe kõigi e-posti blokeeringute tundlikku infot
+      "admin:read:ip_blocks": loe kõigi IP-blokeeringute tundlikku infot
+      "admin:read:reports": lugeda privaatset infot kõikide teavituste ja teavitatud kasutajate kohta
+      "admin:write": muuta kõiki andmeid serveril
+      "admin:write:accounts": teostada moderaatori tegevusi kontodel
+      "admin:write:canonical_email_blocks": modereeri kanoonilisi e-posti blokeeringuid
+      "admin:write:domain_allows": modereeri domeeni lubasid
+      "admin:write:domain_blocks": modereeri domeeni blokeeringuid
+      "admin:write:email_domain_blocks": modereeri e-postidomeenide blokeeringuid
+      "admin:write:ip_blocks": modereeri IP-blokeeringuid
+      "admin:write:reports": teostada moderaatori tegevusi teavitustel
       crypto: kasuta otspunktkrüpeerimist
       follow: muuta kontode suhteid
       push: saab tõuketeateid
       read: lugeda konto kõiki andmeid
-      read:accounts: näha konto informatsiooni
-      read:blocks: näha su blokeeringuid
-      read:bookmarks: näha järjehoidjaid
-      read:favourites: näha Teie lemmikuid
-      read:filters: näha su filtreid
-      read:follows: näha su jälgimisi
-      read:lists: näha su nimekirju
-      read:mutes: näha su vaigistusi
-      read:notifications: näha teateid
-      read:reports: näha teavitusi
-      read:search: otsida sinu nimel
-      read:statuses: näha kõiki postitusi
+      "read:accounts": näha konto informatsiooni
+      "read:blocks": näha su blokeeringuid
+      "read:bookmarks": näha järjehoidjaid
+      "read:favourites": näha Teie lemmikuid
+      "read:filters": näha su filtreid
+      "read:follows": näha su jälgimisi
+      "read:lists": näha su nimekirju
+      "read:mutes": näha su vaigistusi
+      "read:notifications": näha teateid
+      "read:reports": näha teavitusi
+      "read:search": otsida sinu nimel
+      "read:statuses": näha kõiki postitusi
       write: muuta kogu konto andmeid
-      write:accounts: muuta profiili
-      write:blocks: kontode ja domeenide blokeerimine
-      write:bookmarks: lisada postitusele järjehoidja
-      write:conversations: vaigista ja kustuta vestlused
-      write:favourites: lisada postitusi lemmikuks
-      write:filters: luua filtreid
-      write:follows: jälgida inimesi
-      write:lists: luua nimekirju
-      write:media: üles laadida meediafaile
-      write:mutes: vaigista inimesi ja vestluseid
-      write:notifications: tühjendada teateid
-      write:reports: teavitada teistest inimestest
-      write:statuses: avaldada postitusi
+      "write:accounts": muuta profiili
+      "write:blocks": kontode ja domeenide blokeerimine
+      "write:bookmarks": lisada postitusele järjehoidja
+      "write:conversations": vaigista ja kustuta vestlused
+      "write:favourites": lisada postitusi lemmikuks
+      "write:filters": luua filtreid
+      "write:follows": jälgida inimesi
+      "write:lists": luua nimekirju
+      "write:media": üles laadida meediafaile
+      "write:mutes": vaigista inimesi ja vestluseid
+      "write:notifications": tühjendada teateid
+      "write:reports": teavitada teistest inimestest
+      "write:statuses": avaldada postitusi
