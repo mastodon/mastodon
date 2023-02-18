@@ -90,6 +90,7 @@ gl:
       moderation:
         active: Activa
         all: Todo
+        disabled: Desactivada
         pending: Pendente
         silenced: Limitada
         suspended: Suspendidos
@@ -132,6 +133,7 @@ gl:
       search: Procurar
       search_same_email_domain: Outras usuarias co mesmo dominio de email
       search_same_ip: Outras usuarias co mesmo IP
+      security: Seguridade
       security_measures:
         only_password: Só contrasinal
         password_and_2fa: Contrasinal e 2FA
@@ -426,6 +428,7 @@ gl:
         resolve: Resolver dominio
         title: Nova entrada na listaxe negra de email
       no_email_domain_block_selected: Non se cambiou ningún bloqueo de dominio de email porque non se seleccionou ningún
+      not_permitted: Non permitido
       resolved_dns_records_hint_html: O nome de dominio resolve os seguintes rexistros MX, que son os últimos responsables da aceptación de emails. Bloqueando un dominio MX rexeitarás calquera enderezo de email que use este dominio MX, incluso se o nome de dominio visible é outro. <strong>Ten coidado de non bloquear os principais provedores.</strong>
       resolved_through_html: Resolto a través de %{domain}
       title: Listaxe negra de email
@@ -472,6 +475,7 @@ gl:
       content_policies:
         comment: Nota interna
         description_html: Podes definir políticas acerca do contido que serán aplicadas a tódalas contas deste dominio e tódolos seus subdominios.
+        limited_federation_mode_description_html: Podes elexir se permites a federación con este dominio.
         policies:
           reject_media: Rexeitar multimedia
           reject_reports: Rexeitar denuncias
@@ -584,11 +588,13 @@ gl:
       assign_to_self: Asignarme
       assigned: Moderador asignado
       by_target_domain: Dominio da conta denunciada
+      cancel: Cancelar
       category: Categoría
       category_description_html: A razón para denunciar esta conta ou contido será citada na comunicación coa conta denunciada
       comment:
         none: Ningún
       comment_description_html: 'Como información engadida, %{name} escribiu:'
+      confirm: Confirmar
       confirm_action: Confirma a acción de moderación contra @%{acct}
       created_at: Denunciado
       delete_and_resolve: Eliminar publicacións
@@ -791,6 +797,7 @@ gl:
         suspend: "%{name} suspendeu a conta de %{target}"
       appeal_approved: Recurrida
       appeal_pending: Apelación pendente
+      appeal_rejected: Apelación rexeitada
     system_checks:
       database_schema_check:
         message_html: Existen migracións pendentes na base de datos. Bota man desta tarefa para facer que a aplicación funcione como se agarda dela
@@ -826,6 +833,7 @@ gl:
           other: Compartido por %{count} persoas na última semana
         title: Ligazóns en voga
         usage_comparison: Compartido %{today} veces hoxe, comparado con %{yesterday} onte
+      not_allowed_to_trend: Non permitido como tendencia
       only_allowed: Só as permitidas
       pending_review: Revisión pendente
       preview_card_providers:
@@ -957,6 +965,7 @@ gl:
   applications:
     created: Creouse con éxito este aplicativo
     destroyed: Eliminouse con éxito o aplicativo
+    logout: Pechar sesión
     regenerate_token: Votar a xenerar o testemuño de acceso
     token_regenerated: Rexenerouse con éxito o testemuño de acceso
     warning: Ten moito tino con estos datos. Non os compartas nunca con ninguén!
@@ -993,6 +1002,8 @@ gl:
     resend_confirmation: Reenviar as intruccións de confirmación
     reset_password: Restablecer contrasinal
     rules:
+      accept: Aceptar
+      back: Volver
       preamble: Son establecidas e aplicadas pola moderación de %{domain}.
       title: Algunhas regras básicas.
     security: Seguranza
