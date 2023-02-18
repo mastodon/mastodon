@@ -3087,12 +3087,6 @@ Style/OptionalBooleanParameter:
     - 'app/workers/unfollow_follow_worker.rb'
     - 'lib/mastodon/redis_config.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Style/PerlBackrefs:
-  Exclude:
-    - 'app/lib/extractor.rb'
-
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle.
