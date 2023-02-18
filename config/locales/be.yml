@@ -94,6 +94,7 @@ be:
       moderation:
         active: Актыўны
         all: Усе
+        disabled: Адключана
         pending: Чакаюць
         silenced: Абмежаваны
         suspended: Прыпынены
@@ -138,6 +139,7 @@ be:
       search: Пошук
       search_same_email_domain: Іншыя карыстальнікі з такім жа даменам эл. пошты
       search_same_ip: Іншыя карыстальнікі з гэтым IP
+      security: Бяспека
       security_measures:
         only_password: Толькі пароль
         password_and_2fa: Пароль і 2FA
@@ -608,11 +610,13 @@ be:
       assign_to_self: Прызначыць мне
       assigned: Прызначаны мадэратар
       by_target_domain: Дамен уліковага запісу, на які падаецца скарга
+      cancel: Скасаваць
       category: Катэгорыя
       category_description_html: Прычына паведамлення аб гэтым уліковым запісе і/або кантэнце будзе згадана ў сувязі з уліковым запісам, на які пададзена скарга
       comment:
         none: Пуста
       comment_description_html: 'Каб даць больш інфармацыі, %{name} напісаў:'
+      confirm: Пацвердзіць
       confirm_action: Пацвердзіць мадэрацыю супраць @%{acct}
       created_at: Створана
       delete_and_resolve: Выдаліць допісы
@@ -986,6 +990,7 @@ be:
   applications:
     created: Праграма паспяхова створана
     destroyed: Праграма паспяхова выдалена
+    logout: Выйсці
     regenerate_token: Стварыць новы токен доступу
     token_regenerated: Новы токен доступу паспяхова створаны
     warning: Будзьце вельмі асцярожныя з гэтымі данымі. Ніколі нікому не паведамляйце іх!
@@ -1022,6 +1027,8 @@ be:
     resend_confirmation: Адправіць інструкцыю пацвярджэння зноў
     reset_password: Скінуць пароль
     rules:
+      accept: Прыняць
+      back: Назад
       preamble: Правілы вызначаныя мадэратарамі дамена %{domain}.
       title: Некалькі базавых правілаў.
     security: Бяспека
