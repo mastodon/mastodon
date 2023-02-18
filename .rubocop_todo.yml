@@ -3626,7 +3626,3 @@ Style/WordArray:
     - 'spec/services/activitypub/process_account_service_spec.rb'
     - 'spec/services/delete_account_service_spec.rb'
     - 'spec/workers/scheduler/accounts_statuses_cleanup_scheduler_spec.rb'
-
-# don't clean out the manual directives overridden by generated file
-Lint/RedundantCopDisableDirective:
-  Enabled: false
