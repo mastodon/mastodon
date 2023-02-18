@@ -1,4 +1,3 @@
----
 fr-QC:
   about:
     about_mastodon_html: 'Le réseau social de l''avenir : pas de publicité, pas de surveillance institutionnelle, conception éthique et décentralisation ! Gardez le contrôle de vos données avec Mastodon !'
@@ -56,7 +55,7 @@ fr-QC:
       delete: Supprimer les données
       deleted: Supprimé
       demote: Rétrograder
-      destroyed_msg: Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment
+      destroyed_msg: "Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment"
       disable: Geler
       disable_sign_in_token_auth: Désactiver l'authentification basée sur les jetons envoyés par courriel
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
@@ -432,12 +431,12 @@ fr-QC:
       title: Blocage de domaines de courriel
     export_domain_allows:
       new:
-        title: Autoriser l'importation de domaine
+        title: Importer les autorisations de domaine
       no_file: Aucun fichier sélectionné
     export_domain_blocks:
       import:
-        description_html: Vous êtes sur le point d'importer une liste de blocs de domaine. Veuillez examiner cette liste très attentivement, spécialement si vous n'êtes pas l'auteur de cette liste.
-        existing_relationships_warning: Relations de suivi existantes
+        description_html: Vous êtes sur le point d'importer une liste de bloqueurs de domaine. Veuillez examiner cette liste très attentivement, surtout si vous ne l'avez pas créée vous-même.
+        existing_relationships_warning: Relations d'abonnement existantes
         private_comment_description_html: 'Pour vous aider à savoir d''où proviennent les blocages importés, ceux-ci seront créés avec le commentaire privé suivant : <q>%{comment}</q>'
         private_comment_template: Importé depuis %{source} le %{date}
         title: Importer des blocages de domaine
@@ -544,7 +543,7 @@ fr-QC:
       no_ip_block_selected: Aucune règle IP n’a été modifiée car aucune n’a été sélectionnée
       title: Règles IP
     relationships:
-      title: Relations de %{acct}
+      title: "Relations de %{acct}"
     relays:
       add_new: Ajouter un nouveau relais
       delete: Supprimer
@@ -729,8 +728,8 @@ fr-QC:
         preamble: Contrôle comment le contenu créé par les utilisateurs est enregistré et stocké dans Mastodon.
         title: Rétention du contenu
       default_noindex:
-        desc_html: Affecte tous les utilisateurs qui n'ont pas modifié ce paramètre eux-mêmes
-        title: Ne pas indexer par défaut les utilisateurs dans les moteurs de recherche
+        desc_html: Affecte tous les comptes qui n'ont pas modifié ce paramètre
+        title: Par défaut, ne pas indexer les comptes dans les moteurs de recherche
       discovery:
         follow_recommendations: Suivre les recommandations
         preamble: Faire apparaître un contenu intéressant est essentiel pour interagir avec de nouveaux utilisateurs qui ne connaissent peut-être personne sur Mastodonte. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
@@ -917,7 +916,7 @@ fr-QC:
     new_report:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
-      subject: Nouveau signalement sur %{instance} (#%{id})
+      subject: 'Nouveau signalement sur %{instance} (#%{id})'
     new_trends:
       body: 'Les éléments suivants doivent être approuvés avant de pouvoir être affichés publiquement :'
       new_trending_links:
@@ -966,7 +965,7 @@ fr-QC:
     apply_for_account: Demander un compte
     change_password: Mot de passe
     confirmations:
-      wrong_email_hint: Si cette adresse courriel est incorrecte, vous pouvez la modifier dans vos paramètres de compte.
+      wrong_email_hint: Si cette adresse de courriel est incorrecte, vous pouvez la modifier dans vos paramètres de compte.
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
     description:
@@ -1003,7 +1002,7 @@ fr-QC:
       email_settings_hint_html: Le courriel de confirmation a été envoyé à %{email}. Si cette adresse de courriel n’est pas correcte, vous pouvez la modifier dans les paramètres du compte.
       title: Configuration
     sign_in:
-      preamble_html: Connectez-vous avec vos identifiants <strong>%{domain}</strong> . Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
+      preamble_html: Connectez-vous avec vos identifiants sur <strong>%{domain}</strong>. Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
       title: Se connecter à %{domain}
     sign_up:
       preamble: Avec un compte sur ce serveur Mastodon, vous serez en mesure de suivre toute autre personne sur le réseau, quel que soit l’endroit où son compte est hébergé.
@@ -1316,7 +1315,7 @@ fr-QC:
       sign_up:
         subject: "%{name} s'est inscrit·e"
     favourite:
-      body: "%{name} a ajouté votre message à ses favoris :"
+      body: '%{name} a ajouté votre message à ses favoris :'
       subject: "%{name} a ajouté votre message à ses favoris"
       title: Nouveau favori
     follow:
@@ -1330,8 +1329,8 @@ fr-QC:
       title: Nouvelle demande d’abonnement
     mention:
       action: Répondre
-      body: "%{name} vous a mentionné⋅e dans :"
-      subject: "%{name} vous a mentionné·e"
+      body: '%{name} vous a mentionné⋅e dans :'
+      subject: '%{name} vous a mentionné·e'
       title: Nouvelle mention
     poll:
       subject: Un sondage de %{name} est terminé
@@ -1396,7 +1395,7 @@ fr-QC:
     activity: Activité du compte
     confirm_follow_selected_followers: Voulez-vous vraiment suivre les abonné⋅e⋅s sélectionné⋅e⋅s ?
     confirm_remove_selected_followers: Voulez-vous vraiment supprimer les abonné⋅e⋅s sélectionné⋅e⋅s ?
-    confirm_remove_selected_follows: Voulez-vous vraiment suivre les abonnements sélectionnés ?
+    confirm_remove_selected_follows: Voulez-vous vraiment supprimer les abonnements sélectionnés ?
     dormant: Dormant
     follow_selected_followers: Suivre les abonné·e·s sélectionné·e·s
     followers: Abonné·e
@@ -1532,7 +1531,7 @@ fr-QC:
     show_older: Plus anciens
     show_thread: Afficher le fil de discussion
     sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
-    title: "%{name} : « %{quote} »"
+    title: '%{name} : « %{quote} »'
     visibilities:
       direct: Direct
       private: Abonné⋅e⋅s uniquement
