@@ -19,13 +19,11 @@ class Scheduler::FollowRecommendationsScheduler
     fallback_recommendations = FollowRecommendation.order(rank: :desc).limit(SET_SIZE)
 
     Trends.available_locales.each do |locale|
-      recommendations = begin
-        if AccountSummary.safe.filtered.localized(locale).exists? # We can skip the work if no accounts with that language exist
-          FollowRecommendation.localized(locale).order(rank: :desc).limit(SET_SIZE).map { |recommendation| [recommendation.account_id, recommendation.rank] }
-        else
-          []
-        end
-      end
+      recommendations = if AccountSummary.safe.filtered.localized(locale).exists? # We can skip the work if no accounts with that language exist
+                          FollowRecommendation.localized(locale).order(rank: :desc).limit(SET_SIZE).map { |recommendation| [recommendation.account_id, recommendation.rank] }
+                        else
+                          []
+                        end
 
       # Use language-agnostic results if there are not enough language-specific ones
       missing = SET_SIZE - recommendations.size

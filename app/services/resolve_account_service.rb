@@ -71,13 +71,11 @@ class ResolveAccountService < BaseService
       @username, @domain = uri.strip.gsub(/\A@/, '').split('@')
     end
 
-    @domain = begin
-      if TagManager.instance.local_domain?(@domain)
-        nil
-      else
-        TagManager.instance.normalize_domain(@domain)
-      end
-    end
+    @domain = if TagManager.instance.local_domain?(@domain)
+                nil
+              else
+                TagManager.instance.normalize_domain(@domain)
+              end
 
     @uri = [@username, @domain].compact.join('@')
   end
