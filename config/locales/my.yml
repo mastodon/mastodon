@@ -118,11 +118,17 @@ my:
         change_role_user: အသုံးပြုသူ၏ အခန်းကဏ္ဍကို ပြောင်းလဲရန်
         confirm_user: အသုံးပြုသူကို လက်ခံရန်
         create_announcement: ကြေညာချက်ဖန်တီးပါ
+        create_canonical_email_block: အီးမေးလ်ပိတ်ပင်ခြင်းအား ဖန်တီးရန်
         create_custom_emoji: စိတ်ကြိုက်အီမိုဂျီ ဖန်တီးပါ
+        create_domain_block: ဒိုမိန်းပိတ်ပင်ခြင်းအား ဖန်တီးရန်
+        create_email_domain_block: အီးမေးလ်ဒိုမိန်းပိတ်ပင်ခြင်းအား ဖန်တီးရန်
         create_ip_block: IP စည်းမျဉ်း ဖန်တီးရန်
         create_user_role: အခန်းကဏ္ဍဖန်တီးပါ
         destroy_announcement: ကြေညာချက်ကို ဖျက်ပါ
+        destroy_canonical_email_block: အီးမေးလ်ပိတ်ပင်ခြင်းအား ဖျက်ရန်
         destroy_custom_emoji: စိတ်ကြိုက်အီမိုဂျီကို ဖျက်ရန်
+        destroy_domain_block: ဒိုမိန်းပိတ်ပင်ခြင်းအား ဖျက်ရန်
+        destroy_email_domain_block: အီးမေးလ်ဒိုမိန်းပိတ်ပင်ခြင်းအား ဖျက်ရန်
         destroy_ip_block: IP စည်းမျဉ်းကို ဖျက်ပါ
         destroy_status: Post ကို ဖျက်ပါ
         destroy_unavailable_domain: အသုံးမပြုနိုင်သောဒိုမိန်းကို ဖျက်ပါ
@@ -138,18 +144,23 @@ my:
         silence_account: အကောင့် ကန့်သတ်ပါ
         suspend_account: အကောင့် ရပ်ဆိုင်းပါ
         unassigned_report: အစီရင်ခံစာ ဖြုတ်ရန်
+        unblock_email_account: အီးမေးလ်လိပ်စာ ပြန်ဖွင့်ရန်
         update_announcement: ကြေညာချက်ပြင်ဆင်ရန်
         update_custom_emoji: စိတ်ကြိုက်အီမိုဂျီကို ပြင်ဆင်ရန်
+        update_domain_block: ဒိုမိန်းပိတ်ပင်ခြင်းအား ပြင်ဆင်ရန်
         update_ip_block: IP စည်းမျဉ်း ပြင်ဆင်ရန်
         update_status: ပို့စ်ပြင်ဆင်ရန်
         update_user_role: အခန်းကဏ္ဍပြင်ဆင်ရန်
       actions:
+        create_domain_block_html: "%{name} မှ ဒိုမိန်း %{target} ကို ပိတ်ပင်ထားသည်"
+        create_email_domain_block_html: "%{name} မှ အီးမေးလ်ဒိုမိန်း %{target} ကို ပိတ်ပင်ထားသည်"
         create_user_role_html: "%{name} သည် %{target} အခန်းကဏ္ဍကို ဖန်တီးပြီးပါပြီ"
         demote_user_html: "%{name} သည် အသုံးပြုသူ %{target} ကို ဖြုတ်ပြီးပါပြီ"
         destroy_announcement_html: "%{name} ကြေညာချက် %{target} ကို ဖျက်လိုက်သည်"
         destroy_canonical_email_block_html: "ဟက်ရှ် %{target} ဖြင့် %{name} အီးမေးလ်ပိတ်သိမ်းထားခြင်းကို ဖယ်ရှားပြီးပါပြီ"
         destroy_custom_emoji_html: "%{name} ဖျက်လိုက်သော အီမိုဂျီ %{target}"
         destroy_domain_block_html: "%{name} မှ ပြန်ဖွင့်လိုက်သော ဒိုမိန်း %{target}"
+        destroy_email_domain_block_html: "%{name} မှ အီးမေးလ်ဒိုမိန်း %{target} ကို ပြန်ဖွင့်ထားသည်"
         destroy_user_role_html: "%{name} မှ ဖျက်ထားသော အခန်းကဏ္ဍ %{target} "
         disable_2fa_user_html: "%{name} မှ အသုံးပြုသူ %{target} အတွက် နှစ်ဆင့်ခံလုံခြုံရေးလိုအပ်ချက်ကို ပိတ်ထားသည်"
         disable_custom_emoji_html: "%{name} ပိတ်ထားသောအီမိုဂျီ %{target}"
@@ -172,6 +183,7 @@ my:
         unsuspend_account_html: "%{name} မှ %{target} ၏ အကောင့်ကို ဆိုင်းငံ့ထားသည်"
         update_announcement_html: "%{name} မှ ကြေညာချက် %{target} ကို ပြင်ဆင်ခဲ့သည်"
         update_custom_emoji_html: "%{name} မှ အီမိုဂျီ %{target} ကို ပြင်ဆင်ခဲ့သည်"
+        update_domain_block_html: "%{name} မှ %{target} အတွက် ဒိုမိန်းပိတ်ပင်ခြင်းကို ပြင်ဆင်ခဲ့သည်"
         update_ip_block_html: "%{name} မှ IP %{target} အတွက် စည်းမျဉ်း ပြောင်းထားသည်"
         update_status_html: "%{name} မှ %{target} တင်ထားသောပို့စ်ကို ပြင်ဆင်ခဲ့သည်"
         update_user_role_html: "%{name} မှ %{target} အခန်းကဏ္ဍကို ပြောင်းလဲခဲ့ပါသည်"
@@ -241,16 +253,25 @@ my:
         empty: အယူခံဝင်ထားခြင်းမရှိပါ။
         title: အယူခံဝင်ထားခြင်းများ
     domain_blocks:
+      add_new: ဒိုမိန်းပိတ်ပင်ခြင်းအသစ် ထည့်ပါ
+      created_msg: ဒိုမိန်းပိတ်ပင်ခြင်းကို ယခုလုပ်ဆောင်နေပါသည်
       domain: ဒိုမိန်း
+      edit: ဒိုမိန်းပိတ်ပင်ခြင်းကို ပြင်ဆင်ရန်
       new:
+        create: ပိတ်ပင်ခြင်း ဖန်တီးရန်
         severity:
           silence: ကန့်သတ်
           suspend: ရပ်ဆိုင်းပါ
+        title: ဒိုမိန်းပိတ်ပင်ထားခြင်းအသစ်
+      no_domain_block_selected: မည်သည့်ဒိုမိန်းပိတ်ပင်ထားခြင်းကိုမျှ ရွေးချယ်ထားခြင်းမရှိသောကြောင့် ပြောင်းလဲခြင်းမရှိပါ
       private_comment: သီးသန့်မှတ်ချက်
       public_comment: အများမြင်မှတ်ချက်
       reject_media: မီဒီယာဖိုင်များကို ဖယ်ရှားပါ
+      undo: ဒိုမိန်းပိတ်ပင်ခြင်းကို ပြန်ဖျက်ရန်
+      view: ဒိုမိန်းပိတ်ပင်ခြင်းကို ကြည့်ရန်
     email_domain_blocks:
       add_new: အသစ် ထည့်ပါ
+      created_msg: အီးမေးလ်ဒိုမိန်းကို ပိတ်ပင်နိုင်ခဲ့ပါသည်
       delete: ဖျက်ပါ
       dns:
         types:
@@ -386,6 +407,7 @@ my:
         manage_announcements_description: ဆာဗာပေါ်တွင် ကြေညာချက်များစီမံရန်အတွက် အသုံးပြုသူအား ခွင့်ပြုရန်
         manage_appeals: အယူခံဝင်ထားခြင်းများကို စီမံပါ
         manage_appeals_description: စိစစ်အရေးယူမှုများအပေါ် အယူခံဝင်မှုများ ပြန်လည်သုံးသပ်ရန်အတွက် အသုံးပြုသူများအား ခွင့်ပြုရန်
+        manage_blocks: ပိတ်ပင်ထားမှုများကို စီမံပါ
         manage_custom_emojis: စိတ်ကြိုက်အီမိုဂျီများကို ပြင်ဆင်ရန်
         manage_custom_emojis_description: အသုံးပြုသူများအား ဆာဗာပေါ်တွင် စိတ်ကြိုက်အီမိုဂျီများကို စီမံခန့်ခွဲရန် ခွင့်ပြုသည်။
         manage_invites: ဖိတ်ခေါ်ခြင်းကို စီမံရန်
@@ -597,6 +619,8 @@ my:
     delete: ဖျက်ပါ
     today: ယနေ့
   imports:
+    types:
+      blocking: ပိတ်ဆို့ထားသည့်စာရင်း
     upload: တင္ရန်
   invites:
     expires_in:
