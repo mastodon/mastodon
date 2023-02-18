@@ -10,7 +10,6 @@ class InitialStateSerializer < ActiveModel::Serializer
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
   has_one :role, serializer: REST::RoleSerializer
 
-  # rubocop:disable Metrics/AbcSize
   def meta
     store = {
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
