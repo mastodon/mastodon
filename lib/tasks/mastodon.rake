@@ -240,7 +240,7 @@ namespace :mastodon do
           end
 
           env['S3_PROTOCOL'] = env['S3_ENDPOINT'].start_with?('https') ? 'https' : 'http'
-          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(/\Ahttps?:\/\//, '')
+          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(%r{\Ahttps?://}, '')
 
           env['S3_BUCKET'] = prompt.ask('Minio bucket name:') do |q|
             q.required true
@@ -269,7 +269,7 @@ namespace :mastodon do
           end
 
           env['S3_PROTOCOL'] = env['S3_ENDPOINT'].start_with?('https') ? 'https' : 'http'
-          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(/\Ahttps?:\/\//, '')
+          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(%r{\Ahttps?://}, '')
 
           env['S3_BUCKET'] = prompt.ask('Storj DCS bucket name:') do |q|
             q.required true

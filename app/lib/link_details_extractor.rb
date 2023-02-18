@@ -204,7 +204,7 @@ class LinkDetailsExtractor
   def host_to_url(str)
     return if str.blank?
 
-    str.start_with?(/https?:\/\//) ? str : "http://#{str}"
+    str.start_with?(%r{https?://}) ? str : "http://#{str}"
   end
 
   def valid_url_or_nil(str, same_origin_only: false)
