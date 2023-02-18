@@ -90,7 +90,7 @@ fi:
       moderation:
         active: Aktiivinen
         all: Kaikki
-        disabled: Pois käytöstä
+        disabled: Ei käytössä
         pending: Odottavat
         silenced: Rajoitettu
         suspended: Jäähyllä
@@ -588,7 +588,7 @@ fi:
       assign_to_self: Ota tehtäväksi
       assigned: Määritetty valvoja
       by_target_domain: Ilmoitetun tilin verkkotunnus
-      cancel: Kumoa
+      cancel: Peruuta
       category: Kategoria
       category_description_html: Syy, miksi tämä tili ja/tai sisältö ilmoitettiin, mainitaan yhteydenotossa ilmoitettuun tiliin
       comment:
@@ -797,7 +797,7 @@ fi:
         suspend: "%{name} jäädytti käyttäjän %{target} tilin"
       appeal_approved: Valitti
       appeal_pending: Valitus vireillä
-      appeal_rejected: Muutoksenhaku hylätty
+      appeal_rejected: Muutoksenhaku hylättiin
     system_checks:
       database_schema_check:
         message_html: Tietokannan siirto on vireillä. Suorita ne varmistaaksesi, että sovellus toimii odotetulla tavalla
@@ -965,7 +965,7 @@ fi:
   applications:
     created: Sovelluksen luonti onnistui
     destroyed: Sovelluksen poisto onnistui
-    logout: Kirjaudu ulos
+    logout: Uloskirjautuminen
     regenerate_token: Luo pääsytunnus uudelleen
     token_regenerated: Pääsytunnuksen uudelleenluonti onnistui
     warning: Säilytä tietoa hyvin. Älä milloinkaan jaa sitä muille!
@@ -1010,7 +1010,7 @@ fi:
     set_new_password: Aseta uusi salasana
     setup:
       email_below_hint_html: Jos alla oleva sähköpostiosoite on virheellinen, voit muuttaa sitä täällä ja tilata uuden vahvistussähköpostiviestin.
-      email_settings_hint_html: Vahvistussähköposti lähetettiin osoitteeseen %{email}. Jos sähköpostiosoite ei ole oikea, voit muuttaa sitä tiliasetuksissa.
+      email_settings_hint_html: Vahvistussähköposti lähetettiin osoitteeseen %{email}. Jos sähköpostiosoite ei ole oikea, voit vaihtaa sen tilin asetuksista.
       title: Asetukset
     sign_in:
       preamble_html: Kirjaudu sisään <strong>%{domain}</strong>-tunnuksillasi. Jos tilisi sijaitsee eri palvelimella, et voi sisäänkirjautua täällä.
@@ -1672,13 +1672,13 @@ fi:
         silence: Rajoitettu tili
         suspend: Tilin käyttäminen jäädytetty
     welcome:
-      edit_profile_action: Aseta profiili
-      edit_profile_step: Voit muokata profiiliasi lataamalla profiilikuvan, vaihtamalla näyttönimeä ja paljon muuta. Voit halutessasi arvioida uudet seuraajat, ennen kuin he saavat seurata sinua.
+      edit_profile_action: Määritä profiili
+      edit_profile_step: Voit mukauttaa profiiliasi mm. profiilikuvalla ja uudella näyttönimellä. Voit myös valita haluatko tarkastaa ja hyväksyä uudet seuraajat itse.
       explanation: Näillä vinkeillä pääset alkuun
       final_action: Ala julkaista
-      final_step: 'Ala julkaista! Vaikkei sinulla olisi seuraajia, monet voivat nähdä julkiset viestisi esimerkiksi paikallisella aikajanalla ja aihetunnisteilla. Kannattaa myös esittäytyä! Käytä aihetunnistetta #esittely.'
+      final_step: 'Aloita julkaiseminen! Vaikkei sinulla ole seuraajia, voivat muut nähdä julkiset julkaisusi esimerkiksi paikallisella aikajanalla ja aihetunnisteilla. Kannattaa myös esittäytyä käyttämällä aihetunnistetta #introductions.'
       full_handle: Koko käyttäjätunnuksesi
-      full_handle_hint: Kerro tämä ystävillesi, niin he voivat lähettää sinulle viestejä tai löytää sinut toisen instanssin kautta.
+      full_handle_hint: Kerro tämä kavereillesi, niin he voivat lähettää sinulle viestejä tai löytää sinut muiden palvelimien kautta.
       subject: Tervetuloa Mastodoniin
       title: Tervetuloa mukaan, %{name}!
   users:
