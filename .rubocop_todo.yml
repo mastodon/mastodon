@@ -2930,18 +2930,6 @@ Style/InverseMethods:
     - 'app/services/update_account_service.rb'
     - 'spec/controllers/activitypub/replies_controller_spec.rb'
 
-# Offense count: 7
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: line_count_dependent, lambda, literal
-Style/Lambda:
-  Exclude:
-    - 'app/models/concerns/paginable.rb'
-    - 'app/models/status.rb'
-    - 'app/models/tag.rb'
-    - 'lib/cli.rb'
-    - 'lib/mastodon/domains_cli.rb'
-
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/MapToHash:
