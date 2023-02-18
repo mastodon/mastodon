@@ -3113,13 +3113,6 @@ Style/OptionalBooleanParameter:
     - 'app/workers/unfollow_follow_worker.rb'
     - 'lib/mastodon/redis_config.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'spec/lib/text_formatter_spec.rb'
-
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 Style/PerlBackrefs:
@@ -3223,12 +3216,6 @@ Style/RedundantConstantBase:
     - 'config.ru'
     - 'lib/tasks/statistics.rake'
     - 'spec/rails_helper.rb'
-
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantPercentQ:
-  Exclude:
-    - 'spec/lib/text_formatter_spec.rb'
 
 # Offense count: 16
 # This cop supports safe autocorrection (--autocorrect).
