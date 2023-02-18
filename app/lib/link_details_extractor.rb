@@ -232,26 +232,24 @@ class LinkDetailsExtractor
   end
 
   def structured_data
-    @structured_data ||= begin
-      # Some publications have more than one JSON-LD definition on the page,
-      # and some of those definitions aren't valid JSON either, so we have
-      # to loop through here until we find something that is the right type
-      # and doesn't break
-      document.xpath('//script[@type="application/ld+json"]').filter_map do |element|
-        json_ld = element.content&.gsub(CDATA_JUNK_PATTERN, '')
+    # Some publications have more than one JSON-LD definition on the page,
+    # and some of those definitions aren't valid JSON either, so we have
+    # to loop through here until we find something that is the right type
+    # and doesn't break
+    @structured_data ||= document.xpath('//script[@type="application/ld+json"]').filter_map do |element|
+      json_ld = element.content&.gsub(CDATA_JUNK_PATTERN, '')
 
-        next if json_ld.blank?
+      next if json_ld.blank?
 
-        structured_data = StructuredData.new(html_entities.decode(json_ld))
+      structured_data = StructuredData.new(html_entities.decode(json_ld))
 
-        next unless structured_data.valid?
+      next unless structured_data.valid?
 
-        structured_data
-      rescue Oj::ParseError, EncodingError
-        Rails.logger.debug { "Invalid JSON-LD in #{@original_url}" }
-        next
-      end.first
-    end
+      structured_data
+    rescue Oj::ParseError, EncodingError
+      Rails.logger.debug { "Invalid JSON-LD in #{@original_url}" }
+      next
+    end.first
   end
 
   def document

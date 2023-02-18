@@ -25,13 +25,11 @@ class Account::Field < ActiveModelSerializers::Model
   end
 
   def value_for_verification
-    @value_for_verification ||= begin
-      if account.local?
-        value
-      else
-        extract_url_from_html
-      end
-    end
+    @value_for_verification ||= if account.local?
+                                  value
+                                else
+                                  extract_url_from_html
+                                end
   end
 
   def verifiable?

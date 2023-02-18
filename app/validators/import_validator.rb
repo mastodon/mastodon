@@ -35,13 +35,11 @@ class ImportValidator < ActiveModel::Validator
   def validate_following_import(import, row_count)
     base_limit = FollowLimitValidator.limit_for_account(import.account)
 
-    limit = begin
-      if import.overwrite?
-        base_limit
-      else
-        base_limit - import.account.following_count
-      end
-    end
+    limit = if import.overwrite?
+              base_limit
+            else
+              base_limit - import.account.following_count
+            end
 
     import.errors.add(:data, I18n.t('users.follow_limit_reached', limit: base_limit)) if row_count > limit
   end

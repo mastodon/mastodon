@@ -116,13 +116,11 @@ module Mastodon
 
         loop do
           objects = begin
-            begin
-              bucket.objects(start_after: last_key, prefix: prefix).limit(1000).map { |x| x }
-            rescue => e
-              progress.log(pastel.red("Error fetching list of files: #{e}"))
-              progress.log("If you want to continue from this point, add --start-after=#{last_key} to your command") if last_key
-              break
-            end
+            bucket.objects(start_after: last_key, prefix: prefix).limit(1000).map { |x| x }
+          rescue => e
+            progress.log(pastel.red("Error fetching list of files: #{e}"))
+            progress.log("If you want to continue from this point, add --start-after=#{last_key} to your command") if last_key
+            break
           end
 
           break if objects.empty?

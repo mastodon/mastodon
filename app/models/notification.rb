@@ -87,13 +87,11 @@ class Notification < ApplicationRecord
 
   class << self
     def browserable(types: [], exclude_types: [], from_account_id: nil)
-      requested_types = begin
-        if types.empty?
-          TYPES
-        else
-          types.map(&:to_sym) & TYPES
-        end
-      end
+      requested_types = if types.empty?
+                          TYPES
+                        else
+                          types.map(&:to_sym) & TYPES
+                        end
 
       requested_types -= exclude_types.map(&:to_sym)
 

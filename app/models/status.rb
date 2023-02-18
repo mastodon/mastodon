@@ -368,13 +368,12 @@ class Status < ApplicationRecord
       return [] if text.blank?
 
       text.scan(FetchLinkCardService::URL_PATTERN).map(&:second).uniq.filter_map do |url|
-        status = begin
-          if TagManager.instance.local_url?(url)
-            ActivityPub::TagManager.instance.uri_to_resource(url, Status)
-          else
-            EntityCache.instance.status(url)
-          end
-        end
+        status = if TagManager.instance.local_url?(url)
+                   ActivityPub::TagManager.instance.uri_to_resource(url, Status)
+                 else
+                   EntityCache.instance.status(url)
+                 end
+
         status&.distributable? ? status : nil
       end
     end

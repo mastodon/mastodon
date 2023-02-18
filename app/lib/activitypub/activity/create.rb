@@ -108,26 +108,24 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def process_status_params
     @status_parser = ActivityPub::Parser::StatusParser.new(@json, followers_collection: @account.followers_url)
 
-    @params = begin
-      {
-        uri: @status_parser.uri,
-        url: @status_parser.url || @status_parser.uri,
-        account: @account,
-        text: converted_object_type? ? converted_text : (@status_parser.text || ''),
-        language: @status_parser.language,
-        spoiler_text: converted_object_type? ? '' : (@status_parser.spoiler_text || ''),
-        created_at: @status_parser.created_at,
-        edited_at: @status_parser.edited_at && @status_parser.edited_at != @status_parser.created_at ? @status_parser.edited_at : nil,
-        override_timestamps: @options[:override_timestamps],
-        reply: @status_parser.reply,
-        sensitive: @account.sensitized? || @status_parser.sensitive || false,
-        visibility: @status_parser.visibility,
-        thread: replied_to_status,
-        conversation: conversation_from_uri(@object['conversation']),
-        media_attachment_ids: process_attachments.take(4).map(&:id),
-        poll: process_poll,
-      }
-    end
+    @params = {
+      uri: @status_parser.uri,
+      url: @status_parser.url || @status_parser.uri,
+      account: @account,
+      text: converted_object_type? ? converted_text : (@status_parser.text || ''),
+      language: @status_parser.language,
+      spoiler_text: converted_object_type? ? '' : (@status_parser.spoiler_text || ''),
+      created_at: @status_parser.created_at,
+      edited_at: @status_parser.edited_at && @status_parser.edited_at != @status_parser.created_at ? @status_parser.edited_at : nil,
+      override_timestamps: @options[:override_timestamps],
+      reply: @status_parser.reply,
+      sensitive: @account.sensitized? || @status_parser.sensitive || false,
+      visibility: @status_parser.visibility,
+      thread: replied_to_status,
+      conversation: conversation_from_uri(@object['conversation']),
+      media_attachment_ids: process_attachments.take(4).map(&:id),
+      poll: process_poll,
+    }
   end
 
   def process_audience

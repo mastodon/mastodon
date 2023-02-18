@@ -98,11 +98,9 @@ module Mastodon
 
         owned_classes.each do |klass|
           klass.where(account_id: other_account.id).find_each do |record|
-            begin
-              record.update_attribute(:account_id, id)
-            rescue ActiveRecord::RecordNotUnique
-              next
-            end
+            record.update_attribute(:account_id, id)
+          rescue ActiveRecord::RecordNotUnique
+            next
           end
         end
 
@@ -111,11 +109,9 @@ module Mastodon
 
         target_classes.each do |klass|
           klass.where(target_account_id: other_account.id).find_each do |record|
-            begin
-              record.update_attribute(:target_account_id, id)
-            rescue ActiveRecord::RecordNotUnique
-              next
-            end
+            record.update_attribute(:target_account_id, id)
+          rescue ActiveRecord::RecordNotUnique
+            next
           end
         end
 
@@ -601,11 +597,9 @@ module Mastodon
       owned_classes = [ConversationMute, AccountConversation]
       owned_classes.each do |klass|
         klass.where(conversation_id: duplicate_conv.id).find_each do |record|
-          begin
-            record.update_attribute(:account_id, main_conv.id)
-          rescue ActiveRecord::RecordNotUnique
-            next
-          end
+          record.update_attribute(:account_id, main_conv.id)
+        rescue ActiveRecord::RecordNotUnique
+          next
         end
       end
     end
@@ -629,47 +623,37 @@ module Mastodon
       owned_classes << Bookmark if ActiveRecord::Base.connection.table_exists?(:bookmarks)
       owned_classes.each do |klass|
         klass.where(status_id: duplicate_status.id).find_each do |record|
-          begin
-            record.update_attribute(:status_id, main_status.id)
-          rescue ActiveRecord::RecordNotUnique
-            next
-          end
-        end
-      end
-
-      StatusPin.where(account_id: main_status.account_id, status_id: duplicate_status.id).find_each do |record|
-        begin
           record.update_attribute(:status_id, main_status.id)
         rescue ActiveRecord::RecordNotUnique
           next
         end
       end
 
+      StatusPin.where(account_id: main_status.account_id, status_id: duplicate_status.id).find_each do |record|
+        record.update_attribute(:status_id, main_status.id)
+      rescue ActiveRecord::RecordNotUnique
+        next
+      end
+
       Status.where(in_reply_to_id: duplicate_status.id).find_each do |record|
-        begin
-          record.update_attribute(:in_reply_to_id, main_status.id)
-        rescue ActiveRecord::RecordNotUnique
-          next
-        end
+        record.update_attribute(:in_reply_to_id, main_status.id)
+      rescue ActiveRecord::RecordNotUnique
+        next
       end
 
       Status.where(reblog_of_id: duplicate_status.id).find_each do |record|
-        begin
-          record.update_attribute(:reblog_of_id, main_status.id)
-        rescue ActiveRecord::RecordNotUnique
-          next
-        end
+        record.update_attribute(:reblog_of_id, main_status.id)
+      rescue ActiveRecord::RecordNotUnique
+        next
       end
     end
 
     def merge_tags!(main_tag, duplicate_tag)
       [FeaturedTag].each do |klass|
         klass.where(tag_id: duplicate_tag.id).find_each do |record|
-          begin
-            record.update_attribute(:tag_id, main_tag.id)
-          rescue ActiveRecord::RecordNotUnique
-            next
-          end
+          record.update_attribute(:tag_id, main_tag.id)
+        rescue ActiveRecord::RecordNotUnique
+          next
         end
       end
     end
