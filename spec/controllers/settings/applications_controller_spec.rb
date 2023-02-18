@@ -37,7 +37,7 @@ describe Settings::ApplicationsController do
   end
 
   describe 'GET #new' do
-    it 'works' do
+    it 'returns http success' do
       get :new
       expect(response).to have_http_status(200)
     end
@@ -180,7 +180,7 @@ describe Settings::ApplicationsController do
       post :regenerate, params: { id: app.id }
     end
 
-    it 'should create new token' do
+    it 'creates new token' do
       expect(user.token_for_app(app)).to_not eql(token)
     end
   end
