@@ -90,6 +90,7 @@ de:
       moderation:
         active: Aktiv
         all: Alle
+        disabled: Deaktiviert
         pending: In Warteschlange
         silenced: Stummgeschaltet
         suspended: Gesperrt
@@ -132,6 +133,7 @@ de:
       search: Suchen
       search_same_email_domain: Andere Benutzer*innen mit der gleichen E-Mail-Domain
       search_same_ip: Andere Benutzer*innen mit derselben IP-Adresse
+      security: Sicherheit
       security_measures:
         only_password: Nur Passwort
         password_and_2fa: Passwort und 2FA
@@ -426,6 +428,7 @@ de:
         resolve: Domain auflösen
         title: Neue E-Mail-Domain sperren
       no_email_domain_block_selected: Keine E-Mail-Domain-Sperren wurden geändert, da keine ausgewählt wurden
+      not_permitted: Nicht erlaubt
       resolved_dns_records_hint_html: Der Domain-Name wird an die folgenden MX-Domains aufgelöst, die letztendlich für die Annahme von E-Mails zuständig sind. Das Sperren einer MX-Domain sperrt Anmeldungen aller E-Mail-Adressen, die dieselbe MX-Domain verwenden, auch wenn die sichtbare Domain anders lautet. <strong>Achte daher darauf, große E-Mail-Anbieter versehentlich nicht auszusperren.</strong>
       resolved_through_html: Durch %{domain} aufgelöst
       title: Gesperrte E-Mail-Domains
@@ -472,6 +475,7 @@ de:
       content_policies:
         comment: Interne Notiz
         description_html: Du kannst Inhaltsrichtlinien definieren, die auf alle Konten dieser Domain und einer ihrer Subdomains angewendet werden.
+        limited_federation_mode_description_html: Du kannst auswählen, ob du eine Föderation mit dieser Domain erlaubst.
         policies:
           reject_media: Medien ablehnen
           reject_reports: Meldungen ablehnen
@@ -584,11 +588,13 @@ de:
       assign_to_self: Mir zuweisen
       assigned: Zugewiesene*r Moderator*in
       by_target_domain: Domain des gemeldeten Kontos
+      cancel: Abbrechen
       category: Kategorie
       category_description_html: Der Grund, warum dieses Konto und/oder der Inhalt gemeldet wurden, wird in der Kommunikation mit dem gemeldeten Konto zitiert
       comment:
         none: Kein
       comment_description_html: 'Um weitere Informationen bereitzustellen, schrieb %{name} Folgendes:'
+      confirm: Bestätigen
       confirm_action: Moderationsaktion gegen @%{acct} bestätigen
       created_at: Gemeldet
       delete_and_resolve: Beiträge löschen
@@ -791,6 +797,7 @@ de:
         suspend: "%{name} hat das Konto von %{target} gesperrt"
       appeal_approved: Einspruch angenommen
       appeal_pending: Einspruch ausstehend
+      appeal_rejected: Einspruch abgelehnt
     system_checks:
       database_schema_check:
         message_html: Es gibt ausstehende Datenbankmigrationen. Bitte führe sie aus, um sicherzustellen, dass sich die Anwendung wie erwartet verhält
@@ -826,6 +833,7 @@ de:
           other: In der letzten Woche von %{count} Personen geteilt
         title: Angesagte Links
         usage_comparison: Heute %{today} Mal geteilt, gestern %{yesterday} Mal
+      not_allowed_to_trend: Trend nicht erlaubt
       only_allowed: Nur Genehmigte
       pending_review: Überprüfung ausstehend
       preview_card_providers:
@@ -957,6 +965,7 @@ de:
   applications:
     created: Anwendung erfolgreich erstellt
     destroyed: Anwendung erfolgreich gelöscht
+    logout: Abmelden
     regenerate_token: Zugangs-Token neu erstellen
     token_regenerated: Zugriffstoken erfolgreich neu erstellt
     warning: Sei mit diesen Daten sehr vorsichtig. Teile sie mit niemandem!
@@ -993,6 +1002,8 @@ de:
     resend_confirmation: Bestätigungsanweisungen erneut senden
     reset_password: Passwort zurücksetzen
     rules:
+      accept: Akzeptieren
+      back: Zurück
       preamble: Diese werden von den %{domain}-Moderator*innen festgelegt und erzwungen.
       title: Einige Grundregeln.
     security: Sicherheit
