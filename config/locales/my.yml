@@ -230,6 +230,7 @@ my:
         other: "<strong>%{count}</strong> အယူခံဝင်မှုကို ဆိုင်းငံ့ထားခြင်း"
       pending_users_html:
         other: "<strong>%{count}</strong> ဆိုင်းငံ့အသုံးပြုသူ"
+      software: ဆော့ဖ်ဝဲလ်
       space: နေရာလွတ်အသုံးပြုမှု
       title: ဒက်ရှ်ဘုတ်မြင်ကွင်း
       top_languages: လက်ရှိအသုံးများလျက်ရှိသည့် ဘာသာစကား
@@ -321,6 +322,7 @@ my:
       disabled: ပိတ်ထားသည်
       enable: ဖွင့်ပါ
       enabled: ဖွင့်ထားသည်
+      save_and_enable: သိမ်းပြီး ဖွင့်ရန်
       status: အခြေအနေ
     reports:
       account:
@@ -330,13 +332,23 @@ my:
       are_you_sure: သေချာပါသလား။
       assign_to_self: ကျွန်ုပ်ကို တာဝန်ပေးရန်
       assigned: စိစစ်သူကို တာဝန်ပေးရန်
+      cancel: ပယ်ဖျက်မည်
       category: အမျိုးအစား
+      confirm: အတည်ပြုမည်
+      confirm_action: '@%{acct} ကို စိစစ်အကဲဖြတ်ခြင်းအား အတည်ပြုပါ'
       delete_and_resolve: ပို့စ်များကို ဖျက်ပါ
+      forwarded: ထပ်ဆင့်ပို့ပြီးပါပြီ
+      forwarded_to: '%{domain} သို့ ထပ်ဆင့်ပို့ထားသည်'
+      mark_as_resolved: ဖြေရှင်းပြီးကြောင်း အမှတ်အသားပြုပါ
+      mark_as_unresolved: မဖြေရှင်းရသေးကြောင်း အမှတ်အသားပြုပါ
+      no_one_assigned: တစ်ယောက်မျှမရှိပါ
       notes:
         create: မှတ်စုထည့်ရန်
+        create_and_resolve: မှတ်စုဖြင့် ဖြေရှင်းပါ
         create_and_unresolve: မှတ်စုဖြင့် ပြန်ဖွင့်ရန်
         delete: ဖျက်ပါ
         title: မှတ်စုများ
+      remote_user_placeholder: '%{instance} မှ အဝေးကနေအသုံးပြုသူ'
       reopen: အစီရင်ခံစာပြန်ဖွင့်ရန်
       report: '#%{id} အစီရင်ခံရန်'
       resolved: ဖြေရှင်းပြီးပါပြီ
@@ -345,6 +357,9 @@ my:
         actions:
           suspend_html: <strong>@%{acct}</strong> ကို ဆိုင်းငံ့ထားသောကြောင့် ပရိုဖိုင်နှင့် အကြောင်းအရာများအား ဝင်ရောက်ခွင့်မရှိတော့သဖြင့် အပြန်အလှန် တုံ့ပြန်၍ မရတော့ခြင်း
         delete_data_html: <strong>@%{acct}</strong> ၏ ပရိုဖိုင်နှင့် အကြောင်းအရာများကို ဆိုင်းငံ့ထားခြင်းမရှိပါက ယခုမှ ရက်ပေါင်း ၃၀ အတွင်း ဖျက်ရန်
+      unassign: တာဝန်မှဖြုတ်ရန်
+      unknown_action_msg: 'အမည်မသိလုပ်ဆောင်ချက်- %{action}'
+      unresolved: မဖြေရှင်းရသေးပါ
       updated_at: ပြင်ဆင်ပြီးပါပြီ
       view_profile: ပရိုဖိုင်ကြည့်ရန်
     roles:
@@ -352,7 +367,9 @@ my:
       assigned_users:
         other: "%{count} အသုံးပြုသူ"
       categories:
+        administration: စီမံခန့်ခွဲခြင်း
         devops: DevOps
+        invites: ဖိတ်ခေါ်ခြင်း
         moderation: စိစစ်ခြင်း
         special: အထူး
       delete: ဖျက်ပါ
@@ -369,18 +386,24 @@ my:
         manage_announcements_description: ဆာဗာပေါ်တွင် ကြေညာချက်များစီမံရန်အတွက် အသုံးပြုသူအား ခွင့်ပြုရန်
         manage_appeals: အယူခံဝင်ထားခြင်းများကို စီမံပါ
         manage_appeals_description: စိစစ်အရေးယူမှုများအပေါ် အယူခံဝင်မှုများ ပြန်လည်သုံးသပ်ရန်အတွက် အသုံးပြုသူများအား ခွင့်ပြုရန်
+        manage_custom_emojis: စိတ်ကြိုက်အီမိုဂျီများကို ပြင်ဆင်ရန်
+        manage_custom_emojis_description: အသုံးပြုသူများအား ဆာဗာပေါ်တွင် စိတ်ကြိုက်အီမိုဂျီများကို စီမံခန့်ခွဲရန် ခွင့်ပြုသည်။
+        manage_invites: ဖိတ်ခေါ်ခြင်းကို စီမံရန်
         manage_reports: အစီရင်ခံစာများကို စီမံပါ
         manage_roles: အခန်းကဏ္ဍများကို စီမံပါ
         manage_rules: စည်းမျဉ်းများကို စီမံပါ
         manage_settings: သတ်မှတ်ချက်များကို စီမံပါ
         manage_settings_description: အသုံးပြုသူများကို ဆိုက်သတ်မှတ်ချက်များ ပြောင်းလဲခွင့် ပြုရန်
+        manage_user_access: အသုံးပြုသူဝင်ရောက်မှုကို စီမံပါ
         manage_users: အသုံးပြုသူများကို စီမံပါ
         view_devops: DevOps
+      title: အခန်းကဏ္ဍများ
     rules:
       delete: ဖျက်ပါ
       title: ဆာဗာစည်းမျဉ်းများ
     settings:
       about:
+        manage_rules: ဆာဗာစည်းမျဉ်းများကို စီမံရန်
         title: အကြောင်း
       appearance:
         title: ပုံပန်းသဏ္ဌာန်
