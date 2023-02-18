@@ -130,6 +130,7 @@ ja:
       search: 検索
       search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
       search_same_ip: 同じIPのユーザーを検索
+      security: 認証方法
       security_measures:
         only_password: パスワードのみ
         password_and_2fa: パスワードと二要素認証
@@ -419,6 +420,7 @@ ja:
         resolve: ドメイン解決
         title: 新規メールドメインブロック
       no_email_domain_block_selected: 何も選択されていないためメールドメインブロックを変更しませんでした
+      not_permitted: 権限がありません
       resolved_dns_records_hint_html: ドメイン名はDNSでMXドメインに名前解決され、最終的にメールを受け付ける役割を担います。目に見えるドメイン名が異なっていても、同じMXドメインを使用するメールアドレスからのアカウント登録がブロックされます。<strong>主要なメールプロバイダーをブロックしないように注意して下さい。</strong>
       resolved_through_html: '%{domain}を通して解決しました'
       title: メールドメインブロック
@@ -574,11 +576,13 @@ ja:
       assign_to_self: 担当になる
       assigned: 担当者
       by_target_domain: ドメイン
+      cancel: キャンセル
       category: カテゴリー
       category_description_html: 選択した理由は通報されたアカウントへの連絡時に引用されます
       comment:
         none: なし
       comment_description_html: '%{name}からの詳細情報:'
+      confirm: 確認
       confirm_action: '@%{acct} さんに対するアクション'
       created_at: 通報日時
       delete_and_resolve: 投稿を削除
@@ -779,6 +783,7 @@ ja:
         suspend: "%{name}さんが%{target}さんのアカウントを停止しました"
       appeal_approved: 抗議済み
       appeal_pending: 保留中の抗議
+      appeal_rejected: 却下済みの抗議
     system_checks:
       database_schema_check:
         message_html: 未実行のデータベースマイグレーションがあります。実行して正常に動作するようにしてください。
