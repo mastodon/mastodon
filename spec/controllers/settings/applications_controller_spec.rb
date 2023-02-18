@@ -112,11 +112,11 @@ describe Settings::ApplicationsController do
 
   describe 'PATCH #update' do
     context 'success' do
-      let(:opts) {
+      let(:opts) do
         {
           website: 'https://foo.bar/',
         }
-      }
+      end
 
       def call_update
         patch :update, params: {

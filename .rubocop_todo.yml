@@ -2686,19 +2686,6 @@ Security/IoMethods:
     - 'spec/controllers/admin/export_domain_allows_controller_spec.rb'
     - 'spec/controllers/admin/export_domain_blocks_controller_spec.rb'
 
-# Offense count: 9
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, ProceduralMethods, FunctionalMethods, AllowedMethods, AllowedPatterns, AllowBracesOnProceduralOneLiners, BracesRequiredMethods.
-# SupportedStyles: line_count_based, semantic, braces_for_chaining, always_braces
-# ProceduralMethods: benchmark, bm, bmbm, create, each_with_object, measure, new, realtime, tap, with_object
-# FunctionalMethods: let, let!, subject, watch
-# AllowedMethods: lambda, proc, it
-Style/BlockDelimiters:
-  Exclude:
-    - 'db/migrate/20171020084748_add_visible_in_picker_to_custom_emoji.rb'
-    - 'spec/controllers/settings/applications_controller_spec.rb'
-    - 'spec/lib/webfinger_resource_spec.rb'
-
 # Offense count: 5
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/CaseLikeIf:
