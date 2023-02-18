@@ -602,14 +602,6 @@ RSpec/BeforeAfterAll:
   Exclude:
     - 'spec/requests/localization_spec.rb'
 
-# Offense count: 14
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnabledMethods.
-RSpec/Capybara/FeatureMethods:
-  Exclude:
-    - 'spec/features/log_in_spec.rb'
-    - 'spec/features/profile_spec.rb'
-
 # Offense count: 558
 # Configuration parameters: Prefixes, AllowedPatterns.
 # Prefixes: when, with, without
