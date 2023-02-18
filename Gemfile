@@ -30,7 +30,7 @@ gem 'bootsnap', '~> 1.16.0', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.2'
-gem 'devise', '~> 4.8'
+gem 'devise', '~> 4.9'
 gem 'devise-two-factor', '~> 4.0'
 
 group :pam_authentication, optional: true do
