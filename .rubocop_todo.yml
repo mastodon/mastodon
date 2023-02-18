@@ -183,14 +183,6 @@ Lint/AmbiguousBlockAssociation:
     - 'spec/services/unsuspend_account_service_spec.rb'
     - 'spec/workers/scheduler/accounts_statuses_cleanup_scheduler_spec.rb'
 
-# Offense count: 7
-# This cop supports safe autocorrection (--autocorrect).
-Lint/AmbiguousOperator:
-  Exclude:
-    - 'spec/controllers/api/v1/suggestions_controller_spec.rb'
-    - 'spec/lib/request_spec.rb'
-    - 'spec/models/user_role_spec.rb'
-
 # Offense count: 17
 # This cop supports safe autocorrection (--autocorrect).
 Lint/AmbiguousOperatorPrecedence:
