@@ -264,7 +264,7 @@ namespace :mastodon do
 
           env['S3_ENDPOINT'] = prompt.ask('Storj DCS endpoint URL:') do |q|
             q.required true
-            q.default "https://gateway.storjshare.io"
+            q.default 'https://gateway.storjshare.io'
             q.modify :strip
           end
 

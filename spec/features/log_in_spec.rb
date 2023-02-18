@@ -7,8 +7,8 @@ describe 'Log in' do
 
   subject { page }
 
-  let(:email)        { "test@example.com" }
-  let(:password)     { "password" }
+  let(:email)        { 'test@example.com' }
+  let(:password)     { 'password' }
   let(:confirmed_at) { Time.zone.now }
 
   before do

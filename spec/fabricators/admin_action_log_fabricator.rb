@@ -1,5 +1,5 @@
 Fabricator('Admin::ActionLog') do
   account nil
-  action  "MyString"
+  action  'MyString'
   target  nil
 end
