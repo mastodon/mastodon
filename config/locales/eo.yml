@@ -475,6 +475,7 @@ eo:
       content_policies:
         comment: Interna noto
         description_html: Vi povas difini enhavopolitikojn al la ĉiuj kontoj.
+        limited_federation_mode_description_html: Vi povas elekti, ĉu permesi federacion kun tiu domajno.
         policies:
           reject_media: Malakcepti plurmediojn
           reject_reports: Malakcepti raportojn
@@ -587,11 +588,13 @@ eo:
       assign_to_self: Asigni al mi
       assigned: Asignita kontrolanto
       by_target_domain: Domajno de la signalita konto
+      cancel: Nuligi
       category: Kategorio
       category_description_html: La kialo pri ĉi tiuj konto kaj enhavo raportitaj sendotas al la raportita konto
       comment:
         none: Nenio
       comment_description_html: 'Por doni pli da informo, %{name} skribis:'
+      confirm: Konfirmi
       confirm_action: Konfirmi moderigadagon kontra @%{acct}
       created_at: Signalita
       delete_and_resolve: Forigi afiŝojn
@@ -794,6 +797,7 @@ eo:
         suspend: "%{name} suspendis la konton de %{target}"
       appeal_approved: Apelaciita
       appeal_pending: Apelacio pritraktiĝos
+      appeal_rejected: Apelacio malakceptita
     system_checks:
       database_schema_check:
         message_html: Estas pritraktataj datumbazaj migradoj. Bonvolu ekzekuti ilin por certigi, ke la apliko kondutas kiel atendite
@@ -960,6 +964,7 @@ eo:
   applications:
     created: Aplikaĵo sukcese kreita
     destroyed: Aplikaĵo sukcese forigita
+    logout: Elsaluti
     regenerate_token: Regeneri aliran ĵetonon
     token_regenerated: Alira ĵetono sukcese regeneria
     warning: Estu tre atenta kun ĉi tiu datumo. Neniam diskonigu ĝin al iu ajn!
@@ -996,6 +1001,8 @@ eo:
     resend_confirmation: Resendi la instrukciojn por konfirmi
     reset_password: Restarigi pasvorton
     rules:
+      accept: Akcepti
+      back: Reen
       preamble: Ĉi tioj fiksitas kaj devigitas de kontrolantoj de %{domain}.
       title: Bazaj reguloj.
     security: Sekureco
