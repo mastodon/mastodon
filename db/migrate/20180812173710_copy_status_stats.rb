@@ -19,7 +19,7 @@ class CopyStatusStats < ActiveRecord::Migration[5.2]
 
   def supports_upsert?
     version = select_one("SELECT current_setting('server_version_num') AS v")['v'].to_i
-    version >= 90500
+    version >= 90_500
   end
 
   def up_fast

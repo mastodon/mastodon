@@ -3149,16 +3149,6 @@ Style/MutableConstant:
     - 'lib/mastodon/snowflake.rb'
     - 'spec/controllers/api/base_controller_spec.rb'
 
-# Offense count: 7
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: MinDigits, Strict, AllowedNumbers, AllowedPatterns.
-Style/NumericLiterals:
-  Exclude:
-    - 'db/migrate/20180812173710_copy_status_stats.rb'
-    - 'db/migrate/20181116173541_copy_account_stats.rb'
-    - 'lib/mastodon/maintenance_cli.rb'
-    - 'spec/controllers/api/v1/markers_controller_spec.rb'
-
 # Offense count: 10
 # Configuration parameters: AllowedMethods.
 # AllowedMethods: respond_to_missing?

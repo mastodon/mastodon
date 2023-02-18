@@ -101,6 +101,10 @@ Style/Copyright:
 Style/HashSyntax:
   EnforcedStyle: ruby19_no_mixed_keys
 
+Style/NumericLiterals:
+  AllowedPatterns:
+    - \d{4}_\d{2}_\d{2}_\d{6} # For DB migration date version number readability
+
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
     '%i': '()'
