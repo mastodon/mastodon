@@ -1,4 +1,7 @@
-$emojis-requiring-inversion: 'back' 'copyright' 'curly_loop' 'currency_exchange' 'end' 'heavy_check_mark' 'heavy_division_sign' 'heavy_dollar_sign' 'heavy_minus_sign' 'heavy_multiplication_x' 'heavy_plus_sign' 'on' 'registered' 'soon' 'spider' 'telephone_receiver' 'tm' 'top' 'wavy_dash' !default;
+$emojis-requiring-inversion: 'back' 'copyright' 'curly_loop' 'currency_exchange'
+  'end' 'heavy_check_mark' 'heavy_division_sign' 'heavy_dollar_sign'
+  'heavy_minus_sign' 'heavy_multiplication_x' 'heavy_plus_sign' 'on'
+  'registered' 'soon' 'spider' 'telephone_receiver' 'tm' 'top' 'wavy_dash' !default;
 
 %emoji-color-inversion {
   filter: invert(1);
@@ -19,7 +22,7 @@ $emojis-requiring-inversion: 'back' 'copyright' 'curly_loop' 'currency_exchange'
 
   &.active::after {
     position: absolute;
-    content: "\F00C";
+    content: '\F00C';
     font-size: 50%;
     font-family: FontAwesome;
     right: -0.55em;

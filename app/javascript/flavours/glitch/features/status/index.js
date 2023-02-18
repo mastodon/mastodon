@@ -5,7 +5,17 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { createSelector } from 'reselect';
-import { fetchStatus } from 'flavours/glitch/actions/statuses';
+import {
+  fetchStatus,
+  muteStatus,
+  unmuteStatus,
+  deleteStatus,
+  editStatus,
+  hideStatus,
+  revealStatus,
+  translateStatus,
+  undoStatusTranslation,
+} from 'flavours/glitch/actions/statuses';
 import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 import DetailedStatus from './components/detailed_status';
@@ -27,16 +37,6 @@ import {
   directCompose,
 } from 'flavours/glitch/actions/compose';
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
-import {
-  muteStatus,
-  unmuteStatus,
-  deleteStatus,
-  editStatus,
-  hideStatus,
-  revealStatus,
-  translateStatus,
-  undoStatusTranslation,
-} from 'flavours/glitch/actions/statuses';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initBlockModal } from 'flavours/glitch/actions/blocks';
 import { initReport } from 'flavours/glitch/actions/reports';

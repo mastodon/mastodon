@@ -17,8 +17,10 @@
   font-size: 12px;
   line-height: 18px;
   text-transform: uppercase;
-  opacity: .9;
-  transition: opacity .1s ease;
+  opacity: 0.9;
+  transition: opacity 0.1s ease;
 
-  .media-gallery:hover & { opacity: 1 }
+  .media-gallery:hover & {
+    opacity: 1;
+  }
 }

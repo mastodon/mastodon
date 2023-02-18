@@ -4,7 +4,7 @@
   background-clip: padding-box;
 }
 
-@mixin avatar-size($size:48px) {
+@mixin avatar-size($size: 48px) {
   width: $size;
   height: $size;
   background-size: $size $size;
@@ -22,7 +22,8 @@
 }
 
 @mixin limited-single-column($media, $parent: '&') {
-  .auto-columns #{$parent}, .single-column #{$parent} {
+  .auto-columns #{$parent},
+  .single-column #{$parent} {
     @media #{$media} {
       @content;
     }

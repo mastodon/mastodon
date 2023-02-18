@@ -348,7 +348,7 @@
   padding: 0;
   border: 0;
   font-size: 0;
-  transition: opacity .2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 
   &.active {
     opacity: 1;
@@ -372,7 +372,6 @@
   .video-player__volume__handle {
     bottom: 23px;
   }
-
 }
 
 .audio-player {
@@ -506,10 +505,15 @@
     left: 0;
     right: 0;
     box-sizing: border-box;
-    background: linear-gradient(0deg, rgba($base-shadow-color, 0.85) 0, rgba($base-shadow-color, 0.45) 60%, transparent);
+    background: linear-gradient(
+      0deg,
+      rgba($base-shadow-color, 0.85) 0,
+      rgba($base-shadow-color, 0.45) 60%,
+      transparent
+    );
     padding: 0 15px;
     opacity: 0;
-    transition: opacity .1s ease;
+    transition: opacity 0.1s ease;
 
     &.active {
       opacity: 1;
@@ -655,7 +659,7 @@
     }
 
     &::before {
-      content: "";
+      content: '';
       width: 50px;
       background: rgba($white, 0.35);
       border-radius: 4px;
@@ -725,7 +729,7 @@
     position: relative;
 
     &::before {
-      content: "";
+      content: '';
       width: 100%;
       background: rgba($white, 0.35);
       border-radius: 4px;
@@ -762,7 +766,7 @@
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
 
       .no-reduce-motion & {
-        transition: opacity .1s ease;
+        transition: opacity 0.1s ease;
       }
 
       &.active {

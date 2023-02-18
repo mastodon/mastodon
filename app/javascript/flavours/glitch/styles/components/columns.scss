@@ -286,7 +286,7 @@ $ui-header-height: 55px;
 
     &::before {
       display: block;
-      content: "";
+      content: '';
       position: absolute;
       bottom: -13px;
       left: 0;
@@ -296,7 +296,11 @@ $ui-header-height: 55px;
       pointer-events: none;
       height: 28px;
       z-index: 1;
-      background: radial-gradient(ellipse, rgba($ui-highlight-color, 0.23) 0%, rgba($ui-highlight-color, 0) 60%);
+      background: radial-gradient(
+        ellipse,
+        rgba($ui-highlight-color, 0.23) 0%,
+        rgba($ui-highlight-color, 0) 60%
+      );
     }
   }
 
@@ -435,10 +439,10 @@ $ui-header-height: 55px;
   }
 }
 
-
 .layout-single-column .column-header__notif-cleaning-buttons {
   @media screen and (min-width: $no-gap-breakpoint) {
-    b, i {
+    b,
+    i {
       margin-right: 5px;
     }
 
@@ -622,7 +626,8 @@ $ui-header-height: 55px;
   flex: 1 1 auto;
   align-items: center;
   justify-content: center;
-  @supports(display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) {
+    // hack to fix Chrome <57
     contain: strict;
   }
 
@@ -916,7 +921,7 @@ $ui-header-height: 55px;
 
   p {
     font-size: 16px;
-   line-height: 24px;
+    line-height: 24px;
     font-weight: 400;
     color: $darker-text-color;
   }

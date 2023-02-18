@@ -181,7 +181,11 @@
     &.active {
       transition: all 100ms ease-in;
       transition-property: background-color, color;
-      background-color: mix(lighten($ui-base-color, 12%), $ui-highlight-color, 80%);
+      background-color: mix(
+        lighten($ui-base-color, 12%),
+        $ui-highlight-color,
+        80%
+      );
 
       .reactions-bar__item__count {
         color: lighten($highlight-text-color, 8%);

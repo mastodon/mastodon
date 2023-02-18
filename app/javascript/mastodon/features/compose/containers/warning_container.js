@@ -24,7 +24,7 @@ const buildHashtagRE = () => {
       '))', 'iu',
     );
   } catch {
-    return /(?:^|[^\/\)\w])#(\w*[a-zA-Z·]\w*)/i;
+    return /(?:^|[^/)\w])#(\w*[a-zA-Z·]\w*)/i;
   }
 };
 
