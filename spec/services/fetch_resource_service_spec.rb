@@ -8,6 +8,7 @@ RSpec.describe FetchResourceService, type: :service do
 
     context 'with blank url' do
       let(:url) { '' }
+
       it { is_expected.to be_nil }
     end
 

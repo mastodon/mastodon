@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Account, type: :model do
   context do
     let(:bob) { Fabricate(:account, username: 'bob') }
+
     subject { Fabricate(:account) }
 
     describe '#suspend!' do
