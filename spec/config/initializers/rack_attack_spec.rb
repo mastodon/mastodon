@@ -36,11 +36,13 @@ describe Rack::Attack do
 
       context 'for exact path' do
         let(:path) { '/auth' }
+
         it_behaves_like 'throttled endpoint'
       end
 
       context 'for path with format' do
         let(:path) { '/auth.html' }
+
         it_behaves_like 'throttled endpoint'
       end
     end
@@ -51,6 +53,7 @@ describe Rack::Attack do
 
       context 'for exact path' do
         let(:path) { '/api/v1/accounts' }
+
         it_behaves_like 'throttled endpoint'
       end
 
@@ -71,11 +74,13 @@ describe Rack::Attack do
 
     context 'for exact path' do
       let(:path) { '/auth/sign_in' }
+
       it_behaves_like 'throttled endpoint'
     end
 
     context 'for path with format' do
       let(:path) { '/auth/sign_in.html' }
+
       it_behaves_like 'throttled endpoint'
     end
   end

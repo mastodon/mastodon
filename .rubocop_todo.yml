@@ -825,27 +825,6 @@ RSpec/EmptyExampleGroup:
     - 'spec/models/web/setting_spec.rb'
     - 'spec/services/unmute_service_spec.rb'
 
-# Offense count: 25
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/EmptyLineAfterFinalLet:
-  Exclude:
-    - 'spec/config/initializers/rack_attack_spec.rb'
-    - 'spec/controllers/admin/reports_controller_spec.rb'
-    - 'spec/controllers/admin/resets_controller_spec.rb'
-    - 'spec/controllers/api/web/embeds_controller_spec.rb'
-    - 'spec/controllers/instance_actors_controller_spec.rb'
-    - 'spec/controllers/intents_controller_spec.rb'
-    - 'spec/controllers/settings/applications_controller_spec.rb'
-    - 'spec/controllers/settings/sessions_controller_spec.rb'
-    - 'spec/controllers/shares_controller_spec.rb'
-    - 'spec/lib/status_filter_spec.rb'
-    - 'spec/models/account_spec.rb'
-    - 'spec/models/account_statuses_cleanup_policy_spec.rb'
-    - 'spec/services/fetch_resource_service_spec.rb'
-    - 'spec/services/import_service_spec.rb'
-    - 'spec/services/precompute_feed_service_spec.rb'
-    - 'spec/validators/poll_validator_spec.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowConsecutiveOneLiners.

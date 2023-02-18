@@ -134,6 +134,7 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
   describe '#invalidate_last_inspected' do
     let(:account_statuses_cleanup_policy) { Fabricate(:account_statuses_cleanup_policy, account: account) }
     let(:status) { Fabricate(:status, id: 10, account: account) }
+
     subject { account_statuses_cleanup_policy.invalidate_last_inspected(status, action) }
 
     before do

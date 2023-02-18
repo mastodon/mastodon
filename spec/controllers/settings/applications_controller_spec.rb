@@ -175,6 +175,7 @@ describe Settings::ApplicationsController do
 
   describe 'regenerate' do
     let(:token) { user.token_for_app(app) }
+
     before do
       expect(token).to_not be_nil
       post :regenerate, params: { id: app.id }

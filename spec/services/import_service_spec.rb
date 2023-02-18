@@ -18,6 +18,7 @@ RSpec.describe ImportService, type: :service do
 
     describe 'when no accounts are muted' do
       let(:import) { Import.create(account: account, type: 'muting', data: csv) }
+
       it 'mutes the listed accounts, including notifications' do
         subject.call(import)
         expect(account.muting.count).to eq 2
@@ -55,6 +56,7 @@ RSpec.describe ImportService, type: :service do
 
     describe 'when no accounts are muted' do
       let(:import) { Import.create(account: account, type: 'muting', data: csv) }
+
       it 'mutes the listed accounts, respecting notifications' do
         subject.call(import)
         expect(account.muting.count).to eq 2
@@ -95,6 +97,7 @@ RSpec.describe ImportService, type: :service do
 
     describe 'when no accounts are followed' do
       let(:import) { Import.create(account: account, type: 'following', data: csv) }
+
       it 'follows the listed accounts, including boosts' do
         subject.call(import)
 
@@ -136,6 +139,7 @@ RSpec.describe ImportService, type: :service do
 
     describe 'when no accounts are followed' do
       let(:import) { Import.create(account: account, type: 'following', data: csv) }
+
       it 'follows the listed accounts, respecting boosts' do
         subject.call(import)
         expect(account.following.count).to eq 1
@@ -224,6 +228,7 @@ RSpec.describe ImportService, type: :service do
 
     describe 'when no bookmarks are set' do
       let(:import) { Import.create(account: account, type: 'bookmarks', data: csv) }
+
       it 'adds the toots the user has access to to bookmarks' do
         local_status = Fabricate(:status, account: local_account, uri: 'https://local.com/users/foo/statuses/42', id: 42, local: true)
         subject.call(import)
