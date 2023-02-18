@@ -88,6 +88,7 @@ ja:
       moderation:
         active: アクティブ
         all: すべて
+        disabled: 無効
         pending: 承認待ち
         silenced: 制限
         suspended: 停止済み
@@ -462,6 +463,7 @@ ja:
       content_policies:
         comment: 内部メモ
         description_html: このドメインとそのサブドメインのすべてのアカウントに適用されるコンテンツポリシーを定義できます。
+        limited_federation_mode_description_html: このドメインとの連合を許可するかどうかを選択できます。
         policies:
           reject_media: メディアを拒否する
           reject_reports: 通報を拒否
@@ -811,6 +813,7 @@ ja:
           other: 週間%{count}人に共有されました
         title: トレンドリンク
         usage_comparison: 今日は%{today}回、昨日は%{yesterday}回共有されました
+      not_allowed_to_trend: 未許可のトレンド
       only_allowed: 許可済み
       pending_review: 保留中
       preview_card_providers:
