@@ -1,4 +1,3 @@
----
 sq:
   activerecord:
     attributes:
@@ -147,49 +146,49 @@ sq:
       application:
         title: Lypset autorizim OAuth
     scopes:
-      admin:read: të lexojë krejt të dhënat te shërbyesi
-      admin:read:accounts: të lexojë hollësi rezervat të krejt llogarive
-      admin:read:canonical_email_blocks: të lexojë hollësi rezervat të krejt bllokimeve të zakonshëm të email-eve
-      admin:read:domain_allows: të lexojë hollësi rezervat të krejt lejimeve të përkatësive
-      admin:read:domain_blocks: të lexojë hollësi rezervat të krejt bllokimeve të përkatësive
-      admin:read:email_domain_blocks: të lexojë hollësi rezervat të krejt bllokimeve të përkatësive të email-eve
-      admin:read:ip_blocks: të lexojë hollësi rezervat të krejt bllokimeve të IP-ve
-      admin:read:reports: të lexojë hollësi rezervat të krejt raportimeve dhe të llogarive të raportuara
-      admin:write: të përpunojë krejt të dhënat në shërbyes
-      admin:write:accounts: të kryejë veprime moderimi në llogaritë
-      admin:write:canonical_email_blocks: të kryejë veprime moderimi në bllokime të zakonshëm të email-eve
-      admin:write:domain_allows: të kryejë veprime moderimi mbi lejime përkatësish
-      admin:write:domain_blocks: të kryejë veprime moderimi mbi bllokime përkatësish
-      admin:write:email_domain_blocks: të kryejë veprime moderimi mbi lejime përkatësish email
-      admin:write:ip_blocks: të kryejë veprime moderimi mbi bllokime IP-sh
-      admin:write:reports: të kryejë veprime moderimi në raportime
+      "admin:read": të lexojë krejt të dhënat te shërbyesi
+      "admin:read:accounts": të lexojë hollësi rezervat të krejt llogarive
+      "admin:read:canonical_email_blocks": të lexojë hollësi rezervat të krejt bllokimeve të zakonshëm të email-eve
+      "admin:read:domain_allows": të lexojë hollësi rezervat të krejt lejimeve të përkatësive
+      "admin:read:domain_blocks": të lexojë hollësi rezervat të krejt bllokimeve të përkatësive
+      "admin:read:email_domain_blocks": të lexojë hollësi rezervat të krejt bllokimeve të përkatësive të email-eve
+      "admin:read:ip_blocks": të lexojë hollësi rezervat të krejt bllokimeve të IP-ve
+      "admin:read:reports": të lexojë hollësi rezervat të krejt raportimeve dhe të llogarive të raportuara
+      "admin:write": të përpunojë krejt të dhënat në shërbyes
+      "admin:write:accounts": të kryejë veprime moderimi në llogaritë
+      "admin:write:canonical_email_blocks": të kryejë veprime moderimi në bllokime të zakonshëm të email-eve
+      "admin:write:domain_allows": të kryejë veprime moderimi mbi lejime përkatësish
+      "admin:write:domain_blocks": të kryejë veprime moderimi mbi bllokime përkatësish
+      "admin:write:email_domain_blocks": të kryejë veprime moderimi mbi lejime përkatësish email
+      "admin:write:ip_blocks": të kryejë veprime moderimi mbi bllokime IP-sh
+      "admin:write:reports": të kryejë veprime moderimi në raportime
       crypto: përdor fshehtëzim skaj-më-skaj
       follow: të ndryshojë marrëdhënie llogarish
       push: të marrë njoftime push për ju
       read: të lexojë krejt të dhënat e llogarisë tuaj
-      read:accounts: të shohë hollësi llogarish
-      read:blocks: të shohë blloqet tuaja
-      read:bookmarks: të shohë faqerojtësit tuaj
-      read:favourites: të shohë të parapëlqyerit tuaj
-      read:filters: të shohë filtrat tuaj
-      read:follows: të shohë ndjekësit tuaj
-      read:lists: të shohë listat tuaja
-      read:mutes: të shohë ç’keni heshtuar
-      read:notifications: të shohë njoftimet tuaja
-      read:reports: të shohë raportimet tuaja
-      read:search: të bëjë kërkime në emrin tuaj
-      read:statuses: të shohë krejt gjendjet
+      "read:accounts": të shohë hollësi llogarish
+      "read:blocks": të shohë blloqet tuaja
+      "read:bookmarks": të shohë faqerojtësit tuaj
+      "read:favourites": të shohë të parapëlqyerit tuaj
+      "read:filters": të shohë filtrat tuaj
+      "read:follows": të shohë ndjekësit tuaj
+      "read:lists": të shohë listat tuaja
+      "read:mutes": të shohë ç’keni heshtuar
+      "read:notifications": të shohë njoftimet tuaja
+      "read:reports": të shohë raportimet tuaja
+      "read:search": të bëjë kërkime në emrin tuaj
+      "read:statuses": të shohë krejt gjendjet
       write: të ndryshojë krejt të dhënat e llogarisë tuaj
-      write:accounts: të ndryshojë profilin tuaj
-      write:blocks: të bllokojë llogari dhe përkatësi
-      write:bookmarks: të faqeruajë gjendje
-      write:conversations: heshtoni dhe fshini biseda
-      write:favourites: të parapëlqejë gjendje
-      write:filters: të krijojë filtra
-      write:follows: të ndjekë persona
-      write:lists: të krijojë lista
-      write:media: të ngarkojë kartela media
-      write:mutes: të heshtojë persona dhe biseda
-      write:notifications: të spastrojë njoftimet tuaja
-      write:reports: të raportojë persona të tjerë
-      write:statuses: të botojë gjendje
+      "write:accounts": të ndryshojë profilin tuaj
+      "write:blocks": të bllokojë llogari dhe përkatësi
+      "write:bookmarks": të faqeruajë gjendje
+      "write:conversations": heshtoni dhe fshini biseda
+      "write:favourites": të parapëlqejë gjendje
+      "write:filters": të krijojë filtra
+      "write:follows": të ndjekë persona
+      "write:lists": të krijojë lista
+      "write:media": të ngarkojë kartela media
+      "write:mutes": të heshtojë persona dhe biseda
+      "write:notifications": të spastrojë njoftimet tuaja
+      "write:reports": të raportojë persona të tjerë
+      "write:statuses": të botojë gjendje
