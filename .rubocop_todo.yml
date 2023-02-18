@@ -3405,18 +3405,6 @@ Style/SymbolProc:
   Exclude:
     - 'spec/lib/request_spec.rb'
 
-# Offense count: 10
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInArrayLiteral:
-  Exclude:
-    - 'spec/helpers/jsonld_helper_spec.rb'
-    - 'spec/lib/extractor_spec.rb'
-    - 'spec/services/activitypub/process_account_service_spec.rb'
-    - 'spec/services/activitypub/process_collection_service_spec.rb'
-    - 'spec/workers/activitypub/move_distribution_worker_spec.rb'
-
 # Offense count: 4
 # This cop supports safe autocorrection (--autocorrect).
 Style/UnpackFirst:
