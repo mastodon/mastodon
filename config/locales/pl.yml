@@ -94,6 +94,7 @@ pl:
       moderation:
         active: Aktywne
         all: Wszystkie
+        disabled: Wyłączone
         pending: Oczekujące
         silenced: Ograniczone
         suspended: Zawieszone
@@ -138,6 +139,7 @@ pl:
       search: Szukaj
       search_same_email_domain: Inni użytkownicy z tym samym e-mail w tej domenie
       search_same_ip: Inni użytkownicy z tym samym IP
+      security: Bezpieczeństwo
       security_measures:
         only_password: Tylko hasło
         password_and_2fa: Hasło i 2FA
@@ -442,6 +444,7 @@ pl:
         resolve: Rozwiąż domenę
         title: Nowa blokada domeny e-mail
       no_email_domain_block_selected: Żadne blokady domeny e-mail nie zostały zmienione, ponieważ żadne z nich nie zostały wybrane
+      not_permitted: Brak uprawnień
       resolved_dns_records_hint_html: Nazwa domeny rozwiązuje się do następujących domen MX, które są ostatecznie odpowiedzialne za przyjmowanie wiadomości e-mail. Blokowanie domeny MX spowoduje zablokowanie rejestracji z dowolnego adresu e-mail, który używa tej samej domeny MX, nawet jeśli widoczna nazwa domeny jest inna. <strong>Uważaj, aby nie blokować głównych dostawców poczty elektronicznej.</strong>
       resolved_through_html: Rozwiązano przez %{domain}
       title: Blokowanie domen e-mail
@@ -492,6 +495,7 @@ pl:
       content_policies:
         comment: Wewnętrzna notatka
         description_html: Możesz zdefiniować zasady treści, które zostaną zastosowane do wszystkich kont z tej domeny i jej subdomen.
+        limited_federation_mode_description_html: Możesz wybrać, czy zezwolić na federację z tą domeną.
         policies:
           reject_media: Odrzucaj media
           reject_reports: Odrzucaj zgłoszenia
@@ -608,11 +612,13 @@ pl:
       assign_to_self: Przypisz do siebie
       assigned: Przypisany moderator
       by_target_domain: Domena zgłaszanego konta
+      cancel: Anuluj
       category: Kategoria
       category_description_html: Powód, dla którego to konto i/lub zawartość zostały zgłoszone, będzie cytowany w komunikacji ze zgłoszonym kontem
       comment:
         none: Brak
       comment_description_html: 'Aby dostarczyć więcej informacji, %{name} napisał:'
+      confirm: Potwierdź
       confirm_action: Potwierdzenie działań moderacyjnych wobec @%{acct}
       created_at: Zgłoszono
       delete_and_resolve: Usuń posty
@@ -819,6 +825,7 @@ pl:
         suspend: "%{name} zawiesił(-a) konto %{target}"
       appeal_approved: Odwołanie
       appeal_pending: Odwołanie w toku
+      appeal_rejected: Odwołanie odrzucone
     system_checks:
       database_schema_check:
         message_html: Istnieją oczekujące migracje bazy danych. Uruchom je, aby upewnić się, że aplikacja działa tak, jak powinna
@@ -993,6 +1000,7 @@ pl:
   applications:
     created: Pomyślnie utworzono aplikację
     destroyed: Pomyślnie usunięto aplikację
+    logout: Wyloguj się
     regenerate_token: Wygeneruj nowy token dostępu
     token_regenerated: Pomyślnie wygenerowano nowy token dostępu
     warning: Przechowuj te dane ostrożnie. Nie udostępniaj ich nikomu!
@@ -1029,6 +1037,8 @@ pl:
     resend_confirmation: Ponownie prześlij instrukcje weryfikacji
     reset_password: Zresetuj hasło
     rules:
+      accept: Zaakceptuj
+      back: Wróć
       preamble: Są one ustawione i wymuszone przez moderatorów %{domain}.
       title: Kilka podstawowych zasad.
     security: Bezpieczeństwo
