@@ -173,7 +173,7 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
               type: 'Mention',
               href: "https://foo.test/users/#{i + 1}",
               name: "@user#{i + 1}",
-            }
+            },
           ],
           to: ['as:Public', "https://foo.test/users/#{i + 1}"],
         }.with_indifferent_access

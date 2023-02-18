@@ -107,17 +107,17 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
             '@context': [
               'https://www.w3.org/ns/activitystreams',
               nil,
-              { object: 'https://www.w3.org/ns/activitystreams#object' }
+              { object: 'https://www.w3.org/ns/activitystreams#object' },
             ],
             id: 'https://example.com/users/bob/fake-status/activity',
             type: 'Create',
             actor: 'https://example.com/users/bob',
             published: '2022-01-22T15:00:00Z',
             to: [
-              'https://www.w3.org/ns/activitystreams#Public'
+              'https://www.w3.org/ns/activitystreams#Public',
             ],
             cc: [
-              'https://example.com/users/bob/followers'
+              'https://example.com/users/bob/followers',
             ],
             signature: {
               type: 'RsaSignature2017',
@@ -140,10 +140,10 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
               url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&feature=puck-was-here',
               attributedTo: 'https://example.com/users/bob',
               to: [
-                'https://www.w3.org/ns/activitystreams#Public'
+                'https://www.w3.org/ns/activitystreams#Public',
               ],
               cc: [
-                'https://example.com/users/bob/followers'
+                'https://example.com/users/bob/followers',
               ],
               sensitive: false,
               atomUri: 'https://example.com/users/bob/fake-status',
@@ -166,7 +166,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
                 {
                   '@value': '<p>hello world</p>',
                   '@language': 'en',
-                }
+                },
               ],
               'https://www.w3.org/ns/activitystreams#published': {
                 '@type': 'http://www.w3.org/2001/XMLSchema#dateTime',
