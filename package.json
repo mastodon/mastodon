@@ -15,8 +15,8 @@
     "test:lint:js": "eslint --ext=js . --cache --report-unused-disable-directives",
     "test:lint:sass": "stylelint \"**/*.{css,scss}\" && prettier --check \"**/*.{css,scss}\"",
     "test:jest": "cross-env NODE_ENV=test jest",
-    "format": "prettier --write \"**/*.{json,yml}\"",
-    "format-check": "prettier --check \"**/*.{json,yml}\""
+    "format": "prettier --write .",
+    "format-check": "prettier --check ."
   },
   "repository": {
     "type": "git",
