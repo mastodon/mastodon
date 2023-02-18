@@ -94,6 +94,7 @@ cs:
       moderation:
         active: Aktivní
         all: Vše
+        disabled: Deaktivován
         pending: Čekající
         silenced: Omezeno
         suspended: Pozastavené
@@ -138,6 +139,7 @@ cs:
       search: Hledat
       search_same_email_domain: Ostatní uživatelé se stejnou e-mailovou doménou
       search_same_ip: Další uživatelé se stejnou IP adresou
+      security: Zabezpečení
       security_measures:
         only_password: Pouze heslo
         password_and_2fa: Heslo a 2FA
@@ -442,6 +444,7 @@ cs:
         resolve: Přeložit doménu
         title: Blokovat novou e-mailovou doménu
       no_email_domain_block_selected: Žádné blokace e-mailové domény nebyly změněny, protože nebyly žádné vybrány
+      not_permitted: Nepovoleno
       resolved_dns_records_hint_html: Doménové jméno vede na následující MX domény, které mají nakonec na starost přijímání e-mailů. Blokování MX domény zablokuje registrace z jakékoliv e-mailové adresy, která používá stejnou MX doménu, i když je viditelné doménové jméno jiné. <strong>Dejte si pozor, abyste nezablokovali velké e-mailové poskytovatele.</strong>
       resolved_through_html: Přeložena přes %{domain}
       title: Blokované e-mailové domény
@@ -491,6 +494,7 @@ cs:
       content_policies:
         comment: Interní poznámka
         description_html: Můžete definovat politiky obsahu, které budou aplikovány na všechny účty z této domény i jakoukoliv z jejích subdomén.
+        limited_federation_mode_description_html: Můžete si vybrat, zda povolit federaci s touto doménou.
         policies:
           reject_media: Odmítat média
           reject_reports: Odmítat hlášení
@@ -607,11 +611,13 @@ cs:
       assign_to_self: Přidělit ke mně
       assigned: Přiřazený moderátor
       by_target_domain: Doména nahlášeného účtu
+      cancel: Zrušit
       category: Kategorie
       category_description_html: Důvod nahlášení tohoto účtu a/nebo obsahu bude uveden v komunikaci s nahlášeným účtem
       comment:
         none: Žádné
       comment_description_html: 'Pro upřesnění uživatel %{name} napsal:'
+      confirm: Potvrdit
       created_at: Nahlášené
       delete_and_resolve: Smazat příspěvky
       forwarded: Přeposláno
@@ -972,6 +978,7 @@ cs:
   applications:
     created: Aplikace úspěšně vytvořena
     destroyed: Aplikace úspěšně smazána
+    logout: Odhlásit se
     regenerate_token: Znovu vygenerovat přístupový token
     token_regenerated: Přístupový token byl úspěšně vygenerován
     warning: Zacházejte s těmito daty opatrně. Nikdy je s nikým nesdílejte!
@@ -1008,6 +1015,8 @@ cs:
     resend_confirmation: Znovu odeslat pokyny pro potvrzení
     reset_password: Obnovit heslo
     rules:
+      accept: Přijmout
+      back: Zpět
       preamble: Tohle nastavují a prosazují moderátoři %{domain}.
       title: Některá základní pravidla.
     security: Zabezpečení
