@@ -67,7 +67,7 @@ docker-compose.override.yml
 # Ignore vendored CSS reset
 app/javascript/styles/mastodon/reset.scss
 
-# Ignore Javascript till ESLint Prettier is implimented
+# Ignore Javascript pending https://github.com/mastodon/mastodon/pull/23631
 *.js
 
 # Ignore Markdownlint pending https://github.com/mastodon/mastodon/pull/21972
