@@ -88,6 +88,7 @@ ko:
       moderation:
         active: 활동
         all: 전체
+        disabled: 비활성화됨
         pending: 대기 중
         silenced: 제한됨
         suspended: 정지 중
@@ -129,6 +130,7 @@ ko:
       search: 검색
       search_same_email_domain: 같은 이메일 도메인을 가진 다른 사용자들
       search_same_ip: 같은 IP의 다른 사용자들
+      security: 보안
       security_measures:
         only_password: 암호만
         password_and_2fa: 암호와 2단계 인증
@@ -418,6 +420,7 @@ ko:
         resolve: 도메인 검사
         title: 새 이메일 도메인 차단
       no_email_domain_block_selected: 아무 것도 선택 되지 않아 어떤 이메일 도메인 차단도 변경되지 않았습니다
+      not_permitted: 권한 없음
       resolved_dns_records_hint_html: 도메인 네임은 다음의 MX 도메인으로 연결되어 있으며, 이메일을 받는데 필수적입니다. MX 도메인을 차단하면 같은 MX 도메인을 사용하는 어떤 이메일이라도 가입할 수 없게 되며, 보여지는 도메인이 다르더라도 적용됩니다. <strong>주요 이메일 제공자를 차단하지 않도록 조심하세요.</strong>
       resolved_through_html: '%{domain}을 통해 리졸빙됨'
       title: Email 도메인 차단
@@ -572,11 +575,13 @@ ko:
       assign_to_self: 나에게 할당하기
       assigned: 할당된 중재자
       by_target_domain: 신고된 계정의 도메인
+      cancel: 취소
       category: 카테고리
       category_description_html: 이 계정 또는 게시물이 신고된 이유는 신고된 계정과의 의사소통 과정에 인용됩니다
       comment:
         none: 없음
       comment_description_html: '더 많은 정보를 위해, %{name} 님이 작성했습니다:'
+      confirm: 확정
       confirm_action: '@%{acct}에 취할 중재 결정에 대한 확인'
       created_at: 신고 시각
       delete_and_resolve: 게시물 삭제
@@ -777,6 +782,7 @@ ko:
         suspend: "%{name} 님이 %{target}의 계정을 정지시켰습니다"
       appeal_approved: 이의제기됨
       appeal_pending: 이의제기 대기중
+      appeal_rejected: 이의 제기 거절됨
     system_checks:
       database_schema_check:
         message_html: 대기 중인 데이터베이스 마이그레이션이 있습니다. 애플리케이션이 예상대로 동작할 수 있도록 마이그레이션을 실행해 주세요
@@ -811,6 +817,7 @@ ko:
           other: 지난 주 동안 %{count} 명의 사람들이 공유했습니다
         title: 유행하는 링크
         usage_comparison: 오늘은 %{today}회 공유되었고, 어제는 %{yesterday}회 공유되었습니다
+      not_allowed_to_trend: 트렌드에 오를 수 없음
       only_allowed: 허용된 것만
       pending_review: 심사 대기
       preview_card_providers:
@@ -939,6 +946,7 @@ ko:
   applications:
     created: 애플리케이션이 성공적으로 생성되었습니다
     destroyed: 애플리케이션이 성공적으로 삭제되었습니다
+    logout: 로그아웃
     regenerate_token: 토큰 재생성
     token_regenerated: 액세스 토큰이 성공적으로 재생성되었습니다
     warning: 이 데이터를 조심히 다뤄 주세요. 다른 사람들과 절대로 공유하지 마세요!
@@ -975,6 +983,8 @@ ko:
     resend_confirmation: 확인 메일을 다시 보내기
     reset_password: 암호 재설정
     rules:
+      accept: 수락
+      back: 뒤로가기
       preamble: 다음은 %{domain}의 중재자들에 의해 설정되고 적용되는 규칙들입니다.
       title: 몇 개의 규칙이 있습니다.
     security: 보안
