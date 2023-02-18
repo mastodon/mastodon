@@ -7,7 +7,7 @@ RSpec.describe SessionActivation, type: :model do
     let(:session_activation) { Fabricate(:session_activation, user_agent: 'Chrome/62.0.3202.89') }
 
     it 'sets a Browser instance as detection' do
-      expect(session_activation.detection).to be_kind_of Browser::Chrome
+      expect(session_activation.detection).to be_a Browser::Chrome
     end
   end
 
@@ -80,7 +80,7 @@ RSpec.describe SessionActivation, type: :model do
     end
 
     it 'returns an instance of SessionActivation' do
-      expect(described_class.activate(**options)).to be_kind_of SessionActivation
+      expect(described_class.activate(**options)).to be_a SessionActivation
     end
   end
 

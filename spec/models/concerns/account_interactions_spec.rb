@@ -94,7 +94,7 @@ describe AccountInteractions do
   describe '#follow!' do
     it 'creates and returns Follow' do
       expect do
-        expect(account.follow!(target_account)).to be_kind_of Follow
+        expect(account.follow!(target_account)).to be_a Follow
       end.to change { account.following.count }.by 1
     end
   end
@@ -102,7 +102,7 @@ describe AccountInteractions do
   describe '#block' do
     it 'creates and returns Block' do
       expect do
-        expect(account.block!(target_account)).to be_kind_of Block
+        expect(account.block!(target_account)).to be_a Block
       end.to change { account.block_relationships.count }.by 1
     end
   end
@@ -116,7 +116,7 @@ describe AccountInteractions do
 
         it 'creates Mute, and returns Mute' do
           expect do
-            expect(subject).to be_kind_of Mute
+            expect(subject).to be_a Mute
           end.to change { account.mute_relationships.count }.by 1
         end
       end
@@ -126,7 +126,7 @@ describe AccountInteractions do
 
         it 'creates Mute, and returns Mute' do
           expect do
-            expect(subject).to be_kind_of Mute
+            expect(subject).to be_a Mute
           end.to change { account.mute_relationships.count }.by 1
         end
       end
@@ -136,7 +136,7 @@ describe AccountInteractions do
 
         it 'creates Mute, and returns Mute' do
           expect do
-            expect(subject).to be_kind_of Mute
+            expect(subject).to be_a Mute
           end.to change { account.mute_relationships.count }.by 1
         end
       end
@@ -162,7 +162,7 @@ describe AccountInteractions do
 
           it 'returns Mute without updating mute.hide_notifications' do
             expect do
-              expect(subject).to be_kind_of Mute
+              expect(subject).to be_a Mute
             end.not_to change { mute.reload.hide_notifications? }.from(true)
           end
         end
@@ -172,7 +172,7 @@ describe AccountInteractions do
 
           it 'returns Mute, and updates mute.hide_notifications false' do
             expect do
-              expect(subject).to be_kind_of Mute
+              expect(subject).to be_a Mute
             end.to change { mute.reload.hide_notifications? }.from(true).to(false)
           end
         end
@@ -182,7 +182,7 @@ describe AccountInteractions do
 
           it 'returns Mute without updating mute.hide_notifications' do
             expect do
-              expect(subject).to be_kind_of Mute
+              expect(subject).to be_a Mute
             end.not_to change { mute.reload.hide_notifications? }.from(true)
           end
         end
@@ -196,7 +196,7 @@ describe AccountInteractions do
 
           it 'returns Mute, and updates mute.hide_notifications true' do
             expect do
-              expect(subject).to be_kind_of Mute
+              expect(subject).to be_a Mute
             end.to change { mute.reload.hide_notifications? }.from(false).to(true)
           end
         end
@@ -206,7 +206,7 @@ describe AccountInteractions do
 
           it 'returns Mute without updating mute.hide_notifications' do
             expect do
-              expect(subject).to be_kind_of Mute
+              expect(subject).to be_a Mute
             end.not_to change { mute.reload.hide_notifications? }.from(false)
           end
         end
@@ -216,7 +216,7 @@ describe AccountInteractions do
 
           it 'returns Mute, and updates mute.hide_notifications true' do
             expect do
-              expect(subject).to be_kind_of Mute
+              expect(subject).to be_a Mute
             end.to change { mute.reload.hide_notifications? }.from(false).to(true)
           end
         end
@@ -231,7 +231,7 @@ describe AccountInteractions do
 
     it 'creates and returns ConversationMute' do
       expect do
-        is_expected.to be_kind_of ConversationMute
+        is_expected.to be_a ConversationMute
       end.to change { account.conversation_mutes.count }.by 1
     end
   end
@@ -243,7 +243,7 @@ describe AccountInteractions do
 
     it 'creates and returns AccountDomainBlock' do
       expect do
-        is_expected.to be_kind_of AccountDomainBlock
+        is_expected.to be_a AccountDomainBlock
       end.to change { account.domain_blocks.count }.by 1
     end
   end
@@ -254,7 +254,7 @@ describe AccountInteractions do
     context 'following target_account' do
       it 'returns destroyed Follow' do
         account.active_relationships.create(target_account: target_account)
-        is_expected.to be_kind_of Follow
+        is_expected.to be_a Follow
         expect(subject).to be_destroyed
       end
     end
@@ -272,7 +272,7 @@ describe AccountInteractions do
     context 'blocking target_account' do
       it 'returns destroyed Block' do
         account.block_relationships.create(target_account: target_account)
-        is_expected.to be_kind_of Block
+        is_expected.to be_a Block
         expect(subject).to be_destroyed
       end
     end
@@ -290,7 +290,7 @@ describe AccountInteractions do
     context 'muting target_account' do
       it 'returns destroyed Mute' do
         account.mute_relationships.create(target_account: target_account)
-        is_expected.to be_kind_of Mute
+        is_expected.to be_a Mute
         expect(subject).to be_destroyed
       end
     end
@@ -310,7 +310,7 @@ describe AccountInteractions do
     context 'muting the conversation' do
       it 'returns destroyed ConversationMute' do
         account.conversation_mutes.create(conversation: conversation)
-        is_expected.to be_kind_of ConversationMute
+        is_expected.to be_a ConversationMute
         expect(subject).to be_destroyed
       end
     end
@@ -331,7 +331,7 @@ describe AccountInteractions do
       it 'returns destroyed AccountDomainBlock' do
         account_domain_block = Fabricate(:account_domain_block, domain: domain)
         account.domain_blocks << account_domain_block
-        is_expected.to be_kind_of AccountDomainBlock
+        is_expected.to be_a AccountDomainBlock
         expect(subject).to be_destroyed
       end
     end

@@ -313,7 +313,7 @@ RSpec.describe User, type: :model do
   describe 'settings' do
     it 'is instance of Settings::ScopedSettings' do
       user = Fabricate(:user)
-      expect(user.settings).to be_kind_of Settings::ScopedSettings
+      expect(user.settings).to be_a Settings::ScopedSettings
     end
   end
 
