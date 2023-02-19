@@ -1149,6 +1149,8 @@ eo:
     storage: Aŭdovidaĵa konservado
   featured_tags:
     add_new: Aldoni novan
+    errors:
+      limit: Vi jam elstarigis la maksimuman kvanton da kradvortoj
     hint_html: "<strong>Kio estas la trajtaj kradvortoj?</strong> Ili bone videblas en via publika profilo kaj permesas al homoj trarigardi viajn publikajn mesaĝojn specife laŭ tiuj kradvortoj. Ili estas bonaj iloj por sekvi la evoluon de kreadaj laboroj aŭ longdaŭraj projektoj."
   filters:
     contexts:
@@ -1258,6 +1260,9 @@ eo:
       expires_at: Eksvalidiĝas je
       uses: Uzoj
     title: Inviti homojn
+  lists:
+    errors:
+      limit: Vi atingis la maksimuman kvanton de listoj
   login_activities:
     authentication_methods:
       otp: 2-faktora autentigprogramaro
@@ -1577,6 +1582,7 @@ eo:
       '7889238': 3 monatoj
     min_age_label: Aĝlimo
     min_favs: Konservi mesaĝojn stelumitajn almenaŭ
+    min_favs_hint: Oni ne forigas viajn afiŝojn, kiuj estas diskonigitaj almenaŭ ĉi tiun nombron da fojoj. Lasu malplena por forigi afiŝojn sendepende de iliaj nombroj da diskonigoj
     min_reblogs: Konservi diskonitajn mesaĝojn almenau
     min_reblogs_hint: Oni ne forigas viajn afiŝojn kiuj estas diskonigitaj almenaŭ ĉi tiun nombron da fojoj. Lasu malplena por forigi afiŝojn sendepende de iliaj nombroj da diskonigoj
   stream_entries:
