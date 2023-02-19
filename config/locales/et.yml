@@ -475,6 +475,7 @@ et:
       content_policies:
         comment: Sisemine märge
         description_html: On võimalik kirjeldada sisureeglid kõigile kontodele sellelt domeenilt ja alamdomeenidelt.
+        limited_federation_mode_description_html: Saad valida, kas selle domeeniga on födereerumine lubatud.
         policies:
           reject_media: Meedia hülgamine
           reject_reports: Lükka raportid tagasi
@@ -587,11 +588,13 @@ et:
       assign_to_self: Määra mulle
       assigned: Määratud moderaator
       by_target_domain: Teavitatud konto domeen
+      cancel: Tühista
       category: Kategooria
       category_description_html: Põhjus, miks sellest kontost ja/või sisust teatati, kaasatakse raporteeritud kontoga suhtlemisel
       comment:
         none: Pole
       comment_description_html: 'Täiendava infona kirjutas %{name}:'
+      confirm: Kinnita
       confirm_action: Kinnita @%{acct} modereering
       created_at: Teavitatud
       delete_and_resolve: Kustuta postitused
@@ -794,6 +797,7 @@ et:
         suspend: "%{name} kustutas %{target} konto"
       appeal_approved: Vaidlustatud
       appeal_pending: Vaidlustus on ootel
+      appeal_rejected: Vaidlustus tagasi lükatud
     system_checks:
       database_schema_check:
         message_html: On ootel andmebaasi migreerimisi. Rakenduse ootuspäraseks toimimiseks palun käivita need
@@ -829,6 +833,7 @@ et:
           other: Jagatud %{count} kasutaja poolt viimase nädala jooksul
         title: Trendikad viited
         usage_comparison: Jagatud %{today} korda täna, eile %{yesterday} korda
+      not_allowed_to_trend: Trend ei ole lubatud
       only_allowed: Ainult lubatud
       pending_review: Ootab ülevaatust
       preview_card_providers:
@@ -960,6 +965,7 @@ et:
   applications:
     created: Rakenduse loomine õnnestus
     destroyed: Rakenduse kustutamine õnnestus
+    logout: Logi välja
     regenerate_token: Loo uus access token
     token_regenerated: Access tokeni loomine õnnestus
     warning: Ole nende andmetega ettevaatlikud. Ära jaga neid kellegagi!
@@ -996,6 +1002,8 @@ et:
     resend_confirmation: Saada kinnitusjuhendid uuesti
     reset_password: Salasõna lähtestamine
     rules:
+      accept: Nõus
+      back: Tagasi
       preamble: Neist kinnipidamist jälgivad %{domain} moderaatorid.
       title: Mõned põhireeglid.
     security: Turvalisus
@@ -1142,6 +1150,8 @@ et:
     storage: Meedia hoidla
   featured_tags:
     add_new: Lisa uus
+    errors:
+      limit: Oled jõudnud siltide lubatud maksimumarvuni
     hint_html: "<strong>Mis on esiletõstetud sildid?</strong> Neid silte näidatakse su avalikul profiilil esiletõstetult ning need aitavad teistel leida postitusi, millel on selline silt. See on hea viis, kuidas hoida järge loovtöödel või pikaajalistel projektidel."
   filters:
     contexts:
@@ -1251,6 +1261,9 @@ et:
       expires_at: Aegub
       uses: Kasutust
     title: Kutsu inimesi
+  lists:
+    errors:
+      limit: Oled jõudnud loetelude lubatud maksimumarvuni
   login_activities:
     authentication_methods:
       otp: kaheastmelise autentimise rakendus
@@ -1570,6 +1583,7 @@ et:
       '7889238': 3 kuud
     min_age_label: Ajalimiit
     min_favs: Säilita postitused, meeldimistega vähemalt
+    min_favs_hint: "Ei kustuta ühtegi postitust, mis on saanud vähemalt nii palju lemmikuks märkimist. Postituste kustutamiseks olenemata nende lemmikuks märkimise arvust,\njäta tühjaks"
     min_reblogs: Säilita postitused jagatud vähemalt
     min_reblogs_hint: Ei kustuta postitusi, kui need on jagatud vähemalt nii mitu korda. Tühjaks jättes kustuvad postitused olenemata jagamistest
   stream_entries:
