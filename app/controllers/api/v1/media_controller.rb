@@ -10,9 +10,9 @@ class Api::V1::MediaController < Api::BaseController
     @media_attachment = current_account.media_attachments.create!(media_attachment_params)
     render json: @media_attachment, serializer: REST::MediaAttachmentSerializer
   rescue Paperclip::Errors::NotIdentifiedByImageMagickError
-    render json: file_type_error, status: 422
+    render json: file_type_error, status: :unprocessable_entity
   rescue Paperclip::Error
-    render json: processing_error, status: 500
+    render json: processing_error, status: :internal_server_error
   end
 
   def show
@@ -35,7 +35,7 @@ class Api::V1::MediaController < Api::BaseController
   end
 
   def check_processing
-    render json: processing_error, status: 422 if @media_attachment.processing_failed?
+    render json: processing_error, status: :unprocessable_entity if @media_attachment.processing_failed?
   end
 
   def media_attachment_params

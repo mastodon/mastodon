@@ -7,7 +7,7 @@ describe ApplicationController do
     include RateLimitHeaders
 
     def show
-      head 200
+      head :ok
     end
   end
 

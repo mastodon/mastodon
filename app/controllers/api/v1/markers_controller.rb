@@ -23,7 +23,7 @@ class Api::V1::MarkersController < Api::BaseController
 
     render json: serialize_map(@markers)
   rescue ActiveRecord::StaleObjectError
-    render json: { error: 'Conflict during update, please try again' }, status: 409
+    render json: { error: 'Conflict during update, please try again' }, status: :conflict
   end
 
   private

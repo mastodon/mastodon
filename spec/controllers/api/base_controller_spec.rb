@@ -7,7 +7,7 @@ class FakeService; end
 describe Api::BaseController do
   controller do
     def success
-      head 200
+      head :ok
     end
 
     def error

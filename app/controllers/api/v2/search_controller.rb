@@ -24,9 +24,9 @@ class Api::V2::SearchController < Api::BaseController
 
     return if user_signed_in?
 
-    return render json: { error: 'Search queries pagination is not supported without authentication' }, status: 401 if params[:offset].present?
+    return render json: { error: 'Search queries pagination is not supported without authentication' }, status: :unauthorized if params[:offset].present?
 
-    render json: { error: 'Search queries that resolve remote resources are not supported without authentication' }, status: 401 if truthy_param?(:resolve)
+    render json: { error: 'Search queries that resolve remote resources are not supported without authentication' }, status: :unauthorized if truthy_param?(:resolve)
   end
 
   def search_results

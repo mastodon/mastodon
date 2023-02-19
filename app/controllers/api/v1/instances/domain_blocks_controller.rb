@@ -14,7 +14,7 @@ class Api::V1::Instances::DomainBlocksController < Api::BaseController
   private
 
   def require_enabled_api!
-    head 404 unless Setting.show_domain_blocks == 'all' || (Setting.show_domain_blocks == 'users' && user_signed_in?)
+    head :not_found unless Setting.show_domain_blocks == 'all' || (Setting.show_domain_blocks == 'users' && user_signed_in?)
   end
 
   def set_domain_blocks

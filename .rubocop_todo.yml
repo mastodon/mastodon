@@ -2017,35 +2017,6 @@ Rails/HttpPositionalArguments:
   Exclude:
     - 'spec/config/initializers/rack_attack_spec.rb'
 
-# Offense count: 49
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: numeric, symbolic
-Rails/HttpStatus:
-  Exclude:
-    - 'app/controllers/activitypub/inboxes_controller.rb'
-    - 'app/controllers/api/base_controller.rb'
-    - 'app/controllers/api/v1/admin/domain_blocks_controller.rb'
-    - 'app/controllers/api/v1/instances/activity_controller.rb'
-    - 'app/controllers/api/v1/instances/domain_blocks_controller.rb'
-    - 'app/controllers/api/v1/instances/peers_controller.rb'
-    - 'app/controllers/api/v1/lists_controller.rb'
-    - 'app/controllers/api/v1/markers_controller.rb'
-    - 'app/controllers/api/v1/media_controller.rb'
-    - 'app/controllers/api/v1/statuses_controller.rb'
-    - 'app/controllers/api/v1/streaming_controller.rb'
-    - 'app/controllers/api/v2/media_controller.rb'
-    - 'app/controllers/api/v2/search_controller.rb'
-    - 'app/controllers/api/web/base_controller.rb'
-    - 'app/controllers/settings/pictures_controller.rb'
-    - 'app/controllers/well_known/webfinger_controller.rb'
-    - 'spec/controllers/api/base_controller_spec.rb'
-    - 'spec/controllers/application_controller_spec.rb'
-    - 'spec/controllers/concerns/account_controller_concern_spec.rb'
-    - 'spec/controllers/concerns/localized_spec.rb'
-    - 'spec/controllers/concerns/rate_limit_headers_spec.rb'
-    - 'spec/controllers/concerns/signature_verification_spec.rb'
-
 # Offense count: 7
 # Configuration parameters: Include.
 # Include: spec/**/*.rb, test/**/*.rb

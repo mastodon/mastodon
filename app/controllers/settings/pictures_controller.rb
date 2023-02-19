@@ -9,7 +9,7 @@ module Settings
       if valid_picture?
         if UpdateAccountService.new.call(@account, { @picture => nil, "#{@picture}_remote_url" => '' })
           ActivityPub::UpdateDistributionWorker.perform_async(@account.id)
-          redirect_to settings_profile_path, notice: I18n.t('generic.changes_saved_msg'), status: 303
+          redirect_to settings_profile_path, notice: I18n.t('generic.changes_saved_msg'), status: :see_other
         else
           redirect_to settings_profile_path
         end

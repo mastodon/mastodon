@@ -32,6 +32,6 @@ class Api::V1::Instances::ActivityController < Api::BaseController
   end
 
   def require_enabled_api!
-    head 404 unless Setting.activity_api_enabled && !whitelist_mode?
+    head :not_found unless Setting.activity_api_enabled && !whitelist_mode?
   end
 end

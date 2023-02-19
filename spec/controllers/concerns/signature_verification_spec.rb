@@ -19,15 +19,15 @@ describe ApplicationController, type: :controller do
     before_action :require_actor_signature!, only: [:signature_required]
 
     def success
-      head 200
+      head :ok
     end
 
     def alternative_success
-      head 200
+      head :ok
     end
 
     def signature_required
-      head 200
+      head :ok
     end
   end
 

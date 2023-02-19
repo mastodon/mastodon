@@ -37,48 +37,48 @@ class Api::BaseController < ApplicationController
   end
 
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
-    render json: { error: e.to_s }, status: 422
+    render json: { error: e.to_s }, status: :unprocessable_entity
   end
 
   rescue_from ActiveRecord::RecordNotUnique do
-    render json: { error: 'Duplicate record' }, status: 422
+    render json: { error: 'Duplicate record' }, status: :unprocessable_entity
   end
 
   rescue_from Date::Error do
-    render json: { error: 'Invalid date supplied' }, status: 422
+    render json: { error: 'Invalid date supplied' }, status: :unprocessable_entity
   end
 
   rescue_from ActiveRecord::RecordNotFound do
-    render json: { error: 'Record not found' }, status: 404
+    render json: { error: 'Record not found' }, status: :not_found
   end
 
   rescue_from HTTP::Error, Mastodon::UnexpectedResponseError do
-    render json: { error: 'Remote data could not be fetched' }, status: 503
+    render json: { error: 'Remote data could not be fetched' }, status: :service_unavailable
   end
 
   rescue_from OpenSSL::SSL::SSLError do
-    render json: { error: 'Remote SSL certificate could not be verified' }, status: 503
+    render json: { error: 'Remote SSL certificate could not be verified' }, status: :service_unavailable
   end
 
   rescue_from Mastodon::NotPermittedError do
-    render json: { error: 'This action is not allowed' }, status: 403
+    render json: { error: 'This action is not allowed' }, status: :forbidden
   end
 
   rescue_from Seahorse::Client::NetworkingError do |e|
     Rails.logger.warn "Storage server error: #{e}"
-    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 503
+    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: :service_unavailable
   end
 
   rescue_from Mastodon::RaceConditionError, Stoplight::Error::RedLight do
-    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 503
+    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: :service_unavailable
   end
 
   rescue_from Mastodon::RateLimitExceededError do
-    render json: { error: I18n.t('errors.429') }, status: 429
+    render json: { error: I18n.t('errors.429') }, status: :too_many_requests
   end
 
   rescue_from ActionController::ParameterMissing, Mastodon::InvalidParameterError do |e|
-    render json: { error: e.to_s }, status: 400
+    render json: { error: e.to_s }, status: :bad_request
   end
 
   def doorkeeper_unauthorized_render_options(error: nil)
@@ -119,29 +119,29 @@ class Api::BaseController < ApplicationController
   end
 
   def require_authenticated_user!
-    render json: { error: 'This method requires an authenticated user' }, status: 401 unless current_user
+    render json: { error: 'This method requires an authenticated user' }, status: :unauthorized unless current_user
   end
 
   def require_not_suspended!
-    render json: { error: 'Your login is currently disabled' }, status: 403 if current_user&.account&.suspended?
+    render json: { error: 'Your login is currently disabled' }, status: :forbidden if current_user&.account&.suspended?
   end
 
   def require_user!
     if !current_user
-      render json: { error: 'This method requires an authenticated user' }, status: 422
+      render json: { error: 'This method requires an authenticated user' }, status: :unprocessable_entity
     elsif !current_user.confirmed?
-      render json: { error: 'Your login is missing a confirmed e-mail address' }, status: 403
+      render json: { error: 'Your login is missing a confirmed e-mail address' }, status: :forbidden
     elsif !current_user.approved?
-      render json: { error: 'Your login is currently pending approval' }, status: 403
+      render json: { error: 'Your login is currently pending approval' }, status: :forbidden
     elsif !current_user.functional?
-      render json: { error: 'Your login is currently disabled' }, status: 403
+      render json: { error: 'Your login is currently disabled' }, status: :forbidden
     else
       update_user_sign_in
     end
   end
 
   def render_empty
-    render json: {}, status: 200
+    render json: {}, status: :ok
   end
 
   def authorize_if_got_token!(*scopes)

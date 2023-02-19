@@ -5,7 +5,7 @@ require 'rails_helper'
 describe ApplicationController, type: :controller do
   controller do
     def success
-      head 200
+      head :ok
     end
 
     def routing_error

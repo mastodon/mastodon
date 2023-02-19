@@ -7,7 +7,7 @@ describe ApplicationController, type: :controller do
     include AccountControllerConcern
 
     def success
-      head 200
+      head :ok
     end
   end
 

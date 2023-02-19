@@ -8,7 +8,7 @@ class Api::V1::ListsController < Api::BaseController
   before_action :set_list, except: [:index, :create]
 
   rescue_from ArgumentError do |e|
-    render json: { error: e.to_s }, status: 422
+    render json: { error: e.to_s }, status: :unprocessable_entity
   end
 
   def index

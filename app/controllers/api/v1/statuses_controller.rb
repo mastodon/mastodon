@@ -74,7 +74,7 @@ class Api::V1::StatusesController < Api::BaseController
       e.accounts,
       serializer: REST::AccountSerializer
     )
-    render json: { error: e.message, unexpected_accounts: unexpected_accounts }, status: 422
+    render json: { error: e.message, unexpected_accounts: unexpected_accounts }, status: :unprocessable_entity
   end
 
   def update
@@ -123,7 +123,7 @@ class Api::V1::StatusesController < Api::BaseController
     @thread = Status.find(status_params[:in_reply_to_id]) if status_params[:in_reply_to_id].present?
     authorize(@thread, :show?) if @thread.present?
   rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
-    render json: { error: I18n.t('statuses.errors.in_reply_not_found') }, status: 404
+    render json: { error: I18n.t('statuses.errors.in_reply_not_found') }, status: :not_found
   end
 
   def status_params

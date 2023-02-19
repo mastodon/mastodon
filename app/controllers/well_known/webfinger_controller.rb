@@ -39,16 +39,16 @@ module WellKnown
 
     def bad_request
       expires_in(3.minutes, public: true)
-      head 400
+      head :bad_request
     end
 
     def not_found
       expires_in(3.minutes, public: true)
-      head 404
+      head :not_found
     end
 
     def gone
-      head 410
+      head :gone
     end
   end
 end
