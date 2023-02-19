@@ -45,7 +45,7 @@ RSpec.describe Api::V1::Statuses::RebloggedByAccountsController, type: :controll
 
   context 'without an oauth token' do
     before do
-      allow(controller).to receive(:doorkeeper_token) { nil }
+      allow(controller).to receive(:doorkeeper_token).and_return(nil)
     end
 
     context 'with a private status' do
