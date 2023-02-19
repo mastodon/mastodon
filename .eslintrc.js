@@ -112,6 +112,7 @@ module.exports = {
     semi: 'error',
     'valid-typeof': 'error',
 
+    'react/jsx-filename-extension': ['error', { 'allow': 'as-needed' }],
     'react/jsx-boolean-value': 'error',
     'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
     'react/jsx-curly-spacing': 'error',
