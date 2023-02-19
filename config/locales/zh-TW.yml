@@ -10,7 +10,7 @@ zh-TW:
     followers:
       other: 跟隨者
     following: 正在跟隨
-    instance_actor_flash: 此帳號是用來代表此伺服器的虛擬執行者，而非個別使用者。它的用途為聯邦宇宙，且不應被停權。
+    instance_actor_flash: 此帳號是用來代表此伺服器的虛擬執行者，而非個別使用者。它的用途為維繫聯邦宇宙，且不應被停權。
     last_active: 上次活躍時間
     link_verified_on: 此連結的所有權已在 %{date} 檢查過
     nothing_here: 暫時沒有內容可供顯示！
@@ -618,15 +618,15 @@ zh-TW:
           delete_html: '您將要 <strong>移除</strong> 某些 <strong>@%{acct}</strong> 之嘟文。此將會：'
           mark_as_sensitive_html: '您將要 <strong>標記</strong> 某些 <strong>@%{acct}</strong> 之嘟文為 <strong>敏感內容 </strong>。此將會：'
           silence_html: '您將要 <strong>限制</strong> <strong>@%{acct}</strong> 之帳號。此將會：'
-          suspend_html: '您將要 <strong>停權</strong> <strong>@%{acct}</strong> 的帳號。此將會：'
+          suspend_html: '您將要 <strong>停權</strong> <strong>@%{acct}</strong> 之帳號。此將會：'
         actions:
           delete_html: 移除違反規則之嘟文
           mark_as_sensitive_html: 將違反規則之嘟文多媒體標記為敏感內容
           silence_html: 藉由標記他們的個人檔案與內容為僅可見於已跟隨帳號或手動查詢此個人檔案，此將嚴格地限制 <strong>@%{acct}</strong> 之觸及率
-          suspend_html: 停權 <strong>@%{acct}</strong>，將他們的個人檔案與內容標記為無法被存取及互動
+          suspend_html: 停權 <strong>@%{acct}</strong>，將他們的個人檔案與內容標記為無法存取及無法與之互動
         close_report: '將檢舉報告 #%{id} 標記為已處理'
         close_reports_html: 將 <strong>所有</strong> 對於 <strong>@%{acct}</strong> 之檢舉報告標記為已處理
-        delete_data_html: 於即日起 30 天後刪除 <strong>@%{acct}</strong>的個人檔案與內容，除非他們在期限前被取消停權。
+        delete_data_html: 於即日起 30 天後刪除 <strong>@%{acct}</strong>之個人檔案與內容，除非他們於期限前被解除暫停
         preview_preamble_html: "<strong>@%{acct}</strong> 將收到關於以下內容之警告："
         record_strike_html: 紀錄關於 <strong>@%{acct}</strong>之警示有助於您升級對此帳號未來違規處理
         send_email_html: 寄一封警告 e-mail 給 <strong>@%{acct}</strong>
@@ -998,7 +998,7 @@ zh-TW:
       preamble_html: 請使用您在 <strong>%{domain}</strong> 的帳號密碼登入。若您的帳號託管於其他伺服器，您將無法在此登入。
       title: 登入 %{domain}
     sign_up:
-      preamble: 於此 Mastodon 伺服器擁有帳號的話，您將能跟隨聯邦宇宙網路中任何一份子，無論他們的帳號託管於何處。
+      preamble: 在這個 Mastodon 伺服器上有個帳號的話，您將能跟隨聯邦宇宙網路中的任何人，無論他們的帳號託管於哪個伺服器。
       title: 讓我們一起設定 %{domain} 吧！
     status:
       account_status: 帳號狀態
@@ -1380,9 +1380,9 @@ zh-TW:
     activity: 帳號動態
     confirm_follow_selected_followers: 您確定要跟隨這些選取的跟隨者嗎？
     confirm_remove_selected_followers: 您確定要移除這些選取的跟隨者嗎？
-    confirm_remove_selected_follows: 您確定要取消跟隨選取的使用者嗎？
+    confirm_remove_selected_follows: 您確定要取消跟隨這些選取的使用者嗎？
     dormant: 潛水中
-    follow_selected_followers: 跟隨選取的跟隨者
+    follow_selected_followers: 跟隨所選取的跟隨者
     followers: 跟隨者
     following: 跟隨中
     invited: 已邀請
@@ -1392,9 +1392,9 @@ zh-TW:
     mutual: 跟隨彼此
     primary: 主要
     relationship: 關係
-    remove_selected_domains: 移除選取的網域中所有跟隨者
-    remove_selected_followers: 移除選取的跟隨者
-    remove_selected_follows: 取消跟隨選取的使用者
+    remove_selected_domains: 從所選取網域中移除所有跟隨者
+    remove_selected_followers: 移除所選取的跟隨者
+    remove_selected_follows: 取消跟隨所選取使用者
     status: 帳號狀態
   remote_follow:
     missing_resource: 無法找到資源
@@ -1603,7 +1603,7 @@ zh-TW:
       title: 檔案匯出
     suspicious_sign_in:
       change_password: 變更密碼
-      details: '以下是該登入的詳細資訊：'
+      details: '以下是該登入之詳細資訊：'
       explanation: 我們偵測到有新 IP 地址登入您的帳號
       further_actions_html: 如果這個不是您，我們建議您立即 %{action} ，並且啟用二階段驗證 (2FA) 以確保帳號安全。
       subject: 您的帳號已被新 IP 地址存取
