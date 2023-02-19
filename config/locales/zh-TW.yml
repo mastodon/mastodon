@@ -31,7 +31,7 @@ zh-TW:
       add_email_domain_block: 將電子郵件網域加入黑名單
       approve: 批准
       approved_msg: 成功審核了 %{username} 的新帳號申請
-      are_you_sure: 您確定嗎?
+      are_you_sure: 您確定嗎？
       avatar: 大頭貼
       by_domain: 站點
       change_email:
@@ -53,7 +53,7 @@ zh-TW:
       delete: 刪除資料
       deleted: 已刪除
       demote: 降級
-      destroyed_msg: "即將刪除 %{username} 的數據"
+      destroyed_msg: "即將刪除 %{username} 的資料"
       disable: 停用
       disable_sign_in_token_auth: 停用電子郵件 token 驗證
       disable_two_factor_authentication: 停用兩階段認證
@@ -113,7 +113,7 @@ zh-TW:
       redownloaded_msg: 成功重新載入%{username} 的個人檔案頁面
       reject: 拒絕
       rejected_msg: 成功婉拒了 %{username} 的新帳號申請
-      remote_suspension_irreversible: 此帳號之資料已被不可逆地刪除。
+      remote_suspension_irreversible: 已永久刪除此帳號的資料。
       remote_suspension_reversible_hint_html: 這個帳號已於此伺服器被停權，所有資料將會於 %{date} 被刪除。在此之前，遠端伺服器可以完全回復此的帳號。如果您想即時刪除這個帳號的資料，您可以在下面進行操作。
       remove_avatar: 取消大頭貼
       remove_header: 移除開頭
@@ -147,7 +147,7 @@ zh-TW:
       subscribe: 訂閱
       suspend: 停權
       suspended: 已停權
-      suspension_irreversible: 已永久刪除這個帳號的數據。雖然這個帳號的數據已被永久刪除，但是您仍然可以取消暫停這個帳號。
+      suspension_irreversible: 已永久刪除此帳號的資料。您可以取消暫停這個帳號並重新使用，但無法還原已刪除的資料。
       suspension_reversible_hint_html: 這個帳號已被暫停，所有數據將會在 %{date} 被刪除。在此之前，您可以完全回復您的帳號。如果您想即時刪除這個帳號的數據，您可以在下面進行操作。
       title: 帳號
       unblock_email: 解除封鎖電子郵件地址
@@ -568,11 +568,11 @@ zh-TW:
         other_description_html: 檢視更多控制帳號行為以及自訂檢舉帳號通知之選項。
         resolve_description_html: 被檢舉的帳號將不被採取任何行動，不會加以刪除線標記，並且此份報告將被關閉。
         silence_description_html: 此帳號僅會對已跟隨帳號之使用者或手動查詢可見，將大幅度限制觸及範圍。此設定可隨時被還原。關閉所有對此帳號之檢舉報告。
-        suspend_description_html: 此帳號及其所有內容將不可被存取並且最終被移除，並且無法與之進行互動。三十天內可以撤銷此動作。關閉所有對此帳號之檢舉報告。
+        suspend_description_html: 此帳號及其所有內容將不可再被存取且最終會被刪除，無法再進行互動。可於 30 天內撤銷此動作。關閉所有對此帳號的檢舉報告。
       actions_description_html: 決定應對此報告採取何種行動。若您對檢舉之帳號採取懲罰措施，則將對他們發送 e-mail 通知，如非選擇了 <strong>垃圾郵件</strong> 類別。
       actions_description_remote_html: 決定將對此檢舉報告採取何種動作。這將僅作用於<strong>您的伺服器</strong>與此遠端帳號及其內容之通訊行為。
       add_to_report: 加入更多至報告
-      are_you_sure: 您確定嗎?
+      are_you_sure: 您確定嗎？
       assign_to_self: 指派給自己
       assigned: 指派站務
       by_target_domain: 檢舉帳號之網域
@@ -995,10 +995,10 @@ zh-TW:
       email_settings_hint_html: 請確認 e-mail 是否傳送至 %{email} 。如果電子郵件地址不正確的話，可以從帳號設定修改。
       title: 設定
     sign_in:
-      preamble_html: 請登入您於 <strong>%{domain}</strong> 之帳號密碼。若您的帳號託管於其他伺服器，您將無法於此登入。
+      preamble_html: 請使用您在 <strong>%{domain}</strong> 的帳號密碼登入。若您的帳號託管於其他伺服器，您將無法在此登入。
       title: 登入 %{domain}
     sign_up:
-      preamble: 於此 Mastodon 伺服器擁有帳號的話，您將能跟隨聯邦宇宙網路中任何一份子，無論他們的帳號託管於何處。
+      preamble: 擁有此 Mastodon 伺服器的帳號，您將能跟隨聯邦宇宙網路中的任何人，無論他們的帳號託管於哪個伺服器。
       title: 讓我們一起設定 %{domain} 吧！
     status:
       account_status: 帳號狀態
@@ -1373,9 +1373,9 @@ zh-TW:
       unrecognized_emoji: 並非一個可識別的 emoji
   relationships:
     activity: 帳號動態
-    confirm_follow_selected_followers: 您確定要跟隨這些選取的跟隨者嗎？
-    confirm_remove_selected_followers: 您確定要移除這些選取的跟隨者嗎？
-    confirm_remove_selected_follows: 您確定要移除這些選取的正在跟隨您的帳號嗎？
+    confirm_follow_selected_followers: 您確定要跟隨選取的跟隨者嗎？
+    confirm_remove_selected_followers: 您確定要移除選取的跟隨者嗎？
+    confirm_remove_selected_follows: 您確定要移除選取的跟隨中的使用者嗎？
     dormant: 潛水中
     follow_selected_followers: 跟隨所選取的跟隨者
     followers: 跟隨者
@@ -1509,7 +1509,7 @@ zh-TW:
     visibilities:
       direct: 私訊
       private: 僅限跟隨者
-      private_long: 只有跟隨您的人能看到
+      private_long: 只有跟隨者能看到
       public: 公開
       public_long: 所有人都能看到
       unlisted: 不在公開時間軸顯示
