@@ -17,7 +17,7 @@ describe Admin::CustomEmojisController do
     end
 
     it 'renders index page' do
-      expect(subject).to have_http_status 200
+      expect(subject).to have_http_status :ok
       expect(subject).to render_template :index
     end
   end
@@ -26,7 +26,7 @@ describe Admin::CustomEmojisController do
     subject { get :new }
 
     it 'renders new page' do
-      expect(subject).to have_http_status 200
+      expect(subject).to have_http_status :ok
       expect(subject).to render_template :new
     end
   end

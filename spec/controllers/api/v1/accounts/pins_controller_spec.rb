@@ -16,7 +16,7 @@ RSpec.describe Api::V1::Accounts::PinsController, type: :controller do
     subject { post :create, params: { account_id: kevin.account.id } }
 
     it 'returns 200' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'creates account_pin' do
@@ -34,7 +34,7 @@ RSpec.describe Api::V1::Accounts::PinsController, type: :controller do
     end
 
     it 'returns 200' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'destroys account_pin' do

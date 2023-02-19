@@ -13,7 +13,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
   describe 'GET #new' do
     it 'returns http success' do
       get :new
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 

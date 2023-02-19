@@ -12,7 +12,7 @@ RSpec.describe Admin::DomainAllowsController, type: :controller do
       get :new
 
       expect(assigns(:domain_allow)).to be_instance_of(DomainAllow)
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 

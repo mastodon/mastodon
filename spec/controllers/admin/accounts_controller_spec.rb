@@ -55,7 +55,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
 
     it 'returns http success' do
       get :index
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 
@@ -65,7 +65,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
 
     it 'returns http success' do
       get :show, params: { id: account.id }
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 

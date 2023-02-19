@@ -17,7 +17,7 @@ RSpec.describe Api::V1::Admin::AccountActionsController, type: :controller do
     let(:scopes) { wrong_scope }
 
     it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
+      expect(response).to have_http_status(:forbidden)
     end
   end
 
@@ -25,7 +25,7 @@ RSpec.describe Api::V1::Admin::AccountActionsController, type: :controller do
     let(:role) { UserRole.find_by(name: wrong_role) }
 
     it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
+      expect(response).to have_http_status(:forbidden)
     end
   end
 
@@ -39,7 +39,7 @@ RSpec.describe Api::V1::Admin::AccountActionsController, type: :controller do
       it_behaves_like 'forbidden for wrong role', ''
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'performs action against account' do
@@ -62,7 +62,7 @@ RSpec.describe Api::V1::Admin::AccountActionsController, type: :controller do
       end
 
       it 'returns http unprocessable entity' do
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end

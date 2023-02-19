@@ -14,7 +14,7 @@ RSpec.describe Api::V1::Accounts::SearchController, type: :controller do
     it 'returns http success' do
       get :show, params: { q: 'query' }
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 end

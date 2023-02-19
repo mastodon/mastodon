@@ -31,7 +31,7 @@ describe InvitesController do
       end
 
       it 'returns 403' do
-        expect(subject).to have_http_status 403
+        expect(subject).to have_http_status :forbidden
       end
     end
   end
@@ -61,7 +61,7 @@ describe InvitesController do
       end
 
       it 'returns 403' do
-        expect(subject).to have_http_status 403
+        expect(subject).to have_http_status :forbidden
       end
     end
   end

@@ -18,7 +18,7 @@ describe Admin::DashboardController, type: :controller do
     it 'returns 200' do
       get :index
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 end

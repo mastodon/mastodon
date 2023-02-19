@@ -24,7 +24,7 @@ describe Api::V1::Timelines::ListController do
 
       it 'returns http success' do
         get :show, params: { id: list.id }
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
   end

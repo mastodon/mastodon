@@ -16,7 +16,7 @@ describe Api::V1::Accounts::CredentialsController do
 
       it 'returns http success' do
         get :show
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -40,7 +40,7 @@ describe Api::V1::Accounts::CredentialsController do
         end
 
         it 'returns http success' do
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(:ok)
         end
 
         it 'updates account info' do
@@ -68,7 +68,7 @@ describe Api::V1::Accounts::CredentialsController do
         end
 
         it 'returns http success' do
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(:ok)
         end
       end
 

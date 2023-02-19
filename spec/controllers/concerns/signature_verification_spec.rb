@@ -292,7 +292,7 @@ describe ApplicationController, type: :controller do
 
     context 'without signature header' do
       it 'returns HTTP 401' do
-        expect(response).to have_http_status(401)
+        expect(response).to have_http_status(:unauthorized)
       end
 
       it 'returns an error' do

@@ -16,7 +16,7 @@ describe Api::V1::Apps::CredentialsController do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'does not contain client credentials' do

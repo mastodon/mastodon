@@ -14,7 +14,7 @@ RSpec.describe Admin::Settings::BrandingController, type: :controller do
       it 'returns http success' do
         get :show
 
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
 

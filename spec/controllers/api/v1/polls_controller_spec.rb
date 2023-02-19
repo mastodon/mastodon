@@ -20,7 +20,7 @@ RSpec.describe Api::V1::PollsController, type: :controller do
       let(:visibility) { 'public' }
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -28,7 +28,7 @@ RSpec.describe Api::V1::PollsController, type: :controller do
       let(:visibility) { 'private' }
 
       it 'returns http not found' do
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(:not_found)
       end
     end
   end

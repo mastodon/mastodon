@@ -20,7 +20,7 @@ describe Admin::Reports::ActionsController do
       let(:action) { 'suspend' }
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -28,7 +28,7 @@ describe Admin::Reports::ActionsController do
       let(:action) { 'silence' }
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -36,7 +36,7 @@ describe Admin::Reports::ActionsController do
       let(:action) { 'delete' }
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -44,7 +44,7 @@ describe Admin::Reports::ActionsController do
       let(:action) { 'mark_as_sensitive' }
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
   end

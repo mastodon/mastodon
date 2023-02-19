@@ -12,7 +12,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
       expect(assigns(:confirmation)).to be_instance_of Form::TwoFactorConfirmation
       expect(assigns(:provision_url)).to eq 'otpauth://totp/cb6e6126.ngrok.io:local-part%40domain?secret=thisisasecretforthespecofnewview&issuer=cb6e6126.ngrok.io'
       expect(assigns(:qrcode)).to be_instance_of RQRCode::QRCode
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
       expect(response).to render_template(:new)
     end
   end
@@ -51,7 +51,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
         describe 'when form_two_factor_confirmation parameter is not provided' do
           it 'raises ActionController::ParameterMissing' do
             post :create, params: {}, session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
-            expect(response).to have_http_status(400)
+            expect(response).to have_http_status(:bad_request)
           end
         end
 
@@ -77,7 +77,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
 
             expect(assigns(:recovery_codes)).to eq otp_backup_codes
             expect(flash[:notice]).to eq 'Two-factor authentication successfully enabled'
-            expect(response).to have_http_status(200)
+            expect(response).to have_http_status(:ok)
             expect(response).to render_template('settings/two_factor_authentication/recovery_codes/index')
           end
         end

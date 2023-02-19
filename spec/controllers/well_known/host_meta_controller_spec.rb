@@ -7,7 +7,7 @@ describe WellKnown::HostMetaController, type: :controller do
     it 'returns http success' do
       get :show, format: :xml
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
       expect(response.media_type).to eq 'application/xrd+xml'
       expect(response.body).to eq <<~XML
         <?xml version="1.0" encoding="UTF-8"?>

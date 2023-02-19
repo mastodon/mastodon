@@ -16,7 +16,7 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :controller do
     let(:scopes) { wrong_scope }
 
     it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
+      expect(response).to have_http_status(:forbidden)
     end
   end
 
@@ -24,7 +24,7 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :controller do
     let(:role) { UserRole.find_by(name: wrong_role) }
 
     it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
+      expect(response).to have_http_status(:forbidden)
     end
   end
 
@@ -40,7 +40,7 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :controller do
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'returns the expected domain blocks' do
@@ -62,7 +62,7 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :controller do
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'returns expected domain name' do
@@ -130,7 +130,7 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :controller do
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'deletes the block' do
@@ -151,7 +151,7 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :controller do
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'returns expected domain name' do
@@ -167,7 +167,7 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :controller do
       let(:existing_block_domain) { 'bar.com' }
 
       it 'returns http unprocessable entity' do
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it 'renders existing domain block in error' do

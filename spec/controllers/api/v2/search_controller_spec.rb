@@ -19,7 +19,7 @@ RSpec.describe Api::V2::SearchController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
   end
@@ -36,7 +36,7 @@ RSpec.describe Api::V2::SearchController, type: :controller do
         let(:search_params) { { q: 'test' } }
 
         it 'returns http success' do
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(:ok)
         end
       end
 
@@ -44,14 +44,14 @@ RSpec.describe Api::V2::SearchController, type: :controller do
         let(:search_params) { { q: 'test1' } }
 
         it 'returns http success' do
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(:ok)
         end
 
         context 'with truthy `resolve`' do
           let(:search_params) { { q: 'test1', resolve: '1' } }
 
           it 'returns http unauthorized' do
-            expect(response).to have_http_status(401)
+            expect(response).to have_http_status(:unauthorized)
           end
         end
 
@@ -59,7 +59,7 @@ RSpec.describe Api::V2::SearchController, type: :controller do
           let(:search_params) { { q: 'test1', offset: 1 } }
 
           it 'returns http unauthorized' do
-            expect(response).to have_http_status(401)
+            expect(response).to have_http_status(:unauthorized)
           end
         end
       end

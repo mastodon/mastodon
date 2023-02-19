@@ -18,7 +18,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
 
       it 'returns http success' do
         get :show, params: { id: status.id }
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       context 'when post includes filtered terms' do
@@ -30,7 +30,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
 
         it 'returns http success' do
           get :show, params: { id: status.id }
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(:ok)
         end
 
         it 'returns filter information' do
@@ -57,7 +57,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
 
         it 'returns http success' do
           get :show, params: { id: status.id }
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(:ok)
         end
 
         it 'returns filter information' do
@@ -83,7 +83,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
 
         it 'returns http success' do
           get :show, params: { id: status.id }
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(:ok)
         end
 
         it 'returns filter information' do
@@ -111,7 +111,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
 
       it 'returns http success' do
         get :context, params: { id: status.id }
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -124,7 +124,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
         end
 
         it 'returns http success' do
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(:ok)
         end
 
         it 'returns rate limit headers' do
@@ -142,7 +142,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
         end
 
         it 'returns http unprocessable entity' do
-          expect(response).to have_http_status(422)
+          expect(response).to have_http_status(:unprocessable_entity)
         end
 
         it 'returns serialized extra accounts in body' do
@@ -156,7 +156,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
         end
 
         it 'returns http unprocessable entity' do
-          expect(response).to have_http_status(422)
+          expect(response).to have_http_status(:unprocessable_entity)
         end
 
         it 'returns rate limit headers' do
@@ -172,7 +172,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
         end
 
         it 'returns http too many requests' do
-          expect(response).to have_http_status(429)
+          expect(response).to have_http_status(:too_many_requests)
         end
 
         it 'returns rate limit headers' do
@@ -191,7 +191,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'removes the status' do
@@ -208,7 +208,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'updates the status' do
@@ -228,7 +228,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
       describe 'GET #show' do
         it 'returns http unauthorized' do
           get :show, params: { id: status.id }
-          expect(response).to have_http_status(404)
+          expect(response).to have_http_status(:not_found)
         end
       end
 
@@ -239,7 +239,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
 
         it 'returns http unauthorized' do
           get :context, params: { id: status.id }
-          expect(response).to have_http_status(404)
+          expect(response).to have_http_status(:not_found)
         end
       end
     end
@@ -250,7 +250,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
       describe 'GET #show' do
         it 'returns http success' do
           get :show, params: { id: status.id }
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(:ok)
         end
       end
 
@@ -261,7 +261,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
 
         it 'returns http success' do
           get :context, params: { id: status.id }
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(:ok)
         end
       end
     end

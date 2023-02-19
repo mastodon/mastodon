@@ -9,7 +9,7 @@ describe Auth::ConfirmationsController, type: :controller do
     it 'returns http success' do
       @request.env['devise.mapping'] = Devise.mappings[:user]
       get :new
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 

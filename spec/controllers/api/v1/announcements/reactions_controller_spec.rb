@@ -26,7 +26,7 @@ RSpec.describe Api::V1::Announcements::ReactionsController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'creates reaction' do
@@ -54,7 +54,7 @@ RSpec.describe Api::V1::Announcements::ReactionsController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'creates reaction' do

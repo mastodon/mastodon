@@ -18,7 +18,7 @@ RSpec.describe ActivityPub::InboxesController, type: :controller do
       end
 
       it 'returns http accepted' do
-        expect(response).to have_http_status(202)
+        expect(response).to have_http_status(:accepted)
       end
 
       context 'for a specific account' do
@@ -33,7 +33,7 @@ RSpec.describe ActivityPub::InboxesController, type: :controller do
           end
 
           it 'returns http gone' do
-            expect(response).to have_http_status(410)
+            expect(response).to have_http_status(:gone)
           end
         end
 
@@ -43,7 +43,7 @@ RSpec.describe ActivityPub::InboxesController, type: :controller do
           end
 
           it 'returns http accepted' do
-            expect(response).to have_http_status(202)
+            expect(response).to have_http_status(:accepted)
           end
         end
       end
@@ -95,7 +95,7 @@ RSpec.describe ActivityPub::InboxesController, type: :controller do
       end
 
       it 'returns http accepted' do
-        expect(response).to have_http_status(202)
+        expect(response).to have_http_status(:accepted)
       end
     end
 
@@ -105,7 +105,7 @@ RSpec.describe ActivityPub::InboxesController, type: :controller do
       end
 
       it 'returns http not authorized' do
-        expect(response).to have_http_status(401)
+        expect(response).to have_http_status(:unauthorized)
       end
     end
   end

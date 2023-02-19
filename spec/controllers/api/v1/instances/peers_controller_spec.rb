@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Instances::PeersController, type: :controller do
   describe 'GET #index' do
     it 'returns 200' do
       get :index
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     context '!Setting.peers_api_enabled' do
@@ -14,7 +14,7 @@ RSpec.describe Api::V1::Instances::PeersController, type: :controller do
         Setting.peers_api_enabled = false
 
         get :index
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(:not_found)
       end
     end
   end

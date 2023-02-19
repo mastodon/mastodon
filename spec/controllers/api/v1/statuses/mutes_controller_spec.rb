@@ -22,7 +22,7 @@ describe Api::V1::Statuses::MutesController do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'creates a conversation mute' do
@@ -39,7 +39,7 @@ describe Api::V1::Statuses::MutesController do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'destroys the conversation mute' do

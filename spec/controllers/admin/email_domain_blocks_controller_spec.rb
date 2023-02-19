@@ -20,14 +20,14 @@ RSpec.describe Admin::EmailDomainBlocksController, type: :controller do
     it 'returns http success' do
       2.times { Fabricate(:email_domain_block) }
       get :index, params: { page: 2 }
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 
   describe 'GET #new' do
     it 'returns http success' do
       get :new
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 

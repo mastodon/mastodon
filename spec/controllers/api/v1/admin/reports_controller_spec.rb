@@ -17,7 +17,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :controller do
     let(:scopes) { wrong_scope }
 
     it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
+      expect(response).to have_http_status(:forbidden)
     end
   end
 
@@ -25,7 +25,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :controller do
     let(:role) { UserRole.find_by(name: wrong_role) }
 
     it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
+      expect(response).to have_http_status(:forbidden)
     end
   end
 
@@ -38,7 +38,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :controller do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 
@@ -51,7 +51,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :controller do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 
@@ -64,7 +64,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :controller do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 
@@ -77,7 +77,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :controller do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 
@@ -90,7 +90,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :controller do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 
@@ -103,7 +103,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :controller do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 end

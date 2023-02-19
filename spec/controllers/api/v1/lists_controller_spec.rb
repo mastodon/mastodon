@@ -14,7 +14,7 @@ RSpec.describe Api::V1::ListsController, type: :controller do
 
     it 'returns http success' do
       get :index
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 
@@ -23,7 +23,7 @@ RSpec.describe Api::V1::ListsController, type: :controller do
 
     it 'returns http success' do
       get :show, params: { id: list.id }
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 
@@ -35,7 +35,7 @@ RSpec.describe Api::V1::ListsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'creates list' do
@@ -52,7 +52,7 @@ RSpec.describe Api::V1::ListsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'updates the list' do
@@ -68,7 +68,7 @@ RSpec.describe Api::V1::ListsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'deletes the list' do

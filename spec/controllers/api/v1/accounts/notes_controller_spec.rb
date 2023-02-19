@@ -22,7 +22,7 @@ describe Api::V1::Accounts::NotesController do
 
       it 'returns http success' do
         subject
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'updates account note' do
@@ -36,7 +36,7 @@ describe Api::V1::Accounts::NotesController do
 
       it 'returns 422' do
         subject
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it 'does not create account note' do

@@ -15,7 +15,7 @@ RSpec.describe Admin::ChangeEmailsController, type: :controller do
 
       get :show, params: { account_id: user.account.id }
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 

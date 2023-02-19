@@ -15,7 +15,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     let(:scopes) { wrong_scope }
 
     it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
+      expect(response).to have_http_status(:forbidden)
     end
   end
 
@@ -32,7 +32,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
       let(:agreement) { 'true' }
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'returns a new access token as JSON' do
@@ -48,7 +48,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
     context 'given no agreement' do
       it 'returns http unprocessable entity' do
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -61,7 +61,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
@@ -80,7 +80,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
         let(:locked) { false }
 
         it 'returns http success' do
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(:ok)
         end
 
         it 'returns JSON with following=true and requested=false' do
@@ -101,7 +101,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
         let(:locked) { true }
 
         it 'returns http success' do
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(:ok)
         end
 
         it 'returns JSON with following=false and requested=true' do
@@ -169,7 +169,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'removes the following relation between user and target user' do
@@ -189,7 +189,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'removes the followed relation between user and target user' do
@@ -209,7 +209,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'removes the following relation between user and target user' do
@@ -233,7 +233,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'removes the blocking relation between user and target user' do
@@ -253,7 +253,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'does not remove the following relation between user and target user' do
@@ -281,7 +281,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'does not remove the following relation between user and target user' do
@@ -309,7 +309,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'does not remove the following relation between user and target user' do
@@ -337,7 +337,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'removes the muting relation between user and target user' do

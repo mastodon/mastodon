@@ -12,7 +12,7 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
       get :new
 
       expect(assigns(:domain_block)).to be_instance_of(DomainBlock)
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 

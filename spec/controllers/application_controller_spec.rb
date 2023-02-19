@@ -160,13 +160,13 @@ describe ApplicationController, type: :controller do
 
     it 'does nothing if not signed in' do
       get 'success'
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'does nothing if user who signed in is not suspended' do
       sign_in(Fabricate(:account, suspended: false).user)
       get 'success'
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'redirects to account status page' do

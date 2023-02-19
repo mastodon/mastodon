@@ -28,7 +28,7 @@ RSpec.describe Admin::InstancesController, type: :controller do
       expect(instances.size).to eq 1
       expect(instances[0].domain).to eq 'less.popular'
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 

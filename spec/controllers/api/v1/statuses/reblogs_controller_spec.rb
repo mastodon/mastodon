@@ -23,7 +23,7 @@ describe Api::V1::Statuses::ReblogsController do
 
       context 'with public status' do
         it 'returns http success' do
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(:ok)
         end
 
         it 'updates the reblogs count' do
@@ -47,7 +47,7 @@ describe Api::V1::Statuses::ReblogsController do
         let(:status) { Fabricate(:status, visibility: :private) }
 
         it 'returns http not found' do
-          expect(response).to have_http_status(404)
+          expect(response).to have_http_status(:not_found)
         end
       end
     end
@@ -62,7 +62,7 @@ describe Api::V1::Statuses::ReblogsController do
         end
 
         it 'returns http success' do
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(:ok)
         end
 
         it 'updates the reblogs count' do
@@ -92,7 +92,7 @@ describe Api::V1::Statuses::ReblogsController do
         end
 
         it 'returns http success' do
-          expect(response).to have_http_status(200)
+          expect(response).to have_http_status(:ok)
         end
 
         it 'updates the reblogs count' do
@@ -120,7 +120,7 @@ describe Api::V1::Statuses::ReblogsController do
         end
 
         it 'returns http not found' do
-          expect(response).to have_http_status(404)
+          expect(response).to have_http_status(:not_found)
         end
       end
     end
