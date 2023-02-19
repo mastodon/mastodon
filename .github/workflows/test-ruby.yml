@@ -8,8 +8,6 @@ env:
   BUNDLE_CLEAN: true
   BUNDLE_FROZEN: true
   BUNDLE_WITHOUT: 'development production'
-  BUNDLE_JOBS: 3
-  BUNDLE_RETRY: 3
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
