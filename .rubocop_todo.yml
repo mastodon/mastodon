@@ -2435,17 +2435,6 @@ Rails/Output:
   Exclude:
     - 'lib/mastodon/ip_blocks_cli.rb'
 
-# Offense count: 14
-# This cop supports safe autocorrection (--autocorrect).
-Rails/Pluck:
-  Exclude:
-    - 'app/lib/importer/base_importer.rb'
-    - 'app/lib/link_details_extractor.rb'
-    - 'app/workers/scheduler/accounts_statuses_cleanup_scheduler.rb'
-    - 'spec/controllers/api/v1/notifications_controller_spec.rb'
-    - 'spec/controllers/api/v1/suggestions_controller_spec.rb'
-    - 'spec/controllers/settings/two_factor_authentication/webauthn_credentials_controller_spec.rb'
-
 # Offense count: 9
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: Include.

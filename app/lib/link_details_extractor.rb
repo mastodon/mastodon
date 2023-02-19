@@ -188,7 +188,7 @@ class LinkDetailsExtractor
   end
 
   def language
-    valid_locale_or_nil(structured_data&.language || opengraph_tag('og:locale') || document.xpath('//html').map { |element| element['lang'] }.first)
+    valid_locale_or_nil(structured_data&.language || opengraph_tag('og:locale') || document.xpath('//html').pluck('lang').first)
   end
 
   def icon
@@ -220,15 +220,15 @@ class LinkDetailsExtractor
   end
 
   def link_tag(name)
-    document.xpath("//link[@rel=\"#{name}\"]").map { |link| link['href'] }.first
+    document.xpath("//link[@rel=\"#{name}\"]").pluck('href').first
   end
 
   def opengraph_tag(name)
-    document.xpath("//meta[@property=\"#{name}\" or @name=\"#{name}\"]").map { |meta| meta['content'] }.first
+    document.xpath("//meta[@property=\"#{name}\" or @name=\"#{name}\"]").pluck('content').first
   end
 
   def meta_tag(name)
-    document.xpath("//meta[@name=\"#{name}\"]").map { |meta| meta['content'] }.first
+    document.xpath("//meta[@name=\"#{name}\"]").pluck('content').first
   end
 
   def structured_data
