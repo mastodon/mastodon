@@ -1146,6 +1146,8 @@ da:
     storage: Medielagerplads
   featured_tags:
     add_new: Tilføj nyt
+    errors:
+      limit: Det maksimale antal hashtags er allerede fremhævet
     hint_html: "<strong>Hvad er fremhævede hashtags?</strong> De vises i en fremtrædende position på din offentlige profil og giver folk mulighed for at gennemse dine offentlige indlæg specifikt under disse hashtags. De er et fantastisk værktøj til at holde styr på kreative værker eller langsigtede projekter."
   filters:
     contexts:
@@ -1255,6 +1257,9 @@ da:
       expires_at: Udløber
       uses: Benyttelser
     title: Invitere personer
+  lists:
+    errors:
+      limit: Maks. listeantal nået
   login_activities:
     authentication_methods:
       otp: tofaktorgodkendelses-app
@@ -1573,6 +1578,7 @@ da:
       '7889238': 3 måneder
     min_age_label: Alderstærskel
     min_favs: Behold indlæg favoritmarkeret mindst
+    min_favs_hint: Sletter ingen egne indlæg, som har modtaget minimum dette antal favoritmarkeringer. Lad stå tomt for at slette indlæg uanset favoritmarkeringer
     min_reblogs: Behold indlæg boostet mindst
     min_reblogs_hint: Sletter ingen egne indlæg, som er boostet flere end dette antal gange. Lad stå tomt for at ignorere denne tærskel under sletning
   stream_entries:
