@@ -186,11 +186,19 @@ export function submitCompose(routerHistory) {
     // API call.
     let media_attributes;
     if (statusId !== null) {
-      media_attributes = media.map(item => ({
-        id: item.get('id'),
-        description: item.get('description'),
-        focus: item.get('focus'),
-      }));
+      media_attributes = media.map(item => {
+        let focus;
+
+        if (item.getIn(['meta', 'focus'])) {
+          focus = `${item.getIn(['meta', 'focus', 'x']).toFixed(2)},${item.getIn(['meta', 'focus', 'y']).toFixed(2)}`;
+        }
+
+        return {
+          id: item.get('id'),
+          description: item.get('description'),
+          focus,
+        };
+      });
     }
 
     api(getState).request({
