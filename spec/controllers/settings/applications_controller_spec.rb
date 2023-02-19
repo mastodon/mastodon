@@ -32,7 +32,7 @@ describe Settings::ApplicationsController do
       app.update!(owner: nil)
 
       get :show, params: { id: app.id }
-      expect(response.status).to eq 404
+      expect(response).to have_http_status 404
     end
   end
 
