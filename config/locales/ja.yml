@@ -1132,6 +1132,8 @@ ja:
     storage: メディア
   featured_tags:
     add_new: 追加
+    errors:
+      limit: すでに注目のハッシュタグの上限数に達しています
     hint_html: "<strong>注目のハッシュタグとは？</strong>　プロフィールページに目立つ形で表示され、そのハッシュタグのついたあなたの公開投稿だけを抽出して閲覧できるようにします。クリエイティブな仕事や長期的なプロジェクトを追うのに優れた機能です。"
   filters:
     contexts:
@@ -1233,6 +1235,9 @@ ja:
       expires_at: 有効期限
       uses: 使用
     title: 新規ユーザーの招待
+  lists:
+    errors:
+      limit: リストの上限数に達しています
   login_activities:
     authentication_methods:
       otp: 二要素認証アプリ
@@ -1546,6 +1551,7 @@ ja:
       '7889238': 3ヶ月
     min_age_label: 投稿を保持する期間
     min_favs: お気に入りの基準値
+    min_favs_hint: この数以上、お気に入り登録された投稿を削除せずに残します。空白にしておくと、お気に入りの数に関わらず投稿を削除します。
     min_reblogs: ブーストの基準値
     min_reblogs_hint: この数以上、ブーストされた投稿を削除せずに残します。空白にしておくと、ブーストされた数に関わらず投稿を削除します。
   stream_entries:
