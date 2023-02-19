@@ -19,7 +19,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       notification = Fabricate(:notification, account: user.account)
       get :show, params: { id: notification.id }
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -30,7 +30,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       notification = Fabricate(:notification, account: user.account)
       post :dismiss, params: { id: notification.id }
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
       expect { notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
@@ -43,7 +43,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       post :clear
 
       expect(notification.account.reload.notifications).to be_empty
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -66,7 +66,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'includes reblog' do
@@ -92,7 +92,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'returns only notifications from specified user' do
@@ -106,7 +106,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'returns nothing' do
@@ -120,7 +120,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'returns everything but excluded type' do
@@ -135,7 +135,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'returns only requested type' do

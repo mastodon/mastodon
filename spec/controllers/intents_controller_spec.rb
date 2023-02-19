@@ -26,26 +26,26 @@ RSpec.describe IntentsController, type: :controller do
       context 'when host is none of the above' do
         let(:uri) { 'web+mastodon://test' }
 
-        it { is_expected.to have_http_status :not_found }
+        it { is_expected.to have_http_status 404 }
       end
     end
 
     context 'when schema is not web+mastodon' do
       let(:uri) { 'api+mastodon://test.com' }
 
-      it { is_expected.to have_http_status :not_found }
+      it { is_expected.to have_http_status 404 }
     end
 
     context 'when uri param is blank' do
       let(:uri) { '' }
 
-      it { is_expected.to have_http_status :not_found }
+      it { is_expected.to have_http_status 404 }
     end
 
     context 'when uri is invalid' do
       let(:uri) { 'invalid uri://test.com' }
 
-      it { is_expected.to have_http_status :not_found }
+      it { is_expected.to have_http_status 404 }
     end
   end
 end

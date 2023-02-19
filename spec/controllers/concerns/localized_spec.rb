@@ -7,7 +7,7 @@ describe ApplicationController, type: :controller do
     include Localized
 
     def success
-      render plain: I18n.locale, status: :ok
+      render plain: I18n.locale, status: 200
     end
   end
 

@@ -19,7 +19,7 @@ describe Api::V1::Accounts::FollowerAccountsController do
     it 'returns http success' do
       get :index, params: { account_id: account.id, limit: 2 }
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns accounts following the given account' do

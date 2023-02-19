@@ -29,7 +29,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
       let(:parent_visibility) { :private }
 
       it 'returns http not found' do
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
 
@@ -37,7 +37,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
       let(:parent_visibility) { :direct }
 
       it 'returns http not found' do
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
   end
@@ -47,7 +47,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
       let(:parent_visibility) { :public }
 
       it 'returns http not found' do
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
 
@@ -64,7 +64,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
       end
 
       it 'returns http gone' do
-        expect(response).to have_http_status(:gone)
+        expect(response).to have_http_status(410)
       end
     end
 
@@ -76,7 +76,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
       end
 
       it 'returns http forbidden' do
-        expect(response).to have_http_status(:forbidden)
+        expect(response).to have_http_status(403)
       end
     end
 
@@ -86,7 +86,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
       let(:page_json) { json[:first] }
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'returns application/activity+json' do

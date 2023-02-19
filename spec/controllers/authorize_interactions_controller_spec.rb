@@ -46,7 +46,7 @@ describe AuthorizeInteractionsController do
 
         get :show, params: { acct: 'http://example.com' }
 
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
         expect(assigns(:resource)).to eq account
       end
 
@@ -58,7 +58,7 @@ describe AuthorizeInteractionsController do
 
         get :show, params: { acct: 'acct:found@hostname' }
 
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
         expect(assigns(:resource)).to eq account
       end
     end

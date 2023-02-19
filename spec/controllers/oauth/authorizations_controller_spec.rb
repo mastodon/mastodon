@@ -28,7 +28,7 @@ RSpec.describe Oauth::AuthorizationsController, type: :controller do
 
       it 'returns http success' do
         subject
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'gives options to authorize and deny' do

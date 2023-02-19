@@ -19,13 +19,13 @@ RSpec.describe Api::V2::Filters::KeywordsController, type: :controller do
 
     it 'returns http success' do
       get :index, params: { filter_id: filter.id }
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     context "when trying to access another's user filters" do
       it 'returns http not found' do
         get :index, params: { filter_id: other_filter.id }
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
   end
@@ -39,7 +39,7 @@ RSpec.describe Api::V2::Filters::KeywordsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns a keyword' do
@@ -58,7 +58,7 @@ RSpec.describe Api::V2::Filters::KeywordsController, type: :controller do
       let(:filter_id) { other_filter.id }
 
       it 'returns http not found' do
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
   end
@@ -72,7 +72,7 @@ RSpec.describe Api::V2::Filters::KeywordsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns expected data' do
@@ -85,7 +85,7 @@ RSpec.describe Api::V2::Filters::KeywordsController, type: :controller do
       let(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: other_filter) }
 
       it 'returns http not found' do
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
   end
@@ -99,7 +99,7 @@ RSpec.describe Api::V2::Filters::KeywordsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'updates the keyword' do
@@ -110,7 +110,7 @@ RSpec.describe Api::V2::Filters::KeywordsController, type: :controller do
       let(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: other_filter) }
 
       it 'returns http not found' do
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
   end
@@ -124,7 +124,7 @@ RSpec.describe Api::V2::Filters::KeywordsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'removes the filter' do
@@ -135,7 +135,7 @@ RSpec.describe Api::V2::Filters::KeywordsController, type: :controller do
       let(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: other_filter) }
 
       it 'returns http not found' do
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
   end

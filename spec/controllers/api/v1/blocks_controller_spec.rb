@@ -48,7 +48,7 @@ RSpec.describe Api::V1::BlocksController, type: :controller do
 
     it 'returns http success' do
       get :index
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     context 'with wrong scopes' do
@@ -56,7 +56,7 @@ RSpec.describe Api::V1::BlocksController, type: :controller do
 
       it 'returns http forbidden' do
         get :index
-        expect(response).to have_http_status(:forbidden)
+        expect(response).to have_http_status(403)
       end
     end
   end

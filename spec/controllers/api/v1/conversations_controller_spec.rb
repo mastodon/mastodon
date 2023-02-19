@@ -20,7 +20,7 @@ RSpec.describe Api::V1::ConversationsController, type: :controller do
 
     it 'returns http success' do
       get :index
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns pagination headers' do

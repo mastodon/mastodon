@@ -12,7 +12,7 @@ describe Settings::Preferences::NotificationsController do
   describe 'GET #show' do
     it 'returns http success' do
       get :show
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
   end
 

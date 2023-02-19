@@ -28,7 +28,7 @@ RSpec.describe Admin::InstancesController, type: :controller do
       expect(instances.size).to eq 1
       expect(instances[0].domain).to eq 'less.popular'
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -50,7 +50,7 @@ RSpec.describe Admin::InstancesController, type: :controller do
       let(:role) { nil }
 
       it 'fails to purge instance' do
-        is_expected.to have_http_status :forbidden
+        is_expected.to have_http_status 403
       end
     end
   end

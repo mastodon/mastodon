@@ -23,7 +23,7 @@ RSpec.describe Disputes::StrikesController, type: :controller do
       let(:strike) { Fabricate(:account_warning) }
 
       it 'returns http forbidden' do
-        expect(response).to have_http_status(:forbidden)
+        expect(response).to have_http_status(403)
       end
     end
   end

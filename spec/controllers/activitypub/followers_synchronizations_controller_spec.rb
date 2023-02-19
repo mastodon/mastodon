@@ -27,7 +27,7 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
       end
 
       it 'returns http not authorized' do
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to have_http_status(401)
       end
     end
 
@@ -39,7 +39,7 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
       subject(:body) { body_as_json }
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'returns application/activity+json' do
@@ -62,7 +62,7 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
         end
 
         it 'returns http gone' do
-          expect(response).to have_http_status(:gone)
+          expect(response).to have_http_status(410)
         end
       end
 
@@ -72,7 +72,7 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
         end
 
         it 'returns http forbidden' do
-          expect(response).to have_http_status(:forbidden)
+          expect(response).to have_http_status(403)
         end
       end
     end

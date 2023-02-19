@@ -88,6 +88,9 @@ Metrics/ModuleLength:
 Metrics/PerceivedComplexity:
   Max: 16 # RuboCop default 8
 
+Rails/HttpStatus:
+  EnforcedStyle: numeric
+
 Rails/Exit:
   Exclude:
     - 'lib/mastodon/*_cli.rb'
@@ -96,6 +99,9 @@ Rails/Exit:
 
 RSpec/NotToNot:
   EnforcedStyle: to_not
+
+RSpec/Rails/HttpStatus:
+  EnforcedStyle: numeric
 
 Style/HashSyntax:
   EnforcedStyle: ruby19_no_mixed_keys

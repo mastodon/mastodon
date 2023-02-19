@@ -19,14 +19,14 @@ RSpec.describe Admin::ConfirmationsController, type: :controller do
     it 'raises an error when there is no account' do
       post :create, params: { account_id: 'fake' }
 
-      expect(response).to have_http_status(:not_found)
+      expect(response).to have_http_status(404)
     end
 
     it 'raises an error when there is no user' do
       account = Fabricate(:account, user: nil)
       post :create, params: { account_id: account.id }
 
-      expect(response).to have_http_status(:not_found)
+      expect(response).to have_http_status(404)
     end
   end
 

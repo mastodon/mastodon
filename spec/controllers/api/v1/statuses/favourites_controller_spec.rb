@@ -23,7 +23,7 @@ describe Api::V1::Statuses::FavouritesController do
 
       context 'with public status' do
         it 'returns http success' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
         end
 
         it 'updates the favourites count' do
@@ -47,7 +47,7 @@ describe Api::V1::Statuses::FavouritesController do
         let(:status) { Fabricate(:status, visibility: :private) }
 
         it 'returns http not found' do
-          expect(response).to have_http_status(:not_found)
+          expect(response).to have_http_status(404)
         end
       end
     end
@@ -62,7 +62,7 @@ describe Api::V1::Statuses::FavouritesController do
         end
 
         it 'returns http success' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
         end
 
         it 'updates the favourites count' do
@@ -92,7 +92,7 @@ describe Api::V1::Statuses::FavouritesController do
         end
 
         it 'returns http success' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
         end
 
         it 'updates the favourite attribute' do
@@ -115,7 +115,7 @@ describe Api::V1::Statuses::FavouritesController do
         end
 
         it 'returns http not found' do
-          expect(response).to have_http_status(:not_found)
+          expect(response).to have_http_status(404)
         end
       end
     end

@@ -11,7 +11,7 @@ describe EmojisController do
     subject(:body) { JSON.parse(response.body, symbolize_names: true) }
 
     it 'returns the right response' do
-      expect(response).to have_http_status :ok
+      expect(response).to have_http_status 200
       expect(body[:name]).to eq ':coolcat:'
     end
   end

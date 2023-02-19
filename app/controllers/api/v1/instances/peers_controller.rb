@@ -14,6 +14,6 @@ class Api::V1::Instances::PeersController < Api::BaseController
   private
 
   def require_enabled_api!
-    head :not_found unless Setting.peers_api_enabled && !whitelist_mode?
+    head 404 unless Setting.peers_api_enabled && !whitelist_mode?
   end
 end

@@ -7,7 +7,7 @@ describe WellKnown::NodeInfoController, type: :controller do
     it 'returns json document pointing to node info' do
       get :index
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
       expect(response.media_type).to eq 'application/json'
 
       json = body_as_json
@@ -22,7 +22,7 @@ describe WellKnown::NodeInfoController, type: :controller do
     it 'returns json document with node info properties' do
       get :show
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
       expect(response.media_type).to eq 'application/json'
 
       json = body_as_json

@@ -15,7 +15,7 @@ RSpec.describe Api::V1::Announcements::ReactionsController, type: :controller do
     context 'without token' do
       it 'returns http unauthorized' do
         put :update, params: { announcement_id: announcement.id, id: '😂' }
-        expect(response).to have_http_status :unauthorized
+        expect(response).to have_http_status 401
       end
     end
 
@@ -26,7 +26,7 @@ RSpec.describe Api::V1::Announcements::ReactionsController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'creates reaction' do
@@ -43,7 +43,7 @@ RSpec.describe Api::V1::Announcements::ReactionsController, type: :controller do
     context 'without token' do
       it 'returns http unauthorized' do
         delete :destroy, params: { announcement_id: announcement.id, id: '😂' }
-        expect(response).to have_http_status :unauthorized
+        expect(response).to have_http_status 401
       end
     end
 
@@ -54,7 +54,7 @@ RSpec.describe Api::V1::Announcements::ReactionsController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'creates reaction' do

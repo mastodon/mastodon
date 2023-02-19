@@ -29,7 +29,7 @@ describe RelationshipsController do
     it 'returns http success' do
       sign_in user, scope: :user
       subject
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     include_examples 'authenticate user'

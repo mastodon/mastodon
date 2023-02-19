@@ -33,7 +33,7 @@ describe StatusesController do
       end
 
       it 'returns http gone' do
-        expect(response).to have_http_status(:gone)
+        expect(response).to have_http_status(410)
       end
     end
 
@@ -45,7 +45,7 @@ describe StatusesController do
       end
 
       it 'returns http forbidden' do
-        expect(response).to have_http_status(:forbidden)
+        expect(response).to have_http_status(403)
       end
     end
 
@@ -72,7 +72,7 @@ describe StatusesController do
         let(:format) { 'html' }
 
         it 'returns http success' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
         end
 
         it 'returns Link header' do
@@ -97,7 +97,7 @@ describe StatusesController do
         let(:format) { 'json' }
 
         it 'returns http success' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
         end
 
         it 'returns Link header' do
@@ -132,7 +132,7 @@ describe StatusesController do
         let(:format) { 'json' }
 
         it 'returns http not found' do
-          expect(response).to have_http_status(:not_found)
+          expect(response).to have_http_status(404)
         end
       end
 
@@ -140,7 +140,7 @@ describe StatusesController do
         let(:format) { 'html' }
 
         it 'returns http not found' do
-          expect(response).to have_http_status(:not_found)
+          expect(response).to have_http_status(404)
         end
       end
     end
@@ -156,7 +156,7 @@ describe StatusesController do
         let(:format) { 'json' }
 
         it 'returns http not found' do
-          expect(response).to have_http_status(:not_found)
+          expect(response).to have_http_status(404)
         end
       end
 
@@ -164,7 +164,7 @@ describe StatusesController do
         let(:format) { 'html' }
 
         it 'returns http not found' do
-          expect(response).to have_http_status(:not_found)
+          expect(response).to have_http_status(404)
         end
       end
     end
@@ -183,7 +183,7 @@ describe StatusesController do
         end
 
         it 'returns http not found' do
-          expect(response).to have_http_status(:not_found)
+          expect(response).to have_http_status(404)
         end
       end
 
@@ -196,7 +196,7 @@ describe StatusesController do
           let(:format) { 'html' }
 
           it 'returns http success' do
-            expect(response).to have_http_status(:ok)
+            expect(response).to have_http_status(200)
           end
 
           it 'returns Link header' do
@@ -221,7 +221,7 @@ describe StatusesController do
           let(:format) { 'json' }
 
           it 'returns http success' do
-            expect(response).to have_http_status(:ok)
+            expect(response).to have_http_status(200)
           end
 
           it 'returns Link header' do
@@ -260,7 +260,7 @@ describe StatusesController do
             let(:format) { 'html' }
 
             it 'returns http success' do
-              expect(response).to have_http_status(:ok)
+              expect(response).to have_http_status(200)
             end
 
             it 'returns Link header' do
@@ -285,7 +285,7 @@ describe StatusesController do
             let(:format) { 'json' }
 
             it 'returns http success' do
-              expect(response).to have_http_status(:ok)
+              expect(response).to have_http_status(200)
             end
 
             it 'returns Link header' do
@@ -320,7 +320,7 @@ describe StatusesController do
             let(:format) { 'json' }
 
             it 'returns http not found' do
-              expect(response).to have_http_status(:not_found)
+              expect(response).to have_http_status(404)
             end
           end
 
@@ -328,7 +328,7 @@ describe StatusesController do
             let(:format) { 'html' }
 
             it 'returns http not found' do
-              expect(response).to have_http_status(:not_found)
+              expect(response).to have_http_status(404)
             end
           end
         end
@@ -347,7 +347,7 @@ describe StatusesController do
             let(:format) { 'html' }
 
             it 'returns http success' do
-              expect(response).to have_http_status(:ok)
+              expect(response).to have_http_status(200)
             end
 
             it 'returns Link header' do
@@ -372,7 +372,7 @@ describe StatusesController do
             let(:format) { 'json' }
 
             it 'returns http success' do
-              expect(response).to have_http_status(:ok)
+              expect(response).to have_http_status(200)
             end
 
             it 'returns Link header' do
@@ -407,7 +407,7 @@ describe StatusesController do
             let(:format) { 'json' }
 
             it 'returns http not found' do
-              expect(response).to have_http_status(:not_found)
+              expect(response).to have_http_status(404)
             end
           end
 
@@ -415,7 +415,7 @@ describe StatusesController do
             let(:format) { 'html' }
 
             it 'returns http not found' do
-              expect(response).to have_http_status(:not_found)
+              expect(response).to have_http_status(404)
             end
           end
         end
@@ -436,7 +436,7 @@ describe StatusesController do
         end
 
         it 'returns http not found' do
-          expect(response).to have_http_status(:not_found)
+          expect(response).to have_http_status(404)
         end
       end
 
@@ -447,7 +447,7 @@ describe StatusesController do
         end
 
         it 'returns http not found' do
-          expect(response).to have_http_status(:not_found)
+          expect(response).to have_http_status(404)
         end
       end
 
@@ -460,7 +460,7 @@ describe StatusesController do
           let(:format) { 'html' }
 
           it 'returns http success' do
-            expect(response).to have_http_status(:ok)
+            expect(response).to have_http_status(200)
           end
 
           it 'returns Link header' do
@@ -485,7 +485,7 @@ describe StatusesController do
           let(:format) { 'json' }
 
           it 'returns http success' do
-            expect(response).to have_http_status(:ok)
+            expect(response).to have_http_status(200)
           end
 
           it 'returns Link header' do
@@ -522,7 +522,7 @@ describe StatusesController do
             let(:format) { 'html' }
 
             it 'returns http success' do
-              expect(response).to have_http_status(:ok)
+              expect(response).to have_http_status(200)
             end
 
             it 'returns Link header' do
@@ -547,7 +547,7 @@ describe StatusesController do
             let(:format) { 'json' }
 
             it 'returns http success' do
-              expect(response).to have_http_status(:ok)
+              expect(response).to have_http_status(200)
             end
 
             it 'returns Link header' do
@@ -582,7 +582,7 @@ describe StatusesController do
             let(:format) { 'json' }
 
             it 'returns http not found' do
-              expect(response).to have_http_status(:not_found)
+              expect(response).to have_http_status(404)
             end
           end
 
@@ -590,7 +590,7 @@ describe StatusesController do
             let(:format) { 'html' }
 
             it 'returns http not found' do
-              expect(response).to have_http_status(:not_found)
+              expect(response).to have_http_status(404)
             end
           end
         end
@@ -609,7 +609,7 @@ describe StatusesController do
             let(:format) { 'html' }
 
             it 'returns http success' do
-              expect(response).to have_http_status(:ok)
+              expect(response).to have_http_status(200)
             end
 
             it 'returns Link header' do
@@ -634,7 +634,7 @@ describe StatusesController do
             let(:format) { 'json' }
 
             it 'returns http success' do
-              expect(response).to have_http_status(:ok)
+              expect(response).to have_http_status(200)
             end
 
             it 'returns Link header' do
@@ -669,7 +669,7 @@ describe StatusesController do
             let(:format) { 'json' }
 
             it 'returns http not found' do
-              expect(response).to have_http_status(:not_found)
+              expect(response).to have_http_status(404)
             end
           end
 
@@ -677,7 +677,7 @@ describe StatusesController do
             let(:format) { 'html' }
 
             it 'returns http not found' do
-              expect(response).to have_http_status(:not_found)
+              expect(response).to have_http_status(404)
             end
           end
         end
@@ -698,7 +698,7 @@ describe StatusesController do
       end
 
       it 'returns http gone' do
-        expect(response).to have_http_status(:gone)
+        expect(response).to have_http_status(410)
       end
     end
 
@@ -710,7 +710,7 @@ describe StatusesController do
       end
 
       it 'returns http forbidden' do
-        expect(response).to have_http_status(:forbidden)
+        expect(response).to have_http_status(403)
       end
     end
 
@@ -791,7 +791,7 @@ describe StatusesController do
       end
 
       it 'returns http gone' do
-        expect(response).to have_http_status(:gone)
+        expect(response).to have_http_status(410)
       end
     end
 
@@ -805,7 +805,7 @@ describe StatusesController do
       end
 
       it 'returns http not found' do
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
 
@@ -815,7 +815,7 @@ describe StatusesController do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'returns Link header' do
@@ -844,7 +844,7 @@ describe StatusesController do
       end
 
       it 'returns http not found' do
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
 
@@ -856,7 +856,7 @@ describe StatusesController do
       end
 
       it 'returns http not found' do
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
   end

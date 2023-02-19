@@ -19,7 +19,7 @@ RSpec.describe Api::V1::MediaController, type: :controller do
         end
 
         it 'returns http 422' do
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(422)
         end
       end
 
@@ -30,7 +30,7 @@ RSpec.describe Api::V1::MediaController, type: :controller do
         end
 
         it 'returns http 422' do
-          expect(response).to have_http_status(:internal_server_error)
+          expect(response).to have_http_status(500)
         end
       end
     end
@@ -41,7 +41,7 @@ RSpec.describe Api::V1::MediaController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'creates a media attachment' do
@@ -63,7 +63,7 @@ RSpec.describe Api::V1::MediaController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'creates a media attachment' do
@@ -86,7 +86,7 @@ RSpec.describe Api::V1::MediaController, type: :controller do
 
       it do
         # returns http success
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
 
         # creates a media attachment
         expect(MediaAttachment.first).to_not be_nil
@@ -106,7 +106,7 @@ RSpec.describe Api::V1::MediaController, type: :controller do
 
       it 'returns http not found' do
         put :update, params: { id: media.id, description: 'Lorem ipsum!!!' }
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
 
@@ -126,7 +126,7 @@ RSpec.describe Api::V1::MediaController, type: :controller do
         let(:status) { Fabricate(:status, account: user.account) }
 
         it 'returns http not found' do
-          expect(response).to have_http_status(:not_found)
+          expect(response).to have_http_status(404)
         end
       end
     end

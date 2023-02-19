@@ -22,7 +22,7 @@ RSpec.describe Api::V1::SuggestionsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns accounts' do

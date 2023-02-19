@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Instances::ActivityController, type: :controller do
   describe 'GET #show' do
     it 'returns 200' do
       get :show
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     context '!Setting.activity_api_enabled' do
@@ -14,7 +14,7 @@ RSpec.describe Api::V1::Instances::ActivityController, type: :controller do
         Setting.activity_api_enabled = false
 
         get :show
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
   end

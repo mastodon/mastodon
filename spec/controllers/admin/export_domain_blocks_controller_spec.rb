@@ -15,7 +15,7 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
       Fabricate(:domain_block, domain: 'no.op', severity: 'noop', public_comment: 'noop')
 
       get :export, params: { format: :csv }
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
       expect(response.body).to eq(IO.read(File.join(file_fixture_path, 'domain_blocks.csv')))
     end
   end
@@ -31,7 +31,7 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -45,7 +45,7 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
     end
   end

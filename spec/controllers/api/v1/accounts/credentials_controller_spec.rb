@@ -16,7 +16,7 @@ describe Api::V1::Accounts::CredentialsController do
 
       it 'returns http success' do
         get :show
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -40,7 +40,7 @@ describe Api::V1::Accounts::CredentialsController do
         end
 
         it 'returns http success' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
         end
 
         it 'updates account info' do
@@ -68,7 +68,7 @@ describe Api::V1::Accounts::CredentialsController do
         end
 
         it 'returns http success' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
         end
       end
 
@@ -78,7 +78,7 @@ describe Api::V1::Accounts::CredentialsController do
         end
 
         it 'returns http unprocessable entity' do
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(422)
         end
       end
     end
@@ -92,14 +92,14 @@ describe Api::V1::Accounts::CredentialsController do
     describe 'GET #show' do
       it 'returns http unauthorized' do
         get :show
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to have_http_status(401)
       end
     end
 
     describe 'PATCH #update' do
       it 'returns http unauthorized' do
         patch :update, params: { note: 'Foo' }
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to have_http_status(401)
       end
     end
   end

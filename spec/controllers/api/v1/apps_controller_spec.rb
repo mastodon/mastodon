@@ -24,7 +24,7 @@ RSpec.describe Api::V1::AppsController, type: :controller do
 
     context 'with valid params' do
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'creates an OAuth app' do
@@ -43,7 +43,7 @@ RSpec.describe Api::V1::AppsController, type: :controller do
       let(:scopes) { 'hoge' }
 
       it 'returns http unprocessable entity' do
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(422)
       end
     end
 
@@ -51,7 +51,7 @@ RSpec.describe Api::V1::AppsController, type: :controller do
       let(:scopes) { (%w(read) * 40).join(' ') }
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'only saves the scope once' do
@@ -63,7 +63,7 @@ RSpec.describe Api::V1::AppsController, type: :controller do
       let(:client_name) { 'hoge' * 20 }
 
       it 'returns http unprocessable entity' do
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(422)
       end
     end
 
@@ -71,7 +71,7 @@ RSpec.describe Api::V1::AppsController, type: :controller do
       let(:website) { 'https://foo.bar/' + ('hoge' * 2_000) }
 
       it 'returns http unprocessable entity' do
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(422)
       end
     end
 
@@ -79,7 +79,7 @@ RSpec.describe Api::V1::AppsController, type: :controller do
       let(:redirect_uris) { 'https://foo.bar/' + ('hoge' * 2_000) }
 
       it 'returns http unprocessable entity' do
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(422)
       end
     end
   end

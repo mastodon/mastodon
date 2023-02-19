@@ -24,7 +24,7 @@ describe Settings::SessionsController do
       let(:id) { session_activation.id + 1000 }
 
       it 'destroys session activation' do
-        is_expected.to have_http_status :not_found
+        is_expected.to have_http_status 404
       end
     end
   end

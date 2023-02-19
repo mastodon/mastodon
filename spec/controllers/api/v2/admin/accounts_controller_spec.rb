@@ -17,7 +17,7 @@ RSpec.describe Api::V2::Admin::AccountsController, type: :controller do
     let(:scopes) { wrong_scope }
 
     it 'returns http forbidden' do
-      expect(response).to have_http_status(:forbidden)
+      expect(response).to have_http_status(403)
     end
   end
 
@@ -25,7 +25,7 @@ RSpec.describe Api::V2::Admin::AccountsController, type: :controller do
     let(:role) { UserRole.find_by(name: wrong_role) }
 
     it 'returns http forbidden' do
-      expect(response).to have_http_status(:forbidden)
+      expect(response).to have_http_status(403)
     end
   end
 
@@ -59,7 +59,7 @@ RSpec.describe Api::V2::Admin::AccountsController, type: :controller do
         let(:params) { params }
 
         it 'returns http success' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
         end
 
         it "returns the correct accounts (#{expected_results.inspect})" do

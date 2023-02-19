@@ -28,7 +28,7 @@ RSpec.describe Api::V1::ReportsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'creates a report' do
@@ -47,7 +47,7 @@ RSpec.describe Api::V1::ReportsController, type: :controller do
       let(:target_account) { Fabricate(:account) }
 
       it 'returns http not found' do
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
 

@@ -15,7 +15,7 @@ RSpec.describe Api::V1::DomainBlocksController, type: :controller do
     let(:scopes) { wrong_scope }
 
     it 'returns http forbidden' do
-      expect(response).to have_http_status(:forbidden)
+      expect(response).to have_http_status(403)
     end
   end
 
@@ -27,7 +27,7 @@ RSpec.describe Api::V1::DomainBlocksController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns blocked domains' do
@@ -45,7 +45,7 @@ RSpec.describe Api::V1::DomainBlocksController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'creates a domain block' do
@@ -63,7 +63,7 @@ RSpec.describe Api::V1::DomainBlocksController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'deletes a domain block' do

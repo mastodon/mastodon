@@ -17,7 +17,7 @@ RSpec.describe Api::V1::MarkersController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns markers' do
@@ -37,7 +37,7 @@ RSpec.describe Api::V1::MarkersController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'creates a marker' do
@@ -53,7 +53,7 @@ RSpec.describe Api::V1::MarkersController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'updates a marker' do

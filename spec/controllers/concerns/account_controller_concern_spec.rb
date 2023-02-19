@@ -7,7 +7,7 @@ describe ApplicationController, type: :controller do
     include AccountControllerConcern
 
     def success
-      head :ok
+      head 200
     end
   end
 
@@ -25,7 +25,7 @@ describe ApplicationController, type: :controller do
     it 'returns http not found' do
       account = Fabricate(:user, confirmed_at: nil).account
       get 'success', params: { account_username: account.username }
-      expect(response).to have_http_status(:not_found)
+      expect(response).to have_http_status(404)
     end
   end
 
@@ -34,7 +34,7 @@ describe ApplicationController, type: :controller do
       Setting.registrations_mode = 'approved'
       account = Fabricate(:user, approved: false).account
       get 'success', params: { account_username: account.username }
-      expect(response).to have_http_status(:not_found)
+      expect(response).to have_http_status(404)
     end
   end
 
@@ -42,7 +42,7 @@ describe ApplicationController, type: :controller do
     it 'returns http gone' do
       account = Fabricate(:account, suspended: true)
       get 'success', params: { account_username: account.username }
-      expect(response).to have_http_status(:gone)
+      expect(response).to have_http_status(410)
     end
   end
 
@@ -50,7 +50,7 @@ describe ApplicationController, type: :controller do
     it 'returns http gone' do
       account = Fabricate(:account, suspended: true, user: nil)
       get 'success', params: { account_username: account.username }
-      expect(response).to have_http_status(:gone)
+      expect(response).to have_http_status(410)
     end
   end
 
@@ -70,7 +70,7 @@ describe ApplicationController, type: :controller do
     it 'returns http success' do
       account = Fabricate(:account)
       get 'success', params: { account_username: account.username }
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
   end
 end

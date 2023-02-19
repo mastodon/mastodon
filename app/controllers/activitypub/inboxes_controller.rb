@@ -13,13 +13,13 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
     upgrade_account
     process_collection_synchronization
     process_payload
-    head :accepted
+    head 202
   end
 
   private
 
   def skip_unknown_actor_activity
-    head :accepted if unknown_affected_account?
+    head 202 if unknown_affected_account?
   end
 
   def unknown_affected_account?

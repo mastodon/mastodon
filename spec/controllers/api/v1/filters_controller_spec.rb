@@ -16,7 +16,7 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
 
     it 'returns http success' do
       get :index
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -30,7 +30,7 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'creates a filter' do
@@ -47,7 +47,7 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
       let(:whole_word)   { true }
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'creates a filter' do
@@ -68,7 +68,7 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
 
     it 'returns http success' do
       get :show, params: { id: keyword.id }
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -82,7 +82,7 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'updates the filter' do
@@ -100,7 +100,7 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'removes the filter' do

@@ -11,7 +11,7 @@ RSpec.describe Api::V1::EndorsementsController, type: :controller do
       allow(controller).to receive(:doorkeeper_token) { token }
       get :index
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
   end
 end

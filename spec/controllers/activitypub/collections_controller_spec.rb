@@ -42,7 +42,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
         subject(:body) { body_as_json }
 
         it 'returns http success' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
         end
 
         it 'returns application/activity+json' do
@@ -71,7 +71,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
           end
 
           it 'returns http gone' do
-            expect(response).to have_http_status(:gone)
+            expect(response).to have_http_status(410)
           end
         end
 
@@ -81,7 +81,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
           end
 
           it 'returns http forbidden' do
-            expect(response).to have_http_status(:forbidden)
+            expect(response).to have_http_status(403)
           end
         end
       end
@@ -95,7 +95,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
           end
 
           it 'returns http success' do
-            expect(response).to have_http_status(:ok)
+            expect(response).to have_http_status(200)
           end
 
           it 'returns application/activity+json' do
@@ -132,7 +132,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
             end
 
             it 'returns http success' do
-              expect(response).to have_http_status(:ok)
+              expect(response).to have_http_status(200)
             end
 
             it 'returns application/activity+json' do
@@ -157,7 +157,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
             end
 
             it 'returns http success' do
-              expect(response).to have_http_status(:ok)
+              expect(response).to have_http_status(200)
             end
 
             it 'returns application/activity+json' do
@@ -181,7 +181,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
     context 'when id is not "featured"' do
       it 'returns http not found' do
         get :show, params: { id: 'hoge', account_username: account.username }
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
   end

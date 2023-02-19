@@ -16,7 +16,7 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
     let(:scopes) { wrong_scope }
 
     it 'returns http forbidden' do
-      expect(response).to have_http_status(:forbidden)
+      expect(response).to have_http_status(403)
     end
   end
 
@@ -24,7 +24,7 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
     let(:role) { UserRole.find_by(name: wrong_role) }
 
     it 'returns http forbidden' do
-      expect(response).to have_http_status(:forbidden)
+      expect(response).to have_http_status(403)
     end
   end
 
@@ -40,7 +40,7 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns the expected domain allows' do
@@ -62,7 +62,7 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns expected domain name' do
@@ -83,7 +83,7 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
     it 'returns http success' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'deletes the block' do
@@ -104,7 +104,7 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
       it_behaves_like 'forbidden for wrong role', 'Moderator'
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'returns expected domain name' do
@@ -123,7 +123,7 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
       end
 
       it 'returns http unprocessable entity' do
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(422)
       end
     end
   end

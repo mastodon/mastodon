@@ -46,7 +46,7 @@ RSpec.describe AccountsController, type: :controller do
 
         it 'returns http not found' do
           get :show, params: { username: account.username, format: format }
-          expect(response).to have_http_status(:not_found)
+          expect(response).to have_http_status(404)
         end
       end
     end
@@ -64,7 +64,7 @@ RSpec.describe AccountsController, type: :controller do
 
         it 'returns http gone' do
           get :show, params: { username: account.username, format: format }
-          expect(response).to have_http_status(:gone)
+          expect(response).to have_http_status(410)
         end
       end
 
@@ -75,13 +75,13 @@ RSpec.describe AccountsController, type: :controller do
 
         it 'returns http forbidden' do
           get :show, params: { username: account.username, format: format }
-          expect(response).to have_http_status(:forbidden)
+          expect(response).to have_http_status(403)
         end
       end
 
       shared_examples 'common response characteristics' do
         it 'returns http success' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
         end
 
         it 'returns Link header' do
@@ -152,7 +152,7 @@ RSpec.describe AccountsController, type: :controller do
 
         it 'returns http gone' do
           get :show, params: { username: account.username, format: format }
-          expect(response).to have_http_status(:gone)
+          expect(response).to have_http_status(410)
         end
       end
 
@@ -163,7 +163,7 @@ RSpec.describe AccountsController, type: :controller do
 
         it 'returns http success' do
           get :show, params: { username: account.username, format: format }
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
         end
       end
 
@@ -173,7 +173,7 @@ RSpec.describe AccountsController, type: :controller do
         end
 
         it 'returns http success' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
         end
 
         it 'returns application/activity+json' do
@@ -191,7 +191,7 @@ RSpec.describe AccountsController, type: :controller do
           let(:authorized_fetch_mode) { true }
 
           it 'returns http unauthorized' do
-            expect(response).to have_http_status(:unauthorized)
+            expect(response).to have_http_status(401)
           end
         end
       end
@@ -205,7 +205,7 @@ RSpec.describe AccountsController, type: :controller do
         end
 
         it 'returns http success' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
         end
 
         it 'returns application/activity+json' do
@@ -231,7 +231,7 @@ RSpec.describe AccountsController, type: :controller do
         end
 
         it 'returns http success' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
         end
 
         it 'returns application/activity+json' do
@@ -249,7 +249,7 @@ RSpec.describe AccountsController, type: :controller do
           let(:authorized_fetch_mode) { true }
 
           it 'returns http success' do
-            expect(response).to have_http_status(:ok)
+            expect(response).to have_http_status(200)
           end
 
           it 'returns application/activity+json' do
@@ -285,7 +285,7 @@ RSpec.describe AccountsController, type: :controller do
 
         it 'returns http gone' do
           get :show, params: { username: account.username, format: format }
-          expect(response).to have_http_status(:gone)
+          expect(response).to have_http_status(410)
         end
       end
 
@@ -296,13 +296,13 @@ RSpec.describe AccountsController, type: :controller do
 
         it 'returns http forbidden' do
           get :show, params: { username: account.username, format: format }
-          expect(response).to have_http_status(:forbidden)
+          expect(response).to have_http_status(403)
         end
       end
 
       shared_examples 'common response characteristics' do
         it 'returns http success' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
         end
 
         it_behaves_like 'cacheable response'

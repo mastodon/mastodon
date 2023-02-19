@@ -5,7 +5,7 @@ require 'rails_helper'
 describe ApplicationController, type: :controller do
   controller do
     def success
-      head :ok
+      head 200
     end
 
     def routing_error
@@ -160,13 +160,13 @@ describe ApplicationController, type: :controller do
 
     it 'does nothing if not signed in' do
       get 'success'
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'does nothing if user who signed in is not suspended' do
       sign_in(Fabricate(:account, suspended: false).user)
       get 'success'
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'redirects to account status page' do

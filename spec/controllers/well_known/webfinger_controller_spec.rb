@@ -21,7 +21,7 @@ describe WellKnown::WebfingerController, type: :controller do
 
     shared_examples 'a successful response' do
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'does not set a Vary header' do
@@ -70,7 +70,7 @@ describe WellKnown::WebfingerController, type: :controller do
       end
 
       it 'returns http gone' do
-        expect(response).to have_http_status(:gone)
+        expect(response).to have_http_status(410)
       end
     end
 
@@ -82,7 +82,7 @@ describe WellKnown::WebfingerController, type: :controller do
       end
 
       it 'returns http not found' do
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
 
@@ -109,7 +109,7 @@ describe WellKnown::WebfingerController, type: :controller do
         end
 
         it 'returns http not found' do
-          expect(response).to have_http_status(:not_found)
+          expect(response).to have_http_status(404)
         end
       end
     end
@@ -122,7 +122,7 @@ describe WellKnown::WebfingerController, type: :controller do
       end
 
       it 'returns http bad request' do
-        expect(response).to have_http_status(:bad_request)
+        expect(response).to have_http_status(400)
       end
     end
 
@@ -134,7 +134,7 @@ describe WellKnown::WebfingerController, type: :controller do
       end
 
       it 'returns http bad request' do
-        expect(response).to have_http_status(:bad_request)
+        expect(response).to have_http_status(400)
       end
     end
   end

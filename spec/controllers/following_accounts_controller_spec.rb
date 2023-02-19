@@ -21,7 +21,7 @@ describe FollowingAccountsController do
         end
 
         it 'returns http gone' do
-          expect(response).to have_http_status(:gone)
+          expect(response).to have_http_status(410)
         end
       end
 
@@ -31,7 +31,7 @@ describe FollowingAccountsController do
         end
 
         it 'returns http forbidden' do
-          expect(response).to have_http_status(:forbidden)
+          expect(response).to have_http_status(403)
         end
       end
     end
@@ -45,7 +45,7 @@ describe FollowingAccountsController do
         let(:page) { 1 }
 
         it 'returns followers' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
           expect(body['totalItems']).to eq 2
           expect(body['partOf']).to be_present
         end
@@ -57,7 +57,7 @@ describe FollowingAccountsController do
           end
 
           it 'returns http gone' do
-            expect(response).to have_http_status(:gone)
+            expect(response).to have_http_status(410)
           end
         end
 
@@ -67,7 +67,7 @@ describe FollowingAccountsController do
           end
 
           it 'returns http forbidden' do
-            expect(response).to have_http_status(:forbidden)
+            expect(response).to have_http_status(403)
           end
         end
       end
@@ -76,7 +76,7 @@ describe FollowingAccountsController do
         let(:page) { nil }
 
         it 'returns followers' do
-          expect(response).to have_http_status(:ok)
+          expect(response).to have_http_status(200)
           expect(body['totalItems']).to eq 2
           expect(body['partOf']).to be_blank
         end
@@ -105,7 +105,7 @@ describe FollowingAccountsController do
           end
 
           it 'returns http gone' do
-            expect(response).to have_http_status(:gone)
+            expect(response).to have_http_status(410)
           end
         end
 
@@ -115,7 +115,7 @@ describe FollowingAccountsController do
           end
 
           it 'returns http forbidden' do
-            expect(response).to have_http_status(:forbidden)
+            expect(response).to have_http_status(403)
           end
         end
       end

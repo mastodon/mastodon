@@ -27,7 +27,7 @@ describe Settings::MigrationsController do
         let(:moved_to_account) { nil }
 
         it 'renders show page' do
-          is_expected.to have_http_status :ok
+          is_expected.to have_http_status 200
           is_expected.to render_template :show
         end
       end
@@ -36,7 +36,7 @@ describe Settings::MigrationsController do
         let(:moved_to_account) { Fabricate(:account) }
 
         it 'renders show page' do
-          is_expected.to have_http_status :ok
+          is_expected.to have_http_status 200
           is_expected.to render_template :show
         end
       end

@@ -9,7 +9,7 @@ describe MediaController do
     it 'raises when shortcode cant be found' do
       get :show, params: { id: 'missing' }
 
-      expect(response).to have_http_status(:not_found)
+      expect(response).to have_http_status(404)
     end
 
     context 'when the media attachment has a shortcode' do
@@ -25,7 +25,7 @@ describe MediaController do
         media_attachment = Fabricate(:media_attachment, status: nil, shortcode: 'OI6IgDzG-nYTqvDQ994')
         get :show, params: { id: media_attachment.to_param }
 
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
 
       it 'raises when not permitted to view' do
@@ -33,7 +33,7 @@ describe MediaController do
         media_attachment = Fabricate(:media_attachment, status: status, shortcode: 'OI6IgDzG-nYTqvDQ994')
         get :show, params: { id: media_attachment.to_param }
 
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
 
@@ -50,7 +50,7 @@ describe MediaController do
         media_attachment = Fabricate(:media_attachment, status: nil)
         get :show, params: { id: media_attachment.to_param }
 
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
 
       it 'raises when not permitted to view' do
@@ -58,7 +58,7 @@ describe MediaController do
         media_attachment = Fabricate(:media_attachment, status: status)
         get :show, params: { id: media_attachment.to_param }
 
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
   end

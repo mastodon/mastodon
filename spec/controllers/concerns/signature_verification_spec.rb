@@ -19,15 +19,15 @@ describe ApplicationController, type: :controller do
     before_action :require_actor_signature!, only: [:signature_required]
 
     def success
-      head :ok
+      head 200
     end
 
     def alternative_success
-      head :ok
+      head 200
     end
 
     def signature_required
-      head :ok
+      head 200
     end
   end
 
@@ -292,7 +292,7 @@ describe ApplicationController, type: :controller do
 
     context 'without signature header' do
       it 'returns HTTP 401' do
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to have_http_status(401)
       end
 
       it 'returns an error' do

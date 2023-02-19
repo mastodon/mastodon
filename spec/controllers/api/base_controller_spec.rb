@@ -7,7 +7,7 @@ class FakeService; end
 describe Api::BaseController do
   controller do
     def success
-      head :ok
+      head 200
     end
 
     def error
@@ -23,7 +23,7 @@ describe Api::BaseController do
     it 'does not protect from forgery' do
       ActionController::Base.allow_forgery_protection = true
       post 'success'
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -43,25 +43,25 @@ describe Api::BaseController do
     it 'returns http forbidden for unconfirmed accounts' do
       user.update(confirmed_at: nil)
       post 'success'
-      expect(response).to have_http_status(:forbidden)
+      expect(response).to have_http_status(403)
     end
 
     it 'returns http forbidden for pending accounts' do
       user.update(approved: false)
       post 'success'
-      expect(response).to have_http_status(:forbidden)
+      expect(response).to have_http_status(403)
     end
 
     it 'returns http forbidden for disabled accounts' do
       user.update(disabled: true)
       post 'success'
-      expect(response).to have_http_status(:forbidden)
+      expect(response).to have_http_status(403)
     end
 
     it 'returns http forbidden for suspended accounts' do
       user.account.suspend!
       post 'success'
-      expect(response).to have_http_status(:forbidden)
+      expect(response).to have_http_status(403)
     end
   end
 

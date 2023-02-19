@@ -15,7 +15,7 @@ RSpec.describe Api::V1::AnnouncementsController, type: :controller do
     context 'without token' do
       it 'returns http unprocessable entity' do
         get :index
-        expect(response).to have_http_status :unprocessable_entity
+        expect(response).to have_http_status 422
       end
     end
 
@@ -26,7 +26,7 @@ RSpec.describe Api::V1::AnnouncementsController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
     end
   end
@@ -35,7 +35,7 @@ RSpec.describe Api::V1::AnnouncementsController, type: :controller do
     context 'without token' do
       it 'returns http unauthorized' do
         post :dismiss, params: { id: announcement.id }
-        expect(response).to have_http_status :unauthorized
+        expect(response).to have_http_status 401
       end
     end
 
@@ -48,7 +48,7 @@ RSpec.describe Api::V1::AnnouncementsController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'dismisses announcement' do

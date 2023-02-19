@@ -35,7 +35,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       request.env['devise.mapping'] = Devise.mappings[:user]
       sign_in(Fabricate(:user))
       get :edit
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -44,7 +44,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       request.env['devise.mapping'] = Devise.mappings[:user]
       sign_in(Fabricate(:user), scope: :user)
       post :update
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     context 'when suspended' do
@@ -52,7 +52,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
         request.env['devise.mapping'] = Devise.mappings[:user]
         sign_in(Fabricate(:user, account_attributes: { username: 'test', suspended_at: Time.now.utc }), scope: :user)
         post :update
-        expect(response).to have_http_status(:forbidden)
+        expect(response).to have_http_status(403)
       end
     end
   end
@@ -72,7 +72,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       it 'returns http success' do
         Setting.registrations_mode = 'open'
         get :new
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -245,7 +245,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
     end
 
     it 'returns http not found' do
-      expect(response).to have_http_status(:not_found)
+      expect(response).to have_http_status(404)
     end
 
     it 'does not delete user' do

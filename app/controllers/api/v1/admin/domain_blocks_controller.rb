@@ -20,7 +20,7 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
     authorize :domain_block, :create?
 
     existing_domain_block = resource_params[:domain].present? ? DomainBlock.rule_for(resource_params[:domain]) : nil
-    return render json: existing_domain_block, serializer: REST::Admin::ExistingDomainBlockErrorSerializer, status: :unprocessable_entity if existing_domain_block.present?
+    return render json: existing_domain_block, serializer: REST::Admin::ExistingDomainBlockErrorSerializer, status: 422 if existing_domain_block.present?
 
     @domain_block = DomainBlock.create!(resource_params)
     DomainBlockWorker.perform_async(@domain_block.id)

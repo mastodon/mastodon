@@ -13,7 +13,7 @@ describe Settings::DeletesController do
 
       it 'renders confirmation page' do
         get :show
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       context 'when suspended' do
@@ -21,7 +21,7 @@ describe Settings::DeletesController do
 
         it 'returns http forbidden' do
           get :show
-          expect(response).to have_http_status(:forbidden)
+          expect(response).to have_http_status(403)
         end
       end
     end
@@ -67,7 +67,7 @@ describe Settings::DeletesController do
           let(:user) { Fabricate(:user, account_attributes: { suspended_at: Time.now.utc }) }
 
           it 'returns http forbidden' do
-            expect(response).to have_http_status(:forbidden)
+            expect(response).to have_http_status(403)
           end
         end
       end
