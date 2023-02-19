@@ -465,6 +465,7 @@ ko:
       content_policies:
         comment: 내부 참고사항
         description_html: 이 도메인과 하위 도메인의 모든 계정에 적용될 콘텐츠 정책을 정의할 수 있습니다.
+        limited_federation_mode_description_html: 이 도메인의 연합을 허용할지 선택할 수 있습니다.
         policies:
           reject_media: 미디어 거부
           reject_reports: 신고 거부
@@ -1131,6 +1132,8 @@ ko:
     storage: 미디어
   featured_tags:
     add_new: 추가
+    errors:
+      limit: 이미 추천 해시태그가 가득합니다.
     hint_html: "<strong>추천 해시태그가 무엇이죠?</strong> 당신의 공개 프로필 페이지에 눈에 띄게 표현 되며 사람들이 그 해시태그를 포함한 당신의 글을 찾아 볼 수 있도록 합니다. 창작활동이나 긴 기간을 가지는 프로젝트를 쭉 따라가기에 좋은 도구입니다."
   filters:
     contexts:
@@ -1232,6 +1235,9 @@ ko:
       expires_at: 만료
       uses: 사용됨
     title: 초대
+  lists:
+    errors:
+      limit: 목록이 가득합니다.
   login_activities:
     authentication_methods:
       otp: 2단계 인증 앱
