@@ -30,7 +30,7 @@ ca:
       created_msg: La nota de moderació s'ha creat correctament!
       destroyed_msg: Nota de moderació destruïda amb èxit!
     accounts:
-      add_email_domain_block: Bloquejar el domini de l'adreça de correu electrònic
+      add_email_domain_block: Bloca el domini del correu
       approve: Aprova
       approved_msg: L’aplicació del registre de %{username} s’ha aprovat amb èxit
       are_you_sure: N'estàs segur?
@@ -181,7 +181,7 @@ ca:
         create_custom_emoji: Crea un emoji personalitzat
         create_domain_allow: Crea un domini permès
         create_domain_block: Crea un bloqueig de domini
-        create_email_domain_block: Crea un bloqueig de domini d'adreça de correu
+        create_email_domain_block: Crea un bloqueig de domini de correu
         create_ip_block: Crear regla IP
         create_unavailable_domain: Crea un domini no disponible
         create_user_role: Crea Rol
@@ -189,9 +189,9 @@ ca:
         destroy_announcement: Esborra l'anunci
         destroy_canonical_email_block: Esborra el bloqueig de correu electrònic
         destroy_custom_emoji: Esborra l'emoji personalitzat
-        destroy_domain_allow: Esborra el domini permès
+        destroy_domain_allow: Esborra el permís del domini
         destroy_domain_block: Esborra el bloqueig de domini
-        destroy_email_domain_block: Esborra el bloqueig de domini de l'adreça de correu
+        destroy_email_domain_block: Esborra el bloqueig de domini de correu
         destroy_instance: Purga Domini
         destroy_ip_block: Eliminar regla IP
         destroy_status: Elimina la publicació
@@ -373,15 +373,15 @@ ca:
         empty: No s'ha trobat cap apel·lació.
         title: Apel·lacions
     domain_allows:
-      add_new: Dominis autoritzats
-      created_msg: El domini ha estat correctament autoritzat
-      destroyed_msg: S'ha esborrat el domini de la llista blanca
+      add_new: Permet la federació amb el domini
+      created_msg: El domini ha estat autoritzat per a la federació
+      destroyed_msg: El domini ha estat desautoritzat de la federació
       export: Exporta
       import: Importa
-      undo: Treure de la llista blanca
+      undo: No permetis la federació amb el domini
     domain_blocks:
-      add_new: Afegir nou bloqueig de domini
-      created_msg: El bloqueig de domini ara s'està processant
+      add_new: Afegeix nou bloqueig de domini
+      created_msg: S'està processant el bloqueig de domini
       destroyed_msg: El bloqueig de domini s'ha desfet
       domain: Domini
       edit: Editar el bloqueig del domini
@@ -397,7 +397,7 @@ ca:
           noop: Cap
           silence: Limitar
           suspend: Suspensió
-        title: Bloqueig de domini nou
+        title: Nou bloqueig de domini
       no_domain_block_selected: No s'ha canviat cap bloqueig de domini perquè no se n'ha seleccionat cap
       not_permitted: No tens permís per a realitzar aquesta acció
       obfuscate: Oculta el nom del domini
