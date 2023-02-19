@@ -475,6 +475,7 @@ tr:
       content_policies:
         comment: İç not
         description_html: Bu alan adındaki ve alt alan adlarındaki tüm hesaplara uygulanacak içerik ilkeleri belirleyebilirsiniz.
+        limited_federation_mode_description_html: Bu alan adıyla birleştirmeye izin verip vermediğinizi seçebilirsiniz.
         policies:
           reject_media: Medyayı reddet
           reject_reports: Şikayetleri reddet
@@ -633,11 +634,13 @@ tr:
         actions:
           delete_html: Kuralı ihlal eden gönderileri kaldır
           mark_as_sensitive_html: Kuralı ihlal eden gönderilerin medyasını hassas olarak işaretle
+          silence_html: '<strong>@%{acct}</strong> hesabının erişimini oldukça kısıtla: profili ve içeriği sadece onları halihazırda takip edenler veya manuel olarak hesabına erişenlerce mümkün olacak'
           suspend_html: <strong>@%{acct}</strong> hesabını askıya al, profilini ve içeriğini erişilmez ve etkileşimi imkansız yap
         close_report: '#%{id} bildirimini çözüldü olarak işaretle'
         close_reports_html: <strong>@%{acct}</strong> hesabına yönelik <strong>tüm</strong> bildirimleri çözüldü olarak işaretle
         delete_data_html: İlgili sürede askıdan alınması kaldırılmazsa <strong>@%{acct}</strong> hesabının profilini ve içeriğini şu andan itibaren 30 gün içinde sil
         preview_preamble_html: "<strong>@%{acct}</strong> aşağıdaki içerikle bir uyarı alacaktır:"
+        record_strike_html: <strong>@%{acct}</strong> hesabına karşı bir eylem kaydet, böylece bu hesabın gelecekteki ihlallerini üst makama taşımanıza yardımcı olacaktır
         send_email_html: <strong>@%{acct}</strong> adlı kullanıcıya uyarı e-maili gönder
         warning_placeholder: İsteğe bağlı ek nedenden denetim eylemi.
       target_origin: Şikayet edilen hesabın kökeni
@@ -830,6 +833,7 @@ tr:
           other: Geçen hafta %{count} kişi paylaştı
         title: Öne çıkan bağlantılar
         usage_comparison: Bugün %{today} kere paylaşıldı, dün %{yesterday} kere paylaşılmıştı
+      not_allowed_to_trend: Öne çıkma izni yok
       only_allowed: Sadece izin verilenler
       pending_review: İnceleme bekliyor
       preview_card_providers:
@@ -1146,8 +1150,6 @@ tr:
     storage: Medya depolaması
   featured_tags:
     add_new: Yeni ekle
-    errors:
-      limit: Zaten azami hashtag miktarı belirlediniz
     hint_html: "<strong>Öne çıkan etiketler nelerdir?</strong> Genel profilinizde belirgin bir şekilde görüntülenirler ve kişilerin genel yayınlarınıza özellikle bu etiketler altında göz atmalarına izin verir. Yaratıcı çalışmaları veya uzun vadeli projeleri takip etmek için harika bir araçtır."
   filters:
     contexts:
@@ -1257,9 +1259,6 @@ tr:
       expires_at: Bitiş tarihi
       uses: Kullanım
     title: İnsanları davet et
-  lists:
-    errors:
-      limit: En yüksek liste sayısına ulaştınız
   login_activities:
     authentication_methods:
       otp: iki aşamalı kimlik doğrulama uygulaması
@@ -1579,7 +1578,6 @@ tr:
       '7889238': 3 ay
     min_age_label: Zaman eşiği
     min_favs: Şundan daha fazla beğenilen gönderileri sakla
-    min_favs_hint: Bu belirtilenden daha fazla beğeni alan gönderilerinizin herhangi birini silmez. Beğeni sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
     min_reblogs: Şundan daha fazla teşvik edilen gönderileri sakla
     min_reblogs_hint: Bu belirtilenden daha fazla teşvik edilen gönderilerinizin herhangi birini silmez. Teşvik sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
   stream_entries:
