@@ -111,12 +111,6 @@ jobs:
           path: './public'
           name: ${{ github.sha }}
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          cache: yarn
-          node-version-file: '.nvmrc'
-
       - name: Install native Ruby dependencies
         run: sudo apt-get install -y libicu-dev libidn11-dev
 
