@@ -98,6 +98,7 @@ cy:
       moderation:
         active: Yn weithredol
         all: Popeth
+        disabled: Analluogwyd
         pending: Yn aros
         silenced: Cyfyngedig
         suspended: Wedi ei atal
@@ -144,6 +145,7 @@ cy:
       search: Chwilio
       search_same_email_domain: Defnyddwyr eraill gyda'r un parth e-bost
       search_same_ip: Defnyddwyr eraill gyda'r un IP
+      security: Diogelwch
       security_measures:
         only_password: Cyfrinair yn unig
         password_and_2fa: Cyfrinair a 2FA
@@ -458,6 +460,7 @@ cy:
         resolve: Datrys parth
         title: Rhwystro parth e-bost newydd
       no_email_domain_block_selected: Heb newid unrhyw flociau parth e-bost gan nad oes un wedi'i ddewis
+      not_permitted: Dim caniatâd
       resolved_dns_records_hint_html: Mae'r enw parth yn cyd-fynd â'r parthau MX canlynol, sy'n gyfrifol yn y pen draw am dderbyn e-bost. Bydd rhwystro parth MX yn rhwystro cofrestriadau o unrhyw gyfeiriad e-bost sy'n defnyddio'r un parth MX, hyd yn oed os yw'r enw parth gweladwy yn wahanol. <strong>Byddwch yn ofalus i beidio â rhwystro darparwyr e-bost mawr.</strong>
       resolved_through_html: Wedi'i ddatrys trwy %{domain}
       title: Parthau e-bost wedi'u rhwystro
@@ -512,6 +515,7 @@ cy:
       content_policies:
         comment: Nodyn mewnol
         description_html: Gallwch ddiffinio polisïau cynnwys a fydd yn cael eu cymhwyso i bob cyfrif o'r parth hwn ac unrhyw un o'i is-barthau.
+        limited_federation_mode_description_html: Gallwch ddewis a ydych am ganiatáu ffedereiddio â'r parth hwn.
         policies:
           reject_media: Gwrthod cyfryngau
           reject_reports: Gwrthod adroddiadau
@@ -632,11 +636,13 @@ cy:
       assign_to_self: Neilltuo i mi
       assigned: Cymedrolwr wedi'i neilltuo
       by_target_domain: Parth y cyfrif a adroddwyd
+      cancel: Diddymu
       category: Categori
       category_description_html: Bydd y rheswm dros adrodd am y cyfrif a/neu’r cynnwys hwn yn cael ei ddyfynnu wrth gyfathrebu â’r cyfrif a adroddwyd
       comment:
         none: Dim
       comment_description_html: 'I ddarparu rhagor o wybodaeth, ysgrifennodd %{name}:'
+      confirm: Cadarnhau
       confirm_action: Cadarnhau gweithred cymedroli yn erbyn @%{acct}
       created_at: Adroddwyd
       delete_and_resolve: Dileu postiadau
@@ -847,6 +853,7 @@ cy:
         suspend: "Mae %{name} wedi atal cyfrif %{target}"
       appeal_approved: Apeliwyd
       appeal_pending: Apêl yn aros
+      appeal_rejected: Mae'r apêl wedi'i gwrthod
     system_checks:
       database_schema_check:
         message_html: Mae mudo cronfa ddata ar fin digwydd. Rhedwch nhw i sicrhau bod y rhaglen yn ymddwyn yn ôl y disgwyl
@@ -886,6 +893,7 @@ cy:
           other: Wedi'i rannu gan %{count} o bobl dros yr wythnos ddiwethaf
         title: Dolenni sy'n trendio
         usage_comparison: Wedi'i rannu %{today} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
+      not_allowed_to_trend: Dim caniatâd i dueddu
       only_allowed: Derbyniwyd yn unig
       pending_review: Yn aros am adolygiad
       preview_card_providers:
@@ -1029,6 +1037,7 @@ cy:
   applications:
     created: Cais wedi ei greu'n llwyddiannus
     destroyed: Cais wedi ei ddileu'n llwyddiannus
+    logout: Allgofnodi
     regenerate_token: Adfywio tocyn mynediad
     token_regenerated: Adfywiwyd y tocyn mynediad yn llwyddiannus
     warning: Byddwch yn ofalus iawn gyda'r data hwn. Peidiwch byth â'i rannu ag unrhyw un!
@@ -1065,6 +1074,8 @@ cy:
     resend_confirmation: Ailanfon cyfarwyddiadau cadarnhau
     reset_password: Ailosod cyfrinair
     rules:
+      accept: Derbyn
+      back: Nôl
       preamble: Mae'r rhain yn cael eu gosod a'u gorfodi gan y %{domain} cymedrolwyr.
       title: Rhai rheolau sylfaenol.
     security: Diogelwch
@@ -1211,6 +1222,8 @@ cy:
     storage: Storfa cyfryngau
   featured_tags:
     add_new: Ychwanegu
+    errors:
+      limit: Rydych chi eisoes wedi cynnwys y nifer mwyaf o hashnodau
     hint_html: "<strong>Beth yw hashnodau dan sylw?</strong> Maen nhw'n cael eu dangos yn amlwg ar eich proffil cyhoeddus ac yn caniatáu i bobl bori'ch postiadau cyhoeddus yn benodol o dan yr hashnodau hynny. Maen nhw'n arf gwych ar gyfer cadw golwg ar weithiau creadigol neu brojectau tymor hir."
   filters:
     contexts:
@@ -1352,6 +1365,9 @@ cy:
       expires_at: Yn dod i ben ar
       uses: Defnyddiau
     title: Gwahodd pobl
+  lists:
+    errors:
+      limit: Rydych chi wedi cyrraedd y nifer mwyaf o restrau
   login_activities:
     authentication_methods:
       otp: ap dilysu dau ffactor
@@ -1695,6 +1711,7 @@ cy:
       '7889238': 3 mis
     min_age_label: Trothwy oedran
     min_favs: Cadw postiadau ffafriwyd am o leiaf
+    min_favs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi derbyn o leiaf y nifer hwn o ffefrynnau. Gadewch yn wag i ddileu postiadau, beth bynnag yw eu ffefrynnau
     min_reblogs: Cadw postiadau wedi eu hybu o leiaf
     min_reblogs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi cael eu hybu o leiaf y nifer hwn o weithiau. Gadewch yn wag i ddileu postiadau waeth beth fo'u nifer o hybiadau
   stream_entries:
