@@ -13,8 +13,8 @@ describe SearchService, type: :service do
         results = subject.call('', nil, 10)
 
         expect(results).to eq(empty_results)
-        expect(AccountSearchService).not_to have_received(:new)
-        expect(Tag).not_to have_received(:search_for)
+        expect(AccountSearchService).to_not have_received(:new)
+        expect(Tag).to_not have_received(:search_for)
       end
     end
 
@@ -89,7 +89,7 @@ describe SearchService, type: :service do
           allow(Tag).to receive(:search_for)
 
           results = subject.call(query, nil, 10)
-          expect(Tag).not_to have_received(:search_for)
+          expect(Tag).to_not have_received(:search_for)
           expect(results).to eq empty_results
         end
 

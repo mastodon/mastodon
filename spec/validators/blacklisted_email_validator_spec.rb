@@ -26,7 +26,7 @@ RSpec.describe BlacklistedEmailValidator, type: :validator do
       let(:blocked_email) { false }
 
       it 'does not add errors' do
-        expect(subject).not_to have_received(:add).with(:email, :blocked)
+        expect(subject).to_not have_received(:add).with(:email, :blocked)
       end
 
       context 'when canonical e-mail is blocked' do

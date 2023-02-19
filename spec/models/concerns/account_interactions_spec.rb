@@ -163,7 +163,7 @@ describe AccountInteractions do
           it 'returns Mute without updating mute.hide_notifications' do
             expect do
               expect(subject).to be_a Mute
-            end.not_to change { mute.reload.hide_notifications? }.from(true)
+            end.to_not change { mute.reload.hide_notifications? }.from(true)
           end
         end
 
@@ -183,7 +183,7 @@ describe AccountInteractions do
           it 'returns Mute without updating mute.hide_notifications' do
             expect do
               expect(subject).to be_a Mute
-            end.not_to change { mute.reload.hide_notifications? }.from(true)
+            end.to_not change { mute.reload.hide_notifications? }.from(true)
           end
         end
       end
@@ -207,7 +207,7 @@ describe AccountInteractions do
           it 'returns Mute without updating mute.hide_notifications' do
             expect do
               expect(subject).to be_a Mute
-            end.not_to change { mute.reload.hide_notifications? }.from(false)
+            end.to_not change { mute.reload.hide_notifications? }.from(false)
           end
         end
 

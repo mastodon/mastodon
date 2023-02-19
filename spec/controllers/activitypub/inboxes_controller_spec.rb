@@ -68,7 +68,7 @@ RSpec.describe ActivityPub::InboxesController, type: :controller do
         let(:synchronization_collection) { 'https://example.com/followers2' }
 
         it 'does not start a synchronization job' do
-          expect(ActivityPub::FollowersSynchronizationWorker).not_to have_received(:perform_async)
+          expect(ActivityPub::FollowersSynchronizationWorker).to_not have_received(:perform_async)
         end
       end
 
@@ -76,13 +76,13 @@ RSpec.describe ActivityPub::InboxesController, type: :controller do
         let(:synchronization_url) { 'https://example.org/followers' }
 
         it 'does not start a synchronization job' do
-          expect(ActivityPub::FollowersSynchronizationWorker).not_to have_received(:perform_async)
+          expect(ActivityPub::FollowersSynchronizationWorker).to_not have_received(:perform_async)
         end
       end
 
       context 'with matching digest' do
         it 'does not start a synchronization job' do
-          expect(ActivityPub::FollowersSynchronizationWorker).not_to have_received(:perform_async)
+          expect(ActivityPub::FollowersSynchronizationWorker).to_not have_received(:perform_async)
         end
       end
 

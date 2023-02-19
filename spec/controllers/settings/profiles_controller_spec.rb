@@ -38,7 +38,7 @@ RSpec.describe Settings::ProfilesController, type: :controller do
 
       put :update, params: { account: { avatar: fixture_file_upload('avatar.gif', 'image/gif') } }
       expect(response).to redirect_to(settings_profile_path)
-      expect(account.reload.avatar.instance.avatar_file_name).not_to be_nil
+      expect(account.reload.avatar.instance.avatar_file_name).to_not be_nil
       expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(account.id)
     end
   end

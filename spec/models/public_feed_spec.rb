@@ -11,7 +11,7 @@ RSpec.describe PublicFeed, type: :model do
       private_status = Fabricate(:status, visibility: :private)
 
       expect(subject).to include(public_status.id)
-      expect(subject).not_to include(private_status.id)
+      expect(subject).to_not include(private_status.id)
     end
 
     it 'does not include replies' do
@@ -19,7 +19,7 @@ RSpec.describe PublicFeed, type: :model do
       reply = Fabricate(:status, in_reply_to_id: status.id)
 
       expect(subject).to include(status.id)
-      expect(subject).not_to include(reply.id)
+      expect(subject).to_not include(reply.id)
     end
 
     it 'does not include boosts' do
@@ -27,7 +27,7 @@ RSpec.describe PublicFeed, type: :model do
       boost = Fabricate(:status, reblog_of_id: status.id)
 
       expect(subject).to include(status.id)
-      expect(subject).not_to include(boost.id)
+      expect(subject).to_not include(boost.id)
     end
 
     it 'filters out silenced accounts' do
@@ -36,7 +36,7 @@ RSpec.describe PublicFeed, type: :model do
       silenced_status = Fabricate(:status, account: silenced_account)
 
       expect(subject).to include(status.id)
-      expect(subject).not_to include(silenced_status.id)
+      expect(subject).to_not include(silenced_status.id)
     end
 
     context 'without local_only option' do
@@ -87,7 +87,7 @@ RSpec.describe PublicFeed, type: :model do
 
         it 'does not include remote instances statuses' do
           expect(subject).to include(local_status.id)
-          expect(subject).not_to include(remote_status.id)
+          expect(subject).to_not include(remote_status.id)
         end
       end
 
@@ -96,13 +96,13 @@ RSpec.describe PublicFeed, type: :model do
 
         it 'does not include remote instances statuses' do
           expect(subject).to include(local_status.id)
-          expect(subject).not_to include(remote_status.id)
+          expect(subject).to_not include(remote_status.id)
         end
 
         it 'is not affected by personal domain blocks' do
           viewer.block_domain!('test.com')
           expect(subject).to include(local_status.id)
-          expect(subject).not_to include(remote_status.id)
+          expect(subject).to_not include(remote_status.id)
         end
       end
     end
@@ -119,7 +119,7 @@ RSpec.describe PublicFeed, type: :model do
         let(:viewer) { nil }
 
         it 'does not include local instances statuses' do
-          expect(subject).not_to include(local_status.id)
+          expect(subject).to_not include(local_status.id)
           expect(subject).to include(remote_status.id)
         end
       end
@@ -128,7 +128,7 @@ RSpec.describe PublicFeed, type: :model do
         let(:viewer) { Fabricate(:account, username: 'viewer') }
 
         it 'does not include local instances statuses' do
-          expect(subject).not_to include(local_status.id)
+          expect(subject).to_not include(local_status.id)
           expect(subject).to include(remote_status.id)
         end
       end
@@ -146,7 +146,7 @@ RSpec.describe PublicFeed, type: :model do
         @account.block!(blocked)
         blocked_status = Fabricate(:status, account: blocked)
 
-        expect(subject).not_to include(blocked_status.id)
+        expect(subject).to_not include(blocked_status.id)
       end
 
       it 'excludes statuses from accounts who have blocked the account' do
@@ -154,7 +154,7 @@ RSpec.describe PublicFeed, type: :model do
         blocker.block!(@account)
         blocked_status = Fabricate(:status, account: blocker)
 
-        expect(subject).not_to include(blocked_status.id)
+        expect(subject).to_not include(blocked_status.id)
       end
 
       it 'excludes statuses from accounts muted by the account' do
@@ -162,7 +162,7 @@ RSpec.describe PublicFeed, type: :model do
         @account.mute!(muted)
         muted_status = Fabricate(:status, account: muted)
 
-        expect(subject).not_to include(muted_status.id)
+        expect(subject).to_not include(muted_status.id)
       end
 
       it 'excludes statuses from accounts from personally blocked domains' do
@@ -170,7 +170,7 @@ RSpec.describe PublicFeed, type: :model do
         @account.block_domain!(blocked.domain)
         blocked_status = Fabricate(:status, account: blocked)
 
-        expect(subject).not_to include(blocked_status.id)
+        expect(subject).to_not include(blocked_status.id)
       end
 
       context 'with language preferences' do
@@ -182,7 +182,7 @@ RSpec.describe PublicFeed, type: :model do
 
           expect(subject).to include(en_status.id)
           expect(subject).to include(es_status.id)
-          expect(subject).not_to include(fr_status.id)
+          expect(subject).to_not include(fr_status.id)
         end
 
         it 'includes all languages when user does not have a setting' do

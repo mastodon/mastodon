@@ -159,7 +159,7 @@ RSpec.describe User, type: :model do
 
       it 'does not trigger the account.approved Web Hook' do
         subject
-        expect(TriggerWebhookWorker).not_to have_received(:perform_async).with('account.approved', 'Account', user.account_id)
+        expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
       end
     end
 
@@ -270,7 +270,7 @@ RSpec.describe User, type: :model do
 
       it 'does not trigger the account.approved Web Hook' do
         subject
-        expect(TriggerWebhookWorker).not_to have_received(:perform_async).with('account.approved', 'Account', user.account_id)
+        expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
       end
     end
   end

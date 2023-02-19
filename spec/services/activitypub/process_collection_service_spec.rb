@@ -39,7 +39,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
           end
 
           it 'does not process payload' do
-            expect(ActivityPub::Activity).not_to receive(:factory)
+            expect(ActivityPub::Activity).to_not receive(:factory)
             subject.call(json, actor)
           end
         end
@@ -69,7 +69,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
 
       it 'does not process payload if no signature exists' do
         expect_any_instance_of(ActivityPub::LinkedDataSignature).to receive(:verify_actor!).and_return(nil)
-        expect(ActivityPub::Activity).not_to receive(:factory)
+        expect(ActivityPub::Activity).to_not receive(:factory)
 
         subject.call(json, forwarder)
       end
@@ -87,7 +87,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
         payload['signature'] = { 'type' => 'RsaSignature2017' }
 
         expect_any_instance_of(ActivityPub::LinkedDataSignature).to receive(:verify_actor!).and_return(nil)
-        expect(ActivityPub::Activity).not_to receive(:factory)
+        expect(ActivityPub::Activity).to_not receive(:factory)
 
         subject.call(json, forwarder)
       end
@@ -206,7 +206,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
         end
 
         it 'does not process forged payload' do
-          expect(ActivityPub::Activity).not_to receive(:factory).with(
+          expect(ActivityPub::Activity).to_not receive(:factory).with(
             hash_including(
               'object' => hash_including(
                 'id' => 'https://example.com/users/bob/fake-status'
@@ -216,7 +216,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
             anything
           )
 
-          expect(ActivityPub::Activity).not_to receive(:factory).with(
+          expect(ActivityPub::Activity).to_not receive(:factory).with(
             hash_including(
               'object' => hash_including(
                 'content' => '<p>puck was here</p>'
