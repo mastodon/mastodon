@@ -1186,6 +1186,8 @@ pl:
     storage: Urządzenie przechowujące dane
   featured_tags:
     add_new: Dodaj nowy
+    errors:
+      limit: Przekroczono maksymalną liczbę hasztagów
     hint_html: "<strong>Czym są wyróżnione hashtagi?</strong> Są one na stałe wyświetlane na Twoim profilu i pozwalają innym na przeglądanie Twoich wpisów używających tych hashtagów. Są doskonałym narzędziem do śledzenia kreatywnej twórczości czy długoterminowych projektów."
   filters:
     contexts:
@@ -1311,6 +1313,9 @@ pl:
       expires_at: Wygaśnie po
       uses: Użycia
     title: Zaproś użytkowników
+  lists:
+    errors:
+      limit: Przekroczono maksymalną liczbę utworzonych list
   login_activities:
     authentication_methods:
       otp: aplikacja weryfikacji dwuetapowej
@@ -1642,6 +1647,7 @@ pl:
       '7889238': 3 miesiące
     min_age_label: Próg wieku
     min_favs: Zachowaj ulubione posty więcej niż
+    min_favs_hint: Nie usuwa żadnego z Twoich wpisów, które otrzymały więcej niż tę liczbę ulubionych. Pozostaw puste, aby usunąć posty bez względu na ich liczbę ulubionych
     min_reblogs: Utrzymuj posty wzmocnione więcej niż
     min_reblogs_hint: Nie usuwa żadnego z Twoich wpisów, które zostały wzmocnione więcej niż tyle razy. Pozostaw puste, aby usunąć posty bez względu na ich liczbę wzmocnień
   stream_entries:
