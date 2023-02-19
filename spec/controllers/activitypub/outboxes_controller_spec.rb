@@ -36,6 +36,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
       let(:remote_account) { nil }
 
       subject(:response) { get :show, params: { account_username: account.username, page: page } }
+
       subject(:body) { body_as_json }
 
       context 'with page not requested' do

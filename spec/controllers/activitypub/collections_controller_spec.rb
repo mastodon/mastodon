@@ -38,6 +38,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
         let(:remote_account) { nil }
 
         subject(:response) { get :show, params: { id: 'featured', account_username: account.username } }
+
         subject(:body) { body_as_json }
 
         it 'returns http success' do

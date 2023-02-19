@@ -11,6 +11,7 @@ describe Api::Web::EmbedsController do
 
   describe 'POST #create' do
     subject(:response) { post :create, params: { url: url } }
+
     subject(:body) { JSON.parse(response.body, symbolize_names: true) }
 
     context 'when successfully finds status' do

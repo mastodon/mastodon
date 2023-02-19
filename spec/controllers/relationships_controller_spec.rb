@@ -51,6 +51,7 @@ describe RelationshipsController do
 
     context 'when select parameter is not provided' do
       subject { patch :update }
+
       include_examples 'redirects back to followers page'
     end
 
