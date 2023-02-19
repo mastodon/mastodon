@@ -90,6 +90,7 @@ el:
       moderation:
         active: Ενεργός/ή
         all: Όλα
+        disabled: Απενεργοποιημένο
         pending: Εκκρεμούν
         silenced: Περιορισμένοι
         suspended: Σε αναστολή
@@ -247,6 +248,8 @@ el:
         destroy_announcement_html: "Ο/Η %{name} διέγραψε την ανακοίνωση %{target}"
         destroy_canonical_email_block_html: "Ο/Η %{name} επέτρεψε email με το hash %{target}"
         destroy_custom_emoji_html: "Ο/Η %{name} διέγραψε το emoji %{target}"
+        destroy_domain_allow_html: "Ο/Η %{name} αφαίρεσε τον τομέα %{target} από τη λίστα εγκρίσεων"
+        destroy_domain_block_html: "Ο/Η %{name} επέτρεψε τον τομέα %{target}"
         destroy_email_domain_block_html: "Ο/Η %{name} ξεμπλόκαρε το email domain %{target}"
         destroy_instance_html: "Ο/Η %{name} εκκαθάρισε τον τομέα %{target}"
         destroy_ip_block_html: "Ο/Η %{name} διέγραψε τον κανόνα για την IP %{target}"
