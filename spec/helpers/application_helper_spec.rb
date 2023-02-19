@@ -82,6 +82,7 @@ describe ApplicationHelper do
       before do
         allow(helper).to receive(:user_signed_in?).and_return(true)
       end
+
       it 'does not show landing strip' do
         expect(helper.show_landing_strip?).to eq false
       end
