@@ -90,6 +90,7 @@ en-GB:
       moderation:
         active: Active
         all: All
+        disabled: Disabled
         pending: Pending
         silenced: Limited
         suspended: Suspended
@@ -132,6 +133,7 @@ en-GB:
       search: Search
       search_same_email_domain: Other users with the same e-mail domain
       search_same_ip: Other users with the same IP
+      security: Security
       security_measures:
         only_password: Only password
         password_and_2fa: Password and 2FA
@@ -318,6 +320,31 @@ en-GB:
       destroyed_msg: Emojo successfully destroyed!
       disable: Disable
       disabled: Disabled
+      disabled_msg: Successfully disabled that emoji
+      emoji: Emoji
+      enable: Enable
+      enabled: Enabled
+      enabled_msg: Successfully enabled that emoji
+      image_hint: PNG or GIF up to %{size}
+      list: List
+      listed: Listed
+      new:
+        title: Add new custom emoji
+      no_emoji_selected: No emojis were changed as none were selected
+      not_permitted: You are not permitted to perform this action
+      overwrite: Overwrite
+      shortcode: Shortcode
+      shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
+      title: Custom emojis
+      uncategorized: Uncategorised
+      unlist: Unlist
+      unlisted: Unlisted
+      update_failed_msg: Could not update that emoji
+      updated_msg: Emoji successfully updated!
+      upload: Upload
+    dashboard:
+      active_users: active users
+      interactions: interactions
     roles:
       categories:
         devops: DevOps
@@ -374,8 +401,16 @@ en-GB:
       title: Appeal rejected
     backup_ready:
       explanation: You requested a full backup of your Mastodon account. It's now ready for download!
+    suspicious_sign_in:
+      title: A new sign-in
     warning:
+      appeal: Submit an appeal
+      appeal_description: If you believe this is an error, you can submit an appeal to the staff of %{instance}.
+      categories:
+        spam: Spam
+        violation: Content violates the following community guidelines
       explanation:
+        delete_statuses: Some of your posts have been found to violate one or more community guidelines and have been subsequently removed by the moderators of %{instance}.
         disable: You can no longer use your account, but your profile and other data remains intact. You can request a backup of your data, change account settings or delete your account.
         mark_statuses_as_sensitive: Some of your posts have been marked as sensitive by the moderators of %{instance}. This means that people will need to tap the media in the posts before a preview is displayed. You can mark media as sensitive yourself when posting in the future.
         sensitive: From now on, all your uploaded media files will be marked as sensitive and hidden behind a click-through warning.
