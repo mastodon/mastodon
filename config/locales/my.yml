@@ -115,6 +115,7 @@ my:
       username: အသုံးပြုသူအမည်
       view_domain: ဒိုမိန်းအတွက် အကျဉ်းချုပ်ကို ကြည့်ပါ
       web: ဝဘ်
+      whitelisted: ဖယ်ဒီဆာဗာအဖွဲ့အတွက် ခွင့်ပြုခဲ့သည်
     action_logs:
       action_types:
         approve_appeal: အယူခံကို အတည်ပြုပါ
@@ -177,6 +178,7 @@ my:
         create_announcement_html: "%{name} မှ ကြေညာချက်အသစ် %{target} ကို ဖန်တီးခဲ့သည်"
         create_canonical_email_block_html: "%{name} မှ ဟက်ရှ် %{target} ဖြင့် အီးမေးလ်ကို ပိတ်ပင်ထားသည်"
         create_custom_emoji_html: "%{name} မှ အီမိုဂျီ %{target} အသစ်ကို ပြင်ဆင်ခဲ့သည်"
+        create_domain_allow_html: "%{name} မှ ဒိုမိန်း %{target} ဖြင့် ဖယ်ဒီဆာဗာအဖွဲ့ကို ခွင့်ပြုခဲ့သည်"
         create_domain_block_html: "%{name} မှ ဒိုမိန်း %{target} ကို ပိတ်ပင်ထားသည်"
         create_email_domain_block_html: "%{name} မှ အီးမေးလ်ဒိုမိန်း %{target} ကို ပိတ်ပင်ထားသည်"
         create_ip_block_html: "%{name} မှ IP %{target} အတွက် စည်းမျဉ်းကို ဖန်တီးထားသည်"
@@ -185,6 +187,7 @@ my:
         destroy_announcement_html: "%{name} ကြေညာချက် %{target} ကို ဖျက်လိုက်သည်"
         destroy_canonical_email_block_html: "ဟက်ရှ် %{target} ဖြင့် %{name} အီးမေးလ်ပိတ်သိမ်းထားခြင်းကို ဖယ်ရှားပြီးပါပြီ"
         destroy_custom_emoji_html: "%{name} ဖျက်လိုက်သော အီမိုဂျီ %{target}"
+        destroy_domain_allow_html: "%{name} မှ ဒိုမိန်း %{target} ဖြင့် ဖယ်ဒီဆာဗာအဖွဲ့ကို ခွင့်မပြုခဲ့ပါ"
         destroy_domain_block_html: "%{name} မှ ပြန်ဖွင့်လိုက်သော ဒိုမိန်း %{target}"
         destroy_email_domain_block_html: "%{name} မှ အီးမေးလ်ဒိုမိန်း %{target} ကို ပြန်ဖွင့်ထားသည်"
         destroy_instance_html: "%{name} မှ ဒိုမိန်း %{target} ကို ဖယ်ရှားခဲ့သည်"
@@ -284,6 +287,8 @@ my:
         empty: အယူခံဝင်ထားခြင်းမရှိပါ။
         title: အယူခံဝင်ထားခြင်းများ
     domain_allows:
+      add_new: ဒိုမိန်းဖြင့် ဖယ်ဒီဆာဗာအဖွဲ့ကို ခွင့်ပြုရန်
+      created_msg: ဒိုမိန်းကို ဖယ်ဒီဆာဗာအဖွဲ့အတွက် ခွင့်ပြုပြီးပါပြီ
       export: ထုတ်ယူခြင်း
       import: ထည့်သွင်းခြင်း
     domain_blocks:
@@ -366,6 +371,7 @@ my:
         title: စိစစ်ခြင်း
       private_comment: သီးသန့်မှတ်ချက်
       public_comment: အများမြင်မှတ်ချက်
+      title: ဖယ်ဒီဆာဗာအဖွဲ့
       total_blocked_by_us: ကျွန်ုပ်တို့မှ ပိတ်ပင်ထားခြင်း
       total_followed_by_them: '၎င်းတို့မှ စောင့်ကြည့်ခဲ့သည်'
       total_followed_by_us: ကျွန်ုပ်တို့မှ စောင့်ကြည့်ခဲ့သည်
@@ -473,6 +479,7 @@ my:
         manage_blocks: ပိတ်ပင်ထားမှုများကို စီမံပါ
         manage_custom_emojis: စိတ်ကြိုက်အီမိုဂျီများကို ပြင်ဆင်ရန်
         manage_custom_emojis_description: အသုံးပြုသူများအား ဆာဗာပေါ်တွင် စိတ်ကြိုက်အီမိုဂျီများကို စီမံခန့်ခွဲရန် ခွင့်ပြုသည်။
+        manage_federation: ဖယ်ဒီဆာဗာအဖွဲ့ကို စီမံပါ
         manage_invites: ဖိတ်ခေါ်ခြင်းကို စီမံရန်
         manage_reports: အစီရင်ခံစာများကို စီမံပါ
         manage_roles: အခန်းကဏ္ဍများကို စီမံပါ
