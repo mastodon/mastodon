@@ -753,10 +753,6 @@ RSpec.describe ActivityPub::Activity::Create do
 
     context 'with an encrypted message' do
       let(:recipient) { Fabricate(:account) }
-      let(:target_device) { Fabricate(:device, account: recipient) }
-
-      subject { described_class.new(json, sender, delivery: true, delivered_to_account_id: recipient.id) }
-
       let(:object_json) do
         {
           id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -778,6 +774,9 @@ RSpec.describe ActivityPub::Activity::Create do
           },
         }
       end
+      let(:target_device) { Fabricate(:device, account: recipient) }
+
+      subject { described_class.new(json, sender, delivery: true, delivered_to_account_id: recipient.id) }
 
       before do
         subject.perform
@@ -833,13 +832,6 @@ RSpec.describe ActivityPub::Activity::Create do
 
     context 'when sender replies to local status' do
       let!(:local_status) { Fabricate(:status) }
-
-      subject { described_class.new(json, sender, delivery: true) }
-
-      before do
-        subject.perform
-      end
-
       let(:object_json) do
         {
           id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -847,6 +839,12 @@ RSpec.describe ActivityPub::Activity::Create do
           content: 'Lorem ipsum',
           inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status),
         }
+      end
+
+      subject { described_class.new(json, sender, delivery: true) }
+
+      before do
+        subject.perform
       end
 
       it 'creates status' do
@@ -859,13 +857,6 @@ RSpec.describe ActivityPub::Activity::Create do
 
     context 'when sender targets a local user' do
       let!(:local_account) { Fabricate(:account) }
-
-      subject { described_class.new(json, sender, delivery: true) }
-
-      before do
-        subject.perform
-      end
-
       let(:object_json) do
         {
           id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -873,6 +864,12 @@ RSpec.describe ActivityPub::Activity::Create do
           content: 'Lorem ipsum',
           to: ActivityPub::TagManager.instance.uri_for(local_account),
         }
+      end
+
+      subject { described_class.new(json, sender, delivery: true) }
+
+      before do
+        subject.perform
       end
 
       it 'creates status' do
@@ -885,13 +882,6 @@ RSpec.describe ActivityPub::Activity::Create do
 
     context 'when sender cc\'s a local user' do
       let!(:local_account) { Fabricate(:account) }
-
-      subject { described_class.new(json, sender, delivery: true) }
-
-      before do
-        subject.perform
-      end
-
       let(:object_json) do
         {
           id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -899,6 +889,12 @@ RSpec.describe ActivityPub::Activity::Create do
           content: 'Lorem ipsum',
           cc: ActivityPub::TagManager.instance.uri_for(local_account),
         }
+      end
+
+      subject { described_class.new(json, sender, delivery: true) }
+
+      before do
+        subject.perform
       end
 
       it 'creates status' do

@@ -2,14 +2,13 @@ require 'rails_helper'
 
 RSpec.describe FanOutOnWriteService, type: :service do
   let(:last_active_at) { Time.now.utc }
+  let(:status) { Fabricate(:status, account: alice, visibility: visibility, text: 'Hello @bob #hoge') }
 
   let!(:alice) { Fabricate(:user, current_sign_in_at: last_active_at).account }
   let!(:bob)   { Fabricate(:user, current_sign_in_at: last_active_at, account_attributes: { username: 'bob' }).account }
   let!(:tom)   { Fabricate(:user, current_sign_in_at: last_active_at).account }
 
   subject { described_class.new }
-
-  let(:status) { Fabricate(:status, account: alice, visibility: visibility, text: 'Hello @bob #hoge') }
 
   before do
     bob.follow!(alice)

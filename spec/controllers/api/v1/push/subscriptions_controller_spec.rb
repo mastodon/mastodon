@@ -5,13 +5,7 @@ require 'rails_helper'
 describe Api::V1::Push::SubscriptionsController do
   render_views
 
-  let(:user)  { Fabricate(:user) }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'push') }
-
-  before do
-    allow(controller).to receive(:doorkeeper_token) { token }
-  end
-
+  let(:user) { Fabricate(:user) }
   let(:create_payload) do
     {
       subscription: {
@@ -23,7 +17,6 @@ describe Api::V1::Push::SubscriptionsController do
       },
     }.with_indifferent_access
   end
-
   let(:alerts_payload) do
     {
       data: {
@@ -40,6 +33,11 @@ describe Api::V1::Push::SubscriptionsController do
         },
       },
     }.with_indifferent_access
+  end
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'push') }
+
+  before do
+    allow(controller).to receive(:doorkeeper_token) { token }
   end
 
   describe 'POST #create' do

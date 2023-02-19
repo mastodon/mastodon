@@ -2,11 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Vacuum::MediaAttachmentsVacuum do
   let(:retention_period) { 7.days }
-
-  subject { described_class.new(retention_period) }
-
   let(:remote_status) { Fabricate(:status, account: Fabricate(:account, domain: 'example.com')) }
   let(:local_status) { Fabricate(:status) }
+
+  subject { described_class.new(retention_period) }
 
   describe '#perform' do
     let!(:old_remote_media) { Fabricate(:media_attachment, remote_url: 'https://example.com/foo.png', status: remote_status, created_at: (retention_period + 1.day).ago, updated_at: (retention_period + 1.day).ago) }
