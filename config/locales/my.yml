@@ -1,6 +1,7 @@
 my:
   about:
     about_mastodon_html: 'အနာဂတ်အတွက်လူမှုကွန်ရက် - ကြော်ငြာများမရှိခြင်း၊ အဖွဲ့သားများအား စောင့်ကြည့်မှုမရှိခြင်း၊ ကျင့်ဝတ်ပိုင်းဆိုင်ရာစိတ်ချရခြင်းနှင့် ဗဟိုချုပ်ကိုင်မှုမရှိခြင်း၊ သင့်အချက်အလက်များကို Mastodon နှင့်သာ မျှဝေအသုံးပြုလိုက်ပါ။'
+    hosted_on: '%{domain} မှ လက်ခံဆောင်ရွက်ထားသော Mastodon'
     title: အကြောင်း
   accounts:
     follow: စောင့်ကြည့်မယ်
@@ -20,6 +21,7 @@ my:
     accounts:
       add_email_domain_block: ဒိုမိန်းကိုပိတ်မည်
       approve: အတည်ပြုပါ
+      approved_msg: '%{username} ၏ စာရင်းသွင်းခြင်းကို အတည်ပြုပြီးပါပြီ'
       are_you_sure: သေချာပါသလား။
       avatar: ကိုယ်စားပြုရုပ်ပုံ
       by_domain: ဒိုမိန်း
@@ -31,6 +33,7 @@ my:
         submit: အီးမေးလ်ပြောင်းပါ။
         title: '%{username} အတွက် အီးမေးလ်ပြောင်းပါ'
       change_role:
+        changed_msg: အခန်းကဏ္ဍကို ပြောင်းလဲပြီးပါပြီ။
         label: အခန်းကဏ္ဍ ပြောင်းလဲရန်
         no_role: အခန်းကဏ္ဍမရှိ
         title: '%{username} အတွက် အခန်းကဏ္ဍပြောင်းပါ'
@@ -74,6 +77,7 @@ my:
       most_recent_activity: နောက်ဆုံးအသုံးပြုခဲ့သည့်အချိန်
       most_recent_ip: အသုံးပြုလေ့ရှိသည့် IP လိပ်စာ
       no_account_selected: မည်သည့်အကောင့်ကိုမျှ ရွေးချယ်ထားခြင်းမရှိသောကြောင့် ပြောင်းလဲခြင်းမရှိပါ
+      not_subscribed: စာရင်းသွင်းထားခြင်းမရှိပါ
       perform_full_suspension: ရပ်ဆိုင်းရန်
       promote: အထောက်အကူ
       protocol: လုပ်ထုံးလုပ်နည်း
@@ -115,7 +119,7 @@ my:
       username: အသုံးပြုသူအမည်
       view_domain: ဒိုမိန်းအတွက် အကျဉ်းချုပ်ကို ကြည့်ပါ
       web: ဝဘ်
-      whitelisted: ဖယ်ဒီဆာဗာအဖွဲ့အတွက် ခွင့်ပြုခဲ့သည်
+      whitelisted: ဖက်ဒီကို ခွင့်ပြုခဲ့သည်
     action_logs:
       action_types:
         approve_appeal: အယူခံကို အတည်ပြုပါ
@@ -169,56 +173,60 @@ my:
         update_status: ပို့စ်ပြင်ဆင်ရန်
         update_user_role: အခန်းကဏ္ဍပြင်ဆင်ရန်
       actions:
-        approve_user_html: " %{name} မှ %{target} မှနေ၍ အကောင့်ဖွင့်ခြင်းကို အတည်ပြုထားသည်"
-        assigned_to_self_report_html: "%{name} မှ အစီရင်ခံစာ %{target} များကို ၎င်းတို့ထံ ပေးအပ်ခဲ့သည်"
-        change_email_user_html: "%{name} မှ အသုံးပြုသူ %{target} ၏ အီးမေးလ်လိပ်စာကို ပြောင်းခဲ့သည်"
-        change_role_user_html: "%{name} မှ %{target} ၏ အခန်းကဏ္ဍကို ပြောင်းခဲ့သည်"
-        confirm_user_html: "%{name} မှ အသုံးပြုသူ %{target} ၏ အီးမေးလ်လိပ်စာကို အတည်ပြုခဲ့သည်"
-        create_account_warning_html: "%{name} မှ %{target} သို့ သတိပေးချက်တစ်ခု ပေးပို့ခဲ့သည်"
-        create_announcement_html: "%{name} မှ ကြေညာချက်အသစ် %{target} ကို ဖန်တီးခဲ့သည်"
-        create_canonical_email_block_html: "%{name} မှ ဟက်ရှ် %{target} ဖြင့် အီးမေးလ်ကို ပိတ်ပင်ထားသည်"
-        create_custom_emoji_html: "%{name} မှ အီမိုဂျီ %{target} အသစ်ကို ပြင်ဆင်ခဲ့သည်"
-        create_domain_allow_html: "%{name} မှ ဒိုမိန်း %{target} ဖြင့် ဖယ်ဒီဆာဗာအဖွဲ့ကို ခွင့်ပြုခဲ့သည်"
-        create_domain_block_html: "%{name} မှ ဒိုမိန်း %{target} ကို ပိတ်ပင်ထားသည်"
-        create_email_domain_block_html: "%{name} မှ အီးမေးလ်ဒိုမိန်း %{target} ကို ပိတ်ပင်ထားသည်"
-        create_ip_block_html: "%{name} မှ IP %{target} အတွက် စည်းမျဉ်းကို ဖန်တီးထားသည်"
-        create_user_role_html: "%{name} သည် %{target} အခန်းကဏ္ဍကို ဖန်တီးပြီးပါပြီ"
-        demote_user_html: "%{name} သည် အသုံးပြုသူ %{target} ကို ဖြုတ်ပြီးပါပြီ"
-        destroy_announcement_html: "%{name} ကြေညာချက် %{target} ကို ဖျက်လိုက်သည်"
+        approve_user_html: " %{name} က %{target} မှ အကောင့်ဖွင့်ခြင်းကို အတည်ပြုထားသည်"
+        assigned_to_self_report_html: "%{name} က အစီရင်ခံစာ %{target} များကို ၎င်းတို့ထံ ပေးအပ်ခဲ့သည်"
+        change_email_user_html: "%{name} က အသုံးပြုသူ %{target} ၏ အီးမေးလ်လိပ်စာကို ပြောင်းခဲ့သည်"
+        change_role_user_html: "%{name} က %{target} ၏ အခန်းကဏ္ဍကို ပြောင်းခဲ့သည်"
+        confirm_user_html: "%{name} က အသုံးပြုသူ %{target} ၏ အီးမေးလ်လိပ်စာကို အတည်ပြုခဲ့သည်"
+        create_account_warning_html: "%{name} က %{target} သို့ သတိပေးချက်တစ်ခု ပေးပို့ခဲ့သည်"
+        create_announcement_html: "%{name} က ကြေညာချက်အသစ် %{target} ကို ဖန်တီးခဲ့သည်"
+        create_canonical_email_block_html: "%{name} က ဟက်ရှ် %{target} ဖြင့် အီးမေးလ်ကို ပိတ်ပင်ထားသည်"
+        create_custom_emoji_html: "%{name} က အီမိုဂျီ %{target} အသစ်ကို ပြင်ဆင်ခဲ့သည်"
+        create_domain_allow_html: "%{name} က ဒိုမိန်း %{target} ဖြင့် ဖက်ဒီကို ခွင့်ပြုခဲ့သည်"
+        create_domain_block_html: "%{name} က ဒိုမိန်း %{target} ကို ပိတ်ပင်ထားသည်"
+        create_email_domain_block_html: "%{name} က အီးမေးလ်ဒိုမိန်း %{target} ကို ပိတ်ပင်ထားသည်"
+        create_ip_block_html: "%{name} က IP %{target} အတွက် စည်းမျဉ်းကို ဖန်တီးထားသည်"
+        create_user_role_html: "%{name} က %{target} အခန်းကဏ္ဍကို ဖန်တီးပြီးပါပြီ"
+        demote_user_html: "%{name} က အသုံးပြုသူ %{target} ကို ဖြုတ်ပြီးပါပြီ"
+        destroy_announcement_html: "%{name} က ကြေညာချက် %{target} ကို ဖျက်လိုက်သည်"
         destroy_canonical_email_block_html: "ဟက်ရှ် %{target} ဖြင့် %{name} အီးမေးလ်ပိတ်သိမ်းထားခြင်းကို ဖယ်ရှားပြီးပါပြီ"
         destroy_custom_emoji_html: "%{name} ဖျက်လိုက်သော အီမိုဂျီ %{target}"
-        destroy_domain_allow_html: "%{name} မှ ဒိုမိန်း %{target} ဖြင့် ဖယ်ဒီဆာဗာအဖွဲ့ကို ခွင့်မပြုခဲ့ပါ"
+        destroy_domain_allow_html: "%{name} က ဒိုမိန်း %{target} ဖြင့် ဖက်ဒီကို ခွင့်မပြုခဲ့ပါ"
         destroy_domain_block_html: "%{name} မှ ပြန်ဖွင့်လိုက်သော ဒိုမိန်း %{target}"
-        destroy_email_domain_block_html: "%{name} မှ အီးမေးလ်ဒိုမိန်း %{target} ကို ပြန်ဖွင့်ထားသည်"
-        destroy_instance_html: "%{name} မှ ဒိုမိန်း %{target} ကို ဖယ်ရှားခဲ့သည်"
-        destroy_ip_block_html: "%{name} မှ IP %{target} အတွက် စည်းမျဉ်းကို ဖျက်ထားသည်"
-        destroy_status_html: "%{name} မှ %{target} မှ တင်ထားသောပို့စ်ကို  ဖယ်ရှားခဲ့သည်"
-        destroy_user_role_html: "%{name} မှ ဖျက်ထားသော အခန်းကဏ္ဍ %{target} "
-        disable_2fa_user_html: "%{name} မှ အသုံးပြုသူ %{target} အတွက် နှစ်ဆင့်ခံလုံခြုံရေးလိုအပ်ချက်ကို ပိတ်ထားသည်"
+        destroy_email_domain_block_html: "%{name} က အီးမေးလ်ဒိုမိန်း %{target} ကို ပြန်ဖွင့်ထားသည်"
+        destroy_instance_html: "%{name} က ဒိုမိန်း %{target} ကို ဖယ်ရှားခဲ့သည်"
+        destroy_ip_block_html: "%{name} က IP %{target} အတွက် စည်းမျဉ်းကို ဖျက်ထားသည်"
+        destroy_status_html: "%{name} က %{target} မှ တင်ထားသောပို့စ်ကို  ဖယ်ရှားခဲ့သည်"
+        destroy_user_role_html: "%{name} ဖျက်ထားသော အခန်းကဏ္ဍ %{target} "
+        disable_2fa_user_html: "%{name} က အသုံးပြုသူ %{target} အတွက် နှစ်ဆင့်ခံလုံခြုံရေးလိုအပ်ချက်ကို ပိတ်ထားသည်"
         disable_custom_emoji_html: "%{name} ပိတ်ထားသောအီမိုဂျီ %{target}"
-        disable_sign_in_token_auth_user_html: "%{name}  မှ %{target} အတွက် အီးမေးလ်တိုကင် အထောက်အထားပြခြင်းကို ပိတ်ထားသည်"
-        disable_user_html: "%{name} မှ အသုံးပြုသူ %{target} အတွက် အကောင့်ဝင်ခြင်းကို ပိတ်ထားသည်"
-        enable_custom_emoji_html: "%{name} မှ ဖွင့်ထားသည့် အီမိုဂျီ %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} မှ %{target} အတွက် အီးမေးလ်တိုကင် အထောက်အထားပြခြင်းကို ဖွင့်ထားသည်"
-        enable_user_html: "%{name} မှ အသုံးပြုသူ %{target} အတွက် အကောင့်ဝင်ခြင်းကို ဖွင့်ထားသည်"
-        memorialize_account_html: "%{name} မှ %{target} ၏ အကောင့်ကို အမှတ်တရ စာမျက်နှာအဖြစ် ပြောင်းလဲခဲ့သည်"
-        reject_user_html: "%{name} မှ %{target} မှတစ်ဆင့် အကောင့်ဖွင့်ခြင်းကို ပယ်ချခဲ့သည်"
-        remove_avatar_user_html: "%{name} မှ %{target} ၏ ကိုယ်စားပြုရုပ်ပုံကို ဖယ်ရှားခဲ့သည်"
-        reopen_report_html: "%{name} မှ အစီရင်ခံစာ %{target} ကို ပြန်ဖွင့်ခဲ့သည်"
-        resend_user_html: "%{name} မှ %{target} အတွက် အတည်ပြုချက်အီးမေးလ်ကို  ပြန်ပို့ခဲ့သည်"
-        reset_password_user_html: "%{name} မှ အသုံးပြုသူ %{target} ၏ စကားဝှက်ကို ပြန်လည်သတ်မှတ်ခဲ့သည်"
-        resolve_report_html: "%{name} မှ အစီရင်ခံစာ %{target} ကို ဖြေရှင်းထားသည်"
-        silence_account_html: "%{name} မှ %{target} ၏ အကောင့်ကို ကန့်သတ်ထားသည်"
-        suspend_account_html: "%{name} မှ %{target} ၏ အကောင့်ကို ဆိုင်းငံ့ထားသည်"
-        unassigned_report_html: "%{name} မှ အစီရင်ခံစာ %{target} ကို ဖြုတ်ထားသည်"
-        unblock_email_account_html: "%{name} မှ %{target} ၏ အီးမေးလ်လိပ်စာကို ပြန်ဖွင့်ခဲ့သည်"
-        unsuspend_account_html: "%{name} မှ %{target} ၏ အကောင့်ကို ဆိုင်းငံ့ထားသည်"
-        update_announcement_html: "%{name} မှ ကြေညာချက် %{target} ကို ပြင်ဆင်ခဲ့သည်"
-        update_custom_emoji_html: "%{name} မှ အီမိုဂျီ %{target} ကို ပြင်ဆင်ခဲ့သည်"
-        update_domain_block_html: "%{name} မှ %{target} အတွက် ဒိုမိန်းပိတ်ပင်ခြင်းကို ပြင်ဆင်ခဲ့သည်"
+        disable_sign_in_token_auth_user_html: "%{name}  က %{target} အတွက် အီးမေးလ်တိုကင် အထောက်အထားပြခြင်းကို ပိတ်ထားသည်"
+        disable_user_html: "%{name} က အသုံးပြုသူ %{target} အတွက် အကောင့်ဝင်ခြင်းကို ပိတ်ထားသည်"
+        enable_custom_emoji_html: "%{name} ဖွင့်ထားသည့် အီမိုဂျီ %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} က %{target} အတွက် အီးမေးလ်တိုကင် အထောက်အထားပြခြင်းကို ဖွင့်ထားသည်"
+        enable_user_html: "%{name} က အသုံးပြုသူ %{target} အတွက် အကောင့်ဝင်ခြင်းကို ဖွင့်ထားသည်"
+        memorialize_account_html: "%{name} က %{target} ၏ အကောင့်ကို အမှတ်တရ စာမျက်နှာအဖြစ် ပြောင်းလဲခဲ့သည်"
+        promote_user_html: "%{name} က အသုံးပြုသူ %{target} ကို ထောက်ခံခဲ့သည်"
+        reject_appeal_html: "%{name} က %{target} မှ အယူခံဝင်မှု ဆုံးဖြတ်ချက် စိစစ်ခြင်းကို ပယ်ချခဲ့သည်"
+        reject_user_html: "%{name} က %{target} မှတစ်ဆင့် အကောင့်ဖွင့်ခြင်းကို ပယ်ချခဲ့သည်"
+        remove_avatar_user_html: "%{name} က %{target} ၏ ကိုယ်စားပြုရုပ်ပုံကို ဖယ်ရှားခဲ့သည်"
+        reopen_report_html: "%{name} က အစီရင်ခံစာ %{target} ကို ပြန်ဖွင့်ခဲ့သည်"
+        resend_user_html: "%{name} က %{target} အတွက် အတည်ပြုချက်အီးမေးလ်ကို  ပြန်ပို့ခဲ့သည်"
+        reset_password_user_html: "%{name} က အသုံးပြုသူ %{target} ၏ စကားဝှက်ကို ပြန်လည်သတ်မှတ်ခဲ့သည်"
+        resolve_report_html: "%{name} က အစီရင်ခံစာ %{target} ကို ဖြေရှင်းထားသည်"
+        sensitive_account_html: "%{name} က %{target} ၏ မီဒီယာကို သတိထားရသောမီဒီယာအဖြစ် အမှတ်အသားပြုထားသည်"
+        silence_account_html: "%{name} က %{target} ၏ အကောင့်ကို ကန့်သတ်ထားသည်"
+        suspend_account_html: "%{name} က %{target} ၏ အကောင့်ကို ဆိုင်းငံ့ထားသည်"
+        unassigned_report_html: "%{name} က အစီရင်ခံစာ %{target} ကို ဖြုတ်ထားသည်"
+        unblock_email_account_html: "%{name} က %{target} ၏ အီးမေးလ်လိပ်စာကို ပြန်ဖွင့်ခဲ့သည်"
+        unsensitive_account_html: "%{name} က %{target} ၏ မီဒီယာကို သတိထားရသောမီဒီယာအဖြစ် အမှတ်အသားပြုထားခြင်းမရှိပါ"
+        unsuspend_account_html: "%{name} က %{target} ၏ အကောင့်ကို ဆိုင်းငံ့ထားသည်"
+        update_announcement_html: "%{name} က ကြေညာချက် %{target} ကို ပြင်ဆင်ခဲ့သည်"
+        update_custom_emoji_html: "%{name} က အီမိုဂျီ %{target} ကို ပြင်ဆင်ခဲ့သည်"
+        update_domain_block_html: "%{name} က %{target} အတွက် ဒိုမိန်းပိတ်ပင်ခြင်းကို ပြင်ဆင်ခဲ့သည်"
         update_ip_block_html: "%{name} မှ IP %{target} အတွက် စည်းမျဉ်း ပြောင်းထားသည်"
-        update_status_html: "%{name} မှ %{target} တင်ထားသောပို့စ်ကို ပြင်ဆင်ခဲ့သည်"
-        update_user_role_html: "%{name} မှ %{target} အခန်းကဏ္ဍကို ပြောင်းလဲခဲ့ပါသည်"
+        update_status_html: "%{name} က %{target} တင်ထားသောပို့စ်ကို ပြင်ဆင်ခဲ့သည်"
+        update_user_role_html: "%{name} က %{target} အခန်းကဏ္ဍကို ပြောင်းလဲခဲ့ပါသည်"
       deleted_account: အကောင့်ဖျက်ပြီးပါပြီ
       empty: မှတ်တမ်းများ မတွေ့ပါ။
       filter_by_action: လုပ်ဆောင်ချက်အလိုက် စစ်ထုတ်ရန်
@@ -287,10 +295,11 @@ my:
         empty: အယူခံဝင်ထားခြင်းမရှိပါ။
         title: အယူခံဝင်ထားခြင်းများ
     domain_allows:
-      add_new: ဒိုမိန်းဖြင့် ဖယ်ဒီဆာဗာအဖွဲ့ကို ခွင့်ပြုရန်
-      created_msg: ဒိုမိန်းကို ဖယ်ဒီဆာဗာအဖွဲ့အတွက် ခွင့်ပြုပြီးပါပြီ
+      add_new: ဒိုမိန်းဖြင့် ဖက်ဒီကို ခွင့်ပြုရန်
+      created_msg: ဒိုမိန်းကို ဖက်ဒီအတွက် ခွင့်ပြုပြီးပါပြီ
       export: ထုတ်ယူခြင်း
       import: ထည့်သွင်းခြင်း
+      undo: ဒိုမိန်းဖြင့် ဖက်ဒီကို ခွင့်မပြုပါ
     domain_blocks:
       add_new: ဒိုမိန်းပိတ်ပင်ခြင်းအသစ် ထည့်ပါ
       created_msg: ဒိုမိန်းပိတ်ပင်ခြင်းကို ယခုလုပ်ဆောင်နေပါသည်
@@ -348,6 +357,7 @@ my:
       by_domain: ဒိုမိန်း
       confirm_purge: ဤဒိုမိန်းမှ အချက်အလက်များကို အပြီးတိုင်ဖျက်လိုသည်မှာ သေချာပါသလား။
       content_policies:
+        limited_federation_mode_description_html: ဤဒိုမိန်းဖြင့် ဖက်ဒီကို ခွင့်ပြုမလား။
         policies:
           reject_media: မီဒီယာဖယ်ရှားရန်
           reject_reports: အစီရင်ခံစာများ ဖယ်ရှားရန်
@@ -371,7 +381,7 @@ my:
         title: စိစစ်ခြင်း
       private_comment: သီးသန့်မှတ်ချက်
       public_comment: အများမြင်မှတ်ချက်
-      title: ဖယ်ဒီဆာဗာအဖွဲ့
+      title: ဖက်ဒီ
       total_blocked_by_us: ကျွန်ုပ်တို့မှ ပိတ်ပင်ထားခြင်း
       total_followed_by_them: '၎င်းတို့မှ စောင့်ကြည့်ခဲ့သည်'
       total_followed_by_us: ကျွန်ုပ်တို့မှ စောင့်ကြည့်ခဲ့သည်
@@ -479,7 +489,8 @@ my:
         manage_blocks: ပိတ်ပင်ထားမှုများကို စီမံပါ
         manage_custom_emojis: စိတ်ကြိုက်အီမိုဂျီများကို ပြင်ဆင်ရန်
         manage_custom_emojis_description: အသုံးပြုသူများအား ဆာဗာပေါ်တွင် စိတ်ကြိုက်အီမိုဂျီများကို စီမံခန့်ခွဲရန် ခွင့်ပြုသည်။
-        manage_federation: ဖယ်ဒီဆာဗာအဖွဲ့ကို စီမံပါ
+        manage_federation: ဖက်ဒီကို စီမံပါ
+        manage_federation_description: အသုံးပြုသူများအား အခြားဒိုမိန်းများနှင့် ပိတ်ပင်ခြင်း၊ ဖက်ဒီခွင့်ပြုခြင်းနှင့် ပေးပို့နိုင်မှုကို ထိန်းချုပ်ခြင်းတို့ကို ခွင့်ပြုသည်။
         manage_invites: ဖိတ်ခေါ်ခြင်းကို စီမံရန်
         manage_reports: အစီရင်ခံစာများကို စီမံပါ
         manage_roles: အခန်းကဏ္ဍများကို စီမံပါ
