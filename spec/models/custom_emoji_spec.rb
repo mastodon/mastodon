@@ -11,7 +11,7 @@ RSpec.describe CustomEmoji, type: :model do
       let(:search_term) { 'blobpats' }
 
       it 'finds emoji' do
-        is_expected.to include(custom_emoji)
+        expect(subject).to include(custom_emoji)
       end
     end
 
@@ -20,7 +20,7 @@ RSpec.describe CustomEmoji, type: :model do
       let(:search_term) { 'blob' }
 
       it 'finds emoji' do
-        is_expected.to include(custom_emoji)
+        expect(subject).to include(custom_emoji)
       end
     end
   end
@@ -34,7 +34,7 @@ RSpec.describe CustomEmoji, type: :model do
       let(:domain) { nil }
 
       it 'returns true' do
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
@@ -42,7 +42,7 @@ RSpec.describe CustomEmoji, type: :model do
       let(:domain) { 'example.com' }
 
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
@@ -63,7 +63,7 @@ RSpec.describe CustomEmoji, type: :model do
       let(:text) { 'Hello :coolcat:' }
 
       it 'returns records used via shortcodes in text' do
-        is_expected.to include(emojo)
+        expect(subject).to include(emojo)
       end
     end
 
@@ -71,7 +71,7 @@ RSpec.describe CustomEmoji, type: :model do
       let(:text) { '<p>Hello :coolcat:</p>' }
 
       it 'returns records used via shortcodes in text' do
-        is_expected.to include(emojo)
+        expect(subject).to include(emojo)
       end
     end
   end

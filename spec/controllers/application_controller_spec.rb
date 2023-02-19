@@ -28,7 +28,7 @@ describe ApplicationController, type: :controller do
     end
 
     it 'renders template for http' do
-      is_expected.to render_template("errors/#{code}", layout: 'error')
+      expect(subject).to render_template("errors/#{code}", layout: 'error')
     end
   end
 
