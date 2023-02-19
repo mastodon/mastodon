@@ -33,8 +33,8 @@ class CustomFilter < ApplicationRecord
   enum action: [:warn, :hide], _suffix: :action
 
   belongs_to :account
-  has_many :keywords, class_name: 'CustomFilterKeyword', foreign_key: :custom_filter_id, inverse_of: :custom_filter, dependent: :destroy
-  has_many :statuses, class_name: 'CustomFilterStatus', foreign_key: :custom_filter_id, inverse_of: :custom_filter, dependent: :destroy
+  has_many :keywords, class_name: 'CustomFilterKeyword', inverse_of: :custom_filter, dependent: :destroy
+  has_many :statuses, class_name: 'CustomFilterStatus', inverse_of: :custom_filter, dependent: :destroy
   accepts_nested_attributes_for :keywords, reject_if: :all_blank, allow_destroy: true
 
   validates :title, :context, presence: true

@@ -11,7 +11,7 @@
 class UserIp < ApplicationRecord
   self.primary_key = :user_id
 
-  belongs_to :user, foreign_key: :user_id
+  belongs_to :user
 
   def readonly?
     true
