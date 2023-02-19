@@ -117,10 +117,12 @@ my:
       web: ဝဘ်
     action_logs:
       action_types:
+        approve_appeal: အယူခံကို အတည်ပြုပါ
         approve_user: အသုံးပြုသူကို အတည်ပြုရန်
         change_email_user: အသုံးပြုသူအတွက် အီးမေးလ်ပြောင်းရန်
         change_role_user: အသုံးပြုသူ၏ အခန်းကဏ္ဍကို ပြောင်းလဲရန်
         confirm_user: အသုံးပြုသူကို လက်ခံရန်
+        create_account_warning: သတိပေးချက်ဖန်တီးပါ
         create_announcement: ကြေညာချက်ဖန်တီးပါ
         create_canonical_email_block: အီးမေးလ်ပိတ်ပင်ခြင်းအား ဖန်တီးရန်
         create_custom_emoji: စိတ်ကြိုက်အီမိုဂျီ ဖန်တီးပါ
@@ -151,7 +153,10 @@ my:
         reject_appeal: အယူခံဝင်မှုကို ငြင်းပယ်ပါ
         reject_user: အသုံးပြုသူ ဖယ်ရှားရန်
         remove_avatar_user: ကိုယ်စားပြုရုပ်ပုံကို ဖယ်ရှားပါ
+        reopen_report: အစီရင်ခံစာပြန်ဖွင့်ရန်
         resend_user: အတည်ပြုရန် မေးလ်ကို ပြန်ပို့ပေးရန်
+        reset_password_user: စကားဝှက်ကို ပြန်လည်ရယူမည်
+        resolve_report: အစီရင်ခံစာကို ဖြေရှင်းရန်
         silence_account: အကောင့် ကန့်သတ်ပါ
         suspend_account: အကောင့် ရပ်ဆိုင်းပါ
         unassigned_report: အစီရင်ခံစာ ဖြုတ်ရန်
@@ -163,7 +168,15 @@ my:
         update_status: ပို့စ်ပြင်ဆင်ရန်
         update_user_role: အခန်းကဏ္ဍပြင်ဆင်ရန်
       actions:
+        approve_user_html: " %{name} မှ %{target} မှနေ၍ အကောင့်ဖွင့်ခြင်းကို အတည်ပြုထားသည်"
+        assigned_to_self_report_html: "%{name} မှ အစီရင်ခံစာ %{target} များကို ၎င်းတို့ထံ ပေးအပ်ခဲ့သည်"
+        change_email_user_html: "%{name} မှ အသုံးပြုသူ %{target} ၏ အီးမေးလ်လိပ်စာကို ပြောင်းခဲ့သည်"
+        change_role_user_html: "%{name} မှ %{target} ၏ အခန်းကဏ္ဍကို ပြောင်းခဲ့သည်"
+        confirm_user_html: "%{name} မှ အသုံးပြုသူ %{target} ၏ အီးမေးလ်လိပ်စာကို အတည်ပြုခဲ့သည်"
+        create_account_warning_html: "%{name} မှ %{target} သို့ သတိပေးချက်တစ်ခု ပေးပို့ခဲ့သည်"
+        create_announcement_html: "%{name} မှ ကြေညာချက်အသစ် %{target} ကို ဖန်တီးခဲ့သည်"
         create_canonical_email_block_html: "%{name} မှ ဟက်ရှ် %{target} ဖြင့် အီးမေးလ်ကို ပိတ်ပင်ထားသည်"
+        create_custom_emoji_html: "%{name} မှ အီမိုဂျီ %{target} အသစ်ကို ပြင်ဆင်ခဲ့သည်"
         create_domain_block_html: "%{name} မှ ဒိုမိန်း %{target} ကို ပိတ်ပင်ထားသည်"
         create_email_domain_block_html: "%{name} မှ အီးမေးလ်ဒိုမိန်း %{target} ကို ပိတ်ပင်ထားသည်"
         create_ip_block_html: "%{name} မှ IP %{target} အတွက် စည်းမျဉ်းကို ဖန်တီးထားသည်"
@@ -174,7 +187,9 @@ my:
         destroy_custom_emoji_html: "%{name} ဖျက်လိုက်သော အီမိုဂျီ %{target}"
         destroy_domain_block_html: "%{name} မှ ပြန်ဖွင့်လိုက်သော ဒိုမိန်း %{target}"
         destroy_email_domain_block_html: "%{name} မှ အီးမေးလ်ဒိုမိန်း %{target} ကို ပြန်ဖွင့်ထားသည်"
+        destroy_instance_html: "%{name} မှ ဒိုမိန်း %{target} ကို ဖယ်ရှားခဲ့သည်"
         destroy_ip_block_html: "%{name} မှ IP %{target} အတွက် စည်းမျဉ်းကို ဖျက်ထားသည်"
+        destroy_status_html: "%{name} မှ %{target} မှ တင်ထားသောပို့စ်ကို  ဖယ်ရှားခဲ့သည်"
         destroy_user_role_html: "%{name} မှ ဖျက်ထားသော အခန်းကဏ္ဍ %{target} "
         disable_2fa_user_html: "%{name} မှ အသုံးပြုသူ %{target} အတွက် နှစ်ဆင့်ခံလုံခြုံရေးလိုအပ်ချက်ကို ပိတ်ထားသည်"
         disable_custom_emoji_html: "%{name} ပိတ်ထားသောအီမိုဂျီ %{target}"
@@ -240,6 +255,7 @@ my:
       new:
         title: စိတ်ကြိုက်အီမိုဂျီအသစ် ထည့်ပါ
       no_emoji_selected: မည်သည့်အီမိုဂျီကိုမျှ ရွေးချယ်ထားခြင်းမရှိသောကြောင့် ပြောင်းလဲခြင်းမရှိပါ
+      not_permitted: ဤလုပ်ဆောင်ချက်ကို ဆောင်ရွက်ရန် သင့်ကို ခွင့်မပြုပါ။
       title: စိတ်ကြိုက်အီမိုဂျီများ
       uncategorized: အမျိုးအစားခွဲခြားထားခြင်းမရှိပါ
       unlist: စာရင်းမသွင်းထားပါ
@@ -257,6 +273,7 @@ my:
       pending_users_html:
         other: "<strong>%{count}</strong> ဆိုင်းငံ့အသုံးပြုသူ"
       software: ဆော့ဖ်ဝဲလ်
+      sources: အကောင့်ဖွင့်ခြင်းဆိုင်ရာ သတင်းရင်းမြစ်များ
       space: နေရာလွတ်အသုံးပြုမှု
       title: ဒက်ရှ်ဘုတ်မြင်ကွင်း
       top_languages: လက်ရှိအသုံးများလျက်ရှိသည့် ဘာသာစကား
@@ -266,6 +283,9 @@ my:
       appeals:
         empty: အယူခံဝင်ထားခြင်းမရှိပါ။
         title: အယူခံဝင်ထားခြင်းများ
+    domain_allows:
+      export: ထုတ်ယူခြင်း
+      import: ထည့်သွင်းခြင်း
     domain_blocks:
       add_new: ဒိုမိန်းပိတ်ပင်ခြင်းအသစ် ထည့်ပါ
       created_msg: ဒိုမိန်းပိတ်ပင်ခြင်းကို ယခုလုပ်ဆောင်နေပါသည်
@@ -336,6 +356,7 @@ my:
         instance_follows_measure: သူတို့၏စောင့်ကြည့်သူများ ဒီနေရာမှာပါ
         instance_languages_dimension: အသုံးများသည့်ဘာသာစကားများ
         instance_media_attachments_measure: သိမ်းဆည်းထားသော မီဒီယာပူးတွဲဖိုင်များ
+        instance_statuses_measure: သိမ်းဆည်းထားသောပို့စ်များ
       delivery:
         all: အားလုံး
         unavailable: မရရှိနိုင်ပါ
@@ -346,6 +367,9 @@ my:
       private_comment: သီးသန့်မှတ်ချက်
       public_comment: အများမြင်မှတ်ချက်
       total_blocked_by_us: ကျွန်ုပ်တို့မှ ပိတ်ပင်ထားခြင်း
+      total_followed_by_them: '၎င်းတို့မှ စောင့်ကြည့်ခဲ့သည်'
+      total_followed_by_us: ကျွန်ုပ်တို့မှ စောင့်ကြည့်ခဲ့သည်
+      total_reported: '၎င်းတို့နှင့်ဆိုင်သော အစီရင်ခံစာများ'
       total_storage: မီဒီယာ ပူးတွဲချက်များ
     invites:
       filter:
@@ -387,6 +411,7 @@ my:
       assigned: စိစစ်သူကို တာဝန်ပေးရန်
       cancel: ပယ်ဖျက်မည်
       category: အမျိုးအစား
+      comment_description_html: '%{name} က နောက်ထပ်အချက်အလက်များ ပံ့ပိုးပေးနိုင်ရန်အတွက် ရေးသားခဲ့သည် -'
       confirm: အတည်ပြုမည်
       confirm_action: '@%{acct} ကို စိစစ်အကဲဖြတ်ခြင်းအား အတည်ပြုပါ'
       delete_and_resolve: ပို့စ်များကို ဖျက်ပါ
