@@ -4,6 +4,7 @@ describe SharesController do
   render_views
 
   let(:user) { Fabricate(:user) }
+
   before { sign_in user }
 
   describe 'GTE #show' do

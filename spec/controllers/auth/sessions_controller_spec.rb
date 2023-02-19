@@ -54,7 +54,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
     context 'using PAM authentication', if: ENV['PAM_ENABLED'] == 'true' do
       context 'using a valid password' do
         before do
-          post :create, params: { user: { email: "pam_user1", password: '123456' } }
+          post :create, params: { user: { email: 'pam_user1', password: '123456' } }
         end
 
         it 'redirects to home' do
@@ -68,7 +68,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
       context 'using an invalid password' do
         before do
-          post :create, params: { user: { email: "pam_user1", password: 'WRONGPW' } }
+          post :create, params: { user: { email: 'pam_user1', password: 'WRONGPW' } }
         end
 
         it 'shows a login error' do
@@ -127,7 +127,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
         before do
           allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip).and_return(current_ip)
-          allow(UserMailer).to receive(:suspicious_sign_in).and_return(double('email', 'deliver_later!': nil))
+          allow(UserMailer).to receive(:suspicious_sign_in).and_return(double('email', deliver_later!: nil))
           user.update(current_sign_in_at: 1.month.ago)
           post :create, params: { user: { email: user.email, password: user.password } }
         end
@@ -194,7 +194,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
           post :create, params: { user: { email: user.email, password: user.password } }
         end
 
-        context "in single user mode" do
+        context 'in single user mode' do
           let(:single_user_mode) { true }
 
           it 'redirects to home' do
@@ -202,7 +202,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
           end
         end
 
-        context "in non-single user mode" do
+        context 'in non-single user mode' do
           let(:single_user_mode) { false }
 
           it "redirects back to the user's page" do
@@ -230,8 +230,8 @@ RSpec.describe Auth::SessionsController, type: :controller do
           end
 
           it 'renders two factor authentication page' do
-            expect(controller).to render_template("two_factor")
-            expect(controller).to render_template(partial: "_otp_authentication_form")
+            expect(controller).to render_template('two_factor')
+            expect(controller).to render_template(partial: '_otp_authentication_form')
           end
         end
 
@@ -246,8 +246,8 @@ RSpec.describe Auth::SessionsController, type: :controller do
           end
 
           it 'renders two factor authentication page' do
-            expect(controller).to render_template("two_factor")
-            expect(controller).to render_template(partial: "_otp_authentication_form")
+            expect(controller).to render_template('two_factor')
+            expect(controller).to render_template(partial: '_otp_authentication_form')
           end
         end
 
@@ -257,8 +257,8 @@ RSpec.describe Auth::SessionsController, type: :controller do
           end
 
           it 'renders two factor authentication page' do
-            expect(controller).to render_template("two_factor")
-            expect(controller).to render_template(partial: "_otp_authentication_form")
+            expect(controller).to render_template('two_factor')
+            expect(controller).to render_template(partial: '_otp_authentication_form')
           end
         end
 
@@ -339,11 +339,11 @@ RSpec.describe Auth::SessionsController, type: :controller do
             external_id: public_key_credential.id,
             public_key: public_key_credential.public_key,
             sign_count: '1000'
-           )
+          )
           user.webauthn_credentials.take
         end
 
-        let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http' }://#{Rails.configuration.x.web_domain}" }
+        let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http'}://#{Rails.configuration.x.web_domain}" }
 
         let(:fake_client) { WebAuthn::FakeClient.new(domain) }
 
@@ -359,8 +359,8 @@ RSpec.describe Auth::SessionsController, type: :controller do
           end
 
           it 'renders webauthn authentication page' do
-            expect(controller).to render_template("two_factor")
-            expect(controller).to render_template(partial: "_webauthn_form")
+            expect(controller).to render_template('two_factor')
+            expect(controller).to render_template(partial: '_webauthn_form')
           end
         end
 
@@ -370,8 +370,8 @@ RSpec.describe Auth::SessionsController, type: :controller do
           end
 
           it 'renders webauthn authentication page' do
-            expect(controller).to render_template("two_factor")
-            expect(controller).to render_template(partial: "_webauthn_form")
+            expect(controller).to render_template('two_factor')
+            expect(controller).to render_template(partial: '_webauthn_form')
           end
         end
 
@@ -400,7 +400,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
   describe 'GET #webauthn_options' do
     context 'with WebAuthn and OTP enabled as second factor' do
-      let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http' }://#{Rails.configuration.x.web_domain}" }
+      let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http'}://#{Rails.configuration.x.web_domain}" }
 
       let(:fake_client) { WebAuthn::FakeClient.new(domain) }
 

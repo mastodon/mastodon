@@ -60,13 +60,11 @@ class Sanitize
 
       current_node = env[:node]
 
-      scheme = begin
-        if current_node['href'] =~ Sanitize::REGEX_PROTOCOL
-          Regexp.last_match(1).downcase
-        else
-          :relative
-        end
-      end
+      scheme = if current_node['href'] =~ Sanitize::REGEX_PROTOCOL
+                 Regexp.last_match(1).downcase
+               else
+                 :relative
+               end
 
       current_node.replace(Nokogiri::XML::Text.new(current_node.text, current_node.document)) unless LINK_PROTOCOLS.include?(scheme)
     end

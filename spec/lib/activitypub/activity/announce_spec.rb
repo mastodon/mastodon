@@ -82,10 +82,10 @@ RSpec.describe ActivityPub::Activity::Announce do
             content: 'Lorem ipsum',
             attributedTo: 'https://example.com/actor',
             to: {
-              'type': 'OrderedCollection',
-              'id': 'http://example.com/followers',
-              'first': 'http://example.com/followers?page=true',
-            }
+              type: 'OrderedCollection',
+              id: 'http://example.com/followers',
+              first: 'http://example.com/followers?page=true',
+            },
           }
         end
 

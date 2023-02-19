@@ -24,7 +24,6 @@ class InitialStateSerializer < ActiveModel::Serializer
     }
   end
 
-  # rubocop:disable Metrics/AbcSize
   def meta
     store = {
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
@@ -79,9 +78,7 @@ class InitialStateSerializer < ActiveModel::Serializer
     store[:disabled_account_id] = object.disabled_account.id.to_s if object.disabled_account
     store[:moved_to_account_id] = object.moved_to_account.id.to_s if object.moved_to_account
 
-    if Rails.configuration.x.single_user_mode
-      store[:owner] = object.owner&.id&.to_s
-    end
+    store[:owner] = object.owner&.id&.to_s if Rails.configuration.x.single_user_mode
 
     store
   end

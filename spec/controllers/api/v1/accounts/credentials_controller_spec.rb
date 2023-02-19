@@ -35,7 +35,7 @@ describe Api::V1::Accounts::CredentialsController do
             source: {
               privacy: 'unlisted',
               sensitive: true,
-            }
+            },
           }
         end
 
@@ -70,7 +70,7 @@ describe Api::V1::Accounts::CredentialsController do
         it 'returns http success' do
           expect(response).to have_http_status(200)
         end
-     end
+      end
 
       describe 'with invalid data' do
         before do

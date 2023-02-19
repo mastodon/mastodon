@@ -59,8 +59,8 @@ RSpec.describe DeleteAccountService, type: :service do
 
   describe '#call on local account' do
     before do
-      stub_request(:post, "https://alice.com/inbox").to_return(status: 201)
-      stub_request(:post, "https://bob.com/inbox").to_return(status: 201)
+      stub_request(:post, 'https://alice.com/inbox').to_return(status: 201)
+      stub_request(:post, 'https://bob.com/inbox').to_return(status: 201)
     end
 
     let!(:remote_alice) { Fabricate(:account, inbox_url: 'https://alice.com/inbox', protocol: :activitypub) }
@@ -72,16 +72,16 @@ RSpec.describe DeleteAccountService, type: :service do
 
       it 'sends a delete actor activity to all known inboxes' do
         subject
-        expect(a_request(:post, "https://alice.com/inbox")).to have_been_made.once
-        expect(a_request(:post, "https://bob.com/inbox")).to have_been_made.once
+        expect(a_request(:post, 'https://alice.com/inbox')).to have_been_made.once
+        expect(a_request(:post, 'https://bob.com/inbox')).to have_been_made.once
       end
     end
   end
 
   describe '#call on remote account' do
     before do
-      stub_request(:post, "https://alice.com/inbox").to_return(status: 201)
-      stub_request(:post, "https://bob.com/inbox").to_return(status: 201)
+      stub_request(:post, 'https://alice.com/inbox').to_return(status: 201)
+      stub_request(:post, 'https://bob.com/inbox').to_return(status: 201)
     end
 
     include_examples 'common behavior' do

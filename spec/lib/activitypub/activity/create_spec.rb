@@ -252,10 +252,10 @@ RSpec.describe ActivityPub::Activity::Create do
             type: 'Note',
             content: 'Lorem ipsum',
             to: {
-              'type': 'OrderedCollection',
-              'id': 'http://example.com/followers',
-              'first': 'http://example.com/followers?page=true',
-            }
+              type: 'OrderedCollection',
+              id: 'http://example.com/followers',
+              first: 'http://example.com/followers?page=true',
+            },
           }
         end
 
@@ -453,7 +453,6 @@ RSpec.describe ActivityPub::Activity::Create do
           expect(status.media_attachments.map(&:remote_url)).to include('http://example.com/attachment.png')
         end
       end
-
 
       context 'with media attachments with long description' do
         let(:object_json) do
@@ -733,7 +732,7 @@ RSpec.describe ActivityPub::Activity::Create do
                 replies: {
                   type: 'Collection',
                   totalItems: 3,
-                }
+                },
               },
             ],
           }
@@ -763,7 +762,7 @@ RSpec.describe ActivityPub::Activity::Create do
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
             type: 'Note',
             name: 'Yellow',
-            inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status)
+            inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status),
           }
         end
 
@@ -788,7 +787,7 @@ RSpec.describe ActivityPub::Activity::Create do
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
             type: 'Note',
             name: 'Yellow',
-            inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status)
+            inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status),
           }
         end
 

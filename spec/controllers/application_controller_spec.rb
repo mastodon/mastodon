@@ -27,7 +27,7 @@ describe ApplicationController, type: :controller do
       expect(response).to have_http_status(code)
     end
 
-    it "renders template for http" do
+    it 'renders template for http' do
       is_expected.to render_template("errors/#{code}", layout: 'error')
     end
   end
@@ -150,7 +150,7 @@ describe ApplicationController, type: :controller do
       end
 
       it 'does not store location for user if it is devise controller' do
-        @request.env["devise.mapping"] = Devise.mappings[:user]
+        @request.env['devise.mapping'] = Devise.mappings[:user]
         get 'create'
         expect(controller.stored_location_for(:user)).to be_nil
       end

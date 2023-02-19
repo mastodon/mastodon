@@ -21,11 +21,9 @@ module AccountMerging
 
     owned_classes.each do |klass|
       klass.where(account_id: other_account.id).find_each do |record|
-        begin
-          record.update_attribute(:account_id, id)
-        rescue ActiveRecord::RecordNotUnique
-          next
-        end
+        record.update_attribute(:account_id, id)
+      rescue ActiveRecord::RecordNotUnique
+        next
       end
     end
 
@@ -36,11 +34,9 @@ module AccountMerging
 
     target_classes.each do |klass|
       klass.where(target_account_id: other_account.id).find_each do |record|
-        begin
-          record.update_attribute(:target_account_id, id)
-        rescue ActiveRecord::RecordNotUnique
-          next
-        end
+        record.update_attribute(:target_account_id, id)
+      rescue ActiveRecord::RecordNotUnique
+        next
       end
     end
 

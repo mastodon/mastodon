@@ -111,6 +111,8 @@ Rails.application.routes.draw do
 
   resource :inbox, only: [:create], module: :activitypub
 
+  get '/:encoded_at(*path)', to: redirect("/@%{path}"), constraints: { encoded_at: /%40/ }
+
   constraints(username: /[^@\/.]+/) do
     get '/@:username', to: 'accounts#show', as: :short_account
     get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies

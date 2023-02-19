@@ -1,3 +1,3 @@
 Fabricator(:account_tag_stat) do
-  accounts_count ""
+  accounts_count ''
 end

@@ -1,3 +1,3 @@
 Fabricator(:domain_allow) do
-  domain "MyString"
+  domain 'MyString'
 end

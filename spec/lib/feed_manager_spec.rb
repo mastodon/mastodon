@@ -423,7 +423,7 @@ RSpec.describe FeedManager do
 
       FeedManager.instance.merge_into_home(account, reblog.account)
 
-      expect(redis.zscore("feed:home:0", reblog.id)).to eq nil
+      expect(redis.zscore('feed:home:0', reblog.id)).to eq nil
     end
   end
 

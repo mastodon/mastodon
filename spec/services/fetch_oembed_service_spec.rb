@@ -6,9 +6,9 @@ describe FetchOEmbedService, type: :service do
   subject { described_class.new }
 
   before do
-    stub_request(:get, "https://host.test/provider.json").to_return(status: 404)
-    stub_request(:get, "https://host.test/provider.xml").to_return(status: 404)
-    stub_request(:get, "https://host.test/empty_provider.json").to_return(status: 200)
+    stub_request(:get, 'https://host.test/provider.json').to_return(status: 404)
+    stub_request(:get, 'https://host.test/provider.xml').to_return(status: 404)
+    stub_request(:get, 'https://host.test/empty_provider.json').to_return(status: 200)
   end
 
   describe 'discover_provider' do
@@ -18,7 +18,7 @@ describe FetchOEmbedService, type: :service do
           stub_request(:get, 'https://www.youtube.com/watch?v=IPSbNdBmWKE').to_return(
             status: 200,
             headers: { 'Content-Type': 'text/html' },
-            body: request_fixture('oembed_youtube.html'),
+            body: request_fixture('oembed_youtube.html')
           )
           stub_request(:get, 'https://www.youtube.com/oembed?format=json&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DIPSbNdBmWKE').to_return(
             status: 200,
@@ -151,7 +151,6 @@ describe FetchOEmbedService, type: :service do
           expect(subject.format).to eq :json
         end
       end
-
     end
 
     context 'when endpoint is cached' do

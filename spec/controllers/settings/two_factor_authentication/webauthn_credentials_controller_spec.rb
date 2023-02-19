@@ -7,7 +7,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
   render_views
 
   let(:user) { Fabricate(:user) }
-  let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http' }://#{Rails.configuration.x.web_domain}" }
+  let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http'}://#{Rails.configuration.x.web_domain}" }
   let(:fake_client) { WebAuthn::FakeClient.new(domain) }
 
   def add_webauthn_credential(user)
@@ -137,7 +137,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
             expect { get :options }.to_not change { user.webauthn_id }
           end
 
-          it "includes existing credentials in list of excluded credentials" do
+          it 'includes existing credentials in list of excluded credentials' do
             get :options
 
             excluded_credentials_ids = JSON.parse(response.body)['excludeCredentials'].map { |credential| credential['id'] }

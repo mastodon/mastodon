@@ -37,7 +37,7 @@ describe Settings::ApplicationsController do
   end
 
   describe 'GET #new' do
-    it 'works' do
+    it 'returns http success' do
       get :new
       expect(response).to have_http_status(200)
     end
@@ -51,8 +51,8 @@ describe Settings::ApplicationsController do
             name: 'My New App',
             redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
             website: 'http://google.com',
-            scopes: 'read write follow'
-          }
+            scopes: 'read write follow',
+          },
         }
         response
       end
@@ -73,8 +73,8 @@ describe Settings::ApplicationsController do
             name: 'My New App',
             redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
             website: 'http://google.com',
-            scopes: [ 'read', 'write', 'follow' ]
-          }
+            scopes: ['read', 'write', 'follow'],
+          },
         }
         response
       end
@@ -95,8 +95,8 @@ describe Settings::ApplicationsController do
             name: '',
             redirect_uri: '',
             website: '',
-            scopes: []
-          }
+            scopes: [],
+          },
         }
       end
 
@@ -112,16 +112,16 @@ describe Settings::ApplicationsController do
 
   describe 'PATCH #update' do
     context 'success' do
-      let(:opts) {
+      let(:opts) do
         {
-          website: 'https://foo.bar/'
+          website: 'https://foo.bar/',
         }
-      }
+      end
 
       def call_update
         patch :update, params: {
           id: app.id,
-          doorkeeper_application: opts
+          doorkeeper_application: opts,
         }
         response
       end
@@ -144,8 +144,8 @@ describe Settings::ApplicationsController do
             name: '',
             redirect_uri: '',
             website: '',
-            scopes: []
-          }
+            scopes: [],
+          },
         }
       end
 
@@ -175,12 +175,13 @@ describe Settings::ApplicationsController do
 
   describe 'regenerate' do
     let(:token) { user.token_for_app(app) }
+
     before do
       expect(token).to_not be_nil
       post :regenerate, params: { id: app.id }
     end
 
-    it 'should create new token' do
+    it 'creates new token' do
       expect(user.token_for_app(app)).to_not eql(token)
     end
   end

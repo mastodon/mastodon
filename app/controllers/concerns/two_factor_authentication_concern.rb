@@ -81,13 +81,11 @@ module TwoFactorAuthenticationConcern
 
     @body_classes     = 'lighter'
     @webauthn_enabled = user.webauthn_enabled?
-    @scheme_type      = begin
-      if user.webauthn_enabled? && user_params[:otp_attempt].blank?
-        'webauthn'
-      else
-        'totp'
-      end
-    end
+    @scheme_type      = if user.webauthn_enabled? && user_params[:otp_attempt].blank?
+                          'webauthn'
+                        else
+                          'totp'
+                        end
 
     set_locale { render :two_factor }
   end
