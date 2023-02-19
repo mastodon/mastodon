@@ -43,7 +43,7 @@ module.exports = {
       version: 'detect',
     },
     'import/extensions': [
-      '.js',
+      '.js', '.jsx',
     ],
     'import/ignore': [
       'node_modules',
@@ -52,6 +52,7 @@ module.exports = {
     'import/resolver': {
       node: {
         paths: ['app/javascript'],
+        extensions: ['.js', '.jsx'],
       },
     },
   },
@@ -185,6 +186,7 @@ module.exports = {
       'always',
       {
         js: 'never',
+        jsx: 'never',
       },
     ],
     'import/newline-after-import': 'error',
