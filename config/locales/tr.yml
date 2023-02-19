@@ -1150,6 +1150,8 @@ tr:
     storage: Medya depolaması
   featured_tags:
     add_new: Yeni ekle
+    errors:
+      limit: Zaten azami etiket sayısını öne çıkardınız
     hint_html: "<strong>Öne çıkan etiketler nelerdir?</strong> Genel profilinizde belirgin bir şekilde görüntülenirler ve kişilerin genel yayınlarınıza özellikle bu etiketler altında göz atmalarına izin verir. Yaratıcı çalışmaları veya uzun vadeli projeleri takip etmek için harika bir araçtır."
   filters:
     contexts:
@@ -1259,6 +1261,9 @@ tr:
       expires_at: Bitiş tarihi
       uses: Kullanım
     title: İnsanları davet et
+  lists:
+    errors:
+      limit: Azami liste sayısına ulaştınız
   login_activities:
     authentication_methods:
       otp: iki aşamalı kimlik doğrulama uygulaması
@@ -1578,6 +1583,7 @@ tr:
       '7889238': 3 ay
     min_age_label: Zaman eşiği
     min_favs: Şundan daha fazla beğenilen gönderileri sakla
+    min_favs_hint: En az bu belirtilen kadar beğeni alan gönderilerinizin herhangi birini silmez. Beğeni sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
     min_reblogs: Şundan daha fazla teşvik edilen gönderileri sakla
     min_reblogs_hint: Bu belirtilenden daha fazla teşvik edilen gönderilerinizin herhangi birini silmez. Teşvik sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
   stream_entries:
