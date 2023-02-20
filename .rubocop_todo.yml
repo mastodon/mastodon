@@ -1629,19 +1629,6 @@ RSpec/RepeatedExampleGroupDescription:
     - 'spec/controllers/admin/reports/actions_controller_spec.rb'
     - 'spec/policies/report_note_policy_spec.rb'
 
-# Offense count: 18
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/ScatteredLet:
-  Exclude:
-    - 'spec/controllers/admin/domain_blocks_controller_spec.rb'
-    - 'spec/controllers/api/v1/admin/domain_blocks_controller_spec.rb'
-    - 'spec/controllers/api/v1/push/subscriptions_controller_spec.rb'
-    - 'spec/lib/activitypub/activity/create_spec.rb'
-    - 'spec/lib/vacuum/media_attachments_vacuum_spec.rb'
-    - 'spec/services/activitypub/process_status_update_service_spec.rb'
-    - 'spec/services/fan_out_on_write_service_spec.rb'
-    - 'spec/services/import_service_spec.rb'
-
 # Offense count: 12
 RSpec/ScatteredSetup:
   Exclude:

@@ -6,20 +6,6 @@ end
 
 RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
   let!(:status) { Fabricate(:status, text: 'Hello world', account: Fabricate(:account, domain: 'example.com')) }
-
-  let(:alice) { Fabricate(:account) }
-  let(:bob) { Fabricate(:account) }
-
-  let(:mentions) { [] }
-  let(:tags) { [] }
-  let(:media_attachments) { [] }
-
-  before do
-    mentions.each { |a| Fabricate(:mention, status: status, account: a) }
-    tags.each { |t| status.tags << t }
-    media_attachments.each { |m| status.media_attachments << m }
-  end
-
   let(:payload) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
@@ -34,8 +20,20 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       ],
     }
   end
-
   let(:json) { Oj.load(Oj.dump(payload)) }
+
+  let(:alice) { Fabricate(:account) }
+  let(:bob) { Fabricate(:account) }
+
+  let(:mentions) { [] }
+  let(:tags) { [] }
+  let(:media_attachments) { [] }
+
+  before do
+    mentions.each { |a| Fabricate(:mention, status: status, account: a) }
+    tags.each { |t| status.tags << t }
+    media_attachments.each { |m| status.media_attachments << m }
+  end
 
   subject { described_class.new }
 
