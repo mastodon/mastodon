@@ -2617,10 +2617,3 @@ Style/SymbolArray:
 Style/SymbolProc:
   Exclude:
     - 'spec/lib/request_spec.rb'
-
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-Style/UnpackFirst:
-  Exclude:
-    - 'app/models/concerns/account_interactions.rb'
-    - 'lib/paperclip/gif_transcoder.rb'
