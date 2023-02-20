@@ -212,7 +212,7 @@ de:
         reopen_report: Meldung wieder eröffnen
         resend_user: Bestätigungs-E-Mail erneut senden
         reset_password_user: Passwort zurücksetzen
-        resolve_report: Bericht lösen
+        resolve_report: Meldung klären
         sensitive_account: Konto mit erzwungener Inhaltswarnung
         silence_account: Konto stummschalten
         suspend_account: Konto sperren
@@ -242,7 +242,7 @@ de:
         create_domain_block_html: "%{name} hat die Domain %{target} gesperrt"
         create_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} gesperrt"
         create_ip_block_html: "%{name} hat eine IP-Regel für %{target} erstellt"
-        create_unavailable_domain_html: "%{name} hat die Lieferung an die Domain %{target} eingestellt"
+        create_unavailable_domain_html: "%{name} beendete die Zustellung an die Domain %{target}"
         create_user_role_html: "%{name} hat die Rolle %{target} erstellt"
         demote_user_html: "%{name} hat %{target} heruntergestuft"
         destroy_announcement_html: "%{name} hat die neue Ankündigung %{target} gelöscht"
@@ -254,7 +254,7 @@ de:
         destroy_instance_html: "%{name} hat die Daten der Domain %{target} entfernt"
         destroy_ip_block_html: "%{name} hat eine IP-Regel für %{target} entfernt"
         destroy_status_html: "%{name} hat einen Beitrag von %{target} entfernt"
-        destroy_unavailable_domain_html: "%{name} setzte die Lieferung an die Domain %{target} fort"
+        destroy_unavailable_domain_html: "%{name} nahm die Zustellung an die Domain %{target} wieder auf"
         destroy_user_role_html: "%{name} hat die Rolle %{target} gelöscht"
         disable_2fa_user_html: "%{name} hat die Zwei-Faktor-Authentisierung für %{target} deaktiviert"
         disable_custom_emoji_html: "%{name} hat das Emoji deaktiviert: %{target}"
@@ -336,7 +336,7 @@ de:
       shortcode: Shortcode
       shortcode_hint: Mindestens 2 Zeichen, nur Buchstaben, Ziffern und Unterstriche
       title: Eigene Emojis
-      uncategorized: Nicht kategorisiert
+      uncategorized: Unkategorisiert
       unlist: Nicht Aufführen
       unlisted: Nicht aufgeführt
       update_failed_msg: Konnte dieses Emoji nicht aktualisieren
@@ -361,10 +361,10 @@ de:
         one: "<strong>%{count}</strong> unerledigte*r Benutzer*in"
         other: "<strong>%{count}</strong> unerledigte Benutzer*innen"
       resolved_reports: erledigte Meldungen
-      software: Software
+      software: Programme
       sources: Registrierungsort
-      space: Speicherverbrauch
-      title: Übersicht
+      space: Speicherplatz
+      title: Dashboard
       top_languages: Häufigste Sprachen
       top_servers: Aktivste Server
       website: Website
@@ -373,7 +373,7 @@ de:
         empty: Keine Einsprüche gefunden.
         title: Einsprüche
     domain_allows:
-      add_new: Whitelist-Domain
+      add_new: Föderation mit Domain erlauben
       created_msg: Domain wurde erfolgreich zur Whitelist hinzugefügt
       destroyed_msg: Domain wurde von der Whitelist entfernt
       export: Exportieren
@@ -458,7 +458,7 @@ de:
     instances:
       availability:
         description_html:
-          one: Wenn die Zustellung an die Domain seit <strong>%{count} Tag</strong> erfolglos bleibt, werden keine weiteren Zustellungsversuche unternommen, es sei denn, eine Zustellung <em>von</em> dieser Domain wird empfangen.
+          one: Wenn die Zustellung an die Domain seit <strong>%{count} Tag</strong> erfolglos bleibt, werden keine weiteren Auslieferungsversuche unternommen, es sei denn, eine Zustellung <em>von</em> dieser Domain wird empfangen.
           other: Wenn die Zustellung an die Domain seit <strong>%{count} Tagen</strong> erfolglos bleibt, werden keine weiteren Zustellungsversuche unternommen, es sei denn, eine Zustellung <em>von</em> dieser Domain wird empfangen.
         failure_threshold_reached: Fehlschlag-Schwelle am %{date} erreicht.
         failures_recorded:
@@ -479,30 +479,30 @@ de:
         policies:
           reject_media: Medien ablehnen
           reject_reports: Meldungen ablehnen
-          silence: Stummschalten
+          silence: Stummschaltung
           suspend: Gesperrt
-        policy: Richtlinie
-        reason: Öffentlicher Grund
+        policy: Einschränkung
+        reason: Öffentliche Begründung
         title: Inhaltsrichtlinien
       dashboard:
-        instance_accounts_dimension: Meiste gefolgte Konten
+        instance_accounts_dimension: Meistgefolgte Konten
         instance_accounts_measure: gespeicherte Konten
-        instance_followers_measure: unsere Follower dort
+        instance_followers_measure: eigene Follower dort
         instance_follows_measure: deren Follower hier
-        instance_languages_dimension: Top Sprachen
+        instance_languages_dimension: Meistverwendete Sprachen
         instance_media_attachments_measure: gespeicherte Medienanhänge
-        instance_reports_measure: Meldungen über deren Accounts
+        instance_reports_measure: Meldungen zu deren Accounts
         instance_statuses_measure: gespeicherte Beiträge
       delivery:
         all: Alle
         clear: Zustellfehler löschen
         failing: Fehlerhaft
-        restart: Lieferung neu starten
-        stop: Lieferung stoppen
+        restart: Zustellung neu starten
+        stop: Zustellung beenden
         unavailable: Nicht verfügbar
       delivery_available: Zustellung funktioniert
-      delivery_error_days: Tage seitdem die Zustellung nicht funktioniert
-      delivery_error_hint: Wenn eine Lieferung für %{count} Tage nicht möglich ist, wird sie automatisch als nicht lieferbar markiert.
+      delivery_error_days: Tage der fehlerhaften Zustellung
+      delivery_error_hint: Wenn eine Auslieferung %{count} Tage lang nicht möglich ist, wird sie automatisch als unzustellbar markiert.
       destroyed_msg: Daten von %{domain} sind nun in der Warteschlange für die bevorstehende Löschung.
       empty: Keine Domains gefunden.
       known_accounts:
@@ -511,11 +511,11 @@ de:
       moderation:
         all: Alle
         limited: Eingeschränkt
-        title: Moderation
+        title: Server
       private_comment: Privater Kommentar
       public_comment: Öffentlicher Kommentar
-      purge: Löschen
-      purge_description_html: Wenn du glaubst, dass diese Domain endgültig offline ist, kannst du alle Account-Datensätze und zugehörigen Daten aus dieser Domain löschen. Das kann eine Weile dauern.
+      purge: Säubern
+      purge_description_html: Wenn du glaubst, dass diese Domain endgültig offline ist, kannst du alle Account-Datensätze und zugehörigen Daten von diesem Server löschen. Das kann eine Weile dauern.
       title: Föderation
       total_blocked_by_us: Von uns gesperrt
       total_followed_by_them: Gefolgt von denen
@@ -550,7 +550,7 @@ de:
       title: "Beziehungen von %{acct}"
     relays:
       add_new: Neues Relay hinzufügen
-      delete: Löschen
+      delete: Entfernen
       description_html: Ein <strong>Föderierungsrelay</strong> ist ein vermittelnder Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern austauscht, die es abonnieren und zu ihm veröffentlichen.<strong> Es kann kleinen und mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>, was andernfalls das manuelle Folgen anderer Leute auf entfernten Servern durch lokale Nutzer erfordern würde.
       disable: Ausschalten
       disabled: Ausgeschaltet
@@ -560,8 +560,8 @@ de:
       inbox_url: Relay-URL
       pending: Warte auf Zustimmung des Relays
       save_and_enable: Speichern und aktivieren
-      setup: Relaisverbindung einrichten
-      signatures_not_enabled: Relais funktionieren nicht korrekt, während der sichere Modus oder der Whitelist-Modus aktiviert ist
+      setup: Neues Relais verbinden
+      signatures_not_enabled: Die Relais funktionieren nicht korrekt, wenn der "secure mode" aktiviert oder die Föderation eingeschränkt ist
       status: Status
       title: Relais
     report_notes:
@@ -573,7 +573,7 @@ de:
           one: "%{count} Notiz"
           other: "%{count} Notizen"
       action_log: Protokoll
-      action_taken_by: Maßnahme ergriffen durch
+      action_taken_by: Maßnahme ergriffen von
       actions:
         delete_description_html: Der gemeldete Beitrag wird gelöscht und ein Strike wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Accounts zu helfen.
         mark_as_sensitive_description_html: Die Medien in den gemeldeten Beiträgen werden mit einer Inhaltswarnung versehen und ein Verstoß wird vermerkt, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können.
@@ -605,7 +605,7 @@ de:
       mark_as_unresolved: Als ungelöst markieren
       no_one_assigned: Niemand
       notes:
-        create: Kommentar hinzufügen
+        create: Notiz hinzufügen
         create_and_resolve: Mit Kommentar lösen
         create_and_unresolve: Mit Kommentar wieder öffnen
         delete: Löschen
@@ -1260,7 +1260,7 @@ de:
     table:
       expires_at: Läuft ab
       uses: Verwendet
-    title: Leute einladen
+    title: Einladungen
   lists:
     errors:
       limit: Du hast die maximale Anzahl an Listen erreicht
