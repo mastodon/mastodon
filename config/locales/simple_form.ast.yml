@@ -1,9 +1,11 @@
----
 ast:
   simple_form:
     hints:
       admin_account_action:
-        text_html: Opcional. Pues usar la sintaxis de los artículos ya amestar <a href="%{path}">amestar preconfiguraes</a> p'aforrar tiempu
+        text_html: Opcional. Pues usar la sintaxis de los artículos ya amestar <a href="%{path}">alvertencies preconfiguraes</a> p'aforrar tiempu
+        type_html: Escueyi qué facer con <strong>%{acct}</strong>
+        types:
+          none: Usa esta opción pa unviar una alvertencia al perfil, ensin aicionar nenguna otra aición.
       announcement:
         all_day: Al marcar la opción, namás apaecen les dates del intervalu de tiempu
         ends_at: Opcional. L'anunciu dexa de tar espublizáu na data qu'indiques
@@ -68,8 +70,10 @@ ast:
       admin_account_action:
         include_statuses: Incluyir nel mensaxe los artículos de los que s'informó
         send_email_notification: Avisar al perfil per corréu electrónicu
+        text: Alvertencia personalizada
         type: Aición
         types:
+          sensitive: Marcar como cuenta sensible
           suspend: Suspender
       announcement:
         all_day: Eventu de tol día
@@ -154,7 +158,7 @@ ast:
         must_be_following: Bloquiar los avisos de los perfiles que nun sigues
         must_be_following_dm: Bloquiar los mensaxes direutos de los perfiles que nun sigues
       invite_request:
-        text: "¿Por qué quies xunite?"
+        text: '¿Por qué quies xunite?'
       ip_block:
         ip: IP
       notification_emails:
@@ -181,9 +185,9 @@ ast:
         position: Prioridá
       webhook:
         events: Eventos activos
-    'no': Non
+    'no': 'Non'
     not_recommended: Nun s'aconseya
     recommended: Aconséyase
     required:
       mark: "*"
-    'yes': Sí
+    'yes': 'Sí'
