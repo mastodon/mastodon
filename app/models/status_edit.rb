@@ -20,10 +20,6 @@
 class StatusEdit < ApplicationRecord
   include RateLimitable
 
-  self.ignored_columns = %w(
-    media_attachments_changed
-  )
-
   class PreservedMediaAttachment < ActiveModelSerializers::Model
     attributes :media_attachment, :description
 
