@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: media_attachments
@@ -372,7 +373,7 @@ class MediaAttachment < ApplicationRecord
     return {} if width.nil?
 
     {
-      width:  width,
+      width: width,
       height: height,
       size: "#{width}x#{height}",
       aspect: width.to_f / height,

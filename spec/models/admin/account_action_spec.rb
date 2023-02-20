@@ -12,9 +12,9 @@ RSpec.describe Admin::AccountAction, type: :model do
 
     before do
       account_action.assign_attributes(
-        type:            type,
+        type: type,
         current_account: account,
-        target_account:  target_account
+        target_account: target_account
       )
     end
 

@@ -149,8 +149,8 @@ describe AccountInteractions do
 
       let(:mute) do
         Fabricate(:mute,
-                  account:            account,
-                  target_account:     target_account,
+                  account: account,
+                  target_account: target_account,
                   hide_notifications: hide_notifications)
       end
 

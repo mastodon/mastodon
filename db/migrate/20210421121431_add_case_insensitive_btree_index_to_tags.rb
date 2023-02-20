@@ -11,6 +11,7 @@ class AddCaseInsensitiveBtreeIndexToTags < ActiveRecord::Migration[5.2]
     rescue ActiveRecord::StatementInvalid => e
       remove_index :tags, name: 'index_tags_on_name_lower_btree'
       raise CorruptionError, 'index_tags_on_name_lower_btree' if e.is_a?(ActiveRecord::RecordNotUnique)
+
       raise e
     end
 

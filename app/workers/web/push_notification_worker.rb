@@ -22,13 +22,13 @@ class Web::PushNotificationWorker
       request = Request.new(:post, @subscription.endpoint, body: payload.fetch(:ciphertext), http_client: http_client)
 
       request.add_headers(
-        'Content-Type'     => 'application/octet-stream',
-        'Ttl'              => TTL,
-        'Urgency'          => URGENCY,
+        'Content-Type' => 'application/octet-stream',
+        'Ttl' => TTL,
+        'Urgency' => URGENCY,
         'Content-Encoding' => 'aesgcm',
-        'Encryption'       => "salt=#{Webpush.encode64(payload.fetch(:salt)).delete('=')}",
-        'Crypto-Key'       => "dh=#{Webpush.encode64(payload.fetch(:server_public_key)).delete('=')};#{@subscription.crypto_key_header}",
-        'Authorization'    => @subscription.authorization_header
+        'Encryption' => "salt=#{Webpush.encode64(payload.fetch(:salt)).delete('=')}",
+        'Crypto-Key' => "dh=#{Webpush.encode64(payload.fetch(:server_public_key)).delete('=')};#{@subscription.crypto_key_header}",
+        'Authorization' => @subscription.authorization_header
       )
 
       request.perform do |response|

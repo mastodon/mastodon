@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: custom_filters
@@ -101,6 +102,7 @@ class CustomFilter < ApplicationRecord
       status_matches = [status.id, status.reblog_of_id].compact & rules[:status_ids] if rules[:status_ids].present?
 
       next if keyword_matches.blank? && status_matches.blank?
+
       FilterResultPresenter.new(filter: filter, keyword_matches: keyword_matches, status_matches: status_matches)
     end
   end
@@ -111,6 +113,7 @@ class CustomFilter < ApplicationRecord
 
   def invalidate_cache!
     return unless @should_invalidate_cache
+
     @should_invalidate_cache = false
 
     Rails.cache.delete("filters:v3:#{account_id}")

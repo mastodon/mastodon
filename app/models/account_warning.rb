@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: account_warnings
@@ -17,13 +18,13 @@
 
 class AccountWarning < ApplicationRecord
   enum action: {
-    none:                       0,
-    disable:                    1_000,
+    none: 0,
+    disable: 1_000,
     mark_statuses_as_sensitive: 1_250,
-    delete_statuses:            1_500,
-    sensitive:                  2_000,
-    silence:                    3_000,
-    suspend:                    4_000,
+    delete_statuses: 1_500,
+    sensitive: 2_000,
+    silence: 3_000,
+    suspend: 4_000,
   }, _suffix: :action
 
   before_validation :before_validate
