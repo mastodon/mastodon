@@ -1956,13 +1956,6 @@ Rails/WhereExists:
     - 'spec/services/purge_domain_service_spec.rb'
     - 'spec/services/unallow_domain_service_spec.rb'
 
-# Offense count: 3
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Security/IoMethods:
-  Exclude:
-    - 'spec/controllers/admin/export_domain_allows_controller_spec.rb'
-    - 'spec/controllers/admin/export_domain_blocks_controller_spec.rb'
-
 # Offense count: 5
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/CaseLikeIf:
