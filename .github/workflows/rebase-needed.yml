@@ -24,3 +24,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           commentOnDirty: This pull request has merge conflicts that must be resolved before it can be merged.
           retryMax: 10
+          continueOnMissingPermissions: false
