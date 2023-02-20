@@ -1,21 +1,30 @@
 my:
   activerecord:
+    attributes:
+      doorkeeper/application:
+        name: အက်ပလီကေးရှင်းအမည်
+        redirect_uri: URI ကို ပြန်ညွှန်းရန်
+        website: အက်ပလီကေးရှင်းဝဘ်ဆိုဒ်
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
               invalid_uri: သည် မှန်ကန်သော URI ဖြစ်ရမည်။
+              relative_uri: URI ဖြစ်ရမည်။
               secured_uri: သည် HTTPS/SSL URI ဖြစ်ရမည်။
   doorkeeper:
     applications:
       buttons:
+        authorize: လုပ်ပိုင်ခွင့်
         cancel: ပယ်ဖျက်မည်
         destroy: ဖျက်ဆီးမည်
         edit: ပြင်မည်
         submit: တင်သွင်းမည်
       confirmations:
         destroy: သေချာပါသလား?
+      edit:
+        title: အက်ပလီကေးရှင်းကို ပြင်ဆင်ရန်
       help:
         redirect_uri: URI တစ်ခုစီအတွက် လိုင်းတစ်ကြောင်းသုံးပါ
       index:
