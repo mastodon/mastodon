@@ -2695,16 +2695,6 @@ Style/ConcatArrayLiterals:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: compact, expanded
-Style/EmptyMethod:
-  Exclude:
-    - 'db/migrate/20181024224956_migrate_account_conversations.rb'
-    - 'db/migrate/20190529143559_preserve_old_layout_for_existing_users.rb'
-    - 'db/migrate/20200510110808_reset_web_app_secret.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Style/ExplicitBlockArgument:
