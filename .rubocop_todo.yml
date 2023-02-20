@@ -1485,13 +1485,6 @@ Rails/ApplicationController:
     - 'app/controllers/well_known/nodeinfo_controller.rb'
     - 'app/controllers/well_known/webfinger_controller.rb'
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: NilOrEmpty, NotPresent, UnlessPresent.
-Rails/Blank:
-  Exclude:
-    - 'app/services/activitypub/fetch_remote_actor_service.rb'
-
 # Offense count: 35
 # Configuration parameters: Database, Include.
 # SupportedDatabases: mysql, postgresql
