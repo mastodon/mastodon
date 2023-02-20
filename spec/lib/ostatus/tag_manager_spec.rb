@@ -15,15 +15,15 @@ describe OStatus::TagManager do
     end
 
     it 'returns nil if it is not local id' do
-      expect(OStatus::TagManager.instance.unique_tag_to_local_id('tag:remote,2000-01-01:objectId=12:objectType=Status', 'Status')).to eq nil
+      expect(OStatus::TagManager.instance.unique_tag_to_local_id('tag:remote,2000-01-01:objectId=12:objectType=Status', 'Status')).to be_nil
     end
 
     it 'returns nil if it is not expected type' do
-      expect(OStatus::TagManager.instance.unique_tag_to_local_id('tag:cb6e6126.ngrok.io,2000-01-01:objectId=12:objectType=Block', 'Status')).to eq nil
+      expect(OStatus::TagManager.instance.unique_tag_to_local_id('tag:cb6e6126.ngrok.io,2000-01-01:objectId=12:objectType=Block', 'Status')).to be_nil
     end
 
     it 'returns nil if it does not have object ID' do
-      expect(OStatus::TagManager.instance.unique_tag_to_local_id('tag:cb6e6126.ngrok.io,2000-01-01:objectType=Status', 'Status')).to eq nil
+      expect(OStatus::TagManager.instance.unique_tag_to_local_id('tag:cb6e6126.ngrok.io,2000-01-01:objectType=Status', 'Status')).to be_nil
     end
   end
 

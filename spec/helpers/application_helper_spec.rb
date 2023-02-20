@@ -65,7 +65,7 @@ describe ApplicationHelper do
         expect(Setting).to receive(:registrations_mode).and_return('open')
       end
 
-      expect(helper.open_registrations?).to eq true
+      expect(helper.open_registrations?).to be true
     end
 
     it 'returns false when closed for registrations' do
@@ -73,7 +73,7 @@ describe ApplicationHelper do
         expect(Setting).to receive(:registrations_mode).and_return('none')
       end
 
-      expect(helper.open_registrations?).to eq false
+      expect(helper.open_registrations?).to be false
     end
   end
 
@@ -84,7 +84,7 @@ describe ApplicationHelper do
       end
 
       it 'does not show landing strip' do
-        expect(helper.show_landing_strip?).to eq false
+        expect(helper.show_landing_strip?).to be false
       end
     end
 
@@ -96,13 +96,13 @@ describe ApplicationHelper do
       it 'does not show landing strip on single user instance' do
         allow(helper).to receive(:single_user_mode?).and_return(true)
 
-        expect(helper.show_landing_strip?).to eq false
+        expect(helper.show_landing_strip?).to be false
       end
 
       it 'shows landing strip on multi user instance' do
         allow(helper).to receive(:single_user_mode?).and_return(false)
 
-        expect(helper.show_landing_strip?).to eq true
+        expect(helper.show_landing_strip?).to be true
       end
     end
   end

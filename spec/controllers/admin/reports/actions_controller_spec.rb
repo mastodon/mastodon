@@ -116,7 +116,7 @@ describe Admin::Reports::ActionsController do
 
         it 'marks the non-deleted as sensitive' do
           subject
-          expect(media_attached_status.reload.sensitive).to eq true
+          expect(media_attached_status.reload.sensitive).to be true
         end
       end
     end

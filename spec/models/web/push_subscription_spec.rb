@@ -39,7 +39,7 @@ RSpec.describe Web::PushSubscription, type: :model do
       let(:policy) { 'all' }
 
       it 'returns true' do
-        expect(subject.pushable?(notification)).to eq true
+        expect(subject.pushable?(notification)).to be true
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.describe Web::PushSubscription, type: :model do
       let(:policy) { 'none' }
 
       it 'returns false' do
-        expect(subject.pushable?(notification)).to eq false
+        expect(subject.pushable?(notification)).to be false
       end
     end
 
@@ -60,13 +60,13 @@ RSpec.describe Web::PushSubscription, type: :model do
         end
 
         it 'returns true' do
-          expect(subject.pushable?(notification)).to eq true
+          expect(subject.pushable?(notification)).to be true
         end
       end
 
       context 'and notification is not from someone you follow' do
         it 'returns false' do
-          expect(subject.pushable?(notification)).to eq false
+          expect(subject.pushable?(notification)).to be false
         end
       end
     end
@@ -80,13 +80,13 @@ RSpec.describe Web::PushSubscription, type: :model do
         end
 
         it 'returns true' do
-          expect(subject.pushable?(notification)).to eq true
+          expect(subject.pushable?(notification)).to be true
         end
       end
 
       context 'and notification is not from someone who follows you' do
         it 'returns false' do
-          expect(subject.pushable?(notification)).to eq false
+          expect(subject.pushable?(notification)).to be false
         end
       end
     end

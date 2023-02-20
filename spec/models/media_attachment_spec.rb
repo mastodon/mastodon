@@ -138,7 +138,7 @@ RSpec.describe MediaAttachment, type: :model do
     end
 
     it 'extracts thumbnail' do
-      expect(media.thumbnail.present?).to eq true
+      expect(media.thumbnail.present?).to be true
     end
 
     it 'extracts colors from thumbnail' do

@@ -74,7 +74,7 @@ RSpec.describe FetchResourceService, type: :service do
       context 'when content type is application/atom+xml' do
         let(:content_type) { 'application/atom+xml' }
 
-        it { is_expected.to eq nil }
+        it { is_expected.to be_nil }
       end
 
       context 'when content type is activity+json' do

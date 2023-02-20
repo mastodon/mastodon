@@ -545,49 +545,6 @@ RSpec/AnyInstance:
     - 'spec/workers/activitypub/delivery_worker_spec.rb'
     - 'spec/workers/web/push_notification_worker_spec.rb'
 
-# Offense count: 139
-# This cop supports unsafe autocorrection (--autocorrect-all).
-RSpec/BeEq:
-  Exclude:
-    - 'spec/controllers/admin/export_domain_allows_controller_spec.rb'
-    - 'spec/controllers/admin/reports/actions_controller_spec.rb'
-    - 'spec/controllers/admin/reports_controller_spec.rb'
-    - 'spec/controllers/admin/users/two_factor_authentications_controller_spec.rb'
-    - 'spec/controllers/api/v1/accounts/credentials_controller_spec.rb'
-    - 'spec/controllers/api/v1/bookmarks_controller_spec.rb'
-    - 'spec/controllers/api/v1/favourites_controller_spec.rb'
-    - 'spec/controllers/api/v2/filters/keywords_controller_spec.rb'
-    - 'spec/controllers/application_controller_spec.rb'
-    - 'spec/controllers/auth/registrations_controller_spec.rb'
-    - 'spec/controllers/statuses_cleanup_controller_spec.rb'
-    - 'spec/helpers/application_helper_spec.rb'
-    - 'spec/helpers/jsonld_helper_spec.rb'
-    - 'spec/lib/activitypub/activity/add_spec.rb'
-    - 'spec/lib/activitypub/activity/create_spec.rb'
-    - 'spec/lib/feed_manager_spec.rb'
-    - 'spec/lib/ostatus/tag_manager_spec.rb'
-    - 'spec/lib/tag_manager_spec.rb'
-    - 'spec/lib/user_settings_decorator_spec.rb'
-    - 'spec/models/account_domain_block_spec.rb'
-    - 'spec/models/account_spec.rb'
-    - 'spec/models/block_spec.rb'
-    - 'spec/models/domain_block_spec.rb'
-    - 'spec/models/favourite_spec.rb'
-    - 'spec/models/media_attachment_spec.rb'
-    - 'spec/models/user_spec.rb'
-    - 'spec/models/web/push_subscription_spec.rb'
-    - 'spec/services/activitypub/process_status_update_service_spec.rb'
-    - 'spec/services/fetch_oembed_service_spec.rb'
-    - 'spec/services/fetch_resource_service_spec.rb'
-    - 'spec/services/post_status_service_spec.rb'
-    - 'spec/services/precompute_feed_service_spec.rb'
-    - 'spec/services/resolve_account_service_spec.rb'
-    - 'spec/support/examples/lib/settings/scoped_settings.rb'
-    - 'spec/workers/domain_block_worker_spec.rb'
-    - 'spec/workers/domain_clear_media_worker_spec.rb'
-    - 'spec/workers/feed_insert_worker_spec.rb'
-    - 'spec/workers/regeneration_worker_spec.rb'
-
 # Offense count: 1
 RSpec/BeforeAfterAll:
   Exclude:

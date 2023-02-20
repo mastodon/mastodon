@@ -46,7 +46,7 @@ RSpec.describe User, type: :model do
     it 'cleans out empty string from languages' do
       user = Fabricate.build(:user, chosen_languages: [''])
       user.valid?
-      expect(user.chosen_languages).to eq nil
+      expect(user.chosen_languages).to be_nil
     end
   end
 

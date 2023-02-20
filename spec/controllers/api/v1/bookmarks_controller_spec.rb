@@ -70,7 +70,7 @@ RSpec.describe Api::V1::BookmarksController, type: :controller do
         it 'does not add pagination headers if not necessary' do
           get :index
 
-          expect(response.headers['Link']).to eq nil
+          expect(response.headers['Link']).to be_nil
         end
       end
     end

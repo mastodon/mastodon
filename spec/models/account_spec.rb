@@ -160,7 +160,7 @@ RSpec.describe Account, type: :model do
       it 'sets default avatar, header, avatar_remote_url, and header_remote_url' do
         expect(account.avatar_remote_url).to eq 'https://remote.test/invalid_avatar'
         expect(account.header_remote_url).to eq expectation.header_remote_url
-        expect(account.avatar_file_name).to  eq nil
+        expect(account.avatar_file_name).to  be_nil
         expect(account.header_file_name).to  eq expectation.header_file_name
       end
     end
@@ -259,11 +259,11 @@ RSpec.describe Account, type: :model do
       it 'is true when this account has favourited it' do
         Fabricate(:favourite, status: original_reblog, account: subject)
 
-        expect(subject.favourited?(original_status)).to eq true
+        expect(subject.favourited?(original_status)).to be true
       end
 
       it 'is false when this account has not favourited it' do
-        expect(subject.favourited?(original_status)).to eq false
+        expect(subject.favourited?(original_status)).to be false
       end
     end
 
@@ -271,11 +271,11 @@ RSpec.describe Account, type: :model do
       it 'is true when this account has favourited it' do
         Fabricate(:favourite, status: original_status, account: subject)
 
-        expect(subject.favourited?(original_status)).to eq true
+        expect(subject.favourited?(original_status)).to be true
       end
 
       it 'is false when this account has not favourited it' do
-        expect(subject.favourited?(original_status)).to eq false
+        expect(subject.favourited?(original_status)).to be false
       end
     end
   end
@@ -297,11 +297,11 @@ RSpec.describe Account, type: :model do
       it 'is true when this account has reblogged it' do
         Fabricate(:status, reblog: original_reblog, account: subject)
 
-        expect(subject.reblogged?(original_reblog)).to eq true
+        expect(subject.reblogged?(original_reblog)).to be true
       end
 
       it 'is false when this account has not reblogged it' do
-        expect(subject.reblogged?(original_reblog)).to eq false
+        expect(subject.reblogged?(original_reblog)).to be false
       end
     end
 
@@ -309,11 +309,11 @@ RSpec.describe Account, type: :model do
       it 'is true when this account has reblogged it' do
         Fabricate(:status, reblog: original_status, account: subject)
 
-        expect(subject.reblogged?(original_status)).to eq true
+        expect(subject.reblogged?(original_status)).to be true
       end
 
       it 'is false when this account has not reblogged it' do
-        expect(subject.reblogged?(original_status)).to eq false
+        expect(subject.reblogged?(original_status)).to be false
       end
     end
   end
@@ -958,7 +958,7 @@ RSpec.describe Account, type: :model do
     # Test disabled because test environment omits autogenerating keys for performance
     xit 'generates keys' do
       account = Account.create!(domain: nil, username: Faker::Internet.user_name(separators: ['_']))
-      expect(account.keypair.private?).to eq true
+      expect(account.keypair.private?).to be true
     end
   end
 
