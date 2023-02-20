@@ -5,6 +5,9 @@ on:
   pull_request_target:
     types: [synchronize]
 
+permissions:
+  pull-requests: write
+
 jobs:
   label-rebase-needed:
     runs-on: ubuntu-latest
