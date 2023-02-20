@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Web::PushSubscription, type: :model do
+  subject { described_class.new(data: data) }
+
   let(:account) { Fabricate(:account) }
 
   let(:policy) { 'all' }
@@ -19,8 +21,6 @@ RSpec.describe Web::PushSubscription, type: :model do
     }
   end
 
-  subject { described_class.new(data: data) }
-
   describe '#pushable?' do
     let(:notification_type) { :mention }
     let(:notification) { Fabricate(:notification, account: account, type: notification_type) }
@@ -29,7 +29,7 @@ RSpec.describe Web::PushSubscription, type: :model do
       context "when notification is a #{type}" do
         let(:notification_type) { type }
 
-        it "returns boolean corresponding to alert setting" do
+        it 'returns boolean corresponding to alert setting' do
           expect(subject.pushable?(notification)).to eq data[:alerts][type]
         end
       end

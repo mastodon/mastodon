@@ -45,7 +45,7 @@ describe OStatus::TagManager do
 
       it 'returns the unique tag for status' do
         expect(target.object_type).to eq :comment
-        is_expected.to eq target.uri
+        expect(subject).to eq target.uri
       end
     end
 
@@ -54,7 +54,7 @@ describe OStatus::TagManager do
 
       it 'returns the unique tag for status' do
         expect(target.object_type).to eq :note
-        is_expected.to eq target.uri
+        expect(subject).to eq target.uri
       end
     end
 
@@ -63,7 +63,7 @@ describe OStatus::TagManager do
 
       it 'returns the URL for account' do
         expect(target.object_type).to eq :person
-        is_expected.to eq 'https://cb6e6126.ngrok.io/users/alice'
+        expect(subject).to eq 'https://cb6e6126.ngrok.io/users/alice'
       end
     end
   end

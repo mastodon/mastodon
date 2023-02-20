@@ -78,14 +78,14 @@ class Account < ApplicationRecord
   include DomainMaterializable
   include AccountMerging
 
-  enum protocol: [:ostatus, :activitypub]
-  enum suspension_origin: [:local, :remote], _prefix: true
+  enum protocol: { ostatus: 0, activitypub: 1 }
+  enum suspension_origin: { local: 0, remote: 1 }, _prefix: true
 
   validates :username, presence: true
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
 
-  # Remote user validations
-  validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { !local? && will_save_change_to_username? }
+  # Remote user validations, also applies to internal actors
+  validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { (!local? || actor_type == 'Application') && will_save_change_to_username? }
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
@@ -313,9 +313,7 @@ class Account < ApplicationRecord
 
         previous = old_fields.find { |item| item['value'] == attr[:value] }
 
-        if previous && previous['verified_at'].present?
-          attr[:verified_at] = previous['verified_at']
-        end
+        attr[:verified_at] = previous['verified_at'] if previous && previous['verified_at'].present?
 
         fields << attr
       end
@@ -461,13 +459,12 @@ class Account < ApplicationRecord
       return [] if text.blank?
 
       text.scan(MENTION_RE).map { |match| match.first.split('@', 2) }.uniq.filter_map do |(username, domain)|
-        domain = begin
-          if TagManager.instance.local_domain?(domain)
-            nil
-          else
-            TagManager.instance.normalize_domain(domain)
-          end
-        end
+        domain = if TagManager.instance.local_domain?(domain)
+                   nil
+                 else
+                   TagManager.instance.normalize_domain(domain)
+                 end
+
         EntityCache.instance.mention(username, domain)
       end
     end

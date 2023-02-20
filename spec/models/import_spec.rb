@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Import, type: :model do
-  let (:account) { Fabricate(:account) }
-  let (:type) { 'following' }
-  let (:data) { attachment_fixture('imports.txt') }
+  let(:account) { Fabricate(:account) }
+  let(:type) { 'following' }
+  let(:data) { attachment_fixture('imports.txt') }
 
   describe 'validations' do
     it 'has a valid parameters' do

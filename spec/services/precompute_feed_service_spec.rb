@@ -7,6 +7,7 @@ RSpec.describe PrecomputeFeedService, type: :service do
 
   describe 'call' do
     let(:account) { Fabricate(:account) }
+
     it 'fills a user timeline with statuses' do
       account = Fabricate(:account)
       status = Fabricate(:status, account: account)

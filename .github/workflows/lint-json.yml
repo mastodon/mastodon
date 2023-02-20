@@ -6,17 +6,21 @@ on:
     paths:
       - 'package.json'
       - 'yarn.lock'
+      - '.nvmrc'
       - '.prettier*'
       - '**/*.json'
       - '.github/workflows/lint-json.yml'
+      - '!app/javascript/mastodon/locales/*.json'
 
   pull_request:
     paths:
       - 'package.json'
       - 'yarn.lock'
+      - '.nvmrc'
       - '.prettier*'
       - '**/*.json'
       - '.github/workflows/lint-json.yml'
+      - '!app/javascript/mastodon/locales/*.json'
 
 jobs:
   lint:
@@ -30,6 +34,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: yarn
+          node-version-file: '.nvmrc'
 
       - name: Install all yarn packages
         run: yarn --frozen-lockfile

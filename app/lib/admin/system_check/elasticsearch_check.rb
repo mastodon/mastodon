@@ -30,11 +30,14 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
 
   def running_version
     @running_version ||= begin
-      Chewy.client.info['version']['minimum_wire_compatibility_version'] ||
-        Chewy.client.info['version']['number']
+      Chewy.client.info['version']['number']
     rescue Faraday::ConnectionFailed
       nil
     end
+  end
+
+  def compatible_wire_version
+    Chewy.client.info['version']['minimum_wire_compatibility_version']
   end
 
   def required_version
@@ -43,6 +46,8 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
 
   def compatible_version?
     return false if running_version.nil?
-    Gem::Version.new(running_version) >= Gem::Version.new(required_version)
+
+    Gem::Version.new(running_version) >= Gem::Version.new(required_version) ||
+      Gem::Version.new(compatible_wire_version) >= Gem::Version.new(required_version)
   end
 end

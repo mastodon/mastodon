@@ -29,16 +29,16 @@ et:
       edit:
         title: Avalduse muutmine
       form:
-        error: Oih! Kontrollige oma vormi võimalikest vigadest
+        error: Oih! Kontrolli vormi, ehk on mõni viga sees
       help:
-        native_redirect_uri: Kasutage %{native_redirect_uri} kohalikeks testideks
+        native_redirect_uri: Kasuta %{native_redirect_uri} kohalikeks testideks
         redirect_uri: Kasuta ühte rida iga URI jaoks
         scopes: Eralda ulatused tühikutega. Jäta tühjaks, et kasutada vaikimisi ulatusi.
       index:
         application: Rakendus
         callback_url: Ümbersuunamise URL
         delete: Kustuta
-        empty: Teil pole rakendusi.
+        empty: Sul pole rakendusi.
         name: Nimi
         new: Uus rakendus
         scopes: Ulatused
@@ -60,7 +60,7 @@ et:
       error:
         title: Ilmnes viga
       new:
-        prompt_html: "%{client_name} soovib luba kontole juurdepääsuks. See on kolmanda osapoole rakendus. <strong>Kui pole usaldusväärne, siis ei tohiks seda lubada.</strong>"
+        prompt_html: "%{client_name} soovib luba kontole juurdepääsuks. See on kolmanda osapoole rakendus. <strong>Kui see pole usaldusväärne, siis ei tohiks seda lubada.</strong>"
         review_permissions: Lubade ülevaade
         title: Autoriseerimine vajalik
       show:
@@ -82,7 +82,7 @@ et:
       messages:
         access_denied: Ressursi omanik või autoriseerimisserver lükkas taotluse tagasi.
         credential_flow_not_configured: Resource Owner Password Credentials vool ebaõnnestus, kuna Doorkeeper.configure.resource_owner_from_credentials ei ole seadistatud.
-        invalid_client: Kliendi autentimine ebaõnnestus, kuna tundmatu klient, puudulik autentimine või mitte toetatud autentimismeetod.
+        invalid_client: Kliendi autentimine ebaõnnestus. Põhjus kas tundmatu klient, puudulik autentimine või toetamata autentimismeetod.
         invalid_grant: Antud autoriseerimisluba on vale, aegunud, tagasi võetud, ei kattu kasutatud ümbersuunamise URLid või oli antud teisele kliendile.
         invalid_redirect_uri: Antud ümbersuunamise URL ei ole õige.
         invalid_request:
@@ -122,16 +122,16 @@ et:
         admin/accounts: Kontode haldus
         admin/all: Kõik haldusfunktsioonid
         admin/reports: Raportite haldus
-        all: Kõik
+        all: Täielik ligipääs Su Mastodoni kontole
         blocks: Keelud
         bookmarks: Järjehoidjad
         conversations: Vestlused
         crypto: Otspunktkrüpteerimine
         favourites: Lemmikud
         filters: Filtrid
-        follow: Seosed
+        follow: Jälgitavad, Vaigistatud ja Blokeeritud
         follows: Jälgimised
-        lists: Nimistud
+        lists: Nimekirjad
         media: Lisatud meedia
         mutes: Vaigistused
         notifications: Teavitused
@@ -154,7 +154,7 @@ et:
       admin:read:domain_blocks: loe kõigi domeenide blokeeringute tundlikku infot
       admin:read:email_domain_blocks: loe kõigi e-posti blokeeringute tundlikku infot
       admin:read:ip_blocks: loe kõigi IP-blokeeringute tundlikku infot
-      admin:read:reports: lugeda privaatset informatsiooni kõikide teavituste ja teavitatud kasutajate kohta
+      admin:read:reports: lugeda privaatset infot kõikide teavituste ja teavitatud kasutajate kohta
       admin:write: muuta kõiki andmeid serveril
       admin:write:accounts: teostada moderaatori tegevusi kontodel
       admin:write:canonical_email_blocks: modereeri kanoonilisi e-posti blokeeringuid
@@ -171,17 +171,17 @@ et:
       read:blocks: näha su blokeeringuid
       read:bookmarks: näha järjehoidjaid
       read:favourites: näha Teie lemmikuid
-      read:filters: näha Teie filtreid
-      read:follows: näha Teie jälgimisi
-      read:lists: näha Teie nimekirju
-      read:mutes: näha Teie vaigistusi
-      read:notifications: näha Teie teateid
-      read:reports: näha Teie teavitusi
-      read:search: otsida Teie nimel
+      read:filters: näha su filtreid
+      read:follows: näha su jälgimisi
+      read:lists: näha su nimekirju
+      read:mutes: näha su vaigistusi
+      read:notifications: näha teateid
+      read:reports: näha teavitusi
+      read:search: otsida sinu nimel
       read:statuses: näha kõiki postitusi
       write: muuta kogu konto andmeid
       write:accounts: muuta profiili
-      write:blocks: blokeerida kontosid ja domeene
+      write:blocks: kontode ja domeenide blokeerimine
       write:bookmarks: lisada postitusele järjehoidja
       write:conversations: vaigista ja kustuta vestlused
       write:favourites: lisada postitusi lemmikuks

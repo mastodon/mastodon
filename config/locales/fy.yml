@@ -1,7 +1,7 @@
 ---
 fy:
   about:
-    about_mastodon_html: Mastodon is in sosjaal netwurk dat gebrûkt makket fan iepen webprotokollen en frije software. It is krekt lykas e-mail desintralisearre!
+    about_mastodon_html: Mastodon is in sosjaal netwurk dat gebrûk makket fan iepen webprotokollen en frije software. It is krekt lykas desintralisearre e-mail!
     contact_missing: Net ynsteld
     contact_unavailable: Net fan tapassing
     hosted_on: Mastodon op %{domain}
@@ -441,6 +441,7 @@ fy:
         private_comment_description_html: 'Om jo te helpen byhâlden wêr’t de ymportearre blokkaden wei komme, wurde de ymportearre blokkaden mei de folgjende priveeopmerking oanmakke: <q>%{comment}</q>'
         private_comment_template: Ymportearre fan %{source} op %{date}
         title: Domeinblokkaden ymportearje
+      invalid_domain_block: 'Ien of mear domeinblokkaden binne oerslein, fanwegen de folgjende flater(s): %{error}'
       new:
         title: Domeinblokkaden ymportearje
       no_file: Gjin bestân selektearre
@@ -575,9 +576,10 @@ fy:
         mark_as_sensitive_description_html: De media yn de rapportearre berjochten wurde markearre as gefoelich en der wurdt in oertrêding registrearre om takomstige oertrêdingen fan itselde account flugger ôfhannelje te kinnen.
         other_description_html: Besjoch mear opsjes foar it kontrolearjen fan it gedrach fan en de kommunikaasje mei it rapportearre account.
         resolve_description_html: Der wurdt tsjin it rapportearre account gjin maatregel nommen, gjin oertrêding registrearre en de rapportaazje wurdt markearre as oplost.
-        silence_description_html: It profyl sil allinnich sichtber wêze foar dyjinge dy’t it al folgje of it hânmjittich opsykje, wêrtroch it berik earnstich beheind wurdt. Kin altyd weromdraaid wurde.
-        suspend_description_html: It profyl en alle accountgegevens wurde earst net tagonklik makke, oant dizze úteinlik definityf fuortsmiten wurde. It is net mear mooglik om ynteraksje te hawwen mei de account. Dit kin binnen 30 dagen weromdraaid wurde.
+        silence_description_html: De account sil allinnich sichtber wêze foar dyjinge dy’t it al folgje of it hânmjittich opsykje, wêrtroch it berik earnstich beheind wurdt. Kin altyd weromdraaid wurde. Dit slút alle rapportaazjes oer dizze account.
+        suspend_description_html: De account en alle ynhâld sil net tagonklik wêze en úteinlik fuortsmiten wurde, en ynteraksje hjirmei sil net mooglik wêze. Binnen 30 dagen werom te draaien. Dit slút alle rapportaazjes oer dizze account.
       actions_description_html: Beslis hokker maatregel nommen wurde moat om dizze rapportaazje op te lossen. Wannear’t jo in (straf)maatregel tsjin it rapportearre account nimme, kriget de account in e-mailmelding, behalve wannear’t de <strong>spam</strong>-kategory keazen is.
+      actions_description_remote_html: Beslút hokker aksje nommen wurde moat om dizze rapportaazje ôf te hanneljen. Dit hat allinnich ynfloed op hoe’t <strong>jo</strong> server kommunisearret mei dizze eksterne account en omgiet mei de ynhâld.
       add_to_report: Mear oan de rapportaazje tafoegje
       are_you_sure: Binne jo wis?
       assign_to_self: Oan my tawize
@@ -588,6 +590,7 @@ fy:
       comment:
         none: Gjin
       comment_description_html: 'Om mear ynformaasje te jaan, skreau %{name}:'
+      confirm_action: Moderaasjemaatregelen tsjin %{acct} befêstigje
       created_at: Rapportearre op
       delete_and_resolve: Berjocht fuortsmite
       forwarded: Trochstjoerd
@@ -604,6 +607,7 @@ fy:
         placeholder: Beskriuw hokker maatregels nommen binne of oare relatearre opmerkingen…
         title: Opmerkingen
       notes_description_html: Besjoch en lit opmerkingen efter foar oare moderatoaren en foar jo takomstige sels
+      processed_msg: 'Rapprtaazje #%{id} mei sukses ferwurke'
       quick_actions_description_html: 'Nim in flugge maatregel of skow nei ûnder om de rapportearre ynhâld te besjen:'
       remote_user_placeholder: de eksterne brûker fan %{instance}
       reopen: Rapport opnij iepenje
@@ -616,9 +620,28 @@ fy:
       status: Steat
       statuses: Rapportearre ynhâld
       statuses_description_html: De problematyske ynhâld wurdt oan it rapportearre account meidield
+      summary:
+        action_preambles:
+          delete_html: 'Jo stean op it punt om inkelde berjochten fan <strong>@%{acct}</strong> <strong>fuort te smiten</strong>. Dit sil:'
+          mark_as_sensitive_html: 'Jo stean op it punt om inkelde berjochten fan <strong>@%{acct}</strong> as <strong>gefoelich</strong> te <strong>markearjen</strong>. Dit sil:'
+          silence_html: 'Jo stean op it punt de account fan <strong>@%{acct}</strong> te <strong>beheinen</strong>. Dit sil:'
+          suspend_html: 'Jo stean op it punt de account fan <strong>@%{acct}</strong> te <strong>beskoatteljen</strong>. Dit sil:'
+        actions:
+          delete_html: De problematyske berjochten fuortsmite
+          mark_as_sensitive_html: De media fan de problematyske berjochten as gefoelich markearje
+          silence_html: "<strong>@%{acct}</strong> earnstich beheine, troch it profyl ende ynhâld allinnich sichtber te meitsjen foar de minsken dy’t harren al folgje of hantmjittich it profyl opsykje"
+          suspend_html: "<strong>@%{acct}</strong> blokkearje, sadat it profyl en de ynhâld net mear tagonklik is en it net mooglik is om ynteraksje dêr mei te hawwen"
+        close_report: 'Rapportaazje #%{id} as oplost markearje'
+        close_reports_html: "<strong>Alle</strong> meldingen tsjin <strong>@%{acct}</strong> as oplost markearje"
+        delete_data_html: It profyl en de ynhâld fan <strong>@%{acct}</strong> wurde nei 30 dagen fan no ôf fuortsmiten, útsein as de account yn de tuskentiid net mear blokkearre wurdt
+        preview_preamble_html: "<strong>@%{acct}</strong> sil in warskôging ûntfange mei de folgjende ynhâld:"
+        record_strike_html: In ban tsjin <strong>@%{acct}</strong> ynstelle, om jo te helpen by takomstige skeiningen fan dizze acount te eskalearjen
+        send_email_html: Stjoer <strong>@%{acct}</strong> in warskôgings-e-mailberjocht
+        warning_placeholder: Ekstra opsjonele reden foar de moderaasje-aksje.
       target_origin: Orizjineel fan rapportearre account
       title: Rapportaazjes
       unassign: Net langer tawize
+      unknown_action_msg: 'Unbekende aksje: %{action}'
       unresolved: Net oplost
       updated_at: Bywurke
       view_profile: Profyl besjen
@@ -713,6 +736,8 @@ fy:
         preamble: It toanen fan ynteressante ynhâld is fan essinsjeel belang foar it oan board heljen fan nije brûkers dy’t mooglik net ien fan Mastodon kinne. Bepaal hoe’t ferskate funksjes foar it ûntdekken fan ynhâld en brûkers op jo server wurkje.
         profile_directory: Profylmap
         public_timelines: Iepenbiere tiidlinen
+        publish_discovered_servers: Untdekte servers publisearje
+        publish_statistics: Statistiken publisearje
         title: Untdekke
         trends: Trends
       domain_blocks:
@@ -940,6 +965,8 @@ fy:
   auth:
     apply_for_account: Account oanfreegje
     change_password: Wachtwurd
+    confirmations:
+      wrong_email_hint: As it e-mailadres net korrekt is, kinne jo dat wizigje yn de accountynstellingen.
     delete_account: Account fuortsmite
     delete_account_html: Wannear’t jo jo account graach fuortsmite wolle, kinne jo dat <a href="%{path}">hjir dwaan</a>. Wy freegje jo dêr om in befêstiging.
     description:
@@ -1367,6 +1394,9 @@ fy:
       unrecognized_emoji: is gjin besteande emoji-reaksje
   relationships:
     activity: Accountaktiviteit
+    confirm_follow_selected_followers: Binne jo wis dat jo de selektearre folgers folgje wolle?
+    confirm_remove_selected_followers: Binne jo wis dat jo de selektearre folgers net mear folgje wolle?
+    confirm_remove_selected_follows: Binne jo wis dat jo de selektearre folge accounts net mear folgje wolle?
     dormant: Slommerjend
     follow_selected_followers: Selektearre folgers folgje
     followers: Folgers

@@ -289,8 +289,6 @@ module Mastodon
     # determines this method to be too complex while there's no way to make it
     # less "complex" without introducing extra methods (which actually will
     # make things _more_ complex).
-    #
-    # rubocop: disable Metrics/AbcSize
     def update_column_in_batches(table_name, column, value)
       if transaction_open?
         raise 'update_column_in_batches can not be run inside a transaction, ' \
@@ -573,7 +571,7 @@ module Mastodon
             o.conname as name,
             o.confdeltype as on_delete
           from pg_constraint o
-          left join pg_class f on f.oid = o.confrelid 
+          left join pg_class f on f.oid = o.confrelid
           left join pg_class c on c.oid = o.conrelid
           left join pg_class m on m.oid = o.conrelid
           where o.contype = 'f'

@@ -26,7 +26,7 @@ RSpec.describe Admin::AccountModerationNotesController, type: :controller do
       let(:params) { { account_moderation_note: { target_account_id: target_account.id, content: '' } } }
 
       it 'falls to create a note' do
-        expect { subject }.not_to change { AccountModerationNote.count }
+        expect { subject }.to_not change { AccountModerationNote.count }
         expect(subject).to render_template 'admin/accounts/show'
       end
     end

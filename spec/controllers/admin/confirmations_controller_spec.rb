@@ -55,7 +55,7 @@ RSpec.describe Admin::ConfirmationsController, type: :controller do
       it 'does not resend confirmation mail' do
         expect(subject).to redirect_to admin_accounts_path
         expect(flash[:error]).to eq I18n.t('admin.accounts.resend_confirmation.already_confirmed')
-        expect(UserMailer).not_to have_received(:confirmation_instructions)
+        expect(UserMailer).to_not have_received(:confirmation_instructions)
       end
     end
   end

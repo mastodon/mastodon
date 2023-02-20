@@ -18,8 +18,8 @@ fo:
           disable: Forða brúkaranum at brúka teirra kontu, men lat vera við at strika ella fjala teirra innihald.
           none: Brúka hetta at senda eina ávaring til brúkaran, uttan at íverkseta nakra aðra atgerð.
           sensitive: Flagga øll framtíðar miðlaviðfesti hjá brúkaranum sum viðkvom.
-          silence: Forða brúkaranum at posta alment, fjal teirra postar og fráboðanir frá fólki, sum ikki fylgja teimum.
-          suspend: Forða alt samskifti frá og til hesa kontuna og strika innihaldið hjá henni. Kann angrast innan 30 dagar.
+          silence: Forða brúkaranum at posta alment, fjal teirra postar og fráboðanir frá fólki, sum ikki fylgja teimum. Lukkar allar rapporteringar um hesa kontuna.
+          suspend: Forða alt samskifti frá og til hesa kontuna og strika innihaldið hjá henni. Kann angrast innan 30 dagar. Lukkar allar rapporteringar um hesa kontuna.
         warning_preset_id: Valfrítt. Tú kanst enn leggja serskildan tekst afturat undanstillingini
       announcement:
         all_day: Tá hetta er valt, verða einans dagfestingarnar í tíðarbilinum vístar
@@ -74,6 +74,7 @@ fo:
           hide: Fjal filtreraða innihaldið fullkomiliga, ber seg at sum at tað ikki fanst
           warn: Fjal filtreraða innihaldið aftan fyri eina ávaring, sum nevnir heitið á filtrinum
       form_admin_settings:
+        activity_api_enabled: Tal av lokalt útgivnum postum, virknum brúkarum og nýggjum skrásetingum býtt vikuliga
         backups_retention_period: Varðveit gjørd brúkarasøvn í ásetta talið av døgum.
         bootstrap_timeline_accounts: Hesar kontur verða festar ovast á listanum yvir brúkarar, sum tey nýggju verða mælt til at fylgja.
         closed_registrations_message: Víst tá stongt er fyri tilmeldingum
@@ -81,6 +82,7 @@ fo:
         custom_css: Tú kanst seta títt egna snið upp í net-útgávuni av Mastodon.
         mascot: Skúgvar til viks myndprýðingina í framkomna vev-markamótinum.
         media_cache_retention_period: Miðlafílur, sum eru tiknar niður, verða strikaðar eftir ásetta talið av døgum, tá hetta er sett til eitt positivt virði, og takast niður umaftur eftir ynski.
+        peers_api_enabled: Ein listi við navnaøkjum, sum hesin ambætarin er komin framat í fediversinum. Ongar dátur eru tiknar við her um tú er sameind/ur við ein givnan ambætara, einans at tín ambætari veit um hann. Hetta verður brúkt av tænastum, sum gera hagtøl um sameining yvirhøvur.
         profile_directory: Vangaskráin listar allar brúkarar, sum hava valt at kunna uppdagast.
         require_invite_text: Tá tilmeldingar krevja serskilda góðkenning, set so "Hví vil tú vera við?" tekstateigin til at vera kravdan heldur enn valfrían
         site_contact_email: Hvussu fólk kunnu røkka teg við løgfrøðisligum og brúks-fyrispurningum.
@@ -89,11 +91,13 @@ fo:
         site_short_description: Ein stutt lýsing at eyðmerkja ambætaran hjá tær. Hvør rekur hann og hvønn er hann til?
         site_terms: Brúka tín egna privatlívspolitikk ella lat vera blankt fyri at brúka tann sjálvsetta. Kann skrivast við Markdown syntaksi.
         site_title: Hvussu fólk kunnu vísa til ambætaran hjá tær útyvir at brúka navnaøkið.
+        status_page_url: Slóð til eina síðu, har ið fólk kunnu síggja støðuna á hesum ambætaranum í sambandi við streymslit
         theme: Uppsetingareyðkenni, sum vitjandi, ið ikki eru ritaði inn, og nýggir brúkarar síggja.
         thumbnail: Ein mynd í lutfallinum 2:1, sum verður víst saman við ambætaraupplýsingunum hjá tær.
         timeline_preview: Vitjandi, sum eru ritaði út, fara at kunna blaða ígjøgnum nýggjastu almennu postarnar, sum eru tøkir á ambætaranum.
         trendable_by_default: Loyp uppum serskilda eftirkannan av tilfari, sum er vælumtókt. Einstakir lutir kunnu framvegis strikast frá listum við vælumtóktum tilfari seinni.
         trends: Listar við vælumtóktum tilfari vísa, hvørjir postar, frámerki og tíðindasøgur hava framburð á tínum ambætara.
+        trends_as_landing_page: Vís vitjandi og brúkarum, sum ikki eru innritaðir, rák í staðin fyri eina lýsing av ambætaranum. Krevur at rák eru virkin.
       form_challenge:
         current_password: Tú ert á veg til eitt trygt øki
       imports:
@@ -229,6 +233,7 @@ fo:
           hide: Fjal fullkomiliga
           warn: Fjal við eini ávaring
       form_admin_settings:
+        activity_api_enabled: Útgev samantald hagtøl um brúkaravirksemi í API'num
         backups_retention_period: Hvussu leingi verða brúkarasøvn goymd
         bootstrap_timeline_accounts: Mæl altíð nýggjum brúkarum at fylgja hesar kontur
         closed_registrations_message: Serskild boð, tá tað ikki er møguligt at tilmelda seg
@@ -236,6 +241,7 @@ fo:
         custom_css: Serskilt CSS
         mascot: Serskildur maskottur (arvur)
         media_cache_retention_period: Tíðarskeið, har miðlagoymslur verða varðveittar
+        peers_api_enabled: Kunnger lista við uppdagaðum ambætarum í API'num
         profile_directory: Ger vangaskrá virkna
         registrations_mode: Hvør kann tilmelda seg
         require_invite_text: Krev eina orsøk at luttaka
@@ -247,11 +253,13 @@ fo:
         site_short_description: Ambætaralýsing
         site_terms: Privatlívspolitikkur
         site_title: Ambætaranavn
+        status_page_url: Slóð til støðusíðu
         theme: Sjálvvalt uppsetingareyðkenni
         thumbnail: Ambætarasmámynd
         timeline_preview: Loyv teimum, sum ikki eru ritaði inn, atgongd til almennar tíðarlinjur
         trendable_by_default: Loyv vælumtóktum tilfari uttan at viðgera tað fyrst
         trends: Loyv ráki
+        trends_as_landing_page: Brúka rák sum lendingarsíðu
       interactions:
         must_be_follower: Blokera fráboðanum frá teimum, sum ikki fylgja tær
         must_be_following: Blokera fráboðanum frá teimum, tú ikki fylgir

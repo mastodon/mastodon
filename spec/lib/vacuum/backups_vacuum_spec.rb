@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Vacuum::BackupsVacuum do
-  let(:retention_period) { 7.days }
-
   subject { described_class.new(retention_period) }
+
+  let(:retention_period) { 7.days }
 
   describe '#perform' do
     let!(:expired_backup) { Fabricate(:backup, created_at: (retention_period + 1.day).ago) }

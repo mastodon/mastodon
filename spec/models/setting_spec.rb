@@ -38,7 +38,7 @@ RSpec.describe Setting, type: :model do
       let(:cache_value)       { 'cache-value' }
 
       it 'calls not RailsSettings::Base#[]' do
-        expect(RailsSettings::Base).not_to receive(:[]).with(key)
+        expect(RailsSettings::Base).to_not receive(:[]).with(key)
         described_class[key]
       end
 
@@ -104,7 +104,7 @@ RSpec.describe Setting, type: :model do
           ActiveSupport::Notifications.subscribed callback, 'sql.active_record' do
             described_class[key]
           end
-          expect(callback).not_to have_received(:call)
+          expect(callback).to_not have_received(:call)
         end
 
         it 'returns the cached value' do
@@ -127,7 +127,7 @@ RSpec.describe Setting, type: :model do
     let(:records)          { [original_setting] }
 
     it 'returns a Hash' do
-      expect(described_class.all_as_records).to be_kind_of Hash
+      expect(described_class.all_as_records).to be_a Hash
     end
 
     context 'records includes Setting with var as the key' do
@@ -146,7 +146,7 @@ RSpec.describe Setting, type: :model do
         it 'includes Setting with value of default_value' do
           setting = described_class.all_as_records[key]
 
-          expect(setting).to be_kind_of Setting
+          expect(setting).to be_a Setting
           expect(setting).to have_attributes(var: key)
           expect(setting).to have_attributes(value: 'default_value')
         end
@@ -163,17 +163,17 @@ RSpec.describe Setting, type: :model do
   end
 
   describe '.default_settings' do
+    subject { described_class.default_settings }
+
     before do
       allow(RailsSettings::Default).to receive(:enabled?).and_return(enabled)
     end
-
-    subject { described_class.default_settings }
 
     context 'RailsSettings::Default.enabled? is false' do
       let(:enabled) { false }
 
       it 'returns {}' do
-        is_expected.to eq({})
+        expect(subject).to eq({})
       end
     end
 
@@ -181,7 +181,7 @@ RSpec.describe Setting, type: :model do
       let(:enabled) { true }
 
       it 'returns instance of RailsSettings::Default' do
-        is_expected.to be_kind_of RailsSettings::Default
+        expect(subject).to be_a RailsSettings::Default
       end
     end
   end

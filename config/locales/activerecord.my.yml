@@ -1,1 +1,55 @@
+---
 my:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: နောက်ဆုံးတင်သွင်းချိန်
+        options: ရွေးချယ်မှူများ
+      user:
+        agreement: ဝန်ဆောင်မှု သဘောတူညီချက်
+        email: အီးမေးလ်လိပ်စာ
+        locale: ဒေသဆိုင်ရာ
+        password: စကားဝှက်
+      user/account:
+        username: အသုံးပြုသူအမည်
+      user/invite_request:
+        text: အကြောင်းပြချက်
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: တွင် အက္ခရာစာလုံး၊ ဂဏန်းနံပါတ်နှင့်underscores သာပါရမည်
+              reserved: သည် အသုံးပြုပြီးဖြစ်သည်
+        admin/webhook:
+          attributes:
+            url:
+              invalid: သည် မှန်ကန်သော URL မဟုတ်ပါ
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: သည် မှန်ကန်သော URL မဟုတ်ပါ
+        import:
+          attributes:
+            data:
+              malformed: သည် ပုံမှန်မဟုတ်ပါ
+        status:
+          attributes:
+            reblog:
+              taken: ပို့စ်တည်ရှိနှင့်ပြီးဖြစ်သည်
+        user:
+          attributes:
+            email:
+              blocked: တွင် ခွင့်မပြုထားသော အီးမေးလ်ထောက်ပံ့သူပါဝင်နေသည်။
+              unreachable: သည် တည်ရှိပုံ မပေါ်ပါ
+            role_id:
+              elevated: သင့်လက်ရှိအခန်းကဏ္ဍထက်ပို၍ မမြှင့်တင်နိုင်ပါ
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: အခြေခံအခန်းကဏ္ဍအတွက် လုံခြုံမှုမရှိသော ခွင့်ပြုချက်များပါဝင်နေသည်
+              elevated: သင့်လက်ရှိအခန်းကဏ္ဍမပိုင်ဆိုင်သော ခွင့်ပြုချက်များမပါဝင်ပါ
+              own_role: သင့်လက်ရှိအခန်းကဏ္ဍဖြင့် ပြောင်းလဲ၍မရနိုင်ပါ
+            position:
+              elevated: သင့်လက်ရှိအခန်းကဏ္ဍထက်ပို၍ မမြှင့်တင်နိုင်ပါ
+              own_role: သင့်လက်ရှိအခန်းကဏ္ဍဖြင့် ပြောင်းလဲ၍မရနိုင်ပါ

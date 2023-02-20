@@ -195,10 +195,16 @@ class User < ApplicationRecord
 
     super
 
-    if new_user && approved?
-      prepare_new_user!
-    elsif new_user
-      notify_staff_about_pending_account!
+    if new_user
+      # Avoid extremely unlikely race condition when approving and confirming
+      # the user at the same time
+      reload unless approved?
+
+      if approved?
+        prepare_new_user!
+      else
+        notify_staff_about_pending_account!
+      end
     end
   end
 
@@ -209,7 +215,13 @@ class User < ApplicationRecord
     skip_confirmation!
     save!
 
-    prepare_new_user! if new_user && approved?
+    if new_user
+      # Avoid extremely unlikely race condition when approving and confirming
+      # the user at the same time
+      reload unless approved?
+
+      prepare_new_user! if approved?
+    end
   end
 
   def update_sign_in!(new_sign_in: false)
@@ -253,14 +265,18 @@ class User < ApplicationRecord
   end
 
   def inactive_message
-    !approved? ? :pending : super
+    approved? ? super : :pending
   end
 
   def approve!
     return if approved?
 
     update!(approved: true)
-    prepare_new_user!
+
+    # Avoid extremely unlikely race condition when approving and confirming
+    # the user at the same time
+    reload unless confirmed?
+    prepare_new_user! if confirmed?
   end
 
   def otp_enabled?
