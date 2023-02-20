@@ -54,6 +54,7 @@ class Poll < ApplicationRecord
 
   def final?
     return false unless expired?
+
     local? || fetched_after_expiration?
   end
 
@@ -117,6 +118,7 @@ class Poll < ApplicationRecord
 
   def fetched_after_expiration?
     return false if last_fetched_at.nil? || expires_at.nil?
+
     last_fetched_at >= expires_at
   end
 
