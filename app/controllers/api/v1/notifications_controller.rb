@@ -24,7 +24,7 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def dismiss
-    current_account.notifications.find_by!(id: params[:id]).destroy!
+    current_account.notifications.find(params[:id]).destroy!
     render_empty
   end
 
