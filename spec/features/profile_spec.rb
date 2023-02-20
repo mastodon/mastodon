@@ -17,7 +17,7 @@ describe 'Profile' do
   it 'I can view Annes public account' do
     visit account_path('alice')
 
-    is_expected.to have_title("alice (@alice@#{local_domain})")
+    expect(subject).to have_title("alice (@alice@#{local_domain})")
   end
 
   it 'I can change my account' do
@@ -28,6 +28,6 @@ describe 'Profile' do
 
     first('button[type=submit]').click
 
-    is_expected.to have_content 'Changes successfully saved!'
+    expect(subject).to have_content 'Changes successfully saved!'
   end
 end

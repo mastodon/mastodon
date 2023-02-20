@@ -14,13 +14,13 @@ describe AccountInteractions do
     context 'account with Follow' do
       it 'returns { target_account_id => true }' do
         Fabricate(:follow, account: account, target_account: target_account)
-        is_expected.to eq(target_account_id => { reblogs: true, notify: false, languages: nil })
+        expect(subject).to eq(target_account_id => { reblogs: true, notify: false, languages: nil })
       end
     end
 
     context 'account without Follow' do
       it 'returns {}' do
-        is_expected.to eq({})
+        expect(subject).to eq({})
       end
     end
   end
@@ -31,13 +31,13 @@ describe AccountInteractions do
     context 'account with Follow' do
       it 'returns { target_account_id => true }' do
         Fabricate(:follow, account: target_account, target_account: account)
-        is_expected.to eq(target_account_id => true)
+        expect(subject).to eq(target_account_id => true)
       end
     end
 
     context 'account without Follow' do
       it 'returns {}' do
-        is_expected.to eq({})
+        expect(subject).to eq({})
       end
     end
   end
@@ -48,13 +48,13 @@ describe AccountInteractions do
     context 'account with Block' do
       it 'returns { target_account_id => true }' do
         Fabricate(:block, account: account, target_account: target_account)
-        is_expected.to eq(target_account_id => true)
+        expect(subject).to eq(target_account_id => true)
       end
     end
 
     context 'account without Block' do
       it 'returns {}' do
-        is_expected.to eq({})
+        expect(subject).to eq({})
       end
     end
   end
@@ -71,7 +71,7 @@ describe AccountInteractions do
         let(:hide) { true }
 
         it 'returns { target_account_id => { notifications: true } }' do
-          is_expected.to eq(target_account_id => { notifications: true })
+          expect(subject).to eq(target_account_id => { notifications: true })
         end
       end
 
@@ -79,14 +79,14 @@ describe AccountInteractions do
         let(:hide) { false }
 
         it 'returns { target_account_id => { notifications: false } }' do
-          is_expected.to eq(target_account_id => { notifications: false })
+          expect(subject).to eq(target_account_id => { notifications: false })
         end
       end
     end
 
     context 'account without Mute' do
       it 'returns {}' do
-        is_expected.to eq({})
+        expect(subject).to eq({})
       end
     end
   end
@@ -231,7 +231,7 @@ describe AccountInteractions do
 
     it 'creates and returns ConversationMute' do
       expect do
-        is_expected.to be_a ConversationMute
+        expect(subject).to be_a ConversationMute
       end.to change { account.conversation_mutes.count }.by 1
     end
   end
@@ -243,7 +243,7 @@ describe AccountInteractions do
 
     it 'creates and returns AccountDomainBlock' do
       expect do
-        is_expected.to be_a AccountDomainBlock
+        expect(subject).to be_a AccountDomainBlock
       end.to change { account.domain_blocks.count }.by 1
     end
   end
@@ -254,14 +254,14 @@ describe AccountInteractions do
     context 'following target_account' do
       it 'returns destroyed Follow' do
         account.active_relationships.create(target_account: target_account)
-        is_expected.to be_a Follow
+        expect(subject).to be_a Follow
         expect(subject).to be_destroyed
       end
     end
 
     context 'not following target_account' do
       it 'returns nil' do
-        is_expected.to be_nil
+        expect(subject).to be_nil
       end
     end
   end
@@ -272,14 +272,14 @@ describe AccountInteractions do
     context 'blocking target_account' do
       it 'returns destroyed Block' do
         account.block_relationships.create(target_account: target_account)
-        is_expected.to be_a Block
+        expect(subject).to be_a Block
         expect(subject).to be_destroyed
       end
     end
 
     context 'not blocking target_account' do
       it 'returns nil' do
-        is_expected.to be_nil
+        expect(subject).to be_nil
       end
     end
   end
@@ -290,14 +290,14 @@ describe AccountInteractions do
     context 'muting target_account' do
       it 'returns destroyed Mute' do
         account.mute_relationships.create(target_account: target_account)
-        is_expected.to be_a Mute
+        expect(subject).to be_a Mute
         expect(subject).to be_destroyed
       end
     end
 
     context 'not muting target_account' do
       it 'returns nil' do
-        is_expected.to be_nil
+        expect(subject).to be_nil
       end
     end
   end
@@ -310,14 +310,14 @@ describe AccountInteractions do
     context 'muting the conversation' do
       it 'returns destroyed ConversationMute' do
         account.conversation_mutes.create(conversation: conversation)
-        is_expected.to be_a ConversationMute
+        expect(subject).to be_a ConversationMute
         expect(subject).to be_destroyed
       end
     end
 
     context 'not muting the conversation' do
       it 'returns nil' do
-        is_expected.to be_nil
+        expect(subject).to be_nil
       end
     end
   end
@@ -331,14 +331,14 @@ describe AccountInteractions do
       it 'returns destroyed AccountDomainBlock' do
         account_domain_block = Fabricate(:account_domain_block, domain: domain)
         account.domain_blocks << account_domain_block
-        is_expected.to be_a AccountDomainBlock
+        expect(subject).to be_a AccountDomainBlock
         expect(subject).to be_destroyed
       end
     end
 
     context 'unblocking the domain' do
       it 'returns nil' do
-        is_expected.to be_nil
+        expect(subject).to be_nil
       end
     end
   end
@@ -349,13 +349,13 @@ describe AccountInteractions do
     context 'following target_account' do
       it 'returns true' do
         account.active_relationships.create(target_account: target_account)
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
     context 'not following target_account' do
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
@@ -366,13 +366,13 @@ describe AccountInteractions do
     context 'followed by target_account' do
       it 'returns true' do
         account.passive_relationships.create(account: target_account)
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
     context 'not followed by target_account' do
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
@@ -383,13 +383,13 @@ describe AccountInteractions do
     context 'blocking target_account' do
       it 'returns true' do
         account.block_relationships.create(target_account: target_account)
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
     context 'not blocking target_account' do
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
@@ -403,13 +403,13 @@ describe AccountInteractions do
       it 'returns true' do
         account_domain_block = Fabricate(:account_domain_block, domain: domain)
         account.domain_blocks << account_domain_block
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
     context 'not blocking the domain' do
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
@@ -421,13 +421,13 @@ describe AccountInteractions do
       it 'returns true' do
         mute = Fabricate(:mute, account: account, target_account: target_account)
         account.mute_relationships << mute
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
     context 'not muting target_account' do
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
@@ -440,13 +440,13 @@ describe AccountInteractions do
     context 'muting the conversation' do
       it 'returns true' do
         account.conversation_mutes.create(conversation: conversation)
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
     context 'not muting the conversation' do
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
@@ -463,7 +463,7 @@ describe AccountInteractions do
       let(:hide) { true }
 
       it 'returns true' do
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
@@ -471,7 +471,7 @@ describe AccountInteractions do
       let(:hide) { false }
 
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
@@ -482,13 +482,13 @@ describe AccountInteractions do
     context 'requested by target_account' do
       it 'returns true' do
         Fabricate(:follow_request, account: account, target_account: target_account)
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
     context 'not requested by target_account' do
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
@@ -502,7 +502,7 @@ describe AccountInteractions do
       let(:favourites) { [Fabricate(:favourite, account: account)] }
 
       it 'returns true' do
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
@@ -510,7 +510,7 @@ describe AccountInteractions do
       let(:favourites) { [] }
 
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
@@ -524,7 +524,7 @@ describe AccountInteractions do
       let(:reblogs) { [Fabricate(:status, account: account)] }
 
       it 'returns true' do
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
@@ -532,7 +532,7 @@ describe AccountInteractions do
       let(:reblogs) { [] }
 
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
@@ -545,13 +545,13 @@ describe AccountInteractions do
     context 'pinned' do
       it 'returns true' do
         Fabricate(:status_pin, account: account, status: status)
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
     context 'not pinned' do
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end

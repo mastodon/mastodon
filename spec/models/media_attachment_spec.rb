@@ -10,7 +10,7 @@ RSpec.describe MediaAttachment, type: :model do
       let(:remote_url) { '' }
 
       it 'returns true' do
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
@@ -18,7 +18,7 @@ RSpec.describe MediaAttachment, type: :model do
       let(:remote_url) { 'remote_url' }
 
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
@@ -35,7 +35,7 @@ RSpec.describe MediaAttachment, type: :model do
         let(:remote_url) { 'remote_url' }
 
         it 'returns true' do
-          is_expected.to be true
+          expect(subject).to be true
         end
       end
     end
@@ -47,7 +47,7 @@ RSpec.describe MediaAttachment, type: :model do
         let(:remote_url) { '' }
 
         it 'returns false' do
-          is_expected.to be false
+          expect(subject).to be false
         end
       end
 
@@ -55,7 +55,7 @@ RSpec.describe MediaAttachment, type: :model do
         let(:remote_url) { 'remote_url' }
 
         it 'returns true' do
-          is_expected.to be false
+          expect(subject).to be false
         end
       end
     end

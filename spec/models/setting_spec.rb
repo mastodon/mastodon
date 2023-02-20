@@ -173,7 +173,7 @@ RSpec.describe Setting, type: :model do
       let(:enabled) { false }
 
       it 'returns {}' do
-        is_expected.to eq({})
+        expect(subject).to eq({})
       end
     end
 
@@ -181,7 +181,7 @@ RSpec.describe Setting, type: :model do
       let(:enabled) { true }
 
       it 'returns instance of RailsSettings::Default' do
-        is_expected.to be_a RailsSettings::Default
+        expect(subject).to be_a RailsSettings::Default
       end
     end
   end

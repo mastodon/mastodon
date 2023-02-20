@@ -21,7 +21,7 @@ describe 'Log in' do
     fill_in 'user_password', with: password
     click_on I18n.t('auth.login')
 
-    is_expected.to have_css('div.app-holder')
+    expect(subject).to have_css('div.app-holder')
   end
 
   it 'A invalid email and password user is not able to log in' do
@@ -29,7 +29,7 @@ describe 'Log in' do
     fill_in 'user_password', with: 'invalid_password'
     click_on I18n.t('auth.login')
 
-    is_expected.to have_css('.flash-message', text: failure_message('invalid'))
+    expect(subject).to have_css('.flash-message', text: failure_message('invalid'))
   end
 
   context do
@@ -40,7 +40,7 @@ describe 'Log in' do
       fill_in 'user_password', with: password
       click_on I18n.t('auth.login')
 
-      is_expected.to have_css('div.admin-wrapper')
+      expect(subject).to have_css('div.admin-wrapper')
     end
   end
 

@@ -83,7 +83,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
         let(:target_role) { UserRole.find_by(name: 'Admin') }
 
         it 'fails to memorialize account' do
-          is_expected.to have_http_status 403
+          expect(subject).to have_http_status 403
           expect(account.reload).to_not be_memorial
         end
       end
@@ -92,7 +92,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
         let(:target_role) { UserRole.find_by(name: 'Moderator') }
 
         it 'succeeds in memorializing account' do
-          is_expected.to redirect_to admin_account_path(account.id)
+          expect(subject).to redirect_to admin_account_path(account.id)
           expect(account.reload).to be_memorial
         end
       end
@@ -105,7 +105,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
         let(:target_role) { UserRole.find_by(name: 'Admin') }
 
         it 'fails to memorialize account' do
-          is_expected.to have_http_status 403
+          expect(subject).to have_http_status 403
           expect(account.reload).to_not be_memorial
         end
       end
@@ -114,7 +114,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
         let(:target_role) { UserRole.find_by(name: 'Moderator') }
 
         it 'fails to memorialize account' do
-          is_expected.to have_http_status 403
+          expect(subject).to have_http_status 403
           expect(account.reload).to_not be_memorial
         end
       end
@@ -132,7 +132,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
       let(:role) { UserRole.find_by(name: 'Admin') }
 
       it 'succeeds in enabling account' do
-        is_expected.to redirect_to admin_account_path(account.id)
+        expect(subject).to redirect_to admin_account_path(account.id)
         expect(user.reload).to_not be_disabled
       end
     end
@@ -141,7 +141,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
       let(:role) { UserRole.everyone }
 
       it 'fails to enable account' do
-        is_expected.to have_http_status 403
+        expect(subject).to have_http_status 403
         expect(user.reload).to be_disabled
       end
     end
@@ -162,12 +162,12 @@ RSpec.describe Admin::AccountsController, type: :controller do
       let(:role) { UserRole.find_by(name: 'Admin') }
 
       it 'succeeds in approving account' do
-        is_expected.to redirect_to admin_accounts_path(status: 'pending')
+        expect(subject).to redirect_to admin_accounts_path(status: 'pending')
         expect(user.reload).to be_approved
       end
 
       it 'logs action' do
-        is_expected.to have_http_status 302
+        expect(subject).to have_http_status 302
 
         log_item = Admin::ActionLog.last
 
@@ -182,7 +182,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
       let(:role) { UserRole.everyone }
 
       it 'fails to approve account' do
-        is_expected.to have_http_status 403
+        expect(subject).to have_http_status 403
         expect(user.reload).to_not be_approved
       end
     end
@@ -203,11 +203,11 @@ RSpec.describe Admin::AccountsController, type: :controller do
       let(:role) { UserRole.find_by(name: 'Admin') }
 
       it 'succeeds in rejecting account' do
-        is_expected.to redirect_to admin_accounts_path(status: 'pending')
+        expect(subject).to redirect_to admin_accounts_path(status: 'pending')
       end
 
       it 'logs action' do
-        is_expected.to have_http_status 302
+        expect(subject).to have_http_status 302
 
         log_item = Admin::ActionLog.last
 
@@ -222,7 +222,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
       let(:role) { UserRole.everyone }
 
       it 'fails to reject account' do
-        is_expected.to have_http_status 403
+        expect(subject).to have_http_status 403
         expect(user.reload).to_not be_approved
       end
     end
@@ -242,7 +242,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
       let(:role) { UserRole.find_by(name: 'Admin') }
 
       it 'succeeds in redownloading' do
-        is_expected.to redirect_to admin_account_path(account.id)
+        expect(subject).to redirect_to admin_account_path(account.id)
       end
     end
 
@@ -250,7 +250,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
       let(:role) { UserRole.everyone }
 
       it 'fails to redownload' do
-        is_expected.to have_http_status 403
+        expect(subject).to have_http_status 403
       end
     end
   end
@@ -265,7 +265,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
       let(:role) { UserRole.find_by(name: 'Admin') }
 
       it 'succeeds in removing avatar' do
-        is_expected.to redirect_to admin_account_path(account.id)
+        expect(subject).to redirect_to admin_account_path(account.id)
       end
     end
 
@@ -273,7 +273,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
       let(:role) { UserRole.everyone }
 
       it 'fails to remove avatar' do
-        is_expected.to have_http_status 403
+        expect(subject).to have_http_status 403
       end
     end
   end

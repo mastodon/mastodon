@@ -7,7 +7,7 @@ describe RelationshipsController do
 
   shared_examples 'authenticate user' do
     it 'redirects when not signed in' do
-      is_expected.to redirect_to '/auth/sign_in'
+      expect(subject).to redirect_to '/auth/sign_in'
     end
   end
 
