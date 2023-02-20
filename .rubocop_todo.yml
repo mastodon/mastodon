@@ -3954,19 +3954,6 @@ Style/HashAsLastArrayItem:
     - 'app/services/notify_service.rb'
     - 'db/migrate/20181024224956_migrate_account_conversations.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, EnforcedShorthandSyntax, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
-# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
-# SupportedShorthandSyntax: always, never, either, consistent
-Style/HashSyntax:
-  Exclude:
-    - 'app/helpers/application_helper.rb'
-    - 'app/models/media_attachment.rb'
-    - 'lib/terrapin/multi_pipe_extensions.rb'
-    - 'spec/controllers/admin/reports/actions_controller_spec.rb'
-    - 'spec/controllers/admin/statuses_controller_spec.rb'
-    - 'spec/controllers/concerns/signature_verification_spec.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/HashTransformValues:
   Exclude:
