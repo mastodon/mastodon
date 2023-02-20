@@ -895,7 +895,7 @@ RSpec.describe Account, type: :model do
 
     describe 'partitioned' do
       it 'returns a relation of accounts partitioned by domain' do
-        matches = ['a', 'b', 'a', 'b']
+        matches = %w(a b a b)
         matches.size.times.to_a.shuffle.each do |index|
           matches[index] = Fabricate(:account, domain: matches[index])
         end

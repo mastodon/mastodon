@@ -50,9 +50,9 @@ RSpec.describe DeleteAccountService, type: :service do
 
     it 'deletes associated target notifications' do
       expect { subject }.to change {
-        [
-          'poll', 'favourite', 'status', 'mention', 'follow'
-        ].map { |type| Notification.where(type: type).count }
+        %w(
+          poll favourite status mention follow
+        ).map { |type| Notification.where(type: type).count }
       }.from([1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0])
     end
   end

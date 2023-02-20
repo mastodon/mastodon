@@ -29,7 +29,7 @@ RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service d
     end
 
     it 'sets expected tags as pinned tags' do
-      expect(actor.featured_tags.map(&:display_name)).to match_array ['Foo', 'bar', 'baZ']
+      expect(actor.featured_tags.map(&:display_name)).to match_array %w(Foo bar baZ)
     end
   end
 

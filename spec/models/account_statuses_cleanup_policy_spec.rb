@@ -262,7 +262,7 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
     let!(:direct_message)    { Fabricate(:status, created_at: 1.year.ago, account: account, visibility: :direct) }
     let!(:self_faved)        { Fabricate(:status, created_at: 1.year.ago, account: account) }
     let!(:self_bookmarked)   { Fabricate(:status, created_at: 1.year.ago, account: account) }
-    let!(:status_with_poll)  { Fabricate(:status, created_at: 1.year.ago, account: account, poll_attributes: { account: account, voters_count: 0, options: ['a', 'b'], expires_in: 2.days }) }
+    let!(:status_with_poll)  { Fabricate(:status, created_at: 1.year.ago, account: account, poll_attributes: { account: account, voters_count: 0, options: %w(a b), expires_in: 2.days }) }
     let!(:status_with_media) { Fabricate(:status, created_at: 1.year.ago, account: account) }
     let!(:faved4)            { Fabricate(:status, created_at: 1.year.ago, account: account) }
     let!(:faved5)            { Fabricate(:status, created_at: 1.year.ago, account: account) }
