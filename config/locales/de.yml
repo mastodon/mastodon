@@ -1289,7 +1289,7 @@ de:
       already_moved: ist das gleiche Konto, zu dem du bereits umgezogen bist
       missing_also_known_as: referenziert nicht zurück auf dieses Konto
       move_to_self: darf nicht das aktuelles Konto sein
-      not_found: kann nicht gefunden werden
+      not_found: konnte nicht gefunden werden
       on_cooldown: Die Abklingzeit läuft gerade
     followers_count: Anzahl der Follower zum Zeitpunkt der Migration des Accounts
     incoming_migrations: Von einem anderen Konto umziehen
@@ -1327,7 +1327,7 @@ de:
         subject: "%{name} registrierte sich"
     favourite:
       body: 'Dein Beitrag wurde von %{name} favorisiert:'
-      subject: "%{name} hat deinen Beitrag favorisiert"
+      subject: "%{name} favorisierte deinen Beitrag"
       title: Neue Favorisierung
     follow:
       body: "%{name} folgt dir jetzt!"
@@ -1336,12 +1336,12 @@ de:
     follow_request:
       action: Verwalte Folge-Anfragen
       body: "%{name} möchte dir folgen"
-      subject: 'Ausstehender Follower: %{name}'
-      title: Neue Folge-Anfrage
+      subject: 'Ausstehende Folgeanfragen: %{name}'
+      title: Neue Folgeanfrage
     mention:
       action: Antworten
-      body: '%{name} hat dich erwähnt:'
-      subject: '%{name} hat dich erwähnt'
+      body: 'Du wurdest von %{name} erwähnt:'
+      subject: '%{name} erwähnte dich'
       title: Neue Erwähnung
     poll:
       subject: Eine Umfrage von %{name} ist beendet
@@ -1363,9 +1363,9 @@ de:
         format: "%n %u"
         units:
           billion: Mrd
-          million: M
+          million: Mio
           quadrillion: Q
-          thousand: K
+          thousand: Tsd
           trillion: T
   otp_authentication:
     code_hint: Gib den Code ein, den deine 2FA- bzw. TOTP-App generiert hat, um den Vorgang zu bestätigen
@@ -1383,12 +1383,12 @@ de:
     truncate: "&hellip;"
   polls:
     errors:
-      already_voted: Du hast bereits für diese Umfrage abgestimmt
+      already_voted: Du hast an dieser Umfrage bereits teilgenommen
       duplicate_options: enthält doppelte Einträge
-      duration_too_long: ist zu weit in der Zukunft
+      duration_too_long: liegt zu weit in der Zukunft
       duration_too_short: ist zu früh
-      expired: Die Umfrage ist bereits vorbei
-      invalid_choice: Die gewählte Abstimmoption existiert nicht
+      expired: Diese Umfrage ist bereits beendet
+      invalid_choice: Diese Auswahl existiert nicht
       over_character_limit: kann nicht länger als jeweils %{max} Zeichen sein
       too_few_options: muss mindestens einen Eintrag haben
       too_many_options: kann nicht mehr als %{max} Einträge beinhalten
@@ -1443,7 +1443,7 @@ de:
       alipay: Alipay
       blackberry: BlackBerry
       chrome: Chrome
-      edge: Microsoft Edge
+      edge: Edge
       electron: Electron
       firefox: Firefox
       generic: Unbekannter Browser
@@ -1469,15 +1469,15 @@ de:
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       other: unbekanntes Betriebssystem
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     revoke: Widerrufen
-    revoke_success: Sitzung erfolgreich geschlossen
+    revoke_success: Sitzung erfolgreich widerrufen
     title: Sitzungen
-    view_authentication_history: Authentifizierungsverlauf deines Kontos anzeigen
+    view_authentication_history: Anmeldeverlauf deines Kontos anzeigen
   settings:
     account: Konto
     account_settings: Kontoeinstellungen
@@ -1485,14 +1485,14 @@ de:
     appearance: Design
     authorized_apps: Genehmigte Apps
     back: Zurück zu Mastodon
-    delete: Konto löschen
+    delete: Kontolöschung
     development: Entwicklung
     edit_profile: Profil bearbeiten
     export: Exportieren
     featured_tags: Empfohlene Hashtags
     import: Importieren
     import_and_export: Importieren und exportieren
-    migrate: Konto-Umzug
+    migrate: Kontoumzug
     notifications: Benachrichtigungen
     preferences: Einstellungen
     profile: Profil
@@ -1517,9 +1517,9 @@ de:
     content_warning: 'Inhaltswarnung: %{warning}'
     default_language: Wie die Sprache des Webinterface
     disallowed_hashtags:
-      one: 'enthält einen verbotenen Hashtag: %{tags}'
-      other: 'enthält verbotene Hashtags: %{tags}'
-    edited_at_html: Bearbeitet %{date}
+      one: 'enthält einen nicht-erlaubten Hashtag: %{tags}'
+      other: 'enthält nicht-erlaubte Hashtags: %{tags}'
+    edited_at_html: 'Bearbeitet: %{date}'
     errors:
       in_reply_not_found: Der Beitrag, auf den du antworten möchtest, scheint nicht zu existieren.
     open_in_web: Im Web öffnen
@@ -1542,7 +1542,7 @@ de:
     show_older: Ältere anzeigen
     show_thread: Thread anzeigen
     sign_in_to_participate: Melde dich an, um an der Unterhaltung teilzunehmen
-    title: '%{name}: "%{quote}"'
+    title: '%{name}: „%{quote}“'
     visibilities:
       direct: Direktnachricht
       private: Nur eigene Follower
@@ -1550,7 +1550,7 @@ de:
       public: Öffentlich
       public_long: Für alle sichtbar
       unlisted: Nicht gelistet
-      unlisted_long: Für alle sichtbar, aber in öffentlichen Timelines nicht aufgelistet
+      unlisted_long: Für alle sichtbar (mit Ausnahme von öffentlichen Timelines)
   statuses_cleanup:
     enabled: Automatisch alte Beiträge löschen
     enabled_hint: Löscht automatisch deine Beiträge, sobald sie die angegebene Altersgrenze erreicht haben, es sei denn, sie entsprechen einer der unten angegebenen Ausnahmen
@@ -1601,9 +1601,9 @@ de:
     mastodon-light: Mastodon (Hell)
   time:
     formats:
-      default: "%d.%m.%Y %H:%M"
+      default: "%d.%m.%Y um %H:%M Uhr"
       month: "%b %Y"
-      time: "%H:%M"
+      time: "%H:%M Uhr"
   two_factor_authentication:
     add: Hinzufügen
     disable: Zwei-Faktor-Authentisierung (2FA) deaktivieren
@@ -1672,14 +1672,14 @@ de:
         silence: Konto stummgeschaltet
         suspend: Konto gesperrt
     welcome:
-      edit_profile_action: Profil einrichten
+      edit_profile_action: Profil bearbeiten
       edit_profile_step: Du kannst dein Profil anpassen, indem du ein Profilbild hochlädst, deinen Anzeigenamen änderst und vieles mehr. Du kannst dich dafür entscheiden, neue Follower zu überprüfen, bevor sie dir folgen dürfen.
       explanation: Hier sind ein paar Tipps, um loszulegen
-      final_action: Fang an zu posten
+      final_action: Mit erstem Beitrag starten
       final_step: 'Fang jetzt an zu posten! Selbst ohne Follower werden deine öffentlichen Beiträge von anderen gesehen, zum Beispiel in der lokalen Timeline oder über die Hashtags. Möglicherweise möchtest du dich allen mit dem Hashtag #neuhier vorstellen.'
       full_handle: Dein vollständiger Profilname
       full_handle_hint: Dies ist, was du deinen Freunden sagen kannst, damit sie dich anschreiben oder dir von einem anderen Server folgen können.
-      subject: Willkommen bei Mastodon
+      subject: Willkommen bei Mastodon!
       title: Willkommen an Bord, %{name}!
   users:
     follow_limit_reached: Du kannst nicht mehr als %{limit} Leuten folgen
