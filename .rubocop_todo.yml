@@ -1871,22 +1871,6 @@ Rails/DuplicateAssociation:
     - 'app/serializers/activitypub/collection_serializer.rb'
     - 'app/serializers/activitypub/note_serializer.rb'
 
-# Offense count: 12
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/EnumHash:
-  Exclude:
-    - 'app/models/account.rb'
-    - 'app/models/custom_filter.rb'
-    - 'app/models/domain_block.rb'
-    - 'app/models/import.rb'
-    - 'app/models/list.rb'
-    - 'app/models/media_attachment.rb'
-    - 'app/models/preview_card.rb'
-    - 'app/models/relay.rb'
-    - 'app/models/status.rb'
-
 # Offense count: 76
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: slashes, arguments
