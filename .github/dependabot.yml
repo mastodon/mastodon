@@ -28,3 +28,18 @@ updates:
     open-pull-requests-limit: 99
     allow:
       - dependency-type: direct
+
+  - package-ecosystem: docker
+    directory: '/'
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 99
+    ignore:
+      - dependency-name: 'moritzheiber/ruby-jemalloc'
+        update-types:
+          # only suggest patch releases for ruby and needs to sync with .ruby-version
+          - 'version-update:semver-minor'
+      - dependency-name: 'node'
+        update-types:
+          # only node minor releases allowed unless .nvmrc major is changed
+          - 'version-update:semver-major'

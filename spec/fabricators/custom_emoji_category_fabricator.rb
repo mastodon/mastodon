@@ -1,3 +1,3 @@
 Fabricator(:custom_emoji_category) do
-  name "MyString"
+  name 'MyString'
 end

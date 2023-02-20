@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
   include ActionView::Helpers::TextHelper
 
+  subject { described_class.new }
+
   let!(:sender) { Fabricate(:account, domain: 'foo.bar', uri: 'https://foo.bar') }
   let!(:recipient) { Fabricate(:account) }
 
@@ -11,14 +13,12 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
   let(:note) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
-      id: "https://foo.bar/@foo/1234",
+      id: 'https://foo.bar/@foo/1234',
       type: 'Note',
       content: 'Lorem ipsum',
       attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
     }
   end
-
-  subject { described_class.new }
 
   before do
     stub_request(:get, 'https://foo.bar/watch?v=12345').to_return(status: 404, body: '')
@@ -46,7 +46,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
       let(:object) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
-          id: "https://foo.bar/@foo/1234",
+          id: 'https://foo.bar/@foo/1234',
           type: 'Video',
           name: 'Nyan Cat 10 hours remix',
           attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
@@ -54,13 +54,13 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
             {
               type: 'Link',
               mimeType: 'application/x-bittorrent',
-              href: "https://foo.bar/12345.torrent",
+              href: 'https://foo.bar/12345.torrent',
             },
 
             {
               type: 'Link',
               mimeType: 'text/html',
-              href: "https://foo.bar/watch?v=12345",
+              href: 'https://foo.bar/watch?v=12345',
             },
           ],
         }
@@ -70,8 +70,8 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
         status = sender.statuses.first
 
         expect(status).to_not be_nil
-        expect(status.url).to eq "https://foo.bar/watch?v=12345"
-        expect(strip_tags(status.text)).to eq "Nyan Cat 10 hours remixhttps://foo.bar/watch?v=12345"
+        expect(status.url).to eq 'https://foo.bar/watch?v=12345'
+        expect(strip_tags(status.text)).to eq 'Nyan Cat 10 hours remixhttps://foo.bar/watch?v=12345'
       end
     end
 
@@ -79,7 +79,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
       let(:object) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
-          id: "https://foo.bar/@foo/1234",
+          id: 'https://foo.bar/@foo/1234',
           type: 'Audio',
           name: 'Nyan Cat 10 hours remix',
           attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
@@ -87,13 +87,13 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
             {
               type: 'Link',
               mimeType: 'application/x-bittorrent',
-              href: "https://foo.bar/12345.torrent",
+              href: 'https://foo.bar/12345.torrent',
             },
 
             {
               type: 'Link',
               mimeType: 'text/html',
-              href: "https://foo.bar/watch?v=12345",
+              href: 'https://foo.bar/watch?v=12345',
             },
           ],
         }
@@ -103,8 +103,8 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
         status = sender.statuses.first
 
         expect(status).to_not be_nil
-        expect(status.url).to eq "https://foo.bar/watch?v=12345"
-        expect(strip_tags(status.text)).to eq "Nyan Cat 10 hours remixhttps://foo.bar/watch?v=12345"
+        expect(status.url).to eq 'https://foo.bar/watch?v=12345'
+        expect(strip_tags(status.text)).to eq 'Nyan Cat 10 hours remixhttps://foo.bar/watch?v=12345'
       end
     end
 
@@ -112,10 +112,10 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
       let(:object) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
-          id: "https://foo.bar/@foo/1234",
+          id: 'https://foo.bar/@foo/1234',
           type: 'Event',
           name: "Let's change the world",
-          attributedTo: ActivityPub::TagManager.instance.uri_for(sender)
+          attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
         }
       end
 
@@ -123,7 +123,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
         status = sender.statuses.first
 
         expect(status).to_not be_nil
-        expect(status.url).to eq "https://foo.bar/@foo/1234"
+        expect(status.url).to eq 'https://foo.bar/@foo/1234'
         expect(strip_tags(status.text)).to eq "Let's change the worldhttps://foo.bar/@foo/1234"
       end
     end
@@ -132,7 +132,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
       let(:note) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
-          id: "https://real.address/@foo/1234",
+          id: 'https://real.address/@foo/1234',
           type: 'Note',
           content: 'Lorem ipsum',
           attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
@@ -154,7 +154,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
       let(:object) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
-          id: "https://foo.bar/@foo/1234/create",
+          id: 'https://foo.bar/@foo/1234/create',
           type: 'Create',
           actor: ActivityPub::TagManager.instance.uri_for(sender),
           object: note,
@@ -174,11 +174,11 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
       let(:object) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
-          id: "https://foo.bar/@foo/1234/create",
+          id: 'https://foo.bar/@foo/1234/create',
           type: 'Create',
           actor: ActivityPub::TagManager.instance.uri_for(sender),
           object: {
-            id: "https://real.address/@foo/1234",
+            id: 'https://real.address/@foo/1234',
             type: 'Note',
             content: 'Lorem ipsum',
             attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
@@ -208,7 +208,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
         let(:object) do
           {
             '@context': 'https://www.w3.org/ns/activitystreams',
-            id: "https://foo.bar/@foo/1234/create",
+            id: 'https://foo.bar/@foo/1234/create',
             type: 'Create',
             actor: ActivityPub::TagManager.instance.uri_for(sender),
             object: note.merge(updated: '2021-09-08T22:39:25Z'),
@@ -233,7 +233,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
       let(:object) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
-          id: "https://foo.bar/@foo/1",
+          id: 'https://foo.bar/@foo/1',
           type: 'Note',
           content: 'Lorem ipsum',
           inReplyTo: 'https://foo.bar/@foo/2',
@@ -269,7 +269,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
       let(:object) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
-          id: "https://foo.bar/@foo/1",
+          id: 'https://foo.bar/@foo/1',
           type: 'Note',
           content: 'Lorem ipsum',
           replies: {
@@ -298,7 +298,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
               first: {
                 type: 'CollectionPage',
                 partOf: "https://foo.bar/@foo/#{i}/replies",
-                items: ["https://foo.bar/@foo/#{i+1}"],
+                items: ["https://foo.bar/@foo/#{i + 1}"],
               },
             },
             attributedTo: ActivityPub::TagManager.instance.uri_for(sender),

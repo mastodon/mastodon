@@ -5,21 +5,9 @@ def poll_option_json(name, votes)
 end
 
 RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
+  subject { described_class.new }
+
   let!(:status) { Fabricate(:status, text: 'Hello world', account: Fabricate(:account, domain: 'example.com')) }
-
-  let(:alice) { Fabricate(:account) }
-  let(:bob) { Fabricate(:account) }
-
-  let(:mentions) { [] }
-  let(:tags) { [] }
-  let(:media_attachments) { [] }
-
-  before do
-    mentions.each { |a| Fabricate(:mention, status: status, account: a) }
-    tags.each { |t| status.tags << t }
-    media_attachments.each { |m| status.media_attachments << m }
-  end
-
   let(:payload) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
@@ -34,10 +22,20 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       ],
     }
   end
-
   let(:json) { Oj.load(Oj.dump(payload)) }
 
-  subject { described_class.new }
+  let(:alice) { Fabricate(:account) }
+  let(:bob) { Fabricate(:account) }
+
+  let(:mentions) { [] }
+  let(:tags) { [] }
+  let(:media_attachments) { [] }
+
+  before do
+    mentions.each { |a| Fabricate(:mention, status: status, account: a) }
+    tags.each { |t| status.tags << t }
+    media_attachments.each { |m| status.media_attachments << m }
+  end
 
   describe '#call' do
     it 'updates text' do
@@ -104,20 +102,19 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
     end
 
     context 'when the status has not been explicitly edited and features a poll' do
-      let(:account)    { Fabricate(:account, domain: 'example.com') }
+      let(:account) { Fabricate(:account, domain: 'example.com') }
       let!(:expiration) { 10.days.from_now.utc }
       let!(:status) do
         Fabricate(:status,
-          text: 'Hello world',
-          account: account,
-          poll_attributes: {
-            options: %w(Foo Bar),
-            account: account,
-            multiple: false,
-            hide_totals: false,
-            expires_at: expiration
-          }
-        )
+                  text: 'Hello world',
+                  account: account,
+                  poll_attributes: {
+                    options: %w(Foo Bar),
+                    account: account,
+                    multiple: false,
+                    hide_totals: false,
+                    expires_at: expiration,
+                  })
       end
 
       let(:payload) do
@@ -156,20 +153,19 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
     end
 
     context 'when the status changes a poll despite being not explicitly marked as updated' do
-      let(:account)    { Fabricate(:account, domain: 'example.com') }
+      let(:account) { Fabricate(:account, domain: 'example.com') }
       let!(:expiration) { 10.days.from_now.utc }
       let!(:status) do
         Fabricate(:status,
-          text: 'Hello world',
-          account: account,
-          poll_attributes: {
-            options: %w(Foo Bar),
-            account: account,
-            multiple: false,
-            hide_totals: false,
-            expires_at: expiration
-          }
-        )
+                  text: 'Hello world',
+                  account: account,
+                  poll_attributes: {
+                    options: %w(Foo Bar),
+                    account: account,
+                    multiple: false,
+                    hide_totals: false,
+                    expires_at: expiration,
+                  })
       end
 
       let(:payload) do
@@ -216,11 +212,11 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       it 'does not create any edits' do
-        expect { subject.call(status, json) }.not_to change { status.reload.edits.pluck(&:id) }
+        expect { subject.call(status, json) }.to_not change { status.reload.edits.pluck(&:id) }
       end
 
       it 'does not update the text, spoiler_text or edited_at' do
-        expect { subject.call(status, json) }.not_to change { s = status.reload; [s.text, s.spoiler_text, s.edited_at] }
+        expect { subject.call(status, json) }.to_not change { s = status.reload; [s.text, s.spoiler_text, s.edited_at] }
       end
     end
 
@@ -344,7 +340,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
           updated: '2021-09-08T22:39:25Z',
           attachment: [
             { type: 'Image', mediaType: 'image/png', url: 'https://example.com/foo.png' },
-          ]
+          ],
         }
       end
 
@@ -376,7 +372,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
           updated: '2021-09-08T22:39:25Z',
           attachment: [
             { type: 'Image', mediaType: 'image/png', url: 'https://example.com/foo.png', name: 'A picture' },
-          ]
+          ],
         }
       end
 
@@ -414,7 +410,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       it 'removes poll' do
-        expect(status.reload.poll).to eq nil
+        expect(status.reload.poll).to be_nil
       end
 
       it 'records media change in edit' do

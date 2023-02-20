@@ -7,13 +7,13 @@ describe StatusLengthValidator do
     it 'does not add errors onto remote statuses' do
       status = double(local?: false)
       subject.validate(status)
-      expect(status).not_to receive(:errors)
+      expect(status).to_not receive(:errors)
     end
 
     it 'does not add errors onto local reblogs' do
       status = double(local?: false, reblog?: true)
       subject.validate(status)
-      expect(status).not_to receive(:errors)
+      expect(status).to_not receive(:errors)
     end
 
     it 'adds an error when content warning is over 500 characters' do

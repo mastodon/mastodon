@@ -15,7 +15,7 @@ describe Admin::BaseController, type: :controller do
     sign_in(Fabricate(:user))
     get :success
 
-    expect(response).to have_http_status(:forbidden)
+    expect(response).to have_http_status(403)
   end
 
   it 'renders admin layout as a moderator' do

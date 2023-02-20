@@ -22,7 +22,7 @@ RSpec.describe FollowLimitValidator, type: :validator do
       let(:_nil)    { true }
 
       it 'not calls errors.add' do
-        expect(errors).not_to have_received(:add).with(:base, any_args)
+        expect(errors).to_not have_received(:add).with(:base, any_args)
       end
     end
 
@@ -43,7 +43,7 @@ RSpec.describe FollowLimitValidator, type: :validator do
         let(:limit_reached) { false }
 
         it 'not calls errors.add' do
-          expect(errors).not_to have_received(:add).with(:base, any_args)
+          expect(errors).to_not have_received(:add).with(:base, any_args)
         end
       end
     end
