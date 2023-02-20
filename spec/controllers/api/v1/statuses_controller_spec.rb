@@ -195,7 +195,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
       end
 
       it 'removes the status' do
-        expect(Status.find_by(id: status.id)).to be nil
+        expect(Status.find_by(id: status.id)).to be_nil
       end
     end
 

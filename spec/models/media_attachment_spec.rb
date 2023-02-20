@@ -94,8 +94,8 @@ RSpec.describe MediaAttachment, type: :model do
     end
 
     it 'sets meta' do
-      expect(media.file.meta["original"]["width"]).to eq 128
-      expect(media.file.meta["original"]["height"]).to eq 128
+      expect(media.file.meta['original']['width']).to eq 128
+      expect(media.file.meta['original']['height']).to eq 128
     end
   end
 
@@ -118,9 +118,9 @@ RSpec.describe MediaAttachment, type: :model do
         end
 
         it 'sets meta' do
-          expect(media.file.meta["original"]["width"]).to eq fixture[:width]
-          expect(media.file.meta["original"]["height"]).to eq fixture[:height]
-          expect(media.file.meta["original"]["aspect"]).to eq fixture[:aspect]
+          expect(media.file.meta['original']['width']).to eq fixture[:width]
+          expect(media.file.meta['original']['height']).to eq fixture[:height]
+          expect(media.file.meta['original']['aspect']).to eq fixture[:aspect]
         end
       end
     end
@@ -154,12 +154,12 @@ RSpec.describe MediaAttachment, type: :model do
     let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture('attachment.jpg')) }
 
     it 'sets meta for different style' do
-      expect(media.file.meta["original"]["width"]).to eq 600
-      expect(media.file.meta["original"]["height"]).to eq 400
-      expect(media.file.meta["original"]["aspect"]).to eq 1.5
-      expect(media.file.meta["small"]["width"]).to eq 588
-      expect(media.file.meta["small"]["height"]).to eq 392
-      expect(media.file.meta["small"]["aspect"]).to eq 1.5
+      expect(media.file.meta['original']['width']).to eq 600
+      expect(media.file.meta['original']['height']).to eq 400
+      expect(media.file.meta['original']['aspect']).to eq 1.5
+      expect(media.file.meta['small']['width']).to eq 588
+      expect(media.file.meta['small']['height']).to eq 392
+      expect(media.file.meta['small']['aspect']).to eq 1.5
     end
 
     it 'gives the file a random name' do

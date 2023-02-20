@@ -14,7 +14,7 @@ zh-TW:
     instance_actor_flash: 這個帳號是一個用來代表此伺服器的虛擬執行者，而非真實使用者。它用途為聯邦宇宙且不應被停權。
     last_active: 上次活躍時間
     link_verified_on: 此連結的所有權已在 %{date} 檢查過
-    nothing_here: 暫時沒有內容可供顯示!
+    nothing_here: 暫時沒有內容可供顯示！
     pin_errors:
       following: 您只能推薦您正在跟隨的使用者。
     posts:
@@ -25,15 +25,15 @@ zh-TW:
       action: 執行動作
       title: 對 %{acct} 執行站務動作
     account_moderation_notes:
-      create: 記錄
-      created_msg: 已新增管理備忘!
-      destroyed_msg: 成功刪除管理備忘!
+      create: 新增站務記錄
+      created_msg: 已成功新增管理備註！
+      destroyed_msg: 已成功刪除管理備註！
     accounts:
       add_email_domain_block: 將電子郵件網域加入黑名單
       approve: 批准
-      approved_msg: 成功審核了%{username} 的新帳號申請
+      approved_msg: 成功審核了 %{username} 的新帳號申請
       are_you_sure: 您確定嗎?
-      avatar: 頭像
+      avatar: 大頭貼
       by_domain: 站點
       change_email:
         changed_msg: 電子郵件已成功變更！
@@ -71,7 +71,7 @@ zh-TW:
       followers: 跟隨者
       follows: 正在跟隨
       header: 開頭
-      inbox_url: 收件箱 (Inbox) URL
+      inbox_url: 收件匣 (Inbox) URL
       invite_request_text: 加入原因
       invited_by: 邀請者
       ip: IP 位址
@@ -93,10 +93,10 @@ zh-TW:
         silenced: 受限的
         suspended: 已停權
         title: 站務
-      moderation_notes: 管理備忘
+      moderation_notes: 站務備註
       most_recent_activity: 最近活動
       most_recent_ip: 最近 IP 位址
-      no_account_selected: 未選取任何帳號，因此未變更
+      no_account_selected: 因未選取任何帳號，所以什麼事都沒發生
       no_limits_imposed: 未受限制
       no_role_assigned: 未指派角色
       not_subscribed: 未訂閱
@@ -112,7 +112,7 @@ zh-TW:
       redownload: 重新整理個人檔案
       redownloaded_msg: 成功重新載入%{username} 的個人檔案頁面
       reject: 拒絕
-      rejected_msg: 成功拒絕了%{username} 的新帳號申請
+      rejected_msg: 成功婉拒了 %{username} 的新帳號申請
       remote_suspension_irreversible: 此帳號之資料已被不可逆地刪除。
       remote_suspension_reversible_hint_html: 這個帳號已於此伺服器被停權，所有資料將會於 %{date} 被刪除。在此之前，遠端伺服器可以完全回復此的帳號。如果您想即時刪除這個帳號的資料，您可以在下面進行操作。
       remove_avatar: 取消大頭貼
@@ -122,7 +122,7 @@ zh-TW:
       resend_confirmation:
         already_confirmed: 此使用者已被確認
         send: 重新發送驗證信
-        success: 驗證信發送成功!
+        success: 驗證信發送成功！
       reset: 重設
       reset_password: 重設密碼
       resubscribe: 重新訂閱
@@ -132,10 +132,10 @@ zh-TW:
       search_same_ip: 其他有同個 IP 的使用者
       security_measures:
         only_password: 僅使用密碼
-        password_and_2fa: 密碼及二重因素驗證
+        password_and_2fa: 密碼及兩階段驗證 (2FA)
       sensitive: 敏感内容
       sensitized: 已標記為敏感內容
-      shared_inbox_url: 共享收件箱網址
+      shared_inbox_url: 共享收件匣 URL
       show:
         created_reports: 建立檢舉
         targeted_reports: 由其他人檢舉
@@ -252,7 +252,7 @@ zh-TW:
         destroy_status_html: "%{name} 刪除了 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 恢復了對網域 %{target} 的發送"
         destroy_user_role_html: "%{name} 刪除了 %{target} 角色"
-        disable_2fa_user_html: "%{name} 停用了使用者 %{target} 的兩階段認證"
+        disable_2fa_user_html: "%{name} 停用了使用者 %{target} 的兩階段認證 (2FA) "
         disable_custom_emoji_html: "%{name} 停用了自訂表情符號 %{target}"
         disable_sign_in_token_auth_user_html: "%{name} 停用了 %{target} 之使用者電子郵件 token 驗證"
         disable_user_html: "%{name} 將使用者 %{target} 設定為禁止登入"
@@ -307,26 +307,26 @@ zh-TW:
     custom_emojis:
       assign_category: 指定分類
       by_domain: 站點
-      copied_msg: 成功將表情複製到本地
+      copied_msg: 成功建立 emoji 表情符號之本地備份
       copy: 複製
       copy_failed_msg: 無法將表情複製到本地
       create_new_category: 建立新分類
-      created_msg: 已新增表情符號!
+      created_msg: 已新增表情符號！
       delete: 刪除
-      destroyed_msg: 已刪除表情符號!
+      destroyed_msg: 已刪除表情符號！
       disable: 停用
       disabled: 已停用
-      disabled_msg: 已停用表情符號
+      disabled_msg: 已停用該表情符號
       emoji: 表情符號
       enable: 啟用
       enabled: 已啟用
-      enabled_msg: 已啟用表情符號
+      enabled_msg: 已啟用該表情符號
       image_hint: 檔案大小最大至 %{size} 之 PNG 或 GIF
       list: 列表
       listed: 已顯示
       new:
         title: 加入新的自訂表情符號
-      no_emoji_selected: 未選取任何 emoji，因此未變更
+      no_emoji_selected: 未選取任何 emoji，所以什麼事都沒發生
       not_permitted: 您無權執行此操作
       overwrite: 覆蓋
       shortcode: 短代碼
@@ -336,7 +336,7 @@ zh-TW:
       unlist: 不公開
       unlisted: 已隱藏
       update_failed_msg: 無法更新表情符號
-      updated_msg: 已更新表情符號!
+      updated_msg: 已更新表情符號！
       upload: 上傳新的表情符號
     dashboard:
       active_users: 活躍使用者
@@ -390,12 +390,12 @@ zh-TW:
           silence: 靜音
           suspend: 停權
         title: 新增封鎖站點
-      no_domain_block_selected: 因未選取項目，而未更改網域黑名單
+      no_domain_block_selected: 因未選取網域黑名單，所以什麼事都沒發生
       not_permitted: 您無權執行此操作
       obfuscate: 混淆網域名稱
       obfuscate_hint: 若啟用網域廣告列表限制，於列表部份混淆網域名稱
       private_comment: 私人留言
-      private_comment_hint: 請提供更多有關此站台限制的資訊以供版主作內部參考。
+      private_comment_hint: 請提供更多有關此站台限制的資訊以供管理員作內部參考。
       public_comment: 公開留言
       public_comment_hint: 如果您已經啟用站台限制列表的公告，請為一般大眾提供更多有關此站台限制的資訊。
       reject_media: 拒絕媒體檔案
@@ -418,7 +418,7 @@ zh-TW:
         create: 新增網域
         resolve: 解析網域
         title: 新增電子郵件黑名單項目
-      no_email_domain_block_selected: 因未選取項目，而未更改電子郵件網域黑名單
+      no_email_domain_block_selected: 因未選取電子郵件網域黑名單，所以什麼事都沒發生
       resolved_dns_records_hint_html: 網域名稱解析為以下 MX 網域，這些網域最終負責接收電子郵件。封鎖 MX 網域將會封鎖任何來自使用相同 MX 網域的電子郵件註冊，即便可見的域名是不同的也一樣。<strong>請注意，不要封鎖主要的電子郵件服務提供商。</strong>
       resolved_through_html: 透過 %{domain} 解析
       title: 電子郵件黑名單
@@ -439,7 +439,7 @@ zh-TW:
       no_file: 尚未選擇檔案
     follow_recommendations:
       description_html: |-
-        <strong>跟隨建議幫助新使用者們快速找到有趣的內容</strong>. 當使用者沒有與其他帳號有足夠多的互動以建立個人化跟隨建議時，這些帳號將會被推荐。這些帳號將基於某選定語言之高互動和高本地跟隨者數量帳號而
+        <strong>跟隨建議幫助新使用者們快速找到有趣的內容</strong>。當使用者沒有與其他帳號有足夠多的互動以建立個人化跟隨建議時，這些帳號將會被推薦。這些帳號將基於某選定語言之高互動和高本地跟隨者數量帳號而
         每日重新更新。
       language: 對於語言
       status: 狀態
@@ -532,7 +532,7 @@ zh-TW:
         '94670856': 3 年
       new:
         title: 建立新的 IP 規則
-      no_ip_block_selected: 因為沒有選擇任何 IP 規則，所以什麼事都沒發生
+      no_ip_block_selected: 因未選取任何 IP 規則，所以什麼事都沒發生
       title: IP 規則
     relationships:
       title: "%{acct} 的關係"
@@ -545,7 +545,7 @@ zh-TW:
       enable: 啟用
       enable_hint: 啟用後，您的伺服器將訂閱該中繼的所有公開文章，並將會此伺服器的公開文章發送給它。
       enabled: 已啟用
-      inbox_url: 中繼URL
+      inbox_url: 中繼 URL
       pending: 等待中繼站審核
       save_and_enable: 儲存並啟用
       setup: 設定中繼連結
@@ -553,8 +553,8 @@ zh-TW:
       status: 狀態
       title: 中繼
     report_notes:
-      created_msg: 檢舉記錄建立成功!
-      destroyed_msg: 檢舉記錄刪除成功!
+      created_msg: 檢舉備註建立成功！
+      destroyed_msg: 檢舉備註刪除成功！
     reports:
       account:
         notes:
@@ -573,7 +573,7 @@ zh-TW:
       add_to_report: 加入更多至報告
       are_you_sure: 您確定嗎?
       assign_to_self: 指派給自己
-      assigned: 指派負責人
+      assigned: 指派站務
       by_target_domain: 檢舉帳號之網域
       category: 分類
       category_description_html: 此帳號及/或被檢舉內容之原因會被引用在檢舉帳號通知中
@@ -590,13 +590,13 @@ zh-TW:
       mark_as_unresolved: 標記為「未解決」
       no_one_assigned: 沒有人
       notes:
-        create: 建立記錄
-        create_and_resolve: 建立記錄並標記為「已解決」
-        create_and_unresolve: 建立記錄並標記「未解決」
+        create: 新增備註
+        create_and_resolve: 新增備註並標記為「已解決」
+        create_and_unresolve: 新增備註並標記「未解決」
         delete: 刪除
         placeholder: 記錄已執行的動作，或其他相關的更新...
-        title: 註記
-      notes_description_html: 檢視及留下些給其他管理員和未來的自己的註記
+        title: 備註
+      notes_description_html: 檢視及留下些給其他管理員和未來的自己的備註
       processed_msg: '檢舉報告 #%{id} 已被成功處理'
       quick_actions_description_html: 採取一個快速行動，或者下捲以檢視檢舉內容：
       remote_user_placeholder: 來自 %{instance} 之遠端使用者
@@ -605,7 +605,7 @@ zh-TW:
       reported_account: 被檢舉使用者
       reported_by: 檢舉人
       resolved: 已解決
-      resolved_msg: 檢舉已處理!
+      resolved_msg: 檢舉報告已處理完成！
       skip_to_actions: 跳過行動
       status: 嘟文
       statuses: 被檢舉的內容
@@ -760,7 +760,7 @@ zh-TW:
       media:
         title: 媒體檔案
       metadata: 詮釋資料
-      no_status_selected: 因未選擇嘟文而未變更。
+      no_status_selected: 因未選取嘟文，所以什麼事都沒發生。
       open: 公開嘟文
       original_status: 原始嘟文
       reblogs: 轉嘟
@@ -782,7 +782,7 @@ zh-TW:
       appeal_pending: 申訴待審中
     system_checks:
       database_schema_check:
-        message_html: 有挂起的数据库迁移，请运行它们以确保应用程序按照预期运行。
+        message_html: 發現尚待處理的資料庫遷移 (database migration)。請執行它們以確保應用程式如期運行。
       elasticsearch_running_check:
         message_html: 無法連接 Elasticsearch。請檢查是否正在執行中，或者已關閉全文搜尋。
       elasticsearch_version_check:
@@ -807,9 +807,9 @@ zh-TW:
         description_html: 這些連結是正在被您伺服器上看到該嘟文之帳號大量分享。這些連結可以幫助您的使用者探索現在世界上正在發生的事情。除非您核准該發行者，連結將不被公開展示。您也可以核准或駁回個別連結。
         disallow: 不允許連結
         disallow_provider: 不允許發行者
-        no_link_selected: 未選取任何鏈結，因此未變更
+        no_link_selected: 因未選取任何鏈結，所以什麼事都沒發生
         publishers:
-          no_publisher_selected: 未選取任何發行者，因此未變更
+          no_publisher_selected: 因未選取任何發行者，所以什麼事都沒發生
         shared_by_over_week:
           other: 上週被 %{count} 名使用者分享
         title: 熱門連結
@@ -828,7 +828,7 @@ zh-TW:
         description_html: 這些是您伺服器上已知被正在大量分享及加入最愛之嘟文。這些嘟文能幫助您伺服器上舊雨新知發現更多帳號來跟隨。除非您核准該作者且作者允許他們的帳號被推薦至其他人，嘟文將不被公開展示。您可以核准或駁回個別嘟文。
         disallow: 不允許嘟文
         disallow_account: 不允許作者
-        no_status_selected: 未選取任何熱門嘟文，因此未變更
+        no_status_selected: 因未選取任何熱門嘟文，所以什麼事都沒發生
         not_discoverable: 嘟文作者選擇不被發現
         shared_by:
           other: 分享過或／及收藏過 %{friendly_count} 次
@@ -843,7 +843,7 @@ zh-TW:
           tag_uses_measure: 總使用次數
         description_html: 這些主題標籤正在您的伺服器上大量嘟文中出現。這些主題標籤能幫助您的使用者發現人們正集中討論的內容。除非您核准，主題標籤將不被公開展示。
         listable: 能被建議
-        no_tag_selected: 未選取任何主題標籤，因此未變更
+        no_tag_selected: 因未選取任何主題標籤，所以什麼事都沒發生
         not_listable: 不能被建議
         not_trendable: 不會登上熱門
         not_usable: 不可被使用
@@ -936,15 +936,15 @@ zh-TW:
     notification_preferences: 變更電子郵件設定
     salutation: "%{name}、"
     settings: 變更電子郵件設定︰%{link}
-    view: '進入瀏覽:'
+    view: 進入瀏覽：
     view_profile: 檢視個人檔案
     view_status: 檢視嘟文
   applications:
-    created: 已建立應用
-    destroyed: 已刪除應用
-    regenerate_token: 重設 token
-    token_regenerated: 已重設 token
-    warning: 警告，不要把它分享給任何人!
+    created: 已建立應用程式
+    destroyed: 已刪除應用程式
+    regenerate_token: 重新產生存取 token
+    token_regenerated: 已重新產生存取 token
+    warning: 警告，不要把它分享給任何人！
     your_token: 您的 access token
   auth:
     apply_for_account: 申請帳號
@@ -984,7 +984,7 @@ zh-TW:
     set_new_password: 設定新密碼
     setup:
       email_below_hint_html: 如果此電子郵件地址不正確，您可於此修改並接收郵件進行認證。
-      email_settings_hint_html: 請確認 e-mail 是否傳送到 %{email} 。如果不對的話，可以從帳號設定修改。
+      email_settings_hint_html: 請確認 e-mail 是否傳送至 %{email} 。如果電子郵件地址不正確的話，可以從帳號設定修改。
       title: 設定
     sign_in:
       preamble_html: 請登入您於 <strong>%{domain}</strong> 之帳號密碼。若您的帳號託管於其他伺服器，您將無法於此登入。
@@ -1174,7 +1174,7 @@ zh-TW:
       other: 已選取此頁面上 <strong>%{count}</strong> 個項目。
     all_matching_items_selected_html:
       other: 已選取符合您搜尋的 <strong>%{count}</strong> 個項目。
-    changes_saved_msg: 已成功儲存修改!
+    changes_saved_msg: 已成功儲存變更！
     copy: 複製
     delete: 刪除
     deselect: 取消選擇全部
@@ -1198,7 +1198,7 @@ zh-TW:
       overwrite: 覆蓋
       overwrite_long: 以新的紀錄覆蓋目前紀錄
     preface: 您可以在此匯入您在其他伺服器所匯出的資料檔，包括跟隨的使用者、封鎖的使用者名單。
-    success: 資料檔上傳成功，正在匯入，請稍候
+    success: 資料上傳成功，正在匯入，請稍候
     types:
       blocking: 您封鎖的使用者名單
       bookmarks: 書籤
@@ -1374,7 +1374,7 @@ zh-TW:
     confirm_remove_selected_followers: 您確定要移除這些選取的跟隨者嗎？
     confirm_remove_selected_follows: 您確定要移除這些選取的正在跟隨您的帳號嗎？
     dormant: 潛水中
-    follow_selected_followers: 跟隨所選的跟隨者
+    follow_selected_followers: 跟隨所選取的跟隨者
     followers: 跟隨者
     following: 跟隨中
     invited: 已邀請
@@ -1384,9 +1384,9 @@ zh-TW:
     mutual: 跟隨彼此
     primary: 主要
     relationship: 關係
-    remove_selected_domains: 從所選網域中移除所有跟隨者
-    remove_selected_followers: 移除所選的跟隨者
-    remove_selected_follows: 取消跟隨所選使用者
+    remove_selected_domains: 從所選取網域中移除所有跟隨者
+    remove_selected_followers: 移除所選取的跟隨者
+    remove_selected_follows: 取消跟隨所選取使用者
     status: 帳號狀態
   remote_follow:
     missing_resource: 無法找到資源
@@ -1566,7 +1566,7 @@ zh-TW:
       time: "%H:%M"
   two_factor_authentication:
     add: 新增
-    disable: 停用
+    disable: 停用兩階段驗證
     disabled_success: 已成功啟用兩階段驗證
     edit: 編輯
     enabled: 兩階段認證已啟用

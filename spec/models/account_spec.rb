@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Account, type: :model do
   context do
     let(:bob) { Fabricate(:account, username: 'bob') }
+
     subject { Fabricate(:account) }
 
     describe '#suspend!' do
@@ -344,9 +345,9 @@ RSpec.describe Account, type: :model do
     before do
       _missing = Fabricate(
         :account,
-        display_name: "Missing",
-        username: "missing",
-        domain: "missing.com"
+        display_name: 'Missing',
+        username: 'missing',
+        domain: 'missing.com'
       )
     end
 
@@ -404,58 +405,58 @@ RSpec.describe Account, type: :model do
     it 'finds accounts with matching display_name' do
       match = Fabricate(
         :account,
-        display_name: "Display Name",
-        username: "username",
-        domain: "example.com"
+        display_name: 'Display Name',
+        username: 'username',
+        domain: 'example.com'
       )
 
-      results = Account.search_for("display")
+      results = Account.search_for('display')
       expect(results).to eq [match]
     end
 
     it 'finds accounts with matching username' do
       match = Fabricate(
         :account,
-        display_name: "Display Name",
-        username: "username",
-        domain: "example.com"
+        display_name: 'Display Name',
+        username: 'username',
+        domain: 'example.com'
       )
 
-      results = Account.search_for("username")
+      results = Account.search_for('username')
       expect(results).to eq [match]
     end
 
     it 'finds accounts with matching domain' do
       match = Fabricate(
         :account,
-        display_name: "Display Name",
-        username: "username",
-        domain: "example.com"
+        display_name: 'Display Name',
+        username: 'username',
+        domain: 'example.com'
       )
 
-      results = Account.search_for("example")
+      results = Account.search_for('example')
       expect(results).to eq [match]
     end
 
     it 'limits by 10 by default' do
-      11.times.each { Fabricate(:account, display_name: "Display Name") }
-      results = Account.search_for("display")
+      11.times.each { Fabricate(:account, display_name: 'Display Name') }
+      results = Account.search_for('display')
       expect(results.size).to eq 10
     end
 
     it 'accepts arbitrary limits' do
-      2.times.each { Fabricate(:account, display_name: "Display Name") }
-      results = Account.search_for("display", limit: 1)
+      2.times.each { Fabricate(:account, display_name: 'Display Name') }
+      results = Account.search_for('display', limit: 1)
       expect(results.size).to eq 1
     end
 
     it 'ranks multiple matches higher' do
       matches = [
-        { username: "username", display_name: "username" },
-        { display_name: "Display Name", username: "username", domain: "example.com" },
+        { username: 'username', display_name: 'username' },
+        { display_name: 'Display Name', username: 'username', domain: 'example.com' },
       ].map(&method(:Fabricate).curry(2).call(:account))
 
-      results = Account.search_for("username")
+      results = Account.search_for('username')
       expect(results).to eq matches
     end
   end
@@ -581,23 +582,23 @@ RSpec.describe Account, type: :model do
     end
 
     it 'limits by 10 by default' do
-      11.times { Fabricate(:account, display_name: "Display Name") }
-      results = Account.advanced_search_for("display", account)
+      11.times { Fabricate(:account, display_name: 'Display Name') }
+      results = Account.advanced_search_for('display', account)
       expect(results.size).to eq 10
     end
 
     it 'accepts arbitrary limits' do
-      2.times { Fabricate(:account, display_name: "Display Name") }
-      results = Account.advanced_search_for("display", account, limit: 1)
+      2.times { Fabricate(:account, display_name: 'Display Name') }
+      results = Account.advanced_search_for('display', account, limit: 1)
       expect(results.size).to eq 1
     end
 
     it 'ranks followed accounts higher' do
-      match = Fabricate(:account, username: "Matching")
-      followed_match = Fabricate(:account, username: "Matcher")
+      match = Fabricate(:account, username: 'Matching')
+      followed_match = Fabricate(:account, username: 'Matcher')
       Fabricate(:follow, account: account, target_account: followed_match)
 
-      results = Account.advanced_search_for("match", account)
+      results = Account.advanced_search_for('match', account)
       expect(results).to eq [followed_match, match]
       expect(results.first.rank).to be > results.last.rank
     end

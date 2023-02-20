@@ -104,20 +104,19 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
     end
 
     context 'when the status has not been explicitly edited and features a poll' do
-      let(:account)    { Fabricate(:account, domain: 'example.com') }
+      let(:account) { Fabricate(:account, domain: 'example.com') }
       let!(:expiration) { 10.days.from_now.utc }
       let!(:status) do
         Fabricate(:status,
-          text: 'Hello world',
-          account: account,
-          poll_attributes: {
-            options: %w(Foo Bar),
-            account: account,
-            multiple: false,
-            hide_totals: false,
-            expires_at: expiration
-          }
-        )
+                  text: 'Hello world',
+                  account: account,
+                  poll_attributes: {
+                    options: %w(Foo Bar),
+                    account: account,
+                    multiple: false,
+                    hide_totals: false,
+                    expires_at: expiration,
+                  })
       end
 
       let(:payload) do
@@ -156,20 +155,19 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
     end
 
     context 'when the status changes a poll despite being not explicitly marked as updated' do
-      let(:account)    { Fabricate(:account, domain: 'example.com') }
+      let(:account) { Fabricate(:account, domain: 'example.com') }
       let!(:expiration) { 10.days.from_now.utc }
       let!(:status) do
         Fabricate(:status,
-          text: 'Hello world',
-          account: account,
-          poll_attributes: {
-            options: %w(Foo Bar),
-            account: account,
-            multiple: false,
-            hide_totals: false,
-            expires_at: expiration
-          }
-        )
+                  text: 'Hello world',
+                  account: account,
+                  poll_attributes: {
+                    options: %w(Foo Bar),
+                    account: account,
+                    multiple: false,
+                    hide_totals: false,
+                    expires_at: expiration,
+                  })
       end
 
       let(:payload) do
@@ -344,7 +342,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
           updated: '2021-09-08T22:39:25Z',
           attachment: [
             { type: 'Image', mediaType: 'image/png', url: 'https://example.com/foo.png' },
-          ]
+          ],
         }
       end
 
@@ -376,7 +374,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
           updated: '2021-09-08T22:39:25Z',
           attachment: [
             { type: 'Image', mediaType: 'image/png', url: 'https://example.com/foo.png', name: 'A picture' },
-          ]
+          ],
         }
       end
 

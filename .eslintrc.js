@@ -6,6 +6,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:import/recommended',
+    'plugin:promise/recommended',
   ],
 
   env: {
@@ -199,11 +200,15 @@ module.exports = {
     ],
     'import/no-webpack-loader-syntax': 'error',
 
+    'promise/always-return': 'off',
     'promise/catch-or-return': [
       'error',
       {
         allowFinally: true,
       },
     ],
+    'promise/no-callback-in-promise': 'off',
+    'promise/no-nesting': 'off',
+    'promise/no-promise-in-callback': 'off',
   },
 };

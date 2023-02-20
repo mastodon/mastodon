@@ -32,6 +32,7 @@ describe StatusFilter do
 
     context 'with real account' do
       let(:account) { Fabricate(:account) }
+
       subject { described_class.new(status, account) }
 
       context 'when there are no connections' do

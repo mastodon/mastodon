@@ -43,7 +43,7 @@ describe Request do
       before { stub_request(:get, 'http://example.com') }
 
       it 'executes a HTTP request' do
-        expect { |block| subject.perform &block }.to yield_control
+        expect { |block| subject.perform(&block) }.to yield_control
         expect(a_request(:get, 'http://example.com')).to have_been_made.once
       end
 
@@ -54,18 +54,18 @@ describe Request do
         allow(resolver).to receive(:timeouts=).and_return(nil)
         allow(Resolv::DNS).to receive(:open).and_yield(resolver)
 
-        expect { |block| subject.perform &block }.to yield_control
+        expect { |block| subject.perform(&block) }.to yield_control
         expect(a_request(:get, 'http://example.com')).to have_been_made.once
       end
 
       it 'sets headers' do
-        expect { |block| subject.perform &block }.to yield_control
+        expect { |block| subject.perform(&block) }.to yield_control
         expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made
       end
 
       it 'closes underlying connection' do
         expect_any_instance_of(HTTP::Client).to receive(:close)
-        expect { |block| subject.perform &block }.to yield_control
+        expect { |block| subject.perform(&block) }.to yield_control
       end
 
       it 'returns response which implements body_with_limit' do

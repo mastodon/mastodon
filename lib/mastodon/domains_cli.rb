@@ -139,7 +139,7 @@ module Mastodon
 
       pool = Concurrent::ThreadPoolExecutor.new(min_threads: 0, max_threads: options[:concurrency], idletime: 10, auto_terminate: true, max_queue: 0)
 
-      work_unit = ->(domain) do
+      work_unit = lambda do |domain|
         next if stats.key?(domain)
         next if options[:exclude_suspended] && domain.match?(blocked_domains)
 

@@ -151,9 +151,7 @@ module AccountInteractions
     remove_potential_friendship(other_account)
 
     # When toggling a mute between hiding and allowing notifications, the mute will already exist, so the find_or_create_by! call will return the existing Mute without updating the hide_notifications attribute. Therefore, we check that hide_notifications? is what we want and set it if it isn't.
-    if mute.hide_notifications? != notifications
-      mute.update!(hide_notifications: notifications)
-    end
+    mute.update!(hide_notifications: notifications) if mute.hide_notifications? != notifications
 
     mute
   end

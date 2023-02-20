@@ -20,7 +20,7 @@ describe Api::V1::Push::SubscriptionsController do
           p256dh: 'BEm_a0bdPDhf0SOsrnB2-ategf1hHoCnpXgQsFj5JCkcoMrMt2WHoPfEYOYPzOIs9mZE8ZUaD7VA5vouy0kEkr8=',
           auth: 'eH_C8rq2raXqlcBVDa1gLg==',
         },
-      }
+      },
     }.with_indifferent_access
   end
 
@@ -37,8 +37,8 @@ describe Api::V1::Push::SubscriptionsController do
           mention: false,
           poll: true,
           status: false,
-        }
-      }
+        },
+      },
     }.with_indifferent_access
   end
 

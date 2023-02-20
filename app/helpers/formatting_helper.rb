@@ -21,30 +21,26 @@ module FormattingHelper
   def rss_status_content_format(status)
     html = status_content_format(status)
 
-    before_html = begin
-      if status.spoiler_text?
-        tag.p do
-          tag.strong do
-            I18n.t('rss.content_warning', locale: available_locale_or_nil(status.language) || I18n.default_locale)
-          end
+    before_html = if status.spoiler_text?
+                    tag.p do
+                      tag.strong do
+                        I18n.t('rss.content_warning', locale: available_locale_or_nil(status.language) || I18n.default_locale)
+                      end
 
-          status.spoiler_text
-        end + tag.hr
-      end
-    end
+                      status.spoiler_text
+                    end + tag.hr
+                  end
 
-    after_html = begin
-      if status.preloadable_poll
-        tag.p do
-          safe_join(
-            status.preloadable_poll.options.map do |o|
-              tag.send(status.preloadable_poll.multiple? ? 'checkbox' : 'radio', o, disabled: true)
-            end,
-            tag.br
-          )
-        end
-      end
-    end
+    after_html = if status.preloadable_poll
+                   tag.p do
+                     safe_join(
+                       status.preloadable_poll.options.map do |o|
+                         tag.send(status.preloadable_poll.multiple? ? 'checkbox' : 'radio', o, disabled: true)
+                       end,
+                       tag.br
+                     )
+                   end
+                 end
 
     prerender_custom_emojis(
       safe_join([before_html, html, after_html]),

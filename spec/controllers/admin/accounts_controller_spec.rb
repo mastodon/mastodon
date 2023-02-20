@@ -39,7 +39,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
         username: 'username',
         display_name: 'display name',
         email: 'local-part@domain',
-        ip: '0.0.0.42'
+        ip: '0.0.0.42',
       }
     end
 

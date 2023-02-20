@@ -127,7 +127,7 @@ RSpec.describe Setting, type: :model do
     let(:records)          { [original_setting] }
 
     it 'returns a Hash' do
-      expect(described_class.all_as_records).to be_kind_of Hash
+      expect(described_class.all_as_records).to be_a Hash
     end
 
     context 'records includes Setting with var as the key' do
@@ -146,7 +146,7 @@ RSpec.describe Setting, type: :model do
         it 'includes Setting with value of default_value' do
           setting = described_class.all_as_records[key]
 
-          expect(setting).to be_kind_of Setting
+          expect(setting).to be_a Setting
           expect(setting).to have_attributes(var: key)
           expect(setting).to have_attributes(value: 'default_value')
         end
@@ -181,7 +181,7 @@ RSpec.describe Setting, type: :model do
       let(:enabled) { true }
 
       it 'returns instance of RailsSettings::Default' do
-        is_expected.to be_kind_of RailsSettings::Default
+        is_expected.to be_a RailsSettings::Default
       end
     end
   end

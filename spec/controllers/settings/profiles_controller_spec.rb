@@ -10,8 +10,8 @@ RSpec.describe Settings::ProfilesController, type: :controller do
     sign_in user, scope: :user
   end
 
-  describe "GET #show" do
-    it "returns http success" do
+  describe 'GET #show' do
+    it 'returns http success' do
       get :show
       expect(response).to have_http_status(200)
     end

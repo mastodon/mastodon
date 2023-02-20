@@ -111,7 +111,7 @@ RSpec.describe UpdateStatusService, type: :service do
 
   context 'when poll changes' do
     let(:account) { Fabricate(:account) }
-    let!(:status) { Fabricate(:status, text: 'Foo', account: account, poll_attributes: {options: %w(Foo Bar), account: account, multiple: false, hide_totals: false, expires_at: 7.days.from_now }) }
+    let!(:status) { Fabricate(:status, text: 'Foo', account: account, poll_attributes: { options: %w(Foo Bar), account: account, multiple: false, hide_totals: false, expires_at: 7.days.from_now }) }
     let!(:poll)   { status.poll }
     let!(:voter) { Fabricate(:account) }
 

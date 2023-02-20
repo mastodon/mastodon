@@ -8,6 +8,11 @@ on:
 jobs:
   label-rebase-needed:
     runs-on: ubuntu-latest
+
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
     steps:
       - name: Check for merge conflicts
         uses: eps1lon/actions-label-merge-conflict@releases/2.x

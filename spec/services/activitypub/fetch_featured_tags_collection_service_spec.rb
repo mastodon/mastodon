@@ -81,7 +81,7 @@ RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service d
             type: 'CollectionPage',
             partOf: collection_url,
             items: items,
-          }
+          },
         }.with_indifferent_access
       end
 

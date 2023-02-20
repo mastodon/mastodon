@@ -6,6 +6,7 @@ describe Api::Web::EmbedsController do
   render_views
 
   let(:user) { Fabricate(:user) }
+
   before { sign_in user }
 
   describe 'POST #create' do

@@ -7,7 +7,7 @@ RSpec.describe RemoveFromFollowersService, type: :service do
 
   describe 'local' do
     let(:sender) { Fabricate(:account, username: 'alice') }
- 
+
     before do
       Follow.create(account: sender, target_account: bob)
       subject.call(bob, sender)

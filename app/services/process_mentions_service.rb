@@ -28,13 +28,11 @@ class ProcessMentionsService < BaseService
     @status.text = @status.text.gsub(Account::MENTION_RE) do |match|
       username, domain = Regexp.last_match(1).split('@')
 
-      domain = begin
-        if TagManager.instance.local_domain?(domain)
-          nil
-        else
-          TagManager.instance.normalize_domain(domain)
-        end
-      end
+      domain = if TagManager.instance.local_domain?(domain)
+                 nil
+               else
+                 TagManager.instance.normalize_domain(domain)
+               end
 
       mentioned_account = Account.find_remote(username, domain)
 

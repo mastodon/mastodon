@@ -90,7 +90,7 @@ describe Settings::MigrationsController do
         end
       end
 
-      context 'when a recent migration already exists ' do
+      context 'when a recent migration already exists' do
         let(:acct) { Fabricate(:account, also_known_as: [ActivityPub::TagManager.instance.uri_for(user.account)]) }
 
         before do

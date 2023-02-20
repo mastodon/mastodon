@@ -113,7 +113,7 @@ describe JsonLdHelper do
             {
               'type' => 'Mention',
               'href' => ['foo'],
-            }
+            },
           ],
         },
         'signature' => {

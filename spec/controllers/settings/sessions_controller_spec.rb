@@ -5,6 +5,7 @@ describe Settings::SessionsController do
 
   let(:user) { Fabricate(:user) }
   let(:session_activation) { Fabricate(:session_activation, user: user) }
+
   before { sign_in user, scope: :user }
 
   describe 'DELETE #destroy' do

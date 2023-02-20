@@ -76,7 +76,7 @@ describe AccountSearchService, type: :service do
       expect(results).to eq [partial]
     end
 
-    it "does not return suspended remote accounts" do
+    it 'does not return suspended remote accounts' do
       remote  = Fabricate(:account, username: 'a', domain: 'remote', display_name: 'e', suspended: true)
       results = subject.call('a@example.com', nil, limit: 2)
 

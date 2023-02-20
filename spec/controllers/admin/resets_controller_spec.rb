@@ -4,6 +4,7 @@ describe Admin::ResetsController do
   render_views
 
   let(:account) { Fabricate(:account) }
+
   before do
     sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user
   end

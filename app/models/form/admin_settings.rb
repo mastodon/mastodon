@@ -93,13 +93,11 @@ class Form::AdminSettings
     define_method(key) do
       return instance_variable_get("@#{key}") if instance_variable_defined?("@#{key}")
 
-      stored_value = begin
-        if UPLOAD_KEYS.include?(key)
-          SiteUpload.where(var: key).first_or_initialize(var: key)
-        else
-          Setting.public_send(key)
-        end
-      end
+      stored_value = if UPLOAD_KEYS.include?(key)
+                       SiteUpload.where(var: key).first_or_initialize(var: key)
+                     else
+                       Setting.public_send(key)
+                     end
 
       instance_variable_set("@#{key}", stored_value)
     end

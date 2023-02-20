@@ -8,7 +8,7 @@ RSpec.describe ImportService, type: :service do
   let!(:eve)     { Fabricate(:account, username: 'eve', domain: 'example.com', locked: false, protocol: :activitypub, inbox_url: 'https://example.com/inbox') }
 
   before do
-    stub_request(:post, "https://example.com/inbox").to_return(status: 200)
+    stub_request(:post, 'https://example.com/inbox').to_return(status: 200)
   end
 
   context 'import old-style list of muted users' do
@@ -18,6 +18,7 @@ RSpec.describe ImportService, type: :service do
 
     describe 'when no accounts are muted' do
       let(:import) { Import.create(account: account, type: 'muting', data: csv) }
+
       it 'mutes the listed accounts, including notifications' do
         subject.call(import)
         expect(account.muting.count).to eq 2
@@ -55,6 +56,7 @@ RSpec.describe ImportService, type: :service do
 
     describe 'when no accounts are muted' do
       let(:import) { Import.create(account: account, type: 'muting', data: csv) }
+
       it 'mutes the listed accounts, respecting notifications' do
         subject.call(import)
         expect(account.muting.count).to eq 2
@@ -95,6 +97,7 @@ RSpec.describe ImportService, type: :service do
 
     describe 'when no accounts are followed' do
       let(:import) { Import.create(account: account, type: 'following', data: csv) }
+
       it 'follows the listed accounts, including boosts' do
         subject.call(import)
 
@@ -136,6 +139,7 @@ RSpec.describe ImportService, type: :service do
 
     describe 'when no accounts are followed' do
       let(:import) { Import.create(account: account, type: 'following', data: csv) }
+
       it 'follows the listed accounts, respecting boosts' do
         subject.call(import)
         expect(account.following.count).to eq 1
@@ -178,18 +182,18 @@ RSpec.describe ImportService, type: :service do
   context 'utf-8 encoded domains' do
     subject { ImportService.new }
 
-    let!(:nare)     { Fabricate(:account, username: 'nare', domain: 'թութ.հայ', locked: false, protocol: :activitypub, inbox_url: 'https://թութ.հայ/inbox') }
+    let!(:nare) { Fabricate(:account, username: 'nare', domain: 'թութ.հայ', locked: false, protocol: :activitypub, inbox_url: 'https://թութ.հայ/inbox') }
 
     # Make sure to not actually go to the remote server
     before do
-      stub_request(:post, "https://թութ.հայ/inbox").to_return(status: 200)
+      stub_request(:post, 'https://թութ.հայ/inbox').to_return(status: 200)
     end
 
     let(:csv) { attachment_fixture('utf8-followers.txt') }
     let(:import) { Import.create(account: account, type: 'following', data: csv) }
 
     it 'follows the listed account' do
-    expect(account.follow_requests.count).to eq 0
+      expect(account.follow_requests.count).to eq 0
       subject.call(import)
       expect(account.follow_requests.count).to eq 1
     end
@@ -224,6 +228,7 @@ RSpec.describe ImportService, type: :service do
 
     describe 'when no bookmarks are set' do
       let(:import) { Import.create(account: account, type: 'bookmarks', data: csv) }
+
       it 'adds the toots the user has access to to bookmarks' do
         local_status = Fabricate(:status, account: local_account, uri: 'https://local.com/users/foo/statuses/42', id: 42, local: true)
         subject.call(import)

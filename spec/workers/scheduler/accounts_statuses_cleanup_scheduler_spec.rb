@@ -82,7 +82,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
 
   describe '#get_budget' do
     context 'on a single thread' do
-      let(:process_set_stub) { [ { 'concurrency' => 1, 'queues' => ['push', 'default'] } ] }
+      let(:process_set_stub) { [{ 'concurrency' => 1, 'queues' => ['push', 'default'] }] }
 
       it 'returns a low value' do
         expect(subject.compute_budget).to be < 10
