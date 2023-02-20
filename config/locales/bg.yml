@@ -90,6 +90,7 @@ bg:
       moderation:
         active: Дейно
         all: Всичко
+        disabled: Изключено
         pending: Чака
         silenced: Ограничено
         suspended: Спряно
@@ -132,6 +133,7 @@ bg:
       search: Търсене
       search_same_email_domain: Други потребители със същия домейн за имейл
       search_same_ip: Други потребители със същия IP
+      security: Сигурност
       security_measures:
         only_password: Само парола
         password_and_2fa: Парола и двуфакторно удостоверяване
@@ -426,6 +428,7 @@ bg:
         resolve: Преобразуване на домейна
         title: Блокиране на нов домейн на имейл
       no_email_domain_block_selected: Няма промяна, тъй като няма избрани блокирания на имейл домейн
+      not_permitted: Няма позволение
       resolved_dns_records_hint_html: Името на домейна се преобразува към следните MX домейни, които са основно отговорни за получаване на имейл. Блокирането на MX домейн блокира записването от всеки имейл, използващ същия MX домейн, дори видимото име на домейна да е различно. <strong>Бъдете внимателни и не блокирайте често-срещани доставчици на имейл</strong>
       resolved_through_html: Преобразувано чрез %{domain}
       title: Блокирани домейни на имейл
@@ -472,6 +475,7 @@ bg:
       content_policies:
         comment: Вътрешна бележка
         description_html: Може да определите политиките за съдържание, които ще се приложат към всички акаунти от този домейн и всеки от поддомейните му.
+        limited_federation_mode_description_html: Може да избирате дали да позволите федарацията с този домейн.
         policies:
           reject_media: Отхвърляне на мултимедия
           reject_reports: Отхвърляне на докладите
@@ -584,11 +588,13 @@ bg:
       assign_to_self: Назначаване на мен
       assigned: Назначен модератор
       by_target_domain: Домейн на докладвания акаунт
+      cancel: Отказ
       category: Категория
       category_description_html: Причината, поради която акаунтът и/или съдържанието е докладвано ще се цитира в комуникацията с докладвания акаунт
       comment:
         none: Нищо
       comment_description_html: 'За да предостави повече информация, %{name} написа:'
+      confirm: Потвърждаване
       confirm_action: Потвърждаване на модераторско действие срещу @%{acct}
       created_at: Докладвано
       delete_and_resolve: Изтриване на публикациите
@@ -784,6 +790,7 @@ bg:
         suspend: "%{name} преустанови акаунта на %{target}"
       appeal_approved: Обжалвано
       appeal_pending: Чака се обжалването
+      appeal_rejected: Отхвърлено обжалване
     system_checks:
       database_schema_check:
         message_html: Има миграции на базата данни, които чакат да бъдат изпълнени. Моля, изпълнете ги, за да осигурите изправността на приложението
@@ -950,6 +957,7 @@ bg:
   applications:
     created: Успешно създадено приложение
     destroyed: Успешно изтрито приложение
+    logout: Излизане
     regenerate_token: Регенериране на кода за достъп
     token_regenerated: Успешно генериране на код за достъп
     warning: Бъдете внимателни с тези данни. Никога не ги споделяйте с никого!
@@ -986,6 +994,8 @@ bg:
     resend_confirmation: Изпрати отново инструкции за потвърждение
     reset_password: Нулиране на паролата
     rules:
+      accept: Приемам
+      back: Назад
       preamble: Тези са зададени и наложени от модераторите на %{domain}.
       title: Някои основни правила.
     security: Сигурност
@@ -1241,6 +1251,9 @@ bg:
       expires_at: Изтича на
       uses: Използвания
     title: Поканете хора
+  lists:
+    errors:
+      limit: Достигнахте максималния брой списъци
   login_activities:
     authentication_methods:
       otp: приложение за двуфакторно удостоверяване
