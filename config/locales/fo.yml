@@ -1150,6 +1150,8 @@ fo:
     storage: Miðlagoymsla
   featured_tags:
     add_new: Legg afturat
+    errors:
+      limit: Tú hevur longu varpað loyvda talið av frámerkjum
     hint_html: "<strong>Hvat eru varpaði frámerki?</strong> Tey verða víst sjónliga á almenna vanga tínum og loyva fólki at kaga gjøgnum tínar almennu postar, sum hava tey frámerkini. Tey eru serliga vælegnaði at fylgja við skapandi arbeiði ella langtíðarverkætlanum."
   filters:
     contexts:
@@ -1259,6 +1261,9 @@ fo:
       expires_at: Rennir út
       uses: Brúk
     title: Bjóða fólki
+  lists:
+    errors:
+      limit: Tú hevur rokkið mesta talið av listum
   login_activities:
     authentication_methods:
       otp: app til váttan í tveimum stigum
@@ -1578,6 +1583,7 @@ fo:
       '7889238': 3 mánaðir
     min_age_label: Tíðarfreist
     min_favs: Varðveit postar yndismerktar í minsta lagi
+    min_favs_hint: Strikar ikki postar hjá tær, sum hava móttikið í minsta lagi hetta talið av yndismerkjum. Lat vera blankt, um postar skulu strikast óansæð, hvussu ofta teir eru yndismerktir
     min_reblogs: Varðveit postar, sum eru stimbraðir í minsta lagi
     min_reblogs_hint: Strikar ikki postar hjá tær, sum eru stimbraðir í minsta lagi so ofta. Lat vera blankt, um postar skulu strikast óansæð, hvussu ofta teir eru stimbraðir
   stream_entries:
