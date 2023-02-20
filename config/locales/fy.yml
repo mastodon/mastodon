@@ -90,6 +90,7 @@ fy:
       moderation:
         active: Aktyf
         all: Alle
+        disabled: Utskeakele
         pending: Yn ôfwachting
         silenced: Beheind
         suspended: Utsteld
@@ -132,6 +133,7 @@ fy:
       search: Sykje
       search_same_email_domain: Oare brûkers mei itselde e-maildomein
       search_same_ip: Oare brûkers mei itselde IP-adres
+      security: Befeiliging
       security_measures:
         only_password: Allinnich wachtwurd
         password_and_2fa: Wachtwurd en 2FA
@@ -426,6 +428,7 @@ fy:
         resolve: Domein opsykje
         title: Nije e-maildomein blokkearje
       no_email_domain_block_selected: Der binne gjin e-maildomeinblokkaden wizige, omdat der gjin ien selektearre waard
+      not_permitted: Net tastien
       resolved_dns_records_hint_html: De domeinnamme slacht op de folgjende MX-domeinen dy’t úteinlik ferantwurdlik binne foar it akseptearjen fan e-mail. It blokkearjen fan in MX-domein blokkearret oanmeldingen fan elk e-mailadres dat itselde MX-domein brûkt, sels as de sichtbere domeinnamme oars is. <strong>Pas op dat jo gjin grutte e-mailproviders blokkearje.</strong>
       resolved_through_html: Blokkearre fia %{domain}
       title: Blokkearre e-maildomeinen
@@ -472,6 +475,7 @@ fy:
       content_policies:
         comment: Ynterne reden
         description_html: Jo kinne it belied bepale dat op de accounts fan dit domein en alle subdomeinen fan tapassing is.
+        limited_federation_mode_description_html: Jo kinne kieze oft jo federaasje mei dit domein tastean wolle.
         policies:
           reject_media: Mediabestannen wegerje
           reject_reports: Rapportaazjes wegerje
@@ -584,11 +588,13 @@ fy:
       assign_to_self: Oan my tawize
       assigned: Tawizen moderator
       by_target_domain: Domein fan rapportearre account
+      cancel: Annulearje
       category: Kategory
       category_description_html: De reden wêrom dizze account en/of ynhâld rapportearre waard, wurdt oan it rapportearre account meidield
       comment:
         none: Gjin
       comment_description_html: 'Om mear ynformaasje te jaan, skreau %{name}:'
+      confirm: Befêstigje
       confirm_action: Moderaasjemaatregelen tsjin %{acct} befêstigje
       created_at: Rapportearre op
       delete_and_resolve: Berjocht fuortsmite
@@ -791,6 +797,7 @@ fy:
         suspend: "Account %{target} is troch %{name} útsteld"
       appeal_approved: Beswier yntsjinne
       appeal_pending: Beswier yn behanneling
+      appeal_rejected: Beswier ôfwêzen
     system_checks:
       database_schema_check:
         message_html: Der binne database migraasjes yn ôfwachting. Jo moatte dizze útfiere om der foar te soargjen dat de applikaasje wurkjen bliuwt sa as it heard
@@ -826,6 +833,7 @@ fy:
           other: Dizze wike troch %{count} persoanen dield
         title: Trending keppelingen
         usage_comparison: Hjoed %{today} kear dield, fergelike mei %{yesterday} kear juster
+      not_allowed_to_trend: Trending wurdt net tastien
       only_allowed: Allinnich goedkarre
       pending_review: Moat noch beoardiele wurde
       preview_card_providers:
@@ -957,6 +965,7 @@ fy:
   applications:
     created: Oanmeitsjen tapassing slagge
     destroyed: Fuortsmiten tapassing slagge
+    logout: Ofmelde
     regenerate_token: Tagongskoade opnij oanmeitsje
     token_regenerated: Opnij oanmeitsjen tagongskoade slagge
     warning: Wês foarsichtich mei dizze gegevens. Diel it nea mei in oar!
@@ -993,6 +1002,8 @@ fy:
     resend_confirmation: Ferstjoer de befêstigingsynstruksjes nochris
     reset_password: Wachtwurd opnij ynstelle
     rules:
+      accept: Akseptearje
+      back: Tebek
       preamble: Dizze binne fêststeld en wurde yn stân hâlden troch de moderatoaren fan %{domain}.
       title: Inkelde basisrigels.
     security: Befeiliging
@@ -1139,6 +1150,8 @@ fy:
     storage: Mediaûnthâld
   featured_tags:
     add_new: Nije tafoegje
+    errors:
+      limit: Jo hawwe al it maksimaal tal hashtags útljochte
     hint_html: "<strong>Wat binne útljochte hashtags?</strong> Dizze wurde prominint op jo iepenbiere profyl toand en stelt minsken yn steat om jo iepenbiere berjochten per hashtag te besjen. It is in goed helpmiddel om kreative wurksumheden of langetermynprojekten by te hâlden."
   filters:
     contexts:
@@ -1248,6 +1261,9 @@ fy:
       expires_at: Ferrint op
       uses: Brûkt
     title: Minsken útnûgje
+  lists:
+    errors:
+      limit: Jo hawwe it maksimaal tal listen berikt
   login_activities:
     authentication_methods:
       otp: twa-stapsferifikaasje-app
@@ -1567,6 +1583,7 @@ fy:
       '7889238': 3 moannen
     min_age_label: Fuort te smiten nei
     min_favs: Berjochten dy’t op syn minst safolle kear as favoryt markearre binne behâlde
+    min_favs_hint: Smyt gjin berjochten dy’t op syn minst safolle kear as favoryt markearre binne fuort. Lit leech om berjochten likefolle it tal favoriten fuort te smiten
     min_reblogs: Berjochten dy’t op syn minst safolle kear boost binne behâlde
     min_reblogs_hint: Smyt gjin berjochten dy’t op syn minst safolle kear boost binne fuort. Lit leech om berjochten likefolle it tal boosts fuort te smiten
   stream_entries:
