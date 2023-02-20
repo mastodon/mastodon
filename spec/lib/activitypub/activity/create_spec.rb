@@ -51,7 +51,7 @@ RSpec.describe ActivityPub::Activity::Create do
           status = sender.statuses.first
 
           expect(status).to_not be_nil
-          expect(status.edited?).to eq true
+          expect(status.edited?).to be true
         end
       end
 
@@ -77,7 +77,7 @@ RSpec.describe ActivityPub::Activity::Create do
           status = sender.statuses.first
 
           expect(status).to_not be_nil
-          expect(status.edited?).to eq false
+          expect(status.edited?).to be false
         end
       end
 

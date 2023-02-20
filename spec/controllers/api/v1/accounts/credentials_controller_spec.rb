@@ -51,7 +51,7 @@ describe Api::V1::Accounts::CredentialsController do
           expect(user.account.avatar).to exist
           expect(user.account.header).to exist
           expect(user.setting_default_privacy).to eq('unlisted')
-          expect(user.setting_default_sensitive).to eq(true)
+          expect(user.setting_default_sensitive).to be(true)
         end
 
         it 'queues up an account update distribution' do

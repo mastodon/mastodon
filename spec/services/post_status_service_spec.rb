@@ -216,7 +216,7 @@ RSpec.describe PostStatusService, type: :service do
       media_ids: [media.id]
     )
 
-    expect(media.reload.status).to eq nil
+    expect(media.reload.status).to be_nil
   end
 
   it 'does not allow attaching more than 4 files' do

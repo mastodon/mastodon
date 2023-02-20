@@ -163,7 +163,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
         user = User.find_by(email: 'test@example.com')
         expect(user).to_not be_nil
         expect(user.locale).to eq(accept_language)
-        expect(user.approved).to eq(false)
+        expect(user.approved).to be(false)
       end
     end
 
@@ -191,7 +191,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
         user = User.find_by(email: 'test@example.com')
         expect(user).to_not be_nil
         expect(user.locale).to eq(accept_language)
-        expect(user.approved).to eq(false)
+        expect(user.approved).to be(false)
       end
     end
 
@@ -223,7 +223,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
         user = User.find_by(email: 'test@example.com')
         expect(user).to_not be_nil
         expect(user.locale).to eq(accept_language)
-        expect(user.approved).to eq(true)
+        expect(user.approved).to be(true)
       end
     end
 

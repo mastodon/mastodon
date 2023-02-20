@@ -410,7 +410,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       it 'removes poll' do
-        expect(status.reload.poll).to eq nil
+        expect(status.reload.poll).to be_nil
       end
 
       it 'records media change in edit' do
