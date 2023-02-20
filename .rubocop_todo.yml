@@ -1887,12 +1887,6 @@ Style/CaseEquality:
   Exclude:
     - 'config/initializers/trusted_proxies.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: MinBranchesCount.
-Style/CaseLikeIf:
-  Exclude:
-    - 'app/controllers/concerns/signature_verification.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 # AllowedMethods: ==, equal?, eql?
