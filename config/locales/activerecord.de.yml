@@ -1,10 +1,9 @@
----
 de:
   activerecord:
     attributes:
       poll:
         expires_at: Abstimmungsende
-        options: Auswahlmöglichkeiten
+        options: Auswahlfelder
       user:
         agreement: Service-Vereinbarung
         email: E-Mail-Adresse
@@ -47,7 +46,7 @@ de:
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: enthält Berechtigungen, welche nicht sicher sind für die Basisrolle
+              dangerous: enthält Berechtigungen, die für die Basisrolle nicht sicher sind
               elevated: kann keine Berechtigungen enthalten, die deine aktuelle Rolle nicht besitzt
               own_role: kann nicht mit deiner aktuellen Rolle geändert werden
             position:
