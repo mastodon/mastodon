@@ -125,7 +125,7 @@ de:
       resend_confirmation:
         already_confirmed: Dieses Profil wurde bereits bestätigt
         send: Bestätigungs-E-Mail erneut senden
-        success: Bestätigungs-E-Mail erfolgreich gesendet!
+        success: Bestätigungs-E-Mail erfolgreich verschickt!
       reset: Zurücksetzen
       reset_password: Passwort zurücksetzen
       resubscribe: Erneut abonnieren
@@ -169,7 +169,7 @@ de:
       whitelisted: Auf der Whitelist
     action_logs:
       action_types:
-        approve_appeal: Einspruch annehmen
+        approve_appeal: Einspruch zulassen
         approve_user: Benutzer*in genehmigen
         assigned_to_self_report: Bericht zuweisen
         change_email_user: E-Mail des Profils ändern
@@ -226,28 +226,28 @@ de:
         update_domain_block: Domain-Sperre aktualisieren
         update_ip_block: IP-Regel aktualisieren
         update_status: Beitrag aktualisieren
-        update_user_role: Rolle aktualisieren
+        update_user_role: Rolle bearbeiten
       actions:
         approve_appeal_html: "%{name} genehmigte die Moderationsbeschlüsse von %{target}"
         approve_user_html: "%{name} genehmigte die Registrierung von %{target}"
         assigned_to_self_report_html: "%{name} wies sich die Meldung %{target} selbst zu"
         change_email_user_html: "%{name} hat die E-Mail-Adresse von %{target} geändert"
         change_role_user_html: "%{name} hat die Rolle von %{target} geändert"
-        confirm_user_html: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
+        confirm_user_html: "%{name} bestätigte die E-Mail-Adresse von %{target}"
         create_account_warning_html: "%{name} sendete eine Warnung an %{target}"
-        create_announcement_html: "%{name} hat die neue Ankündigung erstellt: %{target}"
+        create_announcement_html: "%{name} erstellte die neue Ankündigung: %{target}"
         create_canonical_email_block_html: "%{name} hat die E-Mail mit dem Hash %{target} gesperrt"
-        create_custom_emoji_html: "%{name} hat neues Emoji hochgeladen: %{target}"
+        create_custom_emoji_html: "%{name} lud das neue Emoji %{target} hoch"
         create_domain_allow_html: "%{name} erlaubte die Föderation mit der Domain %{target}"
         create_domain_block_html: "%{name} hat die Domain %{target} gesperrt"
         create_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} gesperrt"
         create_ip_block_html: "%{name} hat eine IP-Regel für %{target} erstellt"
         create_unavailable_domain_html: "%{name} beendete die Zustellung an die Domain %{target}"
-        create_user_role_html: "%{name} hat die Rolle %{target} erstellt"
+        create_user_role_html: "%{name} erstellte die Rolle %{target}"
         demote_user_html: "%{name} hat %{target} heruntergestuft"
         destroy_announcement_html: "%{name} löschte die Ankündigung %{target}"
         destroy_canonical_email_block_html: "%{name} hat die E-Mail mit dem Hash %{target} entsperrt"
-        destroy_custom_emoji_html: "%{name} hat das Emoji gelöscht: %{target}"
+        destroy_custom_emoji_html: "%{name} löschte das Emoji %{target}"
         destroy_domain_allow_html: "%{name} verwehrte die Föderation mit der Domain %{target}"
         destroy_domain_block_html: "%{name} hat die Domain %{target} entsperrt"
         destroy_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} entsperrt"
@@ -255,31 +255,31 @@ de:
         destroy_ip_block_html: "%{name} hat eine IP-Regel für %{target} entfernt"
         destroy_status_html: "%{name} entfernte einen Beitrag von %{target}"
         destroy_unavailable_domain_html: "%{name} nahm die Zustellung an die Domain %{target} wieder auf"
-        destroy_user_role_html: "%{name} hat die Rolle %{target} gelöscht"
+        destroy_user_role_html: "%{name} löschte die Rolle %{target}"
         disable_2fa_user_html: "%{name} hat die Zwei-Faktor-Authentisierung für %{target} deaktiviert"
-        disable_custom_emoji_html: "%{name} hat das Emoji deaktiviert: %{target}"
+        disable_custom_emoji_html: "%{name} deaktivierte das Emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token-Authentifizierung für %{target} deaktiviert"
         disable_user_html: "%{name} hat den Zugang für %{target} deaktiviert"
-        enable_custom_emoji_html: "%{name} hat das Emoji aktiviert: %{target}"
+        enable_custom_emoji_html: "%{name} aktivierte das Emoji %{target}"
         enable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token-Authentifizierung für %{target} aktiviert"
         enable_user_html: "%{name} hat den Zugang für %{target} aktiviert"
-        memorialize_account_html: "%{name} hat das Konto von %{target} in eine Gedenkseite umgewandelt"
-        promote_user_html: "%{name} hat %{target} befördert"
+        memorialize_account_html: "%{name} wandelte das Konto von %{target} in eine Gedenkseite um"
+        promote_user_html: "%{name} beförderte %{target}"
         reject_appeal_html: "%{name} hat den Moderations-Beschlussantrag von %{target} abgelehnt"
         reject_user_html: "%{name} hat die Registrierung von %{target} abgelehnt"
-        remove_avatar_user_html: "%{name} hat das Profilbild von %{target} entfernt"
+        remove_avatar_user_html: "%{name} entfernte das Profilbild von %{target}"
         reopen_report_html: "%{name} öffnete die Meldung %{target} wieder"
         resend_user_html: "%{name} hat erneut eine Bestätigungs-E-Mail für %{target} gesendet"
-        reset_password_user_html: "%{name} hat das Passwort von %{target} zurückgesetzt"
+        reset_password_user_html: "%{name} setzte das Passwort von %{target} zurück"
         resolve_report_html: "%{name} hat die Meldung %{target} geklärt"
         sensitive_account_html: "%{name} hat die Medien von %{target} mit einer Inhaltswarnung versehen"
-        silence_account_html: "%{name} hat das Konto von %{target} stummgeschaltet"
-        suspend_account_html: "%{name} hat das Konto von %{target} gesperrt"
+        silence_account_html: "%{name} schaltete das Konto von %{target} stumm"
+        suspend_account_html: "%{name} sperrte das Konto von %{target}"
         unassigned_report_html: "%{name} entfernte die Zuweisung der Meldung %{target}"
         unblock_email_account_html: "%{name} hat die E-Mail-Adresse von %{target} entsperrt"
         unsensitive_account_html: "%{name} hat die Inhaltswarnung für Medien von %{target} aufgehoben"
         unsilence_account_html: "%{name} hob die Stummschaltung von %{target} auf"
-        unsuspend_account_html: "%{name} hat die Kontosperre von %{target} aufgehoben"
+        unsuspend_account_html: "%{name} entsperrte das Konto von %{target}"
         update_announcement_html: "%{name} überarbeitete die Ankündigung %{target}"
         update_custom_emoji_html: "%{name} hat das Emoji geändert: %{target}"
         update_domain_block_html: "%{name} hat die Domain-Sperre für %{target} aktualisiert"
@@ -380,24 +380,24 @@ de:
       import: Import
       undo: Von der Föderation ausschließen
     domain_blocks:
-      add_new: Neue Domain-Sperre hinzufügen
+      add_new: Neue Domain einschränken
       created_msg: Die Domain ist jetzt gesperrt bzw. eingeschränkt
-      destroyed_msg: Die Domain-Sperre wurde aufgehoben
+      destroyed_msg: Die Einschränkungen zu dieser Domain wurde entfernt
       domain: Domain
-      edit: Domain-Sperre bearbeiten
+      edit: Einschränkungen bearbeiten
       existing_domain_block: Du hast %{name} bereits stärker eingeschränkt.
       existing_domain_block_html: Du hast bereits strengere Beschränkungen für die Domain %{name} verhängt. Du musst diese erst <a href="%{unblock_url}">aufheben</a>.
       export: Exportieren
       import: Importieren
       new:
-        create: Sperre einrichten
-        hint: Die Domainsperre wird nicht verhindern, dass Konteneinträge in der Datenbank erstellt werden, sondern rückwirkend und automatisch alle Moderationsmethoden auf diese Konten anwenden.
+        create: Server einschränken
+        hint: Die Einschränkung einer Domain wird nicht verhindern, dass Konteneinträge in der Datenbank erstellt werden. Es werden aber alle Moderationsmethoden rückwirkend und automatisch auf diese Konten angewendet.
         severity:
           desc_html: "<strong>Stummschaltung</strong> wird die Beiträge von Konten unter dieser Domain für alle unsichtbar machen, die den Konten nicht folgen. Eine <strong>Sperre</strong> wird alle Inhalte, Medien und Profildaten für Konten dieser Domain von deinem Server entfernen. Verwende <strong>keine</strong>, um nur Mediendateien abzulehnen."
           noop: Kein
           silence: Stummschaltung
           suspend: Sperren
-        title: Neue Domain-Sperre
+        title: Neue Domain einschränken
       no_domain_block_selected: Keine Domains gesperrt, weil keine ausgewählt wurde(n)
       not_permitted: Dir ist es nicht erlaubt, diese Handlung durchzuführen
       obfuscate: Domain-Name verschleiern
@@ -410,7 +410,7 @@ de:
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
       reject_reports: Meldungen ablehnen
       reject_reports_hint: Alle Meldungen von dieser Domain ignorieren. Irrelevant für Sperrungen.
-      undo: Domain-Sperre aufheben
+      undo: Einschränkungen aufheben
       view: Domain-Sperre ansehen
     email_domain_blocks:
       add_new: Neue hinzufügen
@@ -438,14 +438,14 @@ de:
       no_file: Keine Datei ausgewählt
     export_domain_blocks:
       import:
-        description_html: Du bist dabei, eine Liste von Domain-Sperren zu importieren. Bitte überprüfe diese Liste sehr sorgfältig, insbesondere dann, wenn du sie nicht selbst erstellt hast.
+        description_html: Du bist dabei, eine Liste von Domains zu importieren, die auf diesem Server gesperrt oder anderweitig eingeschränkt werden. Bitte überprüfe diese Liste sehr sorgfältig, insbesondere dann, wenn du sie nicht selbst erstellt hast.
         existing_relationships_warning: Bestehende Folgebeziehungen
         private_comment_description_html: 'Damit du später nachvollziehen kannst, woher die importierten Sperren stammen, kannst du diesem Eintrag eine private Notiz hinzufügen: <q>%{comment}</q>'
         private_comment_template: Importiert von %{source} am %{date}
-        title: Domain-Sperren importieren
+        title: Domains importieren
       invalid_domain_block: 'Ein oder mehrere Domainsperren wurden wegen folgenden Fehler(n) übersprungen: %{error}'
       new:
-        title: Domain-Sperren importieren
+        title: Domains importieren
       no_file: Keine Datei ausgewählt
     follow_recommendations:
       description_html: "<strong>Folgeempfehlungen helfen neuen Nutzer*innen, interessante Inhalte schnell zu finden</strong>. Wenn ein*e Nutzer*in noch nicht genug mit anderen interagiert hat, um personalisierte Folgeempfehlungen zu erhalten, werden stattdessen diese Profile verwendet. Sie werden täglich, basierend auf einer Mischung aus am meisten interagierenden Konten und jenen mit den meisten Followern für eine bestimmte Sprache, neu berechnet."
@@ -486,13 +486,13 @@ de:
         title: Inhaltsrichtlinien
       dashboard:
         instance_accounts_dimension: Meistgefolgte Konten
-        instance_accounts_measure: gespeicherte Konten
+        instance_accounts_measure: deren Konten hier im Cache
         instance_followers_measure: eigene Follower dort
         instance_follows_measure: deren Follower hier
         instance_languages_dimension: Meistverwendete Sprachen
-        instance_media_attachments_measure: gespeicherte Medienanhänge
+        instance_media_attachments_measure: deren Medien hier im Cache
         instance_reports_measure: Meldungen zu deren Accounts
-        instance_statuses_measure: gespeicherte Beiträge
+        instance_statuses_measure: deren Beiträge hier im Cache
       delivery:
         all: Alle
         clear: Zustellfehler löschen
@@ -870,10 +870,10 @@ de:
         not_usable: Kann nicht verwendet werden
         peaked_on_and_decaying: In den Trends am %{date}, jetzt absteigend
         title: Angesagte Hashtags
-        trendable: Darf unter Trends erscheinen
-        trending_rank: 'Trend #%{rank}'
-        usable: Kann verwendet werden
-        usage_comparison: Heute %{today} Mal genutzt, gestern %{yesterday} Mal
+        trendable: Darf in den Trends erscheinen
+        trending_rank: 'Platz %{rank}'
+        usable: Darf verwendet werden
+        usage_comparison: Heute %{today}-mal und gestern %{yesterday}-mal genutzt
         used_by_over_week:
           one: In der letzten Woche von einer Person genutzt
           other: In der letzten Woche von %{count} Personen genutzt
@@ -932,7 +932,7 @@ de:
       new_trending_statuses:
         title: Angesagte Beiträge
       new_trending_tags:
-        no_approved_tags: Derzeit gibt es keine genehmigten trendenen Hashtags.
+        no_approved_tags: Es gibt keine genehmigten Hashtags, die gerade im Trend liegen.
         requirements: 'Jeder dieser Kandidaten könnte den #%{rank} genehmigten angesagten Hashtag übertreffen, der derzeit #%{lowest_tag_name} mit einer Punktzahl von %{lowest_tag_score} ist.'
         title: Angesagte Hashtags
       subject: Neue Trends zur Überprüfung auf %{instance}
@@ -951,7 +951,7 @@ de:
     discovery: Entdecken
     localization:
       body: Mastodon wird von Freiwilligen übersetzt.
-      guide_link: https://de.crowdin.com/project/mastodon
+      guide_link: https://de.crowdin.com/project/mastodon/de
       guide_link_text: Alle können mitmachen und etwas dazu beitragen.
     sensitive_content: Inhaltswarnung
     toot_layout: Timeline-Layout
@@ -959,9 +959,9 @@ de:
     notification_preferences: E-Mail-Einstellungen ändern
     salutation: "%{name},"
     settings: 'E-Mail-Einstellungen ändern: %{link}'
-    view: 'Ansehen:'
+    view: 'Hier überprüfen:'
     view_profile: Profil anzeigen
-    view_status: Beitrag öffnen
+    view_status: Beitrag anschauen
   applications:
     created: Anwendung erfolgreich erstellt
     destroyed: Anwendung erfolgreich gelöscht
@@ -1007,7 +1007,7 @@ de:
       preamble: Diese werden von den %{domain}-Moderator*innen festgelegt und erzwungen.
       title: Einige Grundregeln.
     security: Sicherheit
-    set_new_password: Neues Passwort setzen
+    set_new_password: Neues Passwort einrichten
     setup:
       email_below_hint_html: Wenn die unten stehende E-Mail-Adresse falsch ist, kannst du sie hier ändern und eine neue Bestätigungs-E-Mail erhalten.
       email_settings_hint_html: Die Bestätigungs-E-Mail wurde an %{email} gesendet. Wenn diese E-Mail-Adresse nicht korrekt ist, kannst du sie in den Einstellungen ändern.
@@ -1025,7 +1025,7 @@ de:
       pending: Die Prüfung deiner Bewerbung steht noch aus. Dies kann einige Zeit in Anspruch nehmen. Sobald deine Bewerbung genehmigt wurde, erhältst du eine E-Mail.
       redirecting_to: Dein Konto ist inaktiv, weil es zu %{acct} umgezogen ist.
       view_strikes: Vorherige Verstöße deines Kontos ansehen
-    too_fast: Formular zu schnell gesendet, versuche es erneut.
+    too_fast: Formular zu schnell abgeschickt, versuche es erneut.
     use_security_key: Sicherheitsschlüssel verwenden
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
@@ -1141,12 +1141,12 @@ de:
       in_progress: Persönliches Archiv wird erstellt …
       request: Dein Archiv anfordern
       size: Dateigröße
-    blocks: Gesperrte Accounts
+    blocks: Gesperrte Profile
     bookmarks: Lesezeichen
     csv: CSV
     domain_blocks: Gesperrte Domains
     lists: Listen
-    mutes: Stummgeschaltete Accounts
+    mutes: Stummgeschaltete Profile
     storage: Medienspeicher
   featured_tags:
     add_new: Neuen hinzufügen
@@ -1196,7 +1196,7 @@ de:
         hint: Dieser Filter wird verwendet, um einzelne Beiträge unabhängig von anderen Kriterien auszuwählen. Du kannst mehr Beiträge zu diesem Filter über das Webinterface hinzufügen.
         title: Gefilterte Beiträge
   footer:
-    trending_now: In den Trends
+    trending_now: Jetzt in den Trends
   generic:
     all: Alle
     all_items_on_page_selected_html:
@@ -1230,15 +1230,15 @@ de:
       merge_long: Behalte existierende Datensätze und füge neue hinzu
       overwrite: Überschreiben
       overwrite_long: Ersetze aktuelle Datensätze mit neuen
-    preface: Daten, die du von einem anderen Server exportiert hast, kannst du hierher importieren. Das betrifft beispielsweise die Listen von Profilen, denen du folgst oder die du gesperrt hast.
+    preface: Daten, die du von einem Mastodon-Server exportiert hast, kannst du hierher importieren. Das betrifft beispielsweise die Listen von Profilen, denen du folgst oder die du gesperrt hast.
     success: Deine Daten wurden erfolgreich hochgeladen und werden in Kürze verarbeitet
     types:
-      blocking: Sperrliste
+      blocking: Gesperrte Profile
       bookmarks: Lesezeichen
-      domain_blocking: Domain-Sperrliste
-      following: Folgeliste
-      muting: Stummschaltungsliste
-    upload: Liste importieren
+      domain_blocking: Gesperrte Domains
+      following: Folge ich
+      muting: Stummgeschaltete Profile
+    upload: Datei importieren
   invites:
     delete: Deaktivieren
     expired: Abgelaufen
