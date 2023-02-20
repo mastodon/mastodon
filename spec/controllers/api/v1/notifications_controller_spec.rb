@@ -70,19 +70,19 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'includes reblog' do
-        expect(body_as_json.map { |x| x[:type] }).to include 'reblog'
+        expect(body_as_json.pluck(:type)).to include 'reblog'
       end
 
       it 'includes mention' do
-        expect(body_as_json.map { |x| x[:type] }).to include 'mention'
+        expect(body_as_json.pluck(:type)).to include 'mention'
       end
 
       it 'includes favourite' do
-        expect(body_as_json.map { |x| x[:type] }).to include 'favourite'
+        expect(body_as_json.pluck(:type)).to include 'favourite'
       end
 
       it 'includes follow' do
-        expect(body_as_json.map { |x| x[:type] }).to include 'follow'
+        expect(body_as_json.pluck(:type)).to include 'follow'
       end
     end
 
@@ -125,7 +125,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
 
       it 'returns everything but excluded type' do
         expect(body_as_json.size).to_not eq 0
-        expect(body_as_json.map { |x| x[:type] }.uniq).to_not include 'mention'
+        expect(body_as_json.pluck(:type).uniq).to_not include 'mention'
       end
     end
 
@@ -139,7 +139,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'returns only requested type' do
-        expect(body_as_json.map { |x| x[:type] }.uniq).to eq ['mention']
+        expect(body_as_json.pluck(:type).uniq).to eq ['mention']
       end
     end
   end
