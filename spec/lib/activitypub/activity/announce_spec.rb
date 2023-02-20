@@ -139,7 +139,7 @@ RSpec.describe ActivityPub::Activity::Announce do
         end
 
         it 'does not fetch the remote status' do
-          expect(a_request(:get, 'https://example.com/actor/hello-world')).not_to have_been_made
+          expect(a_request(:get, 'https://example.com/actor/hello-world')).to_not have_been_made
           expect(Status.find_by(uri: 'https://example.com/actor/hello-world')).to be_nil
         end
 

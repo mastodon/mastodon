@@ -102,7 +102,7 @@ describe Request do
 
     it 'accepts body less than 1 megabyte by default' do
       stub_request(:any, 'http://example.com').to_return(body: SecureRandom.random_bytes(2.kilobytes))
-      expect { subject.perform { |response| response.body_with_limit } }.not_to raise_error
+      expect { subject.perform { |response| response.body_with_limit } }.to_not raise_error
     end
 
     it 'rejects body by given size' do

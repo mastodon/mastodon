@@ -234,7 +234,7 @@ RSpec.describe ImportService, type: :service do
         subject.call(import)
         expect(account.bookmarks.map(&:status).map(&:id)).to include(local_status.id)
         expect(account.bookmarks.map(&:status).map(&:id)).to include(remote_status.id)
-        expect(account.bookmarks.map(&:status).map(&:id)).not_to include(direct_status.id)
+        expect(account.bookmarks.map(&:status).map(&:id)).to_not include(direct_status.id)
         expect(account.bookmarks.count).to eq 3
       end
     end

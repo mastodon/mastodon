@@ -67,9 +67,9 @@ RSpec.describe BlockDomainService, type: :service do
     end
 
     it 'leaves the domains status and attachments, but clears media' do
-      expect { bad_status1.reload }.not_to raise_error
-      expect { bad_status2.reload }.not_to raise_error
-      expect { bad_attachment.reload }.not_to raise_error
+      expect { bad_status1.reload }.to_not raise_error
+      expect { bad_status2.reload }.to_not raise_error
+      expect { bad_attachment.reload }.to_not raise_error
       expect(bad_attachment.file.exists?).to be false
     end
   end

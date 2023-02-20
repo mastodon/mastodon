@@ -31,7 +31,7 @@ RSpec.describe Account, type: :model do
           end
 
           it 'does not raise an error' do
-            expect { subject.suspend! }.not_to raise_error
+            expect { subject.suspend! }.to_not raise_error
           end
         end
       end
@@ -206,7 +206,7 @@ RSpec.describe Account, type: :model do
       end
 
       it 'calls not ResolveAccountService#call' do
-        expect_any_instance_of(ResolveAccountService).not_to receive(:call).with(acct)
+        expect_any_instance_of(ResolveAccountService).to_not receive(:call).with(acct)
         account.refresh!
       end
     end
@@ -811,19 +811,19 @@ RSpec.describe Account, type: :model do
       it 'is valid even if the username is longer than 30 characters' do
         account = Fabricate.build(:account, domain: 'domain', username: Faker::Lorem.characters(number: 31))
         account.valid?
-        expect(account).not_to model_have_error_on_field(:username)
+        expect(account).to_not model_have_error_on_field(:username)
       end
 
       it 'is valid even if the display name is longer than 30 characters' do
         account = Fabricate.build(:account, domain: 'domain', display_name: Faker::Lorem.characters(number: 31))
         account.valid?
-        expect(account).not_to model_have_error_on_field(:display_name)
+        expect(account).to_not model_have_error_on_field(:display_name)
       end
 
       it 'is valid even if the note is longer than 500 characters' do
         account = Fabricate.build(:account, domain: 'domain', note: Faker::Lorem.characters(number: 501))
         account.valid?
-        expect(account).not_to model_have_error_on_field(:note)
+        expect(account).to_not model_have_error_on_field(:note)
       end
     end
   end

@@ -38,7 +38,7 @@ RSpec.describe Setting, type: :model do
       let(:cache_value)       { 'cache-value' }
 
       it 'calls not RailsSettings::Base#[]' do
-        expect(RailsSettings::Base).not_to receive(:[]).with(key)
+        expect(RailsSettings::Base).to_not receive(:[]).with(key)
         described_class[key]
       end
 
@@ -104,7 +104,7 @@ RSpec.describe Setting, type: :model do
           ActiveSupport::Notifications.subscribed callback, 'sql.active_record' do
             described_class[key]
           end
-          expect(callback).not_to have_received(:call)
+          expect(callback).to_not have_received(:call)
         end
 
         it 'returns the cached value' do

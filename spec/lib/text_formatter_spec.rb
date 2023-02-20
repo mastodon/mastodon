@@ -18,7 +18,7 @@ RSpec.describe TextFormatter do
       let(:text) { "line\nfeed" }
 
       it 'removes line feeds' do
-        is_expected.not_to include "\n"
+        is_expected.to_not include "\n"
       end
     end
 

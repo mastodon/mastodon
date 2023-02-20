@@ -60,7 +60,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
         end
 
         it 'does not include contents of private pinned status' do
-          expect(response.body).not_to include(private_pinned.text)
+          expect(response.body).to_not include(private_pinned.text)
         end
 
         context 'when account is permanently suspended' do
@@ -115,7 +115,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
           end
 
           it 'does not include contents of private pinned status' do
-            expect(response.body).not_to include(private_pinned.text)
+            expect(response.body).to_not include(private_pinned.text)
           end
         end
 

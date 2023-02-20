@@ -54,7 +54,7 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
 
       post :create, params: { domain_block: { domain: 'example.com', severity: 'silence' } }
 
-      expect(DomainBlockWorker).not_to have_received(:perform_async)
+      expect(DomainBlockWorker).to_not have_received(:perform_async)
       expect(response).to render_template :new
     end
 

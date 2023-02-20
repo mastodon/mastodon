@@ -84,7 +84,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
 
         it 'fails to memorialize account' do
           is_expected.to have_http_status :forbidden
-          expect(account.reload).not_to be_memorial
+          expect(account.reload).to_not be_memorial
         end
       end
 
@@ -106,7 +106,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
 
         it 'fails to memorialize account' do
           is_expected.to have_http_status :forbidden
-          expect(account.reload).not_to be_memorial
+          expect(account.reload).to_not be_memorial
         end
       end
 
@@ -115,7 +115,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
 
         it 'fails to memorialize account' do
           is_expected.to have_http_status :forbidden
-          expect(account.reload).not_to be_memorial
+          expect(account.reload).to_not be_memorial
         end
       end
     end
@@ -133,7 +133,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
 
       it 'succeeds in enabling account' do
         is_expected.to redirect_to admin_account_path(account.id)
-        expect(user.reload).not_to be_disabled
+        expect(user.reload).to_not be_disabled
       end
     end
 
@@ -183,7 +183,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
 
       it 'fails to approve account' do
         is_expected.to have_http_status :forbidden
-        expect(user.reload).not_to be_approved
+        expect(user.reload).to_not be_approved
       end
     end
   end
@@ -223,7 +223,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
 
       it 'fails to reject account' do
         is_expected.to have_http_status :forbidden
-        expect(user.reload).not_to be_approved
+        expect(user.reload).to_not be_approved
       end
     end
   end
