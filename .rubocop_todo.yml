@@ -2026,16 +2026,6 @@ Style/FetchEnvVar:
     - 'lib/tasks/repo.rake'
     - 'spec/features/profile_spec.rb'
 
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: format, sprintf, percent
-Style/FormatString:
-  Exclude:
-    - 'app/serializers/rest/privacy_policy_serializer.rb'
-    - 'lib/mastodon/maintenance_cli.rb'
-    - 'lib/paperclip/color_extractor.rb'
-
 # Offense count: 15
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, MaxUnannotatedPlaceholdersAllowed, AllowedMethods, AllowedPatterns.
