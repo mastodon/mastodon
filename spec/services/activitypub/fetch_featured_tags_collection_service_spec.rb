@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service do
+  subject { described_class.new }
+
   let(:collection_url) { 'https://example.com/account/tags' }
   let(:actor) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/account') }
 
@@ -20,8 +22,6 @@ RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service d
       items: items,
     }.with_indifferent_access
   end
-
-  subject { described_class.new }
 
   shared_examples 'sets featured tags' do
     before do

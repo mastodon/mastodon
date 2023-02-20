@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe FetchResourceService, type: :service do
   describe '#call' do
-    let(:url) { 'http://example.com' }
-
     subject { described_class.new.call(url) }
+
+    let(:url) { 'http://example.com' }
 
     context 'with blank url' do
       let(:url) { '' }

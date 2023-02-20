@@ -4,11 +4,11 @@ require 'rails_helper'
 
 RSpec.describe CustomEmojiFilter do
   describe '#results' do
+    subject { described_class.new(params).results }
+
     let!(:custom_emoji_0) { Fabricate(:custom_emoji, domain: 'a') }
     let!(:custom_emoji_1) { Fabricate(:custom_emoji, domain: 'b') }
     let!(:custom_emoji_2) { Fabricate(:custom_emoji, domain: nil, shortcode: 'hoge') }
-
-    subject { described_class.new(params).results }
 
     context 'params have values' do
       context 'local' do

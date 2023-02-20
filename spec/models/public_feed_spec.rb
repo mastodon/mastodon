@@ -40,14 +40,14 @@ RSpec.describe PublicFeed, type: :model do
     end
 
     context 'without local_only option' do
+      subject { described_class.new(viewer).get(20).map(&:id) }
+
       let(:viewer) { nil }
 
       let!(:local_account)  { Fabricate(:account, domain: nil) }
       let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
       let!(:local_status)   { Fabricate(:status, account: local_account) }
       let!(:remote_status)  { Fabricate(:status, account: remote_account) }
-
-      subject { described_class.new(viewer).get(20).map(&:id) }
 
       context 'without a viewer' do
         let(:viewer) { nil }
@@ -75,12 +75,12 @@ RSpec.describe PublicFeed, type: :model do
     end
 
     context 'with a local_only option set' do
+      subject { described_class.new(viewer, local: true).get(20).map(&:id) }
+
       let!(:local_account)  { Fabricate(:account, domain: nil) }
       let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
       let!(:local_status)   { Fabricate(:status, account: local_account) }
       let!(:remote_status)  { Fabricate(:status, account: remote_account) }
-
-      subject { described_class.new(viewer, local: true).get(20).map(&:id) }
 
       context 'without a viewer' do
         let(:viewer) { nil }
@@ -108,12 +108,12 @@ RSpec.describe PublicFeed, type: :model do
     end
 
     context 'with a remote_only option set' do
+      subject { described_class.new(viewer, remote: true).get(20).map(&:id) }
+
       let!(:local_account)  { Fabricate(:account, domain: nil) }
       let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
       let!(:local_status)   { Fabricate(:status, account: local_account) }
       let!(:remote_status)  { Fabricate(:status, account: remote_account) }
-
-      subject { described_class.new(viewer, remote: true).get(20).map(&:id) }
 
       context 'without a viewer' do
         let(:viewer) { nil }
@@ -135,11 +135,11 @@ RSpec.describe PublicFeed, type: :model do
     end
 
     describe 'with an account passed in' do
+      subject { described_class.new(@account).get(20).map(&:id) }
+
       before do
         @account = Fabricate(:account)
       end
-
-      subject { described_class.new(@account).get(20).map(&:id) }
 
       it 'excludes statuses from accounts blocked by the account' do
         blocked = Fabricate(:account)

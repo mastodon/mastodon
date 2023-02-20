@@ -51,14 +51,14 @@ RSpec.describe RemoteFollow do
   end
 
   describe '#subscribe_address_for' do
+    subject { remote_follow.subscribe_address_for(account) }
+
     before do
       remote_follow.valid?
     end
 
     let(:attrs)   { { acct: 'gargron@quitter.no' } }
     let(:account) { Fabricate(:account, username: 'alice') }
-
-    subject { remote_follow.subscribe_address_for(account) }
 
     it 'returns subscribe address' do
       expect(subject).to eq 'https://quitter.no/main/ostatussub?profile=https%3A%2F%2Fcb6e6126.ngrok.io%2Fusers%2Falice'

@@ -121,6 +121,8 @@ RSpec.describe ActivityPub::Activity::Reject do
   end
 
   context 'given a relay' do
+    subject { described_class.new(json, sender) }
+
     let!(:relay) { Fabricate(:relay, state: :pending, follow_activity_id: 'https://abc-123/456') }
 
     let(:json) do
@@ -137,8 +139,6 @@ RSpec.describe ActivityPub::Activity::Reject do
         },
       }.with_indifferent_access
     end
-
-    subject { described_class.new(json, sender) }
 
     it 'marks the relay as rejected' do
       subject.perform

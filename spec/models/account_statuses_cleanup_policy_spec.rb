@@ -132,10 +132,10 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
   end
 
   describe '#invalidate_last_inspected' do
+    subject { account_statuses_cleanup_policy.invalidate_last_inspected(status, action) }
+
     let(:account_statuses_cleanup_policy) { Fabricate(:account_statuses_cleanup_policy, account: account) }
     let(:status) { Fabricate(:status, id: 10, account: account) }
-
-    subject { account_statuses_cleanup_policy.invalidate_last_inspected(status, action) }
 
     before do
       account_statuses_cleanup_policy.record_last_inspected(42)
@@ -231,10 +231,10 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
   end
 
   describe '#compute_cutoff_id' do
+    subject { account_statuses_cleanup_policy.compute_cutoff_id }
+
     let!(:unrelated_status) { Fabricate(:status, created_at: 3.years.ago) }
     let(:account_statuses_cleanup_policy) { Fabricate(:account_statuses_cleanup_policy, account: account) }
-
-    subject { account_statuses_cleanup_policy.compute_cutoff_id }
 
     context 'when the account has posted multiple toots' do
       let!(:very_old_status)   { Fabricate(:status, created_at: 3.years.ago, account: account) }
@@ -254,6 +254,8 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
   end
 
   describe '#statuses_to_delete' do
+    subject { account_statuses_cleanup_policy.statuses_to_delete }
+
     let!(:unrelated_status)  { Fabricate(:status, created_at: 3.years.ago) }
     let!(:very_old_status)   { Fabricate(:status, created_at: 3.years.ago, account: account) }
     let!(:pinned_status)     { Fabricate(:status, created_at: 1.year.ago, account: account) }
@@ -275,8 +277,6 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
 
     let(:account_statuses_cleanup_policy) { Fabricate(:account_statuses_cleanup_policy, account: account) }
 
-    subject { account_statuses_cleanup_policy.statuses_to_delete }
-
     before do
       4.times { faved4.increment_count!(:favourites_count) }
       5.times { faved5.increment_count!(:favourites_count) }
@@ -285,10 +285,10 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
     end
 
     context 'when passed a max_id' do
+      subject { account_statuses_cleanup_policy.statuses_to_delete(50, old_status.id).pluck(:id) }
+
       let!(:old_status)               { Fabricate(:status, created_at: 1.year.ago, account: account) }
       let!(:slightly_less_old_status) { Fabricate(:status, created_at: 6.months.ago, account: account) }
-
-      subject { account_statuses_cleanup_policy.statuses_to_delete(50, old_status.id).pluck(:id) }
 
       it 'returns statuses including max_id' do
         expect(subject).to include(old_status.id)
@@ -304,10 +304,10 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
     end
 
     context 'when passed a min_id' do
+      subject { account_statuses_cleanup_policy.statuses_to_delete(50, recent_status.id, old_status.id).pluck(:id) }
+
       let!(:old_status)               { Fabricate(:status, created_at: 1.year.ago, account: account) }
       let!(:slightly_less_old_status) { Fabricate(:status, created_at: 6.months.ago, account: account) }
-
-      subject { account_statuses_cleanup_policy.statuses_to_delete(50, recent_status.id, old_status.id).pluck(:id) }
 
       it 'returns statuses including min_id' do
         expect(subject).to include(old_status.id)

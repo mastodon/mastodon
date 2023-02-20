@@ -163,11 +163,11 @@ RSpec.describe Setting, type: :model do
   end
 
   describe '.default_settings' do
+    subject { described_class.default_settings }
+
     before do
       allow(RailsSettings::Default).to receive(:enabled?).and_return(enabled)
     end
-
-    subject { described_class.default_settings }
 
     context 'RailsSettings::Default.enabled? is false' do
       let(:enabled) { false }

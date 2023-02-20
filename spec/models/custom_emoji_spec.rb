@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe CustomEmoji, type: :model do
   describe '#search' do
-    let(:custom_emoji) { Fabricate(:custom_emoji, shortcode: shortcode) }
-
     subject { described_class.search(search_term) }
+
+    let(:custom_emoji) { Fabricate(:custom_emoji, shortcode: shortcode) }
 
     context 'shortcode is exact' do
       let(:shortcode) { 'blobpats' }
@@ -26,9 +26,9 @@ RSpec.describe CustomEmoji, type: :model do
   end
 
   describe '#local?' do
-    let(:custom_emoji) { Fabricate(:custom_emoji, domain: domain) }
-
     subject { custom_emoji.local? }
+
+    let(:custom_emoji) { Fabricate(:custom_emoji, domain: domain) }
 
     context 'domain is nil' do
       let(:domain) { nil }
@@ -55,9 +55,9 @@ RSpec.describe CustomEmoji, type: :model do
   end
 
   describe '.from_text' do
-    let!(:emojo) { Fabricate(:custom_emoji) }
-
     subject { described_class.from_text(text, nil) }
+
+    let!(:emojo) { Fabricate(:custom_emoji) }
 
     context 'with plain text' do
       let(:text) { 'Hello :coolcat:' }

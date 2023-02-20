@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe MediaAttachment, type: :model do
   describe 'local?' do
-    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url) }
-
     subject { media_attachment.local? }
+
+    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url) }
 
     context 'remote_url is blank' do
       let(:remote_url) { '' }
@@ -24,9 +24,9 @@ RSpec.describe MediaAttachment, type: :model do
   end
 
   describe 'needs_redownload?' do
-    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url, file: file) }
-
     subject { media_attachment.needs_redownload? }
+
+    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url, file: file) }
 
     context 'file is blank' do
       let(:file) { nil }

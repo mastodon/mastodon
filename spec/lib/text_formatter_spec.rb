@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe TextFormatter do
   describe '#to_s' do
-    let(:preloaded_accounts) { nil }
-
     subject { described_class.new(text, preloaded_accounts: preloaded_accounts).to_s }
+
+    let(:preloaded_accounts) { nil }
 
     context 'given text containing plain text' do
       let(:text) { 'text' }

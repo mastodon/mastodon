@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe UnfollowService, type: :service do
-  let(:sender) { Fabricate(:account, username: 'alice') }
-
   subject { UnfollowService.new }
+
+  let(:sender) { Fabricate(:account, username: 'alice') }
 
   describe 'local' do
     let(:bob) { Fabricate(:account, username: 'bob') }

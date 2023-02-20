@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Web::PushSubscription, type: :model do
+  subject { described_class.new(data: data) }
+
   let(:account) { Fabricate(:account) }
 
   let(:policy) { 'all' }
@@ -18,8 +20,6 @@ RSpec.describe Web::PushSubscription, type: :model do
       },
     }
   end
-
-  subject { described_class.new(data: data) }
 
   describe '#pushable?' do
     let(:notification_type) { :mention }

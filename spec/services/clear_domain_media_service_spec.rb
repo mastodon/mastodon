@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe ClearDomainMediaService, type: :service do
+  subject { ClearDomainMediaService.new }
+
   let!(:bad_account) { Fabricate(:account, username: 'badguy666', domain: 'evil.org') }
   let!(:bad_status1) { Fabricate(:status, account: bad_account, text: 'You suck') }
   let!(:bad_status2) { Fabricate(:status, account: bad_account, text: 'Hahaha') }
   let!(:bad_attachment) { Fabricate(:media_attachment, account: bad_account, status: bad_status2, file: attachment_fixture('attachment.jpg')) }
-
-  subject { ClearDomainMediaService.new }
 
   describe 'for a silence with reject media' do
     before do
