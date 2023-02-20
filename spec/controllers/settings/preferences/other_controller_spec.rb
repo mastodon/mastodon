@@ -23,7 +23,7 @@ describe Settings::Preferences::OtherController do
       expect(response).to redirect_to(settings_preferences_other_path)
       user.reload
       expect(user.locale).to eq 'en'
-      expect(user.chosen_languages).to eq ['es', 'fr']
+      expect(user.chosen_languages).to eq %w(es fr)
     end
 
     it 'updates user settings' do
@@ -34,7 +34,7 @@ describe Settings::Preferences::OtherController do
         user: {
           setting_boost_modal: '1',
           setting_delete_modal: '0',
-        }
+        },
       }
 
       expect(response).to redirect_to(settings_preferences_other_path)

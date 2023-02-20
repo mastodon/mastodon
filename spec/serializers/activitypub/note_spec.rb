@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 describe ActivityPub::NoteSerializer do
+  subject { JSON.parse(@serialization.to_json) }
+
   let!(:account) { Fabricate(:account) }
   let!(:other)   { Fabricate(:account) }
   let!(:parent)  { Fabricate(:status, account: account, visibility: :public) }
@@ -15,8 +17,6 @@ describe ActivityPub::NoteSerializer do
   before(:each) do
     @serialization = ActiveModelSerializers::SerializableResource.new(parent, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter)
   end
-
-  subject { JSON.parse(@serialization.to_json) }
 
   it 'has a Note type' do
     expect(subject['type']).to eql('Note')

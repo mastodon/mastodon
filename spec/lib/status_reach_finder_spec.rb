@@ -5,12 +5,12 @@ require 'rails_helper'
 describe StatusReachFinder do
   describe '#inboxes' do
     context 'for a local status' do
+      subject { described_class.new(status) }
+
       let(:parent_status) { nil }
       let(:visibility) { :public }
       let(:alice) { Fabricate(:account, username: 'alice') }
       let(:status) { Fabricate(:status, account: alice, thread: parent_status, visibility: visibility) }
-
-      subject { described_class.new(status) }
 
       context 'when it contains mentions of remote accounts' do
         let(:bob) { Fabricate(:account, username: 'bob', domain: 'foo.bar', protocol: :activitypub, inbox_url: 'https://foo.bar/inbox') }

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service do
+  subject { described_class.new }
+
   let(:collection_url) { 'https://example.com/account/tags' }
   let(:actor) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/account') }
 
@@ -21,15 +23,13 @@ RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service d
     }.with_indifferent_access
   end
 
-  subject { described_class.new }
-
   shared_examples 'sets featured tags' do
     before do
       subject.call(actor, collection_url)
     end
 
     it 'sets expected tags as pinned tags' do
-      expect(actor.featured_tags.map(&:display_name)).to match_array ['Foo', 'bar', 'baZ']
+      expect(actor.featured_tags.map(&:display_name)).to match_array %w(Foo bar baZ)
     end
   end
 
@@ -81,7 +81,7 @@ RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service d
             type: 'CollectionPage',
             partOf: collection_url,
             items: items,
-          }
+          },
         }.with_indifferent_access
       end
 

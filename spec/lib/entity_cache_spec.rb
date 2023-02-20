@@ -12,7 +12,7 @@ RSpec.describe EntityCache do
       let(:domain)     { 'example.org' }
 
       it 'returns an empty array' do
-        is_expected.to eq []
+        expect(subject).to eq []
       end
     end
   end

@@ -1,8 +1,6 @@
 RSpec::Matchers.define :model_have_error_on_field do |expected|
   match do |record|
-    if record.errors.empty?
-      record.valid?
-    end
+    record.valid? if record.errors.empty?
 
     record.errors.has_key?(expected)
   end

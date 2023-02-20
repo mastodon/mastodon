@@ -181,6 +181,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
 
   describe 'GET #index' do
     subject(:response) { get :index, params: { account_username: status.account.username, status_id: status.id, only_other_accounts: only_other_accounts } }
+
     let(:only_other_accounts) { nil }
 
     context 'with no signature' do

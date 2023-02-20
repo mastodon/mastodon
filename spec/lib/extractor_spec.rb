@@ -20,7 +20,7 @@ describe Extractor do
       text = '@screen_name'
       extracted = Extractor.extract_mentions_or_lists_with_indices(text)
       expect(extracted).to eq [
-        { screen_name: 'screen_name', indices: [0, 12] }
+        { screen_name: 'screen_name', indices: [0, 12] },
       ]
     end
 

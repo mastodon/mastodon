@@ -43,7 +43,7 @@ module.exports = {
       version: 'detect',
     },
     'import/extensions': [
-      '.js',
+      '.js', '.jsx',
     ],
     'import/ignore': [
       'node_modules',
@@ -52,6 +52,7 @@ module.exports = {
     'import/resolver': {
       node: {
         paths: ['app/javascript'],
+        extensions: ['.js', '.jsx'],
       },
     },
   },
@@ -111,6 +112,7 @@ module.exports = {
     semi: 'error',
     'valid-typeof': 'error',
 
+    'react/jsx-filename-extension': ['error', { 'allow': 'as-needed' }],
     'react/jsx-boolean-value': 'error',
     'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
     'react/jsx-curly-spacing': 'error',
@@ -185,6 +187,7 @@ module.exports = {
       'always',
       {
         js: 'never',
+        jsx: 'never',
       },
     ],
     'import/newline-after-import': 'error',

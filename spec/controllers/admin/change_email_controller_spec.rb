@@ -9,8 +9,8 @@ RSpec.describe Admin::ChangeEmailsController, type: :controller do
     sign_in admin
   end
 
-  describe "GET #show" do
-    it "returns http success" do
+  describe 'GET #show' do
+    it 'returns http success' do
       user = Fabricate(:user)
 
       get :show, params: { account_id: user.account.id }
@@ -19,12 +19,12 @@ RSpec.describe Admin::ChangeEmailsController, type: :controller do
     end
   end
 
-  describe "GET #update" do
+  describe 'GET #update' do
     before do
       allow(UserMailer).to receive(:confirmation_instructions).and_return(double('email', deliver_later: nil))
     end
 
-    it "returns http success" do
+    it 'returns http success' do
       user = Fabricate(:user)
 
       previous_email = user.email
@@ -35,7 +35,7 @@ RSpec.describe Admin::ChangeEmailsController, type: :controller do
 
       expect(user.email).to eq previous_email
       expect(user.unconfirmed_email).to eq 'test@example.com'
-      expect(user.confirmation_token).not_to be_nil
+      expect(user.confirmation_token).to_not be_nil
 
       expect(UserMailer).to have_received(:confirmation_instructions).with(user, user.confirmation_token, { to: 'test@example.com' })
 

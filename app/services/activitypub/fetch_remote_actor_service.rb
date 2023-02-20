@@ -56,9 +56,7 @@ class ActivityPub::FetchRemoteActorService < BaseService
     webfinger                            = webfinger!("acct:#{confirmed_username}@#{confirmed_domain}")
     @username, @domain                   = split_acct(webfinger.subject)
 
-    unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
-      raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{@uri} (stopped at #{@username}@#{@domain})"
-    end
+    raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{@uri} (stopped at #{@username}@#{@domain})" unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
 
     raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.link('self', 'href') != @uri
   rescue Webfinger::RedirectError => e

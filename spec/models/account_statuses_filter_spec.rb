@@ -3,11 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe AccountStatusesFilter do
+  subject { described_class.new(account, current_account, params) }
+
   let(:account) { Fabricate(:account) }
   let(:current_account) { nil }
   let(:params) { {} }
-
-  subject { described_class.new(account, current_account, params) }
 
   def status!(visibility)
     Fabricate(:status, account: account, visibility: visibility)

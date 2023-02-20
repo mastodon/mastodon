@@ -45,7 +45,7 @@ RSpec.describe Api::V2::Filters::KeywordsController, type: :controller do
     it 'returns a keyword' do
       json = body_as_json
       expect(json[:keyword]).to eq 'magic'
-      expect(json[:whole_word]).to eq false
+      expect(json[:whole_word]).to be false
     end
 
     it 'creates a keyword' do
@@ -78,7 +78,7 @@ RSpec.describe Api::V2::Filters::KeywordsController, type: :controller do
     it 'returns expected data' do
       json = body_as_json
       expect(json[:keyword]).to eq 'foo'
-      expect(json[:whole_word]).to eq false
+      expect(json[:whole_word]).to be false
     end
 
     context "when trying to access another user's filter keyword" do

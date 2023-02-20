@@ -48,12 +48,12 @@ class Status < ApplicationRecord
 
   update_index('statuses', :proper)
 
-  enum visibility: [:public, :unlisted, :private, :direct, :limited], _suffix: :visibility
+  enum visibility: { public: 0, unlisted: 1, private: 2, direct: 3, limited: 4 }, _suffix: :visibility
 
   belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
   belongs_to :account, inverse_of: :statuses
-  belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account', optional: true
+  belongs_to :in_reply_to_account, class_name: 'Account', optional: true
   belongs_to :conversation, optional: true
   belongs_to :preloadable_poll, class_name: 'Poll', foreign_key: 'poll_id', optional: true
 
@@ -101,12 +101,12 @@ class Status < ApplicationRecord
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where.not(accounts: { silenced_at: nil }) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
-  scope :tagged_with_all, ->(tag_ids) {
+  scope :tagged_with_all, lambda { |tag_ids|
     Array(tag_ids).map(&:to_i).reduce(self) do |result, id|
       result.joins("INNER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}")
     end
   }
-  scope :tagged_with_none, ->(tag_ids) {
+  scope :tagged_with_none, lambda { |tag_ids|
     where('NOT EXISTS (SELECT * FROM statuses_tags forbidden WHERE forbidden.status_id = statuses.id AND forbidden.tag_id IN (?))', tag_ids)
   }
 
@@ -368,13 +368,12 @@ class Status < ApplicationRecord
       return [] if text.blank?
 
       text.scan(FetchLinkCardService::URL_PATTERN).map(&:second).uniq.filter_map do |url|
-        status = begin
-          if TagManager.instance.local_url?(url)
-            ActivityPub::TagManager.instance.uri_to_resource(url, Status)
-          else
-            EntityCache.instance.status(url)
-          end
-        end
+        status = if TagManager.instance.local_url?(url)
+                   ActivityPub::TagManager.instance.uri_to_resource(url, Status)
+                 else
+                   EntityCache.instance.status(url)
+                 end
+
         status&.distributable? ? status : nil
       end
     end

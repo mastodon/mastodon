@@ -62,13 +62,10 @@ class InitialStateSerializer < ActiveModel::Serializer
     store[:disabled_account_id] = object.disabled_account.id.to_s if object.disabled_account
     store[:moved_to_account_id] = object.moved_to_account.id.to_s if object.moved_to_account
 
-    if Rails.configuration.x.single_user_mode
-      store[:owner] = object.owner&.id&.to_s
-    end
+    store[:owner] = object.owner&.id&.to_s if Rails.configuration.x.single_user_mode
 
     store
   end
-  # rubocop:enable Metrics/AbcSize
 
   def compose
     store = {}

@@ -26,7 +26,7 @@ describe Admin::Users::RolesController do
       let(:previous_role) { UserRole.create(name: 'Baz', permissions: UserRole::FLAGS[:administrator], position: 100) }
 
       it 'returns http forbidden' do
-        expect(response).to have_http_status(:forbidden)
+        expect(response).to have_http_status(403)
       end
     end
   end
@@ -74,7 +74,7 @@ describe Admin::Users::RolesController do
       end
 
       it 'returns http forbidden' do
-        expect(response).to have_http_status(:forbidden)
+        expect(response).to have_http_status(403)
       end
     end
   end

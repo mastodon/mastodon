@@ -18,13 +18,11 @@ class Api::V1::Trends::TagsController < Api::BaseController
   end
 
   def set_tags
-    @tags = begin
-      if enabled?
-        tags_from_trends.offset(offset_param).limit(limit_param(DEFAULT_TAGS_LIMIT))
-      else
-        []
-      end
-    end
+    @tags = if enabled?
+              tags_from_trends.offset(offset_param).limit(limit_param(DEFAULT_TAGS_LIMIT))
+            else
+              []
+            end
   end
 
   def tags_from_trends
