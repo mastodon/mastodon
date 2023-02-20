@@ -27,7 +27,7 @@ de:
         starts_at: Optional. Nur für den Fall, dass deine Ankündigung an einen bestimmten Zeitraum gebunden ist
         text: Du kannst die reguläre Syntax wie für Beiträge verwenden, also auch Profile erwähnen und Hashtags nutzen. Bitte beachte den Platz, den die Ankündigung auf dem Bildschirm der Benutzer*innen einnehmen wird
       appeal:
-        text: Du kannst nur einmal Einspruch gegen einen Verstoß einlegen
+        text: Du kannst nur einmal Einspruch gegen eine Maßnahme einlegen
       defaults:
         autofollow: Personen, die sich über deine Einladung registrieren, folgen automatisch deinem Profil
         avatar: PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
@@ -162,18 +162,18 @@ de:
         starts_at: Beginn der Ankündigung
         text: Ankündigung
       appeal:
-        text: Erkläre, warum diese Entscheidung rückgängig gemacht werden soll
+        text: Begründe, weshalb diese Entscheidung zurückgenommen werden sollte
       defaults:
         autofollow: Meinem Profil automatisch folgen
         avatar: Profilbild
-        bot: Dies ist ein Bot-Konto
+        bot: Dieses Profil ist ein Bot
         chosen_languages: Sprachen einschränken
         confirm_new_password: Neues Passwort bestätigen
         confirm_password: Passwort bestätigen
         context: Filter nach Bereichen
         current_password: Derzeitiges Passwort
         data: Daten
-        discoverable: Konto für andere empfehlen
+        discoverable: Dieses Konto anderen empfehlen
         display_name: Anzeigename
         email: E-Mail-Adresse
         expires_in: Läuft ab
@@ -230,7 +230,7 @@ de:
       filters:
         actions:
           hide: Vollständig ausblenden
-          warn: Mit einer Warnung ausblenden
+          warn: Mit einer Inhaltswarnung ausblenden
       form_admin_settings:
         activity_api_enabled: Veröffentlichung von Gesamtstatistiken über Nutzeraktivitäten in der API
         backups_retention_period: Aufbewahrungsfrist für Archive
