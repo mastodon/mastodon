@@ -24,7 +24,7 @@ de:
   admin:
     account_actions:
       action: Aktion ausführen
-      title: Moderationsaktion auf %{acct} ausführen
+      title: '%{acct} moderieren'
     account_moderation_notes:
       create: Notiz abspeichern
       created_msg: Moderationshinweis erfolgreich abgespeichert!
@@ -63,8 +63,8 @@ de:
       display_name: Angezeigter Name
       domain: Domain
       edit: Bearbeiten
-      email: E-Mail
-      email_status: E-Mail-Status
+      email: E-Mail-Adresse
+      email_status: Status der E-Mail-Adresse
       enable: Freischalten
       enable_sign_in_token_auth: Aktiviere die Zwei-Faktor-Authentisierung (2FA) per E-Mail
       enabled: Freigegeben
@@ -72,7 +72,7 @@ de:
       followers: Follower
       follows: Folge ich
       header: Titelbild
-      inbox_url: Posteingangsadresse
+      inbox_url: Privates Postfach (URL)
       invite_request_text: Begründung für das Beitreten
       invited_by: Eingeladen von
       ip: IP-Adresse
@@ -82,7 +82,7 @@ de:
         local: Lokal
         remote: Extern
         title: Herkunft
-      login_status: Anmeldestatus
+      login_status: Status
       media_attachments: Speicherplatz
       memorialize: In Gedenkseite umwandeln
       memorialized: Gedenkseite
@@ -128,7 +128,7 @@ de:
         success: Bestätigungs-E-Mail erfolgreich gesendet!
       reset: Zurücksetzen
       reset_password: Passwort zurücksetzen
-      resubscribe: Wieder abonnieren
+      resubscribe: Erneut abonnieren
       role: Rolle
       search: Suchen
       search_same_email_domain: Andere Benutzer*innen mit der gleichen E-Mail-Domain
@@ -139,14 +139,14 @@ de:
         password_and_2fa: Passwort und 2FA
       sensitive: Inhaltswarnung
       sensitized: Mit Inhaltswarnung versehen
-      shared_inbox_url: Geteilte Posteingangsadresse
+      shared_inbox_url: Gemeinsames Postfach (URL)
       show:
         created_reports: Erstellte Meldungen
         targeted_reports: Von Anderen gemeldet
       silence: Stummschalten
       silenced: Stummgeschaltet
       statuses: Beiträge
-      strikes: Vorherige Verstöße
+      strikes: Vorherige Maßnahmen
       subscribe: Abonnieren
       suspend: Sperren
       suspended: Gesperrt
@@ -164,7 +164,7 @@ de:
       unsuspended_msg: Kontosperre von %{username} erfolgreich aufgehoben
       username: Profilname
       view_domain: Übersicht für Domain anzeigen
-      warn: Warnen
+      warn: Verwarnen
       web: Web
       whitelisted: Auf der Whitelist
     action_logs:
@@ -641,7 +641,7 @@ de:
         delete_data_html: Das Profil und die Inhalte von <strong>@%{acct}</strong> werden in 30 Tagen gelöscht, es sei denn, sie werden in der Zwischenzeit entsperrt
         preview_preamble_html: "<strong>@%{acct}</strong> wird eine Warnung mit folgenden Inhalten erhalten:"
         record_strike_html: Einen Verstoß gegen <strong>@%{acct}</strong> eintragen, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können
-        send_email_html: <strong>@%{acct}</strong> eine Warnung per E-Mail senden
+        send_email_html: <strong>@%{acct}</strong> eine Verwarnung per E-Mail schicken
         warning_placeholder: Optional zusätzliche Begründung für die Moderationsmaßnahme.
       target_origin: Domain des gemeldeten Kontos
       title: Meldungen
