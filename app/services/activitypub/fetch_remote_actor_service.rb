@@ -50,6 +50,7 @@ class ActivityPub::FetchRemoteActorService < BaseService
 
     if @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
       raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.link('self', 'href') != @uri
+
       return
     end
 

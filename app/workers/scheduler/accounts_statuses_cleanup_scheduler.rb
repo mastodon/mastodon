@@ -62,6 +62,7 @@ class Scheduler::AccountsStatusesCleanupScheduler
       # The idea here is to loop through all policies at least once until the budget is exhausted
       # and start back after the last processed account otherwise
       break if budget.zero? || (num_processed_accounts.zero? && first_policy_id.nil?)
+
       first_policy_id = nil
     end
   end
@@ -73,6 +74,7 @@ class Scheduler::AccountsStatusesCleanupScheduler
 
   def under_load?
     return true if Sidekiq::Stats.new.retry_size > MAX_RETRY_SIZE
+
     queue_under_load?('default', MAX_DEFAULT_SIZE, MAX_DEFAULT_LATENCY) || queue_under_load?('push', MAX_PUSH_SIZE, MAX_PUSH_LATENCY) || queue_under_load?('pull', MAX_PULL_SIZE, MAX_PULL_LATENCY)
   end
 
