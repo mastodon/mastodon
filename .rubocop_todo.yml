@@ -2459,18 +2459,6 @@ Rails/RakeEnvironment:
     - 'lib/tasks/repo.rake'
     - 'lib/tasks/statistics.rake'
 
-# Offense count: 8
-# This cop supports safe autocorrection (--autocorrect).
-Rails/RedundantForeignKey:
-  Exclude:
-    - 'app/models/custom_filter.rb'
-    - 'app/models/follow_recommendation.rb'
-    - 'app/models/report.rb'
-    - 'app/models/status.rb'
-    - 'app/models/user_ip.rb'
-    - 'db/post_migrate/20221101190723_backfill_admin_action_logs.rb'
-    - 'db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb'
-
 # Offense count: 29
 # Configuration parameters: Include.
 # Include: db/**/*.rb

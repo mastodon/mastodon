@@ -62,7 +62,7 @@ class BackfillAdminActionLogsAgain < ActiveRecord::Migration[6.1]
     # Cannot use usual polymorphic support because of namespacing issues
     belongs_to :status, foreign_key: :target_id
     belongs_to :account, foreign_key: :target_id
-    belongs_to :user, foreign_key: :user_id
+    belongs_to :user
     belongs_to :domain_block, foreign_key: :target_id
     belongs_to :domain_allow, foreign_key: :target_id
     belongs_to :email_domain_block, foreign_key: :target_id
