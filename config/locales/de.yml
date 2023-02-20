@@ -549,7 +549,7 @@ de:
     relationships:
       title: "Beziehungen von %{acct}"
     relays:
-      add_new: Neues Relay hinzufügen
+      add_new: Neues Relais hinzufügen
       delete: Entfernen
       description_html: Ein <strong>Föderierungsrelay</strong> ist ein vermittelnder Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern austauscht, die es abonnieren und zu ihm veröffentlichen.<strong> Es kann kleinen und mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>, was andernfalls das manuelle Folgen anderer Leute auf entfernten Servern durch lokale Nutzer erfordern würde.
       disable: Ausschalten
@@ -606,8 +606,8 @@ de:
       no_one_assigned: Niemand
       notes:
         create: Notiz hinzufügen
-        create_and_resolve: Mit Kommentar lösen
-        create_and_unresolve: Mit Kommentar wieder öffnen
+        create_and_resolve: Mit Notiz wieder lösen
+        create_and_unresolve: Mit Notiz wieder öffnen
         delete: Löschen
         placeholder: Bitte beschreibe, welche Maßnahmen bzw. Sanktionen ergriffen worden sind, und führe alles auf, was es Erwähnenswertes zu diesem Profil zu berichten gibt …
         title: Notizen
@@ -660,11 +660,11 @@ de:
         devops: DevOps
         invites: Einladungen
         moderation: Moderation
-        special: Spezial
-      delete: Löschen
+        special: Besonderheit
+      delete: Entfernen
       description_html: Mit <strong>Benutzer*inn-Rollen</strong> kannst du die Funktionen und Bereiche von Mastodon anpassen, auf die deine Benutzer*innen zugreifen können.
       edit: Rolle „%{name}“ bearbeiten
-      everyone: Standardberechtigungen
+      everyone: Standard
       everyone_full_description_html: Das ist die <strong>Basis-Rolle</strong>, die für <strong>alle Benutzer*innen</strong> gilt – auch für diejenigen ohne zugewiesene Rolle. Alle anderen Rollen erben Berechtigungen davon.
       permissions_count:
         one: "%{count} Berechtigung"
@@ -858,7 +858,7 @@ de:
         current_score: Aktuelle Punktzahl %{score}
         dashboard:
           tag_accounts_measure: eindeutige Verwendungen
-          tag_languages_dimension: Top Sprachen
+          tag_languages_dimension: Meistverwendete Sprachen
           tag_servers_dimension: Top Server
           tag_servers_measure: verschiedene Server
           tag_uses_measure: Gesamtnutzungen
@@ -878,7 +878,7 @@ de:
           one: In der letzten Woche von einer Person genutzt
           other: In der letzten Woche von %{count} Personen genutzt
       title: Trends
-      trending: Häufig diskutiert
+      trending: Angesagt
     warning_presets:
       add_new: Neu hinzufügen
       delete: Löschen
@@ -1029,10 +1029,10 @@ de:
     use_security_key: Sicherheitsschlüssel verwenden
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
-    already_requested: Du hast bereits eine Anfrage zum Folgen diesen Accounts versendet
-    error: Das Remote-Konto konnte nicht geladen werden
+    already_requested: Du hast bereits eine Anfrage zum Folgen diesen Accounts gestellt
+    error: Bedauerlicherweise konnte das externe Konto nicht geladen werden
     follow: Folgen
-    follow_request: 'Du hast eine Folgeanfrage gesendet an:'
+    follow_request: 'Du hast eine Folgeanfrage gestellt an:'
     following: 'Erfolg! Du folgst nun:'
     post_follow:
       close: Oder du schließt einfach dieses Fenster.
@@ -1043,7 +1043,7 @@ de:
     confirm: Fortfahren
     hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
     invalid_password: Ungültiges Passwort
-    prompt: Gib dein Passwort ein, um fortzufahren
+    prompt: Bestätige mit deinem Passwort, um fortzufahren
   crypto:
     errors:
       invalid_key: ist kein gültiger Ed25519- oder Curve25519-Schlüssel
@@ -1054,12 +1054,12 @@ de:
       with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
-      about_x_months: "%{count}mo"
-      about_x_years: "%{count}y"
-      almost_x_years: "%{count}y"
+      about_x_hours: "%{count} h"
+      about_x_months: "%{count} Mon."
+      about_x_years: "%{count} J"
+      almost_x_years: "%{count} J"
       half_a_minute: Gerade eben
-      less_than_x_minutes: "%{count}m"
+      less_than_x_minutes: "%{count} Min"
       less_than_x_seconds: Gerade eben
       over_x_years: "%{count}J"
       x_days: "%{count}T"
@@ -1124,10 +1124,10 @@ de:
     '422':
       content: Sicherheitsüberprüfung fehlgeschlagen. Sperrst du Cookies aus?
       title: Sicherheitsüberprüfung fehlgeschlagen
-    '429': Du wurdest gedrosselt
+    '429': Zu viele Anfragen
     '500':
       content: Bitte verzeih', etwas ist bei uns schiefgegangen.
-      title: Diese Seite ist kaputt
+      title: Diese Seite enthält einen Fehler
     '503': Die Seite konnte wegen eines temporären Serverfehlers nicht angezeigt werden.
     noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   existing_username_validator:
@@ -1140,7 +1140,7 @@ de:
       hint_html: Du kannst ein Archiv deiner <strong>Beiträge, Listen, hochgeladenen Medien usw.</strong> anfordern. Die exportierten Daten werden im ActivityPub-Format gespeichert und können mit geeigneter Software ausgewertet und angezeigt werden. Du kannst alle 7 Tage ein Archiv erstellen lassen.
       in_progress: Persönliches Archiv wird erstellt …
       request: Dein Archiv anfordern
-      size: Größe
+      size: Dateigröße
     blocks: Gesperrte Accounts
     bookmarks: Lesezeichen
     csv: CSV
@@ -1151,18 +1151,18 @@ de:
   featured_tags:
     add_new: Neu hinzufügen
     errors:
-      limit: Du hast bereits die maximale Anzahl an Hashtags gekennzeichnet
+      limit: Du hast bereits die maximale Anzahl an Hashtags erreicht
     hint_html: "<strong>Was sind empfohlene Hashtags?</strong> Sie werden in deinem öffentlichen Profil hervorgehoben und ermöglichen es den Menschen, deine öffentlichen Beiträge speziell unter diesen Hashtags zu durchsuchen. Sie sind ein großartiges Werkzeug, um kreative Werke oder langfristige Projekte zu verfolgen."
   filters:
     contexts:
       account: Profile
-      home: Startseite
+      home: Startseite und Listen
       notifications: Mitteilungen
       public: Öffentliche Timelines
       thread: Unterhaltungen
     edit:
-      add_keyword: Stichwort hinzufügen
-      keywords: Stichwörter
+      add_keyword: Schlagwort hinzufügen
+      keywords: Schlagworte
       statuses: Individuelle Beiträge
       statuses_hint_html: Dieser Filter gilt für die Auswahl einzelner Beiträge, unabhängig davon, ob sie mit den unten stehenden Schlüsselwörtern übereinstimmen. <a href="%{path}">Beiträge im Filter ansehen oder entfernen.</a>.
       title: Filter bearbeiten
@@ -1176,7 +1176,7 @@ de:
       expires_in: Läuft ab in %{distance}
       expires_on: Läuft am %{date} ab
       keywords:
-        one: "%{count} Stichwort"
+        one: "%{count} Schlagworte"
         other: "%{count} Stichwörter"
       statuses:
         one: "%{count} Beitrag"
@@ -1189,7 +1189,7 @@ de:
       save: Neuen Filter speichern
       title: Neuen Filter hinzufügen
     statuses:
-      back_to_filter: Zurück zum Filter
+      back_to_filter: Zurück zu den Filtern
       batch:
         remove: Filter entfernen
       index:
@@ -1208,7 +1208,7 @@ de:
     changes_saved_msg: Änderungen gespeichert!
     copy: Kopieren
     delete: Löschen
-    deselect: Auswahl für alle aufheben
+    deselect: Alle abwählen
     none: Keine
     order_by: Sortieren nach
     save_changes: Änderungen speichern
@@ -1253,8 +1253,8 @@ de:
     generate: Einladungslink erstellen
     invited_by: 'Du wurdest eingeladen von:'
     max_uses:
-      one: 1 mal verwendet
-      other: "%{count} mal verwendet"
+      one: 1-mal verwendet
+      other: "%{count}-mal verwendet"
     max_uses_prompt: Keine Einschränkung
     prompt: Erstelle Einladungen und teile die dazugehörigen Links, um anderen einen Zugang zu diesem Server zu gewähren
     table:
@@ -1350,7 +1350,7 @@ de:
       subject: "%{name} hat deinen Beitrag geteilt"
       title: Dein Beitrag wurde geteilt
     status:
-      subject: "%{name} hat gerade etwas gepostet"
+      subject: "%{name} veröffentlichte gerade einen Beitrag"
     update:
       subject: "%{name} bearbeitete einen Beitrag"
   notifications:
@@ -1360,9 +1360,9 @@ de:
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: "%n %u"
         units:
-          billion: B
+          billion: Mrd
           million: M
           quadrillion: Q
           thousand: K
@@ -1374,7 +1374,7 @@ de:
     instructions_html: "<strong>Scanne diesen QR-Code mit einer TOTP-App (wie dem Google Authenticator)</strong>. Die 2FA-App generiert dann zeitbasierte Codes, die du beim Login zusätzlich zum regulären Passwort eingeben musst."
     manual_instructions: 'Wenn du den QR-Code nicht einscannen kannst, sondern die Zahlenfolge manuell eingeben musst, ist hier der geheime Token für deine 2FA-App.'
     setup: Einrichten
-    wrong_code: Der eingegebene Code war ungültig! Sind die Serverzeit und die Gerätezeit korrekt?
+    wrong_code: Der eingegebene Code ist ungültig! Laufen Serverzeit und Gerätezeit synchron?
   pagination:
     newer: Neuer
     next: Weiter
@@ -1431,7 +1431,7 @@ de:
     content_warning: 'Inhaltswarnung:'
     descriptions:
       account: Öffentliche Beiträge von @%{acct}
-      tag: 'Öffentliche Beiträge mit dem Tag #%{hashtag}'
+      tag: 'Öffentliche Beiträge mit dem Hashtag #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Du hast das Limit für geplante Beiträge, welches %{limit} beträgt, für heute erreicht
     over_total_limit: Du hast das Limit für geplante Beiträge, welches %{limit} beträgt, erreicht
