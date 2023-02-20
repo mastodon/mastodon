@@ -8,7 +8,7 @@ class Scheduler::VacuumScheduler
   def perform
     vacuum_operations.each do |operation|
       operation.perform
-    rescue StandardError => e
+    rescue => e
       Rails.logger.error("Error while running #{operation.class.name}: #{e}")
     end
   end

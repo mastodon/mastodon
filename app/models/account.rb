@@ -298,7 +298,7 @@ class Account < ApplicationRecord
   def fields
     (self[:fields] || []).map do |f|
       Account::Field.new(self, f)
-    rescue StandardError
+    rescue
       nil
     end.compact
   end

@@ -96,7 +96,7 @@ module Mastodon
 
         begin
           object.move_to(new_object, acl: attachment.s3_permissions(style)) unless dry_run?
-        rescue StandardError => e
+        rescue => e
           progress.log(pastel.red("Error processing #{object.key}: #{e}"))
           success = false
         end
@@ -137,7 +137,7 @@ module Mastodon
               # OK
             end
           end
-        rescue StandardError => e
+        rescue => e
           progress.log(pastel.red("Error processing #{previous_path}: #{e}"))
           success = false
 
