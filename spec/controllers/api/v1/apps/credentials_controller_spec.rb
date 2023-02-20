@@ -36,7 +36,7 @@ describe Api::V1::Apps::CredentialsController do
     describe 'GET #show' do
       it 'returns http unauthorized' do
         get :show
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to have_http_status(401)
       end
     end
   end

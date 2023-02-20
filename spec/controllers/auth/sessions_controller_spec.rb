@@ -422,7 +422,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
       it 'returns http success' do
         get :webauthn_options
-        expect(response).to have_http_status :ok
+        expect(response).to have_http_status 200
       end
     end
   end

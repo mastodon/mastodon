@@ -245,7 +245,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
     end
 
     it 'returns http not found' do
-      expect(response).to have_http_status(:not_found)
+      expect(response).to have_http_status(404)
     end
 
     it 'does not delete user' do

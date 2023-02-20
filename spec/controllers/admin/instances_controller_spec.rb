@@ -50,7 +50,7 @@ RSpec.describe Admin::InstancesController, type: :controller do
       let(:role) { nil }
 
       it 'fails to purge instance' do
-        is_expected.to have_http_status :forbidden
+        is_expected.to have_http_status 403
       end
     end
   end
