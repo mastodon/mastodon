@@ -8,7 +8,7 @@ RSpec.describe BlacklistedEmailValidator, type: :validator do
     let(:errors) { double(add: nil) }
 
     before do
-      allow(user).to receive(:valid_invitation?) { false }
+      allow(user).to receive(:valid_invitation?).and_return(false)
       allow_any_instance_of(described_class).to receive(:blocked_email_provider?) { blocked_email }
     end
 
