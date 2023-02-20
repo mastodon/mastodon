@@ -80,7 +80,9 @@ ast:
         enable_custom_emoji_html: "%{name} activó'l fustaxe «%{target}»"
         reject_user_html: "%{name} refugó'l rexistru de: %{target}"
         remove_avatar_user_html: "%{name} quitó l'avatar de: %{target}"
+        reopen_report_html: "%{name} volvió abrir l'informe «%{target}»"
         resend_user_html: "%{name} volvió unviar el mensaxe de confirmación pa: %{target}"
+        resolve_report_html: "%{name} resolvió l'informe «%{target}»"
         unblock_email_account_html: "%{name} desbloquió la direición de corréu electrónicu de: %{target}"
         update_announcement_html: "%{name} anovó l'anunciu «%{target}»"
         update_custom_emoji_html: "%{name} anovó'l fustaxe «%{target}»"
@@ -217,11 +219,15 @@ ast:
       title: "Rellaciones de: %{acct}"
     relays:
       status: Estáu
+    report_notes:
+      created_msg: '¡La nota del informe creóse correutamente!'
     reports:
       account:
         notes:
           one: "%{count} nota"
           other: "%{count} notes"
+      actions:
+        silence_description_html: La cuenta va ser visible namás pa quien xá la siguiere o la buscare manualmente, lo que llenda'l so algame. Esta decisión pue desfacese en cualesquier momentu. Si escueyes esta opción, zárrense tolos informes escontra esta cuenta.
       actions_description_html: Decidi qué aición tomar pa resolver esti informe. Si tomes una aición punitiva escontra la cuenta de la que s'informó, va unviase un avisu per corréu electrónicu a esa cuenta, esceuto cuando se seleiciona la categoría <strong>Puxarra</strong>.
       add_to_report: Amestar más al informe
       category: Categoría
@@ -236,6 +242,8 @@ ast:
       notes:
         create: Amestar la nota
         create_and_resolve: Resolver con una nota
+        create_and_unresolve: Volver abrir con una nota
+        delete: Desaniciar
         title: Notes
       quick_actions_description_html: 'Toma una aición rápida o baxa pa ver el conteníu del que s''informó:'
       report: 'Informe #%{id}'
@@ -326,6 +334,7 @@ ast:
       metadata: Metadatos
       original_status: Artículu orixinal
       visibility: Visibilidá
+      with_media: Con elementos multimedia
     strikes:
       actions:
         delete_statuses: "%{name} desanició l'artículu de: %{target}"
@@ -334,6 +343,7 @@ ast:
         sensitive: "%{name} marcó la cuenta de %{target} como sensible"
         suspend: "%{name} suspendió la cuenta de: %{target}"
       appeal_approved: Apellóse
+      appeal_pending: Apellación pendiente
     system_checks:
       elasticsearch_running_check:
         message_html: Nun se pudo conectar con Elasticsearch. Revisa que tea n'execución o desactiva la busca de testos completos
@@ -368,6 +378,8 @@ ast:
         usable: Pue usase
       title: Tendencies
       trending: En tendencia
+    warning_presets:
+      title: Xestión d'alvertencies preconfiguraes
     webhooks:
       add_new: Amestar un estremu
       delete: Desaniciar
@@ -507,13 +519,16 @@ ast:
       action_taken: Aición tomada
       appeal: Apellación
       appeal_rejected: Refugóse l'apellación
+      appealed_msg: Unvióse l'apellación. Si s'aprueba, avisámoste.
       appeals:
         submit: Unviu d'una apellación
       approve_appeal: Aprobar l'apellación
+      associated_report: Informe asociáu
       created_at: Data
       reject_appeal: Refugar l'apellación
       status: 'Artículu #%{id}'
       status_removed: L'artículu xá se quitó del sistema
+      your_appeal_approved: Aprobóse la to apellación
       your_appeal_pending: Unviesti una apellación
       your_appeal_rejected: Refugóse la to apellación
   errors:
