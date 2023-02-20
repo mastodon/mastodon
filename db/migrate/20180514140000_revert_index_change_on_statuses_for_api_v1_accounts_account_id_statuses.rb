@@ -10,6 +10,6 @@ class RevertIndexChangeOnStatusesForApiV1AccountsAccountIdStatuses < ActiveRecor
 
     # These index may not exists (see migration 20180514130000)
     remove_index :statuses, column: [:account_id, :id, :visibility], where: 'visibility IN (0, 1, 2)', algorithm: :concurrently if index_exists?(:statuses, [:account_id, :id, :visibility], where: 'visibility IN (0, 1, 2)')
-    remove_index :statuses, column: [:account_id, :id], where: 'visibility = 3', algorithm: :concurrently if index_exists?(:statuses, ['account_id', 'id'], where: '(visibility = 3)')
+    remove_index :statuses, column: [:account_id, :id], where: 'visibility = 3', algorithm: :concurrently if index_exists?(:statuses, %w(account_id id), where: '(visibility = 3)')
   end
 end
