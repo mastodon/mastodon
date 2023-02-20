@@ -78,8 +78,10 @@ class TextFormatter
     suffix      = url[prefix.length + 30..-1]
     cutoff      = url[prefix.length..-1].length > 30
 
+    # dir="auto" avoids RTLO attacks, nearby text outside the span may contain
+    # an RTLO, this makes the browser render the URL ignoring it
     <<~HTML.squish
-      <a href="#{h(url)}" target="_blank" rel="#{rel.join(' ')}"><span class="invisible">#{h(prefix)}</span><span class="#{cutoff ? 'ellipsis' : ''}">#{h(display_url)}</span><span class="invisible">#{h(suffix)}</span></a>
+      <a href="#{h(url)}" target="_blank" rel="#{rel.join(' ')}"><span class="invisible">#{h(prefix)}</span><span class="#{cutoff ? 'ellipsis' : ''}" dir="auto">#{h(display_url)}</span><span class="invisible">#{h(suffix)}</span></a>
     HTML
   rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
     h(entity[:url])

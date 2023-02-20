@@ -72,7 +72,7 @@ RSpec.describe TextFormatter do
       end
 
       it 'has display URL' do
-        is_expected.to include '<span class="">nic.みんな/</span>'
+        is_expected.to include '<span class="" dir="auto">nic.みんな/</span>'
       end
     end
 
