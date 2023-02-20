@@ -35,6 +35,7 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
       let(:remote_account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/instance') }
 
       subject(:response) { get :show, params: { account_username: account.username } }
+
       subject(:body) { body_as_json }
 
       it 'returns http success' do

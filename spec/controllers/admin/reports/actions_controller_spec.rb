@@ -123,11 +123,13 @@ describe Admin::Reports::ActionsController do
 
     context 'action as submit button' do
       subject { post :create, params: { report_id: report.id, text: text, action => '' } }
+
       it_behaves_like 'all action types'
     end
 
     context 'action as submit button' do
       subject { post :create, params: { report_id: report.id, text: text, moderation_action: action } }
+
       it_behaves_like 'all action types'
     end
   end

@@ -409,6 +409,7 @@ RSpec.describe User, type: :model do
 
   describe '#disable!' do
     subject(:user) { Fabricate(:user, disabled: false, current_sign_in_at: current_sign_in_at, last_sign_in_at: nil) }
+
     let(:current_sign_in_at) { Time.zone.now }
 
     before do
@@ -497,6 +498,7 @@ RSpec.describe User, type: :model do
 
   describe '#active_for_authentication?' do
     subject { user.active_for_authentication? }
+
     let(:user) { Fabricate(:user, disabled: disabled, confirmed_at: confirmed_at) }
 
     context 'when user is disabled' do

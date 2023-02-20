@@ -817,27 +817,6 @@ RSpec/EmptyExampleGroup:
     - 'spec/models/web/setting_spec.rb'
     - 'spec/services/unmute_service_spec.rb'
 
-# Offense count: 19
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/EmptyLineAfterSubject:
-  Exclude:
-    - 'spec/controllers/activitypub/collections_controller_spec.rb'
-    - 'spec/controllers/activitypub/followers_synchronizations_controller_spec.rb'
-    - 'spec/controllers/activitypub/outboxes_controller_spec.rb'
-    - 'spec/controllers/activitypub/replies_controller_spec.rb'
-    - 'spec/controllers/admin/reports/actions_controller_spec.rb'
-    - 'spec/controllers/api/web/embeds_controller_spec.rb'
-    - 'spec/controllers/emojis_controller_spec.rb'
-    - 'spec/controllers/follower_accounts_controller_spec.rb'
-    - 'spec/controllers/following_accounts_controller_spec.rb'
-    - 'spec/controllers/relationships_controller_spec.rb'
-    - 'spec/lib/activitypub/activity/delete_spec.rb'
-    - 'spec/lib/activitypub/activity/flag_spec.rb'
-    - 'spec/models/admin/account_action_spec.rb'
-    - 'spec/models/user_spec.rb'
-    - 'spec/services/fetch_remote_status_service_spec.rb'
-    - 'spec/workers/refollow_worker_spec.rb'
-
 # Offense count: 178
 # Configuration parameters: CountAsOne.
 RSpec/ExampleLength:
