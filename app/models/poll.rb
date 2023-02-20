@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: polls
@@ -74,9 +75,9 @@ class Poll < ApplicationRecord
 
     def initialize(poll, id, title, votes_count)
       super(
-        poll:        poll,
-        id:          id,
-        title:       title,
+        poll: poll,
+        id: id,
+        title: title,
         votes_count: votes_count,
       )
     end
@@ -105,6 +106,7 @@ class Poll < ApplicationRecord
 
   def reset_parent_cache
     return if status_id.nil?
+
     Rails.cache.delete("statuses/#{status_id}")
   end
 
