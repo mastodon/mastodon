@@ -1148,6 +1148,8 @@ fr:
     storage: Médias stockés
   featured_tags:
     add_new: Ajouter un nouveau hashtag
+    errors:
+      limit: Vous avez déjà mis en avant le nombre maximum de hashtags
     hint_html: "<strong>Que sont les hashtags mis en avant ?</strong> Ils sont affichés en évidence sur votre profil public et permettent aux gens de parcourir vos messages publics qui utilisent ces hashtags. Ils sont un excellent outil pour garder la trace d’activités créatrices ou de projets de long terme."
   filters:
     contexts:
@@ -1257,6 +1259,9 @@ fr:
       expires_at: Expire
       uses: Utilisations
     title: Inviter des gens
+  lists:
+    errors:
+      limit: Vous avez atteint le nombre maximum de listes
   login_activities:
     authentication_methods:
       otp: application d'authentification à deux facteurs
@@ -1576,6 +1581,7 @@ fr:
       '7889238': 3 mois
     min_age_label: Seuil d'ancienneté
     min_favs: Conserver les messages mis en favoris au moins
+    min_favs_hint: Ne supprime aucun de vos messages qui ont reçu au moins ce nombre de favoris. Laisser vide pour supprimer les messages quel que soit leur nombre de favoris
     min_reblogs: Conserver les messages partagés au moins
     min_reblogs_hint: Ne supprime aucun de vos messages qui ont été partagés au moins ce nombre de fois. Laisser vide pour supprimer les messages indépendamment de leur nombre de partages
   stream_entries:
