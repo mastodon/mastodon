@@ -136,7 +136,7 @@ module Mastodon
         media_attachment.destroy!
 
         removed += 1
-      rescue => e
+      rescue StandardError => e
         progress.log pastel.red("Error processing #{media_attachment.id}: #{e}")
       ensure
         progress.increment

@@ -19,7 +19,7 @@ class ActivityPub::Activity::Move < ActivityPub::Activity
 
     # Initiate a re-follow for each follower
     MoveWorker.perform_async(origin_account.id, target_account.id)
-  rescue
+  rescue StandardError
     unmark_as_processing!
     raise
   end

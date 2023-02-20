@@ -7,7 +7,7 @@ class Mastodon::SidekiqMiddleware
     yield
   rescue Mastodon::HostValidationError
     # Do not retry
-  rescue => e
+  rescue StandardError => e
     limit_backtrace_and_raise(e)
   ensure
     clean_up_sockets!

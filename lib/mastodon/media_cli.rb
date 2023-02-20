@@ -117,7 +117,7 @@ module Mastodon
         loop do
           objects = begin
             bucket.objects(start_after: last_key, prefix: prefix).limit(1000).map { |x| x }
-          rescue => e
+          rescue StandardError => e
             progress.log(pastel.red("Error fetching list of files: #{e}"))
             progress.log("If you want to continue from this point, add --start-after=#{last_key} to your command") if last_key
             break
@@ -157,7 +157,7 @@ module Mastodon
               removed += 1
 
               progress.log("Found and removed orphan: #{object.key}")
-            rescue => e
+            rescue StandardError => e
               progress.log(pastel.red("Error processing #{object.key}: #{e}"))
             end
           end
@@ -213,7 +213,7 @@ module Mastodon
             removed += 1
 
             progress.log("Found and removed orphan: #{key}")
-          rescue => e
+          rescue StandardError => e
             progress.log(pastel.red("Error processing #{key}: #{e}"))
           end
         end

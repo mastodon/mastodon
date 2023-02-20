@@ -2234,24 +2234,6 @@ Style/RegexpLiteral:
     - 'lib/mastodon/premailer_webpack_strategy.rb'
     - 'lib/tasks/mastodon.rake'
 
-# Offense count: 21
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: implicit, explicit
-Style/RescueStandardError:
-  Exclude:
-    - 'app/lib/activitypub/activity/move.rb'
-    - 'app/lib/request.rb'
-    - 'app/models/account.rb'
-    - 'app/workers/move_worker.rb'
-    - 'app/workers/scheduler/vacuum_scheduler.rb'
-    - 'lib/mastodon/accounts_cli.rb'
-    - 'lib/mastodon/cli_helper.rb'
-    - 'lib/mastodon/media_cli.rb'
-    - 'lib/mastodon/sidekiq_middleware.rb'
-    - 'lib/mastodon/statuses_cli.rb'
-    - 'lib/mastodon/upgrade_cli.rb'
-
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods, MaxChainLength.

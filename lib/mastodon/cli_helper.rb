@@ -60,7 +60,7 @@ module Mastodon
             end
 
             aggregate.increment(result) if result.is_a?(Integer)
-          rescue => e
+          rescue StandardError => e
             progress.log pastel.red("Error processing #{item.id}: #{e}")
           ensure
             progress.increment

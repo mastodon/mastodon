@@ -293,7 +293,7 @@ module Mastodon
         say("Duplicates found for #{uri}")
         begin
           ActivityPub::FetchRemoteAccountService.new.call(uri) unless options[:dry_run]
-        rescue => e
+        rescue StandardError => e
           say("Error processing #{uri}: #{e}", :red)
         end
       end
@@ -491,7 +491,7 @@ module Mastodon
 
         scope.find_each do |target_account|
           UnfollowService.new.call(account, target_account)
-        rescue => e
+        rescue StandardError => e
           progress.log pastel.red("Error processing #{target_account.id}: #{e}")
         ensure
           progress.increment
@@ -506,7 +506,7 @@ module Mastodon
 
         scope.find_each do |target_account|
           UnfollowService.new.call(target_account, account)
-        rescue => e
+        rescue StandardError => e
           progress.log pastel.red("Error processing #{target_account.id}: #{e}")
         ensure
           progress.increment

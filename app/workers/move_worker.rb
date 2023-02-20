@@ -42,7 +42,7 @@ class MoveWorker
 
     @source_account.followers.local.select(:id).find_in_batches do |accounts|
       UnfollowFollowWorker.push_bulk(accounts.map(&:id)) { |follower_id| [follower_id, @source_account.id, @target_account.id, bypass_locked] }
-    rescue => e
+    rescue StandardError => e
       @deferred_error = e
     end
   end
@@ -65,7 +65,7 @@ class MoveWorker
       end
     rescue ActiveRecord::RecordInvalid
       nil
-    rescue => e
+    rescue StandardError => e
       @deferred_error = e
     end
   end
@@ -76,7 +76,7 @@ class MoveWorker
         BlockService.new.call(block.account, @target_account)
         add_account_note_if_needed!(block.account, 'move_handler.carry_blocks_over_text')
       end
-    rescue => e
+    rescue StandardError => e
       @deferred_error = e
     end
   end
@@ -85,7 +85,7 @@ class MoveWorker
     @source_account.muted_by_relationships.where(account: Account.local).find_each do |mute|
       MuteService.new.call(mute.account, @target_account, notifications: mute.hide_notifications) unless mute.account.muting?(@target_account) || mute.account.following?(@target_account)
       add_account_note_if_needed!(mute.account, 'move_handler.carry_mutes_over_text')
-    rescue => e
+    rescue StandardError => e
       @deferred_error = e
     end
   end
