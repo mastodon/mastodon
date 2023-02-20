@@ -2,7 +2,7 @@
 
 module Admin
   class DomainBlocksController < BaseController
-    before_action :set_domain_block, only: [:show, :destroy, :edit, :update]
+    before_action :set_domain_block, only: %i(show destroy edit update)
 
     def batch
       authorize :domain_block, :create?
@@ -86,7 +86,7 @@ module Admin
     end
 
     def form_domain_block_batch_params
-      params.require(:form_domain_block_batch).permit(domain_blocks_attributes: [:enabled, :domain, :severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate])
+      params.require(:form_domain_block_batch).permit(domain_blocks_attributes: %i(enabled domain severity reject_media reject_reports private_comment public_comment obfuscate))
     end
 
     def action_from_button

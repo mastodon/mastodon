@@ -2,7 +2,7 @@
 
 class Admin::Trends::StatusesController < Admin::BaseController
   def index
-    authorize [:admin, :status], :review?
+    authorize %i(admin status), :review?
 
     @locales  = StatusTrend.pluck('distinct language')
     @statuses = filtered_statuses.page(params[:page])
@@ -10,7 +10,7 @@ class Admin::Trends::StatusesController < Admin::BaseController
   end
 
   def batch
-    authorize [:admin, :status], :review?
+    authorize %i(admin status), :review?
 
     @form = Trends::StatusBatch.new(trends_status_batch_params.merge(current_account: current_account, action: action_from_button))
     @form.save

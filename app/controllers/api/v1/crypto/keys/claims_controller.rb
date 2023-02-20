@@ -16,7 +16,7 @@ class Api::V1::Crypto::Keys::ClaimsController < Api::BaseController
   end
 
   def resource_params
-    params.permit(device: [:account_id, :device_id])
+    params.permit(device: %i(account_id device_id))
   end
 
   def devices

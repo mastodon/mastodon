@@ -7,6 +7,6 @@ class CreateTagFollows < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    add_index :tag_follows, [:account_id, :tag_id], unique: true
+    add_index :tag_follows, %i(account_id tag_id), unique: true
   end
 end

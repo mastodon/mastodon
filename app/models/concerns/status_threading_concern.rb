@@ -12,7 +12,7 @@ module StatusThreadingConcern
   end
 
   def self_replies(limit)
-    account.statuses.where(in_reply_to_id: id, visibility: [:public, :unlisted]).reorder(id: :asc).limit(limit)
+    account.statuses.where(in_reply_to_id: id, visibility: %i(public unlisted)).reorder(id: :asc).limit(limit)
   end
 
   private

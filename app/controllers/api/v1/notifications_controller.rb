@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::NotificationsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:notifications' }, except: [:clear, :dismiss]
-  before_action -> { doorkeeper_authorize! :write, :'write:notifications' }, only: [:clear, :dismiss]
+  before_action -> { doorkeeper_authorize! :read, :'read:notifications' }, except: %i(clear dismiss)
+  before_action -> { doorkeeper_authorize! :write, :'write:notifications' }, only: %i(clear dismiss)
   before_action :require_user!
   after_action :insert_pagination_headers, only: :index
 
@@ -31,7 +31,7 @@ class Api::V1::NotificationsController < Api::BaseController
   private
 
   def load_notifications
-    notifications = browserable_account_notifications.includes(from_account: [:account_stat, :user]).to_a_paginated_by_id(
+    notifications = browserable_account_notifications.includes(from_account: %i(account_stat user)).to_a_paginated_by_id(
       limit_param(DEFAULT_NOTIFICATIONS_LIMIT),
       params_slice(:max_id, :since_id, :min_id)
     )

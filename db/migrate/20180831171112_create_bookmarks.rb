@@ -12,6 +12,6 @@ class CreateBookmarks < ActiveRecord::Migration[5.1]
       add_foreign_key :bookmarks, :statuses, column: :status_id, on_delete: :cascade
     end
 
-    add_index :bookmarks, [:account_id, :status_id], unique: true
+    add_index :bookmarks, %i(account_id status_id), unique: true
   end
 end

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Settings::ApplicationsController < Settings::BaseController
-  before_action :set_application, only: [:show, :update, :destroy, :regenerate]
-  before_action :prepare_scopes, only: [:create, :update]
+  before_action :set_application, only: %i(show update destroy regenerate)
+  before_action :prepare_scopes, only: %i(create update)
 
   def index
     @applications = current_user.applications.order(id: :desc).page(params[:page])

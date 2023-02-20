@@ -10,7 +10,7 @@ class AccountsController < ApplicationController
   before_action :require_account_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_cache_headers
 
-  skip_around_action :set_locale, if: -> { [:json, :rss].include?(request.format&.to_sym) }
+  skip_around_action :set_locale, if: -> { %i(json rss).include?(request.format&.to_sym) }
   skip_before_action :require_functional!, unless: :whitelist_mode?
 
   def show
@@ -47,7 +47,7 @@ class AccountsController < ApplicationController
   end
 
   def default_statuses
-    @account.statuses.where(visibility: [:public, :unlisted])
+    @account.statuses.where(visibility: %i(public unlisted))
   end
 
   def only_media_scope

@@ -38,7 +38,7 @@ class Report < ApplicationRecord
 
   scope :unresolved, -> { where(action_taken_at: nil) }
   scope :resolved,   -> { where.not(action_taken_at: nil) }
-  scope :with_accounts, -> { includes([:account, :target_account, :action_taken_by_account, :assigned_account].index_with({ user: [:invite_request, :invite] })) }
+  scope :with_accounts, -> { includes(%i(account target_account action_taken_by_account assigned_account).index_with({ user: %i(invite_request invite) })) }
 
   validates :comment, length: { maximum: 1_000 }
   validates :rule_ids, absence: true, unless: :violation?

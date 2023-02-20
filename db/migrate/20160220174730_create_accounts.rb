@@ -20,6 +20,6 @@ class CreateAccounts < ActiveRecord::Migration[4.2]
       t.timestamps null: false
     end
 
-    add_index :accounts, [:username, :domain], unique: true
+    add_index :accounts, %i(username domain), unique: true
   end
 end

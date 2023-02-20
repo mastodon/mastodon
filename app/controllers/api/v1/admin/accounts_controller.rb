@@ -6,11 +6,11 @@ class Api::V1::Admin::AccountsController < Api::BaseController
 
   LIMIT = 100
 
-  before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:accounts' }, only: [:index, :show]
-  before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:accounts' }, except: [:index, :show]
+  before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:accounts' }, only: %i(index show)
+  before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:accounts' }, except: %i(index show)
   before_action :set_accounts, only: :index
   before_action :set_account, except: :index
-  before_action :require_local_account!, only: [:enable, :approve, :reject]
+  before_action :require_local_account!, only: %i(enable approve reject)
 
   after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
@@ -96,7 +96,7 @@ class Api::V1::Admin::AccountsController < Api::BaseController
   private
 
   def set_accounts
-    @accounts = filtered_accounts.order(id: :desc).includes(user: [:invite_request, :invite, :ips]).to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
+    @accounts = filtered_accounts.order(id: :desc).includes(user: %i(invite_request invite ips)).to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
   end
 
   def set_account

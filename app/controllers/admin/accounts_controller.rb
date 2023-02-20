@@ -2,9 +2,9 @@
 
 module Admin
   class AccountsController < BaseController
-    before_action :set_account, except: [:index, :batch]
+    before_action :set_account, except: %i(index batch)
     before_action :require_remote_account!, only: [:redownload]
-    before_action :require_local_account!, only: [:enable, :memorialize, :approve, :reject]
+    before_action :require_local_account!, only: %i(enable memorialize approve reject)
 
     def index
       authorize :account, :index?

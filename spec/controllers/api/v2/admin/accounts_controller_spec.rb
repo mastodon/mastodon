@@ -53,7 +53,7 @@ RSpec.describe Api::V2::Admin::AccountsController, type: :controller do
     [
       [{ status: 'active', origin: 'local', permissions: 'staff' }, [:admin_account]],
       [{ by_domain: 'example.org', origin: 'remote' }, [:remote_account]],
-      [{ status: 'suspended' }, [:suspended_remote, :suspended_account]],
+      [{ status: 'suspended' }, %i(suspended_remote suspended_account)],
       [{ status: 'disabled' }, [:disabled_account]],
       [{ status: 'pending' }, [:pending_account]],
     ].each do |params, expected_results|

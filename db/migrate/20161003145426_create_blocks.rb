@@ -7,6 +7,6 @@ class CreateBlocks < ActiveRecord::Migration[5.0]
       t.timestamps null: false
     end
 
-    add_index :blocks, [:account_id, :target_account_id], unique: true
+    add_index :blocks, %i(account_id target_account_id), unique: true
   end
 end

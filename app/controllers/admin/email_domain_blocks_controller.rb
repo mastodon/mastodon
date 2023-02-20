@@ -2,7 +2,7 @@
 
 module Admin
   class EmailDomainBlocksController < BaseController
-    before_action :set_email_domain_block, only: [:show, :destroy]
+    before_action :set_email_domain_block, only: %i(show destroy)
 
     def index
       authorize :email_domain_block, :index?

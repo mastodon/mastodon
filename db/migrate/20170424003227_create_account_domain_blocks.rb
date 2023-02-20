@@ -7,6 +7,6 @@ class CreateAccountDomainBlocks < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :account_domain_blocks, [:account_id, :domain], unique: true
+    add_index :account_domain_blocks, %i(account_id domain), unique: true
   end
 end

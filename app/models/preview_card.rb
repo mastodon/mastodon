@@ -51,7 +51,7 @@ class PreviewCard < ApplicationRecord
   has_and_belongs_to_many :statuses
   has_one :trend, class_name: 'PreviewCardTrend', inverse_of: :preview_card, dependent: :destroy
 
-  has_attached_file :image, processors: [:thumbnail, :blurhash_transcoder], styles: ->(f) { image_styles(f) }, convert_options: { all: '-quality 90 +profile "!icc,*" +set modify-date +set create-date' }, validate_media_type: false
+  has_attached_file :image, processors: %i(thumbnail blurhash_transcoder), styles: ->(f) { image_styles(f) }, convert_options: { all: '-quality 90 +profile "!icc,*" +set modify-date +set create-date' }, validate_media_type: false
 
   validates :url, presence: true, uniqueness: true
   validates_attachment_content_type :image, content_type: IMAGE_MIME_TYPES

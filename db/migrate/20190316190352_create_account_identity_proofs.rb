@@ -11,6 +11,6 @@ class CreateAccountIdentityProofs < ActiveRecord::Migration[5.2]
       t.timestamps null: false
     end
 
-    add_index :account_identity_proofs, [:account_id, :provider, :provider_username], unique: true, name: :index_account_proofs_on_account_and_provider_and_username
+    add_index :account_identity_proofs, %i(account_id provider provider_username), unique: true, name: :index_account_proofs_on_account_and_provider_and_username
   end
 end

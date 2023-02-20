@@ -47,7 +47,7 @@ module LdapAuthenticable
         connect_timeout: 10,
       }
 
-      if [:simple_tls, :start_tls].include?(Devise.ldap_method)
+      if %i(simple_tls start_tls).include?(Devise.ldap_method)
         opts[:encryption] = {
           method: Devise.ldap_method,
           tls_options: OpenSSL::SSL::SSLContext::DEFAULT_PARAMS.tap { |options| options[:verify_mode] = OpenSSL::SSL::VERIFY_NONE if Devise.ldap_tls_no_verify },

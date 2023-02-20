@@ -9,6 +9,6 @@ class CreateAccountConversations < ActiveRecord::Migration[5.2]
       t.integer :lock_version, null: false, default: 0
     end
 
-    add_index :account_conversations, [:account_id, :conversation_id, :participant_account_ids], unique: true, name: 'index_unique_conversations'
+    add_index :account_conversations, %i(account_id conversation_id participant_account_ids), unique: true, name: 'index_unique_conversations'
   end
 end

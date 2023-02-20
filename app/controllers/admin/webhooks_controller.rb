@@ -2,7 +2,7 @@
 
 module Admin
   class WebhooksController < BaseController
-    before_action :set_webhook, except: [:index, :new, :create]
+    before_action :set_webhook, except: %i(index new create)
 
     def index
       authorize :webhook, :index?

@@ -191,7 +191,7 @@ class MediaAttachment < ApplicationRecord
 
   has_attached_file :thumbnail,
                     styles: THUMBNAIL_STYLES,
-                    processors: [:lazy_thumbnail, :blurhash_transcoder, :color_extractor],
+                    processors: %i(lazy_thumbnail blurhash_transcoder color_extractor),
                     convert_options: GLOBAL_CONVERT_OPTIONS
 
   validates_attachment_content_type :thumbnail, content_type: IMAGE_MIME_TYPES
@@ -306,13 +306,13 @@ class MediaAttachment < ApplicationRecord
 
     def file_processors(instance)
       if instance.file_content_type == 'image/gif'
-        [:gif_transcoder, :blurhash_transcoder]
+        %i(gif_transcoder blurhash_transcoder)
       elsif VIDEO_MIME_TYPES.include?(instance.file_content_type)
-        [:transcoder, :blurhash_transcoder, :type_corrector]
+        %i(transcoder blurhash_transcoder type_corrector)
       elsif AUDIO_MIME_TYPES.include?(instance.file_content_type)
-        [:image_extractor, :transcoder, :type_corrector]
+        %i(image_extractor transcoder type_corrector)
       else
-        [:lazy_thumbnail, :blurhash_transcoder, :type_corrector]
+        %i(lazy_thumbnail blurhash_transcoder type_corrector)
       end
     end
   end

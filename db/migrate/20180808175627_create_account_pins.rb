@@ -7,6 +7,6 @@ class CreateAccountPins < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    add_index :account_pins, [:account_id, :target_account_id], unique: true
+    add_index :account_pins, %i(account_id target_account_id), unique: true
   end
 end

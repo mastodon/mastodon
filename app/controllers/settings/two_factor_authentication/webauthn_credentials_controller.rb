@@ -6,7 +6,7 @@ module Settings
       skip_before_action :require_functional!
 
       before_action :require_otp_enabled
-      before_action :require_webauthn_enabled, only: [:index, :destroy]
+      before_action :require_webauthn_enabled, only: %i(index destroy)
 
       def new; end
 

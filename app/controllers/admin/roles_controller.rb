@@ -2,7 +2,7 @@
 
 module Admin
   class RolesController < BaseController
-    before_action :set_role, except: [:index, :new, :create]
+    before_action :set_role, except: %i(index new create)
 
     def index
       authorize :user_role, :index?

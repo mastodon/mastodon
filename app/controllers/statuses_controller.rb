@@ -6,7 +6,7 @@ class StatusesController < ApplicationController
   include Authorization
   include AccountOwnedConcern
 
-  before_action :require_account_signature!, only: [:show, :activity], if: -> { request.format == :json && authorized_fetch_mode? }
+  before_action :require_account_signature!, only: %i(show activity), if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_status
   before_action :set_instance_presenter
   before_action :set_link_headers
@@ -15,7 +15,7 @@ class StatusesController < ApplicationController
   before_action :set_body_classes, only: :embed
 
   skip_around_action :set_locale, if: -> { request.format == :json }
-  skip_before_action :require_functional!, only: [:show, :embed], unless: :whitelist_mode?
+  skip_before_action :require_functional!, only: %i(show embed), unless: :whitelist_mode?
 
   content_security_policy only: :embed do |policy|
     policy.frame_ancestors(false)

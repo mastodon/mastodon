@@ -3,8 +3,8 @@
 class Api::V1::ScheduledStatusesController < Api::BaseController
   include Authorization
 
-  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, except: [:update, :destroy]
-  before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only: [:update, :destroy]
+  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, except: %i(update destroy)
+  before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only: %i(update destroy)
 
   before_action :set_statuses, only: :index
   before_action :set_status, except: :index

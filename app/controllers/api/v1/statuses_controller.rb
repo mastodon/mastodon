@@ -3,10 +3,10 @@
 class Api::V1::StatusesController < Api::BaseController
   include Authorization
 
-  before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :update, :destroy]
-  before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :update, :destroy]
-  before_action :require_user!, except:  [:show, :context]
-  before_action :set_status, only:       [:show, :context]
+  before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: %i(create update destroy)
+  before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   %i(create update destroy)
+  before_action :require_user!, except:  %i(show context)
+  before_action :set_status, only:       %i(show context)
   before_action :set_thread, only:       [:create]
 
   override_rate_limit_headers :create, family: :statuses
@@ -137,12 +137,12 @@ class Api::V1::StatusesController < Api::BaseController
       :scheduled_at,
       allowed_mentions: [],
       media_ids: [],
-      media_attributes: [
-        :id,
-        :thumbnail,
-        :description,
-        :focus,
-      ],
+      media_attributes: %i(
+        id
+        thumbnail
+        description
+        focus
+      ),
       poll: [
         :multiple,
         :hide_totals,

@@ -7,6 +7,6 @@ class CreateMentions < ActiveRecord::Migration[4.2]
       t.timestamps null: false
     end
 
-    add_index :mentions, [:account_id, :status_id], unique: true
+    add_index :mentions, %i(account_id status_id), unique: true
   end
 end

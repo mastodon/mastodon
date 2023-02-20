@@ -6,10 +6,10 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
 
   LIMIT = 100
 
-  before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:domain_blocks' }, only: [:index, :show]
-  before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:domain_blocks' }, except: [:index, :show]
+  before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:domain_blocks' }, only: %i(index show)
+  before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:domain_blocks' }, except: %i(index show)
   before_action :set_domain_blocks, only: :index
-  before_action :set_domain_block, only: [:show, :update, :destroy]
+  before_action :set_domain_block, only: %i(show update destroy)
 
   after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index

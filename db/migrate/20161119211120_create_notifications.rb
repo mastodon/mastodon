@@ -9,6 +9,6 @@ class CreateNotifications < ActiveRecord::Migration[5.0]
     end
 
     add_index :notifications, :account_id
-    add_index :notifications, [:account_id, :activity_id, :activity_type], unique: true, name: 'account_activity'
+    add_index :notifications, %i(account_id activity_id activity_type), unique: true, name: 'account_activity'
   end
 end

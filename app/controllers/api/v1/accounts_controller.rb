@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class Api::V1::AccountsController < Api::BaseController
-  before_action -> { authorize_if_got_token! :read, :'read:accounts' }, except: [:create, :follow, :unfollow, :remove_from_followers, :block, :unblock, :mute, :unmute]
-  before_action -> { doorkeeper_authorize! :follow, :write, :'write:follows' }, only: [:follow, :unfollow, :remove_from_followers]
-  before_action -> { doorkeeper_authorize! :follow, :write, :'write:mutes' }, only: [:mute, :unmute]
-  before_action -> { doorkeeper_authorize! :follow, :write, :'write:blocks' }, only: [:block, :unblock]
+  before_action -> { authorize_if_got_token! :read, :'read:accounts' }, except: %i(create follow unfollow remove_from_followers block unblock mute unmute)
+  before_action -> { doorkeeper_authorize! :follow, :write, :'write:follows' }, only: %i(follow unfollow remove_from_followers)
+  before_action -> { doorkeeper_authorize! :follow, :write, :'write:mutes' }, only: %i(mute unmute)
+  before_action -> { doorkeeper_authorize! :follow, :write, :'write:blocks' }, only: %i(block unblock)
   before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: [:create]
 
-  before_action :require_user!, except: [:show, :create]
+  before_action :require_user!, except: %i(show create)
   before_action :set_account, except: [:create]
   before_action :check_account_approval, except: [:create]
   before_action :check_account_confirmation, except: [:create]

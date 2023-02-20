@@ -177,7 +177,7 @@ RSpec.describe PublicFeed, type: :model do
 
       context 'with language preferences' do
         it 'excludes statuses in languages not allowed by the account user' do
-          @account.user.update(chosen_languages: [:en, :es])
+          @account.user.update(chosen_languages: %i(en es))
           en_status = Fabricate(:status, language: 'en')
           es_status = Fabricate(:status, language: 'es')
           fr_status = Fabricate(:status, language: 'fr')

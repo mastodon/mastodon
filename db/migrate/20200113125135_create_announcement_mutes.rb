@@ -7,6 +7,6 @@ class CreateAnnouncementMutes < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    add_index :announcement_mutes, [:account_id, :announcement_id], unique: true
+    add_index :announcement_mutes, %i(account_id announcement_id), unique: true
   end
 end

@@ -6,8 +6,8 @@ class Api::V1::Admin::ReportsController < Api::BaseController
 
   LIMIT = 100
 
-  before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:reports' }, only: [:index, :show]
-  before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:reports' }, except: [:index, :show]
+  before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:reports' }, only: %i(index show)
+  before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:reports' }, except: %i(index show)
   before_action :set_reports, only: :index
   before_action :set_report, except: :index
 

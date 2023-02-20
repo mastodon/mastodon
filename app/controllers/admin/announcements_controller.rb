@@ -2,7 +2,7 @@
 
 class Admin::AnnouncementsController < Admin::BaseController
   before_action :set_announcements, only: :index
-  before_action :set_announcement, except: [:index, :new, :create]
+  before_action :set_announcement, except: %i(index new create)
 
   def index
     authorize :announcement, :index?

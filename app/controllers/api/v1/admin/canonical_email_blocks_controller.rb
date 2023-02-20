@@ -6,12 +6,12 @@ class Api::V1::Admin::CanonicalEmailBlocksController < Api::BaseController
 
   LIMIT = 100
 
-  before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:canonical_email_blocks' }, only: [:index, :show, :test]
-  before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:canonical_email_blocks' }, except: [:index, :show, :test]
+  before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:canonical_email_blocks' }, only: %i(index show test)
+  before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:canonical_email_blocks' }, except: %i(index show test)
 
   before_action :set_canonical_email_blocks, only: :index
   before_action :set_canonical_email_blocks_from_test, only: [:test]
-  before_action :set_canonical_email_block, only: [:show, :destroy]
+  before_action :set_canonical_email_block, only: %i(show destroy)
 
   after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index

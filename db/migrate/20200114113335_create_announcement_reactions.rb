@@ -10,6 +10,6 @@ class CreateAnnouncementReactions < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    add_index :announcement_reactions, [:account_id, :announcement_id, :name], unique: true, name: :index_announcement_reactions_on_account_id_and_announcement_id
+    add_index :announcement_reactions, %i(account_id announcement_id name), unique: true, name: :index_announcement_reactions_on_account_id_and_announcement_id
   end
 end

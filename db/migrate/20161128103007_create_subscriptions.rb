@@ -10,6 +10,6 @@ class CreateSubscriptions < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :subscriptions, [:callback_url, :account_id], unique: true
+    add_index :subscriptions, %i(callback_url account_id), unique: true
   end
 end

@@ -14,7 +14,7 @@ class Admin::StatusFilter
   end
 
   def results
-    scope = @account.statuses.where(visibility: [:public, :unlisted])
+    scope = @account.statuses.where(visibility: %i(public unlisted))
 
     params.each do |key, value|
       next if %w(page report_id).include?(key.to_s)

@@ -24,6 +24,6 @@ class Api::V1::Crypto::Keys::UploadsController < Api::BaseController
   private
 
   def resource_params
-    params.permit(device: [:device_id, :name, :fingerprint_key, :identity_key], one_time_keys: [:key_id, :key, :signature])
+    params.permit(device: %i(device_id name fingerprint_key identity_key), one_time_keys: %i(key_id key signature))
   end
 end

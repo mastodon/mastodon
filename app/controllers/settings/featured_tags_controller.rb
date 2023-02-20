@@ -2,7 +2,7 @@
 
 class Settings::FeaturedTagsController < Settings::BaseController
   before_action :set_featured_tags, only: :index
-  before_action :set_featured_tag, except: [:index, :create]
+  before_action :set_featured_tag, except: %i(index create)
   before_action :set_recently_used_tags, only: :index
 
   def index

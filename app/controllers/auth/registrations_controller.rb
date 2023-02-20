@@ -5,20 +5,20 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   layout :determine_layout
 
-  before_action :set_invite, only: [:new, :create]
-  before_action :check_enabled_registrations, only: [:new, :create]
+  before_action :set_invite, only: %i(new create)
+  before_action :check_enabled_registrations, only: %i(new create)
   before_action :configure_sign_up_params, only: [:create]
-  before_action :set_sessions, only: [:edit, :update]
-  before_action :set_strikes, only: [:edit, :update]
-  before_action :set_instance_presenter, only: [:new, :create, :update]
-  before_action :set_body_classes, only: [:new, :create, :edit, :update]
+  before_action :set_sessions, only: %i(edit update)
+  before_action :set_strikes, only: %i(edit update)
+  before_action :set_instance_presenter, only: %i(new create update)
+  before_action :set_body_classes, only: %i(new create edit update)
   before_action :require_not_suspended!, only: [:update]
-  before_action :set_cache_headers, only: [:edit, :update]
+  before_action :set_cache_headers, only: %i(edit update)
   before_action :set_rules, only: :new
   before_action :require_rules_acceptance!, only: :new
   before_action :set_registration_form_time, only: :new
 
-  skip_before_action :require_functional!, only: [:edit, :update]
+  skip_before_action :require_functional!, only: %i(edit update)
 
   def new
     super(&:build_invite_request)
@@ -55,7 +55,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
-      user_params.permit({ account_attributes: [:username, :display_name], invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code, :agreement, :website, :confirm_password)
+      user_params.permit({ account_attributes: %i(username display_name), invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code, :agreement, :website, :confirm_password)
     end
   end
 

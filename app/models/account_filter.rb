@@ -21,7 +21,7 @@ class AccountFilter
   end
 
   def results
-    scope = Account.includes(:account_stat, user: [:ips, :invite_request]).without_instance_actor.reorder(nil)
+    scope = Account.includes(:account_stat, user: %i(ips invite_request)).without_instance_actor.reorder(nil)
 
     params.each do |key, value|
       next if key.to_s == 'page'

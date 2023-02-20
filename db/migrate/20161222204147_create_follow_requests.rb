@@ -7,6 +7,6 @@ class CreateFollowRequests < ActiveRecord::Migration[5.0]
       t.timestamps null: false
     end
 
-    add_index :follow_requests, [:account_id, :target_account_id], unique: true
+    add_index :follow_requests, %i(account_id target_account_id), unique: true
   end
 end

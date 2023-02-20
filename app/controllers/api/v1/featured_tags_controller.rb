@@ -6,7 +6,7 @@ class Api::V1::FeaturedTagsController < Api::BaseController
 
   before_action :require_user!
   before_action :set_featured_tags, only: :index
-  before_action :set_featured_tag, except: [:index, :create]
+  before_action :set_featured_tag, except: %i(index create)
 
   def index
     render json: @featured_tags, each_serializer: REST::FeaturedTagSerializer

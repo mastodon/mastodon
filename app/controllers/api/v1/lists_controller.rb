@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Api::V1::ListsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:lists' }, only: [:index, :show]
-  before_action -> { doorkeeper_authorize! :write, :'write:lists' }, except: [:index, :show]
+  before_action -> { doorkeeper_authorize! :read, :'read:lists' }, only: %i(index show)
+  before_action -> { doorkeeper_authorize! :write, :'write:lists' }, except: %i(index show)
 
   before_action :require_user!
-  before_action :set_list, except: [:index, :create]
+  before_action :set_list, except: %i(index create)
 
   rescue_from ArgumentError do |e|
     render json: { error: e.to_s }, status: 422

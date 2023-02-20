@@ -8,12 +8,12 @@ class AddIndexFeaturedTagsOnAccountIdAndTagId < ActiveRecord::Migration[6.1]
       FeaturedTag.where(id: row['ids'].split(',')[0...-1]).destroy_all
     end
 
-    add_index :featured_tags, [:account_id, :tag_id], unique: true, algorithm: :concurrently
+    add_index :featured_tags, %i(account_id tag_id), unique: true, algorithm: :concurrently
     remove_index :featured_tags, [:account_id], algorithm: :concurrently
   end
 
   def down
     add_index :featured_tags, [:account_id], algorithm: :concurrently
-    remove_index :featured_tags, [:account_id, :tag_id], unique: true, algorithm: :concurrently
+    remove_index :featured_tags, %i(account_id tag_id), unique: true, algorithm: :concurrently
   end
 end

@@ -2,7 +2,7 @@
 
 module Admin
   class RulesController < BaseController
-    before_action :set_rule, except: [:index, :create]
+    before_action :set_rule, except: %i(index create)
 
     def index
       authorize :rule, :index?

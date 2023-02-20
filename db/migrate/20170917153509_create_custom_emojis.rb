@@ -8,6 +8,6 @@ class CreateCustomEmojis < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_index :custom_emojis, [:shortcode, :domain], unique: true
+    add_index :custom_emojis, %i(shortcode domain), unique: true
   end
 end

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Api::V2::FiltersController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:filters' }, only: [:index, :show]
-  before_action -> { doorkeeper_authorize! :write, :'write:filters' }, except: [:index, :show]
+  before_action -> { doorkeeper_authorize! :read, :'read:filters' }, only: %i(index show)
+  before_action -> { doorkeeper_authorize! :write, :'write:filters' }, except: %i(index show)
   before_action :require_user!
   before_action :set_filters, only: :index
-  before_action :set_filter, only: [:show, :update, :destroy]
+  before_action :set_filter, only: %i(show update destroy)
 
   def index
     render json: @filters, each_serializer: REST::FilterSerializer, rules_requested: true
@@ -43,6 +43,6 @@ class Api::V2::FiltersController < Api::BaseController
   end
 
   def resource_params
-    params.permit(:title, :expires_in, :filter_action, context: [], keywords_attributes: [:id, :keyword, :whole_word, :_destroy])
+    params.permit(:title, :expires_in, :filter_action, context: [], keywords_attributes: %i(id keyword whole_word _destroy))
   end
 end

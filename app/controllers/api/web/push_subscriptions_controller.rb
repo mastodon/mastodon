@@ -48,7 +48,7 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   end
 
   def subscription_params
-    @subscription_params ||= params.require(:subscription).permit(:endpoint, keys: [:auth, :p256dh])
+    @subscription_params ||= params.require(:subscription).permit(:endpoint, keys: %i(auth p256dh))
   end
 
   def data_params

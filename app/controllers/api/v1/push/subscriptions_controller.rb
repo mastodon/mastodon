@@ -4,7 +4,7 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :push }
   before_action :require_user!
   before_action :set_push_subscription
-  before_action :check_push_subscription, only: [:show, :update]
+  before_action :check_push_subscription, only: %i(show update)
 
   def create
     @push_subscription&.destroy!
@@ -46,7 +46,7 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
   end
 
   def subscription_params
-    params.require(:subscription).permit(:endpoint, keys: [:auth, :p256dh])
+    params.require(:subscription).permit(:endpoint, keys: %i(auth p256dh))
   end
 
   def data_params

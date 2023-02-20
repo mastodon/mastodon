@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class Api::V2::Filters::StatusesController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:filters' }, only: [:index, :show]
-  before_action -> { doorkeeper_authorize! :write, :'write:filters' }, except: [:index, :show]
+  before_action -> { doorkeeper_authorize! :read, :'read:filters' }, only: %i(index show)
+  before_action -> { doorkeeper_authorize! :write, :'write:filters' }, except: %i(index show)
   before_action :require_user!
 
   before_action :set_status_filters, only: :index
-  before_action :set_status_filter, only: [:show, :destroy]
+  before_action :set_status_filter, only: %i(show destroy)
 
   def index
     render json: @status_filters, each_serializer: REST::FilterStatusSerializer

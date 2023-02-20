@@ -6,6 +6,6 @@ class CreateMutes < ActiveRecord::Migration[5.0]
       t.timestamps null: false
     end
 
-    add_index :mutes, [:account_id, :target_account_id], unique: true
+    add_index :mutes, %i(account_id target_account_id), unique: true
   end
 end

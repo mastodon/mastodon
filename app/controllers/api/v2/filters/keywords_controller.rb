@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class Api::V2::Filters::KeywordsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:filters' }, only: [:index, :show]
-  before_action -> { doorkeeper_authorize! :write, :'write:filters' }, except: [:index, :show]
+  before_action -> { doorkeeper_authorize! :read, :'read:filters' }, only: %i(index show)
+  before_action -> { doorkeeper_authorize! :write, :'write:filters' }, except: %i(index show)
   before_action :require_user!
 
   before_action :set_keywords, only: :index
-  before_action :set_keyword, only: [:show, :update, :destroy]
+  before_action :set_keyword, only: %i(show update destroy)
 
   def index
     render json: @keywords, each_serializer: REST::FilterKeywordSerializer

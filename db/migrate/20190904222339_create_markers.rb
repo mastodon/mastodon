@@ -9,6 +9,6 @@ class CreateMarkers < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    add_index :markers, [:user_id, :timeline], unique: true
+    add_index :markers, %i(user_id timeline), unique: true
   end
 end

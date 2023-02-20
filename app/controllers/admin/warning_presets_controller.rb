@@ -2,7 +2,7 @@
 
 module Admin
   class WarningPresetsController < BaseController
-    before_action :set_warning_preset, except: [:index, :create]
+    before_action :set_warning_preset, except: %i(index create)
 
     def index
       authorize :account_warning_preset, :index?

@@ -8,6 +8,6 @@ class CreatePgheroSpaceStats < ActiveRecord::Migration[5.2]
       t.timestamp :captured_at
     end
 
-    add_index :pghero_space_stats, [:database, :captured_at]
+    add_index :pghero_space_stats, %i(database captured_at)
   end
 end

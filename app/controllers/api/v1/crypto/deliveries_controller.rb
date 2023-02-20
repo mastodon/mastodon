@@ -21,7 +21,7 @@ class Api::V1::Crypto::DeliveriesController < Api::BaseController
 
   def resource_params
     params.require(:device)
-    params.permit(device: [:account_id, :device_id, :type, :body, :hmac])
+    params.permit(device: %i(account_id device_id type body hmac))
   end
 
   def devices
