@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Update do
+  subject { described_class.new(json, sender) }
+
   let!(:sender) { Fabricate(:account) }
 
   before do
     sender.update!(uri: ActivityPub::TagManager.instance.uri_for(sender))
   end
-
-  subject { described_class.new(json, sender) }
 
   describe '#perform' do
     context 'with an Actor object' do

@@ -8,11 +8,18 @@ my:
       other: စောင့်ကြည့်သူ
     following: စောင့်ကြည့်နေသည်
     last_active: နောက်ဆုံးအသုံးပြုခဲ့သည့်အချိန်
+    nothing_here: ဤနေရာတွင် မည်သည့်အရာမျှမရှိပါ။
+    pin_errors:
+      following: သင်ထောက်ခံလိုသောလူနောက်သို့ စောင့်ကြည့်ပြီးသားဖြစ်နေပါမည်
     posts:
       other: ပို့စ်တင်မယ်
     posts_tab_heading: ပို့စ်များ
   admin:
+    account_moderation_notes:
+      create: မှတ်စုမှထွက်ရန်
     accounts:
+      add_email_domain_block: ဒိုမိန်းကိုပိတ်မည်
+      approve: အတည်ပြုပါ
       are_you_sure: သေချာပါသလား။
       avatar: ကိုယ်စားပြုရုပ်ပုံ
       by_domain: ဒိုမိန်း
@@ -23,6 +30,10 @@ my:
         new_email: အီးမေးလ်အသစ်
         submit: အီးမေးလ်ပြောင်းပါ။
         title: "%{username} အတွက် အီးမေးလ်ပြောင်းပါ"
+      change_role:
+        label: အခန်းကဏ္ဍ ပြောင်းလဲရန်
+        no_role: အခန်းကဏ္ဍမရှိ
+        title: "%{username} အတွက် အခန်းကဏ္ဍပြောင်းပါ"
       confirm: အတည်ပြု
       confirmed: အတည်ပြုပြီးပါပြီ
       confirming: အတည်ပြုနေသည်
@@ -30,28 +41,63 @@ my:
       delete: အချက်အလက်များဖျက်ပါ
       deleted: ဖျက်ပြီးပါပြီ
       disable_two_factor_authentication: 2FA ကို ပိတ်ပါ
+      display_name: ဖော်ပြမည့်အမည်
       domain: ဒိုမိန်း
       edit: ပြင်ဆင်ရန်
       email: အီးမေးလ်
+      email_status: အီးမေးလ်အခြေအနေ
+      enable_sign_in_token_auth: အီးမေးတိုကင် စစ်မှန်ကြောင်းအတည်ပြုချက်ကို ဖွင့်ပါ
       enabled: ဖွင့်ထားသည်
       followers: စောင့်ကြည့်သူများ
+      follows: စောင့်ကြည့်မယ်
+      header: မျက်နှာဖုံးပုံ
+      invited_by: ဖိတ်ခေါ်ထားသည်
       ip: IP
+      joined: စတင်ဝင်ရောက်သည့်နေ့
       location:
         all: အားလုံး
+        local: ပြည်တွင်း
         remote: အဝေးမှ
         title: တည်နေရာ
       login_status: အကောင့်ဝင်ရောက်မှုအခြေအနေ
       media_attachments: မီဒီယာ ပူးတွဲချက်များ
+      memorialize: အမှတ်တရအဖြစ် ပြောင်းပါ
       moderation:
+        active: လက်ရှိအသုံးပြုလျက်ရှိခြင်း
         all: အားလုံး
+        pending: ဆိုင်းငံ့ထားခြင်း
+        silenced: ကန့်သတ်ထားသော
+        suspended: ရပ်ဆိုင်းထားခြင်း
+        title: စိစစ်ခြင်း
+      moderation_notes: စိစစ်ခြင်းဆိုင်ရာမှတ်စုများ
+      most_recent_activity: နောက်ဆုံးအသုံးပြုခဲ့သည့်အချိန်
+      most_recent_ip: အသုံးပြုလေ့ရှိသည့် IP လိပ်စာ
+      no_account_selected: မည်သည့်အကောင့်ကိုမျှ ရွေးချယ်ထားခြင်းမရှိသောကြောင့် ပြောင်းလဲခြင်းမရှိပါ
+      perform_full_suspension: ရပ်ဆိုင်းရန်
+      promote: အထောက်အကူ
+      protocol: လုပ်ထုံးလုပ်နည်း
       public: အများမြင်
+      redownload: ပရိုဖိုင်ကို ပြန်လည်စတင်ရန်
+      redownloaded_msg: မူလမှစ၍ %{username} ၏ ပရိုဖိုင်ကို ပြန်လည်စတင်ပြီးပါပြီ
       reject: ဖယ်ရှားပါ
       remove_avatar: ကိုယ်စားပြုရုပ်ပုံကို ဖယ်ရှားပါ
+      remove_header: မျက်နှာဖုံးပုံ ဖယ်ရှားရန်
+      removed_avatar_msg: "%{username} ၏ ကိုယ်စားပြုရုပ်ပုံအား ဖယ်ရှားပြီးပါပြီ"
+      removed_header_msg: "%{username} ၏ မျက်နှာဖုံးပုံအား ဖယ်ရှားပြီးပါပြီ"
+      resend_confirmation:
+        already_confirmed: ဤအသုံးပြုသူကို အတည်ပြုပြီးပါပြီ
+        send: အတည်ပြုထားသောအီးမေးလ် ပြန်ပို့ပေးရန်
+        success: အတည်ပြုထားသောအီးမေးလ် ပို့ပြီးပါပြီ။
       reset: ပြန်သတ်မှတ်မည်
+      role: အခန်းကဏ္ဍ
       search: ရှာရန်
+      search_same_ip: IP တူတူ အသုံးပြုသော အခြားသူများ
       security_measures:
         only_password: စကားဝှက်ဖြင့်သာ
         password_and_2fa: စကားဝှက်နှင့် 2FA
+      show:
+        created_reports: ဆောင်ရွက်ခဲ့ပြီးသောအစီရင်ခံစာများ
+        targeted_reports: အခြားသူများမှဆောင်ရွက်ခဲ့သော အစီရင်ခံစာများ
       silence: ကန့်သတ်
       silenced: ကန့်သတ်ထားသည်
       statuses: ပို့စ်များ
@@ -59,22 +105,48 @@ my:
       suspend: ရပ်ဆိုင်းပါ
       suspended: ရပ်ဆိုင်းထားသည်
       title: အကောင့်များ
+      unblock_email: အီးမေးလ်ကိုပြန်ဖွင့်မည်
+      unblocked_email_msg: " %{username} အီးမေးလ်ကိုပြန်ဖွင့်လိုက်ပါပြီ"
       unsubscribe: စာရင်းမှထွက်ရန်
       unsuspended_msg: "%{username} ၏ အကောင့်ကို ရပ်ဆိုင်းလိုက်ပါပြီ"
       username: အသုံးပြုသူအမည်
       web: ဝဘ်
     action_logs:
       action_types:
+        approve_user: အသုံးပြုသူကို အတည်ပြုရန်
+        change_email_user: အသုံးပြုသူအတွက် အီးမေးလ်ပြောင်းရန်
+        change_role_user: အသုံးပြုသူ၏ အခန်းကဏ္ဍကို ပြောင်းလဲရန်
+        confirm_user: အသုံးပြုသူကို လက်ခံရန်
         create_announcement: ကြေညာချက်ဖန်တီးပါ
         create_custom_emoji: စိတ်ကြိုက်အီမိုဂျီ ဖန်တီးပါ
+        create_ip_block: IP စည်းမျဉ်း ဖန်တီးရန်
+        create_user_role: အခန်းကဏ္ဍဖန်တီးပါ
+        destroy_announcement: ကြေညာချက်ကို ဖျက်ပါ
+        destroy_custom_emoji: စိတ်ကြိုက်အီမိုဂျီကို ဖျက်ရန်
+        destroy_ip_block: IP စည်းမျဉ်းကို ဖျက်ပါ
         destroy_status: Post ကို ဖျက်ပါ
+        destroy_unavailable_domain: အသုံးမပြုနိုင်သောဒိုမိန်းကို ဖျက်ပါ
         disable_2fa_user: 2FA ကို ပိတ်ပါ
         disable_custom_emoji: စိတ်ကြိုက်အီမိုဂျီကို ပိတ်ပါ
+        disable_user: အသုံးပြုသူကို ပိတ်ပါ
+        enable_custom_emoji: စိတ်ကြိုက်အီမိုဂျီကို ဖွင့်ပါ
+        enable_user: အသုံးပြုသူကို ဖွင့်ပါ
+        memorialize_account: အမှတ်တရအကောင့်
+        promote_user: အသုံးပြုသူ မြှင့်တင်ရန်
+        reject_user: အသုံးပြုသူ ဖယ်ရှားရန်
         remove_avatar_user: ကိုယ်စားပြုရုပ်ပုံကို ဖယ်ရှားပါ
         silence_account: အကောင့် ကန့်သတ်ပါ
         suspend_account: အကောင့် ရပ်ဆိုင်းပါ
+        update_announcement: ကြေညာချက်ပြင်ဆင်ရန်
+        update_custom_emoji: စိတ်ကြိုက်အီမိုဂျီကို ပြင်ဆင်ရန်
+        update_ip_block: IP စည်းမျဉ်း ပြင်ဆင်ရန်
         update_status: ပို့စ်ပြင်ဆင်ရန်
+        update_user_role: အခန်းကဏ္ဍပြင်ဆင်ရန်
+      actions:
+        destroy_custom_emoji_html: "%{name} ဖျက်လိုက်သော အီမိုဂျီ %{target}"
+        disable_custom_emoji_html: "%{name} ပိတ်ထားသောအီမိုဂျီ %{target}"
       deleted_account: အကောင့်ဖျက်ပြီးပါပြီ
+      empty: မှတ်တမ်းများ မတွေ့ပါ။
     announcements:
       destroyed_msg: ကြေညာချက် ဖျက်ပြီးပါပြီ
       edit:
@@ -91,7 +163,10 @@ my:
     custom_emojis:
       by_domain: ဒိုမိန်း
       copy: ကူးယူပါ
+      create_new_category: အမျိုးအစားအသစ်ဖန်တီးရန်
+      created_msg: အီမိုဂျီ ဖန်တီးပြီးပါပြီ။
       delete: ဖျက်ပါ
+      destroyed_msg: အီမိုဂျီ ဖျက်ပစ်လိုက်ပါပြီ။
       disable: ပိတ်ပါ
       disabled: ပိတ်ပြီးပါပြီ
       emoji: အီမိုဂျီ
@@ -103,11 +178,17 @@ my:
       new:
         title: စိတ်ကြိုက်အီမိုဂျီအသစ် ထည့်ပါ
       title: စိတ်ကြိုက်အီမိုဂျီများ
+      unlist: စာရင်းမသွင်းထားပါ
       unlisted: စာရင်းမသွင်းထားပါ
       update_failed_msg: ထိုအီမိုဂျီကို ပြင်ဆင်၍မရပါ
       updated_msg: အီမိုဂျီကို ပြင်ဆင်ပြီးပါပြီ။
+      upload: တင္ရန်
     dashboard:
+      active_users: လက်ရှိအသုံးပြုသူများ
+      media_storage: မီဒီယာသိုလှောင်မှု
       new_users: အသုံးပြုသူအသစ်များ
+      top_languages: လက်ရှိအသုံးများလျက်ရှိသည့် ဘာသာစကား
+      top_servers: လက်ရှိအသုံးများလျက်ရှိသည့် ဆာဗာများ
       website: ဝဘ်ဆိုဒ်
     domain_blocks:
       domain: ဒိုမိန်း
@@ -116,8 +197,13 @@ my:
           silence: ကန့်သတ်
           suspend: ရပ်ဆိုင်းပါ
       private_comment: သီးသန့်မှတ်ချက်
+      public_comment: အများမြင်မှတ်ချက်
     email_domain_blocks:
+      add_new: အသစ် ထည့်ပါ
       delete: ဖျက်ပါ
+      dns:
+        types:
+          mx: MX မှတ်တမ်း
       domain: ဒိုမိန်း
       new:
         create: ဒိုမိန်းထည့်ပါ
@@ -127,21 +213,29 @@ my:
       no_file: ဖိုင်ရွေးထားခြင်းမရှိပါ
     follow_recommendations:
       language: ဘာသာစကားအတွက်
+      status: အခြေအနေ
     instances:
       back_to_all: အားလုံး
       back_to_limited: ကန့်သတ်ထားသည်
+      confirm_purge: ဤဒိုမိန်းမှ အချက်အလက်များကို အပြီးတိုင်ဖျက်လိုသည်မှာ သေချာပါသလား။
       content_policies:
         policies:
+          reject_media: မီဒီယာဖယ်ရှားရန်
+          reject_reports: အစီရင်ခံစာများ ဖယ်ရှားရန်
           silence: ကန့်သတ်
+          suspend: ရပ်ဆိုင်းပါ
         policy: မူဝါဒ
       dashboard:
         instance_followers_measure: ကျွန်ုပ်တို့၏စောင့်ကြည့်သူများ အဲ့ဒီနေရာမှာပါ
         instance_follows_measure: သူတို့၏စောင့်ကြည့်သူများ ဒီနေရာမှာပါ
+        instance_languages_dimension: အသုံးများသည့်ဘာသာစကားများ
       delivery:
         all: အားလုံး
+        unavailable: မရရှိနိုင်ပါ
       moderation:
         all: အားလုံး
         limited: ကန့်သတ်ထားသော
+        title: စိစစ်ခြင်း
       private_comment: သီးသန့်မှတ်ချက်
       public_comment: အများမြင်မှတ်ချက်
       total_storage: မီဒီယာ ပူးတွဲချက်များ
@@ -149,33 +243,72 @@ my:
       filter:
         all: အားလုံး
         available: ရရှိနိုင်သော
+        title: စစ်ထုတ်ခြင်း
     ip_blocks:
+      add_new: စည်းမျဉ်းဖန်တီးပါ
+      created_msg: IP စည်းမျဉ်းအသစ် ထည့်သွင်းပြီးပါပြီ
       delete: ဖျက်ပါ
       expires_in:
-        '1209600': 2 weeks
-        '15778476': 6 months
-        '2629746': 1 month
-        '31556952': 1 year
-        '86400': 1 day
+        '1209600': ၂ ပတ်
+        '15778476': ၆ လ
+        '2629746': ၁ လ
+        '31556952': ၁ နှစ်
+        '86400': ၁ ရက်
         '94670856': ၃ နှစ်
+      new:
+        title: IP စည်းမျဉ်းအသစ်ဖန်တီးပါ
       title: IP စည်းမျဉ်းများ
+    relationships:
+      title: "%{acct} နှင့် ပတ်သက်မှု"
     relays:
       delete: ဖျက်ပါ
       disable: ပိတ်ပါ
       disabled: ပိတ်ထားသည်
       enable: ဖွင့်ပါ
       enabled: ဖွင့်ထားသည်
+      status: အခြေအနေ
     reports:
+      account:
+        notes:
+          other: "%{count} မှတ်စု"
+      are_you_sure: သေချာပါသလား။
+      assign_to_self: ကျွန်ုပ်ကို တာဝန်ပေးရန်
+      assigned: စိစစ်သူကို တာဝန်ပေးရန်
+      category: အမျိုးအစား
       delete_and_resolve: ပို့စ်များကို ဖျက်ပါ
-      view_profile: ပရိုဖိုင်ကိုကြည့်ရန်
+      notes:
+        create: မှတ်စုထည့်ရန်
+        create_and_unresolve: မှတ်စုဖြင့် ပြန်ဖွင့်ရန်
+        delete: ဖျက်ပါ
+        title: မှတ်စုများ
+      reopen: အစီရင်ခံစာပြန်ဖွင့်ရန်
+      report: "#%{id} အစီရင်ခံရန်"
+      resolved: ဖြေရှင်းပြီးပါပြီ
+      status: အခြေအနေ
+      summary:
+        actions:
+          suspend_html: "<strong>@%{acct}</strong> ကို ဆိုင်းငံ့ထားသောကြောင့် ပရိုဖိုင်နှင့် အကြောင်းအရာများအား ဝင်ရောက်ခွင့်မရှိတော့သဖြင့် အပြန်အလှန် တုံ့ပြန်၍ မရတော့ခြင်း"
+        delete_data_html: "<strong>@%{acct}</strong> ၏ ပရိုဖိုင်နှင့် အကြောင်းအရာများကို ဆိုင်းငံ့ထားခြင်းမရှိပါက ယခုမှ ရက်ပေါင်း ၃၀ အတွင်း ဖျက်ရန်"
+      updated_at: ပြင်ဆင်ပြီးပါပြီ
+      view_profile: ပရိုဖိုင်ကြည့်ရန်
     roles:
+      add_new: အခန်းကဏ္ဍထည့်ပါ
       categories:
         devops: DevOps
+        moderation: စိစစ်ခြင်း
       delete: ဖျက်ပါ
       permissions_count:
         other: "%{count} ခွင့်ပြုချက်"
       privileges:
+        administrator: စီမံသူ
+        delete_user_data: အသုံးပြုသူ၏အချက်အလက်ကို ဖျက်ပါ
+        invite_users: အသုံးပြုသူများကို ဖိတ်ခေါ်ရန်
+        invite_users_description: ဆာဗာသို့ လူသစ်များဖိတ်ခေါ်ရန်အတွက် အသုံးပြုသူအား ခွင့်ပြုရန်
         manage_announcements: ကြေညာချက်များကို စီမံပါ
+        manage_announcements_description: ဆာဗာပေါ်တွင် ကြေညာချက်များစီမံရန်အတွက် အသုံးပြုသူအား ခွင့်ပြုရန်
+        manage_reports: အစီရင်ခံစာများကို စီမံပါ
+        manage_roles: အခန်းကဏ္ဍများကို စီမံပါ
+        manage_rules: စည်းမျဉ်းများကို စီမံပါ
         manage_settings: သတ်မှတ်ချက်များကို စီမံပါ
         manage_users: အသုံးပြုသူများကို စီမံပါ
         view_devops: DevOps
@@ -185,17 +318,44 @@ my:
     settings:
       about:
         title: အကြောင်း
+      appearance:
+        title: ပုံပန်းသဏ္ဌာန်
+      discovery:
+        profile_directory: ပရိုဖိုင်လမ်းညွှန်
+      domain_blocks:
+        all: လူတိုင်း
+      title: ဆာဗာသတ်မှတ်ချက်များ
+    site_uploads:
+      delete: တင်ထားသောဖိုင်ဖျက်ရန်
     statuses:
       account: ရေးသားသူ
       back_to_account: အကောင့်စာမျက်နှာသို့ ပြန်သွားရန်
       deleted: ဖျက်ပြီးပါပြီ
+      favourites: အကြိုက်ဆုံးများ
       language: ဘာသာစကား
       media:
         title: မီဒီယာ
+      original_status: မူရင်းပို့စ်
+      title: အကောင့်ပို့စ်များ
+      with_media: မီဒီယာနှင့်အတူ
+    system_checks:
+      rules_check:
+        action: ဆာဗာစည်းမျဉ်းများကို စီမံရန်
     trends:
       allow: ခွင့်ပြု
+      approved: အတည်ပြုပြီးပါပြီ
       disallow: ခွင့်မပြု
+      rejected: ဖယ်ရှားပြီးပါပြီ
+      statuses:
+        allow: ပို့စ်တင်ခွင့်ပြုရန်
+        disallow: ပို့စ်ကို တင်ခွင့်မပြုရန်
       tags:
+        dashboard:
+          tag_languages_dimension: အသုံးများသည့်ဘာသာစကားများ
+          tag_servers_dimension: အသုံးများသည့်ဆာဗာများ
+          tag_servers_measure: မတူညီသောဆာဗာများ
+          tag_uses_measure: စုစုပေါင်းအသုံးပြုမှု
+        listable: အကြံပြုနိုင်ပါသည်
         not_usable: အသုံးမပြုနိုင်ပါ
         usable: အသုံးပြုနိုင်သည်
     warning_presets:
@@ -203,20 +363,38 @@ my:
       delete: ဖျက်ပါ
     webhooks:
       delete: ဖျက်ပါ
+      disable: ပိတ်ပါ
+      disabled: ပိတ်ထားသည်
       enable: ဖွင့်ပါ
+      enabled: လက်ရှိ
+      events: ပွဲအစီအစဉ်များ
+      status: အခြေအနေ
   appearance:
     localization:
       guide_link_text: လူတိုင်းပါဝင်ကူညီနိုင်ပါတယ်။
   application_mailer:
+    salutation: "%{name}"
+    view: ကြည့်ရှုရန် -
     view_profile: ပရိုဖိုင်ကိုကြည့်ရန်
     view_status: ပို့စ်ကိုကြည့်ရန်
+  applications:
+    created: အက်ပလီကေးရှင်းကို ဖန်တီးပြီးပါပြီ
   auth:
     change_password: စကားဝှက်
     delete_account: အကောင့်ဖျက်ပါ
+    description:
+      prefix_sign_up: ယနေ့တွင် Mastodon ၌ စာရင်းသွင်းလိုက်ပါ။
+    forgot_password: သင့်စကားဝှက် မေ့နေပါသလား။
+    log_in_with: ဖြင့် ဝင်ရောက်ပါ
+    login: အကောင့်ဝင်ရန်
     logout: ထွက်မယ်
+    migrate_account: အခြားအကောင့်တစ်ခုသို့ ရွှေ့ရန်
     providers:
       cas: CAS
       saml: SAML
+    register: အကောင့်ဖွင့်ရန်
+    registration_closed: "%{instance} သည် အဖွဲ့ဝင်အသစ်များကို လက်ခံထားခြင်းမရှိပါ"
+    security: လုံခြုံရေး
     set_new_password: စကားဝှက်အသစ် သတ်မှတ်ပါ။
     status:
       account_status: အကောင့်အခြေအနေ
@@ -224,6 +402,8 @@ my:
     follow: စောင့်ကြည့်မယ်
     follow_request: သင်သည် စောင့်ကြည့်မည် တောင်းဆိုချက်တစ်ခု ပေးပို့ထားသည်-
     post_follow:
+      close: သို့မဟုတ် သင်သည် ဤဝင်းဒိုးကို ပိတ်နိုင်သည်
+      return: အသုံးပြုသူ၏ ပရိုဖိုင်ကိုပြရန်
       web: ဝဘ်သို့ သွားပါ
     title: "%{acct} ကို စောင့်ကြည့်မယ်"
   challenge:
@@ -240,6 +420,7 @@ my:
       about_x_years: "%{count}y"
       almost_x_years: "%{count}y"
       half_a_minute: အခုလေးတင်
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: အခုလေးတင်
       over_x_years: "%{count}y"
       x_days: "%{count}y"
@@ -253,6 +434,8 @@ my:
     strikes:
       status: "#%{id} ပို့စ်"
       title: "%{date} မှ %{action}"
+      title_actions:
+        none: သတိပေးချက်
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -265,19 +448,32 @@ my:
     archive_takeout:
       date: ရက်စွဲ
       size: အရွယ်အစား
+    blocks: သင်ပိတ်ပင်ထားသည့်လူများစာရင်း
     csv: CSV
     lists: စာရင်းများ
+    storage: မီဒီယာသိုလှောင်မှု
   featured_tags:
     add_new: အသစ် ထည့်ပါ
   filters:
     contexts:
+      account: ပရိုဖိုင်များ
+      home: ပင်မနှင့် စာရင်းများ
       notifications: အကြောင်းကြားချက်များ
+      thread: စကားဝိုင်းများ
+    edit:
+      statuses: တစ်ဦးချင်းတင်ထားသောပို့စ်များ
+      title: စစ်ထုတ်ခြင်းကို ပြင်ဆင်ရန်
     index:
+      contexts: "%{contexts} ရှိ စစ်ထုတ်ထားမှုများ"
       delete: ဖျက်ပါ
+      empty: သင့်တွင် စစ်ထုတ်ထားခြင်းများ မရှိပါ။
       statuses:
         other: "%{count} ပို့စ်"
+      title: စစ်ထုတ်ခြင်းများ
   generic:
     all: အားလုံး
+    copy: ကူးယူပါ
+    delete: ဖျက်ပါ
     today: ယနေ့
   invites:
     expires_in:
@@ -287,6 +483,7 @@ my:
       '43200': ၁၂ နာရီ
       '604800': ၁ ပတ်
       '86400': ၁ ရက်
+    max_uses_prompt: အကန့်အသတ်မဲ့
   login_activities:
     authentication_methods:
       otp: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်အက်ပ်
@@ -295,8 +492,13 @@ my:
     validations:
       images_and_video: ရုပ်ပုံပါရှိပြီးသားပို့စ်တွင် ဗီဒီယို ပူးတွဲ၍မရပါ
   migrations:
+    acct: သို့ ပြောင်းရွှေ့ရန်
     errors:
       not_found: ရှာမတွေ့ပါ
+    proceed_with_move: စောင့်ကြည့်သူများကို ရွှေ့ရန်
+    warning:
+      only_redirect_html: တနည်းအားဖြင့် သင်သည် <a href="%{path}">သင့်ပရိုဖိုင်ပေါ်တွင် ပြန်ညွှန်းခြင်းကိုသာ ပြုလုပ်နိုင်သည်</a>။
+      redirect: သင့်လက်ရှိအကောင့်၏ပရိုဖိုင်ကို ပြန်လည်ညွှန်းပေးသည့်အသိပေးချက်ဖြင့် ပြင်ဆင်ပေးမည်ဖြစ်ပြီး ရှာဖွေမှုများမှ ဖယ်ထုတ်ပေးမည်ဖြစ်သည်
   notification_mailer:
     follow:
       title: စောင့်ကြည့်သူအသစ်
@@ -315,23 +517,75 @@ my:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    enable: ဖွင့်ပါ
+  pagination:
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: ဤစစ်တမ်းတွင် သင်ပါဝင်ပြီးဖြစ်သည်
+      duplicate_options: ထပ်တူညီသောအရာများပါဝင်နေသည်
+      duration_too_long: အလှမ်းဝေးလွန်းတယ်
+      duration_too_short: စောလွန်းတယ်
+      expired: စစ်တမ်းပြီးဆုံးသွားပါပြီ
+      invalid_choice: သင်ရွေးချယ်လိုသောအရာမှာ စစ်တမ်းတွင်မပါဝင်ပါ
+      over_character_limit: သတ်မှတ်ထားသောစာလုံးအရေအတွက် %{max} ထက်ပိုနေသည်
+      too_few_options: တစ်ခုထက်ပိုနေသည်
+      too_many_options: သတ်မှတ်ထားသောအရေအတွက် %{max} ကိုကျော်လွန်နေသည်
   privacy_policy:
     title: ကိုယ်ရေးအချက်အလက်မူဝါဒ
   relationships:
     followers: စောင့်ကြည့်သူများ
     following: စောင့်ကြည့်နေသည်
+    moved: ရွှေ့ပြီးပါပြီ
     mutual: အပြန်အလှန်စောင့်ကြည့်ထားခြင်း
+    status: အကောင့်အခြေအနေ
   sessions:
+    description: "%{platform} ပေါ်ရှိ %{browser}"
     platforms:
       ios: iOS
       linux: Linux
       mac: macOS
+    revoke: ပြန်ရုပ်သိမ်းရန်
   settings:
+    account: အကောင့်
+    account_settings: အကောင့်သတ်မှတ်ချက်များ
+    appearance: ပုံပန်းသဏ္ဌာန်
+    delete: အကောင့်ဖျက်သိမ်းခြင်း
     edit_profile: ပရိုဖိုင်ပြင်ဆင်ရန်
+    notifications: အသိပေးချက်များ
+    profile: ပရိုဖိုင်
+    relationships: စောင့်ကြည့်သူများနှင့် စောင့်ကြည့်စာရင်း
+    statuses_cleanup: အလိုအလျောက်ပို့စ်ဖျက်ခြင်း
+    two_factor_authentication: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်
   statuses:
+    attached:
+      description: ပူးတွဲပါ- %{attached}
+      image:
+        other: "%{count} ပုံ"
+      video:
+        other: "%{count} ဗီဒီယို"
+    edited_at_html: "%{date} ကို ပြင်ဆင်ပြီးပါပြီ"
+    open_in_web: ဝဘ်တွင် ဖွင့်ပါ
+    poll:
+      total_people:
+        other: "%{count} ယောက်"
+      total_votes:
+        other: မဲအရေအတွက် %{count} မဲ
+      vote: မဲပေးမည်
+    show_more: ပိုမိုပြရန်
+    show_newer: ပို့စ်အသစ်များပြရန်
+    show_older: ပို့စ်အဟောင်းများပြရန်
+    title: '%{name}: "%{quote}"'
     visibilities:
+      direct: တိုက်ရိုက်
+      private: စောင့်ကြည့်သူများသာ
+      private_long: စောင့်ကြည့်သူများကိုသာ ပြရန်
       public: အများမြင်
+      public_long: လူတိုင်းမြင်နိုင်ပါသည်
   statuses_cleanup:
+    keep_polls: စစ်တမ်းကိုဆက်လက်ထားမည်
+    keep_polls_hint: သင့်မှတ်တမ်းတစ်ခုမှ မပျက်ပါ
     min_age:
       '1209600': ၂ ပတ်
       '15778476': ၆ လ
@@ -341,11 +595,37 @@ my:
       '604800': ၁ ပတ်
       '63113904': ၂ နှစ်
       '7889238': ၃ လ
+  stream_entries:
+    pinned: ပင်တွဲထားသောပို့စ်
+  themes:
+    default: Mastodon (အနက်)
   time:
     formats:
+      default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
   two_factor_authentication:
+    add: ထည့်ရန်
     disable: 2FA ကို ပိတ်ပါ
+    edit: ပြင်ဆင်ရန်
     enabled: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်ကို ဖွင့်ထားသည်
     enabled_success: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်ကို ဖွင့်ပြီးပါပြီ
+    methods: နှစ်ဆင့်ခံလုံခြုံရေးနည်းလမ်းများ
+  user_mailer:
+    appeal_approved:
+      action: သင့်အကောင့်သို့ သွားပါ
+    suspicious_sign_in:
+      change_password: သင်၏ စကားဝှက်ပြောင်းလဲပါ
+    warning:
+      explanation:
+        disable: သင့်အကောင့်ကို အသုံးမပြုနိုင်တော့သော်လည်း သင့်ပရိုဖိုင်နှင့် အခြားအချက်အလက်များမှာ ကျန်ရှိနေမည်ဖြစ်သည်။ သင့်အချက်အလက်ကို မိတ္တူကူးရန်၊ အကောင့်သတ်မှတ်ချက်များကို ပြောင်းလဲရန် သို့မဟုတ် သင့်အကောင့်ဖျက်သိမ်းရန်တို့အတွက် အရန်သိမ်းဆည်းမှုအား သင် တောင်းဆိုနိုင်သည်။
+        suspend: သင့်အကောင့်ကို အသုံးမပြုနိုင်တော့သည့်အပြင် ပရိုဖိုင်နှင့် အခြားအချက်အလက်များကိုလည်း အသုံးပြု၍မရတော့ပါ။ သင့်အချက်အလက်ကို ရက်ပေါင်း ၃၀ ခန့်အတွင်း အပြည့်အဝ မဖယ်ရှားမချင်း အချက်အလက်များ အရန်ကူးယူရန်အတွက် အကောင့်သို့ ဝင်ရောက်နိုင်ပါသေးသည်။ သို့သော် အကောင့်ရပ်ဆိုင်းထားမှုရှောင်လွှဲခြင်းမှ ကာကွယ်ရန်အတွက် အခြေခံအချက်အလက်အချို့ကို ကျွန်ုပ်တို့ ထိန်းသိမ်းထားရပါမည်။
+      reason: အကြောင်းပြချက် -
+      subject:
+        none: "%{acct} အတွက် သတိပေးချက်"
+    welcome:
+      edit_profile_action: ပရိုဖိုင်ထည့်သွင်းရန်
+      edit_profile_step: ပရိုဖိုင်ဓာတ်ပုံတစ်ပုံ တင်ခြင်း၊ ဖော်ပြမည့်အမည် ပြောင်းလဲခြင်းနှင့် အခြားအရာများပြုလုပ်ခြင်းတို့ဖြင့် သင့်ပရိုဖိုင်ကို စိတ်ကြိုက်ပြင်ဆင်နိုင်ပါသည်။ စောင့်ကြည့်သူအသစ်များ သင့်ကိုစောင့်ကြည့်ခွင့်မပြုမီ ပြန်လည်သုံးသပ်ရန်အတွက် ဆုံးဖြတ်နိုင်ပါသည်။
+  webauthn_credentials:
+    delete: ဖျက်ရန်
+    registered_on: "%{date} တွင် စာရင်းသွင်းထားသည်"

@@ -1,4 +1,4 @@
 Fabricator(:account_moderation_note) do
-  content "MyText"
+  content 'MyText'
   account nil
 end

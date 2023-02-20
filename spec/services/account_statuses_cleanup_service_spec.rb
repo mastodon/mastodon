@@ -42,8 +42,8 @@ describe AccountStatusesCleanupService, type: :service do
 
       context 'when called repeatedly with a budget of 2' do
         it 'reports 2 then 1 deleted statuses' do
-         expect(subject.call(account_policy, 2)).to eq 2
-         expect(subject.call(account_policy, 2)).to eq 1
+          expect(subject.call(account_policy, 2)).to eq 2
+          expect(subject.call(account_policy, 2)).to eq 1
         end
 
         it 'actually deletes the statuses in the expected order' do

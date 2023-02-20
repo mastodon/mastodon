@@ -79,8 +79,8 @@ module Paperclip
     private
 
     def w3c_contrast(color1, color2)
-      luminance1 = color1.to_xyz.y * 0.01 + 0.05
-      luminance2 = color2.to_xyz.y * 0.01 + 0.05
+      luminance1 = (color1.to_xyz.y * 0.01) + 0.05
+      luminance2 = (color2.to_xyz.y * 0.01) + 0.05
 
       if luminance1 > luminance2
         luminance1 / luminance2
@@ -109,11 +109,11 @@ module Paperclip
 
         case max
         when r
-          h = (g - b) / d + (g < b ? 6.0 : 0)
+          h = ((g - b) / d) + (g < b ? 6.0 : 0)
         when g
-          h = (b - r) / d + 2.0
+          h = ((b - r) / d) + 2.0
         when b
-          h = (r - g) / d + 4.0
+          h = ((r - g) / d) + 4.0
         end
 
         h /= 6.0
@@ -126,9 +126,9 @@ module Paperclip
       t += 1 if t.negative?
       t -= 1 if t > 1
 
-      return (p + (q - p) * 6 * t) if t < 1 / 6.0
+      return (p + ((q - p) * 6 * t)) if t < 1 / 6.0
       return q if t < 1 / 2.0
-      return (p + (q - p) * (2 / 3.0 - t) * 6) if t < 2 / 3.0
+      return (p + ((q - p) * ((2 / 3.0) - t) * 6)) if t < 2 / 3.0
 
       p
     end
@@ -147,11 +147,11 @@ module Paperclip
         g = l.to_f
         b = l.to_f # achromatic
       else
-        q = l < 0.5 ? l * (s + 1) : l + s - l * s
-        p = 2 * l - q
-        r = hue_to_rgb(p, q, h + 1 / 3.0)
+        q = l < 0.5 ? l * (s + 1) : l + s - (l * s)
+        p = (2 * l) - q
+        r = hue_to_rgb(p, q, h + (1 / 3.0))
         g = hue_to_rgb(p, q, h)
-        b = hue_to_rgb(p, q, h - 1 / 3.0)
+        b = hue_to_rgb(p, q, h - (1 / 3.0))
       end
 
       [(r * 255).round, (g * 255).round, (b * 255).round]
@@ -161,13 +161,11 @@ module Paperclip
     def lighten_or_darken(color, by)
       hue, saturation, light = rgb_to_hsl(color.r, color.g, color.b)
 
-      light = begin
-        if light < 50
-          [100, light + by].min
-        else
-          [0, light - by].max
-        end
-      end
+      light = if light < 50
+                [100, light + by].min
+              else
+                [0, light - by].max
+              end
 
       ColorDiff::Color::RGB.new(*hsl_to_rgb(hue, saturation, light))
     end

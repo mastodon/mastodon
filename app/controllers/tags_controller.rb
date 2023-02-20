@@ -58,7 +58,7 @@ class TagsController < ApplicationController
   def collection_presenter
     ActivityPub::CollectionPresenter.new(
       id: tag_url(@tag),
-      type: :ordered,
+      type: :ordered
     )
   end
 end

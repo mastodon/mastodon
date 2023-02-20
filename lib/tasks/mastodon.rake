@@ -264,7 +264,7 @@ namespace :mastodon do
 
           env['S3_ENDPOINT'] = prompt.ask('Storj DCS endpoint URL:') do |q|
             q.required true
-            q.default "https://gateway.storjshare.io"
+            q.default 'https://gateway.storjshare.io'
             q.modify :strip
           end
 
@@ -286,13 +286,13 @@ namespace :mastodon do
             q.required true
             q.modify :strip
           end
-          
+
           linksharing_access_key = prompt.ask('Storj Linksharing access key (uplink share --register --public --readonly=true --disallow-lists --not-after=none sj://bucket):') do |q|
             q.required true
             q.modify :strip
           end
           env['S3_ALIAS_HOST'] = "link.storjshare.io/raw/#{linksharing_access_key}/#{env['S3_BUCKET']}"
-          
+
         when 'Google Cloud Storage'
           env['S3_ENABLED']             = 'true'
           env['S3_PROTOCOL']            = 'https'

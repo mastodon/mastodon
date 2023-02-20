@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Account::Field, type: :model do
   describe '#verified?' do
-    let(:account) { double('Account', local?: true) }
-
     subject { described_class.new(account, 'name' => 'Foo', 'value' => 'Bar', 'verified_at' => verified_at) }
+
+    let(:account) { double('Account', local?: true) }
 
     context 'when verified_at is set' do
       let(:verified_at) { Time.now.utc.iso8601 }
@@ -24,10 +24,10 @@ RSpec.describe Account::Field, type: :model do
   end
 
   describe '#mark_verified!' do
+    subject { described_class.new(account, original_hash) }
+
     let(:account) { double('Account', local?: true) }
     let(:original_hash) { { 'name' => 'Foo', 'value' => 'Bar' } }
-
-    subject { described_class.new(account, original_hash) }
 
     before do
       subject.mark_verified!
@@ -43,9 +43,9 @@ RSpec.describe Account::Field, type: :model do
   end
 
   describe '#verifiable?' do
-    let(:account) { double('Account', local?: local) }
-
     subject { described_class.new(account, 'name' => 'Foo', 'value' => value) }
+
+    let(:account) { double('Account', local?: local) }
 
     context 'for local accounts' do
       let(:local) { true }
@@ -97,7 +97,7 @@ RSpec.describe Account::Field, type: :model do
           expect(subject.verifiable?).to be false
         end
       end
-      
+
       context 'for text which is blank' do
         let(:value) { '' }
 
@@ -149,7 +149,7 @@ RSpec.describe Account::Field, type: :model do
           expect(subject.verifiable?).to be false
         end
       end
-      
+
       context 'for text which is blank' do
         let(:value) { '' }
 

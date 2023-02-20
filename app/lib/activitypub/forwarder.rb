@@ -28,13 +28,11 @@ class ActivityPub::Forwarder
   end
 
   def signature_account_id
-    @signature_account_id ||= begin
-      if in_reply_to_local?
-        in_reply_to.account_id
-      else
-        reblogged_by_account_ids.first
-      end
-    end
+    @signature_account_id ||= if in_reply_to_local?
+                                in_reply_to.account_id
+                              else
+                                reblogged_by_account_ids.first
+                              end
   end
 
   def inboxes

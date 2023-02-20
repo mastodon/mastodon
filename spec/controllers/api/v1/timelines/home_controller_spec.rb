@@ -36,7 +36,7 @@ describe Api::V1::Timelines::HomeController do
       it 'returns http unprocessable entity' do
         get :show
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(422)
         expect(response.headers['Link']).to be_nil
       end
     end

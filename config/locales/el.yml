@@ -12,6 +12,7 @@ el:
       one: Ακόλουθος
       other: Ακόλουθοι
     following: Ακολουθεί
+    instance_actor_flash: Αυτός ο λογαριασμός είναι εικονικός και χρησιμοποιείται για να αντιπροσωπεύει τον ίδιο τον εξυπηρετητή και όχι κάποιον μεμονωμένο χρήστη. Χρησιμοποιείται για ομοσπονδιακούς σκοπούς και δεν πρέπει να ανασταλεί.
     last_active: τελευταία ενεργός/ή
     link_verified_on: Η κυριότητα αυτού του συνδέσμου ελέγχθηκε στις %{date}
     nothing_here: Δεν υπάρχει τίποτα εδώ!
@@ -37,23 +38,27 @@ el:
       avatar: Αβατάρ
       by_domain: Τομέας
       change_email:
+        changed_msg: Το email άλλαξε επιτυχώς!
         current_email: Τρέχον email
         label: Αλλαγή email
         new_email: Νέο email
         submit: Αλλαγή email
         title: Αλλαγή email για %{username}
       change_role:
+        changed_msg: Ο ρόλος άλλαξε επιτυχώς!
         label: Αλλαγή ρόλου
         no_role: Κανένας ρόλος
         title: Αλλαγή ρόλου για %{username}
       confirm: Επιβεβαίωση
       confirmed: Επιβεβαιώθηκε
       confirming: Προς επιβεβαίωση
+      custom: Προσαρμοσμένο
       delete: Διαγραφή δεδομένων
       deleted: Διαγραμμένοι
       demote: Υποβίβαση
       destroyed_msg: Τα δεδομένα του/της %{username} εκκρεμούν για άμεση διαγραφή
       disable: Απενεργοποίηση
+      disable_sign_in_token_auth: Απενεργοποίηση επαλήθευσης μέσω email
       disable_two_factor_authentication: Απενεργοποίηση 2FA
       disabled: Απενεργοποιημένο
       display_name: Όνομα εμφάνισης
@@ -62,6 +67,7 @@ el:
       email: Email
       email_status: Κατάσταση email
       enable: Ενεργοποίηση
+      enable_sign_in_token_auth: Ενεργοποίηση ελέγχου ταυτότητας μέσω e-mail
       enabled: Ενεργοποιημένο
       enabled_msg: Επιτυχές ξεπάγωμα λογαριασμού του/της %{username}
       followers: Ακόλουθοι
@@ -98,6 +104,10 @@ el:
       not_subscribed: Άνευ συνδρομής
       pending: Εκκρεμεί έγκριση
       perform_full_suspension: Αναστολή
+      previous_strikes: Προηγούμενα παραπτώματα
+      previous_strikes_description_html:
+        one: Αυτός ο λογαριασμός έχει <strong>ένα</strong> παράπτωμα.
+        other: Αυτός ο λογαριασμός έχει <strong>%{count}</strong> παραπτώματα.
       promote: Προβίβασε
       protocol: Πρωτόκολλο
       public: Δημόσιο
@@ -123,6 +133,9 @@ el:
       search: Αναζήτηση
       search_same_email_domain: Άλλοι χρήστες με τον ίδιο τομέα e-mail
       search_same_ip: Υπόλοιποι χρήστες με την ίδια διεύθυνση IP
+      security_measures:
+        only_password: Μόνο κωδικός πρόσβασης
+        password_and_2fa: Κωδικός πρόσβασης και 2FA
       sensitive: Ευαίσθητο
       sensitized: σήμανση ως ευαίσθητο
       shared_inbox_url: URL κοινόχρηστων εισερχομένων
@@ -132,6 +145,7 @@ el:
       silence: Αποσιώπησε
       silenced: Αποσιωπημένοι
       statuses: Καταστάσεις
+      strikes: Προηγούμενα παραπτώματα
       subscribe: Εγγραφή
       suspend: Αναστολή
       suspended: Σε αναστολή
@@ -162,14 +176,17 @@ el:
         confirm_user: Επιβεβαίωση Χρήστη
         create_account_warning: Δημιουργία Προειδοποίησης
         create_announcement: Δημιουργία Ανακοίνωσης
+        create_canonical_email_block: Δημιουργία αποκλεισμού e-mail
         create_custom_emoji: Δημιουργία Προσαρμοσμένου Emoji
         create_domain_allow: Δημιουργία Επιτρεπτού Τομέα
         create_domain_block: Δημιουργία Αποκλεισμένου Τομέα
         create_email_domain_block: Δημουργία Αποκλεισμένου Τομέα email
         create_ip_block: Δημιουργία κανόνα IP
+        create_unavailable_domain: Δημιουργία Μη Διαθέσιμου Τομέα
         create_user_role: Δημιουργία ρόλου
         demote_user: Υποβιβασμός Χρήστη
         destroy_announcement: Διαγραφή Ανακοίνωσης
+        destroy_canonical_email_block: Διαγραφή Αποκλεισμού email
         destroy_custom_emoji: Διαγραφή Προσαρμοσμένου Emoji
         destroy_domain_allow: Διαγραφή Επιτρεπτού Τομέα
         destroy_domain_block: Διαγραφή Αποκλεισμού Τομέα
@@ -177,10 +194,14 @@ el:
         destroy_instance: Εκκαθάριση Τομέα
         destroy_ip_block: Διαγραφή κανόνα IP
         destroy_status: Διαγραφή Κατάστασης
+        destroy_unavailable_domain: Διαγραφή Μη Διαθέσιμου Τομέα
+        destroy_user_role: Καταστροφή Ρόλου
         disable_2fa_user: Απενεργοποίηση 2FA
         disable_custom_emoji: Απενεργοποίηση Προσαρμοσμένων Emoji
+        disable_sign_in_token_auth_user: Απενεργοποίηση Ελέγχου Ταυτότητας Μέσω E-mail για το Χρήστη
         disable_user: Απενεργοποίηση Χρήστη
         enable_custom_emoji: Ενεργοποίηση Προσαρμοσμένων Emoji
+        enable_sign_in_token_auth_user: Ενεργοποίηση Ελέγχου Ταυτότητας Μέσω E-mail για το Χρήστη
         enable_user: Ενεργοποίηση Χρήστη
         memorialize_account: Μετατροπή Λογαριασμού σε Αναμνηστικό
         promote_user: Προαγωγή Χρήστη
@@ -201,10 +222,21 @@ el:
         unsuspend_account: Άρση Αναστολής Λογαριασμού
         update_announcement: Ενημέρωση Ανακοίνωσης
         update_custom_emoji: Ενημέρωση Προσαρμοσμένου Emoji
+        update_domain_block: Ενημέρωση Αποκλεισμού Τομέα
+        update_ip_block: Ενημέρωση κανόνα IP
         update_status: Ενημέρωση Κατάστασης
         update_user_role: Ενημέρωση ρόλου
       actions:
+        approve_appeal_html: Ο/Η %{name} ενέκρινε την ένσταση της απόφασης των διαχειριστών από %{target}
         approve_user_html: "%{name} εγκρίθηκε εγγραφή από %{target}"
+        assigned_to_self_report_html: Ο/Η %{name} ανάθεσε την καταγγελία %{target} στον εαυτό του/της
+        change_email_user_html: Ο/Η %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}
+        change_role_user_html: Ο/Η %{name} άλλαξε ρόλο του/της %{target}
+        confirm_user_html: Ο/Η %{name} επιβεβαίωσε τη διεύθυνση email του χρήστη %{target}
+        create_account_warning_html: Ο/Η %{name} έστειλε προειδοποίηση προς %{target}
+        create_announcement_html: Ο/Η %{name} δημιούργησε νέα ανακοίνωση %{target}
+        create_canonical_email_block_html: Ο/Η %{name} απέκλεισε e-mail με το hash %{target}
+        create_custom_emoji_html: Ο/Η %{name} ανέβασε νέο emoji %{target}
         destroy_email_domain_block_html: Ο/Η %{name} ξεμπλόκαρε το email domain %{target}
         destroy_instance_html: Ο/Η %{name} εκκαθάρισε τον τομέα %{target}
         destroy_ip_block_html: Ο/Η %{name} διέγραψε τον κανόνα για την IP %{target}

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Announce do
+  subject { described_class.new(json, sender) }
+
   let(:sender)    { Fabricate(:account, followers_url: 'http://example.com/followers', uri: 'https://example.com/actor') }
   let(:recipient) { Fabricate(:account) }
   let(:status)    { Fabricate(:status, account: recipient) }
@@ -26,8 +28,6 @@ RSpec.describe ActivityPub::Activity::Announce do
       to: 'http://example.com/followers',
     }
   end
-
-  subject { described_class.new(json, sender) }
 
   describe '#perform' do
     context 'when sender is followed by a local account' do
@@ -82,10 +82,10 @@ RSpec.describe ActivityPub::Activity::Announce do
             content: 'Lorem ipsum',
             attributedTo: 'https://example.com/actor',
             to: {
-              'type': 'OrderedCollection',
-              'id': 'http://example.com/followers',
-              'first': 'http://example.com/followers?page=true',
-            }
+              type: 'OrderedCollection',
+              id: 'http://example.com/followers',
+              first: 'http://example.com/followers?page=true',
+            },
           }
         end
 
@@ -110,12 +110,12 @@ RSpec.describe ActivityPub::Activity::Announce do
     end
 
     context 'when the sender is relayed' do
+      subject { described_class.new(json, sender, relayed_through_actor: relay_account) }
+
       let!(:relay_account) { Fabricate(:account, inbox_url: 'https://relay.example.com/inbox') }
       let!(:relay) { Fabricate(:relay, inbox_url: 'https://relay.example.com/inbox') }
 
       let(:object_json) { 'https://example.com/actor/hello-world' }
-
-      subject { described_class.new(json, sender, relayed_through_actor: relay_account) }
 
       before do
         stub_request(:get, 'https://example.com/actor/hello-world').to_return(body: Oj.dump(unknown_object_json))
@@ -139,7 +139,7 @@ RSpec.describe ActivityPub::Activity::Announce do
         end
 
         it 'does not fetch the remote status' do
-          expect(a_request(:get, 'https://example.com/actor/hello-world')).not_to have_been_made
+          expect(a_request(:get, 'https://example.com/actor/hello-world')).to_not have_been_made
           expect(Status.find_by(uri: 'https://example.com/actor/hello-world')).to be_nil
         end
 

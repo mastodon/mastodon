@@ -38,7 +38,7 @@ describe EmailMxValidator do
       allow(Resolv::DNS).to receive(:open).and_yield(resolver)
 
       subject.validate(user)
-      expect(user.errors).not_to have_received(:add)
+      expect(user.errors).to_not have_received(:add)
     end
 
     it 'adds an error if the email domain name contains empty labels' do
