@@ -1,5 +1,5 @@
 Fabricator(:custom_emoji) do
   shortcode 'coolcat'
   domain    nil
-  image     { File.open(Rails.root.join('spec', 'fixtures', 'files', 'emojo.png')) }
+  image     { Rails.root.join('spec', 'fixtures', 'files', 'emojo.png').open }
 end

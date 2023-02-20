@@ -5,7 +5,7 @@ REPOSITORY_NAME = 'mastodon/mastodon'
 namespace :repo do
   desc 'Generate the AUTHORS.md file'
   task :authors do
-    file = File.open(Rails.root.join('AUTHORS.md'), 'w')
+    file = Rails.root.join('AUTHORS.md').open('w')
 
     file << <<~HEADER
       Authors
@@ -87,8 +87,8 @@ namespace :repo do
   task check_locales_files: :environment do
     pastel = Pastel.new
 
-    missing_yaml_files = I18n.available_locales.reject { |locale| File.exist?(Rails.root.join('config', 'locales', "#{locale}.yml")) }
-    missing_json_files = I18n.available_locales.reject { |locale| File.exist?(Rails.root.join('app', 'javascript', 'mastodon', 'locales', "#{locale}.json")) }
+    missing_yaml_files = I18n.available_locales.reject { |locale| Rails.root.join('config', 'locales', "#{locale}.yml").exist? }
+    missing_json_files = I18n.available_locales.reject { |locale| Rails.root.join('app', 'javascript', 'mastodon', 'locales', "#{locale}.json").exist? }
 
     locales_in_files = Dir[Rails.root.join('config', 'locales', '*.yml')].map do |path|
       file_name = File.basename(path)

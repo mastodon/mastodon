@@ -71,11 +71,11 @@ end
 RSpec::Matchers.define_negated_matcher :not_change, :change
 
 def request_fixture(name)
-  File.read(Rails.root.join('spec', 'fixtures', 'requests', name))
+  Rails.root.join('spec', 'fixtures', 'requests', name).read
 end
 
 def attachment_fixture(name)
-  File.open(Rails.root.join('spec', 'fixtures', 'files', name))
+  Rails.root.join('spec', 'fixtures', 'files', name).open
 end
 
 def stub_jsonld_contexts!
