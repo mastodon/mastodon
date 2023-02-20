@@ -1503,12 +1503,6 @@ Rails/CreateTableWithTimestamps:
     - 'db/migrate/20220824233535_create_status_trends.rb'
     - 'db/migrate/20221006061337_create_preview_card_trends.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Severity.
-Rails/DeprecatedActiveModelErrorsMethods:
-  Exclude:
-    - 'lib/mastodon/accounts_cli.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: Severity.
 Rails/DuplicateAssociation:
