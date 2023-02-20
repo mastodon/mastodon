@@ -281,7 +281,7 @@ de:
         unsilence_account_html: "%{name} hob die Stummschaltung von %{target} auf"
         unsuspend_account_html: "%{name} entsperrte das Konto von %{target}"
         update_announcement_html: "%{name} überarbeitete die Ankündigung %{target}"
-        update_custom_emoji_html: "%{name} hat das Emoji geändert: %{target}"
+        update_custom_emoji_html: "%{name} bearbeitete das Emoji %{target}"
         update_domain_block_html: "%{name} hat die Domain-Sperre für %{target} aktualisiert"
         update_ip_block_html: "%{name} änderte die Regel für die IP-Adresse %{target}"
         update_status_html: "%{name} überarbeitete einen Beitrag von %{target}"
@@ -789,12 +789,12 @@ de:
     strikes:
       actions:
         delete_statuses: "%{name} hat die Beiträge von %{target} entfernt"
-        disable: "%{name} hat das Konto von %{target} eingefroren"
+        disable: "%{name} fror das Konto von %{target} ein"
         mark_statuses_as_sensitive: "%{name} hat die Beiträge von %{target} mit einer Inhaltswarnung versehen"
         none: "%{name} hat eine Warnung an %{target} gesendet"
         sensitive: "%{name} hat das Profil von %{target} mit einer Inhaltswarnung versehen"
-        silence: "%{name} hat das Konto von %{target} stummgeschaltet"
-        suspend: "%{name} hat das Konto von %{target} gesperrt"
+        silence: "%{name} schaltete das Konto von %{target} stumm"
+        suspend: "%{name} sperrte das Konto von %{target}"
       appeal_approved: Einspruch angenommen
       appeal_pending: Einspruch ausstehend
       appeal_rejected: Einspruch abgelehnt
@@ -999,7 +999,7 @@ de:
       saml: SAML
     register: Registrieren
     registration_closed: "%{instance} akzeptiert keine neuen Mitglieder"
-    resend_confirmation: Bestätigungsanweisungen erneut senden
+    resend_confirmation: Bestätigungs-E-Mail erneut versenden
     reset_password: Passwort zurücksetzen
     rules:
       accept: Akzeptieren
