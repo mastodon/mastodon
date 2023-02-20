@@ -15,7 +15,7 @@ de:
         type_html: Wähle aus, wie mit <strong>%{acct}</strong> vorgegangen werden soll
         types:
           disable: Benutzer*in daran hindern, das Konto verwenden zu können, aber die Inhalte nicht löschen oder ausblenden.
-          none: Verwende dies, um dem Account eine Warnung zu schicken, ohne dabei eine andere Aktion vorzunehmen.
+          none: Dem Account eine Verwarnung zuschicken, ohne dabei eine andere Aktion vorzunehmen.
           sensitive: Erzwingen, dass alle Medienanhänge dieses Profils mit einer Inhaltswarnung versehen werden.
           silence: Verhindert, dass dieses Profil öffentlich sichtbare Beiträge verfassen kann, und verbirgt alle Beiträge und Benachrichtigungen vor Personen, die diesem Profil nicht folgen. Alle Meldungen zu diesem Konto werden geschlossen.
           suspend: Verhindert jegliche Interaktion von oder zu diesem Konto und löscht dessen Inhalt. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
@@ -145,14 +145,14 @@ de:
         title: Titel
       admin_account_action:
         include_statuses: Beitragsmeldungen in die E-Mail mit anfügen
-        send_email_notification: Nutzer*in per E-Mail benachrichtigen
-        text: Benutzerdefinierte Warnung
+        send_email_notification: Benachrichtigung per E-Mail
+        text: Benutzerdefinierte Verwarnung
         type: Aktion
         types:
           disable: Einfrieren
-          none: Warnung senden
+          none: Nur Verwarnung
           sensitive: Inhaltswarnung
-          silence: Einschränkung
+          silence: Stummschalten
           suspend: Sperre
         warning_preset_id: Warnungsvorlage verwenden
       announcement:
@@ -289,10 +289,10 @@ de:
       rule:
         text: Regel
       tag:
-        listable: Erlaube diesem Hashtag, im Profilverzeichnis zu erscheinen
+        listable: Erlaube, dass dieser Hashtag in Suchen und Empfehlungen erscheint
         name: Hashtag
-        trendable: Erlaube es, diesen Hashtag in den Trends erscheinen zu lassen
-        usable: Beiträgen erlauben, diesen Hashtag zu verwenden
+        trendable: Erlaube, dass dieser Hashtag in den Trends erscheint
+        usable: Erlaube, dass dieser Hashtag in Beiträgen erscheint
       user:
         role: Rolle
       user_role:
