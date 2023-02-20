@@ -98,7 +98,7 @@ de:
         trends: Trends zeigen, welche Beiträge, Hashtags und Nachrichten auf deinem Server immer beliebter werden.
         trends_as_landing_page: Zeigt Trendinhalte abgemeldeter Benutzer und Besucher anstelle einer Beschreibung dieses Servers an. Erfordert, dass Trends aktiviert sind.
       form_challenge:
-        current_password: Du betrittst einen gesicherten Bereich
+        current_password: Du betrittst einen sicheren Bereich
       imports:
         data: CSV-Datei, die aus einem anderen Mastodon-Server exportiert wurde
       invite_request:
@@ -108,7 +108,7 @@ de:
         expires_in: IP-Adressen sind eine begrenzte Ressource. Sie können außerdem auf viele Computer aufgeteilt sein und auch die Zuordnungen ändern sich. Deshalb werden unbestimmte IP-Blöcke nicht empfohlen.
         ip: Gib eine IPv4- oder IPv6-Adresse an. Du kannst ganze Bereiche mit der CIDR-Syntax blockieren. Achte darauf, dass du dich nicht selbst aussperrst!
         severities:
-          no_access: Blockiere Zugriff auf alle Ressourcen
+          no_access: Zugriff auf alle Ressourcen blockieren
           sign_up_block: Neue Registrierungen werden nicht möglich sein
           sign_up_requires_approval: Neue Registrierungen müssen genehmigt werden
         severity: Wähle aus, was mit Anfragen von dieser IP-Adresse geschehen soll
@@ -116,7 +116,7 @@ de:
         text: Führe eine Regel oder Bedingung für Benutzer*innen auf diesem Server ein. Bleib dabei kurz und knapp
       sessions:
         otp: 'Gib den Zwei-Faktor-Code von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes:'
-        webauthn: Wenn es sich um einen USB-Schlüssel handelt, vergewissere dich, dass du ihn einsteckst und ihn, wenn notwendig, antippst.
+        webauthn: Wenn es sich um einen USB-Schlüssel handelt, vergewissere dich, dass du ihn einsteckst und – falls erforderlich – antippst.
       tag:
         name: Du kannst zum Beispiel nur die Groß- und Kleinschreibung der Buchstaben ändern, um es lesbarer zu machen
       user:
@@ -129,12 +129,12 @@ de:
         permissions_as_keys: Benutzer*innen mit dieser Rolle haben Zugriff auf...
         position: Höhere Rollen entscheiden über Konfliktlösungen zu gewissen Situationen. Bestimmte Aktionen können nur mit geringfügigeren Rollen durchgeführt werden
       webhook:
-        events: Wähle die zu sendenden Termine
+        events: Zu sendende Ereignisse auswählen
         url: Wo Ereignisse hingesendet werden
     labels:
       account:
         fields:
-          name: Bezeichnung
+          name: Beschriftung
           value: Inhalt
       account_alias:
         acct: Adresse des alten Kontos
@@ -186,7 +186,7 @@ de:
         locked: Geschütztes Profil
         max_uses: Maximale Verwendungen
         new_password: Neues Passwort
-        note: Über mich
+        note: Biografie
         otp_attempt: Zwei-Faktor-Authentisierung
         password: Passwort
         phrase: Wort oder Formulierung
@@ -219,7 +219,7 @@ de:
         severity: Einschränkung
         sign_in_token_attempt: Sicherheitscode
         title: Titel
-        type: Art des Imports
+        type: Typ
         username: Profilname
         username_or_email: Profilname oder E-Mail
         whole_word: Phrasensuche mit exakter Zeichenfolge erzwingen
@@ -243,12 +243,12 @@ de:
         peers_api_enabled: Veröffentliche Liste bekannter Server in der API
         profile_directory: Profilverzeichnis aktivieren
         registrations_mode: Wer darf ein neues Konto registrieren?
-        require_invite_text: Grund für den Beitritt verlangen
+        require_invite_text: Begründung für Beitritt verlangen
         show_domain_blocks: Anzeigen, welche Domains gesperrt wurden
         show_domain_blocks_rationale: Anzeigen, weshalb Domains gesperrt wurden
         site_contact_email: E-Mail-Adresse
         site_contact_username: Profilname
-        site_extended_description: Detaillierte Beschreibung
+        site_extended_description: Erweiterte Beschreibung
         site_short_description: Serverbeschreibung
         site_terms: Datenschutzerklärung
         site_title: Servername
@@ -266,7 +266,7 @@ de:
       invite:
         comment: Kommentar
       invite_request:
-        text: Warum möchtest du beitreten?
+        text: Weshalb möchtest du beitreten?
       ip_block:
         comment: Kommentar
         ip: IP-Adresse
