@@ -1150,6 +1150,8 @@ es-AR:
     storage: Almacenamiento de medios
   featured_tags:
     add_new: Agregar nueva
+    errors:
+      limit: Ya estableciste el número máximo de etiquetas
     hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Son etiquetas que se muestran de forma permanente en tu perfil público y permiten a los usuarios navegar por tus mensajes públicos que contengan esas etiquetas. Las etiquetas destacadas son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
   filters:
     contexts:
@@ -1259,6 +1261,9 @@ es-AR:
       expires_at: Vence
       uses: Usos
     title: Invitar a gente
+  lists:
+    errors:
+      limit: Alcanzaste el número máximo de listas
   login_activities:
     authentication_methods:
       otp: aplicación de autenticación de dos factores
@@ -1578,6 +1583,7 @@ es-AR:
       '7889238': 3 meses
     min_age_label: Umbral de edad
     min_favs: Conservar mensajes marcados como favoritos de por lo menos
+    min_favs_hint: No elimina ninguno de tus mensajes que haya recibido al menos esta cantidad de favoritos. Dejá en blanco para eliminar mensajes independientemente de su número de favoritos.
     min_reblogs: Conservar adhesiones de por lo menos
     min_reblogs_hint: No elimina ninguno de tus mensajes que haya recibido más de esta cantidad de adhesiones. Dejá en blanco para eliminar mensajes independientemente de su número de adhesiones.
   stream_entries:
