@@ -86,14 +86,14 @@ class BackupService < BaseService
   def dump_actor!(tar)
     actor = serialize(account, ActivityPub::ActorSerializer)
 
-    actor[:icon][:url]  = 'avatar' + File.extname(actor[:icon][:url])  if actor[:icon]
-    actor[:image][:url] = 'header' + File.extname(actor[:image][:url]) if actor[:image]
+    actor[:icon][:url]  = "avatar#{File.extname(actor[:icon][:url])}"  if actor[:icon]
+    actor[:image][:url] = "header#{File.extname(actor[:image][:url])}" if actor[:image]
     actor[:outbox]      = 'outbox.json'
     actor[:likes]       = 'likes.json'
     actor[:bookmarks]   = 'bookmarks.json'
 
-    download_to_tar(tar, account.avatar, 'avatar' + File.extname(account.avatar.path)) if account.avatar.exists?
-    download_to_tar(tar, account.header, 'header' + File.extname(account.header.path)) if account.header.exists?
+    download_to_tar(tar, account.avatar, "avatar#{File.extname(account.avatar.path)}") if account.avatar.exists?
+    download_to_tar(tar, account.header, "header#{File.extname(account.header.path)}") if account.header.exists?
 
     json = Oj.dump(actor)
 
