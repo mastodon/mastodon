@@ -90,6 +90,7 @@
       moderation:
         active: Aktive
         all: Alle
+        disabled: Deaktivert
         pending: Avventer
         silenced: Begrenset
         suspended: Utvist
@@ -132,6 +133,7 @@
       search: Søk
       search_same_email_domain: Andre brukere med samme E-postdomene
       search_same_ip: Andre brukere med den samme IP-en
+      security: Sikkerhet
       security_measures:
         only_password: Bare passord
         password_and_2fa: Passord og 2FA
@@ -426,6 +428,7 @@
         resolve: Løs domene
         title: Ny blokkeringsoppføring av e-postdomene
       no_email_domain_block_selected: Ingen e-postdomeneblokker ble endret da ingen ble valgt
+      not_permitted: Ikke tillatt
       resolved_dns_records_hint_html: Domenenavnet løser seg til følgende MX-domener som er til slutt ansvarlige for å motta e-post. Blokkering av et MX-domene vil blokkere signaler fra en hvilken som helst e-postadresse som bruker samme MX-domene, selv om det synlige domenenavnet er annerledes. <strong>Vær forsiktig så du ikke blokkerer store e-posttilbydere.</strong>
       resolved_through_html: Løst gjennom %{domain}
       title: Blokkering av e-postdomene
@@ -440,6 +443,7 @@
         private_comment_description_html: 'For å hjelpe deg med å holde oversikt over hvor importerte blokkeringer kommer fra, vil de bli opprettet med følgende private kommentar: <q>%{comment}</q>'
         private_comment_template: Importert fra %{source} den %{date}
         title: Importer domeneblokkeringer
+      invalid_domain_block: 'En eller flere domeneblokker ble hoppet over på grunn av følgende feil(er): %{error}'
       new:
         title: Importer domeneblokkeringer
       no_file: Ingen fil valgt
@@ -574,17 +578,23 @@
         mark_as_sensitive_description_html: Mediene i de rapporterte innleggene vil bli merket som følsomme, og en advarsel vil bli notert for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
         other_description_html: Se flere alternativer for å kontrollere kontoens atferd og tilpasse kommunikasjonen til den oppgitte kontoen.
         resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
+        silence_description_html: Profilen vil kun være synlig for dem som allerede følger den eller manuelt slår den opp, noe som sterkt begrenser dens rekkevidde. Kan alltid tilbakestilles. Lukker alle rapporter mot denne kontoen.
+        suspend_description_html: Kontoen og alt dens innhold vil være utilgjengelig og til slutt slettet, og det vil ikke være mulig å bruke den. Reversibel innen 30 dager. Lukker alle rapporter mot denne kontoen.
       actions_description_html: Velg hvilke tiltak som skal treffes for å løse denne rapporten. Dersom du tar noen entydige tiltak mot den oppgitte kontoen, blir det sendt en e-post til dem, unntatt når <strong>Søppelpost</strong> -kategorien er valgt.
+      actions_description_remote_html: Velg hvilke tiltak som skal treffes for å løse denne rapporten. Dette påvirker bare hvordan <strong>din</strong> server kommuniserer med denne eksterne kontoen og håndterer innholdet.
       add_to_report: Legg til mer i rapporten
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
       assigned: Tilegnet moderator
       by_target_domain: Domenet av rapportert bruker
+      cancel: Avbryt
       category: Kategori
       category_description_html: Årsaken til at denne kontoen og/eller innholdet er blitt rapportert vil bli henvist i forbindelse med den rapporterte kontoen
       comment:
         none: Ingen
       comment_description_html: 'For å gi mer informasjon, %{name} skrev:'
+      confirm: Bekreft
+      confirm_action: Bekreft moderasjonshandling mot @%{acct}
       created_at: Rapportert
       delete_and_resolve: Slettede innlegg
       forwarded: Videresendt
@@ -601,6 +611,7 @@
         placeholder: Beskriv hvilke handlinger som har blitt tatt, eller andre relaterte oppdateringer...
         title: Notater
       notes_description_html: Se og skriv notater til andre moderatorer og deg selv i fremtiden
+      processed_msg: 'Rapport #%{id} er behandlet'
       quick_actions_description_html: 'Ta en rask handling eller bla ned for å se rapportert innhold:'
       remote_user_placeholder: ekstern bruker fra %{instance}
       reopen: Gjenåpne rapporten
@@ -613,6 +624,12 @@
       status: Status
       statuses: Rapportert innhold
       statuses_description_html: Innholdet som tilbys, vil bli nevnt i forbindelse med den rapporterte kontoen
+      summary:
+        action_preambles:
+          delete_html: 'Du er i ferd med å <strong>fjerne</strong> noe av <strong>@%{acct}</strong> sine innlegg. Dette vil:'
+          mark_as_sensitive_html: 'Du er i ferd med å <strong>markere</strong> noen av <strong>@%{acct}</strong> sine innlegg som <strong>sensitivt</strong>. Dette vil:'
+          silence_html: 'Du er i ferd med å <strong>avgrense</strong> <strong>@%{acct}</strong> sin konto. Dette vil:'
+          suspend_html: 'Du er i ferd med å <strong>stoppe</strong> <strong>@%{acct}</strong> sin konto. Dette vil:'
       target_origin: Opprinnelse for innrapportert konto
       title: Rapporter
       unassign: Fjern tilegning
