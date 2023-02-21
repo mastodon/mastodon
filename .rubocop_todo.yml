@@ -1645,13 +1645,6 @@ Rails/FilePath:
     - 'spec/rails_helper.rb'
     - 'spec/spec_helper.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Rails/FindById:
-  Exclude:
-    - 'app/controllers/api/v1/notifications_controller.rb'
-    - 'app/controllers/media_controller.rb'
-
 # Offense count: 6
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb
@@ -1916,13 +1909,6 @@ Rails/UnusedIgnoredColumns:
     - 'app/models/status_edit.rb'
     - 'app/models/user.rb'
 
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/WhereEquals:
-  Exclude:
-    - 'app/models/announcement.rb'
-    - 'app/models/status.rb'
-
 # Offense count: 61
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle.
@@ -1962,13 +1948,6 @@ Rails/WhereExists:
     - 'spec/services/post_status_service_spec.rb'
     - 'spec/services/purge_domain_service_spec.rb'
     - 'spec/services/unallow_domain_service_spec.rb'
-
-# Offense count: 3
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Security/IoMethods:
-  Exclude:
-    - 'spec/controllers/admin/export_domain_allows_controller_spec.rb'
-    - 'spec/controllers/admin/export_domain_blocks_controller_spec.rb'
 
 # Offense count: 5
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -2025,16 +2004,6 @@ Style/FetchEnvVar:
     - 'lib/mastodon/redis_config.rb'
     - 'lib/tasks/repo.rake'
     - 'spec/features/profile_spec.rb'
-
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: format, sprintf, percent
-Style/FormatString:
-  Exclude:
-    - 'app/serializers/rest/privacy_policy_serializer.rb'
-    - 'lib/mastodon/maintenance_cli.rb'
-    - 'lib/paperclip/color_extractor.rb'
 
 # Offense count: 15
 # This cop supports safe autocorrection (--autocorrect).
@@ -2244,24 +2213,6 @@ Style/RegexpLiteral:
     - 'lib/mastodon/premailer_webpack_strategy.rb'
     - 'lib/tasks/mastodon.rake'
 
-# Offense count: 21
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: implicit, explicit
-Style/RescueStandardError:
-  Exclude:
-    - 'app/lib/activitypub/activity/move.rb'
-    - 'app/lib/request.rb'
-    - 'app/models/account.rb'
-    - 'app/workers/move_worker.rb'
-    - 'app/workers/scheduler/vacuum_scheduler.rb'
-    - 'lib/mastodon/accounts_cli.rb'
-    - 'lib/mastodon/cli_helper.rb'
-    - 'lib/mastodon/media_cli.rb'
-    - 'lib/mastodon/sidekiq_middleware.rb'
-    - 'lib/mastodon/statuses_cli.rb'
-    - 'lib/mastodon/upgrade_cli.rb'
-
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods, MaxChainLength.
@@ -2461,11 +2412,3 @@ Style/SymbolArray:
     - 'spec/controllers/concerns/signature_verification_spec.rb'
     - 'spec/fabricators/notification_fabricator.rb'
     - 'spec/models/public_feed_spec.rb'
-
-# Offense count: 4
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AllowMethodsWithArguments, AllowedMethods, AllowedPatterns, AllowComments.
-# AllowedMethods: define_method, mail, respond_to
-Style/SymbolProc:
-  Exclude:
-    - 'spec/lib/request_spec.rb'

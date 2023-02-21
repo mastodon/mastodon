@@ -2,7 +2,7 @@
 
 If you believe you've identified a security vulnerability in Mastodon (a bug that allows something to happen that shouldn't be possible), you can reach us at <security@joinmastodon.org>.
 
-You should *not* report such issues on GitHub or in other public spaces to give us time to publish a fix for the issue without exposing Mastodon's users to increased risk.
+You should _not_ report such issues on GitHub or in other public spaces to give us time to publish a fix for the issue without exposing Mastodon's users to increased risk.
 
 ## Scope
 

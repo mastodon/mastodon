@@ -165,7 +165,7 @@ module Mastodon
 
             stats[domain]['activity'] = Oj.load(res.to_s)
           end
-        rescue StandardError
+        rescue
           failed.increment
         ensure
           processed.increment
