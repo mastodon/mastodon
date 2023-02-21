@@ -1050,22 +1050,22 @@ es-AR:
       invalid_signature: no es una firma Ed25519 válida
   date:
     formats:
-      default: "%Y.%b.%d"
-      with_month_name: "%Y.%B.%d"
+      default: "%d de %b de %Y"
+      with_month_name: "%d de %B de %Y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
-      about_x_months: "%{count}M"
-      about_x_years: "%{count}A"
-      almost_x_years: "%{count}A"
+      about_x_hours: "%{count}hrs."
+      about_x_months: "%{count}mes."
+      about_x_years: "%{count}año."
+      almost_x_years: "%{count}año."
       half_a_minute: Recién
-      less_than_x_minutes: "%{count}min"
+      less_than_x_minutes: "%{count}min."
       less_than_x_seconds: Recién
-      over_x_years: "%{count}A"
-      x_days: "%{count}D"
-      x_minutes: "%{count}min"
-      x_months: "%{count}M"
-      x_seconds: "%{count}s"
+      over_x_years: "%{count}año."
+      x_days: "%{count}día."
+      x_minutes: "%{count}min."
+      x_months: "%{count}mes."
+      x_seconds: "%{count}seg."
   deletes:
     challenge_not_passed: La información que ingresaste no es correcta
     confirm_password: Ingresá tu contraseña actual para verificar tu identidad
