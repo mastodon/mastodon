@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe BlockService, type: :service do
-  let(:sender) { Fabricate(:account, username: 'alice') }
-
   subject { BlockService.new }
+
+  let(:sender) { Fabricate(:account, username: 'alice') }
 
   describe 'local' do
     let(:bob) { Fabricate(:account, username: 'bob') }

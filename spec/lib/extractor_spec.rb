@@ -20,7 +20,7 @@ describe Extractor do
       text = '@screen_name'
       extracted = Extractor.extract_mentions_or_lists_with_indices(text)
       expect(extracted).to eq [
-        { screen_name: 'screen_name', indices: [ 0, 12 ] }
+        { screen_name: 'screen_name', indices: [0, 12] },
       ]
     end
 
@@ -44,19 +44,19 @@ describe Extractor do
     it 'does not exclude normal hash text before ://' do
       text = '#hashtag://'
       extracted = Extractor.extract_hashtags_with_indices(text)
-      expect(extracted).to eq [ { hashtag: 'hashtag', indices: [ 0, 8 ] } ]
+      expect(extracted).to eq [{ hashtag: 'hashtag', indices: [0, 8] }]
     end
 
     it 'excludes http://' do
       text = '#hashtaghttp://'
       extracted = Extractor.extract_hashtags_with_indices(text)
-      expect(extracted).to eq [ { hashtag: 'hashtag', indices: [ 0, 8 ] } ]
+      expect(extracted).to eq [{ hashtag: 'hashtag', indices: [0, 8] }]
     end
 
     it 'excludes https://' do
       text = '#hashtaghttps://'
       extracted = Extractor.extract_hashtags_with_indices(text)
-      expect(extracted).to eq [ { hashtag: 'hashtag', indices: [ 0, 8 ] } ]
+      expect(extracted).to eq [{ hashtag: 'hashtag', indices: [0, 8] }]
     end
 
     it 'yields hashtags if a block is given' do

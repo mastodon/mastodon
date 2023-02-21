@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Api::V1::Accounts::StatusesController do
@@ -16,7 +17,7 @@ describe Api::V1::Accounts::StatusesController do
     it 'returns http success' do
       get :index, params: { account_id: user.account.id, limit: 1 }
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns expected headers' do
@@ -29,7 +30,7 @@ describe Api::V1::Accounts::StatusesController do
       it 'returns http success' do
         get :index, params: { account_id: user.account.id, only_media: true }
 
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -44,7 +45,7 @@ describe Api::V1::Accounts::StatusesController do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       it 'returns posts along with self replies' do
@@ -63,7 +64,7 @@ describe Api::V1::Accounts::StatusesController do
       it 'returns http success' do
         get :index, params: { account_id: user.account.id, pinned: true }
 
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -79,7 +80,7 @@ describe Api::V1::Accounts::StatusesController do
 
       it 'returns http success' do
         get :index, params: { account_id: account.id, pinned: true }
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(200)
       end
 
       context 'when user does not follow account' do

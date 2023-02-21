@@ -6,18 +6,22 @@ on:
     paths:
       - 'package.json'
       - 'yarn.lock'
+      - '.nvmrc'
       - '.prettier*'
       - '.eslint*'
       - '**/*.js'
+      - '**/*.jsx'
       - '.github/workflows/lint-js.yml'
 
   pull_request:
     paths:
       - 'package.json'
       - 'yarn.lock'
+      - '.nvmrc'
       - '.prettier*'
       - '.eslint*'
       - '**/*.js'
+      - '**/*.jsx'
       - '.github/workflows/lint-js.yml'
 
 jobs:

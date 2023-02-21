@@ -9,7 +9,7 @@ RSpec.describe HomeController, type: :controller do
     context 'when not signed in' do
       it 'returns http success' do
         @request.path = '/'
-        is_expected.to have_http_status(:success)
+        expect(subject).to have_http_status(:success)
       end
     end
 
@@ -21,7 +21,7 @@ RSpec.describe HomeController, type: :controller do
       end
 
       it 'returns http success' do
-        is_expected.to have_http_status(:success)
+        expect(subject).to have_http_status(:success)
       end
     end
   end

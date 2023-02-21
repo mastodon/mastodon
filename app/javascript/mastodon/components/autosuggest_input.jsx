@@ -51,7 +51,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
     searchTokens: PropTypes.arrayOf(PropTypes.string),
     maxLength: PropTypes.number,
     lang: PropTypes.string,
-    spellCheck: PropTypes.string,
+    spellCheck: PropTypes.bool,
   };
 
   static defaultProps = {

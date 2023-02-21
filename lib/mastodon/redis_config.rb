@@ -46,6 +46,4 @@ REDIS_SIDEKIQ_PARAMS = {
   namespace: sidekiq_namespace,
 }.freeze
 
-if Rails.env.test?
-  ENV['REDIS_NAMESPACE'] = "mastodon_test#{ENV['TEST_ENV_NUMBER']}"
-end
+ENV['REDIS_NAMESPACE'] = "mastodon_test#{ENV['TEST_ENV_NUMBER']}" if Rails.env.test?

@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Account, type: :model do
   context do
-    let(:bob) { Fabricate(:account, username: 'bob') }
     subject { Fabricate(:account) }
+
+    let(:bob) { Fabricate(:account, username: 'bob') }
 
     describe '#suspend!' do
       it 'marks the account as suspended' do
@@ -30,7 +31,7 @@ RSpec.describe Account, type: :model do
           end
 
           it 'does not raise an error' do
-            expect { subject.suspend! }.not_to raise_error
+            expect { subject.suspend! }.to_not raise_error
           end
         end
       end
@@ -86,13 +87,13 @@ RSpec.describe Account, type: :model do
   end
 
   describe 'Local domain user methods' do
+    subject { Fabricate(:account, domain: nil, username: 'alice') }
+
     around do |example|
       before = Rails.configuration.x.local_domain
       example.run
       Rails.configuration.x.local_domain = before
     end
-
-    subject { Fabricate(:account, domain: nil, username: 'alice') }
 
     describe '#to_webfinger_s' do
       it 'returns a webfinger string for the account' do
@@ -159,7 +160,7 @@ RSpec.describe Account, type: :model do
       it 'sets default avatar, header, avatar_remote_url, and header_remote_url' do
         expect(account.avatar_remote_url).to eq 'https://remote.test/invalid_avatar'
         expect(account.header_remote_url).to eq expectation.header_remote_url
-        expect(account.avatar_file_name).to  eq nil
+        expect(account.avatar_file_name).to  be_nil
         expect(account.header_file_name).to  eq expectation.header_file_name
       end
     end
@@ -205,7 +206,7 @@ RSpec.describe Account, type: :model do
       end
 
       it 'calls not ResolveAccountService#call' do
-        expect_any_instance_of(ResolveAccountService).not_to receive(:call).with(acct)
+        expect_any_instance_of(ResolveAccountService).to_not receive(:call).with(acct)
         account.refresh!
       end
     end
@@ -242,12 +243,12 @@ RSpec.describe Account, type: :model do
   end
 
   describe '#favourited?' do
+    subject { Fabricate(:account) }
+
     let(:original_status) do
       author = Fabricate(:account, username: 'original')
       Fabricate(:status, account: author)
     end
-
-    subject { Fabricate(:account) }
 
     context 'when the status is a reblog of another status' do
       let(:original_reblog) do
@@ -258,11 +259,11 @@ RSpec.describe Account, type: :model do
       it 'is true when this account has favourited it' do
         Fabricate(:favourite, status: original_reblog, account: subject)
 
-        expect(subject.favourited?(original_status)).to eq true
+        expect(subject.favourited?(original_status)).to be true
       end
 
       it 'is false when this account has not favourited it' do
-        expect(subject.favourited?(original_status)).to eq false
+        expect(subject.favourited?(original_status)).to be false
       end
     end
 
@@ -270,22 +271,22 @@ RSpec.describe Account, type: :model do
       it 'is true when this account has favourited it' do
         Fabricate(:favourite, status: original_status, account: subject)
 
-        expect(subject.favourited?(original_status)).to eq true
+        expect(subject.favourited?(original_status)).to be true
       end
 
       it 'is false when this account has not favourited it' do
-        expect(subject.favourited?(original_status)).to eq false
+        expect(subject.favourited?(original_status)).to be false
       end
     end
   end
 
   describe '#reblogged?' do
+    subject { Fabricate(:account) }
+
     let(:original_status) do
       author = Fabricate(:account, username: 'original')
       Fabricate(:status, account: author)
     end
-
-    subject { Fabricate(:account) }
 
     context 'when the status is a reblog of another status' do
       let(:original_reblog) do
@@ -296,11 +297,11 @@ RSpec.describe Account, type: :model do
       it 'is true when this account has reblogged it' do
         Fabricate(:status, reblog: original_reblog, account: subject)
 
-        expect(subject.reblogged?(original_reblog)).to eq true
+        expect(subject.reblogged?(original_reblog)).to be true
       end
 
       it 'is false when this account has not reblogged it' do
-        expect(subject.reblogged?(original_reblog)).to eq false
+        expect(subject.reblogged?(original_reblog)).to be false
       end
     end
 
@@ -308,11 +309,11 @@ RSpec.describe Account, type: :model do
       it 'is true when this account has reblogged it' do
         Fabricate(:status, reblog: original_status, account: subject)
 
-        expect(subject.reblogged?(original_status)).to eq true
+        expect(subject.reblogged?(original_status)).to be true
       end
 
       it 'is false when this account has not reblogged it' do
-        expect(subject.reblogged?(original_status)).to eq false
+        expect(subject.reblogged?(original_status)).to be false
       end
     end
   end
@@ -344,9 +345,9 @@ RSpec.describe Account, type: :model do
     before do
       _missing = Fabricate(
         :account,
-        display_name: "Missing",
-        username: "missing",
-        domain: "missing.com"
+        display_name: 'Missing',
+        username: 'missing',
+        domain: 'missing.com'
       )
     end
 
@@ -404,58 +405,58 @@ RSpec.describe Account, type: :model do
     it 'finds accounts with matching display_name' do
       match = Fabricate(
         :account,
-        display_name: "Display Name",
-        username: "username",
-        domain: "example.com"
+        display_name: 'Display Name',
+        username: 'username',
+        domain: 'example.com'
       )
 
-      results = Account.search_for("display")
+      results = Account.search_for('display')
       expect(results).to eq [match]
     end
 
     it 'finds accounts with matching username' do
       match = Fabricate(
         :account,
-        display_name: "Display Name",
-        username: "username",
-        domain: "example.com"
+        display_name: 'Display Name',
+        username: 'username',
+        domain: 'example.com'
       )
 
-      results = Account.search_for("username")
+      results = Account.search_for('username')
       expect(results).to eq [match]
     end
 
     it 'finds accounts with matching domain' do
       match = Fabricate(
         :account,
-        display_name: "Display Name",
-        username: "username",
-        domain: "example.com"
+        display_name: 'Display Name',
+        username: 'username',
+        domain: 'example.com'
       )
 
-      results = Account.search_for("example")
+      results = Account.search_for('example')
       expect(results).to eq [match]
     end
 
     it 'limits by 10 by default' do
-      11.times.each { Fabricate(:account, display_name: "Display Name") }
-      results = Account.search_for("display")
+      11.times.each { Fabricate(:account, display_name: 'Display Name') }
+      results = Account.search_for('display')
       expect(results.size).to eq 10
     end
 
     it 'accepts arbitrary limits' do
-      2.times.each { Fabricate(:account, display_name: "Display Name") }
-      results = Account.search_for("display", limit: 1)
+      2.times.each { Fabricate(:account, display_name: 'Display Name') }
+      results = Account.search_for('display', limit: 1)
       expect(results.size).to eq 1
     end
 
     it 'ranks multiple matches higher' do
       matches = [
-        { username: "username", display_name: "username" },
-        { display_name: "Display Name", username: "username", domain: "example.com" },
+        { username: 'username', display_name: 'username' },
+        { display_name: 'Display Name', username: 'username', domain: 'example.com' },
       ].map(&method(:Fabricate).curry(2).call(:account))
 
-      results = Account.search_for("username")
+      results = Account.search_for('username')
       expect(results).to eq matches
     end
   end
@@ -581,23 +582,23 @@ RSpec.describe Account, type: :model do
     end
 
     it 'limits by 10 by default' do
-      11.times { Fabricate(:account, display_name: "Display Name") }
-      results = Account.advanced_search_for("display", account)
+      11.times { Fabricate(:account, display_name: 'Display Name') }
+      results = Account.advanced_search_for('display', account)
       expect(results.size).to eq 10
     end
 
     it 'accepts arbitrary limits' do
-      2.times { Fabricate(:account, display_name: "Display Name") }
-      results = Account.advanced_search_for("display", account, limit: 1)
+      2.times { Fabricate(:account, display_name: 'Display Name') }
+      results = Account.advanced_search_for('display', account, limit: 1)
       expect(results.size).to eq 1
     end
 
     it 'ranks followed accounts higher' do
-      match = Fabricate(:account, username: "Matching")
-      followed_match = Fabricate(:account, username: "Matcher")
+      match = Fabricate(:account, username: 'Matching')
+      followed_match = Fabricate(:account, username: 'Matcher')
       Fabricate(:follow, account: account, target_account: followed_match)
 
-      results = Account.advanced_search_for("match", account)
+      results = Account.advanced_search_for('match', account)
       expect(results).to eq [followed_match, match]
       expect(results.first.rank).to be > results.last.rank
     end
@@ -810,19 +811,19 @@ RSpec.describe Account, type: :model do
       it 'is valid even if the username is longer than 30 characters' do
         account = Fabricate.build(:account, domain: 'domain', username: Faker::Lorem.characters(number: 31))
         account.valid?
-        expect(account).not_to model_have_error_on_field(:username)
+        expect(account).to_not model_have_error_on_field(:username)
       end
 
       it 'is valid even if the display name is longer than 30 characters' do
         account = Fabricate.build(:account, domain: 'domain', display_name: Faker::Lorem.characters(number: 31))
         account.valid?
-        expect(account).not_to model_have_error_on_field(:display_name)
+        expect(account).to_not model_have_error_on_field(:display_name)
       end
 
       it 'is valid even if the note is longer than 500 characters' do
         account = Fabricate.build(:account, domain: 'domain', note: Faker::Lorem.characters(number: 501))
         account.valid?
-        expect(account).not_to model_have_error_on_field(:note)
+        expect(account).to_not model_have_error_on_field(:note)
       end
     end
   end
@@ -894,7 +895,7 @@ RSpec.describe Account, type: :model do
 
     describe 'partitioned' do
       it 'returns a relation of accounts partitioned by domain' do
-        matches = ['a', 'b', 'a', 'b']
+        matches = %w(a b a b)
         matches.size.times.to_a.shuffle.each do |index|
           matches[index] = Fabricate(:account, domain: matches[index])
         end
@@ -957,7 +958,7 @@ RSpec.describe Account, type: :model do
     # Test disabled because test environment omits autogenerating keys for performance
     xit 'generates keys' do
       account = Account.create!(domain: nil, username: Faker::Internet.user_name(separators: ['_']))
-      expect(account.keypair.private?).to eq true
+      expect(account.keypair.private?).to be true
     end
   end
 

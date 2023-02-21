@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe DeleteAccountService, type: :service do
   shared_examples 'common behavior' do
+    subject { described_class.new.call(account) }
+
     let!(:status) { Fabricate(:status, account: account) }
     let!(:mention) { Fabricate(:mention, account: local_follower) }
     let!(:status_with_mention) { Fabricate(:status, account: account, mentions: [mention]) }
@@ -22,8 +24,6 @@ RSpec.describe DeleteAccountService, type: :service do
     let!(:follow_notification) { Fabricate(:notification, account: local_follower, activity: active_relationship, type: :follow) }
 
     let!(:account_note) { Fabricate(:account_note, account: account) }
-
-    subject { described_class.new.call(account) }
 
     it 'deletes associated owned records' do
       expect { subject }.to change {
@@ -50,17 +50,17 @@ RSpec.describe DeleteAccountService, type: :service do
 
     it 'deletes associated target notifications' do
       expect { subject }.to change {
-        [
-          'poll', 'favourite', 'status', 'mention', 'follow'
-        ].map { |type| Notification.where(type: type).count }
+        %w(
+          poll favourite status mention follow
+        ).map { |type| Notification.where(type: type).count }
       }.from([1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0])
     end
   end
 
   describe '#call on local account' do
     before do
-      stub_request(:post, "https://alice.com/inbox").to_return(status: 201)
-      stub_request(:post, "https://bob.com/inbox").to_return(status: 201)
+      stub_request(:post, 'https://alice.com/inbox').to_return(status: 201)
+      stub_request(:post, 'https://bob.com/inbox').to_return(status: 201)
     end
 
     let!(:remote_alice) { Fabricate(:account, inbox_url: 'https://alice.com/inbox', protocol: :activitypub) }
@@ -72,16 +72,16 @@ RSpec.describe DeleteAccountService, type: :service do
 
       it 'sends a delete actor activity to all known inboxes' do
         subject
-        expect(a_request(:post, "https://alice.com/inbox")).to have_been_made.once
-        expect(a_request(:post, "https://bob.com/inbox")).to have_been_made.once
+        expect(a_request(:post, 'https://alice.com/inbox')).to have_been_made.once
+        expect(a_request(:post, 'https://bob.com/inbox')).to have_been_made.once
       end
     end
   end
 
   describe '#call on remote account' do
     before do
-      stub_request(:post, "https://alice.com/inbox").to_return(status: 201)
-      stub_request(:post, "https://bob.com/inbox").to_return(status: 201)
+      stub_request(:post, 'https://alice.com/inbox').to_return(status: 201)
+      stub_request(:post, 'https://bob.com/inbox').to_return(status: 201)
     end
 
     include_examples 'common behavior' do

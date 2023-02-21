@@ -42,7 +42,7 @@ RSpec.describe Admin::InstancesController, type: :controller do
       let(:role) { UserRole.find_by(name: 'Admin') }
 
       it 'succeeds in purging instance' do
-        is_expected.to redirect_to admin_instances_path
+        expect(subject).to redirect_to admin_instances_path
       end
     end
 
@@ -50,7 +50,7 @@ RSpec.describe Admin::InstancesController, type: :controller do
       let(:role) { nil }
 
       it 'fails to purge instance' do
-        is_expected.to have_http_status :forbidden
+        expect(subject).to have_http_status 403
       end
     end
   end

@@ -139,7 +139,7 @@ module Mastodon
 
       pool = Concurrent::ThreadPoolExecutor.new(min_threads: 0, max_threads: options[:concurrency], idletime: 10, auto_terminate: true, max_queue: 0)
 
-      work_unit = ->(domain) do
+      work_unit = lambda do |domain|
         next if stats.key?(domain)
         next if options[:exclude_suspended] && domain.match?(blocked_domains)
 
@@ -148,6 +148,7 @@ module Mastodon
         begin
           Request.new(:get, "https://#{domain}/api/v1/instance").perform do |res|
             next unless res.code == 200
+
             stats[domain] = Oj.load(res.to_s)
           end
 
@@ -161,9 +162,10 @@ module Mastodon
 
           Request.new(:get, "https://#{domain}/api/v1/instance/activity").perform do |res|
             next unless res.code == 200
+
             stats[domain]['activity'] = Oj.load(res.to_s)
           end
-        rescue StandardError
+        rescue
           failed.increment
         ensure
           processed.increment
