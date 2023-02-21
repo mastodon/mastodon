@@ -1645,13 +1645,6 @@ Rails/FilePath:
     - 'spec/rails_helper.rb'
     - 'spec/spec_helper.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Rails/FindById:
-  Exclude:
-    - 'app/controllers/api/v1/notifications_controller.rb'
-    - 'app/controllers/media_controller.rb'
-
 # Offense count: 6
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb
