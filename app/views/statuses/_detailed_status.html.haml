@@ -15,6 +15,13 @@
 
   = account_action_button(status.account)
 
+  - if !status.ordered_media_attachments.empty?
+    - if status.ordered_media_attachments.first.video?
+      = render_video_component(status, width: 670, height: 380, detailed: true)
+    - elsif status.ordered_media_attachments.first.audio?
+      = render_audio_component(status, width: 670, height: 380)
+    - else
+      = render_media_gallery_component(status, height: 380, standalone: true)
   .status__content.emojify{ :data => ({ spoiler: current_account&.user&.setting_expand_spoilers ? 'expanded' : 'folded' } if status.spoiler_text?) }<
     - if status.spoiler_text?
       %p<
@@ -26,14 +33,7 @@
       - if status.preloadable_poll
         = render_poll_component(status)
 
-  - if !status.ordered_media_attachments.empty?
-    - if status.ordered_media_attachments.first.video?
-      = render_video_component(status, width: 670, height: 380, detailed: true)
-    - elsif status.ordered_media_attachments.first.audio?
-      = render_audio_component(status, width: 670, height: 380)
-    - else
-      = render_media_gallery_component(status, height: 380, standalone: true)
-  - elsif status.preview_card
+  - if status.ordered_media_attachments.empty? && status.preview_card
     = render_card_component(status)
 
   .detailed-status__meta

@@ -114,14 +114,14 @@ class BoostModal extends ImmutablePureComponent {
               </a>
             </div>
 
-            <StatusContent status={status} />
-
             {status.get('media_attachments').size > 0 && (
               <AttachmentList
                 compact
                 media={status.get('media_attachments')}
               />
             )}
+
+            <StatusContent status={status} />
           </div>
         </div>
 

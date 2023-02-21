@@ -2,6 +2,9 @@
   %label.batch-table__row__select.batch-checkbox
     = f.check_box :status_ids, { multiple: true, include_hidden: false }, status.id
   .batch-table__row__content
+    - unless status.proper.ordered_media_attachments.empty?
+      = render partial: 'admin/reports/media_attachments', locals: { status: status.proper }
+
     .status__content><
       - if status.proper.spoiler_text.blank?
         = prerender_custom_emojis(status_content_format(status.proper), status.proper.emojis)
@@ -10,9 +13,6 @@
           %summary><
             %strong> Content warning: #{prerender_custom_emojis(h(status.proper.spoiler_text), status.proper.emojis)}
           = prerender_custom_emojis(status_content_format(status.proper), status.proper.emojis)
-
-    - unless status.proper.ordered_media_attachments.empty?
-      = render partial: 'admin/reports/media_attachments', locals: { status: status.proper }
 
     .detailed-status__meta
       - if status.application

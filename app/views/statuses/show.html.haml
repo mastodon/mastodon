@@ -14,7 +14,7 @@
   = opengraph 'og:url', short_account_status_url(@account, @status)
   = opengraph 'og:published_time', @status.created_at.iso8601
 
-  = render 'og_description', activity: @status
   = render 'og_image', activity: @status, account: @account
+  = render 'og_description', activity: @status
 
 = render 'shared/web_app'

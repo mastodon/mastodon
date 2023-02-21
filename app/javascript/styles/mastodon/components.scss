@@ -829,6 +829,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   padding-top: 2px;
+  padding-left: 16px;
+  padding-right: 16px;
   color: $primary-text-color;
 
   &:focus {
@@ -1050,7 +1052,8 @@
 }
 
 .status {
-  padding: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   min-height: 54px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: auto;
@@ -1068,6 +1071,7 @@
   .audio-player,
   .attachment-list {
     margin-top: 16px;
+    margin-bottom: 12px;
   }
 
   &.light {
@@ -1163,6 +1167,8 @@
 }
 
 .status__info {
+  padding-left: 16px;
+  padding-right: 16px;
   font-size: 15px;
   margin-bottom: 10px;
   display: flex;
@@ -1198,6 +1204,8 @@
 
   .status__content {
     padding: 0;
+    padding-left: 16px;
+    padding-right: 16px;
     white-space: normal;
   }
 
@@ -1233,6 +1241,8 @@
   align-items: center;
   gap: 18px;
   margin-top: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .detailed-status__action-bar-dropdown {
@@ -5866,7 +5876,6 @@ a.status-card.compact:hover {
   box-sizing: border-box;
   margin-top: 8px;
   overflow: hidden;
-  border-radius: 4px;
   position: relative;
   width: 100%;
   min-height: 64px;
@@ -5878,7 +5887,6 @@ a.status-card.compact:hover {
   display: block;
   float: left;
   position: relative;
-  border-radius: 4px;
   overflow: hidden;
 
   &.standalone {
