@@ -358,6 +358,7 @@ sr:
         title: Подразумевано искључи кориснике из индексирања претраживача
       discovery:
         public_timelines: Јавне временске линије
+        title: Откривање
     statuses:
       back_to_account: Назад на страну налога
       media:
@@ -376,6 +377,14 @@ sr:
       body: "%{reporter} је пријавио %{target}"
       body_remote: Нека са домена %{domain} је пријавио %{target}
       subject: 'Нова пријава за %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Напредни веб интерфејс
+    advanced_web_interface_hint: 'Ако желите да искористите целу ширину екрана, напредни веб интерфејс вам омогућује да конфигуришете много различитих колона да бисте видели онолико информација у исто време колико желите: почетну страницу, обавештења, здружену временску линију, било који број листа и хеш ознака.'
+    animations_and_accessibility: Анимације и приступачност
+    confirmation_dialogs: Дијалози потврде
+    discovery: Откривање
+    sensitive_content: Осетљив садржај
+    toot_layout: Распоред објава
   application_mailer:
     notification_preferences: Промени преференце Е-поште
     settings: 'Промени подешавања е-поште: %{link}'
@@ -480,7 +489,7 @@ sr:
   generic:
     changes_saved_msg: Измене успешно сачуване!
     copy: Копирај
-    save_changes: Сними измене
+    save_changes: Сачувај промене
     validation_errors:
       one: Нешто није баш како треба! Прегледајте грешке испод
       few: Нешто није баш како треба! Прегледајте %{count} грешке испод
