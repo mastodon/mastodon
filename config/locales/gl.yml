@@ -1150,6 +1150,8 @@ gl:
     storage: Almacenamento de multimedia
   featured_tags:
     add_new: Engadir novo
+    errors:
+      limit: Xa sinalaches o número máximo de cancelos permitido
     hint_html: "<strong>¿Qué son os cancelos destacados?</strong> Móstranse destacados no teu perfil público e permítenlle a outras persoas ver os teus toots públicos nos que os utilizaches. Son unha ferramenta moi útil para facer seguimento de traballos creativos e proxectos a longo prazo."
   filters:
     contexts:
@@ -1259,6 +1261,9 @@ gl:
       expires_at: Caduca
       uses: Usos
     title: Convidar xente
+  lists:
+    errors:
+      limit: Xa acadaches o número máximo de listas
   login_activities:
     authentication_methods:
       otp: app para autenticación con dous factores
@@ -1578,6 +1583,7 @@ gl:
       '7889238': 3 meses
     min_age_label: Límite temporal
     min_favs: Manter as publicacións favoritas máis de
+    min_favs_hint: Non elimina ningunha das túas publicacións que recibiron alomenos esta cantidade de favorecementos. Deixa en branco para eliminar publicacións independentemente do número de favorecementos
     min_reblogs: Manter publicacións promovidas máis de
     min_reblogs_hint: Non elimina ningunha das túas publicacións se foron promovidas máis deste número de veces. Deixa en branco para eliminar publicacións independentemente do seu número de promocións
   stream_entries:
