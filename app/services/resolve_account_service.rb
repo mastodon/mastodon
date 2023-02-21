@@ -71,13 +71,11 @@ class ResolveAccountService < BaseService
       @username, @domain = uri.strip.gsub(/\A@/, '').split('@')
     end
 
-    @domain = begin
-      if TagManager.instance.local_domain?(@domain)
-        nil
-      else
-        TagManager.instance.normalize_domain(@domain)
-      end
-    end
+    @domain = if TagManager.instance.local_domain?(@domain)
+                nil
+              else
+                TagManager.instance.normalize_domain(@domain)
+              end
 
     @uri = [@username, @domain].compact.join('@')
   end
@@ -96,9 +94,7 @@ class ResolveAccountService < BaseService
     @webfinger         = webfinger!("acct:#{confirmed_username}@#{confirmed_domain}")
     @username, @domain = split_acct(@webfinger.subject)
 
-    unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
-      raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{uri} (stopped at #{@username}@#{@domain})"
-    end
+    raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{uri} (stopped at #{@username}@#{@domain})" unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
   rescue Webfinger::GoneError
     @gone = true
   end

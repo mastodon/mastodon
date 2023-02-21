@@ -5,15 +5,16 @@ RSpec.describe Admin::AccountAction, type: :model do
 
   describe '#save!' do
     subject              { account_action.save! }
+
     let(:account)        { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
     let(:target_account) { Fabricate(:account) }
     let(:type)           { 'disable' }
 
     before do
       account_action.assign_attributes(
-        type:            type,
+        type: type,
         current_account: account,
-        target_account:  target_account
+        target_account: target_account
       )
     end
 

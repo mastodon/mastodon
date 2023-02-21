@@ -12,7 +12,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
         attachment: [
           { type: 'PropertyValue', name: 'Pronouns', value: 'They/them' },
           { type: 'PropertyValue', name: 'Occupation', value: 'Unit test' },
-          { type: 'PropertyValue', name: 'non-string', value: ['foo', 'bar'] },
+          { type: 'PropertyValue', name: 'non-string', value: %w(foo bar) },
         ],
       }.with_indifferent_access
     end
@@ -31,6 +31,8 @@ RSpec.describe ActivityPub::ProcessAccountService do
   end
 
   context 'when account is not suspended' do
+    subject { described_class.new.call('alice', 'example.com', payload) }
+
     let!(:account) { Fabricate(:account, username: 'alice', domain: 'example.com') }
 
     let(:payload) do
@@ -46,8 +48,6 @@ RSpec.describe ActivityPub::ProcessAccountService do
       allow(Admin::SuspensionWorker).to receive(:perform_async)
     end
 
-    subject { described_class.new.call('alice', 'example.com', payload) }
-
     it 'suspends account remotely' do
       expect(subject.suspended?).to be true
       expect(subject.suspension_origin_remote?).to be true
@@ -60,6 +60,8 @@ RSpec.describe ActivityPub::ProcessAccountService do
   end
 
   context 'when account is suspended' do
+    subject { described_class.new.call('alice', 'example.com', payload) }
+
     let!(:account) { Fabricate(:account, username: 'alice', domain: 'example.com', display_name: '') }
 
     let(:payload) do
@@ -77,8 +79,6 @@ RSpec.describe ActivityPub::ProcessAccountService do
 
       account.suspend!(origin: suspension_origin)
     end
-
-    subject { described_class.new.call('alice', 'example.com', payload) }
 
     context 'locally' do
       let(:suspension_origin) { :local }
@@ -172,10 +172,10 @@ RSpec.describe ActivityPub::ProcessAccountService do
             {
               type: 'Mention',
               href: "https://foo.test/users/#{i + 1}",
-              name: "@user#{i + 1 }",
-            }
+              name: "@user#{i + 1}",
+            },
           ],
-          to: [ 'as:Public', "https://foo.test/users/#{i + 1}" ]
+          to: ['as:Public', "https://foo.test/users/#{i + 1}"],
         }.with_indifferent_access
         featured_json = {
           '@context': ['https://www.w3.org/ns/activitystreams'],

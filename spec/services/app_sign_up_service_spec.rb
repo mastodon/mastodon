@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe AppSignUpService, type: :service do
+  subject { described_class.new }
+
   let(:app) { Fabricate(:application, scopes: 'read write') }
   let(:good_params) { { username: 'alice', password: '12345678', email: 'good@email.com', agreement: true } }
   let(:remote_ip) { IPAddr.new('198.0.2.1') }
-
-  subject { described_class.new }
 
   describe '#call' do
     it 'returns nil when registrations are closed' do

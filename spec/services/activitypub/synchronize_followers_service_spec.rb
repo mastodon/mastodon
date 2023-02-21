@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
+  subject { described_class.new }
+
   let(:actor)          { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/account', inbox_url: 'http://example.com/inbox') }
   let(:alice)          { Fabricate(:account, username: 'alice') }
   let(:bob)            { Fabricate(:account, username: 'bob') }
@@ -24,8 +26,6 @@ RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
       items: items,
     }.with_indifferent_access
   end
-
-  subject { described_class.new }
 
   shared_examples 'synchronizes followers' do
     before do
@@ -91,7 +91,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
             type: 'CollectionPage',
             partOf: collection_uri,
             items: items,
-          }
+          },
         }.with_indifferent_access
       end
 

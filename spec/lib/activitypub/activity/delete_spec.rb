@@ -30,6 +30,7 @@ RSpec.describe ActivityPub::Activity::Delete do
   context 'when the status has been reblogged' do
     describe '#perform' do
       subject { described_class.new(json, sender) }
+
       let!(:reblogger) { Fabricate(:account) }
       let!(:follower)  { Fabricate(:account, username: 'follower', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
       let!(:reblog)    { Fabricate(:status, account: reblogger, reblog: status) }
@@ -53,6 +54,7 @@ RSpec.describe ActivityPub::Activity::Delete do
   context 'when the status has been reported' do
     describe '#perform' do
       subject { described_class.new(json, sender) }
+
       let!(:reporter) { Fabricate(:account) }
 
       before do

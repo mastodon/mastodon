@@ -20,13 +20,11 @@ class ReblogService < BaseService
 
     return reblog unless reblog.nil?
 
-    visibility = begin
-      if reblogged_status.hidden?
-        reblogged_status.visibility
-      else
-        options[:visibility] || account.user&.setting_default_privacy
-      end
-    end
+    visibility = if reblogged_status.hidden?
+                   reblogged_status.visibility
+                 else
+                   options[:visibility] || account.user&.setting_default_privacy
+                 end
 
     # デフォルトの公開範囲が「ポートフォリオ」か「にゃーん」だった場合に公開範囲「公開」に置き換えるように
     if visibility == 'portfolio' || visibility == 'nyan'

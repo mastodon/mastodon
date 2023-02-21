@@ -147,8 +147,8 @@ RSpec.describe Remotable do
         let(:code) { 500 }
 
         it 'does not assign file' do
-          expect(foo).not_to receive(:public_send).with("#{hoge}=", any_args)
-          expect(foo).not_to receive(:public_send).with("#{hoge}_file_name=", any_args)
+          expect(foo).to_not receive(:public_send).with("#{hoge}=", any_args)
+          expect(foo).to_not receive(:public_send).with("#{hoge}_file_name=", any_args)
 
           foo.hoge_remote_url = url
         end

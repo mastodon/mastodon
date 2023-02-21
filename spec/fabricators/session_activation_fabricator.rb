@@ -1,4 +1,4 @@
 Fabricator(:session_activation) do
   user
-  session_id "MyString"
+  session_id 'MyString'
 end

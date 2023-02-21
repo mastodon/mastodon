@@ -30,9 +30,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def update
     super do |resource|
-      if resource.saved_change_to_encrypted_password?
-        resource.clear_other_sessions(current_session.session_id)
-      end
+      resource.clear_other_sessions(current_session.session_id) if resource.saved_change_to_encrypted_password?
     end
   end
 

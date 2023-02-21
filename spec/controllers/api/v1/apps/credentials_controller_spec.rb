@@ -30,13 +30,13 @@ describe Api::V1::Apps::CredentialsController do
 
   context 'without an oauth token' do
     before do
-      allow(controller).to receive(:doorkeeper_token) { nil }
+      allow(controller).to receive(:doorkeeper_token).and_return(nil)
     end
 
     describe 'GET #show' do
       it 'returns http unauthorized' do
         get :show
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to have_http_status(401)
       end
     end
   end

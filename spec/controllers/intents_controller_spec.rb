@@ -4,6 +4,7 @@ RSpec.describe IntentsController, type: :controller do
   render_views
 
   let(:user) { Fabricate(:user) }
+
   before { sign_in user, scope: :user }
 
   describe 'GET #show' do
