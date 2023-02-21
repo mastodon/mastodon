@@ -345,6 +345,26 @@ en-GB:
     dashboard:
       active_users: active users
       interactions: interactions
+      media_storage: Media storage
+      new_users: new users
+      opened_reports: reports opened
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> pending appeal"
+        other: "<strong>%{count}</strong> pending appeals"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> pending report"
+        other: "<strong>%{count}</strong> pending reports"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> pending hashtag"
+        other: "<strong>%{count}</strong> pending hashtags"
+      pending_users_html:
+        one: "<strong>%{count}</strong> pending user"
+        other: "<strong>%{count}</strong> pending users"
+      resolved_reports: reports resolved
+      software: Software
+      sources: Sign-up sources
+      space: Space usage
+      title: Dashboard
     roles:
       categories:
         devops: DevOps
@@ -367,6 +387,19 @@ en-GB:
     platforms:
       blackberry: BlackBerry
       chrome_os: ChromeOS
+  statuses_cleanup:
+    min_age_label: Age threshold
+    min_favs: Keep posts favourited at least
+    min_favs_hint: Doesn't delete any of your posts that has received at least this number of favourites. Leave blank to delete posts regardless of their number of favourites
+    min_reblogs: Keep posts boosted at least
+    min_reblogs_hint: Doesn't delete any of your posts that has been boosted at least this number of times. Leave blank to delete posts regardless of their number of boosts
+  stream_entries:
+    pinned: Pinned post
+    reblogged: boosted
+    sensitive_content: Sensitive content
+  strikes:
+    errors:
+      too_late: It is too late to appeal this strike
   themes:
     mastodon-light: Mastodon (Light)
   time:
