@@ -75,10 +75,10 @@ class PreviewCard < ApplicationRecord
   end
 
   def trendable?
-    if attributes['trendable'].nil?
+    if attributes['trendable'].nil? && provider.present?
       provider&.trendable?
     else
-      attributes['trendable']
+      boolean_with_default('trendable', Setting.trendable_by_default)
     end
   end
 
