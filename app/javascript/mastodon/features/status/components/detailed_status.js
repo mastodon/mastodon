@@ -268,14 +268,14 @@ class DetailedStatus extends ImmutablePureComponent {
             <DisplayName account={status.get('account')} localDomain={this.props.domain} />
           </a>
 
+          {media}
+
           <StatusContent
             status={status}
             expanded={!status.get('hidden')}
             onExpandedToggle={this.handleExpandedToggle}
             onTranslate={this.handleTranslate}
           />
-
-          {media}
 
           <div className='detailed-status__meta'>
             <a className='detailed-status__datetime' href={`/@${status.getIn(['account', 'acct'])}\/${status.get('id')}`} target='_blank' rel='noopener noreferrer'>

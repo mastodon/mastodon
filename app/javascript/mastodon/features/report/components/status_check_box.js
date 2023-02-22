@@ -61,8 +61,8 @@ class StatusCheckBox extends React.PureComponent {
           </div>
         </div>
 
-        <StatusContent status={status} />
         <MediaAttachments status={status} />
+        <StatusContent status={status} />
       </div>
     );
 

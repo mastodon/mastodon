@@ -4,6 +4,11 @@
   %label.batch-table__row__select.batch-checkbox
     = f.check_box :status_filter_ids, { multiple: true, include_hidden: false }, status_filter.id
   .batch-table__row__content
+    - status.ordered_media_attachments.each do |media_attachment|
+      %abbr{ title: media_attachment.description }
+        = fa_icon 'link'
+        = media_attachment.file_file_name
+
     .status__content><
       - if status.spoiler_text.blank?
         = prerender_custom_emojis(status_content_format(status), status.emojis)
@@ -12,11 +17,6 @@
           %summary><
             %strong> Content warning: #{prerender_custom_emojis(h(status.spoiler_text), status.emojis)}
           = prerender_custom_emojis(status_content_format(status), status.emojis)
-
-    - status.ordered_media_attachments.each do |media_attachment|
-      %abbr{ title: media_attachment.description }
-        = fa_icon 'link'
-        = media_attachment.file_file_name
 
     .detailed-status__meta
       = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'name-tag', target: '_blank', rel: 'noopener noreferrer' do

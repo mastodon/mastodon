@@ -161,6 +161,13 @@ class Conversation extends ImmutablePureComponent {
               </div>
             </div>
 
+            {lastStatus.get('media_attachments').size > 0 && (
+              <AttachmentList
+                compact
+                media={lastStatus.get('media_attachments')}
+              />
+            )}
+
             <StatusContent
               status={lastStatus}
               onClick={this.handleClick}
@@ -168,13 +175,6 @@ class Conversation extends ImmutablePureComponent {
               onExpandedToggle={this.handleShowMore}
               collapsable
             />
-
-            {lastStatus.get('media_attachments').size > 0 && (
-              <AttachmentList
-                compact
-                media={lastStatus.get('media_attachments')}
-              />
-            )}
 
             <div className='status__action-bar'>
               <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReply} />

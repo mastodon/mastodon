@@ -27,6 +27,14 @@
           %span.display-name__account
             = acct(status.account)
             = fa_icon('lock') if status.account.locked?
+
+  - if !status.ordered_media_attachments.empty?
+    - if status.ordered_media_attachments.first.video?
+      = render_video_component(status, width: 610, height: 343)
+    - elsif status.ordered_media_attachments.first.audio?
+      = render_audio_component(status, width: 610, height: 343)
+    - else
+      = render_media_gallery_component(status, height: 343)
   .status__content.emojify{ :data => ({ spoiler: current_account&.user&.setting_expand_spoilers ? 'expanded' : 'folded' } if status.spoiler_text?) }<
     - if status.spoiler_text?
       %p<
@@ -37,15 +45,7 @@
 
       - if status.preloadable_poll
         = render_poll_component(status)
-
-  - if !status.ordered_media_attachments.empty?
-    - if status.ordered_media_attachments.first.video?
-      = render_video_component(status, width: 610, height: 343)
-    - elsif status.ordered_media_attachments.first.audio?
-      = render_audio_component(status, width: 610, height: 343)
-    - else
-      = render_media_gallery_component(status, height: 343)
-  - elsif status.preview_card
+  - if status.ordered_media_attachment_ids.empty? && status.preview_card
     = render_card_component(status)
 
   - if !status.in_reply_to_id.nil? && status.in_reply_to_account_id == status.account.id && !hide_show_thread

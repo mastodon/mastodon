@@ -530,6 +530,8 @@ class Status extends ImmutablePureComponent {
               </a>
             </div>
 
+            {media}
+
             <StatusContent
               status={status}
               onClick={this.handleClick}
@@ -539,8 +541,6 @@ class Status extends ImmutablePureComponent {
               collapsable
               onCollapsedToggle={this.handleCollapsedToggle}
             />
-
-            {media}
 
             <StatusActionBar scrollKey={scrollKey} status={status} account={account} onFilter={matchedFilters ? this.handleFilterClick : null} {...other} />
           </div>
