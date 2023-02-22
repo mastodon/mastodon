@@ -91,6 +91,7 @@ fo:
       moderation:
         active: Virkin
         all: Allar
+        disabled: Óvirkið
         pending: Í bíðistøðu
         silenced: Avmarkað
         suspended: Avbrotin
@@ -133,6 +134,7 @@ fo:
       search: Leita
       search_same_email_domain: Aðrir brúkarir eru við sama teldupost domaini
       search_same_ip: Aðrir brúkarar við somu IP
+      security: Trygd
       security_measures:
         only_password: Bara loyniorð
         password_and_2fa: Loyniorð og 2FA
@@ -427,6 +429,7 @@ fo:
         resolve: Loys navnaøki
         title: Blokera nýtt teldupostanavnaøki
       no_email_domain_block_selected: Ongar teldupostanavnaøkisblokeringar vóru broyttar, tí ongar vóru valdar
+      not_permitted: Ikki loyvt
       resolved_dns_records_hint_html: Navnaøkið verður loyst til hesi MX navnaøki, sum í síðsta enda hava ábyrgdina av at móttaka teldupost. At blokera eitt MX navnaøki fer at blokera tilmeldingar frá einum og hvørjum teldupoststaði, sum brúkar sama MX navnaøki, sjálvt um sjónliga navnaøkið er eitt annað. <strong>Ansa eftir ikki at blokera stórar veitarar av telduposti</strong>
       resolved_through_html: Loyst gjøgnum %{domain}
       title: Blokeraði teldupostanavnaøki
@@ -473,6 +476,7 @@ fo:
       content_policies:
         comment: Innanhýsis viðmerking
         description_html: Tú kanst áseta innihaldspolitikkir, sum verða áløgd øllum kontum frá hesum navnaøkinum og øllum tess undirnavnaøkjum.
+        limited_federation_mode_description_html: Tú kanst velja, hvørt tú loyvir sameining við hetta navnaøkið.
         policies:
           reject_media: Vraka miðil
           reject_reports: Vraka meldingar
@@ -585,11 +589,13 @@ fo:
       assign_to_self: Tilluta mær
       assigned: Tilnevnt umsjónarfólk
       by_target_domain: Navnaøki hjá meldaðu kontuni
+      cancel: Angra
       category: Bólkur
       category_description_html: Orsøkin, at hendan kontan og/ella tilfarið var melda verður fráboðað í samskifti við meldaðu kontuni
       comment:
         none: Eingin
       comment_description_html: 'Fyri at veita fleiri upplýsingar skrivaði %{name}:'
+      confirm: Vátta
       confirm_action: Vátta umsjónaratgerð móti @%{acct}
       created_at: Meldað
       delete_and_resolve: Strika postar
@@ -792,6 +798,7 @@ fo:
         suspend: "%{name} setti kontuna hjá %{target} úr gildi"
       appeal_approved: Kært
       appeal_pending: Kæra bíðar eftir avgerð
+      appeal_rejected: Kæra vrakað
     system_checks:
       database_schema_check:
         message_html: Dátugrunnaflytingar bíða. Vinarliga koyr flytingarnar fyri at tryggja at skipanin skikkar sær sum hon skal
@@ -827,6 +834,7 @@ fo:
           other: Deilt av %{count} persónum seinastu vikuna
         title: Vælumtókt leinki
         usage_comparison: Deilt %{today} ferð í dag, samanborið við %{yesterday} ferð í gjár
+      not_allowed_to_trend: Ikki loyvt at gerast rák
       only_allowed: Einans loyvd
       pending_review: Bíðar eftir eftirkannan
       preview_card_providers:
@@ -958,6 +966,7 @@ fo:
   applications:
     created: Umsókn stovnað
     destroyed: Umsókn strikað
+    logout: Rita út
     regenerate_token: Ger atgongdstekn av nýggjum
     token_regenerated: Atgongdsteknið gjørt av nýggjum
     warning: Ver varin við hesum dátum. Deil tað aldrin við nakran!
@@ -994,6 +1003,8 @@ fo:
     resend_confirmation: Send góðkenningarvegleiðing umaftur
     reset_password: Endurstilla loyniorð
     rules:
+      accept: Góðtak
+      back: Aftur
       preamble: Hesi eru ásett og uppihildin av umsjónarfólkunum á %{domain}.
       title: Nakrar grundreglur.
     security: Trygd

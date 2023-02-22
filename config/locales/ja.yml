@@ -89,6 +89,7 @@ ja:
       moderation:
         active: アクティブ
         all: すべて
+        disabled: 無効
         pending: 承認待ち
         silenced: 制限
         suspended: 停止済み
@@ -130,6 +131,7 @@ ja:
       search: 検索
       search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
       search_same_ip: 同じIPのユーザーを検索
+      security: 認証方法
       security_measures:
         only_password: パスワードのみ
         password_and_2fa: パスワードと二要素認証
@@ -419,6 +421,7 @@ ja:
         resolve: ドメイン解決
         title: 新規メールドメインブロック
       no_email_domain_block_selected: 何も選択されていないためメールドメインブロックを変更しませんでした
+      not_permitted: 権限がありません
       resolved_dns_records_hint_html: ドメイン名はDNSでMXドメインに名前解決され、最終的にメールを受け付ける役割を担います。目に見えるドメイン名が異なっていても、同じMXドメインを使用するメールアドレスからのアカウント登録がブロックされます。<strong>主要なメールプロバイダーをブロックしないように注意して下さい。</strong>
       resolved_through_html: "%{domain}を通して解決しました"
       title: メールドメインブロック
@@ -463,6 +466,7 @@ ja:
       content_policies:
         comment: 内部メモ
         description_html: このドメインとそのサブドメインのすべてのアカウントに適用されるコンテンツポリシーを定義できます。
+        limited_federation_mode_description_html: このドメインとの連合を許可するかどうかを選択できます。
         policies:
           reject_media: メディアを拒否する
           reject_reports: 通報を拒否
@@ -573,11 +577,13 @@ ja:
       assign_to_self: 担当になる
       assigned: 担当者
       by_target_domain: ドメイン
+      cancel: キャンセル
       category: カテゴリー
       category_description_html: 選択した理由は通報されたアカウントへの連絡時に引用されます
       comment:
         none: なし
       comment_description_html: "%{name}からの詳細情報:"
+      confirm: 確認
       confirm_action: "@%{acct} さんに対するアクション"
       created_at: 通報日時
       delete_and_resolve: 投稿を削除
@@ -778,6 +784,7 @@ ja:
         suspend: "%{name}さんが%{target}さんのアカウントを停止しました"
       appeal_approved: 抗議済み
       appeal_pending: 保留中の抗議
+      appeal_rejected: 却下済みの抗議
     system_checks:
       database_schema_check:
         message_html: 未実行のデータベースマイグレーションがあります。実行して正常に動作するようにしてください。
@@ -812,6 +819,7 @@ ja:
           other: 週間%{count}人に共有されました
         title: トレンドリンク
         usage_comparison: 今日は%{today}回、昨日は%{yesterday}回共有されました
+      not_allowed_to_trend: 未許可のトレンド
       only_allowed: 許可済み
       pending_review: 保留中
       preview_card_providers:
@@ -940,6 +948,7 @@ ja:
   applications:
     created: アプリが作成されました
     destroyed: アプリが削除されました
+    logout: ログアウト
     regenerate_token: アクセストークンの再生成
     token_regenerated: アクセストークンが再生成されました
     warning: このデータは気をつけて取り扱ってください。他の人と共有しないでください！
@@ -976,6 +985,8 @@ ja:
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
     rules:
+      accept: 同意する
+      back: 戻る
       preamble: これらは %{domain} モデレータによって設定され、実施されます。
       title: いくつかのルールがあります。
     security: セキュリティ
@@ -1123,7 +1134,7 @@ ja:
   featured_tags:
     add_new: 追加
     errors:
-      limit: 注目のハッシュタグの上限に達しました
+      limit: すでに注目のハッシュタグの上限数に達しています
     hint_html: "<strong>注目のハッシュタグとは？</strong>　プロフィールページに目立つ形で表示され、そのハッシュタグのついたあなたの公開投稿だけを抽出して閲覧できるようにします。クリエイティブな仕事や長期的なプロジェクトを追うのに優れた機能です。"
   filters:
     contexts:
@@ -1227,7 +1238,7 @@ ja:
     title: 新規ユーザーの招待
   lists:
     errors:
-      limit: リストの上限に達しました
+      limit: リストの上限数に達しています
   login_activities:
     authentication_methods:
       otp: 二要素認証アプリ
@@ -1541,7 +1552,7 @@ ja:
       '7889238': 3ヶ月
     min_age_label: 投稿を保持する期間
     min_favs: お気に入りの基準値
-    min_favs_hint: この数以上、お気に入りされた投稿を削除せずに残します。空白にしておくと、お気に入りに登録された数に関わらず投稿を削除します。
+    min_favs_hint: この数以上、お気に入り登録された投稿を削除せずに残します。空白にしておくと、お気に入りの数に関わらず投稿を削除します。
     min_reblogs: ブーストの基準値
     min_reblogs_hint: この数以上、ブーストされた投稿を削除せずに残します。空白にしておくと、ブーストされた数に関わらず投稿を削除します。
   stream_entries:

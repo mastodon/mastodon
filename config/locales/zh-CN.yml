@@ -89,6 +89,7 @@ zh-CN:
       moderation:
         active: 活跃
         all: 全部
+        disabled: 已禁用
         pending: 待审核
         silenced: 受限
         suspended: 已封禁
@@ -130,6 +131,7 @@ zh-CN:
       search: 搜索
       search_same_email_domain: 其他具有相同电子邮箱域名的用户
       search_same_ip: 具有相同IP的其他用户
+      security: 安全性
       security_measures:
         only_password: 仅密码
         password_and_2fa: 密码和双重认证
@@ -419,6 +421,7 @@ zh-CN:
         resolve: 解析域名
         title: 添加电子邮件域名屏蔽
       no_email_domain_block_selected: 没有任何项目被选中，因此未能更改电子邮件域名屏蔽列表
+      not_permitted: 未允许
       resolved_dns_records_hint_html: 该域名解析的 MX 记录所指向的域名如下，这些域名被用于接收电子邮件。 即使电子邮件地址域名与 MX 域名不同，屏蔽一个 MX 域名意味着阻止任何使用相同 MX 域名的电子邮件地址注册本站账户。 <strong>请小心不要误屏蔽主要的电子邮件提供商。</strong>
       resolved_through_html: 通过 %{domain} 解析
       title: 电子邮件域名屏蔽
@@ -463,6 +466,7 @@ zh-CN:
       content_policies:
         comment: 内部备注
         description_html: 你可以设置应用于此域名所有账号和其所有子域名的内容策略。
+        limited_federation_mode_description_html: 您可以选择是否允许与该联邦联合。
         policies:
           reject_media: 拒收媒体
           reject_reports: 拒收举报
@@ -573,11 +577,13 @@ zh-CN:
       assign_to_self: 接管
       assigned: 已接管的监察员
       by_target_domain: 被举报账户的域名
+      cancel: 取消
       category: 类别
       category_description_html: 在与被举报账户的通信时，将引用该账号和/或内容被举报的原因
       comment:
         none: 没有
       comment_description_html: "%{name} 补充道："
+      confirm: 确认
       confirm_action: 确认对 @%{acct} 的管理操作
       created_at: 举报时间
       delete_and_resolve: 删除嘟文
@@ -778,6 +784,7 @@ zh-CN:
         suspend: "%{name} 封禁了用户 %{target}"
       appeal_approved: 已申诉
       appeal_pending: 申诉待处理
+      appeal_rejected: 申诉已驳回
     system_checks:
       database_schema_check:
         message_html: 有待处理的数据库迁移。请运行它们以确保应用程序正常运行。
@@ -812,6 +819,7 @@ zh-CN:
           other: 过去一周内被 %{count} 个人分享过
         title: 热门链接
         usage_comparison: 今日被分享 %{today} 次，前一日为 %{yesterday} 次
+      not_allowed_to_trend: 不允许的趋势
       only_allowed: 仅显示已允许的内容
       pending_review: 待审核
       preview_card_providers:
@@ -940,6 +948,7 @@ zh-CN:
   applications:
     created: 应用创建成功
     destroyed: 应用删除成功
+    logout: 登出
     regenerate_token: 重置访问令牌
     token_regenerated: 访问令牌重置成功
     warning: 一定小心，千万不要把它分享给任何人！
@@ -976,6 +985,8 @@ zh-CN:
     resend_confirmation: 重新发送确认邮件
     reset_password: 重置密码
     rules:
+      accept: 接受
+      back: 返回
       preamble: 这些由 %{domain} 监察员设置和执行。
       title: 一些基本规则。
     security: 账户安全
@@ -1123,7 +1134,7 @@ zh-CN:
   featured_tags:
     add_new: 添加新条目
     errors:
-      limit: 你所推荐的话题标签数已达上限
+      limit: 您所推荐的话题标签数已达上限
     hint_html: "<strong>什么是精选话题标签？</strong> 它们被显示在你的公开个人资料中的突出位置，人们可以在这些标签下浏览你的公共嘟文。 它们是跟踪创作或长期项目的进度的重要工具。"
   filters:
     contexts:
@@ -1227,7 +1238,7 @@ zh-CN:
     title: 邀请用户
   lists:
     errors:
-      limit: 你所建立的列表数量已经达到上限
+      limit: 您已达到列表数量的上限
   login_activities:
     authentication_methods:
       otp: 双因素认证应用
@@ -1541,7 +1552,7 @@ zh-CN:
       '7889238': 3个月
     min_age_label: 过期阈值
     min_favs: 保留如下嘟文：喜欢数超过
-    min_favs_hint: 喜欢数超过该阈值的的嘟文不会被删除。如果留空，则无论嘟文获得多少喜欢，都将被删除。
+    min_favs_hint: 喜欢数超过该阈值的的嘟文都不会被删除。如果留空，则无论嘟文获得多少喜欢，都将被删除。
     min_reblogs: 保留如下嘟文：转嘟数超过
     min_reblogs_hint: 转嘟数超过该阈值的的嘟文不会被删除。如果留空，则无论嘟文获得多少转嘟，都将被删除。
   stream_entries:

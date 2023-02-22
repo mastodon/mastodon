@@ -91,6 +91,7 @@ it:
       moderation:
         active: Attivo
         all: Tutto
+        disabled: Disattivato
         pending: In sospeso
         silenced: Limitato
         suspended: Sospeso
@@ -133,6 +134,7 @@ it:
       search: Cerca
       search_same_email_domain: Altri utenti con lo stesso dominio email
       search_same_ip: Altri utenti con lo stesso IP
+      security: Sicurezza
       security_measures:
         only_password: Solo password
         password_and_2fa: Password e A2F
@@ -427,6 +429,7 @@ it:
         resolve: Risolvi dominio
         title: Nuova voce della lista nera delle email
       no_email_domain_block_selected: Nessun blocco di dominio di posta elettronica è stato modificato in quanto nessuno è stato selezionato
+      not_permitted: Non consentito
       resolved_dns_records_hint_html: Il nome di dominio si risolve ai seguenti domini MX, che sono in ultima analisi responsabili per l'accettazione di e-mail. Il blocco di un dominio MX bloccherà le iscrizioni da qualsiasi indirizzo e-mail che utilizza lo stesso dominio MX, anche se il nome di dominio visibile è diverso. <strong>Fai attenzione a non bloccare i principali provider di posta elettronica.</strong>
       resolved_through_html: Risolto attraverso %{domain}
       title: Lista nera email
@@ -473,6 +476,7 @@ it:
       content_policies:
         comment: Nota interna
         description_html: Puoi definire le politiche del contenuto che saranno applicate a tutti i profili da questo dominio e ognuno dei suoi sottodomini.
+        limited_federation_mode_description_html: Puoi scegliere se consentire la federazione con questo dominio.
         policies:
           reject_media: Rifiuta multimedia
           reject_reports: Rifiuta rapporti
@@ -585,11 +589,13 @@ it:
       assign_to_self: Assegna a me
       assigned: Moderatore assegnato
       by_target_domain: Dominio dell'account segnalato
+      cancel: Annulla
       category: Categoria
       category_description_html: Il motivo per cui questo account e/o contenuto è stato segnalato sarà citato nella comunicazione con l'account segnalato
       comment:
         none: Nessuno
       comment_description_html: 'Per fornire ulteriori informazioni, %{name} ha scritto:'
+      confirm: Conferma
       confirm_action: Conferma l'azione di moderazione contro @%{acct}
       created_at: Segnalato
       delete_and_resolve: Cancella post
@@ -792,6 +798,7 @@ it:
         suspend: "%{name} ha sospeso l'account di %{target}"
       appeal_approved: Sottoposto ad appello
       appeal_pending: Appello in attesa
+      appeal_rejected: Appello respinto
     system_checks:
       database_schema_check:
         message_html: Ci sono migrazioni del database in attesa. Sei pregato di eseguirle per assicurarti che l'applicazione si comporti come previsto
@@ -827,6 +834,7 @@ it:
           other: Condiviso da %{count} persone nell'ultima settimana
         title: Link in tendenza
         usage_comparison: Condiviso %{today} volte oggi, rispetto a %{yesterday} ieri
+      not_allowed_to_trend: Non è consentito il trend
       only_allowed: Solo consentiti
       pending_review: Revisione in sospeso
       preview_card_providers:
@@ -960,6 +968,7 @@ it:
   applications:
     created: Applicazione creata con successo
     destroyed: Applicazione eliminata con successo
+    logout: Disconnettiti
     regenerate_token: Rigenera il token di accesso
     token_regenerated: Token di accesso rigenerato
     warning: Fa' molta attenzione con questi dati. Non fornirli mai a nessun altro!
@@ -996,6 +1005,8 @@ it:
     resend_confirmation: Invia di nuovo le istruzioni di conferma
     reset_password: Resetta la password
     rules:
+      accept: Accetta
+      back: Indietro
       preamble: Questi sono impostati e applicati dai moderatori di %{domain}.
       title: Alcune regole di base.
     security: Credenziali
@@ -1575,7 +1586,7 @@ it:
       '7889238': 3 mesi
     min_age_label: Soglia di età
     min_favs: Conserva i post preferiti più di
-    min_favs_hint: Non cancella nessuno dei tuoi post che ha ricevuto più di questo numero di preferiti. Lascia vuoto per cancellare i post indipendentemente dal loro numero di preferiti
+    min_favs_hint: Non cancella nessuno dei tuoi post che ha ricevuto almeno questo numero di preferiti. Lascia vuoto per cancellare i post indipendentemente dal loro numero di preferiti
     min_reblogs: Conserva i post condivisi più di
     min_reblogs_hint: Non cancella nessuno dei tuoi post che è stato condiviso più di questo numero di volte. Lascia vuoto per cancellare i post indipendentemente dal loro numero di condivisioni
   stream_entries:

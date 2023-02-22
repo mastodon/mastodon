@@ -91,6 +91,7 @@ da:
       moderation:
         active: Aktiv
         all: Alle
+        disabled: Deaktiveret
         pending: Afventer
         silenced: Begrænset
         suspended: Suspenderet
@@ -133,6 +134,7 @@ da:
       search: Søg
       search_same_email_domain: Øvrige brugere med samme e-maildomæne
       search_same_ip: Øvrige brugere med identisk IP
+      security: Sikkerhed
       security_measures:
         only_password: Kun adgangskode
         password_and_2fa: Adgangskode og 2FA
@@ -427,6 +429,7 @@ da:
         resolve: Opløs domæne
         title: Blokér nyt e-maildomæne
       no_email_domain_block_selected: Ingen e-mailblokeringer ændret (ingen var valgt)
+      not_permitted: Ikke tilladt
       resolved_dns_records_hint_html: Domænenavnet opløses til flg. MX-domæner, som i sidste ende er ansvarlige for e-mailmodtagelse. Blokering af et MX-domæne blokerer også tilmeldinger fra enhver e-mailadresse på det pågældende MX-domæne, selv hvis det synlige domænenavn er et andet. <strong>Pas på ikke ikke at blokere større e-mailudbydere.</strong>
       resolved_through_html: Opløst via %{domain}
       title: Blokerede e-maildomæner
@@ -473,6 +476,7 @@ da:
       content_policies:
         comment: Internt notat
         description_html: Der kan defineres indholdspolitikker, som anvendes på alle konti fra dette domæne samt alle dets underdomæner.
+        limited_federation_mode_description_html: Man kan vælge, om føderation med dette domæne skal tillades.
         policies:
           reject_media: Afvis medier
           reject_reports: Afvis anmeldelser
@@ -582,11 +586,13 @@ da:
       assign_to_self: Tildel til mig
       assigned: Tildelt moderator
       by_target_domain: Anmeldte kontos domæne
+      cancel: Afbryd
       category: Kategori
       category_description_html: Årsagen til anmeldelsen af denne konto og/eller indhold refereres i kommunikationen med den anmeldte konto
       comment:
         none: Ingen
       comment_description_html: 'For at give mere information, skrev %{name}:'
+      confirm: Bekræft
       confirm_action: Bekræft moderatorhandling for %{acct}
       created_at: Anmeldt
       delete_and_resolve: Slet indlæg
@@ -788,6 +794,7 @@ da:
         suspend: "%{name} suspenderede %{target}s konto"
       appeal_approved: Appelleret
       appeal_pending: Appel afventer
+      appeal_rejected: Appel afvist
     system_checks:
       database_schema_check:
         message_html: Databasemigreringer afventer. Kør dem for at sikre den forventede adfærd fra applikationen
@@ -823,6 +830,7 @@ da:
           other: Delt af %{count} personer den seneste uge
         title: Populære links
         usage_comparison: Delt %{today} gange i dag, sammenlignet med %{yesterday} i går
+      not_allowed_to_trend: Ikke tilladt at trende
       only_allowed: Kun tilladte
       pending_review: Afventer revision
       preview_card_providers:
@@ -954,6 +962,7 @@ da:
   applications:
     created: Applikation oprettet
     destroyed: Applikation slettet
+    logout: Log af
     regenerate_token: Regenerér adgangstoken
     token_regenerated: Adgangstoken regenereret
     warning: Vær meget påpasselig med disse data. Del dem aldrig med nogen!
@@ -990,6 +999,8 @@ da:
     resend_confirmation: Gensend bekræftelsesinstruktioner
     reset_password: Nulstil adgangskode
     rules:
+      accept: Acceptér
+      back: Tilbage
       preamble: Disse er opsat og håndhæves af %{domain}-moderatorerne.
       title: Nogle grundregler.
     security: Sikkerhed
@@ -1137,7 +1148,7 @@ da:
   featured_tags:
     add_new: Tilføj nyt
     errors:
-      limit: Du har allerede fremhævet det maksimale antal hashtags
+      limit: Det maksimale antal hashtags er allerede fremhævet
     hint_html: "<strong>Hvad er fremhævede hashtags?</strong> De vises i en fremtrædende position på din offentlige profil og giver folk mulighed for at gennemse dine offentlige indlæg specifikt under disse hashtags. De er et fantastisk værktøj til at holde styr på kreative værker eller langsigtede projekter."
   filters:
     contexts:
@@ -1568,7 +1579,7 @@ da:
       '7889238': 3 måneder
     min_age_label: Alderstærskel
     min_favs: Behold indlæg favoritmarkeret mindst
-    min_favs_hint: Sletter ingen egne indlæg, som har modtaget minimum dette antal favoritmarkeringer. Lad stå tomt for at ignorere denne tærskel under sletning
+    min_favs_hint: Sletter ingen egne indlæg, som har modtaget minimum dette antal favoritmarkeringer. Lad stå tomt for at slette indlæg uanset favoritmarkeringer
     min_reblogs: Behold indlæg boostet mindst
     min_reblogs_hint: Sletter ingen egne indlæg, som er boostet flere end dette antal gange. Lad stå tomt for at ignorere denne tærskel under sletning
   stream_entries:

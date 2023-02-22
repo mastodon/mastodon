@@ -95,6 +95,7 @@ sk:
       moderation:
         active: Aktívny/a
         all: Všetko
+        disabled: Blokovaný
         pending: Čakajúci
         silenced: Obmedzený
         suspended: Vylúčený/á
@@ -133,6 +134,7 @@ sk:
       search: Hľadaj
       search_same_email_domain: Iní užívatelia s tou istou emailovou doménou
       search_same_ip: Ostatní užívatelia s rovnakou IP adresou
+      security: Zabezpečenie
       security_measures:
         only_password: Iba heslo
         password_and_2fa: Heslo a dvoj-faktorové overovanie
@@ -345,6 +347,7 @@ sk:
         create: Pridaj doménu
         resolve: Preveď doménu
         title: Nový email na zablokovanie
+      not_permitted: Nepovolená
       resolved_through_html: Prevedená cez %{domain}
       title: Blokované emailové adresy
     export_domain_allows:
@@ -459,9 +462,11 @@ sk:
       assign_to_self: Priraď sebe
       assigned: Priradený moderátor
       by_target_domain: Doména nahláseného účtu
+      cancel: Zruš
       category: Kategória
       comment:
         none: Žiadne
+      confirm: Potvrď
       created_at: Nahlásené
       delete_and_resolve: Vymaž príspevky
       forwarded: Preposlané
@@ -658,6 +663,7 @@ sk:
   applications:
     created: Aplikácia bola vytvorená úspešne
     destroyed: Aplikáciu sa podarilo odstrániť
+    logout: Odhlás sa
     regenerate_token: Znovu vygeneruj prístupový token
     token_regenerated: Prístupový token bol úspešne vygenerovaný znova
     warning: Na tieto údaje dávaj ohromný pozor. Nikdy ich s nikým nezďieľaj!
@@ -683,6 +689,8 @@ sk:
     registration_closed: "%{instance} neprijíma nových členov"
     resend_confirmation: Zašli potvrdzujúce pokyny znovu
     reset_password: Obnov heslo
+    rules:
+      back: Späť
     security: Zabezpečenie
     set_new_password: Nastav nové heslo
     setup:
@@ -788,7 +796,7 @@ sk:
   featured_tags:
     add_new: Pridaj nový
     errors:
-      limit: Už si si predvolil/a najvyšší možný počet obľúbených haštagov
+      limit: Už si si predvolil/a najvyšší možný počet haštagov
   filters:
     contexts:
       account: Profily
@@ -865,7 +873,7 @@ sk:
     title: Pozvi ľudí
   lists:
     errors:
-      limit: Dosiahli ste maximálny možný počet zoznamov
+      limit: Dosiahli ste maximálny počet zoznamov
   login_activities:
     authentication_methods:
       password: heslom
