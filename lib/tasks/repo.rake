@@ -50,11 +50,11 @@ namespace :repo do
         file.each_line do |line|
           if line.start_with?('-')
             new_line = line.gsub(/#([[:digit:]]+)*/) do |pull_request_reference|
-              pull_request_number = pull_request_reference[1..]
+              pull_request_number = pull_request_reference[1..-1]
               response = nil
 
               loop do
-                response = HTTP.headers('Authorization' => "token #{ENV.fetch('GITHUB_API_TOKEN', nil)}").get("https://api.github.com/repos/#{REPOSITORY_NAME}/pulls/#{pull_request_number}")
+                response = HTTP.headers('Authorization' => "token #{ENV['GITHUB_API_TOKEN']}").get("https://api.github.com/repos/#{REPOSITORY_NAME}/pulls/#{pull_request_number}")
 
                 if response.code == 403
                   sleep_for = (response.headers['X-RateLimit-Reset'].to_i - Time.now.to_i).abs
