@@ -113,7 +113,7 @@ ENV OIDC_ISSUER=https://issuer.hello.coop
 ENV OMNIAUTH_ONLY=false
 ENV OIDC_DISPLAY_NAME=Hellō
 ENV OIDC_DISCOVERY=true
-ENV OIDC_SCOPE=openid,email,recovery,existing_username,existing_name
+ENV OIDC_SCOPE=openid,email,recovery,existing_username,verified_name
 ENV OIDC_UID_FIELD=sub
 ENV OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED=true
 
