@@ -91,6 +91,7 @@ es:
       moderation:
         active: Activo
         all: Todos
+        disabled: Deshabilitado
         pending: Pendiente
         silenced: Limitado
         suspended: Suspendidos
@@ -133,6 +134,7 @@ es:
       search: Buscar
       search_same_email_domain: Otros usuarios con el mismo dominio de correo
       search_same_ip: Otros usuarios con la misma IP
+      security: Seguridad
       security_measures:
         only_password: Sólo contraseña
         password_and_2fa: Contraseña y 2FA
@@ -427,6 +429,7 @@ es:
         resolve: Resolver dominio
         title: Nueva entrada en la lista negra de correo
       no_email_domain_block_selected: No se han cambiado bloqueos de dominio ya que ninguno ha sido seleccionado
+      not_permitted: No permitido
       resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Tenga cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
       resolved_through_html: Resuelto a través de %{domain}
       title: Lista negra de correo
@@ -473,6 +476,7 @@ es:
       content_policies:
         comment: Nota interna
         description_html: Puedes definir políticas de contenido que se aplicarán a todas las cuentas de este dominio y a cualquiera de sus subdominios.
+        limited_federation_mode_description_html: Puede elegir si permite la federación en este dominio.
         policies:
           reject_media: Rechazar multimedia
           reject_reports: Rechazar informes
@@ -585,11 +589,13 @@ es:
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
       by_target_domain: Dominio de la cuenta reportada
+      cancel: Cancelar
       category: Categoría
       category_description_html: La razón por la que se reportó esta cuenta o contenido será citada en las comunicaciones con la cuenta reportada
       comment:
         none: Ninguno
       comment_description_html: 'Para proporcionar más información, %{name} escribió:'
+      confirm: Confirmar
       confirm_action: Confirmar acción de moderación contra @%{acct}
       created_at: Denunciado
       delete_and_resolve: Eliminar publicaciones
@@ -792,6 +798,7 @@ es:
         suspend: "%{name} suspendió la cuenta de %{target}"
       appeal_approved: Apelado
       appeal_pending: Apelación pendiente
+      appeal_rejected: Apelación rechazada
     system_checks:
       database_schema_check:
         message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecútalas para asegurarte de que la aplicación funciona como debería
@@ -827,6 +834,7 @@ es:
           other: Compartido por %{count} personas durante la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado con %{yesterday} ayer
+      not_allowed_to_trend: No permitido para tendencia
       only_allowed: Sólo las permitidas
       pending_review: Revisión pendiente
       preview_card_providers:
@@ -958,6 +966,7 @@ es:
   applications:
     created: Aplicación creada exitosamente
     destroyed: Apicación eliminada exitosamente
+    logout: Cerrar sesión
     regenerate_token: Regenerar token de acceso
     token_regenerated: Token de acceso regenerado exitosamente
     warning: Ten mucho cuidado con estos datos. ¡No los compartas con nadie!
@@ -994,6 +1003,8 @@ es:
     resend_confirmation: Volver a enviar el correo de confirmación
     reset_password: Restablecer contraseña
     rules:
+      accept: Aceptar
+      back: Atrás
       preamble: Estas son establecidas y aplicadas por los moderadores de %{domain}.
       title: Algunas reglas básicas.
     security: Cambiar contraseña
@@ -1573,7 +1584,7 @@ es:
       '7889238': 3 meses
     min_age_label: Umbral de tiempo
     min_favs: Mantener mensajes con un número de favoritos mayor que
-    min_favs_hint: No borra ninguna de las publicaciones que hayan recibido más de esta cantidad de favoritos. Deja en blanco para eliminar publicaciones sin importar el número de favoritos
+    min_favs_hint: No borra ninguna de las publicaciones que hayan recibido al menos esta cantidad de favoritos. Deja en blanco para eliminar publicaciones sin importar el número de favoritos
     min_reblogs: Mantener publicaciones reblogueadas más de
     min_reblogs_hint: No borra ninguna de las publicaciones que hayan sido reblogueadas más de este número de veces. Deja en blanco para eliminar publicaciones sin importar el número de reblogueos
   stream_entries:

@@ -69,9 +69,10 @@ app/javascript/styles/mastodon/reset.scss
 
 # Ignore Javascript pending https://github.com/mastodon/mastodon/pull/23631
 *.js
-
-# Ignore Markdownlint pending https://github.com/mastodon/mastodon/pull/21972
-*.md
+*.jsx
 
 # Ignore HTML till cleaned and included in CI
 *.html
+
+# Ignore the generated AUTHORS.md
+AUTHORS.md

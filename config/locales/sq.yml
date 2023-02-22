@@ -91,6 +91,7 @@ sq:
       moderation:
         active: Aktiv
         all: Krejt
+        disabled: I çaktivizuar
         pending: Pezull
         silenced: I kufizuar
         suspended: Të pezulluara
@@ -133,6 +134,7 @@ sq:
       search: Kërkoni
       search_same_email_domain: Të tjerë përdorues me të njëjtën përkatësi email-i
       search_same_ip: Të tjerë përdorues me të njëjtën IP
+      security: Siguri
       security_measures:
         only_password: Vetëm fjalëkalim
         password_and_2fa: Fjalëkalim dhe 2FA
@@ -427,6 +429,7 @@ sq:
         resolve: Ftilloje përkatësinë
         title: Zë i ri email në listë bllokimesh
       no_email_domain_block_selected: S’u ndryshuan blloqe përkatësish email, ngaqë s’qe përzgjedhur ndonjë
+      not_permitted: Jo i lejuar
       resolved_dns_records_hint_html: Emri i përkatësisë jep u përket përkatësive vijuese MX, që janë përgjegjëset për pranim email-esh. Bllokimi i një përkatësie MX do të bllokojë regjistrime nga çfarëdo adrese email që përdor të njëjtën përkatësi MX, edhe nëse emri i dukshëm i përkatësisë është i ndryshëm. <strong>Jini i kujdesshëm të mos bllokoni shërbime të njohur email-esh.</strong>
       resolved_through_html: Zgjidhur përmes %{domain}
       title: Listë bllokimesh email-esh
@@ -472,6 +475,7 @@ sq:
       content_policies:
         comment: Shënim i brendshëm
         description_html: Mund të përkufizoni rregulla lënde që do të zbatohen mbi krejt llogaritë prej kësaj përkatësie dhe cilësdo nënpërkatësi të saj.
+        limited_federation_mode_description_html: Mund të zgjidhni të lejohet ose jo federimi me këtë përkatësi.
         policies:
           reject_media: Mos prano media
           reject_reports: Hidh tej raportimet
@@ -584,11 +588,13 @@ sq:
       assign_to_self: Caktojani vetes
       assigned: Iu caktua moderator
       by_target_domain: Përkatësi e llogarisë së raportuar
+      cancel: Anuloje
       category: Kategori
       category_description_html: Arsyeja pse kjo llogari dhe/ose lëndë raportohet do të citohet te komunikimi me llogarinë e raportuar
       comment:
         none: Asnjë
       comment_description_html: 'Për të dhënë më tepër informacion, %{name} shkroi:'
+      confirm: Ripohojeni
       confirm_action: Ripohoni veprim moderimi kundër @%{acct}
       created_at: Raportuar më
       delete_and_resolve: Fshiji postimet
@@ -789,6 +795,7 @@ sq:
         suspend: "%{name} e pezulloi llogarinë e %{target}"
       appeal_approved: Apeluar
       appeal_pending: Apelim pezull
+      appeal_rejected: Apelimi u hodh poshtë
     system_checks:
       database_schema_check:
         message_html: Ka migrime bazash të dhënash pezull. Ju lutemi, kryejini, për të qenë të sigurt se aplikacioni sillet siç priteet
@@ -953,6 +960,7 @@ sq:
   applications:
     created: Aplikimi u krijua me sukses
     destroyed: Aplikimi u fshi me sukses
+    logout: Dalje
     regenerate_token: Riprodho token hyrjesh
     token_regenerated: Token-i i hyrjeve u riprodhua me sukses
     warning: Bëni shumë kujdes me ato të dhëna. Mos ia jepni kurrë njeriu!
@@ -989,6 +997,8 @@ sq:
     resend_confirmation: Ridërgo udhëzime ripohimi
     reset_password: Ricaktoni fjalëkalimin
     rules:
+      accept: Pranoje
+      back: Mbrapsht
       preamble: Këto vendosen dhe zbatimi i tyre është nën kujdesin e moderatorëve të %{domain}.
       title: Disa rregulla bazë.
     security: Siguri
@@ -1136,7 +1146,7 @@ sq:
   featured_tags:
     add_new: Shtoni të re
     errors:
-      limit: Keni përdorur tashmë si të zgjedhur sasinë maksimum të hashtag-ëve
+      limit: Keni përdorur tashmë numrin maksimum të hashtag-ëve
     hint_html: "<strong>Çfarë janë hashtag-ët e zgjedhur?</strong> Këta shfaqen dukshëm te profili juaj publik dhe u lejojnë të tjerëve të shfletojnë postime tuajt publikë posaçërisht nën këta hashtag-ë. Janë një mjet i goditur për të ndjekur punë krijuese ose projekte afatgjata."
   filters:
     contexts:
@@ -1248,7 +1258,7 @@ sq:
     title: Ftoni njerëz
   lists:
     errors:
-      limit: Keni mbërritur në numrin maksimum të sasisë së listave
+      limit: Keni mbërritur në numrin maksimum të listave
   login_activities:
     authentication_methods:
       otp: aplikacion mirëfilltësimi dyfaktorësh
@@ -1568,7 +1578,7 @@ sq:
       '7889238': 3 muaj
     min_age_label: Prag moshe
     min_favs: Mbaji postimet e parapëlqyera më shumë se
-    min_favs_hint: Nuk fshihet ndonjë nga postimet tuaja që kanë marrë më shumë se sa ky numër parapëlqimesh. Lëreni të zbrazët për të fshirë postimet, pavarësisht të numrit të parapëlqimeve për to
+    min_favs_hint: Mos fshini ndonjë nga postimet tuaja që kanë marrë të paktën këtë numër si të parapëlqyer. Lëreni të zbrazët, që të fshihen postime pavarësisht nga numri se sa herë janë të parapëlqyer
     min_reblogs: Mbaji postimet e përforcuara më shumë se
     min_reblogs_hint: Nuk fshihet ndonjë nga postimet tuaja që kanë marrë më shumë se sa ky numër përforcimesh. Lëreni të zbrazët për të fshirë postimet, pavarësisht të numrit të përforcimeve për to
   stream_entries:

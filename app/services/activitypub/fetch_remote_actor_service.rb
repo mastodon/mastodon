@@ -28,7 +28,7 @@ class ActivityPub::FetchRemoteActorService < BaseService
     raise Error, "Unsupported JSON-LD context for document #{uri}" unless supported_context?
     raise Error, "Unexpected object type for actor #{uri} (expected any of: #{SUPPORTED_TYPES})" unless expected_type?
     raise Error, "Actor #{uri} has moved to #{@json['movedTo']}" if break_on_redirect && @json['movedTo'].present?
-    raise Error, "Actor #{uri} has no 'preferredUsername', which is a requirement for Mastodon compatibility" unless @json['preferredUsername'].present?
+    raise Error, "Actor #{uri} has no 'preferredUsername', which is a requirement for Mastodon compatibility" if @json['preferredUsername'].blank?
 
     @uri      = @json['id']
     @username = @json['preferredUsername']

@@ -1485,13 +1485,6 @@ Rails/ApplicationController:
     - 'app/controllers/well_known/nodeinfo_controller.rb'
     - 'app/controllers/well_known/webfinger_controller.rb'
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: NilOrEmpty, NotPresent, UnlessPresent.
-Rails/Blank:
-  Exclude:
-    - 'app/services/activitypub/fetch_remote_actor_service.rb'
-
 # Offense count: 35
 # Configuration parameters: Database, Include.
 # SupportedDatabases: mysql, postgresql
@@ -1644,13 +1637,6 @@ Rails/FilePath:
     - 'spec/fabricators/site_upload_fabricator.rb'
     - 'spec/rails_helper.rb'
     - 'spec/spec_helper.rb'
-
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Rails/FindById:
-  Exclude:
-    - 'app/controllers/api/v1/notifications_controller.rb'
-    - 'app/controllers/media_controller.rb'
 
 # Offense count: 6
 # Configuration parameters: Include.
@@ -1808,18 +1794,6 @@ Rails/ReversibleMigration:
     - 'db/migrate/20180617162849_remove_unused_indexes.rb'
     - 'db/migrate/20220827195229_change_canonical_email_blocks_nullable.rb'
 
-# Offense count: 10
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/RootPathnameMethods:
-  Exclude:
-    - 'lib/mastodon/premailer_webpack_strategy.rb'
-    - 'lib/tasks/emojis.rake'
-    - 'lib/tasks/mastodon.rake'
-    - 'lib/tasks/repo.rake'
-    - 'spec/fabricators/custom_emoji_fabricator.rb'
-    - 'spec/fabricators/site_upload_fabricator.rb'
-    - 'spec/rails_helper.rb'
-
 # Offense count: 141
 # Configuration parameters: ForbiddenMethods, AllowedMethods.
 # ForbiddenMethods: decrement!, decrement_counter, increment!, increment_counter, insert, insert!, insert_all, insert_all!, toggle!, touch, touch_all, update_all, update_attribute, update_column, update_columns, update_counters, upsert, upsert_all
@@ -1916,13 +1890,6 @@ Rails/UnusedIgnoredColumns:
     - 'app/models/status_edit.rb'
     - 'app/models/user.rb'
 
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/WhereEquals:
-  Exclude:
-    - 'app/models/announcement.rb'
-    - 'app/models/status.rb'
-
 # Offense count: 61
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle.
@@ -1962,13 +1929,6 @@ Rails/WhereExists:
     - 'spec/services/post_status_service_spec.rb'
     - 'spec/services/purge_domain_service_spec.rb'
     - 'spec/services/unallow_domain_service_spec.rb'
-
-# Offense count: 3
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Security/IoMethods:
-  Exclude:
-    - 'spec/controllers/admin/export_domain_allows_controller_spec.rb'
-    - 'spec/controllers/admin/export_domain_blocks_controller_spec.rb'
 
 # Offense count: 5
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -2025,16 +1985,6 @@ Style/FetchEnvVar:
     - 'lib/mastodon/redis_config.rb'
     - 'lib/tasks/repo.rake'
     - 'spec/features/profile_spec.rb'
-
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: format, sprintf, percent
-Style/FormatString:
-  Exclude:
-    - 'app/serializers/rest/privacy_policy_serializer.rb'
-    - 'lib/mastodon/maintenance_cli.rb'
-    - 'lib/paperclip/color_extractor.rb'
 
 # Offense count: 15
 # This cop supports safe autocorrection (--autocorrect).
@@ -2244,24 +2194,6 @@ Style/RegexpLiteral:
     - 'lib/mastodon/premailer_webpack_strategy.rb'
     - 'lib/tasks/mastodon.rake'
 
-# Offense count: 21
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: implicit, explicit
-Style/RescueStandardError:
-  Exclude:
-    - 'app/lib/activitypub/activity/move.rb'
-    - 'app/lib/request.rb'
-    - 'app/models/account.rb'
-    - 'app/workers/move_worker.rb'
-    - 'app/workers/scheduler/vacuum_scheduler.rb'
-    - 'lib/mastodon/accounts_cli.rb'
-    - 'lib/mastodon/cli_helper.rb'
-    - 'lib/mastodon/media_cli.rb'
-    - 'lib/mastodon/sidekiq_middleware.rb'
-    - 'lib/mastodon/statuses_cli.rb'
-    - 'lib/mastodon/upgrade_cli.rb'
-
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods, MaxChainLength.
@@ -2311,25 +2243,6 @@ Style/SlicingWithRange:
     - 'lib/active_record/batches.rb'
     - 'lib/mastodon/premailer_webpack_strategy.rb'
     - 'lib/tasks/repo.rake'
-
-# Offense count: 25
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Mode.
-Style/StringConcatenation:
-  Exclude:
-    - 'app/lib/activitypub/case_transform.rb'
-    - 'app/lib/validation_error_formatter.rb'
-    - 'app/services/backup_service.rb'
-    - 'app/services/fetch_link_card_service.rb'
-    - 'lib/mastodon/emoji_cli.rb'
-    - 'lib/mastodon/redis_config.rb'
-    - 'lib/mastodon/snowflake.rb'
-    - 'lib/paperclip/gif_transcoder.rb'
-    - 'lib/paperclip/type_corrector.rb'
-    - 'spec/controllers/api/v1/apps_controller_spec.rb'
-    - 'spec/controllers/api/v1/streaming_controller_spec.rb'
-    - 'spec/validators/disallowed_hashtags_validator_spec.rb'
-    - 'spec/workers/web/push_notification_worker_spec.rb'
 
 # Offense count: 272
 # This cop supports safe autocorrection (--autocorrect).
@@ -2461,11 +2374,3 @@ Style/SymbolArray:
     - 'spec/controllers/concerns/signature_verification_spec.rb'
     - 'spec/fabricators/notification_fabricator.rb'
     - 'spec/models/public_feed_spec.rb'
-
-# Offense count: 4
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AllowMethodsWithArguments, AllowedMethods, AllowedPatterns, AllowComments.
-# AllowedMethods: define_method, mail, respond_to
-Style/SymbolProc:
-  Exclude:
-    - 'spec/lib/request_spec.rb'

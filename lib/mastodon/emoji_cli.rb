@@ -68,7 +68,7 @@ module Mastodon
             failed += 1
             say('Failure/Error: ', :red)
             say(entry.full_name)
-            say('    ' + custom_emoji.errors[:image].join(', '), :red)
+            say("    #{custom_emoji.errors[:image].join(', ')}", :red)
           end
         end
       end

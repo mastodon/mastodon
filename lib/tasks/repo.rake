@@ -118,13 +118,8 @@ namespace :repo do
   task check_locales_files: :environment do
     pastel = Pastel.new
 
-    missing_yaml_files = I18n.available_locales.reject do |locale|
-      Rails.root.join('config', 'locales', "#{locale}.yml").exist?
-    end
-
-    missing_json_files = I18n.available_locales.reject do |locale|
-      Rails.root.join('app', 'javascript', 'mastodon', 'locales', "#{locale}.json").exist?
-    end
+    missing_yaml_files = I18n.available_locales.reject { |locale| Rails.root.join('config', 'locales', "#{locale}.yml").exist? }
+    missing_json_files = I18n.available_locales.reject { |locale| Rails.root.join('app', 'javascript', 'mastodon', 'locales', "#{locale}.json").exist? }
 
     locales_in_files = Dir[Rails.root.join('config', 'locales', '*.yml')].map do |path|
       file_name = File.basename(path)

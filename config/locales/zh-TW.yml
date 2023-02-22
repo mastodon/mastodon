@@ -11,7 +11,7 @@ zh-TW:
     followers:
       other: 跟隨者
     following: 正在跟隨
-    instance_actor_flash: 這個帳號是一個用來代表此伺服器的虛擬執行者，而非真實使用者。它用途為聯邦宇宙且不應被停權。
+    instance_actor_flash: 此帳號是用來代表此伺服器的虛擬執行者，而非個別使用者。它的用途為維繫聯邦宇宙，且不應被停權。
     last_active: 上次活躍時間
     link_verified_on: 此連結的所有權已在 %{date} 檢查過
     nothing_here: 暫時沒有內容可供顯示！
@@ -32,7 +32,7 @@ zh-TW:
       add_email_domain_block: 將電子郵件網域加入黑名單
       approve: 批准
       approved_msg: 成功審核了 %{username} 的新帳號申請
-      are_you_sure: 您確定嗎?
+      are_you_sure: 您確定嗎？
       avatar: 大頭貼
       by_domain: 站點
       change_email:
@@ -54,7 +54,7 @@ zh-TW:
       delete: 刪除資料
       deleted: 已刪除
       demote: 降級
-      destroyed_msg: 即將刪除 %{username} 的數據
+      destroyed_msg: 即將刪除 %{username} 的資料
       disable: 停用
       disable_sign_in_token_auth: 停用電子郵件 token 驗證
       disable_two_factor_authentication: 停用兩階段認證
@@ -89,6 +89,7 @@ zh-TW:
       moderation:
         active: 活躍
         all: 全部
+        disabled: 已停用
         pending: 等待中
         silenced: 受限的
         suspended: 已停權
@@ -130,6 +131,7 @@ zh-TW:
       search: 搜尋
       search_same_email_domain: 其他有同個電子郵件網域的使用者
       search_same_ip: 其他有同個 IP 的使用者
+      security: 安全性
       security_measures:
         only_password: 僅使用密碼
         password_and_2fa: 密碼及兩階段驗證 (2FA)
@@ -146,8 +148,8 @@ zh-TW:
       subscribe: 訂閱
       suspend: 停權
       suspended: 已停權
-      suspension_irreversible: 已永久刪除這個帳號的數據。雖然這個帳號的數據已被永久刪除，但是您仍然可以取消暫停這個帳號。
-      suspension_reversible_hint_html: 這個帳號已被暫停，所有數據將會在 %{date} 被刪除。在此之前，您可以完全回復您的帳號。如果您想即時刪除這個帳號的數據，您可以在下面進行操作。
+      suspension_irreversible: 已永久刪除此帳號的資料。您可以取消這個帳號的停權狀態，但無法還原已刪除的資料。
+      suspension_reversible_hint_html: 這個帳號已被停權，所有資料將會於 %{date} 被刪除。在此之前，此帳號可以被完全復原。如果您想即時刪除這個帳號的資料，可以在下面進行操作。
       title: 帳號
       unblock_email: 解除封鎖電子郵件地址
       unblocked_email_msg: 成功解除封鎖 %{username} 的電子郵件地址
@@ -157,7 +159,7 @@ zh-TW:
       undo_suspension: 取消停權
       unsilenced_msg: 成功解除 %{username} 的帳號限制
       unsubscribe: 取消訂閱
-      unsuspended_msg: 成功取消暫停 %{username} 的帳號
+      unsuspended_msg: 已成功取消停權 %{username} 的帳號
       username: 使用者名稱
       view_domain: 查看站台概要
       warn: 警告
@@ -242,11 +244,11 @@ zh-TW:
         create_user_role_html: "%{name} 建立了 %{target} 角色"
         demote_user_html: "%{name} 將使用者 %{target} 降級"
         destroy_announcement_html: "%{name} 刪除了公告 %{target}"
-        destroy_canonical_email_block_html: "%{name} 取消了 hash 為 %{target} 之 e-mail 的封鎖"
+        destroy_canonical_email_block_html: "%{name} 已解除封鎖 hash 為 %{target} 的電子郵件"
         destroy_custom_emoji_html: "%{name} 刪除了表情符號 %{target}"
         destroy_domain_allow_html: "%{name} 不允許與網域 %{target} 加入聯邦宇宙"
-        destroy_domain_block_html: "%{name} 取消了對網域 %{target} 的封鎖"
-        destroy_email_domain_block_html: "%{name} 取消了對電子郵件網域 %{target} 的封鎖"
+        destroy_domain_block_html: "%{name} 已解除封鎖網域 %{target}"
+        destroy_email_domain_block_html: "%{name} 已解除封鎖電子郵件網域 %{target}"
         destroy_instance_html: "%{name} 清除了網域 %{target}"
         destroy_ip_block_html: "%{name} 刪除了 IP %{target} 的規則"
         destroy_status_html: "%{name} 刪除了 %{target} 的嘟文"
@@ -270,12 +272,12 @@ zh-TW:
         resolve_report_html: "%{name} 處理了 %{target} 的檢舉"
         sensitive_account_html: "%{name} 將 %{target} 的媒體檔案標記為敏感內容"
         silence_account_html: "%{name} 靜音了使用者 %{target}"
-        suspend_account_html: "%{name} 停權了使用者 %{target}"
+        suspend_account_html: "%{name} 已停權 %{target} 的帳號"
         unassigned_report_html: "%{name} 取消指派 %{target} 的檢舉"
-        unblock_email_account_html: "%{name} 解除封鎖了 %{target} 的電子郵件地址"
+        unblock_email_account_html: "%{name} 已解除封鎖 %{target} 的電子郵件地址"
         unsensitive_account_html: "%{name} 將 %{target} 的媒體檔案的敏感狀態取消"
         unsilence_account_html: "%{name} 取消了使用者 %{target} 的靜音狀態"
-        unsuspend_account_html: "%{name} 取消了使用者 %{target} 的停權狀態"
+        unsuspend_account_html: "%{name} 已取消停權 %{target} 的帳號"
         update_announcement_html: "%{name} 更新了公告 %{target}"
         update_custom_emoji_html: "%{name} 更新了自訂表情符號 %{target}"
         update_domain_block_html: "%{name} 更新了 %{target} 之網域封鎖"
@@ -378,7 +380,7 @@ zh-TW:
       domain: 站點
       edit: 更改封鎖的站台
       existing_domain_block: 您已對 %{name} 施加了更嚴格的限制。
-      existing_domain_block_html: 您已經對 %{name} 施加了更嚴格的限制，您需要先把他<a href="%{unblock_url}">取消封鎖</a>。
+      existing_domain_block_html: 您已經對 %{name} 施加了更嚴格的限制，您需要先 <a href="%{unblock_url}">解除封鎖</a>。
       export: 匯出
       import: 匯入
       new:
@@ -402,7 +404,7 @@ zh-TW:
       reject_media_hint: 刪除本地快取的媒體檔案，並且不再接收來自該站點的任何媒體檔案。與停權無關
       reject_reports: 拒絕檢舉
       reject_reports_hint: 忽略所有來自此網域的檢舉。與停權無關
-      undo: 復原欲封鎖域名
+      undo: 撤銷網域封鎖
       view: 顯示阻擋的網域
     email_domain_blocks:
       add_new: 加入新項目
@@ -419,6 +421,7 @@ zh-TW:
         resolve: 解析網域
         title: 新增電子郵件黑名單項目
       no_email_domain_block_selected: 因未選取電子郵件網域黑名單，所以什麼事都沒發生
+      not_permitted: 無權限
       resolved_dns_records_hint_html: 網域名稱解析為以下 MX 網域，這些網域最終負責接收電子郵件。封鎖 MX 網域將會封鎖任何來自使用相同 MX 網域的電子郵件註冊，即便可見的域名是不同的也一樣。<strong>請注意，不要封鎖主要的電子郵件服務提供商。</strong>
       resolved_through_html: 透過 %{domain} 解析
       title: 電子郵件黑名單
@@ -465,6 +468,7 @@ zh-TW:
       content_policies:
         comment: 內部備註
         description_html: 您可以定義對所有此網域帳號及其子網域所實施之內容政策。
+        limited_federation_mode_description_html: 您可以選擇是否允許此網域加入聯邦宇宙。
         policies:
           reject_media: 拒絕多媒體
           reject_reports: 拒絕檢舉
@@ -553,8 +557,8 @@ zh-TW:
       status: 狀態
       title: 中繼
     report_notes:
-      created_msg: 檢舉備註建立成功！
-      destroyed_msg: 檢舉備註刪除成功！
+      created_msg: 已成功新增檢舉備註！
+      destroyed_msg: 已成功刪除檢舉備註！
     reports:
       account:
         notes:
@@ -571,15 +575,17 @@ zh-TW:
       actions_description_html: 決定應對此報告採取何種行動。若您對檢舉之帳號採取懲罰措施，則將對他們發送 e-mail 通知，如非選擇了 <strong>垃圾郵件</strong> 類別。
       actions_description_remote_html: 決定將對此檢舉報告採取何種動作。這將僅作用於<strong>您的伺服器</strong>與此遠端帳號及其內容之通訊行為。
       add_to_report: 加入更多至報告
-      are_you_sure: 您確定嗎?
+      are_you_sure: 您確定嗎？
       assign_to_self: 指派給自己
       assigned: 指派站務
       by_target_domain: 檢舉帳號之網域
+      cancel: 取消
       category: 分類
       category_description_html: 此帳號及/或被檢舉內容之原因會被引用在檢舉帳號通知中
       comment:
         none: 無
       comment_description_html: 提供更多資訊，%{name} 寫道：
+      confirm: 確認
       confirm_action: 確認對 @%{acct} 執行站務動作
       created_at: 日期
       delete_and_resolve: 刪除嘟文
@@ -615,12 +621,12 @@ zh-TW:
           delete_html: 您將要 <strong>移除</strong> 某些 <strong>@%{acct}</strong> 之嘟文。此將會：
           mark_as_sensitive_html: 您將要 <strong>標記</strong> 某些 <strong>@%{acct}</strong> 之嘟文為 <strong>敏感內容 </strong>。此將會：
           silence_html: 您將要 <strong>限制</strong> <strong>@%{acct}</strong> 之帳號。此將會：
-          suspend_html: 您將要 <strong>暫停</strong> <strong>@%{acct}</strong> 之帳號。此將會：
+          suspend_html: 您將要 <strong>停權</strong> <strong>@%{acct}</strong> 之帳號。此將會：
         actions:
           delete_html: 移除違反規則之嘟文
           mark_as_sensitive_html: 將違反規則之嘟文多媒體標記為敏感內容
           silence_html: 藉由標記他們的個人檔案與內容為僅可見於已跟隨帳號或手動查詢此個人檔案，此將嚴格地限制 <strong>@%{acct}</strong> 之觸及率
-          suspend_html: 暫停 <strong>@%{acct}</strong>，將他們的個人檔案與內容標記為無法存取及無法與之互動
+          suspend_html: 停權 <strong>@%{acct}</strong>，將他們的個人檔案與內容標記為無法存取及無法與之互動
         close_report: '將檢舉報告 #%{id} 標記為已處理'
         close_reports_html: 將 <strong>所有</strong> 對於 <strong>@%{acct}</strong> 之檢舉報告標記為已處理
         delete_data_html: 於即日起 30 天後刪除 <strong>@%{acct}</strong>之個人檔案與內容，除非他們於期限前被解除暫停
@@ -780,6 +786,7 @@ zh-TW:
         suspend: "%{name} 將 %{target} 的帳號停權"
       appeal_approved: 已申訴
       appeal_pending: 申訴待審中
+      appeal_rejected: 申訴被駁回
     system_checks:
       database_schema_check:
         message_html: 發現尚待處理的資料庫遷移 (database migration)。請執行它們以確保應用程式如期運行。
@@ -790,7 +797,7 @@ zh-TW:
         version_comparison: Elasticsearch %{running_version} 版正在執行，需要 %{required_version} 版。
       rules_check:
         action: 管理服务器规则
-        message_html: 您没有定義任何伺服器規則。
+        message_html: 您尚未定義任何伺服器規則。
       sidekiq_process_check:
         message_html: 沒有佇列 %{value} 的 Sidekiq 行程，請檢查您的 Sidekiq 設定組態
     tags:
@@ -814,6 +821,7 @@ zh-TW:
           other: 上週被 %{count} 名使用者分享
         title: 熱門連結
         usage_comparison: 於今日被 %{today} 人分享，相較於昨日 %{yesterday} 人
+      not_allowed_to_trend: 不允許登上熱門
       only_allowed: 僅允許
       pending_review: 等待審核中
       preview_card_providers:
@@ -861,7 +869,7 @@ zh-TW:
       add_new: 新增
       delete: 刪除
       edit_preset: 編輯預設警告
-      empty: 您未曾定義任何預設警告
+      empty: 您尚未定義任何預設警告。
       title: 管理預設警告
     webhooks:
       add_new: 新增端點
@@ -942,6 +950,7 @@ zh-TW:
   applications:
     created: 已建立應用程式
     destroyed: 已刪除應用程式
+    logout: 登出
     regenerate_token: 重新產生存取 token
     token_regenerated: 已重新產生存取 token
     warning: 警告，不要把它分享給任何人！
@@ -978,6 +987,8 @@ zh-TW:
     resend_confirmation: 重新寄送確認指引
     reset_password: 重設密碼
     rules:
+      accept: 接受
+      back: 上一頁
       preamble: 這些被 %{domain} 的管管們制定以及實施。
       title: 一些基本守則。
     security: 登入資訊
@@ -987,10 +998,10 @@ zh-TW:
       email_settings_hint_html: 請確認 e-mail 是否傳送至 %{email} 。如果電子郵件地址不正確的話，可以從帳號設定修改。
       title: 設定
     sign_in:
-      preamble_html: 請登入您於 <strong>%{domain}</strong> 之帳號密碼。若您的帳號託管於其他伺服器，您將無法於此登入。
+      preamble_html: 請使用您在 <strong>%{domain}</strong> 的帳號密碼登入。若您的帳號託管於其他伺服器，您將無法在此登入。
       title: 登入 %{domain}
     sign_up:
-      preamble: 於此 Mastodon 伺服器擁有帳號的話，您將能跟隨聯邦宇宙網路中任何一份子，無論他們的帳號託管於何處。
+      preamble: 在這個 Mastodon 伺服器上有個帳號的話，您將能跟隨聯邦宇宙網路中的任何人，無論他們的帳號託管於哪個伺服器。
       title: 讓我們一起設定 %{domain} 吧！
     status:
       account_status: 帳號狀態
@@ -1092,7 +1103,7 @@ zh-TW:
   errors:
     '400': 您所送出的請求無效或格式不正確。
     '403': 您沒有檢視這個頁面的權限。
-    '404': 您所尋找的網頁不存在。
+    '404': 您要找的頁面不存在。
     '406': 此頁面無法以請求的格式顯示。
     '410': 您所尋找的網頁此處已不存在。
     '422':
@@ -1125,7 +1136,7 @@ zh-TW:
   featured_tags:
     add_new: 新增
     errors:
-      limit: 您所推薦的標籤數量已經達到上限
+      limit: 您所推薦的主題標籤數量已達上限
     hint_html: "<strong>推薦主題標籤是什麼？</strong> 這些主題標籤將顯示於您的公開個人檔案頁，訪客可以藉此閱覽您標示了這些標籤的嘟文，拿來展示創意作品或者長期更新的專案很好用唷！"
   filters:
     contexts:
@@ -1229,7 +1240,7 @@ zh-TW:
     title: 邀請使用者
   lists:
     errors:
-      limit: 您所建立的列表數量已經達到上限
+      limit: 您所建立的列表數量已達上限
   login_activities:
     authentication_methods:
       otp: 兩階段驗證應用程式
@@ -1372,7 +1383,7 @@ zh-TW:
     activity: 帳號動態
     confirm_follow_selected_followers: 您確定要跟隨這些選取的跟隨者嗎？
     confirm_remove_selected_followers: 您確定要移除這些選取的跟隨者嗎？
-    confirm_remove_selected_follows: 您確定要移除這些選取的正在跟隨您的帳號嗎？
+    confirm_remove_selected_follows: 您確定要取消跟隨這些選取的使用者嗎？
     dormant: 潛水中
     follow_selected_followers: 跟隨所選取的跟隨者
     followers: 跟隨者
@@ -1487,8 +1498,8 @@ zh-TW:
     open_in_web: 以網頁開啟
     over_character_limit: 超過了 %{max} 字的限制
     pin_errors:
-      direct: 無法釘選只有僅提及使用者可見之嘟文
-      limit: 您所置頂的嘟文數量已經達到上限
+      direct: 不能釘選只對被提及的使用者顯示的嘟文
+      limit: 釘選嘟文的數量已達上限
       ownership: 不能釘選他人的嘟文
       reblog: 不能釘選轉嘟
     poll:
@@ -1506,7 +1517,7 @@ zh-TW:
     visibilities:
       direct: 私訊
       private: 僅限跟隨者
-      private_long: 只有跟隨您的人能看到
+      private_long: 只有跟隨者能看到
       public: 公開
       public_long: 所有人都能看到
       unlisted: 不在公開時間軸顯示
@@ -1524,8 +1535,8 @@ zh-TW:
     keep_direct_hint: 不會刪除任何您的私訊
     keep_media: 保留包含媒體內容的嘟文
     keep_media_hint: 不會刪除您包含媒體內容之嘟文
-    keep_pinned: 保留釘選嘟文
-    keep_pinned_hint: 不會刪除您的釘選嘟文
+    keep_pinned: 保留釘選的嘟文
+    keep_pinned_hint: 不會刪除您釘選的嘟文
     keep_polls: 保留投票
     keep_polls_hint: 不會刪除您的投票
     keep_self_bookmark: 保留您已標記為書籤之嘟文
@@ -1547,7 +1558,7 @@ zh-TW:
     min_reblogs: 保留超過嘟文轉嘟門檻
     min_reblogs_hint: 如果您嘟文已收到超過轉嘟門檻則不會刪除。留白表示不論轉嘟數量皆刪除該嘟文。
   stream_entries:
-    pinned: 釘選嘟文
+    pinned: 釘選的嘟文
     reblogged: 轉嘟
     sensitive_content: 敏感內容
   strikes:
@@ -1610,7 +1621,7 @@ zh-TW:
         delete_statuses: 您的某些嘟文被發現違反了一項或多項社群準則，隨後已被 %{instance} 的管理員刪除。
         disable: 您無法繼續使用您的帳號，但您的個人頁面及其他資料內容保持不變。您可以要求一份您的資料備份，帳號異動設定，或是刪除帳號。
         mark_statuses_as_sensitive: 您的部份嘟文已被 %{instance} 的管理員標記為敏感內容。這代表了人們必須在顯示預覽前點擊嘟文中的媒體。您可以在將來嘟文時自己將媒體標記為敏感內容。
-        sensitive: 由此刻起，您所有上傳的媒體檔案將被標記為敏感內容，並且隱藏於點擊警告之後。
+        sensitive: 您之後上傳的所有媒體檔案會被標為敏感內容，並且被隱藏起來，須點擊警告按鈕才會顯示。
         silence: 您仍然可以使用您的帳號，但僅有已跟隨您的人才能看到您在此伺服器的嘟文，您也可能會從各式探索功能中被排除。但其他人仍可手動跟隨您。
         suspend: 您將不能使用您的帳號，您的個人檔案頁面及其他資料將不再能被存取。您仍可於約 30 日內資料被完全刪除前要求下載您的資料，但我們仍會保留一部份基本資料，以防止有人規避停權處罰。
       reason: 原因：
@@ -1630,7 +1641,7 @@ zh-TW:
         none: 警告
         sensitive: 帳號已標記為敏感內容
         silence: 帳號已被限制
-        suspend: 帳號己被停用
+        suspend: 帳號己被停權
     welcome:
       edit_profile_action: 設定個人檔案
       edit_profile_step: 您可以設定您的個人檔案，包括上傳大頭貼、變更顯示名稱等等。您也可以選擇在新的跟隨者跟隨前，先對他們進行審核。
@@ -1638,7 +1649,7 @@ zh-TW:
       final_action: 開始嘟嘟
       final_step: '開始嘟嘟吧！即使您現在沒有跟隨者，其他人仍然能在本站時間軸、主題標籤等地方，看到您的公開嘟文。試著用 #introductions 這個主題標籤介紹一下自己吧。'
       full_handle: 您的完整帳號名稱
-      full_handle_hint: 您需要把這告訴您的朋友們，這樣他們就能從另一個伺服器向您發送訊息或著跟隨您。
+      full_handle_hint: 您需要把這告訴您的朋友們，這樣他們就能從另一個伺服器向您發送訊息或跟隨您。
       subject: 歡迎來到 Mastodon
       title: "%{name} 誠摯歡迎您的加入！"
   users:

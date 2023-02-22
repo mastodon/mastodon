@@ -3,7 +3,10 @@ ast:
   simple_form:
     hints:
       admin_account_action:
-        text_html: Opcional. Pues usar la sintaxis de los artículos ya amestar <a href="%{path}">amestar preconfiguraes</a> p'aforrar tiempu
+        text_html: Opcional. Pues usar la sintaxis de los artículos ya amestar <a href="%{path}">alvertencies preconfiguraes</a> p'aforrar tiempu
+        type_html: Escueyi qué facer con <strong>%{acct}</strong>
+        types:
+          none: Usa esta opción pa unviar una alvertencia al perfil, ensin aicionar nenguna otra aición.
       announcement:
         all_day: Al marcar la opción, namás apaecen les dates del intervalu de tiempu
         ends_at: Opcional. L'anunciu dexa de tar espublizáu na data qu'indiques
@@ -68,8 +71,10 @@ ast:
       admin_account_action:
         include_statuses: Incluyir nel mensaxe los artículos de los que s'informó
         send_email_notification: Avisar al perfil per corréu electrónicu
+        text: Alvertencia personalizada
         type: Aición
         types:
+          sensitive: Marcar como cuenta sensible
           suspend: Suspender
       announcement:
         all_day: Eventu de tol día
