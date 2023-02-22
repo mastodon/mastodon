@@ -22,6 +22,7 @@ class PostStatusService < BaseService
   # @option [Status] :thread Optional status to reply to
   # @option [Boolean] :sensitive
   # @option [String] :visibility
+  # @option [Boolean] :indexable
   # @option [String] :spoiler_text
   # @option [String] :language
   # @option [String] :scheduled_at
@@ -66,6 +67,7 @@ class PostStatusService < BaseService
     @text         = @options.delete(:spoiler_text) if @text.blank? && @options[:spoiler_text].present?
     @visibility   = @options[:visibility] || @account.user&.setting_default_privacy
     @visibility   = :unlisted if @visibility&.to_sym == :public && @account.silenced?
+    @indexable    = @visibility&.to_sym == :public && (@options[:indexable] || @account.user&.setting_default_indexable)
     @scheduled_at = @options[:scheduled_at]&.to_datetime
     @scheduled_at = nil if scheduled_in_the_past?
   rescue ArgumentError
@@ -193,6 +195,7 @@ class PostStatusService < BaseService
       sensitive: @sensitive,
       spoiler_text: @options[:spoiler_text] || '',
       visibility: @visibility,
+      indexable: @indexable,
       language: valid_locale_cascade(@options[:language], @account.user&.preferred_posting_language, I18n.default_locale),
       application: @options[:application],
       rate_limit: @options[:with_rate_limit],

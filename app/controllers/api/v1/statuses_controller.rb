@@ -59,6 +59,7 @@ class Api::V1::StatusesController < Api::BaseController
       sensitive: status_params[:sensitive],
       spoiler_text: status_params[:spoiler_text],
       visibility: status_params[:visibility],
+      indexable: status_params[:indexable],
       language: status_params[:language],
       scheduled_at: status_params[:scheduled_at],
       application: doorkeeper_token.application,
@@ -88,6 +89,7 @@ class Api::V1::StatusesController < Api::BaseController
       media_ids: status_params[:media_ids],
       media_attributes: status_params[:media_attributes],
       sensitive: status_params[:sensitive],
+      indexable: status_params[:indexable],
       language: status_params[:language],
       spoiler_text: status_params[:spoiler_text],
       poll: status_params[:poll]
@@ -133,6 +135,7 @@ class Api::V1::StatusesController < Api::BaseController
       :sensitive,
       :spoiler_text,
       :visibility,
+      :indexable,
       :language,
       :scheduled_at,
       allowed_mentions: [],

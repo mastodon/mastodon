@@ -15,6 +15,7 @@ class UpdateStatusService < BaseService
   # @option options [String] :text
   # @option options [String] :spoiler_text
   # @option options [Boolean] :sensitive
+  # @option options [Boolean] :indexable
   # @option options [String] :language
   def call(status, account_id, options = {})
     @status                    = status
@@ -111,6 +112,7 @@ class UpdateStatusService < BaseService
     @status.text         = @options[:text].presence || @options.delete(:spoiler_text) || '' if @options.key?(:text)
     @status.spoiler_text = @options[:spoiler_text] || '' if @options.key?(:spoiler_text)
     @status.sensitive    = @options[:sensitive] || @options[:spoiler_text].present? if @options.key?(:sensitive) || @options.key?(:spoiler_text)
+    @status.indexable    = @status.public_visibility? && @options[:indexable] if @options.key?(:indexable)
     @status.language     = valid_locale_cascade(@options[:language], @status.language, @status.account.user&.preferred_posting_language, I18n.default_locale)
 
     # We raise here to rollback the entire transaction
