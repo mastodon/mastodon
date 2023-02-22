@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe RemoveFromFollowersService, type: :service do
-  let(:bob) { Fabricate(:account, username: 'bob') }
-
   subject { RemoveFromFollowersService.new }
+
+  let(:bob) { Fabricate(:account, username: 'bob') }
 
   describe 'local' do
     let(:sender) { Fabricate(:account, username: 'alice') }
- 
+
     before do
       Follow.create(account: sender, target_account: bob)
       subject.call(bob, sender)

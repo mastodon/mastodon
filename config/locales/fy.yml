@@ -441,6 +441,7 @@ fy:
         private_comment_description_html: 'Om jo te helpen byhâlden wêr’t de ymportearre blokkaden wei komme, wurde de ymportearre blokkaden mei de folgjende priveeopmerking oanmakke: <q>%{comment}</q>'
         private_comment_template: Ymportearre fan %{source} op %{date}
         title: Domeinblokkaden ymportearje
+      invalid_domain_block: 'Ien of mear domeinblokkaden binne oerslein, fanwegen de folgjende flater(s): %{error}'
       new:
         title: Domeinblokkaden ymportearje
       no_file: Gjin bestân selektearre
@@ -589,6 +590,7 @@ fy:
       comment:
         none: Gjin
       comment_description_html: 'Om mear ynformaasje te jaan, skreau %{name}:'
+      confirm_action: Moderaasjemaatregelen tsjin %{acct} befêstigje
       created_at: Rapportearre op
       delete_and_resolve: Berjocht fuortsmite
       forwarded: Trochstjoerd
@@ -605,6 +607,7 @@ fy:
         placeholder: Beskriuw hokker maatregels nommen binne of oare relatearre opmerkingen…
         title: Opmerkingen
       notes_description_html: Besjoch en lit opmerkingen efter foar oare moderatoaren en foar jo takomstige sels
+      processed_msg: 'Rapprtaazje #%{id} mei sukses ferwurke'
       quick_actions_description_html: 'Nim in flugge maatregel of skow nei ûnder om de rapportearre ynhâld te besjen:'
       remote_user_placeholder: de eksterne brûker fan %{instance}
       reopen: Rapport opnij iepenje
@@ -617,9 +620,28 @@ fy:
       status: Steat
       statuses: Rapportearre ynhâld
       statuses_description_html: De problematyske ynhâld wurdt oan it rapportearre account meidield
+      summary:
+        action_preambles:
+          delete_html: 'Jo stean op it punt om inkelde berjochten fan <strong>@%{acct}</strong> <strong>fuort te smiten</strong>. Dit sil:'
+          mark_as_sensitive_html: 'Jo stean op it punt om inkelde berjochten fan <strong>@%{acct}</strong> as <strong>gefoelich</strong> te <strong>markearjen</strong>. Dit sil:'
+          silence_html: 'Jo stean op it punt de account fan <strong>@%{acct}</strong> te <strong>beheinen</strong>. Dit sil:'
+          suspend_html: 'Jo stean op it punt de account fan <strong>@%{acct}</strong> te <strong>beskoatteljen</strong>. Dit sil:'
+        actions:
+          delete_html: De problematyske berjochten fuortsmite
+          mark_as_sensitive_html: De media fan de problematyske berjochten as gefoelich markearje
+          silence_html: "<strong>@%{acct}</strong> earnstich beheine, troch it profyl ende ynhâld allinnich sichtber te meitsjen foar de minsken dy’t harren al folgje of hantmjittich it profyl opsykje"
+          suspend_html: "<strong>@%{acct}</strong> blokkearje, sadat it profyl en de ynhâld net mear tagonklik is en it net mooglik is om ynteraksje dêr mei te hawwen"
+        close_report: 'Rapportaazje #%{id} as oplost markearje'
+        close_reports_html: "<strong>Alle</strong> meldingen tsjin <strong>@%{acct}</strong> as oplost markearje"
+        delete_data_html: It profyl en de ynhâld fan <strong>@%{acct}</strong> wurde nei 30 dagen fan no ôf fuortsmiten, útsein as de account yn de tuskentiid net mear blokkearre wurdt
+        preview_preamble_html: "<strong>@%{acct}</strong> sil in warskôging ûntfange mei de folgjende ynhâld:"
+        record_strike_html: In ban tsjin <strong>@%{acct}</strong> ynstelle, om jo te helpen by takomstige skeiningen fan dizze acount te eskalearjen
+        send_email_html: Stjoer <strong>@%{acct}</strong> in warskôgings-e-mailberjocht
+        warning_placeholder: Ekstra opsjonele reden foar de moderaasje-aksje.
       target_origin: Orizjineel fan rapportearre account
       title: Rapportaazjes
       unassign: Net langer tawize
+      unknown_action_msg: 'Unbekende aksje: %{action}'
       unresolved: Net oplost
       updated_at: Bywurke
       view_profile: Profyl besjen
@@ -943,6 +965,8 @@ fy:
   auth:
     apply_for_account: Account oanfreegje
     change_password: Wachtwurd
+    confirmations:
+      wrong_email_hint: As it e-mailadres net korrekt is, kinne jo dat wizigje yn de accountynstellingen.
     delete_account: Account fuortsmite
     delete_account_html: Wannear’t jo jo account graach fuortsmite wolle, kinne jo dat <a href="%{path}">hjir dwaan</a>. Wy freegje jo dêr om in befêstiging.
     description:

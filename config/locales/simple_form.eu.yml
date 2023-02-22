@@ -18,6 +18,8 @@ eu:
           disable: Erabiltzaileari bere kontua erabiltzea eragotzi, baina ez ezabatu edo ezkutatu bere edukiak.
           none: Erabili hau erabiltzaileari abisu bat bidaltzeko, beste ekintzarik abiarazi gabe.
           sensitive: Behartu erabiltzaile honen multimedia eranskin guztiak hunkigarri gisa markatzea.
+          silence: Eragotzi erabiltzaileak ikusgaitasun publikoarekin argitaratzea, ezkutatu bere bidalketa eta jakinarazpenak jarraitzen ez duten pertsonei. Kontu honen aurkako txosten guztiak ixten ditu.
+          suspend: Eragotzi kontu honek inolako interakziorik izatea eta ezabatu bere edukiak. Atzera bota daiteke 30 egun igaro aurretik. Kontu honen aurkako txosten guztiak ixten ditu.
         warning_preset_id: Aukerakoa. Zure testua gehitu dezakezu aurre-ezarpenaren ostean
       announcement:
         all_day: Markatutakoan soilik denbora barrutiko datak erakutsiko dira
@@ -72,6 +74,7 @@ eu:
           hide: Ezkutatu erabat iragazitako edukia, existituko ez balitz bezala
           warn: Ezkutatu iragazitako edukia iragazkiaren izenburua duen abisu batekin
       form_admin_settings:
+        activity_api_enabled: Lokalki argitaratutako bidalketak, erabiltzaile aktiboak, eta izen-emateen kopuruak astero zenbatzen ditu
         backups_retention_period: Mantendu sortutako erabiltzailearen artxiboa zehazturiko egun kopuruan.
         bootstrap_timeline_accounts: Kontu hauek erabiltzaile berrien jarraitzeko gomendioen goiko aldean ainguratuko dira.
         closed_registrations_message: Izen-ematea itxia dagoenean bistaratua
@@ -79,6 +82,7 @@ eu:
         custom_css: Estilo pertsonalizatuak aplikatu ditzakezu Mastodonen web bertsioan.
         mascot: Web interfaze aurreratuko ilustrazioa gainidazten du.
         media_cache_retention_period: Balio positibo bat ezarriz gero, egun kopuru horretara iristean beste zerbitzarietatik deskargatutako multimedia fitxategiak ezabatuko dira. Ondoren, eskatu ahala deskargatuko dira berriz.
+        peers_api_enabled: Zerbitzari honek fedibertsoan ikusi dituen zerbitzarien domeinu-izenen zerrenda. Ez da daturik ematen zerbitzari jakin batekin federatzearen ala ez federatzearen inguruan, zerbitzariak haien berri duela soilik. Federazioari buruzko estatistika orokorrak biltzen dituzten zerbitzuek erabiltzen dute hau.
         profile_directory: Profilen direktorioan ikusgai egotea aukeratu duten erabiltzaile guztiak zerrendatzen dira.
         require_invite_text: Izen emateak eskuz onartu behar direnean, "Zergatik elkartu nahi duzu?" testu sarrera derrigorrezko bezala ezarri, ez hautazko
         site_contact_email: Jendeak kontsulta legalak egin edo laguntza eskatzeko bidea.
@@ -87,11 +91,13 @@ eu:
         site_short_description: Zure zerbitzaria identifikatzen laguntzen duen deskribapen laburra. Nork du ardura? Nori zuzendua dago?
         site_terms: Erabili zure pribatutasun politika edo hutsik utzi lehenetsia erabiltzeko. Markdown sintaxiarekin egituratu daiteke.
         site_title: Jendeak nola deituko dion zure zerbitzariari, domeinu-izenaz gain.
+        status_page_url: Kanporatua dagoen jendeak zerbitzari honen egoera ikus dezaten gune baten URL
         theme: Saioa hasi gabeko erabiltzaileek eta berriek ikusiko duten gaia.
         thumbnail: Zerbitzariaren informazioaren ondoan erakusten den 2:1 inguruko irudia.
         timeline_preview: Saioa hasi gabeko erabiltzaileek ezingo dituzte arakatu zerbitzariko bidalketa publiko berrienak.
         trendable_by_default: Saltatu joeretako edukiaren eskuzko berrikuspena. Ondoren elementuak banan-bana kendu daitezke joeretatik.
         trends: Joeretan zure zerbitzarian bogan dauden bidalketa, traola eta albisteak erakusten dira.
+        trends_as_landing_page: Saioa hasita ez duten erabiltzaileei eta bisitariei pil-pilean dagoen edukia erakutsi zerbitzari honen deskribapena erakutsi ordez. Joerak aktibatuak edukitzea beharrezkoa da.
       form_challenge:
         current_password: Zonalde seguruan sartzen ari zara
       imports:
@@ -227,6 +233,7 @@ eu:
           hide: Ezkutatu guztiz
           warn: Ezkutatu ohar batekin
       form_admin_settings:
+        activity_api_enabled: Argitaratu erabiltzaile-jardueraren guztizko estatistikak APIan
         backups_retention_period: Erabiltzailearen artxiboa gordetzeko epea
         bootstrap_timeline_accounts: Gomendatu beti kontu hauek erabiltzaile berriei
         closed_registrations_message: Izen-emateak itxita daudenerako mezu pertsonalizatua
@@ -234,6 +241,7 @@ eu:
         custom_css: CSS pertsonalizatua
         mascot: Maskota pertsonalizatua (zaharkitua)
         media_cache_retention_period: Multimediaren cachea atxikitzeko epea
+        peers_api_enabled: Argitaratu aurkitutako zerbitzarien zerrenda APIan
         profile_directory: Gaitu profil-direktorioa
         registrations_mode: Nork eman dezake izena
         require_invite_text: Eskatu arrazoi bat batzeko
@@ -245,11 +253,13 @@ eu:
         site_short_description: Zerbitzariaren deskribapena
         site_terms: Pribatutasun politika
         site_title: Zerbitzariaren izena
+        status_page_url: Egoera-orriaren URL
         theme: Lehenetsitako gaia
         thumbnail: Zerbitzariaren koadro txikia
         timeline_preview: Onartu autentifikatu gabeko sarbidea denbora lerro publikoetara
         trendable_by_default: Onartu joerak aurrez berrikusi gabe
         trends: Gaitu joerak
+        trends_as_landing_page: Joerak erabili helburuko orri gisa
       interactions:
         must_be_follower: Blokeatu jarraitzaile ez direnen jakinarazpenak
         must_be_following: Blokeatu zuk jarraitzen ez dituzu horien jakinarazpenak

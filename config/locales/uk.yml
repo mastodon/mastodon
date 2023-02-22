@@ -457,6 +457,7 @@ uk:
         private_comment_description_html: 'Щоб допомогти вам відстежувати, звідки беруться імпортовані блокування, вони створюються за допомогою наступного приватного коментаря: <q>%{comment}</q>'
         private_comment_template: Імпортовано з %{source} %{date}
         title: Імпорт блокувань домену
+      invalid_domain_block: 'Один або кілька доменних блоків пропущено через такі помилки: %{error}'
       new:
         title: Імпорт блокувань домену
       no_file: Файл не вибрано
@@ -613,6 +614,7 @@ uk:
       comment:
         none: Немає
       comment_description_html: 'Щоб надати більше відомостей, %{name} пише:'
+      confirm_action: Підтвердьте модераційну дію щодо @%{acct}
       created_at: Створено
       delete_and_resolve: Видалити дописи
       forwarded: Переслано
@@ -629,6 +631,7 @@ uk:
         placeholder: Опишіть, які дії були виконані, або інші зміни, що стосуються справи...
         title: Примітки
       notes_description_html: Переглядайте та залишайте примітки для інших модераторів та для себе на майбутнє
+      processed_msg: 'Звіт #%{id} успішно оброблено'
       quick_actions_description_html: 'Виберіть швидку дію або гортайте вниз, щоб побачити матеріал, на який надійшла скарга:'
       remote_user_placeholder: віддалений користувач із %{instance}
       reopen: Перевідкрити скаргу
@@ -641,9 +644,28 @@ uk:
       status: Стан
       statuses: Вміст, на який поскаржилися
       statuses_description_html: Замінений вміст буде цитований у спілкуванні з обліковим записом, на який поскаржилися
+      summary:
+        action_preambles:
+          delete_html: 'Ви збираєтеся <strong>вилучити</strong> деякі з дописів <strong>@%{acct}</strong>. Це буде:'
+          mark_as_sensitive_html: 'Ви збираєтеся <strong>позначити</strong> деякі з дописів <strong>@%{acct}</strong> <strong>делікатними</strong>. Це буде:'
+          silence_html: 'Ви збираєтеся <strong>обмежити</strong> обліковий запис <strong>@%{acct}</strong>. Це буде:'
+          suspend_html: 'Ви збираєтесь <strong>призупинити</strong> обліковий запис <strong>@%%{acct}</strong>. Це буде:'
+        actions:
+          delete_html: Вилучити образливі дописи
+          mark_as_sensitive_html: Позначити медіа образливих дописів делікатними
+          silence_html: Досягнуто жорсткого обмеження <strong>@%{acct}</strong>, зробивши їхній профіль і вміст видимим тільки людям, які вже слідують за ними або вручну шукають його профіль
+          suspend_html: Призупинити <strong>@%{acct}</strong>, зробити їх профіль і вміст недоступним та унеможливити взаємодію
+        close_report: 'Позначити звіт #%{id} розв''язаним'
+        close_reports_html: Позначити <strong>всі</strong> звіти проти <strong>@%{acct}</strong> розв'язаними
+        delete_data_html: Видаліть профіль <strong>@%{acct}</strong> і вміст за останні 30 днів, якщо вони не дія не скасується тим часом
+        preview_preamble_html: "<strong>@%{acct}</strong> отримає попередження з таким вмістом:"
+        record_strike_html: Запис попередження проти <strong>@%{acct}</strong>, що допоможе вам посилити ваші майбутні санкції проти цього облікового запису
+        send_email_html: Надіслати <strong>@%{acct}</strong> попереджувального електронного листа
+        warning_placeholder: Додаткові причини дії модерації.
       target_origin: Походження облікового запису, на який скаржаться
       title: Скарги
       unassign: Зняти призначення
+      unknown_action_msg: 'Невідома дія: %{action}'
       unresolved: Невирішені
       updated_at: Оновлені
       view_profile: Переглянути профіль
@@ -979,6 +1001,8 @@ uk:
   auth:
     apply_for_account: Запит облікового запису
     change_password: Пароль
+    confirmations:
+      wrong_email_hint: Якщо ця адреса електронної пошти неправильна, можна змінити її в налаштуваннях облікового запису.
     delete_account: Видалити обліковий запис
     delete_account_html: Якщо ви хочете видалити свій обліковий запис, ви можете <a href="%{path}">перейти сюди</a>. Вас попросять підтвердити дію.
     description:

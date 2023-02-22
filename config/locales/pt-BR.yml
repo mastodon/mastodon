@@ -573,6 +573,7 @@ pt-BR:
         mark_as_sensitive_description_html: Os conteúdos de mídia em publicações denunciadas serão marcados como sensíveis e um aviso de violação será mantido para te informar sobre o agravamento caso essa mesma conta comenta infrações no futuro.
         other_description_html: Veja mais opções para controlar o comportamento da conta e personalizar a comunicação com a conta denunciada.
         resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma violação será guardada e a denúncia será encerrada.
+        silence_description_html: A conta ficará visível apenas para aqueles que já a seguem ou que a procuram manualmente, limitando severamente seu alcance. Pode ser revertido a qualquer momento. Fecha todas as denúncias desta conta.
       actions_description_html: Decida que medidas tomar para resolver esta denúncia. Se você decidir punir a conta denunciada, ela receberá uma notificação por e-mail, exceto quando for selecionada a categoria <strong>spam</strong> for selecionada.
       add_to_report: Adicionar mais à denúncia
       are_you_sure: Você tem certeza?
@@ -612,9 +613,23 @@ pt-BR:
       status: Estado
       statuses: Conteúdo denunciado
       statuses_description_html: Conteúdo ofensivo será citado em comunicação com a conta denunciada
+      summary:
+        action_preambles:
+          delete_html: 'Você está prestes a <strong>remover</strong> algumas das publicações de <strong>@%{acct}</strong>. Isso irá:'
+          mark_as_sensitive_html: 'Você está prestes a <strong>marcar</strong> algumas das publicações de <strong>@%{acct}</strong> como <strong>sensíveis</strong>. Isso irá:'
+          silence_html: 'Você está prestes a <strong>limitar</strong> <strong>a conta de @%{acct}</strong>. Isso irá:'
+          suspend_html: 'Você está prestes a <strong>suspender</strong> <strong>a conta de @%{acct}</strong>. Isso irá:'
+        actions:
+          delete_html: Remover as publicações ofensivas
+        close_report: 'Marcar denúncia #%{id} como resolvida'
+        close_reports_html: Marcar <strong>todas</strong> as denúncias contra <strong>@%{acct}</strong> como resolvidas
+        delete_data_html: Exclua o perfil e o conteúdo de <strong>@%{acct}</strong> daqui a 30 dias, a menos que a suspensão seja desfeita nesse meio tempo
+        preview_preamble_html: "<strong>@%{acct}</strong> receberá um aviso com o seguinte conteúdo:"
+        send_email_html: Enviar <strong>@%{acct}</strong> um e-mail de aviso
       target_origin: Origem da conta denunciada
       title: Denúncias
       unassign: Desatribuir
+      unknown_action_msg: 'Ação desconhecida: %{action}'
       unresolved: Não resolvido
       updated_at: Atualizado
       view_profile: Ver perfil
@@ -703,6 +718,7 @@ pt-BR:
         title: Retenção de conteúdo
       default_noindex:
         desc_html: Afeta qualquer usuário que não tenha alterado esta configuração manualmente
+        title: Optar por excluir usuários da indexação de mecanismos de pesquisa por padrão
       discovery:
         follow_recommendations: Seguir recomendações
         preamble: Navegar por um conteúdo interessante é fundamental para integrar novos usuários que podem não conhecer ninguém no Mastodon. Controle como várias características de descoberta funcionam no seu servidor.
@@ -937,6 +953,8 @@ pt-BR:
   auth:
     apply_for_account: Solicitar uma conta
     change_password: Senha
+    confirmations:
+      wrong_email_hint: Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir sua conta, você pode <a href="%{path}">fazer isso aqui</a>. Uma confirmação será solicitada.
     description:
@@ -964,6 +982,7 @@ pt-BR:
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Redefinir senha
     rules:
+      preamble: Estes são definidos e aplicados pelos moderadores de %{domain}.
       title: Algumas regras básicas.
     security: Segurança
     set_new_password: Definir uma nova senha

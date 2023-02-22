@@ -457,6 +457,7 @@ be:
         private_comment_description_html: 'Каб дапамагчы вам адсочваць, адкуль паходзяць імпартаваныя блокі, імпартаваныя блокі будуць створаны з наступным прыватным каментарыем: <q>%{comment}</q>'
         private_comment_template: Імпартавана з %{source} %{date}
         title: Імпарт блакіровак дамену
+      invalid_domain_block: 'Адзін ці больш даменных блокаў былі прапушчаны праз наступную(-ыя) памылку(-і): %{error}'
       new:
         title: Імпарт блакіровак дамену
       no_file: Файл не выбраны
@@ -613,6 +614,7 @@ be:
       comment:
         none: Пуста
       comment_description_html: 'Каб даць больш інфармацыі, %{name} напісаў:'
+      confirm_action: Пацвердзіць мадэрацыю супраць @%{acct}
       created_at: Створана
       delete_and_resolve: Выдаліць допісы
       forwarded: Пераслана
@@ -629,6 +631,7 @@ be:
         placeholder: Апішыце, якія дзеянні былі зроблены, або любыя іншыя звязаныя абнаўленні...
         title: Нататкі
       notes_description_html: Праглядвайце і пакідайце нататкі іншым мадэратарам і сабе ў будучыні
+      processed_msg: 'Скарга #%{id} паспяхова апрацавана'
       quick_actions_description_html: 'Выканайце хуткае дзеянне або пракруціце ўніз, каб убачыць змесціва, на якое пададзена скарга:'
       remote_user_placeholder: аддалены карыстальнік з %{instance}
       reopen: Пераадкрыць скаргу
@@ -641,9 +644,21 @@ be:
       status: Стан
       statuses: Змесціва, на якое паскардзіліся
       statuses_description_html: Крыўднае змесціва будзе згадвацца ў зносінах з уліковым запісам, на які пададзена скарга
+      summary:
+        actions:
+          delete_html: Выдаліць абразлівы допіс
+          mark_as_sensitive_html: Пазначыць медыя абразлівага допіса як далікатнае
+          suspend_html: Прыпыніць <strong>@%{acct}</strong>, зрабіць профіль і змесціва недаступным і не даваць магчымасці ўзаемадзейнічаць з імі
+        close_report: 'Пазначыць скаргу #%{id} як вырашаную'
+        close_reports_html: Адзначыць <strong>усе</strong> скаргі супраць <strong>@%{acct}</strong> як вырашаныя
+        delete_data_html: Выдаліць профіль <strong>@%{acct}</strong> і змесціва праз 30 дзён, калі тым часам гэтае дзеянне не будзе адменена
+        preview_preamble_html: "<strong>@%{acct}</strong> атрымае папярэджанне наступнага зместу:"
+        send_email_html: Адправіць <strong>@%{acct}</strong> папярэджанне па электроннай пошце
+        warning_placeholder: Неабавязковае дадатковае абгрунтаванне мадэрацыі.
       target_origin: Крыніца уліковага запісу на які пададзена скарга
       title: Скаргі
       unassign: Скінуць
+      unknown_action_msg: 'Невядомае дзеянне: %{action}'
       unresolved: Нявырашаныя
       updated_at: Абноўлена
       view_profile: Паглядзець профіль
@@ -979,6 +994,8 @@ be:
   auth:
     apply_for_account: Пакінуць заяўку
     change_password: Пароль
+    confirmations:
+      wrong_email_hint: Калі гэты адрас электроннай пошты памылковы, вы можаце змяніць яго ў наладах уліковага запісу.
     delete_account: Выдаліць уліковы запіс
     delete_account_html: Калі вы жадаеце выдаліць ваш уліковы запіс, можаце <a href="%{path}">працягнуць тут</a>. Ад вас будзе запатрабавана пацвярджэнне.
     description:
@@ -1424,6 +1441,7 @@ be:
     activity: Актыўнасць ул. запісу
     confirm_follow_selected_followers: Вы ўпэўнены, што жадаеце падпісацца на выбраных падпісчыкаў?
     confirm_remove_selected_followers: Вы ўпэўнены, што жадаеце выдаліць выбраных падпісчыкаў?
+    confirm_remove_selected_follows: Вы ўпэўнены, што жадаеце выдаліць выбраныя падпіскі?
     dormant: Занядбаны
     follow_selected_followers: Падпісацца на выбраных падпісчыкаў
     followers: Падпісчыкі

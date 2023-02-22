@@ -457,6 +457,7 @@ he:
         private_comment_description_html: 'כדי לסייע במעקב מאיכן הגיעו חסימות, חסימות מיובאות ילוו בהערה פרטית זו: <q>%{comment}</q>'
         private_comment_template: יובא מתוך %{source} בתאריך %{date}
         title: יבוא רשימת שרתים חסומים
+      invalid_domain_block: 'חסימה של שרת אחד או יותר דולגו בשל השגיאה הבאה: %{error}'
       new:
         title: יבוא רשימת שרתים חסומים
       no_file: לא נבחר קובץ
@@ -534,7 +535,7 @@ he:
       public_comment: תגובה פומבית
       purge: טיהור
       purge_description_html: אם יש יסוד להניח שדומיין זה מנותק לעד, ניתן למחוק את כל רשומות החשבונות והמידע המשוייך לדומיין זה משטח האפסון שלך. זה עשוי לקחת זמן מה.
-      title: שרתים מוכרים
+      title: שרתים בפדרציה
       total_blocked_by_us: חסום על ידינו
       total_followed_by_them: נעקב על ידם
       total_followed_by_us: נעקב על ידינו
@@ -613,6 +614,7 @@ he:
       comment:
         none: ללא
       comment_description_html: 'על מנת לספק עוד מידע, %{name} כתב\ה:'
+      confirm_action: נא לאשר פעולת משמעת לגבי חשבון %{acct}
       created_at: מדווח
       delete_and_resolve: מחיקת הודעות
       forwarded: קודם
@@ -629,6 +631,7 @@ he:
         placeholder: תאר/י אילו פעולות ננקטו, או עדכונים קשורים אחרים...
         title: הערות
       notes_description_html: צפייה והשארת הערות למנחים אחרים או לעצמך העתידי
+      processed_msg: דיווח %{id} עוּבָּד בהצלחה
       quick_actions_description_html: 'נקוט/י פעולה מהירה או גלול/י למטה לצפייה בתוכן המדווח:'
       remote_user_placeholder: המשתמש המרוחק מ-%{instance}
       reopen: פתיחת דו"ח מחדש
@@ -641,9 +644,28 @@ he:
       status: מצב
       statuses: התוכן עליו דווח
       statuses_description_html: התוכן הפוגע יצוטט בתקשורת עם החשבון המדווח
+      summary:
+        action_preambles:
+          delete_html: 'הפעולה <strong>תמחק</strong> כמה הודעות של חשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
+          mark_as_sensitive_html: 'הפעולה הבאה <strong>תסמן</strong> כמה הודעות של חשבון <strong>@%{acct}</strong> כ<strong>רגישות</strong>. תוצאות הפעולה יהיו:'
+          silence_html: 'הפעולה הבאה <strong>תגביל</strong> את החשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
+          suspend_html: 'הפעולה הבאה <strong>תקפיא</strong> את החשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
+        actions:
+          delete_html: הסרת ההודעות החורגות
+          mark_as_sensitive_html: סימון המדיה בהודעות החורגות כרגיש לצפיה
+          silence_html: הגבלה חמורה של תפוצת <strong>@%{acct}</strong> על ידי הפיכת החשבון ותכניו לזמינים רק למי שכבר עוקב אחריו או מי שיחפשו את עמוד הפרופיל שלו ישירות
+          suspend_html: הקפאת החשבון <strong>@%{acct}</strong>, הפיכת הפרופיל והתוכן לנסתרים ולא ניתנים לתקשורת
+        close_report: 'סימון דיווח #%{id} בתור פתור'
+        close_reports_html: סימון <strong>כל</strong> הדיווחים נגד <strong>@%{acct}</strong> בתור פתורים
+        delete_data_html: למחוק את הפרופיל והתוכן של <strong>@%{acct}</strong> בעוד 30 יום אלא אם תוסר ההגבלה עליהם לפני כן
+        preview_preamble_html: 'שליחת אזהרה אל <strong>@%{acct}</strong> בזו הלשון:'
+        record_strike_html: ציין נקודה שחורה נגד <strong>@%{acct}</strong> כדי לסייע בשיפוטו בדיווחים עתידיים על חריגות
+        send_email_html: שליחת דואל אזהרה אל <strong>@%{acct}</strong>
+        warning_placeholder: צידוקים אפשריים נוספים לפעולה המשמעתית.
       target_origin: מקור החשבון המדווח
       title: דיווחים
       unassign: ביטול הקצאה
+      unknown_action_msg: 'פעולה לא מוכרת: %{action}'
       unresolved: לא פתור
       updated_at: עודכן
       view_profile: צפה בפרופיל
@@ -979,6 +1001,8 @@ he:
   auth:
     apply_for_account: הגשת בקשה לחשבון
     change_password: סיסמה
+    confirmations:
+      wrong_email_hint: אם כתובת הדואל הזו איננה נכונה, ניתן לשנות אותה בעמוד ההגדרות.
     delete_account: מחיקת חשבון
     delete_account_html: אם ברצונך למחוק את החשבון, ניתן <a href="%{path}">להמשיך כאן</a>. תתבקש/י לספק אישור נוסף.
     description:

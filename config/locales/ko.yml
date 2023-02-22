@@ -25,9 +25,9 @@ ko:
       action: 조치 취하기
       title: "%{acct} 계정에 중재 취하기"
     account_moderation_notes:
-      create: 중재 기록 작성하기
-      created_msg: 중재 기록이 성공적으로 작성되었습니다!
-      destroyed_msg: 중재 기록이 성공적으로 삭제되었습니다!
+      create: 참고사항 남기기
+      created_msg: 중재 참고사항을 만들었습니다!
+      destroyed_msg: 중재 참고사항을 지웠습니다!
     accounts:
       add_email_domain_block: 이 이메일 도메인을 차단하기
       approve: 허가
@@ -69,10 +69,10 @@ ko:
       enabled: 활성
       enabled_msg: "%{username}의 계정을 성공적으로 얼리기 해제하였습니다"
       followers: 팔로워
-      follows: 팔로잉
+      follows: 팔로우
       header: 헤더
       inbox_url: 수신함 URL
-      invite_request_text: 가입 하려는 이유
+      invite_request_text: 가입하려는 이유
       invited_by: 초대자
       ip: IP
       joined: 가입
@@ -93,7 +93,7 @@ ko:
         silenced: 제한됨
         suspended: 정지 중
         title: 중재
-      moderation_notes: 중재 기록
+      moderation_notes: 중재 참고사항
       most_recent_activity: 최근 활동
       most_recent_ip: 최근 IP
       no_account_selected: 아무 것도 선택 되지 않아 어떤 계정도 변경 되지 않았습니다
@@ -139,8 +139,8 @@ ko:
       show:
         created_reports: 이 계정에서 제출된 신고
         targeted_reports: 이 계정에 대한 신고
-      silence: 침묵
-      silenced: 침묵 됨
+      silence: 제한
+      silenced: 제한됨
       statuses: 게시물
       strikes: 이전의 처벌들
       subscribe: 구독하기
@@ -153,7 +153,7 @@ ko:
       unblocked_email_msg: "%{username}의 이메일 주소를 성공적으로 차단 해제했습니다"
       unconfirmed_email: 확인되지 않은 이메일 주소
       undo_sensitized: 민감함으로 설정 취소
-      undo_silenced: 침묵 해제
+      undo_silenced: 제한 해제
       undo_suspension: 정지 해제
       unsilenced_msg: 성공적으로 %{username} 계정을 제한 해제했습니다
       unsubscribe: 구독 해제
@@ -210,12 +210,12 @@ ko:
         reset_password_user: 암호 재설정
         resolve_report: 신고 처리
         sensitive_account: 당신의 계정의 미디어를 민감함으로 표시
-        silence_account: 계정 침묵
+        silence_account: 계정 제한
         suspend_account: 계정 정지
         unassigned_report: 신고 맡기 취소
         unblock_email_account: 이메일 주소 차단 해제
         unsensitive_account: 당신의 계정의 미디어를 민감함으로 표시하지 않음
-        unsilence_account: 계정 침묵 취소
+        unsilence_account: 계정 제한 취소
         unsuspend_account: 계정 정지 취소
         update_announcement: 공지사항 업데이트
         update_custom_emoji: 커스텀 에모지 업데이트
@@ -269,12 +269,12 @@ ko:
         reset_password_user_html: "%{name} 님이 사용자 %{target}의 암호를 초기화했습니다"
         resolve_report_html: "%{name} 님이 신고 %{target}를 처리됨으로 변경하였습니다"
         sensitive_account_html: "%{name} 님이 %{target}의 미디어를 민감함으로 표시했습니다"
-        silence_account_html: "%{name} 님이 %{target}의 계정을 침묵시켰습니다"
+        silence_account_html: "%{name} 님이 %{target}의 계정을 제한시켰습니다"
         suspend_account_html: "%{name} 님이 %{target}의 계정을 정지시켰습니다"
         unassigned_report_html: "%{name} 님이 신고 %{target}을 할당 해제했습니다"
         unblock_email_account_html: "%{name} 님이 %{target}의 이메일 주소를 차단 해제했습니다"
         unsensitive_account_html: "%{name} 님이 %{target}의 미디어를 민감하지 않음으로 표시했습니다"
-        unsilence_account_html: "%{name} 님이 %{target}의 계정에 대한 침묵을 해제했습니다"
+        unsilence_account_html: "%{name} 님이 %{target}의 계정에 대한 제한을 해제했습니다"
         unsuspend_account_html: "%{name} 님이 %{target}의 계정에 대한 정지를 해제했습니다"
         update_announcement_html: "%{name} 님이 공지사항 %{target}을 갱신했습니다"
         update_custom_emoji_html: "%{name} 님이 에모지 %{target}를 업데이트 했습니다"
@@ -297,7 +297,7 @@ ko:
         create: 공지사항 생성
         title: 새 공지사항
       publish: 게시
-      published_msg: 공지가 성공적으로 발행되었습니다!
+      published_msg: 공지사항이 성공적으로 발행되었습니다!
       scheduled_for: "%{time}에 예약됨"
       scheduled_msg: 공지의 발행이 예약되었습니다!
       title: 공지사항
@@ -422,7 +422,7 @@ ko:
         title: 새 이메일 도메인 차단
       no_email_domain_block_selected: 아무 것도 선택 되지 않아 어떤 이메일 도메인 차단도 변경되지 않았습니다
       resolved_dns_records_hint_html: 도메인 네임은 다음의 MX 도메인으로 연결되어 있으며, 이메일을 받는데 필수적입니다. MX 도메인을 차단하면 같은 MX 도메인을 사용하는 어떤 이메일이라도 가입할 수 없게 되며, 보여지는 도메인이 다르더라도 적용됩니다. <strong>주요 이메일 제공자를 차단하지 않도록 조심하세요.</strong>
-      resolved_through_html: "%{domain}을 통해 해결됨"
+      resolved_through_html: "%{domain}을 통해 리졸빙됨"
       title: Email 도메인 차단
     export_domain_allows:
       new:
@@ -435,6 +435,7 @@ ko:
         private_comment_description_html: '어디서 불러온 것인지 추적을 원활하게 하기 위해서, 불러온 차단들은 다음과 같은 비공개 주석과 함께 생성될 것입니다: <q>%{comment}</q>'
         private_comment_template: "%{date}에 %{source}에서 불러옴"
         title: 도메인 차단 불러오기
+      invalid_domain_block: '한 개 이상의 도메인 차단이 생략되었습니다. 에러는 다음과 같습니다: %{error}'
       new:
         title: 도메인 차단 불러오기
       no_file: 선택된 파일이 없습니다
@@ -494,7 +495,7 @@ ko:
       destroyed_msg: "%{domain}의 데이터는 곧바로 지워지도록 대기열에 들어갔습니다."
       empty: 도메인이 하나도 없습니다.
       known_accounts:
-        other: "%{count}개의 알려진 계정"
+        other: "%{count} 개의 알려진 계정"
       moderation:
         all: 모두
         limited: 제한됨
@@ -557,7 +558,7 @@ ko:
     reports:
       account:
         notes:
-          other: "%{count}개의 기록"
+          other: "%{count} 개의 참고사항"
       action_log: 감사 기록
       action_taken_by: 신고 처리자
       actions:
@@ -579,7 +580,8 @@ ko:
       comment:
         none: 없음
       comment_description_html: '더 많은 정보를 위해, %{name} 님이 작성했습니다:'
-      created_at: 리포트 시각
+      confirm_action: "@%{acct}에 취할 중재 결정에 대한 확인"
+      created_at: 신고 시각
       delete_and_resolve: 게시물 삭제
       forwarded: 전달됨
       forwarded_to: "%{domain}에게 전달됨"
@@ -588,28 +590,48 @@ ko:
       mark_as_unresolved: 미해결로 표시
       no_one_assigned: 아무도 없음
       notes:
-        create: 기록 추가
-        create_and_resolve: 기록을 작성하고 해결됨으로 표시
-        create_and_unresolve: 기록 작성과 함께 미해결로 표시
+        create: 참고사항 추가
+        create_and_resolve: 참고사항 기재 및 종결
+        create_and_unresolve: 참고사항 기재 및 재개
         delete: 삭제
-        placeholder: 이 리포트에 대한 조치, 기타 관련 된 사항에 대해 설명합니다…
-        title: 기록
+        placeholder: 어떤 대응을 했는지 설명 또는 그 밖의 관련된 갱신 사항들
+        title: 참고사항
       notes_description_html: 확인하고 다른 중재자나 미래의 자신을 위해 기록을 작성합니다
+      processed_msg: '신고 #%{id}가 정상적으로 처리되었습니다'
       quick_actions_description_html: '빠른 조치를 취하거나 아래로 스크롤해서 신고된 콘텐츠를 확인하세요:'
       remote_user_placeholder: "%{instance}의 리모트 사용자"
-      reopen: 리포트 다시 열기
+      reopen: 신고 재검토
       report: '신고 #%{id}'
       reported_account: 신고 대상 계정
       reported_by: 신고자
       resolved: 해결됨
-      resolved_msg: 리포트가 성공적으로 해결되었습니다!
+      resolved_msg: 신고를 잘 해결했습니다!
       skip_to_actions: 작업으로 건너뛰기
       status: 상태
       statuses: 신고된 콘텐츠
       statuses_description_html: 문제가 되는 콘텐츠는 신고된 계정에게 인용되어 전달됩니다
+      summary:
+        action_preambles:
+          delete_html: "<strong>@%{acct}</strong>의 게시물 중 일부를 <strong>지우려고</strong> 합니다. 이것은 아래의 행동이 수반됩니다:"
+          mark_as_sensitive_html: "<strong>@%{acct}</strong>의 게시물 중 일부를 <strong>민감함으로 표시</strong> 합니다. 이것은 아래의 행동이 수반됩니다:"
+          silence_html: "<strong>@%{acct}</strong>의 계정을 <strong>제한</strong>하려고 합니다. 이것은 아래의 행동이 수반됩니다:"
+          suspend_html: "<strong>@%{acct}</strong>의 계정을 <strong>정지</strong>하려고 합니다. 이것은 아래의 행동이 수반됩니다:"
+        actions:
+          delete_html: 문제가 되는 게시물을 지웁니다
+          mark_as_sensitive_html: 문제가 되는 게시물의 미디어를 민감함으로 표시합니다
+          silence_html: 이미 팔로우하고 있는 사람에게만 프로필을 보이게 하고 나머지 사람들에게는 수동으로 확인을 해야만 볼 수 있게 하여 <strong>@%{acct}</strong>의 도달 범위를 엄격하게 제한합니다.
+          suspend_html: "<strong>@%{acct}</strong>의 계정을 정지합니다. 프로필과 콘텐츠가 사용 불가능하게 됩니다."
+        close_report: '신고 #%{id}를 해결됨으로 표시합니다'
+        close_reports_html: "<strong>@%{acct}</strong>에 대한 <strong>모든</strong> 신고를 해결됨으로 처리합니다"
+        delete_data_html: "<strong>@%{acct}</strong>의 프로필과 콘텐츠를 30일의 유예기간 이후에 삭제합니다"
+        preview_preamble_html: "<strong>@%{acct}</strong>는 다음 내용의 경고를 받게 됩니다:"
+        record_strike_html: 향후 규칙위반에 대한 참고사항이 될 수 있도록 <strong>@%{acct}</strong>에 대한 처벌기록을 남깁니다
+        send_email_html: "<strong>@%{acct}</strong>에게 경고 메일을 보냅니다"
+        warning_placeholder: 중재 결정에 대한 추가적인 이유.
       target_origin: 신고된 계정의 소속
       title: 신고
       unassign: 할당 해제
+      unknown_action_msg: '알 수 없는 액션: %{action}'
       unresolved: 미해결
       updated_at: 업데이트 시각
       view_profile: 프로필 보기
@@ -744,7 +766,7 @@ ko:
       reblogs: 리블로그
       status_changed: 게시물 변경됨
       title: 계정 게시물
-      trending: 유행중
+      trending: 유행 중
       visibility: 공개 설정
       with_media: 미디어 있음
     strikes:
@@ -830,11 +852,11 @@ ko:
         trendable: 유행 목록에 나타날 수 있습니다
         trending_rank: "#%{rank}위로 유행 중"
         usable: 사용 가능
-        usage_comparison: 오늘은 %{today}회 사용되었고, 어제는 %{yesterday}회 사용되었습니다
+        usage_comparison: 오늘은 %{today}회 쓰였고, 어제는 %{yesterday}회 쓰임
         used_by_over_week:
           other: 지난 주 동안 %{count} 명의 사람들이 사용했습니다
       title: 유행
-      trending: 유행중
+      trending: 유행 중
     warning_presets:
       add_new: 새로 추가
       delete: 삭제
@@ -926,16 +948,18 @@ ko:
     your_token: 액세스 토큰
   auth:
     apply_for_account: 가입 요청하기
-    change_password: 패스워드
+    change_password: 암호
+    confirmations:
+      wrong_email_hint: 만약 이메일 주소가 올바르지 않다면, 계정 설정에서 수정할 수 있습니다.
     delete_account: 계정 삭제
     delete_account_html: 계정을 삭제하고 싶은 경우, <a href="%{path}">여기서</a> 삭제할 수 있습니다. 삭제 전 확인 화면이 표시됩니다.
     description:
-      prefix_invited_by_user: "@%{name} 님이 당신을 이 마스토돈 서버로 초대했습니다!"
+      prefix_invited_by_user: "@%{name}님이 마스토돈 서버에 초대했습니다!"
       prefix_sign_up: 마스토돈에 가입하세요!
       suffix: 계정 하나로 사람들을 팔로우 하고, 게시물을 작성하며 마스토돈을 포함한 다른 어떤 서버의 사용자와도 메시지를 주고 받을 수 있습니다!
     didnt_get_confirmation: 확인 메일을 받지 못하셨습니까?
     dont_have_your_security_key: 보안 키가 없습니까?
-    forgot_password: 비밀번호를 잊어버리셨습니까?
+    forgot_password: 암호를 잊었나요?
     invalid_reset_password_token: 암호 리셋 토큰이 올바르지 못하거나 기간이 만료되었습니다. 다시 요청해주세요.
     link_to_otp: 휴대폰의 2차 코드 혹은 복구 키를 입력해 주세요
     link_to_webauth: 보안 키 장치 사용
@@ -985,7 +1009,7 @@ ko:
     follow_request: '당신은 다음 계정에 팔로우 신청을 했습니다:'
     following: '성공! 당신은 다음 계정을 팔로우 하고 있습니다:'
     post_follow:
-      close: 혹은, 당신은 이 윈도우를 닫을 수 있습니다.
+      close: 혹은, 그저 이 창을 닫을 수도 있습니다.
       return: 사용자 프로필 보기
       web: 웹으로 가기
     title: "%{acct} 를 팔로우"
@@ -1143,7 +1167,7 @@ ko:
         hint: 이 필터는 다른 기준에 관계 없이 선택된 개별적인 게시물들에 적용됩니다. 웹 인터페이스에서 더 많은 게시물들을 이 필터에 추가할 수 있습니다.
         title: 필터링된 게시물
   footer:
-    trending_now: 지금 유행중
+    trending_now: 지금 유행 중
   generic:
     all: 모두
     all_items_on_page_selected_html:
@@ -1219,7 +1243,7 @@ ko:
     title: 인증 이력
   media_attachments:
     validations:
-      images_and_video: 이미 사진이 첨부 된 게시물엔 동영상을 첨부 할 수 없습니다
+      images_and_video: 이미 사진이 첨부된 게시물엔 동영상을 첨부 할 수 없습니다
       not_ready: 처리가 끝나지 않은 파일은 첨부할 수 없습니다. 잠시 후에 다시 시도해 주세요!
       too_many: 최대 4개까지 첨부할 수 있습니다
   migrations:
@@ -1258,7 +1282,7 @@ ko:
   move_handler:
     carry_blocks_over_text: 이 사용자는 당신이 차단한 %{acct}로부터 이주 했습니다.
     carry_mutes_over_text: 이 사용자는 당신이 뮤트한 %{acct}로부터 이주 했습니다.
-    copy_account_note_text: '이 사용자는 %{acct}에서 옮겨왔으며 이전의 기록은 다음과 같습니다:'
+    copy_account_note_text: '이 사용자는 %{acct}로부터 이동하였습니다. 당신의 이전 노트는 이렇습니다:'
   navigation:
     toggle_menu: 토글 메뉴
   notification_mailer:

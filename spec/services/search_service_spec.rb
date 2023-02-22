@@ -13,8 +13,8 @@ describe SearchService, type: :service do
         results = subject.call('', nil, 10)
 
         expect(results).to eq(empty_results)
-        expect(AccountSearchService).not_to have_received(:new)
-        expect(Tag).not_to have_received(:search_for)
+        expect(AccountSearchService).to_not have_received(:new)
+        expect(Tag).to_not have_received(:search_for)
       end
     end
 
@@ -83,14 +83,16 @@ describe SearchService, type: :service do
           expect(Tag).to have_received(:search_for).with('tag', 10, 0, exclude_unreviewed: nil)
           expect(results).to eq empty_results.merge(hashtags: [tag])
         end
+
         it 'does not include tag when starts with @ character' do
           query = '@username'
           allow(Tag).to receive(:search_for)
 
           results = subject.call(query, nil, 10)
-          expect(Tag).not_to have_received(:search_for)
+          expect(Tag).to_not have_received(:search_for)
           expect(results).to eq empty_results
         end
+
         it 'does not include account when starts with # character' do
           query = '#tag'
           allow(AccountSearchService).to receive(:new)

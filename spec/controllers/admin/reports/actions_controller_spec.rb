@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Admin::Reports::ActionsController do
@@ -116,18 +118,20 @@ describe Admin::Reports::ActionsController do
 
         it 'marks the non-deleted as sensitive' do
           subject
-          expect(media_attached_status.reload.sensitive).to eq true
+          expect(media_attached_status.reload.sensitive).to be true
         end
       end
     end
 
     context 'action as submit button' do
       subject { post :create, params: { report_id: report.id, text: text, action => '' } }
+
       it_behaves_like 'all action types'
     end
 
     context 'action as submit button' do
       subject { post :create, params: { report_id: report.id, text: text, moderation_action: action } }
+
       it_behaves_like 'all action types'
     end
   end

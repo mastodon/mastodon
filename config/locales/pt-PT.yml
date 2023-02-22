@@ -441,6 +441,7 @@ pt-PT:
         private_comment_description_html: 'Para o ajudar a rastrear a origem dos bloqueios importados, estes serão criados com o seguinte comentário privado: <q>%{comment}</q>'
         private_comment_template: Importado de %{source} em %{date}
         title: Importar bloqueios de domínio
+      invalid_domain_block: 'Um ou mais blocos de domínio foram ignorados devido o(s) seguinte(s) erro(s): %{error}'
       new:
         title: Importar bloqueios de domínio
       no_file: Nenhum ficheiro selecionado
@@ -589,6 +590,7 @@ pt-PT:
       comment:
         none: Nenhum
       comment_description_html: 'Para fornecer mais informações, %{name} escreveu:'
+      confirm_action: Confirmar a ação de moderação contra @%{acct}
       created_at: Denunciado
       delete_and_resolve: Eliminar publicações
       forwarded: Encaminhado
@@ -605,6 +607,7 @@ pt-PT:
         placeholder: Descreve as ações que foram tomadas ou quaisquer outras atualizações relacionadas...
         title: Notas
       notes_description_html: Visualize e deixe anotações para outros moderadores e para si próprio no futuro
+      processed_msg: 'Relatório #%{id} processado com sucesso'
       quick_actions_description_html: 'Tome uma ação rápida ou deslize para baixo para ver o conteúdo denunciado:'
       remote_user_placeholder: o utilizador remoto de %{instance}
       reopen: Reabrir denúncia
@@ -617,9 +620,28 @@ pt-PT:
       status: Estado
       statuses: Conteúdo denunciado
       statuses_description_html: O conteúdo ofensivo será citado na comunicação com a conta denunciada
+      summary:
+        action_preambles:
+          delete_html: 'Você está prestes a <strong>remover</strong> algumas das publicações de <strong>@%{acct}</strong>. Isto irá:'
+          mark_as_sensitive_html: 'Você está prestes a <strong>marcar</strong> alguns dos posts de <strong>@%{acct}</strong>como <strong>sensível</strong>. Isto irá:'
+          silence_html: 'Você está prestes a <strong>limitar a conta do</strong> <strong>@%{acct}</strong>. Isto irá:'
+          suspend_html: 'Você está prestes a <strong>suspender a conta de</strong> <strong>@%{acct}</strong>. Isto irá:'
+        actions:
+          delete_html: Excluir as publicações ofensivas
+          mark_as_sensitive_html: Marcar a mídia dos posts ofensivos como sensível
+          silence_html: Limitar firmemente o alcance de <strong>@%{acct}</strong>, tornando seus perfis e conteúdos apenas visíveis para pessoas que já os estão seguindo ou olhando manualmente no perfil
+          suspend_html: Suspender <strong>@%{acct}</strong>, tornando seu perfil e conteúdo inacessíveis e impossível de interagir com
+        close_report: 'Marcar relatório #%{id} como resolvido'
+        close_reports_html: Marcar <strong>todos os</strong> relatórios contra <strong>@%{acct}</strong> como resolvidos
+        delete_data_html: Excluir <strong>@%{acct}</strong>perfil e conteúdo 30 dias a menos que sejam dessuspensos
+        preview_preamble_html: "<strong>@%{acct}</strong> receberá um aviso com o seguinte conteúdo:"
+        record_strike_html: Registre um ataque contra <strong>@%{acct}</strong> para ajudá-lo a escalar futuras violações desta conta
+        send_email_html: Enviar <strong>@%{acct}</strong> um e-mail de aviso
+        warning_placeholder: Argumentos adicionais opcionais para a acção de moderação.
       target_origin: Origem da conta denunciada
       title: Denúncias
       unassign: Não atribuir
+      unknown_action_msg: 'Ação desconhecida: %{action}'
       unresolved: Por resolver
       updated_at: Atualizado
       view_profile: Ver perfil
@@ -943,6 +965,8 @@ pt-PT:
   auth:
     apply_for_account: Solicitar uma conta
     change_password: Palavra-passe
+    confirmations:
+      wrong_email_hint: Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
     delete_account: Eliminar conta
     delete_account_html: Se deseja eliminar a sua conta, pode <a href="%{path}">continuar aqui</a>. Uma confirmação será solicitada.
     description:

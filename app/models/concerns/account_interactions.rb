@@ -151,9 +151,7 @@ module AccountInteractions
     remove_potential_friendship(other_account)
 
     # When toggling a mute between hiding and allowing notifications, the mute will already exist, so the find_or_create_by! call will return the existing Mute without updating the hide_notifications attribute. Therefore, we check that hide_notifications? is what we want and set it if it isn't.
-    if mute.hide_notifications? != notifications
-      mute.update!(hide_notifications: notifications)
-    end
+    mute.update!(hide_notifications: notifications) if mute.hide_notifications? != notifications
 
     mute
   end
@@ -280,7 +278,7 @@ module AccountInteractions
       followers.where(Account.arel_table[:uri].matches("#{Account.sanitize_sql_like(url_prefix)}/%", false, true)).or(followers.where(uri: url_prefix)).pluck_each(:uri) do |uri|
         Xorcist.xor!(digest, Digest::SHA256.digest(uri))
       end
-      digest.unpack('H*')[0]
+      digest.unpack1('H*')
     end
   end
 
@@ -290,7 +288,7 @@ module AccountInteractions
       followers.where(domain: nil).pluck_each(:username) do |username|
         Xorcist.xor!(digest, Digest::SHA256.digest(ActivityPub::TagManager.instance.uri_for_username(username)))
       end
-      digest.unpack('H*')[0]
+      digest.unpack1('H*')
     end
   end
 

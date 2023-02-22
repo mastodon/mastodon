@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe SuspiciousSignInDetector do
   describe '#suspicious?' do
+    subject { described_class.new(user).suspicious?(request) }
+
     let(:user) { Fabricate(:user, current_sign_in_at: 1.day.ago) }
     let(:request) { double(remote_ip: remote_ip) }
     let(:remote_ip) { nil }
-
-    subject { described_class.new(user).suspicious?(request) }
 
     context 'when user has 2FA enabled' do
       before do

@@ -51,8 +51,8 @@ de:
         setting_aggregate_reblogs: Zeige denselben Beitrag nicht nochmal an, wenn er erneut geteilt wurde (dies betrifft nur neulich erhaltene erneut geteilte Beiträge)
         setting_always_send_emails: Normalerweise werden Benachrichtigungen nicht per E-Mail verschickt, wenn du gerade auf Mastodon aktiv bist
         setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen worden sind, werden erst nach einem zusätzlichen Klick angezeigt
-        setting_display_media_default: Medien mit Inhaltswarnung verbergen
-        setting_display_media_hide_all: Medien immer verbergen
+        setting_display_media_default: Medien mit Inhaltswarnung ausblenden
+        setting_display_media_hide_all: Medien immer ausblenden
         setting_display_media_show_all: Medien mit Inhaltswarnung immer anzeigen
         setting_hide_network: Wem du folgst und wer dir folgt, wird in deinem Profil nicht angezeigt
         setting_noindex: Betrifft alle öffentlichen Daten deines Profils, z. B. deine Beiträge, Account-Empfehlungen und „Über mich“
@@ -91,15 +91,17 @@ de:
         site_short_description: Eine kurze Beschreibung zur eindeutigen Identifizierung des Servers. Wer betreibt ihn, für wen ist er bestimmt?
         site_terms: Verwende eine eigene Datenschutzerklärung oder lasse das Feld leer, um die allgemeine Vorlage zu verwenden. Kann mit der Markdown-Syntax formatiert werden.
         site_title: Wie Personen neben dem Domainnamen auf deinen Server verweisen können.
+        status_page_url: URL einer Seite, auf der der Status des Servers während eines Ausfalls angezeigt werden kann
         theme: Das Design, das abgemeldete Besucher und neue Benutzer sehen.
         thumbnail: Ein Bild ungefähr im 2:1-Format, das neben den Server-Informationen angezeigt wird.
         timeline_preview: Besucher*innen und ausgeloggte Benutzer*innen können die neuesten öffentlichen Beiträge dieses Servers aufrufen.
         trendable_by_default: Manuelles Überprüfen angesagter Inhalte überspringen. Einzelne Elemente können später noch aus den Trends entfernt werden.
         trends: Trends zeigen, welche Beiträge, Hashtags und Nachrichten auf deinem Server immer beliebter werden.
+        trends_as_landing_page: Zeigt Trendinhalte abgemeldeter Benutzer und Besucher anstelle einer Beschreibung dieses Servers an. Erfordert, dass Trends aktiviert sind.
       form_challenge:
         current_password: Du betrittst einen gesicherten Bereich
       imports:
-        data: CSV-Datei, exportiert von einem anderen Mastodon-Server
+        data: CSV-Datei, die aus einem anderen Mastodon-Server exportiert wurde
       invite_request:
         text: Dies wird uns bei der Überprüfung deiner Anmeldung behilflich sein
       ip_block:
@@ -136,9 +138,9 @@ de:
           name: Bezeichnung
           value: Inhalt
       account_alias:
-        acct: Betreiber des alten Kontos
+        acct: Adresse des alten Kontos
       account_migration:
-        acct: Betreiber des neuen Kontos
+        acct: Adresse des neuen Kontos
       account_warning_preset:
         text: Vorlagentext
         title: Titel
@@ -161,9 +163,9 @@ de:
         starts_at: Beginn der Ankündigung
         text: Ankündigung
       appeal:
-        text: Teile mit, warum diese Entscheidung zurückgenommen werden soll
+        text: Erkläre, warum diese Entscheidung rückgängig gemacht werden soll
       defaults:
-        autofollow: Lade ein, um deinem Konto zu folgen
+        autofollow: Meinem Profil automatisch folgen
         avatar: Profilbild
         bot: Dies ist ein Bot-Konto
         chosen_languages: Sprachen einschränken
@@ -181,16 +183,16 @@ de:
         honeypot: "%{label} (nicht ausfüllen)"
         inbox_url: Inbox-URL des Relais
         irreversible: Endgültig, nicht nur temporär ausblenden
-        locale: Sprache des Webinterface
+        locale: Sprache des Webinterfaces
         locked: Geschütztes Profil
-        max_uses: Maximale Anzahl der Nutzer
+        max_uses: Maximale Verwendungen
         new_password: Neues Passwort
         note: Über mich
         otp_attempt: Zwei-Faktor-Authentisierung
         password: Passwort
         phrase: Wort oder Formulierung
         setting_advanced_layout: Erweitertes Webinterface verwenden
-        setting_aggregate_reblogs: Boosts in der Timeline gruppieren
+        setting_aggregate_reblogs: Geteilte Beiträge in den Timelines gruppieren
         setting_always_send_emails: Benachrichtigungen immer senden
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
         setting_boost_modal: Bestätigung vor dem Teilen einholen
@@ -202,7 +204,7 @@ de:
         setting_disable_swiping: Wischgesten deaktivieren
         setting_display_media: Medien-Anzeige
         setting_display_media_default: Standard
-        setting_display_media_hide_all: Alle Medien verstecken
+        setting_display_media_hide_all: Alle Medien ausblenden
         setting_display_media_show_all: Alle Medien anzeigen
         setting_expand_spoilers: Beiträge mit Inhaltswarnung immer ausklappen
         setting_hide_network: Deine Follower und „Folge ich“ nicht anzeigen
@@ -228,7 +230,7 @@ de:
         name: Hashtag
       filters:
         actions:
-          hide: Komplett ausblenden
+          hide: Vollständig ausblenden
           warn: Mit einer Warnung ausblenden
       form_admin_settings:
         activity_api_enabled: Veröffentlichung von Gesamtstatistiken über Nutzeraktivitäten in der API
@@ -251,11 +253,13 @@ de:
         site_short_description: Serverbeschreibung
         site_terms: Datenschutzerklärung
         site_title: Servername
+        status_page_url: URL der Statusseite
         theme: Standard-Design
         thumbnail: Vorschaubild des Servers
         timeline_preview: Nicht-authentifizierten Zugriff auf die öffentliche Timeline gestatten
         trendable_by_default: Trends ohne vorherige Überprüfung erlauben
         trends: Trends aktivieren
+        trends_as_landing_page: Trends als Landingpage verwenden
       interactions:
         must_be_follower: Benachrichtigungen von Profilen verbergen, die mir nicht folgen
         must_be_following: Benachrichtigungen von Profilen verbergen, denen ich nicht folge
@@ -276,7 +280,7 @@ de:
         appeal: wenn jemand einer Moderationsentscheidung widerspricht
         digest: Zusammenfassung senden
         favourite: wenn jemand meinen Beitrag favorisiert
-        follow: wenn mir jemand folgt
+        follow: wenn mir jemand Neues gefolgt ist
         follow_request: wenn mir jemand folgen möchte
         mention: wenn mich jemand erwähnt
         pending_account: wenn ein neues Konto überprüft werden muss

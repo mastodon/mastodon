@@ -80,9 +80,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
         # If a previously existing media attachment was significantly updated, mark
         # media attachments as changed even if none were added or removed
-        if media_attachment_parser.significantly_changes?(media_attachment)
-          @media_attachments_changed = true
-        end
+        @media_attachments_changed = true if media_attachment_parser.significantly_changes?(media_attachment)
 
         media_attachment.description          = media_attachment_parser.description
         media_attachment.focus                = media_attachment_parser.focus
@@ -94,7 +92,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
         @next_media_attachments << media_attachment
       rescue Addressable::URI::InvalidURIError => e
-        Rails.logger.debug "Invalid URL in attachment: #{e}"
+        Rails.logger.debug { "Invalid URL in attachment: #{e}" }
       end
     end
 

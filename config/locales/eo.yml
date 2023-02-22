@@ -1,7 +1,7 @@
 ---
 eo:
   about:
-    about_mastodon_html: 'La socia retejo de la estonteco: sen reklamo, sen kompania observado, etika desegno, kaj malcentrigo! Regu viajn datumojn per Mastodon!'
+    about_mastodon_html: 'La socia retejo de la estonteco: sen reklamo, sen observado por firmao, etika desegno, kaj malcentrigo! Regu viajn informojn per Mastodon!'
     contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
     hosted_on: "%{domain} estas nodo de Mastodon"
@@ -117,6 +117,7 @@ eo:
       reject: Malakcepti
       rejected_msg: Sukcese malaprobis aliĝ-peton de %{username}
       remote_suspension_irreversible: La informoj de ĉi tiu konto estis neinversigeble forigitaj.
+      remote_suspension_reversible_hint_html: La konto estas suspendita, kaj la datumoj estos komplete forigitaj je %{date}. Ĝis tiam, la konto povas esti malsuspendita sen flankefiko. Se vi deziras tuj forigi ĉiujn datumojn de la konto, vi povas fari tion sube.
       remove_avatar: Forigi la profilbildon
       remove_header: Forigi kapan bildon
       removed_avatar_msg: La rolfiguro de %{username} estas sukcese forigita
@@ -223,8 +224,8 @@ eo:
         update_custom_emoji: Ĝisdatigi proprajn emoĝiojn
         update_domain_block: Ĝigdatigi domajnan blokadon
         update_ip_block: Krei IP-regulon
-        update_status: Ĝisdatigi staton
-        update_user_role: Ĝisdatigi Rolon
+        update_status: Ĝisdatigi afiŝon
+        update_user_role: Ĝisdatigi rolon
       actions:
         approve_appeal_html: "%{name} aprobis kontroldecidapelacion de %{target}"
         approve_user_html: "%{name} aprobis registriĝon de %{target}"
@@ -278,12 +279,12 @@ eo:
         unsensitive_account_html: "%{name} malmarkis audovidaĵojn de %{target} kiel sentemaj"
         unsilence_account_html: "%{name} malfaris limon de konto de %{target}"
         unsuspend_account_html: "%{name} malsuspendis la konton de %{target}"
-        update_announcement_html: "%{name} ĝisdatigis anoncon %{target}"
-        update_custom_emoji_html: "%{name} ĝisdatigis emoĝion %{target}"
+        update_announcement_html: "%{name} ĝisdatigis la anoncon %{target}"
+        update_custom_emoji_html: "%{name} ĝisdatigis la emoĝion %{target}"
         update_domain_block_html: "%{name} ĝisdatigis domajnblokon por %{target}"
         update_ip_block_html: "%{name} ŝanĝis regulon por IP %{target}"
         update_status_html: "%{name} ĝisdatigis mesaĝon de %{target}"
-        update_user_role_html: "%{name} ŝanĝis rolon %{target}"
+        update_user_role_html: "%{name} ŝanĝis la rolon %{target}"
       deleted_account: forigita konto
       empty: Neniu ĵurnalo trovita.
       filter_by_action: Filtri per ago
@@ -440,6 +441,7 @@ eo:
         private_comment_description_html: 'Por helpi vin, importitaj blokoj kreitas kun la privata komento: <q>%{comment}</q>'
         private_comment_template: Enportita el %{source} je %{date}
         title: Importi domajnblokojn
+      invalid_domain_block: '1 au pli da domajnblokadoj ignoritas ĉar la eraro: %{error}'
       new:
         title: Importi domajnblokojn
       no_file: Neniu dosiero elektita
@@ -556,7 +558,7 @@ eo:
       pending: Atendante aprobon de la ripetilo
       save_and_enable: Konservi kaj ebligi
       setup: Agordi konekton al ripetilo
-      signatures_not_enabled: Ripetiloj ne ĝuste funkcias dum sekura reĝimo au limigita federacio reĝimo ebligitas
+      signatures_not_enabled: Relajsoj eble ne funkcias ĝuste dum sekura reĝimo aŭ reĝimo de limigita federado estas ŝaltita
       status: Stato
       title: Ripetiloj
     report_notes:
@@ -574,7 +576,10 @@ eo:
         mark_as_sensitive_description_html: La audovidaĵo en la raportita mesaĝo markotas kiel sentema kaj admono rekorditas.
         other_description_html: Vidu pli da ebloj por regi la sintenon de la konto kaj por personigi la komunikadon kun la raportita konto.
         resolve_description_html: Nenio okazotas al la raportita konto kaj la raporto fermotas.
+        silence_description_html: La konto estos videbla al nur personoj kiu jam sekvis ĝin au permane serĉo ĝin, ege limigante ĝian atingon. Malfermi ciujn raportojn kontra ĉi tiun konton.
+        suspend_description_html: La konto kaj ciuj ĝiaj enhavoj estos neatingebla kaj poŝte forigitas, kaj interagi per ĝi estos neebla. Malfermi ciujn raportojn kontra ĉi tiu konto.
       actions_description_html: Decidu kiu ago por solvi ĉi tiuj raporto. <strong>Spamo</strong> kategorio elektitas.
+      actions_description_remote_html: Decidu kiun klopodon por solvi ĉi tiun raporton. Ĉi tiu efikas kiel nur <strong>via</strong> servilo komuniki per ĉi tiu fora konto kaj trakti ĝian enhavon.
       add_to_report: Aldoni pli al raporto
       are_you_sure: Ĉu vi certas?
       assign_to_self: Asigni al mi
@@ -585,6 +590,7 @@ eo:
       comment:
         none: Nenio
       comment_description_html: 'Por doni pli da informo, %{name} skribis:'
+      confirm_action: Konfirmi moderigadagon kontra @%{acct}
       created_at: Signalita
       delete_and_resolve: Forigi afiŝojn
       forwarded: Plusendita
@@ -601,6 +607,7 @@ eo:
         placeholder: Priskribu faritajn agojn, aŭ ajnan novan informon pri tiu signalo…
         title: Notoj
       notes_description_html: Vidi kaj lasi notojn por aliaj kontrolantoj kaj estonta vi
+      processed_msg: 'La raporto #%{id} sukcese prilaborita'
       quick_actions_description_html: 'Agu au movu malsupre por vidi raportitajn enhavojn:'
       remote_user_placeholder: la ekstera uzanto de %{instance}
       reopen: Remalfermi signalon
@@ -613,9 +620,28 @@ eo:
       status: Mesaĝoj
       statuses: Raportita enhavo
       statuses_description_html: Sentema enhavo referencitas kun la raportita konto
+      summary:
+        action_preambles:
+          delete_html: 'Vi ja tuj <strong>forigos</strong> kelke da afiŝoj de <strong>@%{acct}</strong>. Tio faros kiel jene:'
+          mark_as_sensitive_html: 'Vi ja tuj <strong>markos</strong> kelke da afiŝoj de <strong>@%{acct}</strong> kiel <strong>tiklaj</strong>. Tio faros kiel:'
+          silence_html: 'Vi ja tuj <strong>limigos</strong> kelke da afiŝoj de <strong>@%{acct}</strong>. Tio faros kiel:'
+          suspend_html: 'Vi ja tuj <strong>suspendos</strong> la konton de <strong>@%{acct}</strong>. Tio faros kiel:'
+        actions:
+          delete_html: Forigi la sentemajn afiŝojn
+          mark_as_sensitive_html: Markigi la audovidaĵojn de sentemaj afiŝoj kiel sentemaj
+          silence_html: Ege limigi atingon de <strong>@%{acct}</strong> per kauzi ilia profilo kaj enhavoj esti videbla nur al personoj kiu jam sekvis ilin au permane serĉi ĝin
+          suspend_html: Suspendi <strong>@%{acct}</strong>, fari ties profilon kaj enhavojn neatingeblaj kaj maleblaj interagi kun
+        close_report: 'Marki la raporto #%{id} kiel solvita'
+        close_reports_html: Marki <strong>ĉiuj</strong> raportoj kontraŭ <strong>@%{acct}</strong> kiel solvitaj
+        delete_data_html: Forigi profilon kaj enhavojn de <strong>@%{acct}</strong> post 30 tagoj se ili ne malsuspenditas dum la dauro
+        preview_preamble_html: "<strong>@%{acct}</strong> akiros averton kun ĉi tiuj enhavoj:"
+        record_strike_html: Rekordu admonon kontra <strong>@%{acct}</strong> por helpi vi plikontroli estontajn malobservojn de ĉi tiu konto
+        send_email_html: Sendi al <strong>@%{acct}</strong> retpoŝtaĵon de averto
+        warning_placeholder: Nedeviga aldona kialo por la moderigadago.
       target_origin: Origino de raportita konto
       title: Signaloj
       unassign: Malasigni
+      unknown_action_msg: 'Nekonata ago: %{action}'
       unresolved: Nesolvitaj
       updated_at: Ĝisdatigita
       view_profile: Vidi profilon
@@ -710,6 +736,7 @@ eo:
         preamble: Interesa enhavo estas grava por novaj uzantoj kiuj eble ne konas ajn iun.
         profile_directory: Profilujo
         public_timelines: Publikaj templinioj
+        publish_discovered_servers: Publikigi la malkovritajn servilojn
         publish_statistics: Publikigi statistikojn
         title: Eltrovado
         trends: Tendencoj
@@ -938,6 +965,8 @@ eo:
   auth:
     apply_for_account: Peti konton
     change_password: Pasvorto
+    confirmations:
+      wrong_email_hint: Se tiu retpoŝtadreso ne estas ĝusta, vi povas ŝanĝi ĝin en la agordoj pri la konto.
     delete_account: Forigi konton
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
     description:
@@ -974,6 +1003,7 @@ eo:
       email_settings_hint_html: La konfirmretpoŝto senditas al %{email}.
       title: Agordi
     sign_in:
+      preamble_html: Ensalutu per via detaloj de <strong>%{domain}</strong>. Se via konto gastigantigas sur malsama servilo, vi ne povas ensaluti ĉi tie.
       title: Saluti en %{domain}
     sign_up:
       preamble: Per konto ĉe ĉi tiu Mastodon-servilo, vi povas sekvi ajn personojn en la reto.
@@ -1366,6 +1396,9 @@ eo:
       unrecognized_emoji: ne estas rekonita emoĝio
   relationships:
     activity: Konta aktiveco
+    confirm_follow_selected_followers: Ĉu vi certas ke vi volas sekvi la elektitajn sekvantojn?
+    confirm_remove_selected_followers: Ĉu vi certas, ke vi volas forigi la elektitajn sekvantojn?
+    confirm_remove_selected_follows: Ĉu vi certas, ke vi volas forigi la elektitajn sekvatojn?
     dormant: Dormanta
     follow_selected_followers: Sekvi selektitajn sekvantojn
     followers: Sekvantoj
