@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::V1::StatusesController, type: :controller do
@@ -195,7 +197,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
       end
 
       it 'removes the status' do
-        expect(Status.find_by(id: status.id)).to be nil
+        expect(Status.find_by(id: status.id)).to be_nil
       end
     end
 
@@ -219,7 +221,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
 
   context 'without an oauth token' do
     before do
-      allow(controller).to receive(:doorkeeper_token) { nil }
+      allow(controller).to receive(:doorkeeper_token).and_return(nil)
     end
 
     context 'with a private status' do

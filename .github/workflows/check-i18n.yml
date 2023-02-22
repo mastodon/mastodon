@@ -18,20 +18,31 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - name: Install system dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y libicu-dev libidn11-dev
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+
       - name: Check locale file normalization
         run: bundle exec i18n-tasks check-normalized
+
       - name: Check for unused strings
         run: bundle exec i18n-tasks unused
+
+      - name: Check for missing strings in English
+        run: |
+          bundle exec i18n-tasks add-missing -l en
+          git diff --exit-code
+
       - name: Check for wrong string interpolations
         run: bundle exec i18n-tasks check-consistent-interpolations
+
       - name: Check that all required locale files exist
         run: bundle exec rake repo:check_locales_files

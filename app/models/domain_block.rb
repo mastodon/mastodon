@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: domain_blocks
@@ -20,7 +21,7 @@ class DomainBlock < ApplicationRecord
   include DomainNormalizable
   include DomainMaterializable
 
-  enum severity: [:silence, :suspend, :noop]
+  enum severity: { silence: 0, suspend: 1, noop: 2 }
 
   validates :domain, presence: true, uniqueness: true, domain: true
 

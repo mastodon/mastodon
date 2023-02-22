@@ -405,10 +405,7 @@ body > [data-popper-placement] {
     }
 
     input[type='checkbox'] {
-      display: none;
-    }
-
-    .checkbox {
+      appearance: none;
       display: inline-block;
       position: relative;
       border: 1px solid $ui-primary-color;
@@ -420,8 +417,9 @@ body > [data-popper-placement] {
       top: -1px;
       border-radius: 4px;
       vertical-align: middle;
+      cursor: inherit;
 
-      &.active {
+      &:checked {
         border-color: $highlight-text-color;
         background: $highlight-text-color
           url("data:image/svg+xml;utf8,<svg width='18' height='18' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M4.5 8.5L8 12l6-6' stroke='white' stroke-width='1.5'/></svg>")
@@ -1200,11 +1198,12 @@ body > [data-popper-placement] {
 
 .status__info {
   font-size: 15px;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  cursor: pointer;
 }
 
 .status-check-box__status {

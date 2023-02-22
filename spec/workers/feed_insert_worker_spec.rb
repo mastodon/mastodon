@@ -15,8 +15,8 @@ describe FeedInsertWorker do
         allow(FeedManager).to receive(:instance).and_return(instance)
         result = subject.perform(nil, follower.id)
 
-        expect(result).to eq true
-        expect(instance).not_to have_received(:push_to_home)
+        expect(result).to be true
+        expect(instance).to_not have_received(:push_to_home)
       end
 
       it 'skips push with missing account' do
@@ -24,8 +24,8 @@ describe FeedInsertWorker do
         allow(FeedManager).to receive(:instance).and_return(instance)
         result = subject.perform(status.id, nil)
 
-        expect(result).to eq true
-        expect(instance).not_to have_received(:push_to_home)
+        expect(result).to be true
+        expect(instance).to_not have_received(:push_to_home)
       end
     end
 
@@ -36,7 +36,7 @@ describe FeedInsertWorker do
         result = subject.perform(status.id, follower.id)
 
         expect(result).to be_nil
-        expect(instance).not_to have_received(:push_to_home)
+        expect(instance).to_not have_received(:push_to_home)
       end
 
       it 'pushes the status onto the home timeline without filter' do

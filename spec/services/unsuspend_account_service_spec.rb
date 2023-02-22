@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe UnsuspendAccountService, type: :service do
   shared_examples 'common behavior' do
+    subject { described_class.new.call(account) }
+
     let!(:local_follower) { Fabricate(:user, current_sign_in_at: 1.hour.ago).account }
     let!(:list)           { Fabricate(:list, account: local_follower) }
-
-    subject { described_class.new.call(account) }
 
     before do
       allow(FeedManager.instance).to receive(:merge_into_home).and_return(nil)

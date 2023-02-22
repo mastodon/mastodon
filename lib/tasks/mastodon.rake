@@ -92,7 +92,7 @@ namespace :mastodon do
           prompt.ok 'Database configuration works! 🎆'
           db_connection_works = true
           break
-        rescue StandardError => e
+        rescue => e
           prompt.error 'Database connection could not be established with this configuration, try again.'
           prompt.error e.message
           break unless prompt.yes?('Try again?')
@@ -132,7 +132,7 @@ namespace :mastodon do
           redis.ping
           prompt.ok 'Redis configuration works! 🎆'
           break
-        rescue StandardError => e
+        rescue => e
           prompt.error 'Redis connection could not be established with this configuration, try again.'
           prompt.error e.message
           break unless prompt.yes?('Try again?')
@@ -264,7 +264,7 @@ namespace :mastodon do
 
           env['S3_ENDPOINT'] = prompt.ask('Storj DCS endpoint URL:') do |q|
             q.required true
-            q.default "https://gateway.storjshare.io"
+            q.default 'https://gateway.storjshare.io'
             q.modify :strip
           end
 
@@ -286,13 +286,13 @@ namespace :mastodon do
             q.required true
             q.modify :strip
           end
-          
+
           linksharing_access_key = prompt.ask('Storj Linksharing access key (uplink share --register --public --readonly=true --disallow-lists --not-after=none sj://bucket):') do |q|
             q.required true
             q.modify :strip
           end
           env['S3_ALIAS_HOST'] = "link.storjshare.io/raw/#{linksharing_access_key}/#{env['S3_BUCKET']}"
-          
+
         when 'Google Cloud Storage'
           env['S3_ENABLED']             = 'true'
           env['S3_PROTOCOL']            = 'https'
@@ -399,14 +399,14 @@ namespace :mastodon do
           end
 
           ActionMailer::Base.smtp_settings = {
-            port:                 env['SMTP_PORT'],
-            address:              env['SMTP_SERVER'],
-            user_name:            env['SMTP_LOGIN'].presence,
-            password:             env['SMTP_PASSWORD'].presence,
-            domain:               env['LOCAL_DOMAIN'],
-            authentication:       env['SMTP_AUTH_METHOD'] == 'none' ? nil : env['SMTP_AUTH_METHOD'] || :plain,
-            openssl_verify_mode:  env['SMTP_OPENSSL_VERIFY_MODE'],
-            enable_starttls:      enable_starttls,
+            port: env['SMTP_PORT'],
+            address: env['SMTP_SERVER'],
+            user_name: env['SMTP_LOGIN'].presence,
+            password: env['SMTP_PASSWORD'].presence,
+            domain: env['LOCAL_DOMAIN'],
+            authentication: env['SMTP_AUTH_METHOD'] == 'none' ? nil : env['SMTP_AUTH_METHOD'] || :plain,
+            openssl_verify_mode: env['SMTP_OPENSSL_VERIFY_MODE'],
+            enable_starttls: enable_starttls,
             enable_starttls_auto: enable_starttls_auto,
           }
 
@@ -417,7 +417,7 @@ namespace :mastodon do
           mail = ActionMailer::Base.new.mail to: send_to, subject: 'Test', body: 'Mastodon SMTP configuration works!'
           mail.deliver
           break
-        rescue StandardError => e
+        rescue => e
           prompt.error 'E-mail could not be sent with this configuration, try again.'
           prompt.error e.message
           break unless prompt.yes?('Try again?')
@@ -445,7 +445,7 @@ namespace :mastodon do
           generated_header << "# using docker-compose or not.\n\n"
         end
 
-        File.write(Rails.root.join('.env.production'), "#{generated_header}#{env_contents}\n")
+        Rails.root.join('.env.production').write("#{generated_header}#{env_contents}\n")
 
         if using_docker
           prompt.ok 'Below is your configuration, save it to an .env.production file outside Docker:'

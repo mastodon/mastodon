@@ -4,4 +4,3 @@ class AddCommentsToDomainBlocks < ActiveRecord::Migration[5.2]
     add_column :domain_blocks, :public_comment, :text
   end
 end
-

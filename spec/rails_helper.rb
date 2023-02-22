@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 
 require 'spec_helper'
 require 'rspec/rails'
@@ -33,7 +35,7 @@ Devise::Test::ControllerHelpers.module_eval do
 end
 
 RSpec.configure do |config|
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = "#{Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true
   config.order = 'random'
   config.infer_spec_type_from_file_location!
@@ -71,11 +73,11 @@ end
 RSpec::Matchers.define_negated_matcher :not_change, :change
 
 def request_fixture(name)
-  File.read(Rails.root.join('spec', 'fixtures', 'requests', name))
+  Rails.root.join('spec', 'fixtures', 'requests', name).read
 end
 
 def attachment_fixture(name)
-  File.open(Rails.root.join('spec', 'fixtures', 'files', name))
+  Rails.root.join('spec', 'fixtures', 'files', name).open
 end
 
 def stub_jsonld_contexts!

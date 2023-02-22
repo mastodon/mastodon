@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Report do
@@ -33,7 +35,7 @@ describe Report do
     end
 
     it 'assigns to a given account' do
-      is_expected.to eq current_account.id
+      expect(subject).to eq current_account.id
     end
   end
 
@@ -48,7 +50,7 @@ describe Report do
     end
 
     it 'unassigns' do
-      is_expected.to be_nil
+      expect(subject).to be_nil
     end
   end
 

@@ -10,13 +10,11 @@ module InstanceHelper
   end
 
   def description_for_sign_up
-    prefix = begin
-      if @invite.present?
-        I18n.t('auth.description.prefix_invited_by_user', name: @invite.user.account.username)
-      else
-        I18n.t('auth.description.prefix_sign_up')
-      end
-    end
+    prefix = if @invite.present?
+               I18n.t('auth.description.prefix_invited_by_user', name: @invite.user.account.username)
+             else
+               I18n.t('auth.description.prefix_sign_up')
+             end
 
     safe_join([prefix, I18n.t('auth.description.suffix')], ' ')
   end

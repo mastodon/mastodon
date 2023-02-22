@@ -28,7 +28,7 @@ class ActivityPub::FetchRemoteActorService < BaseService
     raise Error, "Unsupported JSON-LD context for document #{uri}" unless supported_context?
     raise Error, "Unexpected object type for actor #{uri} (expected any of: #{SUPPORTED_TYPES})" unless expected_type?
     raise Error, "Actor #{uri} has moved to #{@json['movedTo']}" if break_on_redirect && @json['movedTo'].present?
-    raise Error, "Actor #{uri} has no 'preferredUsername', which is a requirement for Mastodon compatibility" unless @json['preferredUsername'].present?
+    raise Error, "Actor #{uri} has no 'preferredUsername', which is a requirement for Mastodon compatibility" if @json['preferredUsername'].blank?
 
     @uri      = @json['id']
     @username = @json['preferredUsername']
@@ -50,15 +50,14 @@ class ActivityPub::FetchRemoteActorService < BaseService
 
     if @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
       raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.link('self', 'href') != @uri
+
       return
     end
 
     webfinger                            = webfinger!("acct:#{confirmed_username}@#{confirmed_domain}")
     @username, @domain                   = split_acct(webfinger.subject)
 
-    unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
-      raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{@uri} (stopped at #{@username}@#{@domain})"
-    end
+    raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{@uri} (stopped at #{@username}@#{@domain})" unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
 
     raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.link('self', 'href') != @uri
   rescue Webfinger::RedirectError => e

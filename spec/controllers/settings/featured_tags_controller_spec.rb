@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Settings::FeaturedTagsController do
@@ -5,7 +7,7 @@ describe Settings::FeaturedTagsController do
 
   shared_examples 'authenticate user' do
     it 'redirects to sign_in page' do
-      is_expected.to redirect_to new_user_session_path
+      expect(subject).to redirect_to new_user_session_path
     end
   end
 

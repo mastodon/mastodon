@@ -3,11 +3,11 @@
 require 'rails_helper'
 
 describe REST::AccountSerializer do
+  subject { JSON.parse(ActiveModelSerializers::SerializableResource.new(account, serializer: REST::AccountSerializer).to_json) }
+
   let(:role)    { Fabricate(:user_role, name: 'Role', highlighted: true) }
   let(:user)    { Fabricate(:user, role: role) }
-  let(:account) { user.account}
-
-  subject { JSON.parse(ActiveModelSerializers::SerializableResource.new(account, serializer: REST::AccountSerializer).to_json) }
+  let(:account) { user.account }
 
   context 'when the account is suspended' do
     before do
