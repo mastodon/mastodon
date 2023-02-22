@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Status, type: :model do
+  subject { Fabricate(:status, account: alice) }
+
   let(:alice) { Fabricate(:account, username: 'alice') }
   let(:bob)   { Fabricate(:account, username: 'bob') }
   let(:other) { Fabricate(:status, account: bob, text: 'Skulls for the skull god! The enemy\'s gates are sideways!') }
-
-  subject { Fabricate(:status, account: alice) }
 
   describe '#local?' do
     it 'returns true when no remote URI is set' do
@@ -204,10 +206,10 @@ RSpec.describe Status, type: :model do
   end
 
   describe '.mutes_map' do
+    subject { Status.mutes_map([status.conversation.id], account) }
+
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
-
-    subject { Status.mutes_map([status.conversation.id], account) }
 
     it 'returns a hash' do
       expect(subject).to be_a Hash
@@ -220,10 +222,10 @@ RSpec.describe Status, type: :model do
   end
 
   describe '.favourites_map' do
+    subject { Status.favourites_map([status], account) }
+
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
-
-    subject { Status.favourites_map([status], account) }
 
     it 'returns a hash' do
       expect(subject).to be_a Hash
@@ -236,10 +238,10 @@ RSpec.describe Status, type: :model do
   end
 
   describe '.reblogs_map' do
+    subject { Status.reblogs_map([status], account) }
+
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
-
-    subject { Status.reblogs_map([status], account) }
 
     it 'returns a hash' do
       expect(subject).to be_a Hash

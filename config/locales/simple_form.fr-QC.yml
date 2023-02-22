@@ -18,6 +18,8 @@ fr-QC:
           disable: Empêcher l’utilisateur·rice d’utiliser son compte, mais ne pas supprimer ou masquer son contenu.
           none: Utilisez ceci pour envoyer un avertissement à l’utilisateur·rice, sans déclencher aucune autre action.
           sensitive: Forcer toutes les pièces jointes de cet·te utilisateur·rice à être signalées comme sensibles.
+          silence: Empêcher l'utilisateur⋅rice de publier des messages en visibilité publique et cacher tous ses messages et notifications aux comptes non abonnés. Cloture tous les signalements concernant ce compte.
+          suspend: Empêcher toute interaction depuis ou vers ce compte et supprimer son contenu. Réversible dans les 30 jours. Cloture tous les signalements concernant ce compte.
         warning_preset_id: Facultatif. Vous pouvez toujours ajouter un texte personnalisé à la fin de la présélection
       announcement:
         all_day: Coché, seules les dates de l’intervalle de temps seront affichées
@@ -72,6 +74,7 @@ fr-QC:
           hide: Cacher complètement le contenu filtré, faire comme s'il n'existait pas
           warn: Cacher le contenu filtré derrière un avertissement mentionnant le nom du filtre
       form_admin_settings:
+        activity_api_enabled: Nombre de messages publiés localement, de comptes actifs et de nouvelles inscriptions par tranche hebdomadaire
         backups_retention_period: Conserve les archives générées par l'utilisateur selon le nombre de jours spécifié.
         bootstrap_timeline_accounts: Ces comptes seront épinglés en tête de liste des recommandations pour les nouveaux utilisateurs.
         closed_registrations_message: Affiché lorsque les inscriptions sont fermées
@@ -79,6 +82,7 @@ fr-QC:
         custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de Mastodon.
         mascot: Remplace l'illustration dans l'interface Web avancée.
         media_cache_retention_period: Les fichiers multimédias téléchargés seront supprimés après le nombre de jours spécifiés lorsque la valeur est positive, et seront téléchargés à nouveau sur demande.
+        peers_api_enabled: Une liste de noms de domaine que ce serveur a rencontrés dans le fediverse. Aucune donnée indiquant si vous vous fédérez ou non avec un serveur particulier n'est incluse ici, seulement l'information que votre serveur connaît un autre serveur. Cette option est utilisée par les services qui collectent des statistiques sur la fédération en général.
         profile_directory: L'annuaire des profils répertorie tous les utilisateurs qui ont opté pour être découverts.
         require_invite_text: Lorsque les inscriptions nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
         site_contact_email: Comment les personnes peuvent vous joindre pour des demandes de renseignements juridiques ou d'assistance.
@@ -227,6 +231,7 @@ fr-QC:
           hide: Cacher complètement
           warn: Cacher derrière un avertissement
       form_admin_settings:
+        activity_api_enabled: Publie des statistiques agrégées sur l'activité des utilisateur⋅rice⋅s dans l'API
         backups_retention_period: Période d'archivage utilisateur
         bootstrap_timeline_accounts: Toujours recommander ces comptes aux nouveaux utilisateurs
         closed_registrations_message: Message personnalisé lorsque les inscriptions ne sont pas disponibles
@@ -234,6 +239,7 @@ fr-QC:
         custom_css: CSS personnalisé
         mascot: Mascotte personnalisée (héritée)
         media_cache_retention_period: Durée de rétention des médias dans le cache
+        peers_api_enabled: Publie la liste des serveurs découverts dans l'API
         profile_directory: Activer l’annuaire des profils
         registrations_mode: Qui peut s’inscrire
         require_invite_text: Exiger une raison pour s’inscrire

@@ -441,6 +441,7 @@ bg:
         private_comment_description_html: 'За по-лесно проследяване откъде идват внесените блокирания, те ще се създадат със следния личен коментар: <q>%{comment}</q>'
         private_comment_template: Внесено от %{source} на %{date}
         title: Внос на блокирания на домейни
+      invalid_domain_block: 'Едно или повече блокирания на домейн са прескочени поради следнате грешки: %{error}'
       new:
         title: Внос на блокирания на домейни
       no_file: Няма избран файл
@@ -589,6 +590,7 @@ bg:
       comment:
         none: Нищо
       comment_description_html: 'За да предостави повече информация, %{name} написа:'
+      confirm_action: Потвърждаване на модераторско действие срещу @%{acct}
       created_at: Докладвано
       delete_and_resolve: Изтриване на публикациите
       forwarded: Препратено
@@ -617,9 +619,15 @@ bg:
       status: Състояние
       statuses: Докладвано съдържание
       statuses_description_html: Непристойно съдържание ще бъде цитирано в комуникацията с докладвания акаунт
+      summary:
+        actions:
+          delete_html: Премахване на обидните публикации
+        close_report: Отбелязване на доклад №%{id} като решен
+        warning_placeholder: Незадължителни допълнителни причини за модераторско действие.
       target_origin: Произход на докладвания акаунт
       title: Доклади
       unassign: Освобождаване
+      unknown_action_msg: 'Незнайно деяние: %{action}'
       unresolved: Неразрешено
       updated_at: Обновено
       view_profile: Преглед на профила
@@ -943,6 +951,8 @@ bg:
   auth:
     apply_for_account: Заявка за акаунт
     change_password: Парола
+    confirmations:
+      wrong_email_hint: Ако този адрес на е-поща не е правилен, то може да го промените в настройки на акаунта.
     delete_account: Изтриване на акаунта
     delete_account_html: Ако желаете да изтриете акаунта си, може <a href="%{path}">да сторите това тук</a>. Ще ви се поиска потвърждение.
     description:

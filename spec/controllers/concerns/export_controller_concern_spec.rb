@@ -29,7 +29,7 @@ describe ApplicationController, type: :controller do
 
     it 'returns unauthorized when not signed in' do
       get :index, format: :csv
-      expect(response).to have_http_status(:unauthorized)
+      expect(response).to have_http_status(401)
     end
   end
 end

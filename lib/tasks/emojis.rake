@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 def gen_border(codepoint, color)
-  input = Rails.root.join('public', 'emoji', "#{codepoint}.svg")
-  dest = Rails.root.join('public', 'emoji', "#{codepoint}_border.svg")
+  input = Rails.public_path.join('emoji', "#{codepoint}.svg")
+  dest = Rails.public_path.join('emoji', "#{codepoint}_border.svg")
   doc = File.open(input) { |f| Nokogiri::XML(f) }
   svg = doc.at_css('svg')
   if svg.key?('viewBox')
@@ -69,7 +69,7 @@ namespace :emojis do
       end
     end
 
-    existence_maps = grouped_codes.map { |c| c.index_with { |cc| File.exist?(Rails.root.join('public', 'emoji', "#{codepoints_to_filename(cc)}.svg")) } }
+    existence_maps = grouped_codes.map { |c| c.index_with { |cc| Rails.public_path.join('emoji', "#{codepoints_to_filename(cc)}.svg").exist? } }
     map = {}
 
     existence_maps.each do |group|

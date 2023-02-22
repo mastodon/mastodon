@@ -441,6 +441,7 @@ fo:
         private_comment_description_html: Fyri at hjálpa tær at fylgja við í, hvaðani innfluttir blokkar koma, verða innfluttu blokkarnir stovnaðir við hesi privatu viðmerkingini:<q>%{comment}</q>
         private_comment_template: Innflutt frá %{source} tann %{date}
         title: Innflyt navnaøkjablokeringar
+      invalid_domain_block: 'Ein ella fleiri navnaøkjablokeringar vóru umlopnar vegna hesar feil(ir): %{error}'
       new:
         title: Innflyt navnaøkjablokeringar
       no_file: Eingin fíla vald
@@ -589,6 +590,7 @@ fo:
       comment:
         none: Eingin
       comment_description_html: 'Fyri at veita fleiri upplýsingar skrivaði %{name}:'
+      confirm_action: Vátta umsjónaratgerð móti @%{acct}
       created_at: Meldað
       delete_and_resolve: Strika postar
       forwarded: Víðarisent
@@ -605,6 +607,7 @@ fo:
         placeholder: Greið frá, hvørjar atgerðir hava verið gjørdar ella aðrar viðkomandi dagføringar...
         title: Viðmerkingar
       notes_description_html: Vís ella skriva viðmerkingar til onnur umsjónarfólk ella teg sjálva/n í framtíðini
+      processed_msg: 'Rapportering #%{id} liðugt viðgjørd'
       quick_actions_description_html: 'Tak eina skjóta avgerð ella skrulla niðureftir fyri at síggja meldaða innihaldið:'
       remote_user_placeholder: fjarbrúkarin frá %{instance}
       reopen: Lat melding uppaftur
@@ -617,9 +620,28 @@ fo:
       status: Støða
       statuses: Meldað innihald
       statuses_description_html: Tilfarið, sum brotið viðvíkur, fer at vera siterað í samskifti við meldaðu kontuni
+      summary:
+        action_preambles:
+          delete_html: 'Tú er í ferð við at <strong>strika</strong> nakrar av postunum hjá <strong>@%{acct}</strong>. Hetta fer at:'
+          mark_as_sensitive_html: 'Tú er í ferð við at <strong>merkja</strong> nakrar av postunum hjá <strong>@%{acct}</strong> sum <strong>viðkvæmar</strong>. Hetta fer at:'
+          silence_html: 'Tú er í ferð við at <strong>avmarka</strong> kontuna hjá <strong>@%{acct}</strong>. Hetta fer at:'
+          suspend_html: 'Tú er í ferð við at gera kontuna hjá <strong>@%{acct}</strong> <strong>óvirkna</strong>. Hetta fer at:'
+        actions:
+          delete_html: Strika postar, ið eru farnir útum mark
+          mark_as_sensitive_html: Merk postar, ið eru farnir um mark, sum viðkvæmar
+          silence_html: Avmarka hvussu langt <strong>@%{acct}</strong> røkkur við einans at lata vangan og innihaldið hjá teimum vera sjónligt hjá fólki, sum longu fylgja teimum ella manuelt sláa vangan upp
+          suspend_html: Ger kontuna <strong>@%{acct}</strong> óvirkna, soleiðis at vangin og innihaldið verður óframkomiligt og ómøguligt at samvirka við
+        close_report: 'Merk kæruna #%{id} sum loysta'
+        close_reports_html: Merk <strong>allar</strong> kærur móti <strong>@%{acct}</strong> sum loystar
+        delete_data_html: Strika vangan og innihaldið hjá <strong>@%{acct}</strong> um 30 dagar uttan so at kontan verður gjørd virkin aftur áðrenn tað
+        preview_preamble_html: "<strong>@%{acct}</strong> ger at móttaka eina ávaring við hesum innihaldi:"
+        record_strike_html: Skráset eitt brot á <strong>@%{acct}</strong>, soleiðis at tað kann havast í huga í samband við møgulig framtíðar mishald
+        send_email_html: Send <strong>@%{acct}</strong> eitt teldubræv við eini ávaring
+        warning_placeholder: Møguligar eyka grundgevingar fyri umsjónaratgerð.
       target_origin: Uppruni hjá meldaðu kontuni
       title: Meldingar
       unassign: Strika tillutan
+      unknown_action_msg: 'Ókend atgerð: %{action}'
       unresolved: Óloyst
       updated_at: Dagført
       view_profile: Vís vangamynd
@@ -943,6 +965,8 @@ fo:
   auth:
     apply_for_account: Bið um eina kontu
     change_password: Loyniorð
+    confirmations:
+      wrong_email_hint: Um hesin teldupoststaðurin ikki er rættur, so kanst tú broyta hann í kontustillingunum.
     delete_account: Strika kontu
     delete_account_html: Ynskir tú at strika kontuna, so kanst tú <a href="%{path}">halda fram her</a>. Tú verður spurd/ur um váttan.
     description:

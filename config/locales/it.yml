@@ -142,8 +142,8 @@ it:
       show:
         created_reports: Rapporti creati
         targeted_reports: Segnalato da altri
-      silence: Limita
-      silenced: Limitato
+      silence: Silenzia
+      silenced: Silenziato
       statuses: Toot
       strikes: Provvedimenti precedenti
       subscribe: Iscriviti
@@ -156,7 +156,7 @@ it:
       unblocked_email_msg: Indirizzo email di %{username} sbloccato correttamente
       unconfirmed_email: Email non confermata
       undo_sensitized: Annulla sensibile
-      undo_silenced: Annulla limitazione
+      undo_silenced: Rimuovi silenzia
       undo_suspension: Annulla sospensione
       unsilenced_msg: Limitazione del profilo di %{username} annullata correttamente
       unsubscribe: Disiscriviti
@@ -441,6 +441,7 @@ it:
         private_comment_description_html: 'Per aiutarti a tenere traccia della provenienza dei blocchi importati, i blocchi importati verranno creati con il seguente commento privato: <q>%{comment}</q>'
         private_comment_template: Importato da %{source} il %{date}
         title: Importare i blocchi di dominio
+      invalid_domain_block: 'Uno o più blocchi di dominio sono stati saltati a causa dei seguenti errori: %{error}'
       new:
         title: Importare i blocchi di dominio
       no_file: Nessun file selezionato
@@ -589,6 +590,7 @@ it:
       comment:
         none: Nessuno
       comment_description_html: 'Per fornire ulteriori informazioni, %{name} ha scritto:'
+      confirm_action: Conferma l'azione di moderazione contro @%{acct}
       created_at: Segnalato
       delete_and_resolve: Cancella post
       forwarded: Inoltrato
@@ -605,6 +607,7 @@ it:
         placeholder: Descrivi quali azioni sono state intraprese, o ogni altro aggiornamento rilevante...
         title: Note
       notes_description_html: Visualizza e lascia note ad altri moderatori e al tuo futuro sé
+      processed_msg: 'Segnalazione #%{id} elaborata correttamente'
       quick_actions_description_html: 'Fai un''azione rapida o scorri verso il basso per vedere il contenuto segnalato:'
       remote_user_placeholder: l'utente remoto da %{instance}
       reopen: Riapri rapporto
@@ -617,9 +620,28 @@ it:
       status: Stato
       statuses: Contenuto segnalato
       statuses_description_html: Il contenuto offensivo sarà citato nella comunicazione con l'account segnalato
+      summary:
+        action_preambles:
+          delete_html: 'Stai per <strong>rimuovere</strong> alcuni post di <strong>@%{acct}</strong>. Questo conseguirà:'
+          mark_as_sensitive_html: 'Stai per <strong>contrassegnare</strong> alcuni post di <strong>@%{acct}</strong> come <strong>sensibili</strong>. Questo conseguirà:'
+          silence_html: 'Stai per <strong>limitare</strong> l''account di <strong>@%{acct}</strong>. Questo conseguirà:'
+          suspend_html: 'Stai per <strong>sospendere</strong> l''account di <strong>@%{acct}</strong>. Questo conseguirà:'
+        actions:
+          delete_html: Rimuovi i post offensivi
+          mark_as_sensitive_html: Contrassegna i file multimediali dei post offensivi come sensibili
+          silence_html: Limita severamente la portata di <strong>@%{acct}</strong> rendendo il suo profilo e il suo contenuto visibili solo a persone che già li seguono o che lo guardano manualmente
+          suspend_html: Sospendere <strong>@%{acct}</strong>, rendendo il suo profilo e i suoi contenuti inaccessibili e impossibilitandone l'interazione
+        close_report: 'Contrassegna la segnalazione #%{id} come risolta'
+        close_reports_html: Contrassegna <strong>tutte</strong> le segnalazioni contro <strong>@%{acct}</strong> come risolte
+        delete_data_html: Elimina il profilo e i contenuti di <strong>@%{acct}</strong> tra 30 giorni da ora, a meno che non vengano riattivati nel frattempo
+        preview_preamble_html: "<strong>@%{acct}</strong> riceverà un avvertimento con i seguenti contenuti:"
+        record_strike_html: Registra un provvedimento contro <strong>@%{acct}</strong> per aiutarti a gestire meglio future violazioni da questo account
+        send_email_html: Invia a <strong>@%{acct}</strong> una e-mail di avvertimento
+        warning_placeholder: Motivazione aggiuntiva facoltativa per l'azione di moderazione.
       target_origin: Origine dell'account segnalato
       title: Rapporti
       unassign: Non assegnare
+      unknown_action_msg: 'Azione sconosciuta: %{action}'
       unresolved: Non risolto
       updated_at: Aggiornato
       view_profile: Visualizza profilo
@@ -945,6 +967,8 @@ it:
   auth:
     apply_for_account: Richiedi un account
     change_password: Password
+    confirmations:
+      wrong_email_hint: Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
     description:

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Settings::Preferences::NotificationsController do
@@ -25,7 +27,7 @@ describe Settings::Preferences::NotificationsController do
         user: {
           notification_emails: { follow: '1' },
           interactions: { must_be_follower: '0' },
-        }
+        },
       }
 
       expect(response).to redirect_to(settings_preferences_notifications_path)

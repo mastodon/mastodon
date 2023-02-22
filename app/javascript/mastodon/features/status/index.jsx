@@ -5,7 +5,17 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { createSelector } from 'reselect';
-import { fetchStatus } from '../../actions/statuses';
+import {
+  fetchStatus,
+  muteStatus,
+  unmuteStatus,
+  deleteStatus,
+  editStatus,
+  hideStatus,
+  revealStatus,
+  translateStatus,
+  undoStatusTranslation,
+} from '../../actions/statuses';
 import MissingIndicator from '../../components/missing_indicator';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 import DetailedStatus from './components/detailed_status';
@@ -26,16 +36,6 @@ import {
   mentionCompose,
   directCompose,
 } from '../../actions/compose';
-import {
-  muteStatus,
-  unmuteStatus,
-  deleteStatus,
-  editStatus,
-  hideStatus,
-  revealStatus,
-  translateStatus,
-  undoStatusTranslation,
-} from '../../actions/statuses';
 import {
   unblockAccount,
   unmuteAccount,

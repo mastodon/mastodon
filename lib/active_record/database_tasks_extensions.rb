@@ -11,7 +11,7 @@ module ActiveRecord
         ActiveRecord::Base.establish_connection(db_config)
         Mastodon::Snowflake.define_timestamp_id
 
-        original_load_schema.bind(self).call(db_config, *args)
+        original_load_schema.bind_call(self, db_config, *args)
 
         Mastodon::Snowflake.ensure_id_sequences_exist
       end

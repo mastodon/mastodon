@@ -50,16 +50,14 @@ module Mastodon
             styles << :original unless styles.include?(:original)
 
             styles.each do |style|
-              success = begin
-                case Paperclip::Attachment.default_options[:storage]
-                when :s3
-                  upgrade_storage_s3(progress, attachment, style)
-                when :fog
-                  upgrade_storage_fog(progress, attachment, style)
-                when :filesystem
-                  upgrade_storage_filesystem(progress, attachment, style)
-                end
-              end
+              success = case Paperclip::Attachment.default_options[:storage]
+                        when :s3
+                          upgrade_storage_s3(progress, attachment, style)
+                        when :fog
+                          upgrade_storage_fog(progress, attachment, style)
+                        when :filesystem
+                          upgrade_storage_filesystem(progress, attachment, style)
+                        end
 
               upgraded = true if style == :original && success
 

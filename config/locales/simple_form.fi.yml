@@ -18,6 +18,8 @@ fi:
           disable: Estä käyttäjää käyttämästä tiliään, mutta älä poista tai piilota sen sisältöä.
           none: Käytä tätä lähettääksesi varoituksen käyttäjälle käynnistämättä mitään muita toimintoja.
           sensitive: Pakota kaikki tämän käyttäjän mediatiedostot arkaluontoisiksi.
+          silence: Estä käyttäjää lähettämästä viestejä julkisesti, piilota hänen viestinsä ja ilmoituksensa ihmisiltä, jotka eivät seuraa häntä. Sulkee kaikki tämän tilin raportit.
+          suspend: Estä kaikki vuorovaikutus tältä -tai tälle tilille ja poista sen kaikki sisältö. Päätös voidaan peruuttaa 30 päivän aikana. Sulkee kaikki raportit tätä tiliä vasten.
         warning_preset_id: Valinnainen. Voit silti lisätä mukautetun tekstin esiasetuksen loppuun
       announcement:
         all_day: Kun valittu, vain valittu aikaväli näytetään
@@ -89,11 +91,13 @@ fi:
         site_short_description: Lyhyt kuvaus auttaa yksilöimään palvelimesi. Kuka sitä johtaa, kenelle se on tarkoitettu?
         site_terms: Käytä omaa tietosuojakäytäntöä tai jätä tyhjäksi, jos haluat käyttää oletusta. Voidaan jäsentää Markdown-syntaksilla.
         site_title: Kuinka ihmiset voivat viitata palvelimeen sen verkkotunnuksen lisäksi.
+        status_page_url: URL-osoite, jonka kautta palvelimen tila voidaan tarkastaa sen ollessa tavoittamattomissa
         theme: Teema, jonka uloskirjautuneet vierailijat ja uudet käyttäjät näkevät.
         thumbnail: Noin 2:1 kuva näytetään palvelimen tietojen rinnalla.
         timeline_preview: Uloskirjautuneet vierailijat voivat selata uusimpia julkisia viestejä, jotka ovat saatavilla palvelimella.
         trendable_by_default: Ohita suositun sisällön manuaalinen tarkistus. Yksittäisiä kohteita voidaan edelleen poistaa jälkikäteen.
         trends: Trendit osoittavat, mitkä julkaisut, aihetunnisteet ja uutiset ovat saamassa vetoa palvelimellasi.
+        trends_as_landing_page: Näytä suosittu sisältö uloskirjautuneille käyttäjille ja kävijöille palvelimen kuvauksen sijaan. Edellyttää suositun sisällön käyttöönottoa.
       form_challenge:
         current_password: Olet menossa suojatulle alueelle
       imports:
@@ -188,13 +192,13 @@ fi:
         password: Salasana
         phrase: Avainsana tai lause
         setting_advanced_layout: Ota käyttöön edistynyt selainkäyttöliittymä
-        setting_aggregate_reblogs: Ryhmitä boostaukset aikajanalla
+        setting_aggregate_reblogs: Ryhmitä tehostukset aikajanalla
         setting_always_send_emails: Lähetä aina sähköposti-ilmoituksia
         setting_auto_play_gif: Toista GIF-animaatiot automaattisesti
-        setting_boost_modal: Kysy vahvistusta ennen buustausta
+        setting_boost_modal: Kysy vahvistus ennen tehostusta
         setting_crop_images: Rajaa kuvat avaamattomissa tuuttauksissa 16:9 kuvasuhteeseen
         setting_default_language: Julkaisujen kieli
-        setting_default_privacy: Julkaisun näkyvyys
+        setting_default_privacy: Viestin näkyvyys
         setting_default_sensitive: Merkitse media aina arkaluontoiseksi
         setting_delete_modal: Kysy vahvistusta ennen viestin poistamista
         setting_disable_swiping: Poista pyyhkäisyt käytöstä
@@ -249,11 +253,13 @@ fi:
         site_short_description: Palvelimen kuvaus
         site_terms: Tietosuojakäytäntö
         site_title: Palvelimen nimi
+        status_page_url: Tilasivun URL-osoite
         theme: Oletusteema
         thumbnail: Palvelimen pikkukuva
         timeline_preview: Salli todentamaton pääsy julkiselle aikajanalle
         trendable_by_default: Salli trendit ilman ennakkotarkastusta
         trends: Trendit käyttöön
+        trends_as_landing_page: Käytä suosittua sisältöä aloitussivuna
       interactions:
         must_be_follower: Estä ilmoitukset käyttäjiltä, jotka eivät seuraa sinua
         must_be_following: Estä ilmoitukset käyttäjiltä, joita et seuraa
@@ -278,7 +284,7 @@ fi:
         follow_request: Lähetä sähköposti, kun joku pyytää seurata sinua
         mention: Lähetä sähköposti, kun sinut mainitaan
         pending_account: Uusi tili tarvitsee tarkastusta
-        reblog: Lähetä sähköposti, kun joku buustaa julkaisusi
+        reblog: Lähetä sähköposti, kun joku tehosti viestiäsi
         report: Uusi raportti on lähetetty
         trending_tag: Uusi trendi vaatii tarkastelua
       rule:

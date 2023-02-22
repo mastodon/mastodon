@@ -441,6 +441,7 @@ et:
         private_comment_description_html: 'Pidamaks järge, kust imporditud keelud pärinevad, luuakse need järneva privaatse kommentaariga: <q>%{comment}</q>'
         private_comment_template: Imporditud allikast %{source} kuupäeval %{date}
         title: Domeenikeeldude import
+      invalid_domain_block: 'Üks või mitu domeeniblokeeringut jäeti vahele järgnevate vigade tõttu: %{error}'
       new:
         title: Domeenikeeldude import
       no_file: Faili pole valitud
@@ -589,6 +590,7 @@ et:
       comment:
         none: Pole
       comment_description_html: 'Täiendava infona kirjutas %{name}:'
+      confirm_action: Kinnita @%{acct} modereering
       created_at: Teavitatud
       delete_and_resolve: Kustuta postitused
       forwarded: Edastatud
@@ -605,6 +607,7 @@ et:
         placeholder: Kirjelda, mis on ette võetud või muid seotud uuendusi...
         title: Märkmed
       notes_description_html: Märkmete vaatamine ja jätmine teistele moderaatoritele ja tulevikuks endale
+      processed_msg: 'Raport #%{id} edukalt käsitletud'
       quick_actions_description_html: 'Võimalus teha kiire otsus või näha raporteeritud sisu allpool:'
       remote_user_placeholder: kaugkasutaja domeenist %{instance}
       reopen: Taasava teavitus
@@ -617,9 +620,28 @@ et:
       status: Olek
       statuses: Raporteeritud sisu
       statuses_description_html: Sobimatu sisu kaasatakse suhtlusse raporteeritud kontoga
+      summary:
+        action_preambles:
+          delete_html: 'Oled <strong>eemaldamas</strong> mõnesid <strong>@%{acct}</strong> postitusi. Selle tulemusena:'
+          mark_as_sensitive_html: 'Oled <strong>märkimas</strong> mõnesid <strong>@%{acct}</strong> postitusi <strong>tundlikuks</strong>. Selle tulemusena:'
+          silence_html: 'Oled <strong>määramas piirangut</strong> kontole <strong>@%{acct}</strong>. Selle tulemusena:'
+          suspend_html: 'Oled <strong>peatamas</strong> kontot <strong>@%{acct}</strong>. Selle tulemusena:'
+        actions:
+          delete_html: Solvava postituse eemaldamine
+          mark_as_sensitive_html: Solvava postituse meedia märkimine tundlikuks
+          silence_html: "<strong>@%{acct}</strong> ulatuse tugev piiramine muutes tema profiili ja sisu nähtavaks ainult neile, kes teda juba jälgivad, või neile, kes just tema profiili üles otsivad"
+          suspend_html: "<strong>@%{acct}</strong> peatamine, muutes tema profiili ja sisu mitteligipääsetavaks ning mitteinterakteerutavaks"
+        close_report: 'Raporti #%{id} lahendatuks märkimine'
+        close_reports_html: Märgi <strong>kõik</strong> raportid <strong>@%{acct}</strong> vastu lahendatuks
+        delete_data_html: Kustuta tänasest 30 päeva pärast kasutaja <strong>@%{acct}</strong> profiil ja sisu, kui vahepeal tema kontot ei taastata
+        preview_preamble_html: "<strong>@%{acct}</strong> saab järgmise sisuga hoiatuse:"
+        record_strike_html: Salvesta <strong>@%{acct}</strong> kohta juhtum, et aidata selle konto tulevaste rikkumiste puhul reageerida
+        send_email_html: Saada kasutajale <strong>@%{acct}</strong> hoiatus-e-kiri
+        warning_placeholder: Valikuline täiendav põhjendus modereerimisele.
       target_origin: Raporteeritud konto päritolu
       title: Teavitused
       unassign: Eemalda määramine
+      unknown_action_msg: 'Tundmatu tegevus: %{action}'
       unresolved: Lahendamata
       updated_at: Uuendatud
       view_profile: Vaata profiili
@@ -943,6 +965,8 @@ et:
   auth:
     apply_for_account: Konto taotluse esitamine
     change_password: Salasõna
+    confirmations:
+      wrong_email_hint: Kui see e-postiaadress pole korrektne, saad seda kontosätetes muuta.
     delete_account: Konto kustutamine
     delete_account_html: Kui soovid oma konto kustutada, siis <a href="%{path}">jätka siit</a>. Pead kustutamise eraldi kinnitama.
     description:

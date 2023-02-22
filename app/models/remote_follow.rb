@@ -36,13 +36,11 @@ class RemoteFollow
 
     username, domain = value.strip.gsub(/\A@/, '').split('@')
 
-    domain = begin
-      if TagManager.instance.local_domain?(domain)
-        nil
-      else
-        TagManager.instance.normalize_domain(domain)
-      end
-    end
+    domain = if TagManager.instance.local_domain?(domain)
+               nil
+             else
+               TagManager.instance.normalize_domain(domain)
+             end
 
     [username, domain].compact.join('@')
   rescue Addressable::URI::InvalidURIError
