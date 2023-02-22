@@ -84,6 +84,10 @@ class ActivityPub::Parser::StatusParser
     end
   end
 
+  def indexable
+    @object['indexable']
+  end
+
   def language
     if content_language_map?
       @object['contentMap'].keys.first
