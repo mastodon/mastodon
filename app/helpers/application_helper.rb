@@ -112,7 +112,7 @@ module ApplicationHelper
   def fa_icon(icon, attributes = {})
     class_names = attributes[:class]&.split(' ') || []
     class_names << 'fa'
-    class_names += icon.split(' ').map { |cl| "fa-#{cl}" }
+    class_names += icon.split.map { |cl| "fa-#{cl}" }
 
     content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
   end
@@ -164,7 +164,7 @@ module ApplicationHelper
   end
 
   def body_classes
-    output = (@body_classes || '').split(' ')
+    output = (@body_classes || '').split
     output << "theme-#{current_theme.parameterize}"
     output << 'system-font' if current_account&.user&.setting_system_font_ui
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
