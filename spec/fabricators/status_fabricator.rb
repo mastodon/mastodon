@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Fabricator(:status) do
   account
   text 'Lorem ipsum dolor sit amet'

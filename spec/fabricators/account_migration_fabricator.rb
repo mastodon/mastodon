@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Fabricator(:account_migration) do
   account
   target_account { |attrs| Fabricate(:account, also_known_as: [ActivityPub::TagManager.instance.uri_for(attrs[:account])]) }
