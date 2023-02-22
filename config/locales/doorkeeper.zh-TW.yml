@@ -1,4 +1,3 @@
----
 zh-TW:
   activerecord:
     attributes:
@@ -52,7 +51,7 @@ zh-TW:
         callback_urls: 回傳網址
         scopes: 範圍
         secret: 用戶端密碼 (client secret)
-        title: 應用程式︰%{name}
+        title: '應用程式︰%{name}'
     authorizations:
       buttons:
         authorize: 授權
@@ -86,7 +85,7 @@ zh-TW:
         invalid_grant: 授權申請不正確、逾期、已被註銷、與授權請求內的重新導向 URI 不符、或屬於別的用戶端程式。
         invalid_redirect_uri: 包含的重新導向 URI 是不正確的。
         invalid_request:
-          missing_param: 缺少必要的參數：%{value}.
+          missing_param: '缺少必要的參數：%{value}.'
           request_not_authorized: 請求必須是已授權的。用於授權的必要參數缺少或無效。
           unknown: 請求缺少必要的參數、有不支援的參數、或其他格式錯誤。
         invalid_resource_owner: 資源擁有者的登入資訊錯誤，或無法找到該資源擁有者
@@ -131,7 +130,7 @@ zh-TW:
         filters: 過濾器
         follow: 跟隨、靜音與封鎖
         follows: 跟隨的使用者
-        lists: 名單
+        lists: 列表
         media: 多媒體附加檔案
         mutes: 靜音
         notifications: 通知
@@ -147,49 +146,49 @@ zh-TW:
       application:
         title: 需要 OAuth 授權
     scopes:
-      admin:read: 讀取伺服器的所有資料
-      admin:read:accounts: 讀取所有帳號的敏感內容
-      admin:read:canonical_email_blocks: 讀取所有電子郵件黑名單之敏感內容
-      admin:read:domain_allows: 讀取所有網域白名單之敏感內容
-      admin:read:domain_blocks: 讀取所有網域黑名單之敏感內容
-      admin:read:email_domain_blocks: 讀取所有電子郵件黑名單之敏感內容
-      admin:read:ip_blocks: 讀取所有 IP 黑名單之敏感內容
-      admin:read:reports: 讀取所有回報 / 被回報之帳號的敏感內容
-      admin:write: 修改伺服器的所有資料
-      admin:write:accounts: 對帳號進行管理動作
-      admin:write:canonical_email_blocks: 對電子郵件黑名單進行管理動作
-      admin:write:domain_allows: 對網域白名單進行管理動作
-      admin:write:domain_blocks: 對網域黑名單進行管理動作
-      admin:write:email_domain_blocks: 對電子郵件黑名單進行管理動作
-      admin:write:ip_blocks: 對 IP 黑名單進行管理動作
-      admin:write:reports: 對報告進行管理動作
+      "admin:read": 讀取伺服器的所有資料
+      "admin:read:accounts": 讀取所有帳號的敏感內容
+      "admin:read:canonical_email_blocks": 讀取所有電子郵件黑名單之敏感內容
+      "admin:read:domain_allows": 讀取所有網域白名單之敏感內容
+      "admin:read:domain_blocks": 讀取所有網域黑名單之敏感內容
+      "admin:read:email_domain_blocks": 讀取所有電子郵件黑名單之敏感內容
+      "admin:read:ip_blocks": 讀取所有 IP 黑名單之敏感內容
+      "admin:read:reports": 讀取所有回報 / 被回報之帳號的敏感內容
+      "admin:write": 修改伺服器的所有資料
+      "admin:write:accounts": 對帳號進行管理動作
+      "admin:write:canonical_email_blocks": 對電子郵件黑名單進行管理動作
+      "admin:write:domain_allows": 對網域白名單進行管理動作
+      "admin:write:domain_blocks": 對網域黑名單進行管理動作
+      "admin:write:email_domain_blocks": 對電子郵件黑名單進行管理動作
+      "admin:write:ip_blocks": 對 IP 黑名單進行管理動作
+      "admin:write:reports": 對報告進行管理動作
       crypto: 使用端到端加密
       follow: 修改帳號關係
       push: 接收帳號的推播通知
       read: 讀取您所有的帳號資料
-      read:accounts: 檢視帳號資訊
-      read:blocks: 檢視您的封鎖名單
-      read:bookmarks: 檢視您的書籤
-      read:favourites: 檢視您收藏的最愛
-      read:filters: 檢視您的過濾條件
-      read:follows: 檢視您跟隨的人
-      read:lists: 檢視您的名單
-      read:mutes: 檢視您靜音的人
-      read:notifications: 檢視您的通知
-      read:reports: 檢視您的檢舉
-      read:search: 以您的身份搜尋
-      read:statuses: 檢視所有嘟文
+      "read:accounts": 檢視帳號資訊
+      "read:blocks": 檢視您的封鎖列表
+      "read:bookmarks": 檢視您的書籤
+      "read:favourites": 檢視您收藏的最愛
+      "read:filters": 檢視您的過濾條件
+      "read:follows": 檢視您跟隨的人
+      "read:lists": 檢視您的列表
+      "read:mutes": 檢視您靜音的人
+      "read:notifications": 檢視您的通知
+      "read:reports": 檢視您的檢舉
+      "read:search": 以您的身份搜尋
+      "read:statuses": 檢視所有嘟文
       write: 修改您帳號的所有資料
-      write:accounts: 修改您的個人檔案
-      write:blocks: 封鎖帳號及站台
-      write:bookmarks: 書籤狀態
-      write:conversations: 靜音及刪除對話
-      write:favourites: 加到最愛
-      write:filters: 建立過濾條件
-      write:follows: 跟隨其他人
-      write:lists: 建立列表
-      write:media: 上傳媒體檔案
-      write:mutes: 靜音使用者及對話
-      write:notifications: 清除您的通知
-      write:reports: 檢舉其他人
-      write:statuses: 發表嘟文
+      "write:accounts": 修改您的個人檔案
+      "write:blocks": 封鎖帳號及站台
+      "write:bookmarks": 書籤狀態
+      "write:conversations": 靜音及刪除對話
+      "write:favourites": 加到最愛
+      "write:filters": 建立過濾條件
+      "write:follows": 跟隨其他人
+      "write:lists": 建立列表
+      "write:media": 上傳媒體檔案
+      "write:mutes": 靜音使用者及對話
+      "write:notifications": 清除您的通知
+      "write:reports": 檢舉其他人
+      "write:statuses": 發表嘟文
