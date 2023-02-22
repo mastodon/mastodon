@@ -78,18 +78,18 @@ RSpec.describe Account, type: :model do
 
   describe '#local?' do
     it 'returns true when the account is local' do
-      account = Fabricate(:account, domain: nil)
+      account = Fabricate.build(:account, domain: nil)
       expect(account.local?).to be true
     end
 
     it 'returns false when the account is on a different domain' do
-      account = Fabricate(:account, domain: 'foreign.tld')
+      account = Fabricate.build(:account, domain: 'foreign.tld')
       expect(account.local?).to be false
     end
   end
 
   describe 'Local domain user methods' do
-    subject { Fabricate(:account, domain: nil, username: 'alice') }
+    subject { Fabricate.build(:account, domain: nil, username: 'alice') }
 
     around do |example|
       before = Rails.configuration.x.local_domain
@@ -116,12 +116,12 @@ RSpec.describe Account, type: :model do
 
   describe '#acct' do
     it 'returns username for local users' do
-      account = Fabricate(:account, domain: nil, username: 'alice')
+      account = Fabricate.build(:account, domain: nil, username: 'alice')
       expect(account.acct).to eql 'alice'
     end
 
     it 'returns username@domain for foreign users' do
-      account = Fabricate(:account, domain: 'foreign.tld', username: 'alice')
+      account = Fabricate.build(:account, domain: 'foreign.tld', username: 'alice')
       expect(account.acct).to eql 'alice@foreign.tld'
     end
   end
@@ -169,7 +169,7 @@ RSpec.describe Account, type: :model do
   end
 
   describe '#possibly_stale?' do
-    let(:account) { Fabricate(:account, last_webfingered_at: last_webfingered_at) }
+    let(:account) { Fabricate.build(:account, last_webfingered_at: last_webfingered_at) }
 
     context 'last_webfingered_at is nil' do
       let(:last_webfingered_at) { nil }
@@ -197,7 +197,7 @@ RSpec.describe Account, type: :model do
   end
 
   describe '#refresh!' do
-    let(:account) { Fabricate(:account, domain: domain) }
+    let(:account) { Fabricate.build(:account, domain: domain) }
     let(:acct)    { account.acct }
 
     context 'domain is nil' do
@@ -225,21 +225,21 @@ RSpec.describe Account, type: :model do
 
   describe '#to_param' do
     it 'returns username' do
-      account = Fabricate(:account, username: 'alice')
+      account = Fabricate.build(:account, username: 'alice')
       expect(account.to_param).to eq 'alice'
     end
   end
 
   describe '#keypair' do
     it 'returns an RSA key pair' do
-      account = Fabricate(:account)
+      account = Fabricate.build(:account)
       expect(account.keypair).to be_instance_of OpenSSL::PKey::RSA
     end
   end
 
   describe '#object_type' do
     it 'is always a person' do
-      account = Fabricate(:account)
+      account = Fabricate.build(:account)
       expect(account.object_type).to be :person
     end
   end
@@ -717,7 +717,8 @@ RSpec.describe Account, type: :model do
     end
 
     it 'squishes the username before validation' do
-      account = Fabricate(:account, domain: nil, username: " \u3000bob \t \u00a0 \n ")
+      account = Fabricate.build(:account, domain: nil, username: " \u3000bob \t \u00a0 \n ")
+      account.valid?
       expect(account.username).to eq 'bob'
     end
 

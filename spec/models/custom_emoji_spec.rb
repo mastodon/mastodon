@@ -30,7 +30,7 @@ RSpec.describe CustomEmoji, type: :model do
   describe '#local?' do
     subject { custom_emoji.local? }
 
-    let(:custom_emoji) { Fabricate(:custom_emoji, domain: domain) }
+    let(:custom_emoji) { Fabricate.build(:custom_emoji, domain: domain) }
 
     context 'domain is nil' do
       let(:domain) { nil }
@@ -51,7 +51,7 @@ RSpec.describe CustomEmoji, type: :model do
 
   describe '#object_type' do
     it 'returns :emoji' do
-      custom_emoji = Fabricate(:custom_emoji)
+      custom_emoji = Fabricate.build(:custom_emoji)
       expect(custom_emoji.object_type).to be :emoji
     end
   end

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe SessionActivation, type: :model do
   describe '#detection' do
-    let(:session_activation) { Fabricate(:session_activation, user_agent: 'Chrome/62.0.3202.89') }
+    let(:session_activation) { Fabricate.build(:session_activation, user_agent: 'Chrome/62.0.3202.89') }
 
     it 'sets a Browser instance as detection' do
       expect(session_activation.detection).to be_a Browser::Chrome
@@ -17,7 +17,7 @@ RSpec.describe SessionActivation, type: :model do
     end
 
     let(:detection)          { double(id: 1) }
-    let(:session_activation) { Fabricate(:session_activation) }
+    let(:session_activation) { Fabricate.build(:session_activation) }
 
     it 'returns detection.id' do
       expect(session_activation.browser).to be 1
@@ -29,7 +29,7 @@ RSpec.describe SessionActivation, type: :model do
       allow(session_activation).to receive(:detection).and_return(detection)
     end
 
-    let(:session_activation) { Fabricate(:session_activation) }
+    let(:session_activation) { Fabricate.build(:session_activation) }
     let(:detection)          { double(platform: double(id: 1)) }
 
     it 'returns detection.platform.id' do
@@ -71,7 +71,7 @@ RSpec.describe SessionActivation, type: :model do
   end
 
   describe '.activate' do
-    let(:options) { { user: Fabricate(:user), session_id: '1' } }
+    let(:options) { { user: Fabricate.build(:user), session_id: '1' } }
 
     it 'calls create! and purge_old' do
       expect(described_class).to receive(:create!).with(**options)

@@ -11,10 +11,10 @@ RSpec.describe User, type: :model do
 
   describe 'otp_secret' do
     it 'is encrypted with OTP_SECRET environment variable' do
-      user = Fabricate(:user,
-                       encrypted_otp_secret: "Fttsy7QAa0edaDfdfSz094rRLAxc8cJweDQ4BsWH/zozcdVA8o9GLqcKhn2b\nGi/V\n",
-                       encrypted_otp_secret_iv: 'rys3THICkr60BoWC',
-                       encrypted_otp_secret_salt: '_LMkAGvdg7a+sDIKjI3mR2Q==')
+      user = Fabricate.build(:user,
+                             encrypted_otp_secret: "Fttsy7QAa0edaDfdfSz094rRLAxc8cJweDQ4BsWH/zozcdVA8o9GLqcKhn2b\nGi/V\n",
+                             encrypted_otp_secret_iv: 'rys3THICkr60BoWC',
+                             encrypted_otp_secret_salt: '_LMkAGvdg7a+sDIKjI3mR2Q==')
 
       expect(user.otp_secret).to eq 'anotpsecretthatshouldbeencrypted'
     end
@@ -314,7 +314,7 @@ RSpec.describe User, type: :model do
 
   describe 'settings' do
     it 'is instance of Settings::ScopedSettings' do
-      user = Fabricate(:user)
+      user = Fabricate.build(:user)
       expect(user.settings).to be_a Settings::ScopedSettings
     end
   end
@@ -501,7 +501,7 @@ RSpec.describe User, type: :model do
   describe '#active_for_authentication?' do
     subject { user.active_for_authentication? }
 
-    let(:user) { Fabricate(:user, disabled: disabled, confirmed_at: confirmed_at) }
+    let(:user) { Fabricate.build(:user, disabled: disabled, confirmed_at: confirmed_at) }
 
     context 'when user is disabled' do
       let(:disabled) { true }

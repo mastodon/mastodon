@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Identity, type: :model do
   describe '.find_for_oauth' do
-    let(:auth) { Fabricate(:identity, user: Fabricate(:user)) }
+    let(:auth) { Fabricate.build(:identity, user: Fabricate(:user)) }
 
     it 'calls .find_or_create_by' do
       expect(described_class).to receive(:find_or_create_by).with(uid: auth.uid, provider: auth.provider)

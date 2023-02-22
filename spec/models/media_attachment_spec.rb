@@ -6,7 +6,7 @@ RSpec.describe MediaAttachment, type: :model do
   describe 'local?' do
     subject { media_attachment.local? }
 
-    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url) }
+    let(:media_attachment) { Fabricate.build(:media_attachment, remote_url: remote_url) }
 
     context 'remote_url is blank' do
       let(:remote_url) { '' }
@@ -28,7 +28,7 @@ RSpec.describe MediaAttachment, type: :model do
   describe 'needs_redownload?' do
     subject { media_attachment.needs_redownload? }
 
-    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url, file: file) }
+    let(:media_attachment) { Fabricate.build(:media_attachment, remote_url: remote_url, file: file) }
 
     context 'file is blank' do
       let(:file) { nil }
@@ -64,7 +64,7 @@ RSpec.describe MediaAttachment, type: :model do
   end
 
   describe '#to_param' do
-    let(:media_attachment) { Fabricate(:media_attachment, shortcode: shortcode) }
+    let(:media_attachment) { Fabricate.build(:media_attachment, shortcode: shortcode) }
     let(:shortcode)        { nil }
 
     context 'when media attachment has a shortcode' do
@@ -79,7 +79,8 @@ RSpec.describe MediaAttachment, type: :model do
       let(:shortcode) { nil }
 
       it 'returns string representation of id' do
-        expect(media_attachment.to_param).to eq media_attachment.id.to_s
+        media_attachment.id = '123'
+        expect(media_attachment.to_param).to eq '123'
       end
     end
   end
@@ -184,15 +185,16 @@ RSpec.describe MediaAttachment, type: :model do
   end
 
   it 'is invalid without file' do
-    media = MediaAttachment.new(account: Fabricate(:account))
+    media = MediaAttachment.new(account: Fabricate.build(:account))
     expect(media.valid?).to be false
+    expect(media).to model_have_error_on_field(:file)
   end
 
   describe 'size limit validation' do
     it 'rejects video files that are too large' do
       stub_const 'MediaAttachment::IMAGE_LIMIT', 100.megabytes
       stub_const 'MediaAttachment::VIDEO_LIMIT', 1.kilobyte
-      expect { MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.webm')) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect { MediaAttachment.create!(account: Fabricate.build(:account), file: attachment_fixture('attachment.webm')) }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
     it 'accepts video files that are small enough' do
@@ -205,7 +207,7 @@ RSpec.describe MediaAttachment, type: :model do
     it 'rejects image files that are too large' do
       stub_const 'MediaAttachment::IMAGE_LIMIT', 1.kilobyte
       stub_const 'MediaAttachment::VIDEO_LIMIT', 100.megabytes
-      expect { MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.jpg')) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect { MediaAttachment.create!(account: Fabricate.build(:account), file: attachment_fixture('attachment.jpg')) }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
     it 'accepts image files that are small enough' do

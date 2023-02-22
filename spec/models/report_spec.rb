@@ -87,7 +87,7 @@ describe Report do
   describe 'unresolved?' do
     subject { report.unresolved? }
 
-    let(:report) { Fabricate(:report, action_taken_at: action_taken) }
+    let(:report) { Fabricate.build(:report, action_taken_at: action_taken) }
 
     context 'if action is taken' do
       let(:action_taken) { Time.now.utc }
@@ -122,7 +122,7 @@ describe Report do
 
   describe 'validations' do
     it 'has a valid fabricator' do
-      report = Fabricate(:report)
+      report = Fabricate.build(:report)
       report.valid?
       expect(report).to be_valid
     end

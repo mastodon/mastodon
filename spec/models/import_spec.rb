@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Import, type: :model do
-  let(:account) { Fabricate(:account) }
+  let(:account) { Fabricate.build(:account) }
   let(:type) { 'following' }
   let(:data) { attachment_fixture('imports.txt') }
 

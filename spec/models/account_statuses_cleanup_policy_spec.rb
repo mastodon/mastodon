@@ -125,7 +125,7 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
   end
 
   describe '#record_last_inspected' do
-    let(:account_statuses_cleanup_policy) { Fabricate(:account_statuses_cleanup_policy, account: account) }
+    let(:account_statuses_cleanup_policy) { Fabricate.build(:account_statuses_cleanup_policy, account: account) }
 
     it 'records the given id' do
       account_statuses_cleanup_policy.record_last_inspected(42)
@@ -136,8 +136,8 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
   describe '#invalidate_last_inspected' do
     subject { account_statuses_cleanup_policy.invalidate_last_inspected(status, action) }
 
-    let(:account_statuses_cleanup_policy) { Fabricate(:account_statuses_cleanup_policy, account: account) }
-    let(:status) { Fabricate(:status, id: 10, account: account) }
+    let(:account_statuses_cleanup_policy) { Fabricate.build(:account_statuses_cleanup_policy, account: account) }
+    let(:status) { Fabricate.build(:status, id: 10, account: account) }
 
     before do
       account_statuses_cleanup_policy.record_last_inspected(42)

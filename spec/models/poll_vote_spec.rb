@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe PollVote, type: :model do
   describe '#object_type' do
-    let(:poll_vote) { Fabricate.build(:poll_vote) }
+    let(:poll_vote) { described_class.new }
 
     it 'returns :vote' do
       expect(poll_vote.object_type).to eq :vote
