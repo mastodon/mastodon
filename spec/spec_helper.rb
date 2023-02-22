@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 GC.disable
 
 if ENV['DISABLE_SIMPLECOV'] != 'true'

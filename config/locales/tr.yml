@@ -59,25 +59,25 @@ tr:
       destroyed_msg: "%{username} adlı kullanıcının verilerinin silinmesi sıraya alındı"
       disable: Dondur
       disable_sign_in_token_auth: E-posta token doğrulamayı devre dışı bırak
-      disable_two_factor_authentication: 2 adımlı doğrulamayı kapat
+      disable_two_factor_authentication: 2 aşamalı doğrulamayı kapat
       disabled: Kapalı
       display_name: Görünen isim
       domain: Alan adı
       edit: Düzenle
       email: E-posta
       email_status: E-posta durumu
-      enable: Dondurmayı Kaldır
+      enable: Etkinleştir
       enable_sign_in_token_auth: E-posta token doğrulamayı etkinleştir
       enabled: Etkin
       enabled_msg: "%{username} hesabı başarıyla çözüldü"
-      followers: Takipçiler
+      followers: Takipçi
       follows: Takip edilen
       header: Üstbilgi
       inbox_url: Gelen kutusu bağlantısı
       invite_request_text: Katılma gerekçeleri
       invited_by: Tarafından davet edildi
       ip: IP
-      joined: Katıldı
+      joined: Katılma tarihi
       location:
         all: Hepsi
         local: Yerel
@@ -91,9 +91,10 @@ tr:
       moderation:
         active: Etkin
         all: Hepsi
-        pending: Bekliyor
+        disabled: Devre dışı bırakıldı
+        pending: Bekleyen
         silenced: Sınırlı
-        suspended: Uzaklaştırılanlar
+        suspended: Askıya Alınan
         title: Denetim
       moderation_notes: Denetleme notları
       most_recent_activity: Son aktivite
@@ -111,7 +112,7 @@ tr:
       promote: Yükselt
       protocol: Protokol
       public: Herkese açık
-      push_subscription_expires: PuSH aboneliği dolumu
+      push_subscription_expires: PuSH aboneliği sona erdi
       redownload: Profili yenile
       redownloaded_msg: "%{username} kullanıcısının profili kökenden başarıyla yenilendi"
       reject: Reddet
@@ -133,6 +134,7 @@ tr:
       search: Ara
       search_same_email_domain: Aynı e-posta alan adına sahip diğer kullanıcılar
       search_same_ip: Aynı IP adresine sahip diğer kullanıcılar
+      security: Güvenlik
       security_measures:
         only_password: Sadece parola
         password_and_2fa: Parola ve İki aşamalı doğrulama
@@ -144,7 +146,7 @@ tr:
         targeted_reports: Başkaları tarafından şikayet edildi
       silence: Sustur
       silenced: Susturulmuş
-      statuses: Durumlar
+      statuses: Gönderiler
       strikes: Önceki eylemler
       subscribe: Abone ol
       suspend: Askıya al
@@ -168,7 +170,7 @@ tr:
       whitelisted: Beyaz listede
     action_logs:
       action_types:
-        approve_appeal: İtirazı Kabul Et
+        approve_appeal: İtirazı Onayla
         approve_user: Kullanıcıyı Onayla
         assigned_to_self_report: Raporu Ata
         change_email_user: Kullanıcı E-postasını Değiştir
@@ -427,6 +429,7 @@ tr:
         resolve: Alan adı çözümleme
         title: Yeni e-posta kara liste girişi
       no_email_domain_block_selected: Seçim yapılmadığından hiç bir e-posta alan adı engeli değiştirilmedi
+      not_permitted: İzin verilmedi
       resolved_dns_records_hint_html: Alan adı aşağıdaki MX alan adlarına çözümleniyor, ancak hiç biri nihayetinde e-posta kabulünden sorum değil. Bir MX alan adını engellemek, görünen alan adı farklı osa bile aynı MX alan adını kullanan e-posta adreslerinden gelen kayıtları engelleyecektir. <strong>Başlıca e-posta sağlayıcıları engellememek için dikkatli olun.</strong>
       resolved_through_html: "%{domain} aracılığıyla çözümlendi"
       title: E-posta kara listesi
@@ -473,6 +476,7 @@ tr:
       content_policies:
         comment: İç not
         description_html: Bu alan adındaki ve alt alan adlarındaki tüm hesaplara uygulanacak içerik ilkeleri belirleyebilirsiniz.
+        limited_federation_mode_description_html: Bu alan adıyla birleştirmeye izin verip vermediğinizi seçebilirsiniz.
         policies:
           reject_media: Medyayı reddet
           reject_reports: Şikayetleri reddet
@@ -585,11 +589,13 @@ tr:
       assign_to_self: Bana ata
       assigned: Denetleyici atandı
       by_target_domain: Şikayet edilen hesabın alan adı
+      cancel: İptal et
       category: Kategori
       category_description_html: Bu hesap ve/veya içeriğin bildirilme gerekçesi, bildirilen hesapla iletişimde alıntılanacaktır
       comment:
         none: Yok
       comment_description_html: 'Daha fazla bilgi vermek için %{name} şunu yazdı:'
+      confirm: Onayla
       confirm_action: "%{acct} üzerindeki denetleme eylemini onayla"
       created_at: Şikayet edildi
       delete_and_resolve: Gönderileri sil
@@ -629,11 +635,13 @@ tr:
         actions:
           delete_html: Kuralı ihlal eden gönderileri kaldır
           mark_as_sensitive_html: Kuralı ihlal eden gönderilerin medyasını hassas olarak işaretle
+          silence_html: "<strong>@%{acct}</strong> hesabının erişimini oldukça kısıtla: profili ve içeriği sadece onları halihazırda takip edenler veya manuel olarak hesabına erişenlerce mümkün olacak"
           suspend_html: "<strong>@%{acct}</strong> hesabını askıya al, profilini ve içeriğini erişilmez ve etkileşimi imkansız yap"
         close_report: "#%{id} bildirimini çözüldü olarak işaretle"
         close_reports_html: "<strong>@%{acct}</strong> hesabına yönelik <strong>tüm</strong> bildirimleri çözüldü olarak işaretle"
         delete_data_html: İlgili sürede askıdan alınması kaldırılmazsa <strong>@%{acct}</strong> hesabının profilini ve içeriğini şu andan itibaren 30 gün içinde sil
         preview_preamble_html: "<strong>@%{acct}</strong> aşağıdaki içerikle bir uyarı alacaktır:"
+        record_strike_html: "<strong>@%{acct}</strong> hesabına karşı bir eylem kaydet, böylece bu hesabın gelecekteki ihlallerini üst makama taşımanıza yardımcı olacaktır"
         send_email_html: "<strong>@%{acct}</strong> adlı kullanıcıya uyarı e-maili gönder"
         warning_placeholder: İsteğe bağlı ek nedenden denetim eylemi.
       target_origin: Şikayet edilen hesabın kökeni
@@ -790,6 +798,7 @@ tr:
         suspend: "%{name}, %{target} kullanıcısının hesabını askıya aldı"
       appeal_approved: İtiraz Edildi
       appeal_pending: İtiraz bekliyor
+      appeal_rejected: İtiraz reddedildi
     system_checks:
       database_schema_check:
         message_html: Beklemede olan veritabanı güncellemeleri mevcut. Uygulamanın beklenildiği gibi çalışması için lütfen onları çalıştırın
@@ -825,6 +834,7 @@ tr:
           other: Geçen hafta %{count} kişi paylaştı
         title: Öne çıkan bağlantılar
         usage_comparison: Bugün %{today} kere paylaşıldı, dün %{yesterday} kere paylaşılmıştı
+      not_allowed_to_trend: Öne çıkma izni yok
       only_allowed: Sadece izin verilenler
       pending_review: İnceleme bekliyor
       preview_card_providers:
@@ -956,6 +966,7 @@ tr:
   applications:
     created: Uygulama başarıyla oluşturuldu
     destroyed: Uygulama başarıyla silindi
+    logout: Oturumu kapat
     regenerate_token: Erişim belirtecini yeniden oluştur
     token_regenerated: Erişim belirteci başarıyla oluşturuldu
     warning: Bu verilere çok dikkat edin. Asla kimseyle paylaşmayın!
@@ -992,6 +1003,8 @@ tr:
     resend_confirmation: Onaylama talimatlarını tekrar gönder
     reset_password: Parolayı sıfırla
     rules:
+      accept: Onayla
+      back: Geri
       preamble: Bunlar, %{domain} moderatörleri tarafından ayarlanmış ve uygulanmıştır.
       title: Bazı temel kurallar.
     security: Güvenlik
@@ -1139,7 +1152,7 @@ tr:
   featured_tags:
     add_new: Yeni ekle
     errors:
-      limit: Zaten azami hashtag miktarı belirlediniz
+      limit: Zaten azami etiket sayısını öne çıkardınız
     hint_html: "<strong>Öne çıkan etiketler nelerdir?</strong> Genel profilinizde belirgin bir şekilde görüntülenirler ve kişilerin genel yayınlarınıza özellikle bu etiketler altında göz atmalarına izin verir. Yaratıcı çalışmaları veya uzun vadeli projeleri takip etmek için harika bir araçtır."
   filters:
     contexts:
@@ -1251,7 +1264,7 @@ tr:
     title: İnsanları davet et
   lists:
     errors:
-      limit: En yüksek liste sayısına ulaştınız
+      limit: Azami liste sayısına ulaştınız
   login_activities:
     authentication_methods:
       otp: iki aşamalı kimlik doğrulama uygulaması
@@ -1571,7 +1584,7 @@ tr:
       '7889238': 3 ay
     min_age_label: Zaman eşiği
     min_favs: Şundan daha fazla beğenilen gönderileri sakla
-    min_favs_hint: Bu belirtilenden daha fazla beğeni alan gönderilerinizin herhangi birini silmez. Beğeni sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
+    min_favs_hint: En az bu belirtilen kadar beğeni alan gönderilerinizin herhangi birini silmez. Beğeni sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
     min_reblogs: Şundan daha fazla teşvik edilen gönderileri sakla
     min_reblogs_hint: Bu belirtilenden daha fazla teşvik edilen gönderilerinizin herhangi birini silmez. Teşvik sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
   stream_entries:

@@ -1485,13 +1485,6 @@ Rails/ApplicationController:
     - 'app/controllers/well_known/nodeinfo_controller.rb'
     - 'app/controllers/well_known/webfinger_controller.rb'
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: NilOrEmpty, NotPresent, UnlessPresent.
-Rails/Blank:
-  Exclude:
-    - 'app/services/activitypub/fetch_remote_actor_service.rb'
-
 # Offense count: 35
 # Configuration parameters: Database, Include.
 # SupportedDatabases: mysql, postgresql
@@ -1800,18 +1793,6 @@ Rails/ReversibleMigration:
     - 'db/migrate/20180106000232_add_index_on_statuses_for_api_v1_accounts_account_id_statuses.rb'
     - 'db/migrate/20180617162849_remove_unused_indexes.rb'
     - 'db/migrate/20220827195229_change_canonical_email_blocks_nullable.rb'
-
-# Offense count: 10
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/RootPathnameMethods:
-  Exclude:
-    - 'lib/mastodon/premailer_webpack_strategy.rb'
-    - 'lib/tasks/emojis.rake'
-    - 'lib/tasks/mastodon.rake'
-    - 'lib/tasks/repo.rake'
-    - 'spec/fabricators/custom_emoji_fabricator.rb'
-    - 'spec/fabricators/site_upload_fabricator.rb'
-    - 'spec/rails_helper.rb'
 
 # Offense count: 141
 # Configuration parameters: ForbiddenMethods, AllowedMethods.
@@ -2262,25 +2243,6 @@ Style/SlicingWithRange:
     - 'lib/active_record/batches.rb'
     - 'lib/mastodon/premailer_webpack_strategy.rb'
     - 'lib/tasks/repo.rake'
-
-# Offense count: 25
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Mode.
-Style/StringConcatenation:
-  Exclude:
-    - 'app/lib/activitypub/case_transform.rb'
-    - 'app/lib/validation_error_formatter.rb'
-    - 'app/services/backup_service.rb'
-    - 'app/services/fetch_link_card_service.rb'
-    - 'lib/mastodon/emoji_cli.rb'
-    - 'lib/mastodon/redis_config.rb'
-    - 'lib/mastodon/snowflake.rb'
-    - 'lib/paperclip/gif_transcoder.rb'
-    - 'lib/paperclip/type_corrector.rb'
-    - 'spec/controllers/api/v1/apps_controller_spec.rb'
-    - 'spec/controllers/api/v1/streaming_controller_spec.rb'
-    - 'spec/validators/disallowed_hashtags_validator_spec.rb'
-    - 'spec/workers/web/push_notification_worker_spec.rb'
 
 # Offense count: 272
 # This cop supports safe autocorrection (--autocorrect).

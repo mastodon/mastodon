@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Fabricator(:ip_block) do
   ip         ''
   severity   ''

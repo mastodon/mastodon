@@ -445,7 +445,7 @@ namespace :mastodon do
           generated_header << "# using docker-compose or not.\n\n"
         end
 
-        File.write(Rails.root.join('.env.production'), "#{generated_header}#{env_contents}\n")
+        Rails.root.join('.env.production').write("#{generated_header}#{env_contents}\n")
 
         if using_docker
           prompt.ok 'Below is your configuration, save it to an .env.production file outside Docker:'

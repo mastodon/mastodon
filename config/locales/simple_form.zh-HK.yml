@@ -18,6 +18,8 @@ zh-HK:
           disable: 禁止該使用者使用他們的帳號，但是不刪除或隱藏他們的內容。
           none: 用這個來警告該使用者，而不進行其他操作。
           sensitive: 強制標記此用戶的所有媒體附件為敏感內容。
+          silence: 禁止該使用者發佈公開帖文，沒有追蹤他們的人不會看到其帖文和通知。關閉所有對該帳號的檢舉報告。
+          suspend: 禁止與該帳號的所有互動，並移除其內容。可於 30 天內撤銷此動作。關閉所有對此帳號的檢舉報告。
         warning_preset_id: 選用。你仍可在預設訊息的結尾加入自訂文字
       announcement:
         all_day: 勾選後，只會顯示出時間範圍中的日期部分
@@ -72,6 +74,7 @@ zh-HK:
           hide: 完全隱藏被篩選的內容，猶如它不存在般。
           warn: 將已篩選的內容隱藏在篩選器標題的警告後面。
       form_admin_settings:
+        activity_api_enabled: 每週本站發佈的帖文、活躍使用者及新註冊的數量
         backups_retention_period: 繼續封存生成的使用者到指定的天數。
         bootstrap_timeline_accounts: 這些帳號會被置頂在新使用者的追蹤建議上。
         closed_registrations_message: 關閉註冊時顯示
@@ -79,6 +82,7 @@ zh-HK:
         custom_css: 你可以在 Mastodon 網頁版套用自訂樣式。
         mascot: 覆蓋進階網頁介面中的插圖。
         media_cache_retention_period: 當設定為正數時，已下載的媒體檔案將在指定天數後被刪除，並視乎需要重新下載。
+        peers_api_enabled: 本伺服器於聯邦宇宙相遇的網域名單。這裏不包括你與某伺服器有否聯網的數據，僅表示你的伺服器已知的網域。這是供收集一般跨站數據的服務使用。
         profile_directory: 個人檔案目錄羅列了所有選擇被發現的使用者。
         require_invite_text: 如果需要手動審核註冊，請將「為何你想加入？」文字欄設定為必填，而非選填。
         site_contact_email: 大家如何聯絡你有關法律或支援的查詢。
@@ -87,11 +91,13 @@ zh-HK:
         site_short_description: 用作辨別你的伺服器的一段簡短描述。誰營運它，它為誰服務的？
         site_terms: 使用你的私隱政策，或者留空使用預設的，可以用 Markdown 語法編寫。
         site_title: 除了域名以外，其他人會如何指稱你的伺服器。
+        status_page_url: 可在服務中斷期間，查看此伺服器狀態的網頁網址
         theme: 未登入訪客和新使用者看到的主題。
         thumbnail: 一幅約 2:1 的圖片顯示在你的伺服器資訊的旁邊。
         timeline_preview: 未登入的訪客能夠瀏覽伺服器上最新的公開帖文。
         trendable_by_default: 跳過對趨勢內容的手動審查，事後仍可從趨勢中刪除個別項目。
         trends: 趨勢顯示哪些帖文、標籤和新聞故事在你的伺服器上較有吸引力。
+        trends_as_landing_page: 向未登入的使用者及訪客展示趨勢內容，而非只有此伺服器的描述。需要啟用趨勢。
       form_challenge:
         current_password: 你正要進入安全區域
       imports:
@@ -227,6 +233,7 @@ zh-HK:
           hide: 完全隱藏
           warn: 警告並隱藏
       form_admin_settings:
+        activity_api_enabled: 在 API 中發佈使用者活動的匯總統計數據
         backups_retention_period: 封存使用者保留期
         bootstrap_timeline_accounts: 總是向新使用者推薦這些帳號
         closed_registrations_message: 無法註冊時的自訂訊息
@@ -234,6 +241,7 @@ zh-HK:
         custom_css: 自訂 CSS
         mascot: 自訂吉祥物 (舊版)
         media_cache_retention_period: 媒體快取保留期
+        peers_api_enabled: 在 API 中發佈已知的伺服器名單
         profile_directory: 啟用個人檔案目錄
         registrations_mode: 誰能註冊
         require_invite_text: 提供一個加入的理由
@@ -245,11 +253,13 @@ zh-HK:
         site_short_description: 伺服器描述
         site_terms: 私隱政策
         site_title: 伺服器名稱
+        status_page_url: 狀態頁網址
         theme: 預設主題
         thumbnail: 伺服器縮圖
         timeline_preview: 允許未經認證的人存取公共時間軸
         trendable_by_default: 允許未經審核的趨勢
         trends: 啟用趨勢
+        trends_as_landing_page: 使用趨勢作為登陸頁面
       interactions:
         must_be_follower: 隱藏你關注者以外的人的通知
         must_be_following: 隱藏你不關注的人的通知
