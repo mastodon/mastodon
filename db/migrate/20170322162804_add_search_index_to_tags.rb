@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddSearchIndexToTags < ActiveRecord::Migration[5.0]
   def up
     execute 'CREATE INDEX hashtag_search_index ON tags USING gin(to_tsvector(\'simple\', tags.name));'

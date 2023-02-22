@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeRelaysEnabled < ActiveRecord::Migration[5.2]
   def up
     # The relays table is supposed to be very small,

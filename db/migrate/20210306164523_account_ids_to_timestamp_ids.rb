@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AccountIdsToTimestampIds < ActiveRecord::Migration[5.2]
   def up
     # Set up the accounts.id column to use our timestamp-based IDs.

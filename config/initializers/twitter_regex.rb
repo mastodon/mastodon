@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Twitter::TwitterText
   class Configuration
     def emoji_parsing_enabled

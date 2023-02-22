@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddOEmbedToPreviewCards < ActiveRecord::Migration[5.0]
   def change
     add_column :preview_cards, :type, :integer, default: 0, null: false

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddShortcodeToMediaAttachments < ActiveRecord::Migration[5.0]
   def up
     add_column :media_attachments, :shortcode, :string, null: true, default: nil

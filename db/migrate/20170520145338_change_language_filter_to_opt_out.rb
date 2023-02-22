@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeLanguageFilterToOptOut < ActiveRecord::Migration[5.0]
   def change
     remove_index :users, :allowed_languages

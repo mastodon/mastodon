@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddIndexFeaturedTagsOnAccountIdAndTagId < ActiveRecord::Migration[6.1]
   disable_ddl_transaction!
 

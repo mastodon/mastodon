@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 enabled         = ENV['ES_ENABLED'] == 'true'
 host            = ENV.fetch('ES_HOST') { 'localhost' }
 port            = ENV.fetch('ES_PORT') { 9200 }
