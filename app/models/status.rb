@@ -27,6 +27,7 @@
 #  edited_at                    :datetime
 #  trendable                    :boolean
 #  ordered_media_attachment_ids :bigint(8)        is an Array
+#  indexable                    :boolean
 #
 
 class Status < ApplicationRecord
@@ -313,6 +314,7 @@ class Status < ApplicationRecord
   before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
   before_validation :set_visibility
+  before_validation :set_indexable
   before_validation :set_conversation
   before_validation :set_local
 
@@ -487,6 +489,10 @@ class Status < ApplicationRecord
     self.visibility = reblog.visibility if reblog? && visibility.nil?
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
     self.sensitive  = false if sensitive.nil?
+  end
+
+  def set_indexable
+    self.indexable = false unless distributable?
   end
 
   def set_conversation
