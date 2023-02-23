@@ -73,7 +73,7 @@ Lint/EmptyBlock:
     - 'spec/fabricators/setting_fabricator.rb'
     - 'spec/fabricators/system_key_fabricator.rb'
     - 'spec/fabricators/web_setting_fabricator.rb'
-    - 'spec/helpers/admin/action_log_helper_spec.rb'
+    - 'spec/helpers/admin/action_logs_helper_spec.rb'
     - 'spec/lib/activitypub/adapter_spec.rb'
     - 'spec/models/account_alias_spec.rb'
     - 'spec/models/account_deletion_request_spec.rb'
@@ -579,7 +579,7 @@ RSpec/DescribedClass:
     - 'spec/services/purge_domain_service_spec.rb'
     - 'spec/services/reblog_service_spec.rb'
     - 'spec/services/reject_follow_service_spec.rb'
-    - 'spec/services/remove_from_follwers_service_spec.rb'
+    - 'spec/services/remove_from_followers_service_spec.rb'
     - 'spec/services/remove_status_service_spec.rb'
     - 'spec/services/unallow_domain_service_spec.rb'
     - 'spec/services/unblock_service_spec.rb'
@@ -592,7 +592,7 @@ RSpec/DescribedClass:
 # This cop supports unsafe autocorrection (--autocorrect-all).
 RSpec/EmptyExampleGroup:
   Exclude:
-    - 'spec/helpers/admin/action_log_helper_spec.rb'
+    - 'spec/helpers/admin/action_logs_helper_spec.rb'
     - 'spec/models/account_alias_spec.rb'
     - 'spec/models/account_deletion_request_spec.rb'
     - 'spec/models/account_moderation_note_spec.rb'
@@ -864,7 +864,7 @@ RSpec/MissingExampleGroupArgument:
     - 'spec/controllers/accounts_controller_spec.rb'
     - 'spec/controllers/activitypub/collections_controller_spec.rb'
     - 'spec/controllers/admin/statuses_controller_spec.rb'
-    - 'spec/controllers/admin/users/roles_controller.rb'
+    - 'spec/controllers/admin/users/roles_controller_spec.rb'
     - 'spec/controllers/api/v1/accounts_controller_spec.rb'
     - 'spec/controllers/api/v1/admin/account_actions_controller_spec.rb'
     - 'spec/controllers/api/v1/admin/domain_allows_controller_spec.rb'
@@ -1060,7 +1060,7 @@ RSpec/NamedSubject:
     - 'spec/services/purge_domain_service_spec.rb'
     - 'spec/services/reblog_service_spec.rb'
     - 'spec/services/reject_follow_service_spec.rb'
-    - 'spec/services/remove_from_follwers_service_spec.rb'
+    - 'spec/services/remove_from_followers_service_spec.rb'
     - 'spec/services/remove_status_service_spec.rb'
     - 'spec/services/report_service_spec.rb'
     - 'spec/services/resolve_account_service_spec.rb'
@@ -1149,7 +1149,7 @@ RSpec/Rails/InferredSpecType:
     - 'spec/controllers/admin/accounts_controller_spec.rb'
     - 'spec/controllers/admin/action_logs_controller_spec.rb'
     - 'spec/controllers/admin/base_controller_spec.rb'
-    - 'spec/controllers/admin/change_email_controller_spec.rb'
+    - 'spec/controllers/admin/change_emails_controller_spec.rb'
     - 'spec/controllers/admin/confirmations_controller_spec.rb'
     - 'spec/controllers/admin/dashboard_controller_spec.rb'
     - 'spec/controllers/admin/disputes/appeals_controller_spec.rb'
@@ -1235,7 +1235,7 @@ RSpec/Rails/InferredSpecType:
     - 'spec/controllers/well_known/webfinger_controller_spec.rb'
     - 'spec/helpers/accounts_helper_spec.rb'
     - 'spec/helpers/admin/account_moderation_notes_helper_spec.rb'
-    - 'spec/helpers/admin/action_log_helper_spec.rb'
+    - 'spec/helpers/admin/action_logs_helper_spec.rb'
     - 'spec/helpers/flashes_helper_spec.rb'
     - 'spec/helpers/formatting_helper_spec.rb'
     - 'spec/helpers/home_helper_spec.rb'
@@ -1398,7 +1398,7 @@ RSpec/SubjectStub:
 # Configuration parameters: IgnoreNameless, IgnoreSymbolicNames.
 RSpec/VerifiedDoubles:
   Exclude:
-    - 'spec/controllers/admin/change_email_controller_spec.rb'
+    - 'spec/controllers/admin/change_emails_controller_spec.rb'
     - 'spec/controllers/admin/confirmations_controller_spec.rb'
     - 'spec/controllers/admin/disputes/appeals_controller_spec.rb'
     - 'spec/controllers/admin/domain_allows_controller_spec.rb'
