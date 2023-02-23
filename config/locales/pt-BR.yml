@@ -1,4 +1,3 @@
----
 pt-BR:
   about:
     about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
@@ -56,7 +55,7 @@ pt-BR:
       delete: Excluir dados
       deleted: Excluído
       demote: Rebaixar
-      destroyed_msg: Os dados de %{username} estão na fila para serem excluídos em breve
+      destroyed_msg: "Os dados de %{username} estão na fila para serem excluídos em breve"
       disable: Congelar
       disable_sign_in_token_auth: Desativar autenticação via token por email
       disable_two_factor_authentication: Desativar autenticação de dois fatores
@@ -91,6 +90,7 @@ pt-BR:
       moderation:
         active: Ativo
         all: Todos
+        disabled: Desativado
         pending: Pendente
         silenced: Limitado
         suspended: Suspendido
@@ -133,6 +133,7 @@ pt-BR:
       search: Buscar
       search_same_email_domain: Outros usuários com o mesmo domínio de e-mail
       search_same_ip: Outros usuários com o mesmo IP
+      security: Segurança
       security_measures:
         only_password: Apenas senha
         password_and_2fa: Senha e autenticação de dois fatores
@@ -426,6 +427,7 @@ pt-BR:
         resolve: Resolver domínio
         title: Nova entrada de lista negra de e-mail
       no_email_domain_block_selected: Nenhum bloco de domínio de e-mail foi alterado, pois nenhum foi selecionado
+      not_permitted: Não permitido
       resolved_dns_records_hint_html: O nome de domínio resolve os seguintes domínios MX, que são responsáveis finais por aceitar o e-mail. Bloquear um domínio MX bloqueará inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo que o nome de domínio visível seja diferente. <strong>Cuidado para não bloquear os principais provedores de e-mail.</strong>
       resolved_through_html: Resolvido através de %{domain}
       title: Lista de negra de e-mail
@@ -541,7 +543,7 @@ pt-BR:
       no_ip_block_selected: Nenhuma regra de IP foi alterada pois nenhuma foi selecionada
       title: Regras de IP
     relationships:
-      title: Relações de %{acct}
+      title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
       delete: Excluir
@@ -580,11 +582,13 @@ pt-BR:
       assign_to_self: Atribuir para si
       assigned: Moderador responsável
       by_target_domain: Domínio da conta denunciada
+      cancel: Cancelar
       category: Categoria
       category_description_html: O motivo pelo qual esta conta e/ou conteúdo foi denunciado será citado na comunicação com a conta denunciada
       comment:
         none: Nenhum
       comment_description_html: 'Para fornecer mais informações, %{name} escreveu:'
+      confirm: Confirmar
       created_at: Denunciado
       delete_and_resolve: Excluir publicações
       forwarded: Encaminhados
@@ -905,7 +909,7 @@ pt-BR:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém de %{domain} denunciou %{target}
-      subject: Nova denúncia sobre %{instance} (#%{id})
+      subject: 'Nova denúncia sobre %{instance} (#%{id})'
     new_trends:
       body: 'Os seguintes itens precisam de uma análise antes que possam ser exibidos publicamente:'
       new_trending_links:
@@ -982,6 +986,8 @@ pt-BR:
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Redefinir senha
     rules:
+      accept: Aceitar
+      back: Voltar
       preamble: Estes são definidos e aplicados pelos moderadores de %{domain}.
       title: Algumas regras básicas.
     security: Segurança
@@ -1299,7 +1305,7 @@ pt-BR:
       sign_up:
         subject: "%{name} se inscreveu"
     favourite:
-      body: "%{name} favoritou sua publicação:"
+      body: '%{name} favoritou sua publicação:'
       subject: "%{name} favoritou sua publicação"
       title: Novo favorito
     follow:
@@ -1313,13 +1319,13 @@ pt-BR:
       title: Novo seguidor pendente
     mention:
       action: Responder
-      body: "%{name} te mencionou em:"
-      subject: "%{name} te mencionou"
+      body: '%{name} te mencionou em:'
+      subject: '%{name} te mencionou'
       title: Nova menção
     poll:
       subject: Uma enquete por %{name} terminou
     reblog:
-      body: "%{name} impulsionou a sua publicação:"
+      body: '%{name} impulsionou a sua publicação:'
       subject: "%{name} impulsionou a sua publicação"
       title: Novo impulso
     status:
