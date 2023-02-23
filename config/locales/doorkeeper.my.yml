@@ -11,6 +11,7 @@ my:
         doorkeeper/application:
           attributes:
             redirect_uri:
+              fragment_present: အပိုင်းတစ်ပိုင်း မပါဝင်နိုင်ပါ။
               invalid_uri: သည် မှန်ကန်သော URI ဖြစ်ရမည်။
               relative_uri: URI ဖြစ်ရမည်။
               secured_uri: သည် HTTPS/SSL URI ဖြစ်ရမည်။
@@ -74,6 +75,7 @@ my:
         last_used_at: '%{date} တွင် နောက်ဆုံးအသုံးပြုခဲ့သည်'
         never_used: မသုံးဖူးပါ
         scopes: ခွင့်ပြုချက်များ
+        superapp: အတွင်းပိုင်း
         title: ခွင့်ပြုထားသော အက်ပလီကေးရှင်းများ
     errors:
       messages:
@@ -90,6 +92,10 @@ my:
           expired: အသုံးပြုခွင့် တိုကင် သက်တမ်းကုန်သွားပါပြီ
           revoked: အသုံးပြုခွင့်တိုကင်ကို ရုပ်သိမ်းခဲ့သည်
           unknown: အသုံးပြုခွင့်တိုကင်မှာ မမှန်ကန်ပါ
+        resource_owner_authenticator_not_configured: Doorkeeper.configure.resource_owner_authenticator ကို ပြုပြင်မွမ်းမံမှုအားဖယ်ရှားထားခြင်းကြောင့် မူလပိုင်ရှင်ရှာဖွေခြင်းမှာ မအောင်မြင်ပါ။
+        server_error: ခွင့်ပြုထားသောဆာဗာသည် တောင်းဆိုချက်ကို မဖြည့်ဆည်းပေးနိုင်သည့် မမျှော်လင့်ထားသော အခြေအနေတစ်ခုကို ကြုံတွေ့ခဲ့ရသည်။
+        unauthorized_client: ဤနည်းလမ်းကို အသုံးပြု၍ Client မှ ဤတောင်းဆိုမှုကို ဆောင်ရွက်ခွင့်မရှိပါ။
+        unsupported_grant_type: တရားဝင်ခွင့်ပြုချက်အမျိုးအစားကို ခွင့်ပြုချက်ဆာဗာမှ မပံ့ပိုးထားပါ။
         unsupported_response_type: ခွင့်ပြုထားသောဆာဗာသည် ဤတုံ့ပြန်မှုအမျိုးအစားကို မပံ့ပိုးပါ။
     flash:
       applications:
@@ -164,6 +170,7 @@ my:
       "read:mutes": သင်အသံပိတ်ထားမှုများကို ကြည့်ပါ
       "read:notifications": သင့်အသိပေးချက်များကို ကြည့်ပါ
       "read:reports": သင့်မှတ်တမ်းများကို ကြည့်ပါ
+      "read:search": သင့်ကိုယ်စား ရှာဖွေပါ
       "read:statuses": ပို့စ်အားလုံးကို ကြည့်ပါ
       write: သင့်အကောင့်၏ အချက်အလက်အားလုံးကို ပြင်ဆင်ပါ
       "write:accounts": သင့်ပရိုဖိုင်ကို ပြင်ဆင်ပါ
