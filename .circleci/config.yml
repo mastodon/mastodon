@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@2.0.0
   node: circleci/node@5.0.3
+  codecov: codecov/codecov@3.2.2
 
 executors:
   default:
@@ -17,7 +18,7 @@ executors:
           CONTINUOUS_INTEGRATION: true
           DB_HOST: localhost
           DB_USER: root
-          DISABLE_SIMPLECOV: true
+          DISABLE_SIMPLECOV: false
           RAILS_ENV: test
       - image: cimg/postgres:14.5
         environment:
@@ -109,6 +110,7 @@ jobs:
           command: ./bin/rails db:create db:schema:load db:seed
           name: Load database schema
       - ruby/rspec-test
+      - codecov/upload
 
 workflows:
   version: 2
