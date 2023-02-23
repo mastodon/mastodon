@@ -30,7 +30,7 @@ class Scheduler::AccountsStatusesCleanupScheduler
   MAX_PULL_SIZE       = 10_000
   MAX_PULL_LATENCY    = 5.minutes.to_i
 
-  sidekiq_options retry: 0, lock: :until_executed
+  sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 1.day.to_i
 
   def perform
     return if under_load?
