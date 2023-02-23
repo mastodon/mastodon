@@ -23,4 +23,24 @@ RSpec.describe AdminMailer, type: :mailer do
       expect(mail.body.encoded).to eq("Mike,\r\n\r\nJohn has reported Mike\r\n\r\nView: https://cb6e6126.ngrok.io/admin/reports/#{report.id}\r\n")
     end
   end
+
+  describe '.new_appeal' do
+    let(:appeal) { Fabricate(:appeal) }
+    let(:recipient) { Fabricate(:account, username: "Kurt") }
+    let(:mail)      { described_class.new_appeal(recipient, appeal) }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the headers' do
+      expect(mail.subject).to eq("#{appeal.account.username} is appealing a moderation decision on cb6e6126.ngrok.io")
+      expect(mail.to).to eq [recipient.user_email]
+      expect(mail.from).to eq ['notifications@localhost']
+    end
+
+    it 'renders the body' do
+      expect(mail.body.encoded).to match "#{appeal.account.username} is appealing a moderation decision by #{appeal.strike.account.username}"
+    end
+  end
 end
