@@ -38,6 +38,7 @@ ast:
       login_status: Estáu del aniciu de la sesión
       moderation:
         pending: Pendiente
+        title: Moderación
       most_recent_activity: L'actividá más recién
       most_recent_ip: La IP más recién
       perform_full_suspension: Suspender
@@ -200,6 +201,8 @@ ast:
       known_accounts:
         one: "%{count} cuenta conocida"
         other: "%{count} cuentes conocíes"
+      moderation:
+        title: Moderación
       private_comment: Comentariu priváu
       public_comment: Comentariu públicu
       title: Federación
@@ -272,6 +275,7 @@ ast:
         administration: Alministración
         devops: DevOps
         invites: Invitaciones
+        moderation: Moderación
       edit: Edición del rol «%{name}»
       everyone: Permisos predeterminaos
       permissions_count:
@@ -577,6 +581,7 @@ ast:
       public: Llinies de tiempu públiques
       thread: Conversaciones
     edit:
+      add_keyword: Amestar una pallabra clave
       keywords: Pallabres clave
       statuses: Artículos individuales
     errors:
@@ -661,6 +666,8 @@ ast:
     incoming_migrations_html: Pa migrar d'otra cuenta a esta, primero tienes de <a href="%{path}">crear un nomatu de cuenta</a>.
     warning:
       followers: Esta aición va mover tolos siguidores de la cuenta actual a la nueva
+  moderation:
+    title: Moderación
   notification_mailer:
     admin:
       sign_up:
@@ -827,8 +834,16 @@ ast:
     exceptions: Esceiciones
     interaction_exceptions: Esceiciones basaes nes interaiciones
     keep_direct: Caltener los mensaxes direutos
+    keep_direct_hint: Nun desanicia nengún mensaxe direutu
+    keep_media: Caltener los artículos con elementos multimedia
+    keep_media_hint: Nun desanicia nengún artículu de to que contenta elementos multimedia
     keep_pinned: Caltener los artículos fixaos
     keep_polls: Caltener les encuestes
+    keep_polls_hint: Nun desanicia nenguna encuesta de to
+    keep_self_bookmark: Caltener los artículos que metieres en Marcadores
+    keep_self_bookmark_hint: Nun desanicia nengún artículu que metieres en Marcadores
+    keep_self_fav: Caltener los artículos que seyan favoritos
+    keep_self_fav_hint: Nun desanicia nengún artículu que marcares como favoritu
     min_age:
       '1209600': 2 selmanes
       '15778476': 6 meses
