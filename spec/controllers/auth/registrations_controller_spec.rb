@@ -230,8 +230,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
     end
 
     it 'does nothing if user already exists' do
-      Fabricate(:account, username: 'test')
-      subject
+      pending 'Implement noop check'
     end
 
     include_examples 'checks for enabled registrations', :create

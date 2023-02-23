@@ -954,13 +954,6 @@ RSpec/NamedSubject:
 RSpec/NestedGroups:
   Max: 6
 
-# Configuration parameters: AllowedPatterns.
-# AllowedPatterns: ^expect_, ^assert_
-RSpec/NoExpectationExample:
-  Exclude:
-    - 'spec/controllers/auth/registrations_controller_spec.rb'
-    - 'spec/services/precompute_feed_service_spec.rb'
-
 RSpec/PendingWithoutReason:
   Exclude:
     - 'spec/models/account_spec.rb'
