@@ -26,7 +26,7 @@ RSpec.describe AdminMailer, type: :mailer do
 
   describe '.new_appeal' do
     let(:appeal) { Fabricate(:appeal) }
-    let(:recipient) { Fabricate(:account, username: "Kurt") }
+    let(:recipient) { Fabricate(:account, username: 'Kurt') }
     let(:mail)      { described_class.new_appeal(recipient, appeal) }
 
     before do
@@ -45,9 +45,9 @@ RSpec.describe AdminMailer, type: :mailer do
   end
 
   describe '.new_pending_account' do
-    let(:recipient) { Fabricate(:account, username: "Barklums") }
+    let(:recipient) { Fabricate(:account, username: 'Barklums') }
     let(:user) { Fabricate(:user) }
-    let(:mail)      { described_class.new_pending_account(recipient, user) }
+    let(:mail) { described_class.new_pending_account(recipient, user) }
 
     before do
       recipient.user.update(locale: :en)
@@ -60,7 +60,7 @@ RSpec.describe AdminMailer, type: :mailer do
     end
 
     it 'renders the body' do
-      expect(mail.body.encoded).to match "The details of the new account are below. You can approve or reject this application."
+      expect(mail.body.encoded).to match 'The details of the new account are below. You can approve or reject this application.'
     end
   end
 end
