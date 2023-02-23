@@ -1,7 +1,6 @@
----
 zh-HK:
   about:
-    about_mastodon_html: Mastodon（萬象）是屬於未來的社交網路︰無廣告煩擾、無企業監控、設計講道義、分散無大台！立即重奪個人資料的控制權，使用 Mastodon 吧！
+    about_mastodon_html: 'Mastodon（萬象）是屬於未來的社交網路︰無廣告煩擾、無企業監控、設計講道義、分散無大台！立即重奪個人資料的控制權，使用 Mastodon 吧！'
     contact_missing: 未設定
     contact_unavailable: 不適用
     hosted_on: 在 %{domain} 運作的 Mastodon 伺服器
@@ -54,7 +53,7 @@ zh-HK:
       delete: 刪除資料
       deleted: 已刪除
       demote: 降權
-      destroyed_msg: 即將刪除 %{username} 的數據
+      destroyed_msg: "即將刪除 %{username} 的數據"
       disable: 停用
       disable_sign_in_token_auth: 停用 e-mail 驗證碼
       disable_two_factor_authentication: 關閉雙重認證
@@ -385,7 +384,7 @@ zh-HK:
       import: 匯入
       new:
         create: 新增域名阻隔
-        hint: "「域名阻隔」不會隔絕該域名帳號進入本站資料庫，但是會在符合條件的帳號進入資料庫後，自動對它們套用特定審批操作。"
+        hint: '「域名阻隔」不會隔絕該域名帳號進入本站資料庫，但是會在符合條件的帳號進入資料庫後，自動對它們套用特定審批操作。'
         severity:
           desc_html: "<strong>限制</strong>將使沒有追蹤該網域帳號的人看不到他們的帖文。<strong>停權</strong>將從你的伺服器中，刪除此網域帳號的所有內容、媒體和個人檔案資料。如果你只想拒絕接收媒體檔案，請選擇<strong>無</strong>。"
           noop: 無
@@ -409,7 +408,7 @@ zh-HK:
     email_domain_blocks:
       add_new: 新增
       attempts_over_week:
-        other: 上週嘗試了註冊 %{count} 次
+        other: "上週嘗試了註冊 %{count} 次"
       created_msg: 已新增電郵網域阻隔
       delete: 刪除
       dns:
@@ -433,10 +432,10 @@ zh-HK:
       import:
         description_html: 你即將匯入網域封鎖列表。請審慎檢查，尤其是如果你並非親自編纂的。
         existing_relationships_warning: 現存追蹤關係
-        private_comment_description_html: 為了幫助你追蹤匯入封鎖的源頭，匯入的封鎖會在建立時將會有以下的私密備註：<q>%{comment}</q>
+        private_comment_description_html: '為了幫助你追蹤匯入封鎖的源頭，匯入的封鎖會在建立時將會有以下的私密備註：<q>%{comment}</q>'
         private_comment_template: 於 %{date} 從 %{source} 匯入
         title: 匯入封鎖的網域
-      invalid_domain_block: 由於以下錯誤，已略過一個或多個域名封鎖：%{error}
+      invalid_domain_block: '由於以下錯誤，已略過一個或多個域名封鎖：%{error}'
       new:
         title: 匯入封鎖的網域
       no_file: 未選擇檔案
@@ -541,7 +540,7 @@ zh-HK:
     relays:
       add_new: 新增中繼
       delete: 刪除
-      description_html: "<strong>聯盟中繼站</strong>是一種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦中探索內容</strong>，而無須本地使用者手動關注遠端伺服器的其他使用者。"
+      description_html: <strong>聯盟中繼站</strong>是一種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦中探索內容</strong>，而無須本地使用者手動關注遠端伺服器的其他使用者。
       disable: 停用
       disabled: 已停用
       enable: 啟用
@@ -582,7 +581,7 @@ zh-HK:
       category_description_html: 此帳號及/或內容被檢舉的原因，將會被引用在與被檢舉帳號的通訊中。
       comment:
         none: 沒有
-      comment_description_html: 為了提供更多資訊，%{name} 寫道：
+      comment_description_html: '為了提供更多資訊，%{name} 寫道：'
       confirm: 確定
       confirm_action: 確認對 ＠%{acct} 執行管理操作
       created_at: 日期
@@ -602,7 +601,7 @@ zh-HK:
         title: 筆記
       notes_description_html: 查看並給其他管理員和日後的自己留下筆記
       processed_msg: '已成功處理檢舉報告 #%{id}'
-      quick_actions_description_html: 採取快捷操作或向下捲動以查看檢舉內容：
+      quick_actions_description_html: '採取快捷操作或向下捲動以查看檢舉內容：'
       remote_user_placeholder: 來自 %{instance} 的遠端使用者
       reopen: 重開舉報個案
       report: '舉報 #%{id}'
@@ -616,10 +615,10 @@ zh-HK:
       statuses_description_html: 違規內容將被引用在被檢舉帳號的通訊中
       summary:
         action_preambles:
-          delete_html: 你即將<strong>移除</strong> <strong>@%{acct}</strong> 的部份帖文。這會：
-          mark_as_sensitive_html: 你即將把 <strong>@%{acct}</strong> 的部份帖文<strong>標記</strong>為<strong>敏感內容</strong>。這會：
-          silence_html: 你即將<strong>限制</strong> <strong>@%{acct}</strong> 的帳號。這會：
-          suspend_html: 你即將把 <strong>@%{acct}</strong> 的帳號<strong>停權</strong>。這會：
+          delete_html: '你即將<strong>移除</strong> <strong>@%{acct}</strong> 的部份帖文。這會：'
+          mark_as_sensitive_html: '你即將把 <strong>@%{acct}</strong> 的部份帖文<strong>標記</strong>為<strong>敏感內容</strong>。這會：'
+          silence_html: '你即將<strong>限制</strong> <strong>@%{acct}</strong> 的帳號。這會：'
+          suspend_html: '你即將把 <strong>@%{acct}</strong> 的帳號<strong>停權</strong>。這會：'
         actions:
           delete_html: 移除違規帖文
           mark_as_sensitive_html: 將違規帖文的媒體標記為敏感內容
@@ -635,7 +634,7 @@ zh-HK:
       target_origin: 被檢舉帳號來源
       title: 舉報
       unassign: 取消指派
-      unknown_action_msg: 未知的動作：%{action}
+      unknown_action_msg: '未知的動作：%{action}'
       unresolved: 未處理
       updated_at: 更新
       view_profile: 查看個人檔案
@@ -791,7 +790,7 @@ zh-HK:
       elasticsearch_running_check:
         message_html: 無法連接到 Elasticsearch。請檢查它是否運行中，或停用全文搜索。
       elasticsearch_version_check:
-        message_html: 不相容的 Elasticsearch 版本：%{value}
+        message_html: '不相容的 Elasticsearch 版本：%{value}'
         version_comparison: 正在運行 Elasticsearch 版本 %{running_version}，需要版本 %{required_version} 。
       rules_check:
         action: 管理伺服器規則
@@ -872,7 +871,7 @@ zh-HK:
     webhooks:
       add_new: 新增端點
       delete: 刪除
-      description_html: "<strong>Webhook</strong> 讓 Mastodon 將有關所選事件的<strong>實時通知</strong>推送到你自己的應用程式，如此應用程式便可以<strong>自動觸發反應</strong>。"
+      description_html: <strong>Webhook</strong> 讓 Mastodon 將有關所選事件的<strong>實時通知</strong>推送到你自己的應用程式，如此應用程式便可以<strong>自動觸發反應</strong>。
       disable: 停用
       disabled: 已停用
       edit: 編輯端點
@@ -907,9 +906,9 @@ zh-HK:
     new_report:
       body: "%{reporter} 舉報了 %{target}"
       body_remote: 來自 %{domain} 的人舉報了 %{target}
-      subject: 針對 %{instance} 的舉報（#%{id}）
+      subject: '針對 %{instance} 的舉報（#%{id}）'
     new_trends:
-      body: 以下項目需要經過審核才能公開顯示：
+      body: '以下項目需要經過審核才能公開顯示：'
       new_trending_links:
         title: 熱門連結
       new_trending_statuses:
@@ -918,7 +917,7 @@ zh-HK:
         no_approved_tags: 目前沒有經核准的熱門標籤。
         requirements: '任何一個候選都可能超過 #%{rank} 被核准的標籤。目前是 %{lowest_tag_name} 標籤，得分為 %{lowest_tag_score}。'
         title: 熱門標籤
-      subject: "%{instance} 上有待審核的新熱門"
+      subject: '%{instance} 上有待審核的新熱門'
   aliases:
     add_new: 建立別名 (Alias)
     created_msg: 成功建立別名 (alias)。你可以從舊帳號開始轉移。
@@ -928,7 +927,7 @@ zh-HK:
     remove: 取消連結別名 (Alias)
   appearance:
     advanced_web_interface: 進階網頁介面
-    advanced_web_interface_hint: 如果你想善用整個螢幕闊度，你可以啟用「進階網頁介面」，在畫面上配置多個不同的欄目，讓你能根據需要，同時查看盡可能多的信息，支援的欄位包括：主頁、通知、其他站點和任何的列表和標籤。
+    advanced_web_interface_hint: '如果你想善用整個螢幕闊度，你可以啟用「進階網頁介面」，在畫面上配置多個不同的欄目，讓你能根據需要，同時查看盡可能多的信息，支援的欄位包括：主頁、通知、其他站點和任何的列表和標籤。'
     animations_and_accessibility: 動畫和輔助功能
     confirmation_dialogs: 確認對話框
     discovery: 探索
@@ -941,8 +940,8 @@ zh-HK:
   application_mailer:
     notification_preferences: 更改電郵設定
     salutation: "%{name}："
-    settings: 修改電郵設定︰%{link}
-    view: 進入瀏覽︰
+    settings: '修改電郵設定︰%{link}'
+    view: '進入瀏覽︰'
     view_profile: 檢視個人資料頁
     view_status: 檢視文章
   applications:
@@ -1015,8 +1014,8 @@ zh-HK:
     already_requested: 你先前已向該帳號發送關注請求
     error: 對不起，尋找這個跨站用戶的過程發生錯誤
     follow: 關注
-    follow_request: 關注請求已發送给：
-    following: 成功！你正在關注：
+    follow_request: '關注請求已發送给：'
+    following: '成功！你正在關注：'
     post_follow:
       close: 你也可以直接關閉這個頁面。
       return: 顯示個人資料頁
@@ -1040,9 +1039,9 @@ zh-HK:
       about_x_hours: "%{count}小時前"
       about_x_months: "%{count}個月前"
       about_x_years: "%{count}年前"
-      almost_x_years: 接近%{count}年前
+      almost_x_years: "接近%{count}年前"
       half_a_minute: 剛剛
-      less_than_x_minutes: 少於%{count}分鐘前
+      less_than_x_minutes: "少於%{count}分鐘前"
       less_than_x_seconds: 剛剛
       over_x_years: "%{count}年"
       x_days: "%{count}日"
@@ -1056,7 +1055,7 @@ zh-HK:
     proceed: 刪除帳戶
     success_msg: 你的帳戶已經成功刪除
     warning:
-      before: 在繼續之前，請仔細閱讀以下說明：
+      before: '在繼續之前，請仔細閱讀以下說明：'
       caches: 已被其他服務器緩存的內容可能不會消失
       data_removal: 你的文章和其他資料將被永久刪除
       email_change_html: 你可以在不刪除帳戶的情況下<a href="%{path}">更改電子郵件地址</a>
@@ -1133,6 +1132,8 @@ zh-HK:
     storage: 媒體容量大小
   featured_tags:
     add_new: 新增
+    errors:
+      limit: 你推薦的標籤數量已達上限
     hint_html: "<strong>甚麼是推薦主題標籤？</strong> 它們會被顯示在你的個人資料頁面，讓其他人可以根據標籤瀏覽你的公開文章，令人們更易找到你創作或者長期作品！"
   filters:
     contexts:
@@ -1151,7 +1152,7 @@ zh-HK:
       deprecated_api_multiple_keywords: 無法從此應用程式更改這些參數，因為參數適用於多個篩選器關鍵字。請使用較新的應用程式或網頁介面。
       invalid_context: 沒有提供內文或內文無效
     index:
-      contexts: "%{contexts} 中的篩選器"
+      contexts: '%{contexts} 中的篩選器'
       delete: 刪除
       empty: 你沒有過濾器。
       expires_in: 於 %{distance} 過期
@@ -1194,10 +1195,10 @@ zh-HK:
     validation_errors:
       other: 提交的資料有 %{count} 項問題
   html_validator:
-    invalid_markup: 含有無效的HTML標記：%{error}
+    invalid_markup: '含有無效的HTML標記：%{error}'
   imports:
     errors:
-      invalid_csv_file: 無效的 CSV 檔案。錯誤：%{error}
+      invalid_csv_file: '無效的 CSV 檔案。錯誤：%{error}'
       over_rows_processing_limit: 包含超過 %{count} 行
     modes:
       merge: 合併
@@ -1225,7 +1226,7 @@ zh-HK:
       '86400': 1 天後
     expires_in_prompt: 永不過期
     generate: 生成邀請連結
-    invited_by: 你的邀請人是：
+    invited_by: '你的邀請人是：'
     max_uses:
       other: "%{count} 次"
     max_uses_prompt: 無限制
@@ -1234,6 +1235,9 @@ zh-HK:
       expires_at: 失效時間
       uses: 已使用次數
     title: 邀請用戶
+  lists:
+    errors:
+      limit: 你已達到列表數量的上限
   login_activities:
     authentication_methods:
       otp: 兩步認證軟體
@@ -1274,7 +1278,7 @@ zh-HK:
     set_redirect: 設定重新定向
     warning:
       backreference_required: 新帳戶必須首先反向標識(back-reference)當前帳戶
-      before: 在繼續之前，請仔細閱讀以下說明：
+      before: '在繼續之前，請仔細閱讀以下說明：'
       cooldown: 在轉移帳號之後將會有一段冷卻時間，在冷卻時間內你將不能再次轉移帳號
       disabled_account: 你的當前帳號將不能完整地運作。但你將會有權力匯出你的數據和重新啟用你的帳號。
       followers: 此操作將會由當前帳號轉移所有追隨者至新帳號
@@ -1286,7 +1290,7 @@ zh-HK:
   move_handler:
     carry_blocks_over_text: 此用戶從%{acct} 轉移，該帳號已被你封鎖。
     carry_mutes_over_text: 此用戶從%{acct} 轉移，該帳號已被你靜音。
-    copy_account_note_text: 此用戶從%{acct} 轉移，這是你之前在該帳號留下的備注：
+    copy_account_note_text: '此用戶從%{acct} 轉移，這是你之前在該帳號留下的備注：'
   navigation:
     toggle_menu: 切換選單
   notification_mailer:
@@ -1296,7 +1300,7 @@ zh-HK:
       sign_up:
         subject: "%{name} 已註冊"
     favourite:
-      body: 你的文章被 %{name} 喜愛：
+      body: '你的文章被 %{name} 喜愛：'
       subject: "%{name} 喜歡你的文章"
       title: 新的最愛
     follow:
@@ -1306,17 +1310,17 @@ zh-HK:
     follow_request:
       action: 處理關注請求
       body: "%{name} 要求關注你"
-      subject: 等候關注你的用戶︰ %{name}
+      subject: '等候關注你的用戶︰ %{name}'
       title: 新的關注請求
     mention:
       action: 回覆
-      body: "%{name} 在文章中提及你︰"
-      subject: "%{name} 在文章中提及你"
+      body: '%{name} 在文章中提及你︰'
+      subject: '%{name} 在文章中提及你'
       title: 新的提及
     poll:
-      subject: "%{name} 發起的投票已截止"
+      subject: '%{name} 發起的投票已截止'
     reblog:
-      body: 你的文章被 %{name} 轉推：
+      body: '你的文章被 %{name} 轉推：'
       subject: "%{name} 轉推了你的文章"
       title: 新的轉推
     status:
@@ -1325,7 +1329,7 @@ zh-HK:
       subject: "%{name} 編輯了帖文"
   notifications:
     email_events: 電郵通知活動
-    email_events_hint: 選擇你想接收通知的活動：
+    email_events_hint: '選擇你想接收通知的活動：'
     other_settings: 其他通知設定
   number:
     human:
@@ -1342,7 +1346,7 @@ zh-HK:
     description_html: 當你啟用<strong>雙重認證</strong>後，你登入時將需要使用你的手機或其他認證器所產生的代碼。
     enable: 啟用
     instructions_html: "<strong>請用你手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裏的QR 圖形碼</strong>。在雙重認證啟用後，你登入時將須要使用此應用程式產生的認證碼。"
-    manual_instructions: 如果你無法掃描 QR 圖形碼，請手動輸入這個文字密碼︰
+    manual_instructions: '如果你無法掃描 QR 圖形碼，請手動輸入這個文字密碼︰'
     setup: 設定
     wrong_code: 你輸入的認證碼並不正確！可能伺服器時間和你手機不一致，請檢查你手機的時鐘，或與本站管理員聯絡。
   pagination:
@@ -1398,10 +1402,10 @@ zh-HK:
     errors:
       invalid_rules: 未引用有效的規則
   rss:
-    content_warning: 內容警告：
+    content_warning: '內容警告：'
     descriptions:
       account: 來自 @%{acct} 的公開帖文
-      tag: "#%{hashtag} 標籤的公開帖文"
+      tag: '#%{hashtag} 標籤的公開帖文'
   scheduled_statuses:
     over_daily_limit: 你已經超越了當天排定發文的限額 (%{limit})
     over_total_limit: 你已經超越了排定發文的限額 (%{limit})
@@ -1475,16 +1479,16 @@ zh-HK:
     attached:
       audio:
         other: "%{count} 段影片"
-      description: 附件： %{attached}
+      description: '附件： %{attached}'
       image:
         other: "%{count} 幅圖片"
       video:
         other: "%{count} 段影片"
     boosted_from_html: 轉推自 %{acct_link}
-    content_warning: 內容警告： %{warning}
+    content_warning: '內容警告： %{warning}'
     default_language: 與介面語言相同
     disallowed_hashtags:
-      other: 包含不允許的標籤： %{tags}
+      other: '包含不允許的標籤： %{tags}'
     edited_at_html: 編輯於 %{date}
     errors:
       in_reply_not_found: 你所回覆的嘟文並不存在。
@@ -1506,7 +1510,7 @@ zh-HK:
     show_older: 顯示較舊嘟文
     show_thread: 顯示討論串
     sign_in_to_participate: 登入以加入討論
-    title: "%{name}：「%{quote}」"
+    title: '%{name}：「%{quote}」'
     visibilities:
       direct: 私人訊息
       private: 關注者觀看
@@ -1547,6 +1551,7 @@ zh-HK:
       '7889238': 3 個月
     min_age_label: 按時間篩選
     min_favs: 保留超過嘟文最愛門檻
+    min_favs_hint: 收到此數量或更多最愛的帖文將不會被刪除。 留空可無視最愛數量刪除帖子
     min_reblogs: 保留超過嘟文轉嘟門檻
     min_reblogs_hint: 如果您嘟文已收到超過轉嘟門檻則不會刪除。留白表示不論轉嘟數量皆刪除嘟文。
   stream_entries:
@@ -1598,7 +1603,7 @@ zh-HK:
       title: 檔案匯出
     suspicious_sign_in:
       change_password: 更改你的密碼
-      details: 以下是登入的細節：
+      details: '以下是登入的細節：'
       explanation: 我們偵測到有新的 IP 地址登入你的帳號。
       further_actions_html: 如果這不是你，我們建議你立即 %{action} 並啟用雙重認證，以確保帳號安全。
       subject: 你的帳號被一個新的 IP 地址存取
@@ -1616,8 +1621,8 @@ zh-HK:
         sensitive: 從今開始，你上傳的所有媒體檔案將被標記為敏感內容並隱藏，須點擊警告後方可查看。
         silence: 你仍然可以使用你的帳號，但只有你的追蹤者方可看見你在此伺服器上的帖文，你亦可能會被排除在各種探索功能之外，但其他人仍然可以手動追蹤你。
         suspend: 你不能再使用你的帳號及存取你的個人檔案和其他資料。你仍然可以登入並要求取得資料備份，直至資料在大約 30 天內被完全刪除為止，但我們將保留部份基本資料，以防止你規避處罰。
-      reason: 原因：
-      statuses: 引用帖文：
+      reason: '原因：'
+      statuses: '引用帖文：'
       subject:
         delete_statuses: 你在 %{acct} 的帖文已被移除
         disable: 你的帳號 %{acct} 已經被涷結
@@ -1649,9 +1654,9 @@ zh-HK:
     invalid_otp_token: 雙重認證碼不正確
     otp_lost_help_html: 如果這兩者你均無法登入，你可以聯繫 %{email}
     seamless_external_login: 因為你正在使用第三方服務登入，所以不能設定密碼和電郵。
-    signed_in_as: 目前登入的帳戶：
+    signed_in_as: '目前登入的帳戶：'
   verification:
-    explanation_html: 你可以<strong>認證個人資料頁面的元數據 (Metadata) 連結是屬於你的</strong>。要認證，那些連結的目的地網站必須有一條回到你 Mastodon 個人頁面的連結，而且連結<strong>必須</strong>具有<code>rel="me"</code>屬性。連結的文字內容都不會影響認證。這裏有一個例子：
+    explanation_html: '你可以<strong>認證個人資料頁面的元數據 (Metadata) 連結是屬於你的</strong>。要認證，那些連結的目的地網站必須有一條回到你 Mastodon 個人頁面的連結，而且連結<strong>必須</strong>具有<code>rel="me"</code>屬性。連結的文字內容都不會影響認證。這裏有一個例子：'
     verification: 驗證
   webauthn_credentials:
     add: 新增安全密鑰裝置
