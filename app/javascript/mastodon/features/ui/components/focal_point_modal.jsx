@@ -214,7 +214,7 @@ class FocalPointModal extends ImmutablePureComponent {
 
     this.setState({ detecting: true });
 
-    fetchTesseract().then(({ await createWorker }) => {
+    fetchTesseract().then(({ createWorker }) => {
       const worker = createWorker({
         workerPath: tesseractWorkerPath,
         corePath: tesseractCorePath,
