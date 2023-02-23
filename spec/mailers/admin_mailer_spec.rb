@@ -63,4 +63,26 @@ RSpec.describe AdminMailer, type: :mailer do
       expect(mail.body.encoded).to match 'The details of the new account are below. You can approve or reject this application.'
     end
   end
+
+  describe '.new_trends' do
+    let(:recipient) { Fabricate(:account, username: 'Snurf') }
+    let(:links) { [] }
+    let(:statuses) { [] }
+    let(:tags) { [] }
+    let(:mail) { described_class.new_trends(recipient, links, tags, statuses) }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the headers' do
+      expect(mail.subject).to eq('New trends up for review on cb6e6126.ngrok.io')
+      expect(mail.to).to eq [recipient.user_email]
+      expect(mail.from).to eq ['notifications@localhost']
+    end
+
+    it 'renders the body' do
+      expect(mail.body.encoded).to match 'The following items need a review before they can be displayed publicly'
+    end
+  end
 end
