@@ -1,4 +1,3 @@
----
 et:
   about:
     about_mastodon_html: 'Tuleviku sotsiaalvõrgustik: Reklaamivaba, korporatiivse järelvalveta, eetiline kujundus ning detsentraliseeritus! Oma enda andmeid Mastodonis!'
@@ -48,7 +47,7 @@ et:
         changed_msg: Roll on muudetud!
         label: Muuda rolli
         no_role: Roll puudub
-        title: "%{username} rolli muutmine"
+        title: '%{username} rolli muutmine'
       confirm: Kinnita
       confirmed: Kinnitatud
       confirming: Kinnitamisel
@@ -87,7 +86,7 @@ et:
       media_attachments: Lisatud meedia
       memorialize: Igaveseks lahkunud
       memorialized: Igaveselt lahkunuks märgitud
-      memorialized_msg: "%{username} on märgitud igavaselt lahkunuks"
+      memorialized_msg: '%{username} on märgitud igavaselt lahkunuks'
       moderation:
         active: Aktiivne
         all: Kõik
@@ -114,15 +113,15 @@ et:
       public: Avalik
       push_subscription_expires: PuSH tellimus aegub
       redownload: Värskenda profiili
-      redownloaded_msg: "%{username} kasutajakonto algallikast värskendatud"
+      redownloaded_msg: '%{username} kasutajakonto algallikast värskendatud'
       reject: Hülga
-      rejected_msg: "%{username} liitumisavaldus tagasi lükatud"
+      rejected_msg: '%{username} liitumisavaldus tagasi lükatud'
       remote_suspension_irreversible: Selle konto andmed on pöördumatult kustutatud.
       remote_suspension_reversible_hint_html: Konto on lukustatud ja andmed kustutatakse jäädavalt %{date}. Seni võib teine server konto probleemideta taastada. Kui soovid andmied kohe jäädavalt eemaldada, võid seda teha allpool.
       remove_avatar: Kustuta profiilipilt
       remove_header: Kustuta päis
-      removed_avatar_msg: "%{username} tunnuspilt eemaldatud"
-      removed_header_msg: "%{username} päisepilt eemaldatud"
+      removed_avatar_msg: '%{username} tunnuspilt eemaldatud'
+      removed_header_msg: '%{username} päisepilt eemaldatud'
       resend_confirmation:
         already_confirmed: See kasutaja on juba kinnitatud
         send: Saada kinnituskiri uuesti
@@ -552,7 +551,7 @@ et:
     relays:
       add_new: Lisa uus vahendaja
       delete: Kustuta
-      description_html: "<strong>Födereerumisvahendaja</strong> on vahendav server, mis kannab üle suures koguses avalikke postitusi nende serverite vahel, mis on sellega liitunud ja edastavad sellele oma postitusi. <strong>See aitab väikestel ja keskmistel serveritel avastada födiversumi sellist sisu</strong>, mis muidu eeldaks kohalikelt kasutajatelt nende serverite kasutajate jälgitavaks märkimist."
+      description_html: <strong>Födereerumisvahendaja</strong> on vahendav server, mis kannab üle suures koguses avalikke postitusi nende serverite vahel, mis on sellega liitunud ja edastavad sellele oma postitusi. <strong>See aitab väikestel ja keskmistel serveritel avastada födiversumi sellist sisu</strong>, mis muidu eeldaks kohalikelt kasutajatelt nende serverite kasutajate jälgitavaks märkimist.
       disable: Keela
       disabled: Keelatud
       enable: Luba
@@ -635,8 +634,8 @@ et:
         actions:
           delete_html: Solvava postituse eemaldamine
           mark_as_sensitive_html: Solvava postituse meedia märkimine tundlikuks
-          silence_html: "<strong>@%{acct}</strong> ulatuse tugev piiramine muutes tema profiili ja sisu nähtavaks ainult neile, kes teda juba jälgivad, või neile, kes just tema profiili üles otsivad"
-          suspend_html: "<strong>@%{acct}</strong> peatamine, muutes tema profiili ja sisu mitteligipääsetavaks ning mitteinterakteerutavaks"
+          silence_html: <strong>@%{acct}</strong> ulatuse tugev piiramine muutes tema profiili ja sisu nähtavaks ainult neile, kes teda juba jälgivad, või neile, kes just tema profiili üles otsivad
+          suspend_html: <strong>@%{acct}</strong> peatamine, muutes tema profiili ja sisu mitteligipääsetavaks ning mitteinterakteerutavaks
         close_report: 'Raporti #%{id} lahendatuks märkimine'
         close_reports_html: Märgi <strong>kõik</strong> raportid <strong>@%{acct}</strong> vastu lahendatuks
         delete_data_html: Kustuta tänasest 30 päeva pärast kasutaja <strong>@%{acct}</strong> profiil ja sisu, kui vahepeal tema kontot ei taastata
@@ -663,7 +662,7 @@ et:
         moderation: Modereerimine
         special: Eriline
       delete: Kustuta
-      description_html: "<strong>Kasutajarollide</strong> abil saab kohandada, millistele Mastodoni funktsioonidele ja piirkondadele kasutajad ligi pääsevad."
+      description_html: <strong>Kasutajarollide</strong> abil saab kohandada, millistele Mastodoni funktsioonidele ja piirkondadele kasutajad ligi pääsevad.
       edit: Muuda '%{name}' rolli
       everyone: Vaikimisi load
       everyone_full_description_html: See on <strong>baasroll</strong> mõjudes <strong>kõigile kasutajatele</strong>, ka määramata rolliga. Kõik teised rollid pärivad selle rolli õigused.
@@ -889,7 +888,7 @@ et:
     webhooks:
       add_new: Lisa lõpp-punkt
       delete: Kustuta
-      description_html: "<strong>Veebihaak</strong> võimaldab Mastodonil edastada valitud sündmuste kohta su rakendusele <strong>reaalajas märguandeid</strong>, et rakendus saaks <strong>automaatselt reaktsioone käivitada</strong>."
+      description_html: <strong>Veebihaak</strong> võimaldab Mastodonil edastada valitud sündmuste kohta su rakendusele <strong>reaalajas märguandeid</strong>, et rakendus saaks <strong>automaatselt reaktsioone käivitada</strong>.
       disable: Keela
       disabled: Keelatud
       edit: Muuda lõpp-punkti
@@ -925,7 +924,7 @@ et:
     new_report:
       body: "%{reporter} teavitas kasutajast %{target}"
       body_remote: Keegi domeenist %{domain} teavitas kasutajast %{target}
-      subject: Uus teavitus %{instance}-ile (#%{id})
+      subject: 'Uus teavitus %{instance}-ile (#%{id})'
     new_trends:
       body: 'Järgmised üksused vajavad enne avalikustamist ülevaatust:'
       new_trending_links:
@@ -1138,7 +1137,7 @@ et:
     archive_takeout:
       date: Kuupäev
       download: Lae alla oma arhiiv
-      hint_html: "<strong>Postitustest ja üleslaetud meediast</strong> on võimalik saada koopia. Eksporditud andmed on ActivityPub-formaadis, loetav vastava tarkvara poolt. Koopia saamine on võimalik iga 7 päeva järel."
+      hint_html: <strong>Postitustest ja üleslaetud meediast</strong> on võimalik saada koopia. Eksporditud andmed on ActivityPub-formaadis, loetav vastava tarkvara poolt. Koopia saamine on võimalik iga 7 päeva järel.
       in_progress: Loome arhiivi...
       request: Taotle oma arhiivi
       size: Suurus
@@ -1220,8 +1219,6 @@ et:
     validation_errors:
       one: Midagi pole ikka õigesti! Palun vaata allolev veateade üle
       other: Midagi pole ikka õigesti! Palun vaata all olevad %{count} veateadet üle
-  html_validator:
-    invalid_markup: 'sisaldab valet HTMLi süntaksi: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Vigane CSV-fail. Tõrge: %{error}'
@@ -1327,7 +1324,7 @@ et:
       sign_up:
         subject: "%{name} liitus"
     favourite:
-      body: "%{name} lisas su postituse lemmikutesse:"
+      body: '%{name} lisas su postituse lemmikutesse:'
       subject: "%{name} märkis su postituse lemmikuks"
       title: Uus lemmik
     follow:
@@ -1341,13 +1338,13 @@ et:
       title: Uus jälgimistaotlus
     mention:
       action: Vasta
-      body: "%{name} mainis Teid:"
-      subject: "%{name} mainis Teid"
+      body: '%{name} mainis Teid:'
+      subject: '%{name} mainis Teid'
       title: Uus mainimine
     poll:
-      subject: "%{name} küsitlus lõppes"
+      subject: '%{name} küsitlus lõppes'
     reblog:
-      body: "%{name} jagas edasi postitust:"
+      body: '%{name} jagas edasi postitust:'
       subject: "%{name} jagas postitust"
       title: Uus jagamine
     status:
@@ -1431,7 +1428,7 @@ et:
   rss:
     content_warning: 'Sisuhoiatus:'
     descriptions:
-      account: "@%{acct} avalikud postitused"
+      account: '@%{acct} avalikud postitused'
       tag: 'Avalikud postitused sildiga #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Lubatud ajastatud postituste arv %{limit} päevas on tänaseks ületatud
@@ -1514,7 +1511,7 @@ et:
       video:
         one: "%{count} video"
         other: "%{count} videot"
-    boosted_from_html: "%{acct_link} jagamine"
+    boosted_from_html: '%{acct_link} jagamine'
     content_warning: 'Sisu hoiatus: %{warning}'
     default_language: Kasutajaliidese keelega sama
     disallowed_hashtags:
@@ -1584,9 +1581,7 @@ et:
       '7889238': 3 kuud
     min_age_label: Ajalimiit
     min_favs: Säilita postitused, meeldimistega vähemalt
-    min_favs_hint: |-
-      Ei kustuta ühtegi postitust, mis on saanud vähemalt nii palju lemmikuks märkimist. Postituste kustutamiseks olenemata nende lemmikuks märkimise arvust,
-      jäta tühjaks
+    min_favs_hint: "Ei kustuta ühtegi postitust, mis on saanud vähemalt nii palju lemmikuks märkimist. Postituste kustutamiseks olenemata nende lemmikuks märkimise arvust,\njäta tühjaks"
     min_reblogs: Säilita postitused jagatud vähemalt
     min_reblogs_hint: Ei kustuta postitusi, kui need on jagatud vähemalt nii mitu korda. Tühjaks jättes kustuvad postitused olenemata jagamistest
   stream_entries:
@@ -1625,12 +1620,12 @@ et:
   user_mailer:
     appeal_approved:
       action: Oma kontole
-      explanation: "%{appeal_date} esitatud vaidlustus %{strike_date} otsuse kohta on rahuldatud. Konto on ennistatud."
-      subject: "%{date} esitatud vaidlustus on rahuldatud"
+      explanation: '%{appeal_date} esitatud vaidlustus %{strike_date} otsuse kohta on rahuldatud. Konto on ennistatud.'
+      subject: '%{date} esitatud vaidlustus on rahuldatud'
       title: Vaidlustus rahuldatud
     appeal_rejected:
-      explanation: "%{appeal_date} esitatud vaidlustus %{strike_date} otsuse kohta on tagasi lükatud."
-      subject: "%{date} esitatud vaidlustus on tagasi lükatud"
+      explanation: '%{appeal_date} esitatud vaidlustus %{strike_date} otsuse kohta on tagasi lükatud.'
+      subject: '%{date} esitatud vaidlustus on tagasi lükatud'
       title: Vaidlustus tagasi lükatud
     backup_ready:
       explanation: Taotlesid oma Mastodoni konto varukoopiat. See on nüüd valmis allalaadimiseks!
@@ -1676,10 +1671,7 @@ et:
         suspend: Konto kustutatud
     welcome:
       edit_profile_action: Seadista oma profiil
-      edit_profile_step: |-
-        Esmalt seadista oma profiil. Saad lisada profiilipildi, muuta ekraaninime, lisada lühikirjelduse ja teha paljut muud. Vaata üle oma konto seaded. Saad ise otsustada, kui nähtav on konto teiste jaoks, mis keeltes postitusi oma ajavoos näha soovid ning kui privaatne peaks konto olema.
-
-        Kui mõni asi arusaamatuks jääb, siis võib vaadata juhendvideot: https://youtu.be/J4ItbTOAw7Q
+      edit_profile_step: "Esmalt seadista oma profiil. Saad lisada profiilipildi, muuta ekraaninime, lisada lühikirjelduse ja teha paljut muud. Vaata üle oma konto seaded. Saad ise otsustada, kui nähtav on konto teiste jaoks, mis keeltes postitusi oma ajavoos näha soovid ning kui privaatne peaks konto olema.\n\nKui mõni asi arusaamatuks jääb, siis võib vaadata juhendvideot: https://youtu.be/J4ItbTOAw7Q"
       explanation: Siin on mõned nõuanded, mis aitavad alustada
       final_action: Alusta postitamist
       final_step: 'Nüüd tee oma esimene postitus. Hea tava on uues kohas ennast tutvustada ning kindlasti kasuta selles postituses ka teemaviidet #tutvustus. Isegi kui sul ei ole veel jälgijaid, siis su postitusi näevad kohalikul ajajoonel ka kõik teised serveri kasutajad.'
