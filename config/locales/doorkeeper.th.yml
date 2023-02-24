@@ -1,4 +1,3 @@
----
 th:
   activerecord:
     attributes:
@@ -147,49 +146,49 @@ th:
       application:
         title: ต้องการการอนุญาต OAuth
     scopes:
-      admin:read: อ่านข้อมูลทั้งหมดในเซิร์ฟเวอร์
-      admin:read:accounts: อ่านข้อมูลที่ละเอียดอ่อนของบัญชีทั้งหมด
-      admin:read:canonical_email_blocks: อ่านข้อมูลที่ละเอียดอ่อนของการปิดกั้นอีเมลมาตรฐานทั้งหมด
-      admin:read:domain_allows: อ่านข้อมูลที่ละเอียดอ่อนของการอนุญาตโดเมนทั้งหมด
-      admin:read:domain_blocks: อ่านข้อมูลที่ละเอียดอ่อนของการปิดกั้นโดเมนทั้งหมด
-      admin:read:email_domain_blocks: อ่านข้อมูลที่ละเอียดอ่อนของการปิดกั้นโดเมนอีเมลทั้งหมด
-      admin:read:ip_blocks: อ่านข้อมูลที่ละเอียดอ่อนของการปิดกั้น IP ทั้งหมด
-      admin:read:reports: อ่านข้อมูลที่ละเอียดอ่อนของรายงานและบัญชีที่ได้รับการรายงานทั้งหมด
-      admin:write: ปรับเปลี่ยนข้อมูลทั้งหมดในเซิร์ฟเวอร์
-      admin:write:accounts: ทำการกระทำการควบคุมบัญชี
-      admin:write:canonical_email_blocks: ทำการกระทำการควบคุมการปิดกั้นอีเมลมาตรฐาน
-      admin:write:domain_allows: ทำการกระทำการควบคุมการอนุญาตโดเมน
-      admin:write:domain_blocks: ทำการกระทำการควบคุมการปิดกั้นโดเมน
-      admin:write:email_domain_blocks: ทำการกระทำการควบคุมการปิดกั้นโดเมนอีเมล
-      admin:write:ip_blocks: ทำการกระทำการควบคุมการปิดกั้น IP
-      admin:write:reports: ทำการกระทำการควบคุมรายงาน
+      "admin:read": อ่านข้อมูลทั้งหมดในเซิร์ฟเวอร์
+      "admin:read:accounts": อ่านข้อมูลที่ละเอียดอ่อนของบัญชีทั้งหมด
+      "admin:read:canonical_email_blocks": อ่านข้อมูลที่ละเอียดอ่อนของการปิดกั้นอีเมลมาตรฐานทั้งหมด
+      "admin:read:domain_allows": อ่านข้อมูลที่ละเอียดอ่อนของการอนุญาตโดเมนทั้งหมด
+      "admin:read:domain_blocks": อ่านข้อมูลที่ละเอียดอ่อนของการปิดกั้นโดเมนทั้งหมด
+      "admin:read:email_domain_blocks": อ่านข้อมูลที่ละเอียดอ่อนของการปิดกั้นโดเมนอีเมลทั้งหมด
+      "admin:read:ip_blocks": อ่านข้อมูลที่ละเอียดอ่อนของการปิดกั้น IP ทั้งหมด
+      "admin:read:reports": อ่านข้อมูลที่ละเอียดอ่อนของรายงานและบัญชีที่ได้รับการรายงานทั้งหมด
+      "admin:write": ปรับเปลี่ยนข้อมูลทั้งหมดในเซิร์ฟเวอร์
+      "admin:write:accounts": ทำการกระทำการควบคุมบัญชี
+      "admin:write:canonical_email_blocks": ทำการกระทำการควบคุมการปิดกั้นอีเมลมาตรฐาน
+      "admin:write:domain_allows": ทำการกระทำการควบคุมการอนุญาตโดเมน
+      "admin:write:domain_blocks": ทำการกระทำการควบคุมการปิดกั้นโดเมน
+      "admin:write:email_domain_blocks": ทำการกระทำการควบคุมการปิดกั้นโดเมนอีเมล
+      "admin:write:ip_blocks": ทำการกระทำการควบคุมการปิดกั้น IP
+      "admin:write:reports": ทำการกระทำการควบคุมรายงาน
       crypto: ใช้การเข้ารหัสแบบต้นทางถึงปลายทาง
       follow: ปรับเปลี่ยนความสัมพันธ์ของบัญชี
       push: รับการแจ้งเตือนแบบผลักของคุณ
       read: อ่านข้อมูลบัญชีทั้งหมดของคุณ
-      read:accounts: ดูข้อมูลบัญชี
-      read:blocks: ดูการปิดกั้นของคุณ
-      read:bookmarks: ดูที่คั่นหน้าของคุณ
-      read:favourites: ดูรายการโปรดของคุณ
-      read:filters: ดูตัวกรองของคุณ
-      read:follows: ดูการติดตามของคุณ
-      read:lists: ดูรายการของคุณ
-      read:mutes: ดูการซ่อนของคุณ
-      read:notifications: ดูการแจ้งเตือนของคุณ
-      read:reports: ดูรายงานของคุณ
-      read:search: ค้นหาในนามของคุณ
-      read:statuses: ดูโพสต์ทั้งหมด
+      "read:accounts": ดูข้อมูลบัญชี
+      "read:blocks": ดูการปิดกั้นของคุณ
+      "read:bookmarks": ดูที่คั่นหน้าของคุณ
+      "read:favourites": ดูรายการโปรดของคุณ
+      "read:filters": ดูตัวกรองของคุณ
+      "read:follows": ดูการติดตามของคุณ
+      "read:lists": ดูรายการของคุณ
+      "read:mutes": ดูการซ่อนของคุณ
+      "read:notifications": ดูการแจ้งเตือนของคุณ
+      "read:reports": ดูรายงานของคุณ
+      "read:search": ค้นหาในนามของคุณ
+      "read:statuses": ดูโพสต์ทั้งหมด
       write: ปรับเปลี่ยนข้อมูลบัญชีทั้งหมดของคุณ
-      write:accounts: ปรับเปลี่ยนโปรไฟล์ของคุณ
-      write:blocks: ปิดกั้นบัญชีและโดเมน
-      write:bookmarks: เพิ่มที่คั่นหน้าโพสต์
-      write:conversations: ซ่อนและลบการสนทนา
-      write:favourites: ชื่นชอบโพสต์
-      write:filters: สร้างตัวกรอง
-      write:follows: ติดตามผู้คน
-      write:lists: สร้างรายการ
-      write:media: อัปโหลดไฟล์สื่อ
-      write:mutes: ซ่อนผู้คนและการสนทนา
-      write:notifications: ล้างการแจ้งเตือนของคุณ
-      write:reports: รายงานผู้คนอื่น ๆ
-      write:statuses: เผยแพร่โพสต์
+      "write:accounts": ปรับเปลี่ยนโปรไฟล์ของคุณ
+      "write:blocks": ปิดกั้นบัญชีและโดเมน
+      "write:bookmarks": เพิ่มที่คั่นหน้าโพสต์
+      "write:conversations": ซ่อนและลบการสนทนา
+      "write:favourites": ชื่นชอบโพสต์
+      "write:filters": สร้างตัวกรอง
+      "write:follows": ติดตามผู้คน
+      "write:lists": สร้างรายการ
+      "write:media": อัปโหลดไฟล์สื่อ
+      "write:mutes": ซ่อนผู้คนและการสนทนา
+      "write:notifications": ล้างการแจ้งเตือนของคุณ
+      "write:reports": รายงานผู้คนอื่น ๆ
+      "write:statuses": เผยแพร่โพสต์
