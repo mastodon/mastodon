@@ -1,4 +1,3 @@
----
 gd:
   simple_form:
     hints:
@@ -7,7 +6,7 @@ gd:
       account_migration:
         acct: Sònraich ainm-cleachdaiche@àrainn dhen chunntas dhan a tha thu airson imrich
       account_warning_preset:
-        text: "’S urrainn dhut co-chàradh puist a chleachdadh, can URLaichean, tagaichean hais is iomraidhean"
+        text: '’S urrainn dhut co-chàradh puist a chleachdadh, can URLaichean, tagaichean hais is iomraidhean'
         title: Roghainneil. Chan fhaic am faightear seo
       admin_account_action:
         include_statuses: Chì an cleachdaiche dè na postaichean a dh’adhbharaich gnìomh maorsainneachd no rabhadh
@@ -26,7 +25,7 @@ gd:
         ends_at: Roghainneil. Thèid am brath-fios a neo-fhoillseachadh gu fèin-obrachail aig an àm ud
         scheduled_at: Fàg seo bàn airson am brath-fios fhoillseachadh sa bhad
         starts_at: Roghainneil. Cleachd seo airson am brath-fios a chuingeachadh rè ama shònraichte
-        text: "’S urrainn dhut co-chàradh puist a chleachdadh. Thoir an aire air am meud a chaitheas am brath-fios air sgrìn an luchd-chleachdaidh"
+        text: '’S urrainn dhut co-chàradh puist a chleachdadh. Thoir an aire air am meud a chaitheas am brath-fios air sgrìn an luchd-chleachdaidh'
       appeal:
         text: Chan urrainn dhut ath-thagradh a dhèanamh air rabhadh ach aon turas
       defaults:
@@ -62,7 +61,7 @@ gd:
         username: Bidh ainm-cleachdaiche àraidh agad air %{domain}
         whole_word: Mur eil ach litrichean is àireamhan san fhacal-luirg, cha dèid a chur an sàs ach ma bhios e a’ maidseadh an fhacail shlàin
       domain_allow:
-        domain: "’S urrainn dhan àrainn seo dàta fhaighinn on fhrithealaiche seo agus thèid an dàta a thig a-steach uaithe a phròiseasadh ’s a stòradh"
+        domain: '’S urrainn dhan àrainn seo dàta fhaighinn on fhrithealaiche seo agus thèid an dàta a thig a-steach uaithe a phròiseasadh ’s a stòradh'
       email_domain_block:
         domain: Seo ainm na h-àrainne a nochdas san t-seòladh puist-d no sa chlàr MX a chleachdas e. Thèid an dearbhadh aig àm a’ chlàraidh.
         with_dns_records: Thèid oidhirp a dhèanamh air fuasgladh clàran DNS na h-àrainne a chaidh a thoirt seachad agus thèid na toraidhean a bhacadh cuideachd
@@ -79,7 +78,7 @@ gd:
         bootstrap_timeline_accounts: Thèid na cunntasan seo a phrìneachadh air bàrr nam molaidhean leantainn dhan luchd-cleachdaidh ùr.
         closed_registrations_message: Thèid seo a shealltainn nuair a bhios an clàradh dùinte
         content_cache_retention_period: Thèid na postaichean o fhrithealaichean eile a sguabadh às às dèidh an àireamh de làithean a shònraich thu nuair a bhios luach dearbh air. Dh’fhaoidte nach gabh seo a neo-dhèanamh.
-        custom_css: "’S urrainn dhut stoidhlean gnàthaichte a chur an sàs air an tionndadh-lìn de Mhastodon."
+        custom_css: '’S urrainn dhut stoidhlean gnàthaichte a chur an sàs air an tionndadh-lìn de Mhastodon.'
         mascot: Tar-àithnidh seo an sgead-dhealbh san eadar-aghaidh-lìn adhartach.
         media_cache_retention_period: Thèid na faidhlichean meadhain air an luchdadh a-nuas a sguabadh às às dèidh an àireamh de làithean a shònraich thu nuair a bhios luach dearbh air agus an ath-luachdadh nuair a thèid an iarraidh an uairsin.
         peers_api_enabled: Seo liosta de dh’ainmean àrainne ris an do thachair am frithealaiche seo sa cho-shaoghal. Chan eil dàta sam bith ’ga ghabhail a-staigh an-seo mu a bheil thu co-naisgte ri frithealaiche sònraichte gus nach eil ach dìreach gu bheil am frithealaiche agad eòlach air. Thèid seo a chleachdadh le seirbheisean a chruinnicheas stadastaireachd air a’ cho-nasgadh san fharsaingeachd.
@@ -94,7 +93,7 @@ gd:
         status_page_url: URL duilleige far am faicear staid an fhrithealaiche seo nuair a bhios e sìos
         theme: An t-ùrlar a chì na h-aoighean gun chlàradh a-staigh agus an luchd-cleachdaidh ùr.
         thumbnail: Dealbh mu 2:1 a thèid a shealltainn ri taobh fiosrachadh an fhrithealaiche agad.
-        timeline_preview: "’S urrainn dha na h-aoighean gun chlàradh a-staigh na postaichean poblach as ùire a tha ri fhaighinn air an fhrithealaiche a bhrabhsadh."
+        timeline_preview: '’S urrainn dha na h-aoighean gun chlàradh a-staigh na postaichean poblach as ùire a tha ri fhaighinn air an fhrithealaiche a bhrabhsadh.'
         trendable_by_default: Geàrr leum thar lèirmheas a làimh na susbainte a’ treandadh. Gabhaidh nithean fa leth a thoirt far nan treandaichean fhathast an uairsin.
         trends: Seallaidh na treandaichean na postaichean, tagaichean hais is naidheachdan a tha fèill mhòr orra air an fhrithealaiche agad.
         trends_as_landing_page: Seall susbaint a’ treandadh dhan fheadhainn nach do chlàraich a-steach is do dh’aoighean seach tuairisgeul an fhrithealaiche seo. Feumaidh treandaichean a bhith an comas airson sin.
@@ -305,7 +304,7 @@ gd:
       webhook:
         events: Na tachartas an comas
         url: URL na puinge-deiridh
-    'no': Chan eil
+    'no': 'Chan eil'
     not_recommended: Cha mholamaid seo
     recommended: Molta
     required:
@@ -314,4 +313,4 @@ gd:
     title:
       sessions:
         webauthn: Cleachd tè dhe na h-iuchraichean tèarainteachd agad airson clàradh a-steach
-    'yes': Tha
+    'yes': 'Tha'
