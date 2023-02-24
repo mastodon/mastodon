@@ -97,6 +97,10 @@ Rails/Exit:
     - 'lib/mastodon/cli_helper.rb'
     - 'lib/cli.rb'
 
+RSpec/FilePath:
+  CustomTransform:
+    DeepL: deepl
+
 RSpec/NotToNot:
   EnforcedStyle: to_not
 
