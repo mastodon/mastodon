@@ -1,4 +1,3 @@
----
 ko:
   simple_form:
     hints:
@@ -13,7 +12,7 @@ ko:
         include_statuses: 사용자는 어떤 게시물에 대해 경고나 조치가 취해졌는지 볼 수 있게 됩니다
         send_email_notification: 사용자는 어떤 일이 일어났는 지에 대한 설명을 받게 됩니다
         text_html: 선택사항. 게시물 문법을 사용할 수 있습니다. <a href="%{path}">경고 틀을 추가</a>하여 시간을 절약할 수 있습니다
-        type_html: "<strong>%{acct}</strong>에 대해 취할 행동 선택"
+        type_html: <strong>%{acct}</strong>에 대해 취할 행동 선택
         types:
           disable: 사용자가 계정을 사용하는 것을 막지만, 그의 게시물을 삭제하거나 숨기지는 않습니다.
           none: 이것을 사용해서 어떤 동작도 하지 않고, 사용자에게 경고를 보냅니다.
@@ -116,7 +115,7 @@ ko:
       rule:
         text: 이 서버 사용자들이 지켜야 할 규칙과 요구사항을 설명해주세요. 짧고 간단하게 작성해주세요
       sessions:
-        otp: '휴대전화에서 생성 된 2단계 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
+        otp: '휴대전화에서 생성 된 이중 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
         webauthn: USB 키라면 삽입했는지 확인하고, 필요하다면 누르세요.
       tag:
         name: 읽기 쉽게하기 위한 글자의 대소문자만 변경할 수 있습니다.
@@ -150,11 +149,11 @@ ko:
         text: 커스텀 경고
         type: 조치
         types:
-          disable: 비활성화
-          none: 아무 것도 하지 않기
+          disable: 동결
+          none: 경고 보내기
           sensitive: 민감함
           silence: 제한
-          suspend: 정지하고 되돌릴 수 없는 데이터 삭제
+          suspend: 정지
         warning_preset_id: 경고 틀 사용하기
       announcement:
         all_day: 종일 일정
@@ -163,11 +162,11 @@ ko:
         starts_at: 이벤트 시작
         text: 공지사항
       appeal:
-        text: 이 결정이 왜 번복되어야 하는지에 대해 설명해주세요
+        text: 이 결정을 번복해야만 하는 이유가 무엇입니까
       defaults:
         autofollow: 초대를 통한 팔로우
         avatar: 아바타
-        bot: 이것은 봇 계정입니다
+        bot: 이것은 자동화된 계정입니다
         chosen_languages: 언어 필터링
         confirm_new_password: 암호 다시 입력
         confirm_password: 암호 다시 입력
@@ -188,7 +187,7 @@ ko:
         max_uses: 사용 횟수 제한
         new_password: 새로운 암호 입력
         note: 자기소개
-        otp_attempt: 2단계 인증 코드
+        otp_attempt: 이중 인증 코드
         password: 암호
         phrase: 키워드 또는 문장
         setting_advanced_layout: 고급 웹 UI 활성화
@@ -305,7 +304,7 @@ ko:
       webhook:
         events: 활성화된 이벤트
         url: 엔드포인트 URL
-    'no': 아니오
+    'no': '아니요'
     not_recommended: 추천하지 않음
     recommended: 추천함
     required:
@@ -314,4 +313,4 @@ ko:
     title:
       sessions:
         webauthn: 로그인하기 위해서 보안 키를 사용해 주세요
-    'yes': 네
+    'yes': '네'
