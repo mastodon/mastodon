@@ -1,4 +1,3 @@
----
 fo:
   about:
     about_mastodon_html: 'Framtíðar sosiali miðilin: ongar lýsingar, eingin stórfyritøku-yvirvøka, etiskt snið og desentralisering! Eig tínar dátur við Mastodon!'
@@ -56,7 +55,7 @@ fo:
       delete: Strika dátur
       deleted: Strikað
       demote: Lækka í tign
-      destroyed_msg: Dáturnar hjá %{username} eru nú settar í bíðirøð at blíva strikaðar sum skjótast
+      destroyed_msg: "Dáturnar hjá %{username} eru nú settar í bíðirøð at blíva strikaðar sum skjótast"
       disable: Fryst
       disable_sign_in_token_auth: Ger váttan við teldupostateknum óvirkna
       disable_two_factor_authentication: Ger 2FA óvirkið
@@ -441,7 +440,7 @@ fo:
       import:
         description_html: Tú er í holt við at innflyta ein lista av navnaøkjablokeringum. Vinarliga eftirkanna listan gjølla, serliga um tú ikki hevur gjørt listan sjálv/ur.
         existing_relationships_warning: Verandi fylgjarasambond
-        private_comment_description_html: Fyri at hjálpa tær at fylgja við í, hvaðani innfluttir blokkar koma, verða innfluttu blokkarnir stovnaðir við hesi privatu viðmerkingini:<q>%{comment}</q>
+        private_comment_description_html: 'Fyri at hjálpa tær at fylgja við í, hvaðani innfluttir blokkar koma, verða innfluttu blokkarnir stovnaðir við hesi privatu viðmerkingini:<q>%{comment}</q>'
         private_comment_template: Innflutt frá %{source} tann %{date}
         title: Innflyt navnaøkjablokeringar
       invalid_domain_block: 'Ein ella fleiri navnaøkjablokeringar vóru umlopnar vegna hesar feil(ir): %{error}'
@@ -548,7 +547,7 @@ fo:
       no_ip_block_selected: Ongar IP reglur vóru broyttar, tí ongar vóru valdar
       title: IP reglur
     relationships:
-      title: Sambond hjá %{acct}
+      title: "Sambond hjá %{acct}"
     relays:
       add_new: Legg nýtt reiðlag afturat
       delete: Strika
@@ -925,7 +924,7 @@ fo:
     new_report:
       body: "%{reporter} hevur meldað %{target}"
       body_remote: Onkur frá %{domain} hevur meldað %{target}
-      subject: Nýggj melding fyri %{instance} (#%{id})
+      subject: 'Nýggj melding fyri %{instance} (#%{id})'
     new_trends:
       body: 'Niðanfyristandandi lutir mugu eftirhyggjast áðrenn teir kunnu verða vístir alment:'
       new_trending_links:
@@ -1220,8 +1219,6 @@ fo:
     validation_errors:
       one: Okkurt er ikki heilt rætt enn! Vinarliga eftirhygg feilin niðanfyri
       other: Okkurt er ikki heilt rætt enn! Vinarliga eftirhygg teir %{count} feilirnar niðanfyri
-  html_validator:
-    invalid_markup: 'inniheldur ógyldugt HTML markup: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Ógildug CSV-fíla. Error: %{error}'
@@ -1327,7 +1324,7 @@ fo:
       sign_up:
         subject: "%{name} meldaði seg til"
     favourite:
-      body: "%{name} dámdi postin hjá tær:"
+      body: '%{name} dámdi postin hjá tær:'
       subject: "%{name} merkti postin hjá tær sum yndispost"
       title: Nýggjur yndispostur
     follow:
