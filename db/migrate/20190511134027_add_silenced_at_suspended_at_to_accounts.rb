@@ -11,8 +11,10 @@ class AddSilencedAtSuspendedAtToAccounts < ActiveRecord::Migration[5.2]
   end
 
   def up
-    add_column :accounts, :silenced_at, :datetime
-    add_column :accounts, :suspended_at, :datetime
+    change_table :accounts, bulk: true do |t|
+      t.column :silenced_at, :datetime
+      t.column :suspended_at, :datetime
+    end
 
     # Record suspend date of blocks and silences for users whose limitations match
     # a domain block
@@ -35,7 +37,9 @@ class AddSilencedAtSuspendedAtToAccounts < ActiveRecord::Migration[5.2]
     Account.where(suspended: false).where.not(suspended_at: nil).in_batches.update_all(suspended: true)
     Account.where(silenced: false).where.not(silenced_at: nil).in_batches.update_all(silenced: true)
 
-    remove_column :accounts, :silenced_at
-    remove_column :accounts, :suspended_at
+    change_table :accounts, bulk: true do |t|
+      t.remove :silenced_at
+      t.remove :suspended_at
+    end
   end
 end

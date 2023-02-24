@@ -1,6 +1,8 @@
 class AddSignInTokenToUsers < ActiveRecord::Migration[5.2]
   def change
-    add_column :users, :sign_in_token, :string
-    add_column :users, :sign_in_token_sent_at, :datetime
+    change_table :users, bulk: true do |t|
+      t.column :sign_in_token, :string
+      t.column :sign_in_token_sent_at, :datetime
+    end
   end
 end

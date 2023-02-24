@@ -1,7 +1,9 @@
 class RemoveOwnerFromApplication < ActiveRecord::Migration[5.0]
   def change
-    remove_index :oauth_applications, [:owner_id, :owner_type]
-    remove_column :oauth_applications, :owner_id, :integer, null: true
-    remove_column :oauth_applications, :owner_type, :string, null: true
+    change_table :oauth_applications, bulk: true do |t|
+      t.remove_index [:owner_id, :owner_type]
+      t.remove :owner_id, :integer, null: true
+      t.remove :owner_type, :string, null: true
+    end
   end
 end
