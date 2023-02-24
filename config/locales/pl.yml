@@ -1,4 +1,3 @@
----
 pl:
   about:
     about_mastodon_html: 'Sieć społecznościowa przyszłości: Bez reklam, bez inwigilacji, zaprojektowana etycznie i zdecentralizowanie! Władaj swoimi danymi z Mastodonem!'
@@ -9,9 +8,9 @@ pl:
   accounts:
     follow: Obserwuj
     followers:
+      one: śledzący
       few: śledzących
       many: śledzących
-      one: śledzący
       other: obserwujących
     following: Obserwowanych
     instance_actor_flash: To konto jest wirtualnym profilem używanym do reprezentowania samego serwera, a nie żadnego indywidualnego użytkownika. Jest ono stosowane do celów federacji i nie powinien być zawieszany.
@@ -21,9 +20,9 @@ pl:
     pin_errors:
       following: Musisz obserwować osobę, którą chcesz polecać
     posts:
+      one: wpis
       few: wpisy
       many: wpisów
-      one: wpis
       other: Wpisów
     posts_tab_heading: Wpisy
   admin:
@@ -60,7 +59,7 @@ pl:
       delete: Usuń dane
       deleted: Usunięto
       demote: Degraduj
-      destroyed_msg: Dane %{username} są teraz w kolejce do natychmiastowego usunięcia
+      destroyed_msg: "Dane %{username} są teraz w kolejce do natychmiastowego usunięcia"
       disable: Dezaktywuj
       disable_sign_in_token_auth: Wyłącz uwierzytelnianie tokenu e-mail
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuskładnikowe
@@ -111,9 +110,9 @@ pl:
       perform_full_suspension: Zawieś
       previous_strikes: Poprzednie ostrzeżenia
       previous_strikes_description_html:
+        one: To konto ma <strong>jedno</strong> ostrzeżenie.
         few: To konto ma <strong>%{count}</strong> ostrzeżenia.
         many: To konto ma <strong>%{count}</strong> ostrzeżeń.
-        one: To konto ma <strong>jedno</strong> ostrzeżenie.
         other: To konto ma <strong>%{count}</strong> ostrzeżeń.
       promote: Podnieś uprawnienia
       protocol: Protokół
@@ -281,15 +280,15 @@ pl:
         resolve_report_html: "%{name} rozwiązał(a) zgłoszenie %{target}"
         sensitive_account_html: "%{name} oznaczył(a) zawartość multimedialną %{target} jako wrażliwą"
         silence_account_html: "%{name} wyciszył(a) konto %{target}"
-        suspend_account_html: Zawieszono konto %{target} przez %{name}
+        suspend_account_html: "Zawieszono konto %{target} przez %{name}"
         unassigned_report_html: "%{name} cofnął(-ęła) przypisanie zgłoszenia %{target}"
         unblock_email_account_html: "%{name} odblokował adres e-mail %{target}"
         unsensitive_account_html: "%{name} cofnął(-ęła) oznaczenie zawartości multimedialnej %{target} jako wrażliwą"
         unsilence_account_html: "%{name} cofnął(-ęła) wyciszenie konta %{target}"
         unsuspend_account_html: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
-        update_announcement_html: Zaktualizowane ogłoszenie %{target} przez %{name}
-        update_custom_emoji_html: Zaktualizowane emoji %{target} przez %{name}
-        update_domain_block_html: Zaktualizowano blokadę domeny dla %{target} przez %{name}
+        update_announcement_html: "Zaktualizowane ogłoszenie %{target} przez %{name}"
+        update_custom_emoji_html: "Zaktualizowane emoji %{target} przez %{name}"
+        update_domain_block_html: "Zaktualizowano blokadę domeny dla %{target} przez %{name}"
         update_ip_block_html: "%{name} stworzył(a) regułę dla IP %{target}"
         update_status_html: "%{name} zaktualizował(a) wpis użytkownika %{target}"
         update_user_role_html: "%{name} zmienił rolę %{target}"
@@ -356,24 +355,24 @@ pl:
       new_users: nowi użytkownicy
       opened_reports: otwarte zgłoszenia
       pending_appeals_html:
+        one: "<strong>%{count}</strong> oczekujących odwołań"
         few: "<strong>%{count}</strong> oczekujące odwołania"
         many: "<strong>%{count}</strong> oczekujących odwołań"
-        one: "<strong>%{count}</strong> oczekujących odwołań"
         other: "<strong>%{count}</strong> oczekujących odwołań"
       pending_reports_html:
+        one: "<strong>%{count}</strong> oczekujący raport"
         few: "<strong>%{count}</strong> oczekujące raporty"
         many: "<strong>%{count}</strong> oczekujących raportów"
-        one: "<strong>%{count}</strong> oczekujący raport"
         other: "<strong>%{count}</strong> oczekujących raportów"
       pending_tags_html:
+        one: "<strong>%{count}</strong> oczekujący hashtag"
         few: "<strong>%{count}</strong> oczekujące hashtagi"
         many: "<strong>%{count}</strong> oczekujących hashtagów"
-        one: "<strong>%{count}</strong> oczekujący hashtag"
         other: "<strong>%{count}</strong> oczekujących hashtagów"
       pending_users_html:
+        one: "<strong>%{count}</strong> oczekujący użytkownik"
         few: "<strong>%{count}</strong> oczekujących użytkowników"
         many: "<strong>%{count}</strong> oczekujących użytkowników"
-        one: "<strong>%{count}</strong> oczekujący użytkownik"
         other: "<strong>%{count}</strong> oczekujących użytkowników"
       resolved_reports: zamkniętych zgłoszeń
       software: Oprogramowanie
@@ -430,9 +429,9 @@ pl:
     email_domain_blocks:
       add_new: Dodaj nową
       attempts_over_week:
+        one: "%{count} próba w ciągu ostatniego tygodnia"
         few: "%{count} próby w ciągu ostatniego tygodnia"
         many: "%{count} prób w ciągu ostatniego tygodnia"
-        one: "%{count} próba w ciągu ostatniego tygodnia"
         other: "%{count} prób w ciągu ostatniego tygodnia"
       created_msg: Pomyślnie utworzono blokadę domeny e-mail
       delete: Usuń
@@ -475,15 +474,15 @@ pl:
     instances:
       availability:
         description_html:
+          one: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dzień</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
           few: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dni</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
           many: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dni</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
-          one: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dzień</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
           other: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dni</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
         failure_threshold_reached: Próg niepowodzenia osiągnięty dnia %{date}.
         failures_recorded:
+          one: Nieudane próby %{count} dnia.
           few: Nieudane próby w %{count} różnych dniach.
           many: Nieudane próby w %{count} różnych dniach.
-          one: Nieudane próby %{count} dnia.
           other: Nieudane próby w %{count} różnych dniach.
         no_failures_recorded: Brak błędów w rejestrze.
         title: Dostępność
@@ -527,9 +526,9 @@ pl:
       destroyed_msg: Dane z %{domain} są teraz w kolejce do bezpośredniego usunięcia.
       empty: Nie znaleziono domen.
       known_accounts:
+        one: "%{count} znane konto"
         few: "%{count} znane konta"
         many: "%{count} znanych kont"
-        one: "%{count} znane konto"
         other: "%{count} znane konta"
       moderation:
         all: Wszystkie
@@ -570,11 +569,11 @@ pl:
       no_ip_block_selected: Żadna reguła nie została zmieniona, ponieważ żadna nie została wybrana
       title: Reguły adresów IP
     relationships:
-      title: Relacje %{acct}
+      title: "Relacje %{acct}"
     relays:
       add_new: Dodaj nowy
       delete: Usuń
-      description_html: "<strong>Przekaźnik federacji</strong> jest pośredniczącym serwerem wymieniającym duże ilości publicznych wpisów pomiędzy serwerami które subskrybują je i publikują na nich. <strong>Pomaga to małym i średnim instancją poznawać nową zawartość z Fediwersum</strong>, co w innym przypadku wymagałoby od użytkowników ręcznej obserwacji osób z innych serwerów."
+      description_html: <strong>Przekaźnik federacji</strong> jest pośredniczącym serwerem wymieniającym duże ilości publicznych wpisów pomiędzy serwerami które subskrybują je i publikują na nich. <strong>Pomaga to małym i średnim instancją poznawać nową zawartość z Fediwersum</strong>, co w innym przypadku wymagałoby od użytkowników ręcznej obserwacji osób z innych serwerów.
       disable: Wyłącz
       disabled: Wyłączony
       enable: Włącz
@@ -593,9 +592,9 @@ pl:
     reports:
       account:
         notes:
+          one: "%{count} notatka"
           few: "%{count} notatki"
           many: "%{count} notatek"
-          one: "%{count} notatka"
           other: "%{count} notatki"
       action_log: Dziennik audytu
       action_taken_by: Działanie podjęte przez
@@ -678,9 +677,9 @@ pl:
     roles:
       add_new: Dodaj rolę
       assigned_users:
+        one: "%{count} użytkownik"
         few: "%{count} użytkowników"
         many: "%{count} użytkowników"
-        one: "%{count} użytkownik"
         other: "%{count} użytkowników"
       categories:
         administration: Administracja
@@ -694,9 +693,9 @@ pl:
       everyone: Domyślnie uprawnienia
       everyone_full_description_html: To jest <strong>rola podstawowa</strong> wpływająca na <strong>wszystkich użytkowników</strong>, nawet tych, którzy nie mają przypisanej roli. Wszystkie inne role dziedziczą z niej uprawnienia.
       permissions_count:
+        one: "%{count} uprawnienie"
         few: "%{count} uprawnień"
         many: "%{count} uprawnień"
-        one: "%{count} uprawnienie"
         other: "%{count} uprawnień"
       privileges:
         administrator: Administrator
@@ -858,9 +857,9 @@ pl:
         publishers:
           no_publisher_selected: Żadni publikujcy nie zostali zmienieni, ponieważ żadnych nie wybrano
         shared_by_over_week:
+          one: Udostępnione przez jedną osobę w ciągu ostatniego tygodnia
           few: Udostępnione przez %{count} osoby w ciągu ostatniego tygodnia
           many: Udostępnione przez %{count} osób w ciągu ostatniego tygodnia
-          one: Udostępnione przez jedną osobę w ciągu ostatniego tygodnia
           other: Udostępnione przez %{count} osoby w ciągu ostatniego tygodnia
         title: Popularne linki
         usage_comparison: Udostępnione %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
@@ -882,9 +881,9 @@ pl:
         no_status_selected: Żadne popularne wpisy nie zostały zmienione, ponieważ żadnych nie wybrano
         not_discoverable: Autor nie włączył opcji, by być wyświetlany w katalogu
         shared_by:
+          one: Udostępnione lub dodane do ulubionych jednorazowo
           few: Udostępnione i dodane do ulubionych %{friendly_count} razy
           many: Udostępnione i dodane do ulubionych %{friendly_count} razy
-          one: Udostępnione lub dodane do ulubionych jednorazowo
           other: Udostępnione i dodane do ulubionych %{friendly_count} razy
         title: Popularne teraz
       tags:
@@ -908,9 +907,9 @@ pl:
         usable: Może być użyty
         usage_comparison: Używane %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
         used_by_over_week:
+          one: Użyte przez jedną osobę w ciągu ostatniego tygodnia
           few: Użyte przez %{count} osoby w ciągu ostatniego tygodnia
           many: Użyte przez %{count} osób w ciągu ostatniego tygodnia
-          one: Użyte przez jedną osobę w ciągu ostatniego tygodnia
           other: Użyte przez %{count} osób w ciągu ostatniego tygodnia
       title: Na czasie
       trending: Popularne
@@ -923,7 +922,7 @@ pl:
     webhooks:
       add_new: Dodaj punkt końcowy
       delete: Usuń
-      description_html: "<strong>webhook</strong> umożliwia Mastodon dostarczanie <strong>powiadomień w czasie rzeczywistym</strong> o wybranych wydarzeniach do twojej aplikacji, aby mogła <strong>automatycznie wyzwalać reakcje</strong>."
+      description_html: <strong>webhook</strong> umożliwia Mastodon dostarczanie <strong>powiadomień w czasie rzeczywistym</strong> o wybranych wydarzeniach do twojej aplikacji, aby mogła <strong>automatycznie wyzwalać reakcje</strong>.
       disable: Wyłącz
       disabled: Wyłączone
       edit: Edytuj punkt końcowy
@@ -931,9 +930,9 @@ pl:
       enable: Włącz
       enabled: Aktywne
       enabled_events:
+        one: 1 włączone zdarzenie
         few: "%{count} włączone zdarzenia"
         many: "%{count} włączonych zdarzeń"
-        one: 1 włączone zdarzenie
         other: "%{count} włączonych zdarzeń"
       events: Zdarzenia
       new: Nowy webhook
@@ -959,9 +958,9 @@ pl:
       body: Poniżej znajdują się szczegóły dotycząće nowego konta. Możesz przyjąć lub odrzucić to podanie.
       subject: Nowe konto czeka na przegląd na %{instance} (%{username})
     new_report:
-      body: Użytkownik %{reporter} zgłosił(a) %{target}
+      body: "Użytkownik %{reporter} zgłosił(a) %{target}"
       body_remote: Użytkownik instancji %{domain} zgłosił(a) %{target}
-      subject: Nowe zgłoszenie na %{instance} (#%{id})
+      subject: 'Nowe zgłoszenie na %{instance} (#%{id})'
     new_trends:
       body: 'Następujące elementy potrzebują recenzji zanim będą mogły być wyświetlane publicznie:'
       new_trending_links:
@@ -982,7 +981,7 @@ pl:
     remove: Odłącz alias
   appearance:
     advanced_web_interface: Zaawansowany interfejs użytkownika
-    advanced_web_interface_hint: Jeśli chcesz użyć pełną szerokość swojego ekranu, zaawansowany interfejs użytkownika pozwala Ci skonfigurować wiele różnych kolumn, by zobaczyć jak najwięcej informacji kiedy tylko chcesz. Strona główna, Powiadomienia, Globalna oś czasu, dowolna ilość list i hasztagów.
+    advanced_web_interface_hint: 'Jeśli chcesz użyć pełną szerokość swojego ekranu, zaawansowany interfejs użytkownika pozwala Ci skonfigurować wiele różnych kolumn, by zobaczyć jak najwięcej informacji kiedy tylko chcesz. Strona główna, Powiadomienia, Globalna oś czasu, dowolna ilość list i hasztagów.'
     animations_and_accessibility: Animacje i dostępność
     confirmation_dialogs: Dialogi potwierdzenia
     discovery: Odkrywanie
@@ -1213,19 +1212,19 @@ pl:
       expires_in: Wygasa za %{distance}
       expires_on: Wygasa %{date}
       keywords:
+        one: "%{count} słowo kluczowe"
         few: "%{count} słowa kluczowe"
         many: "%{count} słów kluczowych"
-        one: "%{count} słowo kluczowe"
         other: "%{count} słów kluczowych"
       statuses:
+        one: "%{count} post"
         few: "%{count} posty"
         many: "%{count} postów"
-        one: "%{count} post"
         other: "%{count} postów"
       statuses_long:
+        one: "%{count} ukryty post"
         few: "%{count} ukryte posty"
         many: "%{count} ukrytych postów"
-        one: "%{count} ukryty post"
         other: "%{count} postów ukrytych"
       title: Filtry
     new:
@@ -1243,14 +1242,14 @@ pl:
   generic:
     all: Wszystkie
     all_items_on_page_selected_html:
-      few: "<strong>%{count}</strong> elementy na tej stronie są wybrane."
-      many: "<strong>%{count}</strong> elementów na tej stronie jest wybrane."
       one: "<strong>%{count}</strong> element na tej stronie jest wybrany."
-      other: "<strong>%{count}</strong> elementów na tej stronie jest wybrane."
+      few: <strong>%{count}</strong> elementy na tej stronie są wybrane.
+      many: <strong>%{count}</strong> elementów na tej stronie jest wybrane.
+      other: <strong>%{count}</strong> elementów na tej stronie jest wybrane.
     all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> element pasujący do Twojego wyszukiwania został wybrany."
       few: Wszystkie <strong>%{count}</strong> elementy pasujące do Twojego wyszukiwania zostały wybrane.
       many: Wszystkie <strong>%{count}</strong> elementy pasujące do Twojego wyszukiwania zostały wybrane.
-      one: "<strong>%{count}</strong> element pasujący do Twojego wyszukiwania został wybrany."
       other: Wszystkie <strong>%{count}</strong> elementy pasujące do Twojego wyszukiwania zostały wybrane.
     changes_saved_msg: Ustawienia zapisane!
     copy: Kopiuj
@@ -1260,18 +1259,16 @@ pl:
     order_by: Uporządkuj według
     save_changes: Zapisz zmiany
     select_all_matching_items:
+      one: Zaznacz %{count} element pasujący do wyszukiwania.
       few: Zaznacz wszystkie %{count} elementy pasujące do wyszukiwania.
       many: Zaznacz wszystkie %{count} elementy pasujące do wyszukiwania.
-      one: Zaznacz %{count} element pasujący do wyszukiwania.
       other: Zaznacz wszystkie %{count} elementy pasujące do wyszukiwania.
     today: dzisiaj
     validation_errors:
+      one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
       few: Coś jest wciąż nie tak! Przejrzyj %{count} poniższe błędy
       many: Coś jest wciąż nie tak! Przejrzyj %{count} poniższych błędów
-      one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
       other: Coś jest wciąż nie tak! Przejrzyj poniższe błędy (%{count})
-  html_validator:
-    invalid_markup: 'zawiera nieprawidłową składnię HTML: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Nieprawidłowy plik CSV. Błąd: %{error}'
@@ -1304,9 +1301,9 @@ pl:
     generate: Wygeneruj
     invited_by: 'Zostałeś(-aś) zaproszony(-a) przez:'
     max_uses:
+      one: jedno użycie
       few: "%{count} użycia"
       many: "%{count} użyć"
-      one: jedno użycie
       other: "%{count} użyć"
     max_uses_prompt: Bez ograniczenia
     prompt: Wygeneruj odnośniki i udostępnij je innym, aby pozwolić na rejestrację na tym serwerze
@@ -1400,10 +1397,10 @@ pl:
       subject: Ankieta %{name} zakończyła się
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
-      subject: Twój wpis został podbity przez %{name}
+      subject: "Twój wpis został podbity przez %{name}"
       title: Nowe podbicie
     status:
-      subject: Właśnie opublikowano wpis %{name}
+      subject: "Właśnie opublikowano wpis %{name}"
     update:
       subject: "%{name} edytował/a wpis"
   notifications:
@@ -1557,28 +1554,28 @@ pl:
   statuses:
     attached:
       audio:
+        one: "%{count} plik dźwiękowy"
         few: "%{count} pliki dźwiękowe"
         many: "%{count} plików dźwiękowych"
-        one: "%{count} plik dźwiękowy"
-        other: pliki dźwiękowe (%{count})
+        other: "pliki dźwiękowe (%{count})"
       description: 'Załączono: %{attached}'
       image:
+        one: "%{count} obraz"
         few: "%{count} obrazy"
         many: "%{count} obrazów"
-        one: "%{count} obraz"
         other: "%{count} obrazów"
       video:
+        one: "%{count} film"
         few: "%{count} filmy"
         many: "%{count} filmów"
-        one: "%{count} film"
         other: "%{count} filmów"
     boosted_from_html: Podbito przez %{acct_link}
     content_warning: 'Ostrzeżenie o zawartości: %{warning}'
     default_language: Taki sam jak język interfejsu użytkownika
     disallowed_hashtags:
+      one: 'zawiera niedozwolony hashtag: %{tags}'
       few: 'zawiera niedozwolone hashtagi: %{tags}'
       many: 'zawiera niedozwolone hashtagi: %{tags}'
-      one: 'zawiera niedozwolony hashtag: %{tags}'
       other: 'zawiera niedozwolone hashtagi: %{tags}'
     edited_at_html: Edytowane %{date}
     errors:
@@ -1592,14 +1589,14 @@ pl:
       reblog: Nie możesz przypiąć podbicia wpisu
     poll:
       total_people:
+        one: "%{count} osoba"
         few: "%{count} osoby"
         many: "%{count} osób"
-        one: "%{count} osoba"
         other: "%{count} osoby"
       total_votes:
+        one: "%{count} głos"
         few: "%{count} głosy"
         many: "%{count} głosy"
-        one: "%{count} głos"
         other: "%{count} głosy"
       vote: Głosuj
     show_more: Pokaż więcej
