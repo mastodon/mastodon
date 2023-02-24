@@ -91,6 +91,9 @@ en:
         site_title: How people may refer to your server besides its domain name.
         theme: Theme that logged out visitors and new users see.
         thumbnail: A roughly 2:1 image displayed alongside your server information.
+        logo: Displayed at the top of the homepage and other places. At least 360x70px recommended. When not set, falls back to decodon logo.
+        logo_transparent: Displayed in the footer and sidebars. At least 150x150px recommended. When not set, falls back to decodon flower.
+        email: Displayed at the top of emails. At least 138x34px recommended. When not set, falls back to default decodon full logo.
         timeline_preview: Logged out visitors will be able to browse the most recent public posts available on the server.
         trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
         trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
@@ -249,6 +252,9 @@ en:
         site_title: Server name
         theme: Default theme
         thumbnail: Server thumbnail
+        logo: Site logo
+        logo_transparent: Transparent logo
+        email: Email logo
         timeline_preview: Allow unauthenticated access to public timelines
         trendable_by_default: Allow trends without prior review
         trends: Enable trends

@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'mastodon/components/image';
 import Logo from 'mastodon/components/logo';
 import { Link, withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
@@ -13,6 +14,11 @@ const Account = connect(state => ({
   <Link to={`/@${account.get('acct')}`} title={account.get('acct')}>
     <Avatar account={account} size={35} />
   </Link>
+));
+const ServerLogo = connect(state => ({
+  server: state.getIn(['server', 'server']),
+}))(({ server }) => (
+  (server.getIn(['logo', 'url']) === null) ? <Logo /> : <Image blurhash={server.getIn(['logo', 'blurhash'])} src={server.getIn(['logo', 'url'])} className='logo' />
 ));
 
 export default @withRouter
@@ -50,7 +56,7 @@ class Header extends React.PureComponent {
 
     return (
       <div className='ui__header'>
-        <Link to='/' className='ui__header__logo'><Logo /></Link>
+        <Link to='/' className='ui__header__logo'><ServerLogo /></Link>
 
         <div className='ui__header__links'>
           {content}

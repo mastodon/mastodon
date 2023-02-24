@@ -11,24 +11,28 @@ module BrandingHelper
   end
 
   def _logo_as_symbol_wordmark
-    content_tag(:svg, tag(:use, href: '#logo-symbol-wordmark'), viewBox: '0 0 261 66', class: 'logo logo--wordmark')
+    logo_url = InstancePresenter.new.logo&.file&.url
+    tag = logo_url.present? ? tag(:img, 'src' => logo_url) : nil
+    tag || content_tag(:svg, tag(:use, href: '#decodon-logo'), viewBox: '0 0 376 102', class: 'logo logo--wordmark')
   end
 
   def _logo_as_symbol_icon
-    content_tag(:svg, tag(:use, href: '#logo-symbol-icon'), viewBox: '0 0 79 79', class: 'logo logo--icon')
+    logo_url = InstancePresenter.new.logo&.file&.url
+    tag = logo_url.present? ? tag(:img, 'src' => logo_url) : nil
+    tag || content_tag(:svg, tag(:use, href: '#decodon-flower-logo'), viewBox: '0 0 150 150', class: 'logo logo--icon')
   end
 
   def render_logo
-    image_pack_tag('logo.svg', alt: 'Mastodon', class: 'logo logo--icon')
+    content_tag(:svg, tag(:use, href: '#decodon-flower-logo'), viewBox: '0 0 150 150', class: 'logo logo--icon')
   end
 
   def render_symbol(version = :icon)
     path = begin
       case version
       when :icon
-        'logo-symbol-icon.svg'
+        'decodon_flower_logo.svg'
       when :wordmark
-        'logo-symbol-wordmark.svg'
+        'decodon_logo_full.svg'
       end
     end
 
