@@ -1,4 +1,3 @@
----
 ga:
   about:
     about_mastodon_html: 'Líonra sóisialta a sheasfaidh an aimsir: Gan fógraíocht, gan faire chorparáideach, le leagan amach eiticiúil agus dílárú. Bíodh do chuid sonraí agatsa féin le Mastodon!'
@@ -11,11 +10,11 @@ ga:
     following: Ag leanúint
     nothing_here: Níl rud ar bith anseo!
     posts:
+      one: Postáil
+      two: Postálacha
       few: Postálacha
       many: Postálacha
-      one: Postáil
       other: Postálacha
-      two: Postálacha
     posts_tab_heading: Postálacha
   admin:
     account_actions:
@@ -127,9 +126,9 @@ ga:
         update_status: Nuashonraigh Postáil
         update_user_role: Nuashonraigh Ról
       actions:
-        create_account_warning_html: Sheol %{name} rabhadh chuig %{target}
-        destroy_user_role_html: Scrios %{name} ról %{target}
-        update_user_role_html: D'athraigh %{name} ról %{target}
+        create_account_warning_html: "Sheol %{name} rabhadh chuig %{target}"
+        destroy_user_role_html: "Scrios %{name} ról %{target}"
+        update_user_role_html: "D'athraigh %{name} ról %{target}"
       deleted_account: cuntas scriosta
     announcements:
       edit:
@@ -293,7 +292,7 @@ ga:
       with_media: Le meáin
     strikes:
       actions:
-        delete_statuses: Scrios %{name} postálacha de chuid %{target}
+        delete_statuses: "Scrios %{name} postálacha de chuid %{target}"
     tags:
       review: Stádas athbhreithnithe
     title: Riar
@@ -369,7 +368,9 @@ ga:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
+    '422':
     '429': Too many requests
+    '500':
     '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
@@ -416,15 +417,15 @@ ga:
   notification_mailer:
     admin:
       report:
-        subject: Chuir %{name} tuairisc isteach
+        subject: "Chuir %{name} tuairisc isteach"
     follow:
-      body: Tá %{name} do do leanúint anois!
-      subject: Tá %{name} do do leanúint anois
+      body: "Tá %{name} do do leanúint anois!"
+      subject: "Tá %{name} do do leanúint anois"
       title: Leantóirí nua
     mention:
       action: Freagair
     reblog:
-      subject: Mhol %{name} do phostáil
+      subject: "Mhol %{name} do phostáil"
       title: Moladh nua
   otp_authentication:
     enable: Cumasaigh
@@ -433,6 +434,8 @@ ga:
     next: An céad eile
     older: Níos sine
     prev: Ceann roimhe seo
+  preferences:
+    other: Eile
   relationships:
     follow_selected_followers: Lean leantóirí roghnaithe
     followers: Leantóirí
