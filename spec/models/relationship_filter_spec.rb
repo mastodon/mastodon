@@ -7,9 +7,7 @@ describe RelationshipFilter do
 
   describe '#results' do
     context 'when default params are used' do
-      let(:subject) do
-        described_class.new(account, 'order' => 'active').results
-      end
+      subject { described_class.new(account, 'order' => 'active').results }
 
       before do
         add_following_account_with(last_status_at: 7.days.ago)
