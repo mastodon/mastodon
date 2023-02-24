@@ -1,4 +1,3 @@
----
 sv:
   about:
     about_mastodon_html: 'Framtidens sociala medium: Ingen reklam. Ingen övervakning. Etisk design och decentralisering! Äg din data med Mastodon!'
@@ -33,7 +32,7 @@ sv:
     accounts:
       add_email_domain_block: Blockera e-postdomän
       approve: Godkänn
-      approved_msg: "%{username}s registreringsansökan godkändes"
+      approved_msg: '%{username}s registreringsansökan godkändes'
       are_you_sure: Är du säker?
       avatar: Profilbild
       by_domain: Domän
@@ -91,6 +90,7 @@ sv:
       moderation:
         active: Aktiv
         all: Alla
+        disabled: Inaktiverad
         pending: Väntande
         silenced: Begränsad
         suspended: Avstängda
@@ -133,6 +133,7 @@ sv:
       search: Sök
       search_same_email_domain: Andra användare med samma e-postdomän
       search_same_ip: Annan användare med samma IP-adress
+      security: Säkerhet
       security_measures:
         only_password: Endast lösenord
         password_and_2fa: Lösenord och 2FA
@@ -153,7 +154,7 @@ sv:
       suspension_reversible_hint_html: Kontot har stängts av och all data som tillhör det kommer att raderas permanent den %{date}. Tills dess kan kontot återställas utan dataförlust. Om du vill radera all kontodata redan nu, kan du göra detta nedan.
       title: Konton
       unblock_email: Avblockera e-postadress
-      unblocked_email_msg: "%{username}s e-postadress avblockerad"
+      unblocked_email_msg: '%{username}s e-postadress avblockerad'
       unconfirmed_email: Obekräftad e-postadress
       undo_sensitized: Ångra tvinga känsligt
       undo_silenced: Ångra tystnad
@@ -585,11 +586,13 @@ sv:
       assign_to_self: Tilldela till mig
       assigned: Tilldelad moderator
       by_target_domain: Domän för rapporterat konto
+      cancel: Avbryt
       category: Kategori
       category_description_html: Anledningen till att kontot och/eller innehållet rapporterades kommer att visas i kommunikation med det rapporterade kontot
       comment:
         none: Ingen
       comment_description_html: 'För att ge mer information, skrev %{name}:'
+      confirm: Bekräfta
       confirm_action: Bekräfta modereringsåtgärd mot @%{acct}
       created_at: Anmäld
       delete_and_resolve: Ta bort inlägg
@@ -906,7 +909,7 @@ sv:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
-      subject: Ny rapport för %{instance} (#%{id})
+      subject: 'Ny rapport för %{instance} (#%{id})'
     new_trends:
       body: 'Följande objekt behöver granskas innan de kan visas publikt:'
       new_trending_links:
@@ -947,6 +950,7 @@ sv:
   applications:
     created: Ansökan är framgångsrikt skapad
     destroyed: Ansökan är framgångsrikt borttagen
+    logout: Logga ut
     regenerate_token: Regenerera access token
     token_regenerated: Access token lyckades regenereras
     warning: Var mycket försiktig med denna data. Dela aldrig den med någon!
@@ -981,6 +985,7 @@ sv:
     resend_confirmation: Skicka instruktionerna om bekräftelse igen
     reset_password: Återställ lösenord
     rules:
+      back: Tillbaka
       preamble: Dessa bestäms och upprätthålls av moderatorerna för %{domain}.
       title: Några grundregler.
     security: Säkerhet
@@ -1176,10 +1181,10 @@ sv:
     all: Alla
     all_items_on_page_selected_html:
       one: "<strong>%{count}</strong> objekt på denna sida valt."
-      other: "<strong>%{count}</strong> objekt på denna sida valda."
+      other: <strong>%{count}</strong> objekt på denna sida valda.
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> objekt som matchar din sökning är valt."
-      other: "<strong>%{count}</strong> objekt som matchar din sökning är valda."
+      other: <strong>%{count}</strong> objekt som matchar din sökning är valda.
     changes_saved_msg: Ändringar sparade!
     copy: Kopiera
     delete: Radera
