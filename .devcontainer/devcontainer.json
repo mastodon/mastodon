@@ -12,10 +12,7 @@
 
 		// Use 'forwardPorts' to make a list of ports inside the container available locally.
 		// This can be used to network with other containers or the host.
-		"forwardPorts": [
-				3000,
-				4000
-		],
+		"forwardPorts": [3000, 4000],
 
 		// Use 'postCreateCommand' to run commands after the container is created.
 		"postCreateCommand": ".devcontainer/post-create.sh",
@@ -28,10 +25,7 @@
 						// Set *default* container specific settings.json values on container create.
 						"settings": {},
 						// Add the IDs of extensions you want installed when the container is created.
-						"extensions": [
-								"EditorConfig.EditorConfig",
-								"webben.browserslist"
-						]
+						"extensions": ["EditorConfig.EditorConfig", "webben.browserslist"]
 				}
 		}
 }
