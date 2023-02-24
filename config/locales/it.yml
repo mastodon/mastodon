@@ -1,4 +1,3 @@
----
 it:
   about:
     about_mastodon_html: 'Il social network del futuro: Nessuna pubblicità, zero sorveglianza azienale, design etico e decentralizzazione! Sii il proprietario dei tuoi dati, con Mastodon!'
@@ -56,7 +55,7 @@ it:
       delete: Elimina i dati
       deleted: Eliminato
       demote: Retrocedi
-      destroyed_msg: I dati di %{username} sono ora accodati per l'imminente eliminazione
+      destroyed_msg: "I dati di %{username} sono ora accodati per l'imminente eliminazione"
       disable: Congela
       disable_sign_in_token_auth: Disabilita l'autenticazione con token via email
       disable_two_factor_authentication: Disabilita A2F
@@ -87,7 +86,7 @@ it:
       media_attachments: Allegati multimediali
       memorialize: Trasforma in memoriam
       memorialized: Commemorato
-      memorialized_msg: "%{username} trasformato correttamente in un profilo commemorativo"
+      memorialized_msg: '%{username} trasformato correttamente in un profilo commemorativo'
       moderation:
         active: Attivo
         all: Tutto
@@ -548,7 +547,7 @@ it:
       no_ip_block_selected: Nessuna regola IP è stata modificata poiché nessuna è stata selezionata
       title: Regole IP
     relationships:
-      title: Relazioni di %{acct}
+      title: "Relazioni di %{acct}"
     relays:
       add_new: Aggiungi ripetitore
       delete: Cancella
@@ -925,7 +924,7 @@ it:
     new_report:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
-      subject: Nuova segnalazione per %{instance} (#%{id})
+      subject: 'Nuova segnalazione per %{instance} (#%{id})'
     new_trends:
       body: 'I seguenti elementi necessitano di un controllo prima che possano essere visualizzati pubblicamente:'
       new_trending_links:
@@ -946,9 +945,7 @@ it:
     remove: Scollega alias
   appearance:
     advanced_web_interface: Interfaccia web avanzata
-    advanced_web_interface_hint: |-
-      Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:
-      Home, notifiche, timeline federata, qualsiasi numero di liste e etichette.
+    advanced_web_interface_hint: "Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:\nHome, notifiche, timeline federata, qualsiasi numero di liste e etichette."
     animations_and_accessibility: Animazioni e accessibilità
     confirmation_dialogs: Dialoghi di conferma
     discovery: Scoperta
@@ -1222,8 +1219,6 @@ it:
     validation_errors:
       one: Qualcosa ancora non va bene! Per favore, controlla l'errore qui sotto
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
-  html_validator:
-    invalid_markup: 'contiene markup HTML non valido: %{error}'
   imports:
     errors:
       invalid_csv_file: 'File CSV non valido. Errore: %{error}'
