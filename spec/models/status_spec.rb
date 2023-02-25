@@ -141,7 +141,7 @@ RSpec.describe Status, type: :model do
     context 'status language is nil' do
       it 'returns true' do
         subject.language = nil
-        expect(TranslationService.configured).to receive(:supported?).with(nil, 'en').and_return(true)
+        allow(TranslationService.configured).to receive(:supported?).with(nil, 'en').and_return(true)
         expect(subject.translatable?).to be true
       end
     end
@@ -156,14 +156,14 @@ RSpec.describe Status, type: :model do
     context 'status language is unsupported' do
       it 'returns false' do
         subject.language = 'af'
-        expect(TranslationService.configured).to receive(:supported?).with('af', 'en').and_return(false)
+        allow(TranslationService.configured).to receive(:supported?).with('af', 'en').and_return(false)
         expect(subject.translatable?).to be false
       end
     end
 
     context 'default locale is unsupported' do
       it 'returns false' do
-        expect(TranslationService.configured).to receive(:supported?).with('es', 'af').and_return(false)
+        allow(TranslationService.configured).to receive(:supported?).with('es', 'af').and_return(false)
         I18n.with_locale('af') do
           expect(subject.translatable?).to be false
         end
