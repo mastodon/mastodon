@@ -91,6 +91,7 @@ el:
       moderation:
         active: Ενεργός/ή
         all: Όλα
+        disabled: Απενεργοποιημένο
         pending: Εκκρεμούν
         silenced: Περιορισμένοι
         suspended: Σε αναστολή
@@ -133,6 +134,7 @@ el:
       search: Αναζήτηση
       search_same_email_domain: Άλλοι χρήστες με τον ίδιο τομέα e-mail
       search_same_ip: Υπόλοιποι χρήστες με την ίδια διεύθυνση IP
+      security: Ασφάλεια
       security_measures:
         only_password: Μόνο κωδικός πρόσβασης
         password_and_2fa: Κωδικός πρόσβασης και 2FA
@@ -237,6 +239,18 @@ el:
         create_announcement_html: Ο/Η %{name} δημιούργησε νέα ανακοίνωση %{target}
         create_canonical_email_block_html: Ο/Η %{name} απέκλεισε e-mail με το hash %{target}
         create_custom_emoji_html: Ο/Η %{name} ανέβασε νέο emoji %{target}
+        create_domain_allow_html: Ο/Η %{name} έβαλε τον τομέα %{target} σε λευκή λίστα
+        create_domain_block_html: Ο/Η %{name} απέκλεισε τον τομέα %{target}
+        create_email_domain_block_html: Ο/Η %{name} απέκλεισε τον τομέα email %{target}
+        create_ip_block_html: Ο/Η %{name} δημιούργησε κανόνα για την IP %{target}
+        create_unavailable_domain_html: Ο/Η %{name} σταμάτησε να τροφοδοτεί τον τομέα %{target}
+        create_user_role_html: Ο/Η %{name} δημιούργησε ρόλο %{target}
+        demote_user_html: Ο/Η %{name} υποβίβασε τον χρήστη %{target}
+        destroy_announcement_html: Ο/Η %{name} διέγραψε την ανακοίνωση %{target}
+        destroy_canonical_email_block_html: Ο/Η %{name} επέτρεψε email με το hash %{target}
+        destroy_custom_emoji_html: Ο/Η %{name} διέγραψε το emoji %{target}
+        destroy_domain_allow_html: Ο/Η %{name} αφαίρεσε τον τομέα %{target} από τη λίστα εγκρίσεων
+        destroy_domain_block_html: Ο/Η %{name} επέτρεψε τον τομέα %{target}
         destroy_email_domain_block_html: Ο/Η %{name} ξεμπλόκαρε το email domain %{target}
         destroy_instance_html: Ο/Η %{name} εκκαθάρισε τον τομέα %{target}
         destroy_ip_block_html: Ο/Η %{name} διέγραψε τον κανόνα για την IP %{target}
@@ -252,7 +266,17 @@ el:
         enable_user_html: Ο/Η %{name} ενεργοποίησε τη σύνδεση για τον χρήστη %{target}
         memorialize_account_html: O/H %{name} μετέτρεψε τον λογαριασμό του %{target} σε σελίδα μνήμης
         promote_user_html: Ο/Η %{name} προβίβασε το χρήστη %{target}
+        reject_appeal_html: Ο/Η %{name} απέρριψε την ένσταση της απόφασης των διαχειριστών από %{target}
         reject_user_html: "%{name} απορρίφθηκε εγγραφή από %{target}"
+        remove_avatar_user_html: Ο/Η %{name} αφαίρεσε το αβατάρ του/της %{target}
+        reopen_report_html: Ο/Η %{name} ξανάνοιξε την αναφορά %{target}
+        resend_user_html: Ο/Η %{name} έστειλε ξανά e-mail επιβεβαίωσης για τον/την %{target}
+        reset_password_user_html: Ο/Η %{name} επανέφερε το συνθηματικό του χρήστη %{target}
+        resolve_report_html: Ο/Η %{name} επέλυσε την αναφορά %{target}
+        sensitive_account_html: Ο/Η %{name} επισήμανε τα πολυμέσα του/της %{target} ως ευαίσθητα
+        silence_account_html: Ο/Η %{name} περιόρισε τον λογαριασμό του/της %{target}
+        suspend_account_html: Ο/Η %{name} ανέστειλε τον λογαριασμό του/της %{target}
+        unassigned_report_html: Ο/Η %{name} αποδέσμευσε την αναφορά %{target}
         unblock_email_account_html: "%{name} ξεμπλόκαρε τη διεύθυνση ηλεκτρονικού ταχυδρομείου του %{target}"
       deleted_account: διαγραμμένος λογαριασμός
       empty: Δεν βρέθηκαν αρχεία καταγραφής.
@@ -367,6 +391,7 @@ el:
       new:
         create: Πρόσθεση τομέα
         title: Νέα εγγραφή email στη μαύρη λίστα
+      not_permitted: Δεν επιτρέπεται
       title: Μαύρη λίστα email
     export_domain_allows:
       no_file: Δεν επιλέχθηκε αρχείο
@@ -455,9 +480,11 @@ el:
       assign_to_self: Ανάθεση σε μένα
       assigned: Αρμόδιος συντονιστής
       by_target_domain: Κόμβος του λογαριασμού υπό καταγγελία
+      cancel: Άκυρο
       category: Κατηγορία
       comment:
         none: Κανένα
+      confirm: Επιβεβαίωση
       created_at: Καταγγέλθηκε
       delete_and_resolve: Διαγραφή δημοσιεύσεων
       forwarded: Προωθημένα
@@ -573,6 +600,8 @@ el:
       trending: Δημοφιλή
       visibility: Ορατότητα
       with_media: Με πολυμέσα
+    strikes:
+      appeal_rejected: Η αίτηση απορρίφθηκε
     system_checks:
       database_schema_check:
         message_html: Υπάρχουν μετακινήσεις βάσης δεδομένων που εκκρεμούν. Παρακαλώ εκτελέστε τις για να βεβαιωθείτε ότι η εφαρμογή συμπεριφέρεται όπως αναμένεται
@@ -584,6 +613,7 @@ el:
       updated_msg: Οι ρυθμίσεις των ετικετών ενημερώθηκαν επιτυχώς
     title: Διαχείριση
     trends:
+      not_allowed_to_trend: Δεν επιτρέπεται η τάση
       only_allowed: Μόνο επιτρεπόμενα
       tags:
         dashboard:
@@ -643,6 +673,7 @@ el:
   applications:
     created: Η εφαρμογή δημιουργήθηκε επιτυχώς
     destroyed: Η εφαρμογή διαγράφηκε επιτυχώς
+    logout: Αποσύνδεση
     regenerate_token: Αναδημιουργία του διακριτικού πρόσβασης (access token)
     token_regenerated: Το διακριτικό πρόσβασης (access token) αναδημιουργήθηκε επιτυχώς
     warning: Μεγάλη προσοχή με αυτά τα στοιχεία. Μην τα μοιραστείς ποτέ με κανέναν!
@@ -676,6 +707,8 @@ el:
     resend_confirmation: Στείλε ξανά τις οδηγίες επιβεβαίωσης
     reset_password: Επαναφορά συνθηματικού
     rules:
+      accept: Αποδοχή
+      back: Πίσω
       title: Ορισμένοι βασικοί κανόνες.
     security: Ασφάλεια
     set_new_password: Ορισμός νέου συνθηματικού
@@ -787,8 +820,6 @@ el:
     storage: Αποθήκευση πολυμέσων
   featured_tags:
     add_new: Προσθήκη νέας
-    errors:
-      limit: Έχεις ήδη προσθέσει το μέγιστο αριθμό ετικετών
     hint_html: "<strong>Τι είναι οι προβεβλημένες ετικέτες;</strong> Προβάλλονται στο δημόσιο προφίλ σου επιτρέποντας σε όποιον το βλέπει να χαζέψει τις δημοσιεύσεις που τις χρησιμοποιούν. Είναι ένας ωραίος τρόπος να παρακολουθείς την πορεία μιας δημιουργία ή ενός μακροπρόθεσμου έργου."
   filters:
     contexts:
@@ -826,8 +857,6 @@ el:
     validation_errors:
       one: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε το παρακάτω σφάλμα
       other: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε τα παρακάτω %{count} σφάλματα
-  html_validator:
-    invalid_markup: 'περιέχει λάθος μορφοποίηση HTML: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Μη έγκυρο αρχείο CSV. Σφάλμα: %{error}'
@@ -868,9 +897,6 @@ el:
       expires_at: Λήγει
       uses: Χρήσεις
     title: Προσκάλεσε κόσμο
-  lists:
-    errors:
-      limit: Έχεις φτάσει το μέγιστο πλήθος επιτρεπτών λιστών
   media_attachments:
     validations:
       images_and_video: Δεν γίνεται να προσθέσεις βίντεο σε ενημέρωση που ήδη περιέχει εικόνες

@@ -91,6 +91,7 @@ fi:
       moderation:
         active: Aktiivinen
         all: Kaikki
+        disabled: Ei käytössä
         pending: Odottavat
         silenced: Rajoitettu
         suspended: Jäähyllä
@@ -133,6 +134,7 @@ fi:
       search: Hae
       search_same_email_domain: Muut käyttäjät, joilla on sama sähköpostin verkkotunnus
       search_same_ip: Muut käyttäjät, joilla on sama IP-osoite
+      security: Suojaus
       security_measures:
         only_password: Vain salasana
         password_and_2fa: Salasana ja kaksivaiheinen tunnistautuminen
@@ -427,6 +429,7 @@ fi:
         resolve: Ratkaise verkkotunnus
         title: Uusi sähköpostiestolistan merkintä
       no_email_domain_block_selected: Sähköpostin verkkotunnuksia ei muutettu, koska yhtään ei valittu
+      not_permitted: Ei sallittu
       resolved_dns_records_hint_html: Verkkotunnuksen nimi määräytyy seuraaviin MX-verkkotunnuksiin, jotka ovat viime kädessä vastuussa sähköpostin vastaanottamisesta. MX-verkkotunnuksen estäminen estää kirjautumisen mistä tahansa sähköpostiosoitteesta, joka käyttää samaa MX-verkkotunnusta, vaikka näkyvä verkkotunnuksen nimi olisikin erilainen. <strong>Varo estämästä suuria sähköpostin palveluntarjoajia.</strong>
       resolved_through_html: Ratkaistu %{domain} kautta
       title: Sähköpostiestolista
@@ -473,6 +476,7 @@ fi:
       content_policies:
         comment: Sisäinen huomautus
         description_html: Voit määrittää sisältökäytännöt, joita sovelletaan kaikkiin tämän verkkotunnuksen ja sen aliverkkotunnuksien tileihin.
+        limited_federation_mode_description_html: Voit valita sallitaanko federointi tällä verkkotunnuksella.
         policies:
           reject_media: Hylkää media
           reject_reports: Hylkää raportit
@@ -585,11 +589,13 @@ fi:
       assign_to_self: Ota tehtäväksi
       assigned: Määritetty valvoja
       by_target_domain: Ilmoitetun tilin verkkotunnus
+      cancel: Peruuta
       category: Kategoria
       category_description_html: Syy, miksi tämä tili ja/tai sisältö ilmoitettiin, mainitaan yhteydenotossa ilmoitettuun tiliin
       comment:
         none: Ei mitään
       comment_description_html: 'Antaakseen lisätietoja %{name} kirjoitti:'
+      confirm: Vahvista
       confirm_action: Vahvista moderointitoiminto käyttäjää @%{acct} kohtaan
       created_at: Raportoitu
       delete_and_resolve: Poista viestejä
@@ -792,6 +798,7 @@ fi:
         suspend: "%{name} jäädytti käyttäjän %{target} tilin"
       appeal_approved: Valitti
       appeal_pending: Valitus vireillä
+      appeal_rejected: Muutoksenhaku hylättiin
     system_checks:
       database_schema_check:
         message_html: Tietokannan siirto on vireillä. Suorita ne varmistaaksesi, että sovellus toimii odotetulla tavalla
@@ -827,6 +834,7 @@ fi:
           other: Jakanut %{count} henkilöä viimeisen viikon aikana
         title: Suositut linkit
         usage_comparison: Jaettu %{today} kertaa tänään verrattuna eilen %{yesterday}
+      not_allowed_to_trend: Ei saa trendata
       only_allowed: Vain sallittu
       pending_review: Odottaa tarkistusta
       preview_card_providers:
@@ -958,6 +966,7 @@ fi:
   applications:
     created: Sovelluksen luonti onnistui
     destroyed: Sovelluksen poisto onnistui
+    logout: Uloskirjautuminen
     regenerate_token: Luo pääsytunnus uudelleen
     token_regenerated: Pääsytunnuksen uudelleenluonti onnistui
     warning: Säilytä tietoa hyvin. Älä milloinkaan jaa sitä muille!
@@ -994,13 +1003,15 @@ fi:
     resend_confirmation: Lähetä vahvistusohjeet uudestaan
     reset_password: Palauta salasana
     rules:
+      accept: Hyväksy
+      back: Takaisin
       preamble: "%{domain} valvojat määrittävät ja valvovat sääntöjä."
       title: Joitakin perussääntöjä.
     security: Tunnukset
     set_new_password: Aseta uusi salasana
     setup:
       email_below_hint_html: Jos alla oleva sähköpostiosoite on virheellinen, voit muuttaa sitä täällä ja tilata uuden vahvistussähköpostiviestin.
-      email_settings_hint_html: Vahvistussähköposti lähetettiin osoitteeseen %{email}. Jos sähköpostiosoite ei ole oikea, voit muuttaa sitä tiliasetuksissa.
+      email_settings_hint_html: Vahvistussähköposti lähetettiin osoitteeseen %{email}. Jos sähköpostiosoite ei ole oikea, voit vaihtaa sen tilin asetuksista.
       title: Asetukset
     sign_in:
       preamble_html: Kirjaudu sisään <strong>%{domain}</strong>-tunnuksillasi. Jos tilisi sijaitsee eri palvelimella, et voi sisäänkirjautua täällä.
@@ -1209,8 +1220,6 @@ fi:
     validation_errors:
       one: Kaikki ei ole aivan oikein! Tarkasta alla oleva virhe
       other: Kaikki ei ole aivan oikein! Tarkasta alla olevat %{count} virhettä
-  html_validator:
-    invalid_markup: 'sisältää virheellisen HTML-merkinnän: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Epäkelpo CSV-tiedosto. Virhe: %{error}'
@@ -1253,7 +1262,7 @@ fi:
     title: Kutsu ihmisiä
   lists:
     errors:
-      limit: Sinulla on jo suurin sallittu määrä listoja
+      limit: Olet saavuttanut listojen enimmäismäärän
   login_activities:
     authentication_methods:
       otp: kaksivaiheinen todennussovellus
@@ -1573,7 +1582,7 @@ fi:
       '7889238': 3 kuukautta
     min_age_label: Ikäraja
     min_favs: Pidä viestit suosikeissa vähintään
-    min_favs_hint: Ei poista yhtään julkaisuasi, jotka ovat saaneet vähintään tämän määrän tykkäyksiä. Jätä tyhjäksi, jos haluat poistaa julkaisuja tykkäyksien määrästä riippumatta
+    min_favs_hint: Ei poista julkaisujasi, joita on tykätty vähintään näin monta kertaa. Jätä tyhjäksi poistaaksesi julkaisut tykkäyskertojen määrästä riippumatta
     min_reblogs: Pidä viestit tehostettuna vähintään
     min_reblogs_hint: Ei poista yhtään viestiäsi, jota on tehostettu vähintään näin monta kertaa. Jätä tyhjäksi poistaaksesi viestejä riippumatta niiden tehosteiden määrästä
   stream_entries:
@@ -1662,13 +1671,13 @@ fi:
         silence: Rajoitettu tili
         suspend: Tilin käyttäminen jäädytetty
     welcome:
-      edit_profile_action: Aseta profiili
-      edit_profile_step: Voit muokata profiiliasi lataamalla profiilikuvan, vaihtamalla näyttönimeä ja paljon muuta. Voit halutessasi arvioida uudet seuraajat, ennen kuin he saavat seurata sinua.
+      edit_profile_action: Määritä profiili
+      edit_profile_step: Voit mukauttaa profiiliasi mm. profiilikuvalla ja uudella näyttönimellä. Voit myös valita haluatko tarkastaa ja hyväksyä uudet seuraajat itse.
       explanation: Näillä vinkeillä pääset alkuun
       final_action: Ala julkaista
-      final_step: 'Ala julkaista! Vaikkei sinulla olisi seuraajia, monet voivat nähdä julkiset viestisi esimerkiksi paikallisella aikajanalla ja aihetunnisteilla. Kannattaa myös esittäytyä! Käytä aihetunnistetta #esittely.'
+      final_step: 'Aloita julkaiseminen! Vaikkei sinulla ole seuraajia, voivat muut nähdä julkiset julkaisusi esimerkiksi paikallisella aikajanalla ja aihetunnisteilla. Kannattaa myös esittäytyä käyttämällä aihetunnistetta #introductions.'
       full_handle: Koko käyttäjätunnuksesi
-      full_handle_hint: Kerro tämä ystävillesi, niin he voivat lähettää sinulle viestejä tai löytää sinut toisen instanssin kautta.
+      full_handle_hint: Kerro tämä kavereillesi, niin he voivat lähettää sinulle viestejä tai löytää sinut muiden palvelimien kautta.
       subject: Tervetuloa Mastodoniin
       title: Tervetuloa mukaan, %{name}!
   users:

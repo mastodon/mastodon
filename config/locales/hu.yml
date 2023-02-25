@@ -91,6 +91,7 @@ hu:
       moderation:
         active: Aktív
         all: Összes
+        disabled: Letiltva
         pending: Függőben
         silenced: Korlátozott
         suspended: Felfüggesztve
@@ -133,6 +134,7 @@ hu:
       search: Keresés
       search_same_email_domain: Felhasználók ugyanezzel az email domainnel
       search_same_ip: Más felhasználók ugyanezzel az IP-vel
+      security: Biztonság
       security_measures:
         only_password: Csak jelszó
         password_and_2fa: Jelszó és kétlépcsős hitelesítés
@@ -427,6 +429,7 @@ hu:
         resolve: Domain feloldása
         title: Új e-mail domain tiltása
       no_email_domain_block_selected: Nem változott meg egy domain tiltás sem, mert semmi sem volt kiválasztva
+      not_permitted: Nem engedélyezett
       resolved_dns_records_hint_html: A domain név a következő MX domain-ekre oldódik fel, melyek valójában fogadják az e-mailt. Az MX domain letiltása minden olyan feliratkozást tiltani fog, melyben az e-mailcím ugyanazt az MX domaint használja, még akkor is, ha a látható domain név más. <strong>Légy óvatos, hogy ne tilts le nagy e-mail szolgáltatókat.</strong>
       resolved_through_html: Feloldva %{domain}-n keresztül
       title: Tiltott e-mail domainek
@@ -473,6 +476,7 @@ hu:
       content_policies:
         comment: Belső megjegyzés
         description_html: Definiálhatsz tartalmi szabályokat, melyek ezen domain és minden aldomain fiókjára vonatkozni fognak.
+        limited_federation_mode_description_html: Eldöntheted, hogy engeded-e a föderációt ezzel a domainnel.
         policies:
           reject_media: Média elutasítása
           reject_reports: Bejelentések elutasítása
@@ -585,11 +589,13 @@ hu:
       assign_to_self: Magamhoz rendelés
       assigned: Hozzárendelt moderátor
       by_target_domain: A bejelentett fiók domainje
+      cancel: Mégse
       category: Kategória
       category_description_html: A fiók vagy tartalom bejelentésének oka a jelentett fiókkal kapcsolatos kommunikációban idézve lesz
       comment:
         none: Egyik sem
       comment_description_html: 'Hogy további információkat adjon, %{name} ezt írta:'
+      confirm: Megerősítés
       confirm_action: Moderációs művelet jóváhagyása @%{acct} fiókon
       created_at: Jelentve
       delete_and_resolve: Bejegyzések törlése
@@ -792,6 +798,7 @@ hu:
         suspend: "%{name} felfüggesztette %{target} fiókját"
       appeal_approved: Megfellebbezve
       appeal_pending: Fellebbezés folyamatban
+      appeal_rejected: Fellebbezés visszautasítva
     system_checks:
       database_schema_check:
         message_html: Vannak esedékes adatbázis migrációink. Kérlek, futtasd őket, hogy biztosítsd, hogy az alkalmazás megfelelően működjön
@@ -827,6 +834,7 @@ hu:
           other: "%{count} ember osztotta meg a múlt héten"
         title: Felkapott hivatkozások
         usage_comparison: "%{today} alkalommal lett ma megosztva, a tegnapi %{yesterday} alkalomhoz képest"
+      not_allowed_to_trend: Nem engedélyezett a trendekben
       only_allowed: Csak engedélyezett
       pending_review: Áttekintésre vár
       preview_card_providers:
@@ -958,6 +966,7 @@ hu:
   applications:
     created: Alkalmazás sikeresen létrehozva
     destroyed: Alkalmazás sikeresen eltávolítva
+    logout: Kijelentkezés
     regenerate_token: Hozzáférési kulcs újragenerálása
     token_regenerated: Hozzáférési kulcs sikeresen újragenerálva
     warning: Ez érzékeny adat. Soha ne oszd meg másokkal!
@@ -994,6 +1003,8 @@ hu:
     resend_confirmation: Megerősítési lépések újraküldése
     reset_password: Jelszó visszaállítása
     rules:
+      accept: Elfogadás
+      back: Vissza
       preamble: Ezeket a(z) %{domain} moderátorai adjak meg és tartatják be.
       title: Néhány alapszabály.
     security: Biztonság
@@ -1141,7 +1152,7 @@ hu:
   featured_tags:
     add_new: Új hozzáadása
     errors:
-      limit: Már kiemelted a maximálisan engedélyezett számú hashtaget
+      limit: Elérted a maximálisan kitűzhető hashtagek számát
     hint_html: "<strong>Mik a kiemelt hashtagek?</strong> Ezek állandóan megjelennek a nyilvános profilodon és lehetővé teszik, hogy mások kifejezetten az ezekhez tartozó bejegyzéseidet böngésszék. Jó eszköz ez kreatív munkák vagy hosszútávú projektek nyomonkövetésére."
   filters:
     contexts:
@@ -1209,8 +1220,6 @@ hu:
     validation_errors:
       one: Valami nincs rendjén! Tekintsd meg a hibát lent
       other: Valami nincs rendjén! Tekintsd meg a(z) %{count} hibát lent
-  html_validator:
-    invalid_markup: 'hibás HTML leíró: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Érvénytelen CSV-fájl. Hiba: %{error}'
@@ -1253,7 +1262,7 @@ hu:
     title: Meghívások
   lists:
     errors:
-      limit: Elérted a hozzáadható listák maximális számát
+      limit: Elérted a listák maximális számát
   login_activities:
     authentication_methods:
       otp: kétlépcsős azonosító alkalmazás
@@ -1573,7 +1582,7 @@ hu:
       '7889238': 3 hónap
     min_age_label: Korhatár
     min_favs: Bejegyzések megtartása, melyeket többször jelöltek kedvencnek, mint
-    min_favs_hint: Nem törli egyetlen olyan bejegyzésedet sem, melyeket ennél többször jelöltek kedvencnek. Hagyd üresen, hogy a kedvencnek jelölések számától függetlenül töröljük őket
+    min_favs_hint: Nem törli egyetlen olyan bejegyzésedet sem, melyeket legalább ennyiszer jelöltek kedvencnek. Hagyd üresen, hogy a kedvencnek jelölések számától függetlenül töröljük őket
     min_reblogs: Bejegyzések megtartása, melyeket többször toltak meg, mint
     min_reblogs_hint: Egyetlen olyan bejegyzésedet sem törli, melyet ennél többször toltak meg. Hagyd üresen, hogy a megtolások számától függetlenül töröljük a bejegyzéseket
   stream_entries:

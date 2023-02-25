@@ -31,7 +31,7 @@ ca:
       created_msg: La nota de moderació s'ha creat correctament!
       destroyed_msg: Nota de moderació destruïda amb èxit!
     accounts:
-      add_email_domain_block: Bloquejar el domini de l'adreça de correu electrònic
+      add_email_domain_block: Bloca el domini del correu
       approve: Aprova
       approved_msg: L’aplicació del registre de %{username} s’ha aprovat amb èxit
       are_you_sure: N'estàs segur?
@@ -91,6 +91,7 @@ ca:
       moderation:
         active: Actiu
         all: Tot
+        disabled: Desactivat
         pending: Pendent
         silenced: Limitat
         suspended: Suspès
@@ -133,6 +134,7 @@ ca:
       search: Cerca
       search_same_email_domain: Altres usuaris amb el mateix domini de correu
       search_same_ip: Altres usuaris amb la mateixa IP
+      security: Seguretat
       security_measures:
         only_password: Només contrasenya
         password_and_2fa: Contrasenya i 2FA
@@ -180,7 +182,7 @@ ca:
         create_custom_emoji: Crea un emoji personalitzat
         create_domain_allow: Crea un domini permès
         create_domain_block: Crea un bloqueig de domini
-        create_email_domain_block: Crea un bloqueig de domini d'adreça de correu
+        create_email_domain_block: Crea un bloqueig de domini de correu
         create_ip_block: Crear regla IP
         create_unavailable_domain: Crea un domini no disponible
         create_user_role: Crea Rol
@@ -188,9 +190,9 @@ ca:
         destroy_announcement: Esborra l'anunci
         destroy_canonical_email_block: Esborra el bloqueig de correu electrònic
         destroy_custom_emoji: Esborra l'emoji personalitzat
-        destroy_domain_allow: Esborra el domini permès
+        destroy_domain_allow: Esborra el permís del domini
         destroy_domain_block: Esborra el bloqueig de domini
-        destroy_email_domain_block: Esborra el bloqueig de domini de l'adreça de correu
+        destroy_email_domain_block: Esborra el bloqueig de domini de correu
         destroy_instance: Purga Domini
         destroy_ip_block: Eliminar regla IP
         destroy_status: Elimina la publicació
@@ -372,15 +374,15 @@ ca:
         empty: No s'ha trobat cap apel·lació.
         title: Apel·lacions
     domain_allows:
-      add_new: Dominis autoritzats
-      created_msg: El domini ha estat correctament autoritzat
-      destroyed_msg: S'ha esborrat el domini de la llista blanca
+      add_new: Permet la federació amb el domini
+      created_msg: El domini ha estat autoritzat per a la federació
+      destroyed_msg: El domini ha estat desautoritzat de la federació
       export: Exporta
       import: Importa
-      undo: Treure de la llista blanca
+      undo: No permetis la federació amb el domini
     domain_blocks:
-      add_new: Afegir nou bloqueig de domini
-      created_msg: El bloqueig de domini ara s'està processant
+      add_new: Afegeix nou bloqueig de domini
+      created_msg: S'està processant el bloqueig de domini
       destroyed_msg: El bloqueig de domini s'ha desfet
       domain: Domini
       edit: Editar el bloqueig del domini
@@ -396,7 +398,7 @@ ca:
           noop: Cap
           silence: Limitar
           suspend: Suspensió
-        title: Bloqueig de domini nou
+        title: Nou bloqueig de domini
       no_domain_block_selected: No s'ha canviat cap bloqueig de domini perquè no se n'ha seleccionat cap
       not_permitted: No tens permís per a realitzar aquesta acció
       obfuscate: Oculta el nom del domini
@@ -427,6 +429,7 @@ ca:
         resolve: Resol domini
         title: Nova adreça de correu en la llista negra
       no_email_domain_block_selected: No s'han canviat els bloquejos de domini perquè cap s'ha seleccionat
+      not_permitted: No permés
       resolved_dns_records_hint_html: El nom del domini resol als següents dominis MX, els quals son els responsables finals per a acceptar els correus. Bloquejar un domini MX bloquejarà els registres des de qualsevol adreça de correu que utilitzi el mateix domini MX, encara que el nom visible del domini sigui diferent. <strong>Ves amb compte no bloquegis els grans proveïdors de correu electrònic.</strong>
       resolved_through_html: Resolt mitjançant %{domain}
       title: Llista negra de correus electrònics
@@ -473,6 +476,7 @@ ca:
       content_policies:
         comment: Nota interna
         description_html: Pots definir polítiques de contingut que seran aplicades a tots els comptes d'aquest domini i a qualsevol dels seus subdominis.
+        limited_federation_mode_description_html: Pots triar si permets la federació amb aquest domini.
         policies:
           reject_media: Rebutja mèdia
           reject_reports: Rebutja informes
@@ -585,11 +589,13 @@ ca:
       assign_to_self: Assigna'm
       assigned: Moderador assignat
       by_target_domain: Domini del compte denunciat
+      cancel: Cancel·la
       category: Categoria
       category_description_html: El motiu pel qual aquest compte o contingut ha estat denunciat se citarà en la comunicació amb el compte denunciat
       comment:
         none: Cap
       comment_description_html: 'Per a donar més informació, %{name} ha escrit:'
+      confirm: Confirma
       confirm_action: Confirma l'acció de moderació contra @%{acct}
       created_at: Denunciat
       delete_and_resolve: Elimina les publicacions
@@ -792,6 +798,7 @@ ca:
         suspend: "%{name} ha suspès el compte de %{target}"
       appeal_approved: Apel·lat
       appeal_pending: Apel·lació pendent
+      appeal_rejected: Apel·lació rebutjada
     system_checks:
       database_schema_check:
         message_html: Hi ha pendents migracions de la base de dades. Si us plau executa-les per a assegurar que l'aplicació es comporta com s'espera
@@ -827,6 +834,7 @@ ca:
           other: Compartit per %{count} persones en la darrera setmana
         title: Enllaços en tendència
         usage_comparison: Compartit %{today} vegades avui, comparat amb %{yesterday} d'ahir
+      not_allowed_to_trend: No es permet la tendència
       only_allowed: Només permesos
       pending_review: Revisió pendent
       preview_card_providers:
@@ -958,6 +966,7 @@ ca:
   applications:
     created: L'aplicació s'ha creat correctament
     destroyed: L'aplicació s'ha suprimit correctament
+    logout: Surt
     regenerate_token: Torna a generar l'identificador d'accés
     token_regenerated: L'identificador d'accés s'ha generat correctament
     warning: Aneu amb compte amb aquestes dades. No les compartiu mai amb ningú!
@@ -994,6 +1003,8 @@ ca:
     resend_confirmation: Torna a enviar el correu de confirmació
     reset_password: Restableix la contrasenya
     rules:
+      accept: Accepta
+      back: Enrere
       preamble: Aquestes regles estan establertes i aplicades per els moderadors de %{domain}.
       title: Algunes regles bàsiques.
     security: Seguretat
@@ -1139,7 +1150,7 @@ ca:
     mutes: Persones silenciades
     storage: Emmagatzematge
   featured_tags:
-    add_new: Afegir nova etiqueta
+    add_new: Afegeix-ne una de nova
     errors:
       limit: Ja has mostrat la quantitat màxima d'etiquetes
     hint_html: "<strong>Què son les etiquetes destacades?</strong> Es mostren de manera destacada en el teu perfil públic i permeten a les persones navegar per els teus tuts gràcies a aquestes etiquetes. Són una gran eina per fer un seguiment de treballs creatius o de projectes a llarg termini."
@@ -1209,8 +1220,6 @@ ca:
     validation_errors:
       one: Alguna cosa no va bé! Si us plau, revisa l'error
       other: Alguna cosa no va bé! Si us plau, revisa %{count} errors més a baix
-  html_validator:
-    invalid_markup: 'conté HTML markup no vàlid: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Fitxer CSV invàlid. Error: %{error}'
@@ -1573,7 +1582,7 @@ ca:
       '7889238': 3 mesos
     min_age_label: Antiguitat
     min_favs: Mantenir els tuts afavorits més de
-    min_favs_hint: No suprimeix cap dels teus tuts que hagin rebut més d'aquesta quantitat de favorits. Deixa-ho en blanc per a suprimir tuts independentment del nombre de favorits que tinguin
+    min_favs_hint: No suprimeix cap dels teus tuts que hagin rebut més d'aquesta quantitat de favorits. Deixa-ho en blanc per a suprimir tuts independentment del nombre de favorits
     min_reblogs: Mantenir les publicacions impulsades més de
     min_reblogs_hint: No suprimeix cap de les teves publicacions que s'hagin impulsat més que aquest nombre de vegades. Deixa-ho en blanc per a suprimir les publicacions independentment del nombre d'impulsos que tinguin.
   stream_entries:
