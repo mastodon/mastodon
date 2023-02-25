@@ -94,7 +94,6 @@
 .compose-form__sensitive-button {
   padding: 10px;
   padding-top: 0;
-
   font-size: 14px;
   font-weight: 500;
 
@@ -155,17 +154,14 @@
 
 .reply-indicator__content {
   position: relative;
-  margin: 10px 0;
-  padding: 0 12px;
   font-size: 14px;
   line-height: 20px;
-  color: $inverted-text-color;
   word-wrap: break-word;
   font-weight: 400;
-  overflow: visible;
-  white-space: pre-wrap;
-  padding-top: 5px;
   overflow: hidden;
+  padding-top: 5px;
+  color: $inverted-text-color;
+  white-space: pre-wrap;
 
   p,
   pre,
@@ -355,19 +351,18 @@
 }
 
 .autosuggest-textarea__suggestions {
-  display: block;
-  position: absolute;
   box-sizing: border-box;
-  top: 100%;
-  border-radius: 0 0 4px 4px;
-  padding: 6px;
-  width: 100%;
-  color: $inverted-text-color;
-  background: $ui-secondary-color;
-  box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
-  font-size: 14px;
-  z-index: 99;
   display: none;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  z-index: 99;
+  box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
+  background: $ui-secondary-color;
+  border-radius: 0 0 4px 4px;
+  color: $inverted-text-color;
+  font-size: 14px;
+  padding: 6px;
 }
 
 .autosuggest-textarea__suggestions--visible {

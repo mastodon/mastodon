@@ -1,15 +1,17 @@
-$doodleBg: #d9e1e8;
+$doodle-background: #d9e1e8;
+
 .doodle-modal {
   @extend .boost-modal;
+
   width: unset;
 }
 
 .doodle-modal__container {
-  background: $doodleBg;
+  background: $doodle-background;
   text-align: center;
   line-height: 0; // remove weird gap under canvas
   canvas {
-    border: 5px solid $doodleBg;
+    border: 5px solid $doodle-background;
   }
 }
 
@@ -24,7 +26,6 @@ $doodleBg: #d9e1e8;
 
   .doodle-toolbar {
     line-height: 1;
-
     display: flex;
     flex-direction: column;
     flex-grow: 0;
@@ -42,6 +43,7 @@ $doodleBg: #d9e1e8;
       input[type='text'] {
         width: 40px;
       }
+
       span.val {
         display: inline-block;
         text-align: left;

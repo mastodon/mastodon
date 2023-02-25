@@ -1321,12 +1321,10 @@ button.icon-button.active i.fa-retweet {
   right: 0;
   bottom: -1px;
   padding-left: 15px; // space for the box shadow to be visible
-
   z-index: 999;
   align-items: center;
   justify-content: flex-end;
   cursor: pointer;
-
   display: flex;
 
   .wrappy {
@@ -1554,7 +1552,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 @keyframes heartbeat {
-  from {
+  0% {
     transform: scale(1);
     transform-origin: center center;
     animation-timing-function: ease-out;
@@ -1804,9 +1802,11 @@ noscript {
   0% {
     opacity: 1;
   }
+
   30% {
     opacity: 0.75;
   }
+
   100% {
     opacity: 1;
   }

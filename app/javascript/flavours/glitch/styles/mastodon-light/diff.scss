@@ -759,7 +759,7 @@ html {
   }
 }
 
-.status.collapsed .status__content:after {
+.status.collapsed .status__content::after {
   background: linear-gradient(
     rgba(darken($ui-base-color, 13%), 0),
     rgba(darken($ui-base-color, 13%), 1)
