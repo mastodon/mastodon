@@ -3,7 +3,7 @@ RSS::Builder.build do |doc|
   doc.description(I18n.t('rss.descriptions.tag', hashtag: @tag.display_name))
   doc.link(tag_url(@tag))
   doc.last_build_date(@statuses.first.created_at) if @statuses.any?
-  doc.generator("Mastodon v#{Mastodon::Version.to_s}")
+  doc.generator("Mastodon v#{Mastodon::Version}")
 
   @statuses.each do |status|
     doc.item do |item|
