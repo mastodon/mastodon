@@ -17,6 +17,8 @@ sv:
           disable: Förhindra användaren från att använda sitt konto, men radera eller dölj inte innehållet.
           none: Använd det här för att skicka en varning till användaren, utan att vidta någon ytterligare åtgärd.
           sensitive: Tvinga alla denna användares mediebilagor till att flaggas som känsliga.
+          silence: Hindra användaren från att kunna göra offentliga inlägg, göm deras inlägg och notiser från folk som inte följer dem. Stänger alla anmälningar mot detta kontot.
+          suspend: Förhindrar all interaktion från eller till detta konto och ta bort dess innehåll. Går att ångra inom 30 dagar. Stänger alla anmälningar mot detta konto.
         warning_preset_id: Valfri. Du kan lägga till anpassad text i slutet av förinställningen
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
@@ -71,6 +73,7 @@ sv:
           hide: Dölj det filtrerade innehållet helt (beter sig som om det inte fanns)
           warn: Dölj det filtrerade innehållet bakom en varning som visar filtrets rubrik
       form_admin_settings:
+        activity_api_enabled: Antalet lokalt publicerade inlägg, aktiva användare och nya registrerade konton per vecka
         backups_retention_period: Behåll genererade användararkiv i det angivna antalet dagar.
         bootstrap_timeline_accounts: Dessa konton kommer fästas högst upp i nya användares följrekommendationer.
         closed_registrations_message: Visas när nyregistreringar är avstängda
@@ -78,6 +81,7 @@ sv:
         custom_css: Du kan använda anpassade stilar på webbversionen av Mastodon.
         mascot: Åsidosätter illustrationen i det avancerade webbgränssnittet.
         media_cache_retention_period: Nedladdade mediefiler kommer raderas efter det angivna antalet dagar, om inställt till ett positivt värde, och laddas ned på nytt vid behov.
+        peers_api_enabled: En lista över domänen den här servern har stött på i fediversum. Ingen data inkluderas om du har federerat med servern, bara att din server känner till den. Detta används av tjänster som samlar statistik om federering i allmänhet.
         profile_directory: Profilkatalogen visar alla användare som har samtyckt till att bli upptäckbara.
         require_invite_text: Gör fältet "Varför vill du gå med?" obligatoriskt när nyregistreringar kräver manuellt godkännande
         site_contact_email: Hur människor kan nå dig för juridiska spörsmål eller supportfrågor.
@@ -86,11 +90,13 @@ sv:
         site_short_description: En kort beskrivning för att unikt identifiera din server. Vem är det som driver den, vilka är den till för?
         site_terms: Använd din egen sekretesspolicy eller lämna tomt för att använda standardinställningen. Kan struktureras med Markdown-syntax.
         site_title: Hur folk kan hänvisa till din server förutom med dess domännamn.
+        status_page_url: URL till en sida där personer kan se serverns status under ett driftavbrott
         theme: Tema som utloggade besökare och nya användare ser.
         thumbnail: En bild i cirka 2:1-proportioner som visas tillsammans med din serverinformation.
         timeline_preview: Utloggade besökare kommer kunna bläddra bland de senaste offentliga inläggen som finns på servern.
         trendable_by_default: Hoppa över manuell granskning av trendande innehåll. Enskilda objekt kan ändå raderas från trender retroaktivt.
         trends: Trender visar vilka inlägg, hashtaggar och nyheter det pratas om på din server.
+        trends_as_landing_page: Visa trendande innehåll för utloggade användare och besökare istället för en beskrivning om servern. Kräver att trender är aktiverat.
       form_challenge:
         current_password: Du går in i ett säkert område
       imports:
@@ -226,6 +232,7 @@ sv:
           hide: Dölj helt
           warn: Dölj med en varning
       form_admin_settings:
+        activity_api_enabled: Publicera aggregerad statistik om användaraktivitet i API:et
         backups_retention_period: Lagringsperiod för användararkivet
         bootstrap_timeline_accounts: Rekommendera alltid dessa konton till nya användare
         closed_registrations_message: Anpassat meddelande när nyregistreringar inte är tillgängliga
@@ -233,6 +240,7 @@ sv:
         custom_css: Anpassad CSS
         mascot: Anpassad maskot (tekniskt arv)
         media_cache_retention_period: Tid för bibehållande av mediecache
+        peers_api_enabled: Publicera lista över upptäckta servrar i API:et
         profile_directory: Aktivera profilkatalog
         registrations_mode: Vem kan registrera sig
         require_invite_text: Kräv anledning för att gå med
@@ -244,11 +252,13 @@ sv:
         site_short_description: Serverbeskrivning
         site_terms: Integritetspolicy
         site_title: Servernamn
+        status_page_url: URL för statussida
         theme: Standardtema
         thumbnail: Serverns tumnagelbild
         timeline_preview: Tillåt oautentiserad åtkomst till offentliga tidslinjer
         trendable_by_default: Tillåt trender utan föregående granskning
         trends: Aktivera trender
+        trends_as_landing_page: Använd trender som landningssida
       interactions:
         must_be_follower: Blockera notiser från icke-följare
         must_be_following: Blockera notiser från personer du inte följer
