@@ -45,7 +45,7 @@ class FetchLinkCardService < BaseService
   def html
     return @html if defined?(@html)
 
-    Request.new(:get, @url).add_headers('Accept' => 'text/html', 'User-Agent' => Mastodon::Version.user_agent + ' Bot').perform do |res|
+    Request.new(:get, @url).add_headers('Accept' => 'text/html', 'User-Agent' => "#{Mastodon::Version.user_agent} Bot").perform do |res|
       # We follow redirects, and ideally we want to save the preview card for
       # the destination URL and not any link shortener in-between, so here
       # we set the URL to the one of the last response in the redirect chain

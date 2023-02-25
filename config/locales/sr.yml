@@ -290,7 +290,7 @@ sr:
       disable: Искључи
       disabled: Искључен
       enable: Укључи
-      enable_hint: Када се омогући, Ваш сервер ће бити претплаћен на све јавне трубе са овог релеја, и почеће да шаље своје јавне трубу на њега.
+      enable_hint: Када се омогући, ваш сервер ће бити претплаћен на све јавне објаве са овог релеја, и почеће да шаље јавне објаве овог сервера на њега.
       enabled: Укључен
       inbox_url: URL Релеја
       pending: Чека се одобрење релеја
@@ -359,6 +359,7 @@ sr:
         title: Подразумевано искључи кориснике из индексирања претраживача
       discovery:
         public_timelines: Јавне временске линије
+        title: Откривање
     statuses:
       back_to_account: Назад на страну налога
       media:
@@ -377,6 +378,17 @@ sr:
       body: "%{reporter} је пријавио %{target}"
       body_remote: Нека са домена %{domain} је пријавио %{target}
       subject: Нова пријава за %{instance} (#%{id})
+  appearance:
+    advanced_web_interface: Напредно веб окружење
+    advanced_web_interface_hint: 'Ако желите да искористите целу ширину екрана, напредно веб окружење вам омогућује да конфигуришете много различитих колона да бисте видели онолико информација у исто време колико желите: почетну страницу, обавештења, здружену временску линију, било који број листа и хеш ознака.'
+    animations_and_accessibility: Анимације и приступачност
+    confirmation_dialogs: Дијалози потврде
+    discovery: Откривање
+    localization:
+      body: Mastodon преводе добровољци.
+      guide_link_text: Свако може допринети.
+    sensitive_content: Осетљив садржај
+    toot_layout: Распоред објава
   application_mailer:
     notification_preferences: Промени преференце Е-поште
     settings: 'Промени подешавања е-поште: %{link}'
@@ -481,7 +493,7 @@ sr:
   generic:
     changes_saved_msg: Измене успешно сачуване!
     copy: Копирај
-    save_changes: Сними измене
+    save_changes: Сачувај промене
     validation_errors:
       few: Нешто није баш како треба! Прегледајте %{count} грешке испод
       one: Нешто није баш како треба! Прегледајте грешке испод
@@ -517,9 +529,6 @@ sr:
       expires_at: Истиче
       uses: Коришћења
     title: Позовите људе
-  lists:
-    errors:
-      limit: Достигли сте лимит броја листи
   media_attachments:
     validations:
       images_and_video: Не може да се прикачи видео на статус који већ има слике
@@ -552,7 +561,9 @@ sr:
       subject: "%{name} је подржао/ла Ваш статус"
       title: Нова подршка
   notifications:
+    email_events: Догађаји за обавештења е-поштом
     email_events_hint: 'Изаберите дешавања за која желите да примате обавештења:'
+    other_settings: Остала подешавања обавештења
   pagination:
     newer: Новије
     next: Следеће
@@ -560,6 +571,7 @@ sr:
     prev: Претходни
   preferences:
     other: Остало
+    posting_defaults: Подразумевана подешавања објављивања
     public_timelines: Јавне временске линије
   remote_follow:
     missing_resource: Не могу да нађем захтевану адресу преусмеравања за Ваш налог
@@ -609,7 +621,7 @@ sr:
     back: Назад на Мастодон
     delete: Брисање налога
     development: Развој
-    edit_profile: Измена налога
+    edit_profile: Уређивање профила
     export: Извоз података
     import: Увоз
     import_and_export: Увоз и извоз
@@ -632,6 +644,7 @@ sr:
         other: "%{count} видео записа"
     boosted_from_html: Подржано од %{acct_link}
     content_warning: 'Упозорење на садржај: %{warning}'
+    default_language: Исто као језик окружења
     disallowed_hashtags:
       few: 'садржи забрањене хештегове: %{tags}'
       one: 'садржи забрањени хештег: %{tags}'

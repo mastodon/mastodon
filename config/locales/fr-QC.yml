@@ -91,6 +91,7 @@ fr-QC:
       moderation:
         active: Actifs
         all: Tous
+        disabled: Désactivé
         pending: En cours de traitement
         silenced: Limité
         suspended: Suspendus
@@ -133,6 +134,7 @@ fr-QC:
       search: Rechercher
       search_same_email_domain: Autres utilisateurs·trices avec le même domaine de courriel
       search_same_ip: Autres utilisateur·rice·s avec la même IP
+      security: Sécurité
       security_measures:
         only_password: Mot de passe uniquement
         password_and_2fa: Mot de passe et 2FA
@@ -427,17 +429,18 @@ fr-QC:
         resolve: Résoudre le domaine
         title: Nouveau blocage de domaine de courriel
       no_email_domain_block_selected: Aucun blocage de domaine de courriel n'a été modifié car aucun n'a été sélectionné
+      not_permitted: Non autorisé
       resolved_dns_records_hint_html: Le nom de domaine est relié aux domaines MX suivants, qui ont la responsabilité ultime d'accepter les courriels. Bloquer un domaine MX empêchera les inscriptions à partir de toute adresse courriel utilisant le même domaine MX, même si le nom de domaine affiché est différent. <strong> Veillez à ne pas bloquer les fournisseurs de messagerie d'envergure.</strong>
       resolved_through_html: Résolu par %{domain}
       title: Blocage de domaines de courriel
     export_domain_allows:
       new:
-        title: Autoriser l'importation de domaine
+        title: Importer les autorisations de domaine
       no_file: Aucun fichier sélectionné
     export_domain_blocks:
       import:
-        description_html: Vous êtes sur le point d'importer une liste de blocs de domaine. Veuillez examiner cette liste très attentivement, spécialement si vous n'êtes pas l'auteur de cette liste.
-        existing_relationships_warning: Relations de suivi existantes
+        description_html: Vous êtes sur le point d'importer une liste de bloqueurs de domaine. Veuillez examiner cette liste très attentivement, surtout si vous ne l'avez pas créée vous-même.
+        existing_relationships_warning: Relations d'abonnement existantes
         private_comment_description_html: 'Pour vous aider à savoir d''où proviennent les blocages importés, ceux-ci seront créés avec le commentaire privé suivant : <q>%{comment}</q>'
         private_comment_template: Importé depuis %{source} le %{date}
         title: Importer des blocages de domaine
@@ -473,6 +476,7 @@ fr-QC:
       content_policies:
         comment: Note interne
         description_html: Vous pouvez définir des politiques de contenu qui seront appliquées à tous les comptes de ce domaine et à tous ses sous-domaines.
+        limited_federation_mode_description_html: Vous pouvez choisir d'autoriser la fédération avec ce domaine.
         policies:
           reject_media: Rejeter les médias
           reject_reports: Rejeter les signalements
@@ -585,11 +589,13 @@ fr-QC:
       assign_to_self: Me l’assigner
       assigned: Modérateur assigné
       by_target_domain: Domaine du compte signalé
+      cancel: Annuler
       category: Catégorie
       category_description_html: La raison pour laquelle ce compte et/ou ce contenu a été signalé sera citée dans la communication avec le compte signalé
       comment:
         none: Aucun
       comment_description_html: 'Pour fournir plus d''informations, %{name} a écrit :'
+      confirm: Confirmer
       confirm_action: Confirmer l'action de modération contre @%{acct}
       created_at: Signalé
       delete_and_resolve: Supprimer les messages
@@ -729,8 +735,8 @@ fr-QC:
         preamble: Contrôle comment le contenu créé par les utilisateurs est enregistré et stocké dans Mastodon.
         title: Rétention du contenu
       default_noindex:
-        desc_html: Affecte tous les utilisateurs qui n'ont pas modifié ce paramètre eux-mêmes
-        title: Ne pas indexer par défaut les utilisateurs dans les moteurs de recherche
+        desc_html: Affecte tous les comptes qui n'ont pas modifié ce paramètre
+        title: Par défaut, ne pas indexer les comptes dans les moteurs de recherche
       discovery:
         follow_recommendations: Suivre les recommandations
         preamble: Faire apparaître un contenu intéressant est essentiel pour interagir avec de nouveaux utilisateurs qui ne connaissent peut-être personne sur Mastodonte. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
@@ -792,6 +798,7 @@ fr-QC:
         suspend: "%{name} a suspendu le compte de %{target}"
       appeal_approved: Appel soumis
       appeal_pending: Appel en attente
+      appeal_rejected: Appel rejeté
     system_checks:
       database_schema_check:
         message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
@@ -958,6 +965,7 @@ fr-QC:
   applications:
     created: Application créée avec succès
     destroyed: Application supprimée avec succès
+    logout: Se déconnecter
     regenerate_token: Régénérer le jeton d’accès
     token_regenerated: Jeton d’accès régénéré avec succès
     warning: Soyez prudent·e avec ces données. Ne les partagez pas !
@@ -966,7 +974,7 @@ fr-QC:
     apply_for_account: Demander un compte
     change_password: Mot de passe
     confirmations:
-      wrong_email_hint: Si cette adresse courriel est incorrecte, vous pouvez la modifier dans vos paramètres de compte.
+      wrong_email_hint: Si cette adresse de courriel est incorrecte, vous pouvez la modifier dans vos paramètres de compte.
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
     description:
@@ -994,6 +1002,7 @@ fr-QC:
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
     reset_password: Réinitialiser le mot de passe
     rules:
+      back: Retour
       preamble: Celles-ci sont définies et appliqués par les modérateurs de %{domain}.
       title: Quelques règles de base.
     security: Sécurité
@@ -1003,7 +1012,7 @@ fr-QC:
       email_settings_hint_html: Le courriel de confirmation a été envoyé à %{email}. Si cette adresse de courriel n’est pas correcte, vous pouvez la modifier dans les paramètres du compte.
       title: Configuration
     sign_in:
-      preamble_html: Connectez-vous avec vos identifiants <strong>%{domain}</strong> . Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
+      preamble_html: Connectez-vous avec vos identifiants sur <strong>%{domain}</strong>. Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
       title: Se connecter à %{domain}
     sign_up:
       preamble: Avec un compte sur ce serveur Mastodon, vous serez en mesure de suivre toute autre personne sur le réseau, quel que soit l’endroit où son compte est hébergé.
@@ -1140,8 +1149,6 @@ fr-QC:
     storage: Médias stockés
   featured_tags:
     add_new: Ajouter un nouveau hashtag
-    errors:
-      limit: Vous avez déjà mis en avant le nombre maximum de hashtags
     hint_html: "<strong>Que sont les hashtags mis en avant ?</strong> Ils sont affichés en évidence sur votre profil public et permettent aux gens de parcourir vos messages publics qui utilisent ces hashtags. Ils sont un excellent outil pour garder la trace d’activités créatrices ou de projets de long terme."
   filters:
     contexts:
@@ -1209,8 +1216,6 @@ fr-QC:
     validation_errors:
       one: Quelque chose ne va pas ! Veuillez vérifiez l’erreur ci-dessous
       other: Certaines choses ne vont pas ! Veuillez vérifier les %{count} erreurs ci-dessous
-  html_validator:
-    invalid_markup: 'contient un balisage HTML invalide: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Fichier CSV non valide. Erreur : %{error}'
@@ -1251,9 +1256,6 @@ fr-QC:
       expires_at: Expire
       uses: Utilisations
     title: Inviter des gens
-  lists:
-    errors:
-      limit: Vous avez atteint le nombre maximum de listes
   login_activities:
     authentication_methods:
       otp: application d'authentification à deux facteurs
@@ -1396,7 +1398,7 @@ fr-QC:
     activity: Activité du compte
     confirm_follow_selected_followers: Voulez-vous vraiment suivre les abonné⋅e⋅s sélectionné⋅e⋅s ?
     confirm_remove_selected_followers: Voulez-vous vraiment supprimer les abonné⋅e⋅s sélectionné⋅e⋅s ?
-    confirm_remove_selected_follows: Voulez-vous vraiment suivre les abonnements sélectionnés ?
+    confirm_remove_selected_follows: Voulez-vous vraiment supprimer les abonnements sélectionnés ?
     dormant: Dormant
     follow_selected_followers: Suivre les abonné·e·s sélectionné·e·s
     followers: Abonné·e
@@ -1573,7 +1575,6 @@ fr-QC:
       '7889238': 3 mois
     min_age_label: Seuil d'ancienneté
     min_favs: Conserver les messages mis en favoris au moins
-    min_favs_hint: Ne supprime aucun de vos messages qui ont reçu au moins ce nombre de favoris. Laisser vide pour supprimer les messages quel que soit leur nombre de favoris
     min_reblogs: Conserver les messages partagés au moins
     min_reblogs_hint: Ne supprime aucun de vos messages qui ont été partagés au moins ce nombre de fois. Laisser vide pour supprimer les messages indépendamment de leur nombre de partages
   stream_entries:

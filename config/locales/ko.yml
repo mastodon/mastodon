@@ -89,6 +89,7 @@ ko:
       moderation:
         active: 활동
         all: 전체
+        disabled: 비활성화됨
         pending: 대기 중
         silenced: 제한됨
         suspended: 정지 중
@@ -130,6 +131,7 @@ ko:
       search: 검색
       search_same_email_domain: 같은 이메일 도메인을 가진 다른 사용자들
       search_same_ip: 같은 IP의 다른 사용자들
+      security: 보안
       security_measures:
         only_password: 암호만
         password_and_2fa: 암호와 2단계 인증
@@ -158,7 +160,7 @@ ko:
       unsilenced_msg: 성공적으로 %{username} 계정을 제한 해제했습니다
       unsubscribe: 구독 해제
       unsuspended_msg: 성공적으로 %{username} 계정을 정지 해제했습니다
-      username: 아이디
+      username: 사용자명
       view_domain: 도메인의 요약 보기
       warn: 경고
       web: 웹
@@ -421,6 +423,7 @@ ko:
         resolve: 도메인 검사
         title: 새 이메일 도메인 차단
       no_email_domain_block_selected: 아무 것도 선택 되지 않아 어떤 이메일 도메인 차단도 변경되지 않았습니다
+      not_permitted: 권한 없음
       resolved_dns_records_hint_html: 도메인 네임은 다음의 MX 도메인으로 연결되어 있으며, 이메일을 받는데 필수적입니다. MX 도메인을 차단하면 같은 MX 도메인을 사용하는 어떤 이메일이라도 가입할 수 없게 되며, 보여지는 도메인이 다르더라도 적용됩니다. <strong>주요 이메일 제공자를 차단하지 않도록 조심하세요.</strong>
       resolved_through_html: "%{domain}을 통해 리졸빙됨"
       title: Email 도메인 차단
@@ -465,6 +468,7 @@ ko:
       content_policies:
         comment: 내부 참고사항
         description_html: 이 도메인과 하위 도메인의 모든 계정에 적용될 콘텐츠 정책을 정의할 수 있습니다.
+        limited_federation_mode_description_html: 이 도메인의 연합을 허용할지 선택할 수 있습니다.
         policies:
           reject_media: 미디어 거부
           reject_reports: 신고 거부
@@ -575,11 +579,13 @@ ko:
       assign_to_self: 나에게 할당하기
       assigned: 할당된 중재자
       by_target_domain: 신고된 계정의 도메인
+      cancel: 취소
       category: 카테고리
       category_description_html: 이 계정 또는 게시물이 신고된 이유는 신고된 계정과의 의사소통 과정에 인용됩니다
       comment:
         none: 없음
       comment_description_html: '더 많은 정보를 위해, %{name} 님이 작성했습니다:'
+      confirm: 확정
       confirm_action: "@%{acct}에 취할 중재 결정에 대한 확인"
       created_at: 신고 시각
       delete_and_resolve: 게시물 삭제
@@ -780,6 +786,7 @@ ko:
         suspend: "%{name} 님이 %{target}의 계정을 정지시켰습니다"
       appeal_approved: 이의제기됨
       appeal_pending: 이의제기 대기중
+      appeal_rejected: 이의 제기 거절됨
     system_checks:
       database_schema_check:
         message_html: 대기 중인 데이터베이스 마이그레이션이 있습니다. 애플리케이션이 예상대로 동작할 수 있도록 마이그레이션을 실행해 주세요
@@ -814,6 +821,7 @@ ko:
           other: 지난 주 동안 %{count} 명의 사람들이 공유했습니다
         title: 유행하는 링크
         usage_comparison: 오늘은 %{today}회 공유되었고, 어제는 %{yesterday}회 공유되었습니다
+      not_allowed_to_trend: 트렌드에 오를 수 없음
       only_allowed: 허용된 것만
       pending_review: 심사 대기
       preview_card_providers:
@@ -942,6 +950,7 @@ ko:
   applications:
     created: 애플리케이션이 성공적으로 생성되었습니다
     destroyed: 애플리케이션이 성공적으로 삭제되었습니다
+    logout: 로그아웃
     regenerate_token: 토큰 재생성
     token_regenerated: 액세스 토큰이 성공적으로 재생성되었습니다
     warning: 이 데이터를 조심히 다뤄 주세요. 다른 사람들과 절대로 공유하지 마세요!
@@ -978,6 +987,8 @@ ko:
     resend_confirmation: 확인 메일을 다시 보내기
     reset_password: 암호 재설정
     rules:
+      accept: 수락
+      back: 뒤로가기
       preamble: 다음은 %{domain}의 중재자들에 의해 설정되고 적용되는 규칙들입니다.
       title: 몇 개의 규칙이 있습니다.
     security: 보안
@@ -1055,8 +1066,8 @@ ko:
       email_reconfirmation_html: 아직 확인 메일이 도착하지 않은 경우, <a href="%{path}">다시 요청할 수 있습니다</a>
       irreversible: 계정을 복구하거나 다시 사용할 수 없게 됩니다
       more_details_html: 더 자세한 정보는, <a href="%{terms_path}">개인정보 정책</a>을 참고하세요.
-      username_available: 당신의 계정명은 다시 사용할 수 있게 됩니다
-      username_unavailable: 당신의 계정명은 앞으로 사용할 수 없습니다
+      username_available: 이 사용자명을 다시 쓸 수 있게 됩니다.
+      username_unavailable: 이 사용자명은 앞으로도 쓸 수 없는 채로 남게 됩니다.
   disputes:
     strikes:
       action_taken: 내려진 징계
@@ -1094,7 +1105,7 @@ ko:
     '403': 이 페이지를 표시할 권한이 없습니다.
     '404': 찾으려는 페이지가 존재하지 않습니다.
     '406': 이 페이지는 요청한 자료형으로 제공되지 않습니다.
-    '410': 당신이 보려는 페이지는 더이상 여기에 존재하지 않습니다.
+    '410': 보려는 페이지는 더 이상 여기에 존재하지 않습니다.
     '422':
       content: 보안 인증에 실패했습니다. 쿠키를 차단하고 있진 않습니까?
       title: 보안 인증 실패
@@ -1112,7 +1123,7 @@ ko:
       date: 날짜
       download: 아카이브 다운로드
       hint_html: 당신의 <strong>게시물과 업로드 된 미디어</strong>의 아카이브를 요청할 수 있습니다. 내보내지는 데이터는 ActivityPub 포맷입니다. 호환 되는 모든 소프트웨어에서 읽을 수 있습니다. 7일마다 새로운 아카이브를 요청할 수 있습니다.
-      in_progress: 당신의 아카이브를 컴파일 중입니다…
+      in_progress: 아카이브를 컴파일 중...
       request: 아카이브 요청하기
       size: 크기
     blocks: 차단
@@ -1125,12 +1136,12 @@ ko:
   featured_tags:
     add_new: 추가
     errors:
-      limit: 이미 추천 해시태그의 개수가 최대입니다
+      limit: 추천 해시태그 최대 개수를 초과합니다
     hint_html: "<strong>추천 해시태그가 무엇이죠?</strong> 당신의 공개 프로필 페이지에 눈에 띄게 표현 되며 사람들이 그 해시태그를 포함한 당신의 글을 찾아 볼 수 있도록 합니다. 창작활동이나 긴 기간을 가지는 프로젝트를 쭉 따라가기에 좋은 도구입니다."
   filters:
     contexts:
       account: 프로필
-      home: 홈 타임라인
+      home: 홈 & 리스트
       notifications: 알림
       public: 퍼블릭 타임라인
       thread: 대화
@@ -1186,8 +1197,6 @@ ko:
     today: 오늘
     validation_errors:
       other: 오류가 발생했습니다. 아래 %{count}개 오류를 확인해 주십시오
-  html_validator:
-    invalid_markup: '올바르지 않은 HTML 마크업을 포함하고 있습니다: %{error}'
   imports:
     errors:
       invalid_csv_file: '올바르지 않은 CSV 파일입니다. 오류: %{error}'
@@ -1229,7 +1238,7 @@ ko:
     title: 초대
   lists:
     errors:
-      limit: 리스트 최대치에 도달했습니다
+      limit: 리스트 최대 개수를 초과합니다
   login_activities:
     authentication_methods:
       otp: 2단계 인증 앱
@@ -1243,7 +1252,7 @@ ko:
     title: 인증 이력
   media_attachments:
     validations:
-      images_and_video: 이미 사진이 첨부된 게시물엔 동영상을 첨부 할 수 없습니다
+      images_and_video: 이미 사진이 첨부된 게시물엔 동영상을 첨부할 수 없습니다.
       not_ready: 처리가 끝나지 않은 파일은 첨부할 수 없습니다. 잠시 후에 다시 시도해 주세요!
       too_many: 최대 4개까지 첨부할 수 있습니다
   migrations:

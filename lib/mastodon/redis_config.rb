@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 def setup_redis_env_url(prefix = nil, defaults = true)
-  prefix = prefix.to_s.upcase + '_' unless prefix.nil?
+  prefix = "#{prefix.to_s.upcase}_" unless prefix.nil?
   prefix = '' if prefix.nil?
 
-  return if ENV[prefix + 'REDIS_URL'].present?
+  return if ENV["#{prefix}REDIS_URL"].present?
 
-  password = ENV.fetch(prefix + 'REDIS_PASSWORD') { '' if defaults }
-  host     = ENV.fetch(prefix + 'REDIS_HOST') { 'localhost' if defaults }
-  port     = ENV.fetch(prefix + 'REDIS_PORT') { 6379 if defaults }
-  db       = ENV.fetch(prefix + 'REDIS_DB') { 0 if defaults }
+  password = ENV.fetch("#{prefix}REDIS_PASSWORD") { '' if defaults }
+  host     = ENV.fetch("#{prefix}REDIS_HOST") { 'localhost' if defaults }
+  port     = ENV.fetch("#{prefix}REDIS_PORT") { 6379 if defaults }
+  db       = ENV.fetch("#{prefix}REDIS_DB") { 0 if defaults }
 
-  ENV[prefix + 'REDIS_URL'] = begin
+  ENV["#{prefix}REDIS_URL"] = begin
     if [password, host, port, db].all?(&:nil?)
       ENV['REDIS_URL']
     else
@@ -27,7 +27,7 @@ setup_redis_env_url(:cache, false)
 setup_redis_env_url(:sidekiq, false)
 
 namespace         = ENV.fetch('REDIS_NAMESPACE', nil)
-cache_namespace   = namespace ? namespace + '_cache' : 'cache'
+cache_namespace   = namespace ? "#{namespace}_cache" : 'cache'
 sidekiq_namespace = namespace
 
 REDIS_CACHE_PARAMS = {

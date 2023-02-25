@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Fabricator(:conversation_account) do
   account                 nil
   conversation            nil
