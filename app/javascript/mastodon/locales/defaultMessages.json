@@ -652,15 +652,19 @@
         "id": "status.admin_account"
       },
       {
-        "defaultMessage": "Open this status in the moderation interface",
+        "defaultMessage": "Open this post in the moderation interface",
         "id": "status.admin_status"
       },
       {
-        "defaultMessage": "Copy link to status",
+        "defaultMessage": "Open moderation interface for {domain}",
+        "id": "status.admin_domain"
+      },
+      {
+        "defaultMessage": "Copy link to post",
         "id": "status.copy"
       },
       {
-        "defaultMessage": "Hide toot",
+        "defaultMessage": "Hide post",
         "id": "status.hide"
       },
       {
@@ -1044,6 +1048,23 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{name} has requested to follow you",
+        "id": "account.requested_follow"
+      },
+      {
+        "defaultMessage": "Authorize",
+        "id": "follow_request.authorize"
+      },
+      {
+        "defaultMessage": "Reject",
+        "id": "follow_request.reject"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account/components/follow_request_note.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Unfollow",
         "id": "account.unfollow"
       },
@@ -1152,6 +1173,10 @@
         "id": "navigation_bar.lists"
       },
       {
+        "defaultMessage": "Followed hashtags",
+        "id": "navigation_bar.followed_tags"
+      },
+      {
         "defaultMessage": "Blocked users",
         "id": "navigation_bar.blocks"
       },
@@ -1178,6 +1203,10 @@
       {
         "defaultMessage": "Open moderation interface for @{name}",
         "id": "status.admin_account"
+      },
+      {
+        "defaultMessage": "Open moderation interface for {domain}",
+        "id": "status.admin_domain"
       },
       {
         "defaultMessage": "Change subscribed languages",
@@ -1365,6 +1394,10 @@
       {
         "defaultMessage": "Lists",
         "id": "navigation_bar.lists"
+      },
+      {
+        "defaultMessage": "Followed hashtags",
+        "id": "navigation_bar.followed_tags"
       },
       {
         "defaultMessage": "Blocked users",
@@ -2014,6 +2047,22 @@
       {
         "defaultMessage": "Search results",
         "id": "explore.search_results"
+      },
+      {
+        "defaultMessage": "Posts",
+        "id": "explore.trending_statuses"
+      },
+      {
+        "defaultMessage": "Hashtags",
+        "id": "explore.trending_tags"
+      },
+      {
+        "defaultMessage": "News",
+        "id": "explore.trending_links"
+      },
+      {
+        "defaultMessage": "For you",
+        "id": "explore.suggested_follows"
       }
     ],
     "path": "app/javascript/mastodon/features/explore/index.json"
@@ -2262,6 +2311,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/follow_requests/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Followed hashtags",
+        "id": "followed_tags"
+      },
+      {
+        "defaultMessage": "You have not followed any hashtags yet. When you do, they will show up here.",
+        "id": "empty_column.followed_tags"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/followed_tags/index.json"
   },
   {
     "descriptors": [
@@ -3564,6 +3626,10 @@
         "id": "status.admin_status"
       },
       {
+        "defaultMessage": "Open moderation interface for {domain}",
+        "id": "status.admin_domain"
+      },
+      {
         "defaultMessage": "Copy link to status",
         "id": "status.copy"
       },
@@ -3918,15 +3984,15 @@
         "id": "confirmations.discard_edit_media.confirm"
       },
       {
-        "defaultMessage": "Describe for people with hearing loss",
+        "defaultMessage": "Describe for people who are hard of hearing",
         "id": "upload_form.audio_description"
       },
       {
-        "defaultMessage": "Describe for people with hearing loss or visual impairment",
+        "defaultMessage": "Describe for people who are deaf, hard of hearing, blind or have low vision",
         "id": "upload_form.video_description"
       },
       {
-        "defaultMessage": "Describe for the visually impaired",
+        "defaultMessage": "Describe for people who are blind or have low vision",
         "id": "upload_form.description"
       },
       {
@@ -3976,12 +4042,12 @@
         "id": "compose_form.publish_form"
       },
       {
-        "defaultMessage": "Sign in",
-        "id": "sign_in_banner.sign_in"
-      },
-      {
         "defaultMessage": "Create account",
         "id": "sign_in_banner.create_account"
+      },
+      {
+        "defaultMessage": "Sign in",
+        "id": "sign_in_banner.sign_in"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/header.json"
@@ -4008,6 +4074,10 @@
       {
         "defaultMessage": "About",
         "id": "footer.about"
+      },
+      {
+        "defaultMessage": "Status",
+        "id": "footer.status"
       },
       {
         "defaultMessage": "Invite people",
@@ -4175,7 +4245,7 @@
         "id": "sign_in_banner.create_account"
       },
       {
-        "defaultMessage": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server.",
+        "defaultMessage": "Sign in to follow profiles or hashtags, favourite, share and reply to posts. You can also interact from your account on a different server.",
         "id": "sign_in_banner.text"
       },
       {

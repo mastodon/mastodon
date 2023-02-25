@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1.4
 # This needs to be bullseye-slim because the Ruby image is built on bullseye-slim
-ARG NODE_VERSION="16.17.1-bullseye-slim"
+ARG NODE_VERSION="16.19-bullseye-slim"
 
-FROM ghcr.io/moritzheiber/ruby-jemalloc:3.0.4-slim as ruby
+FROM ghcr.io/moritzheiber/ruby-jemalloc:3.2.1-slim as ruby
 FROM node:${NODE_VERSION} as build
 
 COPY --link --from=ruby /opt/ruby /opt/ruby
@@ -15,7 +15,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 WORKDIR /opt/mastodon
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
-RUN apt update && \
+# hadolint ignore=DL3008
+RUN apt-get update && \
     apt-get install -y --no-install-recommends build-essential \
         ca-certificates \
         git \
@@ -36,7 +37,8 @@ RUN apt update && \
     bundle config set --local without 'development test' && \
     bundle config set silence_root_warning true && \
     bundle install -j"$(nproc)" && \
-    yarn install --pure-lockfile
+    yarn install --pure-lockfile --network-timeout 600000 && \
+    yarn cache clean
 
 FROM node:${NODE_VERSION}
 
@@ -50,10 +52,12 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND="noninteractive" \
     PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
 
+# Ignoreing these here since we don't want to pin any versions and the Debian image removes apt-get content after use
+# hadolint ignore=DL3008,DL3009
 RUN apt-get update && \
     echo "Etc/UTC" > /etc/localtime && \
     groupadd -g "${GID}" mastodon && \
-    useradd -u "$UID" -g "${GID}" -m -d /opt/mastodon mastodon && \
+    useradd -l -u "$UID" -g "${GID}" -m -d /opt/mastodon mastodon && \
     apt-get -y --no-install-recommends install whois \
         wget \
         procps \
@@ -88,8 +92,7 @@ USER mastodon
 WORKDIR /opt/mastodon
 
 # Precompile assets
-RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
-    yarn cache clean
+RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile
 
 # Set the work dir and the container entry point
 ENTRYPOINT ["/usr/bin/tini", "--"]

@@ -50,4 +50,4 @@ export default function push_subscriptions(state = initialState, action) {
   default:
     return state;
   }
-};
+}

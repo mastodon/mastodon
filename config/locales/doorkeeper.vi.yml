@@ -122,14 +122,14 @@ vi:
         admin/accounts: Quản trị tài khoản
         admin/all: Mọi chức năng quản trị
         admin/reports: Quản trị báo cáo
-        all: Tất cả
+        all: Toàn quyền truy cập vào tài khoản Mastodon của bạn
         blocks: Chặn
         bookmarks: Tút đã lưu
         conversations: Thảo luận
         crypto: Mã hóa đầu cuối
         favourites: Lượt thích
         filters: Bộ lọc
-        follow: Mối quan hệ
+        follow: Theo dõi, Ẩn và Chặn
         follows: Đang theo dõi
         lists: Danh sách
         media: Tập tin đính kèm
@@ -149,9 +149,19 @@ vi:
     scopes:
       admin:read: đọc tất cả dữ liệu trên máy chủ
       admin:read:accounts: đọc thông tin nhạy cảm của tất cả các tài khoản
+      admin:read:canonical_email_blocks: đọc thông tin nhạy cảm của tất cả các khối email chuẩn
+      admin:read:domain_allows: đọc thông tin nhạy cảm của tất cả các tên miền cho phép
+      admin:read:domain_blocks: đọc thông tin nhạy cảm của tất cả các tên miền chặn
+      admin:read:email_domain_blocks: đọc thông tin nhạy cảm của tất cả các miền email chặn
+      admin:read:ip_blocks: đọc thông tin nhạy cảm của tất cả các IP chặn
       admin:read:reports: đọc thông tin của các báo cáo và các tài khoản bị báo cáo
       admin:write: sửa đổi tất cả dữ liệu trên máy chủ
       admin:write:accounts: áp đặt hành động kiểm duyệt trên tài khoản
+      admin:write:canonical_email_blocks: thực hiện các hành động kiểm duyệt đối với chặn email
+      admin:write:domain_allows: thực hiện các hành động kiểm duyệt đối với các email cho phép
+      admin:write:domain_blocks: thực hiện các hành động kiểm duyệt đối với các tên miền chặn
+      admin:write:email_domain_blocks: thực hiện các hành động kiểm duyệt đối với các tên miền email chặn
+      admin:write:ip_blocks: áp đặt kiểm duyệt với các IP chặn
       admin:write:reports: áp đặt kiểm duyệt với các báo cáo
       crypto: dùng mã hóa đầu cuối
       follow: sửa đổi các mối quan hệ tài khoản

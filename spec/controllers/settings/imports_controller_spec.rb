@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Settings::ImportsController, type: :controller do
@@ -7,8 +9,8 @@ RSpec.describe Settings::ImportsController, type: :controller do
     sign_in Fabricate(:user), scope: :user
   end
 
-  describe "GET #show" do
-    it "returns http success" do
+  describe 'GET #show' do
+    it 'returns http success' do
       get :show
       expect(response).to have_http_status(200)
     end
@@ -21,8 +23,8 @@ RSpec.describe Settings::ImportsController, type: :controller do
       post :create, params: {
         import: {
           type: 'following',
-          data: fixture_file_upload('imports.txt')
-        }
+          data: fixture_file_upload('imports.txt'),
+        },
       }
 
       expect(response).to redirect_to(settings_import_path)
@@ -34,8 +36,8 @@ RSpec.describe Settings::ImportsController, type: :controller do
       post :create, params: {
         import: {
           type: 'blocking',
-          data: fixture_file_upload('imports.txt')
-        }
+          data: fixture_file_upload('imports.txt'),
+        },
       }
 
       expect(response).to redirect_to(settings_import_path)

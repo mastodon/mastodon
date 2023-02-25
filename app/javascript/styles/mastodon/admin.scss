@@ -1,4 +1,4 @@
-@use "sass:math";
+@use 'sass:math';
 
 $no-columns-breakpoint: 600px;
 $sidebar-width: 240px;
@@ -254,10 +254,8 @@ $content-width: 840px;
 
       &__actions {
         display: inline-flex;
-
-        & > :not(:first-child) {
-          margin-left: 5px;
-        }
+        flex-flow: wrap;
+        gap: 5px;
       }
 
       h2 small {
@@ -386,7 +384,7 @@ $content-width: 840px;
           position: fixed;
           z-index: 10;
           width: 100%;
-          height: calc(100vh - 56px);
+          height: calc(100% - 56px);
           left: 0;
           bottom: 0;
           overflow-y: auto;
@@ -1133,7 +1131,10 @@ a.name-tag,
 
       @for $i from 0 through 10 {
         &--#{10 * $i} {
-          background-color: rgba($ui-highlight-color, 1 * (math.div(max(1, $i), 10)));
+          background-color: rgba(
+            $ui-highlight-color,
+            1 * (math.div(max(1, $i), 10))
+          );
         }
       }
     }
@@ -1202,7 +1203,7 @@ a.name-tag,
 
     path:first-child {
       fill: rgba($highlight-text-color, 0.25) !important;
-      fill-opacity: 100% !important;
+      fill-opacity: 1 !important;
     }
 
     path:last-child {
@@ -1222,7 +1223,12 @@ a.sparkline {
 
 .skeleton {
   background-color: lighten($ui-base-color, 8%);
-  background-image: linear-gradient(90deg, lighten($ui-base-color, 8%), lighten($ui-base-color, 12%), lighten($ui-base-color, 8%));
+  background-image: linear-gradient(
+    90deg,
+    lighten($ui-base-color, 8%),
+    lighten($ui-base-color, 12%),
+    lighten($ui-base-color, 8%)
+  );
   background-size: 200px 100%;
   background-repeat: no-repeat;
   border-radius: 4px;
@@ -1271,7 +1277,10 @@ a.sparkline {
 
       @for $i from 0 through 10 {
         &--#{10 * $i} {
-          background-color: rgba($ui-highlight-color, 1 * (math.div(max(1, $i), 10)));
+          background-color: rgba(
+            $ui-highlight-color,
+            1 * (math.div(max(1, $i), 10))
+          );
         }
       }
     }
@@ -1417,7 +1426,7 @@ a.sparkline {
 
     &::after {
       display: block;
-      content: "";
+      content: '';
       width: 50px;
       height: 21px;
       position: absolute;
@@ -1574,6 +1583,15 @@ a.sparkline {
           margin-bottom: 0;
         }
       }
+
+      a {
+        color: $highlight-text-color;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     &__actions {
@@ -1664,6 +1682,15 @@ a.sparkline {
   color: $primary-text-color;
   box-sizing: border-box;
   min-height: 100%;
+
+  a {
+    color: $highlight-text-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
   p {
     margin-bottom: 20px;
@@ -1793,7 +1820,7 @@ a.sparkline {
 
     &::after {
       position: absolute;
-      content: "";
+      content: '';
       width: 1px;
       background: $highlight-text-color;
       bottom: 0;

@@ -122,14 +122,12 @@ id:
         admin/accounts: Administrasi akun
         admin/all: Semua fungsi administratif
         admin/reports: Administrasi laporan
-        all: Segalanya
         blocks: Blokir
         bookmarks: Markah
         conversations: Percakapan
         crypto: Enkripsi end-to-end
         favourites: Favorit
         filters: Saringan
-        follow: Hubungan
         follows: Mengikuti
         lists: Daftar
         media: Lampiran media
@@ -149,9 +147,16 @@ id:
     scopes:
       admin:read: baca semua data di server
       admin:read:accounts: baca informasi sensitif semua akun
+      admin:read:canonical_email_blocks: baca informasi sensitif dari semua domain surat elektronik kanonikal yang diblokir
+      admin:read:domain_allows: baca informasi sensitif dari semua domain yang diperbolehkan
+      admin:read:domain_blocks: baca informasi sensitif dari semua domain yang diblokir
+      admin:read:email_domain_blocks: baca informasi sensitif dari semua domain surat elektronik yang diblokir
+      admin:read:ip_blocks: baca informasi sensitif dari semua alamat IP yang diblokir
       admin:read:reports: baca informasi sensitif semua laporan dan akun terlapor
       admin:write: ubah semua data di server
       admin:write:accounts: lakukan aksi moderasi akun
+      admin:write:canonical_email_blocks: melakukan aksi moderasi pada email kanonikal yang diblokir
+      admin:write:ip_blocks: lakukan moderasi tindakan pada blokir IP
       admin:write:reports: lakukan aksi moderasi laporan
       crypto: menggunakan enkripsi end-to-end
       follow: mengikuti, blokir, menghapus blokir, dan berhenti mengikuti akun

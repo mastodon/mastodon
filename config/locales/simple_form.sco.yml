@@ -15,11 +15,9 @@ sco:
         text_html: Optional. Ye kin uise post syntax. Ye kin <a href="%{path}">add warnin presets</a> tae save time
         type_html: Pick whit tae dae wi <strong>%{acct}</strong>
         types:
-          disable: Stap the uiser fae uisin their accoont, but dinnae delete or hide therir content.
+          disable: Stap the uiser fae uisin their accoont, but dinnae delete or hide their content.
           none: Uise this fir tae sen a warnin tae the uiser, athoot stertin onie ither actions.
           sensitive: Mak aw this uiser's media attachments hae a flag sayin it's sensitive.
-          silence: Stap the uiser fae bein able tae post wi public visibility, plank their posts an notes fae fowk no follaein them.
-          suspend: Stap onie interactions fae this accoont an delete its contents. Revertable athin 30 days.
         warning_preset_id: Optional. Ye kin stull eik custom text tae the en o the preset
       announcement:
         all_day: Whan ticked, ainly the dates o the time range'll get shawn
@@ -30,7 +28,7 @@ sco:
       appeal:
         text: Ye kin ainly appeal a strike the wance
       defaults:
-        autofollow: Fowk thit sign up throu the invite wull follae ye automatic
+        autofollow: Fowk thit signs up throu the invite wull follae ye automatic
         avatar: PNG, GIF or JPG. At maist %{size}. Wull get doonscaled tae %{dimensions}px
         bot: Signal tae ithers thit the accoont maistly performs automatit actions an mibbie wullnae be monitort
         context: Ae or mair contexts whaur the filter shuid apply
@@ -40,7 +38,7 @@ sco:
         discoverable: Alloo yer accoont fir tae get discovert bi strangers throu recommendations, trends an ither features
         email: Ye'll be sent a confirmation email
         fields: Ye kin hae up tae 4 items displayed as a table on yer profile
-        header: PNG, GIF or JPG. At maist %{size}. Wull het doonscaled tae %{dimensions}px
+        header: PNG, GIF or JPG. At maist %{size}. Wull get doonscaled tae %{dimensions}px
         inbox_url: Copy the URL fae the frontpage o the relay thit ye'r wantin tae uise
         irreversible: Filtert posts wull dizappear irreversibly, even if filter is taen aff efter
         locale: The leid o the uiser interface, emails an push notes
@@ -48,7 +46,7 @@ sco:
         password: Uise at least 8 chairecters
         phrase: Wull get matched regairdless o case in text or content warnin o a post
         scopes: Whit APIs the application wull be allooed tae access. Gin ye dinnae pick a tap-level scope, ye dinnae need tae pick anes ane at a time.
-        setting_aggregate_reblogs: Dinnae shaw new heezes fir posts thit hae been juist heezed (ainly affects new-received heezes)
+        setting_aggregate_reblogs: Dinnae shaw new heezes fir posts thit haes been juist heezed (ainly affects new-received heezes)
         setting_always_send_emails: Uisually email notes wullnae get sent whan ye'r uisin Mastodon at the time
         setting_default_sensitive: Sensitive media is hid bi defaut an kin be revealt wi a chap
         setting_display_media_default: Hide media mairked sensitive
@@ -57,7 +55,7 @@ sco:
         setting_hide_network: Wha ye follae an thaim thit follaes ye wull get hid on yer profile
         setting_noindex: Affects yer public profile an post pages
         setting_show_application: The application thit ye uise fir tae post wull be displayed in the detailt view o yer posts
-        setting_use_blurhash: Gradients are based aff o the colors o the image thit's hid, but ye cannae see onie details
+        setting_use_blurhash: Gradients is based aff o the colors o the image thit's hid, but ye cannae see onie details
         setting_use_pending_items: Plank timeline updates ahin a chap insteid o automatic scrowin o the feed
         username: Yer uisernemm wull be a ane aff on %{domain}
         whole_word: Whan the keywird or phrase is alphanumeric ainly, it wull ainly get applied if it matches the haill wird

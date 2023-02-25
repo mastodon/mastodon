@@ -18,8 +18,8 @@ ko:
           disable: 사용자가 계정을 사용하는 것을 막지만, 그의 게시물을 삭제하거나 숨기지는 않습니다.
           none: 이것을 사용해서 어떤 동작도 하지 않고, 사용자에게 경고를 보냅니다.
           sensitive: 이 사용자의 모든 미디어 첨부를 민감함으로 강제 설정합니다.
-          silence: 이 사용자가 공개 설정으로 게시물을 작성할 수 없도록 하고, 그를 팔로우 하지 않는 사람에게는 이 사용자의 게시물과 알림을 숨깁니다.
-          suspend: 이 계정과의 모든 상호작용을 막고 모든 내용을 삭제합니다. 30일 이내에 되돌리기가 가능합니다.
+          silence: 이 사용자가 공개 설정으로 게시물을 작성할 수 없도록 하고, 그를 팔로우 하지 않는 사람에게는 이 사용자의 게시물과 알림을 숨깁니다. 이 계정에 대한 모든 신고를 닫습니다.
+          suspend: 이 계정과의 모든 상호작용을 막고 모든 내용을 삭제합니다. 30일 이내에 되돌리기가 가능합니다. 이 계정에 대한 모든 신고를 닫습니다.
         warning_preset_id: 선택사항. 틀의 마지막에 임의의 텍스트를 추가 할 수 있습니다
       announcement:
         all_day: 체크 되었을 경우, 그 시간에 속한 날짜들에만 표시됩니다
@@ -30,7 +30,7 @@ ko:
       appeal:
         text: 처벌에 대해 단 한 번만 이의제기를 할 수 있습니다
       defaults:
-        autofollow: 이 초대를 통해 가입하는 사람은 당신을 자동으로 팔로우 하게 됩니다
+        autofollow: 이 초대로 가입한 사람은 나를 팔로우하게 됩니다.
         avatar: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
         bot: 이 계정이 대부분 자동으로 작업을 수행하고 잘 확인하지 않는다는 것을 알립니다.
         context: 필터를 적용 할 한 개 이상의 컨텍스트
@@ -39,7 +39,7 @@ ko:
         digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
         discoverable: 추천, 트렌드 및 기타 기능을 통해 낯선 사람이 내 계정을 발견할 수 있도록 허용합니다
         email: 당신은 확인 메일을 받게 됩니다
-        fields: 당신의 프로파일에 최대 4개까지 표 형식으로 나타낼 수 있습니다
+        fields: 프로필에 최대 4개의 항목을 표로 표시할 수 있습니다.
         header: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
         inbox_url: 사용 할 릴레이 서버의 프론트페이지에서 URL을 복사합니다
         irreversible: 필터링 된 게시물은 나중에 필터가 사라지더라도 돌아오지 않게 됩니다
@@ -74,6 +74,7 @@ ko:
           hide: 필터에 걸러진 글을 처음부터 없었던 것처럼 완전히 가리기
           warn: 필터에 걸러진 글을 필터 제목과 함께 경고 뒤에 가리기
       form_admin_settings:
+        activity_api_enabled: 주별 로컬에 게시된 글, 활성 사용자 및 새로운 가입자 수
         backups_retention_period: 생성된 사용자 아카이브를 며칠동안 저장할 지.
         bootstrap_timeline_accounts: 이 계정들은 팔로우 추천 목록 상단에 고정됩니다.
         closed_registrations_message: 새 가입을 차단했을 때 표시됩니다
@@ -81,6 +82,7 @@ ko:
         custom_css: 사용자 지정 스타일을 웹 버전의 마스토돈에 지정할 수 있습니다.
         mascot: 고급 사용자 인터페이스에 있는 일러스트를 교체합니다.
         media_cache_retention_period: 양수로 설정된 경우 다운로드된 미디어 파일들은 지정된 일수가 지나면 삭제될 것이고 필요할 때 다시 다운로드 될 것입니다.
+        peers_api_enabled: 이 서버가 연합우주에서 만났던 서버들에 대한 도메인 네임의 목록입니다. 해당 서버와 어떤 연합을 했는지에 대한 정보는 전혀 포함되지 않고, 단순히 그 서버를 알고 있는지에 대한 것입니다. 이것은 일반적으로 연합에 대한 통계를 수집할 때 사용됩니다.
         profile_directory: 프로필 책자는 발견되기를 희망하는 모든 사람들의 목록을 나열합니다.
         require_invite_text: 가입이 수동 승인을 필요로 할 때, "왜 가입하려고 하나요?" 항목을 선택사항으로 두는 것보다는 필수로 두는 것이 낫습니다
         site_contact_email: 사람들이 법적이나 도움 요청을 위해 당신에게 연락할 방법.
@@ -89,17 +91,19 @@ ko:
         site_short_description: 이 서버를 특별하게 구분할 수 있는 짧은 설명. 누가 운영하고, 누구를 위한 것인가요?
         site_terms: 자신만의 개인정보 정책을 사용하거나 비워두는 것으로 기본값을 사용할 수 있습니다. 마크다운 문법을 사용할 수 있습니다.
         site_title: 사람들이 이 서버를 도메인 네임 대신에 부를 이름.
+        status_page_url: 이 서버가 중단된 동안 사람들이 서버의 상태를 볼 수 있는 페이지 URL
         theme: 로그인 하지 않은 사용자나 새로운 사용자가 보게 될 테마.
         thumbnail: 대략 2:1 비율의 이미지가 서버 정보 옆에 표시됩니다.
         timeline_preview: 로그아웃 한 사용자들이 이 서버에 있는 최신 공개글들을 볼 수 있게 합니다.
         trendable_by_default: 유행하는 콘텐츠에 대한 수동 승인을 건너뜁니다. 이 설정이 적용된 이후에도 각각의 항목들을 삭제할 수 있습니다.
         trends: 트렌드는 어떤 게시물, 해시태그 그리고 뉴스 기사가 이 서버에서 인기를 끌고 있는지 보여줍니다.
+        trends_as_landing_page: 로그아웃한 사용자와 방문자에게 서버 설명 대신 유행하는 내용을 보여줍니다. 유행 기능을 활성화해야 합니다.
       form_challenge:
         current_password: 당신은 보안 구역에 진입하고 있습니다
       imports:
         data: 다른 마스토돈 서버에서 추출된 CSV 파일
       invite_request:
-        text: 이 정보는 우리가 심사를 하는 데에 참고할 수 있습니다
+        text: 이 정보는 신청을 검토하는데 도움을 줄 수 있습니다.
       ip_block:
         comment: 필수 아님. 왜 이 규칙을 추가했는지 기억하세요.
         expires_in: IP 주소는 한정된 자원입니다, 이것들은 가끔 공유 되거나 자주 소유자가 바뀌기도 합니다. 이런 이유로 인해, IP 차단을 영구히 유지하는 것은 추천하지 않습니다.
@@ -149,7 +153,7 @@ ko:
           disable: 비활성화
           none: 아무 것도 하지 않기
           sensitive: 민감함
-          silence: 침묵
+          silence: 제한
           suspend: 정지하고 되돌릴 수 없는 데이터 삭제
         warning_preset_id: 경고 틀 사용하기
       announcement:
@@ -171,7 +175,7 @@ ko:
         current_password: 현재 암호 입력
         data: 데이터
         discoverable: 계정을 다른 사람들에게 추천하기
-        display_name: 표시되는 이름
+        display_name: 표시 이름
         email: 이메일 주소
         expires_in: 만료시각
         fields: 프로필 메타데이터
@@ -229,6 +233,7 @@ ko:
           hide: 완전히 숨기기
           warn: 경고와 함께 숨기기
       form_admin_settings:
+        activity_api_enabled: API에 유저 활동에 대한 통계 발행
         backups_retention_period: 사용자 아카이브 유지 기한
         bootstrap_timeline_accounts: 새로운 사용자들에게 추천할 계정들
         closed_registrations_message: 가입이 불가능 할 때의 사용자 지정 메시지
@@ -236,6 +241,7 @@ ko:
         custom_css: 사용자 정의 CSS
         mascot: 사용자 정의 마스코트 (legacy)
         media_cache_retention_period: 미디어 캐시 유지 기한
+        peers_api_enabled: API에 발견 된 서버들의 목록 발행
         profile_directory: 프로필 책자 활성화
         registrations_mode: 누가 가입할 수 있는지
         require_invite_text: 가입 하는 이유를 필수로 입력하게 하기
@@ -247,11 +253,13 @@ ko:
         site_short_description: 서버 설명
         site_terms: 개인정보 정책
         site_title: 서버 이름
+        status_page_url: 상태 페이지 URL
         theme: 기본 테마
         thumbnail: 서버 썸네일
         timeline_preview: 로그인 하지 않고 공개 타임라인에 접근하는 것을 허용
         trendable_by_default: 사전 리뷰 없이 트렌드에 오르는 것을 허용
         trends: 유행 활성화
+        trends_as_landing_page: 유행을 방문 페이지로 쓰기
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
@@ -278,13 +286,13 @@ ko:
         pending_account: 새 계정이 심사가 필요할 때
         reblog: 누군가 내 게시물을 부스트 했을 때
         report: 새 신고가 접수되었을 때
-        trending_tag: 새 트렌드에 대한 리뷰가 필요할 때
+        trending_tag: 검토해야 할 새 유행
       rule:
         text: 규칙
       tag:
         listable: 이 해시태그가 검색과 추천에 보여지도록 허용
         name: 해시태그
-        trendable: 이 해시태그가 유행에 보여지도록 허용
+        trendable: 이 해시태그가 유행에 나타날 수 있도록 허용
         usable: 이 해시태그를 게시물에 사용 가능하도록 허용
       user:
         role: 역할

@@ -18,8 +18,8 @@ pt-BR:
           disable: Impede o usuário de usar a conta, porém sem excluí-la ou suspendê-la.
           none: Use isto para enviar uma advertência ao usuário, sem nenhuma outra ação.
           sensitive: Marca todas as mídias do usuário como sensível.
-          silence: Impede o usuário de tootar publicamente, e oculta toots e notificações dos que não o seguem.
-          suspend: Impede interações e exclui conteúdo da conta. Reversível apenas dentro de 30 dias.
+          silence: Impede o usuário de enviar postagens visualmente públicas, além de ocultar suas publicações e notificações dos que não o seguem. Ademais, fecha todas as denúncias contra esta conta.
+          suspend: Impede qualquer interação de ou para esta conta e exclui seu conteúdo. Reversível dentro de 30 dias. Ademais, fecha todas as denúncias contra esta conta.
         warning_preset_id: Opcional. Você pode adicionar texto personalizado no final da advertência pré-definida
       announcement:
         all_day: Quando marcada, apenas as datas do período serão mostradas
@@ -74,6 +74,7 @@ pt-BR:
           hide: Esconder completamente o conteúdo filtrado, comportando-se como se ele não existisse
           warn: Ocultar o conteúdo filtrado por trás de um aviso mencionando o título do filtro
       form_admin_settings:
+        activity_api_enabled: Contagem de publicações locais, usuários ativos e novos usuários semanais
         backups_retention_period: Manter os arquivos de usuário gerados pelo número de dias especificados.
         bootstrap_timeline_accounts: Estas contas serão fixadas no topo das recomendações de novos usuários para seguir.
         closed_registrations_message: Exibido quando as inscrições estiverem fechadas
@@ -81,7 +82,9 @@ pt-BR:
         custom_css: Você pode aplicar estilos personalizados na versão da web do Mastodon.
         mascot: Substitui a ilustração na interface web avançada.
         media_cache_retention_period: Os arquivos de mídia baixados serão excluídos após o número especificado de dias, quando definido para um valor positivo, e baixados novamente na demanda.
+        peers_api_enabled: Uma lista de nomes de domínio que este servidor encontrou no "fediverse". Nenhum dado é incluído aqui sobre se você concorda com os padroes operacionais de um determinado servidor, apenas que o seu servidor sabe disso. Esta ferramenta é utilizado por serviços que recolhem estatísticas sob as normas da federação (grupo de empresas que concordam sob paramentros operacionais específicos), em termos gerais.
         profile_directory: O diretório de perfis lista todos os usuários que optaram por permitir que suas contas sejam descobertas.
+        require_invite_text: 'Quando o cadastro de novas contas exigir aprovação manual, tornar obrigatório, ao invés de opcional, o texto de solicitação de convite: "Por que você deseja ingressar nessa comunidade?"'
         site_contact_email: Como as pessoas podem entrar em contato com você para obter informações legais ou de suporte.
         site_contact_username: Como as pessoas podem chegar até você no Mastodon.
         site_extended_description: Quaisquer informações adicionais que possam ser úteis para os visitantes e seus usuários. Podem ser estruturadas com formato Markdown.
@@ -228,6 +231,7 @@ pt-BR:
           hide: Ocultar completamente
           warn: Ocultar com um aviso
       form_admin_settings:
+        activity_api_enabled: Publicar estatísticas agregadas sobre atividade de usuários na API
         backups_retention_period: Período de retenção do arquivo de usuário
         bootstrap_timeline_accounts: Sempre recomendar essas contas para novos usuários
         closed_registrations_message: Mensagem personalizada quando inscrições não estão disponíveis
@@ -235,6 +239,7 @@ pt-BR:
         custom_css: CSS personalizável
         mascot: Mascote personalizado (legado)
         media_cache_retention_period: Período de retenção do cachê de mídia
+        peers_api_enabled: Publicar lista de instâncias de servidor descobertas na API
         profile_directory: Ativar diretório de perfis
         registrations_mode: Quem pode se inscrever
         require_invite_text: Exigir uma razão para entrar
@@ -246,6 +251,7 @@ pt-BR:
         site_short_description: Descrição do servidor
         site_terms: Política de privacidade
         site_title: Nome do servidor
+        status_page_url: Endereço da página de status
         theme: Tema padrão
         thumbnail: Miniatura do servidor
         timeline_preview: Permitir acesso não autenticado às linhas do tempo públicas

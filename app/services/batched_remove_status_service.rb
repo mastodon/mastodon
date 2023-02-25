@@ -19,9 +19,7 @@ class BatchedRemoveStatusService < BaseService
 
     ActiveRecord::Associations::Preloader.new.preload(statuses_with_account_conversations, [mentions: :account])
 
-    statuses_with_account_conversations.each do |status|
-      status.send(:unlink_from_conversations)
-    end
+    statuses_with_account_conversations.each(&:unlink_from_conversations!)
 
     # We do not batch all deletes into one to avoid having a long-running
     # transaction lock the database, but we use the delete method instead

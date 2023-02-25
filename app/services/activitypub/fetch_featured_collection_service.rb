@@ -53,7 +53,7 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
 
       status.id
     rescue ActiveRecord::RecordInvalid => e
-      Rails.logger.debug "Invalid pinned status #{uri}: #{e.message}"
+      Rails.logger.debug { "Invalid pinned status #{uri}: #{e.message}" }
       nil
     end
 

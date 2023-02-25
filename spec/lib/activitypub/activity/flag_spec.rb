@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Flag do
@@ -110,7 +112,8 @@ RSpec.describe ActivityPub::Activity::Flag do
 
   describe '#perform with a defined uri' do
     subject { described_class.new(json, sender) }
-    let (:flag_id) { 'http://example.com/reports/1' }
+
+    let(:flag_id) { 'http://example.com/reports/1' }
 
     before do
       subject.perform

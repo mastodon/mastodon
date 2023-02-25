@@ -90,7 +90,7 @@ describe UserMailer, type: :mailer do
 
     it 'renders warning notification' do
       receiver.update!(locale: nil)
-      expect(mail.body.encoded).to include I18n.t("user_mailer.warning.title.suspend", acct: receiver.account.acct)
+      expect(mail.body.encoded).to include I18n.t('user_mailer.warning.title.suspend', acct: receiver.account.acct)
       expect(mail.body.encoded).to include strike.text
     end
   end

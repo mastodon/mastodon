@@ -17,7 +17,7 @@
 %hr.spacer/
 
 - @featured_tags.each do |featured_tag|
-  .directory__tag{ class: params[:tag] == featured_tag.name ? 'active' : nil }
+  .directory__tag
     %div
       %h4
         = fa_icon 'hashtag'
@@ -26,6 +26,6 @@
           - if featured_tag.last_status_at.nil?
             = t('accounts.nothing_here')
           - else
-            %time{ datetime: featured_tag.last_status_at.iso8601, title: l(featured_tag.last_status_at) }= l featured_tag.last_status_at
+            %time.formatted{ datetime: featured_tag.last_status_at.iso8601, title: l(featured_tag.last_status_at) }= l featured_tag.last_status_at
           = table_link_to 'trash', t('filters.index.delete'), settings_featured_tag_path(featured_tag), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
       .trends__item__current= friendly_number_to_human featured_tag.statuses_count

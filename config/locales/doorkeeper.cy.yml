@@ -122,14 +122,14 @@ cy:
         admin/accounts: Gweinyddu cyfrifon
         admin/all: Pob swyddogaeth weinyddol
         admin/reports: Gweinyddu adroddiadau
-        all: Popeth
+        all: Mynediad llawn i'ch cyfrif Mastodon
         blocks: Blociau
-        bookmarks: Nodau Tudalen
+        bookmarks: Llyfrnodau
         conversations: Sgyrsiau
         crypto: Amgryptio o ben i ben
         favourites: Ffefrynnau
         filters: Hidlyddion
-        follow: Perthnasau
+        follow: Dilynion, Anwybyddiadau a Blociau
         follows: Yn dilyn
         lists: Rhestrau
         media: Atodiadau cyfryngau
@@ -149,9 +149,19 @@ cy:
     scopes:
       admin:read: darllen yr holl ddata ar y gweinydd
       admin:read:accounts: darllen gwybodaeth sensitif o bob cyfrif
+      admin:read:canonical_email_blocks: darllen gwybodaeth sensitif pob bloc e-bost canonaidd
+      admin:read:domain_allows: darllen gwybodaeth sensitif pob caniatád parth
+      admin:read:domain_blocks: darllen gwybodaeth sensitif pob bloc parth
+      admin:read:email_domain_blocks: darllen gwybodaeth sensitif pob bloc parth ebost
+      admin:read:ip_blocks: darllen gwybodaeth sensitif pob bloc IP
       admin:read:reports: darllen gwybodaeth sensitif o'r holl adroddiadau a'r cyfrifon a adroddwyd
       admin:write: addasu'r holl ddata ar y gweinydd
       admin:write:accounts: cyflawni camau cymedroli ar gyfrifon
+      admin:write:canonical_email_blocks: cyflawni cymedroli ar gyfer pob bloc e-bost canonaidd
+      admin:write:domain_allows: cyflawni cymedroli ar gyfer pob caniatád parth
+      admin:write:domain_blocks: cyflawni cymedroli ar gyfer pob bloc parth
+      admin:write:email_domain_blocks: cyflawni cymedroli ar gyfer pob bloc parth ebost
+      admin:write:ip_blocks: cyflawni cymedroli ar gyfer pob bloc IP
       admin:write:reports: cyflawni camau cymedroli ar adroddiadau
       crypto: defnyddio amgryptio ben i ben
       follow: addasu perthnasau cyfrif
@@ -159,7 +169,7 @@ cy:
       read: darllen holl ddata eich cyfrif
       read:accounts: gweld gwybodaeth y cyfrif
       read:blocks: gweld eich blociau
-      read:bookmarks: gweld eich nodau tudalen
+      read:bookmarks: gweld eich llyfrnodau
       read:favourites: gweld eich ffefrynnau
       read:filters: gweld eich hidlwyr
       read:follows: gweld eich dilynwyr
@@ -172,7 +182,7 @@ cy:
       write: addasu holl ddata eich cyfrif
       write:accounts: addasu eich proffil
       write:blocks: blocio cyfrifon a parthau
-      write:bookmarks: gosod nod tudalen postiadau
+      write:bookmarks: llyfrnodi postiadau
       write:conversations: anwybyddu a dileu sgyrsiau
       write:favourites: hoff bostiadau
       write:filters: creu hidlwyr

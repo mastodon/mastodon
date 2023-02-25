@@ -3,10 +3,14 @@ ast:
   simple_form:
     hints:
       admin_account_action:
-        text_html: Opcional. Pues usar la sintaxis de los artículos ya amestar <a href="%{path}">amestar preconfiguraes</a> p'aforrar tiempu
+        text_html: Opcional. Pues usar la sintaxis de los artículos ya amestar <a href="%{path}">alvertencies preconfiguraes</a> p'aforrar tiempu
+        type_html: Escueyi qué facer con <strong>%{acct}</strong>
+        types:
+          none: Usa esta opción pa unviar una alvertencia al perfil, ensin aicionar nenguna otra aición.
       announcement:
         all_day: Al marcar la opción, namás apaecen les dates del intervalu de tiempu
         ends_at: Opcional. L'anunciu dexa de tar espublizáu na data qu'indiques
+        scheduled_at: Dexa esti campu como ta pa espublizar l'anunciu nel intre
         starts_at: Opcional. En casu de que l'anunciu tea arreyáu a un intervalu de tiempu específicu
         text: Pues usar la sintaxis de los artículos. Ten en cuenta l'espaciu que l'anunciu va ocupar na pantalla del usuariu/a
       defaults:
@@ -20,11 +24,17 @@ ast:
         irreversible: Los artículos peñeraos desapaecen de forma irreversible, magar que la peñera se quite dempués
         locale: La llingua de la interfaz, los mensaxes per corréu electrónicu ya los avisos push
         locked: Controla manualmente quién pue siguite pente l'aprobación de les solicitúes de siguimientu
+        password: Usa polo menos 8 caráuteres
+        setting_aggregate_reblogs: Nun amuesa los artículos compartíos nuevos que xá se compartieren de recién (namás afeuta a los artículos compartíos d'agora)
+        setting_always_send_emails: Los avisos nun se suelen unviar per corréu electrónicu si uses activamente Mastodon
+        setting_default_sensitive: El conteníu multimedia sensible anúbrese por defeutu ya pue amosase al calcar nelli
         setting_display_media_default: Anubrilu cuando se marque como sensible
         setting_display_media_hide_all: Anubrilu siempres
         setting_display_media_show_all: Amosalu siempres
         setting_hide_network: Les persones que sigas ya les que te sigan nun van apaecer nel to perfil
+        setting_noindex: Afeuta al perfil públicu ya a les páxines de los artículos
         setting_show_application: L'aplicación qu'uses pa espublizar apaez na vista detallada de los tos artículos
+        setting_use_blurhash: Los dilíos básense nos colores del conteníu multimedia anubríu mas desenfonca los detalles
         username: 'El nome d''usuariu va ser únicu en: %{domain}'
       featured_tag:
         name: 'Equí tán dalgunes de les etiquetes qu''usesti apocayá:'
@@ -39,6 +49,7 @@ ast:
         site_extended_description: Cualesquier tipu d'información adicional que pueda ser útil pa visitantes ya pa perfiles rexistraos. El testu pue estructurase cola sintaxis de Mastodon.
         site_short_description: Un descripción curtia qu'ayuda a identificar de forma única al sirvidor. ¿Quién lu lleva?, ¿pa quién ye?
         theme: L'estilu que los visitantes ya los perfiles nuevos usen.
+        trends: Les tendencies amuesen artículos, etiquetes ya noticies que tean ganando popularidá nesti sirvidor.
       form_challenge:
         current_password: Tas entrando a una área segura
       imports:
@@ -46,8 +57,10 @@ ast:
       invite_request:
         text: Esto va ayudanos a revisar la to solicitú
       ip_block:
-        comment: Opcional. Un recordatoriu de por qué amestesti esta regla.
+        comment: Opcional. Un recordatoriu de por qué amestesti esta norma.
         expires_in: Les direiciones IP son un recursu finitu, suelen compartise ya cambiar de manes. Por esti motivu, nun s'aconseyen los bloqueos indefiníos de direiciones IP.
+      user:
+        chosen_languages: Namás los artículos de les llingües que marques son los que van apaecer nes llinies de tiempu públiques
     labels:
       account:
         fields:
@@ -58,8 +71,10 @@ ast:
       admin_account_action:
         include_statuses: Incluyir nel mensaxe los artículos de los que s'informó
         send_email_notification: Avisar al perfil per corréu electrónicu
+        text: Alvertencia personalizada
         type: Aición
         types:
+          sensitive: Marcar como cuenta sensible
           suspend: Suspender
       announcement:
         all_day: Eventu de tol día
@@ -92,18 +107,26 @@ ast:
         phrase: Pallabra clave o fras
         setting_advanced_layout: Activar la interfaz web avanzada
         setting_aggregate_reblogs: Agrupar los artículos compartíos nes llinies de tiempu
+        setting_always_send_emails: Unviar siempres los avisos per corréu electrónicu
         setting_auto_play_gif: Reproducir automáticamente los GIFs
         setting_boost_modal: Amosar el diálogu de confirmación enantes de compartir un artículu
+        setting_crop_images: Recortar les imáxenes de los artículos ensin espander a la proporción 16:9
         setting_default_language: Llingua de los artículos
         setting_default_privacy: Privacidá de los artículos
+        setting_default_sensitive: Marcar siempres tol conteníu como sensible
         setting_delete_modal: Amosar el diálogu de confirmación enantes de desaniciar un artículu
+        setting_disable_swiping: Desactivar el movimientu de desplazamientu
         setting_display_media: Conteníu multimedia
+        setting_expand_spoilers: Espander siempres los artículos marcaos con alvertencies de conteníu
+        setting_hide_network: Anubrir les cuentes que sigas ya te sigan
+        setting_noindex: Arrenunciar a apaecer nos índices de los motores de busca
         setting_reduce_motion: Amenorgar el movimientu de les animaciones
         setting_show_application: Dicir les aplicaciones que s'usen pa unviar artículos
         setting_system_font_ui: Usar la fonte predeterminada del sistema
         setting_theme: Estilu del sitiu
         setting_trends: Amosar les tendencies de güei
         setting_unfollow_modal: Amosar el diálogu de confirmación enantes de dexar de siguir a daquién
+        setting_use_blurhash: Facer que'l conteníu multimedia anubríu tenga dilíos coloríos
         setting_use_pending_items: Mou lentu
         severity: Gravedá
         sign_in_token_attempt: Códigu de seguranza
@@ -128,6 +151,9 @@ ast:
         site_title: Nome del sirvidor
         theme: Estilu predetermináu
         thumbnail: Miniatura del sirvidor
+        timeline_preview: Permitir l'accesu ensin autenticar a les llinies de tiempu públiques
+        trendable_by_default: Permitir tendencies ensin revisión previa
+        trends: Activar les tendencies
       interactions:
         must_be_follower: Bloquiar los avisos de los perfiles que nun te siguen
         must_be_following: Bloquiar los avisos de los perfiles que nun sigues
@@ -145,15 +171,24 @@ ast:
         reblog: Daquién compartió'l to artículu
         report: Unvióse un informe nuevu
         trending_tag: Una tendencia rique una revisión
+      rule:
+        text: Norma
       tag:
+        listable: Permitir qu'esta etiqueta apaeza nes busques ya nes suxerencies
         name: Etiqueta
+        trendable: Permitir qu'esta etiqueta apaeza nes tendencies
+        usable: Permitir que los artículos usen esta etiqueta
       user:
         role: Rol
       user_role:
         name: Nome
         permissions_as_keys: Permisos
         position: Prioridá
+      webhook:
+        events: Eventos activos
     'no': Non
+    not_recommended: Nun s'aconseya
+    recommended: Aconséyase
     required:
       mark: "*"
     'yes': Sí

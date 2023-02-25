@@ -102,6 +102,9 @@ ms:
       not_subscribed: Tiada langganan
       pending: Menunggu semak semula
       perform_full_suspension: Gantung
+      previous_strikes: Pelanggaran sebelumnya
+      previous_strikes_description_html:
+        other: Akaun ini mempunyai <strong>%{count}</strong> pelanggaran.
       promote: Naikkan taraf
       protocol: Protokol
       public: Awam
@@ -137,6 +140,7 @@ ms:
       silence: Hadkan
       silenced: Dihadkan
       statuses: Hantaran
+      strikes: Pelanggaran sebelumnya
       subscribe: Langgan
       suspend: Gantung
       suspended: Digantung
@@ -144,6 +148,7 @@ ms:
       suspension_reversible_hint_html: Akaun ini telah digantung, dan datanya akan dibuang pada %{date}. Sebelum tarikh itu, akaun ini boleh diperoleh semula tanpa kesan buruk. Jika anda mahu memadamkan kesemua data akaun ini serta-merta, anda boleh melakukannya di bawah.
       title: Akaun
       unblock_email: Menyahsekat alamat e-mel
+      unblocked_email_msg: Alamat e-mel %{username} berjaya dinyahsekat
       unconfirmed_email: E-mel belum disahkan
       undo_sensitized: Nyahtanda sensitif
       undo_silenced: Nyahdiamkan
@@ -188,8 +193,10 @@ ms:
         destroy_user_role: Padamkan Peranan
         disable_2fa_user: Nyahdayakan 2FA
         disable_custom_emoji: Nyahdayakan Emoji Tersendiri
+        disable_sign_in_token_auth_user: Melumpuhkan pengesahan token e-mel untuk pengguna
         disable_user: Nyahdayakan Pengguna
         enable_custom_emoji: Dayakan Emoji Tersendiri
+        enable_sign_in_token_auth_user: Mendayakan pengesahan token e-mel untuk pengguna
         enable_user: Dayakan Pengguna
         memorialize_account: Jadikan Akaun Kenangan
         promote_user: Naikkan Taraf Pengguna
@@ -215,11 +222,15 @@ ms:
         update_status: Kemas Kini Hantaran
         update_user_role: Kemas Kini Peranan
       actions:
+        approve_appeal_html: "%{name} meluluskan rayuan keputusan penyederhanaan daripada %{target}"
+        approve_user_html: "%{name} meluluskan pendaftaran daripada %{target}"
         assigned_to_self_report_html: "%{name} menugaskan laporan %{target} kepada dirinya sendiri"
         change_email_user_html: "%{name} telah mengubah alamat e-mel pengguna %{target}"
+        change_role_user_html: "%{name} mengubah peranan %{target}"
         confirm_user_html: "%{name} telah mengesahkan alamat e-mel pengguna %{target}"
         create_account_warning_html: "%{name} telah memberi amaran kepada %{target}"
         create_announcement_html: "%{name} telah mencipta pengumuman baharu %{target}"
+        create_canonical_email_block_html: "%{name} menyekat e-mel dengan cincangan %{target}"
         create_custom_emoji_html: "%{name} telah memuat naik emoji baharu %{target}"
         create_domain_allow_html: "%{name} membenarkan persekutuan dengan domain %{target}"
         create_domain_block_html: "%{name} telah menyekat domain %{target}"
@@ -241,26 +252,34 @@ ms:
         destroy_user_role_html: "%{name} telah memadam peranan %{target}"
         disable_2fa_user_html: "%{name} menyahdayakan keperluan dua faktor bagi pengguna %{target}"
         disable_custom_emoji_html: "%{name} telah menyahdayakan emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} melumpuhkan pengesahan token e-mel untuk %{target}"
         disable_user_html: "%{name} telah menyahdayakan log masuk bagi pengguna %{target}"
         enable_custom_emoji_html: "%{name} telah mendayakan emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} mendayakan pengesahan token e-mel untuk %{target}"
         enable_user_html: "%{name} telah mendayakan log masuk untuk pengguna %{target}"
         memorialize_account_html: "%{name} telah mengubah akaun %{target} menjadi halaman kenangan"
         promote_user_html: "%{name} telah menaikkan taraf pengguna %{target}"
+        reject_appeal_html: "%{name} menolak rayuan keputusan penyederhanaan daripada %{target}"
+        reject_user_html: "%{name} menolak pendaftaran daripada %{target}"
         remove_avatar_user_html: "%{name} telah membuang avatar %{target}"
         reopen_report_html: "%{name} telah membuka semula laporan %{target}"
+        resend_user_html: "%{name} menghantar semula e-mel pengesahan untuk %{target}"
         reset_password_user_html: "%{name} telah menetapkan semula kata laluan pengguna %{target}"
         resolve_report_html: "%{name} telah menyelesaikan laporan %{target}"
         sensitive_account_html: "%{name} telah menanda media %{target} sebagai sensitif"
         silence_account_html: "%{name} telah mendiamkan akaun %{target}"
         suspend_account_html: "%{name} telah menggantung akaun %{target}"
         unassigned_report_html: "%{name} telah menyahtugaskan laporan %{target}"
+        unblock_email_account_html: "%{name} menyahsekat alamat e-mel %{target}"
         unsensitive_account_html: "%{name} telah menyahtanda media %{target} sebagai sensitif"
         unsilence_account_html: "%{name} telah menyahdiamkan akaun %{target}"
         unsuspend_account_html: "%{name} telah menyahgantungkan akaun %{target}"
         update_announcement_html: "%{name} telah mengemaskini pengumuman %{target}"
         update_custom_emoji_html: "%{name} telah mengemaskini emoji %{target}"
         update_domain_block_html: "%{name} telah mengemaskini penyekatan domain untuk %{target}"
+        update_ip_block_html: "%{name} telah mengubah peraturan IP %{target}"
         update_status_html: "%{name} telah mengemaskini hantaran oleh %{target}"
+        update_user_role_html: "%{name} telah mengubah peranan %{target}"
       deleted_account: akaun dipadamkan
       empty: Tiada log dijumpai.
       filter_by_action: Tapis mengikut tindakan
@@ -300,10 +319,12 @@ ms:
       enable: Dayakan
       enabled: Didayakan
       enabled_msg: Emoji tersebut berjaya didayakan
+      image_hint: PNG atau GIF sehingga %{size}
       list: Senarai
       listed: Disenaraikan
       new:
         title: Tambah emoji sendiri baharu
+      no_emoji_selected: Tiada emoji diubah kerana tiada yang dipilih
       not_permitted: Anda tidak dibenarkan untuk membuat tindakan ini
       overwrite: Tulis ganti
       shortcode: Kod pendek
@@ -321,6 +342,14 @@ ms:
       media_storage: Penyimpanan media
       new_users: pengguna baru
       opened_reports: laporan dibuka
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> rayuan masih belum selesai"
+      pending_reports_html:
+        other: "<strong>%{count}</strong> laporan masih belum selesai"
+      pending_tags_html:
+        other: "<strong>%{count}</strong> tanda pagar masih belum selesai"
+      pending_users_html:
+        other: "<strong>%{count}</strong> pengguna masih menunggu"
       resolved_reports: laporan diselesaikan
       software: Perisian
       sources: Sumber pendaftaran
@@ -346,6 +375,7 @@ ms:
       destroyed_msg: Sekatan domain telah diundurkan
       domain: Domain
       edit: Sunting penyekatan domain
+      existing_domain_block: Anda telah pun mengenakan had yang lebih ketat kepada %{name}.
       existing_domain_block_html: Anda telah mengenakan pengehadan yang lebih tegas ke atas %{name}, anda perlu <a href="%{unblock_url}">menyahsekatinya</a> dahulu.
       export: Eksport
       import: Import
@@ -354,8 +384,11 @@ ms:
         hint: Sekatan domain tidak akan menghindarkan penciptaan entri akaun dalam pangkalan data, tetapi akan dikenakan kaedah penyederhanaan khusus tertentu pada akaun-akaun tersebut secara retroaktif dan automatik.
         severity:
           noop: Tiada
+          silence: Hadkan
           suspend: Gantungkan
         title: Sekatan domain baharu
+      no_domain_block_selected: Tiada sekatan domain diubah kerana tiada yang dipilih
+      not_permitted: Anda tidak dibenarkan untuk melaksanakan tindakan ini
       obfuscate: Mengaburkan nama domain
       obfuscate_hint: Mengaburkan nama domain secara separa dalam senarai sekiranya pengehadan pengiklanan senarai domain didayakan
       private_comment: Ulasan peribadi
@@ -370,6 +403,8 @@ ms:
       view: Lihat penyekatan domain
     email_domain_blocks:
       add_new: Tambah baharu
+      attempts_over_week:
+        other: "%{count} cubaan pendaftaran sepanjang minggu lepas"
       created_msg: Telah berjaya menyekat domain e-mel
       delete: Padam
       dns:
@@ -378,10 +413,19 @@ ms:
       domain: Domain
       new:
         create: Tambah domain
+        resolve: Menyelesaikan domain
         title: Sekat domain e-mel baharu
+      no_email_domain_block_selected: Tiada sekatan domain e-mel diubah kerana tiada yang dipilih
+      resolved_through_html: Diselesaikan melalui %{domain}
       title: Domain e-mel disekat
     export_domain_allows:
+      new:
+        title: Import kebenaran domain
       no_file: Tiada fail dipilih
+    export_domain_blocks:
+      import:
+        existing_relationships_warning: Hubungan ikut sedia ada
+      no_file: Tiada fail yang dipilih
     follow_recommendations:
       description_html: "<strong>Saranan ikutan membantu pengguna baharu mencari kandungan menarik dengan cepat</strong>. Apabila pengguna belum cukup berinteraksi dengan akaun lain untuk membentuk saranan ikutan tersendiri, akaun-akaun inilah yang akan disarankan. Ia dinilai semula setiap hari dari gabungan keterlibatan tertinggi terkini dan juga jumlah pengikut tempatan tertinggi mengikut bahasa masing-masing."
       language: Untuk bahasa
@@ -391,11 +435,18 @@ ms:
       title: Saranan ikutan
       unsuppress: Tetap semula saranan ikutan
     instances:
+      availability:
+        title: Ketersediaan
+        warning: Percubaan terakhir untuk menyambung ke pelayan ini tidak berjaya
       back_to_all: Semua
       back_to_limited: Terhad
       back_to_warning: Amaran
       by_domain: Domain
+      confirm_purge: Adakah anda pasti mahu menghapuskan senarai ini secara kekal daripada domain ini?
       content_policies:
+        comment: Catatan dalaman
+        policies:
+          silence: Hadkan
         policy: Dasar
         reason: Sebab awam
         title: Dasar kandungan
@@ -404,9 +455,13 @@ ms:
         instance_accounts_measure: akaun disimpan
         instance_followers_measure: pengikut kami di situ
         instance_follows_measure: pengikut mereka di sini
+        instance_languages_dimension: Bahasa teratas
+        instance_reports_measure: laporan mengenai mereka
+        instance_statuses_measure: Hantaran yang disimpan
       delivery:
         all: Semua
         clear: Buang ralat penghantaran
+        failing: Gagal
         restart: Mulakan semula penghantaran
         stop: Hentikan penghantaran
         unavailable: Tidak tersedia
@@ -476,6 +531,11 @@ ms:
           other: "%{count} catatan"
       action_log: Log audit
       action_taken_by: Tindakan diambil oleh
+      actions:
+        delete_description_html: Hantaran yang dilaporkan akan dihapuskan dan pelanggaran itu akan direkodkan bagi membantu anda menguruskan pelanggaran pada akaun yang sama di masa akan datang.
+        mark_as_sensitive_description_html: Media di dalam hantaran yang dilaporkan akan ditandakan sebagai sensitif dan pelanggaran itu akan direkodkan bagi membantu anda menguruskan pelanggaran pada akaun yang sama di masa akan datang.
+        resolve_description_html: Tiada tindakan akan diambil terhadap akaun yang dilaporkan, tiada pelanggaran direkodkan dan laporan akan ditutup.
+      add_to_report: Tambahkan lebih banyak pada laporan
       are_you_sure: Adakah anda pasti?
       assign_to_self: Menugaskan kepada saya
       assigned: Penyederhana yang ditugaskan
@@ -504,7 +564,10 @@ ms:
       reported_by: Dilaporkan oleh
       resolved: Diselesaikan
       resolved_msg: Laporan berjaya diselesaikan!
+      skip_to_actions: Langkau ke tindakan
       status: Status
+      statuses: Kandungan yang dilaporkan
+      target_origin: Asalan akaun yang dilaporkan
       title: Laporan
       unassign: Nyahtugaskan
       unresolved: Nyahselesaikan
@@ -516,22 +579,55 @@ ms:
         other: "%{count} pengguna"
       categories:
         administration: Pentadbiran
+        devops: DevOps
         invites: Undangan
+        moderation: Penyederhanaan
         special: Khas
       delete: Padam
+      edit: Sunting peranan '%{name}'
       everyone: Kebenaran lalai
       permissions_count:
         other: "%{count} kebenaran"
       privileges:
         administrator: Pentadbir
         delete_user_data: Padamkan Data Pengguna
+        delete_user_data_description: Membenarkan pengguna menghapuskan data pengguna lain tanpa bertangguh
+        invite_users: Mengundang pengguna
+        invite_users_description: Membenarkan pengguna mengundang orang baharu ke pelayan
+        manage_announcements: Menguruskan pengumuman
+        manage_announcements_description: Membenarkan pengguna menguruskan pengumuman pada pelayan
+        manage_appeals: Menguruskan rayuan
+        manage_appeals_description: Membenarkan pengguna menyemak rayuan terhadap tindakan penyederhanaan
+        manage_blocks: Menguruskan sekatan
+        manage_blocks_description: Membenarkan pengguna menyekat pembekal e-mel dan alamat IP
+        manage_custom_emojis: Menguruskan emoji tersuai
+        manage_custom_emojis_description: Membenarkan pengguna menguruskan emoji tersuai pada pelayan
+        manage_federation: Menguruskan persekutuan
+        manage_federation_description: Membenarkan pengguna menyekat atau membenarkan persekutuan dengan domain yang lain dan mengawal kebolehhantaran
+        manage_invites: Menguruskan undangan
+        manage_invites_description: Membenarkan pengguna mengimbas dan menyahaktifkan pautan undangan
         manage_reports: Uruskan Laporan
+        manage_reports_description: Membenarkan pengguna menyemak laporan dan melaksanakan tindakan penyederhanaan terhadapnya
         manage_roles: Uruskan Peranan
+        manage_roles_description: Membenarkan pengguna mengurus dan menetapkan peranan di bawah mereka
         manage_rules: Uruskan Peraturan
+        manage_rules_description: Membenarkan pengguna mengubah peraturan pelayan
         manage_settings: Uruskan Tetapan
+        manage_settings_description: Membenarkan pengguna mengubah tetapan tapak
         manage_taxonomies: Uruskan Taksonomi
+        manage_taxonomies_description: Membenarkan pengguna menyemak kandungan sohor kini dan mengemas kini tetapan tanda pagar
         manage_user_access: Uruskan Akses Pengguna
+        manage_user_access_description: Membenarkan pengguna melumpuhkan pengesahan dwifaktor pengguna lain, mengubah alamat e-mel dan menetapkan semula kata laluan mereka
         manage_users: Uruskan Pengguna
+        manage_users_description: Membenarkan pengguna melihat butiran pengguna lain dan melaksanakan tindakan penyederhanaan terhadapnya
+        manage_webhooks: Menguruskan webhook
+        manage_webhooks_description: Membenarkan pengguna menyediakan webhook bagi acara pentadbiran
+        view_audit_log: Melihat log audit
+        view_audit_log_description: Membenarkan pengguna melihat sejarah tindakan pentadbiran pada pelayan
+        view_dashboard: Melihat papan pemuka
+        view_dashboard_description: Membenarkan pengguna mencapai papan pemuka dan pelbagai metrik
+        view_devops: DevOps
+        view_devops_description: Membenarkan pengguna mencapai papan pemuka Sidekiq dan pgHero
       title: Peranan
     rules:
       add_new: Tambah peraturan
@@ -543,9 +639,27 @@ ms:
     settings:
       about:
         manage_rules: Uruskan peraturan pelayan
+        preamble: Memberikan maklumat mendalam mengenai cara pelayan dikendalikan, disederhanakan, dibiayai.
+        rules_hint: Terdapat kawasan khas untuk peraturan yang dijangka untuk dipatuhi oleh pengguna anda.
+        title: Tentang
+      appearance:
+        preamble: Menyesuaikan antara muka web Mastodon.
+        title: Penampilan
+      branding:
+        title: Penjenamaan
+      content_retention:
+        title: Pengekalan kandungan
       discovery:
         profile_directory: Direktori profil
+        public_timelines: Garis masa awam
+        title: Penemuan
+        trends: Sohor kini
+      domain_blocks:
+        all: Kepada semua orang
+        disabled: Tidak kepada sesiapa
+        users: Kepada pengguna tempatan yang telah dilog masuk
       registrations:
+        preamble: Kawal siapa yang boleh membuat akaun pada pelayan anda.
         title: Pendaftaran
       registrations_mode:
         modes:
@@ -553,33 +667,75 @@ ms:
           none: Tiada siapa boleh mendaftar
           open: Sesiapapun boleh mendaftar
       title: Tetapan Pelayan
+    site_uploads:
+      delete: Hapuskan fail yang dimuat naik
+      destroyed_msg: Muat naik tapak berjaya dihapuskan!
     statuses:
       account: Penulis
       deleted: Dipadamkan
       favourites: Gemaran
       history: Sejarah versi
       language: Bahasa
+      media:
+        title: Media
+      metadata: Metadata
+      no_status_selected: Tiada hantaran diubah kerana tiada yang dipilih
       open: Buka hantaran
+      original_status: Hantaran asal
+      reblogs: Ulang siar
+      status_changed: Hantaran diubah
+      title: Hantaran akaun
+      trending: Sohor kini
     strikes:
       actions:
         delete_statuses: "%{name} memadam hantaran %{target}"
+        disable: "%{name} membekukan akaun %{target}"
+        mark_statuses_as_sensitive: "%{name} menandakan hantaran %{target} sebagai sensitif"
+        none: "%{name} menghantar amaran kepada %{target}"
+        sensitive: "%{name} menandakan akaun %{target} sebagai sensitif"
+        silence: "%{name} telah mengehadkan akaun %{target}"
+        suspend: "%{name} telah menggantungkan akaun %{target}"
       appeal_approved: Dirayu
+      appeal_pending: Rayuan yang belum selesai
     tags:
       review: Semak status
     title: Pentadbiran
     trends:
       allow: Izin
       approved: Diluluskan
+      links:
+        allow: Membenarkan pautan
+        allow_provider: Membenarkan penerbit
+        title: Pautan yang sedang sohor kini
       preview_card_providers:
+        rejected: Pautan daripada penerbit ini tidak akan menjadi sohor kini
         title: Penerbit
       rejected: Ditolak
       statuses:
         allow: Izinkan hantaran
         allow_account: Izinkan penulis
+        disallow: Tidak membenarkan hantaran
+        disallow_account: Tidak membenarkan penulis
         title: Hantaran hangat
       tags:
+        current_score: Markah semasa %{score}
         dashboard:
+          tag_accounts_measure: pengguna unik
+          tag_languages_dimension: Bahasa teratas
+          tag_servers_dimension: Pelayan teratas
           tag_servers_measure: pelayan lain
+          tag_uses_measure: penggunaan keseluruhan
+        listable: Boleh dicadangkan
+        not_usable: Tidak boleh digunakan
+        peaked_on_and_decaying: Di atas pada %{date}, kini menurun
+        title: Tanda pagar sedang sohor kini
+        trendable: Boleh muncul di bawah sohor kini
+        trending_rank: 'Sohor kini #%{rank}'
+        usable: Boleh digunakan
+      title: Sohor kini
+      trending: Sohor kini
+    warning_presets:
+      delete: Padam
     webhooks:
       delete: Padam
       enable: Dayakan
@@ -593,6 +749,7 @@ ms:
       guide_link_text: Sesiapa sahaja boleh memberi sumbangan.
     sensitive_content: Kandungan sensitif
   application_mailer:
+    notification_preferences: Tukar keutamaan e-mel
     view: 'Lihat:'
     view_profile: Lihat profil
     view_status: Lihat hantaran
@@ -612,6 +769,7 @@ ms:
     security: Keselamatan
     status:
       account_status: Status akaun
+      view_strikes: Lihat pelanggaran yang lepas terhadap akaun anda
     use_security_key: Gunakan kunci keselamatan
   authorize_follow:
     follow: Ikut
@@ -625,25 +783,41 @@ ms:
     confirm: Teruskan
     invalid_password: Kata laluan tidak sah
     prompt: Sahkan kata laluan untuk teruskan
+  datetime:
+    distance_in_words:
+      half_a_minute: Sebentar tadi
   deletes:
     proceed: Padam akaun
   disputes:
     strikes:
       action_taken: Tindakan diambil
       appeal: Rayu
+      appeal_approved: Rayuan pelanggaran ini telah berjaya dan tidak lagi sah
       appeal_rejected: Rayuan ini telah ditolak
       appeal_submitted_at: Rayuan dihantar
+      appealed_msg: Rayuan anda sudah dikemukakan. Jika diluluskan, anda akan diberitahu.
       appeals:
         submit: Hantar rayuan
       approve_appeal: Luluskan rayuan
       associated_report: Laporan berkaitan
+      created_at: Tarikh
+      description_html: Ini ialah tindakan yang diambil terhadap akaun anda dan amaran telah dihantarkan kepada anda oleh staf %{instance}.
+      recipient: Ditujukan kepada
       reject_appeal: Tolak rayuan
       status: 'Hantaran #%{id}'
+      status_removed: Hantaran sudah dikeluarkan daripada sistem
+      title: "%{action} dari %{date}"
       title_actions:
         delete_statuses: Pemadaman hantaran
+        disable: Pembekuan akaun
+        mark_statuses_as_sensitive: Menandakan hantaran sebagai sensitif
         none: Amaran
+        sensitive: Menandakan akaun sebagai sensitif
+        silence: Keterbatasan akaun
+        suspend: Penggantungan akaun
       your_appeal_approved: Rayuan anda telah diluluskan
       your_appeal_pending: Anda telah menghantar rayuan
+      your_appeal_rejected: Rayuan anda telah ditolak
   errors:
     '400': Permintaan yang anda serahkan tidak sah atau salah bentuk.
     '403': Anda tidak mempunyai kebenaran untuk melihat halaman ini.
@@ -653,7 +827,6 @@ ms:
     '422':
       title: Pengesahan keselamatan gagal
     '429': Terlalu banyak permintaan
-    '500': 
     '503': Halaman tidak dapat disampaikan kerana kegagalan pelayan sementara.
   exports:
     archive_takeout:
@@ -764,6 +937,7 @@ ms:
     profile: Profil
     relationships: Ikutan dan pengikut
     statuses_cleanup: Pemadaman hantaran automatik
+    strikes: Pelanggaran penyederhanaan
     two_factor_authentication: Pengesahan Dua Faktor
     webauthn_authentication: Kunci keselamatan
   statuses:
@@ -797,10 +971,12 @@ ms:
       '63113904': 2 tahun
       '7889238': 3 bulan
     min_favs: Simpan hantaran digemarkan sekurang-kurangnya
-    min_favs_hint: Tidak memadamkan mana-mana hantaran anda yang telah menerima sekurang-kurangnya jumlah gemaran ini. Biarkan kosong untuk memadamkan hantaran tanpa mengira nombor gemaran
   stream_entries:
     pinned: Hantaran disemat
     sensitive_content: Kandungan sensitif
+  strikes:
+    errors:
+      too_late: Rayuan pelanggaran ini sudah terlalu lambat
   two_factor_authentication:
     add: Tambah
     disable: Nyahdayakan 2FA
@@ -810,8 +986,10 @@ ms:
   user_mailer:
     appeal_approved:
       action: Pergi ke akaun anda
+      explanation: Rayuan pelanggaran yang dikemukakan pada %{appeal_date} terhadap akaun anda pada %{strike_date} telah diluluskan. Akaun anda kini dalam kedudukan yang baik.
       title: Rayuan diluluskan
     appeal_rejected:
+      explanation: Rayuan pelanggaran yang dikemukakan pada %{appeal_date} terhadap akaun anda pada %{strike_date} telah ditolak.
       title: Rayuan ditolak
     suspicious_sign_in:
       title: Daftar masuk baru

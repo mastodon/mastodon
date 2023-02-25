@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Trends::Statuses do
@@ -76,7 +78,7 @@ RSpec.describe Trends::Statuses do
     before do
       13.times { reblog(status1, today) }
       13.times { reblog(status2, today) }
-       4.times { reblog(status3, today) }
+      4.times { reblog(status3, today) }
     end
 
     context do

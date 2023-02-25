@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe UpdateStatusService, type: :service do
@@ -87,9 +89,31 @@ RSpec.describe UpdateStatusService, type: :service do
     end
   end
 
+  context 'when already-attached media changes' do
+    let!(:status) { Fabricate(:status, text: 'Foo') }
+    let!(:media_attachment) { Fabricate(:media_attachment, account: status.account, description: 'Old description') }
+
+    before do
+      status.media_attachments << media_attachment
+      subject.call(status, status.account_id, text: 'Foo', media_ids: [media_attachment.id], media_attributes: [{ id: media_attachment.id, description: 'New description' }])
+    end
+
+    it 'does not detach media attachment' do
+      expect(media_attachment.reload.status_id).to eq status.id
+    end
+
+    it 'updates the media attachment description' do
+      expect(media_attachment.reload.description).to eq 'New description'
+    end
+
+    it 'saves edit history' do
+      expect(status.edits.map { |edit| edit.ordered_media_attachments.map(&:description) }).to eq [['Old description'], ['New description']]
+    end
+  end
+
   context 'when poll changes' do
     let(:account) { Fabricate(:account) }
-    let!(:status) { Fabricate(:status, text: 'Foo', account: account, poll_attributes: {options: %w(Foo Bar), account: account, multiple: false, hide_totals: false, expires_at: 7.days.from_now }) }
+    let!(:status) { Fabricate(:status, text: 'Foo', account: account, poll_attributes: { options: %w(Foo Bar), account: account, multiple: false, hide_totals: false, expires_at: 7.days.from_now }) }
     let!(:poll)   { status.poll }
     let!(:voter) { Fabricate(:account) }
 

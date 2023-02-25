@@ -2,25 +2,37 @@
   "name": "Mastodon",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
-  "workspaceFolder": "/workspaces/mastodon",
+  "workspaceFolder": "/mastodon",
 
-  // Set *default* container specific settings.json values on container create.
-  "settings": {},
+  // Configure tool-specific properties.
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      // Set *default* container specific settings.json values on container create.
+      "settings": {},
 
-  // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [
-    "EditorConfig.EditorConfig",
-    "dbaeumer.vscode-eslint",
-    "rebornix.Ruby",
-    "webben.browserslist"
-  ],
+      // Add the IDs of extensions you want installed when the container is created.
+      "extensions": [
+        "EditorConfig.EditorConfig",
+        "dbaeumer.vscode-eslint",
+        "rebornix.Ruby",
+        "webben.browserslist"
+      ]
+    }
+  },
+
+  "features": {
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
+    }
+  },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // This can be used to network with other containers or the host.
   "forwardPorts": [3000, 4000],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "bundle install --path vendor/bundle && yarn install && git checkout -- Gemfile.lock && ./bin/rails db:setup",
+  "postCreateCommand": ".devcontainer/post-create.sh",
 
   // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
   "remoteUser": "vscode"

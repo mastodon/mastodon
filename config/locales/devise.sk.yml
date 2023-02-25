@@ -21,6 +21,7 @@ sk:
         action: Potvrď emailovú adresu
         action_with_app: Potvrď a vráť sa na %{app}
         explanation: S touto emailovou adresou si si vytvoril/a účet na %{host}. Si iba jeden klik od jeho aktivácie. Pokiaľ si to ale nebol/a ty, prosím ignoruj tento email.
+        explanation_when_pending: S touto e-mailovou adresou ste požiadali o pozvánku na %{host}. Po potvrdení vašej e-mailovej adresy vašu žiadosť skontrolujeme. Môžete sa prihlásiť, aby ste zmenili svoje údaje alebo vymazali svoje konto, ale kým nebude vaše konto schválené, nebudete mať prístup k väčšine funkcií. Ak bude vaša žiadosť zamietnutá, vaše údaje budú odstránené, takže sa od vás nebudú vyžadovať žiadne ďalšie kroky. Ak ste to neboli vy, tento e-mail ignorujte.
         extra_html: Prosím, pozri sa aj na <a href="%{terms_path}"> pravidlá tohto servera,</a> a <a href="%{policy_path}"> naše užívaťeľské podiemky</a>.
         subject: 'Mastodon: Potvrdzovacie pokyny pre %{instance}'
         title: Potvrď emailovú adresu
@@ -59,6 +60,23 @@ sk:
         title: Obnovovacie kódy pre dvoj-faktorové overovanie zmenené
       unlock_instructions:
         subject: 'Mastodon: Pokyny na odomknutie účtu'
+      webauthn_credential:
+        added:
+          explanation: Do vášho konta bol pridaný nasledujúci bezpečnostný kľúč
+          subject: 'Mastodon: Nový bezpečnostný kľúč'
+          title: Bol pridaný nový bezpečnostný kľúč
+        deleted:
+          explanation: Z vášho účtu bol odstránený nasledujúci bezpečnostný kľúč
+          subject: 'Mastodon: Bezpečnostný kľúč odstránený'
+          title: Jeden z vašich bezpečnostných kľúčov bol odstránený
+      webauthn_disabled:
+        explanation: Overovanie pomocou bezpečnostných kľúčov bolo pre vaše konto vypnuté. Prihlásenie je teraz možné len pomocou tokenu vygenerovaného spárovanou aplikáciou TOTP.
+        subject: 'Mastodon: Overovanie s vypnutými bezpečnostnými kľúčmi'
+        title: Bezpečnostné kľúče sú vypnuté
+      webauthn_enabled:
+        explanation: Pre vaše konto bolo povolené overovanie bezpečnostným kľúčom. Váš bezpečnostný kľúč teraz môžete použiť na prihlásenie.
+        subject: 'Mastodon: Povolené overovanie bezpečnostného kľúča'
+        title: Povolené bezpečnostné kľúče
     omniauth_callbacks:
       failure: Nebolo možné ťa overiť z %{kind}, lebo "%{reason}".
       success: Úspešné overenie z účtu %{kind}.
