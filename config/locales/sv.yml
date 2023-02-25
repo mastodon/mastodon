@@ -428,6 +428,7 @@ sv:
         resolve: Slå upp domän
         title: Blockera ny e-postdomän
       no_email_domain_block_selected: Inga blockeringar av e-postdomäner ändrades eftersom inga valdes
+      not_permitted: Ej tillåtet
       resolved_dns_records_hint_html: Domännamnet ger uppslag till följande MX-domäner, vilka är ytterst ansvariga för att e-post tas emot. Att blockera en MX-domän blockerar även registreringar från alla e-postadresser som använder samma MX-domän, även om det synliga domännamnet är annorlunda. <strong>Var noga med att inte blockera stora e-postleverantörer.</strong>
       resolved_through_html: Uppslagen genom %{domain}
       title: Blockerade e-postdomäner
@@ -474,6 +475,7 @@ sv:
       content_policies:
         comment: Intern anteckning
         description_html: Du kan definiera innehållspolicyer som kommer tillämpas på alla konton från denna domän samt alla dess underdomäner.
+        limited_federation_mode_description_html: Du kan välja om du vill tillåta federering med den här domänen.
         policies:
           reject_media: Avvisa media
           reject_reports: Avvisa rapporter
@@ -631,6 +633,8 @@ sv:
           suspend_html: 'Du håller på att <strong>stänga av</strong> <strong>@%{acct}</strong>s konto. Detta kommer:'
         actions:
           delete_html: Ta bort kränkande inlägg
+        close_report: 'Markera rapporten #%{id} som löst'
+        close_reports_html: Markera <strong>alla</strong> rapporter mot <strong>@%{acct}</strong> som lösta
       target_origin: Ursprung för anmält konto
       title: Anmälningar
       unassign: Otilldela
