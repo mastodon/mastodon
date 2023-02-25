@@ -103,12 +103,12 @@ module AccountsHelper
   def svg_logo
     logo_url = InstancePresenter.new.logo_transparent&.file&.url
     tag = logo_url.present? ? tag(:img, 'src' => logo_url) : nil
-    tag || content_tag(:svg, tag(:use, 'xlink:href' => '#decodon-logo'), 'viewBox' => '0 0 216.4144 232.00976')
+    tag || content_tag(:svg, tag(:use, 'xlink:href' => '#decodon-flower-logo'), 'viewBox' => '0 0 216.4144 232.00976')
   end
 
   def svg_logo_full
     logo_url = InstancePresenter.new.logo&.file&.url
     tag = logo_url.present? ? tag(:img, 'src' => logo_url) : nil
-    tag || content_tag(:svg, tag(:use, 'xlink:href' => '#decodon-logo-full'), 'viewBox' => '0 0 713.35878 175.8678')
+    tag || content_tag(:svg, tag(:use, 'xlink:href' => '#decodon-logo'), 'viewBox' => '0 0 713.35878 175.8678')
   end
 end

@@ -36,9 +36,31 @@
           = t('admin.site_uploads.delete')
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :logo, as: :file, wrapper: :with_block_label, label: t('admin.settings.logo.title')
+      = f.input :logo, as: :file, wrapper: :with_block_label
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :logo_transparent, as: :file, wrapper: :with_block_label, label: t('admin.settings.logo_transparent.title')
+      - if @admin_settings.logo.persisted?
+        = image_tag @admin_settings.logo.file.url(:'@1x'), class: 'fields-group__logo'
+        = link_to admin_site_upload_path(@admin_settings.logo), data: { method: :delete }, class: 'link-button link-button--destructive' do
+          = fa_icon 'trash fw'
+          = t('admin.site_uploads.delete')
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :logo_transparent, as: :file, wrapper: :with_block_label
+    .fields-row__column.fields-row__column-6.fields-group
+      - if @admin_settings.logo_transparent.persisted?
+        = image_tag @admin_settings.logo_transparent.file.url(:'@1x'), class: 'fields-group__logo_transparent'
+        = link_to admin_site_upload_path(@admin_settings.logo_transparent), data: { method: :delete }, class: 'link-button link-button--destructive' do
+          = fa_icon 'trash fw'
+          = t('admin.site_uploads.delete')
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :email, as: :file, wrapper: :with_block_label
+    .fields-row__column.fields-row__column-6.fields-group
+      - if @admin_settings.email.persisted?
+        = image_tag @admin_settings.email.file.url(:'@1x'), class: 'fields-group__email'
+        = link_to admin_site_upload_path(@admin_settings.email), data: { method: :delete }, class: 'link-button link-button--destructive' do
+          = fa_icon 'trash fw'
+          = t('admin.site_uploads.delete')
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

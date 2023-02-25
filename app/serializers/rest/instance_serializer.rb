@@ -10,7 +10,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :domain, :title, :version, :source_url, :description,
-             :usage, :thumbnail, :languages, :configuration,
+             :usage, :thumbnail, :logo, :languages, :configuration,
              :registrations
 
   has_one :contact, serializer: ContactSerializer
@@ -29,6 +29,23 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     else
       {
         url: full_pack_url('media/images/preview.png'),
+      }
+    end
+  end
+
+  def logo
+    if object.logo
+      {
+        url: full_asset_url(object.logo.file.url(:'@1x')),
+        blurhash: object.logo.blurhash,
+        versions: {
+          '@1x': full_asset_url(object.logo.file.url(:'@1x')),
+          '@2x': full_asset_url(object.logo.file.url(:'@2x')),
+        },
+      }
+    else
+      {
+        url: full_pack_url('media/images/logo_full.svg'),
       }
     end
   end
