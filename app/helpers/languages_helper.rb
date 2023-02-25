@@ -201,7 +201,6 @@ module LanguagesHelper
     sma: ['Southern Sami', 'Åarjelsaemien Gïele'].freeze,
     smj: ['Lule Sami', 'Julevsámegiella'].freeze,
     szl: ['Silesian', 'ślůnsko godka'].freeze,
-    tai: ['Tai', 'ภาษาไท or ภาษาไต'].freeze,
     tok: ['Toki Pona', 'toki pona'].freeze,
     zba: ['Balaibalan', 'باليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
