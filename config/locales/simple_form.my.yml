@@ -1,1 +1,72 @@
 my:
+  simple_form:
+    labels:
+      account:
+        fields:
+          value: အကြောင်းအရာ
+      account_alias:
+        acct: အကောင့်ဟောင်းကို ကိုင်တွယ်ပါ။
+      account_migration:
+        acct: အကောင့်သစ်ကို ကိုင်တွယ်ပါ။
+      account_warning_preset:
+        title: ခေါင်းစဥ်
+      admin_account_action:
+        type: လုပ်ဆောင်ချက်
+        types:
+          none: သတိပေးချက်ပေးပို့ပါ
+          silence: ကန့်သတ်
+      announcement:
+        text: ကြေညာချက်
+      defaults:
+        avatar: ကိုယ်စားပြုရုပ်ပုံ
+        bot: ဤသည်မှာ ဘော့တ်အကောင့်တစ်ခုဖြစ်သည်။
+        chosen_languages: ဘာသာစကားများကို စစ်ထုတ်ထားခြင်း
+        confirm_new_password: စကားဝှက်အသစ်ကို အတည်ပြုပါ
+        confirm_password: စကားဝှက်ကို အတည်ပြုပါ။
+        context: အကြောင်းအရာများကို စစ်ထုတ်ပါ။
+        current_password: လက်ရှိစကားဝှက်
+        data: အချက်အလက်
+        display_name: ဖော်ပြမည့်အမည်
+        email: အီးမေးလ်လိပ်စာ
+        header: မျက်နှာဖုံးပုံ
+        honeypot: "%{label} (မဖြည့်ပါနှင့်)"
+        new_password: စကားဝှက်အသစ်
+        otp_attempt: နှစ်ဆင့်ခံလုံခြုံရေးကုဒ်
+        password: စကားဝှက်
+        setting_display_media_show_all: အားလုံးပြရန်
+        setting_system_font_ui: စနစ်ရှိ နဂိုမူလ စာလုံးပုံစံကို အသုံးပြုပါ
+        title: ခေါင်းစဥ်
+        username: အသုံးပြုသူအမည်
+        username_or_email: အသုံးပြုသူအမည် သို့မဟုတ် အီးမေးလ်
+      form_admin_settings:
+        custom_css: စိတ်ကြိုက်ပြုလုပ်ထားသော CSS
+        mascot: စိတ်ကြိုက်ပြုလုပ်ထားသော mascot (legacy)
+        site_contact_email: ဆက်သွယ်ရမည့် အီးမေးလ်
+        site_contact_username: ဆက်သွယ်ရမည့် အသုံးပြုသူအမည်
+        site_terms: ကိုယ်ရေးအချက်အလက်မူဝါဒ
+        site_title: ဆာဗာအမည်
+      interactions:
+        must_be_following: သင် စောင့်ကြည့်မထားသူများထံမှ အသိပေးချက်များကို ပိတ်ပါ
+        must_be_following_dm: သင် စောင့်ကြည့်မထားသူများထံမှ တိုက်ရိုက်မက်ဆေ့ချ်များကို ပိတ်ပါ
+      invite:
+        comment: မှတ်ချက်
+      invite_request:
+        text: သင် ဘာကြောင့် ပါဝင်ချင်တာလဲ။
+      ip_block:
+        comment: မှတ်ချက်
+        ip: IP
+        severity: စည်းမျဉ်း
+      notification_emails:
+        favourite: တစ်စုံတစ်ဦးက သင့်ပို့စ်ကို နှစ်သက်ခဲ့သည်။
+        follow: တစ်စုံတစ်ဦးက သင့်ကို စောင့်ကြည့်ခဲ့သည်
+        follow_request: တစ်စုံတစ်ဦးက သင့်ကို စောင့်ကြည့်ရန် တောင်းဆိုခဲ့သည်
+        mention: တစ်စုံတစ်ဦးက သင့်ကို ဖော်ပြခဲ့သည်
+      rule:
+        text: စည်းမျဉ်း
+      user:
+        role: အခန်းကဏ္ဍ
+      user_role:
+        name: အမည်
+        permissions_as_keys: ခွင့်ပြုချက်များ
+        position: ဦးစားပေး
+    'no': 'မလုပ်ပါ'
