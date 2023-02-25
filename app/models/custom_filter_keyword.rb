@@ -23,6 +23,10 @@ class CustomFilterKeyword < ApplicationRecord
   before_destroy :prepare_cache_invalidation!
   after_commit :invalidate_cache!
 
+  def keyword=(value)
+    super(value&.strip)
+  end
+
   private
 
   def prepare_cache_invalidation!
