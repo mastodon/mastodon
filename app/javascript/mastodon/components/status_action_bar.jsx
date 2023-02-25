@@ -220,7 +220,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
   handleClearNotificationsClick = () => {
     this.props.onClearNotifications(this.props.status);
-  }
+  };
 
   handleFilterClick = () => {
     this.props.onAddFilter(this.props.status);
