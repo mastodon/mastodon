@@ -278,7 +278,7 @@ module AccountInteractions
       followers.where(Account.arel_table[:uri].matches("#{Account.sanitize_sql_like(url_prefix)}/%", false, true)).or(followers.where(uri: url_prefix)).pluck_each(:uri) do |uri|
         Xorcist.xor!(digest, Digest::SHA256.digest(uri))
       end
-      digest.unpack('H*')[0]
+      digest.unpack1('H*')
     end
   end
 
@@ -288,7 +288,7 @@ module AccountInteractions
       followers.where(domain: nil).pluck_each(:username) do |username|
         Xorcist.xor!(digest, Digest::SHA256.digest(ActivityPub::TagManager.instance.uri_for_username(username)))
       end
-      digest.unpack('H*')[0]
+      digest.unpack1('H*')
     end
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Admin::ChangeEmailsController, type: :controller do
@@ -35,7 +37,7 @@ RSpec.describe Admin::ChangeEmailsController, type: :controller do
 
       expect(user.email).to eq previous_email
       expect(user.unconfirmed_email).to eq 'test@example.com'
-      expect(user.confirmation_token).not_to be_nil
+      expect(user.confirmation_token).to_not be_nil
 
       expect(UserMailer).to have_received(:confirmation_instructions).with(user, user.confirmation_token, { to: 'test@example.com' })
 

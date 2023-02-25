@@ -7,7 +7,7 @@ namespace :mastodon do
   task :stats do
     require 'rails/code_statistics'
     [
-      %w(App\ Libraries app/lib),
+      ['App Libraries', 'app/lib'],
       %w(Presenters app/presenters),
       %w(Services app/services),
       %w(Validators app/validators),

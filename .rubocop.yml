@@ -88,11 +88,20 @@ Metrics/ModuleLength:
 Metrics/PerceivedComplexity:
   Max: 16 # RuboCop default 8
 
+Rails/HttpStatus:
+  EnforcedStyle: numeric
+
 Rails/Exit:
   Exclude:
     - 'lib/mastodon/*_cli.rb'
     - 'lib/mastodon/cli_helper.rb'
     - 'lib/cli.rb'
+
+RSpec/NotToNot:
+  EnforcedStyle: to_not
+
+RSpec/Rails/HttpStatus:
+  EnforcedStyle: numeric
 
 Style/HashSyntax:
   EnforcedStyle: ruby19_no_mixed_keys
@@ -105,6 +114,9 @@ Style/PercentLiteralDelimiters:
   PreferredDelimiters:
     '%i': '()'
     '%w': '()'
+
+Style/RescueStandardError:
+  EnforcedStyle: implicit
 
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: 'comma'

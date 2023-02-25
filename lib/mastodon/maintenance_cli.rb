@@ -289,7 +289,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring account domain blocks indexes…'
-      ActiveRecord::Base.connection.add_index :account_domain_blocks, ['account_id', 'domain'], name: 'index_account_domain_blocks_on_account_id_and_domain', unique: true
+      ActiveRecord::Base.connection.add_index :account_domain_blocks, %w(account_id domain), name: 'index_account_domain_blocks_on_account_id_and_domain', unique: true
     end
 
     def deduplicate_account_identity_proofs!
@@ -303,7 +303,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring account identity proofs indexes…'
-      ActiveRecord::Base.connection.add_index :account_identity_proofs, ['account_id', 'provider', 'provider_username'], name: 'index_account_proofs_on_account_and_provider_and_username', unique: true
+      ActiveRecord::Base.connection.add_index :account_identity_proofs, %w(account_id provider provider_username), name: 'index_account_proofs_on_account_and_provider_and_username', unique: true
     end
 
     def deduplicate_announcement_reactions!
@@ -317,7 +317,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring announcement_reactions indexes…'
-      ActiveRecord::Base.connection.add_index :announcement_reactions, ['account_id', 'announcement_id', 'name'], name: 'index_announcement_reactions_on_account_id_and_announcement_id', unique: true
+      ActiveRecord::Base.connection.add_index :announcement_reactions, %w(account_id announcement_id name), name: 'index_announcement_reactions_on_account_id_and_announcement_id', unique: true
     end
 
     def deduplicate_conversations!
@@ -359,7 +359,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring custom_emojis indexes…'
-      ActiveRecord::Base.connection.add_index :custom_emojis, ['shortcode', 'domain'], name: 'index_custom_emojis_on_shortcode_and_domain', unique: true
+      ActiveRecord::Base.connection.add_index :custom_emojis, %w(shortcode domain), name: 'index_custom_emojis_on_shortcode_and_domain', unique: true
     end
 
     def deduplicate_custom_emoji_categories!
@@ -550,7 +550,7 @@ module Mastodon
       @prompt.warn 'All those accounts are distinct accounts but only the most recently-created one is fully-functional.'
 
       accounts.each_with_index do |account, idx|
-        @prompt.say '%2d. %s: created at: %s; updated at: %s; last logged in at: %s; statuses: %5d; last status at: %s' % [idx, account.username, account.created_at, account.updated_at, account.user&.last_sign_in_at&.to_s || 'N/A', account.account_stat&.statuses_count || 0, account.account_stat&.last_status_at || 'N/A']
+        @prompt.say format('%2d. %s: created at: %s; updated at: %s; last logged in at: %s; statuses: %5d; last status at: %s', idx, account.username, account.created_at, account.updated_at, account.user&.last_sign_in_at&.to_s || 'N/A', account.account_stat&.statuses_count || 0, account.account_stat&.last_status_at || 'N/A')
       end
 
       @prompt.say 'Please chose the one to keep unchanged, other ones will be automatically renamed.'

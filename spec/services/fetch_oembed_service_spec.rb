@@ -62,7 +62,7 @@ describe FetchOEmbedService, type: :service do
 
         it 'does not cache OEmbed endpoint' do
           subject.call('https://host.test/oembed.html', format: :xml)
-          expect(Rails.cache.exist?('oembed_endpoint:host.test')).to eq false
+          expect(Rails.cache.exist?('oembed_endpoint:host.test')).to be false
         end
       end
 
@@ -83,7 +83,7 @@ describe FetchOEmbedService, type: :service do
 
         it 'does not cache OEmbed endpoint' do
           subject.call('https://host.test/oembed.html')
-          expect(Rails.cache.exist?('oembed_endpoint:host.test')).to eq false
+          expect(Rails.cache.exist?('oembed_endpoint:host.test')).to be false
         end
       end
 
@@ -104,7 +104,7 @@ describe FetchOEmbedService, type: :service do
 
         it 'does not cache OEmbed endpoint' do
           subject.call('https://host.test/oembed.html')
-          expect(Rails.cache.exist?('oembed_endpoint:host.test')).to eq false
+          expect(Rails.cache.exist?('oembed_endpoint:host.test')).to be false
         end
       end
 

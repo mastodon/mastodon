@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe FollowService, type: :service do
-  let(:sender) { Fabricate(:account, username: 'alice') }
-
   subject { FollowService.new }
+
+  let(:sender) { Fabricate(:account, username: 'alice') }
 
   context 'local account' do
     describe 'locked account' do

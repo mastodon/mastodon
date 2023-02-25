@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe FetchResourceService, type: :service do
   describe '#call' do
-    let(:url) { 'http://example.com' }
-
     subject { described_class.new.call(url) }
+
+    let(:url) { 'http://example.com' }
 
     context 'with blank url' do
       let(:url) { '' }
@@ -74,7 +76,7 @@ RSpec.describe FetchResourceService, type: :service do
       context 'when content type is application/atom+xml' do
         let(:content_type) { 'application/atom+xml' }
 
-        it { is_expected.to eq nil }
+        it { is_expected.to be_nil }
       end
 
       context 'when content type is activity+json' do

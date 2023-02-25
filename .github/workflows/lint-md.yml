@@ -1,28 +1,24 @@
-name: JavaScript Linting
+name: Markdown Linting
 on:
   push:
     branches-ignore:
       - 'dependabot/**'
     paths:
+      - '.github/workflows/lint-md.yml'
+      - '.prettier*'
+      - '**/*.md'
+      - '!AUTHORS.md'
       - 'package.json'
       - 'yarn.lock'
-      - '.nvmrc'
-      - '.prettier*'
-      - '.eslint*'
-      - '**/*.js'
-      - '**/*.jsx'
-      - '.github/workflows/lint-js.yml'
 
   pull_request:
     paths:
+      - '.github/workflows/lint-md.yml'
+      - '.prettier*'
+      - '**/*.md'
+      - '!AUTHORS.md'
       - 'package.json'
       - 'yarn.lock'
-      - '.nvmrc'
-      - '.prettier*'
-      - '.eslint*'
-      - '**/*.js'
-      - '**/*.jsx'
-      - '.github/workflows/lint-js.yml'
 
 jobs:
   lint:
@@ -36,10 +32,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: yarn
-          node-version-file: '.nvmrc'
 
       - name: Install all yarn packages
         run: yarn --frozen-lockfile
 
-      - name: ESLint
-        run: yarn test:lint:js
+      - name: Prettier
+        run: yarn prettier --check "**/*.md"

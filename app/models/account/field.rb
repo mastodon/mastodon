@@ -14,8 +14,8 @@ class Account::Field < ActiveModelSerializers::Model
     @account        = account
 
     super(
-      name:        sanitize(attributes['name']),
-      value:       sanitize(attributes['value']),
+      name: sanitize(attributes['name']),
+      value: sanitize(attributes['value']),
       verified_at: attributes['verified_at']&.to_datetime,
     )
   end

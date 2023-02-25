@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: accounts
@@ -82,8 +83,8 @@ class Account < ApplicationRecord
   MAX_NOTE_LENGTH = (ENV['MAX_BIO_CHARS'] || 500).to_i
   DEFAULT_FIELDS_SIZE = (ENV['MAX_PROFILE_FIELDS'] || 4).to_i
 
-  enum protocol: [:ostatus, :activitypub]
-  enum suspension_origin: [:local, :remote], _prefix: true
+  enum protocol: { ostatus: 0, activitypub: 1 }
+  enum suspension_origin: { local: 0, remote: 1 }, _prefix: true
 
   validates :username, presence: true
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
@@ -111,7 +112,7 @@ class Account < ApplicationRecord
   scope :bots, -> { where(actor_type: %w(Application Service)) }
   scope :groups, -> { where(actor_type: 'Group') }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
-  scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
+  scope :matches_username, ->(value) { where('lower((username)::text) LIKE lower(?)', "#{value}%") }
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
   scope :without_unapproved, -> { left_outer_joins(:user).remote.or(left_outer_joins(:user).merge(User.approved.confirmed)) }
@@ -537,6 +538,7 @@ class Account < ApplicationRecord
 
   def ensure_keys!
     return unless local? && private_key.blank? && public_key.blank?
+
     generate_keys
     save!
   end

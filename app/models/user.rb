@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -501,12 +502,14 @@ class User < ApplicationRecord
 
   def sanitize_languages
     return if chosen_languages.nil?
+
     chosen_languages.reject!(&:blank?)
     self.chosen_languages = nil if chosen_languages.empty?
   end
 
   def sanitize_role
     return if role.nil?
+
     self.role = nil if role.everyone?
   end
 
@@ -525,6 +528,7 @@ class User < ApplicationRecord
   def notify_staff_about_pending_account!
     User.those_who_can(:manage_users).includes(:account).find_each do |u|
       next unless u.allows_pending_account_emails?
+
       AdminMailer.new_pending_account(u.account, self).deliver_later
     end
   end

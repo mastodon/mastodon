@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'The catch all route' do
@@ -5,7 +7,7 @@ describe 'The catch all route' do
     it 'returns a 404 page as html' do
       get '/test'
 
-      expect(response.status).to eq 404
+      expect(response).to have_http_status 404
       expect(response.media_type).to eq 'text/html'
     end
   end
@@ -14,7 +16,7 @@ describe 'The catch all route' do
     it 'returns a 404 page as html' do
       get '/test.test'
 
-      expect(response.status).to eq 404
+      expect(response).to have_http_status 404
       expect(response.media_type).to eq 'text/html'
     end
   end

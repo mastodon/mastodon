@@ -44,7 +44,7 @@ RSpec.describe SessionActivation, type: :model do
       let(:id) { nil }
 
       it 'returns nil' do
-        is_expected.to be_nil
+        expect(subject).to be_nil
       end
     end
 
@@ -54,7 +54,7 @@ RSpec.describe SessionActivation, type: :model do
 
       context 'id exists as session_id' do
         it 'returns true' do
-          is_expected.to be true
+          expect(subject).to be true
         end
       end
 
@@ -64,7 +64,7 @@ RSpec.describe SessionActivation, type: :model do
         end
 
         it 'returns false' do
-          is_expected.to be false
+          expect(subject).to be false
         end
       end
     end

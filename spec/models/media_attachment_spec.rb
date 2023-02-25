@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe MediaAttachment, type: :model do
   describe 'local?' do
-    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url) }
-
     subject { media_attachment.local? }
+
+    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url) }
 
     context 'remote_url is blank' do
       let(:remote_url) { '' }
 
       it 'returns true' do
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
@@ -18,15 +20,15 @@ RSpec.describe MediaAttachment, type: :model do
       let(:remote_url) { 'remote_url' }
 
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
 
   describe 'needs_redownload?' do
-    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url, file: file) }
-
     subject { media_attachment.needs_redownload? }
+
+    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url, file: file) }
 
     context 'file is blank' do
       let(:file) { nil }
@@ -35,7 +37,7 @@ RSpec.describe MediaAttachment, type: :model do
         let(:remote_url) { 'remote_url' }
 
         it 'returns true' do
-          is_expected.to be true
+          expect(subject).to be true
         end
       end
     end
@@ -47,7 +49,7 @@ RSpec.describe MediaAttachment, type: :model do
         let(:remote_url) { '' }
 
         it 'returns false' do
-          is_expected.to be false
+          expect(subject).to be false
         end
       end
 
@@ -55,7 +57,7 @@ RSpec.describe MediaAttachment, type: :model do
         let(:remote_url) { 'remote_url' }
 
         it 'returns true' do
-          is_expected.to be false
+          expect(subject).to be false
         end
       end
     end
@@ -138,7 +140,7 @@ RSpec.describe MediaAttachment, type: :model do
     end
 
     it 'extracts thumbnail' do
-      expect(media.thumbnail.present?).to eq true
+      expect(media.thumbnail.present?).to be true
     end
 
     it 'extracts colors from thumbnail' do

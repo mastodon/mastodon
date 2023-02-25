@@ -45,7 +45,7 @@ class Importer::BaseImporter
   # Remove documents from the index that no longer exist in the database
   def clean_up!
     index.scroll_batches do |documents|
-      ids           = documents.map { |doc| doc['_id'] }
+      ids           = documents.pluck('_id')
       existence_map = index.adapter.target.where(id: ids).pluck(:id).each_with_object({}) { |id, map| map[id.to_s] = true }
       tmp           = ids.reject { |id| existence_map[id] }
 

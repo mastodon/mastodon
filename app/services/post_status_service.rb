@@ -95,6 +95,7 @@ class PostStatusService < BaseService
 
   def safeguard_mentions!(status)
     return if @options[:allowed_mentions].nil?
+
     expected_account_ids = @options[:allowed_mentions].map(&:to_i)
 
     unexpected_accounts = status.mentions.map(&:account).to_a.reject { |mentioned_account| expected_account_ids.include?(mentioned_account.id) }
@@ -184,8 +185,10 @@ class PostStatusService < BaseService
 
   def bump_potential_friendship!
     return if !@status.reply? || @account.id == @status.in_reply_to_account_id
+
     ActivityTracker.increment('activity:interactions')
     return if @account.following?(@status.in_reply_to_account_id)
+
     PotentialFriendshipTracker.record(@account.id, @status.in_reply_to_account_id, :reply)
   end
 

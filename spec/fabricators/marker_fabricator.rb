@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Fabricator(:marker) do
   user
   timeline     'home'

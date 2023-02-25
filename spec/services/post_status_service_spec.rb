@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe PostStatusService, type: :service do
@@ -50,7 +52,7 @@ RSpec.describe PostStatusService, type: :service do
     end
 
     it 'does not change statuses count' do
-      expect { subject.call(account, text: 'Hi future!', scheduled_at: future, thread: previous_status) }.not_to change { [account.statuses_count, previous_status.replies_count] }
+      expect { subject.call(account, text: 'Hi future!', scheduled_at: future, thread: previous_status) }.to_not change { [account.statuses_count, previous_status.replies_count] }
     end
   end
 
@@ -157,7 +159,7 @@ RSpec.describe PostStatusService, type: :service do
 
     expect do
       subject.call(account, text: '@alice @alice @alice hey @alice')
-    end.not_to raise_error
+    end.to_not raise_error
   end
 
   it 'processes hashtags' do
@@ -216,7 +218,7 @@ RSpec.describe PostStatusService, type: :service do
       media_ids: [media.id]
     )
 
-    expect(media.reload.status).to eq nil
+    expect(media.reload.status).to be_nil
   end
 
   it 'does not allow attaching more than 4 files' do

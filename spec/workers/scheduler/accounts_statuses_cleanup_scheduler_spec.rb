@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Scheduler::AccountsStatusesCleanupScheduler do
@@ -19,11 +21,10 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
     [
       {
         'concurrency' => 2,
-        'queues' => ['push', 'default'],
+        'queues' => %w(push default),
       },
     ]
   end
-  let(:retry_size) { 0 }
 
   before do
     queue_stub = double
@@ -33,7 +34,6 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
     allow(Sidekiq::ProcessSet).to receive(:new).and_return(process_set_stub)
 
     sidekiq_stats_stub = double
-    allow(sidekiq_stats_stub).to receive(:retry_size).and_return(retry_size)
     allow(Sidekiq::Stats).to receive(:new).and_return(sidekiq_stats_stub)
 
     # Create a bunch of old statuses
@@ -70,19 +70,11 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
         expect(subject.under_load?).to be true
       end
     end
-
-    context 'when there is a huge amount of jobs to retry' do
-      let(:retry_size) { 1_000_000 }
-
-      it 'returns true' do
-        expect(subject.under_load?).to be true
-      end
-    end
   end
 
   describe '#get_budget' do
     context 'on a single thread' do
-      let(:process_set_stub) { [{ 'concurrency' => 1, 'queues' => ['push', 'default'] }] }
+      let(:process_set_stub) { [{ 'concurrency' => 1, 'queues' => %w(push default) }] }
 
       it 'returns a low value' do
         expect(subject.compute_budget).to be < 10
@@ -92,7 +84,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
     context 'on a lot of threads' do
       let(:process_set_stub) do
         [
-          { 'concurrency' => 2, 'queues' => ['push', 'default'] },
+          { 'concurrency' => 2, 'queues' => %w(push default) },
           { 'concurrency' => 2, 'queues' => ['push'] },
           { 'concurrency' => 2, 'queues' => ['push'] },
           { 'concurrency' => 2, 'queues' => ['push'] },

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ProcessMentionsService, type: :service do
-  let(:account) { Fabricate(:account, username: 'alice') }
-
   subject { ProcessMentionsService.new }
+
+  let(:account) { Fabricate(:account, username: 'alice') }
 
   context 'when mentions contain blocked accounts' do
     let(:non_blocked_account)          { Fabricate(:account) }

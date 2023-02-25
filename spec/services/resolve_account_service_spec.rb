@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ResolveAccountService, type: :service do
@@ -108,7 +110,7 @@ RSpec.describe ResolveAccountService, type: :service do
     it 'returns new remote account' do
       account = subject.call('Foo@redirected.example.com')
 
-      expect(account.activitypub?).to eq true
+      expect(account.activitypub?).to be true
       expect(account.acct).to eq 'foo@ap.example.com'
       expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
     end
@@ -123,7 +125,7 @@ RSpec.describe ResolveAccountService, type: :service do
     it 'returns new remote account' do
       account = subject.call('Foo@redirected.example.com')
 
-      expect(account.activitypub?).to eq true
+      expect(account.activitypub?).to be true
       expect(account.acct).to eq 'foo@ap.example.com'
       expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
     end
@@ -146,7 +148,7 @@ RSpec.describe ResolveAccountService, type: :service do
     it 'returns new remote account' do
       account = subject.call('foo@ap.example.com')
 
-      expect(account.activitypub?).to eq true
+      expect(account.activitypub?).to be true
       expect(account.domain).to eq 'ap.example.com'
       expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
     end
@@ -159,7 +161,7 @@ RSpec.describe ResolveAccountService, type: :service do
       it 'returns new remote account' do
         account = subject.call('foo@ap.example.com')
 
-        expect(account.activitypub?).to eq true
+        expect(account.activitypub?).to be true
         expect(account.domain).to eq 'ap.example.com'
         expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
         expect(account.actor_type).to eq 'Person'
@@ -174,7 +176,7 @@ RSpec.describe ResolveAccountService, type: :service do
     it 'returns new remote account' do
       account = subject.call('foo@ap.example.com')
 
-      expect(account.activitypub?).to eq true
+      expect(account.activitypub?).to be true
       expect(account.domain).to eq 'ap.example.com'
       expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
       expect(account.uri).to eq 'https://ap.example.com/users/foo'
@@ -195,7 +197,7 @@ RSpec.describe ResolveAccountService, type: :service do
     it 'returns new remote account' do
       account = subject.call('foo@ap.example.com')
 
-      expect(account.activitypub?).to eq true
+      expect(account.activitypub?).to be true
       expect(account.domain).to eq 'ap.example.com'
       expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
       expect(account.uri).to eq 'https://ap.example.com/users/foo'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::ProcessAccountService, type: :service do
@@ -12,7 +14,7 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
         attachment: [
           { type: 'PropertyValue', name: 'Pronouns', value: 'They/them' },
           { type: 'PropertyValue', name: 'Occupation', value: 'Unit test' },
-          { type: 'PropertyValue', name: 'non-string', value: ['foo', 'bar'] },
+          { type: 'PropertyValue', name: 'non-string', value: %w(foo bar) },
         ],
       }.with_indifferent_access
     end
@@ -31,6 +33,8 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
   end
 
   context 'when account is not suspended' do
+    subject { described_class.new.call('alice', 'example.com', payload) }
+
     let!(:account) { Fabricate(:account, username: 'alice', domain: 'example.com') }
 
     let(:payload) do
@@ -46,8 +50,6 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
       allow(Admin::SuspensionWorker).to receive(:perform_async)
     end
 
-    subject { described_class.new.call('alice', 'example.com', payload) }
-
     it 'suspends account remotely' do
       expect(subject.suspended?).to be true
       expect(subject.suspension_origin_remote?).to be true
@@ -60,6 +62,8 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
   end
 
   context 'when account is suspended' do
+    subject { described_class.new.call('alice', 'example.com', payload) }
+
     let!(:account) { Fabricate(:account, username: 'alice', domain: 'example.com', display_name: '') }
 
     let(:payload) do
@@ -77,8 +81,6 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
 
       account.suspend!(origin: suspension_origin)
     end
-
-    subject { described_class.new.call('alice', 'example.com', payload) }
 
     context 'locally' do
       let(:suspension_origin) { :local }

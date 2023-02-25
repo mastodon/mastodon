@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 describe ActivityPub::UpdatePollSerializer do
+  subject { JSON.parse(@serialization.to_json) }
+
   let(:account) { Fabricate(:account) }
   let(:poll)    { Fabricate(:poll, account: account) }
   let!(:status) { Fabricate(:status, account: account, poll: poll) }
@@ -10,8 +12,6 @@ describe ActivityPub::UpdatePollSerializer do
   before(:each) do
     @serialization = ActiveModelSerializers::SerializableResource.new(status, serializer: ActivityPub::UpdatePollSerializer, adapter: ActivityPub::Adapter)
   end
-
-  subject { JSON.parse(@serialization.to_json) }
 
   it 'has a Update type' do
     expect(subject['type']).to eql('Update')

@@ -100,8 +100,7 @@ class MigrateAccountConversations < ActiveRecord::Migration[5.2]
     end
   end
 
-  def down
-  end
+  def down; end
 
   private
 
