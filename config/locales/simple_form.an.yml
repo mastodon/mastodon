@@ -18,8 +18,8 @@ an:
           disable: Priva que l'usuario utilice la suya cuenta, pero no elimina ni amagada los suyos contenius.
           none: Utilizar esto pa ninviar una alvertencia a l'usuario, sin enchegar garra atra acción.
           sensitive: Forzar que totz los fichers multimedia d'este usuario sían marcaus como sensibles.
-          silence: Privar que l'usuario pueda publicar con visibilidat publica, amagada los suyos mensaches y notificacions a personas que no lo siguen.
-          suspend: Privar qualsequier interacción dende u enta esta cuenta y eliminar lo suyo conteniu. Reversible en un plazo de 30 días.
+          silence: Privar que l'usuario pueda publicar con visibilidat publica, amagada los suyos mensaches y notificacions a personas que no lo siguen. Zarra totz los informes contra esta cuenta.
+          suspend: Priva qualsequier interacción dende u enta esta cuenta y borra lo suyo conteniu. Reversible en 30 días. Zarra totz los informes contra esta cuenta.
         warning_preset_id: Opcional. Encara puede anyadir texto personalizau a la fin d'a configuración predefinida
       announcement:
         all_day: Quan ye triau nomás s'amostrarán las calendatas d'o rango de tiempo
@@ -74,6 +74,7 @@ an:
           hide: Amagar completament lo conteniu filtrau, comportando-se como si no existise
           warn: Amagar lo conteniu filtrau dezaga d'una alvertencia mencionando lo titol d'o filtro
       form_admin_settings:
+        activity_api_enabled: Conteyo de publicacions locals, usuarios activos y nuevos rechistros en periodos semanals
         backups_retention_period: Mantener los fichers d'usuario cheneraus entre lo numero de días especificau.
         bootstrap_timeline_accounts: Estas cuentas amaneixerán en a parte superior d'as recomendacions d'os nuevos usuarios.
         closed_registrations_message: Amostrau quan los rechistros son zarraus
@@ -81,6 +82,7 @@ an:
         custom_css: Puetz aplicar estilos personalizaus a la versión web de Mastodon.
         mascot: Reemplaza la ilustración en a interficie web abanzada.
         media_cache_retention_period: Los fichers multimedia descargaus s'eliminarán dimpués d'o numero especificau de días quan s'estableixca una valor positiva, y se redescargarán baixo demanda.
+        peers_api_enabled: Una lista de nombres de dominio que este servidor ha trobau en o Fediverso. Aquí no s'incluye garra dato sobre si federas con un servidor determinau, nomás que lo tuyo servidor lo conoixe. Esto ye emplegau per los servicios que replegan estatisticas sobre la federación en un sentiu cheneral.
         profile_directory: Lo directorio de perfils lista a totz los usuarios que han optado per que la suya cuenta pueda estar descubierta.
         require_invite_text: Quan los rechistros requieren aprebación manual, fa obligatoria la dentrada de texto "Per qué quiers unir-te?" en cuenta d'opcional
         site_contact_email: Cómo la chent puede meter-se en contacto con tu pa consultas legals u d'aduya.
@@ -229,6 +231,7 @@ an:
           hide: Amagar completament
           warn: Amagar con una alvertencia
       form_admin_settings:
+        activity_api_enabled: Publicar estatisticas agregadas sobre l'actividat d'o usuario en l'API
         backups_retention_period: Periodo de retención d'o fichero d'usuario
         bootstrap_timeline_accounts: Recomendar siempre estas cuentas a nuevos usuarios
         closed_registrations_message: Mensache personalizau quan los rechistros no son disponibles
@@ -236,6 +239,7 @@ an:
         custom_css: CSS personalizau
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Periodo de retención de caché multimedia
+        peers_api_enabled: Publicar la lista de servidors descubiertos en l'API
         profile_directory: Habilitar directorio de perfils
         registrations_mode: Quí puede rechistrar-se
         require_invite_text: Requerir una razón pa unir-se

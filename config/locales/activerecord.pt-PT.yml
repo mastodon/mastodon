@@ -3,11 +3,11 @@ pt-PT:
   activerecord:
     attributes:
       poll:
-        expires_at: Expira em
+        expires_at: Prazo
         options: Escolhas
       user:
         agreement: Acordo de serviço
-        email: Endereço de e-mail
+        email: Endereço de correio electrónico
         locale: Região
         password: Palavra-passe
       user/account:
@@ -36,11 +36,11 @@ pt-PT:
         status:
           attributes:
             reblog:
-              taken: do status já existe
+              taken: da publicação já existe
         user:
           attributes:
             email:
-              blocked: utiliza um provedor de e-mail não permitido
+              blocked: usa um fornecedor de e-mail que não é permitido
               unreachable: não parece existir
             role_id:
               elevated: não pode ser maior que o da sua função atual

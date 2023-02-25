@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::V1::Statuses::FavouritedByAccountsController, type: :controller do
@@ -31,7 +33,7 @@ RSpec.describe Api::V1::Statuses::FavouritedByAccountsController, type: :control
       it 'returns accounts who favorited the status' do
         get :index, params: { status_id: status.id, limit: 2 }
         expect(body_as_json.size).to eq 2
-      expect([body_as_json[0][:id], body_as_json[1][:id]]).to match_array([alice.id.to_s, bob.id.to_s])
+        expect([body_as_json[0][:id], body_as_json[1][:id]]).to match_array([alice.id.to_s, bob.id.to_s])
       end
 
       it 'does not return blocked users' do
@@ -45,7 +47,7 @@ RSpec.describe Api::V1::Statuses::FavouritedByAccountsController, type: :control
 
   context 'without an oauth token' do
     before do
-      allow(controller).to receive(:doorkeeper_token) { nil }
+      allow(controller).to receive(:doorkeeper_token).and_return(nil)
     end
 
     context 'with a private status' do

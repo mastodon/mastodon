@@ -28,7 +28,7 @@ gl:
       title: Executar acción de moderación a %{acct}
     account_moderation_notes:
       create: Deixar nota
-      created_msg: Nota de moderación creada de xeito correcto!
+      created_msg: Nota de moderación creada correctamente!
       destroyed_msg: Nota de moderación eliminada de xeito correcto!
     accounts:
       add_email_domain_block: Bloquear o dominio do email
@@ -91,6 +91,7 @@ gl:
       moderation:
         active: Activa
         all: Todo
+        disabled: Desactivada
         pending: Pendente
         silenced: Limitada
         suspended: Suspendidos
@@ -116,6 +117,8 @@ gl:
       redownloaded_msg: Actualizado o perfil de %{username} desde a orixe
       reject: Rexeitar
       rejected_msg: Rexeitada a solicitude de rexistro de %{username}
+      remote_suspension_irreversible: Elimináronse de xeito irreversible os datos desta conta.
+      remote_suspension_reversible_hint_html: Esta conta foi suspendida no seu servidor, e os datos serán totalmente eliminados o %{date}. Ata entón, o servidor remoto pode restablecer a conta sen perder datos. Se desexas eliminar agora mesmo todos os datos da conta, podes facelo aquí embaixo.
       remove_avatar: Eliminar imaxe de perfil
       remove_header: Eliminar cabeceira
       removed_avatar_msg: Eliminado a imaxe de avatar de %{username}
@@ -131,6 +134,7 @@ gl:
       search: Procurar
       search_same_email_domain: Outras usuarias co mesmo dominio de email
       search_same_ip: Outras usuarias co mesmo IP
+      security: Seguridade
       security_measures:
         only_password: Só contrasinal
         password_and_2fa: Contrasinal e 2FA
@@ -425,6 +429,7 @@ gl:
         resolve: Resolver dominio
         title: Nova entrada na listaxe negra de email
       no_email_domain_block_selected: Non se cambiou ningún bloqueo de dominio de email porque non se seleccionou ningún
+      not_permitted: Non permitido
       resolved_dns_records_hint_html: O nome de dominio resolve os seguintes rexistros MX, que son os últimos responsables da aceptación de emails. Bloqueando un dominio MX rexeitarás calquera enderezo de email que use este dominio MX, incluso se o nome de dominio visible é outro. <strong>Ten coidado de non bloquear os principais provedores.</strong>
       resolved_through_html: Resolto a través de %{domain}
       title: Listaxe negra de email
@@ -439,6 +444,7 @@ gl:
         private_comment_description_html: 'Para axudarche a lembrar de onde veñen os bloqueos importados, imos crealos engadindo o seguinte comentario privado: <q>%{comment}</q>'
         private_comment_template: Importada desde %{source} o %{date}
         title: Importar bloqueos de dominio
+      invalid_domain_block: 'Un ou varios dominios non se bloquearon debido ao seguintes erros: %{error}'
       new:
         title: Importar bloqueos de dominio
       no_file: Ningún ficheiro seleccionado
@@ -470,6 +476,7 @@ gl:
       content_policies:
         comment: Nota interna
         description_html: Podes definir políticas acerca do contido que serán aplicadas a tódalas contas deste dominio e tódolos seus subdominios.
+        limited_federation_mode_description_html: Podes elexir se permites a federación con este dominio.
         policies:
           reject_media: Rexeitar multimedia
           reject_reports: Rexeitar denuncias
@@ -555,13 +562,12 @@ gl:
       pending: Agardando pola aprobación do repetidor
       save_and_enable: Gardar e activar
       setup: Configurar unha conexión ó repetidor
-      signatures_not_enabled: Os repetidores non funcionarán de xeito correcto se o modo seguro ou listaxe branca están activados
+      signatures_not_enabled: Os repetidores non funcionarán de xeito correcto se o modo seguro ou o modo de federación limitada están activados
       status: Estado
       title: Repetidores
     report_notes:
       created_msg: A nota da denuncia creouse de xeito correcto!
       destroyed_msg: A nota da denuncia borrouse de xeito correcto!
-      today_at: Hoxe ás %{time}
     reports:
       account:
         notes:
@@ -574,19 +580,23 @@ gl:
         mark_as_sensitive_description_html: Os multimedia das publicacións denunciadas serán marcados como sensibles e engadirase un aviso para axudarche a xestionar futuras infraccións da mesma conta.
         other_description_html: Mira máis opcións para controlar o comportamento da conta e personalizar as comunicacións coa conta denunciada.
         resolve_description_html: Non se van tomar accións contra a conta denunciada, nin se gardarán avisos, e pecharase a denuncia.
-        silence_description_html: O perfil será visible só para quen xa o está a seguir ou quen o buscou manualmente, limitando moito o seu alcance. Pódese cambiar.
-        suspend_description_html: O perfil e tódolos seus contidos será inaccesbles e finalmente eliminados. A interacción coa conta non será posible. Reversible durante 30 días.
+        silence_description_html: A conta será visible só para quen xa a está a seguir ou quen a buscou manualmente, limitando moito o seu alcance. Pódese cambiar. Isto pecha tódalas denuncias acerca desta conta.
+        suspend_description_html: A conta e todo o seu contido non serán accesible e finalmente eliminaranse, será imposible interactuar con ela. A decisión é reversible durante 30 días. Isto pecha tódalas denuncias sobre esta conta.
       actions_description_html: Decide que acción tomar respecto desta denuncia. Se tomas accións punitivas contra a conta denunciada, enviaráselles un email coa notificación, excepto se está seleccionada a categoría <strong>Spam</strong>.
+      actions_description_remote_html: Decide a acción a tomar para resolver a denuncia. Isto só lle afecta ao xeito en que o <strong>teu</strong> servidor se comunica con esta conta remota e xestiona o seu contido.
       add_to_report: Engadir máis á denuncia
-      are_you_sure: Estás seguro?
+      are_you_sure: Tes certeza?
       assign_to_self: Asignarme
       assigned: Moderador asignado
       by_target_domain: Dominio da conta denunciada
+      cancel: Cancelar
       category: Categoría
       category_description_html: A razón para denunciar esta conta ou contido será citada na comunicación coa conta denunciada
       comment:
         none: Ningún
       comment_description_html: 'Como información engadida, %{name} escribiu:'
+      confirm: Confirmar
+      confirm_action: Confirma a acción de moderación contra @%{acct}
       created_at: Denunciado
       delete_and_resolve: Eliminar publicacións
       forwarded: Reenviado
@@ -603,6 +613,7 @@ gl:
         placeholder: Describir que accións foron tomadas ou calquera outra novidade sobre esta denuncia...
         title: Notas
       notes_description_html: Ver e deixar unha nota para ti no futuro e outras moderadoras
+      processed_msg: 'Procesada correctamente a denuncia #%{id}'
       quick_actions_description_html: 'Toma unha acción rápida ou desprázate abaixo para ver o contido denunciado:'
       remote_user_placeholder: a usuaria remota desde %{instance}
       reopen: Reabrir denuncia
@@ -615,9 +626,28 @@ gl:
       status: Estado
       statuses: Contido denunciado
       statuses_description_html: O contido ofensivo será citado na comunicación coa conta denunciada
+      summary:
+        action_preambles:
+          delete_html: 'Vas <strong>eliminar</strong> algunha das publicacións de <strong>@%{acct}</strong>. Serán:'
+          mark_as_sensitive_html: 'Vas <strong>marcar</strong> algunha das publicacións de <strong>@%{acct}</strong> como <strong>sensibles</strong>. Serán:'
+          silence_html: 'Vas <strong>limitar</strong> a conta <strong>@%{acct}</strong>:'
+          suspend_html: 'Vas <strong>suspender</strong> a conta <strong>@%{acct}</strong>:'
+        actions:
+          delete_html: Eliminar as publicacións ofensivas
+          mark_as_sensitive_html: Marcar as publicacións ofensivas como sensibles
+          silence_html: Limitar moito a visibilidade e alcance da conta <strong>@%{acct}</strong> facendo que o seu perfil e contidos sexan visibles só por persoas que a seguen ou que a busquen de xeito activo
+          suspend_html: Suspender a conta <strong>@%{acct}</strong>, facendo que o seu perfil e contidos non sexan accesibles e imposible interactuar con ela
+        close_report: 'Marcar a denuncia #%{id} como resolta'
+        close_reports_html: Marcar <strong>todas</strong> as denuncias contra <strong>@%{acct}</strong> como resoltas
+        delete_data_html: Eliminar o perfil e contidos de <strong>@%{acct}</strong> para os próximos 30 días a non ser que sexa suspendida nese período
+        preview_preamble_html: "<strong>@%{acct}</strong> vai recibir un aviso co seguinte contido:"
+        record_strike_html: Anotar un aviso contra <strong>@%{acct}</strong> para axudarche a xestionar futuros problemas con esta conta
+        send_email_html: Enviar un email de aviso a <strong>@%{acct}</strong>
+        warning_placeholder: Razóns adicionais optativas para a acción de moderación.
       target_origin: Orixe da conta denunciada
       title: Denuncias
       unassign: Non asignar
+      unknown_action_msg: 'Acción descoñecida: %{action}'
       unresolved: Non resolto
       updated_at: Actualizado
       view_profile: Ver perfil
@@ -704,11 +734,16 @@ gl:
       content_retention:
         preamble: Controla como se gardan en Mastodon os contidos creados polas usuarias.
         title: Retención do contido
+      default_noindex:
+        desc_html: Aféctalle a tódalas usuarias que non cambiaron este axuste elas mesmas
+        title: Por omisión exclúe as usuarias do indexado por servidores de busca
       discovery:
         follow_recommendations: Recomendacións de seguimento
         preamble: Destacar contido interesante é importante para axudar a que as novas usuarias se sintan cómodas se non coñecen a ninguén en Mastodon. Xestiona os diferentes xeitos de promocionar contidos.
         profile_directory: Directorio de perfís
         public_timelines: Cronoloxías públicas
+        publish_discovered_servers: Publicar os servidores descubertos
+        publish_statistics: Publicar estatísticas
         title: Descubrir
         trends: Tendencias
       domain_blocks:
@@ -763,6 +798,7 @@ gl:
         suspend: "%{name} suspendeu a conta de %{target}"
       appeal_approved: Recurrida
       appeal_pending: Apelación pendente
+      appeal_rejected: Apelación rexeitada
     system_checks:
       database_schema_check:
         message_html: Existen migracións pendentes na base de datos. Bota man desta tarefa para facer que a aplicación funcione como se agarda dela
@@ -798,6 +834,7 @@ gl:
           other: Compartido por %{count} persoas na última semana
         title: Ligazóns en voga
         usage_comparison: Compartido %{today} veces hoxe, comparado con %{yesterday} onte
+      not_allowed_to_trend: Non permitido como tendencia
       only_allowed: Só as permitidas
       pending_review: Revisión pendente
       preview_card_providers:
@@ -929,6 +966,7 @@ gl:
   applications:
     created: Creouse con éxito este aplicativo
     destroyed: Eliminouse con éxito o aplicativo
+    logout: Pechar sesión
     regenerate_token: Votar a xenerar o testemuño de acceso
     token_regenerated: Rexenerouse con éxito o testemuño de acceso
     warning: Ten moito tino con estos datos. Non os compartas nunca con ninguén!
@@ -936,6 +974,8 @@ gl:
   auth:
     apply_for_account: Solicita unha conta
     change_password: Contrasinal
+    confirmations:
+      wrong_email_hint: Se o enderezo de email non é correcto, podes cambialo nos axustes da conta.
     delete_account: Eliminar conta
     delete_account_html: Se queres eliminar a túa conta, podes <a href="%{path}">facelo aquí</a>. Deberás confirmar a acción.
     description:
@@ -963,6 +1003,8 @@ gl:
     resend_confirmation: Reenviar as intruccións de confirmación
     reset_password: Restablecer contrasinal
     rules:
+      accept: Aceptar
+      back: Volver
       preamble: Son establecidas e aplicadas pola moderación de %{domain}.
       title: Algunhas regras básicas.
     security: Seguranza
@@ -971,6 +1013,9 @@ gl:
       email_below_hint_html: Se o enderezo inferior non é correcto, podes cambialo aquí e recibir un correo de confirmación.
       email_settings_hint_html: Enviouse un correo de confirmación a %{email}. Se o enderezo non é correcto podes cambialo nos axustes da conta.
       title: Axustes
+    sign_in:
+      preamble_html: Accede coas túas credenciais en <strong>%{domain}</strong>. Se a túa conta está nun servidor diferente, non podes acceder desde aquí.
+      title: Accede a %{domain}
     sign_up:
       preamble: Cunha conta neste servidor Mastodon poderás seguir a calquera outra persoa na rede, independentemente de onde estivese hospedada esa conta.
       title: Imos crear a túa conta en %{domain}.
@@ -989,9 +1034,9 @@ gl:
     error: Desgraciadamente, algo fallou ao buscar a conta remota
     follow: Seguir
     follow_request: 'Enviaches unha petición de seguimento a:'
-    following: 'Parabéns! Está a seguir a:'
+    following: 'Parabéns! Agora segues a:'
     post_follow:
-      close: Ou, pode pechar esta ventá.
+      close: Ou, podes pechar esta ventá.
       return: Mostrar o perfil da usuaria
       web: Ir á web
     title: Seguir %{acct}
@@ -1024,19 +1069,19 @@ gl:
       x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: A información introducida non é correcta
-    confirm_password: Introduza o seu contrasinal para verificar a súa identidade
+    confirm_password: Escribe o contrasinal actual para verificar a túa identidade
     confirm_username: Introduce o nome de usuaria para confirmar o procedemento
     proceed: Eliminar conta
     success_msg: A súa conta eliminouse correctamente
     warning:
-      before: 'Antes de seguir, por favor lé estas notas con atención:'
-      caches: O contido almacenado en outros servidores podería persistir
+      before: 'Antes de continuar, por favor le estas notas con atención:'
+      caches: O contido almacenado noutros servidores podería persistir
       data_removal: As túas publicacións e outros datos serán permanentemente borrados
       email_change_html: Podes <a href="%{path}">cambiar o enderezo de correo</a> sen eliminar a conta
       email_contact_html: Se non o recibes, podes escribir a <a href="mailto:%{email}">%{email}</a> pedindo axuda
       email_reconfirmation_html: Se non recibes o correo de confirmación, podes <a href="%{path}">solicitalo de novo</a>
       irreversible: Non poderás restaurar ou reactivar a conta
-      more_details_html: Para máis detalles, mira a <a href="%{terms_path}">política de intimidade</a>.
+      more_details_html: Para máis detalles, mira a <a href="%{terms_path}">política de privacidade</a>.
       username_available: O nome de usuaria estará dispoñible novamente
       username_unavailable: O nome de usuaria non estará dispoñible
   disputes:
@@ -1078,7 +1123,7 @@ gl:
     '406': Esta páxina non está dispoñible no formato solicitado.
     '410': A páxina que estaba a buscar xa non existe.
     '422':
-      content: Fallou a verificación de seguridade. Está bloqueando as cookies?
+      content: Fallou a verificación de seguridade. Estás bloqueando os rastros?
       title: Fallou a verficación de seguridade
     '429': Acelerado
     '500':
@@ -1107,7 +1152,7 @@ gl:
   featured_tags:
     add_new: Engadir novo
     errors:
-      limit: Xa acadaches o número máximo de cancelos
+      limit: Xa sinalaches o número máximo de cancelos permitido
     hint_html: "<strong>¿Qué son os cancelos destacados?</strong> Móstranse destacados no teu perfil público e permítenlle a outras persoas ver os teus toots públicos nos que os utilizaches. Son unha ferramenta moi útil para facer seguimento de traballos creativos e proxectos a longo prazo."
   filters:
     contexts:
@@ -1175,8 +1220,6 @@ gl:
     validation_errors:
       one: Algo non está ben de todo! Por favor revise abaixo o erro
       other: Algo aínda non está ben! Por favor revise os %{count} erros abaixo
-  html_validator:
-    invalid_markup: 'contén cancelos HTML non válidas: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Ficheiro CSV non válido. Erro: %{error}'
@@ -1219,7 +1262,7 @@ gl:
     title: Convidar xente
   lists:
     errors:
-      limit: Acadou o número máximo de listas
+      limit: Xa acadaches o número máximo de listas
   login_activities:
     authentication_methods:
       otp: app para autenticación con dous factores
@@ -1260,7 +1303,7 @@ gl:
     set_redirect: Establecer redirección
     warning:
       backreference_required: Tes que configurar primeiro a nova conta para referenciar hacia esta
-      before: 'Antes de seguir, por favor lé estas notas con atención:'
+      before: 'Antes de continuar, por favor le estas notas con atención:'
       cooldown: Tras a migración existe un período de calma durante o cal non poderás volver a migrar de novo
       disabled_account: Tras o cambio a túa conta actual non será totalmente usable, pero terás acceso a exportar os datos e tamén a reactivación.
       followers: Esta acción moverá todas as túas seguidoras desde a conta actual a nova conta
@@ -1360,6 +1403,9 @@ gl:
       unrecognized_emoji: non é unha emoticona recoñecida
   relationships:
     activity: Actividade da conta
+    confirm_follow_selected_followers: Tes a certeza de querer seguir as seguidoras seleccionadas?
+    confirm_remove_selected_followers: Tes a certeza de querer deixar de seguir as seguidoras seleccionadas?
+    confirm_remove_selected_follows: Tes a certeza de querer eliminar os seguimentos seleccionados?
     dormant: En repouso
     follow_selected_followers: Seguir seguidoras seleccionadas
     followers: Seguidoras
@@ -1536,7 +1582,7 @@ gl:
       '7889238': 3 meses
     min_age_label: Límite temporal
     min_favs: Manter as publicacións favoritas máis de
-    min_favs_hint: Non elimina ningunha das túas publicacións que recibiron máis desta cantidade de favoritos. Deixa en branco para eliminar publicacións independentemente do número de favorecementos
+    min_favs_hint: Non elimina ningunha das túas publicacións que recibiron alomenos esta cantidade de favorecementos. Deixa en branco para eliminar publicacións independentemente do número de favorecementos
     min_reblogs: Manter publicacións promovidas máis de
     min_reblogs_hint: Non elimina ningunha das túas publicacións se foron promovidas máis deste número de veces. Deixa en branco para eliminar publicacións independentemente do seu número de promocións
   stream_entries:

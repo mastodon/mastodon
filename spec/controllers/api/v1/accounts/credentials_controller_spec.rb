@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Api::V1::Accounts::CredentialsController do
@@ -35,7 +37,7 @@ describe Api::V1::Accounts::CredentialsController do
             source: {
               privacy: 'unlisted',
               sensitive: true,
-            }
+            },
           }
         end
 
@@ -51,7 +53,7 @@ describe Api::V1::Accounts::CredentialsController do
           expect(user.account.avatar).to exist
           expect(user.account.header).to exist
           expect(user.setting_default_privacy).to eq('unlisted')
-          expect(user.setting_default_sensitive).to eq(true)
+          expect(user.setting_default_sensitive).to be(true)
         end
 
         it 'queues up an account update distribution' do
@@ -70,7 +72,7 @@ describe Api::V1::Accounts::CredentialsController do
         it 'returns http success' do
           expect(response).to have_http_status(200)
         end
-     end
+      end
 
       describe 'with invalid data' do
         before do
@@ -78,7 +80,7 @@ describe Api::V1::Accounts::CredentialsController do
         end
 
         it 'returns http unprocessable entity' do
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(422)
         end
       end
     end
@@ -86,20 +88,20 @@ describe Api::V1::Accounts::CredentialsController do
 
   context 'without an oauth token' do
     before do
-      allow(controller).to receive(:doorkeeper_token) { nil }
+      allow(controller).to receive(:doorkeeper_token).and_return(nil)
     end
 
     describe 'GET #show' do
       it 'returns http unauthorized' do
         get :show
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to have_http_status(401)
       end
     end
 
     describe 'PATCH #update' do
       it 'returns http unauthorized' do
         patch :update, params: { note: 'Foo' }
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to have_http_status(401)
       end
     end
   end

@@ -91,6 +91,7 @@ is:
       moderation:
         active: Virkur
         all: Allt
+        disabled: Óvirkt
         pending: Í bið
         silenced: Takmarkað
         suspended: Í frysti
@@ -116,6 +117,8 @@ is:
       redownloaded_msg: Tókst að endurlesa notandasnið %{username} úr upphaflegu sniði
       reject: Hafna
       rejected_msg: Tókst að hafna skráningu fyrir %{username}
+      remote_suspension_irreversible: Gögnum þessa notandaaðgangs hefur verið eytt óafturkvæmt.
+      remote_suspension_reversible_hint_html: Notandaaðgangurinn hefur verið settur í frysti á hinum netþjóninum og gögnunum á honum verður eytt að fullu þann %{date}. Þangað til gæti hinn netþjóninn endurheimt aðganginn úr frysti án nokkurra breytinga. Ef þú vilt eyða öllum gögnum af honum strax, geturðu gert það hér fyrir neðan.
       remove_avatar: Fjarlægja auðkennismynd
       remove_header: Fjarlægja haus
       removed_avatar_msg: Tókst að fjarlægja auðkennismynd notandans %{username}
@@ -131,6 +134,7 @@ is:
       search: Leita
       search_same_email_domain: Aðra notendur með sama tölvupóstlén
       search_same_ip: Aðrir notendur með sama IP-vistfang
+      security: Öryggi
       security_measures:
         only_password: Aðeins lykilorð
         password_and_2fa: Lykilorð og 2-þátta auðkenning
@@ -425,6 +429,7 @@ is:
         resolve: Leysa lén
         title: Útiloka nýtt tölvupóstlén
       no_email_domain_block_selected: Engum útilokunum tölvupóstléna var breytt þar sem ekkert var valið
+      not_permitted: Ekki leyft
       resolved_dns_records_hint_html: Heiti lénsins vísar til eftirfarandi MX-léna, sem bera endanlega ábyrgð á að tölvupóstur skili sér. Útilokun á MX-léni mun koma í veg fyrir nýskráningar með hverju því tölvupóstfangi sem notar sama MX-lén, jafnvel þótt sýnilega lénsheitið sé frábrugðið. <strong>Farðu varlega svo þú útilokir ekki algengar tölvupóstþjónustur.</strong>
       resolved_through_html: Leyst í gegnum %{domain}
       title: Útilokuð tölvupóstlén
@@ -439,6 +444,7 @@ is:
         private_comment_description_html: 'Tið að aðstoða þig við að rekja hvaðan lokkanir koma, innfluttar lokanir verða búnar til með eftirfarndi athugasemd: <q>%{comment}</q>'
         private_comment_template: Flutt inn frá %{source} þann %{date}
         title: Flytja inn útilokanir léna
+      invalid_domain_block: 'Einni eða fleiri útilokunum léna var sleppt vegna eftirfarandi villu/villna: %{error}'
       new:
         title: Flytja inn útilokanir léna
       no_file: Engin skrá valin
@@ -470,6 +476,7 @@ is:
       content_policies:
         comment: Innri minnispunktur
         description_html: Þú getur skilgreint stefnu varðandi efni sem verður beitt á alla aðganga frá þessu léni og öllum undirlénum þess.
+        limited_federation_mode_description_html: Þú getur valið hvort leyfa eigi skýjasamband við þetta lén.
         policies:
           reject_media: Hafna myndefni
           reject_reports: Hafna kærum
@@ -561,7 +568,6 @@ is:
     report_notes:
       created_msg: Tókst að útbúa minnispunkt skýrslu!
       destroyed_msg: Tókst að eyða minnispunkti skýrslu!
-      today_at: Í dag kl. %{time}
     reports:
       account:
         notes:
@@ -574,19 +580,23 @@ is:
         mark_as_sensitive_description_html: Myndefnið í kærðu færslunum verður merkt sem viðkvæmt og refsing verður skráð til minnis fyrir viðbrögð gegn mögulegum framtíðarbrotum frá sama notandaaðgangi.
         other_description_html: Skoðaðu fleir valkosti fyrir stjórnun á hegðun notandaaðgangsins og til að stýra samskiptum við kærðan notandaaðgang.
         resolve_description_html: Til engra aðgerða verður tekið gagnvart kærðum færslum, engin refsing verður skráð og kærunni verður lokað.
-        silence_description_html: Notandaaðgangurinn verður einungis sýnilegur þeim sem þegar fylgjast með honum eða sem fletta honum upp handvirkt, sem takmarkar útbreiðslu efnis verulega. Er alltaf hægt að afturkalla.
-        suspend_description_html: Notandaaðgangurinn og allt efni á honum mun verða óaðgengilegt og á endanum eytt út. Samskipti við aðganginn verða ekki möguleg. Hægt að afturkalla innan 30 daga.
+        silence_description_html: Notandaaðgangurinn verður einungis sýnilegur þeim sem þegar fylgjast með honum eða sem fletta honum upp handvirkt, sem takmarkar útbreiðslu efnis verulega. Er alltaf hægt að afturkalla. Lokar öllum kærum gagnvart þessum aðgangi.
+        suspend_description_html: Notandaaðgangurinn og allt efni á honum mun verða óaðgengilegt og á endanum eytt út og samskipti við aðganginn verða ekki möguleg. Hægt að afturkalla innan 30 daga. Lokar öllum kærum gagnvart þessum aðgangi.
       actions_description_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Ef þú ákveður að refsa kærða notandaaðgangnum, verður viðkomandi send tilkynning í tölvupósti, nema ef flokkurinn <strong>Ruslpóstur</strong> sé valinn.
+      actions_description_remote_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Þetta mun aðeins hafa áhrif á hvernig <strong>netþjónninn þinn</strong> meðhöndlar þennan fjartengda aðgang og efnið á honum.
       add_to_report: Bæta fleiru í kæru
       are_you_sure: Ertu viss?
       assign_to_self: Úthluta mér
       assigned: Úthlutaður umsjónarmaður
       by_target_domain: Lén kærða notandaaðgangsins
+      cancel: Hætta við
       category: Flokkur
       category_description_html: Ástæðan fyrir því að þessi notandaaðgangur og/eða efni hans var kært mun verða tiltekin í samskiptum við kærðan notandaaðgang
       comment:
         none: Ekkert
       comment_description_html: 'Til að gefa nánari upplýsingar skrifaði %{name}:'
+      confirm: Staðfesta
+      confirm_action: Staðfesta umsjónaraðgerðir gagnvart @%{acct}
       created_at: Tilkynnt
       delete_and_resolve: Eyða færslum
       forwarded: Áframsent
@@ -603,6 +613,7 @@ is:
         placeholder: Lýstu til hvaða aðgerða hefur verið gripið eða uppfærðu inn aðrar tengdar upplýsingar...
         title: Minnispunktar
       notes_description_html: Skoðaðu og skrifaðu minnispunkta til annarra stjórnenda og sjálfs þín
+      processed_msg: 'Tókst að meðhöndla kæruna #%{id}'
       quick_actions_description_html: 'Beittu flýtiaðgerð eða skrunaðu niður til að skoða kært efni:'
       remote_user_placeholder: fjartengda notandann frá %{instance}
       reopen: Enduropna kæru
@@ -615,9 +626,28 @@ is:
       status: Staða
       statuses: Kært efni
       statuses_description_html: Óviðeigandi efni verður tiltekið í samskiptum við kærðan notandaaðgang
+      summary:
+        action_preambles:
+          delete_html: 'Þú er í þann mund að fara að <strong>fjarlægja</strong> sumar af færslunum frá <strong>@%{acct}</strong>. Þetta mun:'
+          mark_as_sensitive_html: 'Þú er í þann mund að fara að <strong>merkja</strong> sumar af færslunum frá <strong>@%{acct}</strong> sem <strong>viðkvæmar</strong>. Þetta mun:'
+          silence_html: 'Þú er í þann mund að fara að <strong>takmarka aðganginn</strong> <strong>@%{acct}</strong>. Þetta mun:'
+          suspend_html: 'Þú er í þann mund að fara að <strong>frysta</strong> aðganginn hjá <strong>@%{acct}</strong>. Þetta mun:'
+        actions:
+          delete_html: Fjarlægja viðkomandi færslur
+          mark_as_sensitive_html: Merkja myndefni í viðkomandi færslum sem viðkvæmt
+          silence_html: Takmarka verulega umfangið hjá <strong>@%{acct}</strong> með því að gera notandasniðið og efni þess einungis sýnilegt fólki sem þegar fylgist með viðkomandi eða þeim sem fletta handvirkt upp upplýsingunum
+          suspend_html: Setja <strong>@%{acct}</strong> í frysti, gera notandasniðið og efni þess óaðgengilegt án mögulegrar gagnvirkni
+        close_report: 'Merkja kæruna #%{id} sem leysta'
+        close_reports_html: Merkja <strong>allar</strong> kærur gagnavart <strong>@%{acct}</strong> sem leystar
+        delete_data_html: Eyða notandasniði <strong>@%{acct}</strong> og efni þess eftir 30 daga nema viðkomandi verði tekinn úr frysti í millitíðinni
+        preview_preamble_html: "<strong>@%{acct}</strong> mun fá aðvörun með eftirfarandi texta:"
+        record_strike_html: Skrá refsingu gagnvart <strong>@%{acct}</strong> til að geta betur átt við brot frá þessum aðgangi í framtíðinni
+        send_email_html: Senda <strong>@%{acct}</strong> aðvörun í tölvupósti
+        warning_placeholder: Valkvæðar aðrar ástæður fyrir umsjónaraðgerðum.
       target_origin: Uppruni kærða notandaaðgangsins
       title: Kærur
       unassign: Aftengja úthlutun
+      unknown_action_msg: 'Óþekkt aðgerð: %{action}'
       unresolved: Óleyst
       updated_at: Uppfært
       view_profile: Skoða notandasnið
@@ -704,11 +734,16 @@ is:
       content_retention:
         preamble: Stýrðu hvernig efni frá notendum sé geymt í Mastodon.
         title: Geymsla efnis
+      default_noindex:
+        desc_html: Hefur áhrif á alla þá notendur sem ekki hafa breytt þessum stillingum sjálfir
+        title: Sjálfgefið láta notendur afþakka atriðaskráningu í leitarvélum
       discovery:
         follow_recommendations: Meðmæli um að fylgjast með
         preamble: Að láta áhugavert efni koma skýrt fram er sérstaklega mikilvægt til að nálgast nýja notendur sem ekki þekkja neinn sem er á Mastodon. Stýrðu því hvernig hinir ýmsu eiginleikar við uppgötvun efnis virka á netþjóninum þínum.
         profile_directory: Notendamappa
         public_timelines: Opinberar tímalínur
+        publish_discovered_servers: Birta uppgötvaða netþjóna
+        publish_statistics: Birta tölfræði
         title: Uppgötvun
         trends: Vinsælt
       domain_blocks:
@@ -763,6 +798,7 @@ is:
         suspend: "%{name} setti notandaaðganginn %{target} í frysti"
       appeal_approved: Áfrýjað
       appeal_pending: Áfrýjun í bið
+      appeal_rejected: Áfrýjun hafnað
     system_checks:
       database_schema_check:
         message_html: Það eru fyrirliggjandi yfirfærslur á gagnagrunnum. Keyrðu þær til að tryggja að forritið hegði sér eins og skyldi
@@ -798,6 +834,7 @@ is:
           other: Deilt af %{count} aðilum síðustu vikuna
         title: Vinsælir tenglar
         usage_comparison: Deilt %{today} sinnum í dag, samanborið við %{yesterday} í gær
+      not_allowed_to_trend: Ekki leyft að verða vinsælt
       only_allowed: Aðeins leyfð
       pending_review: Bíður eftir yfirlestri
       preview_card_providers:
@@ -929,6 +966,7 @@ is:
   applications:
     created: Það tókst að búa til forrit
     destroyed: Það tókst að eyða forriti
+    logout: Skrá út
     regenerate_token: Endurgera aðgangsteikn
     token_regenerated: Það tókst að endurgera aðgangsteiknið
     warning: Farðu mjög varlega með þessi gögn. Þú skalt aldrei deila þeim með neinum!
@@ -936,6 +974,8 @@ is:
   auth:
     apply_for_account: Biðja um notandaaðgang
     change_password: Lykilorð
+    confirmations:
+      wrong_email_hint: Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
     delete_account: Eyða notandaaðgangi
     delete_account_html: Ef þú vilt eyða notandaaðgangnum þínum, þá geturðu <a href="%{path}">farið í það hér</a>. Þú verður beðin/n um staðfestingu.
     description:
@@ -963,6 +1003,8 @@ is:
     resend_confirmation: Senda leiðbeiningar vegna staðfestingar aftur
     reset_password: Endursetja lykilorð
     rules:
+      accept: Samþykkja
+      back: Til baka
       preamble: Þær eru settar og þeim framfylgt af umsjónarmönnum %{domain}.
       title: Nokkrar grunnreglur.
     security: Öryggi
@@ -971,6 +1013,9 @@ is:
       email_below_hint_html: Ef tölvupóstfangið hér fyrir neðan er rangt, skaltu breyta því hér og fá nýjan staðfestingarpóst.
       email_settings_hint_html: Staðfestingarpósturinn var sendur til %{email}. Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
       title: Uppsetning
+    sign_in:
+      preamble_html: Skráðu þig inn með auðkennum þínum fyrir <strong>%{domain}</strong>. Ef aðgangurinn þinn er hýstur á öðrum netþjóni, muntu ekki geta skráð þig inn hér.
+      title: Skrá inn á %{domain}
     sign_up:
       preamble: Með notandaaðgangi á þessum Mastodon-þjóni geturðu fylgst með hverjum sem er á netkerfinu, sama hvar notandaaðgangurinn þeirra er hýstur.
       title: Förum núna að setja þig upp á %{domain}.
@@ -1107,7 +1152,7 @@ is:
   featured_tags:
     add_new: Bæta við nýju
     errors:
-      limit: Þú ert þegar búin/n að gefa hámarksfjölda myllumerkja aukið vægi
+      limit: Þú hefur þegar gefið hámarksfjölda myllumerkja aukið vægi
     hint_html: "<strong>Hvað eru myllumerki með aukið vægi?</strong> Þau eru birt áberandi á opinbera notandasniðinu þínu og gera fólki kleift að fletta í gegnum opinberu færslurnar þínar sérstaklega undir þessum myllumerkjum. Þau eru frábær aðferð við að halda utan um skapandi vinnu eða langtíma verkefni."
   filters:
     contexts:
@@ -1175,8 +1220,6 @@ is:
     validation_errors:
       one: Ennþá er ekk alvegi allt í lagi! Skoðaðu vel villuna hér fyrir neðan
       other: Ennþá er ekki alveg allt í lagi! Skoðaðu vel villurnar %{count} hér fyrir neðan
-  html_validator:
-    invalid_markup: 'inniheldur ógildar HTML-merkingar: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Ógild CSV-skrá. Villa: %{error}'
@@ -1360,6 +1403,9 @@ is:
       unrecognized_emoji: er ekki þekkt tjáningartákn
   relationships:
     activity: Virkni aðgangs
+    confirm_follow_selected_followers: Ertu viss um að þú viljir fylgjast með völdum fylgjendum?
+    confirm_remove_selected_followers: Ertu viss um að þú viljir fjarlægja valda fylgjendur?
+    confirm_remove_selected_follows: Ertu viss um að þú viljir fjarlægja valið sem fylgst er með?
     dormant: Sofandi
     follow_selected_followers: Fylgjast með völdum fylgjendum
     followers: Fylgjendur

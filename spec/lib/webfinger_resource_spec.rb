@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe WebfingerResource do
@@ -14,9 +16,9 @@ describe WebfingerResource do
       it 'raises with a route whose controller is not AccountsController' do
         resource = 'https://example.com/users/alice/other'
 
-        expect {
+        expect do
           WebfingerResource.new(resource).username
-        }.to raise_error(ActiveRecord::RecordNotFound)
+        end.to raise_error(ActiveRecord::RecordNotFound)
       end
 
       it 'raises with a route whose action is not show' do
@@ -29,17 +31,17 @@ describe WebfingerResource do
 
         expect(Rails.application.routes).to receive(:recognize_path).with(resource).and_return(recognized).at_least(:once)
 
-        expect {
+        expect do
           WebfingerResource.new(resource).username
-        }.to raise_error(ActiveRecord::RecordNotFound)
+        end.to raise_error(ActiveRecord::RecordNotFound)
       end
 
       it 'raises with a string that doesnt start with URL' do
         resource = 'website for http://example.com/users/alice/other'
 
-        expect {
+        expect do
           WebfingerResource.new(resource).username
-        }.to raise_error(WebfingerResource::InvalidRequest)
+        end.to raise_error(WebfingerResource::InvalidRequest)
       end
 
       it 'finds the username in a valid https route' do
@@ -68,9 +70,9 @@ describe WebfingerResource do
       it 'raises on a non-local domain' do
         resource = 'user@remote-host.com'
 
-        expect {
+        expect do
           WebfingerResource.new(resource).username
-        }.to raise_error(ActiveRecord::RecordNotFound)
+        end.to raise_error(ActiveRecord::RecordNotFound)
       end
 
       it 'finds username for a local domain' do
@@ -94,17 +96,17 @@ describe WebfingerResource do
       it 'raises on a non-local domain' do
         resource = 'acct:user@remote-host.com'
 
-        expect {
+        expect do
           WebfingerResource.new(resource).username
-        }.to raise_error(ActiveRecord::RecordNotFound)
+        end.to raise_error(ActiveRecord::RecordNotFound)
       end
 
       it 'raises on a nonsense domain' do
         resource = 'acct:user@remote-host@remote-hostess.remote.local@remote'
 
-        expect {
+        expect do
           WebfingerResource.new(resource).username
-        }.to raise_error(ActiveRecord::RecordNotFound)
+        end.to raise_error(ActiveRecord::RecordNotFound)
       end
 
       it 'finds the username for a local account if the domain is the local one' do
@@ -128,9 +130,9 @@ describe WebfingerResource do
       it 'raises InvalidRequest' do
         resource = 'df/:dfkj'
 
-        expect {
+        expect do
           WebfingerResource.new(resource).username
-        }.to raise_error(WebfingerResource::InvalidRequest)
+        end.to raise_error(WebfingerResource::InvalidRequest)
       end
     end
   end

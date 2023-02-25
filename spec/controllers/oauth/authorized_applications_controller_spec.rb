@@ -13,7 +13,7 @@ describe Oauth::AuthorizedApplicationsController do
     shared_examples 'stores location for user' do
       it 'stores location for user' do
         subject
-        expect(controller.stored_location_for(:user)).to eq "/oauth/authorized_applications"
+        expect(controller.stored_location_for(:user)).to eq '/oauth/authorized_applications'
       end
     end
 

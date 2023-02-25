@@ -3,10 +3,13 @@
 class SuspendAccountService < BaseService
   include Payloadable
 
+  # Carry out the suspension of a recently-suspended account
+  # @param [Account] account Account to suspend
   def call(account)
+    return unless account.suspended?
+
     @account = account
 
-    suspend!
     reject_remote_follows!
     distribute_update_actor!
     unmerge_from_home_timelines!
@@ -15,10 +18,6 @@ class SuspendAccountService < BaseService
   end
 
   private
-
-  def suspend!
-    @account.suspend! unless @account.suspended?
-  end
 
   def reject_remote_follows!
     return if @account.local? || !@account.activitypub?
@@ -76,10 +75,15 @@ class SuspendAccountService < BaseService
         styles.each do |style|
           case Paperclip::Attachment.default_options[:storage]
           when :s3
+            # Prevent useless S3 calls if ACLs are disabled
+            next if ENV['S3_PERMISSION'] == ''
+
             begin
               attachment.s3_object(style).acl.put(acl: 'private')
             rescue Aws::S3::Errors::NoSuchKey
               Rails.logger.warn "Tried to change acl on non-existent key #{attachment.s3_object(style).key}"
+            rescue Aws::S3::Errors::NotImplemented => e
+              Rails.logger.error "Error trying to change ACL on #{attachment.s3_object(style).key}: #{e.message}"
             end
           when :fog
             # Not supported

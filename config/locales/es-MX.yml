@@ -4,7 +4,7 @@ es-MX:
     about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, diseño ético, y descentralización! ¡Sé dueño de tu información con Mastodon!'
     contact_missing: No especificado
     contact_unavailable: No disponible
-    hosted_on: Mastodon hosteado en %{domain}
+    hosted_on: Mastodon alojado en %{domain}
     title: Acerca de
   accounts:
     follow: Seguir
@@ -116,6 +116,8 @@ es-MX:
       redownloaded_msg: Se actualizó correctamente el perfil de %{username} desde el origen
       reject: Rechazar
       rejected_msg: La solicitud de registro de %{username} ha sido rechazada con éxito
+      remote_suspension_irreversible: Los datos de esta cuenta han sido eliminados irreversiblemente.
+      remote_suspension_reversible_hint_html: La cuenta ha sido suspendida en su servidor, y los datos serán eliminados completamente el %{date}. Hasta entonces, el servidor remoto puede restaurar esta cuenta sin ningún efecto perjudicial. Si desea eliminar todos los datos de la cuenta inmediatamente, puede hacerlo a continuación.
       remove_avatar: Eliminar el avatar
       remove_header: Eliminar cabecera
       removed_avatar_msg: Se ha eliminado exitosamente la imagen del avatar de %{username}
@@ -439,9 +441,10 @@ es-MX:
         private_comment_description_html: 'Para ayudarle a rastrear de dónde proceden los bloqueos importados, los bloqueos importados se crearán con el siguiente comentario privado: <q>%{comment}</q>'
         private_comment_template: Importado desde %{source} el %{date}
         title: Importar bloqueos de dominio
+      invalid_domain_block: 'Uno o más bloques de dominio fueron omitidos debido a el/los siguiente(s) error(es): %{error}'
       new:
         title: Importar bloqueos de dominio
-      no_file: Ningún archivo seleccionado
+      no_file: No hay archivo seleccionado
     follow_recommendations:
       description_html: "<strong>Las recomendaciones de cuentas ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para suscitar recomendaciones personalizadas de cuentas a las que seguir, en su lugar se le recomiendan estas cuentas. Se recalculan diariamente a partir de una mezcla de cuentas con el mayor número de interacciones recientes y con el mayor número de seguidores locales con un idioma determinado."
       language: Para el idioma
@@ -561,7 +564,6 @@ es-MX:
     report_notes:
       created_msg: "¡El registro de la denuncia se ha creado correctamente!"
       destroyed_msg: "¡El registro de la denuncia se ha borrado correctamente!"
-      today_at: Hoy a las %{time}
     reports:
       account:
         notes:
@@ -574,9 +576,10 @@ es-MX:
         mark_as_sensitive_description_html: Los archivos multimedia en los mensajes informados se marcarán como sensibles y se aplicará una amonestación para ayudarte a escalar las futuras infracciones de la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará la amonestación, y se cerrará el informe.
-        silence_description_html: El perfil será visible solo para aquellos que ya lo sigan o lo busquen manualmente, limitando seriamente su alcance. Siempre puede ser revertido.
-        suspend_description_html: El perfil y todos sus contenidos serán inaccesibles hasta que sean finalmente eliminados. La interacción con la cuenta será imposible. Reversible durante un plazo de 30 días.
+        silence_description_html: La cuenta será visible sólo para aquellos que ya la sigan o la busquen manualmente, limitando severamente su visibilidad. Siempre puede ser revertido. Cierra todos los reportes contra esta cuenta.
+        suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y eventualmente eliminados, e interactuar con ella será imposible. Reversible durante 30 días. Cierra todos los reportes contra esta cuenta.
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
+      actions_description_remote_html: Decide qué medidas tomar para resolver este reporte. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
       add_to_report: Añadir más al reporte
       are_you_sure: "¿Estás seguro?"
       assign_to_self: Asignármela a mí
@@ -587,6 +590,7 @@ es-MX:
       comment:
         none: Ninguno
       comment_description_html: 'Para proporcionar más información, %{name} escribió:'
+      confirm_action: Confirmar acción de moderación contra @%{acct}
       created_at: Denunciado
       delete_and_resolve: Eliminar publicaciones
       forwarded: Reenviado
@@ -603,6 +607,7 @@ es-MX:
         placeholder: Especificar qué acciones se han tomado o cualquier otra novedad respecto a esta denuncia…
         title: Notas
       notes_description_html: Ver y dejar notas a otros moderadores y a tu yo futuro
+      processed_msg: 'La denuncia #%{id} ha sido procesada con éxito'
       quick_actions_description_html: 'Toma una acción rápida o desplázate hacia abajo para ver el contenido denunciado:'
       remote_user_placeholder: el usuario remoto de %{instance}
       reopen: Reabrir denuncia
@@ -615,9 +620,28 @@ es-MX:
       status: Estado
       statuses: Contenido reportado
       statuses_description_html: El contenido ofensivo se citará en comunicación con la cuenta reportada
+      summary:
+        action_preambles:
+          delete_html: 'Estás a punto de <strong>eliminar</strong> algunas de la publicaciones de <strong>@%{acct}</strong>. Esto hará:'
+          mark_as_sensitive_html: 'Estás a punto de <strong>marcar</strong> algunas de las publicaciones de <strong>@%{acct}</strong>como <strong>sensibles</strong>. Esto hará:'
+          silence_html: 'Estás a punto de <strong>limitar</strong> la cuenta de <strong>@%{acct}</strong>. Esto hará:'
+          suspend_html: 'Estás a punto de <strong>suspender</strong> la cuenta de <strong>@%{acct}</strong>. Esto hará:'
+        actions:
+          delete_html: Eliminar las publicaciones ofensivas
+          mark_as_sensitive_html: Marcar las publicaciones ofensivas como sensibles
+          silence_html: Limitar severamente el alcance de <strong>@%{acct}</strong> haciendo que su perfil y contenido sólo sean visibles para las personas que ya lo siguen o que consulten manualmente su perfil
+          suspend_html: Suspender a <strong>@%{acct}</strong>, haciendo su perfil y contenido inaccesibles e imposible la interacción
+        close_report: 'Marcar denuncia #%{id} como resuelta'
+        close_reports_html: Marcar <strong>todas</strong> las denuncias contra <strong>@%{acct}</strong> como resueltas
+        delete_data_html: Eliminar el perfil y contenido de <strong>@%{acct}</strong> en 30 días a partir de ahora a menos que se revierta la suspensión en ese tiempo
+        preview_preamble_html: "<strong>@%{acct}</strong> recibirá una advertencia con el siguiente contenido:"
+        record_strike_html: Registra una amonestación contra <strong>@%{acct}</strong> para ayudarte a escalar futuras violaciones de esta cuenta
+        send_email_html: Enviar a <strong>@%{acct}</strong> un correo electrónico de advertencia
+        warning_placeholder: Razones adicionales opcionales para la acción de moderación.
       target_origin: Origen de la cuenta reportada
       title: Reportes
       unassign: Desasignar
+      unknown_action_msg: 'Acción desconocida: %{action}'
       unresolved: No resuelto
       updated_at: Actualizado
       view_profile: Ver perfil
@@ -704,11 +728,16 @@ es-MX:
       content_retention:
         preamble: Controlar cómo el contenido generado por el usuario se almacena en Mastodon.
         title: Retención de contenido
+      default_noindex:
+        desc_html: Afecta a todos los usuarios que no han cambiado esta configuración por sí mismos
+        title: Optar por los usuarios fuera de la indexación en los motores de búsqueda por defecto
       discovery:
         follow_recommendations: Recomendaciones de cuentas
         preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controla cómo funcionan varias opciones de descubrimiento en tu servidor.
         profile_directory: Directorio de perfiles
         public_timelines: Lineas de tiempo públicas
+        publish_discovered_servers: Publicar servidores descubiertos
+        publish_statistics: Publicar estadísticas
         title: Descubrimiento
         trends: Tendencias
       domain_blocks:
@@ -936,6 +965,8 @@ es-MX:
   auth:
     apply_for_account: Solicitar una cuenta
     change_password: Contraseña
+    confirmations:
+      wrong_email_hint: Si esa dirección de correo electrónico no es correcta, puedes cambiarla en la configuración de la cuenta.
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
     description:
@@ -971,6 +1002,9 @@ es-MX:
       email_below_hint_html: Si la dirección de correo electrónico que aparece a continuación es incorrecta, se puede cambiarla aquí y recibir un nuevo correo electrónico de confirmación.
       email_settings_hint_html: El correo electrónico de confirmación fue enviado a %{email}. Si esa dirección de correo electrónico no sea correcta, se puede cambiarla en la configuración de la cuenta.
       title: Configuración
+    sign_in:
+      preamble_html: Registrate con tus credenciales de <strong>%{domain}</strong>. Si tu cuenta está alojada en un servidor diferente, no podrás iniciar sesión aquí.
+      title: Registrate en %{domain}
     sign_up:
       preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra persona en la red, independientemente del servidor en el que se encuentre.
       title: Crear cuenta de Mastodon en %{domain}.
@@ -1106,8 +1140,6 @@ es-MX:
     storage: Almacenamiento
   featured_tags:
     add_new: Añadir nuevo
-    errors:
-      limit: Ya has alcanzado la cantidad máxima de hashtags
     hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus publicaciones públicas específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
   filters:
     contexts:
@@ -1175,8 +1207,6 @@ es-MX:
     validation_errors:
       one: "¡Algo no está bien! Por favor, revisa el error"
       other: "¡Algo no está bien! Por favor, revise %{count} errores más abajo"
-  html_validator:
-    invalid_markup: 'contiene código HTML no válido: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Archivo CSV no válido. Error: %{error}'
@@ -1217,9 +1247,6 @@ es-MX:
       expires_at: Expira
       uses: Usos
     title: Invitar a gente
-  lists:
-    errors:
-      limit: Has alcanzado la cantidad máxima de listas
   login_activities:
     authentication_methods:
       otp: aplicación de autenticación en dos pasos
@@ -1360,6 +1387,9 @@ es-MX:
       unrecognized_emoji: no es un emoji conocido
   relationships:
     activity: Actividad de la cuenta
+    confirm_follow_selected_followers: "¿Estás seguro de que quieres seguir a las cuentas seleccionadas?"
+    confirm_remove_selected_followers: "¿Estás seguro de que quieres eliminar a los seguidores seleccionados?"
+    confirm_remove_selected_follows: "¿Estás seguro de que quieres eliminar los seguidos seleccionados?"
     dormant: Inactivo
     follow_selected_followers: Seguir a los seguidores seleccionados
     followers: Seguidores
@@ -1536,7 +1566,6 @@ es-MX:
       '7889238': 3 meses
     min_age_label: Umbral de tiempo
     min_favs: Mantener mensajes con un número de favoritos mayor que
-    min_favs_hint: No borra ninguna de las publicaciones que hayan recibido más de esta cantidad de favoritos. Deja en blanco para eliminar publicaciones sin importar el número de favoritos
     min_reblogs: Mantener publicaciones reblogueadas más de
     min_reblogs_hint: No borra ninguna de las publicaciones que hayan sido reblogueadas más de este número de veces. Deja en blanco para eliminar publicaciones sin importar el número de reblogueos
   stream_entries:

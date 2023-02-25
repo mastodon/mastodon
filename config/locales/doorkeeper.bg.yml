@@ -6,7 +6,7 @@ bg:
         name: Име на приложението
         redirect_uri: Пренасочващ URI
         scopes: Обхват
-        website: Уебсайт на приложение
+        website: Уебсайт на приложението
     errors:
       models:
         doorkeeper/application:
@@ -23,17 +23,17 @@ bg:
         cancel: Отказ
         destroy: Унищожаване
         edit: Редактиране
-        submit: Изпращане
+        submit: Подаване
       confirmations:
         destroy: Сигурни ли сте?
       edit:
         title: Редактиране на приложението
       form:
-        error: О, не! Провери формата за възможни грешки
+        error: Опа! Проверете формуляра си за възможни грешки
       help:
         native_redirect_uri: Изполвайте %{native_redirect_uri} за локални тестове
         redirect_uri: Използвайте един ред за всяко URI
-        scopes: Разделяй диапазоните с интервал. Остави празно, за да използваш диапазона по подразбиране.
+        scopes: Разделяйте обхватите с интервал. Оставете празно, за да употребявате стандартните обхвати.
       index:
         application: Приложение
         callback_url: URL за обратно повикване
@@ -43,15 +43,15 @@ bg:
         new: Ново приложение
         scopes: Обхват
         show: Показване
-        title: Твоите приложения
+        title: Вашите приложения
       new:
         title: Ново приложение
       show:
         actions: Действия
-        application_id: Идентификатор на приложението
+        application_id: Ключ на клиента
         callback_urls: URL-и за обратно повикване
-        scopes: Диапазони
-        secret: Тайна
+        scopes: Обхвати
+        secret: Тайна на клиента
         title: 'Приложение: %{name}'
     authorizations:
       buttons:
@@ -74,7 +74,7 @@ bg:
         authorized_at: Упълномощено на %{date}
         description_html: Има приложения, можещи да имат достъп до акаунта ви, използвайки API. Ако тук има приложения, които не знаете, или работещи неправилно, то може да им откажете достъпа.
         last_used_at: Последно обновено на %{date}
-        never_used: Не е използвано
+        never_used: Никога употребявано
         scopes: Разрешения
         superapp: Вътрешно
         title: Упълномощените ви приложения
@@ -84,7 +84,7 @@ bg:
         credential_flow_not_configured: Resource Owner Password Credentials предизвика грешка, заради това, че настройките за Doorkeeper.configure.resource_owner_from_credentials липсват.
         invalid_client: Удостоверяването на клиента предизвика грешка, поради непознат клиент, липсващо клиентско удостоверяване, или заради това, че методът на удостоверяване не се поддържа.
         invalid_grant: Предоставеното удостоверение за достъп е невалидно, изтекло, отхвърлено, не съвпада с пренасочващото URI, използвано в заявката за удостоверение, или е бил издадено от друг клиент.
-        invalid_redirect_uri: Включеният пренасочващ URI адрес е невалиден.
+        invalid_redirect_uri: Включеният пренасочващ Uri е невалиден.
         invalid_request:
           missing_param: 'Липсва задължителен параметър: %{value}.'
           request_not_authorized: Заявката трябва да бъде упълномощена. Необходимият параметър за разрешаване на заявка липсва или е невалиден.
@@ -95,12 +95,12 @@ bg:
           expired: Маркерът за достъп изтече
           revoked: Маркерът за достъп беше отхвърлен
           unknown: Маркерът за достъп е невалиден
-        resource_owner_authenticator_not_configured: Намирането на Resource Owner се провали поради липса на конфигурация на Doorkeeper.configure.resource_owner_authenticator.
+        resource_owner_authenticator_not_configured: Намирането на собственика на ресурса се провали поради липса на конфигуриране на Doorkeeper.configure.resource_owner_authenticator.
         server_error: Сървърът за удостоверяване попадна на неочаквано условие, което предотврати изпълнението на заявката.
         temporarily_unavailable: Сървърът за удостоверяване не може да се справи със заявката в момента поради временно претоварване или профилактика на сървъра.
-        unauthorized_client: Клиентът не е удостоверен да изпълни заявката по този начин.
-        unsupported_grant_type: Типът на удостоврението за достъп не се поддържа от сървъра за удостоверяване.
-        unsupported_response_type: Удостоверяващият сървър не поддържа този тип отговор.
+        unauthorized_client: Клиентът не е упълномощен да изпълни заявката по този начин.
+        unsupported_grant_type: Типът за даване на пълномощно не се поддържа от сървъра за упълномощаване.
+        unsupported_response_type: Упълномощаващият сървър не поддържа този тип отговор.
     flash:
       applications:
         create:
@@ -111,7 +111,7 @@ bg:
           notice: Приложението е обновено.
       authorized_applications:
         destroy:
-          notice: Приложението е отказано.
+          notice: Анулирано приложение.
     grouped_scopes:
       access:
         read: Достъп само за четене
@@ -122,20 +122,20 @@ bg:
         admin/accounts: Администриране на акаунтите
         admin/all: Всички административни функции
         admin/reports: Администриране на докладите
-        all: Всичко
+        all: Пълен достъп до акаунта ви в Mastodon
         blocks: Блокирания
         bookmarks: Отметки
         conversations: Разговори
         crypto: Криптиране от край до край
         favourites: Любими
         filters: Филтри
-        follow: Отношения
+        follow: Последвания, заглушавания и блокирания
         follows: Последвания
         lists: Списъци
         media: Прикачена мултимедия
         mutes: Заглушения
         notifications: Известия
-        push: Push-известия
+        push: Изскачащи известия
         reports: Доклади
         search: Търсене
         statuses: Публикации
@@ -143,20 +143,30 @@ bg:
       admin:
         nav:
           applications: Приложения
-          oauth2_provider: OAuth2 доставчик
+          oauth2_provider: Доставчик OAuth2
       application:
         title: Нужно е упълномощаване по OAuth
     scopes:
       admin:read: прочит на всички данни на сървъра
       admin:read:accounts: прочит на деликатна информация от всички акаунти
+      admin:read:canonical_email_blocks: четене на деликатна информация на всички канонични блокирания на е-поща
+      admin:read:domain_allows: четене на деликатна информация на всички домейни позволено
+      admin:read:domain_blocks: четене на деликатна информация на всички домейни блокирано
+      admin:read:email_domain_blocks: четене на деликатна информация на всички домейни на е-поща блокирано
+      admin:read:ip_blocks: четене на деликатна информация на всички IP адреси блокирано
       admin:read:reports: прочит на деликатна информация от всички докладвания и докладвани акаунти
       admin:write: промяна на всички данни на сървъра
       admin:write:accounts: извършване на действия за модериране на акаунти
+      admin:write:canonical_email_blocks: извършване на модериращи действия в канонични блокирания на е-поща
+      admin:write:domain_allows: извършване на действия за модериране на акаунти в домейна позволено
+      admin:write:domain_blocks: извършване на действия за модериране на акаунти в домейна блокирано
+      admin:write:email_domain_blocks: извършване на действия за модериране на акаунти в домейна на е-поща блокирано
+      admin:write:ip_blocks: извършване на действия за модериране на IP адреси блокирано
       admin:write:reports: извършване на действия за модериране на докладвания
       crypto: употреба на цялостно шифроване
       follow: промяна на взаимоотношенията с други акаунти
       push: получаване на вашите изскачащи известия
-      read: четене на всички данни от вашия акаунт
+      read: четене на всички данни от акаунта ви
       read:accounts: преглед на информация за акаунти
       read:blocks: преглед на вашите блокирания
       read:bookmarks: преглед на вашите отметки
@@ -169,12 +179,12 @@ bg:
       read:reports: преглед на вашите докладвания
       read:search: търсене от ваше име
       read:statuses: преглед на всички публикации
-      write: промяна на всички данни от вашия акаунт
+      write: промяна на всички данни на акаунта ви
       write:accounts: промяна на вашия профил
       write:blocks: блокиране на акаунти и домейни
-      write:bookmarks: отмятане на състояния
+      write:bookmarks: отмятане на публикации
       write:conversations: заглушаване и изтриване на разговорите
-      write:favourites: харесани публикации
+      write:favourites: любими публикации
       write:filters: създаване на филтри
       write:follows: последване на хора
       write:lists: създаване на списъци
@@ -182,4 +192,4 @@ bg:
       write:mutes: заглушаване на хора и разговори
       write:notifications: изчистване на вашите известия
       write:reports: докладване на други хора
-      write:statuses: публикуване на състояния
+      write:statuses: публикуване на публикации

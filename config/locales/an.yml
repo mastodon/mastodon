@@ -116,6 +116,8 @@ an:
       redownloaded_msg: S'actualizó correctament lo perfil de %{username} dende l'orichen
       reject: Refusar
       rejected_msg: La solicitut de rechistro de %{username} ha estau refusada con exito
+      remote_suspension_irreversible: Los datos d'esta cuenta s'han borrau irreversiblement.
+      remote_suspension_reversible_hint_html: La cuenta ha estau suspendida en o suyo servidor, y los datos s'eliminarán completament lo %{date}. Dica alavez, lo servidor remoto puede restaurar esta cuenta sin garra efecto perchudicial. Si deseya eliminar totz los datos d'a cuenta immediatament, puede fer-lo debaixo.
       remove_avatar: Eliminar lo avatar
       remove_header: Eliminar capitero
       removed_avatar_msg: S'ha eliminau exitosament la imachen d'o avatar de %{username}
@@ -561,7 +563,6 @@ an:
     report_notes:
       created_msg: Lo rechistro d'a denuncia s'ha creyau correctament!
       destroyed_msg: Lo rechistro d'a denuncia s'ha borrau correctament!
-      today_at: Hue a las %{time}
     reports:
       account:
         notes:
@@ -574,9 +575,10 @@ an:
         mark_as_sensitive_description_html: Los fichers multimedia en os mensaches informaus se marcarán como sensibles y s'aplicará una amonestación pa aduyar-te a escalar las futuras infraccions d'a mesma cuenta.
         other_description_html: Veyer mas opcions pa controlar lo comportamiento d'a cuenta y personalizar la comunicación d'a cuenta denunciada.
         resolve_description_html: No se prendrán medidas contra la cuenta denunciada, no se rechistrará l'amonestación, y se zarrará l'informe.
-        silence_description_html: Lo perfil será visible solo pa aquells que ya lo sigan u lo busquen manualment, limitando seriosament lo suyo aconsiga. Siempre puede estar revertiu.
-        suspend_description_html: Lo perfil y totz los suyos contenius serán inaccesibles dica que sían finalment eliminaus. La interacción con a cuenta será imposible. Reversible entre un plazo de 30 días.
+        silence_description_html: La cuenta será visible nomás pa aquells que ya en sigan u lo busquen manualment, limitando seriosament lo suyo alcance. Siempre puede estar revertiu. Se zarrarán totz los informes contre esta cuenta.
+        suspend_description_html: Esta cuenta y totz los suyos contenius serán inaccesibles y finalment eliminaus, y interaccionar con ella no será posible. Reversible en 30 días. Zarra totz los informes contra eta cuenta.
       actions_description_html: Decide qué medidas prener pa resolver esta denuncia. Si prenes una acción punitiva contra la cuenta denunciada, se le ninviará a dita cuenta una notificación per correu electronico, fueras de quan se tríe la categoría <strong>Spam</strong>.
+      actions_description_remote_html: Decide qué acción prener pa resolver este reporte. Ixo afectará nomás a como <strong>lo tuyo</strong> servidor se comunica con estea cuenta remota y a cómo chestiona lo suyo conteniu.
       add_to_report: Anyadir mas a lo reporte
       are_you_sure: Yes seguro?
       assign_to_self: Asignar-me-la
@@ -704,11 +706,16 @@ an:
       content_retention:
         preamble: Controlar cómo lo conteniu chenerau per l'usuario s'almagazena en Mastodon.
         title: Retención de conteniu
+      default_noindex:
+        desc_html: Afecta a totz los usuarios que no han cambiau esta configuración per ells mesmos
+        title: Excluyir per defecto los usuarios d'a indexación d'os motors de busqueda
       discovery:
         follow_recommendations: Recomendacions de cuentas
         preamble: Exposar conteniu interesant a la superficie ye fundamental pa incorporar nuevos usuarios que pueden no conoixer a dengún Mastodon. Controla cómo funcionan quantas opcions d'escubrimiento en o tuyo servidor.
         profile_directory: Directorio de perfils
         public_timelines: Linias de tiempo publicas
+        publish_discovered_servers: Publicar los servidors descubiertos
+        publish_statistics: Publicar las estatisticas
         title: Escubrimiento
         trends: Tendencias
       domain_blocks:
@@ -971,6 +978,9 @@ an:
       email_below_hint_html: Si l'adreza de correu electronico que amaneixe contino ye incorrecta, se puede cambiar-la aquí y recibir un nuevo correu electronico de confirmación.
       email_settings_hint_html: Lo correu electronico de confirmación estió ninviau a %{email}. Si ixa adreza de correu electronico no sía correcta, se puede cambiar-la en a configuración d'a cuenta.
       title: Configuración
+    sign_in:
+      preamble_html: Inicia sesión con as tuys credencials <strong>%{domain}</strong>. Si la tuya cuenta se troba en un servidor diferent, no podrás iniciar aquí una sesión.
+      title: Iniciar sesión en %{domain}
     sign_up:
       preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a qualsequier atra persona en o ret, independientment d'o servidor en o qual se trobe.
       title: Creyar cuenta de Mastodon en %{domain}.
@@ -1106,8 +1116,6 @@ an:
     storage: Almagazenamiento
   featured_tags:
     add_new: Anyadir nuevo
-    errors:
-      limit: Ya has aconseguiu la cantidat maxima de hashtags
     hint_html: "<strong>Qué son las etiquetas destacadas?</strong> S'amuestran de forma prominent en o tuyo perfil publico y permiten a los usuarios navegar per las tuyas publicacions publicas especificament baixo ixas etiquetas. Son una gran ferramienta pa fer un seguimiento de treballos creativos u prochectos a largo plazo."
   filters:
     contexts:
@@ -1175,8 +1183,6 @@ an:
     validation_errors:
       one: Bella cosa no ye bien! Per favor, revisa la error
       other: Bella cosa no ye bien! Per favor, revise %{count} errors mas abaixo
-  html_validator:
-    invalid_markup: 'contiene codigo HTML no valido: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Fichero CSV no valido. Error: %{error}'
@@ -1217,9 +1223,6 @@ an:
       expires_at: Expira
       uses: Usos
     title: Convidar a chent
-  lists:
-    errors:
-      limit: Has aconseguiu la cantidat maxima de listas
   login_activities:
     authentication_methods:
       otp: aplicación d'autenticación en dos pasos
@@ -1360,6 +1363,9 @@ an:
       unrecognized_emoji: no ye un emoji conoixiu
   relationships:
     activity: Actividat d'a cuenta
+    confirm_follow_selected_followers: Yes seguro de querer seguir a los seguidors triaus?
+    confirm_remove_selected_followers: Yes seguro de querer eliminar a los seguidors triaus?
+    confirm_remove_selected_follows: Yes seguro de querer eliminar los seguimientos triaus?
     dormant: Inactivo
     follow_selected_followers: Seguir a los seguidores triaus
     followers: Seguidores
@@ -1536,7 +1542,6 @@ an:
       '7889238': 3 meses
     min_age_label: Branquil de tiempo
     min_favs: Mantener mensaches con un numero de favoritos mayor que
-    min_favs_hint: No borra garra d'as publicacions que haigan recibiu mas d'esta cantidat de favoritos. Deixa en blanco pa eliminar publicacions sin importar lo numero de favoritos
     min_reblogs: Mantener publicacions reblogueadas mas de
     min_reblogs_hint: No borra garra d'as publicacions que haigan estau reblogueadas mas d'este numero de vegadas. Deixa en blanco pa eliminar publicacions sin importar lo numero de reblogueos
   stream_entries:

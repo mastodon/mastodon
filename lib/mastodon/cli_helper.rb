@@ -42,30 +42,28 @@ module Mastodon
 
         items.each do |item|
           futures << Concurrent::Future.execute(executor: pool) do
-            begin
-              if !progress.total.nil? && progress.progress + 1 > progress.total
-                # The number of items has changed between start and now,
-                # since there is no good way to predict the final count from
-                # here, just change the progress bar to an indeterminate one
+            if !progress.total.nil? && progress.progress + 1 > progress.total
+              # The number of items has changed between start and now,
+              # since there is no good way to predict the final count from
+              # here, just change the progress bar to an indeterminate one
 
-                progress.total = nil
-              end
-
-              progress.log("Processing #{item.id}") if options[:verbose]
-
-              result = ActiveRecord::Base.connection_pool.with_connection do
-                yield(item)
-              ensure
-                RedisConfiguration.pool.checkin if Thread.current[:redis]
-                Thread.current[:redis] = nil
-              end
-
-              aggregate.increment(result) if result.is_a?(Integer)
-            rescue => e
-              progress.log pastel.red("Error processing #{item.id}: #{e}")
-            ensure
-              progress.increment
+              progress.total = nil
             end
+
+            progress.log("Processing #{item.id}") if options[:verbose]
+
+            result = ActiveRecord::Base.connection_pool.with_connection do
+              yield(item)
+            ensure
+              RedisConfiguration.pool.checkin if Thread.current[:redis]
+              Thread.current[:redis] = nil
+            end
+
+            aggregate.increment(result) if result.is_a?(Integer)
+          rescue => e
+            progress.log pastel.red("Error processing #{item.id}: #{e}")
+          ensure
+            progress.increment
           end
         end
 

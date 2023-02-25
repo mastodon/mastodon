@@ -45,6 +45,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         create_edits!
       end
 
+      download_media_files!
       queue_poll_notifications!
 
       next unless significant_changes?
@@ -66,12 +67,12 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   def update_media_attachments!
     previous_media_attachments     = @status.media_attachments.to_a
     previous_media_attachments_ids = @status.ordered_media_attachment_ids || previous_media_attachments.map(&:id)
-    next_media_attachments         = []
+    @next_media_attachments        = []
 
     as_array(@json['attachment']).each do |attachment|
       media_attachment_parser = ActivityPub::Parser::MediaAttachmentParser.new(attachment)
 
-      next if media_attachment_parser.remote_url.blank? || next_media_attachments.size > 4
+      next if media_attachment_parser.remote_url.blank? || @next_media_attachments.size > 4
 
       begin
         media_attachment   = previous_media_attachments.find { |previous_media_attachment| previous_media_attachment.remote_url == media_attachment_parser.remote_url }
@@ -79,40 +80,43 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
         # If a previously existing media attachment was significantly updated, mark
         # media attachments as changed even if none were added or removed
-        if media_attachment_parser.significantly_changes?(media_attachment)
-          @media_attachments_changed = true
-        end
+        @media_attachments_changed = true if media_attachment_parser.significantly_changes?(media_attachment)
 
         media_attachment.description          = media_attachment_parser.description
         media_attachment.focus                = media_attachment_parser.focus
         media_attachment.thumbnail_remote_url = media_attachment_parser.thumbnail_remote_url
         media_attachment.blurhash             = media_attachment_parser.blurhash
+        media_attachment.status_id            = @status.id
+        media_attachment.skip_download        = unsupported_media_type?(media_attachment_parser.file_content_type) || skip_download?
         media_attachment.save!
 
-        next_media_attachments << media_attachment
-
-        next if unsupported_media_type?(media_attachment_parser.file_content_type) || skip_download?
-
-        begin
-          media_attachment.download_file! if media_attachment.remote_url_previously_changed?
-          media_attachment.download_thumbnail! if media_attachment.thumbnail_remote_url_previously_changed?
-          media_attachment.save
-        rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
-          RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
-        end
+        @next_media_attachments << media_attachment
       rescue Addressable::URI::InvalidURIError => e
-        Rails.logger.debug "Invalid URL in attachment: #{e}"
+        Rails.logger.debug { "Invalid URL in attachment: #{e}" }
       end
     end
 
-    added_media_attachments = next_media_attachments - previous_media_attachments
+    added_media_attachments = @next_media_attachments - previous_media_attachments
 
-    MediaAttachment.where(id: added_media_attachments.map(&:id)).update_all(status_id: @status.id)
-
-    @status.ordered_media_attachment_ids = next_media_attachments.map(&:id)
-    @status.media_attachments.reload
+    @status.ordered_media_attachment_ids = @next_media_attachments.map(&:id)
 
     @media_attachments_changed = true if @status.ordered_media_attachment_ids != previous_media_attachments_ids
+  end
+
+  def download_media_files!
+    @next_media_attachments.each do |media_attachment|
+      next if media_attachment.skip_download
+
+      media_attachment.download_file! if media_attachment.remote_url_previously_changed?
+      media_attachment.download_thumbnail! if media_attachment.thumbnail_remote_url_previously_changed?
+      media_attachment.save
+    rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
+      RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
+    rescue Seahorse::Client::NetworkingError => e
+      Rails.logger.warn "Error storing media attachment: #{e}"
+    end
+
+    @status.media_attachments.reload
   end
 
   def update_poll!(allow_significant_changes: true)

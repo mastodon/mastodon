@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Admin::ReportNotesController do
@@ -34,7 +36,7 @@ describe Admin::ReportNotesController do
 
           it 'creates a report note and does not resolve report' do
             expect { subject }.to change { ReportNote.count }.by(1)
-            expect(report.reload).not_to be_action_taken
+            expect(report.reload).to_not be_action_taken
             expect(subject).to redirect_to admin_report_path(report)
           end
         end
@@ -49,7 +51,7 @@ describe Admin::ReportNotesController do
 
           it 'creates a report note and unresolves report' do
             expect { subject }.to change { ReportNote.count }.by(1)
-            expect(report.reload).not_to be_action_taken
+            expect(report.reload).to_not be_action_taken
             expect(subject).to redirect_to admin_report_path(report)
           end
         end

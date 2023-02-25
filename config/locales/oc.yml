@@ -36,14 +36,17 @@ oc:
       avatar: Avatar
       by_domain: Domeni
       change_email:
+        changed_msg: Adreça corrèctament cambiada !
         current_email: Adreça actuala
         label: Cambiar d’adreça
         new_email: Novèla adreça
         submit: Cambiar l’adreça
         title: Cambiar l’adreça a %{username}
       change_role:
+        changed_msg: Ròtle corrèctament cambiat !
         label: Cambiar lo ròtle
         no_role: Cap de ròtle
+        title: Cambiar lo ròtle de %{username}
       confirm: Confirmar
       confirmed: Confirmat
       confirming: Confirmacion
@@ -88,6 +91,7 @@ oc:
       most_recent_ip: IP mai recenta
       no_account_selected: Cap de compte pas cambiat estant que cap èra pas seleccionat
       no_limits_imposed: Cap de limit impausat
+      no_role_assigned: Cap de ròtle pas assignat
       not_subscribed: Pas seguidor
       pending: Revision en espèra
       perform_full_suspension: Suspendre
@@ -144,11 +148,13 @@ oc:
         create_announcement: Crear una anóncia
         create_custom_emoji: Crear un emoji personalizat
         create_ip_block: Crear una règla IP
+        create_user_role: Crear un ròtle
         demote_user: Retrogradar l’utilizaire
         destroy_announcement: Suprimir l’anóncia
         destroy_custom_emoji: Suprimir l’emoji personalizat
         destroy_domain_block: Suprimir lo blocatge de domeni
         destroy_status: Suprimir l’estatut
+        destroy_user_role: Destruire ròtle
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar l’emoji personalizat
         disable_user: Desactivar l’utilizaire
@@ -165,7 +171,9 @@ oc:
         unsilence_account: Levar lo silenci del compte
         update_announcement: Actualizar l’anóncia
         update_custom_emoji: Actualizar l’emoji personalizat
+        update_ip_block: Actualizar règla IP
         update_status: Actualizar l’estatut
+        update_user_role: Actualizar ròtle
       empty: Cap de jornal pas trobat.
       filter_by_action: Filtrar per accion
       filter_by_user: Filtrar per utilizaire
@@ -493,6 +501,8 @@ oc:
     registration_closed: "%{instance} accepta pas de nòus membres"
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
+    rules:
+      title: Unas règlas de basa.
     security: Seguretat
     set_new_password: Picar un nòu senhal
     setup:
@@ -590,8 +600,6 @@ oc:
     storage: Mèdias gardats
   featured_tags:
     add_new: Ajustar una etiqueta nòva
-    errors:
-      limit: Avètz ja utilizat lo maximum d’etiquetas
   filters:
     contexts:
       account: Perfils
@@ -632,8 +640,6 @@ oc:
     validation_errors:
       one: I a quicòm que truca ! Mercés de corregir l’error çai-jos
       other: I a quicòm que truca ! Mercés de corregir las %{count} errors çai-jos
-  html_validator:
-    invalid_markup: 'conten un balisatge HTML invalid : %{error}'
   imports:
     modes:
       merge: Fondre
@@ -671,9 +677,6 @@ oc:
       expires_at: Expirats
       uses: Usatges
     title: Convidar de monde
-  lists:
-    errors:
-      limit: Avètz atengut lo maximum de listas
   login_activities:
     authentication_methods:
       password: senhal
@@ -937,7 +940,6 @@ oc:
       '7889238': 3 meses
     min_age_label: Sulhet d’ancianetat
     min_favs: Gardar al mens las publicacion en favorit
-    min_favs_hint: Suprimís pas las publicacions qu’an recebut al mens aquesta quantitat de favorits. Daissar blanc per suprimir las publicacion quina quantitat de favorits qu’ajan
     min_reblogs: Gardar las publicacions partejadas al mens
     min_reblogs_hint: Suprimís pas vòstras publicacions qu’an agut aqueste nombre de partiment. Daissar blanc per suprimir las publicacions sens far cas als partiments
   stream_entries:

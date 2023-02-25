@@ -122,14 +122,12 @@ sr:
         admin/accounts: Администрација налога
         admin/all: Све функције администрације
         admin/reports: Администрација пријава
-        all: Све
         blocks: Блокирани
         bookmarks: Обележивачи
         conversations: Разговори
         crypto: End-to-end енкрипција
         favourites: Омиљени
         filters: Филтери
-        follow: Везе
         follows: Праћени
         lists: Листе
         media: Мултимедијални прилози
@@ -149,9 +147,14 @@ sr:
     scopes:
       admin:read: читање свих података на серверу
       admin:read:accounts: читање осетљивих података за све налоге
+      admin:read:domain_allows: прочитај осетљиве информације за све дозволе домена
+      admin:read:domain_blocks: прочитај осетљиве информације за све блокове домена
+      admin:read:ip_blocks: прочитај осетљиве информације за све IP блокове
       admin:read:reports: читање осетљивих података свих извештаја и пријављених налога
       admin:write: мењање свих података на серверу
       admin:write:accounts: вршење модераторских активности над налозима
+      admin:write:domain_blocks: изврши модераторске активности на блоковима домена
+      admin:write:ip_blocks: изврши модераторске активности на IP блоковима
       admin:write:reports: вршење модераторских активности над извештајима
       crypto: коришћење end-to-end енкрипције
       follow: прати, блокира, одблокира и отпрати налоге

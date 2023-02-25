@@ -1,8 +1,8 @@
 version: 2.1
 
 orbs:
-  ruby: circleci/ruby@1.4.1
-  node: circleci/node@5.0.1
+  ruby: circleci/ruby@2.0.0
+  node: circleci/node@5.0.3
 
 executors:
   default:
@@ -19,11 +19,11 @@ executors:
           DB_USER: root
           DISABLE_SIMPLECOV: true
           RAILS_ENV: test
-      - image: cimg/postgres:14.0
+      - image: cimg/postgres:14.5
         environment:
           POSTGRES_USER: root
           POSTGRES_HOST_AUTH_METHOD: trust
-      - image: cimg/redis:6.2
+      - image: cimg/redis:7.0
 
 commands:
   install-system-dependencies:
@@ -45,8 +45,8 @@ commands:
             bundle config without 'development production'
           name: Set bundler settings
       - ruby/install-deps:
-          bundler-version: '2.3.8'
-          key: ruby<< parameters.ruby-version >>-gems-v1
+          bundler-version: '2.3.26'
+          key: ruby<< parameters.ruby-version >>-gems-v2
   wait-db:
     steps:
       - run:
@@ -56,14 +56,14 @@ commands:
 jobs:
   build:
     docker:
-      - image: cimg/ruby:3.0-node
+      - image: cimg/ruby:3.2-node
         environment:
           RAILS_ENV: test
     steps:
       - checkout
       - install-system-dependencies
       - install-ruby-dependencies:
-          ruby-version: '3.0'
+          ruby-version: '3.2'
       - node/install-packages:
           cache-version: v1
           pkg-manager: yarn
@@ -95,7 +95,7 @@ jobs:
       - checkout
       - install-system-dependencies
       - run:
-          command: sudo apt-get install -y ffmpeg imagemagick libpam-dev
+          command: sudo apt-get install -y ffmpeg imagemagick libmagickcore-dev libmagickwand-dev libjpeg-dev libpng-dev libtiff-dev libwebp-dev libpam-dev
           name: Install additional system dependencies
       - run:
           command: bundle config with 'pam_authentication'
@@ -110,91 +110,6 @@ jobs:
           name: Load database schema
       - ruby/rspec-test
 
-  test-migrations:
-    executor:
-      name: default
-      ruby-version: '3.0'
-    steps:
-      - checkout
-      - install-system-dependencies
-      - install-ruby-dependencies:
-          ruby-version: '3.0'
-      - wait-db
-      - run:
-          command: ./bin/rails db:create
-          name: Create database
-      - run:
-          command: ./bin/rails db:migrate VERSION=20171010025614
-          name: Run migrations up to v2.0.0
-      - run:
-          command: ./bin/rails tests:migrations:populate_v2
-          name: Populate database with test data
-      - run:
-          command: ./bin/rails db:migrate VERSION=20180514140000
-          name: Run migrations up to v2.4.0
-      - run:
-          command: ./bin/rails tests:migrations:populate_v2_4
-          name: Populate database with test data
-      - run:
-          command: ./bin/rails db:migrate VERSION=20180707154237
-          name: Run migrations up to v2.4.3
-      - run:
-          command: ./bin/rails tests:migrations:populate_v2_4_3
-          name: Populate database with test data
-      - run:
-          command: ./bin/rails db:migrate
-          name: Run all remaining migrations
-      - run:
-          command: ./bin/rails tests:migrations:check_database
-          name: Check migration result
-
-  test-two-step-migrations:
-    executor:
-      name: default
-      ruby-version: '3.0'
-    steps:
-      - checkout
-      - install-system-dependencies
-      - install-ruby-dependencies:
-          ruby-version: '3.0'
-      - wait-db
-      - run:
-          command: ./bin/rails db:create
-          name: Create database
-      - run:
-          command: ./bin/rails db:migrate VERSION=20171010025614
-          name: Run migrations up to v2.0.0
-      - run:
-          command: ./bin/rails tests:migrations:populate_v2
-          name: Populate database with test data
-      - run:
-          command: ./bin/rails db:migrate VERSION=20180514140000
-          name: Run pre-deployment migrations up to v2.4.0
-          environment:
-            SKIP_POST_DEPLOYMENT_MIGRATIONS: true
-      - run:
-          command: ./bin/rails tests:migrations:populate_v2_4
-          name: Populate database with test data
-      - run:
-          command: ./bin/rails db:migrate VERSION=20180707154237
-          name: Run migrations up to v2.4.3
-          environment:
-            SKIP_POST_DEPLOYMENT_MIGRATIONS: true
-      - run:
-          command: ./bin/rails tests:migrations:populate_v2_4_3
-          name: Populate database with test data
-      - run:
-          command: ./bin/rails db:migrate
-          name: Run all remaining pre-deployment migrations
-          environment:
-            SKIP_POST_DEPLOYMENT_MIGRATIONS: true
-      - run:
-          command: ./bin/rails db:migrate
-          name: Run all post-deployment migrations
-      - run:
-          command: ./bin/rails tests:migrations:check_database
-          name: Check migration result
-
 workflows:
   version: 2
   build-and-test:
@@ -206,20 +121,8 @@ workflows:
               ruby-version:
                 - '2.7'
                 - '3.0'
+                - '3.1'
+                - '3.2'
           name: test-ruby<< matrix.ruby-version >>
           requires:
             - build
-      - test-migrations:
-          requires:
-            - build
-      - test-two-step-migrations:
-          requires:
-            - build
-      - node/run:
-          cache-version: v1
-          name: test-webui
-          pkg-manager: yarn
-          requires:
-            - build
-          version: lts
-          yarn-run: test:jest

@@ -116,6 +116,8 @@ pt-BR:
       redownloaded_msg: O perfil de %{username} foi atualizado a partir da origem
       reject: Rejeitar
       rejected_msg: O pedido de registro de %{username} foi rejeitado
+      remote_suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível.
+      remote_suspension_reversible_hint_html: A conta foi suspensa em seu servidor, e todos os dados serão removidos em %{date}. Até lá, o servidor remoto pode restaurar essa conta sem nenhum efeito negativo. Se você quer remover todos os dados desta conta imediatamente, você pode fazer isso abaixo.
       remove_avatar: Remover imagem de perfil
       remove_header: Remover capa
       removed_avatar_msg: A imagem de perfil de %{username} foi removida
@@ -394,6 +396,7 @@ pt-BR:
           silence: Limitar
           suspend: Banir
         title: Novo bloqueio de domínio
+      no_domain_block_selected: Nenhum bloqueio de domínio foi alterado porque nenhum foi selecionado
       not_permitted: Você não possui permissão para realizar esta ação
       obfuscate: Ofuscar nome de domínio
       obfuscate_hint: Ofuscar parcialmente o domínio na lista se a exibição da lista de domínios limitados estiver habilitada
@@ -433,6 +436,7 @@ pt-BR:
     export_domain_blocks:
       import:
         description_html: Você está prestes a importar uma lista de boqueio de domínio. Por favor, revise esta lista com muito cuidado, especialmente se você mesmo não criou esta lista.
+        existing_relationships_warning: Existem relações de seguimento
         private_comment_template: Importado de %{source} em %{date}
         title: Importar bloqueio de domínios
       new:
@@ -557,7 +561,6 @@ pt-BR:
     report_notes:
       created_msg: Nota de denúncia criada!
       destroyed_msg: Nota de denúncia excluída!
-      today_at: Hoje às %{time}
     reports:
       account:
         notes:
@@ -570,8 +573,7 @@ pt-BR:
         mark_as_sensitive_description_html: Os conteúdos de mídia em publicações denunciadas serão marcados como sensíveis e um aviso de violação será mantido para te informar sobre o agravamento caso essa mesma conta comenta infrações no futuro.
         other_description_html: Veja mais opções para controlar o comportamento da conta e personalizar a comunicação com a conta denunciada.
         resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma violação será guardada e a denúncia será encerrada.
-        silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou que o procuram manualmente, limitando severamente seu alcance. Pode ser revertido a qualquer momento.
-        suspend_description_html: O perfil e todo o seu conteúdo ficarão inacessíveis até que seja eventualmente excluído. Interagir com a conta será impossível. Reversível dentro de 30 dias.
+        silence_description_html: A conta ficará visível apenas para aqueles que já a seguem ou que a procuram manualmente, limitando severamente seu alcance. Pode ser revertido a qualquer momento. Fecha todas as denúncias desta conta.
       actions_description_html: Decida que medidas tomar para resolver esta denúncia. Se você decidir punir a conta denunciada, ela receberá uma notificação por e-mail, exceto quando for selecionada a categoria <strong>spam</strong> for selecionada.
       add_to_report: Adicionar mais à denúncia
       are_you_sure: Você tem certeza?
@@ -611,9 +613,23 @@ pt-BR:
       status: Estado
       statuses: Conteúdo denunciado
       statuses_description_html: Conteúdo ofensivo será citado em comunicação com a conta denunciada
+      summary:
+        action_preambles:
+          delete_html: 'Você está prestes a <strong>remover</strong> algumas das publicações de <strong>@%{acct}</strong>. Isso irá:'
+          mark_as_sensitive_html: 'Você está prestes a <strong>marcar</strong> algumas das publicações de <strong>@%{acct}</strong> como <strong>sensíveis</strong>. Isso irá:'
+          silence_html: 'Você está prestes a <strong>limitar</strong> <strong>a conta de @%{acct}</strong>. Isso irá:'
+          suspend_html: 'Você está prestes a <strong>suspender</strong> <strong>a conta de @%{acct}</strong>. Isso irá:'
+        actions:
+          delete_html: Remover as publicações ofensivas
+        close_report: 'Marcar denúncia #%{id} como resolvida'
+        close_reports_html: Marcar <strong>todas</strong> as denúncias contra <strong>@%{acct}</strong> como resolvidas
+        delete_data_html: Exclua o perfil e o conteúdo de <strong>@%{acct}</strong> daqui a 30 dias, a menos que a suspensão seja desfeita nesse meio tempo
+        preview_preamble_html: "<strong>@%{acct}</strong> receberá um aviso com o seguinte conteúdo:"
+        send_email_html: Enviar <strong>@%{acct}</strong> um e-mail de aviso
       target_origin: Origem da conta denunciada
       title: Denúncias
       unassign: Desatribuir
+      unknown_action_msg: 'Ação desconhecida: %{action}'
       unresolved: Não resolvido
       updated_at: Atualizado
       view_profile: Ver perfil
@@ -700,11 +716,16 @@ pt-BR:
       content_retention:
         preamble: Controlar como o conteúdo gerado pelo usuário é armazenado no Mastodon.
         title: Retenção de conteúdo
+      default_noindex:
+        desc_html: Afeta qualquer usuário que não tenha alterado esta configuração manualmente
+        title: Optar por excluir usuários da indexação de mecanismos de pesquisa por padrão
       discovery:
         follow_recommendations: Seguir recomendações
         preamble: Navegar por um conteúdo interessante é fundamental para integrar novos usuários que podem não conhecer ninguém no Mastodon. Controle como várias características de descoberta funcionam no seu servidor.
         profile_directory: Diretório de perfis
         public_timelines: Timelines públicas
+        publish_discovered_servers: Publicar servidores descobertos
+        publish_statistics: Publicar estatísticas
         title: Descobrir
         trends: Tendências
       domain_blocks:
@@ -787,6 +808,8 @@ pt-BR:
         disallow: Proibir link
         disallow_provider: Proibir autor
         no_link_selected: Nenhum link foi alterado como nenhum foi selecionado
+        publishers:
+          no_publisher_selected: Nenhum editor foi alterado porque nenhum foi selecionado
         shared_by_over_week:
           one: Compartilhado por uma pessoa na última semana
           other: Compartilhado por %{count} pessoas na última semana
@@ -930,6 +953,8 @@ pt-BR:
   auth:
     apply_for_account: Solicitar uma conta
     change_password: Senha
+    confirmations:
+      wrong_email_hint: Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir sua conta, você pode <a href="%{path}">fazer isso aqui</a>. Uma confirmação será solicitada.
     description:
@@ -957,6 +982,7 @@ pt-BR:
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Redefinir senha
     rules:
+      preamble: Estes são definidos e aplicados pelos moderadores de %{domain}.
       title: Algumas regras básicas.
     security: Segurança
     set_new_password: Definir uma nova senha
@@ -964,6 +990,9 @@ pt-BR:
       email_below_hint_html: Se o endereço de e-mail abaixo não for seu, você pode alterá-lo aqui e receber um novo e-mail de confirmação.
       email_settings_hint_html: O e-mail de confirmação foi enviado para %{email}. Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
       title: Configurações
+    sign_in:
+      preamble_html: Entre com suas credenciais de domínios ( <strong>%{domain}</strong> ) . Se sua conta estiver hospedada em um servidor diferente, você não deve conseguir acessar este conteúdo.
+      title: Entrar em %{domain}
     sign_up:
       preamble: Com uma conta neste servidor Mastodon, você poderá seguir qualquer outra pessoa na rede, independentemente de onde sua conta esteja hospedada.
       title: Então vamos lá criar uma conta em %{domain}.
@@ -1099,8 +1128,6 @@ pt-BR:
     storage: Armazenamento de mídia
   featured_tags:
     add_new: Adicionar hashtag
-    errors:
-      limit: Você atingiu o limite de hashtags em destaque
     hint_html: "<strong>O que são hashtags em destaque?</strong> Elas são exibidas no seu perfil público e permitem que as pessoas acessem suas publicações públicos que contenham especificamente essas hashtags. São uma excelente ferramenta para acompanhar os trabalhos criativos ou os projetos de longo prazo."
   filters:
     contexts:
@@ -1113,6 +1140,7 @@ pt-BR:
       add_keyword: Adicionar palavra-chave
       keywords: Palavras-chave
       statuses: Publicações individuais
+      statuses_hint_html: Este filtro se aplica para selecionar posts individuais, independentemente de serem compatíveis com as palavras-chave abaixo. <a href="%{path}">Revise ou remova as publicações do filtro</a>.
       title: Editar filtro
     errors:
       deprecated_api_multiple_keywords: Estes parâmetros não podem ser alterados a partir deste aplicativo porque se aplicam a mais de uma palavra-chave de filtro. Use um aplicativo mais recente ou a interface web.
@@ -1167,8 +1195,6 @@ pt-BR:
     validation_errors:
       one: Algo não está certo! Analise o erro abaixo
       other: Algo não está certo! Analise os %{count} erros abaixo
-  html_validator:
-    invalid_markup: 'contém HTML inválido: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Arquivo CSV inválido. Erro: %{error}'
@@ -1209,9 +1235,6 @@ pt-BR:
       expires_at: Expira em
       uses: Usos
     title: Convidar pessoas
-  lists:
-    errors:
-      limit: Você atingiu o máximo de listas
   login_activities:
     authentication_methods:
       otp: autenticação de dois fatores
@@ -1296,7 +1319,7 @@ pt-BR:
     reblog:
       body: "%{name} impulsionou a sua publicação:"
       subject: "%{name} impulsionou a sua publicação"
-      title: Novo boost
+      title: Novo impulso
     status:
       subject: "%{name} acabou de publicar"
     update:
@@ -1352,6 +1375,9 @@ pt-BR:
       unrecognized_emoji: não é um emoji reconhecido
   relationships:
     activity: Atividade da conta
+    confirm_follow_selected_followers: Tem certeza que deseja seguir os seguidores selecionados?
+    confirm_remove_selected_followers: Tem certeza que deseja remover os seguidores selecionados?
+    confirm_remove_selected_follows: Tem certeza que deseja remover os grupos seguidos selecionados?
     dormant: Inativo
     follow_selected_followers: Seguir os seguidores selecionados
     followers: Seguidores
@@ -1528,11 +1554,10 @@ pt-BR:
       '7889238': 3 meses
     min_age_label: Validade
     min_favs: Manter publicações favoritadas por ao menos
-    min_favs_hint: Não exclui publicações que receberam pelo menos esta quantidade de favoritos. Deixe em branco para excluir publicações independentemente da quantidade de favoritos
     min_reblogs: Manter publicações impulsionadas por ao menos
     min_reblogs_hint: Não exclui publicações que receberam pelo menos esta quantidade de impulsos. Deixe em branco para excluir publicações independentemente da quantidade de impulsos
   stream_entries:
-    pinned: Publicação fixada
+    pinned: Toot fixado
     reblogged: deu boost
     sensitive_content: Conteúdo sensível
   strikes:

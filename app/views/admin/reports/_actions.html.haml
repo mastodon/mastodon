@@ -1,11 +1,11 @@
-= form_tag admin_report_actions_path(@report), method: :post do
+= form_tag preview_admin_report_actions_path(@report), method: :post do
   .report-actions
     .report-actions__item
       .report-actions__item__button
         = link_to t('admin.reports.mark_as_resolved'), resolve_admin_report_path(@report), method: :post, class: 'button'
       .report-actions__item__description
         = t('admin.reports.actions.resolve_description_html')
-    - if @statuses.any? { |status| status.with_media? || status.with_preview_card? }
+    - if @statuses.any? { |status| (status.with_media? || status.with_preview_card?) && !status.discarded? }
       .report-actions__item
         .report-actions__item__button
           = button_tag t('admin.reports.mark_as_sensitive'), name: :mark_as_sensitive, class: 'button'

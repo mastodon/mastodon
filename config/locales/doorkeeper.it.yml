@@ -122,14 +122,14 @@ it:
         admin/accounts: Amministrazione dei profili
         admin/all: Tutte le funzioni amministrative
         admin/reports: Amministrazione dei rapporti
-        all: Tutto
+        all: Accesso completo al tuo account Mastodon
         blocks: Blocchi
         bookmarks: Segnalibri
         conversations: Conversazioni
         crypto: Crittografia end-to-end
         favourites: Preferiti
         filters: Filtri
-        follow: Relazioni
+        follow: Seguiti, silenziati e bloccati
         follows: Seguiti
         lists: Elenchi
         media: Allegati multimediali
@@ -149,9 +149,19 @@ it:
     scopes:
       admin:read: leggere tutti i dati sul server
       admin:read:accounts: leggere le informazioni sensibili su tutti i profili
+      admin:read:canonical_email_blocks: leggere le informazioni sensibili di tutti i blocchi canonici di posta elettronica
+      admin:read:domain_allows: leggere le informazioni sensibili di tutti i domini consentiti
+      admin:read:domain_blocks: leggere le informazioni sensibili di tutti i blocchi di dominio
+      admin:read:email_domain_blocks: leggi le informazioni sensibili di tutti i blocchi di dominio email
+      admin:read:ip_blocks: leggere le informazioni sensibili di tutti i blocchi IP
       admin:read:reports: leggere le informazioni sensibili di tutte le segnalazioni e tutti i profili segnalati
       admin:write: modificare tutti i dati sul server
       admin:write:accounts: eseguire azioni di moderazione sui profili
+      admin:write:canonical_email_blocks: eseguire azioni di moderazione sui blocchi canonici di posta elettronica
+      admin:write:domain_allows: consente di eseguire azioni di moderazione sul dominio
+      admin:write:domain_blocks: eseguire azioni di moderazione sui blocchi di dominio
+      admin:write:email_domain_blocks: eseguire azioni di moderazione sui blocchi di dominio email
+      admin:write:ip_blocks: eseguire azioni di moderazione sui blocchi IP
       admin:write:reports: eseguire azioni di moderazione sulle segnalazioni
       crypto: utilizzare la crittografia end-to-end
       follow: modifica le relazioni tra profili

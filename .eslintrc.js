@@ -1,6 +1,14 @@
 module.exports = {
   root: true,
 
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:import/recommended',
+    'plugin:promise/recommended',
+  ],
+
   env: {
     browser: true,
     node: true,
@@ -35,7 +43,7 @@ module.exports = {
       version: 'detect',
     },
     'import/extensions': [
-      '.js',
+      '.js', '.jsx',
     ],
     'import/ignore': [
       'node_modules',
@@ -44,6 +52,7 @@ module.exports = {
     'import/resolver': {
       node: {
         paths: ['app/javascript'],
+        extensions: ['.js', '.jsx'],
       },
     },
   },
@@ -64,8 +73,8 @@ module.exports = {
     eqeqeq: 'error',
     indent: ['warn', 2],
     'jsx-quotes': ['error', 'prefer-single'],
+    'no-case-declarations': 'off',
     'no-catch-shadow': 'error',
-    'no-cond-assign': 'error',
     'no-console': [
       'warn',
       {
@@ -75,18 +84,14 @@ module.exports = {
         ],
       },
     ],
-    'no-fallthrough': 'error',
-    'no-irregular-whitespace': 'error',
-    'no-mixed-spaces-and-tabs': 'warn',
-    'no-nested-ternary': 'warn',
+    'no-empty': 'off',
     'no-restricted-properties': [
       'error',
       { property: 'substring', message: 'Use .slice instead of .substring.' },
       { property: 'substr', message: 'Use .slice instead of .substr.' },
     ],
+    'no-self-assign': 'off',
     'no-trailing-spaces': 'warn',
-    'no-undef': 'error',
-    'no-unreachable': 'error',
     'no-unused-expressions': 'error',
     'no-unused-vars': [
       'error',
@@ -105,61 +110,48 @@ module.exports = {
     ],
     quotes: ['error', 'single'],
     semi: 'error',
-    strict: 'off',
     'valid-typeof': 'error',
 
+    'react/jsx-filename-extension': ['error', { 'allow': 'as-needed' }],
     'react/jsx-boolean-value': 'error',
     'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
     'react/jsx-curly-spacing': 'error',
+    'react/display-name': 'off',
     'react/jsx-equals-spacing': 'error',
     'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
     'react/jsx-indent': ['error', 2],
     'react/jsx-no-bind': 'error',
-    'react/jsx-no-duplicate-props': 'error',
-    'react/jsx-no-undef': 'error',
+    'react/jsx-no-target-blank': 'off',
     'react/jsx-tag-spacing': 'error',
-    'react/jsx-uses-react': 'error',
-    'react/jsx-uses-vars': 'error',
     'react/jsx-wrap-multilines': 'error',
-    'react/no-multi-comp': 'off',
-    'react/no-string-refs': 'error',
-    'react/prop-types': 'error',
+    'react/no-deprecated': 'off',
+    'react/no-unknown-property': 'off',
     'react/self-closing-comp': 'error',
 
+    // recommended values found in https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/src/index.js
     'jsx-a11y/accessible-emoji': 'warn',
-    'jsx-a11y/alt-text': 'warn',
-    'jsx-a11y/anchor-has-content': 'warn',
-    'jsx-a11y/anchor-is-valid': [
-      'warn',
-      {
-        components: [
-          'Link',
-          'NavLink',
-        ],
-        specialLink: [
-          'to',
-        ],
-        aspect: [
-          'noHref',
-          'invalidHref',
-          'preferButton',
-        ],
-      },
-    ],
-    'jsx-a11y/aria-activedescendant-has-tabindex': 'warn',
-    'jsx-a11y/aria-props': 'warn',
-    'jsx-a11y/aria-proptypes': 'warn',
-    'jsx-a11y/aria-role': 'warn',
-    'jsx-a11y/aria-unsupported-elements': 'warn',
-    'jsx-a11y/heading-has-content': 'warn',
-    'jsx-a11y/html-has-lang': 'warn',
-    'jsx-a11y/iframe-has-title': 'warn',
-    'jsx-a11y/img-redundant-alt': 'warn',
-    'jsx-a11y/interactive-supports-focus': 'warn',
-    'jsx-a11y/label-has-for': 'off',
-    'jsx-a11y/mouse-events-have-key-events': 'warn',
-    'jsx-a11y/no-access-key': 'warn',
-    'jsx-a11y/no-distracting-elements': 'warn',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+    'jsx-a11y/media-has-caption': 'off',
+    'jsx-a11y/no-autofocus': 'off',
+    // recommended rule is:
+    // 'jsx-a11y/no-interactive-element-to-noninteractive-role': [
+    //   'error',
+    //   {
+    //     tr: ['none', 'presentation'],
+    //     canvas: ['img'],
+    //   },
+    // ],
+    'jsx-a11y/no-interactive-element-to-noninteractive-role': 'off',
+    // recommended rule is:
+    // 'jsx-a11y/no-noninteractive-element-interactions': [
+    //   'error',
+    //   {
+    //     body: ['onError', 'onLoad'],
+    //     iframe: ['onError', 'onLoad'],
+    //     img: ['onError', 'onLoad'],
+    //   },
+    // ],
     'jsx-a11y/no-noninteractive-element-interactions': [
       'warn',
       {
@@ -168,8 +160,18 @@ module.exports = {
         ],
       },
     ],
+    // recommended rule is:
+    // 'jsx-a11y/no-noninteractive-tabindex': [
+    //   'error',
+    //   {
+    //     tags: [],
+    //     roles: ['tabpanel'],
+    //     allowExpressionValues: true,
+    //   },
+    // ],
+    'jsx-a11y/no-noninteractive-tabindex': 'off',
     'jsx-a11y/no-onchange': 'warn',
-    'jsx-a11y/no-redundant-roles': 'warn',
+    // recommended is full 'error'
     'jsx-a11y/no-static-element-interactions': [
       'warn',
       {
@@ -178,16 +180,14 @@ module.exports = {
         ],
       },
     ],
-    'jsx-a11y/role-has-required-aria-props': 'warn',
-    'jsx-a11y/role-supports-aria-props': 'off',
-    'jsx-a11y/scope': 'warn',
-    'jsx-a11y/tabindex-no-positive': 'warn',
 
+    // See https://github.com/import-js/eslint-plugin-import/blob/main/config/recommended.js
     'import/extensions': [
       'error',
       'always',
       {
         js: 'never',
+        jsx: 'never',
       },
     ],
     'import/newline-after-import': 'error',
@@ -201,14 +201,17 @@ module.exports = {
         ],
       },
     ],
-    'import/no-unresolved': 'error',
     'import/no-webpack-loader-syntax': 'error',
 
+    'promise/always-return': 'off',
     'promise/catch-or-return': [
       'error',
       {
         allowFinally: true,
       },
     ],
+    'promise/no-callback-in-promise': 'off',
+    'promise/no-nesting': 'off',
+    'promise/no-promise-in-callback': 'off',
   },
 };

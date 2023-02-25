@@ -9,14 +9,14 @@ class Vacuum::FeedsVacuum
   private
 
   def vacuum_inactive_home_feeds!
-    inactive_users.select(:id, :account_id).find_in_batches do |users|
-      feed_manager.clean_feeds!(:home, users.map(&:account_id))
+    inactive_users.select(:id, :account_id).in_batches do |users|
+      feed_manager.clean_feeds!(:home, users.pluck(:account_id))
     end
   end
 
   def vacuum_inactive_list_feeds!
-    inactive_users_lists.select(:id).find_in_batches do |lists|
-      feed_manager.clean_feeds!(:list, lists.map(&:id))
+    inactive_users_lists.select(:id).in_batches do |lists|
+      feed_manager.clean_feeds!(:list, lists.ids)
     end
   end
 

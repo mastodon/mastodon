@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::V1::MarkersController, type: :controller do
@@ -42,7 +44,7 @@ RSpec.describe Api::V1::MarkersController, type: :controller do
 
       it 'creates a marker' do
         expect(user.markers.first.timeline).to eq 'home'
-        expect(user.markers.first.last_read_id).to eq 69420
+        expect(user.markers.first.last_read_id).to eq 69_420
       end
     end
 
@@ -58,7 +60,7 @@ RSpec.describe Api::V1::MarkersController, type: :controller do
 
       it 'updates a marker' do
         expect(user.markers.first.timeline).to eq 'home'
-        expect(user.markers.first.last_read_id).to eq 70120
+        expect(user.markers.first.last_read_id).to eq 70_120
       end
     end
   end

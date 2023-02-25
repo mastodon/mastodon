@@ -19,10 +19,7 @@ class Vacuum::StatusesVacuum
       # as the search index, must be handled first.
       statuses.direct_visibility
               .includes(mentions: :account)
-              .find_each do |status|
-        # TODO: replace temporary solution - call of private model method
-        status.send(:unlink_from_conversations)
-      end
+              .find_each(&:unlink_from_conversations!)
       remove_from_search_index(statuses.ids) if Chewy.enabled?
 
       # Foreign keys take care of most associated records for us.

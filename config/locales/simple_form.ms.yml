@@ -2,7 +2,34 @@
 ms:
   simple_form:
     hints:
+      account_alias:
+        acct: Tentukan namapengguna@domain akaun yang ingin anda alihkan daripada
+      account_migration:
+        acct: Tentukan namapengguna@domain akaun yang ingin anda alihkan ke
+      account_warning_preset:
+        text: Anda boleh menggunakan sintaks hantaran seperti URL, tanda pagar dan sebutan
+        title: Pilihan. Penerima tidak dapat melihatnya
+      admin_account_action:
+        include_statuses: Pengguna akan melihat kiriman mana yang menyebabkan tindakan atau amaran penyederhanaan
+        send_email_notification: Pengguna akan menerima penjelasan tentang apa yang berlaku dengan akaun mereka
+        text_html: Pilihan. Anda boleh menggunakan sintaks hantaran. Anda juga boleh <a href="%{path}">menambahkan praset amaran</a> untuk menjimatkan masa
+        type_html: Pilih apa yang ingin dilakukan dengan <strong>%{acct}</strong>
+        types:
+          disable: Halang pengguna daripada menggunakan akaun mereka, tetapi jangan hapus atau sorokkan kandungan mereka.
+          none: Gunakan ini untuk menghantar amaran kepada pengguna, tanpa mencetuskan sebarang tindakan lain.
+          sensitive: Memaksa semua lampiran media pengguna ini ditandakan sebagai sensitif.
+        warning_preset_id: Pilihan. Anda masih boleh menambah teks tersuai pada akhir praset
+      announcement:
+        all_day: Apabila diperiksa, hanya tarikh dalam julat masa yang akan dipaparkan
+        ends_at: Pilihan. Pengumuman akan dinyahterbitkan secara automatik pada masa ini
+        scheduled_at: Biarkan kosong untuk menerbitkan pengumuman dengan segera
+        starts_at: Pilihan. Sekiranya pengumuman anda terikat pada julat masa tertentu
+        text: Anda boleh menggunakan sintaks hantaran. Sila ambil perhatian tentang ruang yang akan digunakan oleh pengumuman pada skrin pengguna
+      appeal:
+        text: Anda boleh membuat rayuan terhadap pelanggaran sekali sahaja
       defaults:
+        autofollow: Orang yang mendaftar melalui undangan akan mengikuti anda secara automatik
+        avatar: PNG, GIF atau JPG. Kebanyakannya %{size}. Saiz akan dikecilkan kepada %{dimensions}px
         email: Anda akan dihantar e-mel pengesahan
         locale: Bahasa untuk antara muka pengguna, e-mel dan pemberitahuan segera
         password: Gunakan sekurang-kurangnya 8 aksara

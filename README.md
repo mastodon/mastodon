@@ -6,7 +6,7 @@ A fork of [mastodon](https://github.com/mastodon/mastodon) used on [ABDL.link](h
 
 ## License
 
-Copyright (C) 2016-2021 Eugen Rochko, [James](https://abdl.link/@james), [Luna](https://abdl.link/@Pikachu), & other Mastodon contributors (see [AUTHORS.md](AUTHORS.md))
+Copyright (C) 2016-2023 Eugen Rochko, [James](https://abdl.link/@james), [Luna](https://abdl.link/@Pikachu), & other Mastodon contributors (see [AUTHORS.md](AUTHORS.md))
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 

@@ -14,35 +14,78 @@ module Mastodon
     end
 
     option :days, type: :numeric, default: 7, aliases: [:d]
+    option :prune_profiles, type: :boolean, default: false
+    option :remove_headers, type: :boolean, default: false
+    option :include_follows, type: :boolean, default: false
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
-    option :verbose, type: :boolean, default: false, aliases: [:v]
     option :dry_run, type: :boolean, default: false
-    desc 'remove', 'Remove remote media files'
+    desc 'remove', 'Remove remote media files, headers or avatars'
     long_desc <<-DESC
-      Removes locally cached copies of media attachments from other servers.
-
+      Removes locally cached copies of media attachments (and optionally profile
+      headers and avatars) from other servers. By default, only media attachements
+      are removed.
       The --days option specifies how old media attachments have to be before
-      they are removed. It defaults to 7 days.
+      they are removed. In case of avatars and headers, it specifies how old
+      the last webfinger request and update to the user has to be before they
+      are pruned. It defaults to 7 days.
+      If --prune-profiles is specified, only avatars and headers are removed.
+      If --remove-headers is specified, only headers are removed.
+      If --include-follows is specified along with --prune-profiles or
+      --remove-headers, all non-local profiles will be pruned irrespective of
+      follow status. By default, only accounts that are not followed by or
+      following anyone locally are pruned.
     DESC
+    # rubocop:disable Metrics/PerceivedComplexity
     def remove
-      time_ago = options[:days].days.ago
-      dry_run  = options[:dry_run] ? '(DRY RUN)' : ''
+      if options[:prune_profiles] && options[:remove_headers]
+        say('--prune-profiles and --remove-headers should not be specified simultaneously', :red, true)
+        exit(1)
+      end
+      if options[:include_follows] && !(options[:prune_profiles] || options[:remove_headers])
+        say('--include-follows can only be used with --prune-profiles or --remove-headers', :red, true)
+        exit(1)
+      end
+      time_ago        = options[:days].days.ago
+      dry_run         = options[:dry_run] ? ' (DRY RUN)' : ''
 
-      processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where('created_at < ?', time_ago)) do |media_attachment|
-        next if media_attachment.file.blank?
+      if options[:prune_profiles] || options[:remove_headers]
+        processed, aggregate = parallelize_with_progress(Account.remote.where({ last_webfingered_at: ..time_ago, updated_at: ..time_ago })) do |account|
+          next if !options[:include_follows] && Follow.where(account: account).or(Follow.where(target_account: account)).exists?
+          next if account.avatar.blank? && account.header.blank?
+          next if options[:remove_headers] && account.header.blank?
 
-        size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
+          size = (account.header_file_size || 0)
+          size += (account.avatar_file_size || 0) if options[:prune_profiles]
 
-        unless options[:dry_run]
-          media_attachment.file.destroy
-          media_attachment.thumbnail.destroy
-          media_attachment.save
+          unless options[:dry_run]
+            account.header.destroy
+            account.avatar.destroy if options[:prune_profiles]
+            account.save!
+          end
+
+          size
         end
 
-        size
+        say("Visited #{processed} accounts and removed profile media totaling #{number_to_human_size(aggregate)}#{dry_run}", :green, true)
       end
 
-      say("Removed #{processed} media attachments (approx. #{number_to_human_size(aggregate)}) #{dry_run}", :green, true)
+      unless options[:prune_profiles] || options[:remove_headers]
+        processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where(created_at: ..time_ago)) do |media_attachment|
+          next if media_attachment.file.blank?
+
+          size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
+
+          unless options[:dry_run]
+            media_attachment.file.destroy
+            media_attachment.thumbnail.destroy
+            media_attachment.save
+          end
+
+          size
+        end
+
+        say("Removed #{processed} media attachments (approx. #{number_to_human_size(aggregate)})#{dry_run}", :green, true)
+      end
     end
 
     option :start_after
@@ -73,13 +116,11 @@ module Mastodon
 
         loop do
           objects = begin
-            begin
-              bucket.objects(start_after: last_key, prefix: prefix).limit(1000).map { |x| x }
-            rescue => e
-              progress.log(pastel.red("Error fetching list of files: #{e}"))
-              progress.log("If you want to continue from this point, add --start-after=#{last_key} to your command") if last_key
-              break
-            end
+            bucket.objects(start_after: last_key, prefix: prefix).limit(1000).map { |x| x }
+          rescue => e
+            progress.log(pastel.red("Error fetching list of files: #{e}"))
+            progress.log("If you want to continue from this point, add --start-after=#{last_key} to your command") if last_key
+            break
           end
 
           break if objects.empty?
@@ -183,6 +224,7 @@ module Mastodon
 
       say("Removed #{removed} orphans (approx. #{number_to_human_size(reclaimed_bytes)})#{dry_run}", :green, true)
     end
+    # rubocop:enable Metrics/PerceivedComplexity
 
     option :account, type: :string
     option :domain, type: :string
@@ -233,9 +275,7 @@ module Mastodon
         exit(1)
       end
 
-      if options[:days].present?
-        scope = scope.where('media_attachments.id > ?', Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false))
-      end
+      scope = scope.where('media_attachments.id > ?', Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false)) if options[:days].present?
 
       processed, aggregate = parallelize_with_progress(scope) do |media_attachment|
         next if media_attachment.remote_url.blank? || (!options[:force] && media_attachment.file_file_name.present?)
@@ -269,7 +309,7 @@ module Mastodon
     def lookup(url)
       path = Addressable::URI.parse(url).path
 
-      path_segments = path.split('/')[2..-1]
+      path_segments = path.split('/')[2..]
       path_segments.delete('cache')
 
       unless [7, 10].include?(path_segments.size)
