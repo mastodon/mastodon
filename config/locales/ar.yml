@@ -113,6 +113,13 @@ ar:
       pending: في انتظار المراجعة
       perform_full_suspension: تعليق الحساب
       previous_strikes: العقوبات السابقة
+      previous_strikes_description_html:
+        zero: هذا الحساب لديه <strong>%{count}</strong>انذار.
+        one: هذا الحساب لديه <strong>%{count}</strong>انذار.
+        two: لدى هذا الحساب <strong>%{count}</strong> إنذاران اثنان.
+        few: لدى هذا الحساب <strong>%{count}</strong> إنذارات.
+        many: لدى هذا الحساب <strong>%{count}</strong> إنذارًا.
+        other: لدى هذا الحساب <strong>%{count}</strong> إنذار.
       promote: ترقية
       protocol: البروتوكول
       public: عمومي
@@ -879,6 +886,13 @@ ar:
         trending_rank: 'المتداولة #%{rank}'
         usable: يمكن استخدامه
         usage_comparison: تم استخدامه %{today} مرات اليوم، مقارنة بـ %{yesterday} بالأمس
+        used_by_over_week:
+          zero: مستخدَم من قِبل %{count} شخص خلال الأسبوع الماضي
+          one: مستخدَم من قِبل %{count} شخص واحد خلال الأسبوع الماضي
+          two: مستخدَم من قِبل %{count} شخصين خلال الأسبوع الماضي
+          few: مستخدَم من قِبل %{count} أشخاص خلال الأسبوع الماضي
+          many: مستخدَم من قِبل %{count} شخصا خلال الأسبوع الماضي
+          other: مستخدَم من قِبل %{count} شخص خلال الأسبوع الماضي
       title: المتداوَلة
       trending: المتداولة
     warning_presets:
