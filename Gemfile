@@ -104,8 +104,6 @@ group :development, :test do
   gem 'fabrication', '~> 2.30'
   gem 'fuubar', '~> 2.5'
   gem 'i18n-tasks', '~> 1.0', require: false
-  gem 'pry-byebug', '~> 3.10'
-  gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 5.1'
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
