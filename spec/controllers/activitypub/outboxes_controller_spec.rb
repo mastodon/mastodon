@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::OutboxesController, type: :controller do
@@ -33,10 +35,11 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
 
   describe 'GET #show' do
     context 'without signature' do
-      let(:remote_account) { nil }
+      subject(:body) { body_as_json }
 
       subject(:response) { get :show, params: { account_username: account.username, page: page } }
-      subject(:body) { body_as_json }
+
+      let(:remote_account) { nil }
 
       context 'with page not requested' do
         let(:page) { nil }

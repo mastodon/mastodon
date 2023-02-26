@@ -35,6 +35,7 @@ module Settings
 
       Setting.default_settings.each do |key, default_value|
         next if records.key?(key) || default_value.is_a?(Hash)
+
         records[key] = Setting.new(var: key, value: default_value)
       end
 
@@ -55,6 +56,7 @@ module Settings
         if db_val
           default_value = ScopedSettings.default_settings[key]
           return default_value.with_indifferent_access.merge!(db_val.value) if default_value.is_a?(Hash)
+
           db_val.value
         else
           ScopedSettings.default_settings[key]

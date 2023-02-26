@@ -183,7 +183,7 @@ module Paperclip
     end
 
     def rgb_to_hex(rgb)
-      '#%02x%02x%02x' % [rgb.r, rgb.g, rgb.b]
+      format('#%02x%02x%02x', rgb.r, rgb.g, rgb.b)
     end
   end
 end

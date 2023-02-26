@@ -27,7 +27,7 @@ module Settings
 
         session[:webauthn_challenge] = options_for_create.challenge
 
-        render json: options_for_create, status: :ok
+        render json: options_for_create, status: 200
       end
 
       def create

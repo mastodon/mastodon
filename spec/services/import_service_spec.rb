@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ImportService, type: :service do
@@ -183,14 +185,13 @@ RSpec.describe ImportService, type: :service do
     subject { ImportService.new }
 
     let!(:nare) { Fabricate(:account, username: 'nare', domain: 'թութ.հայ', locked: false, protocol: :activitypub, inbox_url: 'https://թութ.հայ/inbox') }
+    let(:csv) { attachment_fixture('utf8-followers.txt') }
+    let(:import) { Import.create(account: account, type: 'following', data: csv) }
 
     # Make sure to not actually go to the remote server
     before do
       stub_request(:post, 'https://թութ.հայ/inbox').to_return(status: 200)
     end
-
-    let(:csv) { attachment_fixture('utf8-followers.txt') }
-    let(:import) { Import.create(account: account, type: 'following', data: csv) }
 
     it 'follows the listed account' do
       expect(account.follow_requests.count).to eq 0
@@ -203,6 +204,9 @@ RSpec.describe ImportService, type: :service do
     subject { ImportService.new }
 
     let(:csv) { attachment_fixture('bookmark-imports.txt') }
+    let(:local_account)  { Fabricate(:account, username: 'foo', domain: '') }
+    let!(:remote_status) { Fabricate(:status, uri: 'https://example.com/statuses/1312') }
+    let!(:direct_status) { Fabricate(:status, uri: 'https://example.com/statuses/direct', visibility: :direct) }
 
     around(:each) do |example|
       local_before = Rails.configuration.x.local_domain
@@ -213,10 +217,6 @@ RSpec.describe ImportService, type: :service do
       Rails.configuration.x.web_domain = web_before
       Rails.configuration.x.local_domain = local_before
     end
-
-    let(:local_account)  { Fabricate(:account, username: 'foo', domain: '') }
-    let!(:remote_status) { Fabricate(:status, uri: 'https://example.com/statuses/1312') }
-    let!(:direct_status) { Fabricate(:status, uri: 'https://example.com/statuses/direct', visibility: :direct) }
 
     before do
       service = double
@@ -234,7 +234,7 @@ RSpec.describe ImportService, type: :service do
         subject.call(import)
         expect(account.bookmarks.map(&:status).map(&:id)).to include(local_status.id)
         expect(account.bookmarks.map(&:status).map(&:id)).to include(remote_status.id)
-        expect(account.bookmarks.map(&:status).map(&:id)).not_to include(direct_status.id)
+        expect(account.bookmarks.map(&:status).map(&:id)).to_not include(direct_status.id)
         expect(account.bookmarks.count).to eq 3
       end
     end

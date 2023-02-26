@@ -36,6 +36,7 @@ class ActivityPub::FetchRepliesService < BaseService
     return collection_or_uri if collection_or_uri.is_a?(Hash)
     return unless @allow_synchronous_requests
     return if invalid_origin?(collection_or_uri)
+
     fetch_resource_without_id_validation(collection_or_uri, nil, true)
   end
 

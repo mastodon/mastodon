@@ -2,6 +2,7 @@
   @if type-of($color) == 'color' {
     $color: str-slice(ie-hex-str($color), 4);
   }
+
   @return '%23' + unquote($color);
 }
 
@@ -15,7 +16,7 @@ body {
   text-rendering: optimizelegibility;
   font-feature-settings: 'kern';
   text-size-adjust: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0%);
   -webkit-tap-highlight-color: transparent;
 
   &.system-font {
@@ -31,8 +32,8 @@ body {
     // Helvetica Neue => Older macOS <10.11
     // $font-sans-serif => web-font (Roboto) fallback and newer Androids (>=4.0)
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-      'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-      'Helvetica Neue', $font-sans-serif, sans-serif;
+      Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      $font-sans-serif, sans-serif;
   }
 
   &.app-body {
@@ -131,12 +132,14 @@ body {
       vertical-align: middle;
       margin: 20px;
 
-      img {
-        display: block;
-        max-width: 470px;
-        width: 100%;
-        height: auto;
-        margin-top: -120px;
+      &__illustration {
+        img {
+          display: block;
+          max-width: 470px;
+          width: 100%;
+          height: auto;
+          margin-top: -120px;
+        }
       }
 
       h1 {
@@ -159,12 +162,17 @@ button {
 
 .app-holder {
   &,
-  & > div {
+  & > div,
+  & > noscript {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
     outline: 0 !important;
+  }
+
+  & > noscript {
+    height: 100vh;
   }
 }
 
@@ -179,6 +187,72 @@ button {
   &,
   & > div {
     height: 100%;
+  }
+}
+
+.app-holder noscript {
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: lighten($error-red, 4%);
+  text-align: center;
+
+  & > div {
+    max-width: 500px;
+  }
+
+  p {
+    margin-bottom: 0.85em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: $highlight-text-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+  }
+
+  &__footer {
+    color: $dark-text-color;
+    font-size: 13px;
+
+    a {
+      color: $dark-text-color;
+    }
+  }
+
+  button {
+    display: inline;
+    border: 0;
+    background: transparent;
+    color: $dark-text-color;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+    line-height: inherit;
+    cursor: pointer;
+    outline: 0;
+    transition: color 300ms linear;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+
+    &.copied {
+      color: $valid-value-color;
+      transition: none;
+    }
   }
 }
 

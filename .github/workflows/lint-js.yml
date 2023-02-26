@@ -10,6 +10,7 @@ on:
       - '.prettier*'
       - '.eslint*'
       - '**/*.js'
+      - '**/*.jsx'
       - '.github/workflows/lint-js.yml'
 
   pull_request:
@@ -20,6 +21,7 @@ on:
       - '.prettier*'
       - '.eslint*'
       - '**/*.js'
+      - '**/*.jsx'
       - '.github/workflows/lint-js.yml'
 
 jobs:

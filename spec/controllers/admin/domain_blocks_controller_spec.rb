@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Admin::DomainBlocksController, type: :controller do
@@ -54,7 +56,7 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
 
       post :create, params: { domain_block: { domain: 'example.com', severity: 'silence' } }
 
-      expect(DomainBlockWorker).not_to have_received(:perform_async)
+      expect(DomainBlockWorker).to_not have_received(:perform_async)
       expect(response).to render_template :new
     end
 
@@ -72,14 +74,13 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
 
   describe 'PUT #update' do
     let!(:remote_account) { Fabricate(:account, domain: 'example.com') }
-    let(:domain_block)    { Fabricate(:domain_block, domain: 'example.com', severity: original_severity) }
+    let(:subject) do
+      post :update, params: { id: domain_block.id, domain_block: { domain: 'example.com', severity: new_severity } }
+    end
+    let(:domain_block) { Fabricate(:domain_block, domain: 'example.com', severity: original_severity) }
 
     before do
       BlockDomainService.new.call(domain_block)
-    end
-
-    let(:subject) do
-      post :update, params: { id: domain_block.id, domain_block: { domain: 'example.com', severity: new_severity } }
     end
 
     context 'downgrading a domain suspension to silence' do

@@ -62,11 +62,11 @@
 }
 
 .account__avatar {
-  @include avatar-radius();
+  @include avatar-radius;
+
   display: block;
   position: relative;
   cursor: pointer;
-
   width: 36px;
   height: 36px;
   background-size: 36px 36px;
@@ -79,11 +79,13 @@
 
   &-composite {
     @include avatar-radius;
+
     overflow: hidden;
     position: relative;
 
     & div {
       @include avatar-radius;
+
       float: left;
       position: relative;
       box-sizing: border-box;
@@ -104,24 +106,24 @@
 }
 
 .account__avatar-overlay {
-  position: relative;
   @include avatar-size(48px);
 
   position: relative;
 
   &-base {
-    @include avatar-radius();
+    @include avatar-radius;
     @include avatar-size(36px);
 
     img {
       @include avatar-radius;
+
       width: 100%;
       height: 100%;
     }
   }
 
   &-overlay {
-    @include avatar-radius();
+    @include avatar-radius;
     @include avatar-size(24px);
 
     position: absolute;
@@ -131,6 +133,7 @@
 
     img {
       @include avatar-radius;
+
       width: 100%;
       height: 100%;
     }
@@ -746,8 +749,6 @@
       display: block;
       box-sizing: border-box;
       width: calc(100% + 20px);
-      margin: 0;
-      margin-top: 5px;
       color: $secondary-text-color;
       background: $ui-base-color;
       padding: 10px;
@@ -774,6 +775,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+
   &__message {
     color: $darker-text-color;
     padding: 8px 0;
@@ -784,6 +786,7 @@
     text-align: center;
     margin-bottom: 16px;
   }
+
   &__action {
     display: flex;
     justify-content: space-between;

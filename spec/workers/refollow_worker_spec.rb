@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe RefollowWorker do
   subject { described_class.new }
+
   let(:account) { Fabricate(:account, domain: 'example.org', protocol: :activitypub) }
   let(:alice)   { Fabricate(:account, domain: nil, username: 'alice') }
   let(:bob)     { Fabricate(:account, domain: nil, username: 'bob') }

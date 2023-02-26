@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe DeleteAccountService, type: :service do
   shared_examples 'common behavior' do
+    subject { described_class.new.call(account) }
+
     let!(:status) { Fabricate(:status, account: account) }
     let!(:mention) { Fabricate(:mention, account: local_follower) }
     let!(:status_with_mention) { Fabricate(:status, account: account, mentions: [mention]) }
@@ -22,8 +26,6 @@ RSpec.describe DeleteAccountService, type: :service do
     let!(:follow_notification) { Fabricate(:notification, account: local_follower, activity: active_relationship, type: :follow) }
 
     let!(:account_note) { Fabricate(:account_note, account: account) }
-
-    subject { described_class.new.call(account) }
 
     it 'deletes associated owned records' do
       expect { subject }.to change {
@@ -50,9 +52,9 @@ RSpec.describe DeleteAccountService, type: :service do
 
     it 'deletes associated target notifications' do
       expect { subject }.to change {
-        [
-          'poll', 'favourite', 'status', 'mention', 'follow'
-        ].map { |type| Notification.where(type: type).count }
+        %w(
+          poll favourite status mention follow
+        ).map { |type| Notification.where(type: type).count }
       }.from([1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0])
     end
   end

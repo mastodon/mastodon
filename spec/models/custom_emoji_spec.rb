@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe CustomEmoji, type: :model do
   describe '#search' do
-    let(:custom_emoji) { Fabricate(:custom_emoji, shortcode: shortcode) }
-
     subject { described_class.search(search_term) }
+
+    let(:custom_emoji) { Fabricate(:custom_emoji, shortcode: shortcode) }
 
     context 'shortcode is exact' do
       let(:shortcode) { 'blobpats' }
       let(:search_term) { 'blobpats' }
 
       it 'finds emoji' do
-        is_expected.to include(custom_emoji)
+        expect(subject).to include(custom_emoji)
       end
     end
 
@@ -20,21 +22,21 @@ RSpec.describe CustomEmoji, type: :model do
       let(:search_term) { 'blob' }
 
       it 'finds emoji' do
-        is_expected.to include(custom_emoji)
+        expect(subject).to include(custom_emoji)
       end
     end
   end
 
   describe '#local?' do
-    let(:custom_emoji) { Fabricate(:custom_emoji, domain: domain) }
-
     subject { custom_emoji.local? }
+
+    let(:custom_emoji) { Fabricate(:custom_emoji, domain: domain) }
 
     context 'domain is nil' do
       let(:domain) { nil }
 
       it 'returns true' do
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
@@ -42,7 +44,7 @@ RSpec.describe CustomEmoji, type: :model do
       let(:domain) { 'example.com' }
 
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
@@ -55,15 +57,15 @@ RSpec.describe CustomEmoji, type: :model do
   end
 
   describe '.from_text' do
-    let!(:emojo) { Fabricate(:custom_emoji) }
-
     subject { described_class.from_text(text, nil) }
+
+    let!(:emojo) { Fabricate(:custom_emoji) }
 
     context 'with plain text' do
       let(:text) { 'Hello :coolcat:' }
 
       it 'returns records used via shortcodes in text' do
-        is_expected.to include(emojo)
+        expect(subject).to include(emojo)
       end
     end
 
@@ -71,7 +73,7 @@ RSpec.describe CustomEmoji, type: :model do
       let(:text) { '<p>Hello :coolcat:</p>' }
 
       it 'returns records used via shortcodes in text' do
-        is_expected.to include(emojo)
+        expect(subject).to include(emojo)
       end
     end
   end

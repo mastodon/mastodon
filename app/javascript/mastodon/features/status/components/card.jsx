@@ -5,11 +5,19 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage } from 'react-intl';
 import punycode from 'punycode';
 import classnames from 'classnames';
-import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
-import Icon from 'flavours/glitch/components/icon';
-import { useBlurhash } from 'flavours/glitch/initial_state';
-import Blurhash from 'flavours/glitch/components/blurhash';
+import Icon from 'mastodon/components/icon';
+import { useBlurhash } from 'mastodon/initial_state';
+import Blurhash from 'mastodon/components/blurhash';
 import { debounce } from 'lodash';
+
+const IDNA_PREFIX = 'xn--';
+
+const decodeIDNA = domain => {
+  return domain
+    .split('.')
+    .map(part => part.indexOf(IDNA_PREFIX) === 0 ? punycode.decode(part.slice(IDNA_PREFIX.length)) : part)
+    .join('.');
+};
 
 const getHostname = url => {
   const parser = document.createElement('a');
@@ -176,7 +184,7 @@ export default class Card extends React.PureComponent {
   }
 
   render () {
-    const { card, maxDescription, compact, defaultWidth } = this.props;
+    const { card, maxDescription, compact } = this.props;
     const { width, embedded, revealed } = this.state;
 
     if (card === null) {
@@ -188,11 +196,12 @@ export default class Card extends React.PureComponent {
     const interactive = card.get('type') !== 'link';
     const className   = classnames('status-card', { horizontal, compact, interactive });
     const title       = interactive ? <a className='status-card__title' href={card.get('url')} title={card.get('title')} rel='noopener noreferrer' target='_blank'><strong>{card.get('title')}</strong></a> : <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>;
+    const language    = card.get('language') || '';
     const ratio       = card.get('width') / card.get('height');
     const height      = (compact && !embedded) ? (width / (16 / 9)) : (width / ratio);
 
     const description = (
-      <div className='status-card__content'>
+      <div className='status-card__content' lang={language}>
         {title}
         {!(horizontal || compact) && <p className='status-card__description'>{trim(card.get('description') || '', maxDescription)}</p>}
         <span className='status-card__host'>{provider}</span>
@@ -239,7 +248,7 @@ export default class Card extends React.PureComponent {
             {revealed && (
               <div className='status-card__actions'>
                 <div>
-                  <button onClick={this.handleEmbedClick}><Icon id={iconVariant} /></button>
+                  <button type='button' onClick={this.handleEmbedClick}><Icon id={iconVariant} /></button>
                   {horizontal && <a href={card.get('url')} target='_blank' rel='noopener noreferrer'><Icon id='external-link' /></a>}
                 </div>
               </div>

@@ -57,6 +57,7 @@ class Webfinger
       if res.code == 200
         body = res.body_with_limit
         raise Webfinger::Error, "Request for #{@uri} returned empty response" if body.empty?
+
         body
       elsif res.code == 404 && use_fallback
         body_from_host_meta

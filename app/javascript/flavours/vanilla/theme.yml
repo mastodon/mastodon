@@ -1,13 +1,13 @@
 #  (REQUIRED) The location of the pack files inside `pack_directory`.
 pack:
   admin:
-    - admin.js
-    - public.js
-  auth: public.js
+    - admin.jsx
+    - public.jsx
+  auth: public.jsx
   common:
     filename: common.js
     stylesheet: true
-  embed: public.js
+  embed: public.jsx
   error: error.js
   home:
     filename: application.js
@@ -18,9 +18,9 @@ pack:
       - features/notifications
   mailer:
   modal:
-  public: public.js
-  settings: public.js
-  share: share.js
+  public: public.jsx
+  settings: public.jsx
+  share: share.jsx
 
 #  (OPTIONAL) The directory which contains localization files for
 #  the flavour, relative to this directory.

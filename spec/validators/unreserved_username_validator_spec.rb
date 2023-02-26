@@ -17,7 +17,7 @@ RSpec.describe UnreservedUsernameValidator, type: :validator do
       let(:username) { nil }
 
       it 'not calls errors.add' do
-        expect(errors).not_to have_received(:add).with(:username, any_args)
+        expect(errors).to_not have_received(:add).with(:username, any_args)
       end
     end
 
@@ -36,7 +36,7 @@ RSpec.describe UnreservedUsernameValidator, type: :validator do
         let(:reserved_username) { false }
 
         it 'not calls errors.add' do
-          expect(errors).not_to have_received(:add).with(:username, any_args)
+          expect(errors).to_not have_received(:add).with(:username, any_args)
         end
       end
     end

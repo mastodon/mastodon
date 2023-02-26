@@ -1127,8 +1127,6 @@ sv:
     storage: Medialagring
   featured_tags:
     add_new: Lägg till ny
-    errors:
-      limit: Du har redan det maximala antalet utvalda hashtaggar
     hint_html: "<strong>Vad är utvalda hashtaggar?</strong> De visas tydligt på din offentliga profil och låter andra bläddra bland dina offentliga inlägg specifikt under dessa hashtaggar. De är ett bra verktyg för att hålla reda på kreativa arbeten eller långsiktiga projekt."
   filters:
     contexts:
@@ -1196,8 +1194,6 @@ sv:
     validation_errors:
       one: Något är inte riktigt rätt ännu! Kontrollera felet nedan
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
-  html_validator:
-    invalid_markup: 'innehåller ogiltig HTML: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Ogiltig CSV-fil. Felmeddelande: %{error}'
@@ -1238,9 +1234,6 @@ sv:
       expires_at: Utgår
       uses: Användningar
     title: Bjud in andra
-  lists:
-    errors:
-      limit: Du har nått det maximala antalet listor
   login_activities:
     authentication_methods:
       otp: tvåfaktorsautentiseringsapp
@@ -1557,7 +1550,6 @@ sv:
       '7889238': 3 månader
     min_age_label: Åldersgräns
     min_favs: Behåll favoritmarkerade inlägg i minst
-    min_favs_hint: Raderar inte något av dina inlägg som har blivit favoritmarkerat minst detta antal gånger. Lämna tomt för att radera inlägg oavsett antal favoritmarkeringar
     min_reblogs: Behåll boostade inlägg i minst
     min_reblogs_hint: Raderar inte något av dina inlägg som har blivit boostat minst detta antal gånger. Lämna tomt för att radera inlägg oavsett antal boostar
   stream_entries:

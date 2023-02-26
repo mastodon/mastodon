@@ -428,6 +428,7 @@ $ui-header-height: 55px;
 
   button {
     @extend .column-header__button;
+
     background: transparent;
     text-align: center;
     padding: 10px 5px;
@@ -491,6 +492,7 @@ $ui-header-height: 55px;
   // notif cleaning drawer
   &.ncd {
     transition: none;
+
     &.collapsed {
       max-height: 0;
       opacity: 0.7;
@@ -579,8 +581,8 @@ $ui-header-height: 55px;
   font-size: inherit;
   flex: auto;
   background-color: $ui-base-color;
-  transition-property: background-color, box-shadow;
   transition: all 0.2s ease;
+  transition-property: background-color, box-shadow;
 
   &[disabled] {
     cursor: not-allowed;
@@ -771,7 +773,7 @@ $ui-header-height: 55px;
 
   .column-select {
     &__control {
-      @include search-input();
+      @include search-input;
 
       &::placeholder {
         color: lighten($darker-text-color, 4%);
@@ -845,7 +847,8 @@ $ui-header-height: 55px;
     }
 
     &__menu {
-      @include search-popout();
+      @include search-popout;
+
       padding: 0;
       background: $ui-secondary-color;
     }

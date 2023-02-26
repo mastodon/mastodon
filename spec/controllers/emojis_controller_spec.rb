@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe EmojisController do
@@ -7,6 +9,7 @@ describe EmojisController do
 
   describe 'GET #show' do
     subject(:response) { get :show, params: { id: emoji.id, format: :json } }
+
     subject(:body) { JSON.parse(response.body, symbolize_names: true) }
 
     it 'returns the right response' do

@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe LinkDetailsExtractor do
+  subject { described_class.new(original_url, html, html_charset) }
+
   let(:original_url) { '' }
   let(:html) { '' }
   let(:html_charset) { nil }
-
-  subject { described_class.new(original_url, html, html_charset) }
 
   describe '#canonical_url' do
     let(:original_url) { 'https://foo.com/article?bar=baz123' }

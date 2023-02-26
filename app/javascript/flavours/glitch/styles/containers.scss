@@ -74,6 +74,7 @@
     width: 40px;
     height: 40px;
     @include avatar-size(40px);
+
     margin-right: 10px;
 
     img {
@@ -82,7 +83,7 @@
       display: block;
       margin: 0;
       border-radius: 4px;
-      @include avatar-radius();
+      @include avatar-radius;
     }
   }
 

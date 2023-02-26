@@ -89,6 +89,7 @@ th:
       moderation:
         active: ใช้งานอยู่
         all: ทั้งหมด
+        disabled: ปิดใช้งานอยู่
         pending: รอดำเนินการ
         silenced: จำกัดอยู่
         suspended: ระงับอยู่
@@ -130,6 +131,7 @@ th:
       search: ค้นหา
       search_same_email_domain: ผู้ใช้อื่น ๆ ที่มีโดเมนอีเมลเดียวกัน
       search_same_ip: ผู้ใช้อื่น ๆ ที่มี IP เดียวกัน
+      security: ความปลอดภัย
       security_measures:
         only_password: รหัสผ่านเท่านั้น
         password_and_2fa: รหัสผ่านและ 2FA
@@ -419,6 +421,7 @@ th:
         resolve: แปลงที่อยู่โดเมน
         title: ปิดกั้นโดเมนอีเมลใหม่
       no_email_domain_block_selected: ไม่มีการเปลี่ยนแปลงการปิดกั้นโดเมนอีเมลเนื่องจากไม่มีการเลือก
+      not_permitted: ไม่ได้รับอนุญาต
       resolved_dns_records_hint_html: ชื่อโดเมนแปลงที่อยู่เป็นโดเมน MX ดังต่อไปนี้ ซึ่งท้ายที่สุดแล้วจะรับผิดชอบสำหรับการยอมรับอีเมล การปิดกั้นโดเมน MX จะปิดกั้นการลงทะเบียนจากที่อยู่อีเมลใด ๆ ซึ่งใช้โดเมน MX เดียวกัน แม้ว่าชื่อโดเมนที่ปรากฏจะแตกต่างกันก็ตาม <strong>ระวังอย่าปิดกั้นผู้ให้บริการอีเมลรายใหญ่</strong>
       resolved_through_html: แปลงที่อยู่ผ่าน %{domain}
       title: โดเมนอีเมลที่ปิดกั้นอยู่
@@ -463,6 +466,7 @@ th:
       content_policies:
         comment: หมายเหตุภายใน
         description_html: คุณสามารถกำหนดนโยบายเนื้อหาที่จะนำไปใช้กับบัญชีทั้งหมดจากโดเมนนี้และโดเมนย่อยใดก็ตามของโดเมน
+        limited_federation_mode_description_html: คุณสามารถเลือกได้ว่าจะอนุญาตการติดต่อกับภายนอกกับโดเมนนี้หรือไม่
         policies:
           reject_media: ปฏิเสธสื่อ
           reject_reports: ปฏิเสธรายงาน
@@ -573,11 +577,13 @@ th:
       assign_to_self: มอบหมายให้ฉัน
       assigned: ผู้ควบคุมที่ได้รับมอบหมาย
       by_target_domain: โดเมนของบัญชีที่ได้รับการรายงาน
+      cancel: ยกเลิก
       category: หมวดหมู่
       category_description_html: จะอ้างถึงเหตุผลที่บัญชีและ/หรือเนื้อหานี้ได้รับการรายงานในการสื่อสารกับบัญชีที่ได้รับการรายงาน
       comment:
         none: ไม่มี
       comment_description_html: 'เพื่อให้ข้อมูลเพิ่มเติม %{name} ได้เขียน:'
+      confirm: ยืนยัน
       confirm_action: ยืนยันการกระทำการควบคุมต่อ @%{acct}
       created_at: รายงานเมื่อ
       delete_and_resolve: ลบโพสต์
@@ -778,6 +784,7 @@ th:
         suspend: "%{name} ได้ระงับบัญชีของ %{target}"
       appeal_approved: อุทธรณ์แล้ว
       appeal_pending: รอดำเนินการการอุทธรณ์
+      appeal_rejected: ปฏิเสธการอุทธรณ์แล้ว
     system_checks:
       database_schema_check:
         message_html: มีการโยกย้ายฐานข้อมูลที่รอดำเนินการ โปรดเรียกใช้การโยกย้ายเพื่อให้แน่ใจว่าแอปพลิเคชันทำงานตามที่คาดไว้
@@ -812,6 +819,7 @@ th:
           other: แบ่งปันโดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
         title: ลิงก์ที่กำลังนิยม
         usage_comparison: แบ่งปัน %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
+      not_allowed_to_trend: ไม่ได้รับอนุญาตให้ขึ้นแนวโน้ม
       only_allowed: อนุญาตเท่านั้น
       pending_review: การตรวจทานที่รอดำเนินการ
       preview_card_providers:
@@ -940,6 +948,7 @@ th:
   applications:
     created: สร้างแอปพลิเคชันสำเร็จ
     destroyed: ลบแอปพลิเคชันสำเร็จ
+    logout: ออกจากระบบ
     regenerate_token: สร้างโทเคนการเข้าถึงใหม่
     token_regenerated: สร้างโทเคนการเข้าถึงใหม่สำเร็จ
     warning: ระวังเป็นอย่างสูงกับข้อมูลนี้ อย่าแบ่งปันข้อมูลกับใครก็ตาม!
@@ -976,6 +985,8 @@ th:
     resend_confirmation: ส่งคำแนะนำการยืนยันใหม่
     reset_password: ตั้งรหัสผ่านใหม่
     rules:
+      accept: ยอมรับ
+      back: ย้อนกลับ
       preamble: มีการตั้งและบังคับใช้กฎโดยผู้ควบคุมของ %{domain}
       title: กฎพื้นฐานบางประการ
     security: ความปลอดภัย
@@ -1184,8 +1195,6 @@ th:
     today: วันนี้
     validation_errors:
       other: ยังมีบางอย่างไม่ถูกต้อง! โปรดตรวจทาน %{count} ข้อผิดพลาดด้านล่าง
-  html_validator:
-    invalid_markup: 'มีมาร์กอัป HTML ที่ไม่ถูกต้อง: %{error}'
   imports:
     errors:
       invalid_csv_file: 'ไฟล์ CSV ไม่ถูกต้อง ข้อผิดพลาด: %{error}'

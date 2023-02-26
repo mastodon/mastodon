@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe AccountSearchService, type: :service do
@@ -63,7 +65,7 @@ describe AccountSearchService, type: :service do
         allow(ResolveAccountService).to receive(:new).and_return(service)
 
         results = subject.call('newuser@remote.com', nil, limit: 10, resolve: false)
-        expect(service).not_to have_received(:call)
+        expect(service).to_not have_received(:call)
       end
     end
 

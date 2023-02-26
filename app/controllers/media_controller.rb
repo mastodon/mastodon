@@ -33,7 +33,7 @@ class MediaController < ApplicationController
 
     scope = MediaAttachment.local.attached
     # If id is 19 characters long, it's a shortcode, otherwise it's an identifier
-    @media_attachment = id.size == 19 ? scope.find_by!(shortcode: id) : scope.find_by!(id: id)
+    @media_attachment = id.size == 19 ? scope.find_by!(shortcode: id) : scope.find(id)
   end
 
   def verify_permitted_status!

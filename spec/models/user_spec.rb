@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'devise_two_factor/spec_helpers'
 
@@ -46,7 +48,7 @@ RSpec.describe User, type: :model do
     it 'cleans out empty string from languages' do
       user = Fabricate.build(:user, chosen_languages: [''])
       user.valid?
-      expect(user.chosen_languages).to eq nil
+      expect(user.chosen_languages).to be_nil
     end
   end
 
@@ -142,9 +144,9 @@ RSpec.describe User, type: :model do
   end
 
   describe '#confirm' do
-    let(:new_email) { 'new-email@example.com' }
-
     subject { user.confirm }
+
+    let(:new_email) { 'new-email@example.com' }
 
     before do
       allow(TriggerWebhookWorker).to receive(:perform_async)
@@ -159,7 +161,7 @@ RSpec.describe User, type: :model do
 
       it 'does not trigger the account.approved Web Hook' do
         subject
-        expect(TriggerWebhookWorker).not_to have_received(:perform_async).with('account.approved', 'Account', user.account_id)
+        expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
       end
     end
 
@@ -270,7 +272,7 @@ RSpec.describe User, type: :model do
 
       it 'does not trigger the account.approved Web Hook' do
         subject
-        expect(TriggerWebhookWorker).not_to have_received(:perform_async).with('account.approved', 'Account', user.account_id)
+        expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
       end
     end
   end
@@ -409,6 +411,7 @@ RSpec.describe User, type: :model do
 
   describe '#disable!' do
     subject(:user) { Fabricate(:user, disabled: false, current_sign_in_at: current_sign_in_at, last_sign_in_at: nil) }
+
     let(:current_sign_in_at) { Time.zone.now }
 
     before do
@@ -497,6 +500,7 @@ RSpec.describe User, type: :model do
 
   describe '#active_for_authentication?' do
     subject { user.active_for_authentication? }
+
     let(:user) { Fabricate(:user, disabled: disabled, confirmed_at: confirmed_at) }
 
     context 'when user is disabled' do

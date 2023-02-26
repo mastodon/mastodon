@@ -140,7 +140,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
           it 'includes existing credentials in list of excluded credentials' do
             get :options
 
-            excluded_credentials_ids = JSON.parse(response.body)['excludeCredentials'].map { |credential| credential['id'] }
+            excluded_credentials_ids = JSON.parse(response.body)['excludeCredentials'].pluck('id')
             expect(excluded_credentials_ids).to match_array(user.webauthn_credentials.pluck(:external_id))
           end
         end
