@@ -96,6 +96,7 @@ class ZoomableImage extends React.PureComponent {
 
   static propTypes = {
     alt: PropTypes.string,
+    lang: PropTypes.string,
     src: PropTypes.string.isRequired,
     width: PropTypes.number,
     height: PropTypes.number,
@@ -106,6 +107,7 @@ class ZoomableImage extends React.PureComponent {
 
   static defaultProps = {
     alt: '',
+    lang: '',
     width: null,
     height: null,
   };
@@ -403,7 +405,7 @@ class ZoomableImage extends React.PureComponent {
   };
 
   render () {
-    const { alt, src, width, height, intl } = this.props;
+    const { alt, lang, src, width, height, intl } = this.props;
     const { scale, lockTranslate } = this.state;
     const overflow = scale === MIN_SCALE ? 'hidden' : 'scroll';
     const zoomButtonShouldHide = this.state.navigationHidden || this.props.zoomButtonHidden || this.state.zoomMatrix.rate <= MIN_SCALE ? 'media-modal__zoom-button--hidden' : '';
@@ -431,6 +433,7 @@ class ZoomableImage extends React.PureComponent {
             ref={this.setImageRef}
             alt={alt}
             title={alt}
+            lang={lang}
             src={src}
             width={width}
             height={height}

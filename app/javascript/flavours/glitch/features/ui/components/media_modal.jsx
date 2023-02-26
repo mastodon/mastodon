@@ -3,6 +3,7 @@ import ReactSwipeableViews from 'react-swipeable-views';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Video from 'flavours/glitch/features/video';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { defineMessages, injectIntl } from 'react-intl';
 import IconButton from 'flavours/glitch/components/icon_button';
@@ -20,7 +21,12 @@ const messages = defineMessages({
   next: { id: 'lightbox.next', defaultMessage: 'Next' },
 });
 
-export default @injectIntl
+const mapStateToProps = (state, { statusId }) => ({
+  language: state.getIn(['statuses', statusId, 'language']),
+});
+
+export default @connect(mapStateToProps, null, null, { forwardRef: true })
+@injectIntl
 class MediaModal extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -131,7 +137,7 @@ class MediaModal extends ImmutablePureComponent {
   }
 
   render () {
-    const { media, statusId, intl, onClose } = this.props;
+    const { media, language, statusId, intl, onClose } = this.props;
     const { navigationHidden } = this.state;
 
     const index = this.getIndex();
@@ -151,6 +157,7 @@ class MediaModal extends ImmutablePureComponent {
             width={width}
             height={height}
             alt={image.get('description')}
+            lang={language}
             key={image.get('url')}
             onClick={this.toggleNavigation}
             zoomButtonHidden={this.state.zoomButtonHidden}
@@ -173,6 +180,7 @@ class MediaModal extends ImmutablePureComponent {
             onCloseVideo={onClose}
             detailed
             alt={image.get('description')}
+            lang={language}
             key={image.get('url')}
           />
         );
@@ -184,6 +192,7 @@ class MediaModal extends ImmutablePureComponent {
             height={height}
             key={image.get('preview_url')}
             alt={image.get('description')}
+            lang={language}
             onClick={this.toggleNavigation}
           />
         );
