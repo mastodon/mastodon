@@ -10,6 +10,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
+    lang: PropTypes.string,
     height: PropTypes.number,
     width: PropTypes.number,
   };
@@ -48,7 +49,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
   };
 
   render () {
-    const { status, width, height } = this.props;
+    const { status, lang, width, height } = this.props;
     const mediaAttachments = status.get('media_attachments');
 
     if (mediaAttachments.size === 0) {
@@ -64,7 +65,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
             <Component
               src={audio.get('url')}
               alt={audio.get('description')}
-              lang={status.get('language')}
+              lang={lang || status.get('language')}
               width={width}
               height={height}
               poster={audio.get('preview_url') || status.getIn(['account', 'avatar_static'])}
@@ -88,7 +89,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
               blurhash={video.get('blurhash')}
               src={video.get('url')}
               alt={video.get('description')}
-              lang={status.get('language')}
+              lang={lang || status.get('language')}
               width={width}
               height={height}
               inline
@@ -104,7 +105,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
           {Component => (
             <Component
               media={mediaAttachments}
-              lang={status.get('language')}
+              lang={lang || status.get('language')}
               sensitive={status.get('sensitive')}
               defaultWidth={width}
               height={height}
