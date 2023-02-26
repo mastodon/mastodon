@@ -8,6 +8,7 @@ export default class ImageLoader extends PureComponent {
 
   static propTypes = {
     alt: PropTypes.string,
+    lang: PropTypes.string,
     src: PropTypes.string.isRequired,
     previewSrc: PropTypes.string,
     width: PropTypes.number,
@@ -18,6 +19,7 @@ export default class ImageLoader extends PureComponent {
 
   static defaultProps = {
     alt: '',
+    lang: '',
     width: null,
     height: null,
   };
@@ -129,7 +131,7 @@ export default class ImageLoader extends PureComponent {
   };
 
   render () {
-    const { alt, src, width, height, onClick } = this.props;
+    const { alt, lang, src, width, height, onClick } = this.props;
     const { loading } = this.state;
 
     const className = classNames('image-loader', {
@@ -154,6 +156,7 @@ export default class ImageLoader extends PureComponent {
         ) : (
           <ZoomableImage
             alt={alt}
+            lang={lang}
             src={src}
             onClick={onClick}
             width={width}

@@ -64,6 +64,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
             <Component
               src={audio.get('url')}
               alt={audio.get('description')}
+              lang={status.get('language')}
               width={width}
               height={height}
               poster={audio.get('preview_url') || status.getIn(['account', 'avatar_static'])}
@@ -87,6 +88,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
               blurhash={video.get('blurhash')}
               src={video.get('url')}
               alt={video.get('description')}
+              lang={status.get('language')}
               width={width}
               height={height}
               inline
@@ -102,6 +104,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
           {Component => (
             <Component
               media={mediaAttachments}
+              lang={status.get('language')}
               sensitive={status.get('sensitive')}
               defaultWidth={width}
               height={height}
