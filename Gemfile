@@ -146,8 +146,6 @@ group :development do
   gem 'capistrano-rails', '~> 1.6'
   gem 'capistrano-rbenv', '~> 2.2'
   gem 'capistrano-yarn', '~> 2.0'
-
-  gem 'stackprof'
 end
 
 group :production do
