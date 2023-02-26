@@ -23,6 +23,9 @@
       = f.input :setting_default_language, collection: [nil] + filterable_languages, wrapper: :with_label, label_method: lambda { |locale| locale.nil? ? I18n.t('statuses.default_language') : native_locale_name(locale) }, required: false, include_blank: false, hint: false
 
   .fields-group
+    = f.input :setting_retain_privacy, as: :boolean, wrapper: :with_label
+
+  .fields-group
     = f.input :setting_default_sensitive, as: :boolean, wrapper: :with_label
 
   .fields-group

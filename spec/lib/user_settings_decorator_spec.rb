@@ -28,6 +28,13 @@ describe UserSettingsDecorator do
       expect(user.settings['default_privacy']).to eq 'public'
     end
 
+    it 'updates the user settings value for retaining privacy' do
+      values = { 'setting_retain_privacy' => '1' }
+
+      settings.update(values)
+      expect(user.settings['retain_privacy']).to be true
+    end
+
     it 'updates the user settings value for sensitive' do
       values = { 'setting_default_sensitive' => '1' }
 

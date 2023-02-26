@@ -18,6 +18,7 @@ class UserSettingsDecorator
     user.settings['notification_emails'] = merged_notification_emails if change?('notification_emails')
     user.settings['interactions']        = merged_interactions if change?('interactions')
     user.settings['default_privacy']     = default_privacy_preference if change?('setting_default_privacy')
+    user.settings['retain_privacy']      = retain_privacy_preference if change?('setting_retain_privacy')
     user.settings['default_sensitive']   = default_sensitive_preference if change?('setting_default_sensitive')
     user.settings['default_language']    = default_language_preference if change?('setting_default_language')
     user.settings['unfollow_modal']      = unfollow_modal_preference if change?('setting_unfollow_modal')
@@ -51,6 +52,10 @@ class UserSettingsDecorator
 
   def default_privacy_preference
     settings['setting_default_privacy']
+  end
+
+  def retain_privacy_preference
+    boolean_cast_setting 'setting_retain_privacy'
   end
 
   def default_sensitive_preference
