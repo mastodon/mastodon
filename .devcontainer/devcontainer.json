@@ -1,31 +1,37 @@
 // For more details, see https://aka.ms/devcontainer.json.
 {
-		"name": "Mastodon",
-		"dockerComposeFile": "docker-compose.yml",
-		"service": "app",
-		"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"name": "Mastodon",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
-		// Features to add to the dev container. More info: https://containers.dev/features.
-		"features": {
-				"ghcr.io/devcontainers/features/sshd:1": {}
-		},
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/sshd:1": {}
+	},
 
-		// Use 'forwardPorts' to make a list of ports inside the container available locally.
-		// This can be used to network with other containers or the host.
-		"forwardPorts": [3000, 4000],
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// This can be used to network with other containers or the host.
+	"forwardPorts": [
+		3000,
+		4000
+	],
 
-		// Use 'postCreateCommand' to run commands after the container is created.
-		"postCreateCommand": ".devcontainer/post-create.sh",
-		"waitFor": "postCreateCommand",
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": ".devcontainer/post-create.sh",
+	"waitFor": "postCreateCommand",
 
-		// Configure tool-specific properties.
-		"customizations": {
-				// Configure properties specific to VS Code.
-				"vscode": {
-						// Set *default* container specific settings.json values on container create.
-						"settings": {},
-						// Add the IDs of extensions you want installed when the container is created.
-						"extensions": ["EditorConfig.EditorConfig", "webben.browserslist"]
-				}
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {},
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"EditorConfig.EditorConfig",
+				"webben.browserslist"
+			]
 		}
+	}
 }

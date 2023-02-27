@@ -1,5 +1,5 @@
 # For details, see https://github.com/devcontainers/images/tree/main/src/ruby
-FROM mcr.microsoft.com/devcontainers/ruby:0-3.0-bullseye
+FROM mcr.microsoft.com/devcontainers/ruby:0-3.2-bullseye
 
 # Install Rails
 # RUN gem install rails webdrivers
