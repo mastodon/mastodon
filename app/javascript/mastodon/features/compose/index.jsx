@@ -16,9 +16,8 @@ import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
 import { mascot } from '../../initial_state';
 import Icon from 'mastodon/components/icon';
 import { logOut } from 'mastodon/utils/log_out';
-import Column from 'mastodon/components/column';
-import { Helmet } from 'react-helmet';
 import { isMobile } from '../../is_mobile';
+import ComposePresentation from './compose_presentation';
 
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -85,10 +84,10 @@ class Compose extends React.PureComponent {
   };
 
   render () {
-    const { multiColumn, showSearch, intl } = this.props;
+    const { multiColumn } = this.props;
 
     if (multiColumn) {
-      const { columns } = this.props;
+      const { columns, showSearch, intl } = this.props;
 
       return (
         <div className='drawer' role='region' aria-label={intl.formatMessage(messages.compose)}>
@@ -136,14 +135,10 @@ class Compose extends React.PureComponent {
     }
 
     return (
-      <Column onFocus={this.onFocus}>
-        <NavigationContainer onClose={this.onBlur} />
-        <ComposeFormContainer />
-
-        <Helmet>
-          <meta name='robots' content='noindex' />
-        </Helmet>
-      </Column>
+      <ComposePresentation
+        onBlur={this.onBlur}
+        onFocus={this.onFocus}
+      />
     );
   }
 
