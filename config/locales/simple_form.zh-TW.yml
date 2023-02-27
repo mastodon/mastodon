@@ -48,7 +48,7 @@ zh-TW:
         phrase: 無論是嘟文的本文或是內容警告都會被過濾
         scopes: 允許讓應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
         setting_aggregate_reblogs: 請勿顯示最近已被轉嘟之嘟文的最新轉嘟（只影響最新收到的嘟文）
-        setting_always_send_emails: 一般情況下若您活躍使用 Mastodon ，我們不會寄送 e-mail 通知
+        setting_always_send_emails: 一般情況下若您活躍使用 Mastodon ，我們不會寄送電子郵件通知
         setting_default_sensitive: 敏感內容媒體預設隱藏，且按一下即可重新顯示
         setting_display_media_default: 隱藏標為敏感內容的媒體
         setting_display_media_hide_all: 總是隱藏所有媒體
@@ -192,7 +192,7 @@ zh-TW:
         phrase: 關鍵字或片語
         setting_advanced_layout: 啟用進階網頁介面
         setting_aggregate_reblogs: 時間軸中的群組轉嘟
-        setting_always_send_emails: 總是發送 e-mail 通知
+        setting_always_send_emails: 總是發送電子郵件通知
         setting_auto_play_gif: 自動播放 GIF 動畫
         setting_boost_modal: 轉嘟前先詢問我
         setting_crop_images: 將未展開嘟文中的圖片裁剪至 16x9
@@ -278,12 +278,12 @@ zh-TW:
       notification_emails:
         appeal: 有人對管理員的決定提出上訴
         digest: 傳送摘要電子郵件
-        favourite: 有使用者將您的嘟文加入最愛
-        follow: 有使用者跟隨您
-        follow_request: 有使用者請求跟隨您
-        mention: 有使用者提及您
+        favourite: 當有使用者喜歡您的嘟文時，傳送電子郵件通知
+        follow: 當有使用者跟隨您時，傳送電子郵件通知
+        follow_request: 當有使用者請求跟隨您時，傳送電子郵件通知
+        mention: 當有使用者在嘟文提及您時，傳送電子郵件通知
         pending_account: 有新的帳號需要審核
-        reblog: 有使用者轉嘟您的嘟文
+        reblog: 當有使用者轉嘟您的嘟文時，傳送電子郵件通知
         report: 新回報已遞交
         trending_tag: 新熱門趨勢需要審核
       rule:
