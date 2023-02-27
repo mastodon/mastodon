@@ -14,6 +14,8 @@ import { mascot } from '../../initial_state';
 import Icon from 'mastodon/components/icon';
 import { isMobile } from '../../is_mobile';
 
+const hasColumn = (columns, id) => columns.some(column => column.get('id') === id);
+
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
   home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -30,16 +32,16 @@ const ComposePresentationForMultiColumn = ({ showSearch, intl, columns, onClickL
     <div className='drawer' role='region' aria-label={intl.formatMessage(messages.compose)}>
       <nav className='drawer__header'>
         <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)} aria-label={intl.formatMessage(messages.start)}><Icon id='bars' fixedWidth /></Link>
-        {!columns.some(column => column.get('id') === 'HOME') && (
+        {!hasColumn(columns, 'HOME') && (
           <Link to='/home' className='drawer__tab' title={intl.formatMessage(messages.home_timeline)} aria-label={intl.formatMessage(messages.home_timeline)}><Icon id='home' fixedWidth /></Link>
         )}
-        {!columns.some(column => column.get('id') === 'NOTIFICATIONS') && (
+        {!hasColumn(columns, 'NOTIFICATIONS') && (
           <Link to='/notifications' className='drawer__tab' title={intl.formatMessage(messages.notifications)} aria-label={intl.formatMessage(messages.notifications)}><Icon id='bell' fixedWidth /></Link>
         )}
-        {!columns.some(column => column.get('id') === 'COMMUNITY') && (
+        {!hasColumn(columns, 'COMMUNITY') && (
           <Link to='/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)} aria-label={intl.formatMessage(messages.community)}><Icon id='users' fixedWidth /></Link>
         )}
-        {!columns.some(column => column.get('id') === 'PUBLIC') && (
+        {!hasColumn(columns, 'PUBLIC') && (
           <Link to='/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><Icon id='globe' fixedWidth /></Link>
         )}
         <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><Icon id='cog' fixedWidth /></a>
