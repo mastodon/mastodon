@@ -132,4 +132,14 @@ describe UserMailer, type: :mailer do
       expect(mail.body.encoded).to include I18n.t('user_mailer.appeal_approved.title')
     end
   end
+
+  describe 'appeal_rejected' do
+    let(:appeal) { Fabricate(:appeal, account: receiver.account, rejected_at: Time.now.utc) }
+    let(:mail) { UserMailer.appeal_rejected(receiver, appeal) }
+
+    it 'renders appeal_rejected notification' do
+      expect(mail.subject).to eq I18n.t('user_mailer.appeal_rejected.subject', date: I18n.l(appeal.created_at))
+      expect(mail.body.encoded).to include I18n.t('user_mailer.appeal_rejected.title')
+    end
+  end
 end
