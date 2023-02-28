@@ -1255,7 +1255,8 @@
 
 .detailed-status {
   background: lighten($ui-base-color, 4%);
-  padding: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 
   &--flex {
     display: flex;
@@ -1289,11 +1290,14 @@
   .video-player,
   .audio-player {
     margin-top: 16px;
+    margin-bottom: 12px;
   }
 }
 
 .detailed-status__meta {
   margin-top: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
   color: $dark-text-color;
   font-size: 14px;
   line-height: 18px;
@@ -1647,6 +1651,8 @@ a.account__display-name {
   font-size: 15px;
   line-height: 22px;
   margin-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
   overflow: hidden;
 
   strong,
