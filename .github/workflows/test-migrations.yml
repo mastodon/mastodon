@@ -103,8 +103,8 @@ jobs:
           bin/rails db:create
           SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails tests:migrations:prepare_database
 
-          # Migrate up to v4.2.0 breakpoint
-          bin/rails db:migrate VERSION=20230907150100
+          # Migrate up to v4.3.0 breakpoint
+          bin/rails db:migrate VERSION=20241007071624
 
           # Migrate the rest
           SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails db:migrate
