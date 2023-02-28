@@ -88,4 +88,36 @@ RSpec.describe HomeHelper, type: :helper do
       end
     end
   end
+
+  describe 'sign_up_messages' do
+    context 'with closed registrations' do
+      it 'returns correct sign up message' do
+        allow(helper).to receive(:closed_registrations?).and_return(true)
+        result = helper.sign_up_message
+
+        expect(result).to eq t('auth.registration_closed', instance: 'cb6e6126.ngrok.io')
+      end
+    end
+
+    context 'with open registrations' do
+      it 'returns correct sign up message' do
+        allow(helper).to receive(:closed_registrations?).and_return(false)
+        allow(helper).to receive(:open_registrations?).and_return(true)
+        result = helper.sign_up_message
+
+        expect(result).to eq t('auth.register')
+      end
+    end
+
+    context 'with approved registrations' do
+      it 'returns correct sign up message' do
+        allow(helper).to receive(:closed_registrations?).and_return(false)
+        allow(helper).to receive(:open_registrations?).and_return(false)
+        allow(helper).to receive(:approved_registrations?).and_return(true)
+        result = helper.sign_up_message
+
+        expect(result).to eq t('auth.apply_for_account')
+      end
+    end
+  end
 end
