@@ -107,4 +107,19 @@ describe UserMailer, type: :mailer do
     include_examples 'localized subject',
                      'devise.mailer.webauthn_credential.deleted.subject'
   end
+
+  describe 'suspicious_sign_in' do
+    let(:ip) { '192.168.0.1' }
+    let(:agent) { 'NCSA_Mosaic/2.0 (Windows 3.1)' }
+    let(:timestamp) { Time.now.utc }
+    let(:mail) { UserMailer.suspicious_sign_in(receiver, ip, agent, timestamp) }
+
+    it 'renders suspicious sign in notification' do
+      receiver.update!(locale: nil)
+      expect(mail.body.encoded).to include I18n.t('user_mailer.suspicious_sign_in.explanation')
+    end
+
+    include_examples 'localized subject',
+                     'user_mailer.suspicious_sign_in.subject'
+  end
 end
