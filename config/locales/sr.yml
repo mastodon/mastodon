@@ -105,6 +105,7 @@ sr:
       reject: Одбаци
       remove_avatar: Уклони аватар
       remove_header: Одстрани заглавље
+      removed_avatar_msg: Слика аватара корисника %{username} је успешно уклоњена
       resend_confirmation:
         already_confirmed: Овој корисник е веќе потврден
         send: Препрати го е-мајлот за потврда
@@ -152,10 +153,13 @@ sr:
         disable_user: Онемогући корисника
         enable_user: Омогући корисника
         reject_user: Одбаци корисника
+        remove_avatar_user: Уклони аватар
         silence_account: Ограничи налог
         suspend_account: Обустави налог
         update_status: Уреди објаву
         update_user_role: Уреди улогу
+      actions:
+        remove_avatar_user_html: "%{name} је уклонио аватар корисника %{target}"
       deleted_account: обрисан налог
       filter_by_action: Филтрирај по активности
       filter_by_user: Филтрирај по кориснику
@@ -236,6 +240,9 @@ sr:
         create: Додај домен
         title: Нова ставка е-поштe у црној листи
       title: Црна листа E-поште
+    export_domain_blocks:
+      import:
+        existing_relationships_warning: Постојећи односи у облику праћења
     follow_recommendations:
       status: Статус
     instances:
@@ -283,6 +290,8 @@ sr:
       new:
         title: Креирај ново IP правило
       no_ip_block_selected: Ниједно IP правило није промењено јер ниједно није изабрано
+    relationships:
+      title: Односи корисника %{acct}
     relays:
       add_new: Додај нови релеј
       delete: Обриши
@@ -404,14 +413,14 @@ sr:
     your_token: Ваш приступни токен
   auth:
     change_password: Лозинка
-    delete_account: Обриши налог
-    delete_account_html: Ако желите да обришете Ваш налог, можете <a href="%{path}">наставити овде</a>. Бићете упитани да потврдите.
+    delete_account: Брисање налога
+    delete_account_html: Ако желите да избришете ваш налог, можете <a href="%{path}">наставити овде</a>. Од вас ће се тражити потврда.
     didnt_get_confirmation: Нисте добили поруку са упутствима за потврду налога?
     forgot_password: Заборавили сте лозинку?
     invalid_reset_password_token: Токен за ресетовање лозинке је неисправан или је истекао. Затражите нови.
     login: Пријави се
     logout: Одјава
-    migrate_account: Помери у други налог
+    migrate_account: Премештање у други налог
     migrate_account_html: Ако желите да преусмерите овај налог на неки други, можете то <a href="%{path}">подесити овде</a>.
     or_log_in_with: Или се пријавите са
     providers:
@@ -422,6 +431,9 @@ sr:
     reset_password: Ресетуј лозинку
     security: Безбедност
     set_new_password: Постави нову лозинку
+    status:
+      account_status: Статус налога
+      functional: Ваш налог је потпуно оперативан.
   authorize_follow:
     already_following: Већ пратите овај налог
     error: Нажалост, десила се грешка при тражењу удаљеног налога
@@ -466,15 +478,20 @@ sr:
     archive_takeout:
       date: Датум
       download: Преузмите Вашу архиву
-      hint_html: Можете затражити архиву ваших <strong>труба и отпремљених медија</strong>. Извезени подаци ће бити у АктивитиПаб формату, који можете читати са било којим усаглашеним софтвером. Архиву можете затражити сваких 7 дана.
+      hint_html: Можете затражити архиву ваших <strong>објава и отпремљених медија</strong>. Извезени подаци ће бити у ActivityPub формату, који може читати било који компатибилан софтвер. Архиву можете затражити сваких 7 дана.
       in_progress: Састављање ваше архиве...
-      request: Затражите Вашу архиву
+      request: Затражите своју архиву
       size: Величина
     blocks: Блокирали сте
     domain_blocks: Блокови домена
     lists: Листе
-    mutes: Ућуткали сте
+    mutes: Игноришете
     storage: Мултимедијално складиште
+  featured_tags:
+    add_new: Додај нову
+    errors:
+      limit: Већ сте истакли максималан број хеш ознака
+    hint_html: "<strong>Шта су истакнуте хеш онаке?</strong> Оне се приказују истакнуто на вашем јавном профилу и омогућују људима да прегледају ваше јавне објаве конкретно под тим хеш ознакама. Оне су сјајан алат за праћење креативних радова или дугорочних пројеката."
   filters:
     contexts:
       home: Временска линија почетне
@@ -487,6 +504,7 @@ sr:
       invalid_context: Ниједан или неважећи контекст испоручен
     index:
       delete: Избриши
+      empty: Немате филтере.
       title: Филтери
     new:
       title: Додај нови филтер
@@ -535,6 +553,8 @@ sr:
       too_many: Не може се прикачити више од 4 фајла
   migrations:
     acct: корисник@домен новог налога
+    incoming_migrations: Премештање из другог налога
+    incoming_migrations_html: Да бисте прешли са другог налога на овај, прво морате <a href="%{path}">креирате псеудоним налога</a>.
   moderation:
     title: Модерација
   notification_mailer:
@@ -573,18 +593,38 @@ sr:
     other: Остало
     posting_defaults: Подразумевана подешавања објављивања
     public_timelines: Јавне временске линије
+  relationships:
+    activity: Активност налога
+    confirm_follow_selected_followers: Да ли сте сигурни да желите да пратите изабране пратиоце?
+    confirm_remove_selected_followers: Да ли сте сигурни да желите да уклоните изабране пратиоце?
+    confirm_remove_selected_follows: Да ли сте сигурни да желите да уклоните изабрана праћења?
+    dormant: Неактиван
+    follow_selected_followers: Прати изабране пратиоце
+    followers: Пратиоци
+    following: Праћења
+    invited: Позван
+    last_active: Последњи пут активан
+    most_recent: Најновији
+    moved: Премештен
+    mutual: Заједнички
+    primary: Примарни
+    relationship: Однос
+    remove_selected_domains: Уклони све пратиоце са изабраних домена
+    remove_selected_followers: Уклони изабране пратиоце
+    remove_selected_follows: Отпрати изабране кориснике
+    status: Статус налога
   remote_follow:
     missing_resource: Не могу да нађем захтевану адресу преусмеравања за Ваш налог
   scheduled_statuses:
-    over_daily_limit: Прекорачили сте границу од %{limit} планираних труба за тај дан
-    over_total_limit: Прекорачили сте границу од %{limit} планираних труба
+    over_daily_limit: Прекорачили сте границу од %{limit} планираних објава за данас
+    over_total_limit: Прекорачили сте границу од %{limit} планираних објава
     too_soon: Планирани датум мора бити у будућности
   sessions:
     activity: Последња активност
     browser: Веб читач
     browsers:
       alipay: Алипеј
-      chrome: Хром
+      chrome: Chrome
       edge: Мајкрософт Еџ
       electron: Електрон
       firefox: Фајерфокс
@@ -609,13 +649,16 @@ sr:
       linux: Линукса
       mac: Мека
       other: непознате платформе
-      windows: Виндоуза
-      windows_mobile: Виндоуз мобилног
-      windows_phone: Виндоуз телефона
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Опозови
     revoke_success: Сесија успешно опозвана
     title: Сесије
+    view_authentication_history: Погледајте историју аутентификације вашег налога
   settings:
+    account: Налог
+    account_settings: Подешавања налога
     appearance: Изглед
     authorized_apps: Ауторизоване апликације
     back: Назад на Мастодон
@@ -623,6 +666,7 @@ sr:
     development: Развој
     edit_profile: Уређивање профила
     export: Извоз података
+    featured_tags: Истакнуте хеш ознаке
     import: Увоз
     import_and_export: Увоз и извоз
     migrate: Пребацивање налога
@@ -630,6 +674,7 @@ sr:
     preferences: Подешавања
     profile: Налог
     relationships: Праћења и пратиоци
+    statuses_cleanup: Аутоматско брисање објава
     two_factor_authentication: Двофакторска идентификација
   statuses:
     attached:
@@ -652,7 +697,7 @@ sr:
     open_in_web: Отвори у вебу
     over_character_limit: ограничење од %{max} карактера прекорачено
     pin_errors:
-      limit: Већ имате прикачен највећи број труба
+      limit: Већ сте закачили максималан број објава
       ownership: Туђа објава се не може закачити
       reblog: Подршка не може да се прикачи
     show_more: Прикажи још
@@ -664,6 +709,40 @@ sr:
       public_long: Свако може да види
       unlisted: Неизлистано
       unlisted_long: Свако може да види, али није излистано на јавним временским линијама
+  statuses_cleanup:
+    enabled: Аутоматски избриши старе објаве
+    enabled_hint: Аутоматски брише ваше објаве када достигну одређени старосни праг, осим ако се не подударају са једним од изузетака у наставку
+    exceptions: Изузеци
+    explanation: Пошто је брисање објава скупа операција, ово се ради полако током времена када сервер иначе није заузет. Из тог разлога, ваше објаве могу бити избрисане неко време након што достигну старосни праг.
+    ignore_favs: Игнориши омиљене
+    ignore_reblogs: Игнориши подржавања
+    interaction_exceptions: Изузеци засновани на интеракцијама
+    interaction_exceptions_explanation: Имајте на уму да не постоји гаранција да ће објаве бити избрисане ако број означавања као омиљених или број подржавања падне испод прага након што га премаше.
+    keep_direct: Задржи директне поруке
+    keep_direct_hint: Не брише ниједну од ваших директних порука
+    keep_media: Задржи објаве са медијским прилозима
+    keep_media_hint: Не брише ниједну од ваших објава које имају медијске прилоге
+    keep_pinned: Задржи закачене објаве
+    keep_pinned_hint: Не брише ниједну од ваших закачених објава
+    keep_polls: Задржи анкете
+    keep_polls_hint: Не брише ниједну од ваших анкета
+    keep_self_bookmark: Задржи објаве које сте додали у обележиваче
+    keep_self_bookmark_hint: Не брише ваше сопствене објаве ако сте их додлаи у обележиваче
+    keep_self_fav: Задржи омиљене објаве
+    keep_self_fav_hint: Не брише ваше сопствене објаве ако сте их означили као омиљене
+    min_age:
+      '1209600': 2 седмице
+      '15778476': 6 месеци
+      '2629746': 1 месец
+      '31556952': 1 година
+      '5259492': 2 месеца
+      '604800': 1 седмица
+      '63113904': 2 годинe
+      '7889238': 3 месеца
+    min_age_label: Старосни праг
+    min_favs: Задржи објаве означене као омиљене најмање
+    min_favs_hint: Не брише ниједну вашу објаву која је добила најмање овај број омиљених. Оставите празно за брисање објава без обзира на њихов број омиљених
+    min_reblogs_hint: Не брише ниједну вашу објаву која је била подржана најмање оволико пута. Оставите празно за брисање објава без обзира на њихов број подржавања
   stream_entries:
     pinned: Закачена објава
     reblogged: подржано
