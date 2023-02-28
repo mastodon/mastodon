@@ -122,4 +122,14 @@ describe UserMailer, type: :mailer do
     include_examples 'localized subject',
                      'user_mailer.suspicious_sign_in.subject'
   end
+
+  describe 'appeal_approved' do
+    let(:appeal) { Fabricate(:appeal, account: receiver.account, approved_at: Time.now.utc) }
+    let(:mail) { UserMailer.appeal_approved(receiver, appeal) }
+
+    it 'renders appeal_approved notification' do
+      expect(mail.subject).to eq I18n.t('user_mailer.appeal_approved.subject', date: I18n.l(appeal.created_at))
+      expect(mail.body.encoded).to include I18n.t('user_mailer.appeal_approved.title')
+    end
+  end
 end
