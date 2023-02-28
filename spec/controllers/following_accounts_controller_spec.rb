@@ -36,6 +36,27 @@ describe FollowingAccountsController do
           expect(response).to have_http_status(403)
         end
       end
+
+      context 'when account is permanently deleted' do
+        before do
+          alice.mark_deleted!
+          alice.deletion_request.destroy
+        end
+
+        it 'returns http gone' do
+          expect(response).to have_http_status(410)
+        end
+      end
+
+      context 'when account is pending deletion' do
+        before do
+          alice.mark_deleted!
+        end
+
+        it 'returns http forbidden' do
+          expect(response).to have_http_status(403)
+        end
+      end
     end
 
     context 'when format is json' do
@@ -73,6 +94,27 @@ describe FollowingAccountsController do
         context 'when account is temporarily suspended' do
           before do
             alice.suspend!
+          end
+
+          it 'returns http forbidden' do
+            expect(response).to have_http_status(403)
+          end
+        end
+
+        context 'when account is permanently deleted' do
+          before do
+            alice.mark_deleted!
+            alice.deletion_request.destroy
+          end
+
+          it 'returns http gone' do
+            expect(response).to have_http_status(410)
+          end
+        end
+
+        context 'when account is pending deletion' do
+          before do
+            alice.mark_deleted!
           end
 
           it 'returns http forbidden' do
@@ -121,6 +163,27 @@ describe FollowingAccountsController do
         context 'when account is temporarily suspended' do
           before do
             alice.suspend!
+          end
+
+          it 'returns http forbidden' do
+            expect(response).to have_http_status(403)
+          end
+        end
+
+        context 'when account is permanently deleted' do
+          before do
+            alice.mark_deleted!
+            alice.deletion_request.destroy
+          end
+
+          it 'returns http gone' do
+            expect(response).to have_http_status(410)
+          end
+        end
+
+        context 'when account is pending deletion' do
+          before do
+            alice.mark_deleted!
           end
 
           it 'returns http forbidden' do

@@ -134,6 +134,15 @@ RSpec.describe Auth::RegistrationsController do
         expect(response).to have_http_status(403)
       end
     end
+
+    context 'when deleted' do
+      let(:user) { Fabricate(:user, account_attributes: { username: 'test', deleted_at: Time.now.utc }) }
+
+      it 'returns http forbidden' do
+        put :update
+        expect(response).to have_http_status(403)
+      end
+    end
   end
 
   describe 'GET #new' do

@@ -44,6 +44,33 @@ describe 'Accounts show response' do
     end
   end
 
+  describe 'permanently deleted account check' do
+    before do
+      account.mark_deleted!
+      account.deletion_request.destroy
+    end
+
+    it 'returns appropriate http response code' do
+      { html: 410, json: 410, rss: 410 }.each do |format, code|
+        get short_account_path(username: account.username), as: format
+
+        expect(response).to have_http_status(code)
+      end
+    end
+  end
+
+  describe 'pending deletion account check' do
+    before { account.mark_deleted! }
+
+    it 'returns appropriate http response code' do
+      { html: 403, json: 403, rss: 403 }.each do |format, code|
+        get short_account_path(username: account.username), as: format
+
+        expect(response).to have_http_status(code)
+      end
+    end
+  end
+
   describe 'GET to short username paths' do
     context 'with existing statuses' do
       let!(:status) { Fabricate(:status, account: account) }
