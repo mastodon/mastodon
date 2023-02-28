@@ -53,11 +53,36 @@ describe 'The /.well-known/webfinger endpoint' do
     it_behaves_like 'a successful response'
   end
 
-  context 'when an account is permanently suspended or deleted' do
+  context 'when an account is pending deletion' do
+    let(:resource) { alice.to_webfinger_s }
+
+    before do
+      alice.mark_deleted!
+      perform_request!
+    end
+
+    it_behaves_like 'a successful response'
+  end
+
+  context 'when an account is permanently suspended' do
     let(:resource) { alice.to_webfinger_s }
 
     before do
       alice.suspend!
+      alice.deletion_request.destroy
+      perform_request!
+    end
+
+    it 'returns http gone' do
+      expect(response).to have_http_status(410)
+    end
+  end
+
+  context 'when an account is permanently deleted' do
+    let(:resource) { alice.to_webfinger_s }
+
+    before do
+      alice.mark_deleted!
       alice.deletion_request.destroy
       perform_request!
     end

@@ -46,6 +46,27 @@ RSpec.describe ActivityPub::InboxesController do
             expect(response).to have_http_status(202)
           end
         end
+
+        context 'when account is permanently deleted' do
+          before do
+            account.mark_deleted!
+            account.deletion_request.destroy
+          end
+
+          it 'returns http gone' do
+            expect(response).to have_http_status(410)
+          end
+        end
+
+        context 'when account is pending deletion' do
+          before do
+            account.mark_deleted!
+          end
+
+          it 'returns http accepted' do
+            expect(response).to have_http_status(202)
+          end
+        end
       end
     end
 
