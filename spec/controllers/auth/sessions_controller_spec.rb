@@ -48,6 +48,19 @@ RSpec.describe Auth::SessionsController do
         expect(response).to redirect_to(new_user_session_path)
       end
     end
+
+    context 'with a deleted user' do
+      before do
+        user.account.mark_deleted!
+      end
+
+      it 'redirects to home after sign out' do
+        sign_in(user, scope: :user)
+        delete :destroy
+
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
   end
 
   describe 'POST #create' do
