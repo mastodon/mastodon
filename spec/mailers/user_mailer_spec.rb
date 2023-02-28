@@ -94,4 +94,17 @@ describe UserMailer, type: :mailer do
       expect(mail.body.encoded).to include strike.text
     end
   end
+
+  describe 'webauthn_credential_deleted' do
+    let(:credential) { Fabricate(:webauthn_credential, user_id: receiver.id) }
+    let(:mail) { UserMailer.webauthn_credential_deleted(receiver, credential) }
+
+    it 'renders webauthn credential deleted notification' do
+      receiver.update!(locale: nil)
+      expect(mail.body.encoded).to include I18n.t('devise.mailer.webauthn_credential.deleted.title')
+    end
+
+    include_examples 'localized subject',
+                     'devise.mailer.webauthn_credential.deleted.subject'
+  end
 end
