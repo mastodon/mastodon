@@ -1,4 +1,3 @@
----
 en-GB:
   about:
     about_mastodon_html: 'The social network of the future: No ads, no corporate surveillance, ethical design, and decentralisation! Own your data with Mastodon!'
@@ -366,6 +365,20 @@ en-GB:
       sources: Sign-up sources
       space: Space usage
       title: Dashboard
+      top_languages: Top active languages
+      top_servers: Top active servers
+      website: Website
+    disputes:
+      appeals:
+        empty: No appeals found.
+        title: Appeals
+    domain_allows:
+      add_new: Allow federation with domain
+      created_msg: Domain has been successfully allowed for federation
+      destroyed_msg: Domain has been disallowed from federation
+      export: Export
+      import: Import
+      undo: Disallow federation with domain
     roles:
       categories:
         devops: DevOps
@@ -377,7 +390,9 @@ en-GB:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
+    '422':
     '429': Too many requests
+    '500':
     '503': The page could not be served due to a temporary server failure.
   sessions:
     browsers:
@@ -399,7 +414,11 @@ en-GB:
   strikes:
     errors:
       too_late: It is too late to appeal this strike
+  tags:
+    does_not_match_previous_name: does not match the previous name
   themes:
+    contrast: Mastodon (High contrast)
+    default: Mastodon (Dark)
     mastodon-light: Mastodon (Light)
   time:
     formats:
@@ -433,7 +452,14 @@ en-GB:
       title: Appeal rejected
     backup_ready:
       explanation: You requested a full backup of your Mastodon account. It's now ready for download!
+      subject: Your archive is ready for download
+      title: Archive takeout
     suspicious_sign_in:
+      change_password: change your password
+      details: 'Here are details of the sign-in:'
+      explanation: We've detected a sign-in to your account from a new IP address.
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
+      subject: Your account has been accessed from a new IP address
       title: A new sign-in
     warning:
       appeal: Submit an appeal
