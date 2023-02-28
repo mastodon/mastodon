@@ -57,14 +57,6 @@ module HomeHelper
     end
   end
 
-  def optional_link_to(condition, path, options = {}, &block)
-    if condition
-      link_to(path, options, &block)
-    else
-      content_tag(:div, &block)
-    end
-  end
-
   def sign_up_message
     if closed_registrations?
       t('auth.registration_closed', instance: site_hostname)
