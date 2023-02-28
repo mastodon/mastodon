@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_04_124057) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_04_145403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -1569,10 +1569,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_04_124057) do
             WHERE ((statuses.account_id = accounts.id) AND (statuses.deleted_at IS NULL) AND (statuses.reblog_of_id IS NULL))
             ORDER BY statuses.id DESC
            LIMIT 20) t0)
-    WHERE ((accounts.suspended_at IS NULL) AND (accounts.silenced_at IS NULL) AND (accounts.moved_to_account_id IS NULL) AND (accounts.discoverable = true) AND (accounts.locked = false))
+    WHERE ((accounts.suspended_at IS NULL) AND (accounts.deleted_at IS NULL) AND (accounts.silenced_at IS NULL) AND (accounts.moved_to_account_id IS NULL) AND (accounts.discoverable = true) AND (accounts.locked = false))
     GROUP BY accounts.id;
   SQL
-  add_index "account_summaries", ["account_id", "language", "sensitive"], name: "idx_on_account_id_language_sensitive_250461e1eb"
   add_index "account_summaries", ["account_id"], name: "index_account_summaries_on_account_id", unique: true
 
   create_view "global_follow_recommendations", materialized: true, sql_definition: <<-SQL
