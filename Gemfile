@@ -6,7 +6,7 @@ ruby '>= 2.7.0', '< 3.3.0'
 gem 'pkg-config', '~> 1.5'
 gem 'rexml', '~> 3.2'
 
-gem 'puma', '~> 5.6'
+gem 'puma', '~> 6.1'
 gem 'rails', '~> 6.1.7'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'

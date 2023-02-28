@@ -242,7 +242,7 @@ class StatusContent extends React.PureComponent {
     );
 
     const poll = !!status.get('poll') && (
-      <PollContainer pollId={status.get('poll')} />
+      <PollContainer pollId={status.get('poll')} lang={status.get('language')} />
     );
 
     if (status.get('spoiler_text').length > 0) {

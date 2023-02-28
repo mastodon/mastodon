@@ -74,10 +74,6 @@ class InstancePresenter < ActiveModelSerializers::Model
     Rails.cache.fetch('distinct_domain_count') { Instance.count }
   end
 
-  def sample_accounts
-    Rails.cache.fetch('sample_accounts', expires_in: 12.hours) { Account.local.discoverable.popular.limit(3) }
-  end
-
   def version
     Mastodon::Version.to_s
   end
