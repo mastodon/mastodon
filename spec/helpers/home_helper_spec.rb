@@ -68,4 +68,24 @@ RSpec.describe HomeHelper, type: :helper do
       end
     end
   end
+
+  describe 'custom_field_classes' do
+    context 'with a verified field' do
+      let(:field) { instance_double(Account::Field, verified?: true) }
+
+      it 'returns verified string' do
+        result = helper.custom_field_classes(field)
+        expect(result).to eq 'verified'
+      end
+    end
+
+    context 'with a non-verified field' do
+      let(:field) { instance_double(Account::Field, verified?: false) }
+
+      it 'returns verified string' do
+        result = helper.custom_field_classes(field)
+        expect(result).to eq 'emojify'
+      end
+    end
+  end
 end
