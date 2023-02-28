@@ -1,3 +1,4 @@
+---
 af:
   activerecord:
     attributes:
@@ -57,7 +58,7 @@ af:
         authorize: Magtig
         deny: Weier
       error:
-        title: '’n Fout het ingesluip'
+        title: "’n Fout het ingesluip"
       new:
         prompt_html: "%{client_name} wil toegang hê tot jou rekening. Dit is ’n derdepartytoepassing. <strong>Moet dit nie toelaat as jy dit nie vertrou nie.</strong>"
         review_permissions: Hersien toestemmings
@@ -124,38 +125,38 @@ af:
       application:
         title: Benodig OAuth-bemagtiging
     scopes:
-      "admin:read": lees alle data op die bediener
-      "admin:read:accounts": lees sensitiewe inligting van alle rekeninge
-      "admin:read:reports": lees sensitiewe inligting van alle verslae end aangeklaagde rekeninge
-      "admin:write": verander alle data op die bediener
-      "admin:write:accounts": modereer rekeninge
-      "admin:write:reports": modereer verslae
+      admin:read: lees alle data op die bediener
+      admin:read:accounts: lees sensitiewe inligting van alle rekeninge
+      admin:read:reports: lees sensitiewe inligting van alle verslae end aangeklaagde rekeninge
+      admin:write: verander alle data op die bediener
+      admin:write:accounts: modereer rekeninge
+      admin:write:reports: modereer verslae
       crypto: gebruik end-tot-end-enkripsie
       follow: verander rekeningverhoudings
       push: ontvang jou stootkennisgewings
       read: lees al jou rekeningdata
-      "read:accounts": sien rekeninginligting
-      "read:blocks": sien jou blokkerings
-      "read:bookmarks": sien jou boekmerke
-      "read:favourites": sien jou gunstelinge
-      "read:filters": sien jou filters
-      "read:lists": sien jou lyste
-      "read:mutes": sien jou uitdowings
-      "read:notifications": sien jou kennisgewinge
-      "read:reports": sien jou rapporterings
-      "read:search": soek namens jou
-      "read:statuses": sien alle plasings
+      read:accounts: sien rekeninginligting
+      read:blocks: sien jou blokkerings
+      read:bookmarks: sien jou boekmerke
+      read:favourites: sien jou gunstelinge
+      read:filters: sien jou filters
+      read:lists: sien jou lyste
+      read:mutes: sien jou uitdowings
+      read:notifications: sien jou kennisgewinge
+      read:reports: sien jou rapporterings
+      read:search: soek namens jou
+      read:statuses: sien alle plasings
       write: pas al jou rekeningdata aan
-      "write:accounts": pas jou profiel aan
-      "write:blocks": blokkeer rekeninge en domeine
-      "write:bookmarks": laat ’n boekmerk by plasings
-      "write:conversations": doof en wis gesprekke uit
-      "write:favourites": merk gunstelingplasings
-      "write:filters": skep filters
-      "write:follows": volg mense
-      "write:lists": skep lyste
-      "write:media": laai medalêers op
-      "write:mutes": doof mense en gesprekke uit
-      "write:notifications": verwyder jou kennisgewings
-      "write:reports": rapporteer ander mense
-      "write:statuses": publiseer plasings
+      write:accounts: pas jou profiel aan
+      write:blocks: blokkeer rekeninge en domeine
+      write:bookmarks: laat ’n boekmerk by plasings
+      write:conversations: doof en wis gesprekke uit
+      write:favourites: merk gunstelingplasings
+      write:filters: skep filters
+      write:follows: volg mense
+      write:lists: skep lyste
+      write:media: laai medalêers op
+      write:mutes: doof mense en gesprekke uit
+      write:notifications: verwyder jou kennisgewings
+      write:reports: rapporteer ander mense
+      write:statuses: publiseer plasings

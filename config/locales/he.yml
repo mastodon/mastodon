@@ -1,6 +1,7 @@
+---
 he:
   about:
-    about_mastodon_html: 'מסטודון היא רשת חברתית <em>חופשית, מבוססת תוכנה חופשית ("קוד פתוח")</em>. כאלטרנטיבה <em>בלתי ריכוזית</em> לפלטפרומות המסחריות, מסטודון מאפשרת להמנע מהסיכונים הנלווים להפקדת התקשורת שלך בידי חברה יחידה. שמת את מבטחך בשרת אחד &mdash; לא משנה במי בחרת, תמיד אפשר לדבר עם כל שאר המשתמשים. לכל מי שרוצה יש את האפשרות להקים שרת מסטודון עצמאי, ולהשתתף ב<em>רשת החברתית</em> באופן חלק.'
+    about_mastodon_html: מסטודון היא רשת חברתית <em>חופשית, מבוססת תוכנה חופשית ("קוד פתוח")</em>. כאלטרנטיבה <em>בלתי ריכוזית</em> לפלטפרומות המסחריות, מסטודון מאפשרת להמנע מהסיכונים הנלווים להפקדת התקשורת שלך בידי חברה יחידה. שמת את מבטחך בשרת אחד &mdash; לא משנה במי בחרת, תמיד אפשר לדבר עם כל שאר המשתמשים. לכל מי שרוצה יש את האפשרות להקים שרת מסטודון עצמאי, ולהשתתף ב<em>רשת החברתית</em> באופן חלק.
     contact_missing: ללא הגדרה
     contact_unavailable: לא רלוונטי/חסר
     hosted_on: מסטודון שיושב בכתובת %{domain}
@@ -8,10 +9,10 @@ he:
   accounts:
     follow: לעקוב
     followers:
-      one: עוקב
-      two: עוקבים
       many: עוקבים
+      one: עוקב
       other: עוקבים
+      two: עוקבים
     following: נעקבים
     instance_actor_flash: חשבון זה הינו פועל וירטואלי המשמש לייצוג השרת עצמו ולא אף משתמש ספציפי. הוא משמש למטרות פדרציה ואין להשעותו.
     last_active: פעילות אחרונה
@@ -20,10 +21,10 @@ he:
     pin_errors:
       following: עליך לעקוב אחרי חשבון לפני שניתן יהיה להמליץ עליו
     posts:
-      one: הודעה
-      two: הודעותיים
       many: הודעות
+      one: הודעה
       other: הודעות
+      two: הודעותיים
     posts_tab_heading: הודעות
   admin:
     account_actions:
@@ -59,7 +60,7 @@ he:
       delete: מחיקת נתונים
       deleted: מחוקים
       demote: הורדה בדרגה
-      destroyed_msg: "הנתונים של %{username} נכנסו לתור המחיקה וצפויים להימחק באופן מיידי"
+      destroyed_msg: הנתונים של %{username} נכנסו לתור המחיקה וצפויים להימחק באופן מיידי
       disable: הקפאה
       disable_sign_in_token_auth: ביטול הזדהות באמצעות אסימון דוא״ל
       disable_two_factor_authentication: ביטול הזדהות דו־שלבית
@@ -110,10 +111,10 @@ he:
       perform_full_suspension: ביצוע השעייה מלאה
       previous_strikes: פסילות קודמות
       previous_strikes_description_html:
-        one: לחשבון הזה פסילה <strong>אחת</strong>.
-        two: לחשבון הזה <strong>%{count}</strong> פסילות.
         many: לחשבון הזה יש <strong>%{count}</strong> פסילות.
+        one: לחשבון הזה פסילה <strong>אחת</strong>.
         other: לחשבון הזה <strong>%{count}</strong> פסילות.
+        two: לחשבון הזה <strong>%{count}</strong> פסילות.
       promote: להעלות בדרגה
       protocol: פרטיכל
       public: פומבי
@@ -236,17 +237,17 @@ he:
       actions:
         approve_appeal_html: "%{name} אישר/ה ערעור על החלטת מנהלי הקהילה מ-%{target}"
         approve_user_html: "%{name} אישר/ה הרשמה מ-%{target}"
-        assigned_to_self_report_html: "%{name} הקצה/תה דו\"ח %{target} לעצמם"
-        change_email_user_html: "%{name} שינה/תה את כתובת הדוא\"ל של המשתמש %{target}"
+        assigned_to_self_report_html: '%{name} הקצה/תה דו"ח %{target} לעצמם'
+        change_email_user_html: '%{name} שינה/תה את כתובת הדוא"ל של המשתמש %{target}'
         change_role_user_html: "%{name} שינה את התפקיד של %{target}"
-        confirm_user_html: "%{name} אישר/ה את כותבת הדו\"אל של המשתמש %{target}"
+        confirm_user_html: '%{name} אישר/ה את כותבת הדו"אל של המשתמש %{target}'
         create_account_warning_html: "%{name} שלח/ה אזהרה ל %{target}"
         create_announcement_html: "%{name} יצר/ה הכרזה חדשה %{target}"
         create_canonical_email_block_html: "%{name} חסם/ה את הדואל %{target}"
         create_custom_emoji_html: "%{name} העלו אמוג'י חדש %{target}"
         create_domain_allow_html: "%{name} אישר/ה פדרציה עם הדומיין %{target}"
         create_domain_block_html: "%{name} חסם/ה את הדומיין %{target}"
-        create_email_domain_block_html: "%{name} חסם/ה את דומיין הדוא\"ל %{target}"
+        create_email_domain_block_html: '%{name} חסם/ה את דומיין הדוא"ל %{target}'
         create_ip_block_html: "%{name} יצר/ה כלל עבור IP %{target}"
         create_unavailable_domain_html: "%{name} הפסיק/ה משלוח לדומיין %{target}"
         create_user_role_html: "%{name} יצר את התפקיד של %{target}"
@@ -256,33 +257,33 @@ he:
         destroy_custom_emoji_html: "%{name} מחק אמוג'י של %{target}"
         destroy_domain_allow_html: "%{name} לא התיר/ה פדרציה עם הדומיין %{target}"
         destroy_domain_block_html: "%{name} הסיר/ה חסימה מהדומיין %{target}"
-        destroy_email_domain_block_html: "%{name} הסיר/ה חסימה מדומיין הדוא\"ל %{target}"
+        destroy_email_domain_block_html: '%{name} הסיר/ה חסימה מדומיין הדוא"ל %{target}'
         destroy_instance_html: "%{name} טיהר/ה את הדומיין %{target}"
         destroy_ip_block_html: "%{name} מחק/ה את הכלל עבור IP %{target}"
-        destroy_status_html: "ההודעה של %{target} הוסרה ע\"י %{name}"
+        destroy_status_html: ההודעה של %{target} הוסרה ע"י %{name}
         destroy_unavailable_domain_html: "%{name} התחיל/ה מחדש משלוח לדומיין %{target}"
         destroy_user_role_html: "%{name} ביטל את התפקיד של %{target}"
         disable_2fa_user_html: "%{name} ביטל/ה את הדרישה לאימות דו-גורמי למשתמש %{target}"
         disable_custom_emoji_html: "%{name} השבית/ה את האמוג'י %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} השבית/ה את האימות בעזרת אסימון דוא\"ל עבור %{target}"
+        disable_sign_in_token_auth_user_html: '%{name} השבית/ה את האימות בעזרת אסימון דוא"ל עבור %{target}'
         disable_user_html: "%{name} חסם/ה כניסה מהמשתמש/ת %{target}"
         enable_custom_emoji_html: "%{name} אפשר/ה את האמוג'י %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} אפשר/ה אימות בעזרת אסימון דוא\"ל עבור %{target}"
+        enable_sign_in_token_auth_user_html: '%{name} אפשר/ה אימות בעזרת אסימון דוא"ל עבור %{target}'
         enable_user_html: "%{name} אפשר/ה כניסה עבור המשתמש %{target}"
         memorialize_account_html: "%{name} הפך/ה את חשבונו של %{target} לדף הנצחה"
         promote_user_html: "%{name} העלה בדרגה את המשתמש %{target}"
         reject_appeal_html: "%{name} דחו ערעור על החלטת הנהלת הקהילה מ-%{target}"
         reject_user_html: "%{name} דחו הרשמה מ-%{target}"
         remove_avatar_user_html: "%{name} הסירו את תמונת הפרופיל של %{target}"
-        reopen_report_html: "%{name} פתח מחדש דו\"ח %{target}"
+        reopen_report_html: '%{name} פתח מחדש דו"ח %{target}'
         resend_user_html: "%{name} הפעיל.ה שליחה מחדש של דואל אימות עבור %{target}"
-        reset_password_user_html: "הסיסמה עבור המשתמש %{target} התאפסה על־ידי %{name}"
-        resolve_report_html: "%{name} פתר/ה דו\"ח %{target}"
+        reset_password_user_html: הסיסמה עבור המשתמש %{target} התאפסה על־ידי %{name}
+        resolve_report_html: '%{name} פתר/ה דו"ח %{target}'
         sensitive_account_html: "%{name} סימן/ה את המדיה של %{target} כרגיש"
         silence_account_html: "%{name} הגביל/ה את חשבונו של %{target}"
         suspend_account_html: "%{name} השעו את חשבונו של %{target}"
-        unassigned_report_html: "%{name} דו\"ח לא מוקצה %{target}"
-        unblock_email_account_html: "%{name} הסיר/ה חסימה מחשבון הדוא\"ל של %{target}"
+        unassigned_report_html: '%{name} דו"ח לא מוקצה %{target}'
+        unblock_email_account_html: '%{name} הסיר/ה חסימה מחשבון הדוא"ל של %{target}'
         unsensitive_account_html: "%{name} ביטל/ה את סימון המדיה של %{target} כרגישה"
         unsilence_account_html: "%{name} ביטל/ה ההגבלה מהחשבון של %{target}"
         unsuspend_account_html: "%{name} ביטל/ה את ההשעיה של החשבון של %{target}"
@@ -355,25 +356,25 @@ he:
       new_users: משתמשים חדשים
       opened_reports: דו"חות פתוחים
       pending_appeals_html:
-        one: "ערעור <strong>%{count}</strong> ממתין"
-        two: "<strong>%{count}</strong> ערעורים ממתינים"
         many: "<strong>%{count}</strong> ערעורים ממתינים"
+        one: ערעור <strong>%{count}</strong> ממתין
         other: "<strong>%{count}</strong> ערעורים ממתינים"
+        two: "<strong>%{count}</strong> ערעורים ממתינים"
       pending_reports_html:
-        one: "דו\"ח <strong>%{count}</strong> ממתין"
-        two: "<strong>%{count}</strong> דוחות ממתינים"
         many: "<strong>%{count}</strong> דוחות ממתינים"
+        one: דו"ח <strong>%{count}</strong> ממתין
         other: "<strong>%{count}</strong> דוחות ממתינים"
+        two: "<strong>%{count}</strong> דוחות ממתינים"
       pending_tags_html:
-        one: "תגית <strong>%{count}</strong> ממתינה"
-        two: "<strong>%{count}</strong> תגיות ממתינות"
         many: "<strong>%{count}</strong> תגיות ממתינות"
+        one: תגית <strong>%{count}</strong> ממתינה
         other: "<strong>%{count}</strong> תגיות ממתינות"
+        two: "<strong>%{count}</strong> תגיות ממתינות"
       pending_users_html:
-        one: "<strong>%{count}</strong> משתמש/ת ממתינ/ה"
-        two: "<strong>%{count}</strong> משתמשים ממתינים"
         many: "<strong>%{count}</strong> משתמשים ממתינים"
+        one: "<strong>%{count}</strong> משתמש/ת ממתינ/ה"
         other: "<strong>%{count}</strong> משתמשים ממתינים"
+        two: "<strong>%{count}</strong> משתמשים ממתינים"
       resolved_reports: דו"חות נפתרו
       software: תוכנה
       sources: משאבי הרשמה
@@ -429,10 +430,10 @@ he:
     email_domain_blocks:
       add_new: הוספת חדש
       attempts_over_week:
-        one: "%{count} נסיון במשך השבוע שעבר"
-        two: "%{count} נסיונות הרשמה במשך השבוע שעבר"
         many: "%{count} נסיונות הרשמה במשך השבוע שעבר"
+        one: "%{count} נסיון במשך השבוע שעבר"
         other: "%{count} נסיונות הרשמה במשך השבוע שעבר"
+        two: "%{count} נסיונות הרשמה במשך השבוע שעבר"
       created_msg: כתובת מייל נחסמה בהצלחה
       delete: מחיקה
       dns:
@@ -474,16 +475,16 @@ he:
     instances:
       availability:
         description_html:
-          one: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
-          two: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים שונים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
           many: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים שונים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
+          one: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
           other: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים שונים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
+          two: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים שונים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
         failure_threshold_reached: סף כשלון הושג ב-%{date}.
         failures_recorded:
-          one: נסיון כושל ביום %{count}.
-          two: נסיונות כושלים ב-%{count} ימים שונים.
           many: נסיונות כושלים ב-%{count} ימים שונים.
+          one: נסיון כושל ביום %{count}.
           other: נסיונות כושלים ב-%{count} ימים שונים.
+          two: נסיונות כושלים ב-%{count} ימים שונים.
         no_failures_recorded: לא נמצאו כשלונות.
         title: זמינות
         warning: הנסיון האחרון להתחבר לשרת זה לא עלה בהצלחה
@@ -526,10 +527,10 @@ he:
       destroyed_msg: מידע מ-%{domain} נמצא עתה בתור למחיקה מיידית.
       empty: לא נמצאו דומיינים.
       known_accounts:
-        one: "חשבון ידוע %{count}"
-        two: "%{count} חשבונות ידועים"
         many: "%{count} חשבונות ידועים"
+        one: חשבון ידוע %{count}
         other: "%{count} חשבונות ידועים"
+        two: "%{count} חשבונות ידועים"
       moderation:
         all: הכל
         limited: מוגבלים
@@ -569,11 +570,11 @@ he:
       no_ip_block_selected: שום כלל IP לא שונה כי שום כלל IP לא נבחר
       title: כללי IP
     relationships:
-      title: "היחסים של %{acct}"
+      title: היחסים של %{acct}
     relays:
       add_new: הוספת ממסר חדש
       delete: מחיקה
-      description_html: <strong>ממסר פדרטיבי</strong> הוא שרת מתווך שמחליף כמויות גדולות של הודעות פומביות בין שרתים שרשומים ומפרסמים אליו. <strong>הוא יכול לעזור לשרתים קטנים ובינוניים לגלות תוכן מהפדרציה</strong>, מה שאחרת היה דורש ממשתמשים מקומיים לעקוב ידנית אחרי אנשים בשרתים מרוחקים.
+      description_html: "<strong>ממסר פדרטיבי</strong> הוא שרת מתווך שמחליף כמויות גדולות של הודעות פומביות בין שרתים שרשומים ומפרסמים אליו. <strong>הוא יכול לעזור לשרתים קטנים ובינוניים לגלות תוכן מהפדרציה</strong>, מה שאחרת היה דורש ממשתמשים מקומיים לעקוב ידנית אחרי אנשים בשרתים מרוחקים."
       disable: השבתה
       disabled: מושבת
       enable: לאפשר
@@ -592,10 +593,10 @@ he:
     reports:
       account:
         notes:
-          one: "הערה %{count}"
-          two: "%{count} הערות"
           many: "%{count} הערות"
+          one: הערה %{count}
           other: "%{count} הערות"
+          two: "%{count} הערות"
       action_log: ביקורת יומן
       action_taken_by: פעולה בוצעה ע"י
       actions:
@@ -636,7 +637,7 @@ he:
         placeholder: תאר/י אילו פעולות ננקטו, או עדכונים קשורים אחרים...
         title: הערות
       notes_description_html: צפייה והשארת הערות למנחים אחרים או לעצמך העתידי
-      processed_msg: 'דיווח %{id} עוּבָּד בהצלחה'
+      processed_msg: דיווח %{id} עוּבָּד בהצלחה
       quick_actions_description_html: 'נקוט/י פעולה מהירה או גלול/י למטה לצפייה בתוכן המדווח:'
       remote_user_placeholder: המשתמש המרוחק מ-%{instance}
       reopen: פתיחת דו"ח מחדש
@@ -663,7 +664,7 @@ he:
         close_report: 'סימון דיווח #%{id} בתור פתור'
         close_reports_html: סימון <strong>כל</strong> הדיווחים נגד <strong>@%{acct}</strong> בתור פתורים
         delete_data_html: למחוק את הפרופיל והתוכן של <strong>@%{acct}</strong> בעוד 30 יום אלא אם תוסר ההגבלה עליהם לפני כן
-        preview_preamble_html: "שליחת אזהרה אל <strong>@%{acct}</strong> בזו הלשון:"
+        preview_preamble_html: 'שליחת אזהרה אל <strong>@%{acct}</strong> בזו הלשון:'
         record_strike_html: ציין נקודה שחורה נגד <strong>@%{acct}</strong> כדי לסייע בשיפוטו בדיווחים עתידיים על חריגות
         send_email_html: שליחת דואל אזהרה אל <strong>@%{acct}</strong>
         warning_placeholder: צידוקים אפשריים נוספים לפעולה המשמעתית.
@@ -677,10 +678,10 @@ he:
     roles:
       add_new: הוספת תפקיד
       assigned_users:
-        one: "משתמש %{count} "
-        two: "%{count} שני משתמשים"
         many: "%{count} משתמשים"
+        one: 'משתמש %{count} '
         other: "%{count} משתמשים"
+        two: "%{count} שני משתמשים"
       categories:
         administration: ניהול מערכת
         devops: DevOps
@@ -693,10 +694,10 @@ he:
       everyone: הרשאות ברירת מחדל
       everyone_full_description_html: זהו <strong>התפקיד הבסיסי </strong> שמשפיע על <strong>כלל המשתשמשים</strong>, אפילו אלו ללא תפקיד. כל התפקידים האחרים יורשים את ההרשאות שלהם ממנו.
       permissions_count:
-        one: "הרשאה %{count}"
-        two: "%{count} הרשאות"
         many: "%{count} הרשאות"
+        one: הרשאה %{count}
         other: "%{count} הרשאות"
+        two: "%{count} הרשאות"
       privileges:
         administrator: מנהל מערכת
         administrator_description: משתמשים עם הרשאה זו יוכלו לעקוף כל הרשאה
@@ -857,10 +858,10 @@ he:
         publishers:
           no_publisher_selected: לא בוצעו שינויים במפרסמים שכן לא נבחרו כאלו
         shared_by_over_week:
-          one: הופץ על ידי אדם אחד בשבוע האחרון
-          two: הופץ על ידי %{count} אנשים בשבוע האחרון
           many: הופץ על ידי %{count} אנשים בשבוע האחרון
+          one: הופץ על ידי אדם אחד בשבוע האחרון
           other: הופץ על ידי %{count} אנשים בשבוע האחרון
+          two: הופץ על ידי %{count} אנשים בשבוע האחרון
         title: קישוריות חמות
         usage_comparison: הופץ %{today} פעמים היום, לעומת %{yesterday} אתמול
       not_allowed_to_trend: לא מורשה להופיע כנושא חם
@@ -881,10 +882,10 @@ he:
         no_status_selected: לא בוצעו שינויים בהודעות חמות שכן לא נבחרו כאלו
         not_discoverable: המחבר/ת לא בחר/ה לאפשר את גילויים
         shared_by:
-          one: הודהד או חובב פעם אחת
-          two: הודהד וחובב %{friendly_count} פעמים
           many: הודהד וחובב %{friendly_count} פעמים
+          one: הודהד או חובב פעם אחת
           other: הודהד וחובב %{friendly_count} פעמים
+          two: הודהד וחובב %{friendly_count} פעמים
         title: הודעות חמות
       tags:
         current_score: ציון נוכחי %{score}
@@ -907,10 +908,10 @@ he:
         usable: ניתנת לשימוש
         usage_comparison: שומשה %{today} פעמים היום, לעומת %{yesterday} אתמול
         used_by_over_week:
-          one: הוצגה על ידי משתמש בודד במשך השבוע שעבר
-          two: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
           many: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
+          one: הוצגה על ידי משתמש בודד במשך השבוע שעבר
           other: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
+          two: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
       title: נושאים חמים
       trending: נושאים חמים
     warning_presets:
@@ -930,10 +931,10 @@ he:
       enable: אפשר
       enabled: פעילים
       enabled_events:
-        one: אירוע %{count} מאופשר
-        two: "%{count} אירועים אופשרו"
         many: "%{count} אירועים אופשרו"
+        one: אירוע %{count} מאופשר
         other: "%{count} אירועים אופשרו"
+        two: "%{count} אירועים אופשרו"
       events: אירועים
       new: Webhook חדש
       rotate_secret: החלף מפתח
@@ -960,7 +961,7 @@ he:
     new_report:
       body: "%{reporter} דיווחו על %{target}"
       body_remote: מישהם מהמופע %{domain} דיווחו על %{target}
-      subject: 'דו"ח חדש מהמופע %{instance} (#%{id})'
+      subject: דו"ח חדש מהמופע %{instance} (#%{id})
     new_trends:
       body: 'הפריטים הבאים זקוקים לסקירה לפני שניתן יהיה להציגם פומבית:'
       new_trending_links:
@@ -969,7 +970,7 @@ he:
         title: הודעות חמות
       new_trending_tags:
         no_approved_tags: אין כרגע שום תגיות חמות מאושרות.
-        requirements: 'כל אחת מהמועמדות האלו עשויה לעבור את התגית החמה המאושרת מדרגה %{rank}, שהיא כרגע %{lowest_tag_name} עם ציון של %{lowest_tag_score}.'
+        requirements: כל אחת מהמועמדות האלו עשויה לעבור את התגית החמה המאושרת מדרגה %{rank}, שהיא כרגע %{lowest_tag_name} עם ציון של %{lowest_tag_score}.
         title: תגיות חמות
       subject: נושאים חמים חדשים מוכנים לסקירה ב-%{instance}
   aliases:
@@ -1212,20 +1213,20 @@ he:
       expires_in: פג תוקף ב %{distance}
       expires_on: פג תוקף ב %{date}
       keywords:
-        one: "מילת מפתח %{count}"
-        two: "%{count} מילות מפתח"
         many: "%{count} מילות מפתח"
+        one: מילת מפתח %{count}
         other: "%{count} מילות מפתח"
+        two: "%{count} מילות מפתח"
       statuses:
-        one: "הודעה %{count}"
-        two: "%{count} הודעותיים"
         many: "%{count} הודעות"
+        one: הודעה %{count}
         other: "%{count} הודעות"
+        two: "%{count} הודעותיים"
       statuses_long:
-        one: "הודעה %{count} יחידה הוסתרה"
-        two: "הודעותיים %{count} הוסתרו"
         many: "%{count} הודעות הוסתרו"
+        one: הודעה %{count} יחידה הוסתרה
         other: "%{count} הודעות הוסתרו"
+        two: הודעותיים %{count} הוסתרו
       title: מסננים
     new:
       save: שמירת מסנן חדש
@@ -1242,15 +1243,15 @@ he:
   generic:
     all: הכל
     all_items_on_page_selected_html:
-      one: "פריט <strong>%{count}</strong> נבחר בעמוד זה."
-      two: <strong>%{count}</strong> פריטים נבחרו בעמוד זה.
-      many: <strong>%{count}</strong> פריטים נבחרו בעמוד זה.
-      other: <strong>%{count}</strong> פריטים נבחרו בעמוד זה.
+      many: "<strong>%{count}</strong> פריטים נבחרו בעמוד זה."
+      one: פריט <strong>%{count}</strong> נבחר בעמוד זה.
+      other: "<strong>%{count}</strong> פריטים נבחרו בעמוד זה."
+      two: "<strong>%{count}</strong> פריטים נבחרו בעמוד זה."
     all_matching_items_selected_html:
-      one: "נבחר פריט <strong>%{count}</strong> שתאם לחיפוש בעמוד זה."
-      two: נבחרו <strong>%{count}</strong> פריטים שתאמו לחיפוש בעמוד זה.
       many: נבחרו <strong>%{count}</strong> פריטים שתאמו לחיפוש בעמוד זה.
+      one: נבחר פריט <strong>%{count}</strong> שתאם לחיפוש בעמוד זה.
       other: נבחרו <strong>%{count}</strong> פריטים שתאמו לחיפוש בעמוד זה.
+      two: נבחרו <strong>%{count}</strong> פריטים שתאמו לחיפוש בעמוד זה.
     changes_saved_msg: השינויים נשמרו בהצלחה!
     copy: להעתיק
     delete: למחוק
@@ -1259,16 +1260,16 @@ he:
     order_by: מיין לפי
     save_changes: שמור שינויים
     select_all_matching_items:
-      one: בחר.י פריט %{count} שתאם לחיפוש שלך.
-      two: בחר. י %{count} פריטים שתאמו לחיפוש שלך.
       many: בחר.י %{count} פריטים שתאמו לחיפוש שלך.
+      one: בחר.י פריט %{count} שתאם לחיפוש שלך.
       other: בחר.י %{count} פריטים שתאמו לחיפוש שלך.
+      two: בחר. י %{count} פריטים שתאמו לחיפוש שלך.
     today: היום
     validation_errors:
-      one: משהו עדיין לא בסדר! נא לעיין בשגיאה להלן
-      two: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן
       many: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן
+      one: משהו עדיין לא בסדר! נא לעיין בשגיאה להלן
       other: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן
+      two: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן
   imports:
     errors:
       invalid_csv_file: 'קובץ CSV שבור. שגיאה: %{error}'
@@ -1299,12 +1300,12 @@ he:
       '86400': יום אחד
     expires_in_prompt: לעולם לא
     generate: צור קישור להזמנה
-    invited_by: 'הוזמנת ע"י'
+    invited_by: הוזמנת ע"י
     max_uses:
-      one: שימוש אחד
-      two: "%{count} שימושים"
       many: "%{count} שימושים"
+      one: שימוש אחד
       other: "%{count} שימושים"
+      two: "%{count} שימושים"
     max_uses_prompt: ללא הגבלה
     prompt: צור ושתף קישורים לאחרים על מנת להעניק גישה לשרת זה
     table:
@@ -1372,12 +1373,12 @@ he:
   notification_mailer:
     admin:
       report:
-        subject: "%{name} שלח/ה דו\"ח"
+        subject: '%{name} שלח/ה דו"ח'
       sign_up:
         subject: "%{name} נרשמו"
     favourite:
       body: 'הודעתך חובבה על ידי %{name}:'
-      subject: "הודעתך חובבה על ידי %{name}"
+      subject: הודעתך חובבה על ידי %{name}
       title: חיבוב חדש
     follow:
       body: "%{name} עכשיו במעקב אחריך!"
@@ -1385,7 +1386,7 @@ he:
       title: עוקב/ת חדש/ה
     follow_request:
       action: ניהול בקשות מעקב
-      body: "התקבלה בקשת מעקב מ־%{name}"
+      body: התקבלה בקשת מעקב מ־%{name}
       subject: 'בקשת מעקב בהמתנה: %{name}'
       title: בקשת מעקב חדשה
     mention:
@@ -1397,7 +1398,7 @@ he:
       subject: סקר מאת %{name} הסתיים
     reblog:
       body: 'הודעתך הודהדה על ידי %{name}:'
-      subject: "הודעתך הודהדה על ידי%{name}"
+      subject: הודעתך הודהדה על ידי%{name}
       title: הדהוד חדש
     status:
       subject: "%{name} בדיוק פרסם"
@@ -1554,29 +1555,29 @@ he:
   statuses:
     attached:
       audio:
-        one: "אודיו %{count}"
-        two: "%{count} אודיו"
         many: "%{count} אודיו"
+        one: אודיו %{count}
         other: "%{count} אודיו"
+        two: "%{count} אודיו"
       description: 'מצורף: %{attached}'
       image:
-        one: "תמונה %{count}"
-        two: "%{count} תמונותיים"
         many: "%{count} תמונות"
+        one: תמונה %{count}
         other: "%{count} תמונות"
+        two: "%{count} תמונותיים"
       video:
-        one: "סרטון %{count}"
-        two: "%{count} סרטונים"
         many: "%{count} סרטונים"
+        one: סרטון %{count}
         other: "%{count} סרטונים"
+        two: "%{count} סרטונים"
     boosted_from_html: הודהד מ-%{acct_link}
     content_warning: 'אזהרת תוכן: %{warning}'
     default_language: זהה לשפת ממשק
     disallowed_hashtags:
-      one: 'מכיל את התגית האסורה: %{tags}'
-      two: 'מכיל את התגיות האסורות: %{tags}'
       many: 'מכיל את התגיות האסורות: %{tags}'
+      one: 'מכיל את התגית האסורה: %{tags}'
       other: 'מכיל את התגיות האסורות: %{tags}'
+      two: 'מכיל את התגיות האסורות: %{tags}'
     edited_at_html: נערך ב-%{date}
     errors:
       in_reply_not_found: נראה שההודעה שאת/ה מנסה להגיב לה לא קיימת.
@@ -1589,15 +1590,15 @@ he:
       reblog: אין אפשרות להצמיד הדהודים
     poll:
       total_people:
-        one: "איש/ה %{count}"
-        two: "%{count} אנשים"
         many: "%{count} אנשים"
+        one: איש/ה %{count}
         other: "%{count} אנשים"
+        two: "%{count} אנשים"
       total_votes:
-        one: "קול %{count}"
-        two: "%{count} קולות"
         many: "%{count} קולות"
+        one: קול %{count}
         other: "%{count} קולות"
+        two: "%{count} קולות"
       vote: הצבעה
     show_more: עוד
     show_newer: הצג חדשים יותר
