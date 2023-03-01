@@ -937,6 +937,7 @@ sr:
     confirm: Настави
     hint_html: "<strong>Савет:</strong> Нећемо Вас питати за лозинку поново у наредних сат времена."
     invalid_password: Неисправна лозинка
+    prompt: Потврдите лозинку за наставак
   datetime:
     distance_in_words:
       about_x_months: "%{count}месец"
@@ -966,6 +967,9 @@ sr:
       title: Страна није исправна
     '503': The page could not be served due to a temporary server failure.
     noscript_html: Да бисте користили Мастодонт веб апликацију, омогућите JavaScript. У супротном, пробајте неку од <a href="%{apps_path}">оригиналних апликација</a> за Мастодонт за Вашу платформу.
+  existing_username_validator:
+    not_found: није било могуће пронаћи локалног корисника са тим корисничким именом
+    not_found_multiple: није било могуће пронаћи %{usernames}
   exports:
     archive_takeout:
       date: Датум
@@ -975,6 +979,8 @@ sr:
       request: Затражите своју архиву
       size: Величина
     blocks: Блокирали сте
+    bookmarks: Обележивачи
+    csv: CSV
     domain_blocks: Блокови домена
     lists: Листе
     mutes: Игноришете
@@ -986,33 +992,92 @@ sr:
     hint_html: "<strong>Шта су истакнуте хеш онаке?</strong> Оне се приказују истакнуто на вашем јавном профилу и омогућују људима да прегледају ваше јавне објаве конкретно под тим хеш ознакама. Оне су сјајан алат за праћење креативних радова или дугорочних пројеката."
   filters:
     contexts:
+      account: Профили
       home: Временска линија почетне
       notifications: Обавештења
       public: Јавне временске линије
       thread: Разговори
     edit:
+      add_keyword: Додај кључну реч
+      keywords: Кључне речи
+      statuses: Засебне објаве
+      statuses_hint_html: Овај филтер важи за одабране засебне објаве без обзира на то да ли садрже кључне речи наведене испод. <a href="%{path}">Прегледајте или уклоните објаве из филтера</a>.
       title: Измени филтер
     errors:
+      deprecated_api_multiple_keywords: Ови параметри не могу бити промењени у овој апликацији зато што се односе на више од једне кључне речи. Користите ажурнију апликацију или веб интерфејс.
       invalid_context: Ниједан или неважећи контекст испоручен
     index:
+      contexts: Филтрира у %{contexts}
       delete: Избриши
       empty: Немате филтере.
+      expires_in: Истиче за %{distance}
+      expires_on: Истиче датума %{date}
+      keywords:
+        one: "%{count} кључна реч"
+        few: "%{count} кључне речи"
+        other: "%{count} кључних речи"
+      statuses:
+        one: "%{count} објава"
+        few: "%{count} објаве"
+        other: "%{count} објава"
+      statuses_long:
+        one: "%{count} засебна објава сакривена"
+        few: "%{count} засебне објаве сакривене"
+        other: "%{count} засебних објава сакривено"
       title: Филтери
     new:
+      save: Сачувај нови филтер
       title: Додај нови филтер
+    statuses:
+      back_to_filter: Назад на филтер
+      batch:
+        remove: Уклони из филтера
+      index:
+        hint: Овај филтер важи за одабране засебне објаве без обзира на друге критеријуме. Можете да додате више објава у овај филтер путем веб интерфејса.
+        title: Филтриране објаве
+  footer:
+    trending_now: Тренутно у тренду
   generic:
+    all: Сви
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> ставка са ове странице је изабрана."
+      few: Све <strong>%{count}</strong> ставке са ове странице су изабране.
+      other: Свих <strong>%{count}</strong> ставки са ове странице је изабрано.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> ставка која се поклапа са Вашом претрагом је изабрана."
+      few: Све <strong>%{count}</strong> ставке које се поклапају са Вашом претрагом су изабране.
+      other: Свих <strong>%{count}</strong> ставки које се поклапају са Вашом претрагом су изабране.
     changes_saved_msg: Измене успешно сачуване!
     copy: Копирај
+    delete: Избриши
+    deselect: Поништи све изборе
+    none: Ниједна
+    order_by: Сортирај према
     save_changes: Сачувај промене
+    select_all_matching_items:
+      one: Одаберите %{count} ставку која се поклапа са Вашом претрагом.
+      few: Одаберите све %{count} ставке које се поклапају са Вашом претрагом.
+      other: Одаберите свих %{count} ставки које се поклапају са Вашом претрагом.
+    today: данас
     validation_errors:
       one: Нешто није баш како треба! Прегледајте грешке испод
       few: Нешто није баш како треба! Прегледајте %{count} грешке испод
       other: Нешто није баш како треба! Прегледајте %{count} грешака испод
   imports:
+    errors:
+      invalid_csv_file: 'Неисправан CSV фајл. Грешка: %{error}'
+      over_rows_processing_limit: садржи више од %{count} редова
+    modes:
+      merge: Стапање
+      merge_long: Задржите постојеће записе и додајте нове
+      overwrite: Замени
+      overwrite_long: Замени тренутне записе новима
     preface: Можете увести податке које сте извезли са друге инстанце, као што су листе људи које сте пратили или блокирали.
     success: Ваши подаци су успешно отпремљени и биће обрађени ускоро
     types:
       blocking: Листа блокирања
+      bookmarks: Обележивачи
+      domain_blocking: Листа блокираних домена
       following: Листа пратилаца
       muting: Листа ућутканих
     upload: Отпреми
