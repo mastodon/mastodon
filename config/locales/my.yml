@@ -631,7 +631,9 @@ my:
     localization:
       guide_link_text: လူတိုင်းပါဝင်ကူညီနိုင်ပါတယ်။
   application_mailer:
+    notification_preferences: အီးမေးလ် သတ်မှတ်ချက်များကို ပြောင်းပါ
     salutation: "%{name}"
+    settings: 'အီးမေးလ် သတ်မှတ်ချက်များကို ပြောင်းပါ - %{link}'
     view: 'ကြည့်ရှုရန် -'
     view_profile: ပရိုဖိုင်ကိုကြည့်ရန်
     view_status: ပို့စ်ကိုကြည့်ရန်
@@ -895,6 +897,7 @@ my:
     delete: အကောင့်ဖျက်သိမ်းခြင်း
     edit_profile: ပရိုဖိုင်ပြင်ဆင်ရန်
     notifications: အသိပေးချက်များ
+    preferences: သတ်မှတ်ချက်များ
     profile: ပရိုဖိုင်
     relationships: စောင့်ကြည့်သူများနှင့် စောင့်ကြည့်စာရင်း
     statuses_cleanup: အလိုအလျောက်ပို့စ်ဖျက်ခြင်း
@@ -926,6 +929,7 @@ my:
       public: အများမြင်
       public_long: လူတိုင်းမြင်နိုင်ပါသည်
   statuses_cleanup:
+    ignore_favs: နှစ်သက်မှုများကို လျစ်လျူရှုပါ
     keep_polls: စစ်တမ်းကိုဆက်လက်ထားမည်
     keep_polls_hint: သင့်မှတ်တမ်းတစ်ခုမှ မပျက်ပါ
     min_age:
@@ -941,6 +945,7 @@ my:
     pinned: ပင်တွဲထားသောပို့စ်
   themes:
     default: Mastodon (အနက်)
+    mastodon-light: Mastodon (အလင်းနောက်ခံ)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -954,6 +959,7 @@ my:
     enabled: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်ကို ဖွင့်ထားသည်
     enabled_success: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်ကို ဖွင့်ပြီးပါပြီ
     methods: နှစ်ဆင့်ခံလုံခြုံရေးနည်းလမ်းများ
+    webauthn: လုံခြုံရေးကီးများ
   user_mailer:
     appeal_approved:
       action: သင့်အကောင့်သို့ သွားပါ
@@ -987,5 +993,15 @@ my:
     follow_limit_reached: လူ %{limit} ထက် ပိုပြီး စောင့်ကြည့်၍မရပါ
     invalid_otp_token: မမှန်ကန်သော နှစ်ဆင့်ခံလုံခြုံရေးကုဒ်
   webauthn_credentials:
+    create:
+      success: လုံခြုံရေးကီး ထည့်ပြီးပါပြီ။
     delete: ဖျက်ရန်
+    delete_confirmation: လုံခြုံရေးကီးဖျက်ရန် သေချာပါသလား။
+    destroy:
+      error: သင့်လုံခြုံရေးကီးကို ဖျက်ရာတွင် ပြဿနာရှိနေသည်။ ထပ်စမ်းကြည့်ပါ။
+      success: လုံခြုံရေးကီး ဖျက်ပြီးပါပြီ။
+    invalid_credential: လုံခြုံရေးကီးမမှန်ကန်ပါ
+    not_enabled: WebAuthn ကို သင် မဖွင့်ရသေးပါ
+    not_supported: ဤဘရောက်ဆာသည် လုံခြုံရေးကီးများကို မပံ့ပိုးပါ
+    otp_required: လုံခြုံရေးကီးများကို အသုံးပြုရန်အတွက် နှစ်ဆင့်ခံလုံခြုံရေးစနစ်စိစစ်ခြင်းကို ဦးစွာဖွင့်ပါ။
     registered_on: '%{date} တွင် စာရင်းသွင်းထားသည်'
