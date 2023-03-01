@@ -406,7 +406,13 @@ sr:
         title: Увези блокиране домене
       no_file: Ниједан фајл није одабран
     follow_recommendations:
+      description_html: "<strong>Предлози за праћење помажу новим корисницима да брзо пронађу занимљив садржај</strong>. Када корисник није довољно интераговао са осталима да би се за њега формирали персонализовани предлози за праћење, ови налози ће бити препоручени уместо тога. Они се генеришу на дневној бази из скупа налога са највише недавних ангажовања и највише локалних пратилаца за један језик."
+      language: За језик
       status: Статус
+      suppress: Потисни препоруке за праћење
+      suppressed: Потиснуто
+      title: Препоруке за праћење
+      unsuppress: Врати препоруку за праћење
     instances:
       back_to_all: Све
       back_to_limited: Ограничено
@@ -477,24 +483,59 @@ sr:
       are_you_sure: Да ли сте сигурни?
       assign_to_self: Додели мени
       assigned: Додељени модератор
+      by_target_domain: Домен пријављеног налога
+      cancel: Откажи
+      category: Категорија
+      category_description_html: Разлог због ког је овај налог и/или садржај пријављен ће бити образложен у комуникацији са пријављеним налогом
       comment:
         none: Ништа
+      comment_description_html: 'Ради пружања више информација, %{name} је написао/-ла:'
+      confirm: Потврди
+      confirm_action: Потврди модерацијску радњу према @%{acct}
       created_at: Пријављена
+      delete_and_resolve: Обриши објаве
+      forwarded: Прослеђено
+      forwarded_to: Прослеђено ка %{domain}
       mark_as_resolved: Означи као решену
+      mark_as_sensitive: Обележи као осетљиво
       mark_as_unresolved: Означи као нерешену
+      no_one_assigned: Нико
       notes:
         create: Додај белешку
         create_and_resolve: Реши са белешком
         create_and_unresolve: Отвори поново са белешком
         delete: Обриши
         placeholder: Опишите какве су радње предузете, или било какве повезане новости...
+        title: Белешке
+      notes_description_html: Прочитајте и оставите напомене другим модераторима и себи у будућности
+      processed_msg: 'Пријава #%{id} успешно обрађена'
+      quick_actions_description_html: 'Предузмите брзу радњу или се спустите ниже да бисте видели пријављени садржај:'
+      remote_user_placeholder: удаљени корисник са %{instance}
       reopen: Отвори пријаву поново
       report: 'Пријава #%{id}'
       reported_account: Пријављени налог
       reported_by: Пријавио
       resolved: Решена
       resolved_msg: Пријава успешно разрешена!
+      skip_to_actions: Прескочи до радњи
       status: Статус
+      statuses: Пријављени садржај
+      statuses_description_html: Спорни садржај ће бити наведен у комуникацији са пријављеним налогом
+      summary:
+        action_preambles:
+          delete_html: 'Управо ћете <strong>обрисати</strong> неке од објава корисника <strong>@%{acct}</strong>. Ово ће:'
+          mark_as_sensitive_html: 'Управо ћете <strong>означити</strong> неке објаве корисника <strong>@%{acct}</strong> као <strong>осетљиве</strong>. Ово ће:'
+          silence_html: 'Управо ћете <strong>ограничити</strong> налог корисника <strong>@%{acct}</strong>. Ово ће:'
+          suspend_html: 'Управо ћете <strong>суспендовати</strong> налог корисника <strong>@%{acct}</strong>. Ово ће:'
+        actions:
+          delete_html: Обришите спорне објаве
+          mark_as_sensitive_html: Обележите медије спорних објава као осетљиве
+          silence_html: Жестоко ограничите домет корисника <strong>@%{acct}</strong> тако што ћете учинити његов профил и садржаје видљиве само људима који их већ прате и људима који ручно потраже профил
+          suspend_html: Суспендујте корисника <strong>@%{acct}</strong>, што ће учинити његов профил и садржаје недоступним за приступ и интеракцију
+        close_report: 'Означите пријаву #%{id} као решену'
+        close_reports_html: Означи <strong>све</strong> пријаве против <strong>@%{acct}</strong> као решене
+        delete_data_html: Обриши профил и садржаје корисника <strong>@%{acct}</strong> за 30 дана осим уколико суспензија буде повучена у међувремену
+        preview_preamble_html: "<strong>@%{acct}</strong> ће примити упозорење следеће садржине:"
       title: Пријаве
       unassign: Уклони доделу
       unresolved: Нерешене
