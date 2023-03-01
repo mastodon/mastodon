@@ -116,4 +116,18 @@ RSpec.describe AccountPolicy do
       end
     end
   end
+
+  permissions :review? do
+    context 'admin' do
+      it 'permits' do
+        expect(subject).to permit(admin)
+      end
+    end
+
+    context 'not admin' do
+      it 'denies' do
+        expect(subject).to_not permit(john)
+      end
+    end
+  end
 end
