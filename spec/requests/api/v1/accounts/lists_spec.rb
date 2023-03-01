@@ -22,4 +22,29 @@ describe 'Accounts Lists API' do
       expect(response).to have_http_status(200)
     end
   end
+
+  context 'when requested account is permanently deleted' do
+    before do
+      account.mark_deleted!
+      account.deletion_request.destroy
+    end
+
+    it 'returns http not found' do
+      get "/api/v1/accounts/#{account.id}/lists", headers: headers
+
+      expect(response).to have_http_status(404)
+    end
+  end
+
+  context 'when requested account is pending deletion' do
+    before do
+      account.mark_deleted!
+    end
+
+    it 'returns http not found' do
+      get "/api/v1/accounts/#{account.id}/lists", headers: headers
+
+      expect(response).to have_http_status(404)
+    end
+  end
 end
