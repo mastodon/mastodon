@@ -85,6 +85,8 @@ my:
       redownload: ပရိုဖိုင်ကို ပြန်လည်စတင်ရန်
       redownloaded_msg: မူလမှစ၍ %{username} ၏ ပရိုဖိုင်ကို ပြန်လည်စတင်ပြီးပါပြီ
       reject: ဖယ်ရှားပါ
+      rejected_msg: '%{username} ၏ အကောင့်ဖွင့်အက်ပလီကေးရှင်းကို ဖယ်ရှားလိုက်ပါပြီ'
+      remote_suspension_irreversible: ဤအကောင့်၏အချက်အလက်ကို လုံးဝ ဖျက်လိုက်ပါပြီ။
       remove_avatar: ကိုယ်စားပြုရုပ်ပုံကို ဖယ်ရှားပါ
       remove_header: မျက်နှာဖုံးပုံ ဖယ်ရှားရန်
       removed_avatar_msg: '%{username} ၏ ကိုယ်စားပြုရုပ်ပုံအား ဖယ်ရှားပြီးပါပြီ'
@@ -97,11 +99,13 @@ my:
       resubscribe: ပြန်လည်စာရင်းသွင်းပါ
       role: အခန်းကဏ္ဍ
       search: ရှာရန်
+      search_same_email_domain: အီးမေးလ်ဒိုမိန်းတူညီသည့် အခြားအသုံးပြုသူများ
       search_same_ip: IP တူတူ အသုံးပြုသော အခြားသူများ
       security: လုံခြုံရေး
       security_measures:
         only_password: စကားဝှက်ဖြင့်သာ
         password_and_2fa: စကားဝှက်နှင့် 2FA
+      sensitized: သတိထားရသည်ဟု အမှတ်အသားပြုထားပါ
       show:
         created_reports: ဆောင်ရွက်ခဲ့ပြီးသောအစီရင်ခံစာများ
         targeted_reports: အခြားသူများမှဆောင်ရွက်ခဲ့သော အစီရင်ခံစာများ
@@ -143,9 +147,11 @@ my:
         destroy_domain_allow: ဒိုမိန်းခွင့်ပြုခြင်းကို ဖျက်ရန်
         destroy_domain_block: ဒိုမိန်းပိတ်ပင်ခြင်းအား ဖျက်ရန်
         destroy_email_domain_block: အီးမေးလ်ဒိုမိန်းပိတ်ပင်ခြင်းအား ဖျက်ရန်
+        destroy_instance: ဒိုမိန်းကို ဖယ်ရှားပါ
         destroy_ip_block: IP စည်းမျဉ်းကို ဖျက်ပါ
         destroy_status: Post ကို ဖျက်ပါ
         destroy_unavailable_domain: အသုံးမပြုနိုင်သောဒိုမိန်းကို ဖျက်ပါ
+        destroy_user_role: အခန်းကဏ္ဍကို ဖျက်ပါ
         disable_2fa_user: 2FA ကို ပိတ်ပါ
         disable_custom_emoji: စိတ်ကြိုက်အီမိုဂျီကို ပိတ်ပါ
         disable_sign_in_token_auth_user: အသုံးပြုသူအတွက် အီးမေးလ်တိုကင် အထောက်အထားပြခြင်းကို ပိတ်ထားသည်
@@ -173,6 +179,7 @@ my:
         update_status: ပို့စ်ပြင်ဆင်ရန်
         update_user_role: အခန်းကဏ္ဍပြင်ဆင်ရန်
       actions:
+        approve_appeal_html: "%{name} က %{target} မှ စိစစ်ဆုံးဖြတ်ချက်အယူခံဝင်ခြင်းကို အတည်ပြုခဲ့သည်"
         approve_user_html: " %{name} က %{target} မှ အကောင့်ဖွင့်ခြင်းကို အတည်ပြုထားသည်"
         assigned_to_self_report_html: "%{name} က အစီရင်ခံစာ %{target} များကို ၎င်းတို့ထံ ပေးအပ်ခဲ့သည်"
         change_email_user_html: "%{name} က အသုံးပြုသူ %{target} ၏ အီးမေးလ်လိပ်စာကို ပြောင်းခဲ့သည်"
@@ -281,6 +288,10 @@ my:
       new_users: အသုံးပြုသူအသစ်များ
       pending_appeals_html:
         other: "<strong>%{count}</strong> အယူခံဝင်မှုကို ဆိုင်းငံ့ထားခြင်း"
+      pending_reports_html:
+        other: "<strong>%{count}</strong> မှတ်တမ်းဆောင်ရွက်ဆဲ"
+      pending_tags_html:
+        other: "<strong>%{count}</strong> hashtag ဆောင်ရွက်ဆဲ"
       pending_users_html:
         other: "<strong>%{count}</strong> ဆိုင်းငံ့အသုံးပြုသူ"
       software: ဆော့ဖ်ဝဲလ်
@@ -297,6 +308,7 @@ my:
     domain_allows:
       add_new: ဒိုမိန်းဖြင့် ဖက်ဒီကို ခွင့်ပြုရန်
       created_msg: ဒိုမိန်းကို ဖက်ဒီအတွက် ခွင့်ပြုပြီးပါပြီ
+      destroyed_msg: ဒိုမိန်းအား ဖက်ဒီမှ ခွင့်မပြုပါ
       export: ထုတ်ယူခြင်း
       import: ထည့်သွင်းခြင်း
       undo: ဒိုမိန်းဖြင့် ဖက်ဒီကို ခွင့်မပြုပါ
@@ -319,6 +331,7 @@ my:
       private_comment_hint: စိစစ်သူများ၏အတွင်းပိုင်းအသုံးပြုမှုအတွက် ဤဒိုမိန်းကန့်သတ်ချက်ဆိုင်ရာမှတ်ချက်။
       public_comment: အများမြင်မှတ်ချက်
       reject_media: မီဒီယာဖိုင်များကို ဖယ်ရှားပါ
+      reject_reports: မှတ်တမ်းများ ဖယ်ရှားရန်
       undo: ဒိုမိန်းပိတ်ပင်ခြင်းကို ပြန်ဖျက်ရန်
       view: ဒိုမိန်းပိတ်ပင်ခြင်းကို ကြည့်ရန်
     email_domain_blocks:
