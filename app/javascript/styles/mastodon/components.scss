@@ -829,8 +829,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   padding-top: 2px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
   color: $primary-text-color;
 
   &:focus {
@@ -1199,13 +1199,14 @@
   .audio-player,
   .video-player {
     margin-top: 15px;
+    margin-bottom: 12px;
     max-width: 250px;
   }
 
   .status__content {
     padding: 0;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
     white-space: normal;
   }
 
