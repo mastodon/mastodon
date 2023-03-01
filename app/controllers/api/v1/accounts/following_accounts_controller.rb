@@ -14,7 +14,7 @@ class Api::V1::Accounts::FollowingAccountsController < Api::BaseController
   private
 
   def set_account
-    @account = Account.find(params[:account_id])
+    @account = Account.without_deleted.find(params[:account_id])
   end
 
   def load_accounts
