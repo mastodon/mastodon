@@ -255,12 +255,47 @@ sr:
         destroy_domain_block_html: "%{name} је одблокирао/-ла домен %{target}"
         destroy_email_domain_block_html: "%{name} је одблокирао/-ла имејл домен %{target}"
         destroy_instance_html: "%{name} је очистио/-ла домен %{target}"
+        destroy_ip_block_html: "%{name} је обрисао/-ла услов за IP адресе %{target}"
+        destroy_status_html: "%{name} је избрисао/-ла објаву корисника %{target}"
+        destroy_unavailable_domain_html: "%{name} је поново успоставио/-ла испоручивање домену %{target}"
+        destroy_user_role_html: "%{name} је избрисао/-ла %{target} позицију"
+        disable_2fa_user_html: "%{name} је онемогућио/-ла двофакторску аутентификацију за корисника %{target}"
+        disable_custom_emoji_html: "%{name} је онемогућио/-ла емоџи %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} је онемогућио/-ла имејл аутентификацију за корисника %{target}"
+        disable_user_html: "%{name} је онемогућио/-ла пријављивање за корисника %{target}"
+        enable_custom_emoji_html: "%{name} је омогућио/-ла емоџи %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} је омогућио/-ла имејл аутентификацију за %{target}"
+        enable_user_html: "%{name} је омогућио/-ла пријављивање кориснику %{target}"
+        memorialize_account_html: "%{name} је претворио/-ла налог корисника %{target} у меморијалну страницу"
+        promote_user_html: "%{name} је унапредио/-ла корисника %{target}"
+        reject_appeal_html: "%{name} је одбио/-ла жалбу на модерацијску одлуку коју је приложио корисник %{target}"
+        reject_user_html: "%{name} је одбио/-ла регистрацију корисника %{target}"
         remove_avatar_user_html: "%{name} је уклонио аватар корисника %{target}"
+        reopen_report_html: "%{name} је поново отворио/-ла пријаву %{target}"
+        resend_user_html: "%{name} је поново послао/-ла имејл за потврду кориснику %{target}"
+        reset_password_user_html: "%{name} је ресетовао/-ла лозинку корисника %{target}"
+        resolve_report_html: "%{name} је решио/-ла пријаву %{target}"
+        sensitive_account_html: "%{name} је означио/-ла медије налога %{target} као осетљиве"
+        silence_account_html: "%{name} је ограничио/-ла налог %{target}"
+        suspend_account_html: "%{name} је суспендовао/-ла налог %{target}"
+        unassigned_report_html: "%{name} је повукао/-ла доделу пријаве %{target}"
+        unblock_email_account_html: "%{name} је одблокирао/-ла имејл адресу корисника %{target}"
+        unsensitive_account_html: "%{name} је уклонио/-ла ознаку „осетљиво” са медија налога %{target}"
+        unsilence_account_html: "%{name} је повукао/-ла ограничење налога %{target}"
+        unsuspend_account_html: "%{name} је повукао/-ла суспензију налога %{target}"
+        update_announcement_html: "%{name} је ажурирао/-ла обавештење %{target}"
+        update_custom_emoji_html: "%{name} је ажурирао/-ла емоџи %{target}"
+        update_domain_block_html: "%{name} је ажурирао/-ла блок домена %{target}"
+        update_ip_block_html: "%{name} је променио/-ла IP услов за %{target}"
+        update_status_html: "%{name} је ажурирао/-ла објаву корисника %{target}"
+        update_user_role_html: "%{name} је променио/-ла позицију %{target}"
       deleted_account: обрисан налог
+      empty: Није пронађен ниједан лог.
       filter_by_action: Филтрирај по активности
       filter_by_user: Филтрирај по кориснику
       title: Записник
     announcements:
+      destroyed_msg: Обавештење је успешно обрисано!
       edit:
         title: Уреди најаву
       empty: Ниједна најава није пронађена.
@@ -270,7 +305,12 @@ sr:
         title: Нова најава
       publish: Објави
       published_msg: Најава успешно објављена!
+      scheduled_for: Заказано за %{time}
+      scheduled_msg: Обавештење је заказано за објављивање!
       title: Најаве
+      unpublish: Повуци објаву
+      unpublished_msg: Објава обавештења је успешно повучена!
+      updated_msg: Обавештење је успешно ажурирано!
     custom_emojis:
       assign_category: Додели категорију
       by_domain: Домен
@@ -288,18 +328,28 @@ sr:
       enable: Омогући
       enabled: Омогућено
       enabled_msg: Емоџи успешно омогућен
+      image_hint: PNG или GIF фајл величине до %{size}
+      list: Листа
       listed: Излистан
       new:
         title: Додај нови произвољни емоџи
+      no_emoji_selected: Ниједан емоџи није промењен јер ниједан није изабран
+      not_permitted: Нисте овлашћени да обављате ову радњу
       overwrite: Препиши
       shortcode: Пречица
       shortcode_hint: Најмање 2 карактера, дозвољени су само слова, бројеви и доње црте
       title: Произвољни емотиџији
+      uncategorized: Некатегоризовано
+      unlist: Неизлистан
       unlisted: Неизлистан
       update_failed_msg: Не могу да ажурирам овај емоџи
       updated_msg: Емоџи успешно ажуриран!
       upload: Отпреми
     dashboard:
+      active_users: активни корисници
+      interactions: интеракције
+      media_storage: Мултимедијално складиште
+      new_users: нови корисници
       opened_reports: отворене пријаве
       pending_appeals_html:
         one: "<strong>%{count}</strong> жалба на чекању"
@@ -536,8 +586,13 @@ sr:
         close_reports_html: Означи <strong>све</strong> пријаве против <strong>@%{acct}</strong> као решене
         delete_data_html: Обриши профил и садржаје корисника <strong>@%{acct}</strong> за 30 дана осим уколико суспензија буде повучена у међувремену
         preview_preamble_html: "<strong>@%{acct}</strong> ће примити упозорење следеће садржине:"
+        record_strike_html: Упишите прекршај на име <strong>@%{acct}</strong> да би Вам било лакше да у будућности интервенишете приликом даљих преступа са овог налога
+        send_email_html: Пошаљи имејл упозорења кориснику <strong>@%{acct}</strong>
+        warning_placeholder: Опционо додатно образложење за модерацијску радњу.
+      target_origin: Порекло пријављеног налога
       title: Пријаве
       unassign: Уклони доделу
+      unknown_action_msg: 'Непозната радња: %{action}'
       unresolved: Нерешене
       updated_at: Ажурирана
       view_profile: Погледај профил
@@ -545,10 +600,22 @@ sr:
       add_new: Додај улогу
       categories:
         administration: Администрација
+        devops: DevOps
+        invites: Позивнице
         moderation: Модерација
+        special: Посебно
       delete: Избриши
+      description_html: Помоћу <strong>корисничких улога</strong> можете да подесите којим функцијама и деловима Мастодона Ваши корисници могу да приступе.
+      edit: Измени улогу '%{name}'
+      everyone: Подразумевана овлашћења
+      everyone_full_description_html: Ово је <strong>основна улога</strong> која се односи на <strong>све кориснике</strong>, чак и оне којима није додељена улога. Све друге улоге наслеђују овлашћења од основне улоге.
+      permissions_count:
+        one: "%{count} дозвола"
+        few: "%{count} дозволе"
+        other: "%{count} дозвола"
       privileges:
         administrator: Администратор
+        administrator_description: Корисници са овом привилегијом могу да заобиђу сва друга ограничења
         delete_user_data: Избриши податке корисника
         invite_users: Позови кориснике
         manage_announcements: Управљај обавештењима
