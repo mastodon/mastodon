@@ -57,7 +57,9 @@ sr:
       delete: Обриши податке
       deleted: Избрисано
       demote: Ражалуј
+      destroyed_msg: "Подаци корисника %{username} су неповратно стављени у ред за брисање"
       disable: Искључи
+      disable_sign_in_token_auth: Онемогући имејл аутентификацију
       disable_two_factor_authentication: Искључи 2FA
       disabled: Искључена
       display_name: Приказано име
@@ -66,7 +68,9 @@ sr:
       email: Е-пошта
       email_status: Статус е-поште
       enable: Омогући
+      enable_sign_in_token_auth: Омогући имејл аутентификацију
       enabled: Укључено
+      enabled_msg: Успешно одлеђен налог корисника %{username}
       followers: Пратиоци
       follows: Праћени
       header: Заглавље
@@ -83,9 +87,12 @@ sr:
       login_status: Статус пријаве
       media_attachments: Мултимедијални прилози
       memorialize: Пребаци у in memoriam
+      memorialized: Подигнут споменик
+      memorialized_msg: '%{username} је успешно претворен у меморијални налог'
       moderation:
         active: Активан
         all: Сви
+        disabled: Искључен
         pending: На чекању
         silenced: Ограничено
         suspended: Суспендовани
@@ -93,20 +100,31 @@ sr:
       moderation_notes: Модераторске белешке
       most_recent_activity: Најскорија активност
       most_recent_ip: Најскорија IP адреса
+      no_account_selected: Ниједан налог није промењен јер ниједан није изабран
       no_limits_imposed: Нема ограничења
       no_role_assigned: Ниједна улога није додељена
       not_subscribed: Није претплаћен
       pending: Чека на преглед
       perform_full_suspension: Искључи
+      previous_strikes: Претходни прекршаји
+      previous_strikes_description_html:
+        one: Овај налог има <strong>један</strong> прекршај.
+        few: Овај налог има <strong>%{count}</strong> прекршаја.
+        other: Овај налог има <strong>%{count}</strong> прекршаја.
       promote: Унапреди
       protocol: Протокол
       public: Јавно
       push_subscription_expires: PuSH претплата истиче
       redownload: Освежи налог
+      redownloaded_msg: Успешно освежен налог корисника %{username} из извора
       reject: Одбаци
+      rejected_msg: Захтев за регистрацију корисника %{username} је успешно одбијен
+      remote_suspension_irreversible: Подаци овог налога су неповратно избрисани.
+      remote_suspension_reversible_hint_html: Налог је суспендован са свог сервера и његови подаци ће бити избрисани датума %{date}. До тада, удаљени сервер може да врати овај налог без икаквих промена. Уколико желите да одмах обришете све податке налога, можете то учинити испод.
       remove_avatar: Уклони аватар
       remove_header: Одстрани заглавље
       removed_avatar_msg: Слика аватара корисника %{username} је успешно уклоњена
+      removed_header_msg: Успешно обрисана слика заглавља корисника %{username}
       resend_confirmation:
         already_confirmed: Овој корисник е веќе потврден
         send: Препрати го е-мајлот за потврда
@@ -116,8 +134,13 @@ sr:
       resubscribe: Поново се претплати
       role: Улога
       search: Претрага
+      search_same_email_domain: Остали корисници са истим доменом е-поште
+      search_same_ip: Остали корисници са истом IP адресом
+      security: Безбедност
       security_measures:
         only_password: Само лозинка
+        password_and_2fa: Лозинка и двофакторска аутентификација
+      sensitive: Означи као осетљив
       sensitized: Означено као осетљиво
       shared_inbox_url: Адреса дељеног сандучета
       show:
@@ -126,20 +149,30 @@ sr:
       silence: Ућуткај
       silenced: Ућуткан
       statuses: Статуси
+      strikes: Претходни прекршаји
       subscribe: Претплати се
       suspend: Суспендуј
       suspended: Суспендовани
+      suspension_irreversible: Подаци овог налога су неповратно избрисани. Можете одсуспендовати овај налог чиме ће он постати употребљив, али се подаци претходно садржани на налогу неће вратити.
+      suspension_reversible_hint_html: Налог је суспендован и његови подаци ће бити избрисани датума %{date}. До тада, овај налог може бити враћен без икаквих промена. Уколико желите да одмах обришете све податке налога, можете то учинити испод.
       title: Налози
       unblock_email: Одблокирај адресу е-поште
+      unblocked_email_msg: Успешно одблокирана имејл адреса корисника %{username}
       unconfirmed_email: Непотврђена е-пошта
+      undo_sensitized: Уклони ознаку „осетљив”
       undo_silenced: Укини ћутање
       undo_suspension: Укини суспензију
+      unsilenced_msg: Успешно поништено ограничење налога %{username}
       unsubscribe: Укини претплату
+      unsuspended_msg: Успешно поништена суспензија налога %{username}
       username: Корисничко име
+      view_domain: Прочитај опис домена
       warn: Упозори
       web: Веб
+      whitelisted: Дозвољена федерација
     action_logs:
       action_types:
+        approve_appeal: Уважи жалбу
         approve_user: Одобри корисника
         change_email_user: Промени e-адресу корисника
         change_role_user: Промени улогу корисника
