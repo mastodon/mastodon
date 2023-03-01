@@ -332,10 +332,13 @@ my:
       public_comment: အများမြင်မှတ်ချက်
       reject_media: မီဒီယာဖိုင်များကို ဖယ်ရှားပါ
       reject_reports: မှတ်တမ်းများ ဖယ်ရှားရန်
+      reject_reports_hint: ဤဒိုမိန်းမှလာသော မှတ်တမ်းအားလုံးကို လျစ်လျူရှုပါ။ ဆိုင်းငံ့ခြင်းများအတွက် မသက်ဆိုင်ပါ။
       undo: ဒိုမိန်းပိတ်ပင်ခြင်းကို ပြန်ဖျက်ရန်
       view: ဒိုမိန်းပိတ်ပင်ခြင်းကို ကြည့်ရန်
     email_domain_blocks:
       add_new: အသစ် ထည့်ပါ
+      attempts_over_week:
+        other: "ပြီးခဲ့သည့် ရက်သတ္တပတ်အတွင်း %{count} ကြိုးပမ်းမှု"
       created_msg: အီးမေးလ်ဒိုမိန်းကို ပိတ်ပင်နိုင်ခဲ့ပါသည်
       delete: ဖျက်ပါ
       dns:
@@ -363,7 +366,13 @@ my:
     follow_recommendations:
       language: ဘာသာစကားအတွက်
       status: အခြေအနေ
+      title: အကြံပြုချက်များကို စောင့်ကြည့်ပါ
+      unsuppress: အကြံပြုချက်စောင့်ကြည့်ခြင်းအား ပြန်လည်ရယူပါ
     instances:
+      availability:
+        failures_recorded:
+          other: '%{count} ရက်နေ့တွင် ကြိုးစားမှု မအောင်မြင်ပါ။'
+        title: ရရှိနိုင်မှု
       back_to_all: အားလုံး
       back_to_limited: ကန့်သတ်ထားသည်
       back_to_warning: သတိပေးချက်
@@ -405,6 +414,7 @@ my:
         all: အားလုံး
         available: ရရှိနိုင်သော
         title: စစ်ထုတ်ခြင်း
+      title: ဖိတ်ခေါ်ခြင်း
     ip_blocks:
       add_new: စည်းမျဉ်းဖန်တီးပါ
       created_msg: IP စည်းမျဉ်းအသစ် ထည့်သွင်းပြီးပါပြီ
@@ -435,6 +445,7 @@ my:
         notes:
           other: "%{count} မှတ်စု"
       action_log: မှတ်တမ်းများစစ်ဆေးခြင်း
+      action_taken_by: ဆောင်ရွက်ခဲ့ပါသည်
       are_you_sure: သေချာပါသလား။
       assign_to_self: ကျွန်ုပ်ကို တာဝန်ပေးရန်
       assigned: စိစစ်သူကို တာဝန်ပေးရန်
@@ -447,6 +458,7 @@ my:
       forwarded: ထပ်ဆင့်ပို့ပြီးပါပြီ
       forwarded_to: '%{domain} သို့ ထပ်ဆင့်ပို့ထားသည်'
       mark_as_resolved: ဖြေရှင်းပြီးကြောင်း အမှတ်အသားပြုပါ
+      mark_as_sensitive: သတိထားရသည်ဟု အမှတ်အသားပြုပါ
       mark_as_unresolved: မဖြေရှင်းရသေးကြောင်း အမှတ်အသားပြုပါ
       no_one_assigned: တစ်ယောက်မျှမရှိပါ
       notes:
@@ -470,6 +482,7 @@ my:
         actions:
           suspend_html: <strong>@%{acct}</strong> ကို ဆိုင်းငံ့ထားသောကြောင့် ပရိုဖိုင်နှင့် အကြောင်းအရာများအား ဝင်ရောက်ခွင့်မရှိတော့သဖြင့် အပြန်အလှန် တုံ့ပြန်၍ မရတော့ခြင်း
         delete_data_html: <strong>@%{acct}</strong> ၏ ပရိုဖိုင်နှင့် အကြောင်းအရာများကို ဆိုင်းငံ့ထားခြင်းမရှိပါက ယခုမှ ရက်ပေါင်း ၃၀ အတွင်း ဖျက်ရန်
+      title: မှတ်တမ်းများ
       unassign: တာဝန်မှဖြုတ်ရန်
       unknown_action_msg: 'အမည်မသိလုပ်ဆောင်ချက်- %{action}'
       unresolved: မဖြေရှင်းရသေးပါ
@@ -493,6 +506,7 @@ my:
       privileges:
         administrator: စီမံသူ
         delete_user_data: အသုံးပြုသူ၏အချက်အလက်ကို ဖျက်ပါ
+        delete_user_data_description: အခြားအသုံးပြုသူများ၏ အချက်အလက်များကို နှောင့်နှေးခြင်းမရှိဘဲ အသုံးပြုသူများအား  ဖျက်ခွင့်ပြုသည်
         invite_users: အသုံးပြုသူများကို ဖိတ်ခေါ်ရန်
         invite_users_description: ဆာဗာသို့ လူသစ်များဖိတ်ခေါ်ရန်အတွက် အသုံးပြုသူအား ခွင့်ပြုရန်
         manage_announcements: ကြေညာချက်များကို စီမံပါ
@@ -527,6 +541,7 @@ my:
         title: ပုံပန်းသဏ္ဌာန်
       discovery:
         profile_directory: ပရိုဖိုင်လမ်းညွှန်
+        trends: လက်ရှိခေတ်စားမှုများ
       domain_blocks:
         all: လူတိုင်း
         disabled: မည်သူ့ကိုမျှ
@@ -546,6 +561,7 @@ my:
       language: ဘာသာစကား
       media:
         title: မီဒီယာ
+      metadata: Metadata
       open: ပို့စ်ဖွင့်ရန်
       original_status: မူရင်းပို့စ်
       title: အကောင့်ပို့စ်များ
@@ -553,10 +569,16 @@ my:
     strikes:
       actions:
         delete_statuses: "%{name} မှ %{target} ၏ ပို့စ်များကို ဖျက်ခဲ့သည်"
+        mark_statuses_as_sensitive: "%{name} က %{target} ၏ ပို့စ်များကို သတိထားရသောပို့စ်များအဖြစ် အမှတ်အသားပြုထားသည်"
         none: "%{name} မှ %{target} သို့ သတိပေးချက်တစ်ခု ပေးပို့ခဲ့သည်"
+        sensitive: "%{name} က %{target} ၏ အကောင့်ကို သတိထားရသောအကောင့်အဖြစ် အမှတ်အသားပြုထားသည်"
+        silence: "%{name} က %{target} ၏ အကောင့်ကို ကန့်သတ်ထားသည်"
+        suspend: "%{name} က %{target} ၏ အကောင့်ကို ဆိုင်းငံ့ထားသည်"
     system_checks:
       rules_check:
         action: ဆာဗာစည်းမျဉ်းများကို စီမံရန်
+        message_html: သင်သည် မည်သည့်ဆာဗာစည်းမျဉ်းများကိုမျှ မသတ်မှတ်ထားပါ။
+    title: စီမံခန့်ခွဲခြင်း
     trends:
       allow: ခွင့်ပြု
       approved: အတည်ပြုပြီးပါပြီ
@@ -564,19 +586,24 @@ my:
       links:
         allow: လင့်ခ်ကို ခွင့်ပြုရန်
         disallow: လင့်ခ်ကို ခွင့်မပြုရန်
+        title: လက်ရှိခေတ်စားနေသော လင့်များ
       rejected: ဖယ်ရှားပြီးပါပြီ
       statuses:
         allow: ပို့စ်တင်ခွင့်ပြုရန်
         disallow: ပို့စ်ကို တင်ခွင့်မပြုရန်
         title: လက်ရှိခေတ်စားနေသော ပို့စ်များ
       tags:
+        current_score: '%{score} လက်ရှိရမှတ်'
         dashboard:
           tag_languages_dimension: အသုံးများသည့်ဘာသာစကားများ
           tag_servers_dimension: အသုံးများသည့်ဆာဗာများ
           tag_servers_measure: မတူညီသောဆာဗာများ
           tag_uses_measure: စုစုပေါင်းအသုံးပြုမှု
         listable: အကြံပြုနိုင်ပါသည်
+        not_listable: အကြံပြုမည်မဟုတ်ပါ
+        not_trendable: လက်ရှိခေတ်စားနေသာပို့စ်များအောက်တွင် ပေါ်လာမည်မဟုတ်ပါ
         not_usable: အသုံးမပြုနိုင်ပါ
+        trending_rank: '#%{rank} ခေတ်စားနေခြင်း'
         usable: အသုံးပြုနိုင်သည်
       title: လက်ရှိခေတ်စားမှုများ
       trending: လက်ရှိခေတ်စားနေခြင်း
@@ -595,6 +622,11 @@ my:
     new_appeal:
       actions:
         none: သတိပေးချက်
+    new_trends:
+      new_trending_links:
+        title: လက်ရှိခေတ်စားနေသော လင့်များ
+      new_trending_statuses:
+        title: လက်ရှိခေတ်စားနေသော ပို့စ်များ
   appearance:
     localization:
       guide_link_text: လူတိုင်းပါဝင်ကူညီနိုင်ပါတယ်။
@@ -605,11 +637,14 @@ my:
     view_status: ပို့စ်ကိုကြည့်ရန်
   applications:
     created: အက်ပလီကေးရှင်းကို ဖန်တီးပြီးပါပြီ
+    logout: ထွက်မယ်
   auth:
     change_password: စကားဝှက်
     delete_account: အကောင့်ဖျက်ပါ
     description:
+      prefix_invited_by_user: "@%{name} က Mastodon ၏ ဆာဗာတွင် ပါဝင်ရန် သင့်ကို ဖိတ်ခေါ်ထားသည်။"
       prefix_sign_up: ယနေ့တွင် Mastodon ၌ စာရင်းသွင်းလိုက်ပါ။
+    dont_have_your_security_key: သင့်တွင် လုံခြုံရေးကီး မရှိဘူးလား။
     forgot_password: သင့်စကားဝှက် မေ့နေပါသလား။
     log_in_with: ဖြင့် ဝင်ရောက်ပါ
     login: အကောင့်ဝင်ရန်
@@ -620,13 +655,18 @@ my:
       saml: SAML
     register: အကောင့်ဖွင့်ရန်
     registration_closed: "%{instance} သည် အဖွဲ့ဝင်အသစ်များကို လက်ခံထားခြင်းမရှိပါ"
+    rules:
+      back: နောက်သို့
     security: လုံခြုံရေး
     set_new_password: စကားဝှက်အသစ် သတ်မှတ်ပါ။
     sign_in:
       title: '%{domain} သို့ အကောင့်ဝင်ရန်'
     status:
       account_status: အကောင့်အခြေအနေ
+    use_security_key: လုံခြုံရေးကီးကို သုံးပါ
   authorize_follow:
+    already_following: သင်သည် ဤအကောင့်ကို စောင့်ကြည့်နေပြီဖြစ်ပါသည်
+    already_requested: သင်သည် ထိုအကောင့်စောင့်ကြည့်ရန် တောင်းဆိုမှုတစ်ခု ပေးပို့ခဲ့ပြီးပါပြီ
     follow: စောင့်ကြည့်မယ်
     follow_request: 'သင်သည် စောင့်ကြည့်မည် တောင်းဆိုချက်တစ်ခု ပေးပို့ထားသည်-'
     post_follow:
@@ -663,9 +703,11 @@ my:
     strikes:
       appeals:
         submit: အယူခံဝင်ခွင့်ပြုရန်
+      recipient: လိပ်မူထားသည်
       status: '#%{id} ပို့စ်'
       title: "%{date} မှ %{action}"
       title_actions:
+        delete_statuses: ပို့စ်ဖယ်ရှားခြင်း
         none: သတိပေးချက်
   errors:
     '400': The request you submitted was invalid or malformed.
@@ -685,6 +727,7 @@ my:
       download: သင်၏မှတ်တမ်းကို ဒေါင်းလုဒ်လုပ်ပါ
       size: အရွယ်အစား
     blocks: သင်ပိတ်ပင်ထားသည့်လူများစာရင်း
+    bookmarks: မှတ်ထားသည်များ
     csv: CSV
     domain_blocks: ဒိုမိန်းပိတ်ပင်ထားမှုများ
     lists: စာရင်းများ
@@ -698,12 +741,18 @@ my:
       notifications: အကြောင်းကြားချက်များ
       thread: စကားဝိုင်းများ
     edit:
+      add_keyword: အဓိကစကားလုံး ထည့်ပါ
+      keywords: အဓိကစကားလုံးများ
       statuses: တစ်ဦးချင်းတင်ထားသောပို့စ်များ
       title: စစ်ထုတ်ခြင်းကို ပြင်ဆင်ရန်
     index:
       contexts: '%{contexts} ရှိ စစ်ထုတ်ထားမှုများ'
       delete: ဖျက်ပါ
       empty: သင့်တွင် စစ်ထုတ်ထားခြင်းများ မရှိပါ။
+      expires_in: '%{distance} တွင် သက်တမ်းကုန်မည်'
+      expires_on: '%{date} ရက်နေ့တွင် သက်တမ်းကုန်မည်'
+      keywords:
+        other: "%{count} အဓိကစကားလုံး"
       statuses:
         other: "%{count} ပို့စ်"
       title: စစ်ထုတ်ခြင်းများ
@@ -717,6 +766,7 @@ my:
     all: အားလုံး
     copy: ကူးယူပါ
     delete: ဖျက်ပါ
+    save_changes: ပြောင်းလဲမှုများကို သိမ်းဆည်းပါ
     today: ယနေ့
   imports:
     preface: သင်စောင့်ကြည့်နေသည့်လူများစာရင်း သို့မဟုတ် ပိတ်ပင်ထားသည့်စာရင်းကဲ့သို့သော အခြားဆာဗာတစ်ခုမှ သင်ထုတ်ယူထားသည့်အချက်အလက်များကို ပြန်လည်ထည့်သွင်းနိုင်သည်။
@@ -737,18 +787,28 @@ my:
     authentication_methods:
       otp: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်အက်ပ်
       password: စကားဝှက်
+      sign_in_token: အီးမေးလ်လုံခြုံရေးကုဒ်
+      webauthn: လုံခြုံရေးကီးများ
   media_attachments:
     validations:
       images_and_video: ရုပ်ပုံပါရှိပြီးသားပို့စ်တွင် ဗီဒီယို ပူးတွဲ၍မရပါ
   migrations:
     acct: သို့ ပြောင်းရွှေ့ရန်
     errors:
+      move_to_self: လက်ရှိအကောင့်မဖြစ်နိုင်ပါ
       not_found: ရှာမတွေ့ပါ
     proceed_with_move: စောင့်ကြည့်သူများကို ရွှေ့ရန်
     warning:
       only_redirect_html: တနည်းအားဖြင့် သင်သည် <a href="%{path}">သင့်ပရိုဖိုင်ပေါ်တွင် ပြန်ညွှန်းခြင်းကိုသာ ပြုလုပ်နိုင်သည်</a>။
       redirect: သင့်လက်ရှိအကောင့်၏ပရိုဖိုင်ကို ပြန်လည်ညွှန်းပေးသည့်အသိပေးချက်ဖြင့် ပြင်ဆင်ပေးမည်ဖြစ်ပြီး ရှာဖွေမှုများမှ ဖယ်ထုတ်ပေးမည်ဖြစ်သည်
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} က အကောင့်ဖွင့်ထားသည်"
+    favourite:
+      body: '%{name} က နှစ်သက်ခဲ့သော သင့်ပို့စ် -'
+      subject: "%{name} က သင့်ပို့စ်ကို နှစ်သက်ခဲ့သည်"
+      title: နှစ်သက်မှုအသစ်တစ်ခု
     follow:
       body: "%{name} မှ ယခု သင့်နောက်သို့ စောင့်ကည့်နေပါသည်။"
       subject: "%{name} မှ ယခု သင့်နောက်သို့ စောင့်ကည့်နေပါသည်။"
@@ -762,6 +822,8 @@ my:
       subject: သင့်ကို %{name} မှ ဖော်ပြခဲ့သည်
     status:
       subject: "%{name} က အခုလေးတင် ပို့စ်တင်လိုက်ပါပြီ"
+    update:
+      subject: "%{name} က ပို့စ်တစ်ခုကို ပြင်ဆင်ခဲ့သည်"
   number:
     human:
       decimal_units:
@@ -794,15 +856,37 @@ my:
   relationships:
     followers: စောင့်ကြည့်သူများ
     following: စောင့်ကြည့်နေသည်
+    invited: ဖိတ်ခေါ်ထားပြီး
+    last_active: နောက်ဆုံးအသုံးပြုခဲ့သည့်အချိန်
     moved: ရွှေ့ပြီးပါပြီ
     mutual: အပြန်အလှန်စောင့်ကြည့်ထားခြင်း
     status: အကောင့်အခြေအနေ
   sessions:
+    browser: ဘရောက်ဇာ
+    browsers:
+      chrome: Chrome
+      firefox: Firefox
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UC Browser
+      weibo: Weibo
     description: "%{platform} ပေါ်ရှိ %{browser}"
+    ip: IP
     platforms:
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
       ios: iOS
       linux: Linux
       mac: macOS
+      windows: Windows
     revoke: ပြန်ရုပ်သိမ်းရန်
   settings:
     account: အကောင့်
@@ -815,6 +899,7 @@ my:
     relationships: စောင့်ကြည့်သူများနှင့် စောင့်ကြည့်စာရင်း
     statuses_cleanup: အလိုအလျောက်ပို့စ်ဖျက်ခြင်း
     two_factor_authentication: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်
+    webauthn_authentication: လုံခြုံရေးကီးများ
   statuses:
     attached:
       description: 'ပူးတွဲပါ- %{attached}'
