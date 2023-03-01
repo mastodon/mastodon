@@ -20,7 +20,7 @@ module.exports = {
     ATTACHMENT_HOST: false,
   },
 
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
 
   plugins: [
     'react',
@@ -41,14 +41,13 @@ module.exports = {
       presets: ['@babel/react', '@babel/env'],
     },
   },
-
+  extends: [
+    'plugin:import/typescript',
+  ],
   settings: {
     react: {
       version: 'detect',
     },
-    'import/extensions': [
-      '.js', '.jsx',
-    ],
     'import/ignore': [
       'node_modules',
       '\\.(css|scss|json)$',
@@ -56,7 +55,7 @@ module.exports = {
     'import/resolver': {
       node: {
         paths: ['app/javascript'],
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
   },
@@ -116,7 +115,7 @@ module.exports = {
     semi: 'error',
     'valid-typeof': 'error',
 
-    'react/jsx-filename-extension': ['error', { 'allow': 'as-needed' }],
+    'react/jsx-filename-extension': ['error', { extensions: ['.jsx', 'tsx'] }],
     'react/jsx-boolean-value': 'error',
     'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
     'react/jsx-curly-spacing': 'error',
@@ -192,6 +191,8 @@ module.exports = {
       {
         js: 'never',
         jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
       },
     ],
     'import/newline-after-import': 'error',

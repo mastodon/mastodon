@@ -3,7 +3,7 @@
 
 const checkNotificationPromise = () => {
   try {
-    // eslint-disable-next-line promise/catch-or-return, promise/valid-params
+    // eslint-disable-next-line promise/catch-or-return
     Notification.requestPermission().then();
   } catch(e) {
     return false;
