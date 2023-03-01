@@ -56,5 +56,30 @@ describe 'API V1 Accounts FollowerAccounts' do
         expect([body_as_json[0][:id], body_as_json[1][:id]]).to contain_exactly(alice.id.to_s, bob.id.to_s)
       end
     end
+
+    context 'when request account is permanently deleted' do
+      before do
+        account.mark_deleted!
+        account.deletion_request.destroy
+      end
+
+      it 'returns http not found' do
+        get "/api/v1/accounts/#{account.id}/followers", params: { limit: 2 }, headers: headers
+
+        expect(response).to have_http_status(404)
+      end
+    end
+
+    context 'when request account is pending deletion' do
+      before do
+        account.mark_deleted!
+      end
+
+      it 'returns http not found' do
+        get "/api/v1/accounts/#{account.id}/followers", params: { limit: 2 }, headers: headers
+
+        expect(response).to have_http_status(404)
+      end
+    end
   end
 end
