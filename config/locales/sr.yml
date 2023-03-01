@@ -174,25 +174,87 @@ sr:
       action_types:
         approve_appeal: Уважи жалбу
         approve_user: Одобри корисника
+        assigned_to_self_report: Додели пријаву
         change_email_user: Промени e-адресу корисника
         change_role_user: Промени улогу корисника
         confirm_user: Потврди корисника
         create_account_warning: Креирај упозорење
         create_announcement: Креирај најаву
         create_canonical_email_block: Креирај блок е-поште
+        create_custom_emoji: Направи прилагођени емоџи
+        create_domain_allow: Додај дозвољени домен
+        create_domain_block: Додај блокирани домен
+        create_email_domain_block: Блокирај имејл домен
+        create_ip_block: Направи IP услов
+        create_unavailable_domain: Додај домен као недоступан
         create_user_role: Креирај улогу
+        demote_user: Смањи овлашћења корисника
         destroy_announcement: Избриши најаву
         destroy_canonical_email_block: Избриши блок е-поште
+        destroy_custom_emoji: Обриши прилагођени емоџи
+        destroy_domain_allow: Обриши дозвољени домен
+        destroy_domain_block: Обриши блокирани домен
+        destroy_email_domain_block: Избриши блок е-поште
+        destroy_instance: Очисти домен
+        destroy_ip_block: Обриши IP услов
         destroy_status: Избриши пост
+        destroy_unavailable_domain: Обриши недоступан домен
+        destroy_user_role: Уништи позицију
+        disable_2fa_user: Онемогући двофакторску аутентификацију
+        disable_custom_emoji: Онемогући прилагођене емоџије
+        disable_sign_in_token_auth_user: Онемогући имејл аутентификацију за корисника
         disable_user: Онемогући корисника
+        enable_custom_emoji: Омогући прилагођене емоџије
+        enable_sign_in_token_auth_user: Омогући имејл аутентификацију за корисника
         enable_user: Омогући корисника
+        memorialize_account: Претвори у меморијални налог
+        promote_user: Унапреди корисника
+        reject_appeal: Одбиј жалбу
         reject_user: Одбаци корисника
         remove_avatar_user: Уклони аватар
+        reopen_report: Поново отвори пријаву
+        resend_user: Поново пошаљи мејл за потврду
+        reset_password_user: Ресетуј лозинку
+        resolve_report: Затвори пријаву
+        sensitive_account: Означи налог као осетљив
         silence_account: Ограничи налог
         suspend_account: Обустави налог
+        unassigned_report: Повуци пријаву
+        unblock_email_account: Одблокирај имејл адресу
+        unsensitive_account: Уклони додељену ознаку „осетљив”
+        unsilence_account: Повуци ограничење налога
+        unsuspend_account: Повуци суспензију налога
+        update_announcement: Обавештење о ажурирању
+        update_custom_emoji: Ажурирај прилагођене емоџије
+        update_domain_block: Ажурирај домен блок
+        update_ip_block: Ажурирај IP услов
         update_status: Уреди објаву
         update_user_role: Уреди улогу
       actions:
+        approve_appeal_html: "%{name} је уважио жалбу корисника %{target} на одлуку модератора"
+        approve_user_html: "%{name} је одобрио/-ла регистрацију корисника %{target}"
+        assigned_to_self_report_html: "%{name} је себи доделио/-ла пријаву %{target}"
+        change_email_user_html: "%{name} је променио/-ла имејл адресу корисника %{target}"
+        change_role_user_html: "%{name} је променио/-ла овлашћења корисника %{target}"
+        confirm_user_html: "%{name} је потврдио/-ла имејл адресу корисника %{target}"
+        create_account_warning_html: "%{name} је послао/-ла упозорење кориснику %{target}"
+        create_announcement_html: "%{name} је направио/-ла ново обавештење %{target}"
+        create_canonical_email_block_html: "%{name} је блокирао/-ла имејл адресу са хешом %{target}"
+        create_custom_emoji_html: "%{name} је отпремио/-ла нове емоџије %{target}"
+        create_domain_allow_html: "%{name} је дозволио/-ла федерацију са доменом %{target}"
+        create_domain_block_html: "%{name} је блокирао/-ла домен %{target}"
+        create_email_domain_block_html: "%{name} је блокирао/-ла имејл домен %{target}"
+        create_ip_block_html: "%{name} је направио/-ла услов за IP адресе %{target}"
+        create_unavailable_domain_html: "%{name} је обуставио/-ла испоручивање домену %{target}"
+        create_user_role_html: "%{name} је направио/-ла %{target} позицију"
+        demote_user_html: "%{name} је смањио овлашћења корисника %{target}"
+        destroy_announcement_html: "%{name} је обрисао/-ла обавештење %{target}"
+        destroy_canonical_email_block_html: "%{name} је одблокирао/-ла имејл адресу са хешом %{target}"
+        destroy_custom_emoji_html: "%{name} је обрисао/-ла емоџи %{target}"
+        destroy_domain_allow_html: "%{name} је забранио/-ла федерацију са доменом %{target}"
+        destroy_domain_block_html: "%{name} је одблокирао/-ла домен %{target}"
+        destroy_email_domain_block_html: "%{name} је одблокирао/-ла имејл домен %{target}"
+        destroy_instance_html: "%{name} је очистио/-ла домен %{target}"
         remove_avatar_user_html: "%{name} је уклонио аватар корисника %{target}"
       deleted_account: обрисан налог
       filter_by_action: Филтрирај по активности
@@ -238,35 +300,81 @@ sr:
       updated_msg: Емоџи успешно ажуриран!
       upload: Отпреми
     dashboard:
+      opened_reports: отворене пријаве
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> жалба на чекању"
+        few: "<strong>%{count}</strong> жалбе на чекању"
+        other: "<strong>%{count}</strong> жалби на чекању"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> пријава на чекању"
+        few: "<strong>%{count}</strong> пријаве на чекању"
+        other: "<strong>%{count}</strong> пријава на чекању"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> хеш ознака на чекању"
+        few: "<strong>%{count}</strong> хеш ознаке на чекању"
+        other: "<strong>%{count}</strong> хеш ознака на чекању"
+      pending_users_html:
+        one: "<strong>%{count}</strong> корисник на чекању"
+        few: "<strong>%{count}</strong> корисника на чекању"
+        other: "<strong>%{count}</strong> корисника на чекању"
+      resolved_reports: решене пријаве
       software: Софтвер
+      sources: Извори регистрација
       space: Коришћење простора
       title: Командна табла
+      top_languages: Најзаступљенији језици
+      top_servers: Најактивнији сервери
+      website: Вебсајт
+    disputes:
+      appeals:
+        empty: Ниједна жалба није пронађена.
+        title: Жалбе
     domain_allows:
+      add_new: Дозволи федерацију са доменом
+      created_msg: Домен је успешно одобрен за федерацију
+      destroyed_msg: Домен је одбијен за федерацију
       export: Извоз
       import: Увоз
+      undo: Забрани федерацију са доменом
     domain_blocks:
       add_new: Додај нови блок домена
       created_msg: Блокирање домена се обрађује
       destroyed_msg: Блокирање домена је опозвано
       domain: Домен
+      edit: Измени блок домена
+      existing_domain_block: Већ сте успоставили строжа ограничења према кориснику %{name}.
+      existing_domain_block_html: Већ сте успоставили строжа ограничења према %{name}, потребно је да га прво <a href="%{unblock_url}">одблокирате</a>.
       export: Извоз
       import: Увоз
       new:
         create: Направи блокаду
         hint: Блокирање домена неће спречити прављење налога у бази, али ће ретроактивно и аутоматски применити одређене модераторске методе над тим налозима.
         severity:
+          desc_html: "<strong>Ограничење</strong> ће сакрити објаве налога са овог домена од сваког ко их не прати. <strong>Суспензија</strong> ће обрисати сав садржај, медије и податке профила са налога овог домена са Вашег сервера. Користите <strong>Ништа</strong> уколико само желите да одбијете медијске фајлове."
           noop: Ништа
+          silence: Ограничи
           suspend: Суспензија
         title: Ново блокирање домена
+      no_domain_block_selected: Ниједан блок домена није промењен јер ниједан није изабран
+      not_permitted: Нисте овлашћени да обављате ову радњу
+      obfuscate: Сакриј име домена
+      obfuscate_hint: Делимично сакриј име домена на листи ако је рекламирање листе ограничених домена омогућено
       private_comment: Приватни коментар
+      private_comment_hint: Коментар о ограничењу овог домена за интерну употребу од стране модератора.
       public_comment: Јавни коментар
+      public_comment_hint: Коментар о ограничењу овог домена за јавност, уколико је рекламирање листе ограничених домена омогућено.
       reject_media: Одбаци мултимедију
       reject_media_hint: Уклања локално ускладиштене мултимедијске фајлове и одбија да их скида убудуће. Небитно је за суспензију
       reject_reports: Одбаци извештај
       reject_reports_hint: Игнориши све извештаје који долазе са овог домена. Небитно је за суспензије
       undo: Поништи блок домена
+      view: Прочитај блок домена
     email_domain_blocks:
       add_new: Додај нови
+      attempts_over_week:
+        one: "%{count} покушај током претходне недеље"
+        few: "%{count} покушаја током претходне недеље"
+        other: "%{count} покушаја регистрације током претходне недеље"
       created_msg: Успешно додао домен Е-поште на црну листу
       delete: Обриши
       domain: Домен
