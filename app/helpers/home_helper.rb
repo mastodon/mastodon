@@ -41,9 +41,9 @@ module HomeHelper
 
   def obscured_counter(count)
     if count <= 0
-      0
+      '0'
     elsif count == 1
-      1
+      '1'
     else
       '1+'
     end
@@ -54,14 +54,6 @@ module HomeHelper
       'verified'
     else
       'emojify'
-    end
-  end
-
-  def optional_link_to(condition, path, options = {}, &block)
-    if condition
-      link_to(path, options, &block)
-    else
-      content_tag(:div, &block)
     end
   end
 
