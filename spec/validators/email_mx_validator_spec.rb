@@ -41,6 +41,16 @@ describe EmailMxValidator do
       expect(user.errors).to_not have_received(:add)
     end
 
+    it 'adds an error if the domain resolves as blank' do
+      double = instance_double(TagManager)
+      allow(TagManager).to receive(:instance).and_return(double)
+      allow(double).to receive(:normalize_domain).with('example.com').and_raise(Addressable::URI::InvalidURIError)
+
+      user = double(email: 'foo@example.com', sign_up_ip: '1.2.3.4', errors: double(add: nil))
+      subject.validate(user)
+      expect(user.errors).to have_received(:add)
+    end
+
     it 'adds an error if the email domain name contains empty labels' do
       resolver = double
 
