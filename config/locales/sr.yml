@@ -1,23 +1,23 @@
 sr:
   about:
-    about_mastodon_html: 'Мастодон је друштвена мрежа базирана на отвореним протоколима и слободном софтверу отвореног кода. Децентрализована је као што је децентрализована е-пошта.'
+    about_mastodon_html: 'Друштвена мрежа будућности: без реклама, без корпоративног праћења, етички дизајн, и децентрализација! Поседујте своје податке са Мастодоном!'
     contact_missing: Није постављено
     contact_unavailable: Није доступно
     hosted_on: Мастодон хостован на %{domain}
-    title: О
+    title: О инстанци
   accounts:
-    follow: Прати
+    follow: Запрати
     followers:
-      one: Пратиоц
-      few: Пратиоци
-      other: Пратиоци
+      one: Пратилац
+      few: Пратиоца
+      other: Пратилаца
     following: Пратим
     instance_actor_flash: Овај налог је виртуелни актер који не представља ниједног корисника лично, већ сâм сервер. Користи се у сврху федерације и не треба га суспендовати.
-    last_active: последњи пут активни
+    last_active: најскорија активност
     link_verified_on: Власништво над овом везом је проверено %{date}
-    nothing_here: Овде нема ништа!
+    nothing_here: Овде нема ничега!
     pin_errors:
-      following: Морате пратити ову особу ако хоћете да потврдите
+      following: Морате пратити особу коју желите да препоручите
     posts:
       one: Објава
       few: Објаве
@@ -40,11 +40,11 @@ sr:
       by_domain: Домен
       change_email:
         changed_msg: Е-пошта налога успешно промењена!
-        current_email: Тренутна е-пошта
-        label: Промените е-пошту
-        new_email: Нова e-пошта
-        submit: Промените e-пошту
-        title: Промените e-пошту за %{username}
+        current_email: Тренутна адреса е-поште
+        label: Промените адресу е-поште
+        new_email: Нова адреса e-поште
+        submit: Промените адресу e-поште
+        title: Промените адресу e-поште за %{username}
       change_role:
         changed_msg: Улога успешно промењена!
         label: Промени улогу
@@ -52,24 +52,24 @@ sr:
         title: Промени улогу за %{username}
       confirm: Потврди
       confirmed: Потврђено
-      confirming: Потврдување
+      confirming: Потврђивање
       custom: Произвољно
       delete: Обриши податке
       deleted: Избрисано
       demote: Ражалуј
       destroyed_msg: "Подаци корисника %{username} су неповратно стављени у ред за брисање"
-      disable: Искључи
+      disable: Замрзни
       disable_sign_in_token_auth: Онемогући имејл аутентификацију
       disable_two_factor_authentication: Искључи 2FA
-      disabled: Искључена
-      display_name: Приказано име
+      disabled: Замрзнут
+      display_name: Име за приказ
       domain: Домен
       edit: Измени
       email: Е-пошта
       email_status: Статус е-поште
       enable: Омогући
       enable_sign_in_token_auth: Омогући имејл аутентификацију
-      enabled: Укључено
+      enabled: Омогућен
       enabled_msg: Успешно одлеђен налог корисника %{username}
       followers: Пратиоци
       follows: Праћени
@@ -78,11 +78,11 @@ sr:
       invite_request_text: Разлози за придруживање
       invited_by: Позван од стране
       ip: IP
-      joined: Придружио се
+      joined: Придружио/-ла се
       location:
         all: Све
-        local: Локалне
-        remote: Удаљене
+        local: Локални
+        remote: Удаљени
         title: Локација
       login_status: Статус пријаве
       media_attachments: Мултимедијални прилози
@@ -105,7 +105,7 @@ sr:
       no_role_assigned: Ниједна улога није додељена
       not_subscribed: Није претплаћен
       pending: Чека на преглед
-      perform_full_suspension: Искључи
+      perform_full_suspension: Суспендуј
       previous_strikes: Претходни прекршаји
       previous_strikes_description_html:
         one: Овај налог има <strong>један</strong> прекршај.
@@ -928,7 +928,16 @@ sr:
       actions:
         delete_statuses: обрисати објаве корисника
         disable: замрзнути налог корисника
+        mark_statuses_as_sensitive: означити објаве корисника као осетљиве
+        none: упозорење
+        sensitive: означити налог као осетљив
+        silence: ограничити налог
+        suspend: суспендовати налог
+      body: "%{target} прилаже жалбу на модерацијску одлуку корисника %{action_taken_by} од %{date}, која је гласила %{type}. У жалби пише:"
+      next_steps: Можете уважити жалбу да бисте повукли модерацијску одлуку, или је можете игнорисати.
+      subject: "%{username} прилаже жалбу на модерацијску одлуку са %{instance}"
     new_pending_account:
+      body: Детаљи новог налога су наведени доле. Можете одобрити или одбити овај захтев.
       subject: Нов налог за преглед на %{instance} (%{username})
     new_report:
       body: "%{reporter} је пријавио %{target}"
@@ -1053,23 +1062,70 @@ sr:
     hint_html: "<strong>Савет:</strong> Нећемо Вас питати за лозинку поново у наредних сат времена."
     invalid_password: Неисправна лозинка
     prompt: Потврдите лозинку за наставак
+  crypto:
+    errors:
+      invalid_key: није валидан Ed25519 или Curve25519 кључ
+      invalid_signature: није валидан Ed25519 потпис
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
+      about_x_hours: "%{count} ч."
       about_x_months: "%{count}месец"
       about_x_years: "%{count}год"
       almost_x_years: "%{count}год"
       half_a_minute: Управо сад
+      less_than_x_minutes: "%{count} мин."
       less_than_x_seconds: Управо сад
       over_x_years: "%{count}год"
       x_days: "%{count}д"
+      x_minutes: "%{count} мин."
       x_months: "%{count}месец"
+      x_seconds: "%{count} сек."
   deletes:
+    challenge_not_passed: Лозинка коју сте унели није била исправна
     confirm_password: Унесите тренутну лозинку да бисмо проверили Ваш идентитет
+    confirm_username: Унесите своје корисничко име да бисте потврдили процедуру
     proceed: Обриши налог
     success_msg: Ваш налог је успешно обрисан
+    warning:
+      before: 'Пре него што наставите, молимо Вас пажљиво прочитајте следеће напомене:'
+      caches: Садржај који је кеширан на другим серверима може да остане нетакнут
+      data_removal: Ваше објаве и други подаци ће бити трајно избрисани
+      email_change_html: Можете <a href="%{path}">променити своју имејл адресу</a> без брисања свог налога
+      email_contact_html: Ако порука и даље не стиже, можете послати мејл на <a href="mailto:%{email}">%{email}</a> за помоћ
+      email_reconfirmation_html: Уколико Вам имејл за потврду не стиже, можете га <a href="%{path}">поново затражити</a>
+      irreversible: Нећете бити у могућности да вратите или реактивирате свој налог
+      more_details_html: За више детаља, погледајте <a href="%{terms_path}">политику приватности</a>.
+      username_available: Ваше корисничко име ће поново постати доступно
+      username_unavailable: Ваше корисничко име ће остати недоступно
   disputes:
     strikes:
+      action_taken: Радња предузета
+      appeal: Жалба
+      appeal_approved: Жалба на овај преступ је уважена и преступ више није валидан
+      appeal_rejected: Жалба је одбијена
+      appeal_submitted_at: Жалба је приложена
+      appealed_msg: Ваша жалба је приложена. Бићете обавештени уколико она буде била уважена.
+      appeals:
+        submit: Приложи жалбу
+      approve_appeal: Уважи жалбу
+      associated_report: Сродна пријава
+      created_at: Датум
+      description_html: Ово су радње предузете против Вашег налога и упозорења која су Вам послали чланови особља %{instance}.
+      recipient: Усмерено према
+      reject_appeal: Одбиј жалбу
+      status: 'Објава #%{id}'
+      status_removed: Објава је већ уклоњена из система
+      title: "%{action} од %{date}"
       title_actions:
+        delete_statuses: Брисање објава
+        disable: Замрзавање налога
+        mark_statuses_as_sensitive: Означавање објава као осетљивих
+        none: Упозорење
+        sensitive: Означавање налога као осетљивог
         silence: Ограничење налога
         suspend: Суспензија налога
       your_appeal_approved: Ваша жалба је уважена
@@ -1251,11 +1307,48 @@ sr:
   migrations:
     acct: корисник@домен новог налога
     cancel: Откажи преусмерење
+    cancel_explanation: Отказивање преусмерења ће поново активирати Ваш садашњи налог, али неће вратити пратиоце који су премештени на други налог.
+    cancelled_msg: Успешно је отказано преусмерење.
+    errors:
+      already_moved: већ сте се преселили на исти налог
+      missing_also_known_as: није псеудоним овог налога
+      move_to_self: не можете се преселити на садашњи налог
+      not_found: није било могуће пронаћи налог
+      on_cooldown: Под ограничењем сте
+    followers_count: Пратиоци у тренутку премештаја
     incoming_migrations: Премештање из другог налога
     incoming_migrations_html: Да бисте прешли са другог налога на овај, прво морате <a href="%{path}">креирате псеудоним налога</a>.
+    moved_msg: Ваш налог сада преусмерава на %{acct} и Ваши пратиоци се тренутно пребацују.
+    not_redirecting: Ваш налог тренутно не преусмерава ни на један други налог.
+    on_cooldown: Недавно сте се преселили на нови налог. Ова функција ће Вам поново постати доступна за %{count} дана.
+    past_migrations: Претходне селидбе
+    proceed_with_move: Пребаците пратиоце
+    redirected_msg: Ваш налог сада преусмерава на %{acct}.
+    redirecting_to: Ваш налог преусмерава на %{acct}.
+    set_redirect: Постави преусмерење
+    warning:
+      backreference_required: Нови налог прво мора бити конфигурисан тако да реферише на овај налог
+      before: 'Пре него што наставите, молимо Вас пажљиво прочитајте следеће напомене:'
+      cooldown: Након пресељења потребно је да прође одређено време пре него што ћете поново моћи да се преселите
+      disabled_account: Ваш тренутни налог више неће бити употребљив. Међутим, имаћете приступ извозу података као и реактивацији.
+      followers: Ова радња ће преместити све пратиоце са тренутног налога на нови налог
+      only_redirect_html: Уместо пресељења, можете <a href="%{path}">само додати преусмеравајући линк на свој профил.</a>.
+      other_data: Остали подаци неће бити аутоматски пребачени
+      redirect: Профил Вашег садашњег налога ће бити ажуриран са обавештењем о преусмерењу и биће искључен из претраге
   moderation:
     title: Модерација
+  move_handler:
+    carry_blocks_over_text: Овај корисник се преселио са налога %{acct}, који сте блокирали.
+    carry_mutes_over_text: Овај корисник се преселио са налога %{acct}, који сте утишали.
+    copy_account_note_text: 'Овај корисник се преселио са налога %{acct}, о коме сте записали следеће белешке:'
+  navigation:
+    toggle_menu: Прикажи/сакриј мени
   notification_mailer:
+    admin:
+      report:
+        subject: "%{name} је поднео/-ла пријаву"
+      sign_up:
+        subject: "%{name} се регистровао/-ла"
     favourite:
       body: '%{name} је поставио као омиљен Ваш статус:'
       subject: "%{name} је поставио као омиљен Ваш статус"
@@ -1274,21 +1367,48 @@ sr:
       body: '%{name} Вас је поменуо у:'
       subject: '%{name} Вас је поменуо'
       title: Ново спомињање
+    poll:
+      subject: Анкета корисника %{name} се завршила
     reblog:
       body: '%{name} Вам је подржао/ла статус:'
       subject: "%{name} је подржао/ла Ваш статус"
       title: Нова подршка
+    status:
+      subject: "%{name} jе управо поставио/-ла објаву"
+    update:
+      subject: "%{name} је изменио/-ла објаву"
   notifications:
     email_events: Догађаји за обавештења е-поштом
     email_events_hint: 'Изаберите дешавања за која желите да примате обавештења:'
     other_settings: Остала подешавања обавештења
+  number:
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: B
+          million: М
+          quadrillion: трил.
+          thousand: хиљ.
+          trillion: бил.
+  otp_authentication:
+    code_hint: Укуцајте код генерисан у Вашој апликацији за аутентификацију да бисте потврдили
+    description_html: Ако укључите <strong>двофакторску аутентификацију</strong> путем апликације за аутентификацију, мораћете да будете при телефону приликом пријављивања да бисте имали приступ генерисаним кодовима за пријаву.
+    enable: Омогући
+    instructions_html: "<strong>Скенирајте овај QR код помоћу Google аутентификатора или сличне апликације на свом телефону</strong>. Од сада па убудуће, та апликација ће генерисати приступне кодове које ћете морати да унесете приликом пријављивања."
+    manual_instructions: 'Ако не можете да скенирате QR код и морате да га унесете ручно, ево његове текстуалне шифре:'
+    setup: Инсталација
+    wrong_code: Унесени код је био неисправан! Да ли су време сервера и време уређаја исправни?
   pagination:
     newer: Новије
     next: Следеће
     older: Старије
     prev: Претходни
+    truncate: "&hellip;"
   polls:
     errors:
+      already_voted: Већ сте гласали у овој анкети
+      duplicate_options: садржи дупликате
       duration_too_long: превише је далеко у будућности
       duration_too_short: превише је скоро
       expired: Анкета је већ завршена
@@ -1535,11 +1655,26 @@ sr:
       explanation: Жалба поднета датума %{appeal_date} на уписан преступ на Ваше име датума %{strike_date} је уважена. Ваш налог је поново у повољном положају.
       subject: Ваша жалба поднета %{date} је уважена
       title: Жалба уважена
+    appeal_rejected:
+      explanation: Жалба поднета датума %{appeal_date} на уписан преступ на Ваше име датума %{strike_date} је одбијена.
+      subject: Ваша жалба поднета %{date} је одбијена
+      title: Жалба одбијена
     backup_ready:
       explanation: Тражили сте потпуну резервну копију вашег Мастодон рачуна. Спремна за преузимање!
       subject: Ваша архива је спремна за преузимање
       title: Извоз архиве
+    suspicious_sign_in:
+      change_password: промените своју лозинку
+      details: 'Ево детаља о пријави:'
+      explanation: Приметили смо пријаву на Ваш налог са непознате IP адресе.
+      further_actions_html: Уколико то нисте били Ви, препоручујемо да одмах %{action} и укључите двофакторску аутентификацију да бисте одржали безбедност свог налога.
+      subject: Вашем налогу је приступљено са непозате IP адресе
+      title: Ново пријављивање
     warning:
+      appeal: Приложите жалбу
+      appeal_description: Уколико верујете да је у питању грешка, можете приложити жалбу особљу %{instance}.
+      categories:
+        spam: Нежељена пошта
       subject:
         disable: Ваш налог %{acct} је замрзнут
         none: Упозорење за %{acct}
@@ -1567,3 +1702,5 @@ sr:
   verification:
     explanation_html: 'Можете <strong>извршити проверу да сте Ви власник веза на Вашем налогу</strong>. Да би то радило, повезани веб сајт мора да садржи везу назад ка Вашем Мастодон налогу. Веза назад <strong>мора</strong> да има <code>rel="me"</code> атрибут. Текстуелни садржај везе није битан. Ево примера:'
     verification: Провера
+  webauthn_credentials:
+    registered_on: Регистрован/-а %{date}
