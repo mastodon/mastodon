@@ -19,7 +19,7 @@ class WebpReader
     @path = path
 
     File.open(path, 'rb') do |s|
-      raise UnknownImageType unless WEBP_HEADER == s.read(4)
+      raise UnknownImageType unless s.read(4) == WEBP_HEADER
 
       @animated = s.read(256).include?('ANIM')
     end
