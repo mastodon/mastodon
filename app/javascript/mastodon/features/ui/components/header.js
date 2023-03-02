@@ -54,15 +54,32 @@ class Header extends React.PureComponent {
       );
     }
 
-    return (
-      <div className='ui__header'>
-        <Link to='/' className='ui__header__logo'><ServerLogo /></Link>
+    if (location.pathname === '/about') {
+      return (<div className='about-header'>
+        <header className='navbar'>
+          <Link to='/'><ServerLogo /></Link>
+        </header>
+        <section className='navlinks'>
+          <a href={process.env.APP_LINK} className='header-link'>{process.env.APP_LINK_TEXT}</a>
+          <a href='/auth/sign_in' className='header-link'>Sign in</a>
+          <div className='button-container'>
+            <a href={process.env.JOIN_BUTTON_LINK} className='header-button'>
+              <span>{process.env.JOIN_BUTTON_TEXT}</span>
+            </a>
+          </div>
+        </section>
+      </div>);
+    } else {
+      return (
+        <div className='ui__header'>
+          <Link to='/' className='ui__header__logo'><ServerLogo /></Link>
 
-        <div className='ui__header__links'>
-          {content}
+          <div className='ui__header__links'>
+            {content}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 
 }

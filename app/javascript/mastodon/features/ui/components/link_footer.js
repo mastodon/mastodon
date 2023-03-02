@@ -64,7 +64,7 @@ class LinkFooter extends React.PureComponent {
               <a key='invites' href='/invites' target='_blank'><FormattedMessage id='footer.invite' defaultMessage='Invite people' /></a>
             </>
           )}
-          {canProfileDirectory && (
+          {canProfileDirectory && signedIn && (
             <>
               {' · '}
               <Link key='directory' to='/directory'><FormattedMessage id='footer.directory' defaultMessage='Profiles directory' /></Link>
@@ -75,11 +75,11 @@ class LinkFooter extends React.PureComponent {
         </p>
 
         <p>
-          <strong>Mastodon</strong>:
+          <strong>decodon</strong>:
           {' '}
-          <a href='https://joinmastodon.org' target='_blank'><FormattedMessage id='footer.about' defaultMessage='About' /></a>
+          <a href={source_url + '#readme'} target='_blank'><FormattedMessage id='footer.about' defaultMessage='About' /></a>
           {' · '}
-          <a href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='footer.get_app' defaultMessage='Get the app' /></a>
+          <a href='https://testflight.apple.com/join/rYKLlwXB' target='_blank'><FormattedMessage id='footer.get_app' defaultMessage='Get the app' /></a>
           {' · '}
           <Link to='/keyboard-shortcuts'><FormattedMessage id='footer.keyboard_shortcuts' defaultMessage='Keyboard shortcuts' /></Link>
           {' · '}
