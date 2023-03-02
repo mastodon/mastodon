@@ -46,6 +46,7 @@ sudo apt-get install \
   libncurses5-dev \
   libprotobuf-dev \
   libssl-dev \
+  libwebp6 \
   libyaml-dev \
   pkg-config \
   protobuf-compiler \
