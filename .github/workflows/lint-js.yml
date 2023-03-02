@@ -48,7 +48,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: ESLint
-        run: yarn test:lint:js
+        run: yarn lint:js
 
       - name: Typecheck
         run: yarn test:typecheck

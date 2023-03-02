@@ -48,4 +48,4 @@ jobs:
       - run: echo "::add-matcher::.github/stylelint-matcher.json"
 
       - name: Stylelint
-        run: yarn test:lint:sass
+        run: yarn lint:sass
