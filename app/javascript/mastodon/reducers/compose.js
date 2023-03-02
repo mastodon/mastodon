@@ -120,7 +120,7 @@ function clearAll(state) {
     map.set('is_submitting', false);
     map.set('is_changing_upload', false);
     map.set('in_reply_to', null);
-    map.set('privacy', (state.get('retain_privacy') ? state.get('privacy') : null) || state.get('default_privacy'));
+    map.set('privacy', (state.get('retain_privacy') && !state.get('in_reply_to') ? state.get('privacy') : null) || state.get('default_privacy'));
     map.set('sensitive', state.get('default_sensitive'));
     map.set('language', state.get('default_language'));
     map.update('media_attachments', list => list.clear());
