@@ -32,6 +32,8 @@ class Form::Import
     '#uri' => 'uri',
   }.freeze
 
+  class EmptyFileError < StandardError; end
+
   attr_accessor :current_account, :data, :type, :overwrite, :bulk_import
 
   validates :type, presence: true
@@ -105,6 +107,8 @@ class Form::Import
 
     @csv_data = CSV.open(data.path, encoding: 'UTF-8', skip_blanks: true, headers: true, converters: csv_converter)
     @csv_data.take(1) # Ensure the headers are read
+    raise EmptyFileError if @csv_data.headers == true
+
     @csv_data = CSV.open(data.path, encoding: 'UTF-8', skip_blanks: true, headers: [default_csv_header], converters: csv_converter) unless KNOWN_FIRST_HEADERS.include?(@csv_data.headers&.first)
     @csv_data
   end
@@ -141,5 +145,7 @@ class Form::Import
     end
   rescue CSV::MalformedCSVError => e
     errors.add(:data, I18n.t('imports.errors.invalid_csv_file', error: e.message))
+  rescue EmptyFileError
+    errors.add(:data, I18n.t('imports.errors.empty'))
   end
 end

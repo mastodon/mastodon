@@ -312,5 +312,8 @@ RSpec.describe Settings::ImportsController, type: :controller do
     it_behaves_like 'unsuccessful import', 'blocking', 'domain_blocks.csv', 'overwrite'
     it_behaves_like 'unsuccessful import', 'muting', 'domain_blocks.csv', 'merge'
     it_behaves_like 'unsuccessful import', 'muting', 'domain_blocks.csv', 'overwrite'
+
+    it_behaves_like 'unsuccessful import', 'following', 'empty.csv', 'merge'
+    it_behaves_like 'unsuccessful import', 'following', 'empty.csv', 'overwrite'
   end
 end
