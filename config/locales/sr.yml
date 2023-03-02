@@ -664,6 +664,10 @@ sr:
       view_profile: Погледај профил
     roles:
       add_new: Додај улогу
+      assigned_users:
+        one: "%{count} корисник"
+        few: "%{count} корисника"
+        other: "%{count} корисника"
       categories:
         administration: Администрација
         devops: DevOps
@@ -1104,9 +1108,24 @@ sr:
       expires_at: Истиче
       uses: Коришћења
     title: Позовите људе
+  lists:
+    errors:
+      limit: Достигли сте максимални број листâ
+  login_activities:
+    authentication_methods:
+      otp: апликација за двофакторску аутентификацију
+      password: лозинка
+      sign_in_token: имејл сигурносни код
+      webauthn: сигурносни кључеви
+    description_html: Уколико приметите активност коју не препознајете, размислите о томе да промените своју лозинку и укључите двофакторску аутентификацију.
+    empty: Историја аутентификације није доступна
+    failed_sign_in_html: Неуспешан покушај пријављивања путем %{method} са %{ip} (%{browser})
+    successful_sign_in_html: Успешан покушај пријављивања путем %{method} са %{ip} (%{browser})
+    title: Историја аутентификације
   media_attachments:
     validations:
       images_and_video: Не може да се прикачи видео на статус који већ има слике
+      not_ready: Не могу се приложити фајлови који још увек нису обрађени. Покушајте поново за који тренутак!
       too_many: Не може се прикачити више од 4 фајла
   migrations:
     acct: корисник@домен новог налога
@@ -1146,10 +1165,25 @@ sr:
     next: Следеће
     older: Старије
     prev: Претходни
+  polls:
+    errors:
+      duration_too_long: превише је далеко у будућности
+      duration_too_short: превише је скоро
+      expired: Анкета је већ завршена
+      invalid_choice: Изабрана опција не постоји
+      over_character_limit: не може бити дуже од по %{max} карактера
+      too_few_options: мора имати више од једне опције
+      too_many_options: не може да садржи више од %{max} опција
   preferences:
     other: Остало
     posting_defaults: Подразумевана подешавања објављивања
     public_timelines: Јавне временске линије
+  privacy_policy:
+    title: Политика приватности
+  reactions:
+    errors:
+      limit_reached: Достигнуто је ограничење различитих реакција
+      unrecognized_emoji: није препознат емоџи
   relationships:
     activity: Активност налога
     confirm_follow_selected_followers: Да ли сте сигурни да желите да пратите изабране пратиоце?
@@ -1172,6 +1206,14 @@ sr:
     status: Статус налога
   remote_follow:
     missing_resource: Не могу да нађем захтевану адресу преусмеравања за Ваш налог
+  reports:
+    errors:
+      invalid_rules: не реферише на легитимна правила
+  rss:
+    content_warning: 'Упозорење о садржају:'
+    descriptions:
+      account: Јавне објаве са @%{acct}
+      tag: 'Јавне објаве означене са #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Прекорачили сте границу од %{limit} планираних објава за данас
     over_total_limit: Прекорачили сте границу од %{limit} планираних објава
@@ -1181,6 +1223,7 @@ sr:
     browser: Веб читач
     browsers:
       alipay: Алипеј
+      blackberry: Блекбери
       chrome: Chrome
       edge: Мајкрософт Еџ
       electron: Електрон
@@ -1194,13 +1237,17 @@ sr:
       phantom_js: ФантомЏејЕс
       qq: КјуКју Претраживач
       safari: Сафари
+      uc_browser: UC Browser
       weibo: Веибо
     current_session: Тренутна сесија
     description: "%{browser} са %{platform}"
     explanation: Ово су веб претраживачи који су тренутно пријављени на Ваш Мастодон налог.
+    ip: IP
     platforms:
       adobe_air: Адоб Ер-а
       android: Андроида
+      blackberry: Блекбери
+      chrome_os: ChromeOS
       firefox_os: Фајерфокс ОС-а
       ios: иОС-а
       linux: Линукса
@@ -1216,6 +1263,7 @@ sr:
   settings:
     account: Налог
     account_settings: Подешавања налога
+    aliases: Псеудоними налога
     appearance: Изглед
     authorized_apps: Ауторизоване апликације
     back: Назад на Мастодон
@@ -1232,9 +1280,15 @@ sr:
     profile: Налог
     relationships: Праћења и пратиоци
     statuses_cleanup: Аутоматско брисање објава
+    strikes: Модерацијски преступи
     two_factor_authentication: Двофакторска идентификација
+    webauthn_authentication: Сигурносни кључеви
   statuses:
     attached:
+      audio:
+        one: "%{count} аудио запис"
+        few: "%{count} аудио записа"
+        other: "%{count} аудио записа"
       description: 'У прилогу: %{attached}'
       image:
         one: "%{count} слику"
@@ -1251,15 +1305,34 @@ sr:
       one: 'садржи забрањени хештег: %{tags}'
       few: 'садржи забрањене хештегове: %{tags}'
       other: 'садржи забрањене хештегове: %{tags}'
+    edited_at_html: Измењено %{date}
+    errors:
+      in_reply_not_found: Објава на коју покушавате да одговорите наизглед не постоји.
     open_in_web: Отвори у вебу
     over_character_limit: ограничење од %{max} карактера прекорачено
     pin_errors:
+      direct: Објаве које су видљиве само поменутим корисницима не могу бити прикачене
       limit: Већ сте закачили максималан број објава
       ownership: Туђа објава се не може закачити
       reblog: Подршка не може да се прикачи
+    poll:
+      total_people:
+        one: "%{count} особа"
+        few: "%{count} особе"
+        other: "%{count} људи"
+      total_votes:
+        one: "%{count} глас"
+        few: "%{count} гласа"
+        other: "%{count} гласова"
+      vote: Гласајте
     show_more: Прикажи још
+    show_newer: Никад не приказуј
+    show_older: Прикажи старије
+    show_thread: Прикажи низ
     sign_in_to_participate: Пријавите се да учествујете у разговору
+    title: '%{name}: „%{quote}”'
     visibilities:
+      direct: Директно
       private: Само пратиоци
       private_long: Прикажи само пратиоцима
       public: Јавно
@@ -1299,25 +1372,47 @@ sr:
     min_age_label: Старосни праг
     min_favs: Задржи објаве означене као омиљене најмање
     min_favs_hint: Не брише ниједну вашу објаву која је добила најмање овај број омиљених. Оставите празно за брисање објава без обзира на њихов број омиљених
+    min_reblogs: Задржи објаве подржане барем
     min_reblogs_hint: Не брише ниједну вашу објаву која је била подржана најмање оволико пута. Оставите празно за брисање објава без обзира на њихов број подржавања
   stream_entries:
     pinned: Закачена објава
     reblogged: подржано
     sensitive_content: Осетљив садржај
+  strikes:
+    errors:
+      too_late: Истекао је рок за подношење жалбе на забележен преступ
+  tags:
+    does_not_match_previous_name: не поклапа се са претходним именом
   themes:
     contrast: Велики контраст
     default: Мастодон
     mastodon-light: Мастодон (светло)
+  time:
+    formats:
+      default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
+    add: Додај
     disable: Искључи
+    disabled_success: Двофакторска аутентификација је успешно онемогућена
+    edit: Измени
     enabled: Двофакторска идентификација је укључена
     enabled_success: Двофакторска идентификација је успешно укључена
     generate_recovery_codes: Генериши кодове за опоравак
     lost_recovery_codes: Кодови за опоравак Вам омогућавају да повратите приступ налогу ако изгубите телефон. Ако изгубите кодове за опоравак, можете их ре-генерисати овде. Од тог тренутка, стари кодови за опоравак више не важе.
+    methods: Методе двофакторске аутентификације
+    otp: Апликација за аутентификацију
     recovery_codes: Направите резерву кодова за опоравак
     recovery_codes_regenerated: Кодови за опоравак успешно ре-генерисани
     recovery_instructions_html: Ако икада изгубите приступ телефону, можете искористити кодове за опоравак дате испод да повратите приступ налогу. <strong>Држите кодове за опоравак на сигурном</strong>. На пример, одштампајте их и чувајте их са осталим важним документима.
+    webauthn: Сигурносни кључеви
   user_mailer:
+    appeal_approved:
+      action: Идите на свој налог
+      explanation: Жалба поднета датума %{appeal_date} на уписан преступ на Ваше име датума %{strike_date} је уважена. Ваш налог је поново у повољном положају.
+      subject: Ваша жалба поднета %{date} је уважена
+      title: Жалба уважена
     backup_ready:
       explanation: Тражили сте потпуну резервну копију вашег Мастодон рачуна. Спремна за преузимање!
       subject: Ваша архива је спремна за преузимање
