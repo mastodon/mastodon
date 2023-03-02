@@ -2056,13 +2056,6 @@ Style/HashAsLastArrayItem:
     - 'app/services/notify_service.rb'
     - 'db/migrate/20181024224956_migrate_account_conversations.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowSplatArgument.
-Style/HashConversion:
-  Exclude:
-    - 'app/services/import_service.rb'
-
 # Offense count: 12
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, EnforcedShorthandSyntax, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
