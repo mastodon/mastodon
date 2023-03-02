@@ -169,12 +169,6 @@ class MediaAttachment < ApplicationRecord
     original: IMAGE_STYLES[:small].freeze,
   }.freeze
 
-  ANIMATED_WEBP_STYLES = VIDEO_CONVERTED_STYLES.deep_merge({
-    small: {
-      format: 'webp',
-    }.freeze,
-  })
-
   GLOBAL_CONVERT_OPTIONS = {
     all: '-quality 90 +profile "!icc,*" +set modify-date +set create-date',
   }.freeze
@@ -299,8 +293,6 @@ class MediaAttachment < ApplicationRecord
     def file_styles(attachment)
       if attachment.instance.file_content_type == 'image/gif' || VIDEO_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
         VIDEO_CONVERTED_STYLES
-      elsif attachment.instance.file_content_type == 'image/webp'
-        ANIMATED_WEBP_STYLES
       elsif IMAGE_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
         IMAGE_CONVERTED_STYLES
       elsif IMAGE_MIME_TYPES.include?(attachment.instance.file_content_type)

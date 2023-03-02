@@ -21,34 +21,59 @@ class WebpReader
     File.open(path, 'rb') do |s|
       raise UnknownImageType unless WEBP_HEADER == s.read(4)
 
-      @animated = s.read(256).include?('ANMF')
+      @animated = s.read(256).include?('ANIM')
     end
   end
 end
 
 module Paperclip
-  # This transcoder is only to be used for the MediaAttachment model
-  # to convert animated webp to videos
-
-  class WebpTranscoder < Paperclip::Processor
+  class WebpTranscoder < Paperclip::Thumbnail
     def make
       return File.open(@file.path) unless needs_convert?
 
-      final_file = Paperclip::Transcoder.make(file, options, attachment)
+      if animated?
+        @format = 'mp4'
 
-      if options[:style] == :original
-        attachment.instance.file_file_name    = "#{File.basename(attachment.instance.file_file_name, '.*')}.mp4"
+        attachment.instance.file_file_name = "#{File.basename(attachment.instance.file_file_name, '.*')}.mp4"
         attachment.instance.file_content_type = 'video/mp4'
-        attachment.instance.type              = MediaAttachment.types[:gifv]
+        attachment.instance.type = MediaAttachment.types[:gifv]
       end
 
-      final_file
+      super
     end
 
     private
 
+    def animated?
+      options[:style] == :original && WebpReader.animated?(file.path)
+    end
+
     def needs_convert?
-      WebpReader.animated?(file.path)
+      needs_different_geometry? || needs_different_format? || needs_metadata_stripping? || WebpReader.animated?(file.path)
+    end
+
+    def needs_different_geometry?
+      (options[:geometry] && @current_geometry.width != @target_geometry.width && @current_geometry.height != @target_geometry.height) ||
+        (options[:pixels] && @current_geometry.width * @current_geometry.height > options[:pixels])
+    end
+
+    def needs_different_format?
+      @format.present? && @current_format != @format
+    end
+
+    def needs_metadata_stripping?
+      @attachment.instance.respond_to?(:local?) && @attachment.instance.local?
+    end
+
+    def transformation_command
+      # To get rid of glitch, Remove "-layers optimize" form the command
+      scale, crop = @current_geometry.transformation_to(@target_geometry, crop?)
+      trans = []
+      trans << '-coalesce' if animated?
+      trans << '-auto-orient' if auto_orient
+      trans << '-resize' << %("#{scale}") if scale.present?
+      trans << '-crop' << %("#{crop}") << '+repage' if crop
+      trans
     end
   end
 end
