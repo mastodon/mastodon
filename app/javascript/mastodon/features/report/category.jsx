@@ -16,6 +16,8 @@ const messages = defineMessages({
   dislike_description: { id: 'report.reasons.dislike_description', defaultMessage: 'It is not something you want to see' },
   spam: { id: 'report.reasons.spam', defaultMessage: 'It\'s spam' },
   spam_description: { id: 'report.reasons.spam_description', defaultMessage: 'Malicious links, fake engagement, or repetitive replies' },
+  legal: { id: 'report.reasons.legal', defaultMessage: 'It\'s illegal' },
+  legal_description: { id: 'report.reasons.legal_description', defaultMessage: 'You believe it violates the law of your or the server\'s country' },
   violation: { id: 'report.reasons.violation', defaultMessage: 'It violates server rules' },
   violation_description: { id: 'report.reasons.violation_description', defaultMessage: 'You are aware that it breaks specific rules' },
   other: { id: 'report.reasons.other', defaultMessage: 'It\'s something else' },
@@ -69,11 +71,13 @@ class Category extends PureComponent {
     const options = rules.size > 0 ? [
       'dislike',
       'spam',
+      'legal',
       'violation',
       'other',
     ] : [
       'dislike',
       'spam',
+      'legal',
       'other',
     ];
 

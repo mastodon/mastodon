@@ -51,6 +51,7 @@ class Report < ApplicationRecord
   enum category: {
     other: 0,
     spam: 1_000,
+    legal: 1_500,
     violation: 2_000,
   }
 
