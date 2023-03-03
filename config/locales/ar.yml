@@ -1,4 +1,3 @@
----
 ar:
   about:
     about_mastodon_html: 'شبكة التواصل الاجتماعية المستقبَليّة: مِن دون إعلانات، وغير خاضعة لرقابة الشركات، ذات تصميم أخلاقي ولامركزية! بياناتكم مِلك لكم مع ماستدون!'
@@ -9,12 +8,12 @@ ar:
   accounts:
     follow: اتبع
     followers:
+      zero: متابِعون
+      one: متابِع
+      two: متابِعون
       few: متابِعون
       many: متابِعون
-      one: متابِع
       other: متابِعون
-      two: متابِعون
-      zero: متابِعون
     following: مُتابَع
     instance_actor_flash: هذا الحساب هو ممثل افتراضي يُستخدم لتمثيل الخادم نفسه ولا يمثل أي مستخدم فردي، يُستخدم لأغراض الاتحاد ولا ينبغي حظره.
     last_active: آخر نشاط
@@ -23,12 +22,12 @@ ar:
     pin_errors:
       following: يجب أن تكون مِن متابعي حساب الشخص الذي تريد إبرازه
     posts:
+      zero: منشور
+      one: منشور واحد
+      two: منشورَيْن
       few: منشورات
       many: منشورات
-      one: منشور واحد
       other: منشور
-      two: منشورَيْن
-      zero: منشور
     posts_tab_heading: المنشورات
   admin:
     account_actions:
@@ -64,7 +63,7 @@ ar:
       delete: حذف البيانات
       deleted: تمت إزالته
       demote: إنزال الرُتبة الوظيفية
-      destroyed_msg: بيانات حساب %{username} الآن في قائمة الانتظار ليتم حذفها قريباً
+      destroyed_msg: "بيانات حساب %{username} الآن في قائمة الانتظار ليتم حذفها قريباً"
       disable: تعطيل
       disable_sign_in_token_auth: تعطيل مصادقة رمز البريد الإلكتروني
       disable_two_factor_authentication: تعطيل المصادقة بخطوتين
@@ -109,18 +108,18 @@ ar:
       most_recent_ip: أحدث عنوان إيبي
       no_account_selected: لم يطرأ أي تغيير على أي حساب بما أنه لم يتم اختيار أي واحد
       no_limits_imposed: مِن دون حدود مشروطة
-      no_role_assigned: "'لم يتم تعيين أدوار`"
+      no_role_assigned: '''لم يتم تعيين أدوار`'
       not_subscribed: غير مشترك
       pending: في انتظار المراجعة
       perform_full_suspension: تعليق الحساب
       previous_strikes: العقوبات السابقة
       previous_strikes_description_html:
+        zero: هذا الحساب لديه <strong>%{count}</strong>انذار.
+        one: هذا الحساب لديه <strong>%{count}</strong>انذار.
+        two: لدى هذا الحساب <strong>%{count}</strong> إنذاران اثنان.
         few: لدى هذا الحساب <strong>%{count}</strong> إنذارات.
         many: لدى هذا الحساب <strong>%{count}</strong> إنذارًا.
-        one: هذا الحساب لديه <strong>%{count}</strong>انذار.
         other: لدى هذا الحساب <strong>%{count}</strong> إنذار.
-        two: لدى هذا الحساب <strong>%{count}</strong> إنذاران اثنان.
-        zero: هذا الحساب لديه <strong>%{count}</strong>انذار.
       promote: ترقية
       protocol: البروتوكول
       public: عمومي
@@ -241,63 +240,63 @@ ar:
         update_status: تحديث الحالة
         update_user_role: تحديث الدور
       actions:
-        approve_appeal_html: وافق %{name} على استئناف قرار الاعتدال من %{target}
-        approve_user_html: قبل %{name} تسجيل %{target}
-        assigned_to_self_report_html: قام %{name} بتعيين التقرير %{target} لأنفسهم
-        change_email_user_html: غيّر %{name} عنوان البريد الإلكتروني للمستخدم %{target}
-        change_role_user_html: قام %{name} بإنشاء قاعدة للـIP %{target}
+        approve_appeal_html: "وافق %{name} على استئناف قرار الاعتدال من %{target}"
+        approve_user_html: "قبل %{name} تسجيل %{target}"
+        assigned_to_self_report_html: "قام %{name} بتعيين التقرير %{target} لأنفسهم"
+        change_email_user_html: "غيّر %{name} عنوان البريد الإلكتروني للمستخدم %{target}"
+        change_role_user_html: "قام %{name} بإنشاء قاعدة للـIP %{target}"
         confirm_user_html: "%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}"
-        create_account_warning_html: قام %{name} بإرسال تحذير إلى %{target}
-        create_announcement_html: قام %{name} بإنشاء إعلان جديد %{target}
-        create_canonical_email_block_html: قام %{name} بحظر نطاق البريد الإلكتروني %{target}
+        create_account_warning_html: "قام %{name} بإرسال تحذير إلى %{target}"
+        create_announcement_html: "قام %{name} بإنشاء إعلان جديد %{target}"
+        create_canonical_email_block_html: "قام %{name} بحظر نطاق البريد الإلكتروني %{target}"
         create_custom_emoji_html: "%{name} قام برفع إيموجي جديد %{target}"
-        create_domain_allow_html: قام %{name} بإضافة النطاق %{target} إلى القائمة البيضاء
+        create_domain_allow_html: "قام %{name} بإضافة النطاق %{target} إلى القائمة البيضاء"
         create_domain_block_html: "%{name} قام بحجب نطاق %{target}"
-        create_email_domain_block_html: قام %{name} بحظر نطاق البريد الإلكتروني %{target}
-        create_ip_block_html: قام %{name} بإنشاء قاعدة للـIP %{target}
-        create_unavailable_domain_html: قام %{name} بتوقيف التوصيل للنطاق %{target}
+        create_email_domain_block_html: "قام %{name} بحظر نطاق البريد الإلكتروني %{target}"
+        create_ip_block_html: "قام %{name} بإنشاء قاعدة للـIP %{target}"
+        create_unavailable_domain_html: "قام %{name} بتوقيف التوصيل للنطاق %{target}"
         create_user_role_html: "%{name} أنشأ رتبه %{target}"
-        demote_user_html: قام %{name} بخفض الرتبة الوظيفية لـ%{target}
-        destroy_announcement_html: قام %{name} بحذف الإعلان %{target}
-        destroy_canonical_email_block_html: قام %{name} برفع الحظر عن نطاق البريد الإلكتروني %{target}
-        destroy_custom_emoji_html: قام %{name} بتحديث الإيموجي %{target}
-        destroy_domain_allow_html: قام %{name} بمنع الاتحاد مع النطاق %{target}
-        destroy_domain_block_html: قام %{name} برفع الحظر عن النطاق %{target}
-        destroy_email_domain_block_html: قام %{name} برفع الحظر عن نطاق البريد الإلكتروني %{target}
+        demote_user_html: "قام %{name} بخفض الرتبة الوظيفية لـ%{target}"
+        destroy_announcement_html: "قام %{name} بحذف الإعلان %{target}"
+        destroy_canonical_email_block_html: "قام %{name} برفع الحظر عن نطاق البريد الإلكتروني %{target}"
+        destroy_custom_emoji_html: "قام %{name} بتحديث الإيموجي %{target}"
+        destroy_domain_allow_html: "قام %{name} بمنع الاتحاد مع النطاق %{target}"
+        destroy_domain_block_html: "قام %{name} برفع الحظر عن النطاق %{target}"
+        destroy_email_domain_block_html: "قام %{name} برفع الحظر عن نطاق البريد الإلكتروني %{target}"
         destroy_instance_html: "%{name} قام بحجب نطاق %{target}"
-        destroy_ip_block_html: قام %{name} بحذف قاعدة للـIP %{target}
-        destroy_status_html: قام %{name} بحذف منشور من %{target}
-        destroy_unavailable_domain_html: قام %{name} باستئناف التوصيل للنطاق %{target}
+        destroy_ip_block_html: "قام %{name} بحذف قاعدة للـIP %{target}"
+        destroy_status_html: "قام %{name} بحذف منشور من %{target}"
+        destroy_unavailable_domain_html: "قام %{name} باستئناف التوصيل للنطاق %{target}"
         destroy_user_role_html: "%{name} أنشأ رتبه %{target}"
-        disable_2fa_user_html: قام %{name} بتعطيل المصادقة بخطوتين للمستخدم %{target}
-        disable_custom_emoji_html: قام %{name} بتعطيل الإيموجي %{target}
+        disable_2fa_user_html: "قام %{name} بتعطيل المصادقة بخطوتين للمستخدم %{target}"
+        disable_custom_emoji_html: "قام %{name} بتعطيل الإيموجي %{target}"
         disable_sign_in_token_auth_user_html: "%{name} تعطيل مصادقة رمز البريد الإلكتروني لـ %{target}"
-        disable_user_html: قام %{name} بتعطيل تسجيل الدخول للمستخدم %{target}
-        enable_custom_emoji_html: قام %{name} بتنشيط الإيموجي %{target}
+        disable_user_html: "قام %{name} بتعطيل تسجيل الدخول للمستخدم %{target}"
+        enable_custom_emoji_html: "قام %{name} بتنشيط الإيموجي %{target}"
         enable_sign_in_token_auth_user_html: "%{name} تمكين مصادقة رمز البريد الإلكتروني لـ %{target}"
-        enable_user_html: قام %{name} بتنشيط تسجيل الدخول للمستخدم %{target}
-        memorialize_account_html: قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية
-        promote_user_html: قام %{name} بترويج المستخدم %{target}
-        reject_appeal_html: وافق %{name} على استئناف قرار الاعتدال من %{target}
-        reject_user_html: رفض %{name} تسجيل %{target}
-        remove_avatar_user_html: قام %{name} بإزالة صورة %{target} الرمزية
-        reopen_report_html: قام %{name} بإعادة فتح الشكوى %{target}
+        enable_user_html: "قام %{name} بتنشيط تسجيل الدخول للمستخدم %{target}"
+        memorialize_account_html: "قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية"
+        promote_user_html: "قام %{name} بترويج المستخدم %{target}"
+        reject_appeal_html: "وافق %{name} على استئناف قرار الاعتدال من %{target}"
+        reject_user_html: "رفض %{name} تسجيل %{target}"
+        remove_avatar_user_html: "قام %{name} بإزالة صورة %{target} الرمزية"
+        reopen_report_html: "قام %{name} بإعادة فتح الشكوى %{target}"
         resend_user_html: "%{name} إعادة إرسال البريد الإلكتروني للتأكيد لـ %{target}"
-        reset_password_user_html: قام %{name} بإعادة تعيين كلمة مرور المستخدم %{target}
-        resolve_report_html: قام %{name} بحل الشكوى %{target}
-        sensitive_account_html: قام %{name} بوضع علامة حساس على محتوى %{target}
-        silence_account_html: قام %{name} بكتم حساب %{target}
-        suspend_account_html: قام %{name} بتعليق حساب %{target}
-        unassigned_report_html: قام %{name} بإلغاء تعيين الشكوى %{target}
+        reset_password_user_html: "قام %{name} بإعادة تعيين كلمة مرور المستخدم %{target}"
+        resolve_report_html: "قام %{name} بحل الشكوى %{target}"
+        sensitive_account_html: "قام %{name} بوضع علامة حساس على محتوى %{target}"
+        silence_account_html: "قام %{name} بكتم حساب %{target}"
+        suspend_account_html: "قام %{name} بتعليق حساب %{target}"
+        unassigned_report_html: "قام %{name} بإلغاء تعيين الشكوى %{target}"
         unblock_email_account_html: "%{name} إلغاء حظر %{target} عنوان البريد الإلكتروني"
-        unsensitive_account_html: قام %{name} بإزالة علامة حساس على محتوى %{target}
-        unsilence_account_html: قام %{name} بإلغاء كتم المستخدم %{target}
-        unsuspend_account_html: قام %{name} بإلغاء تعليق حساب %{target}
-        update_announcement_html: قام %{name} بتحديث الإعلان %{target}
-        update_custom_emoji_html: قام %{name} بتحديث الإيموجي %{target}
-        update_domain_block_html: قام %{name} بتحديث كتلة النطاق %{target}
-        update_ip_block_html: قام %{name} بإنشاء قاعدة للـIP %{target}
-        update_status_html: قام %{name} بتحديث منشور من %{target}
+        unsensitive_account_html: "قام %{name} بإزالة علامة حساس على محتوى %{target}"
+        unsilence_account_html: "قام %{name} بإلغاء كتم المستخدم %{target}"
+        unsuspend_account_html: "قام %{name} بإلغاء تعليق حساب %{target}"
+        update_announcement_html: "قام %{name} بتحديث الإعلان %{target}"
+        update_custom_emoji_html: "قام %{name} بتحديث الإيموجي %{target}"
+        update_domain_block_html: "قام %{name} بتحديث كتلة النطاق %{target}"
+        update_ip_block_html: "قام %{name} بإنشاء قاعدة للـIP %{target}"
+        update_status_html: "قام %{name} بتحديث منشور من %{target}"
         update_user_role_html: "%{name} تغيير رتبه %{target}"
       deleted_account: احذف الحساب
       empty: لم يتم العثور على سجلات.
@@ -362,19 +361,19 @@ ar:
       new_users: مستخدمون جدد
       opened_reports: تقارير مفتوحة
       pending_appeals_html:
+        zero: "<strong>%{count}</strong> وسماً معلقاً"
+        one: "<strong>%{count}</strong> مستخدمين معلقين"
+        two: "<strong>%{count}</strong> مستخدمين معلقين"
         few: "<strong>%{count}</strong> مستخدمين معلقين"
         many: "<strong>%{count}</strong> مستخدمين معلقين"
-        one: "<strong>%{count}</strong> مستخدمين معلقين"
         other: "<strong>%{count}</strong> تقارير معلقة"
-        two: "<strong>%{count}</strong> مستخدمين معلقين"
-        zero: "<strong>%{count}</strong> وسماً معلقاً"
       pending_reports_html:
+        zero: "<strong>%{count}</strong> تقارير قيد الانتظار"
+        one: "<strong>%{count}</strong> تقرير واحد قيد الإنتظار"
+        two: "<strong>%{count}</strong> تقريران قيد الانتظار"
         few: "<strong>%{count}</strong> تقارير قيد الإنتظار"
         many: "<strong>%{count}</strong> تقريرًا قيد الإنتظار"
-        one: "<strong>%{count}</strong> تقرير واحد قيد الإنتظار"
         other: "<strong>%{count}</strong> تقرير قيد الانتظار"
-        two: "<strong>%{count}</strong> تقريران قيد الانتظار"
-        zero: "<strong>%{count}</strong> تقارير قيد الانتظار"
       resolved_reports: تقارير تم حلها
       software: البرنامج
       sources: مصادر التسجيل
@@ -471,12 +470,12 @@ ar:
       availability:
         failure_threshold_reached: تم الوصول إلى أقصى حد للفشل بتاريخ %{date}.
         failures_recorded:
+          zero: ليس هناك أية محاولة فاشلة في %{count} يوم.
+          one: محاولة فاشلة في يوم %{count} واحد.
+          two: المحاولات الفاشلة في يَومين %{count}.
           few: المحاولات الفاشلة في %{count} يومًا.
           many: المحاولات الفاشلة في %{count} يوم مختلف.
-          one: محاولة فاشلة في يوم %{count} واحد.
           other: المحاولات الفاشلة في %{count} أيام مختلفة.
-          two: المحاولات الفاشلة في يَومين %{count}.
-          zero: ليس هناك أية محاولة فاشلة في %{count} يوم.
         no_failures_recorded: لم يتم العثور على أي فشل.
         title: التوفر
         warning: فشلت المحاولة الأخيرة للاتصال بهذا النطاق
@@ -519,12 +518,12 @@ ar:
       destroyed_msg: تم جدولة حذف بيانات النطاق %{domain}.
       empty: لم يتم العثور على نطاقات.
       known_accounts:
+        zero: "%{count} حسابًا معروفًا"
+        one: "حساب %{count} معروف"
+        two: "حسابان %{count} معروفان"
         few: "%{count} حسابات معروفة"
         many: "%{count} حسابًا معروفًا"
-        one: حساب %{count} معروف
         other: "%{count} حساب معروف"
-        two: حسابان %{count} معروفان
-        zero: "%{count} حسابًا معروفًا"
       moderation:
         all: كافتها
         limited: محدود
@@ -564,11 +563,11 @@ ar:
       no_ip_block_selected: لم يطرأ أي تغيير على أي قاعدة IP بما أنه لم يتم اختيار أي واحد
       title: قواعد الـIP
     relationships:
-      title: علاقات %{acct}
+      title: "علاقات %{acct}"
     relays:
       add_new: إضافة مُرحّل جديد
       delete: حذف
-      description_html: "<strong>مُرَحِّل الاتحاد</strong> هو خادم وسيط يقوم بتبادل كميات كبيرة من التبويقات العامة بين الخوادم التي تشترك به وتنشر إليه. <strong>يمكنه أن يساعد الخوادم الصغيرة والمتوسطة على اكتشاف المحتوى من فيديفرس</strong>، الذي من شأنه خلاف ذلك أن يَتطلّب من المستخدمين المحليين أن يُتابِعوا يدوياً الأشخاص الآخرين على خوادم مُتحكم بها عن بُعد."
+      description_html: <strong>مُرَحِّل الاتحاد</strong> هو خادم وسيط يقوم بتبادل كميات كبيرة من التبويقات العامة بين الخوادم التي تشترك به وتنشر إليه. <strong>يمكنه أن يساعد الخوادم الصغيرة والمتوسطة على اكتشاف المحتوى من فيديفرس</strong>، الذي من شأنه خلاف ذلك أن يَتطلّب من المستخدمين المحليين أن يُتابِعوا يدوياً الأشخاص الآخرين على خوادم مُتحكم بها عن بُعد.
       disable: تعطيل
       disabled: مُعطَّل
       enable: تشغيل
@@ -587,12 +586,12 @@ ar:
     reports:
       account:
         notes:
+          zero: "%{count} ملاحظات"
+          one: "%{count} ملاحظة"
+          two: "%{count} ملاحظتَيْن"
           few: "%{count} ملاحظات"
           many: "%{count} ملاحظات"
-          one: "%{count} ملاحظة"
           other: "%{count} ملاحظات"
-          two: "%{count} ملاحظتَيْن"
-          zero: "%{count} ملاحظات"
       action_log: سجل المراجعة
       action_taken_by: تم اتخاذ الإجراء مِن طرف
       actions:
@@ -664,12 +663,12 @@ ar:
     roles:
       add_new: إضافة دور
       assigned_users:
+        zero: "%{count} لا مستخدم"
+        one: "مستخدم واحد %{count}"
+        two: "مستخدمان %{count}"
         few: "%{count} مستخدمًا"
         many: "%{count} مستخدمين"
-        one: مستخدم واحد %{count}
         other: "%{count} مستخدم"
-        two: مستخدمان %{count}
-        zero: "%{count} لا مستخدم"
       categories:
         administration: الإدارة
         devops: DevOps
@@ -682,12 +681,12 @@ ar:
       everyone: الصلاحيات الافتراضية
       everyone_full_description_html: هذا هو <strong>الدور الأساسي</strong> الذي يحمله <strong>جميع المستخدمين</strong>، حتى أولئك الذين ليس لديهم دور معين. جميع الأدوار الأخرى ترث الأذونات منه.
       permissions_count:
+        zero: "لا تصريح %{count}"
+        one: "تصريح واحد %{count}"
+        two: "تصريحان %{count}"
         few: "%{count} تصريحات"
         many: "%{count} تصريحًا"
-        one: تصريح واحد %{count}
         other: "%{count} تصريح"
-        two: تصريحان %{count}
-        zero: لا تصريح %{count}
       privileges:
         administrator: مدير
         administrator_description: المستخدمين الذين لديهم هذا التصريح سيتجاوزون جميع التصاريح
@@ -807,13 +806,13 @@ ar:
       with_media: تحتوي على وسائط
     strikes:
       actions:
-        delete_statuses: حَذَفَ %{name} رسائل %{target}
-        disable: جَمّدَ %{name} حساب %{target}
-        mark_statuses_as_sensitive: وَضَعَ %{name} علامة على منشورات %{target} على أنها حساسة
-        none: قام %{name} بإرسال تحذير إلى %{target}
-        sensitive: قام %{name} بوضع علامة حساس على حساب %{target}
-        silence: قام %{name} بكتم حساب %{target}
-        suspend: قام %{name} بتعليق حساب %{target}
+        delete_statuses: "حَذَفَ %{name} رسائل %{target}"
+        disable: "جَمّدَ %{name} حساب %{target}"
+        mark_statuses_as_sensitive: "وَضَعَ %{name} علامة على منشورات %{target} على أنها حساسة"
+        none: "قام %{name} بإرسال تحذير إلى %{target}"
+        sensitive: "قام %{name} بوضع علامة حساس على حساب %{target}"
+        silence: "قام %{name} بكتم حساب %{target}"
+        suspend: "قام %{name} بتعليق حساب %{target}"
       appeal_approved: طُعِن فيه
       appeal_pending: طعن قيد المراجعة
       appeal_rejected: رُفض الطعن
@@ -888,12 +887,12 @@ ar:
         usable: يمكن استخدامه
         usage_comparison: تم استخدامه %{today} مرات اليوم، مقارنة بـ %{yesterday} بالأمس
         used_by_over_week:
+          zero: مستخدَم من قِبل %{count} شخص خلال الأسبوع الماضي
+          one: مستخدَم من قِبل %{count} شخص واحد خلال الأسبوع الماضي
+          two: مستخدَم من قِبل %{count} شخصين خلال الأسبوع الماضي
           few: مستخدَم من قِبل %{count} أشخاص خلال الأسبوع الماضي
           many: مستخدَم من قِبل %{count} شخصا خلال الأسبوع الماضي
-          one: مستخدَم من قِبل %{count} شخص واحد خلال الأسبوع الماضي
           other: مستخدَم من قِبل %{count} شخص خلال الأسبوع الماضي
-          two: مستخدَم من قِبل %{count} شخصين خلال الأسبوع الماضي
-          zero: مستخدَم من قِبل %{count} شخص خلال الأسبوع الماضي
       title: المتداوَلة
       trending: المتداولة
     warning_presets:
@@ -905,7 +904,7 @@ ar:
     webhooks:
       add_new: إضافة نقطة نهاية
       delete: حذف
-      description_html: "<strong>webhook</strong> يمكّن ماستدون من إرسال <strong>إشعارات في الوقت الحقيقي</strong> حول الأحداث المختارة إلى التطبيق الخاص بك، حتى يمكن لتطبيقك <strong>تشغيل ردود الفعل تلقائياً</strong>."
+      description_html: <strong>webhook</strong> يمكّن ماستدون من إرسال <strong>إشعارات في الوقت الحقيقي</strong> حول الأحداث المختارة إلى التطبيق الخاص بك، حتى يمكن لتطبيقك <strong>تشغيل ردود الفعل تلقائياً</strong>.
       disable: تعطيل
       disabled: معطَّل
       edit: تعديل نقطة النهاية
@@ -929,16 +928,16 @@ ar:
         sensitive: لجعل حسابهم كحساس
         silence: للحد من حسابهم
         suspend: لتعليق حسابهم
-      body: 'قام %{target} بالطعن في قرار %{action_taken_by} بتاريخ %{date} وهو كان %{type}. نص الطعن:'
+      body: "قام %{target} بالطعن في قرار %{action_taken_by} بتاريخ %{date} وهو كان %{type}. نص الطعن:"
       next_steps: يمكنك الموافقة على الطعن وبالتالي التراجع عن قرار المشرف، أو يمكنك تجاهل الطعن.
-      subject: قام %{username} بالطعن بقرار المشرفين بخصوص %{instance}
+      subject: "قام %{username} بالطعن بقرار المشرفين بخصوص %{instance}"
     new_pending_account:
       body: تفاصيل الحساب الجديد أدناه. يمكنك الموافقة على هذا الطلب أو رفضه.
       subject: حساب جديد في انتظار مراجعة على %{instance} (%{username})
     new_report:
-      body: قام %{reporter} بالإبلاغ عن %{target}
+      body: "قام %{reporter} بالإبلاغ عن %{target}"
       body_remote: أبلغ شخص ما من %{domain} عن %{target}
-      subject: تقرير جديد ل%{instance} (#%{id})
+      subject: 'تقرير جديد ل%{instance} (#%{id})'
     new_trends:
       body: 'تحتاج العناصر التالية إلى مراجعة قبل أن يمكن عرضها علناً:'
       new_trending_links:
@@ -992,7 +991,7 @@ ar:
     delete_account: حذف الحساب
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
     description:
-      prefix_invited_by_user: يدعوك @%{name} للاتحاق بخادم ماستدون هذا!
+      prefix_invited_by_user: "يدعوك @%{name} للاتحاق بخادم ماستدون هذا!"
       prefix_sign_up: أنشئ حسابًا على ماستدون اليوم!
       suffix: بفضل حساب، ستكون قادرا على متابعة أشخاص ونشر تحديثات وتبادل رسائل مع مستخدمين مِن أي خادم Mastodon وأكثر!
     didnt_get_confirmation: لم تتلق تعليمات التأكيد ؟
@@ -1012,7 +1011,7 @@ ar:
       cas: CAS
       saml: SAML
     register: إنشاء حساب
-    registration_closed: لا يقبل %{instance} استقبال أعضاء جدد
+    registration_closed: "لا يقبل %{instance} استقبال أعضاء جدد"
     resend_confirmation: إعادة إرسال تعليمات التأكيد
     reset_password: إعادة تعيين كلمة المرور
     rules:
@@ -1190,19 +1189,19 @@ ar:
       expires_in: تنتهي مدة صلاحيتها في غضون %{distance}
       expires_on: تنتهي مدة صلاحيتها في %{date}
       keywords:
+        zero: "%{count} كلمة مفتاحية"
+        one: "كلمة مفتاحية %{count} واحدة"
+        two: "كلمتان مفتاحيتان %{count}"
         few: "%{count} كلمة مفتاحية"
         many: "%{count} كلمة مفتاحية"
-        one: كلمة مفتاحية %{count} واحدة
         other: "%{count} كلمة مفتاحية"
-        two: كلمتان مفتاحيتان %{count}
-        zero: "%{count} كلمة مفتاحية"
       statuses:
+        zero: "%{count} منشورات"
+        one: "%{count} منشور واحد"
+        two: "%{count} منشوران اثنان"
         few: "%{count} منشورات"
         many: "%{count} منشورًا"
-        one: "%{count} منشور واحد"
         other: "%{count} منشور"
-        two: "%{count} منشوران اثنان"
-        zero: "%{count} منشورات"
       title: عوامل التصفية
     new:
       save: حفظ عامل التصفية الجديد
@@ -1227,12 +1226,12 @@ ar:
     save_changes: حفظ التغييرات
     today: اليوم
     validation_errors:
+      zero: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
+      one: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الخطأ أدناه
+      two: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
       few: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
       many: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
-      one: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الخطأ أدناه
       other: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
-      two: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
-      zero: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
   imports:
     errors:
       invalid_csv_file: 'ملف CSV غير صالح. خطأ: %{error}'
@@ -1265,12 +1264,12 @@ ar:
     generate: توليد
     invited_by: 'تمت دعوتك من طرف:'
     max_uses:
+      zero: "%{count} استخدامات"
+      one: استخدام واحد
+      two: "%{count} استخدامات"
       few: "%{count} استخدامات"
       many: "%{count} استخدامات"
-      one: استخدام واحد
       other: "%{count} استخدامات"
-      two: "%{count} استخدامات"
-      zero: "%{count} استخدامات"
     max_uses_prompt: بلا حدود
     prompt: توليد و مشاركة روابط للسماح للآخَرين بالنفاذ إلى مثيل الخادم هذا
     table:
@@ -1340,10 +1339,10 @@ ar:
       report:
         subject: "%{name} قام بإرسال تقرير"
       sign_up:
-        subject: أنشأ %{name} حسابًا
+        subject: "أنشأ %{name} حسابًا"
     favourite:
       body: 'أُعجب %{name} بمنشورك:'
-      subject: أُعجِب %{name} بمنشورك
+      subject: "أُعجِب %{name} بمنشورك"
       title: مفضّلة جديدة
     follow:
       body: "%{name} من متتبعيك الآن!"
@@ -1351,7 +1350,7 @@ ar:
       title: متابِع جديد
     follow_request:
       action: إدارة طلبات المتابَعة
-      body: طلب %{name} متابعتك
+      body: "طلب %{name} متابعتك"
       subject: 'متابع مُعلّق: %{name}'
       title: طلب متابَعة جديد
     mention:
@@ -1363,12 +1362,12 @@ ar:
       subject: انتهى استطلاع %{name} للرأي
     reblog:
       body: 'قام %{name} بترقية منشورك:'
-      subject: قام %{name} بترقية منشورك
+      subject: "قام %{name} بترقية منشورك"
       title: ترقية جديدة
     status:
       subject: "%{name} نشر للتو"
     update:
-      subject: قام %{name} بتحرير منشور
+      subject: "قام %{name} بتحرير منشور"
   notifications:
     email_events: الأحداث للإشعارات عبر البريد الإلكتروني
     email_events_hint: 'اختر الأحداث التي تريد أن تصِلَك اشعارات عنها:'
@@ -1396,7 +1395,7 @@ ar:
     next: التالي
     older: الأقدَم
     prev: السابق
-    truncate: و
+    truncate: "و"
   polls:
     errors:
       already_voted: لقد قمت بالتصويت على استطلاع الرأي هذا مِن قبل
@@ -1520,37 +1519,37 @@ ar:
   statuses:
     attached:
       audio:
+        zero: "%{count} مقطع صوتي"
+        one: "%{count} مقطع صوتي واحد"
+        two: "%{count} مقطعان صوتيان"
         few: "%{count} مقطعًا صوتيًا"
         many: "%{count} مقاطع صوتية"
-        one: "%{count} مقطع صوتي واحد"
         other: "%{count} مقاطع صوتية"
-        two: "%{count} مقطعان صوتيان"
-        zero: "%{count} مقطع صوتي"
       description: 'مُرفَق: %{attached}'
       image:
+        zero: "%{count} صورة"
+        one: "صورة %{count}"
+        two: "%{count} صورة"
         few: "%{count} صور"
         many: "%{count} صور"
-        one: صورة %{count}
         other: "%{count} صور"
-        two: "%{count} صورة"
-        zero: "%{count} صورة"
       video:
+        zero: "%{count} فيديوهات"
+        one: "فيديو %{count}"
+        two: "%{count} فيديوهات"
         few: "%{count} فيديوهات"
         many: "%{count} فيديوهات"
-        one: فيديو %{count}
         other: "%{count} فيديوهات"
-        two: "%{count} فيديوهات"
-        zero: "%{count} فيديوهات"
     boosted_from_html: تم إعادة ترقيته مِن %{acct_link}
     content_warning: 'تحذير عن المحتوى: %{warning}'
     default_language: نفس لغة الواجهة
     disallowed_hashtags:
+      zero: 'يحتوي على وسوم غير مسموح بها: %{tags}'
+      one: 'يحتوي على وسم غير مسموح به: %{tags}'
+      two: 'يحتوي على وسوم غير مسموح بها: %{tags}'
       few: 'يحتوي على وسوم غير مسموح بها: %{tags}'
       many: 'يحتوي على وسوم غير مسموح بها: %{tags}'
-      one: 'يحتوي على وسم غير مسموح به: %{tags}'
       other: 'يحتوي على وسوم غير مسموح بها: %{tags}'
-      two: 'يحتوي على وسوم غير مسموح بها: %{tags}'
-      zero: 'يحتوي على وسوم غير مسموح بها: %{tags}'
     edited_at_html: عُدّل في %{date}
     errors:
       in_reply_not_found: إنّ المنشور الذي تحاول الرد عليه غير موجود على ما يبدو.
@@ -1563,19 +1562,19 @@ ar:
       reblog: لا يمكن تثبيت ترقية
     poll:
       total_people:
+        zero: "%{count} شخص"
+        one: "%{count} شخص واحد"
+        two: "%{count} شخصين"
         few: "%{count} أشخاص"
         many: "%{count} أشخاص"
-        one: "%{count} شخص واحد"
         other: "%{count} شخصا"
-        two: "%{count} شخصين"
-        zero: "%{count} شخص"
       total_votes:
+        zero: "بدون صوت %{count}"
+        one: "صوت واحد %{count}"
+        two: "صوتين %{count}"
         few: "%{count} أصوات"
         many: "%{count} أصوات"
-        one: صوت واحد %{count}
         other: "%{count} صوتا"
-        two: صوتين %{count}
-        zero: بدون صوت %{count}
       vote: صوّت
     show_more: أظهر المزيد
     show_newer: إظهار أحدث
