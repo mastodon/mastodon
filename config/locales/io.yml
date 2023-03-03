@@ -1,7 +1,6 @@
----
 io:
   about:
-    about_mastodon_html: Mastodon esas <em>gratuita, apertitkodexa</em> sociala reto. Ol esas <em>sencentra</em> altra alternativo a komercala servadi. Ol evitigas, ke sola firmo guvernez tua tota komunikadol. Selektez servero, quan tu fidas. Irge qua esas tua selekto, tu povas komunikar kun omna altra uzeri. Irgu povas krear sua propra instaluro di Mastodon en sua servero, e partoprenar en la <em>sociala reto</em> tote glate.
+    about_mastodon_html: 'Mastodon esas <em>gratuita, apertitkodexa</em> sociala reto. Ol esas <em>sencentra</em> altra alternativo a komercala servadi. Ol evitigas, ke sola firmo guvernez tua tota komunikadol. Selektez servero, quan tu fidas. Irge qua esas tua selekto, tu povas komunikar kun omna altra uzeri. Irgu povas krear sua propra instaluro di Mastodon en sua servero, e partoprenar en la <em>sociala reto</em> tote glate.'
     contact_missing: Ne fixigita
     contact_unavailable: Nula
     hosted_on: Mastodon hostigesas che %{domain}
@@ -56,7 +55,7 @@ io:
       delete: Efacez informi
       deleted: Efacita
       demote: Despromocez
-      destroyed_msg: Informi di %{username} nun aranjesis por efacesar aparante
+      destroyed_msg: "Informi di %{username} nun aranjesis por efacesar aparante"
       disable: Frostigez
       disable_sign_in_token_auth: Desaktivigez retpostofichyurizeso
       disable_two_factor_authentication: Desaktivigez 2FA
@@ -527,7 +526,7 @@ io:
     relays:
       add_new: Insertez nova relayo
       delete: Efacez
-      description_html: "<strong>Federatrelayo</strong> esas mediatajservilo quo interchanjas multa publika posti inter servili quo abonas e publikigas ibe. <strong>Ol povas helpar mikra e mezgranda servili deskovrar kontenajo de fediverso</strong>, quale ne bezonas lokala uzanti manuale sequar altra personi en nelokala servili."
+      description_html: <strong>Federatrelayo</strong> esas mediatajservilo quo interchanjas multa publika posti inter servili quo abonas e publikigas ibe. <strong>Ol povas helpar mikra e mezgranda servili deskovrar kontenajo de fediverso</strong>, quale ne bezonas lokala uzanti manuale sequar altra personi en nelokala servili.
       disable: Desaktivigez
       disabled: Desaktivigita
       enable: Aktivigez
@@ -816,7 +815,7 @@ io:
     webhooks:
       add_new: Insertez finpunto
       delete: Efacez
-      description_html: "<strong>Rethoko</strong> povigas Mastodon sendar <strong>samtempoavizi</strong> pri selektita eventi a vua sua apliko, por ke vua apliko povas <strong>automate kauzigar reakti</strong>."
+      description_html: <strong>Rethoko</strong> povigas Mastodon sendar <strong>samtempoavizi</strong> pri selektita eventi a vua sua apliko, por ke vua apliko povas <strong>automate kauzigar reakti</strong>.
       disable: Desaktivigez
       disabled: Desaktivigita
       edit: Modifikez finpunto
@@ -852,7 +851,7 @@ io:
     new_report:
       body: "%{reporter} raportizis %{target}"
       body_remote: Ulu de %{domain} raportizis %{target}
-      subject: Nova raporto por %{instance} (#%{id})
+      subject: 'Nova raporto por %{instance} (#%{id})'
     new_trends:
       body: 'Ca kozi bezonas kontrol ante ol povas montresar publike:'
       new_trending_links:
@@ -1237,7 +1236,7 @@ io:
       sign_up:
         subject: "%{name} registris"
     favourite:
-      body: "%{name} favoris tua mesajo:"
+      body: '%{name} favoris tua mesajo:'
       subject: "%{name} favoris tua mesajo"
       title: Nova favorato
     follow:
@@ -1247,17 +1246,17 @@ io:
     follow_request:
       action: Jerez sequodemandi
       body: "%{name} demandis sequar tu"
-      subject: "%{name} demandis sequar tu"
+      subject: '%{name} demandis sequar tu'
       title: Nova sequodemando
     mention:
       action: Respondez
-      body: "%{name} mencionis tu en:"
-      subject: "%{name} mencionis tu"
+      body: '%{name} mencionis tu en:'
+      subject: '%{name} mencionis tu'
       title: Nova menciono
     poll:
       subject: Votposto di %{name} finis
     reblog:
-      body: "%{name} diskonocigis tua mesajo:"
+      body: '%{name} diskonocigis tua mesajo:'
       subject: "%{name} diskonocigis tua mesajo"
       title: Nova busto
     status:
