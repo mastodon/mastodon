@@ -11,7 +11,7 @@ class ActivityPub::MigratedFollowDeliveryWorker < ActivityPub::DeliveryWorker
   def unfollow_old_account!(old_target_account_id)
     old_target_account = Account.find(old_target_account_id)
     UnfollowService.new.call(@source_account, old_target_account, skip_unmerge: true)
-  rescue StandardError
+  rescue
     true
   end
 end
