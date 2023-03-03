@@ -95,6 +95,7 @@ ru:
       moderation:
         active: Действующие
         all: Все
+        disabled: Отключено
         pending: В ожидании
         silenced: Ограниченные
         suspended: Заблокированные
@@ -139,6 +140,7 @@ ru:
       search: Поиск
       search_same_email_domain: Другие пользователи с тем же доменом электронной почты
       search_same_ip: Другие пользователи с таким же IP
+      security: Безопасность
       security_measures:
         only_password: Только пароль
         password_and_2fa: Пароль и 2FA
@@ -443,6 +445,7 @@ ru:
         resolve: Проверить домен
         title: Новая блокировка по домену
       no_email_domain_block_selected: Блоки домена электронной почты не были изменены, так как не были выбраны
+      not_permitted: Не разрешено
       resolved_dns_records_hint_html: Доменное имя устраняется на следующие MX-домены, которые в конечном итоге отвечают за прием электронной почты. Блокировка MX-домена будет блокировать регистрации с любого адреса электронной почты, который использует тот же MX-домен, даже если видимое доменное имя отличается от него. <strong>Будьте осторожны, чтобы не блокировать основных поставщиков электронной почты</strong>
       resolved_through_html: Разрешено через %{domain}
       title: Блокировка e-mail доменов
@@ -493,6 +496,7 @@ ru:
       content_policies:
         comment: Внутренняя заметка
         description_html: Вы можете определить политики контента, которые будут применяться ко всем учетным записям этого домена и любого из его субдоменов.
+        limited_federation_mode_description_html: Вы можете выбрать, разрешать ли объединение с этим доменом.
         policies:
           reject_media: Отклонить медиа
           reject_reports: Отклонять жалобы
@@ -609,11 +613,13 @@ ru:
       assign_to_self: Назначить себе
       assigned: Назначенный модератор
       by_target_domain: Домен объекта жалобы
+      cancel: Отменить
       category: Категория
       category_description_html: Причина, по которой были доложены этот пользователь или содержимое, будет указана при коммуникации с фигурирующим в жалобе пользователем
       comment:
         none: Нет
       comment_description_html: 'В дополнение, %{name} добавил(а) следующий комментарий:'
+      confirm: Подтвердить
       created_at: Создана
       delete_and_resolve: Удалить посты
       forwarded: Переслано
@@ -810,6 +816,7 @@ ru:
         suspend: "%{name} приостановил аккаунт %{target}"
       appeal_approved: Обжаловано
       appeal_pending: Обжалование в обработке
+      appeal_rejected: Апелляция отклонена
     system_checks:
       database_schema_check:
         message_html: Есть отложенные миграции базы данных. Запустите их, чтобы убедиться, что приложение работает должным образом
@@ -847,6 +854,7 @@ ru:
           other: Поделился %{count} человек за последнюю неделю
         title: Актуальные ссылки
         usage_comparison: Поделились %{today} раз сегодня, по сравнению с %{yesterday} вчера
+      not_allowed_to_trend: Не допущено в популярное
       only_allowed: Только разрешенное
       pending_review: Ожидает рассмотрения
       preview_card_providers:
@@ -984,6 +992,7 @@ ru:
   applications:
     created: Приложение успешно создано
     destroyed: Приложение успешно удалено
+    logout: Выйти
     regenerate_token: Повторно сгенерировать токен доступа
     token_regenerated: Токен доступа успешно сгенерирован
     warning: Будьте очень внимательны с этими данными. Не делитесь ими ни с кем!
@@ -1020,6 +1029,8 @@ ru:
     resend_confirmation: Повторить отправку инструкции для подтверждения
     reset_password: Сбросить пароль
     rules:
+      accept: Принять
+      back: Назад
       preamble: Они устанавливаются и применяются модераторами %{domain}.
       title: Несколько основных правил.
     security: Безопасность

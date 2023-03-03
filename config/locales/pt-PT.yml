@@ -1151,6 +1151,8 @@ pt-PT:
     storage: Armazenamento de media
   featured_tags:
     add_new: Adicionar nova
+    errors:
+      limit: Já destacou o número máximo de hashtags permitido
     hint_html: "<strong>O que são etiquetas em destaque?</strong> Exibidas de forma bem visível no seu perfil público, permitem que as pessoas consultem as suas publicações públicas especificamente sob essas etiquetas. São uma óptima ferramenta para dar seguimento a trabalhos criativos ou projectos de longo prazo."
   filters:
     contexts:
@@ -1258,6 +1260,9 @@ pt-PT:
       expires_at: Expira
       uses: Usos
     title: Convidar pessoas
+  lists:
+    errors:
+      limit: Atingiu o número máximo de listas permitido
   login_activities:
     authentication_methods:
       otp: aplicação de autenticação em duas etapas
@@ -1577,6 +1582,7 @@ pt-PT:
       '7889238': 3 meses
     min_age_label: Limite de idade
     min_favs: Manter pelo menos as publicações dos marcadores
+    min_favs_hint: Não elimina nenhuma das suas publicações que tenha recebido pelo menos este número de favoritos. Deixe em branco para eliminar publicações, independentemente do seu número de favoritos
     min_reblogs: Manter as publicações reforçadas mais de
     min_reblogs_hint: Não apaga nenhuma das suas publicações que tenha sido partilhada mais do que este número de vezes. Deixe em branco para apagar as publicações, independentemente do número de partilhas
   stream_entries:
