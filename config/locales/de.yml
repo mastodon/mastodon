@@ -11,12 +11,12 @@ de:
       one: Follower
       other: Folgende
     following: Folge ich
-    instance_actor_flash: Dieses Konto ist ein virtueller Akteur, der den Server selbst repräsentiert und nicht ein einzelner Benutzer. Es wird für Föderationszwecke verwendet und sollte nicht gesperrt werden.
+    instance_actor_flash: Dieses Konto ist ein virtueller Akteur, der den Server selbst repräsentiert, und kein persönliches Profil. Es wird für Föderationszwecke verwendet und sollte daher nicht gesperrt werden.
     last_active: zuletzt aktiv
     link_verified_on: Das Profil mit dieser E-Mail-Adresse wurde bereits am %{date} bestätigt
     nothing_here: Keine Treffer mit dieser Auswahl
     pin_errors:
-      following: Du musst dieser Person bereits folgen, um sie empfehlen zu können
+      following: Du musst dieser Person folgen, um sie empfehlen zu können
     posts:
       one: Beitrag
       other: Beiträge
@@ -28,7 +28,7 @@ de:
     account_moderation_notes:
       create: Notiz abspeichern
       created_msg: Moderationshinweis erfolgreich abgespeichert!
-      destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
+      destroyed_msg: Moderationsnotiz erfolgreich entfernt!
     accounts:
       add_email_domain_block: E-Mail-Domain sperren
       approve: Genehmigen
@@ -104,7 +104,7 @@ de:
       not_subscribed: Nicht abonniert
       pending: Überprüfung ausstehend
       perform_full_suspension: Sperren
-      previous_strikes: Vorherige Verstöße
+      previous_strikes: Vorherige Maßnahmen
       previous_strikes_description_html:
         one: Gegen dieses Konto wurde <strong>eine</strong> Maßnahme verhängt.
         other: Gegen dieses Konto wurden <strong>%{count}</strong> Maßnahmen verhängt.
@@ -451,10 +451,10 @@ de:
       description_html: "<strong>Folgeempfehlungen helfen neuen Nutzer*innen, interessante Inhalte schnell zu finden</strong>. Wenn ein*e Nutzer*in noch nicht genug mit anderen interagiert hat, um personalisierte Folgeempfehlungen zu erhalten, werden stattdessen diese Profile verwendet. Sie werden täglich, basierend auf einer Mischung aus am meisten interagierenden Konten und jenen mit den meisten Followern für eine bestimmte Sprache, neu berechnet."
       language: Für Sprache
       status: Status
-      suppress: Folgeempfehlungen unterdrücken
+      suppress: Folgeempfehlung unterbinden
       suppressed: Unterdrückt
       title: Folgeempfehlungen
-      unsuppress: Nicht mehr unterdrücken
+      unsuppress: Folgeempfehlung nicht mehr unterbinden
     instances:
       availability:
         description_html:
@@ -583,14 +583,14 @@ de:
         suspend_description_html: Das Konto und alle Inhalte werden unzugänglich und ggf. gelöscht. Eine Interaktion mit dem Konto wird unmöglich. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
       actions_description_html: Entscheide, welche Maßnahmen zur Lösung dieses Berichts zu ergreifen sind. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, wird eine E-Mail-Benachrichtigung an diese gesendet, außer wenn die <strong>Spam</strong>-Kategorie ausgewählt ist.
       actions_description_remote_html: Entscheide, welche Maßnahmen du zur Lösung dieser Meldungen ergreifen möchtest. Dies wirkt sich lediglich darauf aus, wie <strong>dein</strong> Server mit diesem externen Konto kommuniziert und dessen Inhalt handhabt.
-      add_to_report: Mehr zur Meldung hinzufügen
+      add_to_report: Meldung ergänzen
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
       assigned: Zugewiesene*r Moderator*in
       by_target_domain: Domain des gemeldeten Kontos
       cancel: Abbrechen
       category: Kategorie
-      category_description_html: Der Grund, warum dieses Konto und/oder der Inhalt gemeldet wurden, wird in der Kommunikation mit dem gemeldeten Konto zitiert
+      category_description_html: Der Grund, weshalb dieses Konto und/oder der Inhalt gemeldet worden ist, wird in der Kommunikation mit dem gemeldeten Konto erwähnt
       comment:
         none: Kein
       comment_description_html: '%{name} ergänzte die Meldung um folgende Hinweis:'
@@ -792,7 +792,7 @@ de:
         disable: "%{name} fror das Konto von %{target} ein"
         mark_statuses_as_sensitive: "%{name} hat die Beiträge von %{target} mit einer Inhaltswarnung versehen"
         none: "%{name} schickte eine Warnung an %{target}"
-        sensitive: "%{name} hat das Profil von %{target} mit einer Inhaltswarnung versehen"
+        sensitive: "%{name} versah das Konto von %{target} mit einer Inhaltswarnung"
         silence: "%{name} schaltete das Konto von %{target} stumm"
         suspend: "%{name} sperrte das Konto von %{target}"
       appeal_approved: Einspruch angenommen
@@ -938,7 +938,7 @@ de:
       subject: Neue Trends zur Überprüfung auf %{instance}
   aliases:
     add_new: Alias erstellen
-    created_msg: Ein neuer Alias wurde erfolgreich erstellt. Du kannst nun den Wechsel vom alten Konto starten.
+    created_msg: Neuer Alias erfolgreich erstellt. Du kannst nun den Umzug vom alten zum neuen Konto starten.
     deleted_msg: Der Alias wurde erfolgreich entfernt. Aus jenem Konto zu diesem zu verschieben, ist nicht mehr möglich.
     empty: Du hast keine Aliase.
     hint_html: Wenn du von einem Konto zu einem anderen Konto wechseln möchtest, dann kannst du einen Alias erstellen, welcher benötigt wird, bevor du deine Follower vom alten Account zu diesen migrierst. Die Aktion allein ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Die Kontenmigration wird vom alten Konto aus eingeleitet</strong>.
@@ -974,7 +974,7 @@ de:
     apply_for_account: Konto beantragen
     change_password: Passwort
     confirmations:
-      wrong_email_hint: Wenn diese E-Mail-Adresse nicht korrekt ist, kann sie in den Kontoeinstellungen geändert werden.
+      wrong_email_hint: Sollte diese E-Mail-Adresse nicht korrekt sein, kannst du sie in den Kontoeinstellungen ändern.
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto endgültig löschen möchtest, kannst du das <a href="%{path}">hier vornehmen</a>. Du musst dies zusätzlich bestätigen.
     description:
@@ -1016,7 +1016,7 @@ de:
       preamble_html: Melde dich mit deinen Zugangsdaten für <strong>%{domain}</strong> an. Solltest du dein Konto auf einem anderen Server registriert haben, ist eine Anmeldung hier nicht möglich.
       title: Bei %{domain} anmelden
     sign_up:
-      preamble: Mit einem Account auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Account gehostet wird.
+      preamble: Mit einem Konto auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Account gehostet ist.
       title: Okay, lass uns mit %{domain} anfangen.
     status:
       account_status: Kontostatus
@@ -1037,7 +1037,7 @@ de:
     post_follow:
       close: Oder du schließt einfach dieses Fenster.
       return: Benutzerprofil anzeigen
-      web: In der Benutzeroberfläche öffnen
+      web: Im Webinterface öffnen
     title: '%{acct} folgen'
   challenge:
     confirm: Fortfahren
@@ -1051,7 +1051,7 @@ de:
   date:
     formats:
       default: "%d. %b %Y"
-      with_month_name: "%B %d, %Y"
+      with_month_name: "%d. %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -1061,11 +1061,11 @@ de:
       half_a_minute: Gerade eben
       less_than_x_minutes: "%{count} Min"
       less_than_x_seconds: Gerade eben
-      over_x_years: "%{count}J"
-      x_days: "%{count}T"
-      x_minutes: "%{count}m"
-      x_months: "%{count}mo"
-      x_seconds: "%{count}s"
+      over_x_years: "%{count} J"
+      x_days: "%{count} T"
+      x_minutes: "%{count} Min"
+      x_months: "%{count} Mo"
+      x_seconds: "%{count} S"
   deletes:
     challenge_not_passed: Die eingegebenen Informationen waren nicht korrekt
     confirm_password: Gib dein derzeitiges Passwort ein, um deine Identität zu bestätigen
@@ -1074,10 +1074,10 @@ de:
     success_msg: Dein Konto wurde erfolgreich gelöscht
     warning:
       before: 'Bevor du fortfährst, lies bitte diese Punkte sorgfältig durch:'
-      caches: Inhalte, die von anderen Servern zwischengespeichert wurden, können weiterhin bestehen
+      caches: Inhalte, die von anderen Servern zwischengespeichert wurden, können fortbestehen
       data_removal: Deine Beiträge und alle anderen Daten werden für immer entfernt
       email_change_html: Du kannst <a href="%{path}">deine E-Mail-Adresse ändern</a>, ohne dein Konto zu löschen
-      email_contact_html: Wenn die Bestätigungs-E-Mail immer noch nicht ankam, kannst du eine E-Mail an <a href="mailto:%{email}">%{email}</a> senden, um weitere Hilfe zu erhalten
+      email_contact_html: Sollte sie noch immer nicht angekommen sein, kannst du eine E-Mail an <a href="mailto:%{email}">%{email}</a> schicken, um weitere Hilfe zu erhalten
       email_reconfirmation_html: Wenn du die Bestätigungs-E-Mail nicht erhalten hast, kannst du sie <a href="%{path}">erneut anfordern</a>
       irreversible: Du kannst dein Konto nicht mehr wiederherstellen oder reaktivieren
       more_details_html: Weitere Details findest du in der <a href="%{terms_path}">Datenschutzerklärung</a>.
@@ -1114,10 +1114,10 @@ de:
       your_appeal_pending: Du hast Einspruch erhoben
       your_appeal_rejected: Dein Einspruch wurde abgelehnt
   domain_validator:
-    invalid_domain: ist kein gültiger Domain-Name
+    invalid_domain: ist keine gültige Domain
   errors:
-    '400': Die Anfrage, die du gesendet hast, war ungültig oder fehlerhaft.
-    '403': Dir fehlt die Befugnis, diese Seite sehen zu können.
+    '400': Die Anfrage, die du gestellt hast, war ungültig oder fehlerhaft.
+    '403': Dir fehlt die Berechtigung, diese Seite aufzurufen.
     '404': Die Seite, nach der du gesucht hast, wurde nicht gefunden.
     '406': Diese Seite ist im gewünschten Format nicht verfügbar.
     '410': Die Seite, nach der du gesucht hast, existiert hier nicht mehr.
@@ -1295,13 +1295,13 @@ de:
     moved_msg: Dein altes Profil wird jetzt zum neuen Account %{acct} weitergeleitet und deine Follower werden übertragen.
     not_redirecting: Dein Konto wird derzeit nicht auf ein anderes Konto weitergeleitet.
     on_cooldown: Du hast dein Konto vor kurzem migriert. Diese Funktion wird in %{count} Tagen wieder verfügbar sein.
-    past_migrations: Vorherige Migrationen
+    past_migrations: Vorherige Umzüge
     proceed_with_move: Follower übertragen
     redirected_msg: Dein Konto wird nun zu %{acct} weitergeleitet.
     redirecting_to: Dein Konto wird zu %{acct} weitergeleitet.
     set_redirect: Umleitung einrichten
     warning:
-      backreference_required: Das neue Konto muss zuerst so konfiguriert werden, dass es auf das alte Konto referenziert
+      backreference_required: Das neue Konto muss zuerst auf das alte Konto verweisen
       before: 'Bevor du fortfährst, lies bitte diese Hinweise sorgfältig durch:'
       cooldown: Nach dem Migrieren wird es eine Abklingzeit geben, in der du das Konto nicht noch einmal migrieren kannst
       disabled_account: Dein aktuelles Konto wird nachher nicht vollständig nutzbar sein. Du hast jedoch Zugriff auf den Datenexport sowie die Reaktivierung.
@@ -1412,14 +1412,14 @@ de:
     following: Folge ich
     invited: Eingeladen
     last_active: Zuletzt aktiv
-    most_recent: Neuste
+    most_recent: Neueste
     moved: Umgezogen
     mutual: Gegenseitig
     primary: Primär
     relationship: Beziehung
-    remove_selected_domains: Entferne alle Follower von den ausgewählten Domains
-    remove_selected_followers: Entferne ausgewählte Follower
-    remove_selected_follows: Ausgewählten Benutzer*innen entfolgen
+    remove_selected_domains: Alle Follower von den ausgewählten Domains entfernen
+    remove_selected_followers: Ausgewählten Followern entfolgen
+    remove_selected_follows: Ausgewählten Profilen entfolgen
     status: Kontostatus
   remote_follow:
     missing_resource: Die erforderliche Weiterleitungs-URL für dein Konto konnte nicht gefunden werden
@@ -1495,7 +1495,7 @@ de:
     notifications: Benachrichtigungen
     preferences: Einstellungen
     profile: Profil
-    relationships: Folge ich und Follower
+    relationships: Follower und Folge ich
     statuses_cleanup: Automatische Löschung
     strikes: Maßnahmen
     two_factor_authentication: Zwei-Faktor-Authentisierung (2FA)
@@ -1644,7 +1644,7 @@ de:
       appeal_description: Wenn du glaubst, dass es sich um einen Fehler handelt, kannst du einen Einspruch an die Administration von %{instance} senden.
       categories:
         spam: Spam
-        violation: Inhalt verstößt gegen die folgenden Gemeinschaftsrichtlinien
+        violation: Inhalt verstößt gegen die folgenden Serverregeln
       explanation:
         delete_statuses: Einige deiner Beiträge wurden als Verstoß gegen eine oder mehrere Gemeinschaftsrichtlinien erkannt und von den Moderator*innen von %{instance} entfernt.
         disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und andere Daten bleiben unversehrt. Du kannst eine Sicherung deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
