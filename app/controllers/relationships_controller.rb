@@ -19,6 +19,8 @@ class RelationshipsController < ApplicationController
     @form.save
   rescue ActionController::ParameterMissing
     # Do nothing
+  rescue Mastodon::NotPermittedError, ActiveRecord::RecordNotFound
+    flash[:alert] = I18n.t('relationships.follow_failure') if action_from_button == 'follow'
   ensure
     redirect_to relationships_path(filter_params)
   end
