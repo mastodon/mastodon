@@ -54,12 +54,12 @@ code {
 
       .radio > label {
         position: relative;
-        padding-left: 28px;
+        padding-inline-start: 28px;
 
         input {
           position: absolute;
           top: -2px;
-          left: 0;
+          inset-inline-start: 0;
         }
       }
     }
@@ -79,7 +79,7 @@ code {
 
       .label_input,
       .hint {
-        padding-left: 28px;
+        padding-inline-start: 28px;
       }
 
       .label_input__wrapper {
@@ -89,7 +89,7 @@ code {
       label.checkbox {
         position: absolute;
         top: 2px;
-        left: 0;
+        inset-inline-start: 0;
       }
 
       label a {
@@ -159,7 +159,7 @@ code {
 
     li {
       list-style: disc;
-      margin-left: 18px;
+      margin-inline-start: 18px;
     }
   }
 
@@ -225,7 +225,7 @@ code {
 
     &.select .hint {
       margin-top: 6px;
-      margin-left: 150px;
+      margin-inline-start: 150px;
     }
   }
 
@@ -380,13 +380,13 @@ code {
         width: auto;
         position: relative;
         padding-top: 5px;
-        padding-left: 25px;
+        padding-inline-start: 25px;
         flex: 1 1 auto;
       }
 
       input[type='checkbox'] {
         position: absolute;
-        left: 0;
+        inset-inline-start: 0;
         top: 5px;
         margin: 0;
       }
@@ -517,10 +517,10 @@ code {
     font-weight: 500;
     outline: 0;
     margin-bottom: 10px;
-    margin-right: 10px;
+    margin-inline-end: 10px;
 
     &:last-child {
-      margin-right: 0;
+      margin-inline-end: 0;
     }
 
     &:active,
@@ -572,8 +572,8 @@ code {
       no-repeat right 8px center / auto 16px;
     border: 1px solid darken($ui-base-color, 14%);
     border-radius: 4px;
-    padding-left: 10px;
-    padding-right: 30px;
+    padding-inline-start: 10px;
+    padding-inline-end: 30px;
     height: 41px;
   }
 
@@ -588,7 +588,7 @@ code {
 
     &__append {
       position: absolute;
-      right: 3px;
+      inset-inline-end: 3px;
       top: 1px;
       padding: 10px;
       padding-bottom: 9px;
@@ -606,7 +606,7 @@ code {
         display: block;
         position: absolute;
         top: 0;
-        right: 0;
+        inset-inline-end: 0;
         bottom: 1px;
         width: 5px;
         background-image: linear-gradient(
@@ -780,7 +780,7 @@ code {
 
   li {
     display: inline-block;
-    margin-right: 10px;
+    margin-inline-end: 10px;
   }
 
   a {
@@ -939,7 +939,7 @@ code {
 
   .actions {
     padding: 30px 0;
-    padding-right: 20px;
+    padding-inline-end: 20px;
     flex: 0 0 auto;
   }
 }
@@ -992,7 +992,7 @@ code {
   border-radius: 4px;
   display: flex;
   align-items: center;
-  padding-right: 4px;
+  padding-inline-end: 4px;
   position: relative;
   top: 1px;
   transition: border-color 300ms linear;
