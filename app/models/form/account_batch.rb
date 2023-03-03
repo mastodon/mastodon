@@ -16,8 +16,8 @@ class Form::AccountBatch
       unfollow!
     when 'remove_from_followers'
       remove_from_followers!
-    when 'block_domains'
-      block_domains!
+    when 'remove_domains_from_followers'
+      remove_domains_from_followers!
     when 'approve'
       approve!
     when 'reject'
@@ -49,10 +49,8 @@ class Form::AccountBatch
     RemoveFromFollowersService.new.call(current_account, account_ids)
   end
 
-  def block_domains!
-    AfterAccountDomainBlockWorker.push_bulk(account_domains) do |domain|
-      [current_account.id, domain]
-    end
+  def remove_domains_from_followers!
+    RemoveDomainsFromFollowersService.new.call(current_account, account_domains)
   end
 
   def account_domains

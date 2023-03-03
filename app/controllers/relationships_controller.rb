@@ -60,8 +60,8 @@ class RelationshipsController < ApplicationController
       'unfollow'
     elsif params[:remove_from_followers]
       'remove_from_followers'
-    elsif params[:block_domains]
-      'block_domains'
+    elsif params[:block_domains] || params[:remove_domains_from_followers]
+      'remove_domains_from_followers'
     end
   end
 
