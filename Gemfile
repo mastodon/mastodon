@@ -6,7 +6,7 @@ ruby '>= 2.7.0', '< 3.3.0'
 gem 'pkg-config', '~> 1.5'
 gem 'rexml', '~> 3.2'
 
-gem 'puma', '~> 5.6'
+gem 'puma', '~> 6.1'
 gem 'rails', '~> 6.1.7'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
@@ -104,9 +104,7 @@ group :development, :test do
   gem 'fabrication', '~> 2.30'
   gem 'fuubar', '~> 2.5'
   gem 'i18n-tasks', '~> 1.0', require: false
-  gem 'pry-byebug', '~> 3.10'
-  gem 'pry-rails', '~> 0.3'
-  gem 'rspec-rails', '~> 5.1'
+  gem 'rspec-rails', '~> 6.0'
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
@@ -119,7 +117,6 @@ end
 
 group :test do
   gem 'capybara', '~> 3.38'
-  gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 3.1'
   gem 'json-schema', '~> 3.0'
   gem 'rack-test', '~> 2.0'

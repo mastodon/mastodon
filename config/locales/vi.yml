@@ -1195,8 +1195,6 @@ vi:
     today: hôm nay
     validation_errors:
       other: Đã có %{count} lỗi xảy ra! Xem chi tiết bên dưới
-  html_validator:
-    invalid_markup: 'chứa đánh dấu HTML không hợp lệ: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Tập tin CSV không hợp lệ. Lỗi: %{error}'
@@ -1552,6 +1550,7 @@ vi:
       '7889238': 3 tháng
     min_age_label: Thời điểm
     min_favs: Giữ những tút yêu thích lâu hơn
+    min_favs_hint: Những tút có lượt thích nhiều hơn số này sẽ không bị xóa. Để trống nếu bạn muốn xóa hết
     min_reblogs: Giữ những tút đã đăng lại lâu hơn
     min_reblogs_hint: Những tút có lượt đăng lại nhiều hơn số này sẽ không bị xóa. Để trống nếu bạn muốn xóa hết
   stream_entries:
