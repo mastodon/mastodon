@@ -1,4 +1,3 @@
----
 fa:
   about:
     about_mastodon_html: 'شبکهٔ اجتماعی آینده: بدون تبلیغات، بدون شنود از طرف شرکت‌ها، طراحی اخلاق‌مدار، و معماری غیرمتمرکز! با ماستودون صاحب داده‌های خودتان باشید!'
@@ -56,7 +55,7 @@ fa:
       delete: حذف داده‌ها
       deleted: حذف شده
       demote: تنزل‌دادن
-      destroyed_msg: داده‌های %{username} در صف حدف قرار گرفتند
+      destroyed_msg: "داده‌های %{username} در صف حدف قرار گرفتند"
       disable: از کار انداختن
       disable_sign_in_token_auth: از کار انداختن تأیید هویت ژتون رایانامه‌ای
       disable_two_factor_authentication: از کار انداختن ورود دومرحله‌ای
@@ -87,7 +86,7 @@ fa:
       media_attachments: پیوست‌های رسانه‌ای
       memorialize: تبدیل به یادمان
       memorialized: یادمان‌سازی شده
-      memorialized_msg: "%{username} با موفقیت به یک حساب یادمانی تبدیل شد"
+      memorialized_msg: '%{username} با موفقیت به یک حساب یادمانی تبدیل شد'
       moderation:
         active: فعّال
         all: همه
@@ -477,7 +476,7 @@ fa:
       no_ip_block_selected: هیچ قاعدهٔ آی‌پی‌ای تغییری نکرد زیرا هیچ‌کدام گزیده نشده بودند
       title: قوانین IP
     relationships:
-      title: روابط %{acct}
+      title: "روابط %{acct}"
     relays:
       add_new: افزودن رلهٔ تازه
       delete: حذف
@@ -686,9 +685,9 @@ fa:
       body: جزئیات حساب تازه این‌جاست. شما می‌توانید آن را تأیید یا رد کنید.
       subject: حساب تازه‌ای در %{instance} نیازمند بررسی است (%{username})
     new_report:
-      body: کاربر %{reporter} کاربر %{target} را گزارش داد
+      body: "کاربر %{reporter} کاربر %{target} را گزارش داد"
       body_remote: کسی از %{domain} گزارش %{target} را فرستاده
-      subject: گزارش تازه‌ای برای %{instance} (#%{id})
+      subject: 'گزارش تازه‌ای برای %{instance} (#%{id})'
     new_trends:
       new_trending_links:
         title: پیوندهای داغ
@@ -703,7 +702,7 @@ fa:
     remove: حذف ارتباط نام مستعار
   appearance:
     advanced_web_interface: رابط کاربری پیشرفته
-    advanced_web_interface_hint: اگر می‌خواهید از تمامی پهنای صفحه‌تان استفاده کنید، رابط پیش‌رفتهٔ وب می‌گذارد هر چند ستون را که می‌خواهید، برای دیدن اطّلاعات بیش‌تر در یک زمان، پیکربندی کنید:‌خانه، آگاهی‌ها، خط زمانی عمومی،‌ هرتعدادی از سیاهه‌ها و برچسب‌ها.
+    advanced_web_interface_hint: 'اگر می‌خواهید از تمامی پهنای صفحه‌تان استفاده کنید، رابط پیش‌رفتهٔ وب می‌گذارد هر چند ستون را که می‌خواهید، برای دیدن اطّلاعات بیش‌تر در یک زمان، پیکربندی کنید:‌خانه، آگاهی‌ها، خط زمانی عمومی،‌ هرتعدادی از سیاهه‌ها و برچسب‌ها.'
     animations_and_accessibility: پویانمایی‌های و دسترسی‌پذیری
     confirmation_dialogs: پیغام‌های تأیید
     discovery: کاوش
@@ -751,7 +750,7 @@ fa:
       cas: CAS
       saml: SAML
     register: عضو شوید
-    registration_closed: سرور %{instance} عضو تازه‌ای نمی‌پذیرد
+    registration_closed: "سرور %{instance} عضو تازه‌ای نمی‌پذیرد"
     resend_confirmation: راهنمایی برای تأیید را دوباره بفرست
     reset_password: بازنشانی رمز
     security: امنیت
@@ -854,7 +853,7 @@ fa:
     noscript_html: برای استفاده از نسخهٔ تحت وب ماستودون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید <a href="%{apps_path}">یک کارهٔ ماستودون</a> را به کار ببرید.
   existing_username_validator:
     not_found: کاربری با این نام کاربری در این کارساز پیدا نشد
-    not_found_multiple: "%{usernames} پیدا نشد"
+    not_found_multiple: '%{usernames} پیدا نشد'
   exports:
     archive_takeout:
       date: تاریخ
@@ -1001,7 +1000,7 @@ fa:
       sign_up:
         subject: "%{name} ثبت نام کرد"
     favourite:
-      body: "%{name} این نوشتهٔ شما را پسندید:"
+      body: '%{name} این نوشتهٔ شما را پسندید:'
       subject: "%{name} نوشتهٔ شما را پسندید"
       title: پسندیده‌شدن تازه
     follow:
@@ -1015,13 +1014,13 @@ fa:
       title: درخواست پیگیری تازه
     mention:
       action: پاسخ
-      body: "%{name} در این‌جا از شما نام برد:"
-      subject: "%{name} از شما نام برد"
+      body: '%{name} در این‌جا از شما نام برد:'
+      subject: '%{name} از شما نام برد'
       title: نام‌برده‌شدن تازه
     poll:
       subject: نظرسنجی‌ای از %{name} پایان یافت
     reblog:
-      body: "%{name} فرستهٔ شما را تقویت کرد:"
+      body: '%{name} فرستهٔ شما را تقویت کرد:'
       subject: "%{name} فرستهٔ شما را تقویت کرد"
       title: تقویت تازه
     status:
@@ -1195,7 +1194,7 @@ fa:
     show_older: نمایش قدیمی‌تر
     show_thread: نمایش رشته
     sign_in_to_participate: برای شرکت در گفتگو وارد حساب خود شوید
-    title: "%{name}: «%{quote}»"
+    title: '%{name}: «%{quote}»'
     visibilities:
       direct: مستقیم
       private: خصوصی
