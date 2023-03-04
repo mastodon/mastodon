@@ -1,9 +1,8 @@
----
 de:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Name der Anwendung
+        name: Anwendungsname
         redirect_uri: Weiterleitungs-URI
         scopes: Befugnisse
         website: Website der Anwendung
@@ -60,7 +59,7 @@ de:
       error:
         title: Ein Fehler ist aufgetreten
       new:
-        prompt_html: "%{client_name} möchte auf dein Konto zugreifen. Es ist eine Anwendung von Drittanbietern. <strong>Wenn du ihr nicht vertraust, dann solltest du sie nicht autorisieren.</strong>"
+        prompt_html: "%{client_name} möchte auf dein Konto zugreifen. Es handelt sich um eine Drittanbieter-Software. <strong>Wenn du der Anwendung nicht vertraust, solltest du ihr keinen Zugriff auf dein Konto geben.</strong>"
         review_permissions: Berechtigungen überprüfen
         title: Autorisierung erforderlich
       show:
@@ -119,7 +118,7 @@ de:
         write: Nur Schreibzugriff
       title:
         accounts: Konten
-        admin/accounts: Verwaltung der Konten
+        admin/accounts: Kontenverwaltung
         admin/all: Alle administrativen Funktionen
         admin/reports: Verwaltung der Berichte
         all: Voller Zugriff auf dein Mastodon-Konto
@@ -147,49 +146,49 @@ de:
       application:
         title: OAuth-Autorisierung erforderlich
     scopes:
-      admin:read: alle Daten auf dem Server lesen
-      admin:read:accounts: sensible Informationen aller Konten lesen
-      admin:read:canonical_email_blocks: sensible Informationen aller kanonischen E-Mail-Sperren lesen
-      admin:read:domain_allows: sensible Informationen aller zugelassenen Domains lesen
-      admin:read:domain_blocks: sensible Informationen aller Domain-Sperren lesen
-      admin:read:email_domain_blocks: sensible Informationen aller E-Mail-Domain-Sperren lesen
-      admin:read:ip_blocks: sensible Informationen aller IP-Sperren lesen
-      admin:read:reports: sensible Informationen aller Meldungen und gemeldeten Konten lesen
-      admin:write: alle Daten auf dem Server ändern
-      admin:write:accounts: Moderationsaktionen auf Konten ausführen
-      admin:write:canonical_email_blocks: Moderationsaktionen auf kanonischen E-Mail-Sperren ausführen
-      admin:write:domain_allows: Moderationsaktionen auf zugelassende Domains ausführen
-      admin:write:domain_blocks: Moderationsaktionen auf Domain-Sperren ausführen
-      admin:write:email_domain_blocks: Moderationsaktionen auf E-Mail-Domain-Sperren ausführen
-      admin:write:ip_blocks: Moderationsaktionen auf IP-Sperren ausführen
-      admin:write:reports: Moderationsaktionen auf Meldungen ausführen
+      "admin:read": alle Daten auf dem Server lesen
+      "admin:read:accounts": sensible Informationen aller Konten lesen
+      "admin:read:canonical_email_blocks": sensible Informationen aller kanonischen E-Mail-Sperren lesen
+      "admin:read:domain_allows": sensible Informationen aller zugelassenen Domains lesen
+      "admin:read:domain_blocks": sensible Informationen aller Domain-Sperren lesen
+      "admin:read:email_domain_blocks": sensible Informationen aller E-Mail-Domain-Sperren lesen
+      "admin:read:ip_blocks": sensible Informationen aller IP-Sperren lesen
+      "admin:read:reports": sensible Informationen aller Meldungen und gemeldeten Konten lesen
+      "admin:write": alle Daten auf dem Server ändern
+      "admin:write:accounts": Moderationsaktionen auf Konten ausführen
+      "admin:write:canonical_email_blocks": Moderationsaktionen auf kanonischen E-Mail-Sperren ausführen
+      "admin:write:domain_allows": Moderationsaktionen auf zugelassende Domains ausführen
+      "admin:write:domain_blocks": Moderationsaktionen auf Domain-Sperren ausführen
+      "admin:write:email_domain_blocks": Moderationsaktionen auf E-Mail-Domain-Sperren ausführen
+      "admin:write:ip_blocks": Moderationsaktionen auf IP-Sperren ausführen
+      "admin:write:reports": Moderationsaktionen auf Meldungen ausführen
       crypto: Ende-zu-Ende-Verschlüsselung verwenden
       follow: Kontenbeziehungen verändern
       push: deine Push-Benachrichtigungen erhalten
       read: all deine Daten lesen
-      read:accounts: deine Konteninformationen einsehen
-      read:blocks: deine Sperren einsehen
-      read:bookmarks: deine Lesezeichen lesen
-      read:favourites: deine Favoriten lesen
-      read:filters: deine Filter ansehen
-      read:follows: sehen, wem du folgst
-      read:lists: deine Listen sehen
-      read:mutes: deine Stummschaltungen einsehen
-      read:notifications: deine Benachrichtigungen sehen
-      read:reports: deine Meldungen sehen
-      read:search: in deinem Namen suchen
-      read:statuses: alle Beiträge sehen
+      "read:accounts": deine Konteninformationen einsehen
+      "read:blocks": deine Sperren einsehen
+      "read:bookmarks": deine Lesezeichen lesen
+      "read:favourites": deine Favoriten lesen
+      "read:filters": deine Filter ansehen
+      "read:follows": sehen, wem du folgst
+      "read:lists": deine Listen sehen
+      "read:mutes": deine Stummschaltungen einsehen
+      "read:notifications": deine Benachrichtigungen sehen
+      "read:reports": deine Meldungen sehen
+      "read:search": in deinem Namen suchen
+      "read:statuses": alle Beiträge sehen
       write: all deine Benutzerdaten verändern
-      write:accounts: dein Profil bearbeiten
-      write:blocks: Domains und Konten blockieren
-      write:bookmarks: Lesezeichen hinzufügen
-      write:conversations: Unterhaltungen stummschalten und löschen
-      write:favourites: Beiträge favorisieren
-      write:filters: Filter erstellen
-      write:follows: Profilen folgen
-      write:lists: Listen erstellen
-      write:media: Mediendateien hochladen
-      write:mutes: Profile und Unterhaltungen stummschalten
-      write:notifications: deine Benachrichtigungen leeren
-      write:reports: andere Profile melden
-      write:statuses: Beiträge veröffentlichen
+      "write:accounts": dein Profil bearbeiten
+      "write:blocks": Domains und Konten blockieren
+      "write:bookmarks": Lesezeichen hinzufügen
+      "write:conversations": Unterhaltungen stummschalten und löschen
+      "write:favourites": Beiträge favorisieren
+      "write:filters": Filter erstellen
+      "write:follows": Profilen folgen
+      "write:lists": Listen erstellen
+      "write:media": Mediendateien hochladen
+      "write:mutes": Profile und Unterhaltungen stummschalten
+      "write:notifications": deine Benachrichtigungen leeren
+      "write:reports": andere Profile melden
+      "write:statuses": Beiträge veröffentlichen
