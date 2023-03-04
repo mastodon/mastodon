@@ -6,7 +6,7 @@ ast:
     hosted_on: 'Mastodon ta agospiáu en: %{domain}'
     title: Tocante a
   accounts:
-    last_active: Última actividá
+    last_active: última actividá
     nothing_here: "¡Equí nun hai nada!"
     posts:
       one: Artículu
@@ -20,6 +20,7 @@ ast:
     accounts:
       add_email_domain_block: Bloquiar el dominiu de corréu electrónicu
       approved_msg: Aprobóse correutamente la solicitú de rexistru de «%{username}»
+      are_you_sure: "¿De xuru que quies facer esta aición?"
       avatar: Avatar
       by_domain: Dominiu
       confirming: En confirmación
@@ -39,6 +40,7 @@ ast:
       login_status: Estáu del aniciu de la sesión
       moderation:
         pending: Pendiente
+        title: Moderación
       most_recent_activity: L'actividá más recién
       most_recent_ip: La IP más recién
       perform_full_suspension: Suspender
@@ -201,12 +203,19 @@ ast:
       known_accounts:
         one: "%{count} cuenta conocida"
         other: "%{count} cuentes conocíes"
+      moderation:
+        title: Moderación
       private_comment: Comentariu priváu
       public_comment: Comentariu públicu
       title: Federación
       total_reported: Informes d'esa instancia
     invites:
       deactivate_all: Desactivalo too
+      filter:
+        all: Too
+        available: Disponible
+        expired: Caducó
+        title: Peñera
       title: Invitaciones
     ip_blocks:
       expires_in:
@@ -231,6 +240,7 @@ ast:
         silence_description_html: La cuenta va ser visible namás pa quien xá la siguiere o la buscare manualmente, lo que llenda'l so algame. Esta decisión pue desfacese en cualesquier momentu. Si escueyes esta opción, zárrense tolos informes escontra esta cuenta.
       actions_description_html: Decidi qué aición tomar pa resolver esti informe. Si tomes una aición punitiva escontra la cuenta de la que s'informó, va unviase un avisu per corréu electrónicu a esa cuenta, esceuto cuando se seleiciona la categoría <strong>Puxarra</strong>.
       add_to_report: Amestar más al informe
+      are_you_sure: "¿De xuru que quies facer esta aición?"
       category: Categoría
       category_description_html: El motivu pol que s'informó d'esta cuenta y/o conteníu cítase na comunicación cola cuenta de la que s'informó
       comment_description_html: 'Pa fornir más información, %{name} escribió:'
@@ -268,6 +278,7 @@ ast:
         administration: Alministración
         devops: DevOps
         invites: Invitaciones
+        moderation: Moderación
       edit: Edición del rol «%{name}»
       everyone: Permisos predeterminaos
       permissions_count:
@@ -339,6 +350,7 @@ ast:
     strikes:
       actions:
         delete_statuses: "%{name} desanició l'artículu de: %{target}"
+        disable: "%{name} conxeló la cuenta de: %{target}"
         mark_statuses_as_sensitive: "%{name} marcó l'artículu de %{target} como sensible"
         none: "%{name} unvió una alvertencia a %{target}"
         sensitive: "%{name} marcó la cuenta de %{target} como sensible"
@@ -433,6 +445,7 @@ ast:
     notification_preferences: Camudar les preferencies de los mensaxes de corréu electrónicu
   applications:
     created: L'aplicación creóse correutamente
+    destroyed: L'aplicación desanicióse correutamente
     regenerate_token: Volver xenerar el pase d'accesu
     token_regenerated: El pase d'accesu volvió xenerase correutamente
     warning: Ten munchu curiáu con estos datos, ¡enxamás nun los compartas con naide!
@@ -520,12 +533,14 @@ ast:
       action_taken: Aición tomada
       appeal: Apellación
       appeal_rejected: Refugóse l'apellación
+      appeal_submitted_at: Data de l'apellación
       appealed_msg: Unvióse l'apellación. Si s'aprueba, avisámoste.
       appeals:
         submit: Unviu d'una apellación
       approve_appeal: Aprobar l'apellación
       associated_report: Informe asociáu
       created_at: Data
+      recipient: Dirixóse a
       reject_appeal: Refugar l'apellación
       status: 'Artículu #%{id}'
       status_removed: L'artículu xá se quitó del sistema
@@ -570,6 +585,7 @@ ast:
       public: Llinies de tiempu públiques
       thread: Conversaciones
     edit:
+      add_keyword: Amestar una pallabra clave
       keywords: Pallabres clave
       statuses: Artículos individuales
     errors:
@@ -654,6 +670,8 @@ ast:
     incoming_migrations_html: Pa migrar d'otra cuenta a esta, primero tienes de <a href="%{path}">crear un nomatu de cuenta</a>.
     warning:
       followers: Esta aición va mover tolos siguidores de la cuenta actual a la nueva
+  moderation:
+    title: Moderación
   notification_mailer:
     admin:
       sign_up:
@@ -778,6 +796,7 @@ ast:
     notifications: Avisos
     preferences: Preferencies
     profile: Perfil
+    relationships: Perfiles que sigues ya te siguen
     statuses_cleanup: Desaniciu automáticu d'artículos
     two_factor_authentication: Autenticación en dos pasos
     webauthn_authentication: Llaves de seguranza
@@ -819,8 +838,16 @@ ast:
     exceptions: Esceiciones
     interaction_exceptions: Esceiciones basaes nes interaiciones
     keep_direct: Caltener los mensaxes direutos
+    keep_direct_hint: Nun desanicia nengún mensaxe direutu
+    keep_media: Caltener los artículos con elementos multimedia
+    keep_media_hint: Nun desanicia nengún artículu de to que contenta elementos multimedia
     keep_pinned: Caltener los artículos fixaos
     keep_polls: Caltener les encuestes
+    keep_polls_hint: Nun desanicia nenguna encuesta de to
+    keep_self_bookmark: Caltener los artículos que metieres en Marcadores
+    keep_self_bookmark_hint: Nun desanicia nengún artículu que metieres en Marcadores
+    keep_self_fav: Caltener los artículos que seyan favoritos
+    keep_self_fav_hint: Nun desanicia nengún artículu que marcares como favoritu
     min_age:
       '1209600': 2 selmanes
       '15778476': 6 meses

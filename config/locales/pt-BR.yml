@@ -91,6 +91,7 @@ pt-BR:
       moderation:
         active: Ativo
         all: Todos
+        disabled: Desativado
         pending: Pendente
         silenced: Limitado
         suspended: Suspendido
@@ -133,6 +134,7 @@ pt-BR:
       search: Buscar
       search_same_email_domain: Outros usuários com o mesmo domínio de e-mail
       search_same_ip: Outros usuários com o mesmo IP
+      security: Segurança
       security_measures:
         only_password: Apenas senha
         password_and_2fa: Senha e autenticação de dois fatores
@@ -426,6 +428,7 @@ pt-BR:
         resolve: Resolver domínio
         title: Nova entrada de lista negra de e-mail
       no_email_domain_block_selected: Nenhum bloco de domínio de e-mail foi alterado, pois nenhum foi selecionado
+      not_permitted: Não permitido
       resolved_dns_records_hint_html: O nome de domínio resolve os seguintes domínios MX, que são responsáveis finais por aceitar o e-mail. Bloquear um domínio MX bloqueará inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo que o nome de domínio visível seja diferente. <strong>Cuidado para não bloquear os principais provedores de e-mail.</strong>
       resolved_through_html: Resolvido através de %{domain}
       title: Lista de negra de e-mail
@@ -580,11 +583,13 @@ pt-BR:
       assign_to_self: Atribuir para si
       assigned: Moderador responsável
       by_target_domain: Domínio da conta denunciada
+      cancel: Cancelar
       category: Categoria
       category_description_html: O motivo pelo qual esta conta e/ou conteúdo foi denunciado será citado na comunicação com a conta denunciada
       comment:
         none: Nenhum
       comment_description_html: 'Para fornecer mais informações, %{name} escreveu:'
+      confirm: Confirmar
       created_at: Denunciado
       delete_and_resolve: Excluir publicações
       forwarded: Encaminhados
@@ -601,6 +606,7 @@ pt-BR:
         placeholder: Descreva quais ações foram tomadas ou quaisquer outras atualizações relacionadas...
         title: Notas
       notes_description_html: Visualize e deixe anotações para outros moderadores e para você mesmo no futuro
+      processed_msg: 'Relatório #%{id} processado com sucesso'
       quick_actions_description_html: 'Tome uma ação rápida ou role para baixo para ver o conteúdo denunciado:'
       remote_user_placeholder: o usuário remoto de %{instance}
       reopen: Reabrir denúncia
@@ -982,6 +988,8 @@ pt-BR:
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Redefinir senha
     rules:
+      accept: Aceitar
+      back: Voltar
       preamble: Estes são definidos e aplicados pelos moderadores de %{domain}.
       title: Algumas regras básicas.
     security: Segurança
@@ -1195,8 +1203,6 @@ pt-BR:
     validation_errors:
       one: Algo não está certo! Analise o erro abaixo
       other: Algo não está certo! Analise os %{count} erros abaixo
-  html_validator:
-    invalid_markup: 'contém HTML inválido: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Arquivo CSV inválido. Erro: %{error}'
@@ -1237,6 +1243,9 @@ pt-BR:
       expires_at: Expira em
       uses: Usos
     title: Convidar pessoas
+  lists:
+    errors:
+      limit: Você atingiu o número máximo de listas
   login_activities:
     authentication_methods:
       otp: autenticação de dois fatores

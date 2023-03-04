@@ -278,6 +278,15 @@ el:
         suspend_account_html: Ο/Η %{name} ανέστειλε τον λογαριασμό του/της %{target}
         unassigned_report_html: Ο/Η %{name} αποδέσμευσε την αναφορά %{target}
         unblock_email_account_html: "%{name} ξεμπλόκαρε τη διεύθυνση ηλεκτρονικού ταχυδρομείου του %{target}"
+        unsensitive_account_html: Ο/Η %{name} επισήμανε τα πολυμέσα του/της %{target} ως ευαίσθητα
+        unsilence_account_html: Ο/Η %{name} αφαίρεσε το όριο του λογαριασμού του/της %{target}
+        unsuspend_account_html: Ο/Η %{name} επανέφερε τον λογαριασμό του/της %{target}
+        update_announcement_html: Ο/Η %{name} ενημέρωση την ανακοίνωση %{target}
+        update_custom_emoji_html: Ο/Η %{name} ενημέρωσε το emoji %{target}
+        update_domain_block_html: Ο/Η %{name} ενημέρωσε τον αποκλεισμό τομέα για %{target}
+        update_ip_block_html: Ο/Η %{name} άλλαξε τον κανόνα για την IP %{target}
+        update_status_html: Ο/Η %{name} ενημέρωσε την ανάρτηση του/της %{target}
+        update_user_role_html: Ο/Η %{name} άλλαξε τον ρόλο %{target}
       deleted_account: διαγραμμένος λογαριασμός
       empty: Δεν βρέθηκαν αρχεία καταγραφής.
       filter_by_action: Φιλτράρισμα ανά ενέργεια
@@ -322,6 +331,7 @@ el:
       listed: Αναφερθέντα
       new:
         title: Προσθήκη νέου προσαρμοσμένου emoji
+      no_emoji_selected: Δεν άλλαξαν τα emoji καθώς δεν επιλέχθηκε κανένα
       not_permitted: Δεν επιτρέπεται να κάνετε αυτή την λειτουργία
       overwrite: Αντικατάσταση
       shortcode: Σύντομος κωδικός
@@ -335,12 +345,30 @@ el:
       upload: Ανέβασμα
     dashboard:
       active_users: ενεργοί χρήστες
+      interactions: αλληλεπιδράσεις
+      media_storage: Αποθηκευτικός Χώρος
       new_users: νέοι χρήστες
+      opened_reports: αναφορές που ανοίχτηκαν
+      pending_reports_html:
+        one: "<strong>%{count}</strong> εκκρεμής αναφορά"
+        other: "<strong>%{count}</strong> εκκρεμείς αναφορές"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> εκκρεμής ετικέτα"
+        other: "<strong>%{count}</strong> εκκρεμείς ετικέτες"
+      pending_users_html:
+        one: "<strong>%{count}</strong> χρήστης σε εκκρεμότητα"
+        other: "<strong>%{count}</strong> χρήστες σε εκκρεμότητα"
+      resolved_reports: επιλυμμένες αναφορές
       software: Λογισμικό
+      sources: Πηγές εγγραφής
       space: Κατανάλωση χώρου
       title: Ταμπλό
+      top_languages: Κορυφαίες ενεργές γλώσσες
+      top_servers: Κορυφαίοι ενεργοί διακομιστές
+      website: Ιστοσελίδα
     disputes:
       appeals:
+        empty: Καμία ένσταση.
         title: Εφέσεις
     domain_allows:
       add_new: Έγκριση τομέα
@@ -363,10 +391,13 @@ el:
         create: Δημιουργία αποκλεισμού
         hint: Ο αποκλεισμός τομέα δεν θα αποτρέψει νέες καταχωρίσεις λογαριασμών στην βάση δεδομένων, αλλά θα εφαρμόσει αναδρομικά και αυτόματα συγκεκριμένες πολιτικές μεσολάβησης σε αυτούς τους λογαριασμούς.
         severity:
+          desc_html: Ο <strong>περιορισμός</strong> θα κάνει αόρατες τις δημοσιεύσεις ενός λογαριασμού σε όσους δεν τον ακολουθούν. Η <strong>αναστολή</strong> θα αφαιρέσει όλο το περιεχόμενο, τα πολυμέσα και τα στοιχεία προφίλ ενός λογαριασμού. Χρησιμοποίησε το <strong>κανένα</strong> αν θέλεις απλά να απορρίψεις τα αρχεία πολυμέσων.
           noop: Κανένα
           silence: Περιορισμός
           suspend: Αναστολή
         title: Αποκλεισμός νέου τομέα
+      no_domain_block_selected: Δεν άλλαξαν οι αποκλεισμοί τομέα καθώς δεν επιλέχθηκε κανένας
+      not_permitted: Δεν επιτρπέπεται να εκτελέσετε αυτήν την ενέργεια
       private_comment: Ιδιωτικό σχόλιο
       private_comment_hint: Σχόλιο για τον περιορισμό αυτού του τομέα για εσωτερική χρήση από τους διαχειριστές.
       public_comment: Δημόσιο σχόλιο
@@ -857,8 +888,6 @@ el:
     validation_errors:
       one: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε το παρακάτω σφάλμα
       other: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε τα παρακάτω %{count} σφάλματα
-  html_validator:
-    invalid_markup: 'περιέχει λάθος μορφοποίηση HTML: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Μη έγκυρο αρχείο CSV. Σφάλμα: %{error}'
