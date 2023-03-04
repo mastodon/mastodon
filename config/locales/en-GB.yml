@@ -379,6 +379,19 @@ en-GB:
       export: Export
       import: Import
       undo: Disallow federation with domain
+    domain_blocks:
+      add_new: Add new domain block
+      created_msg: Domain block is now being processed
+      destroyed_msg: Domain block has been undone
+      domain: Domain
+      edit: Edit domain block
+      existing_domain_block: You have already imposed stricter limits on %{name}.
+      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
+      export: Export
+      import: Import
+      new:
+        create: Create block
+        hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
     roles:
       categories:
         devops: DevOps
@@ -402,6 +415,15 @@ en-GB:
       blackberry: BlackBerry
       chrome_os: ChromeOS
   statuses_cleanup:
+    min_age:
+      '1209600': 2 weeks
+      '15778476': 6 months
+      '2629746': 1 month
+      '31556952': 1 year
+      '5259492': 2 months
+      '604800': 1 week
+      '63113904': 2 years
+      '7889238': 3 months
     min_age_label: Age threshold
     min_favs: Keep posts favourited at least
     min_favs_hint: Doesn't delete any of your posts that has received at least this number of favourites. Leave blank to delete posts regardless of their number of favourites
