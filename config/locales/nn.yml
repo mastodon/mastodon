@@ -437,7 +437,7 @@ nn:
         private_comment_description_html: 'For å hjelpa deg med å halda oversikt over kvar importerte blokkeringar kjem frå, vil dei bli oppretta med fylgjande private kommentar: <q>%{comment}</q>'
         private_comment_template: Importert frå %{source} den %{date}
         title: Importer domeneblokkeringar
-      invalid_domain_block: 'En eller flere domeneblokker ble hoppet over på grunn av følgende feil(er): %{error}'
+      invalid_domain_block: 'Hoppa over ei eller fleire domeneblokker på grunn av fylgjande feil: %{error}'
       new:
         title: Importer domeneblokkeringar
       no_file: Inga fil vald
@@ -588,7 +588,7 @@ nn:
         none: Ingen
       comment_description_html: 'For å gje meir informasjon, skreiv %{name}:'
       confirm: Bekreft
-      confirm_action: Bekreft moderasjonshandling mot @%{acct}
+      confirm_action: Stadfest at du vil moderera brukarkontoen @%{acct}
       created_at: Rapportert
       delete_and_resolve: Slett innlegg
       forwarded: Videresendt
@@ -605,7 +605,7 @@ nn:
         placeholder: Beskriv hvilke handlinger som har blitt tatt, eller andre relaterte oppdateringer...
         title: Merknad
       notes_description_html: Sjå og skriv merknadar til andre moderatorar og ditt framtidige sjølv
-      processed_msg: 'Rapport #%{id} er behandlet'
+      processed_msg: 'Du har handsama rapport #%{id}'
       quick_actions_description_html: 'Utfør ei handling eller bla ned for å sjå det rapporterte innhaldet:'
       remote_user_placeholder: den eksterne brukaren frå %{instance}
       reopen: Opn rapport igjen
@@ -620,7 +620,7 @@ nn:
       statuses_description_html: Støytande innhald vil bli inkludert i kommunikasjonen med den rapporterte kontoen
       summary:
         action_preambles:
-          delete_html: 'Du er i ferd med å <strong>fjerne</strong> noe av <strong>@%{acct}</strong> sine innlegg. Dette vil:'
+          delete_html: 'Du er i ferd med å <strong>fjerna</strong> nokre av innlegga til <strong>@%{acct}</strong>. Det vil:'
           mark_as_sensitive_html: 'Du er i ferd med å <strong>markere</strong> noen av <strong>@%{acct}</strong> sine innlegg som <strong>sensitivt</strong>. Dette vil:'
           silence_html: 'Du er i ferd med å <strong>avgrense</strong> <strong>@%{acct}</strong> sin konto. Dette vil:'
           suspend_html: 'Du er i ferd med å <strong>stoppe</strong> <strong>@%{acct}</strong> sin konto. Dette vil:'
