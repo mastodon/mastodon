@@ -91,6 +91,7 @@ sv:
       moderation:
         active: Aktiv
         all: Alla
+        disabled: Inaktiverad
         pending: Väntande
         silenced: Begränsad
         suspended: Avstängda
@@ -133,6 +134,7 @@ sv:
       search: Sök
       search_same_email_domain: Andra användare med samma e-postdomän
       search_same_ip: Annan användare med samma IP-adress
+      security: Säkerhet
       security_measures:
         only_password: Endast lösenord
         password_and_2fa: Lösenord och 2FA
@@ -427,6 +429,7 @@ sv:
         resolve: Slå upp domän
         title: Blockera ny e-postdomän
       no_email_domain_block_selected: Inga blockeringar av e-postdomäner ändrades eftersom inga valdes
+      not_permitted: Ej tillåtet
       resolved_dns_records_hint_html: Domännamnet ger uppslag till följande MX-domäner, vilka är ytterst ansvariga för att e-post tas emot. Att blockera en MX-domän blockerar även registreringar från alla e-postadresser som använder samma MX-domän, även om det synliga domännamnet är annorlunda. <strong>Var noga med att inte blockera stora e-postleverantörer.</strong>
       resolved_through_html: Uppslagen genom %{domain}
       title: Blockerade e-postdomäner
@@ -473,6 +476,7 @@ sv:
       content_policies:
         comment: Intern anteckning
         description_html: Du kan definiera innehållspolicyer som kommer tillämpas på alla konton från denna domän samt alla dess underdomäner.
+        limited_federation_mode_description_html: Du kan välja om du vill tillåta federering med den här domänen.
         policies:
           reject_media: Avvisa media
           reject_reports: Avvisa rapporter
@@ -585,11 +589,13 @@ sv:
       assign_to_self: Tilldela till mig
       assigned: Tilldelad moderator
       by_target_domain: Domän för rapporterat konto
+      cancel: Avbryt
       category: Kategori
       category_description_html: Anledningen till att kontot och/eller innehållet rapporterades kommer att visas i kommunikation med det rapporterade kontot
       comment:
         none: Ingen
       comment_description_html: 'För att ge mer information, skrev %{name}:'
+      confirm: Bekräfta
       confirm_action: Bekräfta modereringsåtgärd mot @%{acct}
       created_at: Anmäld
       delete_and_resolve: Ta bort inlägg
@@ -628,9 +634,20 @@ sv:
           suspend_html: 'Du håller på att <strong>stänga av</strong> <strong>@%{acct}</strong>s konto. Detta kommer:'
         actions:
           delete_html: Ta bort kränkande inlägg
+          mark_as_sensitive_html: Markera de anmälda inläggens media som känslig
+          silence_html: Begränsa kraftigt <strong>@%{acct}</strong> räckvidd genom att göra deras profil och innehåll bara synligt till folk som redan följer dom eller som manuellt söker upp deras profil
+          suspend_html: Stäng av <strong>@%{acct}</strong>, vilket gör deras profil och innehåll oåtkomligt och omöjligt att interagera med
+        close_report: 'Markera anmälningen #%{id} som löst'
+        close_reports_html: Markera <strong>alla</strong> anmälningar mot <strong>@%{acct}</strong> som lösta
+        delete_data_html: Ta bort <strong>@%{acct}</strong>s profil och innehåll om 30 dagar ifall deras avstängning inte tagits bort under tiden
+        preview_preamble_html: "<strong>@%{acct}</strong> kommer få en varning med följande innehåll:"
+        record_strike_html: Registrera en varning mot <strong>@%{acct}</strong> för att hjälpa dig eskalera vid framtida överträdelser från detta konto
+        send_email_html: Skicka <strong>@%{acct}</strong> ett varningsmejl
+        warning_placeholder: Valfri ytterligare resonemang för modereringsåtgärd.
       target_origin: Ursprung för anmält konto
       title: Anmälningar
       unassign: Otilldela
+      unknown_action_msg: 'Okänd åtgärd: %{action}'
       unresolved: Olösta
       updated_at: Uppdaterad
       view_profile: Visa profil
@@ -781,6 +798,7 @@ sv:
         suspend: "%{name} stängde av %{target}s konto"
       appeal_approved: Överklagad
       appeal_pending: Överklagande väntar
+      appeal_rejected: Överklagan avslagen
     system_checks:
       database_schema_check:
         message_html: Det finns väntande databasmigreringar. Vänligen kör dem för att säkerställa att programmet beter sig som förväntat
@@ -816,6 +834,7 @@ sv:
           other: Delad av %{count} personer under den senaste veckan
         title: Trendande länkar
         usage_comparison: Delade %{today} gånger idag, jämfört med %{yesterday} igår
+      not_allowed_to_trend: Inte tillåtet att trenda
       only_allowed: Endast tillåtna
       pending_review: Väntar på granskning
       preview_card_providers:
@@ -947,6 +966,7 @@ sv:
   applications:
     created: Ansökan är framgångsrikt skapad
     destroyed: Ansökan är framgångsrikt borttagen
+    logout: Logga ut
     regenerate_token: Regenerera access token
     token_regenerated: Access token lyckades regenereras
     warning: Var mycket försiktig med denna data. Dela aldrig den med någon!
@@ -954,6 +974,8 @@ sv:
   auth:
     apply_for_account: Ansök om konto
     change_password: Lösenord
+    confirmations:
+      wrong_email_hint: Om e-postadressen inte är rätt, kan du ändra den i kontoinställningarna.
     delete_account: Radera konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
     description:
@@ -981,6 +1003,8 @@ sv:
     resend_confirmation: Skicka instruktionerna om bekräftelse igen
     reset_password: Återställ lösenord
     rules:
+      accept: Godkänn
+      back: Tillbaka
       preamble: Dessa bestäms och upprätthålls av moderatorerna för %{domain}.
       title: Några grundregler.
     security: Säkerhet
@@ -1127,6 +1151,8 @@ sv:
     storage: Medialagring
   featured_tags:
     add_new: Lägg till ny
+    errors:
+      limit: Du har redan fäst det maximala antalet hashtags
     hint_html: "<strong>Vad är utvalda hashtaggar?</strong> De visas tydligt på din offentliga profil och låter andra bläddra bland dina offentliga inlägg specifikt under dessa hashtaggar. De är ett bra verktyg för att hålla reda på kreativa arbeten eller långsiktiga projekt."
   filters:
     contexts:
@@ -1194,8 +1220,6 @@ sv:
     validation_errors:
       one: Något är inte riktigt rätt ännu! Kontrollera felet nedan
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
-  html_validator:
-    invalid_markup: 'innehåller ogiltig HTML: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Ogiltig CSV-fil. Felmeddelande: %{error}'
@@ -1236,6 +1260,9 @@ sv:
       expires_at: Utgår
       uses: Användningar
     title: Bjud in andra
+  lists:
+    errors:
+      limit: Du har nått det maximala antalet listor
   login_activities:
     authentication_methods:
       otp: tvåfaktorsautentiseringsapp
@@ -1376,6 +1403,9 @@ sv:
       unrecognized_emoji: är inte en igenkänd emoji
   relationships:
     activity: Kontoaktivitet
+    confirm_follow_selected_followers: Är du säker på att du vill följa valda följare?
+    confirm_remove_selected_followers: Är du säker på att du vill ta bort valda följare?
+    confirm_remove_selected_follows: Är du säker på att du vill ta bort valda följare?
     dormant: Vilande
     follow_selected_followers: Följ valda personer
     followers: Följare
@@ -1552,6 +1582,7 @@ sv:
       '7889238': 3 månader
     min_age_label: Åldersgräns
     min_favs: Behåll favoritmarkerade inlägg i minst
+    min_favs_hint: Raderar inte några av dina inlägg som har fått minst detta antalet av favoritmarkeringar. Lämna tomt för att ta bort inlägg oavsett hur många favoritmarkeringar de har fått
     min_reblogs: Behåll boostade inlägg i minst
     min_reblogs_hint: Raderar inte något av dina inlägg som har blivit boostat minst detta antal gånger. Lämna tomt för att radera inlägg oavsett antal boostar
   stream_entries:

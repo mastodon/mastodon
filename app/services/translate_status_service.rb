@@ -6,7 +6,7 @@ class TranslateStatusService < BaseService
   include FormattingHelper
 
   def call(status, target_language)
-    raise Mastodon::NotPermittedError unless status.public_visibility? || status.unlisted_visibility?
+    raise Mastodon::NotPermittedError unless status.translatable?
 
     @status = status
     @content = status_content_format(@status)

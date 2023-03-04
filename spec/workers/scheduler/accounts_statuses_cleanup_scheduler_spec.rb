@@ -25,7 +25,6 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
       },
     ]
   end
-  let(:retry_size) { 0 }
 
   before do
     queue_stub = double
@@ -35,7 +34,6 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
     allow(Sidekiq::ProcessSet).to receive(:new).and_return(process_set_stub)
 
     sidekiq_stats_stub = double
-    allow(sidekiq_stats_stub).to receive(:retry_size).and_return(retry_size)
     allow(Sidekiq::Stats).to receive(:new).and_return(sidekiq_stats_stub)
 
     # Create a bunch of old statuses
@@ -67,14 +65,6 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
     context 'when numerous jobs are queued' do
       let(:queue_size)    { 5 }
       let(:queue_latency) { 120 }
-
-      it 'returns true' do
-        expect(subject.under_load?).to be true
-      end
-    end
-
-    context 'when there is a huge amount of jobs to retry' do
-      let(:retry_size) { 1_000_000 }
 
       it 'returns true' do
         expect(subject.under_load?).to be true
