@@ -1425,15 +1425,15 @@ de:
     missing_resource: Die erforderliche Weiterleitungs-URL für dein Konto konnte nicht gefunden werden
   reports:
     errors:
-      invalid_rules: verweist nicht auf gültige Regeln
+      invalid_rules: verweist nicht auf gültige Serverregeln
   rss:
     content_warning: 'Inhaltswarnung:'
     descriptions:
       account: Öffentliche Beiträge von @%{acct}
       tag: 'Öffentliche Beiträge mit dem Hashtag #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Du hast das Limit für geplante Beiträge, welches %{limit} beträgt, für heute erreicht
-    over_total_limit: Du hast das Limit für geplante Beiträge, welches %{limit} beträgt, erreicht
+    over_daily_limit: Du hast das heutige Limit für geplante Beiträge, das %{limit} beträgt, erreicht
+    over_total_limit: Du hast das Limit für geplante Beiträge, das %{limit} beträgt, erreicht
     too_soon: Das geplante Datum muss in der Zukunft liegen
   sessions:
     activity: Letzte Aktivität
@@ -1521,8 +1521,8 @@ de:
     edited_at_html: 'Bearbeitet: %{date}'
     errors:
       in_reply_not_found: Der Beitrag, auf den du antworten möchtest, scheint nicht zu existieren.
-    open_in_web: Im Web öffnen
-    over_character_limit: Zeichenlimit von %{max} überschritten
+    open_in_web: Im Webinterface öffnen
+    over_character_limit: Begrenzung von %{max} Zeichen überschritten
     pin_errors:
       direct: Beiträge, die nur für erwähnte Profile sichtbar sind, können nicht angeheftet werden
       limit: Du hast bereits die maximale Anzahl an Beiträgen angeheftet
