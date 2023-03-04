@@ -3,21 +3,21 @@
 require 'rails_helper'
 require 'pundit/rspec'
 
-RSpec.describe SettingsPolicy do
-  let(:subject) { described_class }
+describe AnnouncementPolicy do
+  let(:policy) { described_class }
   let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
   let(:john)    { Fabricate(:account) }
 
-  permissions :update?, :show?, :destroy? do
-    context 'admin?' do
+  permissions :index?, :create?, :update?, :destroy? do
+    context 'with an admin' do
       it 'permits' do
-        expect(subject).to permit(admin, Settings)
+        expect(policy).to permit(admin, Tag)
       end
     end
 
-    context '!admin?' do
+    context 'with a non-admin' do
       it 'denies' do
-        expect(subject).to_not permit(john, Settings)
+        expect(policy).to_not permit(john, Tag)
       end
     end
   end
