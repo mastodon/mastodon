@@ -216,6 +216,10 @@ class ComposeForm extends ImmutablePureComponent {
       publishText = intl.formatMessage(messages.saveChanges);
     } else if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
       publishText = <span className='compose-form__publish-private'><Icon id='lock' /> {intl.formatMessage(messages.publish)}</span>;
+    } else if (this.props.privacy === 'portfolio') {
+      publishText = 'ポートフォリオを投稿';
+    } else if (this.props.privacy === 'nyan') {
+      publishText = 'にゃーん';
     } else {
       publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
     }
