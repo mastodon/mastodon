@@ -163,7 +163,7 @@ Metrics/ModuleLength:
 Rails/HttpStatus:
   EnforcedStyle: numeric
 
-# Reason:
+# Reason: Allowed only in the `tootctl` CLI application code
 # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsexit
 Rails/Exit:
   Exclude:
