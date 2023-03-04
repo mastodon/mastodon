@@ -1,4 +1,3 @@
----
 de:
   simple_form:
     hints:
@@ -76,7 +75,7 @@ de:
       form_admin_settings:
         activity_api_enabled: Anzahl der lokal veröffentlichten Beiträge, der aktiven Benutzer*innen und neuen Registrierungen in wöchentlichen Abständen
         backups_retention_period: Behalte die Archive, die von den Benutzer*innen erstellt worden sind, für die angegebene Anzahl an Tagen.
-        bootstrap_timeline_accounts: Diese Profile werden bei den Follower-Empfehlungen für neu registrierte Nutzer*innen oben angeheftet.
+        bootstrap_timeline_accounts: Diese Konten werden bei den Follower-Empfehlungen für neu registrierte Nutzer*innen oben angeheftet.
         closed_registrations_message: Wird angezeigt, wenn Registrierungen deaktiviert sind
         content_cache_retention_period: Beiträge von anderen Servern werden nach der angegebenen Anzahl von Tagen, wenn sie auf einen positiven Wert gesetzt werden, gelöscht. Dies kann eventuell nicht rückgängig gemacht werden.
         custom_css: Du kannst benutzerdefinierte Stile auf die Web-Version von Mastodon anwenden.
@@ -91,7 +90,7 @@ de:
         site_short_description: Eine kurze Beschreibung zur eindeutigen Identifizierung des Servers. Wer betreibt ihn, für wen ist er bestimmt?
         site_terms: Verwende eine eigene Datenschutzerklärung oder lasse das Feld leer, um die allgemeine Vorlage zu verwenden. Kann mit der Markdown-Syntax formatiert werden.
         site_title: Wie Personen neben dem Domainnamen auf deinen Server verweisen können.
-        status_page_url: URL einer Seite, auf der der Status des Servers während eines Ausfalls angezeigt werden kann
+        status_page_url: URL einer Seite, auf der der Serverstatus während eines Ausfalls angezeigt wird
         theme: Das Design, das abgemeldete Besucher und neue Benutzer sehen.
         thumbnail: Ein Bild ungefähr im 2:1-Format, das neben den Server-Informationen angezeigt wird.
         timeline_preview: Besucher*innen und ausgeloggte Benutzer*innen können die neuesten öffentlichen Beiträge dieses Servers aufrufen.
@@ -131,7 +130,7 @@ de:
         position: Höhere Rollen entscheiden über Konfliktlösungen zu gewissen Situationen. Bestimmte Aktionen können nur mit geringfügigeren Rollen durchgeführt werden
       webhook:
         events: Zu sendende Ereignisse auswählen
-        url: Wo Ereignisse hingesendet werden
+        url: Wohin Ereignisse geschickt werden
     labels:
       account:
         fields:
@@ -145,7 +144,7 @@ de:
         text: Vorlagentext
         title: Titel
       admin_account_action:
-        include_statuses: Beitragsmeldungen in die E-Mail mit anfügen
+        include_statuses: Gemeldete Beiträge der E-Mail beifügen
         send_email_notification: Benachrichtigung per E-Mail
         text: Benutzerdefinierte Verwarnung
         type: Aktion
@@ -241,7 +240,7 @@ de:
         custom_css: Eigenes CSS
         mascot: Benutzerdefiniertes Maskottchen (Legacy)
         media_cache_retention_period: Aufbewahrungsfrist für den Medien-Cache
-        peers_api_enabled: Veröffentliche Liste bekannter Server in der API
+        peers_api_enabled: Veröffentliche über die API die Liste bekannter Server
         profile_directory: Profilverzeichnis aktivieren
         registrations_mode: Wer darf ein neues Konto registrieren?
         require_invite_text: Begründung für Beitritt verlangen
@@ -305,7 +304,7 @@ de:
       webhook:
         events: Aktivierte Ereignisse
         url: Endpunkt-URL
-    'no': Nein
+    'no': 'Nein'
     not_recommended: Nicht empfohlen
     recommended: Empfohlen
     required:
@@ -314,4 +313,4 @@ de:
     title:
       sessions:
         webauthn: Verwende einen deiner Sicherheitsschlüssel zum Anmelden
-    'yes': Ja
+    'yes': 'Ja'
