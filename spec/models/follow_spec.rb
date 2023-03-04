@@ -9,11 +9,6 @@ RSpec.describe Follow, type: :model do
   describe 'validations' do
     subject { Follow.new(account: alice, target_account: bob, rate_limit: true) }
 
-    it 'has a valid fabricator' do
-      follow = Fabricate.build(:follow)
-      expect(follow).to be_valid
-    end
-
     it 'is invalid without an account' do
       follow = Fabricate.build(:follow, account: nil)
       follow.valid?

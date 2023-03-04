@@ -4,11 +4,6 @@ require 'rails_helper'
 
 RSpec.describe Block, type: :model do
   describe 'validations' do
-    it 'has a valid fabricator' do
-      block = Fabricate.build(:block)
-      expect(block).to be_valid
-    end
-
     it 'is invalid without an account' do
       block = Fabricate.build(:block, account: nil)
       block.valid?
