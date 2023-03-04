@@ -224,7 +224,7 @@ sr:
         unsensitive_account: Уклони додељену ознаку „осетљив”
         unsilence_account: Повуци ограничење налога
         unsuspend_account: Повуци суспензију налога
-        update_announcement: Обавештење о ажурирању
+        update_announcement: Саопштење о ажурирању
         update_custom_emoji: Ажурирај прилагођене емоџије
         update_domain_block: Ажурирај домен блок
         update_ip_block: Ажурирај IP услов
@@ -238,7 +238,7 @@ sr:
         change_role_user_html: "%{name} је променио/-ла овлашћења корисника %{target}"
         confirm_user_html: "%{name} је потврдио/-ла имејл адресу корисника %{target}"
         create_account_warning_html: "%{name} је послао/-ла упозорење кориснику %{target}"
-        create_announcement_html: "%{name} је направио/-ла ново обавештење %{target}"
+        create_announcement_html: "%{name} је направио/-ла ново саопштење %{target}"
         create_canonical_email_block_html: "%{name} је блокирао/-ла имејл адресу са хешом %{target}"
         create_custom_emoji_html: "%{name} је отпремио/-ла нове емоџије %{target}"
         create_domain_allow_html: "%{name} је дозволио/-ла федерацију са доменом %{target}"
@@ -248,7 +248,7 @@ sr:
         create_unavailable_domain_html: "%{name} је обуставио/-ла испоручивање домену %{target}"
         create_user_role_html: "%{name} је направио/-ла %{target} позицију"
         demote_user_html: "%{name} је смањио овлашћења корисника %{target}"
-        destroy_announcement_html: "%{name} је обрисао/-ла обавештење %{target}"
+        destroy_announcement_html: "%{name} је обрисао/-ла саопштење %{target}"
         destroy_canonical_email_block_html: "%{name} је одблокирао/-ла имејл адресу са хешом %{target}"
         destroy_custom_emoji_html: "%{name} је обрисао/-ла емоџи %{target}"
         destroy_domain_allow_html: "%{name} је забранио/-ла федерацију са доменом %{target}"
@@ -283,7 +283,7 @@ sr:
         unsensitive_account_html: "%{name} је уклонио/-ла ознаку „осетљиво” са медија налога %{target}"
         unsilence_account_html: "%{name} је повукао/-ла ограничење налога %{target}"
         unsuspend_account_html: "%{name} је повукао/-ла суспензију налога %{target}"
-        update_announcement_html: "%{name} је ажурирао/-ла обавештење %{target}"
+        update_announcement_html: "%{name} је ажурирао/-ла саопштење %{target}"
         update_custom_emoji_html: "%{name} је ажурирао/-ла емоџи %{target}"
         update_domain_block_html: "%{name} је ажурирао/-ла блок домена %{target}"
         update_ip_block_html: "%{name} је променио/-ла IP услов за %{target}"
@@ -295,7 +295,7 @@ sr:
       filter_by_user: Филтрирај по кориснику
       title: Записник
     announcements:
-      destroyed_msg: Обавештење је успешно обрисано!
+      destroyed_msg: Саопштење је успешно обрисано!
       edit:
         title: Уреди најаву
       empty: Ниједна најава није пронађена.
@@ -306,11 +306,11 @@ sr:
       publish: Објави
       published_msg: Најава успешно објављена!
       scheduled_for: Заказано за %{time}
-      scheduled_msg: Обавештење је заказано за објављивање!
+      scheduled_msg: Саопштење је заказано за објављивање!
       title: Најаве
       unpublish: Повуци објаву
-      unpublished_msg: Објава обавештења је успешно повучена!
-      updated_msg: Обавештење је успешно ажурирано!
+      unpublished_msg: Објава саопштења је успешно повучена!
+      updated_msg: Саопштење је успешно ажурирано!
     custom_emojis:
       assign_category: Додели категорију
       by_domain: Домен
@@ -429,7 +429,7 @@ sr:
       delete: Обриши
       dns:
         types:
-          mx: MX запис
+          mx: MX извештај
       domain: Домен
       new:
         create: Додај домен
@@ -691,7 +691,7 @@ sr:
         invite_users: Позови кориснике
         invite_users_description: Допушта корисницима да позове нове људе на сервер
         manage_announcements: Управљај обавештењима
-        manage_announcements_description: Допушта корисницима да руководе обавештењима на серверу
+        manage_announcements_description: Допушта корисницима да руководе саопштењима на серверу
         manage_appeals: Надгледање жалби
         manage_appeals_description: Допушта корисницима да прегледају жалбе на модерацијске радње
         manage_blocks: Надгледање блокова
@@ -1068,8 +1068,8 @@ sr:
       invalid_signature: није валидан Ed25519 потпис
   date:
     formats:
-      default: "%d %b %Y"
-      with_month_name: "%d %B %Y"
+      default: "%d. %b. %Y."
+      with_month_name: "%d. %B %Y."
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ч."
@@ -1386,8 +1386,8 @@ sr:
       decimal_units:
         format: "%n %u"
         units:
-          billion: B
-          million: М
+          billion: млрд.
+          million: мил.
           quadrillion: трил.
           thousand: хиљ.
           trillion: бил.
