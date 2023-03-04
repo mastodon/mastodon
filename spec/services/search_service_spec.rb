@@ -77,7 +77,7 @@ describe SearchService, type: :service do
         it 'includes the tag in the results' do
           query = '#tag'
           tag = Tag.new
-          allow(Tag).to receive(:search_for).with('tag', 10, 0, exclude_unreviewed: nil).and_return([tag])
+          allow(Tag).to receive(:search_for).with('tag', 10, 0, { exclude_unreviewed: nil }).and_return([tag])
 
           results = subject.call(query, nil, 10)
           expect(Tag).to have_received(:search_for).with('tag', 10, 0, exclude_unreviewed: nil)
