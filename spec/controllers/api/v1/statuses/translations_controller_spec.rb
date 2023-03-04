@@ -20,8 +20,7 @@ describe Api::V1::Statuses::TranslationsController do
       before do
         translation = TranslationService::Translation.new(text: 'Hello')
         service = instance_double(TranslationService::DeepL, translate: translation)
-        allow(status).to receive(:translatable?).and_return(true)
-        allow(service).to receive(:supported?).and_return(true)
+        allow_any_instance_of(Status).to receive(:translatable?).and_return(true)
         allow(TranslationService).to receive(:configured).and_return(service)
         post :create, params: { status_id: status.id }
       end
