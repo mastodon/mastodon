@@ -15,11 +15,12 @@ describe Api::V1::Statuses::TranslationsController do
     end
 
     describe 'POST #create' do
-      let(:status) { Fabricate(:status, account: user.account) }
+      let(:status) { Fabricate(:status, account: user.account, text: 'Hola', language: 'es') }
 
       before do
         translation = TranslationService::Translation.new(text: 'Hello')
-        service = instance_double(TranslationService::DeepL, translate: translation)
+        service = instance_double(TranslationService::DeepL, translate: translation, supported?: true)
+        allow(TranslationService).to receive(:configured?).and_return(true)
         allow(TranslationService).to receive(:configured).and_return(service)
         post :create, params: { status_id: status.id }
       end

@@ -81,9 +81,10 @@ const startMaster = () => {
   log.warn(`Starting streaming API server master with ${numWorkers} workers`);
 };
 
-const startWorker = async (workerId) => {
-  log.warn(`Starting worker ${workerId}`);
-
+/**
+ * @return {Object.<string, any>}
+ */
+const pgConfigFromEnv = () => {
   const pgConfigs = {
     development: {
       user:     process.env.DB_USER || pg.defaults.user,
@@ -102,16 +103,45 @@ const startWorker = async (workerId) => {
     },
   };
 
+  let baseConfig;
+
+  if (process.env.DATABASE_URL) {
+    baseConfig = dbUrlToConfig(process.env.DATABASE_URL);
+  } else {
+    baseConfig = pgConfigs[env];
+
+    if (process.env.DB_SSLMODE) {
+      switch(process.env.DB_SSLMODE) {
+      case 'disable':
+      case '':
+        baseConfig.ssl = false;
+        break;
+      case 'no-verify':
+        baseConfig.ssl = { rejectUnauthorized: false };
+        break;
+      default:
+        baseConfig.ssl = {};
+        break;
+      }
+    }
+  }
+
+  return {
+    ...baseConfig,
+    max: process.env.DB_POOL || 10,
+    connectionTimeoutMillis: 15000,
+    application_name: '',
+  };
+};
+
+const startWorker = async (workerId) => {
+  log.warn(`Starting worker ${workerId}`);
+
   const app = express();
 
   app.set('trust proxy', process.env.TRUSTED_PROXY_IP ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/) : 'loopback,uniquelocal');
 
-  const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL), {
-    max: process.env.DB_POOL || 10,
-    connectionTimeoutMillis: 15000,
-    ssl: !!process.env.DB_SSLMODE && process.env.DB_SSLMODE !== 'disable',
-  }));
-
+  const pgPool = new pg.Pool(pgConfigFromEnv());
   const server = http.createServer(app);
   const redisNamespace = process.env.REDIS_NAMESPACE || null;
 
