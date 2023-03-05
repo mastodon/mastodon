@@ -1480,11 +1480,13 @@ Rails/CreateTableWithTimestamps:
     - 'db/migrate/20221006061337_create_preview_card_trends.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
+# Configuration parameters: Severity.
 Rails/DeprecatedActiveModelErrorsMethods:
   Exclude:
     - 'lib/mastodon/accounts_cli.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: Severity.
 Rails/DuplicateAssociation:
   Exclude:
     - 'app/serializers/activitypub/collection_serializer.rb'
@@ -1698,6 +1700,15 @@ Rails/RakeEnvironment:
     - 'lib/tasks/repo.rake'
     - 'lib/tasks/statistics.rake'
 
+# This cop supports unsafe autocorrection (--autocorrect-all).
+# Configuration parameters: Include.
+# Include: spec/controllers/**/*.rb, spec/requests/**/*.rb, test/controllers/**/*.rb, test/integration/**/*.rb
+Rails/ResponseParsedBody:
+  Exclude:
+    - 'spec/controllers/follower_accounts_controller_spec.rb'
+    - 'spec/controllers/following_accounts_controller_spec.rb'
+    - 'spec/controllers/settings/two_factor_authentication/webauthn_credentials_controller_spec.rb'
+
 # Configuration parameters: Include.
 # Include: db/**/*.rb
 Rails/ReversibleMigration:
@@ -1905,11 +1916,11 @@ Style/FetchEnvVar:
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, MaxUnannotatedPlaceholdersAllowed, AllowedMethods, AllowedPatterns.
 # SupportedStyles: annotated, template, unannotated
+# AllowedMethods: redirect
 Style/FormatStringToken:
   Exclude:
     - 'app/models/privacy_policy.rb'
     - 'config/initializers/devise.rb'
-    - 'config/routes.rb'
     - 'lib/mastodon/maintenance_cli.rb'
     - 'lib/paperclip/color_extractor.rb'
 
@@ -2412,8 +2423,22 @@ Style/IfUnlessModifier:
 # Configuration parameters: InverseMethods, InverseBlocks.
 Style/InverseMethods:
   Exclude:
+    - 'app/controllers/concerns/signature_verification.rb'
+    - 'app/helpers/jsonld_helper.rb'
+    - 'app/lib/activitypub/activity/create.rb'
+    - 'app/lib/activitypub/activity/move.rb'
+    - 'app/lib/feed_manager.rb'
+    - 'app/lib/link_details_extractor.rb'
+    - 'app/models/concerns/attachmentable.rb'
+    - 'app/models/concerns/remotable.rb'
     - 'app/models/custom_filter.rb'
+    - 'app/models/webhook.rb'
+    - 'app/services/activitypub/process_status_update_service.rb'
+    - 'app/services/fetch_link_card_service.rb'
+    - 'app/services/search_service.rb'
     - 'app/services/update_account_service.rb'
+    - 'app/workers/web/push_notification_worker.rb'
+    - 'lib/paperclip/color_extractor.rb'
     - 'spec/controllers/activitypub/replies_controller_spec.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
