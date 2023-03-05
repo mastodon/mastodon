@@ -1352,7 +1352,7 @@ lv:
     favourite:
       body: 'Tavu ziņu izlasei pievienoja %{name}:'
       subject: "%{name} pievienoja tavu ziņu izlasei"
-      title: Jauns izcēlums
+      title: Jauna izlase
     follow:
       body: "%{name} tagad tev seko!"
       subject: "%{name} tagad tev seko"
@@ -1432,6 +1432,7 @@ lv:
     confirm_remove_selected_followers: Vai tiešām vēlies noņemt atlasītos sekotājus?
     confirm_remove_selected_follows: Vai tiešām vēlies noņemt atlasītos sekojumus?
     dormant: Snaudošie
+    follow_failure: Nevarēja sekot dažiem atlasītajiem kontiem.
     follow_selected_followers: Sekot atlasītajiem sekotājiem
     followers: Sekotāji
     following: Seko
@@ -1471,6 +1472,7 @@ lv:
       electron: Electron
       firefox: Firefox
       generic: Nezināms pārlūks
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1480,6 +1482,7 @@ lv:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Nezināms Pārlūks
       weibo: Weibo
     current_session: Pašreizējā sesija
     description: "%{browser} uz %{platform}"
@@ -1492,8 +1495,10 @@ lv:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
+      unknown_platform: Nezināma Platforma
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
