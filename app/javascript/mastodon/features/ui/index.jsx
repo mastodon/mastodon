@@ -474,10 +474,10 @@ class UI extends React.PureComponent {
   };
 
   handleHotkeyBack = () => {
-    if (window.history && window.history.length === 1) {
-      this.context.router.history.push('/');
-    } else {
+    if (window.history && window.history.state) {
       this.context.router.history.goBack();
+    } else {
+      this.context.router.history.push('/');
     }
   };
 

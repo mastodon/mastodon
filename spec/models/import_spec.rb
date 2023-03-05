@@ -23,6 +23,11 @@ RSpec.describe Import, type: :model do
       expect(import).to model_have_error_on_field(:data)
     end
 
+    it 'is invalid with malformed data' do
+      import = Import.create(account: account, type: type, data: StringIO.new('\"test'))
+      expect(import).to model_have_error_on_field(:data)
+    end
+
     it 'is invalid with too many rows in data' do
       import = Import.create(account: account, type: type, data: StringIO.new("foo@bar.com\n" * (ImportService::ROWS_PROCESSING_LIMIT + 10)))
       expect(import).to model_have_error_on_field(:data)

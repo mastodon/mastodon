@@ -45,7 +45,7 @@
 
         = f.button safe_join([fa_icon('trash'), t('relationships.remove_selected_followers')]), name: :remove_from_followers, class: 'table-action-link', type: :submit, data: { confirm: t('relationships.confirm_remove_selected_followers') } unless following_relationship?
 
-        = f.button safe_join([fa_icon('trash'), t('relationships.remove_selected_domains')]), name: :block_domains, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') } if followed_by_relationship?
+        = f.button safe_join([fa_icon('trash'), t('relationships.remove_selected_domains')]), name: :remove_domains_from_followers, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') } if followed_by_relationship?
     .batch-table__body
       - if @accounts.empty?
         = nothing_here 'nothing-here--under-tabs'
