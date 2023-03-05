@@ -12,6 +12,11 @@ updates:
     open-pull-requests-limit: 99
     allow:
       - dependency-type: direct
+    ignore:
+      # This version needs to match Rails major version, so stick to 6.x only
+      - dependency-name: '@rails/ujs'
+        versions:
+          - '7.x'
 
   - package-ecosystem: bundler
     directory: '/'
