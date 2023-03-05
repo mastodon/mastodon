@@ -114,6 +114,13 @@ ar:
       pending: في انتظار المراجعة
       perform_full_suspension: تعليق الحساب
       previous_strikes: العقوبات السابقة
+      previous_strikes_description_html:
+        few: لدى هذا الحساب <strong>%{count}</strong> إنذارات.
+        many: لدى هذا الحساب <strong>%{count}</strong> إنذارًا.
+        one: هذا الحساب لديه <strong>%{count}</strong>انذار.
+        other: لدى هذا الحساب <strong>%{count}</strong> إنذار.
+        two: لدى هذا الحساب <strong>%{count}</strong> إنذاران اثنان.
+        zero: هذا الحساب لديه <strong>%{count}</strong>انذار.
       promote: ترقية
       protocol: البروتوكول
       public: عمومي
@@ -880,6 +887,13 @@ ar:
         trending_rank: 'المتداولة #%{rank}'
         usable: يمكن استخدامه
         usage_comparison: تم استخدامه %{today} مرات اليوم، مقارنة بـ %{yesterday} بالأمس
+        used_by_over_week:
+          few: مستخدَم من قِبل %{count} أشخاص خلال الأسبوع الماضي
+          many: مستخدَم من قِبل %{count} شخصا خلال الأسبوع الماضي
+          one: مستخدَم من قِبل %{count} شخص واحد خلال الأسبوع الماضي
+          other: مستخدَم من قِبل %{count} شخص خلال الأسبوع الماضي
+          two: مستخدَم من قِبل %{count} شخصين خلال الأسبوع الماضي
+          zero: مستخدَم من قِبل %{count} شخص خلال الأسبوع الماضي
       title: المتداوَلة
       trending: المتداولة
     warning_presets:
@@ -1150,6 +1164,8 @@ ar:
     storage: ذاكرة التخزين
   featured_tags:
     add_new: أضف واحدًا جديدا
+    errors:
+      limit: لقد قمت بالفعل بعرض الحد الأقصى من عدد الوسوم
     hint_html: "<strong>ما هي الوسوم الرائجة؟</strong> يتم عرضها بشكل بارز على ملفك الشخصي العام وتسمح للناس بتصفح منشوراتك العامة على وجه التحديد تحت تلك الوسوم. وهي أداة رائعة لتتبع الأعمال الإبداعية أو المشاريع الطويلة الأجل."
   filters:
     contexts:
