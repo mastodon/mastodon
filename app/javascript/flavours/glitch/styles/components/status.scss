@@ -68,97 +68,13 @@
   }
 
   p,
-  pre,
-  blockquote {
+  pre {
     margin-bottom: 20px;
     white-space: pre-wrap;
     unicode-bidi: plaintext;
 
     &:last-child {
       margin-bottom: 0;
-    }
-  }
-
-  .status__content__text,
-  .e-content {
-    overflow: hidden;
-
-    & > ul,
-    & > ol {
-      margin-bottom: 20px;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-
-    h1,
-    h2 {
-      font-weight: 700;
-      font-size: 1.2em;
-    }
-
-    h2 {
-      font-size: 1.1em;
-    }
-
-    h3,
-    h4,
-    h5 {
-      font-weight: 500;
-    }
-
-    blockquote {
-      padding-left: 10px;
-      border-left: 3px solid $darker-text-color;
-      color: $darker-text-color;
-      white-space: normal;
-
-      p:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    b,
-    strong {
-      font-weight: 700;
-    }
-
-    em,
-    i {
-      font-style: italic;
-    }
-
-    sub {
-      font-size: smaller;
-      vertical-align: sub;
-    }
-
-    sup {
-      font-size: smaller;
-      vertical-align: super;
-    }
-
-    ul,
-    ol {
-      margin-left: 2em;
-
-      p {
-        margin: 0;
-      }
-    }
-
-    ul {
-      list-style-type: disc;
-    }
-
-    ol {
-      list-style-type: decimal;
     }
   }
 
