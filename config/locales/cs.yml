@@ -804,6 +804,7 @@ cs:
         suspend: "Uživatel %{name} pozastavil účet %{target}"
       appeal_approved: Podáno odvolání
       appeal_pending: Čekající odvolání
+      appeal_rejected: Odvolání zamítnuto
     system_checks:
       database_schema_check:
         message_html: Na spuštění čekají databázové migrace. Nechte je prosím proběhnout pro zajištění očekávaného chování aplikace
@@ -1481,6 +1482,7 @@ cs:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Neznámý prohlížeč
       weibo: Weibo
     current_session: Aktuální relace
     description: "%{browser} na systému %{platform}"
@@ -1493,8 +1495,10 @@ cs:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
+      unknown_platform: Neznámá platforma
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
