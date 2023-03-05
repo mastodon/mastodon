@@ -2,27 +2,32 @@
 es:
   admin:
     custom_emojis:
-      batch_copy_error: Se produjo un error cuando se copian algunos emojis seleccionados %{message}
-      batch_error: Ocurrió un error %{message}
+      batch_copy_error: 'Se produjo un error cuando se copian algunos emojis seleccionados %{message}'
+      batch_error: 'Ocurrió un error %{message}'
     settings:
+      captcha_enabled:
+        title: Requerir que usuarixs nuevxs resuelvan un CAPTCHA para confirmar su cuenta
       hide_followers_count:
         desc_html: No mostrar el conteo de seguidorxs en perfiles de usuarix
         title: Ocultar conteo de seguidorxs
       outgoing_spoilers:
         desc_html: Cuando los toots federen, agrega esta etiqueta de contenido a los toots que no tengan. Es útil si tu servidor se especializa en contenido que otros servidores desearían tener con una advertencia de contenido. Los medios también se marcarán como sensibles.
-        title: Advertencia de contenido para los toots salientes
+        title: Advertencia de contenido para publicaciones salientes
       show_reblogs_in_public_timelines:
-        desc_html: Mostrar retoots públicos en las línea de tiempo local y pública.
-        title: Mostrar retoots en líneas de tiempo públicas
+        desc_html: Mostrar impulsos públicos en las líneas de tiempo local y pública.
+        title: Mostrar impulsos en líneas de tiempo públicas
       show_replies_in_public_timelines:
-        desc_html: Además de auto-respuestas públicas (hilos), mostrar respuestas públicas en las línea de tiempo local y pública.
+        desc_html: Además de auto-respuestas públicas (hilos), mostrar respuestas públicas en las líneas de tiempo local y pública.
         title: Mostrar respuestas en líneas de tiempo públicas
       trending_status_cw:
-        title: Permitir que toots con advertencias de contenido sean tendencia
+        title: Permitir que publicaciones con advertencias de contenido sean tendencia
   appearance:
     localization:
       glitch_guide_link: https://crowdin.com/project/glitch-soc
       glitch_guide_link_text: Al igual que para glitch-soc!
+  auth:
+    captcha_confirmation:
+      title: Verificación de usuarix
   generic:
     use_this: Usar
   settings:
