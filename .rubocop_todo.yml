@@ -13,6 +13,81 @@ Bundler/OrderedGems:
   Exclude:
     - 'Gemfile'
 
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle, IndentationWidth.
+# SupportedStyles: with_first_argument, with_fixed_indentation
+Layout/ArgumentAlignment:
+  Exclude:
+    - 'config/initializers/cors.rb'
+    - 'config/initializers/session_store.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: empty_lines, no_empty_lines
+Layout/EmptyLinesAroundBlockBody:
+  Exclude:
+    - 'config/routes.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
+Layout/ExtraSpacing:
+  Exclude:
+    - 'config/initializers/omniauth.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: AllowMultipleStyles, EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle.
+# SupportedHashRocketStyles: key, separator, table
+# SupportedColonStyles: key, separator, table
+# SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
+Layout/HashAlignment:
+  Exclude:
+    - 'config/boot.rb'
+    - 'config/environments/production.rb'
+    - 'config/initializers/rack_attack.rb'
+    - 'config/routes.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: Width, AllowedPatterns.
+Layout/IndentationWidth:
+  Exclude:
+    - 'config/initializers/ffmpeg.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: AllowDoxygenCommentStyle, AllowGemfileRubyComment.
+Layout/LeadingCommentSpace:
+  Exclude:
+    - 'config/application.rb'
+    - 'config/initializers/omniauth.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
+# SupportedStyles: space, no_space
+# SupportedStylesForEmptyBraces: space, no_space
+Layout/SpaceBeforeBlockBraces:
+  Exclude:
+    - 'config/initializers/paperclip.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: require_no_space, require_space
+Layout/SpaceInLambdaLiteral:
+  Exclude:
+    - 'config/environments/production.rb'
+    - 'config/initializers/content_security_policy.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: space, no_space
+Layout/SpaceInsideStringInterpolation:
+  Exclude:
+    - 'config/initializers/webauthn.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: AllowInHeredoc.
+Layout/TrailingWhitespace:
+  Exclude:
+    - 'config/initializers/paperclip.rb'
+
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Lint/AmbiguousBlockAssociation:
   Exclude:
@@ -25,6 +100,11 @@ Lint/AmbiguousBlockAssociation:
     - 'spec/services/suspend_account_service_spec.rb'
     - 'spec/services/unsuspend_account_service_spec.rb'
     - 'spec/workers/scheduler/accounts_statuses_cleanup_scheduler_spec.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+Lint/AmbiguousOperatorPrecedence:
+  Exclude:
+    - 'config/initializers/rack_attack.rb'
 
 # Configuration parameters: AllowedMethods.
 # AllowedMethods: enums
@@ -109,9 +189,24 @@ Lint/OrAssignmentToConstant:
   Exclude:
     - 'lib/sanitize_ext/sanitize_config.rb'
 
+# This cop supports safe autocorrection (--autocorrect).
+Lint/SendWithMixinArgument:
+  Exclude:
+    - 'config/application.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
+Lint/UnusedBlockArgument:
+  Exclude:
+    - 'config/initializers/content_security_policy.rb'
+    - 'config/initializers/doorkeeper.rb'
+    - 'config/initializers/paperclip.rb'
+    - 'config/initializers/simple_form.rb'
+
 Lint/UselessAssignment:
   Exclude:
     - 'app/services/activitypub/process_status_update_service.rb'
+    - 'config/initializers/omniauth.rb'
     - 'db/migrate/20190511134027_add_silenced_at_suspended_at_to_accounts.rb'
     - 'db/post_migrate/20190511152737_remove_suspended_silenced_account_fields.rb'
     - 'spec/controllers/api/v1/bookmarks_controller_spec.rb'
@@ -141,7 +236,7 @@ Metrics/AbcSize:
 # Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns, inherit_mode.
 # AllowedMethods: refine
 Metrics/BlockLength:
-  Max: 433
+  Max: 544
 
 # Configuration parameters: CountBlocks, Max.
 Metrics/BlockNesting:
@@ -185,6 +280,13 @@ Naming/AccessorMethodName:
   Exclude:
     - 'app/controllers/auth/sessions_controller.rb'
 
+# Configuration parameters: ExpectMatchingDefinition, CheckDefinitionPathHierarchy, CheckDefinitionPathHierarchyRoots, Regex, IgnoreExecutableScripts, AllowedAcronyms.
+# CheckDefinitionPathHierarchyRoots: lib, spec, test, src
+# AllowedAcronyms: CLI, DSL, ACL, API, ASCII, CPU, CSS, DNS, EOF, GUID, HTML, HTTP, HTTPS, ID, IP, JSON, LHS, QPS, RAM, RHS, RPC, SLA, SMTP, SQL, SSH, TCP, TLS, TTL, UDP, UI, UID, UUID, URI, URL, UTF8, VM, XML, XMPP, XSRF, XSS
+Naming/FileName:
+  Exclude:
+    - 'config/locales/sr-Latn.rb'
+
 # Configuration parameters: EnforcedStyleForLeadingUnderscores.
 # SupportedStylesForLeadingUnderscores: disallowed, required, optional
 Naming/MemoizedInstanceVariableName:
@@ -195,6 +297,7 @@ Naming/MemoizedInstanceVariableName:
     - 'app/lib/activitypub/activity.rb'
     - 'app/services/resolve_url_service.rb'
     - 'app/services/search_service.rb'
+    - 'config/initializers/rack_attack.rb'
 
 # Configuration parameters: EnforcedStyle, CheckMethodNames, CheckSymbols, AllowedIdentifiers, AllowedPatterns.
 # SupportedStyles: snake_case, normalcase, non_integer
@@ -227,6 +330,7 @@ Performance/CollectionLiteralInLoop:
     - 'app/services/fetch_resource_service.rb'
     - 'app/services/suspend_account_service.rb'
     - 'app/services/unsuspend_account_service.rb'
+    - 'config/deploy.rb'
     - 'lib/mastodon/media_cli.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -278,6 +382,12 @@ Performance/MethodObjectAsBlock:
 Performance/RedundantEqualityComparisonBlock:
   Exclude:
     - 'spec/requests/link_headers_spec.rb'
+
+# This cop supports unsafe autocorrection (--autocorrect-all).
+# Configuration parameters: MaxKeyValuePairs.
+Performance/RedundantMerge:
+  Exclude:
+    - 'config/initializers/paperclip.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: SafeMultiline.
@@ -1348,6 +1458,7 @@ Rails/CompactBlank:
     - 'app/models/poll.rb'
     - 'app/models/user.rb'
     - 'app/services/import_service.rb'
+    - 'config/initializers/paperclip.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 Rails/ContentTag:
@@ -1379,6 +1490,12 @@ Rails/DuplicateAssociation:
     - 'app/serializers/activitypub/collection_serializer.rb'
     - 'app/serializers/activitypub/note_serializer.rb'
 
+# Configuration parameters: Include.
+# Include: app/**/*.rb, config/**/*.rb, lib/**/*.rb
+Rails/Exit:
+  Exclude:
+    - 'config/boot.rb'
+
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: slashes, arguments
 Rails/FilePath:
@@ -1386,6 +1503,7 @@ Rails/FilePath:
     - 'app/lib/themes.rb'
     - 'app/models/setting.rb'
     - 'app/validators/reaction_validator.rb'
+    - 'config/environments/test.rb'
     - 'db/migrate/20170716191202_add_hide_notifications_to_mute.rb'
     - 'db/migrate/20170918125918_ids_to_bigints.rb'
     - 'db/migrate/20171005171936_add_disabled_to_custom_emojis.rb'
@@ -1558,6 +1676,16 @@ Rails/Output:
   Exclude:
     - 'lib/mastodon/ip_blocks_cli.rb'
 
+Rails/OutputSafety:
+  Exclude:
+    - 'config/initializers/simple_form.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: NotNilAndNotEmpty, NotBlank, UnlessBlank.
+Rails/Present:
+  Exclude:
+    - 'config/initializers/content_security_policy.rb'
+
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: Include.
 # Include: **/Rakefile, **/*.rake
@@ -1718,6 +1846,12 @@ Rails/WhereExists:
     - 'spec/services/purge_domain_service_spec.rb'
     - 'spec/services/unallow_domain_service_spec.rb'
 
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: AllowOnConstant, AllowOnSelfClass.
+Style/CaseEquality:
+  Exclude:
+    - 'config/initializers/trusted_proxies.rb'
+
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: MinBranchesCount.
 Style/CaseLikeIf:
@@ -1731,6 +1865,10 @@ Style/ClassEqualityComparison:
   Exclude:
     - 'app/helpers/jsonld_helper.rb'
     - 'app/serializers/activitypub/outbox_serializer.rb'
+
+Style/ClassVars:
+  Exclude:
+    - 'config/initializers/devise.rb'
 
 Style/CombinableLoops:
   Exclude:
@@ -1749,6 +1887,16 @@ Style/FetchEnvVar:
     - 'app/helpers/application_helper.rb'
     - 'app/lib/redis_configuration.rb'
     - 'app/lib/translation_service.rb'
+    - 'config/environments/development.rb'
+    - 'config/environments/production.rb'
+    - 'config/initializers/2_whitelist_mode.rb'
+    - 'config/initializers/blacklists.rb'
+    - 'config/initializers/cache_buster.rb'
+    - 'config/initializers/content_security_policy.rb'
+    - 'config/initializers/devise.rb'
+    - 'config/initializers/omniauth.rb'
+    - 'config/initializers/paperclip.rb'
+    - 'config/initializers/vapid.rb'
     - 'lib/mastodon/premailer_webpack_strategy.rb'
     - 'lib/mastodon/redis_config.rb'
     - 'lib/tasks/repo.rake'
@@ -1760,6 +1908,8 @@ Style/FetchEnvVar:
 Style/FormatStringToken:
   Exclude:
     - 'app/models/privacy_policy.rb'
+    - 'config/initializers/devise.rb'
+    - 'config/routes.rb'
     - 'lib/mastodon/maintenance_cli.rb'
     - 'lib/paperclip/color_extractor.rb'
 
@@ -1771,6 +1921,52 @@ Style/FrozenStringLiteralComment:
     - 'app/views/accounts/show.rss.ruby'
     - 'app/views/tags/show.rss.ruby'
     - 'app/views/well_known/host_meta/show.xml.ruby'
+    - 'config/application.rb'
+    - 'config/boot.rb'
+    - 'config/environment.rb'
+    - 'config/environments/development.rb'
+    - 'config/environments/production.rb'
+    - 'config/environments/test.rb'
+    - 'config/initializers/0_post_deployment_migrations.rb'
+    - 'config/initializers/active_model_serializers.rb'
+    - 'config/initializers/application_controller_renderer.rb'
+    - 'config/initializers/assets.rb'
+    - 'config/initializers/backtrace_silencers.rb'
+    - 'config/initializers/cache_logging.rb'
+    - 'config/initializers/chewy.rb'
+    - 'config/initializers/content_security_policy.rb'
+    - 'config/initializers/cookies_serializer.rb'
+    - 'config/initializers/cors.rb'
+    - 'config/initializers/devise.rb'
+    - 'config/initializers/doorkeeper.rb'
+    - 'config/initializers/fast_blank.rb'
+    - 'config/initializers/ffmpeg.rb'
+    - 'config/initializers/filter_parameter_logging.rb'
+    - 'config/initializers/http_client_proxy.rb'
+    - 'config/initializers/httplog.rb'
+    - 'config/initializers/inflections.rb'
+    - 'config/initializers/mail_delivery_job.rb'
+    - 'config/initializers/makara.rb'
+    - 'config/initializers/mime_types.rb'
+    - 'config/initializers/oj.rb'
+    - 'config/initializers/omniauth.rb'
+    - 'config/initializers/open_uri_redirection.rb'
+    - 'config/initializers/permissions_policy.rb'
+    - 'config/initializers/pghero.rb'
+    - 'config/initializers/preload_link_headers.rb'
+    - 'config/initializers/premailer_rails.rb'
+    - 'config/initializers/rack_attack_logging.rb'
+    - 'config/initializers/redis.rb'
+    - 'config/initializers/session_store.rb'
+    - 'config/initializers/simple_form.rb'
+    - 'config/initializers/stoplight.rb'
+    - 'config/initializers/trusted_proxies.rb'
+    - 'config/initializers/twitter_regex.rb'
+    - 'config/initializers/webauthn.rb'
+    - 'config/initializers/wrap_parameters.rb'
+    - 'config/locales/sr-Latn.rb'
+    - 'config/locales/sr.rb'
+    - 'config/puma.rb'
     - 'db/migrate/20160220174730_create_accounts.rb'
     - 'db/migrate/20160220211917_create_statuses.rb'
     - 'db/migrate/20160221003140_create_users.rb'
@@ -2117,6 +2313,18 @@ Style/FrozenStringLiteralComment:
     - 'lib/tasks/branding.rake'
     - 'spec/fabricators_spec.rb'
 
+# This cop supports unsafe autocorrection (--autocorrect-all).
+Style/GlobalStdStream:
+  Exclude:
+    - 'config/boot.rb'
+    - 'config/environments/development.rb'
+    - 'config/environments/production.rb'
+
+# Configuration parameters: AllowedVariables.
+Style/GlobalVars:
+  Exclude:
+    - 'config/initializers/statsd.rb'
+
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
 Style/GuardClause:
@@ -2143,6 +2351,7 @@ Style/GuardClause:
     - 'app/workers/redownload_header_worker.rb'
     - 'app/workers/redownload_media_worker.rb'
     - 'app/workers/remote_account_refresh_worker.rb'
+    - 'config/initializers/devise.rb'
     - 'db/migrate/20170901141119_truncate_preview_cards.rb'
     - 'db/post_migrate/20220704024901_migrate_settings_to_user_roles.rb'
     - 'lib/devise/two_factor_ldap_authenticatable.rb'
@@ -2188,12 +2397,32 @@ Style/HashTransformValues:
     - 'app/services/import_service.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
+Style/IdenticalConditionalBranches:
+  Exclude:
+    - 'config/initializers/content_security_policy.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+Style/IfUnlessModifier:
+  Exclude:
+    - 'config/environments/production.rb'
+    - 'config/initializers/devise.rb'
+    - 'config/initializers/ffmpeg.rb'
+
+# This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: InverseMethods, InverseBlocks.
 Style/InverseMethods:
   Exclude:
     - 'app/models/custom_filter.rb'
     - 'app/services/update_account_service.rb'
     - 'spec/controllers/activitypub/replies_controller_spec.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: line_count_dependent, lambda, literal
+Style/Lambda:
+  Exclude:
+    - 'config/initializers/simple_form.rb'
+    - 'config/routes.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/MapToHash:
@@ -2213,8 +2442,20 @@ Style/MutableConstant:
     - 'app/services/delete_account_service.rb'
     - 'app/services/fetch_link_card_service.rb'
     - 'app/services/resolve_url_service.rb'
+    - 'config/initializers/twitter_regex.rb'
     - 'lib/mastodon/snowflake.rb'
     - 'spec/controllers/api/base_controller_spec.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+Style/NilLambda:
+  Exclude:
+    - 'config/initializers/paperclip.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: MinDigits, Strict, AllowedNumbers, AllowedPatterns.
+Style/NumericLiterals:
+  Exclude:
+    - 'config/initializers/strong_migrations.rb'
 
 # Configuration parameters: AllowedMethods.
 # AllowedMethods: respond_to_missing?
@@ -2232,6 +2473,44 @@ Style/OptionalBooleanParameter:
     - 'lib/mastodon/redis_config.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: PreferredDelimiters.
+Style/PercentLiteralDelimiters:
+  Exclude:
+    - 'config/deploy.rb'
+    - 'config/initializers/doorkeeper.rb'
+
+# This cop supports unsafe autocorrection (--autocorrect-all).
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: short, verbose
+Style/PreferredHashMethods:
+  Exclude:
+    - 'config/initializers/paperclip.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+Style/RedundantBegin:
+  Exclude:
+    - 'config/initializers/simple_form.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+Style/RedundantConstantBase:
+  Exclude:
+    - 'config/environments/production.rb'
+    - 'config/initializers/sidekiq.rb'
+    - 'config/initializers/statsd.rb'
+    - 'config/locales/sr-Latn.rb'
+    - 'config/locales/sr.rb'
+
+# This cop supports unsafe autocorrection (--autocorrect-all).
+# Configuration parameters: SafeForConstants.
+Style/RedundantFetchBlock:
+  Exclude:
+    - 'config/initializers/1_hosts.rb'
+    - 'config/initializers/chewy.rb'
+    - 'config/initializers/devise.rb'
+    - 'config/initializers/paperclip.rb'
+    - 'config/puma.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
 Style/RedundantRegexpCharacterClass:
   Exclude:
     - 'app/lib/link_details_extractor.rb'
@@ -2239,6 +2518,7 @@ Style/RedundantRegexpCharacterClass:
     - 'app/models/domain_allow.rb'
     - 'app/models/domain_block.rb'
     - 'app/services/fetch_oembed_service.rb'
+    - 'config/initializers/rack_attack.rb'
     - 'lib/tasks/emojis.rake'
     - 'lib/tasks/mastodon.rake'
 
@@ -2249,6 +2529,7 @@ Style/RedundantRegexpEscape:
     - 'app/models/account.rb'
     - 'app/models/tag.rb'
     - 'app/services/fetch_link_card_service.rb'
+    - 'config/initializers/twitter_regex.rb'
     - 'lib/paperclip/color_extractor.rb'
     - 'lib/tasks/mastodon.rake'
 
@@ -2270,6 +2551,9 @@ Style/RegexpLiteral:
     - 'app/services/backup_service.rb'
     - 'app/services/fetch_oembed_service.rb'
     - 'app/services/search_service.rb'
+    - 'config/initializers/rack_attack.rb'
+    - 'config/initializers/twitter_regex.rb'
+    - 'config/routes.rb'
     - 'lib/mastodon/premailer_webpack_strategy.rb'
     - 'lib/tasks/mastodon.rake'
 
@@ -2316,6 +2600,73 @@ Style/SlicingWithRange:
     - 'lib/active_record/batches.rb'
     - 'lib/mastodon/premailer_webpack_strategy.rb'
     - 'lib/tasks/repo.rake'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: require_parentheses, require_no_parentheses
+Style/StabbyLambdaParentheses:
+  Exclude:
+    - 'config/environments/production.rb'
+    - 'config/initializers/content_security_policy.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+Style/StderrPuts:
+  Exclude:
+    - 'config/boot.rb'
+
+# This cop supports unsafe autocorrection (--autocorrect-all).
+# Configuration parameters: Mode.
+Style/StringConcatenation:
+  Exclude:
+    - 'config/initializers/paperclip.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
+# SupportedStyles: single_quotes, double_quotes
+Style/StringLiterals:
+  Exclude:
+    - 'config/environments/production.rb'
+    - 'config/initializers/backtrace_silencers.rb'
+    - 'config/initializers/http_client_proxy.rb'
+    - 'config/initializers/rack_attack.rb'
+    - 'config/initializers/webauthn.rb'
+    - 'config/routes.rb'
+
+# This cop supports unsafe autocorrection (--autocorrect-all).
+# Configuration parameters: AllowMethodsWithArguments, AllowedMethods, AllowedPatterns, AllowComments.
+# AllowedMethods: define_method, mail, respond_to
+Style/SymbolProc:
+  Exclude:
+    - 'config/initializers/omniauth.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle, AllowSafeAssignment.
+# SupportedStyles: require_parentheses, require_no_parentheses, require_parentheses_when_complex
+Style/TernaryParentheses:
+  Exclude:
+    - 'config/environments/development.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyleForMultiline.
+# SupportedStylesForMultiline: comma, consistent_comma, no_comma
+Style/TrailingCommaInArguments:
+  Exclude:
+    - 'config/initializers/paperclip.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyleForMultiline.
+# SupportedStylesForMultiline: comma, consistent_comma, no_comma
+Style/TrailingCommaInHashLiteral:
+  Exclude:
+    - 'config/environments/production.rb'
+    - 'config/environments/test.rb'
+
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: WordRegex.
+# SupportedStyles: percent, brackets
+Style/WordArray:
+  EnforcedStyle: percent
+  MinSize: 6
 
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
