@@ -3,7 +3,7 @@
     = image_tag @instance_presenter.thumbnail&.file&.url(:'@1x') || asset_pack_path('media/images/preview.png'), alt: @instance_presenter.title
 
   .hero-widget__text
-    %p= @instance_presenter.description.html_safe.presence || t('about.about_mastodon_html')
+    %p= @instance_presenter.description.presence || t('about.about_mastodon_html')
 
 - if Setting.trends && !(user_signed_in? && !current_user.setting_trends)
   - trends = Trends.tags.query.allowed.limit(3)
