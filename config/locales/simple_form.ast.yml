@@ -1,4 +1,3 @@
----
 ast:
   simple_form:
     hints:
@@ -59,6 +58,10 @@ ast:
       ip_block:
         comment: Opcional. Un recordatoriu de por qué amestesti esta norma.
         expires_in: Les direiciones IP son un recursu finitu, suelen compartise ya cambiar de manes. Por esti motivu, nun s'aconseyen los bloqueos indefiníos de direiciones IP.
+        severities:
+          no_access: Bloquia l'accesu a tolos recursos
+          sign_up_block: Fai que nun se puedan rexistrar cuentes nueves
+          sign_up_requires_approval: Fai que se tengan de revisar les cuentes rexistraes nueves
       user:
         chosen_languages: Namás los artículos de les llingües que marques son los que van apaecer nes llinies de tiempu públiques
     labels:
@@ -159,9 +162,14 @@ ast:
         must_be_following: Bloquiar los avisos de los perfiles que nun sigues
         must_be_following_dm: Bloquiar los mensaxes direutos de los perfiles que nun sigues
       invite_request:
-        text: "¿Por qué quies xunite?"
+        text: '¿Por qué quies xunite?'
       ip_block:
+        comment: Comentariu
         ip: IP
+        severities:
+          no_access: Bloquiar l'accesu
+          sign_up_block: Bloquiar el rexistru de cuentes nueves
+          sign_up_requires_approval: Llendar les cuentes rexistraes nueves
       notification_emails:
         favourite: Daquién marcó como favoritu'l to artículu
         follow: Daquién te sigue
@@ -186,9 +194,9 @@ ast:
         position: Prioridá
       webhook:
         events: Eventos activos
-    'no': Non
+    'no': 'Non'
     not_recommended: Nun s'aconseya
     recommended: Aconséyase
     required:
       mark: "*"
-    'yes': Sí
+    'yes': 'Sí'
