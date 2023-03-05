@@ -10,6 +10,7 @@ import alerts from './alerts';
 import announcements from './announcements';
 import blocks from './blocks';
 import boosts from './boosts';
+import instance_stats from './instance_stats';
 import compose from './compose';
 import contexts from './contexts';
 import conversations from './conversations';
@@ -66,6 +67,7 @@ const reducers = {
   blocks,
   boosts,
   server,
+  instance_stats,
   contexts,
   compose,
   search,
