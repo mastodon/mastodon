@@ -75,7 +75,7 @@ development:
 test:
   <<: *default
 
-  # CircleCI precompiles packs prior to running the tests.
+  # CI precompiles packs prior to running the tests.
   # Also avoids race conditions in parallel_tests.
   compile: false
 
