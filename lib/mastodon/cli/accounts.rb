@@ -217,7 +217,7 @@ module Mastodon::CLI
         exit(1)
       end
 
-      dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
+      dry_run = dry_run? ? ' (DRY RUN)' : ''
       account = nil
 
       if username.present?
@@ -235,7 +235,7 @@ module Mastodon::CLI
       end
 
       say("Deleting user with #{account.statuses_count} statuses, this might take a while...#{dry_run}")
-      DeleteAccountService.new.call(account, reserve_email: false) unless options[:dry_run]
+      DeleteAccountService.new.call(account, reserve_email: false) unless dry_run?
       say("OK#{dry_run}", :green)
     end
 
@@ -291,7 +291,7 @@ module Mastodon::CLI
       Account.remote.select(:uri, 'count(*)').group(:uri).having('count(*) > 1').pluck(:uri).each do |uri|
         say("Duplicates found for #{uri}")
         begin
-          ActivityPub::FetchRemoteAccountService.new.call(uri) unless options[:dry_run]
+          ActivityPub::FetchRemoteAccountService.new.call(uri) unless dry_run?
         rescue => e
           say("Error processing #{uri}: #{e}", :red)
         end
@@ -332,7 +332,7 @@ module Mastodon::CLI
     LONG_DESC
     def cull(*domains)
       skip_threshold = 7.days.ago
-      dry_run        = options[:dry_run] ? ' (DRY RUN)' : ''
+      dry_run        = dry_run? ? ' (DRY RUN)' : ''
       skip_domains   = Concurrent::Set.new
 
       query = Account.remote.where(protocol: :activitypub)
@@ -350,7 +350,7 @@ module Mastodon::CLI
         end
 
         if [404, 410].include?(code)
-          DeleteAccountService.new.call(account, reserve_username: false) unless options[:dry_run]
+          DeleteAccountService.new.call(account, reserve_username: false) unless dry_run?
           1
         else
           # Touch account even during dry run to avoid getting the account into the window again
@@ -381,14 +381,14 @@ module Mastodon::CLI
       specified with space-separated USERNAMES.
     LONG_DESC
     def refresh(*usernames)
-      dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
+      dry_run = dry_run? ? ' (DRY RUN)' : ''
 
       if options[:domain] || options[:all]
         scope  = Account.remote
         scope  = scope.where(domain: options[:domain]) if options[:domain]
 
         processed, = parallelize_with_progress(scope) do |account|
-          next if options[:dry_run]
+          next if dry_run?
 
           account.reset_avatar!
           account.reset_header!
@@ -406,7 +406,7 @@ module Mastodon::CLI
             exit(1)
           end
 
-          next if options[:dry_run]
+          next if dry_run?
 
           begin
             account.reset_avatar!
@@ -568,7 +568,7 @@ module Mastodon::CLI
       - not muted/blocked by us
     LONG_DESC
     def prune
-      dry_run = options[:dry_run] ? ' (dry run)' : ''
+      dry_run = dry_run? ? ' (dry run)' : ''
 
       query = Account.remote.where.not(actor_type: %i(Application Service))
       query = query.where('NOT EXISTS (SELECT 1 FROM mentions WHERE account_id = accounts.id)')
@@ -585,7 +585,7 @@ module Mastodon::CLI
         next if account.suspended?
         next if account.silenced?
 
-        account.destroy unless options[:dry_run]
+        account.destroy unless dry_run?
         1
       end
 

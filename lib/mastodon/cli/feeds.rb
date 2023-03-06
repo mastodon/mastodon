@@ -18,11 +18,11 @@ module Mastodon::CLI
       Otherwise, a single user specified by USERNAME.
     LONG_DESC
     def build(username = nil)
-      dry_run = options[:dry_run] ? '(DRY RUN)' : ''
+      dry_run = dry_run? ? '(DRY RUN)' : ''
 
       if options[:all] || username.nil?
         processed, = parallelize_with_progress(Account.joins(:user).merge(User.active)) do |account|
-          PrecomputeFeedService.new.call(account) unless options[:dry_run]
+          PrecomputeFeedService.new.call(account) unless dry_run?
         end
 
         say("Regenerated feeds for #{processed} accounts #{dry_run}", :green, true)
@@ -34,7 +34,7 @@ module Mastodon::CLI
           exit(1)
         end
 
-        PrecomputeFeedService.new.call(account) unless options[:dry_run]
+        PrecomputeFeedService.new.call(account) unless dry_run?
 
         say("OK #{dry_run}", :green, true)
       else

@@ -34,7 +34,7 @@ module Mastodon::CLI
       When the --purge-domain-blocks option is given, also purge matching domain blocks.
     LONG_DESC
     def purge(*domains)
-      dry_run            = options[:dry_run] ? ' (DRY RUN)' : ''
+      dry_run            = dry_run? ? ' (DRY RUN)' : ''
       domains            = domains.map { |domain| TagManager.instance.normalize_domain(domain) }
       account_scope      = Account.none
       domain_block_scope = DomainBlock.none
@@ -79,21 +79,21 @@ module Mastodon::CLI
 
       # Actually perform the deletions
       processed, = parallelize_with_progress(account_scope) do |account|
-        DeleteAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless options[:dry_run]
+        DeleteAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless dry_run?
       end
 
       say("Removed #{processed} accounts#{dry_run}", :green)
 
       if options[:purge_domain_blocks]
         domain_block_count = domain_block_scope.count
-        domain_block_scope.in_batches.destroy_all unless options[:dry_run]
+        domain_block_scope.in_batches.destroy_all unless dry_run?
         say("Removed #{domain_block_count} domain blocks#{dry_run}", :green)
       end
 
       custom_emojis_count = emoji_scope.count
-      emoji_scope.in_batches.destroy_all unless options[:dry_run]
+      emoji_scope.in_batches.destroy_all unless dry_run?
 
-      Instance.refresh unless options[:dry_run]
+      Instance.refresh unless dry_run?
 
       say("Removed #{custom_emojis_count} custom emojis#{dry_run}", :green)
     end
