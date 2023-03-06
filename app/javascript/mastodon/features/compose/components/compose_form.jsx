@@ -198,6 +198,17 @@ class ComposeForm extends ImmutablePureComponent {
     this.composeForm = c;
   };
 
+  setPlaceholder = (intl, privacy) => {
+    switch(privacy) {
+      case 'portfolio':
+        return 'どんな作品を投稿する？';
+      case 'nyan':
+        return 'どんなことを吐き出したい？';
+      default:
+        return intl.formatMessage(messages.placeholder);
+    }
+  }
+
   handleEmojiPick = (data) => {
     const { text }     = this.props;
     const position     = this.autosuggestTextarea.textarea.selectionStart;
@@ -216,9 +227,15 @@ class ComposeForm extends ImmutablePureComponent {
       publishText = intl.formatMessage(messages.saveChanges);
     } else if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
       publishText = <span className='compose-form__publish-private'><Icon id='lock' /> {intl.formatMessage(messages.publish)}</span>;
+    } else if (this.props.privacy === 'portfolio') {
+      publishText = 'ポートフォリオを投稿';
+    } else if (this.props.privacy === 'nyan') {
+      publishText = 'にゃーん';
     } else {
       publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
     }
+
+    const messagePlaceholder = this.setPlaceholder(intl, this.props.privacy);
 
     return (
       <form className='compose-form' onSubmit={this.handleSubmit}>
@@ -248,7 +265,7 @@ class ComposeForm extends ImmutablePureComponent {
 
         <AutosuggestTextarea
           ref={this.setAutosuggestTextarea}
-          placeholder={intl.formatMessage(messages.placeholder)}
+          placeholder={messagePlaceholder}
           disabled={disabled}
           value={this.props.text}
           onChange={this.handleChange}
