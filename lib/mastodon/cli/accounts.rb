@@ -217,7 +217,6 @@ module Mastodon::CLI
         exit(1)
       end
 
-      dry_run = dry_run? ? ' (DRY RUN)' : ''
       account = nil
 
       if username.present?
@@ -234,9 +233,9 @@ module Mastodon::CLI
         end
       end
 
-      say("Deleting user with #{account.statuses_count} statuses, this might take a while...#{dry_run}")
+      say("Deleting user with #{account.statuses_count} statuses, this might take a while...#{dry_run_mode_suffix}")
       DeleteAccountService.new.call(account, reserve_email: false) unless dry_run?
-      say("OK#{dry_run}", :green)
+      say("OK#{dry_run_mode_suffix}", :green)
     end
 
     option :force, type: :boolean, aliases: [:f], description: 'Override public key check'
@@ -332,7 +331,6 @@ module Mastodon::CLI
     LONG_DESC
     def cull(*domains)
       skip_threshold = 7.days.ago
-      dry_run        = dry_run? ? ' (DRY RUN)' : ''
       skip_domains   = Concurrent::Set.new
 
       query = Account.remote.where(protocol: :activitypub)
@@ -358,7 +356,7 @@ module Mastodon::CLI
         end
       end
 
-      say("Visited #{processed} accounts, removed #{culled}#{dry_run}", :green)
+      say("Visited #{processed} accounts, removed #{culled}#{dry_run_mode_suffix}", :green)
 
       unless skip_domains.empty?
         say('The following domains were not available during the check:', :yellow)
@@ -381,8 +379,6 @@ module Mastodon::CLI
       specified with space-separated USERNAMES.
     LONG_DESC
     def refresh(*usernames)
-      dry_run = dry_run? ? ' (DRY RUN)' : ''
-
       if options[:domain] || options[:all]
         scope  = Account.remote
         scope  = scope.where(domain: options[:domain]) if options[:domain]
@@ -395,7 +391,7 @@ module Mastodon::CLI
           account.save
         end
 
-        say("Refreshed #{processed} accounts#{dry_run}", :green, true)
+        say("Refreshed #{processed} accounts#{dry_run_mode_suffix}", :green, true)
       elsif !usernames.empty?
         usernames.each do |user|
           user, domain = user.split('@')
@@ -417,7 +413,7 @@ module Mastodon::CLI
           end
         end
 
-        say("OK#{dry_run}", :green)
+        say("OK#{dry_run_mode_suffix}", :green)
       else
         say('No account(s) given', :red)
         exit(1)
@@ -568,8 +564,6 @@ module Mastodon::CLI
       - not muted/blocked by us
     LONG_DESC
     def prune
-      dry_run = dry_run? ? ' (dry run)' : ''
-
       query = Account.remote.where.not(actor_type: %i(Application Service))
       query = query.where('NOT EXISTS (SELECT 1 FROM mentions WHERE account_id = accounts.id)')
       query = query.where('NOT EXISTS (SELECT 1 FROM favourites WHERE account_id = accounts.id)')
@@ -589,7 +583,7 @@ module Mastodon::CLI
         1
       end
 
-      say("OK, pruned #{deleted} accounts#{dry_run}", :green)
+      say("OK, pruned #{deleted} accounts#{dry_run_mode_suffix}", :green)
     end
 
     option :force, type: :boolean

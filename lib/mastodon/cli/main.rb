@@ -104,7 +104,6 @@ module Mastodon::CLI
 
       inboxes   = Account.inboxes
       processed = 0
-      dry_run   = dry_run? ? ' (DRY RUN)' : ''
 
       Setting.registrations_mode = 'none' unless dry_run?
 
@@ -140,7 +139,7 @@ module Mastodon::CLI
       Account.local.without_suspended.find_each { |account| delete_account.call(account) }
       Account.local.suspended.joins(:deletion_request).find_each { |account| delete_account.call(account) }
 
-      prompt.ok("Queued #{inboxes.size * processed} items into Sidekiq for #{processed} accounts#{dry_run}")
+      prompt.ok("Queued #{inboxes.size * processed} items into Sidekiq for #{processed} accounts#{dry_run_mode_suffix}")
       prompt.ok('Wait until Sidekiq processes all items, then you can shut everything down and delete the data')
     rescue TTY::Reader::InputInterrupt
       exit(1)
