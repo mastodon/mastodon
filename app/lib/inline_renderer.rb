@@ -26,8 +26,10 @@ class InlineRenderer
       return
     end
 
-    serializable_resource = ActiveModelSerializers::SerializableResource.new(@object, serializer: serializer, scope: current_user, scope_name: :current_user)
-    serializable_resource.as_json
+    I18n.with_locale(current_user&.locale) do
+      serializable_resource = ActiveModelSerializers::SerializableResource.new(@object, serializer: serializer, scope: current_user, scope_name: :current_user)
+      serializable_resource.as_json
+    end
   end
 
   def self.render(object, current_account, template)

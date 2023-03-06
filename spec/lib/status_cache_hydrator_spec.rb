@@ -29,8 +29,8 @@ describe StatusCacheHydrator do
       end
 
       context 'when handling a translatable status' do
-        let(:poll) { Fabricate(:poll, account: account) }
-        let(:status) { Fabricate(:status, poll: poll, account: account, language: 'es') }
+        let(:account) { Fabricate(:user, locale: 'es').account }
+        let(:status) { Fabricate(:status, language: 'en') }
 
         before do
           service = instance_double(TranslationService::DeepL, supported?: true)
@@ -39,7 +39,7 @@ describe StatusCacheHydrator do
         end
 
         it 'renders the same attributes as a full render' do
-          expect(status.translatable?).to be true
+          expect(subject[:translatable]).to be true
           expect(subject).to eql(compare_to_hash)
         end
       end
