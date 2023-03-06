@@ -3,7 +3,13 @@
 require 'rails_helper'
 require 'mastodon/cli/settings'
 
-RSpec.describe Mastodon::CLI::Settings do
+describe Mastodon::CLI::Settings do
+  describe '.exit_on_failure?' do
+    it 'returns true' do
+      expect(described_class.exit_on_failure?).to be true
+    end
+  end
+
   describe 'subcommand "registrations"' do
     let(:cli) { Mastodon::CLI::Registrations.new }
 
