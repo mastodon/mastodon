@@ -25,12 +25,13 @@ class StatusCacheHydrator
       # used to create the status, we need to hydrate it here too
       payload[:reblog][:application] = @status.reblog.application.present? ? ActiveModelSerializers::SerializableResource.new(@status.reblog.application, serializer: REST::StatusSerializer::ApplicationSerializer).as_json : nil if payload[:reblog][:application].nil? && @status.reblog.account_id == account_id
 
-      payload[:reblog][:favourited] = Favourite.where(account_id: account_id, status_id: @status.reblog_of_id).exists?
-      payload[:reblog][:reblogged]  = Status.where(account_id: account_id, reblog_of_id: @status.reblog_of_id).exists?
-      payload[:reblog][:muted]      = ConversationMute.where(account_id: account_id, conversation_id: @status.reblog.conversation_id).exists?
-      payload[:reblog][:bookmarked] = Bookmark.where(account_id: account_id, status_id: @status.reblog_of_id).exists?
-      payload[:reblog][:pinned]     = StatusPin.where(account_id: account_id, status_id: @status.reblog_of_id).exists? if @status.reblog.account_id == account_id
-      payload[:reblog][:filtered]   = payload[:filtered]
+      payload[:reblog][:favourited]   = Favourite.where(account_id: account_id, status_id: @status.reblog_of_id).exists?
+      payload[:reblog][:reblogged]    = Status.where(account_id: account_id, reblog_of_id: @status.reblog_of_id).exists?
+      payload[:reblog][:muted]        = ConversationMute.where(account_id: account_id, conversation_id: @status.reblog.conversation_id).exists?
+      payload[:reblog][:bookmarked]   = Bookmark.where(account_id: account_id, status_id: @status.reblog_of_id).exists?
+      payload[:reblog][:pinned]       = StatusPin.where(account_id: account_id, status_id: @status.reblog_of_id).exists? if @status.reblog.account_id == account_id
+      payload[:reblog][:filtered]     = payload[:filtered]
+      payload[:reblog][:translatable] = @status.reblog.translatable?
 
       if payload[:reblog][:poll]
         if @status.reblog.account_id == account_id
@@ -46,12 +47,13 @@ class StatusCacheHydrator
       payload[:favourited] = payload[:reblog][:favourited]
       payload[:reblogged]  = payload[:reblog][:reblogged]
     else
-      payload[:favourited] = Favourite.where(account_id: account_id, status_id: @status.id).exists?
-      payload[:reblogged]  = Status.where(account_id: account_id, reblog_of_id: @status.id).exists?
-      payload[:muted]      = ConversationMute.where(account_id: account_id, conversation_id: @status.conversation_id).exists?
-      payload[:bookmarked] = Bookmark.where(account_id: account_id, status_id: @status.id).exists?
-      payload[:pinned]     = StatusPin.where(account_id: account_id, status_id: @status.id).exists? if @status.account_id == account_id
-      payload[:filtered]   = CustomFilter.apply_cached_filters(CustomFilter.cached_filters_for(account_id), @status).map { |filter| ActiveModelSerializers::SerializableResource.new(filter, serializer: REST::FilterResultSerializer).as_json }
+      payload[:favourited]   = Favourite.where(account_id: account_id, status_id: @status.id).exists?
+      payload[:reblogged]    = Status.where(account_id: account_id, reblog_of_id: @status.id).exists?
+      payload[:muted]        = ConversationMute.where(account_id: account_id, conversation_id: @status.conversation_id).exists?
+      payload[:bookmarked]   = Bookmark.where(account_id: account_id, status_id: @status.id).exists?
+      payload[:pinned]       = StatusPin.where(account_id: account_id, status_id: @status.id).exists? if @status.account_id == account_id
+      payload[:filtered]     = CustomFilter.apply_cached_filters(CustomFilter.cached_filters_for(account_id), @status).map { |filter| ActiveModelSerializers::SerializableResource.new(filter, serializer: REST::FilterResultSerializer).as_json }
+      payload[:translatable] = @status.translatable?
 
       if payload[:poll]
         payload[:poll][:voted] = @status.account_id == account_id
