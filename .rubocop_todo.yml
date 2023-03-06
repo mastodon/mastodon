@@ -789,6 +789,29 @@ RSpec/LetSetup:
     - 'spec/workers/scheduler/accounts_statuses_cleanup_scheduler_spec.rb'
     - 'spec/workers/scheduler/user_cleanup_scheduler_spec.rb'
 
+# This cop supports safe autocorrection (--autocorrect).
+RSpec/MatchArray:
+  Exclude:
+    - 'spec/controllers/activitypub/followers_synchronizations_controller_spec.rb'
+    - 'spec/controllers/admin/export_domain_blocks_controller_spec.rb'
+    - 'spec/controllers/api/v1/accounts/follower_accounts_controller_spec.rb'
+    - 'spec/controllers/api/v1/accounts/following_accounts_controller_spec.rb'
+    - 'spec/controllers/api/v1/accounts/statuses_controller_spec.rb'
+    - 'spec/controllers/api/v1/bookmarks_controller_spec.rb'
+    - 'spec/controllers/api/v1/favourites_controller_spec.rb'
+    - 'spec/controllers/api/v1/reports_controller_spec.rb'
+    - 'spec/controllers/api/v1/statuses/favourited_by_accounts_controller_spec.rb'
+    - 'spec/controllers/api/v1/statuses/reblogged_by_accounts_controller_spec.rb'
+    - 'spec/models/account_filter_spec.rb'
+    - 'spec/models/account_spec.rb'
+    - 'spec/models/account_statuses_cleanup_policy_spec.rb'
+    - 'spec/models/custom_emoji_filter_spec.rb'
+    - 'spec/models/status_spec.rb'
+    - 'spec/models/user_spec.rb'
+    - 'spec/presenters/familiar_followers_presenter_spec.rb'
+    - 'spec/services/activitypub/fetch_featured_collection_service_spec.rb'
+    - 'spec/services/update_status_service_spec.rb'
+
 RSpec/MessageChain:
   Exclude:
     - 'spec/controllers/api/v1/media_controller_spec.rb'
@@ -1072,8 +1095,9 @@ RSpec/NoExpectationExample:
 
 RSpec/PendingWithoutReason:
   Exclude:
+    - 'spec/controllers/statuses_controller_spec.rb'
     - 'spec/models/account_spec.rb'
-    - 'spec/support/examples/lib/settings/scoped_settings.rb'
+    - 'spec/models/user_spec.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: Strict, EnforcedStyle, AllowedExplicitMatchers.
