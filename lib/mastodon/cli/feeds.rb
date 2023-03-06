@@ -1,17 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../../../config/boot'
-require_relative '../../../config/environment'
-require_relative 'helper'
+require_relative 'base'
 
 module Mastodon::CLI
-  class Feeds < Thor
-    include Helper
+  class Feeds < Base
     include Redisable
-
-    def self.exit_on_failure?
-      true
-    end
 
     option :all, type: :boolean, default: false
     option :concurrency, type: :numeric, default: 5, aliases: [:c]

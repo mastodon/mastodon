@@ -1,18 +1,10 @@
 # frozen_string_literal: true
 
 require 'concurrent'
-require_relative '../../../config/boot'
-require_relative '../../../config/environment'
-require_relative 'helper'
+require_relative 'base'
 
 module Mastodon::CLI
-  class CanonicalEmailBlocks < Thor
-    include Helper
-
-    def self.exit_on_failure?
-      true
-    end
-
+  class CanonicalEmailBlocks < Base
     desc 'find EMAIL', 'Find a given e-mail address in the canonical e-mail blocks'
     long_desc <<-LONG_DESC
       When suspending a local user, a hash of a "canonical" version of their e-mail
