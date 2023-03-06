@@ -1,4 +1,3 @@
----
 sr-Latn:
   activerecord:
     attributes:
@@ -145,44 +144,44 @@ sr-Latn:
       application:
         title: OAuth autorizacija potrebna
     scopes:
-      admin:read: čitanje svih podataka na serveru
-      admin:read:accounts: čitanje osetljivih podataka za sve naloge
-      admin:read:domain_allows: pročitaj osetljive informacije za sve dozvole domena
-      admin:read:domain_blocks: pročitaj osetljive informacije za sve blokove domena
-      admin:read:ip_blocks: pročitaj osetljive informacije za sve IP blokove
-      admin:read:reports: čitanje osetljivih podataka svih izveštaja i prijavljenih naloga
-      admin:write: menjanje svih podataka na serveru
-      admin:write:accounts: vršenje moderatorskih aktivnosti nad nalozima
-      admin:write:domain_blocks: izvrši moderatorske aktivnosti na blokovima domena
-      admin:write:ip_blocks: izvrši moderatorske aktivnosti na IP blokovima
-      admin:write:reports: vršenje moderatorskih aktivnosti nad izveštajima
+      "admin:read": čitanje svih podataka na serveru
+      "admin:read:accounts": čitanje osetljivih podataka za sve naloge
+      "admin:read:domain_allows": pročitaj osetljive informacije za sve dozvole domena
+      "admin:read:domain_blocks": pročitaj osetljive informacije za sve blokove domena
+      "admin:read:ip_blocks": pročitaj osetljive informacije za sve IP blokove
+      "admin:read:reports": čitanje osetljivih podataka svih izveštaja i prijavljenih naloga
+      "admin:write": menjanje svih podataka na serveru
+      "admin:write:accounts": vršenje moderatorskih aktivnosti nad nalozima
+      "admin:write:domain_blocks": izvrši moderatorske aktivnosti na blokovima domena
+      "admin:write:ip_blocks": izvrši moderatorske aktivnosti na IP blokovima
+      "admin:write:reports": vršenje moderatorskih aktivnosti nad izveštajima
       crypto: korišćenje end-to-end enkripcije
       follow: prati, blokira, odblokira i otprati naloge
       push: primanje prosleđenih obaveštenja
       read: čita podatke Vašeg naloga
-      read:accounts: pogledaj informacije o nalozima
-      read:blocks: pogledaj svoje blokirane
-      read:bookmarks: pogledaj svoje obeleživače
-      read:favourites: pogledaj svoje omiljene
-      read:filters: pogledaj svoje filtere
-      read:follows: pogledaj koga pratiš
-      read:lists: pogledaj svoje liste
-      read:mutes: pogledaj svoje utišane
-      read:notifications: pogledaj svoja obaveštenja
-      read:reports: pogledaj svoje prijave
-      read:search: pretraži u svoje ime
-      read:statuses: pogledaj sve objave
+      "read:accounts": pogledaj informacije o nalozima
+      "read:blocks": pogledaj svoje blokirane
+      "read:bookmarks": pogledaj svoje obeleživače
+      "read:favourites": pogledaj svoje omiljene
+      "read:filters": pogledaj svoje filtere
+      "read:follows": pogledaj koga pratiš
+      "read:lists": pogledaj svoje liste
+      "read:mutes": pogledaj svoje utišane
+      "read:notifications": pogledaj svoja obaveštenja
+      "read:reports": pogledaj svoje prijave
+      "read:search": pretraži u svoje ime
+      "read:statuses": pogledaj sve objave
       write: objavljuje statuse u Vaše ime
-      write:accounts: izmeni svoj profil
-      write:blocks: blokiraj naloge i domene
-      write:bookmarks: obeleži objave
-      write:conversations: utišaj i obriši razgovore
-      write:favourites: omiljene objave
-      write:filters: kreiraj filtere
-      write:follows: prati korisnike
-      write:lists: kreiraj liste
-      write:media: otpremi medijske datoteke
-      write:mutes: utišaj korinsike i razgovore
-      write:notifications: obriši svoja obaveštenja
-      write:reports: prijavi druge korisnike
-      write:statuses: objavi objave
+      "write:accounts": izmeni svoj profil
+      "write:blocks": blokiraj naloge i domene
+      "write:bookmarks": obeleži objave
+      "write:conversations": utišaj i obriši razgovore
+      "write:favourites": omiljene objave
+      "write:filters": kreiraj filtere
+      "write:follows": prati korisnike
+      "write:lists": kreiraj liste
+      "write:media": otpremi medijske datoteke
+      "write:mutes": utišaj korinsike i razgovore
+      "write:notifications": obriši svoja obaveštenja
+      "write:reports": prijavi druge korisnike
+      "write:statuses": objavi objave
