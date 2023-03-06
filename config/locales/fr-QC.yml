@@ -1195,8 +1195,6 @@ fr-QC:
       index:
         hint: Ce filtre s'applique à la sélection de messages individuels, indépendamment d'autres critères. Vous pouvez ajouter plus de messages à ce filtre à partir de l'interface Web.
         title: Messages filtrés
-  footer:
-    trending_now: Tendance en ce moment
   generic:
     all: Tous
     all_items_on_page_selected_html:
@@ -1406,6 +1404,7 @@ fr-QC:
     confirm_remove_selected_followers: Voulez-vous vraiment supprimer les abonné⋅e⋅s sélectionné⋅e⋅s ?
     confirm_remove_selected_follows: Voulez-vous vraiment supprimer les abonnements sélectionnés ?
     dormant: Dormant
+    follow_failure: Impossibilité de suivre certains des comptes sélectionnés.
     follow_selected_followers: Suivre les abonné·e·s sélectionné·e·s
     followers: Abonné·e
     following: Abonnement
@@ -1445,6 +1444,7 @@ fr-QC:
       electron: Electron
       firefox: Firefox
       generic: Navigateur inconnu
+      huawei_browser: Navigateur Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1454,6 +1454,7 @@ fr-QC:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Navigateur inconnu
       weibo: Weibo
     current_session: Session courante
     description: "%{browser} sur %{platform}"
@@ -1466,8 +1467,10 @@ fr-QC:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
+      unknown_platform: Plateforme inconnue
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
