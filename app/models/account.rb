@@ -444,7 +444,7 @@ class Account < ApplicationRecord
       SQL
 
       records = find_by_sql([sql, limit: limit, offset: offset, tsquery: tsquery])
-      ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
+      ActiveRecord::Associations::Preloader.new(records: records, associations: :account_stat)
       records
     end
 
@@ -452,7 +452,7 @@ class Account < ApplicationRecord
       tsquery = generate_query_for_search(terms)
       sql = advanced_search_for_sql_template(following)
       records = find_by_sql([sql, id: account.id, limit: limit, offset: offset, tsquery: tsquery])
-      ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
+      ActiveRecord::Associations::Preloader.new(records: records, associations: :account_stat)
       records
     end
 

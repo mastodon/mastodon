@@ -37,7 +37,7 @@ class InlineRenderer
   private
 
   def preload_associations_for_status
-    ActiveRecord::Associations::Preloader.new.preload(@object, {
+    ActiveRecord::Associations::Preloader.new(records: @object, associations: {
       active_mentions: :account,
 
       reblog: {

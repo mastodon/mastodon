@@ -83,7 +83,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   def accounts
     store = {}
 
-    ActiveRecord::Associations::Preloader.new.preload([object.current_account, object.admin, object.owner, object.disabled_account, object.moved_to_account].compact, [:account_stat, :user, { moved_to_account: [:account_stat, :user] }])
+    ActiveRecord::Associations::Preloader.new(records: [object.current_account, object.admin, object.owner, object.disabled_account, object.moved_to_account].compact, associations: [:account_stat, :user, { moved_to_account: [:account_stat, :user] }])
 
     store[object.current_account.id.to_s]  = ActiveModelSerializers::SerializableResource.new(object.current_account, serializer: REST::AccountSerializer) if object.current_account
     store[object.admin.id.to_s]            = ActiveModelSerializers::SerializableResource.new(object.admin, serializer: REST::AccountSerializer) if object.admin

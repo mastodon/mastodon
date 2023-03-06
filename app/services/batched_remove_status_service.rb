@@ -8,7 +8,7 @@ class BatchedRemoveStatusService < BaseService
   # @param [Hash] options
   # @option [Boolean] :skip_side_effects Do not modify feeds and send updates to streaming API
   def call(statuses, **options)
-    ActiveRecord::Associations::Preloader.new.preload(statuses, options[:skip_side_effects] ? :reblogs : [:account, :tags, reblogs: :account])
+    ActiveRecord::Associations::Preloader.new(records: statuses, associations: options[:skip_side_effects] ? :reblogs : [:account, :tags, reblogs: :account])
 
     statuses_and_reblogs = statuses.flat_map { |status| [status] + status.reblogs }
 
@@ -17,7 +17,7 @@ class BatchedRemoveStatusService < BaseService
     # rely on direct visibility statuses being relatively rare.
     statuses_with_account_conversations = statuses.select(&:direct_visibility?)
 
-    ActiveRecord::Associations::Preloader.new.preload(statuses_with_account_conversations, [mentions: :account])
+    ActiveRecord::Associations::Preloader.new(records: statuses_with_account_conversations, associations: [mentions: :account])
 
     statuses_with_account_conversations.each(&:unlink_from_conversations!)
 

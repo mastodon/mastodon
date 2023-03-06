@@ -94,7 +94,7 @@ class AccountSearchService < BaseService
                            .objects
                            .compact
 
-    ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
+    ActiveRecord::Associations::Preloader.new(records: records, associations: :account_stat)
 
     records
   rescue Faraday::ConnectionFailed, Parslet::ParseFailed
