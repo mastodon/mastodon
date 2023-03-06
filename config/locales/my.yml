@@ -43,6 +43,7 @@ my:
       custom: စိတ်ကြိုက်
       delete: အချက်အလက်များဖျက်ပါ
       deleted: ဖျက်ပြီးပါပြီ
+      disable_sign_in_token_auth: အီးမေးတိုကင် အထောက်အထားပြခြင်းကို ပိတ်ပါ
       disable_two_factor_authentication: 2FA ကို ပိတ်ပါ
       display_name: ဖော်ပြမည့်အမည်
       domain: ဒိုမိန်း
@@ -54,6 +55,7 @@ my:
       followers: စောင့်ကြည့်သူများ
       follows: စောင့်ကြည့်မယ်
       header: မျက်နှာဖုံးပုံ
+      invite_request_text: ပါဝင်ရခြင်း အကြောင်းအရင်း
       invited_by: ဖိတ်ခေါ်ထားသည်
       ip: IP
       joined: စတင်ဝင်ရောက်သည့်နေ့
@@ -193,6 +195,7 @@ my:
         create_domain_block_html: "%{name} က ဒိုမိန်း %{target} ကို ပိတ်ပင်ထားသည်"
         create_email_domain_block_html: "%{name} က အီးမေးလ်ဒိုမိန်း %{target} ကို ပိတ်ပင်ထားသည်"
         create_ip_block_html: "%{name} က IP %{target} အတွက် စည်းမျဉ်းကို ဖန်တီးထားသည်"
+        create_unavailable_domain_html: "%{name} က ဒိုမိန်း %{target} သို့ ပေးပို့မှုကို ရပ်လိုက်သည်"
         create_user_role_html: "%{name} က %{target} အခန်းကဏ္ဍကို ဖန်တီးပြီးပါပြီ"
         demote_user_html: "%{name} က အသုံးပြုသူ %{target} ကို ဖြုတ်ပြီးပါပြီ"
         destroy_announcement_html: "%{name} က ကြေညာချက် %{target} ကို ဖျက်လိုက်သည်"
@@ -204,6 +207,7 @@ my:
         destroy_instance_html: "%{name} က ဒိုမိန်း %{target} ကို ဖယ်ရှားခဲ့သည်"
         destroy_ip_block_html: "%{name} က IP %{target} အတွက် စည်းမျဉ်းကို ဖျက်ထားသည်"
         destroy_status_html: "%{name} က %{target} မှ တင်ထားသောပို့စ်ကို  ဖယ်ရှားခဲ့သည်"
+        destroy_unavailable_domain_html: "%{name} က ဒိုမိန်း %{target} သို့ ပေးပို့မှုကို ပြန်လည်စတင်ခဲ့သည်"
         destroy_user_role_html: "%{name} ဖျက်ထားသော အခန်းကဏ္ဍ %{target} "
         disable_2fa_user_html: "%{name} က အသုံးပြုသူ %{target} အတွက် နှစ်ဆင့်ခံလုံခြုံရေးလိုအပ်ချက်ကို ပိတ်ထားသည်"
         disable_custom_emoji_html: "%{name} ပိတ်ထားသောအီမိုဂျီ %{target}"
@@ -248,6 +252,7 @@ my:
         create: ကြေညာချက်ဖန်တီးပါ
         title: ကြေညာချက်အသစ်
       publish: ပို့စ်တင်မည်
+      scheduled_for: '%{time} အတွက် စီစဉ်ထားသည်'
       title: ကြေညာချက်များ
       unpublish: ပြန်ဖြုတ်ပါ
       unpublished_msg: ကြေညာချက်ကို ဖြုတ်ပြီးပါပြီ
@@ -396,7 +401,10 @@ my:
         instance_statuses_measure: သိမ်းဆည်းထားသောပို့စ်များ
       delivery:
         all: အားလုံး
+        restart: ပေးပို့မှုကို ပြန်လည်စတင်ရန်
+        stop: ပေးပို့မှုကို ရပ်ရန်
         unavailable: မရရှိနိုင်ပါ
+      empty: ဒိုမိန်းများ မတွေ့ပါ။
       moderation:
         all: အားလုံး
         limited: ကန့်သတ်ထားသော
@@ -505,6 +513,7 @@ my:
         other: "%{count} ခွင့်ပြုချက်"
       privileges:
         administrator: စီမံသူ
+        administrator_description: ဤခွင့်ပြုချက် အသုံးပြုသူများအနေဖြင့် ခွင့်ပြုချက်တိုင်းကို ကျော်သွားနိုင်ပါမည်
         delete_user_data: အသုံးပြုသူ၏အချက်အလက်ကို ဖျက်ပါ
         delete_user_data_description: အခြားအသုံးပြုသူများ၏ အချက်အလက်များကို နှောင့်နှေးခြင်းမရှိဘဲ အသုံးပြုသူများအား  ဖျက်ခွင့်ပြုသည်
         invite_users: အသုံးပြုသူများကို ဖိတ်ခေါ်ရန်
@@ -514,18 +523,24 @@ my:
         manage_appeals: အယူခံဝင်ထားခြင်းများကို စီမံပါ
         manage_appeals_description: စိစစ်အရေးယူမှုများအပေါ် အယူခံဝင်မှုများ ပြန်လည်သုံးသပ်ရန်အတွက် အသုံးပြုသူများအား ခွင့်ပြုရန်
         manage_blocks: ပိတ်ပင်ထားမှုများကို စီမံပါ
+        manage_blocks_description: အသုံးပြုသူများအား အီးမေးလ်ဝန်ဆောင်မှုပေးသူများနှင့် IP လိပ်စာများကို ပိတ်ဆို့ရန် ခွင့်ပြုသည်
         manage_custom_emojis: စိတ်ကြိုက်အီမိုဂျီများကို ပြင်ဆင်ရန်
         manage_custom_emojis_description: အသုံးပြုသူများအား ဆာဗာပေါ်တွင် စိတ်ကြိုက်အီမိုဂျီများကို စီမံခန့်ခွဲရန် ခွင့်ပြုသည်။
         manage_federation: ဖက်ဒီကို စီမံပါ
         manage_federation_description: အသုံးပြုသူများအား အခြားဒိုမိန်းများနှင့် ပိတ်ပင်ခြင်း၊ ဖက်ဒီခွင့်ပြုခြင်းနှင့် ပေးပို့နိုင်မှုကို ထိန်းချုပ်ခြင်းတို့ကို ခွင့်ပြုသည်။
         manage_invites: ဖိတ်ခေါ်ခြင်းကို စီမံရန်
+        manage_invites_description: အသုံးပြုသူများအား ဖိတ်ခေါ်ထားသည့်လင့်များကို ရှာဖွေကြည့်ရှုပြီး ပိတ်ရန် ခွင့်ပြုသည်
         manage_reports: အစီရင်ခံစာများကို စီမံပါ
         manage_roles: အခန်းကဏ္ဍများကို စီမံပါ
+        manage_roles_description: အသုံးပြုသူများအား ၎င်းတို့၏အောက်တွင်ရှိသော အခန်းကဏ္ဍများကို စီမံခန့်ခွဲရန်နှင့် သတ်မှတ်ရန် ခွင့်ပြုထားသည်
         manage_rules: စည်းမျဉ်းများကို စီမံပါ
+        manage_rules_description: အသုံးပြုသူများအား ဆာဗာစည်းမျဉ်းများကို ပြောင်းလဲခွင့် ပြုထားသည်
         manage_settings: သတ်မှတ်ချက်များကို စီမံပါ
         manage_settings_description: အသုံးပြုသူများကို ဆိုက်သတ်မှတ်ချက်များ ပြောင်းလဲခွင့် ပြုရန်
         manage_user_access: အသုံးပြုသူဝင်ရောက်မှုကို စီမံပါ
         manage_users: အသုံးပြုသူများကို စီမံပါ
+        manage_webhooks: Webhooks ကို စီမံပါ
+        manage_webhooks_description: စီမံခန့်ခွဲရေးဆိုင်ရာ ဖြစ်ရပ်များအတွက် အသုံးပြုသူများအား webhook စနစ်ထည့်သွင်းရန် ခွင့်ပြုထားသည်
         view_dashboard: ဒက်ရှ်ဘုတ်မြင်ကွင်းကို ကြည့်ရန်
         view_dashboard_description: အသုံးပြုသူများကို ဒက်ရှ်ဘုတ်မြင်ကွင်းနှင့် အမျိုးမျိုးသော ဆိုဒ်နှင့်ဆိုင်သောဂဏန်းများအား ဝင်ရောက်ကြည့်ရှုခွင့်ပြုသည်
         view_devops: DevOps
@@ -546,8 +561,12 @@ my:
         all: လူတိုင်း
         disabled: မည်သူ့ကိုမျှ
         users: အကောင့်ဝင်ထားသော ပြည်တွင်းအသုံးပြုသူများအတွက်
+      registrations:
+        title: စာရင်းသွင်းထားခြင်းများ
       registrations_mode:
         modes:
+          approved: အကောင့်ဖွင့်ရန်အတွက် အတည်ပြုချက် လိုအပ်ပါသည်
+          none: မည်သူမျှ အကောင့်ဖွင့်၍မရပါ
           open: မည်သူမဆို အကောင့်ဖွင့်နိုင်ပါသည်
       title: ဆာဗာသတ်မှတ်ချက်များ
     site_uploads:
@@ -564,6 +583,7 @@ my:
       metadata: Metadata
       open: ပို့စ်ဖွင့်ရန်
       original_status: မူရင်းပို့စ်
+      status_changed: ပို့စ်ပြောင်းပြီးပါပြီ
       title: အကောင့်ပို့စ်များ
       with_media: မီဒီယာနှင့်အတူ
     strikes:
