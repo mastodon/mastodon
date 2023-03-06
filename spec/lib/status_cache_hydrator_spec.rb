@@ -28,6 +28,22 @@ describe StatusCacheHydrator do
         end
       end
 
+      context 'when handling a translatable status' do
+        let(:poll) { Fabricate(:poll, account: account) }
+        let(:status) { Fabricate(:status, poll: poll, account: account, language: 'es') }
+
+        before do
+          service = instance_double(TranslationService::DeepL, supported?: true)
+          allow(TranslationService).to receive(:configured?).and_return(true)
+          allow(TranslationService).to receive(:configured).and_return(service)
+        end
+
+        it 'renders the same attributes as a full render' do
+          expect(status.translatable?).to be true
+          expect(subject).to eql(compare_to_hash)
+        end
+      end
+
       context 'when handling a filtered status' do
         let(:status) { Fabricate(:status, text: 'this toot is about that banned word') }
 
