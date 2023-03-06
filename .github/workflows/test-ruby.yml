@@ -94,6 +94,7 @@ jobs:
       PAM_DEFAULT_SERVICE: pam_test
       PAM_CONTROLLED_SERVICE: pam_test_controlled
       BUNDLE_WITH: 'pam_authentication'
+      CI_JOBS: ${{ matrix.ci_job }}/4
 
     strategy:
       fail-fast: false
@@ -103,6 +104,11 @@ jobs:
           - '3.0'
           - '3.1'
           - '.ruby-version'
+        ci_job:
+          - 1
+          - 2
+          - 3
+          - 4
     steps:
       - uses: actions/checkout@v3
 
@@ -130,4 +136,4 @@ jobs:
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
-      - run: bundle exec rspec spec --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec/results.xml --format progress
+      - run: bundle exec rake rspec_chunked
