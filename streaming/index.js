@@ -16,7 +16,6 @@ const WebSocket = require('ws');
 const { JSDOM } = require('jsdom');
 
 const env = process.env.NODE_ENV || 'development';
-const alwaysRequireAuth = process.env.LIMITED_FEDERATION_MODE === 'true' || process.env.WHITELIST_MODE === 'true' || process.env.AUTHORIZED_FETCH === 'true';
 
 dotenv.config({
   path: env === 'production' ? '.env.production' : '.env',
@@ -347,22 +346,17 @@ const startWorker = async (workerId) => {
    * @param {boolean=} required
    * @return {Promise.<void>}
    */
-  const accountFromRequest = (req, required = true) => new Promise((resolve, reject) => {
+  const accountFromRequest = (req) => new Promise((resolve, reject) => {
     const authorization = req.headers.authorization;
     const location      = url.parse(req.url, true);
     const accessToken   = location.query.access_token || req.headers['sec-websocket-protocol'];
 
     if (!authorization && !accessToken) {
-      if (required) {
-        const err = new Error('Missing access token');
-        err.status = 401;
+      const err = new Error('Missing access token');
+      err.status = 401;
 
-        reject(err);
-        return;
-      } else {
-        resolve();
-        return;
-      }
+      reject(err);
+      return;
     }
 
     const token = authorization ? authorization.replace(/^Bearer /, '') : accessToken;
@@ -465,7 +459,7 @@ const startWorker = async (workerId) => {
     // variables. OAuth scope checks are moved to the point of subscription
     // to a specific stream.
 
-    accountFromRequest(info.req, alwaysRequireAuth).then(() => {
+    accountFromRequest(info.req).then(() => {
       callback(true, undefined, undefined);
     }).catch(err => {
       log.error(info.req.requestId, err.toString());
@@ -539,7 +533,7 @@ const startWorker = async (workerId) => {
       return;
     }
 
-    accountFromRequest(req, alwaysRequireAuth).then(() => checkScopes(req, channelNameFromPath(req))).then(() => {
+    accountFromRequest(req).then(() => checkScopes(req, channelNameFromPath(req))).then(() => {
       subscribeHttpToSystemChannel(req, res);
     }).then(() => {
       next();
