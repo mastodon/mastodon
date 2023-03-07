@@ -127,6 +127,7 @@ class InteractionModal extends React.PureComponent {
         </a>
       );
     } else {
+      // eslint-disable-next-line no-unused-vars
       signupButton = (
         <button className='button button--block button-tertiary' onClick={this.handleSignupClick}>
           <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
