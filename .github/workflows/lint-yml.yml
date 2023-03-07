@@ -6,6 +6,7 @@ on:
     paths:
       - 'package.json'
       - 'yarn.lock'
+      - '.nvmrc'
       - '.prettier*'
       - '**/*.yaml'
       - '**/*.yml'
@@ -16,6 +17,7 @@ on:
     paths:
       - 'package.json'
       - 'yarn.lock'
+      - '.nvmrc'
       - '.prettier*'
       - '**/*.yaml'
       - '**/*.yml'
@@ -34,6 +36,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: yarn
+          node-version-file: '.nvmrc'
 
       - name: Install all yarn packages
         run: yarn --frozen-lockfile

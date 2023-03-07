@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::V1::Emails::ConfirmationsController, type: :controller do
@@ -16,7 +18,7 @@ RSpec.describe Api::V1::Emails::ConfirmationsController, type: :controller do
       context 'from a random app' do
         it 'returns http forbidden' do
           post :create
-          expect(response).to have_http_status(:forbidden)
+          expect(response).to have_http_status(403)
         end
       end
 
@@ -30,7 +32,7 @@ RSpec.describe Api::V1::Emails::ConfirmationsController, type: :controller do
 
           it 'returns http forbidden' do
             post :create
-            expect(response).to have_http_status(:forbidden)
+            expect(response).to have_http_status(403)
           end
 
           context 'but user changed e-mail and has not confirmed it' do
@@ -57,7 +59,7 @@ RSpec.describe Api::V1::Emails::ConfirmationsController, type: :controller do
     context 'without an oauth token' do
       it 'returns http unauthorized' do
         post :create
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to have_http_status(401)
       end
     end
   end

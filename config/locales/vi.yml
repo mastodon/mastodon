@@ -89,6 +89,7 @@ vi:
       moderation:
         active: Hoạt động
         all: Tất cả
+        disabled: Đã tắt
         pending: Chờ
         silenced: Hạn chế
         suspended: Vô hiệu hóa
@@ -130,6 +131,7 @@ vi:
       search: Tìm kiếm
       search_same_email_domain: Tra cứu email
       search_same_ip: Tra cứu IP
+      security: Bảo mật
       security_measures:
         only_password: Chỉ mật khẩu
         password_and_2fa: Mật khẩu và 2FA
@@ -419,6 +421,7 @@ vi:
         resolve: Xử lý tên miền
         title: Chặn tên miền email mới
       no_email_domain_block_selected: Không có chặn e-mail nào thay đổi vì không có mục nào được chọn
+      not_permitted: Không cho phép
       resolved_dns_records_hint_html: Tên miền phân giải thành các tên miền MX sau, các tên miền này chịu trách nhiệm cuối cùng trong việc chấp nhận email. Chặn tên miền MX sẽ chặn đăng ký từ bất kỳ địa chỉ email nào sử dụng cùng một tên miền MX, ngay cả khi tên miền hiển thị là khác. <strong>Cẩn thận đừng chặn những dịch vụ email lớn.</strong>
       resolved_through_html: Đã xử lý thông qua %{domain}
       title: Tên miền email đã chặn
@@ -463,6 +466,7 @@ vi:
       content_policies:
         comment: Lưu ý nội bộ
         description_html: Bạn có thể xác định các chính sách nội dung sẽ được áp dụng cho tất cả các tài khoản trên máy chủ này và bất kỳ tên miền phụ nào của nó.
+        limited_federation_mode_description_html: Bạn có thể chọn nếu muốn cho phép liên hợp với máy chủ này.
         policies:
           reject_media: Từ chối media
           reject_reports: Từ chối báo cáo
@@ -573,11 +577,13 @@ vi:
       assign_to_self: Giao cho tôi
       assigned: Người xử lý
       by_target_domain: Tên tài khoản bị báo cáo
+      cancel: Hủy bỏ
       category: Phân loại
       category_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn khi giao tiếp với họ
       comment:
         none: Không có mô tả
       comment_description_html: "%{name} cho biết thêm:"
+      confirm: Xác nhận
       confirm_action: Xác nhận kiểm duyệt với %{acct}
       created_at: Báo cáo lúc
       delete_and_resolve: Xóa tút
@@ -778,6 +784,7 @@ vi:
         suspend: "%{name} đã vô hiệu hóa %{target}"
       appeal_approved: Đã khiếu nại
       appeal_pending: Đang kháng cáo
+      appeal_rejected: Khiếu nại bị từ chối
     system_checks:
       database_schema_check:
         message_html: Có cơ sở dữ liệu đang chờ xử lý. Xin khởi động nó để ứng dụng có thể hoạt động một cách ổn định nhất
@@ -812,6 +819,7 @@ vi:
           other: "%{count} người chia sẻ tuần rồi"
         title: Liên kết nổi bật
         usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
+      not_allowed_to_trend: Không được phép thành xu hướng
       only_allowed: Chỉ cho phép
       pending_review: Đang chờ
       preview_card_providers:
@@ -940,6 +948,7 @@ vi:
   applications:
     created: Đơn đăng ký được tạo thành công
     destroyed: Đã xóa đơn đăng ký
+    logout: Đăng xuất
     regenerate_token: Tạo lại mã truy cập
     token_regenerated: Mã truy cập được tạo lại thành công
     warning: Hãy rất cẩn thận với dữ liệu này. Không bao giờ chia sẻ nó với bất cứ ai!
@@ -976,6 +985,8 @@ vi:
     resend_confirmation: Gửi lại email xác minh
     reset_password: Đặt lại mật khẩu
     rules:
+      accept: Chấp nhận
+      back: Quay lại
       preamble: Được ban hành và áp dụng bởi quản trị máy chủ %{domain}.
       title: Nội quy máy chủ.
     security: Bảo mật
@@ -1164,8 +1175,6 @@ vi:
       index:
         hint: Bộ lọc này áp dụng để chọn các tút riêng lẻ bất kể các tiêu chí khác. Bạn có thể thêm các tút khác vào bộ lọc này từ giao diện web.
         title: Những tút đã lọc
-  footer:
-    trending_now: Thịnh hành
   generic:
     all: Tất cả
     all_items_on_page_selected_html:
@@ -1184,8 +1193,6 @@ vi:
     today: hôm nay
     validation_errors:
       other: Đã có %{count} lỗi xảy ra! Xem chi tiết bên dưới
-  html_validator:
-    invalid_markup: 'chứa đánh dấu HTML không hợp lệ: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Tập tin CSV không hợp lệ. Lỗi: %{error}'

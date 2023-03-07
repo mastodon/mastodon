@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe WellKnown::NodeInfoController, type: :controller do
@@ -26,9 +28,10 @@ describe WellKnown::NodeInfoController, type: :controller do
       expect(response.media_type).to eq 'application/json'
 
       json = body_as_json
+      foo = { 'foo' => 0 }
 
-      expect({ "foo" => 0 }).not_to match_json_schema("nodeinfo_2.0")
-      expect(json).to match_json_schema("nodeinfo_2.0")
+      expect(foo).to_not match_json_schema('nodeinfo_2.0')
+      expect(json).to match_json_schema('nodeinfo_2.0')
       expect(json[:version]).to eq '2.0'
       expect(json[:usage]).to be_a Hash
       expect(json[:software]).to be_a Hash

@@ -91,6 +91,7 @@ gl:
       moderation:
         active: Activa
         all: Todo
+        disabled: Desactivada
         pending: Pendente
         silenced: Limitada
         suspended: Suspendidos
@@ -133,6 +134,7 @@ gl:
       search: Procurar
       search_same_email_domain: Outras usuarias co mesmo dominio de email
       search_same_ip: Outras usuarias co mesmo IP
+      security: Seguridade
       security_measures:
         only_password: Só contrasinal
         password_and_2fa: Contrasinal e 2FA
@@ -427,6 +429,7 @@ gl:
         resolve: Resolver dominio
         title: Nova entrada na listaxe negra de email
       no_email_domain_block_selected: Non se cambiou ningún bloqueo de dominio de email porque non se seleccionou ningún
+      not_permitted: Non permitido
       resolved_dns_records_hint_html: O nome de dominio resolve os seguintes rexistros MX, que son os últimos responsables da aceptación de emails. Bloqueando un dominio MX rexeitarás calquera enderezo de email que use este dominio MX, incluso se o nome de dominio visible é outro. <strong>Ten coidado de non bloquear os principais provedores.</strong>
       resolved_through_html: Resolto a través de %{domain}
       title: Listaxe negra de email
@@ -473,6 +476,7 @@ gl:
       content_policies:
         comment: Nota interna
         description_html: Podes definir políticas acerca do contido que serán aplicadas a tódalas contas deste dominio e tódolos seus subdominios.
+        limited_federation_mode_description_html: Podes elexir se permites a federación con este dominio.
         policies:
           reject_media: Rexeitar multimedia
           reject_reports: Rexeitar denuncias
@@ -585,11 +589,13 @@ gl:
       assign_to_self: Asignarme
       assigned: Moderador asignado
       by_target_domain: Dominio da conta denunciada
+      cancel: Cancelar
       category: Categoría
       category_description_html: A razón para denunciar esta conta ou contido será citada na comunicación coa conta denunciada
       comment:
         none: Ningún
       comment_description_html: 'Como información engadida, %{name} escribiu:'
+      confirm: Confirmar
       confirm_action: Confirma a acción de moderación contra @%{acct}
       created_at: Denunciado
       delete_and_resolve: Eliminar publicacións
@@ -792,6 +798,7 @@ gl:
         suspend: "%{name} suspendeu a conta de %{target}"
       appeal_approved: Recurrida
       appeal_pending: Apelación pendente
+      appeal_rejected: Apelación rexeitada
     system_checks:
       database_schema_check:
         message_html: Existen migracións pendentes na base de datos. Bota man desta tarefa para facer que a aplicación funcione como se agarda dela
@@ -827,6 +834,7 @@ gl:
           other: Compartido por %{count} persoas na última semana
         title: Ligazóns en voga
         usage_comparison: Compartido %{today} veces hoxe, comparado con %{yesterday} onte
+      not_allowed_to_trend: Non permitido como tendencia
       only_allowed: Só as permitidas
       pending_review: Revisión pendente
       preview_card_providers:
@@ -958,6 +966,7 @@ gl:
   applications:
     created: Creouse con éxito este aplicativo
     destroyed: Eliminouse con éxito o aplicativo
+    logout: Pechar sesión
     regenerate_token: Votar a xenerar o testemuño de acceso
     token_regenerated: Rexenerouse con éxito o testemuño de acceso
     warning: Ten moito tino con estos datos. Non os compartas nunca con ninguén!
@@ -994,6 +1003,8 @@ gl:
     resend_confirmation: Reenviar as intruccións de confirmación
     reset_password: Restablecer contrasinal
     rules:
+      accept: Aceptar
+      back: Volver
       preamble: Son establecidas e aplicadas pola moderación de %{domain}.
       title: Algunhas regras básicas.
     security: Seguranza
@@ -1141,7 +1152,7 @@ gl:
   featured_tags:
     add_new: Engadir novo
     errors:
-      limit: Xa acadaches o número máximo de cancelos
+      limit: Xa sinalaches o número máximo de cancelos permitido
     hint_html: "<strong>¿Qué son os cancelos destacados?</strong> Móstranse destacados no teu perfil público e permítenlle a outras persoas ver os teus toots públicos nos que os utilizaches. Son unha ferramenta moi útil para facer seguimento de traballos creativos e proxectos a longo prazo."
   filters:
     contexts:
@@ -1185,8 +1196,6 @@ gl:
       index:
         hint: Este filtro aplícase para seleccionar publicacións individuais independentemente doutros criterios. Podes engadir máis publicacións a este filtro desde a interface web.
         title: Publicacións filtradas
-  footer:
-    trending_now: Tendencia agora
   generic:
     all: Todo
     all_items_on_page_selected_html:
@@ -1209,8 +1218,6 @@ gl:
     validation_errors:
       one: Algo non está ben de todo! Por favor revise abaixo o erro
       other: Algo aínda non está ben! Por favor revise os %{count} erros abaixo
-  html_validator:
-    invalid_markup: 'contén cancelos HTML non válidas: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Ficheiro CSV non válido. Erro: %{error}'
@@ -1253,7 +1260,7 @@ gl:
     title: Convidar xente
   lists:
     errors:
-      limit: Acadou o número máximo de listas
+      limit: Xa acadaches o número máximo de listas
   login_activities:
     authentication_methods:
       otp: app para autenticación con dous factores
@@ -1573,7 +1580,7 @@ gl:
       '7889238': 3 meses
     min_age_label: Límite temporal
     min_favs: Manter as publicacións favoritas máis de
-    min_favs_hint: Non elimina ningunha das túas publicacións que recibiron máis desta cantidade de favorecementos. Deixa en branco para eliminar publicacións independentemente do número de favorecementos
+    min_favs_hint: Non elimina ningunha das túas publicacións que recibiron alomenos esta cantidade de favorecementos. Deixa en branco para eliminar publicacións independentemente do número de favorecementos
     min_reblogs: Manter publicacións promovidas máis de
     min_reblogs_hint: Non elimina ningunha das túas publicacións se foron promovidas máis deste número de veces. Deixa en branco para eliminar publicacións independentemente do seu número de promocións
   stream_entries:

@@ -93,7 +93,7 @@ module Mastodon
         c.table_name = 'statuses_to_be_deleted'
       end
 
-      Object.const_set('StatusToBeDeleted', klass)
+      Object.const_set(:StatusToBeDeleted, klass)
 
       scope     = StatusToBeDeleted
       processed = 0
@@ -175,7 +175,7 @@ module Mastodon
         c.table_name = 'conversations_to_be_deleted'
       end
 
-      Object.const_set('ConversationsToBeDeleted', klass)
+      Object.const_set(:ConversationsToBeDeleted, klass)
 
       scope     = ConversationsToBeDeleted
       processed = 0

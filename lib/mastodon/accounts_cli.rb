@@ -490,14 +490,12 @@ module Mastodon
         scope = Account.where(id: ::Follow.where(account: account).select(:target_account_id))
 
         scope.find_each do |target_account|
-          begin
-            UnfollowService.new.call(account, target_account)
-          rescue => e
-            progress.log pastel.red("Error processing #{target_account.id}: #{e}")
-          ensure
-            progress.increment
-            processed += 1
-          end
+          UnfollowService.new.call(account, target_account)
+        rescue => e
+          progress.log pastel.red("Error processing #{target_account.id}: #{e}")
+        ensure
+          progress.increment
+          processed += 1
         end
 
         BootstrapTimelineWorker.perform_async(account.id)
@@ -507,14 +505,12 @@ module Mastodon
         scope = Account.where(id: ::Follow.where(target_account: account).select(:account_id))
 
         scope.find_each do |target_account|
-          begin
-            UnfollowService.new.call(target_account, account)
-          rescue => e
-            progress.log pastel.red("Error processing #{target_account.id}: #{e}")
-          ensure
-            progress.increment
-            processed += 1
-          end
+          UnfollowService.new.call(target_account, account)
+        rescue => e
+          progress.log pastel.red("Error processing #{target_account.id}: #{e}")
+        ensure
+          progress.increment
+          processed += 1
         end
       end
 
@@ -631,7 +627,7 @@ module Mastodon
           exit(1)
         end
 
-        unless options[:force] || migration.target_acount_id == account.moved_to_account_id
+        unless options[:force] || migration.target_account_id == account.moved_to_account_id
           say('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway', :red)
           exit(1)
         end

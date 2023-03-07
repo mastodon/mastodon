@@ -82,7 +82,7 @@ class FetchOEmbedService
     return if @endpoint_url.blank?
 
     body = Request.new(:get, @endpoint_url).perform do |res|
-      res.code != 200 ? nil : res.body_with_limit
+      res.code == 200 ? res.body_with_limit : nil
     end
 
     validate(parse_for_format(body)) if body.present?

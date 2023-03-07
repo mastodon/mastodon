@@ -91,6 +91,7 @@ fr:
       moderation:
         active: Actifs
         all: Tous
+        disabled: Désactivé
         pending: En cours de traitement
         silenced: Limité
         suspended: Suspendus
@@ -133,6 +134,7 @@ fr:
       search: Rechercher
       search_same_email_domain: Autres utilisateurs·trices avec le même domaine de courriel
       search_same_ip: Autres utilisateur·rice·s avec la même IP
+      security: Sécurité
       security_measures:
         only_password: Mot de passe uniquement
         password_and_2fa: Mot de passe et A2F
@@ -427,6 +429,7 @@ fr:
         resolve: Résoudre le domaine
         title: Nouveau blocage de domaine de courriel
       no_email_domain_block_selected: Aucun blocage de domaine de courriel n'a été modifié car aucun n'a été sélectionné
+      not_permitted: Non autorisé
       resolved_dns_records_hint_html: Le nom de domaine est relié aux domaines MX suivants, qui ont la responsabilité ultime d'accepter les courriels. Bloquer un domaine MX empêchera les inscriptions à partir de toute adresse courriel utilisant le même domaine MX, même si le nom de domaine affiché est différent. <strong> Veillez à ne pas bloquer les fournisseurs de messagerie d'envergure.</strong>
       resolved_through_html: Résolu par %{domain}
       title: Blocage de domaines de courriel
@@ -473,6 +476,7 @@ fr:
       content_policies:
         comment: Note interne
         description_html: Vous pouvez définir des politiques de contenu qui seront appliquées à tous les comptes de ce domaine et à tous ses sous-domaines.
+        limited_federation_mode_description_html: Vous pouvez choisir d'autoriser la fédération avec ce domaine.
         policies:
           reject_media: Rejeter les médias
           reject_reports: Rejeter les signalements
@@ -585,11 +589,13 @@ fr:
       assign_to_self: Me l’assigner
       assigned: Modérateur assigné
       by_target_domain: Domaine du compte signalé
+      cancel: Annuler
       category: Catégorie
       category_description_html: La raison pour laquelle ce compte et/ou ce contenu a été signalé sera citée dans la communication avec le compte signalé
       comment:
         none: Aucun
       comment_description_html: 'Pour fournir plus d''informations, %{name} a écrit :'
+      confirm: Confirmer
       confirm_action: Confirmer l'action de modération contre @%{acct}
       created_at: Signalé
       delete_and_resolve: Supprimer les messages
@@ -792,6 +798,7 @@ fr:
         suspend: "%{name} a suspendu le compte de %{target}"
       appeal_approved: Appel soumis
       appeal_pending: Appel en attente
+      appeal_rejected: Appel rejeté
     system_checks:
       database_schema_check:
         message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
@@ -827,6 +834,7 @@ fr:
           other: Partagé par %{count} personnes au cours de la dernière semaine
         title: Liens tendances
         usage_comparison: Partagé %{today} fois aujourd'hui, comparé à %{yesterday} hier
+      not_allowed_to_trend: Non autorisé à apparaître dans les tendances
       only_allowed: Autorisées seulement
       pending_review: En attente de révision
       preview_card_providers:
@@ -841,7 +849,7 @@ fr:
         description_html: Voici les messages dont votre serveur a connaissance qui sont beaucoup partagés et mis en favoris en ce moment. Cela peut aider vos utilisateur⋅rice⋅s, néophytes comme aguerri⋅e⋅s, à trouver plus de comptes à suivre. Aucun message n'est publiquement affiché tant que vous n'en avez pas approuvé l'auteur⋅rice, et seulement si icellui permet que son compte soit suggéré aux autres. Vous pouvez également autoriser ou rejeter les messages individuellement.
         disallow: Proscrire le message
         disallow_account: Proscrire l'auteur·rice
-        no_status_selected: Aucune publication en tendance n'a été changée car aucune n'a été sélectionnée
+        no_status_selected: Aucun message tendance n'a été modifié car aucun n'était sélectionné
         not_discoverable: L'auteur⋅rice n'a pas choisi de pouvoir être découvert⋅e
         shared_by:
           one: Partagé ou ajouté aux favoris une fois
@@ -958,6 +966,7 @@ fr:
   applications:
     created: Application créée avec succès
     destroyed: Application supprimée avec succès
+    logout: Se déconnecter
     regenerate_token: Régénérer le jeton d’accès
     token_regenerated: Jeton d’accès régénéré avec succès
     warning: Soyez prudent·e avec ces données. Ne les partagez pas !
@@ -994,6 +1003,8 @@ fr:
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
     reset_password: Réinitialiser le mot de passe
     rules:
+      accept: Accepter
+      back: Retour
       preamble: Celles-ci sont définies et appliqués par les modérateurs de %{domain}.
       title: Quelques règles de base.
     security: Sécurité
@@ -1185,8 +1196,6 @@ fr:
       index:
         hint: Ce filtre s'applique à la sélection de messages individuels, indépendamment d'autres critères. Vous pouvez ajouter plus de messages à ce filtre à partir de l'interface Web.
         title: Messages filtrés
-  footer:
-    trending_now: Tendance en ce moment
   generic:
     all: Tous
     all_items_on_page_selected_html:
@@ -1209,8 +1218,6 @@ fr:
     validation_errors:
       one: Quelque chose ne va pas ! Veuillez vérifiez l’erreur ci-dessous
       other: Certaines choses ne vont pas ! Veuillez vérifier les %{count} erreurs ci-dessous
-  html_validator:
-    invalid_markup: 'contient un balisage HTML invalide: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Fichier CSV non valide. Erreur : %{error}'

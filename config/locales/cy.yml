@@ -99,6 +99,7 @@ cy:
       moderation:
         active: Yn weithredol
         all: Popeth
+        disabled: Analluogwyd
         pending: Yn aros
         silenced: Cyfyngedig
         suspended: Wedi ei atal
@@ -145,6 +146,7 @@ cy:
       search: Chwilio
       search_same_email_domain: Defnyddwyr eraill gyda'r un parth e-bost
       search_same_ip: Defnyddwyr eraill gyda'r un IP
+      security: Diogelwch
       security_measures:
         only_password: Cyfrinair yn unig
         password_and_2fa: Cyfrinair a 2FA
@@ -189,7 +191,7 @@ cy:
         create_account_warning: Creu Rhybydd
         create_announcement: Creu Cyhoeddiad
         create_canonical_email_block: Creu Bloc E-bost
-        create_custom_emoji: Creu Emoji Cyfaddas
+        create_custom_emoji: Creu Emoji Addasedig
         create_domain_allow: Creu Caniatáu Parth
         create_domain_block: Creu Gwaharddiad Parth
         create_email_domain_block: Creu Gwaharddiad Parth E-bost
@@ -199,7 +201,7 @@ cy:
         demote_user: Diraddio Defnyddiwr
         destroy_announcement: Dileu Cyhoeddiad
         destroy_canonical_email_block: Dileu Bloc E-bost
-        destroy_custom_emoji: Dileu Emoji Cyfaddas
+        destroy_custom_emoji: Dileu Emoji Addasedig
         destroy_domain_allow: Dileu Caniatáu Parth
         destroy_domain_block: Dileu Gwaharddiad Parth
         destroy_email_domain_block: Dileu gwaharddiad parth e-bost
@@ -207,12 +209,12 @@ cy:
         destroy_ip_block: Dileu rheol IP
         destroy_status: Dileu Postiad
         destroy_unavailable_domain: Dileu Parth Ddim ar Gael
-        destroy_user_role: Dinistrio Rôl
+        destroy_user_role: Dileu Rôl
         disable_2fa_user: Diffodd 2FA
-        disable_custom_emoji: Analluogi Emoji Cyfaddas
+        disable_custom_emoji: Analluogi Emoji Addasedig
         disable_sign_in_token_auth_user: Analluogi Dilysu Tocyn E-bost ar gyfer Defnyddiwr
         disable_user: Analluogi Defnyddiwr
-        enable_custom_emoji: Alluogi Emoji Cyfaddas
+        enable_custom_emoji: Galluogi Emoji Addasedig
         enable_sign_in_token_auth_user: Galluogi Dilysu Tocyn E-bost ar gyfer Defnyddiwr
         enable_user: Galluogi Defnyddiwr
         memorialize_account: Cofadeilio Cyfrif
@@ -233,7 +235,7 @@ cy:
         unsilence_account: Dad-gyfyngu Cyfrif
         unsuspend_account: Tynnu Ataliad Cyfrif Dros Dro
         update_announcement: Diweddaru Cyhoeddiad
-        update_custom_emoji: Diweddaru Emoji Cyfaddas
+        update_custom_emoji: Diweddaru Emoji Addasedig
         update_domain_block: Diweddaru'r Blocio Parth
         update_ip_block: Diweddaru rheol IP
         update_status: Diweddaru Postiad
@@ -459,6 +461,7 @@ cy:
         resolve: Datrys parth
         title: Rhwystro parth e-bost newydd
       no_email_domain_block_selected: Heb newid unrhyw flociau parth e-bost gan nad oes un wedi'i ddewis
+      not_permitted: Dim caniatâd
       resolved_dns_records_hint_html: Mae'r enw parth yn cyd-fynd â'r parthau MX canlynol, sy'n gyfrifol yn y pen draw am dderbyn e-bost. Bydd rhwystro parth MX yn rhwystro cofrestriadau o unrhyw gyfeiriad e-bost sy'n defnyddio'r un parth MX, hyd yn oed os yw'r enw parth gweladwy yn wahanol. <strong>Byddwch yn ofalus i beidio â rhwystro darparwyr e-bost mawr.</strong>
       resolved_through_html: Wedi'i ddatrys trwy %{domain}
       title: Parthau e-bost wedi'u rhwystro
@@ -513,6 +516,7 @@ cy:
       content_policies:
         comment: Nodyn mewnol
         description_html: Gallwch ddiffinio polisïau cynnwys a fydd yn cael eu cymhwyso i bob cyfrif o'r parth hwn ac unrhyw un o'i is-barthau.
+        limited_federation_mode_description_html: Gallwch ddewis a ydych am ganiatáu ffedereiddio â'r parth hwn.
         policies:
           reject_media: Gwrthod cyfryngau
           reject_reports: Gwrthod adroddiadau
@@ -633,11 +637,13 @@ cy:
       assign_to_self: Neilltuo i mi
       assigned: Cymedrolwr wedi'i neilltuo
       by_target_domain: Parth y cyfrif a adroddwyd
+      cancel: Canslo
       category: Categori
       category_description_html: Bydd y rheswm dros adrodd am y cyfrif a/neu’r cynnwys hwn yn cael ei ddyfynnu wrth gyfathrebu â’r cyfrif a adroddwyd
       comment:
         none: Dim
       comment_description_html: 'I ddarparu rhagor o wybodaeth, ysgrifennodd %{name}:'
+      confirm: Cadarnhau
       confirm_action: Cadarnhau gweithred cymedroli yn erbyn @%{acct}
       created_at: Adroddwyd
       delete_and_resolve: Dileu postiadau
@@ -795,7 +801,7 @@ cy:
         publish_discovered_servers: Cyhoeddi gweinyddion a ddarganfuwyd
         publish_statistics: Cyhoeddi ystadegau
         title: Darganfod
-        trends: Trendiau
+        trends: Tueddiadau
       domain_blocks:
         all: I bawb
         disabled: I neb
@@ -848,6 +854,7 @@ cy:
         suspend: Mae %{name} wedi atal cyfrif %{target}
       appeal_approved: Apeliwyd
       appeal_pending: Apêl yn aros
+      appeal_rejected: Mae'r apêl wedi'i gwrthod
     system_checks:
       database_schema_check:
         message_html: Mae mudo cronfa ddata ar fin digwydd. Rhedwch nhw i sicrhau bod y rhaglen yn ymddwyn yn ôl y disgwyl
@@ -887,6 +894,7 @@ cy:
           zero: Wedi'i rannu gan %{count} o bobl dros yr wythnos ddiwethaf
         title: Dolenni sy'n trendio
         usage_comparison: Wedi'i rannu %{today} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
+      not_allowed_to_trend: Dim caniatâd i dueddu
       only_allowed: Derbyniwyd yn unig
       pending_review: Yn aros am adolygiad
       preview_card_providers:
@@ -1030,6 +1038,7 @@ cy:
   applications:
     created: Cais wedi ei greu'n llwyddiannus
     destroyed: Cais wedi ei ddileu'n llwyddiannus
+    logout: Allgofnodi
     regenerate_token: Adfywio tocyn mynediad
     token_regenerated: Adfywiwyd y tocyn mynediad yn llwyddiannus
     warning: Byddwch yn ofalus iawn gyda'r data hwn. Peidiwch byth â'i rannu ag unrhyw un!
@@ -1066,6 +1075,8 @@ cy:
     resend_confirmation: Ailanfon cyfarwyddiadau cadarnhau
     reset_password: Ailosod cyfrinair
     rules:
+      accept: Derbyn
+      back: Nôl
       preamble: Mae'r rhain yn cael eu gosod a'u gorfodi gan y %{domain} cymedrolwyr.
       title: Rhai rheolau sylfaenol.
     security: Diogelwch
@@ -1204,7 +1215,7 @@ cy:
       request: Gofynn am eich archif
       size: Maint
     blocks: Rydych chi'n blocio
-    bookmarks: Nodau Tudalen
+    bookmarks: Llyfrnodau
     csv: CSV
     domain_blocks: Blociau parth
     lists: Rhestrau
@@ -1213,7 +1224,7 @@ cy:
   featured_tags:
     add_new: Ychwanegu
     errors:
-      limit: Rydych chi eisoes wedi cynnwys yr uchafswm o hashnodau
+      limit: Rydych chi eisoes wedi cynnwys y nifer mwyaf o hashnodau
     hint_html: "<strong>Beth yw hashnodau dan sylw?</strong> Maen nhw'n cael eu dangos yn amlwg ar eich proffil cyhoeddus ac yn caniatáu i bobl bori'ch postiadau cyhoeddus yn benodol o dan yr hashnodau hynny. Maen nhw'n arf gwych ar gyfer cadw golwg ar weithiau creadigol neu brojectau tymor hir."
   filters:
     contexts:
@@ -1269,8 +1280,6 @@ cy:
       index:
         hint: Mae'r hidlydd hwn yn berthnasol i ddethol postiadau unigol waeth beth fo'r meini prawf eraill. Gallwch ychwanegu mwy o bostiadau at yr hidlydd hwn o'r rhyngwyneb gwe.
         title: Postiadau wedi'u hidlo
-  footer:
-    trending_now: Trendiau
   generic:
     all: Popeth
     all_items_on_page_selected_html:
@@ -1309,8 +1318,6 @@ cy:
       other: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod, os gwelwch yn dda
       two: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} wall isod, os gwelwch yn dda
       zero: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
-  html_validator:
-    invalid_markup: 'yn cynnwys markup HTML annilys: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Ffeil CSV annilys. Gwall: %{error}'
@@ -1324,7 +1331,7 @@ cy:
     success: Llwythwyd eich data yn llwyddiannus a bydd yn cael ei brosesu mewn da bryd
     types:
       blocking: Rhestr blocio
-      bookmarks: Nodau Tudalen
+      bookmarks: Llyfrnodau
       domain_blocking: Rhestr rhwystro parth
       following: Rhestr ddilynion
       muting: Rhestr tewi
@@ -1357,7 +1364,7 @@ cy:
     title: Gwahodd pobl
   lists:
     errors:
-      limit: Rydych wedi cyrraedd uchafswm y rhestrau
+      limit: Rydych chi wedi cyrraedd y nifer mwyaf o restrau
   login_activities:
     authentication_methods:
       otp: ap dilysu dau ffactor
@@ -1409,7 +1416,7 @@ cy:
     title: Cymedroil
   move_handler:
     carry_blocks_over_text: Symudodd y defnyddiwr hwn o %{acct}, yr oeddech wedi'i rwystro.
-    carry_mutes_over_text: Symudodd y defnyddiwr hwn o %{acct}, lle roeddech chi wedi'i dewi.
+    carry_mutes_over_text: Wnaeth y defnyddiwr symud o %{acct}, a oeddech chi wedi'i anwybyddu.
     copy_account_note_text: 'Symudodd y defnyddiwr hwn o %{acct}, dyma oedd eich nodiadau blaenorol amdanynt:'
   navigation:
     toggle_menu: Toglo'r ddewislen
@@ -1686,8 +1693,8 @@ cy:
     keep_pinned_hint: Nid yw'n dileu unrhyw un o'ch postiadau wedi'u pinio
     keep_polls: Cadw arolygon
     keep_polls_hint: Nid yw'n dileu unrhyw un o'ch arolygon
-    keep_self_bookmark: Cadw y postiadau wedi'u cadw fel nodau tudalen
-    keep_self_bookmark_hint: Nid yw'n dileu eich postiadau eich hun os ydych wedi rhoi nod tudalen arnyn nhw
+    keep_self_bookmark: Cadw y postiadau wedi'u cadw fel llyfrnodau
+    keep_self_bookmark_hint: Nid yw'n dileu eich postiadau eich hun os ydych wedi rhoi llyfrnodau arnyn nhw
     keep_self_fav: Cadw'r postiadau yr oeddech yn eu ffefrynnu
     keep_self_fav_hint: Nid yw'n dileu eich postiadau eich hun os ydych wedi eu ffefrynnu
     min_age:
@@ -1701,7 +1708,7 @@ cy:
       '7889238': 3 mis
     min_age_label: Trothwy oedran
     min_favs: Cadw postiadau ffafriwyd am o leiaf
-    min_favs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi derbyn o leiaf y swm hwn o ffefrynnau. Gadewch yn wag i ddileu postiadau waeth beth fo'u ffefrynnau
+    min_favs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi derbyn o leiaf y nifer hwn o ffefrynnau. Gadewch yn wag i ddileu postiadau, beth bynnag yw eu ffefrynnau
     min_reblogs: Cadw postiadau wedi eu hybu o leiaf
     min_reblogs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi cael eu hybu o leiaf y nifer hwn o weithiau. Gadewch yn wag i ddileu postiadau waeth beth fo'u nifer o hybiadau
   stream_entries:

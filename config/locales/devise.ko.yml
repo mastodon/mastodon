@@ -8,42 +8,42 @@ ko:
     failure:
       already_authenticated: 이미 로그인 된 상태입니다.
       inactive: 계정이 아직 활성화 되지 않았습니다.
-      invalid: 알맞지 않은 %{authentication_keys} 혹은 암호입니다.
+      invalid: 올바르지 않은 %{authentication_keys} 혹은 암호입니다.
       last_attempt: 계정이 잠기기까지 한 번의 시도가 남았습니다.
       locked: 계정이 잠겼습니다.
-      not_found_in_database: 알맞지 않은 %{authentication_keys} 혹은 암호입니다.
+      not_found_in_database: 올바르지 않은 %{authentication_keys} 혹은 암호입니다.
       pending: 이 계정은 아직 검토 중입니다.
       timeout: 세션이 만료 되었습니다. 다시 로그인 해 주세요.
       unauthenticated: 계속 하려면 로그인을 해야 합니다.
       unconfirmed: 계속 하려면 이메일을 확인 받아야 합니다.
     mailer:
       confirmation_instructions:
-        action: 이메일 주소 검증
+        action: 이메일 확인
         action_with_app: 확인하고 %{app}으로 돌아가기
         explanation: 당신은 %{host}에서 이 이메일로 가입하셨습니다. 클릭만 하시면 계정이 활성화 됩니다. 만약 당신이 가입한 게 아니라면 이 메일을 무시해 주세요.
         explanation_when_pending: 당신은 %{host}에 가입 요청을 하셨습니다. 이 이메일이 확인 되면 우리가 가입 요청을 리뷰하고 승인할 수 있습니다. 그 전까지는 로그인을 할 수 없습니다. 당신의 가입 요청이 거부 될 경우 당신에 대한 정보는 모두 삭제 되며 따로 요청 할 필요는 없습니다. 만약 당신이 가입 요청을 한 게 아니라면 이 메일을 무시해 주세요.
         extra_html: <a href="%{terms_path}">서버의 규칙</a>과 <a href="%{policy_path}">이용 약관</a>도 확인해 주세요.
         subject: '마스토돈: %{instance}에 대한 확인 메일'
-        title: 이메일 주소 검증
+        title: 이메일 주소 확인
       email_changed:
         explanation: '귀하의 계정이 다음의 이메일 주소로 변경됩니다:'
         extra: 만약 이메일을 바꾸지 않았다면 누군가 계정에 대한 접근 권한을 얻은 것입니다. 바로 암호를 바꾸셔야 하며, 만약 계정이 잠겼다면 서버의 운영자에게 연락 바랍니다.
         subject: '마스토돈: 이메일이 변경 되었습니다'
         title: 새 이메일 주소
       password_change:
-        explanation: 계정의 암호를 바꾸었습니다.
+        explanation: 계정 암호가 변경되었습니다.
         extra: 만약 패스워드 변경을 하지 않았다면 누군가가 당신의 계정에 대한 접근 권한을 얻은 것입니다. 즉시 패스워드를 바꾼 후, 계정이 잠겼다면 서버의 관리자에게 연락 하세요.
-        subject: 'Mastodon: 암호 변경함'
-        title: 암호 변경함
+        subject: 'Mastodon: 암호 변경됨'
+        title: 암호 변경됨
       reconfirmation_instructions:
         explanation: 이메일 주소를 바꾸려면 새 이메일 주소를 확인해야 합니다.
         extra: 당신이 시도한 것이 아니라면 이 메일을 무시해 주세요. 위 링크를 클릭하지 않으면 이메일 변경은 일어나지 않습니다.
         subject: '마스토돈: %{instance}에 대한 이메일 확인'
-        title: 이메일 주소 검증
+        title: 이메일 주소 확인
       reset_password_instructions:
         action: 암호 변경
-        explanation: 계정에 새 암호를 쓰도록 요청받았습니다.
-        extra: 요청하지 않았다면 이 이메일을 무시하셔야 합니다. 상기 링크에 접속하지 않으면 암호는 새것으로 변경되지 않습니다.
+        explanation: 계정에 대한 패스워드 변경을 요청하였습니다.
+        extra: 만약 당신이 시도한 것이 아니라면 이 메일을 무시해 주세요. 위 링크를 클릭해 패스워드를 새로 설정하기 전까지는 패스워드가 바뀌지 않습니다.
         subject: 'Mastodon: 암호 재설정 설명'
         title: 암호 재설정
       two_factor_disabled:
@@ -81,7 +81,7 @@ ko:
       failure: '"%{reason}" 때문에 당신을 %{kind}에서 인증할 수 없습니다.'
       success: "%{kind} 계정을 성공적으로 인증했습니다."
     passwords:
-      no_token: 이 페이지는 암호 재설정 이메일을 거쳐야 접근할 수 있습니다. 만약 암호 재설정 이메일 거치지 않았다면 사용하려는 URL이 맞는지 확인 바랍니다.
+      no_token: 이 페이지는 암호 재설정 이메일을 거쳐야 접근할 수 있습니다. 만약 암호 재설정 이메일 거치지 않았다면 입력한 URL이 맞는지 확인 바랍니다.
       send_instructions: 당신의 이메일 주소가 우리의 DB에 있다면 패스워드 복구 링크가 몇 분 이내에 메일로 발송 됩니다. 만약 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
       send_paranoid_instructions: 당신의 이메일 주소가 우리의 DB에 있다면 패스워드 복구 링크가 몇 분 이내에 메일로 발송 됩니다. 만약 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
       updated: 암호를 잘 바꾸었습니다. 현재 로그인 상태입니다.

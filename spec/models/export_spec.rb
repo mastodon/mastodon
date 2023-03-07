@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Export do
   let(:account) { Fabricate(:account) }
   let(:target_accounts) do
-    [ {}, { username: 'one', domain: 'local.host' } ].map(&method(:Fabricate).curry(2).call(:account))
+    [{}, { username: 'one', domain: 'local.host' }].map(&method(:Fabricate).curry(2).call(:account))
   end
 
   describe 'to_csv' do

@@ -91,6 +91,7 @@ eu:
       moderation:
         active: Aktiboa
         all: Denak
+        disabled: Desgaituta
         pending: Zain
         silenced: Mugatua
         suspended: Kanporatua
@@ -133,6 +134,7 @@ eu:
       search: Bilatu
       search_same_email_domain: E-mail domeinu bera duten beste erabiltzailean
       search_same_ip: IP bera duten beste erabiltzaileak
+      security: Segurtasuna
       security_measures:
         only_password: Soilik pasahitza
         password_and_2fa: Pasahitza eta 2FA
@@ -429,6 +431,7 @@ eu:
         resolve: Ebatzi domeinua
         title: Sarrera berria e-mail zerrenda beltzean
       no_email_domain_block_selected: Ez da eposta domeinu blokeorik aldatu ez delako bat ere hautatu
+      not_permitted: Baimendu gabea
       resolved_dns_records_hint_html: Domeinu-izena ondorengo MX domeinuetara ebazten da, zeinek eposta onartzeko ardura duten. MX domeinu bat blokeatzeak MX domeinu hori erabiltzen duen edozein helbide elektronikotatik izena-ematea blokeatzen du, baita ikusgai dagoen domeinu-izena beste bat bada ere. <strong>Kontuz ibili eposta hornitzaile nagusiak blokeatu gabe.</strong>
       resolved_through_html: "%{domain} domeinuaren bidez ebatzia"
       title: E-mail zerrenda beltza
@@ -475,6 +478,7 @@ eu:
       content_policies:
         comment: Barne-oharra
         description_html: Domeinu honetako eta bere azpi-domeinuetako kontu guztiei aplikatuko zaizkien eduki-politikak definitu ditzakezu.
+        limited_federation_mode_description_html: Domeinu honekin federatu ahal izatea baimendu dezakezu.
         policies:
           reject_media: Errefusatu multimediak
           reject_reports: Errefusatu salaketak
@@ -587,11 +591,13 @@ eu:
       assign_to_self: Esleitu niri
       assigned: Esleitutako moderatzailea
       by_target_domain: Jakinarazitako kontuaren domeinua
+      cancel: Utzi
       category: Kategoria
       category_description_html: Kontu edo/eta eduki hau salatu izanaren arrazoia salatutako kontuarekiko komunikazioan aipatuko da
       comment:
         none: Bat ere ez
       comment_description_html: 'Informazio gehiago emateko, %{name} idatzi:'
+      confirm: Berretsi
       confirm_action: "@%{acct} kontuaren aurkako moderazio-ekintza baieztatu"
       created_at: Salatua
       delete_and_resolve: Ezabatu bidalketak
@@ -794,6 +800,7 @@ eu:
         suspend: "%{name} erabiltzaileak %{target} kontua kanporatu du"
       appeal_approved: Apelatua
       appeal_pending: Apelazioa zain
+      appeal_rejected: Apelazioa baztertuta
     system_checks:
       database_schema_check:
         message_html: Aplikatu gabeko datu-basearen migrazioak daude. Exekutatu aplikazioak esperotako portaera izan dezan
@@ -829,6 +836,7 @@ eu:
           other: "%{count} pertsonak partekatua azken astean"
         title: Esteken joerak
         usage_comparison: "%{today} aldiz partekatua gaur, atzo %{yesterday} aldiz"
+      not_allowed_to_trend: Joeretan agertzeko baimenik gabe
       only_allowed: Soilik onartutakoak
       pending_review: Berrikusketaren zain
       preview_card_providers:
@@ -960,6 +968,7 @@ eu:
   applications:
     created: Aplikazioa ongi sortu da
     destroyed: Aplikazioa ongi ezabatu da
+    logout: Amaitu saioa
     regenerate_token: Birsortu sarbide token-a
     token_regenerated: Sarbide token-a ongi birsortu da
     warning: Kontuz datu hauekin, ez partekatu inoiz inorekin!
@@ -996,6 +1005,8 @@ eu:
     resend_confirmation: Birbidali berresteko argibideak
     reset_password: Berrezarri pasahitza
     rules:
+      accept: Onartu
+      back: Atzera
       preamble: Hauek %{domain} instantziako moderatzaileek ezarriak eta betearaziak dira.
       title: Oinarrizko arau batzuk.
     security: Segurtasuna
@@ -1143,7 +1154,7 @@ eu:
   featured_tags:
     add_new: Gehitu berria
     errors:
-      limit: Gehienezko traola kopurua nabarmendu duzu jada
+      limit: Gehienezko traola kopurua erakutsi duzu jada
     hint_html: "<strong>Zer dira nabarmendutako traolak?</strong> Zure profilean toki nabarmendu batean agertzen dira eta jendeari traola hau daukaten bidalketa publikoak arakatzea ahalbidetzen diote. Sormen lana edo epe luzerako proiektuak jarraitzeko primerakoak dira."
   filters:
     contexts:
@@ -1187,8 +1198,6 @@ eu:
       index:
         hint: Iragazki honek banako bidalketei eragiten die, beste kriterioak badaude ere. Bidalketa gehiago gehitu ditzakezu iragazkira web interfazetik.
         title: Iragazitako bidalketak
-  footer:
-    trending_now: Joera orain
   generic:
     all: Denak
     all_items_on_page_selected_html:
@@ -1211,8 +1220,6 @@ eu:
     validation_errors:
       one: Zerbait ez dabil ongi! Egiaztatu beheko errorea mesedez
       other: Zerbait ez dabil ongi! Egiaztatu beheko %{count}  erroreak mesedez
-  html_validator:
-    invalid_markup: 'HTML markaketa baliogabea du: %{error}'
   imports:
     errors:
       invalid_csv_file: 'CSV fitxategi baliogabea. Errorea: %{error}'
@@ -1255,7 +1262,7 @@ eu:
     title: Gonbidatu jendea
   lists:
     errors:
-      limit: Gehieneko zerrenda kopurura heldu zara
+      limit: Gehienezko zerrenda kopurura iritsi zara
   login_activities:
     authentication_methods:
       otp: bi faktoreko autentifikazio aplikazioa
@@ -1575,7 +1582,7 @@ eu:
       '7889238': 3 hilabete
     min_age_label: Denbora muga
     min_favs: Mantendu gogoko kopuru hau duten bidalketak
-    min_favs_hint: Gutxienez gogoko kopuru hau jaso duten zure bidalketak ez dira ezabatuko. Hutsik utziz gero gogoko kopurua ez da kontuan hartuko bidalketak ezabatzean
+    min_favs_hint: Gogoko dutenen kopuru hau gutxienez duten bidalketak ez dira ezabatuko. Hutsik utzi, gogoko dutenen kopurua aintzat hartu gabe bidalketak ezabatzeko
     min_reblogs: Mantendu bultzada kopuru hau duten bidalketak
     min_reblogs_hint: Gutxienez bultzada kopuru hau jaso duten zure bidalketak ez dira ezabatuko. Hutsik utziz gero bultzada kopurua ez da kontuan hartuko bidalketak ezabatzean
   stream_entries:

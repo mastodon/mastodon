@@ -186,11 +186,12 @@ const ignoreSuggestion = (state, position, token, completion, path) => {
 };
 
 const sortHashtagsByUse = (state, tags) => {
-  const personalHistory = state.get('tagHistory');
+  const personalHistory = state.get('tagHistory').map(tag => tag.toLowerCase());
 
-  return tags.sort((a, b) => {
-    const usedA = personalHistory.includes(a.name);
-    const usedB = personalHistory.includes(b.name);
+  const tagsWithLowercase = tags.map(t => ({ ...t, lowerName: t.name.toLowerCase() }));
+  const sorted = tagsWithLowercase.sort((a, b) => {
+    const usedA = personalHistory.includes(a.lowerName);
+    const usedB = personalHistory.includes(b.lowerName);
 
     if (usedA === usedB) {
       return 0;
@@ -200,6 +201,8 @@ const sortHashtagsByUse = (state, tags) => {
       return 1;
     }
   });
+  sorted.forEach(tag => delete tag.lowerName);
+  return sorted;
 };
 
 const insertEmoji = (state, position, emojiData, needsSpace) => {
@@ -329,6 +332,8 @@ export default function compose(state = initialState, action) {
       map.set('caretPosition', null);
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
+
+      map.update('media_attachments', list => list.filter(media => media.get('unattached')));
 
       if (action.status.get('language') && !action.status.has('translation')) {
         map.set('language', action.status.get('language'));

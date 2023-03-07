@@ -19,7 +19,7 @@ class VerifyLinkService < BaseService
 
   def perform_request!
     @body = Request.new(:get, @url).add_headers('Accept' => 'text/html').perform do |res|
-      res.code != 200 ? nil : res.body_with_limit
+      res.code == 200 ? res.body_with_limit : nil
     end
   end
 

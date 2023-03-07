@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1.4
 # This needs to be bullseye-slim because the Ruby image is built on bullseye-slim
-ARG NODE_VERSION="16.18.1-bullseye-slim"
+ARG NODE_VERSION="16.19-bullseye-slim"
 
-FROM ghcr.io/moritzheiber/ruby-jemalloc:3.0.4-slim as ruby
+FROM ghcr.io/moritzheiber/ruby-jemalloc:3.2.1-slim as ruby
 FROM node:${NODE_VERSION} as build
 
 COPY --link --from=ruby /opt/ruby /opt/ruby
@@ -37,7 +37,8 @@ RUN apt-get update && \
     bundle config set --local without 'development test' && \
     bundle config set silence_root_warning true && \
     bundle install -j"$(nproc)" && \
-    yarn install --pure-lockfile --network-timeout 600000
+    yarn install --pure-lockfile --network-timeout 600000 && \
+    yarn cache clean
 
 FROM node:${NODE_VERSION}
 
@@ -91,8 +92,7 @@ USER mastodon
 WORKDIR /opt/mastodon
 
 # Precompile assets
-RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
-    yarn cache clean
+RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile
 
 # Set the work dir and the container entry point
 ENTRYPOINT ["/usr/bin/tini", "--"]

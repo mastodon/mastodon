@@ -1,2 +1,0 @@
-Fabricator(:import) do
-end
