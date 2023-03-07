@@ -1,0 +1,139 @@
+name: Ruby Testing
+
+on:
+  push:
+  pull_request:
+
+env:
+  BUNDLE_CLEAN: true
+  BUNDLE_FROZEN: true
+  BUNDLE_WITHOUT: 'development production'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      RAILS_ENV: test
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version-file: '.nvmrc'
+
+      - name: Install native Ruby dependencies
+        run: sudo apt-get install -y libicu-dev libidn11-dev
+
+      - name: Set up bundler cache
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - run: yarn install --frozen-lockfile
+      - name: Precompile assets
+        # Previously had set this, but it's not supported
+        # export NODE_OPTIONS=--openssl-legacy-provider
+        run: |-
+          ./bin/rails assets:precompile
+
+      - uses: actions/upload-artifact@v3
+        with:
+          path: |-
+            ./public/assets
+            ./public/packs-test
+          name: ${{ github.sha }}
+          retention-days: 0
+
+  test:
+    runs-on: ubuntu-latest
+
+    needs:
+      - build
+
+    services:
+      postgres:
+        image: postgres:14.5
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+      redis:
+        image: redis:7.0
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    env:
+      DB_HOST: localhost
+      DB_USER: postgres
+      DB_PASS: postgres
+      DISABLE_SIMPLECOV: true
+      RAILS_ENV: test
+      ALLOW_NOPAM: true
+      PAM_ENABLED: true
+      PAM_DEFAULT_SERVICE: pam_test
+      PAM_CONTROLLED_SERVICE: pam_test_controlled
+      BUNDLE_WITH: 'pam_authentication'
+      CI_JOBS: ${{ matrix.ci_job }}/4
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version:
+          - '2.7'
+          - '3.0'
+          - '3.1'
+          - '.ruby-version'
+        ci_job:
+          - 1
+          - 2
+          - 3
+          - 4
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v3
+        with:
+          path: './public'
+          name: ${{ github.sha }}
+
+      - name: Install native Ruby dependencies
+        run: sudo apt-get install -y libicu-dev libidn11-dev
+
+      - name: Install additional system dependencies
+        run: sudo apt-get install -y ffmpeg imagemagick libpam-dev
+
+      - name: Set up bundler cache
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version}}
+          bundler-cache: true
+
+      - name: Update system gems
+        if: matrix.ruby-version == '2.7'
+        run: gem update --system
+
+      - name: Load database schema
+        run: './bin/rails db:create db:schema:load db:seed'
+
+      - run: bundle exec rake rspec_chunked
