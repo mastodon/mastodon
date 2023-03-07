@@ -55,6 +55,7 @@ my:
       followers: စောင့်ကြည့်သူများ
       follows: စောင့်ကြည့်မယ်
       header: မျက်နှာဖုံးပုံ
+      inbox_url: Inbox URL
       invite_request_text: ပါဝင်ရခြင်း အကြောင်းအရင်း
       invited_by: ဖိတ်ခေါ်ထားသည်
       ip: IP
@@ -67,6 +68,7 @@ my:
       login_status: အကောင့်ဝင်ရောက်မှုအခြေအနေ
       media_attachments: မီဒီယာ ပူးတွဲချက်များ
       memorialize: အမှတ်တရအဖြစ် ပြောင်းပါ
+      memorialized_msg: '%{username} ကို အမှတ်တရအကောင့်အဖြစ် ပြောင်းလဲခဲ့သည်'
       moderation:
         active: လက်ရှိအသုံးပြုလျက်ရှိခြင်း
         all: အားလုံး
@@ -108,6 +110,7 @@ my:
         only_password: စကားဝှက်ဖြင့်သာ
         password_and_2fa: စကားဝှက်နှင့် 2FA
       sensitized: သတိထားရသည်ဟု အမှတ်အသားပြုထားပါ
+      shared_inbox_url: inbox URL ကို မျှဝေခဲ့သည်
       show:
         created_reports: ဆောင်ရွက်ခဲ့ပြီးသောအစီရင်ခံစာများ
         targeted_reports: အခြားသူများမှဆောင်ရွက်ခဲ့သော အစီရင်ခံစာများ
@@ -489,7 +492,9 @@ my:
           suspend_html: 'သင်သည် <strong>@%{acct}</strong> ၏ အကောင့်ကို <strong>ဆိုင်းငံ့</strong> တော့မည်ဖြစ်သည်။ ၎င်းမှာ -'
         actions:
           suspend_html: <strong>@%{acct}</strong> ကို ဆိုင်းငံ့ထားသောကြောင့် ပရိုဖိုင်နှင့် အကြောင်းအရာများအား ဝင်ရောက်ခွင့်မရှိတော့သဖြင့် အပြန်အလှန် တုံ့ပြန်၍ မရတော့ခြင်း
+        close_report: 'တိုင်ကြားစာ #%{id} ကို ဖြေရှင်းပြီးကြောင်း အမှတ်အသားပြုပါ'
         delete_data_html: <strong>@%{acct}</strong> ၏ ပရိုဖိုင်နှင့် အကြောင်းအရာများကို ဆိုင်းငံ့ထားခြင်းမရှိပါက ယခုမှ ရက်ပေါင်း ၃၀ အတွင်း ဖျက်ရန်
+        preview_preamble_html: "<strong>@%{acct}</strong> သည် အောက်ပါအကြောင်းအရာများကြောင့် သတိပေးချက်ကို လက်ခံရရှိပါမည် -"
       title: မှတ်တမ်းများ
       unassign: တာဝန်မှဖြုတ်ရန်
       unknown_action_msg: 'အမည်မသိလုပ်ဆောင်ချက်- %{action}'
@@ -546,7 +551,9 @@ my:
         view_devops: DevOps
       title: အခန်းကဏ္ဍများ
     rules:
+      add_new: စည်းမျဉ်းထည့်ပါ
       delete: ဖျက်ပါ
+      edit: စည်းမျဉ်းကို ပြင်ဆင်မည်
       title: ဆာဗာစည်းမျဉ်းများ
     settings:
       about:
@@ -556,6 +563,7 @@ my:
         title: ပုံပန်းသဏ္ဌာန်
       discovery:
         profile_directory: ပရိုဖိုင်လမ်းညွှန်
+        public_timelines: အများမြင်စာမျက်နှာ
         trends: လက်ရှိခေတ်စားမှုများ
       domain_blocks:
         all: လူတိုင်း
@@ -575,6 +583,9 @@ my:
       account: ရေးသားသူ
       application: အက်ပလီကေးရှင်း
       back_to_account: အကောင့်စာမျက်နှာသို့ ပြန်သွားရန်
+      batch:
+        remove_from_report: တိုင်ကြားစာမှ ဖယ်ရှားပါ
+        report: တိုင်ကြားစာ
       deleted: ဖျက်ပြီးပါပြီ
       favourites: အကြိုက်ဆုံးများ
       language: ဘာသာစကား
@@ -583,8 +594,10 @@ my:
       metadata: Metadata
       open: ပို့စ်ဖွင့်ရန်
       original_status: မူရင်းပို့စ်
+      reblogs: Reblog များ
       status_changed: ပို့စ်ပြောင်းပြီးပါပြီ
       title: အကောင့်ပို့စ်များ
+      trending: လက်ရှိခေတ်စားနေခြင်း
       with_media: မီဒီယာနှင့်အတူ
     strikes:
       actions:
@@ -607,6 +620,7 @@ my:
         allow: လင့်ခ်ကို ခွင့်ပြုရန်
         disallow: လင့်ခ်ကို ခွင့်မပြုရန်
         title: လက်ရှိခေတ်စားနေသော လင့်များ
+      only_allowed: သာခွင့်ပြုသည်
       rejected: ဖယ်ရှားပြီးပါပြီ
       statuses:
         allow: ပို့စ်တင်ခွင့်ပြုရန်
@@ -631,17 +645,25 @@ my:
       add_new: အသစ်ထည့်ပါ
       delete: ဖျက်ပါ
     webhooks:
+      add_new: ဆုံးမှတ် ထည့်ပါ
       delete: ဖျက်ပါ
       disable: ပိတ်ပါ
       disabled: ပိတ်ထားသည်
+      edit: ဆုံးမှတ် ပြင်ဆင်ပါ
       enable: ဖွင့်ပါ
       enabled: လက်ရှိ
       events: ပွဲအစီအစဉ်များ
       status: အခြေအနေ
+      title: Webhook များ
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: '၎င်းတို့၏ ပို့စ်များကို ဖျက်ရန်'
+        mark_statuses_as_sensitive: '၎င်းတို့၏ ပို့စ်များကို သတိထားရသော ပို့စ်များအဖြစ် အမှတ်အသားပြုရန်'
         none: သတိပေးချက်
+        sensitive: '၎င်းတို့၏ အကောင့်များကို သတိထားရသော အကောင့်များအဖြစ် အမှတ်အသားပြုရန်'
+        silence: '၎င်းတို့၏ ပို့စ်များကို ကန့်သတ်ရန်'
     new_trends:
       new_trending_links:
         title: လက်ရှိခေတ်စားနေသော လင့်များ
@@ -795,6 +817,7 @@ my:
     types:
       blocking: ပိတ်ပင်ထားသည့်စာရင်း
       domain_blocking: ဒိုမိန်းပိတ်ပင်ထားသည့်စာရင်း
+      following: စောင့်ကြည့်စာရင်း
     upload: တင္ရန်
   invites:
     expires_in:
@@ -888,6 +911,7 @@ my:
     browsers:
       chrome: Chrome
       firefox: Firefox
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -897,15 +921,18 @@ my:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: အမည်မသိဘရောက်ဆာ
       weibo: Weibo
     description: "%{platform} ပေါ်ရှိ %{browser}"
     ip: IP
     platforms:
+      adobe_air: Adobe Air
       android: Android
       blackberry: BlackBerry
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
       windows: Windows
