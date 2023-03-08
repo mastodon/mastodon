@@ -412,6 +412,19 @@ en-GB:
       reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
       undo: Undo domain block
       view: View domain block
+    email_domain_blocks:
+      add_new: Add new
+      attempts_over_week:
+        one: "%{count} attempt over the last week"
+        other: "%{count} sign-up attempts over the last week"
+      created_msg: Successfully blocked e-mail domain
+      delete: Delete
+      dns:
+        types:
+          mx: MX record
+      domain: Domain
+      new:
+        create: Add domain
     roles:
       categories:
         devops: DevOps
@@ -434,6 +447,28 @@ en-GB:
     platforms:
       blackberry: BlackBerry
       chrome_os: ChromeOS
+  settings:
+    profile: Profile
+    relationships: Follows and followers
+    statuses_cleanup: Automated post deletion
+    strikes: Moderation strikes
+    two_factor_authentication: Two-factor Auth
+    webauthn_authentication: Security keys
+  statuses:
+    attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audio"
+      description: 'Attached: %{attached}'
+      image:
+        one: "%{count} image"
+        other: "%{count} images"
+      video:
+        one: "%{count} video"
+        other: "%{count} videos"
+    boosted_from_html: Boosted from %{acct_link}
+    content_warning: 'Content warning: %{warning}'
+    default_language: Same as interface language
   statuses_cleanup:
     ignore_reblogs: Ignore boosts
     interaction_exceptions: Exceptions based on interactions
