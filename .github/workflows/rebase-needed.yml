@@ -2,7 +2,11 @@ name: PR Needs Rebase
 
 on:
   push:
+    branches-ignore:
+      - 'dependabot/**'
   pull_request_target:
+    branches-ignore:
+      - 'dependabot/**'
     types: [synchronize]
 
 permissions:
