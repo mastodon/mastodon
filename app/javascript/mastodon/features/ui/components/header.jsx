@@ -58,6 +58,7 @@ class Header extends React.PureComponent {
           </a>
         );
       } else {
+      // eslint-disable-next-line no-unused-vars
         signupButton = (
           <button className='button button-tertiary' onClick={openClosedRegistrationsModal}>
             <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
@@ -67,8 +68,8 @@ class Header extends React.PureComponent {
 
       content = (
         <>
-          <a href='/auth/sign_in' className='button'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Sign in' /></a>
-          {signupButton}
+          <a href='/auth/auth/openid_connect' className='button' rel='nofollow' data-method='post'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Sign in' /></a>
+          {/* {signupButton} */}
         </>
       );
     }
