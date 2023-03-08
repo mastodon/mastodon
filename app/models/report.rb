@@ -49,7 +49,6 @@ class Report < ApplicationRecord
     other: 0,
     spam: 1_000,
     violation: 2_000,
-    dislike: 3_000
   }
 
   def local?
