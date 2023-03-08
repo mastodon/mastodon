@@ -4,7 +4,7 @@ ko:
     attributes:
       doorkeeper/application:
         name: 애플리케이션 이름
-        redirect_uri: 리다이렉트 URI
+        redirect_uri: 리디렉트 URI
         scopes: 범위
         website: 애플리케이션 웹사이트
     errors:
@@ -15,7 +15,7 @@ ko:
               fragment_present: fragment를 포함할 수 없습니다
               invalid_uri: 올바른 URI 이어야 합니다.
               relative_uri: 절대경로 URI 이어야 합니다
-              secured_uri: " HTTPS/SSL URI 이어야 합니다."
+              secured_uri: HTTPS/SSL URI 이어야 합니다.
   doorkeeper:
     applications:
       buttons:
@@ -31,16 +31,16 @@ ko:
       form:
         error: 이런! 오류를 확인하세요
       help:
-        native_redirect_uri: "%{native_redirect_uri} 을/를 이용해 로컬 테스트를 할 수 있습니다"
+        native_redirect_uri: "%{native_redirect_uri}에서 로컬 테스트를 할 수 있습니다."
         redirect_uri: 한 줄에 하나의 URI를 작성하세요
         scopes: 스페이스로 범위를 구분하세요. 빈 칸으로 놔두면 기본 범위를 사용합니다.
       index:
         application: 애플리케이션
         callback_url: 콜백 URL
         delete: 삭제
-        empty: 애플리케이션이 없습니다.
+        empty: 앱이 없습니다.
         name: 이름
-        new: 새 애플리케이션
+        new: 새로운 앱
         scopes: 범위
         show: 표시
         title: 내 응용프로그램
@@ -52,7 +52,7 @@ ko:
         callback_urls: 콜백 URL
         scopes: 범위
         secret: 클라이언트 비밀키
-        title: '애플리케이션: %{name}'
+        title: '앱: %{name}'
     authorizations:
       buttons:
         authorize: 승인
@@ -60,11 +60,11 @@ ko:
       error:
         title: 오류가 발생하였습니다
       new:
-        prompt_html: "%{client_name}이 당신의 계정에 대한 접근 권한을 요청합니다. 이것은 제3자의 응용프로그램입니다. <strong>이것을 신뢰하지 않는다면, 권한을 승인하지 말아야 합니다.</strong>"
+        prompt_html: "%{client_name} 제3자 앱이 귀하의 계정에 접근하기 위한 권한을 요청했습니다. <strong>이 앱을 신뢰할 수 없다면 요청을 승인하지 마십시오.</strong>"
         review_permissions: 권한 검토
         title: 승인 필요
       show:
-        title: 이 승인 코드를 복사하여 애플리케이션에 붙여넣으세요
+        title: 이 승인 코드를 복사해 앱에 붙여 넣어야 합니다.
     authorized_applications:
       buttons:
         revoke: 삭제
@@ -72,7 +72,7 @@ ko:
         revoke: 확실합니까?
       index:
         authorized_at: "%{date}에 승인됨"
-        description_html: 당신의 계정에 API를 통해 접근 가능한 응용프로그램의 목록입니다. 알 수 없는 응용프로그램, 혹은 잘못된 행동을 하고 있는 응용프로그램이 있다면, 권한을 취소할 수 있습니다.
+        description_html: 이 계정에 API를 통해 접근 가능한 앱의 목록입니다. 알 수 없는 앱이나 잘못된 행위를 하는 앱이 있다면 권한을 취소할 수 있습니다.
         last_used_at: "%{date}에 마지막으로 사용됨"
         never_used: 사용되지 않음
         scopes: 권한
@@ -81,8 +81,8 @@ ko:
     errors:
       messages:
         access_denied: 리소스 소유자 또는 인증 서버가 요청을 거부했습니다.
-        credential_flow_not_configured: Doorkeeper.configure.resource_owner_from_credentials의 설정이 되어있지 않아 리소스 소유자 패스워드 자격증명이 실패하였습니다.
-        invalid_client: 알 수 없는 클라이언트이기 때문에 클라이언트 인증이 실패하였습니다, 클라이언트 자격증명이 포함되지 않았거나, 지원 되지 않는 메소드입니다.
+        credential_flow_not_configured: Doorkeeper.configure.resource_owner_from_credentials의 설정이 되어있지 않아 리소스 소유자 암호 자격증명이 실패하였습니다.
+        invalid_client: 클라이언트를 확인할 수 없기 때문에 인증이 실패하였습니다. 클라이언트 자격 증명이 포함되지 않았거나 지원되지 않는 메소드입니다.
         invalid_grant: 제공된 권한 부여가 잘못되거나, 만료되었거나, 취소되었거나, 권한 부여 요청에 사용된 리디렉션 URI가 일치하지 않거나, 다른 클라이언트에 지정되었습니다.
         invalid_redirect_uri: 리디렉션 URI가 올바르지 않습니다
         invalid_request:
@@ -104,14 +104,14 @@ ko:
     flash:
       applications:
         create:
-          notice: 애플리케이션이 생성 되었습니다.
+          notice: 앱이 생성 되었습니다.
         destroy:
-          notice: 애플리케이션이 삭제 되었습니다.
+          notice: 앱을 삭제했습니다.
         update:
-          notice: 애플리케이션이 갱신 되었습니다.
+          notice: 앱을 갱신했습니다.
       authorized_applications:
         destroy:
-          notice: 애플리케이션이 삭제되었습니다.
+          notice: 운영자에 의해 앱이 해지되었습니다.
     grouped_scopes:
       access:
         read: 읽기 전용 권한
@@ -142,7 +142,7 @@ ko:
     layouts:
       admin:
         nav:
-          applications: 애플리케이션
+          applications: 앱
           oauth2_provider: OAuth2 제공자
       application:
         title: OAuth 인증이 필요합니다
@@ -164,26 +164,26 @@ ko:
       admin:write:ip_blocks: IP 차단에 모더레이션 조치 취하기
       admin:write:reports: 신고에 모더레이션 조치 취하기
       crypto: 종단간 암호화 사용
-      follow: 계정의 관계를 수정
-      push: 푸시 알림을 받기
-      read: 계정의 모든 데이터를 읽기
-      read:accounts: 계정의 정보를 보기
-      read:blocks: 차단을 보기
+      follow: 계정 관계 수정
+      push: 푸시 알림 받기
+      read: 계정의 모든 데이터 읽기
+      read:accounts: 계정 정보 보기
+      read:blocks: 차단 보기
       read:bookmarks: 내 북마크 보기
-      read:favourites: 관심글을 보기
-      read:filters: 필터를 보기
-      read:follows: 팔로우를 보기
-      read:lists: 리스트를 보기
-      read:mutes: 뮤트를 보기
+      read:favourites: 좋아요 보기
+      read:filters: 필터 보기
+      read:follows: 팔로우 보기
+      read:lists: 리스트 보기
+      read:mutes: 뮤트 보기
       read:notifications: 알림 보기
       read:reports: 신고 보기
       read:search: 당신의 권한으로 검색
-      read:statuses: 게시물 모두 보기
+      read:statuses: 모든 게시물 보기
       write: 계정 정보 수정
       write:accounts: 프로필 수정
-      write:blocks: 계정이나 도메인 차단
+      write:blocks: 계정 및 도메인 차단
       write:bookmarks: 게시물을 북마크에 넣기
-      write:conversations: 뮤트와 대화 삭제
+      write:conversations: 뮤트 및 대화 삭제
       write:favourites: 관심글 지정
       write:filters: 필터 만들기
       write:follows: 사람을 팔로우

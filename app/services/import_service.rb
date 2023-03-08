@@ -67,7 +67,7 @@ class ImportService < BaseService
 
   def import_relationships!(action, undo_action, overwrite_scope, limit, extra_fields = {})
     local_domain_suffix = "@#{Rails.configuration.x.local_domain}"
-    items = @data.take(limit).map { |row| [row['Account address']&.strip&.delete_suffix(local_domain_suffix), Hash[extra_fields.map { |key, field_settings| [key, row[field_settings[:header]]&.strip || field_settings[:default]] }]] }.reject { |(id, _)| id.blank? }
+    items = @data.take(limit).map { |row| [row['Account address']&.strip&.delete_suffix(local_domain_suffix), extra_fields.to_h { |key, field_settings| [key, row[field_settings[:header]]&.strip || field_settings[:default]] }] }.reject { |(id, _)| id.blank? }
 
     if @import.overwrite?
       presence_hash = items.each_with_object({}) { |(id, extra), mapping| mapping[id] = [true, extra] }
@@ -114,7 +114,7 @@ class ImportService < BaseService
       status || ActivityPub::FetchRemoteStatusService.new.call(uri)
     rescue HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
       nil
-    rescue StandardError => e
+    rescue => e
       Rails.logger.warn "Unexpected error when importing bookmark: #{e}"
       nil
     end

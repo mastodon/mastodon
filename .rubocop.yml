@@ -1,3 +1,9 @@
+inherit_from: .rubocop_todo.yml
+
+inherit_mode:
+  merge:
+    - Exclude
+
 require:
   - rubocop-rails
   - rubocop-rspec
@@ -13,7 +19,6 @@ AllCops:
   NewCops: enable
   Exclude:
     - db/schema.rb
-    - 'app/views/**/*'
     - 'config/**/*'
     - 'bin/*'
     - 'Rakefile'
@@ -23,50 +28,19 @@ AllCops:
     - 'lib/json_ld/*'
     - 'lib/templates/**/*'
 
-Bundler/OrderedGems:
-  Enabled: false
-
-Layout/AccessModifierIndentation:
-  EnforcedStyle: indent
-
-Layout/EmptyLineAfterMagicComment:
-  Enabled: false
-
-Layout/EmptyLineAfterGuardClause:
-  Enabled: false
-
-Layout/EmptyLineBetweenDefs:
-  AllowAdjacentOneLineDefs: true
-
-Layout/EmptyLinesAroundAttributeAccessor:
-  Enabled: true
-
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
 
-Layout/HashAlignment:
-  Enabled: false
-
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-
-Layout/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: space
-
-Lint/DeprecatedOpenSSLConstant:
-  Enabled: true
-
-Lint/DuplicateElsifCondition:
-  Enabled: true
-
-Lint/MixedRegexpCaptureTypes:
-  Enabled: true
-
-Lint/RaiseException:
-  Enabled: true
-
-Lint/StructNewOverride:
-  Enabled: true
+Layout/LineLength:
+  Max: 140 # RuboCop default 120
+  AllowedPatterns:
+    # Allow comments to be long lines
+    - !ruby/regexp / \# .*$/
+    - !ruby/regexp /^\# .*$/
+  Exclude:
+    - lib/**/*cli*.rb
+    - db/*migrate/**/*
+    - db/seeds/**/*
 
 Lint/UselessAccessModifier:
   ContextCreatingMethods:
@@ -77,386 +51,75 @@ Metrics/AbcSize:
   Exclude:
     - 'lib/**/*cli*.rb'
     - db/*migrate/**/*
-    - lib/paperclip/color_extractor.rb
-    - app/workers/scheduler/follow_recommendations_scheduler.rb
-    - app/services/activitypub/fetch*_service.rb
-    - lib/paperclip/**/*
-  CountRepeatedAttributes: false
-  AllowedMethods:
-    - update_media_attachments!
-    - account_link_to
-    - attempt_oembed
-    - build_crutches
-    - calculate_scores
-    - cc
-    - dump_actor!
-    - filter_from_home?
-    - hydrate
-    - import_bookmarks!
-    - import_relationships!
-    - initialize
-    - link_to_mention
-    - log_target
-    - matches_time_window?
-    - parse_metadata
-    - perform_statuses_search!
-    - privatize_media_attachments!
-    - process_update
-    - publish_media_attachments!
-    - remotable_attachment
-    - render_initial_state
-    - render_with_cache
-    - searchable_by
-    - self.cached_filters_for
-    - set_fetchable_attributes!
-    - signed_request_actor
-    - statuses_to_delete
-    - update_poll!
 
 Metrics/BlockLength:
-  Max: 55
+  Max: 55 # Default 25
+  CountAsOne: [array, heredoc]
   Exclude:
     - 'lib/mastodon/*_cli.rb'
-  CountComments: false
-  CountAsOne: [array, heredoc]
-  AllowedMethods:
-    - task
-    - namespace
-    - class_methods
-    - included
 
 Metrics/BlockNesting:
-  Max: 3
   Exclude:
     - 'lib/mastodon/*_cli.rb'
 
 Metrics/ClassLength:
-  CountComments: false
-  Max: 500
+  Max: 500 # Default 100
   CountAsOne: [array, heredoc]
   Exclude:
     - 'lib/mastodon/*_cli.rb'
 
 Metrics/CyclomaticComplexity:
-  Max: 12
+  Max: 12 # Default 7
   Exclude:
     - lib/mastodon/*cli*.rb
     - db/*migrate/**/*
-  AllowedMethods:
-    - attempt_oembed
-    - blocked?
-    - build_crutches
-    - calculate_scores
-    - cc
-    - discover_endpoint!
-    - filter_from_home?
-    - hydrate
-    - klass
-    - link_to_mention
-    - log_target
-    - matches_time_window?
-    - patch_for_forwarding!
-    - preprocess_attributes!
-    - process_update
-    - remotable_attachment
-    - scan_text!
-    - self.cached_filters_for
-    - set_fetchable_attributes!
-    - setup_redis_env_url
-    - update_media_attachments!
-
-Layout/LineLength:
-  Max: 140 # RuboCop default 120
-  AllowHeredoc: true
-  AllowURI: true
-  IgnoreCopDirectives: true
-  AllowedPatterns:
-    # Allow comments to be long lines
-    - !ruby/regexp / \# .*$/
-    - !ruby/regexp /^\# .*$/
-  Exclude:
-    - lib/**/*cli*.rb
-    - db/*migrate/**/*
-    - db/seeds/**/*
 
 Metrics/MethodLength:
-  CountComments: false
-  CountAsOne: [array, heredoc]
   Max: 25 # RuboCop default 10
+  CountAsOne: [array, heredoc]
   Exclude:
     - 'lib/mastodon/*_cli.rb'
-  AllowedMethods:
-    - account_link_to
-    - attempt_oembed
-    - body_with_limit
-    - build_crutches
-    - cached_filters_for
-    - calculate_scores
-    - check_webfinger!
-    - clean_feeds!
-    - collection_items
-    - collection_presenter
-    - copy_account_notes!
-    - deduplicate_accounts!
-    - deduplicate_conversations!
-    - deduplicate_local_accounts!
-    - deduplicate_statuses!
-    - deduplicate_tags!
-    - deduplicate_users!
-    - discover_endpoint!
-    - extract_extra_uris_with_indices
-    - extract_hashtags_with_indices
-    - extract_mentions_or_lists_with_indices
-    - filter_from_home?
-    - from_elasticsearch
-    - handle_explicit_update!
-    - handle_mark_as_sensitive!
-    - hsl_to_rgb
-    - import_bookmarks!
-    - import_domain_blocks!
-    - import_relationships!
-    - ldap_options
-    - matches_time_window?
-    - outbox_presenter
-    - pam_get_user
-    - parallelize_with_progress
-    - parse_and_transform
-    - patch_for_forwarding!
-    - populate_home
-    - post_process_style
-    - preload_cache_collection_target_statuses
-    - privatize_media_attachments!
-    - provides_callback_for
-    - publish_media_attachments!
-    - relevant_account_timestamp
-    - remotable_attachment
-    - rgb_to_hsl
-    - rss_status_content_format
-    - set_fetchable_attributes!
-    - setup_redis_env_url
-    - signed_request_actor
-    - to_preview_card_attributes
-    - upgrade_storage_filesystem
-    - upgrade_storage_s3
-    - user_settings_params
-    - hydrate
-    - cc
-    - self_destruct
 
 Metrics/ModuleLength:
-  CountComments: false
-  Max: 200
+  Max: 200 # Default 100
   CountAsOne: [array, heredoc]
-
-Metrics/ParameterLists:
-  Max: 5 # RuboCop default 5
-  CountKeywordArgs: true # RuboCop default true
-  MaxOptionalParameters: 3 # RuboCop default 3
-  Exclude:
-    - app/models/concerns/account_interactions.rb
-    - app/services/activitypub/fetch_remote_account_service.rb
-    - app/services/activitypub/fetch_remote_actor_service.rb
 
 Metrics/PerceivedComplexity:
   Max: 16 # RuboCop default 8
-  AllowedMethods:
-    - attempt_oembed
-    - build_crutches
-    - calculate_scores
-    - deduplicate_users!
-    - discover_endpoint!
-    - filter_from_home?
-    - hydrate
-    - patch_for_forwarding!
-    - process_update
-    - remove_orphans
-    - update_media_attachments!
 
-Naming/MemoizedInstanceVariableName:
-  Enabled: false
-
-Naming/MethodParameterName:
-  Enabled: true
-
-Rails:
-  Enabled: true
-
-Rails/ApplicationController:
-  Enabled: false
-  Exclude:
-    - 'app/controllers/well_known/**/*.rb'
-
-Rails/BelongsTo:
-  Enabled: false
-
-Rails/ContentTag:
-  Enabled: false
-
-Rails/EnumHash:
-  Enabled: false
+Rails/HttpStatus:
+  EnforcedStyle: numeric
 
 Rails/Exit:
   Exclude:
-    - 'lib/mastodon/*'
+    - 'lib/mastodon/*_cli.rb'
+    - 'lib/mastodon/cli_helper.rb'
     - 'lib/cli.rb'
 
-Rails/FilePath:
-  Enabled: false
+RSpec/FilePath:
+  CustomTransform:
+    DeepL: deepl
 
-Rails/HasAndBelongsToMany:
-  Enabled: false
+RSpec/NotToNot:
+  EnforcedStyle: to_not
 
-Rails/HasManyOrHasOneDependent:
-  Enabled: false
-
-Rails/HelperInstanceVariable:
-  Enabled: false
-
-Rails/HttpStatus:
-  Enabled: false
-
-Rails/IndexBy:
-  Enabled: false
-
-Rails/InverseOf:
-  Enabled: false
-
-Rails/LexicallyScopedActionFilter:
-  Enabled: false
-
-Rails/OutputSafety:
-  Enabled: true
-
-Rails/RakeEnvironment:
-  Enabled: false
-
-Rails/RedundantForeignKey:
-  Enabled: false
-
-Rails/SkipsModelValidations:
-  Enabled: false
-
-Rails/UniqueValidationWithoutIndex:
-  Enabled: false
-
-Style/AccessorGrouping:
-  Enabled: true
-
-Style/AccessModifierDeclarations:
-  Enabled: false
-
-Style/ArrayCoercion:
-  Enabled: true
-
-Style/BisectedAttrAccessor:
-  Enabled: true
-
-Style/CaseLikeIf:
-  Enabled: false
-
-Style/ClassAndModuleChildren:
-  Enabled: false
-
-Style/CollectionMethods:
-  Enabled: true
-  PreferredMethods:
-    find_all: 'select'
-
-Style/Documentation:
-  Enabled: false
-
-Style/DoubleNegation:
-  Enabled: true
-
-Style/ExpandPathArguments:
-  Enabled: false
-
-Style/ExponentialNotation:
-  Enabled: true
-
-Style/FormatString:
-  Enabled: false
-
-Style/FormatStringToken:
-  Enabled: false
-
-Style/FrozenStringLiteralComment:
-  Enabled: true
-
-Style/GuardClause:
-  Enabled: false
-
-Style/HashAsLastArrayItem:
-  Enabled: false
-
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashLikeCase:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: false
+RSpec/Rails/HttpStatus:
+  EnforcedStyle: numeric
 
 Style/HashSyntax:
-  Enabled: true
   EnforcedStyle: ruby19_no_mixed_keys
 
-Style/IfUnlessModifier:
-  Enabled: false
-
-Style/InverseMethods:
-  Enabled: false
-
-Style/Lambda:
-  Enabled: false
-
-Style/MutableConstant:
-  Enabled: false
+Style/NumericLiterals:
+  AllowedPatterns:
+    - \d{4}_\d{2}_\d{2}_\d{6} # For DB migration date version number readability
 
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
     '%i': '()'
     '%w': '()'
 
-Style/PerlBackrefs:
-  AutoCorrect: false
-
-Style/RedundantFetchBlock:
-  Enabled: true
-
-Style/RedundantFileExtensionInRequire:
-  Enabled: true
-
-Style/RedundantRegexpCharacterClass:
-  Enabled: false
-
-Style/RedundantRegexpEscape:
-  Enabled: false
-
-Style/RedundantReturn:
-  Enabled: true
-
-Style/RedundantBegin:
-  Enabled: false
-
-Style/RegexpLiteral:
-  Enabled: false
-
 Style/RescueStandardError:
-  Enabled: true
-
-Style/SignalException:
-  Enabled: false
-
-Style/SlicingWithRange:
-  Enabled: true
-
-Style/SymbolArray:
-  Enabled: false
+  EnforcedStyle: implicit
 
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: 'comma'
@@ -464,16 +127,5 @@ Style/TrailingCommaInArrayLiteral:
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: 'comma'
 
-Style/UnpackFirst:
-  Enabled: false
-
-RSpec/ScatteredSetup:
-  Enabled: false
-RSpec/ImplicitExpect:
-  Enabled: false
-RSpec/NamedSubject:
-  Enabled: false
-RSpec/DescribeClass:
-  Enabled: false
-RSpec/LetSetup:
+Style/SymbolArray:
   Enabled: false

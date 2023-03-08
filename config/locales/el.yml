@@ -12,6 +12,7 @@ el:
       one: Ακόλουθος
       other: Ακόλουθοι
     following: Ακολουθεί
+    instance_actor_flash: Αυτός ο λογαριασμός είναι εικονικός και χρησιμοποιείται για να αντιπροσωπεύει τον ίδιο τον εξυπηρετητή και όχι κάποιον μεμονωμένο χρήστη. Χρησιμοποιείται για ομοσπονδιακούς σκοπούς και δεν πρέπει να ανασταλεί.
     last_active: τελευταία ενεργός/ή
     link_verified_on: Η κυριότητα αυτού του συνδέσμου ελέγχθηκε στις %{date}
     nothing_here: Δεν υπάρχει τίποτα εδώ!
@@ -37,23 +38,27 @@ el:
       avatar: Αβατάρ
       by_domain: Τομέας
       change_email:
+        changed_msg: Το email άλλαξε επιτυχώς!
         current_email: Τρέχον email
         label: Αλλαγή email
         new_email: Νέο email
         submit: Αλλαγή email
         title: Αλλαγή email για %{username}
       change_role:
+        changed_msg: Ο ρόλος άλλαξε επιτυχώς!
         label: Αλλαγή ρόλου
         no_role: Κανένας ρόλος
         title: Αλλαγή ρόλου για %{username}
       confirm: Επιβεβαίωση
       confirmed: Επιβεβαιώθηκε
       confirming: Προς επιβεβαίωση
+      custom: Προσαρμοσμένο
       delete: Διαγραφή δεδομένων
       deleted: Διαγραμμένοι
       demote: Υποβίβαση
       destroyed_msg: Τα δεδομένα του/της %{username} εκκρεμούν για άμεση διαγραφή
       disable: Απενεργοποίηση
+      disable_sign_in_token_auth: Απενεργοποίηση επαλήθευσης μέσω email
       disable_two_factor_authentication: Απενεργοποίηση 2FA
       disabled: Απενεργοποιημένο
       display_name: Όνομα εμφάνισης
@@ -62,6 +67,7 @@ el:
       email: Email
       email_status: Κατάσταση email
       enable: Ενεργοποίηση
+      enable_sign_in_token_auth: Ενεργοποίηση ελέγχου ταυτότητας μέσω e-mail
       enabled: Ενεργοποιημένο
       enabled_msg: Επιτυχές ξεπάγωμα λογαριασμού του/της %{username}
       followers: Ακόλουθοι
@@ -85,6 +91,7 @@ el:
       moderation:
         active: Ενεργός/ή
         all: Όλα
+        disabled: Απενεργοποιημένο
         pending: Εκκρεμούν
         silenced: Περιορισμένοι
         suspended: Σε αναστολή
@@ -98,6 +105,10 @@ el:
       not_subscribed: Άνευ συνδρομής
       pending: Εκκρεμεί έγκριση
       perform_full_suspension: Αναστολή
+      previous_strikes: Προηγούμενα παραπτώματα
+      previous_strikes_description_html:
+        one: Αυτός ο λογαριασμός έχει <strong>ένα</strong> παράπτωμα.
+        other: Αυτός ο λογαριασμός έχει <strong>%{count}</strong> παραπτώματα.
       promote: Προβίβασε
       protocol: Πρωτόκολλο
       public: Δημόσιο
@@ -123,6 +134,10 @@ el:
       search: Αναζήτηση
       search_same_email_domain: Άλλοι χρήστες με τον ίδιο τομέα e-mail
       search_same_ip: Υπόλοιποι χρήστες με την ίδια διεύθυνση IP
+      security: Ασφάλεια
+      security_measures:
+        only_password: Μόνο κωδικός πρόσβασης
+        password_and_2fa: Κωδικός πρόσβασης και 2FA
       sensitive: Ευαίσθητο
       sensitized: σήμανση ως ευαίσθητο
       shared_inbox_url: URL κοινόχρηστων εισερχομένων
@@ -132,6 +147,7 @@ el:
       silence: Αποσιώπησε
       silenced: Αποσιωπημένοι
       statuses: Καταστάσεις
+      strikes: Προηγούμενα παραπτώματα
       subscribe: Εγγραφή
       suspend: Αναστολή
       suspended: Σε αναστολή
@@ -162,14 +178,17 @@ el:
         confirm_user: Επιβεβαίωση Χρήστη
         create_account_warning: Δημιουργία Προειδοποίησης
         create_announcement: Δημιουργία Ανακοίνωσης
+        create_canonical_email_block: Δημιουργία αποκλεισμού e-mail
         create_custom_emoji: Δημιουργία Προσαρμοσμένου Emoji
         create_domain_allow: Δημιουργία Επιτρεπτού Τομέα
         create_domain_block: Δημιουργία Αποκλεισμένου Τομέα
         create_email_domain_block: Δημουργία Αποκλεισμένου Τομέα email
         create_ip_block: Δημιουργία κανόνα IP
+        create_unavailable_domain: Δημιουργία Μη Διαθέσιμου Τομέα
         create_user_role: Δημιουργία ρόλου
         demote_user: Υποβιβασμός Χρήστη
         destroy_announcement: Διαγραφή Ανακοίνωσης
+        destroy_canonical_email_block: Διαγραφή Αποκλεισμού email
         destroy_custom_emoji: Διαγραφή Προσαρμοσμένου Emoji
         destroy_domain_allow: Διαγραφή Επιτρεπτού Τομέα
         destroy_domain_block: Διαγραφή Αποκλεισμού Τομέα
@@ -177,10 +196,14 @@ el:
         destroy_instance: Εκκαθάριση Τομέα
         destroy_ip_block: Διαγραφή κανόνα IP
         destroy_status: Διαγραφή Κατάστασης
+        destroy_unavailable_domain: Διαγραφή Μη Διαθέσιμου Τομέα
+        destroy_user_role: Καταστροφή Ρόλου
         disable_2fa_user: Απενεργοποίηση 2FA
         disable_custom_emoji: Απενεργοποίηση Προσαρμοσμένων Emoji
+        disable_sign_in_token_auth_user: Απενεργοποίηση Ελέγχου Ταυτότητας Μέσω E-mail για το Χρήστη
         disable_user: Απενεργοποίηση Χρήστη
         enable_custom_emoji: Ενεργοποίηση Προσαρμοσμένων Emoji
+        enable_sign_in_token_auth_user: Ενεργοποίηση Ελέγχου Ταυτότητας Μέσω E-mail για το Χρήστη
         enable_user: Ενεργοποίηση Χρήστη
         memorialize_account: Μετατροπή Λογαριασμού σε Αναμνηστικό
         promote_user: Προαγωγή Χρήστη
@@ -201,10 +224,33 @@ el:
         unsuspend_account: Άρση Αναστολής Λογαριασμού
         update_announcement: Ενημέρωση Ανακοίνωσης
         update_custom_emoji: Ενημέρωση Προσαρμοσμένου Emoji
+        update_domain_block: Ενημέρωση Αποκλεισμού Τομέα
+        update_ip_block: Ενημέρωση κανόνα IP
         update_status: Ενημέρωση Κατάστασης
         update_user_role: Ενημέρωση ρόλου
       actions:
+        approve_appeal_html: Ο/Η %{name} ενέκρινε την ένσταση της απόφασης των διαχειριστών από %{target}
         approve_user_html: "%{name} εγκρίθηκε εγγραφή από %{target}"
+        assigned_to_self_report_html: Ο/Η %{name} ανάθεσε την καταγγελία %{target} στον εαυτό του/της
+        change_email_user_html: Ο/Η %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}
+        change_role_user_html: Ο/Η %{name} άλλαξε ρόλο του/της %{target}
+        confirm_user_html: Ο/Η %{name} επιβεβαίωσε τη διεύθυνση email του χρήστη %{target}
+        create_account_warning_html: Ο/Η %{name} έστειλε προειδοποίηση προς %{target}
+        create_announcement_html: Ο/Η %{name} δημιούργησε νέα ανακοίνωση %{target}
+        create_canonical_email_block_html: Ο/Η %{name} απέκλεισε e-mail με το hash %{target}
+        create_custom_emoji_html: Ο/Η %{name} ανέβασε νέο emoji %{target}
+        create_domain_allow_html: Ο/Η %{name} έβαλε τον τομέα %{target} σε λευκή λίστα
+        create_domain_block_html: Ο/Η %{name} απέκλεισε τον τομέα %{target}
+        create_email_domain_block_html: Ο/Η %{name} απέκλεισε τον τομέα email %{target}
+        create_ip_block_html: Ο/Η %{name} δημιούργησε κανόνα για την IP %{target}
+        create_unavailable_domain_html: Ο/Η %{name} σταμάτησε να τροφοδοτεί τον τομέα %{target}
+        create_user_role_html: Ο/Η %{name} δημιούργησε ρόλο %{target}
+        demote_user_html: Ο/Η %{name} υποβίβασε τον χρήστη %{target}
+        destroy_announcement_html: Ο/Η %{name} διέγραψε την ανακοίνωση %{target}
+        destroy_canonical_email_block_html: Ο/Η %{name} επέτρεψε email με το hash %{target}
+        destroy_custom_emoji_html: Ο/Η %{name} διέγραψε το emoji %{target}
+        destroy_domain_allow_html: Ο/Η %{name} αφαίρεσε τον τομέα %{target} από τη λίστα εγκρίσεων
+        destroy_domain_block_html: Ο/Η %{name} επέτρεψε τον τομέα %{target}
         destroy_email_domain_block_html: Ο/Η %{name} ξεμπλόκαρε το email domain %{target}
         destroy_instance_html: Ο/Η %{name} εκκαθάρισε τον τομέα %{target}
         destroy_ip_block_html: Ο/Η %{name} διέγραψε τον κανόνα για την IP %{target}
@@ -220,8 +266,27 @@ el:
         enable_user_html: Ο/Η %{name} ενεργοποίησε τη σύνδεση για τον χρήστη %{target}
         memorialize_account_html: O/H %{name} μετέτρεψε τον λογαριασμό του %{target} σε σελίδα μνήμης
         promote_user_html: Ο/Η %{name} προβίβασε το χρήστη %{target}
+        reject_appeal_html: Ο/Η %{name} απέρριψε την ένσταση της απόφασης των διαχειριστών από %{target}
         reject_user_html: "%{name} απορρίφθηκε εγγραφή από %{target}"
+        remove_avatar_user_html: Ο/Η %{name} αφαίρεσε το αβατάρ του/της %{target}
+        reopen_report_html: Ο/Η %{name} ξανάνοιξε την αναφορά %{target}
+        resend_user_html: Ο/Η %{name} έστειλε ξανά e-mail επιβεβαίωσης για τον/την %{target}
+        reset_password_user_html: Ο/Η %{name} επανέφερε το συνθηματικό του χρήστη %{target}
+        resolve_report_html: Ο/Η %{name} επέλυσε την αναφορά %{target}
+        sensitive_account_html: Ο/Η %{name} επισήμανε τα πολυμέσα του/της %{target} ως ευαίσθητα
+        silence_account_html: Ο/Η %{name} περιόρισε τον λογαριασμό του/της %{target}
+        suspend_account_html: Ο/Η %{name} ανέστειλε τον λογαριασμό του/της %{target}
+        unassigned_report_html: Ο/Η %{name} αποδέσμευσε την αναφορά %{target}
         unblock_email_account_html: "%{name} ξεμπλόκαρε τη διεύθυνση ηλεκτρονικού ταχυδρομείου του %{target}"
+        unsensitive_account_html: Ο/Η %{name} επισήμανε τα πολυμέσα του/της %{target} ως ευαίσθητα
+        unsilence_account_html: Ο/Η %{name} αφαίρεσε το όριο του λογαριασμού του/της %{target}
+        unsuspend_account_html: Ο/Η %{name} επανέφερε τον λογαριασμό του/της %{target}
+        update_announcement_html: Ο/Η %{name} ενημέρωση την ανακοίνωση %{target}
+        update_custom_emoji_html: Ο/Η %{name} ενημέρωσε το emoji %{target}
+        update_domain_block_html: Ο/Η %{name} ενημέρωσε τον αποκλεισμό τομέα για %{target}
+        update_ip_block_html: Ο/Η %{name} άλλαξε τον κανόνα για την IP %{target}
+        update_status_html: Ο/Η %{name} ενημέρωσε την ανάρτηση του/της %{target}
+        update_user_role_html: Ο/Η %{name} άλλαξε τον ρόλο %{target}
       deleted_account: διαγραμμένος λογαριασμός
       empty: Δεν βρέθηκαν αρχεία καταγραφής.
       filter_by_action: Φιλτράρισμα ανά ενέργεια
@@ -266,6 +331,7 @@ el:
       listed: Αναφερθέντα
       new:
         title: Προσθήκη νέου προσαρμοσμένου emoji
+      no_emoji_selected: Δεν άλλαξαν τα emoji καθώς δεν επιλέχθηκε κανένα
       not_permitted: Δεν επιτρέπεται να κάνετε αυτή την λειτουργία
       overwrite: Αντικατάσταση
       shortcode: Σύντομος κωδικός
@@ -279,12 +345,30 @@ el:
       upload: Ανέβασμα
     dashboard:
       active_users: ενεργοί χρήστες
+      interactions: αλληλεπιδράσεις
+      media_storage: Αποθηκευτικός Χώρος
       new_users: νέοι χρήστες
+      opened_reports: αναφορές που ανοίχτηκαν
+      pending_reports_html:
+        one: "<strong>%{count}</strong> εκκρεμής αναφορά"
+        other: "<strong>%{count}</strong> εκκρεμείς αναφορές"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> εκκρεμής ετικέτα"
+        other: "<strong>%{count}</strong> εκκρεμείς ετικέτες"
+      pending_users_html:
+        one: "<strong>%{count}</strong> χρήστης σε εκκρεμότητα"
+        other: "<strong>%{count}</strong> χρήστες σε εκκρεμότητα"
+      resolved_reports: επιλυμμένες αναφορές
       software: Λογισμικό
+      sources: Πηγές εγγραφής
       space: Κατανάλωση χώρου
       title: Ταμπλό
+      top_languages: Κορυφαίες ενεργές γλώσσες
+      top_servers: Κορυφαίοι ενεργοί διακομιστές
+      website: Ιστοσελίδα
     disputes:
       appeals:
+        empty: Καμία ένσταση.
         title: Εφέσεις
     domain_allows:
       add_new: Έγκριση τομέα
@@ -307,10 +391,13 @@ el:
         create: Δημιουργία αποκλεισμού
         hint: Ο αποκλεισμός τομέα δεν θα αποτρέψει νέες καταχωρίσεις λογαριασμών στην βάση δεδομένων, αλλά θα εφαρμόσει αναδρομικά και αυτόματα συγκεκριμένες πολιτικές μεσολάβησης σε αυτούς τους λογαριασμούς.
         severity:
+          desc_html: Ο <strong>περιορισμός</strong> θα κάνει αόρατες τις δημοσιεύσεις ενός λογαριασμού σε όσους δεν τον ακολουθούν. Η <strong>αναστολή</strong> θα αφαιρέσει όλο το περιεχόμενο, τα πολυμέσα και τα στοιχεία προφίλ ενός λογαριασμού. Χρησιμοποίησε το <strong>κανένα</strong> αν θέλεις απλά να απορρίψεις τα αρχεία πολυμέσων.
           noop: Κανένα
           silence: Περιορισμός
           suspend: Αναστολή
         title: Αποκλεισμός νέου τομέα
+      no_domain_block_selected: Δεν άλλαξαν οι αποκλεισμοί τομέα καθώς δεν επιλέχθηκε κανένας
+      not_permitted: Δεν επιτρπέπεται να εκτελέσετε αυτήν την ενέργεια
       private_comment: Ιδιωτικό σχόλιο
       private_comment_hint: Σχόλιο για τον περιορισμό αυτού του τομέα για εσωτερική χρήση από τους διαχειριστές.
       public_comment: Δημόσιο σχόλιο
@@ -335,6 +422,7 @@ el:
       new:
         create: Πρόσθεση τομέα
         title: Νέα εγγραφή email στη μαύρη λίστα
+      not_permitted: Δεν επιτρέπεται
       title: Μαύρη λίστα email
     export_domain_allows:
       no_file: Δεν επιλέχθηκε αρχείο
@@ -423,9 +511,11 @@ el:
       assign_to_self: Ανάθεση σε μένα
       assigned: Αρμόδιος συντονιστής
       by_target_domain: Κόμβος του λογαριασμού υπό καταγγελία
+      cancel: Άκυρο
       category: Κατηγορία
       comment:
         none: Κανένα
+      confirm: Επιβεβαίωση
       created_at: Καταγγέλθηκε
       delete_and_resolve: Διαγραφή δημοσιεύσεων
       forwarded: Προωθημένα
@@ -541,6 +631,8 @@ el:
       trending: Δημοφιλή
       visibility: Ορατότητα
       with_media: Με πολυμέσα
+    strikes:
+      appeal_rejected: Η αίτηση απορρίφθηκε
     system_checks:
       database_schema_check:
         message_html: Υπάρχουν μετακινήσεις βάσης δεδομένων που εκκρεμούν. Παρακαλώ εκτελέστε τις για να βεβαιωθείτε ότι η εφαρμογή συμπεριφέρεται όπως αναμένεται
@@ -552,6 +644,7 @@ el:
       updated_msg: Οι ρυθμίσεις των ετικετών ενημερώθηκαν επιτυχώς
     title: Διαχείριση
     trends:
+      not_allowed_to_trend: Δεν επιτρέπεται η τάση
       only_allowed: Μόνο επιτρεπόμενα
       tags:
         dashboard:
@@ -611,6 +704,7 @@ el:
   applications:
     created: Η εφαρμογή δημιουργήθηκε επιτυχώς
     destroyed: Η εφαρμογή διαγράφηκε επιτυχώς
+    logout: Αποσύνδεση
     regenerate_token: Αναδημιουργία του διακριτικού πρόσβασης (access token)
     token_regenerated: Το διακριτικό πρόσβασης (access token) αναδημιουργήθηκε επιτυχώς
     warning: Μεγάλη προσοχή με αυτά τα στοιχεία. Μην τα μοιραστείς ποτέ με κανέναν!
@@ -644,6 +738,8 @@ el:
     resend_confirmation: Στείλε ξανά τις οδηγίες επιβεβαίωσης
     reset_password: Επαναφορά συνθηματικού
     rules:
+      accept: Αποδοχή
+      back: Πίσω
       title: Ορισμένοι βασικοί κανόνες.
     security: Ασφάλεια
     set_new_password: Ορισμός νέου συνθηματικού
@@ -755,8 +851,6 @@ el:
     storage: Αποθήκευση πολυμέσων
   featured_tags:
     add_new: Προσθήκη νέας
-    errors:
-      limit: Έχεις ήδη προσθέσει το μέγιστο αριθμό ετικετών
     hint_html: "<strong>Τι είναι οι προβεβλημένες ετικέτες;</strong> Προβάλλονται στο δημόσιο προφίλ σου επιτρέποντας σε όποιον το βλέπει να χαζέψει τις δημοσιεύσεις που τις χρησιμοποιούν. Είναι ένας ωραίος τρόπος να παρακολουθείς την πορεία μιας δημιουργία ή ενός μακροπρόθεσμου έργου."
   filters:
     contexts:
@@ -781,8 +875,6 @@ el:
     new:
       save: Αποθήκευση νέου φίλτρου
       title: Πρόσθεσε νέο φίλτρο
-  footer:
-    trending_now: Τάσεις
   generic:
     all: Όλα
     changes_saved_msg: Οι αλλαγές αποθηκεύτηκαν!
@@ -794,8 +886,6 @@ el:
     validation_errors:
       one: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε το παρακάτω σφάλμα
       other: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε τα παρακάτω %{count} σφάλματα
-  html_validator:
-    invalid_markup: 'περιέχει λάθος μορφοποίηση HTML: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Μη έγκυρο αρχείο CSV. Σφάλμα: %{error}'
@@ -836,9 +926,6 @@ el:
       expires_at: Λήγει
       uses: Χρήσεις
     title: Προσκάλεσε κόσμο
-  lists:
-    errors:
-      limit: Έχεις φτάσει το μέγιστο πλήθος επιτρεπτών λιστών
   media_attachments:
     validations:
       images_and_video: Δεν γίνεται να προσθέσεις βίντεο σε ενημέρωση που ήδη περιέχει εικόνες

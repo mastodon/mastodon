@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Status, type: :model do
+  subject { Fabricate(:status, account: alice) }
+
   let(:alice) { Fabricate(:account, username: 'alice') }
   let(:bob)   { Fabricate(:account, username: 'bob') }
   let(:other) { Fabricate(:status, account: bob, text: 'Skulls for the skull god! The enemy\'s gates are sideways!') }
-
-  subject { Fabricate(:status, account: alice) }
 
   describe '#local?' do
     it 'returns true when no remote URI is set' do
@@ -112,6 +114,85 @@ RSpec.describe Status, type: :model do
     end
   end
 
+  describe '#translatable?' do
+    before do
+      allow(TranslationService).to receive(:configured?).and_return(true)
+      allow(TranslationService).to receive(:configured).and_return(TranslationService.new)
+      allow(TranslationService.configured).to receive(:supported?).with('es', 'en').and_return(true)
+
+      subject.language = 'es'
+      subject.visibility = :public
+    end
+
+    context 'all conditions are satisfied' do
+      it 'returns true' do
+        expect(subject.translatable?).to be true
+      end
+    end
+
+    context 'translation service is not configured' do
+      it 'returns false' do
+        allow(TranslationService).to receive(:configured?).and_return(false)
+        allow(TranslationService).to receive(:configured).and_raise(TranslationService::NotConfiguredError)
+        expect(subject.translatable?).to be false
+      end
+    end
+
+    context 'status language is nil' do
+      it 'returns true' do
+        subject.language = nil
+        allow(TranslationService.configured).to receive(:supported?).with(nil, 'en').and_return(true)
+        expect(subject.translatable?).to be true
+      end
+    end
+
+    context 'status language is same as default locale' do
+      it 'returns false' do
+        subject.language = I18n.locale
+        expect(subject.translatable?).to be false
+      end
+    end
+
+    context 'status language is unsupported' do
+      it 'returns false' do
+        subject.language = 'af'
+        allow(TranslationService.configured).to receive(:supported?).with('af', 'en').and_return(false)
+        expect(subject.translatable?).to be false
+      end
+    end
+
+    context 'default locale is unsupported' do
+      it 'returns false' do
+        allow(TranslationService.configured).to receive(:supported?).with('es', 'af').and_return(false)
+        I18n.with_locale('af') do
+          expect(subject.translatable?).to be false
+        end
+      end
+    end
+
+    context 'default locale has region' do
+      it 'returns true' do
+        I18n.with_locale('en-GB') do
+          expect(subject.translatable?).to be true
+        end
+      end
+    end
+
+    context 'status text is blank' do
+      it 'returns false' do
+        subject.text = ' '
+        expect(subject.translatable?).to be false
+      end
+    end
+
+    context 'status visiblity is hidden' do
+      it 'returns false' do
+        subject.visibility = 'limited'
+        expect(subject.translatable?).to be false
+      end
+    end
+  end
+
   describe '#content' do
     it 'returns the text of the status if it is not a reblog' do
       expect(subject.content).to eql subject.text
@@ -204,10 +285,10 @@ RSpec.describe Status, type: :model do
   end
 
   describe '.mutes_map' do
+    subject { Status.mutes_map([status.conversation.id], account) }
+
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
-
-    subject { Status.mutes_map([status.conversation.id], account) }
 
     it 'returns a hash' do
       expect(subject).to be_a Hash
@@ -220,10 +301,10 @@ RSpec.describe Status, type: :model do
   end
 
   describe '.favourites_map' do
+    subject { Status.favourites_map([status], account) }
+
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
-
-    subject { Status.favourites_map([status], account) }
 
     it 'returns a hash' do
       expect(subject).to be_a Hash
@@ -236,10 +317,10 @@ RSpec.describe Status, type: :model do
   end
 
   describe '.reblogs_map' do
+    subject { Status.reblogs_map([status], account) }
+
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
-
-    subject { Status.reblogs_map([status], account) }
 
     it 'returns a hash' do
       expect(subject).to be_a Hash

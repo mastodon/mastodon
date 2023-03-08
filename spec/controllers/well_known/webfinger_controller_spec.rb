@@ -1,9 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe WellKnown::WebfingerController, type: :controller do
   render_views
 
   describe 'GET #show' do
+    subject do
+      get :show, params: { resource: resource }, format: :json
+    end
+
     let(:alternate_domains) { [] }
     let(:alice) { Fabricate(:account, username: 'alice') }
     let(:resource) { nil }
@@ -13,10 +19,6 @@ describe WellKnown::WebfingerController, type: :controller do
       Rails.configuration.x.alternate_domains = alternate_domains
       example.run
       Rails.configuration.x.alternate_domains = tmp
-    end
-
-    subject do
-      get :show, params: { resource: resource }, format: :json
     end
 
     shared_examples 'a successful response' do

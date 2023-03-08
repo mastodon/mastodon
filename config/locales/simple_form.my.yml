@@ -1,1 +1,121 @@
+---
 my:
+  simple_form:
+    hints:
+      defaults:
+        password: အနည်းဆုံး စာလုံး ၈ လုံး အသုံးပြုပါ။
+        setting_display_media_hide_all: မီဒီယာကို အမြဲတမ်းဖျောက်ထားပါ
+        setting_display_media_show_all: မီဒီယာကို အမြဲတမ်းပြပါ
+        setting_hide_network: သင်စောင့်ကြည့်မည့်သူများနှင့် သင့်ကိုစောင့်ကြည့်မည့်သူများကို သင့်ပရိုဖိုင်တွင် ဖျောက်ထားနိုင်ပါသည်
+        setting_noindex: သင်၏ အများမြင်သည့်ပရိုဖိုင်နှင့် ပို့စ်စာမျက်နှာများကို အကျိုးသက်ရောက်သည်
+        setting_show_application: ပို့စ်တင်ရန်အတွက် သင်အသုံးပြုသည့် အက်ပလီကေးရှင်းကို သင့်ပို့စ်များ၏ အသေးစိတ်ကြည့်ရှုမှုတွင် ပြသမည်ဖြစ်သည်
+      imports:
+        data: အခြား Mastodon ဆာဗာမှ CSV ဖိုင်ကို ပို့ထားသည်
+      invite_request:
+        text: "၎င်းသည် သင့်အက်ပလီကေးရှင်းကို ပြန်လည်သုံးသပ်ရန်အတွက် ကူညီပေးနိုင်ပါသည်"
+      ip_block:
+        severities:
+          sign_up_requires_approval: အကောင့်အသစ်များသည် သင့်ခွင့်ပြုချက်လိုအပ်ပါသည်
+      sessions:
+        otp: သင့်ဖုန်းအက်ပ်မှထုတ်ပေးသောနှစ်ဆင့်ခံလုံခြုံရေးကုဒ်ကို ထည့်ပါ သို့မဟုတ် ပြန်လည်ရယူရေးကုဒ်များထဲမှ တစ်ခုကို အသုံးပြုပါ -
+    labels:
+      account:
+        fields:
+          value: အကြောင်းအရာ
+      account_alias:
+        acct: အကောင့်ဟောင်းကို ကိုင်တွယ်ပါ။
+      account_migration:
+        acct: အကောင့်သစ်ကို ကိုင်တွယ်ပါ။
+      account_warning_preset:
+        title: ခေါင်းစဥ်
+      admin_account_action:
+        type: လုပ်ဆောင်ချက်
+        types:
+          none: သတိပေးချက်ပေးပို့ပါ
+          silence: ကန့်သတ်
+      announcement:
+        text: ကြေညာချက်
+      defaults:
+        avatar: ကိုယ်စားပြုရုပ်ပုံ
+        bot: ဤသည်မှာ ဘော့တ်အကောင့်တစ်ခုဖြစ်သည်။
+        chosen_languages: ဘာသာစကားများကို စစ်ထုတ်ထားခြင်း
+        confirm_new_password: စကားဝှက်အသစ်ကို အတည်ပြုပါ
+        confirm_password: စကားဝှက်ကို အတည်ပြုပါ။
+        context: အကြောင်းအရာများကို စစ်ထုတ်ပါ။
+        current_password: လက်ရှိစကားဝှက်
+        data: အချက်အလက်
+        display_name: ဖော်ပြမည့်အမည်
+        email: အီးမေးလ်လိပ်စာ
+        header: မျက်နှာဖုံးပုံ
+        honeypot: "%{label} (မဖြည့်ပါနှင့်)"
+        new_password: စကားဝှက်အသစ်
+        note: ကိုယ်ရေးအကျဉ်း
+        otp_attempt: နှစ်ဆင့်ခံလုံခြုံရေးကုဒ်
+        password: စကားဝှက်
+        phrase: အဓိကစကားလုံး သို့မဟုတ် စကားစု
+        setting_always_send_emails: အီးမေးလ်သတိပေးချက်များကို အမြဲပို့ပါ
+        setting_auto_play_gif: ကာတွန်း GIF များကို အလိုအလျောက်ဖွင့်ပါ
+        setting_display_media: မီဒီယာဖော်ပြမှု
+        setting_display_media_hide_all: အားလုံးကို ဖျောက်ပါ
+        setting_display_media_show_all: အားလုံးပြရန်
+        setting_system_font_ui: စနစ်ရှိ နဂိုမူလ စာလုံးပုံစံကို အသုံးပြုပါ
+        setting_trends: ယနေ့ ရေပန်းစားသည်များကို ပြပါ
+        setting_unfollow_modal: တစ်စုံတစ်ဦးကို မစောင့်ကြည့်မီ အတည်ပြုချက် ဒိုင်ယာလော့ခ်ကို ပြပါ
+        sign_in_token_attempt: လုံခြုံရေးကုဒ်
+        title: ခေါင်းစဥ်
+        username: အသုံးပြုသူအမည်
+        username_or_email: အသုံးပြုသူအမည် သို့မဟုတ် အီးမေးလ်
+      featured_tag:
+        name: Hashtag
+      form_admin_settings:
+        custom_css: စိတ်ကြိုက်ပြုလုပ်ထားသော CSS
+        mascot: စိတ်ကြိုက်ပြုလုပ်ထားသော mascot (legacy)
+        registrations_mode: ဘယ်သူတွေ အကောင့်ဖွင့်နိုင်မလဲ
+        require_invite_text: ပါဝင်ရန် အကြောင်းပြချက်တစ်ခု လိုအပ်ပါသည်
+        show_domain_blocks: ဒိုမိန်းပိတ်ပင်ထားမှုများကိုပြရန်
+        show_domain_blocks_rationale: ဒိုမိန်းများကို ဘာကြောင့် ပိတ်ဆို့ထားရကြောင်း ပြရန်
+        site_contact_email: ဆက်သွယ်ရမည့် အီးမေးလ်
+        site_contact_username: ဆက်သွယ်ရမည့် အသုံးပြုသူအမည်
+        site_short_description: ဆာဗာဖော်ပြချက်
+        site_terms: ကိုယ်ရေးအချက်အလက်မူဝါဒ
+        site_title: ဆာဗာအမည်
+        thumbnail: ဆာဗာ ပုံသေး
+      interactions:
+        must_be_follower: စောင့်ကြည့်မနေသူများထံမှ အသိပေးချက်များကို ပိတ်ပါ
+        must_be_following: သင် စောင့်ကြည့်မထားသူများထံမှ အသိပေးချက်များကို ပိတ်ပါ
+        must_be_following_dm: သင် စောင့်ကြည့်မထားသူများထံမှ တိုက်ရိုက်မက်ဆေ့ချ်များကို ပိတ်ပါ
+      invite:
+        comment: မှတ်ချက်
+      invite_request:
+        text: သင် ဘာကြောင့် ပါဝင်ချင်တာလဲ။
+      ip_block:
+        comment: မှတ်ချက်
+        ip: IP
+        severities:
+          sign_up_block: အကောင့်ဖွင့်ခြင်းများကို ပိတ်ပါ
+          sign_up_requires_approval: အကောင့်ဖွင့်ခြင်းများကို ကန့်သတ်ပါ
+        severity: စည်းမျဉ်း
+      notification_emails:
+        favourite: တစ်စုံတစ်ဦးက သင့်ပို့စ်ကို နှစ်သက်ခဲ့သည်။
+        follow: တစ်စုံတစ်ဦးက သင့်ကို စောင့်ကြည့်ခဲ့သည်
+        follow_request: တစ်စုံတစ်ဦးက သင့်ကို စောင့်ကြည့်ရန် တောင်းဆိုခဲ့သည်
+        mention: တစ်စုံတစ်ဦးက သင့်ကို ဖော်ပြခဲ့သည်
+        pending_account: အကောင့်အသစ်ကို ပြန်လည်သုံးသပ်ရန် လိုအပ်သည်
+      rule:
+        text: စည်းမျဉ်း
+      tag:
+        name: Hashtag
+      user:
+        role: အခန်းကဏ္ဍ
+      user_role:
+        name: အမည်
+        permissions_as_keys: ခွင့်ပြုချက်များ
+        position: ဦးစားပေး
+    'no': မလုပ်ပါ
+    required:
+      mark: "*"
+      text: လိုအပ်သော
+    title:
+      sessions:
+        webauthn: အကောင့်ဝင်ရန်အတွက် သင့်လုံခြုံရေးကီးများထဲမှ တစ်ခုကို အသုံးပြုပါ
+    'yes': ဟုတ်ကဲ့

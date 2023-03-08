@@ -122,12 +122,14 @@ eu:
         admin/accounts: Kontuen administrazioa
         admin/all: Funtzio administratibo guztiak
         admin/reports: Salaketen administrazioa
+        all: Sarbide osoa zure Mastodon kontura
         blocks: Blokeoak
         bookmarks: Laster-markak
         conversations: Elkarrizketak
         crypto: Muturretik-muturrerako zifraketa
         favourites: Gogokoak
         filters: Iragazkiak
+        follow: Jarraitzeak, mututzeak eta blokeatzeak
         follows: Jarraipenak
         lists: Zerrendak
         media: Multimedia eranskinak
@@ -147,9 +149,19 @@ eu:
     scopes:
       admin:read: zerbitzariko datu guztiak irakurri
       admin:read:accounts: kontu guztien informazio sentsiblea irakurri
+      admin:read:canonical_email_blocks: irakurri eposta kanonikoen blokeatzeari buruzko informazio sentikorra
+      admin:read:domain_allows: irakurri onartutako domeinu guztien informazio sentikorra
+      admin:read:domain_blocks: irakurri blokeatutako domeinu guztien informazio sentikorra
+      admin:read:email_domain_blocks: irakurri blokeatutako eposta domeinu guztien informazio sentikorra
+      admin:read:ip_blocks: irakurri blokeatutako IP guztien informazio sentikorra
       admin:read:reports: salaketa guztietako eta salatutako kontu guztietako informazio sentsiblea irakurri
       admin:write: zerbitzariko datu guztiak aldatu
       admin:write:accounts: kontuetan moderazio ekintzak burutu
+      admin:write:canonical_email_blocks: gauzatu moderazio ekintzak eposta kanonikoen blokeatzean
+      admin:write:domain_allows: gauzatu moderazio ekintzak onartutako domeinuetan
+      admin:write:domain_blocks: gauzatu moderazio ekintzak domeinuen blokeatzeetan
+      admin:write:email_domain_blocks: gauzatu moderazio ekintzak eposta domeinuen blokeatzeetan
+      admin:write:ip_blocks: gauzatu moderazio ekintzak IP blokeatzeetan
       admin:write:reports: salaketetan moderazio ekintzak burutu
       crypto: erabili muturretik muturrerako zifraketa
       follow: aldatu kontuaren erlazioak

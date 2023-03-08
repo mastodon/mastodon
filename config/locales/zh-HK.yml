@@ -89,6 +89,7 @@ zh-HK:
       moderation:
         active: 活躍
         all: 全部
+        disabled: 已停用
         pending: 處理中
         silenced: 受限
         suspended: 已停權
@@ -130,6 +131,7 @@ zh-HK:
       search: 搜尋
       search_same_email_domain: 其他有相同電郵網域的使用者
       search_same_ip: 其他有相同 IP 位址的使用者
+      security: 安全性
       security_measures:
         only_password: 僅密碼
         password_and_2fa: 密碼和兩步認證
@@ -419,6 +421,7 @@ zh-HK:
         resolve: 解析網域
         title: 新增電郵網域阻隔
       no_email_domain_block_selected: 未選取任何電郵網域限制，因此並未變更
+      not_permitted: 無權限
       resolved_dns_records_hint_html: 域名解析為以下 MX 網域，這些網域主要用來接收電子郵件。封鎖一個 MX 網域，即使域名看起來不同，也會阻止任何用相同 MX 網域的電郵地址進行註冊。<strong>注意不要封鎖主要的電子郵件供應商。</strong>
       resolved_through_html: 透過 %{domain} 解析
       title: 電郵網域阻隔
@@ -433,6 +436,7 @@ zh-HK:
         private_comment_description_html: 為了幫助你追蹤匯入封鎖的源頭，匯入的封鎖會在建立時將會有以下的私密備註：<q>%{comment}</q>
         private_comment_template: 於 %{date} 從 %{source} 匯入
         title: 匯入封鎖的網域
+      invalid_domain_block: 由於以下錯誤，已略過一個或多個域名封鎖：%{error}
       new:
         title: 匯入封鎖的網域
       no_file: 未選擇檔案
@@ -462,6 +466,7 @@ zh-HK:
       content_policies:
         comment: 內部備註
         description_html: 你可以自行制訂內容政策，政策將用於此網域和其子網域的所有帳號。
+        limited_federation_mode_description_html: 你可選擇是否允許此網域加入跨站。
         policies:
           reject_media: 拒絕接收媒體
           reject_reports: 拒絕檢舉
@@ -563,17 +568,23 @@ zh-HK:
         mark_as_sensitive_description_html: 被檢舉的帖文中的媒體會被標記為敏感內容，並記錄一次警告，以便日後加快處理同一帳號的違規行為。
         other_description_html: 查看更多控制帳號行為，以及自訂與被檢舉帳號溝通的選項。
         resolve_description_html: 不會對被檢舉的帳號採取任何動作，也不會記錄警告，檢舉報告將會結案。
+        silence_description_html: 此帳號將會只有追蹤者或手動搜尋它的人才可以看見，大幅限制了它的曝光。你可隨時恢復它。關閉所有對此帳號的檢舉報告。
+        suspend_description_html: 此帳號及其所有內容將不可再被存取，並且最終會被刪除，無法再進行互動。可於 30 天內撤銷此動作。關閉所有對此帳號的檢舉報告。
       actions_description_html: 決定對此檢舉採取哪種措施。如果對被檢舉帳號採取懲罰措施，除非選取了<strong>垃圾訊息</strong>分類，否則將向他們發送一封電郵通知。
+      actions_description_remote_html: 決定對此檢舉採取哪種動作。這只會影響<strong>你的伺服器</strong>與此遠端帳號的通訊和處理其內容的方式。
       add_to_report: 加入更多到檢舉
       are_you_sure: 你確認嗎？
       assign_to_self: 指派給自己
       assigned: 指派版主
       by_target_domain: 被舉報帳號的域名
+      cancel: 取消
       category: 分類
       category_description_html: 此帳號及/或內容被檢舉的原因，將會被引用在與被檢舉帳號的通訊中。
       comment:
         none: 沒有
       comment_description_html: 為了提供更多資訊，%{name} 寫道：
+      confirm: 確定
+      confirm_action: 確認對 ＠%{acct} 執行管理操作
       created_at: 日期
       delete_and_resolve: 刪除帖文
       forwarded: 已轉寄
@@ -590,6 +601,7 @@ zh-HK:
         placeholder: 記錄已執行的動作，或其他相關的更新……
         title: 筆記
       notes_description_html: 查看並給其他管理員和日後的自己留下筆記
+      processed_msg: '已成功處理檢舉報告 #%{id}'
       quick_actions_description_html: 採取快捷操作或向下捲動以查看檢舉內容：
       remote_user_placeholder: 來自 %{instance} 的遠端使用者
       reopen: 重開舉報個案
@@ -602,9 +614,28 @@ zh-HK:
       status: 狀態
       statuses: 被檢舉的內容
       statuses_description_html: 違規內容將被引用在被檢舉帳號的通訊中
+      summary:
+        action_preambles:
+          delete_html: 你即將<strong>移除</strong> <strong>@%{acct}</strong> 的部份帖文。這會：
+          mark_as_sensitive_html: 你即將把 <strong>@%{acct}</strong> 的部份帖文<strong>標記</strong>為<strong>敏感內容</strong>。這會：
+          silence_html: 你即將<strong>限制</strong> <strong>@%{acct}</strong> 的帳號。這會：
+          suspend_html: 你即將把 <strong>@%{acct}</strong> 的帳號<strong>停權</strong>。這會：
+        actions:
+          delete_html: 移除違規帖文
+          mark_as_sensitive_html: 將違規帖文的媒體標記為敏感內容
+          silence_html: 僅讓 <strong>@%{acct}</strong> 的追蹤者和手動搜尋其個人檔案的人看到他的個人檔案和內容，從而大幅限制其曝光。
+          suspend_html: 把 <strong>@%{acct}</strong> 停權，使其個人檔案和內容無法被存取和互動。
+        close_report: '將檢舉報告 #%{id} 標記為已解決'
+        close_reports_html: 將針對 <strong>@%{acct}</strong> 的<strong>所有</strong>檢舉報告標記為已解決
+        delete_data_html: 從現在起 30 天後移除 <strong>@%{acct}</strong> 的個人檔案和內容，除非在此期間撤銷對他們的停權。
+        preview_preamble_html: "<strong>@%{acct}</strong> 將收到警告，內容如下："
+        record_strike_html: 記錄對 <strong>@%{acct}</strong> 的警告，有助你加快處理此帳號日後的違規行為
+        send_email_html: 向 <strong>@%{acct}</strong> 發送警告郵件
+        warning_placeholder: 選填審核動作的補充理由。
       target_origin: 被檢舉帳號來源
       title: 舉報
       unassign: 取消指派
+      unknown_action_msg: 未知的動作：%{action}
       unresolved: 未處理
       updated_at: 更新
       view_profile: 查看個人檔案
@@ -697,6 +728,8 @@ zh-HK:
         preamble: 呈現有趣的內容有助於吸引不認識 Mastodon 的使用者新手上路。控制各種探索功能在你的伺服器上的運作方式。
         profile_directory: 個人檔案目錄
         public_timelines: 公共時間軸
+        publish_discovered_servers: 公開已知的伺服器
+        publish_statistics: 公佈統計數據
         title: 探索
         trends: 熱門
       domain_blocks:
@@ -751,6 +784,7 @@ zh-HK:
         suspend: "%{name} 將 %{target} 的帳號停權"
       appeal_approved: 已申訴
       appeal_pending: 申訴待審中
+      appeal_rejected: 申訴被駁回
     system_checks:
       database_schema_check:
         message_html: 有待處理的資料庫轉移 (database migration) 。請執行以確保應用程式行為合乎預期
@@ -785,6 +819,7 @@ zh-HK:
           other: 上週有 %{count} 人分享
         title: 熱門連結
         usage_comparison: 今天被分享了 %{today} 次，相較於昨天 %{yesterday} 次
+      not_allowed_to_trend: 不允許登上趨勢
       only_allowed: 僅允許
       pending_review: 等待審核中
       preview_card_providers:
@@ -913,6 +948,7 @@ zh-HK:
   applications:
     created: 已建立應用程式
     destroyed: 已刪除應用程式
+    logout: 登出
     regenerate_token: 重設 token
     token_regenerated: 已重設 token
     warning: 警告，不要把它分享給任何人！
@@ -920,6 +956,8 @@ zh-HK:
   auth:
     apply_for_account: 申請帳號
     change_password: 密碼
+    confirmations:
+      wrong_email_hint: 如果該電郵地址不正確，你可以在帳號設定中修改。
     delete_account: 刪除帳號
     delete_account_html: 如果你想刪除你的帳號，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
     description:
@@ -947,6 +985,8 @@ zh-HK:
     resend_confirmation: 重發確認指示電郵
     reset_password: 重設密碼
     rules:
+      accept: 接受
+      back: 返回
       preamble: 這些是由 %{domain} 管理員制訂和執行的。
       title: 一些基本規則。
     security: 登入資訊
@@ -1094,7 +1134,7 @@ zh-HK:
   featured_tags:
     add_new: 新增
     errors:
-      limit: 你所推薦的標籤數量已經達到上限
+      limit: 你推薦的標籤數量已達上限
     hint_html: "<strong>甚麼是推薦主題標籤？</strong> 它們會被顯示在你的個人資料頁面，讓其他人可以根據標籤瀏覽你的公開文章，令人們更易找到你創作或者長期作品！"
   filters:
     contexts:
@@ -1135,8 +1175,6 @@ zh-HK:
       index:
         hint: 不管其他條件如何，此篩選器會套用於所選的個別帖文。你可以在網頁介面上加入更多帖文到此篩選器。
         title: 篩選帖文
-  footer:
-    trending_now: 今期流行
   generic:
     all: 全部
     all_items_on_page_selected_html:
@@ -1155,8 +1193,6 @@ zh-HK:
     today: 今天
     validation_errors:
       other: 提交的資料有 %{count} 項問題
-  html_validator:
-    invalid_markup: 含有無效的HTML標記：%{error}
   imports:
     errors:
       invalid_csv_file: 無效的 CSV 檔案。錯誤：%{error}
@@ -1198,7 +1234,7 @@ zh-HK:
     title: 邀請用戶
   lists:
     errors:
-      limit: 你所建立的列表數量已經達到上限
+      limit: 你已達到列表數量的上限
   login_activities:
     authentication_methods:
       otp: 兩步認證軟體
@@ -1339,6 +1375,9 @@ zh-HK:
       unrecognized_emoji: 不能識別這個emoji
   relationships:
     activity: 帳戶活動
+    confirm_follow_selected_followers: 你確定要追蹤選取的追蹤者嗎？
+    confirm_remove_selected_followers: 你確定要移除選取的追蹤者嗎？
+    confirm_remove_selected_follows: 你確定要移除選取的追蹤者嗎？
     dormant: 潛在
     follow_selected_followers: 關注所選的追隨者
     followers: 追隨者
@@ -1509,7 +1548,7 @@ zh-HK:
       '7889238': 3 個月
     min_age_label: 按時間篩選
     min_favs: 保留超過嘟文最愛門檻
-    min_favs_hint: 如果您嘟文已收到超過最愛門檻則不會刪除。留白表示不論最愛數量皆刪除嘟文。
+    min_favs_hint: 收到此數量或更多最愛的帖文將不會被刪除。 留空可無視最愛數量刪除帖子
     min_reblogs: 保留超過嘟文轉嘟門檻
     min_reblogs_hint: 如果您嘟文已收到超過轉嘟門檻則不會刪除。留白表示不論轉嘟數量皆刪除嘟文。
   stream_entries:

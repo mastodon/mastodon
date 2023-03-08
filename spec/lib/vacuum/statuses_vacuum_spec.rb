@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Vacuum::StatusesVacuum do
+  subject { described_class.new(retention_period) }
+
   let(:retention_period) { 7.days }
 
   let(:remote_account) { Fabricate(:account, domain: 'example.com') }
-
-  subject { described_class.new(retention_period) }
 
   describe '#perform' do
     let!(:remote_status_old) { Fabricate(:status, account: remote_account, created_at: (retention_period + 2.days).ago) }

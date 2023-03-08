@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 describe MoveWorker do
+  subject { described_class.new }
+
   let(:local_follower)   { Fabricate(:account) }
   let(:blocking_account) { Fabricate(:account) }
   let(:muting_account)   { Fabricate(:account) }
@@ -13,8 +15,6 @@ describe MoveWorker do
   let!(:account_note)    { Fabricate(:account_note, account: local_user.account, target_account: source_account, comment: comment) }
 
   let(:block_service) { double }
-
-  subject { described_class.new }
 
   before do
     local_follower.follow!(source_account)

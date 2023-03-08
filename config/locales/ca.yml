@@ -31,7 +31,7 @@ ca:
       created_msg: La nota de moderació s'ha creat correctament!
       destroyed_msg: Nota de moderació destruïda amb èxit!
     accounts:
-      add_email_domain_block: Bloquejar el domini de l'adreça de correu electrònic
+      add_email_domain_block: Bloca el domini del correu
       approve: Aprova
       approved_msg: L’aplicació del registre de %{username} s’ha aprovat amb èxit
       are_you_sure: N'estàs segur?
@@ -91,6 +91,7 @@ ca:
       moderation:
         active: Actiu
         all: Tot
+        disabled: Desactivat
         pending: Pendent
         silenced: Limitat
         suspended: Suspès
@@ -133,6 +134,7 @@ ca:
       search: Cerca
       search_same_email_domain: Altres usuaris amb el mateix domini de correu
       search_same_ip: Altres usuaris amb la mateixa IP
+      security: Seguretat
       security_measures:
         only_password: Només contrasenya
         password_and_2fa: Contrasenya i 2FA
@@ -180,7 +182,7 @@ ca:
         create_custom_emoji: Crea un emoji personalitzat
         create_domain_allow: Crea un domini permès
         create_domain_block: Crea un bloqueig de domini
-        create_email_domain_block: Crea un bloqueig de domini d'adreça de correu
+        create_email_domain_block: Crea un bloqueig de domini de correu
         create_ip_block: Crear regla IP
         create_unavailable_domain: Crea un domini no disponible
         create_user_role: Crea Rol
@@ -188,9 +190,9 @@ ca:
         destroy_announcement: Esborra l'anunci
         destroy_canonical_email_block: Esborra el bloqueig de correu electrònic
         destroy_custom_emoji: Esborra l'emoji personalitzat
-        destroy_domain_allow: Esborra el domini permès
+        destroy_domain_allow: Esborra el permís del domini
         destroy_domain_block: Esborra el bloqueig de domini
-        destroy_email_domain_block: Esborra el bloqueig de domini de l'adreça de correu
+        destroy_email_domain_block: Esborra el bloqueig de domini de correu
         destroy_instance: Purga Domini
         destroy_ip_block: Eliminar regla IP
         destroy_status: Elimina la publicació
@@ -211,11 +213,11 @@ ca:
         reopen_report: Reobre l'informe
         resend_user: Torna a enviar el correu de confirmació
         reset_password_user: Restableix la contrasenya
-        resolve_report: Resolt l'informe
+        resolve_report: Resol l'informe
         sensitive_account: Marcar els mèdia en el teu compte com a sensibles
         silence_account: Silencia el compte
         suspend_account: Suspèn el compte
-        unassigned_report: Des-assigna l'informe
+        unassigned_report: Desassigna l'informe
         unblock_email_account: Desbloqueja l'adreça de correu
         unsensitive_account: Desmarcar els mèdia en el teu compte com a sensibles
         unsilence_account: Desfés el silenci del compte
@@ -229,7 +231,7 @@ ca:
       actions:
         approve_appeal_html: "%{name} ha aprovat l'apel·lació a la decisió de moderació de %{target}"
         approve_user_html: "%{name} ha aprovat el registre de %{target}"
-        assigned_to_self_report_html: "%{name} han assignat l'informe %{target} a ells mateixos"
+        assigned_to_self_report_html: "%{name} s'han assignat l'informe %{target} a ells mateixos"
         change_email_user_html: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
         change_role_user_html: "%{name} ha canviat el rol de %{target}"
         confirm_user_html: "%{name} ha confirmat l'adreça de correu electrònic de l'usuari %{target}"
@@ -372,15 +374,15 @@ ca:
         empty: No s'ha trobat cap apel·lació.
         title: Apel·lacions
     domain_allows:
-      add_new: Dominis autoritzats
-      created_msg: El domini ha estat correctament autoritzat
-      destroyed_msg: S'ha esborrat el domini de la llista blanca
+      add_new: Permet la federació amb el domini
+      created_msg: El domini ha estat autoritzat per a la federació
+      destroyed_msg: El domini ha estat desautoritzat de la federació
       export: Exporta
       import: Importa
-      undo: Treure de la llista blanca
+      undo: No permetis la federació amb el domini
     domain_blocks:
-      add_new: Afegir nou bloqueig de domini
-      created_msg: El bloqueig de domini ara s'està processant
+      add_new: Afegeix nou bloqueig de domini
+      created_msg: S'està processant el bloqueig de domini
       destroyed_msg: El bloqueig de domini s'ha desfet
       domain: Domini
       edit: Editar el bloqueig del domini
@@ -396,7 +398,7 @@ ca:
           noop: Cap
           silence: Limitar
           suspend: Suspensió
-        title: Bloqueig de domini nou
+        title: Nou bloqueig de domini
       no_domain_block_selected: No s'ha canviat cap bloqueig de domini perquè no se n'ha seleccionat cap
       not_permitted: No tens permís per a realitzar aquesta acció
       obfuscate: Oculta el nom del domini
@@ -427,6 +429,7 @@ ca:
         resolve: Resol domini
         title: Nova adreça de correu en la llista negra
       no_email_domain_block_selected: No s'han canviat els bloquejos de domini perquè cap s'ha seleccionat
+      not_permitted: No permés
       resolved_dns_records_hint_html: El nom del domini resol als següents dominis MX, els quals son els responsables finals per a acceptar els correus. Bloquejar un domini MX bloquejarà els registres des de qualsevol adreça de correu que utilitzi el mateix domini MX, encara que el nom visible del domini sigui diferent. <strong>Ves amb compte no bloquegis els grans proveïdors de correu electrònic.</strong>
       resolved_through_html: Resolt mitjançant %{domain}
       title: Llista negra de correus electrònics
@@ -441,6 +444,7 @@ ca:
         private_comment_description_html: 'Per a ajudar-te a fer un seguiment d''on provenen els bloquejos importats, es crearan amb el següent comentari privat: <q>%{comment}</q>'
         private_comment_template: Importar des de %{source} el %{date}
         title: Importa dominis bloquejats
+      invalid_domain_block: 'Un o més dominis blocats s''han omés degut al següent error(s): %{error}'
       new:
         title: Importa dominis bloquejats
       no_file: No s'ha seleccionat cap fitxer
@@ -472,6 +476,7 @@ ca:
       content_policies:
         comment: Nota interna
         description_html: Pots definir polítiques de contingut que seran aplicades a tots els comptes d'aquest domini i a qualsevol dels seus subdominis.
+        limited_federation_mode_description_html: Pots triar si permets la federació amb aquest domini.
         policies:
           reject_media: Rebutja mèdia
           reject_reports: Rebutja informes
@@ -573,23 +578,26 @@ ca:
       actions:
         delete_description_html: Els tuts reportats seran eliminats i un cop serà gravat per a ajudar-te a escalar en futures infraccions des del mateix compte.
         mark_as_sensitive_description_html: Els mèdia dels tuts reportats seran marcats com a sensibles i una acció serà gravada per ajudar a escalar en futures infraccions del mateix compte.
-        other_description_html: Veu més opcions controlant el comportament del compte i personalitza la comunicació al compte reportat.
-        resolve_description_html: No serà presa cap acció contra el compte reportat, cap cop serà gravat i l'informe es tancarà.
+        other_description_html: Veu més opcions controlant el comportament del compte i personalitza la comunicació al compte denunciat.
+        resolve_description_html: No serà presa cap acció contra el compte denunciat, no se'n registrarà res i l'informe es tancarà.
         silence_description_html: El compte només serà visible a qui ja el seguia o l'ha cercat manualment, limitant-ne fortament l'abast. Sempre es pot revertir. Es tancaran tots els informes contra aquest compte.
         suspend_description_html: Aquest compte i tots els seus continguts seran inaccessibles i finalment eliminats, i interaccionar amb ell no serà possible. Reversible en 30 dies. Tanca tots els informes contra aquest compte.
-      actions_description_html: Decideix quina acció a prendre per a resoldre aquest informe. Si prens un acció punitiva contra el compte reportat, se li enviarà una notificació per correu electrònic, excepte quan la categoria <strong>Spam</strong> és seleccionada.
+      actions_description_html: Decideix quina acció a prendre per a resoldre aquest informe. Si prens un acció punitiva contra el compte denunciat, se li enviarà una notificació per correu electrònic, excepte quan se selecciona la categoria <strong>Spam</strong>.
       actions_description_remote_html: Decideix quina acció prendre per a resoldre aquest informe. Això només afectarà com <strong>el teu</strong> servidor es comunica amb aquest compte remot i en gestiona el contingut.
       add_to_report: Afegir més al informe
-      are_you_sure: N'estàs segur?
-      assign_to_self: Assignar-me
+      are_you_sure: Segur?
+      assign_to_self: Assigna'm
       assigned: Moderador assignat
-      by_target_domain: Domini del compte reportat
+      by_target_domain: Domini del compte denunciat
+      cancel: Cancel·la
       category: Categoria
-      category_description_html: El motiu pel qual aquest compte o contingut ha estat reportat serà citat en la comunicació amb el compte reportat
+      category_description_html: El motiu pel qual aquest compte o contingut ha estat denunciat se citarà en la comunicació amb el compte denunciat
       comment:
         none: Cap
       comment_description_html: 'Per a donar més informació, %{name} ha escrit:'
-      created_at: Reportat
+      confirm: Confirma
+      confirm_action: Confirma l'acció de moderació contra @%{acct}
+      created_at: Denunciat
       delete_and_resolve: Elimina les publicacions
       forwarded: Reenviat
       forwarded_to: Reenviat a %{domain}
@@ -598,28 +606,48 @@ ca:
       mark_as_unresolved: Marcar com a sense resoldre
       no_one_assigned: Ningú
       notes:
-        create: Afegir una nota
+        create: Afegeix una nota
         create_and_resolve: Resol amb una nota
         create_and_unresolve: Reobre amb una nota
         delete: Elimina
         placeholder: Descriu les accions que s'han pres o qualsevol altra actualització relacionada…
         title: Notes
-      notes_description_html: Veu i deixa notes als altres moderadors i a tu mateix
-      quick_actions_description_html: 'Pren una acció ràpida o desplaça''t avall per a veure el contingut reportat:'
+      notes_description_html: Mira i deixa notes als altres moderadors i a tu mateix
+      processed_msg: 'L''informe #%{id} ha estat processat amb èxit'
+      quick_actions_description_html: 'Pren una acció ràpida o desplaça''t avall per a veure el contingut denunciat:'
       remote_user_placeholder: l'usuari remot des de %{instance}
       reopen: Reobre l'informe
       report: 'Informe #%{id}'
-      reported_account: Compte reportat
-      reported_by: Reportat per
+      reported_account: Compte denunciat
+      reported_by: Denunciat per
       resolved: Resolt
-      resolved_msg: Informe resolt amb èxit!
+      resolved_msg: Informe resolt correctament!
       skip_to_actions: Salta a les accions
       status: Estat
       statuses: Contingut reportat
-      statuses_description_html: El contingut ofensiu serà citat en comunicació amb el compte reportat
-      target_origin: Origen del compte reportat
+      statuses_description_html: El contingut ofensiu se citarà en comunicació amb el compte denunciat
+      summary:
+        action_preambles:
+          delete_html: 'Estàs a punt d''<strong>esborrar</strong> alguns dels tuts de <strong>@%{acct}</strong>. Això provocarà:'
+          mark_as_sensitive_html: 'Estàs a punt de <strong>marcar</strong> alguns dels tuts de <strong>@%{acct}</strong> com a <strong>sensibles</strong>. Això provocarà:'
+          silence_html: 'Estàs a punt de <strong>limitar</strong> el compte de <strong>@%{acct}</strong>. Això provocarà:'
+          suspend_html: 'Estàs a punt de <strong>suspendre</strong> el compte de <strong>@%{acct}</strong>. Això provocarà:'
+        actions:
+          delete_html: Esborra els tuts ofensius
+          mark_as_sensitive_html: Marca el contingut multimèdia dels tuts com a sensibles
+          silence_html: Limita severament l'abast de <strong>@%{acct}</strong> fent el seus perfils i continguts només visibles per la gent que ja els estan seguint o que cerquin manualment els seus perfils
+          suspend_html: Suspèn <strong>@%{acct}</strong>, fent els seus perfils i continguts inaccessibles i impossibles d'interactuar
+        close_report: 'Marca l''informe #%{id} com a resolt'
+        close_reports_html: Marca <strong>tots</strong> els informes contra <strong>@%{acct}</strong> com a resolts
+        delete_data_html: Esborra el perfil de <strong>@%{acct}</strong> i els seus continguts dins de 30 dies des d'ara a no ser que es desactivi la suspensió abans
+        preview_preamble_html: "<strong>@%{acct}</strong> rebrà un avís amb el contingut següent:"
+        record_strike_html: Registra una acció contra <strong>@%{acct}</strong> per ajudar a escalar-ho en futures violacions des d'aquest compte
+        send_email_html: Envia un avís per correu electrònic a <strong>@%{acct}</strong>
+        warning_placeholder: Opcional raó adicional d'aquesta acció de moderació.
+      target_origin: Origen del compte denunciat
       title: Informes
       unassign: Treu l'assignació
+      unknown_action_msg: 'Acció desconeguda: %{action}'
       unresolved: No resolt
       updated_at: Actualitzat
       view_profile: Veure perfil
@@ -738,10 +766,10 @@ ca:
       account: Autor
       application: Aplicació
       back_to_account: Torna a la pàgina del compte
-      back_to_report: Torna a la pàgina del informe
+      back_to_report: Torna a la pàgina de l'informe
       batch:
-        remove_from_report: Treu del informe
-        report: Informe
+        remove_from_report: Treu de l'informe
+        report: Denuncia
       deleted: Eliminada
       favourites: Favorits
       history: Històric de versions
@@ -770,6 +798,7 @@ ca:
         suspend: "%{name} ha suspès el compte de %{target}"
       appeal_approved: Apel·lat
       appeal_pending: Apel·lació pendent
+      appeal_rejected: Apel·lació rebutjada
     system_checks:
       database_schema_check:
         message_html: Hi ha pendents migracions de la base de dades. Si us plau executa-les per a assegurar que l'aplicació es comporta com s'espera
@@ -805,6 +834,7 @@ ca:
           other: Compartit per %{count} persones en la darrera setmana
         title: Enllaços en tendència
         usage_comparison: Compartit %{today} vegades avui, comparat amb %{yesterday} d'ahir
+      not_allowed_to_trend: No es permet la tendència
       only_allowed: Només permesos
       pending_review: Revisió pendent
       preview_card_providers:
@@ -894,7 +924,7 @@ ca:
       subject: Nou compte per a revisar a %{instance} (%{username})
     new_report:
       body: "%{reporter} ha informat de %{target}"
-      body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
+      body_remote: Algú des del domini %{domain} ha informat sobre %{target}
       subject: Informe nou per a %{instance} (#%{id})
     new_trends:
       body: 'Els següents elements necessiten una revisió abans de que puguin ser mostrats públicament:'
@@ -936,6 +966,7 @@ ca:
   applications:
     created: L'aplicació s'ha creat correctament
     destroyed: L'aplicació s'ha suprimit correctament
+    logout: Surt
     regenerate_token: Torna a generar l'identificador d'accés
     token_regenerated: L'identificador d'accés s'ha generat correctament
     warning: Aneu amb compte amb aquestes dades. No les compartiu mai amb ningú!
@@ -943,6 +974,8 @@ ca:
   auth:
     apply_for_account: Sol·licitar un compte
     change_password: Contrasenya
+    confirmations:
+      wrong_email_hint: Si aquesta adreça de correu electrònic no és correcte, pots canviar-la en els ajustos del compte.
     delete_account: Elimina el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
     description:
@@ -970,6 +1003,8 @@ ca:
     resend_confirmation: Torna a enviar el correu de confirmació
     reset_password: Restableix la contrasenya
     rules:
+      accept: Accepta
+      back: Enrere
       preamble: Aquestes regles estan establertes i aplicades per els moderadors de %{domain}.
       title: Algunes regles bàsiques.
     security: Seguretat
@@ -1115,7 +1150,7 @@ ca:
     mutes: Persones silenciades
     storage: Emmagatzematge
   featured_tags:
-    add_new: Afegir nova etiqueta
+    add_new: Afegeix-ne una de nova
     errors:
       limit: Ja has mostrat la quantitat màxima d'etiquetes
     hint_html: "<strong>Què son les etiquetes destacades?</strong> Es mostren de manera destacada en el teu perfil públic i permeten a les persones navegar per els teus tuts gràcies a aquestes etiquetes. Són una gran eina per fer un seguiment de treballs creatius o de projectes a llarg termini."
@@ -1161,8 +1196,6 @@ ca:
       index:
         hint: Aquest filtre aplica als tuts seleccionats independentment d'altres criteris. Pots afegir més tuts a aquest filtre des de la interfície Web.
         title: Tuts filtrats
-  footer:
-    trending_now: En tendència
   generic:
     all: Tot
     all_items_on_page_selected_html:
@@ -1185,8 +1218,6 @@ ca:
     validation_errors:
       one: Alguna cosa no va bé! Si us plau, revisa l'error
       other: Alguna cosa no va bé! Si us plau, revisa %{count} errors més a baix
-  html_validator:
-    invalid_markup: 'conté HTML markup no vàlid: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Fitxer CSV invàlid. Error: %{error}'
@@ -1549,7 +1580,7 @@ ca:
       '7889238': 3 mesos
     min_age_label: Antiguitat
     min_favs: Mantenir els tuts afavorits més de
-    min_favs_hint: No suprimeix cap dels teus tuts que hagin rebut més d'aquesta quantitat de favorits. Deixa-ho en blanc per a suprimir tuts independentment del nombre de favorits que tinguin
+    min_favs_hint: No suprimeix cap dels teus tuts que hagin rebut més d'aquesta quantitat de favorits. Deixa-ho en blanc per a suprimir tuts independentment del nombre de favorits
     min_reblogs: Mantenir les publicacions impulsades més de
     min_reblogs_hint: No suprimeix cap de les teves publicacions que s'hagin impulsat més que aquest nombre de vegades. Deixa-ho en blanc per a suprimir les publicacions independentment del nombre d'impulsos que tinguin.
   stream_entries:

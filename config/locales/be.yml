@@ -95,6 +95,7 @@ be:
       moderation:
         active: Актыўны
         all: Усе
+        disabled: Адключана
         pending: Чакаюць
         silenced: Абмежаваны
         suspended: Прыпынены
@@ -139,6 +140,7 @@ be:
       search: Пошук
       search_same_email_domain: Іншыя карыстальнікі з такім жа даменам эл. пошты
       search_same_ip: Іншыя карыстальнікі з гэтым IP
+      security: Бяспека
       security_measures:
         only_password: Толькі пароль
         password_and_2fa: Пароль і 2FA
@@ -443,6 +445,7 @@ be:
         resolve: Вызначыць дамен
         title: Заблакіраваць новы дамен эл. пошты
       no_email_domain_block_selected: Блакіроўкі даменаў эл. пошты не былі змененыя, таму што ні адзін з іх не быў выбраны
+      not_permitted: Забаронена
       resolved_dns_records_hint_html: Даменнае імя ператвараецца ў наступныя дамены MX, якія ў канчатковым выніку адказваюць за прыём электроннай пошты. Блакаванне дамена MX заблакуе рэгістрацыю з любога адраса электроннай пошты, які выкарыстоўвае той жа дамен MX, нават калі бачнае імя дамена адрозніваецца. <strong>Будзьце асцярожныя, каб не заблакіраваць асноўных пастаўшчыкоў электроннай пошты.</strong>
       resolved_through_html: Вызначына каля %{domain}
       title: Заблакаваныя паштовыя дамены
@@ -457,6 +460,7 @@ be:
         private_comment_description_html: 'Каб дапамагчы вам адсочваць, адкуль паходзяць імпартаваныя блокі, імпартаваныя блокі будуць створаны з наступным прыватным каментарыем: <q>%{comment}</q>'
         private_comment_template: Імпартавана з %{source} %{date}
         title: Імпарт блакіровак дамену
+      invalid_domain_block: 'Адзін ці больш даменных блокаў былі прапушчаны праз наступную(-ыя) памылку(-і): %{error}'
       new:
         title: Імпарт блакіровак дамену
       no_file: Файл не выбраны
@@ -492,6 +496,7 @@ be:
       content_policies:
         comment: Унутраная нататка
         description_html: Вы можаце вызначыць палітыку кантэнту, якая будзе прымяняцца да ўсіх уліковых запісаў гэтага дамена і любога з яго субдаменаў.
+        limited_federation_mode_description_html: Вы можаце выбраць ці дазволіць уваходзіць у федэрацыю з гэтым даменам.
         policies:
           reject_media: Адхіліць мультымедыя
           reject_reports: Адхіліць справаздачы
@@ -608,11 +613,14 @@ be:
       assign_to_self: Прызначыць мне
       assigned: Прызначаны мадэратар
       by_target_domain: Дамен уліковага запісу, на які падаецца скарга
+      cancel: Скасаваць
       category: Катэгорыя
       category_description_html: Прычына паведамлення аб гэтым уліковым запісе і/або кантэнце будзе згадана ў сувязі з уліковым запісам, на які пададзена скарга
       comment:
         none: Пуста
       comment_description_html: 'Каб даць больш інфармацыі, %{name} напісаў:'
+      confirm: Пацвердзіць
+      confirm_action: Пацвердзіць мадэрацыю супраць @%{acct}
       created_at: Створана
       delete_and_resolve: Выдаліць допісы
       forwarded: Пераслана
@@ -629,6 +637,7 @@ be:
         placeholder: Апішыце, якія дзеянні былі зроблены, або любыя іншыя звязаныя абнаўленні...
         title: Нататкі
       notes_description_html: Праглядвайце і пакідайце нататкі іншым мадэратарам і сабе ў будучыні
+      processed_msg: 'Скарга #%{id} паспяхова апрацавана'
       quick_actions_description_html: 'Выканайце хуткае дзеянне або пракруціце ўніз, каб убачыць змесціва, на якое пададзена скарга:'
       remote_user_placeholder: аддалены карыстальнік з %{instance}
       reopen: Пераадкрыць скаргу
@@ -641,9 +650,28 @@ be:
       status: Стан
       statuses: Змесціва, на якое паскардзіліся
       statuses_description_html: Крыўднае змесціва будзе згадвацца ў зносінах з уліковым запісам, на які пададзена скарга
+      summary:
+        action_preambles:
+          delete_html: 'Вы збіраецеся <strong>выдаліць</strong> некаторыя з допісаў <strong>@%{acct}</strong>. Гэта будуць:'
+          mark_as_sensitive_html: 'Вы збіраецеся <strong>пазначыць</strong> некаторыя з допісаў <strong>@%{acct}</strong> як <strong>уражальныя</strong>. Гэта будуць:'
+          silence_html: 'Вы збіраецеся <strong>абмежаваць</strong> уліковы запіс <strong>@%{acct}</strong>. Гэта будзе:'
+          suspend_html: 'Вы збіраецеся <strong>прыпыніць</strong> уліковы запіс <strong>@%{acct}</strong>. Гэта будзе:'
+        actions:
+          delete_html: Выдаліць абразлівы допіс
+          mark_as_sensitive_html: Пазначыць медыя абразлівага допіса як далікатнае
+          silence_html: Значна абмежаваць ахоп <strong>@%{acct}</strong>, зрабіўшы профіль і змесціва бачнымі толькі для людзей, якія ўжо падпісаныя, альбо шукае яго ўручную
+          suspend_html: Прыпыніць <strong>@%{acct}</strong>, зрабіць профіль і змесціва недаступным і не даваць магчымасці ўзаемадзейнічаць з імі
+        close_report: 'Пазначыць скаргу #%{id} як вырашаную'
+        close_reports_html: Адзначыць <strong>усе</strong> скаргі супраць <strong>@%{acct}</strong> як вырашаныя
+        delete_data_html: Выдаліць профіль <strong>@%{acct}</strong> і змесціва праз 30 дзён, калі тым часам гэтае дзеянне не будзе адменена
+        preview_preamble_html: "<strong>@%{acct}</strong> атрымае папярэджанне наступнага зместу:"
+        record_strike_html: Зарэгістраваць папярэджанне <strong>@%{acct}</strong>, каб дапамагчы вам эскаліраваць наступныя парушэнні з боку таго ж уліковага запісу
+        send_email_html: Адправіць <strong>@%{acct}</strong> папярэджанне па электроннай пошце
+        warning_placeholder: Неабавязковае дадатковае абгрунтаванне мадэрацыі.
       target_origin: Крыніца уліковага запісу на які пададзена скарга
       title: Скаргі
       unassign: Скінуць
+      unknown_action_msg: 'Невядомае дзеянне: %{action}'
       unresolved: Нявырашаныя
       updated_at: Абноўлена
       view_profile: Паглядзець профіль
@@ -798,6 +826,7 @@ be:
         suspend: Уліковы запіс %{target} выключаны %{name}
       appeal_approved: Абскарджана
       appeal_pending: Апеляцыя разглядаецца
+      appeal_rejected: Абскарджанне адхілена
     system_checks:
       database_schema_check:
         message_html: Ёсць незавершаныя міграцыі базы дадзеных. Калі ласка, запусціце іх, каб пераканацца, што дадатак паводзіць сябе належным чынам
@@ -835,6 +864,7 @@ be:
           other: Абагулілі %{count} чалавек за апошні тыдзень
         title: Актуальныя спасылкі
         usage_comparison: Выкарыстоўвалася %{today} разоў сёння, у параўнанні з %{yesterday} учора
+      not_allowed_to_trend: Забаронена выходзіць у актуальныя
       only_allowed: Толькі дазволенае
       pending_review: Чакае праверкі
       preview_card_providers:
@@ -972,6 +1002,7 @@ be:
   applications:
     created: Праграма паспяхова створана
     destroyed: Праграма паспяхова выдалена
+    logout: Выйсці
     regenerate_token: Стварыць новы токен доступу
     token_regenerated: Новы токен доступу паспяхова створаны
     warning: Будзьце вельмі асцярожныя з гэтымі данымі. Ніколі нікому не паведамляйце іх!
@@ -979,6 +1010,8 @@ be:
   auth:
     apply_for_account: Пакінуць заяўку
     change_password: Пароль
+    confirmations:
+      wrong_email_hint: Калі гэты адрас электроннай пошты памылковы, вы можаце змяніць яго ў наладах уліковага запісу.
     delete_account: Выдаліць уліковы запіс
     delete_account_html: Калі вы жадаеце выдаліць ваш уліковы запіс, можаце <a href="%{path}">працягнуць тут</a>. Ад вас будзе запатрабавана пацвярджэнне.
     description:
@@ -1006,6 +1039,8 @@ be:
     resend_confirmation: Адправіць інструкцыю пацвярджэння зноў
     reset_password: Скінуць пароль
     rules:
+      accept: Прыняць
+      back: Назад
       preamble: Правілы вызначаныя мадэратарамі дамена %{domain}.
       title: Некалькі базавых правілаў.
     security: Бяспека
@@ -1203,8 +1238,6 @@ be:
       index:
         hint: Гэты фільтр прымяняецца для выбару асобных допісаў незалежна ад іншых крытэрыяў. Вы можаце дадаць больш допісаў у гэты фільтр з вэб-інтэрфейсу.
         title: Адфільтраваныя допісы
-  footer:
-    trending_now: Актуальнае
   generic:
     all: Усе
     all_items_on_page_selected_html:
@@ -1235,8 +1268,6 @@ be:
       many: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце %{count} памылак ніжэй
       one: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце памылку ніжэй
       other: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце %{count} памылак ніжэй
-  html_validator:
-    invalid_markup: 'змяшчае несапраўдную разметку HTML: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Несапраўдны файл CSV. Памылка: %{error}'
@@ -1424,6 +1455,7 @@ be:
     activity: Актыўнасць ул. запісу
     confirm_follow_selected_followers: Вы ўпэўнены, што жадаеце падпісацца на выбраных падпісчыкаў?
     confirm_remove_selected_followers: Вы ўпэўнены, што жадаеце выдаліць выбраных падпісчыкаў?
+    confirm_remove_selected_follows: Вы ўпэўнены, што жадаеце выдаліць выбраныя падпіскі?
     dormant: Занядбаны
     follow_selected_followers: Падпісацца на выбраных падпісчыкаў
     followers: Падпісчыкі

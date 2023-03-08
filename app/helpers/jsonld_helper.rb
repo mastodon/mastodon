@@ -26,15 +26,13 @@ module JsonLdHelper
   # The url attribute can be a string, an array of strings, or an array of objects.
   # The objects could include a mimeType. Not-included mimeType means it's text/html.
   def url_to_href(value, preferred_type = nil)
-    single_value = begin
-      if value.is_a?(Array) && !value.first.is_a?(String)
-        value.find { |link| preferred_type.nil? || ((link['mimeType'].presence || 'text/html') == preferred_type) }
-      elsif value.is_a?(Array)
-        value.first
-      else
-        value
-      end
-    end
+    single_value = if value.is_a?(Array) && !value.first.is_a?(String)
+                     value.find { |link| preferred_type.nil? || ((link['mimeType'].presence || 'text/html') == preferred_type) }
+                   elsif value.is_a?(Array)
+                     value.first
+                   else
+                     value
+                   end
 
     if single_value.nil? || single_value.is_a?(String)
       single_value
@@ -213,7 +211,7 @@ module JsonLdHelper
     end
   end
 
-  def load_jsonld_context(url, _options = {}, &_block)
+  def load_jsonld_context(url, _options = {}, &block)
     json = Rails.cache.fetch("jsonld:context:#{url}", expires_in: 30.days, raw: true) do
       request = Request.new(:get, url)
       request.add_headers('Accept' => 'application/ld+json')
@@ -226,6 +224,6 @@ module JsonLdHelper
 
     doc = JSON::LD::API::RemoteDocument.new(json, documentUrl: url)
 
-    block_given? ? yield(doc) : doc
+    block ? yield(doc) : doc
   end
 end
