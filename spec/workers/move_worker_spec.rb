@@ -16,6 +16,13 @@ describe MoveWorker do
 
   let(:block_service) { double }
 
+  around(:each) do |example|
+    Sidekiq::Testing.fake! do
+      example.run
+      Sidekiq::Worker.clear_all
+    end
+  end
+
   before do
     local_follower.follow!(source_account)
     blocking_account.block!(source_account)
@@ -89,8 +96,8 @@ describe MoveWorker do
   context 'both accounts are distant' do
     describe 'perform' do
       it 'calls UnfollowFollowWorker' do
-        expect_push_bulk_to_match(UnfollowFollowWorker, [[local_follower.id, source_account.id, target_account.id, false]])
         subject.perform(source_account.id, target_account.id)
+        expect(UnfollowFollowWorker.jobs.map { |job| job['args'] }).to match_array([[local_follower.id, source_account.id, target_account.id, false]])
       end
 
       include_examples 'user note handling'
@@ -104,8 +111,8 @@ describe MoveWorker do
 
     describe 'perform' do
       it 'calls UnfollowFollowWorker' do
-        expect_push_bulk_to_match(UnfollowFollowWorker, [[local_follower.id, source_account.id, target_account.id, true]])
         subject.perform(source_account.id, target_account.id)
+        expect(UnfollowFollowWorker.jobs.map { |job| job['args'] }).to match_array([[local_follower.id, source_account.id, target_account.id, true]])
       end
 
       include_examples 'user note handling'
