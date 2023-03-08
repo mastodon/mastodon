@@ -225,9 +225,8 @@ module Mastodon::CLI
         @prompt.warn "e-mail will be disabled for the following accounts: #{user.map(&:account).map(&:acct).join(', ')}"
         @prompt.warn 'Please reach out to them and set another address with `tootctl account modify` or delete them.'
 
-        i = 0
-        users.each do |user|
-          user.update!(email: "#{i} " + user.email)
+        users.each_with_index do |user, index|
+          user.update!(email: "#{index} " + user.email)
         end
       end
 
