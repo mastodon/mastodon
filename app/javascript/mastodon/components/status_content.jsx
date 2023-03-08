@@ -220,7 +220,7 @@ class StatusContent extends React.PureComponent {
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
     const renderReadMore = this.props.onClick && status.get('collapsed');
-    const renderTranslate = this.props.onTranslate && status.get('translatable');
+    const renderTranslate = this.props.onTranslate && status.get('translation_languages').includes(intl.locale);
 
     const content = { __html: status.get('translation') ? status.getIn(['translation', 'content']) : status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };

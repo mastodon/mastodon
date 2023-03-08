@@ -114,19 +114,19 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '#translatable?' do
+  describe '#translation_languages' do
     before do
       allow(TranslationService).to receive(:configured?).and_return(true)
       allow(TranslationService).to receive(:configured).and_return(TranslationService.new)
-      allow(TranslationService.configured).to receive(:supported?).with('es', 'en').and_return(true)
+      allow(TranslationService.configured).to receive(:target_languages).with('es').and_return(%w(de en))
 
       subject.language = 'es'
       subject.visibility = :public
     end
 
     context 'all conditions are satisfied' do
-      it 'returns true' do
-        expect(subject.translatable?).to be true
+      it 'returns supported target languages' do
+        expect(subject.translation_languages).to eq %w(de en)
       end
     end
 
@@ -134,61 +134,37 @@ RSpec.describe Status, type: :model do
       it 'returns false' do
         allow(TranslationService).to receive(:configured?).and_return(false)
         allow(TranslationService).to receive(:configured).and_raise(TranslationService::NotConfiguredError)
-        expect(subject.translatable?).to be false
+        expect(subject.translation_languages).to eq []
       end
     end
 
     context 'status language is nil' do
-      it 'returns true' do
+      it 'returns supported languages for auto-detection' do
         subject.language = nil
-        allow(TranslationService.configured).to receive(:supported?).with(nil, 'en').and_return(true)
-        expect(subject.translatable?).to be true
-      end
-    end
-
-    context 'status language is same as default locale' do
-      it 'returns false' do
-        subject.language = I18n.locale
-        expect(subject.translatable?).to be false
+        allow(TranslationService.configured).to receive(:target_languages).with(nil).and_return(['en'])
+        expect(subject.translation_languages).to eq ['en']
       end
     end
 
     context 'status language is unsupported' do
-      it 'returns false' do
+      it 'returns an empty array' do
         subject.language = 'af'
-        allow(TranslationService.configured).to receive(:supported?).with('af', 'en').and_return(false)
-        expect(subject.translatable?).to be false
-      end
-    end
-
-    context 'default locale is unsupported' do
-      it 'returns false' do
-        allow(TranslationService.configured).to receive(:supported?).with('es', 'af').and_return(false)
-        I18n.with_locale('af') do
-          expect(subject.translatable?).to be false
-        end
-      end
-    end
-
-    context 'default locale has region' do
-      it 'returns true' do
-        I18n.with_locale('en-GB') do
-          expect(subject.translatable?).to be true
-        end
+        allow(TranslationService.configured).to receive(:target_languages).with('af').and_return([])
+        expect(subject.translation_languages).to eq []
       end
     end
 
     context 'status text is blank' do
-      it 'returns false' do
+      it 'returns an empty array' do
         subject.text = ' '
-        expect(subject.translatable?).to be false
+        expect(subject.translation_languages).to eq []
       end
     end
 
     context 'status visiblity is hidden' do
-      it 'returns false' do
+      it 'returns an empty array' do
         subject.visibility = 'limited'
-        expect(subject.translatable?).to be false
+        expect(subject.translation_languages).to eq []
       end
     end
   end

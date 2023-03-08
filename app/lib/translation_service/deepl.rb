@@ -17,8 +17,10 @@ class TranslationService::DeepL < TranslationService
     end
   end
 
-  def supported?(source_language, target_language)
-    source_language.in?(languages('source')) && target_language.in?(languages('target'))
+  def target_languages(source_language)
+    return [] unless languages('source').include?(source_language)
+
+    languages('target').without(source_language)
   end
 
   private

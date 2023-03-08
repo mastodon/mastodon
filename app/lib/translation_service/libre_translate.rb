@@ -15,8 +15,8 @@ class TranslationService::LibreTranslate < TranslationService
     end
   end
 
-  def supported?(source_language, target_language)
-    languages.key?(source_language) && languages[source_language].include?(target_language)
+  def target_languages(source_language)
+    languages[source_language] || []
   end
 
   private
@@ -24,8 +24,10 @@ class TranslationService::LibreTranslate < TranslationService
   def languages
     Rails.cache.fetch('translation_service/libre_translate/languages', expires_in: 7.days, race_condition_ttl: 1.minute) do
       request(:get, '/languages') do |res|
-        languages = Oj.load(res.body_with_limit).to_h { |language| [language['code'], language['targets']] }
-        languages[nil] = languages.values.flatten.uniq
+        languages = Oj.load(res.body_with_limit).to_h do |language|
+          [language['code'], language['targets'].without(language['code'])]
+        end
+        languages[nil] = languages.values.flatten.uniq.sort
         languages
       end
     end

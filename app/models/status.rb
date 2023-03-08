@@ -232,14 +232,10 @@ class Status < ApplicationRecord
     public_visibility? || unlisted_visibility?
   end
 
-  def translatable?
-    translate_target_locale = I18n.locale.to_s.split(/[_-]/).first
+  def translation_languages
+    return [] unless distributable? && content.present? && TranslationService.configured?
 
-    distributable? &&
-      content.present? &&
-      language != translate_target_locale &&
-      TranslationService.configured? &&
-      TranslationService.configured.supported?(language, translate_target_locale)
+    TranslationService.configured.target_languages(language)
   end
 
   alias sign? distributable?
