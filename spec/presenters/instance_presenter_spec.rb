@@ -89,8 +89,8 @@ describe InstancePresenter do
   end
 
   describe '#source_url' do
-    it 'returns "https://github.com/mastodon/mastodon"' do
-      expect(instance_presenter.source_url).to eq('https://github.com/mastodon/mastodon')
+    it 'returns the repo address' do
+      expect(instance_presenter.source_url).to eq("https://github.com/#{ENV.fetch('GITHUB_REPOSITORY')}")
     end
   end
 
