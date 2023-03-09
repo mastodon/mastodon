@@ -1,6 +1,7 @@
 my:
   about:
     about_mastodon_html: 'အနာဂတ်အတွက်လူမှုကွန်ရက် - ကြော်ငြာများမရှိခြင်း၊ အဖွဲ့သားများအား စောင့်ကြည့်မှုမရှိခြင်း၊ ကျင့်ဝတ်ပိုင်းဆိုင်ရာစိတ်ချရခြင်းနှင့် ဗဟိုချုပ်ကိုင်မှုမရှိခြင်း၊ သင့်အချက်အလက်များကို Mastodon နှင့်သာ မျှဝေအသုံးပြုလိုက်ပါ။'
+    contact_unavailable: မရှိ
     hosted_on: '%{domain} မှ လက်ခံဆောင်ရွက်ထားသော Mastodon'
     title: အကြောင်း
   accounts:
@@ -123,6 +124,7 @@ my:
       title: အကောင့်များ
       unblock_email: အီးမေးလ်ကိုပြန်ဖွင့်မည်
       unblocked_email_msg: ' %{username} အီးမေးလ်ကိုပြန်ဖွင့်လိုက်ပါပြီ'
+      unconfirmed_email: အတည်မပြုရသေးသော အီးမေးလ်
       unsubscribe: စာရင်းမှထွက်ရန်
       unsuspended_msg: '%{username} ၏ အကောင့်ကို ရပ်ဆိုင်းလိုက်ပါပြီ'
       username: အသုံးပြုသူအမည်
@@ -255,6 +257,7 @@ my:
         create: ကြေညာချက်ဖန်တီးပါ
         title: ကြေညာချက်အသစ်
       publish: ပို့စ်တင်မည်
+      published_msg: ကြေညာချက်တင်ပြီးပါပြီ။
       scheduled_for: '%{time} အတွက် စီစဉ်ထားသည်'
       title: ကြေညာချက်များ
       unpublish: ပြန်ဖြုတ်ပါ
@@ -394,6 +397,7 @@ my:
           silence: ကန့်သတ်
           suspend: ရပ်ဆိုင်းပါ
         policy: မူဝါဒ
+        title: အကြောင်းအရာမူဝါဒများ
       dashboard:
         instance_accounts_dimension: အများဆုံးစောင့်ကြည့်ထားသည့်အကောင့်များ
         instance_accounts_measure: သိမ်းဆည်းထားသော အကောင့်များ
@@ -401,6 +405,7 @@ my:
         instance_follows_measure: သူတို့၏စောင့်ကြည့်သူများ ဒီနေရာမှာပါ
         instance_languages_dimension: အသုံးများသည့်ဘာသာစကားများ
         instance_media_attachments_measure: သိမ်းဆည်းထားသော မီဒီယာပူးတွဲဖိုင်များ
+        instance_reports_measure: '၎င်းတို့နှင့်ဆိုင်သော အစီရင်ခံစာများ'
         instance_statuses_measure: သိမ်းဆည်းထားသောပို့စ်များ
       delivery:
         all: အားလုံး
@@ -421,9 +426,11 @@ my:
       total_reported: '၎င်းတို့နှင့်ဆိုင်သော အစီရင်ခံစာများ'
       total_storage: မီဒီယာ ပူးတွဲချက်များ
     invites:
+      deactivate_all: အားလုံးပယ်ဖျက်ရန်
       filter:
         all: အားလုံး
         available: ရရှိနိုင်သော
+        expired: သက်တမ်းကုန်သွားပါပြီ
         title: စစ်ထုတ်ခြင်း
       title: ဖိတ်ခေါ်ခြင်း
     ip_blocks:
@@ -562,8 +569,10 @@ my:
       appearance:
         title: ပုံပန်းသဏ္ဌာန်
       discovery:
+        follow_recommendations: အကြံပြုချက်များကို စောင့်ကြည့်ပါ
         profile_directory: ပရိုဖိုင်လမ်းညွှန်
         public_timelines: အများမြင်စာမျက်နှာ
+        title: ရှာဖွေတွေ့ရှိမှု
         trends: လက်ရှိခေတ်စားမှုများ
       domain_blocks:
         all: လူတိုင်း
@@ -579,6 +588,7 @@ my:
       title: ဆာဗာသတ်မှတ်ချက်များ
     site_uploads:
       delete: တင်ထားသောဖိုင်ဖျက်ရန်
+      destroyed_msg: ဆိုက်အပ်လုဒ်ကို အောင်မြင်စွာ ဖျက်လိုက်ပါပြီ။
     statuses:
       account: ရေးသားသူ
       application: အက်ပလီကေးရှင်း
@@ -592,6 +602,7 @@ my:
       media:
         title: မီဒီယာ
       metadata: Metadata
+      no_status_selected: မည်သည့်ပို့စ်ကိုမျှ ရွေးချယ်ထားခြင်းမရှိသောကြောင့် ပြောင်းလဲခြင်းမရှိပါ
       open: ပို့စ်ဖွင့်ရန်
       original_status: မူရင်းပို့စ်
       reblogs: Reblog များ
@@ -637,6 +648,7 @@ my:
         not_listable: အကြံပြုမည်မဟုတ်ပါ
         not_trendable: လက်ရှိခေတ်စားနေသာပို့စ်များအောက်တွင် ပေါ်လာမည်မဟုတ်ပါ
         not_usable: အသုံးမပြုနိုင်ပါ
+        title: လက်ရှိခေတ်စားနေသော hashtag များ
         trending_rank: '#%{rank} ခေတ်စားနေခြင်း'
         usable: အသုံးပြုနိုင်သည်
       title: လက်ရှိခေတ်စားမှုများ
@@ -670,8 +682,10 @@ my:
       new_trending_statuses:
         title: လက်ရှိခေတ်စားနေသော ပို့စ်များ
   appearance:
+    discovery: ရှာဖွေတွေ့ရှိမှု
     localization:
       guide_link_text: လူတိုင်းပါဝင်ကူညီနိုင်ပါတယ်။
+    toot_layout: ပို့စ်အပြင်အဆင်
   application_mailer:
     notification_preferences: အီးမေးလ် သတ်မှတ်ချက်များကို ပြောင်းပါ
     salutation: "%{name}"
@@ -681,9 +695,13 @@ my:
     view_status: ပို့စ်ကိုကြည့်ရန်
   applications:
     created: အက်ပလီကေးရှင်းကို ဖန်တီးပြီးပါပြီ
+    destroyed: အက်ပလီကေးရှင်းကို ဖျက်ပြီးပါပြီ
     logout: ထွက်မယ်
   auth:
+    apply_for_account: အကောင့်တစ်ခုတောင်းဆိုပါ
     change_password: စကားဝှက်
+    confirmations:
+      wrong_email_hint: ထိုအီးမေးလ်လိပ်စာ မမှန်ပါက အကောင့်သတ်မှတ်ချက်များတွင် ပြောင်းလဲနိုင်သည်။
     delete_account: အကောင့်ဖျက်ပါ
     description:
       prefix_invited_by_user: "@%{name} က Mastodon ၏ ဆာဗာတွင် ပါဝင်ရန် သင့်ကို ဖိတ်ခေါ်ထားသည်။"
@@ -700,6 +718,7 @@ my:
     register: အကောင့်ဖွင့်ရန်
     registration_closed: "%{instance} သည် အဖွဲ့ဝင်အသစ်များကို လက်ခံထားခြင်းမရှိပါ"
     rules:
+      accept: လက်ခံပါ
       back: နောက်သို့
     security: လုံခြုံရေး
     set_new_password: စကားဝှက်အသစ် သတ်မှတ်ပါ။
@@ -990,6 +1009,7 @@ my:
       '7889238': ၃ လ
   stream_entries:
     pinned: ပင်တွဲထားသောပို့စ်
+    reblogged: Boost လုပ်ခဲ့သည်
   themes:
     default: Mastodon (အနက်)
     mastodon-light: Mastodon (အလင်းနောက်ခံ)
