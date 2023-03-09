@@ -18,15 +18,15 @@ RSpec.describe TranslationService::DeepL do
 
   describe '#target_languages' do
     it 'returns all target languages for included source language' do
-      expect(service.target_languages('uk')).to eq %w(en-gb zh en pt)
+      expect(service.target_languages('uk')).to eq %w(en-GB zh en pt)
     end
 
     it 'returns all target languages for special source languages except source language itself' do
-      expect(service.target_languages('en')).to eq %w(en-gb zh pt)
+      expect(service.target_languages('en')).to eq %w(en-GB zh pt)
     end
 
     it 'returns all target languages for with auto-detection' do
-      expect(service.target_languages(nil)).to eq %w(en-gb zh en pt)
+      expect(service.target_languages(nil)).to eq %w(en-GB zh en pt)
     end
 
     it 'returns empty array for unsupported source locale' do
@@ -64,7 +64,7 @@ RSpec.describe TranslationService::DeepL do
     end
 
     it 'returns target languages' do
-      expect(service.send(:languages, 'target')).to eq %w(en-gb zh en pt)
+      expect(service.send(:languages, 'target')).to eq %w(en-GB zh en pt)
     end
   end
 

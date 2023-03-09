@@ -31,11 +31,18 @@ class TranslationService::DeepL < TranslationService
         # In DeepL, EN and PT are deprecated in favor of EN-GB/EN-US and PT-BR/PT-PT, so
         # they are supported but not returned by the API.
         extra = type == 'source' ? [nil] : %w(en pt)
-        languages = Oj.load(res.body_with_limit).map { |language| language['language'].downcase }
+        languages = Oj.load(res.body_with_limit).map { |language| normalize_language(language['language']) }
 
         languages + extra
       end
     end
+  end
+
+  def normalize_language(language)
+    subtags = language.split(/[_-]/)
+    subtags[0].downcase!
+    subtags[1]&.upcase!
+    subtags.join('-')
   end
 
   def request(verb, path, **options)
