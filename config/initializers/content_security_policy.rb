@@ -17,6 +17,7 @@ media_host ||= host_to_url(ENV['S3_HOSTNAME']) if ENV['S3_ENABLED'] == 'true'
 media_host ||= assets_host
 
 oidc_issuer = ENV['OIDC_ISSUER']
+oidc_issuer ||= host_to_url(base_host)
 
 Rails.application.config.content_security_policy do |p|
   p.base_uri        :none
