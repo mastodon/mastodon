@@ -1,6 +1,14 @@
 my:
   simple_form:
     hints:
+      account_alias:
+        acct: သင်ပြောင်းရွှေ့လိုသောအကောင့်၏ username@domain ကိုသတ်မှတ်ပါ
+      account_warning_preset:
+        text: URLs၊ hashtags နှင့် mentions များကဲ့သို့ ပို့စ်ကို သုံးနိုင်သည်
+      admin_account_action:
+        include_statuses: အသုံးပြုသူသည် မည်သည့်ပို့စ်များမှာ စိစစ်ထားခြင်း သို့မဟုတ် သတိပေးထားခြင်းဖြစ်စေသည်ကို တွေ့မြင်နိုင်ပါသည်
+        send_email_notification: အသုံးပြုသူသည် ၎င်းတို့၏အကောင့်နှင့် ဖြစ်ပျက်ခဲ့သော ရှင်းလင်းချက်ကို လက်ခံရရှိမည်ဖြစ်သည်
+        type_html: <strong>%{acct}</strong> နှင့် ဘာလုပ်ရမည်ကို ရွေးပါ။
       defaults:
         password: အနည်းဆုံး စာလုံး ၈ လုံး အသုံးပြုပါ။
         setting_display_media_hide_all: မီဒီယာကို အမြဲတမ်းဖျောက်ထားပါ
@@ -67,7 +75,11 @@ my:
         setting_advanced_layout: အဆင့်မြှင့်ထားသည့်ဝဘ်ကို ဖွင့်ပါ
         setting_always_send_emails: အီးမေးလ်သတိပေးချက်များကို အမြဲပို့ပါ
         setting_auto_play_gif: ကာတွန်း GIF များကို အလိုအလျောက်ဖွင့်ပါ
+        setting_boost_modal: Boost မလုပ်မီ အတည်ပြုချက်ပြပါ
         setting_default_language: ပို့စ်တင်မည့်ဘာသာစကား
+        setting_default_privacy: ပို့စ်ကို ဘယ်သူမြင်နိုင်မလဲ
+        setting_default_sensitive: သတိထားရသောမီဒီယာအဖြစ် အမြဲအမှတ်အသားပြုပါ
+        setting_delete_modal: ပို့စ်တစ်ခုမဖျက်မီ အတည်ပြုချက်ပြပါ။
         setting_display_media: မီဒီယာဖော်ပြမှု
         setting_display_media_default: မူလသတ်မှတ်ချက်
         setting_display_media_hide_all: အားလုံးကို ဖျောက်ပါ
