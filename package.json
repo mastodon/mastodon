@@ -25,8 +25,8 @@
     "postversion": "git push --tags",
     "prepare": "husky install",
     "start": "node ./streaming/index.js",
-    "test": "yarn test:lint && yarn run test:typecheck && yarn test:jest",
-    "test:typecheck": "tsc --noEmit"
+    "test": "yarn lint && yarn run typecheck && yarn jest",
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",

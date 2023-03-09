@@ -34,9 +34,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: yarn
+          node-version-file: '.nvmrc'
 
       - name: Install all yarn packages
         run: yarn --frozen-lockfile
 
       - name: Prettier
-        run: yarn test:lint:md
+        run: yarn lint:md
