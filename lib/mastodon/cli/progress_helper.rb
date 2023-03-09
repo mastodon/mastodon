@@ -11,7 +11,7 @@ Chewy.logger                 = dev_null
 
 module Mastodon::CLI
   module ProgressHelper
-    PROGRESS_FORMAT = '%c/%u |%b%i| %e'.freeze
+    PROGRESS_FORMAT = '%c/%u |%b%i| %e'
 
     def create_progress_bar(total = nil)
       ProgressBar.create(total: total, format: PROGRESS_FORMAT)
