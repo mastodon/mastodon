@@ -5,6 +5,7 @@ on:
       - 'dependabot/**'
     paths:
       - '.github/workflows/lint-md.yml'
+      - '.nvmrc'
       - '.prettier*'
       - '**/*.md'
       - '!AUTHORS.md'
@@ -14,6 +15,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/lint-md.yml'
+      - '.nvmrc'
       - '.prettier*'
       - '**/*.md'
       - '!AUTHORS.md'
