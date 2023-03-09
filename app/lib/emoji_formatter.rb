@@ -80,7 +80,7 @@ class EmojiFormatter
 
     image_tag(
       animate? ? original_url : static_url,
-      image_attributes.merge(alt: ":#{shortcode}:", title: ":#{shortcode}:", data: image_data_attributes(original_url, static_url))
+      image_attributes.merge(alt: ":#{shortcode}:", title: ":#{shortcode}:", data: image_data_attributes(original_url, static_url, shortcode))
     )
   end
 
@@ -88,7 +88,9 @@ class EmojiFormatter
     { rel: 'emoji', draggable: false, width: 16, height: 16, class: image_class_names, style: image_style }
   end
 
-  def image_data_attributes(original_url, static_url)
+  def image_data_attributes(original_url, static_url, shortcode)
+    return { shortcode: shortcode } if data_shortcode?
+
     { original: original_url, static: static_url } unless animate?
   end
 
@@ -102,5 +104,9 @@ class EmojiFormatter
 
   def animate?
     @options[:animate] || @options.key?(:style)
+  end
+
+  def data_shortcode?
+    @options[:data_shortcode]
   end
 end

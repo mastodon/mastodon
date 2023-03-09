@@ -19,7 +19,7 @@ describe Api::V1::Statuses::TranslationsController do
 
       before do
         translation = TranslationService::Translation.new(text: 'Hello')
-        service = instance_double(TranslationService::DeepL, translate: translation)
+        service = instance_double(TranslationService::DeepL, translate: [translation])
         allow(TranslationService).to receive(:configured?).and_return(true)
         allow(TranslationService).to receive(:configured).and_return(service)
         Rails.cache.write('translation_service/languages', { 'es' => ['en'] })
