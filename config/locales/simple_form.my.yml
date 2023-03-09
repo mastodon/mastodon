@@ -9,6 +9,8 @@ my:
         include_statuses: အသုံးပြုသူသည် မည်သည့်ပို့စ်များမှာ စိစစ်ထားခြင်း သို့မဟုတ် သတိပေးထားခြင်းဖြစ်စေသည်ကို တွေ့မြင်နိုင်ပါသည်
         send_email_notification: အသုံးပြုသူသည် ၎င်းတို့၏အကောင့်နှင့် ဖြစ်ပျက်ခဲ့သော ရှင်းလင်းချက်ကို လက်ခံရရှိမည်ဖြစ်သည်
         type_html: <strong>%{acct}</strong> နှင့် ဘာလုပ်ရမည်ကို ရွေးပါ။
+      announcement:
+        scheduled_at: ကြေညာချက်ချက်ချင်းထုတ်ပြန်ရန်အတွက် နေရာလွတ်ချန်ထားပါ
       defaults:
         context: စစ်ထုတ်သင့်သည့် အကြောင်းအရာ တစ်ခု သို့မဟုတ် များစွာ
         current_password: လုံခြုံရေးအတွက် ကျေးဇူးပြုပြီး လက်ရှိအကောင့်၏ စကားဝှက်ကို ထည့်ပါ
@@ -56,6 +58,11 @@ my:
         severity: ဤ IP မှ တောင်းဆိုမှုများဖြင့် ဖြစ်ပေါ်လာမည့်အရာ ရွေးချယ်ပါ
       sessions:
         otp: 'သင့်ဖုန်းအက်ပ်မှထုတ်ပေးသောနှစ်ဆင့်ခံလုံခြုံရေးကုဒ်ကို ထည့်ပါ သို့မဟုတ် ပြန်လည်ရယူရေးကုဒ်များထဲမှ တစ်ခုကို အသုံးပြုပါ -'
+      user:
+        chosen_languages: အမှန်ခြစ် ရွေးချယ်ထားသော ဘာသာစကားများဖြင့်သာ ပို့စ်များကို အများမြင်စာမျက်နှာတွင် ပြသပါမည်
+      user_role:
+        color: hex ပုံစံ RGB အဖြစ် UI တစ်လျှောက်လုံး အခန်းကဏ္ဍအတွက် အသုံးပြုရမည့်အရောင်
+        permissions_as_keys: ဤအခန်းကဏ္ဍဖြင့် အသုံးပြုသူများသာ အသုံးပြုခွင့်ရှိပါမည်...
     labels:
       account:
         fields:
@@ -72,6 +79,7 @@ my:
           none: သတိပေးချက်ပေးပို့ပါ
           silence: ကန့်သတ်
           suspend: ရပ်ဆိုင်းရန်
+        warning_preset_id: ကြိုတင်သတိပေးချက်ကို အသုံးပြုပါ
       announcement:
         all_day: တစ်နေ့တာလုပ်ငန်းစဉ်
         text: ကြေညာချက်
@@ -85,6 +93,7 @@ my:
         context: အကြောင်းအရာများကို စစ်ထုတ်ပါ။
         current_password: လက်ရှိစကားဝှက်
         data: အချက်အလက်
+        discoverable: အကောင့်ကို အခြားသူများအား အကြံပြုပါ
         display_name: ဖော်ပြမည့်အမည်
         email: အီးမေးလ်လိပ်စာ
         header: မျက်နှာဖုံးပုံ
@@ -98,6 +107,7 @@ my:
         password: စကားဝှက်
         phrase: အဓိကစကားလုံး သို့မဟုတ် စကားစု
         setting_advanced_layout: အဆင့်မြှင့်ထားသည့်ဝဘ်ကို ဖွင့်ပါ
+        setting_aggregate_reblogs: စာမျက်နှာများရှိ အဖွဲ့လိုက် Boost များ
         setting_always_send_emails: အီးမေးလ်သတိပေးချက်များကို အမြဲပို့ပါ
         setting_auto_play_gif: ကာတွန်း GIF များကို အလိုအလျောက်ဖွင့်ပါ
         setting_boost_modal: Boost မလုပ်မီ အတည်ပြုချက်ပြပါ
@@ -110,27 +120,41 @@ my:
         setting_display_media_hide_all: အားလုံးကို ဖျောက်ပါ
         setting_display_media_show_all: အားလုံးပြရန်
         setting_system_font_ui: စနစ်ရှိ နဂိုမူလ စာလုံးပုံစံကို အသုံးပြုပါ
+        setting_theme: ဆိုက်အပြင်အဆင်
         setting_trends: ယနေ့ ရေပန်းစားသည်များကို ပြပါ
         setting_unfollow_modal: တစ်စုံတစ်ဦးကို မစောင့်ကြည့်မီ အတည်ပြုချက် ဒိုင်ယာလော့ခ်ကို ပြပါ
+        setting_use_pending_items: အနှေးပြကွက်
         sign_in_token_attempt: လုံခြုံရေးကုဒ်
         title: ခေါင်းစဥ်
         username: အသုံးပြုသူအမည်
         username_or_email: အသုံးပြုသူအမည် သို့မဟုတ် အီးမေးလ်
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          warn: သတိပေးချက်ဖြင့် ဖျောက်ပါ
       form_admin_settings:
+        backups_retention_period: အသုံးပြုသူ၏ မှတ်တမ်းကာလ
+        content_cache_retention_period: အကြောင်းအရာ ကက်ရှ်ထိန်းသိမ်းသည့်ကာလ
         custom_css: စိတ်ကြိုက်ပြုလုပ်ထားသော CSS
         mascot: စိတ်ကြိုက်ပြုလုပ်ထားသော mascot (legacy)
+        media_cache_retention_period: မီဒီယာကက်ရှ် ထိန်းသိမ်းသည့်ကာလ
+        peers_api_enabled: API တွင် ရှာဖွေတွေ့ရှိထားသော ဆာဗာများစာရင်းကို ထုတ်ပြန်ပါ
+        profile_directory: ပရိုဖိုင်လမ်းညွှန်ကို ဖွင့်ပါ
         registrations_mode: ဘယ်သူတွေ အကောင့်ဖွင့်နိုင်မလဲ
         require_invite_text: ပါဝင်ရန် အကြောင်းပြချက်တစ်ခု လိုအပ်ပါသည်
         show_domain_blocks: ဒိုမိန်းပိတ်ပင်ထားမှုများကိုပြရန်
         show_domain_blocks_rationale: ဒိုမိန်းများကို ဘာကြောင့် ပိတ်ဆို့ထားရကြောင်း ပြရန်
         site_contact_email: ဆက်သွယ်ရမည့် အီးမေးလ်
         site_contact_username: ဆက်သွယ်ရမည့် အသုံးပြုသူအမည်
+        site_extended_description: တိုးချဲ့ဖော်ပြချက်
         site_short_description: ဆာဗာဖော်ပြချက်
         site_terms: ကိုယ်ရေးအချက်အလက်မူဝါဒ
         site_title: ဆာဗာအမည်
+        status_page_url: အခြေအနေပြစာမျက်နှာ URL
+        theme: မူလသတ်မှတ်ထားသည့် အပြင်အဆင်
         thumbnail: ဆာဗာ ပုံသေး
+        timeline_preview: အများမြင်စာမျက်နှာများသို့ အထောက်အထားမရှိဘဲ ဝင်ရောက်ခွင့်ပြုပါ
         trends: လက်ရှိခေတ်စားနေမှုများကိုပြပါ
       interactions:
         must_be_follower: စောင့်ကြည့်မနေသူများထံမှ အသိပေးချက်များကို ပိတ်ပါ
@@ -153,10 +177,15 @@ my:
         follow_request: တစ်စုံတစ်ဦးက သင့်ကို စောင့်ကြည့်ရန် တောင်းဆိုခဲ့သည်
         mention: တစ်စုံတစ်ဦးက သင့်ကို ဖော်ပြခဲ့သည်
         pending_account: အကောင့်အသစ်ကို ပြန်လည်သုံးသပ်ရန် လိုအပ်သည်
+        reblog: တစ်ယောက်က သင့်ပို့စ်ကို Boost လုပ်ခဲ့သည်
+        report: အစီရင်ခံစာအသစ် တင်သွင်းထားသည်
+        trending_tag: လက်ရှိခေတ်စားနေသောပို့စ်များကို ပြန်လည်သုံးသပ်ရန် လိုသည်
       rule:
         text: စည်းမျဉ်း
       tag:
+        listable: ရှာဖွေမှုများနှင့် အကြံပြုချက်များတွင် ဤ hashtag ပေါ်လာစေရန် ခွင့်ပြုပါ
         name: Hashtag
+        usable: ပို့စ်များကို ဤ hashtag သုံးခွင့်ပြုပါ
       user:
         role: အခန်းကဏ္ဍ
       user_role:
@@ -164,6 +193,8 @@ my:
         permissions_as_keys: ခွင့်ပြုချက်များ
         position: ဦးစားပေး
     'no': 'မလုပ်ပါ'
+    not_recommended: ထောက်ခံထားမှုမရှိ
+    recommended: ထောက်ခံထားပြီး
     required:
       mark: "*"
       text: လိုအပ်သော
