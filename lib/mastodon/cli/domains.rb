@@ -39,14 +39,7 @@ module Mastodon::CLI
       domain_block_scope = DomainBlock.none
       emoji_scope        = CustomEmoji.none
 
-      # Sanity check on command arguments
-      if options[:limited_federation_mode] && !domains.empty?
-        say('DOMAIN parameter not supported with --limited-federation-mode', :red)
-        exit(1)
-      elsif domains.empty? && !options[:limited_federation_mode]
-        say('No domain(s) given', :red)
-        exit(1)
-      end
+      verify_options_with(domains)
 
       # Build scopes from command arguments
       if options[:limited_federation_mode]
@@ -77,17 +70,9 @@ module Mastodon::CLI
       end
 
       # Actually perform the deletions
-      processed, = parallelize_with_progress(account_scope) do |account|
-        DeleteAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless dry_run?
-      end
+      purge_accounts_from_scope(account_scope)
 
-      say("Removed #{processed} accounts#{dry_run_mode_suffix}", :green)
-
-      if options[:purge_domain_blocks]
-        domain_block_count = domain_block_scope.count
-        domain_block_scope.in_batches.destroy_all unless dry_run?
-        say("Removed #{domain_block_count} domain blocks#{dry_run_mode_suffix}", :green)
-      end
+      purge_domain_blocks_from_scope(domain_block_scope) if options[:purge_domain_blocks]
 
       custom_emojis_count = emoji_scope.count
       emoji_scope.in_batches.destroy_all unless dry_run?
@@ -188,6 +173,30 @@ module Mastodon::CLI
     end
 
     private
+
+    def purge_domain_blocks_from_scope(domain_block_scope)
+      domain_block_count = domain_block_scope.count
+      domain_block_scope.in_batches.destroy_all unless dry_run?
+      say("Removed #{domain_block_count} domain blocks#{dry_run_mode_suffix}", :green)
+    end
+
+    def purge_accounts_from_scope(account_scope)
+      processed, = parallelize_with_progress(account_scope) do |account|
+        DeleteAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless dry_run?
+      end
+
+      say("Removed #{processed} accounts#{dry_run_mode_suffix}", :green)
+    end
+
+    def verify_options_with(domains)
+      if options[:limited_federation_mode] && !domains.empty?
+        say('DOMAIN parameter not supported with --limited-federation-mode', :red)
+        exit(1)
+      elsif domains.empty? && !options[:limited_federation_mode]
+        say('No domain(s) given', :red)
+        exit(1)
+      end
+    end
 
     def stats_to_summary(stats, processed, failed, start_at)
       stats.compact!

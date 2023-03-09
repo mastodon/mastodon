@@ -152,31 +152,13 @@ module Mastodon::CLI
     def modify(username)
       user = Account.find_local(username)&.user
 
-      if user.nil?
-        say('No user with such username', :red)
-        exit(1)
-      end
-
-      if options[:role]
-        role = UserRole.find_by(name: options[:role])
-
-        if role.nil?
-          say('Cannot find user role with that name', :red)
-          exit(1)
-        end
-
-        user.role_id = role.id
-      elsif options[:remove_role]
-        user.role_id = nil
-      end
+      verify_user_present(user)
+      assign_user_role(user)
 
       password = SecureRandom.hex if options[:reset_password]
       user.password = password if options[:reset_password]
-      user.email = options[:email] if options[:email]
-      user.disabled = false if options[:enable]
-      user.disabled = true if options[:disable]
-      user.approved = true if options[:approve]
-      user.otp_required_for_login = false if options[:disable_2fa]
+
+      assign_attributes_from_options(user)
 
       if user.save
         user.confirm if options[:confirm]
@@ -650,6 +632,40 @@ module Mastodon::CLI
     end
 
     private
+
+    def assign_attributes_from_options(user)
+      user.email = options[:email] if options[:email]
+      user.disabled = false if options[:enable]
+      user.disabled = true if options[:disable]
+      user.approved = true if options[:approve]
+      user.otp_required_for_login = false if options[:disable_2fa]
+    end
+
+    def verify_user_present(user)
+      if user.nil?
+        say('No user with such username', :red)
+        exit(1)
+      end
+    end
+
+    def verify_role_present(role)
+      if role.nil?
+        say('Cannot find user role with that name', :red)
+        exit(1)
+      end
+    end
+
+    def assign_user_role(user)
+      if options[:role]
+        role = UserRole.find_by(name: options[:role])
+
+        verify_role_present(role)
+
+        user.role_id = role.id
+      elsif options[:remove_role]
+        user.role_id = nil
+      end
+    end
 
     def report_errors(errors)
       errors.each do |error|
