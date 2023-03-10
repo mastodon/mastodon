@@ -1,3 +1,99 @@
+.app-holder > div.about-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.about-header {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 95%;
+  padding-top: 30px;
+}
+
 .logo {
   color: $primary-text-color;
+}
+
+.navbar {
+  display: inline;
+}
+
+.navlinks {
+  display: inline-flex;
+  height: 5%;
+
+  .button-container {
+    display: inline;
+  }
+}
+
+.header-link {
+  color: $primary-text-color;
+  display: inline;
+  font-size: 16px;
+  padding: 15px;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.header-button {
+  margin-left: 20px;
+  padding: 15px;
+  background-color: $ui-highlight-color;
+  border: 10px none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: $primary-text-color;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 22px;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: auto;
+}
+
+.intro {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 0px 10px 30px 50px;
+
+  h1.heading {
+    color: darken($primary-text-color, 15%);
+    padding-top: 120px;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.75;
+    text-align: center;
+  }
+
+  h3 {
+    color: darken($primary-text-color, 12%);
+    padding-top: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 2;
+
+    .bullet {
+      font-size: 30px;
+      font-weight: 600;
+      padding-right: 10px;
+    }
+  }
+
+  .bullet-section {
+    display: flex;
+    padding-left: 50px;
+  }
 }
