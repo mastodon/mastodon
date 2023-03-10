@@ -1054,18 +1054,18 @@ de:
       with_month_name: "%d. %B %Y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count} h"
+      about_x_hours: "%{count} Std."
       about_x_months: "%{count} Mon."
-      about_x_years: "%{count} J"
-      almost_x_years: "%{count} J"
+      about_x_years: "%{count} J."
+      almost_x_years: "%{count} J."
       half_a_minute: Gerade eben
-      less_than_x_minutes: "%{count} Min"
+      less_than_x_minutes: "%{count} Min."
       less_than_x_seconds: Gerade eben
-      over_x_years: "%{count} J"
-      x_days: "%{count} T"
-      x_minutes: "%{count} Min"
-      x_months: "%{count} Mo"
-      x_seconds: "%{count} S"
+      over_x_years: "%{count} J."
+      x_days: "%{count} T."
+      x_minutes: "%{count} Min."
+      x_months: "%{count} Mon."
+      x_seconds: "%{count} Sek."
   deletes:
     challenge_not_passed: Die eingegebenen Informationen waren nicht korrekt
     confirm_password: Gib dein derzeitiges Passwort ein, um deine Identität zu bestätigen
@@ -1161,8 +1161,8 @@ de:
       public: Öffentliche Timelines
       thread: Unterhaltungen
     edit:
-      add_keyword: Schlagwort hinzufügen
-      keywords: Schlagworte
+      add_keyword: Stichwort hinzufügen
+      keywords: Stichwörter
       statuses: Individuelle Beiträge
       statuses_hint_html: Dieser Filter gilt für die Auswahl einzelner Beiträge, unabhängig davon, ob sie mit den unten stehenden Schlüsselwörtern übereinstimmen. <a href="%{path}">Beiträge im Filter ansehen oder entfernen.</a>.
       title: Filter bearbeiten
@@ -1176,7 +1176,7 @@ de:
       expires_in: Läuft ab in %{distance}
       expires_on: Läuft am %{date} ab
       keywords:
-        one: "%{count} Schlagworte"
+        one: "%{count} Stichwort"
         other: "%{count} Stichwörter"
       statuses:
         one: "%{count} Beitrag"
@@ -1361,7 +1361,7 @@ de:
           billion: Mrd
           million: Mio
           quadrillion: Q
-          thousand: Tsd
+          thousand: Tsd.
           trillion: T
   otp_authentication:
     code_hint: Gib den Code ein, den deine 2FA- bzw. TOTP-App generiert hat, um den Vorgang zu bestätigen
