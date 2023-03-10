@@ -196,23 +196,17 @@ class SearchQueryTransformer < Parslet::Transform
 
     def initialize(prefix, operator, term)
       @query = :term
+      @filter = prefix
+      @term = term
       # Some prefixes don't apply to all search types.
       @search_types = %i(accounts statuses)
       @operator = Operator.filter_context_symbol(operator)
 
       case prefix
       when 'domain'
-        if TagManager.instance.local_domain?(term)
-          initialize_is_local
-        else
-          @filter = prefix
-          @term = term
-        end
+        initialize_is_local if TagManager.instance.local_domain?(term)
 
       when 'is'
-        @filter = prefix
-        @term = term
-
         case term
         when 'bot', 'group'
           # These apply to all search types. No action required.
@@ -226,8 +220,6 @@ class SearchQueryTransformer < Parslet::Transform
 
       when 'has', 'lang'
         @search_types = %i(statuses)
-        @filter = prefix
-        @term = term
 
       when 'sensitive'
         raise Mastodon::SyntaxError, 'Operator not allowed for sensitive: prefix' unless operator.nil?
@@ -261,6 +253,7 @@ class SearchQueryTransformer < Parslet::Transform
         end
 
       when 'from'
+        @search_types = %i(statuses)
         @filter = :account_id
 
         username, domain = term.gsub(/\A@/, '').split('@')
@@ -313,7 +306,7 @@ class SearchQueryTransformer < Parslet::Transform
   end
 
   rule(clause: subtree(:clause)) do
-    prefix   = clause[:prefix][:term].to_s if clause[:prefix]
+    prefix   = clause[:prefix]&.to_s
     operator = clause[:operator]&.to_s
 
     if clause[:prefix]
@@ -321,11 +314,11 @@ class SearchQueryTransformer < Parslet::Transform
     elsif clause[:term]
       TermClause.new(prefix, operator, clause[:term].to_s)
     elsif clause[:shortcode]
-      EmojiClause.new(prefix, operator, clause[:shortcode][:term].to_s)
+      EmojiClause.new(prefix, operator, clause[:shortcode].to_s)
     elsif clause[:hashtag]
-      TagClause.new(prefix, operator, clause[:hashtag][:term].to_s)
+      TagClause.new(prefix, operator, clause[:hashtag].to_s)
     elsif clause[:phrase]
-      PhraseClause.new(prefix, operator, clause[:phrase].is_a?(Array) ? clause[:phrase].map { |p| p[:term].to_s }.join(' ') : clause[:phrase].to_s)
+      PhraseClause.new(prefix, operator, clause[:phrase].to_s)
     else
       raise Mastodon::SyntaxError, "Unexpected clause type: #{clause}"
     end

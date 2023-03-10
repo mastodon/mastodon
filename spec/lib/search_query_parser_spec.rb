@@ -83,14 +83,7 @@ describe SearchQueryParser do
           query: [
             {
               clause: {
-                phrase: [
-                  {
-                    term: 'a',
-                  },
-                  {
-                    term: 'phrase',
-                  },
-                ]
+                phrase: 'a phrase',
               },
             },
           ]
@@ -133,9 +126,7 @@ describe SearchQueryParser do
           query: [
             {
               clause: {
-                prefix: {
-                  term: 'from',
-                },
+                prefix: 'from',
                 term: 'user',
               },
             },
@@ -162,9 +153,7 @@ describe SearchQueryParser do
             {
               clause: {
                 operator: '-',
-                prefix: {
-                  term: 'from',
-                },
+                prefix: 'from',
                 term: 'user',
               },
             },
@@ -182,9 +171,7 @@ describe SearchQueryParser do
           query: [
             {
               clause: {
-                prefix: {
-                  term: 'from',
-                },
+                prefix: 'from',
                 term: 'user@domain.tld',
               },
             },
@@ -207,9 +194,41 @@ describe SearchQueryParser do
             },
             {
               clause: {
-                hashtag: {
-                  term: 'hashtag',
-                },
+                hashtag: 'hashtag',
+              },
+            },
+          ]
+        )
+      end
+    end
+
+    context 'when given a bare URL query' do
+      let(:query) { 'https://example.org/' }
+
+      it 'parses the URL as a term' do
+        parsed_query = parser.parse(query)
+        expect(parsed_query).to match(
+          query: [
+            {
+              clause: {
+                term: 'https://example.org/',
+              },
+            },
+          ]
+        )
+      end
+    end
+
+    context 'when given a quoted URL query' do
+      let(:query) { '"https://example.org/"' }
+
+      it 'parses the URL as a phrase' do
+        parsed_query = parser.parse(query)
+        expect(parsed_query).to match(
+          query: [
+            {
+              clause: {
+                phrase: 'https://example.org/',
               },
             },
           ]

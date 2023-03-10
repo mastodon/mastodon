@@ -12,47 +12,68 @@ class SearchService < BaseService
     default_results.tap do |results|
       next if @query.blank? || @limit.zero?
 
-      if url_query?
-        results.merge!(url_resource_results) unless url_resource.nil? || @offset.positive? || (@options[:type].present? && url_resource_symbol != @options[:type].to_sym)
-      elsif @query.present?
-        # Account and status searches use different sets of prefix operators.
-        # Throw a syntax error only if the syntax is invalid in all search contexts.
-        search_succeeded = false
-        syntax_error = nil
+      results.merge!(url_resource_results) { |_, a, b| a | b } if
+        url_query? && !(
+          url_resource.nil? ||
+            @offset.positive? ||
+            (
+              @options[:type].present? &&
+                url_resource_symbol != @options[:type].to_sym
+            )
+        )
 
-        if account_searchable?
-          begin
-            results[:accounts] = perform_accounts_search!
-            search_succeeded = true
-          rescue Mastodon::SyntaxError => e
-            syntax_error = e
-          end
-        end
-
-        if status_searchable?
-          begin
-            results[:statuses] = perform_statuses_search!
-            search_succeeded = true
-          rescue Mastodon::SyntaxError => e
-            syntax_error = e
-          end
-        end
-
-        if hashtag_searchable?
-          begin
-            results[:hashtags] = perform_hashtags_search!
-            search_succeeded = true
-          rescue Mastodon::SyntaxError => e
-            syntax_error = e
-          end
-        end
-
-        raise syntax_error unless syntax_error.nil? || search_succeeded
-      end
+      results.merge!(search_results) { |_, a, b| a | b } if @query.present?
     end
   end
 
   private
+
+  def merge_list_values(_key, list1, list2)
+    list1 | list2
+  end
+
+  # Perform searches that aren't a request to resolve an URL
+  # (including searching for an URL as a search term).
+  #
+  # Account and status searches use different sets of prefix operators,
+  # and hashtag searches don't use the advanced search syntax at all.
+  # Throw a syntax error only if the syntax is invalid in all search contexts.
+  def search_results
+    results = {}
+    search_succeeded = false
+    syntax_error = nil
+
+    if account_searchable?
+      begin
+        results[:accounts] = perform_accounts_search!
+        search_succeeded = true
+      rescue Mastodon::SyntaxError => e
+        syntax_error = e
+      end
+    end
+
+    if status_searchable?
+      begin
+        results[:statuses] = perform_statuses_search!
+        search_succeeded = true
+      rescue Mastodon::SyntaxError => e
+        syntax_error = e
+      end
+    end
+
+    if hashtag_searchable?
+      begin
+        results[:hashtags] = perform_hashtags_search!
+        search_succeeded = true
+      rescue Mastodon::SyntaxError => e
+        syntax_error = e
+      end
+    end
+
+    raise syntax_error unless syntax_error.nil? || search_succeeded
+
+    results
+  end
 
   def perform_accounts_search!
     AccountSearchService.new.call(
