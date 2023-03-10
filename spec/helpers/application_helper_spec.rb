@@ -30,6 +30,16 @@ describe ApplicationHelper do
     end
   end
 
+  describe 'react_admin_component' do
+    let(:result) { helper.react_admin_component('name', { one: :two }) }
+    let(:html) { Nokogiri::Slop(result) }
+
+    it 'returns a tag with data attributes' do
+      expect(html.div['data-admin-component']).to eq('Name')
+      expect(html.div['data-props']).to eq('{"locale":"en","one":"two"}')
+    end
+  end
+
   describe 'active_nav_class' do
     it 'returns active when on the current page' do
       allow(helper).to receive(:current_page?).and_return(true)
