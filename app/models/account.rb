@@ -545,24 +545,8 @@ class Account < ApplicationRecord
     save!
   end
 
-  def searchable_text
-    return nil unless discoverable
-
-    [
-      PlainTextFormatter.new(note, local?).to_s,
-      fields.map do |field|
-        [
-          field.name,
-          PlainTextFormatter.new(field.value, local?).to_s,
-        ].join(' ')
-      end,
-    ].join("\n\n")
-  end
-
   def searchable_emojis
-    return [] unless discoverable
-
-    emojis.reject(&:disabled).pluck(:shortcode)
+    CustomEmoji.from_text(display_name, domain).reject(&:disabled).pluck(:shortcode)
   end
 
   def searchable_tags

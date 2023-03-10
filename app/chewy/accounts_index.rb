@@ -82,9 +82,5 @@ class AccountsIndex < Chewy::Index
     field :is, type: 'keyword', value: ->(account) { account.searchable_is }
     field :emojis, type: 'keyword', value: ->(account) { account.searchable_emojis }
     field :tags, type: 'keyword', normalizer: 'tag', value: ->(account) { account.searchable_tags }
-
-    field :text, type: 'text', value: ->(account) { account.searchable_text } do
-      field :stemmed, type: 'text', analyzer: 'text'
-    end
   end
 end

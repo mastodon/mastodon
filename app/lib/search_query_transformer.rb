@@ -39,7 +39,6 @@ class SearchQueryTransformer < Parslet::Transform
 
       search_fields = %w(acct.edge_ngram acct)
       search_fields += %w(display_name.edge_ngram display_name) unless likely_acct
-      search_fields += %w(text.stemmed text) if account_exists
 
       params = {
         must: must_clauses.map { |clause| clause_to_query(clause, search_type, search_fields, following_ids: following_ids) },
