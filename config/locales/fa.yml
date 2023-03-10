@@ -1,6 +1,6 @@
 fa:
   about:
-    about_mastodon_html: 'شبکهٔ اجتماعی آینده: بدون تبلیغات، بدون شنود از طرف شرکت‌ها، طراحی اخلاق‌مدار، و معماری غیرمتمرکز! با ماستودون صاحب داده‌های خودتان باشید!'
+    about_mastodon_html: 'شبکه‌ی اجتماعی آینده: بدون تبلیغات، بدون شنود از طرف شرکت‌ها، طراحی اخلاق‌مدار، و معماری غیرمتمرکز! با ماستودون صاحب داده‌های خودتان باشید!'
     contact_missing: تنظیم نشده
     contact_unavailable: موجود نیست
     hosted_on: ماستودون، میزبانی‌شده روی %{domain}
@@ -90,6 +90,7 @@ fa:
       moderation:
         active: فعّال
         all: همه
+        disabled: غیرفعال
         pending: منتظر
         silenced: محدود
         suspended: تعلیق شده
@@ -127,6 +128,7 @@ fa:
       search: جستجو
       search_same_email_domain: دیگر کاربران با دامنهٔ رایانامهٔ یکسان
       search_same_ip: دیگر کاربران با IP یکسان
+      security: امنیت
       security_measures:
         only_password: فقط گذرواژه
         password_and_2fa: گذرواژه و ۲عاملی
@@ -200,6 +202,7 @@ fa:
         reject_user: رد کاربر
         remove_avatar_user: برداشتن تصویر نمایه
         reopen_report: بازگشایی گزارش
+        resend_user: ارسال مجدد رایانامه تایید
         reset_password_user: بازنشانی گذرواژه
         resolve_report: رفع گزارش
         sensitive_account: علامت‌گذاری رسانه در حسابتان به عنوان حساس
@@ -214,6 +217,7 @@ fa:
         update_custom_emoji: به‌روز رسانی اموجی سفارشی
         update_domain_block: به‌روزرسانی مسدودسازی دامنه
         update_status: به‌روز رسانی وضعیت
+        update_user_role: به روزرسانی نقش
       actions:
         approve_appeal_html: "%{name} درخواست تجدیدنظر تصمیم مدیر را از %{target} پذیرفت"
         approve_user_html: "%{name} ثبت نام %{target} را تایید کرد"
@@ -424,6 +428,7 @@ fa:
         title: سیاست‌های محتوا
       dashboard:
         instance_accounts_dimension: حساب‌های پیش‌تر پی‌گیری شده
+        instance_accounts_measure: حساب‌های ذخیره شده
         instance_followers_measure: پی‌گیرندگانمان در آن‌جا
         instance_follows_measure: پی‌گیرندگانشان در این‌جا
         instance_languages_dimension: زبان‌های برتر
@@ -510,9 +515,11 @@ fa:
       assign_to_self: به عهدهٔ من بگذار
       assigned: مدیر عهده‌دار
       by_target_domain: دامنهٔ حساب گزارش‌شده
+      cancel: لغو
       category: دسته
       comment:
         none: هیچ
+      confirm: تأیید
       created_at: گزارش‌شده
       delete_and_resolve: حذف فرسته‌ها
       forwarded: هدایت شده
@@ -548,6 +555,7 @@ fa:
       add_new: افزودن نقش
       categories:
         administration: مدیریت
+        devops: DevOps
         invites: دعوت‌ها
         moderation: نظارت
         special: ویژه
