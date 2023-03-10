@@ -6,11 +6,11 @@ class TranslateStatusService < BaseService
   include FormattingHelper
 
   def call(status, target_language)
-    raise Mastodon::NotPermittedError unless status.translation_languages.include?(target_language)
-
     @status = status
     @content = status_content_format(@status)
     @target_language = target_language
+
+    raise Mastodon::NotPermittedError unless permitted?
 
     Rails.cache.fetch("translations/#{@status.language}/#{@target_language}/#{content_hash}", expires_in: CACHE_TTL) { translation_backend.translate(@content, @status.language, @target_language) }
   end
@@ -18,7 +18,14 @@ class TranslateStatusService < BaseService
   private
 
   def translation_backend
-    TranslationService.configured
+    @translation_backend ||= TranslationService.configured
+  end
+
+  def permitted?
+    return false unless @status.distributable? && @status.content.present? && TranslationService.configured?
+
+    languages = Rails.cache.fetch('translation_service/languages')
+    languages && languages[@status.language]&.include?(@target_language)
   end
 
   def content_hash

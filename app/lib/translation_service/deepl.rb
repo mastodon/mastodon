@@ -17,24 +17,21 @@ class TranslationService::DeepL < TranslationService
     end
   end
 
-  def target_languages(source_language)
-    return [] unless languages('source').include?(source_language)
+  def languages
+    source_languages = [nil] + fetch_languages('source')
 
-    languages('target').without(source_language)
+    # In DeepL, EN and PT are deprecated in favor of EN-GB/EN-US and PT-BR/PT-PT, so
+    # they are supported but not returned by the API.
+    target_languages = %w(en pt) + fetch_languages('target')
+
+    source_languages.index_with { |language| target_languages.without(nil, language) }
   end
 
   private
 
-  def languages(type)
-    Rails.cache.fetch("translation_service/deepl/languages/#{type}", expires_in: 7.days, race_condition_ttl: 1.minute) do
-      request(:get, "/v2/languages?type=#{type}") do |res|
-        # In DeepL, EN and PT are deprecated in favor of EN-GB/EN-US and PT-BR/PT-PT, so
-        # they are supported but not returned by the API.
-        extra = type == 'source' ? [nil] : %w(en pt)
-        languages = Oj.load(res.body_with_limit).map { |language| normalize_language(language['language']) }
-
-        languages + extra
-      end
+  def fetch_languages(type)
+    request(:get, "/v2/languages?type=#{type}") do |res|
+      Oj.load(res.body_with_limit).map { |language| normalize_language(language['language']) }
     end
   end
 

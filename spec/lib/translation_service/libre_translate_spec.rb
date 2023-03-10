@@ -11,32 +11,19 @@ RSpec.describe TranslationService::LibreTranslate do
     )
   end
 
-  describe '#target_languages' do
-    it 'returns all target languages for included source language except itself' do
-      expect(service.target_languages('en')).to eq %w(de es)
-    end
-
-    it 'returns all target languages for with auto-detection' do
-      expect(service.target_languages(nil)).to eq %w(de en es pt)
-    end
-
-    it 'returns empty array for unsupported source locale' do
-      expect(service.target_languages('zz')).to eq []
-    end
-  end
-
   describe '#languages' do
-    subject(:languages) { service.send(:languages) }
+    subject(:languages) { service.languages }
 
-    it 'includes supported source languages' do
+    it 'returns source languages' do
       expect(languages.keys).to eq ['en', 'da', nil]
     end
 
-    it 'includes supported target languages for source language' do
+    it 'returns target languages for each source language' do
       expect(languages['en']).to eq %w(de es)
+      expect(languages['da']).to eq %w(en pt)
     end
 
-    it 'includes supported target languages for auto-detected language' do
+    it 'returns target languages for auto-detected language' do
       expect(languages[nil]).to eq %w(de en es pt)
     end
   end

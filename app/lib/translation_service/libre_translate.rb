@@ -15,23 +15,17 @@ class TranslationService::LibreTranslate < TranslationService
     end
   end
 
-  def target_languages(source_language)
-    languages[source_language] || []
+  def languages
+    request(:get, '/languages') do |res|
+      languages = Oj.load(res.body_with_limit).to_h do |language|
+        [language['code'], language['targets'].without(language['code'])]
+      end
+      languages[nil] = languages.values.flatten.uniq.sort
+      languages
+    end
   end
 
   private
-
-  def languages
-    Rails.cache.fetch('translation_service/libre_translate/languages', expires_in: 7.days, race_condition_ttl: 1.minute) do
-      request(:get, '/languages') do |res|
-        languages = Oj.load(res.body_with_limit).to_h do |language|
-          [language['code'], language['targets'].without(language['code'])]
-        end
-        languages[nil] = languages.values.flatten.uniq.sort
-        languages
-      end
-    end
-  end
 
   def request(verb, path, **options)
     req = Request.new(verb, "#{@base_url}#{path}", allow_local: true, **options)

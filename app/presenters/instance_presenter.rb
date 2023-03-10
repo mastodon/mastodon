@@ -54,6 +54,14 @@ class InstancePresenter < ActiveModelSerializers::Model
     [I18n.default_locale]
   end
 
+  def translation_languages
+    return {} unless TranslationService.configured?
+
+    languages = Rails.cache.fetch('translation_service/languages') || {}
+    languages['und'] = languages.delete(nil) if languages.key?(nil)
+    languages
+  end
+
   def rules
     Rule.ordered
   end

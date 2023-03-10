@@ -76,6 +76,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
       translation: {
         enabled: TranslationService.configured?,
+        languages: object.translation_languages,
       },
     }
   end

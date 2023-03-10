@@ -114,61 +114,6 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '#translation_languages' do
-    before do
-      allow(TranslationService).to receive(:configured?).and_return(true)
-      allow(TranslationService).to receive(:configured).and_return(TranslationService.new)
-      allow(TranslationService.configured).to receive(:target_languages).with('es').and_return(%w(de en))
-
-      subject.language = 'es'
-      subject.visibility = :public
-    end
-
-    context 'all conditions are satisfied' do
-      it 'returns supported target languages' do
-        expect(subject.translation_languages).to eq %w(de en)
-      end
-    end
-
-    context 'translation service is not configured' do
-      it 'returns false' do
-        allow(TranslationService).to receive(:configured?).and_return(false)
-        allow(TranslationService).to receive(:configured).and_raise(TranslationService::NotConfiguredError)
-        expect(subject.translation_languages).to eq []
-      end
-    end
-
-    context 'status language is nil' do
-      it 'returns supported languages for auto-detection' do
-        subject.language = nil
-        allow(TranslationService.configured).to receive(:target_languages).with(nil).and_return(['en'])
-        expect(subject.translation_languages).to eq ['en']
-      end
-    end
-
-    context 'status language is unsupported' do
-      it 'returns an empty array' do
-        subject.language = 'af'
-        allow(TranslationService.configured).to receive(:target_languages).with('af').and_return([])
-        expect(subject.translation_languages).to eq []
-      end
-    end
-
-    context 'status text is blank' do
-      it 'returns an empty array' do
-        subject.text = ' '
-        expect(subject.translation_languages).to eq []
-      end
-    end
-
-    context 'status visiblity is hidden' do
-      it 'returns an empty array' do
-        subject.visibility = 'limited'
-        expect(subject.translation_languages).to eq []
-      end
-    end
-  end
-
   describe '#content' do
     it 'returns the text of the status if it is not a reblog' do
       expect(subject.content).to eql subject.text

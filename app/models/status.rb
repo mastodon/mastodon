@@ -232,12 +232,6 @@ class Status < ApplicationRecord
     public_visibility? || unlisted_visibility?
   end
 
-  def translation_languages
-    return [] unless distributable? && content.present? && TranslationService.configured?
-
-    TranslationService.configured.target_languages(language)
-  end
-
   alias sign? distributable?
 
   def with_media?

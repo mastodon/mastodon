@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe InstancePresenter do
-  let(:instance_presenter) { InstancePresenter.new }
+  let(:instance_presenter) { described_class.new }
 
   describe '#description' do
     around do |example|
@@ -55,6 +55,37 @@ describe InstancePresenter do
       Setting.site_contact_username = 'aaa'
       account = Fabricate(:account, username: 'aaa')
       expect(instance_presenter.contact.account).to eq(account)
+    end
+  end
+
+  describe '#translation' do
+    context 'when no translation service is configured' do
+      it 'returns empty language matrix' do
+        expect(instance_presenter.translation_languages).to eq({})
+      end
+    end
+
+    context 'when a translation service is configured but cache is empty' do
+      before do
+        allow(TranslationService).to receive(:configured?).and_return(true)
+      end
+
+      it 'returns empty language matrix' do
+        expect(instance_presenter.translation_languages).to eq({})
+      end
+    end
+
+    context 'when a translation service is configured and cache is populated' do
+      before do
+        service = instance_double(TranslationService::DeepL, languages: { nil => %w(en de), 'en' => ['de'] })
+        allow(TranslationService).to receive(:configured?).and_return(true)
+        allow(TranslationService).to receive(:configured).and_return(service)
+        Scheduler::TranslationServiceScheduler.new.perform
+      end
+
+      it 'returns language matrix' do
+        expect(instance_presenter.translation_languages).to eq({ 'und' => %w(en de), 'en' => ['de'] })
+      end
     end
   end
 
