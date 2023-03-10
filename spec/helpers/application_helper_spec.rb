@@ -4,12 +4,29 @@ require 'rails_helper'
 
 describe ApplicationHelper do
   describe 'react_component' do
-    it 'returns a tag with data attributes' do
-      result = helper.react_component('name', { one: :two })
-      html = Nokogiri::Slop(result)
+    context 'with no block passed in' do
+      let(:result) { helper.react_component('name', { one: :two }) }
+      let(:html) { Nokogiri::Slop(result) }
 
-      expect(html.div['data-component']).to eq('Name')
-      expect(html.div['data-props']).to eq('{"one":"two"}')
+      it 'returns a tag with data attributes' do
+        expect(html.div['data-component']).to eq('Name')
+        expect(html.div['data-props']).to eq('{"one":"two"}')
+      end
+    end
+
+    context 'with a block passed in' do
+      let(:result) do
+        helper.react_component('name', { one: :two }) do
+          helper.content_tag(:nav, 'ok')
+        end
+      end
+      let(:html) { Nokogiri::Slop(result) }
+
+      it 'returns a tag with data attributes' do
+        expect(html.div['data-component']).to eq('Name')
+        expect(html.div['data-props']).to eq('{"one":"two"}')
+        expect(html.div.nav.content).to eq('ok')
+      end
     end
   end
 
