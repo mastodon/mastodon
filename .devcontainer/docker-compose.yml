@@ -41,7 +41,7 @@ services:
       - internal_network
 
   redis:
-    image: redis:6-alpine
+    image: redis:7-alpine
     restart: unless-stopped
     volumes:
       - redis-data:/data
