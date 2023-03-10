@@ -6,6 +6,19 @@ describe SearchQueryTransformer do
   subject(:transformer) { described_class.new.apply(SearchQueryParser.new.parse(query)) }
 
   describe '#initialize' do
+
+    context 'when given a query' do
+      let(:query) { 'query' }
+
+      it 'sets attributes' do
+        expect(transformer.should_clauses.first).to be_a(SearchQueryTransformer::TermClause)
+        expect(transformer.must_clauses.first).to be_nil
+        expect(transformer.must_not_clauses.first).to be_nil
+        expect(transformer.filter_clauses.first).to be_nil
+        expect(transformer.order_clauses.first).to be_nil
+      end
+    end
+
     context 'when given a domain: query for the test domain' do
       let(:query) { 'domain:cb6e6126.ngrok.io' }
 
