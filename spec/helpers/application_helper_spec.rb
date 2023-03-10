@@ -3,6 +3,16 @@
 require 'rails_helper'
 
 describe ApplicationHelper do
+  describe 'react_component' do
+    it 'returns a tag with data attributes' do
+      result = helper.react_component('name', { one: :two })
+      html = Nokogiri::Slop(result)
+
+      expect(html.div['data-component']).to eq('Name')
+      expect(html.div['data-props']).to eq('{"one":"two"}')
+    end
+  end
+
   describe 'active_nav_class' do
     it 'returns active when on the current page' do
       allow(helper).to receive(:current_page?).and_return(true)
