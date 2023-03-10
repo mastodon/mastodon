@@ -6,7 +6,6 @@ describe SearchQueryTransformer do
   subject(:transformer) { described_class.new.apply(SearchQueryParser.new.parse(query)) }
 
   describe '#initialize' do
-
     context 'when given a query' do
       let(:query) { 'query' }
 
