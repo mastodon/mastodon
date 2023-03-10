@@ -552,7 +552,10 @@ class Account < ApplicationRecord
   def searchable_tags
     return [] unless discoverable
 
-    Extractor.extract_hashtags(PlainTextFormatter.new(note, local?).to_s)
+    tags = []
+    tags += Extractor.extract_hashtags(PlainTextFormatter.new(note, local?).to_s)
+    tags += featured_tags.pluck(:name)
+    tags.uniq
   end
 
   def searchable_is
