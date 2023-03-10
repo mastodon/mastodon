@@ -91,7 +91,5 @@ class StatusesIndex < Chewy::Index
     end
 
     field :searchable_by, type: 'long', value: ->(status, crutches) { status.searchable_by(crutches) }
-    # TODO: this and its corresponding scope may use a different flag if we opt for https://github.com/mastodon/mastodon/pull/23808
-    field :public_indexable, type: 'boolean', value: ->(status) { status.public_visibility? && status.account.discoverable && !status.account.silenced? }
   end
 end

@@ -86,7 +86,7 @@ class SearchService < BaseService
   end
 
   def perform_statuses_search!
-    definition = StatusesIndex.filter(term: { searchable_by: @account.id }).filter.or(term: { public_indexable: true })
+    definition = StatusesIndex.filter(term: { searchable_by: @account.id })
     definition = parsed_query.statuses_apply(definition, following_ids)
     definition = definition.filter(term: { account_id: @options[:account_id] }) if @options[:account_id].present?
 
