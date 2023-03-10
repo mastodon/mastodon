@@ -84,6 +84,7 @@ class StatusesIndex < Chewy::Index
     field :has, type: 'keyword', value: ->(status) { status.searchable_has }
     field :emojis, type: 'keyword', value: ->(status) { status.searchable_emojis }
     field :tags, type: 'keyword', normalizer: 'tag', value: ->(status) { status.searchable_tags }
+    field :mentions_ids, type: 'long', value: ->(status) { status.searchable_mentions_ids }
 
     field :text, type: 'text', value: ->(status) { status.searchable_text } do
       field :stemmed, type: 'text', analyzer: 'content'

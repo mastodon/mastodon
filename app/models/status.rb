@@ -160,6 +160,10 @@ class Status < ApplicationRecord
     ids.uniq
   end
 
+  def searchable_mentions_ids
+    mentions.joins(:account).active.pluck(:account_id)
+  end
+
   def searchable_text
     [
       spoiler_text,

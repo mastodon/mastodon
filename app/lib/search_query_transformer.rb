@@ -191,10 +191,12 @@ class SearchQueryTransformer < Parslet::Transform
     end
   end
 
+  # If you add a new prefix here, make sure to add it to SearchQueryParser as well.
   class PrefixClause
     attr_reader :filter, :operator, :term, :order, :query, :search_types
 
     def initialize(prefix, operator, term)
+      # These defaults may be modified by prefix-operator-specific initializers below.
       @query = :term
       @filter = prefix
       @term = term
@@ -207,88 +209,26 @@ class SearchQueryTransformer < Parslet::Transform
         initialize_is_local if TagManager.instance.local_domain?(term)
 
       when 'is'
-        case term
-        when 'bot', 'group'
-          # These apply to all search types. No action required.
-        when 'local'
-          initialize_is_local
-        when 'reply', 'sensitive'
-          @search_types = %i(statuses)
-        else
-          raise Mastodon::SyntaxError, "Unknown keyword for is: prefix: #{term}"
-        end
+        initialize_is(term)
 
       when 'has', 'lang'
         @search_types = %i(statuses)
 
       when 'sensitive'
-        raise Mastodon::SyntaxError, 'Operator not allowed for sensitive: prefix' unless operator.nil?
-
-        @search_types = %i(statuses)
-        @filter = 'is'
-        @term = 'sensitive'
-
-        case term
-        when 'yes'
-          @operator = :filter
-        when 'no'
-          @operator = :must_not
-        else
-          raise Mastodon::SyntaxError, "Unknown value for sensitive: prefix: #{term}"
-        end
+        initialize_sensitive(operator, term)
 
       when 'before', 'after'
-        raise Mastodon::SyntaxError, 'Operator not allowed for date range' unless operator.nil?
+        initialize_date_range(prefix, operator, term)
 
-        @query = :range
-        @filter = 'created_at'
-
-        case prefix
-        when 'before'
-          @term = { lt: term }
-        when 'after'
-          @term = { gt: term }
-        else
-          raise Mastodon::SyntaxError, "Unknown date range prefix: #{str}"
-        end
-
-      when 'from'
-        @search_types = %i(statuses)
-        @filter = :account_id
-
-        username, domain = term.gsub(/\A@/, '').split('@')
-        domain           = nil if TagManager.instance.local_domain?(domain)
-        account          = Account.find_remote!(username, domain)
-
-        @term = account.id
+      when 'from', 'mentions'
+        initialize_account(prefix, term)
 
       when 'scope'
-        raise Mastodon::SyntaxError, 'Operator not allowed for scope: prefix' unless operator.nil?
-
-        case term
-        when 'following'
-          @query = :terms
-          # This scope queries different fields depending on search context.
-          @filter = :account_id_filter_placeholder
-          @term = :following_ids_placeholder
-        else
-          raise Mastodon::SyntaxError, "Unknown scope: #{str}"
-        end
+        initialize_scope(operator, term)
 
       when 'sort'
-        raise Mastodon::SyntaxError, 'Operator not allowed for sort: prefix' unless operator.nil?
+        initialize_sort(operator, term)
 
-        @operator = :order
-        @term = :created_at
-
-        case term
-        when 'oldest'
-          @order = :asc
-        when 'newest'
-          @order = :desc
-        else
-          raise Mastodon::SyntaxError, "Unknown sort: #{str}"
-        end
       else
         raise Mastodon::SyntaxError
       end
@@ -296,12 +236,87 @@ class SearchQueryTransformer < Parslet::Transform
 
     private
 
+    def initialize_is(term)
+      case term
+      when 'bot', 'group'
+        # These apply to all search types. No action required.
+      when 'local'
+        initialize_is_local
+      when 'reply', 'sensitive'
+        @search_types = %i(statuses)
+      else
+        raise Mastodon::SyntaxError, "Unknown keyword for is: prefix: #{term}"
+      end
+    end
+
     # We can identify local objects by querying for objects that don't have a domain field.
     def initialize_is_local
       @operator = @operator == :filter ? :must_not : :filter
       @query = :exists
       @filter = :field
       @term = 'domain'
+    end
+
+    def initialize_sensitive(operator, term)
+      raise Mastodon::SyntaxError, 'Operator not allowed for sensitive: prefix' unless operator.nil?
+
+      @search_types = %i(statuses)
+      @filter = 'is'
+      @term = 'sensitive'
+      @operator = {
+        yes: :filter,
+        no: :must_not,
+      }[term.to_sym] or raise Mastodon::SyntaxError, "Unknown value for sensitive: prefix: #{term}"
+    end
+
+    def initialize_date_range(prefix, operator, term)
+      raise Mastodon::SyntaxError, 'Operator not allowed for date range' unless operator.nil?
+
+      @query = :range
+      @filter = 'created_at'
+      @term = {
+        before: { lt: term },
+        after: { gt: term },
+      }[prefix.to_sym] or raise Mastodon::SyntaxError, "Unknown date range prefix: #{prefix}"
+    end
+
+    def initialize_account(prefix, term)
+      @search_types = %i(statuses)
+      @filter = {
+        from: :account_id,
+        mentions: :mentions_ids,
+      }[prefix.to_sym] or raise Mastodon::SyntaxError, "Unknown account filter prefix: #{prefix}"
+
+      username, domain = term.gsub(/\A@/, '').split('@')
+      domain           = nil if TagManager.instance.local_domain?(domain)
+      account          = Account.find_remote!(username, domain)
+
+      @term = account.id
+    end
+
+    def initialize_scope(operator, term)
+      raise Mastodon::SyntaxError, 'Operator not allowed for scope: prefix' unless operator.nil?
+
+      case term
+      when 'following'
+        @query = :terms
+        # This scope queries different fields depending on search context.
+        @filter = :account_id_filter_placeholder
+        @term = :following_ids_placeholder
+      else
+        raise Mastodon::SyntaxError, "Unknown scope: #{term}"
+      end
+    end
+
+    def initialize_sort(operator, term)
+      raise Mastodon::SyntaxError, 'Operator not allowed for sort: prefix' unless operator.nil?
+
+      @operator = :order
+      @term = :created_at
+      @order = {
+        oldest: :asc,
+        newest: :desc,
+      }[term.to_sym] or raise Mastodon::SyntaxError, "Unknown sort: #{term}"
     end
   end
 
