@@ -90,7 +90,7 @@ nn:
       moderation:
         active: Aktiv
         all: Alle
-        disabled: Deaktivert
+        disabled: Skrudd av
         pending: Ventar på svar
         silenced: Avgrensa
         suspended: Utvist
@@ -133,7 +133,7 @@ nn:
       search: Søk
       search_same_email_domain: Andre brukarar med same e-postdomene
       search_same_ip: Andre brukarar med same IP
-      security: Sikkerhet
+      security: Tryggleik
       security_measures:
         only_password: Kun passord
         password_and_2fa: Passord og 2FA
@@ -422,7 +422,7 @@ nn:
         resolve: Løs domene
         title: Ny blokkeringsoppføring av e-postdomene
       no_email_domain_block_selected: Blokkering av e-post-domener vart ikkje endra sidan ingen var valde
-      not_permitted: Ikke tillatt
+      not_permitted: Ikkje tillate
       resolved_dns_records_hint_html: Domenenamnet gjer oppslag til desse MX-domenene som til sist er ansvarlige for å motta e-post. Blokkering av eit MX-domene vil blokkere registreringar frå alle e-postadresser som bruker same MX-domene, sjølv om det synlige domenenavnet skulle vera noko anna. <strong>Pass på så du ikkje blokkerer dei store e-postleverandørane.</strong>
       resolved_through_html: Løyst gjennom %{domain}
       title: Blokkerte e-postadresser
@@ -469,6 +469,7 @@ nn:
       content_policies:
         comment: Internt notat
         description_html: Du kan definere innholdsregler som vil bli brukt på alle kontoer fra dette domenet og hvilket som helst av underdomenene.
+        limited_federation_mode_description_html: Du kan velja om du vil tillata føderering med dette domenet.
         policies:
           reject_media: Avvis media
           reject_reports: Avvis rapporter
