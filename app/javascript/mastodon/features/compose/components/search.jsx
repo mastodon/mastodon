@@ -26,6 +26,43 @@ class SearchPopout extends React.PureComponent {
         </ul>
 
         {extraInformation}
+
+        { searchEnabled &&
+          <hr />
+        }
+
+        { searchEnabled &&
+          <h4><FormattedMessage id='search_popout.search_operators' defaultMessage='Additional search operators for statuses and users' /></h4>
+        }
+
+        { searchEnabled &&
+          <ul>
+            <li><em>+term</em> <FormattedMessage id='search_popout.search_operators.include' defaultMessage='require term in results' /></li>
+            <li><em>-term</em> <FormattedMessage id='search_popout.search_operators.exclude' defaultMessage='exclude results containing term' /></li>
+            <li><em>&quot;John Mastodon&quot;</em> <FormattedMessage id='search_popout.search_operators.phrase' defaultMessage='search for an entire phrase instead of a single word' /></li>
+            <li><em>domain:example.org</em> <FormattedMessage id='search_popout.search_operators.domain' defaultMessage='results from a given domain' /></li>
+            <li><em>scope:following</em> <FormattedMessage id='search_popout.search_operators.scope.following' defaultMessage='limit search to users that you follow and statuses from them' /></li>
+            <li><em>is:bot</em> <FormattedMessage id='search_popout.search_operators.is.bot' defaultMessage='return only automated accounts and statuses from them' /></li>
+            <li><em>-is:bot</em> <FormattedMessage id='search_popout.search_operators.is.not_bot' defaultMessage='exclude automated accounts and statuses from them' /></li>
+            <li><em>is:reply</em> <FormattedMessage id='search_popout.search_operators.is.reply' defaultMessage='return only statuses that are replies to another status' /></li>
+            <li><em>-is:reply</em> <FormattedMessage id='search_popout.search_operators.is.not_reply' defaultMessage='exclude statuses that are replies to another status' /></li>
+            <li><em>from:@username@domain</em> <FormattedMessage id='search_popout.search_operators.from' defaultMessage='return only statuses authored by a given user' /></li>
+            <li><em>mentions:@username@domain</em> <FormattedMessage id='search_popout.search_operators.mentions' defaultMessage='return only statuses mentioning a given user' /></li>
+            <li><em>lang:es</em> <FormattedMessage id='search_popout.search_operators.lang' defaultMessage='return only statuses in the given language' /></li>
+            <li><em>has:link</em> <FormattedMessage id='search_popout.search_operators.has.link' defaultMessage='return only statuses that contain links' /></li>
+            <li><em>has:media</em> <FormattedMessage id='search_popout.search_operators.has.media' defaultMessage='return only statuses that include images, audio, or video' /></li>
+            <li><em>has:poll</em> <FormattedMessage id='search_popout.search_operators.has.poll' defaultMessage='return only statuses that include a poll' /></li>
+            <li><em>has:warning</em> <FormattedMessage id='search_popout.search_operators.has.warning' defaultMessage='return only statuses that have a content warning' /></li>
+            <li><em>-has:warning</em> <FormattedMessage id='search_popout.search_operators.has.not_warning' defaultMessage='exclude statuses that have a content warning' /></li>
+            <li><em>sensitive:yes</em> <FormattedMessage id='search_popout.search_operators.sensitive.yes' defaultMessage='return only statuses that are marked as sensitive content' /></li>
+            <li><em>sensitive:no</em> <FormattedMessage id='search_popout.search_operators.sensitive.no' defaultMessage='exclude statuses that are marked as sensitive content' /></li>
+            <li><em>before:2022-12-17</em> <FormattedMessage id='search_popout.search_operators.date.before' defaultMessage='search before a given date' /></li>
+            <li><em>after:2022-12-17</em> <FormattedMessage id='search_popout.search_operators.date.after' defaultMessage='search after a given date' /></li>
+            <li><em>sort:newest</em> <FormattedMessage id='search_popout.search_operators.sort.newest' defaultMessage='show newest results first' /></li>
+            <li><em>sort:oldest</em> <FormattedMessage id='search_popout.search_operators.sort.oldest' defaultMessage='show oldest results first' /></li>
+            <li><em>cat has:media</em> <FormattedMessage id='search_popout.search_operators.combinations' defaultMessage='operators can be combined with search terms or each other' /></li>
+          </ul>
+        }
       </div>
     );
   }
