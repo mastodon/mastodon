@@ -258,10 +258,10 @@ de:
         destroy_user_role_html: "%{name} löschte die Rolle %{target}"
         disable_2fa_user_html: "%{name} hat die Zwei-Faktor-Authentisierung für %{target} deaktiviert"
         disable_custom_emoji_html: "%{name} deaktivierte das Emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} deaktivierte die E-Mail-Token-Authentisierung für %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token-Authentisierung für %{target} deaktiviert"
         disable_user_html: "%{name} hat den Zugang für %{target} deaktiviert"
         enable_custom_emoji_html: "%{name} aktivierte das Emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} aktivierte die E-Mail-Token-Authentisierung für %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token-Authentifizierung für %{target} aktiviert"
         enable_user_html: "%{name} hat den Zugang für %{target} aktiviert"
         memorialize_account_html: "%{name} wandelte das Konto von %{target} in eine Gedenkseite um"
         promote_user_html: "%{name} beförderte %{target}"
@@ -985,7 +985,7 @@ de:
     dont_have_your_security_key: Du hast keinen Sicherheitsschlüssel?
     forgot_password: Passwort vergessen?
     invalid_reset_password_token: Das Token zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordere ein neues an.
-    link_to_otp: Gib einen Zwei-Faktor-Code von deinem Handy oder einen Wiederherstellungscode ein
+    link_to_otp: Gib einen Zwei-Faktor-Code von deinem Smartphone oder einen Wiederherstellungscode ein
     link_to_webauth: Verwende dein Sicherheitsschlüsselgerät
     log_in_with: Anmelden mit
     login: Anmelden
@@ -1367,7 +1367,7 @@ de:
     code_hint: Gib den Code ein, den deine 2FA- bzw. TOTP-App generiert hat, um den Vorgang zu bestätigen
     description_html: Wenn du die <strong>Zwei-Faktor-Authentisierung</strong> (2FA) mit einer Authentifizierungs-App deines Smartphones aktivierst, benötigst du neben dem regulären Passwort zusätzlich auch den zeitbasierten Code der 2FA-App, um dich anmelden zu können.
     enable: Aktivieren
-    instructions_html: "<strong>Scanne diesen QR-Code mit einer TOTP-App (wie dem Google Authenticator)</strong>. Die 2FA-App generiert dann zeitbasierte Codes, die du beim Login zusätzlich zum regulären Passwort eingeben musst."
+    instructions_html: "<strong>Scanne diesen QR-Code mit einer beliebigen Authentisierungs-App (TOTP)</strong>. Diese App generiert dann zeitbasierte Codes, die du beim Anmelden zusätzlich zum regulären Passwort eingeben musst."
     manual_instructions: 'Wenn du den QR-Code nicht einscannen kannst, sondern die Zahlenfolge manuell eingeben musst, ist hier der geheime Token für deine 2FA-App.'
     setup: Einrichten
     wrong_code: Der eingegebene Code ist ungültig! Laufen Serverzeit und Gerätezeit synchron?
@@ -1583,7 +1583,7 @@ de:
       '7889238': 3 Monate
     min_age_label: Altersgrenze
     min_favs: Behalte Beiträge, die häufiger favorisiert wurden als …
-    min_favs_hint: Löscht keine Beiträge, die mindestens so oft favorisiert worden sind. Lass das Feld leer, um alle Beiträge, unabhängig der Anzahl an Favorisierungen zu löschen
+    min_favs_hint: Löscht keine Beiträge, die mindestens so oft favorisiert worden sind. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an Favoriten – zu löschen
     min_reblogs: Behalte Beiträge, die öfter geteilt wurden als
     min_reblogs_hint: Löscht keine Beiträge, die mindestens so oft geteilt worden sind. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an geteilten Beiträgen – zu löschen
   stream_entries:
@@ -1612,12 +1612,12 @@ de:
     enabled: Zwei-Faktor-Authentisierung (2FA) ist aktiviert
     enabled_success: Zwei-Faktor-Authentisierung (2FA) erfolgreich aktiviert
     generate_recovery_codes: Wiederherstellungscodes erstellen
-    lost_recovery_codes: Wiederherstellungscodes erlauben es dir, wieder Zugang zu deinem Konto zu erlangen, falls du keinen Zugriff mehr auf die Zwei-Faktor-Authentisierung (2FA) oder den Sicherheitsschlüssel hast. Solltest Du diese Wiederherstellungscodes verloren haben, kannst du sie hier neu generieren. Deine alten, bereits erstellten Wiederherstellungscodes werden dadurch ungültig.
+    lost_recovery_codes: Wiederherstellungscodes ermöglichen es dir, wieder Zugang zu deinem Konto zu erlangen, falls du keinen Zugriff mehr auf dein Smartphone oder zum Sicherheitsschlüssel hast. Solltest du deine Wiederherstellungscodes verloren haben, kannst du sie hier neu generieren. Die alten Wiederherstellungscodes werden dann ungültig.
     methods: Methoden der Zwei-Faktor-Authentisierung (2FA)
     otp: Authentifizierungs-App
     recovery_codes: Wiederherstellungscodes sichern
     recovery_codes_regenerated: Wiederherstellungscodes erfolgreich neu erstellt
-    recovery_instructions_html: Wenn du den Zugang zu deinem Telefon verlieren solltest, kannst du einen untenstehenden Wiederherstellungscode benutzen, um wieder auf dein Konto zugreifen zu können. <strong>Bewahre die Wiederherstellungscodes gut auf.</strong> Du könntest sie beispielsweise ausdrucken und bei deinen restlichen wichtigen Dokumenten aufbewahren.
+    recovery_instructions_html: Falls du jemals den Zugang zu deinem Smartphone verlierst, kannst du einen der unten aufgeführten Wiederherstellungscodes verwenden, um wieder Zugang zu deinem Konto zu erhalten. <strong>Bewahre die Wiederherstellungscodes sicher auf</strong>. Du kannst sie zum Beispiel ausdrucken und zusammen mit anderen wichtigen Dokumenten aufbewahren.
     webauthn: Sicherheitsschlüssel
   user_mailer:
     appeal_approved:
@@ -1699,8 +1699,8 @@ de:
     delete_confirmation: Möchtest du diesen Sicherheitsschlüssel wirklich entfernen?
     description_html: Wenn du die <strong>Authentisierung mit Sicherheitsschlüssel</strong> aktivierst, musst du dich mit einem deiner Sicherheitsschlüssel anmelden.
     destroy:
-      error: Es gab ein Problem beim Löschen deines Sicherheitsschlüssels. Bitte versuche es erneut.
-      success: Dein Sicherheitsschlüssel wurde erfolgreich gelöscht.
+      error: Beim Entfernen des Sicherheitsschlüssels ist ein Fehler aufgetreten. Bitte versuche es erneut.
+      success: Dein Sicherheitsschlüssel wurde erfolgreich entfernt.
     invalid_credential: Ungültiger Sicherheitsschlüssel
     nickname_hint: Gib den Spitznamen deines neuen Sicherheitsschlüssels ein
     not_enabled: Du hast WebAuthn noch nicht aktiviert
