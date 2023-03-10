@@ -202,25 +202,36 @@ class SearchQueryTransformer < Parslet::Transform
 
       case prefix
       when 'domain'
-        @filter = prefix
-        @term = term
+        if TagManager.instance.local_domain?(term)
+          initialize_is_local
+        else
+          @filter = prefix
+          @term = term
+        end
+
       when 'is'
         @filter = prefix
         @term = term
 
         case term
-        when 'bot', 'group', 'local'
+        when 'bot', 'group'
           # These apply to all search types. No action required.
+        when 'local'
+          initialize_is_local
         when 'reply', 'sensitive'
           @search_types = %i(statuses)
         else
           raise Mastodon::SyntaxError, "Unknown keyword for is: prefix: #{term}"
         end
-      when 'has', 'lang', 'visibility'
+
+      when 'has', 'lang'
         @search_types = %i(statuses)
         @filter = prefix
         @term = term
+
       when 'sensitive'
+        raise Mastodon::SyntaxError, 'Operator not allowed for sensitive: prefix' unless operator.nil?
+
         @search_types = %i(statuses)
         @filter = 'is'
         @term = 'sensitive'
@@ -233,6 +244,7 @@ class SearchQueryTransformer < Parslet::Transform
         else
           raise Mastodon::SyntaxError, "Unknown value for sensitive: prefix: #{term}"
         end
+
       when 'before', 'after'
         raise Mastodon::SyntaxError, 'Operator not allowed for date range' unless operator.nil?
 
@@ -247,6 +259,7 @@ class SearchQueryTransformer < Parslet::Transform
         else
           raise Mastodon::SyntaxError, "Unknown date range prefix: #{str}"
         end
+
       when 'from'
         @filter = :account_id
 
@@ -255,6 +268,7 @@ class SearchQueryTransformer < Parslet::Transform
         account          = Account.find_remote!(username, domain)
 
         @term = account.id
+
       when 'scope'
         raise Mastodon::SyntaxError, 'Operator not allowed for scope: prefix' unless operator.nil?
 
@@ -285,6 +299,16 @@ class SearchQueryTransformer < Parslet::Transform
       else
         raise Mastodon::SyntaxError
       end
+    end
+
+    private
+
+    # We can identify local objects by querying for objects that don't have a domain field.
+    def initialize_is_local
+      @operator = @operator == :filter ? :must_not : :filter
+      @query = :exists
+      @filter = :field
+      @term = 'domain'
     end
   end
 

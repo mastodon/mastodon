@@ -181,7 +181,6 @@ class Status < ApplicationRecord
     keywords = []
     keywords << :bot if account.bot?
     keywords << :group if account.group?
-    keywords << :local if local?
     keywords << :reply if reply?
     keywords << :sensitive if sensitive?
     keywords

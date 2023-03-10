@@ -5,6 +5,98 @@ require 'rails_helper'
 describe SearchQueryTransformer do
   subject(:transformer) { described_class.new.apply(SearchQueryParser.new.parse(query)) }
 
+  describe '#initialize' do
+    context 'when given a domain: query for the test domain' do
+      let(:query) { 'domain:cb6e6126.ngrok.io' }
+
+      it 'generates a does-not-exist query on the domain field' do
+        expect(transformer.must_not_clauses.length).to eq(1)
+        expect(transformer.filter_clauses).to be_empty
+
+        clause = transformer.must_not_clauses[0]
+        expect(clause).to be_a(described_class::PrefixClause)
+        expect(clause.query).to eq(:exists)
+        expect(clause.filter).to eq(:field)
+        expect(clause.term).to eq('domain')
+      end
+    end
+
+    context 'when given a domain: query for a remote domain' do
+      let(:query) { 'domain:example.org' }
+
+      it 'generates a match query on the domain field' do
+        expect(transformer.must_not_clauses).to be_empty
+        expect(transformer.filter_clauses.length).to eq(1)
+
+        clause = transformer.filter_clauses[0]
+        expect(clause).to be_a(described_class::PrefixClause)
+        expect(clause.query).to eq(:term)
+        expect(clause.filter).to eq('domain')
+        expect(clause.term).to eq('example.org')
+      end
+    end
+
+    context 'when given an is:local query' do
+      let(:query) { 'is:local' }
+
+      it 'generates a does-not-exist query on the domain field' do
+        expect(transformer.must_not_clauses.length).to eq(1)
+        expect(transformer.filter_clauses).to be_empty
+
+        clause = transformer.must_not_clauses[0]
+        expect(clause).to be_a(described_class::PrefixClause)
+        expect(clause.query).to eq(:exists)
+        expect(clause.filter).to eq(:field)
+        expect(clause.term).to eq('domain')
+      end
+    end
+
+    context 'when given a -is:local query' do
+      let(:query) { '-is:local' }
+
+      it 'generates an exists query on the domain field' do
+        expect(transformer.must_not_clauses).to be_empty
+        expect(transformer.filter_clauses.length).to eq(1)
+
+        clause = transformer.filter_clauses[0]
+        expect(clause).to be_a(described_class::PrefixClause)
+        expect(clause.query).to eq(:exists)
+        expect(clause.filter).to eq(:field)
+        expect(clause.term).to eq('domain')
+      end
+    end
+
+    context 'when given a sensitive:yes query' do
+      let(:query) { 'sensitive:yes' }
+
+      it 'generates a query equivalent to is:sensitive' do
+        expect(transformer.must_not_clauses).to be_empty
+        expect(transformer.filter_clauses.length).to eq(1)
+
+        clause = transformer.filter_clauses[0]
+        expect(clause).to be_a(described_class::PrefixClause)
+        expect(clause.query).to eq(:term)
+        expect(clause.filter).to eq('is')
+        expect(clause.term).to eq('sensitive')
+      end
+    end
+
+    context 'when given a sensitive:no query' do
+      let(:query) { 'sensitive:no' }
+
+      it 'generates a query equivalent to -is:sensitive' do
+        expect(transformer.must_not_clauses.length).to eq(1)
+        expect(transformer.filter_clauses).to be_empty
+
+        clause = transformer.must_not_clauses[0]
+        expect(clause).to be_a(described_class::PrefixClause)
+        expect(clause.query).to eq(:term)
+        expect(clause.filter).to eq('is')
+        expect(clause.term).to eq('sensitive')
+      end
+    end
+  end
+
   describe '#statuses_apply' do
     let(:following_ids) { [] }
 
@@ -80,7 +172,7 @@ describe SearchQueryTransformer do
       let(:query) { 'text' }
 
       it 'returns an ES query hash' do
-        es_query = transformer.accounts_query(likely_acct, search_scope, account_exists, following, following_ids)
+        es_query = transformer.accounts_query(likely_acct, account_exists, following, following_ids)
         expect(es_query).to be_a(Hash)
       end
     end
@@ -89,7 +181,7 @@ describe SearchQueryTransformer do
       let(:query) { '-is:bot' }
 
       it 'returns an ES query hash' do
-        es_query = transformer.accounts_query(likely_acct, search_scope, account_exists, following, following_ids)
+        es_query = transformer.accounts_query(likely_acct, account_exists, following, following_ids)
         expect(es_query).to be_a(Hash)
       end
     end
@@ -98,7 +190,7 @@ describe SearchQueryTransformer do
       let(:query) { 'is:reply' }
 
       it 'throws a syntax error' do
-        expect { transformer.accounts_query(likely_acct, search_scope, account_exists, following, following_ids) }.to raise_exception Mastodon::SyntaxError
+        expect { transformer.accounts_query(likely_acct, account_exists, following, following_ids) }.to raise_exception Mastodon::SyntaxError
       end
     end
   end
