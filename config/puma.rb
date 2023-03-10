@@ -22,3 +22,7 @@ on_worker_boot do
 end
 
 plugin :tmp_restart
+
+if ENV["PROXY_PROTO_V1"]
+  set_remote_address(proxy_protocol: :v1)
+end
