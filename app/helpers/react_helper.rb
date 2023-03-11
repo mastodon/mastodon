@@ -29,7 +29,7 @@ module ReactHelper
       frameRate: meta.dig('original', 'frame_rate'),
       inline: true,
       media: [
-        ActiveModelSerializers::SerializableResource.new(video, serializer: REST::MediaAttachmentSerializer),
+        serialize_media_attachment(video),
       ].as_json,
     }.merge(**options)
 
@@ -62,7 +62,7 @@ module ReactHelper
     component_params = {
       sensitive: sensitive_viewer?(status, current_account),
       autoplay: prefers_autoplay?,
-      media: status.ordered_media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json },
+      media: status.ordered_media_attachments.map { |a| serialize_media_attachment(a).as_json },
     }.merge(**options)
 
     react_component :media_gallery, component_params do
@@ -73,7 +73,7 @@ module ReactHelper
   def render_card_component(status, **options)
     component_params = {
       sensitive: sensitive_viewer?(status, current_account),
-      card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json,
+      card: serialize_status_card(status).as_json,
     }.merge(**options)
 
     react_component :card, component_params
@@ -82,7 +82,7 @@ module ReactHelper
   def render_poll_component(status, **options)
     component_params = {
       disabled: true,
-      poll: ActiveModelSerializers::SerializableResource.new(status.preloadable_poll, serializer: REST::PollSerializer, scope: current_user, scope_name: :current_user).as_json,
+      poll: serialize_status_poll(status).as_json,
     }.merge(**options)
 
     react_component :poll, component_params do
@@ -91,6 +91,29 @@ module ReactHelper
   end
 
   private
+
+  def serialize_media_attachment(attachment)
+    ActiveModelSerializers::SerializableResource.new(
+      attachment,
+      serializer: REST::MediaAttachmentSerializer
+    )
+  end
+
+  def serialize_status_card(status)
+    ActiveModelSerializers::SerializableResource.new(
+      status.preview_card,
+      serializer: REST::PreviewCardSerializer
+    )
+  end
+
+  def serialize_status_poll(status)
+    ActiveModelSerializers::SerializableResource.new(
+      status.preloadable_poll,
+      serializer: REST::PollSerializer,
+      scope: current_user,
+      scope_name: :current_user
+    )
+  end
 
   def sensitive_viewer?(status, account)
     if !account.nil? && account.id == status.account_id
