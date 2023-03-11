@@ -8,7 +8,7 @@
 #  var               :string           default(""), not null
 #  file_file_name    :string
 #  file_content_type :string
-#  file_file_size    :integer
+#  file_file_size    :bigint(8)
 #  file_updated_at   :datetime
 #  meta              :json
 #  created_at        :datetime         not null

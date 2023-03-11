@@ -19,7 +19,6 @@ AllCops:
   NewCops: enable
   Exclude:
     - db/schema.rb
-    - 'app/views/**/*'
     - 'config/**/*'
     - 'bin/*'
     - 'Rakefile'
@@ -97,9 +96,26 @@ Rails/Exit:
     - 'lib/mastodon/cli_helper.rb'
     - 'lib/cli.rb'
 
+# Reason: Some single letter camel case files shouldn't be split
+# https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecfilepath
 RSpec/FilePath:
   CustomTransform:
+    ActivityPub: activitypub # Ignore the snake_case due to the amount of files to rename
     DeepL: deepl
+    FetchOEmbedService: fetch_oembed_service
+    JsonLdHelper: jsonld_helper
+    OEmbedController: oembed_controller
+    OStatus: ostatus
+    NodeInfoController: nodeinfo_controller # NodeInfo isn't snake_cased for any of the instances
+  Exclude:
+    - 'spec/config/initializers/rack_attack_spec.rb' # namespaces usually have separate folder
+    - 'spec/lib/sanitize_config_spec.rb' # namespaces usually have separate folder
+    - 'spec/controllers/concerns/account_controller_concern_spec.rb' # Concerns describe ApplicationController and don't fit naming
+    - 'spec/controllers/concerns/export_controller_concern_spec.rb'
+    - 'spec/controllers/concerns/localized_spec.rb'
+    - 'spec/controllers/concerns/rate_limit_headers_spec.rb'
+    - 'spec/controllers/concerns/signature_verification_spec.rb'
+    - 'spec/controllers/concerns/user_tracking_concern_spec.rb'
 
 RSpec/NotToNot:
   EnforcedStyle: to_not

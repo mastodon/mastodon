@@ -508,11 +508,14 @@ class User < ApplicationRecord
   def prepare_new_user!
     BootstrapTimelineWorker.perform_async(account_id)
     ActivityTracker.increment('activity:accounts:local')
+    ActivityTracker.record('activity:logins', id)
     UserMailer.welcome(self).deliver_later
     TriggerWebhookWorker.perform_async('account.approved', 'Account', account_id)
   end
 
   def prepare_returning_user!
+    return unless confirmed?
+
     ActivityTracker.record('activity:logins', id)
     regenerate_feed! if needs_feed_update?
   end

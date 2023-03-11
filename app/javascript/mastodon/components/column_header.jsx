@@ -43,14 +43,6 @@ class ColumnHeader extends React.PureComponent {
     animating: false,
   };
 
-  historyBack = () => {
-    if (window.history && window.history.length === 1) {
-      this.context.router.history.push('/');
-    } else {
-      this.context.router.history.goBack();
-    }
-  };
-
   handleToggleClick = (e) => {
     e.stopPropagation();
     this.setState({ collapsed: !this.state.collapsed, animating: true });
@@ -69,7 +61,11 @@ class ColumnHeader extends React.PureComponent {
   };
 
   handleBackClick = () => {
-    this.historyBack();
+    if (window.history && window.history.state) {
+      this.context.router.history.goBack();
+    } else {
+      this.context.router.history.push('/');
+    }
   };
 
   handleTransitionEnd = () => {
