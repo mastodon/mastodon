@@ -1,4 +1,3 @@
----
 et:
   devise:
     confirmations:
@@ -78,7 +77,7 @@ et:
         subject: 'Mastodon: turvavõtme autentimine sisse lülitatud'
         title: Turvavõtmed on sisse lülitatud
     omniauth_callbacks:
-      failure: Ei saanud teid tuvastada %{kind} kaudu, kuna "%{reason}".
+      failure: Ei saanud sind tuvastada %{kind} kaudu, kuna "%{reason}".
       success: Tuvastamine %{kind} konto järgi õnnestus.
     passwords:
       no_token: Sellele leheküljele ei pääse tulemata salasõna lähtestamise e-kirjast. Kui tuled salasõna lähtestamise e-kirjast, palun veendu, et kasutasid tervet saadetud URLi.
@@ -87,7 +86,7 @@ et:
       updated: Salasõna muutmine õnnestus. Oled nüüd sisse logitud.
       updated_not_active: Sinu salasõna muutmine õnnestus.
     registrations:
-      destroyed: Nägemist! sinu konto sulgemine õnnestus. Me loodame sind varsti taas näha.
+      destroyed: Nägemist! Sinu konto sulgemine õnnestus. Me loodame sind varsti taas näha.
       signed_up: Tere tulemast! Sinu konto loomine õnnestus.
       signed_up_but_inactive: Sinu konto loodi edukalt, kuid me ei saanud sind sisse logida, kuna konto pole veel aktiveeritud.
       signed_up_but_locked: Sinu konto loodi edukalt, kuid me ei saanud sind sisse logida, kuna konto on lukustatud.
