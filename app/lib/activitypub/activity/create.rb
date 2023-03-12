@@ -87,7 +87,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       account: @account,
       text: converted_object_type? ? converted_text : (@status_parser.text || ''),
       language: @status_parser.language,
-      spoiler_text: converted_object_type? ? '' : (@status_parser.spoiler_text || ''),
+      spoiler_text: [@status_parser.title.presence, @status_parser.spoiler_text.presence].compact.join(' · '),
       created_at: @status_parser.created_at,
       edited_at: @status_parser.edited_at && @status_parser.edited_at != @status_parser.created_at ? @status_parser.edited_at : nil,
       override_timestamps: @options[:override_timestamps],
@@ -352,11 +352,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def converted_text
-    [formatted_title, @status_parser.spoiler_text.presence, formatted_url].compact.join("\n\n")
-  end
-
-  def formatted_title
-    "<h2>#{@status_parser.title}</h2>" if @status_parser.title.present?
+    @status_parser.text || linkify(@status_parser.url || @status_parser.uri)
   end
 
   def formatted_url
