@@ -49,7 +49,7 @@ class SearchReference extends ImmutablePureComponent {
 
             <tbody>
               <tr>
-                <th colSpan='2'><FormattedMessage id='search_reference.search_operators.sections.lookups' defaultMessage='Lookups'/></th>
+                <th colSpan='2'><FormattedMessage id='search_reference.search_operators.sections.lookups' defaultMessage='Lookups' /></th>
               </tr>
               <tr>
                 <td><kbd>#example</kbd></td>
@@ -72,7 +72,7 @@ class SearchReference extends ImmutablePureComponent {
             { searchEnabled &&
               <tbody>
                 <tr>
-                  <th colSpan='2'><FormattedMessage id='search_reference.search_operators.sections.advanced_syntax' defaultMessage='Advanced syntax'/></th>
+                  <th colSpan='2'><FormattedMessage id='search_reference.search_operators.sections.advanced_syntax' defaultMessage='Advanced syntax' /></th>
                 </tr>
                 <tr>
                   <td><kbd>+term</kbd></td>
@@ -100,7 +100,7 @@ class SearchReference extends ImmutablePureComponent {
             { searchEnabled &&
               <tbody>
                 <tr>
-                  <th colSpan='2'><FormattedMessage id='search_reference.search_operators.sections.users_and_posts' defaultMessage='User and post operators'/></th>
+                  <th colSpan='2'><FormattedMessage id='search_reference.search_operators.sections.users_and_posts' defaultMessage='User and post operators' /></th>
                 </tr>
                 <tr>
                   <td><kbd>is:bot</kbd></td>
