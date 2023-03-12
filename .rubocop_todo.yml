@@ -301,13 +301,6 @@ Performance/DeletePrefix:
     - 'app/services/resolve_account_service.rb'
     - 'app/services/tag_search_service.rb'
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: SafeMultiline.
-Performance/DeleteSuffix:
-  Exclude:
-    - 'lib/tasks/repo.rake'
-
 # Offense count: 19
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Performance/MapCompact:
