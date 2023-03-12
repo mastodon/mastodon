@@ -996,6 +996,7 @@ my:
     content_warning: 'အကြောင်းအရာသတိပေးချက် - '
     descriptions:
       account: '@%{acct} မှ အများမြင်ပို့စ်များ'
+      tag: '#%{hashtag} ကို တဂ်ထားသော အများမြင်ပို့စ်များ'
   sessions:
     browser: ဘရောက်ဇာ
     browsers:
@@ -1004,6 +1005,7 @@ my:
       chrome: Chrome
       edge: Microsoft Edge
       firefox: Firefox
+      generic: အမည်မသိဘရောက်ဆာ
       huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
@@ -1028,12 +1030,16 @@ my:
       kai_os: KaiOS
       linux: Linux
       mac: macOS
+      unknown_platform: အမည်မသိ Platform
       windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: ပြန်ရုပ်သိမ်းရန်
   settings:
     account: အကောင့်
     account_settings: အကောင့်သတ်မှတ်ချက်များ
     appearance: ပုံပန်းသဏ္ဌာန်
+    back: Mastodon သို့ ပြန်သွားရန်
     delete: အကောင့်ဖျက်သိမ်းခြင်း
     edit_profile: ပရိုဖိုင်ပြင်ဆင်ရန်
     notifications: အသိပေးချက်များ
