@@ -79,7 +79,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def process_status_params
     @status_parser = ActivityPub::Parser::StatusParser.new(@json, followers_collection: @account.followers_url, object: @object)
 
-    attachment_ids = process_attachments.take(Status::MEDIA_ATTACHMENTS_LIMIT).map(&:id)
+    attachment_ids = (converted_object_type? ? converted_attachments : process_attachments).take(Status::MEDIA_ATTACHMENTS_LIMIT).map(&:id)
 
     @params = {
       uri: @status_parser.uri,
@@ -223,10 +223,73 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
   end
 
-  def process_attachments
-    return [] if @object['attachment'].nil?
+  # Get the first supported object URL and turn it into an attachment,
+  # before processing the actual attachments
+  def converted_attachments
+    return process_attachments if @object['url'].nil?
 
     media_attachments = []
+
+    icon_url = @object['icon'].presence
+    if icon_url and icon_url.is_a?(Hash)
+      icon_url = icon_url['url']
+    end
+
+    begin
+      icon_url = Addressable::URI.parse(icon_url)&.normalize&.to_s
+    rescue Addressable::URI::InvalidURIError
+      icon_url = nil
+    end
+
+    description = @status_parser.spoiler_text.presence || @status_parser.title.presence
+    description.descriptionip[0...MediaAttachment::MAX_DESCRIPTION_LENGTH] if description.present?
+
+    as_array(@object['url']).each do |url|
+      begin
+        href = Addressable::URI.parse(url.is_a?(String) ? url : url['href'])&.normalize&.to_s
+      rescue Addressable::URI::InvalidURIError => e
+        Rails.logger.debug { "Invalid URL in converted attachment: #{e}" }
+        href = nil
+      end
+      next if href.blank?
+
+      if url.is_a?(Hash)
+        media_type = url['mediaType'].presence
+      end
+      media_type ||= @object['mediaType'].presence || 'text/html'
+      next if unsupported_media_type?(mediaType)
+
+      # TODO this block is quite similar to the one in process_attachments,
+      # would be nice if the common part could be factored out.
+      begin
+        media_attachment = MediaAttachmnt.create(
+          account: @account,
+          remote_url: href,
+          thumbnail_remote_url: icon,
+          description: description
+        )
+        media_attachments << media_attachment
+
+        break if skip_download?
+
+        media_attachment.download_file!
+        media_attachment.download_thumbnail!
+        media_attachment.save
+      rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
+        RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
+      rescue Seahorse::Client::NetworkingError => e
+        Rails.logger.warn "Error storing media attachment: #{e}"
+        RedownloadMediaWorker.perform_async(media_attachment.id)
+      end
+
+      break
+    end
+
+    process_attachments(media_attachments)
+  end
+
+  def process_attachments(media_attachments=[])
+    return media_attachments if @object['attachment'].nil?
 
     as_array(@object['attachment']).each do |attachment|
       media_attachment_parser = ActivityPub::Parser::MediaAttachmentParser.new(attachment)
