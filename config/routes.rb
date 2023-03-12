@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   web_app_paths = %w(
     /getting-started
     /keyboard-shortcuts
+    /search-reference
     /home
     /public
     /public/local

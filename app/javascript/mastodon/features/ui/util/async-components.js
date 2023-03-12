@@ -50,6 +50,10 @@ export function KeyboardShortcuts () {
   return import(/* webpackChunkName: "features/keyboard_shortcuts" */'../../keyboard_shortcuts');
 }
 
+export function SearchReference () {
+  return import(/* webpackChunkName: "features/search_reference" */'../../search_reference');
+}
+
 export function PinnedStatuses () {
   return import(/* webpackChunkName: "features/pinned_statuses" */'../../pinned_statuses');
 }
