@@ -524,6 +524,70 @@ en-GB:
   invites:
     delete: Deactivate
     expired: Expired
+  notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} signed up"
+    favourite:
+      body: 'Your post was favourited by %{name}:'
+      subject: "%{name} favourited your post"
+      title: New favourite
+    follow:
+      body: "%{name} is now following you!"
+      subject: "%{name} is now following you"
+      title: New follower
+    follow_request:
+      action: Manage follow requests
+      body: "%{name} has requested to follow you"
+      subject: 'Pending follower: %{name}'
+  polls:
+    errors:
+      too_many_options: can't contain more than %{max} items
+  preferences:
+    other: Other
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
+  privacy_policy:
+    title: Privacy Policy
+  reactions:
+    errors:
+      limit_reached: Limit of different reactions reached
+      unrecognized_emoji: is not a recognised emoji
+  relationships:
+    activity: Account activity
+    confirm_follow_selected_followers: Are you sure you want to follow selected followers?
+    confirm_remove_selected_followers: Are you sure you want to remove selected followers?
+    confirm_remove_selected_follows: Are you sure you want to remove selected follows?
+    dormant: Dormant
+    follow_failure: Could not follow some of the selected accounts.
+    follow_selected_followers: Follow selected followers
+    followers: Followers
+    following: Following
+    invited: Invited
+    last_active: Last active
+    most_recent: Most recent
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
+  remote_follow:
+    missing_resource: Could not find the required redirect URL for your account
+  reports:
+    errors:
+      invalid_rules: does not reference valid rules
+  rss:
+    content_warning: 'Content warning:'
+    descriptions:
+      account: Public posts from @%{acct}
+      tag: 'Public posts tagged #%{hashtag}'
+  scheduled_statuses:
+    over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
+    over_total_limit: You have exceeded the limit of %{limit} scheduled posts
+    too_soon: The scheduled date must be in the future
   sessions:
     activity: Last activity
     browser: Browser
