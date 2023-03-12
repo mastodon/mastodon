@@ -455,6 +455,25 @@ en-GB:
       suppressed: Suppressed
       title: Follow recommendations
       unsuppress: Restore follow recommendation
+    instances:
+      availability:
+        description_html:
+          one: If delivering to the domain fails <strong>%{count} day</strong> without succeeding, no further delivery attempts will be made unless a delivery <em>from</em> the domain is received.
+          other: If delivering to the domain fails on <strong>%{count} different days</strong> without succeeding, no further delivery attempts will be made unless a delivery <em>from</em> the domain is received.
+        failure_threshold_reached: Failure threshold reached on %{date}.
+        failures_recorded:
+          one: Failed attempt on %{count} day.
+          other: Failed attempts on %{count} different days.
+        no_failures_recorded: No failures on record.
+        title: Availability
+        warning: The last attempt to connect to this server has been unsuccessful
+      back_to_all: All
+      back_to_limited: Limited
+      back_to_warning: Warning
+      by_domain: Domain
+      confirm_purge: Are you sure you want to permanently delete data from this domain?
+      content_policies:
+        comment: Internal note
     roles:
       categories:
         devops: DevOps
@@ -506,13 +525,66 @@ en-GB:
     delete: Deactivate
     expired: Expired
   sessions:
+    activity: Last activity
+    browser: Browser
     browsers:
+      alipay: Alipay
       blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Unknown browser
+      huawei_browser: Huawei Browser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Unknown Browser
+      weibo: Weibo
+    current_session: Current session
+    description: "%{browser} on %{platform}"
+    explanation: These are the web browsers currently logged in to your Mastodon account.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
       blackberry: BlackBerry
       chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      kai_os: KaiOS
+      linux: Linux
+      mac: macOS
+      unknown_platform: Unknown Platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Revoke
+    revoke_success: Session successfully revoked
+    title: Sessions
+    view_authentication_history: View authentication history of your account
   settings:
+    account: Account
+    account_settings: Account settings
+    aliases: Account aliases
+    appearance: Appearance
+    authorized_apps: Authorised apps
+    back: Back to Mastodon
+    delete: Account deletion
+    development: Development
+    edit_profile: Edit profile
+    export: Data export
+    featured_tags: Featured hashtags
+    import: Import
+    import_and_export: Import and export
+    migrate: Account migration
+    notifications: Notifications
     preferences: Preferences
     profile: Profile
     relationships: Follows and followers
