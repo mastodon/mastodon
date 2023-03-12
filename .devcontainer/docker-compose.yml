@@ -70,6 +70,7 @@ services:
     restart: unless-stopped
     networks:
       - internal_network
+      - external_network
 
 volumes:
   postgres-data:
