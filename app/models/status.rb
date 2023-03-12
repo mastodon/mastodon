@@ -193,8 +193,12 @@ class Status < ApplicationRecord
     keywords = []
     keywords << :warning if spoiler_text?
     keywords << :link if FetchLinkCardService.new.link?(self)
-    keywords << :media if media_attachments.present?
     keywords << :poll if preloadable_poll.present?
+
+    media_types = media_attachments.pluck(:type).map(&:to_sym).uniq
+    keywords << :media if media_types.present?
+    keywords += media_types.reject { |t| t == :unknown }
+
     keywords
   end
 

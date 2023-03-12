@@ -9,7 +9,7 @@ class SearchQueryParser < Parslet::Parser
   rule(:operator)  { (str('+') | str('-')).as(:operator) }
   # See SearchQueryTransformer::PrefixClause::initialize for list of legal prefix operators.
   # These are explictly enumerated here so they don't get mistaken for URLs.
-  rule(:prefix)    { ((str('domain') | str('is') | str('has') | str('lang') | str('sensitive') | str('before') | str('after') | str('from') | str('mentions') | str('scope') | str('sort')).as(:prefix) >> colon) }
+  rule(:prefix)    { ((str('domain') | str('is') | str('has') | str('lang') | str('sensitive') | str('before') | str('after') | str('from') | str('mentions') | str('to') | str('scope') | str('sort')).as(:prefix) >> colon) }
   # See CustomEmoji::SHORTCODE_RE_FRAGMENT and SCAN_RE for emoji grammar.
   rule(:shortcode) { (colon >> match('[a-zA-Z0-9_]').repeat(2).as(:shortcode) >> colon) }
   rule(:hashtag)   { (hash >> match('[^\s#]').repeat(1).as(:hashtag)) }

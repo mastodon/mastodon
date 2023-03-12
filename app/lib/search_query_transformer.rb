@@ -210,7 +210,10 @@ class SearchQueryTransformer < Parslet::Transform
       when 'is'
         initialize_is(term)
 
-      when 'has', 'lang'
+      when 'has'
+        initialize_has(term)
+
+      when 'lang'
         @search_types = %i(statuses)
 
       when 'sensitive'
@@ -219,7 +222,7 @@ class SearchQueryTransformer < Parslet::Transform
       when 'before', 'after'
         initialize_date_range(prefix, operator, term)
 
-      when 'from', 'mentions'
+      when 'from', 'mentions', 'to'
         initialize_account(prefix, term)
 
       when 'scope'
@@ -256,6 +259,18 @@ class SearchQueryTransformer < Parslet::Transform
       @term = 'domain'
     end
 
+    def initialize_has(term)
+      @search_types = %i(statuses)
+      case term
+      when 'link', 'media', 'poll', 'warning', *(MediaAttachment.types.keys.reject { |t| t == 'unknown' })
+        # Pass all of these through.
+      when 'cw', 'spoiler'
+        @term = 'warning'
+      else
+        raise Mastodon::SyntaxError, "Unknown keyword for has: prefix: #{term}"
+      end
+    end
+
     def initialize_sensitive(operator, term)
       raise Mastodon::SyntaxError, 'Operator not allowed for sensitive: prefix' unless operator.nil?
 
@@ -284,6 +299,7 @@ class SearchQueryTransformer < Parslet::Transform
       @filter = {
         from: :account_id,
         mentions: :mentions_ids,
+        to: :mentions_ids,
       }[prefix.to_sym] or raise Mastodon::SyntaxError, "Unknown account filter prefix: #{prefix}"
 
       username, domain = term.gsub(/\A@/, '').split('@')
