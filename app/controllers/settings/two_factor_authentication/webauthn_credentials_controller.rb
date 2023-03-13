@@ -90,7 +90,10 @@ module Settings
           if credential.destroyed?
             flash[:success] = I18n.t('webauthn_credentials.destroy.success')
 
-            if current_user.webauthn_credentials.empty?
+            if !current_user.otp_enabled? && current_user.webauthn_credentials.empty?
+              current_user.disable_two_factor!
+              UserMailer.two_factor_disabled(current_user).deliver_later!
+            elsif current_user.webauthn_credentials.empty?
               UserMailer.webauthn_disabled(current_user).deliver_later!
             else
               UserMailer.webauthn_credential_deleted(current_user, credential).deliver_later!
