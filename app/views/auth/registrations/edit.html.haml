@@ -8,7 +8,7 @@
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'auth_edit', novalidate: false }) do |f|
   = render 'shared/error_messages', object: resource
 
-  - if !use_seamless_external_login? || resource.encrypted_password.present?
+  - if (!use_seamless_external_login? || resource.encrypted_password.present?) && !omniauth_only?
     .fields-row
       .fields-row__column.fields-group.fields-row__column-6
         = f.input :email, wrapper: :with_label, input_html: { 'aria-label': t('simple_form.labels.defaults.email') }, required: true, disabled: current_account.suspended?
@@ -23,6 +23,8 @@
 
     .actions
       = f.button :button, t('generic.save_changes'), type: :submit, class: 'button', disabled: current_account.suspended?
+  - elsif omniauth_only?
+    = link_to t('users.go_to_sso_account_settings'), sso_account_settings
   - else
     %p.hint= t('users.seamless_external_login')
 
