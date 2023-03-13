@@ -17,6 +17,8 @@
 #
 
 class Admin::ActionLog < ApplicationRecord
+  include Paginable
+
   self.ignored_columns += %w(
     recorded_changes
   )

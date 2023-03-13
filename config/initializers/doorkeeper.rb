@@ -97,6 +97,7 @@ Doorkeeper.configure do
                   :push,
                   :'admin:read',
                   :'admin:read:accounts',
+                  :'admin:read:audit_logs',
                   :'admin:read:reports',
                   :'admin:read:domain_allows',
                   :'admin:read:domain_blocks',

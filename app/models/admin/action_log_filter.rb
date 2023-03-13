@@ -1,10 +1,19 @@
 # frozen_string_literal: true
 
 class Admin::ActionLogFilter
+  # Filter params used by the web UI.
   KEYS = %i(
     action_type
     account_id
     target_account_id
+  ).freeze
+
+  # Filter params used by the audit log API.
+  API_KEYS = %i(
+    action
+    subject_id
+    target_id
+    target_type
   ).freeze
 
   ACTION_TYPE_MAP = {
@@ -89,11 +98,23 @@ class Admin::ActionLogFilter
     case key
     when 'action_type'
       Admin::ActionLog.where(ACTION_TYPE_MAP[value.to_sym])
-    when 'account_id'
+    when 'account_id', 'subject_id'
       Admin::ActionLog.where(account_id: value)
     when 'target_account_id'
       account = Account.find_or_initialize_by(id: value)
       Admin::ActionLog.where(target: [account, account.user].compact)
+    when 'action'
+      Admin::ActionLog.where(action: value)
+    when 'target_id'
+      Admin::ActionLog.where(target_id: value)
+    when 'target_type'
+      # Keep this in sync with `ActionLogSerializer.target_type`.
+      case value
+      when 'role'
+        Admin::ActionLog.where(target_type: 'UserRole')
+      else
+        Admin::ActionLog.where(target_type: value.camelcase)
+      end
     else
       raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end

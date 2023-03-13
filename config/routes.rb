@@ -645,6 +645,8 @@ Rails.application.routes.draw do
           resource :action, only: [:create], controller: 'account_actions'
         end
 
+        resources :audit_logs, only: [:index], controller: 'action_logs'
+
         resources :reports, only: [:index, :update, :show] do
           member do
             post :assign_to_self
