@@ -3,6 +3,9 @@
 class ActivityPub::FetchRepliesService < BaseService
   include JsonLdHelper
 
+  PAGE_LIMIT = 10
+  REPLY_LIMIT = 100
+
   def call(parent_status, collection_or_uri, allow_synchronous_requests: true, request_id: nil)
     @account = parent_status.account
     @allow_synchronous_requests = allow_synchronous_requests
@@ -18,18 +21,33 @@ class ActivityPub::FetchRepliesService < BaseService
   private
 
   def collection_items(collection_or_uri)
+    all_items = []
+    page_count = 0
+
     collection = fetch_collection(collection_or_uri)
     return unless collection.is_a?(Hash)
 
     collection = fetch_collection(collection['first']) if collection['first'].present?
-    return unless collection.is_a?(Hash)
 
-    case collection['type']
-    when 'Collection', 'CollectionPage'
-      collection['items']
-    when 'OrderedCollection', 'OrderedCollectionPage'
-      collection['orderedItems']
+    while collection.is_a?(Hash) && page_count < PAGE_LIMIT
+      page_count += 1
+
+      items = case collection['type']
+              when 'Collection', 'CollectionPage'
+                collection['items']
+              when 'OrderedCollection', 'OrderedCollectionPage'
+                collection['orderedItems']
+              else
+                break
+              end
+
+      all_items.concat(items)
+      break if all_items.size >= REPLY_LIMIT
+
+      collection = collection['next'].present? ? fetch_collection(collection['next']) : nil
     end
+
+    all_items
   end
 
   def fetch_collection(collection_or_uri)
@@ -41,10 +59,6 @@ class ActivityPub::FetchRepliesService < BaseService
   end
 
   def filtered_replies
-    # Only fetch replies to the same server as the original status to avoid
-    # amplification attacks.
-
-    # Also limit to 5 fetched replies to limit potential for DoS.
-    @items.map { |item| value_or_id(item) }.reject { |uri| invalid_origin?(uri) }.take(5)
+    @items.map { |item| value_or_id(item) }.reject { |uri| unsupported_uri_scheme?(uri) }.take(REPLY_LIMIT)
   end
 end

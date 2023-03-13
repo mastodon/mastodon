@@ -332,7 +332,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     collection = @object['replies']
     return if collection.nil?
 
-    replies = ActivityPub::FetchRepliesService.new.call(status, collection, allow_synchronous_requests: false, request_id: @options[:request_id])
+    replies = ActivityPub::FetchRepliesService.new.call(status, collection, allow_synchronous_requests: true, request_id: @options[:request_id])
     return unless replies.nil?
 
     uri = value_or_id(collection)
