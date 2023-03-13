@@ -25,11 +25,11 @@ de:
         edit: Bearbeiten
         submit: Speichern
       confirmations:
-        destroy: Bist du sicher?
+        destroy: Bist du dir sicher?
       edit:
         title: Anwendung bearbeiten
       form:
-        error: Hoppla! Bitte überprüfe das Formular auf mögliche Fehler
+        error: Ups! Bitte überprüfe das Formular auf mögliche Fehler
       help:
         native_redirect_uri: Benutze %{native_redirect_uri} für lokale Tests
         redirect_uri: Benutze eine Zeile pro URI
@@ -61,7 +61,7 @@ de:
         title: Ein Fehler ist aufgetreten
       new:
         prompt_html: "%{client_name} möchte auf dein Konto zugreifen. Es ist eine Anwendung von Drittanbietern. <strong>Wenn du ihr nicht vertraust, dann solltest du sie nicht autorisieren.</strong>"
-        review_permissions: Rechte überprüfen
+        review_permissions: Berechtigungen überprüfen
         title: Autorisierung erforderlich
       show:
         title: Kopiere diesen Autorisierungs-Code und füge ihn in die Anwendung ein.
@@ -69,7 +69,7 @@ de:
       buttons:
         revoke: Widerrufen
       confirmations:
-        revoke: Bist du sicher?
+        revoke: Bist du dir sicher?
       index:
         authorized_at: Autorisiert am %{date}
         description_html: Dies sind Anwendungen, die über die Programmierschnittstelle (API) auf dein Konto zugreifen können. Wenn es Anwendungen gibt, die du hier nicht zuordnen kannst oder wenn sich eine Anwendung verdächtig verhält, kannst du den Zugriff widerrufen.
@@ -114,22 +114,22 @@ de:
           notice: Anwendung widerrufen.
     grouped_scopes:
       access:
-        read: Nur-Lese-Zugriff
+        read: Nur Lesezugriff
         read/write: Lese- und Schreibzugriff
-        write: Schreibzugriff
+        write: Nur Schreibzugriff
       title:
         accounts: Konten
         admin/accounts: Verwaltung der Konten
         admin/all: Alle administrativen Funktionen
         admin/reports: Verwaltung der Berichte
-        all: Alles
-        blocks: Blocks
+        all: Voller Zugriff auf dein Mastodon-Konto
+        blocks: Blockierungen
         bookmarks: Lesezeichen
         conversations: Unterhaltungen
         crypto: Ende-zu-Ende-Verschlüsselung
         favourites: Favoriten
         filters: Filter
-        follow: Beziehungen
+        follow: Folge ich, Stummschaltungen und Sperrungen
         follows: Folge ich
         lists: Listen
         media: Medienanhänge
@@ -168,9 +168,9 @@ de:
       push: deine Push-Benachrichtigungen erhalten
       read: all deine Daten lesen
       read:accounts: deine Konteninformationen einsehen
-      read:blocks: deine Blockaden einsehen
+      read:blocks: deine Sperren einsehen
       read:bookmarks: deine Lesezeichen lesen
-      read:favourites: deine Favoriten ansehen
+      read:favourites: deine Favoriten lesen
       read:filters: deine Filter ansehen
       read:follows: sehen, wem du folgst
       read:lists: deine Listen sehen
@@ -186,10 +186,10 @@ de:
       write:conversations: Unterhaltungen stummschalten und löschen
       write:favourites: Beiträge favorisieren
       write:filters: Filter erstellen
-      write:follows: Leuten folgen
+      write:follows: Profilen folgen
       write:lists: Listen erstellen
       write:media: Mediendateien hochladen
       write:mutes: Profile und Unterhaltungen stummschalten
       write:notifications: deine Benachrichtigungen leeren
-      write:reports: andere Leute melden
+      write:reports: andere Profile melden
       write:statuses: Beiträge veröffentlichen

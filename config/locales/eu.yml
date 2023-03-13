@@ -91,6 +91,7 @@ eu:
       moderation:
         active: Aktiboa
         all: Denak
+        disabled: Desgaituta
         pending: Zain
         silenced: Mugatua
         suspended: Kanporatua
@@ -116,6 +117,8 @@ eu:
       redownloaded_msg: "%{username} erabiltzailearen profila behar bezala freskatu da jatorritik"
       reject: Ukatu
       rejected_msg: "%{username} erabiltzailearen izen emate eskaera behar bezala ukatu da"
+      remote_suspension_irreversible: Kontu honetako datuak betiko ezabatuak izan dira.
+      remote_suspension_reversible_hint_html: Kontu hau kanporatua izan da bere zerbitzarian eta bere datuak %{date}(e)an behin betiko ezabatuko dira. Ordura arte urruneko zerbitzariak kontua kalterik gabe leheneratu dezake. Kontuaren datu guztiak oraintxe bertan ezabatu nahi badituzu, jarraian egin dezakezu.
       remove_avatar: Kendu abatarra
       remove_header: Kendu goiburua
       removed_avatar_msg: "%{username} erabiltzailearen avatarra behar bezala kendu da"
@@ -131,6 +134,7 @@ eu:
       search: Bilatu
       search_same_email_domain: E-mail domeinu bera duten beste erabiltzailean
       search_same_ip: IP bera duten beste erabiltzaileak
+      security: Segurtasuna
       security_measures:
         only_password: Soilik pasahitza
         password_and_2fa: Pasahitza eta 2FA
@@ -390,10 +394,15 @@ eu:
         create: Sortu blokeoa
         hint: Domeinuaren blokeoak ez du eragotziko kontuen sarrerak sortzea datu-basean, baina automatikoki ezarriko zaizkie moderazio metodo bereziak iraganeko mezuetan ere.
         severity:
+          desc_html: |-
+            <strong>Mugatu</strong> aukerak, domeinu hontako kontu guztien bidalketak ikusezinak bihurtuko dira jarraitzen ez dituztenentzat.
+            <strong>Egotzi</strong> aukerak, domeinu hontako kontu guztien, edukiak, media eta profilen datuak ezabatuak izango dira zure zerbitzaritik. Erabili <strong>Bat ere ez</strong> aukera soilik media-fitxategiak ukatu nahi badituzu.
           noop: Bat ere ez
           silence: Isilarazi
           suspend: Kanporatu
         title: Domeinuaren blokeo berria
+      no_domain_block_selected: Ez da domeinu berririk blokeatu, bat ere ez delako aukeratu
+      not_permitted: Ekintza hau egiteko baimenik ez duzu
       obfuscate: Lausotu domeinu-izena
       obfuscate_hint: Domeinuaren izena partzialki lausotu zerrendan, domeinuen zerrenda iragartzea mugatzea gaituta badago
       private_comment: Iruzkin pribatua
@@ -422,12 +431,24 @@ eu:
         resolve: Ebatzi domeinua
         title: Sarrera berria e-mail zerrenda beltzean
       no_email_domain_block_selected: Ez da eposta domeinu blokeorik aldatu ez delako bat ere hautatu
+      not_permitted: Baimendu gabea
       resolved_dns_records_hint_html: Domeinu-izena ondorengo MX domeinuetara ebazten da, zeinek eposta onartzeko ardura duten. MX domeinu bat blokeatzeak MX domeinu hori erabiltzen duen edozein helbide elektronikotatik izena-ematea blokeatzen du, baita ikusgai dagoen domeinu-izena beste bat bada ere. <strong>Kontuz ibili eposta hornitzaile nagusiak blokeatu gabe.</strong>
       resolved_through_html: "%{domain} domeinuaren bidez ebatzia"
       title: E-mail zerrenda beltza
     export_domain_allows:
+      new:
+        title: Baimendutako domeinuak inportatu
       no_file: Ez da fitxategirik hautatu
     export_domain_blocks:
+      import:
+        description_html: Blokeatutako domeinuen zerrenda bat inportatzera zoaz. Mesedez, berrikusi zerrenda kontu handiz, batez ere, zuk ez baduzu zerrenda hau egin.
+        existing_relationships_warning: Oraingo jarraipen-loturak
+        private_comment_description_html: 'Inportatutako blokeoak nondik datozen zuri jakiten laguntzeko, hauek hurrengo iruzkin pribatuarekin sortuko dira: <q>%{comment}</q>'
+        private_comment_template: "%{date} %{source}-(e)tik inportatua"
+        title: Domeinu-blokeoak inportatu
+      invalid_domain_block: 'Domeinu-blokeatze bat edo gehiago ekidin dira ondorengo errorearen edo erroreengatik: %{error}'
+      new:
+        title: Domeinu-blokeoak inportatu
       no_file: Ez da fitxategirik hautatu
     follow_recommendations:
       description_html: "<strong>Jarraitzeko gomendioek erabiltzaile berriei eduki interesgarria azkar aurkitzen laguntzen diete</strong>. Erabiltzaile batek jarraitzeko gomendio pertsonalizatuak jasotzeko adina interakzio izan ez duenean, kontu hauek gomendatzen zaizkio. Egunero birkalkulatzen dira hizkuntza bakoitzerako, azken aldian parte-hartze handiena izan duten eta jarraitzaile lokal gehien dituzten kontuak nahasiz."
@@ -457,6 +478,7 @@ eu:
       content_policies:
         comment: Barne-oharra
         description_html: Domeinu honetako eta bere azpi-domeinuetako kontu guztiei aplikatuko zaizkien eduki-politikak definitu ditzakezu.
+        limited_federation_mode_description_html: Domeinu honekin federatu ahal izatea baimendu dezakezu.
         policies:
           reject_media: Errefusatu multimediak
           reject_reports: Errefusatu salaketak
@@ -560,19 +582,23 @@ eu:
         mark_as_sensitive_description_html: Salatutako bidalketetako multimedia edukia hunkigarri bezala eta neurria gordeko da, etorkizunean kontu honek arau-hausterik egiten badu kontuan izan dezazun.
         other_description_html: Ikusi kontuaren portaera kontrolatzeko eta salatutako kontuarekin komunikazioa pertsonalizatzeko aukera gehiago.
         resolve_description_html: Ez da ekintzarik hartuko salatutako kontuaren aurka, ez da neurria gordeko eta salaketa itxiko da.
-        silence_description_html: Profila dagoeneko jarraitzen dutenei edo eskuz bilatzen dutenei bakarrik agertuko zaie, bere irismena asko mugatuz. Beti bota daiteke atzera.
-        suspend_description_html: Profila eta bere eduki guztiak iritsiezinak bihurtuko dira, ezabatzen den arte. Kontuarekin ezin da interakziorik eduki. Atzera bota daiteke 30 eguneko epean.
+        silence_description_html: Kontua soilik honen jarraitzaile edo espresuki bilatzen dutenentzat izango da ikusgarri, kontuaren irisgarritasuna gogorki mugatzen delarik.
+        suspend_description_html: Kontua bera eta honen edukiak eskuraezinak izango dira, eta azkenean, ezabatuak. Kontu honekin erlazionatzea ezinezkoa izango da. Prozesua 30 egunez itzulgarria izango da. Kontu honen aurkako txosten guztiak baztertuko lirateke.
       actions_description_html: Erabaki txosten hau konpontzeko ze ekintza hartu. Salatutako kontuaren aurka zigor ekintza bat hartzen baduzu, eposta jakinarazpen bat bidaliko zaie, <strong>Spam</strong> kategoria hautatzean ezik.
+      actions_description_remote_html: Txosten honi konponbidea aurkitzeko zein ekintza egin hautatu. Hau soilik <strong>zure</strong> zerbitzaria kontu honekin nola komunikatu eta bere edukia nola maneiatzeko da.
       add_to_report: Gehitu gehiago txostenera
       are_you_sure: Ziur zaude?
       assign_to_self: Esleitu niri
       assigned: Esleitutako moderatzailea
       by_target_domain: Jakinarazitako kontuaren domeinua
+      cancel: Utzi
       category: Kategoria
       category_description_html: Kontu edo/eta eduki hau salatu izanaren arrazoia salatutako kontuarekiko komunikazioan aipatuko da
       comment:
         none: Bat ere ez
       comment_description_html: 'Informazio gehiago emateko, %{name} idatzi:'
+      confirm: Berretsi
+      confirm_action: "@%{acct} kontuaren aurkako moderazio-ekintza baieztatu"
       created_at: Salatua
       delete_and_resolve: Ezabatu bidalketak
       forwarded: Birbidalia
@@ -589,6 +615,7 @@ eu:
         placeholder: Azaldu hartutako neurriak, edo erlazioa duten bestelako berriak...
         title: Oharrak
       notes_description_html: Ikusi eta idatzi oharrak beste moderatzaileentzat eta zuretzat etorkizunerako
+      processed_msg: "#%{id} txostena ongi prozesatu da"
       quick_actions_description_html: 'Hartu ekintza azkar bat edo korritu behera salatutako edukia ikusteko:'
       remote_user_placeholder: "%{instance} instantziako urruneko erabiltzailea"
       reopen: Berrireki salaketa
@@ -601,9 +628,28 @@ eu:
       status: Mezua
       statuses: Salatutako edukia
       statuses_description_html: Salatutako edukia salatutako kontuarekiko komunikazioan aipatuko da
+      summary:
+        action_preambles:
+          delete_html: "<strong>@%{acct}</strong> kontuaren bidalketa guztiak <strong>ezabatzera</strong> zoaz. Honek hau suposatuko du:"
+          mark_as_sensitive_html: "<strong>%{acct}</strong> kontuaren bidalketa guztiak <strong>hunkigarri</strong> gisa <strong>markatzera</strong> zoaz. Honek hau suposatuko du:"
+          silence_html: "<strong>@%{acct}</strong> kontua <strong>mugatzera</strong> zoaz. Honek hau suposatuko du:"
+          suspend_html: "<strong>@%{acct}</strong> kontua <strong>bertan behera uztera</strong> zoaz. Honek hau suposatuko du:"
+        actions:
+          delete_html: Bidalketa iraingarriak ezabatu
+          mark_as_sensitive_html: Bidalketa iraingarrien media hunkigarri gisa markatu
+          silence_html: "<strong>@%{acct}</strong> kontuaren irismena gogorki mugatu, beraren profila eta edukia soilik bere jarraitzaileentzat eta espresuki profila aurkitzen dutenentzat ikusgarri egiten direlarik"
+          suspend_html: "<strong>@%{acct}</strong> kontua bertan behera utzi, bere profila eta edukia iritsezin eta elkarreragin ezina izango direlarik"
+        close_report: "#%{id} txostena ebatzitako gisa markatu"
+        close_reports_html: "<strong>@%{acct}</strong> kontuaren txosten <strong>guztiak</strong> ebatzitako gisa markatu"
+        delete_data_html: "<strong>@%{acct}</strong> kontuaren profila eta edukia, gaurtik hasita, 30 egunez ezabatu, ez bada bitartean kontua berraktibatzen"
+        preview_preamble_html: "<strong>@%{acct}</strong> kontuak ondorengo edukia duen abisu bat jasoko du:"
+        record_strike_html: "<strong>@%{acct}</strong> kontuak eginiko eraso bat erregistratu, kontu honek etorkizunean egin ditzakeen erasoen aurrean erabakiak hartzen laguntzeko"
+        send_email_html: "<strong>@%{acct}</strong> kontuari abisu bat posta-elektronikoz bidali"
+        warning_placeholder: Moderazio-ekintzarako aukerazkoak diren arrazoiketa gehigarriak.
       target_origin: Salatutako kontuaren jatorria
       title: Salaketak
       unassign: Kendu esleipena
+      unknown_action_msg: 'Ekintza ezezaguna: %{action}'
       unresolved: Konpondu gabea
       updated_at: Eguneratua
       view_profile: Ikusi profila
@@ -690,11 +736,16 @@ eu:
       content_retention:
         preamble: Kontrolatu erabiltzaileek sortutako edukia nola biltegiratzen den Mastodonen.
         title: Edukia atxikitzea
+      default_noindex:
+        desc_html: Ezarpen hau aldatu ez duten erabiltzaile guztiei eragingo die
+        title: Erabiltzaileei bilaketa-motorraren indexaziotik at egoteko aukera ematen die lehenetsitako aukera modura
       discovery:
         follow_recommendations: Jarraitzeko gomendioak
         preamble: Eduki interesgarria aurkitzea garrantzitsua da Mastodoneko erabiltzaile berrientzat, behar bada inor ez dutelako ezagutuko. Kontrolatu zure zerbitzariko aurkikuntza-ezaugarriek nola funtzionatzen duten.
         profile_directory: Profil-direktorioa
         public_timelines: Denbora-lerro publikoak
+        publish_discovered_servers: Deskubritutako zerbitzariak argitaratu
+        publish_statistics: Estatistikak argitaratu
         title: Aurkitzea
         trends: Joerak
       domain_blocks:
@@ -749,6 +800,7 @@ eu:
         suspend: "%{name} erabiltzaileak %{target} kontua kanporatu du"
       appeal_approved: Apelatua
       appeal_pending: Apelazioa zain
+      appeal_rejected: Apelazioa baztertuta
     system_checks:
       database_schema_check:
         message_html: Aplikatu gabeko datu-basearen migrazioak daude. Exekutatu aplikazioak esperotako portaera izan dezan
@@ -784,6 +836,7 @@ eu:
           other: "%{count} pertsonak partekatua azken astean"
         title: Esteken joerak
         usage_comparison: "%{today} aldiz partekatua gaur, atzo %{yesterday} aldiz"
+      not_allowed_to_trend: Joeretan agertzeko baimenik gabe
       only_allowed: Soilik onartutakoak
       pending_review: Berrikusketaren zain
       preview_card_providers:
@@ -915,12 +968,16 @@ eu:
   applications:
     created: Aplikazioa ongi sortu da
     destroyed: Aplikazioa ongi ezabatu da
+    logout: Amaitu saioa
     regenerate_token: Birsortu sarbide token-a
     token_regenerated: Sarbide token-a ongi birsortu da
     warning: Kontuz datu hauekin, ez partekatu inoiz inorekin!
     your_token: Zure sarbide token-a
   auth:
+    apply_for_account: Kontu bat eskatu
     change_password: Pasahitza
+    confirmations:
+      wrong_email_hint: Helbide-elektroniko hori zuzena ez bada, kontuaren ezarpenetan alda dezakezu.
     delete_account: Ezabatu kontua
     delete_account_html: Kontua ezabatu nahi baduzu, <a href="%{path}">jarraitu hemen</a>. Berrestea eskatuko zaizu.
     description:
@@ -948,6 +1005,8 @@ eu:
     resend_confirmation: Birbidali berresteko argibideak
     reset_password: Berrezarri pasahitza
     rules:
+      accept: Onartu
+      back: Atzera
       preamble: Hauek %{domain} instantziako moderatzaileek ezarriak eta betearaziak dira.
       title: Oinarrizko arau batzuk.
     security: Segurtasuna
@@ -956,6 +1015,9 @@ eu:
       email_below_hint_html: Beheko e-mail helbidea okerra bada, hemen aldatu dezakezu eta baieztapen e-mail berria jaso.
       email_settings_hint_html: Baieztamen e-maila %{email} helbidera bidali da. E-mail helbide hori zuzena ez bada, kontuaren ezarpenetan aldatu dezakezu.
       title: Ezarpena
+    sign_in:
+      preamble_html: Zure <strong>%{domain}-(e)ko</strong> egiaztagiriekin saioa hasi. Zure kontua beste zerbitzari batean badago, ezin izango duzu hemen saioa hasi.
+      title: "%{domain}-(e)an saioa hasi"
     sign_up:
       preamble: Mastodon zerbitzari honetako kontu batekin, aukera izango duzu sareko edozein pertsona jarraitzeko, ez dio axola kontua non ostatatua dagoen.
       title: "%{domain} zerbitzariko kontua prestatuko dizugu."
@@ -1092,7 +1154,7 @@ eu:
   featured_tags:
     add_new: Gehitu berria
     errors:
-      limit: Gehienezko traola kopurua nabarmendu duzu jada
+      limit: Gehienezko traola kopurua erakutsi duzu jada
     hint_html: "<strong>Zer dira nabarmendutako traolak?</strong> Zure profilean toki nabarmendu batean agertzen dira eta jendeari traola hau daukaten bidalketa publikoak arakatzea ahalbidetzen diote. Sormen lana edo epe luzerako proiektuak jarraitzeko primerakoak dira."
   filters:
     contexts:
@@ -1136,8 +1198,6 @@ eu:
       index:
         hint: Iragazki honek banako bidalketei eragiten die, beste kriterioak badaude ere. Bidalketa gehiago gehitu ditzakezu iragazkira web interfazetik.
         title: Iragazitako bidalketak
-  footer:
-    trending_now: Joera orain
   generic:
     all: Denak
     all_items_on_page_selected_html:
@@ -1160,8 +1220,6 @@ eu:
     validation_errors:
       one: Zerbait ez dabil ongi! Egiaztatu beheko errorea mesedez
       other: Zerbait ez dabil ongi! Egiaztatu beheko %{count}  erroreak mesedez
-  html_validator:
-    invalid_markup: 'HTML markaketa baliogabea du: %{error}'
   imports:
     errors:
       invalid_csv_file: 'CSV fitxategi baliogabea. Errorea: %{error}'
@@ -1204,7 +1262,7 @@ eu:
     title: Gonbidatu jendea
   lists:
     errors:
-      limit: Gehieneko zerrenda kopurura heldu zara
+      limit: Gehienezko zerrenda kopurura iritsi zara
   login_activities:
     authentication_methods:
       otp: bi faktoreko autentifikazio aplikazioa
@@ -1345,6 +1403,9 @@ eu:
       unrecognized_emoji: ez da emoji ezaguna
   relationships:
     activity: Kontuaren aktibitatea
+    confirm_follow_selected_followers: Ziur al zaude hautatutako jarraitzaileak jarraitu nahi dituzula?
+    confirm_remove_selected_followers: Ziur al zaude hautatutako jarraitzaileak ezabatu nahi dituzula?
+    confirm_remove_selected_follows: Ziur al zaude hautatutako jarraipenak ezabatu nahi dituzula?
     dormant: Ez aktiboa
     follow_selected_followers: Jarraitu hautatutako jarraitzaileak
     followers: Jarraitzaileak
@@ -1521,7 +1582,7 @@ eu:
       '7889238': 3 hilabete
     min_age_label: Denbora muga
     min_favs: Mantendu gogoko kopuru hau duten bidalketak
-    min_favs_hint: Gutxienez gogoko kopuru hau jaso duten zure bidalketak ez dira ezabatuko. Hutsik utziz gero gogoko kopurua ez da kontuan hartuko bidalketak ezabatzean
+    min_favs_hint: Gogoko dutenen kopuru hau gutxienez duten bidalketak ez dira ezabatuko. Hutsik utzi, gogoko dutenen kopurua aintzat hartu gabe bidalketak ezabatzeko
     min_reblogs: Mantendu bultzada kopuru hau duten bidalketak
     min_reblogs_hint: Gutxienez bultzada kopuru hau jaso duten zure bidalketak ez dira ezabatuko. Hutsik utziz gero bultzada kopurua ez da kontuan hartuko bidalketak ezabatzean
   stream_entries:

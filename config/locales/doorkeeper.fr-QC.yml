@@ -122,14 +122,14 @@ fr-QC:
         admin/accounts: Gestion des comptes
         admin/all: Toutes les fonctionnalités d'administration
         admin/reports: Gestion des rapports
-        all: Tout
+        all: Accès complet à votre compte Mastodon
         blocks: Bloqués
         bookmarks: Marque-pages
         conversations: Conversations
         crypto: Chiffrement de bout-en-bout
         favourites: Favoris
         filters: Filtres
-        follow: Relations
+        follow: Abonnements, comptes masqués et comptes bloqués
         follows: Abonnements
         lists: Listes
         media: Fichiers médias
@@ -149,18 +149,18 @@ fr-QC:
     scopes:
       admin:read: lire toutes les données du serveur
       admin:read:accounts: lire les informations sensibles de tous les comptes
-      admin:read:canonical_email_blocks: lire les informations sensibles de tous les bloqueurs d'e-mails canoniques
+      admin:read:canonical_email_blocks: lire les informations sensibles de tous les bloqueurs de courriels canoniques
       admin:read:domain_allows: lire les informations sensibles de tous les domaines autorisés
-      admin:read:domain_blocks: lire les informations sensibles de tous les blocqueurs de domaines
-      admin:read:email_domain_blocks: lire les informations sensibles de tous les blocqueurs d'e-mails de domaines
+      admin:read:domain_blocks: lire les informations sensibles de tous les bloqueurs de domaines
+      admin:read:email_domain_blocks: lire les informations sensibles de tous les bloqueurs de domaines de courriel
       admin:read:ip_blocks: lire les informations sensibles de tous les blocqueurs d'IP
       admin:read:reports: lire les informations sensibles de tous les signalements et des comptes signalés
       admin:write: modifier toutes les données sur le serveur
       admin:write:accounts: effectuer des actions de modération sur les comptes
-      admin:write:canonical_email_blocks: effectuer des actions de modération sur les bloqueurs d'e-mails canoniques
+      admin:write:canonical_email_blocks: effectuer des actions de modération sur les bloqueurs de courriels canoniques
       admin:write:domain_allows: effectuer des actions de modération sur les autorisations de domaines
       admin:write:domain_blocks: effectuer des actions de modération sur des bloqueurs de domaines
-      admin:write:email_domain_blocks: effectuer des actions de modération sur des bloqueurs d'e-mails de domaines
+      admin:write:email_domain_blocks: effectuer des actions de modération sur des bloqueurs de domaines de courriel
       admin:write:ip_blocks: effectuer des actions de modération sur des bloqueurs d'IP
       admin:write:reports: effectuer des actions de modération sur les signalements
       crypto: utiliser le chiffrement de bout-en-bout

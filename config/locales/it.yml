@@ -91,6 +91,7 @@ it:
       moderation:
         active: Attivo
         all: Tutto
+        disabled: Disattivato
         pending: In sospeso
         silenced: Limitato
         suspended: Sospeso
@@ -133,6 +134,7 @@ it:
       search: Cerca
       search_same_email_domain: Altri utenti con lo stesso dominio email
       search_same_ip: Altri utenti con lo stesso IP
+      security: Sicurezza
       security_measures:
         only_password: Solo password
         password_and_2fa: Password e A2F
@@ -142,8 +144,8 @@ it:
       show:
         created_reports: Rapporti creati
         targeted_reports: Segnalato da altri
-      silence: Limita
-      silenced: Limitato
+      silence: Silenzia
+      silenced: Silenziato
       statuses: Toot
       strikes: Provvedimenti precedenti
       subscribe: Iscriviti
@@ -156,7 +158,7 @@ it:
       unblocked_email_msg: Indirizzo email di %{username} sbloccato correttamente
       unconfirmed_email: Email non confermata
       undo_sensitized: Annulla sensibile
-      undo_silenced: Annulla limitazione
+      undo_silenced: Rimuovi silenzia
       undo_suspension: Annulla sospensione
       unsilenced_msg: Limitazione del profilo di %{username} annullata correttamente
       unsubscribe: Disiscriviti
@@ -427,6 +429,7 @@ it:
         resolve: Risolvi dominio
         title: Nuova voce della lista nera delle email
       no_email_domain_block_selected: Nessun blocco di dominio di posta elettronica è stato modificato in quanto nessuno è stato selezionato
+      not_permitted: Non consentito
       resolved_dns_records_hint_html: Il nome di dominio si risolve ai seguenti domini MX, che sono in ultima analisi responsabili per l'accettazione di e-mail. Il blocco di un dominio MX bloccherà le iscrizioni da qualsiasi indirizzo e-mail che utilizza lo stesso dominio MX, anche se il nome di dominio visibile è diverso. <strong>Fai attenzione a non bloccare i principali provider di posta elettronica.</strong>
       resolved_through_html: Risolto attraverso %{domain}
       title: Lista nera email
@@ -441,6 +444,7 @@ it:
         private_comment_description_html: 'Per aiutarti a tenere traccia della provenienza dei blocchi importati, i blocchi importati verranno creati con il seguente commento privato: <q>%{comment}</q>'
         private_comment_template: Importato da %{source} il %{date}
         title: Importare i blocchi di dominio
+      invalid_domain_block: 'Uno o più blocchi di dominio sono stati saltati a causa dei seguenti errori: %{error}'
       new:
         title: Importare i blocchi di dominio
       no_file: Nessun file selezionato
@@ -472,6 +476,7 @@ it:
       content_policies:
         comment: Nota interna
         description_html: Puoi definire le politiche del contenuto che saranno applicate a tutti i profili da questo dominio e ognuno dei suoi sottodomini.
+        limited_federation_mode_description_html: Puoi scegliere se consentire la federazione con questo dominio.
         policies:
           reject_media: Rifiuta multimedia
           reject_reports: Rifiuta rapporti
@@ -575,19 +580,23 @@ it:
         mark_as_sensitive_description_html: I contenuti nei post segnalati saranno segnati come sensibili e verrà registrata una sanzione per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
         other_description_html: Vedi altre opzioni per controllare il comportamento dell'account e personalizzare la comunicazione all'account segnalato.
         resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna sanzione registrata, e la segnalazione sarà chiusa.
-        silence_description_html: Il profilo sarà visibile solo a coloro che lo seguono o lo cercano manualmente, limitandone fortemente la raggiungibilità. Può sempre essere annullato.
-        suspend_description_html: Il profilo e tutti i suoi contenuti diventeranno inaccessibili fino a quando non sarà cancellato. L'interazione con l'account sarà impossibile. Annullabile entro 30 giorni.
+        silence_description_html: L'account sarà visibile solo a coloro che lo seguono o lo cercano manualmente, limitandone fortemente la raggiungibilità. Può sempre essere annullato. Chiude tutte le segnalazioni contro questo account.
+        suspend_description_html: L'account e tutti i suoi contenuti saranno inaccessibili ed eventualmente cancellati, e interagire con esso sarà impossibile. Reversibile entro 30 giorni. Chiude tutte le segnalazioni contro questo account.
       actions_description_html: Decidete quali azioni intraprendere per risolvere la segnalazione. Se si intraprende un'azione punitiva contro l'account segnalato, gli sarà inviata una notifica via e-mail, tranne quando è selezionata la categoria <strong>Spam</strong>.
+      actions_description_remote_html: Decide quali azioni intraprendere per risolvere la relazione. Questo influenzerà solo come <strong>il tuo</strong> server comunica con questo account remoto e ne gestisce il contenuto.
       add_to_report: Aggiungi altro al report
       are_you_sure: Sei sicuro?
       assign_to_self: Assegna a me
       assigned: Moderatore assegnato
       by_target_domain: Dominio dell'account segnalato
+      cancel: Annulla
       category: Categoria
       category_description_html: Il motivo per cui questo account e/o contenuto è stato segnalato sarà citato nella comunicazione con l'account segnalato
       comment:
         none: Nessuno
       comment_description_html: 'Per fornire ulteriori informazioni, %{name} ha scritto:'
+      confirm: Conferma
+      confirm_action: Conferma l'azione di moderazione contro @%{acct}
       created_at: Segnalato
       delete_and_resolve: Cancella post
       forwarded: Inoltrato
@@ -604,6 +613,7 @@ it:
         placeholder: Descrivi quali azioni sono state intraprese, o ogni altro aggiornamento rilevante...
         title: Note
       notes_description_html: Visualizza e lascia note ad altri moderatori e al tuo futuro sé
+      processed_msg: 'Segnalazione #%{id} elaborata correttamente'
       quick_actions_description_html: 'Fai un''azione rapida o scorri verso il basso per vedere il contenuto segnalato:'
       remote_user_placeholder: l'utente remoto da %{instance}
       reopen: Riapri rapporto
@@ -616,9 +626,28 @@ it:
       status: Stato
       statuses: Contenuto segnalato
       statuses_description_html: Il contenuto offensivo sarà citato nella comunicazione con l'account segnalato
+      summary:
+        action_preambles:
+          delete_html: 'Stai per <strong>rimuovere</strong> alcuni post di <strong>@%{acct}</strong>. Questo conseguirà:'
+          mark_as_sensitive_html: 'Stai per <strong>contrassegnare</strong> alcuni post di <strong>@%{acct}</strong> come <strong>sensibili</strong>. Questo conseguirà:'
+          silence_html: 'Stai per <strong>limitare</strong> l''account di <strong>@%{acct}</strong>. Questo conseguirà:'
+          suspend_html: 'Stai per <strong>sospendere</strong> l''account di <strong>@%{acct}</strong>. Questo conseguirà:'
+        actions:
+          delete_html: Rimuovi i post offensivi
+          mark_as_sensitive_html: Contrassegna i file multimediali dei post offensivi come sensibili
+          silence_html: Limita severamente la portata di <strong>@%{acct}</strong> rendendo il suo profilo e il suo contenuto visibili solo a persone che già li seguono o che lo guardano manualmente
+          suspend_html: Sospendere <strong>@%{acct}</strong>, rendendo il suo profilo e i suoi contenuti inaccessibili e impossibilitandone l'interazione
+        close_report: 'Contrassegna la segnalazione #%{id} come risolta'
+        close_reports_html: Contrassegna <strong>tutte</strong> le segnalazioni contro <strong>@%{acct}</strong> come risolte
+        delete_data_html: Elimina il profilo e i contenuti di <strong>@%{acct}</strong> tra 30 giorni da ora, a meno che non vengano riattivati nel frattempo
+        preview_preamble_html: "<strong>@%{acct}</strong> riceverà un avvertimento con i seguenti contenuti:"
+        record_strike_html: Registra un provvedimento contro <strong>@%{acct}</strong> per aiutarti a gestire meglio future violazioni da questo account
+        send_email_html: Invia a <strong>@%{acct}</strong> una e-mail di avvertimento
+        warning_placeholder: Motivazione aggiuntiva facoltativa per l'azione di moderazione.
       target_origin: Origine dell'account segnalato
       title: Rapporti
       unassign: Non assegnare
+      unknown_action_msg: 'Azione sconosciuta: %{action}'
       unresolved: Non risolto
       updated_at: Aggiornato
       view_profile: Visualizza profilo
@@ -713,6 +742,8 @@ it:
         preamble: La comparsa di contenuti interessanti è determinante per l'arrivo di nuovi utenti che potrebbero non conoscere nessuno su Mastodon. Controlla in che modo varie funzionalità di scoperta funzionano sul tuo server.
         profile_directory: Directory del profilo
         public_timelines: Timeline pubbliche
+        publish_discovered_servers: Pubblica i server scoperti
+        publish_statistics: Pubblica le statistiche
         title: Scopri
         trends: Tendenze
       domain_blocks:
@@ -767,6 +798,7 @@ it:
         suspend: "%{name} ha sospeso l'account di %{target}"
       appeal_approved: Sottoposto ad appello
       appeal_pending: Appello in attesa
+      appeal_rejected: Appello respinto
     system_checks:
       database_schema_check:
         message_html: Ci sono migrazioni del database in attesa. Sei pregato di eseguirle per assicurarti che l'applicazione si comporti come previsto
@@ -802,6 +834,7 @@ it:
           other: Condiviso da %{count} persone nell'ultima settimana
         title: Link in tendenza
         usage_comparison: Condiviso %{today} volte oggi, rispetto a %{yesterday} ieri
+      not_allowed_to_trend: Non è consentito il trend
       only_allowed: Solo consentiti
       pending_review: Revisione in sospeso
       preview_card_providers:
@@ -935,6 +968,7 @@ it:
   applications:
     created: Applicazione creata con successo
     destroyed: Applicazione eliminata con successo
+    logout: Disconnettiti
     regenerate_token: Rigenera il token di accesso
     token_regenerated: Token di accesso rigenerato
     warning: Fa' molta attenzione con questi dati. Non fornirli mai a nessun altro!
@@ -942,6 +976,8 @@ it:
   auth:
     apply_for_account: Richiedi un account
     change_password: Password
+    confirmations:
+      wrong_email_hint: Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
     description:
@@ -969,6 +1005,8 @@ it:
     resend_confirmation: Invia di nuovo le istruzioni di conferma
     reset_password: Resetta la password
     rules:
+      accept: Accetta
+      back: Indietro
       preamble: Questi sono impostati e applicati dai moderatori di %{domain}.
       title: Alcune regole di base.
     security: Credenziali
@@ -1160,8 +1198,6 @@ it:
       index:
         hint: Questo filtro si applica a singoli post indipendentemente da altri criteri. Puoi aggiungere più post a questo filtro dall'interfaccia Web.
         title: Post filtrati
-  footer:
-    trending_now: Di tendenza ora
   generic:
     all: Tutto
     all_items_on_page_selected_html:
@@ -1184,8 +1220,6 @@ it:
     validation_errors:
       one: Qualcosa ancora non va bene! Per favore, controlla l'errore qui sotto
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
-  html_validator:
-    invalid_markup: 'contiene markup HTML non valido: %{error}'
   imports:
     errors:
       invalid_csv_file: 'File CSV non valido. Errore: %{error}'
@@ -1369,6 +1403,9 @@ it:
       unrecognized_emoji: non è un emoji riconosciuto
   relationships:
     activity: Attività dell'account
+    confirm_follow_selected_followers: Sei sicuro di voler seguire i follower selezionati?
+    confirm_remove_selected_followers: Sei sicuro di voler rimuovere i follower selezionati?
+    confirm_remove_selected_follows: Sei sicuro di voler rimuovere i follow selezionati?
     dormant: Dormiente
     follow_selected_followers: Segui i seguaci selezionati
     followers: Seguaci
@@ -1545,7 +1582,7 @@ it:
       '7889238': 3 mesi
     min_age_label: Soglia di età
     min_favs: Conserva i post preferiti più di
-    min_favs_hint: Non cancella nessuno dei tuoi post che ha ricevuto più di questo numero di preferiti. Lascia vuoto per cancellare i post indipendentemente dal loro numero di preferiti
+    min_favs_hint: Non cancella nessuno dei tuoi post che ha ricevuto almeno questo numero di preferiti. Lascia vuoto per cancellare i post indipendentemente dal loro numero di preferiti
     min_reblogs: Conserva i post condivisi più di
     min_reblogs_hint: Non cancella nessuno dei tuoi post che è stato condiviso più di questo numero di volte. Lascia vuoto per cancellare i post indipendentemente dal loro numero di condivisioni
   stream_entries:

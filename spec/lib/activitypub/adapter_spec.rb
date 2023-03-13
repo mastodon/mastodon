@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Adapter do
@@ -41,9 +43,9 @@ RSpec.describe ActivityPub::Adapter do
   end
 
   describe '#serializable_hash' do
-    let(:serializer_class) {}
-
     subject { ActiveModelSerializers::SerializableResource.new(TestObject.new(foo: 'bar'), serializer: serializer_class, adapter: described_class).as_json }
+
+    let(:serializer_class) {}
 
     context 'when serializer defines no context' do
       let(:serializer_class) { TestWithBasicContextSerializer }

@@ -334,7 +334,7 @@ fa:
         other: "<strong>%{count}</strong> گزارش در انتظار"
       pending_tags_html:
         one: "<strong>%{count}</strong> هشتگ در انتظار"
-        other: "<strong>%{count}</strong> هشتگ در انتظار"
+        other: "<strong>%{count}</strong> برچسب منتظر"
       pending_users_html:
         one: "<strong>%{count}</strong> کاربر در انتظار"
         other: "<strong>%{count}</strong> کاربر در انتظار"
@@ -872,9 +872,7 @@ fa:
     storage: تصویرهای ذخیره‌شده
   featured_tags:
     add_new: افزودن تازه
-    errors:
-      limit: شما بیشترین تعداد مجاز برچسب‌ها را دارید
-    hint_html: "<strong>برچسب‌های برگزیده چیستند؟</strong> این برچسب‌ها (هشتگ‌ها) به طور واضحی روی نمایهٔ عمومی شما نمایش می‌یابند و دیگران می‌توانند نوشته‌های شما را تحت هر کدام از این برچسب‌ها مرور کنند. این یک روش بسیار خوب برای دسته‌بندی آثار خلاقانه یا پروژه‌های بلندمدت شماست."
+    hint_html: "<strong>برچسب‌های برگزیده چیستند؟</strong> این برچسب‌ها به طور واضحی روی نمایهٔ عمومیتان نمایش یافته می‌گذارد افراد فرسته‌های عمومیتان زیرشان را مرور کنند. ابزاری عالی برای دنبال کردن آثار خلاقانه یا پروژه‌های بلندمدت است."
   filters:
     contexts:
       account: نمایه‌ها
@@ -892,8 +890,6 @@ fa:
       title: پالایه‌ها
     new:
       title: افزودن پالایهٔ جدید
-  footer:
-    trending_now: پرطرفدار
   generic:
     all: همه
     changes_saved_msg: تغییرات با موفقیت ذخیره شدند!
@@ -906,8 +902,6 @@ fa:
     validation_errors:
       one: یک چیزی هنوز درست نیست! لطفاً خطاهای زیر را ببینید
       other: یک چیزی هنوز درست نیست! لطفاً %{count} خطای زیر را ببینید
-  html_validator:
-    invalid_markup: 'دارای نشانه‌گذاری نامعتبر HTML است: %{error}'
   imports:
     errors:
       over_rows_processing_limit: دارای بیش از %{count} ردیف
@@ -947,9 +941,6 @@ fa:
       expires_at: تاریخ انقضا
       uses: استفاده‌ها
     title: دعوت دیگران
-  lists:
-    errors:
-      limit: به بیشینهٔ مقدار سیاهه‌ها رسیدید
   login_activities:
     authentication_methods:
       otp: کارهٔ تأیید هویت دوعاملی
@@ -1178,8 +1169,8 @@ fa:
     boosted_from_html: تقویت شده از طرف %{acct_link}
     content_warning: 'هشدا محتوا: %{warning}'
     disallowed_hashtags:
-      one: 'دارای هشتگ غیرمجاز: %{tags}'
-      other: 'دارای هشتگ‌های غیرمجاز: %{tags}'
+      one: 'دارای برچسبی غیرمجاز: %{tags}'
+      other: 'دارای برچسب‌های غیرمجاز: %{tags}'
     errors:
       in_reply_not_found: به نظر نمی‌رسد وضعیتی که می‌خواهید به آن پاسخ دهید، وجود داشته باشد.
     open_in_web: گشودن در وب
@@ -1243,7 +1234,6 @@ fa:
       '7889238': ۳ ماه
     min_age_label: کرانهٔ سن
     min_favs: نگه داشتن فرسته‌هایی با برگزینش بیش از
-    min_favs_hint: هیچ یک از فرسته‌هایتان را که بیش از این تعداد برگزیده شده باشند، حذف نمی‌کند. برای حذف فرسته‌ها فارغ از تعداد برگزینش‌هایشان، خالی بگذارید
     min_reblogs: نگه داشتن فرسته‌هایی با تقویت بیش از
     min_reblogs_hint: هیچ یک از فرسته‌هایتان را که بیش از این تعداد تقویت شده باشند، حذف نمی‌کند. برای حذف فرسته‌ها فارغ از تعداد تقویت‌هایشان، خالی بگذارید
   stream_entries:

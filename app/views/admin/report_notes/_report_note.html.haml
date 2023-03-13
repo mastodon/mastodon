@@ -4,11 +4,11 @@
   .report-notes__item__header
     %span.username
       = link_to report_note.account.username, admin_account_path(report_note.account_id)
-    %time.relative-formatted{ datetime: report_note.created_at }
-      = t('admin.report_notes.created_at')
+    %time.relative-formatted{ datetime: report_note.created_at.iso8601 }
+      = l report_note.created_at.to_date
 
   .report-notes__item__content
-    = simple_format(h(report_note.content))
+    = linkify(report_note.content)
 
   - if can?(:destroy, report_note)
     .report-notes__item__actions

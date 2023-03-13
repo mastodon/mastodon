@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe InstanceActorsController, type: :controller do
@@ -20,7 +22,7 @@ RSpec.describe InstanceActorsController, type: :controller do
 
         it 'does not set cookies' do
           expect(response.cookies).to be_empty
-          expect(response.headers['Set-Cookies']).to be nil
+          expect(response.headers['Set-Cookies']).to be_nil
         end
 
         it 'does not set sessions' do
@@ -43,11 +45,13 @@ RSpec.describe InstanceActorsController, type: :controller do
 
       context 'without authorized fetch mode' do
         let(:authorized_fetch_mode) { false }
+
         it_behaves_like 'shared behavior'
       end
 
       context 'with authorized fetch mode' do
         let(:authorized_fetch_mode) { true }
+
         it_behaves_like 'shared behavior'
       end
     end

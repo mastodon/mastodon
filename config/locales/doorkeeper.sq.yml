@@ -72,7 +72,7 @@ sq:
         revoke: A jeni i sigurt?
       index:
         authorized_at: Autorizuar më %{date}
-        description_html: Këto janë aplikacione që mund të hyjnë në llogarinë tuaj duke përdorur API-n. Nëse këtu ka aplikacione që nuk i njihni, ose një aplikacion po sillet ndryshe nga sa pritet, mund t’i shfuqiozoni hyrjen.
+        description_html: Këto janë aplikacione që mund të hyjnë në llogarinë tuaj duke përdorur API-n. Nëse këtu ka aplikacione që nuk i njihni, ose një aplikacion po sillet ndryshe nga sa pritet, mund t’i shfuqizoni hyrjen.
         last_used_at: Përdorur së fundi më %{date}
         never_used: I papërdorur ndonjëherë
         scopes: Leje
@@ -122,14 +122,14 @@ sq:
         admin/accounts: Administrim llogarish
         admin/all: Krejt funksionet administrative
         admin/reports: Administrim i raporteve
-        all: Gjithçka
+        all: Hyrje të plotë në llogarinë tuaj Mastodon
         blocks: Blloqe
         bookmarks: Faqerojtës
         conversations: Biseda
         crypto: Fshehtëzim skaj-më-skaj
         favourites: Të parapëlqyer
         filters: Filtra
-        follow: Marrëdhënie
+        follow: Ndjekje, Heshtime dhe Bllokime
         follows: Ndjekje
         lists: Lista
         media: Bashkëngjitje media
@@ -148,13 +148,13 @@ sq:
         title: Lypset autorizim OAuth
     scopes:
       admin:read: të lexojë krejt të dhënat te shërbyesi
-      admin:read:accounts: të lexojë krejt të dhënat rezervat të krejt llogarive
+      admin:read:accounts: të lexojë hollësi rezervat të krejt llogarive
       admin:read:canonical_email_blocks: të lexojë hollësi rezervat të krejt bllokimeve të zakonshëm të email-eve
       admin:read:domain_allows: të lexojë hollësi rezervat të krejt lejimeve të përkatësive
       admin:read:domain_blocks: të lexojë hollësi rezervat të krejt bllokimeve të përkatësive
       admin:read:email_domain_blocks: të lexojë hollësi rezervat të krejt bllokimeve të përkatësive të email-eve
-      admin:read:ip_blocks: të lexojë hollësi rezervat të krejt bllokimeve të IP-eve
-      admin:read:reports: të lexojë të dhëna rezervat të krejt raportimeve dhe të llogarive të raportuara
+      admin:read:ip_blocks: të lexojë hollësi rezervat të krejt bllokimeve të IP-ve
+      admin:read:reports: të lexojë hollësi rezervat të krejt raportimeve dhe të llogarive të raportuara
       admin:write: të përpunojë krejt të dhënat në shërbyes
       admin:write:accounts: të kryejë veprime moderimi në llogaritë
       admin:write:canonical_email_blocks: të kryejë veprime moderimi në bllokime të zakonshëm të email-eve
@@ -167,7 +167,7 @@ sq:
       follow: të ndryshojë marrëdhënie llogarish
       push: të marrë njoftime push për ju
       read: të lexojë krejt të dhënat e llogarisë tuaj
-      read:accounts: të shohë të dhëna llogarish
+      read:accounts: të shohë hollësi llogarish
       read:blocks: të shohë blloqet tuaja
       read:bookmarks: të shohë faqerojtësit tuaj
       read:favourites: të shohë të parapëlqyerit tuaj

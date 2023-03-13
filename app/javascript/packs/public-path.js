@@ -17,5 +17,5 @@ function formatPublicPath(host = '', path = '') {
 
 const cdnHost = document.querySelector('meta[name=cdn-host]');
 
-// eslint-disable-next-line camelcase, no-undef, no-unused-vars
+// eslint-disable-next-line no-undef
 __webpack_public_path__ = formatPublicPath(cdnHost ? cdnHost.content : '', process.env.PUBLIC_OUTPUT_PATH);

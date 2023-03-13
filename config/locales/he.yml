@@ -95,6 +95,7 @@ he:
       moderation:
         active: פעילים
         all: הכל
+        disabled: מושבת
         pending: בהמתנה
         silenced: מוגבלים
         suspended: מושהים
@@ -139,6 +140,7 @@ he:
       search: חיפוש
       search_same_email_domain: משתמשים אחרים מאותו דומיין דוא"ל
       search_same_ip: משתמשים אחרים מאותה כתובת IP
+      security: אבטחה
       security_measures:
         only_password: סיסמה בלבד
         password_and_2fa: סיסמה ואימות דו-שלבי
@@ -443,6 +445,7 @@ he:
         resolve: פתור דומיין
         title: חסימת דומיין דוא"ל
       no_email_domain_block_selected: לא בוצעו שינויים לחסימת דומייני דוא"ל שכן לא נבחרו דומיינים
+      not_permitted: נאסר
       resolved_dns_records_hint_html: שם הדומיין מוביל לדומייניי ה-MX הבאים, שהם בסופו של דבר אחראיים לקבלת דוא"ל. חסימת דומיין MX תוביל לחסימת הרשמות מכל כתובת דוא"ל שעושה שימוש בדומיין MX זה, אפילו אם הדומיין הגלוי שונה. <strong>יש להמנע מלחסום ספקי דוא"ל מובילים.</strong>
       resolved_through_html: נמצא דרך %{domain}
       title: דומייניי דוא"ל חסומים
@@ -457,6 +460,7 @@ he:
         private_comment_description_html: 'כדי לסייע במעקב מאיכן הגיעו חסימות, חסימות מיובאות ילוו בהערה פרטית זו: <q>%{comment}</q>'
         private_comment_template: יובא מתוך %{source} בתאריך %{date}
         title: יבוא רשימת שרתים חסומים
+      invalid_domain_block: 'חסימה של שרת אחד או יותר דולגו בשל השגיאה הבאה: %{error}'
       new:
         title: יבוא רשימת שרתים חסומים
       no_file: לא נבחר קובץ
@@ -492,6 +496,7 @@ he:
       content_policies:
         comment: הערה פנימית
         description_html: ביכולתך להגדיר מדיניות תוכן שתופעל על כל החשבונות מדומיין זה ומתת-דומייניו.
+        limited_federation_mode_description_html: ניתן לבחור אם להרשות תקשורת הדדית עם שרת זה.
         policies:
           reject_media: דחיית מדיה
           reject_reports: דחיית דו"חות
@@ -534,7 +539,7 @@ he:
       public_comment: תגובה פומבית
       purge: טיהור
       purge_description_html: אם יש יסוד להניח שדומיין זה מנותק לעד, ניתן למחוק את כל רשומות החשבונות והמידע המשוייך לדומיין זה משטח האפסון שלך. זה עשוי לקחת זמן מה.
-      title: שרתים מוכרים
+      title: שרתים בפדרציה
       total_blocked_by_us: חסום על ידינו
       total_followed_by_them: נעקב על ידם
       total_followed_by_us: נעקב על ידינו
@@ -599,19 +604,23 @@ he:
         mark_as_sensitive_description_html: המדיה בהודעות מדווחות תסומן כרגישה ועבירה תרשם כדי לעזור לך להסלים באינטראקציות עתידיות עם אותו החשבון.
         other_description_html: ראו אפשרויות נוספות לשליטה בהתנהגות החשבון וכדי לבצע התאמות בתקשורת עם החשבון המדווח.
         resolve_description_html: אף פעולה לא תבוצע נגד החשבון עליו דווח, לא תירשם עבירה, והדיווח ייסגר.
-        silence_description_html: הפרופיל יהיה גלוי אך ורק לאלה שכבר עוקבים אחריו או לאלה שיחפשו אותו ידנית, מה שיגביל מאד את תפוצתו. ניתן תמיד להחזיר את המצב לקדמותו.
-        suspend_description_html: הפרופיל וכל תכולתו יחסמו לכל גישה עד שבסופו של דבר ימחקו. כל תקשורת עם החשבון תהיה בלתי אפשרית. ניתן לביטול תוך 30 יום.
+        silence_description_html: הפרופיל יהיה גלוי אך ורק לאלה שכבר עוקבים אחריו או לאלה שיחפשו אותו ידנית, מה שיגביל מאד את תפוצתו. ניתן תמיד להחזיר את המצב לקדמותו. פעולה זו תסגור את כל הדיווחים נגד הפרופיל.
+        suspend_description_html: חשבון זה על כל תכניו יחסמו וברבות הימים ימחקו, כל פעילות מולו לא תתאפשר. הפעולה ניתנת לביטול תוך 30 ימים, והיא תסגור כל דיווח התלוי ועומד נגד החשבון.
       actions_description_html: בחר/י איזו פעולה לבצע על מנת לפתור את הדו"ח. אם תופעל פעולת ענישה כנגד החשבון המדווח, הודעת דוא"ל תשלח אליהם, אלא אם נבחרה קטגוריית ה<strong>ספאם</strong>.
+      actions_description_remote_html: בחרו איזו פעולה לבצע כדי לפתור את הדיווח שהוגש. פעולה זו תשפיע רק על התקשורת מול השרת <strong>שלך</strong> עם החשבון המרוחק ותוכנו.
       add_to_report: הוספת פרטים לדיווח
       are_you_sure: 100% על בטוח?
       assign_to_self: הקצה אלי
       assigned: מנחה מוקצה
       by_target_domain: דומיין החשבון המדווח
+      cancel: ביטול
       category: קטגוריה
       category_description_html: הסיבה בגללה חשבון זה ו/או תוכנו דווחו תצוטט בתקשורת עם החשבון המדווח
       comment:
         none: ללא
       comment_description_html: 'על מנת לספק עוד מידע, %{name} כתב\ה:'
+      confirm: אישור
+      confirm_action: נא לאשר פעולת משמעת לגבי חשבון %{acct}
       created_at: מדווח
       delete_and_resolve: מחיקת הודעות
       forwarded: קודם
@@ -628,6 +637,7 @@ he:
         placeholder: תאר/י אילו פעולות ננקטו, או עדכונים קשורים אחרים...
         title: הערות
       notes_description_html: צפייה והשארת הערות למנחים אחרים או לעצמך העתידי
+      processed_msg: דיווח %{id} עוּבָּד בהצלחה
       quick_actions_description_html: 'נקוט/י פעולה מהירה או גלול/י למטה לצפייה בתוכן המדווח:'
       remote_user_placeholder: המשתמש המרוחק מ-%{instance}
       reopen: פתיחת דו"ח מחדש
@@ -640,9 +650,28 @@ he:
       status: מצב
       statuses: התוכן עליו דווח
       statuses_description_html: התוכן הפוגע יצוטט בתקשורת עם החשבון המדווח
+      summary:
+        action_preambles:
+          delete_html: 'הפעולה <strong>תמחק</strong> כמה הודעות של חשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
+          mark_as_sensitive_html: 'הפעולה הבאה <strong>תסמן</strong> כמה הודעות של חשבון <strong>@%{acct}</strong> כ<strong>רגישות</strong>. תוצאות הפעולה יהיו:'
+          silence_html: 'הפעולה הבאה <strong>תגביל</strong> את החשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
+          suspend_html: 'הפעולה הבאה <strong>תקפיא</strong> את החשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
+        actions:
+          delete_html: הסרת ההודעות החורגות
+          mark_as_sensitive_html: סימון המדיה בהודעות החורגות כרגיש לצפיה
+          silence_html: הגבלה חמורה של תפוצת <strong>@%{acct}</strong> על ידי הפיכת החשבון ותכניו לזמינים רק למי שכבר עוקב אחריו או מי שיחפשו את עמוד הפרופיל שלו ישירות
+          suspend_html: הקפאת החשבון <strong>@%{acct}</strong>, הפיכת הפרופיל והתוכן לנסתרים ולא ניתנים לתקשורת
+        close_report: 'סימון דיווח #%{id} בתור פתור'
+        close_reports_html: סימון <strong>כל</strong> הדיווחים נגד <strong>@%{acct}</strong> בתור פתורים
+        delete_data_html: למחוק את הפרופיל והתוכן של <strong>@%{acct}</strong> בעוד 30 יום אלא אם תוסר ההגבלה עליהם לפני כן
+        preview_preamble_html: 'שליחת אזהרה אל <strong>@%{acct}</strong> בזו הלשון:'
+        record_strike_html: ציין נקודה שחורה נגד <strong>@%{acct}</strong> כדי לסייע בשיפוטו בדיווחים עתידיים על חריגות
+        send_email_html: שליחת דואל אזהרה אל <strong>@%{acct}</strong>
+        warning_placeholder: צידוקים אפשריים נוספים לפעולה המשמעתית.
       target_origin: מקור החשבון המדווח
       title: דיווחים
       unassign: ביטול הקצאה
+      unknown_action_msg: 'פעולה לא מוכרת: %{action}'
       unresolved: לא פתור
       updated_at: עודכן
       view_profile: צפה בפרופיל
@@ -741,7 +770,9 @@ he:
         preamble: הצפה של תוכן מעניין בקבלת פני משתמשות חדשות שאולי אינן מכירות עדיין א.נשים במסטודון. ניתן לשלוט איך אפשרויות גילוי שונות עובדות על השרת שלך.
         profile_directory: מדריך פרופילים
         public_timelines: פידים פומביים
-        title: איתור
+        publish_discovered_servers: פרסום שרתים שנתגלו
+        publish_statistics: פרסום הסטטיסטיקות בפומבי
+        title: גילוי
         trends: נושאים חמים
       domain_blocks:
         all: לכולם
@@ -795,6 +826,7 @@ he:
         suspend: "%{name} השעה/תה את חשבונו/ה של %{target}"
       appeal_approved: עורער
       appeal_pending: בהמתנה לערעור
+      appeal_rejected: הערעור נדחה
     system_checks:
       database_schema_check:
         message_html: נדרשות הגירות מבני נתונים. אנא הריצו אותן כדי להבטיח שהיישום מתנהג כצפוי
@@ -832,6 +864,7 @@ he:
           two: הופץ על ידי %{count} אנשים בשבוע האחרון
         title: קישוריות חמות
         usage_comparison: הופץ %{today} פעמים היום, לעומת %{yesterday} אתמול
+      not_allowed_to_trend: לא מורשה להופיע כנושא חם
       only_allowed: רק כאלה שהותרו
       pending_review: בהמתנה לבדיקה
       preview_card_providers:
@@ -969,6 +1002,7 @@ he:
   applications:
     created: ישום נוצר בהצלחה
     destroyed: ישום נמחק בהצלחה
+    logout: יציאה
     regenerate_token: יצירת אסימון גישה מחדש
     token_regenerated: אסימון גישה יוצר מחדש בהצלחה
     warning: זהירות רבה נדרשת עם מידע זה. אין לחלוק אותו אף פעם עם אף אחד!
@@ -976,6 +1010,8 @@ he:
   auth:
     apply_for_account: הגשת בקשה לחשבון
     change_password: סיסמה
+    confirmations:
+      wrong_email_hint: אם כתובת הדואל הזו איננה נכונה, ניתן לשנות אותה בעמוד ההגדרות.
     delete_account: מחיקת חשבון
     delete_account_html: אם ברצונך למחוק את החשבון, ניתן <a href="%{path}">להמשיך כאן</a>. תתבקש/י לספק אישור נוסף.
     description:
@@ -1003,6 +1039,8 @@ he:
     resend_confirmation: שלח הוראות אימות בשנית
     reset_password: איפוס סיסמה
     rules:
+      accept: הסכמה
+      back: בחזרה
       preamble: אלו נקבעים ונאכפים ע"י המנחים של %{domain}.
       title: כמה חוקים בסיסיים.
     security: אבטחה
@@ -1150,7 +1188,7 @@ he:
   featured_tags:
     add_new: הוספת חדש
     errors:
-      limit: המספר המירבי של התגיות כבר מוצג
+      limit: הצגת כבר את המספר המירבי של תגיות נבחרות
     hint_html: "<strong>מהן תגיות נבחרות?</strong> הן מוצגות במובלט בפרופיל הפומבי שלך ומאפשר לאנשים לעיין בהודעות הפומביות שלך המסומנות בתגיות אלה. הן כלי אדיר למעקב אחר עבודות יצירה ופרוייקטים לטווח ארוך."
   filters:
     contexts:
@@ -1200,8 +1238,6 @@ he:
       index:
         hint: סנן זה חל באופן של בחירת הודעות בודדות ללא תלות בקריטריונים אחרים. תוכלו להוסיף עוד הודעות לסנן זה ממנשק הווב.
         title: הודעות שסוננו
-  footer:
-    trending_now: נושאים חמים
   generic:
     all: הכל
     all_items_on_page_selected_html:
@@ -1232,8 +1268,6 @@ he:
       one: משהו עדיין לא בסדר! נא לעיין בשגיאה להלן
       other: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן
       two: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן
-  html_validator:
-    invalid_markup: 'מכיל קוד HTML לא תקין: %{error}'
   imports:
     errors:
       invalid_csv_file: 'קובץ CSV שבור. שגיאה: %{error}'
@@ -1278,7 +1312,7 @@ he:
     title: הזמנת אנשים
   lists:
     errors:
-      limit: הגעת למספר הרשימות המירבי.
+      limit: הגעת למספר הרשימות המירבי
   login_activities:
     authentication_methods:
       otp: יישומון אימות דו-שלבי
@@ -1419,6 +1453,9 @@ he:
       unrecognized_emoji: הוא לא אמוג'י מוכר
   relationships:
     activity: רמת פעילות
+    confirm_follow_selected_followers: האם את/ה בטוח/ה שברצונך לעקוב אחרי החשבונות שסומנו?
+    confirm_remove_selected_followers: האם את/ה בטוח/ה שברצונך להסיר את העוקבים שסומנו?
+    confirm_remove_selected_follows: האם את/ה בטוח/ה שברצונך להסיר את הנעקבים שסומנו?
     dormant: רדומים
     follow_selected_followers: עקוב אחר הנעקבים שנבחרו
     followers: עוקבים
@@ -1607,7 +1644,7 @@ he:
       '7889238': 3 חודשים
     min_age_label: סף גיל
     min_favs: השאר הודעות מחובבות לפחות
-    min_favs_hint: לא מוחק מי מהודעותיך שקיבלו לפחות את המספר הזה של חיבובים. להשאיר ריק כדי למחוק הודעות ללא קשר למספר החיבובים שקיבלו
+    min_favs_hint: לא תימחקנה הודעות שלך שקיבלו לפחות מספר זה של חיבובים. אם יישאר ריק, הודעות תימחקנה ללא תלות במספר החיבובים שלהן.
     min_reblogs: שמור הודעות מהודהדות לפחות
     min_reblogs_hint: לא מוחק מי מהודעותיך שקיבלו לפחות את המספר הזה של הדהודים. להשאיר ריק כדי למחוק הודעות ללא קשר למספר ההדהודים שקיבלו
   stream_entries:
@@ -1712,7 +1749,7 @@ he:
     seamless_external_login: את.ה מחובר דרך שירות חיצוני, לכן אפשרויות הסיסמא והדוא"ל לא מאופשרות.
     signed_in_as: 'מחובר בתור:'
   verification:
-    explanation_html: 'ניתן <strong>לאמת את עצמך כבעלים של הקישורית במטא-נתונים של פרופילך</strong>. כדי לעשות זאת, האתר המקושם חייב להכיל קישורית חוזרת לפרופיל המסטודון שלך. הקישורית החוזרת <strong>חייבת</strong> להכיל תכונת <code>rel="me"</code>. התוכן הטקסטואלי של הקישורית לא משנה. הנה דוגמא:'
+    explanation_html: 'ניתן <strong>לאמת את עצמך כבעלים של הקישורית במטא-נתונים של פרופילך</strong>. כדי לעשות זאת, האתר המקושר חייב להכיל קישורית חוזרת לפרופיל המסטודון שלך. הקישורית החוזרת <strong>חייבת</strong> להכיל תכונת <code>rel="me"</code>. התוכן הטקסטואלי של הקישורית לא משנה. הנה דוגמא:'
     verification: אימות
   webauthn_credentials:
     add: הוספת מפתח אבטחה חדש

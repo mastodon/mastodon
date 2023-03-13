@@ -91,6 +91,7 @@ fr-QC:
       moderation:
         active: Actifs
         all: Tous
+        disabled: Désactivé
         pending: En cours de traitement
         silenced: Limité
         suspended: Suspendus
@@ -133,6 +134,7 @@ fr-QC:
       search: Rechercher
       search_same_email_domain: Autres utilisateurs·trices avec le même domaine de courriel
       search_same_ip: Autres utilisateur·rice·s avec la même IP
+      security: Sécurité
       security_measures:
         only_password: Mot de passe uniquement
         password_and_2fa: Mot de passe et 2FA
@@ -392,7 +394,7 @@ fr-QC:
         create: Créer le blocage
         hint: Le blocage de domaine n’empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
         severity:
-          desc_html: "<strong>Limiter</strong> rendra les messages des comptes de ce domaine invisibles à ceux qui ne les suivent pas. <strong>Suspendre</strong> supprimera tout le contenu, les médias, et données de profile pour les comptes de ce domaine de votre serveur. Utilisez <strong>Aucun</strong> si vous voulez simplement rejeter les fichiers multimédia."
+          desc_html: "<strong>Limiter</strong> rendra les messages des comptes de ce domaine invisibles pour tous les comptes qui ne les suivent pas. <strong>Suspendre</strong> supprimera de votre serveur tout le contenu, les médias et données de profil pour les comptes sur ce domaine. Utilisez <strong>Aucun</strong> si vous voulez simplement rejeter les fichiers multimédia."
           noop: Aucune
           silence: Limiter
           suspend: Suspendre
@@ -427,22 +429,24 @@ fr-QC:
         resolve: Résoudre le domaine
         title: Nouveau blocage de domaine de courriel
       no_email_domain_block_selected: Aucun blocage de domaine de courriel n'a été modifié car aucun n'a été sélectionné
+      not_permitted: Non autorisé
       resolved_dns_records_hint_html: Le nom de domaine est relié aux domaines MX suivants, qui ont la responsabilité ultime d'accepter les courriels. Bloquer un domaine MX empêchera les inscriptions à partir de toute adresse courriel utilisant le même domaine MX, même si le nom de domaine affiché est différent. <strong> Veillez à ne pas bloquer les fournisseurs de messagerie d'envergure.</strong>
       resolved_through_html: Résolu par %{domain}
       title: Blocage de domaines de courriel
     export_domain_allows:
       new:
-        title: Autoriser l'importation de domaine
+        title: Importer les autorisations de domaine
       no_file: Aucun fichier sélectionné
     export_domain_blocks:
       import:
-        description_html: Vous êtes sur le point d'importer une liste de blocs de domaine. Veuillez examiner cette liste très attentivement, spécialement si vous n'êtes pas l'auteur de cette liste.
-        existing_relationships_warning: Relations de suivi existantes
-        private_comment_description_html: 'Pour vous aider à suivre d''où viennent les blocs importés, des blocs importés seront créés avec le commentaire privé suivant : <q>%{comment}</q>'
+        description_html: Vous êtes sur le point d'importer une liste de bloqueurs de domaine. Veuillez examiner cette liste très attentivement, surtout si vous ne l'avez pas créée vous-même.
+        existing_relationships_warning: Relations d'abonnement existantes
+        private_comment_description_html: 'Pour vous aider à savoir d''où proviennent les blocages importés, ceux-ci seront créés avec le commentaire privé suivant : <q>%{comment}</q>'
         private_comment_template: Importé depuis %{source} le %{date}
-        title: Importer des blocs de domaine
+        title: Importer des blocages de domaine
+      invalid_domain_block: 'Un ou plusieurs blocages de domaine ont été ignorés en raison des erreurs suivantes : %{error}'
       new:
-        title: Importer des blocs de domaine
+        title: Importer des blocages de domaine
       no_file: Aucun fichier sélectionné
     follow_recommendations:
       description_html: "<strong>Les recommandations d'abonnement aident les nouvelles personnes à trouver rapidement du contenu intéressant</strong>. Si un·e utilisateur·rice n'a pas assez interagi avec les autres pour avoir des recommandations personnalisées, ces comptes sont alors recommandés. La sélection est mise à jour quotidiennement depuis un mélange de comptes ayant le plus d'interactions récentes et le plus grand nombre d'abonné·e·s locaux pour une langue donnée."
@@ -472,6 +476,7 @@ fr-QC:
       content_policies:
         comment: Note interne
         description_html: Vous pouvez définir des politiques de contenu qui seront appliquées à tous les comptes de ce domaine et à tous ses sous-domaines.
+        limited_federation_mode_description_html: Vous pouvez choisir d'autoriser la fédération avec ce domaine.
         policies:
           reject_media: Rejeter les médias
           reject_reports: Rejeter les signalements
@@ -575,19 +580,23 @@ fr-QC:
         mark_as_sensitive_description_html: Les médias des messages signalés seront marqués comme sensibles et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas d'infractions futures par le même compte.
         other_description_html: Voir plus d'options pour contrôler le comportement du compte et personnaliser la communication vers le compte signalé.
         resolve_description_html: Aucune mesure ne sera prise contre le compte signalé, aucune sanction ne sera enregistrée et le sigalement sera clôturé.
-        silence_description_html: Le profil ne sera visible que pour ceux qui le suivent déjà ou le consultent manuellement, ce qui limite considérablement sa portée. Peut toujours être restauré.
-        suspend_description_html: Le profil et tout son contenu deviendront inaccessibles jusqu'à ce qu'il soit éventuellement supprimé. Interagir avec le compte sera impossible. Réversible dans les 30 jours.
+        silence_description_html: Le compte ne sera visible que par ceux qui le suivent déjà ou qui le recherchent manuellement, ce qui limite fortement sa portée. Cette action peut toujours être annulée. Cloture tous les signalements concernant ce compte.
+        suspend_description_html: Le compte et tous ses contenus seront inaccessibles et finalement supprimés, et il sera impossible d'interagir avec lui. Réversible dans les 30 jours. Cloture tous les signalements concernant ce compte.
       actions_description_html: Décidez des mesures à prendre pour résoudre ce signalement. Si vous prenez des mesures punitives contre le compte signalé, une notification sera envoyée par e-mail, sauf si la catégorie <strong>Spam</strong> est sélectionnée.
+      actions_description_remote_html: Décidez des mesures à prendre pour résoudre ce signalement. Cela n'affectera que la manière dont <strong>votre</strong> serveur communique avec ce compte distant et traite son contenu.
       add_to_report: Ajouter davantage au rapport
       are_you_sure: Voulez-vous vraiment faire ça ?
       assign_to_self: Me l’assigner
       assigned: Modérateur assigné
       by_target_domain: Domaine du compte signalé
+      cancel: Annuler
       category: Catégorie
       category_description_html: La raison pour laquelle ce compte et/ou ce contenu a été signalé sera citée dans la communication avec le compte signalé
       comment:
         none: Aucun
       comment_description_html: 'Pour fournir plus d''informations, %{name} a écrit :'
+      confirm: Confirmer
+      confirm_action: Confirmer l'action de modération contre @%{acct}
       created_at: Signalé
       delete_and_resolve: Supprimer les messages
       forwarded: Transféré
@@ -604,6 +613,7 @@ fr-QC:
         placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour…
         title: Remarques
       notes_description_html: Voir et laisser des notes aux autres modérateurs et à votre futur moi-même
+      processed_msg: 'Le signalement #%{id} a été traité avec succès'
       quick_actions_description_html: 'Faites une action rapide ou faites défiler vers le bas pour voir le contenu signalé :'
       remote_user_placeholder: l'utilisateur·rice distant·e de %{instance}
       reopen: Ré-ouvrir le signalement
@@ -616,9 +626,28 @@ fr-QC:
       status: Statut
       statuses: Contenu signalé
       statuses_description_html: Le contenu offensant sera cité dans la communication avec le compte signalé
+      summary:
+        action_preambles:
+          delete_html: 'Vous êtes sur le point de <strong>supprimer</strong> certains messages de <strong>@%{acct}</strong>. Cela va :'
+          mark_as_sensitive_html: 'Vous êtes sur le point de <strong>marquer</strong> certains messages de <strong>@%{acct}</strong> comme <strong>sensibles</strong>. Cela va :'
+          silence_html: 'Vous êtes sur le point de <strong>limiter</strong> le compte de <strong>@%{acct}</strong>. Cela va :'
+          suspend_html: 'Vous êtes sur le point de <strong>suspendre</strong> le compte de <strong>@%{acct}</strong>. Cela va :'
+        actions:
+          delete_html: supprimer les messages incriminés
+          mark_as_sensitive_html: marquer le média des messages incriminés comme sensible
+          silence_html: limiter drastiquement la portée du compte de <strong>@%{acct}</strong> en rendant son profil, ainsi que ses contenus, visibles uniquement des personnes déjà abonnées ou qui le recherchent manuellement
+          suspend_html: suspendre le compte de <strong>@%{acct}</strong>, ce qui empêche toute interaction avec son profil et tout accès à ses contenus
+        close_report: 'marquer le signalement #%{id} comme résolu'
+        close_reports_html: marquer <strong>tous</strong> les signalements de <strong>@%{acct}</strong> comme résolus
+        delete_data_html: effacer le profil de <strong>@%{acct}</strong> et ses contenus dans 30 jours, à moins que la suspension du compte ne soit annulée entre temps
+        preview_preamble_html: "<strong>@%{acct}</strong> recevra un avertissement contenant les éléments suivants :"
+        record_strike_html: enregistrer une sanction contre <strong>@%{acct}</strong> pour vous aider à prendre des mesures supplémentaires en cas d'infractions futures de ce compte
+        send_email_html: envoyer un courriel d'avertissement à <strong>@%{acct}</strong>
+        warning_placeholder: Arguments supplémentaires pour l'action de modération (facultatif).
       target_origin: Origine du compte signalé
       title: Signalements
       unassign: Dés-assigner
+      unknown_action_msg: 'Action inconnue : %{action}'
       unresolved: Non résolus
       updated_at: Mis à jour
       view_profile: Voir le profil
@@ -706,13 +735,15 @@ fr-QC:
         preamble: Contrôle comment le contenu créé par les utilisateurs est enregistré et stocké dans Mastodon.
         title: Rétention du contenu
       default_noindex:
-        desc_html: Affecte tous les utilisateurs qui n'ont pas modifié ce paramètre eux-mêmes
-        title: Ne pas indexer par défaut les utilisateurs dans les moteurs de recherche
+        desc_html: Affecte tous les comptes qui n'ont pas modifié ce paramètre
+        title: Par défaut, ne pas indexer les comptes dans les moteurs de recherche
       discovery:
         follow_recommendations: Suivre les recommandations
         preamble: Faire apparaître un contenu intéressant est essentiel pour interagir avec de nouveaux utilisateurs qui ne connaissent peut-être personne sur Mastodonte. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
         profile_directory: Annuaire des profils
         public_timelines: Fils publics
+        publish_discovered_servers: Publier les serveurs découverts
+        publish_statistics: Publier les statistiques
         title: Découverte
         trends: Tendances
       domain_blocks:
@@ -767,6 +798,7 @@ fr-QC:
         suspend: "%{name} a suspendu le compte de %{target}"
       appeal_approved: Appel soumis
       appeal_pending: Appel en attente
+      appeal_rejected: Appel rejeté
     system_checks:
       database_schema_check:
         message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
@@ -802,6 +834,7 @@ fr-QC:
           other: Partagé par %{count} personnes au cours de la dernière semaine
         title: Liens tendances
         usage_comparison: Partagé %{today} fois aujourd'hui, comparé à %{yesterday} hier
+      not_allowed_to_trend: Non autorisé à apparaître dans les tendances
       only_allowed: Autorisées seulement
       pending_review: En attente de révision
       preview_card_providers:
@@ -933,6 +966,7 @@ fr-QC:
   applications:
     created: Application créée avec succès
     destroyed: Application supprimée avec succès
+    logout: Se déconnecter
     regenerate_token: Régénérer le jeton d’accès
     token_regenerated: Jeton d’accès régénéré avec succès
     warning: Soyez prudent·e avec ces données. Ne les partagez pas !
@@ -940,6 +974,8 @@ fr-QC:
   auth:
     apply_for_account: Demander un compte
     change_password: Mot de passe
+    confirmations:
+      wrong_email_hint: Si cette adresse de courriel est incorrecte, vous pouvez la modifier dans vos paramètres de compte.
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
     description:
@@ -967,6 +1003,8 @@ fr-QC:
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
     reset_password: Réinitialiser le mot de passe
     rules:
+      accept: Accepter
+      back: Retour
       preamble: Celles-ci sont définies et appliqués par les modérateurs de %{domain}.
       title: Quelques règles de base.
     security: Sécurité
@@ -976,7 +1014,7 @@ fr-QC:
       email_settings_hint_html: Le courriel de confirmation a été envoyé à %{email}. Si cette adresse de courriel n’est pas correcte, vous pouvez la modifier dans les paramètres du compte.
       title: Configuration
     sign_in:
-      preamble_html: Connectez-vous avec vos identifiants <strong>%{domain}</strong> . Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
+      preamble_html: Connectez-vous avec vos identifiants sur <strong>%{domain}</strong>. Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
       title: Se connecter à %{domain}
     sign_up:
       preamble: Avec un compte sur ce serveur Mastodon, vous serez en mesure de suivre toute autre personne sur le réseau, quel que soit l’endroit où son compte est hébergé.
@@ -1158,8 +1196,6 @@ fr-QC:
       index:
         hint: Ce filtre s'applique à la sélection de messages individuels, indépendamment d'autres critères. Vous pouvez ajouter plus de messages à ce filtre à partir de l'interface Web.
         title: Messages filtrés
-  footer:
-    trending_now: Tendance en ce moment
   generic:
     all: Tous
     all_items_on_page_selected_html:
@@ -1182,8 +1218,6 @@ fr-QC:
     validation_errors:
       one: Quelque chose ne va pas ! Veuillez vérifiez l’erreur ci-dessous
       other: Certaines choses ne vont pas ! Veuillez vérifier les %{count} erreurs ci-dessous
-  html_validator:
-    invalid_markup: 'contient un balisage HTML invalide: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Fichier CSV non valide. Erreur : %{error}'
@@ -1367,6 +1401,9 @@ fr-QC:
       unrecognized_emoji: n’est pas un émoji reconnu
   relationships:
     activity: Activité du compte
+    confirm_follow_selected_followers: Voulez-vous vraiment suivre les abonné⋅e⋅s sélectionné⋅e⋅s ?
+    confirm_remove_selected_followers: Voulez-vous vraiment supprimer les abonné⋅e⋅s sélectionné⋅e⋅s ?
+    confirm_remove_selected_follows: Voulez-vous vraiment supprimer les abonnements sélectionnés ?
     dormant: Dormant
     follow_selected_followers: Suivre les abonné·e·s sélectionné·e·s
     followers: Abonné·e

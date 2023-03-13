@@ -573,8 +573,6 @@ sco:
         mark_as_sensitive_description_html: The media in the clyped on posts will be mairked as sensitive an a strike wull be recordit fir tae help ye escalate on future infractions bi the same accoont.
         other_description_html: See mair options fir controllin the accoont's behaviour an customize communication tae the clyped on accoont.
         resolve_description_html: Nae action wull be taen aginst the clyped on accoont, nae strike recordit, an the clype wull be shut.
-        silence_description_html: The profile wull be visible ainly tae thaim thit awriddy follae it or luik it up bi haun, severely limitin its reach. This kin aye be revertit.
-        suspend_description_html: The profile an aw its contents wull become inaccessible tae it is eventually deletit. Interactin wi the accoont wullnae be possible. Reversible athin 30 days.
       actions_description_html: Decide whit action fir tae tak fir tae resolve this clype. If ye tak a punitive action agin the accoont thit wis clyped on, a email note wull be sent tae them, except whan the <strong>Mince</strong> caitegory is selectit.
       add_to_report: Add mair tae yer clype
       are_you_sure: Ye sure?
@@ -1105,8 +1103,6 @@ sco:
     storage: Media storage
   featured_tags:
     add_new: Add new
-    errors:
-      limit: Ye'v awriddy featurt the maximum amoont o hashtags
     hint_html: "<strong>Whit's featurt hashtags?</strong> They get pit prominently on yer public profile an alloo fowk fir tae broose yer public posts specifically unner thae hashtags. They'r a braw tuil fir keepin track o creative warks or lang-term projects."
   filters:
     contexts:
@@ -1150,8 +1146,6 @@ sco:
       index:
         hint: This filter applies tae select individual posts regairdless o ither criteria. Ye kin add mair posts tae this filter fae the wab interface.
         title: Filtert posts
-  footer:
-    trending_now: Trendin the noo
   generic:
     all: Aw
     all_items_on_page_selected_html:
@@ -1174,8 +1168,6 @@ sco:
     validation_errors:
       one: Somethin isnae quite richt yit! Please luik ower the error ablow
       other: Somethin isnae quite richt yit! Please review %{count} errors ablow
-  html_validator:
-    invalid_markup: 'contains invalid HTML mairkup: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
@@ -1216,9 +1208,6 @@ sco:
       expires_at: Expires
       uses: Uises
     title: Invite fowk
-  lists:
-    errors:
-      limit: Ye'v hit the maximum amoont o lists
   login_activities:
     authentication_methods:
       otp: twa-factor authentication app
@@ -1535,7 +1524,6 @@ sco:
       '7889238': 3 month
     min_age_label: Age threshaud
     min_favs: Keep posts favouritit at least
-    min_favs_hint: Disnae delete onie o yer posts thit's got at least this amoont o favourites. Lea blank fir tae delete posts regairdless o their nummer o favourites
     min_reblogs: Keep posts heezed at least
     min_reblogs_hint: Disnae delete onie o yer posts thit's been heezed at least this nummer o times. Lea blank fir tae delete posts regairdless o their number o heezes
   stream_entries:

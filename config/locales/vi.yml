@@ -89,6 +89,7 @@ vi:
       moderation:
         active: Hoạt động
         all: Tất cả
+        disabled: Đã tắt
         pending: Chờ
         silenced: Hạn chế
         suspended: Vô hiệu hóa
@@ -130,6 +131,7 @@ vi:
       search: Tìm kiếm
       search_same_email_domain: Tra cứu email
       search_same_ip: Tra cứu IP
+      security: Bảo mật
       security_measures:
         only_password: Chỉ mật khẩu
         password_and_2fa: Mật khẩu và 2FA
@@ -419,6 +421,7 @@ vi:
         resolve: Xử lý tên miền
         title: Chặn tên miền email mới
       no_email_domain_block_selected: Không có chặn e-mail nào thay đổi vì không có mục nào được chọn
+      not_permitted: Không cho phép
       resolved_dns_records_hint_html: Tên miền phân giải thành các tên miền MX sau, các tên miền này chịu trách nhiệm cuối cùng trong việc chấp nhận email. Chặn tên miền MX sẽ chặn đăng ký từ bất kỳ địa chỉ email nào sử dụng cùng một tên miền MX, ngay cả khi tên miền hiển thị là khác. <strong>Cẩn thận đừng chặn những dịch vụ email lớn.</strong>
       resolved_through_html: Đã xử lý thông qua %{domain}
       title: Tên miền email đã chặn
@@ -433,6 +436,7 @@ vi:
         private_comment_description_html: 'Để giúp bạn theo dõi nguồn gốc của các chặn tên miền đã nhập, các tên miền chặn đã nhập sẽ được tạo bằng nhận xét riêng tư sau: <q>%{comment}</q>'
         private_comment_template: Nhập từ %{source} vào %{date}
         title: Nhập máy chủ chặn
+      invalid_domain_block: 'Một hoặc nhiều tên miền đã bị bỏ qua do (các) lỗi sau: %{error}'
       new:
         title: Nhập máy chủ chặn
       no_file: Không có tập tin nào được chọn
@@ -462,6 +466,7 @@ vi:
       content_policies:
         comment: Lưu ý nội bộ
         description_html: Bạn có thể xác định các chính sách nội dung sẽ được áp dụng cho tất cả các tài khoản trên máy chủ này và bất kỳ tên miền phụ nào của nó.
+        limited_federation_mode_description_html: Bạn có thể chọn nếu muốn cho phép liên hợp với máy chủ này.
         policies:
           reject_media: Từ chối media
           reject_reports: Từ chối báo cáo
@@ -564,18 +569,22 @@ vi:
         other_description_html: Tùy chọn cách kiểm soát và giao tiếp với tài khoản bị báo cáo.
         resolve_description_html: Không áp dụng trừng phạt nào và đóng báo cáo.
         silence_description_html: Chỉ hiển thị trang với những người đã theo dõi hoặc tìm kiếm thủ công.
-        suspend_description_html: Đóng băng hồ sơ và chặn truy cập tất cả các nội dung cho đến khi chúng bị xóa hoàn toàn. Đảo ngược trong vòng 30 ngày.
+        suspend_description_html: Tài khoản và tất cả nội dung của nó sẽ không thể truy cập được và cuối cùng sẽ bị xóa, đồng thời không thể tương tác với tài khoản đó. Có thể đảo ngược trong vòng 30 ngày. Đóng tất cả các báo cáo đối với tài khoản này.
       actions_description_html: Nếu áp đặt trừng phạt, một email thông báo sẽ được gửi cho người này, ngoại trừ <strong>Spam</strong>.
+      actions_description_remote_html: Chọn hành động cần thực hiện để xử lý báo cáo này. Điều này sẽ chỉ ảnh hưởng đến cách máy chủ <strong>của bạn</strong> giao tiếp với tài khoản này và xử lý nội dung của nó.
       add_to_report: Bổ sung báo cáo
       are_you_sure: Bạn có chắc không?
       assign_to_self: Giao cho tôi
       assigned: Người xử lý
       by_target_domain: Tên tài khoản bị báo cáo
+      cancel: Hủy bỏ
       category: Phân loại
       category_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn khi giao tiếp với họ
       comment:
         none: Không có mô tả
       comment_description_html: "%{name} cho biết thêm:"
+      confirm: Xác nhận
+      confirm_action: Xác nhận kiểm duyệt với %{acct}
       created_at: Báo cáo lúc
       delete_and_resolve: Xóa tút
       forwarded: Chuyển tiếp
@@ -592,6 +601,7 @@ vi:
         placeholder: Mô tả vi phạm của người này, hướng xử lý và những cập nhật liên quan khác...
         title: Lưu ý
       notes_description_html: Xem và để lại lưu ý cho các kiểm duyệt viên khác
+      processed_msg: 'Báo cáo #%{id} đã được xử lý thành công'
       quick_actions_description_html: 'Kiểm duyệt nhanh hoặc kéo xuống để xem nội dung bị báo cáo:'
       remote_user_placeholder: người ở %{instance}
       reopen: Mở lại báo cáo
@@ -604,9 +614,28 @@ vi:
       status: Trạng thái
       statuses: Nội dung bị báo cáo
       statuses_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn khi giao tiếp với họ
+      summary:
+        action_preambles:
+          delete_html: 'Bạn sắp <strong>xóa</strong> vài tút của <strong>@%{acct}</strong>. Việc này sẽ:'
+          mark_as_sensitive_html: 'Bạn sắp <strong>đánh dấu</strong> vài tút của <strong>@%{acct}</strong> là <strong>nhạy cảm</strong>. Việc này sẽ:'
+          silence_html: 'Bạn sắp <strong>hạn chế</strong> <strong>@%{acct}</strong>. Việc này sẽ:'
+          suspend_html: 'Bạn sắp <strong>vô hiệu hóa</strong> <strong>@%{acct}</strong>. Việc này sẽ:'
+        actions:
+          delete_html: Xóa các tút vi phạm
+          mark_as_sensitive_html: Đánh dấu media trong tút vi phạm là nhạy cảm
+          silence_html: Hạn chế mức ảnh hưởng của <strong>@%{acct}</strong> bằng cách làm cho trang và nội dung của họ chỉ hiển thị với những người đã theo dõi họ hoặc tìm kiếm theo cách thủ công
+          suspend_html: Vô hiệu hóa <strong>@%{acct}</strong>, làm cho trang và nội dung của họ không thể truy cập và không thể tương tác
+        close_report: 'Đánh dấu báo cáo #%{id} đã xử lý xong'
+        close_reports_html: Đánh dấu <strong>tất cả</strong> báo cáo chống lại <strong>@%{acct}</strong> đã xử lý xong
+        delete_data_html: Xóa trang <strong>@%{acct}</strong> và nội dung 30 ngày kể từ bây giờ trừ khi bỏ vô hiệu hóa
+        preview_preamble_html: "<strong>@%{acct}</strong> sẽ nhận được cảnh báo với nội dung như sau:"
+        record_strike_html: Lưu lại cảnh cáo <strong>@%{acct}</strong> để giúp bạn đánh giá các vi phạm trong tương lai từ tài khoản này
+        send_email_html: Gửi <strong>@%{acct}</strong> một email cảnh báo
+        warning_placeholder: Lý do bổ sung cho hành động kiểm duyệt.
       target_origin: Nguồn báo cáo
       title: Báo cáo
       unassign: Bỏ qua
+      unknown_action_msg: 'Hành động chưa biết: %{action}'
       unresolved: Chờ xử lý
       updated_at: Cập nhật lúc
       view_profile: Xem trang
@@ -699,6 +728,8 @@ vi:
         preamble: Hiển thị nội dung thú vị là công cụ để thu hút người dùng mới, những người có thể không quen bất kỳ ai trong Mastodon. Kiểm soát cách các tính năng khám phá hoạt động trên máy chủ của bạn.
         profile_directory: Cộng đồng
         public_timelines: Bảng tin
+        publish_discovered_servers: Công khai các máy chủ được phát hiện
+        publish_statistics: Công khai số liệu thống kê
         title: Khám phá
         trends: Thịnh hành
       domain_blocks:
@@ -753,6 +784,7 @@ vi:
         suspend: "%{name} đã vô hiệu hóa %{target}"
       appeal_approved: Đã khiếu nại
       appeal_pending: Đang kháng cáo
+      appeal_rejected: Khiếu nại bị từ chối
     system_checks:
       database_schema_check:
         message_html: Có cơ sở dữ liệu đang chờ xử lý. Xin khởi động nó để ứng dụng có thể hoạt động một cách ổn định nhất
@@ -787,6 +819,7 @@ vi:
           other: "%{count} người chia sẻ tuần rồi"
         title: Liên kết nổi bật
         usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
+      not_allowed_to_trend: Không được phép thành xu hướng
       only_allowed: Chỉ cho phép
       pending_review: Đang chờ
       preview_card_providers:
@@ -915,6 +948,7 @@ vi:
   applications:
     created: Đơn đăng ký được tạo thành công
     destroyed: Đã xóa đơn đăng ký
+    logout: Đăng xuất
     regenerate_token: Tạo lại mã truy cập
     token_regenerated: Mã truy cập được tạo lại thành công
     warning: Hãy rất cẩn thận với dữ liệu này. Không bao giờ chia sẻ nó với bất cứ ai!
@@ -922,6 +956,8 @@ vi:
   auth:
     apply_for_account: Xin đăng ký
     change_password: Mật khẩu
+    confirmations:
+      wrong_email_hint: Nếu địa chỉ email đó không chính xác, bạn có thể thay đổi nó trong cài đặt tài khoản.
     delete_account: Xóa tài khoản
     delete_account_html: Nếu bạn muốn xóa tài khoản của mình, hãy <a href="%{path}">yêu cầu tại đây</a>. Bạn sẽ được yêu cầu xác nhận.
     description:
@@ -949,6 +985,8 @@ vi:
     resend_confirmation: Gửi lại email xác minh
     reset_password: Đặt lại mật khẩu
     rules:
+      accept: Chấp nhận
+      back: Quay lại
       preamble: Được ban hành và áp dụng bởi quản trị máy chủ %{domain}.
       title: Nội quy máy chủ.
     security: Bảo mật
@@ -1137,8 +1175,6 @@ vi:
       index:
         hint: Bộ lọc này áp dụng để chọn các tút riêng lẻ bất kể các tiêu chí khác. Bạn có thể thêm các tút khác vào bộ lọc này từ giao diện web.
         title: Những tút đã lọc
-  footer:
-    trending_now: Thịnh hành
   generic:
     all: Tất cả
     all_items_on_page_selected_html:
@@ -1157,8 +1193,6 @@ vi:
     today: hôm nay
     validation_errors:
       other: Đã có %{count} lỗi xảy ra! Xem chi tiết bên dưới
-  html_validator:
-    invalid_markup: 'chứa đánh dấu HTML không hợp lệ: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Tập tin CSV không hợp lệ. Lỗi: %{error}'
@@ -1341,6 +1375,9 @@ vi:
       unrecognized_emoji: không phải là emoji
   relationships:
     activity: Tương tác
+    confirm_follow_selected_followers: Bạn có chắc muốn theo dõi những người đã chọn?
+    confirm_remove_selected_followers: Bạn có chắc muốn bỏ theo dõi những người đã chọn?
+    confirm_remove_selected_follows: Bạn có chắc muốn xoá những người theo dõi bạn đã chọn không?
     dormant: Chưa
     follow_selected_followers: Theo dõi những người đã chọn
     followers: Người theo dõi

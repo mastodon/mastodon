@@ -91,6 +91,7 @@ fo:
       moderation:
         active: Virkin
         all: Allar
+        disabled: Óvirkið
         pending: Í bíðistøðu
         silenced: Avmarkað
         suspended: Avbrotin
@@ -133,6 +134,7 @@ fo:
       search: Leita
       search_same_email_domain: Aðrir brúkarir eru við sama teldupost domaini
       search_same_ip: Aðrir brúkarar við somu IP
+      security: Trygd
       security_measures:
         only_password: Bara loyniorð
         password_and_2fa: Loyniorð og 2FA
@@ -427,6 +429,7 @@ fo:
         resolve: Loys navnaøki
         title: Blokera nýtt teldupostanavnaøki
       no_email_domain_block_selected: Ongar teldupostanavnaøkisblokeringar vóru broyttar, tí ongar vóru valdar
+      not_permitted: Ikki loyvt
       resolved_dns_records_hint_html: Navnaøkið verður loyst til hesi MX navnaøki, sum í síðsta enda hava ábyrgdina av at móttaka teldupost. At blokera eitt MX navnaøki fer at blokera tilmeldingar frá einum og hvørjum teldupoststaði, sum brúkar sama MX navnaøki, sjálvt um sjónliga navnaøkið er eitt annað. <strong>Ansa eftir ikki at blokera stórar veitarar av telduposti</strong>
       resolved_through_html: Loyst gjøgnum %{domain}
       title: Blokeraði teldupostanavnaøki
@@ -441,6 +444,7 @@ fo:
         private_comment_description_html: Fyri at hjálpa tær at fylgja við í, hvaðani innfluttir blokkar koma, verða innfluttu blokkarnir stovnaðir við hesi privatu viðmerkingini:<q>%{comment}</q>
         private_comment_template: Innflutt frá %{source} tann %{date}
         title: Innflyt navnaøkjablokeringar
+      invalid_domain_block: 'Ein ella fleiri navnaøkjablokeringar vóru umlopnar vegna hesar feil(ir): %{error}'
       new:
         title: Innflyt navnaøkjablokeringar
       no_file: Eingin fíla vald
@@ -472,6 +476,7 @@ fo:
       content_policies:
         comment: Innanhýsis viðmerking
         description_html: Tú kanst áseta innihaldspolitikkir, sum verða áløgd øllum kontum frá hesum navnaøkinum og øllum tess undirnavnaøkjum.
+        limited_federation_mode_description_html: Tú kanst velja, hvørt tú loyvir sameining við hetta navnaøkið.
         policies:
           reject_media: Vraka miðil
           reject_reports: Vraka meldingar
@@ -575,19 +580,23 @@ fo:
         mark_as_sensitive_description_html: Miðlarnir í meldaðu postunum verða merkir sum viðkvæmir, og ein atsókn verður skrásett, soleiðis at tú veist, um onnur stig skulu takast, um sama konta ger fleiri brot í framtíðini.
         other_description_html: Sí fleiri valmøguleikar at stýra atferðini hjá kontuni og at tillagað samskiftið við meldaðu kontuni.
         resolve_description_html: Eingin atgerð verður tikin móti meldaðu kontuni, eingin atsókn verður skrásett og meldingin verður lukkað.
-        silence_description_html: Vangin verður einans sjónligur hjá teimum, sum longu fylgja honum ella leita eftir honum við hond, og tað minkar nógv um, hvussu langt hann røkkur. Kann altíð angrast.
-        suspend_description_html: Vangin og alt tilfar hjá vanganum verður óatkomandi inntil hann at enda verður strikaður. Tað verður ómøguligt at samvirka við hesa kontuna. Vendast kann aftur innan 30 dagar.
+        silence_description_html: Kontan verður einans sjónlig hjá teimum, sum longu fylgja henni ella leita eftir henni við hond, og tað minkar nógv um, hvussu langt hon røkkur. Kann altíð angrast. Lukkar allar rapporteringar um hesa kontuna.
+        suspend_description_html: Kontan og alt innihald hjá kontuni gerast óatkomulig og við tíðini strikaði, og tað verður ógjørligt at samvirka við henni. Kann angrast innan 30 dagar. Lukkar allar rapporteringar av hesi kontuni.
       actions_description_html: Ger av hvør atgerð skal takast fyri at avgreiða hesa meldingina. Revsitiltøk móti meldaðu kontuni føra við sær, at ein teldupostfráboðan verður send teimum, undantikið tá <strong>Ruskpostur</strong> verður valdur.
+      actions_description_remote_html: Tak avgerð um hvat skal gerast fyri at avgreiða hesa rapporteringina. Hetta fer einans at ávirka, hvussu <strong>tín</strong> ambætari samskiftir við hesa fjarkontuna og hvussu hann handfer tilfar frá henni.
       add_to_report: Legg meira afturat meldingini
       are_you_sure: Er tú vís/ur?
       assign_to_self: Tilluta mær
       assigned: Tilnevnt umsjónarfólk
       by_target_domain: Navnaøki hjá meldaðu kontuni
+      cancel: Angra
       category: Bólkur
       category_description_html: Orsøkin, at hendan kontan og/ella tilfarið var melda verður fráboðað í samskifti við meldaðu kontuni
       comment:
         none: Eingin
       comment_description_html: 'Fyri at veita fleiri upplýsingar skrivaði %{name}:'
+      confirm: Vátta
+      confirm_action: Vátta umsjónaratgerð móti @%{acct}
       created_at: Meldað
       delete_and_resolve: Strika postar
       forwarded: Víðarisent
@@ -604,6 +613,7 @@ fo:
         placeholder: Greið frá, hvørjar atgerðir hava verið gjørdar ella aðrar viðkomandi dagføringar...
         title: Viðmerkingar
       notes_description_html: Vís ella skriva viðmerkingar til onnur umsjónarfólk ella teg sjálva/n í framtíðini
+      processed_msg: 'Rapportering #%{id} liðugt viðgjørd'
       quick_actions_description_html: 'Tak eina skjóta avgerð ella skrulla niðureftir fyri at síggja meldaða innihaldið:'
       remote_user_placeholder: fjarbrúkarin frá %{instance}
       reopen: Lat melding uppaftur
@@ -616,9 +626,28 @@ fo:
       status: Støða
       statuses: Meldað innihald
       statuses_description_html: Tilfarið, sum brotið viðvíkur, fer at vera siterað í samskifti við meldaðu kontuni
+      summary:
+        action_preambles:
+          delete_html: 'Tú er í ferð við at <strong>strika</strong> nakrar av postunum hjá <strong>@%{acct}</strong>. Hetta fer at:'
+          mark_as_sensitive_html: 'Tú er í ferð við at <strong>merkja</strong> nakrar av postunum hjá <strong>@%{acct}</strong> sum <strong>viðkvæmar</strong>. Hetta fer at:'
+          silence_html: 'Tú er í ferð við at <strong>avmarka</strong> kontuna hjá <strong>@%{acct}</strong>. Hetta fer at:'
+          suspend_html: 'Tú er í ferð við at gera kontuna hjá <strong>@%{acct}</strong> <strong>óvirkna</strong>. Hetta fer at:'
+        actions:
+          delete_html: Strika postar, ið eru farnir útum mark
+          mark_as_sensitive_html: Merk postar, ið eru farnir um mark, sum viðkvæmar
+          silence_html: Avmarka hvussu langt <strong>@%{acct}</strong> røkkur við einans at lata vangan og innihaldið hjá teimum vera sjónligt hjá fólki, sum longu fylgja teimum ella manuelt sláa vangan upp
+          suspend_html: Ger kontuna <strong>@%{acct}</strong> óvirkna, soleiðis at vangin og innihaldið verður óframkomiligt og ómøguligt at samvirka við
+        close_report: 'Merk kæruna #%{id} sum loysta'
+        close_reports_html: Merk <strong>allar</strong> kærur móti <strong>@%{acct}</strong> sum loystar
+        delete_data_html: Strika vangan og innihaldið hjá <strong>@%{acct}</strong> um 30 dagar uttan so at kontan verður gjørd virkin aftur áðrenn tað
+        preview_preamble_html: "<strong>@%{acct}</strong> ger at móttaka eina ávaring við hesum innihaldi:"
+        record_strike_html: Skráset eitt brot á <strong>@%{acct}</strong>, soleiðis at tað kann havast í huga í samband við møgulig framtíðar mishald
+        send_email_html: Send <strong>@%{acct}</strong> eitt teldubræv við eini ávaring
+        warning_placeholder: Møguligar eyka grundgevingar fyri umsjónaratgerð.
       target_origin: Uppruni hjá meldaðu kontuni
       title: Meldingar
       unassign: Strika tillutan
+      unknown_action_msg: 'Ókend atgerð: %{action}'
       unresolved: Óloyst
       updated_at: Dagført
       view_profile: Vís vangamynd
@@ -713,6 +742,8 @@ fo:
         preamble: At fáa áhugavert innihald í ljósmála er avgerandi fyri at nýggir brúkarar, sum kanska ongan kenna á Mastodon, kunnu koma væl umborð. Stýr, hvussu hentleikarnir at uppdaga ymiskt rigga á ambætaranum hjá tær.
         profile_directory: Vangaskrá
         public_timelines: Almennar tíðarlinjur
+        publish_discovered_servers: Kunnger uppdagaðu ambætararnar
+        publish_statistics: Legg hagtøl út
         title: Uppdaging
         trends: Rák
       domain_blocks:
@@ -767,6 +798,7 @@ fo:
         suspend: "%{name} setti kontuna hjá %{target} úr gildi"
       appeal_approved: Kært
       appeal_pending: Kæra bíðar eftir avgerð
+      appeal_rejected: Kæra vrakað
     system_checks:
       database_schema_check:
         message_html: Dátugrunnaflytingar bíða. Vinarliga koyr flytingarnar fyri at tryggja at skipanin skikkar sær sum hon skal
@@ -802,6 +834,7 @@ fo:
           other: Deilt av %{count} persónum seinastu vikuna
         title: Vælumtókt leinki
         usage_comparison: Deilt %{today} ferð í dag, samanborið við %{yesterday} ferð í gjár
+      not_allowed_to_trend: Ikki loyvt at gerast rák
       only_allowed: Einans loyvd
       pending_review: Bíðar eftir eftirkannan
       preview_card_providers:
@@ -933,6 +966,7 @@ fo:
   applications:
     created: Umsókn stovnað
     destroyed: Umsókn strikað
+    logout: Rita út
     regenerate_token: Ger atgongdstekn av nýggjum
     token_regenerated: Atgongdsteknið gjørt av nýggjum
     warning: Ver varin við hesum dátum. Deil tað aldrin við nakran!
@@ -940,6 +974,8 @@ fo:
   auth:
     apply_for_account: Bið um eina kontu
     change_password: Loyniorð
+    confirmations:
+      wrong_email_hint: Um hesin teldupoststaðurin ikki er rættur, so kanst tú broyta hann í kontustillingunum.
     delete_account: Strika kontu
     delete_account_html: Ynskir tú at strika kontuna, so kanst tú <a href="%{path}">halda fram her</a>. Tú verður spurd/ur um váttan.
     description:
@@ -967,6 +1003,8 @@ fo:
     resend_confirmation: Send góðkenningarvegleiðing umaftur
     reset_password: Endurstilla loyniorð
     rules:
+      accept: Góðtak
+      back: Aftur
       preamble: Hesi eru ásett og uppihildin av umsjónarfólkunum á %{domain}.
       title: Nakrar grundreglur.
     security: Trygd
@@ -1158,8 +1196,6 @@ fo:
       index:
         hint: Hetta filtrið er galdandi fyri útvaldar stakar postar óansæð aðrar treytir. Tú kanst leggja fleiri postar afturat hesum filtrinum frá vevmarkamótinum.
         title: Filtreraðir postar
-  footer:
-    trending_now: Rák beint nú
   generic:
     all: Alt
     all_items_on_page_selected_html:
@@ -1182,8 +1218,6 @@ fo:
     validation_errors:
       one: Okkurt er ikki heilt rætt enn! Vinarliga eftirhygg feilin niðanfyri
       other: Okkurt er ikki heilt rætt enn! Vinarliga eftirhygg teir %{count} feilirnar niðanfyri
-  html_validator:
-    invalid_markup: 'inniheldur ógyldugt HTML markup: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Ógildug CSV-fíla. Error: %{error}'
@@ -1367,6 +1401,9 @@ fo:
       unrecognized_emoji: er ikki eitt kenslutekn, sum kennist aftur
   relationships:
     activity: Kontuvirksemi
+    confirm_follow_selected_followers: Vil tú veruliga fylgja valdu fylgjarunum?
+    confirm_remove_selected_followers: Vil tú veruliga strika valdu fylgjararnar?
+    confirm_remove_selected_follows: Vil tú veruliga strika valdu fylgingarnar?
     dormant: Í dvala
     follow_selected_followers: Fylg valdu fylgjarum
     followers: Fylgjarar

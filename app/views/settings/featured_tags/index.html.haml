@@ -17,7 +17,7 @@
 %hr.spacer/
 
 - @featured_tags.each do |featured_tag|
-  .directory__tag{ class: params[:tag] == featured_tag.name ? 'active' : nil }
+  .directory__tag
     %div
       %h4
         = fa_icon 'hashtag'

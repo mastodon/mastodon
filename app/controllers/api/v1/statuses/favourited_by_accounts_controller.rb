@@ -41,15 +41,11 @@ class Api::V1::Statuses::FavouritedByAccountsController < Api::BaseController
   end
 
   def next_path
-    if records_continue?
-      api_v1_status_favourited_by_index_url pagination_params(max_id: pagination_max_id)
-    end
+    api_v1_status_favourited_by_index_url pagination_params(max_id: pagination_max_id) if records_continue?
   end
 
   def prev_path
-    unless @accounts.empty?
-      api_v1_status_favourited_by_index_url pagination_params(since_id: pagination_since_id)
-    end
+    api_v1_status_favourited_by_index_url pagination_params(since_id: pagination_since_id) unless @accounts.empty?
   end
 
   def pagination_max_id

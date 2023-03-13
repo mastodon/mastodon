@@ -19,6 +19,9 @@
     = f.input :trends, as: :boolean, wrapper: :with_label
 
   .fields-group
+    = f.input :trends_as_landing_page, as: :boolean, wrapper: :with_label
+
+  .fields-group
     = f.input :trendable_by_default, as: :boolean, wrapper: :with_label, recommended: :not_recommended
 
   %h4= t('admin.settings.discovery.public_timelines')
@@ -28,6 +31,16 @@
 
   .fields-group
     = f.input :noindex, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_noindex.title'), hint: t('admin.settings.default_noindex.desc_html')
+
+  %h4= t('admin.settings.discovery.publish_statistics')
+
+  .fields-group
+    = f.input :activity_api_enabled, as: :boolean, wrapper: :with_label, recommended: :recommended
+
+  %h4= t('admin.settings.discovery.publish_discovered_servers')
+
+  .fields-group
+    = f.input :peers_api_enabled, as: :boolean, wrapper: :with_label, recommended: :recommended
 
   %h4= t('admin.settings.discovery.follow_recommendations')
 

@@ -6,7 +6,7 @@ class Ed25519KeyValidator < ActiveModel::EachValidator
 
     key = Base64.decode64(value)
 
-    record.errors[attribute] << I18n.t('crypto.errors.invalid_key') unless verified?(key)
+    record.errors.add(attribute, I18n.t('crypto.errors.invalid_key')) unless verified?(key)
   end
 
   private

@@ -4,7 +4,7 @@ pl:
     about_mastodon_html: 'Sieć społecznościowa przyszłości: Bez reklam, bez inwigilacji, zaprojektowana etycznie i zdecentralizowanie! Władaj swoimi danymi z Mastodonem!'
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
-    hosted_on: Mastodon hostowany na %{domain}
+    hosted_on: Mastodon prowadzony na %{domain}
     title: O nas
   accounts:
     follow: Obserwuj
@@ -38,7 +38,7 @@ pl:
       add_email_domain_block: Dodaj domenę e-mail na czarną listę
       approve: Przyjmij
       approved_msg: Pomyślnie zaakceptowano wniosek o rejestrację %{username}
-      are_you_sure: Jesteś tego pewien?
+      are_you_sure: Czy na pewno?
       avatar: Awatar
       by_domain: Domena
       change_email:
@@ -95,6 +95,7 @@ pl:
       moderation:
         active: Aktywne
         all: Wszystkie
+        disabled: Wyłączone
         pending: Oczekujące
         silenced: Ograniczone
         suspended: Zawieszone
@@ -139,6 +140,7 @@ pl:
       search: Szukaj
       search_same_email_domain: Inni użytkownicy z tym samym e-mail w tej domenie
       search_same_ip: Inni użytkownicy z tym samym IP
+      security: Bezpieczeństwo
       security_measures:
         only_password: Tylko hasło
         password_and_2fa: Hasło i 2FA
@@ -275,19 +277,19 @@ pl:
         remove_avatar_user_html: "%{name} usunął(-ęła) awatar użytkownikowi %{target}"
         reopen_report_html: "%{name} otworzył(a) ponownie zgłoszenie %{target}"
         resend_user_html: "%{name} ponownie wysłał(a) e-mail z potwierdzeniem dla %{target}"
-        reset_password_user_html: "%{name} przywrócił(a) hasło użytkownikowi %{target}"
+        reset_password_user_html: "%{name} resetuje hasło użytkownika %{target}"
         resolve_report_html: "%{name} rozwiązał(a) zgłoszenie %{target}"
         sensitive_account_html: "%{name} oznaczył(a) zawartość multimedialną %{target} jako wrażliwą"
         silence_account_html: "%{name} wyciszył(a) konto %{target}"
-        suspend_account_html: "%{name} zawiesił(a) konto %{target}"
+        suspend_account_html: Zawieszono konto %{target} przez %{name}
         unassigned_report_html: "%{name} cofnął(-ęła) przypisanie zgłoszenia %{target}"
         unblock_email_account_html: "%{name} odblokował adres e-mail %{target}"
         unsensitive_account_html: "%{name} cofnął(-ęła) oznaczenie zawartości multimedialnej %{target} jako wrażliwą"
         unsilence_account_html: "%{name} cofnął(-ęła) wyciszenie konta %{target}"
         unsuspend_account_html: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
-        update_announcement_html: "%{name} zaktualizował(a) ogłoszenie %{target}"
-        update_custom_emoji_html: "%{name} zaktualizował(a) emoji %{target}"
-        update_domain_block_html: "%{name} zaktualizował(a) blokadę domeny dla %{target}"
+        update_announcement_html: Zaktualizowane ogłoszenie %{target} przez %{name}
+        update_custom_emoji_html: Zaktualizowane emoji %{target} przez %{name}
+        update_domain_block_html: Zaktualizowano blokadę domeny dla %{target} przez %{name}
         update_ip_block_html: "%{name} stworzył(a) regułę dla IP %{target}"
         update_status_html: "%{name} zaktualizował(a) wpis użytkownika %{target}"
         update_user_role_html: "%{name} zmienił rolę %{target}"
@@ -443,6 +445,7 @@ pl:
         resolve: Rozwiąż domenę
         title: Nowa blokada domeny e-mail
       no_email_domain_block_selected: Żadne blokady domeny e-mail nie zostały zmienione, ponieważ żadne z nich nie zostały wybrane
+      not_permitted: Brak uprawnień
       resolved_dns_records_hint_html: Nazwa domeny rozwiązuje się do następujących domen MX, które są ostatecznie odpowiedzialne za przyjmowanie wiadomości e-mail. Blokowanie domeny MX spowoduje zablokowanie rejestracji z dowolnego adresu e-mail, który używa tej samej domeny MX, nawet jeśli widoczna nazwa domeny jest inna. <strong>Uważaj, aby nie blokować głównych dostawców poczty elektronicznej.</strong>
       resolved_through_html: Rozwiązano przez %{domain}
       title: Blokowanie domen e-mail
@@ -457,6 +460,7 @@ pl:
         private_comment_description_html: 'Żebyś wiedział(a) skąd pochodzą zaimportowane bloki, zostaną one utworzone z następującym prywatnym komentarzem: <q>%{comment}</q>'
         private_comment_template: Zaimportowano z %{source} dnia %{date}
         title: Importuj zablokowane domeny
+      invalid_domain_block: 'Jeden lub więcej blokujących domen zostało pominiętych z powodu następującego błędu(ów): %{error}'
       new:
         title: Importuj zablokowane domeny
       no_file: Nie wybrano pliku
@@ -492,6 +496,7 @@ pl:
       content_policies:
         comment: Wewnętrzna notatka
         description_html: Możesz zdefiniować zasady treści, które zostaną zastosowane do wszystkich kont z tej domeny i jej subdomen.
+        limited_federation_mode_description_html: Możesz wybrać, czy zezwolić na federację z tą domeną.
         policies:
           reject_media: Odrzucaj media
           reject_reports: Odrzucaj zgłoszenia
@@ -599,19 +604,23 @@ pl:
         mark_as_sensitive_description_html: Media w zgłaszanych postach zostaną oznaczone jako wrażliwe, a ostrzeżenie zostanie nagrane, aby pomóc w eskalacji przyszłych przewinień na tym samym koncie.
         other_description_html: Zobacz więcej opcji do kontrolowania zachowania konta i dostosuj komunikację do zgłoszonego konta.
         resolve_description_html: Nie zostaną podjęte żadne działania przeciwko zgłoszonemu sprawozdaniu, zdarzenie nie zostanie zarejestrowane, a zgłoszenie zostanie zamknięte.
-        silence_description_html: Profil będzie widoczny tylko dla tych, którzy go już obserwują lub szukaj ręcznie, poważnie ograniczając jego zasięg. Może być zawsze cofnięty.
-        suspend_description_html: Profil i cała jego zawartość staną się niedostępne, dopóki nie zostaną ostatecznie usunięte. Interakcja z kontem będzie niemożliwa. Odwracalne w ciągu 30 dni.
+        silence_description_html: Konto będzie widoczne tylko dla tych, którzy go już obserwują lub przeglądają ręcznie, poważnie ograniczając jego zasięg. Zawsze można cofnąć. Zamyka wszelkie zgłoszenia dotyczące tego konta.
+        suspend_description_html: Konto i cała jego zawartość będą niedostępne i ostatecznie usunięte, a interakcja z nim będzie niemożliwa. Możliwość odwrócenia w ciągu 30 dni. Zamyka wszelkie zgłoszenia dotyczące tego konta.
       actions_description_html: Zdecyduj, jakie działania należy podjąć, aby rozstrzygnąć niniejsze zgłoszenie. Jeśli podejmiesz działania karne przeciwko zgłoszonemu kontowi, zostanie do nich wysłane powiadomienie e-mail, chyba że wybrano kategorię <strong>Spam</strong>.
+      actions_description_remote_html: Zdecyduj, jakie działanie należy podjąć, aby rozwiązać to zgłoszenie. Będzie to miało wpływ jedynie na sposób, w jaki <strong>Twój</strong> serwer komunikuje się z tym kontem zdalnym i obsługuje jego zawartość.
       add_to_report: Dodaj więcej do raportu
       are_you_sure: Czy na pewno?
       assign_to_self: Przypisz do siebie
       assigned: Przypisany moderator
       by_target_domain: Domena zgłaszanego konta
+      cancel: Anuluj
       category: Kategoria
       category_description_html: Powód, dla którego to konto i/lub zawartość zostały zgłoszone, będzie cytowany w komunikacji ze zgłoszonym kontem
       comment:
         none: Brak
       comment_description_html: 'Aby dostarczyć więcej informacji, %{name} napisał:'
+      confirm: Potwierdź
+      confirm_action: Potwierdzenie działań moderacyjnych wobec @%{acct}
       created_at: Zgłoszono
       delete_and_resolve: Usuń posty
       forwarded: Przekazano
@@ -628,6 +637,7 @@ pl:
         placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
         title: Notatki
       notes_description_html: Przeglądaj i zostaw notatki innym moderatorom i sobie samemu
+      processed_msg: 'Raport #%{id} został pomyślnie przetworzony'
       quick_actions_description_html: 'Wykonaj szybkie działanie lub przewiń w dół, aby zobaczyć zgłoszoną zawartość:'
       remote_user_placeholder: zdalny użytkownik z %{instance}
       reopen: Otwórz ponownie
@@ -640,9 +650,28 @@ pl:
       status: Stan
       statuses: Zgłoszona treść
       statuses_description_html: Obraźliwe treści będą cytowane w komunikacji ze zgłoszonym kontem
+      summary:
+        action_preambles:
+          delete_html: 'Zamierzasz <strong>usunąć</strong> niektóre posty <strong>@%{acct}</strong>. To spowoduje:'
+          mark_as_sensitive_html: 'Zamierzasz <strong>oznaczyć</strong> niektóre posty <strong>@%{acct}</strong> jako <strong>wrażliwe</strong>. To spowoduje:'
+          silence_html: 'Zamierzasz <strong>ograniczyć</strong> konto <strong>@%{acct}</strong>. To spowoduje:'
+          suspend_html: 'Zamierzasz <strong>zawiesić</strong> konto <strong>@%{acct}</strong>. To spowoduje:'
+        actions:
+          delete_html: Usuń obrażające posty
+          mark_as_sensitive_html: Oznacz obraźliwe media postów jako wrażliwe
+          silence_html: Znacząco ogranicz zasięg <strong>@%{acct}</strong>, aby ich profil i zawartość były widoczne tylko dla osób, które je już obserwują lub ręcznie wyszukują jego profil
+          suspend_html: Zawieś <strong>@%{acct}</strong>, co sprawia, że ich profil i zawartość są niedostępne i niemożliwe do interakcji z
+        close_report: 'Oznacz raport #%{id} jako rozwiązany'
+        close_reports_html: Oznacz <strong>wszystkie</strong> zgłoszenia dotyczące <strong>@%{acct}</strong> jako rozwiązane
+        delete_data_html: Usuń profil i zawartość <strong>@%{acct}</strong> za 30 dni, chyba że w tym czasie zostanie zawieszony
+        preview_preamble_html: "<strong>@%{acct}</strong> otrzyma ostrzeżenie o następującej treści:"
+        record_strike_html: Zarejestruj ostrzeżenie przeciwko <strong>@%{acct}</strong>, aby ułatwić sobie eskalację w przypadku przyszłych naruszeń z tego konta
+        send_email_html: Wyślij do <strong>@%{acct}</strong> wiadomość e-mail z ostrzeżeniem
+        warning_placeholder: Opcjonalne dodatkowe uzasadnienie działania moderacyjnego.
       target_origin: Pochodzenie zgłaszanego konta
       title: Zgłoszenia
       unassign: Cofnij przypisanie
+      unknown_action_msg: 'Nieznane działanie: %{action}'
       unresolved: Nierozwiązane
       updated_at: Zaktualizowano
       view_profile: Wyświetl profil
@@ -741,6 +770,8 @@ pl:
         preamble: Prezentowanie interesujących treści ma kluczowe znaczenie dla nowych użytkowników, którzy mogą nie znać nikogo z Mastodona. Kontroluj, jak różne funkcje odkrywania działają na Twoim serwerze.
         profile_directory: Katalog profilów
         public_timelines: Publiczne osie czasu
+        publish_discovered_servers: Opublikuj znane serwery
+        publish_statistics: Publikuj statystyki
         title: Odkrywanie
         trends: Trendy
       domain_blocks:
@@ -795,6 +826,7 @@ pl:
         suspend: "%{name} zawiesił(-a) konto %{target}"
       appeal_approved: Odwołanie
       appeal_pending: Odwołanie w toku
+      appeal_rejected: Odwołanie odrzucone
     system_checks:
       database_schema_check:
         message_html: Istnieją oczekujące migracje bazy danych. Uruchom je, aby upewnić się, że aplikacja działa tak, jak powinna
@@ -832,6 +864,7 @@ pl:
           other: Udostępnione przez %{count} osoby w ciągu ostatniego tygodnia
         title: Popularne linki
         usage_comparison: Udostępnione %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
+      not_allowed_to_trend: Wyłączona widoczność w popularnych
       only_allowed: Tylko dozwolone
       pending_review: Oczekuje na przegląd
       preview_card_providers:
@@ -969,6 +1002,7 @@ pl:
   applications:
     created: Pomyślnie utworzono aplikację
     destroyed: Pomyślnie usunięto aplikację
+    logout: Wyloguj się
     regenerate_token: Wygeneruj nowy token dostępu
     token_regenerated: Pomyślnie wygenerowano nowy token dostępu
     warning: Przechowuj te dane ostrożnie. Nie udostępniaj ich nikomu!
@@ -976,6 +1010,8 @@ pl:
   auth:
     apply_for_account: Poproś o założenie konta
     change_password: Hasło
+    confirmations:
+      wrong_email_hint: Jeśli ten adres e-mail nie jest poprawny, możesz go zmienić w ustawieniach konta.
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
     description:
@@ -1003,6 +1039,8 @@ pl:
     resend_confirmation: Ponownie prześlij instrukcje weryfikacji
     reset_password: Zresetuj hasło
     rules:
+      accept: Zaakceptuj
+      back: Wróć
       preamble: Są one ustawione i wymuszone przez moderatorów %{domain}.
       title: Kilka podstawowych zasad.
     security: Bezpieczeństwo
@@ -1150,7 +1188,7 @@ pl:
   featured_tags:
     add_new: Dodaj nowy
     errors:
-      limit: Już przekroczyłeś(-aś) maksymalną liczbę wyróżnionych hashtagów
+      limit: Przekroczono maksymalną liczbę hasztagów
     hint_html: "<strong>Czym są wyróżnione hashtagi?</strong> Są one na stałe wyświetlane na Twoim profilu i pozwalają innym na przeglądanie Twoich wpisów używających tych hashtagów. Są doskonałym narzędziem do śledzenia kreatywnej twórczości czy długoterminowych projektów."
   filters:
     contexts:
@@ -1200,8 +1238,6 @@ pl:
       index:
         hint: Ten filtr ma zastosowanie do wybierania poszczególnych wpisów niezależnie od pozostałych kryteriów. Możesz dodać więcej wpisów do tego filtra z interfejsu internetowego.
         title: Filtrowane posty
-  footer:
-    trending_now: Obecnie na czasie
   generic:
     all: Wszystkie
     all_items_on_page_selected_html:
@@ -1232,8 +1268,6 @@ pl:
       many: Coś jest wciąż nie tak! Przejrzyj %{count} poniższych błędów
       one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
       other: Coś jest wciąż nie tak! Przejrzyj poniższe błędy (%{count})
-  html_validator:
-    invalid_markup: 'zawiera nieprawidłową składnię HTML: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Nieprawidłowy plik CSV. Błąd: %{error}'
@@ -1278,7 +1312,7 @@ pl:
     title: Zaproś użytkowników
   lists:
     errors:
-      limit: Przekroczyłeś maksymalną liczbę utworzonych list
+      limit: Przekroczono maksymalną liczbę utworzonych list
   login_activities:
     authentication_methods:
       otp: aplikacja weryfikacji dwuetapowej
@@ -1355,8 +1389,8 @@ pl:
       title: Nowa prośba o możliwość obsewowania
     mention:
       action: Odpowiedz
-      body: "%{name} wspomniał(a) o Tobie w:"
-      subject: "%{name} wspomniał(a) o Tobie"
+      body: 'Wspomniano o tobie przez %{name} w:'
+      subject: Wspomniano o tobie przez %{name}
       title: Nowe wspomnienie o Tobie
     poll:
       subject: Ankieta %{name} zakończyła się
@@ -1365,7 +1399,7 @@ pl:
       subject: Twój wpis został podbity przez %{name}
       title: Nowe podbicie
     status:
-      subject: "%{name} właśnie opublikował(a) wpis"
+      subject: Właśnie opublikowano wpis %{name}
     update:
       subject: "%{name} edytował/a wpis"
   notifications:
@@ -1419,6 +1453,9 @@ pl:
       unrecognized_emoji: nie jest znanym emoji
   relationships:
     activity: Aktywność konta
+    confirm_follow_selected_followers: Czy na pewno chcesz obserwować wybranych obserwujących?
+    confirm_remove_selected_followers: Czy na pewno chcesz usunąć wybranych obserwujących?
+    confirm_remove_selected_follows: Czy na pewno chcesz usunąć zaznaczone obserwacje?
     dormant: Uśpione
     follow_selected_followers: Zacznij obserwować wybranych obserwujących
     followers: Obserwujący

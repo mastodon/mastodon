@@ -90,9 +90,7 @@ module Admin
     end
 
     def action_from_button
-      if params[:save]
-        'save'
-      end
+      'save' if params[:save]
     end
   end
 end

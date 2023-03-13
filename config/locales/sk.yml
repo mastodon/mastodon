@@ -21,8 +21,8 @@ sk:
     pin_errors:
       following: Musíš už následovať toho človeka, ktorého si praješ zviditeľniť
     posts:
-      few: Príspevkov
-      many: Príspevky
+      few: Príspevky
+      many: Príspevkov
       one: Príspevok
       other: Príspevkov
     posts_tab_heading: Príspevky
@@ -95,6 +95,7 @@ sk:
       moderation:
         active: Aktívny/a
         all: Všetko
+        disabled: Blokovaný
         pending: Čakajúci
         silenced: Obmedzený
         suspended: Vylúčený/á
@@ -117,6 +118,7 @@ sk:
       redownloaded_msg: Úspešne obnovený profil %{username} z pôvodného
       reject: Zamietni
       rejected_msg: Úspešne zamietnutá prihláška %{username}
+      remote_suspension_irreversible: Údaje tohto účtu boli nenávratne zmazané.
       remove_avatar: Vymaž avatar
       remove_header: Vymaž záhlavie
       removed_avatar_msg: Úspešne odstránený obrázok avatara %{username}
@@ -132,6 +134,7 @@ sk:
       search: Hľadaj
       search_same_email_domain: Iní užívatelia s tou istou emailovou doménou
       search_same_ip: Ostatní užívatelia s rovnakou IP adresou
+      security: Zabezpečenie
       security_measures:
         only_password: Iba heslo
         password_and_2fa: Heslo a dvoj-faktorové overovanie
@@ -166,6 +169,7 @@ sk:
       whitelisted: Na bielej listine
     action_logs:
       action_types:
+        approve_appeal: Schváľ námietku
         approve_user: Odobri užívateľa
         assigned_to_self_report: Priraď hlásenie
         change_email_user: Zmeň email pre užívateľa
@@ -180,6 +184,7 @@ sk:
         create_user_role: Vytvoriť rolu
         demote_user: Zniž užívateľskú rolu
         destroy_announcement: Vymaž oboznámenie
+        destroy_canonical_email_block: Zruš blokovanie emailu
         destroy_custom_emoji: Vymaž vlastné emotikony
         destroy_domain_allow: Zmaž povolenie pre doménu
         destroy_domain_block: Zruš blokovanie domény
@@ -194,9 +199,11 @@ sk:
         enable_custom_emoji: Povoľ vlastné emotikony
         enable_user: Povoľ užívateľa
         promote_user: Povýš užívateľskú rolu
+        reject_appeal: Zamietni námietku
         reject_user: Zamietni užívateľa
         remove_avatar_user: Vymaž avatar
         reopen_report: Znovu otvor hlásenie
+        resend_user: Preposlať overovací email
         reset_password_user: Obnov heslo
         resolve_report: Vyrieš nahlásený problém
         sensitive_account: Vynúť všetky médiá na účte ako chúlostivé
@@ -216,6 +223,15 @@ sk:
         change_email_user_html: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
         confirm_user_html: "%{name} potvrdil/a emailovú adresu používateľa %{target}"
         create_account_warning_html: "%{name} poslal/a upozornenie užívateľovi %{target}"
+        demote_user_html: "%{name} degradoval/a užívateľa %{target}"
+        destroy_canonical_email_block_html: "%{name} odblokoval/i email z hašom %{target}"
+        destroy_domain_allow_html: "%{name} zakázal/a federáciu s doménou %{target}"
+        destroy_domain_block_html: "%{name} odblokoval/i doménu %{target}"
+        destroy_ip_block_html: "%{name} vymazal/a pravidlo pre IP %{target}"
+        destroy_status_html: "%{name} zmazal/a príspevok od %{target}"
+        reject_appeal_html: "%{name} zamietol/la námietku moderovacieho rozhodnutia od %{target}"
+      deleted_account: zmazaný účet
+      empty: Žiadne záznamy nenájdené.
       filter_by_action: Filtruj podľa úkonu
       filter_by_user: Trieď podľa užívateľa
       title: Kontrólny záznam
@@ -251,10 +267,12 @@ sk:
       enable: Povoľ
       enabled: Povolené
       enabled_msg: Emoji bolo úspešne povolené
+      image_hint: PNG, alebo GIF do %{size}
       list: Zoznam
       listed: V zozname
       new:
         title: Pridaj nové, vlastné emoji
+      not_permitted: Nemáš povolenie na vykonanie tohto kroku
       overwrite: Prepíš
       shortcode: Skratka
       shortcode_hint: Aspoň 2 znaky, povolené sú alfanumerické, alebo podčiarkovník
@@ -267,20 +285,28 @@ sk:
       upload: Nahraj
     dashboard:
       active_users: aktívni užívatelia
+      interactions: interakcií
       media_storage: Úložisko médií
       new_users: noví užívatelia
       opened_reports: otvorené hlásenia
       resolved_reports: vyriešené hlásenia
       software: Softvér
+      sources: Zdroje registrácií
       space: Využitie miesta
       title: Spravovacie rozhranie
       top_languages: Hlavne aktívne jazyky
       top_servers: Hlavne aktívne servery
       website: Webová stránka
+    disputes:
+      appeals:
+        empty: Žiadne námietky nenájdené.
+        title: Námietky
     domain_allows:
       add_new: Povolená doména
       created_msg: Doména bola úspešne povolená
       destroyed_msg: Doména bola odstránená zo zoznamu povolených
+      export: Exportuj
+      import: Nahraj
       undo: Odober zo zoznamu povolených
     domain_blocks:
       add_new: Blokuj novú doménu
@@ -289,11 +315,14 @@ sk:
       domain: Doména
       edit: Uprav blokovanie domény
       existing_domain_block_html: Pre účet %{name} si už nahodil/a přísnejšie obmedzenie, najskôr ho teda musíš <a href="%{unblock_url}">odblokovať</a>.
+      export: Exportuj
+      import: Nahraj
       new:
         create: Vytvor blokovanie domény
         hint: Blokovanie domény stále dovolí vytvárať nové účty v databázi, ale tieto budú spätne automaticky moderované.
         severity:
           noop: Nič
+          silence: Obmedz
           suspend: Vylúč
         title: Nové blokovanie domény
       obfuscate: Zatemniť názov domény
@@ -310,13 +339,28 @@ sk:
       add_new: Pridaj nový
       created_msg: Emailová doména bola úspešne pridaná do zoznamu zakázaných
       delete: Vymaž
+      dns:
+        types:
+          mx: MX záznam
       domain: Doména
       new:
         create: Pridaj doménu
         resolve: Preveď doménu
         title: Nový email na zablokovanie
+      not_permitted: Nepovolená
       resolved_through_html: Prevedená cez %{domain}
       title: Blokované emailové adresy
+    export_domain_allows:
+      new:
+        title: Nahraj povolené domény
+      no_file: Nevybraný žiaden súbor
+    export_domain_blocks:
+      import:
+        existing_relationships_warning: Existujúce vzťahy nasledovania
+        title: Nahraj zákazy domén
+      new:
+        title: Nahraj zákazy domén
+      no_file: Nevybraný žiaden súbor
     follow_recommendations:
       description_html: "<strong>Odporúčania na sledovanie pomáhaju novým užívateľom rýchlo nájsť zaujímavý obsah</strong>. Ak užívateľ zatiaľ nedostatočne interagoval s ostatnými aby si vyformoval personalizované odporúčania na sledovanie, tak mu budú odporúčané tieto účty. Sú prepočítavané na dennej báze z mixu účtov s nedávnym najvyšším záujmom a najvyšším počtom lokálnych sledujúcich pre daný jazyk."
       language: Pre jazyk
@@ -327,6 +371,7 @@ sk:
       unsuppress: Obnoviť odporúčanie na sledovanie
     instances:
       availability:
+        no_failures_recorded: Žiadne zlyhania nezaznamenané.
         title: Dostupnosť
       back_to_all: Všetko
       back_to_limited: Obmedzené
@@ -336,14 +381,20 @@ sk:
         comment: Interná poznámka
         policies:
           reject_media: Zamietni médiá
+          reject_reports: Zamietni hlásenia
+          silence: Obmedzená
           suspend: Vylúč
         policy: Zásady
         reason: Verejné odôvodnenie
         title: Zásady o obsahu
       dashboard:
         instance_accounts_dimension: Najsledovanejšie účty
+        instance_accounts_measure: uložené účty
+        instance_follows_measure: ich sledovatelia tu
+        instance_statuses_measure: uložené príspevky
       delivery:
         all: Všetko
+        failing: Zlyhávajúce
         unavailable: Nedostupné
       delivery_available: Je v dosahu doručovania
       moderation:
@@ -404,13 +455,18 @@ sk:
       destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
     reports:
       action_taken_by: Zákrok vykonal/a
+      actions:
+        suspend_description_html: Tento účet a všetok jeho obsah bude nedostupný a nakoniec zmazaný, interaktovať s ním bude nemožné. Zvrátiteľné v rámci 30 dní. Uzatvára všetky hlásenia voči tomuto účtu.
+      add_to_report: Pridaj viac do hlásenia
       are_you_sure: Si si istý/á?
       assign_to_self: Priraď sebe
       assigned: Priradený moderátor
       by_target_domain: Doména nahláseného účtu
+      cancel: Zruš
       category: Kategória
       comment:
         none: Žiadne
+      confirm: Potvrď
       created_at: Nahlásené
       delete_and_resolve: Vymaž príspevky
       forwarded: Preposlané
@@ -426,6 +482,7 @@ sk:
         delete: Vymaž
         placeholder: Opíš aké opatrenia boli urobené, alebo akékoľvek iné súvisiace aktualizácie…
         title: Poznámky
+      remote_user_placeholder: vzdialený užívateľ z %{instance}
       reopen: Znovu otvor report
       report: 'Nahlásiť #%{id}'
       reported_account: Nahlásený účet
@@ -434,6 +491,11 @@ sk:
       resolved_msg: Hlásenie úspešne vyriešené!
       status: Stav
       statuses: Nahlásený obsah
+      summary:
+        actions:
+          delete_html: Vymaž pohoršujúce príspevky
+          mark_as_sensitive_html: Označ médiá pohoršujúcich príspevkov za chúlostivé
+        close_report: 'Označ hlásenie #%{id} za vyriešené'
       title: Hlásenia
       unassign: Odober
       unresolved: Nevyriešené
@@ -449,36 +511,77 @@ sk:
       categories:
         administration: Spravovanie
         invites: Pozvánky
+        moderation: Moderácia
+      delete: Vymaž
       edit: Uprav postavenie %{name}
+      everyone: Východzie oprávnenia
       privileges:
         administrator: Správca
+        delete_user_data: Vymaž užívateľské dáta
         invite_users: Pozvi užívateľov
+        manage_announcements: Spravuj oboznámenia
+        manage_appeals: Spravuj námietky
+        manage_blocks: Spravuj blokovania
+        manage_federation: Spravuj federáciu
+        manage_reports: Spravuj hlásenia
         manage_roles: Spravuj postavenia
+        manage_rules: Spravuj pravidlá
+        manage_settings: Spravuj nastavenia
+        manage_users: Spravuj užívateľov
       title: Postavenia
     rules:
+      add_new: Pridaj pravidlo
+      delete: Vymaž
+      edit: Uprav pravidlo
       empty: Žiadne pravidlá servera ešte neboli určené.
       title: Serverové pravidlá
     settings:
+      appearance:
+        title: Vzhľad
+      discovery:
+        public_timelines: Verejné časové osi
+        publish_discovered_servers: Zverejni objavené servery
+        publish_statistics: Zverejni štatistiky
+        title: Objavovanie
+        trends: Trendy
       domain_blocks:
         all: Všetkým
         disabled: Nikomu
         users: Prihláseným, miestnym užívateľom
+      registrations:
+        title: Registrácie
       registrations_mode:
         modes:
           approved: Pre registráciu je nutné povolenie
           none: Nikto sa nemôže registrovať
           open: Ktokoľvek sa môže zaregistrovať
+      title: Nastavenia servera
     site_uploads:
       delete: Vymaž nahratý súbor
       destroyed_msg: Nahratie bolo zo stránky úspešne vymazané!
     statuses:
+      account: Autor
+      application: Aplikácia
       back_to_account: Späť na účet
+      batch:
+        report: Hlásenie
       deleted: Vymazané
+      favourites: Obľúbené
+      history: História verzií
+      in_reply_to: Odpoveď na
+      language: Jazyk
       media:
         title: Médiá
       no_status_selected: Žiadne príspevky neboli zmenené, keďže si žiadne nemal/a zvolené
+      open: Otvor príspevok
+      original_status: Pôvodný príspevok
+      status_changed: Príspevok bol zmenený
       title: Príspevky na účte
+      trending: Populárne
+      visibility: Viditeľnosť
       with_media: S médiami
+    strikes:
+      appeal_approved: Namietnuté
     system_checks:
       rules_check:
         action: Spravuj serverové pravidlá
@@ -497,19 +600,31 @@ sk:
         disallow: Zakáž odkaz
         disallow_provider: Zákaž zverejňovateľa
         title: Populárne odkazy
+      only_allowed: Iba povolené
+      pending_review: Čaká na posúdenie
       preview_card_providers:
         title: Zverejňovatelia
       rejected: Odmietnuté
+      statuses:
+        disallow: Zakáž príspevok
+        disallow_account: Zakáž autora
+        title: Populárne príspevky
       tags:
         title: Populárne štítky
         trending_rank: 'Populárne #%{rank}'
         usable: Môže byť použitý
       title: Trendy
+      trending: Populárne
     warning_presets:
       add_new: Pridaj nové
       delete: Vymaž
       edit_preset: Uprav varovnú predlohu
       title: Spravuj varovné predlohy
+    webhooks:
+      delete: Zmazať
+      disable: Vypni
+      disabled: Vypnuté
+      enable: Povoľ
   admin_mailer:
     new_pending_account:
       body: Podrobnosti o novom účte sú uvedené nižšie. Môžeš túto registračnú požiadavku buď prijať, alebo zamietnúť.
@@ -518,6 +633,11 @@ sk:
       body: "%{reporter} nahlásil/a %{target}"
       body_remote: Niekto z %{domain} nahlásil/a %{target}
       subject: Nové hlásenie pre %{instance} (#%{id})
+    new_trends:
+      new_trending_links:
+        title: Populárne odkazy
+      new_trending_statuses:
+        title: Populárne príspevky
   aliases:
     add_new: Vytvor alias
     created_msg: Nový alias úspešne vytvorený. Teraz môžeš začať presun zo starého účtu.
@@ -543,6 +663,7 @@ sk:
   applications:
     created: Aplikácia bola vytvorená úspešne
     destroyed: Aplikáciu sa podarilo odstrániť
+    logout: Odhlás sa
     regenerate_token: Znovu vygeneruj prístupový token
     token_regenerated: Prístupový token bol úspešne vygenerovaný znova
     warning: Na tieto údaje dávaj ohromný pozor. Nikdy ich s nikým nezďieľaj!
@@ -554,7 +675,7 @@ sk:
     description:
       prefix_invited_by_user: "@%{name} ťa pozýva na tento Mastodon server!"
       prefix_sign_up: Zaregistruj sa na Mastodone už dnes!
-      suffix: S pomocou účtu budeš môcť následovať ľudí, posielať príspevky, a vymienať si správy s užívateľmi na hociakom Mastodon serveri, ale aj na iných serveroch!
+      suffix: S pomocou účtu budeš môcť nasledovať ľudí, posielať príspevky, a vymieňať si správy s užívateľmi na hocijakom Mastodon serveri, ale aj na iných serveroch!
     didnt_get_confirmation: Neobdržal/a si kroky na potvrdenie?
     forgot_password: Zabudnuté heslo?
     invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítaj si nový.
@@ -568,6 +689,8 @@ sk:
     registration_closed: "%{instance} neprijíma nových členov"
     resend_confirmation: Zašli potvrdzujúce pokyny znovu
     reset_password: Obnov heslo
+    rules:
+      back: Späť
     security: Zabezpečenie
     set_new_password: Nastav nové heslo
     setup:
@@ -584,7 +707,7 @@ sk:
     already_following: Tento účet už nasleduješ
     error: Naneštastie nastala chyba pri hľadaní vzdialeného účtu
     follow: Nasleduj
-    follow_request: 'Poslal/a si žiadosť následovať užívateľa:'
+    follow_request: 'Poslal/a si žiadosť nasledovať užívateľa:'
     following: 'Podarilo sa! Teraz nasleduješ užívateľa:'
     post_follow:
       close: Alebo môžeš iba zatvoriť toto okno.
@@ -627,6 +750,15 @@ sk:
       more_details_html: Pre viac podrobností, pozri <a href="%{terms_path}">zásady súkromia</a>.
       username_available: Tvoje užívateľské meno bude znova dostupné
       username_unavailable: Tvoja prezývka ostane neprístupná
+  disputes:
+    strikes:
+      appeal: Namietni
+      appeals:
+        submit: Pošli námietku
+      approve_appeal: Schváľ námietku
+      title_actions:
+        none: Varovanie
+        silence: Obmedzenie účtu
   domain_validator:
     invalid_domain: nieje správny tvar domény
   errors:
@@ -664,7 +796,7 @@ sk:
   featured_tags:
     add_new: Pridaj nový
     errors:
-      limit: Už si si predvolil/a najvyšší možný počet obľúbených haštagov
+      limit: Už si si predvolil/a najvyšší možný počet haštagov
   filters:
     contexts:
       account: Profily
@@ -682,8 +814,6 @@ sk:
       title: Triedenia
     new:
       title: Pridaj nové triedenie
-  footer:
-    trending_now: Teraz populárne
   generic:
     all: Všetko
     changes_saved_msg: Zmeny boli úspešne uložené!
@@ -696,8 +826,6 @@ sk:
       many: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chýb uvedených nižšie
       one: Niečo ešte nieje celkom v poriadku! Prosím skontroluj chybu uvedenú nižšie
       other: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chyby uvedené nižšie
-  html_validator:
-    invalid_markup: 'obsahuje neplatný HTML kód: %{error}'
   imports:
     errors:
       over_rows_processing_limit: obsahuje viac než %{count} riadkov
@@ -741,7 +869,7 @@ sk:
     title: Pozvi ľudí
   lists:
     errors:
-      limit: Dosiahli ste maximálny možný počet zoznamov
+      limit: Dosiahli ste maximálny počet zoznamov
   login_activities:
     authentication_methods:
       password: heslom
@@ -815,10 +943,14 @@ sk:
       title: Novo vyzdvyhnuté
     status:
       subject: "%{name} práve prispel/a"
+    update:
+      subject: "%{name} upravil/a príspevok"
   notifications:
     email_events: Udalosti oznamované emailom
     email_events_hint: 'Vyber si udalosti, pre ktoré chceš dostávať oboznámenia:'
     other_settings: Ostatné oboznamovacie nastavenia
+  otp_authentication:
+    enable: Povoľ
   pagination:
     newer: Novšie
     next: Ďalšie
@@ -845,6 +977,9 @@ sk:
       unrecognized_emoji: je neznámy smajlík
   relationships:
     activity: Aktivita účtu
+    confirm_follow_selected_followers: Si si istý/á, že chceš nasledovať vybraných sledujúcich?
+    confirm_remove_selected_followers: Si si istý/á, že chceš odstrániť vybraných sledovateľov?
+    confirm_remove_selected_follows: Si si istý/á, že chceš odstrániť vybraných sledovaných?
     dormant: Spiace
     follow_selected_followers: Následuj označených sledovatelov
     followers: Následovatelia
@@ -927,7 +1062,7 @@ sk:
       one: 'obsahoval nepovolený haštag: %{tags}'
       other: 'obsahoval nepovolené haštagy: %{tags}'
     errors:
-      in_reply_not_found: Príspevok, na ktorý sa snažíš odpovedať, už pravdepodobne neexistuje.
+      in_reply_not_found: Príspevok, na ktorý sa snažíš odpovedať, pravdepodobne neexistuje.
     open_in_web: Otvor v okne na webe
     over_character_limit: limit %{max} znakov bol presiahnutý
     pin_errors:
@@ -984,6 +1119,8 @@ sk:
     recovery_codes_regenerated: Zálohové kódy boli úspešne zvova vygenerované
     recovery_instructions_html: Keď hocikedy stratíš prístup k svojmu telefónu, môžeš použiť jeden z prístupových kódov nižšie pre obnovenie prístupu k svojmu účtu. <strong>Skladuj tieto prístupové kódy na bezpečnom mieste</strong>. Napríklad ich môžeš vytlačiť a uložiť ich spolu s inými dôležitými dokumentami.
   user_mailer:
+    appeal_approved:
+      action: Choď na svoj účet
     backup_ready:
       explanation: Vyžiadal/a si si úplnú zálohu svojho Mastodon účtu. Táto záloha je teraz pripravená na stiahnutie!
       subject: Tvoj archív je pripravený na stiahnutie

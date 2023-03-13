@@ -91,6 +91,7 @@ en:
       moderation:
         active: Active
         all: All
+        disabled: Disabled
         pending: Pending
         silenced: Limited
         suspended: Suspended
@@ -133,6 +134,7 @@ en:
       search: Search
       search_same_email_domain: Other users with the same e-mail domain
       search_same_ip: Other users with the same IP
+      security: Security
       security_measures:
         only_password: Only password
         password_and_2fa: Password and 2FA
@@ -427,6 +429,7 @@ en:
         resolve: Resolve domain
         title: Block new e-mail domain
       no_email_domain_block_selected: No e-mail domain blocks were changed as none were selected
+      not_permitted: Not permitted
       resolved_dns_records_hint_html: The domain name resolves to the following MX domains, which are ultimately responsible for accepting e-mail. Blocking an MX domain will block sign-ups from any e-mail address which uses the same MX domain, even if the visible domain name is different. <strong>Be careful not to block major e-mail providers.</strong>
       resolved_through_html: Resolved through %{domain}
       title: Blocked e-mail domains
@@ -441,6 +444,7 @@ en:
         private_comment_description_html: 'To help you track where imported blocks come from, imported blocks will be created with the following private comment: <q>%{comment}</q>'
         private_comment_template: Imported from %{source} on %{date}
         title: Import domain blocks
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
       new:
         title: Import domain blocks
       no_file: No file selected
@@ -472,6 +476,7 @@ en:
       content_policies:
         comment: Internal note
         description_html: You can define content policies that will be applied to all accounts from this domain and any of its subdomains.
+        limited_federation_mode_description_html: You can chose whether to allow federation with this domain.
         policies:
           reject_media: Reject media
           reject_reports: Reject reports
@@ -575,19 +580,23 @@ en:
         mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future infractions by the same account.
         other_description_html: See more options for controlling the account's behaviour and customize communication to the reported account.
         resolve_description_html: No action will be taken against the reported account, no strike recorded, and the report will be closed.
-        silence_description_html: The profile will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted.
-        suspend_description_html: The profile and all its contents will become inaccessible until it is eventually deleted. Interacting with the account will be impossible. Reversible within 30 days.
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
       actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an e-mail notification will be sent to them, except when the <strong>Spam</strong> category is selected.
+      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       add_to_report: Add more to report
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
       assigned: Assigned moderator
       by_target_domain: Domain of reported account
+      cancel: Cancel
       category: Category
       category_description_html: The reason this account and/or content was reported will be cited in communication with the reported account
       comment:
         none: None
       comment_description_html: 'To provide more information, %{name} wrote:'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
       created_at: Reported
       delete_and_resolve: Delete posts
       forwarded: Forwarded
@@ -604,6 +613,7 @@ en:
         placeholder: Describe what actions have been taken, or any other related updates...
         title: Notes
       notes_description_html: View and leave notes to other moderators and your future self
+      processed_msg: 'Report #%{id} successfully processed'
       quick_actions_description_html: 'Take a quick action or scroll down to see reported content:'
       remote_user_placeholder: the remote user from %{instance}
       reopen: Reopen report
@@ -616,9 +626,28 @@ en:
       status: Status
       statuses: Reported content
       statuses_description_html: Offending content will be cited in communication with the reported account
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: Origin of reported account
       title: Reports
       unassign: Unassign
+      unknown_action_msg: 'Unknown action: %{action}'
       unresolved: Unresolved
       updated_at: Updated
       view_profile: View profile
@@ -713,6 +742,8 @@ en:
         preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
         profile_directory: Profile directory
         public_timelines: Public timelines
+        publish_discovered_servers: Publish discovered servers
+        publish_statistics: Publish statistics
         title: Discovery
         trends: Trends
       domain_blocks:
@@ -767,6 +798,7 @@ en:
         suspend: "%{name} suspended %{target}'s account"
       appeal_approved: Appealed
       appeal_pending: Appeal pending
+      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
@@ -802,6 +834,7 @@ en:
           other: Shared by %{count} people over the last week
         title: Trending links
         usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
+      not_allowed_to_trend: Not allowed to trend
       only_allowed: Only allowed
       pending_review: Pending review
       preview_card_providers:
@@ -933,6 +966,7 @@ en:
   applications:
     created: Application successfully created
     destroyed: Application successfully deleted
+    logout: Logout
     regenerate_token: Regenerate access token
     token_regenerated: Access token successfully regenerated
     warning: Be very careful with this data. Never share it with anyone!
@@ -940,6 +974,8 @@ en:
   auth:
     apply_for_account: Request an account
     change_password: Password
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
     description:
@@ -967,6 +1003,8 @@ en:
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
     rules:
+      accept: Accept
+      back: Back
       preamble: These are set and enforced by the %{domain} moderators.
       title: Some ground rules.
     security: Security
@@ -1114,7 +1152,7 @@ en:
   featured_tags:
     add_new: Add new
     errors:
-      limit: You have already featured the maximum amount of hashtags
+      limit: You have already featured the maximum number of hashtags
     hint_html: "<strong>What are featured hashtags?</strong> They are displayed prominently on your public profile and allow people to browse your public posts specifically under those hashtags. They are a great tool for keeping track of creative works or long-term projects."
   filters:
     contexts:
@@ -1158,8 +1196,6 @@ en:
       index:
         hint: This filter applies to select individual posts regardless of other criteria. You can add more posts to this filter from the web interface.
         title: Filtered posts
-  footer:
-    trending_now: Trending now
   generic:
     all: All
     all_items_on_page_selected_html:
@@ -1182,8 +1218,6 @@ en:
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
-  html_validator:
-    invalid_markup: 'contains invalid HTML markup: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
@@ -1226,7 +1260,7 @@ en:
     title: Invite people
   lists:
     errors:
-      limit: You have reached the maximum amount of lists
+      limit: You have reached the maximum number of lists
   login_activities:
     authentication_methods:
       otp: two-factor authentication app
@@ -1368,7 +1402,11 @@ en:
       unrecognized_emoji: is not a recognized emoji
   relationships:
     activity: Account activity
+    confirm_follow_selected_followers: Are you sure you want to follow selected followers?
+    confirm_remove_selected_followers: Are you sure you want to remove selected followers?
+    confirm_remove_selected_follows: Are you sure you want to remove selected follows?
     dormant: Dormant
+    follow_failure: Could not follow some of the selected accounts.
     follow_selected_followers: Follow selected followers
     followers: Followers
     following: Following
@@ -1408,6 +1446,7 @@ en:
       electron: Electron
       firefox: Firefox
       generic: Unknown browser
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1417,6 +1456,7 @@ en:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Unknown Browser
       weibo: Weibo
     current_session: Current session
     description: "%{browser} on %{platform}"
@@ -1429,9 +1469,10 @@ en:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: unknown platform
+      unknown_platform: Unknown Platform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1544,7 +1585,7 @@ en:
       '7889238': 3 months
     min_age_label: Age threshold
     min_favs: Keep posts favourited at least
-    min_favs_hint: Doesn't delete any of your posts that has received at least this amount of favourites. Leave blank to delete posts regardless of their number of favourites
+    min_favs_hint: Doesn't delete any of your posts that has received at least this number of favourites. Leave blank to delete posts regardless of their number of favourites
     min_reblogs: Keep posts boosted at least
     min_reblogs_hint: Doesn't delete any of your posts that has been boosted at least this number of times. Leave blank to delete posts regardless of their number of boosts
   stream_entries:

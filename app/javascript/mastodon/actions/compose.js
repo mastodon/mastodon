@@ -160,6 +160,26 @@ export function submitCompose(routerHistory) {
 
     dispatch(submitComposeRequest());
 
+    // If we're editing a post with media attachments, those have not
+    // necessarily been changed on the server. Do it now in the same
+    // API call.
+    let media_attributes;
+    if (statusId !== null) {
+      media_attributes = media.map(item => {
+        let focus;
+
+        if (item.getIn(['meta', 'focus'])) {
+          focus = `${item.getIn(['meta', 'focus', 'x']).toFixed(2)},${item.getIn(['meta', 'focus', 'y']).toFixed(2)}`;
+        }
+
+        return {
+          id: item.get('id'),
+          description: item.get('description'),
+          focus,
+        };
+      });
+    }
+
     api(getState).request({
       url: statusId === null ? '/api/v1/statuses' : `/api/v1/statuses/${statusId}`,
       method: statusId === null ? 'post' : 'put',
@@ -167,6 +187,7 @@ export function submitCompose(routerHistory) {
         status,
         in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
         media_ids: media.map(item => item.get('id')),
+        media_attributes,
         sensitive: getState().getIn(['compose', 'sensitive']),
         spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
         visibility: getState().getIn(['compose', 'privacy']),
@@ -375,11 +396,31 @@ export function changeUploadCompose(id, params) {
   return (dispatch, getState) => {
     dispatch(changeUploadComposeRequest());
 
-    api(getState).put(`/api/v1/media/${id}`, params).then(response => {
-      dispatch(changeUploadComposeSuccess(response.data));
-    }).catch(error => {
-      dispatch(changeUploadComposeFail(id, error));
-    });
+    let media = getState().getIn(['compose', 'media_attachments']).find((item) => item.get('id') === id);
+
+    // Editing already-attached media is deferred to editing the post itself.
+    // For simplicity's sake, fake an API reply.
+    if (media && !media.get('unattached')) {
+      let { description, focus } = params;
+      const data = media.toJS();
+
+      if (description) {
+        data.description = description;
+      }
+
+      if (focus) {
+        focus = focus.split(',');
+        data.meta = { focus: { x: parseFloat(focus[0]), y: parseFloat(focus[1]) } };
+      }
+
+      dispatch(changeUploadComposeSuccess(data, true));
+    } else {
+      api(getState).put(`/api/v1/media/${id}`, params).then(response => {
+        dispatch(changeUploadComposeSuccess(response.data, false));
+      }).catch(error => {
+        dispatch(changeUploadComposeFail(id, error));
+      });
+    }
   };
 }
 
@@ -390,10 +431,11 @@ export function changeUploadComposeRequest() {
   };
 }
 
-export function changeUploadComposeSuccess(media) {
+export function changeUploadComposeSuccess(media, attached) {
   return {
     type: COMPOSE_UPLOAD_CHANGE_SUCCESS,
     media: media,
+    attached: attached,
     skipLoading: true,
   };
 }

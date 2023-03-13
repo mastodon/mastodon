@@ -74,7 +74,7 @@ gl:
         authorized_at: Autorizada o %{date}
         description_html: Estas aplicacións poden acceder á túa conta usando a API. Se ves aplicacións que non recoñeces, ou hai comportamentos non consentidos dalgunha delas, podes revogar o acceso.
         last_used_at: Último acceso o %{date}
-        never_used: Nunca usada
+        never_used: Nunca empregada
         scopes: Permisos
         superapp: Interno
         title: As túas aplicacións autorizadas
@@ -122,14 +122,14 @@ gl:
         admin/accounts: Administración das contas
         admin/all: Tódalas funcións administrativas
         admin/reports: Administración das denuncias
-        all: Todo
+        all: Acceso completo á túa conta de Mastodon
         blocks: Bloqueos
         bookmarks: Marcadores
         conversations: Conversas
         crypto: Cifrado extremo-a-extremo
         favourites: Favoritas
         filters: Filtros
-        follow: Relacións
+        follow: Seguidas, Silenciadas e Bloqueadas
         follows: Seguimentos
         lists: Listas
         media: Anexos multimedia
@@ -149,21 +149,21 @@ gl:
     scopes:
       admin:read: ler todos os datos no servidor
       admin:read:accounts: ler información sensible de todas as contas
-      admin:read:canonical_email_blocks: ler a información sensible de tódolos bloqueos de email canónicos
+      admin:read:canonical_email_blocks: ler a información sensíbel de tódolos bloqueos de correos electrónicos canónicos
       admin:read:domain_allows: ler a información sensible de tódolos dominios permitidos
       admin:read:domain_blocks: ler a información sensible de tódolos bloqueos de dominio
-      admin:read:email_domain_blocks: ler a información sensible de tódolos dominios de email
+      admin:read:email_domain_blocks: ler a información sensible de tódolos dominios de correo electrónico
       admin:read:ip_blocks: ler a información sensible de tódolos bloqueos de IP
       admin:read:reports: ler información sensible de todos os informes e contas denunciadas
       admin:write: modificar todos os datos no servidor
       admin:write:accounts: executar accións de moderación nas contas
-      admin:write:canonical_email_blocks: realizar accións de moderación en bloqueos de email canónicos
+      admin:write:canonical_email_blocks: realizar accións de moderación en bloqueos de correo electrónico canónicos
       admin:write:domain_allows: realizar accións de moderación en dominios permitidos
       admin:write:domain_blocks: realizar accións de moderación en bloqueos de dominio
-      admin:write:email_domain_blocks: realizar accións de moderación en bloqueos de dominio de email
+      admin:write:email_domain_blocks: realizar accións de moderación en bloqueos de dominio de correo electrónico
       admin:write:ip_blocks: realizar accións de moderación en bloqueos de IPs
       admin:write:reports: executar accións de moderación nas denuncias
-      crypto: usar cifrado extremo-a-extremo
+      crypto: usar cifrado de extremo-a-extremo
       follow: modificar as relacións da conta
       push: recibir notificacións push
       read: ler todos os datos da tua conta

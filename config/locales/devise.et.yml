@@ -2,31 +2,31 @@
 et:
   devise:
     confirmations:
-      confirmed: Teie e-postiaadress on edukalt kinnitatud.
-      send_instructions: Te saate paari minuti pärast e-kirja juhistega, kuidas oma e-posti aadressit kinnitada. Palun kontrollige oma rämpsposti kausta juhul, kui te ei saanud seda e-kirja.
-      send_paranoid_instructions: Kui teie e-postiaadress eksisteerib meie andmebaasis, saate paari minuti pärast e-kirja juhistega, kuidas oma e-posti aadressit kinnitada. Palun kontrollige oma rämpsposti kausta juhul, kui te ei saanud seda e-kirja.
+      confirmed: Sinu e-postiaadress on edukalt kinnitatud.
+      send_instructions: Saad paari minuti pärast juhistega e-kirja, kuidas oma e-posti aadress kinnitada. Palun kontrolli oma rämpsposti kausta, kui selline e-kiri ei saabunud.
+      send_paranoid_instructions: Kui sinu e-postiaadress on meie andmebaasis, saad paari minuti pärast juhistega e-kirja, kuidas oma e-posti aadress kinnitada. Palun kontrolli oma rämpsposti kausta, kui selline e-kiri ei saabunud.
     failure:
       already_authenticated: Oled juba sisse loginud.
-      inactive: Teie konto pole veel aktiveeritud.
+      inactive: Sinu konto pole veel aktiveeritud.
       invalid: Valed %{authentication_keys} või salasõna.
-      last_attempt: Teil on veel üks katse kuni teie konto on lukustatud.
-      locked: Teie konto on lukustatud.
+      last_attempt: Sul on veel üks katse, enne kui konto lukustatakse.
+      locked: Konto on lukustatud.
       not_found_in_database: Valed %{authentication_keys} või salasõna.
-      pending: Teie konto on siiani läbivaatlusel.
-      timeout: Teie sessioon on aegunud. Jätkamiseks palun sisenege uuesti.
-      unauthenticated: Te peate sisenema või looma konto enne jätkamist.
-      unconfirmed: Te peate kinnitama oma e-postiaadressi enne jätkamist.
+      pending: Sinu konto on siiani läbivaatamisel.
+      timeout: Sinu sessioon on aegunud. Jätkamiseks palun sisene uuesti.
+      unauthenticated: Pead sisenema või looma konto enne kui jätkad.
+      unconfirmed: Pead kinnitama oma e-postiaadressi enne kui jätkad.
     mailer:
       confirmation_instructions:
-        action: Kinnitage e-postiaadress
+        action: Kinnita e-postiaadress
         action_with_app: Kinnita ja naase %{app}
-        explanation: Oled loonud %{host} konto selle e-postiaadressiga. Oled ühe kliki kaugusel selle aktiveerimisest. Kui see polnud sina, palun eira seda kirja.
-        explanation_when_pending: "Selle e-postiaadressiga on esitatud taotlus saada %{host} kasutajaks. E-postiaadress vajab kinnitamist. Pärast seda vaatame me taotluse üle. Võib siseneda, et oma andmeid muuta või konto kustutada, aga enamustele tegevustele ei pääse ligi enne, kui konto on meie moderaatorite poolt kinnitatud. Kui konto on kinnitatud, saabub selle kohta eraldi e-kiri.\nKui taotlus lükatakse aga tagasi, kustutatakse ka andmed ja mingit järeltegevust pole vaja. \nKui see polnud Teie, siis palume seda kirja eirata."
+        explanation: Oled loonud %{host} konto selle e-postiaadressiga. Oled konto aktiveerimisest ühe kliki kaugusel. Kui see polnud sina, palun eira seda kirja.
+        explanation_when_pending: "Selle e-postiaadressiga on esitatud taotlus saada %{host} kasutajaks. E-postiaadress vajab kinnitamist. Pärast seda vaatame me taotluse üle. Saad siseneda, et oma andmeid muuta või konto kustutada, aga enamustele tegevustele ei pääse enne ligi, kui konto on meie moderaatorite poolt kinnitatud. Kui konto on kinnitatud, saabub selle kohta eraldi e-kiri.\nKui taotlus lükatakse aga tagasi, kustutatakse ka andmed ja mingit järeltegevust pole vaja. \nKui see polnud sina, siis palume seda kirja eirata."
         extra_html: Palun tutvu <a href="%{terms_path}">meie serveri reeglitega</a> ning <a href="%{policy_path}">meie kasutustingimustega</a>.
         subject: 'Mastodon: %{instance} kinnitamisjuhised'
         title: Kinnita e-postiaadress
       email_changed:
-        explanation: 'Teie konto e-postiaadress muudetakse:'
+        explanation: 'Sinu konto e-postiaadress muudetakse:'
         extra: Kui sa ei muutnud oma e-posti, on tõenäoline, et kellelgi on ligipääs su kontole. Palun muuda koheselt oma salasõna. Kui oled aga oma kontost välja lukustatud, võta ühendust oma serveri administraatoriga.
         subject: 'Mastodon: e-post muudetud'
         title: Uus e-postiaadress
@@ -37,8 +37,8 @@ et:
         title: Salasõna muudetud
       reconfirmation_instructions:
         explanation: Kinnita uus aadress, et oma e-posti aadress muuta.
-        extra: Kui see muudatus pole teie poolt alustatud, palun eirake seda kirja. E-postiaadress sellele Mastodoni kontole ei muutu, kuni te vajutate üleval asuvale lingile.
-        subject: 'Mastodon: kinnitake e-postiaadress %{instance} jaoks'
+        extra: Kui see muudatus pole sinu poolt algatatud, palun eira seda kirja. Selle Mastodoni konto e-postiaadress ei muutu enne, kui vajutad üleval olevale lingile.
+        subject: 'Mastodon: kinnita e-postiaadress %{instance} jaoks'
         title: Kinnita e-postiaadress
       reset_password_instructions:
         action: Salasõna muutmine
@@ -47,34 +47,34 @@ et:
         subject: 'Mastodon: salasõna lähtestamisjuhendid'
         title: Salasõna lähtestamine
       two_factor_disabled:
-        explanation: Kontol on kahe-etapine autentimine välja lülitatud. Sisenemine on võimalik ainult kasutades e-postiaadressi ja salasõna.
-        subject: 'Mastodon: Kahe-etapine autentimine välja lülitatud'
+        explanation: Kontol on kaheastmeline autentimine välja lülitatud. Sisenemine on võimalik ainult kasutades e-postiaadressi ja salasõna.
+        subject: 'Mastodon: Kaheastmeline autentimine välja lülitatud'
         title: 2FA keelatud
       two_factor_enabled:
-        explanation: Kontol on sisse lülitatud kahe-etapine autentimine. Sisenemiseks on vajalik ühekordne aeguv võti TOTP-rakenduse poolt.
-        subject: 'Mastodon: Kahe-etapine autentimine sisse lülitatud'
+        explanation: Kontol on sisse lülitatud kaheastmeline autentimine. Sisenemiseks on vajalik ühekordne aeguv võti TOTP-rakenduse poolt.
+        subject: 'Mastodon: kaheastmeline autentimine sisse lülitatud'
         title: 2FA lubatud
       two_factor_recovery_codes_changed:
         explanation: Eelmised taastekoodid on nüüd kehtetud ning loodud uued.
-        subject: 'Mastodon: Kahe-etapise autentimise taastuskoodid taasloodud'
+        subject: 'Mastodon: Kaheastmelise autentimise taastuskoodid taasloodud'
         title: 2FA taastekoodid muudetud
       unlock_instructions:
         subject: 'Mastodon: Lahti lukustamis juhendid'
       webauthn_credential:
         added:
-          explanation: Järgnev turvavõti on lisatud teie kontole
+          explanation: Kontole on lisatud järgnev turvavõti
           subject: 'Mastodon: uus turvavõti'
           title: Uus turvavõti on lisatud
         deleted:
-          explanation: Järgnev turvavõti on teie kontolt kustutatud
+          explanation: Järgnev turvavõti on kontolt kustutatud
           subject: 'Mastodon: turvavõti kustutatud'
-          title: Üks teie turvavõtmetest on kustutatud
+          title: Üks sinu turvavõtmetest on kustutatud
       webauthn_disabled:
-        explanation: Autentimine turvavõtmetega on teie kontol välja lülitatud. Sisse logimine on nüüd võimalik ainult kasutades TOTP rakenduse poolt tekitatud võtmega.
+        explanation: Autentimine turvavõtmetega on kontol välja lülitatud. Sisse logimine on nüüd võimalik ainult kasutades seotud TOTP rakenduse poolt genereeritud võtit.
         subject: 'Mastodon: autentimine turvavõtmega on välja lülitatud'
         title: Turvavõtmed on välja lülitatud
       webauthn_enabled:
-        explanation: Turvavõtme autentimine on teie kontol nüüd sisse lülitatud. Teie turvavõtit saab nüüd kasutada sisse logimiseks.
+        explanation: Turvavõtmega autentimine on nüüd kontol sisse lülitatud. Nüüd saab kasutada sisse logimiseks sinu turvavõtit.
         subject: 'Mastodon: turvavõtme autentimine sisse lülitatud'
         title: Turvavõtmed on sisse lülitatud
     omniauth_callbacks:
@@ -82,32 +82,32 @@ et:
       success: Tuvastamine %{kind} konto järgi õnnestus.
     passwords:
       no_token: Sellele leheküljele ei pääse tulemata salasõna lähtestamise e-kirjast. Kui tuled salasõna lähtestamise e-kirjast, palun veendu, et kasutasid tervet saadetud URLi.
-      send_instructions: Kui teie e-postiaadress eksisteerib meie andmebaasis, saate paari minuti pärast e-kirja juhistega, kuidas oma salasõna taastada. Palun kontrollige oma rämpsposti kausta juhul, kui te ei saanud seda e-kirja.
-      send_paranoid_instructions: Kui teie e-postiaadress eksisteerib meie andmebaasis, saate paari minuti pärast e-kirja juhistega, kuidas oma salasõna taastada. Palun kontrollige oma rämpsposti kausta juhul, kui te ei saanud seda e-kirja.
+      send_instructions: Kui sinu e-postiaadress on meie andmebaasis, saad paari minuti pärast juhistega e-kirja, kuidas oma salasõna taastada. Palun kontrolli rämpsposti kausta, kui selline e-kiri ei saabunud.
+      send_paranoid_instructions: Kui sinu e-postiaadress on meie andmebaasis, saad paari minuti pärast juhistega e-kirja, kuidas oma salasõna taastada. Palun kontrolli rämpsposti kausta, kui selline e-kiri ei saabunud.
       updated: Salasõna muutmine õnnestus. Oled nüüd sisse logitud.
-      updated_not_active: Teie salasõna muutmine õnnestus.
+      updated_not_active: Sinu salasõna muutmine õnnestus.
     registrations:
-      destroyed: Nägemist! Teie konto sulgemine õnnestus. Me loodame teid varsti taas näha.
-      signed_up: Tere tulemast! Teie konto loomine õnnestus.
-      signed_up_but_inactive: Teie konto loodi edukalt, kuid me ei saanud teid sisse logida, kuna teie konto pole veel aktiveeritud.
-      signed_up_but_locked: Teie konto loodi edukalt, kuid me ei saanud teid sisse logida, kuna teie konto on lukustatud.
-      signed_up_but_pending: Kiri kinnituslingiga saadeti teie e-postile. Pärast seda, kui te vajutate lingile, vaatame me teie taotluse üle. Teid teavitatakse, kui see on vastu võetud.
-      signed_up_but_unconfirmed: Kiri kinnituslingiga saadeti teie e-postile. Palun järgige linki, et aktiveerida oma konto. Palun kontrollige oma rämpsposti, kui te ei saanud seda e-kirja.
-      update_needs_confirmation: Konto uuendamine õnnestus, kuid e-postiaadress tuleb veel kinnitada. Palun kontrolli oma e-posti ning järgi kirjas olevat linki, et e-postiaadress kinnitada. Palun kontrolli rämpsposti, kui selline e-kiri ei saabunud.
+      destroyed: Nägemist! sinu konto sulgemine õnnestus. Me loodame sind varsti taas näha.
+      signed_up: Tere tulemast! Sinu konto loomine õnnestus.
+      signed_up_but_inactive: Sinu konto loodi edukalt, kuid me ei saanud sind sisse logida, kuna konto pole veel aktiveeritud.
+      signed_up_but_locked: Sinu konto loodi edukalt, kuid me ei saanud sind sisse logida, kuna konto on lukustatud.
+      signed_up_but_pending: Kiri kinnituslingiga saadeti sinu e-postile. Pärast seda, kui oled vajutanud kinnituslingile, vaatame me taotluse üle. Saad teavituse, kui taotlus on vastu võetud.
+      signed_up_but_unconfirmed: Kiri kinnituslingiga saadeti sinu e-postile. Palun järgi linki, et oma konto aktiveerida. Palun kontrolli rämpspostikausta, kui selline kiri ei saabunud.
+      update_needs_confirmation: Konto uuendamine õnnestus, kuid e-postiaadress tuleb veel kinnitada. Palun kontrolli oma e-posti ning järgi kirjas olevat kinnituslinki, et e-postiaadress kinnitada. Palun kontrolli rämpspostikausta, kui selline kiri ei saabunud.
       updated: Konto uuendamine õnnestus.
     sessions:
       already_signed_out: Väljumine õnnestus.
       signed_in: Sisenemine õnnestus.
       signed_out: Väljumine õnnestus.
     unlocks:
-      send_instructions: Te saate paari minuti pärast e-kirja juhistega, kuidas oma konto lukust lahti teha. Palun kontrollige oma rämpsposti kausta juhul, kui te ei saanud seda e-kirja.
+      send_instructions: Saad paari minuti pärast juhistega e-kirja, kuidas oma konto lukust lahti teha. Palun kontrolli oma rämpsposti kausta, kui selline kiri ei saabunud.
       send_paranoid_instructions: Kui konto on olemas, saabub paari minuti pärast e-kiri juhistega, kuidas konto lukust lahti teha. Palun kontrolli rämpsposti kausta, kui selline e-kiri ei saabunud.
       unlocked: Sinu konto avamine õnnestus. Jätkamiseks palun logi sisse.
   errors:
     messages:
       already_confirmed: on juba kinnitatud, palun proovi sisse logida
-      confirmation_period_expired: peab olema kinnitatud ajavahemikus %{period}, palun taotlege uuesti
-      expired: on aegunud, palun taotlege uuesti
+      confirmation_period_expired: peab olema kinnitatud ajavahemikus %{period}, palun taotle uuesti
+      expired: on aegunud, palun taotle uuesti
       not_found: ei leitud
       not_locked: ei olnud lukustatud
       not_saved:

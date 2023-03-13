@@ -18,8 +18,8 @@ gl:
           disable: Evitar que a usuaria utilice a súa conta, mais non eliminala ou agochar o seu contido.
           none: Utiliza esto para darlle un aviso á usuaria, se activar ningunha outra acción.
           sensitive: Forzar que tódolos ficheiros multimedia das usuarias sexan marcadas como sensibles.
-          silence: Evitar que a usuaria poida publicar toots públicos, agocha os seus toots e notificacións para a xente que non a segue.
-          suspend: Evita calquera interacción con ou desta conta e elimina os seus contidos. Reversible durante 30 días.
+          silence: Evitar que a usuaria poida publicar de xeito público, agochar as súas publicacións e notificacións para a xente que non a sigue. Isto pecha tódalas denuncias acerca desta conta.
+          suspend: Evita calquera interacción con/ou desta conta e elimina os seus contidos. Reversible durante 30 días. Isto pecha tódalas denuncias acerca desta conta.
         warning_preset_id: Optativo. Poderás engadir texto personalizado ao final do preestablecido
       announcement:
         all_day: Cando se marca, só serán amosadas as datas do intre de tempo
@@ -74,6 +74,7 @@ gl:
           hide: Agochar todo o contido filtrado, facer coma se non existise
           warn: Agochar o contido filtrado tras un aviso que conteña o nome do filtro
       form_admin_settings:
+        activity_api_enabled: Conta do número de publicacións locais, usuarias activas, e novos rexistros en acumulados semanais
         backups_retention_period: Gardar os arquivos xerados pola usuaria durante o número de días indicado.
         bootstrap_timeline_accounts: Estas contas aparecerán fixas na parte superior das recomendacións para as usuarias.
         closed_registrations_message: Móstrase cando non se admiten novas usuarias
@@ -81,6 +82,7 @@ gl:
         custom_css: Podes aplicar deseños personalizados na versión web de Mastodon.
         mascot: Sobrescribe a ilustración na interface web avanzada.
         media_cache_retention_period: Os ficheiros multimedia descargados serán eliminados despois do número de días indicado ao establecer un valor positivo, e voltos a descargar baixo petición.
+        peers_api_enabled: Unha lista dos nomes de dominio que este servidor atopou no fediverso. Non se inclúen aquí datos acerca de se estás a federar con eles ou non, só que o teu servidor os recoñeceu. Ten utilidade para servizos que recollen estatísticas acerca da federación nun amplo senso.
         profile_directory: O directorio de perfís inclúe a tódalas usuarias que optaron por ser descubribles.
         require_invite_text: Cando os rexistros requiren aprobación manual, facer que o texto "Por que te queres rexistrar?" do convite sexa obrigatorio en lugar de optativo
         site_contact_email: De que xeito se pode contactar contigo para temas legais ou obter axuda.
@@ -89,11 +91,13 @@ gl:
         site_short_description: Breve descrición que axuda a identificar de xeito único o teu servidor. Quen o xestiona, a quen vai dirixido?
         site_terms: Escribe a túa propia política de privacidade ou usa o valor por defecto. Podes usar sintaxe Markdow.
         site_title: De que xeito se pode referir o teu servidor ademáis do seu nome de dominio.
+        status_page_url: URL dunha páxina onde se pode ver o estado deste servidor cando non está a funcionar
         theme: Decorado que verán visitantes e novas usuarias.
         thumbnail: Imaxe con proporcións 2:1 mostrada xunto á información sobre o servidor.
         timeline_preview: Visitantes e usuarias non conectadas poderán ver as publicacións públicas máis recentes do servidor.
         trendable_by_default: Omitir a revisión manual das tendencias. Poderás igualmente eliminar manualmente os elementos que vaian aparecendo.
         trends: As tendencias mostran publicacións, cancelos e novas historias que teñen popularidade no teu servidor.
+        trends_as_landing_page: Mostrar contidos en voga para as persoas sen sesión iniciada e visitantes no lugar dunha descrición deste servidor. Require ter activado Tendencias.
       form_challenge:
         current_password: Estás entrando nun área segura
       imports:
@@ -191,7 +195,7 @@ gl:
         setting_aggregate_reblogs: Agrupar promocións nas cronoloxías
         setting_always_send_emails: Enviar sempre notificacións por correo electrónico
         setting_auto_play_gif: Reprodución automática de GIFs animados
-        setting_boost_modal: Pedir confirmación antes de promocionar
+        setting_boost_modal: Solicitar confirmación antes de promover
         setting_crop_images: Recortar imaxes a 16x9 en publicacións non despregadas
         setting_default_language: Idioma de publicación
         setting_default_privacy: Privacidade da publicación
@@ -229,6 +233,7 @@ gl:
           hide: Agochar completamente
           warn: Agochar tras un aviso
       form_admin_settings:
+        activity_api_enabled: Publicar na API estatísticas agregadas acerca da actividade das usuarias
         backups_retention_period: Período de retención do arquivo da usuaria
         bootstrap_timeline_accounts: Recomendar sempre estas contas ás novas usuarias
         closed_registrations_message: Mensaxe personalizada para cando o rexistro está pechado
@@ -236,6 +241,7 @@ gl:
         custom_css: CSS personalizado
         mascot: Mascota propia (herdado)
         media_cache_retention_period: Período de retención da caché multimedia
+        peers_api_enabled: Publicar na API unha lista dos servidores descubertos
         profile_directory: Activar o directorio de perfís
         registrations_mode: Quen se pode rexistrar
         require_invite_text: Pedir unha razón para unirse
@@ -247,11 +253,13 @@ gl:
         site_short_description: Descrición do servidor
         site_terms: Política de Privacidade
         site_title: Nome do servidor
+        status_page_url: URL da páxina do estado
         theme: Decorado por omisión
         thumbnail: Icona do servidor
         timeline_preview: Permitir acceso á cronoloxía pública sen autenticación
         trendable_by_default: Permitir tendencias sen aprobación previa
         trends: Activar tendencias
+        trends_as_landing_page: Usar as tendencias como páxina de benvida
       interactions:
         must_be_follower: Bloquear as notificacións de non-seguidoras
         must_be_following: Bloquea as notificacións de persoas que non segues

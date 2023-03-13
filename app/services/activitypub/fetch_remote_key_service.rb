@@ -38,7 +38,7 @@ class ActivityPub::FetchRemoteKeyService < BaseService
 
     find_actor(owner_uri, @owner, suppress_errors)
   rescue Error => e
-    Rails.logger.debug "Fetching key #{uri} failed: #{e.message}"
+    Rails.logger.debug { "Fetching key #{uri} failed: #{e.message}" }
     raise unless suppress_errors
   end
 

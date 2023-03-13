@@ -95,6 +95,7 @@ cs:
       moderation:
         active: Aktivní
         all: Vše
+        disabled: Deaktivován
         pending: Čekající
         silenced: Omezeno
         suspended: Pozastavené
@@ -139,6 +140,7 @@ cs:
       search: Hledat
       search_same_email_domain: Ostatní uživatelé se stejnou e-mailovou doménou
       search_same_ip: Další uživatelé se stejnou IP adresou
+      security: Zabezpečení
       security_measures:
         only_password: Pouze heslo
         password_and_2fa: Heslo a 2FA
@@ -443,6 +445,7 @@ cs:
         resolve: Přeložit doménu
         title: Blokovat novou e-mailovou doménu
       no_email_domain_block_selected: Žádné blokace e-mailové domény nebyly změněny, protože nebyly žádné vybrány
+      not_permitted: Nepovoleno
       resolved_dns_records_hint_html: Doménové jméno vede na následující MX domény, které mají nakonec na starost přijímání e-mailů. Blokování MX domény zablokuje registrace z jakékoliv e-mailové adresy, která používá stejnou MX doménu, i když je viditelné doménové jméno jiné. <strong>Dejte si pozor, abyste nezablokovali velké e-mailové poskytovatele.</strong>
       resolved_through_html: Přeložena přes %{domain}
       title: Blokované e-mailové domény
@@ -492,6 +495,7 @@ cs:
       content_policies:
         comment: Interní poznámka
         description_html: Můžete definovat politiky obsahu, které budou aplikovány na všechny účty z této domény i jakoukoliv z jejích subdomén.
+        limited_federation_mode_description_html: Můžete si vybrat, zda povolit federaci s touto doménou.
         policies:
           reject_media: Odmítat média
           reject_reports: Odmítat hlášení
@@ -599,19 +603,22 @@ cs:
         mark_as_sensitive_description_html: Média v nahlášených příspěvcích budou označena jako citlivá a bude zaznamenán prohřešek pro pomoc s eskalací v případě budoucích porušení stejným účtem.
         other_description_html: Podívejte se na další možnosti kontroly chování účtu a přizpůsobte komunikaci k nahlášenému účtu.
         resolve_description_html: Nebudou učiněny žádné kroky proti nahlášenému účtu, žádný prohřešek zaznamenán a hlášení bude uzavřeno.
-        silence_description_html: Profil bude viditelný pouze těm, kdo ho již sledují nebo jej ručně vyhledají, což značně omezí jeho dosah. Lze vždy vrátit zpět.
-        suspend_description_html: Profil a veškerý jeho obsah se stane nedostupným, dokud nebude časem smazán. Interakce s účtem nebude možná. Vratné do 30 dnů.
+        silence_description_html: Účet bude viditelný pouze těm, kdo jej již sledují nebo si jej ručně vyhledají, což výrazně omezí jeho dosah. Vždy lze vrátit zpět. Uzavře všechna hlášení proti tomuto účtu.
+        suspend_description_html: Účet a veškerý jeho obsah se znepřístupní a bude nakonec smazán, interakce s ním nebude možná. Lze vrátit zpět do 30 dnů. Uzavře všechna hlášení proti tomuto účtu.
       actions_description_html: Rozhodněte, který krok učinit pro vyřešení tohoto hlášení. Pokud podniknete kárný krok proti nahlášenému účtu, bude mu zasláno e-mailové oznámení, s výjimkou případu, kdy je zvolena kategorie <strong>Spam</strong>.
+      actions_description_remote_html: Rozhodněte, co podniknout pro vyřešení tohoto hlášení. Toto ovlivní pouze to, jak <strong>váš</strong> server komunikuje s tímto vzdáleným účtem, a zpracuje jeho obsah.
       add_to_report: Přidat do hlášení další
       are_you_sure: Jste si jisti?
       assign_to_self: Přidělit ke mně
       assigned: Přiřazený moderátor
       by_target_domain: Doména nahlášeného účtu
+      cancel: Zrušit
       category: Kategorie
       category_description_html: Důvod nahlášení tohoto účtu a/nebo obsahu bude uveden v komunikaci s nahlášeným účtem
       comment:
         none: Žádné
       comment_description_html: 'Pro upřesnění uživatel %{name} napsal:'
+      confirm: Potvrdit
       created_at: Nahlášené
       delete_and_resolve: Smazat příspěvky
       forwarded: Přeposláno
@@ -643,6 +650,7 @@ cs:
       target_origin: Původ nahlášeného účtu
       title: Hlášení
       unassign: Odebrat
+      unknown_action_msg: 'Neznámá akce: %{action}'
       unresolved: Nevyřešeno
       updated_at: Aktualizováno
       view_profile: Zobrazit profil
@@ -741,6 +749,8 @@ cs:
         preamble: Povrchový zajímavý obsah je užitečný pro zapojení nových uživatelů, kteří možná neznají žádného Mastodona. Mějte pod kontrolou, jak různé objevovací funkce fungují na vašem serveru.
         profile_directory: Adresář profilů
         public_timelines: Veřejné časové osy
+        publish_discovered_servers: Zveřejnit objevené servery
+        publish_statistics: Zveřejnit statistiku
         title: Objevujte
         trends: Trendy
       domain_blocks:
@@ -969,6 +979,7 @@ cs:
   applications:
     created: Aplikace úspěšně vytvořena
     destroyed: Aplikace úspěšně smazána
+    logout: Odhlásit se
     regenerate_token: Znovu vygenerovat přístupový token
     token_regenerated: Přístupový token byl úspěšně vygenerován
     warning: Zacházejte s těmito daty opatrně. Nikdy je s nikým nesdílejte!
@@ -976,6 +987,8 @@ cs:
   auth:
     apply_for_account: Požádat o účet
     change_password: Heslo
+    confirmations:
+      wrong_email_hint: Pokud není e-mail správný, můžete si ho změnit v nastavení účtu.
     delete_account: Odstranit účet
     delete_account_html: Chcete-li odstranit svůj účet, <a href="%{path}">pokračujte zde</a>. Budete požádáni o potvrzení.
     description:
@@ -1003,6 +1016,8 @@ cs:
     resend_confirmation: Znovu odeslat pokyny pro potvrzení
     reset_password: Obnovit heslo
     rules:
+      accept: Přijmout
+      back: Zpět
       preamble: Tohle nastavují a prosazují moderátoři %{domain}.
       title: Některá základní pravidla.
     security: Zabezpečení
@@ -1149,8 +1164,6 @@ cs:
     storage: Úložiště médií
   featured_tags:
     add_new: Přidat nový
-    errors:
-      limit: Již jste zvýraznili maximální počet hashtagů
     hint_html: "<strong>Co jsou zvýrazněné hashtagy?</strong> Zobrazují se prominentně na vašem veřejném profilu a dovolují lidem prohlížet si vaše veřejné příspěvky konkrétně pod těmi hashtagy. Je to skvělý nástroj pro sledování kreativních děl nebo dlouhodobých projektů."
   filters:
     contexts:
@@ -1200,8 +1213,6 @@ cs:
       index:
         hint: Tento filtr se vztahuje na výběr jednotlivých příspěvků bez ohledu na jiná kritéria. Do tohoto filtru můžete přidat více příspěvků z webového rozhraní.
         title: Filtrované příspěvky
-  footer:
-    trending_now: Právě populární
   generic:
     all: Všechny
     all_items_on_page_selected_html:
@@ -1232,8 +1243,6 @@ cs:
       many: Něco ještě není úplně v pořádku! Zkontrolujte prosím %{count} chyb uvedených níže
       one: Něco ještě není úplně v pořádku! Zkontrolujte prosím chybu uvedenou níže
       other: Něco ještě není úplně v pořádku! Zkontrolujte prosím %{count} chyb uvedených níže
-  html_validator:
-    invalid_markup: 'obsahuje neplatný HTML kód: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Neplatný soubor CSV. Chyba: %{error}'
@@ -1278,7 +1287,7 @@ cs:
     title: Pozvat lidi
   lists:
     errors:
-      limit: Dosáhli jste maximálního počtu seznamů
+      limit: Dosáhl jste maximálního počtu seznamů
   login_activities:
     authentication_methods:
       otp: aplikací pro dvoufaktorové ověření
@@ -1419,6 +1428,9 @@ cs:
       unrecognized_emoji: není známý smajlík
   relationships:
     activity: Aktivita účtu
+    confirm_follow_selected_followers: Jste si jisti, že chcete sledovat vybrané sledující?
+    confirm_remove_selected_followers: Jste si jisti, že chcete odebrat vybrané sledující?
+    confirm_remove_selected_follows: Jste si jisti, že chcete odstranit vybrané sledované?
     dormant: Nečinné
     follow_selected_followers: Sledovat vybrané sledující
     followers: Sledující
@@ -1607,7 +1619,7 @@ cs:
       '7889238': 3 měsíce
     min_age_label: Hranice stáří
     min_favs: Zachovat příspěvky oblíbené alespoň
-    min_favs_hint: Nesmaže žádný z vašich příspěvků, který obdržel alespoň dané množství oblíbení. Ponechte prázdné pro mazání příspěvků bez ohledu na počet jejich oblíbení
+    min_favs_hint: Neodstraňuje žádný z vašich příspěvků, které obdržely alespoň tento počet oblíbených. Nechte prázdné pro odstranění příspěvků bez ohledu na jejich počet oblíbených
     min_reblogs: Zachovat příspěvky boostnuté alespoň
     min_reblogs_hint: Nesmaže žádný z vašich příspěvků, který byl boostnut alespoň tolikrát. Ponechte prázdné pro mazání příspěvků bez ohledu na počet jejich boostnutí
   stream_entries:

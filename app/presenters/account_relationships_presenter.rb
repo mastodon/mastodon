@@ -70,16 +70,16 @@ class AccountRelationshipsPresenter
   def cache_uncached!
     @uncached_account_ids.each do |account_id|
       maps_for_account = {
-        following:       { account_id => following[account_id] },
-        followed_by:     { account_id => followed_by[account_id] },
-        blocking:        { account_id => blocking[account_id] },
-        blocked_by:      { account_id => blocked_by[account_id] },
-        muting:          { account_id => muting[account_id] },
-        requested:       { account_id => requested[account_id] },
-        requested_by:    { account_id => requested_by[account_id] },
+        following: { account_id => following[account_id] },
+        followed_by: { account_id => followed_by[account_id] },
+        blocking: { account_id => blocking[account_id] },
+        blocked_by: { account_id => blocked_by[account_id] },
+        muting: { account_id => muting[account_id] },
+        requested: { account_id => requested[account_id] },
+        requested_by: { account_id => requested_by[account_id] },
         domain_blocking: { account_id => domain_blocking[account_id] },
-        endorsed:        { account_id => endorsed[account_id] },
-        account_note:    { account_id => account_note[account_id] },
+        endorsed: { account_id => endorsed[account_id] },
+        account_note: { account_id => account_note[account_id] },
       }
 
       Rails.cache.write("relationship:#{@current_account_id}:#{account_id}", maps_for_account, expires_in: 1.day)
