@@ -2,6 +2,63 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.0] - UNRELEASED
+
+### Added
+
+- Add support for incoming rich text ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23913))
+  Allows remote posts to contain `del`, `pre`, `blockquote`, `code`, `b`, `strong`, `u`, `i`, `em`, `ul`, `ol`, and `li` HTML tags.
+  Incoming `h1` to `h6` tags are transformed to their own paragraphs and wrapped with a `strong` tag.
+  Also adds CSS for these new tags in the Web UI.
+- Add API parameter to `POST /api/v1/statuses` to safeguard against unexpected mentions in posts ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18350))
+- Add the `memorial` attribute to `Account` entities in REST API ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23591))
+- Add redirection from paths with url-encoded `@` to their decoded form ([thijskh](https://github.com/mastodon/mastodon/pull/23593))
+- Add `lang` attribute to native language names in language picker in Web UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23749))
+- Add `lang` attribute to preview cards in Web UI ([c960657](https://github.com/mastodon/mastodon/pull/23869))
+  This also adds the `language` attribute to `PreviewCard` entities in the REST API.
+- Add `lang` attribute to media and poll options in Web UI ([c960657](https://github.com/mastodon/mastodon/pull/23891))
+- Add headers to outgoing mails to avoid auto-replies ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23597))
+- Add support for specifying S3 storage classes in environment ([hyl](https://github.com/mastodon/mastodon/pull/22480))
+- Add support for refreshing many accounts at once with `tootctl accounts refresh` ([9p4](https://github.com/mastodon/mastodon/pull/23304))
+- Add confirmation modal when clicking to edit a post with a non-empty compose form ([PauloVilarinho](https://github.com/mastodon/mastodon/pull/23936))
+
+### Changed
+
+- Increase contrast of upload progress bar background ([toolmantim](https://github.com/mastodon/mastodon/pull/23836))
+- Change post auto-deletion throttling constants to better scale with server size ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23320))
+- Change order of bookmark and favourite sidebar entries in single-column UI for consistency ([TerryGarcia](https://github.com/mastodon/mastodon/pull/23701))
+- Change unintended SMTP read timeout from 5 seconds to 20 seconds ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23750))
+- Allow streaming server to connect to postgres with self-signed certs ([ramuuns](https://github.com/mastodon/mastodon/pull/21431), [Gargron](https://github.com/mastodon/mastodon/pull/23960))
+- Change `ActivityPub::DeliveryWorker` retries to be spread out more ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/21956))
+- Disable anonymous access to the streaming API ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23989))
+- Change “Followed by” link on local accounts in admin UI to show all followers ([tribela](https://github.com/mastodon/mastodon/pull/23467))
+
+### Fixed
+
+- Fix “Remove all followers from the selected domains” being more destructive than it claims ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23805))
+- Fix streaming metrics format ([emilweth](https://github.com/mastodon/mastodon/pull/23519), [emilweth](https://github.com/mastodon/mastodon/pull/23520))
+- Fix case-sensitive check for previously used hashtags in hashtag autocompletion ([deanveloper](https://github.com/mastodon/mastodon/pull/23526))
+- Fix focus point of already-attached media not saving after edit ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23566))
+- Fix sidebar behavior in settings/admin UI on mobile ([wxt2005](https://github.com/mastodon/mastodon/pull/23764))
+- Fix inefficiency when searching accounts per username in admin interface ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23801))
+- Fix duplicate “Publish” button on mobile ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23804))
+- Fix server error when failing to follow back followers from `/relationships` ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23787))
+- Fix server error when attempting to display the edit history of a trendable post in the admin interface ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23574))
+- Fix `tootctl accounts migrate` crashing because of a typo ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23567))
+- Fix external authentication not running onboarding code for new users ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23458))
+- Fix translations being offered for unsupported languages ([c960657](https://github.com/mastodon/mastodon/pull/23879))
+  TODO: ongoing and has API changes
+- Fix original account being unfollowed on migration before the follow request to the new account could be sent ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/21957))
+- Fix the “Back” button in column headers sometimes leaving Mastodon ([c960657](https://github.com/mastodon/mastodon/pull/23953))
+- Fix pgBouncer resetting application name on every transaction ([Gargron](https://github.com/mastodon/mastodon/pull/23958))
+- Fix unconfirmed accounts being counted as active users ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23803))
+- Fix `/api/v1/streaming` sub-paths not being redirected ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23988))
+- Fix drag'n'drop upload area text that spans multiple lines not being centered ([vintprox](https://github.com/mastodon/mastodon/pull/24029))
+- Fix sidekiq jobs not triggering Elasticsearch index updates ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/24046))
+- Fix Dev Container config ([ykzts](https://github.com/mastodon/mastodon/pull/23715), [samruddhikhandale](https://github.com/mastodon/mastodon/pull/23872))
+- Fix tags being stripped from plain-text short site description ([c960657](https://github.com/mastodon/mastodon/pull/23975))
+- Fix HTML entities not being un-escaped in extracted plain-text from remote posts ([c960657](https://github.com/mastodon/mastodon/pull/24019))
+
 ## [4.1.0] - 2023-02-10
 
 ### Added
