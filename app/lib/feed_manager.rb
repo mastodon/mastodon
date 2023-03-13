@@ -322,35 +322,35 @@ class FeedManager
 
     falloff_range = nil
 
-    redis.pipelined do
+    redis.pipelined do |pipeline|
       # Remove any items past the MAX_ITEMS'th entry in our feed
-      redis.zremrangebyrank(timeline_key, 0, -(FeedManager::MAX_ITEMS + 1))
+      pipeline.zremrangebyrank(timeline_key, 0, -(FeedManager::MAX_ITEMS + 1))
 
       # Remove any items past VIRAL_CACHE
-      redis.zremrangebyrank(viral_reblog_key, 0, -(FeedManager::VIRAL_CACHE + 1))
+      pipeline.zremrangebyrank(viral_reblog_key, 0, -(FeedManager::VIRAL_CACHE + 1))
 
       # Get the score of the REBLOG_FALLOFF'th item in our feed, and stop
       # tracking anything after it for deduplication purposes.
       falloff_rank  = FeedManager::REBLOG_FALLOFF
-      falloff_range = redis.zrevrange(timeline_key, falloff_rank, falloff_rank, with_scores: true)
+      falloff_range = pipeline.zrevrange(timeline_key, falloff_rank, falloff_rank, with_scores: true)
     end
 
     reblogged_ids_to_remove = nil
 
-    redis.pipelined do
+    redis.pipelined do |pipeline|
       falloff_score = falloff_range.value&.first&.last&.to_i
-      reblogged_ids_to_remove = redis.zrangebyscore(reblog_key, 0, falloff_score)
+      reblogged_ids_to_remove = pipeline.zrangebyscore(reblog_key, 0, falloff_score)
     end
 
-    redis.pipelined do
+    redis.pipelined do |pipeline|
       reblogged_ids_to_remove.value.each do |reblogged_id|
         # Remove it from the set of reblogs we're tracking *first* to avoid races.
-        redis.zrem(reblog_key, reblogged_id)
+        pipeline.zrem(reblog_key, reblogged_id)
         # Just drop any set we might have created to track additional reblogs.
         # This means that if this reblog is deleted, we won't automatically insert
         # another reblog, but also that any new reblog can be inserted into the
         # feed.
-        redis.del(key(type, timeline_id, "reblogs:#{reblogged_id}"))
+        pipeline.del(key(type, timeline_id, "reblogs:#{reblogged_id}"))
       end
     end
   end
@@ -475,16 +475,16 @@ class FeedManager
       timeline_does_not_have_recent_reblog = nil
       is_not_viral = nil
 
-      redis.pipelined do
+      redis.pipelined do |pipeline|
         # If the original status is within REBLOG_FALLOFF statuses from the top,
         # do not insert a reblog into the feed
-        rank = redis.zrevrank(timeline_key, status.reblog_of_id)
+        rank = pipeline.zrevrank(timeline_key, status.reblog_of_id)
         # The ordered set at `reblog_key` holds statuses which have a reblog
         # in the top `REBLOG_FALLOFF` statuses of the timeline
-        timeline_does_not_have_recent_reblog = redis.zadd(reblog_key, status.id, status.reblog_of_id, nx: true)
+        timeline_does_not_have_recent_reblog = pipeline.zadd(reblog_key, status.id, status.reblog_of_id, nx: true)
         # The ordered set at viral_reblog_key holds the VIRAL_CACHE most recently
         # reblogged statuses.
-        is_not_viral = redis.zadd(viral_reblog_key, status.id, status.reblog_of_id)
+        is_not_viral = pipeline.zadd(viral_reblog_key, status.id, status.reblog_of_id)
       end
 
       return false if !rank.value.nil? && rank.value < FeedManager::REBLOG_FALLOFF
@@ -537,23 +537,23 @@ class FeedManager
 
       other_reblog = nil
 
-      redis.pipelined do
-        redis.srem(reblog_set_key, status.id)
-        redis.zrem(reblog_key, status.reblog_of_id)
-        redis.zrem(viral_reblog_key, status.reblog_of_id)
+      redis.pipelined do |pipeline|
+        pipeline.srem(reblog_set_key, status.id)
+        pipeline.zrem(reblog_key, status.reblog_of_id)
+        pipeline.zrem(viral_reblog_key, status.reblog_of_id)
         # 3. Re-insert another reblog or original into the feed if one
         # remains in the set. We could pick a random element, but this
         # set should generally be small, and it seems ideal to show the
         # oldest potential such reblog.
-        other_reblog = redis.smembers(reblog_set_key)
+        other_reblog = pipeline.smembers(reblog_set_key)
       end
 
       other_reblog = other_reblog.value.map(&:to_i).min
 
       if other_reblog
-        redis.pipelined do
-          redis.zadd(timeline_key, other_reblog, other_reblog)
-          redis.zadd(reblog_key, other_reblog, status.reblog_of_id)
+        redis.pipelined do |pipeline|
+          pipeline.zadd(timeline_key, other_reblog, other_reblog)
+          pipeline.zadd(reblog_key, other_reblog, status.reblog_of_id)
         end
       end
 
