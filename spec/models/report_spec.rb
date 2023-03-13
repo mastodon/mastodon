@@ -121,12 +121,6 @@ describe Report do
   end
 
   describe 'validations' do
-    it 'has a valid fabricator' do
-      report = Fabricate(:report)
-      report.valid?
-      expect(report).to be_valid
-    end
-
     it 'is invalid if comment is longer than 1000 characters' do
       report = Fabricate.build(:report, comment: Faker::Lorem.characters(number: 1001))
       report.valid?

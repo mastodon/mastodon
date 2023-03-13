@@ -10,6 +10,7 @@ require 'rspec/rails'
 require 'webmock/rspec'
 require 'paperclip/matchers'
 require 'capybara/rspec'
+require 'chewy/rspec'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -45,6 +46,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include Paperclip::Shoulda::Matchers
   config.include ActiveSupport::Testing::TimeHelpers
+  config.include Chewy::Rspec::Helpers
   config.include Redisable
 
   config.before :each, type: :feature do
