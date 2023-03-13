@@ -50,7 +50,7 @@ describe LanguagesHelper do
 
     context 'with a non-existent locale' do
       it 'returns the supplied locale value' do
-        expect(helper.standard_locale_name(:xxx)).to eq(:xxx)
+        expect(helper.standard_locale_name(:xxx)).to eq('xxx')
       end
     end
 
