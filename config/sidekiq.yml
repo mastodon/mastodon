@@ -58,7 +58,3 @@
       interval: 1 minute
       class: Scheduler::SuspendedUserCleanupScheduler
       queue: scheduler
-    translation_service_scheduler:
-      every: ['7d', first_in: '0s']
-      class: Scheduler::TranslationServiceScheduler
-      queue: scheduler

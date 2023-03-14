@@ -49,7 +49,7 @@ class TranslateButton extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
-  languages: state.getIn(['server', 'server', 'configuration', 'translation', 'languages']),
+  languages: state.getIn(['server', 'translationLanguages', 'items']),
 });
 
 export default @connect(mapStateToProps)

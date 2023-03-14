@@ -24,8 +24,11 @@ class TranslateStatusService < BaseService
   def permitted?
     return false unless @status.distributable? && @status.content.present? && TranslationService.configured?
 
-    languages = Rails.cache.fetch('translation_service/languages')
-    languages && languages[@status.language]&.include?(@target_language)
+    languages[@status.language]&.include?(@target_language)
+  end
+
+  def languages
+    Rails.cache.fetch('translation_service/languages', expires_in: 7.day, race_condition_ttl: 1.hour) { TranslationService.configured.languages }
   end
 
   def content_hash
