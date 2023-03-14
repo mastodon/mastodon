@@ -121,7 +121,7 @@ class ApplicationController < ActionController::Base
   end
 
   def sso_account_settings
-    ENV["SSO_ACCOUNT_SETTINGS"] if ENV["SSO_ACCOUNT_SETTINGS"]
+    ENV.fetch('SSO_ACCOUNT_SETTINGS')
   end
 
   def current_account

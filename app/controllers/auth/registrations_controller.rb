@@ -91,6 +91,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     Setting.registrations_mode != 'none' || @invite&.valid_for_use?
   end
 
+  def omniauth_only?
+    ENV['OMNIAUTH_ONLY'] == 'true'
+  end
+
   def ip_blocked?
     IpBlock.where(severity: :sign_up_block).where('ip >>= ?', request.remote_ip.to_s).exists?
   end
