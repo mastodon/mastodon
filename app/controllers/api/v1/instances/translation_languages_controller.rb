@@ -14,7 +14,7 @@ class Api::V1::Instances::TranslationLanguagesController < Api::BaseController
 
   def set_languages
     if TranslationService.configured?
-      @languages = Rails.cache.fetch('translation_service/languages', expires_in: 7.day, race_condition_ttl: 1.hour) { TranslationService.configured.languages }
+      @languages = Rails.cache.fetch('translation_service/languages', expires_in: 7.days, race_condition_ttl: 1.hour) { TranslationService.configured.languages }
       @languages['und'] = @languages.delete(nil) if @languages.key?(nil)
     else
       @languages = {}
