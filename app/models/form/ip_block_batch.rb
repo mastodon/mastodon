@@ -21,9 +21,8 @@ class Form::IpBlockBatch
   end
 
   def delete!
-    ip_blocks.each { |ip_block| authorize(ip_block, :destroy?) }
-
     ip_blocks.each do |ip_block|
+      authorize(ip_block, :destroy?)
       ip_block.destroy
       log_action :destroy, ip_block
     end
