@@ -926,9 +926,10 @@ nn:
       new_trending_statuses:
         title: Populære innlegg
       new_trending_tags:
-        no_approved_tags: Det er ingen godkjende populære merkelappar no.
-        title: Populære emneknagger
-      subject: Ny trender for gjennomsyn av %{instance}
+        no_approved_tags: Det er ingen godkjende populære emneknaggar no.
+        requirements: 'Alle desse kandidatane kan stiga høgare enn den godkjende populære emneknaggen #%{rank}, som er #%{lowest_tag_name} med ei plassering på %{lowest_tag_score}.'
+        title: Populære emneknaggar
+      subject: Nye trendar å sjå gjennom på %{instance}
   aliases:
     add_new: Lag psevdonym
     created_msg: Laga eit nytt kallenamn. No kan du setja i gang med flyttinga frå den gamle kontoen.
@@ -950,7 +951,7 @@ nn:
     toot_layout: Tutoppsett
   application_mailer:
     notification_preferences: Endr e-post-innstillingane
-    salutation: "%{name},"
+    salutation: "Hei %{name},"
     settings: 'Endr e-post-innstillingar: %{link}'
     view: 'Sjå:'
     view_profile: Sjå profil
@@ -958,6 +959,7 @@ nn:
   applications:
     created: Søknad laga
     destroyed: Søknad sletta
+    logout: Logg ut
     regenerate_token: Lag tilgangsnykel på nytt
     token_regenerated: Tilgangsnykel laga på nytt
     warning: Ver varsam med dette datumet. Aldri del det med nokon!
@@ -994,6 +996,8 @@ nn:
     resend_confirmation: Send stadfestingsinstruksjonar på nytt
     reset_password: Attstill passord
     rules:
+      accept: Godkjenn
+      back: Attende
       preamble: Disse angis og håndheves av %{domain}-moderatorene.
       title: Noen grunnregler.
     security: Tryggleik
@@ -1140,6 +1144,8 @@ nn:
     storage: Medielagring
   featured_tags:
     add_new: Legg til ny
+    errors:
+      limit: Du har allereie framheva så mange emneknaggar som det går an å gjera
     hint_html: "<strong>Hva er utvalgte emneknagger?</strong> De vises frem tydelig på din offentlige profil, og lar folk bla i dine offentlige innlegg som spesifikt har de emneknaggene. De er et bra verktøy for å holde styr på kreative verk eller langtidsprosjekter."
   filters:
     contexts:
@@ -1150,36 +1156,29 @@ nn:
       thread: Samtalar
     edit:
       add_keyword: Legg til stikkord
-      keywords: Nøkkelord
+      keywords: Stikkord
       statuses: Individuelle innlegg
+      statuses_hint_html: Dette filteret gjeld for utvalde, individuelle innlegg, uansett om dei passar til stikkorda under. <a href="%{path}">Sjå gjennom eller fjern innlegg frå filteret</a>.
       title: Endr filter
     errors:
+      deprecated_api_multiple_keywords: Du kan ikkje endra desse parametrane frå dette programmet fordi dei gjeld for meir enn eitt filterord. Bruk eit nyare program, eller nettsida.
       invalid_context: Ingen eller ugild kontekst gjeve
     index:
-      contexts: Filtre i %{contexts}
+      contexts: Filter i %{contexts}
       delete: Slett
       empty: Du har ingen filtre.
-      expires_in: Utløper om %{distance}
-      expires_on: Utløper den %{date}
-      keywords:
-        one: "%{count} nøkkelord"
-        other: "%{count} nøkkelorder"
-      statuses:
-        one: "%{count} innlegg"
-        other: "%{count} innlegger"
-      statuses_long:
-        one: "%{count} enkeltinnlegg skjult"
-        other: "%{count} individuelle innlegger skjult"
+      expires_in: Går ut om %{distance}
+      expires_on: Går ut %{date}
       title: Filter
     new:
       save: Lagre nytt filter
       title: Legg til nytt filter
     statuses:
-      back_to_filter: Tilbake til filter
+      back_to_filter: Tilbake til filteret
       batch:
-        remove: Fjern fra filter
+        remove: Fjern frå filteret
       index:
-        hint: Dette filteret gjelder for å velge individuelle innlegg uavhengig av andre kriterier. Du kan legge til flere innlegg til dette filteret fra webgrensesnittet.
+        hint: Dette filteret gjeld for utvalde, individuelle innlegg, uavhengig av andre kriterium. Du kan leggja til fleire innlegg til dette filteret frå nettsida.
         title: Filtrerte innlegg
   generic:
     all: Alle
