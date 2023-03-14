@@ -58,37 +58,6 @@ describe InstancePresenter do
     end
   end
 
-  describe '#translation' do
-    context 'when no translation service is configured' do
-      it 'returns empty language matrix' do
-        expect(instance_presenter.translation_languages).to eq({})
-      end
-    end
-
-    context 'when a translation service is configured but cache is empty' do
-      before do
-        allow(TranslationService).to receive(:configured?).and_return(true)
-      end
-
-      it 'returns empty language matrix' do
-        expect(instance_presenter.translation_languages).to eq({})
-      end
-    end
-
-    context 'when a translation service is configured and cache is populated' do
-      before do
-        service = instance_double(TranslationService::DeepL, languages: { nil => %w(en de), 'en' => ['de'] })
-        allow(TranslationService).to receive(:configured?).and_return(true)
-        allow(TranslationService).to receive(:configured).and_return(service)
-        Scheduler::TranslationServiceScheduler.new.perform
-      end
-
-      it 'returns language matrix' do
-        expect(instance_presenter.translation_languages).to eq({ 'und' => %w(en de), 'en' => ['de'] })
-      end
-    end
-  end
-
   describe '#user_count' do
     it 'returns the number of site users' do
       Rails.cache.write 'user_count', 123
