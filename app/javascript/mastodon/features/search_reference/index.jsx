@@ -155,10 +155,6 @@ class SearchReference extends ImmutablePureComponent {
                   <td><FormattedMessage id='search_reference.search_operators.has.warning' defaultMessage='posts that have a content warning' /></td>
                 </tr>
                 <tr>
-                  <td><kbd>-has:warning</kbd></td>
-                  <td><FormattedMessage id='search_reference.search_operators.has.not_warning' defaultMessage='exclude posts that have a content warning' /></td>
-                </tr>
-                <tr>
                   <td><kbd>sensitive:yes</kbd></td>
                   <td><FormattedMessage id='search_reference.search_operators.sensitive.yes' defaultMessage='posts that include sensitive media' /></td>
                 </tr>
