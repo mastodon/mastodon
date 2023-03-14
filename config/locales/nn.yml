@@ -573,10 +573,10 @@ nn:
         mark_as_sensitive_description_html: Mediene i dei rapporterte innlegga vil verte markerte som ømtolege, og ein merknad vil verte lagra for å hjelpe deg å eskalera ved framtidige regelbrot frå same konto.
         other_description_html: Sjå fleire alternativ når det gjeld kontroll av kontoåtferd og tilpassing av kommunikasjonen til den rapporterte kontoen.
         resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
-        silence_description_html: Profilen vil kun være synlig for dem som allerede følger den eller manuelt slår den opp, noe som sterkt begrenser dens rekkevidde. Kan alltid tilbakestilles. Lukker alle rapporter mot denne kontoen.
-        suspend_description_html: Kontoen og alt dens innhold vil være utilgjengelig og til slutt slettet, og det vil ikke være mulig å bruke den. Reversibel innen 30 dager. Lukker alle rapporter mot denne kontoen.
+        silence_description_html: Profilen vil berre vera synleg for dei som allereie fylgjer han eller søkjer han opp manuelt, noko som gjev profilen mykje mindre rekkjevidd. Du kan oppheva stenginga seinare. Dette avsluttar alle rapportar om brukarkontoen.
+        suspend_description_html: Brukarkontoen og alt innhaldet vil bli utilgjengeleg og til slutt sletta, og det vil vera uråd å samhandla med brukaren. Du kan angra dette innan 30 dagar. Dette avsluttar alle rapportar om kontoen.
       actions_description_html: Avgjer kva som skal gjerast med denne rapporteringa. Dersom du utfører straffetiltak mot den rapporterte kontoen, vil dei motta ein e-post – så sant du ikkje har valt kategorien <strong>Spam</strong>.
-      actions_description_remote_html: Velg hvilke tiltak som skal treffes for å løse denne rapporten. Dette påvirker bare hvordan <strong>din</strong> server kommuniserer med denne eksterne kontoen og håndterer innholdet.
+      actions_description_remote_html: Avgjer kva du vil gjera for å løysa denne rapporten. Dette påverkar berre korleis tenaren <strong>din</strong> kommuniserer med kontoen på ein annan tenar, og korleis tenaren din handterer innhald derifrå.
       add_to_report: Legg til i rapporten
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
@@ -588,7 +588,7 @@ nn:
       comment:
         none: Ingen
       comment_description_html: 'For å gje meir informasjon, skreiv %{name}:'
-      confirm: Bekreft
+      confirm: Stadfest
       confirm_action: Stadfest at du vil moderera brukarkontoen @%{acct}
       created_at: Rapportert
       delete_and_resolve: Slett innlegg
@@ -735,6 +735,8 @@ nn:
         preamble: Å framheva interessant innhald er vitalt i mottakinga av nye brukarar som ikkje nødvendigvis kjenner nokon på Mastodon. Kontroller korleis oppdagingsfunksjonane på tenaren din fungerar.
         profile_directory: Profilkatalog
         public_timelines: Offentlege tidsliner
+        publish_discovered_servers: Publiser oppdaga tenarar
+        publish_statistics: Publiser statistikk
         title: Oppdaging
         trends: Trender
       domain_blocks:
@@ -789,6 +791,7 @@ nn:
         suspend: "%{name} utviste %{target} sin konto"
       appeal_approved: Klage tatt til følge
       appeal_pending: Klage behandles
+      appeal_rejected: Anken er avvist
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
@@ -824,6 +827,7 @@ nn:
           other: Delt av %{count} personer i løpet av den siste uken
         title: Populære lenkjer
         usage_comparison: Delt %{today} ganger i dag, sammenlignet med %{yesterday} i går
+      not_allowed_to_trend: Har ikkje lov å trenda
       only_allowed: Kun tillatne
       pending_review: Avventer gjennomgang
       preview_card_providers:
@@ -850,12 +854,13 @@ nn:
           tag_accounts_measure: unike bruksområder
           tag_languages_dimension: Mest brukte språk
           tag_servers_dimension: Mest brukte servere
-          tag_servers_measure: forskjellige servere
-          tag_uses_measure: samlet bruk
+          tag_servers_measure: ulike tenarar
+          tag_uses_measure: brukarar totalt
         description_html: Dette er emneknagger som for øyeblikket vises i mange innlegg som serveren din ser. Det kan hjelpe dine brukere med å finne ut hva folk snakker mest om i øyeblikket. Ingen emneknagger vises offentlig før du godkjenner dem.
         listable: Kan bli foreslått
+        no_tag_selected: Ingen merkelappar vart endra fordi ingen var valde
         not_listable: Vil ikke bli foreslått
-        not_trendable: Kunne ikke vises under trender
+        not_trendable: Kjem ikkje til å syna under trendar
         not_usable: Kan ikke brukes
         peaked_on_and_decaying: Nådde toppen %{date}, nå på vei ned
         title: Populære emneknagger
@@ -904,6 +909,9 @@ nn:
         sensitive: å merke kontoen sin som følsom
         silence: for å begrense deres konto
         suspend: for å suspendere kontoen deres
+      body: "%{target} ankar på ei modereringsavgjerd av %{action_taken_by} den %{date}, som var %{type}. Dei skreiv:"
+      next_steps: Du kan godkjenna anken for å endra modereringsavgjerda, eller du kan oversjå anken.
+      subject: "%{username} ankar ei modereringsavgjer på %{instance}"
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
       subject: Ny konto opp til vurdering på %{instance} (%{username})
@@ -912,11 +920,13 @@ nn:
       body_remote: Nokon frå %{domain} har meldt %{target}
       subject: 'Ny rapport for %{instance} (#%{id})'
     new_trends:
+      body: 'Du må sjå gjennom desse elementa før dei kan visast offentleg:'
       new_trending_links:
         title: Populære lenker
       new_trending_statuses:
         title: Populære innlegg
       new_trending_tags:
+        no_approved_tags: Det er ingen godkjende populære merkelappar no.
         title: Populære emneknagger
       subject: Ny trender for gjennomsyn av %{instance}
   aliases:
