@@ -19,8 +19,7 @@ class REST::Admin::ActionLogSerializer < ActiveModel::Serializer
              :created_at,
              :updated_at,
              :human_identifier,
-             :route_param,
-             :permalink
+             :link
 
   # All action logs have these properties.
 
@@ -48,6 +47,30 @@ class REST::Admin::ActionLogSerializer < ActiveModel::Serializer
 
   def updated_at
     object.updated_at.iso8601
+  end
+
+  # Permalink or admin web UI link relevant to target object, if it has one. May be nil.
+  def link
+    case object.target_type
+    when 'Account'
+      admin_account_path(object.target_id)
+    when 'User'
+      admin_account_path(object.route_param) if object.route_param.present?
+    when 'UserRole'
+      admin_roles_path(object.target_id)
+    when 'Report'
+      admin_report_path(object.target_id)
+    when 'DomainBlock', 'DomainAllow', 'EmailDomainBlock', 'UnavailableDomain'
+      "https://#{object.human_identifier}" if object.human_identifier.present?
+    when 'Status'
+      object.permalink
+    when 'AccountWarning'
+      disputes_strike_path(object.target_id)
+    when 'Announcement'
+      edit_admin_announcement_path(object.target_id)
+    when 'Appeal'
+      disputes_strike_path(object.route_param) if object.route_param.present?
+    end
   end
 
   belongs_to :subject, serializer: REST::Admin::AccountSerializer
