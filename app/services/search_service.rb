@@ -86,6 +86,9 @@ class SearchService < BaseService
   end
 
   def perform_statuses_search!
+    required_account_ids = parsed_query.statuses_required_account_ids
+    return [] if @account.blocked_by.exists?(id: required_account_ids)
+
     definition = StatusesIndex.filter(term: { searchable_by: @account.id })
     definition = parsed_query.statuses_apply(definition, following_ids)
     definition = definition.filter(term: { account_id: @options[:account_id] }) if @options[:account_id].present?
@@ -103,7 +106,7 @@ class SearchService < BaseService
     preloaded_relations = relations_map_for_account(@account, account_ids, account_domains)
 
     results.reject { |status| StatusFilter.new(status, @account, preloaded_relations).filtered? }
-  rescue Faraday::ConnectionFailed, Parslet::ParseFailed
+  rescue Faraday::ConnectionFailed, Parslet::ParseFailed, Mastodon::NotPermittedError
     []
   end
 

@@ -109,6 +109,50 @@ describe SearchQueryTransformer do
     end
   end
 
+  describe '#statuses_required_account_ids' do
+    let(:blocking_account) { Fabricate(:account, domain: nil, username: 'blocksyou') }
+
+    before do
+      blocking_account.save!
+    end
+
+    context 'when given a from: query' do
+      let(:query) { 'from:blocksyou' }
+
+      it "returns the mentioned account's ID" do
+        required_account_ids = transformer.statuses_required_account_ids
+        expect(required_account_ids).to include(blocking_account.id)
+      end
+    end
+
+    context 'when given a -from: query' do
+      let(:query) { '-from:blocksyou' }
+
+      it "does not return the mentioned account's ID" do
+        required_account_ids = transformer.statuses_required_account_ids
+        expect(required_account_ids).to_not include(blocking_account.id)
+      end
+    end
+
+    context 'when given a mentions: query' do
+      let(:query) { 'mentions:blocksyou' }
+
+      it "returns the mentioned account's ID" do
+        required_account_ids = transformer.statuses_required_account_ids
+        expect(required_account_ids).to include(blocking_account.id)
+      end
+    end
+
+    context 'when given a -mentions: query' do
+      let(:query) { '-mentions:blocksyou' }
+
+      it "does not return the mentioned account's ID" do
+        required_account_ids = transformer.statuses_required_account_ids
+        expect(required_account_ids).to_not include(blocking_account.id)
+      end
+    end
+  end
+
   describe '#statuses_apply' do
     let(:following_ids) { [] }
 

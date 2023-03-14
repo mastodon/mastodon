@@ -13,6 +13,19 @@ class SearchQueryTransformer < Parslet::Transform
       @order_clauses = grouped.fetch(:order, [])
     end
 
+    # Return account IDs that must not block the searching account for the search to be legal.
+    def statuses_required_account_ids
+      ids = Set.new
+      positive_clauses = [should_clauses, must_clauses, filter_clauses]
+      positive_clauses.each do |clauses|
+        clauses.each do |clause|
+          id = clause_to_account_id(clause)
+          ids << id unless id.nil?
+        end
+      end
+      ids
+    end
+
     # Modifies a statuses search to include clauses from this query.
     def statuses_apply(search, following_ids)
       search_type = :statuses
@@ -73,6 +86,11 @@ class SearchQueryTransformer < Parslet::Transform
           raise Mastodon::SyntaxError, "Unexpected clause for search type #{search_type}" if clause.respond_to?(:search_types) && clause.search_types.exclude?(search_type)
         end
       end
+    end
+
+    # Return any account ID related to a clause.
+    def clause_to_account_id(clause)
+      clause.term if clause.is_a?(PrefixClause) && %i(account_id mentions_ids).include?(clause.filter)
     end
 
     def clause_to_query(clause, search_type, search_fields, following_ids: nil)
