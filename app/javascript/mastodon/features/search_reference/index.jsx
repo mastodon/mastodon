@@ -135,6 +135,10 @@ class SearchReference extends ImmutablePureComponent {
                   <td><FormattedMessage id='search_reference.search_operators.is.reply' defaultMessage='posts that are replies to another post' /></td>
                 </tr>
                 <tr>
+                  <td><kbd>is:sensitive</kbd></td>
+                  <td><FormattedMessage id='search_reference.search_operators.is.sensitive' defaultMessage='posts that include sensitive media' /></td>
+                </tr>
+                <tr>
                   <td><kbd>lang:es</kbd></td>
                   <td><FormattedMessage id='search_reference.search_operators.lang' defaultMessage='posts in the given language' /></td>
                 </tr>
@@ -153,14 +157,6 @@ class SearchReference extends ImmutablePureComponent {
                 <tr>
                   <td><kbd>has:warning</kbd></td>
                   <td><FormattedMessage id='search_reference.search_operators.has.warning' defaultMessage='posts that have a content warning' /></td>
-                </tr>
-                <tr>
-                  <td><kbd>sensitive:yes</kbd></td>
-                  <td><FormattedMessage id='search_reference.search_operators.sensitive.yes' defaultMessage='posts that include sensitive media' /></td>
-                </tr>
-                <tr>
-                  <td><kbd>sensitive:no</kbd></td>
-                  <td><FormattedMessage id='search_reference.search_operators.sensitive.no' defaultMessage='exclude posts that include sensitive media' /></td>
                 </tr>
                 <tr>
                   <td><kbd>before:2022-12-17</kbd></td>

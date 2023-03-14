@@ -216,9 +216,6 @@ class SearchQueryTransformer < Parslet::Transform
       when 'lang'
         @search_types = %i(statuses)
 
-      when 'sensitive'
-        initialize_sensitive(operator, term)
-
       when 'before', 'after'
         initialize_date_range(prefix, operator, term)
 
@@ -269,18 +266,6 @@ class SearchQueryTransformer < Parslet::Transform
       else
         raise Mastodon::SyntaxError, "Unknown keyword for has: prefix: #{term}"
       end
-    end
-
-    def initialize_sensitive(operator, term)
-      raise Mastodon::SyntaxError, 'Operator not allowed for sensitive: prefix' unless operator.nil?
-
-      @search_types = %i(statuses)
-      @filter = 'is'
-      @term = 'sensitive'
-      @operator = {
-        yes: :filter,
-        no: :must_not,
-      }[term.to_sym] or raise Mastodon::SyntaxError, "Unknown value for sensitive: prefix: #{term}"
     end
 
     def initialize_date_range(prefix, operator, term)

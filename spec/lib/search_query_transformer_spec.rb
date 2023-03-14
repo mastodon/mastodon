@@ -78,10 +78,10 @@ describe SearchQueryTransformer do
       end
     end
 
-    context 'when given a sensitive:yes query' do
-      let(:query) { 'sensitive:yes' }
+    context 'when given an is:sensitive query' do
+      let(:query) { 'is:sensitive' }
 
-      it 'generates a query equivalent to is:sensitive' do
+      it 'generates a term query on the is field' do
         expect(transformer.must_not_clauses).to be_empty
         expect(transformer.filter_clauses.length).to eq(1)
 
@@ -93,10 +93,10 @@ describe SearchQueryTransformer do
       end
     end
 
-    context 'when given a sensitive:no query' do
-      let(:query) { 'sensitive:no' }
+    context 'when given an -is:sensitive query' do
+      let(:query) { '-is:sensitive' }
 
-      it 'generates a query equivalent to -is:sensitive' do
+      it 'generates a term query on the is field' do
         expect(transformer.must_not_clauses.length).to eq(1)
         expect(transformer.filter_clauses).to be_empty
 
