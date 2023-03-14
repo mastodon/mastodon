@@ -48,6 +48,7 @@ my:
       custom: စိတ်ကြိုက်
       delete: အချက်အလက်များဖျက်ပါ
       deleted: ဖျက်ပြီးပါပြီ
+      disable: ရပ်တန့်
       disable_sign_in_token_auth: အီးမေးတိုကင် အထောက်အထားပြခြင်းကို ပိတ်ပါ
       disable_two_factor_authentication: 2FA ကို ပိတ်ပါ
       display_name: ဖော်ပြမည့်အမည်
@@ -459,13 +460,19 @@ my:
     relationships:
       title: "%{acct} နှင့် ပတ်သက်မှု"
     relays:
+      add_new: relay အသစ်ထည့်ပါ
       delete: ဖျက်ပါ
       disable: ပိတ်ပါ
       disabled: ပိတ်ထားသည်
       enable: ဖွင့်ပါ
       enabled: ဖွင့်ထားသည်
+      inbox_url: ထပ်ဆင့်ပေးပို့မည့် URL
+      pending: ထပ်ဆင့်အတည်ပြုချက်ကို စောင့်ဆိုင်းနေခြင်း
       save_and_enable: သိမ်းပြီး ဖွင့်ရန်
+      setup: ထပ်ဆင့်ချိတ်ဆက်မှုစနစ် ထည့်သွင်းပါ
+      signatures_not_enabled: လုံခြုံရေးမုဒ် သို့မဟုတ် ကန့်သတ်ဖက်ဒီမုဒ်ကို ဖွင့်ထားစဉ် ထပ်ဆင့်ပို့ထားမှုများမှာ မှန်ကန်စွာ အလုပ်မလုပ်နိုင်တော့ပါ
       status: အခြေအနေ
+      title: ထပ်ဆင့်ပေးပို့ခြင်းများ
     report_notes:
       created_msg: မှတ်တမ်းမှတ်စုကို ဖန်တီးပြီးပါပြီ။
       destroyed_msg: မှတ်တမ်းမှတ်စုကို ဖျက်ပြီးပါပြီ။
@@ -701,6 +708,7 @@ my:
     new_appeal:
       actions:
         delete_statuses: '၎င်းတို့၏ ပို့စ်များကို ဖျက်ရန်'
+        disable: '၎င်းတို့အကောင့်များအား ရပ်ထားရန်'
         mark_statuses_as_sensitive: '၎င်းတို့၏ ပို့စ်များကို သတိထားရသော ပို့စ်များအဖြစ် အမှတ်အသားပြုရန်'
         none: သတိပေးချက်
         sensitive: '၎င်းတို့၏ အကောင့်များကို သတိထားရသော အကောင့်များအဖြစ် အမှတ်အသားပြုရန်'
@@ -722,6 +730,11 @@ my:
         no_approved_tags: လက်ရှိတွင် အတည်ပြုထားသော ခေတ်စားနေသည့် hashtag များမရှိပါ။
         title: လက်ရှိခေတ်စားနေသော hashtag များ
       subject: '%{instance} တွင် ပြန်လည်သုံးသပ်ရမည့် ခေတ်စားနေသောပို့စ်အသစ်များ'
+  aliases:
+    add_new: နာမည်တူတစ်ခု ဖန်တီးမည်
+    created_msg: နာမည်တူတစ်ခုကို ဖန်တီးပြီးပါပြီ။ အကောင့်ဟောင်းမှ စတင်ရွှေ့နိုင်ပါပြီ။
+    deleted_msg: နာမည်တူကို ဖယ်ရှားထားပြီးပါပြီ။ ထိုအကောင့်မှ ဤအကောင့်သို့ပြောင်းရန် မဖြစ်နိုင်တော့ပါ။
+    empty: သင့်တွင် နာမည်တူများ မရှိပါ။
   appearance:
     advanced_web_interface: အဆင့်မြင့်ဝဘ်ပုံစံ
     discovery: ရှာဖွေတွေ့ရှိမှု
@@ -806,8 +819,12 @@ my:
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
   deletes:
+    confirm_password: အထောက်အထားကိုအတည်ပြုရန်အတွက် သင့်လက်ရှိစကားဝှက်ကို ထည့်ပါ
+    confirm_username: လုပ်ငန်းစဉ်ကို အတည်ပြုရန်အတွက် သင့်အသုံးပြုသူအမည်ကို ထည့်သွင်းပါ
     proceed: အကောင့်ဖျက်ပါ
     success_msg: သင့်အကောင့်ကို အောင်မြင်စွာ ဖျက်လိုက်ပါပြီ
+    warning:
+      data_removal: သင့်ပို့စ်များနှင့် အခြားအချက်အလက်များကို အပြီးတိုင် ဖယ်ရှားပါမည်
   disputes:
     strikes:
       appeals:
@@ -834,6 +851,7 @@ my:
     archive_takeout:
       date: ရက်စွဲ
       download: သင်၏မှတ်တမ်းကို ဒေါင်းလုဒ်လုပ်ပါ
+      request: မှတ်တမ်း တောင်းဆိုရန်
       size: အရွယ်အစား
     blocks: သင်ပိတ်ပင်ထားသည့်လူများစာရင်း
     bookmarks: မှတ်ထားသည်များ
@@ -870,6 +888,9 @@ my:
       save: စစ်ထုတ်မှုအသစ် သိမ်းပါ
       title: စစ်ထုတ်မှုအသစ် ထည့်ပါ
     statuses:
+      back_to_filter: စစ်ထုတ်ခြင်းသို့ ပြန်သွားရန်
+      batch:
+        remove: စစ်ထုတ်ခြင်းမှ ဖယ်ရှားရန်
       index:
         title: စစ်ထုတ်ထားသော ပို့စ်များ
   generic:
@@ -879,9 +900,12 @@ my:
     save_changes: ပြောင်းလဲမှုများကို သိမ်းဆည်းပါ
     today: ယနေ့
   imports:
+    modes:
+      merge: ပေါင်း
     preface: သင်စောင့်ကြည့်နေသည့်လူများစာရင်း သို့မဟုတ် ပိတ်ပင်ထားသည့်စာရင်းကဲ့သို့သော အခြားဆာဗာတစ်ခုမှ သင်ထုတ်ယူထားသည့်အချက်အလက်များကို ပြန်လည်ထည့်သွင်းနိုင်သည်။
     types:
       blocking: ပိတ်ပင်ထားသည့်စာရင်း
+      bookmarks: Bookmarks
       domain_blocking: ဒိုမိန်းပိတ်ပင်ထားသည့်စာရင်း
       following: စောင့်ကြည့်စာရင်း
     upload: တင္ရန်
@@ -894,6 +918,7 @@ my:
       '604800': ၁ ပတ်
       '86400': ၁ ရက်
     max_uses_prompt: အကန့်အသတ်မဲ့
+    title: ဖိတ်ခေါ်ရန်
   login_activities:
     authentication_methods:
       otp: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်အက်ပ်
@@ -905,9 +930,12 @@ my:
       images_and_video: ရုပ်ပုံပါရှိပြီးသားပို့စ်တွင် ဗီဒီယို ပူးတွဲ၍မရပါ
   migrations:
     acct: သို့ ပြောင်းရွှေ့ရန်
+    cancel: ပြန်ညွှန်းခြင်းကို ပယ်ဖျက်ရန်
     errors:
+      missing_also_known_as: ဤအကောင့်၏ အမည်တူမဟုတ်ပါ
       move_to_self: လက်ရှိအကောင့်မဖြစ်နိုင်ပါ
       not_found: ရှာမတွေ့ပါ
+    incoming_migrations_html: အခြားအကောင့်မှ ဤအကောင့်သို့ ရွှေ့ရန် ဦးစွာ သင်သည် <a href="%{path}">အကောင့်အမည်တူတစ်ခု ဖန်တီးရန်</a> လိုအပ်ပါသည်။
     proceed_with_move: စောင့်ကြည့်သူများကို ရွှေ့ရန်
     warning:
       only_redirect_html: တနည်းအားဖြင့် သင်သည် <a href="%{path}">သင့်ပရိုဖိုင်ပေါ်တွင် ပြန်ညွှန်းခြင်းကိုသာ ပြုလုပ်နိုင်သည်</a>။
@@ -952,7 +980,9 @@ my:
   otp_authentication:
     enable: ဖွင့်ပါ
   pagination:
+    newer: ပိုသစ်သော
     next: ရှေ့သို့
+    older: ပိုဟောင်းသော
     prev: ရှေ့သို့
     truncate: "&hellip;"
   polls:
@@ -986,6 +1016,7 @@ my:
     moved: ရွှေ့ပြီးပါပြီ
     mutual: အပြန်အလှန်စောင့်ကြည့်ထားခြင်း
     primary: ဦးစားပေး
+    relationship: တော်စပ်ပုံ
     remove_selected_domains: ရွေးချယ်ထားသော ဒိုမိန်းများမှ စောင့်ကြည့်သူအားလုံးကို ဖယ်ရှားပါ
     remove_selected_followers: ရွေးချယ်ထားသော စောင့်ကြည့်သူများကို ဖယ်ရှားပါ
     remove_selected_follows: ရွေးချယ်ထားသော အသုံးပြုသူများကို စောင့်ကြည့်ခြင်းမှ ဖြုတ်ပါ
@@ -998,12 +1029,14 @@ my:
       account: '@%{acct} မှ အများမြင်ပို့စ်များ'
       tag: '#%{hashtag} ကို တဂ်ထားသော အများမြင်ပို့စ်များ'
   sessions:
+    activity: နောက်ဆုံးလုပ်ဆောင်ချက်
     browser: ဘရောက်ဇာ
     browsers:
       alipay: Alipay
       blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: အီလက်ထရွန်
       firefox: Firefox
       generic: အမည်မသိဘရောက်ဆာ
       huawei_browser: Huawei Browser
@@ -1018,6 +1051,7 @@ my:
       uc_browser: UC Browser
       unknown_browser: အမည်မသိဘရောက်ဆာ
       weibo: Weibo
+    current_session: လက်ရှိဆက်ရှင်
     description: "%{platform} ပေါ်ရှိ %{browser}"
     ip: IP
     platforms:
@@ -1035,13 +1069,20 @@ my:
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     revoke: ပြန်ရုပ်သိမ်းရန်
+    revoke_success: ဆက်ရှင်ကို ရုပ်သိမ်းလိုက်ပါပြီ
+    title: ဆက်ရှင်များ
+    view_authentication_history: သင့်အကောင့်၏ စစ်မှန်ကြောင်းအထောက်အထားပြမှုကို ကြည့်ပါ
   settings:
     account: အကောင့်
     account_settings: အကောင့်သတ်မှတ်ချက်များ
+    aliases: အကောင့်အမည်တူများ
     appearance: ပုံပန်းသဏ္ဌာန်
+    authorized_apps: ခွင့်ပြုထားသောအက်ပ်များ
     back: Mastodon သို့ ပြန်သွားရန်
     delete: အကောင့်ဖျက်သိမ်းခြင်း
     edit_profile: ပရိုဖိုင်ပြင်ဆင်ရန်
+    export: အချက်အလက်ထုတ်ယူခြင်း
+    import: ထည့်သွင်းခြင်း
     notifications: အသိပေးချက်များ
     preferences: သတ်မှတ်ချက်များ
     profile: ပရိုဖိုင်
@@ -1156,6 +1197,7 @@ my:
         silence: သင့်အကောင့် %{acct} ကို ကန့်သတ်ထားသည်
       title:
         delete_statuses: ပို့စ်များကို ဖယ်ရှားခဲ့သည်
+        disable: အကောင့်ပိတ်သွားပါပြီ။
         mark_statuses_as_sensitive: သတိထားရသောပို့စ်များအဖြစ် အမှတ်အသားပြုပါ
         none: သတိပေးချက်
         sensitive: သတိထားရသောအကောင့်အဖြစ် အမှတ်အသားပြုပါ
