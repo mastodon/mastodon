@@ -55,7 +55,9 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
 
       describe 'when user has OTP enabled' do
         before do
-          user.update(otp_required_for_login: true)
+          user.update(otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+          user.generate_otp_backup_codes!
+          user.save
         end
 
         describe 'when creation succeeds' do
@@ -75,7 +77,28 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
           user.update(otp_required_for_login: false)
         end
 
-        describe 'when creation succeeds' do
+        describe 'when user has not enabled 2FA yet' do
+          describe 'when creation succeeds' do
+            it 'redirects to code confirmation page without updating user secret and setting otp secret in the session' do
+              expect do
+                post :create, session: { challenge_passed_at: Time.now.utc }
+              end.to not_change { user.reload.otp_secret }
+                 .and(change { session[:new_otp_secret] })
+
+              expect(response).to redirect_to(new_settings_two_factor_authentication_confirmation_path)
+            end
+          end
+        end
+
+        describe 'when user has already enabled 2FA' do
+          before do
+            user.update(webauthn_id: WebAuthn.generate_user_id)
+            Fabricate(:webauthn_credential, user_id: user.id, nickname: 'USB Key')
+            user.otp_secret = User.generate_otp_secret(32)
+            user.generate_otp_backup_codes!
+            user.save
+          end
+
           it 'redirects to code confirmation page without updating user secret and setting otp secret in the session' do
             expect do
               post :create, session: { challenge_passed_at: Time.now.utc }

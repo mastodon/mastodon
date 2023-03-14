@@ -178,6 +178,66 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
               post :create, params: { credential: new_webauthn_credential, nickname: nickname }
             end.to_not change(user, :webauthn_id)
           end
+
+          context 'when user has already enabled 2FA' do
+            before do
+              user.update(webauthn_id: WebAuthn.generate_user_id)
+              Fabricate(:webauthn_credential, user_id: user.id, nickname: 'USB Key 2')
+              user.otp_secret = User.generate_otp_secret(32)
+              user.generate_otp_backup_codes!
+              user.save
+            end
+
+            it 'does not update user secret' do
+              @controller.session[:webauthn_challenge] = challenge
+
+              expect do
+                post :create, params: { credential: new_webauthn_credential, nickname: nickname }
+              end.to(not_change { user.reload.otp_secret })
+            end
+
+            it 'does not change backup codes' do
+              @controller.session[:webauthn_challenge] = challenge
+
+              expect do
+                post :create, params: { credential: new_webauthn_credential, nickname: nickname }
+              end.to(not_change { user.reload.otp_backup_codes })
+            end
+
+            it 'redirects to two factor authentication methods index' do
+              @controller.session[:webauthn_challenge] = challenge
+
+              post :create, params: { credential: new_webauthn_credential, nickname: nickname }
+
+              expect(response.parsed_body['redirect_path']).to eq settings_two_factor_authentication_methods_path
+            end
+          end
+
+          context 'when user has not enabled 2FA yet' do
+            it 'updates user secret' do
+              @controller.session[:webauthn_challenge] = challenge
+
+              expect do
+                post :create, params: { credential: new_webauthn_credential, nickname: nickname }
+              end.to(change { user.reload.otp_secret })
+            end
+
+            it 'generates backup codes' do
+              @controller.session[:webauthn_challenge] = challenge
+
+              expect do
+                post :create, params: { credential: new_webauthn_credential, nickname: nickname }
+              end.to(change { user.reload.otp_backup_codes })
+            end
+
+            it "returns backup codes page in response's html_data attribute" do
+              @controller.session[:webauthn_challenge] = challenge
+
+              post :create, params: { credential: new_webauthn_credential, nickname: nickname }
+
+              expect(response.parsed_body['html_data']).to match(/recovery codes/)
+            end
+          end
         end
 
         context 'when the nickname is already used' do
@@ -246,18 +306,68 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
           add_webauthn_credential(user)
         end
 
-        context 'when deletion succeeds' do
-          it 'redirects to 2FA methods list and shows flash success' do
-            delete :destroy, params: { id: user.webauthn_credentials.take.id }
+        it 'redirects to 2FA methods list and shows flash success' do
+          delete :destroy, params: { id: user.webauthn_credentials.take.id }
 
-            expect(response).to redirect_to settings_two_factor_authentication_methods_path
-            expect(flash[:success]).to be_present
+          expect(response).to redirect_to settings_two_factor_authentication_methods_path
+          expect(flash[:success]).to be_present
+        end
+
+        it 'deletes the credential' do
+          expect do
+            delete :destroy, params: { id: user.webauthn_credentials.take.id }
+          end.to change { user.webauthn_credentials.count }.by(-1)
+        end
+
+        context "when deleted credential was not user's last webauthn credential" do
+          before do
+            Fabricate(:webauthn_credential, user_id: user.id)
           end
 
-          it 'deletes the credential' do
-            expect do
+          context 'when user has OTP enabled' do
+            before do
+              user.update(otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+              user.generate_otp_backup_codes!
+              user.save
+            end
+
+            it 'does not disable 2FA' do
+              expect_any_instance_of(User).to_not receive(:disable_two_factor!)
+
               delete :destroy, params: { id: user.webauthn_credentials.take.id }
-            end.to change { user.webauthn_credentials.count }.by(-1)
+            end
+          end
+
+          context 'when user does not have OTP enabled' do
+            it 'does not disable 2FA' do
+              expect_any_instance_of(User).to_not receive(:disable_two_factor!)
+
+              delete :destroy, params: { id: user.webauthn_credentials.take.id }
+            end
+          end
+        end
+
+        context "when deleted credential was user's last webauthn credential" do
+          context 'when user has OTP enabled' do
+            before do
+              user.update(otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+              user.generate_otp_backup_codes!
+              user.save
+            end
+
+            it 'does not disable 2FA' do
+              expect_any_instance_of(User).to_not receive(:disable_two_factor!)
+
+              delete :destroy, params: { id: user.webauthn_credentials.take.id }
+            end
+          end
+
+          context 'when user does not have OTP enabled' do
+            it 'disables 2FA' do
+              expect_any_instance_of(User).to receive(:disable_two_factor!)
+
+              delete :destroy, params: { id: user.webauthn_credentials.take.id }
+            end
           end
         end
       end

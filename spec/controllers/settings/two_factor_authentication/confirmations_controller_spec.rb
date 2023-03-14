@@ -56,22 +56,44 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
         end
 
         describe 'when creation succeeds' do
-          let!(:otp_backup_codes) { user.generate_otp_backup_codes! }
+          describe 'when user has already generated backup codes' do
+            it 'renders page with success' do
+              user.generate_otp_backup_codes!
+              user.save!
+              expect_any_instance_of(User).to_not receive(:generate_otp_backup_codes!)
+              prepare_user_otp_consumption
 
-          it 'renders page with success' do
-            prepare_user_otp_generation
-            prepare_user_otp_consumption
+              expect do
+                post :create,
+                     params: { form_two_factor_confirmation: { otp_attempt: '123456' } },
+                     session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
+              end.to change { user.reload.otp_secret }.to 'thisisasecretforthespecofnewview'
 
-            expect do
-              post :create,
-                   params: { form_two_factor_confirmation: { otp_attempt: '123456' } },
-                   session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
-            end.to change { user.reload.otp_secret }.to 'thisisasecretforthespecofnewview'
+              expect(assigns(:recovery_codes)).to be_nil
+              expect(flash[:notice]).to eq 'Two-factor authentication successfully enabled'
+              expect(response).to have_http_status(302)
+              expect(response).to redirect_to settings_two_factor_authentication_methods_path
+            end
+          end
 
-            expect(assigns(:recovery_codes)).to eq otp_backup_codes
-            expect(flash[:notice]).to eq 'Two-factor authentication successfully enabled'
-            expect(response).to have_http_status(200)
-            expect(response).to render_template('settings/two_factor_authentication/recovery_codes/index')
+          describe 'when user has not generated backup codes yet' do
+            let!(:otp_backup_codes) { user.generate_otp_backup_codes! }
+
+            it 'renders page with success' do
+              prepare_user_otp_generation
+              prepare_user_otp_consumption
+
+              expect do
+                post :create,
+                     params: { form_two_factor_confirmation: { otp_attempt: '123456' } },
+                     session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
+              end.to change { user.reload.otp_secret }.to 'thisisasecretforthespecofnewview'
+
+              expect(assigns(:recovery_codes)).to eq otp_backup_codes
+              expect(flash[:notice]).to eq 'Two-factor authentication successfully enabled'
+              expect(response).to have_http_status(200)
+              expect(response).to render_template('settings/two_factor_authentication/recovery_codes/index')
+            end
           end
 
           def prepare_user_otp_generation
