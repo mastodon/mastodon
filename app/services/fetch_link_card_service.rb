@@ -39,6 +39,8 @@ class FetchLinkCardService < BaseService
     @status       = status
     @original_url = parse_urls
     !@original_url.nil?
+  rescue Addressable::URI::InvalidURIError
+    false
   end
 
   private
