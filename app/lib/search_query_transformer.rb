@@ -237,8 +237,10 @@ class SearchQueryTransformer < Parslet::Transform
 
     def initialize_is(term)
       case term
-      when 'bot', 'group'
-        # These apply to all search types. No action required.
+      when 'bot'
+        # This applies to all search types. No action required.
+      when 'group'
+        @search_types = %i(accounts)
       when 'local'
         initialize_is_local
       when 'reply', 'sensitive'

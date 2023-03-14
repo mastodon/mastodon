@@ -100,7 +100,7 @@ class SearchReference extends ImmutablePureComponent {
             { searchEnabled &&
               <tbody>
                 <tr>
-                  <th colSpan='2'><FormattedMessage id='search_reference.search_operators.sections.users_and_posts' defaultMessage='User and post operators' /></th>
+                  <th colSpan='2'><FormattedMessage id='search_reference.search_operators.sections.accounts_and_posts' defaultMessage='Account and post operators' /></th>
                 </tr>
                 <tr>
                   <td><kbd>is:bot</kbd></td>
@@ -113,6 +113,18 @@ class SearchReference extends ImmutablePureComponent {
                 <tr>
                   <td><kbd>scope:following</kbd></td>
                   <td><FormattedMessage id='search_reference.search_operators.scope.following' defaultMessage='limit search to users that you follow and posts from them' /></td>
+                </tr>
+              </tbody>
+            }
+
+            { searchEnabled &&
+              <tbody>
+                <tr>
+                  <th colSpan='2'><FormattedMessage id='search_reference.search_operators.sections.accounts' defaultMessage='Account operators' /></th>
+                </tr>
+                <tr>
+                  <td><kbd>is:group</kbd></td>
+                  <td><FormattedMessage id='search_reference.search_operators.is.group' defaultMessage='accounts which represent groups' /></td>
                 </tr>
               </tbody>
             }

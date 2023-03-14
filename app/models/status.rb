@@ -183,7 +183,6 @@ class Status < ApplicationRecord
   def searchable_is
     keywords = []
     keywords << :bot if account.bot?
-    keywords << :group if account.group?
     keywords << :reply if reply?
     keywords << :sensitive if sensitive?
     keywords
