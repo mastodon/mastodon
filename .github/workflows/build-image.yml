@@ -55,7 +55,9 @@ jobs:
         with:
           context: .
           platforms: linux/amd64,linux/arm64
-          push: ${{ github.event_name != 'pull_request' }}
+          provenance: false
+          builder: ${{ steps.buildx.outputs.name }}
+          push: ${{ github.repository == 'mastodon/mastodon' && github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
