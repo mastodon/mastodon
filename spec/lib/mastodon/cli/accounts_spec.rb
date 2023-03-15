@@ -77,6 +77,18 @@ describe Mastodon::CLI::Accounts do
     end
   end
 
+  describe 'rotate' do
+    before do
+      Fabricate(:account, username: 'Teddy')
+    end
+
+    it 'rotates keys for all accounts' do
+      expect { described_class.new.invoke(:rotate, [], { all: true }) }.to output(
+        a_string_including('OK')
+      ).to_stdout
+    end
+  end
+
   describe '#create' do
     shared_examples 'a new user with given email address and username' do
       it 'creates a new user with the specified email address' do
