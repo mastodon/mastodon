@@ -627,7 +627,7 @@ module Mastodon
           exit(1)
         end
 
-        unless options[:force] || migration.target_acount_id == account.moved_to_account_id
+        unless options[:force] || migration.target_account_id == account.moved_to_account_id
           say('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway', :red)
           exit(1)
         end

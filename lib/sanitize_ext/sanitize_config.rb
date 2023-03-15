@@ -73,12 +73,11 @@ class Sanitize
       elements: %w(p br span a abbr del pre blockquote code b strong u sub sup i em h1 h2 h3 h4 h5 ul ol li),
 
       attributes: {
-        'a'          => %w(href rel class title),
-        'span'       => %w(class),
-        'abbr'       => %w(title),
+        'a' => %w(href rel class title),
+        'span' => %w(class),
         'blockquote' => %w(cite),
-        'ol'         => %w(start reversed),
-        'li'         => %w(value),
+        'ol' => %w(start reversed),
+        'li' => %w(value),
       },
 
       add_attributes: {

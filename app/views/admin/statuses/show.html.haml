@@ -31,7 +31,7 @@
           %td
             - if @status.trend.allowed?
               %abbr{ title: t('admin.trends.tags.current_score', score: @status.trend.score) }= t('admin.trends.tags.trending_rank', rank: @status.trend.rank)
-            - elsif @status.trend.requires_review?
+            - elsif @status.requires_review?
               = t('admin.trends.pending_review')
             - else
               = t('admin.trends.not_allowed_to_trend')

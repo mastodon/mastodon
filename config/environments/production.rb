@@ -128,6 +128,7 @@ Rails.application.configure do
     enable_starttls_auto: enable_starttls_auto,
     tls: ENV['SMTP_TLS'].presence && ENV['SMTP_TLS'] == 'true',
     ssl: ENV['SMTP_SSL'].presence && ENV['SMTP_SSL'] == 'true',
+    read_timeout: 20,
   }
 
   config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym

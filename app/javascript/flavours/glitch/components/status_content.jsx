@@ -5,7 +5,7 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
-import { autoPlayGif, languages as preloadedLanguages, translationEnabled } from 'flavours/glitch/initial_state';
+import { autoPlayGif, languages as preloadedLanguages } from 'flavours/glitch/initial_state';
 import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
 
 const textMatchesTarget = (text, origin, host) => {
@@ -315,7 +315,7 @@ class StatusContent extends React.PureComponent {
     } = this.props;
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
-    const renderTranslate = translationEnabled && this.context.identity.signedIn && this.props.onTranslate && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && status.get('language') !== null && intl.locale !== status.get('language');
+    const renderTranslate = this.props.onTranslate && status.get('translatable');
 
     const content = { __html: status.get('translation') ? status.getIn(['translation', 'content']) : status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };

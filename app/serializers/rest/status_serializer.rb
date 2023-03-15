@@ -4,7 +4,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   include FormattingHelper
 
   attributes :id, :created_at, :in_reply_to_id, :in_reply_to_account_id,
-             :sensitive, :spoiler_text, :visibility, :language,
+             :sensitive, :spoiler_text, :visibility, :language, :translatable,
              :uri, :url, :replies_count, :reblogs_count,
              :favourites_count, :edited_at
 
@@ -50,6 +50,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
   def show_application?
     object.account.user_shows_application? || (current_user? && current_user.account_id == object.account_id)
+  end
+
+  def translatable
+    current_user? && object.translatable?
   end
 
   def visibility

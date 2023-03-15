@@ -140,7 +140,6 @@ export const unfollowModal = getMeta('unfollow_modal');
 export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const version = getMeta('version');
-export const translationEnabled = getMeta('translation_enabled');
 export const languages = initialState?.languages;
 export const statusPageUrl = getMeta('status_page_url');
 
