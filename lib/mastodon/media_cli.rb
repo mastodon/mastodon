@@ -41,6 +41,7 @@ module Mastodon
     --days N
         Exclude media attachments that been posted in the past N days.
         Exclude accounts that have been updated in the past N days.
+        Defaults to N=7.
     --concurrency N
         The number of workers to use for this task.
         Defaults to N=5.
