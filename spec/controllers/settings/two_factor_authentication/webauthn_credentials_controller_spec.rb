@@ -248,7 +248,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
 
               post :create, params: { credential: new_webauthn_credential, nickname: 'USB Key' }
 
-              expect(response).to have_http_status(500)
+              expect(response).to have_http_status(422)
               expect(flash[:error]).to be_present
             end
           end
@@ -268,7 +268,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
 
               post :create, params: { credential: new_webauthn_credential, nickname: nickname }
 
-              expect(response).to have_http_status(500)
+              expect(response).to have_http_status(422)
               expect(flash[:error]).to be_present
             end
           end
