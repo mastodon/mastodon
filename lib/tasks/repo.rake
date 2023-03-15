@@ -91,8 +91,8 @@ namespace :repo do
     missing_json_files = I18n.available_locales.reject { |locale| Rails.root.join('app', 'javascript', 'mastodon', 'locales', "#{locale}.json").exist? }
 
     locales_in_files = Dir[Rails.root.join('config', 'locales', '*.yml')].map do |path|
-      file_name = File.basename(path)
-      file_name.gsub(/\A(doorkeeper|devise|activerecord|simple_form)\./, '').gsub(/\.yml\z/, '').to_sym
+      file_name = File.basename(path, '.yml')
+      file_name.gsub(/\A(doorkeeper|devise|activerecord|simple_form)\./, '').to_sym
     end.uniq.compact
 
     missing_available_locales = locales_in_files - I18n.available_locales
