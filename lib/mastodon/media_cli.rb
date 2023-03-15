@@ -21,10 +21,10 @@ module Mastodon
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :verbose, type: :boolean, default: false, aliases: [:v]
     option :dry_run, type: :boolean, default: false
-    # BEGIN depreciation
+    # BEGIN deprecation # TODO: How to tag deprecation? 
     option :prune_profiles, type: :boolean, default: false
     option :remove_headers, type: :boolean, default: false
-    # END depreciation
+    # END deprecation
     desc 'remove', 'Remove remote media files, headers or avatars'
     long_desc <<-DESC
     Removes locally cached copies of media attachments, avatars or profile headers from other servers.
@@ -50,9 +50,9 @@ module Mastodon
     DESC
     # rubocop:disable Metrics/PerceivedComplexity
     def remove
-      # BEGIN depreciation
+      # BEGIN deprecation 
       if options[:prune_profiles]
-        options[:avatars]=true
+        options[:avatars]=true # TODO: Use an alias for Thor options?
         options[:headers]=true
         say('--prune-profiles is deprecated and will be removed in the future.', :red, true)
       if options[:remove_headers]
@@ -60,10 +60,10 @@ module Mastodon
         say('--remove-headers is deprecated and will be removed in the future.', :red, true)
       if !(options[:prune_profiles] || options[:remove_headers] || options[:attachments] || options[:avatars] || options[:headers])
         options[:attachments]=true
-        option[:include_follows]=true
+        options[:include_follows]=true
         say('Usage of this command with no flags specifying media is deprecated and will be removed in the future.', :red, true)
       end
-      # END depreciation
+      # END deprecation
       time_ago        = options[:days].days.ago
       dry_run         = options[:dry_run] ? ' (DRY RUN)' : ''
 
@@ -90,7 +90,7 @@ module Mastodon
 
       if options[:attachments]
         processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where(created_at: ..time_ago)) do |media_attachment|
-          next if !options[:include_follows] && Follow.where(account: media_attachment.account).or(Follow.where(target_account: media_attachment.account)).exists?
+          next if !options[:include_follows] && Follow.where(account: media_attachment.account).or(Follow.where(target_account: media_attachment.account)).exists? # TODO: media_attachment.account works?
           next if media_attachment.file.blank?
 
           size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
