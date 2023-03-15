@@ -129,11 +129,9 @@ group :test do
 end
 
 group :development do
-  gem 'active_record_query_trace', '~> 1.8'
   gem 'annotate', '~> 3.2'
   gem 'better_errors', '~> 2.9'
   gem 'binding_of_caller', '~> 1.0'
-  gem 'bullet', '~> 7.0'
   gem 'letter_opener', '~> 1.8'
   gem 'letter_opener_web', '~> 2.0'
   gem 'memory_profiler'
