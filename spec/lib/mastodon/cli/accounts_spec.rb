@@ -8,6 +8,75 @@ describe Mastodon::CLI::Accounts do
 
   it_behaves_like 'A CLI Sub-Command'
 
+  describe 'delete' do
+    before { Fabricate(:account, username: 'Clorple') }
+
+    context 'with dry_run flag' do
+      it 'runs without making changes' do
+        expect { described_class.new.invoke(:delete, ['Clorple'], { dry_run: true }) }.to output(
+          a_string_including('OK (DRY RUN)')
+        ).to_stdout
+      end
+    end
+  end
+
+  describe 'fix_duplicates' do
+    before do
+      Fabricate(:account, domain: 'example.com', uri: 'duplicate')
+      Fabricate(:account, domain: 'example.com', uri: 'duplicate')
+    end
+
+    context 'with dry_run flag' do
+      it 'runs without making changes' do
+        expect { described_class.new.invoke(:fix_duplicates, [], { dry_run: true }) }.to output(
+          a_string_including('Duplicates found')
+        ).to_stdout
+      end
+    end
+  end
+
+  describe 'cull' do
+    before do
+      Fabricate(:account, domain: 'example.com')
+    end
+
+    context 'with dry_run flag' do
+      it 'runs without making changes' do
+        expect { described_class.new.invoke(:cull, ['example.com'], { dry_run: true }) }.to output(
+          a_string_including('(DRY RUN)')
+        ).to_stdout
+      end
+    end
+  end
+
+  describe 'refresh' do
+    before do
+      Fabricate(:account, username: 'glorp')
+    end
+
+    context 'with dry_run flag' do
+      it 'runs without making changes' do
+        expect { described_class.new.invoke(:refresh, ['glorp'], { dry_run: true }) }.to output(
+          a_string_including('(DRY RUN)')
+        ).to_stdout
+      end
+    end
+  end
+
+  describe 'prune' do
+    before do
+      Fabricate(:account, domain: 'example.com')
+    end
+
+    context 'with dry_run flag' do
+      it 'runs without making changes' do
+        expect { described_class.new.invoke(:prune, [], { dry_run: true }) }.to output(
+          a_string_including('(DRY RUN)')
+        ).to_stdout
+      end
+    end
+  end
+
   describe '#create' do
     shared_examples 'a new user with given email address and username' do
       it 'creates a new user with the specified email address' do

@@ -29,18 +29,19 @@ module Mastodon::CLI
       data!
     LONG_DESC
     def self_destruct
-      require 'tty-prompt'
+      intended_domain = ask('Type in the domain of the server to confirm:', required: true)
 
-      prompt = TTY::Prompt.new
-
-      exit(1) unless prompt.ask('Type in the domain of the server to confirm:', required: true) == Rails.configuration.x.local_domain
+      unless intended_domain == Rails.configuration.x.local_domain
+        say('Supplied domain and configured domain do not match.', :red)
+        exit(1)
+      end
 
       unless dry_run?
-        prompt.warn('This operation WILL NOT be reversible. It can also take a long time.')
-        prompt.warn('While the data won\'t be erased locally, the server will be in a BROKEN STATE afterwards.')
-        prompt.warn('A running Sidekiq process is required. Do not shut it down until queues clear.')
+        say('This operation WILL NOT be reversible. It can also take a long time.', :yellow)
+        say('While the data won\'t be erased locally, the server will be in a BROKEN STATE afterwards.', :yellow)
+        say('A running Sidekiq process is required. Do not shut it down until queues clear.', :yellow)
 
-        exit(1) if prompt.no?('Are you sure you want to proceed?')
+        exit(1) if no?('Are you sure you want to proceed?')
       end
 
       inboxes   = Account.inboxes
@@ -50,12 +51,12 @@ module Mastodon::CLI
 
       if inboxes.empty?
         Account.local.without_suspended.in_batches.update_all(suspended_at: Time.now.utc, suspension_origin: :local) unless dry_run?
-        prompt.ok('It seems like your server has not federated with anything')
-        prompt.ok('You can shut it down and delete it any time')
+        say('It seems like your server has not federated with anything', :green)
+        say('You can shut it down and delete it any time', :green)
         return
       end
 
-      prompt.warn('Do NOT interrupt this process...')
+      say('Do NOT interrupt this process...', :yellow)
 
       delete_account = lambda do |account|
         payload = ActiveModelSerializers::SerializableResource.new(
@@ -80,10 +81,8 @@ module Mastodon::CLI
       Account.local.without_suspended.find_each { |account| delete_account.call(account) }
       Account.local.suspended.joins(:deletion_request).find_each { |account| delete_account.call(account) }
 
-      prompt.ok("Queued #{inboxes.size * processed} items into Sidekiq for #{processed} accounts#{dry_run_mode_suffix}")
-      prompt.ok('Wait until Sidekiq processes all items, then you can shut everything down and delete the data')
-    rescue TTY::Reader::InputInterrupt
-      exit(1)
+      say("Queued #{inboxes.size * processed} items into Sidekiq for #{processed} accounts#{dry_run_mode_suffix}", :green)
+      say('Wait until Sidekiq processes all items, then you can shut everything down and delete the data', :green)
     end
   end
 end
