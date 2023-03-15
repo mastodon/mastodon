@@ -61,4 +61,12 @@ describe Mastodon::CLI::Feeds do
       redis.keys('feed:*')
     end
   end
+
+  describe 'clear' do
+    it 'clears out redis feeds' do
+      expect { described_class.new.invoke(:clear) }.to output(
+        a_string_including('OK')
+      ).to_stdout
+    end
+  end
 end
