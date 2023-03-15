@@ -5,7 +5,7 @@ require_relative 'base'
 module Mastodon::CLI
   class Maintenance < Base
     MIN_SUPPORTED_VERSION = 2019_10_01_213028
-    MAX_SUPPORTED_VERSION = 2022_11_04_133904
+    MAX_SUPPORTED_VERSION = 2022_12_06_114142
 
     # Stubs to enjoy ActiveRecord queries while not depending on a particular
     # version of the code/database
@@ -509,7 +509,7 @@ module Mastodon::CLI
       if ActiveRecord::Migrator.current_version < 2021_04_21_121431
         ActiveRecord::Base.connection.add_index :tags, 'lower((name)::text)', name: 'index_tags_on_name_lower', unique: true
       else
-        ActiveRecord::Base.connection.execute 'CREATE UNIQUE INDEX CONCURRENTLY index_tags_on_name_lower_btree ON tags (lower(name) text_pattern_ops)'
+        ActiveRecord::Base.connection.execute 'CREATE UNIQUE INDEX index_tags_on_name_lower_btree ON tags (lower(name) text_pattern_ops)'
       end
     end
 
@@ -670,7 +670,7 @@ module Mastodon::CLI
     end
 
     def remove_index_if_exists!(table, name)
-      ActiveRecord::Base.connection.remove_index(table, name: name)
+      ActiveRecord::Base.connection.remove_index(table, name: name) if ActiveRecord::Base.connection.index_name_exists?(table, name)
     rescue ArgumentError, ActiveRecord::StatementInvalid
       nil
     end
