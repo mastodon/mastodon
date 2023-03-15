@@ -9,12 +9,19 @@ HttpLog.configuration.logger = dev_null
 Paperclip.options[:log]      = false
 Chewy.logger                 = dev_null
 
+require 'ruby-progressbar/outputs/null'
+
 module Mastodon::CLI
   module ProgressHelper
     PROGRESS_FORMAT = '%c/%u |%b%i| %e'
 
     def create_progress_bar(total = nil)
-      ProgressBar.create(total: total, format: PROGRESS_FORMAT)
+      ProgressBar.create(
+        {
+          total: total,
+          format: PROGRESS_FORMAT,
+        }.merge(progress_output_options)
+      )
     end
 
     def parallelize_with_progress(scope)
@@ -69,6 +76,12 @@ module Mastodon::CLI
       progress.stop
 
       [total.value, aggregate.value]
+    end
+
+    private
+
+    def progress_output_options
+      Rails.env.test? ? { output: ProgressBar::Outputs::Null } : {}
     end
   end
 end
