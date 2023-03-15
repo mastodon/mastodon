@@ -308,6 +308,12 @@ GEM
       activesupport (>= 5.1)
       haml (>= 4.0.6)
       railties (>= 5.1)
+    haml_lint (0.45.0)
+      haml (>= 4.0, < 6.2)
+      parallel (~> 1.10)
+      rainbow
+      rubocop (>= 0.50.0)
+      sysexits (~> 1.1)
     hashdiff (1.0.1)
     hashie (5.0.0)
     highline (2.0.3)
@@ -687,6 +693,7 @@ GEM
       activesupport (>= 3)
       attr_required (>= 0.0.5)
       httpclient (>= 2.4)
+    sysexits (1.2.0)
     temple (0.10.0)
     terminal-table (3.0.2)
       unicode-display_width (>= 1.1.1, < 3)
@@ -804,6 +811,7 @@ DEPENDENCIES
   fog-openstack (~> 0.3)
   fuubar (~> 2.5)
   haml-rails (~> 2.0)
+  haml_lint
   hiredis (~> 0.6)
   htmlentities (~> 4.3)
   http (~> 5.1)
