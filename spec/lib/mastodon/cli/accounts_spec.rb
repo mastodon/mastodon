@@ -6,11 +6,7 @@ require 'mastodon/cli/accounts'
 describe Mastodon::CLI::Accounts do
   let(:cli) { described_class.new }
 
-  describe '.exit_on_failure?' do
-    it 'returns true' do
-      expect(described_class.exit_on_failure?).to be true
-    end
-  end
+  it_behaves_like 'A CLI Sub-Command'
 
   describe '#create' do
     shared_examples 'a new user with given email address and username' do

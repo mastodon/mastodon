@@ -4,9 +4,5 @@ require 'rails_helper'
 require 'mastodon/cli/statuses'
 
 describe Mastodon::CLI::Statuses do
-  describe '.exit_on_failure?' do
-    it 'returns true' do
-      expect(described_class.exit_on_failure?).to be true
-    end
-  end
+  it_behaves_like 'A CLI Sub-Command'
 end
