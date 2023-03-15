@@ -41,7 +41,7 @@ class UnsuspendAccountService < BaseService
 
     account_reach_finder = AccountReachFinder.new(@account)
 
-    ActivityPub::DeliveryWorker.push_bulk(account_reach_finder.inboxes) do |inbox_url|
+    ActivityPub::DeliveryWorker.push_bulk(account_reach_finder.inboxes, limit: 1_000) do |inbox_url|
       [signed_activity_json, @account.id, inbox_url]
     end
   end
