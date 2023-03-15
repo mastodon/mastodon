@@ -31,7 +31,7 @@ module Mastodon
 
       def reset_connection_pools!
         ActiveRecord::Base.establish_connection(
-          ActiveRecord::Base.configurations[Rails.env]
+          ActiveRecord::Base.configurations.configs_for(env_name: Rails.env).first.configuration_hash
             .dup
             .tap { |config| config['pool'] = options[:concurrency] + 1 }
         )
