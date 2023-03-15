@@ -187,7 +187,7 @@
             %th= t('admin.accounts.shared_inbox_url')
             %td
               = @account.shared_inbox_url
-              = fa_icon DeliveryFailureTracker.available?(@account.shared_inbox_url) ? 'check': 'times'
+              = fa_icon DeliveryFailureTracker.available?(@account.shared_inbox_url) ? 'check' : 'times'
             %td
               - if @domain_block.nil?
                 = table_link_to 'ban', t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @account.domain)
