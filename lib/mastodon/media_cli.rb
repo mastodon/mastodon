@@ -39,7 +39,7 @@ module Mastodon
         Remove media even if a follow relationship exists.
         If this flag is not provided, only accounts that are not followed by or following anyone locally will have their media removed.
     --days N
-        Exclude media attachments that been posted in the past N days.
+        Exclude media attachments that have been posted in the past N days.
         Exclude accounts that have been updated in the past N days.
         Defaults to N=7.
     --concurrency N
