@@ -573,15 +573,7 @@ module Mastodon::CLI
       redirects to a different account that the one specified.
     LONG_DESC
     def migrate(username)
-      if options[:replay].present? && options[:target].present?
-        say('Use --replay or --target, not both', :red)
-        exit(1)
-      end
-
-      if options[:replay].blank? && options[:target].blank?
-        say('Use either --replay or --target', :red)
-        exit(1)
-      end
+      verify_migrate_options!
 
       account = Account.find_local(username)
 
@@ -632,6 +624,18 @@ module Mastodon::CLI
     end
 
     private
+
+    def verify_migrate_options!
+      if options[:replay].present? && options[:target].present?
+        say('Use --replay or --target, not both', :red)
+        exit(1)
+      end
+
+      if options[:replay].blank? && options[:target].blank?
+        say('Use either --replay or --target', :red)
+        exit(1)
+      end
+    end
 
     def assign_attributes_from_options(user)
       user.email = options[:email] if options[:email]
