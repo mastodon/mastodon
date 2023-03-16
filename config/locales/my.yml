@@ -89,6 +89,7 @@ my:
       no_account_selected: မည်သည့်အကောင့်ကိုမျှ ရွေးချယ်ထားခြင်းမရှိသောကြောင့် ပြောင်းလဲခြင်းမရှိပါ
       no_role_assigned: တာဝန်ပေးအပ်ထားခြင်း မရှိပါ
       not_subscribed: စာရင်းသွင်းထားခြင်းမရှိပါ
+      pending: ဆိုင်းငံ့ထားသော သုံးသပ်ချက်
       perform_full_suspension: ရပ်ဆိုင်းရန်
       promote: အထောက်အကူ
       protocol: လုပ်ထုံးလုပ်နည်း
@@ -834,6 +835,7 @@ my:
     strikes:
       appeals:
         submit: အယူခံဝင်ခွင့်ပြုရန်
+      created_at: ရက်စွဲ
       recipient: လိပ်မူထားသည်
       status: '#%{id} ပို့စ်'
       title: "%{date} မှ %{action}"
@@ -842,6 +844,7 @@ my:
         mark_statuses_as_sensitive: သတိထားရသောပို့စ်များအဖြစ် အမှတ်အသားပြုခြင်း
         none: သတိပေးချက်
         sensitive: သတိထားရသောအကောင့်အဖြစ် အမှတ်အသားပြုခြင်း
+        suspend: အကောင့်ပိတ်ခြင်း
   domain_validator:
     invalid_domain: တရားဝင်ဒိုမိန်းအမည်မဟုတ်ပါ
   errors:
@@ -936,6 +939,7 @@ my:
       '43200': ၁၂ နာရီ
       '604800': ၁ ပတ်
       '86400': ၁ ရက်
+    generate: ဖိတ်ကြားချက်လင့်ခ် ဖန်တီးပါ
     invited_by: 'သင့်ကို ဖိတ်ခေါ်ထားသည် -'
     max_uses_prompt: အကန့်အသတ်မဲ့
     table:
