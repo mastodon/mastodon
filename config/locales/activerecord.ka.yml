@@ -1,13 +1,50 @@
 ---
 ka:
   activerecord:
+    attributes:
+      poll:
+        expires_at: ბოლო ვადა
+        options: არჩევანი
+      user:
+        agreement: მომსახურების ხელშეკრულება
+        email: ელ-ფოსტის მისამართი
+        locale: ლოკალი
+        password: პაროლი
+      user/account:
+        username: მომხმარებლის სახელი
+      user/invite_request:
+        text: მიზეზი
     errors:
       models:
         account:
           attributes:
             username:
               invalid: მხოლოდ ასოები, ციფრები და "ქვედა-ტირე"
+              reserved: რეზერვირებულია
+        admin/webhook:
+          attributes:
+            url:
+              invalid: არასწორი URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: არასწორი URL
+        import:
+          attributes:
+            data:
+              malformed: არასწორად არის ფორმირებული
         status:
           attributes:
             reblog:
               taken: სტატუსის უკვე არსებობს
+        user:
+          attributes:
+            email:
+              blocked: იყენებს აკრძალულ ელ-ფოსტის პროვაიდერს
+              unreachable: როგორც ჩანს, არ არსებობს
+            role_id:
+              elevated: არ შეიძლება იყოს თქვენს ამჟამინდელ როლზე მაღალი
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: მოიცავს ნებართვებს, რომლებიც არ არის უსაფრთხო საბაზისო როლისთვის

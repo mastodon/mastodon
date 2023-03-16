@@ -1065,7 +1065,7 @@ ko:
       email_contact_html: 아직 도착하지 않았다면, <a href="mailto:%{email}">%{email}</a>에 메일을 보내 도움을 요청할 수 있습니다
       email_reconfirmation_html: 아직 확인 메일이 도착하지 않은 경우, <a href="%{path}">다시 요청할 수 있습니다</a>
       irreversible: 계정을 복구하거나 다시 사용할 수 없게 됩니다
-      more_details_html: 더 자세한 정보는, <a href="%{terms_path}">개인정보 정책</a>을 참고하세요.
+      more_details_html: 더 자세한 정보는, <a href="%{terms_path}">개인정보처리방침</a>을 참고하세요.
       username_available: 이 사용자명을 다시 쓸 수 있게 됩니다.
       username_unavailable: 이 사용자명은 앞으로도 쓸 수 없는 채로 남게 됩니다.
   disputes:
@@ -1137,7 +1137,7 @@ ko:
     add_new: 추가
     errors:
       limit: 추천 해시태그 최대 개수를 초과합니다
-    hint_html: "<strong>추천 해시태그가 무엇이죠?</strong> 당신의 공개 프로필 페이지에 눈에 띄게 표현 되며 사람들이 그 해시태그를 포함한 당신의 글을 찾아 볼 수 있도록 합니다. 창작활동이나 긴 기간을 가지는 프로젝트를 쭉 따라가기에 좋은 도구입니다."
+    hint_html: "<strong>추천 해시태그가 무엇일까요?</strong> 해시태그는 공개 프로필에 눈에 잘 띄게 표시되며, 사람들은 해당 해시태그로 내 공개 글을 검색할 수 있습니다. 창작물이나 장기 프로젝트를 추적하는 데 유용한 도구입니다."
   filters:
     contexts:
       account: 프로필
@@ -1370,7 +1370,7 @@ ko:
     posting_defaults: 게시물 기본설정
     public_timelines: 공개 타임라인
   privacy_policy:
-    title: 개인정보 정책
+    title: 개인정보처리방침
   reactions:
     errors:
       limit_reached: 리액션 갯수 제한에 도달했습니다
@@ -1381,6 +1381,7 @@ ko:
     confirm_remove_selected_followers: 정말로 선택된 팔로워들을 삭제하시겠습니까?
     confirm_remove_selected_follows: 정말로 선택된 팔로우를 끊으시겠습니까?
     dormant: 휴면
+    follow_failure: 선택한 계정 중 몇몇은 팔로우 할 수 없었습니다.
     follow_selected_followers: 선택한 팔로워들을 팔로우
     followers: 팔로워
     following: 팔로잉
@@ -1420,6 +1421,7 @@ ko:
       electron: 일렉트론
       firefox: 파이어폭스
       generic: 알 수 없는 브라우저
+      huawei_browser: 화웨이 브라우저
       ie: 인터넷 익스플로러
       micro_messenger: 마이크로메신저
       nokia: Nokia S40 Ovi 브라우저
@@ -1429,6 +1431,7 @@ ko:
       qq: QQ 브라우저
       safari: 사파리
       uc_browser: UC 브라우저
+      unknown_browser: 알 수 없는 브라우저
       weibo: 웨이보
     current_session: 현재 세션
     description: "%{platform}의 %{browser}"
@@ -1441,9 +1444,10 @@ ko:
       chrome_os: 크롬OS
       firefox_os: 파이어폭스OS
       ios: iOS
+      kai_os: KaiOS
       linux: 리눅스
       mac: macOS
-      other: 알 수 없는 플랫폼
+      unknown_platform: 알 수 없는 플랫폼
       windows: 윈도우
       windows_mobile: 윈도우 모바일
       windows_phone: 윈도우 폰

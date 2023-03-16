@@ -18,6 +18,8 @@ da:
           disable: Forhindre brugeren i at bruge sin konto, men slet eller skjul ikke vedkommendes indhold.
           none: Brug dette til at sende en advarsel til brugeren uden at udløse nogen anden handling.
           sensitive: Gennemtving sensitivmarkering af alle denne brugers medievedhæftninger.
+          silence: Forhindr brugeren i at udgive offentligt synlige indlæg, skjul vedkommendes indlæg samt notifikationer fra ikke-følgere. Lukker alle indrapporteringer af kontoen.
+          suspend: Forhindr alle interaktion fra/til kontoen og slet dens indhold. Kan omgøres inden for 30 dage. Lukker alle indrapporteringer af kontoen.
         warning_preset_id: Valgfri. Du kan stadig tilføje tilpasset tekst til slutningen af forvalgene
       announcement:
         all_day: Hvis markeret, vil kun datoerne for tidsintervallet blive vist
@@ -80,6 +82,7 @@ da:
         custom_css: Man kan anvende tilpassede stilarter på Mastodon-webversionen.
         mascot: Tilsidesætter illustrationen i den avancerede webgrænseflade.
         media_cache_retention_period: Downloadede mediefiler slettes efter det angivne antal dage, når sat til en positiv værdi, og gendownloades på forlangende.
+        peers_api_enabled: En liste med domænenavne, som denne server har stødt på i fediverset. Ingen data inkluderes her om, hvorvidt der fødereres med en given server, blot at din server kender til det. Dette bruges af tjenester, som indsamler generelle føderationsstatistikker.
         profile_directory: Profilmappen oplister alle brugere, som har valgt at kunne opdages.
         require_invite_text: Når tilmelding kræver manuel godkendelse, så gør “Hvorfor ønsker du at deltage?” tekstinput obligatorisk i stedet for valgfrit
         site_contact_email: Hvordan folk kan opnå kontakt ifm. juridiske eller supportforespørgsler.
@@ -238,6 +241,7 @@ da:
         custom_css: Tilpasset CSS
         mascot: Tilpasset maskot (ældre funktion)
         media_cache_retention_period: Media-cache opbevaringsperiode
+        peers_api_enabled: Udgiv liste over fundne server i API'en
         profile_directory: Aktivér profiloversigt
         registrations_mode: Hvem, der kan tilmelde sig
         require_invite_text: Kræv tilmeldingsbegrundelse
@@ -255,6 +259,7 @@ da:
         timeline_preview: Tillad ikke-godkendt adgang til offentlige tidslinjer
         trendable_by_default: Tillad ikke-reviderede tendenser
         trends: Aktivér trends
+        trends_as_landing_page: Brug tendenser som destinationssiden
       interactions:
         must_be_follower: Blokér notifikationer fra ikke-følgere
         must_be_following: Blokér notifikationer fra folk, som ikke følges
