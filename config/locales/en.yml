@@ -805,6 +805,12 @@ en:
         message_html: You haven't defined any server rules.
       sidekiq_process_check:
         message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
+      upload_check_privacy_error:
+        action: Check here for more information
+        message_html: "<strong>Your web server is misconfigured. The privacy of your users is at risk.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Check here for more information
+        message_html: "<strong>Your object storage is misconfigured. The privacy of your users is at risk.</strong>"
     tags:
       review: Review status
       updated_msg: Hashtag settings updated successfully
