@@ -13,7 +13,7 @@
     .filter-subset.filter-subset--with-select
       %strong= t('admin.action_logs.filter_by_action')
       .input.select.optional
-        = select_tag :action_type, options_for_select(Admin::ActionLogFilter::ACTION_TYPE_MAP.keys.map { |key| [I18n.t("admin.action_logs.action_types.#{key}"), key]}, params[:action_type]), prompt: I18n.t('admin.accounts.moderation.all')
+        = select_tag :action_type, options_for_select(Admin::ActionLogFilter::ACTION_TYPE_MAP.keys.map { |key| [I18n.t("admin.action_logs.action_types.#{key}"), key] }, params[:action_type]), prompt: I18n.t('admin.accounts.moderation.all')
 
 - if @action_logs.empty?
   .muted-hint.center-text

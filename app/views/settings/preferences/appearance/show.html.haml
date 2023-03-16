@@ -10,7 +10,7 @@
 
   - unless I18n.locale == :en
     .flash-message.translation-prompt
-      #{t 'appearance.localization.body'} #{content_tag(:a, t('appearance.localization.guide_link_text'), href: t('appearance.localization.guide_link'), target: "_blank", rel: "noopener")}
+      #{t 'appearance.localization.body'} #{content_tag(:a, t('appearance.localization.guide_link_text'), href: t('appearance.localization.guide_link'), target: '_blank', rel: 'noopener')}
       = link_to t('appearance.localization.glitch_guide_link'), target: '_blank', rel: 'noopener noreferrer' do
         = t('appearance.localization.glitch_guide_link_text')
 
@@ -54,7 +54,7 @@
   %h4= t 'appearance.sensitive_content'
 
   .fields-group
-    = f.input :setting_display_media, collection: ['default', 'show_all', 'hide_all'],label_method: lambda { |item| t("simple_form.hints.defaults.setting_display_media_#{item}") }, hint: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', wrapper: :with_floating_label
+    = f.input :setting_display_media, collection: ['default', 'show_all', 'hide_all'], label_method: lambda { |item| t("simple_form.hints.defaults.setting_display_media_#{item}") }, hint: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', wrapper: :with_floating_label
 
   .fields-group
     = f.input :setting_use_blurhash, as: :boolean, wrapper: :with_label

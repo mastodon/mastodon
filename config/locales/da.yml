@@ -580,7 +580,10 @@ da:
         mark_as_sensitive_description_html: Medierne i det anmeldte indlæg markeres som sensitive, og en advarsel (strike) registreres mhp. eskalering ved evt. fremtidige overtrædelser fra samme konto.
         other_description_html: Se flere muligheder relateret til at adfærdshåndtering for, samt tilpasning af kommunikation til, den anmeldte konto.
         resolve_description_html: Ingen foranstaltninger træffes mod den anmeldte konto, ingen advarsel (strike) registreres og anmeldelsen lukkes.
+        silence_description_html: Kontoen vil kun være synlig for følgerene eller dem, som manuelt slå den op, hvilket markant begrænser dens udbredelse. Kan altid omgøres. Lukker alle indrapporteringer af kontoen.
+        suspend_description_html: Kontoen inkl. alt indhold utilgængeliggøres og interaktion umuliggøres, og den slettes på et tidspunkt. Kan omgøres inden for 30 dage. Lukker alle indrapporteringer af kontoen.
       actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Træffes en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
+      actions_description_remote_html: Fastslå en nødvendig handling mhp. at løse denne anmeldelse. Dette vil kun påvirke <strong>din</strong> servers kommunikation med, og indholdshåndtering for, fjernkontoen.
       add_to_report: Føj mere til anmeldelse
       are_you_sure: Sikker?
       assign_to_self: Tildel til mig
@@ -739,6 +742,7 @@ da:
         preamble: At vise interessant indhold er vitalt ifm. at få nye brugere om bord, som måske ikke kender nogen på Mastodon. Styr, hvordan forskellige opdagelsesfunktioner fungerer på serveren.
         profile_directory: Profiloversigt
         public_timelines: Offentlige tidslinjer
+        publish_discovered_servers: Udgiv fundne servere
         publish_statistics: Udgiv statistik
         title: Opdagelse
         trends: Trends
@@ -971,7 +975,7 @@ da:
     apply_for_account: Anmod om en konto
     change_password: Adgangskode
     confirmations:
-      wrong_email_hint: Er denne e-mail-adresse ikke korrekt, kan den ændres i kontoindstillinger.
+      wrong_email_hint: Er denne e-mailadresse ikke korrekt, kan den ændres i kontoindstillinger.
     delete_account: Slet konto
     delete_account_html: Ønsker du at slette din konto, kan du <a href="%{path}">gøre dette hér</a>. Du vil blive bedt om bekræftelse.
     description:
@@ -1399,7 +1403,9 @@ da:
     activity: Kontoaktivitet
     confirm_follow_selected_followers: Sikker på, at de valgte følgere skal følges?
     confirm_remove_selected_followers: Sikker på, at de valgte følgere skal fjernes?
+    confirm_remove_selected_follows: Sikker på, at de valgte følgere skal fjernes?
     dormant: I dvale
+    follow_failure: Kunne ikke følge alle af de valgte konti.
     follow_selected_followers: Følg valgte følgere
     followers: Følgere
     following: Følger
@@ -1439,6 +1445,7 @@ da:
       electron: Electron
       firefox: Firefox
       generic: Ukendt browser
+      huawei_browser: Huawei Browser
       ie: IE
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1448,6 +1455,7 @@ da:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Ukendt browser
       weibo: Weibo
     current_session: Aktuelle session
     description: "%{browser} på %{platform}"
@@ -1460,9 +1468,10 @@ da:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: ukendt platform
+      unknown_platform: Ukendt platform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone

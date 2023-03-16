@@ -935,7 +935,7 @@ bg:
       new_trending_tags:
         no_approved_tags: Сега няма одобрени налагащи се хаштагове.
         requirements: 'Всеки от тези кандидати може да надмине #%{rank} одобрен актуален хаштаг, който в момента е #%{lowest_tag_name} с резултат %{lowest_tag_score}.'
-        title: Нашумели хаштагове
+        title: Налагащи се хаштагове
       subject: Нови нашумели, готови за преглед в %{instance}
   aliases:
     add_new: Създаване на псевдоним
@@ -1405,6 +1405,7 @@ bg:
     confirm_remove_selected_followers: Наистина ли искате да премахнете избраните последователи?
     confirm_remove_selected_follows: Наистина ли искате да премахнете избраните последвания?
     dormant: Неактивен
+    follow_failure: Не може да се последват някои от избраните акаунти.
     follow_selected_followers: Последване на избраните последователи
     followers: Последователи
     following: Последвани
@@ -1444,6 +1445,7 @@ bg:
       electron: Electron
       firefox: Firefox
       generic: Неизвестен браузър
+      huawei_browser: Браузър Хуауей
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Браузър Nokia S40 Ovi
@@ -1453,6 +1455,7 @@ bg:
       qq: Браузър QQ
       safari: Safari
       uc_browser: Браузър UC
+      unknown_browser: Неизвестен браузър
       weibo: Weibo
     current_session: Текуща сесия
     description: "%{browser} на %{platform}"
@@ -1465,9 +1468,10 @@ bg:
       chrome_os: ChromeOS
       firefox_os: Оп. сист. Firefox
       ios: iOS
+      kai_os: KaiOS
       linux: Линукс
       mac: macOS
-      other: неизвестна платформа
+      unknown_platform: Неизвестна платформа
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone

@@ -18,6 +18,6 @@
 class Backup < ApplicationRecord
   belongs_to :user, inverse_of: :backups
 
-  has_attached_file :dump
+  has_attached_file :dump, s3_permissions: 'private'
   validates_attachment_content_type :dump, content_type: /\Aapplication/
 end

@@ -999,7 +999,7 @@ zh-CN:
       preamble_html: 使用您在 <strong>%{domain}</strong> 的账户和密码登录。如果您的账户托管在其他的服务器上，您将无法在此登录。
       title: 登录到 %{domain}
     sign_up:
-      preamble: 使用此 Mastodon 服务器上的帐号，您将能够关注网络上的任何其他人，无论他们的帐号托管在哪里的主机。
+      preamble: 有了这个Mastodon服务器上的账户，您就可以关注Mastodon网络上的任何其他人，无论他们的账户在哪里。
       title: 让我们在 %{domain} 上开始。
     status:
       account_status: 账户状态
@@ -1379,6 +1379,7 @@ zh-CN:
     confirm_remove_selected_followers: 您确定想要取关所选的关注者吗？
     confirm_remove_selected_follows: 您确定要删除选定的关注着吗？
     dormant: 休眠
+    follow_failure: 无法关注选中的部分账户。
     follow_selected_followers: 关注选中的关注者
     followers: 关注者
     following: 正在关注
@@ -1418,6 +1419,7 @@ zh-CN:
       electron: Electron
       firefox: 火狐
       generic: 未知浏览器
+      huawei_browser: 华为浏览器
       ie: IE 浏览器
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 浏览器
@@ -1427,6 +1429,7 @@ zh-CN:
       qq: QQ浏览器
       safari: Safari
       uc_browser: UC 浏览器
+      unknown_browser: 未知浏览器
       weibo: 新浪微博
     current_session: 当前会话
     description: "%{platform} 上的 %{browser}"
@@ -1439,9 +1442,10 @@ zh-CN:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: 未知平台
+      unknown_platform: 未知平台
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone

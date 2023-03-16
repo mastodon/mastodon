@@ -954,7 +954,7 @@ fi:
       body: Mastodonin ovat kääntäneet vapaaehtoiset.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Kaikki voivat osallistua.
-    sensitive_content: Arkaluontoista sisältöä
+    sensitive_content: Arkaluonteinen sisältö
     toot_layout: Viestin asettelu
   application_mailer:
     notification_preferences: Muuta sähköpostiasetuksia
@@ -1022,7 +1022,7 @@ fi:
     status:
       account_status: Tilin tila
       confirming: Odotetaan sähköpostivahvistuksen valmistumista.
-      functional: Tilisi on täysin toimiva.
+      functional: Tilisi on täysin toiminnassa.
       pending: Hakemuksesi odottaa henkilökuntamme tarkastusta. Tämä voi kestää jonkin aikaa. Saat sähköpostiviestin, jos hakemuksesi on hyväksytty.
       redirecting_to: Tilisi ei ole aktiivinen, koska se ohjaa tällä hetkellä kohteeseen %{acct}.
       view_strikes: Näytä tiliäsi koskevia aiempia varoituksia
@@ -1405,6 +1405,7 @@ fi:
     confirm_remove_selected_followers: Haluatko varmasti poistaa valitut seuraajat?
     confirm_remove_selected_follows: Haluatko varmasti poistaa valitut seuraamiset?
     dormant: Horroksessa
+    follow_failure: Joitain valittuja tilejä ei voitu seurata.
     follow_selected_followers: Seuraa valittuja seuraajia
     followers: Seuraajat
     following: Seuratut
@@ -1444,6 +1445,7 @@ fi:
       electron: Electron
       firefox: Firefox
       generic: Tuntematon selain
+      huawei_browser: Huawei-selain
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi -selain
@@ -1453,6 +1455,7 @@ fi:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Tuntematon selain
       weibo: Weibo
     current_session: Nykyinen istunto
     description: "%{browser} alustalla %{platform}"
@@ -1465,9 +1468,10 @@ fi:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: tuntematon alusta
+      unknown_platform: Tuntematon alusta
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
