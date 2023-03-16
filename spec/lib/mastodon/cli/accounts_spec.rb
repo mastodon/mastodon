@@ -91,6 +91,7 @@ describe Mastodon::CLI::Accounts do
 
   describe 'modify' do
     before { Fabricate(:account, username: 'josh') }
+
     it 'updates an existing user' do
       expect { described_class.new.invoke(:modify, ['josh'], { email: 'josh@example.com' }) }.to output(
         a_string_including('OK')
@@ -100,6 +101,7 @@ describe Mastodon::CLI::Accounts do
 
   describe 'reset-relationships' do
     before { Fabricate(:account, username: 'josh') }
+
     it 'resets follows and followers for an account' do
       expect { described_class.new.invoke(:reset_relationships, ['josh'], { follows: true, followers: true }) }.to output(
         a_string_including('Processed 0 relationships')

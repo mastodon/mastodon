@@ -75,6 +75,5 @@ describe Mastodon::CLI::Cache do
         ).to_stdout
       end
     end
-
   end
 end
