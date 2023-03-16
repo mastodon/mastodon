@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 require 'tty-prompt'
-require_relative '../../config/boot'
-require_relative '../../config/environment'
-require_relative 'cli_helper'
+require_relative '../../../config/boot'
+require_relative '../../../config/environment'
+require_relative 'helper'
 
-module Mastodon
-  class PreviewCardsCLI < Thor
+module Mastodon::CLI
+  class PreviewCards < Thor
     include ActionView::Helpers::NumberHelper
-    include CLIHelper
+    include Helper
 
     def self.exit_on_failure?
       true

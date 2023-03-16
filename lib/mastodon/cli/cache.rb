@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative '../../config/boot'
-require_relative '../../config/environment'
-require_relative 'cli_helper'
+require_relative '../../../config/boot'
+require_relative '../../../config/environment'
+require_relative 'helper'
 
-module Mastodon
-  class CacheCLI < Thor
-    include CLIHelper
+module Mastodon::CLI
+  class Cache < Thor
+    include Helper
 
     def self.exit_on_failure?
       true
