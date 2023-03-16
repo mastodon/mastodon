@@ -1,4 +1,3 @@
----
 be:
   about:
     about_mastodon_html: 'Сацыяльная сетка будучыні: без рэкламы, без карпаратыўнага назірання, этычны дызайн і дэцэнтралізацыя! Валодайце сваімі данымі з Mastodon!'
@@ -9,9 +8,9 @@ be:
   accounts:
     follow: Падпісацца
     followers:
+      one: Падпісчык
       few: Падпісчыка
       many: Падпісчыкаў
-      one: Падпісчык
       other: Падпісчыкі
     following: Падпісаны
     instance_actor_flash: Гэты ўліковы запіс - лічбавы аватар, неабходны для рэпрэзентацыі самога сервера, а не якой-небудзь асобы. Ён выкарыстоўваецца для федэралізацыі і не можа быць замарожаны.
@@ -21,9 +20,9 @@ be:
     pin_errors:
       following: Вы павінны быць падпісаны на чалавека, якога жадаеце рэкамендаваць
     posts:
+      one: Допіс
       few: Допісы
       many: Допісаў
-      one: Допіс
       other: Допісы
     posts_tab_heading: Допісы
   admin:
@@ -60,7 +59,7 @@ be:
       delete: Выдаліць даныя
       deleted: Выдалены
       demote: Панізіць у правах
-      destroyed_msg: Даныя %{username} цяпер у чарзе на прымусовае выдаленне
+      destroyed_msg: "Даныя %{username} цяпер у чарзе на прымусовае выдаленне"
       disable: Замарозіць
       disable_sign_in_token_auth: Выключыць аўтэнтыфікацыю па e-mail токену
       disable_two_factor_authentication: Адключыць 2FA
@@ -111,9 +110,9 @@ be:
       perform_full_suspension: Выключыць
       previous_strikes: Ранейшыя скаргі
       previous_strikes_description_html:
+        one: Гэты ўліковы запіс мае <strong>адну</strong> скаргу.
         few: Гэты ўліковы запіс мае <strong>%{count}</strong> скаргі.
         many: Гэты ўліковы запіс мае <strong>%{count}</strong> скарг.
-        one: Гэты ўліковы запіс мае <strong>адну</strong> скаргу.
         other: Гэты ўліковы запіс мае <strong>%{count}</strong> скаргаў.
       promote: Павысіць
       protocol: Пратакол
@@ -230,12 +229,12 @@ be:
         unsuspend_account: Аднавіць уліковы запіс
         update_announcement: Абнавіць аб'яву
         update_custom_emoji: Абнавіць адвольныя эмодзі
-        update_domain_block: Актуалізаваць блакіроўку дамена
+        update_domain_block: Актуалізаваць блакіроўку дамена 
         update_ip_block: Абнавіць IP правіла
         update_status: Абнавіць допіс
         update_user_role: Абнавіць ролю
       actions:
-        approve_appeal_html: Карыстальнік %{name} ухваліў запыт на мадэрацыю %{target}
+        approve_appeal_html: "Карыстальнік %{name} ухваліў запыт на мадэрацыю %{target}"
         approve_user_html: "%{name} пацвердзіў рэгістрацыю ад %{target}"
         assigned_to_self_report_html: "%{name} прызначыў справаздачу %{target} на сябе\n"
         change_email_user_html: "%{name} змяніў паштовы адрас карыстальніка %{target}"
@@ -270,7 +269,7 @@ be:
         enable_custom_emoji_html: "%{name} уключыў эмодзі %{target}"
         enable_sign_in_token_auth_user_html: "%{name} уключыў(ла) такенную e-mail праверку для %{target}"
         enable_user_html: "%{name} уключыў уваход для карыстальніка %{target}"
-        memorialize_account_html: Карыстальнік %{name} пераключыў уліковы запіс %{target} у старонку памяці
+        memorialize_account_html: "Карыстальнік %{name} пераключыў уліковы запіс %{target} у старонку памяці"
         promote_user_html: "%{name} павысіў карыстальніка %{target}"
         reject_appeal_html: "%{name} адхіліў запыт на абскарджанне %{target}"
         reject_user_html: "%{name} адхіліў рэгістрацыю з %{target}"
@@ -281,12 +280,12 @@ be:
         resolve_report_html: "%{name} вырашыў скаргу %{target}"
         sensitive_account_html: "%{name} адзначыў медыя %{target} як далікатнае"
         silence_account_html: "%{name} абмежаваў уліковы запіс %{target}"
-        suspend_account_html: Уліковы запіс %{target} выключаны %{name}
+        suspend_account_html: "Уліковы запіс %{target} выключаны %{name}"
         unassigned_report_html: "%{name} знял(а) прызначэнне скаргі %{target}"
         unblock_email_account_html: "%{name} разблакіраваў эл. пошту %{target}"
         unsensitive_account_html: "%{name} зняў адзнаку далікатнае з медыя %{target}"
         unsilence_account_html: "%{name} зняў ліміт з уліковага запісу %{target}"
-        unsuspend_account_html: Уліковы запіс %{target} адноўлены %{name}
+        unsuspend_account_html: "Уліковы запіс %{target} адноўлены %{name}"
         update_announcement_html: "%{name} абнавіў аб'яву %{target}"
         update_custom_emoji_html: "%{name} абнавіў эмодзі %{target}"
         update_domain_block_html: "%{name} абнавіў блакіроўку дамена для %{target}"
@@ -356,24 +355,24 @@ be:
       new_users: новыя карыстальнікі
       opened_reports: скарг прынята
       pending_appeals_html:
+        one: "<strong>%{count}</strong> апеляцыя ў чарзе"
         few: "<strong>%{count}</strong> апеляцыі ў чарзе"
         many: "<strong>%{count}</strong> апеляцый у чарзе"
-        one: "<strong>%{count}</strong> апеляцыя ў чарзе"
         other: "<strong>%{count}</strong> апеляцыі ў чарзе"
       pending_reports_html:
+        one: "<strong>%{count}</strong> справаздача ў апрацоўцы"
         few: "<strong>%{count}</strong> справаздачы ў апрацоўцы"
         many: "<strong>%{count}</strong> справаздач у апрацоўцы"
-        one: "<strong>%{count}</strong> справаздача ў апрацоўцы"
         other: "<strong>%{count}</strong>  справаздачы ў апрацоўцы"
       pending_tags_html:
+        one: "<strong>%{count}</strong> хэштэг у чарзе"
         few: "<strong>%{count}</strong> хэштэгі ў чарзе"
         many: "<strong>%{count}</strong> хэштэгаў у чарзе"
-        one: "<strong>%{count}</strong> хэштэг у чарзе"
         other: "<strong>%{count}</strong> хэштэга ў чарзе"
       pending_users_html:
+        one: "<strong>%{count}</strong> карыстальнік у чарзе"
         few: "<strong>%{count}</strong> карыстальнікі ў чарзе"
         many: "<strong>%{count}</strong> карыстальнікаў у чарзе"
-        one: "<strong>%{count}</strong> карыстальнік у чарзе"
         other: "<strong>%{count}</strong> карыстальніка ў чарзе"
       resolved_reports: скарг разгледжана
       software: Праграмнае забеспячэнне
@@ -430,9 +429,9 @@ be:
     email_domain_blocks:
       add_new: Дадаць
       attempts_over_week:
+        one: "%{count} спроба рэгістрацыі за апошні тыдзень"
         few: "%{count} спробы рэгіістрацыі за апошні тыдзень"
         many: "%{count} спроб рэгіістрацыі за апошні тыдзень"
-        one: "%{count} спроба рэгістрацыі за апошні тыдзень"
         other: "%{count} спроб рэгіістрацыі за апошні тыдзень"
       created_msg: Дамен эл. пошты паспяхова заблакіраваны
       delete: Выдаліць
@@ -475,15 +474,15 @@ be:
     instances:
       availability:
         description_html:
+          one: Калі дастаўка на дамен не атрымоўваецца праз <strong>%{count} дзень</strong>, далейшыя спробы дастаўкі не будуць зроблены, пакуль не будзе атрымана дастаўка <em>з</em> дамена.
           few: Калі дастаўка на дамен не атрымоўваецца праз <strong>%{count} іншыя дні</strong>, далейшыя спробы дастаўкі не будуць зроблены, пакуль не будзе атрымана дастаўка <em>з</em> дамена.
           many: Калі дастаўка на дамен не атрымоўваецца праз <strong>%{count} іншых дзён</strong>, далейшыя спробы дастаўкі не будуць зроблены, пакуль не будзе атрымана дастаўка <em>з</em> дамена.
-          one: Калі дастаўка на дамен не атрымоўваецца праз <strong>%{count} дзень</strong>, далейшыя спробы дастаўкі не будуць зроблены, пакуль не будзе атрымана дастаўка <em>з</em> дамена.
           other: Калі дастаўка на дамен не атрымоўваецца праз <strong>%{count} іншага дня</strong>, далейшыя спробы дастаўкі не будуць зроблены, пакуль не будзе атрымана дастаўка <em>з</em> дамена.
         failure_threshold_reached: Парог памылак дасягнуты %{date}.
         failures_recorded:
+          one: Памылковых спроб за %{count} дзень.
           few: Памылковых спроб за %{count} розныя дні.
           many: Памылковых спроб за %{count} розных дзён.
-          one: Памылковых спроб за %{count} дзень.
           other: Памылковых спроб за %{count} розныя дні.
         no_failures_recorded: Памылак не зарэгістравана.
         title: Дасяжнасць
@@ -527,9 +526,9 @@ be:
       destroyed_msg: Даныя з %{domain} цяпер стаяць у чарзе на неадкладнае выдаленне.
       empty: Даменаў не знойдзена.
       known_accounts:
+        one: "%{count} вядомых уліковых запісаў"
         few: "%{count} вядомых уліковых запісы"
         many: "%{count} вядомых уліковых запісаў"
-        one: "%{count} вядомых уліковых запісаў"
         other: "%{count} вядомых уліковых запісаў"
       moderation:
         all: Усе
@@ -570,11 +569,11 @@ be:
       no_ip_block_selected: Ніякія правілы IP не былі змененыя, таму што ні адно з іх не было выбрана
       title: IP правілы
     relationships:
-      title: Зносіны %{acct}
+      title: "Зносіны %{acct}"
     relays:
       add_new: Дадаць новы рэтранслятар
       delete: Выдаліць
-      description_html: "<strong>Федэрацыйны рэтранслятар</strong> - гэта прамежкавы сервер, які абменьваецца вялікімі аб'ёмамі публічных паведамленняў паміж серверамі, якія падпісваюцца і публікуюць на ім. <strong>Гэта можа дапамагчы малым і сярэднім серверам выяўляць кантэнт з fediverse</strong>, для чаго лакальным карыстальнікам у адваротным выпадку трэба было б уручную сачыць за іншымі людзьмі на аддаленых серверах."
+      description_html: <strong>Федэрацыйны рэтранслятар</strong> - гэта прамежкавы сервер, які абменьваецца вялікімі аб'ёмамі публічных паведамленняў паміж серверамі, якія падпісваюцца і публікуюць на ім. <strong>Гэта можа дапамагчы малым і сярэднім серверам выяўляць кантэнт з fediverse</strong>, для чаго лакальным карыстальнікам у адваротным выпадку трэба было б уручную сачыць за іншымі людзьмі на аддаленых серверах.
       disable: Адключыць
       disabled: Адключана
       enable: Уключыць
@@ -593,9 +592,9 @@ be:
     reports:
       account:
         notes:
+          one: "%{count} нататка"
           few: "%{count} нататкі"
           many: "%{count} нататак"
-          one: "%{count} нататка"
           other: "%{count} нататкі"
       action_log: Журнал аўдыту
       action_taken_by: Дзеянне выканана
@@ -678,9 +677,9 @@ be:
     roles:
       add_new: Дадаць ролю
       assigned_users:
+        one: "%{count} карыстальнік"
         few: "%{count} карыстальнікі"
         many: "%{count} карыстальнікаў"
-        one: "%{count} карыстальнік"
         other: "%{count} карыстальніка"
       categories:
         administration: Адміністрацыя
@@ -694,9 +693,9 @@ be:
       everyone: Дазволы па змаўчанні
       everyone_full_description_html: Гэта <strong>базавая роля</strong>, якая ўплывае на <strong>ўсіх карыстальнікаў</strong>, нават без прызначанай ролі. Усе астатнія ролі ўспадкоўваюць ад яго дазволы.
       permissions_count:
+        one: "%{count} дазвол"
         few: "%{count} дазволы"
         many: "%{count} дазволаў"
-        one: "%{count} дазвол"
         other: "%{count} дазволу"
       privileges:
         administrator: Адміністратар
@@ -823,7 +822,7 @@ be:
         none: "%{name} даслаў папярэджанне %{target}"
         sensitive: "%{name} пазначыў уліковы запіс %{target} як уразлівы"
         silence: "%{name} абмежаваў уліковы запіс %{target}"
-        suspend: Уліковы запіс %{target} выключаны %{name}
+        suspend: "Уліковы запіс %{target} выключаны %{name}"
       appeal_approved: Абскарджана
       appeal_pending: Апеляцыя разглядаецца
       appeal_rejected: Абскарджанне адхілена
@@ -858,9 +857,9 @@ be:
         publishers:
           no_publisher_selected: Выдаўцы не былі зменены, таму што ніводзін не быў абраны
         shared_by_over_week:
+          one: Абагуліў адзін чалавек за апошні тыдзень
           few: Абагулілі %{count} чалавекі за апошні тыдзень
           many: Абагулілі %{count} чалавек за апошні тыдзень
-          one: Абагуліў адзін чалавек за апошні тыдзень
           other: Абагулілі %{count} чалавек за апошні тыдзень
         title: Актуальныя спасылкі
         usage_comparison: Выкарыстоўвалася %{today} разоў сёння, у параўнанні з %{yesterday} учора
@@ -882,9 +881,9 @@ be:
         no_status_selected: Ніводны папулярны допіс не быў зменены, бо ніводны не быў выбраны
         not_discoverable: Аўтар вырашыў быць нябачным
         shared_by:
+          one: Пашыраны або ўпадабаны %{friendly_count} раз
           few: Пашыраны або ўпадабаны %{friendly_count} разы
           many: Пашыраны або ўпадабаны %{friendly_count} разоў
-          one: Пашыраны або ўпадабаны %{friendly_count} раз
           other: Пашыраны або ўпадабаны %{friendly_count} разоў
         title: Актуальныя допісы
       tags:
@@ -908,9 +907,9 @@ be:
         usable: Магчыма выкарыстаць
         usage_comparison: Выкарыстоўвалася %{today} разоў сёння, у параўнанні з %{yesterday} учора
         used_by_over_week:
+          one: Выкарыстаў адзін чалавек за апошні тыдзень
           few: Выкарысталі %{count} чалавекі за апошні тыдзень
           many: Выкарысталі %{count} чалавек за апошні тыдзень
-          one: Выкарыстаў адзін чалавек за апошні тыдзень
           other: Выкарысталі %{count} чалавек за апошні тыдзень
       title: Актуальныя
       trending: Папулярныя
@@ -923,7 +922,7 @@ be:
     webhooks:
       add_new: Дадаць канцавую кропку
       delete: Выдаліць
-      description_html: "<strong>Вэбхук</strong> дазваляе Mastodon адпраўляць <strong>апавяшчэнні ў рэальным часе</strong> аб выбраных падзеях у вашай уласнай праграме, каб яна магла <strong>аўтаматычна рэагаваць на іх</strong>."
+      description_html: <strong>Вэбхук</strong> дазваляе Mastodon адпраўляць <strong>апавяшчэнні ў рэальным часе</strong> аб выбраных падзеях у вашай уласнай праграме, каб яна магла <strong>аўтаматычна рэагаваць на іх</strong>.
       disable: Адключыць
       disabled: Адключана
       edit: Рэдагаваць канцавую кропку
@@ -931,9 +930,9 @@ be:
       enable: Уключыць
       enabled: Уключана
       enabled_events:
+        one: 1 актыўная падзея
         few: "%{count} актыўныя падзеі"
         many: "%{count} актыўных падзей"
-        one: 1 актыўная падзея
         other: "%{count} актыўнай падзеі"
       events: Падзеі
       new: Новая вэбхука
@@ -961,7 +960,7 @@ be:
     new_report:
       body: "%{reporter} паскардзіўся на %{target}"
       body_remote: Нехта з %{domain} паскардзіўся на %{target}
-      subject: Новая скарга на %{instance} (#%{id})
+      subject: 'Новая скарга на %{instance} (#%{id})'
     new_trends:
       body: 'Гэтыя элементы трэба праверыць, перш чым публікаваць:'
       new_trending_links:
@@ -1213,19 +1212,19 @@ be:
       expires_in: Сканчаецца праз %{distance}
       expires_on: Сканчаецца %{date}
       keywords:
+        one: "%{count} ключавое слова"
         few: "%{count} ключавыя словы"
         many: "%{count} ключавых слоў"
-        one: "%{count} ключавое слова"
         other: "%{count} ключавога слова"
       statuses:
+        one: "%{count} допіс"
         few: "%{count} допісы"
         many: "%{count} допісаў"
-        one: "%{count} допіс"
         other: "%{count} допісу"
       statuses_long:
+        one: "%{count} допіс схаваны"
         few: "%{count} допісы схаваны"
         many: "%{count} допісаў схавана"
-        one: "%{count} допіс схаваны"
         other: "%{count} допісу схавана"
       title: Фільтры
     new:
@@ -1241,14 +1240,14 @@ be:
   generic:
     all: Усе
     all_items_on_page_selected_html:
+      one: "На гэтай старонцы абраны <strong>%{count}</strong> элемент."
       few: На гэтай старонцы абраныя ўсе <strong>%{count}</strong> элементы.
       many: На гэтай старонцы абраныя ўсе <strong>%{count}</strong> элементаў.
-      one: На гэтай старонцы абраны <strong>%{count}</strong> элемент.
       other: На гэтай старонцы абраныя усі <strong>%{count}</strong> элементаў.
     all_matching_items_selected_html:
+      one: "Абраны <strong>%{count}</strong> элемент, які адпавядае вашаму пошуку."
       few: Абраныя ўсе <strong>%{count}</strong> элементы, якія адпавядаюць вашаму пошуку.
       many: Абраныя ўсе <strong>%{count}</strong> элементаў, якія адпавядаюць вашаму пошуку.
-      one: Абраны <strong>%{count}</strong> элемент, які адпавядае вашаму пошуку.
       other: Абраныя <strong>%{count}</strong> элементаў, якія адпавядаюць вашаму пошуку.
     changes_saved_msg: Змены паспяхова захаваны!
     copy: Скапіяваць
@@ -1258,15 +1257,15 @@ be:
     order_by: Парадак
     save_changes: Захаваць змены
     select_all_matching_items:
+      one: Выберыце %{count} элемент, які адпавядае вашаму пошуку.
       few: Выберыце ўсе %{count} элементы, якія адпавядаюць вашаму пошуку.
       many: Выберыце ўсе %{count} элементаў, якія адпавядаюць вашаму пошуку.
-      one: Выберыце %{count} элемент, які адпавядае вашаму пошуку.
       other: Выберыце %{count} элементаў, якія адпавядаюць вашаму пошуку.
     today: сёння
     validation_errors:
+      one: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце памылку ніжэй
       few: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце %{count} памылкі ніжэй
       many: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце %{count} памылак ніжэй
-      one: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце памылку ніжэй
       other: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце %{count} памылак ніжэй
   imports:
     errors:
@@ -1300,9 +1299,9 @@ be:
     generate: Стварыць запрашальную спасылку
     invited_by: 'Вас запрасіў(-ла):'
     max_uses:
+      one: 1 выкарыстанне
       few: "%{count} выкарыстанні"
       many: "%{count} выкарыстанняў"
-      one: 1 выкарыстанне
       other: "%{count} выкарыстанняў"
     max_uses_prompt: Неабмежавана
     prompt: Генерыруйце і абагульвайце паміж іншымі спасылкі для доступу да гэтага сервера
@@ -1375,7 +1374,7 @@ be:
       sign_up:
         subject: "%{name} зарэгістраваўся"
     favourite:
-      body: "%{name} упадабаў ваш пост:"
+      body: '%{name} упадабаў ваш пост:'
       subject: "%{name} упадабаў ваш допіс"
       title: Новае ўпадабанае
     follow:
@@ -1395,11 +1394,11 @@ be:
     poll:
       subject: Апытанне ад %{name} скончылася
     reblog:
-      body: "%{name} пашырыў ваш пост:"
+      body: '%{name} пашырыў ваш пост:'
       subject: "%{name} пашырыў ваш допіс"
       title: Новае пашырэнне
     status:
-      subject: Новы допіс ад %{name}
+      subject: "Новы допіс ад %{name}"
     update:
       subject: "%{name} адрэдагаваў допіс"
   notifications:
@@ -1556,28 +1555,28 @@ be:
   statuses:
     attached:
       audio:
+        one: "%{count} аўдыяфайл"
         few: "%{count} аўдыяфайлы"
         many: "%{count} аўдыяфайлаў"
-        one: "%{count} аўдыяфайл"
         other: "%{count} аўдыяфайла"
       description: 'Дадаткі: %{attached}'
       image:
+        one: "%{count} выява"
         few: "%{count} выявы"
         many: "%{count} выяваў"
-        one: "%{count} выява"
         other: "%{count} выявы"
       video:
+        one: "%{count} відэафайл"
         few: "%{count} відэафайлы"
         many: "%{count} відэафайлаў"
-        one: "%{count} відэафайл"
         other: "%{count} відэафайла"
     boosted_from_html: Пашырыў уліковы запіс %{acct_link}
     content_warning: 'Папярэджанне аб змесціве: %{warning}'
     default_language: Такая, што і мова інтэрфэйсу
     disallowed_hashtags:
+      one: 'змяшчае недазволены хэштэг: %{tags}'
       few: 'змяшчае недазволеныя хэштэгі: %{tags}'
       many: 'змяшчае недазволеныя хэштэгі: %{tags}'
-      one: 'змяшчае недазволены хэштэг: %{tags}'
       other: 'утрымлівае недазволеныя хэштэгі: %{tags}'
     edited_at_html: Адрэдагавана %{date}
     errors:
@@ -1591,14 +1590,14 @@ be:
       reblog: Немагчыма замацаваць пашырэнне
     poll:
       total_people:
+        one: "%{count} чалавек"
         few: "%{count} чалавекі"
         many: "%{count} чалавек"
-        one: "%{count} чалавек"
         other: "%{count} чалавека"
       total_votes:
+        one: "%{count} голас"
         few: "%{count} галасы"
         many: "%{count} галасоў"
-        one: "%{count} голас"
         other: "%{count} голасу"
       vote: Прагаласаваць
     show_more: Паказаць больш
