@@ -118,7 +118,7 @@ Metrics/CyclomaticComplexity:
 
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/PerceivedComplexity:
-  Max: 27
+  Max: 25
 
 # Configuration parameters: EnforcedStyle, CheckMethodNames, CheckSymbols, AllowedIdentifiers, AllowedPatterns.
 # SupportedStyles: snake_case, normalcase, non_integer
@@ -455,7 +455,6 @@ Rails/SkipsModelValidations:
     - 'db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb'
     - 'lib/mastodon/cli/accounts.rb'
     - 'lib/mastodon/cli/federation.rb'
-    - 'lib/mastodon/cli/main.rb'
     - 'lib/mastodon/cli/maintenance.rb'
     - 'spec/controllers/api/v1/admin/accounts_controller_spec.rb'
     - 'spec/lib/activitypub/activity/follow_spec.rb'
