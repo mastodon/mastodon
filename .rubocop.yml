@@ -113,10 +113,14 @@ RSpec/NotToNot:
 RSpec/Rails/HttpStatus:
   EnforcedStyle: numeric
 
-Style/ClassAndModuleChildren: # Do what makes sense in context
+# Reason:
+# https://docs.rubocop.org/rubocop/cops_style.html#styleclassandmodulechildren
+Style/ClassAndModuleChildren:
   Enabled: false
 
-Style/Documentation: # Classes self-document with their names
+# Reason: Classes mostly self-document with their names
+# https://docs.rubocop.org/rubocop/cops_style.html#styledocumentation
+Style/Documentation:
   Enabled: false
 
 Style/HashSyntax:
