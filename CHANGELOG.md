@@ -12,6 +12,9 @@ All notable changes to this project will be documented in this file.
 - Add headers to outgoing mails to avoid auto-replies ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23597))
 - Add support for refreshing many accounts at once with `tootctl accounts refresh` ([9p4](https://github.com/mastodon/mastodon/pull/23304))
 - Add confirmation modal when clicking to edit a post with a non-empty compose form ([PauloVilarinho](https://github.com/mastodon/mastodon/pull/23936))
+- Add support for the HAproxy PROXY protocol through the `PROXY_PROTO_V1` environment variable ([CSDUMMI](https://github.com/mastodon/mastodon/pull/24064))
+- Add `SENDFILE_HEADER` environment variable ([Gargron](https://github.com/mastodon/mastodon/pull/24123))
+- Add cache headers to static files served through Rails ([Gargron](https://github.com/mastodon/mastodon/pull/24120))
 
 ### Changed
 
@@ -20,6 +23,7 @@ All notable changes to this project will be documented in this file.
 - Change order of bookmark and favourite sidebar entries in single-column UI for consistency ([TerryGarcia](https://github.com/mastodon/mastodon/pull/23701))
 - Change unintended SMTP read timeout from 5 seconds to 20 seconds ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23750))
 - Change `ActivityPub::DeliveryWorker` retries to be spread out more ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/21956))
+- Change Docker images to be pushed to Github Container Registry ([renchap](https://github.com/mastodon/mastodon/pull/24101), [nschonni](https://github.com/mastodon/mastodon/pull/23564), [renchap](https://github.com/mastodon/mastodon/pull/24113), [nschonni](https://github.com/mastodon/mastodon/pull/24106))
 
 ### Fixed
 
@@ -42,6 +46,9 @@ All notable changes to this project will be documented in this file.
 - Fix sidekiq jobs not triggering Elasticsearch index updates ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/24046))
 - Fix tags being stripped from plain-text short site description ([c960657](https://github.com/mastodon/mastodon/pull/23975))
 - Fix HTML entities not being un-escaped in extracted plain-text from remote posts ([c960657](https://github.com/mastodon/mastodon/pull/24019))
+- Fix dashboard crash on ElasticSearch server error ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23751))
+- Fix incorrect post links in strikes when the account is remote ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23611))
+- Fix misleading error code when receiving invalid WebAuthn credentials ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23568))
 
 ## [4.1.0] - 2023-02-10
 
