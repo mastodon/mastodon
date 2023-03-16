@@ -24,7 +24,6 @@ Rails.application.configure do
     }
   else
     config.action_controller.perform_caching = false
-
     config.cache_store = :null_store
   end
 
@@ -34,9 +33,10 @@ Rails.application.configure do
   end
 
   # Generate random VAPID keys
-  vapid_key = Webpush.generate_key
-  config.x.vapid_private_key = vapid_key.private_key
-  config.x.vapid_public_key = vapid_key.public_key
+  Webpush.generate_key.tap do |vapid_key|
+    config.x.vapid_private_key = vapid_key.private_key
+    config.x.vapid_public_key = vapid_key.public_key
+  end
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -76,20 +76,12 @@ Rails.application.configure do
   # Otherwise, use letter_opener, which launches a browser window to view sent mail.
   config.action_mailer.delivery_method = (ENV['HEROKU'] || ENV['VAGRANT'] || ENV['REMOTE_DEV']) ? :letter_opener_web : :letter_opener
 
-  config.after_initialize do
-    Bullet.enable        = true
-    Bullet.bullet_logger = true
-    Bullet.rails_logger  = false
-
-    Bullet.add_safelist type: :n_plus_one_query, class_name: 'User', association: :account
-  end
-
+  # We provide a default secret for the development environment here.
+  # This value should not be used in production environments!
   config.x.otp_secret = ENV.fetch('OTP_SECRET', '1fc2b87989afa6351912abeebe31ffc5c476ead9bf8b3d74cbc4a302c7b69a45b40b1bbef3506ddad73e942e15ed5ca4b402bf9a66423626051104f4b5f05109')
 end
 
 Redis.raise_deprecations = true
-
-ActiveRecordQueryTrace.enabled = ENV['QUERY_TRACE_ENABLED'] == 'true'
 
 module PrivateAddressCheck
   def self.private_address?(*)
