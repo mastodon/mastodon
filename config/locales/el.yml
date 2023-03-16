@@ -787,10 +787,22 @@ el:
       actions:
         delete_statuses: "Ο/Η %{name} διέγραψε τις δημοσιεύσεις του/της %{target}"
         disable: "Ο/Η %{name} πάγωσε τον λογαριασμό του/της %{target}"
+        mark_statuses_as_sensitive: "Ο/Η %{name} επισήμανε τα πολυμέσα του/της %{target} ως ευαίσθητα"
+        none: "Ο/Η %{name} έστειλε προειδοποίηση προς τον/την %{target}"
+        sensitive: "Ο/Η %{name} επισήμανε τα πολυμέσα του λογαριασμού %{target} ως ευαίσθητα"
+        silence: "Ο/Η %{name} περιόρισε τον λογαριασμό %{target}"
+        suspend: "ο/η %{name} ανέστειλε τον λογαριασμό %{target}"
+      appeal_approved: Έγινε έφεση
+      appeal_pending: Έφεση σε εκκρεμότητα
       appeal_rejected: Η αίτηση απορρίφθηκε
     system_checks:
       database_schema_check:
         message_html: Υπάρχουν μετακινήσεις βάσης δεδομένων που εκκρεμούν. Παρακαλώ εκτελέστε τις για να βεβαιωθείτε ότι η εφαρμογή συμπεριφέρεται όπως αναμένεται
+      elasticsearch_running_check:
+        message_html: Δεν ήταν δυνατή η σύνδεση στο Elasticsearch. Παρακαλώ ελέγξτε ότι εκτελείται ή απενεργοποιήστε την αναζήτηση πλήρους κειμένου
+      elasticsearch_version_check:
+        message_html: 'Μη συμβατή έκδοση Elasticsearch: %{value}'
+        version_comparison: Η έκδοση Elasticsearch %{running_version} εκτελείται ενώ η %{required_version} απαιτείται
       rules_check:
         action: Διαχείριση κανόνων διακομιστή
         message_html: Δεν έχετε ορίσει κανέναν κανόνα διακομιστή.
