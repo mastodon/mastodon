@@ -1201,7 +1201,7 @@ nn:
       merge: Set saman
       merge_long: Hald på eksisterande data og legg til nye
       overwrite: Skriv over
-      overwrite_long: Erstatt gjeldende med de nye
+      overwrite_long: Byt ut dei noverande oppføringane med dei nye
     preface: Du kan henta inn data som du har eksportert frå ein annan tenar, som t.d. ei liste over folka du fylgjer eller blokkerer.
     success: Dataa dine vart lasta opp og vert no handsama så fort som mogeleg
     types:
@@ -1233,11 +1233,14 @@ nn:
       expires_at: Vert ugyldig
       uses: Bruk
     title: By folk inn
+  lists:
+    errors:
+      limit: Du har nådd grensa for kor mange lister du kan ha
   login_activities:
     authentication_methods:
       otp: to-faktor autentiseringsapp
       password: passord
-      sign_in_token: e-post sikkerhetskode
+      sign_in_token: tryggingskode på epost
       webauthn: sikkerhetsnøkler
     description_html: Hvis du ser aktivitet som du ikke gjenkjenner, bør du vurdere å endre passordet ditt og aktivere to-trinnsinnlogging.
     empty: Ingen innloggingshistorikk er tilgjengelig
@@ -1287,7 +1290,7 @@ nn:
     carry_mutes_over_text: Denne brukeren flyttet fra %{acct}, som du hadde dempet.
     copy_account_note_text: 'Denne brukeren flyttet fra %{acct}, her var dine tidligere notater om dem:'
   navigation:
-    toggle_menu: Vis/Skjul meny
+    toggle_menu: Vis/gøym menyen
   notification_mailer:
     admin:
       report:
@@ -1313,7 +1316,7 @@ nn:
       subject: Du vart nemnd av %{name}
       title: Ny nemning
     poll:
-      subject: En avstemming av %{name} er avsluttet
+      subject: Meiningsmålinga frå %{name} er avslutta
     reblog:
       body: 'Statusen din vart framheva av %{name}:'
       subject: "%{name} framheva statusen din"
@@ -1377,6 +1380,7 @@ nn:
     confirm_remove_selected_followers: Er du sikker på at du ynskjer å fjerna dei valde fylgjarane?
     confirm_remove_selected_follows: Er du sikker på at du ynskjer å fjerna det valde følgjet?
     dormant: I dvale
+    follow_failure: Greidde ikkje fylgja alle kontoane du valde.
     follow_selected_followers: Følg valgte tilhengere
     followers: Følgere
     following: Følginger
@@ -1397,7 +1401,7 @@ nn:
     errors:
       invalid_rules: refererer ikke til gyldige regler
   rss:
-    content_warning: 'Innholdsadvarsel:'
+    content_warning: 'Innhaldsvarsel:'
     descriptions:
       account: Offentlige innlegg fra @%{acct}
       tag: 'Offentlige innlegg merket med #%{hashtag}'
@@ -1416,6 +1420,7 @@ nn:
       electron: Electron
       firefox: Firefox
       generic: Ukjend lesar
+      huawei_browser: Huawei-nettlesaren
       ie: Internet Explorer
       micro_messenger: Micromessenger
       nokia: Nokia S40 Ovi-lesar
@@ -1425,6 +1430,7 @@ nn:
       qq: QQ-lesar
       safari: Safari
       uc_browser: QQ-lesar
+      unknown_browser: Ukjend nettlesar
       weibo: Weibo
     current_session: Noverande økt
     description: "%{browser} på %{platform}"
@@ -1437,8 +1443,10 @@ nn:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: IOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
+      unknown_platform: Ukjend plattform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1545,6 +1553,7 @@ nn:
       '7889238': 3 månader
     min_age_label: Aldersterskel
     min_favs: Behold innlegg som er favorittmarkert av minst
+    min_favs_hint: Slettar ingen av innlegga dine som har fått minst så mange favorittar. La det stå tomt for å sletta innlegga uansett kor mange favorittar dei har fått
     min_reblogs: Behold innlegg fremhevet av minst
     min_reblogs_hint: Sletter ikke noen av dine innlegg som har blitt fremhevet minst dette antall ganger. La stå tom for å slette innlegg uavhengig av antall fremhevinger
   stream_entries:
