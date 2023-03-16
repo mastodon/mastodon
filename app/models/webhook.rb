@@ -20,7 +20,9 @@ class Webhook < ApplicationRecord
     account.updated
     report.created
     status.created
+    status.created.distributable
     status.updated
+    status.updated.distributable
   ).freeze
 
   scope :enabled, -> { where(enabled: true) }
