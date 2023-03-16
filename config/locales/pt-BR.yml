@@ -440,8 +440,10 @@ pt-BR:
       import:
         description_html: Você está prestes a importar uma lista de boqueio de domínio. Por favor, revise esta lista com muito cuidado, especialmente se você mesmo não criou esta lista.
         existing_relationships_warning: Existem relações de seguimento
+        private_comment_description_html: 'Para ajudá-lo a rastrear de onde vêm os blocos importados, serão criados blocos importados com o seguinte comentário privado: <q>%{comment}</q>'
         private_comment_template: Importado de %{source} em %{date}
         title: Importar bloqueio de domínios
+      invalid_domain_block: 'Um ou mais blocos de domínio foram ignorados devido ao(s) seguinte(s) erro(s): %{error}'
       new:
         title: Importar bloqueio de domínios
       no_file: Nenhum arquivo selecionado
@@ -473,6 +475,7 @@ pt-BR:
       content_policies:
         comment: Nota interna
         description_html: Você pode definir políticas de conteúdo que serão aplicadas a todas as contas deste domínio e a qualquer um dos seus subdomínios.
+        limited_federation_mode_description_html: Você pode escolher se deseja permitir a associação com este domínio.
         policies:
           reject_media: Rejeitar mídia
           reject_reports: Rejeitar denúncias
