@@ -64,4 +64,17 @@ describe Mastodon::CLI::Cache do
       end
     end
   end
+
+  describe 'recount' do
+    context 'with an account' do
+      before { Fabricate(:account) }
+
+      it 're-calculates account records in the cache' do
+        expect { described_class.new.invoke(:recount, ['accounts']) }.to output(
+          a_string_including('OK')
+        ).to_stdout
+      end
+    end
+
+  end
 end
