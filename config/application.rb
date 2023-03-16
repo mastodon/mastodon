@@ -35,6 +35,7 @@ require_relative '../lib/terrapin/multi_pipe_extensions'
 require_relative '../lib/mastodon/snowflake'
 require_relative '../lib/mastodon/version'
 require_relative '../lib/mastodon/rack_middleware'
+require_relative '../lib/public_file_server_middleware'
 require_relative '../lib/devise/two_factor_ldap_authenticatable'
 require_relative '../lib/devise/two_factor_pam_authenticatable'
 require_relative '../lib/chewy/strategy/mastodon'
@@ -181,6 +182,10 @@ module Mastodon
     config.active_job.queue_adapter = :sidekiq
     config.action_mailer.deliver_later_queue_name = 'mailers'
 
+    # We use our own middleware for this
+    config.public_file_server.enabled = false
+
+    config.middleware.use PublicFileServerMiddleware if Rails.env.development? || ENV['RAILS_SERVE_STATIC_FILES'] == 'true'
     config.middleware.use Rack::Attack
     config.middleware.use Mastodon::RackMiddleware
 

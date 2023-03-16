@@ -472,7 +472,9 @@ Rails.application.routes.draw do
         resources :list, only: :show
       end
 
-      resources :streaming, only: [:index]
+      get '/streaming', to: 'streaming#index'
+      get '/streaming/(*any)', to: 'streaming#index'
+
       resources :custom_emojis, only: [:index]
       resources :suggestions, only: [:index, :destroy]
       resources :scheduled_statuses, only: [:index, :show, :update, :destroy]
@@ -544,6 +546,7 @@ Rails.application.routes.draw do
         resources :domain_blocks, only: [:index], controller: 'instances/domain_blocks'
         resource :privacy_policy, only: [:show], controller: 'instances/privacy_policies'
         resource :extended_description, only: [:show], controller: 'instances/extended_descriptions'
+        resource :translation_languages, only: [:show], controller: 'instances/translation_languages'
         resource :activity, only: [:show], controller: 'instances/activity'
       end
 

@@ -11,33 +11,59 @@ class TranslationService::DeepL < TranslationService
   end
 
   def translate(text, source_language, target_language)
-    request(text, source_language, target_language).perform do |res|
+    form = { text: text, source_lang: source_language&.upcase, target_lang: target_language, tag_handling: 'html' }
+    request(:post, '/v2/translate', form: form) do |res|
+      transform_response(res.body_with_limit)
+    end
+  end
+
+  def languages
+    source_languages = [nil] + fetch_languages('source')
+
+    # In DeepL, EN and PT are deprecated in favor of EN-GB/EN-US and PT-BR/PT-PT, so
+    # they are supported but not returned by the API.
+    target_languages = %w(en pt) + fetch_languages('target')
+
+    source_languages.index_with { |language| target_languages.without(nil, language) }
+  end
+
+  private
+
+  def fetch_languages(type)
+    request(:get, "/v2/languages?type=#{type}") do |res|
+      Oj.load(res.body_with_limit).map { |language| normalize_language(language['language']) }
+    end
+  end
+
+  def normalize_language(language)
+    subtags = language.split(/[_-]/)
+    subtags[0].downcase!
+    subtags[1]&.upcase!
+    subtags.join('-')
+  end
+
+  def request(verb, path, **options)
+    req = Request.new(verb, "#{base_url}#{path}", **options)
+    req.add_headers(Authorization: "DeepL-Auth-Key #{@api_key}")
+    req.perform do |res|
       case res.code
       when 429
         raise TooManyRequestsError
       when 456
         raise QuotaExceededError
       when 200...300
-        transform_response(res.body_with_limit)
+        yield res
       else
         raise UnexpectedResponseError
       end
     end
   end
 
-  private
-
-  def request(text, source_language, target_language)
-    req = Request.new(:post, endpoint_url, form: { text: text, source_lang: source_language&.upcase, target_lang: target_language, tag_handling: 'html' })
-    req.add_headers(Authorization: "DeepL-Auth-Key #{@api_key}")
-    req
-  end
-
-  def endpoint_url
+  def base_url
     if @plan == 'free'
-      'https://api-free.deepl.com/v2/translate'
+      'https://api-free.deepl.com'
     else
-      'https://api.deepl.com/v2/translate'
+      'https://api.deepl.com'
     end
   end
 

@@ -19,7 +19,6 @@ AllCops:
   NewCops: enable
   Exclude:
     - db/schema.rb
-    - 'app/views/**/*'
     - 'config/**/*'
     - 'bin/*'
     - 'Rakefile'
@@ -33,7 +32,6 @@ Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
 
 Layout/LineLength:
-  Max: 140 # RuboCop default 120
   AllowedPatterns:
     # Allow comments to be long lines
     - !ruby/regexp / \# .*$/
@@ -48,13 +46,11 @@ Lint/UselessAccessModifier:
     - class_methods
 
 Metrics/AbcSize:
-  Max: 34 # RuboCop default 17
   Exclude:
     - 'lib/**/*cli*.rb'
     - db/*migrate/**/*
 
 Metrics/BlockLength:
-  Max: 55 # Default 25
   CountAsOne: [array, heredoc]
   Exclude:
     - 'lib/mastodon/*_cli.rb'
@@ -64,29 +60,22 @@ Metrics/BlockNesting:
     - 'lib/mastodon/*_cli.rb'
 
 Metrics/ClassLength:
-  Max: 500 # Default 100
   CountAsOne: [array, heredoc]
   Exclude:
     - 'lib/mastodon/*_cli.rb'
 
 Metrics/CyclomaticComplexity:
-  Max: 12 # Default 7
   Exclude:
     - lib/mastodon/*cli*.rb
     - db/*migrate/**/*
 
 Metrics/MethodLength:
-  Max: 25 # RuboCop default 10
   CountAsOne: [array, heredoc]
   Exclude:
     - 'lib/mastodon/*_cli.rb'
 
 Metrics/ModuleLength:
-  Max: 200 # Default 100
   CountAsOne: [array, heredoc]
-
-Metrics/PerceivedComplexity:
-  Max: 16 # RuboCop default 8
 
 Rails/HttpStatus:
   EnforcedStyle: numeric
@@ -96,6 +85,27 @@ Rails/Exit:
     - 'lib/mastodon/*_cli.rb'
     - 'lib/mastodon/cli_helper.rb'
     - 'lib/cli.rb'
+
+# Reason: Some single letter camel case files shouldn't be split
+# https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecfilepath
+RSpec/FilePath:
+  CustomTransform:
+    ActivityPub: activitypub # Ignore the snake_case due to the amount of files to rename
+    DeepL: deepl
+    FetchOEmbedService: fetch_oembed_service
+    JsonLdHelper: jsonld_helper
+    OEmbedController: oembed_controller
+    OStatus: ostatus
+    NodeInfoController: nodeinfo_controller # NodeInfo isn't snake_cased for any of the instances
+  Exclude:
+    - 'spec/config/initializers/rack_attack_spec.rb' # namespaces usually have separate folder
+    - 'spec/lib/sanitize_config_spec.rb' # namespaces usually have separate folder
+    - 'spec/controllers/concerns/account_controller_concern_spec.rb' # Concerns describe ApplicationController and don't fit naming
+    - 'spec/controllers/concerns/export_controller_concern_spec.rb'
+    - 'spec/controllers/concerns/localized_spec.rb'
+    - 'spec/controllers/concerns/rate_limit_headers_spec.rb'
+    - 'spec/controllers/concerns/signature_verification_spec.rb'
+    - 'spec/controllers/concerns/user_tracking_concern_spec.rb'
 
 RSpec/NotToNot:
   EnforcedStyle: to_not
@@ -123,3 +133,6 @@ Style/TrailingCommaInArrayLiteral:
 
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: 'comma'
+
+Style/SymbolArray:
+  Enabled: false
