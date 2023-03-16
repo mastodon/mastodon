@@ -1,3 +1,4 @@
+---
 io:
   activerecord:
     attributes:
@@ -144,39 +145,39 @@ io:
       application:
         title: Yurizo di OAuth bezonesas
     scopes:
-      "admin:read": lektez omna informi di la servilo
-      "admin:read:accounts": lektez privata informo di omna konti
-      "admin:read:reports": lektez privata informo di omna raporti e raportizita konti
-      "admin:write": modifikez omna informi di la servilo
-      "admin:write:accounts": jerez konti
-      "admin:write:reports": jerez raporti
+      admin:read: lektez omna informi di la servilo
+      admin:read:accounts: lektez privata informo di omna konti
+      admin:read:reports: lektez privata informo di omna raporti e raportizita konti
+      admin:write: modifikez omna informi di la servilo
+      admin:write:accounts: jerez konti
+      admin:write:reports: jerez raporti
       crypto: uzas intersequanta chifro
       follow: follow, block, unblock and unfollow accounts
       push: ganez vua pulsavizi
       read: read your account's data
-      "read:accounts": videz kontinformo
-      "read:blocks": videz restrikti
-      "read:bookmarks": videz vua libromarki
-      "read:favourites": videz vua favorati
-      "read:filters": videz vua filtrili
-      "read:follows": videz vua sequinti
-      "read:lists": videz vua listi
-      "read:mutes": videz vua silencigi
-      "read:notifications": videz vua avizi
-      "read:reports": videz vua rapotigi
-      "read:search": trovez por vu
-      "read:statuses": videz omna posti
+      read:accounts: videz kontinformo
+      read:blocks: videz restrikti
+      read:bookmarks: videz vua libromarki
+      read:favourites: videz vua favorati
+      read:filters: videz vua filtrili
+      read:follows: videz vua sequinti
+      read:lists: videz vua listi
+      read:mutes: videz vua silencigi
+      read:notifications: videz vua avizi
+      read:reports: videz vua rapotigi
+      read:search: trovez por vu
+      read:statuses: videz omna posti
       write: post on your behalf
-      "write:accounts": modifikez vua porfilo
-      "write:blocks": restriktez konti e domeni
-      "write:bookmarks": libromarkez posti
-      "write:conversations": silencigez e efacez konversi
-      "write:favourites": favorata posti
-      "write:filters": kreez filtrili
-      "write:follows": sequez personi
-      "write:lists": kreez listi
-      "write:media": adchargez mediifaili
-      "write:mutes": silencigez personi e konversi
-      "write:notifications": efacez vua avizi
-      "write:reports": raportizez altra omni
-      "write:statuses": publikigez posti
+      write:accounts: modifikez vua porfilo
+      write:blocks: restriktez konti e domeni
+      write:bookmarks: libromarkez posti
+      write:conversations: silencigez e efacez konversi
+      write:favourites: favorata posti
+      write:filters: kreez filtrili
+      write:follows: sequez personi
+      write:lists: kreez listi
+      write:media: adchargez mediifaili
+      write:mutes: silencigez personi e konversi
+      write:notifications: efacez vua avizi
+      write:reports: raportizez altra omni
+      write:statuses: publikigez posti

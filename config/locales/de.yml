@@ -1,3 +1,4 @@
+---
 de:
   about:
     about_mastodon_html: 'Das soziale Netzwerk der Zukunft: Keine Werbung, keine Überwachung, dafür dezentral und mit Anstand! Starte jetzt mit Mastodon!'
@@ -24,7 +25,7 @@ de:
   admin:
     account_actions:
       action: Aktion ausführen
-      title: '@%{acct} moderieren'
+      title: "@%{acct} moderieren"
     account_moderation_notes:
       create: Notiz abspeichern
       created_msg: Moderationshinweis erfolgreich abgespeichert!
@@ -55,7 +56,7 @@ de:
       delete: Daten löschen
       deleted: Gelöscht
       demote: Zurückstufen
-      destroyed_msg: "Daten von %{username} wurden zum Löschen in die Warteschlange eingereiht"
+      destroyed_msg: Daten von %{username} wurden zum Löschen in die Warteschlange eingereiht
       disable: Einfrieren
       disable_sign_in_token_auth: E-Mail-Token-Authentisierung deaktivieren
       disable_two_factor_authentication: Zwei-Faktor-Authentisierung (2FA) deaktivieren
@@ -86,7 +87,7 @@ de:
       media_attachments: Speicherplatz
       memorialize: In Gedenkseite umwandeln
       memorialized: Gedenkseite
-      memorialized_msg: '%{username} wurde erfolgreich in ein Gedenkseiten-Konto umgewandelt'
+      memorialized_msg: "%{username} wurde erfolgreich in ein Gedenkseiten-Konto umgewandelt"
       moderation:
         active: Aktiv
         all: Alle
@@ -547,7 +548,7 @@ de:
       no_ip_block_selected: Keine IP-Regeln wurden geändert, weil keine ausgewählt wurde(n)
       title: IP-Regeln
     relationships:
-      title: "Beziehungen von %{acct}"
+      title: Beziehungen von %{acct}
     relays:
       add_new: Neues Relais hinzufügen
       delete: Entfernen
@@ -593,7 +594,7 @@ de:
       category_description_html: Der Grund, weshalb dieses Konto und/oder der Inhalt gemeldet worden ist, wird in der Kommunikation mit dem gemeldeten Konto erwähnt
       comment:
         none: Kein
-      comment_description_html: '%{name} ergänzte die Meldung um folgende Hinweis:'
+      comment_description_html: "%{name} ergänzte die Meldung um folgende Hinweis:"
       confirm: Bestätigen
       confirm_action: Maßnahme gegen @%{acct} bestätigen
       created_at: Gemeldet
@@ -616,7 +617,7 @@ de:
       quick_actions_description_html: 'Eine schnelle Aktion ausführen oder nach unten rolle, um gemeldete Inhalte zu sehen:'
       remote_user_placeholder: das externe Profil von %{instance}
       reopen: Meldung wieder eröffnen
-      report: '%{id}. Meldung'
+      report: "%{id}. Meldung"
       reported_account: Gemeldetes Konto
       reported_by: Gemeldet von
       resolved: Gelöst
@@ -635,13 +636,13 @@ de:
           delete_html: Die anstößigen Beiträge entfernen
           mark_as_sensitive_html: Medien der anstößigen Beiträge mit einer Inhaltswarnung versehen
           silence_html: Schränkt die Reichweite von <strong>@%{acct}</strong> stark ein, indem das Profil und dessen Inhalte nur für Personen sichtbar sind, die dem Profil bereits folgen oder es manuell aufrufen
-          suspend_html: <strong>@%{acct}</strong> sperren, sodass das Profil und dessen Inhalte nicht mehr zugänglich sind und keine Interaktion mehr möglich ist
+          suspend_html: "<strong>@%{acct}</strong> sperren, sodass das Profil und dessen Inhalte nicht mehr zugänglich sind und keine Interaktion mehr möglich ist"
         close_report: 'Meldung #%{id} als erledigt markieren'
-        close_reports_html: <strong>Alle</strong> Meldungen gegen <strong>@%{acct}</strong> als erledigt markieren
+        close_reports_html: "<strong>Alle</strong> Meldungen gegen <strong>@%{acct}</strong> als erledigt markieren"
         delete_data_html: Das Profil und die Inhalte von <strong>@%{acct}</strong> werden in 30 Tagen gelöscht, es sei denn, sie werden in der Zwischenzeit entsperrt
         preview_preamble_html: "<strong>@%{acct}</strong> wird eine Warnung mit folgenden Inhalten erhalten:"
         record_strike_html: Einen Verstoß gegen <strong>@%{acct}</strong> eintragen, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können
-        send_email_html: <strong>@%{acct}</strong> eine Verwarnung per E-Mail schicken
+        send_email_html: "<strong>@%{acct}</strong> eine Verwarnung per E-Mail schicken"
         warning_placeholder: Optional zusätzliche Begründung für die Moderationsmaßnahme.
       target_origin: Domain des gemeldeten Kontos
       title: Meldungen
@@ -852,7 +853,7 @@ de:
         not_discoverable: Autor*in hat sich dafür entschieden, nicht entdeckt zu werden
         shared_by:
           one: Einmal geteilt oder favorisiert
-          other: '%{friendly_count}-mal geteilt oder favorisiert'
+          other: "%{friendly_count}-mal geteilt oder favorisiert"
         title: Angesagte Beiträge
       tags:
         current_score: Aktuelle Punktzahl %{score}
@@ -871,7 +872,7 @@ de:
         peaked_on_and_decaying: In den Trends am %{date}, jetzt absteigend
         title: Angesagte Hashtags
         trendable: Darf in den Trends erscheinen
-        trending_rank: 'Platz %{rank}'
+        trending_rank: Platz %{rank}
         usable: Darf verwendet werden
         usage_comparison: Heute %{today}-mal und gestern %{yesterday}-mal genutzt
         used_by_over_week:
@@ -924,7 +925,7 @@ de:
     new_report:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
-      subject: 'Neue Meldung auf %{instance} (#%{id})'
+      subject: Neue Meldung auf %{instance} (#%{id})
     new_trends:
       body: 'Die folgenden Einträge müssen überprüft werden, bevor sie öffentlich angezeigt werden können:'
       new_trending_links:
@@ -945,7 +946,7 @@ de:
     remove: Alle Aliase aufheben
   appearance:
     advanced_web_interface: Erweitertes Webinterface
-    advanced_web_interface_hint: 'Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, kannst du mit dem erweiterten Webinterface weitere Spalten hinzufügen und dadurch mehr Informationen auf einmal sehen, z. B. deine Startseite, die Mitteilungen, die föderierte Timeline sowie beliebig viele deiner Listen und Hashtags.'
+    advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, kannst du mit dem erweiterten Webinterface weitere Spalten hinzufügen und dadurch mehr Informationen auf einmal sehen, z. B. deine Startseite, die Mitteilungen, die föderierte Timeline sowie beliebig viele deiner Listen und Hashtags.
     animations_and_accessibility: Animationen und Barrierefreiheit
     confirmation_dialogs: Bestätigungsdialoge
     discovery: Entdecken
@@ -1038,7 +1039,7 @@ de:
       close: Oder du schließt einfach dieses Fenster.
       return: Benutzerprofil anzeigen
       web: Im Webinterface öffnen
-    title: '%{acct} folgen'
+    title: "%{acct} folgen"
   challenge:
     confirm: Fortfahren
     hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
@@ -1099,7 +1100,7 @@ de:
       description_html: Dies sind Maßnahmen, die gegen dein Konto ergriffen worden sind, und Warnungen, die dir die Mitarbeiter*innen von %{instance} geschickt haben.
       recipient: Adressiert an
       reject_appeal: Einspruch ablehnen
-      status: '%{id}. Beitrag'
+      status: "%{id}. Beitrag"
       status_removed: Beitrag bereits vom System entfernt
       title: "%{action} vom %{date}"
       title_actions:
@@ -1132,7 +1133,7 @@ de:
     noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   existing_username_validator:
     not_found: kann lokale*n Benutzer*in mit diesem Profilnamen nicht finden
-    not_found_multiple: '%{usernames} können nicht gefunden werden'
+    not_found_multiple: "%{usernames} können nicht gefunden werden"
   exports:
     archive_takeout:
       date: Datum
@@ -1337,7 +1338,7 @@ de:
     mention:
       action: Antworten
       body: 'Du wurdest von %{name} erwähnt:'
-      subject: '%{name} erwähnte dich'
+      subject: "%{name} erwähnte dich"
       title: Neue Erwähnung
     poll:
       subject: Eine Umfrage von %{name} ist beendet
@@ -1368,7 +1369,7 @@ de:
     description_html: Wenn du die <strong>Zwei-Faktor-Authentisierung</strong> (2FA) mit einer Authentifizierungs-App deines Smartphones aktivierst, benötigst du neben dem regulären Passwort zusätzlich auch den zeitbasierten Code der 2FA-App, um dich anmelden zu können.
     enable: Aktivieren
     instructions_html: "<strong>Scanne diesen QR-Code mit einer beliebigen Authentisierungs-App (TOTP)</strong>. Diese App generiert dann zeitbasierte Codes, die du beim Anmelden zusätzlich zum regulären Passwort eingeben musst."
-    manual_instructions: 'Wenn du den QR-Code nicht einscannen kannst, sondern die Zahlenfolge manuell eingeben musst, ist hier der geheime Token für deine 2FA-App.'
+    manual_instructions: Wenn du den QR-Code nicht einscannen kannst, sondern die Zahlenfolge manuell eingeben musst, ist hier der geheime Token für deine 2FA-App.
     setup: Einrichten
     wrong_code: Der eingegebene Code ist ungültig! Laufen Serverzeit und Gerätezeit synchron?
   pagination:
@@ -1542,7 +1543,7 @@ de:
     show_older: Ältere anzeigen
     show_thread: Thread anzeigen
     sign_in_to_participate: Melde dich an, um an der Unterhaltung teilzunehmen
-    title: '%{name}: „%{quote}“'
+    title: "%{name}: „%{quote}“"
     visibilities:
       direct: Direktnachricht
       private: Nur eigene Follower

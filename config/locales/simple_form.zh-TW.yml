@@ -1,3 +1,4 @@
+---
 zh-TW:
   simple_form:
     hints:
@@ -6,7 +7,7 @@ zh-TW:
       account_migration:
         acct: 指定要移動至的帳號的「使用者名稱@網域名稱」
       account_warning_preset:
-        text: '您可使用嘟文語法，例如網址、「#」標籤和提及功能'
+        text: 您可使用嘟文語法，例如網址、「#」標籤和提及功能
         title: 可選。不會向收件者顯示
       admin_account_action:
         include_statuses: 使用者可看到導致檢舉或警告的嘟文
@@ -66,7 +67,7 @@ zh-TW:
         domain: 這可以是顯示在電子郵件中的網域名稱，或是其使用的 MX 紀錄。其將在註冊時檢查。
         with_dns_records: Mastodon 會嘗試解析所給網域的 DNS 記錄，解析結果一致者將一併封鎖
       featured_tag:
-        name: '這些是您最近使用的一些主題標籤：'
+        name: 這些是您最近使用的一些主題標籤：
       filters:
         action: 請選擇當嘟文符合該過濾器時將被執行之動作
         actions:
@@ -115,7 +116,7 @@ zh-TW:
       rule:
         text: 說明使用者在此伺服器上需遵守的規則或條款。試著維持各項條款簡短而明瞭。
       sessions:
-        otp: '請輸入產生自您手機 App 的兩階段驗證碼，或輸入其中一個備用驗證碼：'
+        otp: 請輸入產生自您手機 App 的兩階段驗證碼，或輸入其中一個備用驗證碼：
         webauthn: 如果它是 USB 安全金鑰的話，請確認已正確插入，如有需要請觸擊。
       tag:
         name: 您只能變更大小寫，例如，以使其更易讀。
@@ -226,7 +227,7 @@ zh-TW:
       email_domain_block:
         with_dns_records: 包括網域的 MX 記錄和 IP 位址
       featured_tag:
-        name: '「#」標籤'
+        name: "「#」標籤"
       filters:
         actions:
           hide: 完全隱藏
@@ -304,7 +305,7 @@ zh-TW:
       webhook:
         events: 已啟用的事件
         url: 端點 URL
-    'no': '否'
+    'no': 否
     not_recommended: 不建議
     recommended: 建議
     required:
@@ -313,4 +314,4 @@ zh-TW:
     title:
       sessions:
         webauthn: 使用您的安全金鑰來登入
-    'yes': '是'
+    'yes': 是

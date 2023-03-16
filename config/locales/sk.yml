@@ -1,6 +1,7 @@
+---
 sk:
   about:
-    about_mastodon_html: 'Mastodon je sociálna sieť založená na otvorených webových protokoloch a na slobodnom softvéri. Je decentralizovaná, podobne ako email.'
+    about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch a na slobodnom softvéri. Je decentralizovaná, podobne ako email.
     contact_missing: Nezadaný
     contact_unavailable: Neuvedený/á
     hosted_on: Mastodon hostovaný na %{domain}
@@ -8,9 +9,9 @@ sk:
   accounts:
     follow: Nasleduj
     followers:
-      one: Sledujúci
       few: Sledovateľov
       many: Sledovateľov
+      one: Sledujúci
       other: Sledovatelia
     following: Nasledujem
     instance_actor_flash: Toto konto je virtuálny aktér, ktorý predstavuje samotný server, a nie konkrétneho používateľa. Používa sa na účely federácie a nemal by byť pozastavený.
@@ -20,9 +21,9 @@ sk:
     pin_errors:
       following: Musíš už následovať toho človeka, ktorého si praješ zviditeľniť
     posts:
-      one: Príspevok
       few: Príspevky
       many: Príspevkov
+      one: Príspevok
       other: Príspevkov
     posts_tab_heading: Príspevky
   admin:
@@ -433,11 +434,11 @@ sk:
       no_ip_block_selected: Žiadne IP pravidlá neboli zmenené, keďže si žiadne nemal/a zvolené
       title: pravidlá pre IP adresy
     relationships:
-      title: "Vzťahy užívateľa %{acct}"
+      title: Vzťahy užívateľa %{acct}
     relays:
       add_new: Pridaj nový federovací mostík
       delete: Vymaž
-      description_html: <strong>Federovací mostík</strong> je prechodný server, ktorý obmieňa veľké množstvá verejných príspevkov medzi tými servermi ktoré na od neho odoberajú, aj doňho prispievajú. <strong>Môže to pomôcť malým a stredným instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni užívatelia ručne následovali iných ľudí zo vzdialených instancií.
+      description_html: "<strong>Federovací mostík</strong> je prechodný server, ktorý obmieňa veľké množstvá verejných príspevkov medzi tými servermi ktoré na od neho odoberajú, aj doňho prispievajú. <strong>Môže to pomôcť malým a stredným instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni užívatelia ručne následovali iných ľudí zo vzdialených instancií."
       disable: Vypni
       disabled: Vypnutý
       enable: Povoľ
@@ -504,9 +505,9 @@ sk:
     roles:
       add_new: Pridaj postavenie
       assigned_users:
-        one: "%{count} užívateľ"
         few: "%{count} užívateľov"
         many: "%{count} užívateľov"
+        one: "%{count} užívateľ"
         other: "%{count} užívatelia"
       categories:
         administration: Spravovanie
@@ -632,7 +633,7 @@ sk:
     new_report:
       body: "%{reporter} nahlásil/a %{target}"
       body_remote: Niekto z %{domain} nahlásil/a %{target}
-      subject: 'Nové hlásenie pre %{instance} (#%{id})'
+      subject: Nové hlásenie pre %{instance} (#%{id})
     new_trends:
       new_trending_links:
         title: Populárne odkazy
@@ -822,9 +823,9 @@ sk:
     order_by: Zoraď podľa
     save_changes: Ulož zmeny
     validation_errors:
-      one: Niečo ešte nieje celkom v poriadku! Prosím skontroluj chybu uvedenú nižšie
       few: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chýb uvedených nižšie
       many: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chýb uvedených nižšie
+      one: Niečo ešte nieje celkom v poriadku! Prosím skontroluj chybu uvedenú nižšie
       other: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chyby uvedené nižšie
   imports:
     errors:
@@ -857,9 +858,9 @@ sk:
     generate: Vygeneruj
     invited_by: 'Bol/a si pozvaný/á užívateľom:'
     max_uses:
-      one: 1 využitie
       few: "%{count} využití"
       many: "%{count} využití"
+      one: 1 využitie
       other: "%{count} využitia"
     max_uses_prompt: Bez obmedzení
     prompt: Vygeneruj a zdieľaj linky s ostatnými, aby mali umožnený prístup k tomuto serveru
@@ -928,11 +929,11 @@ sk:
     follow_request:
       action: Spravuj žiadosti o sledovanie
       body: "%{name} žiada povolenie ťa následovať"
-      subject: '%{name} ťa žiadá o možnosť sledovania'
+      subject: "%{name} ťa žiadá o možnosť sledovania"
       title: Nová žiadosť o následovanie
     mention:
       action: Odpovedať
-      body: '%{name} ťa spomenul/a v:'
+      body: "%{name} ťa spomenul/a v:"
       subject: Bol/a si spomenutý/á užívateľom %{name}
       title: Novo spomenutý/á
     poll:
@@ -1051,16 +1052,16 @@ sk:
     attached:
       description: 'Priložené: %{attached}'
       image:
-        one: "%{count} obrázok"
         few: "%{count} obrázkov"
         many: "%{count} obrázkov"
+        one: "%{count} obrázok"
         other: "%{count} obrázky"
     boosted_from_html: Vyzdvihnuté od %{acct_link}
     content_warning: 'Varovanie o obsahu: %{warning}'
     disallowed_hashtags:
-      one: 'obsahoval nepovolený haštag: %{tags}'
       few: 'obsah nepovolených haštagov: %{tags}'
       many: 'obsah nepovolených haštagov: %{tags}'
+      one: 'obsahoval nepovolený haštag: %{tags}'
       other: 'obsahoval nepovolené haštagy: %{tags}'
     errors:
       in_reply_not_found: Príspevok, na ktorý sa snažíš odpovedať, pravdepodobne neexistuje.
@@ -1072,14 +1073,14 @@ sk:
       reblog: Vyzdvihnutie sa nedá pripnúť
     poll:
       total_people:
-        one: "%{count} človek"
         few: "%{count} ľudí"
         many: "%{count} ľudia"
+        one: "%{count} človek"
         other: "%{count} ľudí"
       total_votes:
-        one: "%{count} hlas"
         few: "%{count} hlasov"
         many: "%{count} hlasov"
+        one: "%{count} hlas"
         other: "%{count} hlasy"
       vote: Hlasuj
     show_more: Ukáž viac
