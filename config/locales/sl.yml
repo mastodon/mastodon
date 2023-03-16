@@ -839,6 +839,12 @@ sl:
         message_html: Nobenih pravil strežnika niste določili.
       sidekiq_process_check:
         message_html: Noben proces Sidekiq ne poteka za %{value} vrst. Preglejte svojo prilagoditev Sidekiq
+      upload_check_privacy_error:
+        action: Preverite tukaj za več informacij
+        message_html: "<strong>Vaš spletni strežnik je napačno nastavljen. Zasebnost vaših uporabnikov je izpostavljena tveganjem.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Preverite tukaj za več informacij
+        message_html: "<strong>Vaša predmetna shramba je napačno nastavljena. Zasebnost vaših uporabnikov je izpostavljena tveganjem.</strong>"
     tags:
       review: Stanje pregleda
       updated_msg: Nastavitve ključnikov uspešno posodobljene
