@@ -330,7 +330,7 @@ class FocalPointModal extends ImmutablePureComponent {
                     id='upload-modal__thumbnail'
                     ref={this.setFileInputRef}
                     type='file'
-                    accept='image/png,image/jpeg'
+                    accept='image/png,image/jpeg,image/webp,image/gif'
                     onChange={this.handleThumbnailChange}
                     style={{ display: 'none' }}
                     disabled={isUploadingThumbnail || is_changing_upload}
