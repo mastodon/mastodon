@@ -590,6 +590,7 @@ pt-BR:
         none: Nenhum
       comment_description_html: 'Para fornecer mais informações, %{name} escreveu:'
       confirm: Confirmar
+      confirm_action: Confirmar a moderação de @%{acct}
       created_at: Denunciado
       delete_and_resolve: Excluir publicações
       forwarded: Encaminhados
@@ -627,6 +628,7 @@ pt-BR:
           suspend_html: 'Você está prestes a <strong>suspender</strong> <strong>a conta de @%{acct}</strong>. Isso irá:'
         actions:
           delete_html: Remover as publicações ofensivas
+          suspend_html: Suspender <strong>@%{acct}</strong>, tornando seu perfil e conteúdo inacessíveis, impossibilitando a interação
         close_report: 'Marcar denúncia #%{id} como resolvida'
         close_reports_html: Marcar <strong>todas</strong> as denúncias contra <strong>@%{acct}</strong> como resolvidas
         delete_data_html: Exclua o perfil e o conteúdo de <strong>@%{acct}</strong> daqui a 30 dias, a menos que a suspensão seja desfeita nesse meio tempo
@@ -786,6 +788,7 @@ pt-BR:
         suspend: "%{name} suspendeu a conta de %{target}"
       appeal_approved: Revisado
       appeal_pending: Revisão pendente
+      appeal_rejected: Revisão rejeitada
     system_checks:
       database_schema_check:
         message_html: Existem migrações de banco de dados pendentes. Execute-as para garantir que o aplicativo se comporte como esperado
@@ -952,6 +955,7 @@ pt-BR:
   applications:
     created: Aplicativo criado com sucesso
     destroyed: Aplicativo excluído com sucesso
+    logout: Sair
     regenerate_token: Gerar código de acesso
     token_regenerated: Código de acesso gerado
     warning: Tenha cuidado com estes dados. Nunca compartilhe com alguém!
@@ -1136,6 +1140,8 @@ pt-BR:
     storage: Armazenamento de mídia
   featured_tags:
     add_new: Adicionar hashtag
+    errors:
+      limit: Você já destacou o número máximo de hashtags
     hint_html: "<strong>O que são hashtags em destaque?</strong> Elas são exibidas no seu perfil público e permitem que as pessoas acessem suas publicações públicos que contenham especificamente essas hashtags. São uma excelente ferramenta para acompanhar os trabalhos criativos ou os projetos de longo prazo."
   filters:
     contexts:
@@ -1388,6 +1394,7 @@ pt-BR:
     confirm_remove_selected_followers: Tem certeza que deseja remover os seguidores selecionados?
     confirm_remove_selected_follows: Tem certeza que deseja remover os grupos seguidos selecionados?
     dormant: Inativo
+    follow_failure: Não foi possível seguir algumas das contas selecionadas.
     follow_selected_followers: Seguir os seguidores selecionados
     followers: Seguidores
     following: Seguindo
@@ -1427,6 +1434,7 @@ pt-BR:
       electron: Electron
       firefox: Firefox
       generic: Navegador desconhecido
+      huawei_browser: Navegador Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
@@ -1436,6 +1444,7 @@ pt-BR:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Navegador desconhecido
       weibo: Weibo
     current_session: Sessão atual
     description: "%{browser} em %{platform}"
@@ -1448,8 +1457,10 @@ pt-BR:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: MacOS
+      unknown_platform: Plataforma desconhecida
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
