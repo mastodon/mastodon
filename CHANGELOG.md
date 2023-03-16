@@ -21,6 +21,9 @@ All notable changes to this project will be documented in this file.
 - Add support for specifying S3 storage classes in environment ([hyl](https://github.com/mastodon/mastodon/pull/22480))
 - Add support for refreshing many accounts at once with `tootctl accounts refresh` ([9p4](https://github.com/mastodon/mastodon/pull/23304))
 - Add confirmation modal when clicking to edit a post with a non-empty compose form ([PauloVilarinho](https://github.com/mastodon/mastodon/pull/23936))
+- Add support for the HAproxy PROXY protocol through the `PROXY_PROTO_V1` environment variable ([CSDUMMI](https://github.com/mastodon/mastodon/pull/24064))
+- Add `SENDFILE_HEADER` environment variable ([Gargron](https://github.com/mastodon/mastodon/pull/24123))
+- Add cache headers to static files served through Rails ([Gargron](https://github.com/mastodon/mastodon/pull/24120))
 
 ### Changed
 
@@ -32,6 +35,8 @@ All notable changes to this project will be documented in this file.
 - Change `ActivityPub::DeliveryWorker` retries to be spread out more ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/21956))
 - Disable anonymous access to the streaming API ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23989))
 - Change “Followed by” link on local accounts in admin UI to show all followers ([tribela](https://github.com/mastodon/mastodon/pull/23467))
+- Change Docker images to be pushed to Github Container Registry ([renchap](https://github.com/mastodon/mastodon/pull/24101), [nschonni](https://github.com/mastodon/mastodon/pull/23564), [renchap](https://github.com/mastodon/mastodon/pull/24113), [nschonni](https://github.com/mastodon/mastodon/pull/24106))
+- Redirect users to Single Logout at the identity provider after logging out of Mastodon ([CSDUMMI](https://github.com/mastodon/mastodon/pull/24020))
 
 ### Fixed
 
@@ -46,8 +51,8 @@ All notable changes to this project will be documented in this file.
 - Fix server error when attempting to display the edit history of a trendable post in the admin interface ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23574))
 - Fix `tootctl accounts migrate` crashing because of a typo ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23567))
 - Fix external authentication not running onboarding code for new users ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23458))
-- Fix translations being offered for unsupported languages ([c960657](https://github.com/mastodon/mastodon/pull/23879))
-  TODO: ongoing and has API changes
+- Fix translations being offered for unsupported languages ([c960657](https://github.com/mastodon/mastodon/pull/23879), [c960657](https://github.com/mastodon/mastodon/pull/24037))
+  Add `/api/v1/instances/translation_languages` REST API endpoint listing supported language translation sources and targets.
 - Fix original account being unfollowed on migration before the follow request to the new account could be sent ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/21957))
 - Fix the “Back” button in column headers sometimes leaving Mastodon ([c960657](https://github.com/mastodon/mastodon/pull/23953))
 - Fix pgBouncer resetting application name on every transaction ([Gargron](https://github.com/mastodon/mastodon/pull/23958))
@@ -58,6 +63,9 @@ All notable changes to this project will be documented in this file.
 - Fix Dev Container config ([ykzts](https://github.com/mastodon/mastodon/pull/23715), [samruddhikhandale](https://github.com/mastodon/mastodon/pull/23872))
 - Fix tags being stripped from plain-text short site description ([c960657](https://github.com/mastodon/mastodon/pull/23975))
 - Fix HTML entities not being un-escaped in extracted plain-text from remote posts ([c960657](https://github.com/mastodon/mastodon/pull/24019))
+- Fix dashboard crash on ElasticSearch server error ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23751))
+- Fix incorrect post links in strikes when the account is remote ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23611))
+- Fix misleading error code when receiving invalid WebAuthn credentials ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23568))
 
 ## [4.1.0] - 2023-02-10
 
