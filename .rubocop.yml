@@ -113,6 +113,16 @@ RSpec/NotToNot:
 RSpec/Rails/HttpStatus:
   EnforcedStyle: numeric
 
+# Reason:
+# https://docs.rubocop.org/rubocop/cops_style.html#styleclassandmodulechildren
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Reason: Classes mostly self-document with their names
+# https://docs.rubocop.org/rubocop/cops_style.html#styledocumentation
+Style/Documentation:
+  Enabled: false
+
 Style/HashSyntax:
   EnforcedStyle: ruby19_no_mixed_keys
 
