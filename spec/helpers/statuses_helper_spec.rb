@@ -2,7 +2,33 @@
 
 require 'rails_helper'
 
-RSpec.describe StatusesHelper, type: :helper do
+describe StatusesHelper do
+  describe 'status_text_summary' do
+    context 'with blank text' do
+      let(:status) { Status.new(spoiler_text: '') }
+
+      it 'returns immediately with nil' do
+        result = helper.status_text_summary(status)
+        expect(result).to be_nil
+      end
+    end
+
+    context 'with present text' do
+      let(:status) { Status.new(spoiler_text: 'SPOILERS!!!') }
+
+      it 'returns the content warning' do
+        result = helper.status_text_summary(status)
+        expect(result).to eq(I18n.t('statuses.content_warning', warning: 'SPOILERS!!!'))
+      end
+    end
+  end
+
+  def status_text_summary(status)
+    return if status.spoiler_text.blank?
+
+    I18n.t('statuses.content_warning', warning: status.spoiler_text)
+  end
+
   describe 'link_to_newer' do
     it 'returns a link to newer content' do
       url = 'https://example.com'

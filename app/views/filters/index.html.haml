@@ -5,7 +5,7 @@
   = link_to t('filters.new.title'), new_filter_path, class: 'button'
 
 - if @filters.empty?
-  %div.muted-hint.center-text= t 'filters.index.empty'
+  .muted-hint.center-text= t 'filters.index.empty'
 - else
   .applications-list
     = render partial: 'filter', collection: @filters
