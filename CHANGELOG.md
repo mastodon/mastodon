@@ -11,6 +11,10 @@ All notable changes to this project will be documented in this file.
 - Add `lang` attribute to native language names in language picker in Web UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23749))
 - Add headers to outgoing mails to avoid auto-replies ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23597))
 
+## Changed
+
+- Change Docker images to be pushed to Github Container Registry ([renchap](https://github.com/mastodon/mastodon/pull/24101), [nschonni](https://github.com/mastodon/mastodon/pull/23564), [renchap](https://github.com/mastodon/mastodon/pull/24113), [nschonni](https://github.com/mastodon/mastodon/pull/24106))
+
 ### Fixed
 
 - Fix “Remove all followers from the selected domains” being more destructive than it claims ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23805))
@@ -27,6 +31,9 @@ All notable changes to this project will be documented in this file.
 - Fix sidekiq jobs not triggering Elasticsearch index updates ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/24046))
 - Fix tags being stripped from plain-text short site description ([c960657](https://github.com/mastodon/mastodon/pull/23975))
 - Fix HTML entities not being un-escaped in extracted plain-text from remote posts ([c960657](https://github.com/mastodon/mastodon/pull/24019))
+- Fix dashboard crash on ElasticSearch server error ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23751))
+- Fix incorrect post links in strikes when the account is remote ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23611))
+- Fix misleading error code when receiving invalid WebAuthn credentials ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/23568))
 
 ## [4.0.2] - 2022-11-15
 ### Fixed
