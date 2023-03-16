@@ -2050,23 +2050,6 @@ Style/OptionalBooleanParameter:
     - 'app/workers/unfollow_follow_worker.rb'
     - 'lib/mastodon/redis_config.rb'
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: short, verbose
-Style/PreferredHashMethods:
-  Exclude:
-    - 'spec/support/matchers/model/model_have_error_on_field.rb'
-
-# Offense count: 5
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Methods.
-Style/RedundantArgument:
-  Exclude:
-    - 'app/controllers/concerns/signature_verification.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'lib/tasks/emojis.rake'
-
 # Offense count: 16
 # This cop supports safe autocorrection (--autocorrect).
 Style/RedundantRegexpCharacterClass:
