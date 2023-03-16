@@ -374,6 +374,8 @@ my:
       resolved_through_html: '%{domain} မှတစ်ဆင့် ဖြေရှင်းခဲ့သည်'
       title: ပိတ်ပင်ထားသော အီးမေးလ်ဒိုမိန်းများ
     export_domain_allows:
+      new:
+        title: ဒိုမိန်းတင်သွင်းခွင့်ပြုသည်
       no_file: ဖိုင်ရွေးထားခြင်းမရှိပါ။
     export_domain_blocks:
       import:
@@ -825,6 +827,9 @@ my:
     success_msg: သင့်အကောင့်ကို အောင်မြင်စွာ ဖျက်လိုက်ပါပြီ
     warning:
       data_removal: သင့်ပို့စ်များနှင့် အခြားအချက်အလက်များကို အပြီးတိုင် ဖယ်ရှားပါမည်
+      irreversible: အကောင့်ကို ပြန်လည်ရယူရန် သို့မဟုတ် ပြန်လည်အသုံးပြုရန် မဖြစ်နိုင်တော့ပါ
+      more_details_html: အသေးစိတ်အချက်အလက်များအတွက်၊ <a href="%{terms_path}">ကိုယ်ရေးကိုယ်တာမူဝါဒ</a> ကို ကြည့်ပါ။
+      username_available: သင့်အသုံးပြုသူအမည်ကို ပြန်လည်ရရှိနိုင်ပါမည်
   disputes:
     strikes:
       appeals:
@@ -834,15 +839,20 @@ my:
       title: "%{date} မှ %{action}"
       title_actions:
         delete_statuses: ပို့စ်ဖယ်ရှားခြင်း
+        mark_statuses_as_sensitive: သတိထားရသောပို့စ်များအဖြစ် အမှတ်အသားပြုခြင်း
         none: သတိပေးချက်
+        sensitive: သတိထားရသောအကောင့်အဖြစ် အမှတ်အသားပြုခြင်း
+  domain_validator:
+    invalid_domain: တရားဝင်ဒိုမိန်းအမည်မဟုတ်ပါ
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
+    '406': ဤစာမျက်နှာကို တောင်းဆိုထားသော ပုံစံဖြင့် မရရှိနိုင်ပါ။
     '410': The page you were looking for doesn't exist here anymore.
     '422':
       content: လုံခြုံရေး အတည်ပြုခြင်း မအောင်မြင်ပါ။ သင်သည် ကွတ်ကီးများကို ပိတ်ပင်ထားပါသလား။
+      title: လုံခြုံရေး အတည်ပြုခြင်း မအောင်မြင်ပါ
     '429': တောင်းဆိုမှု များနေပါသည်
     '500':
       title: ဤစာမျက်နှာမှာ မမှန်ကန်ပါ
@@ -895,21 +905,30 @@ my:
         title: စစ်ထုတ်ထားသော ပို့စ်များ
   generic:
     all: အားလုံး
+    changes_saved_msg: အပြောင်းအလဲများကို သိမ်းဆည်းပြီးပါပြီ။
     copy: ကူးယူပါ
     delete: ဖျက်ပါ
+    deselect: အားလုံး ရွေးထားခြင်းကို ဖျက်မည်
     save_changes: ပြောင်းလဲမှုများကို သိမ်းဆည်းပါ
     today: ယနေ့
   imports:
+    errors:
+      invalid_csv_file: 'မမှန်ကန်သော CSV ဖိုင်။ အမှား - %{error}'
+      over_rows_processing_limit: '%{count} တန်းထက် ပိုနေပါသည်'
     modes:
       merge: ပေါင်း
+      merge_long: ရှိပြီးသားမှတ်တမ်းများ သိမ်းဆည်းပြီး အသစ်များ ထပ်ထည့်ပါ
     preface: သင်စောင့်ကြည့်နေသည့်လူများစာရင်း သို့မဟုတ် ပိတ်ပင်ထားသည့်စာရင်းကဲ့သို့သော အခြားဆာဗာတစ်ခုမှ သင်ထုတ်ယူထားသည့်အချက်အလက်များကို ပြန်လည်ထည့်သွင်းနိုင်သည်။
+    success: သင့်အချက်အလက်ကို အပ်လုဒ်လုပ်ပြီး သတ်မှတ်ချိန်အတွင်း ဆောင်ရွက်ပါမည်
     types:
       blocking: ပိတ်ပင်ထားသည့်စာရင်း
       bookmarks: Bookmarks
       domain_blocking: ဒိုမိန်းပိတ်ပင်ထားသည့်စာရင်း
       following: စောင့်ကြည့်စာရင်း
+      muting: ပိတ်ထားသောစာရင်း
     upload: တင္ရန်
   invites:
+    expired: သက်တမ်းကုန်သွားပါပြီ
     expires_in:
       '1800': ၃၀ မိနစ်
       '21600': ၆ နာရီ
@@ -917,7 +936,10 @@ my:
       '43200': ၁၂ နာရီ
       '604800': ၁ ပတ်
       '86400': ၁ ရက်
+    invited_by: 'သင့်ကို ဖိတ်ခေါ်ထားသည် -'
     max_uses_prompt: အကန့်အသတ်မဲ့
+    table:
+      expires_at: သက်တမ်းကုန်သည်
     title: ဖိတ်ခေါ်ရန်
   login_activities:
     authentication_methods:
@@ -925,23 +947,38 @@ my:
       password: စကားဝှက်
       sign_in_token: အီးမေးလ်လုံခြုံရေးကုဒ်
       webauthn: လုံခြုံရေးကီးများ
+    failed_sign_in_html: '%{ip} (%{browser}) မှ %{method} ဖြင့် အကောင့်ဝင်ရောက်ခြင်း မအောင်မြင်ပါ'
+    successful_sign_in_html: '%{ip} (%{browser}) မှ %{method} ဖြင့် အကောင့်ဝင်၍ရပါပြီ'
+    title: အထောက်အထားမှတ်တမ်း
   media_attachments:
     validations:
       images_and_video: ရုပ်ပုံပါရှိပြီးသားပို့စ်တွင် ဗီဒီယို ပူးတွဲ၍မရပါ
+      not_ready: မပြီးသေးသောဖိုင်များကို ပူးတွဲ၍မရပါ။ ခဏအကြာတွင် ထပ်စမ်းကြည့်ပါ။
+      too_many: ဖိုင် ၄ ဖိုင်ထက် ပို၍တွဲမရပါ
   migrations:
     acct: သို့ ပြောင်းရွှေ့ရန်
     cancel: ပြန်ညွှန်းခြင်းကို ပယ်ဖျက်ရန်
+    cancelled_msg: ပြန်ညွှန်းခြင်းကို ပယ်ဖျက်ပြီးပါပြီ။
     errors:
       missing_also_known_as: ဤအကောင့်၏ အမည်တူမဟုတ်ပါ
       move_to_self: လက်ရှိအကောင့်မဖြစ်နိုင်ပါ
       not_found: ရှာမတွေ့ပါ
+    incoming_migrations: အခြားအကောင့်တစ်ခုမှ ပြောင်းရွှေ့ခြင်း
     incoming_migrations_html: အခြားအကောင့်မှ ဤအကောင့်သို့ ရွှေ့ရန် ဦးစွာ သင်သည် <a href="%{path}">အကောင့်အမည်တူတစ်ခု ဖန်တီးရန်</a> လိုအပ်ပါသည်။
     proceed_with_move: စောင့်ကြည့်သူများကို ရွှေ့ရန်
+    redirecting_to: သင့်အကောင့်က %{acct} သို့ ပြန်ညွှန်းနေသည်။
+    set_redirect: ပြန်ညွှန်းသတ်မှတ်ပါ
     warning:
+      backreference_required: အကောင့်အသစ်က ဤအကောင့်ကို ပြန်ကိုးကားရန်အတွက် ဦးစွာ ပြင်ဆင်သတ်မှတ်ရပါမည်
+      before: 'ဆက်လက်မလုပ်ဆောင်မီ ဤမှတ်စုများကို သေချာဖတ်ပါ -'
       only_redirect_html: တနည်းအားဖြင့် သင်သည် <a href="%{path}">သင့်ပရိုဖိုင်ပေါ်တွင် ပြန်ညွှန်းခြင်းကိုသာ ပြုလုပ်နိုင်သည်</a>။
       redirect: သင့်လက်ရှိအကောင့်၏ပရိုဖိုင်ကို ပြန်လည်ညွှန်းပေးသည့်အသိပေးချက်ဖြင့် ပြင်ဆင်ပေးမည်ဖြစ်ပြီး ရှာဖွေမှုများမှ ဖယ်ထုတ်ပေးမည်ဖြစ်သည်
   moderation:
     title: စိစစ်ခြင်း
+  move_handler:
+    carry_blocks_over_text: ဤအသုံးပြုသူသည် သင်ပိတ်ဆို့ထားသော %{acct} မှ ပြောင်းရွှေ့ခဲ့သည်။
+    carry_mutes_over_text: ဤအသုံးပြုသူသည် သင်အသံပိတ်ထားသော %{acct} မှ ပြောင်းရွှေ့ခဲ့သည်။
+    copy_account_note_text: 'ဤအသုံးပြုသူသည် %{acct} မှ ပြောင်းရွှေ့ခဲ့သည်။ ဤသည်မှာ ၎င်းတို့နှင့်ပတ်သက်သော ယခင်မှတ်စုများဖြစ်သည် -'
   notification_mailer:
     admin:
       sign_up:
@@ -1001,6 +1038,9 @@ my:
     public_timelines: အများမြင်စာမျက်နှာ
   privacy_policy:
     title: ကိုယ်ရေးအချက်အလက်မူဝါဒ
+  reactions:
+    errors:
+      unrecognized_emoji: အသိအမှတ်ပြုထားသော အီမိုဂျီမဟုတ်ပါ
   relationships:
     activity: အကောင့်လုပ်ဆောင်ချက်
     confirm_follow_selected_followers: ရွေးချယ်စောင့်ကြည့်သူများကို စောင့်ကြည့်လိုသည်မှာ သေချာပါသလား။
@@ -1083,6 +1123,7 @@ my:
     edit_profile: ပရိုဖိုင်ပြင်ဆင်ရန်
     export: အချက်အလက်ထုတ်ယူခြင်း
     import: ထည့်သွင်းခြင်း
+    import_and_export: ထည့်သွင်းခြင်းနှင့် ထုတ်ယူခြင်း
     notifications: အသိပေးချက်များ
     preferences: သတ်မှတ်ချက်များ
     profile: ပရိုဖိုင်
@@ -1130,6 +1171,7 @@ my:
       unlisted_long: လူတိုင်းမြင်နိုင်သော်လည်း အများမြင်မည့်စာမျက်နှာများတွင် စာရင်းမသွင်းထားပါ။
   statuses_cleanup:
     enabled: ပို့စ်အဟောင်းများကို အလိုအလျောက် ဖျက်ပါ
+    exceptions: ခြွင်းချက်များ
     ignore_favs: နှစ်သက်မှုများကို လျစ်လျူရှုပါ
     ignore_reblogs: Boost များကို လျစ်လျူရှုပါ
     keep_direct: တိုက်ရိုက်မက်ဆေ့ချ်များကို သိမ်းထားပါ
@@ -1157,6 +1199,8 @@ my:
     pinned: ပင်တွဲထားသောပို့စ်
     reblogged: Boost လုပ်ခဲ့သည်
     sensitive_content: သတိထားရသော အကြောင်းအရာ
+  tags:
+    does_not_match_previous_name: ယခင်အမည်နှင့် မကိုက်ညီပါ
   themes:
     default: Mastodon (အနက်)
     mastodon-light: Mastodon (အလင်းနောက်ခံ)
@@ -1172,6 +1216,7 @@ my:
     edit: ပြင်ဆင်ရန်
     enabled: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်ကို ဖွင့်ထားသည်
     enabled_success: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်ကို ဖွင့်ပြီးပါပြီ
+    generate_recovery_codes: ပြန်လည်ရယူရေးကုဒ်များ ဖန်တီးပါ
     methods: နှစ်ဆင့်ခံလုံခြုံရေးနည်းလမ်းများ
     otp: Authenticator အက်ပ်
     recovery_codes: အရန်ပြန်လည်ရယူရေးကုဒ်များ
@@ -1179,8 +1224,12 @@ my:
   user_mailer:
     appeal_approved:
       action: သင့်အကောင့်သို့ သွားပါ
+      subject: '%{date} တွင် သင့်အယူခံဝင်ချက်ကို အတည်ပြုပြီးပါပြီ'
+      title: အယူခံဝင်သည်
     appeal_rejected:
       title: အယူခံကို ပယ်ချခဲ့သည်
+    backup_ready:
+      subject: သင့်မှတ်တမ်း ဒေါင်းလုဒ်ဆွဲရန် အသင့်ဖြစ်ပါပြီ
     suspicious_sign_in:
       change_password: သင်၏ စကားဝှက်ပြောင်းလဲပါ
       details: 'ဤသည်မှာ အကောင့်ဝင်ရောက်ခြင်းအတွက် အသေးစိတ်အချက်များဖြစ်သည် -'
