@@ -77,9 +77,3 @@ Rails.application.configure do
 end
 
 Redis.raise_deprecations = true
-
-module PrivateAddressCheck
-  def self.private_address?(*)
-    false
-  end
-end
