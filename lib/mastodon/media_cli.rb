@@ -21,46 +21,47 @@ module Mastodon
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :verbose, type: :boolean, default: false, aliases: [:v]
     option :dry_run, type: :boolean, default: false
-    # BEGIN deprecation # TODO: How to tag deprecation? 
+    # BEGIN deprecation
     option :prune_profiles, type: :boolean, default: false
     option :remove_headers, type: :boolean, default: false
     # END deprecation
     desc 'remove', 'Remove remote media files, headers or avatars'
     long_desc <<-DESC
     Removes locally cached copies of media attachments, avatars or profile headers from other servers.
-    For backward compatibility, media attachments will be removed if no flags specifying media are provided, but this is deprecated. In future releases, if no flags are provided, nothing will be removed.
-    --attachments
-        Include media attachments for removal.
-    --avatars
-        Include account avatars for removal.
-    --headers
-        Include profile headers for removal.
-    --include-follows
-        Remove media even if a follow relationship exists.
-        If this flag is not provided, only accounts that are not followed by or following anyone locally will have their media removed.
-    --days N
-        Exclude media attachments that have been posted in the past N days.
-        Exclude accounts that have been updated in the past N days.
-        Defaults to N=7.
-    --concurrency N
-        The number of workers to use for this task.
-        Defaults to N=5.
-    --dry-run
-        Print expected results only, without performing any actions.
+
+    DEPRECATION: For backward compatibility, media attachments will be removed if no flags specifying media are provided, but this is
+    deprecated. In future releases, if no flags are provided, nothing will be removed. The flags --prune-profiles and --remove-headers is
+    also deprecated.
+
+    Use the --days=N option to exclude media attachments that have been posted in the past N days and accounts that have been updated in
+    the past N days. Defaults to N=7.
+
+    Use the --attachments option to include media attachments for removal.
+
+    Use the --avatars option to include account avatars for removal.
+
+    Use the --headers option to include profile headers for removal.
+
+    Use the --include-follows option to remove media even if a follow relationship exists. If this flag is not provided, only accounts that
+    are not followed by or following anyone locally will have their media removed.
+
+    Use the --dry-run option to print expected results only, without performing any actions.
     DESC
     # rubocop:disable Metrics/PerceivedComplexity
     def remove
-      # BEGIN deprecation 
+      # BEGIN deprecation
       if options[:prune_profiles]
-        options[:avatars]=true # TODO: Use an alias for Thor options?
-        options[:headers]=true
+        options[:avatars] = true
+        options[:headers] = true
         say('--prune-profiles is deprecated and will be removed in the future.', :red, true)
+      end
       if options[:remove_headers]
-        options[:headers]=true
+        options[:headers] = true
         say('--remove-headers is deprecated and will be removed in the future.', :red, true)
-      if !(options[:prune_profiles] || options[:remove_headers] || options[:attachments] || options[:avatars] || options[:headers])
-        options[:attachments]=true
-        options[:include_follows]=true
+      end
+      unless options[:prune_profiles] || options[:remove_headers] || options[:attachments] || options[:avatars] || options[:headers]
+        options[:attachments] = true
+        options[:include_follows] = true
         say('Usage of this command with no flags specifying media is deprecated and will be removed in the future.', :red, true)
       end
       # END deprecation
