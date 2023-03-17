@@ -20,14 +20,6 @@ Layout/LineLength:
   Exclude:
     - 'app/models/account.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: require_no_space, require_space
-Layout/SpaceInLambdaLiteral:
-  Exclude:
-    - 'config/environments/production.rb'
-    - 'config/initializers/content_security_policy.rb'
-
 # Configuration parameters: AllowComments, AllowEmptyLambdas.
 Lint/EmptyBlock:
   Exclude:
