@@ -69,7 +69,7 @@ RSpec.describe Api::V1::ReportsController, type: :controller do
       end
 
       it 'saves rule_ids' do
-        expect(target_account.targeted_reports.first.rule_ids).to match_array([rule.id])
+        expect(target_account.targeted_reports.first.rule_ids).to contain_exactly(rule.id)
       end
     end
   end

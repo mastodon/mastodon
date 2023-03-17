@@ -57,7 +57,7 @@ RSpec.describe Api::V1::FavouritesController, type: :controller do
 
           get :index
 
-          expect(assigns(:statuses)).to match_array [favourite_by_user.status]
+          expect(assigns(:statuses)).to contain_exactly(favourite_by_user.status)
         end
 
         it 'adds pagination headers if necessary' do

@@ -99,7 +99,7 @@ describe Api::V1::Accounts::StatusesController do
         it 'lists both the public and the private statuses' do
           get :index, params: { account_id: account.id, pinned: true }
           json = body_as_json
-          expect(json.map { |item| item[:id].to_i }).to match_array([status.id, private_status.id])
+          expect(json.map { |item| item[:id].to_i }).to contain_exactly(status.id, private_status.id)
         end
       end
     end

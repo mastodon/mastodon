@@ -28,7 +28,7 @@ describe Api::V1::Accounts::FollowingAccountsController do
       get :index, params: { account_id: account.id, limit: 2 }
 
       expect(body_as_json.size).to eq 2
-      expect([body_as_json[0][:id], body_as_json[1][:id]]).to match_array([alice.id.to_s, bob.id.to_s])
+      expect([body_as_json[0][:id], body_as_json[1][:id]]).to contain_exactly(alice.id.to_s, bob.id.to_s)
     end
 
     it 'does not return blocked users' do
@@ -58,7 +58,7 @@ describe Api::V1::Accounts::FollowingAccountsController do
         get :index, params: { account_id: account.id, limit: 2 }
 
         expect(body_as_json.size).to eq 2
-        expect([body_as_json[0][:id], body_as_json[1][:id]]).to match_array([alice.id.to_s, bob.id.to_s])
+        expect([body_as_json[0][:id], body_as_json[1][:id]]).to contain_exactly(alice.id.to_s, bob.id.to_s)
       end
     end
   end
