@@ -59,7 +59,7 @@ Rails.application.configure do
   end
 end
 
-Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
+Paperclip::Attachment.default_options[:path] = Rails.root.join('spec', 'test_files', ':class', ':id_partition', ':style.:extension')
 
 # set fake_data for pam, don't do real calls, just use fake data
 if ENV['PAM_ENABLED'] == 'true'

@@ -12,7 +12,7 @@ require 'paperclip/matchers'
 require 'capybara/rspec'
 require 'chewy/rspec'
 
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(allow: Chewy.settings[:host])
@@ -36,7 +36,7 @@ Devise::Test::ControllerHelpers.module_eval do
 end
 
 RSpec.configure do |config|
-  config.fixture_path = "#{Rails.root}/spec/fixtures"
+  config.fixture_path = Rails.root.join('spec', 'fixtures')
   config.use_transactional_fixtures = true
   config.order = 'random'
   config.infer_spec_type_from_file_location!

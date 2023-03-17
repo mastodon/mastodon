@@ -158,6 +158,11 @@ Metrics/MethodLength:
 Metrics/ModuleLength:
   CountAsOne: [array, heredoc]
 
+# Reason: Prevailing style is argument file paths
+# https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsfilepath
+Rails/FilePath:
+  EnforcedStyle: arguments
+
 # Reason: Prevailing style uses numeric status codes, matches RSpec/Rails/HttpStatus
 # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railshttpstatus
 Rails/HttpStatus:

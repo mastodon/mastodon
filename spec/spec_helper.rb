@@ -38,7 +38,7 @@ RSpec.configure do |config|
 
   config.after :suite do
     gc_counter = 0
-    FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
+    FileUtils.rm_rf(Dir[Rails.root.join('spec', 'test_files')])
   end
 
   config.after :each do
