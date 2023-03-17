@@ -1724,15 +1724,6 @@ Rails/RakeEnvironment:
     - 'lib/tasks/repo.rake'
     - 'lib/tasks/statistics.rake'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Include.
-# Include: spec/controllers/**/*.rb, spec/requests/**/*.rb, test/controllers/**/*.rb, test/integration/**/*.rb
-Rails/ResponseParsedBody:
-  Exclude:
-    - 'spec/controllers/follower_accounts_controller_spec.rb'
-    - 'spec/controllers/following_accounts_controller_spec.rb'
-    - 'spec/controllers/settings/two_factor_authentication/webauthn_credentials_controller_spec.rb'
-
 # Configuration parameters: Include.
 # Include: db/**/*.rb
 Rails/ReversibleMigration:

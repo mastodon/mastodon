@@ -41,7 +41,7 @@ describe FollowerAccountsController do
     context 'when format is json' do
       subject(:response) { get :index, params: { account_username: alice.username, page: page, format: :json } }
 
-      subject(:body) { JSON.parse(response.body) }
+      subject(:body) { response.parsed_body }
 
       context 'with page' do
         let(:page) { 1 }
