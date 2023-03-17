@@ -825,6 +825,12 @@ sr-Latn:
         message_html: Niste definisali nijedno pravilo servera.
       sidekiq_process_check:
         message_html: Nijedan Sidekiq proces nije pokrenut za red(ove) %{value}. Molimo Vas pregledajte svoju Sidekiq konfiguraciju
+      upload_check_privacy_error:
+        action: Proverite ovde za više informacija
+        message_html: "<strong>Vaš veb server je pogrešno konfigurisan. Privatnost vaših korisnika je izložena riziku.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Proverite ovde za više informacija
+        message_html: "<strong>Vaše skladište objekta je pogrešno konfigurisano. Privatnost vaših korisnika je izložena riziku.</strong>"
     tags:
       review: Pregledaj status
       updated_msg: Podešavanja heš oznaka uspešno ažurirana
