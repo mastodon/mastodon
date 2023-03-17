@@ -811,6 +811,12 @@ is:
         message_html: Þú hefur ekki skilgreint neinar reglur fyrir netþjón.
       sidekiq_process_check:
         message_html: Ekkert Sidekiq-ferli er í gangi fyrir %{value} biðröð/biðraðir. Endilega athugaðu Sidekiq-uppsetninguna þína
+      upload_check_privacy_error:
+        action: Skoðaðu hér til að fá frekari upplýsingar
+        message_html: "<strong>Vefþjónninn þinn er ekki rétt stilltur. Friðhelgi notendanna þinna gæti verið í hættu.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Skoðaðu hér til að fá frekari upplýsingar
+        message_html: "<strong>Gagnageymslan þín er ekki rétt stillt. Friðhelgi notendanna þinna gæti verið í hættu.</strong>"
     tags:
       review: Yfirfara stöðufærslu
       updated_msg: Það tókst að uppfæra stillingar myllumerkja
