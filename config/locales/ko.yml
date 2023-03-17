@@ -799,6 +799,10 @@ ko:
         message_html: '%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요'
       upload_check_privacy_error:
         action: 더 많은 정보를 보려면 여기를 확인하세요.
+        message_html: "<strong>웹서버가 잘못 설정되어있습니다. 사용자의 개인정보가 위험한 상태입니다.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: 더 많은 정보를 보려면 여기를 확인하세요
+        message_html: "<strong>오브젝트 스토리지가 잘못 설정되어 있습니다. 사용자의 개인정보가 위험한 상태입니다.</strong>"
     tags:
       review: 심사 상태
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
