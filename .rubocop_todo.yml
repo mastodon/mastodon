@@ -425,10 +425,6 @@ RSpec/AnyInstance:
     - 'spec/workers/activitypub/delivery_worker_spec.rb'
     - 'spec/workers/web/push_notification_worker_spec.rb'
 
-RSpec/BeforeAfterAll:
-  Exclude:
-    - 'spec/requests/localization_spec.rb'
-
 # Configuration parameters: Prefixes, AllowedPatterns.
 # Prefixes: when, with, without
 RSpec/ContextWording:
