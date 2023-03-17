@@ -811,6 +811,12 @@ da:
         message_html: Ingen serverregler defineret.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-proces kører for %{value}-kø(er). Gennemgå Sidekiq-opsætningen
+      upload_check_privacy_error:
+        action: Tjek her for flere oplysninger
+        message_html: "<strong>Webserveren er fejlopsat. Brugernes fortrolighed er i fare.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Tjek her for flere oplysninger
+        message_html: "<strong>Objektlageret er fejlopsat. Brugernes fortrolighed er i fare.</strong>"
     tags:
       review: Revisionsstatus
       updated_msg: Hashtag-indstillinger opdateret
