@@ -1,20 +1,6 @@
 # frozen_string_literal: true
 
-module ReactHelper
-  def react_component(name, props = {}, &block)
-    data = { component: name.to_s.camelcase, props: Oj.dump(props) }
-    if block.nil?
-      div_tag_with_data(data)
-    else
-      content_tag(:div, data: data, &block)
-    end
-  end
-
-  def react_admin_component(name, props = {})
-    data = { 'admin-component': name.to_s.camelcase, props: Oj.dump({ locale: I18n.locale }.merge(props)) }
-    div_tag_with_data(data)
-  end
-
+module MediaComponentHelper
   def render_video_component(status, **options)
     video = status.ordered_media_attachments.first
 
@@ -121,9 +107,5 @@ module ReactHelper
     else
       status.account.sensitized? || status.sensitive
     end
-  end
-
-  def div_tag_with_data(data)
-    content_tag(:div, nil, data: data)
   end
 end
