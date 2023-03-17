@@ -811,6 +811,12 @@ nl:
         message_html: Je hebt voor deze server geen regels opgesteld.
       sidekiq_process_check:
         message_html: Er draait geen Sidekiqproces voor de wachtrij(en) %{value}. Controleer je Sidekiqconfiguratie
+      upload_check_privacy_error:
+        action: Klik hier voor meer informatie
+        message_html: "<strong>Uw webserver is verkeerd geconfigureerd. De privacy van uw gebruikers is in gevaar.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Klik hier voor meer informatie
+        message_html: "<strong>Je objectopslag is verkeerd geconfigureerd. De privacy van je gebruikers is in gevaar.</strong>"
     tags:
       review: Status beoordelen
       updated_msg: Instellingen hashtag succesvol bijgewerkt
