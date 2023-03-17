@@ -105,6 +105,8 @@ group :development, :test do
   gem 'i18n-tasks', '~> 1.0', require: false
   gem 'rspec-rails', '~> 6.0'
   gem 'rspec_chunked', '~> 0.6'
+
+  gem 'rubocop-capybara', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
