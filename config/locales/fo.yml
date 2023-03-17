@@ -811,6 +811,12 @@ fo:
         message_html: Tú hevur ikki ásett nakrar ambætarareglur.
       sidekiq_process_check:
         message_html: Eingin Sidekiq gongd koyrir fyri %{value} bíðirøðina(r). Vinarliga eftirkanna Sidekiq uppsetingina
+      upload_check_privacy_error:
+        action: Kekka her fyri at fáa fleiri upplýsingar
+        message_html: "<strong>Vevambætarin hjá tær er skeivt uppsettur. Privatlívið hjá brúkarunum hjá tær er í vanda.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Kekka her fyri at fáa fleiri upplýsingar
+        message_html: "<strong>Objekt-goymslan hjá tær er skeivt uppsett. Privatlívið hjá brúkarunum hjá tær er í vanda.</strong>"
     tags:
       review: Eftirkanna støðu
       updated_msg: Frámerkjastillingar dagførdar
