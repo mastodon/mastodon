@@ -14,17 +14,6 @@ Bundler/OrderedGems:
     - 'Gemfile'
 
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowMultipleStyles, EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle.
-# SupportedHashRocketStyles: key, separator, table
-# SupportedColonStyles: key, separator, table
-# SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
-Layout/HashAlignment:
-  Exclude:
-    - 'config/environments/production.rb'
-    - 'config/initializers/rack_attack.rb'
-    - 'config/routes.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowDoxygenCommentStyle, AllowGemfileRubyComment.
 Layout/LeadingCommentSpace:
   Exclude:
