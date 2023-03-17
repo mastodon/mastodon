@@ -799,10 +799,10 @@ ko:
         message_html: '%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요'
       upload_check_privacy_error:
         action: 더 많은 정보를 보려면 여기를 확인하세요.
-        message_html: "<strong>웹서버가 잘못 설정되어있습니다. 사용자의 개인정보가 위험한 상태입니다.</strong>"
+        message_html: "<strong>웹 서버가 잘못 구성되었습니다. 사용자의 프라이버시에 위협이 됩니다.</strong>"
       upload_check_privacy_error_object_storage:
         action: 더 많은 정보를 보려면 여기를 확인하세요
-        message_html: "<strong>오브젝트 스토리지가 잘못 설정되어 있습니다. 사용자의 개인정보가 위험한 상태입니다.</strong>"
+        message_html: "<strong>오브젝트 스토리지가 잘못 구성되었습니다. 사용자의 프라이버시에 위협이 됩니다.</strong>"
     tags:
       review: 심사 상태
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
@@ -1657,6 +1657,7 @@ ko:
       title: 환영합니다 %{name} 님!
   users:
     follow_limit_reached: 당신은 %{limit}명의 사람을 넘어서 팔로우 할 수 없습니다
+    go_to_sso_account_settings: ID 공급자의 계정 설정으로 이동
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
     otp_lost_help_html: 만약 양쪽 모두를 잃어버렸다면 %{email}을 통해 복구할 수 있습니다
     seamless_external_login: 외부 서비스를 이용해 로그인했으므로 이메일과 암호는 설정할 수 없습니다.
