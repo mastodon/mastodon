@@ -797,6 +797,12 @@ ja:
         message_html: サーバーのルールを定義していません。
       sidekiq_process_check:
         message_html: '%{value}キューに対応するSidekiqプロセスがありません。Sidekiqの設定を確認してください。'
+      upload_check_privacy_error:
+        action: ここを開いて詳細を確認してください
+        message_html: "<strong>Web サーバーが正しく設定されていません。ユーザーのプライバシーが危険な状態になっています。</strong>"
+      upload_check_privacy_error_object_storage:
+        action: ここを開いて詳細を確認してください
+        message_html: "<strong>オブジェクトストレージが正しく設定されていません。ユーザーのプライバシーが危険な状態になっています。</strong>"
     tags:
       review: 審査状況
       updated_msg: ハッシュタグ設定が更新されました
