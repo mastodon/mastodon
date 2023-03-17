@@ -1,4 +1,11 @@
 hi:
+  admin:
+    system_checks:
+      upload_check_privacy_error:
+        message_html: "<strong> आपके वेब सर्वर का कन्फिगरेशन सही नहीं है। उपयोगकर्ताओं की निजता खतरे में है। </strong>"
+      upload_check_privacy_error_object_storage:
+        action: अधिक जानकारी हेतु यहां क्लिक करें।
+        message_html: "<strong> आपके वेब सर्वर का कन्फिगरेशन सही नहीं है। उपयोगकर्ताओं की निजता खतरे में है। </strong>"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
