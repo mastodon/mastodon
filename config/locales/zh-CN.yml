@@ -797,6 +797,12 @@ zh-CN:
         message_html: 你没有定义任何服务器规则。
       sidekiq_process_check:
         message_html: '%{value} 队列未运行任何 Sidekiq 进程。请检查你的 Sidekiq 配置'
+      upload_check_privacy_error:
+        action: 点击这里查看更多信息
+        message_html: "<strong>您的网站服务器配置错误，您用户的隐私处于危险中。</strong>"
+      upload_check_privacy_error_object_storage:
+        action: 点击这里查看更多信息
+        message_html: "<strong>您的对象存储空间配置错误，您用户的隐私处于危险中。</strong>"
     tags:
       review: 审核状态
       updated_msg: 话题标签设置更新成功
