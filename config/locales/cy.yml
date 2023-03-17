@@ -867,6 +867,12 @@ cy:
         message_html: Nid ydych wedi diffinio unrhyw reolau gweinydd.
       sidekiq_process_check:
         message_html: Does dim proses Sidekiq yn rhedeg ar gyfer y ciw(iau) %{value}. Adolygwch eich ffurfweddiad Sidekiq
+      upload_check_privacy_error:
+        action: Ewch yma am fwy o wybodaeth
+        message_html: "<strong>Mae eich gweinydd gwe wedi'i gam ffurfweddu.. Mae preifatrwydd eich defnyddwyr mewn perygl.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Ewch yma am fwy o wybodaeth
+        message_html: "<strong>Mae eich storfa gwrthrychau wedi'i cham ffurfweddu. Mae preifatrwydd eich defnyddwyr mewn perygl.</strong>"
     tags:
       review: Adolygu statws
       updated_msg: Gosodiadau hashnodau wedi'i diweddaru'n llwyddiannus
