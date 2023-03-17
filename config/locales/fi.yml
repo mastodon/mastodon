@@ -811,6 +811,12 @@ fi:
         message_html: Et ole määrittänyt mitään palvelimen sääntöä.
       sidekiq_process_check:
         message_html: Ei ole Sidekiq-prosessia käynnissä jonossa %{value}. Tarkista Sidekiq-asetukset
+      upload_check_privacy_error:
+        action: Katso täältä lisätietoja
+        message_html: "<strong>Verkkopalvelimesi on määritetty virheellisesti ja käyttäjiesi yksityisyys on vaarantunut.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Katso täältä lisätietoja
+        message_html: "<strong>Objektivarastosi on määritetty virheellisesti ja käyttäjiesi yksityisyys on vaarantunut.</strong>"
     tags:
       review: Tarkista tila
       updated_msg: Aihetunnisteen asetukset päivitetty onnistuneesti
@@ -1683,6 +1689,7 @@ fi:
       title: Tervetuloa mukaan, %{name}!
   users:
     follow_limit_reached: Et voi seurata yli %{limit} henkilöä
+    go_to_sso_account_settings: Avaa identiteettitarjoajasi tiliasetukset
     invalid_otp_token: Virheellinen kaksivaiheisen todentamisen koodi
     otp_lost_help_html: Jos sinulla ei ole pääsyä kumpaankaan, voit ottaa yhteyttä osoitteeseen %{email}
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
