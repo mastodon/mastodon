@@ -811,6 +811,12 @@ it:
         message_html: Non hai definito alcuna regola del server.
       sidekiq_process_check:
         message_html: Nessun processo di Sidekiq in esecuzione per le code di %{value}. Sei pregato di revisionare la tua configurazione di Sidekiq
+      upload_check_privacy_error:
+        action: Controlla qui per maggiori informazioni
+        message_html: "<strong>Il tuo server web è mal configurato. La privacy dei tuoi utenti è a rischio.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Controlla qui per maggiori informazioni
+        message_html: "<strong>La tua archiviazione oggetti è mal configurata. La privacy dei tuoi utenti è a rischio.</strong>"
     tags:
       review: Esamina status
       updated_msg: Impostazioni hashtag aggiornate con successo
