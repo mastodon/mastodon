@@ -797,6 +797,12 @@ zh-TW:
         message_html: 您尚未定義任何伺服器規則。
       sidekiq_process_check:
         message_html: 沒有佇列 %{value} 的 Sidekiq 行程，請檢查您的 Sidekiq 設定組態
+      upload_check_privacy_error:
+        action: 檢查這裡以取得更多資訊
+        message_html: "<strong>您的網頁伺服器設定錯誤。您的使用者隱私正暴露於風險之中。</strong>"
+      upload_check_privacy_error_object_storage:
+        action: 檢查這裡以取得更多資訊
+        message_html: "<strong>您的物件資料儲存空間 (object storage) 設定錯誤。您的使用者隱私正暴露於風險之中。</strong>"
     tags:
       review: 審核嘟文
       updated_msg: 成功更新主題標籤設定
