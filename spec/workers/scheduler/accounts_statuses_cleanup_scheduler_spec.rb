@@ -76,7 +76,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
   end
 
   describe '#compute_budget' do
-    context 'on a single thread' do
+    context 'with a single thread' do
       let(:process_set_stub) { [{ 'concurrency' => 1, 'queues' => %w(push default) }] }
 
       it 'returns a low value' do
@@ -84,7 +84,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
       end
     end
 
-    context 'on a lot of threads' do
+    context 'with a lot of threads' do
       let(:process_set_stub) do
         [
           { 'concurrency' => 2, 'queues' => %w(push default) },

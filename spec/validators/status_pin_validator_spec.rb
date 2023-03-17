@@ -20,7 +20,7 @@ RSpec.describe StatusPinValidator, type: :validator do
     let(:reblog)      { false }
     let(:count)       { 0 }
 
-    context 'pin.status.reblog?' do
+    context 'when pin.status.reblog?' do
       let(:reblog) { true }
 
       it 'calls errors.add' do
@@ -28,7 +28,7 @@ RSpec.describe StatusPinValidator, type: :validator do
       end
     end
 
-    context 'pin.account_id != pin.status.account_id' do
+    context 'when pin.account_id != pin.status.account_id' do
       let(:pin_account_id)    { 1 }
       let(:status_account_id) { 2 }
 
@@ -37,7 +37,7 @@ RSpec.describe StatusPinValidator, type: :validator do
       end
     end
 
-    context 'if pin.status.direct_visibility?' do
+    context 'when pin.status.direct_visibility?' do
       let(:visibility) { 'direct' }
 
       it 'calls errors.add' do
@@ -45,7 +45,7 @@ RSpec.describe StatusPinValidator, type: :validator do
       end
     end
 
-    context 'pin.account.status_pins.count > 4 && pin.account.local?' do
+    context 'when pin.account.status_pins.count > 4 && pin.account.local?' do
       let(:count) { 5 }
       let(:local) { true }
 

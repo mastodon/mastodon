@@ -7,7 +7,7 @@ RSpec.describe ReportService, type: :service do
 
   let(:source_account) { Fabricate(:account) }
 
-  context 'for a remote account' do
+  context 'with a remote account' do
     let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
 
     before do

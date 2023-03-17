@@ -84,7 +84,7 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :controller do
       BlockDomainService.new.call(domain_block)
     end
 
-    context 'downgrading a domain suspension to silence' do
+    context 'when downgrading a domain suspension to silence' do
       let(:original_severity) { 'suspend' }
       let(:new_severity)      { 'silence' }
 
@@ -101,7 +101,7 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :controller do
       end
     end
 
-    context 'upgrading a domain silence to suspend' do
+    context 'when upgrading a domain silence to suspend' do
       let(:original_severity) { 'silence' }
       let(:new_severity)      { 'suspend' }
 

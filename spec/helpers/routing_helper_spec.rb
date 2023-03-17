@@ -24,7 +24,7 @@ RSpec.describe RoutingHelper, type: :helper do
       end
     end
 
-    context 'Do not use S3' do
+    context 'when not using S3' do
       before do
         Rails.configuration.x.use_s3 = false
       end
@@ -32,7 +32,7 @@ RSpec.describe RoutingHelper, type: :helper do
       it_behaves_like 'returns full path URL'
     end
 
-    context 'Use S3' do
+    context 'when using S3' do
       before do
         Rails.configuration.x.use_s3 = true
       end

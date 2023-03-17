@@ -18,7 +18,7 @@ RSpec.describe HtmlAwareFormatter do
     context 'when remote' do
       let(:local) { false }
 
-      context 'given plain text' do
+      context 'when given plain text' do
         let(:text) { 'Beep boop' }
 
         it 'keeps the plain text' do
@@ -26,7 +26,7 @@ RSpec.describe HtmlAwareFormatter do
         end
       end
 
-      context 'given text containing script tags' do
+      context 'when given text containing script tags' do
         let(:text) { '<script>alert("Hello")</script>' }
 
         it 'strips the scripts' do
@@ -34,7 +34,7 @@ RSpec.describe HtmlAwareFormatter do
         end
       end
 
-      context 'given text containing malicious classes' do
+      context 'when given text containing malicious classes' do
         let(:text) { '<span class="mention  status__content__spoiler-link">Show more</span>' }
 
         it 'strips the malicious classes' do

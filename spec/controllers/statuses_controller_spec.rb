@@ -72,7 +72,7 @@ describe StatusesController do
         get :show, params: { account_username: status.account.username, id: status.id, format: format }
       end
 
-      context 'as HTML' do
+      context 'with HTML' do
         let(:format) { 'html' }
 
         it 'returns http success' do
@@ -97,7 +97,7 @@ describe StatusesController do
         end
       end
 
-      context 'as JSON' do
+      context 'with JSON' do
         let(:format) { 'json' }
 
         it 'returns http success' do
@@ -132,7 +132,7 @@ describe StatusesController do
         get :show, params: { account_username: status.account.username, id: status.id, format: format }
       end
 
-      context 'as JSON' do
+      context 'with JSON' do
         let(:format) { 'json' }
 
         it 'returns http not found' do
@@ -140,7 +140,7 @@ describe StatusesController do
         end
       end
 
-      context 'as HTML' do
+      context 'with HTML' do
         let(:format) { 'html' }
 
         it 'returns http not found' do
@@ -156,7 +156,7 @@ describe StatusesController do
         get :show, params: { account_username: status.account.username, id: status.id, format: format }
       end
 
-      context 'as JSON' do
+      context 'with JSON' do
         let(:format) { 'json' }
 
         it 'returns http not found' do
@@ -164,7 +164,7 @@ describe StatusesController do
         end
       end
 
-      context 'as HTML' do
+      context 'with HTML' do
         let(:format) { 'html' }
 
         it 'returns http not found' do
@@ -196,7 +196,7 @@ describe StatusesController do
           get :show, params: { account_username: status.account.username, id: status.id, format: format }
         end
 
-        context 'as HTML' do
+        context 'with HTML' do
           let(:format) { 'html' }
 
           it 'returns http success' do
@@ -221,7 +221,7 @@ describe StatusesController do
           end
         end
 
-        context 'as JSON' do
+        context 'with JSON' do
           let(:format) { 'json' }
 
           it 'returns http success' do
@@ -260,7 +260,7 @@ describe StatusesController do
             get :show, params: { account_username: status.account.username, id: status.id, format: format }
           end
 
-          context 'as HTML' do
+          context 'with HTML' do
             let(:format) { 'html' }
 
             it 'returns http success' do
@@ -285,7 +285,7 @@ describe StatusesController do
             end
           end
 
-          context 'as JSON' do
+          context 'with JSON' do
             let(:format) { 'json' }
 
             it 'returns http success' do
@@ -320,7 +320,7 @@ describe StatusesController do
             get :show, params: { account_username: status.account.username, id: status.id, format: format }
           end
 
-          context 'as JSON' do
+          context 'with JSON' do
             let(:format) { 'json' }
 
             it 'returns http not found' do
@@ -328,7 +328,7 @@ describe StatusesController do
             end
           end
 
-          context 'as HTML' do
+          context 'with HTML' do
             let(:format) { 'html' }
 
             it 'returns http not found' do
@@ -347,7 +347,7 @@ describe StatusesController do
             get :show, params: { account_username: status.account.username, id: status.id, format: format }
           end
 
-          context 'as HTML' do
+          context 'with HTML' do
             let(:format) { 'html' }
 
             it 'returns http success' do
@@ -372,7 +372,7 @@ describe StatusesController do
             end
           end
 
-          context 'as JSON' do
+          context 'with JSON' do
             let(:format) { 'json' }
 
             it 'returns http success' do
@@ -407,7 +407,7 @@ describe StatusesController do
             get :show, params: { account_username: status.account.username, id: status.id, format: format }
           end
 
-          context 'as JSON' do
+          context 'with JSON' do
             let(:format) { 'json' }
 
             it 'returns http not found' do
@@ -415,7 +415,7 @@ describe StatusesController do
             end
           end
 
-          context 'as HTML' do
+          context 'with HTML' do
             let(:format) { 'html' }
 
             it 'returns http not found' do
@@ -460,7 +460,7 @@ describe StatusesController do
           get :show, params: { account_username: status.account.username, id: status.id, format: format }
         end
 
-        context 'as HTML' do
+        context 'with HTML' do
           let(:format) { 'html' }
 
           it 'returns http success' do
@@ -485,7 +485,7 @@ describe StatusesController do
           end
         end
 
-        context 'as JSON' do
+        context 'with JSON' do
           let(:format) { 'json' }
 
           it 'returns http success' do
@@ -522,7 +522,7 @@ describe StatusesController do
             get :show, params: { account_username: status.account.username, id: status.id, format: format }
           end
 
-          context 'as HTML' do
+          context 'with HTML' do
             let(:format) { 'html' }
 
             it 'returns http success' do
@@ -547,7 +547,7 @@ describe StatusesController do
             end
           end
 
-          context 'as JSON' do
+          context 'with JSON' do
             let(:format) { 'json' }
 
             it 'returns http success' do
@@ -582,7 +582,7 @@ describe StatusesController do
             get :show, params: { account_username: status.account.username, id: status.id, format: format }
           end
 
-          context 'as JSON' do
+          context 'with JSON' do
             let(:format) { 'json' }
 
             it 'returns http not found' do
@@ -590,7 +590,7 @@ describe StatusesController do
             end
           end
 
-          context 'as HTML' do
+          context 'with HTML' do
             let(:format) { 'html' }
 
             it 'returns http not found' do
@@ -609,7 +609,7 @@ describe StatusesController do
             get :show, params: { account_username: status.account.username, id: status.id, format: format }
           end
 
-          context 'as HTML' do
+          context 'with HTML' do
             let(:format) { 'html' }
 
             it 'returns http success' do
@@ -634,7 +634,7 @@ describe StatusesController do
             end
           end
 
-          context 'as JSON' do
+          context 'with JSON' do
             let(:format) { 'json' }
 
             it 'returns http success' do
@@ -669,7 +669,7 @@ describe StatusesController do
             get :show, params: { account_username: status.account.username, id: status.id, format: format }
           end
 
-          context 'as JSON' do
+          context 'with JSON' do
             let(:format) { 'json' }
 
             it 'returns http not found' do
@@ -677,7 +677,7 @@ describe StatusesController do
             end
           end
 
-          context 'as HTML' do
+          context 'with HTML' do
             let(:format) { 'html' }
 
             it 'returns http not found' do

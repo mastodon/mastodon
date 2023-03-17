@@ -32,7 +32,7 @@ describe ApplicationController, type: :controller do
     end
   end
 
-  context 'forgery' do
+  context 'with a forgery' do
     subject do
       ActionController::Base.allow_forgery_protection = true
       routes.draw { post 'success' => 'anonymous#success' }
@@ -105,7 +105,7 @@ describe ApplicationController, type: :controller do
     end
   end
 
-  context 'ActionController::RoutingError' do
+  context 'with ActionController::RoutingError' do
     subject do
       routes.draw { get 'routing_error' => 'anonymous#routing_error' }
       get 'routing_error'
@@ -114,7 +114,7 @@ describe ApplicationController, type: :controller do
     include_examples 'respond_with_error', 404
   end
 
-  context 'ActiveRecord::RecordNotFound' do
+  context 'with ActiveRecord::RecordNotFound' do
     subject do
       routes.draw { get 'record_not_found' => 'anonymous#record_not_found' }
       get 'record_not_found'
@@ -123,7 +123,7 @@ describe ApplicationController, type: :controller do
     include_examples 'respond_with_error', 404
   end
 
-  context 'ActionController::InvalidAuthenticityToken' do
+  context 'with ActionController::InvalidAuthenticityToken' do
     subject do
       routes.draw { get 'invalid_authenticity_token' => 'anonymous#invalid_authenticity_token' }
       get 'invalid_authenticity_token'
@@ -252,7 +252,7 @@ describe ApplicationController, type: :controller do
       expect(subject.new.cache_collection(raw, Object)).to eq raw
     end
 
-    context 'Status' do
+    context 'with a Status' do
       include_examples 'cacheable', :status, Status
     end
   end
