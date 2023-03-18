@@ -37,7 +37,7 @@ RSpec.describe ProcessMentionsService, type: :service do
     let(:status) { Fabricate(:status, account: account, text: "Hello @#{remote_user.acct}", visibility: :public) }
 
     context 'with ActivityPub' do
-      context do
+      context 'with a valid remote user' do
         let!(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
         before do

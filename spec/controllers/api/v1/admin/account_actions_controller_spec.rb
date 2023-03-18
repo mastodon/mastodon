@@ -32,7 +32,7 @@ RSpec.describe Api::V1::Admin::AccountActionsController do
   end
 
   describe 'POST #create' do
-    context do
+    context 'with type of disable' do
       before do
         post :create, params: { account_id: account.id, type: 'disable' }
       end

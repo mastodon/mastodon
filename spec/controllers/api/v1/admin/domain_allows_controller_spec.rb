@@ -96,7 +96,7 @@ RSpec.describe Api::V1::Admin::DomainAllowsController do
   describe 'POST #create' do
     let!(:domain_allow) { Fabricate(:domain_allow, domain: 'example.com') }
 
-    context do
+    context 'with a valid domain' do
       before do
         post :create, params: { domain: 'foo.bar.com' }
       end

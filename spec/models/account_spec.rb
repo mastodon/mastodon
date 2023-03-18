@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Account do
-  context do
+  context 'with an account record' do
     subject { Fabricate(:account) }
 
     let(:bob) { Fabricate(:account, username: 'bob') }

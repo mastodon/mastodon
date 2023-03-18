@@ -81,7 +81,7 @@ RSpec.describe Trends::Statuses do
       4.times { reblog(status3, today) }
     end
 
-    context do
+    context 'when status trends are refreshed' do
       before do
         subject.refresh(today)
       end

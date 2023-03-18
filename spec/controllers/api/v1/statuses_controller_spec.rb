@@ -120,7 +120,7 @@ RSpec.describe Api::V1::StatusesController do
     describe 'POST #create' do
       let(:scopes) { 'write:statuses' }
 
-      context do
+      context 'with a basic status body' do
         before do
           post :create, params: { status: 'Hello world' }
         end
