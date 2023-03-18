@@ -245,17 +245,44 @@ RSpec.describe Form::Import do
         expect(account.bulk_imports.first.rows.pluck(:data)).to match_array(expected_rows)
       end
 
-      it 'creates a BulkImport with expected attributes' do
-        bulk_import = account.bulk_imports.first
-        expect(bulk_import).to_not be_nil
-        expect(bulk_import.type.to_sym).to eq subject.type.to_sym
-        expect(bulk_import.original_filename).to eq subject.data.original_filename
-        expect(bulk_import.likely_mismatched?).to eq subject.likely_mismatched?
-        expect(bulk_import.overwrite?).to eq !!subject.overwrite # rubocop:disable Style/DoubleNegation
-        expect(bulk_import.processed_items).to eq 0
-        expect(bulk_import.imported_items).to eq 0
-        expect(bulk_import.total_items).to eq bulk_import.rows.count
-        expect(bulk_import.unconfirmed?).to be true
+      context 'with a BulkImport' do
+        let(:bulk_import) { account.bulk_imports.first }
+
+        it 'creates a non-nil bulk import' do
+          expect(bulk_import).to_not be_nil
+        end
+
+        it 'matches the subjects type' do
+          expect(bulk_import.type.to_sym).to eq subject.type.to_sym
+        end
+
+        it 'matches the subjects original filename' do
+          expect(bulk_import.original_filename).to eq subject.data.original_filename
+        end
+
+        it 'matches the subjects likely_mismatched? value' do
+          expect(bulk_import.likely_mismatched?).to eq subject.likely_mismatched?
+        end
+
+        it 'matches the subject overwrite value' do
+          expect(bulk_import.overwrite?).to eq !!subject.overwrite # rubocop:disable Style/DoubleNegation
+        end
+
+        it 'has zero processed items' do
+          expect(bulk_import.processed_items).to eq 0
+        end
+
+        it 'has zero imported items' do
+          expect(bulk_import.imported_items).to eq 0
+        end
+
+        it 'has a correct total_items value' do
+          expect(bulk_import.total_items).to eq bulk_import.rows.count
+        end
+
+        it 'defaults to unconfirmed true' do
+          expect(bulk_import.unconfirmed?).to be true
+        end
       end
     end
 
