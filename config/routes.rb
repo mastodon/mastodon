@@ -223,6 +223,7 @@ Rails.application.routes.draw do
   resource :statuses_cleanup, controller: :statuses_cleanup, only: [:show, :update]
 
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy, format: false
+  get '/backups/:id/download', to: 'backups#download', as: :download_backup, format: false
 
   resource :authorize_interaction, only: [:show, :create]
   resource :share, only: [:show, :create]
@@ -551,6 +552,7 @@ Rails.application.routes.draw do
         resources :domain_blocks, only: [:index], controller: 'instances/domain_blocks'
         resource :privacy_policy, only: [:show], controller: 'instances/privacy_policies'
         resource :extended_description, only: [:show], controller: 'instances/extended_descriptions'
+        resource :translation_languages, only: [:show], controller: 'instances/translation_languages'
         resource :activity, only: [:show], controller: 'instances/activity'
       end
 

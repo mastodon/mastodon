@@ -13,7 +13,7 @@ import { debounce } from 'lodash';
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { expandHomeTimeline } from '../../actions/timelines';
 import { expandNotifications } from '../../actions/notifications';
-import { fetchServer } from '../../actions/server';
+import { fetchServer, fetchServerTranslationLanguages } from '../../actions/server';
 import { clearHeight } from '../../actions/height_cache';
 import { focusApp, unfocusApp, changeLayout } from 'mastodon/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodon/actions/markers';
@@ -399,6 +399,7 @@ class UI extends React.PureComponent {
       this.props.dispatch(fetchMarkers());
       this.props.dispatch(expandHomeTimeline());
       this.props.dispatch(expandNotifications());
+      this.props.dispatch(fetchServerTranslationLanguages());
 
       setTimeout(() => this.props.dispatch(fetchServer()), 3000);
     }

@@ -12,12 +12,12 @@
       %li= filter_link_to t('admin.accounts.location.all'), local: nil, remote: nil
       %li
         - if selected? local: '1', remote: nil
-          = filter_link_to t('admin.accounts.location.local'), {local: nil, remote: nil}, {local: '1', remote: nil}
+          = filter_link_to t('admin.accounts.location.local'), { local: nil, remote: nil }, { local: '1', remote: nil }
         - else
           = filter_link_to t('admin.accounts.location.local'), local: '1', remote: nil
       %li
         - if selected? remote: '1', local: nil
-          = filter_link_to t('admin.accounts.location.remote'), {remote: nil, local: nil}, {remote: '1', local: nil}
+          = filter_link_to t('admin.accounts.location.remote'), { remote: nil, local: nil }, { remote: '1', local: nil }
         - else
           = filter_link_to t('admin.accounts.location.remote'), remote: '1', local: nil
 

@@ -21,7 +21,7 @@ de:
         action: E-Mail-Adresse verifizieren
         action_with_app: Bestätigen – und dann zur App %{app} zurückkehren
         explanation: Du hast mit dieser E-Mail-Adresse ein Konto auf %{host} erstellt. Du bist nur noch einen Klick von der Aktivierung entfernt. Wenn du das nicht warst, kannst du diese E-Mail ignorieren.
-        explanation_when_pending: Du hast dich für eine Einladung bei %{host} mit dieser E-Mailadresse beworben. Sobald du deine E-Mailadresse bestätigst hast, werden wir deine Anfrage überprüfen. Du kannst dich in dieser Zeit nicht anmelden. Wenn deine Anfrage abgelehnt wird, werden deine Daten entfernt, also wird keine weitere Handlung benötigt. Wenn du das nicht warst, kannst du diese E-Mail ignorieren.
+        explanation_when_pending: Du hast dich für eine Einladung bei %{host} mit dieser E-Mail-Adresse beworben. Sobald du deine E-Mail-Adresse bestätigt hast, werden wir deine Anfrage überprüfen. Du kannst dich in dieser Zeit nicht anmelden. Wenn deine Anfrage abgelehnt wird, werden deine Daten entfernt – von dir ist keine weitere Handlung notwendig. Wenn du das nicht warst, kannst du diese E-Mail ignorieren.
         extra_html: Bitte beachte auch die <a href="%{terms_path}">Serverregeln</a> und <a href="%{policy_path}">unsere Datenschutzerklärung</a>.
         subject: 'Mastodon: Bestätigung deines Kontos bei %{instance}'
         title: E-Mail-Adresse verifizieren
@@ -67,15 +67,15 @@ de:
           title: Ein neuer Sicherheitsschlüssel wurde hinzugefügt
         deleted:
           explanation: Der folgende Sicherheitsschlüssel wurde aus deinem Konto gelöscht
-          subject: 'Mastodon: Sicherheitsschlüssel gelöscht'
-          title: Einer deiner Sicherheitsschlüssel wurde gelöscht
+          subject: 'Mastodon: Sicherheitsschlüssel entfernt'
+          title: Einer deiner Sicherheitsschlüssel wurde entfernt
       webauthn_disabled:
-        explanation: Die Authentifizierung mit Sicherheitsschlüssel wurde für dein Konto deaktiviert. Der Login ist nun nur mit dem Token möglich, der von der eingerichteten TOTP-App generiert wird.
-        subject: 'Mastodon: Authentifizierung mit Sicherheitsschlüssel deaktiviert'
+        explanation: Die Authentisierung mit Sicherheitsschlüsseln wurde für dein Konto deaktiviert. Die Anmeldung ist jetzt nur noch mit dem Token möglich, der von der eingerichteten TOTP-App generiert wird.
+        subject: 'Mastodon: Authentisierung mit Sicherheitsschlüsseln deaktiviert'
         title: Sicherheitsschlüssel deaktiviert
       webauthn_enabled:
-        explanation: Die Authentifizierung mit einem Sicherheitsschlüssel wurde für dein Konto aktiviert. Dein Sicherheitsschlüssel kann nun für die Anmeldung verwendet werden.
-        subject: 'Mastodon: Authentifizierung mit Sicherheitsschlüssel aktiviert'
+        explanation: Die Authentisierung mit Sicherheitsschlüssel wurde für dein Konto aktiviert. Dein Sicherheitsschlüssel kann nun für die Anmeldung verwendet werden.
+        subject: 'Mastodon: Authentisierung mit Sicherheitsschlüssel aktiviert'
         title: Sicherheitsschlüssel aktiviert
     omniauth_callbacks:
       failure: Du konntest nicht mit deinem %{kind}-Konto angemeldet werden, weil „%{reason}“.
@@ -111,5 +111,5 @@ de:
       not_found: nicht gefunden
       not_locked: ist nicht gesperrt
       not_saved:
-        one: '1 Fehler hat verhindert, dass %{resource} gespeichert wurde:'
-        other: "%{count} Fehler haben verhindert, dass %{resource} gespeichert wurde:"
+        one: '1 Fehler verhinderte, dass %{resource} gespeichert wurde:'
+        other: "%{count} Fehler verhinderten, dass %{resource} gespeichert wurde:"
