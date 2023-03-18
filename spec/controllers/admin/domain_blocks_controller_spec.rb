@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::DomainBlocksController, type: :controller do
+RSpec.describe Admin::DomainBlocksController do
   render_views
 
   before do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::AccountAction, type: :model do
+RSpec.describe Admin::AccountAction do
   let(:account_action) { described_class.new }
 
   describe '#save!' do

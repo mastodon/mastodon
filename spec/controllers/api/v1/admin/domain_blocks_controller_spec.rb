@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Admin::DomainBlocksController, type: :controller do
+RSpec.describe Api::V1::Admin::DomainBlocksController do
   render_views
 
   let(:role)   { UserRole.find_by(name: 'Admin') }

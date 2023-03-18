@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Account, type: :model do
+RSpec.describe Account do
   context do
     subject { Fabricate(:account) }
 

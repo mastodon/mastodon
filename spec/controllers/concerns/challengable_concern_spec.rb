@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ChallengableConcern, type: :controller do
+RSpec.describe ChallengableConcern do
   controller(ApplicationController) do
     include ChallengableConcern
 

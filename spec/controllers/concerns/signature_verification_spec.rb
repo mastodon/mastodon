@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ApplicationController, type: :controller do
+describe ApplicationController do
   let(:wrapped_actor_class) do
     Class.new do
       attr_reader :wrapped_account

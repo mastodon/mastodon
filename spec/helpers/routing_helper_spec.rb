@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe RoutingHelper, type: :helper do
+RSpec.describe RoutingHelper do
   describe '.full_asset_url' do
     around do |example|
       use_s3 = Rails.configuration.x.use_s3

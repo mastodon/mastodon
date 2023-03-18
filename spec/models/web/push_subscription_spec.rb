@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Web::PushSubscription, type: :model do
+RSpec.describe Web::PushSubscription do
   subject { described_class.new(data: data) }
 
   let(:account) { Fabricate(:account) }

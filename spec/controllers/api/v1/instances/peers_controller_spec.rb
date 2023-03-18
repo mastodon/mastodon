@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Instances::PeersController, type: :controller do
+RSpec.describe Api::V1::Instances::PeersController do
   describe 'GET #index' do
     it 'returns 200' do
       get :index

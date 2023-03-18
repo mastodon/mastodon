@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'devise_two_factor/spec_helpers'
 
-RSpec.describe User, type: :model do
+RSpec.describe User do
   let(:password) { 'abcd1234' }
   let(:account) { Fabricate(:account, username: 'alice') }
 

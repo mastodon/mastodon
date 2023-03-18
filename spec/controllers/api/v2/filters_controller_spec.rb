@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V2::FiltersController, type: :controller do
+RSpec.describe Api::V2::FiltersController do
   render_views
 
   let(:user)  { Fabricate(:user) }

@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'webauthn/fake_client'
 
-RSpec.describe Auth::SessionsController, type: :controller do
+RSpec.describe Auth::SessionsController do
   render_views
 
   before do

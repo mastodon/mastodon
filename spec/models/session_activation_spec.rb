@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SessionActivation, type: :model do
+RSpec.describe SessionActivation do
   describe '#detection' do
     let(:session_activation) { Fabricate(:session_activation, user_agent: 'Chrome/62.0.3202.89') }
 

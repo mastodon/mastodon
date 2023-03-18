@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Emails::ConfirmationsController, type: :controller do
+RSpec.describe Api::V1::Emails::ConfirmationsController do
   let(:confirmed_at) { nil }
   let(:user)         { Fabricate(:user, confirmed_at: confirmed_at) }
   let(:app)          { Fabricate(:application) }

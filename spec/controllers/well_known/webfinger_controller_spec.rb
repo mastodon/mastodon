@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe WellKnown::WebfingerController, type: :controller do
+describe WellKnown::WebfingerController do
   render_views
 
   describe 'GET #show' do

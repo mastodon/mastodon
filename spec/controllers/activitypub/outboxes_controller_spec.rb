@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::OutboxesController, type: :controller do
+RSpec.describe ActivityPub::OutboxesController do
   let!(:account) { Fabricate(:account) }
 
   shared_examples 'cacheable response' do
