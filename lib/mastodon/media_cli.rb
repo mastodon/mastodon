@@ -91,7 +91,7 @@ module Mastodon
 
       if options[:attachments]
         processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where(created_at: ..time_ago)) do |media_attachment|
-          next if !options[:include_follows] && Follow.where(account: media_attachment.account).or(Follow.where(target_account: media_attachment.account)).exists? # TODO: media_attachment.account works?
+          next if !options[:include_follows] && Follow.where(account: media_attachment.account).or(Follow.where(target_account: media_attachment.account)).exists?
           next if media_attachment.file.blank?
 
           size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
