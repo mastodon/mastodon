@@ -91,6 +91,7 @@ da:
       moderation:
         active: Aktiv
         all: Alle
+        disabled: Deaktiveret
         pending: Afventer
         silenced: Begrænset
         suspended: Suspenderet
@@ -133,6 +134,7 @@ da:
       search: Søg
       search_same_email_domain: Øvrige brugere med samme e-maildomæne
       search_same_ip: Øvrige brugere med identisk IP
+      security: Sikkerhed
       security_measures:
         only_password: Kun adgangskode
         password_and_2fa: Adgangskode og 2FA
@@ -427,6 +429,7 @@ da:
         resolve: Opløs domæne
         title: Blokér nyt e-maildomæne
       no_email_domain_block_selected: Ingen e-mailblokeringer ændret (ingen var valgt)
+      not_permitted: Ikke tilladt
       resolved_dns_records_hint_html: Domænenavnet opløses til flg. MX-domæner, som i sidste ende er ansvarlige for e-mailmodtagelse. Blokering af et MX-domæne blokerer også tilmeldinger fra enhver e-mailadresse på det pågældende MX-domæne, selv hvis det synlige domænenavn er et andet. <strong>Pas på ikke ikke at blokere større e-mailudbydere.</strong>
       resolved_through_html: Opløst via %{domain}
       title: Blokerede e-maildomæner
@@ -473,6 +476,7 @@ da:
       content_policies:
         comment: Internt notat
         description_html: Der kan defineres indholdspolitikker, som anvendes på alle konti fra dette domæne samt alle dets underdomæner.
+        limited_federation_mode_description_html: Man kan vælge, om føderation med dette domæne skal tillades.
         policies:
           reject_media: Afvis medier
           reject_reports: Afvis anmeldelser
@@ -576,17 +580,22 @@ da:
         mark_as_sensitive_description_html: Medierne i det anmeldte indlæg markeres som sensitive, og en advarsel (strike) registreres mhp. eskalering ved evt. fremtidige overtrædelser fra samme konto.
         other_description_html: Se flere muligheder relateret til at adfærdshåndtering for, samt tilpasning af kommunikation til, den anmeldte konto.
         resolve_description_html: Ingen foranstaltninger træffes mod den anmeldte konto, ingen advarsel (strike) registreres og anmeldelsen lukkes.
+        silence_description_html: Kontoen vil kun være synlig for følgerene eller dem, som manuelt slå den op, hvilket markant begrænser dens udbredelse. Kan altid omgøres. Lukker alle indrapporteringer af kontoen.
+        suspend_description_html: Kontoen inkl. alt indhold utilgængeliggøres og interaktion umuliggøres, og den slettes på et tidspunkt. Kan omgøres inden for 30 dage. Lukker alle indrapporteringer af kontoen.
       actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Træffes en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
+      actions_description_remote_html: Fastslå en nødvendig handling mhp. at løse denne anmeldelse. Dette vil kun påvirke <strong>din</strong> servers kommunikation med, og indholdshåndtering for, fjernkontoen.
       add_to_report: Føj mere til anmeldelse
       are_you_sure: Sikker?
       assign_to_self: Tildel til mig
       assigned: Tildelt moderator
       by_target_domain: Anmeldte kontos domæne
+      cancel: Afbryd
       category: Kategori
       category_description_html: Årsagen til anmeldelsen af denne konto og/eller indhold refereres i kommunikationen med den anmeldte konto
       comment:
         none: Ingen
       comment_description_html: 'For at give mere information, skrev %{name}:'
+      confirm: Bekræft
       confirm_action: Bekræft moderatorhandling for %{acct}
       created_at: Anmeldt
       delete_and_resolve: Slet indlæg
@@ -733,6 +742,7 @@ da:
         preamble: At vise interessant indhold er vitalt ifm. at få nye brugere om bord, som måske ikke kender nogen på Mastodon. Styr, hvordan forskellige opdagelsesfunktioner fungerer på serveren.
         profile_directory: Profiloversigt
         public_timelines: Offentlige tidslinjer
+        publish_discovered_servers: Udgiv fundne servere
         publish_statistics: Udgiv statistik
         title: Opdagelse
         trends: Trends
@@ -788,6 +798,7 @@ da:
         suspend: "%{name} suspenderede %{target}s konto"
       appeal_approved: Appelleret
       appeal_pending: Appel afventer
+      appeal_rejected: Appel afvist
     system_checks:
       database_schema_check:
         message_html: Databasemigreringer afventer. Kør dem for at sikre den forventede adfærd fra applikationen
@@ -823,6 +834,7 @@ da:
           other: Delt af %{count} personer den seneste uge
         title: Populære links
         usage_comparison: Delt %{today} gange i dag, sammenlignet med %{yesterday} i går
+      not_allowed_to_trend: Ikke tilladt at trende
       only_allowed: Kun tilladte
       pending_review: Afventer revision
       preview_card_providers:
@@ -954,6 +966,7 @@ da:
   applications:
     created: Applikation oprettet
     destroyed: Applikation slettet
+    logout: Log af
     regenerate_token: Regenerér adgangstoken
     token_regenerated: Adgangstoken regenereret
     warning: Vær meget påpasselig med disse data. Del dem aldrig med nogen!
@@ -962,7 +975,7 @@ da:
     apply_for_account: Anmod om en konto
     change_password: Adgangskode
     confirmations:
-      wrong_email_hint: Er denne e-mail-adresse ikke korrekt, kan den ændres i kontoindstillinger.
+      wrong_email_hint: Er denne e-mailadresse ikke korrekt, kan den ændres i kontoindstillinger.
     delete_account: Slet konto
     delete_account_html: Ønsker du at slette din konto, kan du <a href="%{path}">gøre dette hér</a>. Du vil blive bedt om bekræftelse.
     description:
@@ -981,7 +994,7 @@ da:
     migrate_account: Flyt til en anden konto
     migrate_account_html: Ønsker du at omdirigere denne konto til en anden, kan du <a href="%{path}">opsætte dette hér</a>.
     or_log_in_with: Eller log ind med
-    privacy_policy_agreement_html: Jeg accepterer <a href="%{privacy_policy_path}" target="_blank">Fortrolighedspolitikken</a>
+    privacy_policy_agreement_html: Jeg accepterer <a href="%{privacy_policy_path}" target="_blank">privatlivspolitikken</a>
     providers:
       cas: CAS
       saml: SAML
@@ -990,6 +1003,8 @@ da:
     resend_confirmation: Gensend bekræftelsesinstruktioner
     reset_password: Nulstil adgangskode
     rules:
+      accept: Acceptér
+      back: Tilbage
       preamble: Disse er opsat og håndhæves af %{domain}-moderatorerne.
       title: Nogle grundregler.
     security: Sikkerhed
@@ -1066,7 +1081,7 @@ da:
       email_contact_html: Hvis det stadig ikke ankommer, kan du sende en e-mail til <a href="mailto:%{email}">%{email}</a> for hjælp
       email_reconfirmation_html: Modtager du ikke bekræftelses-e-mailen, kan du <a href="%{path}">anmode om en ny</a>
       irreversible: Du vil ikke kunne gendanne/genaktivere din konto
-      more_details_html: For yderligere oplysningerer, tjek <a href="%{terms_path}">fortrolighedspolitikken</a>.
+      more_details_html: For yderligere oplysningerer, tjek <a href="%{terms_path}">privatlivspolitikken</a>.
       username_available: Dit brugernavn vil blive tilgængeligt igen
       username_unavailable: Dit brugernavn vil forblive utilgængeligt
   disputes:
@@ -1137,7 +1152,7 @@ da:
   featured_tags:
     add_new: Tilføj nyt
     errors:
-      limit: Du har allerede fremhævet det maksimale antal hashtags
+      limit: Det maksimale antal hashtags er allerede fremhævet
     hint_html: "<strong>Hvad er fremhævede hashtags?</strong> De vises i en fremtrædende position på din offentlige profil og giver folk mulighed for at gennemse dine offentlige indlæg specifikt under disse hashtags. De er et fantastisk værktøj til at holde styr på kreative værker eller langsigtede projekter."
   filters:
     contexts:
@@ -1181,8 +1196,6 @@ da:
       index:
         hint: Dette filter gælder for udvalgte, individuelle indlæg uanset andre kriterier. Flere indlæg kan føjes til filteret via webfladen.
         title: Filtrerede indlæg
-  footer:
-    trending_now: Trender lige nu
   generic:
     all: Alle
     all_items_on_page_selected_html:
@@ -1205,8 +1218,6 @@ da:
     validation_errors:
       one: Noget er ikke er helt i vinkel! Tjek fejlen nedenfor
       other: Noget er ikke er helt i vinkel! Tjek de %{count} fejl nedenfor
-  html_validator:
-    invalid_markup: 'indeholder ugyldig HTML-markup: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Ugyldig CSV-fil. Fejl: %{error}'
@@ -1383,7 +1394,7 @@ da:
     posting_defaults: Standarder for indlæg
     public_timelines: Offentlige tidslinjer
   privacy_policy:
-    title: Fortrolighedspolitik
+    title: Privatlivspolitik
   reactions:
     errors:
       limit_reached: Grænse for forskellige reaktioner nået
@@ -1392,7 +1403,9 @@ da:
     activity: Kontoaktivitet
     confirm_follow_selected_followers: Sikker på, at de valgte følgere skal følges?
     confirm_remove_selected_followers: Sikker på, at de valgte følgere skal fjernes?
+    confirm_remove_selected_follows: Sikker på, at de valgte følgere skal fjernes?
     dormant: I dvale
+    follow_failure: Kunne ikke følge alle af de valgte konti.
     follow_selected_followers: Følg valgte følgere
     followers: Følgere
     following: Følger
@@ -1432,6 +1445,7 @@ da:
       electron: Electron
       firefox: Firefox
       generic: Ukendt browser
+      huawei_browser: Huawei Browser
       ie: IE
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1441,6 +1455,7 @@ da:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Ukendt browser
       weibo: Weibo
     current_session: Aktuelle session
     description: "%{browser} på %{platform}"
@@ -1453,9 +1468,10 @@ da:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: ukendt platform
+      unknown_platform: Ukendt platform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1568,7 +1584,7 @@ da:
       '7889238': 3 måneder
     min_age_label: Alderstærskel
     min_favs: Behold indlæg favoritmarkeret mindst
-    min_favs_hint: Sletter ingen egne indlæg, som har modtaget minimum dette antal favoritmarkeringer. Lad stå tomt for at ignorere denne tærskel under sletning
+    min_favs_hint: Sletter ingen egne indlæg, som har modtaget minimum dette antal favoritmarkeringer. Lad stå tomt for at slette indlæg uanset favoritmarkeringer
     min_reblogs: Behold indlæg boostet mindst
     min_reblogs_hint: Sletter ingen egne indlæg, som er boostet flere end dette antal gange. Lad stå tomt for at ignorere denne tærskel under sletning
   stream_entries:

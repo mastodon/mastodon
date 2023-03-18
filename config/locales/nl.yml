@@ -91,6 +91,7 @@ nl:
       moderation:
         active: Actief
         all: Alles
+        disabled: Uitgeschakeld
         pending: In afwachting
         silenced: Beperkt
         suspended: Opgeschort
@@ -133,6 +134,7 @@ nl:
       search: Zoeken
       search_same_email_domain: Andere gebruikers met hetzelfde e-maildomein
       search_same_ip: Andere gebruikers met hetzelfde IP-adres
+      security: Beveiliging
       security_measures:
         only_password: Alleen wachtwoord
         password_and_2fa: Wachtwoord en tweestapsverificatie
@@ -427,6 +429,7 @@ nl:
         resolve: Domein opzoeken
         title: Nieuw e-maildomein blokkeren
       no_email_domain_block_selected: Er werden geen e-maildomeinblokkades gewijzigd, omdat er geen enkele werd geselecteerd
+      not_permitted: Niet toegestaan
       resolved_dns_records_hint_html: De domeinnaam slaat op de volgende MX-domeinen die uiteindelijk verantwoordelijk zijn voor het accepteren van e-mail. Het blokkeren van een MX-domein blokkeert aanmeldingen van elk e-mailadres dat hetzelfde MX-domein gebruikt, zelfs als de zichtbare domeinnaam anders is. <strong>Pas op dat u geen grote e-mailproviders blokkeert.</strong>
       resolved_through_html: Geblokkeerd via %{domain}
       title: Geblokkeerde e-maildomeinen
@@ -473,6 +476,7 @@ nl:
       content_policies:
         comment: Interne reden
         description_html: Je kunt het beleid bepalen dat op de accounts van dit domein en alle subdomeinen van toepassing is.
+        limited_federation_mode_description_html: Je kunt kiezen of je federatie met dit domein wilt toestaan.
         policies:
           reject_media: Mediabestanden weigeren
           reject_reports: Rapportages weigeren
@@ -585,11 +589,13 @@ nl:
       assign_to_self: Aan mij toewijzen
       assigned: Toegewezen moderator
       by_target_domain: Domein van gerapporteerde account
+      cancel: Annuleren
       category: Category
       category_description_html: De reden waarom dit account en/of inhoud werd gerapporteerd wordt aan het gerapporteerde account medegedeeld
       comment:
         none: Geen
       comment_description_html: 'Om meer informatie te verstrekken, schreef %{name}:'
+      confirm: Bevestigen
       confirm_action: Bevestig moderatiemaatregel tegen @%{acct}
       created_at: Gerapporteerd op
       delete_and_resolve: Bericht verwijderen
@@ -792,6 +798,7 @@ nl:
         suspend: "%{name} schortte het account %{target} op"
       appeal_approved: Bezwaar ingediend
       appeal_pending: Bezwaar in behandeling
+      appeal_rejected: Bezwaar afgewezen
     system_checks:
       database_schema_check:
         message_html: Niet alle databasemigraties zijn voltooid. Je moet deze uitvoeren om er voor te zorgen dat de applicatie blijft werken zoals het hoort
@@ -827,6 +834,7 @@ nl:
           other: Deze week door %{count} mensen gedeeld
         title: Trending links
         usage_comparison: Vandaag %{today} keer gedeeld, vergeleken met %{yesterday} keer gisteren
+      not_allowed_to_trend: Trending worden niet toegestaan
       only_allowed: Alleen goedgekeurde
       pending_review: In afwachting van beoordeling
       preview_card_providers:
@@ -958,6 +966,7 @@ nl:
   applications:
     created: Aanmaken toepassing geslaagd
     destroyed: Verwijderen toepassing geslaagd
+    logout: Uitloggen
     regenerate_token: Toegangscode opnieuw aanmaken
     token_regenerated: Opnieuw aanmaken toegangscode geslaagd
     warning: Wees voorzichtig met deze gegevens. Deel het nooit met iemand anders!
@@ -994,6 +1003,8 @@ nl:
     resend_confirmation: Verstuur de bevestigingsinstructies nogmaals
     reset_password: Wachtwoord opnieuw instellen
     rules:
+      accept: Accepteren
+      back: Terug
       preamble: Deze zijn vastgesteld en worden gehandhaafd door de moderatoren van %{domain}.
       title: Enkele basisregels.
     security: Beveiliging
@@ -1141,7 +1152,7 @@ nl:
   featured_tags:
     add_new: Nieuwe toevoegen
     errors:
-      limit: Je hebt al het maximaal aantal hashtags uitgelicht
+      limit: Je hebt al het maximale aantal hashtags uitgelicht
     hint_html: "<strong>Wat zijn uitgelichte hashtags?</strong> Deze worden prominent op jouw openbare profiel getoond en stelt mensen in staat om jouw openbare berichten per hashtag te bekijken. Het zijn een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden."
   filters:
     contexts:
@@ -1185,8 +1196,6 @@ nl:
       index:
         hint: Dit filter is van toepassing om individuele berichten te selecteren, ongeacht andere criteria. Je kunt in de webomgeving meer berichten aan dit filter toevoegen.
         title: Gefilterde berichten
-  footer:
-    trending_now: Trends
   generic:
     all: Alles
     all_items_on_page_selected_html:
@@ -1209,8 +1218,6 @@ nl:
     validation_errors:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
-  html_validator:
-    invalid_markup: 'bevat ongeldige HTML-opmaak: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Ongeldig CSV-bestand. Fout: %{error}'
@@ -1225,7 +1232,7 @@ nl:
     types:
       blocking: Blokkeerlijst
       bookmarks: Bladwijzers
-      domain_blocking: Lijst met genegeerde servers
+      domain_blocking: Lijst met geblokkeerde domeinen
       following: Volglijst
       muting: Negeerlijst
     upload: Uploaden
@@ -1253,7 +1260,7 @@ nl:
     title: Mensen uitnodigen
   lists:
     errors:
-      limit: Je hebt het maximaal aantal lijsten bereikt
+      limit: Je hebt het maximum aantal lijsten bereikt
   login_activities:
     authentication_methods:
       otp: tweestapsverificatie-app
@@ -1398,6 +1405,7 @@ nl:
     confirm_remove_selected_followers: Weet je zeker dat je de geselecteerde volgers wilt verwijderen?
     confirm_remove_selected_follows: Weet je zeker dat je de geselecteerde gevolgde accounts wilt verwijderen?
     dormant: Sluimerend
+    follow_failure: Kan sommige van de geselecteerde accounts niet volgen.
     follow_selected_followers: Geselecteerde volgers volgen
     followers: Volgers
     following: Volgend
@@ -1437,6 +1445,7 @@ nl:
       electron: Electron
       firefox: Firefox
       generic: Onbekende webbrowser
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1446,6 +1455,7 @@ nl:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Onbekende browser
       weibo: Weibo
     current_session: Huidige sessie
     description: "%{browser} op %{platform}"
@@ -1458,9 +1468,10 @@ nl:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: Onbekend platform
+      unknown_platform: Onbekend platform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone

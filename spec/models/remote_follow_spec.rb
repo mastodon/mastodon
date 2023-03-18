@@ -17,7 +17,7 @@ RSpec.describe RemoteFollow do
       let(:attrs) { { acct: 'gargron@quitter.no' } }
 
       it 'returns acct' do
-        is_expected.to eq 'gargron@quitter.no'
+        expect(subject).to eq 'gargron@quitter.no'
       end
     end
 
@@ -25,7 +25,7 @@ RSpec.describe RemoteFollow do
       let(:attrs) { {} }
 
       it do
-        is_expected.to be_nil
+        expect(subject).to be_nil
       end
     end
   end
@@ -37,7 +37,7 @@ RSpec.describe RemoteFollow do
       let(:attrs) { { acct: 'gargron@quitter.no' } }
 
       it do
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
@@ -45,12 +45,14 @@ RSpec.describe RemoteFollow do
       let(:attrs) { {} }
 
       it do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
 
   describe '#subscribe_address_for' do
+    subject { remote_follow.subscribe_address_for(account) }
+
     before do
       remote_follow.valid?
     end
@@ -58,10 +60,8 @@ RSpec.describe RemoteFollow do
     let(:attrs)   { { acct: 'gargron@quitter.no' } }
     let(:account) { Fabricate(:account, username: 'alice') }
 
-    subject { remote_follow.subscribe_address_for(account) }
-
     it 'returns subscribe address' do
-      is_expected.to eq 'https://quitter.no/main/ostatussub?profile=https%3A%2F%2Fcb6e6126.ngrok.io%2Fusers%2Falice'
+      expect(subject).to eq 'https://quitter.no/main/ostatussub?profile=https%3A%2F%2Fcb6e6126.ngrok.io%2Fusers%2Falice'
     end
   end
 end

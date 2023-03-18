@@ -13,7 +13,7 @@ module PremailerWebpackStrategy
             HTTP.get(url).to_s
           else
             url = url[1..-1] if url.start_with?('/')
-            File.read(Rails.public_path.join(url))
+            Rails.public_path.join(url).read
           end
 
     css.gsub(/url\(\//, "url(#{asset_host}/")

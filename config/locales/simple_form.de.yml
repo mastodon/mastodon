@@ -8,7 +8,7 @@ de:
         acct: Gib profilname@domain des Kontos an, zu dem du umziehen möchtest
       account_warning_preset:
         text: Du kannst Beitragssyntax verwenden, wie z. B. URLs, Hashtags und Erwähnungen
-        title: Optional. Für den Empfänger nicht sichtbar
+        title: Optional. Für Empfänger*in nicht sichtbar
       admin_account_action:
         include_statuses: Die Person sieht, welche Beiträge die Moderationsmaßnahme oder Warnung verursacht haben
         send_email_notification: Benutzer*in wird eine Erklärung erhalten, was mit dem Konto geschehen ist
@@ -16,7 +16,7 @@ de:
         type_html: Wähle aus, wie mit <strong>%{acct}</strong> vorgegangen werden soll
         types:
           disable: Benutzer*in daran hindern, das Konto verwenden zu können, aber die Inhalte nicht löschen oder ausblenden.
-          none: Verwende dies, um dem Account eine Warnung zu schicken, ohne dabei eine andere Aktion vorzunehmen.
+          none: Dem Account eine Verwarnung zuschicken, ohne dabei eine andere Aktion vorzunehmen.
           sensitive: Erzwingen, dass alle Medienanhänge dieses Profils mit einer Inhaltswarnung versehen werden.
           silence: Verhindert, dass dieses Profil öffentlich sichtbare Beiträge verfassen kann, und verbirgt alle Beiträge und Benachrichtigungen vor Personen, die diesem Profil nicht folgen. Alle Meldungen zu diesem Konto werden geschlossen.
           suspend: Verhindert jegliche Interaktion von oder zu diesem Konto und löscht dessen Inhalt. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
@@ -28,7 +28,7 @@ de:
         starts_at: Optional. Nur für den Fall, dass deine Ankündigung an einen bestimmten Zeitraum gebunden ist
         text: Du kannst die reguläre Syntax wie für Beiträge verwenden, also auch Profile erwähnen und Hashtags nutzen. Bitte beachte den Platz, den die Ankündigung auf dem Bildschirm der Benutzer*innen einnehmen wird
       appeal:
-        text: Du kannst nur einmal Einspruch gegen einen Verstoß einlegen
+        text: Du kannst nur einmal Einspruch gegen eine Maßnahme einlegen
       defaults:
         autofollow: Personen, die sich über deine Einladung registrieren, folgen automatisch deinem Profil
         avatar: PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
@@ -50,7 +50,7 @@ de:
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
         setting_aggregate_reblogs: Zeige denselben Beitrag nicht nochmal an, wenn er erneut geteilt wurde (dies betrifft nur neulich erhaltene erneut geteilte Beiträge)
         setting_always_send_emails: Normalerweise werden Benachrichtigungen nicht per E-Mail verschickt, wenn du gerade auf Mastodon aktiv bist
-        setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen worden sind, werden erst nach einem zusätzlichen Klick angezeigt
+        setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen wurden, werden erst nach einem zusätzlichen Klick angezeigt
         setting_display_media_default: Medien mit Inhaltswarnung ausblenden
         setting_display_media_hide_all: Medien immer ausblenden
         setting_display_media_show_all: Medien mit Inhaltswarnung immer anzeigen
@@ -74,9 +74,9 @@ de:
           hide: Den gefilterten Beitrag vollständig ausblenden, als hätte er nie existiert
           warn: Den gefilterten Beitrag hinter einer Warnung, die den Filtertitel beinhaltet, ausblenden
       form_admin_settings:
-        activity_api_enabled: Anzahl der lokal veröffentlichten Beiträge, der aktiven Benutzer*innen und neuen Registrierungen in wöchentlichen Abständen
+        activity_api_enabled: Anzahl der wöchentlichen Beiträge, aktiven Profile und Registrierungen auf diesem Server
         backups_retention_period: Behalte die Archive, die von den Benutzer*innen erstellt worden sind, für die angegebene Anzahl an Tagen.
-        bootstrap_timeline_accounts: Diese Profile werden bei den Follower-Empfehlungen für neu registrierte Nutzer*innen oben angeheftet.
+        bootstrap_timeline_accounts: Diese Konten werden bei den Follower-Empfehlungen für neu registrierte Nutzer*innen oben angeheftet.
         closed_registrations_message: Wird angezeigt, wenn Registrierungen deaktiviert sind
         content_cache_retention_period: Beiträge von anderen Servern werden nach der angegebenen Anzahl von Tagen, wenn sie auf einen positiven Wert gesetzt werden, gelöscht. Dies kann eventuell nicht rückgängig gemacht werden.
         custom_css: Du kannst benutzerdefinierte Stile auf die Web-Version von Mastodon anwenden.
@@ -91,17 +91,17 @@ de:
         site_short_description: Eine kurze Beschreibung zur eindeutigen Identifizierung des Servers. Wer betreibt ihn, für wen ist er bestimmt?
         site_terms: Verwende eine eigene Datenschutzerklärung oder lasse das Feld leer, um die allgemeine Vorlage zu verwenden. Kann mit der Markdown-Syntax formatiert werden.
         site_title: Wie Personen neben dem Domainnamen auf deinen Server verweisen können.
-        status_page_url: URL einer Seite, auf der der Status des Servers während eines Ausfalls angezeigt werden kann
+        status_page_url: URL einer Seite, auf der der Serverstatus während eines Ausfalls angezeigt wird
         theme: Das Design, das abgemeldete Besucher und neue Benutzer sehen.
         thumbnail: Ein Bild ungefähr im 2:1-Format, das neben den Server-Informationen angezeigt wird.
         timeline_preview: Besucher*innen und ausgeloggte Benutzer*innen können die neuesten öffentlichen Beiträge dieses Servers aufrufen.
         trendable_by_default: Manuelles Überprüfen angesagter Inhalte überspringen. Einzelne Elemente können später noch aus den Trends entfernt werden.
         trends: Trends zeigen, welche Beiträge, Hashtags und Nachrichten auf deinem Server immer beliebter werden.
-        trends_as_landing_page: Dies zeigt nicht angemeldeten Personen Trendinhalte anstelle einer Beschreibung des Servers an. Erfordert, dass Trends aktiviert sind.
+        trends_as_landing_page: Zeigt Trendinhalte abgemeldeter Benutzer und Besucher anstelle einer Beschreibung dieses Servers an. Erfordert, dass Trends aktiviert sind.
       form_challenge:
-        current_password: Du betrittst einen gesicherten Bereich
+        current_password: Du betrittst einen sicheren Bereich
       imports:
-        data: CSV-Datei, exportiert von einem anderen Mastodon-Server
+        data: CSV-Datei, die von einem Mastodon-Server exportiert worden ist
       invite_request:
         text: Dies wird uns bei der Überprüfung deiner Anmeldung behilflich sein
       ip_block:
@@ -109,15 +109,15 @@ de:
         expires_in: IP-Adressen sind eine begrenzte Ressource. Sie können außerdem auf viele Computer aufgeteilt sein und auch die Zuordnungen ändern sich. Deshalb werden unbestimmte IP-Blöcke nicht empfohlen.
         ip: Gib eine IPv4- oder IPv6-Adresse an. Du kannst ganze Bereiche mit der CIDR-Syntax blockieren. Achte darauf, dass du dich nicht selbst aussperrst!
         severities:
-          no_access: Blockiere Zugriff auf alle Ressourcen
+          no_access: Zugriff auf alle Ressourcen blockieren
           sign_up_block: Neue Registrierungen werden nicht möglich sein
           sign_up_requires_approval: Neue Registrierungen müssen genehmigt werden
         severity: Wähle aus, was mit Anfragen von dieser IP-Adresse geschehen soll
       rule:
         text: Führe eine Regel oder Bedingung für Benutzer*innen auf diesem Server ein. Bleib dabei kurz und knapp
       sessions:
-        otp: 'Gib den Zwei-Faktor-Code von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes:'
-        webauthn: Wenn es sich um einen USB-Schlüssel handelt, vergewissere dich, dass du ihn einsteckst und ihn, wenn notwendig, antippst.
+        otp: 'Gib den Zwei-Faktor-Code von deinem Smartphone ein oder benutze einen deiner Wiederherstellungscodes:'
+        webauthn: Wenn es sich um einen USB-Schlüssel handelt, vergewissere dich, dass du ihn einsteckst und – falls erforderlich – antippst.
       tag:
         name: Du kannst zum Beispiel nur die Groß- und Kleinschreibung der Buchstaben ändern, um es lesbarer zu machen
       user:
@@ -130,31 +130,31 @@ de:
         permissions_as_keys: Benutzer*innen mit dieser Rolle haben Zugriff auf...
         position: Höhere Rollen entscheiden über Konfliktlösungen zu gewissen Situationen. Bestimmte Aktionen können nur mit geringfügigeren Rollen durchgeführt werden
       webhook:
-        events: Wähle die zu sendenden Termine
-        url: Wo Ereignisse hingesendet werden
+        events: Zu sendende Ereignisse auswählen
+        url: Wohin Ereignisse geschickt werden
     labels:
       account:
         fields:
-          name: Bezeichnung
+          name: Beschriftung
           value: Inhalt
       account_alias:
-        acct: Betreiber des alten Kontos
+        acct: Profilname des alten Kontos
       account_migration:
-        acct: Betreiber des neuen Kontos
+        acct: Adresse des neuen Kontos
       account_warning_preset:
         text: Vorlagentext
         title: Titel
       admin_account_action:
-        include_statuses: Beitragsmeldungen in die E-Mail mit anfügen
-        send_email_notification: Nutzer*in per E-Mail benachrichtigen
-        text: Benutzerdefinierte Warnung
+        include_statuses: Gemeldete Beiträge der E-Mail beifügen
+        send_email_notification: Benachrichtigung per E-Mail
+        text: Benutzerdefinierte Verwarnung
         type: Aktion
         types:
           disable: Einfrieren
-          none: Warnung senden
+          none: Nur Verwarnung
           sensitive: Inhaltswarnung
-          silence: Einschränkung
-          suspend: Sperren
+          silence: Stummschalten
+          suspend: Sperre
         warning_preset_id: Warnungsvorlage verwenden
       announcement:
         all_day: Ganztägiges Ereignis
@@ -163,18 +163,18 @@ de:
         starts_at: Beginn der Ankündigung
         text: Ankündigung
       appeal:
-        text: Teile mit, warum diese Entscheidung zurückgenommen werden soll
+        text: Begründe, weshalb diese Entscheidung zurückgenommen werden sollte
       defaults:
-        autofollow: Lade ein, um deinem Konto zu folgen
+        autofollow: Meinem Profil automatisch folgen
         avatar: Profilbild
-        bot: Dies ist ein Bot-Konto
+        bot: Dieses Profil ist ein Bot
         chosen_languages: Sprachen einschränken
         confirm_new_password: Neues Passwort bestätigen
         confirm_password: Passwort bestätigen
-        context: Filter nach Bereichen
+        context: Nach Bereichen filtern
         current_password: Derzeitiges Passwort
         data: Daten
-        discoverable: Konto für andere empfehlen
+        discoverable: Dieses Konto anderen empfehlen
         display_name: Anzeigename
         email: E-Mail-Adresse
         expires_in: Läuft ab
@@ -183,16 +183,16 @@ de:
         honeypot: "%{label} (nicht ausfüllen)"
         inbox_url: Inbox-URL des Relais
         irreversible: Endgültig, nicht nur temporär ausblenden
-        locale: Sprache des Webinterface
+        locale: Sprache des Webinterfaces
         locked: Geschütztes Profil
-        max_uses: Maximale Anzahl der Nutzer
+        max_uses: Maximale Verwendungen
         new_password: Neues Passwort
-        note: Über mich
+        note: Biografie
         otp_attempt: Zwei-Faktor-Authentisierung
         password: Passwort
         phrase: Wort oder Formulierung
         setting_advanced_layout: Erweitertes Webinterface verwenden
-        setting_aggregate_reblogs: Boosts in der Timeline gruppieren
+        setting_aggregate_reblogs: Geteilte Beiträge in den Timelines gruppieren
         setting_always_send_emails: Benachrichtigungen immer senden
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
         setting_boost_modal: Bestätigung vor dem Teilen einholen
@@ -217,10 +217,10 @@ de:
         setting_unfollow_modal: Bestätigungsdialog anzeigen, bevor jemandem entfolgt wird
         setting_use_blurhash: Farbverlauf für verborgene Medien anzeigen
         setting_use_pending_items: Langsamer Modus
-        severity: Schweregrad
-        sign_in_token_attempt: Sicherheitscode
+        severity: Einschränkung
+        sign_in_token_attempt: Sicherheitsschlüssel
         title: Titel
-        type: Art des Imports
+        type: Typ
         username: Profilname
         username_or_email: Profilname oder E-Mail
         whole_word: Phrasensuche mit exakter Zeichenfolge erzwingen
@@ -231,9 +231,9 @@ de:
       filters:
         actions:
           hide: Vollständig ausblenden
-          warn: Mit einer Warnung ausblenden
+          warn: Mit einer Inhaltswarnung ausblenden
       form_admin_settings:
-        activity_api_enabled: Veröffentlichung von Gesamtstatistiken über Nutzeraktivitäten in der API
+        activity_api_enabled: Aggregierte Nutzungsdaten über die API veröffentlichen
         backups_retention_period: Aufbewahrungsfrist für Archive
         bootstrap_timeline_accounts: Neuen Nutzern immer diese Konten empfehlen
         closed_registrations_message: Nachricht, falls Registrierungen deaktiviert sind
@@ -241,15 +241,15 @@ de:
         custom_css: Eigenes CSS
         mascot: Benutzerdefiniertes Maskottchen (Legacy)
         media_cache_retention_period: Aufbewahrungsfrist für den Medien-Cache
-        peers_api_enabled: Veröffentliche Liste bekannter Server in der API
+        peers_api_enabled: Über die API die bekanntgewordenen Fediverse-Server veröffentlichen
         profile_directory: Profilverzeichnis aktivieren
         registrations_mode: Wer darf ein neues Konto registrieren?
-        require_invite_text: Grund für den Beitritt verlangen
+        require_invite_text: Begründung für Beitritt verlangen
         show_domain_blocks: Anzeigen, welche Domains gesperrt wurden
         show_domain_blocks_rationale: Anzeigen, weshalb Domains gesperrt wurden
         site_contact_email: E-Mail-Adresse
         site_contact_username: Profilname
-        site_extended_description: Detaillierte Beschreibung
+        site_extended_description: Erweiterte Beschreibung
         site_short_description: Serverbeschreibung
         site_terms: Datenschutzerklärung
         site_title: Servername
@@ -267,7 +267,7 @@ de:
       invite:
         comment: Kommentar
       invite_request:
-        text: Warum möchtest du beitreten?
+        text: Weshalb möchtest du beitreten?
       ip_block:
         comment: Kommentar
         ip: IP-Adresse
@@ -280,7 +280,7 @@ de:
         appeal: wenn jemand einer Moderationsentscheidung widerspricht
         digest: Zusammenfassung senden
         favourite: wenn jemand meinen Beitrag favorisiert
-        follow: wenn mir jemand folgt
+        follow: wenn mir jemand Neues gefolgt ist
         follow_request: wenn mir jemand folgen möchte
         mention: wenn mich jemand erwähnt
         pending_account: wenn ein neues Konto überprüft werden muss
@@ -290,10 +290,10 @@ de:
       rule:
         text: Regel
       tag:
-        listable: Erlaube diesem Hashtag, im Profilverzeichnis zu erscheinen
+        listable: Erlaube, dass dieser Hashtag in Suchen und Empfehlungen erscheint
         name: Hashtag
-        trendable: Erlaube es, diesen Hashtag in den Trends erscheinen zu lassen
-        usable: Beiträgen erlauben, diesen Hashtag zu verwenden
+        trendable: Erlaube, dass dieser Hashtag in den Trends erscheint
+        usable: Erlaube, dass dieser Hashtag in Beiträgen erscheint
       user:
         role: Rolle
       user_role:

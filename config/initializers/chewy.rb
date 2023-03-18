@@ -19,7 +19,6 @@ Chewy.settings = {
 # cycle, which takes care of checking if Elasticsearch is enabled
 # or not. However, mind that for the Rails console, the :urgent
 # strategy is set automatically with no way to override it.
-Chewy.root_strategy              = :mastodon
 Chewy.request_strategy           = :mastodon
 Chewy.use_after_commit_callbacks = false
 

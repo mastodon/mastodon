@@ -41,41 +41,32 @@ class Sanitize
 
       current_node = env[:node]
 
-      scheme = begin
-        if current_node['href'] =~ Sanitize::REGEX_PROTOCOL
-          Regexp.last_match(1).downcase
-        else
-          :relative
-        end
-      end
+      scheme = if current_node['href'] =~ Sanitize::REGEX_PROTOCOL
+                 Regexp.last_match(1).downcase
+               else
+                 :relative
+               end
 
       current_node.replace(Nokogiri::XML::Text.new(current_node.text, current_node.document)) unless LINK_PROTOCOLS.include?(scheme)
     end
 
     UNSUPPORTED_ELEMENTS_TRANSFORMER = lambda do |env|
-      return unless %w(h1 h2 h3 h4 h5 h6 blockquote pre ul ol li).include?(env[:node_name])
+      return unless %w(h1 h2 h3 h4 h5 h6).include?(env[:node_name])
 
       current_node = env[:node]
 
-      case env[:node_name]
-      when 'li'
-        current_node.traverse do |node|
-          next unless %w(p ul ol li).include?(node.name)
-
-          node.add_next_sibling('<br>') if node.next_sibling
-          node.replace(node.children) unless node.text?
-        end
-      else
-        current_node.name = 'p'
-      end
+      current_node.name = 'strong'
+      current_node.wrap('<p></p>')
     end
 
     MASTODON_STRICT ||= freeze_config(
-      elements: %w(p br span a),
+      elements: %w(p br span a del pre blockquote code b strong u i em ul ol li),
 
       attributes: {
-        'a'    => %w(href rel class),
+        'a' => %w(href rel class),
         'span' => %w(class),
+        'ol' => %w(start reversed),
+        'li' => %w(value),
       },
 
       add_attributes: {
@@ -100,17 +91,17 @@ class Sanitize
 
       attributes: merge(
         RELAXED[:attributes],
-        'audio'  => %w(controls),
-        'embed'  => %w(height src type width),
+        'audio' => %w(controls),
+        'embed' => %w(height src type width),
         'iframe' => %w(allowfullscreen frameborder height scrolling src width),
         'source' => %w(src type),
-        'video'  => %w(controls height loop width),
-        'div'    => [:data]
+        'video' => %w(controls height loop width),
+        'div' => [:data]
       ),
 
       protocols: merge(
         RELAXED[:protocols],
-        'embed'  => { 'src' => HTTP_PROTOCOLS },
+        'embed' => { 'src' => HTTP_PROTOCOLS },
         'iframe' => { 'src' => HTTP_PROTOCOLS },
         'source' => { 'src' => HTTP_PROTOCOLS }
       )

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-# rubocop:disable Metrics/ModuleLength, Style/WordArray
+
+# rubocop:disable Metrics/ModuleLength
 
 module LanguagesHelper
   ISO_639_1 = {
@@ -274,4 +275,4 @@ module LanguagesHelper
   end
 end
 
-# rubocop:enable Metrics/ModuleLength, Style/WordArray
+# rubocop:enable Metrics/ModuleLength

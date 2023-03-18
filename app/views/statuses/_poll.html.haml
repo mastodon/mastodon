@@ -21,7 +21,7 @@
             %span.poll__chart
         - else
           %label.poll__option><
-            %span.poll__input{ class: poll.multiple? ? 'checkbox' : nil}><
+            %span.poll__input{ class: poll.multiple? ? 'checkbox' : nil }><
             %span.poll__option__text
               = prerender_custom_emojis(h(option.title), status.emojis)
   .poll__footer

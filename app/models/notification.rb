@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: notifications
@@ -19,12 +20,12 @@ class Notification < ApplicationRecord
   include Paginable
 
   LEGACY_TYPE_CLASS_MAP = {
-    'Mention'       => :mention,
-    'Status'        => :reblog,
-    'Follow'        => :follow,
+    'Mention' => :mention,
+    'Status' => :reblog,
+    'Follow' => :follow,
     'FollowRequest' => :follow_request,
-    'Favourite'     => :favourite,
-    'Poll'          => :poll,
+    'Favourite' => :favourite,
+    'Poll' => :poll,
   }.freeze
 
   TYPES = %i(
@@ -87,13 +88,11 @@ class Notification < ApplicationRecord
 
   class << self
     def browserable(types: [], exclude_types: [], from_account_id: nil)
-      requested_types = begin
-        if types.empty?
-          TYPES
-        else
-          types.map(&:to_sym) & TYPES
-        end
-      end
+      requested_types = if types.empty?
+                          TYPES
+                        else
+                          types.map(&:to_sym) & TYPES
+                        end
 
       requested_types -= exclude_types.map(&:to_sym)
 
