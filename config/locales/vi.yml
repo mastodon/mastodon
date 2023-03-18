@@ -797,6 +797,12 @@ vi:
         message_html: Bạn chưa cập nhật nội quy máy chủ.
       sidekiq_process_check:
         message_html: Sidekiq không hoạt động khi truy vấn %{value}. Hãy kiểm tra lại cấu hình Sidekiq
+      upload_check_privacy_error:
+        action: Nhấn vào đây để biết thêm thông tin
+        message_html: "<strong>Máy chủ web của bạn bị cấu hình sai. Có nguy cơ ảnh hưởng bảo mật của người dùng.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Nhấn vào đây để biết thêm thông tin
+        message_html: "<strong>Lưu trữ đối tượng của bạn bị cấu hình sai. Có nguy cơ ảnh hưởng bảo mật của người dùng.</strong>"
     tags:
       review: Phê duyệt
       updated_msg: Hashtag đã được cập nhật thành công
@@ -1651,6 +1657,7 @@ vi:
       title: Xin chào %{name}!
   users:
     follow_limit_reached: Bạn chỉ có thể theo dõi tối đa %{limit} người
+    go_to_sso_account_settings: Thiết lập tài khoản nhà cung cấp danh tính
     invalid_otp_token: Mã xác minh 2 bước không hợp lệ
     otp_lost_help_html: Nếu bạn mất quyền truy cập vào cả hai, bạn có thể đăng nhập bằng %{email}
     seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy mật khẩu và email không khả dụng.
