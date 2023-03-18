@@ -47,7 +47,6 @@ module Mastodon
 
     Use the --dry-run option to print expected results only, without performing any actions.
     DESC
-    # rubocop:disable Metrics/PerceivedComplexity
     def remove
       # BEGIN deprecation
       if options[:prune_profiles]
@@ -247,7 +246,6 @@ module Mastodon
 
       say("Removed #{removed} orphans (approx. #{number_to_human_size(reclaimed_bytes)})#{dry_run}", :green, true)
     end
-    # rubocop:enable Metrics/PerceivedComplexity
 
     option :account, type: :string
     option :domain, type: :string
