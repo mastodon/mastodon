@@ -585,7 +585,6 @@ RSpec/NoExpectationExample:
 
 RSpec/PendingWithoutReason:
   Exclude:
-    - 'spec/controllers/statuses_controller_spec.rb'
     - 'spec/models/account_spec.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -600,10 +599,6 @@ RSpec/PredicateMatcher:
 RSpec/RepeatedExample:
   Exclude:
     - 'spec/policies/status_policy_spec.rb'
-
-RSpec/RepeatedExampleGroupBody:
-  Exclude:
-    - 'spec/controllers/statuses_controller_spec.rb'
 
 RSpec/StubbedMock:
   Exclude:
