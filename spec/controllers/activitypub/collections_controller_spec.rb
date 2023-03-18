@@ -35,10 +35,9 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
   describe 'GET #show' do
     context 'when id is "featured"' do
       context 'without signature' do
-        subject(:body) { body_as_json }
-
         subject(:response) { get :show, params: { id: 'featured', account_username: account.username } }
 
+        let(:body) { body_as_json }
         let(:remote_account) { nil }
 
         it 'returns http success' do
