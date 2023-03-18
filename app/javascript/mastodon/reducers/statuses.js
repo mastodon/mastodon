@@ -20,6 +20,7 @@ import {
 } from '../actions/statuses';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STATUS_IMPORT, STATUSES_IMPORT } from '../actions/importer';
+import { normalizeStatusTranslation } from '../actions/importer/normalizer';
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
 const importStatus = (state, status) => state.set(status.id, fromJS(status));
@@ -33,6 +34,12 @@ const deleteStatus = (state, id, references) => {
   });
 
   return state.delete(id);
+};
+
+const statusTranslateSuccess = (state, id, translation) => {
+  return state.withMutations(map => {
+    map.setIn([id, 'translation'], fromJS(normalizeStatusTranslation(translation, map.get(id))));
+  });
 };
 
 const initialState = ImmutableMap();
@@ -86,7 +93,7 @@ export default function statuses(state = initialState, action) {
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
   case STATUS_TRANSLATE_SUCCESS:
-    return state.setIn([action.id, 'translation'], fromJS(action.translation));
+    return statusTranslateSuccess(state, action.id, action.translation);
   case STATUS_TRANSLATE_UNDO:
     return state.deleteIn([action.id, 'translation']);
   default:

@@ -167,7 +167,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
 
   onTranslate (status) {
     if (status.get('translation')) {
-      dispatch(undoStatusTranslation(status.get('id')));
+      dispatch(undoStatusTranslation(status.get('id'), status.get('poll')));
     } else {
       dispatch(translateStatus(status.get('id')));
     }
