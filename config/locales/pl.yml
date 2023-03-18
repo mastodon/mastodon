@@ -95,6 +95,7 @@ pl:
       moderation:
         active: Aktywne
         all: Wszystkie
+        disabled: Wyłączone
         pending: Oczekujące
         silenced: Ograniczone
         suspended: Zawieszone
@@ -139,6 +140,7 @@ pl:
       search: Szukaj
       search_same_email_domain: Inni użytkownicy z tym samym e-mail w tej domenie
       search_same_ip: Inni użytkownicy z tym samym IP
+      security: Bezpieczeństwo
       security_measures:
         only_password: Tylko hasło
         password_and_2fa: Hasło i 2FA
@@ -443,6 +445,7 @@ pl:
         resolve: Rozwiąż domenę
         title: Nowa blokada domeny e-mail
       no_email_domain_block_selected: Żadne blokady domeny e-mail nie zostały zmienione, ponieważ żadne z nich nie zostały wybrane
+      not_permitted: Brak uprawnień
       resolved_dns_records_hint_html: Nazwa domeny rozwiązuje się do następujących domen MX, które są ostatecznie odpowiedzialne za przyjmowanie wiadomości e-mail. Blokowanie domeny MX spowoduje zablokowanie rejestracji z dowolnego adresu e-mail, który używa tej samej domeny MX, nawet jeśli widoczna nazwa domeny jest inna. <strong>Uważaj, aby nie blokować głównych dostawców poczty elektronicznej.</strong>
       resolved_through_html: Rozwiązano przez %{domain}
       title: Blokowanie domen e-mail
@@ -493,6 +496,7 @@ pl:
       content_policies:
         comment: Wewnętrzna notatka
         description_html: Możesz zdefiniować zasady treści, które zostaną zastosowane do wszystkich kont z tej domeny i jej subdomen.
+        limited_federation_mode_description_html: Możesz wybrać, czy zezwolić na federację z tą domeną.
         policies:
           reject_media: Odrzucaj media
           reject_reports: Odrzucaj zgłoszenia
@@ -609,11 +613,13 @@ pl:
       assign_to_self: Przypisz do siebie
       assigned: Przypisany moderator
       by_target_domain: Domena zgłaszanego konta
+      cancel: Anuluj
       category: Kategoria
       category_description_html: Powód, dla którego to konto i/lub zawartość zostały zgłoszone, będzie cytowany w komunikacji ze zgłoszonym kontem
       comment:
         none: Brak
       comment_description_html: 'Aby dostarczyć więcej informacji, %{name} napisał:'
+      confirm: Potwierdź
       confirm_action: Potwierdzenie działań moderacyjnych wobec @%{acct}
       created_at: Zgłoszono
       delete_and_resolve: Usuń posty
@@ -820,6 +826,7 @@ pl:
         suspend: "%{name} zawiesił(-a) konto %{target}"
       appeal_approved: Odwołanie
       appeal_pending: Odwołanie w toku
+      appeal_rejected: Odwołanie odrzucone
     system_checks:
       database_schema_check:
         message_html: Istnieją oczekujące migracje bazy danych. Uruchom je, aby upewnić się, że aplikacja działa tak, jak powinna
@@ -857,6 +864,7 @@ pl:
           other: Udostępnione przez %{count} osoby w ciągu ostatniego tygodnia
         title: Popularne linki
         usage_comparison: Udostępnione %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
+      not_allowed_to_trend: Wyłączona widoczność w popularnych
       only_allowed: Tylko dozwolone
       pending_review: Oczekuje na przegląd
       preview_card_providers:
@@ -994,6 +1002,7 @@ pl:
   applications:
     created: Pomyślnie utworzono aplikację
     destroyed: Pomyślnie usunięto aplikację
+    logout: Wyloguj się
     regenerate_token: Wygeneruj nowy token dostępu
     token_regenerated: Pomyślnie wygenerowano nowy token dostępu
     warning: Przechowuj te dane ostrożnie. Nie udostępniaj ich nikomu!
@@ -1030,6 +1039,8 @@ pl:
     resend_confirmation: Ponownie prześlij instrukcje weryfikacji
     reset_password: Zresetuj hasło
     rules:
+      accept: Zaakceptuj
+      back: Wróć
       preamble: Są one ustawione i wymuszone przez moderatorów %{domain}.
       title: Kilka podstawowych zasad.
     security: Bezpieczeństwo
@@ -1177,7 +1188,7 @@ pl:
   featured_tags:
     add_new: Dodaj nowy
     errors:
-      limit: Już przekroczyłeś(-aś) maksymalną liczbę wyróżnionych hashtagów
+      limit: Przekroczono maksymalną liczbę hasztagów
     hint_html: "<strong>Czym są wyróżnione hashtagi?</strong> Są one na stałe wyświetlane na Twoim profilu i pozwalają innym na przeglądanie Twoich wpisów używających tych hashtagów. Są doskonałym narzędziem do śledzenia kreatywnej twórczości czy długoterminowych projektów."
   filters:
     contexts:
@@ -1227,8 +1238,6 @@ pl:
       index:
         hint: Ten filtr ma zastosowanie do wybierania poszczególnych wpisów niezależnie od pozostałych kryteriów. Możesz dodać więcej wpisów do tego filtra z interfejsu internetowego.
         title: Filtrowane posty
-  footer:
-    trending_now: Obecnie na czasie
   generic:
     all: Wszystkie
     all_items_on_page_selected_html:
@@ -1259,8 +1268,6 @@ pl:
       many: Coś jest wciąż nie tak! Przejrzyj %{count} poniższych błędów
       one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
       other: Coś jest wciąż nie tak! Przejrzyj poniższe błędy (%{count})
-  html_validator:
-    invalid_markup: 'zawiera nieprawidłową składnię HTML: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Nieprawidłowy plik CSV. Błąd: %{error}'
@@ -1305,7 +1312,7 @@ pl:
     title: Zaproś użytkowników
   lists:
     errors:
-      limit: Przekroczyłeś maksymalną liczbę utworzonych list
+      limit: Przekroczono maksymalną liczbę utworzonych list
   login_activities:
     authentication_methods:
       otp: aplikacja weryfikacji dwuetapowej
@@ -1450,6 +1457,7 @@ pl:
     confirm_remove_selected_followers: Czy na pewno chcesz usunąć wybranych obserwujących?
     confirm_remove_selected_follows: Czy na pewno chcesz usunąć zaznaczone obserwacje?
     dormant: Uśpione
+    follow_failure: Nie można obserwować niektórych wybranych kont.
     follow_selected_followers: Zacznij obserwować wybranych obserwujących
     followers: Obserwujący
     following: Obserwowani
@@ -1489,6 +1497,7 @@ pl:
       electron: Electron
       firefox: Firefox
       generic: nieznana przeglądarka
+      huawei_browser: Przeglądarka Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Przeglądarka Nokia S40 Ovi
@@ -1498,6 +1507,7 @@ pl:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Nieznana Przeglądarka
       weibo: Weibo
     current_session: Obecna sesja
     description: "%{browser} na %{platform}"
@@ -1510,9 +1520,10 @@ pl:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: nieznana platforma
+      unknown_platform: Nieznana platforma
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone

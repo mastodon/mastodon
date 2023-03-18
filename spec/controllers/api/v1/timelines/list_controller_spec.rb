@@ -36,7 +36,7 @@ describe Api::V1::Timelines::ListController do
     describe 'GET #show' do
       it 'returns http not found' do
         get :show, params: { id: list.id }
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(404)
       end
     end
   end
@@ -48,7 +48,7 @@ describe Api::V1::Timelines::ListController do
       it 'returns http unprocessable entity' do
         get :show, params: { id: list.id }
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(422)
         expect(response.headers['Link']).to be_nil
       end
     end

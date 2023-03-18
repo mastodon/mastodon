@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -492,23 +493,28 @@ class User < ApplicationRecord
 
   def sanitize_languages
     return if chosen_languages.nil?
+
     chosen_languages.reject!(&:blank?)
     self.chosen_languages = nil if chosen_languages.empty?
   end
 
   def sanitize_role
     return if role.nil?
+
     self.role = nil if role.everyone?
   end
 
   def prepare_new_user!
     BootstrapTimelineWorker.perform_async(account_id)
     ActivityTracker.increment('activity:accounts:local')
+    ActivityTracker.record('activity:logins', id)
     UserMailer.welcome(self).deliver_later
     TriggerWebhookWorker.perform_async('account.approved', 'Account', account_id)
   end
 
   def prepare_returning_user!
+    return unless confirmed?
+
     ActivityTracker.record('activity:logins', id)
     regenerate_feed! if needs_feed_update?
   end
@@ -516,6 +522,7 @@ class User < ApplicationRecord
   def notify_staff_about_pending_account!
     User.those_who_can(:manage_users).includes(:account).find_each do |u|
       next unless u.allows_pending_account_emails?
+
       AdminMailer.new_pending_account(u.account, self).deliver_later
     end
   end

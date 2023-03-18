@@ -11,6 +11,7 @@ class StatusFilter
 
   def filtered?
     return false if !account.nil? && account.id == status.account_id
+
     blocked_by_policy? || (account_present? && filtered_status?) || silenced_account?
   end
 

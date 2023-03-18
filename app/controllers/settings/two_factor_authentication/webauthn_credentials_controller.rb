@@ -27,7 +27,7 @@ module Settings
 
         session[:webauthn_challenge] = options_for_create.challenge
 
-        render json: options_for_create, status: :ok
+        render json: options_for_create, status: 200
       end
 
       def create
@@ -52,7 +52,7 @@ module Settings
             end
           else
             flash[:error] = I18n.t('webauthn_credentials.create.error')
-            status = :internal_server_error
+            status = :unprocessable_entity
           end
         else
           flash[:error] = t('webauthn_credentials.create.error')

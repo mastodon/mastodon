@@ -372,16 +372,16 @@ module Mastodon
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :verbose, type: :boolean, aliases: [:v]
     option :dry_run, type: :boolean
-    desc 'refresh [USERNAME]', 'Fetch remote user data and files'
+    desc 'refresh [USERNAMES]', 'Fetch remote user data and files'
     long_desc <<-LONG_DESC
       Fetch remote user data and files for one or multiple accounts.
 
       With the --all option, all remote accounts will be processed.
       Through the --domain option, this can be narrowed down to a
-      specific domain only. Otherwise, a single remote account must
-      be specified with USERNAME.
+      specific domain only. Otherwise, remote accounts must be
+      specified with space-separated USERNAMES.
     LONG_DESC
-    def refresh(username = nil)
+    def refresh(*usernames)
       dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
 
       if options[:domain] || options[:all]
@@ -397,19 +397,25 @@ module Mastodon
         end
 
         say("Refreshed #{processed} accounts#{dry_run}", :green, true)
-      elsif username.present?
-        username, domain = username.split('@')
-        account = Account.find_remote(username, domain)
+      elsif !usernames.empty?
+        usernames.each do |user|
+          user, domain = user.split('@')
+          account = Account.find_remote(user, domain)
 
-        if account.nil?
-          say('No such account', :red)
-          exit(1)
-        end
+          if account.nil?
+            say('No such account', :red)
+            exit(1)
+          end
 
-        unless options[:dry_run]
-          account.reset_avatar!
-          account.reset_header!
-          account.save
+          next if options[:dry_run]
+
+          begin
+            account.reset_avatar!
+            account.reset_header!
+            account.save
+          rescue Mastodon::UnexpectedResponseError
+            say("Account failed: #{user}@#{domain}", :red)
+          end
         end
 
         say("OK#{dry_run}", :green)
@@ -490,14 +496,12 @@ module Mastodon
         scope = Account.where(id: ::Follow.where(account: account).select(:target_account_id))
 
         scope.find_each do |target_account|
-          begin
-            UnfollowService.new.call(account, target_account)
-          rescue => e
-            progress.log pastel.red("Error processing #{target_account.id}: #{e}")
-          ensure
-            progress.increment
-            processed += 1
-          end
+          UnfollowService.new.call(account, target_account)
+        rescue => e
+          progress.log pastel.red("Error processing #{target_account.id}: #{e}")
+        ensure
+          progress.increment
+          processed += 1
         end
 
         BootstrapTimelineWorker.perform_async(account.id)
@@ -507,14 +511,12 @@ module Mastodon
         scope = Account.where(id: ::Follow.where(target_account: account).select(:account_id))
 
         scope.find_each do |target_account|
-          begin
-            UnfollowService.new.call(target_account, account)
-          rescue => e
-            progress.log pastel.red("Error processing #{target_account.id}: #{e}")
-          ensure
-            progress.increment
-            processed += 1
-          end
+          UnfollowService.new.call(target_account, account)
+        rescue => e
+          progress.log pastel.red("Error processing #{target_account.id}: #{e}")
+        ensure
+          progress.increment
+          processed += 1
         end
       end
 
@@ -631,7 +633,7 @@ module Mastodon
           exit(1)
         end
 
-        unless options[:force] || migration.target_acount_id == account.moved_to_account_id
+        unless options[:force] || migration.target_account_id == account.moved_to_account_id
           say('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway', :red)
           exit(1)
         end

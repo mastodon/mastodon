@@ -47,7 +47,7 @@
 %hr.spacer/
 
 - if @instances.empty?
-  %div.muted-hint.center-text
+  .muted-hint.center-text
     = t 'admin.instances.empty'
 - else
   = render partial: 'instance', collection: @instances

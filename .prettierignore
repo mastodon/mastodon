@@ -51,15 +51,8 @@
 *~
 *.swp
 
-# Ignore npm debug log
-npm-debug.log
-
-# Ignore yarn log files
-yarn-error.log
-yarn-debug.log
-
-# Ignore vagrant log files
-*-cloudimg-console.log
+# Ignore log files
+*.log
 
 # Ignore Docker option files
 docker-compose.override.yml
@@ -70,3 +63,16 @@ docker-compose.override.yml
 # Ignore locale files
 /app/javascript/mastodon/locales
 /config/locales
+
+# Ignore vendored CSS reset
+app/javascript/styles/mastodon/reset.scss
+
+# Ignore Javascript pending https://github.com/mastodon/mastodon/pull/23631
+*.js
+*.jsx
+
+# Ignore HTML till cleaned and included in CI
+*.html
+
+# Ignore the generated AUTHORS.md
+AUTHORS.md

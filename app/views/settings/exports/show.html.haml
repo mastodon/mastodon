@@ -64,6 +64,6 @@
             %td= l backup.created_at
             - if backup.processed?
               %td= number_to_human_size backup.dump_file_size
-              %td= table_link_to 'download', t('exports.archive_takeout.download'), backup.dump.url
+              %td= table_link_to 'download', t('exports.archive_takeout.download'), download_backup_url(backup)
             - else
               %td{ colspan: 2 }= t('exports.archive_takeout.in_progress')

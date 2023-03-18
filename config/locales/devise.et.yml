@@ -48,15 +48,15 @@ et:
         title: Salasõna lähtestamine
       two_factor_disabled:
         explanation: Kontol on kaheastmeline autentimine välja lülitatud. Sisenemine on võimalik ainult kasutades e-postiaadressi ja salasõna.
-        subject: 'Mastodon: Kahe-etapine autentimine välja lülitatud'
+        subject: 'Mastodon: Kaheastmeline autentimine välja lülitatud'
         title: 2FA keelatud
       two_factor_enabled:
         explanation: Kontol on sisse lülitatud kaheastmeline autentimine. Sisenemiseks on vajalik ühekordne aeguv võti TOTP-rakenduse poolt.
-        subject: 'Mastodon: Kahe-etapine autentimine sisse lülitatud'
+        subject: 'Mastodon: kaheastmeline autentimine sisse lülitatud'
         title: 2FA lubatud
       two_factor_recovery_codes_changed:
         explanation: Eelmised taastekoodid on nüüd kehtetud ning loodud uued.
-        subject: 'Mastodon: Kahe-etapise autentimise taastuskoodid taasloodud'
+        subject: 'Mastodon: Kaheastmelise autentimise taastuskoodid taasloodud'
         title: 2FA taastekoodid muudetud
       unlock_instructions:
         subject: 'Mastodon: Lahti lukustamis juhendid'
@@ -78,7 +78,7 @@ et:
         subject: 'Mastodon: turvavõtme autentimine sisse lülitatud'
         title: Turvavõtmed on sisse lülitatud
     omniauth_callbacks:
-      failure: Ei saanud teid tuvastada %{kind} kaudu, kuna "%{reason}".
+      failure: Ei saanud sind tuvastada %{kind} kaudu, kuna "%{reason}".
       success: Tuvastamine %{kind} konto järgi õnnestus.
     passwords:
       no_token: Sellele leheküljele ei pääse tulemata salasõna lähtestamise e-kirjast. Kui tuled salasõna lähtestamise e-kirjast, palun veendu, et kasutasid tervet saadetud URLi.
@@ -87,7 +87,7 @@ et:
       updated: Salasõna muutmine õnnestus. Oled nüüd sisse logitud.
       updated_not_active: Sinu salasõna muutmine õnnestus.
     registrations:
-      destroyed: Nägemist! sinu konto sulgemine õnnestus. Me loodame sind varsti taas näha.
+      destroyed: Nägemist! Sinu konto sulgemine õnnestus. Me loodame sind varsti taas näha.
       signed_up: Tere tulemast! Sinu konto loomine õnnestus.
       signed_up_but_inactive: Sinu konto loodi edukalt, kuid me ei saanud sind sisse logida, kuna konto pole veel aktiveeritud.
       signed_up_but_locked: Sinu konto loodi edukalt, kuid me ei saanud sind sisse logida, kuna konto on lukustatud.

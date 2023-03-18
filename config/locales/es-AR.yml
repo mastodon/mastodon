@@ -91,6 +91,7 @@ es-AR:
       moderation:
         active: Activas
         all: Todas
+        disabled: Deshabilitadas
         pending: Pendientes
         silenced: Limitada
         suspended: Suspendidas
@@ -133,6 +134,7 @@ es-AR:
       search: Buscar
       search_same_email_domain: Otros usuarios con el mismo dominio de correo electrónico
       search_same_ip: Otros usuarios con la misma dirección IP
+      security: Seguridad
       security_measures:
         only_password: Sólo contraseña
         password_and_2fa: Contraseña y 2FA
@@ -427,6 +429,7 @@ es-AR:
         resolve: Resolver dominio
         title: Bloquear nuevo dominio de correo electrónico
       no_email_domain_block_selected: No se cambiaron bloques de dominio ya que no se seleccionó ninguno
+      not_permitted: No permitidos
       resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Tené cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
       resolved_through_html: Resuelto a través de %{domain}
       title: Dominios bloqueados de correo electrónico
@@ -473,6 +476,7 @@ es-AR:
       content_policies:
         comment: Nota interna
         description_html: Podés definir políticas de contenido que se aplicarán a todas las cuentas de este dominio y a cualquiera de sus subdominios.
+        limited_federation_mode_description_html: Podés elegir si permit´s la federación con este dominio.
         policies:
           reject_media: Rechazar medios
           reject_reports: Rechazar denuncias
@@ -585,11 +589,13 @@ es-AR:
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
       by_target_domain: Dominio de la cuenta denunciada
+      cancel: Cancelar
       category: Categoría
       category_description_html: El motivo por el que se denunció esta cuenta o contenido será citado en las comunicaciones con la cuenta denunciada
       comment:
         none: Ninguno
       comment_description_html: 'Para proporcionar más información, %{name} escribió:'
+      confirm: Confirmar
       confirm_action: Confirmar acción de moderación contra @%{acct}
       created_at: Denunciado
       delete_and_resolve: Eliminar mensajes
@@ -792,6 +798,7 @@ es-AR:
         suspend: "%{name} suspendió la cuenta de %{target}"
       appeal_approved: Apelado
       appeal_pending: Apelación pendiente
+      appeal_rejected: Apelación rechazada
     system_checks:
       database_schema_check:
         message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecutalas para asegurarte de que la aplicación funciona según lo esperado
@@ -827,6 +834,7 @@ es-AR:
           other: Compartido por %{count} personas durante la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado con la/s %{yesterday} vez/veces de ayer
+      not_allowed_to_trend: No se permite la tendencia
       only_allowed: Sólo permitidas
       pending_review: Revisión pendiente
       preview_card_providers:
@@ -958,6 +966,7 @@ es-AR:
   applications:
     created: Aplicación creada exitosamente
     destroyed: Aplicación eliminada exitosamente
+    logout: Cerrar sesión
     regenerate_token: Regenerar clave de acceso
     token_regenerated: Clave de acceso regenerada exitosamente
     warning: Ojo con estos datos. ¡Nunca los compartas con nadie!
@@ -994,6 +1003,8 @@ es-AR:
     resend_confirmation: Reenviar correo electrónico de confirmación
     reset_password: Cambiar contraseña
     rules:
+      accept: Aceptar
+      back: Volver
       preamble: Estas reglas son establecidas y aplicadas por los moderadores de %{domain}.
       title: Algunas reglas básicas.
     security: Seguridad
@@ -1040,22 +1051,22 @@ es-AR:
       invalid_signature: no es una firma Ed25519 válida
   date:
     formats:
-      default: "%Y.%b.%d"
-      with_month_name: "%Y.%B.%d"
+      default: "%d de %b de %Y"
+      with_month_name: "%d de %B de %Y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
-      about_x_months: "%{count}M"
-      about_x_years: "%{count}A"
-      almost_x_years: "%{count}A"
+      about_x_hours: "%{count}hrs."
+      about_x_months: "%{count}mes."
+      about_x_years: "%{count}año."
+      almost_x_years: "%{count}año."
       half_a_minute: Recién
-      less_than_x_minutes: "%{count}min"
+      less_than_x_minutes: "%{count}min."
       less_than_x_seconds: Recién
-      over_x_years: "%{count}A"
-      x_days: "%{count}D"
-      x_minutes: "%{count}min"
-      x_months: "%{count}M"
-      x_seconds: "%{count}s"
+      over_x_years: "%{count}año."
+      x_days: "%{count}día."
+      x_minutes: "%{count}min."
+      x_months: "%{count}mes."
+      x_seconds: "%{count}seg."
   deletes:
     challenge_not_passed: La información que ingresaste no es correcta
     confirm_password: Ingresá tu contraseña actual para verificar tu identidad
@@ -1141,7 +1152,7 @@ es-AR:
   featured_tags:
     add_new: Agregar nueva
     errors:
-      limit: Alcanzaste el máximo de etiquetas destacadas
+      limit: Ya estableciste el número máximo de etiquetas
     hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Son etiquetas que se muestran de forma permanente en tu perfil público y permiten a los usuarios navegar por tus mensajes públicos que contengan esas etiquetas. Las etiquetas destacadas son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
   filters:
     contexts:
@@ -1185,8 +1196,6 @@ es-AR:
       index:
         hint: Este filtro se aplica a la selección de mensajes individuales, independientemente de otros criterios. Podés agregar más mensajes a este filtro desde la interface web.
         title: Mensajes filtrados
-  footer:
-    trending_now: Tendencia ahora
   generic:
     all: Todas
     all_items_on_page_selected_html:
@@ -1209,8 +1218,6 @@ es-AR:
     validation_errors:
       one: "¡Falta algo! Por favor, revisá el error abajo"
       other: "¡Falta algo! Por favor, revisá los %{count} errores abajo"
-  html_validator:
-    invalid_markup: 'contiene markup HTML no válido: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Archivo CSV no válido. Error: %{error}'
@@ -1253,7 +1260,7 @@ es-AR:
     title: Invitar a gente
   lists:
     errors:
-      limit: Alcanzaste el máximo de listas
+      limit: Alcanzaste el número máximo de listas
   login_activities:
     authentication_methods:
       otp: aplicación de autenticación de dos factores
@@ -1398,6 +1405,7 @@ es-AR:
     confirm_remove_selected_followers: "¿Estás seguro que querés quitar a los seguidores seleccionados?"
     confirm_remove_selected_follows: "¿Estás seguro que querés quitar a las cuentas seguidas seleccionadas?"
     dormant: Inactivas
+    follow_failure: No se pudieron seguir algunas de las cuentas seleccionadas.
     follow_selected_followers: Seguir a los seguidores seleccionados
     followers: Seguidores
     following: Siguiendo
@@ -1437,6 +1445,7 @@ es-AR:
       electron: Electron
       firefox: Mozilla Firefox
       generic: "[Navegador web desconocido]"
+      huawei_browser: Navegador Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Navegador web de Nokia S40 Ovi
@@ -1446,6 +1455,7 @@ es-AR:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: "[Navegador web desconocido]"
       weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
@@ -1458,9 +1468,10 @@ es-AR:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: GNU/Linux
       mac: macOS
-      other: "[Plataforma desconocida]"
+      unknown_platform: "[Plataforma desconocida]"
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1573,7 +1584,7 @@ es-AR:
       '7889238': 3 meses
     min_age_label: Umbral de edad
     min_favs: Conservar mensajes marcados como favoritos de por lo menos
-    min_favs_hint: No elimina ninguno de tus mensajes que haya recibido más de esta cantidad de favoritos. Dejá en blanco para eliminar mensajes independientemente de su número de favoritos.
+    min_favs_hint: No elimina ninguno de tus mensajes que haya recibido al menos esta cantidad de favoritos. Dejá en blanco para eliminar mensajes independientemente de su número de favoritos.
     min_reblogs: Conservar adhesiones de por lo menos
     min_reblogs_hint: No elimina ninguno de tus mensajes que haya recibido más de esta cantidad de adhesiones. Dejá en blanco para eliminar mensajes independientemente de su número de adhesiones.
   stream_entries:
