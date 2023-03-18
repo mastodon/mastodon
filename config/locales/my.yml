@@ -74,6 +74,7 @@ my:
       login_status: အကောင့်ဝင်ရောက်မှုအခြေအနေ
       media_attachments: မီဒီယာ ပူးတွဲချက်များ
       memorialize: အမှတ်တရအဖြစ် ပြောင်းပါ
+      memorialized: အမှတ်တရ
       memorialized_msg: '%{username} ကို အမှတ်တရအကောင့်အဖြစ် ပြောင်းလဲခဲ့သည်'
       moderation:
         active: လက်ရှိအသုံးပြုလျက်ရှိခြင်း
@@ -679,6 +680,7 @@ my:
           tag_servers_measure: မတူညီသောဆာဗာများ
           tag_uses_measure: စုစုပေါင်းအသုံးပြုမှု
         listable: အကြံပြုနိုင်ပါသည်
+        no_tag_selected: မည်သည့်တဂျ်ကိုမျှ ရွေးချယ်ထားခြင်းမရှိသောကြောင့် ပြောင်းလဲခြင်းမရှိပါ
         not_listable: အကြံပြုမည်မဟုတ်ပါ
         not_trendable: လက်ရှိခေတ်စားနေသာပို့စ်များအောက်တွင် ပေါ်လာမည်မဟုတ်ပါ
         not_usable: အသုံးမပြုနိုင်ပါ
@@ -778,11 +780,14 @@ my:
     login: အကောင့်ဝင်ရန်
     logout: ထွက်မယ်
     migrate_account: အခြားအကောင့်တစ်ခုသို့ ရွှေ့ရန်
+    or_log_in_with: သို့မဟုတ် အကောင့်ဖြင့် ဝင်ရောက်ပါ
+    privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">ကိုယ်ရေးအချက်အလက်မူဝါဒ</a> ကို ဖတ်ပြီး သဘောတူလိုက်ပါပြီ
     providers:
       cas: CAS
       saml: SAML
     register: အကောင့်ဖွင့်ရန်
     registration_closed: "%{instance} သည် အဖွဲ့ဝင်အသစ်များကို လက်ခံထားခြင်းမရှိပါ"
+    resend_confirmation: အတည်ပြုချက်ညွှန်ကြားမှုများကို ပြန်ပို့ရန်
     rules:
       accept: လက်ခံပါ
       back: နောက်သို့
@@ -807,6 +812,9 @@ my:
     confirm: ဆက်လုပ်မည်
     invalid_password: စကားဝှက် မမှန်ပါ
     prompt: ဆက်လက်လုပ်ဆောင်ရန်အတွက် စကားဝှက်အတည်ပြုပါ
+  crypto:
+    errors:
+      invalid_signature: မှန်ကန်သော Ed25519 လက်မှတ်မဟုတ်ပါ
   date:
     formats:
       default: "%b %d, %Y"
@@ -826,17 +834,21 @@ my:
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: သင်ထည့်လိုက်သော အချက်အလက်မှာ မမှန်ပါ
     confirm_password: အထောက်အထားကိုအတည်ပြုရန်အတွက် သင့်လက်ရှိစကားဝှက်ကို ထည့်ပါ
     confirm_username: လုပ်ငန်းစဉ်ကို အတည်ပြုရန်အတွက် သင့်အသုံးပြုသူအမည်ကို ထည့်သွင်းပါ
     proceed: အကောင့်ဖျက်ပါ
     success_msg: သင့်အကောင့်ကို အောင်မြင်စွာ ဖျက်လိုက်ပါပြီ
     warning:
+      before: 'ရှေ့မဆက်မီ ဤမှတ်စုများကို သေချာဖတ်ပါ -'
       data_removal: သင့်ပို့စ်များနှင့် အခြားအချက်အလက်များကို အပြီးတိုင် ဖယ်ရှားပါမည်
       irreversible: အကောင့်ကို ပြန်လည်ရယူရန် သို့မဟုတ် ပြန်လည်အသုံးပြုရန် မဖြစ်နိုင်တော့ပါ
       more_details_html: အသေးစိတ်အချက်အလက်များအတွက်၊ <a href="%{terms_path}">ကိုယ်ရေးကိုယ်တာမူဝါဒ</a> ကို ကြည့်ပါ။
       username_available: သင့်အသုံးပြုသူအမည်ကို ပြန်လည်ရရှိနိုင်ပါမည်
   disputes:
     strikes:
+      action_taken: ဆောင်ရွက်ခဲ့သည်
+      appeal: အယူခံဝင်ခြင်း
       appeals:
         submit: အယူခံဝင်ခွင့်ပြုရန်
       created_at: ရက်စွဲ
@@ -848,6 +860,7 @@ my:
         mark_statuses_as_sensitive: သတိထားရသောပို့စ်များအဖြစ် အမှတ်အသားပြုခြင်း
         none: သတိပေးချက်
         sensitive: သတိထားရသောအကောင့်အဖြစ် အမှတ်အသားပြုခြင်း
+        silence: အကောင့်ကန့်သတ်ချက်
         suspend: အကောင့်ပိတ်ခြင်း
   domain_validator:
     invalid_domain: တရားဝင်ဒိုမိန်းအမည်မဟုတ်ပါ
@@ -1011,6 +1024,7 @@ my:
       title: စောင့်ကြည့်သူအသစ်
     follow_request:
       action: စောင့်ကြည့်ရန်တောင်းဆိုမှုများကို ပြင်ဆင်ရန်
+      body: "%{name} က သင့်ကို စောင့်ကြည့်ရန် တောင်းဆိုထားသည်"
       title: စောင့်ကြည့်ခွင့်ပြုရန် တောင်းဆိုမှုအသစ်
     mention:
       action: စာပြန်ရန်
@@ -1020,11 +1034,15 @@ my:
       subject: '%{name} ၏ စစ်တမ်းတစ်ခု ပြီးသွားပါပြီ'
     reblog:
       body: '%{name} က သင့်ပို့စ်ကို  Boost လုပ်ခဲ့သည် -'
+      subject: "%{name} က သင့်ပို့စ်ကို Boost လုပ်ခဲ့သည်"
       title: Boost အသစ်
     status:
       subject: "%{name} က အခုလေးတင် ပို့စ်တင်လိုက်ပါပြီ"
     update:
       subject: "%{name} က ပို့စ်တစ်ခုကို ပြင်ဆင်ခဲ့သည်"
+  notifications:
+    email_events: အီးမေးလ်သတိပေးချက်များအတွက်အကြောင်းအရာများ
+    other_settings: အခြားအသိပေးချက်များ၏ သတ်မှတ်ချက်များ
   number:
     human:
       decimal_units:
@@ -1036,7 +1054,9 @@ my:
           thousand: K
           trillion: T
   otp_authentication:
+    code_hint: အတည်ပြုရန်အတွက် အထောက်အထားစိစစ်အက်ပ်မှ ထုတ်ပေးသည့်ကုဒ်ကို ထည့်သွင်းပါ
     enable: ဖွင့်ပါ
+    setup: သတ်မှတ်ရန်
   pagination:
     newer: ပိုသစ်သော
     next: ရှေ့သို့
@@ -1267,8 +1287,10 @@ my:
       reason: 'အကြောင်းပြချက် -'
       subject:
         delete_statuses: '%{acct} ရှိ သင့်ပို့စ်များကို ဖယ်ရှားလိုက်ပါပြီ'
+        disable: သင့်အကောင့် %{acct} ကို ပိတ်သိမ်းထားသည်
         mark_statuses_as_sensitive: '%{acct} ရှိ သင့်ပို့စ်များကို သတိထားရသောပို့စ်များအဖြစ် အမှတ်အသားပြုထားသည်'
         none: '%{acct} အတွက် သတိပေးချက်'
+        sensitive: '%{acct} ရှိ သင့်ပို့စ်များကို ယခုမှစပြီး သတိထားရသောပို့စ်များအဖြစ် အမှတ်အသားပြုပါမည်'
         silence: သင့်အကောင့် %{acct} ကို ကန့်သတ်ထားသည်
       title:
         delete_statuses: ပို့စ်များကို ဖယ်ရှားခဲ့သည်
