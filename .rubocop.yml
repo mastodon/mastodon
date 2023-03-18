@@ -8,6 +8,7 @@ require:
   - rubocop-rails
   - rubocop-rspec
   - rubocop-performance
+  - rubocop-capybara
 
 AllCops:
   TargetRubyVersion: 2.7
@@ -19,7 +20,6 @@ AllCops:
   NewCops: enable
   Exclude:
     - db/schema.rb
-    - 'config/**/*'
     - 'bin/*'
     - 'Rakefile'
     - 'node_modules/**/*'
