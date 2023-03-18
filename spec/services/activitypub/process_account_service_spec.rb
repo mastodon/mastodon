@@ -113,11 +113,7 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
   end
 
   context 'when discovering many subdomains in a short timeframe' do
-    before do
-      stub_const 'ActivityPub::ProcessAccountService::SUBDOMAINS_RATELIMIT', 5
-    end
-
-    let(:subject) do
+    subject do
       8.times do |i|
         domain = "test#{i}.testdomain.com"
         json = {
@@ -127,6 +123,10 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
         }.with_indifferent_access
         described_class.new.call('alice', domain, json)
       end
+    end
+
+    before do
+      stub_const 'ActivityPub::ProcessAccountService::SUBDOMAINS_RATELIMIT', 5
     end
 
     it 'creates at least some accounts' do

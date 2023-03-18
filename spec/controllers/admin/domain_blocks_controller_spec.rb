@@ -166,10 +166,11 @@ RSpec.describe Admin::DomainBlocksController do
   end
 
   describe 'PUT #update' do
-    let!(:remote_account) { Fabricate(:account, domain: 'example.com') }
-    let(:subject) do
+    subject do
       post :update, params: { :id => domain_block.id, :domain_block => { domain: 'example.com', severity: new_severity }, 'confirm' => '' }
     end
+
+    let!(:remote_account) { Fabricate(:account, domain: 'example.com') }
     let(:domain_block) { Fabricate(:domain_block, domain: 'example.com', severity: original_severity) }
 
     before do

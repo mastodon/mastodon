@@ -409,29 +409,6 @@ RSpec/StubbedMock:
     - 'spec/lib/webfinger_resource_spec.rb'
     - 'spec/services/activitypub/process_collection_service_spec.rb'
 
-RSpec/SubjectDeclaration:
-  Exclude:
-    - 'spec/controllers/admin/domain_blocks_controller_spec.rb'
-    - 'spec/models/account_migration_spec.rb'
-    - 'spec/models/account_spec.rb'
-    - 'spec/models/relationship_filter_spec.rb'
-    - 'spec/models/user_role_spec.rb'
-    - 'spec/policies/account_moderation_note_policy_spec.rb'
-    - 'spec/policies/account_policy_spec.rb'
-    - 'spec/policies/backup_policy_spec.rb'
-    - 'spec/policies/custom_emoji_policy_spec.rb'
-    - 'spec/policies/domain_block_policy_spec.rb'
-    - 'spec/policies/email_domain_block_policy_spec.rb'
-    - 'spec/policies/instance_policy_spec.rb'
-    - 'spec/policies/invite_policy_spec.rb'
-    - 'spec/policies/relay_policy_spec.rb'
-    - 'spec/policies/report_note_policy_spec.rb'
-    - 'spec/policies/report_policy_spec.rb'
-    - 'spec/policies/settings_policy_spec.rb'
-    - 'spec/policies/tag_policy_spec.rb'
-    - 'spec/policies/user_policy_spec.rb'
-    - 'spec/services/activitypub/process_account_service_spec.rb'
-
 RSpec/SubjectStub:
   Exclude:
     - 'spec/services/unallow_domain_service_spec.rb'
