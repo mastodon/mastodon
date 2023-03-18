@@ -14,9 +14,7 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController do
     follower_2.follow!(account)
     follower_3.follow!(account)
     follower_4.follow!(account)
-  end
 
-  before do
     allow(controller).to receive(:signed_request_actor).and_return(remote_account)
   end
 
