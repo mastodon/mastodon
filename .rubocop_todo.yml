@@ -648,11 +648,6 @@ RSpec/RepeatedExampleGroupDescription:
     - 'spec/controllers/admin/reports/actions_controller_spec.rb'
     - 'spec/policies/report_note_policy_spec.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/SharedContext:
-  Exclude:
-    - 'spec/services/unsuspend_account_service_spec.rb'
-
 RSpec/StubbedMock:
   Exclude:
     - 'spec/controllers/api/base_controller_spec.rb'
