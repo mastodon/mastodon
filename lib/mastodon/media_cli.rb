@@ -136,13 +136,11 @@ module Mastodon
 
         loop do
           objects = begin
-            begin
-              bucket.objects(start_after: last_key, prefix: prefix).limit(1000).map { |x| x }
-            rescue => e
-              progress.log(pastel.red("Error fetching list of files: #{e}"))
-              progress.log("If you want to continue from this point, add --start-after=#{last_key} to your command") if last_key
-              break
-            end
+            bucket.objects(start_after: last_key, prefix: prefix).limit(1000).map { |x| x }
+          rescue => e
+            progress.log(pastel.red("Error fetching list of files: #{e}"))
+            progress.log("If you want to continue from this point, add --start-after=#{last_key} to your command") if last_key
+            break
           end
 
           break if objects.empty?
@@ -296,9 +294,7 @@ module Mastodon
         exit(1)
       end
 
-      if options[:days].present?
-        scope = scope.where('media_attachments.id > ?', Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false))
-      end
+      scope = scope.where('media_attachments.id > ?', Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false)) if options[:days].present?
 
       processed, aggregate = parallelize_with_progress(scope) do |media_attachment|
         next if media_attachment.remote_url.blank? || (!options[:force] && media_attachment.file_file_name.present?)

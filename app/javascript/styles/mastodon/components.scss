@@ -387,7 +387,7 @@ body > [data-popper-placement] {
 
 .ellipsis {
   &::after {
-    content: "…";
+    content: '…';
   }
 }
 
@@ -404,11 +404,8 @@ body > [data-popper-placement] {
       color: $highlight-text-color;
     }
 
-    input[type="checkbox"] {
-      display: none;
-    }
-
-    .checkbox {
+    input[type='checkbox'] {
+      appearance: none;
       display: inline-block;
       position: relative;
       border: 1px solid $ui-primary-color;
@@ -420,10 +417,13 @@ body > [data-popper-placement] {
       top: -1px;
       border-radius: 4px;
       vertical-align: middle;
+      cursor: inherit;
 
-      &.active {
+      &:checked {
         border-color: $highlight-text-color;
-        background: $highlight-text-color url("data:image/svg+xml;utf8,<svg width='18' height='18' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M4.5 8.5L8 12l6-6' stroke='white' stroke-width='1.5'/></svg>") center center no-repeat;
+        background: $highlight-text-color
+          url("data:image/svg+xml;utf8,<svg width='18' height='18' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M4.5 8.5L8 12l6-6' stroke='white' stroke-width='1.5'/></svg>")
+          center center no-repeat;
       }
     }
   }
@@ -647,7 +647,12 @@ body > [data-popper-placement] {
       margin: 5px;
 
       &__actions {
-        background: linear-gradient(180deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
+        background: linear-gradient(
+          180deg,
+          rgba($base-shadow-color, 0.8) 0,
+          rgba($base-shadow-color, 0.35) 80%,
+          transparent
+        );
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
@@ -675,7 +680,12 @@ body > [data-popper-placement] {
         left: 0;
         right: 0;
         box-sizing: border-box;
-        background: linear-gradient(0deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
+        background: linear-gradient(
+          0deg,
+          rgba($base-shadow-color, 0.8) 0,
+          rgba($base-shadow-color, 0.35) 80%,
+          transparent
+        );
       }
     }
 
@@ -1080,8 +1090,13 @@ body > [data-popper-placement] {
   cursor: auto;
 
   @keyframes fade {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
   }
 
   opacity: 1;
@@ -1183,11 +1198,12 @@ body > [data-popper-placement] {
 
 .status__info {
   font-size: 15px;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  cursor: pointer;
 }
 
 .status-check-box__status {
@@ -1827,11 +1843,11 @@ a.account__display-name {
   justify-content: center;
   flex-direction: column;
   scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE 10+ */
+  -ms-overflow-style: none; /* IE 10+ */
 
   * {
     scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE 10+ */
+    -ms-overflow-style: none; /* IE 10+ */
   }
 
   &::-webkit-scrollbar,
@@ -2863,7 +2879,9 @@ $ui-header-height: 55px;
 }
 
 .drawer__inner__mastodon {
-  background: lighten($ui-base-color, 13%) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color($ui-base-color)}"/></svg>') no-repeat bottom / 100% auto;
+  background: lighten($ui-base-color, 13%)
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color($ui-base-color)}"/></svg>')
+    no-repeat bottom / 100% auto;
   flex: 1;
   min-height: 47px;
   display: none;
@@ -2918,7 +2936,8 @@ $ui-header-height: 55px;
     overflow-y: auto;
   }
 
-  @supports (display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) {
+    // hack to fix Chrome <57
     contain: strict;
   }
 
@@ -2939,7 +2958,8 @@ $ui-header-height: 55px;
 }
 
 .scrollable.fullscreen {
-  @supports (display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) {
+    // hack to fix Chrome <57
     contain: none;
   }
 }
@@ -3043,7 +3063,8 @@ $ui-header-height: 55px;
   transition: background-color 0.2s ease;
 }
 
-.react-toggle:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
+.react-toggle:is(:hover, :focus-within):not(.react-toggle--disabled)
+  .react-toggle-track {
   background-color: darken($ui-base-color, 10%);
 }
 
@@ -3051,7 +3072,8 @@ $ui-header-height: 55px;
   background-color: darken($ui-highlight-color, 2%);
 }
 
-.react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
+.react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled)
+  .react-toggle-track {
   background-color: $ui-highlight-color;
 }
 
@@ -3646,7 +3668,7 @@ a.status-card.compact:hover {
 
     &::before {
       display: block;
-      content: "";
+      content: '';
       position: absolute;
       bottom: -13px;
       left: 0;
@@ -3656,7 +3678,11 @@ a.status-card.compact:hover {
       pointer-events: none;
       height: 28px;
       z-index: 1;
-      background: radial-gradient(ellipse, rgba($ui-highlight-color, 0.23) 0%, rgba($ui-highlight-color, 0) 60%);
+      background: radial-gradient(
+        ellipse,
+        rgba($ui-highlight-color, 0.23) 0%,
+        rgba($ui-highlight-color, 0) 60%
+      );
     }
   }
 
@@ -4241,7 +4267,8 @@ a.status-card.compact:hover {
   align-items: center;
   justify-content: center;
 
-  @supports (display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) {
+    // hack to fix Chrome <57
     contain: strict;
   }
 
@@ -4482,6 +4509,7 @@ a.status-card.compact:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   color: $secondary-text-color;
   font-size: 18px;
   font-weight: 500;
@@ -4516,7 +4544,7 @@ a.status-card.compact:hover {
   width: 100%;
   height: 6px;
   border-radius: 6px;
-  background: $ui-base-lighter-color;
+  background: darken($simple-background-color, 8%);
   position: relative;
   margin-top: 5px;
 }
@@ -5747,7 +5775,9 @@ a.status-card.compact:hover {
     width: auto;
     outline: 0;
     font-family: inherit;
-    background: $simple-background-color url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(darken($simple-background-color, 14%))}'/></svg>") no-repeat right 8px center / auto 16px;
+    background: $simple-background-color
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(darken($simple-background-color, 14%))}'/></svg>")
+      no-repeat right 8px center / auto 16px;
     border: 1px solid darken($simple-background-color, 14%);
     border-radius: 4px;
     padding: 6px 10px;
@@ -6154,7 +6184,12 @@ a.status-card.compact:hover {
     left: 0;
     right: 0;
     box-sizing: border-box;
-    background: linear-gradient(0deg, rgba($base-shadow-color, 0.85) 0, rgba($base-shadow-color, 0.45) 60%, transparent);
+    background: linear-gradient(
+      0deg,
+      rgba($base-shadow-color, 0.85) 0,
+      rgba($base-shadow-color, 0.45) 60%,
+      transparent
+    );
     padding: 0 15px;
     opacity: 0;
     transition: opacity 0.1s ease;
@@ -6295,7 +6330,7 @@ a.status-card.compact:hover {
     }
 
     &::before {
-      content: "";
+      content: '';
       width: 50px;
       background: rgba($white, 0.35);
       border-radius: 4px;
@@ -6365,7 +6400,7 @@ a.status-card.compact:hover {
     position: relative;
 
     &::before {
-      content: "";
+      content: '';
       width: 100%;
       background: rgba($white, 0.35);
       border-radius: 4px;
@@ -6448,7 +6483,11 @@ a.status-card.compact:hover {
 }
 
 .scrollable .account-card__bio::after {
-  background: linear-gradient(to left, lighten($ui-base-color, 8%), transparent);
+  background: linear-gradient(
+    to left,
+    lighten($ui-base-color, 8%),
+    transparent
+  );
 }
 
 .account-gallery__container {
@@ -6509,7 +6548,7 @@ a.status-card.compact:hover {
       &::before,
       &::after {
         display: block;
-        content: "";
+        content: '';
         position: absolute;
         bottom: 0;
         left: 50%;
@@ -6575,8 +6614,8 @@ a.status-card.compact:hover {
   text-overflow: ellipsis;
   cursor: pointer;
 
-  input[type="radio"],
-  input[type="checkbox"] {
+  input[type='radio'],
+  input[type='checkbox'] {
     display: none;
   }
 
@@ -6635,9 +6674,17 @@ noscript {
 }
 
 @keyframes flicker {
-  0% { opacity: 1; }
-  30% { opacity: 0.75; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 @media screen and (max-width: 630px) and (max-height: 400px) {
@@ -6658,7 +6705,9 @@ noscript {
   .navigation-bar {
     & > a:first-child {
       will-change: margin-top, margin-left, margin-right, width;
-      transition: margin-top $duration $delay, margin-left $duration ($duration + $delay), margin-right $duration ($duration + $delay);
+      transition: margin-top $duration $delay,
+        margin-left $duration ($duration + $delay),
+        margin-right $duration ($duration + $delay);
     }
 
     & > .navigation-bar__profile-edit {
@@ -6669,15 +6718,12 @@ noscript {
     .navigation-bar__actions {
       & > .icon-button.close {
         will-change: opacity transform;
-        transition:
-          opacity $duration * 0.5 $delay,
-          transform $duration $delay;
+        transition: opacity $duration * 0.5 $delay, transform $duration $delay;
       }
 
       & > .compose__action-bar .icon-button {
         will-change: opacity transform;
-        transition:
-          opacity $duration * 0.5 $delay + $duration * 0.5,
+        transition: opacity $duration * 0.5 $delay + $duration * 0.5,
           transform $duration $delay;
       }
     }
@@ -7677,7 +7723,11 @@ noscript {
     &.active {
       transition: all 100ms ease-in;
       transition-property: background-color, color;
-      background-color: mix(lighten($ui-base-color, 12%), $ui-highlight-color, 80%);
+      background-color: mix(
+        lighten($ui-base-color, 12%),
+        $ui-highlight-color,
+        80%
+      );
 
       .reactions-bar__item__count {
         color: lighten($highlight-text-color, 8%);
@@ -7730,7 +7780,7 @@ noscript {
 
   &.unread {
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
@@ -8258,14 +8308,14 @@ noscript {
     counter-increment: list-counter;
 
     &::before {
-      content: counter(list-counter) ".";
+      content: counter(list-counter) '.';
       position: absolute;
       left: 0;
     }
   }
 
   ul > li::before {
-    content: "";
+    content: '';
     position: absolute;
     background-color: $darker-text-color;
     border-radius: 50%;

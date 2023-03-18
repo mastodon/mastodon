@@ -62,18 +62,18 @@
       - else
         = fa_icon('reply-all')
       %span.detailed-status__reblogs>= friendly_number_to_human status.replies_count
-      = " "
+      = ' '
     ·
     - if status.public_visibility? || status.unlisted_visibility?
       %span.detailed-status__link
         = fa_icon('retweet')
         %span.detailed-status__reblogs>= friendly_number_to_human status.reblogs_count
-        = " "
+        = ' '
       ·
     %span.detailed-status__link
       = fa_icon('star')
       %span.detailed-status__favorites>= friendly_number_to_human status.favourites_count
-      = " "
+      = ' '
 
     - if user_signed_in?
       ·

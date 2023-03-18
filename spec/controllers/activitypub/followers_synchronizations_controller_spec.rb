@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controller do
@@ -32,10 +34,11 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
     end
 
     context 'with signature from example.com' do
-      let(:remote_account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/instance') }
+      subject(:body) { body_as_json }
 
       subject(:response) { get :show, params: { account_username: account.username } }
-      subject(:body) { body_as_json }
+
+      let(:remote_account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/instance') }
 
       it 'returns http success' do
         expect(response).to have_http_status(200)

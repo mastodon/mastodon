@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: tags
@@ -49,7 +50,7 @@ class Tag < ApplicationRecord
   scope :listable, -> { where(listable: [true, nil]) }
   scope :trendable, -> { Setting.trendable_by_default ? where(trendable: [true, nil]) : where(trendable: true) }
   scope :not_trendable, -> { where(trendable: false) }
-  scope :recently_used, ->(account) {
+  scope :recently_used, lambda { |account|
                           joins(:statuses)
                             .where(statuses: { id: account.statuses.select(:id).limit(1000) })
                             .group(:id).order(Arel.sql('count(*) desc'))

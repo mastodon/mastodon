@@ -1,0 +1,57 @@
+import React from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
+import Audio from 'mastodon/features/audio';
+import { connect } from 'react-redux';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import Footer from 'mastodon/features/picture_in_picture/components/footer';
+
+const mapStateToProps = (state, { statusId }) => ({
+  language: state.getIn(['statuses', statusId, 'language']),
+  accountStaticAvatar: state.getIn(['accounts', state.getIn(['statuses', statusId, 'account']), 'avatar_static']),
+});
+
+export default @connect(mapStateToProps, null, null, { forwardRef: true })
+class AudioModal extends ImmutablePureComponent {
+
+  static propTypes = {
+    media: ImmutablePropTypes.map.isRequired,
+    statusId: PropTypes.string.isRequired,
+    language: PropTypes.string,
+    accountStaticAvatar: PropTypes.string.isRequired,
+    options: PropTypes.shape({
+      autoPlay: PropTypes.bool,
+    }),
+    onClose: PropTypes.func.isRequired,
+    onChangeBackgroundColor: PropTypes.func.isRequired,
+  };
+
+  render () {
+    const { media, language, accountStaticAvatar, statusId, onClose } = this.props;
+    const options = this.props.options || {};
+
+    return (
+      <div className='modal-root__modal audio-modal'>
+        <div className='audio-modal__container'>
+          <Audio
+            src={media.get('url')}
+            alt={media.get('description')}
+            lang={language}
+            duration={media.getIn(['meta', 'original', 'duration'], 0)}
+            height={150}
+            poster={media.get('preview_url') || accountStaticAvatar}
+            backgroundColor={media.getIn(['meta', 'colors', 'background'])}
+            foregroundColor={media.getIn(['meta', 'colors', 'foreground'])}
+            accentColor={media.getIn(['meta', 'colors', 'accent'])}
+            autoPlay={options.autoPlay}
+          />
+        </div>
+
+        <div className='media-modal__overlay'>
+          {statusId && <Footer statusId={statusId} withOpenButton onClose={onClose} />}
+        </div>
+      </div>
+    );
+  }
+
+}

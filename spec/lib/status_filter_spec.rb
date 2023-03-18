@@ -10,7 +10,7 @@ describe StatusFilter do
       subject { described_class.new(status, nil) }
 
       context 'when there are no connections' do
-        it { is_expected.not_to be_filtered }
+        it { is_expected.to_not be_filtered }
       end
 
       context 'when status account is silenced' do
@@ -31,11 +31,12 @@ describe StatusFilter do
     end
 
     context 'with real account' do
-      let(:account) { Fabricate(:account) }
       subject { described_class.new(status, account) }
 
+      let(:account) { Fabricate(:account) }
+
       context 'when there are no connections' do
-        it { is_expected.not_to be_filtered }
+        it { is_expected.to_not be_filtered }
       end
 
       context 'when status account is blocked' do

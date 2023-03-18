@@ -43,13 +43,11 @@ module Mastodon
         exit(1)
       end
 
-      indices = begin
-        if options[:only]
-          options[:only].map { |str| "#{str.camelize}Index".constantize }
-        else
-          INDICES
-        end
-      end
+      indices = if options[:only]
+                  options[:only].map { |str| "#{str.camelize}Index".constantize }
+                else
+                  INDICES
+                end
 
       pool      = Concurrent::FixedThreadPool.new(options[:concurrency], max_queue: options[:concurrency] * 10)
       importers = indices.index_with { |index| "Importer::#{index.name}Importer".constantize.new(batch_size: options[:batch_size], executor: pool) }
