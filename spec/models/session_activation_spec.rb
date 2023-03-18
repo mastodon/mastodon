@@ -80,7 +80,7 @@ RSpec.describe SessionActivation do
     end
 
     it 'returns an instance of SessionActivation' do
-      expect(described_class.activate(**options)).to be_a SessionActivation
+      expect(described_class.activate(**options)).to be_a described_class
     end
   end
 

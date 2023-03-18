@@ -6,7 +6,7 @@ RSpec.describe ReblogService, type: :service do
   let(:alice)  { Fabricate(:account, username: 'alice') }
 
   context 'when creates a reblog with appropriate visibility' do
-    subject { ReblogService.new }
+    subject { described_class.new }
 
     let(:visibility)        { :public }
     let(:reblog_visibility) { :public }
@@ -62,7 +62,7 @@ RSpec.describe ReblogService, type: :service do
   end
 
   context 'with ActivityPub' do
-    subject { ReblogService.new }
+    subject { described_class.new }
 
     let(:bob)    { Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
     let(:status) { Fabricate(:status, account: bob) }

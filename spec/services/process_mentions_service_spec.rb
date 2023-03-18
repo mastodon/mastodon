@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ProcessMentionsService, type: :service do
-  subject { ProcessMentionsService.new }
+  subject { described_class.new }
 
   let(:account) { Fabricate(:account, username: 'alice') }
 
