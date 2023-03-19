@@ -62,7 +62,7 @@ export default class MediaItem extends ImmutablePureComponent {
     const status = attachment.get('status');
 
     const translation = status.get('translation');
-    const lang        = translation ? translation.get('language') : status.get('language');
+    const language    = translation ? translation.get('language') : status.get('language');
     const description = translation ? attachment.getIn(['translation', 'description']) : attachment.get('description');
     const spoilerText = translation ? translation.get('spoiler_text') : status.get('spoiler_text');
     const title       = spoilerText || description;
@@ -81,7 +81,7 @@ export default class MediaItem extends ImmutablePureComponent {
           <img
             src={attachment.get('preview_url') || attachment.getIn(['account', 'avatar_static'])}
             alt={description}
-            lang={lang}
+            lang={language}
             onLoad={this.handleImageLoad}
           />
         );
@@ -101,7 +101,7 @@ export default class MediaItem extends ImmutablePureComponent {
           <img
             src={attachment.get('preview_url')}
             alt={description}
-            lang={lang}
+            lang={language}
             style={{ objectPosition: `${x}% ${y}%` }}
             onLoad={this.handleImageLoad}
           />
@@ -112,7 +112,7 @@ export default class MediaItem extends ImmutablePureComponent {
             className='media-gallery__item-gifv-thumbnail'
             aria-label={description}
             title={description}
-            lang={lang}
+            lang={language}
             role='application'
             src={attachment.get('url')}
             onMouseEnter={this.handleMouseEnter}
