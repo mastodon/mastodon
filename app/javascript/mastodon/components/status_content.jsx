@@ -203,6 +203,10 @@ class StatusContent extends React.PureComponent {
     this.startXY = null;
   };
 
+  handleClick = (e) => {
+    e.preventDefault();
+  };
+
   handleSpoilerClick = (e) => {
     e.preventDefault();
 
@@ -235,7 +239,6 @@ class StatusContent extends React.PureComponent {
     const spoilerContent = { __html: status.get('spoilerHtml') };
     const lang = status.get('translation') ? intl.locale : status.get('language');
     const classNames = classnames('status__content', {
-      'status__content--with-action': this.props.onClick && this.context.router,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
       'status__content--collapsed': renderReadMore,
     });
@@ -270,7 +273,7 @@ class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className={classNames} ref={this.setRef} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+        <div className={classNames} ref={this.setRef} onClick={this.handleClick} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
             <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={lang} />
             {' '}
@@ -285,10 +288,10 @@ class StatusContent extends React.PureComponent {
           {!hidden && translateButton}
         </div>
       );
-    } else if (this.props.onClick) {
+    } else {
       return (
         <>
-          <div className={classNames} ref={this.setRef} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+          <div className={classNames} ref={this.setRef} onClick={this.handleClick} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
             <div className='status__content__text status__content__text--visible translate' lang={lang} dangerouslySetInnerHTML={content} />
 
             {poll}
@@ -297,15 +300,6 @@ class StatusContent extends React.PureComponent {
 
           {readMoreButton}
         </>
-      );
-    } else {
-      return (
-        <div className={classNames} ref={this.setRef} tabIndex='0' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-          <div className='status__content__text status__content__text--visible translate' lang={lang} dangerouslySetInnerHTML={content} />
-
-          {poll}
-          {translateButton}
-        </div>
       );
     }
   }

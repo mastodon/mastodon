@@ -845,10 +845,6 @@ body > [data-popper-placement] {
   margin-right: 5px;
 }
 
-.status__content--with-action {
-  cursor: pointer;
-}
-
 .status__content {
   clear: both;
 }
@@ -887,6 +883,8 @@ body > [data-popper-placement] {
     margin-bottom: 20px;
     white-space: pre-wrap;
     unicode-bidi: plaintext;
+    cursor: text;
+    width: fit-content; // so the text cursor only shows up where expected
 
     &:last-child {
       margin-bottom: 0;
@@ -927,6 +925,7 @@ body > [data-popper-placement] {
 
   .status__content__spoiler-link {
     background: $action-button-color;
+    cursor: pointer;
 
     &:hover,
     &:focus {
@@ -1107,6 +1106,10 @@ body > [data-popper-placement] {
   .audio-player,
   .attachment-list {
     margin-top: 16px;
+  }
+
+  &--with-action {
+    cursor: pointer;
   }
 
   &.light {
