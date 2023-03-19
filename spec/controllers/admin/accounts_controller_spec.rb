@@ -21,16 +21,7 @@ RSpec.describe Admin::AccountsController do
       new = AccountFilter.method(:new)
 
       expect(AccountFilter).to receive(:new) do |params|
-        h = params.to_h
-
-        expect(h[:origin]).to eq 'local'
-        expect(h[:by_domain]).to eq 'domain'
-        expect(h[:status]).to eq 'active'
-        expect(h[:username]).to eq 'username'
-        expect(h[:display_name]).to eq 'display name'
-        expect(h[:email]).to eq 'local-part@domain'
-        expect(h[:ip]).to eq '0.0.0.42'
-
+        setup_filter_expectations(params.to_h)
         new.call({})
       end
 
@@ -58,6 +49,18 @@ RSpec.describe Admin::AccountsController do
     it 'returns http success' do
       get :index
       expect(response).to have_http_status(200)
+    end
+
+    private
+
+    def setup_filter_expectations(params)
+      expect(params[:origin]).to eq 'local'
+      expect(params[:by_domain]).to eq 'domain'
+      expect(params[:status]).to eq 'active'
+      expect(params[:username]).to eq 'username'
+      expect(params[:display_name]).to eq 'display name'
+      expect(params[:email]).to eq 'local-part@domain'
+      expect(params[:ip]).to eq '0.0.0.42'
     end
   end
 

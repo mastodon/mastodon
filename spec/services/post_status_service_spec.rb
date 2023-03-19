@@ -228,13 +228,7 @@ RSpec.describe PostStatusService, type: :service do
       subject.call(
         account,
         text: 'test status update',
-        media_ids: [
-          Fabricate(:media_attachment, account: account),
-          Fabricate(:media_attachment, account: account),
-          Fabricate(:media_attachment, account: account),
-          Fabricate(:media_attachment, account: account),
-          Fabricate(:media_attachment, account: account),
-        ].map(&:id)
+        media_ids: Fabricate.times(5, :media_attachment, account: account).map(&:id)
       )
     end.to raise_error(
       Mastodon::ValidationError,
@@ -242,26 +236,28 @@ RSpec.describe PostStatusService, type: :service do
     )
   end
 
-  it 'does not allow attaching both videos and images' do
-    account = Fabricate(:account)
-    video   = Fabricate(:media_attachment, type: :video, account: account)
-    image   = Fabricate(:media_attachment, type: :image, account: account)
+  context 'when called with both video and image ids' do
+    let(:account) { Fabricate(:account) }
+    let(:video) { Fabricate(:media_attachment, type: :video, account: account) }
+    let(:image) { Fabricate(:media_attachment, type: :image, account: account) }
 
-    video.update(type: :video)
+    before { video.update(type: :video) }
 
-    expect do
-      subject.call(
-        account,
-        text: 'test status update',
-        media_ids: [
-          video,
-          image,
-        ].map(&:id)
+    it 'does not allow attaching both videos and images' do
+      expect do
+        subject.call(
+          account,
+          text: 'test status update',
+          media_ids: [
+            video,
+            image,
+          ].map(&:id)
+        )
+      end.to raise_error(
+        Mastodon::ValidationError,
+        I18n.t('media_attachments.validations.images_and_video')
       )
-    end.to raise_error(
-      Mastodon::ValidationError,
-      I18n.t('media_attachments.validations.images_and_video')
-    )
+    end
   end
 
   it 'returns existing status when used twice with idempotency key' do
