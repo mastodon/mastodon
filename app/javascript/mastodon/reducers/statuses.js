@@ -39,6 +39,14 @@ const deleteStatus = (state, id, references) => {
 const statusTranslateSuccess = (state, id, translation) => {
   return state.withMutations(map => {
     map.setIn([id, 'translation'], fromJS(normalizeStatusTranslation(translation, map.get(id))));
+
+    const list = map.getIn([id, 'media_attachments']);
+    if (translation.media_attachments && list) {
+      translation.media_attachments.forEach(item => {
+        const index = list.findIndex(i => i.get('id') === item.id);
+        map.setIn([id, 'media_attachments', index, 'translation'], fromJS({ description: item.description }));
+      });
+    }
   });
 };
 

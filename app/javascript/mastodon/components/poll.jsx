@@ -135,7 +135,7 @@ class Poll extends ImmutablePureComponent {
     const voted           = option.get('voted') || (poll.get('own_votes') && poll.get('own_votes').includes(optionIndex));
 
     const translation = option.get('translation');
-    const title = translation ? translation.get('title') : option.get('title')
+    const title = translation ? translation.get('title') : option.get('title');
     let titleHtml = translation ? translation.get('titleHtml') : option.get('titleHtml');
 
     if (!titleHtml) {

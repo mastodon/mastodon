@@ -60,7 +60,12 @@ export default class MediaItem extends ImmutablePureComponent {
     const width  = `${Math.floor((displayWidth - 4) / 3) - 4}px`;
     const height = width;
     const status = attachment.get('status');
-    const title  = status.get('spoiler_text') || attachment.get('description');
+
+    const translation = status.get('translation');
+    const lang        = translation ? translation.get('language') : status.get('language');
+    const description = translation ? attachment.getIn(['translation', 'description']) : attachment.get('description');
+    const spoilerText = translation ? translation.get('spoiler_text') : status.get('spoiler_text');
+    const title       = spoilerText || description;
 
     let thumbnail, label, icon, content;
 
@@ -75,8 +80,8 @@ export default class MediaItem extends ImmutablePureComponent {
         content = (
           <img
             src={attachment.get('preview_url') || attachment.getIn(['account', 'avatar_static'])}
-            alt={attachment.get('description')}
-            lang={status.get('language')}
+            alt={description}
+            lang={lang}
             onLoad={this.handleImageLoad}
           />
         );
@@ -95,8 +100,8 @@ export default class MediaItem extends ImmutablePureComponent {
         content = (
           <img
             src={attachment.get('preview_url')}
-            alt={attachment.get('description')}
-            lang={status.get('language')}
+            alt={description}
+            lang={lang}
             style={{ objectPosition: `${x}% ${y}%` }}
             onLoad={this.handleImageLoad}
           />
@@ -105,9 +110,9 @@ export default class MediaItem extends ImmutablePureComponent {
         content = (
           <video
             className='media-gallery__item-gifv-thumbnail'
-            aria-label={attachment.get('description')}
-            title={attachment.get('description')}
-            lang={status.get('language')}
+            aria-label={description}
+            title={description}
+            lang={lang}
             role='application'
             src={attachment.get('url')}
             onMouseEnter={this.handleMouseEnter}

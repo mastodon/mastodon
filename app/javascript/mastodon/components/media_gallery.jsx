@@ -18,6 +18,7 @@ class Item extends React.PureComponent {
   static propTypes = {
     attachment: ImmutablePropTypes.map.isRequired,
     lang: PropTypes.string,
+    translation: ImmutablePropTypes.map,
     standalone: PropTypes.bool,
     index: PropTypes.number.isRequired,
     size: PropTypes.number.isRequired,
@@ -79,7 +80,7 @@ class Item extends React.PureComponent {
   };
 
   render () {
-    const { attachment, lang, index, size, standalone, displayWidth, visible } = this.props;
+    const { attachment, translation, index, size, standalone, displayWidth, visible } = this.props;
 
     let width  = 50;
     let height = 100;
@@ -132,10 +133,13 @@ class Item extends React.PureComponent {
 
     let thumbnail = '';
 
+    const lang = translation ? translation.get('language') : this.props.lang;
+    const description = translation ? attachment.getIn(['translation', 'description']) : attachment.get('description');
+
     if (attachment.get('type') === 'unknown') {
       return (
         <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
-          <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url') || attachment.get('url')} style={{ cursor: 'pointer' }} title={attachment.get('description')} lang={lang} target='_blank' rel='noopener noreferrer'>
+          <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url') || attachment.get('url')} style={{ cursor: 'pointer' }} title={description} lang={lang} target='_blank' rel='noopener noreferrer'>
             <Blurhash
               hash={attachment.get('blurhash')}
               className='media-gallery__preview'
@@ -173,8 +177,8 @@ class Item extends React.PureComponent {
             src={previewUrl}
             srcSet={srcSet}
             sizes={sizes}
-            alt={attachment.get('description')}
-            title={attachment.get('description')}
+            alt={description}
+            title={description}
             lang={lang}
             style={{ objectPosition: `${x}% ${y}%` }}
             onLoad={this.handleImageLoad}
@@ -188,8 +192,8 @@ class Item extends React.PureComponent {
         <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
           <video
             className='media-gallery__item-gifv-thumbnail'
-            aria-label={attachment.get('description')}
-            title={attachment.get('description')}
+            aria-label={description}
+            title={description}
             lang={lang}
             role='application'
             src={attachment.get('url')}
@@ -231,6 +235,7 @@ class MediaGallery extends React.PureComponent {
     standalone: PropTypes.bool,
     media: ImmutablePropTypes.list.isRequired,
     lang: PropTypes.string,
+    translation: ImmutablePropTypes.map,
     size: PropTypes.object,
     height: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
@@ -314,7 +319,7 @@ class MediaGallery extends React.PureComponent {
   }
 
   render () {
-    const { media, lang, intl, sensitive, height, defaultWidth, standalone, autoplay } = this.props;
+    const { media, lang, translation, intl, sensitive, height, defaultWidth, standalone, autoplay } = this.props;
     const { visible } = this.state;
     const width = this.state.width || defaultWidth;
 
@@ -336,9 +341,9 @@ class MediaGallery extends React.PureComponent {
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
 
     if (standalone && this.isFullSizeEligible()) {
-      children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} lang={lang} displayWidth={width} visible={visible} />;
+      children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} lang={lang} translation={translation} displayWidth={width} visible={visible} />;
     } else {
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
+      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} translation={translation} size={size} displayWidth={width} visible={visible || uncached} />);
     }
 
     if (uncached) {

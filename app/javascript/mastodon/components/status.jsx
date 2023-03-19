@@ -401,6 +401,9 @@ class Status extends ImmutablePureComponent {
     if (pictureInPicture.get('inUse')) {
       media = <PictureInPicturePlaceholder width={this.props.cachedMediaWidth} />;
     } else if (status.get('media_attachments').size > 0) {
+      const translation = status.get('translation');
+      const lang = translation ? translation.get('language') : status.get('language');
+
       if (this.props.muted) {
         media = (
           <AttachmentList
@@ -410,14 +413,15 @@ class Status extends ImmutablePureComponent {
         );
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
         const attachment = status.getIn(['media_attachments', 0]);
+        const description = translation ? attachment.getIn(['translation', 'description']) : attachment.get('description');
 
         media = (
           <Bundle fetchComponent={Audio} loading={this.renderLoadingAudioPlayer} >
             {Component => (
               <Component
                 src={attachment.get('url')}
-                alt={attachment.get('description')}
-                lang={status.get('language')}
+                alt={description}
+                lang={lang}
                 poster={attachment.get('preview_url') || status.getIn(['account', 'avatar_static'])}
                 backgroundColor={attachment.getIn(['meta', 'colors', 'background'])}
                 foregroundColor={attachment.getIn(['meta', 'colors', 'foreground'])}
@@ -437,6 +441,7 @@ class Status extends ImmutablePureComponent {
         );
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         const attachment = status.getIn(['media_attachments', 0]);
+        const description = translation ? attachment.getIn(['translation', 'description']) : attachment.get('description');
 
         media = (
           <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
@@ -446,8 +451,8 @@ class Status extends ImmutablePureComponent {
                 frameRate={attachment.getIn(['meta', 'original', 'frame_rate'])}
                 blurhash={attachment.get('blurhash')}
                 src={attachment.get('url')}
-                alt={attachment.get('description')}
-                lang={status.get('language')}
+                alt={description}
+                lang={lang}
                 width={this.props.cachedMediaWidth}
                 height={110}
                 inline
@@ -467,7 +472,8 @@ class Status extends ImmutablePureComponent {
             {Component => (
               <Component
                 media={status.get('media_attachments')}
-                lang={status.get('language')}
+                lang={lang}
+                translation={translation}
                 sensitive={status.get('sensitive')}
                 height={110}
                 onOpenMedia={this.handleOpenMedia}

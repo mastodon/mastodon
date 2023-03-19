@@ -22,7 +22,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = (state, { statusId }) => ({
-  language: state.getIn(['statuses', statusId, 'language']),
+  status: state.getIn(['statuses', statusId]),
 });
 
 export default @connect(mapStateToProps, null, null, { forwardRef: true })
@@ -39,6 +39,7 @@ class MediaModal extends ImmutablePureComponent {
     currentTime: PropTypes.number,
     autoPlay: PropTypes.bool,
     volume: PropTypes.number,
+    status: ImmutablePropTypes.map.isRequired,
   };
 
   state = {
@@ -135,7 +136,7 @@ class MediaModal extends ImmutablePureComponent {
   };
 
   render () {
-    const { media, language, statusId, intl, onClose } = this.props;
+    const { media, status, intl, onClose } = this.props;
     const { navigationHidden } = this.state;
 
     const index = this.getIndex();
@@ -143,9 +144,13 @@ class MediaModal extends ImmutablePureComponent {
     const leftNav  = media.size > 1 && <button tabIndex='0' className='media-modal__nav media-modal__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><Icon id='chevron-left' fixedWidth /></button>;
     const rightNav = media.size > 1 && <button tabIndex='0' className='media-modal__nav  media-modal__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' fixedWidth /></button>;
 
+    const translation = status.get('translation');
+    const lang = translation ? translation.get('language') : status.get('language');
+
     const content = media.map((image) => {
       const width  = image.getIn(['meta', 'original', 'width']) || null;
       const height = image.getIn(['meta', 'original', 'height']) || null;
+      const description = translation ? image.getIn(['translation', 'description']) : image.get('description');
 
       if (image.get('type') === 'image') {
         return (
@@ -154,8 +159,8 @@ class MediaModal extends ImmutablePureComponent {
             src={image.get('url')}
             width={width}
             height={height}
-            alt={image.get('description')}
-            lang={language}
+            alt={description}
+            lang={lang}
             key={image.get('url')}
             onClick={this.toggleNavigation}
             zoomButtonHidden={this.state.zoomButtonHidden}
@@ -177,8 +182,8 @@ class MediaModal extends ImmutablePureComponent {
             volume={volume || 1}
             onCloseVideo={onClose}
             detailed
-            alt={image.get('description')}
-            lang={language}
+            alt={description}
+            lang={lang}
             key={image.get('url')}
           />
         );
@@ -189,8 +194,8 @@ class MediaModal extends ImmutablePureComponent {
             width={width}
             height={height}
             key={image.get('preview_url')}
-            alt={image.get('description')}
-            lang={language}
+            alt={description}
+            lang={lang}
             onClick={this.toggleNavigation}
           />
         );
@@ -249,7 +254,7 @@ class MediaModal extends ImmutablePureComponent {
 
           <div className='media-modal__overlay'>
             {pagination && <ul className='media-modal__pagination'>{pagination}</ul>}
-            {statusId && <Footer statusId={statusId} withOpenButton onClose={onClose} />}
+            {status && <Footer statusId={status.get('id')} withOpenButton onClose={onClose} />}
           </div>
         </div>
       </div>

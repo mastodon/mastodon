@@ -129,17 +129,21 @@ class DetailedStatus extends ImmutablePureComponent {
       outerStyle.height = `${this.state.height}px`;
     }
 
+    const translation = status.get('translation');
+    const lang = translation ? translation.get('language') : status.get('language');
+
     if (pictureInPicture.get('inUse')) {
       media = <PictureInPicturePlaceholder />;
     } else if (status.get('media_attachments').size > 0) {
       if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
         const attachment = status.getIn(['media_attachments', 0]);
+        const description = translation ? attachment.getIn(['translation', 'description']) : attachment.get('description');
 
         media = (
           <Audio
             src={attachment.get('url')}
-            alt={attachment.get('description')}
-            lang={status.get('language')}
+            alt={description}
+            lang={lang}
             duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
             poster={attachment.get('preview_url') || status.getIn(['account', 'avatar_static'])}
             backgroundColor={attachment.getIn(['meta', 'colors', 'background'])}
@@ -154,6 +158,7 @@ class DetailedStatus extends ImmutablePureComponent {
         );
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         const attachment = status.getIn(['media_attachments', 0]);
+        const description = translation ? attachment.getIn(['translation', 'description']) : attachment.get('description');
 
         media = (
           <Video
@@ -161,8 +166,8 @@ class DetailedStatus extends ImmutablePureComponent {
             frameRate={attachment.getIn(['meta', 'original', 'frame_rate'])}
             blurhash={attachment.get('blurhash')}
             src={attachment.get('url')}
-            alt={attachment.get('description')}
-            lang={status.get('language')}
+            alt={description}
+            lang={lang}
             width={300}
             height={150}
             inline
@@ -178,7 +183,8 @@ class DetailedStatus extends ImmutablePureComponent {
             standalone
             sensitive={status.get('sensitive')}
             media={status.get('media_attachments')}
-            lang={status.get('language')}
+            lang={lang}
+            translation={status.get('translation')}
             height={300}
             onOpenMedia={this.props.onOpenMedia}
             visible={this.props.showMedia}
