@@ -40,7 +40,7 @@ class TranslateStatusService < BaseService
   end
 
   def content_hash
-    Digest::SHA256.base64digest(@source_texts.to_json)
+    Digest::SHA256.base64digest(@source_texts.transform_keys { |key| key.respond_to?(:id) ? "#{key.class}-#{key.id}" : key }.to_json)
   end
 
   def source_texts
