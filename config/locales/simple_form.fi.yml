@@ -1,4 +1,3 @@
----
 fi:
   simple_form:
     hints:
@@ -91,7 +90,7 @@ fi:
         site_short_description: Lyhyt kuvaus auttaa yksilöimään palvelimesi. Kuka sitä johtaa, kenelle se on tarkoitettu?
         site_terms: Käytä omaa tietosuojakäytäntöä tai jätä tyhjäksi, jos haluat käyttää oletusta. Voidaan jäsentää Markdown-syntaksilla.
         site_title: Kuinka ihmiset voivat viitata palvelimeen sen verkkotunnuksen lisäksi.
-        status_page_url: URL-osoite, jonka kautta palvelimen tila voidaan tarkastaa sen ollessa tavoittamattomissa
+        status_page_url: URL-osoite sivulle, jonka kautta tämän palvelimen tila voidaan ongelmatilanteissa tarkastaa
         theme: Teema, jonka uloskirjautuneet vierailijat ja uudet käyttäjät näkevät.
         thumbnail: Noin 2:1 kuva näytetään palvelimen tietojen rinnalla.
         timeline_preview: Uloskirjautuneet vierailijat voivat selata uusimpia julkisia viestejä, jotka ovat saatavilla palvelimella.
@@ -116,7 +115,7 @@ fi:
       rule:
         text: Kuvaile sääntöä tai vaatimusta tämän palvelimen käyttäjille. Yritä pitää se lyhyenä ja yksinkertaisena
       sessions:
-        otp: Syötä puhelimeen saamasi kaksivaiheisen tunnistautumisen koodi tai käytä palautuskoodia.
+        otp: 'Syötä puhelimeen saamasi kaksivaiheisen tunnistautumisen koodi tai käytä palautuskoodia.'
         webauthn: Jos kyseessä on USB-avain, muista laittaa se paikalleen ja tarvittaessa napauttaa sitä.
       tag:
         name: Voit muuttaa esimerkiksi kirjaimia paremmin luettavaksi
@@ -305,7 +304,7 @@ fi:
       webhook:
         events: Tapahtumat käytössä
         url: Päätepisteen URL
-    'no': Ei
+    'no': 'Ei'
     not_recommended: Ei suositella
     recommended: Suositeltu
     required:
@@ -314,4 +313,4 @@ fi:
     title:
       sessions:
         webauthn: Käytä jotakin suojausavainta kirjautuaksesi sisään
-    'yes': Kyllä
+    'yes': 'Kyllä'
