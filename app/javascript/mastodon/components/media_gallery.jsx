@@ -80,7 +80,7 @@ class Item extends React.PureComponent {
   };
 
   render () {
-    const { attachment, translation, index, size, standalone, displayWidth, visible } = this.props;
+    const { attachment, lang, translation, index, size, standalone, displayWidth, visible } = this.props;
 
     let width  = 50;
     let height = 100;
@@ -133,7 +133,6 @@ class Item extends React.PureComponent {
 
     let thumbnail = '';
 
-    const lang = translation ? translation.get('language') : this.props.lang;
     const description = translation ? attachment.getIn(['translation', 'description']) : attachment.get('description');
 
     if (attachment.get('type') === 'unknown') {

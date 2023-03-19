@@ -402,7 +402,7 @@ class Status extends ImmutablePureComponent {
       media = <PictureInPicturePlaceholder width={this.props.cachedMediaWidth} />;
     } else if (status.get('media_attachments').size > 0) {
       const translation = status.get('translation');
-      const lang = translation ? translation.get('language') : status.get('language');
+      const language = translation ? translation.get('language') : status.get('language');
 
       if (this.props.muted) {
         media = (
@@ -421,7 +421,7 @@ class Status extends ImmutablePureComponent {
               <Component
                 src={attachment.get('url')}
                 alt={description}
-                lang={lang}
+                lang={language}
                 poster={attachment.get('preview_url') || status.getIn(['account', 'avatar_static'])}
                 backgroundColor={attachment.getIn(['meta', 'colors', 'background'])}
                 foregroundColor={attachment.getIn(['meta', 'colors', 'foreground'])}
@@ -452,7 +452,7 @@ class Status extends ImmutablePureComponent {
                 blurhash={attachment.get('blurhash')}
                 src={attachment.get('url')}
                 alt={description}
-                lang={lang}
+                lang={language}
                 width={this.props.cachedMediaWidth}
                 height={110}
                 inline
@@ -472,7 +472,7 @@ class Status extends ImmutablePureComponent {
             {Component => (
               <Component
                 media={status.get('media_attachments')}
-                lang={lang}
+                lang={language}
                 translation={translation}
                 sensitive={status.get('sensitive')}
                 height={110}

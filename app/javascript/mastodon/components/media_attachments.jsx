@@ -51,8 +51,8 @@ export default class MediaAttachments extends ImmutablePureComponent {
   render () {
     const { status, width, height } = this.props;
     const mediaAttachments = status.get('media_attachments');
-    const translation = !this.props.lang && status.get('translation');
-    const lang = this.props.lang || (translation ? translation.get('language') : status.get('language'));
+    const translation = status.get('translation');
+    const language = translation ? translation.get('language') : (status.get('language') || this.props.lang);
 
     if (mediaAttachments.size === 0) {
       return null;
@@ -68,7 +68,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
             <Component
               src={audio.get('url')}
               alt={description}
-              lang={lang}
+              lang={language}
               width={width}
               height={height}
               poster={audio.get('preview_url') || status.getIn(['account', 'avatar_static'])}
@@ -93,7 +93,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
               blurhash={video.get('blurhash')}
               src={video.get('url')}
               alt={description}
-              lang={lang}
+              lang={language}
               width={width}
               height={height}
               inline
@@ -109,7 +109,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
           {Component => (
             <Component
               media={mediaAttachments}
-              lang={lang}
+              lang={language}
               sensitive={status.get('sensitive')}
               defaultWidth={width}
               height={height}
