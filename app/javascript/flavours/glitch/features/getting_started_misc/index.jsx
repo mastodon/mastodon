@@ -16,10 +16,8 @@ const messages = defineMessages({
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
-  info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
   show_me_around: { id: 'getting_started.onboarding', defaultMessage: 'Show me around' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
-  info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
   keyboard_shortcuts: { id: 'navigation_bar.keyboard_shortcuts', defaultMessage: 'Keyboard shortcuts' },
   featured_users: { id: 'navigation_bar.featured_users', defaultMessage: 'Featured users' },
 });
@@ -27,6 +25,11 @@ const messages = defineMessages({
 export default @connect()
 @injectIntl
 class gettingStartedMisc extends ImmutablePureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+    identity: PropTypes.object,
+  };
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -43,8 +46,7 @@ class gettingStartedMisc extends ImmutablePureComponent {
 
   render () {
     const { intl } = this.props;
-
-    let i = 1;
+    const { signedIn } = this.context.identity;
 
     return (
       <Column icon='ellipsis-h' heading={intl.formatMessage(messages.heading)}>
@@ -52,15 +54,14 @@ class gettingStartedMisc extends ImmutablePureComponent {
 
         <div className='scrollable'>
           <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
-          <ColumnLink key='{i++}' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />
-          <ColumnLink key='{i++}' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />
-          <ColumnLink key='{i++}' icon='users' text={intl.formatMessage(messages.featured_users)} onClick={this.openFeaturedAccountsModal} />
-          <ColumnLink key='{i++}' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
-          <ColumnLink key='{i++}' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
-          <ColumnLink key='{i++}' icon='minus-circle' text={intl.formatMessage(messages.domain_blocks)} to='/domain_blocks' />
-          <ColumnLink key='{i++}' icon='question' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />
-          <ColumnLink key='{i++}' icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
-          <ColumnLink key='{i++}' icon='hand-o-right' text={intl.formatMessage(messages.show_me_around)} onClick={this.openOnboardingModal} />
+          {signedIn && (<ColumnLink key='favourites' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />)}
+          {signedIn && (<ColumnLink key='pinned' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />)}
+          {signedIn && (<ColumnLink key='featured_users' icon='users' text={intl.formatMessage(messages.featured_users)} onClick={this.openFeaturedAccountsModal} />)}
+          {signedIn && (<ColumnLink key='mutes' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />)}
+          {signedIn && (<ColumnLink key='blocks' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />)}
+          {signedIn && (<ColumnLink key='domain_blocks' icon='minus-circle' text={intl.formatMessage(messages.domain_blocks)} to='/domain_blocks' />)}
+          <ColumnLink key='shortcuts' icon='question' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />
+          {signedIn && (<ColumnLink key='onboarding' icon='hand-o-right' text={intl.formatMessage(messages.show_me_around)} onClick={this.openOnboardingModal} />)}
         </div>
       </Column>
     );
