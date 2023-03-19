@@ -35,8 +35,6 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
   context 'when account is not suspended' do
     subject { described_class.new.call('alice', 'example.com', payload) }
 
-    let!(:account) { Fabricate(:account, username: 'alice', domain: 'example.com') }
-
     let(:payload) do
       {
         id: 'https://foo.test',
@@ -47,6 +45,7 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
     end
 
     before do
+      _account = Fabricate(:account, username: 'alice', domain: 'example.com')
       allow(Admin::SuspensionWorker).to receive(:perform_async)
     end
 

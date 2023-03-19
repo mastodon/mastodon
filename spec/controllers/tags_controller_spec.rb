@@ -11,6 +11,9 @@ RSpec.describe TagsController do
     let(:tag_name) { tag&.name }
 
     before do
+      _local = Fabricate(:status, tags: [tag], text: 'local #test')
+      _remote = Fabricate(:status, tags: [tag], text: 'remote #test', account: Fabricate(:account, domain: 'remote'))
+
       get :show, params: { id: tag_name, format: format }
     end
 

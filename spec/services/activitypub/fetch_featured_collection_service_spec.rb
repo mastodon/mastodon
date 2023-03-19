@@ -7,8 +7,6 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
 
   let(:actor) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/account', featured_collection_url: 'https://example.com/account/pinned') }
 
-  let!(:known_status) { Fabricate(:status, account: actor, uri: 'https://example.com/account/pinned/1') }
-
   let(:status_json_pinned_known) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
@@ -41,7 +39,6 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
       to: 'https://www.w3.org/ns/activitystreams#Public',
     }
   end
-
   let(:items) do
     [
       'https://example.com/account/pinned/known', # known
@@ -50,7 +47,6 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
       'https://example.com/account/pinned/unknown-reachable', # unknown reachable
     ]
   end
-
   let(:payload) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
@@ -58,6 +54,10 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
       id: actor.featured_collection_url,
       items: items,
     }.with_indifferent_access
+  end
+
+  before do
+    _known_status = Fabricate(:status, account: actor, uri: 'https://example.com/account/pinned/1')
   end
 
   shared_examples 'sets pinned posts' do

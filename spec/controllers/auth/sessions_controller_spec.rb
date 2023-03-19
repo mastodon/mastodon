@@ -123,9 +123,9 @@ RSpec.describe Auth::SessionsController do
         let(:previous_ip) { '1.2.3.4' }
         let(:current_ip)  { '4.3.2.1' }
 
-        let!(:previous_login) { Fabricate(:login_activity, user: user, ip: previous_ip) }
-
         before do
+          _previous_login = Fabricate(:login_activity, user: user, ip: previous_ip)
+
           allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip).and_return(current_ip)
           allow(UserMailer).to receive(:suspicious_sign_in)
             .and_return(instance_double(ActionMailer::MessageDelivery, deliver_later!: nil))
@@ -325,13 +325,6 @@ RSpec.describe Auth::SessionsController do
         let!(:user) do
           Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
         end
-
-        let!(:recovery_codes) do
-          codes = user.generate_otp_backup_codes!
-          user.save
-          return codes
-        end
-
         let!(:webauthn_credential) do
           user.update(webauthn_id: WebAuthn.generate_user_id)
           public_key_credential = WebAuthn::Credential.from_create(fake_client.create)
@@ -343,16 +336,16 @@ RSpec.describe Auth::SessionsController do
           )
           user.webauthn_credentials.take
         end
-
         let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http'}://#{Rails.configuration.x.web_domain}" }
-
         let(:fake_client) { WebAuthn::FakeClient.new(domain) }
-
         let(:challenge) { WebAuthn::Credential.options_for_get.challenge }
-
         let(:sign_count) { 1234 }
-
         let(:fake_credential) { fake_client.get(challenge: challenge, sign_count: sign_count) }
+
+        before do
+          _codes = user.generate_otp_backup_codes!
+          user.save
+        end
 
         context 'when using email and password' do
           before do

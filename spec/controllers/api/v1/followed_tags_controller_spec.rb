@@ -12,9 +12,9 @@ RSpec.describe Api::V1::FollowedTagsController do
   before { allow(controller).to receive(:doorkeeper_token) { token } }
 
   describe 'GET #index' do
-    let!(:tag_follows) { Fabricate.times(5, :tag_follow, account: user.account) }
-
     before do
+      Fabricate.times(5, :tag_follow, account: user.account)
+
       get :index, params: { limit: 1 }
     end
 

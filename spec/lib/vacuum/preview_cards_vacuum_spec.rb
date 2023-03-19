@@ -8,11 +8,11 @@ RSpec.describe Vacuum::PreviewCardsVacuum do
   let(:retention_period) { 7.days }
 
   describe '#perform' do
-    let!(:orphaned_preview_card) { Fabricate(:preview_card, created_at: 2.days.ago) }
     let!(:old_preview_card) { Fabricate(:preview_card, updated_at: (retention_period + 1.day).ago) }
     let!(:new_preview_card) { Fabricate(:preview_card) }
 
     before do
+      _orphaned_preview_card = Fabricate(:preview_card, created_at: 2.days.ago)
       old_preview_card.statuses << Fabricate(:status)
       new_preview_card.statuses << Fabricate(:status)
 

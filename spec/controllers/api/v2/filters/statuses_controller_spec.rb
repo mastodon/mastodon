@@ -17,7 +17,10 @@ RSpec.describe Api::V2::Filters::StatusesController do
 
   describe 'GET #index' do
     let(:scopes) { 'read:filters' }
-    let!(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter) }
+
+    before do
+      _status_filter = Fabricate(:custom_filter_status, custom_filter: filter)
+    end
 
     it 'returns http success' do
       get :index, params: { filter_id: filter.id }

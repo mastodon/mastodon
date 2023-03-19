@@ -8,7 +8,10 @@ describe Scheduler::UserCleanupScheduler do
   let!(:new_unconfirmed_user) { Fabricate(:user) }
   let!(:old_unconfirmed_user) { Fabricate(:user) }
   let!(:confirmed_user)       { Fabricate(:user) }
-  let!(:moderation_note)      { Fabricate(:account_moderation_note, account: Fabricate(:account), target_account: old_unconfirmed_user.account) }
+
+  before do
+    _moderation_note = Fabricate(:account_moderation_note, account: Fabricate(:account), target_account: old_unconfirmed_user.account)
+  end
 
   describe '#perform' do
     before do

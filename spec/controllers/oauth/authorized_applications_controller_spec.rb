@@ -49,9 +49,10 @@ describe Oauth::AuthorizedApplicationsController do
     let!(:user) { Fabricate(:user) }
     let!(:application) { Fabricate(:application) }
     let!(:access_token) { Fabricate(:accessible_access_token, application: application, resource_owner_id: user.id) }
-    let!(:web_push_subscription) { Fabricate(:web_push_subscription, user: user, access_token: access_token) }
 
     before do
+      _web_push_subscription = Fabricate(:web_push_subscription, user: user, access_token: access_token)
+
       sign_in user, scope: :user
       post :destroy, params: { id: application.id }
     end

@@ -13,9 +13,10 @@ RSpec.describe Settings::ImportsController do
 
   describe 'GET #index' do
     let!(:import)       { Fabricate(:bulk_import, account: user.account) }
-    let!(:other_import) { Fabricate(:bulk_import) }
 
     before do
+      _other_import = Fabricate(:bulk_import)
+
       get :index
     end
 
@@ -191,7 +192,7 @@ RSpec.describe Settings::ImportsController do
     context 'with follows' do
       let(:import_type) { 'following' }
 
-      let!(:rows) do
+      before do
         [
           { 'acct' => 'foo@bar' },
           { 'acct' => 'user@bar', 'show_reblogs' => false, 'notify' => true, 'languages' => ['fr', 'de'] },
@@ -204,7 +205,7 @@ RSpec.describe Settings::ImportsController do
     context 'with blocks' do
       let(:import_type) { 'blocking' }
 
-      let!(:rows) do
+      before do
         [
           { 'acct' => 'foo@bar' },
           { 'acct' => 'user@bar' },
@@ -217,7 +218,7 @@ RSpec.describe Settings::ImportsController do
     context 'with mutes' do
       let(:import_type) { 'muting' }
 
-      let!(:rows) do
+      before do
         [
           { 'acct' => 'foo@bar' },
           { 'acct' => 'user@bar', 'hide_notifications' => false },
@@ -230,7 +231,7 @@ RSpec.describe Settings::ImportsController do
     context 'with domain blocks' do
       let(:import_type) { 'domain_blocking' }
 
-      let!(:rows) do
+      before do
         [
           { 'domain' => 'bad.domain' },
           { 'domain' => 'evil.domain' },
@@ -243,7 +244,7 @@ RSpec.describe Settings::ImportsController do
     context 'with bookmarks' do
       let(:import_type) { 'bookmarks' }
 
-      let!(:rows) do
+      before do
         [
           { 'uri' => 'https://foo.com/1' },
           { 'uri' => 'https://foo.com/2' },

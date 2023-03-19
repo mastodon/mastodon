@@ -8,7 +8,7 @@ describe Admin::ActionLogsController do
   # Action logs typically cause issues when their targets are not in the database
   let!(:account) { Fabricate(:account) }
 
-  let!(:orphaned_logs) do
+  before do
     %w(
       Account User UserRole Report DomainBlock DomainAllow
       EmailDomainBlock UnavailableDomain Status AccountWarning

@@ -7,15 +7,16 @@ describe Admin::StatusesController do
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
   let(:account) { Fabricate(:account) }
-  let!(:status) { Fabricate(:status, account: account) }
+  let(:status) { Fabricate(:status, account: account) }
   let(:media_attached_status) { Fabricate(:status, account: account, sensitive: !sensitive) }
-  let!(:media_attachment) { Fabricate(:media_attachment, account: account, status: media_attached_status) }
   let(:last_media_attached_status) { Fabricate(:status, account: account, sensitive: !sensitive) }
-  let!(:last_media_attachment) { Fabricate(:media_attachment, account: account, status: last_media_attached_status) }
-  let!(:last_status) { Fabricate(:status, account: account) }
   let(:sensitive) { true }
 
   before do
+    _media_attachment = Fabricate(:media_attachment, account: account, status: media_attached_status)
+    _last_media_attachment = Fabricate(:media_attachment, account: account, status: last_media_attached_status)
+    _last_status = Fabricate(:status, account: account)
+
     sign_in user, scope: :user
   end
 

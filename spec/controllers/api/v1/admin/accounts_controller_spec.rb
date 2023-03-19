@@ -17,9 +17,7 @@ RSpec.describe Api::V1::Admin::AccountsController do
 
   describe 'GET #index' do
     let!(:remote_account)       { Fabricate(:account, domain: 'example.org') }
-    let!(:other_remote_account) { Fabricate(:account, domain: 'foo.bar') }
     let!(:suspended_account)    { Fabricate(:account, suspended: true) }
-    let!(:suspended_remote)     { Fabricate(:account, domain: 'foo.bar', suspended: true) }
     let!(:disabled_account)     { Fabricate(:user, disabled: true).account }
     let!(:pending_account)      { Fabricate(:user, approved: false).account }
     let!(:admin_account)        { user.account }
@@ -27,6 +25,8 @@ RSpec.describe Api::V1::Admin::AccountsController do
     let(:params) { {} }
 
     before do
+      _other_remote_account = Fabricate(:account, domain: 'foo.bar')
+      _suspended_remote = Fabricate(:account, domain: 'foo.bar', suspended: true)
       pending_account.user.update(approved: false)
       get :index, params: params
     end
@@ -34,25 +34,43 @@ RSpec.describe Api::V1::Admin::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    [
-      [{ active: 'true', local: 'true', staff: 'true' }, [:admin_account]],
-      [{ by_domain: 'example.org', remote: 'true' }, [:remote_account]],
-      [{ suspended: 'true' }, [:suspended_account]],
-      [{ disabled: 'true' }, [:disabled_account]],
-      [{ pending: 'true' }, [:pending_account]],
-    ].each do |params, expected_results|
-      context "when called with #{params.inspect}" do
-        let(:params) { params }
+    context 'with params of active true and local true and staff true' do
+      let(:params) { { active: 'true', local: 'true', staff: 'true' } }
 
-        it 'returns http success' do
-          expect(response).to have_http_status(200)
-        end
+      it 'expects the admin_account' do
+        expect_results_of([admin_account])
+      end
+    end
 
-        it "returns the correct accounts (#{expected_results.inspect})" do
-          json = body_as_json
+    context 'with params of by_domain and remote true' do
+      let(:params) { { by_domain: 'example.org', remote: 'true' } }
 
-          expect(json.map { |a| a[:id].to_i }).to eq(expected_results.map { |symbol| send(symbol).id })
-        end
+      it 'expects the remote_account' do
+        expect_results_of([remote_account])
+      end
+    end
+
+    context 'with suspended true' do
+      let(:params) { { suspended: 'true' } }
+
+      it 'expects the suspended_account' do
+        expect_results_of([suspended_account])
+      end
+    end
+
+    context 'with params of disabled true' do
+      let(:params) { { disabled: 'true' } }
+
+      it 'expects the disabled_account' do
+        expect_results_of([disabled_account])
+      end
+    end
+
+    context 'with params of pending true' do
+      let(:params) { { pending: 'true' } }
+
+      it 'expects the pending_account' do
+        expect_results_of([pending_account])
       end
     end
   end
@@ -194,5 +212,12 @@ RSpec.describe Api::V1::Admin::AccountsController do
     it 'unsilences account' do
       expect(account.reload.silenced?).to be false
     end
+  end
+
+  private
+
+  def expect_results_of(records)
+    expect(response).to have_http_status(200)
+    expect(body_as_json.map { |a| a[:id].to_i }).to eq(records.map(&:id))
   end
 end

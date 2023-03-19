@@ -14,7 +14,10 @@ RSpec.describe Api::V2::FiltersController do
 
   describe 'GET #index' do
     let(:scopes) { 'read:filters' }
-    let!(:filter) { Fabricate(:custom_filter, account: user.account) }
+
+    before do
+      _filter = Fabricate(:custom_filter, account: user.account)
+    end
 
     it 'returns http success' do
       get :index

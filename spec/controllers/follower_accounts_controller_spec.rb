@@ -10,8 +10,10 @@ describe FollowerAccountsController do
   let(:follower_chris) { Fabricate(:account, username: 'curt') }
 
   describe 'GET #index' do
-    let!(:follow_from_bob) { follower_bob.follow!(alice) }
-    let!(:follow_from_chris) { follower_chris.follow!(alice) }
+    before do
+      _follow_from_bob = follower_bob.follow!(alice)
+      _follow_from_chris = follower_chris.follow!(alice)
+    end
 
     context 'when format is html' do
       subject(:response) { get :index, params: { account_username: alice.username, format: :html } }

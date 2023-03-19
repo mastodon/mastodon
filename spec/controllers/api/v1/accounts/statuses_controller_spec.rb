@@ -10,32 +10,36 @@ describe Api::V1::Accounts::StatusesController do
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
-    Fabricate(:status, account: user.account)
   end
 
   describe 'GET #index' do
-    it 'returns http success' do
-      get :index, params: { account_id: user.account.id, limit: 1 }
+    context 'with one status' do
+      before do
+        Fabricate(:status, account: user.account)
+      end
 
-      expect(response).to have_http_status(200)
-    end
-
-    it 'returns expected headers' do
-      get :index, params: { account_id: user.account.id, limit: 1 }
-
-      expect(response.headers['Link'].links.size).to eq(2)
-    end
-
-    context 'with only media' do
       it 'returns http success' do
-        get :index, params: { account_id: user.account.id, only_media: true }
+        get :index, params: { account_id: user.account.id, limit: 1 }
 
         expect(response).to have_http_status(200)
+      end
+
+      it 'returns expected headers' do
+        get :index, params: { account_id: user.account.id, limit: 1 }
+
+        expect(response.headers['Link'].links.size).to eq(2)
+      end
+
+      context 'with only media' do
+        it 'returns http success' do
+          get :index, params: { account_id: user.account.id, only_media: true }
+
+          expect(response).to have_http_status(200)
+        end
       end
     end
 
     context 'with exclude replies' do
-      let!(:older_statuses) { user.account.statuses.destroy_all }
       let!(:status) { Fabricate(:status, account: user.account) }
       let!(:status_self_reply) { Fabricate(:status, account: user.account, thread: status) }
 

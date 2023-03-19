@@ -35,9 +35,9 @@ RSpec.describe ActivityPub::Activity::Delete do
 
       let!(:reblogger) { Fabricate(:account) }
       let!(:follower)  { Fabricate(:account, username: 'follower', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
-      let!(:reblog)    { Fabricate(:status, account: reblogger, reblog: status) }
 
       before do
+        _reblog = Fabricate(:status, account: reblogger, reblog: status)
         stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
         follower.follow!(reblogger)
         subject.perform

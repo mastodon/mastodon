@@ -260,8 +260,11 @@ RSpec.describe Status do
     let!(:status_with_tag_cats) { Fabricate(:status, tags: [tag_cats]) }
     let!(:status_with_tag_dogs) { Fabricate(:status, tags: [tag_dogs]) }
     let!(:status_tagged_with_zebras) { Fabricate(:status, tags: [tag_zebras]) }
-    let!(:status_without_tags) { Fabricate(:status, tags: []) }
     let!(:status_with_all_tags) { Fabricate(:status, tags: [tag_cats, tag_dogs, tag_zebras]) }
+
+    before do
+      _status_without_tags = Fabricate(:status, tags: [])
+    end
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
@@ -287,8 +290,11 @@ RSpec.describe Status do
     let!(:status_with_tag_cats) { Fabricate(:status, tags: [tag_cats]) }
     let!(:status_with_tag_dogs) { Fabricate(:status, tags: [tag_dogs]) }
     let!(:status_tagged_with_zebras) { Fabricate(:status, tags: [tag_zebras]) }
-    let!(:status_without_tags) { Fabricate(:status, tags: []) }
     let!(:status_with_all_tags) { Fabricate(:status, tags: [tag_cats, tag_dogs]) }
+
+    before do
+      _status_without_tags = Fabricate(:status, tags: [])
+    end
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
@@ -315,7 +321,10 @@ RSpec.describe Status do
     let!(:status_with_tag_dogs) { Fabricate(:status, tags: [tag_dogs]) }
     let!(:status_tagged_with_zebras) { Fabricate(:status, tags: [tag_zebras]) }
     let!(:status_without_tags) { Fabricate(:status, tags: []) }
-    let!(:status_with_all_tags) { Fabricate(:status, tags: [tag_cats, tag_dogs, tag_zebras]) }
+
+    before do
+      _status_with_all_tags = Fabricate(:status, tags: [tag_cats, tag_dogs, tag_zebras])
+    end
 
     context 'when given one tag' do
       it 'returns the expected statuses' do

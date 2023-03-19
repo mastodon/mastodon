@@ -33,9 +33,9 @@ describe Auth::ConfirmationsController do
     end
 
     context 'when user is unconfirmed and unapproved' do
-      let!(:user) { Fabricate(:user, confirmation_token: 'foobar', confirmed_at: nil, approved: false) }
-
       before do
+        _user = Fabricate(:user, confirmation_token: 'foobar', confirmed_at: nil, approved: false)
+
         allow(BootstrapTimelineWorker).to receive(:perform_async)
         @request.env['devise.mapping'] = Devise.mappings[:user]
         get :show, params: { confirmation_token: 'foobar' }
@@ -79,9 +79,9 @@ describe Auth::ConfirmationsController do
     end
 
     context 'when user is updating email' do
-      let!(:user) { Fabricate(:user, confirmation_token: 'foobar', unconfirmed_email: 'new-email@example.com') }
-
       before do
+        _user = Fabricate(:user, confirmation_token: 'foobar', unconfirmed_email: 'new-email@example.com')
+
         allow(BootstrapTimelineWorker).to receive(:perform_async)
         @request.env['devise.mapping'] = Devise.mappings[:user]
         get :show, params: { confirmation_token: 'foobar' }

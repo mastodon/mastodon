@@ -6,12 +6,13 @@ RSpec.describe RemoveStatusService, type: :service do
   subject { described_class.new }
 
   let!(:alice)  { Fabricate(:account) }
-  let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com') }
   let!(:jeff)   { Fabricate(:account) }
   let!(:hank)   { Fabricate(:account, username: 'hank', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
   let!(:bill)   { Fabricate(:account, username: 'bill', protocol: :activitypub, domain: 'example2.com', inbox_url: 'http://example2.com/inbox') }
 
   before do
+    _bob = Fabricate(:account, username: 'bob', domain: 'example.com')
+
     stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
     stub_request(:post, 'http://example2.com/inbox').to_return(status: 200)
 

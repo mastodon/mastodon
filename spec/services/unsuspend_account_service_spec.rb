@@ -40,9 +40,9 @@ RSpec.describe UnsuspendAccountService, type: :service do
       let!(:account)         { Fabricate(:account) }
       let!(:remote_follower) { Fabricate(:account, uri: 'https://alice.com', inbox_url: 'https://alice.com/inbox', protocol: :activitypub) }
       let!(:remote_reporter) { Fabricate(:account, uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
-      let!(:report)          { Fabricate(:report, account: remote_reporter, target_account: account) }
 
       before do
+        _report = Fabricate(:report, account: remote_reporter, target_account: account)
         remote_follower.follow!(account)
       end
 

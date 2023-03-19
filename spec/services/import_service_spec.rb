@@ -184,12 +184,12 @@ RSpec.describe ImportService, type: :service do
   context 'with a utf-8 encoded domains' do
     subject { described_class.new }
 
-    let!(:nare) { Fabricate(:account, username: 'nare', domain: 'թութ.հայ', locked: false, protocol: :activitypub, inbox_url: 'https://թութ.հայ/inbox') }
     let(:csv) { attachment_fixture('utf8-followers.txt') }
     let(:import) { Import.create(account: account, type: 'following', data: csv) }
 
     # Make sure to not actually go to the remote server
     before do
+      _nare = Fabricate(:account, username: 'nare', domain: 'թութ.հայ', locked: false, protocol: :activitypub, inbox_url: 'https://թութ.հայ/inbox')
       stub_request(:post, 'https://թութ.հայ/inbox').to_return(status: 200)
     end
 

@@ -8,10 +8,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
   subject { described_class.new }
 
   let!(:sender) { Fabricate(:account, domain: 'foo.bar', uri: 'https://foo.bar') }
-  let!(:recipient) { Fabricate(:account) }
-
   let(:existing_status) { nil }
-
   let(:note) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
@@ -23,6 +20,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
   end
 
   before do
+    _recipient = Fabricate(:account)
     stub_request(:get, 'https://foo.bar/watch?v=12345').to_return(status: 404, body: '')
     stub_request(:get, object[:id]).to_return(body: Oj.dump(object))
   end

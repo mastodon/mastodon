@@ -428,11 +428,12 @@ RSpec.describe User do
   describe '#reset_password!' do
     subject(:user) { Fabricate(:user, password: 'foobar12345') }
 
-    let!(:session_activation) { Fabricate(:session_activation, user: user) }
     let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
-    let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_token) }
 
     before do
+      _session_activation = Fabricate(:session_activation, user: user)
+      _web_push_subscription = Fabricate(:web_push_subscription, access_token: access_token)
+
       user.reset_password!
     end
 

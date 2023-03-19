@@ -45,11 +45,12 @@ describe Auth::PasswordsController do
     end
 
     context 'with valid reset_password_token' do
-      let!(:session_activation) { Fabricate(:session_activation, user: user) }
       let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
-      let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_token) }
 
       before do
+        _session_activation = Fabricate(:session_activation, user: user)
+        _web_push_subscription = Fabricate(:web_push_subscription, access_token: access_token)
+
         @token = user.send_reset_password_instructions
 
         post :update, params: { user: { password: @password, password_confirmation: @password, reset_password_token: @token } }
