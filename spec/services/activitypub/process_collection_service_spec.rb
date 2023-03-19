@@ -95,6 +95,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
       end
 
       context 'when receiving a fabricated status' do
+        # rubocop:disable Layout/LineLength
         let!(:actor) do
           Fabricate(:account,
                     username: 'bob',
@@ -206,6 +207,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
             },
           }
         end
+        # rubocop:enable Layout/LineLength
 
         it 'does not process forged payload' do
           expect(ActivityPub::Activity).to_not receive(:factory).with(

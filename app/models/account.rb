@@ -87,11 +87,22 @@ class Account < ApplicationRecord
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
 
   # Remote user validations, also applies to internal actors
-  validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { (!local? || actor_type == 'Application') && will_save_change_to_username? }
+  validates :username, format: { with: USERNAME_ONLY_RE }, if: lambda {
+                                                                 (!local? || actor_type == 'Application') &&
+                                                                   will_save_change_to_username?
+                                                               }
 
   # Local user validations
-  validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
-  validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
+  validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: lambda {
+                                                                                           local? &&
+                                                                                             will_save_change_to_username? &&
+                                                                                             actor_type != 'Application'
+                                                                                         }
+  validates_with UnreservedUsernameValidator, if: lambda {
+                                                    local? &&
+                                                      will_save_change_to_username? &&
+                                                      actor_type != 'Application'
+                                                  }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
   validates :note, note_length: { maximum: 500 }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
@@ -112,16 +123,56 @@ class Account < ApplicationRecord
   scope :matches_username, ->(value) { where('lower((username)::text) LIKE lower(?)', "#{value}%") }
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
-  scope :without_unapproved, -> { left_outer_joins(:user).remote.or(left_outer_joins(:user).merge(User.approved.confirmed)) }
+  scope :without_unapproved, lambda {
+                               left_outer_joins(:user).remote.or(left_outer_joins(:user).merge(User.approved.confirmed))
+                             }
   scope :searchable, -> { without_unapproved.without_suspended.where(moved_to_account_id: nil) }
   scope :discoverable, -> { searchable.without_silenced.where(discoverable: true).left_outer_joins(:account_stat) }
-  scope :followable_by, ->(account) { joins(arel_table.join(Follow.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(Follow.arel_table[:target_account_id]).and(Follow.arel_table[:account_id].eq(account.id))).join_sources).where(Follow.arel_table[:id].eq(nil)).joins(arel_table.join(FollowRequest.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(FollowRequest.arel_table[:target_account_id]).and(FollowRequest.arel_table[:account_id].eq(account.id))).join_sources).where(FollowRequest.arel_table[:id].eq(nil)) }
-  scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc, accounts.id desc')) }
-  scope :by_recent_sign_in, -> { order(Arel.sql('(case when users.current_sign_in_at is null then 1 else 0 end) asc, users.current_sign_in_at desc, accounts.id desc')) }
+  scope :followable_by, lambda { |account|
+                          joins(
+                            arel_table.join(
+                              Follow.arel_table, Arel::Nodes::OuterJoin
+                            ).on(
+                              arel_table[:id].eq(
+                                Follow.arel_table[:target_account_id]
+                              ).and(
+                                Follow.arel_table[:account_id].eq(account.id)
+                              )
+                            ).join_sources
+                          ).where(
+                            Follow.arel_table[:id].eq(nil)
+                          ).joins(
+                            arel_table.join(
+                              FollowRequest.arel_table, Arel::Nodes::OuterJoin
+                            ).on(arel_table[:id].eq(
+                              FollowRequest.arel_table[:target_account_id]
+                            ).and(
+                              FollowRequest.arel_table[:account_id].eq(account.id)
+                            )).join_sources
+                          ).where(FollowRequest.arel_table[:id].eq(nil))
+                        }
+  scope :by_recent_status, lambda {
+                             order(
+                               Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc, accounts.id desc')
+                             )
+                           }
+  scope :by_recent_sign_in, lambda {
+                              order(
+                                Arel.sql('(case when users.current_sign_in_at is null then 1 else 0 end) asc, users.current_sign_in_at desc, accounts.id desc')
+                              )
+                            }
   scope :popular, -> { order('account_stats.followers_count desc') }
   scope :by_domain_and_subdomains, ->(domain) { where(domain: Instance.by_domain_and_subdomains(domain).select(:domain)) }
   scope :not_excluded_by_account, ->(account) { where.not(id: account.excluded_from_timeline_account_ids) }
-  scope :not_domain_blocked_by_account, ->(account) { where(arel_table[:domain].eq(nil).or(arel_table[:domain].not_in(account.excluded_from_timeline_domains))) }
+  scope :not_domain_blocked_by_account, lambda { |account|
+                                          where(arel_table[:domain]
+                                            .eq(nil)
+                                            .or(
+                                              arel_table[:domain].not_in(
+                                                account.excluded_from_timeline_domains
+                                              )
+                                            ))
+                                        }
 
   after_update_commit :trigger_update_webhooks
 
@@ -377,7 +428,11 @@ class Account < ApplicationRecord
   end
 
   def excluded_from_timeline_account_ids
-    Rails.cache.fetch("exclude_account_ids_for:#{id}") { block_relationships.pluck(:target_account_id) + blocked_by_relationships.pluck(:account_id) + mute_relationships.pluck(:target_account_id) }
+    Rails.cache.fetch("exclude_account_ids_for:#{id}") do
+      block_relationships.pluck(:target_account_id) +
+        blocked_by_relationships.pluck(:account_id) +
+        mute_relationships.pluck(:target_account_id)
+    end
   end
 
   def excluded_from_timeline_domains
@@ -416,7 +471,9 @@ class Account < ApplicationRecord
     end
 
     def inboxes
-      urls = reorder(nil).where(protocol: :activitypub).group(:preferred_inbox_url).pluck(Arel.sql("coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url) AS preferred_inbox_url"))
+      urls = reorder(nil).where(protocol: :activitypub).group(:preferred_inbox_url).pluck(
+        Arel.sql("coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url) AS preferred_inbox_url")
+      )
       DeliveryFailureTracker.without_unavailable(urls)
     end
 

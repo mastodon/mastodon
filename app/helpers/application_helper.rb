@@ -79,7 +79,9 @@ module ApplicationHelper
   end
 
   def provider_sign_in_link(provider)
-    label = Devise.omniauth_configs[provider]&.strategy&.display_name.presence || I18n.t("auth.providers.#{provider}", default: provider.to_s.chomp('_oauth2').capitalize)
+    label = Devise.omniauth_configs[provider]&.strategy&.display_name.presence ||
+            I18n.t("auth.providers.#{provider}",
+                   default: provider.to_s.chomp('_oauth2').capitalize)
     link_to label, omniauth_authorize_path(:user, provider), class: "button button-#{provider}", method: :post
   end
 
@@ -114,7 +116,16 @@ module ApplicationHelper
   end
 
   def check_icon
-    content_tag(:svg, tag.path('fill-rule': 'evenodd', 'clip-rule': 'evenodd', d: 'M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'), xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 20 20', fill: 'currentColor')
+    content_tag(
+      :svg,
+      tag.path(
+        'fill-rule': 'evenodd',
+        'clip-rule': 'evenodd',
+        d: 'M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'
+      ),
+      xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 20 20',
+      fill: 'currentColor'
+    )
   end
 
   def visibility_icon(status)
@@ -133,9 +144,11 @@ module ApplicationHelper
     if relationships.following[account_id] && relationships.followed_by[account_id]
       fa_icon('exchange', title: I18n.t('relationships.mutual'), class: 'fa-fw active passive')
     elsif relationships.following[account_id]
-      fa_icon(locale_direction == 'ltr' ? 'arrow-right' : 'arrow-left', title: I18n.t('relationships.following'), class: 'fa-fw active')
+      fa_icon(locale_direction == 'ltr' ? 'arrow-right' : 'arrow-left', title: I18n.t('relationships.following'),
+                                                                        class: 'fa-fw active')
     elsif relationships.followed_by[account_id]
-      fa_icon(locale_direction == 'ltr' ? 'arrow-left' : 'arrow-right', title: I18n.t('relationships.followers'), class: 'fa-fw passive')
+      fa_icon(locale_direction == 'ltr' ? 'arrow-left' : 'arrow-right', title: I18n.t('relationships.followers'),
+                                                                        class: 'fa-fw passive')
     end
   end
 
@@ -143,7 +156,11 @@ module ApplicationHelper
     if prefers_autoplay?
       image_tag(custom_emoji.image.url, class: 'emojione', alt: ":#{custom_emoji.shortcode}:")
     else
-      image_tag(custom_emoji.image.url(:static), :class => 'emojione custom-emoji', :alt => ":#{custom_emoji.shortcode}", 'data-original' => full_asset_url(custom_emoji.image.url), 'data-static' => full_asset_url(custom_emoji.image.url(:static)))
+      image_tag(custom_emoji.image.url(:static),
+                :class => 'emojione custom-emoji',
+                :alt => ":#{custom_emoji.shortcode}",
+                'data-original' => full_asset_url(custom_emoji.image.url),
+                'data-static' => full_asset_url(custom_emoji.image.url(:static)))
     end
   end
 
@@ -193,7 +210,8 @@ module ApplicationHelper
     state_params[:visibility] = params[:visibility] if permit_visibilities.include? params[:visibility]
 
     if user_signed_in? && current_user.functional?
-      state_params[:settings]          = state_params[:settings].merge(Web::Setting.find_by(user: current_user)&.data || {})
+      state_params[:settings]          =
+        state_params[:settings].merge(Web::Setting.find_by(user: current_user)&.data || {})
       state_params[:push_subscription] = current_account.user.web_push_subscription(current_session)
       state_params[:current_account]   = current_account
       state_params[:token]             = current_session.token
@@ -207,7 +225,8 @@ module ApplicationHelper
 
     state_params[:owner] = Account.local.without_suspended.where('id > 0').first if single_user_mode?
 
-    json = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params), serializer: InitialStateSerializer).to_json
+    json = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params),
+                                                            serializer: InitialStateSerializer).to_json
     # rubocop:disable Rails/OutputSafety
     content_tag(:script, json_escape(json).html_safe, id: 'initial-state', type: 'application/json')
     # rubocop:enable Rails/OutputSafety
