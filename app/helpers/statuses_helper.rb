@@ -51,14 +51,14 @@ module StatusesHelper
   end
 
   def status_description(status)
-    components = [[media_summary(status), status_text_summary(status)].reject(&:blank?).join(' · ')]
+    components = [[media_summary(status), status_text_summary(status)].compact_blank.join(' · ')]
 
     if status.spoiler_text.blank?
       components << status.text
       components << poll_summary(status)
     end
 
-    components.reject(&:blank?).join("\n\n")
+    components.compact_blank.join("\n\n")
   end
 
   def stream_link_target
