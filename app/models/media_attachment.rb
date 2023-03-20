@@ -271,11 +271,11 @@ class MediaAttachment < ApplicationRecord
     delay_processing? && attachment_name == :file
   end
 
-  after_commit :enqueue_processing, on: :create
-  after_commit :reset_parent_cache, on: :update
-
   before_create :set_unknown_type
   before_create :set_processing
+
+  after_commit :enqueue_processing, on: :create
+  after_commit :reset_parent_cache, on: :update
 
   after_post_process :set_meta
 
