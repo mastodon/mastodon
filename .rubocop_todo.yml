@@ -1407,14 +1407,6 @@ Rails/HttpPositionalArguments:
   Exclude:
     - 'spec/config/initializers/rack_attack_spec.rb'
 
-# Configuration parameters: Include.
-# Include: spec/**/*.rb, test/**/*.rb
-Rails/I18nLocaleAssignment:
-  Exclude:
-    - 'spec/controllers/auth/registrations_controller_spec.rb'
-    - 'spec/helpers/application_helper_spec.rb'
-    - 'spec/requests/localization_spec.rb'
-
 Rails/I18nLocaleTexts:
   Exclude:
     - 'lib/tasks/mastodon.rake'
