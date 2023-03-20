@@ -839,6 +839,12 @@ be:
         message_html: Вы не вызначылі ніякіх правілаў сервера.
       sidekiq_process_check:
         message_html: Не працуе працэс Sidekiq для %{value} чаргі. Калі ласка праверце вашу канфігурацыю Sidekiq
+      upload_check_privacy_error:
+        action: Для падрабязнасцей націсніце тут
+        message_html: "<strong>Ваш сервер не наладжаны. Прыватнасць карыстальнікаў пад пагрозай.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Для падрабязнасцей націсніце тут
+        message_html: "<strong>Ваша сховішча не наладжана. Прыватнасць карыстальнікаў пад пагрозай.</strong>"
     tags:
       review: Стан праверкі
       updated_msg: Налады хэштэгаў паспяхова змененыя
@@ -1456,6 +1462,7 @@ be:
     confirm_remove_selected_followers: Вы ўпэўнены, што жадаеце выдаліць выбраных падпісчыкаў?
     confirm_remove_selected_follows: Вы ўпэўнены, што жадаеце выдаліць выбраныя падпіскі?
     dormant: Занядбаны
+    follow_failure: Вы не можаце падпісацца на некаторыя акаўнты.
     follow_selected_followers: Падпісацца на выбраных падпісчыкаў
     followers: Падпісчыкі
     following: Падпісаны
