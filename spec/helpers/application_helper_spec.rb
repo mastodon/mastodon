@@ -44,30 +44,28 @@ describe ApplicationHelper do
   end
 
   describe 'locale_direction' do
-    around do |example|
-      current_locale = I18n.locale
-      example.run
-      I18n.locale = current_locale
-    end
-
     it 'adds rtl body class if locale is Arabic' do
-      I18n.locale = :ar
-      expect(helper.locale_direction).to eq 'rtl'
+      I18n.with_locale(:ar) do
+        expect(helper.locale_direction).to eq 'rtl'
+      end
     end
 
     it 'adds rtl body class if locale is Farsi' do
-      I18n.locale = :fa
-      expect(helper.locale_direction).to eq 'rtl'
+      I18n.with_locale(:fa) do
+        expect(helper.locale_direction).to eq 'rtl'
+      end
     end
 
     it 'adds rtl if locale is Hebrew' do
-      I18n.locale = :he
-      expect(helper.locale_direction).to eq 'rtl'
+      I18n.with_locale(:he) do
+        expect(helper.locale_direction).to eq 'rtl'
+      end
     end
 
     it 'does not add rtl if locale is Thai' do
-      I18n.locale = :th
-      expect(helper.locale_direction).to_not eq 'rtl'
+      I18n.with_locale(:th) do
+        expect(helper.locale_direction).to_not eq 'rtl'
+      end
     end
   end
 
