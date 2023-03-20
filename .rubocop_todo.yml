@@ -1203,16 +1203,6 @@ Rails/BulkChangeTable:
     - 'db/migrate/20220303000827_add_ordered_media_attachment_ids_to_status_edits.rb'
     - 'db/migrate/20220824164433_add_human_identifier_to_admin_action_logs.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/CompactBlank:
-  Exclude:
-    - 'app/helpers/application_helper.rb'
-    - 'app/helpers/statuses_helper.rb'
-    - 'app/models/concerns/attachmentable.rb'
-    - 'app/models/poll.rb'
-    - 'app/services/import_service.rb'
-    - 'config/initializers/paperclip.rb'
-
 # Configuration parameters: Include.
 # Include: db/migrate/*.rb
 Rails/CreateTableWithTimestamps:
