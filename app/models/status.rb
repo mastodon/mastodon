@@ -30,8 +30,6 @@
 #
 
 class Status < ApplicationRecord
-  before_destroy :unlink_from_conversations!
-
   include Discard::Model
   include Paginable
   include Cacheable
@@ -113,6 +111,26 @@ class Status < ApplicationRecord
 
   after_create_commit :trigger_create_webhooks
   after_update_commit :trigger_update_webhooks
+
+  after_create_commit  :increment_counter_caches
+  after_destroy_commit :decrement_counter_caches
+
+  after_create_commit :store_uri, if: :local?
+  after_create_commit :update_statistics, if: :local?
+
+  before_validation :prepare_contents, if: :local?
+  before_validation :set_reblog
+  before_validation :set_visibility
+  before_validation :set_conversation
+  before_validation :set_local
+
+  around_create Mastodon::Snowflake::Callbacks
+
+  after_create :set_poll_id
+
+  # The `prepend: true` option below ensures this runs before
+  # the `dependent: destroy` callbacks remove relevant records
+  before_destroy :unlink_from_conversations!, prepend: true
 
   cache_associated :application,
                    :media_attachments,
@@ -310,22 +328,6 @@ class Status < ApplicationRecord
   def requires_review_notification?
     attributes['trendable'].nil? && account.requires_review_notification?
   end
-
-  after_create_commit  :increment_counter_caches
-  after_destroy_commit :decrement_counter_caches
-
-  after_create_commit :store_uri, if: :local?
-  after_create_commit :update_statistics, if: :local?
-
-  before_validation :prepare_contents, if: :local?
-  before_validation :set_reblog
-  before_validation :set_visibility
-  before_validation :set_conversation
-  before_validation :set_local
-
-  around_create Mastodon::Snowflake::Callbacks
-
-  after_create :set_poll_id
 
   class << self
     def selectable_visibilities
