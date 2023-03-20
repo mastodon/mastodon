@@ -26,7 +26,7 @@ describe Api::Web::EmbedsController do
 
     context 'when fails to find status' do
       let(:url) { 'https://host.test/oembed.html' }
-      let(:service_instance) { double('fetch_oembed_service') }
+      let(:service_instance) { instance_double(FetchOEmbedService) }
 
       before do
         allow(FetchOEmbedService).to receive(:new) { service_instance }

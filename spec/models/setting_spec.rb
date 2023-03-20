@@ -62,7 +62,7 @@ RSpec.describe Setting do
 
         context 'when RailsSettings::Settings.object returns truthy' do
           let(:object) { db_val }
-          let(:db_val) { double(value: 'db_val') }
+          let(:db_val) { instance_double(described_class, value: 'db_val') }
 
           context 'when default_value is a Hash' do
             let(:default_value) { { default_value: 'default_value' } }

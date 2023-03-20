@@ -8,11 +8,11 @@ RSpec.describe StatusPinValidator, type: :validator do
       subject.validate(pin)
     end
 
-    let(:pin) { double(account: account, errors: errors, status: status, account_id: pin_account_id) }
-    let(:status) { double(reblog?: reblog, account_id: status_account_id, visibility: visibility, direct_visibility?: visibility == 'direct') }
-    let(:account)     { double(status_pins: status_pins, local?: local) }
-    let(:status_pins) { double(count: count) }
-    let(:errors)      { double(add: nil) }
+    let(:pin) { instance_double(StatusPin, account: account, errors: errors, status: status, account_id: pin_account_id) }
+    let(:status) { instance_double(Status, reblog?: reblog, account_id: status_account_id, visibility: visibility, direct_visibility?: visibility == 'direct') }
+    let(:account)     { instance_double(Account, status_pins: status_pins, local?: local) }
+    let(:status_pins) { instance_double(Array, count: count) }
+    let(:errors)      { instance_double(ActiveModel::Errors, add: nil) }
     let(:pin_account_id)    { 1 }
     let(:status_account_id) { 1 }
     let(:visibility)  { 'public' }

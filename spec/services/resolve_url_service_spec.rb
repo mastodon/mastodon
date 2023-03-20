@@ -9,7 +9,7 @@ describe ResolveURLService, type: :service do
     it 'returns nil when there is no resource url' do
       url           = 'http://example.com/missing-resource'
       known_account = Fabricate(:account, uri: url)
-      service = double
+      service = instance_double(FetchResourceService)
 
       allow(FetchResourceService).to receive(:new).and_return service
       allow(service).to receive(:response_code).and_return(404)
@@ -21,7 +21,7 @@ describe ResolveURLService, type: :service do
     it 'returns known account on temporary error' do
       url           = 'http://example.com/missing-resource'
       known_account = Fabricate(:account, uri: url)
-      service = double
+      service = instance_double(FetchResourceService)
 
       allow(FetchResourceService).to receive(:new).and_return service
       allow(service).to receive(:response_code).and_return(500)

@@ -219,7 +219,7 @@ RSpec.describe ImportService, type: :service do
     end
 
     before do
-      service = double
+      service = instance_double(ActivityPub::FetchRemoteStatusService)
       allow(ActivityPub::FetchRemoteStatusService).to receive(:new).and_return(service)
       allow(service).to receive(:call).with('https://unknown-remote.com/users/bar/statuses/1') do
         Fabricate(:status, uri: 'https://unknown-remote.com/users/bar/statuses/1')

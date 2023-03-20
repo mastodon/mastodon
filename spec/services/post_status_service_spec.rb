@@ -132,7 +132,7 @@ RSpec.describe PostStatusService, type: :service do
   end
 
   it 'processes mentions' do
-    mention_service = double(:process_mentions_service)
+    mention_service = instance_double(ProcessMentionsService)
     allow(mention_service).to receive(:call)
     allow(ProcessMentionsService).to receive(:new).and_return(mention_service)
     account = Fabricate(:account)
@@ -163,7 +163,7 @@ RSpec.describe PostStatusService, type: :service do
   end
 
   it 'processes hashtags' do
-    hashtags_service = double(:process_hashtags_service)
+    hashtags_service = instance_double(ProcessHashtagsService)
     allow(hashtags_service).to receive(:call)
     allow(ProcessHashtagsService).to receive(:new).and_return(hashtags_service)
     account = Fabricate(:account)
