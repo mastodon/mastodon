@@ -79,7 +79,7 @@ class TextFormatter
     cutoff      = url[prefix.length..-1].length > 30
 
     <<~HTML.squish
-      <a href="#{h(url)}" target="_blank" rel="#{rel.join(' ')}"><span class="invisible">#{h(prefix)}</span><span class="#{cutoff ? 'ellipsis' : ''}">#{h(display_url)}</span><span class="invisible">#{h(suffix)}</span></a>
+      <a href="#{h(url)}" target="_blank" rel="#{rel.join(' ')}" translate="no"><span class="invisible">#{h(prefix)}</span><span class="#{cutoff ? 'ellipsis' : ''}">#{h(display_url)}</span><span class="invisible">#{h(suffix)}</span></a>
     HTML
   rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
     h(entity[:url])
@@ -122,7 +122,7 @@ class TextFormatter
     display_username = same_username_hits&.positive? || with_domains? ? account.pretty_acct : account.username
 
     <<~HTML.squish
-      <span class="h-card"><a href="#{h(url)}" class="u-url mention">@<span>#{h(display_username)}</span></a></span>
+      <span class="h-card" translate="no"><a href="#{h(url)}" class="u-url mention">@<span>#{h(display_username)}</span></a></span>
     HTML
   end
 

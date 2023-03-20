@@ -29,7 +29,7 @@ RSpec.describe TextFormatter do
       let(:text) { '@alice' }
 
       it 'creates a mention link' do
-        expect(subject).to include '<a href="https://cb6e6126.ngrok.io/@alice" class="u-url mention">@<span>alice</span></a></span>'
+        expect(subject).to include '<span class="h-card" translate="no"><a href="https://cb6e6126.ngrok.io/@alice" class="u-url mention">@<span>alice</span></a></span>'
       end
     end
 
