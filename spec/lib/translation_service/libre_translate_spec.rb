@@ -7,41 +7,24 @@ RSpec.describe TranslationService::LibreTranslate do
 
   before do
     stub_request(:get, 'https://libretranslate.example.com/languages').to_return(
-      body: '[{"code": "en","name": "English","targets": ["de","es"]},{"code": "da","name": "Danish","targets": ["en","de"]}]'
+      body: '[{"code": "en","name": "English","targets": ["de","en","es"]},{"code": "da","name": "Danish","targets": ["en","pt"]}]'
     )
   end
 
-  describe '#supported?' do
-    it 'supports included language pair' do
-      expect(service.supported?('en', 'de')).to be true
-    end
-
-    it 'does not support reversed language pair' do
-      expect(service.supported?('de', 'en')).to be false
-    end
-
-    it 'supports auto-detecting source language' do
-      expect(service.supported?(nil, 'de')).to be true
-    end
-
-    it 'does not support auto-detecting for unsupported target language' do
-      expect(service.supported?(nil, 'pt')).to be false
-    end
-  end
-
   describe '#languages' do
-    subject(:languages) { service.send(:languages) }
+    subject(:languages) { service.languages }
 
-    it 'includes supported source languages' do
+    it 'returns source languages' do
       expect(languages.keys).to eq ['en', 'da', nil]
     end
 
-    it 'includes supported target languages for source language' do
+    it 'returns target languages for each source language' do
       expect(languages['en']).to eq %w(de es)
+      expect(languages['da']).to eq %w(en pt)
     end
 
-    it 'includes supported target languages for auto-detected language' do
-      expect(languages[nil]).to eq %w(de es en)
+    it 'returns target languages for auto-detected language' do
+      expect(languages[nil]).to eq %w(de en es pt)
     end
   end
 

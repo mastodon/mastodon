@@ -111,6 +111,9 @@ class Status < ApplicationRecord
     where('NOT EXISTS (SELECT * FROM statuses_tags forbidden WHERE forbidden.status_id = statuses.id AND forbidden.tag_id IN (?))', tag_ids)
   }
 
+  after_create_commit :trigger_create_webhooks
+  after_update_commit :trigger_update_webhooks
+
   cache_associated :application,
                    :media_attachments,
                    :conversation,
@@ -230,16 +233,6 @@ class Status < ApplicationRecord
 
   def distributable?
     public_visibility? || unlisted_visibility?
-  end
-
-  def translatable?
-    translate_target_locale = I18n.locale.to_s.split(/[_-]/).first
-
-    distributable? &&
-      content.present? &&
-      language != translate_target_locale &&
-      TranslationService.configured? &&
-      TranslationService.configured.supported?(language, translate_target_locale)
   end
 
   alias sign? distributable?
@@ -544,5 +537,13 @@ class Status < ApplicationRecord
     account&.decrement_count!(:statuses_count)
     reblog&.decrement_count!(:reblogs_count) if reblog?
     thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && distributable?
+  end
+
+  def trigger_create_webhooks
+    TriggerWebhookWorker.perform_async('status.created', 'Status', id) if local?
+  end
+
+  def trigger_update_webhooks
+    TriggerWebhookWorker.perform_async('status.updated', 'Status', id) if local?
   end
 end

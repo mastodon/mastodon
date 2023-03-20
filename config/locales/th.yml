@@ -963,7 +963,7 @@ th:
     description:
       prefix_invited_by_user: "@%{name} เชิญคุณเข้าร่วมเซิร์ฟเวอร์ Mastodon นี้!"
       prefix_sign_up: ลงทะเบียนใน Mastodon วันนี้!
-      suffix: เมื่อมีบัญชี คุณจะสามารถติดตามผู้คน โพสต์การอัปเดต และแลกเปลี่ยนข้อความกับผู้ใช้จากเซิร์ฟเวอร์ Mastodon และอื่น ๆ!
+      suffix: ด้วยบัญชี คุณจะสามารถติดตามผู้คน โพสต์การอัปเดต และแลกเปลี่ยนข้อความกับผู้ใช้จากเซิร์ฟเวอร์ Mastodon และอื่น ๆ!
     didnt_get_confirmation: ไม่ได้รับคำแนะนำการยืนยัน?
     dont_have_your_security_key: ไม่มีกุญแจความปลอดภัยของคุณ?
     forgot_password: ลืมรหัสผ่านของคุณ?
@@ -999,7 +999,7 @@ th:
       preamble_html: ลงชื่อเข้าด้วยข้อมูลประจำตัว <strong>%{domain}</strong> ของคุณ หากบัญชีของคุณได้รับการโฮสต์ในเซิร์ฟเวอร์อื่น คุณจะไม่สามารถเข้าสู่ระบบได้ที่นี่
       title: ลงชื่อเข้า %{domain}
     sign_up:
-      preamble: เมื่อมีบัญชีในเซิร์ฟเวอร์ Mastodon นี้ คุณจะสามารถติดตามบุคคลอื่นใดในเครือข่าย โดยไม่คำนึงถึงที่ซึ่งบัญชีของเขาได้รับการโฮสต์
+      preamble: ด้วยบัญชีในเซิร์ฟเวอร์ Mastodon นี้ คุณจะสามารถติดตามบุคคลอื่นใดในเครือข่าย โดยไม่คำนึงถึงที่ซึ่งบัญชีของเขาได้รับการโฮสต์
       title: มาตั้งค่าของคุณใน %{domain} กันเลย
     status:
       account_status: สถานะบัญชี
@@ -1379,6 +1379,7 @@ th:
     confirm_remove_selected_followers: คุณแน่ใจหรือไม่ว่าต้องการเอาผู้ติดตามที่เลือกออก?
     confirm_remove_selected_follows: คุณแน่ใจหรือไม่ว่าต้องการเอาการติดตามที่เลือกออก?
     dormant: ไม่เคลื่อนไหว
+    follow_failure: ไม่สามารถติดตามบัญชีที่เลือกบางส่วน
     follow_selected_followers: ติดตามผู้ติดตามที่เลือก
     followers: ผู้ติดตาม
     following: กำลังติดตาม
@@ -1418,6 +1419,7 @@ th:
       electron: Electron
       firefox: Firefox
       generic: เบราว์เซอร์ที่ไม่รู้จัก
+      huawei_browser: เบราว์เซอร์ Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: เบราว์เซอร์ Nokia S40 Ovi
@@ -1427,6 +1429,7 @@ th:
       qq: เบราว์เซอร์ QQ
       safari: Safari
       uc_browser: เบราว์เซอร์ UC
+      unknown_browser: เบราว์เซอร์ที่ไม่รู้จัก
       weibo: Weibo
     current_session: เซสชันปัจจุบัน
     description: "%{browser} ใน %{platform}"
@@ -1439,9 +1442,10 @@ th:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: แพลตฟอร์มที่ไม่รู้จัก
+      unknown_platform: แพลตฟอร์มที่ไม่รู้จัก
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone

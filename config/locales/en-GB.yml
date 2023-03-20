@@ -366,6 +366,115 @@ en-GB:
       sources: Sign-up sources
       space: Space usage
       title: Dashboard
+      top_languages: Top active languages
+      top_servers: Top active servers
+      website: Website
+    disputes:
+      appeals:
+        empty: No appeals found.
+        title: Appeals
+    domain_allows:
+      add_new: Allow federation with domain
+      created_msg: Domain has been successfully allowed for federation
+      destroyed_msg: Domain has been disallowed from federation
+      export: Export
+      import: Import
+      undo: Disallow federation with domain
+    domain_blocks:
+      add_new: Add new domain block
+      created_msg: Domain block is now being processed
+      destroyed_msg: Domain block has been undone
+      domain: Domain
+      edit: Edit domain block
+      existing_domain_block: You have already imposed stricter limits on %{name}.
+      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
+      export: Export
+      import: Import
+      new:
+        create: Create block
+        hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
+        severity:
+          desc_html: "<strong>Limit</strong> will make posts from accounts at this domain invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all content, media, and profile data for this domain's accounts from your server. Use <strong>None</strong> if you just want to reject media files."
+          noop: None
+          silence: Limit
+          suspend: Suspend
+        title: New domain block
+      no_domain_block_selected: No domain blocks were changed as none were selected
+      not_permitted: You are not permitted to perform this action
+      obfuscate: Obfuscate domain name
+      obfuscate_hint: Partially obfuscate the domain name in the list if advertising the list of domain limitations is enabled
+      private_comment: Private comment
+      private_comment_hint: Comment about this domain limitation for internal use by the moderators.
+      public_comment: Public comment
+      public_comment_hint: Comment about this domain limitation for the general public, if advertising the list of domain limitations is enabled.
+      reject_media: Reject media files
+      reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
+      reject_reports: Reject reports
+      reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
+      undo: Undo domain block
+      view: View domain block
+    email_domain_blocks:
+      add_new: Add new
+      attempts_over_week:
+        one: "%{count} attempt over the last week"
+        other: "%{count} sign-up attempts over the last week"
+      created_msg: Successfully blocked e-mail domain
+      delete: Delete
+      dns:
+        types:
+          mx: MX record
+      domain: Domain
+      new:
+        create: Add domain
+        resolve: Resolve domain
+        title: Block new e-mail domain
+      no_email_domain_block_selected: No e-mail domain blocks were changed as none were selected
+      not_permitted: Not permitted
+      resolved_dns_records_hint_html: The domain name resolves to the following MX domains, which are ultimately responsible for accepting e-mail. Blocking an MX domain will block sign-ups from any e-mail address which uses the same MX domain, even if the visible domain name is different. <strong>Be careful not to block major e-mail providers.</strong>
+      resolved_through_html: Resolved through %{domain}
+      title: Blocked e-mail domains
+    export_domain_allows:
+      new:
+        title: Import domain allows
+      no_file: No file selected
+    export_domain_blocks:
+      import:
+        description_html: You are about to import a list of domain blocks. Please review this list very carefully, especially if you have not authored this list yourself.
+        existing_relationships_warning: Existing follow relationships
+        private_comment_description_html: 'To help you track where imported blocks come from, imported blocks will be created with the following private comment: <q>%{comment}</q>'
+        private_comment_template: Imported from %{source} on %{date}
+        title: Import domain blocks
+      invalid_domain_block: 'One or more domain blocks were skipped because of the following error(s): %{error}'
+      new:
+        title: Import domain blocks
+      no_file: No file selected
+    follow_recommendations:
+      description_html: "<strong>Follow recommendations help new users quickly find interesting content</strong>. When a user has not interacted with others enough to form personalised follow recommendations, these accounts are recommended instead. They are re-calculated on a daily basis from a mix of accounts with the highest recent engagements and highest local follower counts for a given language."
+      language: For language
+      status: Status
+      suppress: Suppress follow recommendation
+      suppressed: Suppressed
+      title: Follow recommendations
+      unsuppress: Restore follow recommendation
+    instances:
+      availability:
+        description_html:
+          one: If delivering to the domain fails <strong>%{count} day</strong> without succeeding, no further delivery attempts will be made unless a delivery <em>from</em> the domain is received.
+          other: If delivering to the domain fails on <strong>%{count} different days</strong> without succeeding, no further delivery attempts will be made unless a delivery <em>from</em> the domain is received.
+        failure_threshold_reached: Failure threshold reached on %{date}.
+        failures_recorded:
+          one: Failed attempt on %{count} day.
+          other: Failed attempts on %{count} different days.
+        no_failures_recorded: No failures on record.
+        title: Availability
+        warning: The last attempt to connect to this server has been unsuccessful
+      back_to_all: All
+      back_to_limited: Limited
+      back_to_warning: Warning
+      by_domain: Domain
+      confirm_purge: Are you sure you want to permanently delete data from this domain?
+      content_policies:
+        comment: Internal note
     roles:
       categories:
         devops: DevOps
@@ -379,14 +488,253 @@ en-GB:
     '410': The page you were looking for doesn't exist here anymore.
     '429': Too many requests
     '503': The page could not be served due to a temporary server failure.
+  generic:
+    copy: Copy
+    delete: Delete
+    deselect: Deselect all
+    none: None
+    order_by: Order by
+    save_changes: Save changes
+    select_all_matching_items:
+      one: Select %{count} item matching your search.
+      other: Select all %{count} items matching your search.
+    today: today
+    validation_errors:
+      one: Something isn't quite right yet! Please review the error below
+      other: Something isn't quite right yet! Please review %{count} errors below
+  imports:
+    errors:
+      invalid_csv_file: 'Invalid CSV file. Error: %{error}'
+      over_rows_processing_limit: contains more than %{count} rows
+    modes:
+      merge: Merge
+      merge_long: Keep existing records and add new ones
+      overwrite: Overwrite
+      overwrite_long: Replace current records with the new ones
+    preface: You can import data that you have exported from another server, such as a list of the people you are following or blocking.
+    success: Your data was successfully uploaded and will be processed in due time
+    types:
+      blocking: Blocking list
+      bookmarks: Bookmarks
+      domain_blocking: Domain blocking list
+      following: Following list
+      muting: Muting list
+    upload: Upload
+  invites:
+    delete: Deactivate
+    expired: Expired
+  notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} signed up"
+    favourite:
+      body: 'Your post was favourited by %{name}:'
+      subject: "%{name} favourited your post"
+      title: New favourite
+    follow:
+      body: "%{name} is now following you!"
+      subject: "%{name} is now following you"
+      title: New follower
+    follow_request:
+      action: Manage follow requests
+      body: "%{name} has requested to follow you"
+      subject: 'Pending follower: %{name}'
+  polls:
+    errors:
+      too_many_options: can't contain more than %{max} items
+  preferences:
+    other: Other
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
+  privacy_policy:
+    title: Privacy Policy
+  reactions:
+    errors:
+      limit_reached: Limit of different reactions reached
+      unrecognized_emoji: is not a recognised emoji
+  relationships:
+    activity: Account activity
+    confirm_follow_selected_followers: Are you sure you want to follow selected followers?
+    confirm_remove_selected_followers: Are you sure you want to remove selected followers?
+    confirm_remove_selected_follows: Are you sure you want to remove selected follows?
+    dormant: Dormant
+    follow_failure: Could not follow some of the selected accounts.
+    follow_selected_followers: Follow selected followers
+    followers: Followers
+    following: Following
+    invited: Invited
+    last_active: Last active
+    most_recent: Most recent
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
+  remote_follow:
+    missing_resource: Could not find the required redirect URL for your account
+  reports:
+    errors:
+      invalid_rules: does not reference valid rules
+  rss:
+    content_warning: 'Content warning:'
+    descriptions:
+      account: Public posts from @%{acct}
+      tag: 'Public posts tagged #%{hashtag}'
+  scheduled_statuses:
+    over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
+    over_total_limit: You have exceeded the limit of %{limit} scheduled posts
+    too_soon: The scheduled date must be in the future
   sessions:
+    activity: Last activity
+    browser: Browser
     browsers:
+      alipay: Alipay
       blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Unknown browser
+      huawei_browser: Huawei Browser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Unknown Browser
+      weibo: Weibo
+    current_session: Current session
+    description: "%{browser} on %{platform}"
+    explanation: These are the web browsers currently logged in to your Mastodon account.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
       blackberry: BlackBerry
       chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      kai_os: KaiOS
+      linux: Linux
+      mac: macOS
+      unknown_platform: Unknown Platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Revoke
+    revoke_success: Session successfully revoked
+    title: Sessions
+    view_authentication_history: View authentication history of your account
+  settings:
+    account: Account
+    account_settings: Account settings
+    aliases: Account aliases
+    appearance: Appearance
+    authorized_apps: Authorised apps
+    back: Back to Mastodon
+    delete: Account deletion
+    development: Development
+    edit_profile: Edit profile
+    export: Data export
+    featured_tags: Featured hashtags
+    import: Import
+    import_and_export: Import and export
+    migrate: Account migration
+    notifications: Notifications
+    preferences: Preferences
+    profile: Profile
+    relationships: Follows and followers
+    statuses_cleanup: Automated post deletion
+    strikes: Moderation strikes
+    two_factor_authentication: Two-factor Auth
+    webauthn_authentication: Security keys
+  statuses:
+    attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audio"
+      description: 'Attached: %{attached}'
+      image:
+        one: "%{count} image"
+        other: "%{count} images"
+      video:
+        one: "%{count} video"
+        other: "%{count} videos"
+    boosted_from_html: Boosted from %{acct_link}
+    content_warning: 'Content warning: %{warning}'
+    default_language: Same as interface language
+    disallowed_hashtags:
+      one: 'contained a disallowed hashtag: %{tags}'
+      other: 'contained the disallowed hashtags: %{tags}'
+    edited_at_html: Edited %{date}
+    errors:
+      in_reply_not_found: The post you are trying to reply to does not appear to exist.
+    open_in_web: Open in web
+    over_character_limit: character limit of %{max} exceeded
+    pin_errors:
+      direct: Posts that are only visible to mentioned users cannot be pinned
+      limit: You have already pinned the maximum number of posts
+      ownership: Someone else's post cannot be pinned
+      reblog: A boost cannot be pinned
+    poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} people"
+      total_votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      vote: Vote
+    show_more: Show more
+    show_newer: Show newer
+    show_older: Show older
+    show_thread: Show thread
+    sign_in_to_participate: Sign in to participate in the conversation
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      direct: Direct
+      private: Followers-only
+      private_long: Only show to followers
+      public: Public
+      public_long: Everyone can see
+      unlisted: Unlisted
+      unlisted_long: Everyone can see, but not listed on public timelines
   statuses_cleanup:
+    enabled: Automatically delete old posts
+    enabled_hint: Automatically deletes your posts once they reach a specified age threshold, unless they match one of the exceptions below
+    exceptions: Exceptions
+    explanation: Because deleting posts is an expensive operation, this is done slowly over time when the server is not otherwise busy. For this reason, your posts may be deleted a while after they reach the age threshold.
+    ignore_favs: Ignore favourites
+    ignore_reblogs: Ignore boosts
+    interaction_exceptions: Exceptions based on interactions
+    interaction_exceptions_explanation: Note that there is no guarantee for posts to be deleted if they go below the favourite or boost threshold after having once gone over them.
+    keep_direct: Keep direct messages
+    keep_direct_hint: Doesn't delete any of your direct messages
+    keep_media: Keep posts with media attachments
+    keep_media_hint: Doesn't delete any of your posts that have media attachments
+    keep_pinned: Keep pinned posts
+    keep_pinned_hint: Doesn't delete any of your pinned posts
+    keep_polls: Keep polls
+    keep_polls_hint: Doesn't delete any of your polls
+    keep_self_bookmark: Keep posts you bookmarked
+    keep_self_bookmark_hint: Doesn't delete your own posts if you have bookmarked them
+    keep_self_fav: Keep posts you favourited
+    keep_self_fav_hint: Doesn't delete your own posts if you have favourited them
+    min_age:
+      '1209600': 2 weeks
+      '15778476': 6 months
+      '2629746': 1 month
+      '31556952': 1 year
+      '5259492': 2 months
+      '604800': 1 week
+      '63113904': 2 years
+      '7889238': 3 months
     min_age_label: Age threshold
     min_favs: Keep posts favourited at least
     min_favs_hint: Doesn't delete any of your posts that has received at least this number of favourites. Leave blank to delete posts regardless of their number of favourites
@@ -399,7 +747,11 @@ en-GB:
   strikes:
     errors:
       too_late: It is too late to appeal this strike
+  tags:
+    does_not_match_previous_name: does not match the previous name
   themes:
+    contrast: Mastodon (High contrast)
+    default: Mastodon (Dark)
     mastodon-light: Mastodon (Light)
   time:
     formats:
@@ -433,7 +785,14 @@ en-GB:
       title: Appeal rejected
     backup_ready:
       explanation: You requested a full backup of your Mastodon account. It's now ready for download!
+      subject: Your archive is ready for download
+      title: Archive takeout
     suspicious_sign_in:
+      change_password: change your password
+      details: 'Here are details of the sign-in:'
+      explanation: We've detected a sign-in to your account from a new IP address.
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
+      subject: Your account has been accessed from a new IP address
       title: A new sign-in
     warning:
       appeal: Submit an appeal

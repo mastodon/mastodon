@@ -2,6 +2,8 @@ name: Ruby Testing
 
 on:
   push:
+    branches-ignore:
+      - 'dependabot/**'
   pull_request:
 
 env:
@@ -61,7 +63,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:14.5
+        image: postgres:14-alpine
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
@@ -74,7 +76,7 @@ jobs:
           - 5432:5432
 
       redis:
-        image: redis:7.0
+        image: redis:7-alpine
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
