@@ -133,7 +133,7 @@ fi:
       search: Hae
       search_same_email_domain: Muut käyttäjät, joilla on sama sähköpostin verkkotunnus
       search_same_ip: Muut käyttäjät, joilla on sama IP-osoite
-      security: Suojaus
+      security: Turvallisuus
       security_measures:
         only_password: Vain salasana
         password_and_2fa: Salasana ja kaksivaiheinen tunnistautuminen
@@ -813,10 +813,10 @@ fi:
         message_html: Ei ole Sidekiq-prosessia käynnissä jonossa %{value}. Tarkista Sidekiq-asetukset
       upload_check_privacy_error:
         action: Katso täältä lisätietoja
-        message_html: "<strong>Verkkopalvelimesi on määritetty virheellisesti ja käyttäjiesi yksityisyys on vaarantunut.</strong>"
+        message_html: "<strong>Verkkopalvelimesi on määritetty virheellisesti, ja käyttäjiesi yksityisyys on vaarassa.</strong>"
       upload_check_privacy_error_object_storage:
         action: Katso täältä lisätietoja
-        message_html: "<strong>Objektivarastosi on määritetty virheellisesti ja käyttäjiesi yksityisyys on vaarantunut.</strong>"
+        message_html: "<strong>Objektivarastosi on määritetty virheellisesti, ja käyttäjiesi yksityisyys on vaarassa.</strong>"
     tags:
       review: Tarkista tila
       updated_msg: Aihetunnisteen asetukset päivitetty onnistuneesti
@@ -971,7 +971,7 @@ fi:
   applications:
     created: Sovelluksen luonti onnistui
     destroyed: Sovelluksen poisto onnistui
-    logout: Uloskirjautuminen
+    logout: Kirjaudu ulos
     regenerate_token: Luo pääsytunnus uudelleen
     token_regenerated: Pääsytunnuksen uudelleenluonti onnistui
     warning: Säilytä tietoa hyvin. Älä milloinkaan jaa sitä muille!
@@ -1157,7 +1157,7 @@ fi:
   featured_tags:
     add_new: Lisää uusi
     errors:
-      limit: Olet jo lisännyt enimmäismäärän aihetunnisteita
+      limit: Olet jo nostanut esille enimmäismäärän aihetunnisteita
     hint_html: "<strong>Mitä ovat näkyvillä olevat hashtagit eli aihetunnisteet?</strong> Ne ovat näkyvissä julkisessa profiilissasi ja niiden avulla ihmiset voivat selata julkisia viestejäsi nimenomaan näiden aihetunnisteiden alla. Ne auttavat esimerkiksi luovan työn tai pitkäaikaisten projektien seurannassa."
   filters:
     contexts:
@@ -1265,7 +1265,7 @@ fi:
     title: Kutsu ihmisiä
   lists:
     errors:
-      limit: Olet saavuttanut listojen enimmäismäärän
+      limit: Sinulla on enimmäismäärä listoja
   login_activities:
     authentication_methods:
       otp: kaksivaiheinen todennussovellus
@@ -1589,7 +1589,7 @@ fi:
       '7889238': 3 kuukautta
     min_age_label: Ikäraja
     min_favs: Pidä viestit suosikeissa vähintään
-    min_favs_hint: Ei poista julkaisujasi, joita on tykätty vähintään näin monta kertaa. Jätä tyhjäksi poistaaksesi julkaisut tykkäyskertojen määrästä riippumatta
+    min_favs_hint: Toiminto ei poista julkaisujasi, joista on tykätty vähintään tässä kohtaa määritellyn monesti. Jätä kenttä tyhjäksi, jos haluat poistaa julkaisut tykkäyksistä huolimatta
     min_reblogs: Pidä viestit tehostettuna vähintään
     min_reblogs_hint: Ei poista yhtään viestiäsi, jota on tehostettu vähintään näin monta kertaa. Jätä tyhjäksi poistaaksesi viestejä riippumatta niiden tehosteiden määrästä
   stream_entries:
