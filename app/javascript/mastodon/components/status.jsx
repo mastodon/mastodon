@@ -22,12 +22,19 @@ import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
 
+const domParser = new DOMParser();
+
 export const textForScreenReader = (intl, status, rebloggedByText = false) => {
   const displayName = status.getIn(['account', 'display_name']);
 
+  const translation = status.get('translation');
+  const spoilerText = translation ? translation.get('spoiler_text') : status.get('spoiler_text');
+  const contentHtml = translation ? translation.get('contentHtml') : status.get('contentHtml');
+  const contentText = domParser.parseFromString(contentHtml, 'text/html').documentElement.textContent;
+
   const values = [
     displayName.length === 0 ? status.getIn(['account', 'acct']).split('@')[0] : displayName,
-    status.get('spoiler_text') && status.get('hidden') ? status.get('spoiler_text') : status.get('search_index').slice(status.get('spoiler_text').length),
+    spoilerText && status.get('hidden') ? spoilerText : contentText,
     intl.formatDate(status.get('created_at'), { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' }),
     status.getIn(['account', 'acct']),
   ];
