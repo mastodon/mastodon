@@ -67,8 +67,8 @@ class Content extends ImmutablePureComponent {
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
         link.setAttribute('title', mention.get('acct'));
-      } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
-        link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
+      } else if (link.dataset.hashtag) {
+        link.addEventListener('click', this.onHashtagClick.bind(this, link.dataset.hashtag), false);
       } else {
         let status = this.props.announcement.get('statuses').find(item => link.href === item.get('url'));
         if (status) {
@@ -91,8 +91,6 @@ class Content extends ImmutablePureComponent {
   };
 
   onHashtagClick = (hashtag, e) => {
-    hashtag = hashtag.replace(/^#/, '');
-
     if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       this.context.router.history.push(`/tags/${hashtag}`);

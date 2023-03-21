@@ -90,7 +90,7 @@ class TextFormatter
     url     = tag_url(hashtag)
 
     <<~HTML.squish
-      <a href="#{h(url)}" class="mention hashtag" rel="tag">#<span>#{h(hashtag)}</span></a>
+      <a href="#{h(url)}" class="mention hashtag" rel="tag" data-hashtag="#{h(hashtag)}">#<span>#{h(hashtag)}</span></a>
     HTML
   end
 

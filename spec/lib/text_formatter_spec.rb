@@ -276,7 +276,7 @@ RSpec.describe TextFormatter do
       let(:text)  { '#hashtag' }
 
       it 'creates a hashtag link' do
-        expect(subject).to include '/tags/hashtag" class="mention hashtag" rel="tag">#<span>hashtag</span></a>'
+        expect(subject).to include '/tags/hashtag" class="mention hashtag" rel="tag" data-hashtag="hashtag">#<span>hashtag</span></a>'
       end
     end
 
@@ -284,7 +284,7 @@ RSpec.describe TextFormatter do
       let(:text)  { '#hashtagタグ' }
 
       it 'creates a hashtag link' do
-        expect(subject).to include '/tags/hashtag%E3%82%BF%E3%82%B0" class="mention hashtag" rel="tag">#<span>hashtagタグ</span></a>'
+        expect(subject).to include '/tags/hashtag%E3%82%BF%E3%82%B0" class="mention hashtag" rel="tag" data-hashtag="hashtagタグ">#<span>hashtagタグ</span></a>'
       end
     end
 
