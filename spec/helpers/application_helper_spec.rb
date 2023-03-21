@@ -27,6 +27,22 @@ describe ApplicationHelper do
     end
   end
 
+  describe 'body_classes' do
+    context 'with a body class string from a controller' do
+      before do
+        without_partial_double_verification do
+          allow(helper).to receive(:body_class_string).and_return('modal-layout compose-standalone')
+          allow(helper).to receive(:current_theme).and_return('default')
+          allow(helper).to receive(:current_account).and_return(Fabricate(:account))
+        end
+      end
+
+      it 'uses the controller body classes in the result' do
+        expect(helper.body_classes).to match(/modal-layout compose-standalone/)
+      end
+    end
+  end
+
   describe 'locale_direction' do
     around do |example|
       current_locale = I18n.locale

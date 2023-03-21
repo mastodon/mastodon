@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   helper_method :omniauth_only?
   helper_method :sso_account_settings
   helper_method :whitelist_mode?
+  helper_method :body_class_string
 
   rescue_from ActionController::ParameterMissing, Paperclip::AdapterRegistry::NoHandlerError, with: :bad_request
   rescue_from Mastodon::NotPermittedError, with: :forbidden
@@ -144,6 +145,10 @@ class ApplicationController < ActionController::Base
     return Setting.theme unless Themes.instance.names.include? current_user&.setting_theme
 
     current_user.setting_theme
+  end
+
+  def body_class_string
+    @body_classes || ''
   end
 
   def respond_with_error(code)
