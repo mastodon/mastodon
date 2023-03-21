@@ -436,7 +436,7 @@ Rails.application.routes.draw do
 
     # JSON / REST API
     namespace :v1 do
-      resources :statuses, only: [:create, :show, :update, :destroy] do
+      resources :statuses, only: [:index, :create, :show, :update, :destroy] do
         scope module: :statuses do
           resources :reblogged_by, controller: :reblogged_by_accounts, only: :index
           resources :favourited_by, controller: :favourited_by_accounts, only: :index
@@ -581,7 +581,7 @@ Rails.application.routes.draw do
         resources :familiar_followers, only: :index
       end
 
-      resources :accounts, only: [:create, :show] do
+      resources :accounts, only: [:index, :create, :show] do
         resources :statuses, only: :index, controller: 'accounts/statuses'
         resources :followers, only: :index, controller: 'accounts/follower_accounts'
         resources :following, only: :index, controller: 'accounts/following_accounts'
