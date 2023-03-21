@@ -292,6 +292,21 @@ module AccountInteractions
     end
   end
 
+  def relations_map(account_ids, domains = nil, **options)
+    relations = {
+      blocked_by: Account.blocked_by_map(account_ids, id),
+      following: Account.following_map(account_ids, id),
+    }
+
+    return relations if options[:skip_blocking_and_muting]
+
+    relations.merge!({
+      blocking: Account.blocking_map(account_ids, id),
+      muting: Account.muting_map(account_ids, id),
+      domain_blocking_by_domain: Account.domain_blocking_map_by_domain(domains, id),
+    })
+  end
+
   private
 
   def remove_potential_friendship(other_account)
