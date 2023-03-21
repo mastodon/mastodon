@@ -2,7 +2,7 @@
   = t('auth.register')
 
 - content_for :header_tags do
-  = render partial: 'shared/og', locals: { description: description_for_sign_up }
+  = render partial: 'shared/og', locals: { description: description_for_sign_up(@invite) }
 
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { novalidate: false }) do |f|
   %h1.title= t('auth.sign_up.title', domain: site_hostname)

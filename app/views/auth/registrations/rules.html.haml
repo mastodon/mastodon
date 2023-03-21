@@ -2,7 +2,7 @@
   = t('auth.register')
 
 - content_for :header_tags do
-  = render partial: 'shared/og', locals: { description: description_for_sign_up }
+  = render partial: 'shared/og', locals: { description: description_for_sign_up(@invite) }
 
 .simple_form
   %h1.title= t('auth.rules.title')
