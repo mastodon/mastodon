@@ -811,6 +811,12 @@ et:
         message_html: Serverireegleid pole defineeritud.
       sidekiq_process_check:
         message_html: Ühtegi Sidekiq protsessi pole %{value} järjekorra jaoks. Sidekiq seadistus vajab üle vaatamist
+      upload_check_privacy_error:
+        action: Klõpsa lisainfo saamiseks siia
+        message_html: "<strong>Veebiserver on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Klõpsa lisainfo saamiseks siia
+        message_html: "<strong>Objektihoidla on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
     tags:
       review: Vaata olek üle
       updated_msg: Sildi sätted edukalt uuendatud
@@ -1683,7 +1689,7 @@ et:
       title: Tere tulemast, %{name}!
   users:
     follow_limit_reached: Ei saa jälgida rohkem kui %{limit} inimest
-    go_to_sso_account_settings: Mine oma idenditeedi pakkuja kontosätetesse
+    go_to_sso_account_settings: Mine oma idenditeedipakkuja kontosätetesse
     invalid_otp_token: Vale kaheastmeline võti
     otp_lost_help_html: Kui kaotasid ligipääsu mõlemale, saad võtta ühendust %{email}-iga
     seamless_external_login: Välise teenuse kaudu sisse logides pole salasõna ja e-posti sätted saadaval.
