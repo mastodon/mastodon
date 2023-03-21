@@ -22,10 +22,6 @@ class InstancePresenter < ActiveModelSerializers::Model
     ContactPresenter.new
   end
 
-  def closed_registrations_message
-    Setting.closed_registrations_message
-  end
-
   def description
     Setting.site_short_description
   end
