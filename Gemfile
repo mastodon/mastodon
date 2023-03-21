@@ -35,11 +35,12 @@ group :pam_authentication, optional: true do
 end
 
 gem 'net-ldap', '~> 0.18'
-gem 'omniauth-cas', '~> 2.0'
-gem 'omniauth-saml', '~> 1.10'
+
+gem 'omniauth-cas', github: 'stanhu/omniauth-cas', branch: 'sh-update-omniauth2'
+gem 'omniauth-saml', '~> 2.0'
 gem 'omniauth_openid_connect', '~> 0.6.1'
-gem 'omniauth', '~> 1.9'
-gem 'omniauth-rails_csrf_protection', '~> 0.1'
+gem 'omniauth', '~> 2.0'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
 gem 'color_diff', '~> 0.1'
 gem 'discard', '~> 1.2'
