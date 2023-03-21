@@ -33,6 +33,6 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
   end
 
   def report_uri
-    @json['id'] unless @json['id'].nil? || invalid_origin?(@json['id'])
+    @json['id'] unless @json['id'].nil? || non_matching_uri_hosts?(@account.uri, @json['id'])
   end
 end
