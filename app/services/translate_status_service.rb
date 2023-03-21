@@ -13,7 +13,7 @@ class TranslateStatusService < BaseService
 
     raise Mastodon::NotPermittedError unless permitted?
 
-    status_translation = Rails.cache.fetch("translations/#{@status.language}/#{@target_language}/#{content_hash}", expires_in: CACHE_TTL) do
+    status_translation = Rails.cache.fetch("v2:translations/#{@status.language}/#{@target_language}/#{content_hash}", expires_in: CACHE_TTL) do
       translations = translation_backend.translate(@source_texts.values, @status.language, @target_language)
       build_status_translation(translations)
     end
