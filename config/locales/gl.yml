@@ -443,7 +443,7 @@ gl:
         private_comment_description_html: 'Para axudarche a lembrar de onde veñen os bloqueos importados, imos crealos engadindo o seguinte comentario privado: <q>%{comment}</q>'
         private_comment_template: Importada desde %{source} o %{date}
         title: Importar bloqueos de dominio
-      invalid_domain_block: 'Un ou varios dominios non se bloquearon debido ao seguintes erros: %{error}'
+      invalid_domain_block: 'Un ou varios dominios non se bloquearon debido ao seguinte erro(s): %{error}'
       new:
         title: Importar bloqueos de dominio
       no_file: Ningún ficheiro seleccionado
@@ -475,7 +475,7 @@ gl:
       content_policies:
         comment: Nota interna
         description_html: Podes definir políticas acerca do contido que serán aplicadas a tódalas contas deste dominio e tódolos seus subdominios.
-        limited_federation_mode_description_html: Podes elexir se permites a federación con este dominio.
+        limited_federation_mode_description_html: Podes elexir se permites ou non a federación con este dominio.
         policies:
           reject_media: Rexeitar multimedia
           reject_reports: Rexeitar denuncias
@@ -1689,6 +1689,7 @@ gl:
       title: Benvida, %{name}!
   users:
     follow_limit_reached: Non pode seguir a máis de %{limit} persoas
+    go_to_sso_account_settings: Ir aos axustes da conta no teu provedor de identidade
     invalid_otp_token: O código do segundo factor non é válido
     otp_lost_help_html: Se perdes o acceso a ambos, podes contactar con %{email}
     seamless_external_login: Accedeches a través dun servizo externo, polo que os axustes de contrasinal e email non están dispoñibles.
