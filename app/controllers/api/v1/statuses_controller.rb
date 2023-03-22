@@ -5,10 +5,11 @@ class Api::V1::StatusesController < Api::BaseController
 
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :update, :destroy]
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :update, :destroy]
-  before_action :require_user!, except:  [:index, :show, :context]
-  before_action :set_statuses, only:     [:index]
-  before_action :set_status, only:       [:show, :context]
-  before_action :set_thread, only:       [:create]
+  before_action :require_user!, except:      [:index, :show, :context]
+  before_action :set_statuses, only:         [:index]
+  before_action :set_status, only:           [:show, :context]
+  before_action :set_thread, only:           [:create]
+  before_action :check_statuses_limit, only: [:index]
 
   override_rate_limit_headers :create, family: :statuses
   override_rate_limit_headers :update, family: :statuses
@@ -134,6 +135,10 @@ class Api::V1::StatusesController < Api::BaseController
     authorize(@thread, :show?) if @thread.present?
   rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     render json: { error: I18n.t('statuses.errors.in_reply_not_found') }, status: 404
+  end
+
+  def check_statuses_limit
+    raise(Mastodon::ValidationError) if status_ids.size > DEFAULT_STATUSES_LIMIT
   end
 
   def status_ids

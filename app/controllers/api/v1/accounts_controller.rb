@@ -13,6 +13,7 @@ class Api::V1::AccountsController < Api::BaseController
   before_action :check_account_approval, except: [:index, :create]
   before_action :check_account_confirmation, except: [:index, :create]
   before_action :check_enabled_registrations, only: [:create]
+  before_action :check_accounts_limit, only: [:index]
 
   skip_before_action :require_authenticated_user!, only: :create
 
@@ -91,6 +92,10 @@ class Api::V1::AccountsController < Api::BaseController
 
   def check_account_confirmation
     raise(ActiveRecord::RecordNotFound) if @account.local? && !@account.user_confirmed?
+  end
+
+  def check_accounts_limit
+    raise(Mastodon::ValidationError) if account_ids.size > DEFAULT_ACCOUNTS_LIMIT
   end
 
   def relationships(**options)
