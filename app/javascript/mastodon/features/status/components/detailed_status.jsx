@@ -129,15 +129,14 @@ class DetailedStatus extends ImmutablePureComponent {
       outerStyle.height = `${this.state.height}px`;
     }
 
-    const translation = status.get('translation');
-    const language = translation ? translation.get('language') : status.get('language');
+    const language = status.getIn(['translation', 'language']) || status.get('language');
 
     if (pictureInPicture.get('inUse')) {
       media = <PictureInPicturePlaceholder />;
     } else if (status.get('media_attachments').size > 0) {
       if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
         const attachment = status.getIn(['media_attachments', 0]);
-        const description = translation ? attachment.getIn(['translation', 'description']) : attachment.get('description');
+        const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
 
         media = (
           <Audio
@@ -158,7 +157,7 @@ class DetailedStatus extends ImmutablePureComponent {
         );
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         const attachment = status.getIn(['media_attachments', 0]);
-        const description = translation ? attachment.getIn(['translation', 'description']) : attachment.get('description');
+        const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
 
         media = (
           <Video
@@ -184,7 +183,6 @@ class DetailedStatus extends ImmutablePureComponent {
             sensitive={status.get('sensitive')}
             media={status.get('media_attachments')}
             lang={language}
-            translation={status.get('translation')}
             height={300}
             onOpenMedia={this.props.onOpenMedia}
             visible={this.props.showMedia}

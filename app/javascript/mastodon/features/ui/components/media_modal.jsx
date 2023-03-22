@@ -144,13 +144,12 @@ class MediaModal extends ImmutablePureComponent {
     const leftNav  = media.size > 1 && <button tabIndex='0' className='media-modal__nav media-modal__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><Icon id='chevron-left' fixedWidth /></button>;
     const rightNav = media.size > 1 && <button tabIndex='0' className='media-modal__nav  media-modal__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' fixedWidth /></button>;
 
-    const translation = status.get('translation');
-    const languague = translation ? translation.get('language') : status.get('language');
+    const language = status.getIn(['translation', 'language']) || status.get('language');
 
     const content = media.map((image) => {
       const width  = image.getIn(['meta', 'original', 'width']) || null;
       const height = image.getIn(['meta', 'original', 'height']) || null;
-      const description = translation ? image.getIn(['translation', 'description']) : image.get('description');
+      const description = image.getIn(['translation', 'description']) || image.get('description');
 
       if (image.get('type') === 'image') {
         return (
@@ -160,7 +159,7 @@ class MediaModal extends ImmutablePureComponent {
             width={width}
             height={height}
             alt={description}
-            lang={languague}
+            lang={language}
             key={image.get('url')}
             onClick={this.toggleNavigation}
             zoomButtonHidden={this.state.zoomButtonHidden}
@@ -183,7 +182,7 @@ class MediaModal extends ImmutablePureComponent {
             onCloseVideo={onClose}
             detailed
             alt={description}
-            lang={languague}
+            lang={language}
             key={image.get('url')}
           />
         );
@@ -195,7 +194,7 @@ class MediaModal extends ImmutablePureComponent {
             height={height}
             key={image.get('preview_url')}
             alt={description}
-            lang={languague}
+            lang={language}
             onClick={this.toggleNavigation}
           />
         );

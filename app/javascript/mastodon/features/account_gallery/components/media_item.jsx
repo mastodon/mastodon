@@ -59,13 +59,12 @@ export default class MediaItem extends ImmutablePureComponent {
 
     const width  = `${Math.floor((displayWidth - 4) / 3) - 4}px`;
     const height = width;
-    const status = attachment.get('status');
 
-    const translation = status.get('translation');
-    const language    = translation ? translation.get('language') : status.get('language');
-    const description = translation ? attachment.getIn(['translation', 'description']) : attachment.get('description');
-    const spoilerText = translation ? translation.get('spoiler_text') : status.get('spoiler_text');
-    const title       = spoilerText || description;
+    const status = attachment.get('status');
+    const language = status.getIn(['translation', 'language']) || status.get('language');
+    const spoilerText = status.getIn(['translation', 'spoiler_text']) || status.get('spoiler_text');
+    const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
+    const title = spoilerText || description;
 
     let thumbnail, label, icon, content;
 

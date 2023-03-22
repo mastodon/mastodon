@@ -231,10 +231,9 @@ class StatusContent extends React.PureComponent {
     const targetLanguages = this.props.languages?.get(status.get('language') || 'und');
     const renderTranslate = this.props.onTranslate && this.context.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && targetLanguages?.includes(contentLocale);
 
-    const translation = status.get('translation');
-    const content = { __html: translation ? translation.get('contentHtml') : status.get('contentHtml') };
-    const spoilerContent = { __html: translation ? translation.get('spoilerHtml') : status.get('spoilerHtml') };
-    const language = translation ? translation.get('language') : status.get('language');
+    const content = { __html: status.getIn(['translation', 'contentHtml']) || status.get('contentHtml') };
+    const spoilerContent = { __html: status.getIn(['translation', 'spoilerHtml']) || status.get('spoilerHtml') };
+    const language = status.getIn(['translation', 'language']) || status.get('language');
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.context.router,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
@@ -248,7 +247,7 @@ class StatusContent extends React.PureComponent {
     );
 
     const translateButton = renderTranslate && (
-      <TranslateButton onClick={this.handleTranslate} translation={translation} />
+      <TranslateButton onClick={this.handleTranslate} translation={status.get('translation')} />
     );
 
     const poll = !!status.get('poll') && (

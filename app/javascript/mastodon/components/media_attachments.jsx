@@ -51,8 +51,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
   render () {
     const { status, width, height } = this.props;
     const mediaAttachments = status.get('media_attachments');
-    const translation = status.get('translation');
-    const language = translation ? translation.get('language') : (status.get('language') || this.props.lang);
+    const language = status.getIn(['language', 'translation']) || status.get('language') || this.props.lang;
 
     if (mediaAttachments.size === 0) {
       return null;
@@ -60,7 +59,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
 
     if (mediaAttachments.getIn([0, 'type']) === 'audio') {
       const audio = mediaAttachments.get(0);
-      const description = translation ? audio.getIn(['translation', 'description']) : audio.get('description');
+      const description = audio.getIn(['translation', 'description']) || audio.get('description');
 
       return (
         <Bundle fetchComponent={Audio} loading={this.renderLoadingAudioPlayer} >
@@ -82,7 +81,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
       );
     } else if (mediaAttachments.getIn([0, 'type']) === 'video') {
       const video = mediaAttachments.get(0);
-      const description = translation ? video.getIn(['translation', 'description']) : video.get('description');
+      const description = video.getIn(['translation', 'description']) || video.get('description');
 
       return (
         <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >

@@ -134,9 +134,8 @@ class Poll extends ImmutablePureComponent {
     const active          = !!this.state.selected[`${optionIndex}`];
     const voted           = option.get('voted') || (poll.get('own_votes') && poll.get('own_votes').includes(optionIndex));
 
-    const translation = option.get('translation');
-    const title = translation ? translation.get('title') : option.get('title');
-    let titleHtml = translation ? translation.get('titleHtml') : option.get('titleHtml');
+    const title = option.getIn(['translation', 'title']) || option.get('title');
+    let titleHtml = option.getIn(['translation', 'titleHtml']) || option.get('titleHtml');
 
     if (!titleHtml) {
       const emojiMap = makeEmojiMap(poll);

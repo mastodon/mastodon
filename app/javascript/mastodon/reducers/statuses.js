@@ -50,6 +50,13 @@ const statusTranslateSuccess = (state, id, translation) => {
   });
 };
 
+const statusTranslateUndo = (state, id) => {
+  return state.withMutations(map => {
+    map.deleteIn([id, 'translation']);
+    map.getIn([id, 'media_attachments']).forEach((item, index) => map.deleteIn([id, 'media_attachments', index, 'translation']));
+  });
+};
+
 const initialState = ImmutableMap();
 
 export default function statuses(state = initialState, action) {
@@ -103,7 +110,7 @@ export default function statuses(state = initialState, action) {
   case STATUS_TRANSLATE_SUCCESS:
     return statusTranslateSuccess(state, action.id, action.translation);
   case STATUS_TRANSLATE_UNDO:
-    return state.deleteIn([action.id, 'translation']);
+    return statusTranslateUndo(state, action.id);
   default:
     return state;
   }

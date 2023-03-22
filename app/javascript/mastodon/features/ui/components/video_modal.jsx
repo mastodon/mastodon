@@ -40,9 +40,8 @@ class VideoModal extends ImmutablePureComponent {
   render () {
     const { media, status, onClose } = this.props;
     const options = this.props.options || {};
-    const translation = media.get('translation');
-    const language = translation ? translation.get('language') : media.get('language');
-    const description = translation ? media.getIn(['translation', 'description']) : media.get('description');
+    const language = status.getIn(['translation', 'language']) || status.get('language');
+    const description = media.getIn(['translation', 'description']) || media.get('description');
 
     return (
       <div className='modal-root__modal video-modal'>
