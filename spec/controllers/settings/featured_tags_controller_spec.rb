@@ -11,19 +11,19 @@ describe Settings::FeaturedTagsController do
     end
   end
 
-  describe 'POST #create' do
-    context 'when user is not sign in' do
-      subject { post :create }
+  context 'when user is not signed in' do
+    subject { post :create }
 
-      it_behaves_like 'authenticate user'
-    end
+    it_behaves_like 'authenticate user'
+  end
 
-    context 'when user is sign in' do
+  context 'when user is signed in' do
+    let(:user) { Fabricate(:user, password: '12345678') }
+
+    before { sign_in user, scope: :user }
+
+    describe 'POST #create' do
       subject { post :create, params: { featured_tag: params } }
-
-      let(:user) { Fabricate(:user, password: '12345678') }
-
-      before { sign_in user, scope: :user }
 
       context 'when parameter is valid' do
         let(:params) { { name: 'test' } }
@@ -39,6 +39,24 @@ describe Settings::FeaturedTagsController do
         it 'renders new' do
           expect(subject).to render_template :index
         end
+      end
+    end
+
+    describe 'GET to #index' do
+      it 'gets a list of featured tags' do
+        get :index
+
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    describe 'DELETE to #destroy' do
+      let(:featured_tag) { Fabricate(:featured_tag, account: user.account) }
+
+      it 'removes the featured tag' do
+        delete :destroy, params: { id: featured_tag.id }
+
+        expect(response).to redirect_to(settings_featured_tags_path)
       end
     end
   end
