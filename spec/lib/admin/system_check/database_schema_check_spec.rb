@@ -7,23 +7,7 @@ describe Admin::SystemCheck::DatabaseSchemaCheck do
 
   let(:user) { Fabricate(:user) }
 
-  describe 'skip?' do
-    context 'when user can view devops' do
-      before { allow(user).to receive(:can?).with(:view_devops).and_return(true) }
-
-      it 'returns false' do
-        expect(check.skip?).to be false
-      end
-    end
-
-    context 'when user cannot view devops' do
-      before { allow(user).to receive(:can?).with(:view_devops).and_return(false) }
-
-      it 'returns true' do
-        expect(check.skip?).to be true
-      end
-    end
-  end
+  it_behaves_like 'a check available to devops users'
 
   describe 'pass?' do
     context 'when database needs migration' do
