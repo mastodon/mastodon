@@ -116,6 +116,9 @@ class Status < ApplicationRecord
 
   scope :not_local_only, -> { where(local_only: [false, nil]) }
 
+  after_create_commit :trigger_create_webhooks
+  after_update_commit :trigger_update_webhooks
+
   cache_associated :application,
                    :media_attachments,
                    :conversation,
@@ -141,6 +144,10 @@ class Status < ApplicationRecord
   delegate :domain, to: :account, prefix: true
 
   REAL_TIME_WINDOW = 6.hours
+
+  def cache_key
+    "v2:#{super}"
+  end
 
   def searchable_by(preloaded = nil)
     ids = []
@@ -596,5 +603,13 @@ class Status < ApplicationRecord
     account&.decrement_count!(:statuses_count)
     reblog&.decrement_count!(:reblogs_count) if reblog?
     thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && distributable?
+  end
+
+  def trigger_create_webhooks
+    TriggerWebhookWorker.perform_async('status.created', 'Status', id) if local?
+  end
+
+  def trigger_update_webhooks
+    TriggerWebhookWorker.perform_async('status.updated', 'Status', id) if local?
   end
 end
