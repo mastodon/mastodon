@@ -1,201 +1,317 @@
-version: '3'
+version: '3.8'
+
 volumes:
-  postgres:
-  redis:
-  elasticsearch:
-  storage:
+  nginx-config:
+  search-data:
+  redis-data:
+  # Sensitive
+  letsencrypt:
+    external: true
+  postgres-data:
+  mastodon-data:
+  maddy-data:
+  #  # Metrics
+  #  metrics-data:
+  #  prometheus-config:
+  #  statsd-config:
 
 services:
-  db:
+  #
+  # Critical services
+  #
+  frontend:
+    image: macbre/nginx-http3:latest
     restart: always
-    image: postgres:15-alpine
-    shm_size: 256mb
+    user: root
+    ports:
+      - '80:80'
+      - '443:443'
     networks:
-      internal_network:
-        aliases:
-          - postgres
+      - exposed
+    depends_on:
+      - backend
+      - streaming
+    volumes:
+      - letsencrypt:/etc/letsencrypt
+      - nginx-config:/etc/nginx
+      - mastodon-data:/opt/mastodon/public
+
+  streaming:
+    image: ghcr.io/mastodon/mastodon
+    restart: always
+    command: node ./streaming
+    networks:
+      - exposed
+    healthcheck:
+      test: 'wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1'
+    depends_on:
+      - database
+      - redis
+    env_file: stack.env
+    environment:
+      - 'STREAMING_CLUSTER_NUM=4'
+
+  backend:
+    image: ghcr.io/mastodon/mastodon
+    restart: always
+    command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
+    networks:
+      - exposed
+    healthcheck:
+      test: 'wget -q --spider --proxy=off localhost:3000/health || exit 1'
+    depends_on:
+      - database
+      - redis
+      - cache
+      - scheduler
+      - sidekiq
+    volumes:
+      - mastodon-data:/opt/mastodon/public
+    env_file: stack.env
+    environment:
+      - 'MAX_THREADS=8'
+      - 'MIN_THREADS=4'
+      - 'WEB_CONCURRENCY=4'
+      - 'PERSISTENT_TIMEOUT=30'
+
+  scheduler:
+    image: ghcr.io/mastodon/mastodon
+    restart: always
+    command: bundle exec sidekiq
+    depends_on:
+      - database
+      - redis
+    networks:
+      - exposed
+    volumes:
+      - mastodon-data:/opt/mastodon/public
+    healthcheck:
+      test: "ps aux | grep '[s]idekiq\ 6' || false"
+    env_file: stack.env
+
+  sidekiq:
+    image: ghcr.io/mastodon/mastodon
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    command: bundle exec sidekiq -q default -q push -q mailers -q pull -q ingress
+    depends_on:
+      - database
+      - redis
+    networks:
+      - exposed
+    volumes:
+      - mastodon-data:/opt/mastodon/public
+    healthcheck:
+      test: "ps aux | grep '[s]idekiq\ 6' || false"
+    env_file: stack.env
+
+  #DB_HOST=database
+  #PREPARED_STATEMENTS=false
+  database:
+    image: edoburu/pgbouncer:latest
+    restart: always
+    depends_on:
+      - postgres
+    networks:
+      - exposed
+      - database
+    healthcheck:
+      test: 'pg_isready --host=0.0.0.0'
+    environment:
+      - 'DATABASE_URL=postgres://mastodon:1@postgres/mastodon_production'
+      - 'AUTH_TYPE=trust'
+      - 'POOL_MODE=transaction'
+      - 'MAX_CLIENT_CONN=500'
+      - 'DEFAULT_POOL_SIZE=50'
+
+  postgres:
+    image: postgres:15-alpine
+    restart: always
+    shm_size: 256mb
+    command: postgres -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all
+    networks:
+      - database
     healthcheck:
       test: ['CMD', 'pg_isready', '-U', 'postgres']
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
     environment:
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
 
+  #REDIS_HOST=redis
   redis:
     image: redis:7-alpine
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
+    restart: always
+    command: 'redis-server --appendonly yes --maxmemory 100M --maxmemory-policy volatile-lfu'
     networks:
-      internal_network:
-        aliases:
-          - redis
+      - exposed
     healthcheck:
-      test: ['CMD', 'redis-cli', 'ping']
+      test: 'redis-cli ping | grep PONG'
     volumes:
-      - redis:/data
+      - redis-data:/data
 
-  #  es:
-  #    restart: always
-  #    image: docker.elastic.co/elasticsearch/elasticsearch:8.5.0
-  #    environment:
-  #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true"
-  #      - "xpack.license.self_generated.type=basic"
-  #      - "xpack.security.enabled=false"
-  #      - "xpack.watcher.enabled=false"
-  #      - "xpack.graph.enabled=false"
-  #      - "xpack.ml.enabled=false"
-  #      - "bootstrap.memory_lock=true"
-  #      - "cluster.name=es-mastodon"
-  #      - "discovery.type=single-node"
-  #      - "thread_pool.write.queue_size=1000"
+  #CACHE_REDIS_HOST=cache
+  cache:
+    image: redis:7-alpine
+    restart: always
+    command: 'redis-server --maxmemory 100M --maxmemory-policy allkeys-lru --save ""'
+    networks:
+      - exposed
+    healthcheck:
+      test: 'redis-cli ping | grep PONG'
+    tmpfs: /data
+
+  #SMTP_SERVER=mailer
+  #SMTP_PORT=587
+  #SMTP_AUTH_METHOD=plain
+  #SMTP_LOGIN=notifications@mastodon.example
+  #SMTP_PASSWORD=mastodon
+  #SMTP_OPENSSL_VERIFY_MODE=none
+  #SMTP_DOMAIN=mastodon.example
+  #SMTP_FROM_ADDRESS=Mastodon <notifications@mastodon.example>
+  mailer:
+    image: foxcpp/maddy:latest
+    restart: always
+    ports:
+      - '25:25'
+    networks:
+      - exposed
+    volumes:
+      - letsencrypt:/etc/letsencrypt
+      - maddy-data:/data
+    environment:
+      - 'MADDY_HOSTNAME=mail.mastodon.example'
+      - 'MADDY_DOMAIN=mastodon.example'
+
+  #
+  # Addon services
+  #
+  #  #LIBRE_TRANSLATE_ENDPOINT=http://libretranslate:5000
+  #  libretranslate:
+  #    image: libretranslate/libretranslate:latest
+  #    restart: unless-stopped
   #    networks:
-  #      internal_network:
-  #        aliases:
-  #          - elasticsearch
+  #      - exposed
+  #    environment:
+  #      - LT_DISABLE_WEB_UI=true
+  #      - LT_DISABLE_FILES_TRANSLATION=true
+  #
+  #  #ES_ENABLED=true
+  #  #ES_HOST=elasticsearch
+  #  elasticsearch:
+  #    image: elasticsearch:7.17.9
+  #    restart: unless-stopped
+  #    networks:
+  #      - exposed
   #    healthcheck:
-  #       test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+  #      test: 'curl --silent --fail localhost:9200/_cluster/health || exit 1'
   #    volumes:
-  #       - elasticsearch:/usr/share/elasticsearch/data
+  #      - search-data:/usr/share/elasticsearch/data
   #    ulimits:
+  #      nproc: 65535
+  #      nofile:
+  #        soft: 65535
+  #        hard: 65535
   #      memlock:
   #        soft: -1
   #        hard: -1
-  #      nofile:
-  #        soft: 65536
-  #        hard: 65536
-  #    ports:
-  #      - '127.0.0.1:9200:9200'
+  #    environment:
+  #      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true'
+  #      - 'xpack.license.self_generated.type=basic'
+  #      - 'xpack.security.enabled=false'
+  #      - 'xpack.watcher.enabled=false'
+  #      - 'xpack.graph.enabled=false'
+  #      - 'xpack.example.enabled=false'
+  #      - 'bootstrap.memory_lock=true'
+  #      - 'cluster.name=es-mastodon'
+  #      - 'discovery.type=single-node'
+  #      - 'thread_pool.write.queue_size=1000'
 
-  web:
-    build: .
-    image: ghcr.io/mastodon/mastodon
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-    env_file: .env.production
-    command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
-    networks:
-      external_network:
-        aliases:
-          - backend
-      internal_network:
-        aliases:
-          - puma
-    healthcheck:
-      test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:3000/health || exit 1']
-    ports:
-      - '127.0.0.1:3000:3000'
-    depends_on:
-      - db
-      - redis
-  #      - es
-    volumes:
-      - storage:/mastodon/public/system
-
-  streaming:
-    build: .
-    image: ghcr.io/mastodon/mastodon
-    env_file: .env.production
-    command: node ./streaming
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-    networks:
-      external_network:
-        aliases:
-          - streaming
-      internal_network:
-    healthcheck:
-      test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1']
-    ports:
-      - '127.0.0.1:4000:4000'
-    depends_on:
-      - db
-      - redis
-
-  sidekiq:
-    build: .
-    image: ghcr.io/mastodon/mastodon
-    env_file: .env.production
-    command: bundle exec sidekiq
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-    depends_on:
-      - db
-      - redis
-    networks:
-      - external_network
-      - internal_network
-    volumes:
-      - storage:/mastodon/public/system
-    healthcheck:
-      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
-
-
-  ## Uncomment to enable federation with tor instances along with adding the following ENV variables
-  ## http_proxy=http://privoxy:8118
-  ## ALLOW_ACCESS_TO_HIDDEN_SERVICE=true
-  #  tor:
-  #    image: sirboops/tor
-  #    networks:
-  #       external_network:
-  #         aliases:
-  #           - tor
-  #
-  #  privoxy:
-  #    image: sirboops/privoxy
-  #    volumes:
-  #      - ./priv-config:/opt/config
-  #    networks:
-  #      external_network:
-  #      internal_network:
-  #        aliases:
-  #          - privoxy
-
-  #  nginx:
-  #    image: nginx
+  #  #
+  #  # Metrics
+  #  #
+  #  frontend-metrics:
+  #    image: nginx/nginx-prometheus-exporter:0.10.0
   #    restart: always
   #    networks:
-  #      - external_network
-  #    healthcheck:
-  #      # Replace example.com with testing domain
-  #      test: ["CMD-SHELL", "curl -Isf --resolve example.com:80:127.0.0.1 http://example.com || exit 1"]
-  #    ports:
-  #      - '80:80'
-  #      - '443:443'
+  #      - exposed
   #    depends_on:
-  #      - web
-  #      - streaming
-  #    volumes:
-  #      - ./nginx:/etc/nginx/
-  #      - ./letsencrypt:/etc/letsencrypt
+  #      - frontend
+  #    environment:
+  #      - 'SCRAPE_URI=http://frontend:8080/stub_status'
   #
-  #  certbot:
-  #    image: certbot/certbot
-  #    tty: true
-  #    command: certonly
-  #    restart: on-failure
-  #    profiles: ["certbot"]
+  #  #STATSD_ADDR=backend-metrics:8125
+  #  backend-metrics:
+  #    image: prom/statsd-exporter:latest
+  #    restart: always
+  #    command: --statsd.mapping-config=/etc/statsd/statsd_mapping.yml
   #    networks:
-  #      external_network:
-  #        aliases:
-  #          - certbot
-  #    ports:
-  #      - '127.0.0.0:5000:80'
+  #      - exposed
   #    depends_on:
-  #      - nginx
+  #      - backend
   #    volumes:
-  #      - ./letsencrypt:/etc/letsencrypt
+  #      - statsd-config:/etc/statsd
+  #
+  #  pgbouncer-metrics:
+  #    image: prometheuscommunity/pgbouncer-exporter:latest
+  #    restart: always
+  #    command: --pgBouncer.connectionString="postgres://postgres:@database:5432/pgbouncer?sslmode=disable"
+  #    networks:
+  #      - exposed
+  #    healthcheck:
+  #      test: 'wget -q --spider --proxy=off localhost:9127/metrics || exit 1'
+  #    depends_on:
+  #      - database
+  #
+  #  postgres-metrics:
+  #    image: quay.io/prometheuscommunity/postgres-exporter:latest
+  #    restart: always
+  #    networks:
+  #      - exposed
+  #      - database
+  #    healthcheck:
+  #      test: 'wget -q --spider --proxy=off localhost:9187/metrics || exit 1'
+  #    depends_on:
+  #      - postgres
+  #    environment:
+  #      - 'DATA_SOURCE_NAME=postgresql://postgres@postgres:5432/postgres?sslmode=disable'
+  #
+  #  redis-metrics:
+  #    image: oliver006/redis_exporter:latest
+  #    restart: always
+  #    networks:
+  #      - exposed
+  #    depends_on:
+  #      - redis
+  #    environment:
+  #      - 'REDIS_ADDR=redis://redis:6379'
+  #
+  #  cache-metrics:
+  #    image: oliver006/redis_exporter:latest
+  #    restart: always
+  #    networks:
+  #      - exposed
+  #    depends_on:
+  #      - cache
+  #    environment:
+  #      - 'REDIS_ADDR=redis://cache:6379'
+  #
+  #  prometheus:
+  #    image: prom/prometheus:latest
+  #    restart: always
+  #    command: --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --storage.tsdb.retention.time=7d
+  #    networks:
+  #      - exposed
+  #      - global
+  #    volumes:
+  #      - prometheus-config:/etc/prometheus
+  #      - metrics-data:/prometheus
 
 networks:
-  external_network:
-  internal_network:
-    driver: overlay
-    attachable: true
+  exposed: {}
+  database:
     internal: true
+  #  global:
+  #    external: true
