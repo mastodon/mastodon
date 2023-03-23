@@ -18,7 +18,6 @@ COPY Gemfile* package.json yarn.lock /opt/mastodon/
 # hadolint ignore=DL3008
 RUN apt-get update && \
     apt-get install -y --no-install-recommends build-essential \
-        ca-certificates \
         git \
         libicu-dev \
         libidn11-dev \
