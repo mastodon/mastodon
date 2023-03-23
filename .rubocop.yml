@@ -59,10 +59,49 @@ Metrics/BlockNesting:
   Exclude:
     - 'lib/mastodon/*_cli.rb'
 
+# Reason: Some Excluded files would be candidates for refactoring but not currently addressed
+# https://docs.rubocop.org/rubocop/cops_metrics.html#metricsclasslength
 Metrics/ClassLength:
-  CountAsOne: [array, heredoc]
+  CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
   Exclude:
     - 'lib/mastodon/*_cli.rb'
+    - 'app/controllers/admin/accounts_controller.rb'
+    - 'app/controllers/api/base_controller.rb'
+    - 'app/controllers/api/v1/admin/accounts_controller.rb'
+    - 'app/controllers/application_controller.rb'
+    - 'app/controllers/auth/registrations_controller.rb'
+    - 'app/controllers/auth/sessions_controller.rb'
+    - 'app/lib/activitypub/activity.rb'
+    - 'app/lib/activitypub/activity/create.rb'
+    - 'app/lib/activitypub/tag_manager.rb'
+    - 'app/lib/feed_manager.rb'
+    - 'app/lib/link_details_extractor.rb'
+    - 'app/lib/request.rb'
+    - 'app/lib/text_formatter.rb'
+    - 'app/lib/user_settings_decorator.rb'
+    - 'app/mailers/user_mailer.rb'
+    - 'app/models/account.rb'
+    - 'app/models/admin/account_action.rb'
+    - 'app/models/form/account_batch.rb'
+    - 'app/models/media_attachment.rb'
+    - 'app/models/status.rb'
+    - 'app/models/tag.rb'
+    - 'app/models/user.rb'
+    - 'app/serializers/activitypub/actor_serializer.rb'
+    - 'app/serializers/activitypub/note_serializer.rb'
+    - 'app/serializers/rest/status_serializer.rb'
+    - 'app/services/account_search_service.rb'
+    - 'app/services/activitypub/process_account_service.rb'
+    - 'app/services/activitypub/process_status_update_service.rb'
+    - 'app/services/backup_service.rb'
+    - 'app/services/delete_account_service.rb'
+    - 'app/services/fan_out_on_write_service.rb'
+    - 'app/services/fetch_link_card_service.rb'
+    - 'app/services/import_service.rb'
+    - 'app/services/notify_service.rb'
+    - 'app/services/post_status_service.rb'
+    - 'app/services/update_status_service.rb'
+    - 'lib/paperclip/color_extractor.rb'
 
 Metrics/CyclomaticComplexity:
   Exclude:
