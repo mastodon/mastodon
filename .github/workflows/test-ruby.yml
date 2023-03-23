@@ -40,7 +40,7 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - run: yarn install --frozen-lockfile
+      - run: yarn --frozen-lockfile --production
       - name: Precompile assets
         # Previously had set this, but it's not supported
         # export NODE_OPTIONS=--openssl-legacy-provider
