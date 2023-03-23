@@ -4,41 +4,41 @@ module StatusSafeReblogInsert
   extend ActiveSupport::Concern
 
   class_methods do
-    # This is a hack to ensure that no reblogs of discarded statuses are created,
-    # as this cannot be enforced through database constraints the same way we do
-    # for reblogs of deleted statuses.
+    # This patch overwrites the built-in ActiveRecord `_insert_record` method to
+    # ensure that no reblogs of discarded statuses are created, as this cannot be
+    # enforced through DB constraints the same way as reblogs of deleted statuses
     #
-    # To achieve this, we redefine the internal method responsible for issuing
-    # the "INSERT" statement and replace the "INSERT INTO ... VALUES ..." query
-    # with an "INSERT INTO ... SELECT ..." query with a "WHERE deleted_at IS NULL"
-    # clause on the reblogged status to ensure consistency at the database level.
+    # We redefine the internal method responsible for issuing the `INSERT`
+    # statement and replace the `INSERT INTO ... VALUES ...` query with an `INSERT
+    # INTO ... SELECT ...` query with a `WHERE deleted_at IS NULL` clause on the
+    # reblogged status to ensure consistency at the database level.
     #
-    # Otherwise, the code is kept as close as possible to ActiveRecord::Persistence
-    # code, and actually calls it if we are not handling a reblog.
+    # The code is kept similar to ActiveRecord::Persistence code and calls it
+    # directly when we are not handling a reblog.
     def _insert_record(values)
-      return super unless values.is_a?(Hash) && values['reblog_of_id'].present?
+      return super unless values.is_a?(Hash) && values['reblog_of_id']&.value.present?
 
       primary_key = self.primary_key
       primary_key_value = nil
 
-      if primary_key
-        primary_key_value = values[primary_key]
-
-        if !primary_key_value && prefetch_primary_key?
+      if prefetch_primary_key? && primary_key
+        values[primary_key] ||= begin
           primary_key_value = next_sequence_value
-          values[primary_key] = primary_key_value
+          _default_attributes[primary_key].with_cast_value(primary_key_value)
         end
       end
 
-      # The following line is where we differ from stock ActiveRecord implementation
+      # The following line departs from stock ActiveRecord
+      # Original code was:
+      # im.insert(values.transform_keys { |name| arel_table[name] })
+      # Instead, we use a custom builder when a reblog is happening:
       im = _compile_reblog_insert(values)
 
-      # Since we are using SELECT instead of VALUES, a non-error `nil` return is possible.
-      # For our purposes, it's equivalent to a foreign key constraint violation
-      result = connection.insert(im, "#{self} Create", primary_key || false, primary_key_value)
-      raise ActiveRecord::InvalidForeignKey, "(reblog_of_id)=(#{values['reblog_of_id']}) is not present in table \"statuses\"" if result.nil?
-
-      result
+      connection.insert(im, "#{self} Create", primary_key || false, primary_key_value).tap do |result|
+        # Since we are using SELECT instead of VALUES, a non-error `nil` return is possible.
+        # For our purposes, it's equivalent to a foreign key constraint violation
+        raise ActiveRecord::InvalidForeignKey, "(reblog_of_id)=(#{values['reblog_of_id'].value}) is not present in table \"statuses\"" if result.nil?
+      end
     end
 
     def _compile_reblog_insert(values)
@@ -54,9 +54,9 @@ module StatusSafeReblogInsert
 
       binds = []
       reblog_bind = nil
-      values.each do |name, value|
+      values.each do |name, attribute|
         attr = arel_table[name]
-        bind = predicate_builder.build_bind_attribute(attr.name, value)
+        bind = predicate_builder.build_bind_attribute(attr.name, attribute.value)
 
         im.columns << attr
         binds << bind
