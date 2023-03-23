@@ -3,77 +3,78 @@ cy:
   simple_form:
     hints:
       account_alias:
-        acct: Rhowch enwdefnyddiwr@parth y cyfrif rydych chi am symud ohono
+        acct: Rhowch enwdefnyddiwr@parth y cyfrif y hoffech chi symud ohono
       account_migration:
         acct: Rhowch enwdefnyddiwr@parth y cyfrif rydych chi am symud iddo
       account_warning_preset:
-        text: Gallwch defnyddio cystrawen tŵt, fel URLs, hashnodau a sôniadau
-        title: Yn ddewisiol. Ddim yn weladwy i'r derbynydd
+        text: Gallwch defnyddio cystrawen post, fel URLs, hashnodau a chrybwylliadau
+        title: Dewisol. Nid yw'n weladwy i'r derbynnydd
       admin_account_action:
-        include_statuses: Bydd y defnyddiwr yn gweld pa tŵtiau sydd wedi achosi'r weithred gymedroli neu'r rhybudd
-        send_email_notification: Bydd y defnyddiwr yn derbyn esboniad o beth digwyddodd gyda'i cyfrif
-        text_html: Yn ddewisol. Gallwch defnyddio cystrawen tŵt. Gallwch <a href="%{path}">ychwanegu rhagosodiadau rhybydd</a> i arbed amser
+        include_statuses: Bydd y defnyddiwr yn gweld pa bostiadau sydd wedi achosi'r weithred gymedroli neu'r rhybudd
+        send_email_notification: Bydd y defnyddiwr yn derbyn esboniad o'r hyn a ddigwyddodd â'i gyfrif
+        text_html: Yn ddewisol. Gallwch defnyddio cystrawen post. Gallwch <a href="%{path}">ychwanegu rhagosodiadau rhybydd</a> i arbed amser
         type_html: Dewis beth i wneud gyda <strong>%{acct}</strong>
         types:
           disable: Yn atal y defnyddiwr rhag defnyddio ei gyfrif, ond peidio â dileu neu guddio ei gynnwys.
           none: Defnyddio hwn i anfon rhybudd at y defnyddiwr, heb ysgogi unrhyw gamau eraill.
           sensitive: Gorfodi holl atodiadau cyfryngau'r defnyddiwr hwn i gael eu nodi fel rhai sensitif.
-          silence: Atal y defnyddiwr rhag gallu postio gyda gwelededd cyhoeddus, cuddio ei bostiadau a'i hysbysiadau rhag pobl nad ydyn nhw'n eu dilyn.
-          suspend: Atal unrhyw ryngweithio o neu i'r cyfrif hwn a dileu ei gynnwys. Mae modd ei ddadwneud o fewn 30 diwrnod.
-        warning_preset_id: Yn ddewisol. Gallwch dal ychwanegu testun addasiol I ddiwedd y rhagosodiad
+          silence: Atal y defnyddiwr rhag gallu postio gyda gwelededd cyhoeddus, cuddio ei bostiadau a'i hysbysiadau rhag pobl nad ydyn nhw'n eu dilyn. Yn cau pob adroddiad yn erbyn y cyfrif hwn.
+          suspend: Atal unrhyw ryngweithio o neu i'r cyfrif hwn a dileu ei gynnwys. Dychwelyd o fewn 30 diwrnod. Yn cau pob adroddiad yn erbyn y cyfrif hwn.
+        warning_preset_id: Yn ddewisol. Gallwch dal ychwanegu testun cyfaddas i ddiwedd y rhagosodiad
       announcement:
-        all_day: Pam ddewisir, caiff ddim ond dyddiau o'r amrediad amser ei ymddangos
-        ends_at: Dewisiol. Caiff y cyhoeddiad ei angyhoeddi yn awtomatig at yr amser hon
+        all_day: Pan gaiff ei wirio, dim ond dyddiadau'r ystod amser fydd yn cael eu harddangos
+        ends_at: Dewisol. N fydd y cyhoeddiad yn cael ei gyhoeddi'n awtomatig ar yr adeg hon
         scheduled_at: Gadael yn wag i gyhoeddi'r cyhoeddiad ar unwaith
-        starts_at: Dewisiol. Os mae eich cyhoeddiad yn gyfyniedig i amrediad amser penodol
-        text: Gallwch defnyddio cystrawen tŵt. Byddwch yn ymwybodol o'r lle cymerir y cyhoeddiad ar sgrin y defnyddwr
+        starts_at: Dewisol. Rhag ofn bod eich cyhoeddiad yn gaeth i ystod amser benodol
+        text: Gallwch ddefnyddio cystrawen post. Cofiwch faint o le y bydd y cyhoeddiad yn ei gymryd ar sgrin y defnyddiwr
       appeal:
         text: Dim ond unwaith y gallwch apelio yn erbyn rhybudd
       defaults:
         autofollow: Bydd pobl sy'n cofrestru drwy'r gwahoddiad yn eich dilyn yn awtomatig
-        avatar: PNG, GIF neu JPG. %{size} ar y mwyaf. Caiff ei israddio i %{dimensions}px
+        avatar: PNG, GIF neu JPG. %{size} yn uchafswm. Bydd yn cael ei israddio i %{dimensions}px
         bot: Mae'r cyfrif hwn yn perfformio gweithredoedd awtomatig yn bennaf ac mae'n bosib nad yw'n cael ei fonitro
         context: Un neu fwy cyd-destun lle dylai'r hidlydd weithio
         current_password: At ddibenion diogelwch, nodwch gyfrinair y cyfrif cyfredol
         current_username: I gadarnhau, nodwch enw defnyddiwr y cyfrif cyfredol
         digest: Ond yn cael eu hanfon ar ôl cyfnod hir o anweithgarwch ac ond os ydych wedi derbyn unrhyw negeseuon personol yn eich absenoldeb
-        discoverable: Caniatáu i'ch cyfrif gael ei ddarganfod gan ddieithriaid trwy argymhellion, tueddiadau a nodweddion eraill
-        email: Byddwch yn derbyn e-bost i gadarnhau
-        fields: Mae modd i chi arddangos hyd at 4 eitem fel tabl ar eich proffil
-        header: PNG, GIF neu JPG. %{size} ar y mwyaf. Ceith ei israddio i %{dimensions}px
+        discoverable: Caniatáu i'ch cyfrif gael ei ddarganfod gan ddieithriaid trwy argymhellion, pynciau llosg a nodweddion eraill
+        email: Byddwch yn derbyn e-bost cadarnhau
+        fields: Mae modd i chi ddangos hyd at 4 eitem fel tabl ar eich proffil
+        header: PNG, GIF neu JPG. %{size} ar y mwyaf. Bydd yn cael ei israddio i %{dimensions}px
         inbox_url: Copïwch yr URL o dudalen flaen y relái yr ydych am ei ddefnyddio
-        irreversible: Bydd tŵtiau wedi eu hidlo yn diflannu am byth, hyd yn oed os ceith yr hidlydd ei ddileu'n hwyrach
+        irreversible: Bydd postiadau wedi'u hidlo'n diflannu'n ddiwrthdro, hyd yn oed os caiff yr hidlydd ei dynnu'n ddiweddarach
         locale: Iaith y rhyngwyneb, e-byst a hysbysiadau gwthiadwy
-        locked: Ei wneud yn ofynnol i chi i ganiatau dilynwyr a llaw
-        password: Defnyddiwch oleiaf 8 nodyn
-        phrase: Caiff ei gyfateb heb ystyriaeth o briflythrennu mewn testun neu rhybudd ynghylch cynnwys tŵt
-        scopes: Pa APIau y bydd gan y rhaglen ganiatad i gael mynediad iddynt. Os dewiswch maes lefel uchaf, yna nid oes angen dewis rhai unigol.
-        setting_aggregate_reblogs: Paid dangos bŵstiau newydd ar gyfer tŵtiau sydd wedi'i fŵstio yn ddiweddar (dim ond yn effeithio bŵstiau newydd ei dderbyn)
+        locked: Mae hyn yn eich galluogi i reoli pwy sy'n gallu eich dilyn drwy gymeradwyo ceisiadau dilyn
+        password: Defnyddiwch o leiaf 8 nod
+        phrase: Caiff ei gyfateb heb ystyriaeth o briflythrennu mewn testun neu rhybudd ynghylch cynnwys postiad
+        scopes: Pa APIs y bydd y rhaglen yn cael mynediad iddynt. Os dewiswch gwmpas lefel uchaf, nid oes angen i chi ddewis rhai unigol.
+        setting_aggregate_reblogs: Peidiwch â dangos hybiau newydd ar bostiadau sydd wedi cael eu hybu'n ddiweddar (dim ond yn effeithio ar hybiau newydd ei dderbyn)
         setting_always_send_emails: Fel arfer ni fydd hysbysiadau e-bost yn cael eu hanfon pan fyddwch chi wrthi'n defnyddio Mastodon
-        setting_default_sensitive: Mae cyfryngau sensitif yn cael ei gyddio'n rhagosodiedig, a gall cael eu dangos â chlic
+        setting_default_sensitive: Mae cyfryngau sensitif wedi'u cuddio yn rhagosodedig a gellir eu datgelu trwy glicio
         setting_display_media_default: Cuddio cyfryngau wedi eu marcio'n sensitif
         setting_display_media_hide_all: Cuddio cyfryngau bob tro
-        setting_display_media_show_all: Dangos cyfryngau wedi eu marcio'n sensitif bob tro
-        setting_hide_network: Ni fydd y rheini yr ydych yn eu dilyn a phwy sy'n eich dilyn chi yn cael ei ddangos ar eich proffil
+        setting_display_media_show_all: Dangos cyfryngau bob tro
+        setting_hide_network: Ni fydd y pobl yr ydych chi'n eu dilyn a'ch dilynwyr yn ymddangos ar eich proffil
         setting_noindex: Mae hyn yn effeithio ar eich proffil cyhoeddus a'ch tudalennau statws
-        setting_show_application: Bydd y offer frydych yn defnyddio i dŵtio yn cael ei arddangos yn golwg manwl eich tŵtiau
-        setting_use_blurhash: Mae graddiannau wedi'u seilio ar liwiau'r delweddau cudd ond maent yn cuddio unrhyw fanylion
-        setting_use_pending_items: Cuddio diweddariadau llinell amser y tu ôl i glic yn lle sgrolio yn awtomatig
+        setting_show_application: Bydd y cymhwysiad a ddefnyddiwch i bostio yn cael ei arddangos yng ngolwg fanwl eich postiadau
+        setting_use_blurhash: Mae graddiannau wedi'u seilio ar liwiau'r delweddau cudd ond maen nhw'n cuddio unrhyw fanylion
+        setting_use_pending_items: Cuddio diweddariadau llinell amser y tu ôl i glic yn lle sgrolio'n awtomatig
         username: Bydd eich enw defnyddiwr yn unigryw ar %{domain}
         whole_word: Os yw'r allweddair neu'r ymadrodd yn alffaniwmerig yn unig, mi fydd ond yn cael ei osod os yw'n cyfateb a'r gair cyfan
       domain_allow:
         domain: Bydd y parth hwn yn gallu nôl data o'r gweinydd hwn a bydd data sy'n dod i mewn ohono yn cael ei brosesu a'i storio
       email_domain_block:
         domain: Gall hwn fod yr enw parth sy'n ymddangos yn y cyfeiriad e-bost neu'r cofnod MX y mae'n ei ddefnyddio. Byddant yn cael eu gwirio wrth gofrestru.
-        with_dns_records: Bydd ceisiad i adfer cofnodau DNS y parth penodol yn cael ei wneud, a bydd y canlyniadau hefyd yn cael ei gosbrestru
+        with_dns_records: Gwneir ymgais i ddatrys cofnodion DNS y parth a roddwyd a bydd y canlyniadau hefyd yn cael eu rhwystro
       featured_tag:
-        name: 'Dyma rai o’r hashnodau a ddefnyddiwyd gennych yn fwyaf diweddar:'
+        name: 'Dyma rai o’r hashnodau a ddefnyddioch chi''n ddiweddar:'
       filters:
         action: Dewiswch pa weithred i'w chyflawni pan fydd postiad yn cyfateb i'r hidlydd
         actions:
           hide: Cuddiwch y cynnwys wedi'i hidlo'n llwyr, gan ymddwyn fel pe na bai'n bodoli
           warn: Cuddiwch y cynnwys wedi'i hidlo y tu ôl i rybudd sy'n sôn am deitl yr hidlydd
       form_admin_settings:
+        activity_api_enabled: Cyfrif o bostiadau a gyhoeddir yn lleol, defnyddwyr gweithredol, a chofrestriadau newydd mewn bwcedi wythnosol
         backups_retention_period: Cadw archifau defnyddwyr a gynhyrchwyd am y nifer penodedig o ddyddiau.
         bootstrap_timeline_accounts: Bydd y cyfrifon hyn yn cael eu pinio i frig argymhellion dilynol defnyddwyr newydd.
         closed_registrations_message: Yn cael eu dangos pan fydd cofrestriadau wedi cau
@@ -81,6 +82,7 @@ cy:
         custom_css: Gallwch gymhwyso arddulliau cyfaddas ar fersiwn gwe Mastodon.
         mascot: Yn diystyru'r darlun yn y rhyngwyneb gwe uwch.
         media_cache_retention_period: Bydd ffeiliau cyfryngau wedi'u llwytho i lawr yn cael eu dileu ar ôl y nifer penodedig o ddyddiau pan gânt eu gosod i werth cadarnhaol, a'u hail-lwytho i lawr ar alw.
+        peers_api_enabled: Rhestr o enwau parth y mae'r gweinydd hwn wedi dod ar eu traws yn y ffediws. Nid oes unrhyw ddata wedi'i gynnwys yma ynghylch a ydych chi'n ffedereiddio â gweinydd penodol, dim ond bod eich gweinydd yn gwybod amdano. Defnyddir hwn gan wasanaethau sy'n casglu ystadegau ar ffedereiddio mewn ystyr cyffredinol.
         profile_directory: Mae'r cyfeiriadur proffil yn rhestru'r holl ddefnyddwyr sydd wedi dewis i fod yn ddarganfyddiadwy.
         require_invite_text: Pan fydd angen cymeradwyaeth â llaw ar gyfer cofrestriadau, gwnewch y “Pam ydych chi am ymuno?” mewnbwn testun yn orfodol yn hytrach na dewisol
         site_contact_email: Sut y gall pobl gysylltu â chi ar gyfer ymholiadau cyfreithiol neu gymorth.
@@ -89,21 +91,47 @@ cy:
         site_short_description: Disgrifiad byr i helpu i adnabod eich gweinydd yn unigryw. Pwy sy'n ei redeg, ar gyfer pwy mae e?
         site_terms: Defnyddiwch eich polisi preifatrwydd eich hun neu gadewch yn wag i ddefnyddio'r rhagosodiad. Mae modd ei strwythuro gyda chystrawen Markdown.
         site_title: Sut y gall pobl gyfeirio at eich gweinydd ar wahân i'w enw parth.
+        status_page_url: URL tudalen lle gall pobl weld statws y gweinydd hwn yn ystod cyfnod o doriad gwasanaeth
         theme: Thema sy'n allgofnodi ymwelwyr a defnyddwyr newydd yn gweld.
         thumbnail: Delwedd tua 2:1 yn cael ei dangos ochr yn ochr â manylion eich gweinydd.
         timeline_preview: Bydd ymwelwyr sydd wedi allgofnodi yn gallu pori drwy'r postiadau cyhoeddus diweddaraf sydd ar gael ar y gweinydd.
+        trendable_by_default: Hepgor adolygiad llaw o gynnwys sy'n tueddu. Gall eitemau unigol gael eu tynnu o dueddiadau o hyd ar ôl y ffaith.
+        trends: Mae pynciau llosg yn dangos y postiadau, hashnodau, a newyddion sy'n denu sylw ar eich gweinydd.
+        trends_as_landing_page: Dangos cynnwys tueddiadol i ddefnyddwyr ac ymwelwyr sydd wedi allgofnodi yn lle disgrifiad o'r gweinydd hwn. Mae angen galluogi tueddiadau.
       form_challenge:
-        current_password: Rydych chi'n mynd i mewn i ardal sicr
+        current_password: Rydych chi'n mynd i mewn i ardal ddiogel
       imports:
         data: Allforiwyd dogfen CSV o achos Mastodon arall
       invite_request:
         text: Bydd hyn yn helpu ni adolygu eich cais
+      ip_block:
+        comment: Dewisol. Cofiwch pam wnaethoch chi ychwanegu'r rheol hon.
+        expires_in: Mae cyfeiriadau IP yn adnodd cyfyngedig, weithiau maen nhw'n cael eu rhannu ac yn aml yn newid dwylo. Am y rheswm hwn, ni argymhellir blociau IP amhenodol.
+        ip: Rhowch gyfeiriad IPv4 neu IPv6. Gallwch rwystro ystodau cyfan gan ddefnyddio'r gystrawen CIDR. Byddwch yn ofalus i beidio â chloi eich hun allan!
+        severities:
+          no_access: Rhwystro mynediad i'r holl adnoddau
+          sign_up_block: Ni fydd yn bosibl derbyn cofrestriadau newydd
+          sign_up_requires_approval: Bydd angen eich cymeradwyaeth ar gyfer cofrestriadau newydd
+        severity: Dewiswch beth fydd yn digwydd gyda cheisiadau o'r IP hwn
+      rule:
+        text: Disgrifiwch reol neu ofyniad ar gyfer defnyddwyr ar y gweinydd hwn. Ceisiwch ei gadw'n fyr ac yn syml
       sessions:
         otp: 'Mewnbynnwch y cod dau gam a gynhyrchwyd gan eich ap ffôn neu defnyddiwch un o''ch codau adfer:'
+        webauthn: Os mai allwedd USB ydyw, gwnewch yn siŵr ei fewnosod ac, os oes angen, tapiwch ef.
       tag:
         name: Dim ond er mwyn ei gwneud yn fwy darllenadwy y gallwch chi newid y llythrennau, er enghraifft
       user:
         chosen_languages: Wedi eu dewis, dim ond tŵtiau yn yr ieithoedd hyn bydd yn cael eu harddangos mewn ffrydiau cyhoeddus
+        role: Mae'r rôl yn rheoli pa ganiatâd sydd gan y defnyddiwr
+      user_role:
+        color: Lliw i'w ddefnyddio ar gyfer y rôl drwy'r UI, fel RGB mewn fformat hecs
+        highlighted: Mae hyn yn gwneud y rôl yn weladwy i'r cyhoedd
+        name: Enw cyhoeddus y rôl, os yw'r rôl wedi'i gosod i'w dangos fel bathodyn
+        permissions_as_keys: Bydd defnyddwyr sydd â'r rôl hon yn cael mynediad at...
+        position: Mae rôl uwch yn penderfynu ar ddatrys gwrthdrawiadau mewn rhai sefyllfaoedd. Dim ond ar rolau â blaenoriaeth is y gellir cyflawni rhai gweithredoedd
+      webhook:
+        events: Dewiswch ddigwyddiadau i'w hanfon
+        url: I ble bydd digwyddiadau'n cael eu hanfon
     labels:
       account:
         fields:
@@ -117,23 +145,25 @@ cy:
         text: Testun rhagosodedig
         title: Teitl
       admin_account_action:
-        include_statuses: Cynhwyswch tŵtiau yr adroddwyd amdanynt yn yr e-bost
+        include_statuses: Cynhwyswch postiadau yr adroddwyd amdanynt yn yr e-bost
         send_email_notification: Hysbysu'r defnyddiwr trwy e-bost
-        text: Rhybudd wedi'i addasu
+        text: Rhybudd cyfaddas
         type: Gweithredu
         types:
           disable: Analluogi
-          none: Gwneud dim
+          none: Anfon rhybudd
           sensitive: Sensitif
-          silence: Tawelwch
+          silence: Cyfyngu
           suspend: Dileu data cyfrif
         warning_preset_id: Defnyddiwch ragnod rhag rhybudd
       announcement:
-        all_day: Digwiddiad trwy'r dydd
-        ends_at: Diwedd digwyddiad
+        all_day: Digwyddiad trwy'r dydd
+        ends_at: Diwedd y digwyddiad
         scheduled_at: Amserlenni cyhoeddiad
-        starts_at: Dechreuad digwyddiad
+        starts_at: Dechrau digwyddiad
         text: Cyhoeddiad
+      appeal:
+        text: Eglurwch pam y dylid gwrthdroi'r penderfyniad hwn
       defaults:
         autofollow: Gwahodd i ddilyn eich cyfrif
         avatar: Afatar
@@ -142,50 +172,53 @@ cy:
         confirm_new_password: Cadarnhau cyfrinair newydd
         confirm_password: Cadarnhau cyfrinair
         context: Hidlo cyd-destunau
-        current_password: Cyfrinair presennol
+        current_password: Cyfrinair cyfredol
         data: Data
-        discoverable: Rhestrwch y cyfrif hwn ar y cyfeiriadur
-        display_name: Enw arddangos
+        discoverable: Awgrymu cyfrif i eraill
+        display_name: Enw dangos
         email: Cyfeiriad e-bost
         expires_in: Yn dod i ben ar ôl
         fields: Metadata proffil
         header: Pennyn
+        honeypot: "%{label} (peidiwch â llenwi)"
         inbox_url: URL y mewnflwch relái
         irreversible: Gollwng yn hytrach na chuddio
         locale: Iaith y rhyngwyneb
-        locked: Cloi cyfrif
-        max_uses: Uchafswm y nifer o ddefnyddiau
+        locked: Angen ceisiadau dilyn
+        max_uses: Nifer y ddefnyddiau uchafswm
         new_password: Cyfrinair newydd
         note: Bywgraffiad
         otp_attempt: Côd dau gam
         password: Cyfrinair
         phrase: Allweddair neu ymadrodd
-        setting_advanced_layout: Alluogi rhyngwyneb wê uwch
-        setting_aggregate_reblogs: Grŵp hybiau mewn ffrydiau
+        setting_advanced_layout: Galluogi rhyngwyneb gwe uwch
+        setting_aggregate_reblogs: Grwpio hybiau mewn ffrydiau
+        setting_always_send_emails: Anfonwch hysbysiadau e-bost bob amser
         setting_auto_play_gif: Chwarae GIFs wedi'u hanimeiddio yn awtomatig
-        setting_boost_modal: Dangos deialog cadarnhad cyn bŵstio
-        setting_crop_images: Tocio lluniau o fewn tŵtiau ddi-ehangedig i 16x9
-        setting_default_language: Cyhoeddi iaith
-        setting_default_privacy: Cyfrinachedd cyhoeddi
+        setting_boost_modal: Dangos deialog cadarnhau cyn rhoi hwb
+        setting_crop_images: Tocio delweddau o fewn postiadau nad ydynt wedi'u hehangu i 16x9
+        setting_default_language: Iaith postio
+        setting_default_privacy: Preifatrwydd cyhoeddi
         setting_default_sensitive: Marcio cyfryngau fel eu bod yn sensitif bob tro
-        setting_delete_modal: Dangos deialog cadarnhau cyn dileu tŵt
-        setting_display_media: Arddangos cyfryngau
+        setting_delete_modal: Dangos deialog cadarnhau cyn dileu postiad
+        setting_disable_swiping: Analluogi cynigion llusgo
+        setting_display_media: Dangos cyfryngau
         setting_display_media_default: Rhagosodiad
-        setting_display_media_hide_all: Cuddio oll
-        setting_display_media_show_all: Dangos oll
-        setting_expand_spoilers: Ymestyn tŵtiau wedi'u marcio a rhybudd cynnwys bob tro
-        setting_hide_network: Cuddio eich rhwydwaith
-        setting_noindex: Dewis peidio mynegeio peiriant chwilota
+        setting_display_media_hide_all: Cuddio popeth
+        setting_display_media_show_all: Dangos popeth
+        setting_expand_spoilers: Dangos postiadau wedi'u marcio â rhybudd cynnwys bob tro
+        setting_hide_network: Cuddio eich graff cymdeithasol
+        setting_noindex: Eithrio rhag gael eich mynegeio gan beiriannau chwilio
         setting_reduce_motion: Lleihau mudiant mewn animeiddiadau
-        setting_show_application: Datguddio'r offer defnyddwyd i anfon tŵtiau
+        setting_show_application: Datgelu rhaglen a ddefnyddir i anfon postiadau
         setting_system_font_ui: Defnyddio ffont rhagosodedig y system
         setting_theme: Thema'r wefan
-        setting_trends: Dangos tueddiadau o heddiw ymlaen
+        setting_trends: Dangos pynciau llosg heddiw
         setting_unfollow_modal: Dangos deialog cadarnhau cyn dad-ddilyn rhywun
-        setting_use_blurhash: Dangoswch raddiannau lliwgar ar gyfer cyfryngau cudd
+        setting_use_blurhash: Dangos graddiannau lliwgar ar gyfryngau cudd
         setting_use_pending_items: Modd araf
         severity: Difrifoldeb
-        sign_in_token_attempt: Cod dioelwch
+        sign_in_token_attempt: Cod diogelwch
         title: Teitl
         type: Modd mewnforio
         username: Enw defnyddiwr
@@ -195,42 +228,90 @@ cy:
         with_dns_records: Cynnwys cofnodion MX a chyfeiriadau IP y parth
       featured_tag:
         name: Hashnod
+      filters:
+        actions:
+          hide: Cuddio'n llwyr
+          warn: Cuddio â rhybudd
+      form_admin_settings:
+        activity_api_enabled: Cyhoeddi ystadegau cyfanredol am weithgarwch defnyddwyr yn yr API
+        backups_retention_period: Cyfnod cadw archif defnyddwyr
+        bootstrap_timeline_accounts: Argymhellwch y cyfrifon hyn i ddefnyddwyr newydd bob amser
+        closed_registrations_message: Neges bersonol pan nad yw cofrestriadau ar gael
+        content_cache_retention_period: Cyfnod cadw storfa cynnwys
+        custom_css: CSS cyfaddas
+        mascot: Mascot cyfaddas (hen)
+        media_cache_retention_period: Cyfnod cadw storfa cyfryngau
+        peers_api_enabled: Cyhoeddi rhestr o weinyddion a ddarganfuwyd yn yr API
+        profile_directory: Galluogi cyfeiriadur proffil
+        registrations_mode: Pwy all gofrestru
+        require_invite_text: Gofyn am reswm i ymuno
+        show_domain_blocks: Dangos blociau parth
+        show_domain_blocks_rationale: Dangos pam y cafodd parthau eu rhwystro
+        site_contact_email: E-bost cyswllt
+        site_contact_username: Enw defnyddiwr cyswllt
+        site_extended_description: Disgrifiad estynedig
+        site_short_description: Disgrifiad y gweinydd
+        site_terms: Polisi Preifatrwydd
+        site_title: Enw'r gweinydd
+        status_page_url: URL tudalen statws
+        theme: Thema ragosodedig
+        thumbnail: Bawdlun y gweinydd
+        timeline_preview: Caniatáu mynediad heb ei ddilysu i linellau amser cyhoeddus
+        trendable_by_default: Caniatáu pynciau llosg heb adolygiad
+        trends: Galluogi pynciau llosg
+        trends_as_landing_page: Defnyddio tueddiadau fel y dudalen gartref
       interactions:
         must_be_follower: Blocio hysbysiadau o bobl nad ydynt yn eich dilyn
         must_be_following: Blocio hysbysiadau o bobl nad ydych yn eu dilyn
-        must_be_following_dm: Blocio negeseuon uniongyrchol o bobl nad ydych yn eu dilyn
+        must_be_following_dm: Blocio negeseuon preifat o bobl nad ydych yn eu dilyn
       invite:
         comment: Sylw
       invite_request:
-        text: Pam hoffech ymuno?
+        text: Pam ydych chi eisiau ymuno?
       ip_block:
         comment: Sylw
         ip: IP
+        severities:
+          no_access: Rhwystro mynediad
+          sign_up_block: Rhwystro cofrestriadau
+          sign_up_requires_approval: Cyfyngu ar gofrestru
         severity: Rheol
       notification_emails:
+        appeal: Mae rhywun yn apelio yn erbyn penderfyniad y cymedrolwr
         digest: Anfonwch e-byst crynhoi
-        favourite: Anfon e-bost pan mae rhywun yn ffefrynnu eich statws
-        follow: Anfon e-bost pan mae rhywun yn eich dilyn chi
-        follow_request: Anfon e-bost pan mae rhywun yn gofyn i chi i'w dilyn
-        mention: Anfon e-bost pan mae rhywun yn eich crybwyll
-        pending_account: Anfon ebost pan mae cyfrif newydd angen adolygiad
-        reblog: Anfon e-bost pan mae rhywun yn bŵstio eich statws
+        favourite: Mae rhywun wedi ffafrio eich post
+        follow: Mae rhywun yn eich dilyn chi
+        follow_request: Mae rhywun yn ceisio eich dilyn chi
+        mention: Mae rhywun yn sôn amdanoch chi
+        pending_account: Mae cyfrif newydd angen adolygiad
+        reblog: Mae rhywun wedi hybu eich post
         report: Cyflwynwyd adroddiad newydd
+        trending_tag: Mae pwnc llosg newydd angen adolygiad
       rule:
         text: Rheol
       tag:
-        listable: Gadewch i'r hashnod hwn ymddangos mewn chwiliadau ac ar y cyfeiriadur proffil
+        listable: Caniatáu i'r hashnod hwn ymddangos mewn chwiliadau ac awgrymiadau
         name: Hashnod
-        trendable: Gadewch i'r hashnod hwn ymddangos o dan dueddiadau
-        usable: Caniatáu i tŵtiau ddefnyddio'r hashnod hwn
+        trendable: Caniatáu i'r hashnod hwn ymddangos o dan bynciau llosg
+        usable: Caniatáu i bostiadau ddefnyddio'r hashnod hwn
       user:
         role: Rôl
       user_role:
+        color: Lliw bathodyn
+        highlighted: Dangos rôl fel bathodyn ar broffiliau defnyddwyr
         name: Enw
         permissions_as_keys: Caniatâd
+        position: Blaenoriaeth
+      webhook:
+        events: Digwyddiadau wedi'u galluogi
+        url: URL diweddbwynt
     'no': Na
+    not_recommended: Heb ei argymell
     recommended: Argymhellwyd
     required:
       mark: "*"
       text: gofynnol
+    title:
+      sessions:
+        webauthn: Defnyddiwch un o'ch allweddi diogelwch i fewngofnodi
     'yes': Ie

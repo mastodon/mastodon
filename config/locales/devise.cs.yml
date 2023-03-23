@@ -20,15 +20,15 @@ cs:
       confirmation_instructions:
         action: Potvrdit e-mailovou adresu
         action_with_app: Potvrdit a vrátit se do %{app}
-        explanation: S touto e-mailovou adresou jste si již účet na serveru %{host} vytvořili. K jeho aktivaci vám zbývá jedno kliknutí. Pokud jste to nebyli vy, považujte tento e-mail za bezpředmětný.
-        explanation_when_pending: Pro tuto e-mailovou adresu bylo požádáno o pozvánku na %{host}. Jakmile svou e-mailovou adresu potvrdíte, vaši žádost posoudíme. Můžete se přihlásit, změnit podrobnosti svého účtu nebo ho smazat, ale do schválení účtu nebudete mít k většině funkcí přístup. Pokud bude vaše žádost zamítnuta, vaše data budou odstraněna, a nebude od vás vyžadována žádná další akce. Pokud jste to nebyli vy, považujte tento e-mail za bezpředmětný.
-        extra_html: Přečtěte si prosím také <a href="%{terms_path}">pravidla tohoto serveru</a> a <a href="%{policy_path}">naše podmínky používání</a>.
+        explanation: S touto e-mailovou adresou jste si vytvořili účet na serveru %{host}. K jeho aktivaci vám zbývá jedno kliknutí. Pokud jste to nebyli vy, považujte tento e-mail za bezpředmětný.
+        explanation_when_pending: S touto e-mailovou adresu jste požádali o pozváku na %{host}. Jakmile svou e-mailovou adresu potvrdíte, vaši žádost posoudíme. Můžete se přihlásit ke změně podrobností svého účtu nebo jeho smazání, ale do schválení účtu nebudete mít k většině funkcí přístup. Pokud bude vaše žádost zamítnuta, vaše data budou odstraněna, a nebude od vás vyžadována žádná další akce. Pokud jste to nebyli vy, považujte tento e-mail za bezpředmětný.
+        extra_html: Přečtěte si prosím také <a href="%{terms_path}">pravidla tohoto serveru</a> a <a href="%{policy_path}">naše podmínky užití</a>.
         subject: 'Mastodon: Potvrzení účtu na serveru %{instance}'
         title: Potvrďte e-mailovou adresu
       email_changed:
         explanation: 'E-mailová adresa vašeho účtu byla změněna na:'
         extra: Pokud jste si e-mailovou adresu neměnili, je pravděpodobné, že někdo jiný získal přístup k vašemu účtu. Změňte si prosím okamžitě heslo, nebo, pokud se nemůžete na účet přihlásit, kontaktujte administrátora serveru.
-        subject: 'Mastodon: E-mailová adresa změněna'
+        subject: 'Mastodon: E-mailová adresa byla změněna'
         title: Nová e-mailová adresa
       password_change:
         explanation: Heslo k vašemu účtu bylo změněno.
@@ -36,7 +36,7 @@ cs:
         subject: 'Mastodon: Heslo bylo změněno'
         title: Heslo bylo změněno
       reconfirmation_instructions:
-        explanation: Potvrďte novou adresu pro změnu e-mailu.
+        explanation: Pro změnu e-mailu potvrďte novou adresu.
         extra: Pokud jste si tuto změnu nevyžádali vy, považujte tento e-mail za bezpředmětný. Pokud výše uvedenou adresu nenavštívíte, e-mailová adresa změněna nebude.
         subject: 'Mastodon: Potvrďte e-mail pro %{instance}'
         title: Ověřit e-mailovou adresu
@@ -47,43 +47,43 @@ cs:
         subject: 'Mastodon: Instrukce pro obnovení hesla'
         title: Obnovení hesla
       two_factor_disabled:
-        explanation: Dvoufázové ověřování bylo pro váš účet vypnuto. Pro přihlášení je nyní stačí pouze e-mailová adresa a heslo.
-        subject: 'Mastodon: Dvoufázové ověřování vypnuto'
-        title: 2FA vypnuto
+        explanation: Dvoufázové ověřování bylo pro váš účet vypnuto. Pro přihlášení vám nyní stačí pouze e-mailová adresa a heslo.
+        subject: 'Mastodon: Dvoufázové ověření bylo vypnuto'
+        title: 2FA bylo vypnuto
       two_factor_enabled:
         explanation: Dvoufázové ověřování bylo pro váš účet zapnuto. Pro přihlášení bude vyžadován token vygenerovaný spárovanou TOTP aplikací.
-        subject: 'Mastodon: Dvoufázové ověřování zapnuto'
-        title: 2FA zapnuto
+        subject: 'Mastodon: Dvoufázové ověření bylo zapnuto'
+        title: 2FA bylo zapnuto
       two_factor_recovery_codes_changed:
         explanation: Předchozí záložní kódy byly zrušeny a byly vygenerovány nové.
-        subject: 'Mastodon: Dvoufázové záložní kódy znovu vygenerovány'
-        title: Záložní kódy pro 2FA změněny
+        subject: 'Mastodon: Dvoufázové záložní kódy byly znovu vygenerovány'
+        title: Záložní kódy pro 2FA byly změněny
       unlock_instructions:
         subject: 'Mastodon: Instrukce pro odemčení účtu'
       webauthn_credential:
         added:
-          explanation: Následující bezpečnostní klíč byl přidán k vašemu účtu
+          explanation: K vašemu účtu byl přidán následující bezpečnostní klíč
           subject: 'Mastodon: Nový bezpečnostní klíč'
           title: Byl přidán nový bezpečnostní klíč
         deleted:
-          explanation: Následující bezpečnostní klíč byl odstraněn z vašeho účtu
+          explanation: Z vašeho účtu byl odstraněn následující bezpečnostní klíč
           subject: 'Mastodon: Bezpečnostní klíč byl smazán'
           title: Jeden z vašich bezpečnostních klíčů byl smazán
       webauthn_disabled:
         explanation: Pro váš účet bylo vypnuto ověření bezpečnostními klíči. Přihlášení je nyní možné pouze s tokenem vygenerovaným spárovanou TOTP aplikací.
-        subject: 'Mastodon: Přihlašování bezpečnostními klíči vypnuto'
-        title: Bezpečnostní klíče zakázány
+        subject: 'Mastodon: Přihlašování bezpečnostními klíči bylo vypnuto'
+        title: Bezpečnostní klíče byly zakázány
       webauthn_enabled:
         explanation: Pro váš účet bylo povoleno ověření bezpečnostními klíči. Nyní můžete svůj bezpečnostní klíč použít pro přihlášení.
-        subject: 'Mastodon: Přihlašování bezpečnostními klíči povoleno'
-        title: Bezpečnostní klíče povoleny
+        subject: 'Mastodon: Přihlašování bezpečnostními klíči bylo povoleno'
+        title: Bezpečnostní klíče byly povoleny
     omniauth_callbacks:
       failure: Nelze vás ověřit z %{kind}, protože „%{reason}“.
       success: Úspěšně ověřeno z účtu %{kind}.
     passwords:
       no_token: Tuto stránku nemůžete navštívit, pokud nepřicházíte z e-mailu pro obnovení hesla. Pokud z něj přicházíte, ujistěte se, že jste použili celou URL adresu z e-mailu.
-      send_instructions: Pokud je vaše e-mailová adresa v naší databázi, obdržíte za několik minut e-mail s odkazem pro obnovení vašeho hesla. Pokud tento e-mail neobdržíte, podívejte se prosím také do složky „spam“.
-      send_paranoid_instructions: Pokud je vaše e-mailová adresa v naší databázi, obdržíte za několik minut e-mail s odkazem pro obnovení vašeho hesla. Pokud tento e-mail neobdržíte, podívejte se prosím také do složky „spam“.
+      send_instructions: Pokud je vaše e-mailová adresa v naší databázi, za několik minut obdržíte e-mail s odkazem pro obnovení vašeho hesla. Pokud tento e-mail neobdržíte, podívejte se prosím také do složky „spam“.
+      send_paranoid_instructions: Pokud je vaše e-mailová adresa v naší databázi, za několik minut obdržíte e-mail s odkazem pro obnovení vašeho hesla. Pokud tento e-mail neobdržíte, podívejte se prosím také do složky „spam“.
       updated: Vaše heslo bylo úspěšně změněno. Nyní jste přihlášeni.
       updated_not_active: Vaše heslo bylo úspěšně změněno.
     registrations:
@@ -101,7 +101,7 @@ cs:
       signed_out: Odhlášení proběhlo úspěšně.
     unlocks:
       send_instructions: Za několik minut obdržíte e-mail s instrukcemi pro odemčení vašeho účtu. Pokud tento e-mail neobdržíte, podívejte se prosím také do složky „spam“.
-      send_paranoid_instructions: Pokud váš účet existuje, obdržíte za několik minut e-mail s instrukcemi pro odemčení vašeho účtu. Pokud tento e-mail neobdržíte, podívejte se prosím také do složky „spam“.
+      send_paranoid_instructions: Pokud váš účet existuje, za několik minut obdržíte e-mail s instrukcemi pro odemčení vašeho účtu. Pokud tento e-mail neobdržíte, podívejte se prosím také do složky „spam“.
       unlocked: Váš účet byl úspěšně odemčen. Pro pokračování se prosím přihlaste.
   errors:
     messages:
@@ -113,5 +113,5 @@ cs:
       not_saved:
         few: "%{count} chyby zabránily uložení tohoto %{resource}:"
         many: "%{count} chyb zabránilo uložení tohoto %{resource}:"
-        one: 'Jedna chyba zabránila uložení tohoto %{resource}:'
+        one: '1 chyba zabránila uložení tohoto %{resource}:'
         other: "%{count} chyb zabránilo uložení tohoto %{resource}:"

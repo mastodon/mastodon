@@ -122,14 +122,14 @@
         admin/accounts: Administrasjon av kontoer
         admin/all: All administrativ funksjonalitet
         admin/reports: Administrasjon av rapporteringer
-        all: Alt
+        all: Full tilgang til din Mastodon-konto
         blocks: Blokkeringer
         bookmarks: Bokmerker
         conversations: Samtaler
         crypto: Ende-til-ende-kryptering
         favourites: Favoritter
         filters: Filtre
-        follow: Relasjoner
+        follow: Hvem du følger, demper og blokkerer
         follows: Følger
         lists: Lister
         media: Mediavedlegg
@@ -148,10 +148,20 @@
         title: OAuth-autorisering påkrevet
     scopes:
       admin:read: lese alle data på tjeneren
-      admin:read:accounts: lese sensitiv informasjon for alle kontoer
-      admin:read:reports: lese sensitiv informasjon for alle rapporter og rapporterte kontoer
+      admin:read:accounts: lese sensitive opplysninger for alle kontoer
+      admin:read:canonical_email_blocks: lese sensitiv informasjon om alle kanoniske e-postblokker
+      admin:read:domain_allows: lese sensitiv informasjon for alle domener tillater
+      admin:read:domain_blocks: lese sensitiv informasjon for alle domeneblokker
+      admin:read:email_domain_blocks: lese sensitiv informasjon for alle domeneblokker for e-post
+      admin:read:ip_blocks: les sensitiv informasjon for alle IP-blokker
+      admin:read:reports: lese sensitive opplysninger for alle rapporter og rapporterte kontoer
       admin:write: modifisere alle data på tjeneren
       admin:write:accounts: utføre moderatorhandlinger på kontoer
+      admin:write:canonical_email_blocks: utføre moderasjonshandlinger på kanoniske e-postblokker
+      admin:write:domain_allows: utføre moderasjonshandlinger på domenet tillater
+      admin:write:domain_blocks: utfør moderasjonshandlinger på domeneblokker
+      admin:write:email_domain_blocks: utføre moderasjonshandlinger på e-post domeneblokker
+      admin:write:ip_blocks: utføre moderasjonshandlinger på IP-blokker
       admin:write:reports: utføre moderatorhandlinger på rapporter
       crypto: bruk ende-til-ende-kryptering
       follow: endre konto-relasjoner
@@ -160,7 +170,7 @@
       read:accounts: se informasjon om kontoer
       read:blocks: se blokkeringene dine
       read:bookmarks: se bokmerkene dine
-      read:favourites: se dine likinger
+      read:favourites: se favorittene dine
       read:filters: se filtrene dine
       read:follows: se hvem du følger
       read:lists: se listene dine
@@ -174,7 +184,7 @@
       write:blocks: blokkere kontoer og domener
       write:bookmarks: bokmerke innlegg
       write:conversations: dempe og slette samtaler
-      write:favourites: like innlegg
+      write:favourites: favorittmarker innlegg
       write:filters: opprette filtre
       write:follows: følge personer
       write:lists: opprette lister

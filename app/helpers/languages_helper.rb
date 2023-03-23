@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-# rubocop:disable Metrics/ModuleLength, Style/WordArray
+
+# rubocop:disable Metrics/ModuleLength
 
 module LanguagesHelper
   ISO_639_1 = {
@@ -190,12 +191,17 @@ module LanguagesHelper
   ISO_639_3 = {
     ast: ['Asturian', 'Asturianu'].freeze,
     ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
+    cnr: ['Montenegrin', 'crnogorski'].freeze,
     jbo: ['Lojban', 'la .lojban.'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
     kmr: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
     ldn: ['Láadan', 'Láadan'].freeze,
     lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
     sco: ['Scots', 'Scots'].freeze,
+    sma: ['Southern Sami', 'Åarjelsaemien Gïele'].freeze,
+    smj: ['Lule Sami', 'Julevsámegiella'].freeze,
+    szl: ['Silesian', 'ślůnsko godka'].freeze,
+    tai: ['Tai', 'ภาษาไท or ภาษาไต'].freeze,
     tok: ['Toki Pona', 'toki pona'].freeze,
     zba: ['Balaibalan', 'باليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
@@ -207,8 +213,10 @@ module LanguagesHelper
   # names, but for some translations, we need the names of the
   # regional variants specifically
   REGIONAL_LOCALE_NAMES = {
+    'en-GB': 'English (British)',
     'es-AR': 'Español (Argentina)',
     'es-MX': 'Español (México)',
+    'fr-QC': 'Français (Canadien)',
     'pt-BR': 'Português (Brasil)',
     'pt-PT': 'Português (Portugal)',
     'sr-Latn': 'Srpski (latinica)',
@@ -267,4 +275,4 @@ module LanguagesHelper
   end
 end
 
-# rubocop:enable Metrics/ModuleLength, Style/WordArray
+# rubocop:enable Metrics/ModuleLength

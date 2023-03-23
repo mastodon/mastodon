@@ -13,7 +13,7 @@
       %li= filter_link_to t('admin.trends.rejected'), status: 'rejected'
 
 - if @appeals.empty?
-  %div.muted-hint.center-text
+  .muted-hint.center-text
     = t 'admin.disputes.appeals.empty'
 - else
   .announcements-list

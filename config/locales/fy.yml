@@ -1,17 +1,81 @@
 ---
 fy:
+  about:
+    about_mastodon_html: Mastodon is in sosjaal netwurk dat gebrûk makket fan iepen webprotokollen en frije software. It is krekt lykas desintralisearre e-mail!
+    contact_missing: Net ynsteld
+    contact_unavailable: Net fan tapassing
+    hosted_on: Mastodon op %{domain}
+    title: Oer
   accounts:
-    last_active: letst warber
+    follow: Folgje
+    followers:
+      one: Folger
+      other: Folgers
+    following: Folgjend
+    instance_actor_flash: Dizze account is in ‘virtual actor’ wêrmei’t de server himsels fertsjinwurdiget en is dus gjin yndividuele brûker. It wurdt foar federaasjedoeleinen brûkt en moat net útsteld wurde.
+    last_active: lêst warber
+    link_verified_on: Eigendom fan dizze keppeling is kontrolearre op %{date}
+    nothing_here: Hjir is neat!
+    pin_errors:
+      following: Jo moatte dizze account wol al folgje, eardat jo it oanrekommandearje kinne
+    posts:
+      one: Toot
+      other: Berjochten
+    posts_tab_heading: Berjochten
   admin:
+    account_actions:
+      action: Aksje útfiere
+      title: Moderaasjemaatregelen tsjin %{acct} nimme
+    account_moderation_notes:
+      create: Lit in opmerking efter
+      created_msg: Oanmeitsjen fan opmerking foar moderatoaren slagge!
+      destroyed_msg: Fuortsmiten fan opmerking foar moderatoaren slagge!
     accounts:
+      add_email_domain_block: E-maildomein blokkearje
+      approve: Goedkarre
+      approved_msg: It goedkarren fan de account fan %{username} is slagge
+      are_you_sure: Binne jo wis?
+      avatar: Profylfoto
+      by_domain: Domein
+      change_email:
+        changed_msg: E-mailadres mei sukses wizige!
+        current_email: Aktuele e-mailadres
+        label: E-mailadres wizigje
+        new_email: Nij e-mailadres
+        submit: E-mailadres wizigje
+        title: E-mailadres foar %{username} wizigje
+      change_role:
+        changed_msg: Rol mei sukses wizige!
+        label: Rol wizigje
+        no_role: Gjin rol
+        title: Rol fan %{username} wizigje
+      confirm: Befêstigje
+      confirmed: Befêstige
+      confirming: Befêstiging
+      custom: Oanpast
       delete: Gegevens fuortsmite
       deleted: Fuortsmiten
+      demote: Degradearje
+      destroyed_msg: It fuortsmiten fan de gegevens fan %{username} stiet no yn de wachtrige
+      disable: Befrieze
+      disable_sign_in_token_auth: Ferifikaasje mei in tagongskoade fia e-mailberjocht útskeakelje
+      disable_two_factor_authentication: 2FA útskeakelje
+      disabled: Beferzen
+      display_name: Werjeftenamme
       domain: Domein
       edit: Bewurkje
+      email: E-mailadres
+      email_status: E-mailsteat
+      enable: Untteie
+      enable_sign_in_token_auth: Ferifikaasje mei in tagongskoade fia e-mailberjocht ynskeakelje
+      enabled: Ynskeakele
+      enabled_msg: It ûntteie fan de account fan %{username} is slagge
       followers: Folgers
       follows: Folgjend
       header: Omslachfoto
       inbox_url: Ynboks-URL
+      invite_request_text: Redenen om te registrearjen
+      invited_by: Utnûge troch
       ip: IP
       joined: Registrearre
       location:
@@ -21,44 +85,286 @@ fy:
         title: Lokaasje
       login_status: Oanmeldsteat
       media_attachments: Mediabylagen
+      memorialize: Nei in Yn memoriam wizigje
+      memorialized: Yn memoriam
+      memorialized_msg: It nei in Yn memoriam wizigje fan de account fan %{username} is slagge
       moderation:
         active: Aktyf
         all: Alle
+        disabled: Utskeakele
         pending: Yn ôfwachting
         silenced: Beheind
         suspended: Utsteld
         title: Moderaasje
+      moderation_notes: Opmerkingen foar moderatoaren
+      most_recent_activity: Lêst warber
+      most_recent_ip: Lêst brûkt IP-adres
+      no_account_selected: Der binne gjin accounts wizige, omdat der gjin ien selektearre waard
+      no_limits_imposed: Gjin limiten ynsteld
+      no_role_assigned: Gjin rol tawezen
+      not_subscribed: Net abonnearre
+      pending: Moat noch beoardiele wurde
       perform_full_suspension: Utstelle
+      previous_strikes: Eardere skeiningen
+      previous_strikes_description_html:
+        one: Dizze account hat <strong>ien</strong> oertrêding makke.
+        other: Dizze account hat <strong>%{count}</strong> oertrêdingen makke.
       promote: Promovearje
       protocol: Protokol
       public: Iepenbier
+      push_subscription_expires: PuSH-abonnemint ferrint op
+      redownload: Profyl fernije
+      redownloaded_msg: It werstellen fan it oarspronklike profyl fan %{username} is slagge
       reject: Wegerje
+      rejected_msg: It ôfwizen fan it registraasjefersyk fan %{username} is slagge
+      remote_suspension_irreversible: De gegevens fan dizze account binne definityf fuortsmiten.
+      remote_suspension_reversible_hint_html: Dizze account is útsteld op harren server en de gegevens wurde op %{date} folslein fuortsmiten. Oant dy tiid kin de eksterne server dizze account werstelle sûnder neidielige gefolgen. Wannear’t jo alle gegevens fan dizze account daliks fuortsmite wolle, kinne jo dit hjirûnder dwaan.
+      remove_avatar: Profylfoto fuortsmite
+      remove_header: Omslachfoto fuortsmite
+      removed_avatar_msg: It fuortsmiten fan de profylfoto fan %{username} is slagge
+      removed_header_msg: It fuortsmiten fan de omslachfoto fan %{username} is slagge
+      resend_confirmation:
+        already_confirmed: Dizze brûker is al befêstige
+        send: Befêstigings-e-mailberjocht opnij ferstjoere
+        success: Befêstigings-e-mailberjocht mei sukses ferstjoerd!
+      reset: Opnij ynstelle
+      reset_password: Wachtwurd opnij ynstelle
+      resubscribe: Opnij abonnearje
+      role: Rol
+      search: Sykje
+      search_same_email_domain: Oare brûkers mei itselde e-maildomein
+      search_same_ip: Oare brûkers mei itselde IP-adres
+      security: Befeiliging
       security_measures:
         only_password: Allinnich wachtwurd
         password_and_2fa: Wachtwurd en 2FA
+      sensitive: Gefoelich forsearje
+      sensitized: As gefoelich markearre
+      shared_inbox_url: Dielde Postfek-YN-URL
+      show:
+        created_reports: Oanmakke rapportaazjes
+        targeted_reports: Troch oaren rapportearre
+      silence: Beheine
+      silenced: Beheind
+      statuses: Berjochten
+      strikes: Eardere skeiningen
+      subscribe: Abonnearje
+      suspend: Utstelle
+      suspended: Utsteld
+      suspension_irreversible: De gegevens fan dizze account binne definityf fuortsmiten. Jo kinne it útstellen fan dizze account ûngedien meitsje, sadat it wer te brûken is, mar de fuortsmiten gegevens wurde hjirmei net wersteld.
+      suspension_reversible_hint_html: Dizze account is útsteld en de gegevens wurde op %{date} folslein fuortsmiten. Oant dy tiid kin de account wersteld wurde sûnder neidielige gefolgen. Wannear’t jo alle gegevens fan dizze account daliks fuortsmite wolle, kinne jo dit hjirûnder dwaan.
       title: Accounts
       unblock_email: E-mailadres deblokkearje
+      unblocked_email_msg: It e-mailadres fan %{username} is deblokkearre
+      unconfirmed_email: Unbefêstige e-mailadres
+      undo_sensitized: Net mear as gefoelich forsearje
+      undo_silenced: Net langer beheine
+      undo_suspension: Net langer útstelle
+      unsilenced_msg: It opheffen fan de beheiningen fan %{username} is slagge
+      unsubscribe: Opsizze
+      unsuspended_msg: It net langer útstellen fan %{username} is slagge
+      username: Brûkersnamme
+      view_domain: Gearfetting foar domein besjen
       warn: Warskôgje
       web: Web-app
+      whitelisted: Goedkard foar federaasje
     action_logs:
       action_types:
+        approve_appeal: Beswier goedkarre
+        approve_user: Brûker goedkarre
+        assigned_to_self_report: Rapportaazje tawize
+        change_email_user: E-mailadres fan brûker wizigje
+        change_role_user: Brûkersrol wizigje
+        confirm_user: Brûker befêstigje
+        create_account_warning: Warskôging oanmeitsje
+        create_announcement: Meidieling oanmeitsje
+        create_canonical_email_block: E-mailblokkade oanmeitsje
+        create_custom_emoji: Lokale emoji oanmeitsje
+        create_domain_allow: Domeingoedkarring oanmeitsje
+        create_domain_block: Domeinblokkade oanmeitsje
+        create_email_domain_block: E-maildomeinblokkade oanmeitsje
+        create_ip_block: IP-rigel oanmeitsje
+        create_unavailable_domain: Net beskikber domein oanmeitsje
+        create_user_role: Rol oanmeitsje
+        demote_user: Brûker degradearje
         destroy_announcement: Meidieling fuortsmite
+        destroy_canonical_email_block: E-mailblokkade fuortsmite
+        destroy_custom_emoji: Lokale emoji fuortsmite
+        destroy_domain_allow: Domeingoedkarring fuortsmite
+        destroy_domain_block: Domeinblokkade fuortsmite
+        destroy_email_domain_block: E-maildomeinblokkade fuortsmite
+        destroy_instance: Domein folslein fuortsmite
+        destroy_ip_block: IP-rigel fuortsmite
+        destroy_status: Toot fuortsmite
+        destroy_unavailable_domain: Net beskikber domein fuortsmite
+        destroy_user_role: Rol permanint fuortsmite
+        disable_2fa_user: Twa-stapsferifikaasje útskeakelje
+        disable_custom_emoji: Lokale emoji útskeakelje
+        disable_sign_in_token_auth_user: Ferifikaasje mei in tagongskoade fia e-mailberjocht foar de brûker útskeakelje
+        disable_user: Brûker útskeakelje
+        enable_custom_emoji: Lokale emoji ynskeakelje
+        enable_sign_in_token_auth_user: Ferifikaasje mei in tagongskoade fia e-mailberjocht foar de brûker ynskeakelje
+        enable_user: Brûker ynskeakelje
+        memorialize_account: De account yn in Yn memoriam wizigje
+        promote_user: Brûker promovearje
+        reject_appeal: Beswier ôfwize
+        reject_user: Brûker ôfwize
+        remove_avatar_user: Profylfoto fuortsmite
+        reopen_report: Rapport opnij iepenje
+        resend_user: Befêstigings-e-mailberjocht opnij ferstjoere
+        reset_password_user: Wachtwurd opnij ynstelle
+        resolve_report: Rapport oplosse
+        sensitive_account: De media yn jo account as gefoelich markearje
+        silence_account: Account beheine
+        suspend_account: Account útstelle
+        unassigned_report: Rapportaazje net langer tawize
+        unblock_email_account: E-mailadres deblokkearje
+        unsensitive_account: De media yn jo account net langer as gefoelich markearje
+        unsilence_account: Account net langer beheine
+        unsuspend_account: Account net langer útstelle
+        update_announcement: Meidieling bywurkje
+        update_custom_emoji: Lokale emoji bywurkje
+        update_domain_block: Domeinblokkade bywurkje
+        update_ip_block: IP-rigel bywurkje
+        update_status: Berjocht bywurkje
+        update_user_role: Rol bywurkje
+      actions:
+        approve_appeal_html: "%{name} hat it beswier tsjin de moderaasjemaatregel fan %{target} goedkard"
+        approve_user_html: "%{name} hat de registraasje fan %{target} goedkard"
+        assigned_to_self_report_html: "%{name} hat rapportaazje %{target} oan harrensels tawiisd"
+        change_email_user_html: "%{name} hat it e-mailadres fan brûker %{target} wizige"
+        change_role_user_html: "%{name} hat de rol fan %{target} wizige"
+        confirm_user_html: E-mailadres fan brûker %{target} is troch %{name} befêstige
+        create_account_warning_html: "%{name} hat in warskôging nei %{target} ferstjoerd"
+        create_announcement_html: "%{name} hat de nije meidieling %{target} oanmakke"
+        create_canonical_email_block_html: "%{name} hat it e-mailberjocht mei de hash %{target} blokkearre"
+        create_custom_emoji_html: Nije emoji %{target} is troch %{name} opladen
+        create_domain_allow_html: "%{name} hat de federaasje mei it domein %{target} goedkard"
+        create_domain_block_html: Domein %{target} is troch %{name} blokkearre
+        create_email_domain_block_html: "%{name} hat it e-maildomein %{target} blokkearre"
+        create_ip_block_html: "%{name} hat de rigel foar IP %{target} oanmakke"
+        create_unavailable_domain_html: "%{name} hat de besoarging foar domein %{target} beëinige"
+        create_user_role_html: "%{name} hat de rol %{target} oanmakke"
+        demote_user_html: Brûker %{target} is troch %{name} degradearre
+        destroy_announcement_html: "%{name} hat de meidieling %{target} fuortsmiten"
+        destroy_canonical_email_block_html: "%{name} hat it e-mailberjocht mei de hash %{target} deblokkearre"
+        destroy_custom_emoji_html: Emoji %{target} is troch %{name} fuortsmiten
+        destroy_domain_allow_html: "%{name} hat de federaasje mei it domein %{target} ôfkard"
+        destroy_domain_block_html: Domein %{target} is troch %{name} deblokkearre
+        destroy_email_domain_block_html: Domein %{target} is troch %{name} deblokkearre
+        destroy_instance_html: "%{name} hat it domein %{target} folslein fuortsmiten"
+        destroy_ip_block_html: "%{name} hat de rigel foar IP %{target} fuortsmiten"
+        destroy_status_html: Berjocht fan %{target} is troch %{name} fuortsmiten
+        destroy_unavailable_domain_html: "%{name} hat de besoarging foar domein %{target} opnij starte"
+        destroy_user_role_html: "%{name} hat de rol %{target} fuortsmiten"
+        disable_2fa_user_html: De fereaske twa-stapsferifikaasje foar %{target} is troch %{name} útskeakele
+        disable_custom_emoji_html: Emoji %{target} is troch %{name} útskeakele
+        disable_sign_in_token_auth_user_html: "%{name} hat ferifikaasje mei in tagongskoade fia e-mailberjocht útskeakele foar %{target}"
+        disable_user_html: Oanmelden foar %{target} is troch %{name} útskeakele
+        enable_custom_emoji_html: Emoji %{target} is troch %{name} ynskeakele
+        enable_sign_in_token_auth_user_html: "%{name} hat ferifikaasje mei in tagongskoade fia e-mailberjocht ynskeakele foar %{target}"
+        enable_user_html: Oanmelden foar %{target} is troch %{name} ynskeakele
+        memorialize_account_html: De account %{target} is troch %{name} yn in Yn memoriam wizige
+        promote_user_html: Brûker %{target} is troch %{name} promovearre
+        reject_appeal_html: "%{name} hat it beswier tsjin de moderaasjemaatregel fan %{target} ôfwêzen"
+        reject_user_html: "%{name} hat de registraasje fan %{target} ôfwêzen"
+        remove_avatar_user_html: "%{name} hat de profylfoto fan %{target} fuortsmiten"
+        reopen_report_html: "%{name} hat rapportaazje %{target} opnij iepene"
+        resend_user_html: "%{name} hat it befêstigings-e-mailberjocht foar %{target} opnij ferstjoerd"
+        reset_password_user_html: Wachtwurd fan brûker %{target} is troch %{name} opnij ynsteld
+        resolve_report_html: "%{name} hat rapportaazje %{target} oplost"
+        sensitive_account_html: "%{name} markearre de media fan %{target} as gefoelich"
+        silence_account_html: Account %{target} is troch %{name} beheind
+        suspend_account_html: Account %{target} is troch %{name} útsteld
+        unassigned_report_html: "%{name} hat it tawizen fan rapportaazje %{target} ûngedien makke"
+        unblock_email_account_html: "%{name} deblokkearre it e-mailadres fan %{target}"
+        unsensitive_account_html: "%{name} markearre de media fan %{target} as net gefoelich"
+        unsilence_account_html: Beheining fan account %{target} is troch %{name} opheven
+        unsuspend_account_html: Utstellen fan account %{target} is troch %{name} opheven
+        update_announcement_html: "%{name} hat de meidieling %{target} bywurke"
+        update_custom_emoji_html: Emoji %{target} is troch %{name} bywurke
+        update_domain_block_html: "%{name} hat de domeinblokkade bywurke foar %{target}"
+        update_ip_block_html: "%{name} hat de rigel foar IP %{target} wizige"
+        update_status_html: "%{name} hat de berjochten %{target} bywurke"
+        update_user_role_html: "%{name} hat de rol %{target} wizige"
       deleted_account: fuortsmiten account
+      empty: Gjin lochboeken fûn.
+      filter_by_action: Op aksje filterje
+      filter_by_user: Op brûker filterje
+      title: Auditlogboek
+    announcements:
+      destroyed_msg: Fuortsmiten fan meidieling slagge!
+      edit:
+        title: Meidieling bewurkje
+      empty: Gjin meidielingen fûn.
+      live: Live
+      new:
+        create: Meidieling oanmeitsje
+        title: Nije meidieling
+      publish: Publisearje
+      published_msg: Publisearjen fan meidieling slagge!
+      scheduled_for: Ynpland foar %{time}
+      scheduled_msg: Meidieling stiet ynpland foar publikaasje!
+      title: Oankundigingen
+      unpublish: Depublisearje
+      unpublished_msg: Ungedien meitsjen fan publisearre meidieling is slagge!
+      updated_msg: Bywurkjen fan meidieling slagge!
     custom_emojis:
+      assign_category: Kategory tawize
+      by_domain: Domein
+      copied_msg: Lokale kopy fan emoji meitsje slagge
       copy: Kopiearje
+      copy_failed_msg: Kin gjin lokale kopy fan dizze emoji meitsje
+      create_new_category: Nije kategory tafoegje
+      created_msg: Emoji oanmeitsjen slagge!
       delete: Fuortsmite
+      destroyed_msg: Emoji fuortsmiten slagge!
       disable: Utskeakelje
       disabled: Utskeakele
+      disabled_msg: Emoji útskeakeljen slagge
       emoji: Emoji
       enable: Ynskeakelje
       enabled: Ynskeakele
+      enabled_msg: Emoji ynskeakeljen slagge
       image_hint: PNG of GIF net grutter as %{size}
       list: Yn list
       listed: Werjaan
+      new:
+        title: Lokale emoji tafoegje
+      no_emoji_selected: Der binne gjin emoji wizige, omdat der gjin ien selektearre waard
+      not_permitted: Jo hawwe gjin rjochten om dizze aksje út te fieren
+      overwrite: Oerskriuwe
+      shortcode: Ferkoarte koade
+      shortcode_hint: Op syn minst 2 tekens, allinnich alfanumeryk en underscores
+      title: Lokale emoji
+      uncategorized: Net kategorisearre
+      unlist: Net yn list
+      unlisted: Net werjaan
+      update_failed_msg: Dizze emoji koe net bywurke wurde
+      updated_msg: Emoji fernije is slagge!
       upload: Oplade
     dashboard:
       active_users: warbere brûkers
       interactions: ynteraksjes
+      media_storage: Mediaûnthâld
+      new_users: nije brûkers
+      opened_reports: iepene rapportaazjes
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> te beoardielen beswier"
+        other: "<strong>%{count}</strong> te beoardielen beswieren"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> iepensteande rapportaazje"
+        other: "<strong>%{count}</strong> iepensteande rapportaazjes"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> te beoardielen hashtag"
+        other: "<strong>%{count}</strong> te beoardielen hashtags"
+      pending_users_html:
+        one: "<strong>%{count}</strong> te beoardielen nije brûker"
+        other: "<strong>%{count}</strong> te beoardielen nije brûkers"
+      resolved_reports: oploste rapportaazjes
+      software: Software
+      sources: Registraasjelokaasje
+      space: Romtegebrûk
       title: Dashboerd
       top_languages: Meast aktive talen
       top_servers: Meast aktive tsjinners
@@ -67,15 +373,101 @@ fy:
       appeals:
         empty: Gjin beswieren fûn.
         title: Beswieren
+    domain_allows:
+      add_new: Federaasje mei domein tastean
+      created_msg: Federaasjetastimming mei domein is slagge
+      destroyed_msg: Federaasje mei domein is net tastien
+      export: Eksportearje
+      import: Ymportearje
+      undo: Federaasje mei domein net tastean
+    domain_blocks:
+      add_new: Nije domeinblokkade tafoegje
+      created_msg: Domeinblokkade wurdt no ferwurke
+      destroyed_msg: Domeinblokkade is ûngedien makke
+      domain: Domein
+      edit: Domeinblokkade bewurkje
+      existing_domain_block: Jo hawwe al strangere limiten oplein oan %{name}.
+      existing_domain_block_html: Jo hawwe al strangere beheiningen oplein oan %{name}, jo moatte it domein earst <a href="%{unblock_url}">deblokkearje</a>.
+      export: Eksportearje
+      import: Ymportearje
+      new:
+        create: Blokkade oanmeitsje
+        hint: In domeinblokkade foarkomt net dat accountgegevens fan dit domein oan de database tafoege wurde, mar dat der mei weromwurkjende krêft en automatysk bepaalde moderaasjemetoaden op dizze accounts tapast wurde.
+        severity:
+          desc_html: "<strong>Beheinen</strong> soarget derfoar dat berjochten fan accounts fan dit domein foar elkenien ûnsichtber binne, behalve as in account folge wurdt. <strong>Utstelle</strong> soarget derfoar dat alle berjochten, media en profylgegevens fan accounts fan dit domein fuortsmiten wurde. Brûk <strong>Gjin</strong> wannear’t jo allinnich mediabestannen wegerje wolle."
+          noop: Gjin
+          silence: Beheine
+          suspend: Utstelle
+        title: Nije domeinblokkade
+      no_domain_block_selected: Der binne gjin domeinblokkades wizige, omdat der gjin ien selektearre waard
+      not_permitted: Jo hawwe gjin rjochten om dizze aksje út te fieren
+      obfuscate: Domeinnamme dizich meitsje
+      obfuscate_hint: De domeinnamme foar in part dizich meitsje, wannear’t de list mei domeinblokkaden toand wurdt
+      private_comment: Priveeopmerking
+      private_comment_hint: Opmerking oer dizze domeinbeheining foar yntern gebrûk troch de moderatoaren.
+      public_comment: Iepenbiere opmerking
+      public_comment_hint: Opmerking oer dizze domeinbeheining foar it grutte publyk, foar wannear de iepenbiere list mei domeinbeheiningen ynskeakele is.
+      reject_media: Mediabestannen wegerje
+      reject_media_hint: Smyt lokaal bewarre mediabestannen fuort en wegeret dizze yn de takomst te downloaden. Net relevant foar útstelde domeinen
+      reject_reports: Rapportaazjes wegerje
+      reject_reports_hint: Alle rapportaazjes dy’t fan dit domein ôf komme negearje. Net relevant foar útstelde domeinen
+      undo: Domeinblokkade ûngedien meitsje
+      view: Domeinblokkade besjen
     email_domain_blocks:
+      add_new: Nije tafoegje
+      attempts_over_week:
+        one: "%{count} registraasjebesykjen yn de ôfrûne wike"
+        other: "%{count} registraasjebesykjen yn de ôfrûne wike"
+      created_msg: E-maildomein blokkearjen slagge
       delete: Fuortsmite
+      dns:
+        types:
+          mx: MX-record
       domain: Domein
       new:
         create: Domain tafoegje
         resolve: Domein opsykje
+        title: Nije e-maildomein blokkearje
+      no_email_domain_block_selected: Der binne gjin e-maildomeinblokkaden wizige, omdat der gjin ien selektearre waard
+      not_permitted: Net tastien
+      resolved_dns_records_hint_html: De domeinnamme slacht op de folgjende MX-domeinen dy’t úteinlik ferantwurdlik binne foar it akseptearjen fan e-mail. It blokkearjen fan in MX-domein blokkearret oanmeldingen fan elk e-mailadres dat itselde MX-domein brûkt, sels as de sichtbere domeinnamme oars is. <strong>Pas op dat jo gjin grutte e-mailproviders blokkearje.</strong>
+      resolved_through_html: Blokkearre fia %{domain}
+      title: Blokkearre e-maildomeinen
+    export_domain_allows:
+      new:
+        title: Tastiene domeinen ymportearje
+      no_file: Gjin bestân selektearre
+    export_domain_blocks:
+      import:
+        description_html: Jo steane op it punt in list mei domeinblokkaden te ymportearjen. Kontrolearje dizze list bot soarchfâldich, foaral as jo dizze list net sels makke hawwe.
+        existing_relationships_warning: Besteande folchrelaasjes
+        private_comment_description_html: 'Om jo te helpen byhâlden wêr’t de ymportearre blokkaden wei komme, wurde de ymportearre blokkaden mei de folgjende priveeopmerking oanmakke: <q>%{comment}</q>'
+        private_comment_template: Ymportearre fan %{source} op %{date}
+        title: Domeinblokkaden ymportearje
+      invalid_domain_block: 'Ien of mear domeinblokkaden binne oerslein, fanwegen de folgjende flater(s): %{error}'
+      new:
+        title: Domeinblokkaden ymportearje
+      no_file: Gjin bestân selektearre
     follow_recommendations:
+      description_html: "<strong>Dizze oanrekommandearre accounts helpe nije brûkers fluch ynteressante ynhâld</strong>te finen. Wannear’t in brûker net mei oare brûkers genôch ynteraksje hân hat om personalisearre oanrekommandaasjes te krijen, wurde yn stee dêrfan dizze accounts oanrekommandearre. Dizze accounts wurde deistich opnij berekkene mei help fan accounts mei it heechste tal resinte ynteraksjes en it heechste tal lokale folgers yn in bepaalde taal."
+      language: Foar taal
       status: Steat
+      suppress: Oanrekommandearre account net mear oanrekommandearje
+      suppressed: Net mear oanrekommandearre
+      title: Oanrekommandearre accounts
+      unsuppress: Account wer oanrekommandearje
     instances:
+      availability:
+        description_html:
+          one: As de besoarging oan it domein nei <strong>%{count} dag</strong> mislearjen bliuwt, dan sille der gjin fierdere besykjen ta besoarging dien wurde oant in besoarging <em>fan</em> it domein ûntfongen is.
+          other: As de besoarging oan it domein nei <strong>%{count} dagen</strong> mislearjen bliuwt, dan sille der gjin fierdere besykjen ta besoarging dien wurde oant in besoarging <em>fan</em> it domein ûntfongen is.
+        failure_threshold_reached: Flaterdrompelwearde berikt op %{date}.
+        failures_recorded:
+          one: Mislearre besykjen op %{count} dag.
+          other: Mislearre besykjen op %{count} ferskate dagen.
+        no_failures_recorded: Gjin steuringen bekend.
+        title: Beskikberheid
+        warning: It lêste besykjen om mei dizze server te ferbinen wie sûnder sukses
       back_to_all: Alle
       back_to_limited: Beheind
       back_to_warning: Warskôging
@@ -83,71 +475,1236 @@ fy:
       confirm_purge: Wolle jo werklik alle gegevens fan dit domein foar ivich fuortsmite?
       content_policies:
         comment: Ynterne reden
+        description_html: Jo kinne it belied bepale dat op de accounts fan dit domein en alle subdomeinen fan tapassing is.
+        limited_federation_mode_description_html: Jo kinne kieze oft jo federaasje mei dit domein tastean wolle.
         policies:
+          reject_media: Mediabestannen wegerje
+          reject_reports: Rapportaazjes wegerje
           silence: Beheind
           suspend: Utsteld
         policy: Belied
+        reason: Publike reden
+        title: Belied
       dashboard:
+        instance_accounts_dimension: Meast troch ús folge accounts
         instance_accounts_measure: bewarre accounts
+        instance_followers_measure: ús folgers dêr
+        instance_follows_measure: troch harren hjir folge
+        instance_languages_dimension: Meast aktive talen
+        instance_media_attachments_measure: bewarre mediabestannen
+        instance_reports_measure: rapportaazjes oer harren
+        instance_statuses_measure: bewarre berjochten
+      delivery:
+        all: Alles
+        clear: Ofleverflater fuorthelje
+        failing: Problemen
+        restart: Oflevering opnij starte
+        stop: Oflevering beëinigje
+        unavailable: Net beskikber
+      delivery_available: Ofleverjen is mooglik
+      delivery_error_days: Dagen mei ôfleverflaters
+      delivery_error_hint: Wannear’t de besoarging foar %{count} dagen net mooglik is, wurdt de besoarging automatysk as net beskikber markearre.
+      destroyed_msg: Gegevens fan %{domain} stean no yn de wachtrige foar oansteande ferwidering.
+      empty: Gjin domeinen fûn.
+      known_accounts:
+        one: "%{count} bekende account"
+        other: "%{count} bekende accounts"
+      moderation:
+        all: Alle
+        limited: Beheind
+        title: Moderaasje
+      private_comment: Priveeopmerking
+      public_comment: Iepenbiere opmerking
+      purge: Folslein fuortsmite
+      purge_description_html: As jo tinke dat dit domein definityf offline is, kinne jo alle accounts en byhearrende gegevens fan dit domein fuortsmite. Dit kin efkes duorje.
+      title: Federaasje
+      total_blocked_by_us: Troch ús blokkearre
+      total_followed_by_them: Troch harren folge
+      total_followed_by_us: Troch ús folge
+      total_reported: Rapportaazjes oer harren
+      total_storage: Mediabylagen
+      totals_time_period_hint_html: De hjirûnder toande totalen befetsje gegevens sûnt it begjin.
+    invites:
+      deactivate_all: Alles deaktivearje
+      filter:
+        all: Alles
+        available: Beskikber
+        expired: Ferrûn
+        title: Filter
+      title: Utnûgingen
     ip_blocks:
+      add_new: Rigel meitsje
+      created_msg: It tafoegjen fan in nije IP-rigel is slagge
       delete: Fuortsmite
+      expires_in:
+        '1209600': 2 wiken
+        '15778476': 6 moannen
+        '2629746': 1 moanne
+        '31556952': 1 jier
+        '86400': 1 dei
+        '94670856': 3 jier
+      new:
+        title: Nije IP-rigel oanmeitsje
+      no_ip_block_selected: Der binne gjin IP-rigels wizige, omdat der gjin ien selektearre waard
+      title: IP-rigels
+    relationships:
+      title: Relaasjes fan %{acct}
     relays:
+      add_new: Nije relayserver tafoegje
       delete: Fuortsmite
+      description_html: In <strong>federaasjerelay</strong> is in tuskenlizzende server dy’t grutte hoemannichte iepenbiere berjochten útwikselet tusken servers dy’t harren hjirop abonnearre hawwe. <strong>It kin lytse en middelgrutte servers helpe om ynhâld fan de fediverse te ûntdekken</strong>, wêrfoar oars lokale brûkers hânmjittich minsken fan eksterne servers folgje moatte.
+      disable: Utskeakelje
+      disabled: Utskeakele
+      enable: Ynskeakelje
+      enable_hint: Ien kear ynskeakele giet jo server harren op alle iepenbiere berjochten fan dizze relayserver abonnearje en stjoert it de iepenbiere berjochten fan jo server nei de relayserver.
+      enabled: Ynskeakele
+      inbox_url: Relay-URL
+      pending: Wachtet op tastimming fan de relayserver
+      save_and_enable: Bewarje en ynskeakelje
+      setup: In ferbining mei in relayserver meitsje
+      signatures_not_enabled: Federaasjerelays wurkje mooglik net goed wannear’t de feilige modus of de beheinde federaasjemodus ynskeakele is
+      status: Steat
+      title: Relayservers
+    report_notes:
+      created_msg: Oanmeitsjen fan rapportaazje slagge!
+      destroyed_msg: Fuortsmiten fan opmerking by rapportaazje slagge!
     reports:
+      account:
+        notes:
+          one: "%{count} opmerking"
+          other: "%{count} opmerkingen"
+      action_log: Auditlogboek
+      action_taken_by: Maatregel nommen troch
+      actions:
+        delete_description_html: De rapportearre berjochten wurde fuortsmiten en der wurdt in oertrêding registrearre om takomstige oertrêdingen fan itselde account flugger ôfhannelje te kinnen.
+        mark_as_sensitive_description_html: De media yn de rapportearre berjochten wurde markearre as gefoelich en der wurdt in oertrêding registrearre om takomstige oertrêdingen fan itselde account flugger ôfhannelje te kinnen.
+        other_description_html: Besjoch mear opsjes foar it kontrolearjen fan it gedrach fan en de kommunikaasje mei it rapportearre account.
+        resolve_description_html: Der wurdt tsjin it rapportearre account gjin maatregel nommen, gjin oertrêding registrearre en de rapportaazje wurdt markearre as oplost.
+        silence_description_html: De account sil allinnich sichtber wêze foar dyjinge dy’t it al folgje of it hânmjittich opsykje, wêrtroch it berik earnstich beheind wurdt. Kin altyd weromdraaid wurde. Dit slút alle rapportaazjes oer dizze account.
+        suspend_description_html: De account en alle ynhâld sil net tagonklik wêze en úteinlik fuortsmiten wurde, en ynteraksje hjirmei sil net mooglik wêze. Binnen 30 dagen werom te draaien. Dit slút alle rapportaazjes oer dizze account.
+      actions_description_html: Beslis hokker maatregel nommen wurde moat om dizze rapportaazje op te lossen. Wannear’t jo in (straf)maatregel tsjin it rapportearre account nimme, kriget de account in e-mailmelding, behalve wannear’t de <strong>spam</strong>-kategory keazen is.
+      actions_description_remote_html: Beslút hokker aksje nommen wurde moat om dizze rapportaazje ôf te hanneljen. Dit hat allinnich ynfloed op hoe’t <strong>jo</strong> server kommunisearret mei dizze eksterne account en omgiet mei de ynhâld.
+      add_to_report: Mear oan de rapportaazje tafoegje
+      are_you_sure: Binne jo wis?
+      assign_to_self: Oan my tawize
+      assigned: Tawizen moderator
+      by_target_domain: Domein fan rapportearre account
+      cancel: Annulearje
+      category: Kategory
+      category_description_html: De reden wêrom dizze account en/of ynhâld rapportearre waard, wurdt oan it rapportearre account meidield
+      comment:
+        none: Gjin
+      comment_description_html: 'Om mear ynformaasje te jaan, skreau %{name}:'
+      confirm: Befêstigje
+      confirm_action: Moderaasjemaatregelen tsjin %{acct} befêstigje
+      created_at: Rapportearre op
       delete_and_resolve: Berjocht fuortsmite
+      forwarded: Trochstjoerd
+      forwarded_to: Trochstjoerd nei %{domain}
+      mark_as_resolved: As oplost markearje
+      mark_as_sensitive: As gefoelich markearje
+      mark_as_unresolved: As net oplost markearje
+      no_one_assigned: Net ien
       notes:
+        create: Opmerking tafoegje
+        create_and_resolve: Oplosse mei opmerking
+        create_and_unresolve: Opnij iepeje mei opmerking
         delete: Fuortsmite
+        placeholder: Beskriuw hokker maatregels nommen binne of oare relatearre opmerkingen…
+        title: Opmerkingen
+      notes_description_html: Besjoch en lit opmerkingen efter foar oare moderatoaren en foar jo takomstige sels
+      processed_msg: 'Rapprtaazje #%{id} mei sukses ferwurke'
+      quick_actions_description_html: 'Nim in flugge maatregel of skow nei ûnder om de rapportearre ynhâld te besjen:'
+      remote_user_placeholder: de eksterne brûker fan %{instance}
+      reopen: Rapport opnij iepenje
+      report: 'Rapportaazje #%{id}'
+      reported_account: Rapportearre account
+      reported_by: Rapportearre troch
+      resolved: Oplost
+      resolved_msg: Rapportaazje oplosse slagge!
+      skip_to_actions: Gean daliks nei de maatregels
+      status: Steat
+      statuses: Rapportearre ynhâld
+      statuses_description_html: De problematyske ynhâld wurdt oan it rapportearre account meidield
+      summary:
+        action_preambles:
+          delete_html: 'Jo stean op it punt om inkelde berjochten fan <strong>@%{acct}</strong> <strong>fuort te smiten</strong>. Dit sil:'
+          mark_as_sensitive_html: 'Jo stean op it punt om inkelde berjochten fan <strong>@%{acct}</strong> as <strong>gefoelich</strong> te <strong>markearjen</strong>. Dit sil:'
+          silence_html: 'Jo stean op it punt de account fan <strong>@%{acct}</strong> te <strong>beheinen</strong>. Dit sil:'
+          suspend_html: 'Jo stean op it punt de account fan <strong>@%{acct}</strong> te <strong>beskoatteljen</strong>. Dit sil:'
+        actions:
+          delete_html: De problematyske berjochten fuortsmite
+          mark_as_sensitive_html: De media fan de problematyske berjochten as gefoelich markearje
+          silence_html: "<strong>@%{acct}</strong> earnstich beheine, troch it profyl ende ynhâld allinnich sichtber te meitsjen foar de minsken dy’t harren al folgje of hantmjittich it profyl opsykje"
+          suspend_html: "<strong>@%{acct}</strong> blokkearje, sadat it profyl en de ynhâld net mear tagonklik is en it net mooglik is om ynteraksje dêr mei te hawwen"
+        close_report: 'Rapportaazje #%{id} as oplost markearje'
+        close_reports_html: "<strong>Alle</strong> meldingen tsjin <strong>@%{acct}</strong> as oplost markearje"
+        delete_data_html: It profyl en de ynhâld fan <strong>@%{acct}</strong> wurde nei 30 dagen fan no ôf fuortsmiten, útsein as de account yn de tuskentiid net mear blokkearre wurdt
+        preview_preamble_html: "<strong>@%{acct}</strong> sil in warskôging ûntfange mei de folgjende ynhâld:"
+        record_strike_html: In ban tsjin <strong>@%{acct}</strong> ynstelle, om jo te helpen by takomstige skeiningen fan dizze acount te eskalearjen
+        send_email_html: Stjoer <strong>@%{acct}</strong> in warskôgings-e-mailberjocht
+        warning_placeholder: Ekstra opsjonele reden foar de moderaasje-aksje.
+      target_origin: Orizjineel fan rapportearre account
+      title: Rapportaazjes
+      unassign: Net langer tawize
+      unknown_action_msg: 'Unbekende aksje: %{action}'
+      unresolved: Net oplost
+      updated_at: Bywurke
+      view_profile: Profyl besjen
     roles:
+      add_new: Rol tafoegje
+      assigned_users:
+        one: "%{count} brûker"
+        other: "%{count} brûkers"
+      categories:
+        administration: Behear
+        devops: DevOps
+        invites: Utnûgingen
+        moderation: Moderaasje
+        special: Spesjaal
       delete: Fuortsmite
+      description_html: Mei <strong>brûkersrollen</strong> kinne jo de funksjes en ûnderdielen fan Mastodon, wêr’t jo brûkers tagong ta hawwe, oanpasse.
+      edit: Rol ‘%{name}’ bewurkje
+      everyone: Standertrjochten
+      everyone_full_description_html: Dit is de <strong>basisrol</strong> dy’t fan tapassing is op <strong>alle brûkers</strong>, sels foar dyjinge sûnder tawizen rol. Alle oare rollen hawwe de rjochten fan dizze rol as minimum.
+      permissions_count:
+        one: "%{count} rjocht"
+        other: "%{count} rjochten"
+      privileges:
+        administrator: Behearder
+        administrator_description: Dizze brûkers hawwe folsleine rjochten en kinne dus oeral by
+        delete_user_data: Brûkersgegevens fuortsmite
+        delete_user_data_description: Stiet brûkers ta om de gegevens fan oare brûkers sûnder fertraging fuort te smiten
+        invite_users: Brûkers útnûgje
+        invite_users_description: Stiet brûkers ta om nije minsken foar de server út te nûgjen
+        manage_announcements: Meidielingen beheare
+        manage_announcements_description: Stiet brûkers ta om meidielingen op de server te behearen
+        manage_appeals: Beswieren beheare
+        manage_appeals_description: Stiet brûkers ta om beswieren tsjin moderaasjemaatregelen te beoardielen
+        manage_blocks: Blokkaden beheare
+        manage_blocks_description: Stiet brûkers ta om e-mailproviders en IP-adressen te blokkearjen
+        manage_custom_emojis: Lokale emoji’s beheare
+        manage_custom_emojis_description: Stiet brûkers ta om lokale emoji’s op de server te behearen
+        manage_federation: Federaasje beheare
+        manage_federation_description: Stiet brûkers ta om federaasje mei oare domeinen te blokkearjen of ta te stean en om de besoarging te bepalen
+        manage_invites: Utnûgingen beheare
+        manage_invites_description: Stiet brûkers ta om útnûgingskeppelingen te besjen en te de-aktivearjen
+        manage_reports: Rapportaazjes beheare
+        manage_reports_description: Stiet brûkers ta om rapportaazjes te beoardielen en om oan de hân hjirfan moderaasjemaatregelen te nimmen
+        manage_roles: Rollen beheare
+        manage_roles_description: Stiet brûkers ta om rollen te behearen en ta te wizen dy’t minder rjochten hawwe as harren eigen rol(len)
+        manage_rules: Serverregels wizigje
+        manage_rules_description: Stiet brûkers ta om serverregels te wizigjen
+        manage_settings: Serverynstellingen wizigje
+        manage_settings_description: Stiet brûkers ta de ynstellingen fan de website te wizigjen
+        manage_taxonomies: Trends en hashtags beheare
+        manage_taxonomies_description: Stiet brûkers ta om trending ynhâld te besjen en om hashtagynstellingen by te wurkjen
+        manage_user_access: Brûkerstagong beheare
+        manage_user_access_description: Stiet brûkers ta om twa-stapsferifikaasje fan oare brûkers út te skeakeljen, om harren e-mailadres te wizigjen en om harren wachtwurd opnij yn te stellen
+        manage_users: Brûkers beheare
+        manage_users_description: Stiet brûkers ta om brûkersdetails fan oaren te besjen en moderaasjemaatregelen tsjin harren te nimmen
+        manage_webhooks: Webhooks beheare
+        manage_webhooks_description: Stiet brûkers ta om webhooks foar beheartaken yn te stellen
+        view_audit_log: Auditlochboek besjen
+        view_audit_log_description: Stiet brûkers ta om in skiednis fan behearaksjes op de server te besjen
+        view_dashboard: Dashboard besjen
+        view_dashboard_description: Jout brûkers tagong ta it dashboard en ferskate statistiken
+        view_devops: DevOps
+        view_devops_description: Jout brûkers tagong ta de dashboarden fan Sidekiq en pgHero
+      title: Rollen
     rules:
+      add_new: Rigel tafoegje
       delete: Fuortsmite
+      description_html: Hoewol de measte minsken sizze dat se de brûksbetingsten lêzen hawwe en der mei akkoard gean, lêze minsken dizze meastentiids net oant dat der in probleem bard. <strong>Meitsje it ienfâldiger om de regels fan dizze server yn ien eachwink te sjen, troch se punt foar punt yn in list te setten.</strong> Probearje de ferskate regels koart en simpel te hâlden, mar probearje se ek net yn ferskate items ûnder te ferdielen.
+      edit: Rigel bewurkje
+      empty: Foar dizze server binne noch gjin regels opsteld.
+      title: Serverrigels
+    settings:
+      about:
+        manage_rules: Serverregels beheare
+        preamble: Jou wiidweidige ynformaasje oer hoe’t de server beheard, modereare en finansiere wurdt.
+        rules_hint: Der is in spesjaal gebied foar regels wêr’t jo brûkers harren oan hâlde moatte.
+        title: Oer
+      appearance:
+        preamble: Mastodon’s webomjouwing oanpasse.
+        title: Werjefte
+      branding:
+        preamble: De branding fan jo server lit sjen hoe’t it fan oare servers yn it netwurk ferskilt. Dizze ynformaasje wurdt op ferskate plakken toand, lykas yn de webomjouwing fan Mastodon, yn mobile apps, yn foarfertoaningen op oare websites en berjochte-apps, ensfh. Dêrom is it wichtich om de ynformaasje helder, koart en bûnich te hâlden.
+        title: Branding
+      content_retention:
+        preamble: Tafersjoch hâlde op hoe’t berjochten en media fan brûkers op Mastodon bewarre wurde.
+        title: Bewartermyn berjochten
+      default_noindex:
+        desc_html: Hat ynfloed op alle brûkers dy’t dizze ynstelling net sels wizige hawwe
+        title: Brûkers standert net troch sykmasinen yndeksearje litte
+      discovery:
+        follow_recommendations: Oanrekommandearre accounts
+        preamble: It toanen fan ynteressante ynhâld is fan essinsjeel belang foar it oan board heljen fan nije brûkers dy’t mooglik net ien fan Mastodon kinne. Bepaal hoe’t ferskate funksjes foar it ûntdekken fan ynhâld en brûkers op jo server wurkje.
+        profile_directory: Profylmap
+        public_timelines: Iepenbiere tiidlinen
+        publish_discovered_servers: Untdekte servers publisearje
+        publish_statistics: Statistiken publisearje
+        title: Untdekke
+        trends: Trends
+      domain_blocks:
+        all: Oan elkenien
+        disabled: Oan net ien
+        users: Oan oanmelde lokale brûkers
+      registrations:
+        preamble: Tafersjoch hâlde op wa’t in account op dizze server registrearje kin.
+        title: Registraasjes
+      registrations_mode:
+        modes:
+          approved: Goedkarring fereaske om te registrearje te kinnen
+          none: Net ien kin harren registrearje
+          open: Elkenien kin harren registrearje
+      title: Serverynstellingen
+    site_uploads:
+      delete: Opladen bestân fuortsmite
+      destroyed_msg: Fuortsmiten website-oplaad slagge!
     statuses:
+      account: Auteur
+      application: Tapassing
+      back_to_account: Tebek nei accountside
+      back_to_report: Tebek nei de rapportaazje
+      batch:
+        remove_from_report: Ut rapportaazje fuortsmite
+        report: Rapportaazje
       deleted: Fuortsmiten
+      favourites: Favoriten
+      history: Ferzjeskiednis
+      in_reply_to: Reaksje op
+      language: Taal
+      media:
+        title: Media
+      metadata: Metagegevens
+      no_status_selected: Der binne gjin berjochten wizige, omdat der gjin ien selektearre waard
+      open: Berjocht toane
+      original_status: Oarspronklik berjocht
+      reblogs: Boosts
+      status_changed: Berjocht wizige
+      title: Accountberjochten
+      trending: Trending
+      visibility: Sichtberheid
+      with_media: Mei media
+    strikes:
+      actions:
+        delete_statuses: "%{name} hat de berjochten fan %{target} fuortsmiten"
+        disable: Account %{target} is troch %{name} beferzen
+        mark_statuses_as_sensitive: "%{name} markearre de berjochten fan %{target} as gefoelich"
+        none: "%{name} hat in warskôging nei %{target} ferstjoerd"
+        sensitive: "%{name} markearre de account fan %{target} as gefoelich"
+        silence: Account %{target} is troch %{name} beheind
+        suspend: Account %{target} is troch %{name} útsteld
+      appeal_approved: Beswier yntsjinne
+      appeal_pending: Beswier yn behanneling
+      appeal_rejected: Beswier ôfwêzen
     system_checks:
       database_schema_check:
         message_html: Der binne database migraasjes yn ôfwachting. Jo moatte dizze útfiere om der foar te soargjen dat de applikaasje wurkjen bliuwt sa as it heard
+      elasticsearch_running_check:
+        message_html: Koe gjin ferbining meitsje mei Elasticsearch. Kontrolearje dat Elasticsearch útfierd wurdt of skeakelje full-text-sykjen út
+      elasticsearch_version_check:
+        message_html: 'Ynkompatibele Elasticsearch-ferzje: %{value}'
+        version_comparison: Jo brûke Elasticsearch %{running_version}, mar %{required_version} is fereaske
+      rules_check:
+        action: Serverregels beheare
+        message_html: Jo hawwe foar dizze server gjin regels opsteld.
+      sidekiq_process_check:
+        message_html: Der draait gjin Sidekiq-proses foar de wachtrige(n) %{value}. Kontrolearje jo Sidekiq-konfiguraasje
+    tags:
+      review: Steat beoardiele
+      updated_msg: Hashtagynstellingen mei sukses bywurke
+    title: Behear
+    trends:
+      allow: Tastean
+      approved: Goedkarre
+      disallow: Ofkarre
+      links:
+        allow: Keppeling goedkarre
+        allow_provider: Auteur goedkarre
+        description_html: Dit binne keppelingen dy’t op dit stuit in protte dield wurde troch accounts wêr’t jo server berjochten fan ûntfangt. Hjirtroch kinne jo brûkers sjen wat der yn de wrâld oan de hân is. Der wurde gjin keppelingen werjûn oant jo de website goedkard hawwe. Jo kinne ek yndividuele keppelingen goed- of ôfkarre.
+        disallow: Keppeling ôfkarre
+        disallow_provider: Website ôfkarre
+        no_link_selected: Der binne gjin keppelingen wizige, omdat der gjin ien selektearre waard
+        publishers:
+          no_publisher_selected: Der binne gjin websites wizige, omdat der gjin ien selektearre waard
+        shared_by_over_week:
+          one: Dizze wike troch ien persoan dield
+          other: Dizze wike troch %{count} persoanen dield
+        title: Trending keppelingen
+        usage_comparison: Hjoed %{today} kear dield, fergelike mei %{yesterday} kear juster
+      not_allowed_to_trend: Trending wurdt net tastien
+      only_allowed: Allinnich goedkarre
+      pending_review: Moat noch beoardiele wurde
+      preview_card_providers:
+        allowed: Keppelingen fan dizze website kinne trending wurde
+        description_html: Dit binne domeinen wêrfan keppelingen faaks op jo server dield wurde. Keppelingen sille net yn it iepenbier trending wurde, eardat it domein fan de keppeling goedkard wurdt. Jo goedkarring (of ôfwizing) jildt ek foar subdomeinen.
+        rejected: Keppelingen fan dizze nijswebsite kinne net trending wurde
+        title: Utjouwers
+      rejected: Wegere
+      statuses:
+        allow: Berjocht goedkarre
+        allow_account: Account goedkarre
+        description_html: Dit binne berjochten dy’t op jo server bekend binne en dy’t op dit stuit in protte dield wurde en as favoryt markearre wurde. Hjirmei kinne nije en weromkearende brûkers mear minsken fine om te folgjen. Der wurde gjin berjochten yn it iepenbier werjûn oant de account troch jo goedkard is en de brûker tastiet dat harren account oan oaren oanrekommandearre wurdt. Jo kinne ek yndividuele berjochten goed- of ôfkarre.
+        disallow: Berjocht ôfkarre
+        disallow_account: Account ôfkarre
+        no_status_selected: Der binne gjin trending berjochten wizige, omdat der gjin ien selektearre waard
+        not_discoverable: Brûker hat gjin tastimming jûn om ûntdekt te wurden
+        shared_by:
+          one: Ien kear dield of as favoryt markearre
+          other: "%{friendly_count} kear dield of as favoryt markearre"
+        title: Trending berjochten
+      tags:
+        current_score: Aktuele skoare is %{score}
+        dashboard:
+          tag_accounts_measure: tal unike kearen brûkt
+          tag_languages_dimension: Populêre talen
+          tag_servers_dimension: Populêre servers
+          tag_servers_measure: ferskate servers
+          tag_uses_measure: totaal tal kear brûkt
+        description_html: Dizze hashtags ferskine op dit stuit yn in protte berjochten dy’t op jo server sichtber binne. Hjirmei kinne jo brûkers sjen dêr’t minsken op dit momint it meast oer prate. Der wurde gjin hashtags yn it iepenbier werjûn oant jo se goedkarre.
+        listable: Kin oanrekommandearre wurde
+        no_tag_selected: Der binne gjin hashtags wizige, omdat der gjin ien selektearre waard
+        not_listable: Wurdt net oanrekommandearre
+        not_trendable: Sil net ûnder trends ferskine
+        not_usable: Kin net brûkt wurde
+        peaked_on_and_decaying: Yn de trends op %{date}, nimt no wer ôf
+        title: Trending hashtags
+        trendable: Kin net ûnder trends ferskine
+        trending_rank: 'Trending #%{rank}'
+        usable: Kin brûkt wurde
+        usage_comparison: Hjoed %{today} kear brûkt, fergelike mei %{yesterday} kear juster
+        used_by_over_week:
+          one: Dizze wike troch ien persoan brûkt
+          other: Dizze wike troch %{count} persoanen brûkt
+      title: Trends
+      trending: Trending
     warning_presets:
+      add_new: Nije tafoegje
       delete: Fuortsmite
+      edit_preset: Foarynstelling foar warskôging bewurkje
+      empty: Jo hawwe noch gjin foarynstellingen foar warskôgingen tafoege.
+      title: Foarynstellingen foar warskôgingen beheare
     webhooks:
+      add_new: Einpunt tafoegje
       delete: Fuortsmite
+      description_html: Mei in <strong>webhook</strong> kin Mastodon <strong>meldingen real-time</strong> oer keazen barrens nei jo eigen tapassing stjoere, sadat jo applikaasje <strong>automatysk reaksjes generearje kin</strong>.
+      disable: Utskeakelje
+      disabled: Utskeakele
+      edit: Einpunt bewurkje
+      empty: Jo hawwe noch gjin webhook-einpunten konfigurearre.
+      enable: Ynskeakelje
+      enabled: Aktyf
+      enabled_events:
+        one: 1 ynskeakele evenemint
+        other: "%{count} ynskeakele eveneminten"
+      events: Eveneminten
+      new: Nije webhook
+      rotate_secret: Geheime kaai opnij generearje
+      secret: Geheime kaai ûndertekenje
+      status: Steat
+      title: Webhooks
+      webhook: Webhook
+  admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: it fuortsmiten fan harren berjochten
+        disable: it beferzen fan harren account
+        mark_statuses_as_sensitive: it markearjen fan harren berjochten as gefoelich
+        none: in warskôging
+        sensitive: it gefoelich forsearjen fan harren account
+        silence: it beheinen fan harren account
+        suspend: it útstellen fan harren account
+      body: "%{target} makket beswier tsjin in moderaasjemaatregel troch %{action_taken_by} op %{date}, oangeande %{type}. De brûker skriuwt:"
+      next_steps: Jo kinne it beswier goedkarre om dêrmei de moderaasjemaatregel ûngedien te meitsjen, of jo kinne it ferwerpe.
+      subject: "%{username} makket beswier tsjin in moderaasjemaatregel op %{instance}"
+    new_pending_account:
+      body: Sjoch hjirûnder de details fan it nije account. Jo kinne de oanfraach goedkarre of ôfwize.
+      subject: Der moat in nij account op %{instance} beoardiele wurde (%{username})
+    new_report:
+      body: "%{reporter} hat %{target} rapportearre"
+      body_remote: Ien fan %{domain} hat %{target} rapportearre
+      subject: Nije rapportaazje op %{instance} (#%{id})
+    new_trends:
+      body: 'De folgjende items moatte beoardiele wurde eardat se iepenbier toand wurde kinne:'
+      new_trending_links:
+        title: Trending keppelingen
+      new_trending_statuses:
+        title: Trending berjochten
+      new_trending_tags:
+        no_approved_tags: Op dit stuit binne der gjin goedkarre hashtags.
+        requirements: 'Elk fan dizze kandidaten kin de #%{rank} goedkarre trending hashtag oertreffe, dy’t op dit stuit #%{lowest_tag_name} is mei in skoare fan %{lowest_tag_score}.'
+        title: Trending hashtags
+      subject: Nije trends te beoardielen op %{instance}
+  aliases:
+    add_new: Alias oanmeitsje
+    created_msg: Mei sukses in nije alias oanmakke. Jo kinne no mei de ferhuzing fan it âlde account ôf begjinne.
+    deleted_msg: De alias is mei sukses fuortsmiten. Ferhúzjen fan dy account ôf nei dizze account is net mear mooglik.
+    empty: Jo hawwe gjin aliassen.
+    hint_html: Wannear’t jo fan in oare account ôf nei dizze account ferhúzje wolle, kinne jo hjir in alias oanmeitsje. Dit is nedich eardat jo troch gean kinne mei it ferhúzjen fan folgers fan de âlde nei dizze nije account. Dizze aksje is op eins <strong>net gefaarlik en omkearber</strong>. <strong>De accountmigraasje wurdt start fan de âlde account ôf</strong>.
+    remove: Alias ûntkeppelje
+  appearance:
+    advanced_web_interface: Avansearre webomjouwing
+    advanced_web_interface_hint: 'Wannear’t jo fan de hiele skermbreedte gebrûk meitsje wolle, stelt de avansearre webomjouwing jo yn steat om meardere ferskate kolommen te konfigurearjen. Hjirmei kinne jo safolle mooglik ynformaasje op itselde momint besjen, lykas: Start, meldingen, de globale tiidline, meardere listen en hashtags.'
+    animations_and_accessibility: Animaasjes en tagonklikheid
+    confirmation_dialogs: Befêstigingen
+    discovery: Untdekke
+    localization:
+      body: Mastodon wurdt troch frijwilligers oerset.
+      guide_link: https://crowdin.com/project/mastodon/fy
+      guide_link_text: Elkenien kin bydrage.
+    sensitive_content: Gefoelige ynhâld
+    toot_layout: Lay-out fan berjochten
+  application_mailer:
+    notification_preferences: E-mailfoarkarren wizigje
+    salutation: "%{name},"
+    settings: 'E-mailfoarkarren wizigje: %{link}'
+    view: 'Besjoch:'
+    view_profile: Profyl besjen
+    view_status: Berjocht besjen
+  applications:
+    created: Oanmeitsjen tapassing slagge
+    destroyed: Fuortsmiten tapassing slagge
+    logout: Ofmelde
+    regenerate_token: Tagongskoade opnij oanmeitsje
+    token_regenerated: Opnij oanmeitsjen tagongskoade slagge
+    warning: Wês foarsichtich mei dizze gegevens. Diel it nea mei in oar!
+    your_token: Jo tagongskoade
   auth:
+    apply_for_account: Account oanfreegje
+    change_password: Wachtwurd
+    confirmations:
+      wrong_email_hint: As it e-mailadres net korrekt is, kinne jo dat wizigje yn de accountynstellingen.
     delete_account: Account fuortsmite
+    delete_account_html: Wannear’t jo jo account graach fuortsmite wolle, kinne jo dat <a href="%{path}">hjir dwaan</a>. Wy freegje jo dêr om in befêstiging.
+    description:
+      prefix_invited_by_user: "@%{name} nûget jo hjirby út om in account oan te meitsjen op dizze Mastodon-server!"
+      prefix_sign_up: Registrearje jo hjoed noch op Mastodon!
+      suffix: Mei in account binne jo yn steat om minsken te folgjen, berjochten te pleatsen en út te wikseljen mei minsken dy’t op oare Mastodon-servers binne en mear!
+    didnt_get_confirmation: Gjin befêstigingsynstruksjes ûntfongen?
+    dont_have_your_security_key: Hawwe jo jo befeiligingskaai net by de hân?
+    forgot_password: Wachtwurd ferjitten?
+    invalid_reset_password_token: De koade om jo wachtwurd opnij yn te stellen is ferrûn. Freegje in nije oan.
+    link_to_otp: Fier in twa-stapsferifikaasjekoade fan jo telefoan of in werstelkoade yn
+    link_to_webauth: Jo apparaat mei de autentikaasje-app brûke
+    log_in_with: Oanmelde mei
+    login: Oanmelde
+    logout: Ofmelde
+    migrate_account: Nei in oar account ferhúzje
+    migrate_account_html: Wannear’t jo dizze account nei in oare account trochferwize wolle, kinne jo <a href="%{path}">dit hjir ynstelle</a>.
+    or_log_in_with: Of oanmelde mei
+    privacy_policy_agreement_html: Ik haw it <a href="%{privacy_policy_path}" target="_blank">privacybelied</a> lêzen en gean dêrmei akkoard
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Registrearje
+    registration_closed: "%{instance} lit gjin nije brûkers ta"
+    resend_confirmation: Ferstjoer de befêstigingsynstruksjes nochris
+    reset_password: Wachtwurd opnij ynstelle
+    rules:
+      accept: Akseptearje
+      back: Tebek
+      preamble: Dizze binne fêststeld en wurde yn stân hâlden troch de moderatoaren fan %{domain}.
+      title: Inkelde basisrigels.
+    security: Befeiliging
+    set_new_password: Nij wachtwurd ynstelle
+    setup:
+      email_below_hint_html: Wannear ûndersteand e-mailadres net kloppet, kinne jo dat hjir wizigje. Jo ûntfange dan hjirnei in befêstigings-e-mailberjocht.
+      email_settings_hint_html: It befêstigings-e-mailberjocht is ferstjoerd nei %{email}. Wannear’t dat e-mailadres net kloppet, kinne jo dat wizigje yn jo accountynstellingen.
+      title: Ynstelle
+    sign_in:
+      preamble_html: Meld jo oan mei de oanmeldgegevens fan <strong>%{domain}</strong>. As jo account op in oare server stiet, kinne jo hjir net oanmelde.
+      title: Oanmelde op %{domain}
+    sign_up:
+      preamble: Jo kinne mei in Mastodon-account elkenien yn it netwurk folgen, wêr’t dizze persoan ek in account hat.
+      title: Litte wy jo account op %{domain} ynstelle.
+    status:
+      account_status: Accountsteat
+      confirming: Oan it wachtsjen oant it e-mailadres befêstige is.
+      functional: Jo account kin folslein brûkt wurde.
+      pending: Jo oanfraach moat noch beoardiele wurde troch ien fan ús meiwurkers. Dit kin miskien efkes duorje. Jo ûntfangt in e-mailberjocht wannear’t jo oanfraach goedkard is.
+      redirecting_to: Jo account is ynaktyf, omdat it op dit stuit trochferwezen wurdt nei %{acct}.
+      view_strikes: Besjoch de earder troch moderatoaren fêststelde skeiningen dy’t jo makke hawwe
+    too_fast: Formulier is te fluch yntsjinne. Probearje it nochris.
+    use_security_key: Befeiligingskaai brûke
+  authorize_follow:
+    already_following: Jo folgje dizze account al
+    already_requested: Jo hawwe al in folchfersyk nei dat account ferstjoerd
+    error: Spitiger, der is in flater bard by it opsykjen fan de eksterne account
+    follow: Folgje
+    follow_request: 'Jo hawwe in folchfersyk yntsjinne by:'
+    following: 'Slagge! Jo folgje no:'
+    post_follow:
+      close: Of jo kinne dit finster gewoan slute.
+      return: Profyl fan dizze brûker toane
+      web: Gean nei de webapp
+    title: "%{acct} folgje"
+  challenge:
+    confirm: Trochgean
+    hint_html: "<strong>Tip:</strong> Wy freegje jo it kommende oere net mear nei jo wachtwurd."
+    invalid_password: Unjildich wachtwurd
+    prompt: Befêstigje wachtwurd om troch te gean
+  crypto:
+    errors:
+      invalid_key: is gjin jildige Ed25519- of Curve25519-kaai
+      invalid_signature: is gjin jildige Ed25519-hantekening
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}o"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}j"
+      almost_x_years: "%{count}j"
+      half_a_minute: Sakrekt
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Sakrekt
+      over_x_years: "%{count}j"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: De ynformaasje dy’t jo ynfierd hawwe is ûnjildich
+    confirm_password: Fier jo aktuele wachtwurd yn om jo identiteit te befêstigjen
+    confirm_username: Fier jo brûkersnamme yn om de proseduere te befêstigjen
     proceed: Account fuortsmite
+    success_msg: Jo account is mei sukses fuortsmiten
+    warning:
+      before: 'Lês dizze tekst soarchfâldich eardat jo troch gean:'
+      caches: Berjochten en media dy’t op oare servers bewarre binne kinne dêr efterbliuwe
+      data_removal: Jo berjochten en oare gegevens wurde permanint fuortmiten
+      email_change_html: Jo kinne <a href="%{path}">jo e-mailadres wizigje</a> sûnder dat jo jo account fuort hoege te smiten
+      email_contact_html: Wannear’t it noch hieltyd net oankomt, kinne jo foar help in e-mailberjocht stjoere nei <a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: Wannear’t jo it befêstigings-e-mailberjocht net ûntfongen hawwe, kinne jo dizze <a href="%{path}">opnij oanfreegje</a>
+      irreversible: Jo sille net yn steat wêze om jo account te werstellen of te de-aktivearjen
+      more_details_html: Sjoch it <a href="%{terms_path}">privacybelied</a> foar mear ynformaasje.
+      username_available: Jo brûkersnamme sil wer beskikber komme
+      username_unavailable: Jo brûkersnamme sil net beskikber bliuwe
+  disputes:
+    strikes:
+      action_taken: Nommen maatregel
+      appeal: Beswier
+      appeal_approved: It yntsjinne beswier is goedkard en de earder fêststelde oertrêding is net langer jildich
+      appeal_rejected: It yntsjinne beswier is ôfwêzen
+      appeal_submitted_at: Beswier yntsjinne
+      appealed_msg: Jo beswier is yntsjinne. Wannear’t dizze goedkard wurdt, krije jo hjir berjocht fan.
+      appeals:
+        submit: Beswier yntsjinje
+      approve_appeal: Beswier goedkarre
+      associated_report: Byhearrende rapportaazje
+      created_at: Datum en tiid
+      description_html: Dit binne maatregels dy’t tsjin jo account nommen binne en warskôgingen dy’t troch meiwurkers fan %{instance} nei jo stjoerd binne.
+      recipient: Adressearre oan
+      reject_appeal: Beswier ôfwêzen
+      status: 'Berjocht #%{id}'
+      status_removed: Berjocht is al fan de server fuortsmiten
+      title: "%{action} fan %{date}"
+      title_actions:
+        delete_statuses: Fuortsmiten fan berjocht
+        disable: Beferzen fan account
+        mark_statuses_as_sensitive: Berjochten as gefoelich markearje
+        none: Warskôging
+        sensitive: Folsleine account as gefoelich markearje
+        silence: Beheining account
+        suspend: Utstellen account
+      your_appeal_approved: Jo beswier is goedkard
+      your_appeal_pending: Jo hawwe in beswier yntsjinne
+      your_appeal_rejected: Jo beswier is ôfwêzen
+  domain_validator:
+    invalid_domain: is in ûnjildige domeinnamme
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
-    '422': 
-    '429': Too many requests
-    '500': 
-    '503': The page could not be served due to a temporary server failure.
+    '400': De oanfraach dy’t jo yntsjinne hawwe wie ûnjildich of fout.
+    '403': Jo hawwe gjin tastimming om dizze side te besjen.
+    '404': De side wêrnei’t jo sochten bestiet net.
+    '406': Dizze side is net beskikber yn it opfrege formaat.
+    '410': De side dy’t jo sochten bestiet net mear.
+    '422':
+      content: Feilichheidsferifikaasje mislearre. Blokkearje jo tafallich cookies?
+      title: Feilichheidsferifikaasje mislearre
+    '429': Te folle ferbiningsoanfragen
+    '500':
+      content: It spyt ús, der is oan ús kant wat fout gien.
+      title: Dizze side is skansearre
+    '503': De side koe troch in tydlike serversteuring net laden wurde.
+    noscript_html: Skeakelje JavaScript yn om de webapp fan Mastodon brûke te kinnen. As alternatyf kinne jo in <a href="%{apps_path}">Mastodon-app</a> sykje foar jo platfoarm.
+  existing_username_validator:
+    not_found: koe gjin lokale brûker mei dy brûkersnamme fine
+    not_found_multiple: koe %{usernames} net fine
+  exports:
+    archive_takeout:
+      date: Datum
+      download: Jo argyf downloade
+      hint_html: Jo kinne in argyf opfreegje fan jo <strong>berjochten en oplade media</strong>. De eksportearre gegevens binne yn it ActivityPub-formaat, dat troch hjirfoar geskikte software te lêzen is. Jo kinne elke 7 dagen in kopy fan jo argyf oanfreegje.
+      in_progress: Jo argyf wurdt gearstald…
+      request: Jo argyf opfreegje
+      size: Grutte
+    blocks: Jo blokkearje
+    bookmarks: Blêdwizers
+    csv: CSV
+    domain_blocks: Domeinblokkaden
+    lists: Listen
+    mutes: Jo negearje
+    storage: Mediaûnthâld
+  featured_tags:
+    add_new: Nije tafoegje
+    errors:
+      limit: Jo hawwe al it maksimaal tal hashtags útljochte
+    hint_html: "<strong>Wat binne útljochte hashtags?</strong> Dizze wurde prominint op jo iepenbiere profyl toand en stelt minsken yn steat om jo iepenbiere berjochten per hashtag te besjen. It is in goed helpmiddel om kreative wurksumheden of langetermynprojekten by te hâlden."
   filters:
     contexts:
+      account: Profilen
+      home: Starttiidline en listen
+      notifications: Meldingen
+      public: Iepenbiere tiidlinen
       thread: Petearen
+    edit:
+      add_keyword: Foegje kaaiwurd ta
+      keywords: Kaaiwurden
+      statuses: Yndividuele berjochten
+      statuses_hint_html: Dit filter is fan tapassing om yndividuele berjochten te selektearjen, oft se no met de ûndersteande trefwurden oerienkomme of net. <a href="%{path}">Berjochten fan it filter besjen of fuortsmite</a>.
+      title: Filter bewurkje
+    errors:
+      deprecated_api_multiple_keywords: Dizze ynstellingen kinne net fia dizze applikaasje wizige wurde, omdat der mear as ien trefwurd brûkt wurdt. Brûk in mear resinte applikaasje of de webomjouwing.
+      invalid_context: Gjin of ûnjildige kontekst jûn
     index:
+      contexts: Filters yn %{contexts}
       delete: Fuortsmite
+      empty: Jo hawwe gjin filters oanmakke.
+      expires_in: Ferrint nei %{distance}
+      expires_on: Ferrint op %{date}
+      keywords:
+        one: "%{count} trefwurd"
+        other: "%{count} trefwurden"
+      statuses:
+        one: "%{count} berjocht"
+        other: "%{count} berjochten"
+      statuses_long:
+        one: "%{count} yndividueel berjocht ferstoppe"
+        other: "%{count} yndividuele berjochten ferstoppe"
+      title: Filters
+    new:
+      save: Nije filter bewarje
+      title: Nije filter tafoegje
+    statuses:
+      back_to_filter: Tebek nei it filter
+      batch:
+        remove: Ut it filter fuortsmite
+      index:
+        hint: Dit filter is fan tapassing om yndividuele berjochten te selektearjen, ûnôfhinklik fan oare kritearia. Jo kinne yn de webomjouwing mear berjochten oan dit filter tafoegje.
+        title: Filtere berjochten
   generic:
+    all: Alle
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> item op dizze side is selektearre."
+      other: Alle <strong>%{count}</strong> items op dizze side binne selektearre.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> item dat mei jo sykopdracht oerienkomt is selektearre."
+      other: Alle <strong>%{count}</strong> items dy’t mei jo sykopdracht oerienkomme binne selektearre.
+    changes_saved_msg: Wizigingen mei sukses bewarre!
+    copy: Kopiearje
     delete: Fuortsmite
+    deselect: Alles deselektearje
+    none: Gjin
+    order_by: Sortearje op
+    save_changes: Wizigingen bewarje
+    select_all_matching_items:
+      one: "%{count} item dat mei jo sykopdracht oerienkomt selektearje."
+      other: Alle %{count} items dy’t mei jo sykopdracht oerienkomme selektearje.
+    today: hjoed
+    validation_errors:
+      one: Der is wat net hielendal goed! Besjoch ûndersteande flater
+      other: Der is wat net hielendal goed! Besjoch ûndersteande %{count} flaters
+  imports:
+    errors:
+      invalid_csv_file: 'Unjildich CSV-bestân. Flater: %{error}'
+      over_rows_processing_limit: befettet mear as %{count} rigen
+    modes:
+      merge: Gearfoegje
+      merge_long: Besteande gegevens behâlde en nije tafoegje
+      overwrite: Oerskriuwe
+      overwrite_long: Aktuele gegevens mei de nije gegevens ferfange
+    preface: Jo kinne bepaalde gegevens, lykas de minsken dy’t jo folgje of blokkearre hawwe, nei jo account op dizze server ymportearje. Jo moatte dizze gegevens wol earst op de oarspronklike server eksportearje.
+    success: Jo gegevens binne mei sukses opladen en wurde ynkoarten ferwurke
+    types:
+      blocking: Blokkearlist
+      bookmarks: Blêdwizers
+      domain_blocking: Domeinblokkearlist
+      following: Folchlist
+      muting: Negearlist
+    upload: Oplade
   invites:
     delete: Deaktivearje
+    expired: Ferrûn
+    expires_in:
+      '1800': 30 minuten
+      '21600': 6 oeren
+      '3600': 1 oere
+      '43200': 12 oeren
+      '604800': 1 wike
+      '86400': 1 dei
+    expires_in_prompt: Nea
+    generate: Utnûgingskeppeling generearje
+    invited_by: 'Jo binne útnûge troch:'
+    max_uses:
+      one: 1 kear
+      other: "%{count} kear"
+    max_uses_prompt: Gjin limyt
+    prompt: Generearje en diel spesjale keppelingen om minsken tagong ta dizze Mastodon-server te jaan
+    table:
+      expires_at: Ferrint op
+      uses: Brûkt
+    title: Minsken útnûgje
+  lists:
+    errors:
+      limit: Jo hawwe it maksimaal tal listen berikt
+  login_activities:
+    authentication_methods:
+      otp: twa-stapsferifikaasje-app
+      password: wachtwurd
+      sign_in_token: befeiligingskoade fia e-mailberjocht
+      webauthn: befeiligingskaaien
+    description_html: Wannear’t jo aktiviteit sjogge dy’t jo net werkenne, tink dan nei om jo wachtwurd te wizigjen en twa-stapsferifikaasje yn te skeakeljen.
+    empty: Gjin oanmeldskiednis beskikber
+    failed_sign_in_html: Mislearre oanmeldbesykjen mei %{method} fan %{ip} (%{browser})
+    successful_sign_in_html: Mei sukses oanmeld mei %{method} fan %{ip} (%{browser})
+    title: Oanmeldskiednis
+  media_attachments:
+    validations:
+      images_and_video: In fideo kin net oan in berjocht mei ôfbyldingen keppele wurde
+      not_ready: Kin gjin bestannen tafoegje dy’t noch net ferwurke binne. Probearje it letter opnij!
+      too_many: Der kinne net mear as 4 ôfbyldingen tafoege wurde
+  migrations:
+    acct: Ferhuze nei
+    cancel: Trochferwizing annulearje
+    cancel_explanation: It annulearjen fan de trochferwizing sil jo aktuele account opnij aktivearje, mar bringt gjin folgers werom dy’t nei de oare account ferhuze binne.
+    cancelled_msg: De trochferwizing is mei sukses annulearre.
+    errors:
+      already_moved: is itselde account wêrnei’t jo al nei ta ferhuze binne
+      missing_also_known_as: is gjin alias fan dizze account
+      move_to_self: kin net it aktuele account wêze
+      not_found: koe net fûn wurde
+      on_cooldown: Jo lêste migraasje is noch te koart lyn
+    followers_count: Folgers op it momint fan ferhuzing
+    incoming_migrations: Ferhúzje fan in oar account ôf
+    incoming_migrations_html: Om fan in oar account ôf nei dizze account te ferhúzjen, moatte jo earst <a href="%{path}">in accountalias oanmeitsje</a>.
+    moved_msg: Jo account wurdt no nei %{acct} trochferwiisd en jo folgers wurde ferhuze.
+    not_redirecting: Jo account wurdt op dit stuit net nei in oar account trochferwizen.
+    on_cooldown: Jo hawwe resint jo account ferhuze. Dizze mooglikheid is oer %{count} dagen wer beskikber.
+    past_migrations: Foarige migraasjes
+    proceed_with_move: Folgers ferhúzje
+    redirected_msg: Jo account wurdt no trochferwizen nei %{acct}.
+    redirecting_to: Jo account wurdt no nei %{acct} trochferwizen.
+    set_redirect: Trochferwizing ynstelle
+    warning:
+      backreference_required: De nije account moat earst ynsteld wurde om nei dizze account weromferwize te kinnen
+      before: 'Lês dizze tekst soarchfâldich eardat jo troch gean:'
+      cooldown: Nei de ferhuzing kinne jo tydlik net opnij ferhúzje
+      disabled_account: Jo aktuele account is hjirnei net mear folslein brûkber. Jo hawwe echter wol tagong ta it eksportearjen fan jo gegevens en ta it opnij aktivearjen fan jo account.
+      followers: Dizze aksje ferhuzet alle folgers fan de aktuele account ôf nei de nije account
+      only_redirect_html: Jo kinne as alternatyf ek <a href="%{path}">allinnich de trochferwizing op jo profyl sette</a>.
+      other_data: Oare gegevens wurde net automatysk ferhuze
+      redirect: Jo aktuele accountprofyl wurdt bywurke mei in trochferwizingsmelding en wurdt útsluten fan sykresultaten
+  moderation:
+    title: Moderaasje
+  move_handler:
+    carry_blocks_over_text: Dizze brûker is fan %{acct} ôf ferhuze. Jo hawwe dizze account blokkearre.
+    carry_mutes_over_text: Dizze brûker is fan %{acct} ôf ferhuze. Jo hawwe dizze account negearre.
+    copy_account_note_text: 'Dizze brûker is fan %{acct} ôf ferhuze. Jo hawwe de folgjende opmerkingen oer dizze account makke:'
+  navigation:
+    toggle_menu: Menu toane/ferstopje
   notification_mailer:
+    admin:
+      report:
+        subject: "%{name} hat in rapportaazje yntsjinne"
+      sign_up:
+        subject: "%{name} hat harren registrearre"
+    favourite:
+      body: 'Jo berjocht waard troch %{name} al favoryt markearre:'
+      subject: "%{name} hat jo berjocht as favoryt markearre"
+      title: Nije favoryt
+    follow:
+      body: "%{name} folget jo no!"
+      subject: "%{name} folget jo no"
+      title: Nije folger
+    follow_request:
+      action: Folchfersiken beheare
+      body: "%{name} wol jo graach folgje"
+      subject: 'Folgjen yn ôfwachting: %{name}'
+      title: Nij folchfersyk
     mention:
       action: Beäntwurdzje
       body: 'Jo binne fermeld troch %{name} yn:'
       subject: Jo binne fermeld troch %{name}
       title: Nije fermelding
+    poll:
+      subject: In enkête fan %{name} is beëinige
+    reblog:
+      body: 'Jo berjocht waard troch %{name} al boost:'
+      subject: "%{name} hat jo berjocht boost"
+      title: Nije boost
+    status:
+      subject: "%{name} hat sakrekt in berjocht pleatst"
+    update:
+      subject: "%{name} hat in berjocht bewurke"
+  notifications:
+    email_events: E-mailmeldingen foar eveneminten
+    email_events_hint: 'Selektearje eveneminten wêrfoar’t jo meldingen ûntfange wolle:'
+    other_settings: Oare meldingsynstellingen
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: mld.
+          million: mln.
+          quadrillion: qdn.
+          thousand: K
+          trillion: bln.
+  otp_authentication:
+    code_hint: Fier de koade yn dy’t troch de autentikaasje-app generearre waard
+    description_html: Nei it ynstellen fan <strong>twa-stapsferifikaasje</strong> mei in autentikaasje-app, kinne jo allinnich oanmelde as jo jo mobile telefoan by jo hawwe. Hjirmei generearje jo nammentlik de yn te fieren tagongskoade.
+    enable: Ynskeakelje
+    instructions_html: "<strong>Scan dizze QR-koade yn Google Authenticator of in gelikense app op jo mobile telefoan</strong>. Fan no ôf generearret dizze app tagongskoaden dy’t jo by it oanmelden ynfiere moatte."
+    manual_instructions: 'Yn it gefal jo de QR-koade net scanne kinne en it hânmjittich ynfiere moatte, fine jo hjirûnder de geheime koade yn platte tekst:'
+    setup: Ynstelle
+    wrong_code: De ynfierde koade is ûnjildich! Kloppet de systeemtiid fan de server en dy fan jo apparaat?
+  pagination:
+    newer: Nijer
+    next: Folgjende
+    older: Alder
+    prev: Foarige
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Jo hawwe al op dizze enkête stimd
+      duplicate_options: befettet dûbele items
+      duration_too_long: leit te fier yn de takomst
+      duration_too_short: duorret te koart
+      expired: De enkête is al beëinige
+      invalid_choice: De keazen enkêteopsje bestiet net
+      over_character_limit: kin net langer wêze as %{max} tekens
+      too_few_options: moat mear as ien item befetsje
+      too_many_options: kin net mear as %{max} items befetsje
+  preferences:
+    other: Oars
+    posting_defaults: Standertynstellingen foar berjochten
+    public_timelines: Iepenbiere tiidlinen
+  privacy_policy:
+    title: Privacybelied
+  reactions:
+    errors:
+      limit_reached: Limyt fan ferskate emoji-reaksjes berikt
+      unrecognized_emoji: is gjin besteande emoji-reaksje
   relationships:
+    activity: Accountaktiviteit
+    confirm_follow_selected_followers: Binne jo wis dat jo de selektearre folgers folgje wolle?
+    confirm_remove_selected_followers: Binne jo wis dat jo de selektearre folgers net mear folgje wolle?
+    confirm_remove_selected_follows: Binne jo wis dat jo de selektearre folge accounts net mear folgje wolle?
+    dormant: Slommerjend
+    follow_failure: Kin guon fan de selektearre accounts net folgje.
+    follow_selected_followers: Selektearre folgers folgje
+    followers: Folgers
+    following: Folgjend
+    invited: Utnûge
     last_active: Letst warber
+    most_recent: Meast resint
+    moved: Ferhuze
+    mutual: Fan wjerskanten
+    primary: Primêr
+    relationship: Relaasje
+    remove_selected_domains: Alle folgers fan de selektearre domeinen fuortsmite
+    remove_selected_followers: Selektearre folgers fuortsmite
+    remove_selected_follows: Selektearre brûkers net mear folgje
+    status: Accountsteat
+  remote_follow:
+    missing_resource: Koe fereaske trochferwizings-URL foar jo account net fine
+  reports:
+    errors:
+      invalid_rules: ferwiist net nei jildige regels
   rss:
     content_warning: 'Ynhâldswarskôging:'
+    descriptions:
+      account: Iepenbiere berjochten fan @%{acct}
+      tag: 'Iepenbiere berjochten mei hashtag #%{hashtag}'
+  scheduled_statuses:
+    over_daily_limit: Jo binne oer de limyt fan %{limit} yn te plannen berjochten foar hjoed
+    over_total_limit: Jo binne oer de limyt fan %{limit} yn te plannen berjochten
+    too_soon: De datum foar it ynplande berjocht moat yn de takomst lizze
+  sessions:
+    activity: Lêst warber
+    browser: Browser
+    browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Unbekende browser
+      huawei_browser: Huawei-browser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UC Browser
+      unknown_browser: Unbekende browser
+      weibo: Weibo
+    current_session: Aktuele sesje
+    description: "%{browser} op %{platform}"
+    explanation: Dit binne de webbrowsers dy’t op dit stuit mei jo Mastodon-account oanmeld binne.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      kai_os: KaiOS
+      linux: Linux
+      mac: macOS
+      unknown_platform: Unbekend platfoarm
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Ynlûke
+    revoke_success: Sesje mei sukses ynlutsen
+    title: Sesjes
+    view_authentication_history: Oanmeldskiednis fan jo account besjen
   settings:
+    account: Account
+    account_settings: Accountynstellingen
+    aliases: Accountaliassen
+    appearance: Werjefte
+    authorized_apps: Autorisearre apps
+    back: Tebek nei Mastodon
     delete: Account fuortsmite
+    development: Untwikkelers
+    edit_profile: Profyl bewurkje
+    export: Eksportearje
+    featured_tags: Utljochte hashtags
+    import: Ymportearje
+    import_and_export: Ymportearje en eksportearje
+    migrate: Accountmigraasje
+    notifications: Meldingen
+    preferences: Foarkarren
+    profile: Profyl
+    relationships: Folgers en folgjenden
+    statuses_cleanup: Automatysk berjochten fuortsmite
+    strikes: Fêststelde skeiningen
+    two_factor_authentication: Twa-stapsferifikaasje
+    webauthn_authentication: Befeiligingskaaien
   statuses:
+    attached:
+      audio:
+        one: "%{count} lûdsbestân"
+        other: "%{count} lûdsbestannen"
+      description: 'Bylagen: %{attached}'
+      image:
+        one: "%{count} opmerking"
+        other: "%{count} opmerkingen"
+      video:
+        one: "%{count} fideo"
+        other: "%{count} fideo’s"
+    boosted_from_html: Boost fan %{acct_link}
     content_warning: 'Ynhâldswarskôging: %{warning}'
+    default_language: Itselde as de taal fan de brûkersomjouwing
+    disallowed_hashtags:
+      one: 'befette in net tastiene hashtag: %{tags}'
+      other: 'befette net tastiene hashtags: %{tags}'
+    edited_at_html: Bewurke op %{date}
+    errors:
+      in_reply_not_found: It berjocht wêrop jo probearje te reagearjen liket net te bestean.
+    open_in_web: Yn de webapp iepenje
+    over_character_limit: Oer de limyt fan %{max} tekens
     pin_errors:
-      direct: Berjochten dy allinnich sichtber binne foar fermelde brûkers kinne net fêstset wurde
+      direct: Berjochten dy’t allinnich sichtber binne foar fermelde brûkers kinne net fêstset wurde
+      limit: Jo hawwe it maksimaal tal berjochten al fêstmakke
+      ownership: In berjocht fan in oar kin net fêstmakke wurde
+      reblog: In boost kin net fêstset wurde
+    poll:
+      total_people:
+        one: "%{count} persoan"
+        other: "%{count} persoanen"
+      total_votes:
+        one: "%{count} stim"
+        other: "%{count} stimmen"
+      vote: Stimme
+    show_more: Mear toane
+    show_newer: Nijere toane
+    show_older: Aldere toane
+    show_thread: Petear toane
+    sign_in_to_participate: Meld jo oan om oan dit petear mei te dwaan
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      direct: Direkt
+      private: Allinnich folgers
+      private_long: Allinnich oan jo folgers toane
+      public: Iepenbier
+      public_long: Elkenien kin it sjen
+      unlisted: Minder iepenbier
+      unlisted_long: Elkenien kin it sjen, mar net op iepenbiere tiidlinen
+  statuses_cleanup:
+    enabled: Automatysk âlde berjochten fuortsmite
+    enabled_hint: Smyt jo berjochten automatysk fuort sa gau as se in bepaalde leeftiidsgrins berikke, útsein se oerienkomme mei ien fan de ûndersteande útsûnderingen
+    exceptions: Utsûnderingen
+    explanation: Trochdat it fuortsmiten fan berjochten de server swier belêst, bart dit stadich op mominten dat de server net dwaande is. Om dizze reden kinne jo berjochten in amerijke neidat se de leeftiidsgrins berikt hawwe fuortsmiten wurde.
+    ignore_favs: Favoriten negearje
+    ignore_reblogs: Boosts negearje
+    interaction_exceptions: Utsûnderingen op basis fan ynteraksjes
+    interaction_exceptions_explanation: Merk op dat der gjin garânsje is dat berjochten fuortsmiten wurde, wannear’t ien kear it tal favoriten of boosts boppe de ynstelde grinswearde west binne.
+    keep_direct: Direkte berjochten behâlde
+    keep_direct_hint: Smyt gjin inkeld direkt berjocht fan jo fuort
+    keep_media: Berjochten mei mediabylagen behâlde
+    keep_media_hint: Smyt gjin inkeld berjocht mei mediabylagen fuort
+    keep_pinned: Fêstmakke berjochten behâlde
+    keep_pinned_hint: Smyt gjin inkeld fêstset berjocht fan jo fuort
+    keep_polls: Enkêten bewarje
+    keep_polls_hint: Gjin inkelde enkête fan jo wurdt fuortsmiten
+    keep_self_bookmark: Blêdwizers behâlde
+    keep_self_bookmark_hint: Eigen berjochten dy’t jo oan jo blêdwizers tafoege hawwe wurde net fuortsmiten
+    keep_self_fav: Favoriten behâlde
+    keep_self_fav_hint: Eigen berjochten dy’t jo as favoryt markearre hawwe wurde net fuortsmiten
+    min_age:
+      '1209600': 2 wiken
+      '15778476': 6 moannen
+      '2629746': 1 moanne
+      '31556952': 1 jier
+      '5259492': 2 moannen
+      '604800': 1 wike
+      '63113904': 2 jier
+      '7889238': 3 moannen
+    min_age_label: Fuort te smiten nei
+    min_favs: Berjochten dy’t op syn minst safolle kear as favoryt markearre binne behâlde
+    min_favs_hint: Smyt gjin berjochten dy’t op syn minst safolle kear as favoryt markearre binne fuort. Lit leech om berjochten likefolle it tal favoriten fuort te smiten
+    min_reblogs: Berjochten dy’t op syn minst safolle kear boost binne behâlde
+    min_reblogs_hint: Smyt gjin berjochten dy’t op syn minst safolle kear boost binne fuort. Lit leech om berjochten likefolle it tal boosts fuort te smiten
+  stream_entries:
+    pinned: Fêstsette berjocht
+    reblogged: boostte
+    sensitive_content: Gefoelige ynhâld
+  strikes:
+    errors:
+      too_late: De perioade dat jo beswier meitsje kinne tsjin dizze skeining is ferrûn
+  tags:
+    does_not_match_previous_name: komt net oerien mei de foarige namme
+  themes:
+    contrast: Mastodon (heech kontrast)
+    default: Mastodon (donker)
+    mastodon-light: Mastodon (ljocht)
+  time:
+    formats:
+      default: "%d %B %Y om %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
+  two_factor_authentication:
+    add: Tafoegje
+    disable: 2FA útskeakelje
+    disabled_success: Utskeakeljen twa-stapsferifikaasje is slagge
+    edit: Bewurkje
+    enabled: Twa-stapsferifikaasje is ynskeakele
+    enabled_success: Ynskeakeljen twa-stapsferifikaasje is slagge
+    generate_recovery_codes: Werstelkoaden generearje
+    lost_recovery_codes: Mei werstelkoaden kinne jo tagong ta jo account krije wannear’t jo jo telefoan kwytrekke binne. Wannear’t jo jo werstelkoaden kwytrekke binne, kinne jo se hjir opnij generearje. Jo âlde werstelkoaden binne dêrnei ûnjildich.
+    methods: Metoaden foar twa-stapsferifikaasje
+    otp: Autentikaasje-app
+    recovery_codes: Reservekopy meitsje fan werstelkoaden
+    recovery_codes_regenerated: Opnij generearjen werstelkoaden slagge
+    recovery_instructions_html: Wannear’t jo ea de tagong ta jo telefoan ferlieze, kinne jo mei help fan ien fan de werstelkoaden hjirûnder opnij tagong krije ta jo account. <strong>Soargje derfoar dat jo de werstelkoaden op in feilich plak bewarje</strong>. Jo kinne se bygelyks ôfdrukke en se tegearre mei oare wichtige dokuminten bewarje.
+    webauthn: Befeiligingskaaien
+  user_mailer:
+    appeal_approved:
+      action: Gean nei jo account
+      explanation: It beswier tsjin in troch in moderator fêststelde skeining fan jo op %{strike_date}, yntsjinne op %{appeal_date}, is goedkard. De earder fêststelde skeining is hjirby net langer jildich.
+      subject: Jo beswier fan %{date} is goedkard
+      title: Beswier goedkard
+    appeal_rejected:
+      explanation: It beswier tsjin in troch in moderator fêststelde skeining fan jo op %{strike_date}, yntsjinne op %{appeal_date}, is ôfwêzen. De fêststelde skeining bliuwt wurdt dêrom net wizige.
+      subject: Jo beswier fan %{date} is ôfwêzen
+      title: Beswier ôfwêzen
+    backup_ready:
+      explanation: Jo hawwe in folsleine reservekopy fan jo Mastodon-account opfrege. It stiet no klear om download te wurden!
+      subject: Jo argyf stiet klear om download te wurden
+      title: Argyf ophelje
+    suspicious_sign_in:
+      change_password: wizigje jo wachtwurd
+      details: 'Hjir binne de details fan oanmeldbesykjen:'
+      explanation: Wy hawwe fêststeld dat ien fan in nij IP-adres ôf op jo account oanmeld is.
+      further_actions_html: Wannear’t jo dit net wiene, advisearje wy om daliks %{action} en om twa-stapsferifikaasje yn te skeakeljen, om sa jo account feilich te hâlden.
+      subject: Jo account is fan in nij IP-adres ôf benadere
+      title: In nije registraasje
+    warning:
+      appeal: Beswier yntsjinje
+      appeal_description: Wannear’t jo tinke dat dit in flater is, kinne jo in beswier yntsjinje by de meiwurkers fan %{instance}.
+      categories:
+        spam: Spam
+        violation: De ynhâld is yn striid mei de folgjende mienskipsrjochtlinen
+      explanation:
+        delete_statuses: Der is fêststeld dat guon fan jo berjochten yn striid binne mei ien of meardere mienskipsrjochtlinen en dêrom troch de moderatoren fan %{instance} fuortsmiten.
+        disable: Jo kinne net langer jo account brûke, mar jo profyl en oare gegevens binne noch wol yntakt. Jo kinne in reservekopy fan jo gegevens opfreegje, accountynstellingen wizigje of jo account fuortsmite.
+        mark_statuses_as_sensitive: Guon fan jo berjochten binne as gefoelich markearre troch de moderatoren fan %{instance}. Dit betsjut dat minsken op de media yn de berjochten klikke/tikke moatte om dizze wer te jaan. Jo kinne media yn de takomst ek sels as gefoelich markearje.
+        sensitive: Fan no ôf wurde al jo opladen media as gefoelich markearre en efter in warskôging ferstoppe.
+        silence: Jo kinne noch hieltyd jo account brûke, mar allinnich minsken dy’t jo al folgje kinne jo berjochten sjen, en jo kinne minder goed fûn wurde. Oaren kinne jo echter noch wol hieltyd hânmjittich folgje.
+        suspend: Jo kinne net langer jo account brûke en jo profyl en oare gegevens binne net langer tagonklik. Jo kinne noch hieltyd oanmelde om in reservekopy fan jo gegevens op te freegjen, oant dizze nei 30 dagen folslein fuortsmiten wurde. Wy sille wol inkelde basisgegevens behâlde om foar te kommen dat jo ûnder jo útstel probearje út te kommen.
+      reason: 'Reden:'
+      statuses: 'Rapportearre berjochten:'
+      subject:
+        delete_statuses: Dizze berjochten fan %{acct} binne fuortsmiten
+        disable: Jo account %{acct} is beferzen
+        mark_statuses_as_sensitive: Dizze berjochten fan %{acct} binne as gefoelich markearre
+        none: Warskôging foar %{acct}
+        sensitive: Berjochten fan %{acct} sille fan no ôf altyd as gefoelich markearre wurde
+        silence: Jo account %{acct} is no beheind
+        suspend: Jo account %{acct} is útsteld
+      title:
+        delete_statuses: Berjochten fuortsmiten
+        disable: Account beferzen
+        mark_statuses_as_sensitive: Berjochten as gefoelich markearre
+        none: Warskôging
+        sensitive: Account as gefoelich markearre
+        silence: Account beheind
+        suspend: Account beskoattele
+    welcome:
+      edit_profile_action: Profyl ynstelle
+      edit_profile_step: Jo kinne jo profyl oanpasse troch in profylfoto op te laden, jo werjeftenamme oan te passen en mear. Jo kinne it hânmjittich goedkarren fan folgers ynstelle.
+      explanation: Hjir binne inkelde tips om jo op wei te helpen
+      final_action: Begjin mei berjochten te pleatsen
+      final_step: 'Begjin berjochten te pleatsen! Sels sûnder folgers kinne jo iepenbiere berjochten troch oaren besjoen wurde, bygelyks op de lokale tiidline en ûnder hashtags. Jo kinne josels foarstelle mei it gebrûk fan de hashtag #introductions.'
+      full_handle: Jo folsleine Mastodon-adres
+      full_handle_hint: Dit jouwe jo oan jo freonen, sadat se jo berjochten stjoere kinne of (fan in oare Mastodon-server ôf) folgje kinne.
+      subject: Wolkom op Mastodon
+      title: Wolkom oan board %{name}!
+  users:
+    follow_limit_reached: Jo kinne net mear as %{limit} accounts folgje
+    invalid_otp_token: Unjildige twa-stapstagongskoade
+    otp_lost_help_html: As jo tagong ta beide kwytrekke binne, nim dan kontakt op fia %{email}
+    seamless_external_login: Jo binne oanmeld fia in eksterne tsjinst, dêrom binne wachtwurden en e-mailynstellingen net beskikber.
+    signed_in_as: 'Oanmeld as:'
+  verification:
+    explanation_html: 'Jo kinne <strong>josels ferifiearje as de eigener fan de keppelingen yn de metadata fan jo profyl</strong>. Hjirfoar moat op de keppele website in keppeling werom nei jo Mastodon-profyl stean. Dizze keppeling <strong>moat</strong> it <code>rel="me"</code>-attribút befetsje. De omskriuwing fan de keppeling makket net út. Hjir is in foarbyld:'
+    verification: Ferifikaasje
   webauthn_credentials:
+    add: Nije befeiligingskaai tafoegje
+    create:
+      error: Der is in probleem bard mei it tafoegjen fan jo befeiligingskaai. Probearje it nochris.
+      success: It tafoegjen fan jo befeiligingskaai is slagge.
     delete: Fuortsmite
+    delete_confirmation: Binne jo wis dat jo dizze befeiligingskaai fuortsmite wolle?
+    description_html: Wannear’t jo <strong>ferifikaasje mei befeiligingskaaien</strong> ynskeakelje, moatte jo wylst it oanmelden ien fan jo befeiligingskaaien brûke.
+    destroy:
+      error: Der wie in probleem by it fuortsmiten fan jo befeiligingskaai. Probearje it nochris.
+      success: Jo befeilingskaai is mei sukses fuortsmiten.
+    invalid_credential: Unjildige befeiligingskaai
+    nickname_hint: Fier de bynamme yn fan jo nije befeiligingskaai
+    not_enabled: Jo hawwe WebAuthn noch net ynskeakele
+    not_supported: Dizze browser stipet gjin befeiligingskaaien
+    otp_required: Om befeiligingskaaien brûke te kinnen, moatte jo earst twa-stapsferifikaasje ynskeakelje.
+    registered_on: Registrearre op %{date}

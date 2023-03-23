@@ -19,13 +19,13 @@ export function changeSearch(value) {
     type: SEARCH_CHANGE,
     value,
   };
-};
+}
 
 export function clearSearch() {
   return {
     type: SEARCH_CLEAR,
   };
-};
+}
 
 export function submitSearch() {
   return (dispatch, getState) => {
@@ -60,13 +60,13 @@ export function submitSearch() {
       dispatch(fetchSearchFail(error));
     });
   };
-};
+}
 
 export function fetchSearchRequest() {
   return {
     type: SEARCH_FETCH_REQUEST,
   };
-};
+}
 
 export function fetchSearchSuccess(results, searchTerm) {
   return {
@@ -74,14 +74,14 @@ export function fetchSearchSuccess(results, searchTerm) {
     results,
     searchTerm,
   };
-};
+}
 
 export function fetchSearchFail(error) {
   return {
     type: SEARCH_FETCH_FAIL,
     error,
   };
-};
+}
 
 export const expandSearch = type => (dispatch, getState) => {
   const value  = getState().getIn(['search', 'value']);

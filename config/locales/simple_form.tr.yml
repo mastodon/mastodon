@@ -5,9 +5,9 @@ tr:
       account_alias:
         acct: Taşımak istediğiniz hesabı kullanıcıadı@alanadı şeklinde belirtin
       account_migration:
-        acct: Yeni hesabınızı kullanıcıadı@alanadını şeklinde belirtin
+        acct: Taşımak istediğiniz hesabın kullanıcıadı@alanadını belirtin
       account_warning_preset:
-        text: URL'ler, etiketler ve bahsedenler gibi gönderi sözdizimini kullanabilirsiniz
+        text: Bğlantılar, etiketler ve bahsedenler gibi gönderi sözdizimini kullanabilirsiniz
         title: İsteğe bağlı. Alıcıya görünmez
       admin_account_action:
         include_statuses: Kullanıcı hangi gönderilerin denetleme eylemi veya uyarısına neden olduğunu görecektir
@@ -18,8 +18,8 @@ tr:
           disable: Kullanıcının hesabını kullanmasını engelle ama içeriklerini silme veya gizleme.
           none: Bunu, başka bir eylem tetiklemeden kullanıcıya bir uyarı göndermek için kullan.
           sensitive: Bu kullanıcının tüm medya eklerini hassas olarak işaretlemeye zorla.
-          silence: Kullanıcının herkese açık şekilde gönderimde bulunmasını engelle, gönderilerini ve bildirimlerini onları takip etmeyen kişilerden gizle.
-          suspend: Bu hesaptan herhangi bir etkileşimi engelle ve içeriğini sil. 30 gün içerisinde geri alınabilir.
+          silence: Kullanıcının herkese açık şekilde gönderimde bulunmasını engelle, gönderilerini ve bildirimlerini onları takip etmeyen kişilerden gizle. Bu hesaba yönelik tüm bildirimleri kapatır.
+          suspend: Bu hesaptan herhangi bir etkileşimi engelle ve içeriğini sil. 30 gün içerisinde geri alınabilir. Bu hesaba yönelik tüm bildirimleri kapatır.
         warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
       announcement:
         all_day: İşaretlendiğinde, yalnızca zaman aralığındaki tarihler görüntülenir
@@ -74,6 +74,7 @@ tr:
           hide: Filtrelenmiş içeriği tamamen gizle, sanki varolmamış gibi
           warn: Filtrelenmiş içeriği, filtrenin başlığından söz eden bir uyarının arkasında gizle
       form_admin_settings:
+        activity_api_enabled: Yerel olarak yayınlanan gönderi, etkin kullanıcı ve yeni kayıtların haftalık sayıları
         backups_retention_period: Üretilen kullanıcı arşivlerini belirli gün sayısı kadar sakla.
         bootstrap_timeline_accounts: Bu hesaplar, yeni kullanıcıların takip önerilerinin tepesinde sabitlenecektir.
         closed_registrations_message: Kayıt olma kapalıyken görüntülenir
@@ -81,6 +82,7 @@ tr:
         custom_css: Mastodon'un web sürümüne özel biçimler uygulayabilirsiniz.
         mascot: Gelişmiş web arayüzündeki illüstrasyonu geçersiz kılar.
         media_cache_retention_period: Pozitif bir sayı girildiğinde, diğer sunuculardan indirilen medya dosyaları belirli bir gün sonra silinecektir, isteğe bağlı olarak tekrar indirilebilir.
+        peers_api_enabled: Bu sunucunun fediverse'te karşılaştığı alan adlarının bir listesi. İlgili sunucuyla birleştirme mi yapıyorsunuz yoksa sunucunuz sadece onu biliyor mu hakkında bir bilgi burada yok. Bu blgi genel olarak federasyın hakkında istatistik toplamak isteyen hizmetler tarafından kullanılıyor.
         profile_directory: Profil dizini keşfedilebilir olmayı kabul eden tüm kullanıcıları listeler.
         require_invite_text: Kayıt olmak elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
         site_contact_email: İnsanlar yasal konular veya destek hakkında bilgi edinmek için size nasıl ulaşabilir.
@@ -89,11 +91,13 @@ tr:
         site_short_description: Sunucunuzu tekil olarak tanımlamaya yardımcı olacak kısa tanım. Kim işletiyor, kimin için?
         site_terms: Kendi gizlilik politikanızı kullanın veya varsayılanı kullanmak için boş bırakın. Markdown sözdizimiyle biçimlendirilebilir.
         site_title: İnsanlar sunucunuzu alan adı dışında nasıl isimlendirmeli.
+        status_page_url: İnsanların bir kesinti halinde sunucunun durumunu görebilecekleri bir sayfanın URL'si
         theme: Giriş yapmamış ziyaretçilerin ve yeni kullanıcıların gördüğü tema.
         thumbnail: Sunucu bilginizin yanında gösterilen yaklaşık 2:1'lik görüntü.
         timeline_preview: Giriş yapmamış ziyaretçiler, sunucuda mevcut olan en son genel gönderileri tarayabilecekler.
         trendable_by_default: Öne çıkan içeriğin elle incelenmesini atla. Tekil öğeler sonrada öne çıkanlardan kaldırılabilir.
         trends: Öne çıkanlar, sunucunuzda ilgi toplayan gönderileri, etiketleri ve haber yazılarını gösterir.
+        trends_as_landing_page: Giriş yapmış kullanıcılar ve ziyaretçilere sunucunun açıklması yerine öne çıkan içeriği göster. Öne çıkanların etkin olması gerekir.
       form_challenge:
         current_password: Güvenli bir bölgeye giriyorsunuz
       imports:
@@ -229,6 +233,7 @@ tr:
           hide: Tamamen gizle
           warn: Uyarıyla gizle
       form_admin_settings:
+        activity_api_enabled: API'deki kullanıcı etkinliği hakkında toplu istatistikler yayınlayın
         backups_retention_period: Kullanıcı arşivi saklama süresi
         bootstrap_timeline_accounts: Bu hesapları yeni kullanıcılara her zaman öner
         closed_registrations_message: Kayıt olma mevcut değilken gösterilen özel ileti
@@ -236,6 +241,7 @@ tr:
         custom_css: Özel CSS
         mascot: Özel maskot (eski)
         media_cache_retention_period: Medya önbelleği saklama süresi
+        peers_api_enabled: API'de keşfedilen sunucuların listesini yayınla
         profile_directory: Profil dizinini etkinleştir
         registrations_mode: Kim kaydolabilir
         require_invite_text: Katılmak için bir gerekçe iste
@@ -247,11 +253,13 @@ tr:
         site_short_description: Sunucu açıklaması
         site_terms: Gizlilik Politikası
         site_title: Sunucu adı
+        status_page_url: Durum sayfası URL'si
         theme: Öntanımlı tema
         thumbnail: Sunucu küçük resmi
         timeline_preview: Genel zaman çizelgelerine yetkisiz erişime izin ver
         trendable_by_default: Ön incelemesiz öne çıkanlara izin ver
         trends: Öne çıkanları etkinleştir
+        trends_as_landing_page: Giriş sayfası olarak öne çıkanları kullan
       interactions:
         must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
         must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle

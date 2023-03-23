@@ -11,19 +11,72 @@ sr-Latn:
       invalid: Neispravan %{authentication_keys} ili lozinka.
       last_attempt: Imate još jedan pokušaj pre nego što Vaš nalog bude zaključan.
       locked: Vaš nalog je zaključan.
-      not_found_in_database: Neispravan %{authentication_keys} ili lozinka.
+      not_found_in_database: Neispravna %{authentication_keys} ili lozinka.
+      pending: Vaš račun je još uvek u pregledu.
       timeout: Vreme trajanja Vaše sesije je isteklo. Za nastavak prijavite se ponovo.
       unauthenticated: Za nastavak se morate prijaviti ili registrovati.
       unconfirmed: Pre nastavka morate potvrditi svoj nalog.
     mailer:
       confirmation_instructions:
+        action: Potvrdite adresu e-pošte
+        action_with_app: Potvrdi i vrati se na %{app}
+        explanation: Napravili ste nalog na %{host} sa adresom ove e-pošte. Na jedan klik ste udaljeni od aktiviranja. Ako ovo niste vi, molimo ignorišite ovu e-poštu.
+        explanation_when_pending: Prijavili ste se za poziv %{host} sa ovim imejlom. Kada potvrdite svoj imejl, pregledaćemo vašu prijavu. Možete se prijaviti da biste promenili detalje ili izbrisali nalog, ali ne možete pristupiti većini funkcija dok vam nalog ne bude odobren. Ako vaša prijava bude odbijena, vaši podaci će biti uklonjeni, tako da od vas neće biti potrebne dalje radnje. Ako ovo niste bili vi, zanemarite ovaj imejl.
+        extra_html: Molimo da takođe proverite <a href="%{terms_path}"> pravila ove instance i <a href="%{policy_path}"> naše uslove korišćenja.
         subject: 'Mastodont: Uputstvo za potvrdu korisničkog naloga na instanci %{instance}'
+        title: Potvrdite adresu e-pošte
+      email_changed:
+        explanation: 'Adresa ove e-pošte za vaš nalog će biti promenjena u:'
+        extra: Ako niste promenili vašu e-poštu, sasvim je moguće da je neko drugi dobio pristup vašem nalogu. Molimo promenite lozinku odmah ili kontaktirajte administratora instance ako ste zaključani izvan vašeg naloga.
+        subject: 'Mastodon: E-pošta promenjena'
+        title: Nova adresa e-pošte
       password_change:
+        explanation: Lozinka vašeg naloga je promenjena.
+        extra: Ako niste promenili vašu e-poštu, sasvim je moguće da je neko drugi dobio pristup vašem nalogu. Molimo promenite lozinku odmah ili kontaktirajte administratora instance ako ste zaključani izvan vašeg naloga.
         subject: 'Mastodont: Lozinka promenjena'
+        title: Lozinka promenjena
+      reconfirmation_instructions:
+        explanation: Potvrdite novu adresu da biste promenili e-poštu.
+        extra: Ako ova promena nije inicirana sa vaše strane, molimo ignorišite ovu e-poštu. Adresa e-pošta za ovaj Mastodon nalog neće biti promenjena dok ne pristupite poveznici/linku iznad.
+        subject: 'Mastodon: Potvrdite e-poštu za %{instance}'
+        title: Potvrdite adresu e-pošte
       reset_password_instructions:
+        action: Lozinka promenjena
+        explanation: Zatražili ste novu lozinku za vaš nalog.
+        extra: Ako niste zatražili ovo, molimo ignorišite ovu e-poštu. Vaša lozinka neće biti promenjena dok ne pristupite poveznici/vezi iznad i ne napravite novu.
         subject: 'Mastodont: Uputstvo za resetovanje lozinke'
+        title: Lozinka resetovana
+      two_factor_disabled:
+        explanation: Dvofaktorska autentifikacija za vaš nalog je onemogućena. Prijava je sada moguća samo pomoću imejla i lozinke.
+        subject: 'Mastodon: Dvofaktorska autentifikacija je onemogućena'
+        title: 2FA isključena
+      two_factor_enabled:
+        explanation: Dvofaktorska autentifikacija je omogućena za vaš nalog. Za prijavu će biti potreban token koji generiše uparena TOTP aplikacija.
+        subject: 'Mastodon: Dvofaktorska autentifikacija je omogućena'
+        title: 2FA uključena
+      two_factor_recovery_codes_changed:
+        explanation: Prethodni kodovi za oporavak su poništeni i generisani su novi.
+        subject: 'Mastodon: Ponovo su generisani kodovi za oporavak'
+        title: 2FA kodovi oporavka promenjeni
       unlock_instructions:
         subject: 'Mastodont: Uputstvo za otključavanje korisničkog naloga'
+      webauthn_credential:
+        added:
+          explanation: Sledeći bezbednosni ključ je dodat na vaš nalog
+          subject: 'Mastodon: Novi sigurnosni ključ'
+          title: Dodan je novi bezbednosni ključ
+        deleted:
+          explanation: Sledeći bezbednosni ključ je uklonjen iz vašeg naloga
+          subject: 'Mastodon: Sigurnosni ključ je izbrisan'
+          title: Jedan od vaših bezbednosnih ključeva je izbrisan
+      webauthn_disabled:
+        explanation: Autentifikacija pomoću bezbednosnih ključeva je onemogućena za vaš nalog. Prijava je sada moguća samo pomoću tokena koji generiše uparena TOTP aplikacija.
+        subject: 'Mastodon: Autentifikacija sa sigurnosnim ključevima onemogućena'
+        title: Sigurnosni ključevi su onemogućeni
+      webauthn_enabled:
+        explanation: Autentifikacija sa bezbednosnim ključem je omogućena za vaš nalog. Vaš sigurnosni ključ se sada može koristiti za prijavljivanje.
+        subject: 'Mastodon: Omogućena autentifikacija sa bezbednim ključem'
+        title: Sigurnosni ključevi su omogućeni
     omniauth_callbacks:
       failure: Nismo u mogućnosti autorizovati Vas sa %{kind} nalogom zbog "%{reason}".
       success: Uspešna autorizacija sa %{kind} naloga.
@@ -38,6 +91,7 @@ sr-Latn:
       signed_up: Dobrodošli! Uspešno ste se registrovali.
       signed_up_but_inactive: Uspešno ste se registrovali. Nažalost ne možete se prijaviti zato što Vaš nalog još nije aktiviran.
       signed_up_but_locked: Uspešno ste se registrovali. Nažalost ne možete se prijaviti zato što je Vaš nalog zaključan.
+      signed_up_but_pending: Na vaš imejl poslata je poruka sa vezom za potvrdu. Nakon što kliknete na vezu, pregledaćemo vašu prijavu. Bićete obavešteni ako bude odobreno.
       signed_up_but_unconfirmed: Poruka za potvrdu Vašeg naloga je poslata na Vašu imejl adresu. Kliknite na vezu u imejlu da potvrdite svoj nalog. Molimo proverite i spam fasciklu ako niste primili poruku.
       update_needs_confirmation: Uspešno ste ažurirali svoj nalog, ali treba da potvrdimo novu adresu Vaše e-pošte. Molimo Vas da proverite e-poštu i pratite link za potvrdu nove adrese Vaše e-pošte.
       updated: Vaš nalog je uspešno ažuriran.

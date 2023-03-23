@@ -36,14 +36,14 @@ id:
       avatar: Avatar
       by_domain: Domian
       change_email:
-        changed_msg: כתובת דוא"ל שונתה בהצלחה !
+        changed_msg: Email berhasil diubah!
         current_email: Email saat ini
         label: Ganti email
         new_email: Email baru
         submit: Ganti email
         title: Ganti email untuk %{username}
       change_role:
-        changed_msg: תפקיד שונה בהצלחה !
+        changed_msg: Peran berhasil diubah!
         label: Ubah peran
         no_role: Tidak ada peran
         title: Ganti peran untuk %{username}
@@ -113,6 +113,8 @@ id:
       redownloaded_msg: Berhasil menyegarkan profil %{username} dari asal
       reject: Tolak
       rejected_msg: Berhasil menolak permintaan pendaftaran %{username}
+      remote_suspension_irreversible: Data akun ini telah dihapus permanen.
+      remote_suspension_reversible_hint_html: Akun ini telah ditangguhkan di server mereka, dan data akan dihapus total pada %{date}. Sebelum itu, server jarak jauh dapat memulihkan akun ini tanpa efek samping. Jika Anda ingin menghapus semua data akun langsung, Anda dapat mengikuti bawah ini.
       remove_avatar: Hapus avatar
       remove_header: Hapus header
       removed_avatar_msg: Berhasil menghapus gambar avatar %{username}
@@ -366,6 +368,8 @@ id:
       add_new: Daftar putihkan domain
       created_msg: Domain berhasil masuk daftar putih
       destroyed_msg: Domain dihapus dari daftar putih
+      export: Ekspor
+      import: Impor
       undo: Hapus dari daftar putih
     domain_blocks:
       add_new: Tambah
@@ -375,6 +379,8 @@ id:
       edit: Edit blok domain
       existing_domain_block: Anda sudah menerapkan batasan ketat terhadap %{name}.
       existing_domain_block_html: Anda telah menerapkan batasan yang lebih ketat pada %{name}, Anda harus <a href="%{unblock_url}">membuka blokirnya</a> lebih dulu.
+      export: Ekspor
+      import: Impor
       new:
         create: Buat pemblokiran
         hint: Pemblokiran domain tidak akan menghentikan pembuatan akun dalam database, tapi kami akan memberikan moderasi otomatis pada akun-akun tersebut.
@@ -384,6 +390,8 @@ id:
           silence: Batas
           suspend: Suspen
         title: Pemblokiran domain baru
+      no_domain_block_selected: Tidak ada blok domain yang diubah karena tidak ada yang dipilih
+      not_permitted: Anda tidak diperbolehkan untuk melakukan aksi ini
       obfuscate: Nama domain kabur
       obfuscate_hint: Mengaburkan nama domain sebagian di daftar jika pengiklanan batasan daftar domain diaktifkan
       private_comment: Komentar pribadi
@@ -414,6 +422,21 @@ id:
       resolved_dns_records_hint_html: Pembaruan nama domain mengikuti domain MX, yang bertanggung jawab menerima email. Memblokir domain MX akan memblokir pendaftaran dari alamat email apapun yang menggunakan domain MX sama, meskipun nama domainnya beda. <strong>Hati-hati untuk tidak memblokir layanan email besar.</strong>
       resolved_through_html: Diperbarui melalui %{domain}
       title: Domain email terblokir
+    export_domain_allows:
+      new:
+        title: Impor izin domain
+      no_file: Tidak ada file dipilih
+    export_domain_blocks:
+      import:
+        description_html: Anda akan mengimpor daftar blok domain. Harap tinjau daftar ini dengan sangat hati-hati, terutama jika Anda sendiri tidak menulis daftar ini.
+        existing_relationships_warning: Hubungan tindak lanjut yang ada
+        private_comment_description_html: 'Untuk membantu Anda melacak asal blok yang diimpor, blok yang diimpor akan dibuat dengan komentar pribadi berikut: <q>%{comment}</q>'
+        private_comment_template: Diimpor dari %{source} pada %{date}
+        title: Impor blok domain
+      invalid_domain_block: 'Satu atau lebih blokir domain dilewati karena kesalahan berikut: %{error}'
+      new:
+        title: Impor blok domain
+      no_file: Tidak ada file dipilih
     follow_recommendations:
       description_html: <strong>"Rekomendasi untuk diikuti" membantu pengguna baru untuk secara cepat menemukan konten yang menarik</strong>. Ketika pengguna belum cukup berinteraksi dengan lainnya sehingga belum memunculkan rekomendasi, akun-akun ini akan direkomendasikan. Mereka dihitung ulang secara harian dari campuran akun-akun dengan keterlibatan tertinggi baru-baru ini dan jumlah pengikut lokal tertinggi untuk bahasa tertentu.
       language: Untuk bahasa
@@ -530,7 +553,6 @@ id:
     report_notes:
       created_msg: Catatan laporan berhasil dibuat!
       destroyed_msg: Catatan laporan berhasil dihapus!
-      today_at: Hari ini pada %{time}
     reports:
       account:
         notes:
@@ -542,8 +564,6 @@ id:
         mark_as_sensitive_description_html: Media di dalam kiriman terlapor akan ditandai sebagai sensitif dan hukuman akan direkam untuk membantu menangani pelanggaran dari akun yang sama di masa mendatang.
         other_description_html: Lihat opsi lain untuk mengendalikan perilaku akun dan menyesuaikan komunikasi ke akun yang dilaporkan.
         resolve_description_html: Tidak ada tindakan untuk akun yang dilaporkan, tidak ada peringatan yang direkam, dan laporan akan ditutup.
-        silence_description_html: Profil hanya dapat terlihat oleh pengguna yang telah mengikuti atau melihatnya secara manual, yang sangat membatasi jangkauannya. Selalu dapat dipulihkan kembali.
-        suspend_description_html: Profil dan semua kontennya tidak dapat diakses sampai ia terhapus. Interaksi dengan akun tersebut tidak dimungkinkan. Dapat dipulihkan dalam waktu 30 hari.
       actions_description_html: Memutuskan tindakan yang tepat untuk menyelesaikan laporan ini. Jika Anda memutuskan tindakan hukuman kepada akun terlapor, notifikasi email akan dikirim ke mereka, kecuali saat kategori <strong>Spam</strong> dipilih.
       add_to_report: Tambahkan lebih banyak untuk lapor
       are_you_sure: Apakah Anda yakin?
@@ -595,6 +615,7 @@ id:
         other: "%{count} pengguna"
       categories:
         administration: Administrasi
+        devops: DevOps
         invites: Undangan
         moderation: Moderasi
         special: Khusus
@@ -644,6 +665,7 @@ id:
         view_audit_log_description: Memungkinkan pengguna untuk melihat riwayat tindakan administratif di server
         view_dashboard: Lihat Dasbor
         view_dashboard_description: Memungkinkan pengguna untuk mengakses dasbor dan berbagai metrik
+        view_devops: DevOps
         view_devops_description: Memungkinkan pengguna untuk mengakses dasbor Sidekiq dan pgHero
       title: Peran
     rules:
@@ -668,6 +690,9 @@ id:
       content_retention:
         preamble: Atur bagaimana konten yang dibuat oleh pengguna disimpan di Mastodon.
         title: Retensi konten
+      default_noindex:
+        desc_html: Memengaruhi semua pengguna yang belum mengubah pengaturan ini sendiri
+        title: Keluarkan pengguna dari pengindeksan mesin telusur secara bawaan
       discovery:
         follow_recommendations: Ikuti rekomendasi
         preamble: Menampilkan konten menarik penting dalam memandu pengguna baru yang mungkin tidak tahu siapa pun di Mastodon. Atur bagaimana berbagai fitur penemuan bekerja di server Anda.
@@ -931,6 +956,8 @@ id:
       email_below_hint_html: Jika alamat email di bawah tidak benar, Anda dapat menggantinya di sini dan menerima email konfirmasi baru.
       email_settings_hint_html: Email konfirmasi telah dikirim ke %{email}. Jika alamat email tidak benar, Anda dapat mengubahnya di pengaturan akun.
       title: Atur
+    sign_in:
+      title: Masuk ke %{domain}
     sign_up:
       preamble: Dengan sebuah akun di server Mastodon ini, Anda akan dapat mengikuti orang lain dalam jaringan, di mana pun akun mereka berada.
       title: Mari kita siapkan Anda di %{domain}.
@@ -1066,8 +1093,6 @@ id:
     storage: Penyimpanan media
   featured_tags:
     add_new: Tambah baru
-    errors:
-      limit: Anda sudah menampilkan tagar unggulan dengan jumlah maksimum
     hint_html: "<strong>Apa itu tagar yang diunggulkan?</strong> Mereka ditampilkan secara mencolok di profil publik Anda dan mengizinkan orang-orang untuk menjelajahi kiriman publik khususnya yang ada di bawah tagar tersebut. Mereka adalah alat yang bagus untuk melacak pekerjaan kreatif atau proyek jangka panjang."
   filters:
     contexts:
@@ -1108,8 +1133,6 @@ id:
       index:
         hint: Saringan ini diterapkan ke beberapa kiriman individu tanpa memengaruhi oleh kriteria lain. Anda dapat menambahkan lebih banyak kiriman ke saringan ini dari antarmuka web.
         title: Kiriman yang disaring
-  footer:
-    trending_now: Sedang tren
   generic:
     all: Semua
     all_items_on_page_selected_html:
@@ -1128,10 +1151,9 @@ id:
     today: hari ini
     validation_errors:
       other: Ada yang belum benar! Silakan tinjau %{count} kesalahan di bawah ini
-  html_validator:
-    invalid_markup: 'berisi markup HTML yang tidak valid: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Berkas CVS tidak sah. Kesalahan: %{error}'
       over_rows_processing_limit: berisi lebih dari %{count} baris
     modes:
       merge: Gabung
@@ -1168,9 +1190,6 @@ id:
       expires_at: Kedaluwarsa
       uses: Penggunaan
     title: Undang orang
-  lists:
-    errors:
-      limit: Daftar Anda telah mencapai jumlah maksimum
   login_activities:
     authentication_methods:
       otp: aplikasi otentikasi dua-faktor
@@ -1345,6 +1364,7 @@ id:
     browser: Peramban
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1358,6 +1378,7 @@ id:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Sesi sekarang
     description: "%{browser} di %{platform}"
@@ -1366,11 +1387,12 @@ id:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
       mac: Mac
-      other: platform yang tidak diketahui
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1477,7 +1499,6 @@ id:
       '7889238': 3 bulan
     min_age_label: Batas usia
     min_favs: Simpan kiriman favorit lebih dari
-    min_favs_hint: Tidak menghapus kiriman Anda yang mendapatkan sekian favorit. Kosongkan bila ingin menghapus kiriman tanpa peduli jumlah favoritnya
     min_reblogs: Simpan kiriman yang di-boost lebih dari
     min_reblogs_hint: Tidak menghapus kiriman Anda yang di-boost lebih dari sekian kali. Kosongkan bila ingin menghapus kiriman tanpa peduli jumlah boost-nya
   stream_entries:

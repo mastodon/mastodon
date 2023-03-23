@@ -6,15 +6,15 @@ fy:
       send_instructions: Do ûntfangst fia in e-mailberjocht ynstruksjes hoe’tsto dyn account befêstigje kinst. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
       send_paranoid_instructions: As dyn e-mailadres yn de database stiet, ûntfangsto fia in e-mailberjocht ynstruksjes hoe’tsto dyn account befêstigje kinst. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
     failure:
-      already_authenticated: Do bist al oanmeld.
-      inactive: Jo account is not net aktivearre.
+      already_authenticated: Jo binne al oanmeld.
+      inactive: Jo account is noch net aktivearre.
       invalid: "%{authentication_keys} of wachtwurd ûnjildich."
       last_attempt: Do hast noch ien besykjen oer eardat dyn account blokkearre wurdt.
-      locked: Dyn account is blokkearre.
+      locked: Jo account is blokkearre.
       not_found_in_database: "%{authentication_keys} of wachtwurd ûnjildich."
-      pending: Dyn account moat noch hieltyd beoardiele wurde.
+      pending: Jo account moat noch hieltyd beoardiele wurde.
       timeout: Dyn sesje is ferrûn, meld dy opnij oan.
-      unauthenticated: Do moatst oanmelde of registrearje.
+      unauthenticated: Jo moatte oanmelde of registrearje.
       unconfirmed: Do moatst earst dyn account befêstigje.
     mailer:
       confirmation_instructions:
@@ -22,5 +22,96 @@ fy:
         action_with_app: Befêstigje en nei %{app} tebekgean
         explanation: Do hast in account op %{host} oanmakke en mei ien klik kinsto dizze aktivearje. Wannear’tsto dit account net oanmakke hast, meisto dit e-mailberjocht negearje.
         explanation_when_pending: Do fregest mei dit e-mailadres in útnûging oan foar %{host}. Neidatsto dyn e-mailadres befêstige hast, beoardielje wy dyn oanfraach. Do kinst oant dan noch net oanmelde. Wannear’t dyn oanfraach ôfwêzen wurdt, wurde dyn gegevens fuortsmiten en hoechsto dêrnei fierder neat mear te dwaan. Wannear’tsto dit net wiest, kinsto dit e-mailberjocht negearje.
+        extra_html: |-
+          128 / 5.000
+          Kontrolearje ek <a href="%{terms_path}">de regels fan de server</a> en <a href="%{policy_path}">ús tsjinstbetingsten</a>.
+        subject: 'Mastodon: Befêstigingsynstruksjes foar %{instance}'
+        title: E-mailadres ferifiearje
+      email_changed:
+        explanation: 'It e-mailadres foar jo account wurdt wizige yn:'
+        extra: As jo ​​jo e-mailadres net wizige hawwe, is it wierskynlik dat immen tagong hat ta jo account. Wizigje jo wachtwurd daliks of nim kontakt op mei de server-admin as jo útsletten binne fan jo account.
+        subject: 'Mastodon: E-mailadres is wizige'
+        title: Nij e-mailadres
+      password_change:
+        explanation: It wachtwurd fan dizze account is wizige.
+        extra: As jo ​​jo wachtwurd net wizige hawwe, is it wierskynlik dat immen tagong hat ta jo account. Wizigje jo wachtwurd daliks of nim kontakt op mei de serveradmin as jo útsletten binne fan jo account.
+        subject: 'Mastodon: Wachtwurd wizige'
+        title: Wachtwurd wizige
+      reconfirmation_instructions:
+        explanation: Befêstigje jo nije e-mailadres om dizze te wizigjen.
+        extra: Wannear’t jo dizze wiziging net útfierd hawwe, meie jo dit e-mailberjocht negearje. It e-mailadres fan jo Mastodon-account wurdt pas werklik wizige oant jo de keppeling hjirboppe oanklikke.
+        subject: 'Mastodon: Befêstigje it e-mailadres foar %{instance}'
+        title: E-mailadres ferifiearje
+      reset_password_instructions:
+        action: Wachtwurd wizigje
+        explanation: Jo hawwe in nij wachtwurd foar jo account oanfrege.
+        extra: Wannear’t jo dit net oanfrege hawwe, meie jo dit e-mailberjocht negearje. Jo wachtwurd wurdt pas wizige neidat jo de keppeling hjirboppe oanklikt hawwe en in nij wachtwurd oanmeitsje.
+        subject: 'Mastodon: Wachtwurd opnij ynstelle'
+        title: Wachtwurd opnij ynstelle
+      two_factor_disabled:
+        explanation: Twa-stapsferifikaasje foar jo account is útskeakele. Jo kinne no allinnich oanmelde mei in e-mailadres en wachtwurd.
+        subject: 'Mastodon: Twa-stapsferifikaasje útskeakele'
+        title: Twa-stapsferifikaasje útskeakele
+      two_factor_enabled:
+        explanation: Twa-stapsferifikaasje foar jo account is ynskeakele. Om oanmelde te kinnen is in troch in twa-stapsferifikaasje-app generearre tagongskoade nedich.
+        subject: 'Mastodon: Twa-stapsferifikaasje ynskeakele'
+        title: Twa-stapsferifikaasje ynskeakele
+      two_factor_recovery_codes_changed:
+        explanation: De foarige werstelkoaden binne ûnjildich makke en nije binne oanmakke.
+        subject: 'Mastodon: Twa-staps-werstelkoaden binne opnij oanmakke'
+        title: Werstelkoaden twa-stapsferifikaasje wizige
+      unlock_instructions:
+        subject: 'Mastodon: Ynstruksjes foar ûntskoatteljen'
+      webauthn_credential:
+        added:
+          explanation: De folgjende befeiligingskaai is oan jo account tafoege
+          subject: 'Mastodon: Nije befeiligingskaai'
+          title: In nije befeiligingskaai is tafoege
+        deleted:
+          explanation: De folgjende befeiligingskaai is út jo account fuortsmiten
+          subject: 'Mastodon: Befeiligingskaai fuortsmiten'
+          title: Ien fan jo befeiligingskaaien is fuortsmiten
+      webauthn_disabled:
+        explanation: Ferifikaasje mei befeiligingskaaien is útskeakele foar jo account. Oanmelden is no allinnich mooglik mei it gebrûk fan in troch in keppele TOTP-app generearre kaai.
+        subject: 'Mastodon: Ferifikaasje mei befeiligingskaaien is útskeakele'
+        title: Befeiligingskaaien útskeakele
+      webauthn_enabled:
+        explanation: Ferifikaasje mei befeiligingskaaien is ynskeakele foar jo account. Jo befeiligingskaai kin no brûkt wurde om oan te melden.
+        subject: 'Mastodon: Ferifikaasje mei befeiligingskaaien is ynskeakele'
+        title: Befeiligingskaaien ynskeakele
+    omniauth_callbacks:
+      failure: Oanmelden mei jo %{kind}-account mislearre, omdat ‘%{reason}’.
+      success: Mei sukses mei jo %{kind}-account oanmeld.
     passwords:
-      updated_not_active: Jo wachtwurd is mei sukses feroare.
+      no_token: Jo kinne dizze side net benaderje sûnder dat jo in e-mailberjocht om jo wachtwurd opnij yn te stellen ûntfongen hawwe.
+      send_instructions: Jo ûntfange fia in e-mailberjocht ynstruksjes hoe’t jo jo wachtwurd opnij ynstelle moatte. Sjoch tusken jo net-winske wannear neat ûntfongen waard.
+      send_paranoid_instructions: Jo ûntfange fia in e-mailberjocht ynstruksjes hoe’t jo jo wachtwurd opnij ynstelle moatte. Sjoch tusken jo net-winske wannear neat ûntfongen waard.
+      updated: Jo wachtwurd is wizige. Jo binne no oanmeld.
+      updated_not_active: Jo wachtwurd is mei sukses wizige.
+    registrations:
+      destroyed: Jo account is mei sukses fuortsmiten. Miskien oant sjen.
+      signed_up: Jo binne registrearre.
+      signed_up_but_inactive: Jo binne registrearre. Jo koene allinnich net automatysk oanmeld wurde, omdat jo account noch net aktivearre is.
+      signed_up_but_locked: Jo binne registrearre. Jo koene allinnich net automatysk oanmeld wurde, omdat jo account beskoattele is.
+      signed_up_but_pending: Der is in berjocht mei in befêstigingskeppeling nei jo e-mailadres ferstjoerd. Neidat jo op dizze keppeling klikt hawwe nimme wy jo oanfraach yn behanneling. Jo wurde op de hichte steld wannear’t dizze goedkard wurdt.
+      signed_up_but_unconfirmed: Jo ûntfange fia in e-mailberjocht ynstruksjes hoe’t jo jo account aktivearje kinne. Sjoch tusken jo net-winske wannear’t neat ûntfongen waard.
+      update_needs_confirmation: Jo hawwe jo e-mailadres mei sukses wizige, mar wy moatte jo nije e-mailadres noch befêstigje. Kontrolearje jo Postfek YN en klik op de keppeling yn it e-mailberjocht om jo e-mailadres te befêstigjen. Sjoch tusken jo net-winske wannear’t neat ûntfongen waard.
+      updated: Jo accountgegevens binne bewarre.
+    sessions:
+      already_signed_out: Mei sukses ôfmeld.
+      signed_in: Mei sukses oanmeld.
+      signed_out: Mei sukses ôfmeld.
+    unlocks:
+      send_instructions: Jo ûntfange fia in e-mailberjocht ynstruksjes hoe’t jo jo account ûntskoattelje kinne. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
+      send_paranoid_instructions: As jo account bestiet, ûntfange jo fia in e-mailberjocht ynstruksjes hoe’t jo jo account ûntskoattelje kinne. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
+      unlocked: Jo account is net mear beskoattele. Jo kinne no wer oanmelde.
+  errors:
+    messages:
+      already_confirmed: is al befêstige
+      confirmation_period_expired: moat befêstige wurde binnen %{period}, probearje it nochris
+      expired: is ferrûn, freegje in nije oan
+      not_found: net fûn
+      not_locked: is net beskoattele
+      not_saved:
+        one: '1 flater ferhindere it bewarjen fan dizze %{resource}:'
+        other: "%{count} flaters ferhinderje it bewarjen fan dizze %{resource}:"

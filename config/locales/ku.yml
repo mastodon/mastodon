@@ -1,7 +1,7 @@
 ---
 ku:
   about:
-    about_mastodon_html: 'Tora civakî ya pêşerojê: Ne reklam, ne çavdêriya pargîdanî, sêwirana exlaqî, û desentralîzasyon! Bi Mastodon re bibe xwediyê daneyên xwe!'
+    about_mastodon_html: 'Tora civakî ya pêşerojê: Ne reklam, ne şopandina şîrketan, dîzayna nenavendî! Bi Mastodon re bibe xwediyê daneyên xwe!'
     contact_missing: Nehate sazkirin
     contact_unavailable: Tune
     hosted_on: Mastodon li ser %{domain} tê pêşkêşkirin
@@ -31,7 +31,7 @@ ku:
       created_msg: Nîşeyê moderator bi awayekî serkeftî hate afirandin!
       destroyed_msg: Nîşeyê moderator bi awayekî serkeftî hate tinne kirin!
     accounts:
-      add_email_domain_block: Navparê e-nameyê asteng bike
+      add_email_domain_block: Navperê e-nameyê asteng bike
       approve: Bipejirîne
       approved_msg: Tomarkirina %{username} bi awayekî serkeftî hate pejirandin
       are_you_sure: Ma tu bawerî?
@@ -116,6 +116,8 @@ ku:
       redownloaded_msg: Bi serkeftî profîla %{username} ji kokê va hat nûve kirin
       reject: Nepejirîne
       rejected_msg: Tomarkirina %{username} bi awayekî serkeftî nehate pejirandin
+      remote_suspension_irreversible: Daneyên vê ajimêrê bi awayekî bê veger hatine jêbirin.
+      remote_suspension_reversible_hint_html: Ajimêr hate rawestandin li ser rajekarê wan, û daneyên di %{date} de wê hemû werin rakirin. Heya vê demê, ajimêr bêyî bandorên nebaş dikare dîsa vegere. Ku tu dixwazî hemû daneyan ajimêrê niha rakî, tu dikarî li jêrê bikî.
       remove_avatar: Avatarê rake
       remove_header: Sernavê rake
       removed_avatar_msg: Wêneyê %{username} bi awayekî serkeftî hate rakirin
@@ -148,7 +150,7 @@ ku:
       suspend: Hatiye rawestandin
       suspended: Hatiye rawestandin
       suspension_irreversible: Daneyên vê ajimêrê bêveger hatine jêbirin. Tu dikarî ajimêra xwe ji rawestandinê vegerinî da ku ew bi kar bînî lê ew ê tu daneya ku berê hebû venegere.
-      suspension_reversible_hint_html: Ajimêr hat qerisandin, û daneyên di %{date} de hemû were rakirin. Hetta vê demê, ajimêr bê bandorên nebaş dikare dîsa vegere. Heke tu dixwazî hemû daneyan ajimêrê niha rakî, tu dikarî li jêrê bikî.
+      suspension_reversible_hint_html: Ajimêr hate rawestandin, û daneyên di %{date} de wê hemû werin rakirin. Heya vê demê, ajimêr bêyî bandorên nebaş dikare dîsa vegere. Ku tu dixwazî hemû daneyan ajimêrê niha rakî, tu dikarî li jêrê bikî.
       title: Ajimêr
       unblock_email: Astengiyê li ser navnîşana e-nameyê rake
       unblocked_email_msg: Bi serkeftî astengiya li ser navnîşana e-nameyê %{username} hate rakirin
@@ -177,8 +179,8 @@ ku:
         create_canonical_email_block: Astengkirina e-nameyê biafirîne
         create_custom_emoji: Emojiyên kesanekirî çê bike
         create_domain_allow: Navpera ku destûr standiye peyda bike
-        create_domain_block: Navpera ku asteng bûye ava bike
-        create_email_domain_block: Navpera e-name yê de asteng kirinê peyda bike
+        create_domain_block: Astengkirina navperê biafirîne
+        create_email_domain_block: Astengkirina navpera e-nameyê biafirîne
         create_ip_block: Rêziknameya IPyê saz bike
         create_unavailable_domain: Navpera ku nayê bikaranîn pêk bîne
         create_user_role: Rolê biafirîne
@@ -220,7 +222,7 @@ ku:
         unsuspend_account: Ajimêrê xwe ji rewestandinê rake
         update_announcement: Daxûyaniyê rojane bike
         update_custom_emoji: Emojîya kesanekirî rojane bike
-        update_domain_block: Navperên astengkirî rojane bike
+        update_domain_block: Astengkirina navperê rojane bike
         update_ip_block: Rolê IP rojane bike
         update_status: Şandiyê rojane bike
         update_user_role: Rolê rojane bike
@@ -377,9 +379,9 @@ ku:
       import: Têxistin
       undo: Mafê nede navpera demnameya giştî
     domain_blocks:
-      add_new: Astengkirina navpera nû
-      created_msg: Navpera asteng kirinê nû hat şixulandin
-      destroyed_msg: Navpera asteng kirinê hat rakirin
+      add_new: Astengkirina navpera nû tevlî bike
+      created_msg: Astengkirina navperê niha dixebite
+      destroyed_msg: Astengkirina navperê hate rakirin
       domain: Navper
       edit: Astengkirina navperê serrast bike
       existing_domain_block: Jixwe te sînorên tundtir li ser %{name} daye kirine.
@@ -388,34 +390,35 @@ ku:
       import: Têxistin
       new:
         create: Astengkirinekê çê bike
-        hint: Navpera asteng kirî pêşî li çê kirina têketinên ajimêra ên di danegehê da negire, lê dê bi paş ve bizivirin û bi xweberî va ji ajimêran bi teybetî kontrola rêbazan bikin.
+        hint: Astengkirina navperê pêşî li çêkirina têketinên ajimêra yên di danegehê de negire, lê wê bi riyeke vegerandî û xweberî rêbazên kontrolkirinê li ser van ajimêran pêk bîne.
         severity:
           desc_html: |-
-            <strong>Sînor</strong> wê şandiyan ji ajimêrên li ser vê navparê re ji her kesê ku wan naşopîne re nedîtî bike. <strong>Rawestandin</strong> wê hemû naverok, medya û daneyên profîlê yên ajimêrên vê navparê ji rajekarê te rake. Ku tu tenê dixwazî pelên medyayê nepejirînî
+            <strong>Sînor</strong> wê şandiyan ji ajimêrên li ser vê navperê re ji her kesê ku wan naşopîne re nedîtî bike. <strong>Rawestandin</strong> wê hemû naverok, medya û daneyên profîlê yên ajimêrên vê navperê ji rajekarê te rake. Ku tu tenê dixwazî pelên medyayê nepejirînî
             <strong>Tu kes</strong> bi kar bîne.
           noop: Ne yek
           silence: Sînor
           suspend: Dur bike
         title: Astengkirina navpera nû
-      no_domain_block_selected: Tu astengên navparê e-nameyê nehatin guhertin ji ber ku tu yek nehatine hilbijartin
-      obfuscate: Navê navperê biveşêre
-      obfuscate_hint: Heke rêzoka sînorên navperê were çalakkirin navê navperê di rêzokê de bi qismî veşêre
+      no_domain_block_selected: Tu astengkirinên navperê e-nameyê nehatin guhertin ji ber ku tu yek nehatine hilbijartin
+      not_permitted: Mafê te tune ku tu vê çalakiyê bikî
+      obfuscate: Navê navperê veşêre
+      obfuscate_hint: Ku rêzoka sînorên navperê çalakkirî be navê navperê di rêzokê de bi awayekî beşî veşêre
       private_comment: Şîroveya taybet
-      private_comment_hint: Derbarê sînorkirina vê navperê da ji bo bikaranîna hundirîn a moderatoran şîrove bikin.
+      private_comment_hint: Derbarê sînorkirina vê navperê ji bo bikaranîna hundirîn ji aliyê çavdêram ve şîrove bike.
       public_comment: Şîroveya gelemperî
-      public_comment_hint: Heke reklamkirina rêzoka sînorên navperê çalak be, derbarê sînorkirina vê navperê da ji bo raya giştî şîrove bikin.
-      reject_media: Pelên medyayê red bike
+      public_comment_hint: Derbarê sînorkirina vê navperê ji bo raya giştî re şîrove bike, ku reklamkirina rêzoka sînorên navperê çalakkirî be.
+      reject_media: Pelên medyayê nepejirîne
       reject_media_hint: Pelên medyayê herêmî hatine tomarkirin radike û di pêşerojê de daxistinê red dike. Ji bo rawstandinê ne girîng e
-      reject_reports: Ragihandinan red bike
+      reject_reports: Ragihandinan nepejirîne
       reject_reports_hint: Ragihandinên ku ji vê navperê tê paşguh bike. Ji bo dûrbûnê re ne guncav e
       undo: Astengkirina navperê vegerîne
       view: Astengkirina navperê nîşan bike
     email_domain_blocks:
       add_new: Nû tevlî bike
       attempts_over_week:
-        one: "%{count} hewldan di hefteya borî de"
+        one: "%{count} hewldana tomarkirinê di hefteya borî de"
         other: "%{count} hewldanên tomarkirinê di hefteya borî de"
-      created_msg: Bi serkeftî navpera e-name hat asteng kirin
+      created_msg: Bi serkeftî navpera e-name hate astengkirin
       delete: Jê bibe
       dns:
         types:
@@ -423,15 +426,25 @@ ku:
       domain: Navper
       new:
         create: Navper tevlî bike
-        resolve: Navparê çareser bike
-        title: Navparê e-nameyê nû asteng bike
-      no_email_domain_block_selected: Tu astengên navparê e-nameyê nehatin guhertin ji ber ku tu yek nehatine hilbijartin
-      resolved_dns_records_hint_html: Navê navparê ji MX ên jêrîn re çareser dike, ên ku di dawiyê de berpirsiyarin ji pejirandina e-nameyê. Astengkirina navparek MX wê tomarkirina ji her navnîşana e-nameyê ya ku heman navpara MX bi kar tîne asteng bike, tevlî ku navê navparê xuya cûda be. <strong>Hişyar be ku peydekarên sereke yên e-nameyê asteng nekî.</strong>
+        resolve: Navperê çareser bike
+        title: Navperê e-nameyê nû asteng bike
+      no_email_domain_block_selected: Tu astengkirnên navperê e-nameyê nehatin guhertin ji ber ku tu yek nehatine hilbijartin
+      resolved_dns_records_hint_html: Navê navperê ji MX ên jêrîn re çareser dike, ên ku di dawiyê de berpirsiyarin ji pejirandina e-nameyê. Astengkirina navperek MX wê tomarkirina ji her navnîşana e-nameyê ya ku heman navpera MX bi kar tîne asteng bike, tevlî ku navê navperê xuya cûda be. <strong>Hişyar be ku peydekarên sereke yên e-nameyê asteng nekî.</strong>
       resolved_through_html: Bi riya %{domain} ve hate çareserkirin
-      title: Navparên e-nameyê astengkirî
+      title: Navperên e-nameyê astengkirî
     export_domain_allows:
+      new:
+        title: Astengkirnên navperê têne
       no_file: Tu pel nehatiye hilbijartin
     export_domain_blocks:
+      import:
+        description_html: Tu kê rêzokek ji astengkirinên navperê têxê. Ji kerema xwe vê rêzokê pir bi baldarî binirxîne, taybet ku te ev rêzok bi xwe nenivîsandiye.
+        existing_relationships_warning: Têkiliyên şopandinê yên heyî
+        private_comment_description_html: 'Ji bo ku bibe alîkar ji te re bo ku bişopînî ka astengkirinên têxistî ji kuderê tên, astengkirinên têxistî wê werin afirandin bi şîroveya taybet ya: <q>%{comment}</q>'
+        private_comment_template: Ji %{source} hate têxistin di %{date} de
+        title: Astengkirinên navperê têxe
+      new:
+        title: Astengkirnên navperê têxe
       no_file: Tu pel nehatiye hilbijartin
     follow_recommendations:
       description_html: "<strong>Şopandina pêşniyaran ji bo bikarhênerên nû re dibe alîkar ku zû naveroka balkêş bibînin</strong>. Gava ku bikarhênerek têra xwe bi kesên din re têkildar nebê da ku pêşnîyarên şopandina yên kesane bo xwe çêbike, li şûna van ajimêran têne pêşniyarkirin. Ew her roj ji tevliheviya ajimêrên bi tevlêbûnên herî dawîn ên herî bilind û jimara şopdarên herêmî yên herî pir ji bo zimaneke diyarkirî ji nû ve têne pêşniyarkirin."
@@ -444,8 +457,8 @@ ku:
     instances:
       availability:
         description_html:
-          one: Ku radestkirina navparê <strong>%{count} roj </strong> bêyî serkeftin birevebiçe, heya ku radestkirinek <em> ji </em> navparê neyê wergirtin, wê hewildanên radestkirinê neyên kirin.
-          other: Ku radestkirina navparê <strong>%{count} rojên cuda</strong> bêyî serkeftin birevebiçe, heya ku radestkirinek <em> ji </em> navparê neyê wergirtin, wê hewildanên radestkirinê neyên kirin.
+          one: Ku radestkirina navperê <strong>%{count} roj </strong> bêyî serkeftin birevebiçe, heya ku radestkirinek <em> ji </em> navperê neyê wergirtin, wê hewildanên radestkirinê neyên kirin.
+          other: Ku radestkirina navperê <strong>%{count} rojên cuda</strong> bêyî serkeftin birevebiçe, heya ku radestkirinek <em> ji </em> navperê neyê wergirtin, wê hewildanên radestkirinê neyên kirin.
         failure_threshold_reached: Rêjeya têkçûnê gihîşte %{date}.
         failures_recorded:
           one: Hewldana têkçûyî di %{count} roj de.
@@ -457,10 +470,10 @@ ku:
       back_to_limited: Sînorkirî
       back_to_warning: Hişyarî
       by_domain: Navper
-      confirm_purge: Ma tu dixwazî ku bi awayekî domdar daneyan ji vê navparê jê bibî?
+      confirm_purge: Ma tu dixwazî ku bi awayekî domdar daneyan ji vê navperê jê bibî?
       content_policies:
         comment: Nîşeya navxweyî
-        description_html: Tu dikarî polîtîkayên naverokê yên ku wê li hemû ajimêrên ji vê navparê û her kiîjan ji jêrnavparên werin sepandin diyar bikî.
+        description_html: Tu dikarî polîtîkayên naverokê yên ku wê li hemû ajimêrên ji vê navperê û her kiîjan ji jêrnavperên werin sepandin diyar bikî.
         policies:
           reject_media: Medya nepejirîne
           reject_reports: Ragihandinan nepejirîne
@@ -500,7 +513,7 @@ ku:
       private_comment: Şîroveya taybet
       public_comment: Şîroveya ji hemû kesî re vekirî
       purge: Pak bike
-      purge_description_html: Ku tu bawer dikî ev navpar bi domdarî negirêdayî ye, tu dikarî hemû tomarên ajimêr û daneyên xwe yîn têkildarî wê navparê jê bibî. Ev dibe ku hinek dem bigire.
+      purge_description_html: Ku tu bawer dikî ev navper bi domdarî negirêdayî ye, tu dikarî hemû tomarên ajimêr û daneyên xwe yîn têkildarî wê navperê jê bibî. Ev dibe ku hinek dem bigire.
       title: Giştî
       total_blocked_by_us: Ji aliyê me ve hatiye astengkirin
       total_followed_by_them: Ji aliyê wan ve hatiye şopandin
@@ -552,7 +565,6 @@ ku:
     report_notes:
       created_msg: Nîşeyê ragihandinê bi awayekî serkeftî pêk hat!
       destroyed_msg: Nîşeyê ragihandinê bi awayekî serkeftî hate jêbirin!
-      today_at: Îro di %{time} de
     reports:
       account:
         notes:
@@ -565,8 +577,6 @@ ku:
         mark_as_sensitive_description_html: Şandiyên hatine ragihandin wê werin nîşandan wekî hestyar û were tomarkirin da ku ji te re bibe alîkar ku tu ji hêla heman ajimêrê ve binpêkirinên pêşerojê bêtir bikî.
         other_description_html: Bêtir vebijêrkên ji bo kontrolkirina tevgera ajimêrê bibîne û pêwendiyê li ser ajimêra ragihandî kesane bike.
         resolve_description_html: Li hemberî ajimêra hatiye ragihandin wê tiştek pêk neyê, binpêkirin nayên tomarkirin û ragihandin wê were girtin.
-        silence_description_html: Wê profîl tenê ji kesên ku berê te dişopînin an ji bi destan lê serî lê didin re xuya bibe, gihandina wê bi tundî sînordar dike. Her gav dikare were vegerandin.
-        suspend_description_html: Heya ku di dawiyê de neyê jêbirin, wê profîl û hemû naverokên wê ne gihiştbar bin. Têkiliya bi ajimêrê re wê ne guncav be. Di nav 30 rojan de veger ji jêbirinê pêkan e.
       actions_description_html: Ji bo çareserkirina vê ragihandinê biryar bide ka tê kîjan gav bavêjî. Ku tu li dijî ajimêrê ragihandî çalakiyeke cezakirinê bikî, ji bilî dema ku kategoriya <strong>Spam</strong> were hilbijartin, wê agahdariyek e-nameyê ji wan re were şandin.
       add_to_report: Bo ragihandinê bêtir tevlî bike
       are_you_sure: Gelo tu bawerî?
@@ -647,7 +657,7 @@ ku:
         manage_custom_emojis: Emojiyên kesane bi rêve bibe
         manage_custom_emojis_description: Mafê dide bikarhêneran ku îmojî kesane bikin li ser vê rajekarê
         manage_federation: Demnameya giştî bi rê ve bibe
-        manage_federation_description: Mafê dide bikarhêneran ku demnameya giştî bi navparên din re asteng bikin û radestkirinê kontrol bikin
+        manage_federation_description: Mafê dide bikarhêneran ku demnameya giştî bi navperên din re asteng bikin û radestkirinê kontrol bikin
         manage_invites: Vexwendinan bi rêve bibe
         manage_invites_description: Mafê dide bikarhêneran ku li girêdanên vexwendinê bigerin û neçalak bikin
         manage_reports: Ragihandinan bi rê ve bibe
@@ -695,6 +705,9 @@ ku:
       content_retention:
         preamble: Kontrol bike ka naveroka ku ji aliyê bikarhêner ve hatiye çêkirin di Mastodon de çawa tê tomarkirin.
         title: Parastina naverokê
+      default_noindex:
+        desc_html: Bandorê li ser hemû bikarhênerên ku bi xwe ev sazkarî neguhertine
+        title: Pêlrêçkirna bikarhêneran ji motorê lêgerînê dûr bixe
       discovery:
         follow_recommendations: Pêşniyarên şopandinê
         preamble: Rûbirûbûna naveroka balkêş ji bo bikarhênerên nû yên ku li ser Mastodon kesek nas nakin pir bi bandor e. Kontrol bike ka çend taybetmendiyên vekolînê li ser rajekarê te çawa dixebite.
@@ -705,7 +718,7 @@ ku:
       domain_blocks:
         all: Bo herkesî
         disabled: Bo tu kesî
-        users: Ji bo bikarhênerên herêmî yên xwe tomar kirine
+        users: Ji bo bikarhênerên herêmî yên têketin kirine
       registrations:
         preamble: Kontrol bike ka kî dikare li ser rajekarê te ajimêrekê biafirîne.
         title: Tomarkirin
@@ -896,7 +909,7 @@ ku:
     created_msg: Bi serkeftî nûçikê nû hat çêkirin. Tu niha dikarî di ajimêrê xwe kevn bar bikî.
     deleted_msg: Nûçik bi serkeftî hat rakirin. Êdî nepêkan e vê ajimêrê de barkirina ajimêrek din.
     empty: Nûçikên te tune ne.
-    hint_html: Heke tu dixwazî ji ajimêreke din bar bike bo yekî din, li vir tu dikarî bernavekê biafirîne, ku pêdivî ye berî ku tu bi şopandina şopînerên xwe ji ajimêra kevn ber bi vê yekê biçe. Ev çalakî bi serê xwe <strong>bê ziyan û vegere</strong>.<strong>Koçberiya ajimêr ji ajimêreke kevin dest pê dike</strong>.
+    hint_html: Ku tu dixwazî ji ajimêreke din bar bike bo yekî din, li vir tu dikarî bernavekê biafirîne, ku pêdivî ye berî ku tu bi şopandina şopînerên xwe ji ajimêra kevn ber bi vê yekê biçe. Ev çalakî bi serê xwe <strong>bê ziyan û vegere</strong>.<strong>Koçberiya ajimêr ji ajimêreke kevin dest pê dike</strong>.
     remove: Girêdana nûçikê rake
   appearance:
     advanced_web_interface: Navrûya tevnê yê pêşketî
@@ -928,11 +941,11 @@ ku:
     apply_for_account: Ajimêrekê bixwaze
     change_password: Borînpeyv
     delete_account: Ajimêr jê bibe
-    delete_account_html: Heke tu dixwazî ajimêra xwe jê bibe, tu dikarî <a href="%{path}">li vir bidomîne</a>. Ji te tê xwestin ku were pejirandin.
+    delete_account_html: Ku tu dixwazî ajimêra xwe jê bibe, tu dikarî <a href="%{path}">li vir bidomîne</a>. Ji te tê xwestin ku were pejirandin.
     description:
       prefix_invited_by_user: "@%{name} te vedixwîne ku tu beşdarî vê rajekara Mastodon-ê bibî!"
       prefix_sign_up: Îro li Mastodonê tomar bibe!
-      suffix: Bi ajimêrekê, tu yê karibî kesan bişopînî, rojanekirinan bişînî û bi bikarhênerên ji her rajekarê Mastodon re peyaman bişînî û bêhtir!
+      suffix: Bi ajimêrekê, tu yê karibî kesan bişopînî, rojanekirinan bişînî û bi bikarhênerên ji her rajekarê Mastodon re peyaman bişînî û bêtir!
     didnt_get_confirmation: Te rêwerzên pejirandinê wernegirt?
     dont_have_your_security_key: Kilîda te ya ewlehiyê tune ye?
     forgot_password: Te borînpeyva xwe ji bîr kir?
@@ -943,7 +956,7 @@ ku:
     login: Têkeve
     logout: Derkeve
     migrate_account: Livandin bo ajimêreke din
-    migrate_account_html: Heke tu dixwazî ev ajimêr li ajimêreke cuda beralî bikî, tu dikarî <a href="%{path}">ji vir de saz bike</a>.
+    migrate_account_html: Ku tu dixwazî ev ajimêr li ajimêreke cuda beralî bikî, tu dikarî <a href="%{path}">ji vir de saz bike</a>.
     or_log_in_with: An têketinê bike bi riya
     privacy_policy_agreement_html: Min <a href="%{privacy_policy_path}" target="_blank">Politîka taybetiyê</a> xwend û dipejirînim
     providers:
@@ -959,9 +972,12 @@ ku:
     security: Ewlehî
     set_new_password: Borînpeyveke nû ji nû ve saz bike
     setup:
-      email_below_hint_html: Heke navnîşana e-nameya jêrîn ne rast be, tu dikarî wê li vir biguherîne û e-nameyeke pejirandinê ya nû bistîne.
-      email_settings_hint_html: E-nameya pejirandinê ji %{email} re hate şandin. Heke ew navnîşana e-nameyê ne rast be, tu dikarî wê di sazkariyên ajimêr de biguherîne.
+      email_below_hint_html: Ku navnîşana e-nameya jêrîn ne rast be, tu dikarî wê li vir biguherîne û e-nameyeke pejirandinê ya nû bistîne.
+      email_settings_hint_html: E-nameya pejirandinê ji %{email} re hate şandin. Ku ew navnîşana e-nameyê ne rast be, tu dikarî wê di sazkariyên ajimêr de biguherîne.
       title: Damezirandin
+    sign_in:
+      preamble_html: Têketinê bike bi riya <strong>%{domain}</strong> xwe. Ku ajimêrê te li ser rajekareke cuda hatiye pêşkêşkirin, tu yê nikaribû têketinê bikî vir.
+      title: Têkeve %{domain}
     sign_up:
       preamble: Bi ajimêrekê li ser vê rajekarê Mastodon re, tu yê karîbî her keseke din li ser torê bişopînî, her ku ajimêrê wan li ku derê tê pêşkêşkirin.
       title: Ka em te bi rê bixin li ser %{domain}.
@@ -969,7 +985,7 @@ ku:
       account_status: Rewşa ajimêr
       confirming: Li benda pejirandina e-nameyê ne da ku biqede.
       functional: Ajimêra te êdî amade ye.
-      pending: Daxwaza te li benda vekolînê ji hêla xebatkarên me ye. Ev dibe ku hinek dem bigire. Heke daxwaza te were pejirandin tu yê e-nameyekê bistîne.
+      pending: Daxwaza te li benda vekolînê ji hêla xebatkarên me ye. Ev dibe ku hinek dem bigire. Ku daxwaza te were pejirandin tu yê e-nameyekê bistîne.
       redirecting_to: Ajimêra te neçalak e ji ber ku niha ber bi %{acct} ve tê beralîkirin.
       view_strikes: Binpêkirinên berê yên dijî ajimêrê xwe bibîne
     too_fast: Form pir zû hat şandin, dîsa biceribîne.
@@ -1016,7 +1032,7 @@ ku:
   deletes:
     challenge_not_passed: Zanyariyên ku te nivîsandî ne rast in
     confirm_password: Borînpeyva xwe ya heyî binivîsine da ku nasnameya xwe piştrast bikî
-    confirm_username: Navê bikarhêneriyê xwe binivîse da ku prosedurê piştrast bike
+    confirm_username: Navê bikarhêneriyê xwe binivîse da ku pêvajoyê piştrast bikî
     proceed: Ajimêr jê bibe
     success_msg: Ajimêra te bi serkeftî hate jêbirin
     warning:
@@ -1024,10 +1040,10 @@ ku:
       caches: Naveroka ku ji hêla rajekarên din ve hatiye pêşbîrkirin dibe ku bimîne
       data_removal: Şandiyên te û daneyên din wê bi awayekî dawî bêne rakirin
       email_change_html: Tu dikarî navnîşana <a href="%{path}"> e-nameya xwe biguherînî </a> bêyî ku tu ajimêra xwe jê bibî
-      email_contact_html: Heke ew hîn jî negihîştiye, tu dikarî ji bo alîkariyê <a href="mailto:%{email}">%{email}</a> e-nameyê bişînî
-      email_reconfirmation_html: Heke te e-nameya pejirandinê nesitand, tu dikarî <a href="%{path}">dîsa daxwaz bike</a>
+      email_contact_html: Ku ew hîn jî negihîştiye, tu dikarî ji bo alîkariyê <a href="mailto:%{email}">%{email}</a> e-nameyê bişînî
+      email_reconfirmation_html: Ku te e-nameya pejirandinê nesitand, tu dikarî <a href="%{path}">dîsa daxwaz bike</a>
       irreversible: Tu yê nikaribe ajimêra xwe serrast bike an ji nû ve çalak bike
-      more_details_html: Bo bêhtir zanyarî, <a href="%{terms_path}">polîtika nihêniyê</a> binêre.
+      more_details_html: Bo bêtir zanyarî, <a href="%{terms_path}">polîtika taybetiyê</a> binêre.
       username_available: Navê bikarhêneriyê te wê dîsa peyda bibe
       username_unavailable: Navê bikarhêneriyê ye wê tuneyî bimîne
   disputes:
@@ -1097,8 +1113,6 @@ ku:
     storage: Bîrdanaka medyayê
   featured_tags:
     add_new: Yeka nû tevlî bike
-    errors:
-      limit: Te jixwe berê pirtirîn hashtag destnîşan kiriye
     hint_html: "<strong> Hashtagên destnîşankirî çi ne? </strong> Ew bi eşkere li ser profîla te ya gelemperî têne xuyakirin û dihêlin ku mirov bi taybetî di binê wan hashtagan de li şandiyên te yên gelemperî bigere. Ew ji bo şopandina karên afirîner an projeyên demdirêj amûrek girîng in."
   filters:
     contexts:
@@ -1142,8 +1156,6 @@ ku:
       index:
         hint: Ev parzûn bêyî pîvanên din ji bo hilbijartina şandiyên kesane tê sepandin. Tu dikarî ji navrûya tevnê bêtir şandiyan tevlî vê parzûnê bikî.
         title: Şandiyên parzûnkirî
-  footer:
-    trending_now: Niha rojevê de
   generic:
     all: Hemû
     all_items_on_page_selected_html:
@@ -1166,10 +1178,9 @@ ku:
     validation_errors:
       one: Tiştek hîn ne rast e! Ji kerema xwe çewtiya li jêr di ber çavan re derbas bike
       other: Tiştek hîn ne rast e! Ji kerema xwe %{count} çewtî li jêr di ber çavan re derbas bike
-  html_validator:
-    invalid_markup: 'di nav de nîşana HTML a nederbasdar heye: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Pelê CSV nederbasdar e. Çewtî: %{error}'
       over_rows_processing_limit: ji %{count} zêdetir rêzok hene
     modes:
       merge: Bi hev re bike
@@ -1207,9 +1218,6 @@ ku:
       expires_at: Diqede
       uses: Bikaranîn
     title: Mirovan vexwîne
-  lists:
-    errors:
-      limit: Tu gihîştî hejmara rêzika a herî zêde
   login_activities:
     authentication_methods:
       otp: sepandina rastandina du-gavî
@@ -1315,10 +1323,10 @@ ku:
           trillion: Trîlyon
   otp_authentication:
     code_hint: Ji bo pejirandinê têkeve koda te ya ku ji alîyê sepana piştraskirinê va hatiye çê kirin
-    description_html: Heke tu<strong>bi piştrastkirina du-faktorî re</strong> sepana piştrastkirinê çalak bikî, ji bo têketinê hewceye telefona te li ba te be, ji bona têketinê te ra nîşaneyan çê bike.
+    description_html: Ku tu<strong>bi piştrastkirina du-gavî re</strong> sepana piştrastkirinê çalak bikî, ji bo têketinê pêdivî heye ku telefona te li ba te be, ji bona têketinê te ra nîşaneyan çê bike.
     enable: Çalak bike
     instructions_html: "<strong>Vê kodê QR kontrol bike bi riya Google Authenticator an jî sepanekeTOTP li ser têlefona xwe </strong>. Ji niha û pê ve, ew sepan dê nîşanên ku divê tu binivîsîne dema têketinê de biafirîne."
-    manual_instructions: 'Heke tu nikarî bî koda QR venêrî û pêwîst be bi dest bikevî, ev nivîsê hêsan ê veşartî:'
+    manual_instructions: 'Ku tu nikarî bî koda QR venêrî û pêwîst be bi dest bikevî, ev nivîsê hêsan ê veşartî:'
     setup: Saz bike
     wrong_code: Koda têketinê betal e! Dema rajekarê û dema amûrê raste?
   pagination:
@@ -1337,7 +1345,7 @@ ku:
       invalid_choice: Vebijarka dengdanê ya bijartî tune
       over_character_limit: her yek ji %{max} karakterê dirêjtirîn nabe
       too_few_options: divê ji yekî zêdetir tişt hebin
-      too_many_options: nikare ji %{max} hêmanan bêhtir pêk bê
+      too_many_options: nikare ji %{max} hêmanan bêtir pêk be
   preferences:
     other: Yên din
     posting_defaults: Berdestên şandiyê
@@ -1413,7 +1421,6 @@ ku:
       ios: iOS
       linux: Linux
       mac: macOS
-      other: platforma nenas
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1502,7 +1509,7 @@ ku:
     ignore_favs: Ecibandinan paşguh bike
     ignore_reblogs: Bilindkirinan piştguh bike
     interaction_exceptions: Awarteyên li ser bingehên têkiliyan
-    interaction_exceptions_explanation: Bizanibe ku heke şandiyeke ku ji binî ve têkeve jêrî bijare an bilindkirin ê piştî ku carek din di ser wan re derbas bibe, garantiyek tune ku werin jêbirin.
+    interaction_exceptions_explanation: Bizanibe ku şandiyeke ku ji binî ve têkeve jêrî bijarte yan bilindkirinê piştî ku carek din di ser wan re derbas bibe, garantiyek tune ku werin jêbirin.
     keep_direct: Peyamên rasterast veşêre
     keep_direct_hint: Tu peyamên te yekcar jê naçe
     keep_media: Peyamên bi pêvekên medyayê ve ne biveşêre
@@ -1512,7 +1519,7 @@ ku:
     keep_polls: Rapirsîyan veşêre
     keep_polls_hint: Yek ji rapirsiyên te jê nabe
     keep_self_bookmark: Şandiyên ku wek şûnpel hatine tevlêkirin veşêre
-    keep_self_bookmark_hint: Şandî heke te wek şûnpel tomar kiriye we neyê jêbirin
+    keep_self_bookmark_hint: Şandî ku te wek şûnpel tomar kiriye wê neyê jêbirin
     keep_self_fav: Şandiyên ku te eciband veşêre
     keep_self_fav_hint: Ger te şandiyên xwe ecibandibe jê nabe
     min_age:
@@ -1526,7 +1533,6 @@ ku:
       '7889238': 3 meh
     min_age_label: Şêmûga demê
     min_favs: Peyamên ku ji wê zêdetir hatine ecibandin veşêre
-    min_favs_hint: Şandî ku ji evqas hezkirin wergirtibe nayê jêbirin. Vala bihêle da ku şandiyan jê bibî tevlî ku çiqas hezkirin wergirtibe
     min_reblogs: Şandiyên ku bêtir hatine bilindkirin veşêre
     min_reblogs_hint: Şandî ku ji ji vê hejmarê bêtir bilindkirin wergirtibe nayê jêbirin. Vala bihêle da ku şandiyan jê bibî tevlî ku çiqas hezkirin wergirtibe
   stream_entries:
@@ -1555,12 +1561,12 @@ ku:
     enabled: Rastandina du-gavî bi serfirazî hate çalak kirin
     enabled_success: Rastandina du-gavî bi serfirazî hate çalak kirin
     generate_recovery_codes: Kodên xilaskirinê çêbike
-    lost_recovery_codes: Ku telefon winda bibe kodên xilaskirinê derfet dide ku tu bigihijî ajimêra xwe. Heke te kodên xwe yê xilaskirinê winda kiribe tu dikarî ji vê derê dîsa ava bikî. Kodên te yê xilaskirinê ên kevin wê nederbasdar bibe.
+    lost_recovery_codes: Ku telefon winda bibe kodên xilaskirinê derfet dide ku tu bigihijî ajimêra xwe. Ku te kodên xwe yê xilaskirinê winda kiribe tu dikarî ji vê derê dîsa ava bikî. Kodên te yê xilaskirinê ên kevin wê nederbasdar bibe.
     methods: Rêbazên du-gavî
     otp: Sepana Authenticator
     recovery_codes: Kilîtên rizgarbûna hilanînê
     recovery_codes_regenerated: Kilîtên rizgarbûna bi serkeftî hate nûvkirin
-    recovery_instructions_html: Heke gava te têlefona xwe winda kir, tu dikarî yek ji kodên rizgarkirinê yên jêrîn bi kar bîne da ku tu bigihîjî ajimêra xwe. <strong>Kodên rizgarkirinê li cihekî ewle biparêze </strong>. Mînakî, tu dikarî wan çap bikî û wan bi peldandkên din ên girîng re tomar bike.
+    recovery_instructions_html: Ku gava te têlefona xwe winda kir, tu dikarî yek ji kodên rizgarkirinê yên jêrîn bi kar bîne da ku tu bigihîjî ajimêra xwe. <strong>Kodên rizgarkirinê li cihekî ewle biparêze </strong>. Mînakî, tu dikarî wan çap bikî û wan bi peldandkên din ên girîng re tomar bike.
     webauthn: Kilîdên ewlehiyê
   user_mailer:
     appeal_approved:
@@ -1585,7 +1591,7 @@ ku:
       title: Têketineke nû
     warning:
       appeal: Îtîrazekê bişîne
-      appeal_description: Heke tu bawer dikî ku ev şaşetiyeke, tu dikarî îtîrazekê ji karmendên %{instance} re bişînî.
+      appeal_description: Ku tu bawer dikî ku ev şaşetiyeke, tu dikarî îtîrazekê ji karmendên %{instance} re bişînî.
       categories:
         spam: Nexwestî (Spam)
         violation: Naverok rêbazên civakê yên jêrîn binpê dike
@@ -1627,7 +1633,7 @@ ku:
   users:
     follow_limit_reached: Tu nikarî zêdetirî %{limit} kesan bişopînî
     invalid_otp_token: Koda du-gavî ya nelê
-    otp_lost_help_html: Heke te gihîştina herduyan ji dest da, dibe ku tu bi %{email} re têkilî deyne
+    otp_lost_help_html: Ku te gihîştina herduyan ji dest da, dibe ku tu bi %{email} re têkilî deyne
     seamless_external_login: Te bi rajekarke biyanî re têketina xwe kir, ji ber vê yekê borînpeyv û e-name nayê bikaranîn.
     signed_in_as: 'Têketin wekî:'
   verification:
@@ -1640,7 +1646,7 @@ ku:
       success: Tevlîkirina kilîteke ewlehiyê nû bi awayekî serkeftî qediya.
     delete: Jê bibe
     delete_confirmation: Ma tu bi rastî dixwazî ku ev kilîta ewlehiyê jê bibe?
-    description_html: Heker tu <strong> piştrastkirina kilîta ewlehiyê </strong> çalak bikî, Ji bo têketinê ger tu kilîtekî ewlehiyê bikarbînî.
+    description_html: Ku tu <strong> piştrastkirina kilîta ewlehiyê </strong> çalak bikî, Ji bo têketinê divê tu kilîtekî ewlehiyê bi kar bînî.
     destroy:
       error: Dema kilîda ewlehiyê hate jêbirin pirsgirêkek peyda bû. Ji kerema xwe re careke din biceribîne.
       success: Kilîda ewlehiyê bi awayekî serkeftî hatê jêbirin.

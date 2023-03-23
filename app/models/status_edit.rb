@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: status_edits
@@ -45,20 +46,19 @@ class StatusEdit < ApplicationRecord
 
   def emojis
     return @emojis if defined?(@emojis)
+
     @emojis = CustomEmoji.from_text([spoiler_text, text].join(' '), status.account.domain)
   end
 
   def ordered_media_attachments
     return @ordered_media_attachments if defined?(@ordered_media_attachments)
 
-    @ordered_media_attachments = begin
-      if ordered_media_attachment_ids.nil?
-        []
-      else
-        map = status.media_attachments.index_by(&:id)
-        ordered_media_attachment_ids.map.with_index { |media_attachment_id, index| PreservedMediaAttachment.new(media_attachment: map[media_attachment_id], description: media_descriptions[index]) }
-      end
-    end
+    @ordered_media_attachments = if ordered_media_attachment_ids.nil?
+                                   []
+                                 else
+                                   map = status.media_attachments.index_by(&:id)
+                                   ordered_media_attachment_ids.map.with_index { |media_attachment_id, index| PreservedMediaAttachment.new(media_attachment: map[media_attachment_id], description: media_descriptions[index]) }
+                                 end
   end
 
   def proper

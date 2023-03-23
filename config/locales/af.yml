@@ -19,18 +19,18 @@ af:
       deleted_account: geskrapte rekening
     announcements:
       publish: Publiseer
-      published_msg: Aankondiging was suksesvol gepubliseer!
+      published_msg: Aankondiging suksesvol gepubliseer!
       unpublish: Depubliseer
     domain_allows:
-      export: Uitvoer
-      import: Invoer
+      export: Voer uit
+      import: Voer in
     domain_blocks:
-      existing_domain_block: Jy het alreeds strenger perke ingelê op %{name}.
-      export: Uitvoer
-      import: Invoer
+      existing_domain_block: Jy het %{name} al strenger ingeperk.
+      export: Voer uit
+      import: Voer in
       new:
         severity:
-          desc_html: "<strong>Beperk</strong> sal plasings deur rekeninge op hierdie domein onsigbaar maak vir enigeiemand wat nie volg nie. <strong>Opskort</strong> sal alle inhoud, media en profiel data vir hierdie domein se rekeninge van jou bediener verwyder. Gebruik <strong>Geen</strong> indien jy slegs media wil verwerp."
+          desc_html: "<strong>Beperk</strong> maak plasings deur ’n rekening op hierdie domein onsigbaar vir alle nievolgers van die beperkte rekening. <strong>Skort op</strong> haal alle inhoud, media en profieldata van rekeninge van die opgeskorte domein van jou bediener af. Gebruik <strong>Geen</strong> as jy slegs medialêers wil verwerp."
           silence: Beperk
     export_domain_allows:
       no_file: Geen lêer is gekies nie
@@ -42,13 +42,14 @@ af:
       categories:
         devops: DevOps
       privileges:
+        invite_users_description: Laat gebruikers toe om nuwe mense te nooi na die bediener
         view_devops: DevOps
     settings:
       about:
-        title: Aangaande
+        title: Oor
     statuses:
       favourites: Gunstelinge
-      in_reply_to: Reaksie op
+      in_reply_to: Antwoord op
     strikes:
       actions:
         silence: "%{name} het %{target} se rekening beperk"
@@ -58,56 +59,60 @@ af:
         title: Publiseerders
       trending: Gewild
     webhooks:
-      add_new: Voeg end-punt by
+      add_new: Voeg eindpunt by
       delete: Wis uit
       disable: Deaktiveer
       disabled: Gedeaktiveer
-      edit: Redigeer end-punt
-      empty: Jy het tans geen opgestelde web-hoek end-punte nie.
+      edit: Redigeer eindpunt
+      empty: Jy het nog nie webhoekeindpunte oogestel nie.
       enable: Aktiveer
       enabled: Aktief
-      new: Nuwe web-hoek
+      new: Nuwe webhoek
       rotate_secret: Roteer geheim
       secret: Onderteken geheim
       status: Status
-      title: Web-hoeke
+      title: Webhoeke
       webhook: Web-hoek
   appearance:
-    advanced_web_interface_hint: 'As jy jou hele skerm wydte wil gebruik, laat die gevorderde web koppelvlak jou toe om konfigurasie op te stel vir vele verskillende kolomme om so veel as moontlik inligting op dieselfde tyd te sien as wat jy wil: Tuis, kennisgewings, gefedereerde tydlyn, enige aantal lyste of hits-etikette.'
+    advanced_web_interface_hint: As jy die volle wydte van jou skerm gebruik, laat die gevorderde webkoppelvlak jou toe om kolomme met verskillende soorte inligting langs mekaar te rangskik. So kan jy, byvoorbeeld, tegelyk jou tuistoevoer, kennisgewings, gefedereerde tydlyn en nog ander lyste of hutsetikette dophou.
   application_mailer:
-    notification_preferences: Verander epos voorkeure
-    settings: 'Verander epos voorkeure: %{link}'
+    notification_preferences: Verander e-posvoorkeure
+    settings: 'Verander e-posvoorkeure: %{link}'
   auth:
-    apply_for_account: Doen aansoek om 'n rekening
-    logout: Teken Uit
+    apply_for_account: Doen aansoek om ’n rekening
+    logout: Teken uit
   datetime:
     distance_in_words:
-      about_x_hours: "%{count} ure"
+      about_x_hours: "%{count} uur"
       about_x_months: "%{count} maande"
-      about_x_years: "%{count} jare"
+      about_x_years: "%{count} jaar"
   disputes:
     strikes:
-      approve_appeal: Aanvaar appêl
-      reject_appeal: Verwerp appêl
+      approve_appeal: Aanvaar appèl
+      reject_appeal: Verwerp appèl
   errors:
     '400': The request you submitted was invalid or malformed.
-    '403': Jy het nie toestemming om hierdie bladsy te besigtig nie.
+    '403': Jy het nie toestemming om hierdie bladsy te sien nie.
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422': 
     '429': Too many requests
-    '500': 
     '503': The page could not be served due to a temporary server failure.
   exports:
     bookmarks: Boekmerke
+    lists: Lyste
+  filters:
+    contexts:
+      home: Tuis en lyste
   imports:
     types:
       bookmarks: Boekmerke
+  invites:
+    title: Nooi ander
   login_activities:
-    description_html: Indien jy onbekende aktiwiteite gewaar, oorweeg dit om jou wagwoord te verander en twee-faktor verifikasie te aktiveer.
+    description_html: Indien jy onbekende aktiwiteite gewaar, oorweeg dit om jou wagwoord te verander en tweefaktorverifikasie te aktiveer.
   navigation:
-    toggle_menu: Skakel-kieslys
+    toggle_menu: Wisselkieslys
   notification_mailer:
     mention:
       action: Reageer
@@ -117,15 +122,15 @@ af:
         format: "%n %u"
   preferences:
     other: Ander
-    posting_defaults: Plasing verstekte
-    public_timelines: Publieke tydlyne
+    posting_defaults: Standaardplasings
+    public_timelines: Openbare tydlyne
   privacy_policy:
     title: Privaatheidsbeleid
   rss:
-    content_warning: 'Inhoud waarskuwing:'
+    content_warning: 'Inhoudwaarskuwing:'
     descriptions:
-      account: Publieke plasings vanaf @%{acct}
-      tag: 'Publieke plasings met die #%{hashtag} etiket'
+      account: Openbare plasings vanaf @%{acct}
+      tag: 'Openbare plasings met die etiket #%{hashtag}'
   sessions:
     browsers:
       blackberry: BlackBerry
@@ -144,10 +149,10 @@ af:
     ignore_favs: Ignoreer gunstelinge
   strikes:
     errors:
-      too_late: Dit is te laat om hierdie staking te appelleer
+      too_late: Dit is te laat om hierteen te appelleer
   user_mailer:
     warning:
       title:
-        silence: Beperkte rekening
+        silence: Rekening beperk
     welcome:
       edit_profile_action: Stel profiel op

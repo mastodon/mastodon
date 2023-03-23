@@ -251,10 +251,13 @@ kab:
       add_new: Timerna n taɣult ɣer tabdert tamellalt
       created_msg: Taγult-a tettwarna γer wumuγ amellal mebla ugur
       destroyed_msg: Taγult-a tettwakkes seg umuγ amellal
+      import: Kter
       undo: Kkes seg tebdart tamellalt
     domain_blocks:
       add_new: Rni iḥder amaynut n taɣult
       domain: Taγult
+      export: Sifeḍ
+      import: Kter
       new:
         create: Rnu-d iḥder
         severity:
@@ -283,6 +286,8 @@ kab:
       back_to_all: Akk
       back_to_limited: Ɣur-s talast
       by_domain: Taγult
+      content_policies:
+        policy: Tasertit
       delivery:
         all: Akk
         clear: Sfeḍ tuccḍiwin n usiweḍ
@@ -340,8 +345,6 @@ kab:
       save_and_enable: Sekles rnu rmed-it
       status: Addad
       title: Imnegliyen
-    report_notes:
-      today_at: Ass-a ɣef %{time}
     reports:
       account:
         notes:
@@ -505,7 +508,6 @@ kab:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422': 
     '429': Too many requests
     '500':
       title: Asebter-ayi d arameγtu
@@ -515,6 +517,7 @@ kab:
   exports:
     archive_takeout:
       date: Azemz
+      download: Sider-d aḥraz-ik·im
       size: Teγzi
     bookmarks: Ticraḍ
     csv: CSV
@@ -540,8 +543,6 @@ kab:
       back_to_filter: Tuɣalin ɣer umsizdeg
       batch:
         remove: Kkes seg umsizdeg
-  footer:
-    trending_now: Ayen mucaɛen tura
   generic:
     all: Akk
     changes_saved_msg: Ttwaskelsen ibelliden-ik·im akken ilaq!
@@ -624,8 +625,6 @@ kab:
     next: Γer zdat
     older: Aqbuṛ
     prev: Win iɛeddan
-  preferences:
-    other: Wiyaḍ
   privacy_policy:
     title: Tasertit tabaḍnit
   relationships:
@@ -668,7 +667,6 @@ kab:
       ios: iOS
       linux: Linux
       mac: macOS
-      other: anagraw arussin
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Tiliγri Windows Phone
@@ -767,7 +765,7 @@ kab:
         disable: Amiḍan i igersen
         none: Γur-wat
         silence: Amiḍan yesɛa talast
-        suspend: Amiḍan yettwaḥebsen
+        suspend: Amiḍan yettwaḥbas
     welcome:
       final_action: Bdu asuffeɣ
       full_handle: Tansa umiḍan-ik takemmalit

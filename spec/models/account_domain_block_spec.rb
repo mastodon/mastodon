@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe AccountDomainBlock, type: :model do
@@ -7,7 +9,7 @@ RSpec.describe AccountDomainBlock, type: :model do
 
     AccountDomainBlock.create!(account: account, domain: 'a.domain.blocked.later')
 
-    expect(Rails.cache.exist?("exclude_domains_for:#{account.id}")).to eq false
+    expect(Rails.cache.exist?("exclude_domains_for:#{account.id}")).to be false
   end
 
   it 'removes blocking cache after destruction' do
@@ -17,6 +19,6 @@ RSpec.describe AccountDomainBlock, type: :model do
 
     block.destroy!
 
-    expect(Rails.cache.exist?("exclude_domains_for:#{account.id}")).to eq false
+    expect(Rails.cache.exist?("exclude_domains_for:#{account.id}")).to be false
   end
 end

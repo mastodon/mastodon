@@ -1,7 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'devise_two_factor/spec_helpers'
 
 RSpec.describe User, type: :model do
+  let(:password) { 'abcd1234' }
+  let(:account) { Fabricate(:account, username: 'alice') }
+
   it_behaves_like 'two_factor_backupable'
 
   describe 'otp_secret' do
@@ -43,7 +48,7 @@ RSpec.describe User, type: :model do
     it 'cleans out empty string from languages' do
       user = Fabricate.build(:user, chosen_languages: [''])
       user.valid?
-      expect(user.chosen_languages).to eq nil
+      expect(user.chosen_languages).to be_nil
     end
   end
 
@@ -96,9 +101,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  let(:account) { Fabricate(:account, username: 'alice') }
-  let(:password) { 'abcd1234' }
-
   describe 'blacklist' do
     around(:each) do |example|
       old_blacklist = Rails.configuration.x.email_blacklist
@@ -110,19 +112,19 @@ RSpec.describe User, type: :model do
       Rails.configuration.x.email_domains_blacklist = old_blacklist
     end
 
-    it 'should allow a non-blacklisted user to be created' do
+    it 'allows a non-blacklisted user to be created' do
       user = User.new(email: 'foo@example.com', account: account, password: password, agreement: true)
 
       expect(user.valid?).to be_truthy
     end
 
-    it 'should not allow a blacklisted user to be created' do
+    it 'does not allow a blacklisted user to be created' do
       user = User.new(email: 'foo@mvrht.com', account: account, password: password, agreement: true)
 
       expect(user.valid?).to be_falsey
     end
 
-    it 'should not allow a subdomain blacklisted user to be created' do
+    it 'does not allow a subdomain blacklisted user to be created' do
       user = User.new(email: 'foo@mvrht.com.topdomain.tld', account: account, password: password, agreement: true)
 
       expect(user.valid?).to be_falsey
@@ -142,10 +144,136 @@ RSpec.describe User, type: :model do
   end
 
   describe '#confirm' do
-    it 'sets email to unconfirmed_email' do
-      user = Fabricate.build(:user, confirmed_at: Time.now.utc, unconfirmed_email: 'new-email@example.com')
-      user.confirm
-      expect(user.email).to eq 'new-email@example.com'
+    subject { user.confirm }
+
+    let(:new_email) { 'new-email@example.com' }
+
+    before do
+      allow(TriggerWebhookWorker).to receive(:perform_async)
+    end
+
+    context 'when the user is already confirmed' do
+      let!(:user) { Fabricate(:user, confirmed_at: Time.now.utc, approved: true, unconfirmed_email: new_email) }
+
+      it 'sets email to unconfirmed_email' do
+        expect { subject }.to change { user.reload.email }.to(new_email)
+      end
+
+      it 'does not trigger the account.approved Web Hook' do
+        subject
+        expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
+      end
+    end
+
+    context 'when the user is a new user' do
+      let(:user) { Fabricate(:user, confirmed_at: nil, unconfirmed_email: new_email) }
+
+      context 'when the user is already approved' do
+        around(:example) do |example|
+          registrations_mode = Setting.registrations_mode
+          Setting.registrations_mode = 'approved'
+
+          example.run
+
+          Setting.registrations_mode = registrations_mode
+        end
+
+        before do
+          user.approve!
+        end
+
+        it 'sets email to unconfirmed_email' do
+          expect { subject }.to change { user.reload.email }.to(new_email)
+        end
+
+        it 'triggers the account.approved Web Hook' do
+          user.confirm
+          expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
+        end
+      end
+
+      context 'when the user does not require explicit approval' do
+        around(:example) do |example|
+          registrations_mode = Setting.registrations_mode
+          Setting.registrations_mode = 'open'
+
+          example.run
+
+          Setting.registrations_mode = registrations_mode
+        end
+
+        it 'sets email to unconfirmed_email' do
+          expect { subject }.to change { user.reload.email }.to(new_email)
+        end
+
+        it 'triggers the account.approved Web Hook' do
+          user.confirm
+          expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
+        end
+      end
+
+      context 'when the user requires explicit approval but is not approved' do
+        around(:example) do |example|
+          registrations_mode = Setting.registrations_mode
+          Setting.registrations_mode = 'approved'
+
+          example.run
+
+          Setting.registrations_mode = registrations_mode
+        end
+
+        it 'sets email to unconfirmed_email' do
+          expect { subject }.to change { user.reload.email }.to(new_email)
+        end
+
+        it 'does not trigger the account.approved Web Hook' do
+          subject
+          expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
+        end
+      end
+    end
+  end
+
+  describe '#approve!' do
+    subject { user.approve! }
+
+    around(:example) do |example|
+      registrations_mode = Setting.registrations_mode
+      Setting.registrations_mode = 'approved'
+
+      example.run
+
+      Setting.registrations_mode = registrations_mode
+    end
+
+    before do
+      allow(TriggerWebhookWorker).to receive(:perform_async)
+    end
+
+    context 'when the user is already confirmed' do
+      let(:user) { Fabricate(:user, confirmed_at: Time.now.utc, approved: false) }
+
+      it 'sets the approved flag' do
+        expect { subject }.to change { user.reload.approved? }.to(true)
+      end
+
+      it 'triggers the account.approved Web Hook' do
+        subject
+        expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
+      end
+    end
+
+    context 'when the user is not confirmed' do
+      let(:user) { Fabricate(:user, confirmed_at: nil, approved: false) }
+
+      it 'sets the approved flag' do
+        expect { subject }.to change { user.reload.approved? }.to(true)
+      end
+
+      it 'does not trigger the account.approved Web Hook' do
+        subject
+        expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
+      end
     end
   end
 
@@ -159,7 +287,7 @@ RSpec.describe User, type: :model do
     it 'saves nil for otp_secret' do
       user = Fabricate.build(:user, otp_secret: 'oldotpcode')
       user.disable_two_factor!
-      expect(user.reload.otp_secret).to be nil
+      expect(user.reload.otp_secret).to be_nil
     end
 
     it 'saves cleared otp_backup_codes' do
@@ -187,7 +315,7 @@ RSpec.describe User, type: :model do
   describe 'settings' do
     it 'is instance of Settings::ScopedSettings' do
       user = Fabricate(:user)
-      expect(user.settings).to be_kind_of Settings::ScopedSettings
+      expect(user.settings).to be_a Settings::ScopedSettings
     end
   end
 
@@ -220,17 +348,17 @@ RSpec.describe User, type: :model do
       Rails.configuration.x.email_domains_whitelist = old_whitelist
     end
 
-    it 'should not allow a user to be created unless they are whitelisted' do
+    it 'does not allow a user to be created unless they are whitelisted' do
       user = User.new(email: 'foo@example.com', account: account, password: password, agreement: true)
       expect(user.valid?).to be_falsey
     end
 
-    it 'should allow a user to be created if they are whitelisted' do
+    it 'allows a user to be created if they are whitelisted' do
       user = User.new(email: 'foo@mastodon.space', account: account, password: password, agreement: true)
       expect(user.valid?).to be_truthy
     end
 
-    it 'should not allow a user with a whitelisted top domain as subdomain in their email address to be created' do
+    it 'does not allow a user with a whitelisted top domain as subdomain in their email address to be created' do
       user = User.new(email: 'foo@mastodon.space.userdomain.com', account: account, password: password, agreement: true)
       expect(user.valid?).to be_falsey
     end
@@ -242,7 +370,7 @@ RSpec.describe User, type: :model do
         Rails.configuration.x.email_domains_blacklist = old_blacklist
       end
 
-      it 'should not allow a user to be created with a specific blacklisted subdomain even if the top domain is whitelisted' do
+      it 'does not allow a user to be created with a specific blacklisted subdomain even if the top domain is whitelisted' do
         Rails.configuration.x.email_domains_blacklist = 'blacklisted.mastodon.space'
 
         user = User.new(email: 'foo@blacklisted.mastodon.space', account: account, password: password)
@@ -283,6 +411,7 @@ RSpec.describe User, type: :model do
 
   describe '#disable!' do
     subject(:user) { Fabricate(:user, disabled: false, current_sign_in_at: current_sign_in_at, last_sign_in_at: nil) }
+
     let(:current_sign_in_at) { Time.zone.now }
 
     before do
@@ -371,6 +500,7 @@ RSpec.describe User, type: :model do
 
   describe '#active_for_authentication?' do
     subject { user.active_for_authentication? }
+
     let(:user) { Fabricate(:user, disabled: disabled, confirmed_at: confirmed_at) }
 
     context 'when user is disabled' do

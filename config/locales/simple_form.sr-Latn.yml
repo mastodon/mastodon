@@ -2,58 +2,316 @@
 sr-Latn:
   simple_form:
     hints:
+      account_alias:
+        acct: Navedite korisničko_ime@domen naloga sa kojeg želite da se preselite
+      account_migration:
+        acct: Navedite korisničko_ime@domen naloga na koji želite da se preselite
+      account_warning_preset:
+        text: Možete koristiti sintaksu objava, kao što su URL adrese, heš oznake i pominjanja
+        title: Opciono. Nije vidljivo primaocu
+      admin_account_action:
+        include_statuses: Korisnik će videti koje su objave prouzrokovale moderacijsku radnju ili upozorenje
+        send_email_notification: Korisnik će dobiti objašnjenje toga šta mu se desilo sa nalogom
+        text_html: Opcionalno. Možete koristiti sintaksu objava. Možete <a href="%{path}">dodati unapred određene postavke upozorenja</a> za uštedu vremena
+        type_html: Izaberite šta da radite sa <strong>%{acct}</strong>
+        types:
+          disable: Sprečava korisnika da koristi svoj nalog, ali ne briše niti sakriva njegove sadržaje.
+          none: Koristite ovo da pošaljete upozorenje korisniku bez pokretanja bilo koje druge radnje.
+          sensitive: Učini da svi medijski prilozi ovog korisnika prisilno budu označeni kao osetljivi.
+          silence: Sprečava korisnika da pravi javne objave, sakriva njegove objave i obaveštenja od ljudi koji ga ne prate. Zatvara sve prijave podnete protiv ovog naloga.
+          suspend: Sprečava svu interakciju od ovog naloga i ka ovom nalogu i briše njegov sadržaj. Opozivo u roku od 30 dana. Zatvara sve prijave podnete protiv ovog naloga.
+        warning_preset_id: Opcionalno. Možete i dalje dodati prilagođeni tekst na kraj preseta
+      announcement:
+        all_day: Kada je ova opcija označena, samo datumi iz vremenskog opsega će biti prikazani
+        ends_at: Opciono. Objava će biti automatski opozvana u ovom trenutku
+        scheduled_at: Ostavite prazno da biste odmah objavili obaveštenje
+        starts_at: Opciono. U slučaju da je najava vezana za određeni vremenski raspon
+        text: Možete koristiti sintaksu objava. Molimo Vas vodite računa o prostoru koji će objava zauzimati na ekranu korisnika
+      appeal:
+        text: Možete podneti samo jednu žalbu na upisan prestup
       defaults:
-        avatar: PNG, GIF ili JPG. Najviše %{size}. Biće smanjena na %{dimensions}px
-        digest: Poslato posle dužeg perioda neaktivnosti sa pregledom svih bitnih stvari koje ste dobili dok ste bili odsutni
-        header: PNG, GIF ili JPG. Najviše %{size}. Biće smanjena na %{dimensions}px
-        locked: Zahteva da pojedinačno odobrite pratioce
-        setting_noindex: Utiče na Vaš javni profil i statusne strane
+        autofollow: Osobe koje se prijave kroz pozivnice će vas automatski zapratiti
+        avatar: PNG, GIF ili JPG. Najviše %{size}. Biće smanjeno na %{dimensions}px
+        bot: Daje drugima do znanja da ovaj nalog uglavnom vrši automatizovane radnje i možda se ne nadgleda
+        context: Jedan ili više konteksta u kojima treba da se primeni filter
+        current_password: Iz bezbednosnih razloga molimo Vas unesite lozinku trenutnog naloga
+        current_username: Da biste potvrdili, Molimo Vas unesite korisničko ime trenutno aktivnog naloga
+        digest: Šalje se samo posle dužeg perioda neaktivnosti i samo u slučaju da ste primili jednu ili više ličnih poruka tokom Vašeg odsustva
+        discoverable: Dozvolite nepoznatim korisnicima da otkriju Vaš nalog putem preporuka, trendova i drugih funkcija
+        email: Biće Vam poslat mejl sa potvrdom
+        fields: Možete imati do 4 stavke prikazane kao tabela na svom profilu
+        header: PNG, GIF ili JPG. Najviše %{size}. Biće smanjeno na %{dimensions}px
+        inbox_url: Kopirajte URL sa naslovne strane releja koji želite koristiti
+        irreversible: Filtrirane obajve će nestati nepovratno, čak i ako je filter kasnije uklonjen
+        locale: Jezik korisničkog okruženja, e-pošte i mobilnih obaveštenja
+        locked: Kontrolišite ko može da Vas prati tako što ćete pojedinačno odobravati zahteve za praćenje
+        password: Koristite najmanje 8 znakova
+        phrase: Biće uparena bez obzira na veliko ili malo slovo u tekstu ili upozorenja o sadržaju objave
+        scopes: Kojim API-jima će aplikacija imati pristup. Ako izaberete opseg najvišeg nivoa, ne morate odabrati pojedinačne.
+        setting_aggregate_reblogs: Ne prikazuj nova podržavanja za objave koje su nedavno podržane (utiče samo na nedavno primljena podržavanja)
+        setting_always_send_emails: Obaveštenja e-poštom se po pravilu neće slati kada aktivno koristite Mastodon
+        setting_default_sensitive: Osetljivi mediji su podrazumevano skriveni i mogu se otkriti klikom
+        setting_display_media_default: Sakrij medije označene kao osetljive
+        setting_display_media_hide_all: Uvek sakrij sve medije
+        setting_display_media_show_all: Uvek prikaži medije označene kao osetljive
+        setting_hide_network: Koga pratite i ko Vas prati neće biti prikazano na Vašem profilu
+        setting_noindex: Utiče na Vaš javni profil i stranice sa objavama
+        setting_show_application: Aplikacija koju koristite za objavljivanje će biti prikazana u detaljnom prikazu vaših objava
+        setting_use_blurhash: Gradijenti se formiraju na osnovu bojâ skrivenih slika i zamućuju prikaz, prikrivajući detalje
+        setting_use_pending_items: Sakriva ažuriranja vremenske linije iza klika umesto automatskog ažuriranja i pomeranja vremenske linije
+        username: Vaš nadimak će biti jedinstven na %{domain}
+        whole_word: Kada je ključna reč ili fraza isključivo alfanumerička, biće primenjena samo ako se podudara sa celom rečju
+      domain_allow:
+        domain: Ovaj domen će moći da preuzima podatke sa ovog servera i dolazni podaci sa njega će se obrađivati i čuvati
+      email_domain_block:
+        domain: Ovo može biti ime domena koje se pojavljuje u adresi e-pošte ili MX zapisa koji koristi. Oni će biti provereni prilikom registracije.
+        with_dns_records: Biće učinjen pokušaj da se razreše DNS zapisi datog domena i rezultati će takođe biti blokirani
+      featured_tag:
+        name: 'Evo nekih od heš oznaka koje ste u prethodnom periodu često koristili:'
+      filters:
+        action: Izaberite koju radnju izvršiti kada objava odgovara filteru
+        actions:
+          hide: Potpuno sakrij filtrirani sadržaj, ponašajući se kao da ne postoji
+          warn: Sakrij filtrirani sadržaj iza upozorenja u kome se navodi naziv filtera
+      form_admin_settings:
+        activity_api_enabled: Brojevi lokalno postavljenih objava, aktivnih korisnika i novih registracija na nedeljnoj bazi
+        backups_retention_period: Čuvaj generisane korisničke arhive navedeni broj dana.
+        bootstrap_timeline_accounts: Ovi nalozi će biti zakačeni na vrh preporuka za praćenje novih korisnika.
+        closed_registrations_message: Prikazuje se kada su registracije zatvorene
+        content_cache_retention_period: Kada se postavi na pozitivnu vrednost, objave sa drugih servera će biti izbrisane nakon navedenog broja dana. Ovo može biti nepovratno.
+        custom_css: Možete da primenite prilagođene stilove na veb verziji Mastodona.
+        mascot: Zamenjuje ilustraciju u naprednom veb okruženju.
+        media_cache_retention_period: Kada se postavi na pozitivnu vrednost, preuzete medijske datoteke će biti izbrisane nakon navedenog broja dana, i ponovo preuzete na zahtev.
+        peers_api_enabled: Lista domena sa kojima se ovaj server susreo u fediverzumu. Ovde nisu sadržani podaci o tome da li se Vaš server federiše sa drugim serverima, već samo da Vaš server zna za njih. Ove informacije koriste servisi koji prikupljaju podatke i vode statistiku o federaciji u širem smislu.
+        profile_directory: Direktorijum profila navodi sve korisnike koji su se opredelili da budu vidljivi.
+        require_invite_text: Kada registracije zahtevaju ručno odobrenje, postavite da odgovor na „Zašto želite da se pridružite?“ bude obavezan, a ne opcionalan
+        site_contact_email: Kako korisnici mogu da kontaktiraju sa Vama za pravna pitanja ili pitanja u vezi podrške.
+        site_contact_username: Kako korisnici mogu da kontaktiraju sa Vama na Mastodonu.
+        site_extended_description: Bilo kakve dodatne informacije koje mogu biti korisne posetiocima i Vašim korisnicima. Mogu se strukturirati pomoću Markdown sintakse.
+        site_short_description: Kratak opis pomoću koga se na jedinstven način identifikuje Vaš server. Ko ga održava, kome je namenjen?
+        site_terms: Koristite sopstvenu politiku privatnosti ili ostavite prazno da bi se koristila podrazumevana. Može se strukturirati pomoću Markdown sintakse.
+        site_title: Način na koji ljudi mogu da referišu na Vaš server osim naziva njegovog domena.
+        status_page_url: URL stranice gde ljudi mogu da vide status servera dok je server oboren
+        theme: Tema koju vide posetioci koji nisu prijavljeni i novi korisnici.
+        thumbnail: Slika u razmeri od približno 2:1 koja se prikazuje pored informacija o Vašem serveru.
+        timeline_preview: Posetioci koji nisu prijavljeni će moći da pregledaju najnovije javne objave dostupne na serveru.
+        trendable_by_default: Preskoči ručni pregled sadržaja koji je u trendu. Pojedinačne stavke se nakon toga i dalje mogu ukloniti iz trendova.
+        trends: Trendovi pokazuju koje objave, heš oznake i vesti postaju sve popularnije na Vašem serveru.
+        trends_as_landing_page: Prikaži sadržaj u trendu odjavljenim korisnicima i posetiocima umesto opisa ovog servera. Zahteva da trendovi budu omogućeni.
+      form_challenge:
+        current_password: Ulazite u bezbedno područje
       imports:
         data: CSV fajl izvezen sa druge Mastodont instance
+      invite_request:
+        text: Ovo će nam pomoći da pregledamo Vašu prijavu
+      ip_block:
+        comment: Opciono. Zapamtite zašto ste dodali ovo pravilo.
+        expires_in: IP adrese su ograničeni resurs, ponekad se dele i često menjaju korisnika. Zbog toga se IP blokovi na neograničeno vreme ne preporučuju.
+        ip: Unesite IPv4 ili IPv6 adresu. Možete blokirati čitave opsege koristeći CIDR sintaksu. Vodite računa da se ne zaključate!
+        severities:
+          no_access: Blokiraj pristup svim resursima
+          sign_up_block: Nove registracije neće biti moguće
+          sign_up_requires_approval: Nove registracije će zahtevati Vaše odobrenje
+        severity: Izaberite šta će se desiti sa zahtevima sa ove IP adrese
+      rule:
+        text: Opišite pravilo ili uslov za korisnike na ovom serveru. Potrudite se da opis bude kratak i jednostavan
       sessions:
         otp: 'Unesite dvofaktorski kod sa Vašeg telefona ili koristite jedan od kodova za oporavak:'
+        webauthn: Ako je u pitanju USB ključ, obavezno ga ubacite i, ako je potrebno, pritisnite ga.
+      tag:
+        name: Mogu se samo promeniti mala slova u velika ili obrnuto, na primer, da bi bilo čitljivije
+      user:
+        chosen_languages: Kada je označeno, objave u izabranim jezicima će biti prikazane na javnoj vremenskoj liniji
+        role: Uloga kontroliše koje dozvole korisnik ima
+      user_role:
+        color: Boja koja će se koristiti za ulogu u celom korisničkom okruženju, kao RGB u heksadecimalnom formatu
+        highlighted: Ovo čini ulogu javno vidljivom
+        name: Javni naziv uloge, ako je uloga podešena da se prikazuje kao značka
+        permissions_as_keys: Korisnici sa ovom ulogom će imati pristup...
+        position: Viša uloga odlučuje o rešavanju sukoba u određenim situacijama. Određene radnje se mogu izvršiti samo na ulogama sa nižim prioritetom
+      webhook:
+        events: Izaberite događaje za slanje
+        url: Gde će se događaji slati
     labels:
+      account:
+        fields:
+          name: Etiketa
+          value: Sadržaj
+      account_alias:
+        acct: Ručica (@) starog naloga
+      account_migration:
+        acct: Ručica (@) novog naloga
+      account_warning_preset:
+        text: Tekst preseta
+        title: Naslov
+      admin_account_action:
+        include_statuses: Uključi prijavljene objave u e-poštu
+        send_email_notification: Obavesti korisnika preko e-pošte
+        text: Prilagođeno upozorenje
+        type: Radnja
+        types:
+          disable: Onemogući
+          none: Ne radi ništa
+          sensitive: Osetljivo
+          silence: Utišaj
+          suspend: Obustavite i nepovratno izbrišite podatke o nalogu
+        warning_preset_id: Koristi upozoravajući preset
+      announcement:
+        all_day: Celodnevni događaj
+        ends_at: Kraj događaja
+        scheduled_at: Planiraj objavljivanje
+        starts_at: Početak događaja
+        text: Najava
+      appeal:
+        text: Objasni zašto ovu odluku treba poništiti
       defaults:
+        autofollow: Pozovite da prati vaš nalog
+        avatar: Avatar
+        bot: Ovo je nalog bota
+        chosen_languages: Filtriraj jezike
         confirm_new_password: Potvrdite novu lozinku
         confirm_password: Potvrdite lozinku
+        context: Filtriraj kontekste
         current_password: Trenutna lozinka
         data: Podaci
+        discoverable: Navedite ovaj nalog u fascikli
         display_name: Ime za prikaz
         email: Adresa e-pošte
         expires_in: Ističe nakon
+        fields: Metapodaci naloga
         header: Zaglavlje
+        honeypot: "%{label} (ne popunjavaj)"
+        inbox_url: URL od relejnog prijemnog sandučeta
+        irreversible: Ispustiti umesto sakriti
         locale: Jezik
-        locked: Zaključaj nalog
+        locked: Zahtevaj zahteve za praćenje
         max_uses: Maksimalni broj korišćenja
         new_password: Nova lozinka
         note: Biografija
         otp_attempt: Dvofaktorski kod
         password: Lozinka
-        setting_auto_play_gif: Automatski puštaj animirane GIF-ove
+        phrase: Ključna reč ili fraza
+        setting_advanced_layout: Omogući napredno veb okruženje
+        setting_aggregate_reblogs: Grupiši deljenja u vremenskim linijama
+        setting_always_send_emails: Uvek šalji obaveštenja e-poštom
+        setting_auto_play_gif: Automatski reprodukuj animirane GIF-ove
         setting_boost_modal: Prikaži dijalog za potvrdu pre davanja podrške
+        setting_crop_images: Izreži slike u neproširenim objavama na 16x9
+        setting_default_language: Jezik objavljivanja
         setting_default_privacy: Privatnost objava
         setting_default_sensitive: Uvek označi multimediju kao osetljivu
-        setting_delete_modal: Prikaži dijalog za potvrdu pre brisanja tuta
-        setting_noindex: Odjavi se od indeksiranja search engine-a
+        setting_delete_modal: Prikaži dijalog za potvrdu pre brisanja objave
+        setting_disable_swiping: Onemogući pokrete prevlačenja
+        setting_display_media: Prikaz medija
+        setting_display_media_default: Podrazumevano
+        setting_display_media_hide_all: Sakrij sve
+        setting_display_media_show_all: Prikaži sve
+        setting_expand_spoilers: Uvek proširi objave koje su označene upozorenjem sadržaja
+        setting_hide_network: Sakrij svoju mrežu
+        setting_noindex: Onemogući indeksiranje pretraživača
         setting_reduce_motion: Smanji pokrete u animacijama
+        setting_show_application: Otkrij aplikaciju koja se koristi za slanje postova
         setting_system_font_ui: Koristi sistemski font
         setting_theme: Tema sajta
+        setting_trends: Prikaži današnje trendove
         setting_unfollow_modal: Prikaži dijalog za potvrdu pre nego što otpratite nekoga
+        setting_use_blurhash: Prikaži gradijente u boji za skrivene medije
+        setting_use_pending_items: Spori režim
         severity: Oštrina
+        sign_in_token_attempt: Sigurnosni kod
+        title: Naslov
         type: Tip uvoza
         username: Korisničko ime
+        username_or_email: Korisničko ime ili E-pošta
+        whole_word: Cela reč
+      email_domain_block:
+        with_dns_records: Uključite MX zapise i IP adrese domena
+      featured_tag:
+        name: Heš oznaka
+      filters:
+        actions:
+          hide: Sakrij u potpunosti
+          warn: Sakrij uz upozorenje
+      form_admin_settings:
+        activity_api_enabled: Objavi prikupljenu statistiku o korisničkoj aktivnosti u API
+        backups_retention_period: Period čuvanja korisničke arhive
+        bootstrap_timeline_accounts: Uvek preporuči ove naloge novim korisnicima
+        closed_registrations_message: Prilagođena poruka kada prijave nisu moguće
+        content_cache_retention_period: Period čuvanja keša sadržaja
+        custom_css: Prilagođeni CSS
+        mascot: Prilagođena maskota (nasleđe)
+        media_cache_retention_period: Period čuvanja keša medija
+        peers_api_enabled: Objavite listu otkrivenih servera u API
+        profile_directory: Omogući direktorijum profila
+        registrations_mode: Ko može da se prijavi
+        require_invite_text: Zatraži razlog za pristupanje
+        show_domain_blocks: Pprikaži blokove domena
+        show_domain_blocks_rationale: Pokaži zašto su domeni blokirani
+        site_contact_email: E-adresa za kontakt
+        site_contact_username: Korisničko ime za kontakt
+        site_extended_description: Prošireni opis
+        site_short_description: Opis servera
+        site_terms: Politika privatnosti
+        site_title: Ime servera
+        status_page_url: URL statusne stranice
+        theme: Podrazumevana tema
+        thumbnail: Sličica servera
+        timeline_preview: Dozvoli neautorizovan pristup javnim vremenskim osama
+        trendable_by_default: Dozvoli trendove bez prethodnog pregleda
+        trends: Omogući trendove
+        trends_as_landing_page: Koristite trendove kao stranicu dočeka
       interactions:
         must_be_follower: Blokiraj obaveštenja od korisnika koji me ne prate
         must_be_following: Blokiraj obaveštenja od ljudi koje ne pratim
         must_be_following_dm: Blokiraj direktne poruke od ljudi koje ne pratim
+      invite:
+        comment: Komentar
+      invite_request:
+        text: Zašto želiš da se pridružiš?
+      ip_block:
+        comment: Komentar
+        ip: IP
+        severities:
+          no_access: Blokiraj pristup
+          sign_up_block: Blokiraj prijave
+          sign_up_requires_approval: Ograniči prijave
+        severity: Pravilo
       notification_emails:
+        appeal: Neko se žali na odluku moderatora
         digest: Šalji e-poštu sa sažetkom
         favourite: Šalji e-poštu kada neko stavi da mu je Vaš status omiljen
         follow: Šalji e-poštu kada Vas neko zaprati
         follow_request: Šalji e-poštu kada neko zatraži da Vas zaprati
         mention: Šalji e-poštu kada Vas neko pomene
+        pending_account: Novi nalog treba pregledati
         reblog: Šalji e-poštu kada neko podrži Vaš status
+        report: Podneta je nova prijava
+        trending_tag: Novi trend treba pregledati
+      rule:
+        text: Pravilo
+      tag:
+        listable: Dozvoli da se ova heš oznaka pojavljuje u pretragama i predlozima
+        name: Heš oznaka
+        trendable: Dozvoli da se ova heš oznaka pojavi u okviru trendova
+        usable: Dozvoli objavama da koriste ovu heš oznaku
+      user:
+        role: Uloga
+      user_role:
+        color: Boja bedža
+        highlighted: Prikaži ulogu i bedž na profilima korisnika
+        name: Ime
+        permissions_as_keys: Ovlašćenja
+        position: Prioritet
+      webhook:
+        events: Omogućeni događaji
+        url: URL krajnje tačke
     'no': Ne
+    not_recommended: Nije preporučeno
+    recommended: Preporučeno
     required:
+      mark: "*"
       text: obavezno
+    title:
+      sessions:
+        webauthn: Koristi jedan od svojih bezbednosnih ključeva za prijavljivanje
     'yes': Da

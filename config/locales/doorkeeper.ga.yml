@@ -17,6 +17,7 @@ ga:
       confirmations:
         destroy: An bhfuil tú cinnte?
       index:
+        application: Ainm feidhmchláir
         delete: Scrios
         name: Ainm
         show: Taispeáin
@@ -26,18 +27,26 @@ ga:
         title: 'Ainm feidhmchláir: %{name}'
     authorizations:
       buttons:
+        authorize: Ceadaigh
         deny: Diúltaigh
     authorized_applications:
       confirmations:
         revoke: An bhfuil tú cinnte?
+      index:
+        scopes: Ceadanna
+        superapp: Inmheánach
     grouped_scopes:
       title:
         accounts: Cuntais
-        all: Gach Rud
         bookmarks: Leabharmharcanna
         conversations: Comhráite
         favourites: Toghanna
         filters: Scagairí
+        follows: Cuntais leanta
         lists: Liostaí
         notifications: Fógraí
+        search: Cuardaigh
         statuses: Postálacha
+    scopes:
+      write:filters: cruthaigh scagairí
+      write:lists: cruthaigh liostaí

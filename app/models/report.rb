@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: reports
@@ -32,7 +33,7 @@ class Report < ApplicationRecord
   belongs_to :action_taken_by_account, class_name: 'Account', optional: true
   belongs_to :assigned_account, class_name: 'Account', optional: true
 
-  has_many :notes, class_name: 'ReportNote', foreign_key: :report_id, inverse_of: :report, dependent: :destroy
+  has_many :notes, class_name: 'ReportNote', inverse_of: :report, dependent: :destroy
   has_many :notifications, as: :activity, dependent: :destroy
 
   scope :unresolved, -> { where(action_taken_at: nil) }

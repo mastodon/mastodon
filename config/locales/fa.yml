@@ -1,7 +1,7 @@
 ---
 fa:
   about:
-    about_mastodon_html: 'شبکهٔ اجتماعی آینده: بدون تبلیغات، بدون شنود از طرف شرکت‌ها، طراحی اخلاق‌مدار، و معماری غیرمتمرکز! با ماستودون صاحب داده‌های خودتان باشید!'
+    about_mastodon_html: 'شبکه‌ی اجتماعی آینده: بدون تبلیغات، بدون شنود از طرف شرکت‌ها، طراحی اخلاق‌مدار، و معماری غیرمتمرکز! با ماستودون صاحب داده‌های خودتان باشید!'
     contact_missing: تنظیم نشده
     contact_unavailable: موجود نیست
     hosted_on: ماستودون، میزبانی‌شده روی %{domain}
@@ -91,6 +91,7 @@ fa:
       moderation:
         active: فعّال
         all: همه
+        disabled: غیرفعال
         pending: منتظر
         silenced: محدود
         suspended: تعلیق شده
@@ -128,6 +129,7 @@ fa:
       search: جستجو
       search_same_email_domain: دیگر کاربران با دامنهٔ رایانامهٔ یکسان
       search_same_ip: دیگر کاربران با IP یکسان
+      security: امنیت
       security_measures:
         only_password: فقط گذرواژه
         password_and_2fa: گذرواژه و ۲عاملی
@@ -176,8 +178,10 @@ fa:
         create_email_domain_block: ایجاد انسداد دامنهٔ رایانامه
         create_ip_block: ایجاد قاعدهٔ آی‌پی
         create_unavailable_domain: ایجاد دامنهٔ ناموجود
+        create_user_role: ایجاد نقش
         demote_user: تنزل کاربر
         destroy_announcement: حذف اعلامیه
+        destroy_canonical_email_block: پاک کردن انسداد ایمیل
         destroy_custom_emoji: حذف اموجی سفارشی
         destroy_domain_allow: حذف اجازهٔ دامنه
         destroy_domain_block: حذف انسداد دامنه
@@ -199,6 +203,7 @@ fa:
         reject_user: رد کاربر
         remove_avatar_user: برداشتن تصویر نمایه
         reopen_report: بازگشایی گزارش
+        resend_user: ارسال مجدد رایانامه تایید
         reset_password_user: بازنشانی گذرواژه
         resolve_report: رفع گزارش
         sensitive_account: علامت‌گذاری رسانه در حسابتان به عنوان حساس
@@ -213,6 +218,7 @@ fa:
         update_custom_emoji: به‌روز رسانی اموجی سفارشی
         update_domain_block: به‌روزرسانی مسدودسازی دامنه
         update_status: به‌روز رسانی وضعیت
+        update_user_role: به روزرسانی نقش
       actions:
         approve_appeal_html: "%{name} درخواست تجدیدنظر تصمیم مدیر را از %{target} پذیرفت"
         approve_user_html: "%{name} ثبت نام %{target} را تایید کرد"
@@ -263,6 +269,7 @@ fa:
         update_custom_emoji_html: "%{name} شکلک %{target} را به‌روز کرد"
         update_domain_block_html: "%{name} مسدودسازی دامنه را برای %{target} به‌روزرسانی کرد"
         update_status_html: "%{name} نوشتهٔ %{target} را به‌روز کرد"
+      deleted_account: حساب حذف شد
       empty: هیچ گزارشی پیدا نشد.
       filter_by_action: پالایش بر اساس کنش
       filter_by_user: پالایش بر اساس کاربر
@@ -331,7 +338,7 @@ fa:
         other: "<strong>%{count}</strong> گزارش در انتظار"
       pending_tags_html:
         one: "<strong>%{count}</strong> هشتگ در انتظار"
-        other: "<strong>%{count}</strong> هشتگ در انتظار"
+        other: "<strong>%{count}</strong> برچسب منتظر"
       pending_users_html:
         one: "<strong>%{count}</strong> کاربر در انتظار"
         other: "<strong>%{count}</strong> کاربر در انتظار"
@@ -351,6 +358,8 @@ fa:
       add_new: مجاز کردن دامنه
       created_msg: دامنه با موفقیت مجاز شد
       destroyed_msg: دامنه از فهرست مجاز برداشته شد
+      export: برون‌ریزی
+      import: درون‌ریزی
       undo: برداشتن از فهرست مجاز
     domain_blocks:
       add_new: افزودن مسدودسازی دامین تازه
@@ -359,11 +368,14 @@ fa:
       domain: دامنه
       edit: ویرایش مسدودسازی دامنه
       existing_domain_block_html: شما پیش‌تر محدودیت‌های سخت‌تری روی %{name} اعمال کرده‌اید، و باید نخست <a href="%{unblock_url}">مسدودسازی را لغو کنید</a>.
+      export: برون‌ریزی
+      import: درون‌ریزی
       new:
         create: مسدودسازی
         hint: مسدودسازی دامنه جلوی ایجاد ورودی‌های حساب در پایگاه داده را نمی‌گیرد، بلکه به طور خودکار روش‌های مدیریتی را روی فعالیت‌های فعلی و گذشتهٔ آن حساب‌ها اعمال می‌کند.
         severity:
           noop: هیچ
+          silence: محدود
           suspend: تعلیق
         title: مسدودسازی دامین تازه
       obfuscate: مبهم‌سازی نام دامنهٔ
@@ -417,6 +429,7 @@ fa:
         title: سیاست‌های محتوا
       dashboard:
         instance_accounts_dimension: حساب‌های پیش‌تر پی‌گیری شده
+        instance_accounts_measure: حساب‌های ذخیره شده
         instance_followers_measure: پی‌گیرندگانمان در آن‌جا
         instance_follows_measure: پی‌گیرندگانشان در این‌جا
         instance_languages_dimension: زبان‌های برتر
@@ -489,7 +502,6 @@ fa:
     report_notes:
       created_msg: یادداشت گزارش با موفقیت ساخته شد!
       destroyed_msg: یادداشت گزارش با موفقیت حذف شد!
-      today_at: امروز در %{time}
     reports:
       account:
         notes:
@@ -504,9 +516,11 @@ fa:
       assign_to_self: به عهدهٔ من بگذار
       assigned: مدیر عهده‌دار
       by_target_domain: دامنهٔ حساب گزارش‌شده
+      cancel: لغو
       category: دسته
       comment:
         none: هیچ
+      confirm: تأیید
       created_at: گزارش‌شده
       delete_and_resolve: حذف فرسته‌ها
       forwarded: هدایت شده
@@ -542,6 +556,7 @@ fa:
       add_new: افزودن نقش
       categories:
         administration: مدیریت
+        devops: DevOps
         invites: دعوت‌ها
         moderation: نظارت
         special: ویژه
@@ -865,9 +880,7 @@ fa:
     storage: تصویرهای ذخیره‌شده
   featured_tags:
     add_new: افزودن تازه
-    errors:
-      limit: شما بیشترین تعداد مجاز برچسب‌ها را دارید
-    hint_html: "<strong>برچسب‌های برگزیده چیستند؟</strong> این برچسب‌ها (هشتگ‌ها) به طور واضحی روی نمایهٔ عمومی شما نمایش می‌یابند و دیگران می‌توانند نوشته‌های شما را تحت هر کدام از این برچسب‌ها مرور کنند. این یک روش بسیار خوب برای دسته‌بندی آثار خلاقانه یا پروژه‌های بلندمدت شماست."
+    hint_html: "<strong>برچسب‌های برگزیده چیستند؟</strong> این برچسب‌ها به طور واضحی روی نمایهٔ عمومیتان نمایش یافته می‌گذارد افراد فرسته‌های عمومیتان زیرشان را مرور کنند. ابزاری عالی برای دنبال کردن آثار خلاقانه یا پروژه‌های بلندمدت است."
   filters:
     contexts:
       account: نمایه‌ها
@@ -885,8 +898,6 @@ fa:
       title: پالایه‌ها
     new:
       title: افزودن پالایهٔ جدید
-  footer:
-    trending_now: پرطرفدار
   generic:
     all: همه
     changes_saved_msg: تغییرات با موفقیت ذخیره شدند!
@@ -899,8 +910,6 @@ fa:
     validation_errors:
       one: یک چیزی هنوز درست نیست! لطفاً خطاهای زیر را ببینید
       other: یک چیزی هنوز درست نیست! لطفاً %{count} خطای زیر را ببینید
-  html_validator:
-    invalid_markup: 'دارای نشانه‌گذاری نامعتبر HTML است: %{error}'
   imports:
     errors:
       over_rows_processing_limit: دارای بیش از %{count} ردیف
@@ -940,9 +949,6 @@ fa:
       expires_at: تاریخ انقضا
       uses: استفاده‌ها
     title: دعوت دیگران
-  lists:
-    errors:
-      limit: به بیشینهٔ مقدار سیاهه‌ها رسیدید
   login_activities:
     authentication_methods:
       otp: کارهٔ تأیید هویت دوعاملی
@@ -1126,7 +1132,6 @@ fa:
       ios: آی‌اواس
       linux: لینوکس
       mac: مک
-      other: سیستم ناشناخته
       windows: ویندوز
       windows_mobile: ویندوز همراه
       windows_phone: تلفن ویندوزی
@@ -1171,8 +1176,8 @@ fa:
     boosted_from_html: تقویت شده از طرف %{acct_link}
     content_warning: 'هشدا محتوا: %{warning}'
     disallowed_hashtags:
-      one: 'دارای هشتگ غیرمجاز: %{tags}'
-      other: 'دارای هشتگ‌های غیرمجاز: %{tags}'
+      one: 'دارای برچسبی غیرمجاز: %{tags}'
+      other: 'دارای برچسب‌های غیرمجاز: %{tags}'
     errors:
       in_reply_not_found: به نظر نمی‌رسد وضعیتی که می‌خواهید به آن پاسخ دهید، وجود داشته باشد.
     open_in_web: گشودن در وب
@@ -1181,7 +1186,7 @@ fa:
       direct: فرسته‌هایی که فقط برای کاربران اشاره شده نمایانند نمی‌توانند سنجاق شوند
       limit: از این بیشتر نمی‌شود نوشته‌های ثابت داشت
       ownership: نوشته‌های دیگران را نمی‌توان ثابت کرد
-      reblog: تقویت را نمی‌توان سنجاق کرد
+      reblog: تقویت نمی‌تواند سنجاق شود
     poll:
       total_people:
         one: "%{count} نفر"
@@ -1236,7 +1241,6 @@ fa:
       '7889238': ۳ ماه
     min_age_label: کرانهٔ سن
     min_favs: نگه داشتن فرسته‌هایی با برگزینش بیش از
-    min_favs_hint: هیچ یک از فرسته‌هایتان را که بیش از این تعداد برگزیده شده باشند، حذف نمی‌کند. برای حذف فرسته‌ها فارغ از تعداد برگزینش‌هایشان، خالی بگذارید
     min_reblogs: نگه داشتن فرسته‌هایی با تقویت بیش از
     min_reblogs_hint: هیچ یک از فرسته‌هایتان را که بیش از این تعداد تقویت شده باشند، حذف نمی‌کند. برای حذف فرسته‌ها فارغ از تعداد تقویت‌هایشان، خالی بگذارید
   stream_entries:

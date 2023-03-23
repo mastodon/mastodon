@@ -18,8 +18,8 @@ lv:
           disable: Neļauj lietotājam izmantot savu kontu, bet neizdzēs vai neslēp tā saturu.
           none: Izmanto šo, lai nosūtītu lietotājam brīdinājumu, neradot nekādas citas darbības.
           sensitive: Piespiest visus šī lietotāja multivides pielikumus atzīmēt kā sensitīvus.
-          silence: Neļauj lietotājam publicēt ziņas publiski redzamā veidā, paslēp viņu ziņas un paziņojumus no cilvēkiem, kuri viņiem neseko.
-          suspend: Novērst jebkādu mijiedarbību ar šo kontu vai ar to un dzēst tā saturu. Atgriežams 30 dienu laikā.
+          silence: Neļauj lietotājam publicēt ziņas ar publisku redzamību, paslēp viņa ziņas un paziņojumus no personām, kas viņiem neseko. Tiek aizvērti visi šī konta pārskati.
+          suspend: Novērs jebkādu mijiedarbību no šī konta vai uz to un dzēs tā saturu. Atgriežams 30 dienu laikā. Tiek aizvērti visi šī konta pārskati.
         warning_preset_id: Neobligāts. Tu joprojām vari pievienot pielāgotu tekstu sākotnējās iestatīšanas beigās
       announcement:
         all_day: Atzīmējot šo opciju, tiks parādīti tikai laika diapazona datumi
@@ -48,12 +48,12 @@ lv:
         password: Izmanto vismaz 8 rakstzīmes
         phrase: Tiks saskaņots neatkarīgi no ziņas teksta reģistra vai satura brīdinājuma
         scopes: Kuriem API lietojumprogrammai būs atļauta piekļuve. Ja izvēlies augstākā līmeņa tvērumu, tev nav jāatlasa atsevišķi vienumi.
-        setting_aggregate_reblogs: Nerādīt jaunus pastiprinājumus ierakstiem, kas nesen tikuši pastiprināti (ietekmēs tikai turpmāk saņemtos pastiprinājumus)
+        setting_aggregate_reblogs: Nerādīt jaunus izcēlumus ziņām, kas nesen tika palielinātas (ietekmē tikai nesen saņemtos palielinājumus)
         setting_always_send_emails: Parasti e-pasta paziņojumi netiek sūtīti, kad aktīvi izmantojat Mastodon
-        setting_default_sensitive: Sensitīvi mediji pēc noklusējuma ir paslēpti, un tos var atklāt, noklikšķinot
-        setting_display_media_default: Paslēpt mediju, kas atzīmēts kā sensitīvs
-        setting_display_media_hide_all: Vienmēr slēpt medijus
-        setting_display_media_show_all: Vienmēr rādīt medijus
+        setting_default_sensitive: Sensitīva multivide pēc noklusējuma ir paslēpti, un tos var atklāt, noklikšķinot
+        setting_display_media_default: Paslēpt multividi, kas atzīmēta kā sensitīva
+        setting_display_media_hide_all: Vienmēr slēpt multividi
+        setting_display_media_show_all: Vienmēr rādīt multividi
         setting_hide_network: Tavā profilā netiks rādīts, kam tu seko un kurš seko tev
         setting_noindex: Ietekmē tavu publisko profilu un ziņu lapas
         setting_show_application: Lietojumprogramma, ko tu izmanto publicēšanai, tiks parādīta tavu ziņu detalizētajā skatā
@@ -74,6 +74,7 @@ lv:
           hide: Paslēp filtrēto saturu pilnībā, izturoties tā, it kā tas neeksistētu
           warn: Paslēp filtrēto saturu aiz brīdinājuma, kurā minēts filtra nosaukums
       form_admin_settings:
+        activity_api_enabled: Vietēji publicēto ziņu, aktīvo lietotāju un jauno reģistrāciju skaits nedēļas kopās
         backups_retention_period: Saglabā ģenerētos lietotāju arhīvus norādīto dienu skaitā.
         bootstrap_timeline_accounts: Šie konti tiks piesprausti jauno lietotāju ieteikumu augšdaļā.
         closed_registrations_message: Tiek rādīts, kad reģistrēšanās ir slēgta
@@ -81,6 +82,7 @@ lv:
         custom_css: Vari lietot pielāgotus stilus Mastodon tīmekļa versijā.
         mascot: Ignorē ilustrāciju uzlabotajā tīmekļa saskarnē.
         media_cache_retention_period: Lejupielādētie multivides faili tiks dzēsti pēc norādītā dienu skaita, kad tie būs iestatīti uz pozitīvu vērtību, un pēc pieprasījuma tiks lejupielādēti atkārtoti.
+        peers_api_enabled: Domēna vārdu saraksts, ar kuriem šis serveris ir saskāries fediversā. Šeit nav iekļauti dati par to, vai tu veic federāciju ar noteiktu serveri, tikai tavs serveris par to zina. To izmanto dienesti, kas apkopo statistiku par federāciju vispārīgā nozīmē.
         profile_directory: Profilu direktorijā ir uzskaitīti visi lietotāji, kuri ir izvēlējušies būt atklājami.
         require_invite_text: 'Ja pierakstīšanai nepieciešama manuāla apstiprināšana, izdari tā, lai teksta: “Kāpēc vēlaties pievienoties?” ievade ir obligāta, nevis opcionāla'
         site_contact_email: Kā cilvēki var sazināties ar tevi par juridiskiem vai atbalsta jautājumiem.
@@ -89,11 +91,13 @@ lv:
         site_short_description: Īss apraksts, kas palīdzēs unikāli identificēt tavu serveri. Kurš to darbina, kam tas paredzēts?
         site_terms: Izmanto pats savu konfidencialitātes politiku vai atstāj tukšu, lai izmantotu noklusējuma iestatījumu. Var strukturēt ar Markdown sintaksi.
         site_title: Kā cilvēki var atsaukties uz tavu serveri, izņemot tā domēna nosaukumu.
+        status_page_url: Tās lapas URL, kurā lietotāji var redzēt šī servera statusu pārtraukuma laikā
         theme: Tēma, kuru redz apmeklētāji, kuri ir atteikušies, un jaunie lietotāji.
         thumbnail: Aptuveni 2:1 attēls, kas tiek parādīts kopā ar tava servera informāciju.
         timeline_preview: Atteikušies apmeklētāji varēs pārlūkot jaunākās serverī pieejamās publiskās ziņas.
         trendable_by_default: Izlaist aktuālā satura manuālu pārskatīšanu. Atsevišķas preces joprojām var noņemt no tendencēm pēc fakta.
         trends: Tendences parāda, kuras ziņas, atsauces un ziņu stāsti gūst panākumus tavā serverī.
+        trends_as_landing_page: Šī servera apraksta vietā rādīt aktuālo saturu lietotājiem un apmeklētājiem, kuri ir atteikušies. Nepieciešams iespējot tendences.
       form_challenge:
         current_password: Tu ieej drošā zonā
       imports:
@@ -188,17 +192,17 @@ lv:
         password: Parole
         phrase: Atslēgvārds vai frāze
         setting_advanced_layout: Iespējot paplašināto tīmekļa saskarni
-        setting_aggregate_reblogs: Grupēt pastiprinājumus ierakstu lentās
+        setting_aggregate_reblogs: Grupēt izcēlumus ierakstu lentās
         setting_always_send_emails: Vienmēr sūtīt e-pasta paziņojumus
         setting_auto_play_gif: Automātiski atskaņot animētos GIF
-        setting_boost_modal: Rādīt apstiprinājuma dialogu pirms pastiprināšanas
+        setting_boost_modal: Rādīt apstiprinājuma dialogu pirms izcelšanas
         setting_crop_images: Apgrieziet attēlus neizvērstajās ziņās līdz 16x9
         setting_default_language: Publicēšanas valoda
         setting_default_privacy: Publicēšanas privātums
-        setting_default_sensitive: Atļaut atzīmēt medijus kā sensitīvus
+        setting_default_sensitive: Atļaut atzīmēt multividi kā sensitīvu
         setting_delete_modal: Parādīt apstiprinājuma dialogu pirms ziņas dzēšanas
         setting_disable_swiping: Atspējot vilkšanas kustības
-        setting_display_media: Mediju bibliotēka
+        setting_display_media: Multivides rādīšana
         setting_display_media_default: Noklusējums
         setting_display_media_hide_all: Paslēpt visu
         setting_display_media_show_all: Parādīt visu
@@ -210,8 +214,8 @@ lv:
         setting_system_font_ui: Lietot sistēmas noklusējuma fontu
         setting_theme: Vietnes motīvs
         setting_trends: Parādīt šodienas tendences
-        setting_unfollow_modal: Parādīt apstiprinājuma dialogu pirms atsekoties no kāda
-        setting_use_blurhash: Rādīt krāsainos gradientus slēptajiem medijiem
+        setting_unfollow_modal: Parādīt apstiprinājuma dialogu pirms pārtraukt kādam sekot
+        setting_use_blurhash: Rādīt krāsainus gradientus slēptajiem multivides materiāliem
         setting_use_pending_items: Lēnais režīms
         severity: Smagums
         sign_in_token_attempt: Drošības kods
@@ -229,6 +233,7 @@ lv:
           hide: Paslēpt pilnībā
           warn: Paslēpt ar brīdinājumu
       form_admin_settings:
+        activity_api_enabled: Publicējiet apkopotu statistiku par lietotāju darbībām API
         backups_retention_period: Lietotāja arhīva glabāšanas periods
         bootstrap_timeline_accounts: Vienmēr iesaki šos kontus jaunajiem lietotājiem
         closed_registrations_message: Pielāgots ziņojums, ja reģistrēšanās nav pieejama
@@ -236,6 +241,7 @@ lv:
         custom_css: Pielāgots CSS
         mascot: Pielāgots talismans (mantots)
         media_cache_retention_period: Multivides kešatmiņas saglabāšanas periods
+        peers_api_enabled: Publicēt API atklāto serveru sarakstu
         profile_directory: Iespējot profila direktoriju
         registrations_mode: Kurš drīkst pieteikties
         require_invite_text: Pieprasīt pievienošanās iemeslu
@@ -247,11 +253,13 @@ lv:
         site_short_description: Servera apraksts
         site_terms: Privātuma Politika
         site_title: Servera nosaukums
+        status_page_url: Statusa lapas URL
         theme: Noklusētā tēma
         thumbnail: Servera sīkbilde
         timeline_preview: Atļaut neautentificētu piekļuvi publiskajām ziņu lentām
         trendable_by_default: Atļaut tendences bez iepriekšējas pārskatīšanas
         trends: Iespējot tendences
+        trends_as_landing_page: Izmantojiet tendences kā galveno lapu
       interactions:
         must_be_follower: Bloķēt paziņojumus no ne-sekotājiem
         must_be_following: Bloķēt paziņojumus no cilvēkiem, kuriem tu neseko
@@ -276,7 +284,7 @@ lv:
         follow_request: Kāds vēlas tev sekot
         mention: Kāds pieminēja tevi
         pending_account: Jāpārskata jaunu kontu
-        reblog: Kāds pastiprināja tavu ierakstu
+        reblog: Kāds izcēla tavu ierakstu
         report: Tika iesniegts jauns ziņojums
         trending_tag: Jaunā tendence ir jāpārskata
       rule:

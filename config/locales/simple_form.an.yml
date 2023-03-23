@@ -1,1 +1,313 @@
+---
 an:
+  simple_form:
+    hints:
+      account_alias:
+        acct: Especifique lo suyo nombre d'usuario@dominio d'a cuenta d'an se deseya migrar
+      account_migration:
+        acct: Especifique lo nombre d'usuario@dominio d'a cuenta d'a quala se deseya migrar
+      account_warning_preset:
+        text: Puede usar sintaxi de publicacions, como URLs, hashtags y mencions
+        title: Opcional. No ye visible pa lo destinatario
+      admin_account_action:
+        include_statuses: L'usuario veyerá qué publicacions han causau l'acción de moderación u alvertencia
+        send_email_notification: L'usuario recibirá una explicación d'o que ha succediu con a suya cuenta
+        text_html: Opcional. Puede usar sintaxi de publicacions. Puede anyadir <a href="%{path}">configuracions predefinidas d'alvertencia</a> pa cabidar tiempo
+        type_html: Tría lo qué vas a fer con <strong>%{acct}</strong>
+        types:
+          disable: Priva que l'usuario utilice la suya cuenta, pero no elimina ni amagada los suyos contenius.
+          none: Utilizar esto pa ninviar una alvertencia a l'usuario, sin enchegar garra atra acción.
+          sensitive: Forzar que totz los fichers multimedia d'este usuario sían marcaus como sensibles.
+          silence: Privar que l'usuario pueda publicar con visibilidat publica, amagada los suyos mensaches y notificacions a personas que no lo siguen. Zarra totz los informes contra esta cuenta.
+          suspend: Priva qualsequier interacción dende u enta esta cuenta y borra lo suyo conteniu. Reversible en 30 días. Zarra totz los informes contra esta cuenta.
+        warning_preset_id: Opcional. Encara puede anyadir texto personalizau a la fin d'a configuración predefinida
+      announcement:
+        all_day: Quan ye triau nomás s'amostrarán las calendatas d'o rango de tiempo
+        ends_at: Opcional. L'anuncio desapareixerá automaticament en este momento
+        scheduled_at: Deixar en blanco pa publicar l'anuncio immediatament
+        starts_at: Opcional. Caso que lo suyo anuncio sía vinculau a un intervalo de tiempo especifico
+        text: Puetz usar la sintaxi de publicacions. Per favor tiene en cuenta lo espacio que ocupará l'anuncio en a pantalla de l'usuario
+      appeal:
+        text: Nomás puetz apelar una amonestación una vegada
+      defaults:
+        autofollow: Los usuarios que se rechistren per medio d'a invitación te seguirán automaticament
+        avatar: PNG, GIF u JPG. Maximo %{size}. Será escalau a %{dimensions}px
+        bot: Esta cuenta executa prencipalment accions automatizadas y podría no estar monitorizada
+        context: Un u multiples contextos en os quals ha d'aplicar-se lo filtro
+        current_password: Per razons de seguranza per favor ingrese la clau d'a cuenta actual
+        current_username: Pa confirmar, per favor ingrese lo nombre d'usuario d'a cuenta actual
+        digest: Solo ninviau dimpués d'un largo periodo d'inactividat y nomás si has recibiu mensaches personals entre la tuya ausencia
+        discoverable: Permite que la tuya cuenta sía descubierta per extranyos a traviés de recomendacions, tendencias y atras caracteristicas
+        email: Se le ninviará un correu de confirmación
+        fields: Puetz tener dica 4 elementos amostrando-se como una tabla en o tuyo perfil
+        header: PNG, GIF u JPG. Maximo %{size}. Será escalau a %{dimensions}px
+        inbox_url: Copia la URL d'a pachina prencipal d'o relés que quiers utilizar
+        irreversible: Las publicacions filtradas desapareixerán irreversiblement, mesmo si este filtro ye eliminau mas abance
+        locale: L'idioma d'a interficie d'usuario, correus y notificacions push
+        locked: Requiere que manualment aprebes seguidores y las publicacions serán amostradas nomás a las tuyas seguidores
+        password: Utilice a lo menos 8 caracters
+        phrase: S'aplicará sin importar las mayusclas u los avisos de conteniu d'una publicación
+        scopes: Qué APIs de l'aplicación tendrán acceso. Si trías l'aconsiga de libel pero alto, no amenestes triar las individuals.
+        setting_aggregate_reblogs: No amostrar nuevos retutz pa las publicacions que han estau recientment retutadas (nomás afecta a los retutz recibius recientment)
+        setting_always_send_emails: Normalment las notificacions per correu electronico no se ninviarán quan sías usando Mastodon activament
+        setting_default_sensitive: Lo conteniu multimedia sensible ye amagau per defecto y puede estar amostrau con un click
+        setting_display_media_default: Amagar conteniu multimedia marcau como sensible
+        setting_display_media_hide_all: Siempre amagar tot lo conteniu multimedia
+        setting_display_media_show_all: Amostrar siempre conteniu multimedia marcau como sensible
+        setting_hide_network: A quí sigues y quí te sigue no será amostrau en o tuyo perfil
+        setting_noindex: Afecta a lo tuyo perfil publico y pachinas d'estau
+        setting_show_application: L'aplicación que utiliza vusté pa publicar publicacions s'amostrará en a vista detallada d'as suyas publicacions
+        setting_use_blurhash: Los gradientes se basan en as colors d'as imachens amagadas pero fendo borrosos los detalles
+        setting_use_pending_items: Amagar nuevos estaus dezaga d'un clic en cuenta de desplazar automaticament lo feed
+        username: Lo tuyo nombre d'usuario será solo en %{domain}
+        whole_word: Quan la parola clau u frase ye nomás alfanumerica, nomás será aplicau si concuerda con tota la parola
+      domain_allow:
+        domain: Este dominio podrá obtener datos d'este servidor y los datos dentrants serán procesaus y archivados
+      email_domain_block:
+        domain: Este puede estar lo nombre de dominio que amaneixe en l'adreza de correu electronico u lo rechistro MX que utiliza. Se comprebarán en rechistrar-se.
+        with_dns_records: Se ferá un intento de resolver los rechistros DNS d'o dominio dau y los resultaus serán tamién mesos en lista negra
+      featured_tag:
+        name: 'Aquí son belunas d''as etiquetas que mas has utilizau recientment:'
+      filters:
+        action: Triar qué acción realizar quan una publicación coincide con o filtro
+        actions:
+          hide: Amagar completament lo conteniu filtrau, comportando-se como si no existise
+          warn: Amagar lo conteniu filtrau dezaga d'una alvertencia mencionando lo titol d'o filtro
+      form_admin_settings:
+        activity_api_enabled: Conteyo de publicacions locals, usuarios activos y nuevos rechistros en periodos semanals
+        backups_retention_period: Mantener los fichers d'usuario cheneraus entre lo numero de días especificau.
+        bootstrap_timeline_accounts: Estas cuentas amaneixerán en a parte superior d'as recomendacions d'os nuevos usuarios.
+        closed_registrations_message: Amostrau quan los rechistros son zarraus
+        content_cache_retention_period: Las publicacions d'atros servidors s'eliminarán dimpués d'o numero especificau de días quan s'estableixca una valor positiva. Esto puede estar irreversible.
+        custom_css: Puetz aplicar estilos personalizaus a la versión web de Mastodon.
+        mascot: Reemplaza la ilustración en a interficie web abanzada.
+        media_cache_retention_period: Los fichers multimedia descargaus s'eliminarán dimpués d'o numero especificau de días quan s'estableixca una valor positiva, y se redescargarán baixo demanda.
+        peers_api_enabled: Una lista de nombres de dominio que este servidor ha trobau en o Fediverso. Aquí no s'incluye garra dato sobre si federas con un servidor determinau, nomás que lo tuyo servidor lo conoixe. Esto ye emplegau per los servicios que replegan estatisticas sobre la federación en un sentiu cheneral.
+        profile_directory: Lo directorio de perfils lista a totz los usuarios que han optado per que la suya cuenta pueda estar descubierta.
+        require_invite_text: Quan los rechistros requieren aprebación manual, fa obligatoria la dentrada de texto "Per qué quiers unir-te?" en cuenta d'opcional
+        site_contact_email: Cómo la chent puede meter-se en contacto con tu pa consultas legals u d'aduya.
+        site_contact_username: Cómo puede contactar-te la chent en Mastodon.
+        site_extended_description: Qualsequier información adicional que pueda estar util pa los visitantes y los suyos usuarios. Se puede estructurar con formato Markdown.
+        site_short_description: Una breu descripción pa aduyar a identificar lo suyo servidor de forma sola. Quí l'administra, a quí va endrezau?
+        site_terms: Fe servir la tuya propia politica de privacidat u deixa-la en blanco pa usar la predeterminada. La puetz estructurar con formato Markdown.
+        site_title: Cómo puede referir-se la chent a lo tuyo servidor amás de per lo nombre de dominio.
+        theme: Lo tema que los visitantes no rechistraus y los nuevos usuarios veyen.
+        thumbnail: Una imachen d'aproximadament 2:1 s'amuestra chunto a la información d'o tuyo servidor.
+        timeline_preview: Los visitantes no rechistraus podrán navegar per los mensaches publicos mas recients disponibles en o servidor.
+        trendable_by_default: Omitir la revisión manual d'o conteniu en tendencia. Los elementos individuals encara podrán eliminar-se d'as tendencias.
+        trends: Las tendencias amuestran qué mensaches, etiquetas y noticias son ganando tracción en o tuyo servidor.
+      form_challenge:
+        current_password: Yes dentrando en una aria segura
+      imports:
+        data: Fichero CSV exportau dende unatra instancia de Mastodon
+      invite_request:
+        text: Esto nos aduyará a revisar la suya aplicación
+      ip_block:
+        comment: Opcional. Recuerda per qué has anyadiu esta regla.
+        expires_in: Las adrezas IP son un recurso finito, a vegadas se comparten y a ormino cambian de mans. Per esta razón, no se recomiendan bloqueyos d'IP indefinida.
+        ip: Escriba una adreza IPv4 u IPv6. Puede blocar rangos completos usando la sintaxi CIDR. Tienga cudiau de no quedar-se estase!
+        severities:
+          no_access: Blocar acceso a totz los recursos
+          sign_up_block: Los nuevos rechistros se deshabilitarán
+          sign_up_requires_approval: Nuevos rechistros requerirán la suya aprebación
+        severity: Triar lo que pasará con as peticions dende esta IP
+      rule:
+        text: Describe una norma u requisito pa los usuarios d'este servidor. Intenta fer-la curta y sencilla
+      sessions:
+        otp: 'Escribe lo codigo d''autenticación de dos factors chenerau per la tuya aplicación de telefono u usa un d''os tuyos codigos de recuperación:'
+        webauthn: Si ye una tecla USB, s'asegure de ficar-la y, si ye necesario, la prete.
+      tag:
+        name: Nomás se puede cambiar lo cajón d'as letras, per eixemplo, pa que sía mas leyible
+      user:
+        chosen_languages: Quan se marca, nomás s'amostrarán las publicacions en os idiomas triaus en as linias de tiempo publicas
+        role: Lo rol controla qué permisos tiene la usuaria
+      user_role:
+        color: Color que s'utilizará pa lo rol a lo largo d'a interficie d'usuario, como RGB en formato hexadecimal
+        highlighted: Esto fa que lo rol sía publicament visible
+        name: Nombre publico d'o rol, si lo rol s'estableix pa que s'amuestre como una insignia
+        permissions_as_keys: Los usuarios con este rol tendrán acceso a...
+        position: Un rol superior decide la resolución de conflictos en bellas situacions. Bellas accions nomás pueden levar-se a cabo en rols con menor prioridat
+      webhook:
+        events: Triar eventos pa ninviar
+        url: An los eventos serán ninviaus
+    labels:
+      account:
+        fields:
+          name: Etiqueta
+          value: Conteniu
+      account_alias:
+        acct: Maneya la cuenta antiga
+      account_migration:
+        acct: Alias d'a nueva cuenta
+      account_warning_preset:
+        text: Texto predefinido
+        title: Titol
+      admin_account_action:
+        include_statuses: Incluyir en o correu electronico a las publicacions denunciadas
+        send_email_notification: Notificar a l'usuario per correu electronico
+        text: Aviso personalizau
+        type: Acción
+        types:
+          disable: Deshabilitar
+          none: No fer cosa
+          sensitive: Sensible
+          silence: Silenciar
+          suspend: Suspender y eliminar de forma irreversible la información d'a cuenta
+        warning_preset_id: Usar un aviso predeterminau
+      announcement:
+        all_day: Evento de tot lo día
+        ends_at: Fin de l'evento
+        scheduled_at: Programar publicación
+        starts_at: Comienzo de l'evento
+        text: Anuncio
+      appeal:
+        text: Explica per qué esta decisión ha d'estar revertida
+      defaults:
+        autofollow: Convidar a seguir la tuya cuenta
+        avatar: Avatar
+        bot: Esta ye una cuenta bot
+        chosen_languages: Filtrar idiomas
+        confirm_new_password: Confirmar nueva clau
+        confirm_password: Confirmar clau
+        context: Filtrar contextos
+        current_password: Clau actual
+        data: Información
+        discoverable: Sucherir la cuenta a atros
+        display_name: Nombre pa amostrar
+        email: Adreza de correu electronico
+        expires_in: Expirar dimpués de
+        fields: Metadatos de perfil
+        header: Img. capitero
+        honeypot: "%{label} (no replenar)"
+        inbox_url: URL d'a dentrada de relés
+        irreversible: Refusar en cuenta d'amagar
+        locale: Idioma
+        locked: Fer privada esta cuenta
+        max_uses: Máx. numero d'usos
+        new_password: Nueva clau
+        note: Biografía
+        otp_attempt: Codigo de dos factors
+        password: Clau
+        phrase: Parola clau u frase
+        setting_advanced_layout: Habilitar interficie web abanzada
+        setting_aggregate_reblogs: Agrupar retutz en as linias de tiempo
+        setting_always_send_emails: Ninviar siempre notificacions per correu
+        setting_auto_play_gif: Reproducir automaticament los GIFs animaus
+        setting_boost_modal: Amostrar finestra de confirmación antes de retutar
+        setting_crop_images: Retallar a 16x9 las imachens d'as publicacions no expandidas
+        setting_default_language: Idioma de publicación
+        setting_default_privacy: Privacidat de publicacions
+        setting_default_sensitive: Marcar siempre imachens como sensibles
+        setting_delete_modal: Amostrar dialogo de confirmación antes de borrar una publicación
+        setting_disable_swiping: Deshabilitar movimientos d'eslizamiento
+        setting_display_media: Visualización multimedia
+        setting_display_media_default: Per defecto
+        setting_display_media_hide_all: Amagar tot
+        setting_display_media_show_all: Amostrar tot
+        setting_expand_spoilers: Siempre expandir las publicacions marcadas con alvertencias de conteniu
+        setting_hide_network: Amagar lo tuyo ret
+        setting_noindex: Excluyir-se d'o indexado de motors de busqueda
+        setting_reduce_motion: Reducir lo movimiento d'as animacions
+        setting_show_application: Amostrar aplicación usada pa publicar publicacions
+        setting_system_font_ui: Utilizar la tipografía per defecto d'o sistema
+        setting_theme: Tema d'o puesto
+        setting_trends: Amostrar las tendencias de hue
+        setting_unfollow_modal: Amostrar dialogo de confirmación antes de deixar de seguir a belún
+        setting_use_blurhash: Amostrar gradientes colorius pa conteniu multimedia amagau
+        setting_use_pending_items: Modo lento
+        severity: Severidat
+        sign_in_token_attempt: Codigo de seguranza
+        title: Titol
+        type: Importar tipo
+        username: Nombre d'usuario
+        username_or_email: Usuario u Email
+        whole_word: Tota la parola
+      email_domain_block:
+        with_dns_records: Incluye los rechistros MX y las IP d'o dominio
+      featured_tag:
+        name: Etiqueta
+      filters:
+        actions:
+          hide: Amagar completament
+          warn: Amagar con una alvertencia
+      form_admin_settings:
+        activity_api_enabled: Publicar estatisticas agregadas sobre l'actividat d'o usuario en l'API
+        backups_retention_period: Periodo de retención d'o fichero d'usuario
+        bootstrap_timeline_accounts: Recomendar siempre estas cuentas a nuevos usuarios
+        closed_registrations_message: Mensache personalizau quan los rechistros no son disponibles
+        content_cache_retention_period: Periodo de retención de caché de conteniu
+        custom_css: CSS personalizau
+        mascot: Mascota personalizada (legado)
+        media_cache_retention_period: Periodo de retención de caché multimedia
+        peers_api_enabled: Publicar la lista de servidors descubiertos en l'API
+        profile_directory: Habilitar directorio de perfils
+        registrations_mode: Quí puede rechistrar-se
+        require_invite_text: Requerir una razón pa unir-se
+        show_domain_blocks: Amostrar dominios blocaus
+        show_domain_blocks_rationale: Amostrar per qué se blocoron los dominios
+        site_contact_email: Adreza de correu electronico de contacto
+        site_contact_username: Nombre d'usuario de contacto
+        site_extended_description: Descripción extendida
+        site_short_description: Descripción d'o servidor
+        site_terms: Politica de Privacidat
+        site_title: Nombre d'o servidor
+        theme: Tema per defecto
+        thumbnail: Miniatura d'o servidor
+        timeline_preview: Permitir l'acceso no autenticau a las linias de tiempo publicas
+        trendable_by_default: Permitir tendencias sin revisión previa
+        trends: Habilitar tendencias
+      interactions:
+        must_be_follower: Blocar notificacions de personas que no te siguen
+        must_be_following: Blocar notificacions de personas que no sigues
+        must_be_following_dm: Blocar mensaches directos d'a chent que no sigues
+      invite:
+        comment: Comentar
+      invite_request:
+        text: Per qué quiere unir-se vusté?
+      ip_block:
+        comment: Comentario
+        ip: IP
+        severities:
+          no_access: Blocar acceso
+          sign_up_block: Blocar rechistros
+          sign_up_requires_approval: Limitar rechistros
+        severity: Regla
+      notification_emails:
+        appeal: Belún ha apelado una decisión de moderación
+        digest: Ninviar resumen de correus electronicos
+        favourite: Ninviar correu electronico quan belún d'a2 favorito en a suya publicación
+        follow: Ninviar correu electronico quan belún te siga
+        follow_request: Ninviar correu electronico quan belún solicita seguir-te
+        mention: Ninviar correu electronico quan belún te mencione
+        pending_account: Ninviar correu electronico quan una nueva cuenta ameneste revisión
+        reblog: Ninviar correu electronico quan belún comparta la suya publicación
+        report: Nuevo informe ninviau
+        trending_tag: Una nueva tendencia requiere revisión
+      rule:
+        text: Norma
+      tag:
+        listable: Permitir que esta etiqueta amaneixca en as busquedas y en o directorio d'o perfil
+        name: Etiqueta
+        trendable: Permitir que esta etiqueta amaneixca baixo tendencias
+        usable: Permitir a las publicacions usar esta etiqueta
+      user:
+        role: Rol
+      user_role:
+        color: Color d'insignia
+        highlighted: Amostrar rol como insignia en perfils d'usuario
+        name: Nombre
+        permissions_as_keys: Permisos
+        position: Prioridat
+      webhook:
+        events: Eventos habilitaus
+        url: URL de Endpoint
+    'no': 'No'
+    not_recommended: No recomendau
+    recommended: Recomendau
+    required:
+      mark: "*"
+      text: necesario
+    title:
+      sessions:
+        webauthn: Utilice una d'as suyas claus de seguranza pa iniciar sesión
+    'yes': Ell

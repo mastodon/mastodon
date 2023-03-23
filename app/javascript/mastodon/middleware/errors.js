@@ -14,4 +14,4 @@ export default function errorsMiddleware() {
 
     return next(action);
   };
-};
+}

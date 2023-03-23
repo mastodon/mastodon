@@ -122,14 +122,14 @@ es:
         admin/accounts: Administración de cuentas
         admin/all: Todas las funciones administrativas
         admin/reports: Administración de informes
-        all: Todo
+        all: Acceso completo a tu cuenta de Mastodon
         blocks: Bloqueos
         bookmarks: Marcadores
         conversations: Conversaciones
         crypto: Cifrado de extremo a extremo
         favourites: Favoritos
         filters: Filtros
-        follow: Relaciones
+        follow: Seguimientos, silenciad@s y bloqueos
         follows: Seguidos
         lists: Listas
         media: Adjuntos multimedia
@@ -149,9 +149,19 @@ es:
     scopes:
       admin:read: leer todos los datos en el servidor
       admin:read:accounts: leer información sensible de todas las cuentas
+      admin:read:canonical_email_blocks: leer información sensible de todos los bloqueos de correo canónico
+      admin:read:domain_allows: leer información sensible de todos los dominios permitidos
+      admin:read:domain_blocks: leer información sensible de todos los bloqueos de dominio
+      admin:read:email_domain_blocks: leer información sensible de todos los bloqueos de dominio de correo electrónico
+      admin:read:ip_blocks: leer información sensible de todos los bloqueos de IP
       admin:read:reports: leer información sensible de todos los informes y cuentas reportadas
       admin:write: modificar todos los datos en el servidor
       admin:write:accounts: realizar acciones de moderación en cuentas
+      admin:write:canonical_email_blocks: ejecutar acciones de moderación en bloqueos canónicos de correo electrónico
+      admin:write:domain_allows: ejecutar acciones de moderación en los dominios permitidos
+      admin:write:domain_blocks: ejecutar acciones de moderación en bloqueos de dominio
+      admin:write:email_domain_blocks: ejecutar acciones de moderación en bloqueos de dominio de correo electrónico
+      admin:write:ip_blocks: ejecutar acciones de moderación en bloqueos de IP
       admin:write:reports: realizar acciones de moderación en informes
       crypto: usar cifrado de extremo a extremo
       follow: seguir, bloquear, desbloquear y dejar de seguir cuentas

@@ -7,7 +7,7 @@ af:
         options: Keuses
       user:
         agreement: Diensooreenkoms
-        email: E-pos adres
+        email: E-posadres
         locale: Plaaslik
         password: Wagwoord
       user/account:
@@ -19,12 +19,12 @@ af:
         account:
           attributes:
             username:
-              invalid: moet slegs letters, nommers en onderstrepe bevat
+              invalid: mag slegs letters, syfers en onderstrepe bevat
               reserved: is gereserveer
         admin/webhook:
           attributes:
             url:
-              invalid: is nie 'n geldige URL nie
+              invalid: is nie ’n geldige URL nie
         doorkeeper/application:
           attributes:
             website:
@@ -32,7 +32,7 @@ af:
         import:
           attributes:
             data:
-              malformed: is misvormd
+              malformed: is misvorm
         status:
           attributes:
             reblog:
@@ -40,16 +40,16 @@ af:
         user:
           attributes:
             email:
-              blocked: maak gebruik van 'n e-pos verskaffer wat nie toegelaat word nie
+              blocked: gebruik ’n ontoelaatbare e-posverskaffer
               unreachable: blyk nie te bestaan nie
             role_id:
-              elevated: kan nie hoër as huidige rol wees nie
+              elevated: kan nie hoër as jou huidige rol wees nie
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: bevat permissies wat nie veilig vir die basis rol is nie
-              elevated: kan nie permissies bevat wat vanaf die huidige rol ontbreek nie
+              dangerous: bevat toestemmings wat vir die basisrol onveilig is
+              elevated: kan nie toestemmings bevat waaroor jou huidige rol nie beskik nie
               own_role: kan nie verander word met jou huidige rol nie
             position:
-              elevated: kan nie hoër as die huidige rol wees nie
+              elevated: kan nie hoër as jou huidige rol wees nie
               own_role: kan nie verander word met jou huidige rol nie

@@ -6,6 +6,9 @@ class ActivityPub::ProcessAccountService < BaseService
   include Redisable
   include Lockable
 
+  SUBDOMAINS_RATELIMIT = 10
+  DISCOVERIES_PER_REQUEST = 400
+
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
   def call(username, domain, json, options = {})
@@ -15,8 +18,11 @@ class ActivityPub::ProcessAccountService < BaseService
     @json        = json
     @uri         = @json['id']
     @username    = username
-    @domain      = domain
+    @domain      = TagManager.instance.normalize_domain(domain)
     @collections = {}
+
+    # The key does not need to be unguessable, it just needs to be somewhat unique
+    @options[:request_id] ||= "#{Time.now.utc.to_i}-#{username}@#{domain}"
 
     with_lock("process_account:#{@uri}") do
       @account            = Account.remote.find_by(uri: @uri) if @options[:only_key]
@@ -25,7 +31,18 @@ class ActivityPub::ProcessAccountService < BaseService
       @old_protocol       = @account&.protocol
       @suspension_changed = false
 
-      create_account if @account.nil?
+      if @account.nil?
+        with_redis do |redis|
+          return nil if redis.pfcount("unique_subdomains_for:#{PublicSuffix.domain(@domain, ignore_private: true)}") >= SUBDOMAINS_RATELIMIT
+
+          discoveries = redis.incr("discovery_per_request:#{@options[:request_id]}")
+          redis.expire("discovery_per_request:#{@options[:request_id]}", 5.minutes.seconds)
+          return nil if discoveries > DISCOVERIES_PER_REQUEST
+        end
+
+        create_account
+      end
+
       update_account
       process_tags
 
@@ -150,7 +167,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def check_featured_collection!
-    ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id, { 'hashtag' => @json['featuredTags'].blank? })
+    ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id, { 'hashtag' => @json['featuredTags'].blank?, 'request_id' => @options[:request_id] })
   end
 
   def check_featured_tags_collection!
@@ -209,6 +226,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def property_values
     return unless @json['attachment'].is_a?(Array)
+
     as_array(@json['attachment']).select { |attachment| attachment['type'] == 'PropertyValue' }.map { |attachment| attachment.slice('name', 'value') }
   end
 
@@ -254,7 +272,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def moved_account
     account   = ActivityPub::TagManager.instance.uri_to_resource(@json['movedTo'], Account)
-    account ||= ActivityPub::FetchRemoteAccountService.new.call(@json['movedTo'], id: true, break_on_redirect: true)
+    account ||= ActivityPub::FetchRemoteAccountService.new.call(@json['movedTo'], id: true, break_on_redirect: true, request_id: @options[:request_id])
     account
   end
 
@@ -272,6 +290,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def domain_block
     return @domain_block if defined?(@domain_block)
+
     @domain_block = DomainBlock.rule_for(@domain)
   end
 

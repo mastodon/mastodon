@@ -4,16 +4,8 @@ ast:
     attributes:
       doorkeeper/application:
         name: Nome de l'aplicación
-        redirect_uri: URI de redireición
         scopes: Ámbitos
         website: Sitiu web de l'aplicación
-    errors:
-      models:
-        doorkeeper/application:
-          attributes:
-            redirect_uri:
-              invalid_uri: ha ser una URI válida.
-              relative_uri: ha ser una URI absoluta.
   doorkeeper:
     applications:
       buttons:
@@ -23,85 +15,112 @@ ast:
         edit: Editar
         submit: Unviar
       confirmations:
-        destroy: "¿De xuru?"
+        destroy: "¿De xuru que quies facer esta aición?"
       form:
-        error: "¡Meca! Comprueba los fallos posibles del formulariu"
+        error: "¡Meca! Revisa los errores posibles del formulariu"
       help:
-        native_redirect_uri: Usa %{native_redirect_uri} pa pruebes llocales
         redirect_uri: Usa una llinia per URI
       index:
         empty: Nun tienes nenguna aplicación.
         name: Nome
         new: Aplicación nueva
         scopes: Ámbitos
+        title: Les tos aplicaciones
       new:
         title: Aplicación nueva
       show:
         actions: Aiciones
+        application_id: Clave del veceru
         scopes: Ámbitos
+        secret: Secretu del veceru
         title: 'Aplicación: %{name}'
     authorizations:
       buttons:
         authorize: Autorizar
         deny: Negar
       error:
-        title: Asocedió un fallu
+        title: Prodúxose un error
+      new:
+        prompt_html: "%{client_name}, que ye una aplicación de terceros, quier tener accesu a la cuenta. <strong>Si nun t'enfotes nella, nun habríes autorizala.</strong>"
+        review_permissions: Revisión de los permisos
       show:
-        title: Copia esti códigu d'autorización y apiégalu na aplicación.
+        title: Copia esti códigu d'autorización ya apiégalu na aplicación.
     authorized_applications:
       buttons:
         revoke: Revocar
       confirmations:
-        revoke: "¿De xuru?"
+        revoke: "¿De xuru que quies facer esta aición?"
       index:
+        description_html: Estes son les aplicaciones que puen acceder a la cuenta cola API. Si equí hai aplicaciones que nun conoces o hai dalguna aplicación que nun funciona correutamente, pues revocar el so accesu.
+        never_used: Enxamás s'usó
         scopes: Permisos
         title: Les aplicaciones qu'autoricesti
     errors:
       messages:
-        access_denied: El dueñu del recursu o'l sirvidor d'autorización ñegó la solicitú.
+        access_denied: El propietariu del recursu o'l sirvidor d'autorización negó la solicitú.
         invalid_token:
-          expired: Caducó'l pase d'accesu
           revoked: Revocóse'l pase d'accesu
           unknown: El pase d'accesu nun ye válidu
-        server_error: El sirvidor d'autorizaciones alcontró una condición inesperada qu'evitó que cumpliera la solicitú.
-        temporarily_unavailable: Anguaño'l sirvidor d'autorizaciones nun ye a remanar la solicitú pola mor d'una sobrecarga temporal o caltenimientu del sirvidor.
-        unauthorized_client: El veceru nun ta autorizáu pa facer esta solicitú usando esti métodu.
+        server_error: El sirvidor d'autorización atopó una condición inesperada qu'evitó que cumpliera la solicitú.
+        unauthorized_client: El veceru nun ta autorizáu pa facer esta solicitú con esti métodu.
         unsupported_response_type: El sirvidor d'autorización nun ye compatible con esti tipu de respuesta.
     grouped_scopes:
+      access:
+        read: Accesu de namás llectura
+        read/write: Accesu de llectura ya escritura
+        write: Accesu de namás escritura
       title:
+        accounts: Cuentes
+        admin/accounts: Alministración de cuentes
+        admin/all: Toles funciones alministratives
+        admin/reports: Alministración d'informes
+        all: Accesu completu a la cuenta de Mastodon
+        bookmarks: Marcadores
+        conversations: Conversaciones
+        crypto: Cifráu de puntu a puntu
+        favourites: Favoritos
+        filters: Peñeres
+        lists: Llistes
+        media: Elementos multimedia
+        mutes: Perfiles colos avisos desativaos
         notifications: Avisos
+        reports: Informes
+        search: Busca
+        statuses: Artículos
     layouts:
       admin:
         nav:
           applications: Aplicaciones
           oauth2_provider: Fornidor d'OAuth2
     scopes:
-      admin:read: lleer tolos datos del sirvidor
-      admin:read:accounts: lleer la información sensible de toles cuentes
-      admin:read:reports: lleer la información sensible de tolos informes y cuentes informaes
-      admin:write: modificar tolos datos del sirvidor
-      read: lleer tolos datos de la to cuenta
-      read:accounts: ver información de cuentes
-      read:blocks: ver quién bloquies
-      read:bookmarks: ver los tos marcadores
-      read:favourites: ver los tos favoritos
-      read:filters: ver les tos peñeres
-      read:follows: ver quién sigues
-      read:lists: ver les tos llistes
-      read:mutes: ver quién silencies
-      read:notifications: ver los tos avisos
-      read:reports: ver los tos informes
-      read:statuses: ver tolos estaos
-      write: modificar los datos de la to cuenta
-      write:accounts: modificar el to perfil
-      write:blocks: bloquiar cuentes y dominios
-      write:bookmarks: amestar estaos a Marcadores
-      write:favourites: marcar estaos como favoritos
-      write:filters: crear peñeres
-      write:follows: siguir a xente
-      write:lists: crear llistes
-      write:media: xubir ficheros multimedia
-      write:mutes: silenciar xente y conversaciones
-      write:notifications: llimpiar los tos avisos
-      write:reports: informar d'otres persones
-      write:statuses: espublizar estaos
+      admin:read: llee tolos datos del sirvidor
+      admin:read:accounts: llee la información sensible de toles cuentes
+      admin:write: modifica tolos datos del sirvidor
+      crypto: usa'l cifráu de puntu a puntu
+      follow: modifica les rellaciones de les cuentes
+      push: recibe avisos push
+      read: llee tolos datos de les cuentes
+      read:accounts: mira la información de les cuentes
+      read:blocks: mira les cuentes bloquiaes
+      read:bookmarks: mira los marcadores
+      read:filters: mira les peñeres
+      read:follows: mira quién sigues
+      read:lists: mira les llistes
+      read:notifications: mira los avisos
+      read:reports: mira los informes
+      read:search: busca nel to nome
+      read:statuses: mira tolos artículos
+      write: modifica los datos de les cuentes
+      write:accounts: modifica los perfiles
+      write:blocks: bloquia cuentes ya dominios
+      write:bookmarks: meter artículos en Marcadores
+      write:conversations: desaniciar ya desactivar los avisos de conversaciones
+      write:favourites: artículos favoritos
+      write:filters: crea peñeres
+      write:follows: sigue a perfiles
+      write:lists: crea llistes
+      write:media: xube ficheros multimedia
+      write:mutes: desactiva los avisos de perfiles ya de conversaciones
+      write:notifications: borra los avisos
+      write:reports: informa d'otros perfiles
+      write:statuses: espubliza artículos

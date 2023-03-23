@@ -70,12 +70,12 @@ services:
 
   web:
     build: .
-    image: tootsuite/mastodon
+    image: ghcr.io/mastodon/mastodon
     deploy:
       replicas: 1
       restart_policy:
         condition: on-failure
-    env_file: stack.env
+    env_file: .env.production
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
     networks:
       external_network:
@@ -97,8 +97,8 @@ services:
 
   streaming:
     build: .
-    image: tootsuite/mastodon
-    env_file: stack.env
+    image: ghcr.io/mastodon/mastodon
+    env_file: .env.production
     command: node ./streaming
     deploy:
       replicas: 1
@@ -119,8 +119,8 @@ services:
 
   sidekiq:
     build: .
-    image: tootsuite/mastodon
-    env_file: stack.env
+    image: ghcr.io/mastodon/mastodon
+    env_file: .env.production
     command: bundle exec sidekiq
     deploy:
       replicas: 1

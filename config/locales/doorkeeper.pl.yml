@@ -48,7 +48,7 @@ pl:
         title: Nowa aplikacja
       show:
         actions: Akcje
-        application_id: ID Aplikacji
+        application_id: Klucz klienta
         callback_urls: Adresy wywołań zwrotnych
         scopes: Zakresy (scopes)
         secret: Sekret
@@ -122,14 +122,14 @@ pl:
         admin/accounts: Zarządzanie kontami użytkowników
         admin/all: Wszystkie opcje administratora
         admin/reports: Zarządzanie zgłoszeniami
-        all: Wszystko
+        all: Pełny dostęp do konta Mastodon
         blocks: Zablokowane
         bookmarks: Zakładki
         conversations: Konwersacje
         crypto: Szyfrowanie End-to-End
         favourites: Ulubione
         filters: Filtry
-        follow: Relacje
+        follow: Obserwatorzy, wyciszeni i zablokowani
         follows: Obserwowani
         lists: Listy
         media: Załączniki multimedialne
@@ -149,9 +149,19 @@ pl:
     scopes:
       admin:read: odczytaj wszystkie dane na serwerze
       admin:read:accounts: odczytaj wrażliwe informacje na wszystkich kontach
+      admin:read:canonical_email_blocks: odczytaj poufne informacje o wszystkich kanonicznych blokach poczty
+      admin:read:domain_allows: odczyt wrażliwych informacji z domen, które pozwalają
+      admin:read:domain_blocks: odczyt wrażliwych informacji ze wszystkich bloków domen
+      admin:read:email_domain_blocks: odczyt wrażliwych informacji ze wszystkich bloków domen email
+      admin:read:ip_blocks: odczyt wrażliwych informacji ze wszystkich bloków IP
       admin:read:reports: odczytaj wrażliwe informacje ze wszystkich zgłoszeń oraz zgłoszonych kont
       admin:write: zmodyfikuj wszystkie dane na serwerze
       admin:write:accounts: wykonaj działania moderacyjne na kontach
+      admin:write:canonical_email_blocks: wykonaj działania moderacyjne na kanonicznych blokach e-mail
+      admin:write:domain_allows: wykonaj działania moderacyjne na domenach, które zezwalają
+      admin:write:domain_blocks: wykonaj działania moderacyjne na blokach domen
+      admin:write:email_domain_blocks: wykonaj działania moderacyjne na blokach domen e-mail
+      admin:write:ip_blocks: wykonaj działania moderacyjne na blokach IP
       admin:write:reports: wykonaj działania moderacyjne na zgłoszeniach
       crypto: użyj szyfrowania end-to-end
       follow: możliwość zarządzania relacjami kont

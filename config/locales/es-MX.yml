@@ -4,7 +4,7 @@ es-MX:
     about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, diseño ético, y descentralización! ¡Sé dueño de tu información con Mastodon!'
     contact_missing: No especificado
     contact_unavailable: No disponible
-    hosted_on: Mastodon hosteado en %{domain}
+    hosted_on: Mastodon alojado en %{domain}
     title: Acerca de
   accounts:
     follow: Seguir
@@ -38,17 +38,17 @@ es-MX:
       avatar: Foto de perfil
       by_domain: Dominio
       change_email:
-        changed_msg: "¡Email cambiado con éxito!"
+        changed_msg: Correo cambiado exitosamente!
         current_email: Correo electrónico actual
         label: Cambiar el correo electrónico
         new_email: Nuevo correo electrónico
         submit: Cambiar el correo electrónico
         title: Cambiar el correo electrónico de %{username}
       change_role:
-        changed_msg: "¡Rol cambiado con éxito!"
-        label: Cambiar rol
+        changed_msg: Rol cambiado exitosamente!
+        label: Cambiar de rol
         no_role: Sin rol
-        title: Cambiar rol para %{username}
+        title: Cambiar el rol para %{username}
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
@@ -91,6 +91,7 @@ es-MX:
       moderation:
         active: Activo
         all: Todos
+        disabled: Deshabilitado
         pending: Pendiente
         silenced: Limitado
         suspended: Suspendidos
@@ -100,11 +101,11 @@ es-MX:
       most_recent_ip: IP más reciente
       no_account_selected: Ninguna cuenta se cambió como ninguna fue seleccionada
       no_limits_imposed: Sin límites impuestos
-      no_role_assigned: Ningún rol asignado
+      no_role_assigned: Sin rol asignado
       not_subscribed: No se está suscrito
       pending: Revisión pendiente
       perform_full_suspension: Suspender
-      previous_strikes: Amonestaciones anteriores
+      previous_strikes: Amonestaciones previas
       previous_strikes_description_html:
         one: Esta cuenta tiene <strong>una</strong> amonestación.
         other: Esta cuenta tiene <strong>%{count}</strong> amonestaciones.
@@ -116,6 +117,8 @@ es-MX:
       redownloaded_msg: Se actualizó correctamente el perfil de %{username} desde el origen
       reject: Rechazar
       rejected_msg: La solicitud de registro de %{username} ha sido rechazada con éxito
+      remote_suspension_irreversible: Los datos de esta cuenta han sido eliminados irreversiblemente.
+      remote_suspension_reversible_hint_html: La cuenta ha sido suspendida en su servidor, y los datos serán eliminados completamente el %{date}. Hasta entonces, el servidor remoto puede restaurar esta cuenta sin ningún efecto perjudicial. Si desea eliminar todos los datos de la cuenta inmediatamente, puede hacerlo a continuación.
       remove_avatar: Eliminar el avatar
       remove_header: Eliminar cabecera
       removed_avatar_msg: Se ha eliminado exitosamente la imagen del avatar de %{username}
@@ -131,6 +134,7 @@ es-MX:
       search: Buscar
       search_same_email_domain: Otros usuarios con el mismo dominio de correo
       search_same_ip: Otros usuarios con la misma IP
+      security: Seguridad
       security_measures:
         only_password: Sólo contraseña
         password_and_2fa: Contraseña y 2FA
@@ -151,7 +155,7 @@ es-MX:
       suspension_reversible_hint_html: La cuenta ha sido suspendida y los datos se eliminarán completamente el %{date}. Hasta entonces, la cuenta puede ser restaurada sin ningún efecto perjudicial. Si desea eliminar todos los datos de la cuenta inmediatamente, puede hacerlo a continuación.
       title: Cuentas
       unblock_email: Desbloquear dirección de correo
-      unblocked_email_msg: Se ha desbloqueado correctamente la dirección de correo de %{username}
+      unblocked_email_msg: Desbloqueo exitoso de la dirección de correo de %{username}
       unconfirmed_email: Correo electrónico sin confirmar
       undo_sensitized: Desmarcar como sensible
       undo_silenced: Des-silenciar
@@ -161,30 +165,30 @@ es-MX:
       unsuspended_msg: Se quitó con éxito la suspensión de la cuenta de %{username}
       username: Nombre de usuario
       view_domain: Ver resumen del dominio
-      warn: Adevertir
+      warn: Advertir
       web: Web
       whitelisted: Añadido a la lista blanca
     action_logs:
       action_types:
-        approve_appeal: Aprobar Apelación
+        approve_appeal: Aprobar apelación
         approve_user: Aprobar Usuario
         assigned_to_self_report: Asignar Reporte
         change_email_user: Cambiar Correo Electrónico del Usuario
-        change_role_user: Cambiar Rol de Usuario
+        change_role_user: Cambiar rol del usuario
         confirm_user: Confirmar Usuario
         create_account_warning: Crear Advertencia
         create_announcement: Crear Anuncio
-        create_canonical_email_block: Crear Bloqueo de Correo Electrónico
+        create_canonical_email_block: Crear Bloque de E-mail
         create_custom_emoji: Crear Emoji Personalizado
         create_domain_allow: Crear Permiso de Dominio
         create_domain_block: Crear Bloqueo de Dominio
         create_email_domain_block: Crear Bloqueo de Dominio de Correo Electrónico
         create_ip_block: Crear regla IP
         create_unavailable_domain: Crear Dominio No Disponible
-        create_user_role: Crear Rol
+        create_user_role: Crear rol
         demote_user: Degradar Usuario
         destroy_announcement: Eliminar Anuncio
-        destroy_canonical_email_block: Eliminar Bloqueo de Correo Electrónico
+        destroy_canonical_email_block: Eliminar Bloque de E-mail
         destroy_custom_emoji: Eliminar Emoji Personalizado
         destroy_domain_allow: Eliminar Permiso de Dominio
         destroy_domain_block: Eliminar Bloqueo de Dominio
@@ -196,7 +200,7 @@ es-MX:
         destroy_user_role: Destruir Rol
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar Emoji Personalizado
-        disable_sign_in_token_auth_user: Deshabilitar la Autenticación por Token de Correo Electrónico para el Usuario
+        disable_sign_in_token_auth_user: Desactivar la autenticación de token de correo electrónico para el usuario
         disable_user: Deshabilitar Usuario
         enable_custom_emoji: Habilitar Emoji Personalizado
         enable_sign_in_token_auth_user: Habilitar la Autenticación por Token de Correo Electrónico para el Usuario
@@ -373,6 +377,8 @@ es-MX:
       add_new: Añadir dominio a la lista blanca
       created_msg: Dominio añadido a la lista blanca con éxito
       destroyed_msg: Dominio quitado de la lista blanca con éxito
+      export: Exportar
+      import: Importar
       undo: Quitar de la lista blanca
     domain_blocks:
       add_new: Añadir nuevo
@@ -382,13 +388,19 @@ es-MX:
       edit: Editar nuevo dominio bloqueado
       existing_domain_block: Ya ha impuesto límites más estrictos a %{name}.
       existing_domain_block_html: Ya ha impuesto límites más estrictos a %{name}, necesita <a href="%{unblock_url}">desbloquearlo primero</a>.
+      export: Exportar
+      import: Importar
       new:
         create: Crear bloque
         hint: El bloque de dominio no prevendrá la creación de entradas de cuenta en la base de datos, pero aplicará retroactiva y automáticamente métodos de moderación específica en dichas cuentas.
         severity:
+          desc_html: "<strong>Limitar</strong> hará que las publicaciones de las cuentas de ese dominio sean invisibles para cualquiera que no las esté siguiendo. <strong>Suspender</strong> eliminará todo el contenido, archivos multimedia, y datos del perfil. Usa <strong>Ninguno</strong> si solo quieres rechazar archivos multimedia."
           noop: Ninguno
+          silence: Limitar
           suspend: Suspender
         title: Nuevo bloque de dominio
+      no_domain_block_selected: No se cambió ningún bloqueo de dominio ya que ninguno fue seleccionado
+      not_permitted: No tienes permiso para realizar esta acción
       obfuscate: Ocultar nombre de dominio
       obfuscate_hint: Oculta parcialmente el nombre de dominio en la lista si mostrar la lista de limitaciones de dominio está habilitado
       private_comment: Comentario privado
@@ -417,9 +429,25 @@ es-MX:
         resolve: Resolver dominio
         title: Nueva entrada en la lista negra de correo
       no_email_domain_block_selected: No se han cambiado bloqueos de dominio ya que ninguno ha sido seleccionado
+      not_permitted: No permitido
       resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Tenga cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
       resolved_through_html: Resuelto a través de %{domain}
       title: Lista negra de correo
+    export_domain_allows:
+      new:
+        title: Importar dominios permitidos
+      no_file: Ningún archivo seleccionado
+    export_domain_blocks:
+      import:
+        description_html: Estás a punto de importar una lista de bloqueos de dominio. Por favor, revisa esta lista con mucho cuidado, especialmente si no has creado esta lista tú mismo.
+        existing_relationships_warning: Relaciones de seguimiento existentes
+        private_comment_description_html: 'Para ayudarle a rastrear de dónde proceden los bloqueos importados, los bloqueos importados se crearán con el siguiente comentario privado: <q>%{comment}</q>'
+        private_comment_template: Importado desde %{source} el %{date}
+        title: Importar bloqueos de dominio
+      invalid_domain_block: 'Uno o más bloques de dominio fueron omitidos debido a el/los siguiente(s) error(es): %{error}'
+      new:
+        title: Importar bloqueos de dominio
+      no_file: No hay archivo seleccionado
     follow_recommendations:
       description_html: "<strong>Las recomendaciones de cuentas ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para suscitar recomendaciones personalizadas de cuentas a las que seguir, en su lugar se le recomiendan estas cuentas. Se recalculan diariamente a partir de una mezcla de cuentas con el mayor número de interacciones recientes y con el mayor número de seguidores locales con un idioma determinado."
       language: Para el idioma
@@ -448,6 +476,7 @@ es-MX:
       content_policies:
         comment: Nota interna
         description_html: Puedes definir políticas de contenido que se aplicarán a todas las cuentas de este dominio y a cualquiera de sus subdominios.
+        limited_federation_mode_description_html: Puedes elegir si permites la federación con este dominio.
         policies:
           reject_media: Rechazar multimedia
           reject_reports: Rechazar informes
@@ -539,7 +568,6 @@ es-MX:
     report_notes:
       created_msg: "¡El registro de la denuncia se ha creado correctamente!"
       destroyed_msg: "¡El registro de la denuncia se ha borrado correctamente!"
-      today_at: Hoy a las %{time}
     reports:
       account:
         notes:
@@ -552,19 +580,23 @@ es-MX:
         mark_as_sensitive_description_html: Los archivos multimedia en los mensajes informados se marcarán como sensibles y se aplicará una amonestación para ayudarte a escalar las futuras infracciones de la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará la amonestación, y se cerrará el informe.
-        silence_description_html: El perfil será visible solo para aquellos que ya lo sigan o lo busquen manualmente, limitando seriamente su alcance. Siempre puede ser revertido.
-        suspend_description_html: El perfil y todos sus contenidos serán inaccesibles hasta que sean finalmente eliminados. La interacción con la cuenta será imposible. Reversible durante un plazo de 30 días.
+        silence_description_html: La cuenta será visible sólo para aquellos que ya la sigan o la busquen manualmente, limitando severamente su visibilidad. Siempre puede ser revertido. Cierra todos los reportes contra esta cuenta.
+        suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y eventualmente eliminados, e interactuar con ella será imposible. Reversible durante 30 días. Cierra todos los reportes contra esta cuenta.
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
+      actions_description_remote_html: Decide qué medidas tomar para resolver este reporte. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
       add_to_report: Añadir más al reporte
       are_you_sure: "¿Estás seguro?"
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
       by_target_domain: Dominio de la cuenta reportada
+      cancel: Cancelar
       category: Categoría
       category_description_html: La razón por la que se reportó esta cuenta o contenido será citada en las comunicaciones con la cuenta reportada
       comment:
         none: Ninguno
       comment_description_html: 'Para proporcionar más información, %{name} escribió:'
+      confirm: Confirmar
+      confirm_action: Confirmar acción de moderación contra @%{acct}
       created_at: Denunciado
       delete_and_resolve: Eliminar publicaciones
       forwarded: Reenviado
@@ -581,6 +613,7 @@ es-MX:
         placeholder: Especificar qué acciones se han tomado o cualquier otra novedad respecto a esta denuncia…
         title: Notas
       notes_description_html: Ver y dejar notas a otros moderadores y a tu yo futuro
+      processed_msg: 'La denuncia #%{id} ha sido procesada con éxito'
       quick_actions_description_html: 'Toma una acción rápida o desplázate hacia abajo para ver el contenido denunciado:'
       remote_user_placeholder: el usuario remoto de %{instance}
       reopen: Reabrir denuncia
@@ -593,9 +626,28 @@ es-MX:
       status: Estado
       statuses: Contenido reportado
       statuses_description_html: El contenido ofensivo se citará en comunicación con la cuenta reportada
+      summary:
+        action_preambles:
+          delete_html: 'Estás a punto de <strong>eliminar</strong> algunas de la publicaciones de <strong>@%{acct}</strong>. Esto hará:'
+          mark_as_sensitive_html: 'Estás a punto de <strong>marcar</strong> algunas de las publicaciones de <strong>@%{acct}</strong>como <strong>sensibles</strong>. Esto hará:'
+          silence_html: 'Estás a punto de <strong>limitar</strong> la cuenta de <strong>@%{acct}</strong>. Esto hará:'
+          suspend_html: 'Estás a punto de <strong>suspender</strong> la cuenta de <strong>@%{acct}</strong>. Esto hará:'
+        actions:
+          delete_html: Eliminar las publicaciones ofensivas
+          mark_as_sensitive_html: Marcar las publicaciones ofensivas como sensibles
+          silence_html: Limitar severamente el alcance de <strong>@%{acct}</strong> haciendo que su perfil y contenido sólo sean visibles para las personas que ya lo siguen o que consulten manualmente su perfil
+          suspend_html: Suspender a <strong>@%{acct}</strong>, haciendo su perfil y contenido inaccesibles e imposible la interacción
+        close_report: 'Marcar denuncia #%{id} como resuelta'
+        close_reports_html: Marcar <strong>todas</strong> las denuncias contra <strong>@%{acct}</strong> como resueltas
+        delete_data_html: Eliminar el perfil y contenido de <strong>@%{acct}</strong> en 30 días a partir de ahora a menos que se revierta la suspensión en ese tiempo
+        preview_preamble_html: "<strong>@%{acct}</strong> recibirá una advertencia con el siguiente contenido:"
+        record_strike_html: Registra una amonestación contra <strong>@%{acct}</strong> para ayudarte a escalar futuras violaciones de esta cuenta
+        send_email_html: Enviar a <strong>@%{acct}</strong> un correo electrónico de advertencia
+        warning_placeholder: Razones adicionales opcionales para la acción de moderación.
       target_origin: Origen de la cuenta reportada
       title: Reportes
       unassign: Desasignar
+      unknown_action_msg: 'Acción desconocida: %{action}'
       unresolved: No resuelto
       updated_at: Actualizado
       view_profile: Ver perfil
@@ -682,11 +734,16 @@ es-MX:
       content_retention:
         preamble: Controlar cómo el contenido generado por el usuario se almacena en Mastodon.
         title: Retención de contenido
+      default_noindex:
+        desc_html: Afecta a todos los usuarios que no han cambiado esta configuración por sí mismos
+        title: Optar por los usuarios fuera de la indexación en los motores de búsqueda por defecto
       discovery:
         follow_recommendations: Recomendaciones de cuentas
         preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controla cómo funcionan varias opciones de descubrimiento en tu servidor.
         profile_directory: Directorio de perfiles
         public_timelines: Lineas de tiempo públicas
+        publish_discovered_servers: Publicar servidores descubiertos
+        publish_statistics: Publicar estadísticas
         title: Descubrimiento
         trends: Tendencias
       domain_blocks:
@@ -741,6 +798,7 @@ es-MX:
         suspend: "%{name} suspendio la cuenta de %{target}"
       appeal_approved: Apelado
       appeal_pending: Apelación pendiente
+      appeal_rejected: Apelación rechazada
     system_checks:
       database_schema_check:
         message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecútalas para asegurarte de que la aplicación funciona como debería
@@ -776,6 +834,7 @@ es-MX:
           other: Compartido por %{count} personas durante la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado a %{yesterday} ayer
+      not_allowed_to_trend: No permitido para tendencia
       only_allowed: Sólo las permitidas
       pending_review: Revisión pendiente
       preview_card_providers:
@@ -853,7 +912,7 @@ es-MX:
         delete_statuses: para eliminar sus mensajes
         disable: para congelar su cuenta
         mark_statuses_as_sensitive: para marcar sus mensajes como sensibles
-        none: una advertencia
+        none: una alvertencia
         sensitive: para marcar su cuenta como sensible
         silence: para limitar su cuenta
         suspend: suspender su cuenta
@@ -907,12 +966,16 @@ es-MX:
   applications:
     created: Aplicación creada exitosamente
     destroyed: Apicación eliminada exitosamente
+    logout: Cerrar sesión
     regenerate_token: Regenerar token de acceso
     token_regenerated: Token de acceso regenerado exitosamente
     warning: Ten mucho cuidado con estos datos. ¡No los compartas con nadie!
     your_token: Tu token de acceso
   auth:
+    apply_for_account: Solicitar una cuenta
     change_password: Contraseña
+    confirmations:
+      wrong_email_hint: Si esa dirección de correo electrónico no es correcta, puedes cambiarla en la configuración de la cuenta.
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
     description:
@@ -940,6 +1003,8 @@ es-MX:
     resend_confirmation: Volver a enviar el correo de confirmación
     reset_password: Restablecer contraseña
     rules:
+      accept: Aceptar
+      back: Atrás
       preamble: Estas son establecidas y aplicadas por los moderadores de %{domain}.
       title: Algunas reglas básicas.
     security: Cambiar contraseña
@@ -948,6 +1013,9 @@ es-MX:
       email_below_hint_html: Si la dirección de correo electrónico que aparece a continuación es incorrecta, se puede cambiarla aquí y recibir un nuevo correo electrónico de confirmación.
       email_settings_hint_html: El correo electrónico de confirmación fue enviado a %{email}. Si esa dirección de correo electrónico no sea correcta, se puede cambiarla en la configuración de la cuenta.
       title: Configuración
+    sign_in:
+      preamble_html: Registrate con tus credenciales de <strong>%{domain}</strong>. Si tu cuenta está alojada en un servidor diferente, no podrás iniciar sesión aquí.
+      title: Registrate en %{domain}
     sign_up:
       preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra persona en la red, independientemente del servidor en el que se encuentre.
       title: Crear cuenta de Mastodon en %{domain}.
@@ -1128,8 +1196,6 @@ es-MX:
       index:
         hint: Este filtro se aplica a la selección de publicaciones individuales independientemente de otros criterios. Puede añadir más publicaciones a este filtro desde la interfaz web.
         title: Publicaciones filtradas
-  footer:
-    trending_now: Tendencia ahora
   generic:
     all: Todos
     all_items_on_page_selected_html:
@@ -1152,10 +1218,9 @@ es-MX:
     validation_errors:
       one: "¡Algo no está bien! Por favor, revisa el error"
       other: "¡Algo no está bien! Por favor, revise %{count} errores más abajo"
-  html_validator:
-    invalid_markup: 'contiene código HTML no válido: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Archivo CSV no válido. Error: %{error}'
       over_rows_processing_limit: contiene más de %{count} filas
     modes:
       merge: Unir
@@ -1336,7 +1401,11 @@ es-MX:
       unrecognized_emoji: no es un emoji conocido
   relationships:
     activity: Actividad de la cuenta
+    confirm_follow_selected_followers: "¿Estás seguro de que quieres seguir a las cuentas seleccionadas?"
+    confirm_remove_selected_followers: "¿Estás seguro de que quieres eliminar a los seguidores seleccionados?"
+    confirm_remove_selected_follows: "¿Estás seguro de que quieres eliminar los seguidos seleccionados?"
     dormant: Inactivo
+    follow_failure: No se pudo seguir algunas de las cuentas seleccionadas.
     follow_selected_followers: Seguir a los seguidores seleccionados
     followers: Seguidores
     following: Siguiendo
@@ -1376,6 +1445,7 @@ es-MX:
       electron: Electron
       firefox: Firefox
       generic: Desconocido
+      huawei_browser: Navegador Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Navegador de Nokia S40 Ovi
@@ -1385,6 +1455,7 @@ es-MX:
       qq: Navegador QQ
       safari: Safari
       uc_browser: Navegador UC
+      unknown_browser: Navegador desconocido
       weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
@@ -1397,9 +1468,10 @@ es-MX:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: GNU Linux
       mac: Mac
-      other: Desconocido
+      unknown_platform: Plataforma desconocida
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1512,7 +1584,7 @@ es-MX:
       '7889238': 3 meses
     min_age_label: Umbral de tiempo
     min_favs: Mantener mensajes con un número de favoritos mayor que
-    min_favs_hint: No borra ninguna de las publicaciones que hayan recibido más de esta cantidad de favoritos. Deja en blanco para eliminar publicaciones sin importar el número de favoritos
+    min_favs_hint: No borra ninguna de las publicaciones que hayan recibido al menos esta cantidad de favoritos. Deja en blanco para eliminar publicaciones sin importar el número de favoritos
     min_reblogs: Mantener publicaciones reblogueadas más de
     min_reblogs_hint: No borra ninguna de las publicaciones que hayan sido reblogueadas más de este número de veces. Deja en blanco para eliminar publicaciones sin importar el número de reblogueos
   stream_entries:
@@ -1579,7 +1651,7 @@ es-MX:
         delete_statuses: Se ha determinado que algunos de tus mensajes violan una o más directrices de la comunidad y han sido por tanto eliminados por los moderadores de %{instance}.
         disable: Ya no puedes usar tu cuenta, pero tu perfil y el resto de datos permanecen intactos. Puedes solicitar una copia de seguridad de tus datos, cambiar la configuración de tu cuenta o eliminarla.
         mark_statuses_as_sensitive: Algunos de tus mensajes han sido marcados como sensibles por los moderadores de %{instance}. Esto significa que la gente tendrá que pulsar los archivos multimedia en las publicaciones antes de que se muestre una vista previa. Puedes marcar los archivos multimedia como sensibles tú mismo cuando publiques en el futuro.
-        sensitive: A partir de ahora todos los archivos multimedia que subas serán marcados como sensibles y ocultos tras una advertencia que habrá que clicar.
+        sensitive: A partir de ahora, todos los archivos multimedia que subas serán marcados como sensibles y ocultos tras una advertencia que habrá que clicar.
         silence: Aún puedes usar tu cuenta, pero solo las personas que te están siguiendo verán tus publicaciones en este servidor, y puedes ser excluido de varias funcionalidades de descubrimiento. Sin embargo, otras cuentas podrán empezar a seguirte manualmente.
         suspend: Ya no puedes utilizar tu cuenta, y tu perfil y el resto de datos ya no son accesibles. Todavía puedes iniciar sesión para solicitar una copia de seguridad de tus datos, hasta que estos sean eliminados por completo en unos 30 días, aunque conservaremos algunos datos básicos para impedir que esquives la suspensión.
       reason: 'Razón:'

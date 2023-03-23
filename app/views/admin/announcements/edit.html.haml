@@ -19,7 +19,7 @@
 
   - unless @announcement.published?
     .fields-group
-      = f.input :scheduled_at, include_blank: true, wrapper: :with_block_label
+      = f.input :scheduled_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}(:[0-9]{2}){1,2}', placeholder: Time.now.strftime('%FT%R') }
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

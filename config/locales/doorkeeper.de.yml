@@ -3,7 +3,7 @@ de:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Name der Anwendung
+        name: Anwendungsname
         redirect_uri: Weiterleitungs-URI
         scopes: Befugnisse
         website: Website der Anwendung
@@ -25,11 +25,11 @@ de:
         edit: Bearbeiten
         submit: Speichern
       confirmations:
-        destroy: Bist du sicher?
+        destroy: Bist du dir sicher?
       edit:
         title: Anwendung bearbeiten
       form:
-        error: Hoppla! Bitte überprüfe das Formular auf mögliche Fehler
+        error: Ups! Bitte überprüfe das Formular auf mögliche Fehler
       help:
         native_redirect_uri: Benutze %{native_redirect_uri} für lokale Tests
         redirect_uri: Benutze eine Zeile pro URI
@@ -60,8 +60,8 @@ de:
       error:
         title: Ein Fehler ist aufgetreten
       new:
-        prompt_html: "%{client_name} möchte auf dein Konto zugreifen. Es ist eine Anwendung von Drittanbietern. <strong>Wenn du ihr nicht vertraust, dann solltest du sie nicht autorisieren.</strong>"
-        review_permissions: Rechte überprüfen
+        prompt_html: "%{client_name} möchte auf dein Konto zugreifen. Es handelt sich um eine Drittanbieter-Software. <strong>Wenn du der Anwendung nicht vertraust, solltest du ihr keinen Zugriff auf dein Konto geben.</strong>"
+        review_permissions: Berechtigungen überprüfen
         title: Autorisierung erforderlich
       show:
         title: Kopiere diesen Autorisierungs-Code und füge ihn in die Anwendung ein.
@@ -69,20 +69,20 @@ de:
       buttons:
         revoke: Widerrufen
       confirmations:
-        revoke: Bist du sicher?
+        revoke: Bist du dir sicher?
       index:
         authorized_at: Autorisiert am %{date}
-        description_html: Dies sind Anwendungen, die über die Programmierschnittstelle (API) dieser Mastodon-Instanz auf dein Konto zugreifen können. Sollten hier Apps aufgeführt sein, die du nicht erkennst oder die sich verdächtig verhalten, solltest du den Zugriff schnellstmöglich widerrufen.
+        description_html: Dies sind Anwendungen, die über die Programmierschnittstelle (API) auf dein Konto zugreifen können. Wenn es Anwendungen gibt, die du hier nicht zuordnen kannst oder wenn sich eine Anwendung verdächtig verhält, kannst du den Zugriff widerrufen.
         last_used_at: Zuletzt verwendet am %{date}
         never_used: Nie verwendet
         scopes: Berechtigungen
         superapp: Intern
-        title: Deine autorisierten Anwendungen
+        title: Deine genehmigten Apps
     errors:
       messages:
         access_denied: Die Anfrage wurde durch Benutzer_in oder Autorisierungs-Server verweigert.
         credential_flow_not_configured: Das Konto konnte nicht gefunden werden, da Doorkeeper.configure.resource_owner_from_credentials nicht konfiguriert ist.
-        invalid_client: 'Client-Authentifizierung ist fehlgeschlagen: Client unbekannt, keine Authentisierung mitgeliefert oder Authentisierungsmethode wird nicht unterstützt.'
+        invalid_client: 'Client-Authentisierung ist fehlgeschlagen: Client unbekannt, keine Authentisierung mitgeliefert oder Authentisierungsmethode wird nicht unterstützt.'
         invalid_grant: Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen oder einem anderen Client ausgestellt, oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.
         invalid_redirect_uri: Der beigefügte Weiterleitungs-URI ist ungültig.
         invalid_request:
@@ -114,22 +114,22 @@ de:
           notice: Anwendung widerrufen.
     grouped_scopes:
       access:
-        read: Nur-Lese-Zugriff
+        read: Nur Lesezugriff
         read/write: Lese- und Schreibzugriff
-        write: Schreibzugriff
+        write: Nur Schreibzugriff
       title:
         accounts: Konten
-        admin/accounts: Verwaltung der Konten
+        admin/accounts: Kontenverwaltung
         admin/all: Alle administrativen Funktionen
         admin/reports: Verwaltung der Berichte
-        all: Alles
-        blocks: Blocks
+        all: Voller Zugriff auf dein Mastodon-Konto
+        blocks: Blockierungen
         bookmarks: Lesezeichen
-        conversations: Konversationen
+        conversations: Unterhaltungen
         crypto: Ende-zu-Ende-Verschlüsselung
         favourites: Favoriten
         filters: Filter
-        follow: Beziehungen
+        follow: Folge ich, Stummschaltungen und Sperrungen
         follows: Folge ich
         lists: Listen
         media: Medienanhänge
@@ -145,22 +145,32 @@ de:
           applications: Anwendungen
           oauth2_provider: OAuth2-Anbieter
       application:
-        title: OAuth-Autorisierung nötig
+        title: OAuth-Autorisierung erforderlich
     scopes:
       admin:read: alle Daten auf dem Server lesen
-      admin:read:accounts: sensible Daten aller Konten lesen
-      admin:read:reports: sensible Daten aller Meldungen und gemeldeten Konten lesen
+      admin:read:accounts: sensible Informationen aller Konten lesen
+      admin:read:canonical_email_blocks: sensible Informationen aller kanonischen E-Mail-Sperren lesen
+      admin:read:domain_allows: sensible Informationen aller zugelassenen Domains lesen
+      admin:read:domain_blocks: sensible Informationen aller Domain-Sperren lesen
+      admin:read:email_domain_blocks: sensible Informationen aller E-Mail-Domain-Sperren lesen
+      admin:read:ip_blocks: sensible Informationen aller IP-Sperren lesen
+      admin:read:reports: sensible Informationen aller Meldungen und gemeldeten Konten lesen
       admin:write: alle Daten auf dem Server ändern
       admin:write:accounts: Moderationsaktionen auf Konten ausführen
+      admin:write:canonical_email_blocks: Moderationsaktionen auf kanonischen E-Mail-Sperren ausführen
+      admin:write:domain_allows: Moderationsaktionen auf zugelassende Domains ausführen
+      admin:write:domain_blocks: Moderationsaktionen auf Domain-Sperren ausführen
+      admin:write:email_domain_blocks: Moderationsaktionen auf E-Mail-Domain-Sperren ausführen
+      admin:write:ip_blocks: Moderationsaktionen auf IP-Sperren ausführen
       admin:write:reports: Moderationsaktionen auf Meldungen ausführen
       crypto: Ende-zu-Ende-Verschlüsselung verwenden
       follow: Kontenbeziehungen verändern
       push: deine Push-Benachrichtigungen erhalten
       read: all deine Daten lesen
       read:accounts: deine Konteninformationen einsehen
-      read:blocks: deine Blockaden einsehen
+      read:blocks: deine Sperren einsehen
       read:bookmarks: deine Lesezeichen lesen
-      read:favourites: deine Favoriten ansehen
+      read:favourites: deine Favoriten lesen
       read:filters: deine Filter ansehen
       read:follows: sehen, wem du folgst
       read:lists: deine Listen sehen
@@ -176,10 +186,10 @@ de:
       write:conversations: Unterhaltungen stummschalten und löschen
       write:favourites: Beiträge favorisieren
       write:filters: Filter erstellen
-      write:follows: Leuten folgen
+      write:follows: Profilen folgen
       write:lists: Listen erstellen
       write:media: Mediendateien hochladen
-      write:mutes: Leute und Konversationen stummschalten
+      write:mutes: Profile und Unterhaltungen stummschalten
       write:notifications: deine Benachrichtigungen leeren
-      write:reports: andere Leute melden
+      write:reports: andere Profile melden
       write:statuses: Beiträge veröffentlichen

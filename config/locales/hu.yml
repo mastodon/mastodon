@@ -91,6 +91,7 @@ hu:
       moderation:
         active: Aktív
         all: Összes
+        disabled: Letiltva
         pending: Függőben
         silenced: Korlátozott
         suspended: Felfüggesztve
@@ -104,10 +105,10 @@ hu:
       not_subscribed: Nincs feliratkozás
       pending: Engedélyezés alatt
       perform_full_suspension: Felfüggesztés
-      previous_strikes: Korábbi szankciók
+      previous_strikes: Korábbi felrótt vétségek
       previous_strikes_description_html:
-        one: Ezt a fiókot <strong>egyszer</strong> szankcionálták.
-        other: Ezt a fiókot <strong>%{count}</strong> esetben szankcionálták.
+        one: Ehhez a fiókhoz <strong>egyszer</strong> róttak fel vétséget.
+        other: Ehhez a fiókhoz <strong>%{count}</strong> esetben róttak fel vétséget.
       promote: Előléptetés
       protocol: Protokoll
       public: Nyilvános
@@ -116,6 +117,8 @@ hu:
       redownloaded_msg: "%{username} profilját sikeresen frissítettük az eredetiből"
       reject: Elutasítás
       rejected_msg: A %{username} fiók regisztrációs kérelmét sikeresen elutasítottuk
+      remote_suspension_irreversible: A fiók adatait véglegesen törölték.
+      remote_suspension_reversible_hint_html: 'A fiókot felfüggesztették a kiszolgálóján, az adatai ekkor lesznek teljesen eltávolítva: %{date}. Eddig az időpontig a távoli kiszolgáló probléma nélkül helyre tudja állítani a fiókot. Ha azonnal törölni szeretnéd a fiók adatait, alább megteheted.'
       remove_avatar: Profilkép eltávolítása
       remove_header: Fejléc törlése
       removed_avatar_msg: A %{username} fiók avatárját sikeresen töröltük
@@ -131,6 +134,7 @@ hu:
       search: Keresés
       search_same_email_domain: Felhasználók ugyanezzel az email domainnel
       search_same_ip: Más felhasználók ugyanezzel az IP-vel
+      security: Biztonság
       security_measures:
         only_password: Csak jelszó
         password_and_2fa: Jelszó és kétlépcsős hitelesítés
@@ -373,6 +377,8 @@ hu:
       add_new: Domain engedélyezése
       created_msg: A domain rákerült az engedélyező-listára
       destroyed_msg: A domain lekerült az engedélyező-listáról
+      export: Exportálás
+      import: Importálás
       undo: Eltávolítás az engedélyező-listáról
     domain_blocks:
       add_new: Új tiltott domain hozzáadása
@@ -382,13 +388,19 @@ hu:
       edit: Domain tiltás szerkesztése
       existing_domain_block: 'Már szigorúbb korlátozások vonatkoznak a következőre: %{name}.'
       existing_domain_block_html: A %{name} domainen már szorosabb korlátokat állítottál be, először <a href="%{unblock_url}">oldd fel a tiltást</a>.
+      export: Exportálás
+      import: Importálás
       new:
         create: Tiltás létrehozása
         hint: A domain tiltása nem gátolja meg az új fiókok hozzáadását az abatbázishoz, de visszamenőlegesen és automatikusan aktivál bizonyos moderációs szabályokat ezen fiókok esetében.
         severity:
+          desc_html: A <strong>Korlátozás</strong> elrejti a domain fiókjaitól származó bejegyzéseket azok elől, akik nem követik őket. A <strong>Felfüggesztés</strong> eltávolítja a domain fiókjaitól származó összes tartalmat, médiafájlt és profiladatot. Használd a <strong>Nincs </strong> lehetőséget, ha csak a médiafájlokat akarod elutasítani.
           noop: Egyik sem
+          silence: Korlátozás
           suspend: Felfüggesztés
         title: Új domain tiltása
+      no_domain_block_selected: Nem változott meg egy domain tiltás sem, mert semmi sem volt kiválasztva
+      not_permitted: Nem vagy jogosult a művelet végrehajtására
       obfuscate: Domain név álcázása
       obfuscate_hint: Részlegesen álcázza a domain nevet a listában, ha a domain korlátozások listájának közzététele engedélyezett
       private_comment: Privát megjegyzés
@@ -417,9 +429,25 @@ hu:
         resolve: Domain feloldása
         title: Új e-mail domain tiltása
       no_email_domain_block_selected: Nem változott meg egy domain tiltás sem, mert semmi sem volt kiválasztva
+      not_permitted: Nem engedélyezett
       resolved_dns_records_hint_html: A domain név a következő MX domain-ekre oldódik fel, melyek valójában fogadják az e-mailt. Az MX domain letiltása minden olyan feliratkozást tiltani fog, melyben az e-mailcím ugyanazt az MX domaint használja, még akkor is, ha a látható domain név más. <strong>Légy óvatos, hogy ne tilts le nagy e-mail szolgáltatókat.</strong>
       resolved_through_html: Feloldva %{domain}-n keresztül
       title: Tiltott e-mail domainek
+    export_domain_allows:
+      new:
+        title: Domain engedélyezések importálása
+      no_file: Nincs fájl kiválasztva
+    export_domain_blocks:
+      import:
+        description_html: Domain tiltások listájának importálására készülsz. Nézd át alaposan, különösen ha nem te állítottad össze ezt a listát.
+        existing_relationships_warning: Létező követési kapcsolatok
+        private_comment_description_html: 'Az importált tiltások forrásának könnyebb követése érdekében, az importált tiltások a következő privát megjegyzéssel lesznek létrehozva: <q>%{comment}</q>'
+        private_comment_template: 'Innen importálva: %{source}, ekkor: %{date}'
+        title: Domain tiltások importálása
+      invalid_domain_block: 'Egy vagy több domain letiltást kihagytunk a következő hiba(ák) miatt: %{error}'
+      new:
+        title: Domain tiltások importálása
+      no_file: Nincs fájl kiválasztva
     follow_recommendations:
       description_html: "<strong>A követési ajánlatok segítik az új felhasználókat az érdekes tartalmak gyors megtalálásában</strong>. Ha egy felhasználó még nem érintkezett eleget másokkal ahhoz, hogy személyre szabott ajánlatokat kapjon, ezeket a fiókokat ajánljuk helyette. Ezeket naponta újraszámítjuk a nemrég legtöbb embert foglalkoztató, illetve legtöbb helyi követővel rendelkező fiókok alapján."
       language: Ezen a nyelven
@@ -448,6 +476,7 @@ hu:
       content_policies:
         comment: Belső megjegyzés
         description_html: Definiálhatsz tartalmi szabályokat, melyek ezen domain és minden aldomain fiókjára vonatkozni fognak.
+        limited_federation_mode_description_html: Eldöntheted, hogy engeded-e a föderációt ezzel a domainnel.
         policies:
           reject_media: Média elutasítása
           reject_reports: Bejelentések elutasítása
@@ -533,13 +562,12 @@ hu:
       pending: Várakozás a relé jóváhagyására
       save_and_enable: Mentés és engedélyezés
       setup: Relé kapcsolat felállítása
-      signatures_not_enabled: A relék nem fognak jól működni, amíg a biztonságos mód vagy az engedélyező listás mód aktív
+      signatures_not_enabled: A relék nem fognak megfelelően működni, amíg a biztonságos mód vagy a korlátozott föderációs mód engedélyezett
       status: Állapot
       title: Relék
     report_notes:
       created_msg: Bejelentési feljegyzés létrehozva!
       destroyed_msg: Bejelentési feljegyzés törölve!
-      today_at: Ma %{time}-kor
     reports:
       account:
         notes:
@@ -548,23 +576,27 @@ hu:
       action_log: Audit napló
       action_taken_by: 'Kezelte:'
       actions:
-        delete_description_html: A bejelentett bejegyzéseket törölni fogjuk és feljegyzünk egy szankciót, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
-        mark_as_sensitive_description_html: A bejelentett bejegyzések médaitartalmait érzékenynek jelöljük, és rögzítünk egy szankciót, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetében.
+        delete_description_html: A bejelentett bejegyzéseket törölni fogjuk és feljegyzünk egy vétséget, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
+        mark_as_sensitive_description_html: A bejelentett bejegyzések médaitartalmait érzékenynek jelöljük, és rögzítünk egy vétséget, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
         other_description_html: További lehetőségek megjelenítése a fiók viselkedésének szabályozásához, és a jelentett fiók kommunikációjának testreszabásához.
-        resolve_description_html: Nem csinálunk semmit a bejelentett fiókkal, nem jegyzünk fel szankciót, és bezárjuk a bejelentést.
-        silence_description_html: A profil csak azok számára lesz látható, akik már követik, vagy kézileg megkeresik, rendkívül korlátozva az elérését. Ez mindig visszafordítható.
-        suspend_description_html: A profil és az összes tartalma elérhetetlen lesz, amíg végleg törlésre nem kerül. A fiókkal történő minden interakció lehetetlen lesz. 30 napon belül még visszaállítható.
+        resolve_description_html: Nem csinálunk semmit a bejelentett fiókkal, nem jegyzünk fel vétséget, és bezárjuk a bejelentést.
+        silence_description_html: A profil csak azok számára lesz látható, akik már követik, vagy kézzel rákeresnek, jelentősen korlátozva annak elérését. Ez a művelet bármikor visszafordítható. A fiókkal szemben indított minden bejelentést lezárunk.
+        suspend_description_html: A fiók és minden tartalma elérhetetlenné válik és végül törlésre kerül. A fiókkal kapcsolatbalépni lehetetlen lesz. Ez a művelet 30 napig visszafordítható. A fiók ellen indított minden bejelentést lezárunk.
       actions_description_html: Döntsd el, mit csináljunk, hogy megoldjuk ezt a bejelentést. Ha valamilyen büntető intézkedést hozol a bejelentett fiók ellen, küldünk neki egy figyelmeztetést e-mail-ben, kivéve ha a <strong>Spam</strong> kategóriát választod.
+      actions_description_remote_html: Döntsd el, mit tegyünk a bejelentés lezárásának érdekében. Ez csak azt befolyásolja, hogy a <strong>saját</strong> kiszolgálód hogyan kommunikál ezzel a távoli fiókkal és hogyan kezeli annak tartalmait.
       add_to_report: Továbbiak hozzáadása a bejelentéshez
       are_you_sure: Biztos vagy benne?
       assign_to_self: Magamhoz rendelés
       assigned: Hozzárendelt moderátor
       by_target_domain: A bejelentett fiók domainje
+      cancel: Mégse
       category: Kategória
       category_description_html: A fiók vagy tartalom bejelentésének oka a jelentett fiókkal kapcsolatos kommunikációban idézve lesz
       comment:
         none: Egyik sem
       comment_description_html: 'Hogy további információkat adjon, %{name} ezt írta:'
+      confirm: Megerősítés
+      confirm_action: Moderációs művelet jóváhagyása @%{acct} fiókon
       created_at: Jelentve
       delete_and_resolve: Bejegyzések törlése
       forwarded: Továbbítva
@@ -581,6 +613,7 @@ hu:
         placeholder: Jegyezd le, mi tettünk az ügy érdekében, vagy bármilyen változást...
         title: Megjegyzések
       notes_description_html: Megtekintés, és megjegyzések hagyása más moderátoroknak
+      processed_msg: 'Bejelentés #%{id} sikeresen feldolgozva'
       quick_actions_description_html: 'Hozz egy gyors intézkedést, vagy görgess le a bejelentett tartalomhoz:'
       remote_user_placeholder: 'a távoli felhasználó innen: %{instance}'
       reopen: Bejelentés újranyitása
@@ -593,9 +626,28 @@ hu:
       status: Állapot
       statuses: Jelentett tartalom
       statuses_description_html: A sértő tartalmat idézni fogjuk a bejelentett fiókkal való kommunikáció során
+      summary:
+        action_preambles:
+          delete_html: 'Arra készülsz, hogy <strong>eltávolítsd</strong> <strong>@%{acct}</strong> néhány bejegyzését. Ez a következőket okozza:'
+          mark_as_sensitive_html: 'Arra készülsz, hogy <strong>érzékenynek jelöld</strong> <strong>@%{acct}</strong> néhány tartalmát. Ez a következőket okozza:'
+          silence_html: 'Arra készülsz, hogy <strong>korlátozd</strong> <strong>@%{acct}</strong> fiókját. Ez a következőket okozza:'
+          suspend_html: 'Arra készülsz, hogy <strong>felfüggeszd</strong> <strong>@%{acct}</strong> fiókját. Ez a következőket okozza:'
+        actions:
+          delete_html: Sértő bejegyzések eltávolítása
+          mark_as_sensitive_html: Sértő bejegyzések médiatartalmainak érzékenyként történő megjelölése
+          silence_html: "<strong>@%{acct}</strong> fiók elérésének jelentős korlátozása azzal, hogy ennek profilja és tartalmai csak olyanoknak legyen látható, akik követik vagy manuálisan rákeresnek"
+          suspend_html: "<strong>@%{acct}</strong> felfüggesztése a profil és tartalmainak elérhetetlenné tételével, a fiókkal való interakció ellehetetlenítésével"
+        close_report: 'Bejelentés #%{id} megjelölése megoldottként'
+        close_reports_html: "<strong>Minden</strong> <strong>@%{acct}</strong> ellen tett bejelentés megjelölése megoldottként"
+        delete_data_html: "<strong>@%{acct}</strong> profiljának és tartalmainak törlése 30 nap múlva, hacsak addig nem oldják fel a felfüggesztést"
+        preview_preamble_html: "<strong>@%{acct}</strong> a következő tartalommal fog figyelmeztetést kapni:"
+        record_strike_html: Vétség felrovása a <strong>@%{acct}</strong> fiók ellen, hogy segítsük az eszkalációt a fiók jövőbeni kihágásai esetén
+        send_email_html: Figyelmeztető email küldése <strong>@%{acct}</strong> fiók részére
+        warning_placeholder: Opcionális kiegészítő indoklás a moderációs művelethez.
       target_origin: A jelentett fiók eredete
       title: Bejelentések
       unassign: Hozzárendelés törlése
+      unknown_action_msg: 'Ismeretlen művelet: %{action}'
       unresolved: Megoldatlan
       updated_at: Frissítve
       view_profile: Profil megtekintése
@@ -682,11 +734,16 @@ hu:
       content_retention:
         preamble: Felhasználók által generált tartalom Mastodonon való tárolásának szabályozása.
         title: Tartalom megtartása
+      default_noindex:
+        desc_html: Azokat a felhasználókat érinti, akik nem módosították ezt a beállítást
+        title: Alapértelmezetten ne indexeljék a keresők a felhasználókat
       discovery:
         follow_recommendations: Ajánlottak követése
         preamble: Az érdekes tartalmak felszínre hozása fontos szerepet játszik az új felhasználók bevonásában, akik esetleg nem ismerik a Mastodont. Szabályozd, hogy a különböző felfedezési funkciók hogyan működjenek a kiszolgálón.
         profile_directory: Profiladatbázis
         public_timelines: Nyilvános idővonalak
+        publish_discovered_servers: Felfedezett kiszolgálók közzététele
+        publish_statistics: Statisztikák közzététele
         title: Felfedezés
         trends: Trendek
       domain_blocks:
@@ -741,6 +798,7 @@ hu:
         suspend: "%{name} felfüggesztette %{target} fiókját"
       appeal_approved: Megfellebbezve
       appeal_pending: Fellebbezés folyamatban
+      appeal_rejected: Fellebbezés visszautasítva
     system_checks:
       database_schema_check:
         message_html: Vannak esedékes adatbázis migrációink. Kérlek, futtasd őket, hogy biztosítsd, hogy az alkalmazás megfelelően működjön
@@ -776,6 +834,7 @@ hu:
           other: "%{count} ember osztotta meg a múlt héten"
         title: Felkapott hivatkozások
         usage_comparison: "%{today} alkalommal lett ma megosztva, a tegnapi %{yesterday} alkalomhoz képest"
+      not_allowed_to_trend: Nem engedélyezett a trendekben
       only_allowed: Csak engedélyezett
       pending_review: Áttekintésre vár
       preview_card_providers:
@@ -907,12 +966,16 @@ hu:
   applications:
     created: Alkalmazás sikeresen létrehozva
     destroyed: Alkalmazás sikeresen eltávolítva
+    logout: Kijelentkezés
     regenerate_token: Hozzáférési kulcs újragenerálása
     token_regenerated: Hozzáférési kulcs sikeresen újragenerálva
     warning: Ez érzékeny adat. Soha ne oszd meg másokkal!
     your_token: Hozzáférési kulcsod
   auth:
+    apply_for_account: Fiók kérése
     change_password: Jelszó
+    confirmations:
+      wrong_email_hint: Ha az emailcím nem helyes, a fiókbeállításokban megváltoztathatod.
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
     description:
@@ -940,6 +1003,8 @@ hu:
     resend_confirmation: Megerősítési lépések újraküldése
     reset_password: Jelszó visszaállítása
     rules:
+      accept: Elfogadás
+      back: Vissza
       preamble: Ezeket a(z) %{domain} moderátorai adjak meg és tartatják be.
       title: Néhány alapszabály.
     security: Biztonság
@@ -948,6 +1013,9 @@ hu:
       email_below_hint_html: Ha az alábbi e-mail cím nem megfelelő, itt megváltoztathatod és kaphatsz egy új igazoló e-mailt.
       email_settings_hint_html: A visszaigazoló e-mailt elküldtük ide %{email}. Ha az e-mail cím nem megfelelő, megváltoztathatod a fiókod beállításainál.
       title: Beállítás
+    sign_in:
+      preamble_html: Jelentkezz be a <strong>%{domain}</strong> fiókoddal. Ha másik kiszolgálón található a fiókod, akkor itt nem fogsz tudni belépni.
+      title: Jelentkezz be a %{domain}-ra
     sign_up:
       preamble: Egy fiókkal ezen a Mastodon kiszolgálón követhetsz bárkit a hálózaton, függetlenül attól, hogy az illető fiókja melyik kiszolgálón található.
       title: Állítsuk be a fiókod a %{domain} kiszolgálón.
@@ -957,7 +1025,7 @@ hu:
       functional: A fiókod teljesen működőképes.
       pending: A jelentkezésed engedélyezésre vár. Ez eltarthat egy ideig. Kapsz egy e-mailt, ha a kérelmedet jóváhagyták.
       redirecting_to: A fiókod inaktív, mert jelenleg ide %{acct} van átirányítva.
-      view_strikes: Fiókod elleni korábbi szankciók megtekintése
+      view_strikes: Fiókod ellen felrótt korábbi vétségek megtekintése
     too_fast: Túl gyorsan küldted el az űrlapot, próbáld később.
     use_security_key: Biztonsági kulcs használata
   authorize_follow:
@@ -1020,7 +1088,7 @@ hu:
     strikes:
       action_taken: Intézkedés
       appeal: Fellebbezés
-      appeal_approved: Ezt a szankciót eredményesen fellebbezték, így már nem érvényes
+      appeal_approved: Ezt a felrótt vétséget eredményesen fellebbezték, így már nem érvényes
       appeal_rejected: A fellebbezést visszautasították
       appeal_submitted_at: Fellebbezés beküldve
       appealed_msg: A fellebbezésedet beküldtük. Ha jóváhagyták, értesítünk.
@@ -1084,7 +1152,7 @@ hu:
   featured_tags:
     add_new: Új hozzáadása
     errors:
-      limit: Már kiemelted a maximálisan engedélyezett számú hashtaget
+      limit: Elérted a maximálisan kitűzhető hashtagek számát
     hint_html: "<strong>Mik a kiemelt hashtagek?</strong> Ezek állandóan megjelennek a nyilvános profilodon és lehetővé teszik, hogy mások kifejezetten az ezekhez tartozó bejegyzéseidet böngésszék. Jó eszköz ez kreatív munkák vagy hosszútávú projektek nyomonkövetésére."
   filters:
     contexts:
@@ -1128,8 +1196,6 @@ hu:
       index:
         hint: Ez a szűrő egyedi bejegyzések kiválasztására vonatkozik a megadott kritériumoktól függetlenül. Újabb bejegyzéseket adhatsz hozzá ehhez a szűrőhöz a webes felületen keresztül.
         title: Megszűrt bejegyzések
-  footer:
-    trending_now: Most felkapott
   generic:
     all: Mind
     all_items_on_page_selected_html:
@@ -1152,10 +1218,9 @@ hu:
     validation_errors:
       one: Valami nincs rendjén! Tekintsd meg a hibát lent
       other: Valami nincs rendjén! Tekintsd meg a(z) %{count} hibát lent
-  html_validator:
-    invalid_markup: 'hibás HTML leíró: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Érvénytelen CSV-fájl. Hiba: %{error}'
       over_rows_processing_limit: több mint %{count} sort tartalmaz
     modes:
       merge: Összefésülés
@@ -1195,7 +1260,7 @@ hu:
     title: Meghívások
   lists:
     errors:
-      limit: Elérted a hozzáadható listák maximális számát
+      limit: Elérted a listák maximális számát
   login_activities:
     authentication_methods:
       otp: kétlépcsős azonosító alkalmazás
@@ -1336,7 +1401,11 @@ hu:
       unrecognized_emoji: nem ismert emodzsi
   relationships:
     activity: Fiók aktivitás
+    confirm_follow_selected_followers: Biztos, hogy követni akarod a kiválasztott követőket?
+    confirm_remove_selected_followers: Biztos, hogy el szeretnéd távolítani a kiválasztott követőket?
+    confirm_remove_selected_follows: Biztos, hogy el szeretnéd távolítani a kiválasztott követéseket?
     dormant: Elhagyott
+    follow_failure: Nem sikerült bekövetni néhányat a kiválasztott fiókok közül.
     follow_selected_followers: Kiválasztott követők bekövetése
     followers: Követők
     following: Követve
@@ -1376,6 +1445,7 @@ hu:
       electron: Electron
       firefox: Firefox
       generic: Ismeretlen böngésző
+      huawei_browser: Huawei Böngésző
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Böngésző
@@ -1385,6 +1455,7 @@ hu:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Ismeretlen böngésző
       weibo: Weibo
     current_session: Jelenlegi munkamenet
     description: "%{browser} az alábbi platformon: %{platform}"
@@ -1397,9 +1468,10 @@ hu:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: ismeretlen platform
+      unknown_platform: Ismeretlen platform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1427,7 +1499,7 @@ hu:
     profile: Profil
     relationships: Követések és követők
     statuses_cleanup: Bejegyzések automatikus törlése
-    strikes: Moderációs szankciók
+    strikes: Moderációs felrótt vétségek
     two_factor_authentication: Kétlépcsős hitelesítés
     webauthn_authentication: Biztonsági kulcsok
   statuses:
@@ -1512,7 +1584,7 @@ hu:
       '7889238': 3 hónap
     min_age_label: Korhatár
     min_favs: Bejegyzések megtartása, melyeket többször jelöltek kedvencnek, mint
-    min_favs_hint: Nem törli egyetlen olyan bejegyzésedet sem, melyeket ennél többször jelöltek kedvencnek. Hagyd üresen, hogy a kedvencnek jelölések számától függetlenül töröljük őket
+    min_favs_hint: Nem törli egyetlen olyan bejegyzésedet sem, melyeket legalább ennyiszer jelöltek kedvencnek. Hagyd üresen, hogy a kedvencnek jelölések számától függetlenül töröljük őket
     min_reblogs: Bejegyzések megtartása, melyeket többször toltak meg, mint
     min_reblogs_hint: Egyetlen olyan bejegyzésedet sem törli, melyet ennél többször toltak meg. Hagyd üresen, hogy a megtolások számától függetlenül töröljük a bejegyzéseket
   stream_entries:
@@ -1521,7 +1593,7 @@ hu:
     sensitive_content: Kényes tartalom
   strikes:
     errors:
-      too_late: Túl késő, hogy fellebbezd ezt a szankciót
+      too_late: Túl késő, hogy fellebbezd ezt a felrótt vétséget
   tags:
     does_not_match_previous_name: nem illeszkedik az előző névvel
   themes:
@@ -1551,11 +1623,11 @@ hu:
   user_mailer:
     appeal_approved:
       action: Ugrás a fiókodhoz
-      explanation: A fiókod %{appeal_date}-i fellebbezése, mely a %{strike_date}-i szankcióval kapcsolatos, jóváhagyásra került. A fiókod megint makulátlan.
+      explanation: A fiókod %{appeal_date}-i fellebbezése, mely a %{strike_date}-i vétségeddel kapcsolatos, jóváhagyásra került. A fiókod megint makulátlan.
       subject: A %{date}-i fellebbezésedet jóváhagyták
       title: Fellebbezés jóváhagyva
     appeal_rejected:
-      explanation: A %{appeal_date}-i fellebbezésed, amely a fiókod %{strike_date}-i szankciójával kapcsolatos, elutasításra került.
+      explanation: A %{appeal_date}-i fellebbezésed, amely a fiókod %{strike_date}-i vétségével kapcsolatos, elutasításra került.
       subject: A %{date}-i fellebbezésedet visszautasították
       title: Fellebbezés visszautasítva
     backup_ready:

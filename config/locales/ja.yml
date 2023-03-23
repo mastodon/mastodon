@@ -89,6 +89,7 @@ ja:
       moderation:
         active: アクティブ
         all: すべて
+        disabled: 無効
         pending: 承認待ち
         silenced: 制限
         suspended: 停止済み
@@ -113,6 +114,8 @@ ja:
       redownloaded_msg: "%{username}のプロフィールを正常に更新しました"
       reject: 却下
       rejected_msg: "%{username}さんの登録申請を却下しました"
+      remote_suspension_irreversible: このアカウントのデータは不可逆的に削除されました。
+      remote_suspension_reversible_hint_html: このアカウントは停止されており、データは%{date} 日で完全に削除されます。それまでは悪影響なしにアカウントを復旧させることができます。アカウントを即座に削除したい場合は、以下から行うことができます。
       remove_avatar: アイコンを削除
       remove_header: ヘッダーを削除
       removed_avatar_msg: "%{username}さんのアバター画像を削除しました"
@@ -128,6 +131,7 @@ ja:
       search: 検索
       search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
       search_same_ip: 同じIPのユーザーを検索
+      security: 認証方法
       security_measures:
         only_password: パスワードのみ
         password_and_2fa: パスワードと二要素認証
@@ -223,7 +227,7 @@ ja:
         update_user_role: ロールを更新
       actions:
         approve_appeal_html: "%{name}さんが%{target}さんからの抗議を承認しました"
-        approve_user_html: "%{target}から登録された%{name}さんを承認しました"
+        approve_user_html: "%{name}さんが%{target}さんからの登録を承認しました"
         assigned_to_self_report_html: "%{name}さんが通報 %{target}を自身の担当に割り当てました"
         change_email_user_html: "%{name}さんが%{target}さんのメールアドレスを変更しました"
         change_role_user_html: "%{name}さんが%{target}さんのロールを変更しました"
@@ -260,10 +264,10 @@ ja:
         memorialize_account_html: "%{name}さんが%{target}さんを追悼アカウントページに登録しました"
         promote_user_html: "%{name}さんが%{target}さんを昇格しました"
         reject_appeal_html: "%{name}さんが%{target}からの抗議を却下しました"
-        reject_user_html: "%{target}から登録された%{name}さんを拒否しました"
+        reject_user_html: "%{name}さんが%{target}さんからの登録を拒否しました"
         remove_avatar_user_html: "%{name}さんが%{target}さんのアイコンを削除しました"
         reopen_report_html: "%{name}さんが通報 %{target}を未解決に戻しました"
-        resend_user_html: "%{name} が %{target} の確認メールを再送信しました"
+        resend_user_html: "%{name}さんが%{target}の確認メールを再送信しました"
         reset_password_user_html: "%{name}さんが%{target}さんのパスワードをリセットしました"
         resolve_report_html: "%{name}さんが通報 %{target}を解決済みにしました"
         sensitive_account_html: "%{name}さんが%{target}さんのメディアを閲覧注意にマークしました"
@@ -366,6 +370,8 @@ ja:
       add_new: 連合を許可
       created_msg: 連合を許可しました
       destroyed_msg: 連合許可を外しました
+      export: エクスポート
+      import: インポート
       undo: 連合許可を外す
     domain_blocks:
       add_new: ドメインブロックを追加
@@ -375,13 +381,19 @@ ja:
       edit: ドメインブロックを編集
       existing_domain_block: あなたは既に%{name}さんに厳しい制限を課しています。
       existing_domain_block_html: 既に%{name}に対して、より厳しい制限を課しています。先に<a href="%{unblock_url}">その制限を解除</a>する必要があります。
+      export: エクスポート
+      import: インポート
       new:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
+          desc_html: "<strong>制限</strong>は、このドメイン上のアカウントからの投稿が、相手をフォローしている場合を除き非表示になります。<strong>停止</strong>は、このドメイン上のすべてのコンテンツ、メディア、およびプロフィールデータを受け付けなくなります。メディアファイルのみを拒否したい場合は<strong>なし</strong>を選択します。"
           noop: なし
+          silence: 制限
           suspend: 停止
         title: 新規ドメインブロック
+      no_domain_block_selected: 何も選択されていないためドメインブロックを変更しませんでした
+      not_permitted: この操作を実行する権限がありません。
       obfuscate: ドメイン名を伏せ字にする
       obfuscate_hint: ドメインブロックのリストを公開している場合、ドメイン名の一部を伏せ字にします
       private_comment: コメント (非公開)
@@ -409,9 +421,25 @@ ja:
         resolve: ドメイン解決
         title: 新規メールドメインブロック
       no_email_domain_block_selected: 何も選択されていないためメールドメインブロックを変更しませんでした
+      not_permitted: 権限がありません
       resolved_dns_records_hint_html: ドメイン名はDNSでMXドメインに名前解決され、最終的にメールを受け付ける役割を担います。目に見えるドメイン名が異なっていても、同じMXドメインを使用するメールアドレスからのアカウント登録がブロックされます。<strong>主要なメールプロバイダーをブロックしないように注意して下さい。</strong>
       resolved_through_html: "%{domain}を通して解決しました"
       title: メールドメインブロック
+    export_domain_allows:
+      new:
+        title: ドメイン許可をインポート
+      no_file: ファイルが選択されていません
+    export_domain_blocks:
+      import:
+        description_html: ドメインブロックのリストをインポートしようとしています。このリストを自分で作成していない場合は、慎重に確認してください。
+        existing_relationships_warning: 既存のフォロー関係
+        private_comment_description_html: 'ブロックのインポート元を判別できるようにするため、ブロックは次のプライベートコメントを追加してインポートされます: <q>%{comment}</q>'
+        private_comment_template: "%{source} から %{date} にインポートしました"
+        title: ドメインブロックをインポート
+      invalid_domain_block: 'エラーが発生したため、ブロックできなかったドメインがあります: %{error}'
+      new:
+        title: ドメインブロックをインポート
+      no_file: ファイルが選択されていません
     follow_recommendations:
       description_html: "<strong>おすすめフォローは、新規ユーザーが興味のあるコンテンツをすばやく見つけるのに役立ちます。</strong>ユーザーが他のユーザーとの交流を十分にしていない場合、パーソナライズされたおすすめフォローを生成する代わりに、これらのアカウントが表示されます。最近のエンゲージメントが最も高いアカウントと、特定の言語のローカルフォロワー数が最も多いアカウントを組み合わせて､毎日再計算されます。"
       language: 言語
@@ -438,6 +466,7 @@ ja:
       content_policies:
         comment: 内部メモ
         description_html: このドメインとそのサブドメインのすべてのアカウントに適用されるコンテンツポリシーを定義できます。
+        limited_federation_mode_description_html: このドメインとの連合を許可するかどうかを選択できます。
         policies:
           reject_media: メディアを拒否する
           reject_reports: 通報を拒否
@@ -450,7 +479,7 @@ ja:
         instance_accounts_dimension: 最もフォローされているアカウント
         instance_accounts_measure: 保存されたアカウント
         instance_followers_measure: そこでの我々のフォロワー
-        instance_follows_measure: そのインスタンスのこのインスタンスでのフォロワー
+        instance_follows_measure: リモートフォローしているアカウント
         instance_languages_dimension: 人気の言語
         instance_media_attachments_measure: 保存されたメディア
         instance_reports_measure: 通報
@@ -528,7 +557,6 @@ ja:
     report_notes:
       created_msg: 通報メモを書き込みました！
       destroyed_msg: 通報メモを削除しました！
-      today_at: 今日 %{time}
     reports:
       account:
         notes:
@@ -540,19 +568,23 @@ ja:
         mark_as_sensitive_description_html: 報告された投稿のメディアは閲覧注意となり、ストライクが記録され、同じアカウントによる今後の違反行為のエスカレーションに役立てられます。
         other_description_html: アカウントの動作を制御するためのオプションや、報告されたアカウントへの通信をカスタマイズするためのオプションを確認してください。
         resolve_description_html: 報告されたアカウントに対していかなる措置も取られず、ストライクも記録されず、報告は終了します。
-        silence_description_html: 既にフォローしている人、または自分で参照した人にのみ表示されるため、プロフィールが届く範囲が大きく制限されます。いつでも元に戻すことができます。
-        suspend_description_html: プロフィールとすべてのコンテンツは、最終的に削除されるまでアクセスできなくなります。アカウントとのやり取りは不可能です。30日以内に取り消し可能です。
+        silence_description_html: このアカウントは、すでにフォローしている人、または手動で検索した人にしか見えないため、リーチが極端に制限されます。いつでも元に戻すことができます。このアカウントに対するすべての通報をクローズします。
+        suspend_description_html: アカウントとそのすべての内容にアクセスできなくなり、最終的に削除され、やり取りは不可能になります。 30日以内であれば元に戻すことができます。このアカウントに対するすべての通報をクローズします。
       actions_description_html: このレポートを解決するために取るアクションを決定します。 報告されたアカウントに対して懲罰的な措置を取った場合、メール通知が送信されますが<strong>スパム</strong>カテゴリが選択されている場合を除きます。
+      actions_description_remote_html: この通報を解決するためのアクションを選択してください。これは<strong>あなたの</strong>サーバーがこのリモートアカウントと通信し、そのコンテンツを処理する時のみ影響します。
       add_to_report: 通報にさらに追加
       are_you_sure: 本当に実行しますか？
       assign_to_self: 担当になる
       assigned: 担当者
       by_target_domain: ドメイン
+      cancel: キャンセル
       category: カテゴリー
       category_description_html: 選択した理由は通報されたアカウントへの連絡時に引用されます
       comment:
         none: なし
       comment_description_html: "%{name}からの詳細情報:"
+      confirm: 確認
+      confirm_action: "@%{acct} さんに対するアクション"
       created_at: 通報日時
       delete_and_resolve: 投稿を削除
       forwarded: 転送済み
@@ -569,6 +601,7 @@ ja:
         placeholder: どのような措置が取られたか、または関連する更新を記述してください…
         title: メモ
       notes_description_html: 他のモデレーターと将来の自分にメモを残してください
+      processed_msg: '通報 #%{id} が正常に処理されました'
       quick_actions_description_html: 'クイックアクションを実行するかスクロールして報告された通報を確認してください:'
       remote_user_placeholder: "%{instance}からのリモートユーザー"
       reopen: 未解決に戻す
@@ -581,9 +614,28 @@ ja:
       status: ステータス
       statuses: 通報内容
       statuses_description_html: 問題の投稿は通報されたアカウントへの連絡時に引用されます
+      summary:
+        action_preambles:
+          delete_html: "<strong>@%{acct}</strong>さんの投稿を<strong>削除</strong>します。この操作は:"
+          mark_as_sensitive_html: "<strong>@%{acct}</strong>さんの投稿を<strong>閲覧注意</strong>として<strong>マーク</strong>します。この操作は:"
+          silence_html: "<strong>@%{acct}</strong>さんのアカウントを<strong>制限</strong>します。この操作は:"
+          suspend_html: "<strong>@%{acct}</strong>さんのアカウントを<strong>停止</strong>します。この操作は:"
+        actions:
+          delete_html: 当該の投稿を削除します
+          mark_as_sensitive_html: 当該の投稿に含まれるメディアを閲覧注意にします
+          silence_html: プロフィールとコンテンツを、すでにフォローしている人や、意図的にプロフィールにアクセスする人にのみ表示することで、<strong>@%{acct}</strong>さんのリーチを厳しく制限します
+          suspend_html: "<strong>@%{acct}</strong>さんのアカウントが凍結され、プロフィールとコンテンツへのアクセス、および投稿ができなくなります"
+        close_report: '通報 #%{id} を解決済みにします'
+        close_reports_html: "<strong>@%{acct}</strong>さんに対する<strong>すべての</strong>通報を解決済みにします"
+        delete_data_html: 停止が解除されないまま30日経過すると、<strong>@%{acct}</strong>さんのプロフィールとコンテンツは削除されます
+        preview_preamble_html: "<strong>@%{acct}</strong>さんに次の内容の警告を通知します:"
+        record_strike_html: 今後、<strong>@%{acct}</strong>さんが違反行為をしたときにエスカレーションできるように、このアカウントに対するストライクを記録します
+        send_email_html: "<strong>@%{acct}</strong>さんに警告メールを送信します"
+        warning_placeholder: アクションを行使する追加の理由（オプション）
       target_origin: 報告されたアカウントの起源
       title: 通報
       unassign: 担当を外す
+      unknown_action_msg: '不明なアクションです: %{action}'
       unresolved: 未解決
       updated_at: 更新日時
       view_profile: プロフィールを表示
@@ -668,11 +720,16 @@ ja:
       content_retention:
         preamble: ユーザーが生成したコンテンツがどのように Mastodon に保存されるかを管理します。
         title: コンテンツの保持
+      default_noindex:
+        desc_html: この設定を自分で変更していない全ユーザーに影響します
+        title: デフォルトで検索エンジンによるインデックスを拒否する
       discovery:
         follow_recommendations: おすすめフォロー
         preamble: Mastodon を知らないユーザーを取り込むには、興味深いコンテンツを浮上させることが重要です。サーバー上で様々なディスカバリー機能がどのように機能するかを制御します。
         profile_directory: ディレクトリ
         public_timelines: 公開タイムライン
+        publish_discovered_servers: 接続しているサーバーを公開する
+        publish_statistics: 統計情報を公開する
         title: 見つける
         trends: トレンド
       domain_blocks:
@@ -727,6 +784,7 @@ ja:
         suspend: "%{name}さんが%{target}さんのアカウントを停止しました"
       appeal_approved: 抗議済み
       appeal_pending: 保留中の抗議
+      appeal_rejected: 却下済みの抗議
     system_checks:
       database_schema_check:
         message_html: 未実行のデータベースマイグレーションがあります。実行して正常に動作するようにしてください。
@@ -761,6 +819,7 @@ ja:
           other: 週間%{count}人に共有されました
         title: トレンドリンク
         usage_comparison: 今日は%{today}回、昨日は%{yesterday}回共有されました
+      not_allowed_to_trend: 未許可のトレンド
       only_allowed: 許可済み
       pending_review: 保留中
       preview_card_providers:
@@ -889,12 +948,16 @@ ja:
   applications:
     created: アプリが作成されました
     destroyed: アプリが削除されました
+    logout: ログアウト
     regenerate_token: アクセストークンの再生成
     token_regenerated: アクセストークンが再生成されました
     warning: このデータは気をつけて取り扱ってください。他の人と共有しないでください！
     your_token: アクセストークン
   auth:
+    apply_for_account: アカウントのリクエスト
     change_password: パスワード
+    confirmations:
+      wrong_email_hint: メールアドレスが正しくない場合は、アカウント設定で変更できます。
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a>から手続きが行えます。削除する前に、確認画面があります。
     description:
@@ -922,6 +985,8 @@ ja:
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
     rules:
+      accept: 同意する
+      back: 戻る
       preamble: これらは %{domain} モデレータによって設定され、実施されます。
       title: いくつかのルールがあります。
     security: セキュリティ
@@ -930,6 +995,9 @@ ja:
       email_below_hint_html: 下記のメールアドレスが間違っている場合、ここで変更することで新たに確認メールを受信できます。
       email_settings_hint_html: 確認用のメールを%{email}に送信しました。メールアドレスが正しくない場合、以下より変更することができます。
       title: セットアップ
+    sign_in:
+      preamble_html: "<strong>%{domain}</strong> の資格情報でサインインします。 あなたのアカウントが別のサーバーでホストされている場合は、ここでログインすることはできません。"
+      title: "%{domain}にログイン"
     sign_up:
       preamble: この Mastodon サーバーのアカウントがあれば、ネットワーク上の他の人のアカウントがどこでホストされているかに関係なく、その人をフォローすることができます。
       title: さあ %{domain} でセットアップしましょう.
@@ -1066,12 +1134,12 @@ ja:
   featured_tags:
     add_new: 追加
     errors:
-      limit: 注目のハッシュタグの上限に達しました
+      limit: すでに注目のハッシュタグの上限数に達しています
     hint_html: "<strong>注目のハッシュタグとは？</strong>　プロフィールページに目立つ形で表示され、そのハッシュタグのついたあなたの公開投稿だけを抽出して閲覧できるようにします。クリエイティブな仕事や長期的なプロジェクトを追うのに優れた機能です。"
   filters:
     contexts:
       account: プロフィール
-      home: ホームタイムライン
+      home: ホームおよびリスト
       notifications: 通知
       public: 公開タイムライン
       thread: 会話
@@ -1107,8 +1175,6 @@ ja:
       index:
         hint: このフィルターは、他の条件に関係なく個々の投稿を選択する場合に適用されます。Webインターフェースからこのフィルターにさらに投稿を追加できます。
         title: フィルターされた投稿
-  footer:
-    trending_now: トレンドタグ
   generic:
     all: すべて
     all_items_on_page_selected_html:
@@ -1127,10 +1193,9 @@ ja:
     today: 今日
     validation_errors:
       other: エラーが発生しました！ 以下の%{count}件のエラーを確認してください
-  html_validator:
-    invalid_markup: '無効なHTMLマークアップが含まれています: %{error}'
   imports:
     errors:
+      invalid_csv_file: '無効なCSVファイルです。エラー: %{error}'
       over_rows_processing_limit: "%{count}行以上"
     modes:
       merge: 統合
@@ -1169,7 +1234,7 @@ ja:
     title: 新規ユーザーの招待
   lists:
     errors:
-      limit: リストの上限に達しました
+      limit: リストの上限数に達しています
   login_activities:
     authentication_methods:
       otp: 二要素認証アプリ
@@ -1310,7 +1375,11 @@ ja:
       unrecognized_emoji: は絵文字として認識されていません
   relationships:
     activity: 活動
+    confirm_follow_selected_followers: 選択したフォロワーをフォローしてもよろしいですか？
+    confirm_remove_selected_followers: 選択したフォロワーを削除してもよろしいですか？
+    confirm_remove_selected_follows: 選択したフォローを削除してもよろしいですか？
     dormant: 非アクティブ
+    follow_failure: 選択したアカウントの一部をフォローできませんでした。
     follow_selected_followers: 選択したフォロワーをフォロー
     followers: フォロワー
     following: フォロー中
@@ -1350,6 +1419,7 @@ ja:
       electron: Electron
       firefox: Firefox
       generic: 不明なブラウザ
+      huawei_browser: Huaweiブラウザ
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1359,6 +1429,7 @@ ja:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: 不明なブラウザ
       weibo: Weibo
     current_session: 現在のセッション
     description: "%{platform}上の%{browser}"
@@ -1371,9 +1442,10 @@ ja:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: 不明なプラットフォーム
+      unknown_platform: 不明なプラットフォーム
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1480,7 +1552,7 @@ ja:
       '7889238': 3ヶ月
     min_age_label: 投稿を保持する期間
     min_favs: お気に入りの基準値
-    min_favs_hint: この数以上、お気に入りされた投稿を削除せずに残します。空白にしておくと、お気に入りに登録された数に関わらず投稿を削除します。
+    min_favs_hint: この数以上、お気に入り登録された投稿を削除せずに残します。空白にしておくと、お気に入りの数に関わらず投稿を削除します。
     min_reblogs: ブーストの基準値
     min_reblogs_hint: この数以上、ブーストされた投稿を削除せずに残します。空白にしておくと、ブーストされた数に関わらず投稿を削除します。
   stream_entries:

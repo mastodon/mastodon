@@ -2,27 +2,27 @@
 de:
   devise:
     confirmations:
-      confirmed: Deine E-Mail-Adresse wurde bestätigt.
+      confirmed: Deine E-Mail-Adresse wurde erfolgreich bestätigt.
       send_instructions: Du wirst in wenigen Minuten eine E-Mail erhalten. Darin wird erklärt, wie du deine E-Mail-Adresse bestätigen kannst. Schau bitte auch in deinem Spam-Ordner nach, wenn du diese E-Mail nicht erhalten hast.
       send_paranoid_instructions: Falls deine E-Mail-Adresse in unserer Datenbank hinterlegt ist, wirst du in wenigen Minuten eine E-Mail erhalten. Darin wird erklärt, wie du deine E-Mail-Adresse bestätigen kannst. Schau bitte auch in deinem Spam-Ordner nach, wenn du diese E-Mail nicht erhalten hast.
     failure:
       already_authenticated: Du bist bereits angemeldet.
       inactive: Dein Konto wurde noch nicht aktiviert.
       invalid: "%{authentication_keys} oder Passwort ungültig."
-      last_attempt: Du hast noch einen Versuch, bevor dein Konto gesperrt wird.
+      last_attempt: Du hast nur noch einen Versuch, bevor dein Zugang gesperrt wird.
       locked: Dein Konto ist gesperrt.
       not_found_in_database: "%{authentication_keys} oder Passwort ungültig."
-      pending: Dein Konto wird immer noch überprüft.
+      pending: Dein Konto wird weiterhin überprüft.
       timeout: Deine Sitzung ist abgelaufen. Bitte melde dich erneut an, um fortzufahren.
       unauthenticated: Du musst dich anmelden oder registrieren, bevor du fortfahren kannst.
       unconfirmed: Du musst deine E-Mail-Adresse bestätigen, bevor du fortfahren kannst.
     mailer:
       confirmation_instructions:
         action: E-Mail-Adresse verifizieren
-        action_with_app: Bestätigen und zu %{app} zurückkehren
-        explanation: Du hast auf %{host} mit dieser E-Mail-Adresse ein Konto erstellt. Du bist nur noch einen Klick von der Aktivierung entfernt. Wenn du das nicht warst, kannst du diese E-Mail ignorieren.
-        explanation_when_pending: Du hast dich für eine Einladung bei %{host} mit dieser E-Mailadresse beworben. Sobald du deine E-Mailadresse bestätigst hast, werden wir deine Anfrage überprüfen. Du kannst dich in dieser Zeit nicht anmelden. Wenn deine Anfrage abgelehnt wird, werden deine Daten entfernt, also wird keine weitere Handlung benötigt. Wenn du das nicht warst, kannst du diese E-Mail ignorieren.
-        extra_html: Bitte lies auch die <a href="%{terms_path}">Regeln des Servers</a> und <a href="%{policy_path}">unsere Nutzungsbedingungen</a>.
+        action_with_app: Bestätigen – und dann zur App %{app} zurückkehren
+        explanation: Du hast mit dieser E-Mail-Adresse ein Konto auf %{host} erstellt. Du bist nur noch einen Klick von der Aktivierung entfernt. Wenn du das nicht warst, kannst du diese E-Mail ignorieren.
+        explanation_when_pending: Du hast dich für eine Einladung bei %{host} mit dieser E-Mail-Adresse beworben. Sobald du deine E-Mail-Adresse bestätigt hast, werden wir deine Anfrage überprüfen. Du kannst dich in dieser Zeit nicht anmelden. Wenn deine Anfrage abgelehnt wird, werden deine Daten entfernt – von dir ist keine weitere Handlung notwendig. Wenn du das nicht warst, kannst du diese E-Mail ignorieren.
+        extra_html: Bitte beachte auch die <a href="%{terms_path}">Serverregeln</a> und <a href="%{policy_path}">unsere Datenschutzerklärung</a>.
         subject: 'Mastodon: Bestätigung deines Kontos bei %{instance}'
         title: E-Mail-Adresse verifizieren
       email_changed:
@@ -31,35 +31,35 @@ de:
         subject: 'Mastodon: E-Mail-Adresse geändert'
         title: Neue E-Mail-Adresse
       password_change:
-        explanation: Das Passwort für deinen Account wurde geändert.
+        explanation: Deine Zugangsdaten wurden geändert.
         extra: Wenn du dein Passwort nicht geändert hast, dann wird es vermutlich so sein, dass jemand Zugriff auf deinem Account erlangt hat. Bitte ändere sofort dein Passwort oder kontaktiere den Administrator des Servers, wenn du dich ausgesperrt hast.
         subject: 'Mastodon: Passwort geändert'
         title: Passwort geändert
       reconfirmation_instructions:
         explanation: Bestätige deine neue E-Mail-Adresse, um sie zu ändern.
         extra: Wenn diese Änderung nicht von dir ausgeführt wurde, dann solltest du diese E-Mail ignorieren. Die E-Mail-Adresse für deinen Mastodon-Account wird sich nicht ändern, bis du den obigen Link anklickst.
-        subject: 'Mastodon: Bestätige E-Mail-Adresse für %{instance}'
+        subject: 'Mastodon: E-Mail-Adresse für %{instance} bestätigen'
         title: E-Mail-Adresse verifizieren
       reset_password_instructions:
-        action: Ändere Passwort
+        action: Passwort ändern
         explanation: Du hast ein neues Passwort für deinen Account angefragt.
         extra: Wenn du diese Anfrage nicht gestellt hast, solltest du diese E-Mail ignorieren. Dein Passwort wird sich nicht ändern, solange du den obigen Link anklickst und ein neues erstellst.
-        subject: 'Mastodon: Passwort zurücksetzen'
+        subject: 'Mastodon: Anleitung zum Zurücksetzen deines Passworts'
         title: Passwort zurücksetzen
       two_factor_disabled:
-        explanation: Zwei-Faktor-Authentifizierung für dein Konto wurde deaktiviert. Login ist jetzt nur mit E-Mail-Adresse und Passwort möglich.
-        subject: 'Mastodon: Zwei‐Faktor‐Authentifizierung deaktiviert'
+        explanation: Zwei-Faktor-Authentisierung (2FA) für dein Konto wurde deaktiviert. Eine Anmeldung ist jetzt nur noch mit E-Mail-Adresse und Passwort möglich.
+        subject: 'Mastodon: Zwei‐Faktor‐Authentisierung (2FA) deaktiviert'
         title: 2FA deaktiviert
       two_factor_enabled:
-        explanation: Zwei-Faktor-Authentifizierung wurde für dein Konto aktiviert. Ein Token, das von der verbundenen TOTP-App generiert wird, wird für den Login benötigt.
-        subject: 'Mastodon: Zwei‐Faktor‐Authentifizierung aktiviert'
+        explanation: Die Zwei-Faktor-Authentisierung (2FA) wurde für dein Konto aktiviert. Das zeitbasierte Einmalkennwort, das von deiner TOTP-App generiert wird, muss bei jeder Anmeldung zusätzlich eingegeben werden.
+        subject: 'Mastodon: Zwei‐Faktor‐Authentisierung (2FA) aktiviert'
         title: 2FA aktiviert
       two_factor_recovery_codes_changed:
-        explanation: Die vorherigen Wiederherstellungscodes wurden ungültig gemacht und es wurden neue generiert.
-        subject: 'Mastodon: Zwei-Faktor-Wiederherstellungscodes neu generiert'
-        title: 2FA Wiederherstellungscodes geändert
+        explanation: Die vorherigen Wiederherstellungscodes wurden ungültig gemacht und es wurden neue erstellt.
+        subject: 'Mastodon: Zwei-Faktor-Wiederherstellungscodes neu erstellt'
+        title: 2FA-Wiederherstellungscodes geändert
       unlock_instructions:
-        subject: 'Mastodon: Konto entsperren'
+        subject: 'Mastodon: Anleitung zur Entsperrung deines Kontos'
       webauthn_credential:
         added:
           explanation: Der folgende Sicherheitsschlüssel wurde zu deinem Konto hinzugefügt
@@ -67,34 +67,34 @@ de:
           title: Ein neuer Sicherheitsschlüssel wurde hinzugefügt
         deleted:
           explanation: Der folgende Sicherheitsschlüssel wurde aus deinem Konto gelöscht
-          subject: 'Mastodon: Sicherheitsschlüssel gelöscht'
-          title: Einer deiner Sicherheitsschlüssel wurde gelöscht
+          subject: 'Mastodon: Sicherheitsschlüssel entfernt'
+          title: Einer deiner Sicherheitsschlüssel wurde entfernt
       webauthn_disabled:
-        explanation: Die Authentifizierung mit Sicherheitsschlüssel wurde für dein Konto deaktiviert. Der Login ist nun nur mit dem Token möglich, der von der eingerichteten TOTP-App generiert wird.
-        subject: 'Mastodon: Authentifizierung mit Sicherheitsschlüssel deaktiviert'
+        explanation: Die Authentisierung mit Sicherheitsschlüsseln wurde für dein Konto deaktiviert. Die Anmeldung ist jetzt nur noch mit dem Token möglich, der von der eingerichteten TOTP-App generiert wird.
+        subject: 'Mastodon: Authentisierung mit Sicherheitsschlüsseln deaktiviert'
         title: Sicherheitsschlüssel deaktiviert
       webauthn_enabled:
-        explanation: Die Authentifizierung mit einem Sicherheitsschlüssel wurde für dein Konto aktiviert. Dein Sicherheitsschlüssel kann nun für die Anmeldung verwendet werden.
-        subject: 'Mastodon: Authentifizierung mit Sicherheitsschlüssel aktiviert'
+        explanation: Die Authentisierung mit Sicherheitsschlüssel wurde für dein Konto aktiviert. Dein Sicherheitsschlüssel kann nun für die Anmeldung verwendet werden.
+        subject: 'Mastodon: Authentisierung mit Sicherheitsschlüssel aktiviert'
         title: Sicherheitsschlüssel aktiviert
     omniauth_callbacks:
       failure: Du konntest nicht mit deinem %{kind}-Konto angemeldet werden, weil „%{reason}“.
       success: Du hast dich erfolgreich mit deinem %{kind}-Konto angemeldet.
     passwords:
-      no_token: Du kannst diese Seite nur über den Link aus der E-Mail zum Passwort-Zurücksetzen aufrufen. Wenn du einen solchen Link aufgerufen hast, stelle bitte sicher, dass du die vollständige Adresse aufrufst.
+      no_token: Du kannst diese Seite nur über den Link aus der E-Mail zum Zurücksetzen des Passworts aufrufen. Wenn du einen solchen Link aufgerufen hast, vergewissere dich bitte, dass du die vollständige Adresse aufrufst.
       send_instructions: Du erhältst in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du dein Passwort zurücksetzen kannst.
       send_paranoid_instructions: Falls deine E-Mail-Adresse in unserer Datenbank hinterlegt ist, erhältst du in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du dein Passwort zurücksetzen kannst.
-      updated: Dein Passwort wurde geändert. Du bist jetzt angemeldet.
-      updated_not_active: Dein Passwort wurde geändert.
+      updated: Ihr Passwort wurde erfolgreich geändert. Du bist jetzt angemeldet.
+      updated_not_active: Dein Passwort wurde erfolgreich geändert.
     registrations:
-      destroyed: Dein Konto wurde gelöscht.
-      signed_up: Willkommen! Du hast dich erfolgreich registriert.
-      signed_up_but_inactive: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto inaktiv ist.
-      signed_up_but_locked: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto gesperrt ist.
+      destroyed: Tschüss! Dein Konto wurde erfolgreich gelöscht. Wir hoffen, dich bald wiederzusehen.
+      signed_up: Herzlich willkommen! Du hast dich erfolgreich registriert.
+      signed_up_but_inactive: Du hast dich erfolgreich registriert. Allerdings ist dein Konto noch nicht aktiviert und du kannst dich daher noch nicht anmelden.
+      signed_up_but_locked: Du hast dich erfolgreich registriert. Allerdings ist dein Konto gesperrt und du kannst dich daher nicht anmelden.
       signed_up_but_pending: Eine Nachricht mit einem Bestätigungslink wurde an dich per E-Mail geschickt. Nachdem du diesen Link angeklickt hast, werden wir deine Anfrage überprüfen. Du wirst benachrichtigt werden, falls die Anfrage angenommen wurde.
       signed_up_but_unconfirmed: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto noch nicht bestätigt ist. Du erhältst in Kürze eine E-Mail. Darin wird erklärt, wie du dein Konto freischalten kannst.
       update_needs_confirmation: Deine Daten wurden aktualisiert, aber du musst deine neue E-Mail-Adresse bestätigen. Du erhältst in wenigen Minuten eine E-Mail. Darin ist erklärt, wie du die Änderung deiner E-Mail-Adresse abschließen kannst.
-      updated: Deine Daten wurden aktualisiert.
+      updated: Ihr Konto wurde erfolgreich aktualisiert.
     sessions:
       already_signed_out: Erfolgreich abgemeldet.
       signed_in: Erfolgreich angemeldet.
@@ -111,5 +111,5 @@ de:
       not_found: nicht gefunden
       not_locked: ist nicht gesperrt
       not_saved:
-        one: '1 Fehler hat verhindert, dass %{resource} gespeichert wurde:'
-        other: "%{count} Fehler haben verhindert, dass %{resource} gespeichert wurde:"
+        one: '1 Fehler verhinderte, dass %{resource} gespeichert wurde:'
+        other: "%{count} Fehler verhinderten, dass %{resource} gespeichert wurde:"

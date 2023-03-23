@@ -9,27 +9,39 @@ class TranslationService::LibreTranslate < TranslationService
   end
 
   def translate(text, source_language, target_language)
-    request(text, source_language, target_language).perform do |res|
+    body = Oj.dump(q: text, source: source_language.presence || 'auto', target: target_language, format: 'html', api_key: @api_key)
+    request(:post, '/translate', body: body) do |res|
+      transform_response(res.body_with_limit, source_language)
+    end
+  end
+
+  def languages
+    request(:get, '/languages') do |res|
+      languages = Oj.load(res.body_with_limit).to_h do |language|
+        [language['code'], language['targets'].without(language['code'])]
+      end
+      languages[nil] = languages.values.flatten.uniq.sort
+      languages
+    end
+  end
+
+  private
+
+  def request(verb, path, **options)
+    req = Request.new(verb, "#{@base_url}#{path}", allow_local: true, **options)
+    req.add_headers('Content-Type': 'application/json')
+    req.perform do |res|
       case res.code
       when 429
         raise TooManyRequestsError
       when 403
         raise QuotaExceededError
       when 200...300
-        transform_response(res.body_with_limit, source_language)
+        yield res
       else
         raise UnexpectedResponseError
       end
     end
-  end
-
-  private
-
-  def request(text, source_language, target_language)
-    body = Oj.dump(q: text, source: source_language.presence || 'auto', target: target_language, format: 'html', api_key: @api_key)
-    req = Request.new(:post, "#{@base_url}/translate", body: body)
-    req.add_headers('Content-Type': 'application/json')
-    req
   end
 
   def transform_response(str, source_language)

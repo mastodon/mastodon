@@ -1,1 +1,307 @@
+---
 sco:
+  simple_form:
+    hints:
+      account_alias:
+        acct: Gie the username@domain o the accoont thit ye'r wantin tae flit fae
+      account_migration:
+        acct: Gie the username@domain o the accoont thit ye'r wantin tae flit tae
+      account_warning_preset:
+        text: Ye kin uise post syntax, sic as URLs, hashtags an menshies
+        title: Optional. No visible tae the recipient
+      admin_account_action:
+        include_statuses: The uiser wull see whit posts causit the moderation action or warnin
+        send_email_notification: The uiser wull get a explanation o whit happent wi their accoont
+        text_html: Optional. Ye kin uise post syntax. Ye kin <a href="%{path}">add warnin presets</a> tae save time
+        type_html: Pick whit tae dae wi <strong>%{acct}</strong>
+        types:
+          disable: Stap the uiser fae uisin their accoont, but dinnae delete or hide their content.
+          none: Uise this fir tae sen a warnin tae the uiser, athoot stertin onie ither actions.
+          sensitive: Mak aw this uiser's media attachments hae a flag sayin it's sensitive.
+        warning_preset_id: Optional. Ye kin stull eik custom text tae the en o the preset
+      announcement:
+        all_day: Whan ticked, ainly the dates o the time range'll get shawn
+        ends_at: Optional. Annooncement wull get automatically unpublishit at this time
+        scheduled_at: Lea blank fir tae publish the annooncement the noo
+        starts_at: Optional. In case yer annooncement is boont tae a specific time range
+        text: Ye kin uise post syntax. Please be mindfae o the space the annooncement'll tak up on the uiser's screen
+      appeal:
+        text: Ye kin ainly appeal a strike the wance
+      defaults:
+        autofollow: Fowk thit signs up throu the invite wull follae ye automatic
+        avatar: PNG, GIF or JPG. At maist %{size}. Wull get doonscaled tae %{dimensions}px
+        bot: Signal tae ithers thit the accoont maistly performs automatit actions an mibbie wullnae be monitort
+        context: Ae or mair contexts whaur the filter shuid apply
+        current_password: Fir security purposes please pit in the passwird o the current accoont
+        current_username: Fir tae confirm, please pit in the uisernemm o the current accoont
+        digest: Ainly sent efter a lang whilie o inactivity an ainly if ye'v gotten onie personal messages whilst ye wis awa
+        discoverable: Alloo yer accoont fir tae get discovert bi strangers throu recommendations, trends an ither features
+        email: Ye'll be sent a confirmation email
+        fields: Ye kin hae up tae 4 items displayed as a table on yer profile
+        header: PNG, GIF or JPG. At maist %{size}. Wull get doonscaled tae %{dimensions}px
+        inbox_url: Copy the URL fae the frontpage o the relay thit ye'r wantin tae uise
+        irreversible: Filtert posts wull dizappear irreversibly, even if filter is taen aff efter
+        locale: The leid o the uiser interface, emails an push notes
+        locked: Control bi haun wha kin follae ye bi approvin follae requests
+        password: Uise at least 8 chairecters
+        phrase: Wull get matched regairdless o case in text or content warnin o a post
+        scopes: Whit APIs the application wull be allooed tae access. Gin ye dinnae pick a tap-level scope, ye dinnae need tae pick anes ane at a time.
+        setting_aggregate_reblogs: Dinnae shaw new heezes fir posts thit haes been juist heezed (ainly affects new-received heezes)
+        setting_always_send_emails: Uisually email notes wullnae get sent whan ye'r uisin Mastodon at the time
+        setting_default_sensitive: Sensitive media is hid bi defaut an kin be revealt wi a chap
+        setting_display_media_default: Hide media mairked sensitive
+        setting_display_media_hide_all: Aye hide media
+        setting_display_media_show_all: Aye shaw media
+        setting_hide_network: Wha ye follae an thaim thit follaes ye wull get hid on yer profile
+        setting_noindex: Affects yer public profile an post pages
+        setting_show_application: The application thit ye uise fir tae post wull be displayed in the detailt view o yer posts
+        setting_use_blurhash: Gradients is based aff o the colors o the image thit's hid, but ye cannae see onie details
+        setting_use_pending_items: Plank timeline updates ahin a chap insteid o automatic scrowin o the feed
+        username: Yer uisernemm wull be a ane aff on %{domain}
+        whole_word: Whan the keywird or phrase is alphanumeric ainly, it wull ainly get applied if it matches the haill wird
+      domain_allow:
+        domain: This domain wull be able tae get data fae this server an data comin in fae it wull get processed an stowed
+      email_domain_block:
+        domain: This kin be the domain nemm thit shaws up in the email address or the MX record thit it uises. They'll be checked on sign-up.
+        with_dns_records: An attempt fie tae resolve the gien domain's DNS records wull be made an the results will be dingied tae
+      featured_tag:
+        name: 'Here some o the hashtags ye uised the maist o late:'
+      filters:
+        action: Pick whit action tae dae whan a post matches the filter
+        actions:
+          hide: Totally plank the filtert content, ackin as if it didnae exist
+          warn: Plank the filtert content ahin a warnin menshiein the filter's title
+      form_admin_settings:
+        backups_retention_period: Haud generatit uiser archives fir the specified nummer o days.
+        bootstrap_timeline_accounts: Thir accoonts wull get preenit tae the tap o new uisers' follae recommendations.
+        closed_registrations_message: Displayit whan sign-ups is shut
+        content_cache_retention_period: Posts fae ither servers wull get deletit efter the specified nummer o days whan set tae a positive value. This wull mibbie be irreversible.
+        custom_css: Ye kin pit custom styles on tae the web version o Mastodon.
+        mascot: Owerrides the illustration in the advanced web interface.
+        media_cache_retention_period: Doonloadit media files wull be deletit efter the specified nummer o days whan set tae a positive value, an re-doonloadit on demand.
+        profile_directory: The profile directory lists aw uisers thit hae opted-in fir tae be discoverable.
+        require_invite_text: Whan sign-ups require approval bi haun, mak the “Hou dae ye want tae jyne?” text input mandatory raither nor optional
+        site_contact_email: Hou fowk kin reach ye fir legal or support inquiries.
+        site_contact_username: Hou fowk kin reach ye on Mastodon.
+        site_extended_description: Onie mair information thit mibbie wad be uisefae tae visitors an yer uisers. Kin be structurt wi Mairkdoon syntax.
+        site_short_description: A wee description fir tae help uniquely identify yer server. Wha is rinnin it, wha is it fir?
+        site_terms: Uise yer ain privacy policy or lea blank fir tae uise the defaut. Kin be structurt wi Mairkdoon syntax.
+        site_title: Hou fowk kin refer tae yer server asides its domain nemm.
+        theme: Theme thit logged oot visitors an new uisers see.
+        thumbnail: A rochly 2:1 image displayit alangsides yer server information.
+        timeline_preview: Logged oot visitors wull be able tae broose the maist recent public posts available on the server.
+        trendable_by_default: Jouk the review bi haun o trendin content. Individual items kin stull get taen aff trends efter the fact.
+        trends: Trends shaw whit posts, hashtags an news stories is gettin traction on yer server.
+      form_challenge:
+        current_password: Ye'r enterin a secure area
+      imports:
+        data: CSV file exportit fae anither Mastodon server
+      invite_request:
+        text: This'll help us luik ower yer application
+      ip_block:
+        comment: Optional. Mind whit ye addit this rule fir.
+        expires_in: IP addresses is a finite resoorce, they'r sometimes shared an aften chynge hauns. Fir this raison, indefinite IP dingies urnae recommendit.
+        ip: Pit in a IPv4 or IPv6 address. Ye kin dingie entire ranges uisin the CIDR syntax. Be carefu no tae snib yersel oot!
+        severities:
+          no_access: Dingie access tae aw resoorces
+          sign_up_block: New sign-ups wullnae be possible
+          sign_up_requires_approval: New sign-ups wull be wantin yer approval
+        severity: Pick whit'll happen wi requests fae this IP
+      rule:
+        text: Describe a rule or requirement fir uisers on this server. Try tae keep it short an simple
+      sessions:
+        otp: 'Pit in the twa-factor code generatit bi yer phone app or uise ane o yer recovery codes:'
+        webauthn: Gin it's a USB key be sure fir tae insert it an, if necessary, tap it.
+      tag:
+        name: Ye kin ainly chynge the case o the letters, fir example, fir tae mak it mair readable
+      user:
+        chosen_languages: Whan ticked, ainly posts in selectit leids wull be displayit in public timelines
+        role: The role controls whit permissions the uiser haes
+      user_role:
+        color: Colour tae be uised fir the role throuoot the UI, as RGB in hex format
+        highlighted: This maks the role visible publicly
+        name: Public nemm o the role, if role is set tae be displayit as a badge
+        permissions_as_keys: Uisers wi this role wull hae access tae...
+        position: Heicher role decides stramash resolution in certain situations. Certain actions kin ainly be cairried oot on thaim wi roles wi a laicher priority
+      webhook:
+        events: Pick events fir tae sen
+        url: Whaur events'll be sent tae
+    labels:
+      account:
+        fields:
+          name: Label
+          value: Content
+      account_alias:
+        acct: Haunnle o the auld accoont
+      account_migration:
+        acct: Haunnle o the new accoont
+      account_warning_preset:
+        text: Preset text
+        title: Title
+      admin_account_action:
+        include_statuses: Pit the clyped posts in the email
+        send_email_notification: Tell the uiser bi email
+        text: Custom warnin
+        type: Action
+        types:
+          disable: Freeze
+          none: Sen a warnin
+          sensitive: Sensitive
+          silence: Limit
+          suspend: Suspend
+        warning_preset_id: Uise a warnin preset
+      announcement:
+        all_day: Aw-day event
+        ends_at: En o event
+        scheduled_at: Schedule publication
+        starts_at: Stert o event
+        text: Annooncement
+      appeal:
+        text: Explain hou this decision shuid get reversed
+      defaults:
+        autofollow: Invite tae follae yer accoont
+        avatar: Avatar
+        bot: This is a bot accoont
+        chosen_languages: Filter leids
+        confirm_new_password: Confirm new passwird
+        confirm_password: Confirm passwird
+        context: Filter contexts
+        current_password: Current passwird
+        data: Data
+        discoverable: Suggest accoont tae ithers
+        display_name: Display nemm
+        email: Email address
+        expires_in: Rin oot efter
+        fields: Profile metadata
+        header: Heider
+        honeypot: "%{label} (dinnae full oot)"
+        inbox_url: URL o the relay inbox
+        irreversible: Drap insteid o plank
+        locale: Interface leid
+        locked: Require follae requests
+        max_uses: Maist nummer o uises
+        new_password: New passwird
+        note: Bio
+        otp_attempt: Twa-factor code
+        password: Passwird
+        phrase: Keywird or phrase
+        setting_advanced_layout: Turn on advanced web interface
+        setting_aggregate_reblogs: Group heezes in timelines
+        setting_always_send_emails: Aye sen email notifications
+        setting_auto_play_gif: Auto-pley animatit GIFs
+        setting_boost_modal: Shaw confirmation dialog afore heezin
+        setting_crop_images: Crap images in non-expandit posts tae 16x9
+        setting_default_language: Postin leid
+        setting_default_privacy: Postin privacy
+        setting_default_sensitive: Aye mairk media as sensitive
+        setting_delete_modal: Shaw confirmation dialog afore deletin a post
+        setting_disable_swiping: Turn aff swipin motions
+        setting_display_media: Media display
+        setting_display_media_default: Defaut
+        setting_display_media_hide_all: Plank aw
+        setting_display_media_show_all: Shaw aw
+        setting_expand_spoilers: Aye expand posts mairked wi content warnins
+        setting_hide_network: Plank yer social graph
+        setting_noindex: Opt-oot o seirch engine indexin
+        setting_reduce_motion: Reduce motion in animations
+        setting_show_application: Disclose application uised fir tae sen posts
+        setting_system_font_ui: Uise system's defaut font
+        setting_theme: Steid theme
+        setting_trends: Shaw the day's trends
+        setting_unfollow_modal: Shaw confirmation dialog afore unfollaein somebody
+        setting_use_blurhash: Shaw colourfu gradients fir hid media
+        setting_use_pending_items: Slaw mode
+        severity: Severity
+        sign_in_token_attempt: Security code
+        title: Title
+        type: Import type
+        username: Uisernemm
+        username_or_email: Uisernemm or Email
+        whole_word: Hail wird
+      email_domain_block:
+        with_dns_records: Include MX records an IPs o the domain
+      featured_tag:
+        name: Hashtag
+      filters:
+        actions:
+          hide: Plank awthegither
+          warn: Plank wi a warnin
+      form_admin_settings:
+        backups_retention_period: Uiser archive retention period
+        bootstrap_timeline_accounts: Aye recommend thir accoonts tae new uisers
+        closed_registrations_message: Custom message whan sign-ups urnae available
+        content_cache_retention_period: Content cache retention period
+        custom_css: Custom CSS
+        mascot: Custom mascot (legacy)
+        media_cache_retention_period: Media cache retention period
+        profile_directory: Enable profile directory
+        registrations_mode: Wha kin sign-up
+        require_invite_text: Require a raison fir tae jyne
+        show_domain_blocks: Shaw domain dingies
+        show_domain_blocks_rationale: Shaw whit domains war dingied fir
+        site_contact_email: Contack email
+        site_contact_username: Contact uisernemm
+        site_extended_description: Extendit description
+        site_short_description: Server description
+        site_terms: Privacy Policy
+        site_title: Server nemm
+        theme: Defaut theme
+        thumbnail: Server thoomnail
+        timeline_preview: Alloo unauthenticated access tae public timelines
+        trendable_by_default: Alloo trends athoot prior review
+        trends: Turn on trends
+      interactions:
+        must_be_follower: Dingie notes fae non-follaers
+        must_be_following: Dingie notes fae fowk ye dinnae follae
+        must_be_following_dm: Fingie direct messages fae fowk thit ye dinnae follae
+      invite:
+        comment: Comment
+      invite_request:
+        text: Whit dae ye want tae jyne fir?
+      ip_block:
+        comment: Comment
+        ip: IP
+        severities:
+          no_access: Dingie access
+          sign_up_block: Dingie sign-ups
+          sign_up_requires_approval: Limit sign-ups
+        severity: Rule
+      notification_emails:
+        appeal: Somebody appeals a moderator decision
+        digest: Sen digest emails
+        favourite: Somebody favouritit yer post
+        follow: Somebody follaed ye
+        follow_request: Somebody requestit fir tae follae ye
+        mention: Somebody menshied ye
+        pending_account: New accoont is needin reviewit
+        reblog: Somebody heezed yer post
+        report: New clype is submittit
+        trending_tag: New trend requires reviewin
+      rule:
+        text: Rule
+      tag:
+        listable: Alloo this hashtag tae appear in seirches an suggestions
+        name: Hashtag
+        trendable: Alloo this hashtag fir tae appear unner trends
+        usable: Alloo posts fir tae uise this hashtag
+      user:
+        role: Role
+      user_role:
+        color: Badge colour
+        highlighted: Display role as badge on uiser profiles
+        name: Nemm
+        permissions_as_keys: Permissions
+        position: Priority
+      webhook:
+        events: Enabilt events
+        url: Enpynt URL
+    'no': Naw
+    not_recommended: No recommendit
+    recommended: Recommendit
+    required:
+      mark: "*"
+      text: requirit
+    title:
+      sessions:
+        webauthn: Uise ane o yer security keys fir tae sign in
+    'yes': Ay

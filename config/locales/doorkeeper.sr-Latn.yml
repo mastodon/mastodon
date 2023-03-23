@@ -38,6 +38,7 @@ sr-Latn:
         application: Aplikacija
         callback_url: Adresa za povratni poziv
         delete: Obriši
+        empty: Nemate aplikacija.
         name: Ime
         new: Nova aplikacija
         scopes: Opsezi važenja
@@ -59,6 +60,8 @@ sr-Latn:
       error:
         title: Dogodila se greška
       new:
+        prompt_html: "%{client_name} želi dozvolu za pristup tvom nalogu. U pitanju je aplikacija treće strane. <strong>Ako smatraš da nije pouzdana, ne bi trebalo da je ovlastiš.</strong>"
+        review_permissions: Pregledaj dozvole
         title: Potrebna autorizacija
       show:
         title: Kopirajte ovaj autorizacioni kod i nalepite ga u aplikaciju.
@@ -68,6 +71,12 @@ sr-Latn:
       confirmations:
         revoke: Da li ste sigurni?
       index:
+        authorized_at: Autorizovano dana %{date}
+        description_html: Ovo su aplikacije koje mogu da pristupe tvom nalogu pomoću API-ja. Ako ovde postoje aplikacije koje ne prepoznaješ ili se neka aplikacija ne ponaša dobro, možeš opozvati njeno pravo pristupa.
+        last_used_at: Poslednji put korišćeno dana %{date}
+        never_used: Nikada nije korišćeno
+        scopes: Dozvole
+        superapp: Interno
         title: Vaše autorizovane aplikacije
     errors:
       messages:
@@ -76,6 +85,10 @@ sr-Latn:
         invalid_client: Klijentska identifikacija nije uspela zbog nepoznatog klijenta, zato što klijent nije uključio identifikaciju ili zato što je iskorišćen nepodržani identifikacioni metod.
         invalid_grant: Zadata identifikaciona dozvola je neispravna, istekla, opozvana, ne poklapa se sa adresom preusmeravanja ili je izdata nekog drugom klijentu.
         invalid_redirect_uri: Uključena adresa preusmeravanja nije ispravna.
+        invalid_request:
+          missing_param: 'Nedostaje obavezni parametar: %{value}.'
+          request_not_authorized: Zahtev mora biti autorizovan. Obavezni parametar za autorizaciju zahteva nedostaje ili je nevažeći.
+          unknown: Obavezni parametar u zahtevu nedostaje, u zahtevu se nalazi nepodržana vrednost parametra ili je parametar na neki drugi način pogrešno formiran.
         invalid_resource_owner: Zadati kredencijali vlasnika resursa nisu ispravni ili vlasnik resursa ne može biti nađen
         invalid_scope: Zahtevani opseg važenja nije ispravan, nepoznat je ili je na neki drugi način pogrešan.
         invalid_token:
@@ -99,6 +112,33 @@ sr-Latn:
       authorized_applications:
         destroy:
           notice: Aplikacija opozvana.
+    grouped_scopes:
+      access:
+        read: Pristup samo za čitanje
+        read/write: Pristup za čitanje i pisanje
+        write: Pristup samo za pisanje
+      title:
+        accounts: Nalozi
+        admin/accounts: Administracija naloga
+        admin/all: Sve funkcije administracije
+        admin/reports: Administracija prijava
+        all: Potpuni pristup vašem Mastodon nalogu
+        blocks: Blokirani
+        bookmarks: Obeleživači
+        conversations: Razgovori
+        crypto: End-to-end enkripcija
+        favourites: Omiljeni
+        filters: Filteri
+        follow: Praćenja, ignorisanja i blokiranja
+        follows: Praćeni
+        lists: Liste
+        media: Multimedijalni prilozi
+        mutes: Ignorisani
+        notifications: Obaveštenja
+        push: Prosleđena obaveštenja
+        reports: Prijave
+        search: Pretraga
+        statuses: Objave
     layouts:
       admin:
         nav:
@@ -107,6 +147,49 @@ sr-Latn:
       application:
         title: OAuth autorizacija potrebna
     scopes:
-      follow: prati, blokira, odblokira i otprati naloge
+      admin:read: čitanje svih podataka na serveru
+      admin:read:accounts: čitanje osetljivih podataka za sve naloge
+      admin:read:canonical_email_blocks: pročitaj osetljive informacije i kanonske imejl blokove
+      admin:read:domain_allows: pročitaj osetljive informacije za sve dozvole domena
+      admin:read:domain_blocks: pročitaj osetljive informacije za sve blokove domena
+      admin:read:email_domain_blocks: pročitaj osetljive informacije svih blokova imejl domena
+      admin:read:ip_blocks: pročitaj osetljive informacije za sve IP blokove
+      admin:read:reports: čitanje osetljivih podataka svih izveštaja i prijavljenih naloga
+      admin:write: menjanje svih podataka na serveru
+      admin:write:accounts: vršenje moderatorskih aktivnosti nad nalozima
+      admin:write:canonical_email_blocks: izvrši moderacijske radnje nad kanonskim imejl blokovima
+      admin:write:domain_allows: izvrši moderacijske radnje nad dozvolama domena
+      admin:write:domain_blocks: izvrši moderatorske aktivnosti na blokovima domena
+      admin:write:email_domain_blocks: izvrši moderacijske radnje nad blokovima imejl domena
+      admin:write:ip_blocks: izvrši moderatorske aktivnosti na IP blokovima
+      admin:write:reports: vršenje moderatorskih aktivnosti nad izveštajima
+      crypto: korišćenje end-to-end enkripcije
+      follow: menja odnose naloga
+      push: primanje prosleđenih obaveštenja
       read: čita podatke Vašeg naloga
+      read:accounts: pogledaj informacije o nalozima
+      read:blocks: pogledaj svoje blokirane
+      read:bookmarks: pogledaj svoje obeleživače
+      read:favourites: pogledaj svoje omiljene
+      read:filters: pogledaj svoje filtere
+      read:follows: pogledaj koga pratiš
+      read:lists: pogledaj svoje liste
+      read:mutes: pogledaj ignorisanja
+      read:notifications: pogledaj svoja obaveštenja
+      read:reports: pogledaj svoje prijave
+      read:search: pretraži u svoje ime
+      read:statuses: pogledaj sve objave
       write: objavljuje statuse u Vaše ime
+      write:accounts: izmeni svoj profil
+      write:blocks: blokiraj naloge i domene
+      write:bookmarks: obeleži objave
+      write:conversations: ignoriši i izbriši razgovore
+      write:favourites: omiljene objave
+      write:filters: kreiraj filtere
+      write:follows: prati korisnike
+      write:lists: kreiraj liste
+      write:media: otpremi medijske datoteke
+      write:mutes: ignoriši korisnike i razgovore
+      write:notifications: obriši svoja obaveštenja
+      write:reports: prijavi druge korisnike
+      write:statuses: objavi objave

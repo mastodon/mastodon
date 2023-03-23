@@ -95,6 +95,7 @@ sl:
       moderation:
         active: Dejaven
         all: Vse
+        disabled: Onemogočeno
         pending: Na čakanju
         silenced: Omejeno
         suspended: Suspendiran
@@ -122,6 +123,8 @@ sl:
       redownloaded_msg: Uspešno osvežen profil %{username} iz izvirnika
       reject: Zavrni
       rejected_msg: Uspešno zavrnjena vloga prijave uporabnika %{username}
+      remote_suspension_irreversible: Podatki tega računa so bili nepovratno izbrisani.
+      remote_suspension_reversible_hint_html: Račun je bil suspendiran na njihovem strežniku, podatki pa bodo v celoti odstranjeni %{date}. Do takrat lahko oddaljeni strežnik obnovi ta račun obnoviti brez negativnih posledic. Če želite takoj odstraniti vse podatke računa, lahko to storite spodaj.
       remove_avatar: Odstrani podobo
       remove_header: Odstrani glavo
       removed_avatar_msg: Uspešno odstranjena slika avatarja uporabnika %{username}
@@ -137,6 +140,7 @@ sl:
       search: Iskanje
       search_same_email_domain: Drugi uporabniki z isto e-poštno domeno
       search_same_ip: Drugi uporabniki z istim IP
+      security: Varnost
       security_measures:
         only_password: Samo geslo
         password_and_2fa: Geslo in 2FA
@@ -441,6 +445,7 @@ sl:
         resolve: Razreši domeno
         title: Nov vnos e-pošte na črni seznam
       no_email_domain_block_selected: Nobena domena e-računa ni bila spremenjena, ker nobena ni bila izbrana
+      not_permitted: Ni dovoljeno
       resolved_dns_records_hint_html: Ime domene se razreši na naslednje domene MX, ki so končno odgovorne za sprejemanje e-pošte. Blokiranje domene MX bo blokiralo prijave s poljubnega e-poštnega naslova, ki uporablja isto domeno MX, tudi če je vidno ime domene drugačno. <strong>Pazite, da ne blokirate večjih ponudnikov e-pošte.</strong>
       resolved_through_html: Razrešeno prek %{domain}
       title: Črni seznam e-pošt
@@ -455,6 +460,7 @@ sl:
         private_comment_description_html: 'Kot pomoč pri sledenju izvora uvoženih blokad bodo le-te ustvarjene z naslednjim zasebnim komentarjem: <q>%{comment}</q>'
         private_comment_template: Uvoženo iz %{source} %{date}
         title: Uvozi blokade domen
+      invalid_domain_block: 'Ena ali več blokad domen je bila preskočena zaradi naslednjih napak: %{error}'
       new:
         title: Uvozi blokade domen
       no_file: Nobena datoteka ni izbrana
@@ -490,6 +496,7 @@ sl:
       content_policies:
         comment: Interna opomba
         description_html: Določite lahko pravila (t.i. politike), ki bodo veljale za vse račune te domene ter vseh njenih poddomen.
+        limited_federation_mode_description_html: Izberete lahko, ali dovolite federacijo s to domeno.
         policies:
           reject_media: Zavrni večpredstavnost
           reject_reports: Zavrni prijave
@@ -583,7 +590,6 @@ sl:
     report_notes:
       created_msg: Opomba o prijavi je uspešno ustvarjena!
       destroyed_msg: Opomba o prijavi je uspešno izbrisana!
-      today_at: Danes ob %{time}
     reports:
       account:
         notes:
@@ -598,19 +604,23 @@ sl:
         mark_as_sensitive_description_html: Mediji v prijavljenih objavah bodo označeni kot občutljivi in ukrep bo zabeležen, da vam pomaga stopnjevati ukrepe ob naslednjih kršitvah z istega računa.
         other_description_html: Oglejte si več možnosti za nadzor vedenja računa in prilagodite komunikacijo s prijavljenim računom.
         resolve_description_html: Proti prijavljenemu računu ne bo izvedeno nobeno dejanje, noben ukrep ne bo zabeležen in prijava bo zaprta.
-        silence_description_html: Profil bo viden samo tistim, ki mu že sledijo ali ga ročno poiščejo, s čimer bo resno omejen njegov doseg. To je vedno možno povrniti.
-        suspend_description_html: Profil in vsa njegova vsebina bodo postali nedosegljivi, dokler niso dokončno izbrisani. Interakcija z računom ne bo možna. Povrnitev je možna v času 30 dni.
+        silence_description_html: Račun bo viden samo tistim, ki mu že sled ijo ali ga ročno poiščejo, s čimer bo resno omejen njegov doseg. To je vedno možno povrniti. Zaključi vse prijave zoper ta račun.
+        suspend_description_html: Račun in vsa njegova vsebina ne bo dostopna in bo postopoma izbrisana, interakcija z njim pa ne bo več možna. Dejanje je moč povrniti v roku 30 dni. Zaključi vse prijave zoper ta račun.
       actions_description_html: Odločite se, katere ukrepe boste sprejeli za rešitev te prijave. Če sprejmete kazenski ukrep proti prijavljenemu računu, mu bo poslano e-poštno obvestilo, razen če je izbrana kategorija <strong>Neželena pošta</strong>.
+      actions_description_remote_html: Odločite se za dejanje, ki bo odločilo o tej prijavi. To bo vplivalo le na to, kako <strong>vaš</strong> strežnik komunicira s tem oddaljenim računom in obravnava njegovo vsebino.
       add_to_report: Dodaj več v prijavo
       are_you_sure: Ali ste prepričani?
       assign_to_self: Dodeli meni
       assigned: Dodeljen moderator
       by_target_domain: Domena prijavljenega računa
+      cancel: Prekliči
       category: Kategorija
       category_description_html: Razlog, zakaj je ta račun in/ali vsebina prijavljena, bo naveden v komunikaciji z računom iz prijave
       comment:
         none: Brez
       comment_description_html: 'V pojasnilo je %{name} zapisal/a:'
+      confirm: Potrdi
+      confirm_action: Potrdite dejanje moderiranja proti @%{acct}
       created_at: Prijavljeno
       delete_and_resolve: Izbriši objave
       forwarded: Posredovano
@@ -627,6 +637,7 @@ sl:
         placeholder: Opišite dejanja, ki ste jih izvedli, ali katere koli druge posodobitve ...
         title: Zapiski
       notes_description_html: Pokaži in pusti opombe drugim moderatorjem in sebi v prihodnosti
+      processed_msg: 'Prijava #%{id} uspešno obdelana'
       quick_actions_description_html: 'Opravite hitro dejanje ali podrsajte navzdol, da si ogledate prijavljeno vsebino:'
       remote_user_placeholder: oddaljeni uporabnik iz %{instance}
       reopen: Ponovno odpri prijavo
@@ -639,9 +650,28 @@ sl:
       status: Stanje
       statuses: Prijavljena vsebina
       statuses_description_html: Žaljiva vsebina bo citirana v komunikaciji z računom iz prijave
+      summary:
+        action_preambles:
+          delete_html: 'Nekatere od objav uporabnika/ce <strong>@%{acct}</strong> boste <strong>odstranili</strong>. S tem boste:'
+          mark_as_sensitive_html: 'Nekatere od objav uporabnika/ce <strong>@%{acct}</strong> boste <strong>označili</strong> kot <strong>občutljive</strong>. S tem boste:'
+          silence_html: 'Račun uporabnika/ce <strong>@%{acct}</strong> boste <strong>omejili</strong>. S tem boste:'
+          suspend_html: "<strong>Suspendirali</strong> boste račun uporabnika/ce <strong>@%{acct}</strong>. S tem boste:"
+        actions:
+          delete_html: Odstrani žaljive objave
+          mark_as_sensitive_html: Označi večpredstavnost žaljivih objav kot občutljivo
+          silence_html: Močno omejite doseg osebe <strong>@%{acct}</strong>, tako da naredite njihov profil in vsebino vidno samo osebam, ki jih že spremljajo ali ročno poiščejo profil
+          suspend_html: Suspendirajte <strong>@%{acct}</strong>, s čimer postaneta njihov profil in vsebina nedostopna in z njim ni mogoče komunicirati
+        close_report: 'Označi prijavo #%{id} kot rešeno'
+        close_reports_html: Označi <strong>vse</strong> prijave zoper <strong>@%{acct}</strong> kot rešene
+        delete_data_html: Izbriši profil in vsebine <strong>@%{acct}</strong> čez 30 dni, razen če suspenz v tem času ni preklican
+        preview_preamble_html: 'Oseba <strong>@%{acct}</strong> bo prejela opozorilo z naslednjo vsebino:'
+        record_strike_html: Izdajte opomin računu <strong>@%{acct}</strong>, da boste lažje stopnjevali svoj odziv ob prihodnjih kršitvah s tega računa
+        send_email_html: Pošlji <strong>@%{acct}</strong> opozorilno e-sporočilo
+        warning_placeholder: Neobvezna dodatna utemeljitev dejanja moderiranja.
       target_origin: Izvor prijavljenega računa
       title: Prijave
       unassign: Odstopljeni
+      unknown_action_msg: 'Neznano dejanje: %{action}'
       unresolved: Nerešeni
       updated_at: Posodobljeni
       view_profile: Pokaži profil
@@ -732,11 +762,16 @@ sl:
       content_retention:
         preamble: Nazdor nad hrambo vsebine uporabnikov v Mastodonu.
         title: Hramba vsebin
+      default_noindex:
+        desc_html: Vpliva na vse uporabnike, ki niso sami spremenili te nastavitve
+        title: Privzeto izvzemi uporabnike iz indeksiranja iskalnika
       discovery:
         follow_recommendations: Sledi priporočilom
         preamble: Izpostavljanje zanimivih vsebin je ključno za pridobivanje novih uporabnikov, ki morda ne poznajo nikogar na Mastodonu. Nadzirajte, kako različne funkcionalnosti razkritja delujejo na vašem strežniku.
         profile_directory: Imenik profilov
         public_timelines: Javne časovnice
+        publish_discovered_servers: Objavi odkrite strežnike
+        publish_statistics: Objavi statistiko
         title: Razkrivanje
         trends: Trendi
       domain_blocks:
@@ -791,6 +826,7 @@ sl:
         suspend: "%{name} je suspendiral/a račun uporabnika %{target}"
       appeal_approved: Pritoženo
       appeal_pending: Čakajoč na ugovor
+      appeal_rejected: Pritožba zavrnjena
     system_checks:
       database_schema_check:
         message_html: Na čakanju so migracije zbirke podatkov. Prosimo, izvedite jih, da zagotovite, da se program vede pričakovano
@@ -828,6 +864,7 @@ sl:
           two: Delili %{count} osebi v zadnjem tednu
         title: Povezave v trendu
         usage_comparison: Danes deljeno %{today}-krat, včeraj pa %{yesterday}-krat
+      not_allowed_to_trend: Ni dovoljeno, da bi bilo v trendu
       only_allowed: Samo dovoljeni
       pending_review: Čakajoče na pregled
       preview_card_providers:
@@ -965,6 +1002,7 @@ sl:
   applications:
     created: Aplikacija je bila uspešno ustvarjena
     destroyed: Aplikacija je bila uspešno izbrisana
+    logout: Odjava
     regenerate_token: Obnovite dostopni žeton
     token_regenerated: Dostopni žeton je bil uspešno regeneriran
     warning: Bodite zelo previdni s temi podatki. Nikoli jih ne delite z nikomer!
@@ -972,6 +1010,8 @@ sl:
   auth:
     apply_for_account: Zaprosite za račun
     change_password: Geslo
+    confirmations:
+      wrong_email_hint: Če ta e-poštni naslov ni pravilen, ga lahko spremenite v nastavitvah računa.
     delete_account: Izbriši račun
     delete_account_html: Če želite izbrisati svoj račun, lahko nadaljujete <a href="%{path}">tukaj</a>. Prosili vas bomo za potrditev.
     description:
@@ -999,6 +1039,8 @@ sl:
     resend_confirmation: Ponovno pošlji navodila za potrditev
     reset_password: Ponastavi geslo
     rules:
+      accept: Sprejmi
+      back: Nazaj
       preamble: Slednje določajo in njihovo spoštovanje zagotavljajo moderatorji %{domain}.
       title: Nekaj osnovnih pravil.
     security: Varnost
@@ -1007,6 +1049,9 @@ sl:
       email_below_hint_html: Če spodnji e-poštni naslov ni pravilen, ga lahko spremenite tukaj in prejmete novo potrditveno e-pošto.
       email_settings_hint_html: Potrditvena e-pošta je bila poslana na %{email}. Če ta e-poštni naslov ni pravilen, ga lahko spremenite v nastavitvah računa.
       title: Nastavitev
+    sign_in:
+      preamble_html: Prijavite se s svojimi poverilnicami <strong>%{domain}</strong>. Če vaš račun gostuje na drugem strežniku, se tukaj ne boste mogli prijaviti.
+      title: Vpiši se v %{domain}
     sign_up:
       preamble: Z računom na strežniku Mastodon boste lahko sledili vsem drugim v tem omrežju, ne glede na to, kje gostuje njihov račun.
       title: Naj vas namestimo na %{domain}.
@@ -1193,8 +1238,6 @@ sl:
       index:
         hint: Ta filter se nanaša na posamezne objave ne glede na druge pogoje. Filtru lahko dodate več objav prek spletnega vmesnika.
         title: Filtrirane objave
-  footer:
-    trending_now: Zdaj v trendu
   generic:
     all: Vse
     all_items_on_page_selected_html:
@@ -1225,8 +1268,6 @@ sl:
       one: Nekaj še ni čisto v redu! Spodaj si oglejte napako
       other: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napak
       two: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napaki
-  html_validator:
-    invalid_markup: 'vsebuje neveljavno oznako HTML: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Neveljavna datoteka CSV. Napaka: %{error}'
@@ -1412,7 +1453,11 @@ sl:
       unrecognized_emoji: ni prepoznan emotikon
   relationships:
     activity: Dejavnost računa
+    confirm_follow_selected_followers: Ali ste prepričani, da želite slediti izbranim sledilcem?
+    confirm_remove_selected_followers: Ali ste prepričani, da želite odstraniti izbrane sledilce?
+    confirm_remove_selected_follows: Ali ste prepričani, da želite odstraniti izbrana sledenja?
     dormant: Skrit
+    follow_failure: Nekaterim od izbranih računov ni bilo mogoče slediti.
     follow_selected_followers: Sledi izbranim sledilcem
     followers: Sledilci
     following: Sledi
@@ -1452,6 +1497,7 @@ sl:
       electron: Electron
       firefox: Firefox
       generic: Neznan brskalnik
+      huawei_browser: Brskalnik Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Brskalnik Nokia S40 Ovi
@@ -1461,6 +1507,7 @@ sl:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Neznan brskalnik
       weibo: Weibo
     current_session: Trenutna seja
     description: "%{browser} na %{platform}"
@@ -1473,9 +1520,10 @@ sl:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: neznana platforma
+      unknown_platform: Neznana platforma
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1600,7 +1648,7 @@ sl:
       '7889238': 3 mesece
     min_age_label: Starostna meja
     min_favs: Obrži objave priljubljene vsaj
-    min_favs_hint: Ne izbriše nobene od vaših objav, ki je prejela vsaj takšno količino priljubljenih. Pustite prazno, če želite izbrisati objave ne glede na število všečkov
+    min_favs_hint: Ne izbriše nobene od vaših objav, ki je prejela vsaj takšno število priljubljenih. Pustite prazno, če želite izbrisati objave ne glede na število všečkov
     min_reblogs: Obdrži objave izpostavljene vsaj
     min_reblogs_hint: Ne izbriše nobene od vaših objav, ki je bila vsaj tolikokrat podprta. Pustite prazno, če želite izbrisati objave ne glede na število izpostavitev
   stream_entries:

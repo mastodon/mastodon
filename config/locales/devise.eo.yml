@@ -6,13 +6,13 @@ eo:
       send_instructions: Vi ricevos retmesaĝon kun instrukcioj por konfirmi vian retadreson ene de kelkaj minutoj. Bonvolu kontroli vian spamujon se vi ne ricevis ĉi tiun retmesaĝon.
       send_paranoid_instructions: Se via retadreso ekzistas en nia datumbazo, vi ricevos retmesaĝon kun instrukcioj por konfirmi vian retadreson ene de kelkaj minutoj. Bonvolu kontroli vian spamujon se vi ne ricevis ĉi tiun retmesaĝon.
     failure:
-      already_authenticated: Vi jam ensalutis.
+      already_authenticated: Vi jam salutis.
       inactive: Via konto ankoraŭ ne estas konfirmita.
       invalid: Nevalida %{authentication_keys} aŭ pasvorto.
       last_attempt: Vi ankoraŭ povas provi unufoje antaŭ ol via konto estos ŝlosita.
       locked: Via konto estas ŝlosita.
       not_found_in_database: Nevalida %{authentication_keys} aŭ pasvorto.
-      pending: Via konto ankoraŭ estas kontrolanta.
+      pending: Via konto ankoraŭ estas kontrolata.
       timeout: Via seanco eksvalidiĝis. Bonvolu ensaluti denove por daŭrigi.
       unauthenticated: Vi devas ensaluti aŭ registriĝi antaŭ ol daŭrigi.
       unconfirmed: Vi devas konfirmi vian retadreson antaŭ ol daŭrigi.
@@ -34,7 +34,7 @@ eo:
         explanation: La pasvorto de via konto estis ŝanĝita.
         extra: Se vi ne ŝanĝis vian pasvorton, iu verŝajne aliris al via konto. Bonvolu ŝanĝi vian pasvorton tuj aŭ kontakti la administranton de la servilo, se vi estas blokita ekster via konto.
         subject: 'Mastodon: Pasvorto ŝanĝita'
-        title: Pasvorto ŝanĝita
+        title: Pasvorto estas ŝanĝita
       reconfirmation_instructions:
         explanation: Retajpu la novan adreson por ŝanĝi vian retpoŝtadreson.
         extra: Se ĉi tiu ŝanĝo ne estis komencita de vi, bonvolu ignori ĉi tiun retmesaĝon. La retadreso por la Mastodon-konto ne ŝanĝiĝos se vi ne aliras la supran ligilon.
@@ -49,7 +49,7 @@ eo:
       two_factor_disabled:
         explanation: Dufaktora aŭtentigo por via konto malebligis. Ensalutado nun eblas per nur retpoŝtadreso kaj pasvorto.
         subject: 'Mastodon: dufaktora aŭtentigo malebligita'
-        title: la du-etapa aŭtentigo estas malŝaltita
+        title: 2FA estas malŝaltita
       two_factor_enabled:
         explanation: Dufaktora aŭtentigo sukcese ebligita por via akonto. Vi bezonos ĵetonon kreitan per parigitan aplikaĵon por ensaluti.
         subject: 'Mastodon: Dufaktora aŭtentigo ebligita'

@@ -18,8 +18,8 @@ en:
           disable: Prevent the user from using their account, but do not delete or hide their contents.
           none: Use this to send a warning to the user, without triggering any other action.
           sensitive: Force all this user's media attachments to be flagged as sensitive.
-          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them.
-          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Optional. You can still add custom text to end of the preset
       announcement:
         all_day: When checked, only the dates of the time range will be displayed
@@ -74,6 +74,7 @@ en:
           hide: Completely hide the filtered content, behaving as if it did not exist
           warn: Hide the filtered content behind a warning mentioning the filter's title
       form_admin_settings:
+        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
         backups_retention_period: Keep generated user archives for the specified number of days.
         bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations.
         closed_registrations_message: Displayed when sign-ups are closed
@@ -81,6 +82,7 @@ en:
         custom_css: You can apply custom styles on the web version of Mastodon.
         mascot: Overrides the illustration in the advanced web interface.
         media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
+        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: The profile directory lists all users who have opted-in to be discoverable.
         require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
         site_contact_email: How people can reach you for legal or support inquiries.
@@ -89,11 +91,13 @@ en:
         site_short_description: A short description to help uniquely identify your server. Who is running it, who is it for?
         site_terms: Use your own privacy policy or leave blank to use the default. Can be structured with Markdown syntax.
         site_title: How people may refer to your server besides its domain name.
+        status_page_url: URL of a page where people can see the status of this server during an outage
         theme: Theme that logged out visitors and new users see.
         thumbnail: A roughly 2:1 image displayed alongside your server information.
         timeline_preview: Logged out visitors will be able to browse the most recent public posts available on the server.
         trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
         trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: You are entering a secure area
       imports:
@@ -229,6 +233,7 @@ en:
           hide: Hide completely
           warn: Hide with a warning
       form_admin_settings:
+        activity_api_enabled: Publish aggregate statistics about user activity in the API
         backups_retention_period: User archive retention period
         bootstrap_timeline_accounts: Always recommend these accounts to new users
         closed_registrations_message: Custom message when sign-ups are not available
@@ -236,6 +241,7 @@ en:
         custom_css: Custom CSS
         mascot: Custom mascot (legacy)
         media_cache_retention_period: Media cache retention period
+        peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Enable profile directory
         registrations_mode: Who can sign-up
         require_invite_text: Require a reason to join
@@ -247,11 +253,13 @@ en:
         site_short_description: Server description
         site_terms: Privacy Policy
         site_title: Server name
+        status_page_url: Status page URL
         theme: Default theme
         thumbnail: Server thumbnail
         timeline_preview: Allow unauthenticated access to public timelines
         trendable_by_default: Allow trends without prior review
         trends: Enable trends
+        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Block notifications from non-followers
         must_be_following: Block notifications from people you don't follow

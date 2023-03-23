@@ -23,7 +23,7 @@ class BackupService < BaseService
     account.statuses.with_includes.reorder(nil).find_in_batches do |statuses|
       statuses.each do |status|
         item = serialize_payload(ActivityPub::ActivityPresenter.from_status(status), ActivityPub::ActivitySerializer, signer: @account)
-        item.delete(:'@context')
+        item.delete(:@context)
 
         unless item[:type] == 'Announce' || item[:object][:attachment].blank?
           item[:object][:attachment].each do |attachment|
@@ -53,7 +53,7 @@ class BackupService < BaseService
       end
     end
 
-    archive_filename = ['archive', Time.now.utc.strftime('%Y%m%d%H%M%S'), SecureRandom.hex(16)].join('-') + '.tar.gz'
+    archive_filename = "#{['archive', Time.now.utc.strftime('%Y%m%d%H%M%S'), SecureRandom.hex(16)].join('-')}.tar.gz"
 
     @backup.dump      = ActionDispatch::Http::UploadedFile.new(tempfile: tmp_file, filename: archive_filename)
     @backup.processed = true
@@ -86,14 +86,14 @@ class BackupService < BaseService
   def dump_actor!(tar)
     actor = serialize(account, ActivityPub::ActorSerializer)
 
-    actor[:icon][:url]  = 'avatar' + File.extname(actor[:icon][:url])  if actor[:icon]
-    actor[:image][:url] = 'header' + File.extname(actor[:image][:url]) if actor[:image]
+    actor[:icon][:url]  = "avatar#{File.extname(actor[:icon][:url])}"  if actor[:icon]
+    actor[:image][:url] = "header#{File.extname(actor[:image][:url])}" if actor[:image]
     actor[:outbox]      = 'outbox.json'
     actor[:likes]       = 'likes.json'
     actor[:bookmarks]   = 'bookmarks.json'
 
-    download_to_tar(tar, account.avatar, 'avatar' + File.extname(account.avatar.path)) if account.avatar.exists?
-    download_to_tar(tar, account.header, 'header' + File.extname(account.header.path)) if account.header.exists?
+    download_to_tar(tar, account.avatar, "avatar#{File.extname(account.avatar.path)}") if account.avatar.exists?
+    download_to_tar(tar, account.header, "header#{File.extname(account.header.path)}") if account.header.exists?
 
     json = Oj.dump(actor)
 

@@ -1,0 +1,1773 @@
+---
+be:
+  about:
+    about_mastodon_html: 'Сацыяльная сетка будучыні: без рэкламы, без карпаратыўнага назірання, этычны дызайн і дэцэнтралізацыя! Валодайце сваімі данымі з Mastodon!'
+    contact_missing: Не зададзены
+    contact_unavailable: Недаступна
+    hosted_on: Mastodon месціцца на %{domain}
+    title: Пра нас
+  accounts:
+    follow: Падпісацца
+    followers:
+      few: Падпісчыка
+      many: Падпісчыкаў
+      one: Падпісчык
+      other: Падпісчыкі
+    following: Падпісаны
+    instance_actor_flash: Гэты ўліковы запіс - лічбавы аватар, неабходны для рэпрэзентацыі самога сервера, а не якой-небудзь асобы. Ён выкарыстоўваецца для федэралізацыі і не можа быць замарожаны.
+    last_active: апошняя актыўнасць
+    link_verified_on: Права ўласнасці на гэтую спасылку праверана %{date}
+    nothing_here: Тут нічога няма!
+    pin_errors:
+      following: Вы павінны быць падпісаны на чалавека, якога жадаеце рэкамендаваць
+    posts:
+      few: Допісы
+      many: Допісаў
+      one: Допіс
+      other: Допісы
+    posts_tab_heading: Допісы
+  admin:
+    account_actions:
+      action: Выканаць дзеянне
+      title: Мадэраваць %{acct}
+    account_moderation_notes:
+      create: Пакінуць нататку
+      created_msg: Нататка мадэратара паспяхова створана!
+      destroyed_msg: Нататка мадэратара паспяхова выдалена!
+    accounts:
+      add_email_domain_block: Заблакіраваць дамен эл. пошты
+      approve: Пацвердзіць
+      approved_msg: Заяўка на рэгістрацыю %{username} ухваленая
+      are_you_sure: Вы ўпэўнены?
+      avatar: Аватар
+      by_domain: Дамен
+      change_email:
+        changed_msg: Пошта паспяхова зменена!
+        current_email: Бягучая эл. пошта
+        label: Змяніць адрас эл. пошты
+        new_email: Новая эл. пошта
+        submit: Змяніць адрас эл. пошты
+        title: Змяніць адрас эл. пошты для %{username}
+      change_role:
+        changed_msg: Роля паспяхова зменена!
+        label: Змяніць ролю
+        no_role: Няма ролі
+        title: Змяніць ролю для %{username}
+      confirm: Пацвердзіць
+      confirmed: Пацверджаны
+      confirming: Ідзе пацвярджэнне
+      custom: Уласнае
+      delete: Выдаліць даныя
+      deleted: Выдалены
+      demote: Панізіць у правах
+      destroyed_msg: Даныя %{username} цяпер у чарзе на прымусовае выдаленне
+      disable: Замарозіць
+      disable_sign_in_token_auth: Выключыць аўтэнтыфікацыю па e-mail токену
+      disable_two_factor_authentication: Адключыць 2FA
+      disabled: Замарожаны
+      display_name: Бачнае імя
+      domain: Дамен
+      edit: Рэдагаваць
+      email: Электронная пошта
+      email_status: Статус электроннай пошты
+      enable: Размарозіць
+      enable_sign_in_token_auth: Уключыць аўтэнтыфікацыю па e-mail токену
+      enabled: Уключана
+      enabled_msg: Уліковы запіс %{username} размарожаны
+      followers: Падпісчыкі
+      follows: Падпіскі
+      header: Загаловак
+      inbox_url: URL уваходных
+      invite_request_text: Прычына далучэння
+      invited_by: Запрошаны
+      ip: IP
+      joined: Далучыўся
+      location:
+        all: Усе
+        local: Лакальны
+        remote: Адлеглы
+        title: Месцазнаходжанне
+      login_status: Стан уваходу
+      media_attachments: Медыя дадаткі
+      memorialize: Даданае да памяці
+      memorialized: Запомненае
+      memorialized_msg: Уліковы запіс %{username} ператвораны ў мемарыяльны
+      moderation:
+        active: Актыўны
+        all: Усе
+        disabled: Адключана
+        pending: Чакаюць
+        silenced: Абмежаваны
+        suspended: Прыпынены
+        title: Мадэрацыя
+      moderation_notes: Нататкі мадэратару
+      most_recent_activity: Апошняя актыўнасць
+      most_recent_ip: Нядаўнія IP
+      no_account_selected: Ніякіх уліковых запісаў не было зменена таму што ні адзін не быў выбраны
+      no_limits_imposed: Без абмежаванняў
+      no_role_assigned: Роля не прызначана
+      not_subscribed: Не падпісаны
+      pending: Чакае праверкі
+      perform_full_suspension: Выключыць
+      previous_strikes: Ранейшыя скаргі
+      previous_strikes_description_html:
+        few: Гэты ўліковы запіс мае <strong>%{count}</strong> скаргі.
+        many: Гэты ўліковы запіс мае <strong>%{count}</strong> скарг.
+        one: Гэты ўліковы запіс мае <strong>адну</strong> скаргу.
+        other: Гэты ўліковы запіс мае <strong>%{count}</strong> скаргаў.
+      promote: Павысіць
+      protocol: Пратакол
+      public: Публічны
+      push_subscription_expires: Падпіска PuSH канчаецца
+      redownload: Абнавіць профіль
+      redownloaded_msg: Профіль %{username} паспяхова абноўлены за арыгіналу
+      reject: Адхіліць
+      rejected_msg: Заяўка на рэгістрацыю %{username} адхіленая
+      remote_suspension_irreversible: Даныя гэтага уліковага запісу былі незваротна выдалены.
+      remote_suspension_reversible_hint_html: Уліковы запіс быў прыпынены на сваім серверы і даныя будуць цалкам выдалены ад %{date}. Да гэтага аддалёны сервер можа аднавіць гэты уліковы запіс без якіх-небудзь шкодных наступстваў. Калі вы хочаце выдаліць усе даныя ўліковага запісу зараз, вы можаце зрабіць гэта ніжэй.
+      remove_avatar: Выдаліць аватар
+      remove_header: Выдаліць шапку
+      removed_avatar_msg: Аватар %{username} выдалены
+      removed_header_msg: Выява загалоўку %{username} выдаленая
+      resend_confirmation:
+        already_confirmed: Гэты карыстальнік ужо пацверджаны
+        send: Даслаць пацвярджальны ліст зноў
+        success: Ліст з пацвярджэннем паспяхова дасланы!
+      reset: Скінуць
+      reset_password: Скід паролю
+      resubscribe: Аднавіць падпіску
+      role: Роля
+      search: Пошук
+      search_same_email_domain: Іншыя карыстальнікі з такім жа даменам эл. пошты
+      search_same_ip: Іншыя карыстальнікі з гэтым IP
+      security: Бяспека
+      security_measures:
+        only_password: Толькі пароль
+        password_and_2fa: Пароль і 2FA
+      sensitive: Прымусова пазначыць як далікатны
+      sensitized: Пазначаны як далікатны
+      shared_inbox_url: URL супольных уваходных
+      show:
+        created_reports: Створана скарг
+        targeted_reports: Атрымана скарг
+      silence: Абмежаваць
+      silenced: Абмежаванае
+      statuses: Допісы
+      strikes: Ранейшыя скаргі
+      subscribe: Падпіска
+      suspend: Прыпыніць
+      suspended: Прыпынена
+      suspension_irreversible: Даныя гэтага ўліковага запісу былі канчаткова выдалены. Вы можаце аднавіць уліковы запіс, каб зрабіць яго зноў працоўным, але гэта не адновіць даныя якія былі змешчаны на ім раней.
+      suspension_reversible_hint_html: Уліковы запіс быў прыпынены і даныя будуць цалкам выдалены ад %{date}. Да гэтага ўліковы запіс можа быць адноўлены без якіх-небудзь шкодных наступстваў. Калі вы хочаце выдаліць усе даныя ўліковага запісу зараз, вы можаце зрабіць гэта ніжэй.
+      title: Уліковыя запісы
+      unblock_email: Разблакіраваць адрас эл. пошты
+      unblocked_email_msg: Электронная пошта %{username} паспяхова разблакіраваная
+      unconfirmed_email: Непацверджаны адрас эл. пошты
+      undo_sensitized: Прыбраць прымусовую пазнаку далікатнасці
+      undo_silenced: Адмяніць ліміт
+      undo_suspension: Разблакаваць карыстальніка
+      unsilenced_msg: З уліковага запісу %{username} зняты абмежаванні
+      unsubscribe: Адпісацца
+      unsuspended_msg: Уліковы запіс %{username} адноўлены
+      username: Імя карыстальніка
+      view_domain: Паглядзець падсумаванне дамену
+      warn: Папярэдзіць
+      web: Інтэрнэт
+      whitelisted: Дазволена для федэрацыі
+    action_logs:
+      action_types:
+        approve_appeal: Ухваліць абскарджанне
+        approve_user: Зацвердзіць карыстальніка
+        assigned_to_self_report: Прызначыць скаргу
+        change_email_user: Змяніць E-mail карыстальніка
+        change_role_user: Змяніць ролю карыстальніка
+        confirm_user: Пацвердзіць карыстальніка
+        create_account_warning: Стварыць папярэджанне
+        create_announcement: Стварыць аб'яву
+        create_canonical_email_block: Стварыць блакіроўку электроннай пошты
+        create_custom_emoji: Стварыць адвольны эмодзі
+        create_domain_allow: Стварыць даменны дазвол
+        create_domain_block: Стварыць даменны блок
+        create_email_domain_block: Стварыць даменны блок электроннай пошты
+        create_ip_block: Стварыць IP правіла
+        create_unavailable_domain: Стварыць недаступны Дамен
+        create_user_role: Стварыць ролю
+        demote_user: Панізіць карыстальніка
+        destroy_announcement: Выдаліць аб'яву
+        destroy_canonical_email_block: Выдаліць блакіроўку электроннай пошты
+        destroy_custom_emoji: Выдаліць адвольны эмодзі
+        destroy_domain_allow: Выдаліць дамены дазвол
+        destroy_domain_block: Выдаліць даменны блок
+        destroy_email_domain_block: Выдаліць даменны блок электроннай пошты
+        destroy_instance: Вычысціць дамен
+        destroy_ip_block: Выдаліць IP правіла
+        destroy_status: Выдаліць допіс
+        destroy_unavailable_domain: Выдаліць недаступны дамен
+        destroy_user_role: Выдаліць ролю
+        disable_2fa_user: Адключыць двухэтапнае спраўджанне
+        disable_custom_emoji: Адключыць адвольныя эмодзі
+        disable_sign_in_token_auth_user: Адключыць аўтарызацыю праз электронную пошту для Карыстальніка
+        disable_user: Адключыць карыстальніка
+        enable_custom_emoji: Уключыць адвольныя эмодзі
+        enable_sign_in_token_auth_user: Адключыць аўтарызацыю праз электронную пошту для Карыстальніка
+        enable_user: Уключыць карыстальніка
+        memorialize_account: Запомніць уліковы запіс
+        promote_user: Павысіць правы Карыстальніка
+        reject_appeal: Адхіліць абскарджанне
+        reject_user: Адмовіць карыстальніку
+        remove_avatar_user: Выдаліць аватар
+        reopen_report: Пераадкрыць скаргу
+        resend_user: Даслаць пацвярджальны ліст зноў
+        reset_password_user: Скінуць пароль
+        resolve_report: Вырашыць скаргу
+        sensitive_account: Уліковы запіс прымусова пазначаны як далікатны
+        silence_account: Абмежаваць уліковы запіс
+        suspend_account: Выключыць уліковы запіс
+        unassigned_report: Прыбраць прызначэнне скаргі
+        unblock_email_account: Разблакіраваць электронны адрас
+        unsensitive_account: Прымусовая пазнака далікатнасці прыбраная
+        unsilence_account: Уліковы запіс больш не абмежаваны
+        unsuspend_account: Аднавіць уліковы запіс
+        update_announcement: Абнавіць аб'яву
+        update_custom_emoji: Абнавіць адвольныя эмодзі
+        update_domain_block: Актуалізаваць блакіроўку дамена
+        update_ip_block: Абнавіць IP правіла
+        update_status: Абнавіць допіс
+        update_user_role: Абнавіць ролю
+      actions:
+        approve_appeal_html: Карыстальнік %{name} ухваліў запыт на мадэрацыю %{target}
+        approve_user_html: "%{name} пацвердзіў рэгістрацыю ад %{target}"
+        assigned_to_self_report_html: "%{name} прызначыў справаздачу %{target} на сябе\n"
+        change_email_user_html: "%{name} змяніў паштовы адрас карыстальніка %{target}"
+        change_role_user_html: "%{name} змяніў ролю %{target}"
+        confirm_user_html: "%{name} пацвердзіў паштовы адрас %{target}"
+        create_account_warning_html: "%{name} накіраваў папярэджанне %{target}"
+        create_announcement_html: "%{name} зрабіў новую аб'яву %{target}"
+        create_canonical_email_block_html: "%{name} заблакаваў імэйл з хэшам %{target}"
+        create_custom_emoji_html: "%{name} загрузіў новы смайлік %{target}\n\n"
+        create_domain_allow_html: "%{name} дазволіў федэрацыю з даменам %{target}"
+        create_domain_block_html: "%{name} заблакіраваў дамен %{target}"
+        create_email_domain_block_html: "%{name} заблакіраваў дамен эл. пошты %{target}"
+        create_ip_block_html: "%{name} стварыў правіла для IP %{target}"
+        create_unavailable_domain_html: "%{name} прыпыніў дастаўку да дамена %{target}"
+        create_user_role_html: "%{name} зрабіў ролю %{target}"
+        demote_user_html: "%{name} прыбраў карыстальніка %{target}"
+        destroy_announcement_html: "%{name} выдаліў аб'яву %{target}"
+        destroy_canonical_email_block_html: "%{name} разблакаваў імэйл з хэшам %{target}"
+        destroy_custom_emoji_html: "%{name} выдаліў(а) эмоджі %{target}"
+        destroy_domain_allow_html: "%{name} зняў дазвол на аб'яднанне з даменам %{target}\n"
+        destroy_domain_block_html: "%{name} разблакаваў дамен %{target}"
+        destroy_email_domain_block_html: "%{name} зняў блакіроўку імэйла дамена %{target}\n"
+        destroy_instance_html: "%{name} цалкам прыбраў дамен %{target}"
+        destroy_ip_block_html: "%{name} выдаліў правіла для IP %{target}"
+        destroy_status_html: "%{name} выдаліў допіс %{target}"
+        destroy_unavailable_domain_html: "%{name} дазволіў працягнуць адпраўку на дамен %{target}"
+        destroy_user_role_html: "%{name} выдаліў ролю %{target}"
+        disable_2fa_user_html: "%{name} амяніў абавязковую двухфактарную верыфікацыю для карыстальніка %{target}"
+        disable_custom_emoji_html: "%{name} заблакіраваў эмодзі %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} выключыў токен аўэнтыфікацыі e-mail для %{target}"
+        disable_user_html: "%{name} адключыў уваход для карыстальніка %{target}"
+        enable_custom_emoji_html: "%{name} уключыў эмодзі %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} уключыў(ла) такенную e-mail праверку для %{target}"
+        enable_user_html: "%{name} уключыў уваход для карыстальніка %{target}"
+        memorialize_account_html: Карыстальнік %{name} пераключыў уліковы запіс %{target} у старонку памяці
+        promote_user_html: "%{name} павысіў карыстальніка %{target}"
+        reject_appeal_html: "%{name} адхіліў запыт на абскарджанне %{target}"
+        reject_user_html: "%{name} адхіліў рэгістрацыю з %{target}"
+        remove_avatar_user_html: "%{name} выдаліў аватар %{target}"
+        reopen_report_html: "%{name} зноў адкрыў скаргу %{target}"
+        resend_user_html: "%{name} зноў адправіў ліст з пацвярджэннем для %{target}"
+        reset_password_user_html: "%{name} скінул(а) пароль для %{target}"
+        resolve_report_html: "%{name} вырашыў скаргу %{target}"
+        sensitive_account_html: "%{name} адзначыў медыя %{target} як далікатнае"
+        silence_account_html: "%{name} абмежаваў уліковы запіс %{target}"
+        suspend_account_html: Уліковы запіс %{target} выключаны %{name}
+        unassigned_report_html: "%{name} знял(а) прызначэнне скаргі %{target}"
+        unblock_email_account_html: "%{name} разблакіраваў эл. пошту %{target}"
+        unsensitive_account_html: "%{name} зняў адзнаку далікатнае з медыя %{target}"
+        unsilence_account_html: "%{name} зняў ліміт з уліковага запісу %{target}"
+        unsuspend_account_html: Уліковы запіс %{target} адноўлены %{name}
+        update_announcement_html: "%{name} абнавіў аб'яву %{target}"
+        update_custom_emoji_html: "%{name} абнавіў эмодзі %{target}"
+        update_domain_block_html: "%{name} абнавіў блакіроўку дамена для %{target}"
+        update_ip_block_html: "%{name} змяніў правіла для IP %{target}"
+        update_status_html: "%{name} абнавіў допіс %{target}"
+        update_user_role_html: "%{name} змяніў ролю %{target}"
+      deleted_account: выдалены ўліковы запіс
+      empty: Логі не знойдзены.
+      filter_by_action: Фільтраваць па дзеянню
+      filter_by_user: Адфільтраваць па карыстальніку
+      title: Правер логі
+    announcements:
+      destroyed_msg: Аб'ява паспяхова выдалена!
+      edit:
+        title: Рэдагаваць абвестку
+      empty: Не знайдзена ніводнай абвесткі
+      live: Ужывую
+      new:
+        create: Стварыць аб'яву
+        title: Новая аб'ява
+      publish: Апублікаваць
+      published_msg: Аб'ява паспяхова апублікавана!
+      scheduled_for: Запланавана на %{time}
+      scheduled_msg: Аб'ява запланавана да публікацыі!
+      title: Аб'явы
+      unpublish: Зняць з публікацыі
+      unpublished_msg: Аб'ява паспяхова схована!
+      updated_msg: Аб'ява паспяхова адноўлена!
+    custom_emojis:
+      assign_category: Прызначыць катэгорыю
+      by_domain: Дамен
+      copied_msg: Лакальная копія эмодзі паспяхова створана
+      copy: Скапіраваць
+      copy_failed_msg: Немагчыма зрабіць лакальную копію гэтага эмодзі
+      create_new_category: Стварыць новую катэгорыю
+      created_msg: Эмодзі паспяхова створана!
+      delete: Выдаліць
+      destroyed_msg: Смайлік паспяхова прыбраны!
+      disable: Адключыць
+      disabled: Адключана
+      disabled_msg: Смайлік паспяхова адключаны
+      emoji: Эмодзі
+      enable: Уключыць
+      enabled: Уключана
+      enabled_msg: Смайлік паспяхова ўключаны
+      image_hint: PNG або GIF да %{size}
+      list: Паказваць
+      listed: Паказваецца
+      new:
+        title: Дадаць новы адвольны эмодзі
+      no_emoji_selected: Не атрымалася змяніць ніводзін смайлік, бо ніводзін смайлік не быў абраны.
+      not_permitted: Вам не дазволена выконваць гэта дзеянне
+      overwrite: Перазапісаць
+      shortcode: Кароткі код
+      shortcode_hint: Як менш 2 сімвалы, толькі лічбы, лацінскія літары ці падкрэсліванне
+      title: Адвольныя эмодзі
+      uncategorized: Без катэгорыі
+      unlist: Прыбраць
+      unlisted: Не ў стужках
+      update_failed_msg: Немагчыма абнавіць гэта эмодзі
+      updated_msg: Смайлік паспяхова абноўлены!
+      upload: Запампаваць
+    dashboard:
+      active_users: актыўныя карыстальнікі
+      interactions: узаемадзеянні
+      media_storage: Медыясховішча
+      new_users: новыя карыстальнікі
+      opened_reports: скарг прынята
+      pending_appeals_html:
+        few: "<strong>%{count}</strong> апеляцыі ў чарзе"
+        many: "<strong>%{count}</strong> апеляцый у чарзе"
+        one: "<strong>%{count}</strong> апеляцыя ў чарзе"
+        other: "<strong>%{count}</strong> апеляцыі ў чарзе"
+      pending_reports_html:
+        few: "<strong>%{count}</strong> справаздачы ў апрацоўцы"
+        many: "<strong>%{count}</strong> справаздач у апрацоўцы"
+        one: "<strong>%{count}</strong> справаздача ў апрацоўцы"
+        other: "<strong>%{count}</strong>  справаздачы ў апрацоўцы"
+      pending_tags_html:
+        few: "<strong>%{count}</strong> хэштэгі ў чарзе"
+        many: "<strong>%{count}</strong> хэштэгаў у чарзе"
+        one: "<strong>%{count}</strong> хэштэг у чарзе"
+        other: "<strong>%{count}</strong> хэштэга ў чарзе"
+      pending_users_html:
+        few: "<strong>%{count}</strong> карыстальнікі ў чарзе"
+        many: "<strong>%{count}</strong> карыстальнікаў у чарзе"
+        one: "<strong>%{count}</strong> карыстальнік у чарзе"
+        other: "<strong>%{count}</strong> карыстальніка ў чарзе"
+      resolved_reports: скарг разгледжана
+      software: Праграмнае забеспячэнне
+      sources: Крыніцы рэгістрацыі
+      space: Выкарыстанне дыскавай прасторы
+      title: Панэль кіравання
+      top_languages: Найбольш актыўныя мовы
+      top_servers: Найбольш актыўныя серверы
+      website: Вэб-сайт
+    disputes:
+      appeals:
+        empty: Апеляцыі не знойдзены.
+        title: Апеляцыі
+    domain_allows:
+      add_new: Дазволіць федэрацыю з даменам
+      created_msg: Дамен быў паспяхова дабаўлены да федэрацыі
+      destroyed_msg: Дамен быў выключаны з федэрацыі
+      export: Экспарт
+      import: Імпарт
+      undo: Забараніць федэрацыю з даменам
+    domain_blocks:
+      add_new: Дадаць новы блок дамену
+      created_msg: Даменны блок быў апрацаваны
+      destroyed_msg: Даменны блок быў адменены
+      domain: Дамен
+      edit: Рэдагаваць блакіраванне дамену
+      existing_domain_block: Вы ўжо налажылі стражэйшыя абмежаванні на %{name}.
+      existing_domain_block_html: Вы ўжо налажылі стражэйшыя абмежаванні на %{name}, спачатку вам неабходна <a href="%{unblock_url}">разблакаваць гэты акаўнт</a>.
+      export: Экспарт
+      import: Імпарт
+      new:
+        create: Стварыць блакіроўку
+        hint: Блакіроўка дамена не будзе перашкаджаць стварэнню запісаў уліковых запісаў у базе даных, але будзе заднім лікам і аўтаматычна прымяняць да гэтых уліковых запісаў пэўныя метады мадэрацыі.
+        severity:
+          desc_html: "<strong>Абмежаванне</strong> зробіць допісы людзей з гэтага дамену нябачнымі для тых, хто на іх не падпісаны. <strong>Выключэнне</strong> выдаліць усё змесціва, медыя і даныя профіляў дамену з вашага серверу. <strong>«Нічога»</strong> проста адхіліць медыя файлы."
+          noop: Пуста
+          silence: Абмежаваць
+          suspend: Выключыць
+        title: Новы блок дамену
+      no_domain_block_selected: Блакіроўкі даменаў не былі змененыя, таму што ні адзін з іх не быў выбраны
+      not_permitted: Вам забаронена выконваць гэта дзеянне
+      obfuscate: Схаваць назву дамена
+      obfuscate_hint: Часткова замаскіраваць даменнае імя ў спісе, калі прапанова спісу абмежаванняў дамена ўключана
+      private_comment: Прыватны каментарый
+      private_comment_hint: Пракаментуйце абмежаванне гэтага дамена для ўнутранага выкарыстання мадэратарамі.
+      public_comment: Публічны каментарый
+      public_comment_hint: Пракаментуйце гэтае абмежаванне дамена для агульнага выкарыстання, калі рэклама спісу абмежаванняў дамена ўключана.
+      reject_media: Забараніць медыя файлы
+      reject_media_hint: Выдаляе лакальна захаваныя мультымедыйныя файлы і адмаўляе спампоўваць іх у будучыні. Не мае значэння для часавага прыпынення
+      reject_reports: Адхіляе справаздачы
+      reject_reports_hint: Ігнараваць усе справаздачы з гэтага дамена. Не мае значэння для часовага прыпынення
+      undo: Скасаваць блакіраванне дамену
+      view: Праглядзець новы блок дамену
+    email_domain_blocks:
+      add_new: Дадаць
+      attempts_over_week:
+        few: "%{count} спробы рэгіістрацыі за апошні тыдзень"
+        many: "%{count} спроб рэгіістрацыі за апошні тыдзень"
+        one: "%{count} спроба рэгістрацыі за апошні тыдзень"
+        other: "%{count} спроб рэгіістрацыі за апошні тыдзень"
+      created_msg: Дамен эл. пошты паспяхова заблакіраваны
+      delete: Выдаліць
+      dns:
+        types:
+          mx: MX запіс
+      domain: Дамен
+      new:
+        create: Дадаць дамен
+        resolve: Вызначыць дамен
+        title: Заблакіраваць новы дамен эл. пошты
+      no_email_domain_block_selected: Блакіроўкі даменаў эл. пошты не былі змененыя, таму што ні адзін з іх не быў выбраны
+      not_permitted: Забаронена
+      resolved_dns_records_hint_html: Даменнае імя ператвараецца ў наступныя дамены MX, якія ў канчатковым выніку адказваюць за прыём электроннай пошты. Блакаванне дамена MX заблакуе рэгістрацыю з любога адраса электроннай пошты, які выкарыстоўвае той жа дамен MX, нават калі бачнае імя дамена адрозніваецца. <strong>Будзьце асцярожныя, каб не заблакіраваць асноўных пастаўшчыкоў электроннай пошты.</strong>
+      resolved_through_html: Вызначына каля %{domain}
+      title: Заблакаваныя паштовыя дамены
+    export_domain_allows:
+      new:
+        title: Імпарт дазволаў дамена
+      no_file: Файл не выбраны
+    export_domain_blocks:
+      import:
+        description_html: Вы збіраецеся імпартаваць спіс даменных блокаў. Калі ласка, праглядзіце гэты спіс вельмі ўважліва, асабліва калі вы асабіста не з'яўляецеся аўтарам гэтага спісу.
+        existing_relationships_warning: Наяўныя зносіны
+        private_comment_description_html: 'Каб дапамагчы вам адсочваць, адкуль паходзяць імпартаваныя блокі, імпартаваныя блокі будуць створаны з наступным прыватным каментарыем: <q>%{comment}</q>'
+        private_comment_template: Імпартавана з %{source} %{date}
+        title: Імпарт блакіровак дамену
+      invalid_domain_block: 'Адзін ці больш даменных блокаў былі прапушчаны праз наступную(-ыя) памылку(-і): %{error}'
+      new:
+        title: Імпарт блакіровак дамену
+      no_file: Файл не выбраны
+    follow_recommendations:
+      description_html: "<strong>Рэкамендацыі падпісак, дапамогаюць новым карыстальнікам хутка знайсці цікавы кантэнт</strong>. Калі карыстальнік недастаткова ўзаемадзейнічаў з іншымі, каб сфарміраваць персанальныя рэкамендацыі прытрымлівацца, замест гэтага рэкамендуюцца гэтыя ўліковыя запісы. Яны штодзённа пераразлічваюцца з сумесі ўліковых запісаў з самымі апошнімі ўзаемадзеяннямі і найбольшай колькасцю мясцовых падпісчыкаў для дадзенай мовы."
+      language: Для мовы
+      status: Статус
+      suppress: Схаваць рэкамендацыі падпісак
+      suppressed: Схаваныя
+      title: Рэкамендацыі падпісак
+      unsuppress: Аднавіць рэкамендацыі падпісак
+    instances:
+      availability:
+        description_html:
+          few: Калі дастаўка на дамен не атрымоўваецца праз <strong>%{count} іншыя дні</strong>, далейшыя спробы дастаўкі не будуць зроблены, пакуль не будзе атрымана дастаўка <em>з</em> дамена.
+          many: Калі дастаўка на дамен не атрымоўваецца праз <strong>%{count} іншых дзён</strong>, далейшыя спробы дастаўкі не будуць зроблены, пакуль не будзе атрымана дастаўка <em>з</em> дамена.
+          one: Калі дастаўка на дамен не атрымоўваецца праз <strong>%{count} дзень</strong>, далейшыя спробы дастаўкі не будуць зроблены, пакуль не будзе атрымана дастаўка <em>з</em> дамена.
+          other: Калі дастаўка на дамен не атрымоўваецца праз <strong>%{count} іншага дня</strong>, далейшыя спробы дастаўкі не будуць зроблены, пакуль не будзе атрымана дастаўка <em>з</em> дамена.
+        failure_threshold_reached: Парог памылак дасягнуты %{date}.
+        failures_recorded:
+          few: Памылковых спроб за %{count} розныя дні.
+          many: Памылковых спроб за %{count} розных дзён.
+          one: Памылковых спроб за %{count} дзень.
+          other: Памылковых спроб за %{count} розныя дні.
+        no_failures_recorded: Памылак не зарэгістравана.
+        title: Дасяжнасць
+        warning: Апошняя спроба падключэння да гэтага серверу была няўдалай
+      back_to_all: Усе
+      back_to_limited: Абмежаваныя
+      back_to_warning: Папярэджанне
+      by_domain: Дамен
+      confirm_purge: Вы ўпэўненыя, што хочаце незваротна выдаліць даныя з гэтага дамена?
+      content_policies:
+        comment: Унутраная нататка
+        description_html: Вы можаце вызначыць палітыку кантэнту, якая будзе прымяняцца да ўсіх уліковых запісаў гэтага дамена і любога з яго субдаменаў.
+        limited_federation_mode_description_html: Вы можаце выбраць ці дазволіць уваходзіць у федэрацыю з гэтым даменам.
+        policies:
+          reject_media: Адхіліць мультымедыя
+          reject_reports: Адхіліць справаздачы
+          silence: Ліміт
+          suspend: Выключыць
+        policy: Палітыка
+        reason: Публічная прычына
+        title: Палітыкі кантэнту
+      dashboard:
+        instance_accounts_dimension: Уліковыя запісы з найбольшай колькасцю падпісак
+        instance_accounts_measure: захаваныя ўліковыя запісы
+        instance_followers_measure: нашых падпісчыкаў там
+        instance_follows_measure: іх падпісчыкаў тут
+        instance_languages_dimension: Папулярныя мовы
+        instance_media_attachments_measure: захаваныя медыя-ўкладанні
+        instance_reports_measure: справаздач пра іх
+        instance_statuses_measure: захаваных паведамленняў
+      delivery:
+        all: Усе
+        clear: Выдаліць памылкі дастаўкі
+        failing: Збой
+        restart: Перазапусціць дастаўку
+        stop: Спыніць дастаўку
+        unavailable: Недаступна
+      delivery_available: Дастаўка даступна
+      delivery_error_days: Дзён памылак дастаўкі
+      delivery_error_hint: Калі дастаўка немагчымая на працягу %{count} дзён, яна будзе аўтаматычна пазначана як недастаўленая.
+      destroyed_msg: Даныя з %{domain} цяпер стаяць у чарзе на неадкладнае выдаленне.
+      empty: Даменаў не знойдзена.
+      known_accounts:
+        few: "%{count} вядомых уліковых запісы"
+        many: "%{count} вядомых уліковых запісаў"
+        one: "%{count} вядомых уліковых запісаў"
+        other: "%{count} вядомых уліковых запісаў"
+      moderation:
+        all: Усе
+        limited: Абмежаваныя
+        title: Мадэрацыя
+      private_comment: Прыватны каментарый
+      public_comment: Публічны каментарый
+      purge: Ачысціць
+      purge_description_html: Калі вам здаецца, што гэты дамен больш не будзе працаваць, вы можаце выдаліць усе даныя ўліковых запісаў і звязаныя з даменам даныя з вашага сховішча. Гэта можа заняць нейкі час.
+      title: Федэрацыя
+      total_blocked_by_us: Заблакіравана намі
+      total_followed_by_them: Іхнія падпіскі
+      total_followed_by_us: Нашыя падпіскі
+      total_reported: Скаргі на іх
+      total_storage: Медыя дадаткі
+      totals_time_period_hint_html: Паказаныя агульныя значэнні ніжэй уключаюць даныя за ўвесь час.
+    invites:
+      deactivate_all: Дэактываваць усё
+      filter:
+        all: Усе
+        available: Даступна
+        expired: Пратэрмінавана
+        title: Фільтр
+      title: Запрашэнні
+    ip_blocks:
+      add_new: Стварыць правіла
+      created_msg: Новае IP правіла паспяхова дададзена
+      delete: Выдаліць
+      expires_in:
+        '1209600': 2 тыдні
+        '15778476': 6 месяцаў
+        '2629746': 1 месяц
+        '31556952': 1 год
+        '86400': 1 дзень
+        '94670856': 3 гады
+      new:
+        title: Стварыць новае IP правіла
+      no_ip_block_selected: Ніякія правілы IP не былі змененыя, таму што ні адно з іх не было выбрана
+      title: IP правілы
+    relationships:
+      title: Зносіны %{acct}
+    relays:
+      add_new: Дадаць новы рэтранслятар
+      delete: Выдаліць
+      description_html: "<strong>Федэрацыйны рэтранслятар</strong> - гэта прамежкавы сервер, які абменьваецца вялікімі аб'ёмамі публічных паведамленняў паміж серверамі, якія падпісваюцца і публікуюць на ім. <strong>Гэта можа дапамагчы малым і сярэднім серверам выяўляць кантэнт з fediverse</strong>, для чаго лакальным карыстальнікам у адваротным выпадку трэба было б уручную сачыць за іншымі людзьмі на аддаленых серверах."
+      disable: Адключыць
+      disabled: Адключана
+      enable: Уключыць
+      enable_hint: Пасля ўключэння ваш сервер падпішацца на ўсе публічныя паведамленні з гэтага рэтранслятара і пачне адпраўляць на яго агульнадаступныя паведамленні бягучага серверу.
+      enabled: Уключана
+      inbox_url: URL рэтранслятара
+      pending: Чаканне зацвярджэння рэтранслятара
+      save_and_enable: Захаваць і ўключыць
+      setup: Наладзіць злучэнне з рэтранслятарам
+      signatures_not_enabled: Рэтранслятары не будуць працаваць належным чынам, калі ўключаны бяспечны рэжым або рэжым абмежаванай федэрацыі
+      status: Стан
+      title: Рэтранслятары
+    report_notes:
+      created_msg: Скарга паспяхова створана!
+      destroyed_msg: Скарга паспяхова выдалена!
+    reports:
+      account:
+        notes:
+          few: "%{count} нататкі"
+          many: "%{count} нататак"
+          one: "%{count} нататка"
+          other: "%{count} нататкі"
+      action_log: Журнал аўдыту
+      action_taken_by: Дзеянне выканана
+      actions:
+        delete_description_html: Публікацыі, пра якія паведамляецца, будуць выдалены, а папярэджанне будзе запісана, каб дапамагчы вам эскаліраваць наступныя парушэнні з боку таго ж уліковага запісу.
+        mark_as_sensitive_description_html: Медыя кантэнт у паведамленнях, пра якія паведамляецца, будуць пазначаны як канфідэнцыяльныя, і будзе запісана папярэджанне, каб дапамагчы вам эскаліраваць наступныя парушэнні з боку таго ж уліковага запісу.
+        other_description_html: Глядзіце дадатковыя параметры для кіравання паводзінамі ўліковага запісу і настройкі сувязі з уліковым запісам, пра які паведамляецца.
+        resolve_description_html: Ніякіх дзеянняў супраць уліковага запісу, пра які паведамляецца, не будзе, папярэджэнне не зафіксавана, і скарга будзе закрыта.
+        silence_description_html: Уліковы запіс будзе бачны толькі тым, хто ўжо сочыць за ім або шукае яго ўручную, што значна абмяжоўвае яго ахоп. Заўсёды можна вярнуць. Закрывае ўсе скаргі на гэты ўліковы запіс.
+        suspend_description_html: Уліковы запіс і ўсё яго змесціва будзе недаступна і ў далейшым выдалены, узаемадзеянне з ім будзе немагчыма. Магчыма адмяніць на працягу 30 дзён. Закрывае ўсе скаргі на гэты ўліковы запіс.
+      actions_description_html: Вырашыце, якія дзеянні распачаць, каб вырашыць гэтую скаргу. Калі вы прымеце меры пакарання ў дачыненні да ўліковага запісу, пра які паведамляецца, ім будзе адпраўлена апавяшчэнне па электроннай пошце, за выключэннем выпадкаў, калі выбрана катэгорыя <strong>Спам</strong>.
+      actions_description_remote_html: Вырашыце як паступіць з гэтай скаргай. Гэта паўплывае толькі на тое як <strong>ваш</strong> сервер звязваецца з аддалёным уліковым запісам і апрацоўвае яго кантэнт.
+      add_to_report: Дадаць яшчэ дэталяў да скаргі
+      are_you_sure: Вы ўпэўнены?
+      assign_to_self: Прызначыць мне
+      assigned: Прызначаны мадэратар
+      by_target_domain: Дамен уліковага запісу, на які падаецца скарга
+      cancel: Скасаваць
+      category: Катэгорыя
+      category_description_html: Прычына паведамлення аб гэтым уліковым запісе і/або кантэнце будзе згадана ў сувязі з уліковым запісам, на які пададзена скарга
+      comment:
+        none: Пуста
+      comment_description_html: 'Каб даць больш інфармацыі, %{name} напісаў:'
+      confirm: Пацвердзіць
+      confirm_action: Пацвердзіць мадэрацыю супраць @%{acct}
+      created_at: Створана
+      delete_and_resolve: Выдаліць допісы
+      forwarded: Пераслана
+      forwarded_to: Пераслана на %{domain}
+      mark_as_resolved: Пазначыць як вырашаную
+      mark_as_sensitive: Пазначыць як далікатны
+      mark_as_unresolved: Пазначыць як нявырашаную
+      no_one_assigned: Ніводны
+      notes:
+        create: Дадаць нататку
+        create_and_resolve: Вырашыць з нататкай
+        create_and_unresolve: Паўторна адкрыць з нататкай
+        delete: Выдаліць
+        placeholder: Апішыце, якія дзеянні былі зроблены, або любыя іншыя звязаныя абнаўленні...
+        title: Нататкі
+      notes_description_html: Праглядвайце і пакідайце нататкі іншым мадэратарам і сабе ў будучыні
+      processed_msg: 'Скарга #%{id} паспяхова апрацавана'
+      quick_actions_description_html: 'Выканайце хуткае дзеянне або пракруціце ўніз, каб убачыць змесціва, на якое пададзена скарга:'
+      remote_user_placeholder: аддалены карыстальнік з %{instance}
+      reopen: Пераадкрыць скаргу
+      report: 'Скарга #%{id}'
+      reported_account: Уліковы запіс парушальніка
+      reported_by: Адпраўнік скаргі
+      resolved: Вырашана
+      resolved_msg: Скарга была паспяхова вырашана!
+      skip_to_actions: Прапусціць дзеянні
+      status: Стан
+      statuses: Змесціва, на якое паскардзіліся
+      statuses_description_html: Крыўднае змесціва будзе згадвацца ў зносінах з уліковым запісам, на які пададзена скарга
+      summary:
+        action_preambles:
+          delete_html: 'Вы збіраецеся <strong>выдаліць</strong> некаторыя з допісаў <strong>@%{acct}</strong>. Гэта будуць:'
+          mark_as_sensitive_html: 'Вы збіраецеся <strong>пазначыць</strong> некаторыя з допісаў <strong>@%{acct}</strong> як <strong>уражальныя</strong>. Гэта будуць:'
+          silence_html: 'Вы збіраецеся <strong>абмежаваць</strong> уліковы запіс <strong>@%{acct}</strong>. Гэта будзе:'
+          suspend_html: 'Вы збіраецеся <strong>прыпыніць</strong> уліковы запіс <strong>@%{acct}</strong>. Гэта будзе:'
+        actions:
+          delete_html: Выдаліць абразлівы допіс
+          mark_as_sensitive_html: Пазначыць медыя абразлівага допіса як далікатнае
+          silence_html: Значна абмежаваць ахоп <strong>@%{acct}</strong>, зрабіўшы профіль і змесціва бачнымі толькі для людзей, якія ўжо падпісаныя, альбо шукае яго ўручную
+          suspend_html: Прыпыніць <strong>@%{acct}</strong>, зрабіць профіль і змесціва недаступным і не даваць магчымасці ўзаемадзейнічаць з імі
+        close_report: 'Пазначыць скаргу #%{id} як вырашаную'
+        close_reports_html: Адзначыць <strong>усе</strong> скаргі супраць <strong>@%{acct}</strong> як вырашаныя
+        delete_data_html: Выдаліць профіль <strong>@%{acct}</strong> і змесціва праз 30 дзён, калі тым часам гэтае дзеянне не будзе адменена
+        preview_preamble_html: "<strong>@%{acct}</strong> атрымае папярэджанне наступнага зместу:"
+        record_strike_html: Зарэгістраваць папярэджанне <strong>@%{acct}</strong>, каб дапамагчы вам эскаліраваць наступныя парушэнні з боку таго ж уліковага запісу
+        send_email_html: Адправіць <strong>@%{acct}</strong> папярэджанне па электроннай пошце
+        warning_placeholder: Неабавязковае дадатковае абгрунтаванне мадэрацыі.
+      target_origin: Крыніца уліковага запісу на які пададзена скарга
+      title: Скаргі
+      unassign: Скінуць
+      unknown_action_msg: 'Невядомае дзеянне: %{action}'
+      unresolved: Нявырашаныя
+      updated_at: Абноўлена
+      view_profile: Паглядзець профіль
+    roles:
+      add_new: Дадаць ролю
+      assigned_users:
+        few: "%{count} карыстальнікі"
+        many: "%{count} карыстальнікаў"
+        one: "%{count} карыстальнік"
+        other: "%{count} карыстальніка"
+      categories:
+        administration: Адміністрацыя
+        devops: DevOps
+        invites: Запрашэнні
+        moderation: Мадэрацыя
+        special: Спецыяльны
+      delete: Выдаліць
+      description_html: З дапамогай <strong>роляў карыстальнікаў</strong> вы можаце наладзіць, да якіх функцый і абласцей Mastodon будуць мець доступ вашы карыстальнікі.
+      edit: Рэдагаваць ролю "%{name}"
+      everyone: Дазволы па змаўчанні
+      everyone_full_description_html: Гэта <strong>базавая роля</strong>, якая ўплывае на <strong>ўсіх карыстальнікаў</strong>, нават без прызначанай ролі. Усе астатнія ролі ўспадкоўваюць ад яго дазволы.
+      permissions_count:
+        few: "%{count} дазволы"
+        many: "%{count} дазволаў"
+        one: "%{count} дазвол"
+        other: "%{count} дазволу"
+      privileges:
+        administrator: Адміністратар
+        administrator_description: Карыстальнікі з гэтым дазволам будуць абыходзіць усе абмежаванні
+        delete_user_data: Выдаленне даных карыстальнікаў
+        delete_user_data_description: Дазваляе карыстальнікам без затрымкі выдаляць даныя іншых карыстальнікаў
+        invite_users: Запрашэнне карыстальнікаў
+        invite_users_description: Дазваляе запрашаць новых людзей на сервер
+        manage_announcements: Кіраванне аб'явамі
+        manage_announcements_description: Дазваляе кіраваць аб'явамі на серверы
+        manage_appeals: Кіраванне апеляцыямі
+        manage_appeals_description: Дазваляе карыстальнікам разглядаць апеляцыі на дзеянні мадэратара
+        manage_blocks: Кіраванне блакіроўкамі
+        manage_blocks_description: Дазваляе блакаваць пэўныя паштовыя правайдэры і IP адрасы
+        manage_custom_emojis: Кіраванне адвольнымі эмодзі
+        manage_custom_emojis_description: Дазваляе кіраваць адвольнымі эмодзі на серверы
+        manage_federation: Кіраваць федэрацыяй
+        manage_federation_description: Дазваляе карыстальнікам блакіраваць або дазваляць аб'яднанне з іншымі даменамі і кантраляваць магчымасць дастаўкі
+        manage_invites: Кіраванне запрашэннямі
+        manage_invites_description: Дазваляе праглядаць і дэактывоўваць запрашальныя спасылкі
+        manage_reports: Кіраванне скаргамі
+        manage_reports_description: Дазваляе разглядаць скаргі і прымаць захады мадэрацыі
+        manage_roles: Кіраванне ролямі
+        manage_roles_description: Дазваляе карыстальнікам кіраваць і прызначаць ролі, ніжэйшыя за іх
+        manage_rules: Кіраванне правіламі
+        manage_rules_description: Дазваляе змяняць правілы сервера
+        manage_settings: Кіраванне наладамі
+        manage_settings_description: Дазваляе змяняць налады сервера
+        manage_taxonomies: Кіраванне катэгорыямі
+        manage_taxonomies_description: Дазваляе карыстальнікам праглядаць папулярны кантэнт і абнаўляць налады хэштэгаў
+        manage_user_access: Кіраванне наладамі доступу карыстальнікаў
+        manage_user_access_description: Дазваляе адключаць двухфактарную аўтэнтыфікацыю іншым карыстальнікам, змяняць іх паштовы адрас і скідваць пароль
+        manage_users: Кіраванне карыстальнікамі
+        manage_users_description: Дазваляе праглядаць звесткі іншых карыстальнікаў і іх мадэрацыю
+        manage_webhooks: Кіраванне вэбхукамі
+        manage_webhooks_description: Дазваляе карыстальнікам наладжваць вэб-хукі для адміністрацыйных аперацый
+        view_audit_log: Кіраванне журналам аўдыту
+        view_audit_log_description: Дазваляе карыстальнікам бачыць гісторыю адміністрацыйных аперацый на серверы
+        view_dashboard: Прагляд панэлі кіравання
+        view_dashboard_description: Дазваляе праглядаць панэль кіравання і розныя метрыкі
+        view_devops: DevOps
+        view_devops_description: Дае доступ да панэляў кіравання Sidekiq і pgHero
+      title: Ролі
+    rules:
+      add_new: Дадаць правіла
+      delete: Выдаліць
+      description_html: Большасць сцвярджаюць, што прачыталі ўмовы абслугоўвання і згаджаюцца з імі, але звычайна людзі не чытаюць іх да канца, пакуль не ўзнікне праблема. <strong>Таму зрабіце правілы вашага сервера простымі з першага погляду, прадставіўшы іх у выглядзе маркіраванага спісу.</strong> Старайцеся рабіць правілы кароткімі і простымі, але не разбіваць іх на шмат асобных пунктаў.
+      edit: Рэдагаваць правіла
+      empty: Правілы сервера яшчэ не вызначаны.
+      title: Правілы сервера
+    settings:
+      about:
+        manage_rules: Кіраваць правіламі сервера
+        preamble: Дайце падрабязную інфармацыю аб тым, як сервер працуе, мадэруецца, фінансуецца.
+        rules_hint: Існуе спецыяльная вобласць для правілаў, якіх вашы карыстальнікі павінны прытрымлівацца.
+        title: Пра нас
+      appearance:
+        preamble: Наладзьце вэб-інтэрфейс Mastodon.
+        title: Выгляд
+      branding:
+        preamble: Брэндынг вашага сервера адрознівае яго ад іншых сервераў у сетцы. Гэтая інфармацыя можа адлюстроўвацца ў розных асяроддзях, напрыклад, у вэб-інтэрфейсе Mastodon, уласных праграмах, у папярэднім праглядзе спасылак на іншых вэб-сайтах і ў праграмах абмену паведамленнямі і гэтак далей. Па гэтай прычыне лепш трымаць гэтую інфармацыю яснай, кароткай і сціслай.
+        title: Брэндынг
+      content_retention:
+        preamble: Кантралюйце, як створаны карыстальнікамі кантэнт захоўваецца ў Mastodon.
+        title: Утрыманне кантэнту
+      default_noindex:
+        desc_html: Уплывае на ўсіх карыстальнікаў, якія не змянілі гэтую наладу самастойна
+        title: Перадвызначана выключыць карыстальнікаў з індэксацыі пашуковымі рухавікамі
+      discovery:
+        follow_recommendations: Выконвайце рэкамендацыі
+        preamble: Прадстаўленне цікавага кантэнту дапамагае прыцягнуць новых карыстальнікаў, якія могуць не ведаць нікога на Mastodon. Кантралюйце працу розных функцый выяўлення на вашым серверы.
+        profile_directory: Дырэкторыя профіляў
+        public_timelines: Публічная паслядоўнасць публікацый
+        publish_discovered_servers: Апублікаваць знойдзеныя серверы
+        publish_statistics: Апублікаваць статыстыку
+        title: Выяўленне
+        trends: Актуальныя
+      domain_blocks:
+        all: Для ўсіх
+        disabled: Нікому
+        users: Лакальным карыстальнікам, якія ўвайшлі
+      registrations:
+        preamble: Кантралюйце, хто можа ствараць уліковы запіс на вашым серверы.
+        title: Рэгістрацыя
+      registrations_mode:
+        modes:
+          approved: Для рэгістрацыі патрабуецца пацвярджэнне
+          none: Нікому не магчыма зарэгістравацца
+          open: Любому магчыма зарэгістравацца
+      title: Налады сервера
+    site_uploads:
+      delete: Выдаліць запампаваны файл
+      destroyed_msg: Загрузка сайту паспяхова выдалена!
+    statuses:
+      account: Аўтар
+      application: Праграма
+      back_to_account: Назад да старонкі ўліковага запісу
+      back_to_report: Назад да старонкі справаздачы
+      batch:
+        remove_from_report: Выдаліць са справаздачы
+        report: Справаздача
+      deleted: Выдалены
+      favourites: Упадабаныя
+      history: Гісторыя версій
+      in_reply_to: Адказваючы на
+      language: Мова
+      media:
+        title: Медыя
+      metadata: Метаданыя
+      no_status_selected: Ніводная публікацыя не была зменена, бо ніводная не была выбрана
+      open: Адкрыць допіс
+      original_status: Зыходны допіс
+      reblogs: Рэпосты
+      status_changed: Допіс зменены
+      title: Допісы уліковага запісу
+      trending: Папулярныя
+      visibility: Бачнасць
+      with_media: З медыя
+    strikes:
+      actions:
+        delete_statuses: "%{name} выдаліў запісы %{target}"
+        disable: "%{name} замарозіў уліковы запіс %{target}"
+        mark_statuses_as_sensitive: "%{name} пазначыў запісы %{target} як уразлівыя"
+        none: "%{name} даслаў папярэджанне %{target}"
+        sensitive: "%{name} пазначыў уліковы запіс %{target} як уразлівы"
+        silence: "%{name} абмежаваў уліковы запіс %{target}"
+        suspend: Уліковы запіс %{target} выключаны %{name}
+      appeal_approved: Абскарджана
+      appeal_pending: Апеляцыя разглядаецца
+      appeal_rejected: Абскарджанне адхілена
+    system_checks:
+      database_schema_check:
+        message_html: Ёсць незавершаныя міграцыі базы дадзеных. Калі ласка, запусціце іх, каб пераканацца, што дадатак паводзіць сябе належным чынам
+      elasticsearch_running_check:
+        message_html: Немагчыма падключыцца да Elasticsearch. Калі ласка, праверце, што ён запушчаны, або адключыце паўнатэкставы пошук
+      elasticsearch_version_check:
+        message_html: 'Несумяшчальная версія Elasticsearch: %{value}'
+        version_comparison: Elasticsearch %{running_version} выяўлены, але патрабуецца %{required_version}
+      rules_check:
+        action: Кіраваць правіламі сервера
+        message_html: Вы не вызначылі ніякіх правілаў сервера.
+      sidekiq_process_check:
+        message_html: Не працуе працэс Sidekiq для %{value} чаргі. Калі ласка праверце вашу канфігурацыю Sidekiq
+    tags:
+      review: Стан праверкі
+      updated_msg: Налады хэштэгаў паспяхова змененыя
+    title: Адміністрацыя
+    trends:
+      allow: Дазволіць
+      approved: Пацверджаны
+      disallow: Забараніць
+      links:
+        allow: Дазволіць спасылка
+        allow_provider: Дазволіць выдаўца
+        description_html: Гэта спасылкі, якія зараз часта распаўсюджваюцца ўліковымі запісамі, з якіх ваш сервер бачыць паведамленні. Гэта можа дапамагчы вашым карыстальнікам даведацца, што адбываецца ў свеце. Ніякія спасылкі не будуць паказвацца публічна, пакуль вы не зацвердзіце аўтара. Вы таксама можаце дазволіць або адхіліць асобныя спасылкі.
+        disallow: Забараніць спасылку
+        disallow_provider: Дазволіць выдаўца
+        no_link_selected: Ніводная спасылка не была зменена, бо ніводная не была выбрана
+        publishers:
+          no_publisher_selected: Выдаўцы не былі зменены, таму што ніводзін не быў абраны
+        shared_by_over_week:
+          few: Абагулілі %{count} чалавекі за апошні тыдзень
+          many: Абагулілі %{count} чалавек за апошні тыдзень
+          one: Абагуліў адзін чалавек за апошні тыдзень
+          other: Абагулілі %{count} чалавек за апошні тыдзень
+        title: Актуальныя спасылкі
+        usage_comparison: Выкарыстоўвалася %{today} разоў сёння, у параўнанні з %{yesterday} учора
+      not_allowed_to_trend: Забаронена выходзіць у актуальныя
+      only_allowed: Толькі дазволенае
+      pending_review: Чакае праверкі
+      preview_card_providers:
+        allowed: Спасылкі ад гэтага выдаўца не будуць у трэндзе
+        description_html: Спасылкі з гэтых даменаў часта абагульняюцца на вашым серверы. Спасылкі не трапяць у публічныя трэнды, калі дамен спасылкі не ўхвалены. Вашае ўхваленне (ці адхіленне) распаўсюдзіцца на субдамены.
+        rejected: Спасылкі ад гэтага выдаўца не будуць у трэнде
+        title: Выдаўцы
+      rejected: Адхілена
+      statuses:
+        allow: Дазволіць допіс
+        allow_account: Дазволіць аўтара
+        description_html: Гэта допісы, пра якія ведае ваш сервер, што на дадзены момант часта абагульваюцца і падабаюцца людзям. Гэта можа дапамагчы вашым новым і пастаянным карыстальнікам знайсці больш людзей, на якіх можна падпісацца. Ніякія допісы не будуць паказвацца публічна, пакуль вы не зацвердзіце аўтара, а аўтар не дазволіць прапанаваць свой уліковы запіс іншым. Вы таксама можаце дазволіць або адхіліць асобныя допісы.
+        disallow: Забараніць допіс
+        disallow_account: Забараніць аўтара
+        no_status_selected: Ніводны папулярны допіс не быў зменены, бо ніводны не быў выбраны
+        not_discoverable: Аўтар вырашыў быць нябачным
+        shared_by:
+          few: Пашыраны або ўпадабаны %{friendly_count} разы
+          many: Пашыраны або ўпадабаны %{friendly_count} разоў
+          one: Пашыраны або ўпадабаны %{friendly_count} раз
+          other: Пашыраны або ўпадабаны %{friendly_count} разоў
+        title: Актуальныя допісы
+      tags:
+        current_score: Бягучы рэзультат %{score}
+        dashboard:
+          tag_accounts_measure: унікальнае выкарыстанне
+          tag_languages_dimension: Папулярныя мовы
+          tag_servers_dimension: Папулярныя серверы
+          tag_servers_measure: розныя серверы
+          tag_uses_measure: усяго выкарыстанняў
+        description_html: Гэтыя хэштэгі зараз з'яўляюцца у мностве допісаў, якія бачыць ваш сервер. Гэта дапаможа вашым карыстальнікам даведацца аб чым зараз больш за ўсё размаўляюць людзі. Ніякі хэштэг не з'явіцца публічна пакуль вы яго не пацвердзіце.
+        listable: Можа быць прапанавана
+        no_tag_selected: Ніводны тэг не быў зменены, бо ніводны не быў выбраны
+        not_listable: Не будзе прапанавана
+        not_trendable: Не з'явіцца ў трэндах
+        not_usable: Немагчыма выкарыстаць
+        peaked_on_and_decaying: На піку %{date}, зараз спадае
+        title: Актуальныя хэштэгі
+        trendable: Можа з'явіцца сярод трэндаў
+        trending_rank: 'Папулярнае #%{rank}'
+        usable: Магчыма выкарыстаць
+        usage_comparison: Выкарыстоўвалася %{today} разоў сёння, у параўнанні з %{yesterday} учора
+        used_by_over_week:
+          few: Выкарысталі %{count} чалавекі за апошні тыдзень
+          many: Выкарысталі %{count} чалавек за апошні тыдзень
+          one: Выкарыстаў адзін чалавек за апошні тыдзень
+          other: Выкарысталі %{count} чалавек за апошні тыдзень
+      title: Актуальныя
+      trending: Папулярныя
+    warning_presets:
+      add_new: Дадаць новы
+      delete: Выдаліць
+      edit_preset: Рэдагаваць шаблон папярэджання
+      empty: Вы яшчэ не вызначылі ніякіх шаблонаў папярэджанняў.
+      title: Кіраванне шаблонамі папярэджанняў
+    webhooks:
+      add_new: Дадаць канцавую кропку
+      delete: Выдаліць
+      description_html: "<strong>Вэбхук</strong> дазваляе Mastodon адпраўляць <strong>апавяшчэнні ў рэальным часе</strong> аб выбраных падзеях у вашай уласнай праграме, каб яна магла <strong>аўтаматычна рэагаваць на іх</strong>."
+      disable: Адключыць
+      disabled: Адключана
+      edit: Рэдагаваць канцавую кропку
+      empty: У вас яшчэ няма сканфігураваных канчатковых кропак вэбхука.
+      enable: Уключыць
+      enabled: Уключана
+      enabled_events:
+        few: "%{count} актыўныя падзеі"
+        many: "%{count} актыўных падзей"
+        one: 1 актыўная падзея
+        other: "%{count} актыўнай падзеі"
+      events: Падзеі
+      new: Новая вэбхука
+      rotate_secret: Павярнуць сакрэт
+      secret: Падпісанне сакрэту
+      status: Стан
+      title: Вэбхукі
+      webhook: Вэбхук
+  admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: выдаліць іх допісы
+        disable: замарозіць уліковы запіс
+        mark_statuses_as_sensitive: пазначыць іх допісы як далікатныя
+        none: папярэджанне
+        sensitive: пазначыць уліковы запіс як далікатны
+        silence: абмежаваць уліковы запіс
+        suspend: выключыць уліковы запіс
+      body: "%{target} абскарджвае рашэнне мадэратара %{action_taken_by} ад %{date}, якая была %{type}. Яны напісалі:"
+      next_steps: Вы можаце ўхваліць апеляцыю каб адмяніць рашэнне мадэратараў ці ігнараваць яе.
+      subject: "%{username} абскарджвае рашэнне мадэратараў на %{instance}"
+    new_pending_account:
+      body: Падрабязнасці новага ўліковага запісу прыведзены ніжэй. Вы можаце зацвердзіць або адхіліць гэтую заяўку.
+      subject: Новы ўліковы запіс для разгляду ў %{instance} (%{username})
+    new_report:
+      body: "%{reporter} паскардзіўся на %{target}"
+      body_remote: Нехта з %{domain} паскардзіўся на %{target}
+      subject: Новая скарга на %{instance} (#%{id})
+    new_trends:
+      body: 'Гэтыя элементы трэба праверыць, перш чым публікаваць:'
+      new_trending_links:
+        title: Папулярныя спасылкі
+      new_trending_statuses:
+        title: Папулярныя допісы
+      new_trending_tags:
+        no_approved_tags: Зараз няма зацверджаных папулярных хэштэгаў.
+        requirements: 'Кожны з гэтых кандыдатаў можа перавысіць #%{rank} зацверджаных папулярных хэштэгаў. Зараз гэта #%{lowest_tag_name} з лікам %{lowest_tag_score}.'
+        title: Папулярныя хэштэгі
+      subject: Новае ў папулярным для разгляду %{instance}
+  aliases:
+    add_new: Стварыць псеўданім
+    created_msg: Створаны новы псеўданім. Цяпер вы можаце пачаць пераход са старога ўліковага запісу.
+    deleted_msg: Псеўданім выдалены. Пераход з таго ўліковага запісу на гэты больш немагчымы.
+    empty: У вас няма псеўданімаў.
+    hint_html: Калі вы хочаце перайсці з іншага ўліковага запісу ў гэты, то тут вы можаце стварыць псеўданім, каб перамясціць падпісчыкаў са старога ўліковага запісу ў гэты. Гэта дзеянне з'яўляецца <strong>бясшкодным і зварачальным</strong>. <strong>Перанос уліковага запісу пачынаецца са старога ўліковага запісу</strong>.
+    remove: Адмацаваць псеўданім
+  appearance:
+    advanced_web_interface: Пашыраны вэб-інтэрфейс
+    advanced_web_interface_hint: 'Калі вы хочаце выкарыстоўваць усю шырыню экрана, пашыраны вэб-інтэрфейс дазваляе вам наладзіць мноства розных слупкоў, каб бачыць столькі інфармацыі, колькі вам трэба: галоўная, апавяшчэнні, глабальная стужка, любая колькасць спісаў і хэштэгаў.'
+    animations_and_accessibility: Анімацыі і даступнасць
+    confirmation_dialogs: Дыялогавыя вокны пацвярджэння
+    discovery: Адкрыцці
+    localization:
+      body: Mastodon перакладаецца добраахвотнікамі.
+      guide_link: https://be.crowdin.com/project/mastodon/be
+      guide_link_text: Кожны можа зрабіць унёсак.
+    sensitive_content: Далікатны змест
+    toot_layout: Макет допісу
+  application_mailer:
+    notification_preferences: Змяніць налады эл. пошты
+    salutation: "%{name},"
+    settings: 'Змяніць налады эл. пошты: %{link}'
+    view: 'Паглядзець:'
+    view_profile: Паглядзець профіль
+    view_status: Паглядзець допіс
+  applications:
+    created: Праграма паспяхова створана
+    destroyed: Праграма паспяхова выдалена
+    logout: Выйсці
+    regenerate_token: Стварыць новы токен доступу
+    token_regenerated: Новы токен доступу паспяхова створаны
+    warning: Будзьце вельмі асцярожныя з гэтымі данымі. Ніколі нікому не паведамляйце іх!
+    your_token: Ваш токен доступу
+  auth:
+    apply_for_account: Пакінуць заяўку
+    change_password: Пароль
+    confirmations:
+      wrong_email_hint: Калі гэты адрас электроннай пошты памылковы, вы можаце змяніць яго ў наладах уліковага запісу.
+    delete_account: Выдаліць уліковы запіс
+    delete_account_html: Калі вы жадаеце выдаліць ваш уліковы запіс, можаце <a href="%{path}">працягнуць тут</a>. Ад вас будзе запатрабавана пацвярджэнне.
+    description:
+      prefix_invited_by_user: "@%{name} запрашае вас далучыцца да гэтага сервера ў Mastodon!"
+      prefix_sign_up: Зарэгістравацца ў Mastodon сёння!
+      suffix: Маючы ўліковы запіс, вы зможаце падпісвацца на іншых людзей, дзяліцца навінамі і абменьвацца паведамленнямі з карыстальнікамі з любога сервера Mastodon і шмат што яшчэ!
+    didnt_get_confirmation: Не атрымалі інструкцыю пацвярджэння?
+    dont_have_your_security_key: Не маеце ключа бяспекі?
+    forgot_password: Забылі свой пароль?
+    invalid_reset_password_token: Токен для скідвання пароля несапраўдны або састарэў. Зрабіце запыт на новы.
+    link_to_otp: Увядзіце код двухфактарнай аўтэнтыфікацыі з вашага тэлефона або код аднаўлення
+    link_to_webauth: Скарыстайцеся вашай прыладай з ключом бяспекі
+    log_in_with: Увайсці праз
+    login: Увайсці
+    logout: Выйсці
+    migrate_account: Пераехаць на іншы ўліковы запіс
+    migrate_account_html: Калі вы хочаце перанакіраваць гэты ўліковы запіс на іншы, то можаце <a href="%{path}">наладзіць яго тут</a>.
+    or_log_in_with: Або ўвайсці з дапамогай
+    privacy_policy_agreement_html: Я азнаёміўся і пагаджаюся з <a href="%{privacy_policy_path}" target="_blank">палітыкай канфідэнцыйнасці</a>
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Зарэгістравацца
+    registration_closed: "%{instance} больш не прымае новых удзельнікаў"
+    resend_confirmation: Адправіць інструкцыю пацвярджэння зноў
+    reset_password: Скінуць пароль
+    rules:
+      accept: Прыняць
+      back: Назад
+      preamble: Правілы вызначаныя мадэратарамі дамена %{domain}.
+      title: Некалькі базавых правілаў.
+    security: Бяспека
+    set_new_password: Прызначыць новы пароль
+    setup:
+      email_below_hint_html: Калі прыведзены ніжэй адрас эл. пошты няправільны, вы можаце змяніць яго тут і атрымаць новае пацвярджэнне па эл. пошце.
+      email_settings_hint_html: Ліст з пацвярджэннем быў адпраўлены на %{email}. Калі гэты адрас эл. пошты няправільны, вы можаце змяніць яго ў наладах уліковага запісу.
+      title: Налады
+    sign_in:
+      preamble_html: Уваход з уліковымі дадзенымі <strong>%{domain}</strong>. Калі ваш уліковы запіс знаходзіцца на іншым серверы, у вас не атрымаецца ўвайсці тут.
+      title: Уваход у %{domain}
+    sign_up:
+      preamble: Маючы ўліковы запіс на гэтым серверы Mastodon, вы будзеце мець магчымасць падпісацца на кожнага чалавека ў сетцы, незалежна ад таго, на якім серверы размешчаны ягоны ўліковы запіс.
+      title: Наладзьма вас на %{domain}.
+    status:
+      account_status: Стан уліковага запісу
+      confirming: Чакаецца пацвярджэнне з электроннай пошты.
+      functional: Ваш уліковы запіс поўнасцю працуе.
+      pending: Ваша заяўка разглядаецца нашым супрацоўнікам. Гэта можа заняць некаторы час. Вы атрымаеце электронны ліст, калі заяўка будзе ўхвалена.
+      redirecting_to: Ваш уліковы запіс неактыўны, бо ў цяперашні час ён перанакіроўваецца на %{acct}.
+      view_strikes: Праглядзець мінулыя папярэджанні для вашага ўліковага запісу
+    too_fast: Форма адпраўлена занадта хутка, паспрабуйце яшчэ раз.
+    use_security_key: Выкарыстаеце ключ бяспекі
+  authorize_follow:
+    already_following: Вы ўжо падпісаныя на гэты ўліковы запіс
+    already_requested: Вы ўжо адправілі запыт на гэты ўліковы запіс
+    error: На жаль, падчас пошуку аддаленага ўліковага запісу здарылася памылка
+    follow: Падпісацца
+    follow_request: 'Вы адправілі запыт на падпіску:'
+    following: 'Поспех! Цяпер вы падпісаны на:'
+    post_follow:
+      close: Або, вы можаце проста закрыць гэтае акно.
+      return: Паказаць профіль карыстальніка
+      web: Перайсці ў вэб-версію
+    title: Падпісацца на %{acct}
+  challenge:
+    confirm: Працягнуць
+    hint_html: "<strong>Парада:</strong> Мы не будзем запытваць ваш пароль зноўку на працягу наступнай гадзіны."
+    invalid_password: Няправільны пароль
+    prompt: Пацвердзіць пароль, каб працягнуць
+  crypto:
+    errors:
+      invalid_key: гэта не сапраўдны Ed25519 або Curve25519 ключ
+      invalid_signature: гэта не сапраўдная Ed25519 сігнатура
+  date:
+    formats:
+      default: "%d.%m.%Y"
+      with_month_name: "%e %B %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}гадз"
+      about_x_months: "%{count}мес"
+      about_x_years: "%{count}г"
+      almost_x_years: "%{count}г"
+      half_a_minute: Толькі што
+      less_than_x_minutes: "%{count}хв"
+      less_than_x_seconds: Толькі што
+      over_x_years: "%{count}г."
+      x_days: "%{count}д"
+      x_minutes: "%{count}хв"
+      x_months: "%{count}мес"
+      x_seconds: "%{count}с"
+  deletes:
+    challenge_not_passed: Уведзеная інфармацыя няправільная
+    confirm_password: Увядзіце свой бягучы пароль, каб пацвердзіць сваю асобу
+    confirm_username: Увядзіце сваё імя карыстальніка для пацвярджэння працэдуры
+    proceed: Выдаліць уліковы запіс
+    success_msg: Ваш уліковы запіс быў паспяхова выдалены
+    warning:
+      before: 'Перш чым працягнуць, уважліва прачытайце гэтыя заўвагі:'
+      caches: Змесціва, кэшаванае іншымі серверамі, можа захавацца
+      data_removal: Вашы допісы і іншыя даныя будуць выдалены назаўсёды
+      email_change_html: Вы можаце <a href="%{path}">змяніць свой адрас электроннай пошты</a>, не выдаляючы ўліковы запіс
+      email_contact_html: Калі ліст усё яшчэ не дайшоў, вы можаце звярнуцца па дапамогу на эл. пошту <a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: Калі вы не атрымалі пацвярджэнне па электроннай пошце, вы можаце <a href="%{path}">запытаць яго зноў</a>
+      irreversible: Вы не зможаце аднавіць або паўторна актываваць свой уліковы запіс
+      more_details_html: Падрабязнасці глядзіце ў <a href="%{terms_path}">палітыцы прыватнасці</a>.
+      username_available: Ваша імя карыстальніка зноў стане даступным
+      username_unavailable: Ваша імя карыстальніка застанецца недаступным
+  disputes:
+    strikes:
+      action_taken: Выкананае дзеянне
+      appeal: Апеляцыя
+      appeal_approved: Гэтае папярэджанне паспяхова абскарджана і больш не дзейнічае
+      appeal_rejected: Апеляцыя была адхілена
+      appeal_submitted_at: Апеляцыя пададзена
+      appealed_msg: Ваша апеляцыя пададзена. У выпадку, калі яе зацвердзяць, вам паведамяць.
+      appeals:
+        submit: Падаць апеляцыю
+      approve_appeal: Зацвердзіць апеляцыю
+      associated_report: Звязаная скарга
+      created_at: Датаваны
+      description_html: Гэта дзеянні, выкананыя супраць вашага ўліковага запісу, і папярэджанні, якія адпраўлены вам супрацоўнікамі %{instance}.
+      recipient: Адрасавана
+      reject_appeal: Адхіліць апеляцыю
+      status: 'Допіс #%{id}'
+      status_removed: Допіс ужо выдалены з сістэмы
+      title: "%{action} ад %{date}"
+      title_actions:
+        delete_statuses: Выдаленне допісу
+        disable: Замарозка уліковага запісу
+        mark_statuses_as_sensitive: Пазначыць допісы як далікатныя
+        none: Папярэджанне
+        sensitive: Пазначэнне ўліковага запісу як далікатнага
+        silence: Абмежаванне ўліковага запісу
+        suspend: Выключэнне ўліковага запісу
+      your_appeal_approved: Ваша абскарджанне было ўхвалена
+      your_appeal_pending: Вы адправілі апеляцыю
+      your_appeal_rejected: Ваша абскарджанне было адхілена
+  domain_validator:
+    invalid_domain: не з'яўляецца сапраўдным даменным імем
+  errors:
+    '400': Запыт, які вы адправілі, памылковы або няправільны.
+    '403': У вас няма дазволу на прагляд гэтай старонкі.
+    '404': Няма старонкі, якую вы шукаеце.
+    '406': Старонка недасяжная ў запатрабаваным фармаце.
+    '410': Старонка, якую вы шукаеце, больш не існуе.
+    '422':
+      content: Памылка праверкі бяспекі. Вы заблакіравалі cookies?
+      title: Памылка праверкі бяспекі
+    '429': Зашмат запытаў
+    '500':
+      content: Выбачце! Нешта пайшло не так на нашым баку.
+      title: Старонка няспраўная
+    '503': Старонку немагчыма адлюстраваць з-за часовага збою сервера.
+    noscript_html: Каб выкарыстоўваць вэб-праграму Mastodon, уключыце JavaScript. Акрамя таго, паспрабуйце адну з <a href="%{apps_path}">арыгінальных праграм</a> Mastodon для вашай платформы.
+  existing_username_validator:
+    not_found: не атрымалася знайсці лакальны ўліковы запіс з такім імем карыстальніка
+    not_found_multiple: не атрымалася знайсці %{usernames}
+  exports:
+    archive_takeout:
+      date: Дата
+      download: Спампаваць ваш архіў
+      hint_html: Вы можаце зрабіць запыт архіва сваіх <strong>допісаў і запампаваных медыя</strong>. Экспартаваныя даныя будуць мець фармат ActivityPub, які можна прачытаць любым сумяшчальным праграмным забеспячэннем. Запыт архіва можна рабіць кожныя 7 дзён.
+      in_progress: Збіраем ваш архіў...
+      request: Запатрабаваць ваш архіў
+      size: Памер
+    blocks: Спіс блакіроўкі
+    bookmarks: Закладкі
+    csv: CSV
+    domain_blocks: Блакіроўкі дамена
+    lists: Спісы
+    mutes: Уліковыя запісы, якія вы ігнаруеце
+    storage: Медыясховішча
+  featured_tags:
+    add_new: Дадаць новы
+    errors:
+      limit: Вы ўжо дадалі максімальную колькасць хэштэгаў
+    hint_html: "<strong>Што такое выбраныя хэштэгі?</strong> Яны паказваюцца на бачным месцы вашага профілю і дазваляюць людзям праглядаць вашыя публічныя пасты з гэтымі хэштэгамі. З іхняй дапамогай вельмі зручна сачыць за творчымі ці даўгатэрміновымі праектамі."
+  filters:
+    contexts:
+      account: Профілі
+      home: Стужка і спісы
+      notifications: Апавяшчэнні
+      public: Публічныя стужкі
+      thread: Размовы
+    edit:
+      add_keyword: Дадаць ключавое слова
+      keywords: Ключавыя словы
+      statuses: Асобныя допісы
+      statuses_hint_html: Гэты фільтр ужываецца каб абраць асобныя запісы незалежна ад таго, ці ўтрымліваюць яны ключавыя словы са спісу ніжэй.<a href="%{path}">Праверце ці выдаліце допісы з фільтру</a>.
+      title: Рэдагаваць фільтр
+    errors:
+      deprecated_api_multiple_keywords: Гэтыя параметры нельга памяняць з бягучай праграмы таму што яны ўжываюцца для больш чым аднаго ключавога слова. Скарыстайцеся навейшай версіяй праграмы ці вэб-інтэрфейсам.
+      invalid_context: Дадзены кантэкст недастатковы альбо памылковы
+    index:
+      contexts: Фільтры ў %{contexts}
+      delete: Выдаліць
+      empty: У вас няма фільтраў.
+      expires_in: Сканчаецца праз %{distance}
+      expires_on: Сканчаецца %{date}
+      keywords:
+        few: "%{count} ключавыя словы"
+        many: "%{count} ключавых слоў"
+        one: "%{count} ключавое слова"
+        other: "%{count} ключавога слова"
+      statuses:
+        few: "%{count} допісы"
+        many: "%{count} допісаў"
+        one: "%{count} допіс"
+        other: "%{count} допісу"
+      statuses_long:
+        few: "%{count} допісы схаваны"
+        many: "%{count} допісаў схавана"
+        one: "%{count} допіс схаваны"
+        other: "%{count} допісу схавана"
+      title: Фільтры
+    new:
+      save: Захаваць новы фільтр
+      title: Дадаць новы фільтр
+    statuses:
+      back_to_filter: Вярнуцца да фільтра
+      batch:
+        remove: Выдаліць з фільтра
+      index:
+        hint: Гэты фільтр прымяняецца для выбару асобных допісаў незалежна ад іншых крытэрыяў. Вы можаце дадаць больш допісаў у гэты фільтр з вэб-інтэрфейсу.
+        title: Адфільтраваныя допісы
+  generic:
+    all: Усе
+    all_items_on_page_selected_html:
+      few: На гэтай старонцы абраныя ўсе <strong>%{count}</strong> элементы.
+      many: На гэтай старонцы абраныя ўсе <strong>%{count}</strong> элементаў.
+      one: На гэтай старонцы абраны <strong>%{count}</strong> элемент.
+      other: На гэтай старонцы абраныя усі <strong>%{count}</strong> элементаў.
+    all_matching_items_selected_html:
+      few: Абраныя ўсе <strong>%{count}</strong> элементы, якія адпавядаюць вашаму пошуку.
+      many: Абраныя ўсе <strong>%{count}</strong> элементаў, якія адпавядаюць вашаму пошуку.
+      one: Абраны <strong>%{count}</strong> элемент, які адпавядае вашаму пошуку.
+      other: Абраныя <strong>%{count}</strong> элементаў, якія адпавядаюць вашаму пошуку.
+    changes_saved_msg: Змены паспяхова захаваны!
+    copy: Скапіяваць
+    delete: Выдаліць
+    deselect: Зняць вылучэнне з усіх
+    none: Нічога
+    order_by: Парадак
+    save_changes: Захаваць змены
+    select_all_matching_items:
+      few: Выберыце ўсе %{count} элементы, якія адпавядаюць вашаму пошуку.
+      many: Выберыце ўсе %{count} элементаў, якія адпавядаюць вашаму пошуку.
+      one: Выберыце %{count} элемент, які адпавядае вашаму пошуку.
+      other: Выберыце %{count} элементаў, якія адпавядаюць вашаму пошуку.
+    today: сёння
+    validation_errors:
+      few: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце %{count} памылкі ніжэй
+      many: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце %{count} памылак ніжэй
+      one: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце памылку ніжэй
+      other: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце %{count} памылак ніжэй
+  imports:
+    errors:
+      invalid_csv_file: 'Несапраўдны файл CSV. Памылка: %{error}'
+      over_rows_processing_limit: колькасць радкоў большая за %{count}
+    modes:
+      merge: Аб'яднаць
+      merge_long: Захаваць існуючыя запісы і дадаць новыя
+      overwrite: Перазапісаць
+      overwrite_long: Замяніць бягучыя запісы на новыя
+    preface: Вы можаце імпартаваць даныя, экспартаваныя вамі з іншага сервера, напрыклад, спіс людзей, на якіх вы падпісаны або якіх блакуеце.
+    success: Вашы даныя паспяхова запампаваныя і будуць неўзабаве апрацаваны
+    types:
+      blocking: Спіс заблакіраваных
+      bookmarks: Закладкі
+      domain_blocking: Спіс заблакіраваных даменаў
+      following: Падпіскі
+      muting: Спіс ігнаравання
+    upload: Запампаваць
+  invites:
+    delete: Дэактываваць
+    expired: Пратэрмінавана
+    expires_in:
+      '1800': 30 хвілін
+      '21600': 6 гадзін
+      '3600': 1 гадзіна
+      '43200': 12 гадзін
+      '604800': 1 тыдзень
+      '86400': 1 дзень
+    expires_in_prompt: Ніколі
+    generate: Стварыць запрашальную спасылку
+    invited_by: 'Вас запрасіў(-ла):'
+    max_uses:
+      few: "%{count} выкарыстанні"
+      many: "%{count} выкарыстанняў"
+      one: 1 выкарыстанне
+      other: "%{count} выкарыстанняў"
+    max_uses_prompt: Неабмежавана
+    prompt: Генерыруйце і абагульвайце паміж іншымі спасылкі для доступу да гэтага сервера
+    table:
+      expires_at: Дзее да
+      uses: Выкарыстанні
+    title: Запрасіць людзей
+  lists:
+    errors:
+      limit: Вы дасягнулі макс. колькасці спісаў
+  login_activities:
+    authentication_methods:
+      otp: праграма двухфактарнай аўтэнтыфікацыі
+      password: пароль
+      sign_in_token: код з электроннай пошты
+      webauthn: ключы бяспекі
+    description_html: Калі вы бачыце невядомую вам актыўнасць, падумайце пра змену пароля і ўключэнне двухфактарнай аўтэнтыфікацыі.
+    empty: Няма гісторыі ўваходаў
+    failed_sign_in_html: Няўдалая спроба ўваходу праз %{method} з %{ip} (%{browser})
+    successful_sign_in_html: Паспяховы ўваход праз %{method} з %{ip} (%{browser})
+    title: Гісторыя ўваходаў
+  media_attachments:
+    validations:
+      images_and_video: Немагчыма прымацаваць відэа да допісу, які ўжо змяшчае выявы
+      not_ready: Няможна дадаць файлы, апрацоўка якіх яшчэ не скончылася. Паспрабуйце яшчэ раз праз хвілінку!
+      too_many: Няможна дадаць больш за 4 файлы
+  migrations:
+    acct: Перамешчана ў
+    cancel: Скасаваць перанакіраванне
+    cancel_explanation: Скасаванне перанакіравання паўторна актывуе ваш бягучы ўліковы запіс, але не верне падпісчыкаў, якія былі перамешчаны на той уліковы запіс.
+    cancelled_msg: Перанакіраванне паспяхова скасавана.
+    errors:
+      already_moved: ёсць тым жа ўліковым запісам, на які вы ўжо пераехалі
+      missing_also_known_as: гэта не псеўданім уліковага запісу
+      move_to_self: не можа быць бягучым уліковым запісам
+      not_found: не знойдзена
+      on_cooldown: Вас часова замарозілі
+    followers_count: Падпісчыкі на момант перамяшчэння
+    incoming_migrations: Пераязджаем з іншага ўліковага запісу
+    incoming_migrations_html: Каб перайсці з іншага ўліковага запісу ў гэты, спачатку трэба <a href="%{path}">стварыць псеўданім уліковага запісу</a>.
+    moved_msg: Ваш уліковы запіс перанакіроўваецца на %{acct}. Туды-ж будуць перамешчаны вашы падпісчыкі.
+    not_redirecting: Ваш уліковы запіс не перанакіроўваецца на іншы ўліковы запіс.
+    on_cooldown: Вы нядаўна перамяшчалі свой уліковы запіс. Гэтая мажлівасць зноў стане даступнай праз %{count} дзн.
+    past_migrations: Колішнія перамяшчэнні
+    proceed_with_move: Перамясціць падпісчыкаў
+    redirected_msg: Ваш уліковы запіс цяпер перанакіроўваецца на %{acct}.
+    redirecting_to: Ваш уліковы запіс перанакіроўваецца на %{acct}.
+    set_redirect: Задаць перанакіраванне
+    warning:
+      backreference_required: Спачатку трэба наладзіць зваротнае спасыланне новага ўліковага запісу на бягучы
+      before: 'Перш чым працягнуць, калі ласка, уважліва прачытайце гэтыя заўвагі:'
+      cooldown: Пасля «пераезду» будзе перыяд чакання, на працягу якога вы не зможаце зноў «пераехаць»
+      disabled_account: Пасля гэтага ваш бягучы ўліковы запіс не будзе цалкам даступны. Аднак у вас будзе доступ да экспарту даных, а таксама да паўторнай актывацыі.
+      followers: Гэтае дзеянне будзе «пераносіць» усіх падпісчыкаў з бягучага ўліковага запісу на новы
+      only_redirect_html: Альбо вы можаце <a href="%{path}"> толькі наладзіць перанакіраванне на ваш профіль</a>.
+      other_data: Ніякія іншыя даныя не будуць перамешчаны аўтаматычна
+      redirect: Профіль вашага бягучага ўліковага запісу будзе абноўлены з паведамленнем аб перанакіраванні і выключаны з пошуку
+  moderation:
+    title: Мадэрацыя
+  move_handler:
+    carry_blocks_over_text: Гэты карыстальнік «перанесены» з уліковага запісу %{acct}, які вы заблакавалі.
+    carry_mutes_over_text: Гэты карыстальнік «перанесены» з уліковага запісу %{acct}, які вы ігнаруеце.
+    copy_account_note_text: 'Гэты карыстальнік «перанесены» з %{acct}, вось вашы папярэднія заўвагі пра яго:'
+  navigation:
+    toggle_menu: Уключыць меню
+  notification_mailer:
+    admin:
+      report:
+        subject: "%{name} падаў скаргу"
+      sign_up:
+        subject: "%{name} зарэгістраваўся"
+    favourite:
+      body: "%{name} упадабаў ваш пост:"
+      subject: "%{name} упадабаў ваш допіс"
+      title: Новае ўпадабанае
+    follow:
+      body: "%{name} цяпер падпісаны на вас!"
+      subject: "%{name} цяпер падпісаны на вас"
+      title: Новы падпісчык
+    follow_request:
+      action: Кіраванне запытамі на падпіску
+      body: "%{name} хоча падпісацца на вас"
+      subject: 'Падпісчык у чарзе: %{name}'
+      title: Новы запыт на падпіску
+    mention:
+      action: Адказаць
+      body: 'Вас згадаў %{name} у:'
+      subject: Вас згадаў %{name}
+      title: Новае згадванне
+    poll:
+      subject: Апытанне ад %{name} скончылася
+    reblog:
+      body: "%{name} пашырыў ваш пост:"
+      subject: "%{name} пашырыў ваш допіс"
+      title: Новае пашырэнне
+    status:
+      subject: Новы допіс ад %{name}
+    update:
+      subject: "%{name} адрэдагаваў допіс"
+  notifications:
+    email_events: Падзеі для апавяшчэнняў эл. пошты
+    email_events_hint: 'Выберыце падзеі, аб якіх вы хочаце атрымліваць апавяшчэнні:'
+    other_settings: Іншыя налады апавяшчэнняў
+  number:
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: млрд
+          million: млн
+          quadrillion: Q
+          thousand: тыс.
+          trillion: трлн
+  otp_authentication:
+    code_hint: Каб пацвердзіць, увядзіце код, згенераваны праграмай-аўтэнтыфікатарам
+    description_html: Калі вы ўключыце <strong>двухфактарную аўтэнтыфікацыю</strong> праз праграму-аўтэнтыфікатар, то каб увайсці ва ўліковы запіс, вам трэба мець тэлефон, які будзе генераваць токены для ўводу.
+    enable: Уключыць
+    instructions_html: "<strong>Скануйце гэты QR-код у Google Authenticator або ў аналагічнай TOTP-праграме на вашым тэлефоне</strong>. З гэтага моманту праграма будзе генераваць токены, якія вам трэба будзе ўводзіць пры ўваходзе ва ўліковы запіс."
+    manual_instructions: 'Калі вы не можаце сканаваць QR-код і трэба ўвесці яго ўручную, вось ключ у форме тэксту:'
+    setup: Наладзіць
+    wrong_code: Уведзены несапраўдны код! Час на прыладзе адпавядае часу на серверы?
+  pagination:
+    newer: Навейшае
+    next: Далей
+    older: Старэйшае
+    prev: Папярэдні
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Вы ўжо прагаласавалі ў апытанні
+      duplicate_options: змяшчае аднолькавыя варыянты
+      duration_too_long: гэта занадта далёка ў будучыні
+      duration_too_short: гэта занадта хутка
+      expired: Апытанне ўжо скончана
+      invalid_choice: Абраны варыянт апытання не існуе
+      over_character_limit: не можа быць даўжэй за %{max} сімвалаў кожны
+      too_few_options: павінна быць болей за адзін варыянт
+      too_many_options: колькасць варыянтаў не можа перавышаць %{max}
+  preferences:
+    other: Іншае
+    posting_defaults: Публікаваць па змаўчанні
+    public_timelines: Публічныя стужкі
+  privacy_policy:
+    title: Палітыка канфідэнцыйнасці
+  reactions:
+    errors:
+      limit_reached: Дасягнуты ліміт розных рэакцый
+      unrecognized_emoji: невядомае эмодзі
+  relationships:
+    activity: Актыўнасць ул. запісу
+    confirm_follow_selected_followers: Вы ўпэўнены, што жадаеце падпісацца на выбраных падпісчыкаў?
+    confirm_remove_selected_followers: Вы ўпэўнены, што жадаеце выдаліць выбраных падпісчыкаў?
+    confirm_remove_selected_follows: Вы ўпэўнены, што жадаеце выдаліць выбраныя падпіскі?
+    dormant: Занядбаны
+    follow_selected_followers: Падпісацца на выбраных падпісчыкаў
+    followers: Падпісчыкі
+    following: Падпісаны
+    invited: Запрошаны
+    last_active: Апошняя актыўнасць
+    most_recent: Даўнасць
+    moved: Перанесены
+    mutual: Узаемныя
+    primary: Асноўны
+    relationship: Зносіны
+    remove_selected_domains: Выдаліць усіх падпісчыкаў з выбраных даменаў
+    remove_selected_followers: Выдаліць выбраных падпісчыкаў
+    remove_selected_follows: Адпісацца ад выбраных карыстальнікаў
+    status: Стан уліковага запісу
+  remote_follow:
+    missing_resource: Не ўдалося знайсці патрэбны URL перанакіравання для вашага ўліковага запісу
+  reports:
+    errors:
+      invalid_rules: не спасылаецца на дзеючыя правілы
+  rss:
+    content_warning: 'Папярэджанне аб змесціве:'
+    descriptions:
+      account: Публічныя допісы ад @%{acct}
+      tag: 'Публічныя допісы з хэштэгам #%{hashtag}'
+  scheduled_statuses:
+    over_daily_limit: Вы перавысілі ліміт ў %{limit} запланаваных на сёння допісаў
+    over_total_limit: Вы перавысілі ліміт ў %{limit} запланаваных допісаў
+    too_soon: Запланаваная дата мусіць быць у будучыні
+  sessions:
+    activity: Апошняя актыўнасць
+    browser: Браўзер
+    browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Невядомы браўзер
+      huawei_browser: Браўзер Huawei
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UC Browser
+      unknown_browser: Невядомы браўзер
+      weibo: Weibo
+    current_session: Бягучая сесія
+    description: "%{browser} на %{platform}"
+    explanation: Гэта вэб-браўзэры, з якіх выкананы ўваход у ваш уліковы запіс Mastodon.
+    ip: IP
+    platforms:
+      adobe_air: Adobe AIR
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      kai_os: KaiOS
+      linux: Linux
+      mac: macOS
+      unknown_platform: Невядомая платформа
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Адклікаць
+    revoke_success: Сеанс паспяхова адкліканы
+    title: Сесіі
+    view_authentication_history: Праглядзець гісторыю ўваходаў у мой уліковы запіс
+  settings:
+    account: Уліковы запіс
+    account_settings: Налады ўліковага запісу
+    aliases: Псеўданімы ўліковага запісу
+    appearance: Выгляд
+    authorized_apps: Аўтарызаваныя праграмы
+    back: Назад да Mastodon
+    delete: Выдаленне ўліковага запісу
+    development: Распрацоўка
+    edit_profile: Рэдагаваць профіль
+    export: Экспарт даных
+    featured_tags: Выбраныя хэштэгі
+    import: Імпарт
+    import_and_export: Імпарт і экспарт
+    migrate: Перамяшчэнне ўліковага запісу
+    notifications: Апавяшчэнні
+    preferences: Налады
+    profile: Профіль
+    relationships: Падпіскі і падпісчыкі
+    statuses_cleanup: Аўтаматычнае выдаленне допісаў
+    strikes: Папярэджанні мадэратараў
+    two_factor_authentication: Двухфактарная аўтэнтыфікацыя
+    webauthn_authentication: Ключы бяспекі
+  statuses:
+    attached:
+      audio:
+        few: "%{count} аўдыяфайлы"
+        many: "%{count} аўдыяфайлаў"
+        one: "%{count} аўдыяфайл"
+        other: "%{count} аўдыяфайла"
+      description: 'Дадаткі: %{attached}'
+      image:
+        few: "%{count} выявы"
+        many: "%{count} выяваў"
+        one: "%{count} выява"
+        other: "%{count} выявы"
+      video:
+        few: "%{count} відэафайлы"
+        many: "%{count} відэафайлаў"
+        one: "%{count} відэафайл"
+        other: "%{count} відэафайла"
+    boosted_from_html: Пашырыў уліковы запіс %{acct_link}
+    content_warning: 'Папярэджанне аб змесціве: %{warning}'
+    default_language: Такая, што і мова інтэрфэйсу
+    disallowed_hashtags:
+      few: 'змяшчае недазволеныя хэштэгі: %{tags}'
+      many: 'змяшчае недазволеныя хэштэгі: %{tags}'
+      one: 'змяшчае недазволены хэштэг: %{tags}'
+      other: 'утрымлівае недазволеныя хэштэгі: %{tags}'
+    edited_at_html: Адрэдагавана %{date}
+    errors:
+      in_reply_not_found: Здаецца, допіс, на які вы спрабуеце адказаць, не існуе.
+    open_in_web: Адчыніць у вэб-версіі
+    over_character_limit: перавышаная колькасць сімвалаў у %{max}
+    pin_errors:
+      direct: Допісы, бачныя толькі згаданым карыстальнікам, не могуць быць замацаваныя
+      limit: Вы ўжо замацавалі максімальную колькасць допісаў
+      ownership: Немагчыма замацаваць чужы допіс
+      reblog: Немагчыма замацаваць пашырэнне
+    poll:
+      total_people:
+        few: "%{count} чалавекі"
+        many: "%{count} чалавек"
+        one: "%{count} чалавек"
+        other: "%{count} чалавека"
+      total_votes:
+        few: "%{count} галасы"
+        many: "%{count} галасоў"
+        one: "%{count} голас"
+        other: "%{count} голасу"
+      vote: Прагаласаваць
+    show_more: Паказаць больш
+    show_newer: Паказаць навейшыя
+    show_older: Паказаць старэйшыя
+    show_thread: Паказаць ланцуг
+    sign_in_to_participate: Зарэгіструйцеся каб удзельнічаць у абмеркаванні
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      direct: Асабіста
+      private: Для падпісчыкаў
+      private_long: Паказваць толькі падпісчыкам
+      public: Публічны
+      public_long: Усе могуць бачыць
+      unlisted: Не ў спісе
+      unlisted_long: Кожны можа ўбачыць гэты допіс, але ён не паказваецца ў публічных стужках
+  statuses_cleanup:
+    enabled: Аўтаматычна выдаляць старыя допісы
+    enabled_hint: Аўтаматычна выдаляць вашыя допісы, калі яны дасягаюць вызначанага тэрміну, акрамя наступных выпадкаў
+    exceptions: Выключэнні
+    explanation: Выдаленне допісаў — гэта цяжкая аперацыя. Яна павольна выконваецца ў часы, калі сервер не загружаны іншай працай. Праз гэта вашыя допісы могуць быць выдаленыя праз пэўны час пасля вызначанага тэрміну.
+    ignore_favs: Ігнараваць упадабаныя
+    ignore_reblogs: Ігнараваць пашырэнні
+    interaction_exceptions: Выключэнні, заснаваныя на ўзаемадзеянні
+    interaction_exceptions_explanation: Звярніце ўвагу, што няма гарантыі выдалення пастоў, калі колькасць іх упадабанняў ці пашырэннняў упадзе ніжэй за ліміт, хаця некалі гэтая колькасць перавышала яго.
+    keep_direct: Захаваць асабістыя паведамленні
+    keep_direct_hint: Не выдаляць асабістыя паведамленні
+    keep_media: Захоўваць допісы з медыя дадаткамі
+    keep_media_hint: Не выдаляць вашыя допісы, якія ўтрымліваюць медыя
+    keep_pinned: Захаваць замацаваныя допісы
+    keep_pinned_hint: Не выдаляць вашыя замацаваныя допісы
+    keep_polls: Працягнуць апытанне
+    keep_polls_hint: Не выдаляць вашыя апытанні
+    keep_self_bookmark: Захаваць допісы, якія вы дадалі ў закладкі
+    keep_self_bookmark_hint: Не выдаляе вашыя допісы, якія вы дадалі ў закладкі
+    keep_self_fav: Пакідаць упадабаныя вамі допісы
+    keep_self_fav_hint: Не выдаляе вашыя допісы, якія вы ўпадабалі
+    min_age:
+      '1209600': 2 тыдні
+      '15778476': 6 месяцаў
+      '2629746': 1 месяц
+      '31556952': 1 год
+      '5259492': 2 месяцы
+      '604800': 1 тыдзень
+      '63113904': 2 гады
+      '7889238': 3 месяцы
+    min_age_label: Тэрмін даўнасці
+    min_favs: Захаваць допісы, якія ўпадабалі хаця б
+    min_favs_hint: Не выдаляе вашыя допісы, якія спадабаліся прынамсі вызначанай колькасці людзей. Пакіньце гэтае поле пустым, каб допісы выдаляліся незалежна ад гэтай колькасці
+    min_reblogs: Захаваць допісы, якія пашырылі хаця б
+    min_reblogs_hint: Не выдаляе вашыя допісы, якія пашырыла прынамсі вызначаная колькасць людзей. Пакіньце гэтае поле пустым, каб допісы выдаляліся незалежна ад гэтай колькасці
+  stream_entries:
+    pinned: Замацаваны допіс
+    reblogged: пашыраны
+    sensitive_content: Далікатны змест
+  strikes:
+    errors:
+      too_late: Запозна абскарджваць гэтае папярэджанне
+  tags:
+    does_not_match_previous_name: не супадае з папярэднім імям
+  themes:
+    contrast: Mastodon (высокі кантраст)
+    default: Mastodon (цёмная)
+    mastodon-light: Mastodon (светлая)
+  time:
+    formats:
+      default: "%d.%m.%Y %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
+  two_factor_authentication:
+    add: Дадаць
+    disable: Адключыць 2FA
+    disabled_success: Двухфактарная аўтэнтыфікацыя адключана
+    edit: Рэдагаваць
+    enabled: Двухфактарная аўтэнтыфікацыя ўключана
+    enabled_success: Двухфактарная аўтэнтыфікацыя ўключана
+    generate_recovery_codes: Стварыць коды аднаўлення
+    lost_recovery_codes: Коды аднаўлення дазволяць вам аднавіць доступ да вашага ўліковага запісу ў выпадку страты тэлефона. Калі вы згубілі вашыя коды, вы можаце стварыць новыя тут. Старыя коды аднаўлення будуць ануляваныя.
+    methods: Двухфактарныя метады
+    otp: Праграма аўтэнтыфікацыі
+    recovery_codes: Абнавіць коды аднаўлення
+    recovery_codes_regenerated: Новыя коды аднаўлення паспяхова створаныя
+    recovery_instructions_html: Калі раптам вы страціце доступ да вашага тэлефона, вы можаце скарыстацца адным з кодаў аднаўлення ніжэй каб аднавіць доступ да вашага ўліковага запісу. <strong>Захоўвайце іх у бяспечным месцы</strong>. Напрыклад, вы можаце раздрукаваць іх і захоўваць разам з іншымі важнымі дакументамі.
+    webauthn: Ключы бяспекі
+  user_mailer:
+    appeal_approved:
+      action: Перайсці ў свой уліковы запіс
+      explanation: Апеляцыя на папярэджанне супраць вашага ўліковага запісу ад %{strike_date}, якую вы падалі %{appeal_date}, была ўхвалена. Ваш уліковы запіс зноў на добрым рахунку.
+      subject: Вашая апеляцыя ад %{date} была ўхваленая
+      title: Абскарджанне ўхвалена
+    appeal_rejected:
+      explanation: Апеляцыя на папярэджанне супраць вашага ўліковага запісу ад %{strike_date}, якую вы падалі %{appeal_date}, была адхілена.
+      subject: Вашая апеляцыя ад %{date} была адхіленая
+      title: Абскарджанне адхілена
+    backup_ready:
+      explanation: Вы запатрабавалі поўнае рэзервовае капіраванне вашага ўліковага запісу Mastodon. Цяпер яго можна спампаваць!
+      subject: Ваш архіў гатовы да спампавання
+      title: Ваш архіў можна спампаваць
+    suspicious_sign_in:
+      change_password: змяніць свой пароль
+      details: 'Вось падрабязнасці ўваходу:'
+      explanation: Мы заўважылі ўваход у ваш уліковы запіс з новага IP-адрасу.
+      further_actions_html: Калі гэта былі не вы, раім вам неадкладна %{action}, а таксама ўключыць двухфактарную аўтэнтыфікацыю, каб захаваць бяспеку вашага ўліковага запісу.
+      subject: У вас уліковы запіс зайшлі з новага IP-адрасу
+      title: Новы ўваход
+    warning:
+      appeal: Падаць апеляцыю
+      appeal_description: "Калі вы лічыце гэта памылкай, вы можаце падаць апеляцыю \nсупрацоўнікам %{instance}."
+      categories:
+        spam: Спам
+        violation: Кантэнт парушае наступныя правілы супольнасці
+      explanation:
+        delete_statuses: Было выяўлена, што некаторыя з вашых допісаў парушалі адно або больш правілаў супольнасці і былі выдаленыя мадэратарамі суполкі %{instance}.
+        disable: Вы больш не можаце выкарыстоўваць свой уліковы запіс, але ваш профіль і іншыя даныя застаюцца некранутымі. Вы можаце запытаць рэзервовае капіраванне вашых даных, змяніць налады ўліковага запісу або выдаліць свой уліковы запіс.
+        mark_statuses_as_sensitive: Некаторыя вашыя допісы былі пазначаныя як далікатныя мадэратарамі суполкі %{instance}. Гэта значыць, што іншым людзям давядзецца спачатку націснуць на медыя допісу каб праглядзець яго. Вы можаце ўласнаручна пазначыць медыя як далікатныя перад тым, як апублікаваць іх у будучым.
+        sensitive: Адгэтуль усе вашыя запампаваныя медыя файлы будуць пазначаны як далікатныя і будуць схаваныя па-за папярэджаннем.
+        silence: Вы ўсё яшчэ можаце карыстаецца вашым уліковым запісам, але толькі ўжо падпісаныя на вас людзі змогуць бачыць вашыя публікацыі на серверы. Вы таксама можаце быць адхілены ад удзелу ў розных пошукавых функцыях, аднак іншыя ўсё роўна могуць уласнаручна падпісацца на вас.
+        suspend: Вы больш не можаце выкарыстоўваць свой уліковы запіс, а профіль і іншыя даныя сталі недаступнымі. Вы ўсё яшчэ можаце ўвайсці, каб запытаць архіў сваіх даных да моманту іх выдалення праз 30 дзён, але мы захаваем вашы базавыя даныя, каб не даць вам абысці выключэнне.
+      reason: 'Прычына:'
+      statuses: 'Прычынныя допісы:'
+      subject:
+        delete_statuses: Вашыя допісы на %{acct} былі выдалены
+        disable: Ваш уліковы запіс %{acct} быў замарожаны
+        mark_statuses_as_sensitive: Вашыя допісы на %{acct} былі пазначаныя як далікатныя
+        none: Папярэджанне для %{acct}
+        sensitive: З гэтага моманту вашыя допісы на %{acct} будуць пазначаныя як далікатныя
+        silence: Ваш уліковы запіс %{acct} быў абмежаваны
+        suspend: Ваш уліковы запіс %{acct} быў выключаны
+      title:
+        delete_statuses: Выдаленыя допісы
+        disable: Уліковы запіс замарожаны
+        mark_statuses_as_sensitive: Допісы, пазначыная як далікатныя
+        none: Папярэджанне
+        sensitive: Уліковыя запісы, пазначаныя як далікатныя
+        silence: Уліковы запіс абмежаваны
+        suspend: Уліковы запіс выключаны
+    welcome:
+      edit_profile_action: Наладзіць профіль
+      edit_profile_step: Вы можаце наладзіць свой профіль, запампаваўшы выяву профілю, змяніўшы адлюстраванае імя і іншае. Вы можаце праглядаць новых падпісчыкаў, перш чым ім будзе дазволена падпісацца на вас.
+      explanation: Вось некаторыя парады каб пачаць
+      final_action: Пачаць пісаць
+      final_step: 'Пачынайце пісаць! Нават, калі ў вас няма падпісчыкаў, іншыя людзі змогуць пабачыць вашыя допісы, напрыклад, у лакальнай стужцы, або праз хэштэгі. Калі хочаце, вы можаце прадставіцца праз хэштэг #introductions.'
+      full_handle: Ваш поўны маркер
+      full_handle_hint: Гэта тое, што вы дасце сваім сябрам, каб яны маглі адпраўляць паведамленні або падпісацца на вас з іншага сервера.
+      subject: Вітаем у Mastodon
+      title: Рады вітаць вас, %{name}!
+  users:
+    follow_limit_reached: Вы не можаце падпісацца на большую колькасць людзей чым %{limit}
+    invalid_otp_token: Няправільны код двухфактарнай аўтэнтыфікацыі
+    otp_lost_help_html: Калі вы страцілі доступ да абодвух, вы можаце скарыстацца %{email}
+    seamless_external_login: Вы ўвайшлі праз знешні сэрвіс, таму налады пароля і эл. пошты недаступныя.
+    signed_in_as: 'Увайшлі як:'
+  verification:
+    explanation_html: 'Вы можаце <strong>пацвердзіць сябе як уладальніка спасылак у метададзеных вашага профілю</strong>. Для гэтага спасылка на вэб-сайт павінна ўтрымліваць спасылку на ваш профіль Mastodon. Зваротная спасылка <strong>павінна</strong> мець атрыбут <code>rel="me"</code>. Тэкставы змест спасылкі не мае значэння. Вось прыклад:'
+    verification: Верыфікацыя
+  webauthn_credentials:
+    add: Дадаць новы ключ бяспекі
+    create:
+      error: Узнікла праблема з даданнем ключа бяспекі. Паспрабуйце яшчэ раз.
+      success: Ваш ключ бяспекі быў паспяхова дададзены.
+    delete: Выдаліць
+    delete_confirmation: Сапраўды выдаліць гэты ключ бяспекі?
+    description_html: Калі вы ўключыце <strong>аўтэнтыфікацыю ключа бяспекі</strong>, для ўваходу вам спатрэбіцца выкарыстоўваць адзін з вашых ключоў бяспекі.
+    destroy:
+      error: Узнікла праблема з выдаленнем ключа бяспекі. Паспрабуйце яшчэ раз.
+      success: Ваш ключ бяспекі быў паспяхова выдалены.
+    invalid_credential: Няправільны ключ бяспекі
+    nickname_hint: Увядзіце псеўданім вашага новага ключа бяспекі
+    not_enabled: Вы яшчэ не ўключылі WebAuthn
+    not_supported: Гэты браўзер не падтрымлівае ключы бяспекі
+    otp_required: Каб выкарыстоўваць ключы бяспекі, спачатку ўключыце двухфактарную аўтэнтыфікацыю.
+    registered_on: Зарэгістраваны %{date}

@@ -18,8 +18,8 @@ gd:
           disable: Bac an cleachdaiche o chleachdadh a’ chunntais aca ach na sguab às no falaich an t-susbaint aca.
           none: Cleachd seo airson rabhadh a chur dhan chleachdaiche gun ghnìomh eile a ghabhail.
           sensitive: Èignich comharra gu bheil e frionasach air a h-uile ceanglachan meadhain a’ chleachdaiche seo.
-          silence: Bac an cleachdaiche o bhith a’ postadh le faicsinneachd poblach, falaich na postaichean aca agus brathan o na daoine nach eil ’ga leantainn.
-          suspend: Bac conaltradh sam bith leis a’ chunntas seo agus sguab às an t-susbaint aige. Gabhaidh seo a neo-dhèanamh am broinn 30 latha.
+          silence: Bac an cleachdaiche o bhith a’ postadh le faicsinneachd poblach, falaich na postaichean aca agus brathan o na daoine nach eil ’ga leantainn. Dùinidh seo gach gearan mun chunntas seo.
+          suspend: Bac eadar-ghnìomh sam bith leis a’ chunntas seo agus sguab às an t-susbaint aige. Gabhaidh seo a neo-dhèanamh am broinn 30 latha. Dùinidh seo gach gearan mun chunntas seo.
         warning_preset_id: Roghainneil. ’S urrainn dhut teacsa gnàthaichte a chur ri deireadh an ro-sheata fhathast
       announcement:
         all_day: Nuair a bhios cromag ris, cha nochd ach cinn-latha na rainse-ama
@@ -74,6 +74,7 @@ gd:
           hide: Falaich an t-susbaint chriathraichte uile gu lèir mar nach robh i ann idir
           warn: Falaich an t-susbaint chriathraichte air cùlaibh rabhaidh a dh’innseas tiotal na criathraige
       form_admin_settings:
+        activity_api_enabled: Cunntasan nam postaichean a chaidh fhoillseachadh gu h-ionadail, nan cleachdaichean gnìomhach ’s nan clàraidhean ùra an am bucaidean seachdaineil
         backups_retention_period: Cùm na tasg-lannan a chaidh a ghintinn dhan luchd-cleachdaidh rè an àireamh de làithean a shònraich thu.
         bootstrap_timeline_accounts: Thèid na cunntasan seo a phrìneachadh air bàrr nam molaidhean leantainn dhan luchd-cleachdaidh ùr.
         closed_registrations_message: Thèid seo a shealltainn nuair a bhios an clàradh dùinte
@@ -81,6 +82,7 @@ gd:
         custom_css: "’S urrainn dhut stoidhlean gnàthaichte a chur an sàs air an tionndadh-lìn de Mhastodon."
         mascot: Tar-àithnidh seo an sgead-dhealbh san eadar-aghaidh-lìn adhartach.
         media_cache_retention_period: Thèid na faidhlichean meadhain air an luchdadh a-nuas a sguabadh às às dèidh an àireamh de làithean a shònraich thu nuair a bhios luach dearbh air agus an ath-luachdadh nuair a thèid an iarraidh an uairsin.
+        peers_api_enabled: Seo liosta de dh’ainmean àrainne ris an do thachair am frithealaiche seo sa cho-shaoghal. Chan eil dàta sam bith ’ga ghabhail a-staigh an-seo mu a bheil thu co-naisgte ri frithealaiche sònraichte gus nach eil ach dìreach gu bheil am frithealaiche agad eòlach air. Thèid seo a chleachdadh le seirbheisean a chruinnicheas stadastaireachd air a’ cho-nasgadh san fharsaingeachd.
         profile_directory: Seallaidh eòlaire nam pròifil liosta dhen luchd-cleachdaidh a dh’aontaich gun gabh an rùrachadh.
         require_invite_text: Nuair a bhios aontachadh a làimh riatanach dhan chlàradh, dèan an raon teacsa “Carson a bu mhiann leat ballrachd fhaighinn?” riatanach seach roghainneil
         site_contact_email: Mar a ruigear thu le ceistean laghail no taice.
@@ -89,11 +91,13 @@ gd:
         site_short_description: Tuairisgeul goirid a chuidicheas le aithneachadh sònraichte an fhrithealaiche agad. Cò leis is cò dha a tha e?
         site_terms: Cleachd am poileasaidh prìobhaideachd agad fhèin no fàg bàn e gus am fear bunaiteach a chleachdadh. ’S urrainn dhut structar a chur air le co-chàradh Markdown.
         site_title: An t-ainm a tha air an fhrithealaiche agad seach ainm àrainne.
+        status_page_url: URL duilleige far am faicear staid an fhrithealaiche seo nuair a bhios e sìos
         theme: An t-ùrlar a chì na h-aoighean gun chlàradh a-staigh agus an luchd-cleachdaidh ùr.
         thumbnail: Dealbh mu 2:1 a thèid a shealltainn ri taobh fiosrachadh an fhrithealaiche agad.
         timeline_preview: "’S urrainn dha na h-aoighean gun chlàradh a-staigh na postaichean poblach as ùire a tha ri fhaighinn air an fhrithealaiche a bhrabhsadh."
         trendable_by_default: Geàrr leum thar lèirmheas a làimh na susbainte a’ treandadh. Gabhaidh nithean fa leth a thoirt far nan treandaichean fhathast an uairsin.
         trends: Seallaidh na treandaichean na postaichean, tagaichean hais is naidheachdan a tha fèill mhòr orra air an fhrithealaiche agad.
+        trends_as_landing_page: Seall susbaint a’ treandadh dhan fheadhainn nach do chlàraich a-steach is do dh’aoighean seach tuairisgeul an fhrithealaiche seo. Feumaidh treandaichean a bhith an comas airson sin.
       form_challenge:
         current_password: Tha thu a’ tighinn a-steach gu raon tèarainte
       imports:
@@ -103,7 +107,7 @@ gd:
       ip_block:
         comment: Roghainneil. Cùm an cuimhne carson an do chuir thu an riaghailt seo ris.
         expires_in: Tha an uiread de sheòlaidhean IP cuingichte is thèid an co-roinneadh aig amannan agus an gluasad do chuideigin eile gu tric. Air an adhbhar seo, cha mholamaid bacadh IP gun chrìoch.
-        ip: Cuir a-steach seòladh IPv4 no IPv6. ’S urrainn dhut rainsean gu lèir a bhacadh le co-chàradh CIDR. Thoir an aire nach gluais thu thu fhèin a-mach!
+        ip: Cuir a-steach seòladh IPv4 no IPv6. ’S urrainn dhut rainsean gu lèir a bhacadh le co-chàradh CIDR. Thoir an aire nach glais thu thu fhèin a-mach!
         severities:
           no_access: Bac inntrigeadh dha na goireasan uile
           sign_up_block: Cha bhi ùr-chlàradh ceadaichte
@@ -229,6 +233,7 @@ gd:
           hide: Falaich uile gu lèir
           warn: Falaich le rabhadh
       form_admin_settings:
+        activity_api_enabled: Foillsich agragaid dhen stadastaireachd mu ghnìomhachd nan cleachdaichean san API
         backups_retention_period: Ùine glèidhidh aig tasg-lannan an luchd-cleachdaidh
         bootstrap_timeline_accounts: Mol na cunntasan seo do chleachdaichean ùra an-còmhnaidh
         closed_registrations_message: Teachdaireachd ghnàthaichte nuair nach eil clàradh ri fhaighinn
@@ -236,6 +241,7 @@ gd:
         custom_css: CSS gnàthaichte
         mascot: Suaichnean gnàthaichte (dìleabach)
         media_cache_retention_period: Ùine glèidhidh aig tasgadan nam meadhanan
+        peers_api_enabled: Foillsich liosta nam frithealaichean a chaidh a rùrachadh san API
         profile_directory: Cuir eòlaire nam pròifil an comas
         registrations_mode: Cò dh’fhaodas clàradh
         require_invite_text: Iarr adhbhar clàraidh
@@ -247,11 +253,13 @@ gd:
         site_short_description: Tuairisgeul an fhrithealaiche
         site_terms: Poileasaidh prìobhaideachd
         site_title: Ainm an fhrithealaiche
+        status_page_url: URL duilleag na staide
         theme: An t-ùrlar bunaiteach
         thumbnail: Dealbhag an fhrithealaiche
         timeline_preview: Ceadaich inntrigeadh gun ùghdarrachadh air na loidhnichean-ama phoblach
-        trendable_by_default: Ceadaich treandaichean gu lèirmheas ro làimh
+        trendable_by_default: Ceadaich treandaichean gun lèirmheas ro làimh
         trends: Cuir na treandaichean an comas
+        trends_as_landing_page: Cleachd na treandaichean ’nan duilleag-laighe
       interactions:
         must_be_follower: Bac na brathan nach eil o luchd-leantainn
         must_be_following: Bac na brathan o dhaoine nach lean thu

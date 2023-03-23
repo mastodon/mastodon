@@ -1,13 +1,55 @@
 ---
 sr-Latn:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Krajnji rok
+        options: Izbori
+      user:
+        agreement: Ugovor o usluzi
+        email: E-adresa
+        locale: Lokalno
+        password: Lozinka
+      user/account:
+        username: Korisničko ime
+      user/invite_request:
+        text: Razlog
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: samo slova, brojevi i donje crte
+              invalid: mora da sadrži samo slova, brojeve i donje crte
+              reserved: je rezervisano
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nije važeća URL adresa
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nije važeća URL adresa
+        import:
+          attributes:
+            data:
+              malformed: nije dobro formiran
         status:
           attributes:
             reblog:
-              taken: statusa već postoji
+              taken: objave već postoji
+        user:
+          attributes:
+            email:
+              blocked: koristi nedozvoljeni provajder e-pošte
+              unreachable: izgleda da ne postoji
+            role_id:
+              elevated: ne može biti više sa vašom trenutnom ulogom
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: uključuje dozvole koje nisu bezbedne za osnovnu ulogu
+              elevated: ne može da uključi dozvole koje vaša trenutna uloga ne poseduje
+              own_role: ne može da se promeni sa vašom trenutnom ulogom
+            position:
+              elevated: ne može biti više sa vašom trenutnom ulogom
+              own_role: ne može da se promeni sa vašom trenutnom ulogom

@@ -102,7 +102,7 @@ export const addReaction = (announcementId, name) => (dispatch, getState) => {
     dispatch(addReactionRequest(announcementId, name, alreadyAdded));
   }
 
-  api(getState).put(`/api/v1/announcements/${announcementId}/reactions/${name}`).then(() => {
+  api(getState).put(`/api/v1/announcements/${announcementId}/reactions/${encodeURIComponent(name)}`).then(() => {
     dispatch(addReactionSuccess(announcementId, name, alreadyAdded));
   }).catch(err => {
     if (!alreadyAdded) {
@@ -136,7 +136,7 @@ export const addReactionFail = (announcementId, name, error) => ({
 export const removeReaction = (announcementId, name) => (dispatch, getState) => {
   dispatch(removeReactionRequest(announcementId, name));
 
-  api(getState).delete(`/api/v1/announcements/${announcementId}/reactions/${name}`).then(() => {
+  api(getState).delete(`/api/v1/announcements/${announcementId}/reactions/${encodeURIComponent(name)}`).then(() => {
     dispatch(removeReactionSuccess(announcementId, name));
   }).catch(err => {
     dispatch(removeReactionFail(announcementId, name, err));
