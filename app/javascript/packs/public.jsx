@@ -117,11 +117,12 @@ function main() {
       const datetime = new Date(content.getAttribute('datetime'));
       const now      = new Date();
 
-      content.title = dateTimeFormat.format(datetime);
+      const timeGiven = content.getAttribute('datetime').includes('T');
+      content.title = timeGiven ? dateTimeFormat.format(datetime) : dateFormat.format(datetime);
       content.textContent = timeAgoString({
         formatMessage: ({ id, defaultMessage }, values) => (new IntlMessageFormat(messages[id] || defaultMessage, locale)).format(values),
         formatDate: (date, options) => (new Intl.DateTimeFormat(locale, options)).format(date),
-      }, datetime, now, now.getFullYear(), content.getAttribute('datetime').includes('T'));
+      }, datetime, now, now.getFullYear(), timeGiven);
     });
 
     const reactComponents = document.querySelectorAll('[data-component]');
