@@ -164,12 +164,18 @@ RSpec.describe Status, type: :model do
 
   describe '#replies_count' do
     it 'is the number of replies' do
-      reply = Fabricate(:status, account: bob, thread: subject)
+      alice.update(domain: 'example.com')
+      bob.update(domain: 'example.com')
+      subject = Fabricate(:status, account: alice, visibility: :public)
+      reply = Fabricate(:status, account: bob, thread: subject, visibility: :public)
       expect(subject.replies_count).to eq 1
     end
 
     it 'is decremented when reply is removed' do
-      reply = Fabricate(:status, account: bob, thread: subject)
+      alice.update(domain: 'example.com')
+      bob.update(domain: 'example.com')
+      subject = Fabricate(:status, account: alice, visibility: :public)
+      reply = Fabricate(:status, account: bob, thread: subject, visibility: :public)
       expect(subject.replies_count).to eq 1
       reply.destroy
       expect(subject.replies_count).to eq 0
@@ -342,7 +348,7 @@ RSpec.describe Status, type: :model do
     end
 
     it 'creates new conversation for stand-alone status' do
-      expect(Status.create(account: alice, text: 'First').conversation_id).to_not be_nil
+      expect(Status.create(account: alice, text: 'First', visibility: 'private').conversation_id).to_not be_nil
     end
 
     it 'keeps conversation of parent node' do
@@ -366,11 +372,33 @@ RSpec.describe Status, type: :model do
       status = Fabricate.build(:status, uri: '', account: alice)
       expect(status).to model_have_error_on_field(:uri)
     end
+
+    it 'disallows public for local non-admin accounts' do
+      status = Fabricate.build(:status, visibility: :public, account: alice)
+      expect(status).to model_have_error_on_field(:visibility)
+    end
+
+    it 'disallows unlisted status for local non-admin accounts' do
+      status = Fabricate.build(:status, visibility: :unlisted, account: alice)
+      expect(status).to model_have_error_on_field(:visibility)
+    end
+
+    it 'allows public status for local owner account' do
+      owner = Fabricate(:user, role: UserRole.find_by(name: 'Owner')).account
+      status = Fabricate.build(:status, visibility: :public, account: owner)
+      expect(status).to_not model_have_error_on_field(:visibility)
+    end
+
+    it 'allows public status for remote accounts' do
+      alice.update(domain: 'example.com')
+      status = Fabricate.build(:status, visibility: :public, account: alice)
+      expect(status).to_not model_have_error_on_field(:visibility)
+    end
   end
 
   describe 'after_create' do
     it 'saves ActivityPub uri as uri for local status' do
-      status = Status.create(account: alice, text: 'foo')
+      status = Status.create(account: alice, text: 'foo', visibility: 'private')
       status.reload
       expect(status.uri).to start_with('https://')
     end
