@@ -9,10 +9,11 @@ class StatusesController < ApplicationController
   before_action :require_account_signature!, only: [:show, :activity], if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_status
   before_action :set_instance_presenter
-  before_action :set_link_headers
   before_action :redirect_to_original, only: :show
   before_action :set_cache_headers
   before_action :set_body_classes, only: :embed
+
+  after_action :set_link_headers
 
   skip_around_action :set_locale, if: -> { request.format == :json }
   skip_before_action :require_functional!, only: [:show, :embed], unless: :whitelist_mode?
