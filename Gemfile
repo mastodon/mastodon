@@ -147,7 +147,7 @@ group :development do
 
   gem 'stackprof'
 
-  gem 'twitter_cldr', '~> 6.11.4', require: false
+  gem 'ruby-cldr', github: 'ruby-i18n/ruby-cldr', ref: '86a5d7b84ddb1b59a792d7ba4b93b927bc7f3406', require: false
 end
 
 group :production do

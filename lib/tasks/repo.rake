@@ -84,37 +84,6 @@ namespace :repo do
     end
   end
 
-  task languages: :environment do
-    require 'twitter_cldr'
-
-    languages = LanguagesHelper::SUPPORTED_LOCALES.keys
-
-    I18n.available_locales.each do |locale|
-      next unless TwitterCldr.supported_locale?(locale)
-
-      file = Rails.root.join('config', 'locales', "languages.#{locale}.yml")
-      data = if file.exist?
-               YAML.safe_load(File.read(file), symbolize_names: true)
-             else
-               { locale => { languages: {} } }
-             end
-
-      cldr_languages = TwitterCldr::Shared::Languages.all_for(locale)
-      cldr_languages.slice!(*languages)
-
-      if ENV['FORCE']
-        data[locale][:languages].merge!(cldr_languages)
-      else
-        data[locale][:languages].reverse_merge!(cldr_languages)
-      end
-
-      data[locale][:languages] = data[locale][:languages].sort_by { |language, _| language.to_s }.to_h
-
-      yaml = YAML.dump(data.deep_stringify_keys)
-      File.write(file, yaml)
-    end
-  end
-
   task check_locales_files: :environment do
     pastel = Pastel.new
 

@@ -27,6 +27,18 @@ GIT
     rails-settings-cached (0.6.6)
       rails (>= 4.2.0)
 
+GIT
+  remote: https://github.com/ruby-i18n/ruby-cldr.git
+  revision: 86a5d7b84ddb1b59a792d7ba4b93b927bc7f3406
+  ref: 86a5d7b84ddb1b59a792d7ba4b93b927bc7f3406
+  specs:
+    ruby-cldr (0.5.0)
+      i18n
+      nokogiri
+      psych (>= 4.0.0)
+      rubyzip
+      thor
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -155,7 +167,6 @@ GEM
     bundler-audit (0.9.1)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
-    camertron-eprun (1.1.1)
     capistrano (3.17.2)
       airbrussh (>= 1.0.0)
       i18n
@@ -189,7 +200,6 @@ GEM
       elasticsearch (>= 7.12.0, < 7.14.0)
       elasticsearch-dsl
     chunky_png (1.4.0)
-    cldr-plurals-runtime-rb (1.1.0)
     climate_control (0.2.0)
     cocoon (1.2.15)
     coderay (1.1.3)
@@ -498,6 +508,8 @@ GEM
       net-smtp
       premailer (~> 1.7, >= 1.7.9)
     private_address_check (0.5.0)
+    psych (5.1.0)
+      stringio
     public_suffix (5.0.1)
     puma (6.1.1)
       nio4r (~> 2.0)
@@ -630,6 +642,7 @@ GEM
       nokogiri (>= 1.10.5)
       rexml
     ruby2_keywords (0.0.5)
+    rubyzip (2.3.2)
     rufus-scheduler (3.8.2)
       fugit (~> 1.1, >= 1.1.6)
     safety_net_attestation (0.4.0)
@@ -683,6 +696,7 @@ GEM
     statsd-ruby (1.5.0)
     stoplight (3.0.1)
       redlock (~> 1.0)
+    stringio (3.0.5)
     strong_migrations (0.7.9)
       activerecord (>= 5)
     swd (1.3.0)
@@ -714,10 +728,6 @@ GEM
     twitter-text (3.1.0)
       idn-ruby
       unf (~> 0.1.0)
-    twitter_cldr (6.11.4)
-      camertron-eprun
-      cldr-plurals-runtime-rb (~> 1.1)
-      tzinfo
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2022.7)
@@ -872,6 +882,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
+  ruby-cldr!
   ruby-progressbar (~> 1.11)
   sanitize (~> 6.0)
   scenic (~> 1.7)
@@ -890,7 +901,6 @@ DEPENDENCIES
   thor (~> 1.2)
   tty-prompt (~> 0.23)
   twitter-text (~> 3.1.0)
-  twitter_cldr (~> 6.11.4)
   tzinfo-data (~> 1.2022)
   webauthn (~> 3.0)
   webmock (~> 3.18)
