@@ -148,7 +148,7 @@ group :development do
 
   gem 'stackprof'
 
-  gem 'ruby-cldr', github: 'ruby-i18n/ruby-cldr', ref: '86a5d7b84ddb1b59a792d7ba4b93b927bc7f3406', require: false
+  gem 'ruby-cldr', github: 'c960657/ruby-cldr', ref: 'c578e04a47a48cfb06d3348223b62a8a0f33aeae'
 end
 
 group :production do

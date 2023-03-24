@@ -8,6 +8,18 @@ GIT
       jwt (~> 2.0)
 
 GIT
+  remote: https://github.com/c960657/ruby-cldr.git
+  revision: c578e04a47a48cfb06d3348223b62a8a0f33aeae
+  ref: c578e04a47a48cfb06d3348223b62a8a0f33aeae
+  specs:
+    ruby-cldr (0.5.0)
+      i18n
+      nokogiri
+      psych (>= 4.0.0)
+      rubyzip
+      thor
+
+GIT
   remote: https://github.com/kreeti/kt-paperclip.git
   revision: 11abf222dc31bff71160a1d138b445214f434b2b
   ref: 11abf222dc31bff71160a1d138b445214f434b2b
@@ -26,18 +38,6 @@ GIT
   specs:
     rails-settings-cached (0.6.6)
       rails (>= 4.2.0)
-
-GIT
-  remote: https://github.com/ruby-i18n/ruby-cldr.git
-  revision: 86a5d7b84ddb1b59a792d7ba4b93b927bc7f3406
-  ref: 86a5d7b84ddb1b59a792d7ba4b93b927bc7f3406
-  specs:
-    ruby-cldr (0.5.0)
-      i18n
-      nokogiri
-      psych (>= 4.0.0)
-      rubyzip
-      thor
 
 GEM
   remote: https://rubygems.org/
