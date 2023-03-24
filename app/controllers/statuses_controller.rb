@@ -70,6 +70,6 @@ class StatusesController < ApplicationController
   end
 
   def redirect_to_original
-    redirect_to ActivityPub::TagManager.instance.url_for(@status.reblog) if @status.reblog?
+    redirect_to(ActivityPub::TagManager.instance.url_for(@status.reblog), allow_other_host: true) if @status.reblog?
   end
 end
