@@ -21,7 +21,7 @@ hu:
         action_with_app: 'Megerősítés majd visszatérés: %{app}'
         explanation: Ezzel az email címmel kezdeményeztek regisztrációt %{host} kiszolgálón. Csak egy kattintás, és a felhasználói fiók bekapcsolásra kerül. Ha a regisztráció kezdeményezése téves volt, tekintsük ezt az emailt tárgytalannak.
         explanation_when_pending: Ezzel az email címmel meghívás kérés történt %{host} kiszolgálón. Az email cím megerősítése után a jelentkezés áttekintésre kerül. Ennek ideje alatt nem lehet belépni. Ha a jelentkezés elutasításra kerül, az adatok törlésre kerülnek, más teendő nincs. Ha a kérelem kezdeményezése téves volt, tekintsük ezt az emailt tárgytalannak.
-        extra_html: Tekintsd át a <a href="%{terms_path}">a kiszolgáló szabályait</a> és <a href="%{policy_path}">a felhasználási feltételeket</a>.
+        extra_html: Tekintsük át a <a href="%{terms_path}">a kiszolgáló szabályait</a> és a <a href="%{policy_path}">felhasználási feltételeket</a>.
         subject: 'Mastodon: Megerősítési utasítások: %{instance}'
         title: Email cím megerősítése
       email_changed:
@@ -31,7 +31,7 @@ hu:
         title: Új email cím
       password_change:
         explanation: A fiókhoz tartozó jelszó megváltoztatásra került.
-        extra: Ha nem te kérted a fiókod jelszavának módosítását, akkor valaki hozzáférhetett a fiókodhoz. Legjobb, ha azonnal megváltoztatod a jelszavadat; ha nem férsz hozzá a fiókodhoz, vedd fel a kapcsolatot a kiszolgálód adminisztrátorával.
+        extra: Ha a fiók jelszavának módosítási kérelme téves volt, akkor valaki hozzáférhetett a fiókhoz. Legjobb, a jelszó azonnali megváltoztatása vagy ha kizárásra kerültünk a fiókból, vegyük fel a kapcsolatot a kiszolgáló adminisztrátorával.
         subject: 'Mastodon: A jelszó megváltoztatásra került'
         title: A jelszó megváltoztatásra került
       reconfirmation_instructions:
@@ -82,26 +82,26 @@ hu:
     passwords:
       no_token: Nem lehet hozzáférni ehhez az oldalhoz jelszó visszaállító email nélkül. Ha egy jelszó visszaállító email miatt érkeztünk ide, ellenőrizzük a megadott teljes webcím használatát.
       send_instructions: Ha az email cím létezik az adatbázisban, néhány perc alatt megérkezik jelszó helyreállítási hivatkozás az email címre. Ellenőrizzük a spam mappát, ha nem érkezett meg ez az email.
-      send_paranoid_instructions: Ha létezik az e-mail cím, pár percen belül kapni fogsz egy e-mailt arról, hogy hogyan tudod visszaállítani a jelszavadat. Kérlek ellenőrizd a levélszemét mappádat, ha nem kaptál ilyen e-mailt.
-      updated: Jelszavad sikeresen frissült. Bejelentkeztél.
-      updated_not_active: Jelszavad sikeresen megváltoztattuk.
+      send_paranoid_instructions: Ha az email cím létezik az adatbázisban, néhány perc alatt megérkezik jelszó helyreállítási hivatkozás az email címre. Ellenőrizzük a spam mappát, ha nem érkezett meg ez az email.
+      updated: A jelszó sikeresen megváltozott. Megtörtént a bejelentkezés.
+      updated_not_active: A jelszó sikeresen megváltoztatásra került.
     registrations:
-      destroyed: Viszlát! A fiókodat sikeresen töröltük. Reméljük hamarosan viszontláthatunk.
-      signed_up: Üdvözlünk! Sikeresen regisztráltál.
-      signed_up_but_inactive: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókodat még nem aktiválták.
-      signed_up_but_locked: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókod le van zárva.
+      destroyed: Viszontásátásra! A fiók sikeresen törlésre került. Reméljük hamarosan visszatér.
+      signed_up: Üdvözlet! A regisztráció sikeres volt.
+      signed_up_but_inactive: A regisztráció sikeres volt. Ennek ellenére nem lehet belépni, mert a fiók még nem lett aktiválva.
+      signed_up_but_locked: A regisztráció sikeres volt. Ennek ellenére nem lehet belépni, mert a fiók lezárásra került.
       signed_up_but_pending: Egy megerősítési hivatkozással ellátott üzenetet kiküldtünk az e-mail címedre. Ha kattintasz a hivatkozásra, átnézzük a kérelmedet. Értesítünk, ha jóváhagytuk.
       signed_up_but_unconfirmed: Egy megerősítési hivatkozással ellátott üzenetet kiküldtünk az e-mail címedre. Kérjük használd a hivatkozást a fiókod aktiválásához. Ellenőrizd a spam mappádat, ha nem kaptad meg ezt a levelet.
-      update_needs_confirmation: Sikeresen frissítetted a fiókodat, de szükségünk van az e-mail címed megerősítésére. Kérlek ellenőrizd az e-mailedet és kövesd a levélben szereplő megerősítési linket az e-mail címed megerősítéséhez. Ellenőrizd a levélszemét mappád, ha nem kaptál volna ilyen levelet.
-      updated: Fiókod frissítése sikeres.
+      update_needs_confirmation: A fiókodat sikeresen frissítésre került, de szükség van az email cím megerősítésére. Ellenőrizzük az emailt és kövessük a benne levő megerősítési hivatkozást az email cím megerősítéséhez. Ellenőrizzük a levélszemét mappát, ha nemérkezett volna meg ez az email.
+      updated: A fiók sikeresen frissítésre került.
     sessions:
-      already_signed_out: Sikeres kijelentkezés.
-      signed_in: Sikeres bejelentkezés.
-      signed_out: Sikeres kijelentkezés.
+      already_signed_out: A kijelentkezés sikeres volt.
+      signed_in: A bejelentkezés sikeres volt.
+      signed_out: A kijelentkezés sikeres volt.
     unlocks:
-      send_instructions: Pár percen belül egy e-mailt fogsz kapni a feloldáshoz szükséges lépésekkel. Ellenőrizd a levélszemét mappád, ha nem kaptál volna ilyen levelet.
-      send_paranoid_instructions: Ha a fiókod létezik, pár percen belül egy e-mailt fogsz kapni a feloldáshoz szükséges lépésekkel. Ellenőrizd a levélszemét mappád, ha nem kaptál volna ilyen levelet.
-      unlocked: A fiókodat sikeresen feloldottuk. Jelentkezz be a folytatáshoz.
+      send_instructions: Néhány perc múlva egy email érkezik a fiók feloldásáról. Ellenőrizzük a spam mappát, ha nem érkezett volna meg at email.
+      send_paranoid_instructions: Ha a fiók létezik, pár percen belül egy email érkezik a feloldáshoz szükséges lépésekkel. Ellenőrizzük a levélszemét mappát, ha nem érkezett volna ilyen email.
+      unlocked: A fiók sikeresen feloldásra került. Jelentkezzünk be a folytatáshoz.
   errors:
     messages:
       already_confirmed: már meg lett erősítve, kérjük jelentkezz be
