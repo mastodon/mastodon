@@ -14,8 +14,13 @@ namespace :cldr do
 
   desc 'Download CLDR data'
   task download: :environment do
-    version = ENV.fetch('CLDR_VERSION', Cldr::Download::DEFAULT_VERSION)
+    # View releases https://cldr.unicode.org/index/downloads
+    version = ENV.fetch('CLDR_VERSION', 42)
+    puts "Downloading CLDR version #{version}"
+
     Cldr::Download.download(Cldr::Download::DEFAULT_SOURCE, Cldr::Download::DEFAULT_TARGET, version) { putc('.') }
+
+    puts
   end
 
   desc 'Build locale files from CLDR data'
@@ -29,7 +34,7 @@ namespace :cldr do
     I18n.available_locales.each do |locale|
       cldr_locale = locale_map.fetch(locale, locale.to_s)
 
-      puts "Building #{locale}"
+      print "Building #{locale} ... "
 
       Cldr::Export.export(
         target: export_target,
@@ -40,7 +45,10 @@ namespace :cldr do
       )
 
       cldr_file = export_target.join('locales', cldr_locale, 'languages.yml')
-      next unless cldr_file.exist?
+      unless cldr_file.exist?
+        puts 'not in CLDR'
+        next
+      end
 
       cldr_languages = YAML.safe_load(File.read(cldr_file), symbolize_names: true).dig(cldr_locale.to_sym, :languages)
       cldr_languages.slice!(*LanguagesHelper::SUPPORTED_LOCALES.keys).stringify_keys
@@ -59,6 +67,8 @@ namespace :cldr do
 
       yaml = YAML.dump(data.deep_stringify_keys)
       File.write(locale_file, yaml)
+
+      puts 'done'
     end
   end
 end
