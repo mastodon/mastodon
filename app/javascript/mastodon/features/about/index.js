@@ -118,7 +118,7 @@ class About extends React.PureComponent {
           <h1 className='heading'>
             A social network that's personal and private,
             <br />
-            built on decentralized techonology of the future
+            built on decentralized technology of the future
           </h1>
           <div className='bullet-section'>
             <h3>
