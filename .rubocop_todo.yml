@@ -2263,17 +2263,6 @@ Style/RedundantFetchBlock:
     - 'config/puma.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
-Style/RedundantFreeze:
-  Exclude:
-    - 'app/lib/emoji_formatter.rb'
-    - 'app/lib/plain_text_formatter.rb'
-    - 'app/lib/text_formatter.rb'
-    - 'app/models/account.rb'
-    - 'app/models/concerns/omniauthable.rb'
-    - 'app/services/fetch_oembed_service.rb'
-    - 'config/initializers/rack_attack.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
 Style/RedundantRegexpCharacterClass:
   Exclude:
     - 'app/lib/link_details_extractor.rb'
