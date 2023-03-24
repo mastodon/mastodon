@@ -182,11 +182,6 @@ Lint/OrAssignmentToConstant:
   Exclude:
     - 'lib/sanitize_ext/sanitize_config.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Lint/RedundantDirGlobSort:
-  Exclude:
-    - 'db/seeds.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 Lint/SendWithMixinArgument:
   Exclude:
