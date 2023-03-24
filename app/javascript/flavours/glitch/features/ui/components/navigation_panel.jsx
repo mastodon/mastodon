@@ -29,7 +29,6 @@ const messages = defineMessages({
   app_settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
 });
 
-export default @injectIntl
 class NavigationPanel extends React.Component {
 
   static contextTypes = {
@@ -102,3 +101,5 @@ class NavigationPanel extends React.Component {
   }
 
 }
+
+export default injectIntl(NavigationPanel);

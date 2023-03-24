@@ -13,7 +13,7 @@ const messages = defineMessages({
   add: { id: 'lists.account.add', defaultMessage: 'Add to list' },
 });
 
-const MapStateToProps = (state, { listId, added }) => ({
+const mapStateToProps = (state, { listId, added }) => ({
   list: state.get('lists').get(listId),
   added: typeof added === 'undefined' ? state.getIn(['listAdder', 'lists', 'items']).includes(listId) : added,
 });
@@ -23,8 +23,6 @@ const mapDispatchToProps = (dispatch, { listId }) => ({
   onAdd: () => dispatch(addToListAdder(listId)),
 });
 
-export default @connect(MapStateToProps, mapDispatchToProps)
-@injectIntl
 class List extends ImmutablePureComponent {
 
   static propTypes = {
@@ -67,3 +65,5 @@ class List extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(List));

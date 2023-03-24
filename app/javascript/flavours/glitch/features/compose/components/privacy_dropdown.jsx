@@ -16,7 +16,6 @@ const messages = defineMessages({
   change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
 });
 
-export default @injectIntl
 class PrivacyDropdown extends React.PureComponent {
 
   static propTypes = {
@@ -86,3 +85,5 @@ class PrivacyDropdown extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(PrivacyDropdown);

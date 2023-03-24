@@ -25,8 +25,6 @@ const mapStateToProps = (state, { statusId }) => ({
   language: state.getIn(['statuses', statusId, 'language']),
 });
 
-export default @connect(mapStateToProps, null, null, { forwardRef: true })
-@injectIntl
 class MediaModal extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -259,3 +257,5 @@ class MediaModal extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, null, null, { forwardRef: true })(injectIntl(MediaModal));

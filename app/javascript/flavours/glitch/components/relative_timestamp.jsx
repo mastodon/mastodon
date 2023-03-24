@@ -121,7 +121,6 @@ const timeRemainingString = (intl, date, now, timeGiven = true) => {
   return relativeTime;
 };
 
-export default @injectIntl
 class RelativeTimestamp extends React.Component {
 
   static propTypes = {
@@ -197,3 +196,5 @@ class RelativeTimestamp extends React.Component {
   }
 
 }
+
+export default injectIntl(RelativeTimestamp);

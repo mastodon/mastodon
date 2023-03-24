@@ -45,7 +45,6 @@ class SearchPopout extends React.PureComponent {
 }
 
 //  The component.
-export default @injectIntl
 class Search extends React.PureComponent {
 
   static contextTypes = {
@@ -166,3 +165,5 @@ class Search extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(Search);

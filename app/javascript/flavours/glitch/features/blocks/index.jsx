@@ -22,8 +22,6 @@ const mapStateToProps = state => ({
   isLoading: state.getIn(['user_lists', 'blocks', 'isLoading'], true),
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class Blocks extends ImmutablePureComponent {
 
   static propTypes = {
@@ -77,3 +75,5 @@ class Blocks extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(Blocks));

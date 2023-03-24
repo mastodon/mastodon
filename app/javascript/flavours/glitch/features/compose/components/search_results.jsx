@@ -14,7 +14,6 @@ const messages = defineMessages({
   dismissSuggestion: { id: 'suggestions.dismiss', defaultMessage: 'Dismiss suggestion' },
 });
 
-export default @injectIntl
 class SearchResults extends ImmutablePureComponent {
 
   static propTypes = {
@@ -139,3 +138,5 @@ class SearchResults extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(SearchResults);
