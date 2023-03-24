@@ -17,7 +17,6 @@ const messages = defineMessages({
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
 });
 
-export default @injectIntl
 class StatusCheckBox extends React.PureComponent {
 
   static propTypes = {
@@ -80,3 +79,5 @@ class StatusCheckBox extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(StatusCheckBox);

@@ -17,7 +17,6 @@ module.exports = (api) => {
       ['@babel/env', envOptions],
     ],
     plugins: [
-      ['@babel/proposal-decorators', { legacy: true }],
       ['react-intl', { messagesDir: './build/messages' }],
       'preval',
     ],
