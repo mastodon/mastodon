@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import classnames from 'classnames';
 import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
@@ -47,7 +48,10 @@ class TranslateButton extends React.PureComponent {
 
 }
 
-export default @injectIntl
+const mapStateToProps = state => ({
+  languages: state.getIn(['server', 'translationLanguages', 'items']),
+});
+
 class StatusContent extends React.PureComponent {
 
   static contextTypes = {
@@ -63,6 +67,7 @@ class StatusContent extends React.PureComponent {
     onClick: PropTypes.func,
     collapsable: PropTypes.bool,
     onCollapsedToggle: PropTypes.func,
+    languages: ImmutablePropTypes.map,
     intl: PropTypes.object,
   };
 
@@ -220,7 +225,9 @@ class StatusContent extends React.PureComponent {
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
     const renderReadMore = this.props.onClick && status.get('collapsed');
-    const renderTranslate = this.props.onTranslate && status.get('translatable');
+    const contentLocale = intl.locale.replace(/[_-].*/, '');
+    const targetLanguages = this.props.languages?.get(status.get('language') || 'und');
+    const renderTranslate = this.props.onTranslate && this.context.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && targetLanguages?.includes(contentLocale);
 
     const content = { __html: status.get('translation') ? status.getIn(['translation', 'content']) : status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };
@@ -302,3 +309,5 @@ class StatusContent extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(StatusContent));

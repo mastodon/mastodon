@@ -32,10 +32,14 @@ module.exports = {
   parserOptions: {
     sourceType: 'module',
     ecmaFeatures: {
-      experimentalObjectRestSpread: true,
       jsx: true,
     },
     ecmaVersion: 2021,
+    requireConfigFile: false,
+    babelOptions: {
+      configFile: false,
+      presets: ['@babel/react', '@babel/env'],
+    },
   },
 
   settings: {
@@ -214,4 +218,22 @@ module.exports = {
     'promise/no-nesting': 'off',
     'promise/no-promise-in-callback': 'off',
   },
+
+  overrides: [
+    {
+      files: [
+        '*.config.js',
+        '.*rc.js',
+        'ide-helper.js',
+      ],
+
+      env: {
+        commonjs: true,
+      },
+
+      parserOptions: {
+        sourceType: 'script',
+      },
+    },
+  ],
 };

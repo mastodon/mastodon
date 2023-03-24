@@ -30,8 +30,6 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-export default @connect(makeMapStateToProps)
-@injectIntl
 class ReportModal extends ImmutablePureComponent {
 
   static propTypes = {
@@ -217,3 +215,5 @@ class ReportModal extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(makeMapStateToProps)(injectIntl(ReportModal));

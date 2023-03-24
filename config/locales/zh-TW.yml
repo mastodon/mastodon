@@ -1132,7 +1132,7 @@ zh-TW:
     domain_blocks: 網域封鎖
     lists: 列表
     mutes: 您靜音的使用者
-    storage: 儲存空間大小
+    storage: 匯出檔案大小
   featured_tags:
     add_new: 新增
     errors:
@@ -1381,6 +1381,7 @@ zh-TW:
     confirm_remove_selected_followers: 您確定要移除選取的跟隨者嗎？
     confirm_remove_selected_follows: 您確定要取消跟隨這些選取的使用者嗎？
     dormant: 潛水中
+    follow_failure: 無法跟隨某些所選取的帳號。
     follow_selected_followers: 跟隨選取的跟隨者
     followers: 跟隨者
     following: 跟隨中
@@ -1420,6 +1421,7 @@ zh-TW:
       electron: Electron 瀏覽器
       firefox: Firefox 瀏覽器
       generic: 未知的瀏覽器
+      huawei_browser: 華為瀏覽器
       ie: Internet Explorer 瀏覽器
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 瀏覽器
@@ -1429,6 +1431,7 @@ zh-TW:
       qq: QQ 瀏覽器
       safari: Safari 瀏覽器
       uc_browser: UC 瀏覽器
+      unknown_browser: 未知的瀏覽器
       weibo: 新浪微博
     current_session: 目前的 session
     description: "%{platform} 上的 %{browser}"
@@ -1441,9 +1444,10 @@ zh-TW:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: 不明平台
+      unknown_platform: 未知的平台
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1523,8 +1527,8 @@ zh-TW:
     enabled_hint: 一旦達到指定的保存期限，就會自動刪除您的嘟文，除非該嘟文符合下列例外
     exceptions: 例外
     explanation: 因為刪除嘟文是耗費資源的操作，當伺服器不那麼忙碌時才會慢慢完成。因此，您的嘟文會在到達保存期限後一段時間才會被刪除。
-    ignore_favs: 忽略最愛
-    ignore_reblogs: 忽略轉嘟
+    ignore_favs: 忽略最愛數
+    ignore_reblogs: 忽略轉嘟數
     interaction_exceptions: 基於互動的例外規則
     interaction_exceptions_explanation: 請注意嘟文是無法保證被刪除的，如果在一次處理過後嘟文低於最愛或轉嘟的門檻。
     keep_direct: 保留私訊
@@ -1645,7 +1649,7 @@ zh-TW:
       final_action: 開始嘟嘟
       final_step: '開始嘟嘟吧！即使您現在沒有跟隨者，其他人仍然能在本站時間軸、主題標籤等地方，看到您的公開嘟文。試著用 #introductions 這個主題標籤介紹一下自己吧。'
       full_handle: 您的完整帳號名稱
-      full_handle_hint: 您需要把這告訴您的朋友們，這樣他們就能從另一個伺服器向您發送訊息或跟隨您。
+      full_handle_hint: 您需要將這告訴您的朋友們，這樣他們就能從另一個伺服器向您發送訊息或跟隨您。
       subject: 歡迎來到 Mastodon
       title: "%{name} 誠摯歡迎您的加入！"
   users:

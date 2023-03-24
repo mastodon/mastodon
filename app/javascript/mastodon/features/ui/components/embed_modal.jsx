@@ -9,7 +9,6 @@ const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
-export default @injectIntl
 class EmbedModal extends ImmutablePureComponent {
 
   static propTypes = {
@@ -95,3 +94,5 @@ class EmbedModal extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(EmbedModal);

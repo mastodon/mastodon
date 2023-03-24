@@ -19,7 +19,7 @@
     .actions
       = f.button :button, t('auth.login'), type: :submit
 
-- if devise_mapping.omniauthable? and resource_class.omniauth_providers.any?
+- if devise_mapping.omniauthable? && resource_class.omniauth_providers.any?
   .simple_form.alternative-login
     %h4= omniauth_only? ? t('auth.log_in_with') : t('auth.or_log_in_with')
 

@@ -92,7 +92,6 @@ class CopyButton extends React.PureComponent {
 
 }
 
-export default @injectIntl
 class BundleColumnError extends React.PureComponent {
 
   static propTypes = {
@@ -160,3 +159,5 @@ class BundleColumnError extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(BundleColumnError);

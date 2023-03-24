@@ -50,7 +50,7 @@ de:
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
         setting_aggregate_reblogs: Zeige denselben Beitrag nicht nochmal an, wenn er erneut geteilt wurde (dies betrifft nur neulich erhaltene erneut geteilte Beiträge)
         setting_always_send_emails: Normalerweise werden Benachrichtigungen nicht per E-Mail verschickt, wenn du gerade auf Mastodon aktiv bist
-        setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen worden sind, werden erst nach einem zusätzlichen Klick angezeigt
+        setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen wurden, werden erst nach einem zusätzlichen Klick angezeigt
         setting_display_media_default: Medien mit Inhaltswarnung ausblenden
         setting_display_media_hide_all: Medien immer ausblenden
         setting_display_media_show_all: Medien mit Inhaltswarnung immer anzeigen
@@ -74,9 +74,9 @@ de:
           hide: Den gefilterten Beitrag vollständig ausblenden, als hätte er nie existiert
           warn: Den gefilterten Beitrag hinter einer Warnung, die den Filtertitel beinhaltet, ausblenden
       form_admin_settings:
-        activity_api_enabled: Anzahl der lokal veröffentlichten Beiträge, der aktiven Benutzer*innen und neuen Registrierungen in wöchentlichen Abständen
+        activity_api_enabled: Anzahl der wöchentlichen Beiträge, aktiven Profile und Registrierungen auf diesem Server
         backups_retention_period: Behalte die Archive, die von den Benutzer*innen erstellt worden sind, für die angegebene Anzahl an Tagen.
-        bootstrap_timeline_accounts: Diese Profile werden bei den Follower-Empfehlungen für neu registrierte Nutzer*innen oben angeheftet.
+        bootstrap_timeline_accounts: Diese Konten werden bei den Follower-Empfehlungen für neu registrierte Nutzer*innen oben angeheftet.
         closed_registrations_message: Wird angezeigt, wenn Registrierungen deaktiviert sind
         content_cache_retention_period: Beiträge von anderen Servern werden nach der angegebenen Anzahl von Tagen, wenn sie auf einen positiven Wert gesetzt werden, gelöscht. Dies kann eventuell nicht rückgängig gemacht werden.
         custom_css: Du kannst benutzerdefinierte Stile auf die Web-Version von Mastodon anwenden.
@@ -91,7 +91,7 @@ de:
         site_short_description: Eine kurze Beschreibung zur eindeutigen Identifizierung des Servers. Wer betreibt ihn, für wen ist er bestimmt?
         site_terms: Verwende eine eigene Datenschutzerklärung oder lasse das Feld leer, um die allgemeine Vorlage zu verwenden. Kann mit der Markdown-Syntax formatiert werden.
         site_title: Wie Personen neben dem Domainnamen auf deinen Server verweisen können.
-        status_page_url: URL einer Seite, auf der der Status des Servers während eines Ausfalls angezeigt werden kann
+        status_page_url: URL einer Seite, auf der der Serverstatus während eines Ausfalls angezeigt wird
         theme: Das Design, das abgemeldete Besucher und neue Benutzer sehen.
         thumbnail: Ein Bild ungefähr im 2:1-Format, das neben den Server-Informationen angezeigt wird.
         timeline_preview: Besucher*innen und ausgeloggte Benutzer*innen können die neuesten öffentlichen Beiträge dieses Servers aufrufen.
@@ -116,7 +116,7 @@ de:
       rule:
         text: Führe eine Regel oder Bedingung für Benutzer*innen auf diesem Server ein. Bleib dabei kurz und knapp
       sessions:
-        otp: 'Gib den Zwei-Faktor-Code von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes:'
+        otp: 'Gib den Zwei-Faktor-Code von deinem Smartphone ein oder benutze einen deiner Wiederherstellungscodes:'
         webauthn: Wenn es sich um einen USB-Schlüssel handelt, vergewissere dich, dass du ihn einsteckst und – falls erforderlich – antippst.
       tag:
         name: Du kannst zum Beispiel nur die Groß- und Kleinschreibung der Buchstaben ändern, um es lesbarer zu machen
@@ -131,21 +131,21 @@ de:
         position: Höhere Rollen entscheiden über Konfliktlösungen zu gewissen Situationen. Bestimmte Aktionen können nur mit geringfügigeren Rollen durchgeführt werden
       webhook:
         events: Zu sendende Ereignisse auswählen
-        url: Wo Ereignisse hingesendet werden
+        url: Wohin Ereignisse geschickt werden
     labels:
       account:
         fields:
           name: Beschriftung
           value: Inhalt
       account_alias:
-        acct: Adresse des alten Kontos
+        acct: Profilname des alten Kontos
       account_migration:
         acct: Adresse des neuen Kontos
       account_warning_preset:
         text: Vorlagentext
         title: Titel
       admin_account_action:
-        include_statuses: Beitragsmeldungen in die E-Mail mit anfügen
+        include_statuses: Gemeldete Beiträge der E-Mail beifügen
         send_email_notification: Benachrichtigung per E-Mail
         text: Benutzerdefinierte Verwarnung
         type: Aktion
@@ -171,7 +171,7 @@ de:
         chosen_languages: Sprachen einschränken
         confirm_new_password: Neues Passwort bestätigen
         confirm_password: Passwort bestätigen
-        context: Filter nach Bereichen
+        context: Nach Bereichen filtern
         current_password: Derzeitiges Passwort
         data: Daten
         discoverable: Dieses Konto anderen empfehlen
@@ -233,7 +233,7 @@ de:
           hide: Vollständig ausblenden
           warn: Mit einer Inhaltswarnung ausblenden
       form_admin_settings:
-        activity_api_enabled: Veröffentlichung von Gesamtstatistiken über Nutzeraktivitäten in der API
+        activity_api_enabled: Aggregierte Nutzungsdaten über die API veröffentlichen
         backups_retention_period: Aufbewahrungsfrist für Archive
         bootstrap_timeline_accounts: Neuen Nutzern immer diese Konten empfehlen
         closed_registrations_message: Nachricht, falls Registrierungen deaktiviert sind
@@ -241,7 +241,7 @@ de:
         custom_css: Eigenes CSS
         mascot: Benutzerdefiniertes Maskottchen (Legacy)
         media_cache_retention_period: Aufbewahrungsfrist für den Medien-Cache
-        peers_api_enabled: Veröffentliche Liste bekannter Server in der API
+        peers_api_enabled: Über die API die bekanntgewordenen Fediverse-Server veröffentlichen
         profile_directory: Profilverzeichnis aktivieren
         registrations_mode: Wer darf ein neues Konto registrieren?
         require_invite_text: Begründung für Beitritt verlangen

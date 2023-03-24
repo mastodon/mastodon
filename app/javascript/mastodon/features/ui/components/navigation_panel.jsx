@@ -28,7 +28,6 @@ const messages = defineMessages({
   search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
 });
 
-export default @injectIntl
 class NavigationPanel extends React.Component {
 
   static contextTypes = {
@@ -105,3 +104,5 @@ class NavigationPanel extends React.Component {
   }
 
 }
+
+export default injectIntl(NavigationPanel);
