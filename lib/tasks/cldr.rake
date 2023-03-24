@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'cldr'
-
 namespace :cldr do
+  next unless Rails.env.development?
+
   # Do not change - Cldr::Export::Data expects it to be 'vendor/cldr'.
   download_target = Cldr::Download::DEFAULT_TARGET
 
