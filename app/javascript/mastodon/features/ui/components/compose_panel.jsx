@@ -66,4 +66,4 @@ class ComposePanel extends React.PureComponent {
 
 }
 
-export default connect(ComposePanel);
+export default connect()(ComposePanel);
