@@ -1244,7 +1244,7 @@ body > [data-popper-placement] {
 .status__prepend {
   padding: 16px;
   padding-bottom: 0;
-  display: flex;
+  display: inline-flex;
   gap: 10px;
   font-size: 15px;
   line-height: 22px;
@@ -1260,6 +1260,18 @@ body > [data-popper-placement] {
     overflow: hidden;
     text-overflow: ellipsis;
   }
+}
+
+.status__wrapper-direct {
+  background: mix($ui-base-color, $ui-highlight-color, 95%);
+
+  &:focus {
+    background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+  }
+}
+
+.status__wrapper-direct .status__prepend {
+  color: $highlight-text-color;
 }
 
 .status__action-bar {
