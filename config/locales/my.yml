@@ -97,14 +97,19 @@ my:
       not_subscribed: စာရင်းသွင်းထားခြင်းမရှိပါ
       pending: ဆိုင်းငံ့ထားသော သုံးသပ်ချက်
       perform_full_suspension: ရပ်ဆိုင်းရန်
+      previous_strikes: ယခင်လုပ်ဆောင်ချက်များ
+      previous_strikes_description_html:
+        other: ဤအကောင့်တွင် လုပ်ဆောင်ချက်<strong>%{count}</strong> ရှိသည်။
       promote: အထောက်အကူ
       protocol: လုပ်ထုံးလုပ်နည်း
       public: အများမြင်
+      push_subscription_expires: PuSH စာရင်းသွင်းမှုမှာ သက်တမ်းကုန်ဆုံးသွားပါပြီ
       redownload: ပရိုဖိုင်ကို ပြန်လည်စတင်ရန်
       redownloaded_msg: မူလမှစ၍ %{username} ၏ ပရိုဖိုင်ကို ပြန်လည်စတင်ပြီးပါပြီ
       reject: ဖယ်ရှားပါ
       rejected_msg: '%{username} ၏ အကောင့်ဖွင့်အက်ပလီကေးရှင်းကို ဖယ်ရှားလိုက်ပါပြီ'
       remote_suspension_irreversible: ဤအကောင့်၏အချက်အလက်ကို လုံးဝ ဖျက်လိုက်ပါပြီ။
+      remote_suspension_reversible_hint_html: အကောင့်ကို ၎င်းတို့၏ဆာဗာတွင် ဆိုင်းငံ့ထားပြီး အချက်အလက်ကို %{date} နေ့တွင် လုံးဝဖယ်ရှားလိုက်ပါမည်။ ထိုအချိန်အထိ အဝေးမှထိန်းချုပ်နိုင်သောဆာဗာက ဤအကောင့်ကို ပြန်လည်ရယူနိုင်သည်။ အကောင့်အချက်အလက်အားလုံးကို ချက်ချင်းဖယ်ရှားလိုပါက အောက်ပါအတိုင်း ပြုလုပ်နိုင်ပါသည်။
       remove_avatar: ကိုယ်စားပြုရုပ်ပုံကို ဖယ်ရှားပါ
       remove_header: မျက်နှာဖုံးပုံ ဖယ်ရှားရန်
       removed_avatar_msg: '%{username} ၏ ကိုယ်စားပြုရုပ်ပုံအား ဖယ်ရှားပြီးပါပြီ'
@@ -131,6 +136,7 @@ my:
       silence: ကန့်သတ်
       silenced: ကန့်သတ်ထားသည်
       statuses: ပို့စ်များ
+      strikes: ယခင်လုပ်ဆောင်ချက်များ
       subscribe: စာရင်းသွင်းပါ
       suspend: ရပ်ဆိုင်းပါ
       suspended: ရပ်ဆိုင်းထားသည်
@@ -189,10 +195,12 @@ my:
         resend_user: အတည်ပြုရန် မေးလ်ကို ပြန်ပို့ပေးရန်
         reset_password_user: စကားဝှက်ကို ပြန်လည်ရယူမည်
         resolve_report: အစီရင်ခံစာကို ဖြေရှင်းရန်
+        sensitive_account: Force-Sensitive အကောင့်
         silence_account: အကောင့် ကန့်သတ်ပါ
         suspend_account: အကောင့် ရပ်ဆိုင်းပါ
         unassigned_report: အစီရင်ခံစာ ဖြုတ်ရန်
         unblock_email_account: အီးမေးလ်လိပ်စာ ပြန်ဖွင့်ရန်
+        unsilence_account: ကန့်သတ်အကောင့်ကို မလုပ်တော့ပါ
         update_announcement: ကြေညာချက်ပြင်ဆင်ရန်
         update_custom_emoji: စိတ်ကြိုက်အီမိုဂျီကို ပြင်ဆင်ရန်
         update_domain_block: ဒိုမိန်းပိတ်ပင်ခြင်းအား ပြင်ဆင်ရန်
@@ -267,12 +275,14 @@ my:
       edit:
         title: ကြေညာချက် ပြင်ဆင်ရန်
       empty: ကြေညာချက်များမတွေ့ပါ
+      live: လက်ရှိ
       new:
         create: ကြေညာချက်ဖန်တီးပါ
         title: ကြေညာချက်အသစ်
       publish: ပို့စ်တင်မည်
       published_msg: ကြေညာချက်တင်ပြီးပါပြီ။
       scheduled_for: '%{time} အတွက် စီစဉ်ထားသည်'
+      scheduled_msg: ကြေညာချက်ထုတ်ပြန်ရန် စီစဉ်ထားသည်။
       title: ကြေညာချက်များ
       unpublish: ပြန်ဖြုတ်ပါ
       unpublished_msg: ကြေညာချက်ကို ဖြုတ်ပြီးပါပြီ
@@ -347,11 +357,14 @@ my:
       new:
         create: ပိတ်ပင်ခြင်း ဖန်တီးရန်
         severity:
+          noop: တစ်ခုမျှမရှိ
           silence: ကန့်သတ်
           suspend: ရပ်ဆိုင်းပါ
         title: ဒိုမိန်းပိတ်ပင်ထားခြင်းအသစ်
       no_domain_block_selected: မည်သည့်ဒိုမိန်းပိတ်ပင်ထားခြင်းကိုမျှ ရွေးချယ်ထားခြင်းမရှိသောကြောင့် ပြောင်းလဲခြင်းမရှိပါ
       not_permitted: ဤလုပ်ဆောင်ချက်ကို ဆောင်ရွက်ရန် သင့်ကို ခွင့်မပြုပါ။
+      obfuscate: မှတ်ရခက်သောဒိုမိန်းအမည်
+      obfuscate_hint: ဒိုမိန်းကန့်သတ်ချက်များစာရင်းကို ဖွင့်ထားပါက စာရင်းရှိ ဒိုမိန်းအမည်များမှာ ရှုပ်ထွေးစေနိုင်ပါသည်။
       private_comment: သီးသန့်မှတ်ချက်
       private_comment_hint: စိစစ်သူများ၏အတွင်းပိုင်းအသုံးပြုမှုအတွက် ဤဒိုမိန်းကန့်သတ်ချက်ဆိုင်ရာမှတ်ချက်။
       public_comment: အများမြင်မှတ်ချက်
@@ -386,6 +399,7 @@ my:
       no_file: ဖိုင်ရွေးထားခြင်းမရှိပါ။
     export_domain_blocks:
       import:
+        existing_relationships_warning: လက်ရှိစောင့်ကြည့်သူများနှင့် ဆက်ဆံရေး
         private_comment_template: '%{date} တွင် %{source} မှ ထည့်သွင်းခဲ့သည်'
         title: ဒိုမိန်းပိတ်ပင်ထားမှုများကို ထည့်သွင်းရန်
       invalid_domain_block: 'အောက်ပါအမှား(များ)ကြောင့် တစ်ခု သို့မဟုတ် တစ်ခုထက်ပိုသော ဒိုမိန်းပိတ်ပင်ထားမှုများကို ကျော်သွားခဲ့သည် - %{error}'
@@ -427,9 +441,14 @@ my:
         instance_statuses_measure: သိမ်းဆည်းထားသောပို့စ်များ
       delivery:
         all: အားလုံး
+        clear: ပေးပို့မှု အမှားအယွင်းများကို ရှင်းလင်းပါ
         restart: ပေးပို့မှုကို ပြန်လည်စတင်ရန်
         stop: ပေးပို့မှုကို ရပ်ရန်
         unavailable: မရရှိနိုင်ပါ
+      delivery_available: ပေးပို့နိုင်ပါပြီ
+      delivery_error_days: ပေးပို့မှု မှားယွင်းသည့်ရက်များ
+      delivery_error_hint: '%{count} ရက်အတွင်း မပေးပို့နိုင်ပါက ၎င်းကို ပေးပို့မရနိုင်ဟု အလိုအလျောက် အမှတ်အသားပြုပါမည်။'
+      destroyed_msg: '%{domain} မှ အချက်အလက်များကို မကြာမီ ဖျက်ပါမည်။'
       empty: ဒိုမိန်းများ မတွေ့ပါ။
       moderation:
         all: အားလုံး
@@ -497,9 +516,12 @@ my:
       by_target_domain: တိုင်ကြားထားသော အကောင့်၏ ဒိုမိန်း
       cancel: ပယ်ဖျက်မည်
       category: အမျိုးအစား
+      comment:
+        none: တစ်ခုမျှမရှိ
       comment_description_html: '%{name} က နောက်ထပ်အချက်အလက်များ ပံ့ပိုးပေးနိုင်ရန်အတွက် ရေးသားခဲ့သည် -'
       confirm: အတည်ပြုမည်
       confirm_action: '@%{acct} ကို စိစစ်အကဲဖြတ်ခြင်းအား အတည်ပြုပါ'
+      created_at: အကြောင်းကြားပြီးပါပြီ
       delete_and_resolve: ပို့စ်များကို ဖျက်ပါ
       forwarded: ထပ်ဆင့်ပို့ပြီးပါပြီ
       forwarded_to: '%{domain} သို့ ထပ်ဆင့်ပို့ထားသည်'
@@ -513,6 +535,7 @@ my:
         create_and_unresolve: မှတ်စုဖြင့် ပြန်ဖွင့်ရန်
         delete: ဖျက်ပါ
         title: မှတ်စုများ
+      processed_msg: 'အကြောင်းကြားမှု #%{id} ကို ဆောင်ရွက်ပြီးပါပြီ'
       remote_user_placeholder: '%{instance} မှ အဝေးကနေအသုံးပြုသူ'
       reopen: အစီရင်ခံစာပြန်ဖွင့်ရန်
       report: '#%{id} အစီရင်ခံရန်'
@@ -629,6 +652,7 @@ my:
       account: ရေးသားသူ
       application: အက်ပလီကေးရှင်း
       back_to_account: အကောင့်စာမျက်နှာသို့ ပြန်သွားရန်
+      back_to_report: အစီရင်ခံစာ စာမျက်နှာသို့ ပြန်သွားရန်
       batch:
         remove_from_report: တိုင်ကြားစာမှ ဖယ်ရှားပါ
         report: တိုင်ကြားစာ
@@ -647,19 +671,28 @@ my:
       status_changed: ပို့စ်ပြောင်းပြီးပါပြီ
       title: အကောင့်ပို့စ်များ
       trending: လက်ရှိခေတ်စားနေခြင်း
+      visibility: မြင်နိုင်မှု
       with_media: မီဒီယာနှင့်အတူ
     strikes:
       actions:
         delete_statuses: "%{name} မှ %{target} ၏ ပို့စ်များကို ဖျက်ခဲ့သည်"
+        disable: "%{name} က %{target} ၏ အကောင့်ကို ရပ်ထားသည်"
         mark_statuses_as_sensitive: "%{name} က %{target} ၏ ပို့စ်များကို သတိထားရသောပို့စ်များအဖြစ် အမှတ်အသားပြုထားသည်"
         none: "%{name} မှ %{target} သို့ သတိပေးချက်တစ်ခု ပေးပို့ခဲ့သည်"
         sensitive: "%{name} က %{target} ၏ အကောင့်ကို သတိထားရသောအကောင့်အဖြစ် အမှတ်အသားပြုထားသည်"
         silence: "%{name} က %{target} ၏ အကောင့်ကို ကန့်သတ်ထားသည်"
         suspend: "%{name} က %{target} ၏ အကောင့်ကို ဆိုင်းငံ့ထားသည်"
+      appeal_approved: အတည်ပြုခဲ့ပြီး
+      appeal_pending: အတည်ပြုမှုဆိုင်းငံ့ထားခြင်း
+      appeal_rejected: တင်ပြခြင်းကို ပယ်ချခဲ့သည်
     system_checks:
       rules_check:
         action: ဆာဗာစည်းမျဉ်းများကို စီမံရန်
         message_html: သင်သည် မည်သည့်ဆာဗာစည်းမျဉ်းများကိုမျှ မသတ်မှတ်ထားပါ။
+      upload_check_privacy_error:
+        action: နောက်ထပ်အချက်အလက်များအတွက် ဤနေရာတွင် ကြည့်ပါ
+      upload_check_privacy_error_object_storage:
+        action: နောက်ထပ်အချက်အလက်များအတွက် ဤနေရာတွင် ကြည့်ပါ
     title: စီမံခန့်ခွဲခြင်း
     trends:
       allow: ခွင့်ပြု
@@ -789,10 +822,13 @@ my:
       suffix: အကောင့်တစ်ခုဖြင့် မည်သည့် Mastodon ဆာဗာများမှ အသုံးပြုသူများနှင့်မဆို စောင့်ကြည့်နိုင်၊ ပို့စ်အသစ်များ တင်နိုင်ပြီး မက်ဆေ့ချ်များ ပေးပို့နိုင်ပါသည်။
     dont_have_your_security_key: သင့်တွင် လုံခြုံရေးကီး မရှိဘူးလား။
     forgot_password: သင့်စကားဝှက် မေ့နေပါသလား။
+    link_to_otp: သင့်ဖုန်းမှ နှစ်ဆင့်ခံလုံခြုံရေးကုဒ် သို့မဟုတ် ပြန်လည်ရယူရေးကုဒ် ထည့်ပါ
+    link_to_webauth: လုံခြုံရေးကီး အသုံးပြုပါ
     log_in_with: ဖြင့် ဝင်ရောက်ပါ
     login: အကောင့်ဝင်ရန်
     logout: ထွက်မယ်
     migrate_account: အခြားအကောင့်တစ်ခုသို့ ရွှေ့ရန်
+    migrate_account_html: ဤအကောင့်ကို အခြားအကောင့်သို့ ပြန်ညွှန်းလိုပါက <a href="%{path}">ဤနေရာတွင် စီစဉ်သတ်မှတ်နိုင်သည်</a>။
     or_log_in_with: သို့မဟုတ် အကောင့်ဖြင့် ဝင်ရောက်ပါ
     privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">ကိုယ်ရေးအချက်အလက်မူဝါဒ</a> ကို ဖတ်ပြီး သဘောတူလိုက်ပါပြီ
     providers:
@@ -806,10 +842,16 @@ my:
       back: နောက်သို့
     security: လုံခြုံရေး
     set_new_password: စကားဝှက်အသစ် သတ်မှတ်ပါ။
+    setup:
+      email_below_hint_html: အောက်ဖော်ပြပါ အီးမေးလ်လိပ်စာ မှားယွင်းနေပါက ဤနေရာတွင် ပြောင်းလဲနိုင်ပြီး အတည်ပြုအီးမေးလ်အသစ် လက်ခံရရှိမည်ဖြစ်ပါသည်။
+      email_settings_hint_html: အတည်ပြုအီးမေးလ်ကို %{email} သို့ ပေးပို့ခဲ့သည်။ ထိုအီးမေးလ်လိပ်စာ မှားယွင်းနေပါက ၎င်းကို အကောင့်သတ်မှတ်ချက်များတွင် ပြောင်းလဲနိုင်သည်။
+      title: သတ်မှတ်
     sign_in:
+      preamble_html: သင်၏ <strong>%{domain}</strong> အထောက်အထားများဖြင့် ဝင်ရောက်ပါ။ သင့်အကောင့်ကို အခြားဆာဗာတစ်ခုတွင် ဖွင့်ထားပါက ဤနေရာ၌ အကောင့်ဝင်ရောက်နိုင်မည်မဟုတ်ပါ။
       title: '%{domain} သို့ အကောင့်ဝင်ရန်'
     status:
       account_status: အကောင့်အခြေအနေ
+      view_strikes: သင့်အကောင့်ကို ဆန့်ကျင်သည့် ယခင်ကလုပ်ဆောင်ချက်များကို ကြည့်ပါ
     use_security_key: လုံခြုံရေးကီးကို သုံးပါ
   authorize_follow:
     already_following: သင်သည် ဤအကောင့်ကို စောင့်ကြည့်နေပြီဖြစ်ပါသည်
@@ -868,10 +910,14 @@ my:
       action_taken: ဆောင်ရွက်ခဲ့သည်
       appeal: အယူခံဝင်ခြင်း
       appeal_rejected: တင်သွင်းခြင်းကို ပယ်ချလိုက်သည်
+      appeal_submitted_at: အယူခံဝင်မှုကို တင်သွင်းပြီးချိန်
+      appealed_msg: အယူခံဝင်မှုကို တင်သွင်းပြီးဖြစ်သည်။ အတည်ပြုပြီးပါက အကြောင်းကြားပါမည်။
       appeals:
         submit: အယူခံဝင်ခွင့်ပြုရန်
       approve_appeal: တင်သွင်းခြင်းကို အတည်ပြုပါ
+      associated_report: ဆက်စပ်အစီရင်ခံစာ
       created_at: ရက်စွဲ
+      description_html: ဤအရာများမှာ သင့်အကောင့်နှင့် %{instance} မှ သင့်ထံပေးပို့ထားသော သတိပေးချက်များကို ဆန့်ကျင်သည့် လုပ်ဆောင်ချက်များဖြစ်သည်။
       recipient: လိပ်မူထားသည်
       reject_appeal: တင်သွင်းခြင်းကို ပယ်ချပါ
       status: '#%{id} ပို့စ်'
@@ -886,6 +932,8 @@ my:
         silence: အကောင့်ကန့်သတ်ချက်
         suspend: အကောင့်ပိတ်ခြင်း
       your_appeal_approved: သင့်တင်သွင်းခြင်းကို အတည်ပြုပြီးပါပြီ
+      your_appeal_pending: အယူခံဝင်ရန် တင်သွင်းထားသည်
+      your_appeal_rejected: အယူခံဝင်မှုကို ပယ်ချလိုက်သည်
   domain_validator:
     invalid_domain: တရားဝင်ဒိုမိန်းအမည်မဟုတ်ပါ
   errors:
@@ -1213,6 +1261,7 @@ my:
     profile: ပရိုဖိုင်
     relationships: စောင့်ကြည့်သူများနှင့် စောင့်ကြည့်စာရင်း
     statuses_cleanup: အလိုအလျောက်ပို့စ်ဖျက်ခြင်း
+    strikes: စိစစ်လုပ်ဆောင်ချက်များ
     two_factor_authentication: နှစ်ဆင့်ခံလုံခြုံရေးစနစ်
     webauthn_authentication: လုံခြုံရေးကီးများ
   statuses:
@@ -1285,6 +1334,9 @@ my:
     pinned: ပင်တွဲထားသောပို့စ်
     reblogged: Boost လုပ်ခဲ့သည်
     sensitive_content: သတိထားရသော အကြောင်းအရာ
+  strikes:
+    errors:
+      too_late: ဤလုပ်ဆောင်ချက်တင်ပြရန် နောက်ကျသွားပါပြီ
   tags:
     does_not_match_previous_name: ယခင်အမည်နှင့် မကိုက်ညီပါ
   themes:
