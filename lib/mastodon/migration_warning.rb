@@ -29,7 +29,7 @@ module Mastodon
     end
 
     def valid_environment?
-      $stdout.isatty
+      $stdout.isatty && Rails.env.production?
     end
 
     def announce_warning(explanation)
