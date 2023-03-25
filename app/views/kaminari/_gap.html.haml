@@ -6,4 +6,4 @@
     per_page:      number of items to fetch per page
     remote:        data-remote
 %span.page.gap
-  = t('pagination.truncate').html_safe
+  = sanitize t('pagination.truncate')
