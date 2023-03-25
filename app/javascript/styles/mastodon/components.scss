@@ -1403,10 +1403,12 @@ body > [data-popper-placement] {
     text-decoration: none;
     font-size: 14px;
 
-    &--with-note {
-      strong {
-        display: inline;
-      }
+    .display-name {
+      margin-bottom: 4px;
+    }
+
+    .display-name strong {
+      display: inline;
     }
   }
 
@@ -1629,7 +1631,7 @@ a .account__avatar {
 
 .status__display-name,
 .account__display-name {
-  strong {
+  .display-name strong {
     color: $primary-text-color;
   }
 }
@@ -1644,12 +1646,12 @@ a .account__avatar {
 .reply-indicator__display-name,
 .detailed-status__display-name,
 a.account__display-name {
-  &:hover strong {
+  &:hover .display-name strong {
     text-decoration: underline;
   }
 }
 
-.account__display-name strong {
+.account__display-name .display-name strong {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -7353,6 +7355,19 @@ noscript {
         background: $ui-base-color;
       }
     }
+  }
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  color: $valid-value-color;
+  gap: 4px;
+
+  a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: none;
   }
 }
 
