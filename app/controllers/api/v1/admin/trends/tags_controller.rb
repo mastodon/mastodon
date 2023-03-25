@@ -11,7 +11,41 @@ class Api::V1::Admin::Trends::TagsController < Api::V1::Trends::TagsController
     end
   end
 
+  def update
+    if current_user&.can?(:manage_taxonomies)
+      tag = Tag.find(params[:id])
+      tag.update(tag_params.merge(reviewed_at: Time.now.utc))
+      render json: tag, serializer: REST::Admin::TagSerializer
+    else
+      raise Mastodon::NotPermittedError
+    end
+  end
+
+  def approve
+    if current_user&.can?(:manage_taxonomies)
+      tag = Tag.find(params[:id])
+      tag.update(trendable: true, reviewed_at: Time.now.utc)
+      render json: tag, serializer: REST::Admin::TagSerializer
+    else
+      raise Mastodon::NotPermittedError
+    end
+  end
+
+  def reject
+    if current_user&.can?(:manage_taxonomies)
+      @tag = Tag.find(params[:id])
+      @tag.update(trendable: false, reviewed_at: Time.now.utc)
+      render json: @tag, serializer: REST::Admin::TagSerializer
+    else
+      raise Mastodon::NotPermittedError
+    end
+  end
+
   private
+
+  def tag_params
+    params.require(:tag).permit(:name, :display_name, :trendable, :usable, :listable)
+  end
 
   def enabled?
     super || current_user&.can?(:manage_taxonomies)

@@ -660,9 +660,24 @@ Rails.application.routes.draw do
         resources :ip_blocks, only: [:index, :show, :update, :create, :destroy]
 
         namespace :trends do
-          resources :tags, only: [:index]
-          resources :links, only: [:index]
-          resources :statuses, only: [:index]
+          resources :tags, only: [:index, :update] do
+            member do
+              post :approve
+              post :reject
+            end
+          end
+          resources :links, only: [:index] do
+            member do
+              post :approve
+              post :reject
+            end
+          end
+          resources :statuses, only: [:index] do
+            member do
+              post :approve
+              post :reject
+            end
+          end
         end
 
         post :measures, to: 'measures#create'
