@@ -1689,12 +1689,13 @@ es-MX:
       title: Te damos la bienvenida a bordo, %{name}!
   users:
     follow_limit_reached: No puedes seguir a más de %{limit} personas
-    go_to_sso_account_settings: Diríjase a la configuración de la cuenta de su proveedor de identidad
+    go_to_sso_account_settings: Diríjete a la configuración de la cuenta de su proveedor de identidad
     invalid_otp_token: Código de dos factores incorrecto
     otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contancto con %{email}
     seamless_external_login: Has iniciado sesión desde un servicio externo, así que los ajustes de contraseña y correo no están disponibles.
     signed_in_as: 'Sesión iniciada como:'
   verification:
+    explanation_html: 'Puedes <strong>verificarte a ti mismo como el dueño de los links en los metadatos de tu perfil</strong>. Para eso, el sitio enlazado debe contener un enlace a tu perfil de Mastodon. Después de añadir el enlace, necesitarás regresar aquí y volver a guardar tu perfil para que la verificación tenga efecto. El enlace en tu sitio <strong>debe</strong> tener un atributo <code>rel="me"</code>. El texto del contenido del enlace no importa. Aquí un ejemplo:'
     verification: Verificación
   webauthn_credentials:
     add: Agregar nueva clave de seguridad
