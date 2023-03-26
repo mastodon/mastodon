@@ -1122,6 +1122,8 @@ my:
     carry_blocks_over_text: ဤအသုံးပြုသူသည် သင်ပိတ်ဆို့ထားသော %{acct} မှ ပြောင်းရွှေ့ခဲ့သည်။
     carry_mutes_over_text: ဤအသုံးပြုသူသည် သင်အသံပိတ်ထားသော %{acct} မှ ပြောင်းရွှေ့ခဲ့သည်။
     copy_account_note_text: 'ဤအသုံးပြုသူသည် %{acct} မှ ပြောင်းရွှေ့ခဲ့သည်။ ဤသည်မှာ ၎င်းတို့နှင့်ပတ်သက်သော ယခင်မှတ်စုများဖြစ်သည် -'
+  navigation:
+    toggle_menu: "မီနူးပြောင်းရန်\n"
   notification_mailer:
     admin:
       report:
@@ -1173,7 +1175,9 @@ my:
   otp_authentication:
     code_hint: အတည်ပြုရန်အတွက် အထောက်အထားစိစစ်အက်ပ်မှ ထုတ်ပေးသည့်ကုဒ်ကို ထည့်သွင်းပါ
     enable: ဖွင့်ပါ
+    manual_instructions: 'QR ကုဒ်စကင်န်ဖတ်၍မရပါက ကိုယ်တိုင်ရိုက်ထည့်ရန်လိုအပ်ပြီး ဤနေရာသည် စာရွက်အလွတ်နေရာဖြစ်သည်။'
     setup: သတ်မှတ်ရန်
+    wrong_code: ထည့်သွင်းထားသောကုဒ်သည် မမှန်ကန်ပါ။ ဆာဗာအချိန်နှင့် စက်အချိန်မှာ မှန်ကန်ပါသလား။
   pagination:
     newer: ပိုသစ်သော
     next: ရှေ့သို့
@@ -1193,6 +1197,7 @@ my:
       too_many_options: သတ်မှတ်ထားသောအရေအတွက် %{max} ကိုကျော်လွန်နေသည်
   preferences:
     other: အခြား
+    posting_defaults: ပို့စ်တင်ရာတွင် သတ်မှတ်ချက်များ
     public_timelines: အများမြင်စာမျက်နှာ
   privacy_policy:
     title: ကိုယ်ရေးအချက်အလက်မူဝါဒ
@@ -1204,6 +1209,7 @@ my:
     confirm_follow_selected_followers: ရွေးချယ်စောင့်ကြည့်သူများကို စောင့်ကြည့်လိုသည်မှာ သေချာပါသလား။
     confirm_remove_selected_followers: ရွေးချယ်စောင့်ကြည့်သူများကို ဖယ်ရှားလိုသည်မှာ သေချာပါသလား။
     confirm_remove_selected_follows: ရွေးချယ်စောင့်ကြည့်သူများကို ဖယ်ရှားလိုသည်မှာ သေချာပါသလား။
+    dormant: Dormant
     follow_failure: ရွေးချယ်ထားသော အကောင့်အချို့ကို စောင့်ကြည့်၍ရမည်မဟုတ်ပါ။
     follow_selected_followers: ရွေးချယ်စောင့်ကြည့်သူများကို စောင့်ကြည့်ပါ
     followers: စောင့်ကြည့်သူများ
@@ -1221,13 +1227,18 @@ my:
     status: အကောင့်အခြေအနေ
   remote_follow:
     missing_resource: သင့်အကောင့်အတွက် လိုအပ်သော ပြန်ညွှန်းမည့် URL ကို ရှာမတွေ့ပါ
+  reports:
+    errors:
+      invalid_rules: မှန်ကန်သောစည်းမျဉ်းများကို ကိုးကားထားခြင်း မရှိပါ
   rss:
     content_warning: 'အကြောင်းအရာသတိပေးချက် - '
     descriptions:
       account: '@%{acct} မှ အများမြင်ပို့စ်များ'
       tag: '#%{hashtag} ကို တဂ်ထားသော အများမြင်ပို့စ်များ'
   scheduled_statuses:
+    over_daily_limit: ယနေ့အတွက် စီစဉ်ထားသည့် ပို့စ်များ၏ ကန့်သတ်ချက် %{limit} ကို ကျော်လွန်သွားပါပြီ
     over_total_limit: စီစဉ်ထားသည့် ပို့စ်များ၏ ကန့်သတ်ချက် %{limit} ကို ကျော်လွန်သွားပါပြီ
+    too_soon: စီစဉ်ထားသောရက်စွဲမှာ အနာဂတ်အတွက်ဖြစ်သည်
   sessions:
     activity: နောက်ဆုံးလုပ်ဆောင်ချက်
     browser: ဘရောက်ဇာ
@@ -1253,6 +1264,7 @@ my:
       weibo: Weibo
     current_session: လက်ရှိဆက်ရှင်
     description: "%{platform} ပေါ်ရှိ %{browser}"
+    explanation: ဤသည်မှာ သင်၏ Mastodon အကောင့်သို့ လက်ရှိဝင်ရောက်ထားသည့် ဝဘ်ဘရောက်ဆာများဖြစ်သည်။
     ip: IP
     platforms:
       adobe_air: Adobe Air
