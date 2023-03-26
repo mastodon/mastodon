@@ -12,23 +12,19 @@ class Api::V1::Admin::Trends::LinksController < Api::V1::Trends::LinksController
   end
 
   def approve
-    if current_user&.can?(:manage_taxonomies)
-      link = PreviewCard.find(params[:id])
-      link.update(trendable: true)
-      render json: link, serializer: REST::Admin::Trends::LinkSerializer
-    else
-      raise Mastodon::NotPermittedError
-    end
+    raise Mastodon::NotPermittedError unless current_user&.can?(:manage_taxonomies)
+
+    link = PreviewCard.find(params[:id])
+    link.update(trendable: true)
+    render json: link, serializer: REST::Admin::Trends::LinkSerializer
   end
 
   def reject
-    if current_user&.can?(:manage_taxonomies)
-      link = PreviewCard.find(params[:id])
-      link.update(trendable: false)
-      render json: link, serializer: REST::Admin::Trends::LinkSerializer
-    else
-      raise Mastodon::NotPermittedError
-    end
+    raise Mastodon::NotPermittedError unless current_user&.can?(:manage_taxonomies)
+
+    link = PreviewCard.find(params[:id])
+    link.update(trendable: false)
+    render json: link, serializer: REST::Admin::Trends::LinkSerializer
   end
 
   private

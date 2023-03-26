@@ -4,27 +4,27 @@ class Api::V1::Admin::Trends::StatusesController < Api::V1::Trends::StatusesCont
   before_action -> { authorize_if_got_token! :'admin:read' }
 
   def index
-    render json: @statuses, each_serializer: REST::Admin::Trends::StatusSerializer
+    if current_user&.can?(:manage_taxonomies)
+      render json: @statuses, each_serializer: REST::Admin::Trends::StatusSerializer
+    else
+      super
+    end
   end
 
   def approve
-    if current_user&.can?(:manage_taxonomies)
-      status = Status.find(params[:id])
-      status.update(trendable: true)
-      render json: status, serializer: REST::Admin::Trends::StatusSerializer
-    else
-      raise Mastodon::NotPermittedError
-    end
+    raise Mastodon::NotPermittedError unless current_user&.can?(:manage_taxonomies)
+
+    status = Status.find(params[:id])
+    status.update(trendable: true)
+    render json: status, serializer: REST::Admin::Trends::StatusSerializer
   end
 
   def reject
-    if current_user&.can?(:manage_taxonomies)
-      status = Status.find(params[:id])
-      status.update(trendable: false)
-      render json: status, serializer: REST::Admin::Trends::StatusSerializer
-    else
-      raise Mastodon::NotPermittedError
-    end
+    raise Mastodon::NotPermittedError unless current_user&.can?(:manage_taxonomies)
+
+    status = Status.find(params[:id])
+    status.update(trendable: false)
+    render json: status, serializer: REST::Admin::Trends::StatusSerializer
   end
 
   private

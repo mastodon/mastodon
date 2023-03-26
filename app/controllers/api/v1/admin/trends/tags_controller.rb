@@ -12,33 +12,27 @@ class Api::V1::Admin::Trends::TagsController < Api::V1::Trends::TagsController
   end
 
   def update
-    if current_user&.can?(:manage_taxonomies)
-      tag = Tag.find(params[:id])
-      tag.update(tag_params.merge(reviewed_at: Time.now.utc))
-      render json: tag, serializer: REST::Admin::TagSerializer
-    else
-      raise Mastodon::NotPermittedError
-    end
+    raise Mastodon::NotPermittedError unless current_user&.can?(:manage_taxonomies)
+
+    tag = Tag.find(params[:id])
+    tag.update(tag_params.merge(reviewed_at: Time.now.utc))
+    render json: tag, serializer: REST::Admin::TagSerializer
   end
 
   def approve
-    if current_user&.can?(:manage_taxonomies)
-      tag = Tag.find(params[:id])
-      tag.update(trendable: true, reviewed_at: Time.now.utc)
-      render json: tag, serializer: REST::Admin::TagSerializer
-    else
-      raise Mastodon::NotPermittedError
-    end
+    raise Mastodon::NotPermittedError unless current_user&.can?(:manage_taxonomies)
+
+    tag = Tag.find(params[:id])
+    tag.update(trendable: true, reviewed_at: Time.now.utc)
+    render json: tag, serializer: REST::Admin::TagSerializer
   end
 
   def reject
-    if current_user&.can?(:manage_taxonomies)
-      @tag = Tag.find(params[:id])
-      @tag.update(trendable: false, reviewed_at: Time.now.utc)
-      render json: @tag, serializer: REST::Admin::TagSerializer
-    else
-      raise Mastodon::NotPermittedError
-    end
+    raise Mastodon::NotPermittedError unless current_user&.can?(:manage_taxonomies)
+
+    tag = Tag.find(params[:id])
+    tag.update(trendable: false, reviewed_at: Time.now.utc)
+    render json: tag, serializer: REST::Admin::TagSerializer
   end
 
   private
