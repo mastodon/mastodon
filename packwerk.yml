@@ -6,8 +6,9 @@
 # - "**/*.{rb,rake,erb}"
 
 # List of patterns for folder paths to exclude
-# exclude:
+exclude:
 # - "{bin,node_modules,script,tmp,vendor}/**/*"
+  - lib/templates/rails/post_deployment_migration/migration.rb
 
 # Patterns to find package configuration files
 # package_paths: "**/"
