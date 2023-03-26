@@ -1,0 +1,162 @@
+# This file contains a list of dependencies that are not part of the long term plan for the
+# 'packs/accounts' package.
+# We should generally work to reduce this list over time.
+#
+# You can regenerate this file using the following command:
+#
+# bin/packwerk update-todo
+---
+".":
+  "::Account::Field":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::AccountAssociations":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::AccountAvatar":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::AccountCounters":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::AccountDeletionRequest":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/spec/models/account_spec.rb
+  "::AccountFinderConcern":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::AccountHeader":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::AccountInteractions":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::AccountMerging":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::ApplicationRecord":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::Attachmentable":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::CanonicalEmailBlock":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+    - packs/accounts/spec/models/account_spec.rb
+  "::CustomEmoji":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::DeliveryFailureTracker":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::DomainMaterializable":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::DomainNormalizable":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::EntityCache":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::FeedManager":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::Follow":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+    - packs/accounts/spec/models/account_spec.rb
+  "::FollowRequest":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::Paginable":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::ResolveAccountService":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+    - packs/accounts/spec/models/account_spec.rb
+  "::Setting":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::Status":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/spec/models/account_spec.rb
+  "::Tag":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::TagManager":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::TriggerWebhookWorker":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::UniqueUsernameValidator":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::UnreservedUsernameValidator":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
+  "::User":
+    violations:
+    - dependency
+    files:
+    - packs/accounts/app/models/account.rb
