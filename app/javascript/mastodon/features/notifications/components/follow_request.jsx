@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Avatar from 'mastodon/components/avatar';
@@ -13,7 +13,6 @@ const messages = defineMessages({
   reject: { id: 'follow_request.reject', defaultMessage: 'Reject' },
 });
 
-export default @injectIntl
 class FollowRequest extends ImmutablePureComponent {
 
   static propTypes = {
@@ -32,10 +31,10 @@ class FollowRequest extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <Fragment>
+        <React.Fragment>
           {account.get('display_name')}
           {account.get('username')}
-        </Fragment>
+        </React.Fragment>
       );
     }
 
@@ -57,3 +56,5 @@ class FollowRequest extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(FollowRequest);
