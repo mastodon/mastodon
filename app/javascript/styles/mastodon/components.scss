@@ -3468,6 +3468,10 @@ a.status-card {
 
 .status-card__description {
   color: $darker-text-color;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .status-card__host {
