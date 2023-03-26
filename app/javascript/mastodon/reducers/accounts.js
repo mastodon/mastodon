@@ -1,5 +1,5 @@
 import { ACCOUNT_IMPORT, ACCOUNTS_IMPORT } from 'mastodon/actions/importer';
-import { ACCOUNT_REVEAL } from 'mastodon/actions/accounts';
+import { ACCOUNT_REVEAL, ACCOUNT_FETCH_REQUEST, ACCOUNT_FETCH_SUCCESS, ACCOUNT_FETCH_FAIL } from 'mastodon/actions/accounts';
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
 const initialState = ImmutableMap();
@@ -32,6 +32,12 @@ export default function accounts(state = initialState, action) {
     return normalizeAccounts(state, action.accounts);
   case ACCOUNT_REVEAL:
     return state.setIn([action.id, 'hidden'], false);
+  case ACCOUNT_FETCH_REQUEST:
+    return state.set(`${action.id}:isLoading`, true);
+  case ACCOUNT_FETCH_SUCCESS:
+    return state.set(`${action.id}:isLoading`, false);
+  case ACCOUNT_FETCH_FAIL:
+    return state.set(`${action.id}:isLoading`, false);
   default:
     return state;
   }

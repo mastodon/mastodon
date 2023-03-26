@@ -4294,6 +4294,17 @@ a.status-card.compact:hover {
   vertical-align: middle;
 }
 
+.timeline-setting-toggle {
+  text-align: right;
+  margin: 10px 10px -20px;
+
+  .react-toggle,
+  .setting-toggle__label {
+    position: relative;
+    z-index: 9999;
+  }
+}
+
 .limited-account-hint {
   p {
     color: $secondary-text-color;

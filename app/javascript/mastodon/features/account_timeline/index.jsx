@@ -1,10 +1,11 @@
 import React from 'react';
+import Toggle from 'react-toggle';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { lookupAccount, fetchAccount } from '../../actions/accounts';
 import { expandAccountFeaturedTimeline, expandAccountTimeline } from '../../actions/timelines';
-import StatusList from '../../components/status_list';
+import AccountStatusListContainer from './containers/account_status_list_container';
 import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
 import HeaderContainer from './containers/header_container';
@@ -26,30 +27,13 @@ const emptyList = ImmutableList();
 const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = false }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
 
-  if (accountId === null) {
-    return {
-      isLoading: false,
-      isAccount: false,
-      statusIds: emptyList,
-    };
-  } else if (!accountId) {
-    return {
-      isLoading: true,
-      statusIds: emptyList,
-    };
-  }
-
-  const path = withReplies ? `${accountId}:with_replies` : `${accountId}${tagged ? `:${tagged}` : ''}`;
-
   return {
     accountId,
     remote: !!(state.getIn(['accounts', accountId, 'acct']) !== state.getIn(['accounts', accountId, 'username'])),
     remoteUrl: state.getIn(['accounts', accountId, 'url']),
-    isAccount: !!state.getIn(['accounts', accountId]),
-    statusIds: state.getIn(['timelines', `account:${path}`, 'items'], emptyList),
+    isAccount: accountId && !!state.getIn(['accounts', accountId]),
+    isLoadingAccount: state.getIn(['accounts', `${accountId}:isLoading`], false),
     featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned${tagged ? `:${tagged}` : ''}`, 'items'], emptyList),
-    isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
-    hasMore: state.getIn(['timelines', `account:${path}`, 'hasMore']),
     suspended: state.getIn(['accounts', accountId, 'suspended'], false),
     hidden: getAccountHidden(state, accountId),
     blockedBy: state.getIn(['relationships', accountId, 'blocked_by'], false),
@@ -74,13 +58,11 @@ class AccountTimeline extends ImmutablePureComponent {
     }).isRequired,
     accountId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
-    statusIds: ImmutablePropTypes.list,
     featuredStatusIds: ImmutablePropTypes.list,
-    isLoading: PropTypes.bool,
-    hasMore: PropTypes.bool,
     withReplies: PropTypes.bool,
     blockedBy: PropTypes.bool,
     isAccount: PropTypes.bool,
+    isLoadingAccount: PropTypes.bool,
     suspended: PropTypes.bool,
     hidden: PropTypes.bool,
     remote: PropTypes.bool,
@@ -88,8 +70,17 @@ class AccountTimeline extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
+  state = {
+    withReblogs: true,
+  };
+
+  setWithReblogs = ({ target }) =>  {
+    this.setState({ withReblogs: target.checked });
+  };
+
   _load () {
     const { accountId, withReplies, params: { tagged }, dispatch } = this.props;
+    const { withReblogs } = this.state;
 
     dispatch(fetchAccount(accountId));
 
@@ -98,7 +89,7 @@ class AccountTimeline extends ImmutablePureComponent {
     }
 
     dispatch(fetchFeaturedTags(accountId));
-    dispatch(expandAccountTimeline(accountId, { withReplies, tagged }));
+    dispatch(expandAccountTimeline(accountId, { withReplies, withReblogs, tagged }));
 
     if (accountId === me) {
       dispatch(connectTimeline(`account:${me}`));
@@ -115,8 +106,9 @@ class AccountTimeline extends ImmutablePureComponent {
     }
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate (prevProps, prevState) {
     const { params: { acct, tagged }, accountId, withReplies, dispatch } = this.props;
+    const { withReblogs } = this.state;
 
     if (prevProps.accountId !== accountId && accountId) {
       this._load();
@@ -127,6 +119,8 @@ class AccountTimeline extends ImmutablePureComponent {
         dispatch(expandAccountFeaturedTimeline(accountId, { tagged }));
       }
       dispatch(expandAccountTimeline(accountId, { withReplies, tagged }));
+    } else if (prevState.withReplies !== withReblogs) {
+      dispatch(expandAccountTimeline(accountId, { withReplies, withReblogs, tagged }));
     }
 
     if (prevProps.accountId === me && accountId !== me) {
@@ -143,22 +137,28 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
   handleLoadMore = maxId => {
-    this.props.dispatch(expandAccountTimeline(this.props.accountId, { maxId, withReplies: this.props.withReplies, tagged: this.props.params.tagged }));
+    this.props.dispatch(expandAccountTimeline(
+      this.props.accountId,
+      { maxId, withReplies: this.props.withReplies, withReblogs: this.state.withReblogs, tagged: this.props.params.tagged },
+    ));
   };
 
   render () {
-    const { accountId, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, suspended, isAccount, hidden, multiColumn, remote, remoteUrl } = this.props;
+    const { accountId, featuredStatusIds, blockedBy, suspended, isAccount, isLoadingAccount, hidden, multiColumn, remote, remoteUrl, params: { tagged }, withReplies = false } = this.props;
+    const { withReblogs } = this.state;
 
-    if (isLoading && statusIds.isEmpty()) {
-      return (
-        <Column>
-          <LoadingIndicator />
-        </Column>
-      );
-    } else if (!isLoading && !isAccount) {
-      return (
-        <BundleColumnError multiColumn={multiColumn} errorType='routing' />
-      );
+    if (!isAccount) {
+      if (accountId === undefined || isLoadingAccount) {
+        return (
+          <Column>
+            <LoadingIndicator />
+          </Column>
+        );
+      } else {
+        return (
+          <BundleColumnError multiColumn={multiColumn} errorType='routing' />
+        );
+      }
     }
 
     let emptyMessage;
@@ -171,7 +171,7 @@ class AccountTimeline extends ImmutablePureComponent {
       emptyMessage = <LimitedAccountHint accountId={accountId} />;
     } else if (blockedBy) {
       emptyMessage = <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />;
-    } else if (remote && statusIds.isEmpty()) {
+    } else if (remote) {
       emptyMessage = <RemoteHint url={remoteUrl} />;
     } else {
       emptyMessage = <FormattedMessage id='empty_column.account_timeline' defaultMessage='No posts found' />;
@@ -179,19 +179,39 @@ class AccountTimeline extends ImmutablePureComponent {
 
     const remoteMessage = remote ? <RemoteHint url={remoteUrl} /> : null;
 
+    const prepend = (
+      <>
+        <HeaderContainer
+          accountId={accountId}
+          hideTabs={forceEmptyState}
+          tagged={tagged}
+        />
+        {!tagged && (
+          <div className='timeline-setting-toggle'>
+            <Toggle id='account-timeline-shows-reblog' checked={withReblogs} onChange={this.setWithReblogs} />
+            <label htmlFor='account-timeline-shows-reblog' className='setting-toggle__label'>
+              <FormattedMessage id='home.column_settings.show_reblogs' defaultMessage='Show boosts' />
+            </label>
+          </div>
+        )}
+      </>
+    );
+
     return (
       <Column>
         <ColumnBackButton multiColumn={multiColumn} />
 
-        <StatusList
-          prepend={<HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />}
+        <AccountStatusListContainer
+          accountId={accountId}
+          withReplies={withReplies}
+          withReblogs={withReblogs}
+          tagged={tagged}
+          forceEmptyState={forceEmptyState}
+          prepend={prepend}
           alwaysPrepend
           append={remoteMessage}
           scrollKey='account_timeline'
-          statusIds={forceEmptyState ? emptyList : statusIds}
           featuredStatusIds={featuredStatusIds}
-          isLoading={isLoading}
-          hasMore={!forceEmptyState && hasMore}
           onLoadMore={this.handleLoadMore}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}

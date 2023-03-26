@@ -81,12 +81,16 @@ export const ACCOUNT_REVEAL = 'ACCOUNT_REVEAL';
 
 export function fetchAccount(id) {
   return (dispatch, getState) => {
+    if (getState().getIn(['accounts', `${id}:isLoading`])) {
+      return;
+    }
+
     dispatch(fetchRelationships([id]));
     dispatch(fetchAccountRequest(id));
 
     api(getState).get(`/api/v1/accounts/${id}`).then(response => {
       dispatch(importFetchedAccount(response.data));
-      dispatch(fetchAccountSuccess());
+      dispatch(fetchAccountSuccess(id));
     }).catch(error => {
       dispatch(fetchAccountFail(id, error));
     });
@@ -128,9 +132,10 @@ export function fetchAccountRequest(id) {
   };
 }
 
-export function fetchAccountSuccess() {
+export function fetchAccountSuccess(id) {
   return {
     type: ACCOUNT_FETCH_SUCCESS,
+    id,
   };
 }
 

@@ -114,7 +114,7 @@ class ReportModal extends ImmutablePureComponent {
   componentDidMount () {
     const { dispatch, accountId } = this.props;
 
-    dispatch(expandAccountTimeline(accountId, { withReplies: true }));
+    dispatch(expandAccountTimeline(accountId, { withReplies: true, withReblogs: true }));
     dispatch(fetchServer());
   }
 
