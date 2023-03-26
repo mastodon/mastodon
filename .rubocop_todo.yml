@@ -213,7 +213,7 @@ Lint/UselessAssignment:
     - 'spec/controllers/api/v1/favourites_controller_spec.rb'
     - 'spec/controllers/concerns/account_controller_concern_spec.rb'
     - 'spec/helpers/jsonld_helper_spec.rb'
-    - 'spec/models/account_spec.rb'
+    - 'packs/accounts/spec/models/account_spec.rb'
     - 'spec/models/domain_block_spec.rb'
     - 'spec/models/status_spec.rb'
     - 'spec/models/user_spec.rb'
@@ -307,7 +307,7 @@ Naming/VariableNumber:
     - 'db/migrate/20200119112504_add_public_index_to_statuses.rb'
     - 'spec/controllers/activitypub/followers_synchronizations_controller_spec.rb'
     - 'spec/lib/feed_manager_spec.rb'
-    - 'spec/models/account_spec.rb'
+    - 'packs/accounts/spec/models/account_spec.rb'
     - 'spec/models/concerns/account_interactions_spec.rb'
     - 'spec/models/custom_emoji_filter_spec.rb'
     - 'spec/models/domain_block_spec.rb'
@@ -356,7 +356,7 @@ Performance/MapCompact:
     - 'app/lib/admin/metrics/dimension.rb'
     - 'app/lib/admin/metrics/measure.rb'
     - 'app/lib/feed_manager.rb'
-    - 'app/models/account.rb'
+    - 'packs/accounts/app/models/account.rb'
     - 'app/models/account_statuses_cleanup_policy.rb'
     - 'app/models/account_suggestions/setting_source.rb'
     - 'app/models/account_suggestions/source.rb'
@@ -406,7 +406,7 @@ Performance/TimesMap:
     - 'spec/controllers/api/v1/mutes_controller_spec.rb'
     - 'spec/lib/feed_manager_spec.rb'
     - 'spec/lib/request_pool_spec.rb'
-    - 'spec/models/account_spec.rb'
+    - 'packs/accounts/spec/models/account_spec.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Performance/UnfreezeString:
@@ -428,7 +428,7 @@ RSpec/AnyInstance:
     - 'spec/controllers/settings/two_factor_authentication/recovery_codes_controller_spec.rb'
     - 'spec/lib/request_spec.rb'
     - 'spec/lib/status_filter_spec.rb'
-    - 'spec/models/account_spec.rb'
+    - 'packs/accounts/spec/models/account_spec.rb'
     - 'spec/models/setting_spec.rb'
     - 'spec/services/activitypub/process_collection_service_spec.rb'
     - 'spec/validators/blacklisted_email_validator_spec.rb'
@@ -489,7 +489,7 @@ RSpec/ContextWording:
     - 'spec/lib/status_reach_finder_spec.rb'
     - 'spec/lib/text_formatter_spec.rb'
     - 'spec/models/account/field_spec.rb'
-    - 'spec/models/account_spec.rb'
+    - 'packs/accounts/spec/models/account_spec.rb'
     - 'spec/models/admin/account_action_spec.rb'
     - 'spec/models/concerns/account_interactions_spec.rb'
     - 'spec/models/concerns/remotable_spec.rb'
@@ -569,7 +569,7 @@ RSpec/DescribedClass:
     - 'spec/models/account_conversation_spec.rb'
     - 'spec/models/account_domain_block_spec.rb'
     - 'spec/models/account_migration_spec.rb'
-    - 'spec/models/account_spec.rb'
+    - 'packs/accounts/spec/models/account_spec.rb'
     - 'spec/models/block_spec.rb'
     - 'spec/models/domain_block_spec.rb'
     - 'spec/models/email_domain_block_spec.rb'
@@ -761,7 +761,7 @@ RSpec/LetSetup:
     - 'spec/controllers/tags_controller_spec.rb'
     - 'spec/lib/activitypub/activity/delete_spec.rb'
     - 'spec/lib/vacuum/preview_cards_vacuum_spec.rb'
-    - 'spec/models/account_spec.rb'
+    - 'packs/accounts/spec/models/account_spec.rb'
     - 'spec/models/account_statuses_cleanup_policy_spec.rb'
     - 'spec/models/canonical_email_block_spec.rb'
     - 'spec/models/status_spec.rb'
@@ -799,7 +799,7 @@ RSpec/MatchArray:
     - 'spec/controllers/api/v1/statuses/favourited_by_accounts_controller_spec.rb'
     - 'spec/controllers/api/v1/statuses/reblogged_by_accounts_controller_spec.rb'
     - 'spec/models/account_filter_spec.rb'
-    - 'spec/models/account_spec.rb'
+    - 'packs/accounts/spec/models/account_spec.rb'
     - 'spec/models/account_statuses_cleanup_policy_spec.rb'
     - 'spec/models/custom_emoji_filter_spec.rb'
     - 'spec/models/status_spec.rb'
@@ -852,7 +852,7 @@ RSpec/MissingExampleGroupArgument:
     - 'spec/features/log_in_spec.rb'
     - 'spec/lib/activitypub/activity/undo_spec.rb'
     - 'spec/lib/status_reach_finder_spec.rb'
-    - 'spec/models/account_spec.rb'
+    - 'packs/accounts/spec/models/account_spec.rb'
     - 'spec/models/email_domain_block_spec.rb'
     - 'spec/models/trends/statuses_spec.rb'
     - 'spec/models/trends/tags_spec.rb'
@@ -955,7 +955,7 @@ RSpec/NamedSubject:
     - 'spec/lib/vacuum/system_keys_vacuum_spec.rb'
     - 'spec/models/account/field_spec.rb'
     - 'spec/models/account_migration_spec.rb'
-    - 'spec/models/account_spec.rb'
+    - 'packs/accounts/spec/models/account_spec.rb'
     - 'spec/models/account_statuses_cleanup_policy_spec.rb'
     - 'spec/models/account_statuses_filter_spec.rb'
     - 'spec/models/admin/account_action_spec.rb'
@@ -1092,7 +1092,7 @@ RSpec/NoExpectationExample:
 RSpec/PendingWithoutReason:
   Exclude:
     - 'spec/controllers/statuses_controller_spec.rb'
-    - 'spec/models/account_spec.rb'
+    - 'packs/accounts/spec/models/account_spec.rb'
     - 'spec/models/user_spec.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -1220,7 +1220,7 @@ RSpec/Rails/InferredSpecType:
     - 'spec/models/account_domain_block_spec.rb'
     - 'spec/models/account_migration_spec.rb'
     - 'spec/models/account_moderation_note_spec.rb'
-    - 'spec/models/account_spec.rb'
+    - 'packs/accounts/spec/models/account_spec.rb'
     - 'spec/models/account_statuses_cleanup_policy_spec.rb'
     - 'spec/models/admin/account_action_spec.rb'
     - 'spec/models/admin/action_log_spec.rb'
@@ -1321,7 +1321,7 @@ RSpec/SubjectDeclaration:
     - 'spec/controllers/admin/domain_blocks_controller_spec.rb'
     - 'spec/controllers/api/v1/admin/domain_blocks_controller_spec.rb'
     - 'spec/models/account_migration_spec.rb'
-    - 'spec/models/account_spec.rb'
+    - 'packs/accounts/spec/models/account_spec.rb'
     - 'spec/models/relationship_filter_spec.rb'
     - 'spec/models/user_role_spec.rb'
     - 'spec/policies/account_moderation_note_policy_spec.rb'
@@ -1416,7 +1416,7 @@ Rails/ActionOrder:
 # Include: app/models/**/*.rb
 Rails/ActiveRecordCallbacksOrder:
   Exclude:
-    - 'app/models/account.rb'
+    - 'packs/accounts/app/models/account.rb'
     - 'app/models/account_conversation.rb'
     - 'app/models/announcement_reaction.rb'
     - 'app/models/block.rb'
@@ -1640,7 +1640,7 @@ Rails/I18nLocaleTexts:
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Rails/IgnoredColumnsAssignment:
   Exclude:
-    - 'app/models/account.rb'
+    - 'packs/accounts/app/models/account.rb'
     - 'app/models/account_stat.rb'
     - 'app/models/admin/action_log.rb'
     - 'app/models/custom_filter.rb'
@@ -1827,7 +1827,7 @@ Rails/UniqueValidationWithoutIndex:
 # Include: app/models/**/*.rb
 Rails/UnusedIgnoredColumns:
   Exclude:
-    - 'app/models/account.rb'
+    - 'packs/accounts/app/models/account.rb'
     - 'app/models/account_stat.rb'
     - 'app/models/admin/action_log.rb'
     - 'app/models/custom_filter.rb'
@@ -1869,7 +1869,7 @@ Rails/WhereExists:
     - 'lib/tasks/tests.rake'
     - 'spec/controllers/api/v1/accounts/notes_controller_spec.rb'
     - 'spec/controllers/api/v1/tags_controller_spec.rb'
-    - 'spec/models/account_spec.rb'
+    - 'packs/accounts/spec/models/account_spec.rb'
     - 'spec/services/activitypub/process_collection_service_spec.rb'
     - 'spec/services/post_status_service_spec.rb'
     - 'spec/services/purge_domain_service_spec.rb'
@@ -2398,7 +2398,7 @@ Style/HashAsLastArrayItem:
   Exclude:
     - 'app/controllers/admin/statuses_controller.rb'
     - 'app/controllers/api/v1/statuses_controller.rb'
-    - 'app/models/account.rb'
+    - 'packs/accounts/app/models/account.rb'
     - 'app/models/concerns/account_counters.rb'
     - 'app/models/concerns/status_threading_concern.rb'
     - 'app/models/status.rb'
@@ -2478,7 +2478,7 @@ Style/MapToHash:
 Style/MutableConstant:
   Exclude:
     - 'app/lib/link_details_extractor.rb'
-    - 'app/models/account.rb'
+    - 'packs/accounts/app/models/account.rb'
     - 'app/models/custom_emoji.rb'
     - 'app/models/tag.rb'
     - 'app/services/account_search_service.rb'
@@ -2569,7 +2569,7 @@ Style/RedundantRegexpCharacterClass:
 Style/RedundantRegexpEscape:
   Exclude:
     - 'app/lib/webfinger_resource.rb'
-    - 'app/models/account.rb'
+    - 'packs/accounts/app/models/account.rb'
     - 'app/models/tag.rb'
     - 'app/services/fetch_link_card_service.rb'
     - 'config/initializers/twitter_regex.rb'
@@ -2586,7 +2586,7 @@ Style/RegexpLiteral:
     - 'app/lib/plain_text_formatter.rb'
     - 'app/lib/tag_manager.rb'
     - 'app/lib/text_formatter.rb'
-    - 'app/models/account.rb'
+    - 'packs/accounts/app/models/account.rb'
     - 'app/models/domain_allow.rb'
     - 'app/models/domain_block.rb'
     - 'app/models/site_upload.rb'
