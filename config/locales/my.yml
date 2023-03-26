@@ -415,6 +415,7 @@ my:
       availability:
         failures_recorded:
           other: '%{count} ရက်နေ့တွင် ကြိုးစားမှု မအောင်မြင်ပါ။'
+        no_failures_recorded: မှတ်တမ်းမရှိပါ။
         title: ရရှိနိုင်မှု
       back_to_all: အားလုံး
       back_to_limited: ကန့်သတ်ထားသည်
@@ -422,6 +423,7 @@ my:
       by_domain: ဒိုမိန်း
       confirm_purge: ဤဒိုမိန်းမှ အချက်အလက်များကို အပြီးတိုင်ဖျက်လိုသည်မှာ သေချာပါသလား။
       content_policies:
+        description_html: ဤဒိုမိန်းနှင့် ဒိုမိန်းခွဲများမှ အကောင့်အားလုံးအတွက် အသုံးချမည့် အကြောင်းအရာမူဝါဒများကို သတ်မှတ်နိုင်သည်။
         limited_federation_mode_description_html: ဤဒိုမိန်းဖြင့် ဖက်ဒီကို ခွင့်ပြုမလား။
         policies:
           reject_media: မီဒီယာဖယ်ရှားရန်
@@ -456,12 +458,15 @@ my:
         title: စိစစ်ခြင်း
       private_comment: သီးသန့်မှတ်ချက်
       public_comment: အများမြင်မှတ်ချက်
+      purge: ဖျက်
+      purge_description_html: ဤဒိုမိန်းသည် အော့ဖ်လိုင်းဖြစ်နေပါက သင့်သိုလှောင်မှုမှ အကောင့်မှတ်တမ်းများနှင့် ဆက်စပ်အချက်အလက်အားလုံးကို ဖျက်နိုင်သည်။ အချိန်အနည်းငယ် ကြာနိုင်ပါသည်။
       title: ဖက်ဒီ
       total_blocked_by_us: ကျွန်ုပ်တို့မှ ပိတ်ပင်ထားခြင်း
       total_followed_by_them: '၎င်းတို့မှ စောင့်ကြည့်ခဲ့သည်'
       total_followed_by_us: ကျွန်ုပ်တို့မှ စောင့်ကြည့်ခဲ့သည်
       total_reported: '၎င်းတို့နှင့်ဆိုင်သော အစီရင်ခံစာများ'
       total_storage: မီဒီယာ ပူးတွဲချက်များ
+      totals_time_period_hint_html: အောက်တွင်ဖော်ပြထားသော စုစုပေါင်းမှာ အချိန်တိုင်းအတွက် အချက်အလက်များဖြစ်သည်။
     invites:
       deactivate_all: အားလုံးပယ်ဖျက်ရန်
       filter:
@@ -510,6 +515,7 @@ my:
           other: "%{count} မှတ်စု"
       action_log: မှတ်တမ်းများစစ်ဆေးခြင်း
       action_taken_by: ဆောင်ရွက်ခဲ့ပါသည်
+      add_to_report: အစီရင်ခံစာထပ်ထည့်ရန်
       are_you_sure: သေချာပါသလား။
       assign_to_self: ကျွန်ုပ်ကို တာဝန်ပေးရန်
       assigned: စိစစ်သူကို တာဝန်ပေးရန်
@@ -539,10 +545,13 @@ my:
       remote_user_placeholder: '%{instance} မှ အဝေးကနေအသုံးပြုသူ'
       reopen: အစီရင်ခံစာပြန်ဖွင့်ရန်
       report: '#%{id} အစီရင်ခံရန်'
+      reported_account: တိုင်ကြားထားသောအကောင့်
+      reported_by: မှ တိုင်ကြားထားသည်
       resolved: ဖြေရှင်းပြီးပါပြီ
       resolved_msg: မှတ်တမ်းကို ဖြေရှင်းပြီးပါပြီ။
       skip_to_actions: လုပ်ဆောင်ချက်များသို့ ကျော်သွားရန်
       status: အခြေအနေ
+      statuses: တိုင်ကြားထားသောအကြောင်းအရာ
       summary:
         action_preambles:
           delete_html: 'သင်သည် <strong>@%{acct}</strong> ၏ ပို့စ်အချို့ကို <strong>ဖယ်ရှား</strong> တော့မည်ဖြစ်သည်။ ၎င်းတို့မှာ -'
@@ -552,8 +561,10 @@ my:
         actions:
           suspend_html: <strong>@%{acct}</strong> ကို ဆိုင်းငံ့ထားသောကြောင့် ပရိုဖိုင်နှင့် အကြောင်းအရာများအား ဝင်ရောက်ခွင့်မရှိတော့သဖြင့် အပြန်အလှန် တုံ့ပြန်၍ မရတော့ခြင်း
         close_report: 'တိုင်ကြားစာ #%{id} ကို ဖြေရှင်းပြီးကြောင်း အမှတ်အသားပြုပါ'
+        close_reports_html: <strong>@%{acct}</strong> နှင့်ပတ်သက်သည့် အစီရင်ခံစာ<strong>အားလုံး</strong> ကို ဖြေရှင်းပြီးကြောင်း အမှတ်အသားပြုပါ
         delete_data_html: <strong>@%{acct}</strong> ၏ ပရိုဖိုင်နှင့် အကြောင်းအရာများကို ဆိုင်းငံ့ထားခြင်းမရှိပါက ယခုမှ ရက်ပေါင်း ၃၀ အတွင်း ဖျက်ရန်
         preview_preamble_html: "<strong>@%{acct}</strong> သည် အောက်ပါအကြောင်းအရာများကြောင့် သတိပေးချက်ကို လက်ခံရရှိပါမည် -"
+        send_email_html: သတိပေးချက် အီးမေးလ်တစ်စောင် <strong>@%{acct}</strong> ပေးပို့ပါ
       title: မှတ်တမ်းများ
       unassign: တာဝန်မှဖြုတ်ရန်
       unknown_action_msg: 'အမည်မသိလုပ်ဆောင်ချက်- %{action}'
@@ -693,6 +704,8 @@ my:
         action: နောက်ထပ်အချက်အလက်များအတွက် ဤနေရာတွင် ကြည့်ပါ
       upload_check_privacy_error_object_storage:
         action: နောက်ထပ်အချက်အလက်များအတွက် ဤနေရာတွင် ကြည့်ပါ
+    tags:
+      updated_msg: ဟက်ရှ်တဂျ်သတ်မှတ်ချက်များကို အပ်ဒိတ်လုပ်ပြီးပါပြီ
     title: စီမံခန့်ခွဲခြင်း
     trends:
       allow: ခွင့်ပြု
