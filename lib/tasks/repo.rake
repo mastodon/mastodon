@@ -134,12 +134,12 @@ namespace :repo do
     end
 
     LanguagesHelper::SUPPORTED_LOCALES.slice(*I18n.available_locales).each do |locale, name|
-      cldr_name = I18n.t(locale, scope: :languages, locale: locale, default: nil)
+      cldr_name = I18n.t(locale, scope: :languages, locale: locale, default: nil, fallback: nil)
       next unless cldr_name && name != cldr_name
 
       critical = true
 
-      puts pastel.yellow("The name for #{pastel.bold(locale)} in app/helpers/languages_helper.rb differs from that in config/#{locale}/languages.en.yml")
+      puts pastel.yellow("The name for #{pastel.bold(locale)} in app/helpers/languages_helper.rb differs from that in config/locales/languages.#{locale}.yml")
     end
 
     if critical
