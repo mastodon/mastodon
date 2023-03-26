@@ -133,6 +133,15 @@ namespace :repo do
       puts pastel.yellow('Add them to app/helpers/languages_helper.rb or remove the entries from config/locale/en.yml')
     end
 
+    LanguagesHelper::SUPPORTED_LOCALES.slice(*I18n.available_locales).each do |locale, name|
+      critical = true
+
+      cldr_name = I18n.t(locale, scope: :languages, locale: locale, default: nil)
+      if cldr_name && name != cldr_name
+        puts pastel.yellow("The name for #{pastel.bold(locale)} in app/helpers/languages_helper.rb differs from that in config/#{locale}/languages.en.yml")
+      end
+    end
+
     if critical
       exit(1)
     else
