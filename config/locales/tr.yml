@@ -1,6 +1,7 @@
+---
 tr:
   about:
-    about_mastodon_html: 'Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir.'
+    about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir.
     contact_missing: Ayarlanmadı
     contact_unavailable: Bulunamadı
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
@@ -24,7 +25,7 @@ tr:
   admin:
     account_actions:
       action: Eylemi gerçekleştir
-      title: '%{acct} üzerinde denetleme eylemi gerçekleştir'
+      title: "%{acct} üzerinde denetleme eylemi gerçekleştir"
     account_moderation_notes:
       create: Not bırak
       created_msg: Denetim notu başarıyla oluşturuldu!
@@ -32,7 +33,7 @@ tr:
     accounts:
       add_email_domain_block: E-posta alan adını engelle
       approve: Onayla
-      approved_msg: '%{username} adlı kullanıcının kayıt başvurusu başarıyla onaylandı'
+      approved_msg: "%{username} adlı kullanıcının kayıt başvurusu başarıyla onaylandı"
       are_you_sure: Emin misin?
       avatar: Profil resmi
       by_domain: Alan adı
@@ -42,12 +43,12 @@ tr:
         label: E-postayı değiştir
         new_email: Yeni e-posta
         submit: E-postayı değiştir
-        title: '%{username} için e-postayı değiştir'
+        title: "%{username} için e-postayı değiştir"
       change_role:
         changed_msg: Rol başarıyla değiştirildi!
         label: Rolü değiştir
         no_role: Rol yok
-        title: '%{username} için rolü değiştir'
+        title: "%{username} için rolü değiştir"
       confirm: Onayla
       confirmed: Onaylandı
       confirming: Onaylanıyor
@@ -68,7 +69,7 @@ tr:
       enable: Etkinleştir
       enable_sign_in_token_auth: E-posta token doğrulamayı etkinleştir
       enabled: Etkin
-      enabled_msg: '%{username} hesabı başarıyla çözüldü'
+      enabled_msg: "%{username} hesabı başarıyla çözüldü"
       followers: Takipçi
       follows: Takip edilen
       header: Üstbilgi
@@ -86,7 +87,7 @@ tr:
       media_attachments: Medya ekleri
       memorialize: Anıta dönüştür
       memorialized: Anıtlaştırıldı
-      memorialized_msg: '%{username} hesabı başarıyla anıt hesabına dönüştürüldü'
+      memorialized_msg: "%{username} hesabı başarıyla anıt hesabına dönüştürüldü"
       moderation:
         active: Etkin
         all: Hepsi
@@ -113,15 +114,15 @@ tr:
       public: Herkese açık
       push_subscription_expires: PuSH aboneliği sona erdi
       redownload: Profili yenile
-      redownloaded_msg: '%{username} kullanıcısının profili kökenden başarıyla yenilendi'
+      redownloaded_msg: "%{username} kullanıcısının profili kökenden başarıyla yenilendi"
       reject: Reddet
-      rejected_msg: '%{username} adlı kullanıcının kayıt başvurusu başarıyla reddedildi'
+      rejected_msg: "%{username} adlı kullanıcının kayıt başvurusu başarıyla reddedildi"
       remote_suspension_irreversible: Bu hesaba ait veriler geri dönüşümsüz bir şekilde silindi.
       remote_suspension_reversible_hint_html: Hesap sunucusunda askıya alındı ve veriler %{date} tarihinde tamamen kaldırılacak. O zamana kadar, uzak sunucu herhangi bir olumsuz etki olmadan hesabı geri yüklenebilir. Hesabın tüm verilerini hemen kaldırmak isterseniz, bunu aşağıdan yapabilirsiniz.
       remove_avatar: Profil resmini kaldır
       remove_header: Üstbilgiyi kaldır
-      removed_avatar_msg: '%{username} hesabının avatar resmi başarıyla kaldırıldı'
-      removed_header_msg: '%{username} hesabının başlık resmi başarıyla kaldırıldı'
+      removed_avatar_msg: "%{username} hesabının avatar resmi başarıyla kaldırıldı"
+      removed_header_msg: "%{username} hesabının başlık resmi başarıyla kaldırıldı"
       resend_confirmation:
         already_confirmed: Bu kullanıcı zaten onaylandı
         send: Doğrulama epostasını yeniden gönder
@@ -154,14 +155,14 @@ tr:
       suspension_reversible_hint_html: Hesap askıya alındı ve veriler %{date} tarihinde tamamen kaldırılacak. O zamana kadar, hesap herhangi bir olumsuz etki olmaksızın geri yüklenebilir. Hesabın tüm verilerini hemen kaldırmak isterseniz, bunu aşağıdan yapabilirsiniz.
       title: Hesaplar
       unblock_email: E-posta adresinin engelini kaldır
-      unblocked_email_msg: '%{username} kişisinin e-posta adresinin engeli başarıyla kaldırıldı'
+      unblocked_email_msg: "%{username} kişisinin e-posta adresinin engeli başarıyla kaldırıldı"
       unconfirmed_email: Onaylanmamış e-posta
       undo_sensitized: Hassaslığı geri al
       undo_silenced: Susturmayı geri al
       undo_suspension: Uzaklaştırmayı geri al
-      unsilenced_msg: '%{username} hesabı başarıyla sınırsız yapıldı'
+      unsilenced_msg: "%{username} hesabı başarıyla sınırsız yapıldı"
       unsubscribe: Abonelikten çık
-      unsuspended_msg: '%{username} hesabının askıya alınması başarıyla kaldırıldı'
+      unsuspended_msg: "%{username} hesabının askıya alınması başarıyla kaldırıldı"
       username: Kullanıcı adı
       view_domain: Alan adı için özeti görüntüleyin
       warn: Uyar
@@ -302,7 +303,7 @@ tr:
         title: Yeni duyuru
       publish: Yayınla
       published_msg: Duyuru başarıyla yayınlandı!
-      scheduled_for: '%{time} için zamanlandı'
+      scheduled_for: "%{time} için zamanlandı"
       scheduled_msg: Duyuru yayınlanmak üzere zamanlandı!
       title: Duyurular
       unpublish: Yayından kaldır
@@ -415,8 +416,8 @@ tr:
     email_domain_blocks:
       add_new: Yeni ekle
       attempts_over_week:
-        one: "Son haftada %{count} deneme"
-        other: "Son haftada %{count} kayıt denemesi"
+        one: Son haftada %{count} deneme
+        other: Son haftada %{count} kayıt denemesi
       created_msg: E-posta alan adı kara listeye başarıyla eklendi
       delete: Sil
       dns:
@@ -430,7 +431,7 @@ tr:
       no_email_domain_block_selected: Seçim yapılmadığından hiç bir e-posta alan adı engeli değiştirilmedi
       not_permitted: İzin verilmedi
       resolved_dns_records_hint_html: Alan adı aşağıdaki MX alan adlarına çözümleniyor, ancak hiç biri nihayetinde e-posta kabulünden sorum değil. Bir MX alan adını engellemek, görünen alan adı farklı osa bile aynı MX alan adını kullanan e-posta adreslerinden gelen kayıtları engelleyecektir. <strong>Başlıca e-posta sağlayıcıları engellememek için dikkatli olun.</strong>
-      resolved_through_html: '%{domain} aracılığıyla çözümlendi'
+      resolved_through_html: "%{domain} aracılığıyla çözümlendi"
       title: E-posta kara listesi
     export_domain_allows:
       new:
@@ -441,7 +442,7 @@ tr:
         description_html: Bir alan adı engeli listesini içe aktarmak üzeresiniz. Bu listeyi iyice gözden geçirin, özellikle listeyi siz hazırlamadıysanız.
         existing_relationships_warning: Mevcut takip ilişkileri
         private_comment_description_html: 'İçe aktarılan engellerin nereden geldiğini izlemenize olanak sağlamak için, içe aktarılan engeller şu özel yorum ile oluşturulacak: <q>%{comment}</q>'
-        private_comment_template: '%{source} kaynağından %{date} tarihinde içe aktarıldı'
+        private_comment_template: "%{source} kaynağından %{date} tarihinde içe aktarıldı"
         title: Domain bloklarını içe aktar
       invalid_domain_block: 'Bir veya daha fazla alan adı engeli şu hata(lar)dan dolayı atlandı: %{error}'
       new:
@@ -462,8 +463,8 @@ tr:
           other: Eğer alan adına teslimat <strong>%{count} farklı gün</strong> boyunca başarısız olursa, alan adından bir teslimat <em>gelmedikçe</em> yeni bir iletim denemesi yapılmayacak.
         failure_threshold_reached: Başarısızlık eşiğine %{date} tarihinde ulaşıldı.
         failures_recorded:
-          one: '%{count} gün başarısız girişim.'
-          other: '%{count} farklı gün başarısız girişim.'
+          one: "%{count} gün başarısız girişim."
+          other: "%{count} farklı gün başarısız girişim."
         no_failures_recorded: Kayıtlı başarısızlık yok.
         title: Ulaşılabilirlik
         warning: Bu sunucuya önceki bağlanma denemesi başarısız olmuştu
@@ -503,7 +504,7 @@ tr:
       delivery_available: Teslimat mevcut
       delivery_error_days: Teslimat hatası günleri
       delivery_error_hint: Eğer teslimat %{count} gün boyunca mümkün olmazsa, otomatik olarak teslim edilemiyor olarak işaretlenecek.
-      destroyed_msg: '%{domain} alan adından veriler hemen silinmek üzere kuyruğa alındı.'
+      destroyed_msg: "%{domain} alan adından veriler hemen silinmek üzere kuyruğa alındı."
       empty: Alan adı bulunamadı.
       known_accounts:
         one: "%{count} bilinen hesap"
@@ -551,7 +552,7 @@ tr:
     relays:
       add_new: Yeni aktarıcı ekle
       delete: Sil
-      description_html: <strong>Federasyon aktarıcısı</strong>, kendisine abone olan ve yayın yapan sunucular arasında büyük miktarlarda herkese açık gönderilerin değiş tokuşunu yapan aracı bir sunucudur. <strong>Küçük ve orta boyutlu sunucuların fediverse'ten içerik keşfetmesine yardımcı olurlar</strong>, aksi takdirde yerel kullanıcıların uzak sunuculardaki diğer kişileri manuel olarak takip etmeleri gerekecektir.
+      description_html: "<strong>Federasyon aktarıcısı</strong>, kendisine abone olan ve yayın yapan sunucular arasında büyük miktarlarda herkese açık gönderilerin değiş tokuşunu yapan aracı bir sunucudur. <strong>Küçük ve orta boyutlu sunucuların fediverse'ten içerik keşfetmesine yardımcı olurlar</strong>, aksi takdirde yerel kullanıcıların uzak sunuculardaki diğer kişileri manuel olarak takip etmeleri gerekecektir."
       disable: Devre dışı
       disabled: Devre dışı
       enable: Etkin
@@ -595,11 +596,11 @@ tr:
         none: Yok
       comment_description_html: 'Daha fazla bilgi vermek için %{name} şunu yazdı:'
       confirm: Onayla
-      confirm_action: '%{acct} üzerindeki denetleme eylemini onayla'
+      confirm_action: "%{acct} üzerindeki denetleme eylemini onayla"
       created_at: Şikayet edildi
       delete_and_resolve: Gönderileri sil
       forwarded: İletildi
-      forwarded_to: '%{domain}''e iletildi'
+      forwarded_to: "%{domain}'e iletildi"
       mark_as_resolved: Giderildi olarak işaretle
       mark_as_sensitive: Hassas olarak işaretle
       mark_as_unresolved: Çözümlenmemiş olarak işaretle
@@ -612,9 +613,9 @@ tr:
         placeholder: Hangi işlemlerin yapıldığını, ya da diğer ilgili güncellemeleri açıklayın...
         title: Notlar
       notes_description_html: Kendiniz ve diğer moderatörler için not bırakın veya notları görüntüleyin
-      processed_msg: '#%{id} Bildirimi başarıyla işlendi'
+      processed_msg: "#%{id} Bildirimi başarıyla işlendi"
       quick_actions_description_html: 'Hemen bir şey yapın veya bildirilen içeriği görmek için aşağı kaydırın:'
-      remote_user_placeholder: '%{instance}''dan uzak kullanıcı'
+      remote_user_placeholder: "%{instance}'dan uzak kullanıcı"
       reopen: Şikayeti tekrar aç
       report: 'Şikayet #%{id}'
       reported_account: Şikayet edilen hesap
@@ -627,21 +628,21 @@ tr:
       statuses_description_html: İncitici içerik, bildirilen hesapla iletişimde alıntılanacaktır
       summary:
         action_preambles:
-          delete_html: '<strong>@%{acct}</strong> hesabının bazı gönderilerini <strong>kaldıracaksınız</strong>, böylece:'
-          mark_as_sensitive_html: '<strong>@%{acct}</strong> hesabının bazı gönderilerini <strong>hassas</strong> olarak <strong>işaretleyeceksiniz</strong>, böylece:'
-          silence_html: '<strong>@%{acct}</strong> hesabını <strong>sınırlayacaksınız</strong>, böylece:'
-          suspend_html: '<strong>@%{acct}</strong> hesabını <strong>askıya alacaksınız</strong>, böylece:'
+          delete_html: "<strong>@%{acct}</strong> hesabının bazı gönderilerini <strong>kaldıracaksınız</strong>, böylece:"
+          mark_as_sensitive_html: "<strong>@%{acct}</strong> hesabının bazı gönderilerini <strong>hassas</strong> olarak <strong>işaretleyeceksiniz</strong>, böylece:"
+          silence_html: "<strong>@%{acct}</strong> hesabını <strong>sınırlayacaksınız</strong>, böylece:"
+          suspend_html: "<strong>@%{acct}</strong> hesabını <strong>askıya alacaksınız</strong>, böylece:"
         actions:
           delete_html: Kuralı ihlal eden gönderileri kaldır
           mark_as_sensitive_html: Kuralı ihlal eden gönderilerin medyasını hassas olarak işaretle
-          silence_html: '<strong>@%{acct}</strong> hesabının erişimini oldukça kısıtla: profili ve içeriği sadece onları halihazırda takip edenler veya manuel olarak hesabına erişenlerce mümkün olacak'
-          suspend_html: <strong>@%{acct}</strong> hesabını askıya al, profilini ve içeriğini erişilmez ve etkileşimi imkansız yap
-        close_report: '#%{id} bildirimini çözüldü olarak işaretle'
-        close_reports_html: <strong>@%{acct}</strong> hesabına yönelik <strong>tüm</strong> bildirimleri çözüldü olarak işaretle
+          silence_html: "<strong>@%{acct}</strong> hesabının erişimini oldukça kısıtla: profili ve içeriği sadece onları halihazırda takip edenler veya manuel olarak hesabına erişenlerce mümkün olacak"
+          suspend_html: "<strong>@%{acct}</strong> hesabını askıya al, profilini ve içeriğini erişilmez ve etkileşimi imkansız yap"
+        close_report: "#%{id} bildirimini çözüldü olarak işaretle"
+        close_reports_html: "<strong>@%{acct}</strong> hesabına yönelik <strong>tüm</strong> bildirimleri çözüldü olarak işaretle"
         delete_data_html: İlgili sürede askıdan alınması kaldırılmazsa <strong>@%{acct}</strong> hesabının profilini ve içeriğini şu andan itibaren 30 gün içinde sil
         preview_preamble_html: "<strong>@%{acct}</strong> aşağıdaki içerikle bir uyarı alacaktır:"
-        record_strike_html: <strong>@%{acct}</strong> hesabına karşı bir eylem kaydet, böylece bu hesabın gelecekteki ihlallerini üst makama taşımanıza yardımcı olacaktır
-        send_email_html: <strong>@%{acct}</strong> adlı kullanıcıya uyarı e-maili gönder
+        record_strike_html: "<strong>@%{acct}</strong> hesabına karşı bir eylem kaydet, böylece bu hesabın gelecekteki ihlallerini üst makama taşımanıza yardımcı olacaktır"
+        send_email_html: "<strong>@%{acct}</strong> adlı kullanıcıya uyarı e-maili gönder"
         warning_placeholder: İsteğe bağlı ek nedenden denetim eylemi.
       target_origin: Şikayet edilen hesabın kökeni
       title: Şikayetler
@@ -662,8 +663,8 @@ tr:
         moderation: Denetim
         special: Özel
       delete: Sil
-      description_html: <strong>Kullanıcı rolleri</strong> ile, kullanıcılarınızın Mastodon'un hangi işlevlerine ve alanlarına erişebileceğini düzenleyebilirsiniz.
-      edit: '''%{name}'' rolünü düzenle'
+      description_html: "<strong>Kullanıcı rolleri</strong> ile, kullanıcılarınızın Mastodon'un hangi işlevlerine ve alanlarına erişebileceğini düzenleyebilirsiniz."
+      edit: "'%{name}' rolünü düzenle"
       everyone: Varsayılan izinler
       everyone_full_description_html: Bu, herhangi bir rol atanmamış olanlar da olmak üzere <strong>tüm kullanıcıları</strong> etkileyen <strong>temel rol</strong>dür. Diğer tüm roller izinleri bu rolden alıyorlar.
       permissions_count:
@@ -810,7 +811,7 @@ tr:
         action: Sunucu kurallarını yönet
         message_html: Herhangi bir sunucu kuralı belirlemediniz.
       sidekiq_process_check:
-        message_html: '%{value} kuyruk(lar)ı için herhangi bir Sidekiq süreci çalışmıyor. Lütfen Sidekiq yapılandırmanızı gözden geçirin'
+        message_html: "%{value} kuyruk(lar)ı için herhangi bir Sidekiq süreci çalışmıyor. Lütfen Sidekiq yapılandırmanızı gözden geçirin"
       upload_check_privacy_error:
         action: Daha fazla bilgi için buraya tıklayın
         message_html: "<strong>Web sunucunuz hatalı yapılandırılmış. Kullanıcılarınızın gizliliği tehlikede.</strong>"
@@ -858,7 +859,7 @@ tr:
         not_discoverable: Yazar keşfedilebilir olmamayı seçiyor
         shared_by:
           one: Bir defa paylaşıldı veya favorilendi
-          other: '%{friendly_count} defa paylaşıldı veya favorilendi'
+          other: "%{friendly_count} defa paylaşıldı veya favorilendi"
         title: Öne çıkan gönderiler
       tags:
         current_score: Mevcut puan %{score}
@@ -874,7 +875,7 @@ tr:
         not_listable: Önerilmeyecek
         not_trendable: Öne çıkanlar altında görünmeyecek
         not_usable: Kullanılamaz
-        peaked_on_and_decaying: '%{date} tarihinde zirvedeydi, şimdi azalıyor'
+        peaked_on_and_decaying: "%{date} tarihinde zirvedeydi, şimdi azalıyor"
         title: Öne çıkan etiketler
         trendable: Öne çıkanlar altında görünebilir
         trending_rank: 'Öne çıkanlar #%{rank}'
@@ -926,11 +927,11 @@ tr:
       subject: "%{username}, %{instance} hakkındaki bir yönetim kararına itiraz ediyor"
     new_pending_account:
       body: Yeni hesabın detayları aşağıdadır. Bu başvuruyu onaylayabilir ya da reddedebilirsiniz.
-      subject: '%{instance} üzerinde gözden geçirmek için yeni hesap (%{username})'
+      subject: "%{instance} üzerinde gözden geçirmek için yeni hesap (%{username})"
     new_report:
       body: "%{reporter}, %{target} kişisini bildirdi"
-      body_remote: '%{domain} alan adından birisi %{target} kişisini bildirdi'
-      subject: '%{instance} için yeni şikayet (#%{id})'
+      body_remote: "%{domain} alan adından birisi %{target} kişisini bildirdi"
+      subject: "%{instance} için yeni şikayet (#%{id})"
     new_trends:
       body: 'Aşağıdaki öğeler herkese açık olarak gösterilmeden önce gözden geçirilmelidir:'
       new_trending_links:
@@ -941,7 +942,7 @@ tr:
         no_approved_tags: Şu anda onaylanmış öne çıkan etiket yok.
         requirements: 'Aşağıdaki adaylardan herhangi biri, şu anda %{lowest_tag_score} skoruna sahip "%{lowest_tag_name}" olan #%{rank} onaylanmış öne çıkan etiketi geçebilir.'
         title: Öne çıkan etiketler
-      subject: '%{instance}, inceleme bekleyen yeni öne çıkan öğelere sahip'
+      subject: "%{instance}, inceleme bekleyen yeni öne çıkan öğelere sahip"
   aliases:
     add_new: Takma ad oluştur
     created_msg: Yeni takma ad başarıyla oluşturuldu. Artık eski hesaptan taşınmayı başlatabilirsiniz.
@@ -1019,11 +1020,11 @@ tr:
       email_settings_hint_html: Onaylama e-postası %{email} adresine gönderildi. Eğer bu e-posta adresi doğru değilse, hesap ayarlarından değiştirebilirsiniz.
       title: Kurulum
     sign_in:
-      preamble_html: <strong>%{domain}</strong> kimlik bilgilerinizi kullanarak giriş yapın. Eğer hesabınız başka bir sunucuda barındırılıyorsa, burada giriş yapamazsınız.
-      title: '%{domain} giriş yapın'
+      preamble_html: "<strong>%{domain}</strong> kimlik bilgilerinizi kullanarak giriş yapın. Eğer hesabınız başka bir sunucuda barındırılıyorsa, burada giriş yapamazsınız."
+      title: "%{domain} giriş yapın"
     sign_up:
       preamble: Bu Mastodon sunucusu üzerinden bir hesap ile ağdaki herhangi bir kişiyi, hesabı hangi sunucuda saklanırsa saklansın, takip edebilirsiniz.
-      title: '%{domain} için kurulumunuzu yapalım.'
+      title: "%{domain} için kurulumunuzu yapalım."
     status:
       account_status: Hesap durumu
       confirming: E-posta doğrulamasının tamamlanması bekleniyor.
@@ -1044,7 +1045,7 @@ tr:
       close: Ya da, sadece bu pencereyi kapatabilirsiniz.
       return: Kullanıcının profilini göster
       web: Web'e git
-    title: '%{acct} takip et'
+    title: "%{acct} takip et"
   challenge:
     confirm: Devam et
     hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
@@ -1138,12 +1139,12 @@ tr:
     noscript_html: Mastodon web uygulamasını kullanmak için lütfen JavaScript'i etkinleştirin. Alternatif olarak, platformunuz için Mastodon <a href="%{apps_path}">yerel uygulamalardan</a> birini deneyin.
   existing_username_validator:
     not_found: bu kullanıcı adına sahip yerel bir kullanıcı bulunamadı
-    not_found_multiple: '%{usernames} bulunamadı'
+    not_found_multiple: "%{usernames} bulunamadı"
   exports:
     archive_takeout:
       date: Tarih
       download: Arşivinizi indirin
-      hint_html: <strong>Gönderileriniz ve yüklediğiniz medya dosyalarının</strong> bir arşivini talep edebilirsiniz. Dışa aktarılan veriler, herhangi bir uyumlu yazılım tarafından okunabilen ActivityPub biçiminde olacaktır. Her 7 günde bir arşiv talep edebilirsiniz.
+      hint_html: "<strong>Gönderileriniz ve yüklediğiniz medya dosyalarının</strong> bir arşivini talep edebilirsiniz. Dışa aktarılan veriler, herhangi bir uyumlu yazılım tarafından okunabilen ActivityPub biçiminde olacaktır. Her 7 günde bir arşiv talep edebilirsiniz."
       in_progress: Arşivinizi derliyoruz...
       request: Arşivinizi isteyin
       size: Boyut
@@ -1176,11 +1177,11 @@ tr:
       deprecated_api_multiple_keywords: Bu parametreler, birden fazla filtre anahtar sözcüğü için geçerli olduğundan dolayı bu uygulama içerisinden değiştirilemezler. Daha yeni bir uygulama veya web arayüzünü kullanın.
       invalid_context: Sıfır ya da geçersiz içerik sağlandı
     index:
-      contexts: '%{contexts} içindeki filtreler'
+      contexts: "%{contexts} içindeki filtreler"
       delete: Sil
       empty: Hiç filtreniz yok.
-      expires_in: '%{distance} sürede sona eriyor'
-      expires_on: '%{date} tarihinde sona eriyor'
+      expires_in: "%{distance} sürede sona eriyor"
+      expires_on: "%{date} tarihinde sona eriyor"
       keywords:
         one: "%{count} anahtar sözcük"
         other: "%{count} anahtar sözcük"
@@ -1204,10 +1205,10 @@ tr:
   generic:
     all: Tümü
     all_items_on_page_selected_html:
-      one: "Bu sayfadaki <strong>%{count}</strong> öğe seçilmiş."
+      one: Bu sayfadaki <strong>%{count}</strong> öğe seçilmiş.
       other: Bu sayfadaki tüm <strong>%{count}</strong> öğe seçilmiş.
     all_matching_items_selected_html:
-      one: "Aramanızla eşleşen <strong>%{count}</strong> öğe seçilmiş."
+      one: Aramanızla eşleşen <strong>%{count}</strong> öğe seçilmiş.
       other: Aramanızla eşleşen tüm <strong>%{count}</strong> öğe seçilmiş.
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
     copy: Kopyala
@@ -1226,7 +1227,7 @@ tr:
   imports:
     errors:
       invalid_csv_file: 'Geçersiz CSV dosyası. Hata: %{error}'
-      over_rows_processing_limit: '%{count} satırdan fazlasını içeriyor'
+      over_rows_processing_limit: "%{count} satırdan fazlasını içeriyor"
     modes:
       merge: Birleştir
       merge_long: Mevcut kayıtları sakla ve yenileri ekle
@@ -1274,8 +1275,8 @@ tr:
       webauthn: güvenlik anahtarları
     description_html: Eğer tanımadığınız bir faaliyet görüyorsanız, parolanızı değiştirmeyi ve iki aşamalı kimlik doğrulamayı etkinleştirmeyi düşünün.
     empty: Kimlik doğrulama geçmişi yok
-    failed_sign_in_html: '%{method} yöntemiyle %{ip} (%{browser}) adresinden başarısız oturum açma girişimi'
-    successful_sign_in_html: '%{method} yöntemiyle %{ip} (%{browser}) adresinden başarılı oturum açma'
+    failed_sign_in_html: "%{method} yöntemiyle %{ip} (%{browser}) adresinden başarısız oturum açma girişimi"
+    successful_sign_in_html: "%{method} yöntemiyle %{ip} (%{browser}) adresinden başarılı oturum açma"
     title: Kimlik doğrulama geçmişi
   media_attachments:
     validations:
@@ -1328,7 +1329,7 @@ tr:
       sign_up:
         subject: "%{name} kaydoldu"
     favourite:
-      body: '%{name} durumunu beğendi:'
+      body: "%{name} durumunu beğendi:"
       subject: "%{name} durumunu beğendi"
       title: Yeni Favori
     follow:
@@ -1342,13 +1343,13 @@ tr:
       title: Yeni takip isteği
     mention:
       action: Yanıtla
-      body: '%{name} senden bahsetti:'
-      subject: '%{name} senden bahsetti'
+      body: "%{name} senden bahsetti:"
+      subject: "%{name} senden bahsetti"
       title: Yeni bahsetme
     poll:
       subject: Anket %{name} tarafından sonlandırıldı
     reblog:
-      body: '%{name} durumunuzu boostladı:'
+      body: "%{name} durumunuzu boostladı:"
       subject: "%{name} durumunuzu boostladı"
       title: Yeni boost
     status:
@@ -1393,7 +1394,7 @@ tr:
       invalid_choice: Seçilen oylama seçeneği mevcut değil
       over_character_limit: her biri %{max} karakterden daha uzun olamaz
       too_few_options: birden fazla öğeye sahip olmalı
-      too_many_options: '%{max} öğeden fazla öğe içeremez'
+      too_many_options: "%{max} öğeden fazla öğe içeremez"
   preferences:
     other: Diğer
     posting_defaults: Gönderi varsayılanları
@@ -1433,11 +1434,11 @@ tr:
   rss:
     content_warning: 'İçerik uyarısı:'
     descriptions:
-      account: '@%{acct} hesabından herkese açık gönderiler'
-      tag: '#%{hashtag} etiketli herkese açık gönderiler'
+      account: "@%{acct} hesabından herkese açık gönderiler"
+      tag: "#%{hashtag} etiketli herkese açık gönderiler"
   scheduled_statuses:
     over_daily_limit: Bugün için %{limit} zamanlanmış gönderi sınırını aştınız
-    over_total_limit: '%{limit} zamanlanmış gönderi sınırını aştınız'
+    over_total_limit: "%{limit} zamanlanmış gönderi sınırını aştınız"
     too_soon: Programlanan tarih bugünden ileri bir tarihte olmalıdır
   sessions:
     activity: Son etkinlik
@@ -1519,17 +1520,17 @@ tr:
       video:
         one: "%{count} video"
         other: "%{count} video"
-    boosted_from_html: '%{acct_link} kişisinden boostladı'
+    boosted_from_html: "%{acct_link} kişisinden boostladı"
     content_warning: 'İçerik uyarısı: %{warning}'
     default_language: Arayüz diliyle aynı
     disallowed_hashtags:
       one: 'izin verilmeyen bir etiket içeriyordu: %{tags}'
       other: 'izin verilmeyen hashtag''leri içeriyordu: %{tags}'
-    edited_at_html: '%{date} tarihinde düzenlendi'
+    edited_at_html: "%{date} tarihinde düzenlendi"
     errors:
       in_reply_not_found: Yanıtlamaya çalıştığınız durum yok gibi görünüyor.
     open_in_web: Web sayfasında aç
-    over_character_limit: '%{max} karakter limiti aşıldı'
+    over_character_limit: "%{max} karakter limiti aşıldı"
     pin_errors:
       direct: Sadece değinilen kullanıcıların görebileceği gönderiler üstte tutulamaz
       limit: Halihazırda maksimum sayıda gönderi sabitlediniz
@@ -1628,12 +1629,12 @@ tr:
   user_mailer:
     appeal_approved:
       action: Hesabınıza gidin
-      explanation: '%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız onaylandı. Hesabınız artık tekrar iyi durumda.'
-      subject: '%{date} tarihli itirazınız kabul edildi'
+      explanation: "%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız onaylandı. Hesabınız artık tekrar iyi durumda."
+      subject: "%{date} tarihli itirazınız kabul edildi"
       title: İtiraz onaylandı
     appeal_rejected:
-      explanation: '%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız reddedildi.'
-      subject: '%{date} tarihli itirazınız reddedildi'
+      explanation: "%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız reddedildi."
+      subject: "%{date} tarihli itirazınız reddedildi"
       title: İtiraz reddedildi
     backup_ready:
       explanation: Mastodon hesabınızın tam yedeğini istemiştiniz. Şimdi indirilebilir durumda!
@@ -1662,13 +1663,13 @@ tr:
       reason: 'Gerekçe:'
       statuses: 'Sözü geçen gönderiler:'
       subject:
-        delete_statuses: '%{acct} hesabınızdaki gönderiler kaldırıldı'
-        disable: '%{acct} hesabınız donduruldu'
-        mark_statuses_as_sensitive: '%{acct} hesabındaki gönderiler hassas olarak işaretlendi'
-        none: '%{acct} için uyarı'
-        sensitive: '%{acct} hesabınızdaki gönderiler artık hassas olarak işaretlenecek'
-        silence: '%{acct} hesabınız sınırlandırıldı'
-        suspend: '%{acct} hesabınız askıya alındı'
+        delete_statuses: "%{acct} hesabınızdaki gönderiler kaldırıldı"
+        disable: "%{acct} hesabınız donduruldu"
+        mark_statuses_as_sensitive: "%{acct} hesabındaki gönderiler hassas olarak işaretlendi"
+        none: "%{acct} için uyarı"
+        sensitive: "%{acct} hesabınızdaki gönderiler artık hassas olarak işaretlenecek"
+        silence: "%{acct} hesabınız sınırlandırıldı"
+        suspend: "%{acct} hesabınız askıya alındı"
       title:
         delete_statuses: Kaldırılan gönderiler
         disable: Hesap donduruldu
@@ -1688,7 +1689,7 @@ tr:
       subject: Mastodon'a hoş geldiniz
       title: Gemiye hoşgeldin, %{name}!
   users:
-    follow_limit_reached: '%{limit} kişiden daha fazlasını takip edemezsiniz'
+    follow_limit_reached: "%{limit} kişiden daha fazlasını takip edemezsiniz"
     go_to_sso_account_settings: Kimlik sağlayıcı hesap ayarlarına gidin
     invalid_otp_token: Geçersiz iki adımlı doğrulama kodu
     otp_lost_help_html: Her ikisine de erişiminizi kaybettiyseniz, %{email} ile irtibata geçebilirsiniz
@@ -1704,7 +1705,7 @@ tr:
       success: Güvenlik anahtarınız başarıyla eklendi.
     delete: Sil
     delete_confirmation: Bu güvenlik anahtarını silmek istediğinizden emin misiniz?
-    description_html: <strong>Güvenlik anahtarı kimlik doğrulamasını</strong> etkinleştirirseniz, giriş yapmak için güvenlik anahtarlarınızdan birini kullanmanız gerekir.
+    description_html: "<strong>Güvenlik anahtarı kimlik doğrulamasını</strong> etkinleştirirseniz, giriş yapmak için güvenlik anahtarlarınızdan birini kullanmanız gerekir."
     destroy:
       error: Güvenlik anahtarını silerken bir sorun oluştu. Lütfen tekrar deneyin.
       success: Güvenlik anahtarınız başarıyla silindi.
@@ -1713,4 +1714,4 @@ tr:
     not_enabled: Henüz WebAuthn'u etkinleştirmediniz
     not_supported: Bu tarayıcı güvenlik anahtarlarını desteklemiyor
     otp_required: Güvenlik anahtarlarını kullanmak için lütfen önce iki adımlı kimlik doğrulamayı etkinleştirin.
-    registered_on: '%{date} tarihinde kaydoldu'
+    registered_on: "%{date} tarihinde kaydoldu"
