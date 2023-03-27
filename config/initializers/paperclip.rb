@@ -118,6 +118,7 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
       openstack_domain_name: ENV.fetch('SWIFT_DOMAIN_NAME') { 'default' },
       openstack_region: ENV['SWIFT_REGION'],
       openstack_cache_ttl: ENV.fetch('SWIFT_CACHE_TTL') { 60 },
+      openstack_temp_url_key: ENV['SWIFT_TEMP_URL_KEY'],
     },
 
     fog_directory: ENV['SWIFT_CONTAINER'],
