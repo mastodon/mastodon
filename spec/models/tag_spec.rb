@@ -56,6 +56,10 @@ RSpec.describe Tag do
       expect(subject.match('hello #test_').to_s).to eq ' #test_'
     end
 
+    it 'matches includes dash(-)' do
+      expect(subject.match('hello #test-10').to_s).to eq ' #test-10'
+    end
+
     it 'matches underscores in the middle' do
       expect(subject.match('hello #one_two_three').to_s).to eq ' #one_two_three'
     end

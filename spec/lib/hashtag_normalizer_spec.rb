@@ -25,5 +25,9 @@ describe HashtagNormalizer do
     it 'keeps valid characters' do
       expect(subject.normalize('a·b')).to eq 'a·b'
     end
+
+    it 'keeps dash(-) character' do
+      expect(subject.normalize('a-')).to eq 'a-'
+    end
   end
 end

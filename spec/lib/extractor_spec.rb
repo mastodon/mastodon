@@ -47,6 +47,12 @@ describe Extractor do
       expect(extracted).to eq [{ hashtag: 'hashtag', indices: [0, 8] }]
     end
 
+    it 'does not exclude normal hash text that includes dash(-)' do
+      text = '#hash-tag'
+      extracted = Extractor.extract_hashtags_with_indices(text)
+      expect(extracted).to eq [{ hashtag: 'hash-tag', indices: [0, 9] }]
+    end
+
     it 'excludes http://' do
       text = '#hashtaghttp://'
       extracted = Extractor.extract_hashtags_with_indices(text)
