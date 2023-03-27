@@ -1,11 +1,10 @@
----
 hu:
   activerecord:
     attributes:
       doorkeeper/application:
         name: Alkalmazás neve
         redirect_uri: Átirányító URI
-        scopes: Hatáskör
+        scopes: Hatókör
         website: Az alkalmazás weboldala
     errors:
       models:
@@ -19,65 +18,65 @@ hu:
   doorkeeper:
     applications:
       buttons:
-        authorize: Engedélyezés
+        authorize: Hitelesítés
         cancel: Mégsem
         destroy: Törlés
         edit: Szerkesztés
         submit: Elküldés
       confirmations:
-        destroy: Biztos vagy benne?
+        destroy: Biztos így legyen?
       edit:
         title: Alkalmazás szerkesztése
       form:
-        error: Hoppá! Ellenőrizd az űrlapot az esetleges hibák miatt
+        error: Hoppá! Ellenőrizük az űrlapot az esetleges hibák miatt
       help:
-        native_redirect_uri: Használj %{native_redirect_uri} a helyi tesztekhez
+        native_redirect_uri: '%{native_redirect_uri} használata a helyi tesztekhez'
         redirect_uri: Egy sor URI-nként
-        scopes: A hatásköröket szóközzel válaszd el. Hagyd üresen az alapértelmezett hatáskörökhöz.
+        scopes: A hatóköröket szóközzel válasszuk el. Hagyjuk üresen az alapértelmezett hatókörökhöz.
       index:
         application: Alkalmazás
         callback_url: Visszahívási URL
         delete: Eltávolítás
-        empty: Nincsenek alkalmazásaid.
+        empty: Nincsenek saját alkalmazások.
         name: Név
         new: Új alkalmazás
-        scopes: Hatáskör
-        show: Mutat
-        title: Alkalmazásaid
+        scopes: Hatókörök
+        show: Megjelenítés
+        title: Saját alkalmazások
       new:
         title: Új alkalmazás
       show:
         actions: Műveletek
-        application_id: Alkalmazás azonosító
-        callback_urls: Callback URL-ek
+        application_id: Ügyfél kulcs
+        callback_urls: Visszahívási URL-ek
         scopes: Hatáskörök
-        secret: Titok
+        secret: Ügyfél titkos kulcs
         title: 'Alkalmazás: %{name}'
     authorizations:
       buttons:
-        authorize: Engedélyezés
+        authorize: Hitelesítés
         deny: Tiltás
       error:
         title: Hiba történt
       new:
-        prompt_html: "%{client_name} szeretné elérni a fiókodat. Ez egy harmadik féltől származó alkalmazás. <strong>Ha nem bízol meg benne, ne addj felhatalmazást neki.</strong>"
-        review_permissions: Engedélyek áttekintése
-        title: Engedély szükséges
+        prompt_html: "%{client_name} szeretné elérni a fiókomat. Ez egy harmadik féltől származó alkalmazás. <strong>Ha nem bízunk meg benne, ne adjunk hitlesítést.</strong>"
+        review_permissions: Jogosultságok áttekintése
+        title: Hitelesítés szükséges
       show:
         title: Másold le ezt az engedélyező kódot és írd be az alkalmazásba.
     authorized_applications:
       buttons:
         revoke: Visszavonás
       confirmations:
-        revoke: Biztos vagy benne?
+        revoke: Biztos így legyen?
       index:
-        authorized_at: 'Felhatalmazva ekkor: %{date}'
+        authorized_at: 'Hitelesítés: %{date}'
         description_html: Ezek olyan alkalmazások, melyek API-n keresztül érhetik el a fiókodat. Ha vannak itt olyanok, melyeket nem ismersz fel, vagy valamelyik alkalmazás rosszul működik, visszavonhatod az engedélyét.
-        last_used_at: 'Utoljára ekkor használva: %{date}'
+        last_used_at: 'Utolsó használat: %{date}'
         never_used: Soha sem volt használva
-        scopes: Engedélyek
+        scopes: Jogosultságok
         superapp: Belső
-        title: Engedélyezett alkalmazásaid
+        title: Hitelesített saját alkalmazások
     errors:
       messages:
         access_denied: Az erőforrás tulajdonosa vagy az engedélyező kiszolgáló elutasította a kérést.
@@ -92,10 +91,10 @@ hu:
         invalid_resource_owner: A biztosított erőforrás tulajdonosának hitelesítő adatai nem valósak, vagy az erőforrás tulajdonosa nem található.
         invalid_scope: A kért nézet érvénytelen, ismeretlen, vagy hibás.
         invalid_token:
-          expired: Hozzáférési kulcs lejárt
-          revoked: Hozzáférési kulcsot visszavonták
-          unknown: Hozzáférési kulcs érvénytelen
-        resource_owner_authenticator_not_configured: Erőforrás tulajdonos keresés megszakadt, ugyanis a Doorkeeper.configure.resource_owner_authenticator beállítatlan.
+          expired: A hozzáférési kulcs lejárt.
+          revoked: A hozzáférési kulcsot visszavonták.
+          unknown: A hozzáférési kulcs érvénytelen.
+        resource_owner_authenticator_not_configured: Az erőforrás tulajdonos keresés megszakadt, ugyanis a Doorkeeper.configure.resource_owner_authenticator beállítatlan.
         server_error: Az engedélyező kiszolgáló váratlan körülménybe ütközött, ami megakadályozta, hogy teljesítse a kérést.
         temporarily_unavailable: Az engedélyezési kiszolgáló jelenleg nem tudja kezelni a kérelmet a kiszolgáló ideiglenes túlterhelése vagy karbantartása miatt.
         unauthorized_client: A kliens nincs feljogosítva erre a kérésre.
@@ -104,14 +103,14 @@ hu:
     flash:
       applications:
         create:
-          notice: Alkalmazás létrehozva.
+          notice: Az alkalmazás létrejött.
         destroy:
-          notice: Alkalmazás törölve.
+          notice: Az alkalmazás törlésre került.
         update:
           notice: Alkalmazás frissítve.
       authorized_applications:
         destroy:
-          notice: Alkalmazás visszavonva.
+          notice: Az alkalmazás visszavonásra került.
     grouped_scopes:
       access:
         read: Csak olvasási elérés
@@ -122,7 +121,7 @@ hu:
         admin/accounts: Fiókok adminisztrációja
         admin/all: Minden adminisztratív funkció
         admin/reports: Bejelentések adminisztrációja
-        all: Teljes hozzáférés a Mastodon fiókodhoz
+        all: Teljes hozzáférés a Mastodon saját fiókhoz
         blocks: Letiltások
         bookmarks: Könyvjelzők
         conversations: Beszélgetések
@@ -147,49 +146,49 @@ hu:
       application:
         title: OAuth engedély szükséges
     scopes:
-      admin:read: a kiszolgáló összes adatának olvasása
-      admin:read:accounts: minden kényes fiókadat olvasása
-      admin:read:canonical_email_blocks: kanonikus emailblokkok érzékeny információinak olvasása
-      admin:read:domain_allows: minden domainengedély érzékeny információinak olvasása
-      admin:read:domain_blocks: minden domaintiltás érzékeny információinak olvasása
-      admin:read:email_domain_blocks: minden email-domainblokk érzékeny információinak olvasása
-      admin:read:ip_blocks: minden IP-blokk érzékeny információinak olvasása
-      admin:read:reports: minden bejelentés és bejelentett fiók kényes adatainak olvasása
-      admin:write: a kiszolgáló összes adatának módosítása
-      admin:write:accounts: moderációs műveletek végzése fiókokon
-      admin:write:canonical_email_blocks: moderáció végrehajtása kanonikus emailblokkokon
-      admin:write:domain_allows: moderáció végrehajtása domainengedélyeken
-      admin:write:domain_blocks: moderáció végrehajtása domaintiltásokon
-      admin:write:email_domain_blocks: moderáció végrehajtása email-domainblokkokon
-      admin:write:ip_blocks: moderáció végrehajtása IP-blokkokon
-      admin:write:reports: moderációs műveletek végzése bejelentéseken
+      "admin:read": a kiszolgáló összes adatának olvasása
+      "admin:read:accounts": minden kényes fiókadat olvasása
+      "admin:read:canonical_email_blocks": kanonikus emailblokkok érzékeny információinak olvasása
+      "admin:read:domain_allows": minden domainengedély érzékeny információinak olvasása
+      "admin:read:domain_blocks": minden domaintiltás érzékeny információinak olvasása
+      "admin:read:email_domain_blocks": minden email-domainblokk érzékeny információinak olvasása
+      "admin:read:ip_blocks": minden IP-blokk érzékeny információinak olvasása
+      "admin:read:reports": minden bejelentés és bejelentett fiók kényes adatainak olvasása
+      "admin:write": a kiszolgáló összes adatának módosítása
+      "admin:write:accounts": moderációs műveletek végzése fiókokon
+      "admin:write:canonical_email_blocks": moderáció végrehajtása kanonikus emailblokkokon
+      "admin:write:domain_allows": moderáció végrehajtása domainengedélyeken
+      "admin:write:domain_blocks": moderáció végrehajtása domaintiltásokon
+      "admin:write:email_domain_blocks": moderáció végrehajtása email-domainblokkokon
+      "admin:write:ip_blocks": moderáció végrehajtása IP-blokkokon
+      "admin:write:reports": moderációs műveletek végzése bejelentéseken
       crypto: végpontok közti titkosítás használata
-      follow: fiókok követése, letiltása, tiltás feloldása és követés abbahagyása
+      follow: fiókok kapcsolatok módosítása
       push: push értesítések fogadása
-      read: fiókod adatainak olvasása
-      read:accounts: fiók adatainak megtekintése
-      read:blocks: letiltások megtekintése
-      read:bookmarks: könyvjelzőid megtekintése
-      read:favourites: kedvencek megtekintése
-      read:filters: szűrök megtekintése
-      read:follows: követések megtekintése
-      read:lists: listák megtekintése
-      read:mutes: némítások megtekintése
-      read:notifications: értesítések megtekintése
-      read:reports: bejelentések megtekintése
-      read:search: nevedben keresés
-      read:statuses: bejegyzések megtekintése
+      read: saját fiók adatainak olvasása
+      "read:accounts": fiók adatainak megtekintése
+      "read:blocks": letiltások megtekintése
+      "read:bookmarks": könyvjelzőik megtekintése
+      "read:favourites": kedvencek megtekintése
+      "read:filters": szűrök megtekintése
+      "read:follows": követések megtekintése
+      "read:lists": listák megtekintése
+      "read:mutes": némítások megtekintése
+      "read:notifications": értesítések megtekintése
+      "read:reports": bejelentések megtekintése
+      "read:search": keresés saját nevemben
+      "read:statuses": bejegyzések megtekintése
       write: fiókod adatainak megváltoztatása
-      write:accounts: profilod megváltoztatása
-      write:blocks: fiókok és domainek letiltása
-      write:bookmarks: bejegyzések könyvjelzőzése
-      write:conversations: beszélgetések némítása és törlése
-      write:favourites: bejegyzések kedvencnek jelölése
-      write:filters: szűrők létrehozása
-      write:follows: mások követése
-      write:lists: listák létrehozása
-      write:media: média feltöltése
-      write:mutes: emberek és beszélgetések némítása
-      write:notifications: értesítések törlése
-      write:reports: mások bejelentése
-      write:statuses: bejegyzések közzététele
+      "write:accounts": saját profil megváltoztatása
+      "write:blocks": fiókok és domainek letiltása
+      "write:bookmarks": bejegyzések könyvjelzőzése
+      "write:conversations": beszélgetések némítása és törlése
+      "write:favourites": bejegyzések kedvencnek jelölése
+      "write:filters": szűrők létrehozása
+      "write:follows": mások követése
+      "write:lists": listák létrehozása
+      "write:media": média feltöltése
+      "write:mutes": emberek és beszélgetések némítása
+      "write:notifications": értesítések törlése
+      "write:reports": mások bejelentése
+      "write:statuses": bejegyzések közzététele
