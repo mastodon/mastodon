@@ -811,6 +811,12 @@ bg:
         message_html: Не сте определили никакви правила на сървъра.
       sidekiq_process_check:
         message_html: Не работи процес Sidekiq за %{value} опашка/и. Прегледайте настройките си за Sidekiq
+      upload_check_privacy_error:
+        action: Щракнете тук за повече информация
+        message_html: "<strong>Вашият уеб сървър е погрешно конфигуриран. Поверителността на потребителите ви е изложена на риск.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Щракнете тук за повече информация
+        message_html: "<strong>Вашето съхранение на предмети е погрешно конфигурирано. Поверителността на потребителите ви е изложена на риск.</strong>"
     tags:
       review: Преглед на състояние
       updated_msg: Успешно осъвременени настройки на хаштага
@@ -1683,6 +1689,7 @@ bg:
       title: Добре дошли на борда, %{name}!
   users:
     follow_limit_reached: Не може да последвате повече от %{limit} души
+    go_to_sso_account_settings: Отидете при настройките на акаунта на своя доставчик на идентичност
     invalid_otp_token: Невалиден код
     otp_lost_help_html: Ако загубите достъп до двете, то може да се свържете с %{email}
     seamless_external_login: Влезли сте чрез външна услуга, така че настройките за парола и имейл не са налични.
