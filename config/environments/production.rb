@@ -127,7 +127,6 @@ Rails.application.configure do
     'X-Frame-Options'        => 'DENY',
     'X-Content-Type-Options' => 'nosniff',
     'X-XSS-Protection'       => '0',
-    'Permissions-Policy'     => 'interest-cohort=()',
     'Referrer-Policy'        => 'same-origin',
   }
 

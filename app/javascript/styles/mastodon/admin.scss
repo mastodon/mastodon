@@ -117,7 +117,7 @@ $content-width: 840px;
         text-overflow: ellipsis;
 
         i.fa {
-          margin-right: 5px;
+          margin-inline-end: 5px;
         }
 
         &:hover {
@@ -186,7 +186,10 @@ $content-width: 840px;
   }
 
   .content {
-    padding: 55px 15px 20px 25px;
+    padding-top: 55px;
+    padding-bottom: 20px;
+    padding-inline-start: 25px;
+    padding-inline-end: 15px;
 
     @media screen and (max-width: $no-columns-breakpoint) {
       max-width: none;
@@ -202,11 +205,12 @@ $content-width: 840px;
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
-        margin: -15px -15px 0 0;
+        margin-top: -15px;
+        margin-inline-end: -15px;
 
         & > * {
           margin-top: 15px;
-          margin-right: 15px;
+          margin-inline-end: 15px;
         }
       }
 
@@ -385,7 +389,7 @@ $content-width: 840px;
           z-index: 10;
           width: 100%;
           height: calc(100% - 56px);
-          left: 0;
+          inset-inline-start: 0;
           bottom: 0;
           overflow-y: auto;
           background: $ui-base-color;
@@ -470,10 +474,11 @@ body,
 .filters {
   display: flex;
   flex-wrap: wrap;
+  gap: 40px;
 
   .filter-subset {
     flex: 0 0 auto;
-    margin: 0 40px 20px 0;
+    margin-bottom: 20px;
 
     &:last-child {
       margin-bottom: 30px;
@@ -485,7 +490,7 @@ body,
 
       li {
         display: inline-block;
-        margin-right: 5px;
+        margin-inline-end: 5px;
       }
     }
 
@@ -572,7 +577,7 @@ body,
 
   .activity-stream {
     flex: 2 0 0;
-    margin-right: 20px;
+    margin-inline-end: 20px;
     max-width: calc(100% - 60px);
 
     .entry {
@@ -625,12 +630,12 @@ body,
   }
 
   .media-spoiler-toggle-buttons {
-    margin-left: auto;
+    margin-inline-start: auto;
 
     .button {
       overflow: visible;
       margin: 0 0 5px 5px;
-      float: right;
+      float: inline-end;
     }
   }
 }
@@ -651,7 +656,7 @@ body,
 
 .special-action-button,
 .back-link {
-  text-align: right;
+  text-align: end;
   flex: 1 1 auto;
 }
 
@@ -669,7 +674,7 @@ body,
   display: block;
   line-height: 20px;
   padding: 15px;
-  padding-left: 15px * 2 + 40px;
+  padding-inline-start: 15px * 2 + 40px;
   background: $ui-base-color;
   border-bottom: 1px solid darken($ui-base-color, 8%);
   position: relative;
@@ -696,7 +701,7 @@ body,
 
   &__avatar {
     position: absolute;
-    left: 15px;
+    inset-inline-start: 15px;
     top: 15px;
 
     .avatar {
@@ -764,7 +769,7 @@ a.name-tag,
   .avatar {
     display: block;
     margin: 0;
-    margin-right: 5px;
+    margin-inline-end: 5px;
     border-radius: 50%;
   }
 
@@ -778,7 +783,7 @@ a.name-tag,
 
 .speech-bubble {
   margin-bottom: 20px;
-  border-left: 4px solid $ui-highlight-color;
+  border-inset-inline-start: 4px solid $ui-highlight-color;
 
   &.positive {
     border-left-color: $success-green;
@@ -794,7 +799,7 @@ a.name-tag,
 
   &__bubble {
     padding: 16px;
-    padding-left: 14px;
+    padding-inline-start: 14px;
     font-size: 15px;
     line-height: 20px;
     border-radius: 4px 4px 4px 0;
@@ -808,7 +813,7 @@ a.name-tag,
 
   &__owner {
     padding: 8px;
-    padding-left: 12px;
+    padding-inline-start: 12px;
   }
 
   time {
@@ -832,7 +837,7 @@ a.name-tag,
       border: 0;
 
       &__avatar-wrapper {
-        margin-left: 0;
+        margin-inline-start: 0;
       }
     }
 
@@ -841,7 +846,7 @@ a.name-tag,
       font-weight: 500;
       color: $darker-text-color;
       text-transform: uppercase;
-      text-align: right;
+      text-align: end;
 
       a {
         color: inherit;
@@ -892,7 +897,7 @@ a.name-tag,
 
         &__icon {
           color: $dark-text-color;
-          margin-right: 4px;
+          margin-inline-end: 4px;
           font-weight: 500;
         }
       }
@@ -1090,7 +1095,7 @@ a.name-tag,
 
   > h4 {
     position: sticky;
-    left: 0;
+    inset-inline-start: 0;
   }
 
   &__table {
@@ -1102,7 +1107,7 @@ a.name-tag,
     &__date {
       white-space: nowrap;
       padding: 10px 0;
-      text-align: left;
+      text-align: start;
       min-width: 120px;
 
       &.retention__table__average {
@@ -1160,7 +1165,7 @@ a.name-tag,
 
     &__total {
       display: block;
-      margin-right: 10px;
+      margin-inline-end: 10px;
       font-weight: 500;
       font-size: 28px;
       color: $primary-text-color;
@@ -1262,7 +1267,7 @@ a.sparkline {
     }
 
     &__value {
-      text-align: right;
+      text-align: end;
       color: $darker-text-color;
       padding: 11px 10px;
     }
@@ -1273,7 +1278,7 @@ a.sparkline {
       height: 8px;
       border-radius: 50%;
       background: $ui-highlight-color;
-      margin-right: 10px;
+      margin-inline-end: 10px;
 
       @for $i from 0 through 10 {
         &--#{10 * $i} {
@@ -1309,7 +1314,7 @@ a.sparkline {
     }
 
     &__rules {
-      margin-left: 30px;
+      margin-inline-start: 30px;
     }
   }
 
@@ -1431,7 +1436,7 @@ a.sparkline {
       height: 21px;
       position: absolute;
       bottom: 0;
-      right: 15px;
+      inset-inline-end: 15px;
       background: linear-gradient(to left, $ui-base-color, transparent);
       pointer-events: none;
     }
@@ -1511,7 +1516,7 @@ a.sparkline {
     background: $ui-base-color;
     position: relative;
     padding: 15px;
-    padding-left: 15px * 2 + 40px;
+    padding-inline-start: 15px * 2 + 40px;
     border-bottom: 1px solid darken($ui-base-color, 8%);
 
     &:first-child {
@@ -1531,7 +1536,7 @@ a.sparkline {
 
     &__avatar {
       position: absolute;
-      left: 15px;
+      inset-inline-start: 15px;
       top: 15px;
       border-radius: 4px;
       width: 40px;
@@ -1547,7 +1552,7 @@ a.sparkline {
       .username {
         color: $primary-text-color;
         font-weight: 500;
-        margin-right: 5px;
+        margin-inline-end: 5px;
 
         a {
           color: inherit;
@@ -1562,7 +1567,7 @@ a.sparkline {
       }
 
       time {
-        margin-left: 5px;
+        margin-inline-start: 5px;
         vertical-align: baseline;
       }
     }
@@ -1597,8 +1602,8 @@ a.sparkline {
     &__actions {
       position: absolute;
       top: 15px;
-      right: 15px;
-      text-align: right;
+      inset-inline-end: 15px;
+      text-align: end;
     }
   }
 }
@@ -1621,7 +1626,7 @@ a.sparkline {
       flex: 0 0 auto;
       width: 200px;
       padding: 15px;
-      padding-right: 0;
+      padding-inline-end: 0;
 
       .button {
         display: block;
@@ -1657,7 +1662,7 @@ a.sparkline {
 }
 
 .section-skip-link {
-  float: right;
+  float: inline-end;
 
   a {
     color: $ui-highlight-color;
@@ -1707,7 +1712,7 @@ a.sparkline {
 
   &__rules {
     list-style: disc;
-    padding-left: 15px;
+    padding-inline-start: 15px;
     margin-bottom: 20px;
     color: $darker-text-color;
 
@@ -1796,7 +1801,7 @@ a.sparkline {
 
   li {
     counter-increment: step 1;
-    padding-left: 2.5rem;
+    padding-inline-start: 2.5rem;
     padding-bottom: 8px;
     position: relative;
     margin-bottom: 8px;
@@ -1806,7 +1811,7 @@ a.sparkline {
       content: counter(step);
       font-size: 0.625rem;
       font-weight: 500;
-      left: 0;
+      inset-inline-start: 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -1825,7 +1830,7 @@ a.sparkline {
       background: $highlight-text-color;
       bottom: 0;
       top: calc(1.875rem + 1px);
-      left: 0.6875rem;
+      inset-inline-start: 0.6875rem;
     }
 
     &:last-child {

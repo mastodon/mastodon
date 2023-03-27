@@ -24,8 +24,6 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 });
 
-export default @injectIntl
-@connect(null, mapDispatchToProps)
 class LinkFooter extends React.PureComponent {
 
   static contextTypes = {
@@ -100,3 +98,5 @@ class LinkFooter extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(connect(null, mapDispatchToProps)(LinkFooter));
