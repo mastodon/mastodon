@@ -812,6 +812,12 @@ fy:
         message_html: Jo hawwe foar dizze server gjin regels opsteld.
       sidekiq_process_check:
         message_html: Der draait gjin Sidekiq-proses foar de wachtrige(n) %{value}. Kontrolearje jo Sidekiq-konfiguraasje
+      upload_check_privacy_error:
+        action: Klik hjir foar mear ynformaasje
+        message_html: "<strong>Jo webserver is ferkeard konfigurearre. De privacy fan jo brûkers is yn gefaar.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Klik hjir foar mear ynformaasje
+        message_html: "<strong>Jo objektûnthâld is ferkeard konfigurearre. De privacy fan jo brûkers is yn gefaar.</strong>"
     tags:
       review: Steat beoardiele
       updated_msg: Hashtagynstellingen mei sukses bywurke
@@ -1684,12 +1690,13 @@ fy:
       title: Wolkom oan board %{name}!
   users:
     follow_limit_reached: Jo kinne net mear as %{limit} accounts folgje
+    go_to_sso_account_settings: Gean nei de accountynstellingen fan jo identiteitsprovider
     invalid_otp_token: Unjildige twa-stapstagongskoade
     otp_lost_help_html: As jo tagong ta beide kwytrekke binne, nim dan kontakt op fia %{email}
     seamless_external_login: Jo binne oanmeld fia in eksterne tsjinst, dêrom binne wachtwurden en e-mailynstellingen net beskikber.
     signed_in_as: 'Oanmeld as:'
   verification:
-    explanation_html: 'Jo kinne <strong>josels ferifiearje as de eigener fan de keppelingen yn de metadata fan jo profyl</strong>. Hjirfoar moat op de keppele website in keppeling werom nei jo Mastodon-profyl stean. Dizze keppeling <strong>moat</strong> it <code>rel="me"</code>-attribút befetsje. De omskriuwing fan de keppeling makket net út. Hjir is in foarbyld:'
+    explanation_html: 'Jo kinne <strong>josels ferifiearje as de eigener fan de keppelingen yn de metadata fan jo profyl</strong>. Hjirfoar moat op de keppele website in keppeling werom nei jo Mastodon-profyl stean. Nei it tafoegjen fan de keppeling moatte jo miskien hjir werom komme en jo profyl opnij bewarje om de ferifikaasje te befêstigjen. Dizze keppeling <strong>moat</strong> it <code>rel="me"</code>-attribút befetsje. De omskriuwing fan de keppeling makket net út. Hjir is in foarbyld:'
     verification: Ferifikaasje
   webauthn_credentials:
     add: Nije befeiligingskaai tafoegje

@@ -800,6 +800,12 @@ zh-TW:
         message_html: 您尚未定義任何伺服器規則。
       sidekiq_process_check:
         message_html: 沒有佇列 %{value} 的 Sidekiq 行程，請檢查您的 Sidekiq 設定組態
+      upload_check_privacy_error:
+        action: 檢查這裡以取得更多資訊
+        message_html: "<strong>您的網頁伺服器設定錯誤。您的使用者隱私正暴露於風險之中。</strong>"
+      upload_check_privacy_error_object_storage:
+        action: 檢查這裡以取得更多資訊
+        message_html: "<strong>您的物件資料儲存空間 (object storage) 設定錯誤。您的使用者隱私正暴露於風險之中。</strong>"
     tags:
       review: 審核嘟文
       updated_msg: 成功更新主題標籤設定
@@ -1007,7 +1013,7 @@ zh-TW:
       account_status: 帳號狀態
       confirming: 等待電子郵件確認完成。
       functional: 您的帳號可以正常使用了。
-      pending: 管管們正在處理您的申請，這可能需要一點時間處理。我們將在申請通過後以電子郵件方式通知您。
+      pending: 管管們正在處理您的申請，這可能需要一點時間處理。我們將於申請通過後以電子郵件方式通知您。
       redirecting_to: 您的帳號因目前重定向至 %{acct} 而被停用。
       view_strikes: 檢視針對您帳號過去的警示
     too_fast: 送出表單的速度太快跟不上，請稍後再試。
@@ -1269,7 +1275,7 @@ zh-TW:
     incoming_migrations_html: 要從其他帳號移動到此帳號的話，首先您必須<a href="%{path}">建立帳號別名</a>。
     moved_msg: 您的帳號正被重新導向到 %{acct}，您的跟隨者也會同步轉移至該帳號。
     not_redirecting: 您的帳號目前尚未重新導向到任何其他帳號。
-    on_cooldown: 您最近已轉移過您的帳號。此功能將在 %{count} 天後可再度使用。
+    on_cooldown: 您最近已轉移過您的帳號。此功能將於 %{count} 天後可再度使用。
     past_migrations: 以往的轉移紀錄
     proceed_with_move: 移動跟隨者
     redirected_msg: 您的帳號現在指向 %{acct}
@@ -1654,12 +1660,13 @@ zh-TW:
       title: "%{name} 誠摯歡迎您的加入！"
   users:
     follow_limit_reached: 您無法跟隨多於 %{limit} 個人
+    go_to_sso_account_settings: 前往您的身分提供商 (identity provider) 之帳號設定
     invalid_otp_token: 兩階段認證碼不正確
     otp_lost_help_html: 如果您無法訪問這兩者，可以透過 %{email} 與我們聯繫
     seamless_external_login: 由於您是由外部系統登入，所以不能設定密碼與電子郵件。
     signed_in_as: 目前登入的帳號：
   verification:
-    explanation_html: 您在 Mastodon 個人檔案頁上所列出的連結，可以用此方式<strong>驗證您確實掌控該連結網頁的內容</strong>。您可以在連結的網頁上加上一個連回 Mastodon 個人檔案頁面的連結，該連結的原始碼 <strong>必須</strong>包含<code>rel="me"</code>屬性。連結的顯示文字可自由發揮，以下為範例：
+    explanation_html: 您可以<strong>透過以個人檔案頁上列出連結的方式，驗證您確實掌控該連結網頁的內容</strong>。為此，您可以在連結的網頁中加入一個連回 Mastodon 個人檔案頁面的連結。新增此連結之後，您可能要回到這裡並重新儲存您的個人檔案以使該驗證生效。該連結的原始碼 <strong>必須</strong>包含<code>rel="me"</code>屬性。連結的顯示文字則可自由發揮，以下為範例：
     verification: 驗證連結
   webauthn_credentials:
     add: 新增安全金鑰
@@ -1668,7 +1675,7 @@ zh-TW:
       success: 您已成功加入安全金鑰。
     delete: 刪除
     delete_confirmation: 您確定要移除這把安全金鑰嗎？
-    description_html: 如果您啟用<strong>安全金鑰驗證</strong>的話，您將在登入時需要使用其中一把安全金鑰。
+    description_html: 如果您啟用<strong>安全金鑰驗證</strong>的話，您將於登入時需要使用其中一把安全金鑰。
     destroy:
       error: 移除安全金鑰時出現了問題。請再試一次。
       success: 您已成功將安全金鑰移除。

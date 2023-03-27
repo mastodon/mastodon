@@ -650,6 +650,7 @@ ru:
       statuses_description_html: Нарушающее правила содержимое будет процитировано при коммуникации с фигурирующим в жалобе аккаунтом
       summary:
         action_preambles:
+          delete_html: 'Вы собираетесь <strong>удалить</strong> некоторые посты <strong>@%{acct}</strong>. В результате этого:'
           suspend_html: 'Вы собираетесь <strong>заморозить</strong> учетную запись <strong>@%{acct}</strong>. В результате этого:'
         actions:
           delete_html: Удалить оскорбительные сообщения
@@ -1732,7 +1733,6 @@ ru:
     seamless_external_login: Вы залогинены через сторонний сервис, поэтому настройки e-mail и пароля недоступны.
     signed_in_as: 'Выполнен вход под именем:'
   verification:
-    explanation_html: 'Вы можете <strong>подтвердить владение</strong> любой из ссылок в таблице. Для этого страница по ссылке должна содержать обратную ссылку на ваш профиль Mastodon, а у самой ссылки <strong>должен</strong> атрибут <code>rel="me"</code>. Текст ссылки значения не имеет. Вот пример:'
     verification: Верификация ссылок
   webauthn_credentials:
     add: Добавить новый ключ безопасности

@@ -600,7 +600,7 @@ et:
       created_at: Teavitatud
       delete_and_resolve: Kustuta postitused
       forwarded: Edastatud
-      forwarded_to: Edastatud domeenile %{domain}
+      forwarded_to: Edastatud %{domain} domeeni
       mark_as_resolved: Märgi lahendatuks
       mark_as_sensitive: Märgi kui tundlik sisu
       mark_as_unresolved: Märgi lahendamata
@@ -812,6 +812,12 @@ et:
         message_html: Serverireegleid pole defineeritud.
       sidekiq_process_check:
         message_html: Ühtegi Sidekiq protsessi pole %{value} järjekorra jaoks. Sidekiq seadistus vajab üle vaatamist
+      upload_check_privacy_error:
+        action: Klõpsa lisainfo saamiseks siia
+        message_html: "<strong>Veebiserver on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Klõpsa lisainfo saamiseks siia
+        message_html: "<strong>Objektihoidla on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
     tags:
       review: Vaata olek üle
       updated_msg: Sildi sätted edukalt uuendatud
@@ -1689,12 +1695,13 @@ et:
       title: Tere tulemast, %{name}!
   users:
     follow_limit_reached: Ei saa jälgida rohkem kui %{limit} inimest
+    go_to_sso_account_settings: Mine oma idenditeedipakkuja kontosätetesse
     invalid_otp_token: Vale kaheastmeline võti
     otp_lost_help_html: Kui kaotasid ligipääsu mõlemale, saad võtta ühendust %{email}-iga
     seamless_external_login: Välise teenuse kaudu sisse logides pole salasõna ja e-posti sätted saadaval.
     signed_in_as: 'Sisse logitud kasutajana:'
   verification:
-    explanation_html: 'Saad <strong>kinnitada ennast oma profiili veebiviidete omanikuna</strong>. Selleks peab viidatud veebilehel olema link tagasi su Mastodoni profiilile. Tagasi saatval lingil <strong>peab</strong> olema <code>rel="me"</code> atribuut. Lingi tekstiline sisu ei ole oluline. Siin on üks näide:'
+    explanation_html: 'Saad <strong>kinnitada ennast oma profiili metaandmete veebiviidete omanikuna.</strong> Selleks peab lingitud veebilehel olema viide tagasi sinu Mastodoni profiilile. Pärast lingi lisamist pead võib-olla siia tagasi tulema ja oma profiili uuesti salvestama, et kinnitus jõustuks. Tagasiviide <strong>peab</strong> sisaldama <code>rel="me"</code> atribuuti. Lingi tekstiline sisu ei ole oluline. Siin on näide:'
     verification: Kinnitamine
   webauthn_credentials:
     add: Uue turvavõtme lisamine
