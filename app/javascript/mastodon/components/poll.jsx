@@ -31,7 +31,6 @@ const makeEmojiMap = record => record.get('emojis').reduce((obj, emoji) => {
   return obj;
 }, {});
 
-export default @injectIntl
 class Poll extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -236,3 +235,5 @@ class Poll extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(Poll);

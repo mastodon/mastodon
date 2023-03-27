@@ -1,5 +1,12 @@
 ---
 hi:
+  admin:
+    system_checks:
+      upload_check_privacy_error:
+        message_html: "<strong> आपके वेब सर्वर का कन्फिगरेशन सही नहीं है। उपयोगकर्ताओं की निजता खतरे में है। </strong>"
+      upload_check_privacy_error_object_storage:
+        action: अधिक जानकारी हेतु यहां क्लिक करें।
+        message_html: "<strong> आपके वेब सर्वर का कन्फिगरेशन सही नहीं है। उपयोगकर्ताओं की निजता खतरे में है। </strong>"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -17,3 +24,5 @@ hi:
     platforms:
       kai_os: काइ ओएस
       unknown_platform: अनजान प्लेटफॉर्म
+  verification:
+    explanation_html: 'आप अपने <strong> प्रोफाइल में इस्तेमाल किए गए लिंक वेरिफाई कर सकते हैं</strong>। इसके लिए आपके वेबसाइट पर आपके मॅस्टोडॉन प्रोफाइल का लिंक होना चाहिए। वेरिफिकेशन पूरा करने के लिए लिंक जोड़ने के बाद यहाँ वापस आकर अपना प्रोफाइल पुनः सेव करें। लिंक बैक में <code>rel="me"</code> अट्रीब्यूट <strong>ज़रूर</strong> होना चाहिए। लिंक पर लिखे टेक्स्ट से कोई मतलब नहीं। ये रहा उदाहरण:'

@@ -229,7 +229,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#index'
 
     resources :domain_allows, only: [:new, :create, :show, :destroy]
-    resources :domain_blocks, only: [:new, :create, :show, :destroy, :update, :edit] do
+    resources :domain_blocks, only: [:new, :create, :destroy, :update, :edit] do
       collection do
         post :batch
       end

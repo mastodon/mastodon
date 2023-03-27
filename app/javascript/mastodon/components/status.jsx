@@ -65,7 +65,6 @@ const messages = defineMessages({
   edited: { id: 'status.edited', defaultMessage: 'Edited {date}' },
 });
 
-export default @injectIntl
 class Status extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -559,3 +558,5 @@ class Status extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(Status);

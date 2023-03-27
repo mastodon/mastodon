@@ -1,4 +1,8 @@
+require_relative '../../lib/mastodon/migration_warning'
+
 class MigrateAccountConversations < ActiveRecord::Migration[5.2]
+  include Mastodon::MigrationWarning
+
   disable_ddl_transaction!
 
   class Mention < ApplicationRecord
@@ -62,19 +66,7 @@ class MigrateAccountConversations < ActiveRecord::Migration[5.2]
   end
 
   def up
-    if $stdout.isatty
-      say ''
-      say 'WARNING: This migration may take a *long* time for large instances'
-      say 'It will *not* lock tables for any significant time, but it may run'
-      say 'for a very long time. We will pause for 10 seconds to allow you to'
-      say 'interrupt this migration if you are not ready.'
-      say ''
-
-      10.downto(1) do |i|
-        say "Continuing in #{i} second#{i == 1 ? '' : 's'}...", true
-        sleep 1
-      end
-    end
+    migration_duration_warning
 
     migrated  = 0
     last_time = Time.zone.now

@@ -798,6 +798,12 @@ ja:
         message_html: サーバーのルールを定義していません。
       sidekiq_process_check:
         message_html: "%{value}キューに対応するSidekiqプロセスがありません。Sidekiqの設定を確認してください。"
+      upload_check_privacy_error:
+        action: ここを開いて詳細を確認してください
+        message_html: "<strong>Web サーバーが正しく設定されていません。ユーザーのプライバシーが危険な状態になっています。</strong>"
+      upload_check_privacy_error_object_storage:
+        action: ここを開いて詳細を確認してください
+        message_html: "<strong>オブジェクトストレージが正しく設定されていません。ユーザーのプライバシーが危険な状態になっています。</strong>"
     tags:
       review: 審査状況
       updated_msg: ハッシュタグ設定が更新されました
@@ -1654,12 +1660,13 @@ ja:
       title: ようこそ、%{name}さん！
   users:
     follow_limit_reached: あなたは現在 %{limit}人以上フォローできません
+    go_to_sso_account_settings: 外部サービスアカウントの設定はこちらで行ってください
     invalid_otp_token: 二要素認証コードが間違っています
     otp_lost_help_html: どちらも使用できない場合、%{email}に連絡を取ると解決できるかもしれません
     seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'
   verification:
-    explanation_html: <strong>プロフィール内のリンクの所有者であることを認証することができます</strong>。そのためにはリンクされたウェブサイトにMastodonプロフィールへのリンクが含まれている必要があります。リンクには<code>rel="me"</code>属性を<strong>必ず</strong>与えなければなりません。リンクのテキストについては重要ではありません。以下は例です：
+    explanation_html: <strong>プロフィール補足情報のリンクの所有者であることを認証できます</strong>。認証するには、リンク先のウェブサイトにMastodonプロフィールへのリンクを追加してください。リンクを追加後、このページで変更の保存を再実行すると認証が反映されます。プロフィールへのリンクには<code>rel="me"</code>属性が<strong>かならず</strong>付与してください。リンク内のテキストは自由に記述できます。以下は一例です：
     verification: 認証
   webauthn_credentials:
     add: セキュリティキーを追加

@@ -4,7 +4,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import SettingToggle from '../../notifications/components/setting_toggle';
 
-export default @injectIntl
 class ColumnSettings extends React.PureComponent {
 
   static propTypes = {
@@ -32,3 +31,5 @@ class ColumnSettings extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(ColumnSettings);
