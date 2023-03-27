@@ -840,6 +840,12 @@ he:
         message_html: לא הוגדרו שום כללי שרת.
       sidekiq_process_check:
         message_html: שום הליכי Sidekiq לא רצים עבור %{value} תור(ות). בחנו בבקשה את הגדרות Sidekiq
+      upload_check_privacy_error:
+        action: למידע נוסף
+        message_html: "<strong>שרת הווב שלך אינו מכוון כראוי. פרטיות המשתמשות והמשתמשים שלך בסכנה.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: למידע נוסף
+        message_html: "<strong>שרות אחסון הענן שלך אינו מוגדר כראוי. פרטיות המשתמשות והמשתמשים שלך בסכנה.</strong>"
     tags:
       review: סקירת מצב
       updated_msg: הגדרות תגיות עודכנו בהצלחה
@@ -1748,12 +1754,13 @@ he:
       title: ברוך/ה הבא/ה, %{name} !
   users:
     follow_limit_reached: לא תוכל לעקוב אחר יותר מ %{limit} אנשים
+    go_to_sso_account_settings: מעבר לאפיוני החשבון שלך בשרת הזהות
     invalid_otp_token: קוד דו-שלבי שגוי
     otp_lost_help_html: אם איבדת גישה לשניהם, ניתן ליצור קשר ב-%{email}
     seamless_external_login: את.ה מחובר דרך שירות חיצוני, לכן אפשרויות הסיסמא והדוא"ל לא מאופשרות.
     signed_in_as: 'מחובר בתור:'
   verification:
-    explanation_html: 'ניתן <strong>לאמת את עצמך כבעלים של הקישורית במטא-נתונים של פרופילך</strong>. כדי לעשות זאת, האתר המקושר חייב להכיל קישורית חוזרת לפרופיל המסטודון שלך. הקישורית החוזרת <strong>חייבת</strong> להכיל תכונת <code>rel="me"</code>. התוכן הטקסטואלי של הקישורית לא משנה. הנה דוגמא:'
+    explanation_html: 'תוכל/י <strong>לאמת את עצמך כבעל/ת הקישורים שבפרופיל שלך</strong>. לשם כך, על האתר המקושר להכיל קישור חוזר לפרופיל המסטודון שלך. אחרי הוספת הקישור ניתן לשוב לפה ולשמור מחדש את הפרופיל כדי להפעיל את אימות הקישור. הקישור החוזר <strong>חייב</strong> להכיל בקוד ה-HTML שלו את התכונה <code>rel="me"</code>. התוכן הטקסטואלי של הקישור לא משנה. הנה דוגמא:'
     verification: אימות
   webauthn_credentials:
     add: הוספת מפתח אבטחה חדש
