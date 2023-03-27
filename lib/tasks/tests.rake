@@ -53,6 +53,11 @@ namespace :tests do
         puts 'Admin::ActionLog email domain block records not updated as expected'
         exit(1)
       end
+
+      unless User.find(1).settings.notification_emails['favourite'] == true && User.find(1).settings.notification_emails['mention'] == false
+        puts 'User settings not kept as expected'
+        exit(1)
+      end
     end
 
     desc 'Populate the database with test data for 2.4.3'
@@ -98,6 +103,11 @@ namespace :tests do
           (1, 'destroy', 'EmailDomainBlock', 1, now(), now()),
           (1, 'destroy', 'Status', 1, now(), now()),
           (1, 'destroy', 'CustomEmoji', 3, now(), now());
+
+        INSERT INTO "settings"
+          (id, thing_type, thing_id, var, value, created_at, updated_at)
+        VALUES
+          (3, 'User', 1, 'notification_emails', E'--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nfollow: false\nreblog: true\nfavourite: true\nmention: false\nfollow_request: true\ndigest: true\nreport: true\npending_account: false\ntrending_tag: true\nappeal: true\n', now(), now());
       SQL
     end
 
