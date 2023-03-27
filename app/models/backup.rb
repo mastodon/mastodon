@@ -17,6 +17,6 @@
 class Backup < ApplicationRecord
   belongs_to :user, inverse_of: :backups
 
-  has_attached_file :dump, s3_permissions: 'private'
+  has_attached_file :dump, s3_permissions: ->(*) { ENV['S3_PERMISSION'] == '' ? nil : 'private' }
   do_not_validate_attachment_file_type :dump
 end
