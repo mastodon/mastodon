@@ -16,7 +16,7 @@ jobs:
       - id: skip_check
         uses: fkirc/skip-duplicate-actions@v5
         with:
-          paths: '["Gemfile*", ".ruby-version", "**/*.rb", ".github/workflows/test-migrations-one-step.yml"]'
+          paths: '["Gemfile*", ".ruby-version", "**/*.rb", ".github/workflows/test-migrations-one-step.yml", "lib/tasks/tests.rake"]'
 
   test:
     runs-on: ubuntu-latest
