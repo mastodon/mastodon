@@ -39,7 +39,6 @@ const messages = defineMessages({
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
 });
 
-export default @injectIntl
 class ActionBar extends React.PureComponent {
 
   static contextTypes = {
@@ -228,3 +227,5 @@ class ActionBar extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(ActionBar);

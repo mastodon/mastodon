@@ -21,7 +21,6 @@ const messages = defineMessages({
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
 });
 
-export default @injectIntl
 class ActionBar extends React.PureComponent {
 
   static propTypes = {
@@ -66,3 +65,5 @@ class ActionBar extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(ActionBar);

@@ -32,7 +32,6 @@ const messages = defineMessages({
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
 });
 
-export default @injectIntl
 class ComposeForm extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -389,3 +388,5 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(ComposeForm);

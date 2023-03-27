@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import Button from 'flavours/glitch/components/button';
 
-export default @injectIntl
 class ConfirmationModal extends React.PureComponent {
 
   static propTypes = {
@@ -86,3 +85,5 @@ class ConfirmationModal extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(ConfirmationModal);

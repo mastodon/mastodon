@@ -19,7 +19,6 @@ const messages = defineMessages({
   btnApply : { id: 'notification_purge.btn_apply', defaultMessage: 'Clear\nselected' },
 });
 
-export default @injectIntl
 class NotificationPurgeButtons extends ImmutablePureComponent {
 
   static propTypes = {
@@ -57,3 +56,5 @@ class NotificationPurgeButtons extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(NotificationPurgeButtons);

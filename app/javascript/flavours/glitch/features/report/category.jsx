@@ -24,8 +24,6 @@ const mapStateToProps = state => ({
   rules: state.getIn(['server', 'server', 'rules'], ImmutableList()),
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class Category extends React.PureComponent {
 
   static propTypes = {
@@ -102,3 +100,5 @@ class Category extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(Category));

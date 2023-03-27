@@ -22,8 +22,6 @@ const mapDispatchToProps = dispatch => ({
   onReset: () => dispatch(resetListEditor()),
 });
 
-export default @connect(mapStateToProps, mapDispatchToProps)
-@injectIntl
 class ListEditor extends ImmutablePureComponent {
 
   static propTypes = {
@@ -77,3 +75,5 @@ class ListEditor extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(ListEditor));

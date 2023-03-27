@@ -12,7 +12,6 @@ import {
 
 const mapStateToProps = () => ({});
 
-export default @connect(mapStateToProps)
 class Thanks extends React.PureComponent {
 
   static propTypes = {
@@ -82,3 +81,5 @@ class Thanks extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(Thanks);

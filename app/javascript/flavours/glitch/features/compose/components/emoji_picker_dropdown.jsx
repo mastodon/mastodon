@@ -145,8 +145,7 @@ class ModifierPicker extends React.PureComponent {
 
 }
 
-@injectIntl
-class EmojiPickerMenu extends React.PureComponent {
+class EmojiPickerMenuImpl extends React.PureComponent {
 
   static propTypes = {
     custom_emojis: ImmutablePropTypes.list,
@@ -307,7 +306,8 @@ class EmojiPickerMenu extends React.PureComponent {
 
 }
 
-export default @injectIntl
+const EmojiPickerMenu = injectIntl(EmojiPickerMenuImpl);
+
 class EmojiPickerDropdown extends React.PureComponent {
 
   static propTypes = {
@@ -411,3 +411,5 @@ class EmojiPickerDropdown extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(EmojiPickerDropdown);

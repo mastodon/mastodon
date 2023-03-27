@@ -17,7 +17,6 @@ const messages = defineMessages({
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
 });
 
-export default @injectIntl
 class FavouriteModal extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -99,3 +98,5 @@ class FavouriteModal extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(FavouriteModal);

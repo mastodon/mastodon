@@ -171,8 +171,6 @@ const titleFromStatus = status => {
   return `${prefix}: "${truncate(text, 30)}"`;
 };
 
-export default @injectIntl
-@connect(makeMapStateToProps)
 class Status extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -724,3 +722,5 @@ class Status extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(connect(makeMapStateToProps)(Status));

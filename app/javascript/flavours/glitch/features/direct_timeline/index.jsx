@@ -22,8 +22,6 @@ const mapStateToProps = state => ({
   conversationsMode: state.getIn(['settings', 'direct', 'conversations']),
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class DirectTimeline extends React.PureComponent {
 
   static propTypes = {
@@ -154,3 +152,5 @@ class DirectTimeline extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(DirectTimeline));

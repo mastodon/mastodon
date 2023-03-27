@@ -43,7 +43,6 @@ class InlineAlert extends React.PureComponent {
 
 }
 
-export default @injectIntl
 class AccountNote extends ImmutablePureComponent {
 
   static propTypes = {
@@ -168,3 +167,5 @@ class AccountNote extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(AccountNote);

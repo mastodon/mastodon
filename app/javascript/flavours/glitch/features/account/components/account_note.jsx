@@ -10,7 +10,6 @@ const messages = defineMessages({
   placeholder: { id: 'account_note.glitch_placeholder', defaultMessage: 'No comment provided' },
 });
 
-export default @injectIntl
 class Header extends ImmutablePureComponent {
 
   static propTypes = {
@@ -102,3 +101,5 @@ class Header extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(Header);

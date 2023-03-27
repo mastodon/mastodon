@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 
-export default @connect()
 class PictureInPicturePlaceholder extends React.PureComponent {
 
   static propTypes = {
@@ -67,3 +66,5 @@ class PictureInPicturePlaceholder extends React.PureComponent {
   }
 
 }
+
+export default connect()(PictureInPicturePlaceholder);
