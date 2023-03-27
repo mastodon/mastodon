@@ -1,4 +1,3 @@
----
 en-GB:
   about:
     about_mastodon_html: 'The social network of the future: No ads, no corporate surveillance, ethical design, and decentralisation! Own your data with Mastodon!'
@@ -536,6 +535,13 @@ en-GB:
       add_new: Create rule
       created_msg: Successfully added new IP rule
       delete: Delete
+      expires_in:
+        '1209600': 2 weeks
+        '15778476': 6 months
+        '2629746': 1 month
+        '31556952': 1 year
+        '86400': 1 day
+        '94670856': 3 years
     roles:
       categories:
         devops: DevOps
@@ -547,7 +553,9 @@ en-GB:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
+    '422':
     '429': Too many requests
+    '500':
     '503': The page could not be served due to a temporary server failure.
   generic:
     copy: Copy
