@@ -593,7 +593,22 @@ en-GB:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  filters:
+    statuses:
+      batch:
+        remove: Remove from filter
+      index:
+        hint: This filter applies to select individual posts regardless of other criteria. You can add more posts to this filter from the web interface.
+        title: Filtered posts
   generic:
+    all: All
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> item on this page is selected."
+      other: All <strong>%{count}</strong> items on this page are selected.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> item matching your search is selected."
+      other: All <strong>%{count}</strong> items matching your search are selected.
+    changes_saved_msg: Changes successfully saved!
     copy: Copy
     delete: Delete
     deselect: Deselect all
@@ -628,7 +643,33 @@ en-GB:
   invites:
     delete: Deactivate
     expired: Expired
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
+    expires_in_prompt: Never
+    generate: Generate invite link
+    invited_by: 'You were invited by:'
+    max_uses:
+      one: 1 use
+      other: "%{count} uses"
+    max_uses_prompt: No limit
+    prompt: Generate and share links with others to grant access to this server
+    table:
+      expires_at: Expires
+      uses: Uses
+    title: Invite people
+  lists:
+    errors:
+      limit: You have reached the maximum number of lists
   login_activities:
+    authentication_methods:
+      otp: two-factor authentication app
+      password: password
+      sign_in_token: e-mail security code
     successful_sign_in_html: Successful sign-in with %{method} from %{ip} (%{browser})
     title: Authentication history
   media_attachments:
