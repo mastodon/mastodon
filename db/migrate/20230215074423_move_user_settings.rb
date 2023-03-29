@@ -52,7 +52,7 @@ class MoveUserSettings < ActiveRecord::Migration[6.1]
     end
 
     def value
-      YAML.load(self[:value]) if self[:value].present? # rubocop:disable Security/YAMLLoad
+      YAML.safe_load(self[:value], permitted_classes: [ActiveSupport::HashWithIndifferentAccess]) if self[:value].present?
     end
   end
 
