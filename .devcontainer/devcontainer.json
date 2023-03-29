@@ -15,9 +15,9 @@
   "forwardPorts": [3000, 4000],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
-  "postStartCommand": ".devcontainer/post-create.sh",
-  "waitFor": "postStartCommand",
+  "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "postCreateCommand": ".devcontainer/post-create.sh",
+  "waitFor": "postCreateCommand",
 
   // Configure tool-specific properties.
   "customizations": {
