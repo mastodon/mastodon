@@ -12,13 +12,15 @@ class Api::V1::Statuses::MutesController < Api::BaseController
     current_account.mute_conversation!(@conversation)
     @mutes_map = { @conversation.id => true }
 
-    render json: @status, serializer: REST::StatusSerializer
+    return_source = params[:format] == "source" ? true : false
+    render json: @status, serializer: REST::StatusSerializer, source_requested: return_source
   end
 
   def destroy
     current_account.unmute_conversation!(@conversation)
     @mutes_map = { @conversation.id => false }
 
+    return_source = params[:format] == "source" ? true : false
     render json: @status, serializer: REST::StatusSerializer
   end
 

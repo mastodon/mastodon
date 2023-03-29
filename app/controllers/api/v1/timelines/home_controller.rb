@@ -8,10 +8,12 @@ class Api::V1::Timelines::HomeController < Api::BaseController
   def show
     @statuses = load_statuses
 
+    return_source = params[:format] == "source" ? true : false
     render json: @statuses,
            each_serializer: REST::StatusSerializer,
            relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id),
-           status: account_home_feed.regenerating? ? 206 : 200
+           status: account_home_feed.regenerating? ? 206 : 200,
+           source_requested: return_source
   end
 
   private

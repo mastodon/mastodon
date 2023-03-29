@@ -6,7 +6,8 @@ class Api::V1::Trends::StatusesController < Api::BaseController
   after_action :insert_pagination_headers
 
   def index
-    render json: @statuses, each_serializer: REST::StatusSerializer
+    return_source = params[:format] == "source" ? true : false
+    render json: @statuses, each_serializer: REST::StatusSerializer, source_requested: return_source
   end
 
   private

@@ -9,7 +9,8 @@ class Api::V1::Statuses::FavouritesController < Api::BaseController
 
   def create
     FavouriteService.new.call(current_account, @status)
-    render json: @status, serializer: REST::StatusSerializer
+	return_source = params[:format] == "source" ? true : false
+    render json: @status, serializer: REST::StatusSerializer, source_requested: return_source
   end
 
   def destroy
@@ -23,7 +24,8 @@ class Api::V1::Statuses::FavouritesController < Api::BaseController
       authorize @status, :show?
     end
 
-    render json: @status, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_account.id, favourites_map: { @status.id => false })
+    return_source = params[:format] == "source" ? true : false
+    render json: @status, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_account.id, favourites_map: { @status.id => false }), source_requested: return_source
   rescue Mastodon::NotPermittedError
     not_found
   end

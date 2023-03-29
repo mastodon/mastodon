@@ -25,7 +25,8 @@ class Api::V1::StatusesController < Api::BaseController
 
   def show
     @status = cache_collection([@status], Status).first
-    render json: @status, serializer: REST::StatusSerializer
+    return_source = params[:format] == "source" ? true : false
+    render json: @status, serializer: REST::StatusSerializer, source_requested: return_source
   end
 
   def context
@@ -68,7 +69,8 @@ class Api::V1::StatusesController < Api::BaseController
       with_rate_limit: true
     )
 
-    render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
+    return_source = params[:format] == "source" ? true : false
+    render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer, source_requested: return_source
   rescue PostStatusService::UnexpectedMentionsError => e
     unexpected_accounts = ActiveModel::Serializer::CollectionSerializer.new(
       e.accounts,
@@ -93,7 +95,8 @@ class Api::V1::StatusesController < Api::BaseController
       poll: status_params[:poll]
     )
 
-    render json: @status, serializer: REST::StatusSerializer
+    return_source = params[:format] == "source" ? true : false
+    render json: @status, serializer: REST::StatusSerializer, source_requested: return_source
   end
 
   def destroy
@@ -103,7 +106,12 @@ class Api::V1::StatusesController < Api::BaseController
     @status.discard_with_reblogs
     StatusPin.find_by(status: @status)&.destroy
     @status.account.statuses_count = @status.account.statuses_count - 1
-    json = render_to_body json: @status, serializer: REST::StatusSerializer, source_requested: true
+
+	# Historically source_requested defaulted to true here, whereas all the other destroys in the API,
+	# for example for bookmarks, reblogs, etc., defaulted to false. So we perpetuate the
+	# old default behavior of true here, while also allowing the client to override that behavior.
+    return_source = params[:format] == "html" ? false : true
+    json = render_to_body json: @status, serializer: REST::StatusSerializer, source_requested: return_source
 
     RemovalWorker.perform_async(@status.id, { 'redraft' => true })
 
