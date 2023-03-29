@@ -444,7 +444,7 @@ gl:
         private_comment_description_html: 'Para axudarche a lembrar de onde veñen os bloqueos importados, imos crealos engadindo o seguinte comentario privado: <q>%{comment}</q>'
         private_comment_template: Importada desde %{source} o %{date}
         title: Importar bloqueos de dominio
-      invalid_domain_block: 'Un ou varios dominios non se bloquearon debido ao seguintes erros: %{error}'
+      invalid_domain_block: 'Un ou varios dominios non se bloquearon debido ao seguinte erro(s): %{error}'
       new:
         title: Importar bloqueos de dominio
       no_file: Ningún ficheiro seleccionado
@@ -476,7 +476,7 @@ gl:
       content_policies:
         comment: Nota interna
         description_html: Podes definir políticas acerca do contido que serán aplicadas a tódalas contas deste dominio e tódolos seus subdominios.
-        limited_federation_mode_description_html: Podes elexir se permites a federación con este dominio.
+        limited_federation_mode_description_html: Podes elexir se permites ou non a federación con este dominio.
         policies:
           reject_media: Rexeitar multimedia
           reject_reports: Rexeitar denuncias
@@ -812,6 +812,12 @@ gl:
         message_html: Non tes definidas regras para o servidor.
       sidekiq_process_check:
         message_html: Non hai procesos Sidekiq a funcionar para a cola(s) %{value}. Revisa a túa configuración para Sidekiq
+      upload_check_privacy_error:
+        action: Mira aquí para máis información
+        message_html: "<strong>O teu servidor non está ben configurado. A privacidade das usuarias está en risco.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Mira aquí para máis información
+        message_html: "<strong>A almacenaxe de obxectos está mal configurada. A privacidade das usuarias está en risco.</strong>"
     tags:
       review: Estado de revisión
       updated_msg: Actualizaronse os axustes dos cancelos
@@ -1405,6 +1411,7 @@ gl:
     confirm_remove_selected_followers: Tes a certeza de querer deixar de seguir as seguidoras seleccionadas?
     confirm_remove_selected_follows: Tes a certeza de querer eliminar os seguimentos seleccionados?
     dormant: En repouso
+    follow_failure: Non puido seguir algunha das contas seleccionadas.
     follow_selected_followers: Seguir seguidoras seleccionadas
     followers: Seguidoras
     following: A Seguir
@@ -1444,6 +1451,7 @@ gl:
       electron: Electron
       firefox: Firefox
       generic: Navegador descoñecido
+      huawei_browser: Navegador Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
@@ -1453,6 +1461,7 @@ gl:
       qq: Navegador QQ
       safari: Safari
       uc_browser: Navegador QQ
+      unknown_browser: Navegador descoñecido
       weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
@@ -1465,9 +1474,10 @@ gl:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: plataforma descoñecida
+      unknown_platform: Plataforma descoñecida
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1680,12 +1690,13 @@ gl:
       title: Benvida, %{name}!
   users:
     follow_limit_reached: Non pode seguir a máis de %{limit} persoas
+    go_to_sso_account_settings: Ir aos axustes da conta no teu provedor de identidade
     invalid_otp_token: O código do segundo factor non é válido
     otp_lost_help_html: Se perdes o acceso a ambos, podes contactar con %{email}
     seamless_external_login: Accedeches a través dun servizo externo, polo que os axustes de contrasinal e email non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
   verification:
-    explanation_html: 'Podes <strong>validarte a ti mesma como a dona das ligazóns nos metadatos do teu perfil</strong>. Para esto, o sitio web ligado debe conter unha ligazón de retorno ao perfil de Mastodon. Esta ligazón de retorno <strong>ten que</strong> ter un atributo <code>rel="me"</code>. O texto da ligazón non importa. Aquí tes un exemplo:'
+    explanation_html: 'Podes <strong>validarte a ti mesma como a dona das ligazóns nos metadatos do perfil</strong>. Para isto, o sitio web ligado debe conter unha ligazón de retorno ao perfil de Mastodon. Despois de engadir a ligazón tes que volver aquí e volver a gardar o teu perfil para que a verificación tome efecto. A ligazón de retorno <strong>ten que</strong> ter un atributo <code>rel="me"</code>. O texto da ligazón non ten importancia. Aquí tes un exemplo:'
     verification: Validación
   webauthn_credentials:
     add: Engadir nova chave de seguridade

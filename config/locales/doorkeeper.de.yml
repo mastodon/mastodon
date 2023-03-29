@@ -3,7 +3,7 @@ de:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Name der Anwendung
+        name: Anwendungsname
         redirect_uri: Weiterleitungs-URI
         scopes: Befugnisse
         website: Website der Anwendung
@@ -60,7 +60,7 @@ de:
       error:
         title: Ein Fehler ist aufgetreten
       new:
-        prompt_html: "%{client_name} möchte auf dein Konto zugreifen. Es ist eine Anwendung von Drittanbietern. <strong>Wenn du ihr nicht vertraust, dann solltest du sie nicht autorisieren.</strong>"
+        prompt_html: "%{client_name} möchte auf dein Konto zugreifen. Es handelt sich um eine Drittanbieter-Software. <strong>Wenn du der Anwendung nicht vertraust, solltest du ihr keinen Zugriff auf dein Konto geben.</strong>"
         review_permissions: Berechtigungen überprüfen
         title: Autorisierung erforderlich
       show:
@@ -82,7 +82,7 @@ de:
       messages:
         access_denied: Die Anfrage wurde durch Benutzer_in oder Autorisierungs-Server verweigert.
         credential_flow_not_configured: Das Konto konnte nicht gefunden werden, da Doorkeeper.configure.resource_owner_from_credentials nicht konfiguriert ist.
-        invalid_client: 'Client-Authentifizierung ist fehlgeschlagen: Client unbekannt, keine Authentisierung mitgeliefert oder Authentisierungsmethode wird nicht unterstützt.'
+        invalid_client: 'Client-Authentisierung ist fehlgeschlagen: Client unbekannt, keine Authentisierung mitgeliefert oder Authentisierungsmethode wird nicht unterstützt.'
         invalid_grant: Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen oder einem anderen Client ausgestellt, oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.
         invalid_redirect_uri: Der beigefügte Weiterleitungs-URI ist ungültig.
         invalid_request:
@@ -119,7 +119,7 @@ de:
         write: Nur Schreibzugriff
       title:
         accounts: Konten
-        admin/accounts: Verwaltung der Konten
+        admin/accounts: Kontenverwaltung
         admin/all: Alle administrativen Funktionen
         admin/reports: Verwaltung der Berichte
         all: Voller Zugriff auf dein Mastodon-Konto

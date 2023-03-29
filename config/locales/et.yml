@@ -600,7 +600,7 @@ et:
       created_at: Teavitatud
       delete_and_resolve: Kustuta postitused
       forwarded: Edastatud
-      forwarded_to: Edastatud domeenile %{domain}
+      forwarded_to: Edastatud %{domain} domeeni
       mark_as_resolved: Märgi lahendatuks
       mark_as_sensitive: Märgi kui tundlik sisu
       mark_as_unresolved: Märgi lahendamata
@@ -812,6 +812,12 @@ et:
         message_html: Serverireegleid pole defineeritud.
       sidekiq_process_check:
         message_html: Ühtegi Sidekiq protsessi pole %{value} järjekorra jaoks. Sidekiq seadistus vajab üle vaatamist
+      upload_check_privacy_error:
+        action: Klõpsa lisainfo saamiseks siia
+        message_html: "<strong>Veebiserver on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Klõpsa lisainfo saamiseks siia
+        message_html: "<strong>Objektihoidla on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
     tags:
       review: Vaata olek üle
       updated_msg: Sildi sätted edukalt uuendatud
@@ -979,7 +985,7 @@ et:
     delete_account: Konto kustutamine
     delete_account_html: Kui soovid oma konto kustutada, siis <a href="%{path}">jätka siit</a>. Pead kustutamise eraldi kinnitama.
     description:
-      prefix_invited_by_user: "@%{name} kutsub Teid liituma selle Mastodoni serveriga!"
+      prefix_invited_by_user: "@%{name} kutsub sind liituma selle Mastodoni serveriga!"
       prefix_sign_up: Loo Mastodoni konto juba täna!
       suffix: Kasutajakontoga saad jälgida inimesi, postitada uudiseid ning pidada kirjavahetust ükskõik millise Mastodoni serveri kasutajatega ja muudki!
     didnt_get_confirmation: Ei saanud kinnituse juhendeid?
@@ -1248,7 +1254,7 @@ et:
       '86400': 1 päev
     expires_in_prompt: Mitte kunagi
     generate: Loo
-    invited_by: 'Teid kutsus:'
+    invited_by: 'Sind kutsus:'
     max_uses:
       one: 1 kasutus
       other: "%{count} kasutust"
@@ -1332,13 +1338,13 @@ et:
       title: Uus jälgija
     follow_request:
       action: Halda jälgimistaotlusi
-      body: "%{name} soovib Teid jälgida"
+      body: "%{name} soovib sind jälgida"
       subject: 'Ootav jälgija: %{name}'
       title: Uus jälgimistaotlus
     mention:
       action: Vasta
-      body: "%{name} mainis Teid:"
-      subject: "%{name} mainis Teid"
+      body: "%{name} mainis sind:"
+      subject: "%{name} mainis sind"
       title: Uus mainimine
     poll:
       subject: "%{name} küsitlus lõppes"
@@ -1405,6 +1411,7 @@ et:
     confirm_remove_selected_followers: Oled kindel, et soovid eemaldada valitud jälgijad?
     confirm_remove_selected_follows: Oled kindel, et soovid eemaldada valitud jälgitavad?
     dormant: Seisev
+    follow_failure: Mõne valitud konto jälgimine polnud võimalik.
     follow_selected_followers: Valitud jälgijate jälgimine
     followers: Jälgijad
     following: Jälgib
@@ -1444,6 +1451,7 @@ et:
       electron: Electron
       firefox: Firefox
       generic: Tundmatu veebilehitseja
+      huawei_browser: Huawei veebilehitseja
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1453,6 +1461,7 @@ et:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Tundmatu veebilehitseja
       weibo: Weibo
     current_session: Praegune seanss
     description: "%{browser} platvormil %{platform}"
@@ -1465,9 +1474,10 @@ et:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: tundmatu platvorm
+      unknown_platform: Tundmatu platvorm
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1685,12 +1695,13 @@ et:
       title: Tere tulemast, %{name}!
   users:
     follow_limit_reached: Ei saa jälgida rohkem kui %{limit} inimest
+    go_to_sso_account_settings: Mine oma idenditeedipakkuja kontosätetesse
     invalid_otp_token: Vale kaheastmeline võti
     otp_lost_help_html: Kui kaotasid ligipääsu mõlemale, saad võtta ühendust %{email}-iga
     seamless_external_login: Välise teenuse kaudu sisse logides pole salasõna ja e-posti sätted saadaval.
     signed_in_as: 'Sisse logitud kasutajana:'
   verification:
-    explanation_html: 'Saad <strong>kinnitada ennast oma profiili veebiviidete omanikuna</strong>. Selleks peab viidatud veebilehel olema link tagasi su Mastodoni profiilile. Tagasi saatval lingil <strong>peab</strong> olema <code>rel="me"</code> atribuut. Lingi tekstiline sisu ei ole oluline. Siin on üks näide:'
+    explanation_html: 'Saad <strong>kinnitada ennast oma profiili metaandmete veebiviidete omanikuna.</strong> Selleks peab lingitud veebilehel olema viide tagasi sinu Mastodoni profiilile. Pärast lingi lisamist pead võib-olla siia tagasi tulema ja oma profiili uuesti salvestama, et kinnitus jõustuks. Tagasiviide <strong>peab</strong> sisaldama <code>rel="me"</code> atribuuti. Lingi tekstiline sisu ei ole oluline. Siin on näide:'
     verification: Kinnitamine
   webauthn_credentials:
     add: Uue turvavõtme lisamine

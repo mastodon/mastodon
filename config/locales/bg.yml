@@ -812,6 +812,12 @@ bg:
         message_html: Не сте определили никакви правила на сървъра.
       sidekiq_process_check:
         message_html: Не работи процес Sidekiq за %{value} опашка/и. Прегледайте настройките си за Sidekiq
+      upload_check_privacy_error:
+        action: Щракнете тук за повече информация
+        message_html: "<strong>Вашият уеб сървър е погрешно конфигуриран. Поверителността на потребителите ви е изложена на риск.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Щракнете тук за повече информация
+        message_html: "<strong>Вашето съхранение на предмети е погрешно конфигурирано. Поверителността на потребителите ви е изложена на риск.</strong>"
     tags:
       review: Преглед на състояние
       updated_msg: Успешно осъвременени настройки на хаштага
@@ -935,7 +941,7 @@ bg:
       new_trending_tags:
         no_approved_tags: Сега няма одобрени налагащи се хаштагове.
         requirements: 'Всеки от тези кандидати може да надмине #%{rank} одобрен актуален хаштаг, който в момента е #%{lowest_tag_name} с резултат %{lowest_tag_score}.'
-        title: Нашумели хаштагове
+        title: Налагащи се хаштагове
       subject: Нови нашумели, готови за преглед в %{instance}
   aliases:
     add_new: Създаване на псевдоним
@@ -1405,6 +1411,7 @@ bg:
     confirm_remove_selected_followers: Наистина ли искате да премахнете избраните последователи?
     confirm_remove_selected_follows: Наистина ли искате да премахнете избраните последвания?
     dormant: Неактивен
+    follow_failure: Не може да се последват някои от избраните акаунти.
     follow_selected_followers: Последване на избраните последователи
     followers: Последователи
     following: Последвани
@@ -1444,6 +1451,7 @@ bg:
       electron: Electron
       firefox: Firefox
       generic: Неизвестен браузър
+      huawei_browser: Браузър Хуауей
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Браузър Nokia S40 Ovi
@@ -1453,6 +1461,7 @@ bg:
       qq: Браузър QQ
       safari: Safari
       uc_browser: Браузър UC
+      unknown_browser: Неизвестен браузър
       weibo: Weibo
     current_session: Текуща сесия
     description: "%{browser} на %{platform}"
@@ -1465,9 +1474,10 @@ bg:
       chrome_os: ChromeOS
       firefox_os: Оп. сист. Firefox
       ios: iOS
+      kai_os: KaiOS
       linux: Линукс
       mac: macOS
-      other: неизвестна платформа
+      unknown_platform: Неизвестна платформа
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1680,12 +1690,13 @@ bg:
       title: Добре дошли на борда, %{name}!
   users:
     follow_limit_reached: Не може да последвате повече от %{limit} души
+    go_to_sso_account_settings: Отидете при настройките на акаунта на своя доставчик на идентичност
     invalid_otp_token: Невалиден код
     otp_lost_help_html: Ако загубите достъп до двете, то може да се свържете с %{email}
     seamless_external_login: Влезли сте чрез външна услуга, така че настройките за парола и имейл не са налични.
     signed_in_as: 'Влезли като:'
   verification:
-    explanation_html: 'Можете да <strong>удостоверите самоличността си като собственик на линковете в метаданните на своя профил</strong>. За целта сайтът, към който води линк от метаданните, трябва да съдържа линк обратно към вашия профил в Mastodon. Линкът от сайта <strong>трябва</strong> да съдържа атрибут <code>rel="me"</code>. Текстовото съдържание на линка няма значение. Ето пример:'
+    explanation_html: 'Може да <strong>потвърдите себе си като собственик на връзките в метаданните на профила си</strong>. За целта свързаният уебсайт трябва да съдържа обратна връзка към профилa ви в Mastodon. След добавянето на връзката, може да се наложи да се върнете тук и да запазите пак профила си, за да влезе в сила потвърждаването. Връзката обратно <strong>трябва</strong> да има атрибут <code>rel="me"</code>. Текстовото съдържание на връзката няма значение. Ето пример:'
     verification: Проверка
   webauthn_credentials:
     add: Добавяне на нов ключ за сигурност

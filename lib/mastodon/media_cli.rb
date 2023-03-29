@@ -35,7 +35,6 @@ module Mastodon
       follow status. By default, only accounts that are not followed by or
       following anyone locally are pruned.
     DESC
-    # rubocop:disable Metrics/PerceivedComplexity
     def remove
       if options[:prune_profiles] && options[:remove_headers]
         say('--prune-profiles and --remove-headers should not be specified simultaneously', :red, true)
@@ -224,7 +223,6 @@ module Mastodon
 
       say("Removed #{removed} orphans (approx. #{number_to_human_size(reclaimed_bytes)})#{dry_run}", :green, true)
     end
-    # rubocop:enable Metrics/PerceivedComplexity
 
     option :account, type: :string
     option :domain, type: :string

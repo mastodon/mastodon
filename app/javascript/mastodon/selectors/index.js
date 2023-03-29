@@ -121,8 +121,8 @@ export const getAccountGallery = createSelector([
   let medias = ImmutableList();
 
   statusIds.forEach(statusId => {
-    const status = statuses.get(statusId);
-    medias = medias.concat(status.get('media_attachments').map(media => media.set('status', status).set('account', account)));
+    const status = statuses.get(statusId).set('account', account);
+    medias = medias.concat(status.get('media_attachments').map(media => media.set('status', status)));
   });
 
   return medias;

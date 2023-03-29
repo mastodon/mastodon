@@ -394,6 +394,7 @@ pt-BR:
         create: Criar bloqueio
         hint: O bloqueio de domínio não vai prevenir a criação de entradas de contas na base de dados, mas vai retroativamente e automaticamente aplicar métodos específicos de moderação nessas contas.
         severity:
+          desc_html: "<strong>Silenciar</strong> vai tornar as publicações da conta invisíveis para qualquer um que não estiver lhe seguindo. <strong>Suspender</strong> vai remover todo o conteúdo, mídia e dados de perfil da conta. Use <strong>Nenhum</strong> se você só quer rejeitar arquivos de mídia."
           noop: Nenhum
           silence: Limitar
           suspend: Banir
@@ -440,8 +441,10 @@ pt-BR:
       import:
         description_html: Você está prestes a importar uma lista de boqueio de domínio. Por favor, revise esta lista com muito cuidado, especialmente se você mesmo não criou esta lista.
         existing_relationships_warning: Existem relações de seguimento
+        private_comment_description_html: 'Para ajudá-lo a rastrear de onde vêm os blocos importados, serão criados blocos importados com o seguinte comentário privado: <q>%{comment}</q>'
         private_comment_template: Importado de %{source} em %{date}
         title: Importar bloqueio de domínios
+      invalid_domain_block: 'Um ou mais blocos de domínio foram ignorados devido ao(s) seguinte(s) erro(s): %{error}'
       new:
         title: Importar bloqueio de domínios
       no_file: Nenhum arquivo selecionado
@@ -473,6 +476,7 @@ pt-BR:
       content_policies:
         comment: Nota interna
         description_html: Você pode definir políticas de conteúdo que serão aplicadas a todas as contas deste domínio e a qualquer um dos seus subdomínios.
+        limited_federation_mode_description_html: Você pode escolher se deseja permitir a associação com este domínio.
         policies:
           reject_media: Rejeitar mídia
           reject_reports: Rejeitar denúncias
@@ -577,7 +581,9 @@ pt-BR:
         other_description_html: Veja mais opções para controlar o comportamento da conta e personalizar a comunicação com a conta denunciada.
         resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma violação será guardada e a denúncia será encerrada.
         silence_description_html: A conta ficará visível apenas para aqueles que já a seguem ou que a procuram manualmente, limitando severamente seu alcance. Pode ser revertido a qualquer momento. Fecha todas as denúncias desta conta.
+        suspend_description_html: A conta e todo o seu conteúdo ficará inacessível e, eventualmente, excluído e interagir com ela será impossível. Reversível dentro de 30 dias. Encerra todas as denúncias contra esta conta.
       actions_description_html: Decida que medidas tomar para resolver esta denúncia. Se você decidir punir a conta denunciada, ela receberá uma notificação por e-mail, exceto quando for selecionada a categoria <strong>spam</strong> for selecionada.
+      actions_description_remote_html: Decida quais medidas tomará para resolver esta denúncia. Isso só afetará como <strong>seu servidor</strong> se comunica com esta conta remota e manipula seu conteúdo.
       add_to_report: Adicionar mais à denúncia
       are_you_sure: Você tem certeza?
       assign_to_self: Atribuir para si
@@ -590,6 +596,7 @@ pt-BR:
         none: Nenhum
       comment_description_html: 'Para fornecer mais informações, %{name} escreveu:'
       confirm: Confirmar
+      confirm_action: Confirmar a moderação de @%{acct}
       created_at: Denunciado
       delete_and_resolve: Excluir publicações
       forwarded: Encaminhados
@@ -627,11 +634,16 @@ pt-BR:
           suspend_html: 'Você está prestes a <strong>suspender</strong> <strong>a conta de @%{acct}</strong>. Isso irá:'
         actions:
           delete_html: Remover as publicações ofensivas
+          mark_as_sensitive_html: Marcar a mídia de posts ofensivos como sensível
+          silence_html: Limitar firmemente o alcance de <strong>@%{acct}</strong>, tornando seus perfis e conteúdos apenas visíveis para pessoas que já os estão seguindo ou olhando manualmente o perfil
+          suspend_html: Suspender <strong>@%{acct}</strong>, tornando seu perfil e conteúdo inacessíveis, impossibilitando a interação
         close_report: 'Marcar denúncia #%{id} como resolvida'
         close_reports_html: Marcar <strong>todas</strong> as denúncias contra <strong>@%{acct}</strong> como resolvidas
         delete_data_html: Exclua o perfil e o conteúdo de <strong>@%{acct}</strong> daqui a 30 dias, a menos que a suspensão seja desfeita nesse meio tempo
         preview_preamble_html: "<strong>@%{acct}</strong> receberá um aviso com o seguinte conteúdo:"
+        record_strike_html: Registre uma ação contra <strong>@%{acct}</strong> para te ajudar em futuras violações desta conta
         send_email_html: Enviar <strong>@%{acct}</strong> um e-mail de aviso
+        warning_placeholder: Argumentos adicionais para a ação de moderação.
       target_origin: Origem da conta denunciada
       title: Denúncias
       unassign: Desatribuir
@@ -786,6 +798,7 @@ pt-BR:
         suspend: "%{name} suspendeu a conta de %{target}"
       appeal_approved: Revisado
       appeal_pending: Revisão pendente
+      appeal_rejected: Revisão rejeitada
     system_checks:
       database_schema_check:
         message_html: Existem migrações de banco de dados pendentes. Execute-as para garantir que o aplicativo se comporte como esperado
@@ -799,6 +812,12 @@ pt-BR:
         message_html: Você não definiu nenhuma regra de servidor.
       sidekiq_process_check:
         message_html: Nenhum processo Sidekiq rodando para a(s) fila(s) %{value}. Por favor, revise a sua configuração para Sidekiq
+      upload_check_privacy_error:
+        action: Confira aqui para mais informações
+        message_html: "<strong>Seu servidor está mal configurado. A privacidade de seus usuários está em risco.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Confira aqui para mais informações
+        message_html: "<strong>Seu armazenamento de objetos está mal configurado. A privacidade de seus usuários está em risco.</strong>"
     tags:
       review: Status da revisão
       updated_msg: Configurações de hashtag atualizadas
@@ -821,6 +840,7 @@ pt-BR:
           other: Compartilhado por %{count} pessoas na última semana
         title: Em alta no momento
         usage_comparison: Compartilhado %{today} vezes hoje, em comparação com %{yesterday} de ontem
+      not_allowed_to_trend: Não tem permissão para criar tendências
       only_allowed: Somente permitido
       pending_review: Revisão pendente
       preview_card_providers:
@@ -952,6 +972,7 @@ pt-BR:
   applications:
     created: Aplicativo criado com sucesso
     destroyed: Aplicativo excluído com sucesso
+    logout: Sair
     regenerate_token: Gerar código de acesso
     token_regenerated: Código de acesso gerado
     warning: Tenha cuidado com estes dados. Nunca compartilhe com alguém!
@@ -1136,6 +1157,8 @@ pt-BR:
     storage: Armazenamento de mídia
   featured_tags:
     add_new: Adicionar hashtag
+    errors:
+      limit: Você já destacou o número máximo de hashtags
     hint_html: "<strong>O que são hashtags em destaque?</strong> Elas são exibidas no seu perfil público e permitem que as pessoas acessem suas publicações públicos que contenham especificamente essas hashtags. São uma excelente ferramenta para acompanhar os trabalhos criativos ou os projetos de longo prazo."
   filters:
     contexts:
@@ -1388,6 +1411,7 @@ pt-BR:
     confirm_remove_selected_followers: Tem certeza que deseja remover os seguidores selecionados?
     confirm_remove_selected_follows: Tem certeza que deseja remover os grupos seguidos selecionados?
     dormant: Inativo
+    follow_failure: Não foi possível seguir algumas das contas selecionadas.
     follow_selected_followers: Seguir os seguidores selecionados
     followers: Seguidores
     following: Seguindo
@@ -1427,6 +1451,7 @@ pt-BR:
       electron: Electron
       firefox: Firefox
       generic: Navegador desconhecido
+      huawei_browser: Navegador Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
@@ -1436,6 +1461,7 @@ pt-BR:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Navegador desconhecido
       weibo: Weibo
     current_session: Sessão atual
     description: "%{browser} em %{platform}"
@@ -1448,9 +1474,10 @@ pt-BR:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: MacOS
-      other: Plataforma desconhecida
+      unknown_platform: Plataforma desconhecida
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1563,6 +1590,7 @@ pt-BR:
       '7889238': 3 meses
     min_age_label: Validade
     min_favs: Manter publicações favoritadas por ao menos
+    min_favs_hint: Não exclui suas publicações que receberam pelo menos esta quantidade de favoritos. Deixe em branco para excluir publicações independentemente da quantidade de favoritos
     min_reblogs: Manter publicações impulsionadas por ao menos
     min_reblogs_hint: Não exclui publicações que receberam pelo menos esta quantidade de impulsos. Deixe em branco para excluir publicações independentemente da quantidade de impulsos
   stream_entries:
@@ -1662,12 +1690,13 @@ pt-BR:
       title: Boas vindas, %{name}!
   users:
     follow_limit_reached: Você não pode seguir mais de %{limit} pessoas
+    go_to_sso_account_settings: Vá para as configurações de conta do seu provedor de identidade
     invalid_otp_token: Código de dois fatores inválido
     otp_lost_help_html: Se você perder o acesso à ambos, você pode entrar em contato com %{email}
     seamless_external_login: Você entrou usando um serviço externo, então configurações de e-mail e senha não estão disponíveis.
     signed_in_as: 'Entrou como:'
   verification:
-    explanation_html: 'Você pode <strong>verificar os links nos metadados do seu perfil</strong>. Para isso, o site citado deve conter um link de volta para o seu perfil do Mastodon. O link de volta <strong>deve</strong> conter um atributo <code>rel="me"</code>. O conteúdo ou texto do link não importa. Aqui está um exemplo:'
+    explanation_html: 'Você pode <strong>se verificar como proprietário dos links nos metadados do seu perfil</strong>. Para isso, o site vinculado deve conter um link de volta para o seu perfil de Mastodon. Depois de adicionar o link, talvez você precise voltar aqui e salvar novamente o seu perfil para que a verificação tenha efeito. O link de volta <strong>deve</strong> ter um atributo <code>rel="me"</code>. O conteúdo do texto do link não importa. Aqui está um exemplo:'
     verification: Verificação
   webauthn_credentials:
     add: Adicionar nova chave de segurança

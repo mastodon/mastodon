@@ -812,6 +812,12 @@ es-AR:
         message_html: No definiste ninguna regla del servidor.
       sidekiq_process_check:
         message_html: No hay ningún proceso Sidekiq en ejecución para la/s cola/s %{value}. Por favor, revisá tu configuración de Sidekiq
+      upload_check_privacy_error:
+        action: Revisá acá para más información
+        message_html: "<strong>Tu servidor web está mal configurado. La privacidad de tus usuarios está en riesgo.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Revisá acá para más información
+        message_html: "<strong>El almacenamiento de tu objeto está mal configurado. La privacidad de tus usuarios está en riesgo.</strong>"
     tags:
       review: Estado de revisión
       updated_msg: La configuración de la etiqueta se actualizó exitosamente
@@ -1405,6 +1411,7 @@ es-AR:
     confirm_remove_selected_followers: "¿Estás seguro que querés quitar a los seguidores seleccionados?"
     confirm_remove_selected_follows: "¿Estás seguro que querés quitar a las cuentas seguidas seleccionadas?"
     dormant: Inactivas
+    follow_failure: No se pudieron seguir algunas de las cuentas seleccionadas.
     follow_selected_followers: Seguir a los seguidores seleccionados
     followers: Seguidores
     following: Siguiendo
@@ -1444,6 +1451,7 @@ es-AR:
       electron: Electron
       firefox: Mozilla Firefox
       generic: "[Navegador web desconocido]"
+      huawei_browser: Navegador Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Navegador web de Nokia S40 Ovi
@@ -1453,6 +1461,7 @@ es-AR:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: "[Navegador web desconocido]"
       weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
@@ -1465,9 +1474,10 @@ es-AR:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: GNU/Linux
       mac: macOS
-      other: "[Plataforma desconocida]"
+      unknown_platform: "[Plataforma desconocida]"
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1680,12 +1690,13 @@ es-AR:
       title: "¡Bienvenido a bordo, %{name}!"
   users:
     follow_limit_reached: No podés seguir a más de %{limit} cuentas
+    go_to_sso_account_settings: Andá a la configuración de cuenta de tu proveedor de identidad
     invalid_otp_token: Código de dos factores no válido
     otp_lost_help_html: Si perdiste al acceso a ambos, podés ponerte en contacto con %{email}
     seamless_external_login: Iniciaste sesión desde un servicio externo, así que la configuración de contraseña y correo electrónico no están disponibles.
     signed_in_as: 'Iniciaste sesión como:'
   verification:
-    explanation_html: 'Podés <strong>verificarte a vos mismo como el propietario de los enlaces en los metadatos de tu perfil</strong>. Para eso, el sitio web del enlace debe contener un enlace de vuelta a tu perfil de Mastodon. El enlace en tu sitio <strong>debe</strong> tener un atributo <code>rel="me"</code>. El contenido del texto del enlace no importa. Acá tenés un ejemplo:'
+    explanation_html: 'Podés <strong>verificarte a vos mismo como el propietario de los enlaces en los metadatos de tu perfil</strong>. Para eso, el sitio web del enlace debe contener un enlace de vuelta a tu perfil de Mastodon. Después de agregar el enlace, puede que tengás que volver acá y volver a guardar los cambios en tu perfil para que la verificación surta efecto. El enlace en tu sitio <strong>debe</strong> tener un atributo <code>rel="me"</code>. El contenido del texto del enlace no importa. Acá tenés un ejemplo:'
     verification: Verificación
   webauthn_credentials:
     add: Agregar nueva llave de seguridad

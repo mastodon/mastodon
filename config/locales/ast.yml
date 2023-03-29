@@ -750,6 +750,7 @@ ast:
       electron: Electron
       firefox: Firefox
       generic: Restolador desconocíu
+      huawei_browser: Restolador de Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Restolador Ovi pa S40 de Nokia
@@ -759,6 +760,7 @@ ast:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Restolador desconocíu
       weibo: Weibo
     current_session: Sesión actual
     ip: IP
@@ -769,9 +771,10 @@ ast:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: GNU/Linux
       mac: macOS
-      other: plataforma desconocida
+      unknown_platform: Plataforma desconocida
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -902,7 +905,6 @@ ast:
     seamless_external_login: Aniciesti la sesión pente un serviciu esternu, polo que la configuración de la contraseña ya de la direición de corréu electrónicu nun tán disponibles.
     signed_in_as: 'Aniciesti la sesión como:'
   verification:
-    explanation_html: 'Pues <strong>verificate como la persona propietaria de los enllaces nos metadatos del to perfil</strong>. Pa ello, el sitiu web enllaciáu ha contener un enllaz al to perfil de Mastodon. Esti enllaz <strong>ha</strong> tener l''atributu <code>rel="me"</code>. El testu del enllaz nun importa. Equí tienes un exemplu:'
     verification: Verificación
   webauthn_credentials:
     create:

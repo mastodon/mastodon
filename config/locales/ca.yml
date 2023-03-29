@@ -812,6 +812,12 @@ ca:
         message_html: No has definit cap norma del servidor.
       sidekiq_process_check:
         message_html: No hi ha cap procés de Sidekiq executant-se per a la cua (o cues) de %{value}. Si us plau revisa la teva configuració de Sidekiq
+      upload_check_privacy_error:
+        action: Consulta aquí per a més informació
+        message_html: "<strong>El teu servidor no està ben configurat. La privacitat dels teus usuaris està en risc.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Consulta aquí per a més informació
+        message_html: "<strong>El teu emagatzamatge d'objectes no està ben configurat. La privacitat dels teus usuaris està en risc.</strong>"
     tags:
       review: Revisar l'estat
       updated_msg: Ajustaments d'etiquetes actualitzats amb èxit
@@ -1405,6 +1411,7 @@ ca:
     confirm_remove_selected_followers: Segur que vols esborrar els seguidors seleccionats?
     confirm_remove_selected_follows: Segur que vols esborrar els seguits seleccionats?
     dormant: Inactiu
+    follow_failure: No es poden seguir alguns dels comptes seleccionats.
     follow_selected_followers: Segueix als seguidors seleccionats
     followers: Seguidors
     following: Seguint
@@ -1444,15 +1451,17 @@ ca:
       electron: Electron
       firefox: Firefox
       generic: Navegador desconegut
+      huawei_browser: Navegador Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
+      nokia: Navegador Nokia S40 Ovi
       opera: Opera
       otter: Otter
       phantom_js: PhantomJS
-      qq: QQ Browser
+      qq: Navegador QQ
       safari: Safari
       uc_browser: Navegador UC
+      unknown_browser: Navegador Desconegut
       weibo: Weibo
     current_session: Sessió actual
     description: "%{browser} de %{platform}"
@@ -1465,9 +1474,10 @@ ca:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: plataforma desconeguda
+      unknown_platform: Plataforma desconeguda
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1680,12 +1690,13 @@ ca:
       title: Benvingut a bord, %{name}!
   users:
     follow_limit_reached: No pots seguir més de %{limit} persones
+    go_to_sso_account_settings: Ves a la configuració del compte del teu proveïdor d'identitat
     invalid_otp_token: El codi de dos factors no és correcte
     otp_lost_help_html: Si has perdut l'accés a tots dos pots contactar per %{email}
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'
   verification:
-    explanation_html: 'Pots <strong>verificar-te com a propietari dels enllaços a les metadades del teu perfil</strong>. Per això, el lloc web enllaçat ha de contenir un enllaç al teu perfil de Mastodon. El vincle <strong>ha de</strong> tenir l''atribut <code>rel="me"</code>. El contingut del text de l''enllaç no importa. Aquí tens un exemple:'
+    explanation_html: 'Pots <strong>verificar-te com a propietari dels enllaços a les metadades del teu perfil</strong>. Per això, el lloc web enllaçat ha de contenir un enllaç al teu perfil de Mastodon. Després d''afegir l''enllaç, podries necessitar tornar aquí a desar el teu perfil per a fer efectiva la verificació. El vincle <strong>ha de</strong> tenir l''atribut <code>rel="me"</code>. El contingut del text de l''enllaç no importa. Aquí tens un exemple:'
     verification: Verificació
   webauthn_credentials:
     add: Afegir nova clau de seguretat

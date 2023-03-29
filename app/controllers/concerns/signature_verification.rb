@@ -138,7 +138,7 @@ module SignatureVerification
   end
 
   def signed_headers
-    signature_params.fetch('headers', signature_algorithm == 'hs2019' ? '(created)' : 'date').downcase.split(' ')
+    signature_params.fetch('headers', signature_algorithm == 'hs2019' ? '(created)' : 'date').downcase.split
   end
 
   def verify_signature_strength!

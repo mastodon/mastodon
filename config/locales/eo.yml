@@ -834,6 +834,7 @@ eo:
           other: Diskonita de %{count} personoj ekde lasta semajno
         title: Tendencantaj ligiloj
         usage_comparison: Diskonita %{today}-foje hodiau, sed estas %{yesterday} hierau
+      not_allowed_to_trend: Ne rajtas fariĝi furoraĵo
       only_allowed: Nur permesitas
       pending_review: Atendante revizion
       preview_card_providers:
@@ -1324,8 +1325,8 @@ eo:
       sign_up:
         subject: "%{name} registriĝis"
     favourite:
-      body: "%{name} stelumis vian mesaĝon:"
-      subject: "%{name} stelumis vian mesaĝon"
+      body: "%{name} stelumis vian afiŝon:"
+      subject: "%{name} stelumis vian afiŝon"
       title: Nova stelumo
     follow:
       body: "%{name} nun sekvas vin!"
@@ -1345,7 +1346,7 @@ eo:
       subject: Enketo de %{name} finitas
     reblog:
       body: 'Via mesaĝo estis diskonigita de %{name}:'
-      subject: "%{name} diskonigis vian mesaĝon"
+      subject: "%{name} diskonigis vian afiŝon"
       title: Nova diskonigo
     status:
       subject: "%{name} ĵus afiŝis"
@@ -1406,6 +1407,7 @@ eo:
     confirm_remove_selected_followers: Ĉu vi certas, ke vi volas forigi la elektitajn sekvantojn?
     confirm_remove_selected_follows: Ĉu vi certas, ke vi volas forigi la elektitajn sekvatojn?
     dormant: Dormanta
+    follow_failure: Ne eblis sekvi iom da la elektitaj kontoj.
     follow_selected_followers: Sekvi selektitajn sekvantojn
     followers: Sekvantoj
     following: Sekvatoj
@@ -1445,6 +1447,7 @@ eo:
       electron: Electron
       firefox: Firefox
       generic: Nekonata retumilo
+      huawei_browser: Retumilo Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1454,6 +1457,7 @@ eo:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Nekonata retumilo
       weibo: Weibo
     current_session: Nuna seanco
     description: "%{browser} en %{platform}"
@@ -1466,9 +1470,10 @@ eo:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: nekonata substrato
+      unknown_platform: Nekonata platformo
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1686,7 +1691,6 @@ eo:
     seamless_external_login: Vi estas ensalutinta per ekstera servo, do pasvortaj kaj retadresaj agordoj ne estas disponeblaj.
     signed_in_as: 'Salutinta kiel:'
   verification:
-    explanation_html: 'Vi povas <strong>pruvi, ke vi estas la posedanto de la ligiloj en viaj profilaj metadatumoj</strong>. Por fari tion, la alligita retejo devas enhavi ligilon reen al via Mastodon-profilo. La religilo <strong>devas</strong> havi la atributon <code>rel="me"</code>. Ne gravas la teksta enhavo de la religilo. Jen ekzemplo:'
     verification: Kontrolo
   webauthn_credentials:
     add: Aldoni novan sekurecan ŝlosilon

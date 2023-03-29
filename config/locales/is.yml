@@ -812,6 +812,12 @@ is:
         message_html: Þú hefur ekki skilgreint neinar reglur fyrir netþjón.
       sidekiq_process_check:
         message_html: Ekkert Sidekiq-ferli er í gangi fyrir %{value} biðröð/biðraðir. Endilega athugaðu Sidekiq-uppsetninguna þína
+      upload_check_privacy_error:
+        action: Skoðaðu hér til að fá frekari upplýsingar
+        message_html: "<strong>Vefþjónninn þinn er ekki rétt stilltur. Friðhelgi notendanna þinna gæti verið í hættu.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Skoðaðu hér til að fá frekari upplýsingar
+        message_html: "<strong>Gagnageymslan þín er ekki rétt stillt. Friðhelgi notendanna þinna gæti verið í hættu.</strong>"
     tags:
       review: Yfirfara stöðufærslu
       updated_msg: Það tókst að uppfæra stillingar myllumerkja
@@ -1405,6 +1411,7 @@ is:
     confirm_remove_selected_followers: Ertu viss um að þú viljir fjarlægja valda fylgjendur?
     confirm_remove_selected_follows: Ertu viss um að þú viljir fjarlægja valið sem fylgst er með?
     dormant: Sofandi
+    follow_failure: Gat ekki fylgst með sumum af völdu aðgöngunum.
     follow_selected_followers: Fylgjast með völdum fylgjendum
     followers: Fylgjendur
     following: Fylgist með
@@ -1444,6 +1451,7 @@ is:
       electron: Electron
       firefox: Firefox
       generic: Óþekktur vafri
+      huawei_browser: Huawei-vafri
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi vafri
@@ -1453,6 +1461,7 @@ is:
       qq: QQ vafri
       safari: Safari
       uc_browser: UC-vafrinn
+      unknown_browser: Óþekktur vafri
       weibo: Weibo
     current_session: Núverandi seta
     description: "%{browser} á %{platform}"
@@ -1465,9 +1474,10 @@ is:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: óþekktu stýrikerfi
+      unknown_platform: Óþekkt stýrikerfi
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1680,12 +1690,13 @@ is:
       title: Velkomin/n um borð, %{name}!
   users:
     follow_limit_reached: Þú getur ekki fylgst með fleiri en %{limit} aðilum
+    go_to_sso_account_settings: Fara í stillingar aðgangsins hjá auðkennisveitunni þinni
     invalid_otp_token: Ógildur tveggja-þátta kóði
     otp_lost_help_html: Ef þú hefur misst aðganginn að hvoru tveggja, geturðu sett þig í samband við %{email}
     seamless_external_login: Innskráning þín er í gegnum utanaðkomandi þjónustu, þannig að stillingar fyrir lykilorð og tölvupóst eru ekki aðgengilegar.
     signed_in_as: 'Skráð inn sem:'
   verification:
-    explanation_html: 'Þú getur <strong>vottað að þú sért eigandi og ábyrgur fyrir tenglunum í lýsigögnum notandasniðsins þíns</strong>. Til að það virki, þurfa vefsvæðin sem vísað er í að innihalda tengil til baka í Mastodon-notandasniðið. Tengillinn sem vísar til baka <strong>verður</strong> að vera með <code>rel="me"</code> eigindi. Textinn í tenglinum skiptir ekki máli. Hérna er dæmi:'
+    explanation_html: 'Þú getur <strong>sannvottað sjálfa/n þig sem eiganda tenglanna í notandasniðinu þinu</strong>. Til að það virki, þarf tilvísaða vefsvæðið að innihalda tengil til baka á notandasnið þitt á Mastodon. Eftir að tenglinum hefur verið bætt inn, gætirðu þurft að koma aftur hingað og vista aftur notandasniðið þitt áður en sannvottunin fer að virka. Tengillinn til baka <strong>verður</strong> að innihalda <code>rel="me"</code> eigindi. Efni textans í tenglinum skiptir ekki máli. Hér er dæmi:'
     verification: Sannprófun
   webauthn_credentials:
     add: Bæta við nýjum öryggislykli

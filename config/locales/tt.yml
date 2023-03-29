@@ -2,16 +2,20 @@
 tt:
   about:
     contact_unavailable: Юк
+    title: Проект турында
   accounts:
     follow: Языл
     following: Язылгансыз
   admin:
     accounts:
+      approve: Хуплау
       avatar: Аватар
       by_domain: Домен
       change_email:
         label: Emailны үзгәртү
         submit: Emailны үзгәртү
+      change_role:
+        no_role: Рольсез
       confirm: Раслау
       deleted: Бетерелде
       domain: Домен
@@ -19,6 +23,7 @@ tt:
       email: Эл. почта
       header: Башлам
       ip: ІР
+      joined: Кушылды
       location:
         all: Бөтенесе
         local: Җирле
@@ -28,8 +33,13 @@ tt:
         all: Бөтенесе
       perform_full_suspension: Искә алмау
       reset: Ташлату
+      role: Роль
       search: Эзләү
+      security: Иминлек
+      security_measures:
+        only_password: Серсүз генә
       sensitive: Sizmäle
+      title: Аккаунтлар
       username: Кулланучы исеме
       web: Веб
     action_logs:
@@ -40,10 +50,10 @@ tt:
       copy: Күчереп алу
       delete: Бетерү
       disable: Cүндерү
-      disabled: Cүндерелгән
-      enable: Кабызу
+      disabled: Cүнек
+      enable: Кушу
       list: Исемлек
-      upload: Йөкләү
+      upload: Йөкләтү
     domain_blocks:
       domain: Домен
       new:
@@ -101,7 +111,7 @@ tt:
   application_mailer:
     salutation: "%{name},"
   auth:
-    change_password: Парол
+    change_password: Серсүз
     login: Керү
     providers:
       cas: САS
@@ -141,7 +151,7 @@ tt:
   exports:
     archive_takeout:
       date: Көне
-      size: Olılıq
+      size: Зурлык
     bookmarks: Кыстыргычлар
     csv: СSV
   filters:
@@ -158,7 +168,7 @@ tt:
   imports:
     types:
       bookmarks: Кыстыргычлар
-    upload: Йөкләү
+    upload: Йөкләтү
   invites:
     expired: Гамәлдән чыкты
     expires_in:
@@ -172,15 +182,15 @@ tt:
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: "%n %u"
   otp_authentication:
-    enable: Кабызу
+    enable: Кушу
   pagination:
     next: Киләсе
     prev: Алдыгы
     truncate: "&hellip;"
   relationships:
-    following: Язылгансыз
+    following: Язылулар
   sessions:
     browser: Браузер
     browsers:
@@ -198,7 +208,7 @@ tt:
       qq: QQ Brоwser
       safari: Safаri
       weibo: Weibо
-    description: "%{browser} - %{platform}"
+    description: "%{platform} платформасында %{browser}"
     ip: ІР
     platforms:
       adobe_air: Adobе Air
@@ -211,10 +221,10 @@ tt:
       windows_mobile: Windows Mоbile
       windows_phone: Windоws Phone
   settings:
-    account: Хисап язмасы
-    appearance: Küreneş
-    development: Эшләнмә
-    edit_profile: Профильны үзгәртү
+    account: Аккаунт
+    appearance: Тышкы кыяфәт
+    development: Ясаучылар өчен
+    edit_profile: Профильне үзгәртү
     import: Импортлау
     preferences: Caylaw
     profile: Профиль
@@ -244,7 +254,7 @@ tt:
     edit: Үзгәртү
   user_mailer:
     warning:
-      reason: 'Сәбаб:'
+      reason: 'Сәбәп:'
       title:
         none: Игътибар
   webauthn_credentials:

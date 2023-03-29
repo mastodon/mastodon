@@ -1,4 +1,4 @@
-class AddIndexAccountAndReblogOfIdToStatuses < ActiveRecord::Migration[5.1]
+class AddIndexAccountAndReblogOfIdToStatuses < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def up

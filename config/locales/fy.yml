@@ -812,6 +812,12 @@ fy:
         message_html: Jo hawwe foar dizze server gjin regels opsteld.
       sidekiq_process_check:
         message_html: Der draait gjin Sidekiq-proses foar de wachtrige(n) %{value}. Kontrolearje jo Sidekiq-konfiguraasje
+      upload_check_privacy_error:
+        action: Klik hjir foar mear ynformaasje
+        message_html: "<strong>Jo webserver is ferkeard konfigurearre. De privacy fan jo brûkers is yn gefaar.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Klik hjir foar mear ynformaasje
+        message_html: "<strong>Jo objektûnthâld is ferkeard konfigurearre. De privacy fan jo brûkers is yn gefaar.</strong>"
     tags:
       review: Steat beoardiele
       updated_msg: Hashtagynstellingen mei sukses bywurke
@@ -1405,6 +1411,7 @@ fy:
     confirm_remove_selected_followers: Binne jo wis dat jo de selektearre folgers net mear folgje wolle?
     confirm_remove_selected_follows: Binne jo wis dat jo de selektearre folge accounts net mear folgje wolle?
     dormant: Slommerjend
+    follow_failure: Kin guon fan de selektearre accounts net folgje.
     follow_selected_followers: Selektearre folgers folgje
     followers: Folgers
     following: Folgjend
@@ -1444,6 +1451,7 @@ fy:
       electron: Electron
       firefox: Firefox
       generic: Unbekende browser
+      huawei_browser: Huawei-browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1453,6 +1461,7 @@ fy:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Unbekende browser
       weibo: Weibo
     current_session: Aktuele sesje
     description: "%{browser} op %{platform}"
@@ -1465,9 +1474,10 @@ fy:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: ûnbekend platfoarm
+      unknown_platform: Unbekend platfoarm
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1680,12 +1690,13 @@ fy:
       title: Wolkom oan board %{name}!
   users:
     follow_limit_reached: Jo kinne net mear as %{limit} accounts folgje
+    go_to_sso_account_settings: Gean nei de accountynstellingen fan jo identiteitsprovider
     invalid_otp_token: Unjildige twa-stapstagongskoade
     otp_lost_help_html: As jo tagong ta beide kwytrekke binne, nim dan kontakt op fia %{email}
     seamless_external_login: Jo binne oanmeld fia in eksterne tsjinst, dêrom binne wachtwurden en e-mailynstellingen net beskikber.
     signed_in_as: 'Oanmeld as:'
   verification:
-    explanation_html: 'Jo kinne <strong>josels ferifiearje as de eigener fan de keppelingen yn de metadata fan jo profyl</strong>. Hjirfoar moat op de keppele website in keppeling werom nei jo Mastodon-profyl stean. Dizze keppeling <strong>moat</strong> it <code>rel="me"</code>-attribút befetsje. De omskriuwing fan de keppeling makket net út. Hjir is in foarbyld:'
+    explanation_html: 'Jo kinne <strong>josels ferifiearje as de eigener fan de keppelingen yn de metadata fan jo profyl</strong>. Hjirfoar moat op de keppele website in keppeling werom nei jo Mastodon-profyl stean. Nei it tafoegjen fan de keppeling moatte jo miskien hjir werom komme en jo profyl opnij bewarje om de ferifikaasje te befêstigjen. Dizze keppeling <strong>moat</strong> it <code>rel="me"</code>-attribút befetsje. De omskriuwing fan de keppeling makket net út. Hjir is in foarbyld:'
     verification: Ferifikaasje
   webauthn_credentials:
     add: Nije befeiligingskaai tafoegje

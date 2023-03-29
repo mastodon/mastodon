@@ -2,8 +2,6 @@
 
 module Admin
   class EmailDomainBlocksController < BaseController
-    before_action :set_email_domain_block, only: [:show, :destroy]
-
     def index
       authorize :email_domain_block, :index?
 
@@ -58,10 +56,6 @@ module Admin
     end
 
     private
-
-    def set_email_domain_block
-      @email_domain_block = EmailDomainBlock.find(params[:id])
-    end
 
     def set_resolved_records
       Resolv::DNS.open do |dns|

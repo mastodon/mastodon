@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_theme
   helper_method :single_user_mode?
   helper_method :use_seamless_external_login?
+  helper_method :omniauth_only?
+  helper_method :sso_account_settings
   helper_method :whitelist_mode?
 
   rescue_from ActionController::ParameterMissing, Paperclip::AdapterRegistry::NoHandlerError, with: :bad_request
@@ -61,7 +63,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(_resource_or_scope)
-    new_user_session_path
+    if ENV['OMNIAUTH_ONLY'] == 'true' && ENV['OIDC_ENABLED'] == 'true'
+      '/auth/auth/openid_connect/logout'
+    else
+      new_user_session_path
+    end
   end
 
   protected
@@ -112,6 +118,14 @@ class ApplicationController < ActionController::Base
 
   def use_seamless_external_login?
     Devise.pam_authentication || Devise.ldap_authentication
+  end
+
+  def omniauth_only?
+    ENV['OMNIAUTH_ONLY'] == 'true'
+  end
+
+  def sso_account_settings
+    ENV.fetch('SSO_ACCOUNT_SETTINGS')
   end
 
   def current_account

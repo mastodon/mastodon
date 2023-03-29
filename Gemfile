@@ -69,7 +69,7 @@ gem 'public_suffix', '~> 5.0'
 gem 'pundit', '~> 2.3'
 gem 'premailer-rails'
 gem 'rack-attack', '~> 6.6'
-gem 'rack-cors', '~> 1.1', require: 'rack/cors'
+gem 'rack-cors', '~> 2.0', require: 'rack/cors'
 gem 'rails-i18n', '~> 6.0'
 gem 'rails-settings-cached', '~> 0.6', git: 'https://github.com/mastodon/rails-settings-cached.git', branch: 'v0.6.6-aliases-true'
 gem 'redcarpet', '~> 3.6'
@@ -87,10 +87,10 @@ gem 'simple-navigation', '~> 4.4'
 gem 'simple_form', '~> 5.2'
 gem 'sprockets-rails', '~> 3.4', require: 'sprockets/railtie'
 gem 'stoplight', '~> 3.0.1'
-gem 'strong_migrations', '~> 0.7'
+gem 'strong_migrations', '~> 0.8'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
-gem 'tzinfo-data', '~> 1.2022'
+gem 'tzinfo-data', '~> 1.2023'
 gem 'webpacker', '~> 5.4'
 gem 'webpush', github: 'ClearlyClaire/webpush', ref: 'f14a4d52e201128b1b00245d11b6de80d6cfdcd9'
 gem 'webauthn', '~> 3.0'
@@ -105,6 +105,8 @@ group :development, :test do
   gem 'i18n-tasks', '~> 1.0', require: false
   gem 'rspec-rails', '~> 6.0'
   gem 'rspec_chunked', '~> 0.6'
+
+  gem 'rubocop-capybara', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
@@ -120,7 +122,7 @@ group :test do
   gem 'climate_control'
   gem 'faker', '~> 3.1'
   gem 'json-schema', '~> 3.0'
-  gem 'rack-test', '~> 2.0'
+  gem 'rack-test', '~> 2.1'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec_junit_formatter', '~> 0.6'
   gem 'rspec-sidekiq', '~> 3.1'
@@ -129,16 +131,15 @@ group :test do
 end
 
 group :development do
-  gem 'active_record_query_trace', '~> 1.8'
   gem 'annotate', '~> 3.2'
   gem 'better_errors', '~> 2.9'
   gem 'binding_of_caller', '~> 1.0'
-  gem 'bullet', '~> 7.0'
   gem 'letter_opener', '~> 1.8'
   gem 'letter_opener_web', '~> 2.0'
   gem 'memory_profiler'
   gem 'brakeman', '~> 5.4', require: false
   gem 'bundler-audit', '~> 0.9', require: false
+  gem 'haml_lint', require: false
 
   gem 'capistrano', '~> 3.17'
   gem 'capistrano-rails', '~> 1.6'

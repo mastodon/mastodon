@@ -12,12 +12,12 @@ de:
       one: Follower
       other: Folgende
     following: Folge ich
-    instance_actor_flash: Dieses Konto ist ein virtueller Akteur, der den Server selbst repräsentiert und nicht ein einzelner Benutzer. Es wird für Föderationszwecke verwendet und sollte nicht gesperrt werden.
+    instance_actor_flash: Dieses Konto ist ein virtueller Akteur, der den Server selbst repräsentiert, und kein persönliches Profil. Es wird für Föderationszwecke verwendet und sollte daher nicht gesperrt werden.
     last_active: zuletzt aktiv
     link_verified_on: Das Profil mit dieser E-Mail-Adresse wurde bereits am %{date} bestätigt
     nothing_here: Keine Treffer mit dieser Auswahl
     pin_errors:
-      following: Du musst dieser Person bereits folgen, um sie empfehlen zu können
+      following: Du musst dieser Person folgen, um sie empfehlen zu können
     posts:
       one: Beitrag
       other: Beiträge
@@ -29,7 +29,7 @@ de:
     account_moderation_notes:
       create: Notiz abspeichern
       created_msg: Moderationshinweis erfolgreich abgespeichert!
-      destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
+      destroyed_msg: Moderationsnotiz erfolgreich entfernt!
     accounts:
       add_email_domain_block: E-Mail-Domain sperren
       approve: Genehmigen
@@ -58,7 +58,7 @@ de:
       demote: Zurückstufen
       destroyed_msg: Daten von %{username} wurden zum Löschen in die Warteschlange eingereiht
       disable: Einfrieren
-      disable_sign_in_token_auth: Deaktiviere die Zwei-Faktor-Authentisierung (2FA) per E-Mail
+      disable_sign_in_token_auth: E-Mail-Token-Authentisierung deaktivieren
       disable_two_factor_authentication: Zwei-Faktor-Authentisierung (2FA) deaktivieren
       disabled: Eingefroren
       display_name: Angezeigter Name
@@ -67,7 +67,7 @@ de:
       email: E-Mail-Adresse
       email_status: Status der E-Mail-Adresse
       enable: Freischalten
-      enable_sign_in_token_auth: Aktiviere die Zwei-Faktor-Authentisierung (2FA) per E-Mail
+      enable_sign_in_token_auth: E-Mail-Token-Authentisierung aktivieren
       enabled: Freigegeben
       enabled_msg: Konto von %{username} erfolgreich freigegeben
       followers: Follower
@@ -105,10 +105,10 @@ de:
       not_subscribed: Nicht abonniert
       pending: Überprüfung ausstehend
       perform_full_suspension: Sperren
-      previous_strikes: Vorherige Verstöße
+      previous_strikes: Vorherige Maßnahmen
       previous_strikes_description_html:
-        one: Dieses Konto hat <strong>einen</strong> Verstoß.
-        other: Dieses Konto hat <strong>%{count}</strong> Verstöße.
+        one: Gegen dieses Konto wurde <strong>eine</strong> Maßnahme verhängt.
+        other: Gegen dieses Konto wurden <strong>%{count}</strong> Maßnahmen verhängt.
       promote: Berechtigungen erweitern
       protocol: Protokoll
       public: Öffentlich
@@ -259,7 +259,7 @@ de:
         destroy_user_role_html: "%{name} löschte die Rolle %{target}"
         disable_2fa_user_html: "%{name} hat die Zwei-Faktor-Authentisierung für %{target} deaktiviert"
         disable_custom_emoji_html: "%{name} deaktivierte das Emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token-Authentifizierung für %{target} deaktiviert"
+        disable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token-Authentisierung für %{target} deaktiviert"
         disable_user_html: "%{name} hat den Zugang für %{target} deaktiviert"
         enable_custom_emoji_html: "%{name} aktivierte das Emoji %{target}"
         enable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token-Authentifizierung für %{target} aktiviert"
@@ -441,7 +441,7 @@ de:
       import:
         description_html: Du bist dabei, eine Liste von Domains zu importieren, die auf diesem Server gesperrt oder anderweitig eingeschränkt werden. Bitte überprüfe diese Liste sehr sorgfältig, insbesondere dann, wenn du sie nicht selbst erstellt hast.
         existing_relationships_warning: Bestehende Folgebeziehungen
-        private_comment_description_html: 'Damit du später nachvollziehen kannst, woher die importierten Sperren stammen, kannst du diesem Eintrag eine private Notiz hinzufügen: <q>%{comment}</q>'
+        private_comment_description_html: 'Damit du später nachvollziehen kannst, woher die importierten Sperren stammen, werden sie mit diesem privaten Kommentar erstellt: <q>%{comment}</q>'
         private_comment_template: Importiert von %{source} am %{date}
         title: Domains importieren
       invalid_domain_block: 'Ein oder mehrere Domainsperren wurden wegen folgenden Fehler(n) übersprungen: %{error}'
@@ -452,19 +452,19 @@ de:
       description_html: "<strong>Folgeempfehlungen helfen neuen Nutzer*innen, interessante Inhalte schnell zu finden</strong>. Wenn ein*e Nutzer*in noch nicht genug mit anderen interagiert hat, um personalisierte Folgeempfehlungen zu erhalten, werden stattdessen diese Profile verwendet. Sie werden täglich, basierend auf einer Mischung aus am meisten interagierenden Konten und jenen mit den meisten Followern für eine bestimmte Sprache, neu berechnet."
       language: Für Sprache
       status: Status
-      suppress: Folgeempfehlungen unterdrücken
+      suppress: Folgeempfehlung unterbinden
       suppressed: Unterdrückt
       title: Folgeempfehlungen
-      unsuppress: Nicht mehr unterdrücken
+      unsuppress: Folgeempfehlung nicht mehr unterbinden
     instances:
       availability:
         description_html:
-          one: Wenn die Zustellung an die Domain seit <strong>%{count} Tag</strong> erfolglos bleibt, werden keine weiteren Auslieferungsversuche unternommen, es sei denn, eine Zustellung <em>von</em> dieser Domain wird empfangen.
-          other: Wenn die Zustellung an die Domain seit <strong>%{count} Tagen</strong> erfolglos bleibt, werden keine weiteren Zustellungsversuche unternommen, es sei denn, eine Zustellung <em>von</em> dieser Domain wird empfangen.
+          one: Wenn die Zustellung an die Domain <strong>%{count} Tag</strong> lang erfolglos bleibt, werden keine weiteren Zustellversuche unternommen, bis eine Zustellung <em>von</em> der Domain empfangen wird.
+          other: Wenn die Zustellung an die Domain an <strong>%{count} unterschiedlichen Tagen</strong> erfolglos bleibt, werden keine weiteren Zustellversuche unternommen, bis eine Zustellung <em>von</em> der Domain empfangen wird.
         failure_threshold_reached: Fehlschlag-Schwelle am %{date} erreicht.
         failures_recorded:
-          one: Fehlgeschlagener Versuch am %{count}. Tag.
-          other: Fehlgeschlagener Versuch am %{count}. Tag.
+          one: Fehlgeschlagener Versuch an %{count} Tag.
+          other: Fehlgeschlagene Versuche an %{count} unterschiedlichen Tagen.
         no_failures_recorded: Keine Fehler bei der Aufzeichnung.
         title: Verfügbarkeit
         warning: Der letzte Versuch, sich mit diesem Server zu verbinden, war nicht erfolgreich
@@ -472,7 +472,7 @@ de:
       back_to_limited: Stummgeschaltet
       back_to_warning: Warnung
       by_domain: Domain
-      confirm_purge: Bist du dir sicher, dass du die Daten für diese Domain für immer löschen möchtest?
+      confirm_purge: Bist du dir sicher, dass du die Daten von dieser Domain dauerhaft löschen möchtest?
       content_policies:
         comment: Interne Notiz
         description_html: Du kannst Inhaltsrichtlinien definieren, die auf alle Konten dieser Domain und einer ihrer Subdomains angewendet werden.
@@ -503,7 +503,7 @@ de:
         unavailable: Nicht verfügbar
       delivery_available: Zustellung funktioniert
       delivery_error_days: Tage der fehlerhaften Zustellung
-      delivery_error_hint: Wenn eine Auslieferung %{count} Tage lang nicht möglich ist, wird sie automatisch als unzustellbar markiert.
+      delivery_error_hint: Wenn eine Zustellung %{count} Tage lang nicht möglich ist, wird sie automatisch als unzustellbar markiert.
       destroyed_msg: Daten von %{domain} sind nun in der Warteschlange für die bevorstehende Löschung.
       empty: Keine Domains gefunden.
       known_accounts:
@@ -556,7 +556,7 @@ de:
       disable: Ausschalten
       disabled: Ausgeschaltet
       enable: Einschalten
-      enable_hint: Sobald aktiviert, wird dein Server alle öffentlichen Beiträge dieses Relays abonnieren und alle öffentlichen Beiträge dieses Servers an dieses senden.
+      enable_hint: Sobald aktiviert, wird dein Server alle öffentlichen Beiträge dieses Relais abonnieren und alle öffentlichen Beiträge dieses Servers an dieses senden.
       enabled: Eingeschaltet
       inbox_url: Relay-URL
       pending: Warte auf Zustimmung des Relays
@@ -566,8 +566,8 @@ de:
       status: Status
       title: Relais
     report_notes:
-      created_msg: Meldungs-Kommentar erfolgreich erstellt!
-      destroyed_msg: Meldungs-Kommentar erfolgreich gelöscht!
+      created_msg: Notiz zur Meldung erfolgreich erstellt!
+      destroyed_msg: Notiz zur Meldung erfolgreich entfernt!
     reports:
       account:
         notes:
@@ -576,27 +576,27 @@ de:
       action_log: Protokoll
       action_taken_by: Maßnahme ergriffen von
       actions:
-        delete_description_html: Der gemeldete Beitrag wird gelöscht und ein Strike wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Accounts zu helfen.
+        delete_description_html: Der gemeldete Beitrag wird gelöscht und die ergriffene Maßnahme wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Kontos zu helfen.
         mark_as_sensitive_description_html: Die Medien in den gemeldeten Beiträgen werden mit einer Inhaltswarnung versehen und ein Verstoß wird vermerkt, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können.
         other_description_html: Weitere Optionen zur Steuerung des Kontoverhaltens und zur Anpassung der Kommunikation mit dem gemeldeten Konto.
-        resolve_description_html: Es wird keine Maßnahme gegen das gemeldete Konto ergriffen, es wird kein Strike verzeichnet und die Meldung wird geschlossen.
+        resolve_description_html: Es wird keine Maßnahme gegen das gemeldete Konto ergriffen und der Vorgang wird nicht aufgezeichnet – die Meldung wird hiermit geschlossen.
         silence_description_html: Das Konto wird nur für diejenigen sichtbar sein, die dem Konto bereits folgen oder es manuell suchen, was die Reichweite stark einschränkt. Kann jederzeit rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
         suspend_description_html: Das Konto und alle Inhalte werden unzugänglich und ggf. gelöscht. Eine Interaktion mit dem Konto wird unmöglich. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
       actions_description_html: Entscheide, welche Maßnahmen zur Lösung dieses Berichts zu ergreifen sind. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, wird eine E-Mail-Benachrichtigung an diese gesendet, außer wenn die <strong>Spam</strong>-Kategorie ausgewählt ist.
       actions_description_remote_html: Entscheide, welche Maßnahmen du zur Lösung dieser Meldungen ergreifen möchtest. Dies wirkt sich lediglich darauf aus, wie <strong>dein</strong> Server mit diesem externen Konto kommuniziert und dessen Inhalt handhabt.
-      add_to_report: Mehr zur Meldung hinzufügen
+      add_to_report: Meldung ergänzen
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
       assigned: Zugewiesene*r Moderator*in
       by_target_domain: Domain des gemeldeten Kontos
       cancel: Abbrechen
       category: Kategorie
-      category_description_html: Der Grund, warum dieses Konto und/oder der Inhalt gemeldet wurden, wird in der Kommunikation mit dem gemeldeten Konto zitiert
+      category_description_html: Der Grund, weshalb dieses Konto und/oder der Inhalt gemeldet worden ist, wird in der Kommunikation mit dem gemeldeten Konto erwähnt
       comment:
         none: Kein
-      comment_description_html: 'Um weitere Informationen bereitzustellen, schrieb %{name} Folgendes:'
+      comment_description_html: "%{name} ergänzte die Meldung um folgende Hinweis:"
       confirm: Bestätigen
-      confirm_action: Moderationsaktion gegen @%{acct} bestätigen
+      confirm_action: Maßnahme gegen @%{acct} bestätigen
       created_at: Gemeldet
       delete_and_resolve: Beiträge löschen
       forwarded: Weitergeleitet
@@ -617,12 +617,12 @@ de:
       quick_actions_description_html: 'Eine schnelle Aktion ausführen oder nach unten rolle, um gemeldete Inhalte zu sehen:'
       remote_user_placeholder: das externe Profil von %{instance}
       reopen: Meldung wieder eröffnen
-      report: 'Meldung #%{id}'
+      report: "%{id}. Meldung"
       reported_account: Gemeldetes Konto
       reported_by: Gemeldet von
       resolved: Gelöst
-      resolved_msg: Meldung erfolgreich gelöst!
-      skip_to_actions: Zu Aktionen springen
+      resolved_msg: Meldung erfolgreich geklärt!
+      skip_to_actions: Zur Maßnahme springen
       status: Status
       statuses: Gemeldeter Inhalt
       statuses_description_html: Störende Inhalte werden in der Kommunikation mit dem gemeldeten Konto zitiert
@@ -646,7 +646,7 @@ de:
         warning_placeholder: Optional zusätzliche Begründung für die Moderationsmaßnahme.
       target_origin: Domain des gemeldeten Kontos
       title: Meldungen
-      unassign: Zuweisung entfernen
+      unassign: Zuweisung aufheben
       unknown_action_msg: 'Unbekannte Aktion: %{action}'
       unresolved: Ungelöst
       updated_at: Aktualisiert
@@ -742,7 +742,7 @@ de:
         preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die Mastodon noch nicht kennen. Bestimme, wie verschiedene Suchfunktionen auf deinem Server funktionieren.
         profile_directory: Profilverzeichnis
         public_timelines: Öffentliche Timeline
-        publish_discovered_servers: Veröffentliche bekannte Server
+        publish_discovered_servers: Entdeckte Server offenlegen
         publish_statistics: Statistiken veröffentlichen
         title: Entdecken
         trends: Trends
@@ -789,11 +789,11 @@ de:
       with_media: Mit Medien
     strikes:
       actions:
-        delete_statuses: "%{name} hat die Beiträge von %{target} entfernt"
+        delete_statuses: "%{name} entfernte die Beiträge von %{target}"
         disable: "%{name} fror das Konto von %{target} ein"
         mark_statuses_as_sensitive: "%{name} hat die Beiträge von %{target} mit einer Inhaltswarnung versehen"
-        none: "%{name} hat eine Warnung an %{target} gesendet"
-        sensitive: "%{name} hat das Profil von %{target} mit einer Inhaltswarnung versehen"
+        none: "%{name} schickte eine Warnung an %{target}"
+        sensitive: "%{name} versah das Konto von %{target} mit einer Inhaltswarnung"
         silence: "%{name} schaltete das Konto von %{target} stumm"
         suspend: "%{name} sperrte das Konto von %{target}"
       appeal_approved: Einspruch angenommen
@@ -812,6 +812,12 @@ de:
         message_html: Du hast keine Serverregeln definiert.
       sidekiq_process_check:
         message_html: Kein Sidekiq-Prozess läuft für die %{value} Warteschlange(n). Bitte überprüfe deine Sidekiq-Konfiguration
+      upload_check_privacy_error:
+        action: Für weitere Informationen hier klicken
+        message_html: "<strong>Die Konfiguration deines Servers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Für weitere Informationen hier klicken
+        message_html: "<strong>Die Konfiguration deines Objektspeichers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
     tags:
       review: Prüfstatus
       updated_msg: Hashtageinstellungen wurden erfolgreich aktualisiert
@@ -939,7 +945,7 @@ de:
       subject: Neue Trends zur Überprüfung auf %{instance}
   aliases:
     add_new: Alias erstellen
-    created_msg: Ein neuer Alias wurde erfolgreich erstellt. Du kannst nun den Wechsel vom alten Konto starten.
+    created_msg: Neuer Alias erfolgreich erstellt. Du kannst nun den Umzug vom alten zum neuen Konto starten.
     deleted_msg: Der Alias wurde erfolgreich entfernt. Aus jenem Konto zu diesem zu verschieben, ist nicht mehr möglich.
     empty: Du hast keine Aliase.
     hint_html: Wenn du von einem Konto zu einem anderen Konto wechseln möchtest, dann kannst du einen Alias erstellen, welcher benötigt wird, bevor du deine Follower vom alten Account zu diesen migrierst. Die Aktion allein ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Die Kontenmigration wird vom alten Konto aus eingeleitet</strong>.
@@ -975,7 +981,7 @@ de:
     apply_for_account: Konto beantragen
     change_password: Passwort
     confirmations:
-      wrong_email_hint: Wenn diese E-Mail-Adresse nicht korrekt ist, kann sie in den Kontoeinstellungen geändert werden.
+      wrong_email_hint: Sollte diese E-Mail-Adresse nicht korrekt sein, kannst du sie in den Kontoeinstellungen ändern.
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto endgültig löschen möchtest, kannst du das <a href="%{path}">hier vornehmen</a>. Du musst dies zusätzlich bestätigen.
     description:
@@ -983,10 +989,10 @@ de:
       prefix_sign_up: Registriere dich noch heute bei Mastodon!
       suffix: Mit einem Konto kannst du Profilen folgen, neue Beiträge veröffentlichen, Nachrichten mit Personen von jedem Mastodon-Server austauschen und vieles mehr!
     didnt_get_confirmation: Keine Bestätigungsanweisungen erhalten?
-    dont_have_your_security_key: Hast du keinen Sicherheitsschlüssel?
+    dont_have_your_security_key: Du hast keinen Sicherheitsschlüssel?
     forgot_password: Passwort vergessen?
     invalid_reset_password_token: Das Token zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordere ein neues an.
-    link_to_otp: Gib einen Zwei-Faktor-Code von deinem Handy oder einen Wiederherstellungscode ein
+    link_to_otp: Gib einen Zwei-Faktor-Code von deinem Smartphone oder einen Wiederherstellungscode ein
     link_to_webauth: Verwende dein Sicherheitsschlüsselgerät
     log_in_with: Anmelden mit
     login: Anmelden
@@ -1017,7 +1023,7 @@ de:
       preamble_html: Melde dich mit deinen Zugangsdaten für <strong>%{domain}</strong> an. Solltest du dein Konto auf einem anderen Server registriert haben, ist eine Anmeldung hier nicht möglich.
       title: Bei %{domain} anmelden
     sign_up:
-      preamble: Mit einem Account auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Account gehostet wird.
+      preamble: Mit einem Konto auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Account gehostet ist.
       title: Okay, lass uns mit %{domain} anfangen.
     status:
       account_status: Kontostatus
@@ -1030,7 +1036,7 @@ de:
     use_security_key: Sicherheitsschlüssel verwenden
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
-    already_requested: Du hast bereits eine Anfrage zum Folgen diesen Accounts gestellt
+    already_requested: Du hast bereits eine Folgeanfrage an dieses Konto gestellt
     error: Bedauerlicherweise konnte das externe Konto nicht geladen werden
     follow: Folgen
     follow_request: 'Du hast eine Folgeanfrage gestellt an:'
@@ -1038,7 +1044,7 @@ de:
     post_follow:
       close: Oder du schließt einfach dieses Fenster.
       return: Benutzerprofil anzeigen
-      web: In der Benutzeroberfläche öffnen
+      web: Im Webinterface öffnen
     title: "%{acct} folgen"
   challenge:
     confirm: Fortfahren
@@ -1052,21 +1058,21 @@ de:
   date:
     formats:
       default: "%d. %b %Y"
-      with_month_name: "%B %d, %Y"
+      with_month_name: "%d. %B %Y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count} h"
+      about_x_hours: "%{count} Std."
       about_x_months: "%{count} Mon."
-      about_x_years: "%{count} J"
-      almost_x_years: "%{count} J"
+      about_x_years: "%{count} J."
+      almost_x_years: "%{count} J."
       half_a_minute: Gerade eben
-      less_than_x_minutes: "%{count} Min"
+      less_than_x_minutes: "%{count} Min."
       less_than_x_seconds: Gerade eben
-      over_x_years: "%{count}J"
-      x_days: "%{count}T"
-      x_minutes: "%{count}m"
-      x_months: "%{count}mo"
-      x_seconds: "%{count}s"
+      over_x_years: "%{count} J."
+      x_days: "%{count} T."
+      x_minutes: "%{count} Min."
+      x_months: "%{count} Mon."
+      x_seconds: "%{count} Sek."
   deletes:
     challenge_not_passed: Die eingegebenen Informationen waren nicht korrekt
     confirm_password: Gib dein derzeitiges Passwort ein, um deine Identität zu bestätigen
@@ -1075,18 +1081,18 @@ de:
     success_msg: Dein Konto wurde erfolgreich gelöscht
     warning:
       before: 'Bevor du fortfährst, lies bitte diese Punkte sorgfältig durch:'
-      caches: Inhalte, die von anderen Servern zwischengespeichert wurden, können weiterhin bestehen
+      caches: Inhalte, die von anderen Servern zwischengespeichert wurden, können fortbestehen
       data_removal: Deine Beiträge und alle anderen Daten werden für immer entfernt
       email_change_html: Du kannst <a href="%{path}">deine E-Mail-Adresse ändern</a>, ohne dein Konto zu löschen
-      email_contact_html: Wenn die Bestätigungs-E-Mail immer noch nicht ankam, kannst du eine E-Mail an <a href="mailto:%{email}">%{email}</a> senden, um weitere Hilfe zu erhalten
+      email_contact_html: Sollte sie noch immer nicht angekommen sein, kannst du eine E-Mail an <a href="mailto:%{email}">%{email}</a> schicken, um weitere Hilfe zu erhalten
       email_reconfirmation_html: Wenn du die Bestätigungs-E-Mail nicht erhalten hast, kannst du sie <a href="%{path}">erneut anfordern</a>
-      irreversible: Du kannst dein Konto nicht mehr wiederherstellen oder reaktivieren
+      irreversible: Du wirst dein Konto nicht mehr wiederherstellen oder reaktivieren können
       more_details_html: Weitere Details findest du in der <a href="%{terms_path}">Datenschutzerklärung</a>.
       username_available: Dein Profilname wird wieder verfügbar sein
       username_unavailable: Dein Profilname wird auch nach dem Löschen für andere nicht zugänglich sein
   disputes:
     strikes:
-      action_taken: Maßnahme ergriffen
+      action_taken: Maßnahme
       appeal: Einspruch
       appeal_approved: Dieser Verstoß wurde erfolgreich angefochten und ist nicht mehr gültig
       appeal_rejected: Der Einspruch wurde abgelehnt
@@ -1097,28 +1103,28 @@ de:
       approve_appeal: Einspruch annehmen
       associated_report: Zugehöriger Bericht
       created_at: Datum
-      description_html: Dies sind Aktionen gegen dein Konto und Warnungen, die von den Mitarbeitern von %{instance} an dich gesendet wurden.
+      description_html: Dies sind Maßnahmen, die gegen dein Konto ergriffen worden sind, und Warnungen, die dir die Mitarbeiter*innen von %{instance} geschickt haben.
       recipient: Adressiert an
       reject_appeal: Einspruch ablehnen
-      status: 'Beitrag #%{id}'
+      status: "%{id}. Beitrag"
       status_removed: Beitrag bereits vom System entfernt
       title: "%{action} vom %{date}"
       title_actions:
         delete_statuses: Beitragsentfernung
-        disable: Einfrieren des Kontos
+        disable: Konto einfrieren
         mark_statuses_as_sensitive: Beiträge mit einer Inhaltswarnung versehen
-        none: Warnung
+        none: Verwarnung
         sensitive: Profil mit einer Inhaltswarnung versehen
         silence: Kontobeschränkung
         suspend: Kontosperre
       your_appeal_approved: Dein Einspruch wurde angenommen
-      your_appeal_pending: Du hast Einspruch eingelegt
+      your_appeal_pending: Du hast Einspruch erhoben
       your_appeal_rejected: Dein Einspruch wurde abgelehnt
   domain_validator:
-    invalid_domain: ist kein gültiger Domain-Name
+    invalid_domain: ist keine gültige Domain
   errors:
-    '400': Die Anfrage, die du gesendet hast, war ungültig oder fehlerhaft.
-    '403': Dir fehlt die Befugnis, diese Seite sehen zu können.
+    '400': Die Anfrage, die du gestellt hast, war ungültig oder fehlerhaft.
+    '403': Dir fehlt die Berechtigung, diese Seite aufzurufen.
     '404': Die Seite, nach der du gesucht hast, wurde nicht gefunden.
     '406': Diese Seite ist im gewünschten Format nicht verfügbar.
     '410': Die Seite, nach der du gesucht hast, existiert hier nicht mehr.
@@ -1163,12 +1169,12 @@ de:
       thread: Unterhaltungen
     edit:
       add_keyword: Schlagwort hinzufügen
-      keywords: Schlagworte
+      keywords: Schlagwörter
       statuses: Individuelle Beiträge
-      statuses_hint_html: Dieser Filter gilt für die Auswahl einzelner Beiträge, unabhängig davon, ob sie mit den unten stehenden Schlüsselwörtern übereinstimmen. <a href="%{path}">Beiträge im Filter ansehen oder entfernen.</a>.
+      statuses_hint_html: Dieser Filter gilt für die Auswahl einzelner Beiträge, unabhängig davon, ob sie mit den unten aufgeführten Schlagwörtern übereinstimmen. <a href="%{path}">Beiträge überprüfen oder aus dem Filter entfernen</a>.
       title: Filter bearbeiten
     errors:
-      deprecated_api_multiple_keywords: Diese Parameter können von dieser Anwendung nicht geändert werden, da sie auf mehr als ein Filterschlüsselwort angewendet werden. Verwende eine neuere Anwendung oder das Webinterface.
+      deprecated_api_multiple_keywords: Diese Parameter können von dieser Anwendung nicht geändert werden, da sie für mehr als ein Filterschlagwort gelten. Verwende eine aktuellere Anwendung oder das Webinterface.
       invalid_context: Ungültiger oder fehlender Kontext übergeben
     index:
       contexts: Filter in %{contexts}
@@ -1177,8 +1183,8 @@ de:
       expires_in: Läuft ab in %{distance}
       expires_on: Läuft am %{date} ab
       keywords:
-        one: "%{count} Schlagworte"
-        other: "%{count} Stichwörter"
+        one: "%{count} Schlagwort"
+        other: "%{count} Schlagwörter"
       statuses:
         one: "%{count} Beitrag"
         other: "%{count} Beiträge"
@@ -1268,7 +1274,7 @@ de:
       sign_in_token: E-Mail-Sicherheitscode
       webauthn: Sicherheitsschlüssel
     description_html: Wenn du verdächtige Aktivitäten bemerkst, die du nicht verstehst oder zuordnen kannst, solltest du dringend dein Passwort ändern und ungeachtet dessen die Zwei-Faktor-Authentisierung (2FA) aktivieren.
-    empty: Kein Authentifizierungsverlauf verfügbar
+    empty: Kein Authentisierungsverlauf verfügbar
     failed_sign_in_html: Fehler beim Anmeldeversuch mit %{method} von %{ip} (%{browser})
     successful_sign_in_html: Erfolgreiche Anmeldung mit %{method} von %{ip} (%{browser})
     title: Authentifizierungsverlauf
@@ -1294,20 +1300,20 @@ de:
     moved_msg: Dein altes Profil wird jetzt zum neuen Account %{acct} weitergeleitet und deine Follower werden übertragen.
     not_redirecting: Dein Konto wird derzeit nicht auf ein anderes Konto weitergeleitet.
     on_cooldown: Du hast dein Konto vor kurzem migriert. Diese Funktion wird in %{count} Tagen wieder verfügbar sein.
-    past_migrations: Vorherige Migrationen
+    past_migrations: Vorherige Umzüge
     proceed_with_move: Follower übertragen
     redirected_msg: Dein Konto wird nun zu %{acct} weitergeleitet.
     redirecting_to: Dein Konto wird zu %{acct} weitergeleitet.
     set_redirect: Umleitung einrichten
     warning:
-      backreference_required: Das neue Konto muss zuerst so konfiguriert werden, dass es auf das alte Konto referenziert
+      backreference_required: Das neue Konto muss zuerst auf das alte Konto verweisen
       before: 'Bevor du fortfährst, lies bitte diese Hinweise sorgfältig durch:'
-      cooldown: Nach dem Migrieren wird es eine Abklingzeit geben, in der du das Konto nicht noch einmal migrieren kannst
-      disabled_account: Dein aktuelles Konto wird nachher nicht vollständig nutzbar sein. Du hast jedoch Zugriff auf den Datenexport sowie die Reaktivierung.
-      followers: Alle Follower werden vom aktuellen zum neuen Konto übertragen
-      only_redirect_html: Alternativ kannst du <a href="%{path}">nur eine Weiterleitung auf dein Profil</a> erstellen.
-      other_data: Keine anderen Daten werden automatisch verschoben
-      redirect: Das Profil deines aktuellen Kontos wird mit einer Weiterleitungsnachricht versehen und von Suchanfragen ausgeschlossen
+      cooldown: Nach dem Umzug wird es eine Weile dauern, bis du erneut umziehen darfst
+      disabled_account: Dein altes Konto ist nur noch eingeschränkt nutzbar. Du kannst jedoch deine Daten exportieren und das Konto wieder reaktivieren.
+      followers: Alle Follower werden vom alten zum neuen Konto übertragen
+      only_redirect_html: Alternativ kannst du auch <a href="%{path}">nur eine Weiterleitung zu deinem neuen Profil</a> einrichten, ohne die Follower zu übertragen.
+      other_data: Keine anderen Daten werden automatisch zum neuen Konto übertragen
+      redirect: Dein altes Konto wird einen Hinweis erhalten, dass Du umgezogen bist. Außerdem wird das Profil von Suchanfragen ausgeschlossen
   moderation:
     title: Moderation
   move_handler:
@@ -1331,7 +1337,7 @@ de:
       subject: "%{name} folgt dir jetzt"
       title: Neuer Follower
     follow_request:
-      action: Verwalte Folge-Anfragen
+      action: Folgeanfragen verwalten
       body: "%{name} möchte dir folgen"
       subject: 'Ausstehende Folgeanfragen: %{name}'
       title: Neue Folgeanfrage
@@ -1362,13 +1368,13 @@ de:
           billion: Mrd
           million: Mio
           quadrillion: Q
-          thousand: Tsd
+          thousand: Tsd.
           trillion: T
   otp_authentication:
     code_hint: Gib den Code ein, den deine 2FA- bzw. TOTP-App generiert hat, um den Vorgang zu bestätigen
     description_html: Wenn du die <strong>Zwei-Faktor-Authentisierung</strong> (2FA) mit einer Authentifizierungs-App deines Smartphones aktivierst, benötigst du neben dem regulären Passwort zusätzlich auch den zeitbasierten Code der 2FA-App, um dich anmelden zu können.
     enable: Aktivieren
-    instructions_html: "<strong>Scanne diesen QR-Code mit einer TOTP-App (wie dem Google Authenticator)</strong>. Die 2FA-App generiert dann zeitbasierte Codes, die du beim Login zusätzlich zum regulären Passwort eingeben musst."
+    instructions_html: "<strong>Scanne diesen QR-Code mit einer beliebigen Authentisierungs-App (TOTP)</strong>. Diese App generiert dann zeitbasierte Codes, die du beim Anmelden zusätzlich zum regulären Passwort eingeben musst."
     manual_instructions: Wenn du den QR-Code nicht einscannen kannst, sondern die Zahlenfolge manuell eingeben musst, ist hier der geheime Token für deine 2FA-App.
     setup: Einrichten
     wrong_code: Der eingegebene Code ist ungültig! Laufen Serverzeit und Gerätezeit synchron?
@@ -1405,33 +1411,34 @@ de:
     confirm_remove_selected_followers: Bist du sicher, dass du den ausgewählten Konten entfolgen möchtest?
     confirm_remove_selected_follows: Bist du sicher, dass du den ausgewählten Konten entfolgen möchtest?
     dormant: Inaktiv
+    follow_failure: Einigen der ausgewählten Konten konnte nicht gefolgt werden.
     follow_selected_followers: Ausgewählten Followern folgen
     followers: Follower
     following: Folge ich
     invited: Eingeladen
     last_active: Zuletzt aktiv
-    most_recent: Neuste
+    most_recent: Neueste
     moved: Umgezogen
     mutual: Gegenseitig
     primary: Primär
     relationship: Beziehung
-    remove_selected_domains: Entferne alle Follower von den ausgewählten Domains
-    remove_selected_followers: Entferne ausgewählte Follower
-    remove_selected_follows: Ausgewählten Benutzer*innen entfolgen
+    remove_selected_domains: Alle Follower von den ausgewählten Domains entfernen
+    remove_selected_followers: Ausgewählten Followern entfolgen
+    remove_selected_follows: Ausgewählten Profilen entfolgen
     status: Kontostatus
   remote_follow:
     missing_resource: Die erforderliche Weiterleitungs-URL für dein Konto konnte nicht gefunden werden
   reports:
     errors:
-      invalid_rules: verweist nicht auf gültige Regeln
+      invalid_rules: verweist nicht auf gültige Serverregeln
   rss:
     content_warning: 'Inhaltswarnung:'
     descriptions:
       account: Öffentliche Beiträge von @%{acct}
       tag: 'Öffentliche Beiträge mit dem Hashtag #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Du hast das Limit für geplante Beiträge, welches %{limit} beträgt, für heute erreicht
-    over_total_limit: Du hast das Limit für geplante Beiträge, welches %{limit} beträgt, erreicht
+    over_daily_limit: Du hast das heutige Limit für geplante Beiträge, das %{limit} beträgt, erreicht
+    over_total_limit: Du hast das Limit für geplante Beiträge, das %{limit} beträgt, erreicht
     too_soon: Das geplante Datum muss in der Zukunft liegen
   sessions:
     activity: Letzte Aktivität
@@ -1444,6 +1451,7 @@ de:
       electron: Electron
       firefox: Firefox
       generic: Unbekannter Browser
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1453,6 +1461,7 @@ de:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Unbekannter Browser
       weibo: Weibo
     current_session: Aktuelle Sitzung
     description: "%{browser} auf %{platform}"
@@ -1465,9 +1474,10 @@ de:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: unbekanntes Betriebssystem
+      unknown_platform: Unbekannte Plattform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1493,9 +1503,9 @@ de:
     notifications: Benachrichtigungen
     preferences: Einstellungen
     profile: Profil
-    relationships: Folge ich und Follower
+    relationships: Follower und Folge ich
     statuses_cleanup: Automatische Löschung
-    strikes: Moderieren von Verstößen
+    strikes: Maßnahmen
     two_factor_authentication: Zwei-Faktor-Authentisierung (2FA)
     webauthn_authentication: Sicherheitsschlüssel
   statuses:
@@ -1519,8 +1529,8 @@ de:
     edited_at_html: 'Bearbeitet: %{date}'
     errors:
       in_reply_not_found: Der Beitrag, auf den du antworten möchtest, scheint nicht zu existieren.
-    open_in_web: Im Web öffnen
-    over_character_limit: Zeichenlimit von %{max} überschritten
+    open_in_web: Im Webinterface öffnen
+    over_character_limit: Begrenzung von %{max} Zeichen überschritten
     pin_errors:
       direct: Beiträge, die nur für erwähnte Profile sichtbar sind, können nicht angeheftet werden
       limit: Du hast bereits die maximale Anzahl an Beiträgen angeheftet
@@ -1580,7 +1590,7 @@ de:
       '7889238': 3 Monate
     min_age_label: Altersgrenze
     min_favs: Behalte Beiträge, die häufiger favorisiert wurden als …
-    min_favs_hint: Löscht keine Beiträge, die mindestens so oft favorisiert worden sind. Lass das Feld leer, um alle Beiträge, unabhängig der Anzahl an Favorisierungen zu löschen
+    min_favs_hint: Löscht keine Beiträge, die mindestens so oft favorisiert worden sind. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an Favoriten – zu löschen
     min_reblogs: Behalte Beiträge, die öfter geteilt wurden als
     min_reblogs_hint: Löscht keine Beiträge, die mindestens so oft geteilt worden sind. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an geteilten Beiträgen – zu löschen
   stream_entries:
@@ -1609,12 +1619,12 @@ de:
     enabled: Zwei-Faktor-Authentisierung (2FA) ist aktiviert
     enabled_success: Zwei-Faktor-Authentisierung (2FA) erfolgreich aktiviert
     generate_recovery_codes: Wiederherstellungscodes erstellen
-    lost_recovery_codes: Wiederherstellungscodes erlauben es dir, wieder Zugang zu deinem Konto zu erlangen, falls du keinen Zugriff mehr auf die Zwei-Faktor-Authentisierung (2FA) oder den Sicherheitsschlüssel hast. Solltest Du diese Wiederherstellungscodes verloren haben, kannst du sie hier neu generieren. Deine alten, bereits erstellten Wiederherstellungscodes werden dadurch ungültig.
+    lost_recovery_codes: Wiederherstellungscodes ermöglichen es dir, wieder Zugang zu deinem Konto zu erlangen, falls du keinen Zugriff mehr auf dein Smartphone oder zum Sicherheitsschlüssel hast. Solltest du deine Wiederherstellungscodes verloren haben, kannst du sie hier neu generieren. Die alten Wiederherstellungscodes werden dann ungültig.
     methods: Methoden der Zwei-Faktor-Authentisierung (2FA)
     otp: Authentifizierungs-App
     recovery_codes: Wiederherstellungscodes sichern
     recovery_codes_regenerated: Wiederherstellungscodes erfolgreich neu erstellt
-    recovery_instructions_html: Wenn du den Zugang zu deinem Telefon verlieren solltest, kannst du einen untenstehenden Wiederherstellungscode benutzen, um wieder auf dein Konto zugreifen zu können. <strong>Bewahre die Wiederherstellungscodes gut auf.</strong> Du könntest sie beispielsweise ausdrucken und bei deinen restlichen wichtigen Dokumenten aufbewahren.
+    recovery_instructions_html: Falls du jemals den Zugang zu deinem Smartphone verlierst, kannst du einen der unten aufgeführten Wiederherstellungscodes verwenden, um wieder Zugang zu deinem Konto zu erhalten. <strong>Bewahre die Wiederherstellungscodes sicher auf</strong>. Du kannst sie zum Beispiel ausdrucken und zusammen mit anderen wichtigen Dokumenten aufbewahren.
     webauthn: Sicherheitsschlüssel
   user_mailer:
     appeal_approved:
@@ -1642,7 +1652,7 @@ de:
       appeal_description: Wenn du glaubst, dass es sich um einen Fehler handelt, kannst du einen Einspruch an die Administration von %{instance} senden.
       categories:
         spam: Spam
-        violation: Inhalt verstößt gegen die folgenden Gemeinschaftsrichtlinien
+        violation: Inhalt verstößt gegen die folgenden Serverregeln
       explanation:
         delete_statuses: Einige deiner Beiträge wurden als Verstoß gegen eine oder mehrere Gemeinschaftsrichtlinien erkannt und von den Moderator*innen von %{instance} entfernt.
         disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und andere Daten bleiben unversehrt. Du kannst eine Sicherung deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
@@ -1680,24 +1690,24 @@ de:
       title: Willkommen an Bord, %{name}!
   users:
     follow_limit_reached: Du kannst nicht mehr als %{limit} Leuten folgen
+    go_to_sso_account_settings: Kontoeinstellungen des Identitätsanbieters aufrufen
     invalid_otp_token: Ungültiger Code der Zwei-Faktor-Authentisierung (2FA)
     otp_lost_help_html: Wenn du beides nicht mehr weißt, melde dich bitte bei uns unter der E-Mail-Adresse %{email}
     seamless_external_login: Du bist über einen externen Dienst angemeldet, daher sind Passwort- und E-Mail-Einstellungen nicht verfügbar.
     signed_in_as: 'Angemeldet als:'
   verification:
-    explanation_html: 'Du kannst <strong>bestätigen, dass die Links in deinen Profil-Metadaten dir gehören</strong>. Dafür muss die verlinkte Website einen Link zurück auf dein Mastodon-Profil enthalten. Dieser Link <strong>muss</strong> ein <code>rel="me"</code>-Attribut enthalten. Der Linktext ist dabei egal. Hier ist ein Beispiel:'
     verification: Verifizierung
   webauthn_credentials:
     add: Sicherheitsschlüssel hinzufügen
     create:
       error: Beim Hinzufügen des Sicherheitsschlüssels ist ein Fehler aufgetreten. Bitte versuche es erneut.
       success: Dein Sicherheitsschlüssel wurde erfolgreich hinzugefügt.
-    delete: Löschen
-    delete_confirmation: Bist du dir sicher, dass du diesen Sicherheitsschlüssel löschen möchtest?
-    description_html: Wenn du die <strong>Authentifizierung mit Sicherheitsschlüssel</strong> aktivierst, musst du einen deiner Sicherheitsschlüssel verwenden, um dich anmelden zu können.
+    delete: Entfernen
+    delete_confirmation: Möchtest du diesen Sicherheitsschlüssel wirklich entfernen?
+    description_html: Wenn du die <strong>Authentisierung mit Sicherheitsschlüssel</strong> aktivierst, musst du dich mit einem deiner Sicherheitsschlüssel anmelden.
     destroy:
-      error: Es gab ein Problem beim Löschen deines Sicherheitsschlüssels. Bitte versuche es erneut.
-      success: Dein Sicherheitsschlüssel wurde erfolgreich gelöscht.
+      error: Beim Entfernen des Sicherheitsschlüssels ist ein Fehler aufgetreten. Bitte versuche es erneut.
+      success: Dein Sicherheitsschlüssel wurde erfolgreich entfernt.
     invalid_credential: Ungültiger Sicherheitsschlüssel
     nickname_hint: Gib den Spitznamen deines neuen Sicherheitsschlüssels ein
     not_enabled: Du hast WebAuthn noch nicht aktiviert

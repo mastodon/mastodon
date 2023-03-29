@@ -840,6 +840,12 @@ uk:
         message_html: Ви не визначили будь-які правила сервера.
       sidekiq_process_check:
         message_html: Не працює процес Sidekiq для %{value} черги. Перегляньте конфігурації вашого Sidekiq
+      upload_check_privacy_error:
+        action: Перегляньте подробиці тут
+        message_html: "<strong>Ваш вебсервер неправильно налаштований. Приватність ваших користувачів піддається ризику</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Перегляньте подробиці тут
+        message_html: "<strong>Ваше сховище об'єктів неправильно налаштоване. Приватність ваших користувачів піддається ризику</strong>"
     tags:
       review: Переглянути допис
       updated_msg: Параметри хештеґів успішно оновлені
@@ -1457,6 +1463,7 @@ uk:
     confirm_remove_selected_followers: Ви дійсно бажаєте видалити вибраних підписників?
     confirm_remove_selected_follows: Ви дійсно хочете вилучити вибрані підписки?
     dormant: Неактивні
+    follow_failure: Не вдалося підписатися на деякі вибрані облікові записи.
     follow_selected_followers: Стежити за вибраними підписниками
     followers: Підписники
     following: Підписник
@@ -1496,6 +1503,7 @@ uk:
       electron: Electron
       firefox: Firefox
       generic: Невідомий браузер
+      huawei_browser: Huawei Браузер
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1505,6 +1513,7 @@ uk:
       qq: QQ Browser
       safari: Сафарі
       uc_browser: UC Browser
+      unknown_browser: Невідомий браузер
       weibo: Weibo
     current_session: Поточний сеанс
     description: "%{browser} на %{platform}"
@@ -1517,9 +1526,10 @@ uk:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: невідома платформа
+      unknown_platform: Невідома Платформа
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1744,12 +1754,13 @@ uk:
       title: Ласкаво просимо, %{name}!
   users:
     follow_limit_reached: Не можна слідкувати більш ніж за %{limit} людей
+    go_to_sso_account_settings: Перейдіть до налаштувань облікового запису постачальника ідентифікації
     invalid_otp_token: Введено неправильний код
     otp_lost_help_html: Якщо ви втратили доступ до обох, ви можете отримати доступ з %{email}
     seamless_external_login: Ви увійшли за допомогою зовнішнього сервісу, тому налаштування паролю та електронної пошти недоступні.
     signed_in_as: 'Ви увійшли як:'
   verification:
-    explanation_html: 'Ви можете <strong>підтвердити володіння посиланнями в метаданих вашого профілю</strong>. Для цього на зазначеному сайті повинне міститися посилання на ваш профіль Mastodon. Посилання <strong>повинне</strong> мати атрибут <code>rel="me"</code>. Текстовий вміст посилання не має значення. Ось приклад:'
+    explanation_html: 'Ви можете <strong>підтвердити володіння посиланнями в метаданих вашого профілю</strong>. Для цього на зазначеному сайті повинен міститися посилання на ваш профіль Mastodon. Посилання <strong>повинне</strong> мати атрибут <code>rel="me"</code>. Текстовий вміст посилання не має значення. Ось приклад:'
     verification: Підтвердження
   webauthn_credentials:
     add: Додати новий ключ безпеки

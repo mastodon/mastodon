@@ -344,7 +344,7 @@ ko:
       active_users: 활성 사용자
       interactions: 상호 작용
       media_storage: 미디어 저장소
-      new_users: 새로운 사용자
+      new_users: 새 사용자
       opened_reports: 신고 열림
       pending_appeals_html:
         other: "<strong>%{count}</strong>개의 대기 중인 이의 제기"
@@ -800,6 +800,12 @@ ko:
         message_html: 아직 서버규칙을 정하지 않았습니다.
       sidekiq_process_check:
         message_html: "%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요"
+      upload_check_privacy_error:
+        action: 더 많은 정보를 보려면 여기를 확인하세요.
+        message_html: "<strong>웹 서버가 잘못 구성되었습니다. 사용자의 프라이버시에 위협이 됩니다.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: 더 많은 정보를 보려면 여기를 확인하세요
+        message_html: "<strong>오브젝트 스토리지가 잘못 구성되었습니다. 사용자의 프라이버시에 위협이 됩니다.</strong>"
     tags:
       review: 심사 상태
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
@@ -992,7 +998,7 @@ ko:
       preamble: 다음은 %{domain}의 중재자들에 의해 설정되고 적용되는 규칙들입니다.
       title: 몇 개의 규칙이 있습니다.
     security: 보안
-    set_new_password: 새 암호
+    set_new_password: 새 암호 설정
     setup:
       email_below_hint_html: 아래의 이메일 계정이 올바르지 않을 경우, 여기서 변경하고 새 확인 메일을 받을 수 있습니다.
       email_settings_hint_html: 확인 메일이 %{email}로 보내졌습니다. 이메일 주소가 올바르지 않은 경우, 계정 설정에서 변경하세요.
@@ -1028,7 +1034,7 @@ ko:
     confirm: 계속
     hint_html: "<strong>팁:</strong> 한 시간 동안 다시 암호를 묻지 않을 것입니다."
     invalid_password: 잘못된 암호
-    prompt: 계속하려면 암호 확인
+    prompt: 계속하려면 암호를 확인하세요.
   crypto:
     errors:
       invalid_key: 유효하지 않은 Ed25519 또는 Curve25519 키
@@ -1065,7 +1071,7 @@ ko:
       email_contact_html: 아직 도착하지 않았다면, <a href="mailto:%{email}">%{email}</a>에 메일을 보내 도움을 요청할 수 있습니다
       email_reconfirmation_html: 아직 확인 메일이 도착하지 않은 경우, <a href="%{path}">다시 요청할 수 있습니다</a>
       irreversible: 계정을 복구하거나 다시 사용할 수 없게 됩니다
-      more_details_html: 더 자세한 정보는, <a href="%{terms_path}">개인정보 정책</a>을 참고하세요.
+      more_details_html: 더 자세한 정보는, <a href="%{terms_path}">개인정보처리방침</a>을 참고하세요.
       username_available: 이 사용자명을 다시 쓸 수 있게 됩니다.
       username_unavailable: 이 사용자명은 앞으로도 쓸 수 없는 채로 남게 됩니다.
   disputes:
@@ -1105,7 +1111,7 @@ ko:
     '403': 이 페이지를 표시할 권한이 없습니다.
     '404': 찾으려는 페이지가 존재하지 않습니다.
     '406': 이 페이지는 요청한 자료형으로 제공되지 않습니다.
-    '410': 보려는 페이지는 더 이상 여기에 존재하지 않습니다.
+    '410': 찾는 페이지가 더 이상 존재하지 않습니다.
     '422':
       content: 보안 인증에 실패했습니다. 쿠키를 차단하고 있진 않습니까?
       title: 보안 인증 실패
@@ -1137,7 +1143,7 @@ ko:
     add_new: 추가
     errors:
       limit: 추천 해시태그 최대 개수를 초과합니다
-    hint_html: "<strong>추천 해시태그가 무엇이죠?</strong> 당신의 공개 프로필 페이지에 눈에 띄게 표현 되며 사람들이 그 해시태그를 포함한 당신의 글을 찾아 볼 수 있도록 합니다. 창작활동이나 긴 기간을 가지는 프로젝트를 쭉 따라가기에 좋은 도구입니다."
+    hint_html: "<strong>추천 해시태그가 무엇일까요?</strong> 해시태그는 공개 프로필에 눈에 잘 띄게 표시되며, 사람들은 해당 해시태그로 내 공개 글을 검색할 수 있습니다. 창작물이나 장기 프로젝트를 추적하는 데 유용한 도구입니다."
   filters:
     contexts:
       account: 프로필
@@ -1370,7 +1376,7 @@ ko:
     posting_defaults: 게시물 기본설정
     public_timelines: 공개 타임라인
   privacy_policy:
-    title: 개인정보 정책
+    title: 개인정보처리방침
   reactions:
     errors:
       limit_reached: 리액션 갯수 제한에 도달했습니다
@@ -1381,10 +1387,11 @@ ko:
     confirm_remove_selected_followers: 정말로 선택된 팔로워들을 삭제하시겠습니까?
     confirm_remove_selected_follows: 정말로 선택된 팔로우를 끊으시겠습니까?
     dormant: 휴면
+    follow_failure: 선택한 계정 중 몇몇은 팔로우 할 수 없었습니다.
     follow_selected_followers: 선택한 팔로워들을 팔로우
     followers: 팔로워
     following: 팔로잉
-    invited: 초대됨
+    invited: 초대함
     last_active: 마지막 활동
     most_recent: 가장 최근
     moved: 이동함
@@ -1420,6 +1427,7 @@ ko:
       electron: 일렉트론
       firefox: 파이어폭스
       generic: 알 수 없는 브라우저
+      huawei_browser: 화웨이 브라우저
       ie: 인터넷 익스플로러
       micro_messenger: 마이크로메신저
       nokia: Nokia S40 Ovi 브라우저
@@ -1429,6 +1437,7 @@ ko:
       qq: QQ 브라우저
       safari: 사파리
       uc_browser: UC 브라우저
+      unknown_browser: 알 수 없는 브라우저
       weibo: 웨이보
     current_session: 현재 세션
     description: "%{platform}의 %{browser}"
@@ -1441,14 +1450,15 @@ ko:
       chrome_os: 크롬OS
       firefox_os: 파이어폭스OS
       ios: iOS
+      kai_os: KaiOS
       linux: 리눅스
       mac: macOS
-      other: 알 수 없는 플랫폼
+      unknown_platform: 알 수 없는 플랫폼
       windows: 윈도우
       windows_mobile: 윈도우 모바일
       windows_phone: 윈도우 폰
-    revoke: 삭제
-    revoke_success: 세션이 성공적으로 삭제되었습니다
+    revoke: 취소
+    revoke_success: 세션을 성공적으로 취소하였습니다.
     title: 세션
     view_authentication_history: 내 계정에 대한 인증 이력 보기
   settings:
@@ -1456,7 +1466,7 @@ ko:
     account_settings: 계정 설정
     aliases: 계정 별명
     appearance: 외관
-    authorized_apps: 인증된 애플리케이션
+    authorized_apps: 승인된 애플리케이션
     back: 마스토돈으로 돌아가기
     delete: 계정 삭제
     development: 개발
@@ -1556,7 +1566,7 @@ ko:
   stream_entries:
     pinned: 고정된 게시물
     reblogged: 님이 부스트 했습니다
-    sensitive_content: 민감한 콘텐츠
+    sensitive_content: 민감한 내용
   strikes:
     errors:
       too_late: 이의를 제기하기에 너무 늦었습니다
@@ -1650,12 +1660,13 @@ ko:
       title: 환영합니다 %{name} 님!
   users:
     follow_limit_reached: 당신은 %{limit}명의 사람을 넘어서 팔로우 할 수 없습니다
+    go_to_sso_account_settings: ID 공급자의 계정 설정으로 이동
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
     otp_lost_help_html: 만약 양쪽 모두를 잃어버렸다면 %{email}을 통해 복구할 수 있습니다
     seamless_external_login: 외부 서비스를 이용해 로그인했으므로 이메일과 암호는 설정할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'
   verification:
-    explanation_html: '당신은 <strong>프로필 메타데이터의 링크 소유자임을 검증할 수 있습니다</strong>. 이것을 하기 위해서는, 링크 된 웹사이트에서 당신의 마스토돈 프로필을 역으로 링크해야 합니다. 역링크는 <strong>반드시</strong> <code>rel="me"</code> 속성을 가지고 있어야 합니다. 링크의 텍스트는 상관이 없습니다. 여기 예시가 있습니다:'
+    explanation_html: '<strong>내 프로필 메타데이터에 담긴 링크의 소유 여부를 검증</strong>할 수 있습니다. 이를 위해서 반드시 링크한 웹사이트에 Mastodon 프로필에 대한 역링크가 포함되어야 합니다. 링크를 추가한 후 이곳으로 돌아와서 프로필을 다시 저장해야 인증을 적용할 수 있습니다. 돌아오는 링크에는 <strong>반드시</strong> <code>rel="me"</code> 속성이 있어야 합니다. 링크의 텍스트 콘텐트는 중요하지 않습니다. 다음 예제를 참고하세요:'
     verification: 검증
   webauthn_credentials:
     add: 보안 키 추가

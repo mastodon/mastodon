@@ -11,7 +11,6 @@ const mapStateToProps = (state, { statusId }) => ({
   language: state.getIn(['statuses', statusId, 'language']),
 });
 
-export default @connect(mapStateToProps, null, null, { forwardRef: true })
 class VideoModal extends ImmutablePureComponent {
 
   static propTypes = {
@@ -68,3 +67,5 @@ class VideoModal extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, null, null, { forwardRef: true })(VideoModal);

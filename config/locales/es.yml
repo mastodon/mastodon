@@ -812,6 +812,12 @@ es:
         message_html: No ha definido ninguna regla del servidor.
       sidekiq_process_check:
         message_html: No hay ningún proceso Sidekiq en ejecución para la(s) cola(s) %{value}. Por favor, revise su configuración de Sidekiq
+      upload_check_privacy_error:
+        action: Haga clic aquí para obtener más información
+        message_html: "<strong>Su servidor web está mal configurado. La privacidad de sus usuarios está en riesgo.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Haga clic aquí para obtener más información
+        message_html: "<strong>El almacenamiento de su objeto está mal configurado. La privacidad de sus usuarios está en riesgo.</strong>"
     tags:
       review: Estado de revisión
       updated_msg: Hashtags actualizados exitosamente
@@ -1405,6 +1411,7 @@ es:
     confirm_remove_selected_followers: "¿Estás seguro de que quieres eliminar los seguidores seleccionados?"
     confirm_remove_selected_follows: "¿Estás seguro de que quieres eliminar los seguidos seleccionados?"
     dormant: Inactivo
+    follow_failure: No se pudieron seguir algunas de las cuentas seleccionadas.
     follow_selected_followers: Seguir a los seguidores seleccionados
     followers: Seguidores
     following: Siguiendo
@@ -1444,6 +1451,7 @@ es:
       electron: Electron
       firefox: Firefox
       generic: Desconocido
+      huawei_browser: Navegador Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Navegador de Nokia S40 Ovi
@@ -1453,6 +1461,7 @@ es:
       qq: Navegador QQ
       safari: Safari
       uc_browser: Navegador UC
+      unknown_browser: Navegador Desconocido
       weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
@@ -1465,9 +1474,10 @@ es:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: GNU Linux
       mac: Mac
-      other: Desconocido
+      unknown_platform: Plataforma Desconocida
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1680,12 +1690,12 @@ es:
       title: Te damos la bienvenida a bordo, %{name}!
   users:
     follow_limit_reached: No puedes seguir a más de %{limit} personas
+    go_to_sso_account_settings: Diríjase a la configuración de la cuenta de su proveedor de identidad
     invalid_otp_token: Código de dos factores incorrecto
     otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contancto con %{email}
     seamless_external_login: Has iniciado sesión desde un servicio externo, así que los ajustes de contraseña y correo no están disponibles.
     signed_in_as: 'Sesión iniciada como:'
   verification:
-    explanation_html: 'Puedes <strong> verificarte a ti mismo como el dueño de los links en los metadatos de tu perfil </strong>. Para eso, el sitio vinculado debe contener un vínculo a tu perfil de Mastodon. El vínculo en tu sitio <strong> debe </strong> tener un atributo <code> rel="me"</code>. El texto del vínculo no importa. Aquí un ejemplo:'
     verification: Verificación
   webauthn_credentials:
     add: Agregar nueva clave de seguridad

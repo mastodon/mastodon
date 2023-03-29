@@ -812,6 +812,12 @@ nl:
         message_html: Je hebt voor deze server geen regels opgesteld.
       sidekiq_process_check:
         message_html: Er draait geen Sidekiqproces voor de wachtrij(en) %{value}. Controleer je Sidekiqconfiguratie
+      upload_check_privacy_error:
+        action: Klik hier voor meer informatie
+        message_html: "<strong>Uw webserver is verkeerd geconfigureerd. De privacy van uw gebruikers is in gevaar.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Klik hier voor meer informatie
+        message_html: "<strong>Je objectopslag is verkeerd geconfigureerd. De privacy van je gebruikers is in gevaar.</strong>"
     tags:
       review: Status beoordelen
       updated_msg: Instellingen hashtag succesvol bijgewerkt
@@ -1405,6 +1411,7 @@ nl:
     confirm_remove_selected_followers: Weet je zeker dat je de geselecteerde volgers wilt verwijderen?
     confirm_remove_selected_follows: Weet je zeker dat je de geselecteerde gevolgde accounts wilt verwijderen?
     dormant: Sluimerend
+    follow_failure: Kan sommige van de geselecteerde accounts niet volgen.
     follow_selected_followers: Geselecteerde volgers volgen
     followers: Volgers
     following: Volgend
@@ -1444,6 +1451,7 @@ nl:
       electron: Electron
       firefox: Firefox
       generic: Onbekende webbrowser
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1453,6 +1461,7 @@ nl:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Onbekende browser
       weibo: Weibo
     current_session: Huidige sessie
     description: "%{browser} op %{platform}"
@@ -1465,9 +1474,10 @@ nl:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: Onbekend platform
+      unknown_platform: Onbekend platform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1680,12 +1690,13 @@ nl:
       title: Welkom aan boord %{name}!
   users:
     follow_limit_reached: Je kunt niet meer dan %{limit} accounts volgen
+    go_to_sso_account_settings: Ga naar de accountinstellingen van uw identiteitsprovider
     invalid_otp_token: Ongeldige tweestaps-toegangscode
     otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
   verification:
-    explanation_html: 'Je kunt <strong>jezelf verifiëren als de eigenaar van de links in de metadata van jouw profiel</strong>. Hiervoor moet op de gelinkte website een link terug naar jouw Mastodonprofiel staan. Deze link <strong>moet</strong> het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de link maakt niet uit. Hier is een voorbeeld:'
+    explanation_html: 'Je kunt <strong>jezelf verifiëren als de eigenaar van de koppelingen in de metadata van jouw profiel</strong>. Hiervoor moet op de gekoppelde website een koppeling terug naar jouw Mastodonprofiel staan. Na het toevoegen van de koppeling moet je wellicht hier terug komen en je profiel opnieuw bewaren om de verificatie te bevestigen. Deze koppeling <strong>moet</strong> het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de koppeling maakt niet uit. Hier is een voorbeeld:'
     verification: Verificatie
   webauthn_credentials:
     add: Nieuwe beveiligingssleutel toevoegen

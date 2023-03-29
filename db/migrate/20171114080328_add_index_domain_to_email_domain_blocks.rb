@@ -1,4 +1,4 @@
-class AddIndexDomainToEmailDomainBlocks < ActiveRecord::Migration[5.1]
+class AddIndexDomainToEmailDomainBlocks < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def change

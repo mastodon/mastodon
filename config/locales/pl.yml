@@ -840,6 +840,12 @@ pl:
         message_html: Nie zdefiniowano żadnych reguł serwera.
       sidekiq_process_check:
         message_html: Brak uruchomionego procesu Sidekiq dla kolejki(-ek) %{value}. Sprawdź konfigurację Sidekiq
+      upload_check_privacy_error:
+        action: Kliknij tutaj, aby dowiedzieć się więcej
+        message_html: "<strong>Twój serwer internetowy jest nieprawidłowo skonfigurowany. Prywatność twoich użytkowników jest zagrożona.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Kliknij tutaj, aby dowiedzieć się więcej
+        message_html: "<strong>Pamięć obiektu jest nieprawidłowa. Prywatność twoich użytkowników jest zagrożona.</strong>"
     tags:
       review: Stan przeglądu
       updated_msg: Pomyślnie uaktualniono ustawienia hashtagów
@@ -1457,6 +1463,7 @@ pl:
     confirm_remove_selected_followers: Czy na pewno chcesz usunąć wybranych obserwujących?
     confirm_remove_selected_follows: Czy na pewno chcesz usunąć zaznaczone obserwacje?
     dormant: Uśpione
+    follow_failure: Nie można obserwować niektórych wybranych kont.
     follow_selected_followers: Zacznij obserwować wybranych obserwujących
     followers: Obserwujący
     following: Obserwowani
@@ -1496,6 +1503,7 @@ pl:
       electron: Electron
       firefox: Firefox
       generic: nieznana przeglądarka
+      huawei_browser: Przeglądarka Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Przeglądarka Nokia S40 Ovi
@@ -1505,6 +1513,7 @@ pl:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Nieznana Przeglądarka
       weibo: Weibo
     current_session: Obecna sesja
     description: "%{browser} na %{platform}"
@@ -1517,9 +1526,10 @@ pl:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: nieznana platforma
+      unknown_platform: Nieznana platforma
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1744,6 +1754,7 @@ pl:
       title: Witaj na pokładzie, %{name}!
   users:
     follow_limit_reached: Nie możesz obserwować więcej niż %{limit} osób
+    go_to_sso_account_settings: Przejdź do ustawień konta dostawcy tożsamości
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.

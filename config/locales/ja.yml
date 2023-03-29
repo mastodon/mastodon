@@ -569,7 +569,7 @@ ja:
         other_description_html: アカウントの動作を制御するためのオプションや、報告されたアカウントへの通信をカスタマイズするためのオプションを確認してください。
         resolve_description_html: 報告されたアカウントに対していかなる措置も取られず、ストライクも記録されず、報告は終了します。
         silence_description_html: このアカウントは、すでにフォローしている人、または手動で検索した人にしか見えないため、リーチが極端に制限されます。いつでも元に戻すことができます。このアカウントに対するすべての通報をクローズします。
-        suspend_description_html: アカウントとそのすべての内容にアクセスできなくなり、最終的に削除され、それとやり取りは不可能になります。 30日以内にリバーシブル。このアカウントに対するすべての通報をクローズします。
+        suspend_description_html: アカウントとそのすべての内容にアクセスできなくなり、最終的に削除され、やり取りは不可能になります。 30日以内であれば元に戻すことができます。このアカウントに対するすべての通報をクローズします。
       actions_description_html: このレポートを解決するために取るアクションを決定します。 報告されたアカウントに対して懲罰的な措置を取った場合、メール通知が送信されますが<strong>スパム</strong>カテゴリが選択されている場合を除きます。
       actions_description_remote_html: この通報を解決するためのアクションを選択してください。これは<strong>あなたの</strong>サーバーがこのリモートアカウントと通信し、そのコンテンツを処理する時のみ影響します。
       add_to_report: 通報にさらに追加
@@ -798,6 +798,12 @@ ja:
         message_html: サーバーのルールを定義していません。
       sidekiq_process_check:
         message_html: "%{value}キューに対応するSidekiqプロセスがありません。Sidekiqの設定を確認してください。"
+      upload_check_privacy_error:
+        action: ここを開いて詳細を確認してください
+        message_html: "<strong>Web サーバーが正しく設定されていません。ユーザーのプライバシーが危険な状態になっています。</strong>"
+      upload_check_privacy_error_object_storage:
+        action: ここを開いて詳細を確認してください
+        message_html: "<strong>オブジェクトストレージが正しく設定されていません。ユーザーのプライバシーが危険な状態になっています。</strong>"
     tags:
       review: 審査状況
       updated_msg: ハッシュタグ設定が更新されました
@@ -1139,7 +1145,7 @@ ja:
   filters:
     contexts:
       account: プロフィール
-      home: ホームタイムライン
+      home: ホームおよびリスト
       notifications: 通知
       public: 公開タイムライン
       thread: 会話
@@ -1379,6 +1385,7 @@ ja:
     confirm_remove_selected_followers: 選択したフォロワーを削除してもよろしいですか？
     confirm_remove_selected_follows: 選択したフォローを削除してもよろしいですか？
     dormant: 非アクティブ
+    follow_failure: 選択したアカウントの一部をフォローできませんでした。
     follow_selected_followers: 選択したフォロワーをフォロー
     followers: フォロワー
     following: フォロー中
@@ -1418,6 +1425,7 @@ ja:
       electron: Electron
       firefox: Firefox
       generic: 不明なブラウザ
+      huawei_browser: Huaweiブラウザ
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1427,6 +1435,7 @@ ja:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: 不明なブラウザ
       weibo: Weibo
     current_session: 現在のセッション
     description: "%{platform}上の%{browser}"
@@ -1439,9 +1448,10 @@ ja:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: 不明なプラットフォーム
+      unknown_platform: 不明なプラットフォーム
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1650,12 +1660,13 @@ ja:
       title: ようこそ、%{name}さん！
   users:
     follow_limit_reached: あなたは現在 %{limit}人以上フォローできません
+    go_to_sso_account_settings: 外部サービスアカウントの設定はこちらで行ってください
     invalid_otp_token: 二要素認証コードが間違っています
     otp_lost_help_html: どちらも使用できない場合、%{email}に連絡を取ると解決できるかもしれません
     seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'
   verification:
-    explanation_html: <strong>プロフィール内のリンクの所有者であることを認証することができます</strong>。そのためにはリンクされたウェブサイトにMastodonプロフィールへのリンクが含まれている必要があります。リンクには<code>rel="me"</code>属性を<strong>必ず</strong>与えなければなりません。リンクのテキストについては重要ではありません。以下は例です：
+    explanation_html: <strong>プロフィール補足情報のリンクの所有者であることを認証できます</strong>。認証するには、リンク先のウェブサイトにMastodonプロフィールへのリンクを追加してください。リンクを追加後、このページで変更の保存を再実行すると認証が反映されます。プロフィールへのリンクには<code>rel="me"</code>属性が<strong>かならず</strong>付与してください。リンク内のテキストは自由に記述できます。以下は一例です：
     verification: 認証
   webauthn_credentials:
     add: セキュリティキーを追加
