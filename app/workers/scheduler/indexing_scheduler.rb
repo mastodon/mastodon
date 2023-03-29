@@ -6,8 +6,8 @@ class Scheduler::IndexingScheduler
 
   sidekiq_options retry: 0
 
-  IMPORT_BATCH_SIZE = 100
-  SCAN_BATCH_SIZE = 100 * IMPORT_BATCH_SIZE
+  IMPORT_BATCH_SIZE = 1000
+  SCAN_BATCH_SIZE = 10 * IMPORT_BATCH_SIZE
 
   def perform
     return unless Chewy.enabled?
@@ -16,10 +16,7 @@ class Scheduler::IndexingScheduler
       with_redis do |redis|
         redis.sscan_each("chewy:queue:#{type.name}", count: SCAN_BATCH_SIZE).each_slice(IMPORT_BATCH_SIZE) do |ids|
           type.import!(ids)
-
-          redis.pipelined do |pipeline|
-            ids.each { |id| pipeline.srem("chewy:queue:#{type.name}", id) }
-          end
+          redis.srem("chewy:queue:#{type.name}", ids)
         end
       end
     end
