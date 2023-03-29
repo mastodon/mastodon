@@ -41,7 +41,7 @@ class ConnectionPool::SharedConnectionPool < ConnectionPool
       # ConnectionPool 2.4+ calls `checkin(force: true)` after fork.
       # When this happens, we should remove all connections from Thread.current
 
-      ::Thread.current.keys.each do |name|
+      ::Thread.current.keys.each do |name| # rubocop:disable Style/HashEachMethods
         next unless name.to_s.start_with?("#{@key}-")
 
         @available.push(::Thread.current[name])
