@@ -2426,11 +2426,6 @@ Style/HashTransformValues:
     - 'app/serializers/rest/web_push_subscription_serializer.rb'
     - 'app/services/import_service.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Style/IdenticalConditionalBranches:
-  Exclude:
-    - 'config/initializers/content_security_policy.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 Style/IfUnlessModifier:
   Exclude:
