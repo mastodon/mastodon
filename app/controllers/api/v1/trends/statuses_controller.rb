@@ -6,6 +6,7 @@ class Api::V1::Trends::StatusesController < Api::BaseController
   after_action :insert_pagination_headers
 
   def index
+    expires_in 3.minutes, public: true unless user_signed_in?
     render json: @statuses, each_serializer: REST::StatusSerializer
   end
 

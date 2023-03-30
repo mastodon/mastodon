@@ -6,6 +6,6 @@ class Api::V1::InstancesController < Api::BaseController
 
   def show
     expires_in 3.minutes, public: true
-    render_with_cache json: InstancePresenter.new, serializer: REST::V1::InstanceSerializer, root: 'instance'
+    render json: InstancePresenter.new, serializer: REST::V1::InstanceSerializer, root: 'instance'
   end
 end

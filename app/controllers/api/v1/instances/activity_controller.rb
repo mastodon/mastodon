@@ -8,7 +8,7 @@ class Api::V1::Instances::ActivityController < Api::BaseController
 
   def show
     expires_in 1.day, public: true
-    render_with_cache json: :activity, expires_in: 1.day
+    render json: activity
   end
 
   private

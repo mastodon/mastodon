@@ -8,7 +8,7 @@ class EmojisController < ApplicationController
     respond_to do |format|
       format.json do
         expires_in 3.minutes, public: true
-        render_with_cache json: @emoji, content_type: 'application/activity+json', serializer: ActivityPub::EmojiSerializer, adapter: ActivityPub::Adapter
+        render json: @emoji, content_type: 'application/activity+json', serializer: ActivityPub::EmojiSerializer, adapter: ActivityPub::Adapter
       end
     end
   end

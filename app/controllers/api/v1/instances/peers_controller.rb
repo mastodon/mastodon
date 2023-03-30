@@ -8,7 +8,7 @@ class Api::V1::Instances::PeersController < Api::BaseController
 
   def index
     expires_in 1.day, public: true
-    render_with_cache(expires_in: 1.day) { Instance.where.not(domain: DomainBlock.select(:domain)).pluck(:domain) }
+    render json: Instance.where.not(domain: DomainBlock.select(:domain)).pluck(:domain)
   end
 
   private

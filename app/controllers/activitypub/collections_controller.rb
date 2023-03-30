@@ -12,7 +12,7 @@ class ActivityPub::CollectionsController < ActivityPub::BaseController
 
   def show
     expires_in 3.minutes, public: public_fetch_mode?
-    render_with_cache json: collection_presenter, content_type: 'application/activity+json', serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter
+    render json: collection_presenter, content_type: 'application/activity+json', serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter
   end
 
   private

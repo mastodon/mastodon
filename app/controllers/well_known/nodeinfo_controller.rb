@@ -8,12 +8,12 @@ module WellKnown
 
     def index
       expires_in 3.days, public: true
-      render_with_cache json: {}, serializer: NodeInfo::DiscoverySerializer, adapter: NodeInfo::Adapter, expires_in: 3.days, root: 'nodeinfo'
+      render json: {}, serializer: NodeInfo::DiscoverySerializer, adapter: NodeInfo::Adapter, root: 'nodeinfo'
     end
 
     def show
       expires_in 30.minutes, public: true
-      render_with_cache json: {}, serializer: NodeInfo::Serializer, adapter: NodeInfo::Adapter, expires_in: 30.minutes, root: 'nodeinfo'
+      render json: {}, serializer: NodeInfo::Serializer, adapter: NodeInfo::Adapter, root: 'nodeinfo'
     end
   end
 end
