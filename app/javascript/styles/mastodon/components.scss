@@ -1244,7 +1244,7 @@ body > [data-popper-placement] {
 .status__prepend {
   padding: 16px;
   padding-bottom: 0;
-  display: flex;
+  display: inline-flex;
   gap: 10px;
   font-size: 15px;
   line-height: 22px;
@@ -1259,6 +1259,18 @@ body > [data-popper-placement] {
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+}
+
+.status__wrapper-direct {
+  background: mix($ui-base-color, $ui-highlight-color, 95%);
+
+  &:focus {
+    background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+  }
+
+  .status__prepend {
+    color: $highlight-text-color;
   }
 }
 
@@ -1315,6 +1327,11 @@ body > [data-popper-placement] {
   .audio-player {
     margin-top: 16px;
   }
+
+  .status__prepend {
+    padding: 0;
+    margin-bottom: 16px;
+  }
 }
 
 .detailed-status__meta {
@@ -1331,6 +1348,32 @@ body > [data-popper-placement] {
   display: flex;
   flex-direction: row;
   padding: 10px 0;
+}
+
+.detailed-status__wrapper-direct {
+  .detailed-status,
+  .detailed-status__action-bar {
+    background: mix($ui-base-color, $ui-highlight-color, 95%);
+  }
+
+  &:focus {
+    .detailed-status,
+    .detailed-status__action-bar {
+      background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+    }
+  }
+
+  .detailed-status__action-bar {
+    border-top-color: mix(
+      lighten($ui-base-color, 8%),
+      $ui-highlight-color,
+      95%
+    );
+  }
+
+  .status__prepend {
+    color: $highlight-text-color;
+  }
 }
 
 .detailed-status__link {
