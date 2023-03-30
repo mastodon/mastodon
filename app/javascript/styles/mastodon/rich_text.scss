@@ -1,0 +1,64 @@
+.status__content__text,
+.e-content,
+.reply-indicator__content {
+  pre,
+  blockquote {
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+    unicode-bidi: plaintext;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  blockquote {
+    padding-inline-start: 10px;
+    border-inset-inline-start: 3px solid $darker-text-color;
+    color: $darker-text-color;
+    white-space: normal;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  & > ul,
+  & > ol {
+    margin-bottom: 20px;
+  }
+
+  b,
+  strong {
+    font-weight: 700;
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  ul,
+  ol {
+    margin-inline-start: 2em;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+}
+
+.reply-indicator__content {
+  blockquote {
+    border-left-color: $inverted-text-color;
+    color: $inverted-text-color;
+  }
+}

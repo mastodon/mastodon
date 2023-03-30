@@ -812,6 +812,12 @@ pt-PT:
         message_html: Não definiu nenhuma regra para a instância.
       sidekiq_process_check:
         message_html: Nenhum processo Sidekiq em execução para a(s) fila(s) %{value}. Reveja a configuração do seu Sidekiq
+      upload_check_privacy_error:
+        action: Verifique aqui para mais informações
+        message_html: "<strong>O seu servidor web está mal configurado. A privacidade dos seus utilizadores está em risco.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Verifique aqui para mais informações
+        message_html: "<strong>O seu armazenamento de objetos está mal configurado. A privacidade dos seus utilizadores está em risco.</strong>"
     tags:
       review: Estado da revisão
       updated_msg: 'Definições de #etiquetas correctamente actualizadas'
@@ -1151,6 +1157,8 @@ pt-PT:
     storage: Armazenamento de media
   featured_tags:
     add_new: Adicionar nova
+    errors:
+      limit: Já destacou o número máximo de hashtags permitido
     hint_html: "<strong>O que são etiquetas em destaque?</strong> Exibidas de forma bem visível no seu perfil público, permitem que as pessoas consultem as suas publicações públicas especificamente sob essas etiquetas. São uma óptima ferramenta para dar seguimento a trabalhos criativos ou projectos de longo prazo."
   filters:
     contexts:
@@ -1194,8 +1202,6 @@ pt-PT:
       index:
         hint: Este filtro aplica-se a publicações individuais selecionadas independentemente de outros critérios. Pode adicionar mais publicações a este filtro através da interface web.
         title: Publicações filtradas
-  footer:
-    trending_now: Em alta neste momento
   generic:
     all: Tudo
     all_items_on_page_selected_html:
@@ -1258,6 +1264,9 @@ pt-PT:
       expires_at: Expira
       uses: Usos
     title: Convidar pessoas
+  lists:
+    errors:
+      limit: Atingiu o número máximo de listas permitido
   login_activities:
     authentication_methods:
       otp: aplicação de autenticação em duas etapas
@@ -1402,6 +1411,7 @@ pt-PT:
     confirm_remove_selected_followers: Tem a certeza que deseja seguir os seguidores selecionados?
     confirm_remove_selected_follows: Tem certeza que deseja remover os seguidores selecionados?
     dormant: Inativo
+    follow_failure: Não foi possível seguir algumas das contas selecionadas.
     follow_selected_followers: Seguir seguidores selecionados
     followers: Seguidores
     following: A seguir
@@ -1441,6 +1451,7 @@ pt-PT:
       electron: Electron
       firefox: Firefox
       generic: Navegador desconhecido
+      huawei_browser: Navegador Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
@@ -1450,6 +1461,7 @@ pt-PT:
       qq: QQ Browser
       safari: Safari
       uc_browser: Navegador UC
+      unknown_browser: Navegador Desconhecido
       weibo: Weibo
     current_session: Sessão atual
     description: "%{browser} em %{platform}"
@@ -1462,9 +1474,10 @@ pt-PT:
       chrome_os: ChromeOS
       firefox_os: SO Firefox
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: plataforma desconhecida
+      unknown_platform: Plataforma Desconhecida
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1577,6 +1590,7 @@ pt-PT:
       '7889238': 3 meses
     min_age_label: Limite de idade
     min_favs: Manter pelo menos as publicações dos marcadores
+    min_favs_hint: Não elimina nenhuma das suas publicações que tenha recebido pelo menos este número de favoritos. Deixe em branco para eliminar publicações, independentemente do seu número de favoritos
     min_reblogs: Manter as publicações reforçadas mais de
     min_reblogs_hint: Não apaga nenhuma das suas publicações que tenha sido partilhada mais do que este número de vezes. Deixe em branco para apagar as publicações, independentemente do número de partilhas
   stream_entries:
@@ -1676,12 +1690,13 @@ pt-PT:
       title: Bem-vindo a bordo, %{name}!
   users:
     follow_limit_reached: Não pode seguir mais do que %{limit} pessoas
+    go_to_sso_account_settings: Ir para as definições de conta do seu fornecedor de identidade
     invalid_otp_token: Código de autenticação inválido
     otp_lost_help_html: Se perdeu o acesso a ambos, pode entrar em contacto com %{email}
     seamless_external_login: Tu estás ligado via um serviço externo. Por isso, as configurações da palavra-passe e do e-mail não estão disponíveis.
     signed_in_as: 'Registado como:'
   verification:
-    explanation_html: 'Pode <strong>comprovar que é o dono das hiperligações nos metadados do seu perfil</strong>. Para isso, a página para a qual a ligação aponta tem de conter uma outra para o seu perfil do Mastodon. Essa ligação <strong>tem</strong> de ter um atributo <code>rel="me"</code>. O conteúdo do texto não é importante. Eis um exemplo:'
+    explanation_html: 'Pode <strong>comprovar que é o dono das hiperligações nos metadados do seu perfil</strong>. Para isso, a página para a qual a hiperligação aponta tem de conter uma outra para o seu perfil do Mastodon. Após adicionar a hiperligação, poderá ter de voltar aqui e voltar a guardar o seu perfil para que a verificação produza efeito. Essa hiperligação <strong>tem</strong> de ter um atributo <code>rel="me"</code>. O conteúdo do texto não é importante. Eis um exemplo:'
     verification: Verificação
   webauthn_credentials:
     add: Adicionar nova chave de segurança

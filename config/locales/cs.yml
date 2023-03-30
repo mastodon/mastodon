@@ -635,6 +635,7 @@ cs:
         placeholder: Popište, jaké akce byly vykonány, nebo jakékoliv jiné související aktuality…
         title: Poznámky
       notes_description_html: Zobrazit a zanechat poznámky pro ostatní moderátory i sebe v budoucnu
+      processed_msg: Nahlášení č.%{id} bylo úspěšně zpracováno
       quick_actions_description_html: 'Proveďte rychlou akci nebo skrolujte dolů pro nahlášený obsah:'
       remote_user_placeholder: vzdálený uživatel z %{instance}
       reopen: Znovu otevřít hlášení
@@ -647,6 +648,8 @@ cs:
       status: Stav
       statuses: Nahlášený obsah
       statuses_description_html: Obsah porušující pravidla bude uveden v komunikaci s nahlášeným účtem
+      summary:
+        close_report: Označit nahlášení č.%{id} za vyřešené
       target_origin: Původ nahlášeného účtu
       title: Hlášení
       unassign: Odebrat
@@ -805,6 +808,7 @@ cs:
         suspend: Uživatel %{name} pozastavil účet %{target}
       appeal_approved: Podáno odvolání
       appeal_pending: Čekající odvolání
+      appeal_rejected: Odvolání zamítnuto
     system_checks:
       database_schema_check:
         message_html: Na spuštění čekají databázové migrace. Nechte je prosím proběhnout pro zajištění očekávaného chování aplikace
@@ -1213,8 +1217,6 @@ cs:
       index:
         hint: Tento filtr se vztahuje na výběr jednotlivých příspěvků bez ohledu na jiná kritéria. Do tohoto filtru můžete přidat více příspěvků z webového rozhraní.
         title: Filtrované příspěvky
-  footer:
-    trending_now: Právě populární
   generic:
     all: Všechny
     all_items_on_page_selected_html:
@@ -1482,6 +1484,7 @@ cs:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Neznámý prohlížeč
       weibo: Weibo
     current_session: Aktuální relace
     description: "%{browser} na systému %{platform}"
@@ -1494,9 +1497,10 @@ cs:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: neznámá platforma
+      unknown_platform: Neznámá platforma
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1726,7 +1730,6 @@ cs:
     seamless_external_login: Jste přihlášeni přes externí službu, nastavení hesla a e-mailu proto nejsou dostupná.
     signed_in_as: 'Přihlášeni jako:'
   verification:
-    explanation_html: 'Můžete se <strong>ověřit jako vlastník odkazů v metadatech profilu</strong>. Pro tento účel musí stránka v odkazu obsahovat odkaz zpět na váš profil na Mastodonu. Odkaz zpět <strong>musí</strong> mít atribut <code>rel="me"</code>. Na textu odkazu nezáleží. Zde je příklad:'
     verification: Ověření
   webauthn_credentials:
     add: Přidat nový bezpečnostní klíč

@@ -22,8 +22,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default @connect(null, mapDispatchToProps)
-@withRouter
 class Header extends React.PureComponent {
 
   static contextTypes = {
@@ -85,3 +83,5 @@ class Header extends React.PureComponent {
   }
 
 }
+
+export default withRouter(connect(null, mapDispatchToProps)(Header));

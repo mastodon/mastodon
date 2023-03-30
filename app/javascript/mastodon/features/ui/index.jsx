@@ -13,7 +13,7 @@ import { debounce } from 'lodash';
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { expandHomeTimeline } from '../../actions/timelines';
 import { expandNotifications } from '../../actions/notifications';
-import { fetchServer } from '../../actions/server';
+import { fetchServer, fetchServerTranslationLanguages } from '../../actions/server';
 import { clearHeight } from '../../actions/height_cache';
 import { focusApp, unfocusApp, changeLayout } from 'mastodon/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodon/actions/markers';
@@ -229,9 +229,6 @@ class SwitchingColumnsArea extends React.PureComponent {
 
 }
 
-export default @connect(mapStateToProps)
-@injectIntl
-@withRouter
 class UI extends React.PureComponent {
 
   static contextTypes = {
@@ -399,6 +396,7 @@ class UI extends React.PureComponent {
       this.props.dispatch(fetchMarkers());
       this.props.dispatch(expandHomeTimeline());
       this.props.dispatch(expandNotifications());
+      this.props.dispatch(fetchServerTranslationLanguages());
 
       setTimeout(() => this.props.dispatch(fetchServer()), 3000);
     }
@@ -474,10 +472,10 @@ class UI extends React.PureComponent {
   };
 
   handleHotkeyBack = () => {
-    if (window.history && window.history.length === 1) {
-      this.context.router.history.push('/');
-    } else {
+    if (window.history && window.history.state) {
       this.context.router.history.goBack();
+    } else {
+      this.context.router.history.push('/');
     }
   };
 
@@ -587,3 +585,5 @@ class UI extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(withRouter(UI)));

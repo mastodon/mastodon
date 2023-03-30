@@ -22,12 +22,12 @@ const messages = defineMessages({
 const TICK_SIZE = 10;
 const PADDING   = 180;
 
-export default @injectIntl
 class Audio extends React.PureComponent {
 
   static propTypes = {
     src: PropTypes.string.isRequired,
     alt: PropTypes.string,
+    lang: PropTypes.string,
     poster: PropTypes.string,
     duration: PropTypes.number,
     width: PropTypes.number,
@@ -458,7 +458,7 @@ class Audio extends React.PureComponent {
   };
 
   render () {
-    const { src, intl, alt, editable, autoPlay, sensitive, blurhash } = this.props;
+    const { src, intl, alt, lang, editable, autoPlay, sensitive, blurhash } = this.props;
     const { paused, muted, volume, currentTime, duration, buffer, dragging, revealed } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
 
@@ -503,6 +503,7 @@ class Audio extends React.PureComponent {
           onKeyDown={this.handleAudioKeyDown}
           title={alt}
           aria-label={alt}
+          lang={lang}
         />
 
         <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed || editable })}>
@@ -567,3 +568,5 @@ class Audio extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(Audio);

@@ -31,7 +31,6 @@ const makeEmojiMap = record => record.get('emojis').reduce((obj, emoji) => {
   return obj;
 }, {});
 
-export default @injectIntl
 class Poll extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -40,6 +39,7 @@ class Poll extends ImmutablePureComponent {
 
   static propTypes = {
     poll: ImmutablePropTypes.map,
+    lang: PropTypes.string,
     intl: PropTypes.object.isRequired,
     disabled: PropTypes.bool,
     refresh: PropTypes.func,
@@ -126,7 +126,7 @@ class Poll extends ImmutablePureComponent {
   };
 
   renderOption (option, optionIndex, showResults) {
-    const { poll, disabled, intl } = this.props;
+    const { poll, lang, disabled, intl } = this.props;
     const pollVotesCount  = poll.get('voters_count') || poll.get('votes_count');
     const percent         = pollVotesCount === 0 ? 0 : (option.get('votes_count') / pollVotesCount) * 100;
     const leading         = poll.get('options').filterNot(other => other.get('title') === option.get('title')).every(other => option.get('votes_count') >= other.get('votes_count'));
@@ -159,6 +159,7 @@ class Poll extends ImmutablePureComponent {
               onKeyPress={this.handleOptionKeyPress}
               aria-checked={active}
               aria-label={option.get('title')}
+              lang={lang}
               data-index={optionIndex}
             />
           )}
@@ -175,6 +176,7 @@ class Poll extends ImmutablePureComponent {
 
           <span
             className='poll__option__text translate'
+            lang={lang}
             dangerouslySetInnerHTML={{ __html: titleEmojified }}
           />
 
@@ -231,3 +233,5 @@ class Poll extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(Poll);

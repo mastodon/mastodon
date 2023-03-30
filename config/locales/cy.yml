@@ -868,6 +868,12 @@ cy:
         message_html: Nid ydych wedi diffinio unrhyw reolau gweinydd.
       sidekiq_process_check:
         message_html: Does dim proses Sidekiq yn rhedeg ar gyfer y ciw(iau) %{value}. Adolygwch eich ffurfweddiad Sidekiq
+      upload_check_privacy_error:
+        action: Ewch yma am fwy o wybodaeth
+        message_html: "<strong>Mae eich gweinydd gwe wedi'i gam ffurfweddu.. Mae preifatrwydd eich defnyddwyr mewn perygl.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Ewch yma am fwy o wybodaeth
+        message_html: "<strong>Mae eich storfa gwrthrychau wedi'i cham ffurfweddu. Mae preifatrwydd eich defnyddwyr mewn perygl.</strong>"
     tags:
       review: Adolygu statws
       updated_msg: Gosodiadau hashnodau wedi'i diweddaru'n llwyddiannus
@@ -1280,8 +1286,6 @@ cy:
       index:
         hint: Mae'r hidlydd hwn yn berthnasol i ddethol postiadau unigol waeth beth fo'r meini prawf eraill. Gallwch ychwanegu mwy o bostiadau at yr hidlydd hwn o'r rhyngwyneb gwe.
         title: Postiadau wedi'u hidlo
-  footer:
-    trending_now: Trendiau
   generic:
     all: Popeth
     all_items_on_page_selected_html:
@@ -1511,6 +1515,7 @@ cy:
     confirm_remove_selected_followers: Ydych chi'n siŵr eich bod am ddileu'r dilynwyr a ddewiswyd?
     confirm_remove_selected_follows: Ydych chi'n siŵr eich bod am ddileu'r canlynol?
     dormant: Segur
+    follow_failure: Methu dilyn rhai o'r cyfrifon a ddewiswyd.
     follow_selected_followers: Dilynwch y dilynwyr a ddewiswyd
     followers: Dilynwyr
     following: Yn dilyn
@@ -1550,6 +1555,7 @@ cy:
       electron: Electron
       firefox: Firefox
       generic: Porwr anhysbys
+      huawei_browser: Porwr Huawei
       ie: Nid yw'r rhaglen hon yn gydnaws ag Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Porwr Nokia S40 Ovi
@@ -1559,6 +1565,7 @@ cy:
       qq: Porwr QQ
       safari: Agor yn Safari
       uc_browser: UC Browser
+      unknown_browser: Porwr Anhysbys
       weibo: Weibo
     current_session: Sesiwn gyfredol
     description: "%{browser} ar %{platform}"
@@ -1571,9 +1578,10 @@ cy:
       chrome_os: ChromeOS
       firefox_os: OS Firefox
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: platfform anhysbys
+      unknown_platform: Platfform Anhysbys
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Ffôn Windows
@@ -1810,12 +1818,13 @@ cy:
       title: Croeso, %{name}!
   users:
     follow_limit_reached: Nid oes modd i chi ddilyn mwy na %{limit} o bobl
+    go_to_sso_account_settings: Ewch i osodiadau cyfrif eich darparwr hunaniaeth
     invalid_otp_token: Côd dau-ffactor annilys
     otp_lost_help_html: Os colloch chi fynediad i'r ddau, mae modd i chi gysylltu a %{email}
     seamless_external_login: Yr ydych wedi'ch mewngofnodi drwy wasanaeth allanol, felly nid yw gosodiadau cyfrinair ac e-bost ar gael.
     signed_in_as: 'Wedi mewngofnodi fel:'
   verification:
-    explanation_html: 'Mae modd i chi <strong>ddilysu eich hun fel perchenog y dolenni yn metadata eich proffil</strong>. Rhaid i''r wefan â dolen iddi gynnwys dolen yn ôl i''ch proffil Mastodon. <strong>Rhaid</strong> i''r ddolen yn ôl cynnwys y nodwedd <code>rel="me"</code>. Does dim ots beth yw cynnwys testun y ddolen. Dyma enghraifft:'
+    explanation_html: 'Gallwch <strong>wirio eich hun fel perchennog y dolenni ym metadata eich proffil</strong> . Ar gyfer gwneud hynny, rhaid i''r wefan gysylltiedig gynnwys dolen yn ôl i''ch proffil Mastodon. Ar ôl ychwanegu''r ddolen efallai y bydd angen i chi ddod yn ôl yma ac ail-gadw''ch proffil er mwyn i''r dilysiad ddod i rym. <strong>Rhaid</strong> i''r ddolen yn ôl gael priodoledd <code>rêl="me"</code>. Nid yw cynnwys testun y ddolen o bwys. Dyma enghraifft:'
     verification: Dilysu
   webauthn_credentials:
     add: Ychwanegu allwedd ddiogelwch newydd

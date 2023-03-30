@@ -14,7 +14,7 @@ const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
   redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
   edit: { id: 'status.edit', defaultMessage: 'Edit' },
-  direct: { id: 'status.direct', defaultMessage: 'Direct message @{name}' },
+  direct: { id: 'status.direct', defaultMessage: 'Privately mention @{name}' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
@@ -53,8 +53,6 @@ const mapStateToProps = (state, { status }) => ({
   relationship: state.getIn(['relationships', status.getIn(['account', 'id'])]),
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class StatusActionBar extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -385,3 +383,5 @@ class StatusActionBar extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(StatusActionBar));

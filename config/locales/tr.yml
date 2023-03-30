@@ -812,6 +812,12 @@ tr:
         message_html: Herhangi bir sunucu kuralı belirlemediniz.
       sidekiq_process_check:
         message_html: "%{value} kuyruk(lar)ı için herhangi bir Sidekiq süreci çalışmıyor. Lütfen Sidekiq yapılandırmanızı gözden geçirin"
+      upload_check_privacy_error:
+        action: Daha fazla bilgi için buraya tıklayın
+        message_html: "<strong>Web sunucunuz hatalı yapılandırılmış. Kullanıcılarınızın gizliliği tehlikede.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Daha fazla bilgi için buraya göz atın
+        message_html: "<strong>Nesne depolamanız hatalı yapılandırılmış. Kullanıcılarınızın gizliliği tehlikede.</strong>"
     tags:
       review: Durumu gözden geçir
       updated_msg: Etiket ayarları başarıyla güncellendi
@@ -1196,8 +1202,6 @@ tr:
       index:
         hint: Bu filtre diğer ölçütlerden bağımsız olarak tekil gönderileri seçmek için uygulanıyor. Web arayüzünü kullanarak bu filtreye daha fazla gönderi ekleyebilirsiniz.
         title: Filtrelenmiş gönderiler
-  footer:
-    trending_now: Şu an gündemde
   generic:
     all: Tümü
     all_items_on_page_selected_html:
@@ -1407,6 +1411,7 @@ tr:
     confirm_remove_selected_followers: Seçili takipçileri kaldırmak istediğinizden emin misiniz?
     confirm_remove_selected_follows: Seçili takipleri kaldırmak istediğinizden emin misiniz?
     dormant: Uykuda
+    follow_failure: Seçilen hesaplardan bazıları takip edilemedi.
     follow_selected_followers: Seçili takipçileri takip et
     followers: Takipçiler
     following: Takip edilenler
@@ -1446,6 +1451,7 @@ tr:
       electron: Electron
       firefox: Firefox
       generic: Bilinmeyen tarayıcı
+      huawei_browser: Huawei Tarayıcı
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1455,6 +1461,7 @@ tr:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Bilinmeyen Tarayıcı
       weibo: Weibo
     current_session: Geçerli oturum
     description: "%{platform} - %{browser}"
@@ -1467,9 +1474,10 @@ tr:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: bilinmeyen platform
+      unknown_platform: Bilinmeyen Platform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1682,12 +1690,13 @@ tr:
       title: Gemiye hoşgeldin, %{name}!
   users:
     follow_limit_reached: "%{limit} kişiden daha fazlasını takip edemezsiniz"
+    go_to_sso_account_settings: Kimlik sağlayıcı hesap ayarlarına gidin
     invalid_otp_token: Geçersiz iki adımlı doğrulama kodu
     otp_lost_help_html: Her ikisine de erişiminizi kaybettiyseniz, %{email} ile irtibata geçebilirsiniz
     seamless_external_login: Harici bir servis aracılığıyla oturum açtınız, bu nedenle parola ve e-posta ayarları mevcut değildir.
     signed_in_as: 'Oturum açtı:'
   verification:
-    explanation_html: '<strong>Profil meta verisindeki bağlantıların sahibi olarak kendinizi doğrulayabilirsiniz</strong>. Bunun için, link verilen web sitesi Mastodon profilinize geri bir link içermelidir. Geri link bir <code>rel="me"</code> özelliğine sahip <strong>olmalıdır</strong>. Bağlantının metin içeriği önemli değildir. İşte bir örnek:'
+    explanation_html: '<strong>Profil meta verisindeki bağlantıların sahibi olarak kendinizi doğrulayabilirsiniz</strong>. Bunun için, bağlantısı verilen web sitesi Mastodon profilinize bir bağlantı içermelidir. Doğrulamanın gerçekleşmesi için bağlantıyı ekledikten sonra buraya gelip profilinizi tekrar kaydetmelisiniz. Geri bağlantı bir <code>rel="me"</code> özelliğine sahip <strong>olmalıdır</strong>. Bağlantının metin içeriği önemli değildir. İşte bir örnek:'
     verification: Doğrulama
   webauthn_credentials:
     add: Yeni güvenlik anahtarı ekle

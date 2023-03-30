@@ -11,7 +11,6 @@ const mapStateToProps = state => ({
   ...state.get('picture_in_picture'),
 });
 
-export default @connect(mapStateToProps)
 class PictureInPicture extends React.Component {
 
   static propTypes = {
@@ -83,3 +82,5 @@ class PictureInPicture extends React.Component {
   }
 
 }
+
+export default connect(mapStateToProps)(PictureInPicture);

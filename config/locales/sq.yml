@@ -809,6 +809,12 @@ sq:
         message_html: S’keni përcaktuar ndonjë rregull shërbyesi.
       sidekiq_process_check:
         message_html: S’ka proces Sidekiq në punë për %{value} radhë. Ju lutemi, shqyrtoni formësimin tuaj për Sidekiq-un
+      upload_check_privacy_error:
+        action: Për më tepër hollësi, shihni këtu
+        message_html: "<strong>Shërbyesi juaj është formësuar keq. Privatësia e përdoruesve tuaj është në rrezik.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Për më tepër hollësi, shihni këtu
+        message_html: "<strong>Depozita juaj e objekteve është e formësuar keq. Privatësia e përdoruesve tuaj është në rrezik.</strong>"
     tags:
       review: Gjendje rishikimi
       updated_msg: Rregullimet për hashtag-ët u përditësuan me sukses
@@ -1190,8 +1196,6 @@ sq:
       index:
         hint: Ky filtër aplikohet për të përzgjedhur postime individuale, pavarësisht kriteresh të tjera. Që nga ndërfaqja web mund të shtoni më tepër postime te ky filtër.
         title: Postime të filtruar
-  footer:
-    trending_now: Prirjet e tashme
   generic:
     all: Krejt
     all_items_on_page_selected_html:
@@ -1401,6 +1405,7 @@ sq:
     confirm_remove_selected_followers: Jeni i sigurt se doni të hiqen ndjekësit e përzgjedhur?
     confirm_remove_selected_follows: Jeni i sigurt se doni të hiqen ndjekjet e përzgjedhura?
     dormant: Në gjumë
+    follow_failure: S’u ndoqën dot disa nga llogaritë e përzgjedhura.
     follow_selected_followers: Ndiq ndjekësit e përzgjedhur
     followers: Ndjekës
     following: Ndjek
@@ -1440,6 +1445,7 @@ sq:
       electron: Electron
       firefox: Firefox
       generic: Shfletues i panjohur
+      huawei_browser: Shfletues Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Shfletues Nokia S40 Ovi
@@ -1449,6 +1455,7 @@ sq:
       qq: QQ Browser
       safari: Safari
       uc_browser: Shfletues UC
+      unknown_browser: Shfletues i Panjohur
       weibo: Weibo
     current_session: Sesioni i tanishëm
     description: "%{browser} në %{platform}"
@@ -1461,9 +1468,10 @@ sq:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: platformë e panjohur
+      unknown_platform: Platformë e Panjohur
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1676,12 +1684,13 @@ sq:
       title: Mirë se vini, %{name}!
   users:
     follow_limit_reached: S’mund të ndiqni më tepër se %{limit} persona
+    go_to_sso_account_settings: Kaloni te rregullime llogarie te shërbimi juaj i identitetit
     invalid_otp_token: Kod dyfaktorësh i pavlefshëm
     otp_lost_help_html: Nëse humbët hyrjen te të dy, mund të lidheni me %{email}
     seamless_external_login: Jeni futur përmes një shërbimi të jashtëm, ndaj s’ka rregullime fjalëkalimi dhe email.
     signed_in_as: 'I futur si:'
   verification:
-    explanation_html: 'Mundeni <strong>të verifikoni veten si i zoti i lidhjeve te tejtëdhënat e profilit tuaj</strong>. Për këtë, sajti i lidhur duhet të përmbajë një lidhje për te profili juaj Mastodon. Lidhje për te ajo <strong>duhet</strong> të ketë një atribut <code>rel="me"</code>. Lënda tekst e lidhjes nuk ngre peshë. Ja një shembull:'
+    explanation_html: 'Mundeni të <strong>verifikoni veten si i zoti i lidhjeve që nga tejtëdhëna të profilit tuaj</strong>. Për këtë, sajti i lidhur duhet të përmbajë një lidhje që shpie te profili juaj Mastodon. Pas shtimit të lidhjes mund t’ju duhet të ktheheni këtu dhe të riruani profilin tuaj, që verifikimi të ketë efekt. Lidhja e kthimit <strong>duhet</strong> të përmbajë një atribut <code>rel="me"</code>. Teksi i lidhjes s’ka rëndësi. Ja një shembull:'
     verification: Verifikim
   webauthn_credentials:
     add: Shtoni kyç të ri sigurie

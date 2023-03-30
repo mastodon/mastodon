@@ -826,6 +826,12 @@ lv:
         message_html: Tu neesi definējis nevienu servera nosacījumu.
       sidekiq_process_check:
         message_html: Rindā(s) %{value} nedarbojas neviens Sidekiq process. Lūdzu, pārskati savu Sidekiq konfigurāciju
+      upload_check_privacy_error:
+        action: Pārbaudi šeit, lai iegūtu plašāku informāciju
+        message_html: "<strong>Tavs tīmekļa serveris ir nepareizi konfigurēts. Tavu lietotāju privātums ir apdraudēts.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Pārbaudi šeit, lai iegūtu plašāku informāciju
+        message_html: "<strong>Tava objektu krātuve ir nepareizi konfigurēta. Tavu lietotāju privātums ir apdraudēts.</strong>"
     tags:
       review: Pārskatīt statusu
       updated_msg: Tēmtura iestatījumi ir veiksmīgi atjaunināti
@@ -1217,8 +1223,6 @@ lv:
       index:
         hint: Šis filtrs attiecas uz atsevišķu ziņu atlasi neatkarīgi no citiem kritērijiem. Šim filtram tu vari pievienot vairāk ziņu, izmantojot tīmekļa saskarni.
         title: Filtrētās ziņas
-  footer:
-    trending_now: Šobrīd populārākie
   generic:
     all: Visi
     all_items_on_page_selected_html:
@@ -1353,7 +1357,7 @@ lv:
     favourite:
       body: 'Tavu ziņu izlasei pievienoja %{name}:'
       subject: "%{name} pievienoja tavu ziņu izlasei"
-      title: Jauns izcēlums
+      title: Jauna izlase
     follow:
       body: "%{name} tagad tev seko!"
       subject: "%{name} tagad tev seko"
@@ -1433,6 +1437,7 @@ lv:
     confirm_remove_selected_followers: Vai tiešām vēlies noņemt atlasītos sekotājus?
     confirm_remove_selected_follows: Vai tiešām vēlies noņemt atlasītos sekojumus?
     dormant: Snaudošie
+    follow_failure: Nevarēja sekot dažiem atlasītajiem kontiem.
     follow_selected_followers: Sekot atlasītajiem sekotājiem
     followers: Sekotāji
     following: Seko
@@ -1472,6 +1477,7 @@ lv:
       electron: Electron
       firefox: Firefox
       generic: Nezināms pārlūks
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1481,6 +1487,7 @@ lv:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Nezināms Pārlūks
       weibo: Weibo
     current_session: Pašreizējā sesija
     description: "%{browser} uz %{platform}"
@@ -1493,9 +1500,10 @@ lv:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: nezināma platforma
+      unknown_platform: Nezināma Platforma
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1714,12 +1722,13 @@ lv:
       title: Laipni lūgts uz borta, %{name}!
   users:
     follow_limit_reached: Tu nevari sekot vairāk par %{limit} cilvēkiem
+    go_to_sso_account_settings: Dodies uz sava identitātes nodrošinātāja konta iestatījumiem
     invalid_otp_token: Nederīgs divfaktora kods
     otp_lost_help_html: Ja esi zaudējis piekļuvi abiem, tu vari sazināties ar %{email}
     seamless_external_login: Tu esi pieteicies, izmantojot ārēju pakalpojumu, tāpēc paroles un e-pasta iestatījumi nav pieejami.
     signed_in_as: 'Pierakstījies kā:'
   verification:
-    explanation_html: 'Tu vari <strong>apstiprināt sevi kā sava profila metadatos esošo saišu īpašnieku</strong>. Lai to izdarītu, saistītajā vietnē ir jābūt saitei uz tavu Mastodon profilu. Atpakaļsaitē <strong>jābūt</strong> atribūtam <code>rel="me"</code>. Saites teksta saturam nav nozīmes. Šeit ir piemērs:'
+    explanation_html: 'Tu vari <strong>apstiprināt sevi kā sava profila metadatos esošo saišu īpašnieku</strong>. Lai to izdarītu, saistītajā vietnē ir jābūt saitei uz tavu Mastodon profilu. Pēc saites pievienošanas tev, iespējams, vajadzēs atgriezties šeit un atkārtoti saglabāt savu profilu, lai pārbaude stātos spēkā. Atpakaļsaitē <strong>jābūt</strong> atribūtam <code>rel="me"</code>. Saites teksta saturam nav nozīmes. Šeit ir piemērs:'
     verification: Pārbaude
   webauthn_credentials:
     add: Pievienot jaunu drošības atslēgu

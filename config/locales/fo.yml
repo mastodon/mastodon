@@ -812,6 +812,12 @@ fo:
         message_html: Tú hevur ikki ásett nakrar ambætarareglur.
       sidekiq_process_check:
         message_html: Eingin Sidekiq gongd koyrir fyri %{value} bíðirøðina(r). Vinarliga eftirkanna Sidekiq uppsetingina
+      upload_check_privacy_error:
+        action: Kekka her fyri at fáa fleiri upplýsingar
+        message_html: "<strong>Vevambætarin hjá tær er skeivt uppsettur. Privatlívið hjá brúkarunum hjá tær er í vanda.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Kekka her fyri at fáa fleiri upplýsingar
+        message_html: "<strong>Objekt-goymslan hjá tær er skeivt uppsett. Privatlívið hjá brúkarunum hjá tær er í vanda.</strong>"
     tags:
       review: Eftirkanna støðu
       updated_msg: Frámerkjastillingar dagførdar
@@ -1196,8 +1202,6 @@ fo:
       index:
         hint: Hetta filtrið er galdandi fyri útvaldar stakar postar óansæð aðrar treytir. Tú kanst leggja fleiri postar afturat hesum filtrinum frá vevmarkamótinum.
         title: Filtreraðir postar
-  footer:
-    trending_now: Rák beint nú
   generic:
     all: Alt
     all_items_on_page_selected_html:
@@ -1407,6 +1411,7 @@ fo:
     confirm_remove_selected_followers: Vil tú veruliga strika valdu fylgjararnar?
     confirm_remove_selected_follows: Vil tú veruliga strika valdu fylgingarnar?
     dormant: Í dvala
+    follow_failure: Tað bar ikki til at fylgja øllum valdu kontunum.
     follow_selected_followers: Fylg valdu fylgjarum
     followers: Fylgjarar
     following: Fylgi
@@ -1446,6 +1451,7 @@ fo:
       electron: Electron
       firefox: Firefox
       generic: Ókendur kagi
+      huawei_browser: Huawei kagi
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1455,6 +1461,7 @@ fo:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Ókendur kagi
       weibo: Weibo
     current_session: Verandi seta
     description: "%{browser} á %{platform}"
@@ -1467,9 +1474,10 @@ fo:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: ókendur pallur
+      unknown_platform: Ókendur pallur
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1493,7 +1501,7 @@ fo:
     import_and_export: Innflyt og útflyt
     migrate: Flyting av kontu
     notifications: Fráboðanir
-    preferences: Sertokki
+    preferences: Stillingar
     profile: Vangi
     relationships: Fylging og fylgjarar
     statuses_cleanup: Sjálvvirkandi striking av postum
@@ -1682,12 +1690,13 @@ fo:
       title: Vælkomin umborð, %{name}!
   users:
     follow_limit_reached: Tú kanst ikki fylgja fleiri enn %{limit} fólk
+    go_to_sso_account_settings: Far til kontustillingarnar hjá samleikaveitaranum hjá tær
     invalid_otp_token: Ógyldug tvey-stigs koda
     otp_lost_help_html: Hevur tú mist atgongd til bæði, so kanst tú koma í samband við %{email}
     seamless_external_login: Tú er ritað/ur inn umvegis eina uttanhýsis tænastu, so loyniorð og teldupoststillingar eru ikki tøkar.
     signed_in_as: 'Ritað/ur inn sum:'
   verification:
-    explanation_html: 'Tú kanst <strong>vátta teg sjálva/n sum eigara av leinkjunum í metadátunum á vanganum hjá tær</strong>. Til tess má leinkjaða vevstaðið innihalda eitt leinki aftur til Mastodon vangan hjá tær. Leinkið <strong>má</strong> hava eina <code>rel="me"</code> viðseting. Tekstinnihaldið í leikinum er óviðkomandi. Her er eitt dømi:'
+    explanation_html: 'Tú kanst <strong>vátta teg sjálva/n sum eigara av leinkjunum í metadátunum á vanganum hjá tær</strong>. Til tess má leinkjaða vevstaðið innihalda eitt leinki aftur til Mastodon vangan hjá tær. Eftir at tú hevur lagt leinkið afturat, so er møguliga neyðugt at koma aftur her og goyma vangan hjá tær av nýggjum fyri at fáa góðkenningina at rigga. Leinkið <strong>má</strong> hava eina <code>rel="me"</code> viðseting. Tekstinnihaldið í leikinum er óviðkomandi. Her er eitt dømi:'
     verification: Váttan
   webauthn_credentials:
     add: Legg nýggjan trygdarlykil afturat

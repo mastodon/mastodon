@@ -101,7 +101,7 @@ ko:
       form_challenge:
         current_password: 당신은 보안 구역에 진입하고 있습니다
       imports:
-        data: 다른 마스토돈 서버에서 추출된 CSV 파일
+        data: 다른 마스토돈 서버에서 내보낸 CSV 파일
       invite_request:
         text: 이 정보는 신청을 검토하는데 도움을 줄 수 있습니다.
       ip_block:
@@ -116,7 +116,7 @@ ko:
       rule:
         text: 이 서버 사용자들이 지켜야 할 규칙과 요구사항을 설명해주세요. 짧고 간단하게 작성해주세요
       sessions:
-        otp: '휴대전화에서 생성 된 2단계 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
+        otp: '휴대전화에서 생성된 이중 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
         webauthn: USB 키라면 삽입했는지 확인하고, 필요하다면 누르세요.
       tag:
         name: 읽기 쉽게하기 위한 글자의 대소문자만 변경할 수 있습니다.
@@ -150,11 +150,11 @@ ko:
         text: 커스텀 경고
         type: 조치
         types:
-          disable: 비활성화
-          none: 아무 것도 하지 않기
+          disable: 동결
+          none: 경고 보내기
           sensitive: 민감함
           silence: 제한
-          suspend: 정지하고 되돌릴 수 없는 데이터 삭제
+          suspend: 정지
         warning_preset_id: 경고 틀 사용하기
       announcement:
         all_day: 종일 일정
@@ -163,11 +163,11 @@ ko:
         starts_at: 이벤트 시작
         text: 공지사항
       appeal:
-        text: 이 결정이 왜 번복되어야 하는지에 대해 설명해주세요
+        text: 이 결정을 번복해야만 하는 이유가 무엇입니까
       defaults:
         autofollow: 초대를 통한 팔로우
         avatar: 아바타
-        bot: 이것은 봇 계정입니다
+        bot: 이것은 자동화된 계정입니다
         chosen_languages: 언어 필터링
         confirm_new_password: 암호 다시 입력
         confirm_password: 암호 다시 입력
@@ -187,8 +187,8 @@ ko:
         locked: 팔로우 요청 필요
         max_uses: 사용 횟수 제한
         new_password: 새로운 암호 입력
-        note: 자기소개
-        otp_attempt: 2단계 인증 코드
+        note: 소개
+        otp_attempt: 이중 인증 코드
         password: 암호
         phrase: 키워드 또는 문장
         setting_advanced_layout: 고급 웹 UI 활성화
@@ -206,15 +206,15 @@ ko:
         setting_display_media_default: 기본
         setting_display_media_hide_all: 모두 가리기
         setting_display_media_show_all: 모두 보이기
-        setting_expand_spoilers: 열람주의 툿을 항상 펼치기
+        setting_expand_spoilers: 열람주의 게시물을 항상 펼치기
         setting_hide_network: 내 인맥 숨기기
         setting_noindex: 검색엔진의 인덱싱을 거절
         setting_reduce_motion: 애니메이션 줄이기
-        setting_show_application: 툿 작성에 사용한 앱을 공개
+        setting_show_application: 게시물 작성에 쓰인 애플리케이션 공개
         setting_system_font_ui: 시스템의 기본 글꼴을 사용
         setting_theme: 사이트 테마
         setting_trends: 오늘의 유행 보이기
-        setting_unfollow_modal: 언팔로우 전 언팔로우 확인 표시
+        setting_unfollow_modal: 누군가를 언팔로우 할 때 확인란 표시하기
         setting_use_blurhash: 숨겨진 미디어에 대해 그라디언트 표시
         setting_use_pending_items: 느린 모드
         severity: 심각도
@@ -305,7 +305,7 @@ ko:
       webhook:
         events: 활성화된 이벤트
         url: 엔드포인트 URL
-    'no': 아니오
+    'no': 아니요
     not_recommended: 추천하지 않음
     recommended: 추천함
     required:

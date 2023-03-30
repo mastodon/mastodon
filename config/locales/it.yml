@@ -812,6 +812,12 @@ it:
         message_html: Non hai definito alcuna regola del server.
       sidekiq_process_check:
         message_html: Nessun processo di Sidekiq in esecuzione per le code di %{value}. Sei pregato di revisionare la tua configurazione di Sidekiq
+      upload_check_privacy_error:
+        action: Controlla qui per maggiori informazioni
+        message_html: "<strong>Il tuo server web è mal configurato. La privacy dei tuoi utenti è a rischio.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Controlla qui per maggiori informazioni
+        message_html: "<strong>La tua archiviazione oggetti è mal configurata. La privacy dei tuoi utenti è a rischio.</strong>"
     tags:
       review: Esamina status
       updated_msg: Impostazioni hashtag aggiornate con successo
@@ -1198,8 +1204,6 @@ it:
       index:
         hint: Questo filtro si applica a singoli post indipendentemente da altri criteri. Puoi aggiungere più post a questo filtro dall'interfaccia Web.
         title: Post filtrati
-  footer:
-    trending_now: Di tendenza ora
   generic:
     all: Tutto
     all_items_on_page_selected_html:
@@ -1409,6 +1413,7 @@ it:
     confirm_remove_selected_followers: Sei sicuro di voler rimuovere i follower selezionati?
     confirm_remove_selected_follows: Sei sicuro di voler rimuovere i follow selezionati?
     dormant: Dormiente
+    follow_failure: Impossibile seguire alcuni degli account selezionati.
     follow_selected_followers: Segui i seguaci selezionati
     followers: Seguaci
     following: Seguiti
@@ -1448,6 +1453,7 @@ it:
       electron: Electron
       firefox: Firefox
       generic: Browser sconosciuto
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1457,6 +1463,7 @@ it:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Browser sconosciuto
       weibo: Weibo
     current_session: Sessione corrente
     description: "%{browser} su %{platform}"
@@ -1469,9 +1476,10 @@ it:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: piattaforma sconosciuta
+      unknown_platform: Piattaforma sconosciuta
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1684,12 +1692,13 @@ it:
       title: Benvenuto a bordo, %{name}!
   users:
     follow_limit_reached: Non puoi seguire più di %{limit} persone
+    go_to_sso_account_settings: Vai alle impostazioni dell'account del tuo provider di identità
     invalid_otp_token: Codice d'accesso non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
     seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, quindi le impostazioni di password e e-mail non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
   verification:
-    explanation_html: 'Puoi <strong>certificare te stesso come proprietario dei link nei metadati del tuo profilo</strong>. Per farlo, il sito a cui punta il link deve contenere un link che punta al tuo profilo Mastodon. Il link di ritorno <strong>deve</strong> avere l''attributo <code>rel="me"</code>. Il testo del link non ha importanza. Ecco un esempio:'
+    explanation_html: 'Puoi <strong>verificarti come proprietario dei link nei metadati del tuo profilo</strong>. Per questo, il sito web collegato deve contenere un collegamento al tuo profilo Mastodon. Dopo aver aggiunto il collegamento, potrebbe essere necessario tornare qui e salvare nuovamente il profilo affinché la verifica abbia effetto. Il link di ritorno <strong>deve</strong> avere un attributo <code>rel="me"</code>. Il contenuto del testo del collegamento non ha importanza. Ecco un esempio:'
     verification: Verifica
   webauthn_credentials:
     add: Aggiungi una nuova chiave di sicurezza

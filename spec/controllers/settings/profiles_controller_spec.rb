@@ -44,12 +44,4 @@ RSpec.describe Settings::ProfilesController, type: :controller do
       expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(account.id)
     end
   end
-
-  describe 'PUT #update with oversized image' do
-    it 'gives the user an error message' do
-      allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
-      put :update, params: { account: { avatar: fixture_file_upload('4096x4097.png', 'image/png') } }
-      expect(response.body).to include('images are not supported')
-    end
-  end
 end

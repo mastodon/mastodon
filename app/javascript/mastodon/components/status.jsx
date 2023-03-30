@@ -59,7 +59,6 @@ const messages = defineMessages({
   edited: { id: 'status.edited', defaultMessage: 'Edited {date}' },
 });
 
-export default @injectIntl
 class Status extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -387,6 +386,13 @@ class Status extends ImmutablePureComponent {
 
       account = status.get('account');
       status  = status.get('reblog');
+    } else if (status.get('visibility') === 'direct') {
+      prepend = (
+        <div className='status__prepend'>
+          <div className='status__prepend-icon-wrapper'><Icon id='at' className='status__prepend-icon' fixedWidth /></div>
+          <FormattedMessage id='status.direct_indicator' defaultMessage='Private mention' />
+        </div>
+      );
     } else if (showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id'])) {
       const display_name_html = { __html: status.getIn(['account', 'display_name_html']) };
 
@@ -417,6 +423,7 @@ class Status extends ImmutablePureComponent {
               <Component
                 src={attachment.get('url')}
                 alt={attachment.get('description')}
+                lang={status.get('language')}
                 poster={attachment.get('preview_url') || status.getIn(['account', 'avatar_static'])}
                 backgroundColor={attachment.getIn(['meta', 'colors', 'background'])}
                 foregroundColor={attachment.getIn(['meta', 'colors', 'foreground'])}
@@ -446,6 +453,7 @@ class Status extends ImmutablePureComponent {
                 blurhash={attachment.get('blurhash')}
                 src={attachment.get('url')}
                 alt={attachment.get('description')}
+                lang={status.get('language')}
                 width={this.props.cachedMediaWidth}
                 height={110}
                 inline
@@ -465,6 +473,7 @@ class Status extends ImmutablePureComponent {
             {Component => (
               <Component
                 media={status.get('media_attachments')}
+                lang={status.get('language')}
                 sensitive={status.get('sensitive')}
                 height={110}
                 onOpenMedia={this.handleOpenMedia}
@@ -546,3 +555,5 @@ class Status extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(Status);

@@ -39,10 +39,11 @@
 #  webauthn_id               :string
 #  sign_up_ip                :inet
 #  role_id                   :bigint(8)
+#  settings                  :text
 #
 
 class User < ApplicationRecord
-  self.ignored_columns = %w(
+  self.ignored_columns += %w(
     remember_created_at
     remember_token
     current_sign_in_ip
@@ -51,9 +52,9 @@ class User < ApplicationRecord
     filtered_languages
   )
 
-  include Settings::Extend
   include Redisable
   include LanguagesHelper
+  include HasUserSettings
 
   # The home and list feeds will be stored in Redis for this amount
   # of time, and status fan-out to followers will include only people
@@ -131,13 +132,6 @@ class User < ApplicationRecord
   attribute :otp_secret
 
   has_many :session_activations, dependent: :destroy
-
-  delegate :auto_play_gif, :retain_privacy, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
-           :reduce_motion, :system_font_ui, :noindex, :theme, :display_media,
-           :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
-           :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
-           :disable_swiping, :always_send_emails,
-           to: :settings, prefix: :setting, allow_nil: false
 
   delegate :can?, to: :role
 
@@ -302,42 +296,6 @@ class User < ApplicationRecord
     save!
   end
 
-  def prefers_noindex?
-    setting_noindex
-  end
-
-  def preferred_posting_language
-    valid_locale_cascade(settings.default_language, locale, I18n.locale)
-  end
-
-  def setting_default_privacy
-    settings.default_privacy || (account.locked? ? 'private' : 'public')
-  end
-
-  def allows_report_emails?
-    settings.notification_emails['report']
-  end
-
-  def allows_pending_account_emails?
-    settings.notification_emails['pending_account']
-  end
-
-  def allows_appeal_emails?
-    settings.notification_emails['appeal']
-  end
-
-  def allows_trends_review_emails?
-    settings.notification_emails['trending_tag']
-  end
-
-  def aggregates_reblogs?
-    @aggregates_reblogs ||= settings.aggregate_reblogs
-  end
-
-  def shows_application?
-    @shows_application ||= settings.show_application
-  end
-
   def token_for_app(app)
     return nil if app.nil? || app.owner != self
 
@@ -417,14 +375,6 @@ class User < ApplicationRecord
     send_reset_password_instructions
   end
 
-  def show_all_media?
-    setting_display_media == 'show_all'
-  end
-
-  def hide_all_media?
-    setting_display_media == 'hide_all'
-  end
-
   protected
 
   def send_devise_notification(notification, *args, **kwargs)
@@ -494,7 +444,8 @@ class User < ApplicationRecord
   def sanitize_languages
     return if chosen_languages.nil?
 
-    chosen_languages.reject!(&:blank?)
+    chosen_languages.compact_blank!
+
     self.chosen_languages = nil if chosen_languages.empty?
   end
 
@@ -507,11 +458,14 @@ class User < ApplicationRecord
   def prepare_new_user!
     BootstrapTimelineWorker.perform_async(account_id)
     ActivityTracker.increment('activity:accounts:local')
+    ActivityTracker.record('activity:logins', id)
     UserMailer.welcome(self).deliver_later
     TriggerWebhookWorker.perform_async('account.approved', 'Account', account_id)
   end
 
   def prepare_returning_user!
+    return unless confirmed?
+
     ActivityTracker.record('activity:logins', id)
     regenerate_feed! if needs_feed_update?
   end

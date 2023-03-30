@@ -30,7 +30,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       timeline_preview: Setting.timeline_preview,
       activity_api_enabled: Setting.activity_api_enabled,
       single_user_mode: Rails.configuration.x.single_user_mode,
-      translation_enabled: TranslationService.configured?,
       trends_as_landing_page: Setting.trends_as_landing_page,
       status_page_url: Setting.status_page_url,
     }
@@ -72,7 +71,7 @@ class InitialStateSerializer < ActiveModel::Serializer
     if object.current_account
       store[:me]                = object.current_account.id.to_s
       store[:default_privacy]   = object.visibility || object.current_account.user.setting_default_privacy
-      store[:retain_privacy]    = object.current_account.user.setting_retain_privacy.present?
+      store[:retain_privacy]    = object.current_account.user.setting_retain_privacy
       store[:default_sensitive] = object.current_account.user.setting_default_sensitive
       store[:default_language]  = object.current_account.user.preferred_posting_language
     end

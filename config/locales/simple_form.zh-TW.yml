@@ -33,7 +33,7 @@ zh-TW:
         autofollow: 通過邀請網址註冊的使用者將自動跟隨您
         avatar: 支援 PNG、GIF 或 JPG 圖片格式，檔案最大為 %{size}，會等比例縮減至 %{dimensions} 像素
         bot: 此帳號主要執行自動化操作且可能未受人為監控
-        context: 應該套用過濾器的一項或多項內容
+        context: 此過濾器應套用於以下一項或多項情境
         current_password: 因安全因素，請輸入目前帳號的密碼
         current_username: 請輸入目前帳號的使用者名稱以確認
         digest: 僅在您長時間未登入且在未登入期間收到私訊時傳送
@@ -49,23 +49,23 @@ zh-TW:
         phrase: 無論是嘟文的本文或是內容警告都會被過濾
         scopes: 允許讓應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
         setting_aggregate_reblogs: 請勿顯示最近已被轉嘟之嘟文的最新轉嘟（只影響最新收到的嘟文）
-        setting_always_send_emails: 一般情況下若您活躍使用 Mastodon ，我們不會寄送 e-mail 通知
+        setting_always_send_emails: 一般情況下若您活躍使用 Mastodon ，我們不會寄送電子郵件通知
         setting_default_sensitive: 敏感內容媒體預設隱藏，且按一下即可重新顯示
         setting_display_media_default: 隱藏標為敏感內容的媒體
         setting_display_media_hide_all: 總是隱藏所有媒體
-        setting_display_media_show_all: 總是顯示標為敏感的媒體
+        setting_display_media_show_all: 總是顯示標為敏感內容的媒體
         setting_hide_network: 您跟隨的人與跟隨您的人將不會在您的個人檔案頁面上顯示
         setting_noindex: 會影響您的公開個人檔案與嘟文頁面
         setting_show_application: 您用來發嘟文的應用程式將會在您嘟文的詳細檢視顯示
         setting_use_blurhash: 彩色漸層圖樣是基於隱藏媒體內容顏色產生，所有細節會變得模糊
         setting_use_pending_items: 關閉自動捲動更新，時間軸只會在點擊後更新
-        username: 您的使用者名稱將在 %{domain} 是獨一無二的
+        username: 您的使用者名稱將於 %{domain} 是獨一無二的
         whole_word: 如果關鍵字或詞組僅有字母與數字，則其將只在符合整個單字的時候才會套用
       domain_allow:
-        domain: 此域名將能夠攫取本站資料，而自域名該發出的資料也會於本站處理和留存。
+        domain: 此網域將能夠攫取本站資料，而自該網域發出的資料也會於本站處理和留存。
       email_domain_block:
-        domain: 這可以是顯示在電子郵件中的網域名稱，或是其使用的 MX 紀錄。其將在註冊時檢查。
-        with_dns_records: Mastodon 會嘗試解析所給域名的 DNS 記錄，解析結果一致者將一併封鎖
+        domain: 這可以是顯示在電子郵件中的網域名稱，或是其使用的 MX 紀錄。其將於註冊時檢查。
+        with_dns_records: Mastodon 會嘗試解析所給網域的 DNS 記錄，解析結果一致者將一併封鎖
       featured_tag:
         name: 這些是您最近使用的一些主題標籤：
       filters:
@@ -107,7 +107,7 @@ zh-TW:
       ip_block:
         comment: 可選的，但請記得您為何添加這項規則。
         expires_in: IP 位址是經常共用或轉手的有限資源，不建議無限期地封鎖特定 IP 位址。
-        ip: 請輸入 IPv4 或 IPv6 位址，亦可以用 CIDR 語法以封鎖整個 IP 區段。小心不要把自己給一併封鎖掉囉！
+        ip: 請輸入 IPv4 或 IPv6 位址，亦可以用 CIDR 語法以封鎖整個 IP 區段。小心不要將自己給一併封鎖掉囉！
         severities:
           no_access: 封鎖對所有資源存取
           sign_up_block: 無法註冊新帳號
@@ -154,7 +154,7 @@ zh-TW:
           none: 什麼也不做
           sensitive: 敏感内容
           silence: 安靜
-          suspend: 停權並永久刪除帳號資料
+          suspend: 停權並不可逆的刪除帳號資料
         warning_preset_id: 使用警告預設
       announcement:
         all_day: 全天活動
@@ -193,7 +193,7 @@ zh-TW:
         phrase: 關鍵字或片語
         setting_advanced_layout: 啟用進階網頁介面
         setting_aggregate_reblogs: 時間軸中的群組轉嘟
-        setting_always_send_emails: 總是發送 e-mail 通知
+        setting_always_send_emails: 總是發送電子郵件通知
         setting_auto_play_gif: 自動播放 GIF 動畫
         setting_boost_modal: 轉嘟前先詢問我
         setting_crop_images: 將未展開嘟文中的圖片裁剪至 16x9
@@ -283,7 +283,7 @@ zh-TW:
         follow: 當有使用者跟隨您時，傳送電子郵件通知
         follow_request: 當有使用者請求跟隨您時，傳送電子郵件通知
         mention: 當有使用者在嘟文提及您時，傳送電子郵件通知
-        pending_account: 需要審核的新帳號
+        pending_account: 有新的帳號需要審核
         reblog: 當有使用者轉嘟您的嘟文時，傳送電子郵件通知
         report: 新回報已遞交
         trending_tag: 新熱門趨勢需要審核

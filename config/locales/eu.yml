@@ -814,6 +814,12 @@ eu:
         message_html: Ez duzu zerbitzariaren araurik definitu.
       sidekiq_process_check:
         message_html: Ez da ari Sidekiq prozesurik exekutatzen %{value} ilad(et)an. Egiaztatu Sidekiq konfigurazioa
+      upload_check_privacy_error:
+        action: Ikus hemen informazio gehiagorako
+        message_html: "<strong>Zure zerbitzaria ez dago ongi konfiguratua. Zure erabiltzaileen pribatutasuna arriskuan dago.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Ikus hemen informazio gehiagorako
+        message_html: "<strong>Zure objektuen biltegiratzea ez dago ongi konfiguratua. Zure erabiltzaileen pribatutasuna arriskuan dago.</strong>"
     tags:
       review: Berrikusketaren egoera
       updated_msg: Traola-ezarpenak ongi eguneratu dira
@@ -1198,8 +1204,6 @@ eu:
       index:
         hint: Iragazki honek banako bidalketei eragiten die, beste kriterioak badaude ere. Bidalketa gehiago gehitu ditzakezu iragazkira web interfazetik.
         title: Iragazitako bidalketak
-  footer:
-    trending_now: Joera orain
   generic:
     all: Denak
     all_items_on_page_selected_html:
@@ -1409,6 +1413,7 @@ eu:
     confirm_remove_selected_followers: Ziur al zaude hautatutako jarraitzaileak ezabatu nahi dituzula?
     confirm_remove_selected_follows: Ziur al zaude hautatutako jarraipenak ezabatu nahi dituzula?
     dormant: Ez aktiboa
+    follow_failure: Ezin izan dira aukeratutako kontu batzuk jarraitu.
     follow_selected_followers: Jarraitu hautatutako jarraitzaileak
     followers: Jarraitzaileak
     following: Jarraitzen
@@ -1448,6 +1453,7 @@ eu:
       electron: Electron
       firefox: Firefox
       generic: Nabigatzaile ezezaguna
+      huawei_browser: Huawei nabigatzailea
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi nabigatzailea
@@ -1457,6 +1463,7 @@ eu:
       qq: QQ nabigatzailea
       safari: Safari
       uc_browser: UC nabigatzailea
+      unknown_browser: Nabigatzaile ezezaguna
       weibo: Weibo
     current_session: Uneko saioa
     description: "%{browser} - %{platform}"
@@ -1469,9 +1476,10 @@ eu:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: plataforma ezezaguna
+      unknown_platform: Plataforma ezezaguna
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1684,12 +1692,13 @@ eu:
       title: Ongi etorri, %{name}!
   users:
     follow_limit_reached: Ezin dituzu %{limit} pertsona baino gehiago jarraitu
+    go_to_sso_account_settings: Jo zure identitate-hornitzaileko kontuaren ezarpenetara
     invalid_otp_token: Bi faktoreetako kode baliogabea
     otp_lost_help_html: 'Bietara sarbidea galdu baduzu, jarri kontaktuan hemen: %{email}'
     seamless_external_login: Kanpo zerbitzu baten bidez hasi duzu saioa, beraz pasahitza eta e-mail ezarpenak ez daude eskuragarri.
     signed_in_as: 'Saioa honela hasita:'
   verification:
-    explanation_html: 'Ezin duzu <strong>zure burua zure profileko metadatuen esteken jabe gisa egiaztatu</strong>. Horretarako, estekatutako webgunean zure Mastodon profilera daraman esteka bat egon behar du. Mastodonera daraman esteka horrek<strong>derrigorrez</strong> <code>rel="me"</code> artibutua izan behar du . Estekaren testuak ez du axola. Hona adibide bat:'
+    explanation_html: '<strong>Zure profileko metadatuetako esteken jabe zarela egiazta</strong> dezakezu. Horretarako, webguneak zure Mastodoneko profilaren esteka eduki behar du. Esteka webgunean erantsi ondoren, aldaketak berriro gorde beharko dituzu egiaztapena burutu ahal izateko. Estekak <code>rel="me"</code> atributua eduki <strong>behar</strong> du. Estekaren testu-edukia ez da aintzat hartzen. Hemen duzu adibide bat:'
     verification: Egiaztaketa
   webauthn_credentials:
     add: Gehitu segurtasun gako berria

@@ -812,6 +812,12 @@ hu:
         message_html: Még nem definiáltál egy szerver szabályt sem.
       sidekiq_process_check:
         message_html: Nincs Sidekiq folyamat, mely a %{value} sorhoz van rendelve. Kérlek, nézd át a Sidekiq beállításait
+      upload_check_privacy_error:
+        action: Itt találsz több információt
+        message_html: "<strong>A webkiszolgálód félre van konfigurálva. Kockázat merül fel a felhasználóid adatainak biztonságával kapcsolatban.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Itt találsz több információt
+        message_html: "<strong>Az objektumtárolód félre van konfigurálva. Kockázat merül fel a felhasználóid adatainak biztonságával kapcsolatban.</strong>"
     tags:
       review: Engedélyezés állapota
       updated_msg: A hashtag beállításokat sikeresen frissítettük
@@ -1196,8 +1202,6 @@ hu:
       index:
         hint: Ez a szűrő egyedi bejegyzések kiválasztására vonatkozik a megadott kritériumoktól függetlenül. Újabb bejegyzéseket adhatsz hozzá ehhez a szűrőhöz a webes felületen keresztül.
         title: Megszűrt bejegyzések
-  footer:
-    trending_now: Most felkapott
   generic:
     all: Mind
     all_items_on_page_selected_html:
@@ -1407,6 +1411,7 @@ hu:
     confirm_remove_selected_followers: Biztos, hogy el szeretnéd távolítani a kiválasztott követőket?
     confirm_remove_selected_follows: Biztos, hogy el szeretnéd távolítani a kiválasztott követéseket?
     dormant: Elhagyott
+    follow_failure: Nem sikerült bekövetni néhányat a kiválasztott fiókok közül.
     follow_selected_followers: Kiválasztott követők bekövetése
     followers: Követők
     following: Követve
@@ -1446,6 +1451,7 @@ hu:
       electron: Electron
       firefox: Firefox
       generic: Ismeretlen böngésző
+      huawei_browser: Huawei Böngésző
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Böngésző
@@ -1455,6 +1461,7 @@ hu:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Ismeretlen böngésző
       weibo: Weibo
     current_session: Jelenlegi munkamenet
     description: "%{browser} az alábbi platformon: %{platform}"
@@ -1467,9 +1474,10 @@ hu:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: ismeretlen platform
+      unknown_platform: Ismeretlen platform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1682,12 +1690,13 @@ hu:
       title: Üdv a fedélzeten, %{name}!
   users:
     follow_limit_reached: Nem követhetsz több, mint %{limit} embert
+    go_to_sso_account_settings: Ugrás az azonosítási szolgáltatód fiókbeállításaihoz
     invalid_otp_token: Érvénytelen ellenőrző kód
     otp_lost_help_html: Ha mindkettőt elvesztetted, kérhetsz segítséget itt %{email}
     seamless_external_login: Külső szolgáltatáson keresztül jelentkeztél be, így a jelszó és e-mail beállítások nem elérhetőek.
     signed_in_as: Bejelentkezve mint
   verification:
-    explanation_html: 'A profilodon <strong>hitelesítheted magad, mint az itt található linkek tulajdonosa</strong>. Ehhez a linkelt weboldalnak tartalmaznia kell egy linket vissza a Mastodon profilodra. Ennek <strong>tartalmaznia kell</strong> a <code>rel="me"</code> attribútumot. A link szövege bármi lehet. Itt egy példa:'
+    explanation_html: 'A profilodon <strong>hitelesítheted magad, mint az itt található hivatkozások tulajdonosa</strong>. Ehhez a hivatkozott weboldalnak tartalmaznia kell egy visszahivatkozást a Mastodon-profilodra. A hivatkozás hozzáadása után lehet, hogy vissza kell ide térned, és újra mentened kell a profilodat, hogy az ellenőrzés életbe lépjen. A visszahivatkozásnak <strong>tartalmaznia kell</strong> a <code>rel="me"</code> attribútumot. A hivatkozás szövege bármi lehet. Itt egy példa:'
     verification: Hitelesítés
   webauthn_credentials:
     add: Biztonsági kulcs hozzáadása

@@ -16,7 +16,7 @@ jobs:
       - id: skip_check
         uses: fkirc/skip-duplicate-actions@v5
         with:
-          paths: '["Gemfile*", ".ruby-version", "**/*.rb", ".github/workflows/test-migrations-two-step.yml"]'
+          paths: '["Gemfile*", ".ruby-version", "**/*.rb", ".github/workflows/test-migrations-two-step.yml", "lib/tasks/tests.rake"]'
 
   test:
     runs-on: ubuntu-latest
@@ -25,7 +25,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:14.5
+        image: postgres:14-alpine
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
@@ -37,7 +37,7 @@ jobs:
         ports:
           - 5432:5432
       redis:
-        image: redis:7.0
+        image: redis:7-alpine
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
@@ -63,7 +63,9 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install native Ruby dependencies
-        run: sudo apt-get install -y libicu-dev libidn11-dev
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libicu-dev libidn11-dev
 
       - name: Set up bundler cache
         uses: ruby/setup-ruby@v1

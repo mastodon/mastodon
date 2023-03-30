@@ -1,7 +1,7 @@
 ---
 fa:
   about:
-    about_mastodon_html: 'شبکهٔ اجتماعی آینده: بدون تبلیغات، بدون شنود از طرف شرکت‌ها، طراحی اخلاق‌مدار، و معماری غیرمتمرکز! با ماستودون صاحب داده‌های خودتان باشید!'
+    about_mastodon_html: 'شبکه‌ی اجتماعی آینده: بدون تبلیغات، بدون شنود از طرف شرکت‌ها، طراحی اخلاق‌مدار، و معماری غیرمتمرکز! با ماستودون صاحب داده‌های خودتان باشید!'
     contact_missing: تنظیم نشده
     contact_unavailable: موجود نیست
     hosted_on: ماستودون، میزبانی‌شده روی %{domain}
@@ -91,6 +91,7 @@ fa:
       moderation:
         active: فعّال
         all: همه
+        disabled: غیرفعال
         pending: منتظر
         silenced: محدود
         suspended: تعلیق شده
@@ -128,6 +129,7 @@ fa:
       search: جستجو
       search_same_email_domain: دیگر کاربران با دامنهٔ رایانامهٔ یکسان
       search_same_ip: دیگر کاربران با IP یکسان
+      security: امنیت
       security_measures:
         only_password: فقط گذرواژه
         password_and_2fa: گذرواژه و ۲عاملی
@@ -201,6 +203,7 @@ fa:
         reject_user: رد کاربر
         remove_avatar_user: برداشتن تصویر نمایه
         reopen_report: بازگشایی گزارش
+        resend_user: ارسال مجدد رایانامه تایید
         reset_password_user: بازنشانی گذرواژه
         resolve_report: رفع گزارش
         sensitive_account: علامت‌گذاری رسانه در حسابتان به عنوان حساس
@@ -215,6 +218,7 @@ fa:
         update_custom_emoji: به‌روز رسانی اموجی سفارشی
         update_domain_block: به‌روزرسانی مسدودسازی دامنه
         update_status: به‌روز رسانی وضعیت
+        update_user_role: به روزرسانی نقش
       actions:
         approve_appeal_html: "%{name} درخواست تجدیدنظر تصمیم مدیر را از %{target} پذیرفت"
         approve_user_html: "%{name} ثبت نام %{target} را تایید کرد"
@@ -425,6 +429,7 @@ fa:
         title: سیاست‌های محتوا
       dashboard:
         instance_accounts_dimension: حساب‌های پیش‌تر پی‌گیری شده
+        instance_accounts_measure: حساب‌های ذخیره شده
         instance_followers_measure: پی‌گیرندگانمان در آن‌جا
         instance_follows_measure: پی‌گیرندگانشان در این‌جا
         instance_languages_dimension: زبان‌های برتر
@@ -511,9 +516,11 @@ fa:
       assign_to_self: به عهدهٔ من بگذار
       assigned: مدیر عهده‌دار
       by_target_domain: دامنهٔ حساب گزارش‌شده
+      cancel: لغو
       category: دسته
       comment:
         none: هیچ
+      confirm: تأیید
       created_at: گزارش‌شده
       delete_and_resolve: حذف فرسته‌ها
       forwarded: هدایت شده
@@ -549,6 +556,7 @@ fa:
       add_new: افزودن نقش
       categories:
         administration: مدیریت
+        devops: DevOps
         invites: دعوت‌ها
         moderation: نظارت
         special: ویژه
@@ -890,8 +898,6 @@ fa:
       title: پالایه‌ها
     new:
       title: افزودن پالایهٔ جدید
-  footer:
-    trending_now: پرطرفدار
   generic:
     all: همه
     changes_saved_msg: تغییرات با موفقیت ذخیره شدند!
@@ -1126,7 +1132,6 @@ fa:
       ios: آی‌اواس
       linux: لینوکس
       mac: مک
-      other: سیستم ناشناخته
       windows: ویندوز
       windows_mobile: ویندوز همراه
       windows_phone: تلفن ویندوزی
@@ -1314,7 +1319,6 @@ fa:
     seamless_external_login: شما با یک سرویس خارج از مجموعه وارد شده‌اید، به همین دلیل تنظیمات ایمیل و رمز برای شما در دسترس نیست.
     signed_in_as: 'واردشده به نام:'
   verification:
-    explanation_html: 'شما می‌توانید <strong>خود را به عنوان مالک صفحه‌ای که در نمایه‌تان به آن پیوند داده‌اید تأیید کنید.</strong> برای این کار، صفحه‌ای که به آن پیوند داده‌اید، خودش باید پیوندی به نمایهٔ ماستودون شما داشته باشد. پیوند در آن صفحه <strong>باید</strong> عبارت <code>rel="me"‎</code> را به عنوان مشخّصهٔ (attribute) در خود داشته باشد. محتوای متن پیوند اهمتی ندارد. یک نمونه از چنین پیوندی:'
     verification: تأیید
   webauthn_credentials:
     add: افزودن کلید امنیتی

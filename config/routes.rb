@@ -220,6 +220,7 @@ Rails.application.routes.draw do
   resource :statuses_cleanup, controller: :statuses_cleanup, only: [:show, :update]
 
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy, format: false
+  get '/backups/:id/download', to: 'backups#download', as: :download_backup, format: false
 
   resource :authorize_interaction, only: [:show, :create]
   resource :share, only: [:show, :create]
@@ -228,7 +229,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#index'
 
     resources :domain_allows, only: [:new, :create, :show, :destroy]
-    resources :domain_blocks, only: [:new, :create, :show, :destroy, :update, :edit] do
+    resources :domain_blocks, only: [:new, :create, :destroy, :update, :edit] do
       collection do
         post :batch
       end
@@ -472,7 +473,9 @@ Rails.application.routes.draw do
         resources :list, only: :show
       end
 
-      resources :streaming, only: [:index]
+      get '/streaming', to: 'streaming#index'
+      get '/streaming/(*any)', to: 'streaming#index'
+
       resources :custom_emojis, only: [:index]
       resources :suggestions, only: [:index, :destroy]
       resources :scheduled_statuses, only: [:index, :show, :update, :destroy]
@@ -544,6 +547,7 @@ Rails.application.routes.draw do
         resources :domain_blocks, only: [:index], controller: 'instances/domain_blocks'
         resource :privacy_policy, only: [:show], controller: 'instances/privacy_policies'
         resource :extended_description, only: [:show], controller: 'instances/extended_descriptions'
+        resource :translation_languages, only: [:show], controller: 'instances/translation_languages'
         resource :activity, only: [:show], controller: 'instances/activity'
       end
 

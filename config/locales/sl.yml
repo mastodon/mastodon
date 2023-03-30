@@ -840,6 +840,12 @@ sl:
         message_html: Nobenih pravil strežnika niste določili.
       sidekiq_process_check:
         message_html: Noben proces Sidekiq ne poteka za %{value} vrst. Preglejte svojo prilagoditev Sidekiq
+      upload_check_privacy_error:
+        action: Preverite tukaj za več informacij
+        message_html: "<strong>Vaš spletni strežnik je napačno nastavljen. Zasebnost vaših uporabnikov je izpostavljena tveganjem.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Preverite tukaj za več informacij
+        message_html: "<strong>Vaša predmetna shramba je napačno nastavljena. Zasebnost vaših uporabnikov je izpostavljena tveganjem.</strong>"
     tags:
       review: Stanje pregleda
       updated_msg: Nastavitve ključnikov uspešno posodobljene
@@ -1238,8 +1244,6 @@ sl:
       index:
         hint: Ta filter se nanaša na posamezne objave ne glede na druge pogoje. Filtru lahko dodate več objav prek spletnega vmesnika.
         title: Filtrirane objave
-  footer:
-    trending_now: Zdaj v trendu
   generic:
     all: Vse
     all_items_on_page_selected_html:
@@ -1459,6 +1463,7 @@ sl:
     confirm_remove_selected_followers: Ali ste prepričani, da želite odstraniti izbrane sledilce?
     confirm_remove_selected_follows: Ali ste prepričani, da želite odstraniti izbrana sledenja?
     dormant: Skrit
+    follow_failure: Nekaterim od izbranih računov ni bilo mogoče slediti.
     follow_selected_followers: Sledi izbranim sledilcem
     followers: Sledilci
     following: Sledi
@@ -1498,6 +1503,7 @@ sl:
       electron: Electron
       firefox: Firefox
       generic: Neznan brskalnik
+      huawei_browser: Brskalnik Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Brskalnik Nokia S40 Ovi
@@ -1507,6 +1513,7 @@ sl:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Neznan brskalnik
       weibo: Weibo
     current_session: Trenutna seja
     description: "%{browser} na %{platform}"
@@ -1519,9 +1526,10 @@ sl:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: neznana platforma
+      unknown_platform: Neznana platforma
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1746,12 +1754,13 @@ sl:
       title: Dobrodošli, %{name}!
   users:
     follow_limit_reached: Ne morete spremljati več kot %{limit} ljudi
+    go_to_sso_account_settings: Pojdite na nastavitve svojega računa ponudnika identitete
     invalid_otp_token: Neveljavna dvofaktorska koda
     otp_lost_help_html: Če ste izgubili dostop do obeh, stopite v stik z %{email}
     seamless_external_login: Prijavljeni ste prek zunanje storitve, tako da nastavitve gesla in e-pošte niso na voljo.
     signed_in_as: 'Vpisani kot:'
   verification:
-    explanation_html: '<strong>V metapodatkih svojega profila se lahko potrdite kot lastnik povezav</strong>. Za to mora povezano spletno mesto vsebovati povezavo do vašega Mastodon profila. Povezava <strong>mora</strong> imeti atribut <code>el="me"</code>. Vsebina besedila povezave ni pomembna. Tukaj je primer:'
+    explanation_html: '<strong>V metapodatkih svojega profila se lahko potrdite kot lastnik povezav</strong>. Za to mora povezano spletno mesto vsebovati povezavo do vašega profila Mastodon. Po dodajanju povezave se boste morda morali vrniti sem in ponovno shraniti svoj profil, da bo overjanje učinkovalo. Povezava <strong>mora</strong> imeti atribut <code>el="me"</code>. Vsebina besedila povezave ni pomembna. Tukaj je primer:'
     verification: Potrditev
   webauthn_credentials:
     add: Dodaj nov varnostni ključ
