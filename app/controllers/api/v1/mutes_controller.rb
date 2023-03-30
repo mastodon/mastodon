@@ -16,16 +16,32 @@ class Api::V1::MutesController < Api::BaseController
     paginated_mutes.map(&:target_account)
   end
 
+  def all_mutes
+    Mute.eager_load(:target_account)
+        .joins(:target_account)
+        .where(account: current_account)
+  end
+
+  def mutes_from_unsuspended_accounts
+    Mute.eager_load(:target_account)
+        .joins(:target_account)
+        .merge(Account.without_suspended)
+        .where(account: current_account)
+  end
+
+  def load_mutes
+    if current_account.show_suspended?
+      return all_mutes
+    end
+    mutes_from_unsuspended_accounts
+  end
+
   def paginated_mutes
-    @paginated_mutes ||= Mute.eager_load(:target_account)
-                             .joins(:target_account)
-                             .merge(Account.without_suspended)
-                             .where(account: current_account)
-                             .paginate_by_max_id(
-                               limit_param(DEFAULT_ACCOUNTS_LIMIT),
-                               params[:max_id],
-                               params[:since_id]
-                             )
+    @paginated_mutes ||= load_mutes
+                         .paginate_by_max_id(
+                           limit_param(DEFAULT_ACCOUNTS_LIMIT),
+                           params[:max_id], params[:since_id]
+                         )
   end
 
   def insert_pagination_headers
