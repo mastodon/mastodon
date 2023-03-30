@@ -54,7 +54,7 @@ namespace :tests do
         exit(1)
       end
 
-      unless User.find(1).settings.notification_emails['favourite'] == true && User.find(1).settings.notification_emails['mention'] == false
+      unless User.find(1).settings['notification_emails.favourite'] == true && User.find(1).settings['notification_emails.mention'] == false
         puts 'User settings not kept as expected'
         exit(1)
       end
