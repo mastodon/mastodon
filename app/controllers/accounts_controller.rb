@@ -7,8 +7,9 @@ class AccountsController < ApplicationController
   include AccountControllerConcern
   include SignatureAuthentication
 
+  vary_by -> { public_fetch_mode? ? 'Accept' : 'Accept, Signature' }
+
   before_action :require_account_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
-  before_action :set_cache_headers
 
   skip_around_action :set_locale, if: -> { [:json, :rss].include?(request.format&.to_sym) }
   skip_before_action :require_functional!, unless: :whitelist_mode?

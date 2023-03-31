@@ -6,11 +6,12 @@ class StatusesController < ApplicationController
   include Authorization
   include AccountOwnedConcern
 
+  vary_by -> { public_fetch_mode? ? 'Accept' : 'Accept, Signature' }
+
   before_action :require_account_signature!, only: [:show, :activity], if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_status
   before_action :set_instance_presenter
   before_action :redirect_to_original, only: :show
-  before_action :set_cache_headers
   before_action :set_body_classes, only: :embed
 
   after_action :set_link_headers

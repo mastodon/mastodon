@@ -33,27 +33,42 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
   end
 
   describe 'GET #edit' do
-    it 'returns http success' do
+    before do
       request.env['devise.mapping'] = Devise.mappings[:user]
       sign_in(Fabricate(:user))
       get :edit
+    end
+
+    it 'returns http success' do
       expect(response).to have_http_status(200)
+    end
+
+    it 'returns private cache control header' do
+      expect(response.headers['Cache-Control']).to include('private, no-store')
     end
   end
 
   describe 'GET #update' do
-    it 'returns http success' do
+    let(:user) { Fabricate(:user) }
+
+    before do
       request.env['devise.mapping'] = Devise.mappings[:user]
-      sign_in(Fabricate(:user), scope: :user)
+      sign_in(user, scope: :user)
       post :update
+    end
+
+    it 'returns http success' do
       expect(response).to have_http_status(200)
     end
 
+    it 'returns private cache control headers' do
+      expect(response.headers['Cache-Control']).to include('private, no-store')
+    end
+
     context 'when suspended' do
+      let(:user) { Fabricate(:user, account_attributes: { username: 'test', suspended_at: Time.now.utc }) }
+
       it 'returns http forbidden' do
-        request.env['devise.mapping'] = Devise.mappings[:user]
-        sign_in(Fabricate(:user, account_attributes: { username: 'test', suspended_at: Time.now.utc }), scope: :user)
-        post :update
         expect(response).to have_http_status(403)
       end
     end

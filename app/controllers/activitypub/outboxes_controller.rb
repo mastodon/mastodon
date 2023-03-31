@@ -6,9 +6,10 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
   include SignatureVerification
   include AccountOwnedConcern
 
+  vary_by -> { 'Signature' if authorized_fetch_mode? || page_requested? }
+
   before_action :require_account_signature!, if: :authorized_fetch_mode?
   before_action :set_statuses
-  before_action :set_cache_headers
 
   def show
     if page_requested?
@@ -16,6 +17,7 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
     else
       expires_in(3.minutes, public: public_fetch_mode?)
     end
+
     render json: outbox_presenter, serializer: ActivityPub::OutboxSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
   end
 
@@ -79,9 +81,5 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
 
   def set_account
     @account = params[:account_username].present? ? Account.find_local!(username_param) : Account.representative
-  end
-
-  def set_cache_headers
-    response.headers['Vary'] = 'Signature' if authorized_fetch_mode? || page_requested?
   end
 end
