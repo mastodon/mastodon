@@ -29,6 +29,11 @@ updates:
       - dependency-name: 'history'
         versions:
           - '5.x'
+      # TODO: This requires code changes for migration
+      - dependency-name: 'tesseract.js'
+        versions:
+          - '3.x'
+          - '4.x'
 
   - package-ecosystem: bundler
     directory: '/'
