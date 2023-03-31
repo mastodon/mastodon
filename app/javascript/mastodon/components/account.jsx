@@ -10,6 +10,9 @@ import { me } from '../initial_state';
 import RelativeTimestamp from './relative_timestamp';
 import Skeleton from 'mastodon/components/skeleton';
 import { Link } from 'react-router-dom';
+import { counterRenderer } from 'mastodon/components/common_counter';
+import ShortNumber from 'mastodon/components/short_number';
+import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -22,6 +25,26 @@ const messages = defineMessages({
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
 });
+
+class VerifiedBadge extends React.PureComponent {
+
+  static propTypes = {
+    link: PropTypes.string.isRequired,
+    verifiedAt: PropTypes.string.isRequired,
+  };
+
+  render () {
+    const { link } = this.props;
+
+    return (
+      <span className='verified-badge'>
+        <Icon id='check' className='verified-badge__mark' />
+        <span dangerouslySetInnerHTML={{ __html: link }} />
+      </span>
+    );
+  }
+
+}
 
 class Account extends ImmutablePureComponent {
 
@@ -77,7 +100,11 @@ class Account extends ImmutablePureComponent {
           <div className='account__wrapper'>
             <div className='account__display-name'>
               <div className='account__avatar-wrapper'><Skeleton width={36} height={36} /></div>
-              <DisplayName />
+
+              <div>
+                <DisplayName />
+                <Skeleton width='7ch' />
+              </div>
             </div>
           </div>
         </div>
@@ -131,18 +158,32 @@ class Account extends ImmutablePureComponent {
       }
     }
 
-    let mute_expires_at;
+    let muteTimeRemaining;
+
     if (account.get('mute_expires_at')) {
-      mute_expires_at =  <div><RelativeTimestamp timestamp={account.get('mute_expires_at')} futureDate /></div>;
+      muteTimeRemaining = <>· <RelativeTimestamp timestamp={account.get('mute_expires_at')} futureDate /></>;
+    }
+
+    let verification;
+
+    const firstVerifiedField = account.get('fields').find(item => !!item.get('verified_at'));
+
+    if (firstVerifiedField) {
+      verification = <>· <VerifiedBadge link={firstVerifiedField.get('value')} verifiedAt={firstVerifiedField.get('verified_at')} /></>;
     }
 
     return (
       <div className='account'>
         <div className='account__wrapper'>
           <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`}>
-            <div className='account__avatar-wrapper'><Avatar account={account} size={size} /></div>
-            {mute_expires_at}
-            <DisplayName account={account} />
+            <div className='account__avatar-wrapper'>
+              <Avatar account={account} size={size} />
+            </div>
+
+            <div>
+              <DisplayName account={account} />
+              <ShortNumber value={account.get('followers_count')} renderer={counterRenderer('followers')} /> {verification} {muteTimeRemaining}
+            </div>
           </Link>
 
           <div className='account__relationship'>

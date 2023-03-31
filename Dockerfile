@@ -2,7 +2,7 @@
 # This needs to be bullseye-slim because the Ruby image is built on bullseye-slim
 ARG NODE_VERSION="16.19-bullseye-slim"
 
-FROM ghcr.io/moritzheiber/ruby-jemalloc:3.2.1-slim as ruby
+FROM ghcr.io/moritzheiber/ruby-jemalloc:3.2.2-slim as ruby
 FROM node:${NODE_VERSION} as build
 
 COPY --link --from=ruby /opt/ruby /opt/ruby

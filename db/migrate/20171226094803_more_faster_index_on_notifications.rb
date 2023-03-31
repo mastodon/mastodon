@@ -1,4 +1,4 @@
-class MoreFasterIndexOnNotifications < ActiveRecord::Migration[5.1]
+class MoreFasterIndexOnNotifications < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def change

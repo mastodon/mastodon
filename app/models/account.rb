@@ -53,7 +53,7 @@
 #
 
 class Account < ApplicationRecord
-  self.ignored_columns = %w(
+  self.ignored_columns += %w(
     subscription_expires_at
     secret
     remote_url

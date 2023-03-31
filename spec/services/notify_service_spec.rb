@@ -54,7 +54,8 @@ RSpec.describe NotifyService, type: :service do
     let(:type)     { :mention }
 
     before do
-      user.settings.interactions = user.settings.interactions.merge('must_be_following_dm' => enabled)
+      user.settings.update('interactions.must_be_following_dm': enabled)
+      user.save
     end
 
     context 'if recipient is supposed to be following sender' do
@@ -155,8 +156,8 @@ RSpec.describe NotifyService, type: :service do
     before do
       ActionMailer::Base.deliveries.clear
 
-      notification_emails = user.settings.notification_emails
-      user.settings.notification_emails = notification_emails.merge('follow' => enabled)
+      user.settings.update('notification_emails.follow': enabled)
+      user.save
     end
 
     context 'when email notification is enabled' do

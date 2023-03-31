@@ -11,27 +11,27 @@
 
   %p.hint= t 'notifications.email_events_hint'
 
-  .fields-group
-    = f.simple_fields_for :notification_emails, hash_to_object(current_user.settings.notification_emails) do |ff|
-      = ff.input :follow, as: :boolean, wrapper: :with_label
-      = ff.input :follow_request, as: :boolean, wrapper: :with_label
-      = ff.input :reblog, as: :boolean, wrapper: :with_label
-      = ff.input :favourite, as: :boolean, wrapper: :with_label
-      = ff.input :mention, as: :boolean, wrapper: :with_label
-      = ff.input :report, as: :boolean, wrapper: :with_label if current_user.can?(:manage_reports)
-      = ff.input :appeal, as: :boolean, wrapper: :with_label if current_user.can?(:manage_appeals)
-      = ff.input :pending_account, as: :boolean, wrapper: :with_label if current_user.can?(:manage_users)
-      = ff.input :trending_tag, as: :boolean, wrapper: :with_label if current_user.can?(:manage_taxonomies)
-      = ff.input :trending_link, as: :boolean, wrapper: :with_label if current_user.can?(:manage_taxonomies)
-      = ff.input :trending_status, as: :boolean, wrapper: :with_label if current_user.can?(:manage_taxonomies)
+  = f.simple_fields_for :settings, current_user.settings do |ff|
+    .fields-group
+      = ff.input :'notification_emails.follow', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.follow')
+      = ff.input :'notification_emails.follow_request', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.follow_request')
+      = ff.input :'notification_emails.reblog', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.reblog')
+      = ff.input :'notification_emails.favourite', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.favourite')
+      = ff.input :'notification_emails.mention', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.mention')
+      = ff.input :'notification_emails.report', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.report') if current_user.can?(:manage_reports)
+      = ff.input :'notification_emails.appeal', as: :boolean, wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.appeal') if current_user.can?(:manage_appeals)
+      = ff.input :'notification_emails.pending_account', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.pending_account') if current_user.can?(:manage_users)
+      = ff.input :'notification_emails.trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_tag') if current_user.can?(:manage_taxonomies)
+      = ff.input :'notification_emails.link_trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_link') if current_user.can?(:manage_taxonomies)
+      = ff.input :'notification_emails.status_trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_status') if current_user.can?(:manage_taxonomies)
 
-  .fields-group
-    = f.input :setting_always_send_emails, as: :boolean, wrapper: :with_label
+    .fields-group
+      = ff.input :always_send_emails, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_always_send_emails'), hint: I18n.t('simple_form.hints.defaults.setting_always_send_emails')
 
   %h4= t 'notifications.other_settings'
 
   .fields-group
-    = f.simple_fields_for :interactions, hash_to_object(current_user.settings.interactions) do |ff|
-      = ff.input :must_be_follower, as: :boolean, wrapper: :with_label
-      = ff.input :must_be_following, as: :boolean, wrapper: :with_label
-      = ff.input :must_be_following_dm, as: :boolean, wrapper: :with_label
+    = f.simple_fields_for :settings, current_user.settings do |ff|
+      = ff.input :'interactions.must_be_follower', wrapper: :with_label, label: I18n.t('simple_form.labels.interactions.must_be_follower')
+      = ff.input :'interactions.must_be_following', wrapper: :with_label, label: I18n.t('simple_form.labels.interactions.must_be_following')
+      = ff.input :'interactions.must_be_following_dm', wrapper: :with_label, label: I18n.t('simple_form.labels.interactions.must_be_following_dm')
