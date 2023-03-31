@@ -1431,17 +1431,6 @@ Rails/I18nLocaleTexts:
     - 'lib/tasks/mastodon.rake'
     - 'spec/helpers/flashes_helper_spec.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/IgnoredColumnsAssignment:
-  Exclude:
-    - 'app/models/account.rb'
-    - 'app/models/account_stat.rb'
-    - 'app/models/admin/action_log.rb'
-    - 'app/models/custom_filter.rb'
-    - 'app/models/email_domain_block.rb'
-    - 'app/models/report.rb'
-    - 'app/models/status_edit.rb'
-
 # Configuration parameters: IgnoreScopes, Include.
 # Include: app/models/**/*.rb
 Rails/InverseOf:
