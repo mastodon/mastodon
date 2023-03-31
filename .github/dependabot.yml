@@ -21,6 +21,10 @@ updates:
       - dependency-name: 'pg'
         versions:
           - '8.x'
+      # TODO: This was ignored in https://github.com/mastodon/mastodon/pull/19120
+      - dependency-name: 'uuid'
+        versions:
+          - '9.x'
 
   - package-ecosystem: bundler
     directory: '/'
