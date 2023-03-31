@@ -28,7 +28,7 @@ module AccountsHelper
   end
 
   def hide_followers_count?(account)
-    Setting.hide_followers_count || account.user&.setting_hide_followers_count
+    Setting.hide_followers_count || account.user&.settings['hide_followers_count']
   end
 
   def account_description(account)
