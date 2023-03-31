@@ -25,6 +25,10 @@ updates:
       - dependency-name: 'uuid'
         versions:
           - '9.x'
+      # TODO: This version got stuck in https://github.com/mastodon/mastodon/pull/14073 and this should be deleted to fix
+      - dependency-name: 'history'
+        versions:
+          - '5.x'
 
   - package-ecosystem: bundler
     directory: '/'
