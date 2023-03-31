@@ -47,6 +47,10 @@ updates:
       - dependency-name: 'rails-i18n'
         versions:
           - '7.x'
+      # This version needs manual updates https://github.com/rails/sprockets/blob/master/UPGRADING.md#guide-to-upgrading-from-sprockets-3x-to-4x
+      - dependency-name: 'sprockets'
+        versions:
+          - '4.x'
 
   - package-ecosystem: github-actions
     directory: '/'
