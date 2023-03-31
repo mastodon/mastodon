@@ -3,6 +3,12 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+# [3.5.8] - 2023-03-31
+
+### Security
+
+- Bump Ruby to 3.0.6 due to ReDoS vulnerabilities ([saizai](https://github.com/mastodon/mastodon/pull/24332))
+
 # [3.5.7] - 2023-03-16
 
 ### Added
