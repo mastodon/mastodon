@@ -1,5 +1,7 @@
+# Can be removed once all rules are addressed or moved to this file as documented overrides
 inherit_from: .rubocop_todo.yml
 
+# Used for merging with exclude lists with .rubocop_todo.yml
 inherit_mode:
   merge:
     - Exclude
@@ -11,13 +13,13 @@ require:
   - rubocop-capybara
 
 AllCops:
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 2.7 # Set to minimum supported version of CI
   DisplayCopNames: true
   DisplayStyleGuide: true
   ExtraDetails: true
   UseCache: true
   CacheRootDirectory: tmp
-  NewCops: enable
+  NewCops: enable # Opt-in to newly added rules
   Exclude:
     - db/schema.rb
     - 'bin/*'
@@ -25,12 +27,16 @@ AllCops:
     - 'node_modules/**/*'
     - 'Vagrantfile'
     - 'vendor/**/*'
-    - 'lib/json_ld/*'
+    - 'lib/json_ld/*' # Generated files
     - 'lib/templates/**/*'
 
+# Reason: Prefer Hashes without extreme indentation
+# https://docs.rubocop.org/rubocop/cops_layout.html#layoutfirsthashelementindentation
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
 
+# Reason: Currently disabled in .rubocop_todo.yml
+# https://docs.rubocop.org/rubocop/cops_layout.html#layoutlinelength
 Layout/LineLength:
   AllowedPatterns:
     # Allow comments to be long lines
@@ -41,10 +47,14 @@ Layout/LineLength:
     - db/*migrate/**/*
     - db/seeds/**/*
 
+# Reason:
+# https://docs.rubocop.org/rubocop/cops_lint.html#lintuselessaccessmodifier
 Lint/UselessAccessModifier:
   ContextCreatingMethods:
     - class_methods
 
+# Reason: Currently disabled in .rubocop_todo.yml
+# https://docs.rubocop.org/rubocop/cops_metrics.html#metricsabcsize
 Metrics/AbcSize:
   Exclude:
     - 'lib/**/*cli*.rb'
@@ -79,6 +89,8 @@ Metrics/BlockLength:
     - 'db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb'
     - 'lib/paperclip/gif_transcoder.rb'
 
+# Reason:
+# https://docs.rubocop.org/rubocop/cops_metrics.html#metricsblocknesting
 Metrics/BlockNesting:
   Exclude:
     - 'lib/mastodon/*_cli.rb'
@@ -127,22 +139,32 @@ Metrics/ClassLength:
     - 'app/services/update_status_service.rb'
     - 'lib/paperclip/color_extractor.rb'
 
+# Reason: Currently disabled in .rubocop_todo.yml
+# https://docs.rubocop.org/rubocop/cops_metrics.html#metricscyclomaticcomplexity
 Metrics/CyclomaticComplexity:
   Exclude:
     - lib/mastodon/*cli*.rb
     - db/*migrate/**/*
 
+# Reason: Currently disabled in .rubocop_todo.yml
+# https://docs.rubocop.org/rubocop/cops_metrics.html#metricsmethodlength
 Metrics/MethodLength:
   CountAsOne: [array, heredoc]
   Exclude:
     - 'lib/mastodon/*_cli.rb'
 
+# Reason:
+# https://docs.rubocop.org/rubocop/cops_style.html#stylerescuestandarderror
 Metrics/ModuleLength:
   CountAsOne: [array, heredoc]
 
+# Reason: Prevailing style uses numeric status codes, matches RSpec/Rails/HttpStatus
+# https://docs.rubocop.org/rubocop-rails/cops_rails.html#railshttpstatus
 Rails/HttpStatus:
   EnforcedStyle: numeric
 
+# Reason: Allowed only in the `tootctl` CLI application code
+# https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsexit
 Rails/Exit:
   Exclude:
     - 'lib/mastodon/*_cli.rb'
@@ -170,9 +192,18 @@ RSpec/FilePath:
     - 'spec/controllers/concerns/signature_verification_spec.rb'
     - 'spec/controllers/concerns/user_tracking_concern_spec.rb'
 
+# Reason:
+# https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecnamedsubject
+RSpec/NamedSubject:
+  EnforcedStyle: named_only
+
+# Reason: Prevailing style choice
+# https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecnottonot
 RSpec/NotToNot:
   EnforcedStyle: to_not
 
+# Reason: Prevailing style uses numeric status codes, matches Rails/HttpStatus
+# https://docs.rubocop.org/rubocop-rspec/cops_rspec_rails.html#rspecrailshttpstatus
 RSpec/Rails/HttpStatus:
   EnforcedStyle: numeric
 
@@ -186,34 +217,45 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
+# Reason: Enforce modern Ruby style
+# https://docs.rubocop.org/rubocop/cops_style.html#stylehashsyntax
 Style/HashSyntax:
   EnforcedStyle: ruby19_no_mixed_keys
 
+# Reason:
+# https://docs.rubocop.org/rubocop/cops_style.html#stylenumericliterals
 Style/NumericLiterals:
   AllowedPatterns:
     - \d{4}_\d{2}_\d{2}_\d{6} # For DB migration date version number readability
 
+# Reason:
+# https://docs.rubocop.org/rubocop/cops_style.html#stylepercentliteraldelimiters
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
     '%i': '()'
     '%w': '()'
 
-Style/RescueStandardError:
-  EnforcedStyle: implicit
-
-Style/TrailingCommaInArrayLiteral:
-  EnforcedStyleForMultiline: 'comma'
-
-Style/TrailingCommaInHashLiteral:
-  EnforcedStyleForMultiline: 'comma'
-
-Style/SymbolArray:
-  Enabled: false
-
-# Reason: Prefer less intendation in conditional assignments
+# Reason: Prefer less indentation in conditional assignments
 # https://docs.rubocop.org/rubocop/cops_style.html#styleredundantbegin
 Style/RedundantBegin:
   Enabled: false
 
-RSpec/NamedSubject:
-  EnforcedStyle: named_only
+# Reason: Overridden to reduce implicit StandardError rescues
+# https://docs.rubocop.org/rubocop/cops_style.html#stylerescuestandarderror
+Style/RescueStandardError:
+  EnforcedStyle: implicit
+
+# Reason: Originally disabled for CodeClimate, and no config consensus has been found
+# https://docs.rubocop.org/rubocop/cops_style.html#stylesymbolarray
+Style/SymbolArray:
+  Enabled: false
+
+# Reason:
+# https://docs.rubocop.org/rubocop/cops_style.html#styletrailingcommainarrayliteral
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: 'comma'
+
+# Reason:
+# https://docs.rubocop.org/rubocop/cops_style.html#styletrailingcommainhashliteral
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: 'comma'
