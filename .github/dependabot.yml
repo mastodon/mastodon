@@ -17,6 +17,10 @@ updates:
       - dependency-name: '@rails/ujs'
         versions:
           - '7.x'
+      # TODO: This version got stuck in https://github.com/mastodon/mastodon/pull/14004 and this should be deleted to fix
+      - dependency-name: 'pg'
+        versions:
+          - '8.x'
 
   - package-ecosystem: bundler
     directory: '/'
