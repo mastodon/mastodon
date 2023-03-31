@@ -92,7 +92,7 @@ class Admin::ActionLogFilter
   def scope_for(key, value)
     case key
     when 'action_type'
-      raise Mastodon::InvalidParameterError, "Unknown action_type: #{value}" unless ACTION_TYPE_MAP[value.to_sym].present?
+      raise Mastodon::InvalidParameterError, "Unknown action_type: #{value}" if ACTION_TYPE_MAP[value.to_sym].blank?
 
       Admin::ActionLog.where(ACTION_TYPE_MAP[value.to_sym])
     when 'account_id'
