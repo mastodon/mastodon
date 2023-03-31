@@ -50,10 +50,34 @@ Metrics/AbcSize:
     - 'lib/**/*cli*.rb'
     - db/*migrate/**/*
 
+# Reason: Some functions cannot be broken up, but others may be refactor candidates
+# https://docs.rubocop.org/rubocop/cops_metrics.html#metricsblocklength
 Metrics/BlockLength:
-  CountAsOne: [array, heredoc]
+  CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
   Exclude:
     - 'lib/mastodon/*_cli.rb'
+    - 'lib/tasks/*.rake'
+    - 'app/models/concerns/account_associations.rb'
+    - 'app/models/concerns/account_interactions.rb'
+    - 'app/models/concerns/ldap_authenticable.rb'
+    - 'app/models/concerns/omniauthable.rb'
+    - 'app/models/concerns/pam_authenticable.rb'
+    - 'app/models/concerns/remotable.rb'
+    - 'app/services/suspend_account_service.rb'
+    - 'app/services/unsuspend_account_service.rb'
+    - 'app/views/accounts/show.rss.ruby'
+    - 'app/views/tags/show.rss.ruby'
+    - 'config/environments/development.rb'
+    - 'config/environments/production.rb'
+    - 'config/initializers/devise.rb'
+    - 'config/initializers/doorkeeper.rb'
+    - 'config/initializers/omniauth.rb'
+    - 'config/initializers/simple_form.rb'
+    - 'config/navigation.rb'
+    - 'config/routes.rb'
+    - 'db/post_migrate/20221101190723_backfill_admin_action_logs.rb'
+    - 'db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb'
+    - 'lib/paperclip/gif_transcoder.rb'
 
 Metrics/BlockNesting:
   Exclude:
