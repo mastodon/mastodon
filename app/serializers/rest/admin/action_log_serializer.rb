@@ -12,8 +12,11 @@
 #
 # Clients that want to display this output should look at the web UI's `ActionLogsHelper` for inspiration.
 class REST::Admin::ActionLogSerializer < ActiveModel::Serializer
+  include RoutingHelper
+
   attributes :id,
-             :action,
+             :account,
+             :action_type,
              :target_type,
              :target_id,
              :created_at,
@@ -25,6 +28,10 @@ class REST::Admin::ActionLogSerializer < ActiveModel::Serializer
 
   def id
     object.id.to_s
+  end
+
+  def action_type
+    "#{object.action}_#{target_type}"
   end
 
   # Keep this in sync with `ActionLogFilter.scope_for`.
@@ -50,6 +57,7 @@ class REST::Admin::ActionLogSerializer < ActiveModel::Serializer
   end
 
   # Permalink or admin web UI link relevant to target object, if it has one. May be nil.
+  # In the case of domains, may not necessarily map to a visitable web site.
   def link
     case object.target_type
     when 'Account'
@@ -73,19 +81,13 @@ class REST::Admin::ActionLogSerializer < ActiveModel::Serializer
     end
   end
 
-  belongs_to :subject, serializer: REST::Admin::AccountSerializer
-
-  # Note that the action log model's `account` column is serialized as `subject`
-  # so that the target account can be serialized as simply `account` and not `target_account`.
-  def subject
-    object.account
-  end
+  belongs_to :account, serializer: REST::Admin::AccountSerializer
 
   # These targets serialize as admin API types.
 
-  belongs_to :account, if: :any_account_target?, serializer: REST::Admin::AccountSerializer
+  belongs_to :target_account, if: :any_account_target?, serializer: REST::Admin::AccountSerializer
 
-  def account
+  def target_account
     if account_target?
       object.target
     elsif user_target?

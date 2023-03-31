@@ -29,9 +29,7 @@ class Api::V1::Admin::ActionLogsController < Api::BaseController
   end
 
   def filter_params
-    # Rails uses the param name `action` internally, so we have to get it from the request.
-    params_slice(*Admin::ActionLogFilter::API_KEYS)
-      .merge(request.query_parameters.slice(:action))
+    params_slice(*Admin::ActionLogFilter::KEYS)
   end
 
   def insert_pagination_headers

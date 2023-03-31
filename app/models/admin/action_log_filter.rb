@@ -1,17 +1,10 @@
 # frozen_string_literal: true
 
 class Admin::ActionLogFilter
-  # Filter params used by the web UI.
   KEYS = %i(
     action_type
     account_id
     target_account_id
-  ).freeze
-
-  # Filter params used by the audit log API.
-  API_KEYS = %i(
-    action
-    subject_id
     target_id
     target_type
   ).freeze
@@ -47,7 +40,7 @@ class Admin::ActionLogFilter
     destroy_status: { target_type: 'Status', action: 'destroy' }.freeze,
     destroy_user_role: { target_type: 'UserRole', action: 'destroy' }.freeze,
     destroy_canonical_email_block: { target_type: 'CanonicalEmailBlock', action: 'destroy' }.freeze,
-    disable_2fa_user: { target_type: 'User', action: 'disable' }.freeze,
+    disable_2fa_user: { target_type: 'User', action: 'disable_2fa' }.freeze,
     disable_custom_emoji: { target_type: 'CustomEmoji', action: 'disable' }.freeze,
     disable_user: { target_type: 'User', action: 'disable' }.freeze,
     enable_custom_emoji: { target_type: 'CustomEmoji', action: 'enable' }.freeze,
@@ -83,6 +76,8 @@ class Admin::ActionLogFilter
   def results
     scope = Admin::ActionLog.includes(:target)
 
+    raise Mastodon::InvalidParameterError, 'target_id requires target_type' if params['target_id'].present? && params['target_type'].blank?
+
     params.each do |key, value|
       next if key.to_s == 'page'
 
@@ -97,14 +92,14 @@ class Admin::ActionLogFilter
   def scope_for(key, value)
     case key
     when 'action_type'
+      raise Mastodon::InvalidParameterError, "Unknown action_type: #{value}" unless ACTION_TYPE_MAP[value.to_sym].present?
+
       Admin::ActionLog.where(ACTION_TYPE_MAP[value.to_sym])
-    when 'account_id', 'subject_id'
+    when 'account_id'
       Admin::ActionLog.where(account_id: value)
     when 'target_account_id'
       account = Account.find_or_initialize_by(id: value)
       Admin::ActionLog.where(target: [account, account.user].compact)
-    when 'action'
-      Admin::ActionLog.where(action: value)
     when 'target_id'
       Admin::ActionLog.where(target_id: value)
     when 'target_type'
