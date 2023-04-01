@@ -1427,15 +1427,6 @@ body > [data-popper-placement] {
   padding: 16px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
 
-  &.compact {
-    padding: 0;
-    border-bottom: 0;
-
-    .account__avatar-wrapper {
-      margin-inline-start: 0;
-    }
-  }
-
   .account__display-name {
     flex: 1 1 auto;
     display: flex;
@@ -1452,6 +1443,18 @@ body > [data-popper-placement] {
 
     .display-name strong {
       display: inline;
+    }
+  }
+
+  &--minimal {
+    .account__display-name {
+      .display-name {
+        margin-bottom: 0;
+      }
+
+      .display-name strong {
+        display: block;
+      }
     }
   }
 
