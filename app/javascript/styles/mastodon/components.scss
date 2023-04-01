@@ -4816,6 +4816,86 @@ a.status-card.compact:hover {
 .search {
   margin-bottom: 10px;
   position: relative;
+
+  &__popout {
+    box-sizing: border-box;
+    display: none;
+    position: absolute;
+    inset-inline-start: 0;
+    margin-top: -2px;
+    width: 100%;
+    background: $ui-base-color;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
+    z-index: 2;
+    font-size: 13px;
+    padding: 15px 5px;
+
+    h4 {
+      text-transform: uppercase;
+      color: $dark-text-color;
+      font-weight: 500;
+      padding: 0 10px;
+      margin-bottom: 10px;
+    }
+
+    &__menu {
+      &__message {
+        color: $dark-text-color;
+        padding: 0 10px;
+      }
+
+      &__item {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        border: 0;
+        font: inherit;
+        background: transparent;
+        color: $darker-text-color;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        text-align: start;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+        &--flex {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .icon-button {
+          transition: none;
+        }
+
+        &:hover,
+        &:focus,
+        &:active,
+        &.selected {
+          background: $ui-highlight-color;
+          color: $primary-text-color;
+
+          .icon-button {
+            color: $primary-text-color;
+          }
+        }
+
+        mark {
+          background: transparent;
+          font-weight: 700;
+          color: $primary-text-color;
+        }
+      }
+    }
+  }
+
+  &.active {
+    .search__popout {
+      display: block;
+    }
+  }
 }
 
 .search__input {
@@ -6695,10 +6775,6 @@ a.status-card.compact:hover {
   border-radius: 0;
 }
 
-.search-popout {
-  @include search-popout;
-}
-
 noscript {
   text-align: center;
 
@@ -7983,6 +8059,10 @@ noscript {
   .search__input {
     border: 1px solid lighten($ui-base-color, 8%);
     padding: 10px;
+  }
+
+  .search__popout {
+    border: 1px solid lighten($ui-base-color, 8%);
   }
 
   .search .fa {
