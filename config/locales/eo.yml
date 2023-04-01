@@ -1,10 +1,9 @@
----
 eo:
   about:
     about_mastodon_html: 'La socia retejo de la estonteco: sen reklamo, sen observado por firmao, etika desegno, kaj malcentrigo! Regu viajn informojn per Mastodon!'
     contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
-    hosted_on: "%{domain} estas nodo de Mastodon"
+    hosted_on: '%{domain} estas nodo de Mastodon'
     title: Pri
   accounts:
     follow: Sekvi
@@ -56,7 +55,7 @@ eo:
       delete: Forigi datumojn
       deleted: Forigita
       demote: Degradi
-      destroyed_msg: Datumoj de %{username} nun enviciĝis por esti forigita baldaǔ
+      destroyed_msg: "Datumoj de %{username} nun enviciĝis por esti forigita baldaǔ"
       disable: Frostigi
       disable_sign_in_token_auth: Malŝalti aŭtentigon per retpoŝta ĵetono
       disable_two_factor_authentication: Malŝalti 2FA-n
@@ -548,11 +547,11 @@ eo:
       no_ip_block_selected: Neniu IP-regulo estis ŝanĝita ĉar neniu estis elektita
       title: IP-reguloj
     relationships:
-      title: Rilatoj de %{acct}
+      title: "Rilatoj de %{acct}"
     relays:
       add_new: Aldoni novan ripetilon
       delete: Forigi
-      description_html: "<strong>Fratara ripetilo</strong> estas survoja servilo, kiu interŝanĝas grandan kvanton de publikaj mesaĝoj inter serviloj, kiuj abonas kaj publikigas al ĝi. <strong>Ĝi povas helpi etajn kaj mezgrandajn servilojn malkovri enhavon de la fediverse</strong>, kio normale postulus al lokaj uzantoj mane sekvi homojn de foraj serviloj."
+      description_html: <strong>Fratara ripetilo</strong> estas survoja servilo, kiu interŝanĝas grandan kvanton de publikaj mesaĝoj inter serviloj, kiuj abonas kaj publikigas al ĝi. <strong>Ĝi povas helpi etajn kaj mezgrandajn servilojn malkovri enhavon de la fediverse</strong>, kio normale postulus al lokaj uzantoj mane sekvi homojn de foraj serviloj.
       disable: Malebligi
       disabled: Malebligita
       enable: Ebligi
@@ -889,7 +888,7 @@ eo:
     webhooks:
       add_new: Aldoni finpunkton
       delete: Forigi
-      description_html: "<strong>Rethoko</strong> ebligas Mastodon sendi <strong>realtempan sciigon</strong> pri kelkaj eventoj al la via sia programaro por <strong>automata ekigi</strong>."
+      description_html: <strong>Rethoko</strong> ebligas Mastodon sendi <strong>realtempan sciigon</strong> pri kelkaj eventoj al la via sia programaro por <strong>automata ekigi</strong>.
       disable: Neebligi
       disabled: Neebligita
       edit: Redakti finpunkton
@@ -925,7 +924,7 @@ eo:
     new_report:
       body: "%{reporter} signalis %{target}"
       body_remote: Iu de %{domain} signalis %{target}
-      subject: Nova signalo por %{instance} (#%{id})
+      subject: 'Nova signalo por %{instance} (#%{id})'
     new_trends:
       body: 'La eroj bezonas kontrolon antau ol ili povas montritas publike:'
       new_trending_links:
@@ -934,7 +933,7 @@ eo:
         title: Popularaĝaj mesaĝoj
       new_trending_tags:
         no_approved_tags: Nun ne havas aprobitajn popularajn kradvortojn.
-        requirements: Ajn ĉi tiu eroj povas superi la %{rank}an kradvorton kiu estas %{lowest_tag_name} kun %{lowest_tag_score} puentoj.
+        requirements: 'Ajn ĉi tiu eroj povas superi la %{rank}an kradvorton kiu estas %{lowest_tag_name} kun %{lowest_tag_score} puentoj.'
         title: Tendencantaj kradvortoj
       subject: Novaj popularaĵoj bezonas kontrolitis ĉe %{instance}
   aliases:
@@ -1130,9 +1129,7 @@ eo:
       content: Ni bedaŭras, io malsukcesis niaflanke.
       title: Ĉi tiu paĝo ne estas ĝusta
     '503': La paĝo ne povas montritis pro malpermanenta servilmalfunkcio.
-    noscript_html: |-
-      Por uzi la retan aplikaĵon de Mastodon, bonvolu ebligi JavaScript. Alimaniere, provu unu el la
-      <a href="%{apps_path}">operaciumaj aplikaĵoj</a> por Mastodon por via platformo.
+    noscript_html: "Por uzi la retan aplikaĵon de Mastodon, bonvolu ebligi JavaScript. Alimaniere, provu unu el la\n<a href=\"%{apps_path}\">operaciumaj aplikaĵoj</a> por Mastodon por via platformo."
   existing_username_validator:
     not_found: Ne povas trovi lokaj uzanto kun tiu uzantnomo
     not_found_multiple: Ne povas trovi %{usernames}
@@ -1202,10 +1199,10 @@ eo:
     all: Ĉio
     all_items_on_page_selected_html:
       one: "<strong>%{count}</strong> ero ĉe ĉi tiu paĝo elektitas."
-      other: "<strong>%{count}</strong> eroj ĉe ĉi tiu paĝo elektitas."
+      other: <strong>%{count}</strong> eroj ĉe ĉi tiu paĝo elektitas.
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> ero kiu kongruas vian serĉon elektitas."
-      other: "<strong>%{count}</strong> eroj kiuj kongruas vian serĉon elektitas."
+      other: <strong>%{count}</strong> eroj kiuj kongruas vian serĉon elektitas.
     changes_saved_msg: Ŝanĝoj sukcese konservitaj!
     copy: Kopii
     delete: Forigi
@@ -1222,7 +1219,7 @@ eo:
       other: Io mise okazis! Bonvolu konsulti la subajn %{count} erar-raportojn
   imports:
     errors:
-      invalid_csv_file: Nevalida CSV-dosiero. %{error}
+      invalid_csv_file: 'Nevalida CSV-dosiero. %{error}'
       over_rows_processing_limit: enhavas pli ol %{count} vicoj
     modes:
       merge: Kunigi
@@ -1325,7 +1322,7 @@ eo:
       sign_up:
         subject: "%{name} registriĝis"
     favourite:
-      body: "%{name} stelumis vian afiŝon:"
+      body: '%{name} stelumis vian afiŝon:'
       subject: "%{name} stelumis vian afiŝon"
       title: Nova stelumo
     follow:
@@ -1335,12 +1332,12 @@ eo:
     follow_request:
       action: Administri petojn de sekvado
       body: "%{name} petis sekvi vin"
-      subject: "%{name} petis sekvi vin"
+      subject: '%{name} petis sekvi vin'
       title: Nova peto de sekvado
     mention:
       action: Respondi
-      body: "%{name} menciis vin en:"
-      subject: "%{name} menciis vin"
+      body: '%{name} menciis vin en:'
+      subject: '%{name} menciis vin'
       title: Nova mencio
     poll:
       subject: Enketo de %{name} finitas
@@ -1545,7 +1542,7 @@ eo:
     show_older: Montri pli malnovajn
     show_thread: Montri la mesaĝaron
     sign_in_to_participate: Ensalutu por partopreni la konversacion
-    title: "%{name}: “%{quote}”"
+    title: '%{name}: “%{quote}”'
     visibilities:
       direct: Rekta
       private: Montri nur al sekvantoj
