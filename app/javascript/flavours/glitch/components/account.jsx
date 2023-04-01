@@ -9,6 +9,7 @@ import { Skeleton } from 'flavours/glitch/components/skeleton';
 import { counterRenderer } from 'flavours/glitch/components/common_counter';
 import ShortNumber from 'flavours/glitch/components/short_number';
 import Icon from 'flavours/glitch/components/icon';
+import classNames from 'classnames';
 
 import { me } from '../initial_state';
 
@@ -61,6 +62,7 @@ class Account extends ImmutablePureComponent {
     onMuteNotifications: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     hidden: PropTypes.bool,
+    minimal: PropTypes.bool,
     actionIcon: PropTypes.string,
     actionTitle: PropTypes.string,
     defaultAction: PropTypes.string,
@@ -96,14 +98,14 @@ class Account extends ImmutablePureComponent {
   };
 
   render () {
-    const { account, intl, hidden, onActionClick, actionIcon, actionTitle, defaultAction, size } = this.props;
+    const { account, intl, hidden, onActionClick, actionIcon, actionTitle, defaultAction, size, minimal } = this.props;
 
     if (!account) {
       return (
-        <div className='account'>
+        <div className={classNames('account', { 'account--minimal': minimal })}>
           <div className='account__wrapper'>
             <div className='account__display-name'>
-              <div className='account__avatar-wrapper'><Skeleton width={36} height={36} /></div>
+              <div className='account__avatar-wrapper'><Skeleton width={size} height={size} /></div>
 
               <div>
                 <DisplayName />
@@ -177,7 +179,7 @@ class Account extends ImmutablePureComponent {
     }
 
     return (
-      <div className='account'>
+      <div className={classNames('account', { 'account--minimal': minimal })}>
         <div className='account__wrapper'>
           <Permalink key={account.get('id')} className='account__display-name' title={account.get('acct')} href={account.get('url')} to={`/@${account.get('acct')}`}>
             <div className='account__avatar-wrapper'>
@@ -186,13 +188,15 @@ class Account extends ImmutablePureComponent {
 
             <div>
               <DisplayName account={account} />
-              <ShortNumber value={account.get('followers_count')} renderer={counterRenderer('followers')} /> {verification} {muteTimeRemaining}
+              {!minimal && <><ShortNumber value={account.get('followers_count')} renderer={counterRenderer('followers')} /> {verification} {muteTimeRemaining}</>}
             </div>
           </Permalink>
 
-          <div className='account__relationship'>
-            {buttons}
-          </div>
+          {!minimal && (
+            <div className='account__relationship'>
+              {buttons}
+            </div>
+          )}
         </div>
       </div>
     );

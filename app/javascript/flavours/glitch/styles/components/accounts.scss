@@ -21,6 +21,18 @@
     }
   }
 
+  &--minimal {
+    .account__display-name {
+      .display-name {
+        margin-bottom: 0;
+      }
+
+      .display-name strong {
+        display: block;
+      }
+    }
+  }
+
   &__note {
     overflow: hidden;
     text-overflow: ellipsis;
