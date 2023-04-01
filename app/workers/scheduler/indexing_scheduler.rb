@@ -14,12 +14,10 @@ class Scheduler::IndexingScheduler
 
     indexes.each do |type|
       with_redis do |redis|
-        redis.sscan_each("chewy:queue:#{type.name}", count: SCAN_BATCH_SIZE) do |ids|
-          redis.pipelined do
-            ids.each_slice(IMPORT_BATCH_SIZE) do |slice_ids|
-              type.import!(slice_ids)
-              redis.srem("chewy:queue:#{type.name}", slice_ids)
-            end
+        redis.sscan_each("chewy:queue:#{type.name}", count: SCAN_BATCH_SIZE).each_slice(IMPORT_BATCH_SIZE) do |ids|
+          type.import!(ids)
+          redis.pipelined do |pipeline|
+            pipeline.srem("chewy:queue:#{type.name}", ids)
           end
         end
       end
