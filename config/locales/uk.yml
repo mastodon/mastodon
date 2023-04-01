@@ -1,4 +1,3 @@
----
 uk:
   about:
     about_mastodon_html: 'Соціальна мережа майбутнього: жодної реклами, жодного корпоративного нагляду, етичний дизайн та децентралізація! З Mastodon ваші дані під вашим контролем!'
@@ -9,9 +8,9 @@ uk:
   accounts:
     follow: Підписатися
     followers:
+      one: Підписник
       few: Підписники
       many: Підписників
-      one: Підписник
       other: Підписники
     following: Підписок
     instance_actor_flash: Цей обліковий запис є віртуальним персонажем, який використовується для показу самого сервера, а не будь-якого окремого користувача. Він використовується з метою федералізації і не повинен бути зупинений.
@@ -21,9 +20,9 @@ uk:
     pin_errors:
       following: Ви повинні бути підписаним на людину, яку бажаєте схвалити
     posts:
+      one: Допис
       few: Дописи
       many: Дописів
-      one: Допис
       other: Дописів
     posts_tab_heading: Дописів
   admin:
@@ -60,7 +59,7 @@ uk:
       delete: Видалити дані
       deleted: Видалено
       demote: Усунути
-      destroyed_msg: Дані %{username} тепер в черзі на негайне видалення
+      destroyed_msg: "Дані %{username} тепер в черзі на негайне видалення"
       disable: Вимкнути
       disable_sign_in_token_auth: Вимкнути автентифікацію за допомогою е-пошти
       disable_two_factor_authentication: Вимкнути двофакторну авторизацію
@@ -91,7 +90,7 @@ uk:
       media_attachments: Мультимедійні вкладення
       memorialize: Зробити пам'ятником
       memorialized: Перетворено на пам'ятник
-      memorialized_msg: "%{username} успішно перетворено на пам'ятний обліковий запис"
+      memorialized_msg: '%{username} успішно перетворено на пам''ятний обліковий запис'
       moderation:
         active: Активний
         all: Усі
@@ -111,9 +110,9 @@ uk:
       perform_full_suspension: Призупинити
       previous_strikes: Попередні попередження
       previous_strikes_description_html:
+        one: У цього облікового запису є <strong>одне</strong> попередження.
         few: У цього облікового запису є <strong>%{count}</strong> попередження.
         many: У цього облікового запису є <strong>%{count}</strong> попереджень.
-        one: У цього облікового запису є <strong>одне</strong> попередження.
         other: У цього облікового запису є <strong>%{count}</strong> попереджень.
       promote: Просунути
       protocol: Протокол
@@ -284,7 +283,7 @@ uk:
         suspend_account_html: "%{name} заморожує обліковий запис %{target}"
         unassigned_report_html: "%{name} прибирає призначення скарги %{target}"
         unblock_email_account_html: "%{name} розблоковує електронну пошту %{target}"
-        unsensitive_account_html: '%{name} прибирає позначку "делікатне" з медіа від %{target}'
+        unsensitive_account_html: "%{name} прибирає позначку \"делікатне\" з медіа від %{target}"
         unsilence_account_html: "%{name} розглушує обліковий запис %{target}"
         unsuspend_account_html: "%{name} розморожує обліковий запис %{target}"
         update_announcement_html: "%{name} оновлює оголошення %{target}"
@@ -356,24 +355,24 @@ uk:
       new_users: нові користувачі
       opened_reports: звітів відкрито
       pending_appeals_html:
+        one: "<strong>%{count}</strong> апеляція в черзі"
         few: "<strong>%{count}</strong> апеляції в черзі"
         many: "<strong>%{count}</strong> апеляцій в черзі"
-        one: "<strong>%{count}</strong> апеляція в черзі"
         other: "<strong>%{count}</strong> апеляції в черзі"
       pending_reports_html:
+        one: "<strong>%{count}</strong> звіт у черзі"
         few: "<strong>%{count}</strong> звіти у черзі"
         many: "<strong>%{count}</strong> звітів у черзі"
-        one: "<strong>%{count}</strong> звіт у черзі"
         other: "<strong>%{count}</strong> звіти у черзі"
       pending_tags_html:
+        one: "<strong>%{count}</strong> хештеґ у черзі"
         few: "<strong>%{count}</strong> хештеґи у черзі"
         many: "<strong>%{count}</strong> хештеґів у черзі"
-        one: "<strong>%{count}</strong> хештеґ у черзі"
         other: "<strong>%{count}</strong> хештеґа у черзі"
       pending_users_html:
+        one: "<strong>%{count}</strong> користувач у черзі"
         few: "<strong>%{count}</strong> користувачі у черзі"
         many: "<strong>%{count}</strong> користувачів у черзі"
-        one: "<strong>%{count}</strong> користувач у черзі"
         other: "<strong>%{count}</strong> користувача у черзі"
       resolved_reports: розв'язані звіти
       software: Програмне забезпечення
@@ -430,9 +429,9 @@ uk:
     email_domain_blocks:
       add_new: Додати
       attempts_over_week:
+        one: "%{count} спроба за останній тиждень"
         few: "%{count} спроби входу за останній тиждень"
         many: "%{count} спроб входу за останній тиждень"
-        one: "%{count} спроба за останній тиждень"
         other: "%{count} спроби входу за останній тиждень"
       created_msg: Успішно додано поштовий домен до чорного списку
       delete: Видалити
@@ -475,15 +474,15 @@ uk:
     instances:
       availability:
         description_html:
+          one: Якщо доставлення до домену не вдалася <strong>%{count} день</strong>, жодних спроб доставлення не здійснюється, доки доставлення <em>від домену</em> не отримуватиметься.
           few: Якщо доставлення до домену не вдалася за <strong>%{count} інших дні</strong>, жодних спроб доставлення не здійснюється, доки доставлення <em>від домену</em> не отримуватиметься.
           many: Якщо доставлення до домену не вдалася за <strong>%{count} інших днів</strong>, жодних спроб доставлення не здійснюється, доки доставлення <em>від домену</em> не отримуватиметься.
-          one: Якщо доставлення до домену не вдалася <strong>%{count} день</strong>, жодних спроб доставлення не здійснюється, доки доставлення <em>від домену</em> не отримуватиметься.
           other: Якщо доставлення до домену не вдалася за <strong>%{count} інших днів</strong>, жодних спроб доставлення не здійснюється, доки доставлення <em>від домену</em> не отримуватиметься.
         failure_threshold_reached: Досягнуто поріг допустимих помилок станом на %{date}.
         failures_recorded:
+          one: Невдалих спроб за %{count} день.
           few: Невдалих спроб за %{count} різні дні.
           many: Невдалих спроб за %{count} різних днів.
-          one: Невдалих спроб за %{count} день.
           other: Невдалих спроб за %{count} різних днів.
         no_failures_recorded: Проблем щодо запису немає.
         title: Доступність
@@ -527,9 +526,9 @@ uk:
       destroyed_msg: Дані з %{domain} тепер у черзі на видалення.
       empty: Доменів не знайдено.
       known_accounts:
+        one: "%{count} відомий обліковий запис"
         few: "%{count} відомі облікові записи"
         many: "%{count} відомих облікових записів"
-        one: "%{count} відомий обліковий запис"
         other: "%{count} відомих облікових записів"
       moderation:
         all: Усі
@@ -574,7 +573,7 @@ uk:
     relays:
       add_new: Додати новий ретранслятор
       delete: Видалити
-      description_html: "<strong>Ретранслятор дописів</strong> (federation relay) — це проміжний сервер, що обмінюється великими обсягами публічних дописів між серверами, які цього хочуть. Він може допомогти маленьким та середнім серверам отримувати вміст з усього <strong>федесвіту</strong> (fediverse). Без нього локальним користувачам довелося б вручну підписуватися на людей з віддалених серверів."
+      description_html: <strong>Ретранслятор дописів</strong> (federation relay) — це проміжний сервер, що обмінюється великими обсягами публічних дописів між серверами, які цього хочуть. Він може допомогти маленьким та середнім серверам отримувати вміст з усього <strong>федесвіту</strong> (fediverse). Без нього локальним користувачам довелося б вручну підписуватися на людей з віддалених серверів.
       disable: Вимкнути
       disabled: Вимкнено
       enable: Увімкнути
@@ -593,9 +592,9 @@ uk:
     reports:
       account:
         notes:
+          one: "%{count} примітка"
           few: "%{count} приміток"
           many: "%{count} приміток"
-          one: "%{count} примітка"
           other: "%{count} приміток"
       action_log: Журнал подій
       action_taken_by: Дія виконана
@@ -678,9 +677,9 @@ uk:
     roles:
       add_new: Додати роль
       assigned_users:
+        one: "%{count} користувач"
         few: "%{count} користувачі"
         many: "%{count} користувачів"
-        one: "%{count} користувач"
         other: "%{count} користувача"
       categories:
         administration: Адміністрування
@@ -694,9 +693,9 @@ uk:
       everyone: Типові дозволи
       everyone_full_description_html: Це <strong>базова роль</strong>, яка впливає на <strong>всіх користувачів</strong>, навіть ті, яким не призначені ролі. Усі інші ролі успадковують її дозволи.
       permissions_count:
+        one: "%{count} дозвіл"
         few: "%{count} дозволи"
         many: "%{count} дозволів"
-        one: "%{count} дозвіл"
         other: "%{count} дозволи"
       privileges:
         administrator: Адміністратор
@@ -864,9 +863,9 @@ uk:
         publishers:
           no_publisher_selected: Жодного видавця не було змінено, оскільки жодного не було вибрано
         shared_by_over_week:
+          one: Поширила одна людина за останній тиждень
           few: Поширили %{count} людини за останній тиждень
           many: Поширили %{count} людей за останній тиждень
-          one: Поширила одна людина за останній тиждень
           other: Поширили %{count} людей за останній тиждень
         title: Популярні посилання
         usage_comparison: Сьогодні поширено %{today} разів, у порівнянні з %{yesterday} вчора
@@ -888,9 +887,9 @@ uk:
         no_status_selected: Жодного популярного допису не було змінено, оскільки жодного не було вибрано
         not_discoverable: Автор не вирішив бути видимим
         shared_by:
+          one: Поділитись або додати в улюблені один раз
           few: Поділитись або додати в улюблені %{friendly_count} рази
           many: Поділитись або додати в улюблені %{friendly_count} разів
-          one: Поділитись або додати в улюблені один раз
           other: Поділитись або додати в улюблені %{friendly_count} рази
         title: Популярні дописи
       tags:
@@ -914,9 +913,9 @@ uk:
         usable: Може бути використано
         usage_comparison: Сьогодні використано %{today} разів, у порівнянні з %{yesterday} вчора
         used_by_over_week:
+          one: Використала одна людина за минулий тиждень
           few: Використали %{count} людини за минулий тиждень
           many: Використали %{count} людей за минулий тиждень
-          one: Використала одна людина за минулий тиждень
           other: Використали %{count} людей за минулий тиждень
       title: Популярні
       trending: Популярне
@@ -929,7 +928,7 @@ uk:
     webhooks:
       add_new: Додати кінцеву точку
       delete: Видалити
-      description_html: "<strong>Вебхук</strong> дає змогу Mastodon надсилати повідомлення про обрані події до вашого застосунку <strong>в реальному часі</strong>, щоб застосунок міг <strong>автоматично реагувати на реакції</strong>."
+      description_html: <strong>Вебхук</strong> дає змогу Mastodon надсилати повідомлення про обрані події до вашого застосунку <strong>в реальному часі</strong>, щоб застосунок міг <strong>автоматично реагувати на реакції</strong>.
       disable: Вимкнути
       disabled: Вимкнено
       edit: Редагувати кінцеву точку
@@ -937,9 +936,9 @@ uk:
       enable: Увімкнути
       enabled: Активні
       enabled_events:
+        one: 1 увімкнена подія
         few: "%{count} увімкнені події"
         many: "%{count} увімкнених подій"
-        one: 1 увімкнена подія
         other: "%{count} увімкнені події"
       events: Події
       new: Новий вебхук
@@ -967,7 +966,7 @@ uk:
     new_report:
       body: "%{reporter} поскаржився на %{target}"
       body_remote: Хтось з домену %{domain} поскаржився на %{target}
-      subject: Нова скарга до %{instance} (#%{id})
+      subject: 'Нова скарга до %{instance} (#%{id})'
     new_trends:
       body: 'Ці елементи потребують розгляду перед оприлюдненням:'
       new_trending_links:
@@ -1219,20 +1218,20 @@ uk:
       expires_in: Закінчується %{distance}
       expires_on: Закінчується %{date}
       keywords:
+        one: "%{count} ключове слово"
         few: "%{count} ключові слова"
         many: "%{count} ключових слів"
-        one: "%{count} ключове слово"
         other: "%{count} ключових слів"
       statuses:
+        one: "%{count} допис"
         few: "%{count} дописи"
         many: "%{count} дописів"
-        one: "%{count} допис"
         other: "%{count} дописа"
       statuses_long:
-        few: Сховано %{count} окремі дописи
-        many: Сховано %{count} окремих дописів
-        one: Сховано %{count} окремий допис
-        other: Сховано %{count} окремі дописи
+        one: "Сховано %{count} окремий допис"
+        few: "Сховано %{count} окремі дописи"
+        many: "Сховано %{count} окремих дописів"
+        other: "Сховано %{count} окремі дописи"
       title: Фільтри
     new:
       save: Зберегти новий фільтр
@@ -1247,14 +1246,14 @@ uk:
   generic:
     all: Усі
     all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> елемент на цій сторінці вибрано."
       few: Усі <strong>%{count}</strong> елементи на цій сторінці вибрано.
       many: Усі <strong>%{count}</strong> елементів на цій сторінці вибрано.
-      one: "<strong>%{count}</strong> елемент на цій сторінці вибрано."
-      other: "<strong>%{count}</strong> елементи на цій сторінці вибрано."
+      other: <strong>%{count}</strong> елементи на цій сторінці вибрано.
     all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> елемент, що збігається з вашим пошуком вибрано."
       few: Усі <strong>%{count}</strong> елементи, що збігаються з вашим пошуком вибрано.
       many: Усі <strong>%{count}</strong> елементів, що збігаються з вашим пошуком вибрано.
-      one: "<strong>%{count}</strong> елемент, що збігається з вашим пошуком вибрано."
       other: Усі <strong>%{count}</strong> елементи, що збігаються з вашим пошуком вибрано.
     changes_saved_msg: Зміни успішно збережені!
     copy: Копіювати
@@ -1264,15 +1263,15 @@ uk:
     order_by: Сортувати за
     save_changes: Зберегти зміни
     select_all_matching_items:
+      one: Вибрати %{count} елемент, що збігається з вашим пошуком.
       few: Вибрати всі %{count} елементи, що збігаються з вашим пошуком.
       many: Вибрати всі %{count} елементів, що збігаються з вашим пошуком.
-      one: Вибрати %{count} елемент, що збігається з вашим пошуком.
       other: Вибрати всі %{count} елементи, що збігаються з вашим пошуком.
     today: сьогодні
     validation_errors:
+      one: Щось досі не гаразд! Перегляньте повідомлення про помилку
       few: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
       many: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
-      one: Щось досі не гаразд! Перегляньте повідомлення про помилку
       other: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
   imports:
     errors:
@@ -1306,9 +1305,9 @@ uk:
     generate: Згенерувати
     invited_by: 'Вас запросив:'
     max_uses:
+      one: 1 використання
       few: "%{count} використання"
       many: "%{count} використань"
-      one: 1 використання
       other: "%{count} використань"
     max_uses_prompt: Без обмеження
     prompt: Генеруйте та діліться посиланням з іншими для надання доступу до сайту
@@ -1382,7 +1381,7 @@ uk:
         subject: "%{name} приєднується"
     favourite:
       body: 'Ваш допис подобається %{name}:'
-      subject: Ваш допис сподобався %{name}
+      subject: "Ваш допис сподобався %{name}"
       title: Нове вподобання
     follow:
       body: "%{name} тепер стежить за вами!"
@@ -1391,7 +1390,7 @@ uk:
     follow_request:
       action: Керувати запитами на підписку
       body: "%{name} надіслав запит на підписку"
-      subject: "%{name} хоче підписатися на Вас"
+      subject: '%{name} хоче підписатися на Вас'
       title: Новий запит на підписку
     mention:
       action: Відповісти
@@ -1401,7 +1400,7 @@ uk:
     poll:
       subject: Опитування від %{name} завершено
     reblog:
-      body: "%{name} поширює ваш допис:"
+      body: '%{name} поширює ваш допис:'
       subject: "%{name} поширив ваш статус"
       title: Нове поширення
     status:
@@ -1563,28 +1562,28 @@ uk:
   statuses:
     attached:
       audio:
+        one: "%{count} аудіозапис"
         few: "%{count} аудіозаписи"
         many: "%{count} аудіозаписів"
-        one: "%{count} аудіозапис"
         other: "%{count} аудіозаписів"
       description: 'Прикріплено: %{attached}'
       image:
+        one: "%{count} зображення"
         few: "%{count} зображень"
         many: "%{count} зображень"
-        one: "%{count} зображення"
         other: "%{count} зображення"
       video:
+        one: "%{count} відео"
         few: "%{count} відео"
         many: "%{count} відео"
-        one: "%{count} відео"
         other: "%{count} відео"
     boosted_from_html: Просунуто від %{acct_link}
     content_warning: 'Попередження про контент: %{warning}'
     default_language: Така ж як і мова інтерфейсу
     disallowed_hashtags:
+      one: 'заборонений хештеґ: %{tags}'
       few: 'заборонених хештеґа: %{tags}'
       many: 'заборонених хештеґів: %{tags}'
-      one: 'заборонений хештеґ: %{tags}'
       other: 'заборонених хештеґів: %{tags}'
     edited_at_html: Відредаговано %{date}
     errors:
@@ -1598,14 +1597,14 @@ uk:
       reblog: Не можна закріпити просунутий допис
     poll:
       total_people:
+        one: "%{count} людина"
         few: "%{count} людей"
         many: "%{count} людей"
-        one: "%{count} людина"
         other: "%{count} людей"
       total_votes:
+        one: "%{count} голос"
         few: "%{count} голоса"
         many: "%{count} голосів"
-        one: "%{count} голос"
         other: "%{count} голоси"
       vote: Проголосувати
     show_more: Розгорнути
