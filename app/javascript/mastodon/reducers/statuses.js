@@ -1,11 +1,16 @@
 import {
   REBLOG_REQUEST,
   REBLOG_FAIL,
+  UNREBLOG_REQUEST,
+  UNREBLOG_FAIL,
   FAVOURITE_REQUEST,
   FAVOURITE_FAIL,
-  UNFAVOURITE_SUCCESS,
+  UNFAVOURITE_REQUEST,
+  UNFAVOURITE_FAIL,
   BOOKMARK_REQUEST,
   BOOKMARK_FAIL,
+  UNBOOKMARK_REQUEST,
+  UNBOOKMARK_FAIL,
 } from '../actions/interactions';
 import {
   STATUS_MUTE_SUCCESS,
@@ -49,18 +54,28 @@ export default function statuses(state = initialState, action) {
     return importStatuses(state, action.statuses);
   case FAVOURITE_REQUEST:
     return state.setIn([action.status.get('id'), 'favourited'], true);
-  case UNFAVOURITE_SUCCESS:
-    return state.updateIn([action.status.get('id'), 'favourites_count'], x => Math.max(0, x - 1));
   case FAVOURITE_FAIL:
     return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'favourited'], false);
+  case UNFAVOURITE_REQUEST:
+    return state.setIn([action.status.get('id'), 'favourited'], false);
+  case UNFAVOURITE_FAIL:
+    return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'favourited'], true);
   case BOOKMARK_REQUEST:
     return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'bookmarked'], true);
   case BOOKMARK_FAIL:
     return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'bookmarked'], false);
+  case UNBOOKMARK_REQUEST:
+    return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'bookmarked'], false);
+  case UNBOOKMARK_FAIL:
+    return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'bookmarked'], true);
   case REBLOG_REQUEST:
     return state.setIn([action.status.get('id'), 'reblogged'], true);
   case REBLOG_FAIL:
     return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'reblogged'], false);
+  case UNREBLOG_REQUEST:
+    return state.setIn([action.status.get('id'), 'reblogged'], false);
+  case UNREBLOG_FAIL:
+    return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'reblogged'], true);
   case STATUS_MUTE_SUCCESS:
     return state.setIn([action.id, 'muted'], true);
   case STATUS_UNMUTE_SUCCESS:
