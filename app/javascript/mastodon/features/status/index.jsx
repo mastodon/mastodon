@@ -173,7 +173,7 @@ const titleFromStatus = status => {
   const prefix = displayName.trim().length === 0 ? username : displayName;
   const text = status.get('search_index');
 
-  return `${prefix}: "${truncate(text, 30)}"`;
+  return `${prefix}: ${text ? `"${ truncate(text, 30)}"` : '(no text was provided)'}`;
 };
 
 class Status extends ImmutablePureComponent {
