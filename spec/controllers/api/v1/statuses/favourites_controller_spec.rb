@@ -10,6 +10,12 @@ describe Api::V1::Statuses::FavouritesController do
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'write:favourites', application: app) }
 
   context 'with an oauth token' do
+    around do |example|
+      Sidekiq::Testing.fake! do
+        example.run
+      end
+    end
+
     before do
       allow(controller).to receive(:doorkeeper_token) { token }
     end
@@ -66,10 +72,16 @@ describe Api::V1::Statuses::FavouritesController do
         end
 
         it 'updates the favourites count' do
+          expect(status.favourites.count).to eq 1
+
+          UnfavouriteWorker.drain
           expect(status.favourites.count).to eq 0
         end
 
         it 'updates the favourited attribute' do
+          expect(user.account.favourited?(status)).to be true
+
+          UnfavouriteWorker.drain
           expect(user.account.favourited?(status)).to be false
         end
 
@@ -96,6 +108,9 @@ describe Api::V1::Statuses::FavouritesController do
         end
 
         it 'updates the favourite attribute' do
+          expect(user.account.favourited?(status)).to be true
+
+          UnfavouriteWorker.drain
           expect(user.account.favourited?(status)).to be false
         end
 
