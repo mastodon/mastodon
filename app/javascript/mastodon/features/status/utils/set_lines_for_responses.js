@@ -44,6 +44,7 @@ const flatChildren = (list, level = 1, hiddenLevels = 0, lastChildX = undefined)
         level,
         hiddenLevels,
         lastChild: array[index + 1] !== undefined ? false : true,
+        firstChild: index === 0 ? true : false,
       };
 
       return children.length

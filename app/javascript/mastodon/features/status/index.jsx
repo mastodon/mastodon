@@ -550,8 +550,7 @@ class Status extends ImmutablePureComponent {
 
   renderDescendants (list) {
     return list.map(({ id, children, lines }) => {
-      return (<div className='status__thread' key={id}>
-        {new Array(lines.level - 1).fill(undefined).map((_, index, self) => <div aria-hidden='true' data={JSON.stringify({ index, l: self.length, lines, half: index === self.lenght-1 && lines?.lastChild })} className={classNames('status__thread--line', { half: (index === self.length-1) && lines?.lastChild, hidden: index < lines?.hiddenLevels })} key={index} />)}
+      return (<div key={id} className={classNames('status__thread', { 'status__thread--last-item': lines?.lastChild, 'status__thread--first-item': lines?.firstChild })}>
         <StatusContainer
           key={`${id}${lines?.mode}`}
           id={id}
