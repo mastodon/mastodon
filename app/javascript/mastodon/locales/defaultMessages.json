@@ -1631,7 +1631,7 @@
         "id": "privacy.private.long"
       },
       {
-        "defaultMessage": "Private mention",
+        "defaultMessage": "Mentioned people only",
         "id": "privacy.direct.short"
       },
       {
@@ -1665,7 +1665,7 @@
         "id": "suggestions.header"
       },
       {
-        "defaultMessage": "People",
+        "defaultMessage": "Profiles",
         "id": "search_results.accounts"
       },
       {
@@ -1698,28 +1698,36 @@
         "id": "search.search_or_paste"
       },
       {
-        "defaultMessage": "Simple text returns statuses you have written, favourited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.",
-        "id": "search_popout.tips.full_text"
+        "defaultMessage": "Open URL in Mastodon",
+        "id": "search.quick_action.open_url"
       },
       {
-        "defaultMessage": "Simple text returns matching display names, usernames and hashtags",
-        "id": "search_popout.tips.text"
+        "defaultMessage": "Go to hashtag {x}",
+        "id": "search.quick_action.go_to_hashtag"
       },
       {
-        "defaultMessage": "Advanced search format",
-        "id": "search_popout.search_format"
+        "defaultMessage": "Go to profile {x}",
+        "id": "search.quick_action.go_to_account"
       },
       {
-        "defaultMessage": "hashtag",
-        "id": "search_popout.tips.hashtag"
+        "defaultMessage": "Posts matching {x}",
+        "id": "search.quick_action.status_search"
       },
       {
-        "defaultMessage": "user",
-        "id": "search_popout.tips.user"
+        "defaultMessage": "Profiles matching {x}",
+        "id": "search.quick_action.account_search"
       },
       {
-        "defaultMessage": "status",
-        "id": "search_popout.tips.status"
+        "defaultMessage": "Recent searches",
+        "id": "search_popout.recent"
+      },
+      {
+        "defaultMessage": "No recent searches",
+        "id": "search.no_recent_searches"
+      },
+      {
+        "defaultMessage": "Quick actions",
+        "id": "search_popout.quick_actions"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/search.json"
@@ -2107,7 +2115,7 @@
         "id": "search_results.all"
       },
       {
-        "defaultMessage": "People",
+        "defaultMessage": "Profiles",
         "id": "search_results.accounts"
       },
       {
@@ -3694,6 +3702,10 @@
       {
         "defaultMessage": "Direct",
         "id": "privacy.direct.short"
+      },
+      {
+        "defaultMessage": "Private mention",
+        "id": "status.direct_indicator"
       }
     ],
     "path": "app/javascript/mastodon/features/status/components/detailed_status.json"

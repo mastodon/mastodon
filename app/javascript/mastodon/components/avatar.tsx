@@ -10,7 +10,7 @@ type Props = {
   style?: React.CSSProperties;
   inline?: boolean;
   animate?: boolean;
-}
+};
 
 export const Avatar: React.FC<Props> = ({
   account,
@@ -19,7 +19,6 @@ export const Avatar: React.FC<Props> = ({
   inline = false,
   style: styleFromParent,
 }) => {
-
   const { hovering, handleMouseEnter, handleMouseLeave } = useHovering(animate);
 
   const style = {
@@ -28,10 +27,20 @@ export const Avatar: React.FC<Props> = ({
     height: `${size}px`,
   };
 
-  const src = (hovering || animate) ? account?.get('avatar') : account?.get('avatar_static');
+  const src =
+    hovering || animate
+      ? account?.get('avatar')
+      : account?.get('avatar_static');
 
   return (
-    <div className={classNames('account__avatar', { 'account__avatar-inline': inline })} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={style}>
+    <div
+      className={classNames('account__avatar', {
+        'account__avatar-inline': inline,
+      })}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={style}
+    >
       {src && <img src={src} alt={account?.get('acct')} />}
     </div>
   );

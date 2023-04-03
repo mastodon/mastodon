@@ -9,5 +9,5 @@ type AccountValues = {
   avatar: string;
   avatar_static: string;
   [key: string]: any;
-}
-export type Account = MastodonMap<AccountValues>
+};
+export type Account = MastodonMap<AccountValues>;
