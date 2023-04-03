@@ -210,7 +210,7 @@
   },
   "lint-staged": {
     "*": "prettier --ignore-unknown --write",
-    "*.{js,jsx}": "eslint --fix",
+    "*.{js,jsx,ts,tsx}": "eslint --fix",
     "*.{css,scss}": "stylelint --fix"
   }
 }
