@@ -13,8 +13,8 @@
   }
 
   blockquote {
-    padding-left: 10px;
-    border-left: 3px solid $darker-text-color;
+    padding-inline-start: 10px;
+    border-inset-inline-start: 3px solid $darker-text-color;
     color: $darker-text-color;
     white-space: normal;
 
@@ -40,7 +40,7 @@
 
   ul,
   ol {
-    margin-left: 2em;
+    margin-inline-start: 2em;
 
     p {
       margin: 0;

@@ -101,7 +101,8 @@ describe ApplicationController, type: :controller do
 
     it 'returns user\'s flavour when it is set' do
       current_user = Fabricate(:user)
-      current_user.settings['flavour'] = 'glitch'
+      current_user.settings.update(flavour: 'glitch')
+      current_user.save
       sign_in current_user
 
       allow(Setting).to receive(:[]).with('skin').and_return 'default'

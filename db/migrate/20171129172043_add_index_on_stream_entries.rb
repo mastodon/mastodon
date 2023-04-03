@@ -1,4 +1,4 @@
-class AddIndexOnStreamEntries < ActiveRecord::Migration[5.1]
+class AddIndexOnStreamEntries < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def change

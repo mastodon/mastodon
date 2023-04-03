@@ -812,6 +812,12 @@ pt-PT:
         message_html: Não definiu nenhuma regra para a instância.
       sidekiq_process_check:
         message_html: Nenhum processo Sidekiq em execução para a(s) fila(s) %{value}. Reveja a configuração do seu Sidekiq
+      upload_check_privacy_error:
+        action: Verifique aqui para mais informações
+        message_html: "<strong>O seu servidor web está mal configurado. A privacidade dos seus utilizadores está em risco.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Verifique aqui para mais informações
+        message_html: "<strong>O seu armazenamento de objetos está mal configurado. A privacidade dos seus utilizadores está em risco.</strong>"
     tags:
       review: Estado da revisão
       updated_msg: 'Definições de #etiquetas correctamente actualizadas'
@@ -1684,12 +1690,13 @@ pt-PT:
       title: Bem-vindo a bordo, %{name}!
   users:
     follow_limit_reached: Não pode seguir mais do que %{limit} pessoas
+    go_to_sso_account_settings: Ir para as definições de conta do seu fornecedor de identidade
     invalid_otp_token: Código de autenticação inválido
     otp_lost_help_html: Se perdeu o acesso a ambos, pode entrar em contacto com %{email}
     seamless_external_login: Tu estás ligado via um serviço externo. Por isso, as configurações da palavra-passe e do e-mail não estão disponíveis.
     signed_in_as: 'Registado como:'
   verification:
-    explanation_html: 'Pode <strong>comprovar que é o dono das hiperligações nos metadados do seu perfil</strong>. Para isso, a página para a qual a ligação aponta tem de conter uma outra para o seu perfil do Mastodon. Essa ligação <strong>tem</strong> de ter um atributo <code>rel="me"</code>. O conteúdo do texto não é importante. Eis um exemplo:'
+    explanation_html: 'Pode <strong>comprovar que é o dono das hiperligações nos metadados do seu perfil</strong>. Para isso, a página para a qual a hiperligação aponta tem de conter uma outra para o seu perfil do Mastodon. Após adicionar a hiperligação, poderá ter de voltar aqui e voltar a guardar o seu perfil para que a verificação produza efeito. Essa hiperligação <strong>tem</strong> de ter um atributo <code>rel="me"</code>. O conteúdo do texto não é importante. Eis um exemplo:'
     verification: Verificação
   webauthn_credentials:
     add: Adicionar nova chave de segurança

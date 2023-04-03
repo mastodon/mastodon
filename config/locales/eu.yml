@@ -814,6 +814,12 @@ eu:
         message_html: Ez duzu zerbitzariaren araurik definitu.
       sidekiq_process_check:
         message_html: Ez da ari Sidekiq prozesurik exekutatzen %{value} ilad(et)an. Egiaztatu Sidekiq konfigurazioa
+      upload_check_privacy_error:
+        action: Ikus hemen informazio gehiagorako
+        message_html: "<strong>Zure zerbitzaria ez dago ongi konfiguratua. Zure erabiltzaileen pribatutasuna arriskuan dago.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Ikus hemen informazio gehiagorako
+        message_html: "<strong>Zure objektuen biltegiratzea ez dago ongi konfiguratua. Zure erabiltzaileen pribatutasuna arriskuan dago.</strong>"
     tags:
       review: Berrikusketaren egoera
       updated_msg: Traola-ezarpenak ongi eguneratu dira
@@ -1686,12 +1692,13 @@ eu:
       title: Ongi etorri, %{name}!
   users:
     follow_limit_reached: Ezin dituzu %{limit} pertsona baino gehiago jarraitu
+    go_to_sso_account_settings: Jo zure identitate-hornitzaileko kontuaren ezarpenetara
     invalid_otp_token: Bi faktoreetako kode baliogabea
     otp_lost_help_html: 'Bietara sarbidea galdu baduzu, jarri kontaktuan hemen: %{email}'
     seamless_external_login: Kanpo zerbitzu baten bidez hasi duzu saioa, beraz pasahitza eta e-mail ezarpenak ez daude eskuragarri.
     signed_in_as: 'Saioa honela hasita:'
   verification:
-    explanation_html: 'Ezin duzu <strong>zure burua zure profileko metadatuen esteken jabe gisa egiaztatu</strong>. Horretarako, estekatutako webgunean zure Mastodon profilera daraman esteka bat egon behar du. Mastodonera daraman esteka horrek<strong>derrigorrez</strong> <code>rel="me"</code> artibutua izan behar du . Estekaren testuak ez du axola. Hona adibide bat:'
+    explanation_html: '<strong>Zure profileko metadatuetako esteken jabe zarela egiazta</strong> dezakezu. Horretarako, webguneak zure Mastodoneko profilaren esteka eduki behar du. Esteka webgunean erantsi ondoren, aldaketak berriro gorde beharko dituzu egiaztapena burutu ahal izateko. Estekak <code>rel="me"</code> atributua eduki <strong>behar</strong> du. Estekaren testu-edukia ez da aintzat hartzen. Hemen duzu adibide bat:'
     verification: Egiaztaketa
   webauthn_credentials:
     add: Gehitu segurtasun gako berria

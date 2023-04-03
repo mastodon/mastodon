@@ -7,30 +7,31 @@
 = simple_form_for current_user, url: settings_preferences_other_path, html: { method: :put, id: 'edit_preferences' } do |f|
   = render 'shared/error_messages', object: current_user
 
-  .fields-group
-    = f.input :setting_noindex, as: :boolean, wrapper: :with_label
-
-  .fields-group
-    = f.input :setting_aggregate_reblogs, as: :boolean, wrapper: :with_label, recommended: true
-
-  - unless Setting.hide_followers_count
+  = f.simple_fields_for :settings, current_user.settings do |ff|
     .fields-group
-      = f.input :setting_hide_followers_count, as: :boolean, wrapper: :with_label, glitch_only: true
+      = ff.input :noindex, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_noindex'), hint: I18n.t('simple_form.hints.defaults.setting_noindex')
 
-  %h4= t 'preferences.posting_defaults'
+    .fields-group
+      = ff.input :aggregate_reblogs, wrapper: :with_label, recommended: true, label: I18n.t('simple_form.labels.defaults.setting_aggregate_reblogs'), hint: I18n.t('simple_form.hints.defaults.setting_aggregate_reblogs')
 
-  .fields-row
-    .fields-group.fields-row__column.fields-row__column-6
-      = f.input :setting_default_privacy, collection: Status.selectable_visibilities, wrapper: :with_label, include_blank: false, label_method: lambda { |visibility| safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') }, required: false, hint: false
+    - unless Setting.hide_followers_count
+      .fields-group
+        = ff.input :hide_followers_count, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_hide_followers_count'), glitch_only: true
 
-    .fields-group.fields-row__column.fields-row__column-6
-      = f.input :setting_default_language, collection: [nil] + filterable_languages, wrapper: :with_label, label_method: lambda { |locale| locale.nil? ? I18n.t('statuses.default_language') : native_locale_name(locale) }, required: false, include_blank: false, hint: false
+    %h4= t 'preferences.posting_defaults'
 
-  .fields-group
-    = f.input :setting_default_sensitive, as: :boolean, wrapper: :with_label
+    .fields-row
+      .fields-group.fields-row__column.fields-row__column-6
+        = ff.input :default_privacy, collection: Status.selectable_visibilities, wrapper: :with_label, include_blank: false, label_method: lambda { |visibility| safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') }, required: false, hint: false, label: I18n.t('simple_form.labels.defaults.setting_default_privacy')
 
-  .fields-group
-    = f.input :setting_show_application, as: :boolean, wrapper: :with_label, recommended: true
+      .fields-group.fields-row__column.fields-row__column-6
+        = ff.input :default_language, collection: [nil] + filterable_languages, wrapper: :with_label, label_method: lambda { |locale| locale.nil? ? I18n.t('statuses.default_language') : native_locale_name(locale) }, required: false, include_blank: false, hint: false, label: I18n.t('simple_form.labels.defaults.setting_default_language')
+
+    .fields-group
+      = ff.input :default_sensitive, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_default_sensitive'), hint: I18n.t('simple_form.hints.defaults.setting_default_sensitive')
+
+    .fields-group
+      = ff.input :show_application, wrapper: :with_label, recommended: true, label: I18n.t('simple_form.labels.defaults.setting_show_application'), hint: I18n.t('simple_form.hints.defaults.setting_show_application')
 
   .fields-group
     = f.input :setting_default_content_type, collection: ['text/plain', 'text/markdown', 'text/html'], wrapper: :with_label, include_blank: false, label_method: lambda { |item| safe_join([t("simple_form.labels.defaults.setting_default_content_type_#{item.split('/')[1]}"), content_tag(:span, t("simple_form.hints.defaults.setting_default_content_type_#{item.split('/')[1]}"), class: 'hint')]) }, required: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', glitch_only: true

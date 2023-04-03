@@ -812,6 +812,12 @@ da:
         message_html: Ingen serverregler defineret.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-proces kører for %{value}-kø(er). Gennemgå Sidekiq-opsætningen
+      upload_check_privacy_error:
+        action: Tjek her for flere oplysninger
+        message_html: "<strong>Webserveren er fejlopsat. Brugernes fortrolighed er i fare.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Tjek her for flere oplysninger
+        message_html: "<strong>Objektlageret er fejlopsat. Brugernes fortrolighed er i fare.</strong>"
     tags:
       review: Revisionsstatus
       updated_msg: Hashtag-indstillinger opdateret
@@ -1684,12 +1690,13 @@ da:
       title: Velkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan maks. følge %{limit} personer
+    go_to_sso_account_settings: Gå til identitetsudbyderens kontoindstillinger
     invalid_otp_token: Ugyldig tofaktorkode
     otp_lost_help_html: Har du mistet adgang til begge, kan du kontakte %{email}
     seamless_external_login: Du er logget ind via en ekstern tjeneste, så adgangskode- og e-mailindstillinger er utilgængelige.
     signed_in_as: 'Logget ind som:'
   verification:
-    explanation_html: 'Du kan <strong>bekræfte dig selv som ejer af linkene i din profilmetadata</strong>. For at gøre det, skal det linkede websted indeholde et link pegende tilbage til din Mastodon-profil. Returlinket <strong>skal</strong> have en <code>rel="me"</code>-attribut. Linkets tekstindhold betyder ikke noget. Her er et eksempel:'
+    explanation_html: 'Man kan <strong>bekræfte sig selv som ejer af linkene i profilmetadataene</strong>. For at gøre dette, skal det linkede websted indeholde et link tilbage til Mastodon-profilen. Efter tilføjelse af linket, skal man muligvis returnere hertil og gemme sin profil igen, før bekræftelsen effektueres. Returlinket <strong>skal</strong> have en <code>rel="me"</code>-attribut. Linkets tekstindhold er ligegyldigt. Her er et eksempel:'
     verification: Bekræftelse
   webauthn_credentials:
     add: Tilføj ny sikkerhedsnøgle

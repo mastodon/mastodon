@@ -5,8 +5,9 @@
   = button_tag t('generic.save_changes'), class: 'button', form: 'edit_user'
 
 = simple_form_for current_user, url: settings_preferences_appearance_path, html: { method: :put, id: 'edit_user' } do |f|
-  .fields-group
-    = f.input :locale, collection: I18n.available_locales, wrapper: :with_label, include_blank: false, label_method: lambda { |locale| native_locale_name(locale) }, selected: I18n.locale, hint: false
+  .fields-row
+    .fields-group
+      = f.input :locale, collection: I18n.available_locales, wrapper: :with_label, include_blank: false, label_method: lambda { |locale| native_locale_name(locale) }, selected: I18n.locale, hint: false
 
   - unless I18n.locale == :en
     .flash-message.translation-prompt
@@ -14,53 +15,53 @@
       = link_to t('appearance.localization.glitch_guide_link'), target: '_blank', rel: 'noopener noreferrer' do
         = t('appearance.localization.glitch_guide_link_text')
 
-  %h4= t 'appearance.advanced_web_interface'
+  = f.simple_fields_for :settings, current_user.settings do |ff|
+    %h4= t 'appearance.advanced_web_interface'
 
-  %p.hint= t 'appearance.advanced_web_interface_hint'
+    %p.hint= t 'appearance.advanced_web_interface_hint'
 
-  .fields-group
-    = f.input :setting_advanced_layout, as: :boolean, wrapper: :with_label, hint: false
+    .fields-group
+      = ff.input :'web.advanced_layout', wrapper: :with_label, hint: false, label: I18n.t('simple_form.labels.defaults.setting_advanced_layout')
+    %h4= t 'appearance.animations_and_accessibility'
 
-  %h4= t 'appearance.animations_and_accessibility'
+    .fields-group
+      = ff.input :'web.use_pending_items', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_use_pending_items'), hint: I18n.t('simple_form.hints.defaults.setting_use_pending_items')
 
-  .fields-group
-    = f.input :setting_use_pending_items, as: :boolean, wrapper: :with_label
+    .fields-group
+      = ff.input :'web.auto_play', wrapper: :with_label, recommended: true, label: I18n.t('simple_form.labels.defaults.setting_auto_play_gif')
+      = ff.input :'web.reduce_motion', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_reduce_motion')
+      = ff.input :'web.disable_swiping', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_disable_swiping')
+      = ff.input :'web.use_system_font', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_system_font_ui')
+      = ff.input :'web.use_system_emoji_font', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_system_emoji_font'), glitch_only: true
 
-  .fields-group
-    = f.input :setting_auto_play_gif, as: :boolean, wrapper: :with_label, recommended: true
-    = f.input :setting_reduce_motion, as: :boolean, wrapper: :with_label
-    = f.input :setting_disable_swiping, as: :boolean, wrapper: :with_label
-    = f.input :setting_system_font_ui, as: :boolean, wrapper: :with_label
-    = f.input :setting_system_emoji_font, as: :boolean, wrapper: :with_label, glitch_only: true
+    %h4= t 'appearance.toot_layout'
 
-  %h4= t 'appearance.toot_layout'
+    .fields-group
+      = ff.input :'web.crop_images', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_crop_images')
 
-  .fields-group
-    = f.input :setting_crop_images, as: :boolean, wrapper: :with_label
+    %h4= t 'appearance.discovery'
 
-  %h4= t 'appearance.discovery'
+    .fields-group
+      = ff.input :'web.trends', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_trends')
 
-  .fields-group
-    = f.input :setting_trends, as: :boolean, wrapper: :with_label
+    %h4= t 'appearance.confirmation_dialogs'
 
-  %h4= t 'appearance.confirmation_dialogs'
+    .fields-group
+      = ff.input :'web.unfollow_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_unfollow_modal')
+      = ff.input :'web.reblog_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_boost_modal')
+      = ff.input :'web.favourite_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_favourite_modal'), glitch_only: true
+      = ff.input :'web.delete_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_delete_modal')
 
-  .fields-group
-    = f.input :setting_unfollow_modal, as: :boolean, wrapper: :with_label
-    = f.input :setting_boost_modal, as: :boolean, wrapper: :with_label
-    = f.input :setting_favourite_modal, as: :boolean, wrapper: :with_label, glitch_only: true
-    = f.input :setting_delete_modal, as: :boolean, wrapper: :with_label
+    %h4= t 'appearance.sensitive_content'
 
-  %h4= t 'appearance.sensitive_content'
+    .fields-group
+      = ff.input :'web.display_media', collection: ['default', 'show_all', 'hide_all'],label_method: lambda { |item| t("simple_form.hints.defaults.setting_display_media_#{item}") }, hint: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', wrapper: :with_floating_label, label: I18n.t('simple_form.labels.defaults.setting_display_media')
 
-  .fields-group
-    = f.input :setting_display_media, collection: ['default', 'show_all', 'hide_all'], label_method: lambda { |item| t("simple_form.hints.defaults.setting_display_media_#{item}") }, hint: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', wrapper: :with_floating_label
+    .fields-group
+      = ff.input :'web.use_blurhash', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_use_blurhash'), hint: I18n.t('simple_form.hints.defaults.setting_use_blurhash')
 
-  .fields-group
-    = f.input :setting_use_blurhash, as: :boolean, wrapper: :with_label
-
-  .fields-group
-    = f.input :setting_expand_spoilers, as: :boolean, wrapper: :with_label
+    .fields-group
+      = ff.input :'web.expand_content_warnings', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_expand_spoilers')
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

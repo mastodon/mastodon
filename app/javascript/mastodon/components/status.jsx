@@ -386,6 +386,13 @@ class Status extends ImmutablePureComponent {
 
       account = status.get('account');
       status  = status.get('reblog');
+    } else if (status.get('visibility') === 'direct') {
+      prepend = (
+        <div className='status__prepend'>
+          <div className='status__prepend-icon-wrapper'><Icon id='at' className='status__prepend-icon' fixedWidth /></div>
+          <FormattedMessage id='status.direct_indicator' defaultMessage='Private mention' />
+        </div>
+      );
     } else if (showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id'])) {
       const display_name_html = { __html: status.getIn(['account', 'display_name_html']) };
 

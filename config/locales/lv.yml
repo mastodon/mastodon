@@ -826,6 +826,12 @@ lv:
         message_html: Tu neesi definējis nevienu servera nosacījumu.
       sidekiq_process_check:
         message_html: Rindā(s) %{value} nedarbojas neviens Sidekiq process. Lūdzu, pārskati savu Sidekiq konfigurāciju
+      upload_check_privacy_error:
+        action: Pārbaudi šeit, lai iegūtu plašāku informāciju
+        message_html: "<strong>Tavs tīmekļa serveris ir nepareizi konfigurēts. Tavu lietotāju privātums ir apdraudēts.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Pārbaudi šeit, lai iegūtu plašāku informāciju
+        message_html: "<strong>Tava objektu krātuve ir nepareizi konfigurēta. Tavu lietotāju privātums ir apdraudēts.</strong>"
     tags:
       review: Pārskatīt statusu
       updated_msg: Tēmtura iestatījumi ir veiksmīgi atjaunināti
@@ -1716,12 +1722,13 @@ lv:
       title: Laipni lūgts uz borta, %{name}!
   users:
     follow_limit_reached: Tu nevari sekot vairāk par %{limit} cilvēkiem
+    go_to_sso_account_settings: Dodies uz sava identitātes nodrošinātāja konta iestatījumiem
     invalid_otp_token: Nederīgs divfaktora kods
     otp_lost_help_html: Ja esi zaudējis piekļuvi abiem, tu vari sazināties ar %{email}
     seamless_external_login: Tu esi pieteicies, izmantojot ārēju pakalpojumu, tāpēc paroles un e-pasta iestatījumi nav pieejami.
     signed_in_as: 'Pierakstījies kā:'
   verification:
-    explanation_html: 'Tu vari <strong>apstiprināt sevi kā sava profila metadatos esošo saišu īpašnieku</strong>. Lai to izdarītu, saistītajā vietnē ir jābūt saitei uz tavu Mastodon profilu. Atpakaļsaitē <strong>jābūt</strong> atribūtam <code>rel="me"</code>. Saites teksta saturam nav nozīmes. Šeit ir piemērs:'
+    explanation_html: 'Tu vari <strong>apstiprināt sevi kā sava profila metadatos esošo saišu īpašnieku</strong>. Lai to izdarītu, saistītajā vietnē ir jābūt saitei uz tavu Mastodon profilu. Pēc saites pievienošanas tev, iespējams, vajadzēs atgriezties šeit un atkārtoti saglabāt savu profilu, lai pārbaude stātos spēkā. Atpakaļsaitē <strong>jābūt</strong> atribūtam <code>rel="me"</code>. Saites teksta saturam nav nozīmes. Šeit ir piemērs:'
     verification: Pārbaude
   webauthn_credentials:
     add: Pievienot jaunu drošības atslēgu
