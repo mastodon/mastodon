@@ -118,7 +118,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.38'
+  gem 'capybara', '~> 3.39'
   gem 'climate_control'
   gem 'faker', '~> 3.1'
   gem 'json-schema', '~> 3.0'
