@@ -44,6 +44,7 @@ function Blurhash({
       const ctx = canvas.getContext('2d');
       const imageData = new ImageData(pixels, width, height);
 
+      // @ts-expect-error
       ctx.putImageData(imageData, 0, 0);
     } catch (err) {
       console.error('Blurhash decoding failure', { err, hash });

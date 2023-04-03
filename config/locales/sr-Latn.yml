@@ -1,3 +1,4 @@
+---
 sr-Latn:
   about:
     about_mastodon_html: 'Društvena mreža budućnosti: bez reklama, bez korporativnog praćenja, etički dizajn, i decentralizacija! Posedujte svoje podatke sa Mastodonom!'
@@ -8,8 +9,8 @@ sr-Latn:
   accounts:
     follow: Zaprati
     followers:
-      one: Pratilac
       few: Pratioca
+      one: Pratilac
       other: Pratilaca
     following: Pratim
     instance_actor_flash: Ovaj nalog je virtuelni akter koji ne predstavlja nijednog korisnika lično, već sâm server. Koristi se u svrhu federacije i ne treba ga suspendovati.
@@ -19,8 +20,8 @@ sr-Latn:
     pin_errors:
       following: Morate pratiti osobu koju želite da preporučite
     posts:
-      one: Objava
       few: Objave
+      one: Objava
       other: Objava
     posts_tab_heading: Objave
   admin:
@@ -57,7 +58,7 @@ sr-Latn:
       delete: Obriši podatke
       deleted: Izbrisano
       demote: Ražaluj
-      destroyed_msg: "Podaci korisnika %{username} su nepovratno stavljeni u red za brisanje"
+      destroyed_msg: Podaci korisnika %{username} su nepovratno stavljeni u red za brisanje
       disable: Zamrzni
       disable_sign_in_token_auth: Onemogući imejl autentifikaciju
       disable_two_factor_authentication: Isključi 2FA
@@ -88,7 +89,7 @@ sr-Latn:
       media_attachments: Multimedijalni prilozi
       memorialize: Prebaci u in memoriam
       memorialized: Podignut spomenik
-      memorialized_msg: '%{username} je uspešno pretvoren u memorijalni nalog'
+      memorialized_msg: "%{username} je uspešno pretvoren u memorijalni nalog"
       moderation:
         active: Aktivan
         all: Svi
@@ -108,8 +109,8 @@ sr-Latn:
       perform_full_suspension: Suspenduj
       previous_strikes: Prethodni prekršaji
       previous_strikes_description_html:
-        one: Ovaj nalog ima <strong>jedan</strong> prekršaj.
         few: Ovaj nalog ima <strong>%{count}</strong> prekršaja.
+        one: Ovaj nalog ima <strong>jedan</strong> prekršaj.
         other: Ovaj nalog ima <strong>%{count}</strong> prekršaja.
       promote: Unapredi
       protocol: Protokol
@@ -352,20 +353,20 @@ sr-Latn:
       new_users: novi korisnici
       opened_reports: otvorene prijave
       pending_appeals_html:
-        one: "<strong>%{count}</strong> žalba na čekanju"
         few: "<strong>%{count}</strong> žalbe na čekanju"
+        one: "<strong>%{count}</strong> žalba na čekanju"
         other: "<strong>%{count}</strong> žalbi na čekanju"
       pending_reports_html:
-        one: "<strong>%{count}</strong> prijava na čekanju"
         few: "<strong>%{count}</strong> prijave na čekanju"
+        one: "<strong>%{count}</strong> prijava na čekanju"
         other: "<strong>%{count}</strong> prijava na čekanju"
       pending_tags_html:
-        one: "<strong>%{count}</strong> heš oznaka na čekanju"
         few: "<strong>%{count}</strong> heš oznake na čekanju"
+        one: "<strong>%{count}</strong> heš oznaka na čekanju"
         other: "<strong>%{count}</strong> heš oznaka na čekanju"
       pending_users_html:
-        one: "<strong>%{count}</strong> korisnik na čekanju"
         few: "<strong>%{count}</strong> korisnika na čekanju"
+        one: "<strong>%{count}</strong> korisnik na čekanju"
         other: "<strong>%{count}</strong> korisnika na čekanju"
       resolved_reports: rešene prijave
       software: Softver
@@ -422,8 +423,8 @@ sr-Latn:
     email_domain_blocks:
       add_new: Dodaj novi
       attempts_over_week:
-        one: "%{count} pokušaj tokom prethodne nedelje"
         few: "%{count} pokušaja tokom prethodne nedelje"
+        one: "%{count} pokušaj tokom prethodne nedelje"
         other: "%{count} pokušaja registracije tokom prethodne nedelje"
       created_msg: Uspešno dodao domen E-pošte na crnu listu
       delete: Obriši
@@ -466,13 +467,13 @@ sr-Latn:
     instances:
       availability:
         description_html:
-          one: Ako isporuka domenu ne uspe nijednom u vremenskom periodu od <strong>%{count} dana</strong>, dalji pokušaji isporuke se neće inicirati osim ukoliko se ne primi isporuka <em>sa</em> domena.
           few: Ukoliko isporuka domenu ne uspe nijednom tokom <strong>%{count} različitih dana</strong>, dalji pokušaji isporuke neće biti inicirani osim ukoliko se ne primi isporuka <em>sa</em> domena.
+          one: Ako isporuka domenu ne uspe nijednom u vremenskom periodu od <strong>%{count} dana</strong>, dalji pokušaji isporuke se neće inicirati osim ukoliko se ne primi isporuka <em>sa</em> domena.
           other: Ukoliko isporuka domenu ne uspe nijednom tokom <strong>%{count} različitih dana</strong>, dalji pokušaji isporuke se neće inicirati osim ukoliko se ne primi isporuka <em>sa</em> domena.
         failure_threshold_reached: Prag neuspeha dostignut datuma %{date}.
         failures_recorded:
-          one: Neuspeli pokušaj tokom %{count} dana.
           few: Neuspeli pokušaji tokom %{count} različita dana.
+          one: Neuspeli pokušaj tokom %{count} dana.
           other: Neuspeli pokušaji tokom %{count} različitih dana.
         no_failures_recorded: Bez zabeleženih neuspeha.
         title: Dostupnost
@@ -516,8 +517,8 @@ sr-Latn:
       destroyed_msg: Podaci sa %{domain} su sada u redu za čekanje za izvesno brisanje.
       empty: Nijedan domen nije pronađen.
       known_accounts:
-        one: "%{count} poznat nalog"
         few: "%{count} poznata naloga"
+        one: "%{count} poznat nalog"
         other: "%{count} poznatih naloga"
       moderation:
         all: Sve
@@ -558,11 +559,11 @@ sr-Latn:
       no_ip_block_selected: Nijedno IP pravilo nije promenjeno jer nijedno nije izabrano
       title: IP pravila
     relationships:
-      title: "Odnosi korisnika %{acct}"
+      title: Odnosi korisnika %{acct}
     relays:
       add_new: Dodaj novi relej
       delete: Obriši
-      description_html: <strong>Federalni relej</strong> je posrednički server koji razmenjuje velike količine javnih truba između servera na koji je pretplaćen i na koji objavljuje.<strong>Može pomoći malim i srednjim serverima da otkriju sadržaj iz fediversa</strong>, koji inače zahteva od lokalnih korisnika da ručno pratiti ostale ljude na udaljenim serverima.
+      description_html: "<strong>Federalni relej</strong> je posrednički server koji razmenjuje velike količine javnih truba između servera na koji je pretplaćen i na koji objavljuje.<strong>Može pomoći malim i srednjim serverima da otkriju sadržaj iz fediversa</strong>, koji inače zahteva od lokalnih korisnika da ručno pratiti ostale ljude na udaljenim serverima."
       disable: Isključi
       disabled: Isključen
       enable: Uključi
@@ -581,8 +582,8 @@ sr-Latn:
     reports:
       account:
         notes:
-          one: "%{count} beleška"
           few: "%{count} beleške"
+          one: "%{count} beleška"
           other: "%{count} beležaka"
       action_log: Zapisnik
       action_taken_by: Akciju izveo
@@ -665,8 +666,8 @@ sr-Latn:
     roles:
       add_new: Dodaj ulogu
       assigned_users:
-        one: "%{count} korisnik"
         few: "%{count} korisnika"
+        one: "%{count} korisnik"
         other: "%{count} korisnika"
       categories:
         administration: Administracija
@@ -680,8 +681,8 @@ sr-Latn:
       everyone: Podrazumevana ovlašćenja
       everyone_full_description_html: Ovo je <strong>osnovna uloga</strong> koja se odnosi na <strong>sve korisnike</strong>, čak i one kojima nije dodeljena uloga. Sve druge uloge nasleđuju ovlašćenja od osnovne uloge.
       permissions_count:
-        one: "%{count} dozvola"
         few: "%{count} dozvole"
+        one: "%{count} dozvola"
         other: "%{count} dozvola"
       privileges:
         administrator: Administrator
@@ -849,8 +850,8 @@ sr-Latn:
         publishers:
           no_publisher_selected: Nijedan izdavač nije promenjen jer nijedan nije izabran
         shared_by_over_week:
-          one: Podeljen od strane jedne osobe tokom prethodne nedelje
           few: Podeljen od strane %{count} osobe tokom prethodne nedelje
+          one: Podeljen od strane jedne osobe tokom prethodne nedelje
           other: Podeljen od strane %{count} osoba tokom prethodne nedelje
         title: Linkovi u trendu
         usage_comparison: Podeljeno %{today} puta danas, u poređenju sa %{yesterday} puta juče
@@ -872,8 +873,8 @@ sr-Latn:
         no_status_selected: Nijedna objava u trendu nije promenjena jer nijedna nije izabrana
         not_discoverable: Autor nije dao saglasnost da bude preporučen
         shared_by:
-          one: Podeljeno ili stavljeno u „omiljene” jednom
           few: Podeljeno i stavljeno u „omiljene” %{friendly_count} puta
+          one: Podeljeno ili stavljeno u „omiljene” jednom
           other: Podeljeno i stavljeno u „omiljene” %{friendly_count} puta
         title: Objave u trendu
       tags:
@@ -897,8 +898,8 @@ sr-Latn:
         usable: Može se koristiti
         usage_comparison: Upotrebljeno %{today} puta danas, u poređenju sa %{yesterday} puta juče
         used_by_over_week:
-          one: Korišćeno od strane jedne osobe tokom prethodne nedelje
           few: Korišćeno od strane %{count} osobe tokom prethodne nedelje
+          one: Korišćeno od strane jedne osobe tokom prethodne nedelje
           other: Korišćeno od strane %{count} ljudi tokom prethodne nedelje
       title: Trendovi
       trending: U trendu
@@ -911,7 +912,7 @@ sr-Latn:
     webhooks:
       add_new: Dodaj krajnju tačku
       delete: Izbriši
-      description_html: <strong>Webhook</strong> omogućava Mastodonu da Vašoj aplikaciji isporučuje <strong>obaveštenja u realnom vremenu</strong> o odabranim događajima, tako da Vaša aplikacija može da <strong>automatski izazove reakciju</strong>.
+      description_html: "<strong>Webhook</strong> omogućava Mastodonu da Vašoj aplikaciji isporučuje <strong>obaveštenja u realnom vremenu</strong> o odabranim događajima, tako da Vaša aplikacija može da <strong>automatski izazove reakciju</strong>."
       disable: Onemogući
       disabled: Onemogućeno
       edit: Izmeni krajnju tačku
@@ -919,8 +920,8 @@ sr-Latn:
       enable: Omogući
       enabled: Aktivno
       enabled_events:
-        one: 1 omogućen događaj
         few: "%{count} omogućena događaja"
+        one: 1 omogućen događaj
         other: "%{count} omogućenih događaja"
       events: Događaji
       new: Novi webhook
@@ -948,7 +949,7 @@ sr-Latn:
     new_report:
       body: "%{reporter} je prijavio %{target}"
       body_remote: Neka sa domena %{domain} je prijavio %{target}
-      subject: 'Nova prijava za %{instance} (#%{id})'
+      subject: Nova prijava za %{instance} (#%{id})
     new_trends:
       body: 'Sledeće stavke je potrebno pregledati pre nego što mogu javno da se prikažu:'
       new_trending_links:
@@ -981,7 +982,7 @@ sr-Latn:
     toot_layout: Raspored objava
   application_mailer:
     notification_preferences: Promeni preference E-pošte
-    salutation: "Poštovani %{name},"
+    salutation: Poštovani %{name},
     settings: 'Promeni podešavanja e-pošte: %{link}'
     view: 'Pogledaj:'
     view_profile: Pogledaj nalog
@@ -1200,16 +1201,16 @@ sr-Latn:
       expires_in: Ističe za %{distance}
       expires_on: Ističe datuma %{date}
       keywords:
-        one: "%{count} ključna reč"
         few: "%{count} ključne reči"
+        one: "%{count} ključna reč"
         other: "%{count} ključnih reči"
       statuses:
-        one: "%{count} objava"
         few: "%{count} objave"
+        one: "%{count} objava"
         other: "%{count} objava"
       statuses_long:
-        one: "%{count} zasebna objava sakrivena"
         few: "%{count} zasebne objave sakrivene"
+        one: "%{count} zasebna objava sakrivena"
         other: "%{count} zasebnih objava sakriveno"
       title: Filteri
     new:
@@ -1225,12 +1226,12 @@ sr-Latn:
   generic:
     all: Svi
     all_items_on_page_selected_html:
-      one: "<strong>%{count}</strong> stavka sa ove stranice je izabrana."
       few: Sve <strong>%{count}</strong> stavke sa ove stranice su izabrane.
+      one: "<strong>%{count}</strong> stavka sa ove stranice je izabrana."
       other: Svih <strong>%{count}</strong> stavki sa ove stranice je izabrano.
     all_matching_items_selected_html:
-      one: "<strong>%{count}</strong> stavka koja se poklapa sa Vašom pretragom je izabrana."
       few: Sve <strong>%{count}</strong> stavke koje se poklapaju sa Vašom pretragom su izabrane.
+      one: "<strong>%{count}</strong> stavka koja se poklapa sa Vašom pretragom je izabrana."
       other: Svih <strong>%{count}</strong> stavki koje se poklapaju sa Vašom pretragom su izabrane.
     changes_saved_msg: Izmene uspešno sačuvane!
     copy: Kopiraj
@@ -1240,13 +1241,13 @@ sr-Latn:
     order_by: Sortiraj prema
     save_changes: Sačuvaj promene
     select_all_matching_items:
-      one: Odaberite %{count} stavku koja se poklapa sa Vašom pretragom.
       few: Odaberite sve %{count} stavke koje se poklapaju sa Vašom pretragom.
+      one: Odaberite %{count} stavku koja se poklapa sa Vašom pretragom.
       other: Odaberite svih %{count} stavki koje se poklapaju sa Vašom pretragom.
     today: danas
     validation_errors:
-      one: Nešto nije baš kako treba! Pregledajte greške ispod
       few: Nešto nije baš kako treba! Pregledajte %{count} greške ispod
+      one: Nešto nije baš kako treba! Pregledajte greške ispod
       other: Nešto nije baš kako treba! Pregledajte %{count} grešaka ispod
   imports:
     errors:
@@ -1280,8 +1281,8 @@ sr-Latn:
     generate: Generiši
     invited_by: 'Pozvao Vas je:'
     max_uses:
-      one: 1 korišćenje
       few: "%{count} korišćenja"
+      one: 1 korišćenje
       other: "%{count} korišćenja"
     max_uses_prompt: Bez ograničenja
     prompt: Generiši i podeli linkove sa drugima da im odobrite pristup ovoj instanci
@@ -1354,7 +1355,7 @@ sr-Latn:
       sign_up:
         subject: "%{name} se registrovao/-la"
     favourite:
-      body: '%{name} je postavio kao omiljen Vaš status:'
+      body: "%{name} je postavio kao omiljen Vaš status:"
       subject: "%{name} je postavio kao omiljen Vaš status"
       title: Novi omiljeni
     follow:
@@ -1368,13 +1369,13 @@ sr-Latn:
       title: Novi zahtev za praćenje
     mention:
       action: Odgovori
-      body: '%{name} Vas je pomenuo u:'
-      subject: '%{name} Vas je pomenuo'
+      body: "%{name} Vas je pomenuo u:"
+      subject: "%{name} Vas je pomenuo"
       title: Novo spominjanje
     poll:
       subject: Anketa korisnika %{name} se završila
     reblog:
-      body: '%{name} Vam je podržao/la status:'
+      body: "%{name} Vam je podržao/la status:"
       subject: "%{name} je podržao/la Vaš status"
       title: Nova podrška
     status:
@@ -1536,24 +1537,24 @@ sr-Latn:
   statuses:
     attached:
       audio:
-        one: "%{count} audio zapis"
         few: "%{count} audio zapisa"
+        one: "%{count} audio zapis"
         other: "%{count} audio zapisa"
       description: 'U prilogu: %{attached}'
       image:
-        one: "%{count} sliku"
         few: "%{count} slika"
+        one: "%{count} sliku"
         other: "%{count} slika"
       video:
-        one: "%{count} video zapis"
         few: "%{count} video zapisa"
+        one: "%{count} video zapis"
         other: "%{count} video zapisa"
     boosted_from_html: Podržano od %{acct_link}
     content_warning: 'Upozorenje na sadržaj: %{warning}'
     default_language: Isto kao jezik okruženja
     disallowed_hashtags:
-      one: 'sadrži zabranjeni hešteg: %{tags}'
       few: 'sadrži zabranjene heštegove: %{tags}'
+      one: 'sadrži zabranjeni hešteg: %{tags}'
       other: 'sadrži zabranjene heštegove: %{tags}'
     edited_at_html: Izmenjeno %{date}
     errors:
@@ -1567,12 +1568,12 @@ sr-Latn:
       reblog: Podrška ne može da se prikači
     poll:
       total_people:
-        one: "%{count} osoba"
         few: "%{count} osobe"
+        one: "%{count} osoba"
         other: "%{count} ljudi"
       total_votes:
-        one: "%{count} glas"
         few: "%{count} glasa"
+        one: "%{count} glas"
         other: "%{count} glasova"
       vote: Glasajte
     show_more: Prikaži još
@@ -1580,7 +1581,7 @@ sr-Latn:
     show_older: Prikaži starije
     show_thread: Prikaži niz
     sign_in_to_participate: Prijavite se da učestvujete u razgovoru
-    title: '%{name}: „%{quote}”'
+    title: "%{name}: „%{quote}”"
     visibilities:
       direct: Direktno
       private: Samo pratioci

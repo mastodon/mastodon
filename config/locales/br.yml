@@ -1,3 +1,4 @@
+---
 br:
   about:
     contact_missing: Andermenet
@@ -6,20 +7,20 @@ br:
   accounts:
     follow: Heuliañ
     followers:
-      one: Heulier·ez
-      two: Heulier·ez
       few: Heulier·ez
       many: Heulier·ez
+      one: Heulier·ez
       other: Heulier·ez
+      two: Heulier·ez
     following: Koumanantoù
     last_active: oberiantiz ziwezhañ
     nothing_here: N'eus netra amañ !
     posts:
-      one: Toud
-      two: Toudoù
       few: Toudoù
       many: Toudoù
+      one: Toud
       other: Toud
+      two: Toudoù
     posts_tab_heading: Toudoù
   admin:
     account_moderation_notes:
@@ -92,8 +93,8 @@ br:
         destroy_status: Dilemel ar c'hannad
         update_status: Hizivaat ar c'hannad
       actions:
-        destroy_status_html: "Dilamet eo bet toud %{target} gant %{name}"
-        update_status_html: "Hizivaet eo bet toud %{target} gant %{name}"
+        destroy_status_html: Dilamet eo bet toud %{target} gant %{name}
+        update_status_html: Hizivaet eo bet toud %{target} gant %{name}
       title: Renabl aodit
     announcements:
       live: War-eeun
@@ -193,11 +194,11 @@ br:
     reports:
       account:
         notes:
-          one: "%{count} a notennoù"
-          two: "%{count} a notennoù"
           few: "%{count} a notennoù"
           many: "%{count} a notennoù"
+          one: "%{count} a notennoù"
           other: "%{count} a notennoù"
+          two: "%{count} a notennoù"
       action_log: Renabl aodit
       are_you_sure: Ha sur oc'h?
       comment:
@@ -253,7 +254,7 @@ br:
       with_media: Gant mediaoù
     strikes:
       actions:
-        delete_statuses: "Dilamet eo bet toudoù %{target} gant %{name}"
+        delete_statuses: Dilamet eo bet toudoù %{target} gant %{name}
     trends:
       allow: Aotren
       links:
@@ -341,9 +342,7 @@ br:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422':
     '429': Too many requests
-    '500':
     '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
@@ -362,11 +361,11 @@ br:
     index:
       delete: Dilemel
       statuses:
-        one: "%{count} c'hannad"
-        two: "%{count} gannad"
         few: "%{count} a gannadoù"
         many: "%{count} a gannadoù"
+        one: "%{count} c'hannad"
         other: "%{count} a gannadoù"
+        two: "%{count} gannad"
       title: Siloù
     statuses:
       index:
@@ -407,12 +406,12 @@ br:
     mention:
       action: Respont
     reblog:
-      subject: "Gant %{name} eo bet skignet ho toud "
+      subject: 'Gant %{name} eo bet skignet ho toud '
       title: Skignadenn nevez
     status:
-      subject: "Embannet ez eus bet traoù gant %{name}"
+      subject: Embannet ez eus bet traoù gant %{name}
     update:
-      subject: "Kemmet eo bet ur c'hannad gant %{name}"
+      subject: Kemmet eo bet ur c'hannad gant %{name}
   number:
     human:
       decimal_units:
@@ -484,11 +483,11 @@ br:
   statuses:
     attached:
       image:
-        one: "%{count} skeudenn"
-        two: "%{count} skeudenn"
         few: "%{count} skeudenn"
         many: "%{count} skeudenn"
+        one: "%{count} skeudenn"
         other: "%{count} skeudenn"
+        two: "%{count} skeudenn"
     poll:
       vote: Mouezhiañ
     show_more: Diskouez muioc'h
@@ -515,7 +514,7 @@ br:
   time:
     formats:
       default: "%d a viz %b %Y, %H:%M"
-      month: "Miz %b %Y"
+      month: Miz %b %Y
       time: "%H:%M"
   two_factor_authentication:
     add: Ouzhpennañ

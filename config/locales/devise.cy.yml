@@ -1,3 +1,4 @@
+---
 cy:
   devise:
     confirmations:
@@ -7,10 +8,10 @@ cy:
     failure:
       already_authenticated: Rydych chi eisoes wedi mewngofnodi.
       inactive: Nid yw eich cyfrif yn weithredol eto.
-      invalid: '%{authentication_keys} neu gyfrinair annilys.'
+      invalid: "%{authentication_keys} neu gyfrinair annilys."
       last_attempt: Mae gennych un cyfle arall cyn i'ch cyfrif gael ei gloi.
       locked: Mae eich cyfrif wedi ei gloi.
-      not_found_in_database: '%{authentication_keys} neu gyfrinair annilys.'
+      not_found_in_database: "%{authentication_keys} neu gyfrinair annilys."
       pending: Mae eich cyfrif dal o dan adolygiad.
       timeout: Mae eich sesiwn wedi dod i ben. Mewngofnodwch eto i barhau.
       unauthenticated: Mae angen i chi fewngofnodi neu gofrestru cyn parhau.
@@ -110,9 +111,9 @@ cy:
       not_found: heb ei ganfod
       not_locked: heb ei gloi
       not_saved:
-        zero: "Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd %{count} o wallau:"
+        few: 'Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd %{count} gwall:'
+        many: 'Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd %{count} gwall:'
         one: 'Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd 1 gwall:'
-        two: "Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd %{count} gwall:"
-        few: "Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd %{count} gwall:"
-        many: "Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd %{count} gwall:"
-        other: "Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd %{count} gwall:"
+        other: 'Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd %{count} gwall:'
+        two: 'Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd %{count} gwall:'
+        zero: 'Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd %{count} o wallau:'
