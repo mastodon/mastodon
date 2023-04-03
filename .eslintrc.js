@@ -13,7 +13,6 @@ module.exports = {
     browser: true,
     node: true,
     es6: true,
-    jest: true,
   },
 
   globals: {
@@ -42,9 +41,7 @@ module.exports = {
       presets: ['@babel/react', '@babel/env'],
     },
   },
-  extends: [
-    'plugin:import/typescript',
-  ],
+
   settings: {
     react: {
       version: 'detect',
@@ -203,6 +200,7 @@ module.exports = {
       {
         devDependencies: [
           'config/webpack/**',
+          'app/javascript/mastodon/performance.js',
           'app/javascript/mastodon/test_setup.js',
           'app/javascript/**/__tests__/**',
         ],
@@ -236,6 +234,36 @@ module.exports = {
 
       parserOptions: {
         sourceType: 'script',
+      },
+    },
+    {
+      files: [
+        '**/*.ts',
+        '**/*.tsx',
+      ],
+
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:react/recommended',
+        'plugin:jsx-a11y/recommended',
+        'plugin:import/recommended',
+        'plugin:import/typescript',
+        'plugin:promise/recommended',
+      ],
+
+      rules: {
+        '@typescript-eslint/no-explicit-any': 'off',
+      },
+    },
+    {
+      files: [
+        '**/__tests__/*.js',
+        '**/__tests__/*.jsx',
+      ],
+
+      env: {
+        jest: true,
       },
     },
   ],
