@@ -132,6 +132,7 @@ export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const version = getMeta('version');
 export const languages = initialState?.languages;
+// @ts-expect-error
 export const statusPageUrl = getMeta('status_page_url');
 
 // Glitch-soc-specific settings

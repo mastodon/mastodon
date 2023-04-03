@@ -13,20 +13,20 @@ module.exports = {
     browser: true,
     node: true,
     es6: true,
-    jest: true,
   },
 
   globals: {
     ATTACHMENT_HOST: false,
   },
 
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
 
   plugins: [
     'react',
     'jsx-a11y',
     'import',
     'promise',
+    '@typescript-eslint',
   ],
 
   parserOptions: {
@@ -46,9 +46,6 @@ module.exports = {
     react: {
       version: 'detect',
     },
-    'import/extensions': [
-      '.js', '.jsx',
-    ],
     'import/ignore': [
       'node_modules',
       '\\.(css|scss|json)$',
@@ -56,7 +53,7 @@ module.exports = {
     'import/resolver': {
       node: {
         paths: ['app/javascript'],
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
   },
@@ -97,7 +94,8 @@ module.exports = {
     'no-self-assign': 'off',
     'no-trailing-spaces': 'warn',
     'no-unused-expressions': 'error',
-    'no-unused-vars': [
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': [
       'error',
       {
         vars: 'all',
@@ -116,7 +114,7 @@ module.exports = {
     semi: 'error',
     'valid-typeof': 'error',
 
-    'react/jsx-filename-extension': ['error', { 'allow': 'as-needed' }],
+    'react/jsx-filename-extension': ['error', { extensions: ['.jsx', 'tsx'] }],
     'react/jsx-boolean-value': 'error',
     'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
     'react/jsx-curly-spacing': 'error',
@@ -192,6 +190,8 @@ module.exports = {
       {
         js: 'never',
         jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
       },
     ],
     'import/newline-after-import': 'error',
@@ -200,6 +200,7 @@ module.exports = {
       {
         devDependencies: [
           'config/webpack/**',
+          'app/javascript/mastodon/performance.js',
           'app/javascript/mastodon/test_setup.js',
           'app/javascript/**/__tests__/**',
         ],
@@ -233,6 +234,36 @@ module.exports = {
 
       parserOptions: {
         sourceType: 'script',
+      },
+    },
+    {
+      files: [
+        '**/*.ts',
+        '**/*.tsx',
+      ],
+
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:react/recommended',
+        'plugin:jsx-a11y/recommended',
+        'plugin:import/recommended',
+        'plugin:import/typescript',
+        'plugin:promise/recommended',
+      ],
+
+      rules: {
+        '@typescript-eslint/no-explicit-any': 'off',
+      },
+    },
+    {
+      files: [
+        '**/__tests__/*.js',
+        '**/__tests__/*.jsx',
+      ],
+
+      env: {
+        jest: true,
       },
     },
   ],

@@ -812,6 +812,12 @@ fr-QC:
         message_html: Vous n'avez pas défini de règles pour le serveur.
       sidekiq_process_check:
         message_html: Aucun processus Sidekiq en cours d'exécution pour la/les file(s) d'attente %{value}. Veuillez vérifier votre configuration de Sidekiq
+      upload_check_privacy_error:
+        action: Pour plus d'informations, cliquez ici
+        message_html: "<strong>Votre serveur web est mal configuré. La confidentialité de vos utilisateurs est en péril.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Pour plus d'informations, cliquez ici
+        message_html: "<strong>Votre serveur web est mal configuré. La confidentialité de vos utilisateurs est en péril.</strong>"
     tags:
       review: État du traitement
       updated_msg: Paramètres du hashtag mis à jour avec succès
@@ -1684,11 +1690,13 @@ fr-QC:
       title: Bienvenue à bord, %{name} !
   users:
     follow_limit_reached: Vous ne pouvez pas suivre plus de %{limit} personnes
+    go_to_sso_account_settings: Accédez aux paramètres du compte de votre fournisseur d'identité
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
   verification:
+    explanation_html: 'Vous pouvez <strong>vous vérifier en tant que propriétaire des liens dans les métadonnées de votre profil</strong>. Pour cela, le site web lié doit contenir un lien vers votre profil Mastodon. Le lien de retour <strong>doit</strong> avoir un attribut <code>rel="me"</code> . Le texte du lien n’a pas d’importance. Voici un exemple :'
     verification: Vérification
   webauthn_credentials:
     add: Ajouter une nouvelle clé de sécurité
