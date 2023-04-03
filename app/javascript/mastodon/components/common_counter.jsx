@@ -1,5 +1,6 @@
 // @ts-check
 import React from 'react';
+// @ts-expect-error
 import { FormattedMessage } from 'react-intl';
 
 /**
