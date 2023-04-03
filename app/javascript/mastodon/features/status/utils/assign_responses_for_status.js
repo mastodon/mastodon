@@ -1,4 +1,4 @@
-export const assignResponsesForStatus = (rootId, replies, maxLevel = 2) => {
+export const assignResponsesForStatus = (rootId, replies) => {
   const idToStatus = replies
     .map(({ id }) => {
       const { in_reply_to_id, content } = replies.find(
@@ -20,15 +20,10 @@ export const assignResponsesForStatus = (rootId, replies, maxLevel = 2) => {
 
   const transformStatusToViewData =
     (level = 0) =>
-      ({ id, children }) => {
-        if (level + 2 > maxLevel) {
-          return { id, children: [] };
-        }
-        return {
-          id,
-          children: children.map(transformStatusToViewData(level + 1)),
-        };
-      };
+      ({ id, children }) => ({
+        id,
+        children: children.map(transformStatusToViewData(level + 1)),
+      });
 
   return filteredStatuses.map(transformStatusToViewData());
 };
