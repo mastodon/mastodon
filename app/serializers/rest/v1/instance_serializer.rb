@@ -21,7 +21,7 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
   end
 
   def description
-    Setting.site_description # Legacy
+    object.extended_description
   end
 
   def email
