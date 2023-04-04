@@ -1,7 +1,6 @@
 // @ts-check
 import React from 'react';
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
-// @ts-expect-error
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -92,9 +91,7 @@ const Hashtag = ({ name, to, people, uses, history, className, description, with
     {withGraph && (
       <div className='trends__item__sparkline'>
         <SilentErrorBoundary>
-          {/* @ts-expect-error */}
           <Sparklines width={50} height={28} data={history ? history : Array.from(Array(7)).map(() => 0)}>
-            {/* @ts-expect-error */}
             <SparklinesCurve style={{ fill: 'none' }} />
           </Sparklines>
         </SilentErrorBoundary>
