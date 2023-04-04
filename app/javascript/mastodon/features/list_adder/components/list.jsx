@@ -55,7 +55,7 @@ class List extends ImmutablePureComponent {
     }
 
     return (
-      <div className='list'>
+      <div className={`list ${added ? 'remove' : ''}`}>
         <div className='list__wrapper'>
           <div className='list__display-name'>
             <Icon id='list-ul' icon={ListAltIcon} className='column-link__icon' />
