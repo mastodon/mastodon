@@ -183,10 +183,10 @@ function main() {
 
     if (sidebar.classList.contains('visible')) {
       document.body.style.overflow = null;
-      toggleButton.setAttribute('aria-expanded', false);
+      toggleButton.setAttribute('aria-expanded', 'false');
     } else {
       document.body.style.overflow = 'hidden';
-      toggleButton.setAttribute('aria-expanded', true);
+      toggleButton.setAttribute('aria-expanded', 'true');
     }
 
     toggleButton.classList.toggle('active');
