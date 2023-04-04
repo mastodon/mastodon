@@ -50,7 +50,7 @@ const emojifyTextNode = (node, customEmojis) => {
         if (shortname in customEmojis) {
           const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
           replacement = document.createElement('img');
-          replacement.setAttribute('draggable', false);
+          replacement.setAttribute('draggable', 'false');
           replacement.setAttribute('class', 'emojione custom-emoji');
           replacement.setAttribute('alt', shortname);
           replacement.setAttribute('title', shortname);
@@ -65,7 +65,7 @@ const emojifyTextNode = (node, customEmojis) => {
       const { filename, shortCode } = unicodeMapping[match];
       const title = shortCode ? `:${shortCode}:` : '';
       replacement = document.createElement('img');
-      replacement.setAttribute('draggable', false);
+      replacement.setAttribute('draggable', 'false');
       replacement.setAttribute('class', 'emojione');
       replacement.setAttribute('alt', match);
       replacement.setAttribute('title', title);
