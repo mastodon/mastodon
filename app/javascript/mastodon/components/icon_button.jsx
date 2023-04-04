@@ -23,7 +23,7 @@ export default class IconButton extends React.PureComponent {
     inverted: PropTypes.bool,
     animate: PropTypes.bool,
     overlay: PropTypes.bool,
-    tabIndex: PropTypes.string,
+    tabIndex: PropTypes.number,
     counter: PropTypes.number,
     obfuscateCount: PropTypes.bool,
     href: PropTypes.string,
@@ -36,7 +36,7 @@ export default class IconButton extends React.PureComponent {
     disabled: false,
     animate: false,
     overlay: false,
-    tabIndex: '0',
+    tabIndex: 0,
     ariaHidden: false,
   };
 

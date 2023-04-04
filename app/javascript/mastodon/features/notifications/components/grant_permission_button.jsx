@@ -10,7 +10,7 @@ export default class GrantPermissionButton extends React.PureComponent {
 
   render () {
     return (
-      <button className='text-btn column-header__permission-btn' tabIndex='0' onClick={this.props.onClick}>
+      <button className='text-btn column-header__permission-btn' tabIndex={0} onClick={this.props.onClick}>
         <FormattedMessage id='notifications.grant_permission' defaultMessage='Grant permission.' />
       </button>
     );

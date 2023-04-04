@@ -826,7 +826,7 @@ body > [data-popper-placement] {
 }
 
 .reply-indicator__cancel {
-  float: inline-end;
+  float: right;
   line-height: 24px;
 }
 
@@ -841,7 +841,7 @@ body > [data-popper-placement] {
 }
 
 .reply-indicator__display-avatar {
-  float: inline-start;
+  float: left;
   margin-inline-end: 5px;
 }
 
@@ -1159,7 +1159,7 @@ body > [data-popper-placement] {
 
 .notification__relative_time {
   color: $dark-text-color;
-  float: inline-end;
+  float: right;
   font-size: 14px;
   padding-bottom: 1px;
 }
@@ -1244,7 +1244,7 @@ body > [data-popper-placement] {
 .status__prepend {
   padding: 16px;
   padding-bottom: 0;
-  display: flex;
+  display: inline-flex;
   gap: 10px;
   font-size: 15px;
   line-height: 22px;
@@ -1259,6 +1259,18 @@ body > [data-popper-placement] {
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+}
+
+.status__wrapper-direct {
+  background: mix($ui-base-color, $ui-highlight-color, 95%);
+
+  &:focus {
+    background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+  }
+
+  .status__prepend {
+    color: $highlight-text-color;
   }
 }
 
@@ -1315,6 +1327,11 @@ body > [data-popper-placement] {
   .audio-player {
     margin-top: 16px;
   }
+
+  .status__prepend {
+    padding: 0;
+    margin-bottom: 16px;
+  }
 }
 
 .detailed-status__meta {
@@ -1331,6 +1348,32 @@ body > [data-popper-placement] {
   display: flex;
   flex-direction: row;
   padding: 10px 0;
+}
+
+.detailed-status__wrapper-direct {
+  .detailed-status,
+  .detailed-status__action-bar {
+    background: mix($ui-base-color, $ui-highlight-color, 95%);
+  }
+
+  &:focus {
+    .detailed-status,
+    .detailed-status__action-bar {
+      background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+    }
+  }
+
+  .detailed-status__action-bar {
+    border-top-color: mix(
+      lighten($ui-base-color, 8%),
+      $ui-highlight-color,
+      95%
+    );
+  }
+
+  .status__prepend {
+    color: $highlight-text-color;
+  }
 }
 
 .detailed-status__link {
@@ -1384,15 +1427,6 @@ body > [data-popper-placement] {
   padding: 16px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
 
-  &.compact {
-    padding: 0;
-    border-bottom: 0;
-
-    .account__avatar-wrapper {
-      margin-inline-start: 0;
-    }
-  }
-
   .account__display-name {
     flex: 1 1 auto;
     display: flex;
@@ -1409,6 +1443,18 @@ body > [data-popper-placement] {
 
     .display-name strong {
       display: inline;
+    }
+  }
+
+  &--minimal {
+    .account__display-name {
+      .display-name {
+        margin-bottom: 0;
+      }
+
+      .display-name strong {
+        display: block;
+      }
     }
   }
 
@@ -1461,7 +1507,7 @@ body > [data-popper-placement] {
     position: relative;
 
     & > div {
-      float: inline-start;
+      float: left;
       position: relative;
       box-sizing: border-box;
     }
@@ -1576,7 +1622,7 @@ a .account__avatar {
   text-decoration: none;
   overflow: hidden;
   flex: 0 1 100%;
-  border-inset-inline-end: 1px solid lighten($ui-base-color, 8%);
+  border-inline-end: 1px solid lighten($ui-base-color, 8%);
   padding: 10px 0;
   border-bottom: 4px solid transparent;
 
@@ -1616,7 +1662,7 @@ a .account__avatar {
 }
 
 .account-authorize__avatar {
-  float: inline-start;
+  float: left;
   margin-inline-end: 10px;
 }
 
@@ -2596,7 +2642,7 @@ $ui-header-height: 55px;
     .navigation-panel {
       margin: 0;
       background: $ui-base-color;
-      border-inset-inline-start: 1px solid lighten($ui-base-color, 8%);
+      border-inline-start: 1px solid lighten($ui-base-color, 8%);
       height: 100vh;
     }
 
@@ -2917,6 +2963,8 @@ $ui-header-height: 55px;
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
+  border-radius: 4px;
+  overflow: hidden;
 
   a {
     transition: background 100ms ease-in;
@@ -3831,7 +3879,7 @@ a.status-card.compact:hover {
 }
 
 .column-header__setting-arrows {
-  float: inline-end;
+  float: right;
 
   .column-header__setting-btn {
     padding: 5px;
@@ -4770,6 +4818,86 @@ a.status-card.compact:hover {
 .search {
   margin-bottom: 10px;
   position: relative;
+
+  &__popout {
+    box-sizing: border-box;
+    display: none;
+    position: absolute;
+    inset-inline-start: 0;
+    margin-top: -2px;
+    width: 100%;
+    background: $ui-base-color;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
+    z-index: 2;
+    font-size: 13px;
+    padding: 15px 5px;
+
+    h4 {
+      text-transform: uppercase;
+      color: $dark-text-color;
+      font-weight: 500;
+      padding: 0 10px;
+      margin-bottom: 10px;
+    }
+
+    &__menu {
+      &__message {
+        color: $dark-text-color;
+        padding: 0 10px;
+      }
+
+      &__item {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        border: 0;
+        font: inherit;
+        background: transparent;
+        color: $darker-text-color;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        text-align: start;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+        &--flex {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .icon-button {
+          transition: none;
+        }
+
+        &:hover,
+        &:focus,
+        &:active,
+        &.selected {
+          background: $ui-highlight-color;
+          color: $primary-text-color;
+
+          .icon-button {
+            color: $primary-text-color;
+          }
+        }
+
+        mark {
+          background: transparent;
+          font-weight: 700;
+          color: $primary-text-color;
+        }
+      }
+    }
+  }
+
+  &.active {
+    .search__popout {
+      display: block;
+    }
+  }
 }
 
 .search__input {
@@ -5625,7 +5753,7 @@ a.status-card.compact:hover {
 
 .report-modal__comment {
   padding: 20px;
-  border-inset-inline-end: 1px solid $ui-secondary-color;
+  border-inline-end: 1px solid $ui-secondary-color;
   max-width: 320px;
 
   p {
@@ -5916,7 +6044,7 @@ a.status-card.compact:hover {
     color: $dark-text-color;
     padding: 8px 18px;
     cursor: default;
-    border-inset-inline-end: 1px solid lighten($ui-base-color, 8%);
+    border-inline-end: 1px solid lighten($ui-base-color, 8%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -5981,7 +6109,7 @@ a.status-card.compact:hover {
   border: 0;
   box-sizing: border-box;
   display: block;
-  float: inline-start;
+  float: left;
   position: relative;
   border-radius: 4px;
   overflow: hidden;
@@ -6649,10 +6777,6 @@ a.status-card.compact:hover {
   border-radius: 0;
 }
 
-.search-popout {
-  @include search-popout;
-}
-
 noscript {
   text-align: center;
 
@@ -6924,6 +7048,7 @@ noscript {
 
   .drawer__pager {
     height: 50vh;
+    border-radius: 4px;
   }
 
   .drawer__inner {
@@ -7805,7 +7930,7 @@ noscript {
       inset-inline-start: 0;
       width: 100%;
       height: 100%;
-      border-inset-inline-start: 4px solid $highlight-text-color;
+      border-inline-start: 4px solid $highlight-text-color;
       pointer-events: none;
     }
   }
@@ -7937,6 +8062,10 @@ noscript {
   .search__input {
     border: 1px solid lighten($ui-base-color, 8%);
     padding: 10px;
+  }
+
+  .search__popout {
+    border: 1px solid lighten($ui-base-color, 8%);
   }
 
   .search .fa {

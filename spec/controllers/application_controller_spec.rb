@@ -88,20 +88,18 @@ describe ApplicationController, type: :controller do
 
     it 'returns instances\'s default theme when user didn\'t set theme' do
       current_user = Fabricate(:user)
+      current_user.settings.update(theme: 'contrast', noindex: false)
+      current_user.save
       sign_in current_user
-
-      allow(Setting).to receive(:[]).with('theme').and_return 'contrast'
-      allow(Setting).to receive(:[]).with('noindex').and_return false
 
       expect(controller.view_context.current_theme).to eq 'contrast'
     end
 
     it 'returns user\'s theme when it is set' do
       current_user = Fabricate(:user)
-      current_user.settings['theme'] = 'mastodon-light'
+      current_user.settings.update(theme: 'mastodon-light')
+      current_user.save
       sign_in current_user
-
-      allow(Setting).to receive(:[]).with('theme').and_return 'contrast'
 
       expect(controller.view_context.current_theme).to eq 'mastodon-light'
     end

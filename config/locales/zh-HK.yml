@@ -798,6 +798,12 @@ zh-HK:
         message_html: 您尚未定義任何伺服器規則
       sidekiq_process_check:
         message_html: 沒有 %{value} 佇列的 Sidekiq 處理程序。請檢查 Sidekiq 設定檔案
+      upload_check_privacy_error:
+        action: 在此查看更多資訊
+        message_html: "<strong>你的網絡伺服器配置錯誤。你的使用者的私隱有危險。</strong>"
+      upload_check_privacy_error_object_storage:
+        action: 在此查看更多資訊
+        message_html: "<strong>你的對象儲存配置錯誤。你的使用者的私隱有危險。</strong>"
     tags:
       review: 審核文章
       updated_msg: 成功更新主題標籤設定
@@ -1379,6 +1385,7 @@ zh-HK:
     confirm_remove_selected_followers: 你確定要移除選取的追蹤者嗎？
     confirm_remove_selected_follows: 你確定要移除選取的追蹤者嗎？
     dormant: 潛在
+    follow_failure: 無法追蹤部份已選的帳號。
     follow_selected_followers: 關注所選的追隨者
     followers: 追隨者
     following: 正在關注
@@ -1418,6 +1425,7 @@ zh-HK:
       electron: Electron 瀏覽器
       firefox: Firefox 瀏覽器
       generic: 未知的瀏覽器
+      huawei_browser: 華為瀏覽器
       ie: Internet Explorer 瀏覽器
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 瀏覽器
@@ -1427,6 +1435,7 @@ zh-HK:
       qq: QQ瀏覽器
       safari: Safari 瀏覽器
       uc_browser: UC 瀏覽器
+      unknown_browser: 未知的瀏覽器
       weibo: 新浪微博
     current_session: 目前的作業階段
     description: "%{platform} 上的 %{browser}"
@@ -1439,8 +1448,10 @@ zh-HK:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
+      unknown_platform: 未知平台
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1647,11 +1658,13 @@ zh-HK:
       title: 歡迎 %{name} 加入！
   users:
     follow_limit_reached: 你不能關注多於%{limit} 人
+    go_to_sso_account_settings: 前往你身份提供者的帳號設定
     invalid_otp_token: 雙重認證碼不正確
     otp_lost_help_html: 如果這兩者你均無法登入，你可以聯繫 %{email}
     seamless_external_login: 因為你正在使用第三方服務登入，所以不能設定密碼和電郵。
     signed_in_as: 目前登入的帳戶：
   verification:
+    explanation_html: 你可以<strong>在你的個人檔案元數據中驗證自己是連結的擁有者</strong>。為此，連接的網站必須包含一條回到你 Mastodon 個人檔案的連結。加入連結後，你可能需要回到這裏，再次儲存你的個人檔案以便驗證生效。返回的連結<strong>必須</strong>有一個<code>rel="me"</code>的屬性。當中的文字內容並不重要。以下有一個例子：
     verification: 驗證
   webauthn_credentials:
     add: 新增安全密鑰裝置

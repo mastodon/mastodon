@@ -88,7 +88,9 @@ class Explore extends React.PureComponent {
                 <Route path='/explore/tags' component={Tags} />
                 <Route path='/explore/links' component={Links} />
                 <Route path='/explore/suggestions' component={Suggestions} />
-                <Route exact path={['/explore', '/explore/posts', '/search']} component={Statuses} componentParams={{ multiColumn }} />
+                <Route exact path={['/explore', '/explore/posts', '/search']}>
+                  <Statuses multiColumn={multiColumn} />
+                </Route>
               </Switch>
 
               <Helmet>
