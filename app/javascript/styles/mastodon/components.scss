@@ -826,7 +826,7 @@ body > [data-popper-placement] {
 }
 
 .reply-indicator__cancel {
-  float: inline-end;
+  float: right;
   line-height: 24px;
 }
 
@@ -841,7 +841,7 @@ body > [data-popper-placement] {
 }
 
 .reply-indicator__display-avatar {
-  float: inline-start;
+  float: left;
   margin-inline-end: 5px;
 }
 
@@ -1159,7 +1159,7 @@ body > [data-popper-placement] {
 
 .notification__relative_time {
   color: $dark-text-color;
-  float: inline-end;
+  float: right;
   font-size: 14px;
   padding-bottom: 1px;
 }
@@ -1507,7 +1507,7 @@ body > [data-popper-placement] {
     position: relative;
 
     & > div {
-      float: inline-start;
+      float: left;
       position: relative;
       box-sizing: border-box;
     }
@@ -1662,7 +1662,7 @@ a .account__avatar {
 }
 
 .account-authorize__avatar {
-  float: inline-start;
+  float: left;
   margin-inline-end: 10px;
 }
 
@@ -3879,7 +3879,7 @@ a.status-card.compact:hover {
 }
 
 .column-header__setting-arrows {
-  float: inline-end;
+  float: right;
 
   .column-header__setting-btn {
     padding: 5px;
@@ -6109,7 +6109,7 @@ a.status-card.compact:hover {
   border: 0;
   box-sizing: border-box;
   display: block;
-  float: inline-start;
+  float: left;
   position: relative;
   border-radius: 4px;
   overflow: hidden;
