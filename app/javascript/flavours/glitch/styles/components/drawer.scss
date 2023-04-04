@@ -50,12 +50,14 @@
 }
 
 .drawer--header {
+  flex: none;
+  font-size: 16px;
+  background: lighten($ui-base-color, 8%);
+  margin-bottom: 10px;
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
-  flex: none;
-  background: lighten($ui-base-color, 8%);
-  font-size: 16px;
+  border-radius: 4px;
+  overflow: hidden;
 
   & > * {
     display: block;
@@ -179,6 +181,7 @@
   position: relative;
   overflow: hidden;
   display: flex;
+  border-radius: 4px;
 }
 
 .drawer__inner {
