@@ -2963,6 +2963,8 @@ $ui-header-height: 55px;
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
+  border-radius: 4px;
+  overflow: hidden;
 
   a {
     transition: background 100ms ease-in;
@@ -7046,6 +7048,7 @@ noscript {
 
   .drawer__pager {
     height: 50vh;
+    border-radius: 4px;
   }
 
   .drawer__inner {
