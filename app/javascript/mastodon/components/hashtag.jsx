@@ -1,7 +1,6 @@
 // @ts-check
 import React from 'react';
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
-// @ts-expect-error
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
