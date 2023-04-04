@@ -23,6 +23,7 @@ export const PICTURE_IN_PICTURE_REMOVE = 'PICTURE_IN_PICTURE_REMOVE';
  * @return {object}
  */
 export const deployPictureInPicture = (statusId, accountId, playerType, props) => {
+  // @ts-expect-error
   return (dispatch, getState) => {
     // Do not open a player for a toot that does not exist
     if (getState().hasIn(['statuses', statusId])) {
