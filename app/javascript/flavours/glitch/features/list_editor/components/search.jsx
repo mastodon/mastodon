@@ -51,7 +51,7 @@ export default class Search extends React.PureComponent {
           />
         </label>
 
-        <div role='button' tabIndex='0' className='search__icon' onClick={this.handleClear}>
+        <div role='button' tabIndex={0} className='search__icon' onClick={this.handleClear}>
           <Icon id='search' className={classNames({ active: !hasValue })} />
           <Icon id='times-circle' aria-label={intl.formatMessage(messages.search)} className={classNames({ active: hasValue })} />
         </div>

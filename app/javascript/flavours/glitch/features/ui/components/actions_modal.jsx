@@ -36,7 +36,7 @@ export default class ActionsModal extends ImmutablePureComponent {
     if (!contents) {
       contents = (
         <React.Fragment>
-          {icon && <IconButton title={text} icon={icon} role='presentation' tabIndex='-1' inverted />}
+          {icon && <IconButton title={text} icon={icon} role='presentation' tabIndex={-1} inverted />}
           <div>
             <div className={classNames({ 'actions-modal__item-label': !!meta })}>{text}</div>
             <div>{meta}</div>

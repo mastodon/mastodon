@@ -43,7 +43,7 @@ export default class Upload extends ImmutablePureComponent {
     const y = ((focusY / -2) + .5) * 100;
 
     return (
-      <div className='compose-form__upload' tabIndex='0' role='button'>
+      <div className='compose-form__upload' tabIndex={0} role='button'>
         <Motion defaultStyle={{ scale: 0.8 }} style={{ scale: spring(1, { stiffness: 180, damping: 12 }) }}>
           {({ scale }) => (
             <div className='compose-form__upload-thumbnail' style={{ transform: `scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})`, backgroundPosition: `${x}% ${y}%` }}>

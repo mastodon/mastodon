@@ -60,7 +60,7 @@ export default class LocalSettingsPage extends React.PureComponent {
       <a
         onClick={handleClick}
         role='button'
-        tabIndex='0'
+        tabIndex={0}
         className={finalClassName}
         title={title}
         aria-label={title}
