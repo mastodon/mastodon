@@ -67,7 +67,7 @@ class Section extends React.PureComponent {
 
     return (
       <div className={classNames('about__section', { active: !collapsed })}>
-        <div className='about__section__title' role='button' tabIndex='0' onClick={this.handleClick}>
+        <div className='about__section__title' role='button' tabIndex={0} onClick={this.handleClick}>
           <Icon id={collapsed ? 'chevron-right' : 'chevron-down'} fixedWidth /> {title}
         </div>
 
