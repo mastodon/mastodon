@@ -127,7 +127,6 @@ module.exports = {
     'react/jsx-tag-spacing': 'error',
     'react/jsx-wrap-multilines': 'error',
     'react/no-deprecated': 'off',
-    'react/no-unknown-property': 'off',
     'react/self-closing-comp': 'error',
 
     // recommended values found in https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/src/index.js
