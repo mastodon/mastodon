@@ -6,10 +6,16 @@ es:
       batch_error: Ocurrió un error %{message}
     settings:
       captcha_enabled:
-        title: Requerir que usuarixs nuevxs resuelvan un CAPTCHA para confirmar su cuenta
+        desc_html: Esto depende de scripts externos de hCaptcha, que pueden ser una preocupación de seguridad y privacidad. Además, <strong>esto puede hacer el proceso de registro significativamente menos accesible para algunas personas (especialmente minusválidos)</strong>. Por estas razones, por favor considera medidas alternativas como el registro basado en la aprobación o la invitación.<br>Los usuarios que han sido invitados a través de una invitación de uso limitado no necesitarán resolver un CAPTCHA
+        title: Pedir a los usuarios nuevos resolver un CAPTCHA para confirmar su cuenta
+      flavour_and_skin:
+        title: Sabor y apariencia
       hide_followers_count:
-        desc_html: No mostrar el conteo de seguidorxs en perfiles de usuarix
+        desc_html: No mostrar el conteo de seguidores en los perfiles de usuario
         title: Ocultar conteo de seguidorxs
+      other:
+        preamble: Varias configuraciones de glitch-soc que no encajan en otras categorías.
+        title: Otro
       outgoing_spoilers:
         desc_html: Cuando los toots federen, agrega esta etiqueta de contenido a los toots que no tengan. Es útil si tu servidor se especializa en contenido que otros servidores desearían tener con una advertencia de contenido. Los medios también se marcarán como sensibles.
         title: Advertencia de contenido para publicaciones salientes
@@ -20,14 +26,16 @@ es:
         desc_html: Además de auto-respuestas públicas (hilos), mostrar respuestas públicas en las líneas de tiempo local y pública.
         title: Mostrar respuestas en líneas de tiempo públicas
       trending_status_cw:
+        desc_html: Cuando las publicaciones en tendencia están habilitadas, permitir que la que contienen Advertencias de Contenido sean elegibles. Los cambios en esta configuración no son retroactivos.
         title: Permitir que publicaciones con advertencias de contenido sean tendencia
   appearance:
     localization:
       glitch_guide_link: https://crowdin.com/project/glitch-soc
-      glitch_guide_link_text: Al igual que para glitch-soc!
+      glitch_guide_link_text: Igual para glitch-soc!
   auth:
     captcha_confirmation:
-      title: Verificación de usuarix
+      hint_html: ¡Solo un paso más! Para confirmar tu cuenta, este servidor requiere que resuelvas un CAPTCHA. Puedes contactar <a href="/about/more"> con el administrador del servidor</a> si tienes preguntas o necesitas ayuda para confirmar tu cuenta.
+      title: Verificación de usuario
   generic:
     use_this: Usar
   settings:

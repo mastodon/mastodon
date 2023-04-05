@@ -1,10 +1,21 @@
 ---
 zh-CN:
   admin:
+    custom_emojis:
+      batch_copy_error: '复制部分所选表情时发生错误: %{message}'
+      batch_error: 发生了一个错误：%{message}
     settings:
+      captcha_enabled:
+        desc_html: 这依赖于来自hCaptcha的外部脚本，这可能是一个安全和隐私问题。 此外， <strong>这可能使得某些人(尤其是残疾人)</strong>的注册简单程度大幅减少。 出于这些原因，请考虑采取其他措施，例如基于审核或邀请的注册。<br>通过限定邀请链接注册的用户将不需要解决验证码问题
+        title: 要求新用户解决验证码以确认他们的帐户
+      flavour_and_skin:
+        title: 风格与皮肤
       hide_followers_count:
         desc_html: 不要在用户资料中显示关注者人数
         title: 隐藏关注者人数
+      other:
+        preamble: 各种不适合归类到其他类别的glitch-soc设置。
+        title: 其它
       outgoing_spoilers:
         desc_html: 在联邦化嘟文的时候，将这个内容警告添加到没有内容警告的嘟文中。如果你的服务器专用于其他服务器可能希望有内容警告的内容，它会很有用。媒体也将被标记为敏感。
         title: 对外嘟文的内容警告
@@ -14,7 +25,18 @@ zh-CN:
       show_replies_in_public_timelines:
         desc_html: 除了公开的自我回复（线程模式），在本地和跨站时间轴中显示公开回复。
         title: 在公共时间轴中显示回复
+      trending_status_cw:
+        desc_html: 当热门帖子被启用时，允许带有内容警告的帖子获得资格。此设置的更改不具有追溯性。
+        title: 允许带有内容警告的帖子进入热门
+  appearance:
+    localization:
+      glitch_guide_link: https://crowdin.com/project/glitch-soc
+      glitch_guide_link_text: Glitch-soc也是如此！
+  auth:
+    captcha_confirmation:
+      hint_html: 只需最后一步！为了确认您的账户，本服务器需要您解决一个验证码。如果您有疑问或需要帮助确认您的账户，请<a href="/about/more">联系服务器管理员</a>。
+      title: 用户验证
   generic:
     use_this: 使用这个
   settings:
-    flavours: 风味
+    flavours: 风格

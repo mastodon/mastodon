@@ -1,5 +1,41 @@
 ---
 pl:
+  admin:
+    custom_emojis:
+      batch_copy_error: 'Podczas kopiowania niektórych zaznaczonych emotikon wystąpił następujący problem: %{message}'
+      batch_error: 'Wystąpił problem: %{message}'
+    settings:
+      captcha_enabled:
+        desc_html: Wymaga użycia zewnętrznych skryptów hCaptcha, co może negatywnie wpływać na bezpieczeństwo i prywatność. <strong>Może również przyczynić się do znaczącego utrudnienia procesu rejestracji niektórym, np. niepełnosprawnym, osobom.</strong> Dlatego sugeruje się używanie zaproszeń bądź ręcznie potwierdzanie kont.<br>Użytkownicy rejestrujący się za pomocą limitowanych zaproszeń nie będą musieli rozwiązywać zadania CHAPTCHA
+        title: W celu potwierdzenia ich kont wymagaj rozwiązania zadania CAPTCHA przez nowych użytkowników
+      flavour_and_skin:
+        title: Odmiana i motyw
+      hide_followers_count:
+        desc_html: Nie pokazuj liczby obserwujących w profilach użytkowników.
+        title: Ukryj liczbę obserwujących
+      other:
+        preamble: Ustawienia glitch-soc niepasujące do innych kategorii.
+        title: Inne
+      outgoing_spoilers:
+        desc_html: Podczas wysyłania wpisów do innych serwerów ukryj ich treść za tym ostrzeżeniem a załączniki oznacz jako wrażliwe. Ta opcja jest dedykowana serwerom specjalizującym się w tematyce, która przez innych może traktowana jako wymagająca ostrzeżenia.
+        title: Ostrzeżenie o zawartości dla wpisów wysyłanych do innych serwerów
+      show_reblogs_in_public_timelines:
+        desc_html: Pokaż publiczne podbicia publicznych wpisów w lokalnych i publicznych osiach czasu.
+        title: Pokaż podbicia w publicznych osiach czasu
+      show_replies_in_public_timelines:
+        desc_html: Oprócz odpowiedzi tworzących wątki pokazuj publiczne odpowiedzi w lokalnych i publicznych osiach czasu.
+        title: Pokaż odpowiedzi w publicznych osiach czasu
+      trending_status_cw:
+        desc_html: Pozwól ukrytym za ostrzeżeniem wpisom na włączenie do sekcji „Popularne teraz”, jeżeli jest ona włączona. Zmiana tego ustawienia nie wpłynie na już opublikowane wpisy.
+        title: Pozwól ukrytym za ostrzeżeniem wpisom na włączenie do sekcji „Popularne teraz”
+  appearance:
+    localization:
+      glitch_guide_link: https://crowdin.com/project/glitch-soc
+      glitch_guide_link_text: Również w wypadku glitch-soc.
+  auth:
+    captcha_confirmation:
+      hint_html: Aby potwierdzić Twoje konto, ten serwer wymaga rozwiązania przez Ciebie zadania CAPTCHA. Możesz <a href="/about/more">skontaktować się z administratorem</a>, jeśli masz jakieś pytania lub potrzebujesz pomocy.
+      title: Weryfikacja użytkownika
   generic:
     use_this: Użyj tego
   settings:
