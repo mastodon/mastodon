@@ -54,7 +54,7 @@ export default class MediaContainer extends PureComponent {
 
   handleCloseMedia = () => {
     document.body.classList.remove('with-modals--active');
-    document.documentElement.style.marginRight = 0;
+    document.documentElement.style.marginRight = '0';
 
     this.setState({
       media: null,
