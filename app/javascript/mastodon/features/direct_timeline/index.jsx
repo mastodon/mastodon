@@ -89,6 +89,7 @@ class DirectTimeline extends React.PureComponent {
           trackScroll={!pinned}
           scrollKey={`direct_timeline-${columnId}`}
           timelineId='direct'
+          bindToDocument={!multiColumn}
           onLoadMore={this.handleLoadMore}
           prepend={<div className='follow_requests-unlocked_explanation'><span><FormattedMessage id='compose_form.encryption_warning' defaultMessage='Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.' /> <a href='/terms' target='_blank'><FormattedMessage id='compose_form.direct_message_warning_learn_more' defaultMessage='Learn more' /></a></span></div>}
           alwaysPrepend
