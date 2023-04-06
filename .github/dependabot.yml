@@ -38,6 +38,10 @@ updates:
       - dependency-name: 'react-hotkeys'
         versions:
           - '2.x'
+      # TODO: This version got stuck in https://github.com/mastodon/mastodon/pull/15206 and this should be deleted to fix
+      - dependency-name: 'terser'
+        versions:
+          - '5.x'
 
   - package-ecosystem: bundler
     directory: '/'
