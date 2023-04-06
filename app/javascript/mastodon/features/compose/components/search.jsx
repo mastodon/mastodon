@@ -287,7 +287,7 @@ class Search extends React.PureComponent {
           onBlur={this.handleBlur}
         />
 
-        <div role='button' tabIndex='0' className='search__icon' onClick={this.handleClear}>
+        <div role='button' tabIndex={0} className='search__icon' onClick={this.handleClear}>
           <Icon id='search' className={hasValue ? '' : 'active'} />
           <Icon id='times-circle' className={hasValue ? 'active' : ''} aria-label={intl.formatMessage(messages.placeholder)} />
         </div>
