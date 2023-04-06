@@ -1,3 +1,4 @@
+---
 zh-CN:
   simple_form:
     hints:
@@ -66,7 +67,7 @@ zh-CN:
         domain: 这可以是电子邮件地址的域名或它使用的 MX 记录所指向的域名。用户注册时，系统会对此检查。
         with_dns_records: Mastodon 会尝试解析所给域名的 DNS 记录，然后把解析结果一并封禁
       featured_tag:
-        name: '以下是你最近使用过的标签：'
+        name: 以下是你最近使用过的标签：
       filters:
         action: 选择在帖子匹配过滤器时要执行的操作
         actions:
@@ -115,7 +116,7 @@ zh-CN:
       rule:
         text: 描述这个服务器上的用户规则或要求。尽量确保简洁、清晰易懂
       sessions:
-        otp: '输入你手机应用上生成的双重认证码，或者任意一个恢复代码：'
+        otp: 输入你手机应用上生成的双重认证码，或者任意一个恢复代码：
         webauthn: 如果是 USB 密钥，请确保将其插入，如有必要，请点击它。
       tag:
         name: 你只能改变字母的大小写，让它更易读
@@ -304,7 +305,7 @@ zh-CN:
       webhook:
         events: 已启用事件
         url: 对端 URL
-    'no': '否'
+    'no': 否
     not_recommended: 不推荐
     recommended: 推荐
     required:
@@ -313,4 +314,4 @@ zh-CN:
     title:
       sessions:
         webauthn: 使用你的安全密钥登录
-    'yes': '是'
+    'yes': 是
