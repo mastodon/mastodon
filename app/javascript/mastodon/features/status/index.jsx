@@ -162,7 +162,7 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const truncate = (str, num) => {
+const truncate = (intl, str, num) => {
   if (str.length > num) {
     return str.slice(0, num) + intl.formatMessage(messages.ellipsis);
   } else {
@@ -170,14 +170,14 @@ const truncate = (str, num) => {
   }
 };
 
-const titleFromStatus = status => {
+const titleFromStatus = (intl, status) => {
   const displayName = status.getIn(['account', 'display_name']);
   const username = status.getIn(['account', 'username']);
   const user = displayName.trim().length === 0 ? username : displayName;
   const text = status.get('search_index');
   const attachmentCount = status.get('media_attachments').size;
 
-  return text ? intl.formatMessage(messages.statusTitleWithText, {user, truncatedStatusText: truncate(text, 30)}) : intl.formatMessage(messages.statusTitleWithText, {user, attachmentCount});
+  return text ? intl.formatMessage(messages.statusTitleWithText, {user, truncatedStatusText: truncate(intl, text, 30)}) : intl.formatMessage(messages.statusTitleWithText, {user, attachmentCount});
 };
 
 class Status extends ImmutablePureComponent {
@@ -678,7 +678,7 @@ class Status extends ImmutablePureComponent {
         </ScrollContainer>
 
         <Helmet>
-          <title>{titleFromStatus(status)}</title>
+          <title>{titleFromStatus(intl, status)}</title>
           <meta name='robots' content={(isLocal && isIndexable) ? 'all' : 'noindex'} />
         </Helmet>
       </Column>
