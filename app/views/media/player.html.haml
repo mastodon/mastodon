@@ -1,6 +1,6 @@
 - content_for :header_tags do
   = render_initial_state
-  = javascript_pack_tag "locales", crossorigin: 'anonymous'
+  = javascript_pack_tag 'locales', crossorigin: 'anonymous'
   - if @theme
     - if @theme[:supported_locales].include? I18n.locale.to_s
       = javascript_pack_tag "locales/#{@theme[:flavour]}/#{I18n.locale}", crossorigin: 'anonymous'

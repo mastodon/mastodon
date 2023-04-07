@@ -9,6 +9,5 @@
         = stylesheet_pack_tag pack_path, media: 'all', crossorigin: 'anonymous'
       - else
         = stylesheet_pack_tag "skins/#{theme[:flavour]}/#{theme[:skin]}/#{theme[:pack]}", media: 'all', crossorigin: 'anonymous'
-    - if theme[:preload]
-      - theme[:preload].each do |link|
-        %link{ href: asset_pack_path("#{link}.js"), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
+    - theme[:preload]&.each do |link|
+      %link{ href: asset_pack_path("#{link}.js"), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
