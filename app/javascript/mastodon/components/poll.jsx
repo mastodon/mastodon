@@ -31,7 +31,6 @@ const makeEmojiMap = record => record.get('emojis').reduce((obj, emoji) => {
   return obj;
 }, {});
 
-export default @injectIntl
 class Poll extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -155,7 +154,7 @@ class Poll extends ImmutablePureComponent {
           {!showResults && (
             <span
               className={classNames('poll__input', { checkbox: poll.get('multiple'), active })}
-              tabIndex='0'
+              tabIndex={0}
               role={poll.get('multiple') ? 'checkbox' : 'radio'}
               onKeyPress={this.handleOptionKeyPress}
               aria-checked={active}
@@ -234,3 +233,5 @@ class Poll extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(Poll);

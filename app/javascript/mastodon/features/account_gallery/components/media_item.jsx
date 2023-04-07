@@ -74,7 +74,7 @@ export default class MediaItem extends ImmutablePureComponent {
       if (['audio', 'video'].includes(attachment.get('type'))) {
         content = (
           <img
-            src={attachment.get('preview_url') || attachment.getIn(['account', 'avatar_static'])}
+            src={attachment.get('preview_url') || status.getIn(['account', 'avatar_static'])}
             alt={attachment.get('description')}
             lang={status.get('language')}
             onLoad={this.handleImageLoad}

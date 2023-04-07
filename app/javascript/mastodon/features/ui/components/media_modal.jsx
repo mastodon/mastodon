@@ -25,8 +25,6 @@ const mapStateToProps = (state, { statusId }) => ({
   language: state.getIn(['statuses', statusId, 'language']),
 });
 
-export default @connect(mapStateToProps, null, null, { forwardRef: true })
-@injectIntl
 class MediaModal extends ImmutablePureComponent {
 
   static propTypes = {
@@ -140,8 +138,8 @@ class MediaModal extends ImmutablePureComponent {
 
     const index = this.getIndex();
 
-    const leftNav  = media.size > 1 && <button tabIndex='0' className='media-modal__nav media-modal__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><Icon id='chevron-left' fixedWidth /></button>;
-    const rightNav = media.size > 1 && <button tabIndex='0' className='media-modal__nav  media-modal__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' fixedWidth /></button>;
+    const leftNav  = media.size > 1 && <button tabIndex={0} className='media-modal__nav media-modal__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><Icon id='chevron-left' fixedWidth /></button>;
+    const rightNav = media.size > 1 && <button tabIndex={0} className='media-modal__nav  media-modal__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' fixedWidth /></button>;
 
     const content = media.map((image) => {
       const width  = image.getIn(['meta', 'original', 'width']) || null;
@@ -257,3 +255,5 @@ class MediaModal extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, null, null, { forwardRef: true })(injectIntl(MediaModal));

@@ -31,7 +31,6 @@ const messages = defineMessages({
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Save changes' },
 });
 
-export default @injectIntl
 class ComposeForm extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -299,3 +298,5 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(ComposeForm);

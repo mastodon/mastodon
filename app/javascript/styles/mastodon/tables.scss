@@ -10,7 +10,7 @@
     line-height: 18px;
     vertical-align: top;
     border-top: 1px solid $ui-base-color;
-    text-align: left;
+    text-align: start;
     background: darken($ui-base-color, 4%);
   }
 
@@ -91,12 +91,12 @@
 
       &:first-child {
         border-radius: 4px 0 0;
-        border-left: 1px solid darken($ui-base-color, 8%);
+        border-inline-start: 1px solid darken($ui-base-color, 8%);
       }
 
       &:last-child {
         border-radius: 0 4px 0 0;
-        border-right: 1px solid darken($ui-base-color, 8%);
+        border-inline-end: 1px solid darken($ui-base-color, 8%);
       }
     }
   }
@@ -125,7 +125,7 @@ button.table-action-link,
 a.table-action-link {
   text-decoration: none;
   display: inline-block;
-  margin-right: 5px;
+  margin-inline-end: 5px;
   padding: 0 10px;
   color: $darker-text-color;
   font-weight: 500;
@@ -136,11 +136,11 @@ a.table-action-link {
 
   i.fa {
     font-weight: 400;
-    margin-right: 5px;
+    margin-inline-end: 5px;
   }
 
   &:first-child {
-    padding-left: 0;
+    padding-inline-start: 0;
   }
 }
 
@@ -172,7 +172,7 @@ a.table-action-link {
     &__actions,
     &__content {
       padding: 8px 0;
-      padding-right: 16px;
+      padding-inline-end: 16px;
       flex: 1 1 auto;
     }
   }
@@ -188,8 +188,8 @@ a.table-action-link {
     align-items: center;
 
     &__actions {
-      text-align: right;
-      padding-right: 16px - 5px;
+      text-align: end;
+      padding-inline-end: 16px - 5px;
     }
   }
 
@@ -296,7 +296,7 @@ a.table-action-link {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-right: 10px;
+        margin-inline-end: 10px;
 
         .emojione {
           width: 32px;
@@ -315,7 +315,7 @@ a.table-action-link {
 
       &__extra {
         flex: 0 0 auto;
-        text-align: right;
+        text-align: end;
         color: $darker-text-color;
         font-weight: 500;
       }

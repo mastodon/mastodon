@@ -5,7 +5,7 @@ ruby '>= 2.7.0', '< 3.3.0'
 
 gem 'pkg-config', '~> 1.5'
 
-gem 'puma', '~> 6.1'
+gem 'puma', '~> 6.2'
 gem 'rails', '~> 6.1.7'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
@@ -17,7 +17,7 @@ gem 'makara', '~> 0.5'
 gem 'pghero'
 gem 'dotenv-rails', '~> 2.8'
 
-gem 'aws-sdk-s3', '~> 1.119', require: false
+gem 'aws-sdk-s3', '~> 1.120', require: false
 gem 'fog-core', '<= 2.4.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'kt-paperclip', '~> 7.1', github: 'kreeti/kt-paperclip', ref: '11abf222dc31bff71160a1d138b445214f434b2b'
@@ -69,7 +69,7 @@ gem 'public_suffix', '~> 5.0'
 gem 'pundit', '~> 2.3'
 gem 'premailer-rails'
 gem 'rack-attack', '~> 6.6'
-gem 'rack-cors', '~> 1.1', require: 'rack/cors'
+gem 'rack-cors', '~> 2.0', require: 'rack/cors'
 gem 'rails-i18n', '~> 6.0'
 gem 'rails-settings-cached', '~> 0.6', git: 'https://github.com/mastodon/rails-settings-cached.git', branch: 'v0.6.6-aliases-true'
 gem 'redcarpet', '~> 3.6'
@@ -87,10 +87,10 @@ gem 'simple-navigation', '~> 4.4'
 gem 'simple_form', '~> 5.2'
 gem 'sprockets-rails', '~> 3.4', require: 'sprockets/railtie'
 gem 'stoplight', '~> 3.0.1'
-gem 'strong_migrations', '~> 0.7'
+gem 'strong_migrations', '~> 0.8'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
-gem 'tzinfo-data', '~> 1.2022'
+gem 'tzinfo-data', '~> 1.2023'
 gem 'webpacker', '~> 5.4'
 gem 'webpush', github: 'ClearlyClaire/webpush', ref: 'f14a4d52e201128b1b00245d11b6de80d6cfdcd9'
 gem 'webauthn', '~> 3.0'
@@ -118,7 +118,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.38'
+  gem 'capybara', '~> 3.39'
   gem 'climate_control'
   gem 'faker', '~> 3.1'
   gem 'json-schema', '~> 3.0'

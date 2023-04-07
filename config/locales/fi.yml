@@ -134,7 +134,7 @@ fi:
       search: Hae
       search_same_email_domain: Muut käyttäjät, joilla on sama sähköpostin verkkotunnus
       search_same_ip: Muut käyttäjät, joilla on sama IP-osoite
-      security: Suojaus
+      security: Turvallisuus
       security_measures:
         only_password: Vain salasana
         password_and_2fa: Salasana ja kaksivaiheinen tunnistautuminen
@@ -316,9 +316,9 @@ fi:
       copy: Kopioi
       copy_failed_msg: Emojista ei voitu tehdä paikallista kopiota
       create_new_category: Luo uusi kategoria
-      created_msg: Emojin luonti onnistui!
+      created_msg: Emojin luotu!
       delete: Poista
-      destroyed_msg: Emojon poisto onnistui!
+      destroyed_msg: Emojo poistettu!
       disable: Poista käytöstä
       disabled: Ei käytössä
       disabled_msg: Emojin poisto käytöstä onnistui
@@ -333,7 +333,7 @@ fi:
         title: Lisää uusi mukautettu emoji
       no_emoji_selected: Emojeita ei muutettu, koska yhtään ei valittu
       not_permitted: Sinulla ei ole oikeutta suorittaa tätä toimintoa
-      overwrite: Kirjoita yli
+      overwrite: Korvaa
       shortcode: Lyhennekoodi
       shortcode_hint: Vähintään kaksi merkkiä, vain kirjaimia, numeroita ja alaviivoja
       title: Mukautetut emojit
@@ -812,6 +812,12 @@ fi:
         message_html: Et ole määrittänyt mitään palvelimen sääntöä.
       sidekiq_process_check:
         message_html: Ei ole Sidekiq-prosessia käynnissä jonossa %{value}. Tarkista Sidekiq-asetukset
+      upload_check_privacy_error:
+        action: Katso täältä lisätietoja
+        message_html: "<strong>Verkkopalvelimesi on määritetty virheellisesti, ja käyttäjiesi yksityisyys on vaarassa.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Katso täältä lisätietoja
+        message_html: "<strong>Objektivarastosi on määritetty virheellisesti, ja käyttäjiesi yksityisyys on vaarassa.</strong>"
     tags:
       review: Tarkista tila
       updated_msg: Aihetunnisteen asetukset päivitetty onnistuneesti
@@ -966,7 +972,7 @@ fi:
   applications:
     created: Sovelluksen luonti onnistui
     destroyed: Sovelluksen poisto onnistui
-    logout: Uloskirjautuminen
+    logout: Kirjaudu ulos
     regenerate_token: Luo pääsytunnus uudelleen
     token_regenerated: Pääsytunnuksen uudelleenluonti onnistui
     warning: Säilytä tietoa hyvin. Älä milloinkaan jaa sitä muille!
@@ -1152,7 +1158,7 @@ fi:
   featured_tags:
     add_new: Lisää uusi
     errors:
-      limit: Olet jo lisännyt enimmäismäärän aihetunnisteita
+      limit: Olet jo nostanut esille enimmäismäärän aihetunnisteita
     hint_html: "<strong>Mitä ovat näkyvillä olevat hashtagit eli aihetunnisteet?</strong> Ne ovat näkyvissä julkisessa profiilissasi ja niiden avulla ihmiset voivat selata julkisia viestejäsi nimenomaan näiden aihetunnisteiden alla. Ne auttavat esimerkiksi luovan työn tai pitkäaikaisten projektien seurannassa."
   filters:
     contexts:
@@ -1260,7 +1266,7 @@ fi:
     title: Kutsu ihmisiä
   lists:
     errors:
-      limit: Olet saavuttanut listojen enimmäismäärän
+      limit: Sinulla on enimmäismäärä listoja
   login_activities:
     authentication_methods:
       otp: kaksivaiheinen todennussovellus
@@ -1584,7 +1590,7 @@ fi:
       '7889238': 3 kuukautta
     min_age_label: Ikäraja
     min_favs: Pidä viestit suosikeissa vähintään
-    min_favs_hint: Ei poista julkaisujasi, joita on tykätty vähintään näin monta kertaa. Jätä tyhjäksi poistaaksesi julkaisut tykkäyskertojen määrästä riippumatta
+    min_favs_hint: Toiminto ei poista julkaisujasi, joista on tykätty vähintään tässä kohtaa määritellyn monesti. Jätä kenttä tyhjäksi, jos haluat poistaa julkaisut tykkäyksistä huolimatta
     min_reblogs: Pidä viestit tehostettuna vähintään
     min_reblogs_hint: Ei poista yhtään viestiäsi, jota on tehostettu vähintään näin monta kertaa. Jätä tyhjäksi poistaaksesi viestejä riippumatta niiden tehosteiden määrästä
   stream_entries:
@@ -1604,7 +1610,7 @@ fi:
     formats:
       default: "%d.%m.%Y klo %H.%M"
       month: "%b %Y"
-      time: "%H:%M"
+      time: "%H.%M"
   two_factor_authentication:
     add: Lisää
     disable: Poista käytöstä
@@ -1684,12 +1690,13 @@ fi:
       title: Tervetuloa mukaan, %{name}!
   users:
     follow_limit_reached: Et voi seurata yli %{limit} henkilöä
+    go_to_sso_account_settings: Avaa identiteettitarjoajasi tiliasetukset
     invalid_otp_token: Virheellinen kaksivaiheisen todentamisen koodi
     otp_lost_help_html: Jos sinulla ei ole pääsyä kumpaankaan, voit ottaa yhteyttä osoitteeseen %{email}
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
     signed_in_as: 'Kirjautunut tilillä:'
   verification:
-    explanation_html: 'Voit <strong>vahvistaa olevasi profiilisi metatiedoissa olevien linkkien omistaja.</strong>. Tätä varten linkitetyn verkkosivuston täytyy sisältää linkki takaisin Mastodon-profiiliisi. Palauttavalla linkillä <strong>täytyy</strong> olla <code>rel="me"</code>-arvo. Linkin tekstisisällöllä ei ole merkitystä. Tässä on esimerkki:'
+    explanation_html: 'Voit <strong>vahvistaa olevasi profiilisi metatietojen sisältämien linkkien omistaja</strong>. Tätä varten linkitetyn verkkosivuston täytyy sisältää paluulinkki Mastodon-profiiliisi. Paluulinkillä <strong>täytyy</strong> olla määre <code>rel="me"</code>. Linkin tekstisisällöllä ei ole merkitystä. Tässä esimerkki:'
     verification: Vahvistus
   webauthn_credentials:
     add: Lisää uusi suojausavain

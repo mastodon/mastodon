@@ -18,7 +18,7 @@ const messages = defineMessages({
   explore: { id: 'explore.title', defaultMessage: 'Explore' },
   local: { id: 'tabs_bar.local_timeline', defaultMessage: 'Local' },
   federated: { id: 'tabs_bar.federated_timeline', defaultMessage: 'Federated' },
-  direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
+  direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
@@ -28,7 +28,6 @@ const messages = defineMessages({
   search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
 });
 
-export default @injectIntl
 class NavigationPanel extends React.Component {
 
   static contextTypes = {
@@ -105,3 +104,5 @@ class NavigationPanel extends React.Component {
   }
 
 }
+
+export default injectIntl(NavigationPanel);

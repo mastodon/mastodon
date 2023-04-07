@@ -28,7 +28,7 @@ const messages = defineMessages({
   linkVerifiedOn: { id: 'account.link_verified_on', defaultMessage: 'Ownership of this link was checked on {date}' },
   account_locked: { id: 'account.locked_info', defaultMessage: 'This account privacy status is set to locked. The owner manually reviews who can follow them.' },
   mention: { id: 'account.mention', defaultMessage: 'Mention @{name}' },
-  direct: { id: 'account.direct', defaultMessage: 'Direct message @{name}' },
+  direct: { id: 'account.direct', defaultMessage: 'Privately mention @{name}' },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
@@ -76,7 +76,6 @@ const dateFormatOptions = {
   minute: '2-digit',
 };
 
-export default @injectIntl
 class Header extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -419,3 +418,5 @@ class Header extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(Header);

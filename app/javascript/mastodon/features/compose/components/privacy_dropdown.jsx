@@ -115,7 +115,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
     return (
       <div style={{ ...style }} role='listbox' ref={this.setRef}>
         {items.map(item => (
-          <div role='option' tabIndex='0' key={item.value} data-index={item.value} onKeyDown={this.handleKeyDown} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value} ref={item.value === value ? this.setFocusRef : null}>
+          <div role='option' tabIndex={0} key={item.value} data-index={item.value} onKeyDown={this.handleKeyDown} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value} ref={item.value === value ? this.setFocusRef : null}>
             <div className='privacy-dropdown__option__icon'>
               <Icon id={item.icon} fixedWidth />
             </div>
@@ -132,7 +132,6 @@ class PrivacyDropdownMenu extends React.PureComponent {
 
 }
 
-export default @injectIntl
 class PrivacyDropdown extends React.PureComponent {
 
   static propTypes = {
@@ -285,3 +284,5 @@ class PrivacyDropdown extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(PrivacyDropdown);

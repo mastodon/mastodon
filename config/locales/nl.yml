@@ -812,6 +812,12 @@ nl:
         message_html: Je hebt voor deze server geen regels opgesteld.
       sidekiq_process_check:
         message_html: Er draait geen Sidekiqproces voor de wachtrij(en) %{value}. Controleer je Sidekiqconfiguratie
+      upload_check_privacy_error:
+        action: Klik hier voor meer informatie
+        message_html: "<strong>Jouw webserver is verkeerd geconfigureerd. De privacy van je gebruikers is in gevaar.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Klik hier voor meer informatie
+        message_html: "<strong>Jouw objectopslag is verkeerd geconfigureerd. De privacy van je gebruikers is in gevaar.</strong>"
     tags:
       review: Status beoordelen
       updated_msg: Instellingen hashtag succesvol bijgewerkt
@@ -1545,7 +1551,7 @@ nl:
     sign_in_to_participate: Meld je aan om aan dit gesprek mee te doen
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Direct
+      direct: Privébericht
       private: Alleen volgers
       private_long: Alleen aan jouw volgers tonen
       public: Openbaar
@@ -1561,8 +1567,8 @@ nl:
     ignore_reblogs: Boosts negeren
     interaction_exceptions: Uitzonderingen op basis van interacties
     interaction_exceptions_explanation: Merk op dat er geen garantie is dat berichten worden verwijderd, wanneer eenmaal het aantal favorieten of boosts boven de ingestelde grenswaarde zijn geweest.
-    keep_direct: Directe berichten behouden
-    keep_direct_hint: Verwijdert geen enkel directe bericht van jou
+    keep_direct: Privéberichten behouden
+    keep_direct_hint: Verwijdert geen enkel privébericht van jou
     keep_media: Berichten met mediabijlagen behouden
     keep_media_hint: Verwijdert geen enkel bericht met mediabijlagen
     keep_pinned: Vastgemaakte berichten behouden
@@ -1684,12 +1690,13 @@ nl:
       title: Welkom aan boord %{name}!
   users:
     follow_limit_reached: Je kunt niet meer dan %{limit} accounts volgen
+    go_to_sso_account_settings: Ga naar de accountinstellingen van je identiteitsprovider
     invalid_otp_token: Ongeldige tweestaps-toegangscode
     otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
   verification:
-    explanation_html: 'Je kunt <strong>jezelf verifiëren als de eigenaar van de links in de metadata van jouw profiel</strong>. Hiervoor moet op de gelinkte website een link terug naar jouw Mastodonprofiel staan. Deze link <strong>moet</strong> het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de link maakt niet uit. Hier is een voorbeeld:'
+    explanation_html: 'Je kunt <strong>jezelf verifiëren als de eigenaar van de links in de metadata van jouw profiel</strong>. Hiervoor moet op de gelinkte website een link terug naar jouw Mastodonprofiel staan. Na het toevoegen van de link moet je hier mogelijk terugkomen en je profiel opnieuw bewaren om de verificatie te bevestigen. Deze link <strong>moet</strong> het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de link maakt niet uit. Hier is een voorbeeld:'
     verification: Verificatie
   webauthn_credentials:
     add: Nieuwe beveiligingssleutel toevoegen

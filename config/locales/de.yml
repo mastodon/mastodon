@@ -812,6 +812,12 @@ de:
         message_html: Du hast keine Serverregeln definiert.
       sidekiq_process_check:
         message_html: Kein Sidekiq-Prozess läuft für die %{value} Warteschlange(n). Bitte überprüfe deine Sidekiq-Konfiguration
+      upload_check_privacy_error:
+        action: Für weitere Informationen hier klicken
+        message_html: "<strong>Die Konfiguration deines Servers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Für weitere Informationen hier klicken
+        message_html: "<strong>Die Konfiguration deines Objektspeichers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
     tags:
       review: Prüfstatus
       updated_msg: Hashtageinstellungen wurden erfolgreich aktualisiert
@@ -1684,12 +1690,13 @@ de:
       title: Willkommen an Bord, %{name}!
   users:
     follow_limit_reached: Du kannst nicht mehr als %{limit} Leuten folgen
+    go_to_sso_account_settings: Kontoeinstellungen des Identitätsanbieters aufrufen
     invalid_otp_token: Ungültiger Code der Zwei-Faktor-Authentisierung (2FA)
     otp_lost_help_html: Wenn du beides nicht mehr weißt, melde dich bitte bei uns unter der E-Mail-Adresse %{email}
     seamless_external_login: Du bist über einen externen Dienst angemeldet, daher sind Passwort- und E-Mail-Einstellungen nicht verfügbar.
     signed_in_as: 'Angemeldet als:'
   verification:
-    explanation_html: 'Du kannst <strong>bestätigen, dass die Links in deinen Profil-Metadaten dir gehören</strong>. Dafür muss die verlinkte Website einen Link zurück auf dein Mastodon-Profil enthalten. Dieser Link <strong>muss</strong> ein <code>rel="me"</code>-Attribut enthalten. Der Linktext ist dabei egal. Hier ist ein Beispiel:'
+    explanation_html: "Du kannst <strong>bestätigen, dass die Links in deinen Profil-Metadaten dir gehören</strong>. Dafür muss die verlinkte Website einen Link zurück auf dein Mastodon-Profil enthalten. \nNach dem Hinzufügen des Links musst du möglicherweise hierhin zurückkommen und dein Profil erneut speichern, um dass die Verifikation wirksam wird. Der Link zurück <strong>muss</strong> ein <code>rel=\"me\"</code>-Attribut enthalten. Der Linktext ist dabei egal. Hier ist ein Beispiel:"
     verification: Verifizierung
   webauthn_credentials:
     add: Sicherheitsschlüssel hinzufügen

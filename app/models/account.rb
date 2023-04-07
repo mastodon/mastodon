@@ -53,7 +53,7 @@
 #
 
 class Account < ApplicationRecord
-  self.ignored_columns = %w(
+  self.ignored_columns += %w(
     subscription_expires_at
     secret
     remote_url
@@ -121,6 +121,8 @@ class Account < ApplicationRecord
   scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches("%.#{domain}"))) }
   scope :not_excluded_by_account, ->(account) { where.not(id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { where(arel_table[:domain].eq(nil).or(arel_table[:domain].not_in(account.excluded_from_timeline_domains))) }
+
+  after_update_commit :trigger_update_webhooks
 
   delegate :email,
            :unconfirmed_email,
@@ -592,5 +594,10 @@ class Account < ApplicationRecord
     return unless local?
 
     CanonicalEmailBlock.where(reference_account: self).delete_all
+  end
+
+  # NOTE: the `account.created` webhook is triggered by the `User` model, not `Account`.
+  def trigger_update_webhooks
+    TriggerWebhookWorker.perform_async('account.updated', 'Account', id) if local?
   end
 end

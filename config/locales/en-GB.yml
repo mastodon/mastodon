@@ -475,20 +475,619 @@ en-GB:
       confirm_purge: Are you sure you want to permanently delete data from this domain?
       content_policies:
         comment: Internal note
+        description_html: You can define content policies that will be applied to all accounts from this domain and any of its subdomains.
+        limited_federation_mode_description_html: You can chose whether to allow federation with this domain.
+        policies:
+          reject_media: Reject media
+          reject_reports: Reject reports
+          silence: Limit
+          suspend: Suspend
+        policy: Policy
+        reason: Public reason
+        title: Content policies
+      dashboard:
+        instance_accounts_dimension: Most followed accounts
+        instance_accounts_measure: stored accounts
+        instance_followers_measure: our followers there
+        instance_follows_measure: their followers here
+        instance_languages_dimension: Top languages
+        instance_media_attachments_measure: stored media attachments
+        instance_reports_measure: reports about them
+        instance_statuses_measure: stored posts
+      delivery:
+        all: All
+        clear: Clear delivery errors
+        failing: Failing
+        restart: Restart delivery
+        stop: Stop delivery
+        unavailable: Unavailable
+      delivery_available: Delivery is available
+      delivery_error_days: Delivery error days
+      delivery_error_hint: If delivery is not possible for %{count} days, it will be automatically marked as undeliverable.
+      destroyed_msg: Data from %{domain} is now queued for imminent deletion.
+      empty: No domains found.
+      known_accounts:
+        one: "%{count} known account"
+        other: "%{count} known accounts"
+      moderation:
+        all: All
+        limited: Limited
+        title: Moderation
+      private_comment: Private comment
+      public_comment: Public comment
+      purge: Purge
+      purge_description_html: If you believe this domain is offline for good, you can delete all account records and associated data from this domain from your storage. This may take a while.
+      title: Federation
+      total_blocked_by_us: Blocked by us
+      total_followed_by_them: Followed by them
+      total_followed_by_us: Followed by us
+      total_reported: Reports about them
+      total_storage: Media attachments
+      totals_time_period_hint_html: The totals displayed below include data for all time.
+    invites:
+      deactivate_all: Deactivate all
+      filter:
+        all: All
+        available: Available
+        expired: Expired
+        title: Filter
+      title: Invites
+    ip_blocks:
+      add_new: Create rule
+      created_msg: Successfully added new IP rule
+      delete: Delete
+      expires_in:
+        '1209600': 2 weeks
+        '15778476': 6 months
+        '2629746': 1 month
+        '31556952': 1 year
+        '86400': 1 day
+        '94670856': 3 years
+      new:
+        title: Create new IP rule
+      no_ip_block_selected: No IP rules were changed as none were selected
+      title: IP rules
+    relationships:
+      title: "%{acct}'s relationships"
+    relays:
+      add_new: Add new relay
+      delete: Delete
+      description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public posts between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
+      disable: Disable
+      disabled: Disabled
+      enable: Enable
+      enable_hint: Once enabled, your server will subscribe to all public posts from this relay, and will begin sending this server's public posts to it.
+      enabled: Enabled
+      inbox_url: Relay URL
+      pending: Waiting for relay's approval
+      save_and_enable: Save and enable
+      setup: Setup a relay connection
+      signatures_not_enabled: Relays may not work correctly while secure mode or limited federation mode is enabled
+      status: Status
+      title: Relays
+    report_notes:
+      created_msg: Report note successfully created!
+      destroyed_msg: Report note successfully deleted!
+    reports:
+      account:
+        notes:
+          one: "%{count} note"
+          other: "%{count} notes"
+      action_log: Audit log
+      action_taken_by: Action taken by
+      actions:
+        delete_description_html: The reported posts will be deleted and a strike will be recorded to help you escalate on future infractions by the same account.
+        mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future infractions by the same account.
+        other_description_html: See more options for controlling the account's behaviour and customise communication to the reported account.
+        resolve_description_html: No action will be taken against the reported account, no strike recorded, and the report will be closed.
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
+      actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an e-mail notification will be sent to them, except when the <strong>Spam</strong> category is selected.
+      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
+      add_to_report: Add more to report
+      are_you_sure: Are you sure?
+      assign_to_self: Assign to me
+      assigned: Assigned moderator
+      by_target_domain: Domain of reported account
+      cancel: Cancel
+      category: Category
+      category_description_html: The reason this account and/or content was reported will be cited in communication with the reported account
+      comment:
+        none: None
+      comment_description_html: 'To provide more information, %{name} wrote:'
+      confirm: Confirm
+      confirm_action: Confirm moderation action against @%{acct}
+      created_at: Reported
+      delete_and_resolve: Delete posts
+      forwarded: Forwarded
+      forwarded_to: Forwarded to %{domain}
+      mark_as_resolved: Mark as resolved
+      mark_as_sensitive: Mark as sensitive
+      mark_as_unresolved: Mark as unresolved
+      no_one_assigned: No one
+      notes:
+        create: Add note
+        create_and_resolve: Resolve with note
+        create_and_unresolve: Reopen with note
+        delete: Delete
+        placeholder: Describe what actions have been taken, or any other related updates...
+        title: Notes
+      notes_description_html: View and leave notes to other moderators and your future self
+      processed_msg: 'Report #%{id} successfully processed'
+      quick_actions_description_html: 'Take a quick action or scroll down to see reported content:'
+      remote_user_placeholder: the remote user from %{instance}
+      reopen: Reopen report
+      report: 'Report #%{id}'
+      reported_account: Reported account
+      reported_by: Reported by
+      resolved: Resolved
+      resolved_msg: Report successfully resolved!
+      skip_to_actions: Skip to actions
+      status: Status
+      statuses: Reported content
+      statuses_description_html: Offending content will be cited in communication with the reported account
+      summary:
+        action_preambles:
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
+          suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
+        actions:
+          delete_html: Remove the offending posts
+          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
+          suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
+        close_report: 'Mark report #%{id} as resolved'
+        close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
+        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
+        warning_placeholder: Optional additional reasoning for the moderation action.
+      target_origin: Origin of reported account
+      title: Reports
+      unassign: Unassign
+      unknown_action_msg: 'Unknown action: %{action}'
+      unresolved: Unresolved
+      updated_at: Updated
+      view_profile: View profile
     roles:
+      add_new: Add role
+      assigned_users:
+        one: "%{count} user"
+        other: "%{count} users"
       categories:
+        administration: Administration
         devops: DevOps
+        invites: Invites
+        moderation: Moderation
+        special: Special
+      delete: Delete
+      description_html: With <strong>user roles</strong>, you can customize which functions and areas of Mastodon your users can access.
+      edit: Edit '%{name}' role
+      everyone: Default permissions
+      everyone_full_description_html: This is the <strong>base role</strong> affecting <strong>all users</strong>, even those without an assigned role. All other roles inherit permissions from it.
+      permissions_count:
+        one: "%{count} permission"
+        other: "%{count} permissions"
       privileges:
+        administrator: Administrator
+        administrator_description: Users with this permission will bypass every permission
+        delete_user_data: Delete User Data
+        delete_user_data_description: Allows users to delete other users' data without delay
+        invite_users: Invite Users
+        invite_users_description: Allows users to invite new people to the server
+        manage_announcements: Manage Announcements
+        manage_announcements_description: Allows users to manage announcements on the server
+        manage_appeals: Manage Appeals
+        manage_appeals_description: Allows users to review appeals against moderation actions
+        manage_blocks: Manage Blocks
+        manage_blocks_description: Allows users to block e-mail providers and IP addresses
+        manage_custom_emojis: Manage Custom Emojis
+        manage_custom_emojis_description: Allows users to manage custom emojis on the server
+        manage_federation: Manage Federation
+        manage_federation_description: Allows users to block or allow federation with other domains, and control deliverability
+        manage_invites: Manage Invites
+        manage_invites_description: Allows users to browse and deactivate invite links
+        manage_reports: Manage Reports
+        manage_reports_description: Allows users to review reports and perform moderation actions against them
+        manage_roles: Manage Roles
+        manage_roles_description: Allows users to manage and assign roles below theirs
+        manage_rules: Manage Rules
+        manage_rules_description: Allows users to change server rules
+        manage_settings: Manage Settings
+        manage_settings_description: Allows users to change site settings
+        manage_taxonomies: Manage Taxonomies
+        manage_taxonomies_description: Allows users to review trending content and update hashtag settings
+        manage_user_access: Manage User Access
+        manage_user_access_description: Allows users to disable other users' two-factor authentication, change their e-mail address, and reset their password
+        manage_users: Manage Users
+        manage_users_description: Allows users to view other users' details and perform moderation actions against them
+        manage_webhooks: Manage Webhooks
+        manage_webhooks_description: Allows users to set up webhooks for administrative events
+        view_audit_log: View Audit Log
+        view_audit_log_description: Allows users to see a history of administrative actions on the server
+        view_dashboard: View Dashboard
+        view_dashboard_description: Allows users to access the dashboard and various metrics
         view_devops: DevOps
+        view_devops_description: Allows users to access Sidekiq and pgHero dashboards
+      title: Roles
+    rules:
+      add_new: Add rule
+      delete: Delete
+      description_html: While most claim to have read and agree to the terms of service, usually people do not read through until after a problem arises. <strong>Make it easier to see your server's rules at a glance by providing them in a flat bullet point list.</strong> Try to keep individual rules short and simple, but try not to split them up into many separate items either.
+      edit: Edit rule
+      empty: No server rules have been defined yet.
+      title: Server rules
+    settings:
+      about:
+        manage_rules: Manage server rules
+      registrations:
+        title: Registrations
+      registrations_mode:
+        modes:
+          approved: Approval required for sign up
+          none: Nobody can sign up
+          open: Anyone can sign up
+      title: Server Settings
+    site_uploads:
+      delete: Delete uploaded file
+      destroyed_msg: Site upload successfully deleted!
+    statuses:
+      account: Author
+      application: Application
+      back_to_account: Back to account page
+      back_to_report: Back to report page
+      batch:
+        remove_from_report: Remove from report
+        report: Report
+      deleted: Deleted
+      favourites: Favourites
+      history: Version history
+      in_reply_to: Replying to
+    trends:
+      tags:
+        listable: Can be suggested
+        no_tag_selected: No tags were changed as none were selected
+        not_listable: Won't be suggested
+        not_trendable: Won't appear under trends
+        not_usable: Cannot be used
+        peaked_on_and_decaying: Peaked on %{date}, now decaying
+        title: Trending hashtags
+        trendable: Can appear under trends
+        trending_rank: 'Trending #%{rank}'
+        usable: Can be used
+        usage_comparison: Used %{today} times today, compared to %{yesterday} yesterday
+        used_by_over_week:
+          one: Used by one person over the last week
+          other: Used by %{count} people over the last week
+      title: Trends
+      trending: Trending
+    warning_presets:
+      add_new: Add new
+      delete: Delete
+      edit_preset: Edit warning preset
+      empty: You haven't defined any warning presets yet.
+      title: Manage warning presets
+    webhooks:
+      add_new: Add endpoint
+      delete: Delete
+      description_html: A <strong>webhook</strong> enables Mastodon to push <strong>real-time notifications</strong> about chosen events to your own application, so your application can <strong>automatically trigger reactions</strong>.
+      disable: Disable
+      disabled: Disabled
+      edit: Edit endpoint
+      empty: You don't have any webhook endpoints configured yet.
+      enable: Enable
+      enabled: Active
+      enabled_events:
+        one: 1 enabled event
+        other: "%{count} enabled events"
+      events: Events
+      new: New webhook
+      rotate_secret: Rotate secret
+      secret: Signing secret
+      status: Status
+      title: Webhooks
+      webhook: Webhook
+  admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: to delete their posts
+        disable: to freeze their account
+        mark_statuses_as_sensitive: to mark their posts as sensitive
+        none: a warning
+        sensitive: to mark their account as sensitive
+        silence: to limit their account
+        suspend: to suspend their account
+      body: "%{target} is appealing a moderation decision by %{action_taken_by} from %{date}, which was %{type}. They wrote:"
+      next_steps: You can approve the appeal to undo the moderation decision, or ignore it.
+      subject: "%{username} is appealing a moderation decision on %{instance}"
+    new_pending_account:
+      body: The details of the new account are below. You can approve or reject this application.
+      subject: New account up for review on %{instance} (%{username})
+    new_report:
+      body: "%{reporter} has reported %{target}"
+      body_remote: Someone from %{domain} has reported %{target}
+      subject: New report for %{instance} (#%{id})
+    new_trends:
+      body: 'The following items need a review before they can be displayed publicly:'
+      new_trending_links:
+        title: Trending links
+      new_trending_statuses:
+        title: Trending posts
+      new_trending_tags:
+        no_approved_tags: There are currently no approved trending hashtags.
+        requirements: 'Any of these candidates could surpass the #%{rank} approved trending hashtag, which is currently #%{lowest_tag_name} with a score of %{lowest_tag_score}.'
+        title: Trending hashtags
+      subject: New trends up for review on %{instance}
+  aliases:
+    add_new: Create alias
+    created_msg: Successfully created a new alias. You can now initiate the move from the old account.
+    deleted_msg: Successfully removed the alias. Moving from that account to this one will no longer be possible.
+    empty: You have no aliases.
+    hint_html: If you want to move from another account to this one, here you can create an alias, which is required before you can proceed with moving followers from the old account to this one. This action by itself is <strong>harmless and reversible</strong>. <strong>The account migration is initiated from the old account</strong>.
+    remove: Unlink alias
+  appearance:
+    advanced_web_interface: Advanced web interface
+    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    animations_and_accessibility: Animations and accessibility
+    confirmation_dialogs: Confirmation dialogues
+    discovery: Discovery
+    localization:
+      body: Mastodon is translated by volunteers.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Everyone can contribute.
+    sensitive_content: Sensitive content
+    toot_layout: Post layout
+  application_mailer:
+    notification_preferences: Change e-mail preferences
+    salutation: "%{name},"
+    settings: 'Change e-mail preferences: %{link}'
+    view: 'View:'
+    view_profile: View profile
+    view_status: View post
+  applications:
+    created: Application successfully created
+    destroyed: Application successfully deleted
+    logout: Logout
+    regenerate_token: Regenerate access token
+    token_regenerated: Access token successfully regenerated
+    warning: Be very careful with this data. Never share it with anyone!
+    your_token: Your access token
+  auth:
+    apply_for_account: Request an account
+    change_password: Password
+    confirmations:
+      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
+    delete_account: Delete account
+    delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
+    description:
+      prefix_invited_by_user: "@%{name} invites you to join this server of Mastodon!"
+      prefix_sign_up: Sign up on Mastodon today!
+      suffix: With an account, you will be able to follow people, post updates and exchange messages with users from any Mastodon server and more!
+    didnt_get_confirmation: Didn't receive confirmation instructions?
+    dont_have_your_security_key: Don't have your security key?
+    forgot_password: Forgot your password?
+    invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
+    link_to_otp: Enter a two-factor code from your phone or a recovery code
+    link_to_webauth: Use your security key device
+    log_in_with: Log in with
+    login: Log in
+    logout: Logout
+    migrate_account: Move to a different account
+    migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
+    or_log_in_with: Or log in with
+    privacy_policy_agreement_html: I have read and agree to the <a href="%{privacy_policy_path}" target="_blank">privacy policy</a>
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Sign up
+    registration_closed: "%{instance} is not accepting new members"
+    resend_confirmation: Resend confirmation instructions
+    reset_password: Reset password
+    rules:
+      accept: Accept
+      back: Back
+      preamble: These are set and enforced by the %{domain} moderators.
+      title: Some ground rules.
+    security: Security
+    set_new_password: Set new password
+    setup:
+      email_below_hint_html: If the below e-mail address is incorrect, you can change it here and receive a new confirmation e-mail.
+      email_settings_hint_html: The confirmation e-mail was sent to %{email}. If that e-mail address is not correct, you can change it in account settings.
+      title: Setup
+    sign_in:
+      preamble_html: Sign in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
+      title: Sign in to %{domain}
+    sign_up:
+      preamble: With an account on this Mastodon server, you'll be able to follow any other person on the network, regardless of where their account is hosted.
+      title: Let's get you set up on %{domain}.
+    status:
+      account_status: Account status
+      confirming: Waiting for e-mail confirmation to be completed.
+      functional: Your account is fully operational.
+      pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
+      redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
+      view_strikes: View past strikes against your account
+    too_fast: Form submitted too fast, try again.
+    use_security_key: Use security key
+  authorize_follow:
+    already_following: You are already following this account
+    already_requested: You have already sent a follow request to that account
+    error: Unfortunately, there was an error looking up the remote account
+    follow: Follow
+    follow_request: 'You have sent a follow request to:'
+    following: 'Success! You are now following:'
+    post_follow:
+      close: Or, you can just close this window.
+      return: Show the user's profile
+      web: Go to web
+    title: Follow %{acct}
+  challenge:
+    confirm: Continue
+    hint_html: "<strong>Tip:</strong> We won't ask you for your password again for the next hour."
+    invalid_password: Invalid password
+    prompt: Confirm password to continue
+  crypto:
+    errors:
+      invalid_key: is not a valid Ed25519 or Curve25519 key
+      invalid_signature: is not a valid Ed25519 signature
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: Just now
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Just now
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
+  deletes:
+    challenge_not_passed: The information you entered was not correct
+    confirm_password: Enter your current password to verify your identity
+    confirm_username: Enter your username to confirm the procedure
+    proceed: Delete account
+    success_msg: Your account was successfully deleted
+    warning:
+      before: 'Before proceeding, please read these notes carefully:'
+      caches: Content that has been cached by other servers may persist
+      data_removal: Your posts and other data will be permanently removed
+      email_change_html: You can <a href="%{path}">change your e-mail address</a> without deleting your account
+      email_contact_html: If it still doesn't arrive, you can e-mail <a href="mailto:%{email}">%{email}</a> for help
+      email_reconfirmation_html: If you are not receiving the confirmation e-mail, you can <a href="%{path}">request it again</a>
+      irreversible: You will not be able to restore or reactivate your account
+      more_details_html: For more details, see the <a href="%{terms_path}">privacy policy</a>.
+      username_available: Your username will become available again
+      username_unavailable: Your username will remain unavailable
+  disputes:
+    strikes:
+      action_taken: Action taken
+      appeal: Appeal
+      appeal_approved: This strike has been successfully appealed and is no longer valid
+      appeal_rejected: The appeal has been rejected
+      appeal_submitted_at: Appeal submitted
+      appealed_msg: Your appeal has been submitted. If it is approved, you will be notified.
+      appeals:
+        submit: Submit appeal
+      approve_appeal: Approve appeal
+      associated_report: Associated report
+      created_at: Dated
+      description_html: These are actions taken against your account and warnings that have been sent to you by the staff of %{instance}.
+      recipient: Addressed to
+      reject_appeal: Reject appeal
+      status: 'Post #%{id}'
+      status_removed: Post already removed from system
+      title: "%{action} from %{date}"
+      title_actions:
+        delete_statuses: Post removal
+        disable: Freezing of account
+        mark_statuses_as_sensitive: Marking of posts as sensitive
+        none: Warning
+        sensitive: Marking of account as sensitive
+        silence: Limitation of account
+        suspend: Suspension of account
+      your_appeal_approved: Your appeal has been approved
+      your_appeal_pending: You have submitted an appeal
+      your_appeal_rejected: Your appeal has been rejected
+  domain_validator:
+    invalid_domain: is not a valid domain name
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
+    '422':
+      content: Security verification failed. Are you blocking cookies?
+      title: Security verification failed
     '429': Too many requests
+    '500':
+      content: We're sorry, but something went wrong on our end.
+      title: This page is not correct
     '503': The page could not be served due to a temporary server failure.
+    noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
+  existing_username_validator:
+    not_found: could not find a local user with that username
+    not_found_multiple: could not find %{usernames}
+  exports:
+    archive_takeout:
+      date: Date
+      download: Download your archive
+      hint_html: You can request an archive of your <strong>posts and uploaded media</strong>. The exported data will be in the ActivityPub format, readable by any compliant software. You can request an archive every 7 days.
+      in_progress: Compiling your archive...
+      request: Request your archive
+      size: Size
+    blocks: You block
+    bookmarks: Bookmarks
+    csv: CSV
+    domain_blocks: Domain blocks
+    lists: Lists
+    mutes: You mute
+    storage: Media storage
+  featured_tags:
+    add_new: Add new
+    errors:
+      limit: You have already featured the maximum number of hashtags
+    hint_html: "<strong>What are featured hashtags?</strong> They are displayed prominently on your public profile and allow people to browse your public posts specifically under those hashtags. They are a great tool for keeping track of creative works or long-term projects."
+  filters:
+    contexts:
+      account: Profiles
+      home: Home and lists
+      notifications: Notifications
+      public: Public timelines
+      thread: Conversations
+    edit:
+      add_keyword: Add keyword
+      keywords: Keywords
+      statuses: Individual posts
+      statuses_hint_html: This filter applies to select individual posts regardless of whether they match the keywords below. <a href="%{path}">Review or remove posts from the filter</a>.
+      title: Edit filter
+    errors:
+      deprecated_api_multiple_keywords: These parameters cannot be changed from this application because they apply to more than one filter keyword. Use a more recent application or the web interface.
+      invalid_context: None or invalid context supplied
+    index:
+      contexts: Filters in %{contexts}
+      delete: Delete
+      empty: You have no filters.
+      expires_in: Expires in %{distance}
+      expires_on: Expires on %{date}
+      keywords:
+        one: "%{count} keyword"
+        other: "%{count} keywords"
+      statuses:
+        one: "%{count} post"
+        other: "%{count} posts"
+      statuses_long:
+        one: "%{count} individual post hidden"
+        other: "%{count} individual posts hidden"
+      title: Filters
+    new:
+      save: Save new filter
+      title: Add new filter
+    statuses:
+      back_to_filter: Back to filter
+      batch:
+        remove: Remove from filter
+      index:
+        hint: This filter applies to select individual posts regardless of other criteria. You can add more posts to this filter from the web interface.
+        title: Filtered posts
   generic:
+    all: All
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> item on this page is selected."
+      other: All <strong>%{count}</strong> items on this page are selected.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> item matching your search is selected."
+      other: All <strong>%{count}</strong> items matching your search are selected.
+    changes_saved_msg: Changes successfully saved!
     copy: Copy
     delete: Delete
     deselect: Deselect all
@@ -523,8 +1122,87 @@ en-GB:
   invites:
     delete: Deactivate
     expired: Expired
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
+    expires_in_prompt: Never
+    generate: Generate invite link
+    invited_by: 'You were invited by:'
+    max_uses:
+      one: 1 use
+      other: "%{count} uses"
+    max_uses_prompt: No limit
+    prompt: Generate and share links with others to grant access to this server
+    table:
+      expires_at: Expires
+      uses: Uses
+    title: Invite people
+  lists:
+    errors:
+      limit: You have reached the maximum number of lists
+  login_activities:
+    authentication_methods:
+      otp: two-factor authentication app
+      password: password
+      sign_in_token: e-mail security code
+      webauthn: security keys
+    description_html: If you see activity that you don't recognise, consider changing your password and enabling two-factor authentication.
+    empty: No authentication history available
+    failed_sign_in_html: Failed sign-in attempt with %{method} from %{ip} (%{browser})
+    successful_sign_in_html: Successful sign-in with %{method} from %{ip} (%{browser})
+    title: Authentication history
+  media_attachments:
+    validations:
+      images_and_video: Cannot attach a video to a post that already contains images
+      not_ready: Cannot attach files that have not finished processing. Try again in a moment!
+      too_many: Cannot attach more than 4 files
+  migrations:
+    acct: Moved to
+    cancel: Cancel redirect
+    cancel_explanation: Cancelling the redirect will re-activate your current account, but will not bring back followers that have been moved to that account.
+    cancelled_msg: Successfully cancelled the redirect.
+    errors:
+      already_moved: is the same account you have already moved to
+      missing_also_known_as: is not an alias of this account
+      move_to_self: cannot be current account
+      not_found: could not be found
+      on_cooldown: You are on cooldown
+    followers_count: Followers at time of move
+    incoming_migrations: Moving from a different account
+    incoming_migrations_html: To move from another account to this one, first you need to <a href="%{path}">create an account alias</a>.
+    moved_msg: Your account is now redirecting to %{acct} and your followers are being moved over.
+    not_redirecting: Your account is not redirecting to any other account currently.
+    on_cooldown: You have recently migrated your account. This function will become available again in %{count} days.
+    past_migrations: Past migrations
+    proceed_with_move: Move followers
+    redirected_msg: Your account is now redirecting to %{acct}.
+    redirecting_to: Your account is redirecting to %{acct}.
+    set_redirect: Set redirect
+    warning:
+      backreference_required: The new account must first be configured to back-reference this one
+      before: 'Before proceeding, please read these notes carefully:'
+      cooldown: After moving there is a waiting period during which you will not be able to move again
+      disabled_account: Your current account will not be fully usable afterwards. However, you will have access to data export as well as re-activation.
+      followers: This action will move all followers from the current account to the new account
+      only_redirect_html: Alternatively, you can <a href="%{path}">only put up a redirect on your profile</a>.
+      other_data: No other data will be moved automatically
+      redirect: Your current account's profile will be updated with a redirect notice and be excluded from searches
+  moderation:
+    title: Moderation
+  move_handler:
+    carry_blocks_over_text: This user moved from %{acct}, which you had blocked.
+    carry_mutes_over_text: This user moved from %{acct}, which you had muted.
+    copy_account_note_text: 'This user moved from %{acct}, here were your previous notes about them:'
+  navigation:
+    toggle_menu: Toggle menu
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} submitted a report"
       sign_up:
         subject: "%{name} signed up"
     favourite:
@@ -539,8 +1217,60 @@ en-GB:
       action: Manage follow requests
       body: "%{name} has requested to follow you"
       subject: 'Pending follower: %{name}'
+      title: New follow request
+    mention:
+      action: Reply
+      body: 'You were mentioned by %{name} in:'
+      subject: You were mentioned by %{name}
+      title: New mention
+    poll:
+      subject: A poll by %{name} has ended
+    reblog:
+      body: 'Your post was boosted by %{name}:'
+      subject: "%{name} boosted your post"
+      title: New boost
+    status:
+      subject: "%{name} just posted"
+    update:
+      subject: "%{name} edited a post"
+  notifications:
+    email_events: Events for e-mail notifications
+    email_events_hint: 'Select events that you want to receive notifications for:'
+    other_settings: Other notifications settings
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+  otp_authentication:
+    code_hint: Enter the code generated by your authenticator app to confirm
+    description_html: If you enable <strong>two-factor authentication</strong> using an authenticator app, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
+    enable: Enable
+    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
+    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
+    setup: Set up
+    wrong_code: The entered code was invalid! Are server time and device time correct?
+  pagination:
+    newer: Newer
+    next: Next
+    older: Older
+    prev: Prev
+    truncate: "&hellip;"
   polls:
     errors:
+      already_voted: You have already voted on this poll
+      duplicate_options: contain duplicate items
+      duration_too_long: is too far into the future
+      duration_too_short: is too soon
+      expired: The poll has already ended
+      invalid_choice: The chosen vote option does not exist
+      over_character_limit: cannot be longer than %{max} characters each
+      too_few_options: must have more than one item
       too_many_options: can't contain more than %{max} items
   preferences:
     other: Other
@@ -837,12 +1567,13 @@ en-GB:
       title: Welcome aboard, %{name}!
   users:
     follow_limit_reached: You cannot follow more than %{limit} people
+    go_to_sso_account_settings: Go to your identity provider's account settings
     invalid_otp_token: Invalid two-factor code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
   verification:
-    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
+    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. After adding the link you may need to come back here and re-save your profile for the verification to take effect. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
     verification: Verification
   webauthn_credentials:
     add: Add new security key

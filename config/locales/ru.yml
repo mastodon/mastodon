@@ -620,6 +620,7 @@ ru:
         none: Нет
       comment_description_html: 'В дополнение, %{name} добавил(а) следующий комментарий:'
       confirm: Подтвердить
+      confirm_action: Произвести модерацию учётной записи %{acct}
       created_at: Создана
       delete_and_resolve: Удалить посты
       forwarded: Переслано
@@ -636,6 +637,7 @@ ru:
         placeholder: Опишите, какие действия были приняты, или любые другие подробности…
         title: Примечания
       notes_description_html: Просмотрите или оставьте примечания для остальных модераторов и себя в будущем
+      processed_msg: 'Жалоба #%{id} успешно обработана'
       quick_actions_description_html: 'Выберите действие или прокрутите вниз, чтобы увидеть контент с жалобой:'
       remote_user_placeholder: удаленный пользователь из %{instance}
       reopen: Переоткрыть жалобу
@@ -650,9 +652,13 @@ ru:
       statuses_description_html: Нарушающее правила содержимое будет процитировано при коммуникации с фигурирующим в жалобе аккаунтом
       summary:
         action_preambles:
+          delete_html: 'Вы собираетесь <strong>удалить</strong> некоторые посты <strong>@%{acct}</strong>. В результате этого:'
+          mark_as_sensitive_html: 'Вы собираетесь <strong>удалить</strong> некоторые посты <strong>@%{acct}</strong>. В результате этого:'
+          silence_html: 'Вы собираетесь <strong>заморозить</strong> учетную запись <strong>@%{acct}</strong>. В результате этого:'
           suspend_html: 'Вы собираетесь <strong>заморозить</strong> учетную запись <strong>@%{acct}</strong>. В результате этого:'
         actions:
           delete_html: Удалить оскорбительные сообщения
+          mark_as_sensitive_html: Пометить медиа-оскорбительные сообщения как чувствительные
         close_report: 'Отметить жалобу #%{id} как решённую'
         close_reports_html: Отметить <strong>все</strong> жалобы на <strong>@%{acct}</strong> как разрешённые
         delete_data_html: Удалить профиль и контент <strong>@%{acct}</strong> через 30 дней, если за это время они не будут разблокированы
@@ -830,6 +836,11 @@ ru:
         message_html: Вы не определили правила сервера.
       sidekiq_process_check:
         message_html: Ни один Sidekiq не запущен для %{value} очереди(-ей). Пожалуйста, просмотрите настройки Sidekiq
+      upload_check_privacy_error:
+        action: Нажмите сюда, чтобы узнать подробности
+      upload_check_privacy_error_object_storage:
+        action: Нажмите сюда, чтобы узнать подробности
+        message_html: "<strong>Ваше хранилище объектов неправильно настроено. Безопасность ваших пользователей находится под угрозой</strong>"
     tags:
       review: Состояние проверки
       updated_msg: Настройки хэштега обновлены
@@ -1177,6 +1188,8 @@ ru:
     storage: Ваши файлы
   featured_tags:
     add_new: Добавить
+    errors:
+      limit: Вы уже добавили максимальное число хэштегов
     hint_html: "<strong>Избранные хэштеги</strong> отображаются в вашем профиле и позволяют людям быстро найти посты, отмеченные ими. Это отличный инструмент для отслеживания долгосрочных проектов и творческих работ."
   filters:
     contexts:
@@ -1298,6 +1311,9 @@ ru:
       expires_at: Истекает
       uses: Исп.
     title: Пригласить людей
+  lists:
+    errors:
+      limit: Вы достигли максимального количества пользователей
   login_activities:
     authentication_methods:
       otp: приложение двухфакторной аутентификации
@@ -1442,6 +1458,7 @@ ru:
     confirm_remove_selected_followers: Вы уверены, что хотите удалить выбранных подписчиков?
     confirm_remove_selected_follows: Вы уверены, что хотите удалить выбранные подписки?
     dormant: Заброшенная
+    follow_failure: Не удалось подписаться за некоторыми из выбранных аккаунтов.
     follow_selected_followers: Подписаться на выбранных подписчиков
     followers: Подписчики
     following: Подписки
@@ -1481,6 +1498,7 @@ ru:
       electron: Electron
       firefox: Firefox
       generic: Неизвестный браузер
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1490,6 +1508,7 @@ ru:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Неизвестный браузер
       weibo: Weibo
     current_session: Текущая сессия
     description: "%{browser} на %{platform}"
@@ -1502,8 +1521,10 @@ ru:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: OS Кай
       linux: Linux
       mac: Mac
+      unknown_platform: Неизвестная платформа
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1628,6 +1649,7 @@ ru:
       '7889238': 3 месяца
     min_age_label: Возрастной порог
     min_favs: Порог отметок «избранного»
+    min_favs_hint: Не удалять ваши посты, у которых количество отметок «избранного» достигло указанного выше значения. Оставьте поле пустым, чтобы удалять посты независимо от количества отметок
     min_reblogs: Порог продвижений
     min_reblogs_hint: Не удаляет ваши посты, количество продвижений которых достигло указанного выше значения. Оставьте поле пустым, чтобы удалять посты независимо от количества продвижений.
   stream_entries:
@@ -1727,6 +1749,7 @@ ru:
       title: Добро пожаловать на борт, %{name}!
   users:
     follow_limit_reached: Вы не можете подписаться больше, чем на %{limit} человек
+    go_to_sso_account_settings: Перейти к настройкам сторонних аккаунтов учетной записи
     invalid_otp_token: Введен неверный код двухфакторной аутентификации
     otp_lost_help_html: Если Вы потеряли доступ к обоим, свяжитесь с %{email}
     seamless_external_login: Вы залогинены через сторонний сервис, поэтому настройки e-mail и пароля недоступны.

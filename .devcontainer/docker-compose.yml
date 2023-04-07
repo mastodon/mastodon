@@ -10,7 +10,7 @@ services:
     environment:
       RAILS_ENV: development
       NODE_ENV: development
-
+      BIND: 0.0.0.0
       REDIS_HOST: redis
       REDIS_PORT: '6379'
       DB_HOST: db
@@ -23,6 +23,10 @@ services:
       LIBRE_TRANSLATE_ENDPOINT: http://libretranslate:5000
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
+    ports:
+      - '127.0.0.1:3000:3000'
+      - '127.0.0.1:4000:4000'
+      - '127.0.0.1:80:3000'
     networks:
       - external_network
       - internal_network
@@ -66,15 +70,19 @@ services:
         hard: -1
 
   libretranslate:
-    image: libretranslate/libretranslate:v1.2.9
+    image: libretranslate/libretranslate:v1.3.10
     restart: unless-stopped
+    volumes:
+      - lt-data:/home/libretranslate/.local
     networks:
+      - external_network
       - internal_network
 
 volumes:
   postgres-data:
   redis-data:
   es-data:
+  lt-data:
 
 networks:
   external_network:

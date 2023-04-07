@@ -6,7 +6,7 @@ import DisplayName from '../../../components/display_name';
 import StatusContent from '../../../components/status_content';
 import MediaGallery from '../../../components/media_gallery';
 import { Link } from 'react-router-dom';
-import { injectIntl, defineMessages, FormattedDate } from 'react-intl';
+import { injectIntl, defineMessages, FormattedDate, FormattedMessage } from 'react-intl';
 import Card from './card';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from '../../video';
@@ -25,7 +25,6 @@ const messages = defineMessages({
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
 });
 
-export default  @injectIntl
 class DetailedStatus extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -263,7 +262,13 @@ class DetailedStatus extends ImmutablePureComponent {
 
     return (
       <div style={outerStyle}>
-        <div ref={this.setRef} className={classNames('detailed-status', `detailed-status-${status.get('visibility')}`, { compact })}>
+        <div ref={this.setRef} className={classNames('detailed-status', { compact })}>
+          {status.get('visibility') === 'direct' && (
+            <div className='status__prepend'>
+              <div className='status__prepend-icon-wrapper'><Icon id='at' className='status__prepend-icon' fixedWidth /></div>
+              <FormattedMessage id='status.direct_indicator' defaultMessage='Private mention' />
+            </div>
+          )}
           <a href={`/@${status.getIn(['account', 'acct'])}`} onClick={this.handleAccountClick} className='detailed-status__display-name'>
             <div className='detailed-status__display-avatar'><Avatar account={status.get('account')} size={46} /></div>
             <DisplayName account={status.get('account')} localDomain={this.props.domain} />
@@ -289,3 +294,5 @@ class DetailedStatus extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(DetailedStatus);

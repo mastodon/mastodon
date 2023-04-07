@@ -13,7 +13,7 @@ const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
   redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
   edit: { id: 'status.edit', defaultMessage: 'Edit' },
-  direct: { id: 'status.direct', defaultMessage: 'Direct message @{name}' },
+  direct: { id: 'status.direct', defaultMessage: 'Privately mention @{name}' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
@@ -47,8 +47,6 @@ const mapStateToProps = (state, { status }) => ({
   relationship: state.getIn(['relationships', status.getIn(['account', 'id'])]),
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class ActionBar extends React.PureComponent {
 
   static contextTypes = {
@@ -298,3 +296,5 @@ class ActionBar extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(ActionBar));

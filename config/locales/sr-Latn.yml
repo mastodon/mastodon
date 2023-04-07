@@ -826,6 +826,12 @@ sr-Latn:
         message_html: Niste definisali nijedno pravilo servera.
       sidekiq_process_check:
         message_html: Nijedan Sidekiq proces nije pokrenut za red(ove) %{value}. Molimo Vas pregledajte svoju Sidekiq konfiguraciju
+      upload_check_privacy_error:
+        action: Proverite ovde za više informacija
+        message_html: "<strong>Vaš veb server je pogrešno konfigurisan. Privatnost vaših korisnika je izložena riziku.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Proverite ovde za više informacija
+        message_html: "<strong>Vaše skladište objekta je pogrešno konfigurisano. Privatnost vaših korisnika je izložena riziku.</strong>"
     tags:
       review: Pregledaj status
       updated_msg: Podešavanja heš oznaka uspešno ažurirana
@@ -1716,12 +1722,12 @@ sr-Latn:
       title: Dobrodošli, %{name}!
   users:
     follow_limit_reached: Ne možete pratiti više od %{limit} ljudi
+    go_to_sso_account_settings: Idite na podešavanja naloga svog dobavljača identiteta
     invalid_otp_token: Neispravni dvofaktorski kod
     otp_lost_help_html: Ako izgubite pristup za oba, možete stupiti u kontakt sa %{email}
     seamless_external_login: Prijavljeni ste putem spoljašnje usluge, tako da lozinka i podešavanja E-pošte nisu dostupni.
     signed_in_as: 'Prijavljen/a kao:'
   verification:
-    explanation_html: 'Možete <strong>izvršiti proveru da ste Vi vlasnik veza na Vašem nalogu</strong>. Da bi to radilo, povezani veb sajt mora da sadrži vezu nazad ka Vašem Mastodon nalogu. Veza nazad <strong>mora</strong> da ima <code>rel="me"</code> atribut. Tekstuelni sadržaj veze nije bitan. Evo primera:'
     verification: Provera
   webauthn_credentials:
     add: Dodajte novi sigurnosni ključ

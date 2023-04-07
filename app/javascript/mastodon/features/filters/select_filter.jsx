@@ -22,8 +22,6 @@ const mapStateToProps = (state, { contextType }) => ({
   ]),
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class SelectFilter extends React.PureComponent {
 
   static propTypes = {
@@ -67,7 +65,7 @@ class SelectFilter extends React.PureComponent {
     }
 
     return (
-      <div key={filter[0]} role='button' tabIndex='0' data-index={filter[0]} className='language-dropdown__dropdown__results__item' onClick={this.handleItemClick} onKeyDown={this.handleKeyDown}>
+      <div key={filter[0]} role='button' tabIndex={0} data-index={filter[0]} className='language-dropdown__dropdown__results__item' onClick={this.handleItemClick} onKeyDown={this.handleKeyDown}>
         <span className='language-dropdown__dropdown__results__item__native-name'>{filter[1]}</span> {warning}
       </div>
     );
@@ -75,7 +73,7 @@ class SelectFilter extends React.PureComponent {
 
   renderCreateNew (name) {
     return (
-      <div key='add-new-filter' role='button' tabIndex='0' className='language-dropdown__dropdown__results__item' onClick={this.handleNewFilterClick} onKeyDown={this.handleKeyDown}>
+      <div key='add-new-filter' role='button' tabIndex={0} className='language-dropdown__dropdown__results__item' onClick={this.handleNewFilterClick} onKeyDown={this.handleKeyDown}>
         <Icon id='plus' fixedWidth /> <FormattedMessage id='filter_modal.select_filter.prompt_new' defaultMessage='New category: {name}' values={{ name }} />
       </div>
     );
@@ -190,3 +188,5 @@ class SelectFilter extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(SelectFilter));

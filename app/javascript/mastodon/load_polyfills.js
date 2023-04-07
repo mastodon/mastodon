@@ -15,7 +15,6 @@ function loadPolyfills() {
     Array.prototype.includes &&
     HTMLCanvasElement.prototype.toBlob &&
     window.Intl &&
-    Number.isNaN &&
     Object.assign &&
     Object.values &&
     window.Symbol &&

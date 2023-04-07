@@ -73,8 +73,8 @@
     }
 
     .display-name {
-      margin-left: 15px;
-      text-align: left;
+      margin-inline-start: 15px;
+      text-align: start;
 
       i[data-hidden] {
         display: none;
@@ -139,21 +139,21 @@
 
   .older {
     float: left;
-    padding-left: 0;
+    padding-inline-start: 0;
 
     .fa {
       display: inline-block;
-      margin-right: 5px;
+      margin-inline-end: 5px;
     }
   }
 
   .newer {
     float: right;
-    padding-right: 0;
+    padding-inline-end: 0;
 
     .fa {
       display: inline-block;
-      margin-left: 5px;
+      margin-inline-start: 5px;
     }
   }
 

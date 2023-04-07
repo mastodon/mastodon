@@ -31,8 +31,6 @@ const mapStateToProps = (state, props) => ({
   hasUnread: state.getIn(['timelines', `list:${props.params.id}`, 'unread']) > 0,
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class ListTimeline extends React.PureComponent {
 
   static contextTypes = {
@@ -178,11 +176,11 @@ class ListTimeline extends React.PureComponent {
           multiColumn={multiColumn}
         >
           <div className='column-settings__row column-header__links'>
-            <button type='button' className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleEditClick}>
+            <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleEditClick}>
               <Icon id='pencil' /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
             </button>
 
-            <button type='button' className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleDeleteClick}>
+            <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
               <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
           </div>
@@ -219,3 +217,5 @@ class ListTimeline extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(ListTimeline));

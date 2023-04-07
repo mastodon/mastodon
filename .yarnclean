@@ -44,3 +44,6 @@ Gruntfile.js
 # for specific ignore
 !.svgo.yml
 !sass-lint/**/*.yml
+
+# breaks lint-staged or generally anything using https://github.com/eemeli/yaml/issues/384
+!**/yaml/dist/**/doc

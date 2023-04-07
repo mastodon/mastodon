@@ -187,7 +187,7 @@ module CacheConcern
     return [] if raw.empty?
 
     cached_keys_with_value = begin
-      Rails.cache.read_multi(*raw, namespace: 'v2').transform_keys(&:id).transform_values { |r| ActiveRecordCoder.load(r) }
+      Rails.cache.read_multi(*raw).transform_keys(&:id).transform_values { |r| ActiveRecordCoder.load(r) }
     rescue ActiveRecordCoder::Error
       {} # The serialization format may have changed, let's pretend it's a cache miss.
     end
@@ -200,7 +200,7 @@ module CacheConcern
       uncached = klass.where(id: uncached_ids).with_includes.index_by(&:id)
 
       uncached.each_value do |item|
-        Rails.cache.write(item, ActiveRecordCoder.dump(item), namespace: 'v2')
+        Rails.cache.write(item, ActiveRecordCoder.dump(item))
       end
     end
 

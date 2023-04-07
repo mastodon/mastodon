@@ -649,6 +649,8 @@ cs:
       statuses: Nahlášený obsah
       statuses_description_html: Obsah porušující pravidla bude uveden v komunikaci s nahlášeným účtem
       summary:
+        actions:
+          delete_html: Odstranit urážlivé příspěvky
         close_report: Označit nahlášení č.%{id} za vyřešené
       target_origin: Původ nahlášeného účtu
       title: Hlášení
@@ -1475,6 +1477,7 @@ cs:
       electron: Electron
       firefox: Firefox
       generic: Neznámý prohlížeč
+      huawei_browser: Prohlížeč Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1730,7 +1733,6 @@ cs:
     seamless_external_login: Jste přihlášeni přes externí službu, nastavení hesla a e-mailu proto nejsou dostupná.
     signed_in_as: 'Přihlášeni jako:'
   verification:
-    explanation_html: 'Můžete se <strong>ověřit jako vlastník odkazů v metadatech profilu</strong>. Pro tento účel musí stránka v odkazu obsahovat odkaz zpět na váš profil na Mastodonu. Odkaz zpět <strong>musí</strong> mít atribut <code>rel="me"</code>. Na textu odkazu nezáleží. Zde je příklad:'
     verification: Ověření
   webauthn_credentials:
     add: Přidat nový bezpečnostní klíč
