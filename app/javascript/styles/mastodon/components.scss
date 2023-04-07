@@ -2467,12 +2467,13 @@ $ui-header-height: 55px;
 
   .column,
   .drawer {
-    flex: 0 0 auto;
     padding: 10px;
     padding-inline-start: 5px;
     padding-inline-end: 5px;
 
     &:first-child {
+      flex: 1 1 300px;
+      flex-shrink: 0;
       padding-inline-start: 10px;
     }
 
