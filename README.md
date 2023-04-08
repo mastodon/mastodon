@@ -1,6 +1,6 @@
-#  Mastodon Glitch Edition  #
+# Mastodon Glitch Edition
 
->   Now with automated deploys!
+> Now with automated deploys!
 
 [![Build Status](https://img.shields.io/circleci/project/github/glitch-soc/mastodon.svg)][circleci]
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/glitch-soc/mastodon.svg)][code_climate]
