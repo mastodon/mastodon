@@ -1,6 +1,5 @@
 import 'packs/public-path';
 import loadPolyfills from 'flavours/glitch/load_polyfills';
-import ready from 'flavours/glitch/ready';
 import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
 import 'cocoon-js-vanilla';
 
@@ -13,10 +12,10 @@ function main() {
 
     if (sidebar.classList.contains('visible')) {
       document.body.style.overflow = null;
-      toggleButton.setAttribute('aria-expanded', false);
+      toggleButton.setAttribute('aria-expanded', 'false');
     } else {
       document.body.style.overflow = 'hidden';
-      toggleButton.setAttribute('aria-expanded', true);
+      toggleButton.setAttribute('aria-expanded', 'true');
     }
 
     toggleButton.classList.toggle('active');

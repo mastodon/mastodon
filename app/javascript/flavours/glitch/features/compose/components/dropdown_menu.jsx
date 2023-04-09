@@ -169,7 +169,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
         role='option'
-        tabIndex='0'
+        tabIndex={0}
         key={name}
         data-index={i}
         ref={active ? this.setFocusRef : null}

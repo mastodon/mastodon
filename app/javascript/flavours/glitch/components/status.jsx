@@ -564,7 +564,7 @@ class Status extends ImmutablePureComponent {
     if (hidden) {
       return (
         <HotKeys handlers={handlers}>
-          <div ref={this.handleRef} className='status focusable' tabIndex='0'>
+          <div ref={this.handleRef} className='status focusable' tabIndex={0}>
             <span>{status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}</span>
             <span>{status.get('content')}</span>
           </div>
@@ -581,7 +581,7 @@ class Status extends ImmutablePureComponent {
 
       return (
         <HotKeys handlers={minHandlers}>
-          <div className='status__wrapper status__wrapper--filtered focusable' tabIndex='0' ref={this.handleRef}>
+          <div className='status__wrapper status__wrapper--filtered focusable' tabIndex={0} ref={this.handleRef}>
             <FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.
             {' '}
             <button className='status__wrapper--filtered__button' onClick={this.handleUnfilterClick}>
@@ -769,7 +769,7 @@ class Status extends ImmutablePureComponent {
           style={isCollapsed && background ? { backgroundImage: `url(${background})` } : null}
           {...selectorAttribs}
           ref={handleRef}
-          tabIndex='0'
+          tabIndex={0}
           data-featured={featured ? 'true' : null}
           aria-label={textForScreenReader(intl, status, rebloggedByText, !status.get('hidden'))}
         >

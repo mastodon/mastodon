@@ -81,7 +81,7 @@ export default class ModalRoot extends React.PureComponent {
       document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
     } else {
       document.body.classList.remove('with-modals--active');
-      document.documentElement.style.marginRight = 0;
+      document.documentElement.style.marginRight = '0';
     }
   }
 

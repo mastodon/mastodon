@@ -24,7 +24,7 @@ class MoveGlitchUserSettings < ActiveRecord::Migration[6.1]
     end
 
     def value
-      YAML.safe_load(self[:value], permitted_classes: [ActiveSupport::HashWithIndifferentAccess]) if self[:value].present?
+      YAML.safe_load(self[:value], permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Symbol]) if self[:value].present?
     end
   end
 

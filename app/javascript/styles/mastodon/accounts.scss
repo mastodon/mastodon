@@ -36,10 +36,6 @@
     @media screen and (max-width: 600px) {
       height: 200px;
     }
-
-    @media screen and (max-width: $no-gap-breakpoint) {
-      display: none;
-    }
   }
 
   &__bar {
@@ -138,7 +134,7 @@
   }
 
   .older {
-    float: inline-start;
+    float: left;
     padding-inline-start: 0;
 
     .fa {
@@ -148,7 +144,7 @@
   }
 
   .newer {
-    float: inline-end;
+    float: right;
     padding-inline-end: 0;
 
     .fa {

@@ -15,7 +15,6 @@ module.exports = {
     'no-descending-specificity': null,
     'no-duplicate-selectors': null,
     'number-max-precision': 8,
-    'property-no-unknown': null,
     'property-no-vendor-prefix': null,
     'selector-class-pattern': null,
     'selector-id-pattern': null,
@@ -25,4 +24,18 @@ module.exports = {
     'scss/dollar-variable-empty-line-before': null,
     'scss/no-global-function-names': null,
   },
+  overrides: [
+    {
+      'files': ['app/javascript/styles/mailer.scss'],
+      rules: {
+        'property-no-unknown': [
+          true,
+          {
+            ignoreProperties: [
+              '/^mso-/',
+            ] },
+        ],
+      },
+    },
+  ],
 };

@@ -32,7 +32,7 @@ const ColumnLink = ({ icon, text, to, onClick, href, method, badge, transparent,
       return onClick(e);
     };
     return (
-      <a href='#' onClick={onClick && handleOnClick} className={className} title={text} {...other} tabIndex='0'>
+      <a href='#' onClick={onClick && handleOnClick} className={className} title={text} {...other} tabIndex={0}>
         {iconElement}
         <span>{text}</span>
         {badgeElement}

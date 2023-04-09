@@ -38,7 +38,7 @@ class Spoilers extends React.PureComponent {
       <p className='spoiler__text'>
         {spoilerText}
         {' '}
-        <button tabIndex='0' className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>
+        <button tabIndex={0} className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>
           {toggleText}
         </button>
       </p>,
