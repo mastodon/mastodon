@@ -116,7 +116,7 @@ class FanOutOnWriteService < BaseService
   end
 
   def deliver_to_direct_timelines!
-    FeedInsertWorker.push_bulk(@status.mentions.includes(:account).map(&:account).select { |mentioned_account| mentioned_account.local? }) do |account|
+    FeedInsertWorker.push_bulk(@status.mentions.includes(:account).map(&:account).select(&:local?)) do |account|
       [@status.id, account.id, 'direct', { 'update' => update? }]
     end
   end

@@ -12,9 +12,7 @@ class Settings::FlavoursController < Settings::BaseController
   end
 
   def show
-    unless Themes.instance.flavours.include?(params[:flavour]) || (params[:flavour] == current_flavour)
-      redirect_to action: 'show', flavour: current_flavour
-    end
+    redirect_to action: 'show', flavour: current_flavour unless Themes.instance.flavours.include?(params[:flavour]) || (params[:flavour] == current_flavour)
 
     @listing = Themes.instance.flavours
     @selected = params[:flavour]

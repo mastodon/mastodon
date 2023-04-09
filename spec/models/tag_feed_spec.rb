@@ -67,7 +67,7 @@ describe TagFeed, type: :service do
       expect(results).to include(status)
     end
 
-    context 'on a local-only status' do
+    context 'when the feed contains a local-only status' do
       let!(:status) { Fabricate(:status, tags: [tag1], local_only: true) }
 
       it 'does not show local-only statuses without a viewer' do

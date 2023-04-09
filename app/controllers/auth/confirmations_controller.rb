@@ -15,18 +15,18 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
 
   skip_before_action :require_functional!
 
-  def new
-    super
-
-    resource.email = current_user.unconfirmed_email || current_user.email if user_signed_in?
-  end
-
   def show
     old_session_values = session.to_hash
     reset_session
     session.update old_session_values.except('session_id')
 
     super
+  end
+
+  def new
+    super
+
+    resource.email = current_user.unconfirmed_email || current_user.email if user_signed_in?
   end
 
   def confirm_captcha
@@ -51,6 +51,7 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
     # step.
     confirmation_token = params[:confirmation_token]
     return if confirmation_token.nil?
+
     @confirmation_user = User.find_first_by_auth_conditions(confirmation_token: confirmation_token)
   end
 

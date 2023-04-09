@@ -75,10 +75,10 @@ describe Api::V1::Accounts::CredentialsController do
         end
       end
 
-      describe 'with invalid data' do
+      describe 'with a too long profile bio' do
         before do
           note = 'This is too long. '
-          note = note + 'a' * (Account::MAX_NOTE_LENGTH - note.length + 1)
+          note += 'a' * (Account::MAX_NOTE_LENGTH - note.length + 1)
           patch :update, params: { note: note }
         end
 

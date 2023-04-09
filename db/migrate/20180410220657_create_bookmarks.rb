@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration is a duplicate of 20180831171112 and may get ignored, see
 # config/initializers/0_duplicate_migrations.rb
 

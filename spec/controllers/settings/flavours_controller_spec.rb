@@ -1,7 +1,8 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Settings::FlavoursController, type: :controller do
+RSpec.describe Settings::FlavoursController do
   let(:user) { Fabricate(:user) }
 
   before do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostMigrateFilters < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
@@ -5,7 +7,5 @@ class PostMigrateFilters < ActiveRecord::Migration[5.2]
     drop_table :glitch_keyword_mutes if table_exists? :glitch_keyword_mutes
   end
 
-  def down
-  end
+  def down; end
 end
-

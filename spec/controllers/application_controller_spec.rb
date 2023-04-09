@@ -75,8 +75,8 @@ describe ApplicationController, type: :controller do
 
   describe 'helper_method :current_flavour' do
     it 'returns "glitch" when theme wasn\'t changed in admin settings' do
-      allow(Setting).to receive(:default_settings).and_return({'skin' => 'default'})
-      allow(Setting).to receive(:default_settings).and_return({'flavour' => 'glitch'})
+      allow(Setting).to receive(:default_settings).and_return({ 'skin' => 'default' })
+      allow(Setting).to receive(:default_settings).and_return({ 'flavour' => 'glitch' })
 
       expect(controller.view_context.current_flavour).to eq 'glitch'
     end

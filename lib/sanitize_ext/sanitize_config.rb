@@ -48,9 +48,9 @@ class Sanitize
         node.content = "[🖼  #{node['alt']}]"
       else
         url = node['href']
-        prefix = url.match(/\Ahttps?:\/\/(www\.)?/).to_s
+        prefix = url.match(%r{\Ahttps?://(www\.)?}).to_s
         text   = url[prefix.length, 30]
-        text   = text + "…" if url[prefix.length..-1].length > 30
+        text += '…' if url.length - prefix.length > 30
         node.content = "[🖼  #{text}]"
       end
     end
@@ -88,7 +88,7 @@ class Sanitize
       },
 
       protocols: {
-        'a'          => { 'href' => LINK_PROTOCOLS },
+        'a' => { 'href' => LINK_PROTOCOLS },
         'blockquote' => { 'cite' => LINK_PROTOCOLS },
       },
 
@@ -126,7 +126,7 @@ class Sanitize
 
       node = env[:node]
 
-      rel = (node['rel'] || '').split(' ') & ['tag']
+      rel = (node['rel'] || '').split & ['tag']
       rel += ['nofollow', 'noopener', 'noreferrer'] unless TagManager.instance.local_url?(node['href'])
 
       if rel.empty?

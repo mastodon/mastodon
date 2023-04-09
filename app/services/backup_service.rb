@@ -154,7 +154,7 @@ class BackupService < BaseService
       object,
       serializer: serializer,
       adapter: ActivityPub::Adapter,
-      allow_local_only: true,
+      allow_local_only: true
     ).as_json
   end
 

@@ -65,7 +65,7 @@ describe StatusLengthValidator do
     it 'counts only the front part of remote usernames' do
       username = '@alice'
       chars = StatusLengthValidator::MAX_CHARS - 1 - username.length
-      text   = ('a' * 475) + " #{username}@#{'b' * 30}.com"
+      text   = ('a' * chars) + " #{username}@#{'b' * 30}.com"
       status = double(spoiler_text: '', text: text, errors: double(add: nil), local?: true, reblog?: false)
 
       subject.validate(status)

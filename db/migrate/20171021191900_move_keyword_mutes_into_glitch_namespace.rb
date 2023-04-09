@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MoveKeywordMutesIntoGlitchNamespace < ActiveRecord::Migration[5.1]
   def change
     safety_assured do

@@ -306,6 +306,7 @@ class FeedManager
 
       statuses.each do |status|
         next if filter_from_direct?(status, account)
+
         added += 1 if add_to_feed(:direct, account.id, status)
       end
 
@@ -459,6 +460,7 @@ class FeedManager
   # @return [Boolean]
   def filter_from_direct?(status, receiver_id)
     return false if receiver_id == status.account_id
+
     filter_from_mentions?(status, receiver_id)
   end
 

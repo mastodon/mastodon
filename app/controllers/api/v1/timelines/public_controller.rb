@@ -40,7 +40,7 @@ class Api::V1::Timelines::PublicController < Api::BaseController
       only_media: truthy_param?(:only_media),
       allow_local_only: truthy_param?(:allow_local_only),
       with_replies: Setting.show_replies_in_public_timelines,
-      with_reblogs: Setting.show_reblogs_in_public_timelines,
+      with_reblogs: Setting.show_reblogs_in_public_timelines
     )
   end
 

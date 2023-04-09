@@ -244,7 +244,6 @@ class User < ApplicationRecord
   end
 
   def functional?
-
     functional_or_moved?
   end
 

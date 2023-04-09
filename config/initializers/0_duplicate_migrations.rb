@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Some migrations have been present in glitch-soc for a long time and have then
 # been merged in upstream Mastodon, under a different version number.
 #
@@ -12,24 +14,26 @@
 # we decided monkey-patching Rails' Migrator to completely ignore the duplicate,
 # keeping only the one that has run, or an arbitrary one.
 
-ALLOWED_DUPLICATES = [20180410220657, 20180831171112].freeze
+ALLOWED_DUPLICATES = [2018_04_10_220657, 2018_08_31_171112].freeze
 
 module ActiveRecord
   class Migrator
     def self.new(direction, migrations, schema_migration, target_version = nil)
       migrated = Set.new(Base.connection.migration_context.get_all_versions)
 
-      migrations.group_by(&:name).each do |name, duplicates|
-        if duplicates.length > 1 && duplicates.all? { |m| ALLOWED_DUPLICATES.include?(m.version) }
-          # We have a set of allowed duplicates. Keep the migrated one, if any.
-          non_migrated = duplicates.reject { |m| migrated.include?(m.version.to_i) }
+      migrations.group_by(&:name).each do |_name, duplicates|
+        next unless duplicates.length > 1 && duplicates.all? { |m| ALLOWED_DUPLICATES.include?(m.version) }
 
-          if duplicates.length == non_migrated.length || non_migrated.length == 0
+        # We have a set of allowed duplicates. Keep the migrated one, if any.
+        non_migrated = duplicates.reject { |m| migrated.include?(m.version.to_i) }
+
+        migrations = begin
+          if duplicates.length == non_migrated.length || non_migrated.empty?
             # There weren't any migrated one, so we have to pick one “canonical” migration
-            migrations = migrations - duplicates[1..-1]
+            migrations - duplicates[1..]
           else
             # Just reject every duplicate which hasn't been migrated yet
-            migrations = migrations - non_migrated
+            migrations - non_migrated
           end
         end
       end
@@ -43,10 +47,10 @@ module ActiveRecord
       # A set of duplicated migrations is considered migrated if at least one of
       # them is migrated.
       migrated = get_all_versions
-      migrations.group_by(&:name).each do |name, duplicates|
+      migrations.group_by(&:name).each do |_name, duplicates|
         return true unless duplicates.any? { |m| migrated.include?(m.version.to_i) }
       end
-      return false
+      false
     end
   end
 end

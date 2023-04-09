@@ -48,7 +48,7 @@ RSpec.describe NotifyService, type: :service do
     recipient.suspend!
     expect { subject }.to_not change(Notification, :count)
   end
-  
+
   context 'for direct messages' do
     let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct)) }
     let(:type)     { :mention }
