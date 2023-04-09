@@ -70,9 +70,7 @@ const messages = defineMessages({
   redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.' },
   revealAll: { id: 'status.show_more_all', defaultMessage: 'Show more for all' },
   hideAll: { id: 'status.show_less_all', defaultMessage: 'Show less for all' },
-  statusTitleWithText: { id: 'status.title.with_text', defaultMessage: '"{truncatedStatusText}" by {user}' },
-  statusTitleWithoutText: { id: 'status.title.without_text', defaultMessage: 'Post with {attachmentCount, plural, one {one attachment} other {{attachmentCount} attachments}} by {user}' },
-  ellipsis: { id: 'punctuation.ellipsis', defaultMessage: '…' },
+  statusTitleWithAttachments: { id: 'status.title.with_attachments', defaultMessage: '{user} posted {attachmentCount, plural, one {an attachment} other {{attachmentCount} attachments}}' },
   detailedStatus: { id: 'status.detailed_status', defaultMessage: 'Detailed conversation view' },
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
@@ -164,7 +162,7 @@ const makeMapStateToProps = () => {
 
 const truncate = (intl, str, num) => {
   if (str.length > num) {
-    return str.slice(0, num) + intl.formatMessage(messages.ellipsis);
+    return str.slice(0, num) + '…';
   } else {
     return str;
   }
@@ -177,7 +175,7 @@ const titleFromStatus = (intl, status) => {
   const text = status.get('search_index');
   const attachmentCount = status.get('media_attachments').size;
 
-  return text ? intl.formatMessage(messages.statusTitleWithText, {user, truncatedStatusText: truncate(intl, text, 30)}) : intl.formatMessage(messages.statusTitleWithText, {user, attachmentCount});
+  return text ? `${user}: "${truncate(intl, text, 30)}"` : intl.formatMessage(messages.statusTitleWithAttachments, {user, attachmentCount});
 };
 
 class Status extends ImmutablePureComponent {
