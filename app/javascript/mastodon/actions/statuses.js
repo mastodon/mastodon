@@ -245,6 +245,7 @@ export function clearStatusNotifications(id) {
     });
   };
 }
+
 export function muteStatusRequest(id) {
   return {
     type: STATUS_MUTE_REQUEST,
