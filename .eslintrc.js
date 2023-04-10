@@ -104,7 +104,6 @@ module.exports = {
     'react/jsx-equals-spacing': 'error',
     'react/jsx-no-bind': 'error',
     'react/jsx-no-target-blank': 'off',
-    'react/no-deprecated': 'off',
     'react/no-unknown-property': 'off',
     'react/self-closing-comp': 'error',
 
