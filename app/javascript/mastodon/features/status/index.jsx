@@ -160,7 +160,7 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const truncate = (intl, str, num) => {
+const truncate = (str, num) => {
   if (str.length > num) {
     return str.slice(0, num) + '…';
   } else {
@@ -175,7 +175,7 @@ const titleFromStatus = (intl, status) => {
   const text = status.get('search_index');
   const attachmentCount = status.get('media_attachments').size;
 
-  return text ? `${user}: "${truncate(intl, text, 30)}"` : intl.formatMessage(messages.statusTitleWithAttachments, {user, attachmentCount});
+  return text ? `${user}: "${truncate(text, 30)}"` : intl.formatMessage(messages.statusTitleWithAttachments, {user, attachmentCount});
 };
 
 class Status extends ImmutablePureComponent {
