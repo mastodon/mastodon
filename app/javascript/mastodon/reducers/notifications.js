@@ -182,7 +182,7 @@ const filterNotificationsByStatus = (state, statusId) => {
   const helper = list => {
     list = list.filterNot(item => item !== null && (item.get('type') === 'favourite' && item.get('status') === statusId));
     list = list.filterNot(item => item !== null && (item.get('type') === 'reblog' && item.get('status') === statusId));
-    return list;  
+    return list;
   };
   return state.update('items', helper).update('pendingItems', helper);
 };
