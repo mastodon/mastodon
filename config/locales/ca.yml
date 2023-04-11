@@ -1,4 +1,3 @@
----
 ca:
   about:
     about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Tingues el control de les teves dades amb Mastodon!'
@@ -56,7 +55,7 @@ ca:
       delete: Esborra les dades
       deleted: Eliminat
       demote: Degrada
-      destroyed_msg: Les dades de %{username} son a la cua per a ser esborrades en breu
+      destroyed_msg: "Les dades de %{username} son a la cua per a ser esborrades en breu"
       disable: Inhabilita
       disable_sign_in_token_auth: Desactivar l'autenticació de token per correu
       disable_two_factor_authentication: Desactiva 2FA
@@ -548,7 +547,7 @@ ca:
       no_ip_block_selected: No s’ha canviat cap regla IP perquè no s’han seleccionat
       title: Regles IP
     relationships:
-      title: relacions del %{acct}
+      title: "relacions del %{acct}"
     relays:
       add_new: Afegiu un nou relay
       delete: Elimina
@@ -931,7 +930,7 @@ ca:
     new_report:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des del domini %{domain} ha informat sobre %{target}
-      subject: Informe nou per a %{instance} (#%{id})
+      subject: 'Informe nou per a %{instance} (#%{id})'
     new_trends:
       body: 'Els següents elements necessiten una revisió abans de que puguin ser mostrats públicament:'
       new_trending_links:
@@ -1066,7 +1065,7 @@ ca:
       about_x_years: "%{count} anys"
       almost_x_years: "%{count}anys"
       half_a_minute: Ara mateix
-      less_than_x_minutes: fa %{count} minuts
+      less_than_x_minutes: "fa %{count} minuts"
       less_than_x_seconds: Ara mateix
       over_x_years: "%{count} anys"
       x_days: "%{count} dies"
@@ -1329,7 +1328,7 @@ ca:
       sign_up:
         subject: "%{name} s'ha registrat"
     favourite:
-      body: "%{name} ha marcat com a favorit el teu estat:"
+      body: '%{name} ha marcat com a favorit el teu estat:'
       subject: "%{name} ha marcat com a favorit el teu estat"
       title: Favorit nou
     follow:
@@ -1343,13 +1342,13 @@ ca:
       title: Nova sol·licitud de seguiment
     mention:
       action: Respon
-      body: "%{name} t'ha mencionat en:"
-      subject: "%{name} t'ha mencionat"
+      body: '%{name} t''ha mencionat en:'
+      subject: '%{name} t''ha mencionat'
       title: Menció nova
     poll:
       subject: Ha finalitzat l'enquesta de %{name}
     reblog:
-      body: "%{name} ha impulsat el teu estat:"
+      body: '%{name} ha impulsat el teu estat:'
       subject: "%{name} ha impulsat el teu estat"
       title: Nou impuls
     status:
@@ -1642,9 +1641,9 @@ ca:
       title: Recollida de l'arxiu
     suspicious_sign_in:
       change_password: canvia la teva contrasenya
-      details: 'Aquí estan els detalls del inici de sessió:'
+      details: 'Aquí estan els detalls de l''inici de sessió:'
       explanation: Hem detectat un inici de sessió del teu compte des d'una nova adreça IP.
-      further_actions_html: Si no has estat tu, et recomanem %{action} immediatament i activis l'autenticació de dos-factors per a mantenir el teu compte segur.
+      further_actions_html: Si no has estat tu, %{action} immediatament i activa l'autenticació de dos-factors per a mantenir el teu compte segur.
       subject: S'ha accedit al teu compte des d'una adreça IP nova
       title: Un nou inici de sessió
     warning:
