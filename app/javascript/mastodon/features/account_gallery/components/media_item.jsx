@@ -10,6 +10,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 export default class MediaItem extends ImmutablePureComponent {
 
   static propTypes = {
+    acct: PropTypes.string.isRequired,
     attachment: ImmutablePropTypes.map.isRequired,
     displayWidth: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
@@ -54,7 +55,7 @@ export default class MediaItem extends ImmutablePureComponent {
   };
 
   render () {
-    const { attachment, displayWidth } = this.props;
+    const { acct, attachment, displayWidth } = this.props;
     const { visible, loaded } = this.state;
 
     const width  = `${Math.floor((displayWidth - 4) / 3) - 4}px`;
@@ -133,7 +134,7 @@ export default class MediaItem extends ImmutablePureComponent {
 
     return (
       <div className='account-gallery__item' style={{ width, height }}>
-        <a className='media-gallery__item-thumbnail' href={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`} onClick={this.handleClick} title={title} target='_blank' rel='noopener noreferrer'>
+        <a className='media-gallery__item-thumbnail' href={`/@${acct}/${status.get('id')}`} onClick={this.handleClick} title={title} target='_blank' rel='noopener noreferrer'>
           <Blurhash
             hash={attachment.get('blurhash')}
             className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': visible && loaded })}
