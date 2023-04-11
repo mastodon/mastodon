@@ -30,10 +30,11 @@ describe Settings::Migration::RedirectsController do
     end
 
     context 'with non valid params' do
-      it 'updates the account and redirects' do
+      it 'does not update the account and renders the new page' do
         post :create, params: { form_redirect: { acct: '' } }
 
         expect(response).to have_http_status(200)
+        expect(response).to render_template(:new)
       end
     end
   end

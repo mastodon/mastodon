@@ -68,7 +68,7 @@ describe Settings::TwoFactorAuthenticationMethodsController do
           allow(UserMailer).to receive(:two_factor_disabled).with(user).and_return(mailer)
         end
 
-        it 'renders challenge page' do
+        it 'redirects to settings page' do
           post :disable, session: { challenge_passed_at: 10.minutes.ago }
 
           expect(UserMailer).to have_received(:two_factor_disabled).with(user)

@@ -24,15 +24,19 @@ describe Settings::AliasesController do
       before { stub_resolver }
 
       it 'creates an alias for the user' do
-        post :create, params: { account_alias: { acct: 'new@example.com' } }
+        expect do
+          post :create, params: { account_alias: { acct: 'new@example.com' } }
+        end.to change(AccountAlias, :count).by(1)
 
         expect(response).to redirect_to(settings_aliases_path)
       end
     end
 
     context 'with invalid alias' do
-      it 'creates an alias for the user' do
-        post :create, params: { account_alias: { acct: 'format-wrong' } }
+      it 'does not create an alias for the user' do
+        expect do
+          post :create, params: { account_alias: { acct: 'format-wrong' } }
+        end.to_not change(AccountAlias, :count)
 
         expect(response).to have_http_status(200)
       end
@@ -50,6 +54,7 @@ describe Settings::AliasesController do
       delete :destroy, params: { id: account_alias.id }
 
       expect(response).to redirect_to(settings_aliases_path)
+      expect { account_alias.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 

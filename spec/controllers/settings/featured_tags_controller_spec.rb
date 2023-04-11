@@ -43,7 +43,7 @@ describe Settings::FeaturedTagsController do
     end
 
     describe 'GET to #index' do
-      it 'gets a list of featured tags' do
+      it 'responds with success' do
         get :index
 
         expect(response).to have_http_status(200)
@@ -57,6 +57,7 @@ describe Settings::FeaturedTagsController do
         delete :destroy, params: { id: featured_tag.id }
 
         expect(response).to redirect_to(settings_featured_tags_path)
+        expect { featured_tag.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
