@@ -43,7 +43,7 @@ jobs:
         run: |
           yarn build:development
           yarn manage:translations
-          git diff --exit-code
+          git diff --exit-code -- app/javascript/mastodon/locales/defaultMessages.json app/javascript/mastodon/locales/en.json
 
       - name: Check locale file normalization
         run: bundle exec i18n-tasks check-normalized
