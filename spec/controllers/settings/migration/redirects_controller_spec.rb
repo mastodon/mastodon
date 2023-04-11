@@ -22,7 +22,7 @@ describe Settings::Migration::RedirectsController do
     context 'with valid params' do
       before { stub_resolver }
 
-      it 'updates the account and redirects' do
+      it 'redirects to the settings migration path' do
         post :create, params: { form_redirect: { acct: 'new@host.com', current_password: 'testtest' } }
 
         expect(response).to redirect_to(settings_migration_path)
@@ -30,7 +30,7 @@ describe Settings::Migration::RedirectsController do
     end
 
     context 'with non valid params' do
-      it 'does not update the account and renders the new page' do
+      it 'returns success and renders the new page' do
         post :create, params: { form_redirect: { acct: '' } }
 
         expect(response).to have_http_status(200)
