@@ -32,7 +32,7 @@ const messages = defineMessages({
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
   muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
-  clearNotifications: { id: 'status.clear_notifications', defaultMessage: 'Clear Notifications' },
+  clearNotifications: { id: 'status.clear_notifications', defaultMessage: 'Clear notifications' },
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
   pin: { id: 'status.pin', defaultMessage: 'Pin on profile' },
   unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
