@@ -28,7 +28,8 @@ $fluid-breakpoint: $maximum-width + 20px;
     position: relative;
     border-bottom: 1px solid lighten($ui-base-color, 8%);
     padding: 1em 1.75em;
-    padding-left: 3em;
+    // padding-left: 3em;
+    padding-left: 38px;
     font-weight: 500;
     counter-increment: list-counter;
 
@@ -41,12 +42,19 @@ $fluid-breakpoint: $maximum-width + 20px;
       background: $highlight-text-color;
       color: $ui-base-color;
       border-radius: 50%;
-      width: 4ch;
-      height: 4ch;
+      width: 2.5ch;
+      height: 2.5ch;
       font-weight: 500;
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    &.counter-width-roundness-modifier::before {
+      border-radius: unset;
+      content: "";
+      width: 2ch;
+      height: 2ch;
     }
 
     &:last-child {

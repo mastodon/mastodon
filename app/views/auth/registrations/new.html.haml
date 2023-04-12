@@ -4,10 +4,10 @@
 - content_for :header_tags do
   = render partial: 'shared/og', locals: { description: description_for_sign_up }
 
--# HELLO_PATCH(2) use OIDC for Sign-Up
 = simple_form_for(resource, as: resource_name, url: user_openid_connect_omniauth_authorize_path, html: { novalidate: false }) do |f|
-  %h1.title= t('auth.sign_up.title', domain: site_hostname)
-  %p.lead= t('auth.sign_up.preamble')
+  %h1.title.-mt-8= 'Welcome to verified.coop!'
+  %p.sublead= 'Verified.coop is a Mastodon instance for people that want a community where everyone uses their real identity. We have found real identities lead to more civil discussions.'
+  %p.lead= 'Verified.coop is operated as a public benefit by hello.coop, a cooperative with a mission to to give people control of their identity.'
 
   = render 'shared/error_messages', object: resource
 
@@ -16,15 +16,24 @@
       %p.hint= t('invites.invited_by')
       = render 'application/card', account: @invite.user.account
 
-  -# .fields-group
-  -#   = f.simple_fields_for :account do |ff|
-  -#     = ff.input :display_name, wrapper: :with_label, label: false, required: false, input_html: { 'aria-label' => t('simple_form.labels.defaults.display_name'), :autocomplete => 'off', placeholder: t('simple_form.labels.defaults.display_name') }
-  -#     = ff.input :username, wrapper: :with_label, label: false, required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.username'), :autocomplete => 'off', placeholder: t('simple_form.labels.defaults.username'), pattern: '[a-zA-Z0-9_]+', maxlength: 30 }, append: "@#{site_hostname}", hint: false
-  -#   = f.input :email, placeholder: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email'), :autocomplete => 'username' }, hint: false
-  -#   = f.input :password, placeholder: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'new-password', :minlength => User.password_length.first, :maxlength => User.password_length.last }, hint: false
-  -#   = f.input :password_confirmation, placeholder: t('simple_form.labels.defaults.confirm_password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password'), :autocomplete => 'new-password' }, hint: false
-  -#   = f.input :confirm_password, as: :string, placeholder: t('simple_form.labels.defaults.honeypot', label: t('simple_form.labels.defaults.password')), required: false, input_html: { 'aria-label' => t('simple_form.labels.defaults.honeypot', label: t('simple_form.labels.defaults.password')), :autocomplete => 'off' }, hint: false
-  -#   = f.input :website, as: :url, wrapper: :with_label, label: t('simple_form.labels.defaults.honeypot', label: 'Website'), required: false, input_html: { 'aria-label' => t('simple_form.labels.defaults.honeypot', label: 'Website'), :autocomplete => 'off' }
+  %h1.title= t('auth.rules.title')
+  %p.sublead= t('auth.rules.preamble')
+
+  %ol.rules-list
+    - @rules.each do |rule|
+      %li.counter-width-roundness-modifier
+        .rules-list__text= rule.text
+
+  %h1.title= t('auth.sign_up.title')
+  %p.sublead= 'To use verified.coop:'
+  %ol.rules-list
+    %li
+      .rules-list__text= 'Verify your identity on three services'
+    %li
+      .rules-list__text= 'Use a name you use on two services'
+    %li
+      .rules-list__text= 'Select a username you already use'
+  %p.sublead.-mt-4= 'Your Mastodon identifier will be @username@verified.coop'
 
   - if approved_registrations? && !@invite.present?
     .fields-group
@@ -35,10 +44,12 @@
   = hidden_field_tag :accept, params[:accept]
   = f.input :invite_code, as: :hidden
 
-  -# .fields-group
-  -#   = f.input :agreement, as: :boolean, wrapper: :with_label, label: t('auth.privacy_policy_agreement_html', rules_path: about_more_path, privacy_policy_path: privacy_policy_path), required: true
-
   .actions
     = f.button :button, raw('ō&nbsp;&nbsp;&nbsp;Continue with Hellō'), type: :submit
+
+  -# .stacked-actions
+  -#   - accept_path = @invite_code.present? ? public_invite_url(invite_code: @invite_code, accept: @accept_token) : new_user_registration_path(accept: @accept_token)
+  -#   = link_to t('auth.rules.accept'), accept_path, class: 'button'
+  -#   = link_to t('auth.rules.back'), root_path, class: 'button button-tertiary'
 
 .form-footer= render 'auth/shared/links'

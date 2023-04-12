@@ -131,17 +131,37 @@ code {
     margin-bottom: 15px;
   }
 
-  .lead {
+  .lead,
+  .sublead {
     font-size: 17px;
     line-height: 22px;
     color: $secondary-text-color;
+  }
+
+  .lead {
     margin-bottom: 30px;
+  }
+
+  .sublead {
+    margin-bottom: 15px;
+  }
+
+  .-mt-8 {
+    margin-top: -32px;
+  }
+
+  .-mt-4 {
+    margin-top: -16px;
   }
 
   .rules-list {
     font-size: 17px;
     line-height: 22px;
     margin-bottom: 30px;
+  }
+
+  .hidden {
+    display: none;
   }
 
   .hint {
