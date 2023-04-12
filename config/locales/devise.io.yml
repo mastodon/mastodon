@@ -1,4 +1,3 @@
----
 io:
   devise:
     confirmations:
@@ -23,7 +22,7 @@ io:
         explanation: Vu kreis konto che %{host} per ca retpostadreso. Vu povas facile aktivigar lu. Se vu ne agis lu, ignorez ca retposto.
         explanation_when_pending: Vu aplikis por ganar invito a %{host} per ca retpostkonto. Pos vu konfirmas vua retpostkonto, ni kontrolos vua apliko. Vu povas enirar por chanjar vua detali o efacar vua konto, ma vu ne povas acesar maxim de funcioni til vua konto aprobesas. Se vua apliko refuzesas, vua informi efacesos, do plusa ago ne bezonesos de vu. Se vu ne agis lu, ignorez ca retposto.
         extra_html: Anke videz <a href="%{terms_path}">reguli di la servilo</a> e <a href="%{policy_path}">nia servokondicioni</a>.
-        subject: Instrucioni por konfirmar %{instance}
+        subject: 'Instrucioni por konfirmar %{instance}'
         title: Verifikez retpostadreso
       email_changed:
         explanation: 'Retpostadreso di vua konto chanjesas a:'
@@ -33,7 +32,7 @@ io:
       password_change:
         explanation: La pasvorto di vua konto chanjesis.
         extra: Se vu ne chanjesis vua pasvorto, nulu posible acesis vua konto. Chanjez vua pasvorto quik o kontaktez serviladministratero se vu ne povas enirar vua konto.
-        subject: Tua pasvorto chanjesis senprobleme.
+        subject: 'Tua pasvorto chanjesis senprobleme.'
         title: Pasvorto chanjesis
       reconfirmation_instructions:
         explanation: Konfirmez la nova adreso por chanjar vua retpostadreso.
@@ -44,7 +43,7 @@ io:
         action: Chanjez pasvorto
         explanation: Vu demandis nova pasvorto por vua konto.
         extra: Se vu ne demandas co, ignorez ca retposto. Vua pasvorto ne chanjesas til vu acesas la supera ligilo e kreas novo.
-        subject: Instrucioni por chanjar la pasvorto
+        subject: 'Instrucioni por chanjar la pasvorto'
         title: Richanjo di pasvorto
       two_factor_disabled:
         explanation: 2-faktorverifiko por vua konto deaktivigesis. Eniro esas nun posible per nur retpostadreso e pasvorto.
@@ -59,7 +58,7 @@ io:
         subject: 'Mastodon: 2-faktorrigankodexi rifacesis'
         title: 2FA-rigankodexi chanjesis
       unlock_instructions:
-        subject: Instructioni por riacendar la konto
+        subject: 'Instructioni por riacendar la konto'
       webauthn_credential:
         added:
           explanation: Ca sekurklefo insertesis a vua konto
