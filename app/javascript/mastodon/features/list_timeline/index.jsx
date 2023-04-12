@@ -10,13 +10,12 @@ import { openModal } from 'mastodon/actions/modal';
 import { connectListStream } from 'mastodon/actions/streaming';
 import { expandListTimeline } from 'mastodon/actions/timelines';
 import Column from 'mastodon/components/column';
-import ColumnBackButton from 'mastodon/components/column_back_button';
 import ColumnHeader from 'mastodon/components/column_header';
 import Icon from 'mastodon/components/icon';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
-import MissingIndicator from 'mastodon/components/missing_indicator';
 import RadioButton from 'mastodon/components/radio_button';
 import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
+import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
@@ -156,10 +155,7 @@ class ListTimeline extends React.PureComponent {
       );
     } else if (list === false) {
       return (
-        <Column>
-          <ColumnBackButton multiColumn={multiColumn} />
-          <MissingIndicator />
-        </Column>
+        <BundleColumnError multiColumn={multiColumn} errorType='routing' />
       );
     }
 

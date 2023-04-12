@@ -36,7 +36,7 @@ group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
 end
 
-gem 'net-ldap', '~> 0.17'
+gem 'net-ldap', '~> 0.18'
 gem 'omniauth-cas', '~> 2.0'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth_openid_connect', '~> 0.6.1'
