@@ -1,4 +1,3 @@
----
 si:
   activerecord:
     attributes:
@@ -71,7 +70,7 @@ si:
       confirmations:
         revoke: ඔබට විශ්වාසද?
       index:
-        authorized_at: "%{date}මත අවසර දී ඇත"
+        authorized_at: '%{date}මත අවසර දී ඇත'
         description_html: මේවා API භාවිතයෙන් ඔබගේ ගිණුමට ප්‍රවේශ විය හැකි යෙදුම් වේ. ඔබ මෙහි හඳුනා නොගත් යෙදුම් තිබේ නම්, හෝ යෙදුමක් වැරදි ලෙස හැසිරෙන්නේ නම්, ඔබට එහි ප්‍රවේශය අවලංගු කළ හැක.
         last_used_at: අවසන් වරට භාවිතා කළේ %{date}
         never_used: කවදාවත් පාවිච්චි කළේ නැහැ
@@ -145,39 +144,39 @@ si:
       application:
         title: වි.සත්යා. (OAuth) තොරතුරු අවශ්‍යයි
     scopes:
-      admin:read: සේවාදායකයේ ඇති සියලුම දත්ත කියවන්න
-      admin:read:accounts: සියලුම ගිණුම් වල සංවේදී තොරතුරු කියවන්න
-      admin:read:reports: සියලුම වාර්තා සහ වාර්තා කළ ගිණුම් වල සංවේදී තොරතුරු කියවන්න
-      admin:write: සේවාදායකයේ සියලුම දත්ත වෙනස් කරන්න
-      admin:write:accounts: ගිණුම් මත මධ්‍යස්ථ ක්‍රියා සිදු කරන්න
-      admin:write:reports: වාර්තා මත මධ්‍යස්ථ ක්‍රියා සිදු කරන්න
+      "admin:read": සේවාදායකයේ ඇති සියලුම දත්ත කියවන්න
+      "admin:read:accounts": සියලුම ගිණුම් වල සංවේදී තොරතුරු කියවන්න
+      "admin:read:reports": සියලුම වාර්තා සහ වාර්තා කළ ගිණුම් වල සංවේදී තොරතුරු කියවන්න
+      "admin:write": සේවාදායකයේ සියලුම දත්ත වෙනස් කරන්න
+      "admin:write:accounts": ගිණුම් මත මධ්‍යස්ථ ක්‍රියා සිදු කරන්න
+      "admin:write:reports": වාර්තා මත මධ්‍යස්ථ ක්‍රියා සිදු කරන්න
       crypto: end-to-end encryption භාවිතා කරන්න
       follow: ගිණුම් සබඳතා වෙනස් කරන්න
       push: ඔබගේ තල්ලු දැනුම්දීම් ලබා ගන්න
       read: ඔබගේ ගිණුමේ සියලුම දත්ත කියවන්න
-      read:accounts: ගිණුම් තොරතුරු බලන්න
-      read:blocks: ඔබගේ වාරණ බලන්න
-      read:bookmarks: ඔබගේ පිටු සලකුණු බලන්න
-      read:favourites: ඔබේ ප්රියතම බලන්න
-      read:filters: ඔබගේ පෙරහන් බලන්න
-      read:follows: ඔබගේ පහත සඳහන් බලන්න
-      read:lists: ඔබගේ ලැයිස්තු බලන්න
-      read:mutes: ඔබේ ගොළු බලන්න
-      read:notifications: ඔබගේ දැනුම්දීම් බලන්න
-      read:reports: ඔබගේ වාර්තා බලන්න
-      read:search: ඔබ වෙනුවෙන් සොයන්න
-      read:statuses: සියලුම පෝස්ට් බලන්න
+      "read:accounts": ගිණුම් තොරතුරු බලන්න
+      "read:blocks": ඔබගේ වාරණ බලන්න
+      "read:bookmarks": ඔබගේ පිටු සලකුණු බලන්න
+      "read:favourites": ඔබේ ප්රියතම බලන්න
+      "read:filters": ඔබගේ පෙරහන් බලන්න
+      "read:follows": ඔබගේ පහත සඳහන් බලන්න
+      "read:lists": ඔබගේ ලැයිස්තු බලන්න
+      "read:mutes": ඔබේ ගොළු බලන්න
+      "read:notifications": ඔබගේ දැනුම්දීම් බලන්න
+      "read:reports": ඔබගේ වාර්තා බලන්න
+      "read:search": ඔබ වෙනුවෙන් සොයන්න
+      "read:statuses": සියලුම පෝස්ට් බලන්න
       write: ඔබගේ ගිණුමේ සියලුම දත්ත වෙනස් කරන්න
-      write:accounts: ඔබගේ පැතිකඩ වෙනස් කරන්න
-      write:blocks: ගිණුම් සහ වසම් අවහිර කරන්න
-      write:bookmarks: පිටු සලකුණු සටහන්
-      write:conversations: සංවාද නිහඬ කිරීම සහ මකා දැමීම
-      write:favourites: ප්‍රියතම ලිපි
-      write:filters: පෙරහන් කරන්න
-      write:follows: මිනිසුන් අනුගමනය කරන්න
-      write:lists: ලැයිස්තු සාදන්න
-      write:media: මාධ්‍ය ගොනු උඩුගත කරන්න
-      write:mutes: මිනිසුන් සහ සංවාද කරන්න
-      write:notifications: ඔබගේ දැනුම්දීම් හිස්කරන්න
-      write:reports: වෙනත් පුද්ගලයින් වාර්තා කරන්න
-      write:statuses: පළ කිරීම් පළ කරන්න
+      "write:accounts": ඔබගේ පැතිකඩ වෙනස් කරන්න
+      "write:blocks": ගිණුම් සහ වසම් අවහිර කරන්න
+      "write:bookmarks": පිටු සලකුණු සටහන්
+      "write:conversations": සංවාද නිහඬ කිරීම සහ මකා දැමීම
+      "write:favourites": ප්‍රියතම ලිපි
+      "write:filters": පෙරහන් කරන්න
+      "write:follows": මිනිසුන් අනුගමනය කරන්න
+      "write:lists": ලැයිස්තු සාදන්න
+      "write:media": මාධ්‍ය ගොනු උඩුගත කරන්න
+      "write:mutes": මිනිසුන් සහ සංවාද කරන්න
+      "write:notifications": ඔබගේ දැනුම්දීම් හිස්කරන්න
+      "write:reports": වෙනත් පුද්ගලයින් වාර්තා කරන්න
+      "write:statuses": පළ කිරීම් පළ කරන්න
