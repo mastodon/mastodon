@@ -16,12 +16,12 @@ import Column from 'flavours/glitch/features/ui/components/column';
 import ProfileColumnHeader from 'flavours/glitch/features/account/components/profile_column_header';
 import HeaderContainer from 'flavours/glitch/features/account_timeline/containers/header_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import TimelineHint from 'flavours/glitch/components/timeline_hint';
 import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
 import { getAccountHidden } from 'flavours/glitch/selectors';
 import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
+import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
@@ -117,9 +117,7 @@ class Following extends ImmutablePureComponent {
 
     if (!isAccount) {
       return (
-        <Column>
-          <MissingIndicator />
-        </Column>
+        <BundleColumnError multiColumn={multiColumn} errorType='routing' />
       );
     }
 

@@ -16,7 +16,6 @@ import {
   translateStatus,
   undoStatusTranslation,
 } from 'flavours/glitch/actions/statuses';
-import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 import DetailedStatus from './components/detailed_status';
 import ActionBar from './components/action_bar';
@@ -43,7 +42,6 @@ import { initReport } from 'flavours/glitch/actions/reports';
 import { initBoostModal } from 'flavours/glitch/actions/boosts';
 import { makeGetStatus, makeGetPictureInPicture } from 'flavours/glitch/selectors';
 import ScrollContainer from 'flavours/glitch/containers/scroll_container';
-import ColumnBackButton from 'flavours/glitch/components/column_back_button';
 import ColumnHeader from '../../components/column_header';
 import StatusContainer from 'flavours/glitch/containers/status_container';
 import { openModal } from 'flavours/glitch/actions/modal';
@@ -56,6 +54,7 @@ import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
 import { textForScreenReader, defaultMediaVisibility } from 'flavours/glitch/components/status';
 import Icon from 'flavours/glitch/components/icon';
 import { Helmet } from 'react-helmet';
+import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -620,21 +619,18 @@ class Status extends ImmutablePureComponent {
 
     if (status === null) {
       return (
-        <Column>
-          <ColumnBackButton multiColumn={multiColumn} />
-          <MissingIndicator />
-        </Column>
+        <BundleColumnError multiColumn={multiColumn} errorType='routing' />
       );
     }
 
     const isExpanded = settings.getIn(['content_warnings', 'shared_state']) ? !status.get('hidden') : this.state.isExpanded;
 
     if (ancestorsIds && ancestorsIds.size > 0) {
-      ancestors = <div>{this.renderChildren(ancestorsIds)}</div>;
+      ancestors = <>{this.renderChildren(ancestorsIds)}</>;
     }
 
     if (descendantsIds && descendantsIds.size > 0) {
-      descendants = <div>{this.renderChildren(descendantsIds)}</div>;
+      descendants = <>{this.renderChildren(descendantsIds)}</>;
     }
 
     const isLocal = status.getIn(['account', 'acct'], '').indexOf('@') === -1;
