@@ -38,7 +38,10 @@ RSpec.describe ReblogService, type: :service do
     let(:status) { Fabricate(:status, account: alice, visibility: :public) }
 
     before do
-      status.discard
+      # Update the in-database attribute without reflecting the change in
+      # the object. This cannot simulate all race conditions, but it is
+      # pretty close.
+      Status.where(id: status.id).update_all(deleted_at: Time.now.utc) # rubocop:disable Rails/SkipsModelValidations
     end
 
     it 'raises an exception' do
