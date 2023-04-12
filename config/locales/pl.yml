@@ -148,7 +148,7 @@ pl:
       sensitized: Oznaczono jako wrażliwe
       shared_inbox_url: Adres udostępnianej skrzynki
       show:
-        created_reports: Zgłoszenia tego użytkownika
+        created_reports: Zgłoszeń
         targeted_reports: Zgłoszenia dotyczące tego użytkownika
       silence: Wycisz
       silenced: Wyciszono
@@ -363,7 +363,7 @@ pl:
       pending_reports_html:
         few: "<strong>%{count}</strong> oczekujące raporty"
         many: "<strong>%{count}</strong> oczekujących raportów"
-        one: "<strong>%{count}</strong> oczekujący raport"
+        one: "<strong>%{count}</strong> oczekujące zgłoszenie"
         other: "<strong>%{count}</strong> oczekujących raportów"
       pending_tags_html:
         few: "<strong>%{count}</strong> oczekujące hashtagi"
@@ -597,7 +597,7 @@ pl:
           many: "%{count} notatek"
           one: "%{count} notatka"
           other: "%{count} notatki"
-      action_log: Dziennik audytu
+      action_log: Dziennik zdarzeń
       action_taken_by: Działanie podjęte przez
       actions:
         delete_description_html: Zgłoszone posty zostaną usunięte, a zdarzenie zostanie zapisane, aby pomóc w eskalacji przyszłych wykroczeń na tym samym koncie.
@@ -608,7 +608,7 @@ pl:
         suspend_description_html: Konto i cała jego zawartość będą niedostępne i ostatecznie usunięte, a interakcja z nim będzie niemożliwa. Możliwość odwrócenia w ciągu 30 dni. Zamyka wszelkie zgłoszenia dotyczące tego konta.
       actions_description_html: Zdecyduj, jakie działania należy podjąć, aby rozstrzygnąć niniejsze zgłoszenie. Jeśli podejmiesz działania karne przeciwko zgłoszonemu kontowi, zostanie do nich wysłane powiadomienie e-mail, chyba że wybrano kategorię <strong>Spam</strong>.
       actions_description_remote_html: Zdecyduj, jakie działanie należy podjąć, aby rozwiązać to zgłoszenie. Będzie to miało wpływ jedynie na sposób, w jaki <strong>Twój</strong> serwer komunikuje się z tym kontem zdalnym i obsługuje jego zawartość.
-      add_to_report: Dodaj więcej do raportu
+      add_to_report: Dodaj więcej do zgłoszenia
       are_you_sure: Czy na pewno?
       assign_to_self: Przypisz do siebie
       assigned: Przypisany moderator
@@ -628,7 +628,7 @@ pl:
       mark_as_resolved: Oznacz jako rozwiązane
       mark_as_sensitive: Oznacz jako wrażliwe
       mark_as_unresolved: Oznacz jako nierozwiązane
-      no_one_assigned: Nikt nie
+      no_one_assigned: Nikt
       notes:
         create: Utwórz notatkę
         create_and_resolve: Rozwiąż i pozostaw notatkę
@@ -637,7 +637,7 @@ pl:
         placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
         title: Notatki
       notes_description_html: Przeglądaj i zostaw notatki innym moderatorom i sobie samemu
-      processed_msg: 'Raport #%{id} został pomyślnie przetworzony'
+      processed_msg: 'Zgłoszenie #%{id} zostało pomyślnie przetworzone'
       quick_actions_description_html: 'Wykonaj szybkie działanie lub przewiń w dół, aby zobaczyć zgłoszoną zawartość:'
       remote_user_placeholder: zdalny użytkownik z %{instance}
       reopen: Otwórz ponownie
@@ -657,11 +657,11 @@ pl:
           silence_html: 'Zamierzasz <strong>ograniczyć</strong> konto <strong>@%{acct}</strong>. To spowoduje:'
           suspend_html: 'Zamierzasz <strong>zawiesić</strong> konto <strong>@%{acct}</strong>. To spowoduje:'
         actions:
-          delete_html: Usuń obrażające posty
+          delete_html: Usuń zgłoszone posty
           mark_as_sensitive_html: Oznacz obraźliwe media postów jako wrażliwe
           silence_html: Znacząco ogranicz zasięg <strong>@%{acct}</strong>, aby ich profil i zawartość były widoczne tylko dla osób, które je już obserwują lub ręcznie wyszukują jego profil
           suspend_html: Zawieś <strong>@%{acct}</strong>, co sprawia, że ich profil i zawartość są niedostępne i niemożliwe do interakcji z
-        close_report: 'Oznacz raport #%{id} jako rozwiązany'
+        close_report: 'Oznacz zgłoszenie #%{id} jako rozwiązane'
         close_reports_html: Oznacz <strong>wszystkie</strong> zgłoszenia dotyczące <strong>@%{acct}</strong> jako rozwiązane
         delete_data_html: Usuń profil i zawartość <strong>@%{acct}</strong> za 30 dni, chyba że w tym czasie zostanie zawieszony
         preview_preamble_html: "<strong>@%{acct}</strong> otrzyma ostrzeżenie o następującej treści:"
@@ -717,8 +717,8 @@ pl:
         manage_federation_description: Pozwala użytkownikom na blokowanie lub zezwalanie federacji z innymi domenami i kontrolowanie doręczania
         manage_invites: Zarządzaj zaproszeniami
         manage_invites_description: Pozwala użytkownikom przeglądać i dezaktywować linki z zaproszeniami
-        manage_reports: Zarządzaj raportami
-        manage_reports_description: Pozwala użytkownikom przeglądać raporty i wykonywać przeciwko nim działania moderacyjne
+        manage_reports: Zarządzaj zgłoszeniami
+        manage_reports_description: Pozwala użytkownikom przeglądać zgłoszenia i wykonywać przeciwko nim działania moderacyjne
         manage_roles: Zarządzaj rolami
         manage_roles_description: Pozwala użytkownikom zarządzać rolami i przypisywać role poniżej ich własnych
         manage_rules: Zarządzaj regułami
@@ -1074,7 +1074,7 @@ pl:
     already_following: Już obserwujesz to konto
     already_requested: Już wysłałeś(-aś) prośbę o możliwość obserwowania tego konta
     error: Niestety, podczas sprawdzania zdalnego konta wystąpił błąd
-    follow: Obsewuj
+    follow: Obserwuj
     follow_request: 'Wysłano prośbę o możliwość obserwowania:'
     following: 'Pomyślnie! Od teraz obserwujesz:'
     post_follow:
@@ -1137,7 +1137,7 @@ pl:
       appeals:
         submit: Zgłoś odwołanie
       approve_appeal: Zatwierdź odwołanie
-      associated_report: Powiązany raport
+      associated_report: Powiązane zgłoszenie
       created_at: Data
       description_html: Są to działania podjęte przeciwko Twojemu kontu i ostrzeżenia wysłane do ciebie przez administrację %{instance}.
       recipient: Adresowane do
@@ -1377,7 +1377,7 @@ pl:
   notification_mailer:
     admin:
       report:
-        subject: "%{name} wysłał raport"
+        subject: "%{name} wysłał zgłoszenie"
       sign_up:
         subject: "%{name} zarejestrował(-a) się"
     favourite:
