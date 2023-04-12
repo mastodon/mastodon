@@ -1,4 +1,3 @@
----
 ko:
   devise:
     confirmations:
@@ -79,7 +78,7 @@ ko:
         title: 보안 키 활성화 됨
     omniauth_callbacks:
       failure: '"%{reason}" 때문에 당신을 %{kind}에서 인증할 수 없습니다.'
-      success: "%{kind} 계정을 성공적으로 인증했습니다."
+      success: '%{kind} 계정을 성공적으로 인증했습니다.'
     passwords:
       no_token: 이 페이지는 암호 재설정 이메일을 거쳐야 접근할 수 있습니다. 만약 암호 재설정 이메일 거치지 않았다면 입력한 URL이 맞는지 확인 바랍니다.
       send_instructions: 당신의 이메일 주소가 우리의 DB에 있다면 패스워드 복구 링크가 몇 분 이내에 메일로 발송 됩니다. 만약 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
@@ -106,7 +105,7 @@ ko:
   errors:
     messages:
       already_confirmed: 이미 확인 되었습니다, 로그인 하세요
-      confirmation_period_expired: "%{period} 안에 확인을 해야 합니다, 새로 요청하세요"
+      confirmation_period_expired: '%{period} 안에 확인을 해야 합니다, 새로 요청하세요'
       expired: 만료되었습니다, 새로 요청하세요
       not_found: 찾을 수 없습니다
       not_locked: 잠기지 않았습니다
