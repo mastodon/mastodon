@@ -1,4 +1,3 @@
----
 bg:
   simple_form:
     hints:
@@ -99,9 +98,9 @@ bg:
         trends: В раздел „Налагащо се“ се показват публикации, хаштагове и новини, набрали популярност на сървъра ви.
         trends_as_landing_page: Показване на налагащото се съдържание за излизащите потребители и посетители вместо на описа на този сървър. Изисква налагащото се да бъде включено.
       form_challenge:
-        current_password: Влизате в сигурна зона
+        current_password: Влизате в зона за сигурност
       imports:
-        data: CSV файл, експортиран от друга инстанция на Mastodon
+        data: Файлът CSV е изнесен от друг сървър на Mastodon
       invite_request:
         text: Това ще ни помогне да разгледаме заявлението ви
       ip_block:
@@ -142,7 +141,7 @@ bg:
       account_migration:
         acct: Потребителско име на новия акаунт
       account_warning_preset:
-        text: Зададен текст
+        text: Шаблонен текст
         title: Заглавие
       admin_account_action:
         include_statuses: Включване на докладваните публикации в имейла
@@ -155,7 +154,7 @@ bg:
           sensitive: Деликатно
           silence: Ограничение
           suspend: Спиране
-        warning_preset_id: Употреба на зададено предупреждение
+        warning_preset_id: Употреба на шаблонно предупреждение
       announcement:
         all_day: Целодневно събитие
         ends_at: Край на събитието
@@ -190,16 +189,16 @@ bg:
         note: Биогр.
         otp_attempt: Двуфакторен код
         password: Парола
-        phrase: Ключова дума или фраза
+        phrase: Ключова дума или израз
         setting_advanced_layout: Включване на разширен уеб интерфейс
         setting_aggregate_reblogs: Групиране на подсилванията в часовите оси
-        setting_always_send_emails: Винаги изпращане на известия по имейл
+        setting_always_send_emails: Все да се пращат известия по имейла
         setting_auto_play_gif: Самопускащи се анимирани гифчета
         setting_boost_modal: Показване на прозорец за потвърждение преди подсилване
         setting_crop_images: Изрязване на образи в неразгънати публикации до 16x9
         setting_default_language: Език на публикуване
         setting_default_privacy: Поверителност на публикуване
-        setting_default_sensitive: Винаги да се отбелязва мултимедията като деликатна
+        setting_default_sensitive: Все да се бележи мултимедията като деликатна
         setting_delete_modal: Показване на прозорче за потвърждение преди изтриване на публикация
         setting_disable_swiping: Деактивиране на бързо плъзгащи движения
         setting_display_media: Показване на мултимедия
@@ -208,7 +207,7 @@ bg:
         setting_display_media_show_all: Показване на всичко
         setting_expand_spoilers: Винаги разширяване на публикации, отбелязани с предупреждения за съдържание
         setting_hide_network: Скриване на социалния ви свързан граф
-        setting_noindex: Отказване от индексирането от търсачки
+        setting_noindex: Отказвам се от индексирането от търсачки
         setting_reduce_motion: Обездвижване на анимациите
         setting_show_application: Разкриване на приложението, изпращащо публикации
         setting_system_font_ui: Употреба на стандартния шрифт на системата
@@ -305,7 +304,7 @@ bg:
       webhook:
         events: Включване на събития
         url: URL адрес на крайната точка
-    'no': Не
+    'no': 'Не'
     not_recommended: Непрепоръчително
     recommended: Препоръчва се
     required:
@@ -314,4 +313,4 @@ bg:
     title:
       sessions:
         webauthn: Употребете един от ключовете си за сигурност, за да влезете
-    'yes': Да
+    'yes': 'Да'
