@@ -33,8 +33,8 @@
     .fields-group
       = ff.input :show_application, wrapper: :with_label, recommended: true, label: I18n.t('simple_form.labels.defaults.setting_show_application'), hint: I18n.t('simple_form.hints.defaults.setting_show_application')
 
-  .fields-group
-    = f.input :setting_default_content_type, collection: ['text/plain', 'text/markdown', 'text/html'], wrapper: :with_label, include_blank: false, label_method: lambda { |item| safe_join([t("simple_form.labels.defaults.setting_default_content_type_#{item.split('/')[1]}"), content_tag(:span, t("simple_form.hints.defaults.setting_default_content_type_#{item.split('/')[1]}"), class: 'hint')]) }, required: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', glitch_only: true
+    .fields-group
+      = ff.input :default_content_type, collection: ['text/plain', 'text/markdown', 'text/html'], wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_default_content_type'), include_blank: false, label_method: lambda { |item| safe_join([t("simple_form.labels.defaults.setting_default_content_type_#{item.split('/')[1]}"), content_tag(:span, t("simple_form.hints.defaults.setting_default_content_type_#{item.split('/')[1]}"), class: 'hint')]) }, required: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', glitch_only: true
 
   %h4= t 'preferences.public_timelines'
 
