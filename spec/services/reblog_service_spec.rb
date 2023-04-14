@@ -35,16 +35,17 @@ RSpec.describe ReblogService, type: :service do
   end
 
   context 'when the reblogged status is discarded in the meantime' do
-    let(:status) { Fabricate(:status, account: alice, visibility: :public, text: 'race-condition-discard') }
+    let(:status) { Fabricate(:status, account: alice, visibility: :public, text: 'discard-status-text') }
 
     # Add a callback to discard the status being reblogged after the
     # validations pass but before the database commit is executed.
     before do
       Status.class_eval do
-        after_validation :discard_status
+        before_save :discard_status
         def discard_status
           Status
-            .where(text: 'race-condition-discard')
+            .where(id: reblog_of_id)
+            .where(text: 'discard-status-text')
             .update_all(deleted_at: Time.now.utc) # rubocop:disable Rails/SkipsModelValidations
         end
       end
@@ -52,7 +53,7 @@ RSpec.describe ReblogService, type: :service do
 
     # Remove race condition simulating `discard_status` callback.
     after do
-      Status._validation_callbacks.delete(:discard_status)
+      Status._save_callbacks.delete(:discard_status)
     end
 
     it 'raises an exception' do
