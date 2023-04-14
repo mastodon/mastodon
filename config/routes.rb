@@ -660,7 +660,7 @@ Rails.application.routes.draw do
         resources :ip_blocks, only: [:index, :show, :update, :create, :destroy]
 
         namespace :trends do
-          resources :tags, only: [:index, :update] do
+          resources :tags, only: [:index] do
             member do
               post :approve
               post :reject
