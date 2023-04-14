@@ -678,6 +678,15 @@ Rails.application.routes.draw do
               post :reject
             end
           end
+
+          namespace :links do
+            resources :preview_card_providers, only: [:index], path: :publishers do
+              member do
+                post :approve
+                post :reject
+              end
+            end
+          end
         end
 
         post :measures, to: 'measures#create'
