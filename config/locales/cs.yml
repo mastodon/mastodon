@@ -662,6 +662,11 @@ cs:
           suspend_html: Pozastavit <strong>@%{acct}</strong>, což daný profil a obsah znepřístupní a neumožní se interakce s ním
         close_report: 'Označit nahlášení č.%{id} za vyřešené'
         close_reports_html: Označit <strong>všechna</strong> hlášení proti <strong>@%{acct}</strong> jako vyřešená
+        delete_data_html: Odstranit profil a obsah <strong>@%{acct}</strong> ode dneška po 30 dní, pokud mezitím nebude zrušeno jeho pozastavení
+        preview_preamble_html: "<strong>@%{acct}</strong> obdrží varování s následujícím obsahem:"
+        record_strike_html: Zaznamenat prohřešek <strong>@%{acct}</strong> pro pomoc s řešením budoucích přestupků z tohoto účtu
+        send_email_html: Poslat varovný e-mail pro <strong>@%{acct}</strong>
+        warning_placeholder: Volitelné další odůvodnění moderační akce.
       target_origin: Původ nahlášeného účtu
       title: Hlášení
       unassign: Odebrat
@@ -834,6 +839,12 @@ cs:
         message_html: Nedefinovali jste žádná pravidla serveru.
       sidekiq_process_check:
         message_html: Pro %{value} frontu/fronty neběží žádný Sidekiq proces. Zkontrolujte prosím svou Sidekiq konfiguraci
+      upload_check_privacy_error:
+        action: Pro více informací se podívejte zde
+        message_html: "<strong>Váš webový server je špatně nakonfigurován. Soukromí vašich uživatelů je ohroženo.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Pro více informací se podívejte zde
+        message_html: "<strong>Váš object storage je špatně nakonfigurován. Soukromí vašich uživatelů je ohroženo.</strong>"
     tags:
       review: Stav posouzení
       updated_msg: Nastavení hashtagů bylo úspěšně aktualizováno
@@ -858,6 +869,7 @@ cs:
           other: Sdílený %{count} lidmi za poslední týden
         title: Populární odkazy
         usage_comparison: Za dnešek %{today} sdílení, oproti %{yesterday} včera
+      not_allowed_to_trend: Trendování není povoleno
       only_allowed: Jen povolené
       pending_review: Čeká na posouzení
       preview_card_providers:
@@ -1450,6 +1462,7 @@ cs:
     confirm_remove_selected_followers: Jste si jisti, že chcete odebrat vybrané sledující?
     confirm_remove_selected_follows: Jste si jisti, že chcete odstranit vybrané sledované?
     dormant: Nečinné
+    follow_failure: Nelze sledovat některé z vybraných účtů.
     follow_selected_followers: Sledovat vybrané sledující
     followers: Sledující
     following: Sledovaní
@@ -1740,11 +1753,13 @@ cs:
       title: Vítejte na palubě, %{name}!
   users:
     follow_limit_reached: Nemůžete sledovat více než %{limit} lidí
+    go_to_sso_account_settings: Přejděte do nastavení účtu poskytovatele identity
     invalid_otp_token: Neplatný kód pro dvoufázové ověřování
     otp_lost_help_html: Pokud jste ztratili přístup k oběma, spojte se s %{email}
     seamless_external_login: Jste přihlášeni přes externí službu, nastavení hesla a e-mailu proto nejsou dostupná.
     signed_in_as: 'Přihlášeni jako:'
   verification:
+    explanation_html: 'Můžete se <strong>ověřit jako vlastník odkazů v metadatech profilu</strong>. Pro tento účel musí stránka v odkazu obsahovat odkaz zpět na váš profil na Mastodonu. Po přidání odkazu budete potřebovat vrátit se sem a znovu uložit profil, aby se ověření provedlo. Odkaz zpět <strong>musí</strong> mít atribut <code>rel="me"</code>. Na textu odkazu nezáleží. Zde je příklad:'
     verification: Ověření
   webauthn_credentials:
     add: Přidat nový bezpečnostní klíč
