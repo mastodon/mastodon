@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
 class Api::V1::Admin::Trends::StatusesController < Api::V1::Trends::StatusesController
-  before_action -> { authorize_if_got_token! :'admin:read' }
+  include Authorization
+
+  before_action -> { authorize_if_got_token! :'admin:read' }, only: :index
+  before_action -> { authorize_if_got_token! :'admin:write' }, except: :index
+
+  after_action :verify_authorized
 
   def index
+    authorize [:admin, :status], :index?
+
     if current_user&.can?(:manage_taxonomies)
       render json: @statuses, each_serializer: REST::Admin::Trends::StatusSerializer
     else
@@ -12,7 +19,7 @@ class Api::V1::Admin::Trends::StatusesController < Api::V1::Trends::StatusesCont
   end
 
   def approve
-    raise Mastodon::NotPermittedError unless current_user&.can?(:manage_taxonomies)
+    authorize [:admin, :status], :review?
 
     status = Status.find(params[:id])
     status.update(trendable: true)
@@ -20,7 +27,7 @@ class Api::V1::Admin::Trends::StatusesController < Api::V1::Trends::StatusesCont
   end
 
   def reject
-    raise Mastodon::NotPermittedError unless current_user&.can?(:manage_taxonomies)
+    authorize [:admin, :status], :review?
 
     status = Status.find(params[:id])
     status.update(trendable: false)

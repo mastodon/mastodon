@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Api::V1::Admin::Trends::TagsController do
+describe Api::V1::Admin::Trends::Links::PreviewCardProvidersController do
   render_views
 
   let(:role)   { UserRole.find_by(name: 'Admin') }
@@ -10,7 +10,7 @@ describe Api::V1::Admin::Trends::TagsController do
   let(:scopes) { 'admin:read admin:write' }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:account) { Fabricate(:account) }
-  let(:tag)     { Fabricate(:tag) }
+  let(:preview_card_provider) { Fabricate(:preview_card_provider) }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
@@ -42,7 +42,7 @@ describe Api::V1::Admin::Trends::TagsController do
 
   describe 'POST #approve' do
     before do
-      post :approve, params: { id: tag.id }
+      post :approve, params: { id: preview_card_provider.id }
     end
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
@@ -55,7 +55,7 @@ describe Api::V1::Admin::Trends::TagsController do
 
   describe 'POST #reject' do
     before do
-      post :reject, params: { id: tag.id }
+      post :reject, params: { id: preview_card_provider.id }
     end
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
