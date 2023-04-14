@@ -459,6 +459,7 @@ cs:
         private_comment_description_html: 'Abychom vám pomohli sledovat, odkud pochází importované bloky, budou tyto importované bloky vytvořeny s následující soukromou poznámkou: <q>%{comment}</q>'
         private_comment_template: Importováno z %{source} dne %{date}
         title: Importovat blokované domény
+      invalid_domain_block: 'Jeden nebo více bloků domén bylo přeskočeno z důvodu chyb(y): %{error}'
       new:
         title: Importovat blokované domény
       no_file: Nebyl vybrán žádný soubor
@@ -618,6 +619,7 @@ cs:
         none: Žádné
       comment_description_html: 'Pro upřesnění uživatel %{name} napsal:'
       confirm: Potvrdit
+      confirm_action: Potvrdit moderátorskou akci vůči @%{acct}
       created_at: Nahlášené
       delete_and_resolve: Smazat příspěvky
       forwarded: Přeposláno
@@ -648,9 +650,18 @@ cs:
       statuses: Nahlášený obsah
       statuses_description_html: Obsah porušující pravidla bude uveden v komunikaci s nahlášeným účtem
       summary:
+        action_preambles:
+          delete_html: 'Chystáte se <strong>odstranit</strong> některé z příspěvků uživatele <strong>@%{acct}</strong>. To znamená:'
+          mark_as_sensitive_html: 'Chystáte se <strong>označit</strong> některé z příspěvků <strong>@%{acct}</strong>jako <strong>citlivé</strong>. To znamená:'
+          silence_html: 'Chystáte se omezit účet <strong></strong> <strong>@%{acct}</strong>. To znamená:'
+          suspend_html: 'Chystáte se <strong>pozastavit</strong> účet <strong>@%{acct}</strong>. To znamená:'
         actions:
           delete_html: Odstranit urážlivé příspěvky
+          mark_as_sensitive_html: Označit média urážejících příspěvků za citlivá
+          silence_html: Výrazně omezit dosah <strong>@%{acct}</strong> tím, že daný profil a jeho obsah bude viditelný pouze těm lidem, kteří ho sledují nebo jej ručně vyhledají
+          suspend_html: Pozastavit <strong>@%{acct}</strong>, což daný profil a obsah znepřístupní a neumožní se interakce s ním
         close_report: 'Označit nahlášení č.%{id} za vyřešené'
+        close_reports_html: Označit <strong>všechna</strong> hlášení proti <strong>@%{acct}</strong> jako vyřešená
       target_origin: Původ nahlášeného účtu
       title: Hlášení
       unassign: Odebrat
