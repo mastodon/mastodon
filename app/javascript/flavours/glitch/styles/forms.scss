@@ -1118,3 +1118,89 @@ code {
     white-space: nowrap;
   }
 }
+
+.progress-tracker {
+  display: flex;
+  align-items: center;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+
+  li {
+    flex: 0 0 auto;
+    position: relative;
+  }
+
+  .separator {
+    height: 2px;
+    background: $ui-base-lighter-color;
+    flex: 1 1 auto;
+
+    &.completed {
+      background: $highlight-text-color;
+    }
+  }
+
+  .circle {
+    box-sizing: border-box;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid $ui-base-lighter-color;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 16px;
+    }
+  }
+
+  .label {
+    position: absolute;
+    font-size: 14px;
+    font-weight: 500;
+    color: $secondary-text-color;
+    padding-top: 10px;
+    text-align: center;
+    width: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  li:first-child .label {
+    left: auto;
+    inset-inline-start: 0;
+    text-align: start;
+    transform: none;
+  }
+
+  li:last-child .label {
+    left: auto;
+    inset-inline-end: 0;
+    text-align: end;
+    transform: none;
+  }
+
+  .active .circle {
+    border-color: $highlight-text-color;
+
+    &::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: $highlight-text-color;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .completed .circle {
+    border-color: $highlight-text-color;
+    background: $highlight-text-color;
+  }
+}
