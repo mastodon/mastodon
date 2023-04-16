@@ -121,8 +121,6 @@ zh-CN:
       removed_header_msg: 成功删除了 %{username} 的横幅图片
       resend_confirmation:
         already_confirmed: 该用户已被确认
-        send: 重发确认邮件
-        success: 确认邮件发送成功！
       reset: 重置
       reset_password: 重置密码
       resubscribe: 重新订阅
@@ -969,7 +967,6 @@ zh-CN:
       prefix_invited_by_user: "@%{name} 邀请你加入这个Mastodon服务器！"
       prefix_sign_up: 现在就注册 Mastodon！
       suffix: 注册一个账号，你就可以关注他人、发布嘟文、并和其它任何 Mastodon 服务器上的用户交流，而且还有其它更多功能！
-    didnt_get_confirmation: 没有收到确认邮件？
     dont_have_your_security_key: 没有你的安全密钥？
     forgot_password: 忘记密码？
     invalid_reset_password_token: 密码重置令牌无效或已过期。请重新发起重置密码请求。
@@ -987,7 +984,6 @@ zh-CN:
       saml: SAML
     register: 注册
     registration_closed: "%{instance} 目前不接收新成员"
-    resend_confirmation: 重新发送确认邮件
     reset_password: 重置密码
     rules:
       accept: 接受
@@ -996,10 +992,6 @@ zh-CN:
       title: 一些基本规则。
     security: 账户安全
     set_new_password: 设置新密码
-    setup:
-      email_below_hint_html: 如果下面的电子邮箱地址是错误的，你可以在这里修改并重新发送新的确认邮件。
-      email_settings_hint_html: 确认邮件已经发送到%{email}。如果该邮箱地址不对，你可以在账号设置里面修改。
-      title: 初始设置
     sign_in:
       preamble_html: 使用您在 <strong>%{domain}</strong> 的账户和密码登录。如果您的账户托管在其他的服务器上，您将无法在此登录。
       title: 登录到 %{domain}
