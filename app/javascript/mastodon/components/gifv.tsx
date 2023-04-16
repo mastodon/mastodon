@@ -1,76 +1,68 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useState } from 'react';
 
-export default class GIFV extends React.PureComponent {
+type Props = {
+  src: string;
+  alt?: string;
+  lang?: string;
+  width: number;
+  height: number;
+  onClick?: () => void;
+}
 
-  static propTypes = {
-    src: PropTypes.string.isRequired,
-    alt: PropTypes.string,
-    lang: PropTypes.string,
-    width: PropTypes.number,
-    height: PropTypes.number,
-    onClick: PropTypes.func,
-  };
+export const GIFV: React.FC<Props> = ({
+  src,
+  alt,
+  lang,
+  width,
+  height,
+  onClick,
+})=> {
+  const [loading, setLoading] = useState(true);
+  useEffect(()=> setLoading(true), [src]);
 
-  state = {
-    loading: true,
-  };
+  const handleLoadedData: React.ReactEventHandler<HTMLVideoElement> = useCallback(() => {
+    setLoading(false);
+  }, [setLoading]);
 
-  handleLoadedData = () => {
-    this.setState({ loading: false });
-  };
-
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.src !== this.props.src) {
-      this.setState({ loading: true });
-    }
-  }
-
-  handleClick = e => {
-    const { onClick } = this.props;
-
+  const handleClick: React.MouseEventHandler = useCallback((e) => {
     if (onClick) {
       e.stopPropagation();
       onClick();
     }
-  };
+  }, [onClick]);
 
-  render () {
-    const { src, width, height, alt, lang } = this.props;
-    const { loading } = this.state;
-
-    return (
-      <div className='gifv' style={{ position: 'relative' }}>
-        {loading && (
-          <canvas
-            width={width}
-            height={height}
-            role='button'
-            tabIndex={0}
-            aria-label={alt}
-            title={alt}
-            lang={lang}
-            onClick={this.handleClick}
-          />
-        )}
-
-        <video
-          src={src}
+  return (
+    <div className='gifv' style={{ position: 'relative' }}>
+      {loading && (
+        <canvas
+          width={width}
+          height={height}
           role='button'
           tabIndex={0}
           aria-label={alt}
           title={alt}
           lang={lang}
-          muted
-          loop
-          autoPlay
-          playsInline
-          onClick={this.handleClick}
-          onLoadedData={this.handleLoadedData}
-          style={{ position: loading ? 'absolute' : 'static', top: 0, left: 0 }}
+          onClick={handleClick}
         />
-      </div>
-    );
-  }
+      )}
 
-}
+      <video
+        src={src}
+        role='button'
+        tabIndex={0}
+        aria-label={alt}
+        title={alt}
+        lang={lang}
+        muted
+        loop
+        autoPlay
+        playsInline
+        onClick={handleClick}
+        onLoadedData={handleLoadedData}
+        style={{ position: loading ? 'absolute' : 'static', top: 0, left: 0 }}
+      />
+    </div>
+  );
+};
+
+export default GIFV;
