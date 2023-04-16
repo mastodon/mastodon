@@ -8,7 +8,7 @@
 
   display: block;
   padding: 15px;
-  padding-right: 30px;
+  padding-inline-end: 30px;
   line-height: 18px;
   font-size: 16px;
 
@@ -44,7 +44,7 @@
   .fa {
     position: absolute;
     top: 16px;
-    right: 10px;
+    inset-inline-end: 10px;
     z-index: 2;
     display: inline-block;
     opacity: 0;
@@ -98,7 +98,7 @@
 
   .fa {
     display: inline-block;
-    margin-right: 5px;
+    margin-inline-end: 5px;
   }
 }
 
@@ -120,7 +120,7 @@
 
     .fa {
       display: inline-block;
-      margin-right: 5px;
+      margin-inline-end: 5px;
     }
   }
 
@@ -170,7 +170,7 @@
       flex: 0 0 auto;
       font-size: 24px;
       font-weight: 500;
-      text-align: right;
+      text-align: end;
       color: $secondary-text-color;
       text-decoration: none;
     }

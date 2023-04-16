@@ -20,12 +20,12 @@
   .boolean label,
   .radio_buttons label {
     position: relative;
-    padding-left: 28px;
+    padding-inline-start: 28px;
     padding-top: 3px;
 
     input {
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       top: 0;
     }
   }
@@ -149,7 +149,7 @@
 
   ul {
     padding: 10px;
-    margin-left: 12px;
+    margin-inline-start: 12px;
     list-style: disc inside;
   }
 

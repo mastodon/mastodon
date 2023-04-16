@@ -8,11 +8,11 @@
   flex: none;
 
   &:first-child {
-    padding-left: 10px;
+    padding-inline-start: 10px;
   }
 
   &:last-child {
-    padding-right: 10px;
+    padding-inline-end: 10px;
   }
 
   @include single-column('screen and (max-width: 630px)') {
@@ -126,7 +126,7 @@
 
 .navigation-bar__profile {
   flex: 1 1 auto;
-  margin-left: 8px;
+  margin-inline-start: 8px;
   overflow: hidden;
 }
 
@@ -150,7 +150,7 @@
 
     .fa {
       display: inline-block;
-      margin-right: 5px;
+      margin-inline-end: 5px;
     }
   }
 
@@ -187,7 +187,7 @@
 .drawer__inner {
   position: absolute;
   top: 0;
-  left: 0;
+  inset-inline-start: 0;
   background: lighten($ui-base-color, 13%);
   box-sizing: border-box;
   padding: 0;
@@ -237,14 +237,14 @@
 .pseudo-drawer {
   background: lighten($ui-base-color, 13%);
   font-size: 13px;
-  text-align: left;
+  text-align: start;
 }
 
 .drawer__backdrop {
   cursor: pointer;
   position: absolute;
   top: 0;
-  left: 0;
+  inset-inline-start: 0;
   width: 100%;
   height: 100%;
   background: rgba($base-overlay-background, 0.5);

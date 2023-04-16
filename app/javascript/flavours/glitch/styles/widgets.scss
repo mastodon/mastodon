@@ -165,7 +165,7 @@
     margin-bottom: 15px;
 
     .fa {
-      margin-right: 5px;
+      margin-inline-end: 5px;
       color: $darker-text-color;
     }
   }
@@ -298,7 +298,7 @@
     padding: 10px;
 
     &:first-child {
-      text-align: left;
+      text-align: start;
     }
   }
 
@@ -329,9 +329,9 @@
 
   tbody td.accounts-table__extra {
     width: 120px;
-    text-align: right;
+    text-align: end;
     color: $darker-text-color;
-    padding-right: 16px;
+    padding-inline-end: 16px;
 
     a {
       text-decoration: none;

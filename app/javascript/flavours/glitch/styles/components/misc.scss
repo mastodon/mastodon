@@ -281,13 +281,15 @@
     display: inline-flex;
     align-items: center;
     width: auto !important;
-    padding: 0 4px 0 2px;
+    padding: 0;
+    padding-inline-end: 4px;
+    padding-inline-start: 2px;
   }
 
   &__counter {
     display: inline-block;
     width: auto;
-    margin-left: 4px;
+    margin-inline-start: 4px;
     font-size: 12px;
     font-weight: 500;
   }
@@ -375,7 +377,7 @@ body > [data-popper-placement] {
 }
 
 .notification__favourite-icon-wrapper {
-  left: 0;
+  inset-inline-start: 0;
   position: absolute;
 
   .fa.star-icon {
@@ -654,7 +656,7 @@ body > [data-popper-placement] {
   }
 
   &.right {
-    left: -9px;
+    inset-inline-start: -9px;
 
     &::before {
       transform: rotate(-90deg);
@@ -666,7 +668,7 @@ body > [data-popper-placement] {
   }
 
   &.left {
-    right: -9px;
+    inset-inline-end: -9px;
 
     &::before {
       transform: rotate(90deg);
@@ -749,8 +751,8 @@ body > [data-popper-placement] {
   display: block;
   line-height: 18px;
   max-width: 311px;
-  right: 0;
-  text-align: left;
+  inset-inline-end: 0;
+  text-align: start;
   z-index: 9999;
 
   & > ul {
@@ -764,12 +766,12 @@ body > [data-popper-placement] {
   }
 
   &.dropdown__right {
-    right: 0;
+    inset-inline-end: 0;
   }
 
   &.dropdown__left {
     & > ul {
-      left: -98px;
+      inset-inline-start: -98px;
     }
   }
 
@@ -834,23 +836,23 @@ body > [data-popper-placement] {
   .drawer {
     flex: 0 0 auto;
     padding: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-inline-start: 5px;
+    padding-inline-end: 5px;
 
     &:first-child {
-      padding-left: 10px;
+      padding-inline-start: 10px;
     }
 
     &:last-child {
-      padding-right: 10px;
+      padding-inline-end: 10px;
     }
   }
 
   .columns-area > div {
     .column,
     .drawer {
-      padding-left: 5px;
-      padding-right: 5px;
+      padding-inline-start: 5px;
+      padding-inline-end: 5px;
     }
   }
 }
@@ -897,12 +899,12 @@ body > [data-popper-placement] {
   }
 
   span {
-    margin-left: 5px;
+    margin-inline-start: 5px;
     display: none;
   }
 
   span.icon {
-    margin-left: 0;
+    margin-inline-start: 0;
     display: inline;
   }
 }
@@ -912,7 +914,7 @@ body > [data-popper-placement] {
 
   &__badge {
     position: absolute;
-    left: 9px;
+    inset-inline-start: 9px;
     top: -13px;
     background: $ui-highlight-color;
     border: 2px solid lighten($ui-base-color, 8%);
@@ -926,7 +928,7 @@ body > [data-popper-placement] {
 
   &__issue-badge {
     position: absolute;
-    left: 11px;
+    inset-inline-start: 11px;
     bottom: 1px;
     display: block;
     background: $error-red;
@@ -1039,7 +1041,7 @@ body > [data-popper-placement] {
   margin-top: auto;
   margin-bottom: auto;
   line-height: 0;
-  left: 8px;
+  inset-inline-start: 8px;
   opacity: 0;
   transition: opacity 0.25s ease;
 }
@@ -1058,7 +1060,7 @@ body > [data-popper-placement] {
   margin-top: auto;
   margin-bottom: auto;
   line-height: 0;
-  right: 10px;
+  inset-inline-end: 10px;
   opacity: 1;
   transition: opacity 0.25s ease;
 }
@@ -1070,7 +1072,7 @@ body > [data-popper-placement] {
 .react-toggle-thumb {
   position: absolute;
   top: 1px;
-  left: 1px;
+  inset-inline-start: 1px;
   width: 22px;
   height: 22px;
   border: 1px solid $ui-base-color;
@@ -1082,7 +1084,7 @@ body > [data-popper-placement] {
 }
 
 .react-toggle--checked .react-toggle-thumb {
-  left: 27px;
+  inset-inline-start: 27px;
   border-color: $ui-highlight-color;
 }
 
@@ -1176,7 +1178,7 @@ body > [data-popper-placement] {
 
   thead {
     position: absolute;
-    left: -9999px;
+    inset-inline-start: -9999px;
   }
 
   td {
@@ -1318,9 +1320,9 @@ button.icon-button.active i.fa-retweet {
   overflow: hidden;
   position: absolute;
   top: 0;
-  right: 0;
+  inset-inline-end: 0;
   bottom: -1px;
-  padding-left: 15px; // space for the box shadow to be visible
+  padding-inline-start: 15px; // space for the box shadow to be visible
   z-index: 999;
   align-items: center;
   justify-content: flex-end;
@@ -1335,7 +1337,7 @@ button.icon-button.active i.fa-retweet {
     align-items: center;
     justify-content: center;
     background: lighten($ui-base-color, 8%);
-    border-left: 1px solid lighten($ui-base-color, 20%);
+    border-inline-start: 1px solid lighten($ui-base-color, 20%);
     box-shadow: 0 0 5px black;
     border-bottom: 1px solid $ui-base-color;
   }
@@ -1381,7 +1383,7 @@ button.icon-button.active i.fa-retweet {
   overflow: visible;
   position: absolute;
   top: 50%;
-  left: 50%;
+  inset-inline-start: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
@@ -1473,7 +1475,7 @@ button.icon-button.active i.fa-retweet {
 
 .spoiler-button {
   top: 0;
-  left: 0;
+  inset-inline-start: 0;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -1481,7 +1483,7 @@ button.icon-button.active i.fa-retweet {
 
   &--minified {
     display: flex;
-    left: 4px;
+    inset-inline-start: 4px;
     top: 4px;
     width: auto;
     height: auto;
@@ -1539,7 +1541,7 @@ button.icon-button.active i.fa-retweet {
   color: $darker-text-color;
   display: inline-block;
   margin-bottom: 14px;
-  margin-left: 8px;
+  margin-inline-start: 8px;
   vertical-align: middle;
 }
 
@@ -1589,7 +1591,7 @@ button.icon-button.active i.fa-retweet {
   display: flex;
   height: 100vh;
   justify-content: center;
-  left: 0;
+  inset-inline-start: 0;
   opacity: 0;
   position: fixed;
   top: 0;
@@ -1614,9 +1616,9 @@ button.icon-button.active i.fa-retweet {
 .upload-area__background {
   position: absolute;
   top: 0;
-  right: 0;
+  inset-inline-end: 0;
   bottom: 0;
-  left: 0;
+  inset-inline-start: 0;
   z-index: -1;
   border-radius: 4px;
   background: $ui-base-color;
@@ -1646,7 +1648,7 @@ button.icon-button.active i.fa-retweet {
   height: 3px;
   position: fixed;
   top: 0;
-  left: 0;
+  inset-inline-start: 0;
   z-index: 9999;
 }
 
@@ -1657,7 +1659,7 @@ button.icon-button.active i.fa-retweet {
 .icon-badge {
   position: absolute;
   display: block;
-  right: -0.25em;
+  inset-inline-end: -0.25em;
   top: -0.25em;
   background-color: $ui-highlight-color;
   border-radius: 50%;
@@ -1710,7 +1712,7 @@ button.icon-button.active i.fa-retweet {
     &__relative-time {
       font-size: 15px;
       color: $darker-text-color;
-      padding-left: 15px;
+      padding-inline-start: 15px;
     }
 
     &__names {
@@ -1759,8 +1761,8 @@ button.icon-button.active i.fa-retweet {
 
 .ui .flash-message {
   margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
   margin-bottom: 0;
   min-width: 75%;
 }

@@ -30,7 +30,7 @@
     line-height: 18px;
     font-size: 16px;
     padding: 15px;
-    padding-right: 30px;
+    padding-inline-end: 30px;
   }
 
   .search__icon .fa {
@@ -130,7 +130,7 @@
     line-height: 18px;
     font-size: 16px;
     padding: 15px;
-    padding-right: 30px;
+    padding-inline-end: 30px;
   }
 
   .search__icon .fa {
@@ -174,11 +174,12 @@
   }
 
   .notification__report {
-    padding: 15px 15px 15px (48px + 15px * 2);
+    padding: 15px;
+    padding-inline-start: (48px + 15px * 2);
     min-height: 48px + 2px;
 
     &__avatar {
-      left: 15px;
+      inset-inline-start: 15px;
       top: 17px;
     }
   }
@@ -265,7 +266,7 @@
     .navigation-panel {
       margin: 0;
       background: $ui-base-color;
-      border-left: 1px solid lighten($ui-base-color, 8%);
+      border-inline-start: 1px solid lighten($ui-base-color, 8%);
       height: 100vh;
     }
 

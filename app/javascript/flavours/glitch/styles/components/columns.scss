@@ -182,7 +182,8 @@ $ui-header-height: 55px;
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
-  padding: 0 5px 0 0;
+  padding: 0;
+  padding-inline-end: 5px;
   z-index: 3;
 
   &:hover {
@@ -190,13 +191,14 @@ $ui-header-height: 55px;
   }
 
   &:last-child {
-    padding: 0 15px 0 0;
+    padding: 0;
+    padding-inline-end: 15px;;
   }
 }
 
 .column-back-button__icon {
   display: inline-block;
-  margin-right: 5px;
+  margin-inline-end: 5px;
 }
 
 .column-back-button--slim {
@@ -209,7 +211,7 @@ $ui-header-height: 55px;
   font-size: 16px;
   padding: 15px;
   position: absolute;
-  right: 0;
+  inset-inline-end: 0;
   top: -48px;
 }
 
@@ -263,7 +265,7 @@ $ui-header-height: 55px;
 
 .column-link__icon {
   display: inline-block;
-  margin-right: 5px;
+  margin-inline-end: 5px;
 }
 
 .column-subheading {
@@ -289,8 +291,8 @@ $ui-header-height: 55px;
       content: '';
       position: absolute;
       bottom: -13px;
-      left: 0;
-      right: 0;
+      inset-inline-start: 0;
+      inset-inline-end: 0;
       margin: 0 auto;
       width: 60%;
       pointer-events: none;
@@ -329,7 +331,7 @@ $ui-header-height: 55px;
     color: inherit;
     background: transparent;
     font: inherit;
-    text-align: left;
+    text-align: start;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -377,7 +379,7 @@ $ui-header-height: 55px;
 .column-header__buttons {
   height: 48px;
   display: flex;
-  margin-left: 0;
+  margin-inline-start: 0;
 }
 
 .column-header__links {
@@ -385,7 +387,7 @@ $ui-header-height: 55px;
 }
 
 .column-header__links .text-btn {
-  margin-right: 10px;
+  margin-inline-end: 10px;
 }
 
 .column-header__button {
@@ -444,7 +446,7 @@ $ui-header-height: 55px;
   @media screen and (min-width: $no-gap-breakpoint) {
     b,
     i {
-      margin-right: 5px;
+      margin-inline-end: 5px;
     }
 
     br {
@@ -530,12 +532,12 @@ $ui-header-height: 55px;
     padding: 5px;
 
     &:first-child {
-      padding-right: 7px;
+      padding-inline-end: 7px;
     }
 
     &:last-child {
-      padding-left: 7px;
-      margin-left: 5px;
+      padding-inline-start: 7px;
+      margin-inline-start: 5px;
     }
   }
 }
@@ -559,7 +561,7 @@ $ui-header-height: 55px;
 
 .column-header__icon {
   display: inline-block;
-  margin-right: 5px;
+  margin-inline-end: 5px;
 }
 
 .column-settings__pillbar {
@@ -725,7 +727,7 @@ $ui-header-height: 55px;
 
 .column-inline-form {
   padding: 7px 15px;
-  padding-right: 5px;
+  padding-inline-end: 5px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -801,12 +803,12 @@ $ui-header-height: 55px;
 
     &__placeholder {
       color: $dark-text-color;
-      padding-left: 2px;
+      padding-inline-start: 2px;
       font-size: 12px;
     }
 
     &__value-container {
-      padding-left: 6px;
+      padding-inline-start: 6px;
     }
 
     &__multi-value {
@@ -889,7 +891,7 @@ $ui-header-height: 55px;
   &__close {
     position: absolute;
     top: 10px;
-    right: 10px;
+    inset-inline-end: 10px;
   }
 
   h2 {
@@ -948,7 +950,7 @@ $ui-header-height: 55px;
 
   &__background {
     position: absolute;
-    left: 0;
+    inset-inline-start: 0;
     bottom: 0;
     height: 220px;
     width: auto;

@@ -1,129 +1,41 @@
 body.rtl {
   direction: rtl;
 
-  .column-header > button {
-    text-align: right;
-    padding-left: 0;
-    padding-right: 15px;
-  }
-
-  .radio-button__input {
-    margin-right: 0;
-    margin-left: 10px;
-  }
-
-  .display-name {
-    text-align: right;
-  }
-
-  .notification__message {
-    margin-left: 0;
-    margin-right: 68px;
+  .reactions-bar {
+    direction: rtl;
   }
 
   .drawer__inner__mastodon > img {
     transform: scaleX(-1);
   }
 
-  .notification__favourite-icon-wrapper {
-    left: auto;
-    right: -26px;
-  }
-
-  .column-link__icon,
-  .column-header__icon {
-    margin-right: 0;
-    margin-left: 5px;
-  }
-
-  .compose-form .character-counter__wrapper {
-    margin-right: 0;
-    margin-left: 4px;
-  }
-
   .boost-modal__status-time {
     float: left;
   }
 
-  .navigation-bar__profile {
-    margin-left: 0;
-    margin-right: 8px;
-  }
-
-  .search__input {
+  .compose-form .autosuggest-textarea__textarea {
     padding-right: 10px;
-    padding-left: 30px;
-  }
-
-  .search__icon .fa {
-    right: auto;
-    left: 10px;
+    padding-left: 10px + 22px;
   }
 
   .columns-area {
     direction: rtl;
   }
 
-  .column-header__buttons {
-    left: 0;
-    right: auto;
-    margin-left: 0;
-    margin-right: -15px;
-  }
-
-  .column-inline-form .icon-button {
-    margin-left: 0;
-    margin-right: 5px;
-  }
-
-  .column-header__links .text-btn {
-    margin-left: 10px;
-    margin-right: 0;
+  .react-swipeable-view-container > * {
+    direction: rtl;
   }
 
   .account__avatar-wrapper {
     float: right;
   }
 
-  .column-header__back-button {
-    padding-left: 5px;
-    padding-right: 0;
-  }
-
   .column-header__setting-arrows {
     float: left;
-
-    .column-header__setting-btn {
-      &:first-child {
-        padding-left: 7px;
-        padding-right: 5px;
-      }
-
-      &:last-child {
-        padding-right: 7px;
-        padding-left: 5px;
-        margin-right: 5px;
-        margin-left: 0;
-      }
-    }
-  }
-
-  .setting-toggle__label {
-    margin-left: 0;
-    margin-right: 8px;
   }
 
   .setting-meta__label {
     float: left;
-  }
-
-  .status__avatar {
-    margin-left: 10px;
-    margin-right: 0;
-
-    // Those are used for public pages
-    left: auto;
-    right: 10px;
   }
 
   .activity-stream .status.light {
@@ -142,16 +54,6 @@ body.rtl {
     padding-left: 0;
   }
 
-  .status__prepend {
-    margin-left: 0;
-    margin-right: 58px;
-  }
-
-  .status__prepend-icon-wrapper {
-    left: auto;
-    right: -26px;
-  }
-
   .activity-stream .pre-header .pre-header__icon {
     left: auto;
     right: 42px;
@@ -162,52 +64,18 @@ body.rtl {
     margin-left: 8px;
   }
 
-  .account__avatar-overlay-overlay {
-    right: auto;
-    left: 0;
-  }
-
-  .column-back-button--slim-button {
-    right: auto;
-    left: 0;
-  }
-
   .status__relative-time,
   .activity-stream .status.light .status__header .status__meta {
     float: left;
     text-align: left;
   }
 
-  .status__action-bar {
-    &__counter {
-      margin-right: 0;
-      margin-left: 11px;
-
-      .status__action-bar-button {
-        margin-right: 0;
-        margin-left: 4px;
-      }
-    }
-  }
-
   .status__action-bar-button {
     float: right;
-    margin-right: 0;
-    margin-left: 18px;
   }
 
   .status__action-bar-dropdown {
     float: right;
-  }
-
-  .privacy-dropdown__dropdown {
-    margin-left: 0;
-    margin-right: 40px;
-  }
-
-  .privacy-dropdown__option__icon {
-    margin-left: 10px;
-    margin-right: 0;
   }
 
   .detailed-status__display-name .display-name {
@@ -215,85 +83,15 @@ body.rtl {
   }
 
   .detailed-status__display-avatar {
-    margin-right: 0;
-    margin-left: 10px;
     float: right;
-  }
-
-  .detailed-status__favorites,
-  .detailed-status__reblogs {
-    margin-left: 0;
-    margin-right: 6px;
-  }
-
-  .fa-ul {
-    margin-left: 2.14285714em;
-  }
-
-  .fa-li {
-    left: auto;
-    right: -2.14285714em;
   }
 
   .admin-wrapper {
     direction: rtl;
   }
 
-  .admin-wrapper .sidebar ul a i.fa,
-  a.table-action-link i.fa {
-    margin-right: 0;
-    margin-left: 5px;
-  }
-
-  .simple_form .check_boxes .checkbox label {
-    padding-left: 0;
-    padding-right: 25px;
-  }
-
-  .simple_form .input.with_label.boolean label.checkbox {
-    padding-left: 25px;
-    padding-right: 0;
-  }
-
-  .simple_form .check_boxes .checkbox input[type='checkbox'],
-  .simple_form .input.boolean input[type='checkbox'] {
-    left: auto;
-    right: 0;
-  }
-
-  .simple_form .input.radio_buttons .radio {
-    left: auto;
-    right: 0;
-  }
-
-  .simple_form .input.radio_buttons .radio > label {
-    padding-right: 28px;
-    padding-left: 0;
-  }
-
-  .simple_form .input-with-append .input input {
-    padding-left: 142px;
-    padding-right: 0;
-  }
-
-  .simple_form .input.boolean label.checkbox {
-    left: auto;
-    right: 0;
-  }
-
-  .simple_form .input.boolean .label_input,
-  .simple_form .input.boolean .hint {
-    padding-left: 0;
-    padding-right: 28px;
-  }
-
   .simple_form .label_input__append {
-    right: auto;
-    left: 3px;
-
     &::after {
-      right: auto;
-      left: 0;
       background-image: linear-gradient(
         to left,
         rgba(darken($ui-base-color, 10%), 0),
@@ -308,64 +106,11 @@ body.rtl {
       no-repeat left 8px center / auto 16px;
   }
 
-  .table th,
-  .table td {
-    text-align: right;
-  }
-
-  .filters .filter-subset {
-    margin-right: 0;
-    margin-left: 45px;
-  }
-
-  @media screen and (min-width: 631px) {
-    .column,
-    .drawer {
-      padding-left: 5px;
-      padding-right: 5px;
-
-      &:first-child {
-        padding-left: 5px;
-        padding-right: 10px;
-      }
-    }
-
-    .columns-area > div {
-      .column,
-      .drawer {
-        padding-left: 5px;
-        padding-right: 5px;
-      }
-    }
-  }
-
-  .columns-area--mobile .column,
-  .columns-area--mobile .drawer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .card__bar .display-name {
-    margin-left: 0;
-    margin-right: 15px;
-    text-align: right;
-  }
-
   .fa-chevron-left::before {
     content: '\F054';
   }
 
   .fa-chevron-right::before {
     content: '\F053';
-  }
-
-  .column-back-button__icon {
-    margin-right: 0;
-    margin-left: 5px;
-  }
-
-  .simple_form .input.radio_buttons .radio > label input {
-    left: auto;
-    right: 0;
   }
 }

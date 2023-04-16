@@ -164,9 +164,10 @@
 
   .status__content__spoiler-icon {
     display: inline-block;
-    margin: 0 0 0 5px;
-    border-left: 1px solid currentColor;
-    padding: 0 0 0 4px;
+    margin-inline-start: 5px;
+    border-inline-start: 1px solid currentColor;
+    padding: 0;
+    padding-inline-start: 4px;
     font-size: 16px;
     vertical-align: -2px;
   }
@@ -195,7 +196,7 @@
 }
 
 .status__prepend-icon-wrapper {
-  left: -26px;
+  inset-inline-start: -26px;
   position: absolute;
 }
 
@@ -241,7 +242,7 @@
   @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
     // Add margin to avoid Edge auto-hiding scrollbar appearing over content.
     // On Edge 16 this is 16px and Edge <=15 it's 12px, so aim for 16px.
-    padding-right: 28px; // 12px + 16px
+    padding-inline-end: 28px; // 12px + 16px
   }
 
   @keyframes fade {
@@ -310,8 +311,8 @@
     &.has-background::before {
       display: block;
       position: absolute;
-      left: 0;
-      right: 0;
+      inset-inline-start: 0;
+      inset-inline-end: 0;
       top: 0;
       bottom: 0;
       background-image: linear-gradient(
@@ -339,8 +340,8 @@
         position: absolute;
         top: 0;
         bottom: 0;
-        left: 0;
-        right: 0;
+        inset-inline-start: 0;
+        inset-inline-end: 0;
         background: linear-gradient(
           rgba($ui-base-color, 0),
           rgba($ui-base-color, 1)
@@ -395,7 +396,7 @@
   display: inline-block;
   color: $dark-text-color;
   font-size: 14px;
-  text-align: right;
+  text-align: end;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -436,8 +437,8 @@
   .status__visibility-icon,
   .status__reply-icon,
   .text-icon {
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-inline-start: 2px;
+    padding-inline-end: 2px;
   }
 
   .status__collapse-button.active > .fa-angle-double-up {
@@ -503,7 +504,7 @@
 .status__prepend {
   margin-top: -2px;
   margin-bottom: 8px;
-  margin-left: 58px;
+  margin-inline-start: 58px;
   color: $dark-text-color;
   font-size: 14px;
   position: relative;
@@ -526,10 +527,10 @@
 }
 
 .status__action-bar-button {
-  margin-right: 18px;
+  margin-inline-end: 18px;
 
   &.icon-button--with-counter {
-    margin-right: 14px;
+    margin-inline-end: 14px;
   }
 }
 
@@ -610,7 +611,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 17px;
-  margin-left: 6px;
+  margin-inline-start: 6px;
 }
 
 .status__display-name,
@@ -681,12 +682,12 @@ a.status__display-name,
 
 .detailed-status__display-avatar {
   float: left;
-  margin-right: 10px;
+  margin-inline-end: 10px;
 }
 
 .status__avatar {
   flex: none;
-  margin: 0 10px 0 0;
+  margin-inline-end: 10px;
   height: 48px;
   width: 48px;
 }
@@ -739,9 +740,9 @@ a.status__display-name,
 
   &__actions {
     bottom: 0;
-    left: 0;
+    inset-inline-start: 0;
     position: absolute;
-    right: 0;
+    inset-inline-end: 0;
     top: 0;
     display: flex;
     justify-content: center;
@@ -826,7 +827,8 @@ a.status-card {
 .status-card__content {
   flex: 1 1 auto;
   overflow: hidden;
-  padding: 14px 14px 14px 8px;
+  padding: 14px;
+  padding-inline-start: 8px;
 }
 
 .status-card__description {
@@ -852,7 +854,7 @@ a.status-card {
     position: absolute;
     transform-origin: 50% 50%;
     top: 50%;
-    left: 50%;
+    inset-inline-start: 50%;
     transform: translate(-50%, -50%);
   }
 }
@@ -919,7 +921,7 @@ a.status-card.compact:hover {
   object-fit: fill;
   position: absolute;
   top: 0;
-  left: 0;
+  inset-inline-start: 0;
   z-index: 0;
   background: $base-overlay-background;
 
@@ -941,7 +943,7 @@ a.status-card.compact:hover {
     color: $dark-text-color;
     padding: 8px 18px;
     cursor: default;
-    border-right: 1px solid lighten($ui-base-color, 8%);
+    border-inline-end: 1px solid lighten($ui-base-color, 8%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -956,7 +958,7 @@ a.status-card.compact:hover {
   &__list {
     list-style: none;
     padding: 4px 0;
-    padding-left: 8px;
+    padding-inline-start: 8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1016,10 +1018,10 @@ a.status-card.compact:hover {
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
+      inset-inline-start: 0;
       width: 100%;
       height: 100%;
-      border-left: 4px solid $highlight-text-color;
+      border-inline-start: 4px solid $highlight-text-color;
       pointer-events: none;
     }
   }
@@ -1028,12 +1030,12 @@ a.status-card.compact:hover {
 .picture-in-picture {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  inset-inline-end: 20px;
   width: 300px;
 
   &.left {
-    right: unset;
-    left: 20px;
+    inset-inline-end: unset;
+    inset-inline-start: 20px;
   }
 
   &__footer {
@@ -1059,7 +1061,7 @@ a.status-card.compact:hover {
     }
 
     .account__avatar {
-      margin-right: 10px;
+      margin-inline-end: 10px;
     }
 
     .display-name {

@@ -93,7 +93,7 @@
     width: 20px;
     height: auto;
     vertical-align: middle;
-    margin-right: 5px;
+    margin-inline-end: 5px;
     fill: $primary-text-color;
   }
 
@@ -154,11 +154,12 @@ a.button.logo-button {
   }
 
   .status {
-    padding: 15px 15px 15px (48px + 15px * 2);
+    padding: 15px;
+    padding-inline-start: (48px + 15px * 2);
     min-height: 48px + 2px;
 
     &__avatar {
-      left: 15px;
+      inset-inline-start: 15px;
       top: 17px;
 
       .account__avatar {
@@ -175,7 +176,7 @@ a.button.logo-button {
       padding: 8px 0;
       padding-bottom: 2px;
       margin: initial;
-      margin-left: 48px + 15px * 2;
+      margin-inline-start: 48px + 15px * 2;
       padding-top: 15px;
     }
 
@@ -184,7 +185,7 @@ a.button.logo-button {
       margin: initial;
       float: initial;
       width: auto;
-      left: -32px;
+      inset-inline-start: -32px;
     }
 
     .media-gallery,

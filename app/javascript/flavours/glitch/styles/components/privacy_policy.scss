@@ -89,7 +89,7 @@
     &::before {
       content: counter(list-counter) '.';
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
     }
   }
 
@@ -101,13 +101,13 @@
     width: 0.375em;
     height: 0.375em;
     top: 0.5em;
-    left: 0.25em;
+    inset-inline-start: 0.25em;
   }
 
   ul > li,
   ol > li {
     position: relative;
-    padding-left: 1.75em;
+    padding-inline-start: 1.75em;
   }
 
   & > ul > li p {

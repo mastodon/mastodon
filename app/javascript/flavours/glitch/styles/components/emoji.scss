@@ -31,7 +31,7 @@
 .emoji-picker-dropdown__modifiers {
   position: absolute;
   top: 60px;
-  right: 11px;
+  inset-inline-end: 11px;
   cursor: pointer;
 }
 
@@ -39,7 +39,7 @@
   position: absolute;
   z-index: 4;
   top: -4px;
-  left: -8px;
+  inset-inline-start: -8px;
   background: $simple-background-color;
   border-radius: 4px;
   box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
@@ -72,7 +72,10 @@
 
 .emoji-button {
   display: block;
-  padding: 5px 5px 2px 2px;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  padding-inline-start: 2px;
+  padding-inline-end: 5px;
   outline: 0;
   cursor: pointer;
 

@@ -35,8 +35,8 @@ $doodle-background: #d9e1e8;
       label {
         display: inline-block;
         width: 70px;
-        text-align: right;
-        margin-right: 2px;
+        text-align: end;
+        margin-inline-end: 2px;
       }
 
       input[type='number'],
@@ -46,14 +46,14 @@ $doodle-background: #d9e1e8;
 
       span.val {
         display: inline-block;
-        text-align: left;
+        text-align: start;
         width: 50px;
       }
     }
   }
 
   .doodle-palette {
-    padding-right: 0 !important;
+    padding-inline-end: 0 !important;
     border: 1px solid black;
     line-height: 0.2rem;
     flex-grow: 0;
