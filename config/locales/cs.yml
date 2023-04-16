@@ -130,6 +130,8 @@ cs:
       removed_header_msg: Úspěšně odstraněn obrázek záhlaví uživatele %{username}
       resend_confirmation:
         already_confirmed: Tento uživatel je již potvrzen
+        send: Znovu odeslat potvrzovací odkaz
+        success: Potvrzovací odkaz byl úspěšně odeslán!
       reset: Obnovit
       reset_password: Obnovit heslo
       resubscribe: Znovu odebírat
@@ -1021,6 +1023,7 @@ cs:
       prefix_invited_by_user: "@%{name} vás zve na tento server Mastodon!"
       prefix_sign_up: Registrujte se na Mastodonu již dnes!
       suffix: S účtem budete moci sledovat lidi, psát příspěvky a vyměňovat si zprávy s uživateli z kteréhokoliv serveru Mastodon a dalších služeb!
+    didnt_get_confirmation: Neobdrželi jste potvrzovací odkaz?
     dont_have_your_security_key: Nemáte svůj bezpečnostní klíč?
     forgot_password: Zapomněli jste heslo?
     invalid_reset_password_token: Token pro obnovení hesla je buď neplatný, nebo vypršel. Vyžádejte si prosím nový.
@@ -1033,11 +1036,17 @@ cs:
     migrate_account_html: Zde můžete <a href="%{path}">nastavit přesměrování tohoto účtu na jiný</a>.
     or_log_in_with: Nebo se přihlaste pomocí
     privacy_policy_agreement_html: Četl jsem a souhlasím se zásadami <a href="%{privacy_policy_path}" target="_blank">ochrany osobních údajů</a>
+    progress:
+      confirm: Confirm e-mail
+      details: Vaše údaje
+      review: Naše hodnocení
+      rules: Přijmout pravidla
     providers:
       cas: CAS
       saml: SAML
     register: Registrovat
     registration_closed: "%{instance} nepřijímá nové členy"
+    resend_confirmation: Znovu odeslat potvrzovací odkaz
     reset_password: Obnovit heslo
     rules:
       accept: Přijmout
@@ -1046,6 +1055,10 @@ cs:
       title: Některá základní pravidla.
     security: Zabezpečení
     set_new_password: Nastavit nové heslo
+    setup:
+      link_not_received: Nedostali jste odkaz?
+      new_confirmation_instructions_sent: Za několik minut obdržíte nový e-mail s potvrzovacím odkazem!
+      title: Zkontrolujte doručenou poštu
     sign_in:
       preamble_html: Přihlaste se se svýma <strong>%{domain}</strong> údajema. Pokud je váš účet hostován na jiném serveru, nemůžete se zde přihlásit.
       title: Přihlásit se k %{domain}
