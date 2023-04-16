@@ -120,7 +120,9 @@ th:
       removed_avatar_msg: เอาภาพประจำตัวของ %{username} ออกสำเร็จ
       removed_header_msg: เอาภาพส่วนหัวของ %{username} ออกสำเร็จ
       resend_confirmation:
-        already_confirmed: ผู้ใช้นี้ได้รับการยืนยันอยู่แล้ว
+        already_confirmed: ผู้ใช้นี้ได้รับการยืนยันไปแล้ว
+        send: ส่งลิงก์การยืนยันใหม่
+        success: ส่งลิงก์การยืนยันสำเร็จ!
       reset: รีเซ็ต
       reset_password: ตั้งรหัสผ่านใหม่
       resubscribe: บอกรับใหม่
@@ -205,7 +207,7 @@ th:
         reject_user: ปฏิเสธผู้ใช้
         remove_avatar_user: เอาภาพประจำตัวออก
         reopen_report: เปิดรายงานใหม่
-        resend_user: ส่งจดหมายยืนยันใหม่
+        resend_user: ส่งจดหมายการยืนยันใหม่
         reset_password_user: ตั้งรหัสผ่านใหม่
         resolve_report: แก้ปัญหารายงาน
         sensitive_account: บังคับให้บัญชีละเอียดอ่อน
@@ -264,7 +266,7 @@ th:
         reject_user_html: "%{name} ได้ปฏิเสธการลงทะเบียนจาก %{target}"
         remove_avatar_user_html: "%{name} ได้เอาภาพประจำตัวของ %{target} ออก"
         reopen_report_html: "%{name} ได้เปิดรายงาน %{target} ใหม่"
-        resend_user_html: "%{name} ได้ส่งอีเมลยืนยันสำหรับ %{target} ใหม่"
+        resend_user_html: "%{name} ได้ส่งอีเมลการยืนยันสำหรับ %{target} ใหม่"
         reset_password_user_html: "%{name} ได้ตั้งรหัสผ่านของผู้ใช้ %{target} ใหม่"
         resolve_report_html: "%{name} ได้แก้ปัญหารายงาน %{target}"
         sensitive_account_html: "%{name} ได้ทำเครื่องหมายสื่อของ %{target} ว่าละเอียดอ่อน"
@@ -967,6 +969,7 @@ th:
       prefix_invited_by_user: "@%{name} เชิญคุณเข้าร่วมเซิร์ฟเวอร์ Mastodon นี้!"
       prefix_sign_up: ลงทะเบียนใน Mastodon วันนี้!
       suffix: ด้วยบัญชี คุณจะสามารถติดตามผู้คน โพสต์การอัปเดต และแลกเปลี่ยนข้อความกับผู้ใช้จากเซิร์ฟเวอร์ Mastodon และอื่น ๆ!
+    didnt_get_confirmation: ไม่ได้รับลิงก์การยืนยัน?
     dont_have_your_security_key: ไม่มีกุญแจความปลอดภัยของคุณ?
     forgot_password: ลืมรหัสผ่านของคุณ?
     invalid_reset_password_token: โทเคนการตั้งรหัสผ่านใหม่ไม่ถูกต้องหรือหมดอายุแล้ว โปรดขอโทเคนใหม่
@@ -979,11 +982,17 @@ th:
     migrate_account_html: หากคุณต้องการเปลี่ยนเส้นทางบัญชีนี้ไปยังบัญชีอื่น คุณสามารถ <a href="%{path}">กำหนดค่าบัญชีที่นี่</a>
     or_log_in_with: หรือเข้าสู่ระบบด้วย
     privacy_policy_agreement_html: ฉันได้อ่านและเห็นด้วยกับ <a href="%{privacy_policy_path}" target="_blank">นโยบายความเป็นส่วนตัว</a>
+    progress:
+      confirm: ยืนยันอีเมล
+      details: รายละเอียดของคุณ
+      review: การตรวจทานของเรา
+      rules: ยอมรับกฎ
     providers:
       cas: CAS
       saml: SAML
     register: ลงทะเบียน
     registration_closed: "%{instance} ไม่ได้กำลังเปิดรับสมาชิกใหม่"
+    resend_confirmation: ส่งลิงก์การยืนยันใหม่
     reset_password: ตั้งรหัสผ่านใหม่
     rules:
       accept: ยอมรับ
@@ -992,6 +1001,10 @@ th:
       title: กฎพื้นฐานบางประการ
     security: ความปลอดภัย
     set_new_password: ตั้งรหัสผ่านใหม่
+    setup:
+      email_settings_hint_html: คลิกลิงก์ที่เราส่งถึงคุณเพื่อยืนยัน %{email} เราจะรออยู่ตรงนี้
+      link_not_received: ไม่ได้รับลิงก์?
+      title: ตรวจสอบกล่องขาเข้าของคุณ
     sign_in:
       preamble_html: ลงชื่อเข้าด้วยข้อมูลประจำตัว <strong>%{domain}</strong> ของคุณ หากบัญชีของคุณได้รับการโฮสต์ในเซิร์ฟเวอร์อื่น คุณจะไม่สามารถเข้าสู่ระบบได้ที่นี่
       title: ลงชื่อเข้า %{domain}
@@ -1058,7 +1071,7 @@ th:
       data_removal: จะเอาโพสต์และข้อมูลอื่น ๆ ของคุณออกโดยถาวร
       email_change_html: คุณสามารถ <a href="%{path}">เปลี่ยนที่อยู่อีเมลของคุณ</a> ได้โดยไม่ต้องลบบัญชีของคุณ
       email_contact_html: หากอีเมลยังคงมาไม่ถึง คุณสามารถส่งอีเมลถึง <a href="mailto:%{email}">%{email}</a> สำหรับความช่วยเหลือ
-      email_reconfirmation_html: หากคุณไม่ได้รับอีเมลยืนยัน คุณสามารถ <a href="%{path}">ขออีเมลอีกครั้ง</a>
+      email_reconfirmation_html: หากคุณไม่ได้รับอีเมลการยืนยัน คุณสามารถ <a href="%{path}">ขออีเมลอีกครั้ง</a>
       irreversible: คุณจะไม่สามารถคืนค่าหรือเปิดใช้งานบัญชีของคุณใหม่
       more_details_html: สำหรับรายละเอียดเพิ่มเติม ดู <a href="%{terms_path}">นโยบายความเป็นส่วนตัว</a>
       username_available: ชื่อผู้ใช้ของคุณจะพร้อมใช้งานอีกครั้ง
