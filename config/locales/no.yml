@@ -124,8 +124,6 @@
       removed_header_msg: Fjernet %{username} sin topptekst bilde
       resend_confirmation:
         already_confirmed: Denne brukeren er allerede bekreftet
-        send: Send bekreftelses-epost på nytt
-        success: Bekreftelses e-post er vellykket sendt!
       reset: Tilbakestill
       reset_password: Nullstill passord
       resubscribe: Abonner på nytt
@@ -924,7 +922,6 @@
       prefix_invited_by_user: "@%{name} inviterer deg til å bli med på denne serveren til Mastodon!"
       prefix_sign_up: Registrer deg på Mastodon i dag!
       suffix: Med en konto, vil kunne følge folk, skrive innlegg, og utveksle meldinger med brukere fra enhver Mastodon-tjener, og mer til!
-    didnt_get_confirmation: Mottok du ikke instruksjoner om bekreftelse?
     dont_have_your_security_key: Har du ikke sikkerhetsnøkkelen din?
     forgot_password: Har du glemt passordet ditt?
     invalid_reset_password_token: Tilbakestillingsnøkkelen for passord er ugyldig eller utløpt. Vennligst be om en ny.
@@ -942,17 +939,12 @@
       saml: SAML
     register: Meld deg på
     registration_closed: "%{instance} tar ikke imot nye medlemmer"
-    resend_confirmation: Send bekreftelsesinstruksjoner på nytt
     reset_password: Tilbakestill passord
     rules:
       preamble: Disse angis og håndheves av %{domain}-moderatorene.
       title: Noen grunnregler.
     security: Sikkerhet
     set_new_password: Angi nytt passord
-    setup:
-      email_below_hint_html: Dersom E-postadressen nedenfor er feil, kan du endre det her og motta en ny bekreftelses-E-post.
-      email_settings_hint_html: Bekreftelses-E-posten ble sendt til %{email}. Dersom den E-postadressen ikke var riktig, kan du endre den i kontoinnstillingene.
-      title: Innstillinger
     sign_in:
       preamble_html: Logg inn med ditt <strong>%{domain}</strong> brukeropplysninger. Hvis kontoen din er plassert på en annen server, vil du ikke kunne logge inn her.
       title: Logg inn på %{domain}
