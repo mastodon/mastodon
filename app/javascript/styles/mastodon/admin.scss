@@ -292,7 +292,6 @@ $content-width: 840px;
     }
 
     h4 {
-      text-transform: uppercase;
       font-size: 13px;
       font-weight: 700;
       color: $darker-text-color;
@@ -501,7 +500,6 @@ body,
 
     strong {
       font-weight: 500;
-      text-transform: uppercase;
       font-size: 12px;
 
       @each $lang in $cjk-langs {
@@ -520,7 +518,6 @@ body,
       display: inline-block;
       color: $darker-text-color;
       text-decoration: none;
-      text-transform: uppercase;
       font-size: 12px;
       font-weight: 500;
       border-bottom: 2px solid $ui-base-color;
@@ -845,7 +842,6 @@ a.name-tag,
       flex: 0 0 auto;
       font-weight: 500;
       color: $darker-text-color;
-      text-transform: uppercase;
       text-align: end;
 
       a {
@@ -1191,7 +1187,6 @@ a.name-tag,
   &__label {
     padding: 0 20px;
     padding-bottom: 10px;
-    text-transform: uppercase;
     color: $darker-text-color;
     font-weight: 500;
   }
