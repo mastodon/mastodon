@@ -124,7 +124,7 @@ nl:
       removed_header_msg: Het verwijderen van de omslagfoto van %{username} is geslaagd
       resend_confirmation:
         already_confirmed: Deze gebruiker is al bevestigd
-        send: Activatielink opnieuw sturen
+        send: Bevestigingslink opnieuw verzenden
         success: Bevestigingslink succesvol verzonden!
       reset: Opnieuw
       reset_password: Wachtwoord opnieuw instellen
@@ -1002,6 +1002,7 @@ nl:
     privacy_policy_agreement_html: Ik heb het <a href="%{privacy_policy_path}" target="_blank">privacybeleid</a> gelezen en ga daarmee akkoord
     progress:
       confirm: Herhaal e-mail
+      details: Jouw gegevens
       review: Onze beoordeling
       rules: Tegels accepteren
     providers:
@@ -1009,6 +1010,7 @@ nl:
       saml: SAML
     register: Registreren
     registration_closed: "%{instance} laat geen nieuwe gebruikers toe"
+    resend_confirmation: Bevestigingslink opnieuw verzenden
     reset_password: Wachtwoord opnieuw instellen
     rules:
       accept: Accepteren
@@ -1017,6 +1019,10 @@ nl:
       title: Enkele basisregels.
     security: Beveiliging
     set_new_password: Nieuw wachtwoord instellen
+    setup:
+      email_below_hint_html: Controleer je map Ongewenst, of vraag een nieuwe bevestigingslink aan. Je kan je e-mailadres corrigeren als het verkeerd is.
+      email_settings_hint_html: Klik op de link die we je hebben gestuurd om %{email} te verifiëren. We wachten wel even.
+      new_confirmation_instructions_sent: Je ontvangt binnen enkele minuten een nieuwe e-mail met de bevestigingslink!
     sign_in:
       preamble_html: Log in met de inloggegevens van <strong>%{domain}</strong>. Als jouw account zich op een andere server bevindt, kun je hier niet inloggen.
       title: Inloggen op %{domain}
