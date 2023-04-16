@@ -130,6 +130,8 @@ uk:
       removed_header_msg: Зображення обкладинки %{username} вилучено
       resend_confirmation:
         already_confirmed: Цей користувач уже підтверджений
+        send: Повторно надіслати підтвердження на електронну пошту
+        success: Електронний лист-підтвердження успішно надіслано!
       reset: Скинути
       reset_password: Скинути пароль
       resubscribe: Перепідписатися
@@ -1021,6 +1023,7 @@ uk:
       prefix_invited_by_user: "@%{name} запрошує вас приєднатися до цього сервера Mastodon!"
       prefix_sign_up: Зареєструйтеся на Mastodon сьогодні!
       suffix: Маючи обліковий запис, ви зможете підписуватися на людей, публікувати дописи та листуватися з користувачами будь-якого сервера Mastodon!
+    didnt_get_confirmation: Не отримали посилання для підтвердження?
     dont_have_your_security_key: Не маєте ключа безпеки?
     forgot_password: Забули пароль?
     invalid_reset_password_token: Токен скидання паролю неправильний або просрочений. Спробуйте попросити новий.
@@ -1033,11 +1036,17 @@ uk:
     migrate_account_html: Якщо ви бажаєте переспрямувати цей обліковий запис на інший, ви можете <a href="%{path}">налаштувати це тут</a>.
     or_log_in_with: Або увійдіть з
     privacy_policy_agreement_html: Мною прочитано і я погоджуюся з <a href="%{privacy_policy_path}" target="_blank">політикою приватності</a>
+    progress:
+      confirm: Підтвердити електронну адресу
+      details: Ваші дані
+      review: Наш відгук
+      rules: Прийняти правила
     providers:
       cas: CAS
       saml: SAML
     register: Зареєструватися
     registration_closed: "%{instance} не приймає нових членів"
+    resend_confirmation: Повторно надіслати підтвердження на електронну пошту
     reset_password: Скинути пароль
     rules:
       accept: Прийняти
@@ -1046,6 +1055,12 @@ uk:
       title: Деякі основні правила.
     security: Зміна паролю
     set_new_password: Встановити новий пароль
+    setup:
+      email_below_hint_html: Перевірте папку "Спам", або зробіть ще один запит. Ви можете виправити свою електронну адресу, якщо це неправильно.
+      email_settings_hint_html: Натисніть на посилання, яке ми надіслали вам, щоб підтвердити %{email}. Ми чекатимемо прямо тут.
+      link_not_received: Не отримали посилання?
+      new_confirmation_instructions_sent: Ви отримаєте новий лист із посиланням на підтвердження протягом декількох хвилин!
+      title: Перевірте вашу поштову скриньку
     sign_in:
       preamble_html: Увійдіть за допомогою облікових даних <strong>%{domain}</strong>. Якщо ваш обліковий запис розміщений на іншому сервері, ви не зможете увійти тут.
       title: Увійти до %{domain}
