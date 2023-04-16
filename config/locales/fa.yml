@@ -113,14 +113,17 @@ fa:
       redownloaded_msg: حساب %{username} با موفقیت از ابتدا نوسازی شد
       reject: نپذیرفتن
       rejected_msg: کارهٔ ثبت‌نام %{username} با موفقیت رد شد
+      remote_suspension_irreversible: داده‌های این حساب به طور غیرقابل برگشت حذف شده است.
       remove_avatar: حذف تصویر نمایه
       remove_header: برداشتن تصویر زمینه
       removed_avatar_msg: تصویر آواتار %{username} با موفّقیت برداشته شد
       removed_header_msg: تصویر سرایند %{username} با موفّقیت برداشته شد
       resend_confirmation:
         already_confirmed: این کاربر قبلا تایید شده است
+        send: ارسال مجدد پیوند تایید
+        success: پیوند تایید با موفقیت ارسال شد!
       reset: بازنشانی
-      reset_password: بازنشانی رمز
+      reset_password: بازنشانی گذرواژه
       resubscribe: اشتراک دوباره
       role: نقش
       search: جستجو
@@ -166,9 +169,11 @@ fa:
         approve_user: تایید کاربر
         assigned_to_self_report: واگذاری گزارش
         change_email_user: تغییر رایانامه برای کاربر
+        change_role_user: تغیر نقش کاربر
         confirm_user: تأیید کاربر
         create_account_warning: ایجاد هشدار
         create_announcement: ایجاد اعلامیه
+        create_canonical_email_block: ایجاد انسداد ایمیل
         create_custom_emoji: ایجاد اموجی سفارشی
         create_domain_allow: ایجاد اجازهٔ دامنه
         create_domain_block: ایجاد انسداد دامنه
@@ -187,6 +192,7 @@ fa:
         destroy_ip_block: حذف قاعدهٔ آی‌پی
         destroy_status: حذف وضعیت
         destroy_unavailable_domain: حذف دامنهٔ ناموجود
+        destroy_user_role: نابودی نقش
         disable_2fa_user: از کار انداختن ورود دومرحله‌ای
         disable_custom_emoji: از کار انداختن اموجی سفارشی
         disable_sign_in_token_auth_user: از کار انداختن تأیید هویت ژتون رایانامه‌ای برای کاربر
@@ -214,6 +220,7 @@ fa:
         update_announcement: به‌روز رسانی اعلامیه
         update_custom_emoji: به‌روز رسانی اموجی سفارشی
         update_domain_block: به‌روزرسانی مسدودسازی دامنه
+        update_ip_block: بروزرسانی قاعدهٔ آی‌پی
         update_status: به‌روز رسانی وضعیت
         update_user_role: به روزرسانی نقش
       actions:
@@ -310,6 +317,7 @@ fa:
       listed: فهرست شده
       new:
         title: افزودن شکلک سفارشی
+      no_emoji_selected: هیچ ایموجی‌ای تغییری نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
       not_permitted: مجاز به انجام این کنش نیستید
       overwrite: بازنویسی
       shortcode: کد کوتاه
@@ -375,6 +383,7 @@ fa:
           silence: محدود
           suspend: تعلیق
         title: مسدودسازی دامین تازه
+      not_permitted: شما مجاز به انجام این عملیات نیستید
       obfuscate: مبهم‌سازی نام دامنهٔ
       obfuscate_hint: در صورت به کار افتاده بودن اعلام فهرست محدودیت‌های دامنه، نام دامنه در فهرست را به صورت جزیی مبهم می‌کند
       private_comment: یادداشت خصوصی
@@ -398,7 +407,12 @@ fa:
       new:
         create: ساختن مسدودسازی
         title: مسدودسازی دامنهٔ رایانامهٔ جدید
+      not_permitted: مجاز نیست
       title: دامنه‌های رایانامهٔ مسدود شده
+    export_domain_allows:
+      no_file: هیچ پرونده‌ای گزیده نشده
+    export_domain_blocks:
+      no_file: هیچ پرونده‌ای گزیده نشده
     follow_recommendations:
       description_html: "<strong>پیشنهادات پیگیری به کاربران جدید کک می‌کند تا سریع‌تر محتوای جالب را پیدا کنند</strong>. زمانی که کاربری هنوز به اندازه کافی با دیگران تعامل نداشته است تا پیشنهادات پیگیری شخصی‌سازی‌شده دریافت کند، این حساب‌ها را به جای آن فهرست مشاهده خواهد کرد. این حساب‌ها به صورت روزانه و در ترکیب با بیشتری تعاملات و بالاترین دنبال‌کنندگان محلی برای یک زبان مشخص بازمحاسبه می‌شوند."
       language: برای زبان
@@ -733,7 +747,7 @@ fa:
     warning: خیلی مواظب این اطلاعات باشید و آن را به هیچ کس ندهید!
     your_token: کد دسترسی شما
   auth:
-    change_password: رمز
+    change_password: گذرواژه
     delete_account: پاک‌کردن حساب
     delete_account_html: اگر می‌خواهید حساب خود را پاک کنید، از <a href="%{path}">این‌جا</a> پیش بروید. از شما درخواست تأیید خواهد شد.
     description:
@@ -741,8 +755,8 @@ fa:
       prefix_sign_up: همین امروز عضو ماستودون شوید!
       suffix: با داشتن حساب می‌توانید دیگران را پی بگیرید، نوشته‌های تازه منتشر کنید، و با کاربران دیگر از هر سرور ماستودون دیگری و حتی سرورهای دیگر در ارتباط باشید!
     dont_have_your_security_key: کلید امنیتیتان را ندارید؟
-    forgot_password: رمزتان را گم کرده‌اید؟
-    invalid_reset_password_token: کد بازنشانی رمز نامعتبر یا منقضی شده است. لطفاً کد دیگری درخواست کنید.
+    forgot_password: گذرواژه خود را فراموش کرده‌اید؟
+    invalid_reset_password_token: کد بازنشانی گذرواژه نامعتبر یا منقضی شده است. لطفاً کد دیگری درخواست کنید.
     link_to_otp: رمز بازگردانی یا رمز دوعاملی را از تلفنتان وارد کنید
     link_to_webauth: استفاده از افزارهٔ امنیتیتان
     log_in_with: ورود با
@@ -756,9 +770,9 @@ fa:
       saml: SAML
     register: عضو شوید
     registration_closed: "سرور %{instance} عضو تازه‌ای نمی‌پذیرد"
-    reset_password: بازنشانی رمز
+    reset_password: بازنشانی گذرواژه
     security: امنیت
-    set_new_password: تعیین رمز تازه
+    set_new_password: تعین گذرواژه جدید
     status:
       account_status: وضعیت حساب
       confirming: در حال انتظار برای کامل شدن تأیید ایمیل.
@@ -780,9 +794,9 @@ fa:
     title: پیگیری %{acct}
   challenge:
     confirm: ادامه
-    hint_html: "<strong>نکته:</strong> ما در یک ساعت آینده رمزتان را از شما نخواهیم پرسید."
-    invalid_password: رمز نامعتبر
-    prompt: برای ادامه رمزتان را تأیید کنید
+    hint_html: "<strong>نکته:</strong> ما در یک ساعت آینده گذرواژه‌تان را از شما نخواهیم پرسید."
+    invalid_password: گذرواژه نامعتبر
+    prompt: برای ادامه گذرواژه‌تان را تأیید کنید
   crypto:
     errors:
       invalid_key: یک کلید معتبر Ed25519 یا Curve25519 نیست
@@ -807,7 +821,7 @@ fa:
       x_seconds: "%{count} ثانیه"
   deletes:
     challenge_not_passed: اطلاعاتی که وارد کردید اشتباه بود
-    confirm_password: رمز فعلی خود را وارد کنید تا معلوم شود که خود شمایید
+    confirm_password: گذرواژه کنونی خود را وارد کنید تا هویتتان را تایید کنید
     confirm_username: برای تأیید این فرایند نام کاربری خود را وارد کنید
     proceed: پاک‌کردن حساب
     success_msg: حساب شما با موفقیت پاک شد
@@ -1042,9 +1056,9 @@ fa:
     description_html: اگر <strong>ورود دومرحله‌ای</strong> را با استفاده از از یک کارهٔ تأییدکننده به کار بیندازید، لازم است برای ورود، به تلفن خود که برایتان یک ژتون خواهد ساخت دسترسی داشته باشید.
     enable: به کار انداختن
     instructions_html: "<strong>این کد QR را با برنامهٔ Google Authenticator یا برنامه‌های TOTP مشابه اسکن کنید</strong>. از این به بعد، آن برنامه کدهایی موقتی خواهد ساخت که برای ورود باید آن‌ها را وارد کنید."
-    manual_instructions: 'اگر نمی‌توانید رمز QR را بپویید و باید دستی واردظ کنید، متن رمز این‌جاست:'
+    manual_instructions: 'اگر نمی‌توانید رمز QR را بپویید و باید دستی وارد کنید، متن رمز این‌جاست:'
     setup: برپا سازی
-    wrong_code: رمز وارد شده نامعتبر بود! آیا زمان کارساز و زمان افزاره درستند؟
+    wrong_code: کد وارد شده نامعتبر بود! آیا زمان کارساز و زمان افزاره درستند؟
   pagination:
     newer: تازه‌تر
     next: بعدی
@@ -1307,7 +1321,7 @@ fa:
     follow_limit_reached: شما نمی‌توانید بیش از %{limit} نفر را پی بگیرید
     invalid_otp_token: کد ورود دومرحله‌ای نامعتبر است
     otp_lost_help_html: اگر شما دسترسی به هیچ‌کدامشان ندارید، باید با ایمیل %{email} تماس بگیرید
-    seamless_external_login: شما با یک سرویس خارج از مجموعه وارد شده‌اید، به همین دلیل تنظیمات ایمیل و رمز برای شما در دسترس نیست.
+    seamless_external_login: شما با یک سرویس خارج از مجموعه وارد شده‌اید، به همین دلیل تنظیمات ایمیل و گذرواژه برای شما در دسترس نیست.
     signed_in_as: 'واردشده به نام:'
   verification:
     verification: تأیید
