@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 type Props = {
   src: string;
+  key: string;
   alt?: string;
   lang?: string;
   width: number;
@@ -18,7 +19,6 @@ export const GIFV: React.FC<Props> = ({
   onClick,
 })=> {
   const [loading, setLoading] = useState(true);
-  useEffect(()=> setLoading(true), [src]);
 
   const handleLoadedData: React.ReactEventHandler<HTMLVideoElement> = useCallback(() => {
     setLoading(false);
