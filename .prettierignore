@@ -61,7 +61,9 @@ docker-compose.override.yml
 /app/javascript/mastodon/features/emoji/emoji_map.json
 
 # Ignore locale files
-/app/javascript/mastodon/locales
+/app/javascript/mastodon/locales/*.json
+!/app/javascript/mastodon/locales/*en.json
+/app/javascript/mastodon/locales/whitelist_en.json
 /config/locales/*.yml
 !/config/locales/*en.yml
 
