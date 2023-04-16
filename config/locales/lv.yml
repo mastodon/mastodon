@@ -127,6 +127,8 @@ lv:
       removed_header_msg: Veiksmīgi noņemts %{username} galvenes attēls
       resend_confirmation:
         already_confirmed: Šis lietotājs jau ir apstiprināts
+        send: Atkārtoti nosūtīt apstiprinājuma saiti
+        success: Apstiprinājuma saite veiksmīgi nosūtīta!
       reset: Atiestatīt
       reset_password: Atiestatīt paroli
       resubscribe: Pieteikties vēlreiz
@@ -1003,6 +1005,7 @@ lv:
       prefix_invited_by_user: "@%{name} aicina tevi pievienoties šim Mastodon serverim!"
       prefix_sign_up: Reģistrējies Mastodon jau šodien!
       suffix: Izmantojot kontu, tu varēsi sekot cilvēkiem, publicēt atjauninājumus un apmainīties ar ziņojumiem ar lietotājiem no jebkura Mastodon servera un daudz ko citu!
+    didnt_get_confirmation: Vai nesaņēmi apstiprinājuma saiti?
     dont_have_your_security_key: Vai tev nav drošības atslēgas?
     forgot_password: Aizmirsi paroli?
     invalid_reset_password_token: Paroles atiestatīšanas pilnvara nav derīga, vai tai ir beidzies derīgums. Lūdzu, pieprasi jaunu.
@@ -1015,11 +1018,17 @@ lv:
     migrate_account_html: Ja vēlies novirzīt šo kontu uz citu, tu vari <a href="%{path}">to konfigurēt šeit</a>.
     or_log_in_with: Vai piesakies ar
     privacy_policy_agreement_html: Esmu izlasījis un piekrītu <a href="%{privacy_policy_path}" target="_blank">privātuma politikai</a>
+    progress:
+      confirm: Apstiprināt e-pastu
+      details: Tavi dati
+      review: Mūsu apskats
+      rules: Pieņemt noteikumus
     providers:
       cas: CAS
       saml: SAML
     register: Reģistrēties
     registration_closed: "%{instance} nepieņem jaunus dalībniekus"
+    resend_confirmation: Atkārtoti nosūtīt apstiprinājuma saiti
     reset_password: Atiestatīt paroli
     rules:
       accept: Pieņemt
@@ -1028,10 +1037,17 @@ lv:
       title: Daži pamatnoteikumi.
     security: Drošība
     set_new_password: Iestatīt jaunu paroli
+    setup:
+      email_below_hint_html: Pārbaudi savu surogātpasta mapi vai pieprasiet citu. Tu vari labot savu e-pasta adresi, ja tā ir nepareiza.
+      email_settings_hint_html: Noklikšķini uz saites, kuru mēs tev nosūtījām, lai apstiprinātu %{email}. Mēs tepat pagaidīsim.
+      link_not_received: Vai nesaņēmi sati?
+      new_confirmation_instructions_sent: Pēc dažām minūtēm saņemsi jaunu e-pastu ar apstiprinājuma saiti!
+      title: Pārbaudi savu iesūtni
     sign_in:
       preamble_html: Pierakstieties ar saviem <strong>%{domain}</strong> akreditācijas datiem. Ja jūsu konts ir mitināts citā serverī, jūs nevarēsit pieteikties šeit.
       title: Pierakstīties %{domain}
     sign_up:
+      manual_review: Reģistrācijas domēnā %{domain} manuāli pārbauda mūsu moderatori. Lai palīdzētu mums apstrādāt tavu reģistrāciju, uzraksti mazliet par sevi un to, kāpēc vēlies kontu %{domain}.
       preamble: Izmantojot kontu šajā Mastodon serverī, tu varēsi sekot jebkurai citai personai tīklā neatkarīgi no tā, kur tiek mitināts viņas konts.
       title: Atļauj tevi iestatīt %{domain}.
     status:
