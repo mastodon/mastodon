@@ -124,6 +124,8 @@ et:
       removed_header_msg: '%{username} päisepilt eemaldatud'
       resend_confirmation:
         already_confirmed: See kasutaja on juba kinnitatud
+        send: Saada kinnituslink uuesti
+        success: Kinnituslink saadetud edukalt!
       reset: Lähtesta
       reset_password: Salasõna lähtestamine
       resubscribe: Telli taas
@@ -985,6 +987,7 @@ et:
       prefix_invited_by_user: "@%{name} kutsub sind liituma selle Mastodoni serveriga!"
       prefix_sign_up: Loo Mastodoni konto juba täna!
       suffix: Kasutajakontoga saad jälgida inimesi, postitada uudiseid ning pidada kirjavahetust ükskõik millise Mastodoni serveri kasutajatega ja muudki!
+    didnt_get_confirmation: Ei saanud kinnituslinki?
     dont_have_your_security_key: Pole turvavõtit?
     forgot_password: Salasõna ununenud?
     invalid_reset_password_token: Salasõna lähtestusvõti on vale või aegunud. Palun taotle uus.
@@ -997,11 +1000,17 @@ et:
     migrate_account_html: Kui soovid konto siit ära kolida, <a href="%{path}">saad seda teha siin</a>.
     or_log_in_with: Või logi sisse koos
     privacy_policy_agreement_html: Olen tutvunud <a href="%{privacy_policy_path}" target="_blank">isikuandmete kaitse põhimõtetega</a> ja nõustun nendega
+    progress:
+      confirm: Kinnita e-post
+      details: Sinu üksikasjad
+      review: Meie ülevaatamine
+      rules: Nõustu reeglitega
     providers:
       cas: CAS
       saml: SAML
     register: Loo konto
     registration_closed: "%{instance} ei võta vastu uusi liikmeid"
+    resend_confirmation: Saada kinnituslink uuesti
     reset_password: Salasõna lähtestamine
     rules:
       accept: Nõus
@@ -1010,6 +1019,9 @@ et:
       title: Mõned põhireeglid.
     security: Turvalisus
     set_new_password: Uue salasõna määramine
+    setup:
+      email_below_hint_html: Kontrolli rämpspostikausta või taotle uut. Saad parandada e-postiaadressi, kui see on vale.
+      email_settings_hint_html: Klõpsa linki, mis saadeti sulle, et kinnitada %{email}. Seni me ootame.
     sign_in:
       preamble_html: Logi sisse oma <strong>%{domain}</strong> volitustega. Kui konto asub teises serveris, ei saa siin sisse logida.
       title: Logi sisse kohta %{domain}
