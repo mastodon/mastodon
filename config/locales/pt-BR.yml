@@ -124,6 +124,8 @@ pt-BR:
       removed_header_msg: A capa de %{username} foi removida
       resend_confirmation:
         already_confirmed: Este usuário já está confirmado
+        send: Reenviar link de confirmação
+        success: Link de confirmação enviado com sucesso!
       reset: Redefinir
       reset_password: Redefinir senha
       resubscribe: Reinscrever-se
@@ -985,6 +987,7 @@ pt-BR:
       prefix_invited_by_user: "@%{name} convidou você para entrar neste servidor Mastodon!"
       prefix_sign_up: Crie uma conta no Mastodon hoje!
       suffix: Com uma conta, você poderá seguir pessoas, publicar atualizações, trocar mensagens com usuários de qualquer servidor Mastodon e muito mais!
+    didnt_get_confirmation: Não recebeu um e-mail de confirmação?
     dont_have_your_security_key: Não está com a sua chave de segurança?
     forgot_password: Esqueceu a sua senha?
     invalid_reset_password_token: Código de alteração de senha é inválido ou expirou. Solicite um novo.
@@ -997,11 +1000,17 @@ pt-BR:
     migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configurar isso aqui</a>.
     or_log_in_with: Ou entre com
     privacy_policy_agreement_html: Eu li e concordo com a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
+    progress:
+      confirm: Confirmar e-mail
+      details: Suas informações
+      review: Nossa avaliação
+      rules: Aceitar regras
     providers:
       cas: CAS
       saml: SAML
     register: Criar conta
     registration_closed: "%{instance} não está aceitando novos membros"
+    resend_confirmation: Reenviar link de confirmação
     reset_password: Redefinir senha
     rules:
       accept: Aceitar
@@ -1010,10 +1019,17 @@ pt-BR:
       title: Algumas regras básicas.
     security: Segurança
     set_new_password: Definir uma nova senha
+    setup:
+      email_below_hint_html: Verifique a sua pasta de spam, ou solicite outro link de confirmação. Você pode corrigir seu endereço de e-mail se estiver errado.
+      email_settings_hint_html: Clique no link que te enviamos para verificar %{email}. Esperaremos aqui.
+      link_not_received: Não recebeu um link?
+      new_confirmation_instructions_sent: Você receberá um novo e-mail com o link de confirmação em alguns minutos!
+      title: Verifique sua caixa de entrada
     sign_in:
       preamble_html: Entre com suas credenciais de domínios ( <strong>%{domain}</strong> ) . Se sua conta estiver hospedada em um servidor diferente, você não deve conseguir acessar este conteúdo.
       title: Entrar em %{domain}
     sign_up:
+      manual_review: Inscrições no %{domain} passam pela revisão manual dos nossos moderadores. Para nos ajudar a processar o seu cadastro, escreva um pouco sobre você e por que você quer uma conta no %{domain}.
       preamble: Com uma conta neste servidor Mastodon, você poderá seguir qualquer outra pessoa na rede, independentemente de onde sua conta esteja hospedada.
       title: Então vamos lá criar uma conta em %{domain}.
     status:
