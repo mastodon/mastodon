@@ -124,6 +124,8 @@ fo:
       removed_header_msg: Slettaði header myndina hjá %{username}
       resend_confirmation:
         already_confirmed: Hesi brúkarin er longu váttaður
+        send: Endursend váttanarleinki
+        success: Váttanarleinki sent!
       reset: Endurset
       reset_password: Endurstilla loyniorð
       resubscribe: Tegna teg umaftur
@@ -985,6 +987,7 @@ fo:
       prefix_invited_by_user: "@%{name} bjóðar tær at verða við í hesum Mastodon-ambætaranum!"
       prefix_sign_up: Tilmelda teg á Mastodon í dag!
       suffix: Við eini kontu, so er møguligt hjá tær at fylgja fólki, at posta dagføringar og at senda og móttaka boð til og frá brúkarum á øllum Mastodon ambætarum, umframt annað!
+    didnt_get_confirmation: Móttók tú ikki váttanarleinkið?
     dont_have_your_security_key: Hevur tú ikki trygdarlyklin hjá tær?
     forgot_password: Hevur tú gloymt loyniorðið?
     invalid_reset_password_token: Teknið til nullstilling av loyniorði er ógyldugt ella útgingið. Vinarliga bið um eitt nýtt.
@@ -997,11 +1000,17 @@ fo:
     migrate_account_html: Ynskir tú at víðaribeina hesa kontuna til eina aðra, so kanst tú <a href="%{path}">seta tað upp her</a>.
     or_log_in_with: Ella innrita við
     privacy_policy_agreement_html: Eg havi lisið og taki undir við <a href="%{privacy_policy_path}" target="_blank">privatlívspolitikkinum</a>
+    progress:
+      confirm: Vátta teldupost
+      details: Tínir smálutir
+      review: Okkara kanning
+      rules: Góðtak reglur
     providers:
       cas: CAS
       saml: SAML
     register: Tilmelda
     registration_closed: "%{instance} tekur ikki ímóti nýggjum limum"
+    resend_confirmation: Endursend váttanarleinki
     reset_password: Endurstilla loyniorð
     rules:
       accept: Góðtak
@@ -1010,10 +1019,17 @@ fo:
       title: Nakrar grundreglur.
     security: Trygd
     set_new_password: Áset nýtt loyniorð
+    setup:
+      email_below_hint_html: Kekka mappuna við ruskposti ella bið um ein annan. Tú kanst rætta teldupostadressuna, um hon er skeiv.
+      email_settings_hint_html: Kekka leinkið, sum vit sendu tær at eftirkanna %{email}. Vit bíða beint her.
+      link_not_received: Fekk tú einki leinki?
+      new_confirmation_instructions_sent: Tú fer at móttaka eitt nýtt teldubræv við váttanarleinkinum um nakrar fáar minuttir!
+      title: Kekka innbakkan hjá tær
     sign_in:
       preamble_html: Rita inn við tínum <strong>%{domain}</strong> heimildum. Er konta tín á einum øðrum ambætara, so er ikki gjørligt hjá tær at rita inn her.
       title: Rita inn á %{domain}
     sign_up:
+      manual_review: Tilmeldingar til %{domain} fara ígjøgnum eina manuella eftirkanning av okkara kjakleiðarum. Fyri at hjálpa okkum at skunda undir skrásetingina, skriva eitt sindur um teg sjálva/n og hví tú vil hava eina kontu á %{domain}.
       preamble: Við eini kontu á hesum Mastodon ambætaranum ber til hjá tær at fylgja ein og hvønn annan persón á netverkinum, óansæð hvar teirra konta er hýst.
       title: Latum okkum fáa teg settan upp á %{domain}.
     status:
