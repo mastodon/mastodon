@@ -121,8 +121,6 @@ sco:
       removed_header_msg: Successfully taen aff %{username}'s heider image
       resend_confirmation:
         already_confirmed: This uiser is awriddy confirmt
-        send: Resen confirmation email
-        success: Confirmation email successfully sent!
       reset: Reset
       reset_password: Reset passwird
       resubscribe: Resubscribe
@@ -938,7 +936,6 @@ sco:
       prefix_invited_by_user: "@%{name} invites ye tae jyne this server o Mastodon!"
       prefix_sign_up: Sign up on Mastodon the day!
       suffix: Wi a accoont, ye'll be able tae follae fowk, post updates an exchynge messages wi uisers fae onie Mastodon server an mair!
-    didnt_get_confirmation: Didnae gey yer confirmation instructions?
     dont_have_your_security_key: Dinnae hae yer security key?
     forgot_password: Forgot yer passwird?
     invalid_reset_password_token: Passwird reset token isnae valid or expirit. Please request a new ane.
@@ -956,17 +953,12 @@ sco:
       saml: SAML
     register: Sign up
     registration_closed: "%{instance} isnae acceptin onie new memmers"
-    resend_confirmation: Resen confirmation instructions
     reset_password: Reset yer passwird
     rules:
       preamble: Thir's set an enforced bi the %{domain} moderators.
       title: Some grun rules.
     security: Security
     set_new_password: Set new passwird
-    setup:
-      email_below_hint_html: If the email address ablow isnae correct, ye kin chynge it here an get a new confirmation email.
-      email_settings_hint_html: The confirmation email wis sent tae %{email}. If that email address isnae correct, ye kin chynge it in accoont settins.
-      title: Setup
     sign_up:
       preamble: Wi a accoont on this Mastodon server, ye'll be able tae follae onie ither person on the netwirk, regairdless o whaur their accoont is hostit.
       title: Let's get ye set up on %{domain}.
