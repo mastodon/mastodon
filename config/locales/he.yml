@@ -130,6 +130,8 @@ he:
       removed_header_msg: תמונת הראשה של %{username} הוסרה בהצלחה
       resend_confirmation:
         already_confirmed: משתמש זה כבר אושר
+        send: שלח מחדש קישור לאימות
+        success: קישור מאמת נשלח בהצלחה!
       reset: איפוס
       reset_password: איפוס סיסמה
       resubscribe: להרשם מחדש
@@ -1021,6 +1023,7 @@ he:
       prefix_invited_by_user: "@%{name} רוצה שתצטרף לשרת זה במסטודון!"
       prefix_sign_up: הרשם/י למסטודון היום!
       suffix: כבעל/ת חשבון, תוכל/י לעקוב אחרי אנשים, לפרסם עדכונים ולהחליף חצרוצים עם משתמשים מכל שרת מסטודון ועוד!
+    didnt_get_confirmation: לא קיבלת את קישור האימות?
     dont_have_your_security_key: אין לך מפתח אבטחה?
     forgot_password: הנשתכחה סיסמתך?
     invalid_reset_password_token: טוקן איפוס הסיסמה אינו תקין או שפג תוקף. נא לבקש אחד חדש.
@@ -1033,11 +1036,17 @@ he:
     migrate_account_html: אם ברצונך להכווין את החשבון לעבר חשבון אחר, ניתן <a href="%{path}">להגדיר זאת כאן</a>.
     or_log_in_with: או התחבר באמצעות
     privacy_policy_agreement_html: קראתי והסכמתי ל<a href="%{privacy_policy_path}" target="_blank">מדיניות הפרטיות</a>
+    progress:
+      confirm: אימות כתובת הדואל
+      details: הפרטים שלך
+      review: הבדיקה שלנו
+      rules: הסכמה לתקנות
     providers:
       cas: CAS
       saml: SAML
     register: הרשמה
     registration_closed: "%{instance} לא מקבל חברים חדשים"
+    resend_confirmation: שלח מחדש קישור לאימות
     reset_password: איפוס סיסמה
     rules:
       accept: הסכמה
@@ -1046,10 +1055,17 @@ he:
       title: כמה חוקים בסיסיים.
     security: אבטחה
     set_new_password: סיסמה חדשה
+    setup:
+      email_below_hint_html: אנא בדקו בתיקיית הספאם, או בקשו קוד חדש. ניתן לתקן את הכתובת אם נפלה תקלדה.
+      email_settings_hint_html: לחצו על הקישור שנשלח כדי לאשר את הכתובת %{email}. אנו ממתינים פה.
+      link_not_received: לא קיבלת קישור?
+      new_confirmation_instructions_sent: אתם עומדים לקבל הודעת דואל חדשה עם קיש/ור אימות בדקות הקרובות!
+      title: בדוק/בדקי את תיבת הדואר הנכנס שלך
     sign_in:
       preamble_html: הכנס.י עם שם וסיסמא מאתר <strong>%{domain}</strong>. אם חשבונך מתארח בשרת אחר, לא ניתן להתחבר איתו פה.
       title: התחבר אל %{domain}
     sign_up:
+      manual_review: פתיחת חשבון אצל %{domain} עוברת בדיקה ידנית על ידי הצוות שלנו. כדי לסייע בתהליך הרישום שלכןם, כתבו לנו על עצמכןם ולמה אתןם רוצותים חשבון בשרת %{domain}.
       preamble: כיוון שמסטודון מבוזרת, תוכל/י להשתמש בחשבון שלך משרתי מסטודון או רשתות תואמות אחרות אם אין לך חשבון על שרת זה.
       title: הבה ניצור לך חשבון בשרת %{domain}.
     status:
