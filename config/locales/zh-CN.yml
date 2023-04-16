@@ -121,6 +121,8 @@ zh-CN:
       removed_header_msg: 成功删除了 %{username} 的横幅图片
       resend_confirmation:
         already_confirmed: 该用户已被确认
+        send: 重新发送确认链接
+        success: 确认链接发送成功！
       reset: 重置
       reset_password: 重置密码
       resubscribe: 重新订阅
@@ -967,6 +969,7 @@ zh-CN:
       prefix_invited_by_user: "@%{name} 邀请你加入这个Mastodon服务器！"
       prefix_sign_up: 现在就注册 Mastodon！
       suffix: 注册一个账号，你就可以关注他人、发布嘟文、并和其它任何 Mastodon 服务器上的用户交流，而且还有其它更多功能！
+    didnt_get_confirmation: 没有收到确认链接？
     dont_have_your_security_key: 没有你的安全密钥？
     forgot_password: 忘记密码？
     invalid_reset_password_token: 密码重置令牌无效或已过期。请重新发起重置密码请求。
@@ -979,11 +982,17 @@ zh-CN:
     migrate_account_html: 如果你希望引导他人关注另一个账号，请<a href="%{path}">点击这里进行设置</a>。
     or_log_in_with: 或通过外部服务登录
     privacy_policy_agreement_html: 我已阅读并同意 <a href="%{privacy_policy_path}" target="_blank">隐私政策</a>
+    progress:
+      confirm: 确认电子邮件地址
+      details: 您的详情
+      review: 我们的复审
+      rules: 接受规则
     providers:
       cas: CAS
       saml: SAML
     register: 注册
     registration_closed: "%{instance} 目前不接收新成员"
+    resend_confirmation: 重新发送确认链接
     reset_password: 重置密码
     rules:
       accept: 接受
@@ -992,10 +1001,17 @@ zh-CN:
       title: 一些基本规则。
     security: 账户安全
     set_new_password: 设置新密码
+    setup:
+      email_below_hint_html: 请检查的垃圾邮件文件夹，或请求再次发送一次。如果您的电子邮件地址不对，您可以更正您的电子邮件地址。
+      email_settings_hint_html: 请点击我们发送给 %{email} 地址中的确认链接。我在这儿等着您。
+      link_not_received: 没有收到链接？
+      new_confirmation_instructions_sent: 您将在几分钟内收到一封带有确认链接的新邮件！
+      title: 请检查你的电子邮件收件箱
     sign_in:
       preamble_html: 使用您在 <strong>%{domain}</strong> 的账户和密码登录。如果您的账户托管在其他的服务器上，您将无法在此登录。
       title: 登录到 %{domain}
     sign_up:
+      manual_review: 您在 %{domain} 上的注册需要经由管理人员手动审核。 为了帮助我们处理您的注册，请稍微介绍一下您为什么想在 %{domain} 上注册。
       preamble: 有了这个Mastodon服务器上的账户，您就可以关注Mastodon网络上的任何其他人，无论他们的账户在哪里。
       title: 让我们在 %{domain} 上开始。
     status:
