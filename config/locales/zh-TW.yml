@@ -121,8 +121,6 @@ zh-TW:
       removed_header_msg: 已成功刪除 %{username} 的封面圖片
       resend_confirmation:
         already_confirmed: 此使用者已被確認
-        send: 重新發送驗證信
-        success: 驗證信發送成功！
       reset: 重設
       reset_password: 重設密碼
       resubscribe: 重新訂閱
@@ -969,7 +967,6 @@ zh-TW:
       prefix_invited_by_user: "@%{name} 邀請您加入這個 Mastodon 伺服器！"
       prefix_sign_up: 馬上註冊 Mastodon 帳號吧！
       suffix: 有了帳號，就可以從任何 Mastodon 伺服器跟隨任何人、發發廢嘟，並且與任何 Mastodon 伺服器的使用者交流，以及更多！
-    didnt_get_confirmation: 沒有收到驗證信?
     dont_have_your_security_key: 找不到您的安全金鑰？
     forgot_password: 忘記密碼？
     invalid_reset_password_token: 密碼重設 token 無效或已過期。請重新設定密碼。
@@ -987,7 +984,6 @@ zh-TW:
       saml: SAML
     register: 註冊
     registration_closed: "%{instance} 現在不開放新成員"
-    resend_confirmation: 重新寄送確認指引
     reset_password: 重設密碼
     rules:
       accept: 接受
@@ -996,10 +992,6 @@ zh-TW:
       title: 一些基本守則。
     security: 登入資訊
     set_new_password: 設定新密碼
-    setup:
-      email_below_hint_html: 如果此電子郵件地址不正確，您可於此修改並接收郵件進行認證。
-      email_settings_hint_html: 請確認 e-mail 是否傳送至 %{email} 。如果電子郵件地址不正確的話，可以從帳號設定修改。
-      title: 設定
     sign_in:
       preamble_html: 請使用您在 <strong>%{domain}</strong> 的帳號密碼登入。若您的帳號託管於其他伺服器，您將無法在此登入。
       title: 登入 %{domain}
