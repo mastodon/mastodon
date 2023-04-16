@@ -42,8 +42,8 @@ jobs:
       - name: Check for missing strings in English JSON
         run: |
           yarn build:development
-          yarn manage:translations
-          git diff --exit-code -- app/javascript/mastodon/locales/defaultMessages.json app/javascript/mastodon/locales/en.json
+          yarn manage:translations en
+          git diff --exit-code
 
       - name: Check locale file normalization
         run: bundle exec i18n-tasks check-normalized

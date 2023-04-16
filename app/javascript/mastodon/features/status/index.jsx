@@ -69,6 +69,7 @@ const messages = defineMessages({
   redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.' },
   revealAll: { id: 'status.show_more_all', defaultMessage: 'Show more for all' },
   hideAll: { id: 'status.show_less_all', defaultMessage: 'Show less for all' },
+  statusTitleWithAttachments: { id: 'status.title.with_attachments', defaultMessage: '{user} posted {attachmentCount, plural, one {an attachment} other {{attachmentCount} attachments}}' },
   detailedStatus: { id: 'status.detailed_status', defaultMessage: 'Detailed conversation view' },
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
@@ -166,13 +167,14 @@ const truncate = (str, num) => {
   }
 };
 
-const titleFromStatus = status => {
+const titleFromStatus = (intl, status) => {
   const displayName = status.getIn(['account', 'display_name']);
   const username = status.getIn(['account', 'username']);
-  const prefix = displayName.trim().length === 0 ? username : displayName;
+  const user = displayName.trim().length === 0 ? username : displayName;
   const text = status.get('search_index');
+  const attachmentCount = status.get('media_attachments').size;
 
-  return `${prefix}: "${truncate(text, 30)}"`;
+  return text ? `${user}: "${truncate(text, 30)}"` : intl.formatMessage(messages.statusTitleWithAttachments, { user, attachmentCount });
 };
 
 class Status extends ImmutablePureComponent {
@@ -670,7 +672,7 @@ class Status extends ImmutablePureComponent {
         </ScrollContainer>
 
         <Helmet>
-          <title>{titleFromStatus(status)}</title>
+          <title>{titleFromStatus(intl, status)}</title>
           <meta name='robots' content={(isLocal && isIndexable) ? 'all' : 'noindex'} />
         </Helmet>
       </Column>

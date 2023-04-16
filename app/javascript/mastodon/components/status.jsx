@@ -541,7 +541,7 @@ class Status extends ImmutablePureComponent {
               expanded={!status.get('hidden')}
               onExpandedToggle={this.handleExpandedToggle}
               onTranslate={this.handleTranslate}
-              collapsable
+              collapsible
               onCollapsedToggle={this.handleCollapsedToggle}
             />
 
