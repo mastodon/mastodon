@@ -124,8 +124,6 @@ is:
       removed_header_msg: Tókst að fjarlægja forsíðumynd notandans %{username}
       resend_confirmation:
         already_confirmed: Þessi notandi hefur þegar verið staðfestur
-        send: Senda staðfestingartölvupóst aftur
-        success: Það tókst að senda staðfestingartölvupóst!
       reset: Endurstilla
       reset_password: Endurstilla lykilorð
       resubscribe: Gerast áskrifandi aftur
@@ -987,7 +985,6 @@ is:
       prefix_invited_by_user: "@%{name} býður þér að taka þátt á þessum Mastodon-vefþjóni!"
       prefix_sign_up: Skráðu þig á Mastodon strax í dag!
       suffix: Með notandaaðgangi geturðu fylgst með fólki, sent inn færslur og skipst á skilaboðum við notendur á hvaða Mastodon-vefþjóni sem er, auk margs fleira!
-    didnt_get_confirmation: Fékkstu ekki leiðbeiningar um hvernig eigi að staðfesta aðganginn?
     dont_have_your_security_key: Ertu ekki með öryggislykilinn þinn?
     forgot_password: Gleymdirðu lykilorðinu?
     invalid_reset_password_token: Teikn fyrir endurstillingu lykilorðs er ógilt eða útrunnið. Biddu um nýtt teikn.
@@ -1005,7 +1002,6 @@ is:
       saml: SAML
     register: Nýskrá
     registration_closed: "%{instance} samþykkir ekki nýja meðlimi"
-    resend_confirmation: Senda leiðbeiningar vegna staðfestingar aftur
     reset_password: Endursetja lykilorð
     rules:
       accept: Samþykkja
@@ -1014,10 +1010,6 @@ is:
       title: Nokkrar grunnreglur.
     security: Öryggi
     set_new_password: Stilla nýtt lykilorð
-    setup:
-      email_below_hint_html: Ef tölvupóstfangið hér fyrir neðan er rangt, skaltu breyta því hér og fá nýjan staðfestingarpóst.
-      email_settings_hint_html: Staðfestingarpósturinn var sendur til %{email}. Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
-      title: Uppsetning
     sign_in:
       preamble_html: Skráðu þig inn með auðkennum þínum fyrir <strong>%{domain}</strong>. Ef aðgangurinn þinn er hýstur á öðrum netþjóni, muntu ekki geta skráð þig inn hér.
       title: Skrá inn á %{domain}
