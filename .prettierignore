@@ -62,7 +62,8 @@ docker-compose.override.yml
 
 # Ignore locale files
 /app/javascript/mastodon/locales
-/config/locales
+/config/locales/*.yml
+!/config/locales/*en.yml
 
 # Ignore vendored CSS reset
 app/javascript/styles/mastodon/reset.scss

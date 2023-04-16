@@ -10,8 +10,8 @@ on:
       - '.prettier*'
       - '**/*.yaml'
       - '**/*.yml'
-      - '.github/workflows/lint-yml.yml'
       - '!config/locales/*.yml'
+      - 'config/locales/*en.yml'
 
   pull_request:
     paths:
@@ -21,8 +21,8 @@ on:
       - '.prettier*'
       - '**/*.yaml'
       - '**/*.yml'
-      - '.github/workflows/lint-yml.yml'
       - '!config/locales/*.yml'
+      - 'config/locales/*en.yml'
 
 jobs:
   lint:
