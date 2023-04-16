@@ -820,7 +820,7 @@ zh-TW:
         description_html: 這些連結是正在被您伺服器上看到該嘟文之帳號大量分享。這些連結可以幫助您的使用者探索現在世界上正在發生的事情。除非您核准該發行者，連結將不被公開展示。您也可以核准或駁回個別連結。
         disallow: 不允許連結
         disallow_provider: 不允許發行者
-        no_link_selected: 因未選取任何鏈結，所以什麼事都沒發生
+        no_link_selected: 因未選取任何連結，所以什麼事都沒發生
         publishers:
           no_publisher_selected: 因未選取任何發行者，所以什麼事都沒發生
         shared_by_over_week:
@@ -970,7 +970,7 @@ zh-TW:
     delete_account_html: 如果您欲刪除您的帳號，請<a href="%{path}">點擊這裡繼續</a>。您需要再三確認您的操作。
     description:
       prefix_invited_by_user: "@%{name} 邀請您加入這個 Mastodon 伺服器！"
-      prefix_sign_up: 現在就註冊 Mastodon 帳號吧！
+      prefix_sign_up: 馬上註冊 Mastodon 帳號吧！
       suffix: 有了帳號，就可以從任何 Mastodon 伺服器跟隨任何人、發發廢嘟，並且與任何 Mastodon 伺服器的使用者交流，以及更多！
     didnt_get_confirmation: 沒有收到驗證信?
     dont_have_your_security_key: 找不到您的安全金鑰？
@@ -1142,7 +1142,7 @@ zh-TW:
   featured_tags:
     add_new: 新增
     errors:
-      limit: 您所推薦的主題標籤數量已達上限
+      limit: 您所推薦之主題標籤數量已達上限
     hint_html: "<strong>推薦主題標籤是什麼？</strong> 這些主題標籤將顯示於您的公開個人檔案頁，訪客可以藉此閱覽您標示了這些標籤的嘟文，拿來展示創意作品或者長期更新的專案很好用唷！"
   filters:
     contexts:
@@ -1326,7 +1326,7 @@ zh-TW:
       subject: 由 %{name} 發起的投票已結束
     reblog:
       body: 您的嘟文被 %{name} 轉嘟：
-      subject: "%{name} 轉嘟了您的嘟文"
+      subject: "%{name} 已轉嘟您的嘟文"
       title: 新的轉嘟
     status:
       subject: "%{name} 剛剛嘟文"
@@ -1472,7 +1472,7 @@ zh-TW:
     development: 開發者
     edit_profile: 編輯個人檔案
     export: 匯出
-    featured_tags: 推薦標籤
+    featured_tags: 推薦主題標籤
     import: 匯入
     import_and_export: 匯入及匯出
     migrate: 帳號搬遷
@@ -1594,7 +1594,7 @@ zh-TW:
     otp: 驗證應用程式
     recovery_codes: 備份備用驗證碼
     recovery_codes_regenerated: 成功產生新的備用驗證碼
-    recovery_instructions_html: 若您的手機無法使用，您可以使用下列任意一個備用驗證碼來重新獲得帳號的訪問權。<strong>請妥善保管好您的備用驗證碼</strong>（例如，可以將它們列印出來，與您的其他重要文件放在一起）。
+    recovery_instructions_html: 若您的手機無法使用，您可以使用下列任意一個備用驗證碼來重新獲得帳號的存取權。<strong>請妥善保管好您的備用驗證碼</strong>（例如，可以將它們列印出來，與您的其他重要文件放在一起）。
     webauthn: 安全金鑰
   user_mailer:
     appeal_approved:
@@ -1662,7 +1662,7 @@ zh-TW:
     follow_limit_reached: 您無法跟隨多於 %{limit} 個人
     go_to_sso_account_settings: 前往您的身分提供商 (identity provider) 之帳號設定
     invalid_otp_token: 兩階段認證碼不正確
-    otp_lost_help_html: 如果您無法訪問這兩者，可以透過 %{email} 與我們聯繫
+    otp_lost_help_html: 如果您無法存取這兩者，您可以透過 %{email} 與我們聯繫
     seamless_external_login: 由於您是由外部系統登入，所以不能設定密碼與電子郵件。
     signed_in_as: 目前登入的帳號：
   verification:

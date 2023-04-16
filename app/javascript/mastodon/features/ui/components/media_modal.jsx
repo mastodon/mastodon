@@ -190,7 +190,7 @@ class MediaModal extends ImmutablePureComponent {
             src={image.get('url')}
             width={width}
             height={height}
-            key={image.get('preview_url')}
+            key={image.get('url')}
             alt={description}
             lang={language}
             onClick={this.toggleNavigation}

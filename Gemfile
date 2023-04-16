@@ -5,7 +5,7 @@ ruby '>= 2.7.0', '< 3.3.0'
 
 gem 'pkg-config', '~> 1.5'
 
-gem 'puma', '~> 6.1'
+gem 'puma', '~> 6.2'
 gem 'rails', '~> 6.1.7'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
@@ -17,7 +17,7 @@ gem 'makara', '~> 0.5'
 gem 'pghero'
 gem 'dotenv-rails', '~> 2.8'
 
-gem 'aws-sdk-s3', '~> 1.119', require: false
+gem 'aws-sdk-s3', '~> 1.120', require: false
 gem 'fog-core', '<= 2.4.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'kt-paperclip', '~> 7.1', github: 'kreeti/kt-paperclip', ref: '11abf222dc31bff71160a1d138b445214f434b2b'
@@ -28,7 +28,7 @@ gem 'addressable', '~> 2.8'
 gem 'bootsnap', '~> 1.16.0', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
-gem 'chewy', '~> 7.2'
+gem 'chewy', '~> 7.3'
 gem 'devise', '~> 4.9'
 gem 'devise-two-factor', '~> 4.0'
 
@@ -36,7 +36,7 @@ group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
 end
 
-gem 'net-ldap', '~> 0.17'
+gem 'net-ldap', '~> 0.18'
 gem 'omniauth-cas', '~> 2.0'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth_openid_connect', '~> 0.6.1'
@@ -118,7 +118,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.38'
+  gem 'capybara', '~> 3.39'
   gem 'climate_control'
   gem 'faker', '~> 3.1'
   gem 'json-schema', '~> 3.0'

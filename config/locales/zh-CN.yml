@@ -307,12 +307,12 @@ zh-CN:
       unpublished_msg: 公告已取消发布！
       updated_msg: 公告已成功更新！
     custom_emojis:
-      assign_category: 指定分类
+      assign_category: 指定类别
       by_domain: 域名
       copied_msg: 已成功将表情复制到本站
       copy: 复制
       copy_failed_msg: 无法将表情复制到本站
-      create_new_category: 新建分类
+      create_new_category: 新建类别
       created_msg: 表情添加成功！
       delete: 删除
       destroyed_msg: 表情删除成功！
@@ -954,7 +954,7 @@ zh-CN:
   applications:
     created: 应用创建成功
     destroyed: 应用删除成功
-    logout: 登出
+    logout: 退出登录
     regenerate_token: 重置访问令牌
     token_regenerated: 访问令牌重置成功
     warning: 一定小心，千万不要把它分享给任何人！
@@ -978,7 +978,7 @@ zh-CN:
     link_to_webauth: 使用你的安全密钥设备
     log_in_with: 通过外部服务登录
     login: 登录
-    logout: 登出
+    logout: 退出登录
     migrate_account: 迁移到另一个账户
     migrate_account_html: 如果你希望引导他人关注另一个账号，请<a href="%{path}">点击这里进行设置</a>。
     or_log_in_with: 或通过外部服务登录
@@ -1157,7 +1157,7 @@ zh-CN:
       title: 编辑过滤器
     errors:
       deprecated_api_multiple_keywords: 这些参数不能从此应用程序更改，因为它们应用于一个以上的过滤关键字。 使用较新的应用程序或网页界面。
-      invalid_context: 过滤器场景没有或无效
+      invalid_context: 提供的过滤器环境没有或无效
     index:
       contexts: 在 %{contexts} 中的过滤器
       delete: 删除
@@ -1175,7 +1175,7 @@ zh-CN:
       save: 保存新过滤器
       title: 添加新的过滤器
     statuses:
-      back_to_filter: 返回至过滤器
+      back_to_filter: 返回过滤器
       batch:
         remove: 从过滤器中移除
       index:

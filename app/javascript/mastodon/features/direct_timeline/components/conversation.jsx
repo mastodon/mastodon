@@ -165,7 +165,7 @@ class Conversation extends ImmutablePureComponent {
               onClick={this.handleClick}
               expanded={!lastStatus.get('hidden')}
               onExpandedToggle={this.handleShowMore}
-              collapsable
+              collapsible
             />
 
             {lastStatus.get('media_attachments').size > 0 && (

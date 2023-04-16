@@ -2941,7 +2941,6 @@ $ui-header-height: 55px;
     width: 85%;
     height: 100%;
     pointer-events: none;
-    user-drag: none;
     user-select: none;
   }
 
@@ -4340,6 +4339,7 @@ a.status-card.compact:hover {
 .follow_requests-unlocked_explanation {
   background: darken($ui-base-color, 4%);
   contain: initial;
+  flex-grow: 0;
 }
 
 .error-column {
@@ -6685,7 +6685,7 @@ a.status-card.compact:hover {
         content: '';
         position: absolute;
         bottom: 0;
-        inset-inline-start: 50%;
+        left: 50%;
         width: 0;
         height: 0;
         transform: translateX(-50%);
@@ -6963,7 +6963,8 @@ noscript {
 }
 
 .moved-account-banner,
-.follow-request-banner {
+.follow-request-banner,
+.account-memorial-banner {
   padding: 20px;
   background: lighten($ui-base-color, 4%);
   display: flex;
@@ -6996,6 +6997,10 @@ noscript {
 
 .follow-request-banner .button {
   width: 100%;
+}
+
+.account-memorial-banner__message {
+  margin-bottom: 0;
 }
 
 .column-inline-form {

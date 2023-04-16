@@ -65,7 +65,7 @@ class StatusContent extends React.PureComponent {
     onExpandedToggle: PropTypes.func,
     onTranslate: PropTypes.func,
     onClick: PropTypes.func,
-    collapsable: PropTypes.bool,
+    collapsible: PropTypes.bool,
     onCollapsedToggle: PropTypes.func,
     languages: ImmutablePropTypes.map,
     intl: PropTypes.object,
@@ -112,10 +112,10 @@ class StatusContent extends React.PureComponent {
     }
 
     if (status.get('collapsed', null) === null && onCollapsedToggle) {
-      const { collapsable, onClick } = this.props;
+      const { collapsible, onClick } = this.props;
 
       const collapsed =
-          collapsable
+          collapsible
           && onClick
           && node.clientHeight > MAX_HEIGHT
           && status.get('spoiler_text').length === 0;

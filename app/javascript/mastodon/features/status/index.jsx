@@ -16,7 +16,6 @@ import {
   translateStatus,
   undoStatusTranslation,
 } from '../../actions/statuses';
-import MissingIndicator from '../../components/missing_indicator';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 import DetailedStatus from './components/detailed_status';
 import ActionBar from './components/action_bar';
@@ -50,7 +49,6 @@ import { initBoostModal } from '../../actions/boosts';
 import { initReport } from '../../actions/reports';
 import { makeGetStatus, makeGetPictureInPicture } from '../../selectors';
 import ScrollContainer from 'mastodon/containers/scroll_container';
-import ColumnBackButton from '../../components/column_back_button';
 import ColumnHeader from '../../components/column_header';
 import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
@@ -62,6 +60,7 @@ import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
 import Icon from 'mastodon/components/icon';
 import { Helmet } from 'react-helmet';
+import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -70,6 +69,7 @@ const messages = defineMessages({
   redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.' },
   revealAll: { id: 'status.show_more_all', defaultMessage: 'Show more for all' },
   hideAll: { id: 'status.show_less_all', defaultMessage: 'Show less for all' },
+  statusTitleWithAttachments: { id: 'status.title.with_attachments', defaultMessage: '{user} posted {attachmentCount, plural, one {an attachment} other {{attachmentCount} attachments}}' },
   detailedStatus: { id: 'status.detailed_status', defaultMessage: 'Detailed conversation view' },
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
@@ -167,13 +167,14 @@ const truncate = (str, num) => {
   }
 };
 
-const titleFromStatus = status => {
+const titleFromStatus = (intl, status) => {
   const displayName = status.getIn(['account', 'display_name']);
   const username = status.getIn(['account', 'username']);
-  const prefix = displayName.trim().length === 0 ? username : displayName;
+  const user = displayName.trim().length === 0 ? username : displayName;
   const text = status.get('search_index');
+  const attachmentCount = status.get('media_attachments').size;
 
-  return `${prefix}: "${truncate(text, 30)}"`;
+  return text ? `${user}: "${truncate(text, 30)}"` : intl.formatMessage(messages.statusTitleWithAttachments, { user, attachmentCount });
 };
 
 class Status extends ImmutablePureComponent {
@@ -584,19 +585,16 @@ class Status extends ImmutablePureComponent {
 
     if (status === null) {
       return (
-        <Column>
-          <ColumnBackButton multiColumn={multiColumn} />
-          <MissingIndicator />
-        </Column>
+        <BundleColumnError multiColumn={multiColumn} errorType='routing' />
       );
     }
 
     if (ancestorsIds && ancestorsIds.size > 0) {
-      ancestors = <div>{this.renderChildren(ancestorsIds)}</div>;
+      ancestors = <>{this.renderChildren(ancestorsIds)}</>;
     }
 
     if (descendantsIds && descendantsIds.size > 0) {
-      descendants = <div>{this.renderChildren(descendantsIds)}</div>;
+      descendants = <>{this.renderChildren(descendantsIds)}</>;
     }
 
     const isLocal = status.getIn(['account', 'acct'], '').indexOf('@') === -1;
@@ -674,7 +672,7 @@ class Status extends ImmutablePureComponent {
         </ScrollContainer>
 
         <Helmet>
-          <title>{titleFromStatus(status)}</title>
+          <title>{titleFromStatus(intl, status)}</title>
           <meta name='robots' content={(isLocal && isIndexable) ? 'all' : 'noindex'} />
         </Helmet>
       </Column>
