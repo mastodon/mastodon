@@ -121,8 +121,6 @@ th:
       removed_header_msg: เอาภาพส่วนหัวของ %{username} ออกสำเร็จ
       resend_confirmation:
         already_confirmed: ผู้ใช้นี้ได้รับการยืนยันอยู่แล้ว
-        send: ส่งอีเมลยืนยันใหม่
-        success: ส่งอีเมลยืนยันสำเร็จ!
       reset: รีเซ็ต
       reset_password: ตั้งรหัสผ่านใหม่
       resubscribe: บอกรับใหม่
@@ -969,7 +967,6 @@ th:
       prefix_invited_by_user: "@%{name} เชิญคุณเข้าร่วมเซิร์ฟเวอร์ Mastodon นี้!"
       prefix_sign_up: ลงทะเบียนใน Mastodon วันนี้!
       suffix: ด้วยบัญชี คุณจะสามารถติดตามผู้คน โพสต์การอัปเดต และแลกเปลี่ยนข้อความกับผู้ใช้จากเซิร์ฟเวอร์ Mastodon และอื่น ๆ!
-    didnt_get_confirmation: ไม่ได้รับคำแนะนำการยืนยัน?
     dont_have_your_security_key: ไม่มีกุญแจความปลอดภัยของคุณ?
     forgot_password: ลืมรหัสผ่านของคุณ?
     invalid_reset_password_token: โทเคนการตั้งรหัสผ่านใหม่ไม่ถูกต้องหรือหมดอายุแล้ว โปรดขอโทเคนใหม่
@@ -987,7 +984,6 @@ th:
       saml: SAML
     register: ลงทะเบียน
     registration_closed: "%{instance} ไม่ได้กำลังเปิดรับสมาชิกใหม่"
-    resend_confirmation: ส่งคำแนะนำการยืนยันใหม่
     reset_password: ตั้งรหัสผ่านใหม่
     rules:
       accept: ยอมรับ
@@ -996,10 +992,6 @@ th:
       title: กฎพื้นฐานบางประการ
     security: ความปลอดภัย
     set_new_password: ตั้งรหัสผ่านใหม่
-    setup:
-      email_below_hint_html: หากที่อยู่อีเมลด้านล่างไม่ถูกต้อง คุณสามารถเปลี่ยนที่อยู่อีเมลที่นี่และรับอีเมลยืนยันใหม่
-      email_settings_hint_html: ส่งอีเมลยืนยันไปยัง %{email} แล้ว หากที่อยู่อีเมลนั้นไม่ถูกต้อง คุณสามารถเปลี่ยนที่อยู่อีเมลได้ในการตั้งค่าบัญชี
-      title: การตั้งค่า
     sign_in:
       preamble_html: ลงชื่อเข้าด้วยข้อมูลประจำตัว <strong>%{domain}</strong> ของคุณ หากบัญชีของคุณได้รับการโฮสต์ในเซิร์ฟเวอร์อื่น คุณจะไม่สามารถเข้าสู่ระบบได้ที่นี่
       title: ลงชื่อเข้า %{domain}
