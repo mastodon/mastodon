@@ -124,6 +124,8 @@ tr:
       removed_header_msg: '%{username} hesabının başlık resmi başarıyla kaldırıldı'
       resend_confirmation:
         already_confirmed: Bu kullanıcı zaten onaylandı
+        send: Onaylama bağlantısını tekrar gönder
+        success: Onaylama bağlantısı başarıyla gönderildi!
       reset: Sıfırla
       reset_password: Parolayı sıfırla
       resubscribe: Yeniden abone ol
@@ -985,6 +987,7 @@ tr:
       prefix_invited_by_user: "@%{name} sizi bu Mastodon sunucusuna katılmaya davet ediyor!"
       prefix_sign_up: Bugün Mastodon'a kaydolun!
       suffix: Bir hesapla, kişileri takip edebilir, güncellemeler gönderebilir, herhangi bir Mastodon sunucusundan kullanıcılarla mesaj alışverişinde bulunabilir ve daha birçok şey yapabilirsin!
+    didnt_get_confirmation: Onaylama bağlantısını almadınız mı?
     dont_have_your_security_key: Güvenlik anahtarınız yok mu?
     forgot_password: Parolanızı mı unuttunuz?
     invalid_reset_password_token: Parola sıfırlama belirteci geçersiz veya süresi dolmuş. Lütfen yeni bir tane talep edin.
@@ -997,11 +1000,17 @@ tr:
     migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsan, <a href="%{path}">buradan yapılandırabilirsin</a>.
     or_log_in_with: 'Veya şununla oturum açın:'
     privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">Gizlilik politikasını</a> okudum ve kabul ettim
+    progress:
+      confirm: E-postayı Onayla
+      details: Ayrıntılarınız
+      review: İncelememiz
+      rules: Kabul kuralları
     providers:
       cas: CAS
       saml: SAML
     register: Kaydol
     registration_closed: "%{instance} yeni üyeler kabul etmemektedir"
+    resend_confirmation: Onaylama bağlantısını tekrar gönder
     reset_password: Parolayı sıfırla
     rules:
       accept: Onayla
@@ -1010,10 +1019,17 @@ tr:
       title: Bazı temel kurallar.
     security: Güvenlik
     set_new_password: Yeni parola belirle
+    setup:
+      email_below_hint_html: İstenmeyenler dizininize bakın veya başka bir onay bağlantısı isteyin. Eğer yanlışsa e-posta adresinizi de düzeltebilirsiniz.
+      email_settings_hint_html: '%{email} adresinizi doğrulamak için size gönderdiğimiz bağlantıya tıklayın. Biz burada bekliyoruz.'
+      link_not_received: Bağlantı gelmedi mi?
+      new_confirmation_instructions_sent: Birkaç dakika içerisinde onaylama bağlantısını içeren yeni bir e-posta alacaksınız!
+      title: Gelen kutunuzu kontrol edin
     sign_in:
       preamble_html: <strong>%{domain}</strong> kimlik bilgilerinizi kullanarak giriş yapın. Eğer hesabınız başka bir sunucuda barındırılıyorsa, burada giriş yapamazsınız.
       title: '%{domain} giriş yapın'
     sign_up:
+      manual_review: '%{domain} kayıtları moderatörler tarafından manuel olarak inceleniyor. Kaydınızı işlememizi kolaylaştırmak için kendiniz ve %{domain} sunucusundan neden hesap istediğiniz hakkında biraz bilgi verin.'
       preamble: Bu Mastodon sunucusu üzerinden bir hesap ile ağdaki herhangi bir kişiyi, hesabı hangi sunucuda saklanırsa saklansın, takip edebilirsiniz.
       title: '%{domain} için kurulumunuzu yapalım.'
     status:
