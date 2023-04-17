@@ -124,6 +124,8 @@ fy:
       removed_header_msg: It fuortsmiten fan de omslachfoto fan %{username} is slagge
       resend_confirmation:
         already_confirmed: Dizze brûker is al befêstige
+        send: Befêstigingskeppeling opnij ferstjoere
+        success: Befêstigingskeppeling mei sukses ferstjoerd!
       reset: Opnij ynstelle
       reset_password: Wachtwurd opnij ynstelle
       resubscribe: Opnij abonnearje
@@ -985,6 +987,7 @@ fy:
       prefix_invited_by_user: "@%{name} nûget jo hjirby út om in account oan te meitsjen op dizze Mastodon-server!"
       prefix_sign_up: Registrearje jo hjoed noch op Mastodon!
       suffix: Mei in account binne jo yn steat om minsken te folgjen, berjochten te pleatsen en út te wikseljen mei minsken dy’t op oare Mastodon-servers binne en mear!
+    didnt_get_confirmation: Gjin befêstigingskeppeling ûntfongen?
     dont_have_your_security_key: Hawwe jo jo befeiligingskaai net by de hân?
     forgot_password: Wachtwurd ferjitten?
     invalid_reset_password_token: De koade om jo wachtwurd opnij yn te stellen is ferrûn. Freegje in nije oan.
@@ -997,11 +1000,17 @@ fy:
     migrate_account_html: Wannear’t jo dizze account nei in oare account trochferwize wolle, kinne jo <a href="%{path}">dit hjir ynstelle</a>.
     or_log_in_with: Of oanmelde mei
     privacy_policy_agreement_html: Ik haw it <a href="%{privacy_policy_path}" target="_blank">privacybelied</a> lêzen en gean dêrmei akkoard
+    progress:
+      confirm: E-mailadres werhelje
+      details: Jo gegevens
+      review: Us beoardieling
+      rules: Regels akseptearje
     providers:
       cas: CAS
       saml: SAML
     register: Registrearje
     registration_closed: "%{instance} lit gjin nije brûkers ta"
+    resend_confirmation: Befêstigingskeppeling opnij ferstjoere
     reset_password: Wachtwurd opnij ynstelle
     rules:
       accept: Akseptearje
@@ -1010,10 +1019,17 @@ fy:
       title: Inkelde basisrigels.
     security: Befeiliging
     set_new_password: Nij wachtwurd ynstelle
+    setup:
+      email_below_hint_html: Kontrolearje jo map Net-winske, of freegje in nije befêstigingskeppeling oan. Jo kinne jo e-mailadres wizigje as it ferkeard is.
+      email_settings_hint_html: Klik op de keppeling dy’t wy jo stjoerd hawwe om %{email} te ferifiearjen. Wy wachtsje wol even.
+      link_not_received: Gjin keppeling krigen?
+      new_confirmation_instructions_sent: Jo ûntfange binnen inkelde minuten in nij e-mailberjocht mei de befêstigingskeppeling!
+      title: Kontrolearje jo Postfek YN
     sign_in:
       preamble_html: Meld jo oan mei de oanmeldgegevens fan <strong>%{domain}</strong>. As jo account op in oare server stiet, kinne jo hjir net oanmelde.
       title: Oanmelde op %{domain}
     sign_up:
+      manual_review: Ynskriuwingen op %{domain} wurde hânmjittich troch de moderator beoardiele. Skriuw wat oer josels en wêrom jo in account wolle op %{domain} om ús te helpen jo registraasje te ferwurkjen.
       preamble: Jo kinne mei in Mastodon-account elkenien yn it netwurk folgen, wêr’t dizze persoan ek in account hat.
       title: Litte wy jo account op %{domain} ynstelle.
     status:
