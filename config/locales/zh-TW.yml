@@ -121,6 +121,8 @@ zh-TW:
       removed_header_msg: 已成功刪除 %{username} 的封面圖片
       resend_confirmation:
         already_confirmed: 此使用者已被確認
+        send: 重新傳送確認連結
+        success: 已成功傳送確認連結！
       reset: 重設
       reset_password: 重設密碼
       resubscribe: 重新訂閱
@@ -967,6 +969,7 @@ zh-TW:
       prefix_invited_by_user: "@%{name} 邀請您加入這個 Mastodon 伺服器！"
       prefix_sign_up: 馬上註冊 Mastodon 帳號吧！
       suffix: 有了帳號，就可以從任何 Mastodon 伺服器跟隨任何人、發發廢嘟，並且與任何 Mastodon 伺服器的使用者交流，以及更多！
+    didnt_get_confirmation: 沒有收到確認連結？
     dont_have_your_security_key: 找不到您的安全金鑰？
     forgot_password: 忘記密碼？
     invalid_reset_password_token: 密碼重設 token 無效或已過期。請重新設定密碼。
@@ -979,11 +982,17 @@ zh-TW:
     migrate_account_html: 如果您希望引導他人跟隨另一個帳號，請 <a href="%{path}">到這裡設定</a>。
     or_log_in_with: 或透過其他方式登入
     privacy_policy_agreement_html: 我已閱讀且同意 <a href="%{privacy_policy_path}" target="_blank">隱私權政策</a>
+    progress:
+      confirm: 確認電子郵件
+      details: 您的個人資料
+      review: 我們的審閱
+      rules: 接受規則
     providers:
       cas: CAS
       saml: SAML
     register: 註冊
     registration_closed: "%{instance} 現在不開放新成員"
+    resend_confirmation: 重新傳送確認連結
     reset_password: 重設密碼
     rules:
       accept: 接受
@@ -992,10 +1001,17 @@ zh-TW:
       title: 一些基本守則。
     security: 登入資訊
     set_new_password: 設定新密碼
+    setup:
+      email_below_hint_html: 請檢查您的垃圾郵件資料夾，或是請求另一個。如果是錯的，您可以更正您的電子郵件地址。
+      email_settings_hint_html: 請點擊我們寄給您連結以驗證 %{email}。我們將於此稍候。
+      link_not_received: 無法取得連結嗎？
+      new_confirmation_instructions_sent: 您將會在幾分鐘之內收到新的包含確認連結的電子郵件！
+      title: 檢查您的收件匣
     sign_in:
       preamble_html: 請使用您在 <strong>%{domain}</strong> 的帳號密碼登入。若您的帳號託管於其他伺服器，您將無法在此登入。
       title: 登入 %{domain}
     sign_up:
+      manual_review: '%{domain} 上的註冊由我們的版主進行人工審核。為協助我們處理您的註冊，請寫一些關於您自己的資訊以及您想要在 %{domain} 上註冊帳號的原因。'
       preamble: 於此 Mastodon 伺服器擁有帳號的話，您將能跟隨聯邦宇宙網路中任何一份子，無論他們的帳號託管於何處。
       title: 讓我們一起設定 %{domain} 吧！
     status:
