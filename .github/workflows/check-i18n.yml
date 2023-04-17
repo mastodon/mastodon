@@ -42,7 +42,7 @@ jobs:
       - name: Check for missing strings in English JSON
         run: |
           yarn build:development
-          yarn manage:translations
+          yarn manage:translations en
           git diff --exit-code
 
       - name: Check locale file normalization

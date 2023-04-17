@@ -90,10 +90,6 @@ export function FollowRequests () {
   return import(/* webpackChunkName: "flavours/glitch/async/follow_requests" */'flavours/glitch/features/follow_requests');
 }
 
-export function GenericNotFound () {
-  return import(/* webpackChunkName: "flavours/glitch/async/generic_not_found" */'flavours/glitch/features/generic_not_found');
-}
-
 export function FavouritedStatuses () {
   return import(/* webpackChunkName: "flavours/glitch/async/favourited_statuses" */'flavours/glitch/features/favourited_statuses');
 }

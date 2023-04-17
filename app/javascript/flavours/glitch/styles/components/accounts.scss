@@ -388,7 +388,7 @@
         content: '';
         position: absolute;
         bottom: 0;
-        inset-inline-start: 50%;
+        left: 50%;
         width: 0;
         height: 0;
         transform: translateX(-50%);
@@ -770,7 +770,8 @@
 }
 
 .moved-account-banner,
-.follow-request-banner {
+.follow-request-banner,
+.account-memorial-banner {
   padding: 20px;
   background: lighten($ui-base-color, 4%);
   display: flex;
@@ -803,4 +804,8 @@
 
 .follow-request-banner .button {
   width: 100%;
+}
+
+.account-memorial-banner__message {
+  margin-bottom: 0;
 }

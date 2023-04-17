@@ -13,9 +13,9 @@ import MediaItem from './components/media_item';
 import HeaderContainer from 'flavours/glitch/features/account_timeline/containers/header_container';
 import ScrollContainer from 'flavours/glitch/containers/scroll_container';
 import LoadMore from 'flavours/glitch/components/load_more';
-import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
+import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
@@ -166,9 +166,7 @@ class AccountGallery extends ImmutablePureComponent {
 
     if (!isAccount) {
       return (
-        <Column>
-          <MissingIndicator />
-        </Column>
+        <BundleColumnError multiColumn={multiColumn} errorType='routing' />
       );
     }
 

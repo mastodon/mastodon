@@ -442,33 +442,41 @@ class Status < ApplicationRecord
     super || build_status_stat
   end
 
-  # Hack to use a "INSERT INTO ... SELECT ..." query instead of "INSERT INTO ... VALUES ..." query
+  # This is a hack to ensure that no reblogs of discarded statuses are created,
+  # as this cannot be enforced through database constraints the same way we do
+  # for reblogs of deleted statuses.
+  #
+  # To achieve this, we redefine the internal method responsible for issuing
+  # the "INSERT" statement and replace the "INSERT INTO ... VALUES ..." query
+  # with an "INSERT INTO ... SELECT ..." query with a "WHERE deleted_at IS NULL"
+  # clause on the reblogged status to ensure consistency at the database level.
+  #
+  # Otherwise, the code is kept as close as possible to ActiveRecord::Persistence
+  # code, and actually calls it if we are not handling a reblog.
   def self._insert_record(values)
-    if values.is_a?(Hash) && values['reblog_of_id'].present?
-      primary_key = self.primary_key
-      primary_key_value = nil
+    return super unless values.is_a?(Hash) && values['reblog_of_id'].present?
 
-      if primary_key
-        primary_key_value = values[primary_key]
+    primary_key = self.primary_key
+    primary_key_value = nil
 
-        if !primary_key_value && prefetch_primary_key?
-          primary_key_value = next_sequence_value
-          values[primary_key] = primary_key_value
-        end
+    if primary_key
+      primary_key_value = values[primary_key]
+
+      if !primary_key_value && prefetch_primary_key?
+        primary_key_value = next_sequence_value
+        values[primary_key] = primary_key_value
       end
-
-      # The following line is where we differ from stock ActiveRecord implementation
-      im = _compile_reblog_insert(values)
-
-      # Since we are using SELECT instead of VALUES, a non-error `nil` return is possible.
-      # For our purposes, it's equivalent to a foreign key constraint violation
-      result = connection.insert(im, "#{self} Create", primary_key || false, primary_key_value)
-      raise ActiveRecord::InvalidForeignKey, "(reblog_of_id)=(#{values['reblog_of_id']}) is not present in table \"statuses\"" if result.nil?
-
-      result
-    else
-      super
     end
+
+    # The following line is where we differ from stock ActiveRecord implementation
+    im = _compile_reblog_insert(values)
+
+    # Since we are using SELECT instead of VALUES, a non-error `nil` return is possible.
+    # For our purposes, it's equivalent to a foreign key constraint violation
+    result = connection.insert(im, "#{self} Create", primary_key || false, primary_key_value)
+    raise ActiveRecord::InvalidForeignKey, "(reblog_of_id)=(#{values['reblog_of_id']}) is not present in table \"statuses\"" if result.nil?
+
+    result
   end
 
   def self._compile_reblog_insert(values)
