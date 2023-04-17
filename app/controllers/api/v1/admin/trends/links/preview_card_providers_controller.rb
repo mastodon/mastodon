@@ -38,10 +38,6 @@ class Api::V1::Admin::Trends::Links::PreviewCardProvidersController < Api::BaseC
 
   private
 
-  def enabled?
-    current_user&.can?(:manage_taxonomies)
-  end
-
   def set_providers
     @providers = PreviewCardProvider.all.to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
   end
