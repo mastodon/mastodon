@@ -6,11 +6,9 @@ class Api::V1::Admin::Trends::StatusesController < Api::V1::Trends::StatusesCont
   before_action -> { authorize_if_got_token! :'admin:read' }, only: :index
   before_action -> { authorize_if_got_token! :'admin:write' }, except: :index
 
-  after_action :verify_authorized
+  after_action :verify_authorized, except: :index
 
   def index
-    authorize [:admin, :status], :index?
-
     if current_user&.can?(:manage_taxonomies)
       render json: @statuses, each_serializer: REST::Admin::Trends::StatusSerializer
     else

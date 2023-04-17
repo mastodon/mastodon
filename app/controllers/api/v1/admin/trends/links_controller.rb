@@ -6,11 +6,9 @@ class Api::V1::Admin::Trends::LinksController < Api::V1::Trends::LinksController
   before_action -> { authorize_if_got_token! :'admin:read' }, only: :index
   before_action -> { authorize_if_got_token! :'admin:write' }, except: :index
 
-  after_action :verify_authorized
+  after_action :verify_authorized, except: :index
 
   def index
-    authorize :preview_card, :index?
-
     if current_user&.can?(:manage_taxonomies)
       render json: @links, each_serializer: REST::Admin::Trends::LinkSerializer
     else
