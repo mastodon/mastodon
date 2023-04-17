@@ -126,6 +126,9 @@ class About extends React.PureComponent {
               Ad-free, surveillance-free
               <br />
               <span className='bullet'>»</span>
+              Private photo-sharing, just for your followers
+              <br />
+              <span className='bullet'>»</span>
               Real people&mdash;no influencers, bots, or companies
               <br />
               <span className='bullet'>»</span>
