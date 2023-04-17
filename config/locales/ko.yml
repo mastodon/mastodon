@@ -799,10 +799,10 @@ ko:
         message_html: '%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요'
       upload_check_privacy_error:
         action: 더 많은 정보를 보려면 여기를 확인하세요.
-        message_html: "<strong>웹 서버가 잘못 구성되었습니다. 사용자의 프라이버시에 위협이 됩니다.</strong>"
+        message_html: "<strong>웹서버가 잘못 설정되어있습니다. 사용자의 개인정보가 위험한 상태입니다.</strong>"
       upload_check_privacy_error_object_storage:
         action: 더 많은 정보를 보려면 여기를 확인하세요
-        message_html: "<strong>오브젝트 스토리지가 잘못 구성되었습니다. 사용자의 프라이버시에 위협이 됩니다.</strong>"
+        message_html: "<strong>오브젝트 스토리지가 잘못 설정되어 있습니다. 사용자의 개인정보가 위험한 상태입니다.</strong>"
     tags:
       review: 심사 상태
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
@@ -969,7 +969,7 @@ ko:
       prefix_invited_by_user: "@%{name}님이 마스토돈 서버에 초대했습니다!"
       prefix_sign_up: 마스토돈에 가입하세요!
       suffix: 계정 하나로 사람들을 팔로우 하고, 게시물을 작성하며 마스토돈을 포함한 다른 어떤 서버의 사용자와도 메시지를 주고 받을 수 있습니다!
-    didnt_get_confirmation: 확인 링크를 못받았나요?
+    didnt_get_confirmation: 확인 링크를 못 받았나요?
     dont_have_your_security_key: 보안 키가 없습니까?
     forgot_password: 암호를 잊었나요?
     invalid_reset_password_token: 암호 리셋 토큰이 올바르지 못하거나 기간이 만료되었습니다. 다시 요청해주세요.
@@ -981,15 +981,18 @@ ko:
     migrate_account: 계정 옮기기
     migrate_account_html: 이 계정을 다른 계정으로 리디렉션 하길 원하는 경우 <a href="%{path}">여기</a>에서 설정할 수 있습니다.
     or_log_in_with: 다른 방법으로 로그인 하려면
-    privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">개인정보 보호정책</a>을 읽었고 동의합니다
+    privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">개인정보처리방침</a>을 읽고 동의합니다
     progress:
-      confirm: 전자우편 확인하기
+      confirm: 이메일 확인
       details: 세부사항
+      review: 심사 결과
+      rules: 규정을 수락합니다.
     providers:
       cas: CAS
       saml: SAML
     register: 등록하기
     registration_closed: "%{instance}는 새로운 가입을 받지 않고 있습니다"
+    resend_confirmation: 확인 링크 다시 보내기
     reset_password: 암호 재설정
     rules:
       accept: 수락
@@ -999,11 +1002,16 @@ ko:
     security: 보안
     set_new_password: 새 암호 설정
     setup:
-      title: 수신함 체크하기
+      email_below_hint_html: 스팸 폴더를 확인해 보거나, 다시 요청할 수 있습니다. 만약 이메일 주소를 잘못 입력했다면 수정할 수 있습니다.
+      email_settings_hint_html: '%{email}을 인증하기 위해 우리가 보낸 링크를 누르세요. 여기서 기다리겠습니다.'
+      link_not_received: 링크를 못 받으셨나요?
+      new_confirmation_instructions_sent: 확인 링크가 담긴 이메일이 몇 분 안에 도착할것입니다!
+      title: 수신함 확인하기
     sign_in:
       preamble_html: <strong>%{domain}</strong>의 계정 정보를 이용해 로그인 하세요. 만약 내 계정이 다른 서버에 존재한다면, 여기서는 로그인 할 수 없습니다.
       title: '%{domain}에 로그인'
     sign_up:
+      manual_review: '%{domain} 가입은 중재자들의 심사를 거쳐 진행됩니다. 가입 절차를 원활하게 하기 위해, 간단한 자기소개와 왜 %{domain}에 계정을 만들려고 하는지 적어주세요.'
       preamble: 이 마스토돈 서버의 계정을 통해, 네트워크에 속한 다른 사람들을, 그들이 어떤 서버에 있든 팔로우 할 수 있습니다.
       title: '%{domain}에 가입하기 위한 정보들을 입력하세요.'
     status:
@@ -1031,7 +1039,7 @@ ko:
     confirm: 계속
     hint_html: "<strong>팁:</strong> 한 시간 동안 다시 암호를 묻지 않을 것입니다."
     invalid_password: 잘못된 암호
-    prompt: 계속하려면 암호를 확인하세요.
+    prompt: 계속하려면 암호를 확인하세요
   crypto:
     errors:
       invalid_key: 유효하지 않은 Ed25519 또는 Curve25519 키
@@ -1455,7 +1463,7 @@ ko:
       windows_mobile: 윈도우 모바일
       windows_phone: 윈도우 폰
     revoke: 취소
-    revoke_success: 세션을 성공적으로 취소하였습니다.
+    revoke_success: 세션을 성공적으로 취소하였습니다
     title: 세션
     view_authentication_history: 내 계정에 대한 인증 이력 보기
   settings:
