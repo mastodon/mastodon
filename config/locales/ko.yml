@@ -121,6 +121,8 @@ ko:
       removed_header_msg: 성공적으로 %{username}의 헤더 이미지를 삭제하였습니다
       resend_confirmation:
         already_confirmed: 이 사용자는 이미 확인되었습니다
+        send: 확인 링크 다시 보내기
+        success: 확인 링크를 잘 보냈습니다!
       reset: 초기화
       reset_password: 암호 초기화
       resubscribe: 다시 구독
@@ -967,6 +969,7 @@ ko:
       prefix_invited_by_user: "@%{name}님이 마스토돈 서버에 초대했습니다!"
       prefix_sign_up: 마스토돈에 가입하세요!
       suffix: 계정 하나로 사람들을 팔로우 하고, 게시물을 작성하며 마스토돈을 포함한 다른 어떤 서버의 사용자와도 메시지를 주고 받을 수 있습니다!
+    didnt_get_confirmation: 확인 링크를 못받았나요?
     dont_have_your_security_key: 보안 키가 없습니까?
     forgot_password: 암호를 잊었나요?
     invalid_reset_password_token: 암호 리셋 토큰이 올바르지 못하거나 기간이 만료되었습니다. 다시 요청해주세요.
@@ -979,6 +982,9 @@ ko:
     migrate_account_html: 이 계정을 다른 계정으로 리디렉션 하길 원하는 경우 <a href="%{path}">여기</a>에서 설정할 수 있습니다.
     or_log_in_with: 다른 방법으로 로그인 하려면
     privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">개인정보 보호정책</a>을 읽었고 동의합니다
+    progress:
+      confirm: 전자우편 확인하기
+      details: 세부사항
     providers:
       cas: CAS
       saml: SAML
@@ -992,6 +998,8 @@ ko:
       title: 몇 개의 규칙이 있습니다.
     security: 보안
     set_new_password: 새 암호 설정
+    setup:
+      title: 수신함 체크하기
     sign_in:
       preamble_html: <strong>%{domain}</strong>의 계정 정보를 이용해 로그인 하세요. 만약 내 계정이 다른 서버에 존재한다면, 여기서는 로그인 할 수 없습니다.
       title: '%{domain}에 로그인'
