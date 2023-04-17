@@ -1,5 +1,6 @@
 import React from 'react';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { clearSearch } from 'mastodon/actions/search';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Column from 'mastodon/components/column';
@@ -24,6 +25,10 @@ const mapStateToProps = state => ({
   isSearching: state.getIn(['search', 'submitted']) || !showTrends,
 });
 
+const mapDispatchToProps = dispatch => ({
+  onLoadClear: () => dispatch(clearSearch()),
+});
+
 class Explore extends React.PureComponent {
 
   static contextTypes = {
@@ -35,6 +40,7 @@ class Explore extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     multiColumn: PropTypes.bool,
     isSearching: PropTypes.bool,
+    onLoadClear: PropTypes.func.isRequired,
   };
 
   handleHeaderClick = () => {
@@ -44,6 +50,10 @@ class Explore extends React.PureComponent {
   setRef = c => {
     this.column = c;
   };
+
+  componentWillUnmount () {
+    this.props.onLoadClear();
+  }
 
   render() {
     const { intl, multiColumn, isSearching } = this.props;
@@ -106,4 +116,4 @@ class Explore extends React.PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(Explore));
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Explore));
