@@ -318,4 +318,114 @@ RSpec.describe Mastodon::AccountsCLI do
       end
     end
   end
+
+  describe '#delete' do
+    context 'when both USERNAME and --email are provided' do
+      let(:user) { Fabricate(:user) }
+      let(:arguments) { [user.account.username] }
+      let(:options) { { email: user.email } }
+
+      it 'returns an error message' do
+        expect { described_class.new.invoke(:delete, arguments, options) }
+          .to output(
+            a_string_including('Use username or --email, not both')
+          ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when neither USERNAME nor --email are provided' do
+      it 'returns an error message' do
+        expect { described_class.new.invoke(:delete) }
+          .to output(
+            a_string_including('No username provided')
+          ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when USERNAME is provided' do
+      let(:user) { Fabricate(:user) }
+      let(:arguments) { [user.account.username] }
+
+      it 'deletes user successfully' do
+        described_class.new.invoke(:delete, arguments)
+
+        deleleted_user = Account.find_local(user.account.username)&.user
+
+        expect(deleleted_user).to be_nil
+      end
+
+      context 'with --dry-run option' do
+        let(:options) { { dry_run: true } }
+
+        it 'does not delete the user' do
+          described_class.new.invoke(:delete, arguments, options)
+
+          expect(user.reload).to be_present
+        end
+
+        it 'outputs (DRY RUN) message' do
+          expect { described_class.new.invoke(:delete, arguments, options) }
+            .to output(
+              a_string_including('OK (DRY RUN)')
+            ).to_stdout
+        end
+      end
+
+      context 'when given USERNAME is not found' do
+        let(:arguments) { ['non_exitent_username'] }
+
+        it 'returns an error message' do
+          expect { described_class.new.invoke(:delete, arguments) }
+            .to output(
+              a_string_including('No user with such username')
+            ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+    end
+
+    context 'when --email is provided' do
+      let(:user) { Fabricate(:user) }
+      let(:options) { { email: user.email } }
+
+      it 'deletes user successfully' do
+        described_class.new.invoke(:delete, nil, options)
+
+        deleleted_user = Account.find_local(user.account.username)&.user
+
+        expect(deleleted_user).to be_nil
+      end
+
+      context 'with --dry-run option' do
+        let(:options) { { email: user.email, dry_run: true } }
+
+        it 'does not delete the user' do
+          described_class.new.invoke(:delete, nil, options)
+
+          expect(user.reload).to be_present
+        end
+
+        it 'outputs (DRY RUN) message' do
+          expect { described_class.new.invoke(:delete, nil, options) }
+            .to output(
+              a_string_including('OK (DRY RUN)')
+            ).to_stdout
+        end
+      end
+
+      context 'when given email address is not found' do
+        let(:options) { { email: '404@404.com' } }
+
+        it 'returns an error message' do
+          expect { described_class.new.invoke(:delete, nil, options) }
+            .to output(
+              a_string_including('No user with such email')
+            ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+    end
+  end
 end
