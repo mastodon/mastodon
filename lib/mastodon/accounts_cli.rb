@@ -189,9 +189,10 @@ module Mastodon
       user.disabled = true if options[:disable]
       user.approved = true if options[:approve]
       user.otp_required_for_login = false if options[:disable_2fa]
-      user.confirm if options[:confirm]
 
       if user.save
+        user.confirm if options[:confirm]
+
         say('OK', :green)
         say("New password: #{password}") if options[:reset_password]
       else
