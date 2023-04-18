@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
     service_unavailable
   end
 
-  before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
+  before_action :store_referrer, except: :raise_not_found, if: :devise_controller?
   before_action :require_functional!, if: :user_signed_in?
 
   before_action :set_cache_control_defaults
@@ -58,8 +58,15 @@ class ApplicationController < ActionController::Base
     !authorized_fetch_mode?
   end
 
-  def store_current_location
-    store_location_for(:user, request.url) unless [:json, :rss].include?(request.format&.to_sym)
+  def store_referrer
+    return if request.referer.blank?
+
+    redirect_uri = URI(request.referer)
+    return if redirect_uri.path.start_with?('/auth')
+
+    stored_url = redirect_uri.to_s if redirect_uri.host == request.host && redirect_uri.port == request.port
+
+    store_location_for(:user, stored_url)
   end
 
   def require_functional!
