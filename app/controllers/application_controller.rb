@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
   helper_method :sso_account_settings
   helper_method :whitelist_mode?
   helper_method :body_class_string
+  helper_method :skip_csrf_meta_tags?
 
   rescue_from ActionController::ParameterMissing, Paperclip::AdapterRegistry::NoHandlerError, with: :bad_request
   rescue_from Mastodon::NotPermittedError, with: :forbidden
@@ -63,6 +64,10 @@ class ApplicationController < ActionController::Base
 
   def require_functional!
     redirect_to edit_user_registration_path unless current_user.functional?
+  end
+
+  def skip_csrf_meta_tags?
+    false
   end
 
   def after_sign_out_path_for(_resource_or_scope)
