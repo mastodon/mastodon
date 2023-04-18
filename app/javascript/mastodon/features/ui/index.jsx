@@ -51,12 +51,12 @@ import {
   Lists,
   Directory,
   Explore,
-  FollowRecommendations,
+  Onboarding,
   About,
   PrivacyPolicy,
 } from './util/async-components';
 import initialState, { me, owner, singleUserMode, showTrends, trendsAsLanding } from '../../initial_state';
-import { closeOnboarding, INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
+import { INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
 import Header from './components/header';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
@@ -192,7 +192,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
           <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
-          <WrappedRoute path='/start' component={FollowRecommendations} content={children} />
+          <WrappedRoute path='/start' exact component={Onboarding} content={children} />
           <WrappedRoute path='/directory' component={Directory} content={children} />
           <WrappedRoute path={['/explore', '/search']} component={Explore} content={children} />
           <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
@@ -389,7 +389,6 @@ class UI extends React.PureComponent {
     // On first launch, redirect to the follow recommendations page
     if (signedIn && this.props.firstLaunch) {
       this.context.router.history.replace('/start');
-      this.props.dispatch(closeOnboarding());
     }
 
     if (signedIn) {
