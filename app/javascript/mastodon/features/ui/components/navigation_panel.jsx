@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
+import { clearSearch } from 'mastodon/actions/search';
 import { Link } from 'react-router-dom';
 import Logo from 'mastodon/components/logo';
 import { timelinePreview, showTrends } from 'mastodon/initial_state';
@@ -59,7 +60,7 @@ class NavigationPanel extends React.Component {
         )}
 
         {showTrends ? (
-          <ColumnLink transparent to='/explore' icon='hashtag' text={intl.formatMessage(messages.explore)} />
+          <ColumnLink transparent to='/explore' icon='hashtag' text={intl.formatMessage(messages.explore)} onClick={clearSearch()} />
         ) : (
           <ColumnLink transparent to='/search' icon='search' text={intl.formatMessage(messages.search)} />
         )}

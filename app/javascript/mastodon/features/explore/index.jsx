@@ -1,6 +1,5 @@
 import React from 'react';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { clearSearch } from 'mastodon/actions/search';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Column from 'mastodon/components/column';
@@ -23,10 +22,6 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   layout: state.getIn(['meta', 'layout']),
   isSearching: state.getIn(['search', 'submitted']) || !showTrends,
-});
-
-const mapDispatchToProps = dispatch => ({
-  onLoadClear: () => dispatch(clearSearch()),
 });
 
 class Explore extends React.PureComponent {
@@ -116,4 +111,4 @@ class Explore extends React.PureComponent {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Explore));
+export default connect(mapStateToProps)(injectIntl(Explore));
