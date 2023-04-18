@@ -11,7 +11,7 @@ el:
       one: Ακόλουθος
       other: Ακόλουθοι
     following: Ακολουθείτε
-    instance_actor_flash: Αυτός ο λογαριασμός είναι εικονικός και χρησιμοποιείται για να αντιπροσωπεύει τον ίδιο τον διακομιστή και όχι κάποιον μεμονωμένο χρήστη. Χρησιμοποιείται για ομοσπονδιακούς σκοπούς και δεν πρέπει να ανασταλεί.
+    instance_actor_flash: Αυτός ο λογαριασμός είναι εικονικός και χρησιμοποιείται για να αντιπροσωπεύει τον ίδιο τον διακομιστή και όχι κάποιον μεμονωμένο χρήστη. Χρησιμοποιείται για σκοπούς συναλλαγών και δεν πρέπει να ανασταλεί.
     last_active: τελευταία ενεργός/ή
     link_verified_on: Η ιδιοκτησία αυτού του συνδέσμου ελέγχθηκε στις %{date}
     nothing_here: Δεν υπάρχει τίποτα εδώ!
@@ -53,8 +53,8 @@ el:
       confirming: Προς επιβεβαίωση
       custom: Προσαρμοσμένο
       delete: Διαγραφή δεδομένων
-      deleted: Διαγραμμένοι
-      demote: Υποβίβαση
+      deleted: Διαγεγραμμένοι
+      demote: Υποβιβασμός
       destroyed_msg: "Τα δεδομένα του/της %{username} εκκρεμούν για άμεση διαγραφή"
       disable: Πάγωμα
       disable_sign_in_token_auth: Απενεργοποίηση επαλήθευσης μέσω email
@@ -80,7 +80,7 @@ el:
       location:
         all: Όλες
         local: Τοπική
-        remote: Απομακρυσμένα
+        remote: Απομακρυσμένη
         title: Τοποθεσία
       login_status: Κατάσταση σύνδεσης
       media_attachments: Συνημμένα πολυμέσα
@@ -108,7 +108,7 @@ el:
       previous_strikes_description_html:
         one: Αυτός ο λογαριασμός έχει <strong>ένα</strong> παράπτωμα.
         other: Αυτός ο λογαριασμός έχει <strong>%{count}</strong> παραπτώματα.
-      promote: Προβίβασε
+      promote: Προαγωγή
       protocol: Πρωτόκολλο
       public: Δημόσιο
       push_subscription_expires: Η εγγραφή PuSH λήγει
@@ -123,7 +123,7 @@ el:
       removed_avatar_msg: Επιτυχής αφαίρεση εικόνας προφίλ του/της %{username}
       removed_header_msg: Επιτυχής αφαίρεση εικόνας κεφαλίδας του/της %{username}
       resend_confirmation:
-        already_confirmed: Ήδη επιβεβαιωμένος χρήστης
+        already_confirmed: Αυτός ο χρήστης έχει ήδη επιβεβαιωθεί
         send: Επανάληψη αποστολής συνδέσμου επιβεβαίωσης
         success: Ο σύνδεσμος επιβεβαίωσης στάλθηκε επιτυχώς!
       reset: Επαναφορά
@@ -179,7 +179,7 @@ el:
         create_announcement: Δημιουργία Ανακοίνωσης
         create_canonical_email_block: Δημιουργία αποκλεισμού e-mail
         create_custom_emoji: Δημιουργία Προσαρμοσμένου Emoji
-        create_domain_allow: Δημιουργία ΑποδεκτούΤομέα
+        create_domain_allow: Δημιουργία Αποδεκτού Τομέα
         create_domain_block: Δημιουργία Αποκλεισμού Τομέα
         create_email_domain_block: Δημουργία Αποκλεισμού Τομέα email
         create_ip_block: Δημιουργία κανόνα IP
@@ -194,7 +194,7 @@ el:
         destroy_email_domain_block: Διαγραφή Αποκλεισμένου Τομέα email
         destroy_instance: Εκκαθάριση Τομέα
         destroy_ip_block: Διαγραφή κανόνα IP
-        destroy_status: Διαγραφή Κατάστασης
+        destroy_status: Διαγραφή Ανάρτησης
         destroy_unavailable_domain: Διαγραφή Μη Διαθέσιμου Τομέα
         destroy_user_role: Καταστροφή Ρόλου
         disable_2fa_user: Απενεργοποίηση 2FA
@@ -286,7 +286,7 @@ el:
         update_ip_block_html: "Ο/Η %{name} άλλαξε τον κανόνα για την IP %{target}"
         update_status_html: "Ο/Η %{name} ενημέρωσε την ανάρτηση του/της %{target}"
         update_user_role_html: "Ο/Η %{name} άλλαξε τον ρόλο %{target}"
-      deleted_account: διαγραμμένος λογαριασμός
+      deleted_account: διαγεγραμμένος λογαριασμός
       empty: Δεν βρέθηκαν αρχεία καταγραφής.
       filter_by_action: Φιλτράρισμα ανά ενέργεια
       filter_by_user: Φιλτράρισμα ανά χρήστη
@@ -331,7 +331,7 @@ el:
       new:
         title: Προσθήκη νέου προσαρμοσμένου emoji
       no_emoji_selected: Δεν άλλαξαν τα emoji καθώς δεν επιλέχθηκε κανένα
-      not_permitted: Δεν επιτρέπεται να κάνετε αυτή την λειτουργία
+      not_permitted: Δεν επιτρέπεται να εκτελέσεις αυτήν την ενέργεια
       overwrite: Αντικατάσταση
       shortcode: Σύντομος κωδικός
       shortcode_hint: Τουλάχιστον 2 χαρακτήρες, μόνο αλφαριθμητικοί και κάτω παύλες
