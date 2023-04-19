@@ -543,7 +543,7 @@ module Mastodon
       if options[:all]
         User.pending.find_each(&:approve!)
         say('OK', :green)
-      elsif options[:number]
+      elsif options[:number]&.positive?
         User.pending.limit(options[:number]).each(&:approve!)
         say('OK', :green)
       elsif username.present?
@@ -557,6 +557,7 @@ module Mastodon
         account.user&.approve!
         say('OK', :green)
       else
+        say('Number must be positive', :red) if options[:number]
         exit(1)
       end
     end
