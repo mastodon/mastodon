@@ -12,7 +12,6 @@ class Api::BaseController < ApplicationController
 
   before_action :require_authenticated_user!, if: :disallow_unauthenticated_api_access?
   before_action :require_not_suspended!
-  before_action :set_cache_control_defaults
 
   protect_from_forgery with: :null_session
 
@@ -146,10 +145,6 @@ class Api::BaseController < ApplicationController
 
   def authorize_if_got_token!(*scopes)
     doorkeeper_authorize!(*scopes) if doorkeeper_token
-  end
-
-  def set_cache_control_defaults
-    response.cache_control.replace(private: true, no_store: true)
   end
 
   def disallow_unauthenticated_api_access?
