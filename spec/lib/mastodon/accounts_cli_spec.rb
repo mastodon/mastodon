@@ -428,4 +428,76 @@ RSpec.describe Mastodon::AccountsCLI do
       end
     end
   end
+
+  describe '#approve' do
+    context 'with --all option' do
+      let(:options) { { all: true } }
+
+      before do
+        users = Fabricate.times(5, :user)
+        users.each { |user| user.update(approved: false) }
+      end
+
+      it 'approves all pending users' do
+        described_class.new.invoke(:approve, nil, options)
+
+        expect(User.pluck(:approved).all?(true)).to be(true)
+      end
+    end
+
+    context 'with --number option' do
+      context 'when number is positive' do
+        let(:options) { { number: 3 } }
+        let(:total_users) { 10 }
+
+        before do
+          users = Fabricate.times(total_users, :user)
+          users.each { |user| user.update(approved: false) }
+        end
+
+        it "approves first 'number' users" do
+          described_class.new.invoke(:approve, nil, options)
+
+          result = User.first(options[:number]).all?(&:approved?)
+
+          expect(result).to be(true)
+        end
+
+        it 'does not approve remaining users' do
+          described_class.new.invoke(:approve, nil, options)
+
+          result = User.last(total_users - options[:number]).all?(&:approved?)
+
+          expect(result).to be(false)
+        end
+      end
+    end
+
+    context 'with USERNAME' do
+      context 'when given USERNAME is found' do
+        let(:user) { Fabricate(:user) }
+        let(:arguments) { [user.account.username] }
+
+        before { user.update(approved: false) }
+
+        it 'approves user successfully' do
+          described_class.new.invoke(:approve, arguments)
+
+          expect(user.reload.approved?).to be(true)
+        end
+      end
+
+      context 'when given USERNAME is not found' do
+        let(:arguments) { ['non_existent_username'] }
+
+        it 'returns an error message' do
+          expect { described_class.new.invoke(:approve, arguments) }
+            .to output(
+              a_string_including('No such accoun')
+            ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+    end
+  end
 end
