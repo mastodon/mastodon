@@ -136,6 +136,8 @@ ar:
       removed_header_msg: تمت إزالة صورة %{username} الرأسية بنجاح
       resend_confirmation:
         already_confirmed: هذا المستخدم مؤكد بالفعل
+        send: إعادة إرسال الرابط الخاص بالتأكيد
+        success: تم إرسال رابط التأكيد بنجاح!
       reset: إعادة التعيين
       reset_password: إعادة ضبط كلمة السر
       resubscribe: إعادة الاشتراك
@@ -827,6 +829,10 @@ ar:
         message_html: لم تقم بتحديد أي قواعد خادم.
       sidekiq_process_check:
         message_html: لا توجد عملية Sidekiq قيد التشغيل لقائمة الانتظار %{value}. يرجى مراجعة إعدادات Sidekiq الخاصة بك
+      upload_check_privacy_error:
+        action: تحقق هنا للمزيد من المعلومات
+      upload_check_privacy_error_object_storage:
+        action: تحقق هنا للمزيد من المعلومات
     tags:
       review: حالة المراجعة
       updated_msg: تم تحديث إعدادات الوسوم بنجاح
@@ -992,6 +998,7 @@ ar:
       prefix_invited_by_user: "يدعوك @%{name} للاتحاق بخادم ماستدون هذا!"
       prefix_sign_up: أنشئ حسابًا على ماستدون اليوم!
       suffix: بفضل حساب، ستكون قادرا على متابعة أشخاص ونشر تحديثات وتبادل رسائل مع مستخدمين مِن أي خادم Mastodon وأكثر!
+    didnt_get_confirmation: لم تستلم رابط تأكيد؟
     dont_have_your_security_key: ليس لديك مفتاح الأمان الخاص بك؟
     forgot_password: نسيت كلمة المرور ؟
     invalid_reset_password_token: رمز إعادة تعيين كلمة المرور غير صالح أو منتهي الصلاحية. يرجى طلب واحد جديد.
@@ -1004,11 +1011,16 @@ ar:
     migrate_account_html: إن كنت ترغب في تحويل هذا الحساب نحو حساب آخَر، يُمكِنُك <a href="%{path}">إعداده هنا</a>.
     or_log_in_with: أو قم بتسجيل الدخول بواسطة
     privacy_policy_agreement_html: لقد قرأتُ وأوافق على سياسة الخصوصية <a href="%{privacy_policy_path}" target="_blank"></a>
+    progress:
+      confirm: تأكيد عنوان البريد الإلكتروني
+      details: تفاصيلك
+      rules: قبول القواعد
     providers:
       cas: CAS
       saml: SAML
     register: إنشاء حساب
     registration_closed: "لا يقبل %{instance} استقبال أعضاء جدد"
+    resend_confirmation: إعادة إرسال رابط التأكيد
     reset_password: إعادة تعيين كلمة المرور
     rules:
       accept: قبول
@@ -1017,6 +1029,12 @@ ar:
       title: بعض القواعد الأساسية.
     security: الأمان
     set_new_password: إدخال كلمة مرور جديدة
+    setup:
+      email_below_hint_html: قم بفحص مجلد البريد المزعج الخاص بك، أو قم بطلب آخر. يمكنك تصحيح عنوان بريدك الإلكتروني إن كان خاطئا.
+      email_settings_hint_html: انقر على الرابط الذي أرسلناه لك للتحقق من %{email}. سننتظر هنا.
+      link_not_received: ألم تحصل على رابط؟
+      new_confirmation_instructions_sent: سوف تتلقى رسالة بريد إلكتروني جديدة مع رابط التأكيد في غضون بضع دقائق!
+      title: تحقَّق من بريدك الوارِد
     sign_in:
       preamble_html: قم بتسجيل الدخول باستخدام بيانات الاعتماد الخاصة بك علي <strong>%{domain}</strong> إذا تم استضافة حسابك على خادم مختلف، فلن تتمكن من تسجيل الدخول هنا.
       title: تسجيل الدخول إلى %{domain}
