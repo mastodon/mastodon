@@ -58,6 +58,7 @@ fa:
         setting_show_application: برنامه‌ای که به کمک آن فرسته می‌زنید، در جزئیات فرسته شما نمایش خواهد یافت
         setting_use_blurhash: سایه‌ها بر اساس رنگ‌های به‌کاررفته در تصویر پنهان‌شده ساخته می‌شوند ولی جزئیات تصویر در آن‌ها آشکار نیست
         setting_use_pending_items: به جای پیش‌رفتن خودکار در فهرست، به‌روزرسانی فهرست نوشته‌ها را پشت یک کلیک پنهان کن
+        username: تنها می‌توانید از حروف، اعداد، و زیرخط استفاده کنید
         whole_word: اگر کلیدواژه فقط دارای حروف و اعداد باشد، تنها وقتی پیدا می‌شود که با کل یک واژه در متن منطبق باشد، نه با بخشی از یک واژه
       domain_allow:
         domain: این دامین خواهد توانست داده‌ها از این سرور را دریافت کند و داده‌های از این دامین در این‌جا پردازش و ذخیره خواهند شد
@@ -72,7 +73,9 @@ fa:
           hide: نهفتن کامل محتوای پالوده، گویی وجود ندارد
           warn: نهفتن محتوای پالوده پشت هشداری که به عنوان پالایه اشاره می‌کند
       form_admin_settings:
+        activity_api_enabled: تعداد بوق‌های منتشرهٔ محلی، کاربران فعال، و کاربران تازه در هر هفته
         backups_retention_period: نگه داشتن بایگانی‌های کاربری برای روزهای مشخّص شده.
+        closed_registrations_message: نمایش داده هنگام بسته بودن ثبت‌نام‌ها
       form_challenge:
         current_password: شما در حال ورود به یک منطقهٔ‌ حفاظت‌شده هستید
       imports:
@@ -85,6 +88,7 @@ fa:
         ip: یک آی‌پی نکارش ۴ یا ۶ وارد کنید. می‌توانید تمامی دامنه‌ای را با استفاده از ساختار CIDR مسدود کنید. مراقب باشید خودتان را بیرون نیندازید!
         severities:
           no_access: انسداد دسترسی به تمامی منابع
+          sign_up_block: ثبت‌نام جدید ممکن نخواهد بود
           sign_up_requires_approval: ثبت‌نام‌های جدید، نیازمند تأییدتان خواهند بود
         severity: بگزنید با درخواست‌ها از این آی‌پی چه شود
       rule:
@@ -96,6 +100,9 @@ fa:
         name: شما تنها می‌توانید بزرگی و کوچکی حروف را تغییر دهید تا مثلاً آن را خواناتر کنید
       user:
         chosen_languages: اگر انتخاب کنید، تنها نوشته‌هایی که به زبان‌های برگزیدهٔ شما نوشته شده‌اند در فهرست نوشته‌های عمومی نشان داده می‌شوند
+      webhook:
+        events: گزینش رویدادها برای فرستادن
+        url: جایی که رویدادها فرستاده می‌شوند
     labels:
       account:
         fields:
@@ -157,6 +164,7 @@ fa:
         phrase: کلیدواژه یا عبارت
         setting_advanced_layout: فعال‌سازی رابط کاربری پیشرفته
         setting_aggregate_reblogs: تقویت‌ها را در خط‌زمانی گروه‌بندی کن
+        setting_always_send_emails: فرستادن همیشگی آگاهی‌های رایانامه‌ای
         setting_auto_play_gif: پخش خودکار تصویرهای متحرک
         setting_boost_modal: نمایش پیغام تأیید پیش از تقویت کردن
         setting_crop_images: در فرسته‌های ناگسترده، تصویرها را به ابعاد ‎۱۶×۹ کوچک کن
@@ -196,12 +204,33 @@ fa:
           hide: نهفتن کامل
           warn: نهفتن با هشدار
       form_admin_settings:
+        activity_api_enabled: انتشار آمار تجمیعی دربارهٔ فعالیت کاربران در API
         backups_retention_period: دورهٔ نگه‌داری بایگانی کاربری
+        bootstrap_timeline_accounts: پیشنهاد همیشگی این حساب‌ها به کاربران جدید
+        closed_registrations_message: پیام سفارشی هنگام در دسترس نبودن ثبت‌نام‌ها
+        content_cache_retention_period: دورهٔ نگه‌داری انبارهٔ محتوا
+        custom_css: سبک CSS سفارشی
+        mascot: نشان سفارشی (قدیمی)
+        media_cache_retention_period: دورهٔ نگه‌داری انبارهٔ رسانه
+        peers_api_enabled: انتشار سیاههٔ کارسازهای کشف شده در API
+        profile_directory: به کار انداختن شاخهٔ نمایه
+        registrations_mode: چه کسانی می‌توانند ثبت‌نام کنند
+        require_invite_text: نیازمند دلیلی برای پیوستن
+        show_domain_blocks: نمایش مسدودیت‌های دامنه
+        show_domain_blocks_rationale: نمایش چرایی مسدودیت دامنه‌ها
+        site_contact_email: رایانامهٔ ارتباطی
+        site_contact_username: نام کاربری ارتباطی
+        site_extended_description: شرح گسترده
+        site_short_description: شرح کارساز
+        site_terms: سیاست محرمانگی
+        site_title: نام کارساز
+        status_page_url: نشانی صفحهٔ وضعیت
         theme: زمینهٔ پیش‌گزیده
         thumbnail: بندانگشتی کارساز
         timeline_preview: اجازهٔ دسترسی بدون تأیید هویت به خط‌زمانی‌های عمومی
         trendable_by_default: اجازهٔ پرطرفدار شدن بدون بازبینی پیشین
         trends: به کار انداختن پرطرفدارها
+        trends_as_landing_page: استفاده از داغ‌ها به عنوان صفحهٔ فرود
       interactions:
         must_be_follower: انسداد آگاهی‌ها از ناپی‌گیران
         must_be_following: انسداد آگاهی‌ها از افرادی که پی نمی‌گیرید
