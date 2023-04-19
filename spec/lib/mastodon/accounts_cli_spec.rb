@@ -500,4 +500,38 @@ RSpec.describe Mastodon::AccountsCLI do
       end
     end
   end
+
+  describe '#backup' do
+    context 'when given USERNAME is not found' do
+      let(:arguments) { ['non_existent_username'] }
+
+      it 'returns an error message' do
+        expect { described_class.new.invoke(:backup, arguments) }
+          .to output(
+            a_string_including('No user with such username')
+          ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when given USERNAME is found' do
+      let(:user) { Fabricate(:user) }
+      let(:arguments) { [user.account.username] }
+
+      it 'creates a backup job' do
+        allow(BackupWorker).to receive(:perform_async).once
+
+        described_class.new.invoke(:backup, arguments)
+
+        expect(BackupWorker).to have_received(:perform_async).once
+      end
+
+      it 'outputs a success message' do
+        expect { described_class.new.invoke(:backup, arguments) }
+          .to output(
+            a_string_including('OK')
+          ).to_stdout
+      end
+    end
+  end
 end
