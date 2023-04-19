@@ -236,8 +236,8 @@ describe StatusesController do
             expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
           end
 
-          it 'returns public Cache-Control header' do
-            expect(response.headers['Cache-Control']).to include 'public'
+          it 'returns private Cache-Control header' do
+            expect(response.headers['Cache-Control']).to include 'private'
           end
 
           it 'returns Content-Type header' do
