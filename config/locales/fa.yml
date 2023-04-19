@@ -643,8 +643,15 @@ fa:
     strikes:
       actions:
         delete_statuses: "%{name} فرستهٔ %{target} را حذف کرد"
+        disable: "%{name} حساب %{target} را منجمد کرد"
+        mark_statuses_as_sensitive: "%{name} فرسته‌های %{target} را به عنوان حسّاس علامت زد"
+        none: "%{name} هشداری به %{target} فرستاد"
+        sensitive: "%{name} حساب %{target} را به عنوان حسّاس علامت زد"
+        silence: "%{name} حساب %{target} را محدود کرد"
+        suspend: "%{name} حساب %{target} را تعلیق کرد"
       appeal_approved: درخواست تجدیدنظر کرد
       appeal_pending: درخواست تجدیدنظر در انتظار
+      appeal_rejected: درخواست تجدیدنظر رد شد
     system_checks:
       database_schema_check:
         message_html: تعداد مهاجرت پایگاه داده در انتظار انجام هستند. لطفا آن‌ها را اجرا کنید تا اطمینان یابید که برنامه مطابق انتظار رفتار خواهد کرد
@@ -776,8 +783,10 @@ fa:
     status:
       account_status: وضعیت حساب
       confirming: در حال انتظار برای کامل شدن تأیید ایمیل.
+      functional: حسابتان کاملاً قابل استفاده است.
       pending: درخواست شما منتظر تأیید مسئولان سایت است و این فرایند ممکن است کمی طول بکشد. اگر درخواست شما پذیرفته شود به شما ایمیلی فرستاده خواهد شد.
       redirecting_to: حساب شما غیرفعال است زیرا هم‌اکنون به %{acct} منتقل شده است.
+      view_strikes: دیدن شکایت‌های گذشته از حسابتان
     too_fast: فرم با سرعت بسیار زیادی فرستاده شد، دوباره تلاش کنید.
     use_security_key: استفاده از کلید امنیتی
   authorize_follow:
@@ -838,13 +847,29 @@ fa:
       username_unavailable: نام کاربری شما برای دیگران غیرقابل دسترس خواهد ماند
   disputes:
     strikes:
+      action_taken: کنش انجام شده
       appeal: درخواست تجدیدنظر
+      appeal_approved: شکایت با موفّقیت تحدیدنظر شد و دیگر معتبر نیست
       appeal_rejected: درخواست تجدیدنظر رد شده است
       appeal_submitted_at: درخواست تجدیدنظر فرستاده شد
+      appealed_msg: درخواست تجدیدنظرتان ثبت شد. اگر پذیرفته شود آگاه خواهید شد.
       appeals:
         submit: فرستادن درخواست تجدیدنظر
+      approve_appeal: پذیرش درخواست تجدیدنظر
+      associated_report: گزارش همراه
+      created_at: مورخه
+      description_html: این‌ها کنش‌های انجام شده روی حسابتان و هشدارهاییند که از سوی مدیران %{instance} به شما فرستاده شده‌اند.
+      recipient: ابلاغی به
+      reject_appeal: رد کردن درخواست تجدیدنظر
+      status: 'فرستهٔ ‪#%{id}‬'
+      status_removed: فرسته از روس سامانه برداشته شده است
+      title: "%{action} در %{date}"
       title_actions:
+        delete_statuses: برداشتن فرسته
+        disable: انجماد حساب
+        mark_statuses_as_sensitive: علامت زدن فرسته به عنوان حسّاس
         none: هشدار
+        sensitive: علامت زدن حساب به عنوان حسّاس
       your_appeal_approved: درخواست تجدیدنظر شما پذیرفته شد
       your_appeal_pending: شما یک درخواست تجدیدنظر فرستادید
       your_appeal_rejected: درخواست تجدیدنظر شما رد شد
@@ -1164,6 +1189,7 @@ fa:
     profile: نمایه
     relationships: پیگیری‌ها و پیگیران
     statuses_cleanup: حذف فرستهٔ خودکار
+    strikes: شکایت‌های مدیریتی
     two_factor_authentication: ورود دومرحله‌ای
     webauthn_authentication: کلیدهای امنیتی
   statuses:
