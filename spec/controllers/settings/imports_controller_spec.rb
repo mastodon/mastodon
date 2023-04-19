@@ -10,9 +10,16 @@ RSpec.describe Settings::ImportsController, type: :controller do
   end
 
   describe 'GET #show' do
-    it 'returns http success' do
+    before do
       get :show
+    end
+
+    it 'returns http success' do
       expect(response).to have_http_status(200)
+    end
+
+    it 'returns private cache control headers' do
+      expect(response.headers['Cache-Control']).to include('private, no-store')
     end
   end
 

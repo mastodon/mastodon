@@ -15,6 +15,10 @@ describe StatusesController do
       expect(session).to be_empty
     end
 
+    it 'returns Vary header' do
+      expect(response.headers['Vary']).to include 'Accept'
+    end
+
     it 'returns public Cache-Control header' do
       expect(response.headers['Cache-Control']).to include 'public'
     end

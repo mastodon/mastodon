@@ -2,15 +2,12 @@
 
 class EmojisController < ApplicationController
   before_action :set_emoji
-  before_action :set_cache_headers
+
+  vary_by -> { 'Signature' if authorized_fetch_mode? }
 
   def show
-    respond_to do |format|
-      format.json do
-        expires_in 3.minutes, public: true
-        render_with_cache json: @emoji, content_type: 'application/activity+json', serializer: ActivityPub::EmojiSerializer, adapter: ActivityPub::Adapter
-      end
-    end
+    expires_in 3.minutes, public: true
+    render_with_cache json: @emoji, content_type: 'application/activity+json', serializer: ActivityPub::EmojiSerializer, adapter: ActivityPub::Adapter
   end
 
   private

@@ -26,23 +26,25 @@ describe Settings::TwoFactorAuthenticationMethodsController do
       describe 'when user has enabled otp' do
         before do
           user.update(otp_required_for_login: true)
+          get :index
         end
 
         it 'returns http success' do
-          get :index
-
           expect(response).to have_http_status(200)
+        end
+
+        it 'returns private cache control headers' do
+          expect(response.headers['Cache-Control']).to include('private, no-store')
         end
       end
 
       describe 'when user has not enabled otp' do
         before do
           user.update(otp_required_for_login: false)
+          get :index
         end
 
         it 'redirects to enable otp' do
-          get :index
-
           expect(response).to redirect_to(settings_otp_authentication_path)
         end
       end
