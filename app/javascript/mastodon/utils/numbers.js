@@ -60,7 +60,6 @@ export function toShortNumber(sourceNumber) {
  * // => 1790
  */
 export function pluralReady(sourceNumber, division) {
-  // eslint-disable-next-line eqeqeq
   if (division == null || division < DECIMAL_UNITS.HUNDRED) {
     return sourceNumber;
   }
