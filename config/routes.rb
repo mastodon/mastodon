@@ -83,6 +83,8 @@ Rails.application.routes.draw do
   }
 
   get '/users/:username', to: redirect('/@%{username}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  get '/users/:username/following', to: redirect('/@%{username}/following'), constraints: lambda { |req| req.format.nil? || req.format.html? }, as: :short_account_following
+  get '/users/:username/followers', to: redirect('/@%{username}/followers'), constraints: lambda { |req| req.format.nil? || req.format.html? }, as: :short_account_followers
   get '/users/:username/statuses/:id', to: redirect('/@%{username}/%{id}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
