@@ -5,6 +5,10 @@ class InstanceActorsController < ApplicationController
 
   vary_by ''
 
+  serialization_scope nil
+
+  skip_before_action :require_functional!
+  skip_before_action :update_user_sign_in
   skip_before_action :check_account_confirmation
   skip_around_action :set_locale
 
