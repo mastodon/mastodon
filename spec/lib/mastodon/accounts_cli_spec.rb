@@ -52,6 +52,8 @@ RSpec.describe Mastodon::AccountsCLI do
       context 'with --approve option' do
         let(:options) { { email: 'tootctl@example.com', approve: true } }
 
+        before { Form::AdminSettings.new(registrations_mode: 'approved').save }
+
         it 'creates a new approved user' do
           described_class.new.invoke(:create, arguments, options)
 
