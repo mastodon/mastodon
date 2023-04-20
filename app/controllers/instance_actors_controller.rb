@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class InstanceActorsController < ApplicationController
-  include AccountControllerConcern
+  include AccountOwnedConcern
+
+  vary_by -> { public_fetch_mode? ? '' : 'Signature' }
 
   skip_before_action :check_account_confirmation
   skip_around_action :set_locale
