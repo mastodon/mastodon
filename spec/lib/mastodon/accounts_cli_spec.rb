@@ -434,11 +434,11 @@ RSpec.describe Mastodon::AccountsCLI do
       let(:options) { { all: true } }
 
       before do
-        users = Fabricate.times(5, :user)
-        users.each { |user| user.update(approved: false) }
+        Form::AdminSettings.new(registrations_mode: 'approved').save
+        Fabricate.times(5, :user)
       end
 
-      it 'approves all pending users' do
+      it 'approves all pending registrations' do
         described_class.new.invoke(:approve, nil, options)
 
         expect(User.pluck(:approved).all?(true)).to be(true)
@@ -451,24 +451,57 @@ RSpec.describe Mastodon::AccountsCLI do
         let(:total_users) { 10 }
 
         before do
-          users = Fabricate.times(total_users, :user)
-          users.each { |user| user.update(approved: false) }
+          Form::AdminSettings.new(registrations_mode: 'approved').save
+          Fabricate.times(total_users, :user)
         end
 
-        it "approves first 'number' users" do
+        it 'approves the N earliest pending registrations' do
           described_class.new.invoke(:approve, nil, options)
 
-          result = User.first(options[:number]).all?(&:approved?)
+          n_earliest_pending_registrations = User.order(created_at: :asc).first(options[:number])
 
-          expect(result).to be(true)
+          expect(n_earliest_pending_registrations.all?(&:approved?)).to be(true)
         end
 
-        it 'does not approve remaining users' do
+        it 'does not approve the remaining pending registrations' do
           described_class.new.invoke(:approve, nil, options)
 
-          result = User.last(total_users - options[:number]).all?(&:approved?)
+          pending_registrations = User.order(created_at: :asc).last(total_users - options[:number])
 
-          expect(result).to be(false)
+          expect(pending_registrations.all?(&:approved?)).to be(false)
+        end
+      end
+
+      context 'when the number is negative' do
+        let(:options) { { number: -1 } }
+
+        it 'returns an error message' do
+          expect { described_class.new.invoke(:approve, nil, options) }
+            .to output(
+              a_string_including('Number must be positive')
+            ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'when number is greater than the number of users' do
+        let(:total_users) { 10 }
+        let(:options) { { number: total_users * 2 } }
+
+        before do
+          Form::AdminSettings.new(registrations_mode: 'approved').save
+          Fabricate.times(total_users, :user)
+        end
+
+        it 'approves all users' do
+          described_class.new.invoke(:approve, nil, options)
+
+          expect(User.pluck(:approved).all?(true)).to be(true)
+        end
+
+        it 'does not raise any error' do
+          expect { described_class.new.invoke(:approve, nil, options) }
+            .to_not raise_error(SystemExit)
         end
       end
     end
