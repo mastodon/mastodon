@@ -91,7 +91,7 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   # The most important thing about `last_inspected` is that any toot older than it is guaranteed
   # not to be kept by the policy regardless of its age.
   def record_last_inspected(last_id)
-    redis.set("account_cleanup:#{account_id}", last_id, ex: 1.week.seconds)
+    redis.set("account_cleanup:#{account_id}", last_id, ex: 2.weeks.seconds)
   end
 
   def last_inspected
