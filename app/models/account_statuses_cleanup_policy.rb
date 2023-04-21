@@ -59,7 +59,7 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   def statuses_to_delete(limit = 50, max_id = nil, min_id = nil)
     scope = account_statuses
     scope.merge!(old_enough_scope(max_id))
-    scope = scope.where(Status.arel_table[:id].gteq(min_id)) if min_id.present?
+    scope = scope.where(id: min_id..) if min_id.present?
     scope.merge!(without_popular_scope) unless min_favs.nil? && min_reblogs.nil?
     scope.merge!(without_direct_scope) if keep_direct?
     scope.merge!(without_pinned_scope) if keep_pinned?
@@ -80,7 +80,7 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   def compute_cutoff_id
     min_id = last_inspected || 0
     max_id = Mastodon::Snowflake.id_at(min_status_age.seconds.ago, with_random: false)
-    subquery = account_statuses.where(Status.arel_table[:id].gteq(min_id)).where(Status.arel_table[:id].lteq(max_id))
+    subquery = account_statuses.where(id: min_id..max_id)
     subquery = subquery.select(:id).reorder(id: :asc).limit(EARLY_SEARCH_CUTOFF)
 
     # We're textually interpolating a subquery here as ActiveRecord seem to not provide
@@ -141,7 +141,7 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
 
     max_id = snowflake_id if max_id.nil? || snowflake_id < max_id
 
-    Status.where(Status.arel_table[:id].lteq(max_id))
+    Status.where(id: ..max_id)
   end
 
   def without_self_fav_scope
