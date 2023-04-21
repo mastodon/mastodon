@@ -29,15 +29,15 @@ const emojifyTextNode = (node, customEmojis) => {
   let i = 0;
 
   for (;;) {
-    let match;
+    let unicode_emoji;
 
-    // Skip to the next potential emoji to replace
+    // Skip to the next potential emoji to replace (either custom emoji or custom emoji :shortcode:
     if (customEmojis === null) {
-      while (i < str.length && !(match = trie.search(str.slice(i)))) {
+      while (i < str.length && !(unicode_emoji = trie.search(str.slice(i)))) {
         i += str.codePointAt(i) < 65536 ? 1 : 2;
       }
     } else {
-      while (i < str.length && str[i] !== ':' && !(match = trie.search(str.slice(i)))) {
+      while (i < str.length && str[i] !== ':' && !(unicode_emoji = trie.search(str.slice(i)))) {
         i += str.codePointAt(i) < 65536 ? 1 : 2;
       }
     }
@@ -48,32 +48,37 @@ const emojifyTextNode = (node, customEmojis) => {
     }
 
     let rend, replacement = null;
-    if (str[i] === ':') { // Potentially the start of a custom emoji shortcode
-      if (!(rend = str.indexOf(':', i + 1) + 1)) {
-        i++;
-        continue; // no pair of ':'
-      }
+    if (str[i] === ':') { // Potentially the start of a custom emoji :shortcode:
+      rend = str.indexOf(':', i + 1) + 1;
 
-      const shortname = str.slice(i, rend);
-
-      if (!(shortname in customEmojis)) {
+      // no matching ending ':', skip
+      if (!rend) {
         i++;
         continue;
       }
 
-      // now got a replacee as ':shortname:'
+      const shortcode = str.slice(i, rend);
+      const custom_emoji = customEmojis[shortcode];
+
+      // not a recognized shortcode, skip
+      if (!custom_emoji) {
+        i++;
+        continue;
+      }
+
+      // now got a replacee as ':shortcode:'
       // if you want additional emoji handler, add statements below which set replacement and return true.
-      const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
+      const filename = autoPlayGif ? custom_emoji.url : custom_emoji.static_url;
       replacement = document.createElement('img');
       replacement.setAttribute('draggable', 'false');
       replacement.setAttribute('class', 'emojione custom-emoji');
-      replacement.setAttribute('alt', shortname);
-      replacement.setAttribute('title', shortname);
+      replacement.setAttribute('alt', shortcode);
+      replacement.setAttribute('title', shortcode);
       replacement.setAttribute('src', filename);
-      replacement.setAttribute('data-original', customEmojis[shortname].url);
-      replacement.setAttribute('data-static', customEmojis[shortname].static_url);
-    } else { // matched to unicode emoji
-      rend = i + match.length;
+      replacement.setAttribute('data-original', custom_emoji.url);
+      replacement.setAttribute('data-static', custom_emoji.static_url);
+    } else { // start of an unicode emoji
+      rend = i + unicode_emoji.length;
 
       // If the matched character was followed by VS15 (for selecting text presentation), skip it.
       if (str.codePointAt(rend - 1) !== VS16 && str.codePointAt(rend) === VS15) {
@@ -81,13 +86,13 @@ const emojifyTextNode = (node, customEmojis) => {
         continue;
       }
 
-      const { filename, shortCode } = unicodeMapping[match];
+      const { filename, shortCode } = unicodeMapping[unicode_emoji];
       const title = shortCode ? `:${shortCode}:` : '';
 
       replacement = document.createElement('img');
       replacement.setAttribute('draggable', 'false');
       replacement.setAttribute('class', 'emojione');
-      replacement.setAttribute('alt', match);
+      replacement.setAttribute('alt', unicode_emoji);
       replacement.setAttribute('title', title);
       replacement.setAttribute('src', `${assetHost}/emoji/${emojiFilename(filename)}.svg`);
     }
