@@ -1,4 +1,3 @@
----
 ja:
   simple_form:
     hints:
@@ -13,7 +12,7 @@ ja:
         include_statuses: ユーザーは取られた制限や警告の原因となった投稿を確認できるようになります
         send_email_notification: ユーザーは自分のアカウントに何が起こったのか説明を受け取ります
         text_html: オプションです。投稿に用いる構文を使うことができます。簡略化のため<a href="%{path}">プリセット警告文を追加</a>することができます
-        type_html: "<strong>%{acct}</strong>さんに対し、何を行うか選択してください"
+        type_html: <strong>%{acct}</strong>さんに対し、何を行うか選択してください
         types:
           disable: ユーザーが自分のアカウントを使用できないようにします。コンテンツを削除したり非表示にすることはありません。
           none: これを使用すると、他の操作をせずにユーザーに警告を送信できます。
@@ -31,7 +30,7 @@ ja:
         text: 一度だけ異議を申し立てることができます
       defaults:
         autofollow: 招待から登録した人が自動的にあなたをフォローするようになります
-        avatar: "%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
+        avatar: '%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます'
         bot: このアカウントは主に自動で動作し、人が見ていない可能性があります
         context: フィルターを適用する対象 (複数選択可)
         current_password: 現在のアカウントのパスワードを入力してください
@@ -40,7 +39,7 @@ ja:
         discoverable: レコメンド、トレンド、その他の機能により、あなたのアカウントを他の人から見つけられるようにします
         email: 確認のメールが送信されます
         fields: プロフィールに表として4つまでの項目を表示することができます
-        header: "%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます"
+        header: '%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます'
         inbox_url: 使用したいリレーサーバーのトップページからURLをコピーします
         irreversible: フィルターが後で削除されても、除外された投稿は元に戻せなくなります
         locale: ユーザーインターフェース、メールやプッシュ通知の言語
@@ -59,6 +58,7 @@ ja:
         setting_show_application: 投稿するのに使用したアプリが投稿の詳細ビューに表示されるようになります
         setting_use_blurhash: ぼかしはメディアの色を元に生成されますが、細部は見えにくくなっています
         setting_use_pending_items: 新着があってもタイムラインを自動的にスクロールしないようにします
+        username: アルファベット大文字と小文字、数字、アンダーバー「_」が使えます
         whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
       domain_allow:
         domain: 登録するとこのサーバーからデータを受信したり、このドメインから受信するデータを処理して保存できるようになります
@@ -66,7 +66,7 @@ ja:
         domain: 電子メールアドレスのドメイン名、または使用されるMXレコードを指定できます。新規登録時にチェックされます。
         with_dns_records: 指定したドメインのDNSレコードを取得し、その結果もメールドメインブロックに登録されます
       featured_tag:
-        name: 最近使用したハッシュタグ
+        name: '最近使用したハッシュタグ'
       filters:
         action: 投稿がフィルタに一致したときに実行するアクションを選択
         actions:
@@ -304,7 +304,7 @@ ja:
       webhook:
         events: 有効なイベント
         url: エンドポイントURL
-    'no': いいえ
+    'no': 'いいえ'
     not_recommended: 非推奨
     recommended: おすすめ
     required:
@@ -313,4 +313,4 @@ ja:
     title:
       sessions:
         webauthn: セキュリティキーを使用してサインインする
-    'yes': はい
+    'yes': 'はい'
