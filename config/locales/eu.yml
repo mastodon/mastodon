@@ -125,8 +125,8 @@ eu:
       removed_header_msg: "%{username} erabiltzailearen goiburuko irudia behar bezala kendu da"
       resend_confirmation:
         already_confirmed: Erabiltzaile hau berretsita dago
-        send: Birbidali baieztapen e-maila
-        success: Baieztapen e-maila ongi bidali da!
+        send: Bidali berrespen-esteka berriro
+        success: Berrespen-esteka ongi bidali da!
       reset: Berrezarri
       reset_password: Berrezarri pasahitza
       resubscribe: Berriro harpidetu
@@ -990,7 +990,7 @@ eu:
       prefix_invited_by_user: "@%{name} erabiltzaileak Mastodon zerbitzari honetara elkartzera gonbidatzen zaitu!"
       prefix_sign_up: Eman izena Mastodon-en!
       suffix: Kontu bat baduzu, jendea jarraitu ahal izango duzu, bidalketak sortu eta Mastodon zein kanpoko zerbitzarietako erabiltzaileekin elkarrizketan aritu!
-    didnt_get_confirmation: Ez dituzu berresteko argibideak jaso?
+    didnt_get_confirmation: Ez al duzu berrespen-esteka jaso?
     dont_have_your_security_key: Ez daukazu zure segurtasun gakoa?
     forgot_password: Pasahitza ahaztu duzu?
     invalid_reset_password_token: Pasahitza berrezartzeko token-a baliogabea da edo iraungitu du. Eskatu beste bat.
@@ -1003,12 +1003,17 @@ eu:
     migrate_account_html: Kontu hau beste batera birbideratu nahi baduzu, <a href="%{path}">hemen konfiguratu</a> dezakezu.
     or_log_in_with: Edo hasi saioa honekin
     privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">Pribatutasun politika</a> irakurri dut eta ados nago
+    progress:
+      confirm: Berretsi eposta
+      details: Zure xehetasunak
+      review: Gure berrikuspena
+      rules: Onartu arauak
     providers:
       cas: CAS
       saml: SAML
     register: Eman izena
     registration_closed: "%{instance} instantziak ez du kide berririk onartzen"
-    resend_confirmation: Birbidali berresteko argibideak
+    resend_confirmation: Bidali berrespen-esteka berriro
     reset_password: Berrezarri pasahitza
     rules:
       accept: Onartu
@@ -1018,13 +1023,16 @@ eu:
     security: Segurtasuna
     set_new_password: Ezarri pasahitza berria
     setup:
-      email_below_hint_html: Beheko e-mail helbidea okerra bada, hemen aldatu dezakezu eta baieztapen e-mail berria jaso.
-      email_settings_hint_html: Baieztamen e-maila %{email} helbidera bidali da. E-mail helbide hori zuzena ez bada, kontuaren ezarpenetan aldatu dezakezu.
-      title: Ezarpena
+      email_below_hint_html: Begiratu zure spameko karpetan, edo eskatu beste bat. Zure helbide elektronikoa zuzen dezakezu oker badago.
+      email_settings_hint_html: Egin klik bidali dizugun estekan %{email} egiaztatzeko. Hementxe itxarongo zaitugu.
+      link_not_received: Ez duzu estekarik jaso?
+      new_confirmation_instructions_sent: Berrespen-esteka duen mezu berri bat jasoko duzu minutu gutxi barru!
+      title: Begiratu zure sarrera-ontzia
     sign_in:
       preamble_html: Zure <strong>%{domain}-(e)ko</strong> egiaztagiriekin saioa hasi. Zure kontua beste zerbitzari batean badago, ezin izango duzu hemen saioa hasi.
       title: "%{domain}-(e)an saioa hasi"
     sign_up:
+      manual_review: "%{domain}-(e)n eginiko izen-emateak gure moderatzaileek eskuz aztertzen dituzte. Zure izen-ematea prozesatzen lagun gaitzazun, idatz ezazu zertxobait zuri buruz eta azaldu zergatik nahi duzun %{domain}-(e)n kontu bat."
       preamble: Mastodon zerbitzari honetako kontu batekin, aukera izango duzu sareko edozein pertsona jarraitzeko, ez dio axola kontua non ostatatua dagoen.
       title: "%{domain} zerbitzariko kontua prestatuko dizugu."
     status:

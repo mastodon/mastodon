@@ -9,9 +9,9 @@ fi:
   accounts:
     follow: Seuraa
     followers:
-      one: Seuraaja
-      other: Seuraajat
-    following: Seuraaja
+      one: seuraaja
+      other: seuraajaa
+    following: seurattu(a)
     instance_actor_flash: Tämä on virtuaalitili, jota käytetään edustamaan itse palvelinta eikä yksittäistä käyttäjää. Sitä käytetään yhdistämistarkoituksiin, eikä sitä tule jäädyttää.
     last_active: viimeksi aktiivinen
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
@@ -19,8 +19,8 @@ fi:
     pin_errors:
       following: Sinun täytyy seurata henkilöä jota haluat tukea
     posts:
-      one: Julkaisu
-      other: Viestit
+      one: viesti
+      other: viestiä
     posts_tab_heading: Viestit
   admin:
     account_actions:
@@ -125,8 +125,8 @@ fi:
       removed_header_msg: Käyttäjän %{username} otsakekuva poistettiin onnistuneesti
       resend_confirmation:
         already_confirmed: Tämä käyttäjä on jo vahvistettu
-        send: Lähetä vahvistusviesti uudelleen
-        success: Vahvistusviesti onnistuneesti lähetetty!
+        send: Lähetä vahvistuslinkki uudelleen
+        success: Vahvistuslinkki on lähetetty!
       reset: Palauta
       reset_password: Palauta salasana
       resubscribe: Tilaa uudelleen
@@ -988,7 +988,7 @@ fi:
       prefix_invited_by_user: "@%{name} kutsuu sinut liittymään tälle Mastodonin palvelimelle!"
       prefix_sign_up: Liity Mastodoniin tänään!
       suffix: Tilillä voit seurata ihmisiä, julkaista päivityksiä ja lähetellä viestejä muille käyttäjille miltä palvelimelta tahansa ja paljon muuta!
-    didnt_get_confirmation: Etkö saanut vahvistusohjeita?
+    didnt_get_confirmation: Etkö saanut vahvistuslinkkiä?
     dont_have_your_security_key: Eikö sinulla ole suojausavainta?
     forgot_password: Unohditko salasanasi?
     invalid_reset_password_token: Salasanan palautustunnus on virheellinen tai vanhentunut. Pyydä uusi.
@@ -1001,12 +1001,17 @@ fi:
     migrate_account_html: Jos haluat ohjata tämän tilin toiseen tiliin, voit <a href="%{path}">asettaa toisen tilin tästä</a>.
     or_log_in_with: Tai käytä kirjautumiseen
     privacy_policy_agreement_html: Olen lukenut ja hyväksynyt <a href="%{privacy_policy_path}" target="_blank">tietosuojakäytännön</a>
+    progress:
+      confirm: Vahvista sähköpostiosoite
+      details: Omat tiedot
+      review: Arvostelumme
+      rules: Hyväksy säännöt
     providers:
       cas: CAS
       saml: SAML
     register: Rekisteröidy
     registration_closed: "%{instance} ei hyväksy uusia jäseniä"
-    resend_confirmation: Lähetä vahvistusohjeet uudestaan
+    resend_confirmation: Lähetä vahvistuslinkki uudelleen
     reset_password: Palauta salasana
     rules:
       accept: Hyväksy
@@ -1016,13 +1021,16 @@ fi:
     security: Tunnukset
     set_new_password: Aseta uusi salasana
     setup:
-      email_below_hint_html: Jos alla oleva sähköpostiosoite on virheellinen, voit muuttaa sitä täällä ja tilata uuden vahvistussähköpostiviestin.
-      email_settings_hint_html: Vahvistussähköposti lähetettiin osoitteeseen %{email}. Jos sähköpostiosoite ei ole oikea, voit vaihtaa sen tilin asetuksista.
-      title: Asetukset
+      email_below_hint_html: Tarkista roskapostikansiosi tai pyydä uusi viesti. Voit korjata sähköpostiosoitteesi, jos se oli väärin.
+      email_settings_hint_html: Napsauta lähettämäämme linkkiä vahvistaaksesi osoitteen %{email}. Odotamme täällä.
+      link_not_received: Etkö saanut linkkiä?
+      new_confirmation_instructions_sent: Saat uuden vahvistuslinkin sisältävän sähköpostiviestin muutaman minuutin sisällä!
+      title: Tarkasta postilaatikkosi
     sign_in:
       preamble_html: Kirjaudu sisään <strong>%{domain}</strong>-tunnuksillasi. Jos tilisi sijaitsee eri palvelimella, et voi sisäänkirjautua täällä.
       title: Kirjaudu palveluun %{domain}
     sign_up:
+      manual_review: Palvelimen %{domain} ylläpito tarkastaa rekisteröitymiset manuaalisesti. Helpottaaksesi rekisteröitymisesi käsittelyä, kirjoita hieman itsestäsi ja miksi haluat tilin palvelimelle %{domain}.
       preamble: Kun sinulla on tili tällä Mastodon-palvelimella, voit seurata kaikkia muita verkossa olevia henkilöitä riippumatta siitä, missä heidän tilinsä on.
       title: Otetaan sinulle käyttöön %{domain}.
     status:

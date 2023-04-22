@@ -131,8 +131,8 @@ sl:
       removed_header_msg: Uspešno odstranjena naslovna slika uporabnika %{username}
       resend_confirmation:
         already_confirmed: Ta uporabnik je že potrjen
-        send: Ponovno pošlji potrditveno e-sporočilo
-        success: Potrditveno e-sporočilo je uspešno poslano!
+        send: Ponovno pošlji potrditveno povezavo
+        success: Potrditvena povezava je uspešno poslana!
       reset: Ponastavi
       reset_password: Ponastavi geslo
       resubscribe: Ponovno se naroči
@@ -1024,7 +1024,7 @@ sl:
       prefix_invited_by_user: "@%{name} vas vabi, da se pridružite temu strežniku Mastodon!"
       prefix_sign_up: Še danes se priključite Mastodonu!
       suffix: Z računom boste lahko sledili osebam, objavljali posodobitve in izmenjevali sporočila z uporabniki s poljubnega strežnika Mastodon in še veliko več!
-    didnt_get_confirmation: Niste prejeli navodil za potrditev?
+    didnt_get_confirmation: Ali niste prejeli potrditvene povezave?
     dont_have_your_security_key: Ali imate svoj varnostni ključ?
     forgot_password: Ste pozabili svoje geslo?
     invalid_reset_password_token: Žeton za ponastavitev gesla je neveljaven ali je potekel. Zahtevajte novo.
@@ -1037,12 +1037,16 @@ sl:
     migrate_account_html: Če želite ta račun preusmeriti na drugega, ga lahko <a href="%{path}">nastavite tukaj</a>.
     or_log_in_with: Ali se prijavite z
     privacy_policy_agreement_html: Prebral_a sem in se strinjam s <a href="%{privacy_policy_path}" target="_blank">pravilnikom o zasebnosti</a>.
+    progress:
+      confirm: Potrdi e-pošto
+      details: Vaši podatki
+      rules: Sprejmi pravila
     providers:
       cas: CAS
       saml: SAML
     register: Vpis
     registration_closed: "%{instance} ne sprejema novih članov"
-    resend_confirmation: Ponovno pošlji navodila za potrditev
+    resend_confirmation: Ponovno pošlji potrditveno povezavo
     reset_password: Ponastavi geslo
     rules:
       accept: Sprejmi
@@ -1052,9 +1056,9 @@ sl:
     security: Varnost
     set_new_password: Nastavi novo geslo
     setup:
-      email_below_hint_html: Če spodnji e-poštni naslov ni pravilen, ga lahko spremenite tukaj in prejmete novo potrditveno e-pošto.
-      email_settings_hint_html: Potrditvena e-pošta je bila poslana na %{email}. Če ta e-poštni naslov ni pravilen, ga lahko spremenite v nastavitvah računa.
-      title: Nastavitev
+      email_settings_hint_html: Kliknite povezavo, ki smo vam jo poslali, da overite %{email}. Počakali bomo.
+      link_not_received: Ali ste prejeli povezavo?
+      title: Preverite svojo dohodno e-pošto
     sign_in:
       preamble_html: Prijavite se s svojimi poverilnicami <strong>%{domain}</strong>. Če vaš račun gostuje na drugem strežniku, se tukaj ne boste mogli prijaviti.
       title: Vpiši se v %{domain}

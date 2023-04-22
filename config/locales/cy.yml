@@ -137,8 +137,8 @@ cy:
       removed_header_msg: Llwyddwyd i ddileu delwedd pennyn %{username}
       resend_confirmation:
         already_confirmed: Mae'r defnyddiwr hwn wedi ei gadarnhau yn barod
-        send: Ail anfon e-bost cadarnhad
-        success: E-bost cadarnhau wedi ei anfon yn llwyddiannus!
+        send: Ail-anfon dolen cadarnhau
+        success: Dolen cadarnhau wedi ei anfon yn llwyddiannus!
       reset: Ailosod
       reset_password: Ailosod cyfrinair
       resubscribe: Ail danysgrifio
@@ -1060,7 +1060,7 @@ cy:
       prefix_invited_by_user: Mae @%{name} yn eich gwahodd i ymuno â'r gweinydd Mastodon hwn!
       prefix_sign_up: Cofrestru ar Mastodon heddiw!
       suffix: Gyda chyfrif, byddwch yn gallu dilyn pobl, postio diweddariadau a chyfnewid negeseuon gyda defnyddwyr o unrhyw weinydd Mastodon, a mwy!
-    didnt_get_confirmation: Heb dderbyn cyfarwyddiadau cadarnhau?
+    didnt_get_confirmation: Heb dderbyn dolen cadarnhau?
     dont_have_your_security_key: Nid oes gennych eich allwedd ddiogelwch?
     forgot_password: Wedi anghofio'ch cyfrinair?
     invalid_reset_password_token: Tocyn ailosod cyfrinair yn annilys neu wedi dod i ben. Gwnewch gais am un newydd, os gwelwch yn dda.
@@ -1073,12 +1073,17 @@ cy:
     migrate_account_html: Os hoffech chi ailgyfeirio'r cyfrif hwn at un gwahanol, mae modd <a href="%{path}">ei ffurfweddu yma</a>.
     or_log_in_with: Neu mewngofnodwch gyda
     privacy_policy_agreement_html: Rwyf wedi darllen ac yn cytuno i'r <a href="%{privacy_policy_path}" target="_blank">polisi preifatrwydd</a>
+    progress:
+      confirm: Cadarnhau'r e-bost
+      details: Eich manylion
+      review: Ein hadolygiad
+      rules: Derbyn rheolau
     providers:
       cas: CAS
       saml: SAML
     register: Cofrestrwch
     registration_closed: Nid yw %{instance} yn derbyn aelodau newydd
-    resend_confirmation: Ailanfon cyfarwyddiadau cadarnhau
+    resend_confirmation: Ail-anfon dolen cadarnhau
     reset_password: Ailosod cyfrinair
     rules:
       accept: Derbyn
@@ -1088,13 +1093,16 @@ cy:
     security: Diogelwch
     set_new_password: Gosod cyfrinair newydd
     setup:
-      email_below_hint_html: Os yw'r cyfeiriad e-bost isod yn anghywir, gallwch ei newid yma a derbyn e-bost cadarnhau newydd.
-      email_settings_hint_html: Anfonwyd yr e-bost cadarnhau at %{email}. Os nad yw'r cyfeiriad e-bost hwnnw'n gywir, gallwch ei newid yng ngosodiadau'r cyfrif.
-      title: Gosodiad
+      email_below_hint_html: Gwiriwch eich ffolder sbam, neu gofynnwch am un arall. Gallwch gywiro eich cyfeiriad e-bost os yw'n anghywir.
+      email_settings_hint_html: Cliciwch ar y ddolen a anfonwyd atoch i wirio %{email}. Byddwn yn aros yma amdanoch.
+      link_not_received: Heb gael dolen?
+      new_confirmation_instructions_sent: Byddwch yn derbyn e-bost newydd gyda'r ddolen cadarnhau ymhen ychydig funudau!
+      title: Gwiriwch eich blwch derbyn
     sign_in:
       preamble_html: Mewngofnodwch gyda'ch manylion <strong>%{domain}</strong>. Os yw eich cyfrif yn cael ei gynnal ar weinydd gwahanol, ni fydd modd i chi fewngofnodi yma.
       title: Mewngofnodi i %{domain}
     sign_up:
+      manual_review: Mae cofrestriadau ar %{domain} yn cael eu hadolygu â llaw gan ein cymedrolwyr. Er mwyn ein helpu i brosesu eich cofrestriad, ysgrifennwch ychydig amdanoch chi'ch hun a pham rydych chi eisiau cyfrif ar %{domain}.
       preamble: Gyda chyfrif ar y gweinydd Mastodon hwn, byddwch yn gallu dilyn unrhyw berson arall ar y rhwydwaith, lle bynnag mae eu cyfrif yn cael ei gynnal.
       title: Gadewch i ni eich gosod ar %{domain}.
     status:

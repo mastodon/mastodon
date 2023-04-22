@@ -125,8 +125,8 @@ hu:
       removed_header_msg: A %{username} fiók fejlécét sikeresen töröltük
       resend_confirmation:
         already_confirmed: Ezt a felhasználót már megerősítették
-        send: Megerősítő e-mail újraküldése
-        success: A megerősítő e-mail sikeresen elküldve!
+        send: Megerősítő hivatkozás újraküldése
+        success: A megerősítő hivatkozás sikeresen elküldésre került!
       reset: Visszaállítás
       reset_password: Jelszó visszaállítása
       resubscribe: Feliratkozás ismét
@@ -988,7 +988,7 @@ hu:
       prefix_invited_by_user: "@%{name} meghív téged, hogy csatlakozz ehhez a Mastodon kiszolgálóhoz."
       prefix_sign_up: Regisztrláj még ma a Mastodonra!
       suffix: Egy fiókkal követhetsz másokat, bejegyzéseket tehetsz közzé, eszmét cserélhetsz más Mastodon szerverek felhasználóival!
-    didnt_get_confirmation: Nem kaptad meg a megerősítési lépéseket?
+    didnt_get_confirmation: Nem kaptál visszaigazoló hivatkozást?
     dont_have_your_security_key: Nincs biztonsági kulcsod?
     forgot_password: Elfelejtetted a jelszavad?
     invalid_reset_password_token: A jelszó-visszaállítási kulcs nem megfelelő vagy lejárt. Kérlek generálj egy újat.
@@ -1001,12 +1001,17 @@ hu:
     migrate_account_html: Ha szeretnéd átirányítani ezt a fiókodat egy másikra, a beállításokat <a href="%{path}">itt találod meg</a>.
     or_log_in_with: Vagy jelentkezz be ezzel
     privacy_policy_agreement_html: Elolvastam és egyetértek az <a href="%{privacy_policy_path}" target="_blank">adatvédemi nyilatkozattal</a>
+    progress:
+      confirm: E-mail-cím megerősítése
+      details: Saját adatok
+      review: A felülvizsgálatunk
+      rules: Szabályok elfogadása
     providers:
       cas: CAS
       saml: SAML
     register: Regisztráció
     registration_closed: "%{instance} nem fogad új tagokat"
-    resend_confirmation: Megerősítési lépések újraküldése
+    resend_confirmation: Megerősítő hivatkozás újraküldése
     reset_password: Jelszó visszaállítása
     rules:
       accept: Elfogadás
@@ -1016,13 +1021,16 @@ hu:
     security: Biztonság
     set_new_password: Új jelszó beállítása
     setup:
-      email_below_hint_html: Ha az alábbi e-mail cím nem megfelelő, itt megváltoztathatod és kaphatsz egy új igazoló e-mailt.
-      email_settings_hint_html: A visszaigazoló e-mailt elküldtük ide %{email}. Ha az e-mail cím nem megfelelő, megváltoztathatod a fiókod beállításainál.
-      title: Beállítás
+      email_below_hint_html: Nézd meg a levélszemét mappát, vagy kérj egy újat. Módosíthatod az e-mail-címet, ha az hibás.
+      email_settings_hint_html: Kattints a hivatkozásra, melyet a(z) %{email} megerősítése céljából küldtünk. Addig várni fogunk.
+      link_not_received: Nem kaptad meg a hivatkozást?
+      new_confirmation_instructions_sent: Néhány perc múlva új e-mailt fogsz kapni a megerősítési hivatkozással.
+      title: Bejövő postaláda ellenőrzése
     sign_in:
       preamble_html: Jelentkezz be a <strong>%{domain}</strong> fiókoddal. Ha másik kiszolgálón található a fiókod, akkor itt nem fogsz tudni belépni.
       title: Jelentkezz be a %{domain}-ra
     sign_up:
+      manual_review: A(z) %{domain} regisztrációi a moderátorok kézi felülvizsgálatán mennek át. Hogy segítsd a regisztráció feldolgozását, írj röviden magadról, és hogy miért szeretnél fiókot a(z) %{domain} oldalon.
       preamble: Egy fiókkal ezen a Mastodon kiszolgálón követhetsz bárkit a hálózaton, függetlenül attól, hogy az illető fiókja melyik kiszolgálón található.
       title: Állítsuk be a fiókod a %{domain} kiszolgálón.
     status:

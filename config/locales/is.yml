@@ -125,8 +125,8 @@ is:
       removed_header_msg: Tókst að fjarlægja forsíðumynd notandans %{username}
       resend_confirmation:
         already_confirmed: Þessi notandi hefur þegar verið staðfestur
-        send: Senda staðfestingartölvupóst aftur
-        success: Það tókst að senda staðfestingartölvupóst!
+        send: Endursenda staðfestingartengil
+        success: Tókst að senda staðfestingartengil!
       reset: Endurstilla
       reset_password: Endurstilla lykilorð
       resubscribe: Gerast áskrifandi aftur
@@ -988,7 +988,7 @@ is:
       prefix_invited_by_user: "@%{name} býður þér að taka þátt á þessum Mastodon-vefþjóni!"
       prefix_sign_up: Skráðu þig á Mastodon strax í dag!
       suffix: Með notandaaðgangi geturðu fylgst með fólki, sent inn færslur og skipst á skilaboðum við notendur á hvaða Mastodon-vefþjóni sem er, auk margs fleira!
-    didnt_get_confirmation: Fékkstu ekki leiðbeiningar um hvernig eigi að staðfesta aðganginn?
+    didnt_get_confirmation: Fékkstu ekki staðfestingartengil?
     dont_have_your_security_key: Ertu ekki með öryggislykilinn þinn?
     forgot_password: Gleymdirðu lykilorðinu?
     invalid_reset_password_token: Teikn fyrir endurstillingu lykilorðs er ógilt eða útrunnið. Biddu um nýtt teikn.
@@ -1001,12 +1001,16 @@ is:
     migrate_account_html: Ef þú vilt endurbeina þessum aðgangi á einhvern annan, geturðu <a href="%{path}">stillt það hér</a>.
     or_log_in_with: Eða skráðu inn með
     privacy_policy_agreement_html: Ég hef lesið og samþykkt <a href="%{privacy_policy_path}" target="_blank">persónuverndarstefnuna</a>
+    progress:
+      confirm: Staðfesta tölvupóstfang
+      details: Nánari upplýsingar þínar
+      rules: Samþykkja reglur
     providers:
       cas: CAS
       saml: SAML
     register: Nýskrá
     registration_closed: "%{instance} samþykkir ekki nýja meðlimi"
-    resend_confirmation: Senda leiðbeiningar vegna staðfestingar aftur
+    resend_confirmation: Endursenda staðfestingartengil
     reset_password: Endursetja lykilorð
     rules:
       accept: Samþykkja
@@ -1016,9 +1020,9 @@ is:
     security: Öryggi
     set_new_password: Stilla nýtt lykilorð
     setup:
-      email_below_hint_html: Ef tölvupóstfangið hér fyrir neðan er rangt, skaltu breyta því hér og fá nýjan staðfestingarpóst.
-      email_settings_hint_html: Staðfestingarpósturinn var sendur til %{email}. Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
-      title: Uppsetning
+      email_settings_hint_html: Ýttu á tengilinn sem við sendum þér til að staðfesta %{email}. Við bíðum á meðan.
+      link_not_received: Fékkstu ekki neinn tengil?
+      title: Athugaðu pósthólfið þitt
     sign_in:
       preamble_html: Skráðu þig inn með auðkennum þínum fyrir <strong>%{domain}</strong>. Ef aðgangurinn þinn er hýstur á öðrum netþjóni, muntu ekki geta skráð þig inn hér.
       title: Skrá inn á %{domain}

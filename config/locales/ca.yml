@@ -125,8 +125,8 @@ ca:
       removed_header_msg: S’ha suprimit amb èxit l’imatge de capçalera de %{username}
       resend_confirmation:
         already_confirmed: Aquest usuari ja està confirmat
-        send: Reenviar el correu electrònic de confirmació
-        success: Correu electrònic de confirmació enviat amb èxit!
+        send: Reenvia l'enllaç de confirmació
+        success: Enllaç de confirmació enviat amb èxit!
       reset: Reinicialitza
       reset_password: Restableix la contrasenya
       resubscribe: Torna a subscriure
@@ -988,7 +988,7 @@ ca:
       prefix_invited_by_user: "@%{name} t'ha invitat a unir-te a aquest servidor de Mastodon!"
       prefix_sign_up: Registra't avui a Mastodon!
       suffix: Amb un compte seràs capaç de seguir persones, publicar i intercanviar missatges amb usuaris de qualsevol servidor de Mastodon i més!
-    didnt_get_confirmation: No has rebut el correu de confirmació?
+    didnt_get_confirmation: No has rebut l'enllaç de confirmació?
     dont_have_your_security_key: No tens la teva clau de seguretat?
     forgot_password: Has oblidat la contrasenya?
     invalid_reset_password_token: L'enllaç de restabliment de la contrasenya no és vàlid o ha caducat. Torna-ho a provar.
@@ -1001,12 +1001,17 @@ ca:
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots <a href="%{path}">configurar aquí</a>.
     or_log_in_with: O inicia sessió amb
     privacy_policy_agreement_html: He llegit i estic d'acord amb la <a href="%{privacy_policy_path}" target="_blank">política de privacitat</a>
+    progress:
+      confirm: Confirma correu electrònic
+      details: Els teus detalls
+      review: La nostra revisió
+      rules: Accepta les normes
     providers:
       cas: CAS
       saml: SAML
     register: Registrar-se
     registration_closed: "%{instance} no accepta nous membres"
-    resend_confirmation: Torna a enviar el correu de confirmació
+    resend_confirmation: Reenvia l'enllaç de confirmació
     reset_password: Restableix la contrasenya
     rules:
       accept: Accepta
@@ -1016,13 +1021,16 @@ ca:
     security: Seguretat
     set_new_password: Estableix una contrasenya nova
     setup:
-      email_below_hint_html: Si l’adreça de correu electrònic següent és incorrecta, podeu canviar-la aquí i rebre un nou correu electrònic de confirmació.
-      email_settings_hint_html: El correu electrònic de confirmació es va enviar a %{email}. Si aquesta adreça de correu electrònic no és correcta, la podeu canviar a la configuració del compte.
-      title: Configuració
+      email_below_hint_html: Verifica la carpeta fe correu brossa o demana'n un altre. Pots corregir la teva adreça de correu electrònic si no és correcte.
+      email_settings_hint_html: Toca l'enllaç que t'hem enviat per a verificar %{email}. Esperarem aquí mateix.
+      link_not_received: No has rebut l'enllaç?
+      new_confirmation_instructions_sent: Rebràs un nou correu electrònic amb l'enllaç de confirmació en pocs minuts!
+      title: Comprova la teva safata d'entrada
     sign_in:
       preamble_html: Inicia sessió amb les teves credencials <strong>%{domain}</strong>. Si el teu compte es troba a un servidor diferent, no podràs iniciar una sessió aquí.
       title: Inicia sessió a %{domain}
     sign_up:
+      manual_review: Els registres a %{domain} passen per una revisió manual dels nostres moderadors. Per ajudar-nos a processar el teu registre, escriu-nos quelcom sobre tu i perquè vols un compte a %{domain}.
       preamble: Amb un compte en aquest servidor Mastodon, podràs seguir qualsevol altre persona de la xarxa, independentment d'on tingui el seu compte.
       title: Anem a configurar-te a %{domain}.
     status:

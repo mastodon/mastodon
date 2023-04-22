@@ -125,8 +125,8 @@ gl:
       removed_header_msg: Eliminada a imaxe de cabeceira de %{username}
       resend_confirmation:
         already_confirmed: Esta usuaria xa está confirmada
-        send: Reenviar o email de confirmación
-        success: Email de confirmación enviado de xeito correcto!
+        send: Reenviar ligazón de confirmación
+        success: Ligazón de confirmación enviada correctamente!
       reset: Restabelecer
       reset_password: Restabelecer contrasinal
       resubscribe: Resubscribir
@@ -988,7 +988,7 @@ gl:
       prefix_invited_by_user: "@%{name} convídate a que te unas a este servidor Mastodon!"
       prefix_sign_up: Rexístrate agora en Mastodon!
       suffix: Ao abrir unha conta, poderás seguir a xente, actualizacións das publicacións e intercambiar mensaxes coas usuarias de calquera servidor de Mastodon e moito máis!
-    didnt_get_confirmation: Non recibiches as instruccións de confirmación?
+    didnt_get_confirmation: Non recibiches a ligazón de confirmación?
     dont_have_your_security_key: "¿Non tes a túa chave de seguridade?"
     forgot_password: Non lembras o contrasinal?
     invalid_reset_password_token: O token para restablecer o contrasinal non é válido ou caducou. Por favor solicita un novo.
@@ -1001,12 +1001,17 @@ gl:
     migrate_account_html: Se queres redirixir esta conta hacia outra diferente, podes <a href="%{path}">facelo aquí</a>.
     or_log_in_with: Ou accede con
     privacy_policy_agreement_html: Lin e acepto a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
+    progress:
+      confirm: Confirmar email
+      details: Detalles
+      review: A nosa revisión
+      rules: Aceptar regras
     providers:
       cas: CAS
       saml: SAML
     register: Crear conta
     registration_closed: "%{instance} non está a aceptar novas usuarias"
-    resend_confirmation: Reenviar as intruccións de confirmación
+    resend_confirmation: Reenviar ligazón de confirmación
     reset_password: Restablecer contrasinal
     rules:
       accept: Aceptar
@@ -1016,13 +1021,16 @@ gl:
     security: Seguranza
     set_new_password: Estabelecer novo contrasinal
     setup:
-      email_below_hint_html: Se o enderezo inferior non é correcto, podes cambialo aquí e recibir un correo de confirmación.
-      email_settings_hint_html: Enviouse un correo de confirmación a %{email}. Se o enderezo non é correcto podes cambialo nos axustes da conta.
-      title: Axustes
+      email_below_hint_html: Mira no cartafol do spam, ou solicita outra. Podes cambiar o enderzo de correo se non é correcto.
+      email_settings_hint_html: Preme na ligazón que che enviamos para verificar %{email}. Agardamos por ti.
+      link_not_received: Non recibiches a ligazón?
+      new_confirmation_instructions_sent: Nuns minutos recibirás un novo correo electrónico coa ligazón de confirmación!
+      title: Mira a caixa de entrada
     sign_in:
       preamble_html: Accede coas túas credenciais en <strong>%{domain}</strong>. Se a túa conta está nun servidor diferente, non podes acceder desde aquí.
       title: Accede a %{domain}
     sign_up:
+      manual_review: As novas contas en %{domain} son comprobadas manualmente pola moderación. Para axudarnos a xestionar o teu rexistro, escribe algo acerca de ti e por que queres unha conta en %{domain}.
       preamble: Cunha conta neste servidor Mastodon poderás seguir a calquera outra persoa na rede, independentemente de onde estivese hospedada esa conta.
       title: Imos crear a túa conta en %{domain}.
     status:
