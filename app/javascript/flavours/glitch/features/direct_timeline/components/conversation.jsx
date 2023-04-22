@@ -203,7 +203,7 @@ class Conversation extends ImmutablePureComponent {
               parseClick={this.parseClick}
               expanded={isExpanded}
               onExpandedToggle={this.handleShowMore}
-              collapsable
+              collapsible
               media={media}
             />
 

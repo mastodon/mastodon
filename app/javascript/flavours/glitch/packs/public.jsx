@@ -2,6 +2,15 @@ import 'packs/public-path';
 import loadPolyfills from 'flavours/glitch/load_polyfills';
 import ready from 'flavours/glitch/ready';
 import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
+import axios from 'axios';
+import { throttle } from 'lodash';
+import { defineMessages } from 'react-intl';
+
+const messages = defineMessages({
+  usernameTaken: { id: 'username.taken', defaultMessage: 'That username is taken. Try another' },
+  passwordExceedsLength: { id: 'password_confirmation.exceeds_maxlength', defaultMessage: 'Password confirmation exceeds the maximum password length' },
+  passwordDoesNotMatch: { id: 'password_confirmation.mismatching', defaultMessage: 'Password confirmation does not match' },
+});
 
 function main() {
   const IntlMessageFormat = require('intl-messageformat').default;
@@ -9,7 +18,7 @@ function main() {
   const { delegate } = require('@rails/ujs');
   const emojify = require('flavours/glitch/features/emoji/emoji').default;
   const { getLocale } = require('locales');
-  const { messages } = getLocale();
+  const { localeData } = getLocale();
   const React = require('react');
   const ReactDOM = require('react-dom');
   const { createBrowserHistory } = require('history');
@@ -54,6 +63,11 @@ function main() {
       hour12: false,
     });
 
+    const formatMessage = ({ id, defaultMessage }, values) => {
+      const messageFormat = new IntlMessageFormat(localeData[id] || defaultMessage, locale);
+      return messageFormat.format(values);
+    };
+
     [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
       content.innerHTML = emojify(content.innerHTML);
     });
@@ -73,7 +87,7 @@ function main() {
         date.getMonth() === today.getMonth() &&
         date.getFullYear() === today.getFullYear();
     };
-    const todayFormat = new IntlMessageFormat(messages['relative_format.today'] || 'Today at {time}', locale);
+    const todayFormat = new IntlMessageFormat(localeData['relative_format.today'] || 'Today at {time}', locale);
 
     [].forEach.call(document.querySelectorAll('time.relative-formatted'), (content) => {
       const datetime = new Date(content.getAttribute('datetime'));
@@ -99,7 +113,7 @@ function main() {
       const timeGiven = content.getAttribute('datetime').includes('T');
       content.title = timeGiven ? dateTimeFormat.format(datetime) : dateFormat.format(datetime);
       content.textContent = timeAgoString({
-        formatMessage: ({ id, defaultMessage }, values) => (new IntlMessageFormat(messages[id] || defaultMessage, locale)).format(values),
+        formatMessage,
         formatDate: (date, options) => (new Intl.DateTimeFormat(locale, options)).format(date),
       }, datetime, now, now.getFullYear(), timeGiven);
     });
@@ -128,17 +142,19 @@ function main() {
       scrollToDetailedStatus();
     }
 
-    delegate(document, '#registration_user_password_confirmation,#registration_user_password', 'input', () => {
-      const password = document.getElementById('registration_user_password');
-      const confirmation = document.getElementById('registration_user_password_confirmation');
-      if (confirmation.value && confirmation.value.length > password.maxLength) {
-        confirmation.setCustomValidity((new IntlMessageFormat(messages['password_confirmation.exceeds_maxlength'] || 'Password confirmation exceeds the maximum password length', locale)).format());
-      } else if (password.value && password.value !== confirmation.value) {
-        confirmation.setCustomValidity((new IntlMessageFormat(messages['password_confirmation.mismatching'] || 'Password confirmation does not match', locale)).format());
+    delegate(document, '#user_account_attributes_username', 'input', throttle(() => {
+      const username = document.getElementById('user_account_attributes_username');
+
+      if (username.value && username.value.length > 0) {
+        axios.get('/api/v1/accounts/lookup', { params: { acct: username.value } }).then(() => {
+          username.setCustomValidity(formatMessage(messages.usernameTaken));
+        }).catch(() => {
+          username.setCustomValidity('');
+        });
       } else {
-        confirmation.setCustomValidity('');
+        username.setCustomValidity('');
       }
-    });
+    }, 500, { leading: false, trailing: true }));
 
     delegate(document, '#user_password,#user_password_confirmation', 'input', () => {
       const password = document.getElementById('user_password');
@@ -146,9 +162,9 @@ function main() {
       if (!confirmation) return;
 
       if (confirmation.value && confirmation.value.length > password.maxLength) {
-        confirmation.setCustomValidity((new IntlMessageFormat(messages['password_confirmation.exceeds_maxlength'] || 'Password confirmation exceeds the maximum password length', locale)).format());
+        confirmation.setCustomValidity(formatMessage(messages.passwordExceedsLength));
       } else if (password.value && password.value !== confirmation.value) {
-        confirmation.setCustomValidity((new IntlMessageFormat(messages['password_confirmation.mismatching'] || 'Password confirmation does not match', locale)).format());
+        confirmation.setCustomValidity(formatMessage(messages.passwordDoesNotMatch));
       } else {
         confirmation.setCustomValidity('');
       }
@@ -162,10 +178,10 @@ function main() {
 
       if (statusEl.dataset.spoiler === 'expanded') {
         statusEl.dataset.spoiler = 'folded';
-        this.textContent = (new IntlMessageFormat(messages['status.show_more'] || 'Show more', locale)).format();
+        this.textContent = (new IntlMessageFormat(localeData['status.show_more'] || 'Show more', locale)).format();
       } else {
         statusEl.dataset.spoiler = 'expanded';
-        this.textContent = (new IntlMessageFormat(messages['status.show_less'] || 'Show less', locale)).format();
+        this.textContent = (new IntlMessageFormat(localeData['status.show_less'] || 'Show less', locale)).format();
       }
 
       return false;
@@ -173,7 +189,7 @@ function main() {
 
     [].forEach.call(document.querySelectorAll('.status__content__spoiler-link'), (spoilerLink) => {
       const statusEl = spoilerLink.parentNode.parentNode;
-      const message = (statusEl.dataset.spoiler === 'expanded') ? (messages['status.show_less'] || 'Show less') : (messages['status.show_more'] || 'Show more');
+      const message = (statusEl.dataset.spoiler === 'expanded') ? (localeData['status.show_less'] || 'Show less') : (localeData['status.show_more'] || 'Show more');
       spoilerLink.textContent = (new IntlMessageFormat(message, locale)).format();
     });
   });

@@ -3733,6 +3733,10 @@
         "id": "status.show_less_all"
       },
       {
+        "defaultMessage": "{user} posted {attachmentCount, plural, one {an attachment} other {{attachmentCount} attachments}}",
+        "id": "status.title.with_attachments"
+      },
+      {
         "defaultMessage": "Detailed conversation view",
         "id": "status.detailed_status"
       },
@@ -4354,5 +4358,22 @@
       }
     ],
     "path": "app/javascript/mastodon/features/video/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "That username is taken. Try another",
+        "id": "username.taken"
+      },
+      {
+        "defaultMessage": "Password confirmation exceeds the maximum password length",
+        "id": "password_confirmation.exceeds_maxlength"
+      },
+      {
+        "defaultMessage": "Password confirmation does not match",
+        "id": "password_confirmation.mismatching"
+      }
+    ],
+    "path": "app/javascript/packs/public.json"
   }
 ]
