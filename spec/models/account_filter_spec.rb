@@ -44,4 +44,23 @@ describe AccountFilter do
       expect(filter.results).to match_array [remote_account_one]
     end
   end
+
+  describe 'with username' do
+    let!(:local_account) { Fabricate(:account, domain: nil, username: 'validUserName') }
+
+    it 'works with @ at the beginning of the username' do
+      filter = described_class.new(username: '@validUserName')
+      expect(filter.results).to match_array [local_account]
+    end
+
+    it 'does not work with more than one @ at the beginning of the username' do
+      filter = described_class.new(username: '@@validUserName')
+      expect(filter.results).to_not match_array [local_account]
+    end
+
+    it 'does not work with @ outside the beginning of the username' do
+      filter = described_class.new(username: 'validUserName@')
+      expect(filter.results).to_not match_array [local_account]
+    end
+  end
 end
