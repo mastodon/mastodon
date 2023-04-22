@@ -475,6 +475,7 @@
       content_policies:
         comment: Internt notat
         description_html: Du kan definere innholdsregler som vil bli brukt på alle kontoer fra dette domenet og hvilket som helst av underdomenene.
+        limited_federation_mode_description_html: Du kan velge om føderasjon med dette domenet tillates.
         policies:
           reject_media: Avvis media
           reject_reports: Avvis rapporter
@@ -768,6 +769,7 @@
         suspend: "%{name} suspenderte %{target}s konto"
       appeal_approved: Klage tatt til følge
       appeal_pending: Klage behandles
+      appeal_rejected: Anke avvist
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
@@ -809,6 +811,7 @@
           other: Delt av %{count} personer i løpet av den siste uken
         title: Populære lenker
         usage_comparison: Delt %{today} ganger i dag, sammenlignet med %{yesterday} i går
+      not_allowed_to_trend: Ikke tillatt å trende
       only_allowed: Kun tillatte
       pending_review: Avventer gjennomgang
       preview_card_providers:
@@ -917,6 +920,7 @@
   applications:
     created: Søknaden ble vellykket oppretttet
     destroyed: Søknaden ble vellykket slettet
+    logout: Logg ut
     regenerate_token: Regenerer tilgangsnøkkel
     token_regenerated: Tilgangsnøkkel vellykket regenerert
     warning: Vær veldig forsiktig med denne data. Aldri del den med noen!
@@ -955,6 +959,8 @@
     registration_closed: "%{instance} tar ikke imot nye medlemmer"
     reset_password: Tilbakestill passord
     rules:
+      accept: Godta
+      back: Tilbake
       preamble: Disse angis og håndheves av %{domain}-moderatorene.
       title: Noen grunnregler.
     security: Sikkerhet
@@ -1097,6 +1103,8 @@
     storage: Medialagring
   featured_tags:
     add_new: Legg til ny
+    errors:
+      limit: Du har allerede fremhevet det maksimale antall emneknagger
     hint_html: "<strong>Hva er utvalgte emneknagger?</strong> De vises frem tydelig på din offentlige profil, og lar folk bla i dine offentlige innlegg som spesifikt har de emneknaggene. De er et bra verktøy for å holde styr på kreative verk eller langtidsprosjekter."
   filters:
     contexts:
@@ -1198,6 +1206,9 @@
       expires_at: Utløper
       uses: Bruk
     title: Inviter personer
+  lists:
+    errors:
+      limit: Du har nådd den øvre grensen for antall lister
   login_activities:
     authentication_methods:
       otp: to-faktor autentiseringsapp
@@ -1339,6 +1350,7 @@
   relationships:
     activity: Kontoaktivitet
     dormant: Dormende
+    follow_failure: Kunne ikke følge noen av de valgte kontoene.
     follow_selected_followers: Følg valgte tilhengere
     followers: Følgere
     following: Følginger
@@ -1378,6 +1390,7 @@
       electron: Electron
       firefox: Firefox
       generic: Ukjent nettleser
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi-nettleser
@@ -1387,6 +1400,7 @@
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Ukjent Nettleser
       weibo: Weibo
     current_session: Nåværende økt
     description: "%{browser} på %{platform}"
@@ -1399,8 +1413,10 @@
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
+      unknown_platform: Ukjent plattform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1513,6 +1529,7 @@
       '7889238': 3 måneder
     min_age_label: Terskel for alder
     min_favs: Behold innlegg som er favorittmarkert av minst
+    min_favs_hint: Sletter ikke noen av dine innlegg som har mottatt minst dette antall favorittmarkeringer. La stå tom for å slette innlegg uavhengig av antall favorittmarkeringer
     min_reblogs: Behold innlegg fremhevet av minst
     min_reblogs_hint: Sletter ikke noen av dine innlegg som har blitt fremhevet minst dette antall ganger. La stå tom for å slette innlegg uavhengig av antall fremhevinger
   stream_entries:
