@@ -1,3 +1,4 @@
+---
 sr:
   about:
     about_mastodon_html: 'Друштвена мрежа будућности: без реклама, без корпоративног праћења, етички дизајн, и децентрализација! Поседујте своје податке са Мастодоном!'
@@ -8,8 +9,8 @@ sr:
   accounts:
     follow: Запрати
     followers:
-      one: Пратилац
       few: Пратиоца
+      one: Пратилац
       other: Пратилаца
     following: Пратим
     instance_actor_flash: Овај налог је виртуелни актер који не представља ниједног корисника лично, већ сâм сервер. Користи се у сврху федерације и не треба га суспендовати.
@@ -19,8 +20,8 @@ sr:
     pin_errors:
       following: Морате пратити особу коју желите да препоручите
     posts:
-      one: Објава
       few: Објаве
+      one: Објава
       other: Објава
     posts_tab_heading: Објаве
   admin:
@@ -57,7 +58,7 @@ sr:
       delete: Обриши податке
       deleted: Избрисано
       demote: Ражалуј
-      destroyed_msg: "Подаци корисника %{username} су неповратно стављени у ред за брисање"
+      destroyed_msg: Подаци корисника %{username} су неповратно стављени у ред за брисање
       disable: Замрзни
       disable_sign_in_token_auth: Онемогући имејл аутентификацију
       disable_two_factor_authentication: Искључи 2FA
@@ -88,7 +89,7 @@ sr:
       media_attachments: Мултимедијални прилози
       memorialize: Пребаци у in memoriam
       memorialized: Подигнут споменик
-      memorialized_msg: '%{username} је успешно претворен у меморијални налог'
+      memorialized_msg: "%{username} је успешно претворен у меморијални налог"
       moderation:
         active: Активан
         all: Сви
@@ -108,8 +109,8 @@ sr:
       perform_full_suspension: Суспендуј
       previous_strikes: Претходни прекршаји
       previous_strikes_description_html:
-        one: Овај налог има <strong>један</strong> прекршај.
         few: Овај налог има <strong>%{count}</strong> прекршаја.
+        one: Овај налог има <strong>један</strong> прекршај.
         other: Овај налог има <strong>%{count}</strong> прекршаја.
       promote: Унапреди
       protocol: Протокол
@@ -352,20 +353,20 @@ sr:
       new_users: нови корисници
       opened_reports: отворене пријаве
       pending_appeals_html:
-        one: "<strong>%{count}</strong> жалба на чекању"
         few: "<strong>%{count}</strong> жалбе на чекању"
+        one: "<strong>%{count}</strong> жалба на чекању"
         other: "<strong>%{count}</strong> жалби на чекању"
       pending_reports_html:
-        one: "<strong>%{count}</strong> пријава на чекању"
         few: "<strong>%{count}</strong> пријаве на чекању"
+        one: "<strong>%{count}</strong> пријава на чекању"
         other: "<strong>%{count}</strong> пријава на чекању"
       pending_tags_html:
-        one: "<strong>%{count}</strong> хеш ознака на чекању"
         few: "<strong>%{count}</strong> хеш ознаке на чекању"
+        one: "<strong>%{count}</strong> хеш ознака на чекању"
         other: "<strong>%{count}</strong> хеш ознака на чекању"
       pending_users_html:
-        one: "<strong>%{count}</strong> корисник на чекању"
         few: "<strong>%{count}</strong> корисника на чекању"
+        one: "<strong>%{count}</strong> корисник на чекању"
         other: "<strong>%{count}</strong> корисника на чекању"
       resolved_reports: решене пријаве
       software: Софтвер
@@ -422,8 +423,8 @@ sr:
     email_domain_blocks:
       add_new: Додај нови
       attempts_over_week:
-        one: "%{count} покушај током претходне недеље"
         few: "%{count} покушаја током претходне недеље"
+        one: "%{count} покушај током претходне недеље"
         other: "%{count} покушаја регистрације током претходне недеље"
       created_msg: Успешно додао домен Е-поште на црну листу
       delete: Обриши
@@ -466,13 +467,13 @@ sr:
     instances:
       availability:
         description_html:
-          one: Ако испорука домену не успе ниједном у временском периоду од <strong>%{count} дана</strong>, даљи покушаји испоруке се неће иницирати осим уколико се не прими испорука <em>са</em> домена.
           few: Уколико испорука домену не успе ниједном током <strong>%{count} различитих дана</strong>, даљи покушаји испоруке неће бити иницирани осим уколико се не прими испорука <em>са</em> домена.
+          one: Ако испорука домену не успе ниједном у временском периоду од <strong>%{count} дана</strong>, даљи покушаји испоруке се неће иницирати осим уколико се не прими испорука <em>са</em> домена.
           other: Уколико испорука домену не успе ниједном током <strong>%{count} различитих дана</strong>, даљи покушаји испоруке се неће иницирати осим уколико се не прими испорука <em>са</em> домена.
         failure_threshold_reached: Праг неуспеха достигнут датума %{date}.
         failures_recorded:
-          one: Неуспели покушај током %{count} дана.
           few: Неуспели покушаји током %{count} различита дана.
+          one: Неуспели покушај током %{count} дана.
           other: Неуспели покушаји током %{count} различитих дана.
         no_failures_recorded: Без забележених неуспеха.
         title: Доступност
@@ -516,8 +517,8 @@ sr:
       destroyed_msg: Подаци са %{domain} су сада у реду за чекање за извесно брисање.
       empty: Ниједан домен није пронађен.
       known_accounts:
-        one: "%{count} познат налог"
         few: "%{count} позната налога"
+        one: "%{count} познат налог"
         other: "%{count} познатих налога"
       moderation:
         all: Све
@@ -558,11 +559,11 @@ sr:
       no_ip_block_selected: Ниједно IP правило није промењено јер ниједно није изабрано
       title: IP правила
     relationships:
-      title: "Односи корисника %{acct}"
+      title: Односи корисника %{acct}
     relays:
       add_new: Додај нови релеј
       delete: Обриши
-      description_html: <strong>Федерални релеј</strong> је посреднички сервер који размењује велике количине јавних труба између сервера на који је претплаћен и на који објављује.<strong>Може помоћи малим и средњим серверима да открију садржај из федиверса</strong>, који иначе захтева од локалних корисника да ручно пратити остале људе на удаљеним серверима.
+      description_html: "<strong>Федерални релеј</strong> је посреднички сервер који размењује велике количине јавних труба између сервера на који је претплаћен и на који објављује.<strong>Може помоћи малим и средњим серверима да открију садржај из федиверса</strong>, који иначе захтева од локалних корисника да ручно пратити остале људе на удаљеним серверима."
       disable: Искључи
       disabled: Искључен
       enable: Укључи
@@ -581,8 +582,8 @@ sr:
     reports:
       account:
         notes:
-          one: "%{count} белешка"
           few: "%{count} белешке"
+          one: "%{count} белешка"
           other: "%{count} бележака"
       action_log: Записник
       action_taken_by: Акцију извео
@@ -665,8 +666,8 @@ sr:
     roles:
       add_new: Додај улогу
       assigned_users:
-        one: "%{count} корисник"
         few: "%{count} корисника"
+        one: "%{count} корисник"
         other: "%{count} корисника"
       categories:
         administration: Администрација
@@ -680,8 +681,8 @@ sr:
       everyone: Подразумевана овлашћења
       everyone_full_description_html: Ово је <strong>основна улога</strong> која се односи на <strong>све кориснике</strong>, чак и оне којима није додељена улога. Све друге улоге наслеђују овлашћења од основне улоге.
       permissions_count:
-        one: "%{count} дозвола"
         few: "%{count} дозволе"
+        one: "%{count} дозвола"
         other: "%{count} дозвола"
       privileges:
         administrator: Администратор
@@ -849,8 +850,8 @@ sr:
         publishers:
           no_publisher_selected: Ниједан издавач није промењен јер ниједан није изабран
         shared_by_over_week:
-          one: Подељен од стране једне особе током претходне недеље
           few: Подељен од стране %{count} особе током претходне недеље
+          one: Подељен од стране једне особе током претходне недеље
           other: Подељен од стране %{count} особа током претходне недеље
         title: Линкови у тренду
         usage_comparison: Подељено %{today} пута данас, у поређењу са %{yesterday} пута јуче
@@ -872,8 +873,8 @@ sr:
         no_status_selected: Ниједна објава у тренду није промењена јер ниједна није изабрана
         not_discoverable: Аутор није дао сагласност да буде препоручен
         shared_by:
-          one: Подељено или стављено у „омиљене” једном
           few: Подељено и стављено у „омиљене” %{friendly_count} пута
+          one: Подељено или стављено у „омиљене” једном
           other: Подељено и стављено у „омиљене” %{friendly_count} пута
         title: Објаве у тренду
       tags:
@@ -897,8 +898,8 @@ sr:
         usable: Може се користити
         usage_comparison: Употребљено %{today} пута данас, у поређењу са %{yesterday} пута јуче
         used_by_over_week:
-          one: Коришћено од стране једне особе током претходне недеље
           few: Коришћено од стране %{count} особе током претходне недеље
+          one: Коришћено од стране једне особе током претходне недеље
           other: Коришћено од стране %{count} људи током претходне недеље
       title: Трендови
       trending: У тренду
@@ -911,7 +912,7 @@ sr:
     webhooks:
       add_new: Додај крајњу тачку
       delete: Избриши
-      description_html: <strong>Webhook</strong> омогућава Мастодону да Вашој апликацији испоручује <strong>обавештења у реалном времену</strong> о одабраним догађајима, тако да Ваша апликација може да <strong>aутоматски изазове реакцију</strong>.
+      description_html: "<strong>Webhook</strong> омогућава Мастодону да Вашој апликацији испоручује <strong>обавештења у реалном времену</strong> о одабраним догађајима, тако да Ваша апликација може да <strong>aутоматски изазове реакцију</strong>."
       disable: Онемогући
       disabled: Онемогућено
       edit: Измени крајњу тачку
@@ -919,8 +920,8 @@ sr:
       enable: Омогући
       enabled: Активно
       enabled_events:
-        one: 1 омогућен догађај
         few: "%{count} омогућена догађаја"
+        one: 1 омогућен догађај
         other: "%{count} омогућених догађаја"
       events: Догађаји
       new: Нови webhook
@@ -948,7 +949,7 @@ sr:
     new_report:
       body: "%{reporter} је пријавио %{target}"
       body_remote: Нека са домена %{domain} је пријавио %{target}
-      subject: 'Нова пријава за %{instance} (#%{id})'
+      subject: Нова пријава за %{instance} (#%{id})
     new_trends:
       body: 'Следеће ставке је потребно прегледати пре него што могу јавно да се прикажу:'
       new_trending_links:
@@ -981,7 +982,7 @@ sr:
     toot_layout: Распоред објава
   application_mailer:
     notification_preferences: Промени преференце Е-поште
-    salutation: "Поштовани %{name},"
+    salutation: Поштовани %{name},
     settings: 'Промени подешавања е-поште: %{link}'
     view: 'Погледај:'
     view_profile: Погледај налог
@@ -1208,16 +1209,16 @@ sr:
       expires_in: Истиче за %{distance}
       expires_on: Истиче датума %{date}
       keywords:
-        one: "%{count} кључна реч"
         few: "%{count} кључне речи"
+        one: "%{count} кључна реч"
         other: "%{count} кључних речи"
       statuses:
-        one: "%{count} објава"
         few: "%{count} објаве"
+        one: "%{count} објава"
         other: "%{count} објава"
       statuses_long:
-        one: "%{count} засебна објава сакривена"
         few: "%{count} засебне објаве сакривене"
+        one: "%{count} засебна објава сакривена"
         other: "%{count} засебних објава сакривено"
       title: Филтери
     new:
@@ -1233,12 +1234,12 @@ sr:
   generic:
     all: Сви
     all_items_on_page_selected_html:
-      one: "<strong>%{count}</strong> ставка са ове странице је изабрана."
       few: Све <strong>%{count}</strong> ставке са ове странице су изабране.
+      one: "<strong>%{count}</strong> ставка са ове странице је изабрана."
       other: Свих <strong>%{count}</strong> ставки са ове странице је изабрано.
     all_matching_items_selected_html:
-      one: "<strong>%{count}</strong> ставка која се поклапа са Вашом претрагом је изабрана."
       few: Све <strong>%{count}</strong> ставке које се поклапају са Вашом претрагом су изабране.
+      one: "<strong>%{count}</strong> ставка која се поклапа са Вашом претрагом је изабрана."
       other: Свих <strong>%{count}</strong> ставки које се поклапају са Вашом претрагом су изабране.
     changes_saved_msg: Измене успешно сачуване!
     copy: Копирај
@@ -1248,13 +1249,13 @@ sr:
     order_by: Сортирај према
     save_changes: Сачувај промене
     select_all_matching_items:
-      one: Одаберите %{count} ставку која се поклапа са Вашом претрагом.
       few: Одаберите све %{count} ставке које се поклапају са Вашом претрагом.
+      one: Одаберите %{count} ставку која се поклапа са Вашом претрагом.
       other: Одаберите свих %{count} ставки које се поклапају са Вашом претрагом.
     today: данас
     validation_errors:
-      one: Нешто није баш како треба! Прегледајте грешке испод
       few: Нешто није баш како треба! Прегледајте %{count} грешке испод
+      one: Нешто није баш како треба! Прегледајте грешке испод
       other: Нешто није баш како треба! Прегледајте %{count} грешака испод
   imports:
     errors:
@@ -1288,8 +1289,8 @@ sr:
     generate: Генериши
     invited_by: 'Позвао Вас је:'
     max_uses:
-      one: 1 коришћење
       few: "%{count} коришћења"
+      one: 1 коришћење
       other: "%{count} коришћења"
     max_uses_prompt: Без ограничења
     prompt: Генериши и подели линкове са другима да им одобрите приступ овој инстанци
@@ -1362,7 +1363,7 @@ sr:
       sign_up:
         subject: "%{name} се регистровао/-ла"
     favourite:
-      body: '%{name} је поставио као омиљен Ваш статус:'
+      body: "%{name} је поставио као омиљен Ваш статус:"
       subject: "%{name} је поставио као омиљен Ваш статус"
       title: Нови омиљени
     follow:
@@ -1376,13 +1377,13 @@ sr:
       title: Нови захтев за праћење
     mention:
       action: Одговори
-      body: '%{name} Вас је поменуо у:'
-      subject: '%{name} Вас је поменуо'
+      body: "%{name} Вас је поменуо у:"
+      subject: "%{name} Вас је поменуо"
       title: Ново спомињање
     poll:
       subject: Анкета корисника %{name} се завршила
     reblog:
-      body: '%{name} Вам је подржао/ла статус:'
+      body: "%{name} Вам је подржао/ла статус:"
       subject: "%{name} је подржао/ла Ваш статус"
       title: Нова подршка
     status:
@@ -1544,24 +1545,24 @@ sr:
   statuses:
     attached:
       audio:
-        one: "%{count} аудио запис"
         few: "%{count} аудио записа"
+        one: "%{count} аудио запис"
         other: "%{count} аудио записа"
       description: 'У прилогу: %{attached}'
       image:
-        one: "%{count} слику"
         few: "%{count} слика"
+        one: "%{count} слику"
         other: "%{count} слика"
       video:
-        one: "%{count} видео запис"
         few: "%{count} видео записа"
+        one: "%{count} видео запис"
         other: "%{count} видео записа"
     boosted_from_html: Подржано од %{acct_link}
     content_warning: 'Упозорење на садржај: %{warning}'
     default_language: Исто као језик окружења
     disallowed_hashtags:
-      one: 'садржи забрањени хештег: %{tags}'
       few: 'садржи забрањене хештегове: %{tags}'
+      one: 'садржи забрањени хештег: %{tags}'
       other: 'садржи забрањене хештегове: %{tags}'
     edited_at_html: Измењено %{date}
     errors:
@@ -1575,12 +1576,12 @@ sr:
       reblog: Подршка не може да се прикачи
     poll:
       total_people:
-        one: "%{count} особа"
         few: "%{count} особе"
+        one: "%{count} особа"
         other: "%{count} људи"
       total_votes:
-        one: "%{count} глас"
         few: "%{count} гласа"
+        one: "%{count} глас"
         other: "%{count} гласова"
       vote: Гласајте
     show_more: Прикажи још
@@ -1588,7 +1589,7 @@ sr:
     show_older: Прикажи старије
     show_thread: Прикажи низ
     sign_in_to_participate: Пријавите се да учествујете у разговору
-    title: '%{name}: „%{quote}”'
+    title: "%{name}: „%{quote}”"
     visibilities:
       direct: Директно
       private: Само пратиоци

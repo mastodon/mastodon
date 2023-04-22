@@ -1,3 +1,4 @@
+---
 ast:
   activerecord:
     attributes:
@@ -14,9 +15,9 @@ ast:
         edit: Editar
         submit: Unviar
       confirmations:
-        destroy: '¿De xuru que quies facer esta aición?'
+        destroy: "¿De xuru que quies facer esta aición?"
       form:
-        error: '¡Meca! Revisa los errores posibles del formulariu'
+        error: "¡Meca! Revisa los errores posibles del formulariu"
       help:
         redirect_uri: Usa una llinia per URI
       index:
@@ -48,7 +49,7 @@ ast:
       buttons:
         revoke: Revocar
       confirmations:
-        revoke: '¿De xuru que quies facer esta aición?'
+        revoke: "¿De xuru que quies facer esta aición?"
       index:
         description_html: Estes son les aplicaciones que puen acceder a la cuenta cola API. Si equí hai aplicaciones que nun conoces o hai dalguna aplicación que nun funciona correutamente, pues revocar el so accesu.
         never_used: Enxamás s'usó
@@ -92,34 +93,34 @@ ast:
           applications: Aplicaciones
           oauth2_provider: Fornidor d'OAuth2
     scopes:
-      "admin:read": llee tolos datos del sirvidor
-      "admin:read:accounts": llee la información sensible de toles cuentes
-      "admin:write": modifica tolos datos del sirvidor
+      admin:read: llee tolos datos del sirvidor
+      admin:read:accounts: llee la información sensible de toles cuentes
+      admin:write: modifica tolos datos del sirvidor
       crypto: usa'l cifráu de puntu a puntu
       follow: modifica les rellaciones de les cuentes
       push: recibe avisos push
       read: llee tolos datos de les cuentes
-      "read:accounts": mira la información de les cuentes
-      "read:blocks": mira les cuentes bloquiaes
-      "read:bookmarks": mira los marcadores
-      "read:filters": mira les peñeres
-      "read:follows": mira quién sigues
-      "read:lists": mira les llistes
-      "read:notifications": mira los avisos
-      "read:reports": mira los informes
-      "read:search": busca nel to nome
-      "read:statuses": mira tolos artículos
+      read:accounts: mira la información de les cuentes
+      read:blocks: mira les cuentes bloquiaes
+      read:bookmarks: mira los marcadores
+      read:filters: mira les peñeres
+      read:follows: mira quién sigues
+      read:lists: mira les llistes
+      read:notifications: mira los avisos
+      read:reports: mira los informes
+      read:search: busca nel to nome
+      read:statuses: mira tolos artículos
       write: modifica los datos de les cuentes
-      "write:accounts": modifica los perfiles
-      "write:blocks": bloquia cuentes ya dominios
-      "write:bookmarks": meter artículos en Marcadores
-      "write:conversations": desaniciar ya desactivar los avisos de conversaciones
-      "write:favourites": artículos favoritos
-      "write:filters": crea peñeres
-      "write:follows": sigue a perfiles
-      "write:lists": crea llistes
-      "write:media": xube ficheros multimedia
-      "write:mutes": desactiva los avisos de perfiles ya de conversaciones
-      "write:notifications": borra los avisos
-      "write:reports": informa d'otros perfiles
-      "write:statuses": espubliza artículos
+      write:accounts: modifica los perfiles
+      write:blocks: bloquia cuentes ya dominios
+      write:bookmarks: meter artículos en Marcadores
+      write:conversations: desaniciar ya desactivar los avisos de conversaciones
+      write:favourites: artículos favoritos
+      write:filters: crea peñeres
+      write:follows: sigue a perfiles
+      write:lists: crea llistes
+      write:media: xube ficheros multimedia
+      write:mutes: desactiva los avisos de perfiles ya de conversaciones
+      write:notifications: borra los avisos
+      write:reports: informa d'otros perfiles
+      write:statuses: espubliza artículos

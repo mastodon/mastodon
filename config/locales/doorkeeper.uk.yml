@@ -1,3 +1,4 @@
+---
 uk:
   activerecord:
     attributes:
@@ -146,49 +147,55 @@ uk:
       application:
         title: Необхідна авторизація OAuth
     scopes:
-      "admin:read": читати всі дані на сервері
-      "admin:read:accounts": читати конфіденційну інформацію усіх акаунтів
-      "admin:read:canonical_email_blocks": читати конфіденційну інформацію всіх канонічних блоків електронної пошти
-      "admin:read:domain_allows": читати конфіденційну інформацію всіх доменів дозволено
-      "admin:read:domain_blocks": читати конфіденційну інформацію всіх доменних блоків
-      "admin:read:email_domain_blocks": читати конфіденційну інформацію всіх блоків доменів електронної пошти
-      "admin:read:ip_blocks": читати конфіденційну інформацію всіх IP блоків
-      "admin:read:reports": читати дражливу інформацію усіх скарг та облікових записів зі скаргами
-      "admin:write": модифікувати всі дані на сервері
-      "admin:write:accounts": модерувати облікові записи
-      "admin:write:canonical_email_blocks": "здійснювати модераторські дії щодо канонічних поштових блоків\n"
-      "admin:write:domain_allows": модерувати домени дозволено
-      "admin:write:domain_blocks": "здійснювати модераторські дії щодо доменних блоків\n"
-      "admin:write:email_domain_blocks": здійснювати модераторські дії щодо блокування поштових доменів
-      "admin:write:ip_blocks": "здійснювати дії з модерації IP-блоків\n"
-      "admin:write:reports": модерувати скарги
+      admin:read: читати всі дані на сервері
+      admin:read:accounts: читати конфіденційну інформацію усіх акаунтів
+      admin:read:canonical_email_blocks: читати конфіденційну інформацію всіх канонічних блоків електронної пошти
+      admin:read:domain_allows: читати конфіденційну інформацію всіх доменів дозволено
+      admin:read:domain_blocks: читати конфіденційну інформацію всіх доменних блоків
+      admin:read:email_domain_blocks: читати конфіденційну інформацію всіх блоків доменів електронної пошти
+      admin:read:ip_blocks: читати конфіденційну інформацію всіх IP блоків
+      admin:read:reports: читати дражливу інформацію усіх скарг та облікових записів зі скаргами
+      admin:write: модифікувати всі дані на сервері
+      admin:write:accounts: модерувати облікові записи
+      admin:write:canonical_email_blocks: 'здійснювати модераторські дії щодо канонічних поштових блоків
+
+        '
+      admin:write:domain_allows: модерувати домени дозволено
+      admin:write:domain_blocks: 'здійснювати модераторські дії щодо доменних блоків
+
+        '
+      admin:write:email_domain_blocks: здійснювати модераторські дії щодо блокування поштових доменів
+      admin:write:ip_blocks: 'здійснювати дії з модерації IP-блоків
+
+        '
+      admin:write:reports: модерувати скарги
       crypto: використовувати наскрізне шифрування
       follow: змінювати стосунки облікового запису
       push: отримувати Ваші Push-повідомлення
       read: читати усі дані вашого облікового запису
-      "read:accounts": бачити інформацію про облікові записи
-      "read:blocks": бачити Ваші блокування
-      "read:bookmarks": бачити ваші закладки
-      "read:favourites": бачити вподобані дописи
-      "read:filters": бачити Ваші фільтри
-      "read:follows": бачити Ваші підписки
-      "read:lists": бачити Ваші списки
-      "read:mutes": бачити ваші нехтування
-      "read:notifications": бачити Ваші сповіщення
-      "read:reports": бачити Ваші скарги
-      "read:search": шукати від вашого імені
-      "read:statuses": бачити всі дописи
+      read:accounts: бачити інформацію про облікові записи
+      read:blocks: бачити Ваші блокування
+      read:bookmarks: бачити ваші закладки
+      read:favourites: бачити вподобані дописи
+      read:filters: бачити Ваші фільтри
+      read:follows: бачити Ваші підписки
+      read:lists: бачити Ваші списки
+      read:mutes: бачити ваші нехтування
+      read:notifications: бачити Ваші сповіщення
+      read:reports: бачити Ваші скарги
+      read:search: шукати від вашого імені
+      read:statuses: бачити всі дописи
       write: змінювати усі дані вашого облікового запису
-      "write:accounts": змінювати ваш профіль
-      "write:blocks": блокувати облікові записи і домени
-      "write:bookmarks": додавати дописи до закладок
-      "write:conversations": приховати й видалити бесіди
-      "write:favourites": вподобані дописи
-      "write:filters": створювати фільтри
-      "write:follows": підписуйтесь на людей
-      "write:lists": створювайте списки
-      "write:media": завантажити медіафайли
-      "write:mutes": приховувати людей або бесіди
-      "write:notifications": очищувати Ваші сповіщення
-      "write:reports": надіслати скаргу про людей
-      "write:statuses": публікувати дописи
+      write:accounts: змінювати ваш профіль
+      write:blocks: блокувати облікові записи і домени
+      write:bookmarks: додавати дописи до закладок
+      write:conversations: приховати й видалити бесіди
+      write:favourites: вподобані дописи
+      write:filters: створювати фільтри
+      write:follows: підписуйтесь на людей
+      write:lists: створювайте списки
+      write:media: завантажити медіафайли
+      write:mutes: приховувати людей або бесіди
+      write:notifications: очищувати Ваші сповіщення
+      write:reports: надіслати скаргу про людей
+      write:statuses: публікувати дописи

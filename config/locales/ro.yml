@@ -1,3 +1,4 @@
+---
 ro:
   about:
     about_mastodon_html: 'Rețeaua socială a viitorului: Fără reclame, fără supraveghere corporativă, design etic și descentralizare! Dețineți-vă datele cu Mastodon!'
@@ -8,8 +9,8 @@ ro:
   accounts:
     follow: Urmărește
     followers:
-      one: Urmăritor
       few: Urmăritori
+      one: Urmăritor
       other: De Urmăritori
     following: Urmăriți
     instance_actor_flash: Acest cont este un actor virtual folosit pentru a reprezenta serverul în sine și nu un utilizator individual. Acesta este utilizat în scopuri federative şi nu trebuie suspendat.
@@ -19,8 +20,8 @@ ro:
     pin_errors:
       following: Trebuie să urmăriți deja persoana pe care doriți să o aprobați
     posts:
-      one: Postare
       few: Postări
+      one: Postare
       other: De Postări
     posts_tab_heading: Postări
   admin:
@@ -57,7 +58,7 @@ ro:
       delete: Ștergere datele
       deleted: Șters
       demote: Retrogradează
-      destroyed_msg: "Datele utilizatorului %{username} sunt acum în așteptare pentru a fi șterse iminent"
+      destroyed_msg: Datele utilizatorului %{username} sunt acum în așteptare pentru a fi șterse iminent
       disable: Dezactivează
       disable_sign_in_token_auth: Dezactivează autentificarea prin token e-mail
       disable_two_factor_authentication: Dezactivează 2FA
@@ -314,7 +315,7 @@ ro:
       no_ip_block_selected: Nicio regulă IP nu a fost modificată deoarece niciuna nu era selectată
       title: Reguli IP
     relationships:
-      title: "Relațiile lui %{acct}"
+      title: Relațiile lui %{acct}
     relays:
       delete: Șterge
       disable: Dezactivează
@@ -344,7 +345,7 @@ ro:
         delete: Șterge
         title: Note
       reopen: Redeschide raportarea
-      report: 'Raportare №%{id}'
+      report: Raportare №%{id}
       reported_account: Contul raportat
       reported_by: Raportat de către
       resolved: Rezolvată
@@ -558,8 +559,8 @@ ro:
     generate: Generează link de invitație
     invited_by: 'Ai fost invitat de:'
     max_uses:
-      one: 1 utilizare
       few: "%{count} utilizări"
+      one: 1 utilizare
       other: "%{count} de utilizări"
     max_uses_prompt: Fără limită
     prompt: Generați și împărtășiți link-uri cu alții pentru a acorda acces la acest server
@@ -650,14 +651,14 @@ ro:
   statuses:
     attached:
       image:
-        one: "%{count} imagine"
         few: "%{count} imagini"
+        one: "%{count} imagine"
         other: "%{count} de imagini"
     boosted_from_html: Impuls de la %{acct_link}
     content_warning: 'Avertisment privind conținutul: %{warning}'
     disallowed_hashtags:
-      one: 'conținea un hashtag nepermis: %{tags}'
       few: 'conținea aceste hashtag-uri nepermise: %{tags}'
+      one: 'conținea un hashtag nepermis: %{tags}'
       other: 'conținea aceste hashtag-uri nepermise: %{tags}'
     errors:
       in_reply_not_found: Postarea la care încercați să răspundeți nu pare să existe.
@@ -669,12 +670,12 @@ ro:
       reblog: Un impuls nu poate fi fixat
     poll:
       total_people:
-        one: "%{count} persoană"
         few: "%{count} persoane"
+        one: "%{count} persoană"
         other: "%{count} de persoane"
       total_votes:
-        one: "%{count} vot"
         few: "%{count} voturi"
+        one: "%{count} vot"
         other: "%{count} de voturi"
       vote: Votează
     show_more: Arată mai mult
