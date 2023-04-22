@@ -783,6 +783,10 @@
         message_html: Ingen Sidekiq-prosess kjører for %{value} køen(e). Vennligst se gjennom Sidekiq-konfigurasjonen din
       upload_check_privacy_error:
         action: Sjekk her for mer informasjon
+        message_html: "<strong>Webserveren din er feilkonfigurert. Personvernet til brukerne dine er i fare.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Sjekk her for mer informasjon
+        message_html: "<strong>Objektlagringen din er feilkonfigurert. Personvernet til brukerne dine er i fare.</strong>"
     tags:
       review: Gjennomgangsstatus
       updated_msg: Emneknagg innstillinger vellykket oppdatert
