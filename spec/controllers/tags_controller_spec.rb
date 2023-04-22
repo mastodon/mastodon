@@ -6,21 +6,50 @@ RSpec.describe TagsController, type: :controller do
   render_views
 
   describe 'GET #show' do
-    let!(:tag)     { Fabricate(:tag, name: 'test') }
-    let!(:local)   { Fabricate(:status, tags: [tag], text: 'local #test') }
-    let!(:remote)  { Fabricate(:status, tags: [tag], text: 'remote #test', account: Fabricate(:account, domain: 'remote')) }
-    let!(:late)    { Fabricate(:status, tags: [tag], text: 'late #test') }
+    let(:format) { 'html' }
+    let(:tag) { Fabricate(:tag, name: 'test') }
+    let(:tag_name) { tag&.name }
+
+    before do
+      get :show, params: { id: tag_name, format: format }
+    end
 
     context 'when tag exists' do
-      it 'returns http success' do
-        get :show, params: { id: 'test', max_id: late.id }
-        expect(response).to have_http_status(200)
+      context 'when requested as HTML' do
+        it 'returns http success' do
+          expect(response).to have_http_status(200)
+        end
+
+        it 'returns Vary header' do
+          expect(response.headers['Vary']).to eq 'Accept'
+        end
+
+        it 'returns public Cache-Control header' do
+          expect(response.headers['Cache-Control']).to include 'public'
+        end
+      end
+
+      context 'when requested as JSON' do
+        let(:format) { 'json' }
+
+        it 'returns http success' do
+          expect(response).to have_http_status(200)
+        end
+
+        it 'returns Vary header' do
+          expect(response.headers['Vary']).to eq 'Accept'
+        end
+
+        it 'returns public Cache-Control header' do
+          expect(response.headers['Cache-Control']).to include 'public'
+        end
       end
     end
 
     context 'when tag does not exist' do
+      let(:tag_name) { 'hoge' }
+
       it 'returns http not found' do
-        get :show, params: { id: 'none' }
         expect(response).to have_http_status(404)
       end
     end

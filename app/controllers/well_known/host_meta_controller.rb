@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 module WellKnown
-  class HostMetaController < ActionController::Base
+  class HostMetaController < ActionController::Base # rubocop:disable Rails/ApplicationController
     include RoutingHelper
-
-    before_action { response.headers['Vary'] = 'Accept' }
 
     def show
       @webfinger_template = "#{webfinger_url}?resource={uri}"

@@ -189,9 +189,10 @@ module Mastodon
       user.disabled = true if options[:disable]
       user.approved = true if options[:approve]
       user.otp_required_for_login = false if options[:disable_2fa]
-      user.confirm if options[:confirm]
 
       if user.save
+        user.confirm if options[:confirm]
+
         say('OK', :green)
         say("New password: #{password}") if options[:reset_password]
       else
@@ -542,7 +543,7 @@ module Mastodon
       if options[:all]
         User.pending.find_each(&:approve!)
         say('OK', :green)
-      elsif options[:number]
+      elsif options[:number]&.positive?
         User.pending.limit(options[:number]).each(&:approve!)
         say('OK', :green)
       elsif username.present?
@@ -556,6 +557,7 @@ module Mastodon
         account.user&.approve!
         say('OK', :green)
       else
+        say('Number must be positive', :red) if options[:number]
         exit(1)
       end
     end

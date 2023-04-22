@@ -71,7 +71,7 @@ module.exports = {
     'comma-style': ['warn', 'last'],
     'consistent-return': 'error',
     'dot-notation': 'error',
-    eqeqeq: 'error',
+    eqeqeq: ['error', 'always', { 'null': 'ignore' }],
     indent: ['warn', 2],
     'jsx-quotes': ['error', 'prefer-single'],
     'no-case-declarations': 'off',

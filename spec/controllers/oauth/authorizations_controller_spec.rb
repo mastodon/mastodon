@@ -31,6 +31,11 @@ RSpec.describe Oauth::AuthorizationsController, type: :controller do
         expect(response).to have_http_status(200)
       end
 
+      it 'returns private cache control headers' do
+        subject
+        expect(response.headers['Cache-Control']).to include('private, no-store')
+      end
+
       it 'gives options to authorize and deny' do
         subject
         expect(response.body).to match(/Authorize/)

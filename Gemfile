@@ -120,7 +120,7 @@ end
 group :test do
   gem 'capybara', '~> 3.39'
   gem 'climate_control'
-  gem 'faker', '~> 3.1'
+  gem 'faker', '~> 3.2'
   gem 'json-schema', '~> 3.0'
   gem 'rack-test', '~> 2.1'
   gem 'rails-controller-testing', '~> 1.0'

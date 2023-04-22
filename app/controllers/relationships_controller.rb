@@ -7,6 +7,7 @@ class RelationshipsController < ApplicationController
   before_action :set_accounts, only: :show
   before_action :set_relationships, only: :show
   before_action :set_body_classes
+  before_action :set_cache_headers
 
   helper_method :following_relationship?, :followed_by_relationship?, :mutual_relationship?
 
@@ -69,5 +70,9 @@ class RelationshipsController < ApplicationController
 
   def set_body_classes
     @body_classes = 'admin'
+  end
+
+  def set_cache_headers
+    response.cache_control.replace(private: true, no_store: true)
   end
 end
