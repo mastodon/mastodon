@@ -8,8 +8,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { Skeleton } from 'flavours/glitch/components/skeleton';
 import { counterRenderer } from 'flavours/glitch/components/common_counter';
 import ShortNumber from 'flavours/glitch/components/short_number';
-import Icon from 'flavours/glitch/components/icon';
 import classNames from 'classnames';
+import VerifiedBadge from 'flavours/glitch/components/verified_badge';
 
 import { me } from '../initial_state';
 
@@ -30,26 +30,6 @@ const messages = defineMessages({
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
 });
-
-class VerifiedBadge extends React.PureComponent {
-
-  static propTypes = {
-    link: PropTypes.string.isRequired,
-    verifiedAt: PropTypes.string.isRequired,
-  };
-
-  render () {
-    const { link } = this.props;
-
-    return (
-      <span className='verified-badge'>
-        <Icon id='check' className='verified-badge__mark' />
-        <span dangerouslySetInnerHTML={{ __html: link }} />
-      </span>
-    );
-  }
-
-}
 
 class Account extends ImmutablePureComponent {
 
