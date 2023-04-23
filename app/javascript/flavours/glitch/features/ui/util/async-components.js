@@ -170,8 +170,8 @@ export function Directory () {
   return import(/* webpackChunkName: "features/glitch/async/directory" */'flavours/glitch/features/directory');
 }
 
-export function FollowRecommendations () {
-  return import(/* webpackChunkName: "features/glitch/async/follow_recommendations" */'flavours/glitch/features/follow_recommendations');
+export function Onboarding () {
+  return import(/* webpackChunkName: "features/glitch/async/onboarding" */'flavours/glitch/features/onboarding');
 }
 
 export function CompareHistoryModal () {

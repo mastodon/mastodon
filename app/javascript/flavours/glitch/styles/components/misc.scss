@@ -406,6 +406,11 @@ body > [data-popper-placement] {
   text-overflow: ellipsis;
   white-space: nowrap;
 
+  &__account {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
   a {
     color: inherit;
     text-decoration: inherit;

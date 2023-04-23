@@ -6,6 +6,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { length } from 'stringz';
+import classNames from 'classnames';
 
 import { maxChars } from 'flavours/glitch/initial_state';
 import { isMobile } from 'flavours/glitch/is_mobile';
@@ -82,6 +83,10 @@ class ComposeForm extends ImmutablePureComponent {
 
   static defaultProps = {
     showSearch: false,
+  };
+
+  state = {
+    highlighted: false,
   };
 
   handleChange = (e) => {
@@ -209,6 +214,10 @@ class ComposeForm extends ImmutablePureComponent {
     this._updateFocusAndSelection({ });
   }
 
+  componentWillUnmount () {
+    if (this.timeout) clearTimeout(this.timeout);
+  }
+
   componentDidUpdate (prevProps) {
     this._updateFocusAndSelection(prevProps);
   }
@@ -257,6 +266,8 @@ class ComposeForm extends ImmutablePureComponent {
           textarea.setSelectionRange(selectionStart, selectionEnd);
           textarea.focus();
           if (!singleColumn) textarea.scrollIntoView();
+          this.setState({ highlighted: true });
+          this.timeout = setTimeout(() => this.setState({ highlighted: false }), 700);
         }).catch(console.error);
       }
 
@@ -302,6 +313,7 @@ class ComposeForm extends ImmutablePureComponent {
       spoilersAlwaysOn,
       isEditing,
     } = this.props;
+    const { highlighted } = this.state;
 
     const countText = this.getFulltextForCharacterCounting();
 
@@ -332,29 +344,31 @@ class ComposeForm extends ImmutablePureComponent {
           />
         </div>
 
-        <AutosuggestTextarea
-          ref={this.setAutosuggestTextarea}
-          placeholder={intl.formatMessage(messages.placeholder)}
-          disabled={isSubmitting}
-          value={this.props.text}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-          suggestions={suggestions}
-          onFocus={this.handleFocus}
-          onSuggestionsFetchRequested={onFetchSuggestions}
-          onSuggestionsClearRequested={onClearSuggestions}
-          onSuggestionSelected={this.handleSuggestionSelected}
-          onPaste={onPaste}
-          autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
-          lang={this.props.lang}
-        >
-          <EmojiPickerDropdown onPickEmoji={handleEmojiPick} />
-          <TextareaIcons advancedOptions={advancedOptions} />
-          <div className='compose-form__modifiers'>
-            <UploadFormContainer />
-            <PollFormContainer />
-          </div>
-        </AutosuggestTextarea>
+        <div className={classNames('compose-form__highlightable', { active: highlighted })}>
+          <AutosuggestTextarea
+            ref={this.setAutosuggestTextarea}
+            placeholder={intl.formatMessage(messages.placeholder)}
+            disabled={isSubmitting}
+            value={this.props.text}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+            suggestions={suggestions}
+            onFocus={this.handleFocus}
+            onSuggestionsFetchRequested={onFetchSuggestions}
+            onSuggestionsClearRequested={onClearSuggestions}
+            onSuggestionSelected={this.handleSuggestionSelected}
+            onPaste={onPaste}
+            autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
+            lang={this.props.lang}
+          >
+            <EmojiPickerDropdown onPickEmoji={handleEmojiPick} />
+            <TextareaIcons advancedOptions={advancedOptions} />
+            <div className='compose-form__modifiers'>
+              <UploadFormContainer />
+              <PollFormContainer />
+            </div>
+          </AutosuggestTextarea>
+        </div>
 
         <div className='compose-form__buttons-wrapper'>
           <OptionsContainer
