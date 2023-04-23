@@ -1400,14 +1400,6 @@ Rails/HasManyOrHasOneDependent:
     - 'app/models/user.rb'
     - 'app/models/web/push_subscription.rb'
 
-# Configuration parameters: Include.
-# Include: app/helpers/**/*.rb
-Rails/HelperInstanceVariable:
-  Exclude:
-    - 'app/helpers/application_helper.rb'
-    - 'app/helpers/instance_helper.rb'
-    - 'app/helpers/jsonld_helper.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: Include.
 # Include: spec/**/*, test/**/*

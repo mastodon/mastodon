@@ -22,7 +22,7 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
   end
 
   def update_status
-    return reject_payload! if invalid_origin?(object_uri)
+    return reject_payload! if non_matching_uri_hosts?(@account.uri, object_uri)
 
     @status = Status.find_by(uri: object_uri, account_id: @account.id)
 
