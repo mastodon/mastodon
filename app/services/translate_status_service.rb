@@ -64,6 +64,8 @@ class TranslateStatusService < BaseService
       detected_source_language: translations.first&.detected_source_language,
       language: @target_language,
       provider: translations.first&.provider,
+      content: '',
+      spoiler_text: '',
       poll_options: [],
       media_attachments: []
     )

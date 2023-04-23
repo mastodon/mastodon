@@ -57,6 +57,12 @@ RSpec.describe TranslateStatusService, type: :service do
       end
     end
 
+    describe 'status has no spoiler_text' do
+      it 'returns an empty string' do
+        expect(service.call(status, 'es').spoiler_text).to eq ''
+      end
+    end
+
     describe 'status has spoiler_text' do
       let(:spoiler_text) { 'Hello!!!' }
 
