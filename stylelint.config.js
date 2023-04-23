@@ -2,9 +2,16 @@ module.exports = {
   extends: ['stylelint-config-standard-scss'],
   ignoreFiles: [
     'app/javascript/styles/mastodon/reset.scss',
+    'coverage/**/*',
     'node_modules/**/*',
+    'public/assets/**/*',
+    'public/packs/**/*',
+    'public/packs-test/**/*',
     'vendor/**/*',
   ],
+  reportDescriptionlessDisables: true,
+  reportInvalidScopeDisables: true,
+  reportNeedlessDisables: true,
   rules: {
     'at-rule-empty-line-before': null,
     'color-function-notation': null,
