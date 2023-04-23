@@ -12,13 +12,19 @@ export default class ColumnBackButton extends React.PureComponent {
 
   static propTypes = {
     multiColumn: PropTypes.bool,
+    onClick: PropTypes.func,
   };
 
   handleClick = () => {
-    if (window.history && window.history.state) {
-      this.context.router.history.goBack();
+    const { router } = this.context;
+    const { onClick } = this.props;
+
+    if (onClick) {
+      onClick();
+    } else if (window.history && window.history.state) {
+      router.history.goBack();
     } else {
-      this.context.router.history.push('/');
+      router.history.push('/');
     }
   };
 

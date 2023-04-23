@@ -2267,40 +2267,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Follow",
-        "id": "account.follow"
-      },
-      {
-        "defaultMessage": "Unfollow",
-        "id": "account.unfollow"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/follow_recommendations/components/account.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Follow people you'd like to see posts from! Here are some suggestions.",
-        "id": "follow_recommendations.heading"
-      },
-      {
-        "defaultMessage": "Posts from people you follow will show up in chronological order on your home feed. Don't be afraid to make mistakes, you can unfollow people just as easily any time!",
-        "id": "follow_recommendations.lead"
-      },
-      {
-        "defaultMessage": "Looks like no suggestions could be generated for you. You can try using search to look for people you might know or explore trending hashtags.",
-        "id": "empty_column.follow_recommendations"
-      },
-      {
-        "defaultMessage": "Done",
-        "id": "follow_recommendations.done"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/follow_recommendations/index.json"
-  },
-  {
-    "descriptors": [
-      {
         "defaultMessage": "Authorize",
         "id": "follow_request.authorize"
       },
@@ -3217,6 +3183,125 @@
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Popular on Mastodon",
+        "id": "onboarding.follows.title"
+      },
+      {
+        "defaultMessage": "You curate your own home feed. The more people you follow, the more active and interesting it will be. These profiles may be a good starting point—you can always unfollow them later!",
+        "id": "onboarding.follows.lead"
+      },
+      {
+        "defaultMessage": "<strong>Did you know?</strong> Since Mastodon is decentralized, some profiles you come across will be hosted on servers other than yours. And yet you can interact with them seamlessly! Their server is in the second half of their username!",
+        "id": "onboarding.tips.accounts_from_other_servers"
+      },
+      {
+        "defaultMessage": "Take me back",
+        "id": "onboarding.actions.back"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/onboarding/follows.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "You've made it!",
+        "id": "onboarding.start.title"
+      },
+      {
+        "defaultMessage": "Your new Mastodon account is ready to go. Here's how you can make the most of it:",
+        "id": "onboarding.start.lead"
+      },
+      {
+        "defaultMessage": "Customize your profile",
+        "id": "onboarding.steps.setup_profile.title"
+      },
+      {
+        "defaultMessage": "Others are more likely to interact with you with a filled out profile.",
+        "id": "onboarding.steps.setup_profile.body"
+      },
+      {
+        "defaultMessage": "Follow {count, plural, one {one person} other {# people}}",
+        "id": "onboarding.steps.follow_people.title"
+      },
+      {
+        "defaultMessage": "You curate your own feed. Lets fill it with interesting people.",
+        "id": "onboarding.steps.follow_people.body"
+      },
+      {
+        "defaultMessage": "Make your first post",
+        "id": "onboarding.steps.publish_status.title"
+      },
+      {
+        "defaultMessage": "Say hello to the world.",
+        "id": "onboarding.steps.publish_status.body"
+      },
+      {
+        "defaultMessage": "Share your profile",
+        "id": "onboarding.steps.share_profile.title"
+      },
+      {
+        "defaultMessage": "Let your friends know how to find you on Mastodon!",
+        "id": "onboarding.steps.share_profile.body"
+      },
+      {
+        "defaultMessage": "Want to skip right ahead?",
+        "id": "onboarding.start.skip"
+      },
+      {
+        "defaultMessage": "See what's trending",
+        "id": "onboarding.actions.go_to_explore"
+      },
+      {
+        "defaultMessage": "Don't show this screen again",
+        "id": "onboarding.actions.close"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/onboarding/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "I'm {username} on Mastodon! Come follow me at {url}",
+        "id": "onboarding.share.message"
+      },
+      {
+        "defaultMessage": "Copied",
+        "id": "copypaste.copied"
+      },
+      {
+        "defaultMessage": "Copy to clipboard",
+        "id": "copypaste.copy_to_clipboard"
+      },
+      {
+        "defaultMessage": "Share your profile",
+        "id": "onboarding.share.title"
+      },
+      {
+        "defaultMessage": "Let people know how they can find you on Mastodon!",
+        "id": "onboarding.share.lead"
+      },
+      {
+        "defaultMessage": "Possible next steps:",
+        "id": "onboarding.share.next_steps"
+      },
+      {
+        "defaultMessage": "Go to your home feed",
+        "id": "onboarding.actions.go_to_home"
+      },
+      {
+        "defaultMessage": "See what's trending",
+        "id": "onboarding.actions.go_to_explore"
+      },
+      {
+        "defaultMessage": "Take me back",
+        "id": "onboarding.action.back"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/onboarding/share.json"
   },
   {
     "descriptors": [

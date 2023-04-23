@@ -1466,16 +1466,6 @@ body > [data-popper-placement] {
   }
 }
 
-.follow-recommendations-account {
-  .icon-button {
-    color: $ui-primary-color;
-
-    &.active {
-      color: $valid-value-color;
-    }
-  }
-}
-
 .account__wrapper {
   display: flex;
   gap: 10px;
@@ -1869,6 +1859,11 @@ a.account__display-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  &__account {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 }
 
 .display-name__html {
@@ -2744,13 +2739,7 @@ $ui-header-height: 55px;
 
 .column-title {
   text-align: center;
-  padding: 40px;
-
-  .logo {
-    width: 50px;
-    margin: 0 auto;
-    margin-bottom: 40px;
-  }
+  padding-bottom: 40px;
 
   h3 {
     font-size: 24px;
@@ -2765,45 +2754,274 @@ $ui-header-height: 55px;
     font-weight: 400;
     color: $darker-text-color;
   }
-}
 
-.follow-recommendations-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.column-actions {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 40px;
-  padding-top: 40px;
-  padding-bottom: 200px;
-  flex-grow: 1;
-  position: relative;
-
-  &__background {
-    position: absolute;
-    inset-inline-start: 0;
-    bottom: 0;
-    height: 220px;
-    width: auto;
+  @media screen and (min-width: 600px) {
+    padding: 40px;
   }
 }
 
-.column-list {
-  margin: 0 20px;
-  border: 1px solid lighten($ui-base-color, 8%);
-  background: darken($ui-base-color, 2%);
-  border-radius: 4px;
+.onboarding__footer {
+  margin-top: 30px;
+  color: $dark-text-color;
+  text-align: center;
+  font-size: 14px;
 
-  &__empty-message {
-    padding: 40px;
-    text-align: center;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 400;
-    color: $darker-text-color;
+  .link-button {
+    display: inline-block;
+    color: inherit;
+    font-size: inherit;
+  }
+}
+
+.onboarding__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: $highlight-text-color;
+  background: lighten($ui-base-color, 4%);
+  border-radius: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 17px;
+  height: 56px;
+  text-decoration: none;
+
+  svg {
+    height: 1.5em;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($ui-base-color, 8%);
+  }
+}
+
+.onboarding__illustration {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  max-height: 200px;
+  width: auto;
+}
+
+.onboarding__lead {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: $darker-text-color;
+  text-align: center;
+  margin-bottom: 30px;
+
+  strong {
+    font-weight: 700;
+    color: $secondary-text-color;
+  }
+}
+
+.onboarding__links {
+  margin-bottom: 30px;
+
+  & > * {
+    margin-bottom: 2px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.onboarding__steps {
+  margin-bottom: 30px;
+
+  &__item {
+    background: lighten($ui-base-color, 4%);
+    border: 0;
+    border-radius: 8px;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 2px;
+    text-decoration: none;
+    text-align: start;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: lighten($ui-base-color, 8%);
+    }
+
+    &__icon {
+      flex: 0 0 auto;
+      background: $ui-base-color;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      color: $dark-text-color;
+
+      @media screen and (min-width: 600px) {
+        display: flex;
+      }
+    }
+
+    &__progress {
+      flex: 0 0 auto;
+      background: $valid-value-color;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 21px;
+      height: 21px;
+      color: $primary-text-color;
+
+      svg {
+        height: 14px;
+        width: auto;
+      }
+    }
+
+    &__description {
+      flex: 1 1 auto;
+      line-height: 18px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      h6 {
+        color: $primary-text-color;
+        font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      p {
+        color: $darker-text-color;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.onboarding__progress-indicator {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  position: sticky;
+  background: $ui-base-color;
+
+  @media screen and (min-width: 600) {
+    padding: 0 40px;
+  }
+
+  &__line {
+    height: 4px;
+    flex: 1 1 auto;
+    background: lighten($ui-base-color, 4%);
+  }
+
+  &__step {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    background: lighten($ui-base-color, 4%);
+    border-radius: 50%;
+    color: $primary-text-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 15px;
+      height: auto;
+    }
+
+    &.active {
+      background: $valid-value-color;
+    }
+  }
+
+  &__step.active,
+  &__line.active {
+    background: $valid-value-color;
+    background-image: linear-gradient(
+      90deg,
+      $valid-value-color,
+      lighten($valid-value-color, 8%),
+      $valid-value-color
+    );
+    background-size: 200px 100%;
+    animation: skeleton 1.2s ease-in-out infinite;
+  }
+}
+
+.follow-recommendations {
+  background: darken($ui-base-color, 4%);
+  border-radius: 8px;
+  margin-bottom: 30px;
+
+  .account:last-child {
+    border-bottom: 0;
+  }
+}
+
+.copy-paste-text {
+  background: lighten($ui-base-color, 4%);
+  border-radius: 8px;
+  border: 1px solid lighten($ui-base-color, 8%);
+  padding: 16px;
+  color: $primary-text-color;
+  font-size: 15px;
+  line-height: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  transition: border-color 300ms linear;
+  margin-bottom: 30px;
+
+  &:focus,
+  &.focused {
+    transition: none;
+    outline: 0;
+    border-color: $highlight-text-color;
+  }
+
+  &.copied {
+    border-color: $valid-value-color;
+    transition: none;
+  }
+
+  textarea {
+    width: 100%;
+    height: auto;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    border: 0;
+    padding: 0;
+    margin-bottom: 30px;
+    resize: none;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.compose-form__highlightable {
+  border-radius: 4px;
+  transition: box-shadow 300ms linear;
+
+  &.active {
+    transition: none;
+    box-shadow: 0 0 0 2px rgba(lighten($highlight-text-color, 8%), 0.7);
   }
 }
 
@@ -7497,6 +7715,8 @@ noscript {
   align-items: center;
   color: $valid-value-color;
   gap: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   a {
     color: inherit;
