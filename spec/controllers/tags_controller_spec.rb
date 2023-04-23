@@ -21,7 +21,7 @@ RSpec.describe TagsController, type: :controller do
         end
 
         it 'returns Vary header' do
-          expect(response.headers['Vary']).to eq 'Accept'
+          expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
         end
 
         it 'returns public Cache-Control header' do
@@ -37,7 +37,7 @@ RSpec.describe TagsController, type: :controller do
         end
 
         it 'returns Vary header' do
-          expect(response.headers['Vary']).to eq 'Accept'
+          expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
         end
 
         it 'returns public Cache-Control header' do

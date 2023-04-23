@@ -38,6 +38,8 @@ class ApplicationController < ActionController::Base
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
   before_action :require_functional!, if: :user_signed_in?
 
+  before_action :set_cache_control_defaults
+
   skip_before_action :verify_authenticity_token, only: :raise_not_found
 
   def raise_not_found
@@ -151,5 +153,9 @@ class ApplicationController < ActionController::Base
       format.any  { render "errors/#{code}", layout: 'error', status: code, formats: [:html] }
       format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code }
     end
+  end
+
+  def set_cache_control_defaults
+    response.cache_control.replace(private: true, no_store: true)
   end
 end

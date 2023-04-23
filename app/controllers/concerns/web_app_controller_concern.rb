@@ -6,6 +6,8 @@ module WebAppControllerConcern
   included do
     prepend_before_action :redirect_unauthenticated_to_permalinks!
     before_action :set_app_body_class
+
+    vary_by 'Accept, Accept-Language, Cookie'
   end
 
   def set_app_body_class
