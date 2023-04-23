@@ -2268,12 +2268,6 @@ Style/NilLambda:
   Exclude:
     - 'config/initializers/paperclip.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: MinDigits, Strict, AllowedNumbers, AllowedPatterns.
-Style/NumericLiterals:
-  Exclude:
-    - 'config/initializers/strong_migrations.rb'
-
 # Configuration parameters: AllowedMethods.
 # AllowedMethods: respond_to_missing?
 Style/OptionalBooleanParameter:
