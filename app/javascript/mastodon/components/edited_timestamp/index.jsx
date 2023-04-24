@@ -32,7 +32,7 @@ class EditedTimestamp extends React.PureComponent {
 
   renderHeader = items => {
     return (
-      <FormattedMessage id='status.edited_x_times' defaultMessage='Edited {count, plural, one {{count} time} other {{count} times}}' values={{ count: items.size - 1 }} />
+      <FormattedMessage id='status.edited_x_times' defaultMessage='Edited {count, plural, one {# time} other {# times}}' values={{ count: items.size - 1 }} />
     );
   };
 
