@@ -559,8 +559,10 @@ class Status extends ImmutablePureComponent {
     this.column.scrollTop();
   };
 
-  renderChildren (list) {
-    return list.map(id => (
+  renderChildren (list, ancestors) {
+    const { params: { statusId } } = this.props;
+
+    return list.map((id, i) => (
       <StatusContainer
         key={id}
         id={id}
@@ -568,6 +570,9 @@ class Status extends ImmutablePureComponent {
         onMoveUp={this.handleMoveUp}
         onMoveDown={this.handleMoveDown}
         contextType='thread'
+        previousId={i > 0 && list.get(i - 1)}
+        nextId={list.get(i + 1) || (ancestors && statusId)}
+        rootId={statusId}
       />
     ));
   }
@@ -628,7 +633,7 @@ class Status extends ImmutablePureComponent {
     const isExpanded = settings.getIn(['content_warnings', 'shared_state']) ? !status.get('hidden') : this.state.isExpanded;
 
     if (ancestorsIds && ancestorsIds.size > 0) {
-      ancestors = <>{this.renderChildren(ancestorsIds)}</>;
+      ancestors = <>{this.renderChildren(ancestorsIds, true)}</>;
     }
 
     if (descendantsIds && descendantsIds.size > 0) {

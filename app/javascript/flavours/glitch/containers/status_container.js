@@ -83,6 +83,7 @@ const makeMapStateToProps = () => {
     return {
       containerId: props.containerId || props.id,  //  Should match reblogStatus's id for reblogs
       status: status,
+      nextInReplyToId: props.nextId ? state.getIn(['statuses', props.nextId, 'in_reply_to_id']) : null,
       account: account || props.account,
       settings: state.get('local_settings'),
       prepend: prepend || props.prepend,

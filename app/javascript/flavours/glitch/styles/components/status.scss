@@ -554,6 +554,7 @@
 .detailed-status {
   background: lighten($ui-base-color, 4%);
   padding: 14px 10px;
+  border-top: 1px solid lighten($ui-base-color, 8%);
 
   &--flex {
     display: flex;
@@ -690,6 +691,7 @@ a.status__display-name,
   margin-inline-end: 10px;
   height: 48px;
   width: 48px;
+  box-shadow: 0 0 0 2px $ui-base-color;
 }
 
 .muted {
@@ -1027,6 +1029,54 @@ a.status-card.compact:hover {
       height: 100%;
       border-inline-start: 4px solid $highlight-text-color;
       pointer-events: none;
+    }
+  }
+
+  &--in-thread {
+    border-bottom: 0;
+
+    .status__content,
+    .status__action-bar {
+      margin-left: 46px + 10px;
+      width: calc(100% - (46px + 10px));
+    }
+  }
+
+  &--first-in-thread {
+    border-top: 1px solid lighten($ui-base-color, 8%);
+  }
+
+  &__line {
+    height: 16px - 4px;
+    border-inline-start: 2px solid lighten($ui-base-color, 8%);
+    width: 0;
+    position: absolute;
+    top: 0;
+    inset-inline-start: 16px + ((46px - 2px) / 2);
+
+    &--full {
+      top: 0;
+      height: 100%;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 16px - 4px;
+        height: 46px + 4px + 4px;
+        width: 2px;
+        background: $ui-base-color;
+        inset-inline-start: -2px;
+      }
+    }
+
+    &--first {
+      top: 16px + 46px + 4px;
+      height: calc(100% - (16px + 46px + 4px));
+
+      &::before {
+        display: none;
+      }
     }
   }
 }
