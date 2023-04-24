@@ -237,7 +237,7 @@ module.exports = {
     'formatjs/no-offset': 'error',
     'formatjs/no-useless-message': 'error',
     'formatjs/prefer-formatted-message': 'error',
-    'formatjs/prefer-pound-in-plural': 'off', // Can be auto-fixed to replace `count` with the entity names
+    'formatjs/prefer-pound-in-plural': 'error',
   },
 
   overrides: [
