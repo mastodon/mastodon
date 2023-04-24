@@ -64,7 +64,7 @@ class Follows extends React.PureComponent {
             ))}
           </div>
 
-          <p className='onboarding__lead'><FormattedHTMLMessage id='onboarding.tips.accounts_from_other_servers' defaultMessage='<strong>Did you know?</strong> Since Mastodon is decentralized, some profiles you come across will be hosted on servers other than yours. And yet you can interact with them seamlessly! Their server is in the second half of their username!' values={{ strong: text => <strong>{text}</strong> }} /></p>
+          <p className='onboarding__lead'><FormattedHTMLMessage id='onboarding.tips.accounts_from_other_servers' defaultMessage='<strong>Did you know?</strong> Since Mastodon is decentralized, you regularly run into people using a different server than you. And yet you can interact with them seamlessly! Their server is in the second half of their username!' values={{ strong: text => <strong>{text}</strong> }} /></p>
 
           <div className='onboarding__footer'>
             <button className='link-button' onClick={onBack}><FormattedMessage id='onboarding.actions.back' defaultMessage='Take me back' /></button>
