@@ -529,14 +529,19 @@ class Status extends ImmutablePureComponent {
     }
   }
 
-  renderChildren (list) {
-    return list.map(id => (
+  renderChildren (list, ancestors) {
+    const { params: { statusId } } = this.props;
+
+    return list.map((id, i) => (
       <StatusContainer
         key={id}
         id={id}
         onMoveUp={this.handleMoveUp}
         onMoveDown={this.handleMoveDown}
         contextType='thread'
+        previousId={i > 0 && list.get(i - 1)}
+        nextId={list.get(i + 1) || (ancestors && statusId)}
+        rootId={statusId}
       />
     ));
   }
@@ -590,7 +595,7 @@ class Status extends ImmutablePureComponent {
     }
 
     if (ancestorsIds && ancestorsIds.size > 0) {
-      ancestors = <>{this.renderChildren(ancestorsIds)}</>;
+      ancestors = <>{this.renderChildren(ancestorsIds, true)}</>;
     }
 
     if (descendantsIds && descendantsIds.size > 0) {
