@@ -755,7 +755,7 @@ de:
       registrations_mode:
         modes:
           approved: Registrierung muss genehmigt werden
-          none: Niemand kann sich registrieren
+          none: Niemand darf sich registrieren
           open: Alle können sich registrieren
       title: Server-Einstellungen
     site_uploads:
@@ -808,7 +808,7 @@ de:
         version_comparison: Elasticsearch %{running_version} läuft, aber %{required_version} wird benötigt
       rules_check:
         action: Serverregeln verwalten
-        message_html: Du hast keine Serverregeln definiert.
+        message_html: Du hast keine Serverregeln festgelegt.
       sidekiq_process_check:
         message_html: Kein Sidekiq-Prozess läuft für die %{value} Warteschlange(n). Bitte überprüfe deine Sidekiq-Konfiguration
       upload_check_privacy_error:
@@ -835,8 +835,8 @@ de:
         publishers:
           no_publisher_selected: Keine Herausgeber wurden geändert, da keine ausgewählt wurden
         shared_by_over_week:
-          one: In der letzten Woche von einer Person geteilt
-          other: In der letzten Woche von %{count} Personen geteilt
+          one: In den vergangenen 7 Tagen von einem Profil geteilt
+          other: In den vergangenen 7 Tagen von %{count} Profilen geteilt
         title: Angesagte Links
         usage_comparison: Heute %{today} Mal geteilt, gestern %{yesterday} Mal
       not_allowed_to_trend: Darf nicht trenden
@@ -865,14 +865,14 @@ de:
         dashboard:
           tag_accounts_measure: eindeutige Verwendungen
           tag_languages_dimension: Meistverwendete Sprachen
-          tag_servers_dimension: Top Server
+          tag_servers_dimension: Top-Server
           tag_servers_measure: verschiedene Server
           tag_uses_measure: Gesamtnutzungen
         description_html: Diese Hashtags werden derzeit in vielen Beiträgen verwendet, die dein Server sieht. Dies kann deinen Nutzer*innen helfen, herauszufinden, worüber die Leute im Moment am meisten schreiben. Hashtags werden erst dann öffentlich angezeigt, wenn du sie genehmigst.
         listable: Kann vorgeschlagen werden
         no_tag_selected: Keine Tags wurden geändert, da keine ausgewählt wurden
         not_listable: Wird nicht vorgeschlagen
-        not_trendable: Wird nicht unter Trends angezeigt
+        not_trendable: Wird in den Trends nicht angezeigt
         not_usable: Kann nicht verwendet werden
         peaked_on_and_decaying: In den Trends am %{date}, jetzt absteigend
         title: Angesagte Hashtags
@@ -922,7 +922,7 @@ de:
         silence: das Beschränken des Kontos
         suspend: um deren Konto zu sperren
       body: "%{target} hat etwas gegen eine Moderationsentscheidung von %{action_taken_by} vom %{date}, die %{type} war. Die Person schrieb:"
-      next_steps: Du kannst dem Einspruch zustimmen und die Moderationsentscheidung rückgängig machen oder ignorieren.
+      next_steps: Du kannst dem Einspruch zustimmen, womit die Entscheidung der Moderation rückgängig gemacht wird, oder ihn ignorieren.
       subject: "%{username} hat Einspruch gegen eine Moderationsentscheidung von %{instance} eingelegt"
     new_pending_account:
       body: Die Details von diesem neuem Konto sind unten. Du kannst die Anfrage akzeptieren oder ablehnen.
@@ -1284,17 +1284,17 @@ de:
     empty: Kein Authentisierungsverlauf verfügbar
     failed_sign_in_html: Fehler beim Anmeldeversuch mit %{method} von %{ip} (%{browser})
     successful_sign_in_html: Erfolgreiche Anmeldung mit %{method} von %{ip} (%{browser})
-    title: Authentifizierungsverlauf
+    title: Authentisierungsverlauf
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
       not_ready: Dateien, die noch nicht bearbeitet wurden, können nicht angehängt werden. Versuche es gleich noch einmal!
-      too_many: Es können nicht mehr als 4 Dateien angehängt werden
+      too_many: Es können nicht mehr als vier Medien angehängt werden
   migrations:
     acct: umgezogen nach
-    cancel: Umleitung abbrechen
+    cancel: Umleitung beenden
     cancel_explanation: Das Abbrechen der Umleitung wird dein aktuelles Konto erneut aktivieren, aber keine Follower, die auf dieses Konto verschoben wurden, zurückholen.
-    cancelled_msg: Die Umleitung wurde erfolgreich abgebrochen.
+    cancelled_msg: Die Umleitung wurde erfolgreich beendet.
     errors:
       already_moved: ist das gleiche Konto, zu dem du bereits umgezogen bist
       missing_also_known_as: referenziert nicht zurück auf dieses Konto
@@ -1411,7 +1411,7 @@ de:
   reactions:
     errors:
       limit_reached: Limit für verschiedene Reaktionen erreicht
-      unrecognized_emoji: ist kein anerkanntes Emoji
+      unrecognized_emoji: ist ein unbekanntes Emoji
   relationships:
     activity: Kontoaktivität
     confirm_follow_selected_followers: Bist du dir sicher, dass du den ausgewählten Followern folgen möchtest?
