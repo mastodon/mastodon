@@ -74,6 +74,7 @@ export const COMPOSE_CHANGE_MEDIA_DESCRIPTION = 'COMPOSE_CHANGE_MEDIA_DESCRIPTIO
 export const COMPOSE_CHANGE_MEDIA_FOCUS       = 'COMPOSE_CHANGE_MEDIA_FOCUS';
 
 export const COMPOSE_SET_STATUS = 'COMPOSE_SET_STATUS';
+export const COMPOSE_FOCUS = 'COMPOSE_FOCUS';
 
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
@@ -124,6 +125,14 @@ export function resetCompose() {
     type: COMPOSE_RESET,
   };
 }
+
+export const focusCompose = routerHistory => dispatch => {
+  dispatch({
+    type: COMPOSE_FOCUS,
+  });
+
+  ensureComposeIsVisible(routerHistory);
+};
 
 export function mentionCompose(account, routerHistory) {
   return (dispatch, getState) => {

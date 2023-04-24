@@ -30,6 +30,38 @@ RSpec.describe UserSettings::Setting do
     it 'returns a type' do
       expect(subject.type).to be_a ActiveModel::Type::Value
     end
+
+    context 'when default value is a boolean' do
+      let(:default) { false }
+
+      it 'returns boolean' do
+        expect(subject.type).to be_a ActiveModel::Type::Boolean
+      end
+    end
+
+    context 'when default value is a string' do
+      let(:default) { '' }
+
+      it 'returns string' do
+        expect(subject.type).to be_a ActiveModel::Type::String
+      end
+    end
+
+    context 'when default value is a lambda returning a boolean' do
+      let(:default) { -> { false } }
+
+      it 'returns boolean' do
+        expect(subject.type).to be_a ActiveModel::Type::Boolean
+      end
+    end
+
+    context 'when default value is a lambda returning a string' do
+      let(:default) { -> { '' } }
+
+      it 'returns boolean' do
+        expect(subject.type).to be_a ActiveModel::Type::String
+      end
+    end
   end
 
   describe '#type_cast' do

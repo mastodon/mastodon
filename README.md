@@ -26,6 +26,7 @@ Click below to **learn more** in a video:
 - [View sponsors](https://joinmastodon.org/sponsors)
 - [Blog](https://blog.joinmastodon.org)
 - [Documentation](https://docs.joinmastodon.org)
+- [Roadmap](https://joinmastodon.org/roadmap)
 - [Official Docker image](https://github.com/mastodon/mastodon/pkgs/container/mastodon)
 - [Browse Mastodon servers](https://joinmastodon.org/communities)
 - [Browse Mastodon apps](https://joinmastodon.org/apps)

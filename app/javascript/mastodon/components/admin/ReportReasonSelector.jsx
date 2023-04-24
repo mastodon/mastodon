@@ -33,7 +33,7 @@ class Category extends React.PureComponent {
     const { id, text, disabled, selected, children } = this.props;
 
     return (
-      <div tabIndex='0' role='button' className={classNames('report-reason-selector__category', { selected, disabled })} onClick={this.handleClick}>
+      <div tabIndex={0} role='button' className={classNames('report-reason-selector__category', { selected, disabled })} onClick={this.handleClick}>
         {selected && <input type='hidden' name='report[category]' value={id} />}
 
         <div className='report-reason-selector__category__label'>
@@ -74,7 +74,7 @@ class Rule extends React.PureComponent {
     const { id, text, disabled, selected } = this.props;
 
     return (
-      <div tabIndex='0' role='button' className={classNames('report-reason-selector__rule', { selected, disabled })} onClick={this.handleClick}>
+      <div tabIndex={0} role='button' className={classNames('report-reason-selector__rule', { selected, disabled })} onClick={this.handleClick}>
         <span className={classNames('poll__input', { checkbox: true, active: selected, disabled })} />
         {selected && <input type='hidden' name='report[rule_ids][]' value={id} />}
         {text}

@@ -175,7 +175,6 @@ module StatusesHelper
   def render_card_component(status, **options)
     component_params = {
       sensitive: sensitized?(status, current_account),
-      maxDescription: 160,
       card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json,
     }.merge(**options)
 

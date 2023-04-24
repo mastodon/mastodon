@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1.4
 # This needs to be bullseye-slim because the Ruby image is built on bullseye-slim
-ARG NODE_VERSION="16.19-bullseye-slim"
+ARG NODE_VERSION="16.20-bullseye-slim"
 
-FROM ghcr.io/moritzheiber/ruby-jemalloc:3.2.1-slim as ruby
+FROM ghcr.io/moritzheiber/ruby-jemalloc:3.2.2-slim as ruby
 FROM node:${NODE_VERSION} as build
 
 COPY --link --from=ruby /opt/ruby /opt/ruby
@@ -18,7 +18,6 @@ COPY Gemfile* package.json yarn.lock /opt/mastodon/
 # hadolint ignore=DL3008
 RUN apt-get update && \
     apt-get install -y --no-install-recommends build-essential \
-        ca-certificates \
         git \
         libicu-dev \
         libidn11-dev \

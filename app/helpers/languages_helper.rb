@@ -201,7 +201,6 @@ module LanguagesHelper
     sma: 'Åarjelsaemien Gïele',
     smj: 'Julevsámegiella',
     szl: 'ślůnsko godka',
-    tai: 'ภาษาไท or ภาษาไต',
     tok: 'toki pona',
     zba: 'باليبلن',
     zgh: 'ⵜⴰⵎⴰⵣⵉⵖⵜ',

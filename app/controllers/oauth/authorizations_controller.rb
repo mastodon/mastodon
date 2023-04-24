@@ -34,6 +34,6 @@ class Oauth::AuthorizationsController < Doorkeeper::AuthorizationsController
   end
 
   def set_cache_headers
-    response.headers['Cache-Control'] = 'private, no-store'
+    response.cache_control.replace(private: true, no_store: true)
   end
 end
