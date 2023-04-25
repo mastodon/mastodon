@@ -27,6 +27,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ !env.ACT }}
 
       - uses: docker/metadata-action@v4
         id: meta
@@ -37,6 +38,7 @@ jobs:
             latest=auto
           tags: |
             type=raw,value=nightly
+            type=schedule,pattern=nightly-{{date 'YYYY-MM-DD' tz='Etc/UTC'}}
           labels: |
             org.opencontainers.image.description=Nightly build image used for testing purposes
 
