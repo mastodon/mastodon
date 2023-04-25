@@ -599,4 +599,38 @@ RSpec.describe Mastodon::AccountsCLI do
       end
     end
   end
+
+  describe '#unfollow' do
+    context 'when provided USERNAME is not found' do
+      let(:arguments) { ['non_existent_username'] }
+
+      it 'returns an error message' do
+        expect { described_class.new.invoke(:unfollow, arguments) }
+          .to output(
+            a_string_including('No such account')
+          ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when provided USERNAME is found' do
+      let(:target_account) { Fabricate(:user).account }
+      let(:users) { Fabricate.times(5, :user) }
+      let(:arguments) { [target_account.username] }
+
+      before do
+        users.each { |user| FollowService.new.call(user.account, target_account) }
+
+        allow_any_instance_of(Mastodon::CLIHelper).to receive(:reset_connection_pools!)
+      end
+
+      it 'all local accounts unfollow specified account successfully' do
+        described_class.new.invoke(:unfollow, arguments)
+
+        result = users.all? { |user| target_account.followed_by?(user.account) }
+
+        expect(result).to be(false)
+      end
+    end
+  end
 end
