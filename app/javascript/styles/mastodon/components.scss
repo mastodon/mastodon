@@ -1145,6 +1145,58 @@ body > [data-popper-placement] {
       }
     }
   }
+
+  &--in-thread {
+    border-bottom: 0;
+
+    .status__content,
+    .status__action-bar,
+    .media-gallery,
+    .video,
+    .audio,
+    .attachment-list {
+      margin-left: 46px + 10px;
+      width: calc(100% - (46px + 10px));
+    }
+  }
+
+  &--first-in-thread {
+    border-top: 1px solid lighten($ui-base-color, 8%);
+  }
+
+  &__line {
+    height: 16px - 4px;
+    border-inline-start: 2px solid lighten($ui-base-color, 8%);
+    width: 0;
+    position: absolute;
+    top: 0;
+    inset-inline-start: 16px + ((46px - 2px) / 2);
+
+    &--full {
+      top: 0;
+      height: 100%;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 16px - 4px;
+        height: 46px + 4px + 4px;
+        width: 2px;
+        background: $ui-base-color;
+        inset-inline-start: -2px;
+      }
+    }
+
+    &--first {
+      top: 16px + 46px + 4px;
+      height: calc(100% - (16px + 46px + 4px));
+
+      &::before {
+        display: none;
+      }
+    }
+  }
 }
 
 .status__relative-time {
@@ -1293,6 +1345,7 @@ body > [data-popper-placement] {
 .detailed-status {
   background: lighten($ui-base-color, 4%);
   padding: 16px;
+  border-top: 1px solid lighten($ui-base-color, 8%);
 
   &--flex {
     display: flex;
@@ -1729,6 +1782,7 @@ a.account__display-name {
 .status__avatar {
   width: 46px;
   height: 46px;
+  box-shadow: 0 0 0 2px $ui-base-color;
 }
 
 .muted {

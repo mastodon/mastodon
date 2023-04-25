@@ -249,7 +249,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Edited {count, plural, one {{count} time} other {{count} times}}",
+        "defaultMessage": "Edited {count, plural, one {# time} other {# times}}",
         "id": "status.edited_x_times"
       },
       {
@@ -299,7 +299,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "{count, plural, one {{counter} person} other {{counter} people}} in the past {days, plural, one {day} other {{days} days}}",
+        "defaultMessage": "{count, plural, one {{counter} person} other {{counter} people}} in the past {days, plural, one {day} other {# days}}",
         "id": "trends.counter_by_accounts"
       }
     ],
@@ -1677,7 +1677,7 @@
         "id": "search_results.hashtags"
       },
       {
-        "defaultMessage": "{count, number} {count, plural, one {result} other {results}}",
+        "defaultMessage": "{count, plural, one {# result} other {# results}}",
         "id": "search_results.total"
       }
     ],
@@ -3144,7 +3144,7 @@
         "id": "report_notification.categories.violation"
       },
       {
-        "defaultMessage": "{count, plural, one {{count} post} other {{count} posts}} attached",
+        "defaultMessage": "{count, plural, one {# post} other {# posts}} attached",
         "id": "report_notification.attached_statuses"
       }
     ],
@@ -3818,7 +3818,7 @@
         "id": "status.show_less_all"
       },
       {
-        "defaultMessage": "{user} posted {attachmentCount, plural, one {an attachment} other {{attachmentCount} attachments}}",
+        "defaultMessage": "{user} posted {attachmentCount, plural, one {an attachment} other {# attachments}}",
         "id": "status.title.with_attachments"
       },
       {

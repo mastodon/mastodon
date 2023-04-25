@@ -34,8 +34,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(showSearch());
   },
 
-  onOpenURL (routerHistory) {
-    dispatch(openURL(routerHistory));
+  onOpenURL (q, routerHistory) {
+    dispatch(openURL(q, routerHistory));
   },
 
   onClickSearchResult (q, type) {

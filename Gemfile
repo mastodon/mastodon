@@ -30,7 +30,10 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.3'
 gem 'devise', '~> 4.9'
-gem 'devise-two-factor', '~> 4.0'
+# The below `v4.x` branch allows attr_encrypted 4.x, which is required for Rails 7.
+# Once a new gem version is pushed, we can go back to released gem and off of github branch.
+gem 'devise-two-factor', github: 'tinfoil/devise-two-factor', branch: 'v4.x'
+gem 'attr_encrypted', '~> 4.0'
 
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
@@ -76,7 +79,7 @@ gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 2.1'
-gem 'ruby-progressbar', '~> 1.11'
+gem 'ruby-progressbar', '~> 1.13'
 gem 'sanitize', '~> 6.0'
 gem 'scenic', '~> 1.7'
 gem 'sidekiq', '~> 6.5'
