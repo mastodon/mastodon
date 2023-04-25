@@ -285,7 +285,7 @@ de:
         update_domain_block_html: "%{name} hat die Domain-Sperre für %{target} aktualisiert"
         update_ip_block_html: "%{name} änderte die Regel für die IP-Adresse %{target}"
         update_status_html: "%{name} überarbeitete einen Beitrag von %{target}"
-        update_user_role_html: "%{name} hat die Rolle %{target} geändert"
+        update_user_role_html: "%{name} änderte die Rolle von %{target}"
       deleted_account: gelöschtes Konto
       empty: Protokolle nicht gefunden.
       filter_by_action: Nach Aktion filtern
@@ -1021,7 +1021,7 @@ de:
     set_new_password: Neues Passwort einrichten
     setup:
       email_below_hint_html: Überprüfe deinen Spam-Ordner oder lass dir den Bestätigungslink erneut zusenden. Falls die angegebene E-Mail-Adresse falsch ist, kannst du sie auch korrigieren.
-      email_settings_hint_html: Klicke auf den Bestätigungslink, den wir an %{email} gesendet haben, um die Adresse zu verifizieren. Wir warten hier solange auf dich.
+      email_settings_hint_html: Klicke den Bestätigungslink in der E-Mail an, damit wir deine Adresse %{email} verifizieren können. Wir warten hier auf dich.
       link_not_received: Keinen Bestätigungslink erhalten?
       new_confirmation_instructions_sent: In wenigen Minuten wirst du eine neue E-Mail mit dem Bestätigungslink erhalten!
       title: Überprüfe dein E-Mail-Postfach
@@ -1146,7 +1146,7 @@ de:
     noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   existing_username_validator:
     not_found: kann lokale*n Benutzer*in mit diesem Profilnamen nicht finden
-    not_found_multiple: '%{usernames} können nicht gefunden werden'
+    not_found_multiple: '%{usernames} konnten nicht gefunden werden'
   exports:
     archive_takeout:
       date: Datum
@@ -1668,9 +1668,9 @@ de:
         silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen, und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
         suspend: Du kannst dein Konto nicht mehr verwenden und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um eine Sicherung deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
       reason: 'Begründung:'
-      statuses: 'Zitierte Beiträge:'
+      statuses: 'Betroffene Beiträge:'
       subject:
-        delete_statuses: Deine Beiträge auf %{acct} wurden entfernt
+        delete_statuses: Deine Beiträge von %{acct} wurden entfernt
         disable: Dein Konto %{acct} wurde eingefroren
         mark_statuses_as_sensitive: Deine Beiträge von %{acct} wurden mit einer Inhaltswarnung versehen
         none: Warnung für %{acct}
