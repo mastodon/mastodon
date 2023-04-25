@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 module WellKnown
-  class NodeInfoController < ActionController::Base
+  class NodeInfoController < ActionController::Base # rubocop:disable Rails/ApplicationController
     include CacheConcern
-
-    before_action { response.headers['Vary'] = 'Accept' }
 
     def index
       expires_in 3.days, public: true

@@ -7,6 +7,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   after_action :insert_pagination_headers, unless: -> { truthy_param?(:pinned) }
 
   def index
+    cache_if_unauthenticated!
     @statuses = load_statuses
     return_source = params[:format] == "source" ? true : false
     render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id), source_requested: return_source

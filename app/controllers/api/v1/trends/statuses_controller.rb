@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 class Api::V1::Trends::StatusesController < Api::BaseController
+  vary_by 'Authorization, Accept-Language'
+
   before_action :set_statuses
 
   after_action :insert_pagination_headers
 
   def index
+    cache_if_unauthenticated!
     return_source = params[:format] == "source" ? true : false
     render json: @statuses, each_serializer: REST::StatusSerializer, source_requested: return_source
   end

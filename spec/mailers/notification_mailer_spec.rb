@@ -29,7 +29,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
     it 'renders the headers' do
       expect(mail.subject).to eq('You were mentioned by bob')
-      expect(mail.to).to eq([receiver.email])
+      expect(mail[:to].value).to eq("#{receiver.account.username} <#{receiver.email}>")
     end
 
     it 'renders the body' do
@@ -46,7 +46,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
     it 'renders the headers' do
       expect(mail.subject).to eq('bob is now following you')
-      expect(mail.to).to eq([receiver.email])
+      expect(mail[:to].value).to eq("#{receiver.account.username} <#{receiver.email}>")
     end
 
     it 'renders the body' do
@@ -62,7 +62,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
     it 'renders the headers' do
       expect(mail.subject).to eq('bob favourited your post')
-      expect(mail.to).to eq([receiver.email])
+      expect(mail[:to].value).to eq("#{receiver.account.username} <#{receiver.email}>")
     end
 
     it 'renders the body' do
@@ -79,7 +79,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
     it 'renders the headers' do
       expect(mail.subject).to eq('bob boosted your post')
-      expect(mail.to).to eq([receiver.email])
+      expect(mail[:to].value).to eq("#{receiver.account.username} <#{receiver.email}>")
     end
 
     it 'renders the body' do
@@ -96,7 +96,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
     it 'renders the headers' do
       expect(mail.subject).to eq('Pending follower: bob')
-      expect(mail.to).to eq([receiver.email])
+      expect(mail[:to].value).to eq("#{receiver.account.username} <#{receiver.email}>")
     end
 
     it 'renders the body' do

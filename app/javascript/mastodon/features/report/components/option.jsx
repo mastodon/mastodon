@@ -40,7 +40,7 @@ export default class Option extends React.PureComponent {
 
         <span
           className={classNames('poll__input', { active: checked, checkbox: multiple })}
-          tabIndex='0'
+          tabIndex={0}
           role='radio'
           onKeyPress={this.handleKeyPress}
           aria-checked={checked}

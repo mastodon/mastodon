@@ -59,7 +59,7 @@ class ServerBanner extends React.PureComponent {
           <div className='server-banner__meta__column'>
             <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
 
-            <Account id={server.getIn(['contact', 'account', 'id'])} size={36} />
+            <Account id={server.getIn(['contact', 'account', 'id'])} size={36} minimal />
           </div>
 
           <div className='server-banner__meta__column'>

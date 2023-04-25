@@ -67,7 +67,7 @@ class Section extends React.PureComponent {
 
     return (
       <div className={classNames('about__section', { active: !collapsed })}>
-        <div className='about__section__title' role='button' tabIndex='0' onClick={this.handleClick}>
+        <div className='about__section__title' role='button' tabIndex={0} onClick={this.handleClick}>
           <Icon id={collapsed ? 'chevron-right' : 'chevron-down'} fixedWidth /> {title}
         </div>
 
@@ -123,7 +123,7 @@ class About extends React.PureComponent {
             <div className='about__meta__column'>
               <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
 
-              <Account id={server.getIn(['contact', 'account', 'id'])} size={36} />
+              <Account id={server.getIn(['contact', 'account', 'id'])} size={36} minimal />
             </div>
 
             <hr className='about__meta__divider' />

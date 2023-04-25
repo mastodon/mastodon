@@ -32,17 +32,14 @@ function ShortNumber({ value, renderer, children }) {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
 
-  // eslint-disable-next-line eqeqeq
   if (children != null && renderer != null) {
     console.warn('Both renderer prop and renderer as a child provided. This is a mistake and you really should fix that. Only renderer passed as a child will be used.');
   }
 
-  // eslint-disable-next-line eqeqeq
   const customRenderer = children != null ? children : renderer;
 
   const displayNumber = <ShortNumberCounter value={shortNumber} />;
 
-  // eslint-disable-next-line eqeqeq
   return customRenderer != null
     ? customRenderer(displayNumber, pluralReady(value, division))
     : displayNumber;

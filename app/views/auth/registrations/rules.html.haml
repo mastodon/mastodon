@@ -2,9 +2,11 @@
   = t('auth.register')
 
 - content_for :header_tags do
-  = render partial: 'shared/og', locals: { description: description_for_sign_up }
+  = render partial: 'shared/og', locals: { description: description_for_sign_up(@invite) }
 
 .simple_form
+  = render 'auth/shared/progress', stage: 'rules'
+
   %h1.title= t('auth.rules.title')
   %p.lead= t('auth.rules.preamble', domain: site_hostname)
 

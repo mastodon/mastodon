@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   helper_method :omniauth_only?
   helper_method :sso_account_settings
   helper_method :whitelist_mode?
+  helper_method :body_class_string
 
   rescue_from ActionController::ParameterMissing, Paperclip::AdapterRegistry::NoHandlerError, with: :bad_request
   rescue_from Mastodon::NotPermittedError, with: :forbidden
@@ -37,6 +38,8 @@ class ApplicationController < ActionController::Base
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
   before_action :require_functional!, if: :user_signed_in?
+
+  before_action :set_cache_control_defaults
 
   skip_before_action :verify_authenticity_token, only: :raise_not_found
 
@@ -125,7 +128,7 @@ class ApplicationController < ActionController::Base
   end
 
   def sso_account_settings
-    ENV.fetch('SSO_ACCOUNT_SETTINGS')
+    ENV.fetch('SSO_ACCOUNT_SETTINGS', nil)
   end
 
   def current_account
@@ -146,10 +149,18 @@ class ApplicationController < ActionController::Base
     current_user.setting_theme
   end
 
+  def body_class_string
+    @body_classes || ''
+  end
+
   def respond_with_error(code)
     respond_to do |format|
       format.any  { render "errors/#{code}", layout: 'error', status: code, formats: [:html] }
       format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code }
     end
+  end
+
+  def set_cache_control_defaults
+    response.cache_control.replace(private: true, no_store: true)
   end
 end
