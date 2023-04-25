@@ -3026,6 +3026,29 @@ $ui-header-height: 55px;
   .account:last-child {
     border-bottom: 0;
   }
+
+  &__empty {
+    text-align: center;
+    color: $darker-text-color;
+    font-weight: 500;
+    padding: 40px;
+  }
+}
+
+.tip-carousel {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 30px;
+
+  &:focus {
+    outline: 0;
+    border-color: $highlight-text-color;
+  }
+
+  .media-modal__pagination {
+    margin-bottom: 0;
+  }
 }
 
 .copy-paste-text {
@@ -5538,6 +5561,11 @@ a.status-card.compact:hover {
 
   &.active {
     opacity: 1;
+  }
+
+  &:focus {
+    outline: 0;
+    background-color: $highlight-text-color;
   }
 }
 
