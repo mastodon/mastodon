@@ -5,8 +5,10 @@ class Api::V1::Instances::PeersController < Api::BaseController
 
   skip_before_action :require_authenticated_user!, unless: :whitelist_mode?
 
+  vary_by ''
+
   def index
-    expires_in 1.day, public: true
+    cache_even_if_authenticated!
     render_with_cache(expires_in: 1.day) { Instance.where.not(domain: DomainBlock.select(:domain)).pluck(:domain) }
   end
 

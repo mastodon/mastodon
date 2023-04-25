@@ -6,8 +6,10 @@ class Api::V1::Instances::DomainBlocksController < Api::BaseController
   before_action :require_enabled_api!
   before_action :set_domain_blocks
 
+  vary_by ''
+
   def index
-    expires_in 3.minutes, public: true
+    cache_even_if_authenticated!
     render json: @domain_blocks, each_serializer: REST::DomainBlockSerializer, with_comment: (Setting.show_domain_blocks_rationale == 'all' || (Setting.show_domain_blocks_rationale == 'users' && user_signed_in?))
   end
 

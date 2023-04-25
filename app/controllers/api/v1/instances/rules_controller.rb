@@ -5,7 +5,10 @@ class Api::V1::Instances::RulesController < Api::BaseController
 
   before_action :set_rules
 
+  vary_by ''
+
   def index
+    cache_even_if_authenticated!
     render json: @rules, each_serializer: REST::RuleSerializer
   end
 

@@ -24,11 +24,14 @@ class Api::V1::StatusesController < Api::BaseController
   DESCENDANTS_DEPTH_LIMIT = 20
 
   def show
+    cache_if_unauthenticated!
     @status = cache_collection([@status], Status).first
     render json: @status, serializer: REST::StatusSerializer
   end
 
   def context
+    cache_if_unauthenticated!
+
     ancestors_limit         = CONTEXT_LIMIT
     descendants_limit       = CONTEXT_LIMIT
     descendants_depth_limit = nil
