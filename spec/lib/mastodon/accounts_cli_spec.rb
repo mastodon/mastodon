@@ -633,4 +633,132 @@ RSpec.describe Mastodon::AccountsCLI do
       end
     end
   end
+
+  describe '#reset_relationships' do
+    context 'when no option is provided' do
+      let(:target_account) { Fabricate(:target_account).account }
+      let(:arguments) { [target_account.username] }
+
+      it 'returns an error message' do
+        expect { described_class.new.invoke(:reset_relationships, arguments) }
+          .to output(
+            a_string_including('Please specify either --follows or --followers, or both')
+          ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when provided USERNAME is not found' do
+      let(:options) { { follows: true } }
+      let(:arguments) { ['non_existent_username'] }
+
+      it 'returns an error message' do
+        expect { described_class.new.invoke(:reset_relationships, arguments, options) }
+          .to output(
+            a_string_including('No such account')
+          ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when provided USERNAME is found' do
+      context 'with --follows option' do
+        let(:target_account) { Fabricate(:user).account }
+        let(:arguments) { [target_account.username] }
+        let(:options) { { follows: true } }
+        let(:total_relantionships) { 10 }
+
+        before do
+          users = Fabricate.times(total_relantionships, :user)
+          users.each { |user| target_account.follow!(user.account) }
+        end
+
+        it 'resets all "following" relationships from target_account' do
+          described_class.new.invoke(:reset_relationships, arguments, options)
+
+          expect(target_account.reload.following).to be_empty
+        end
+
+        it 'calls BootstrapTimelineWorker once' do
+          allow(BootstrapTimelineWorker).to receive(:perform_async).once
+
+          described_class.new.invoke(:reset_relationships, arguments, options)
+
+          expect(BootstrapTimelineWorker).to have_received(:perform_async)
+        end
+
+        it 'outputs success message' do
+          expect { described_class.new.invoke(:reset_relationships, arguments, options) }
+            .to output(
+              a_string_including("Processed #{total_relantionships} relationships")
+            ).to_stdout
+        end
+      end
+
+      context 'with --followers option' do
+        let(:target_account) { Fabricate(:user).account }
+        let(:arguments) { [target_account.username] }
+        let(:options) { { followers: true } }
+        let(:total_relantionships) { 10 }
+
+        before do
+          users = Fabricate.times(total_relantionships, :user)
+          users.each { |user| user.account.follow!(target_account) }
+        end
+
+        it 'resets all "followers" relationships' do
+          described_class.new.invoke(:reset_relationships, arguments, options)
+
+          expect(target_account.reload.followers).to be_empty
+        end
+
+        it 'outputs success message' do
+          expect { described_class.new.invoke(:reset_relationships, arguments, options) }
+            .to output(
+              a_string_including("Processed #{total_relantionships} relationships")
+            ).to_stdout
+        end
+      end
+
+      context 'with --follows and --followers options' do
+        let(:target_account) { Fabricate(:user).account }
+        let(:arguments) { [target_account.username] }
+        let(:options) { { followers: true, follows: true } }
+        let(:total_relantionships) { 16 }
+
+        before do
+          users = Fabricate.times(total_relantionships, :user)
+          users.first(8).each { |user| user.account.follow!(target_account) }
+          users.last(8).each { |user| target_account.follow!(user.account) }
+        end
+
+        it 'resets all "followers" relationships' do
+          described_class.new.invoke(:reset_relationships, arguments, options)
+
+          expect(target_account.reload.followers).to be_empty
+        end
+
+        it 'resets all "following" relationships' do
+          described_class.new.invoke(:reset_relationships, arguments, options)
+
+          expect(target_account.reload.following).to be_empty
+        end
+
+        it 'calls BootstrapTimelineWorker once' do
+          allow(BootstrapTimelineWorker).to receive(:perform_async).once
+
+          described_class.new.invoke(:reset_relationships, arguments, options)
+
+          expect(BootstrapTimelineWorker).to have_received(:perform_async)
+        end
+
+        it 'outputs success message' do
+          expect { described_class.new.invoke(:reset_relationships, arguments, options) }
+            .to output(
+              a_string_including("Processed #{total_relantionships} relationships")
+            ).to_stdout
+        end
+      end
+    end
+  end
 end
