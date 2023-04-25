@@ -77,7 +77,7 @@ class Header extends ImmutablePureComponent {
 
     //  The result.
     return (
-      <nav className='drawer--header'>
+      <nav className='drawer__header'>
         <Link
           aria-label={intl.formatMessage(messages.start)}
           title={intl.formatMessage(messages.start)}
