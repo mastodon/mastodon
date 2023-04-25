@@ -26,7 +26,7 @@ class Api::V1::StatusesController < Api::BaseController
   def show
     cache_if_unauthenticated!
     @status = cache_collection([@status], Status).first
-    return_source = params[:format] == "source" ? true : false
+    return_source = params[:format] == 'source'
     render json: @status, serializer: REST::StatusSerializer, source_requested: return_source
   end
 
@@ -72,7 +72,7 @@ class Api::V1::StatusesController < Api::BaseController
       with_rate_limit: true
     )
 
-    return_source = params[:format] == "source" ? true : false
+    return_source = params[:format] == 'source'
     render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer, source_requested: return_source
   rescue PostStatusService::UnexpectedMentionsError => e
     unexpected_accounts = ActiveModel::Serializer::CollectionSerializer.new(
@@ -98,7 +98,7 @@ class Api::V1::StatusesController < Api::BaseController
       poll: status_params[:poll]
     )
 
-    return_source = params[:format] == "source" ? true : false
+    return_source = params[:format] == 'source'
     render json: @status, serializer: REST::StatusSerializer, source_requested: return_source
   end
 
@@ -110,10 +110,10 @@ class Api::V1::StatusesController < Api::BaseController
     StatusPin.find_by(status: @status)&.destroy
     @status.account.statuses_count = @status.account.statuses_count - 1
 
-	# Historically source_requested defaulted to true here, whereas all the other destroys in the API,
-	# for example for bookmarks, reblogs, etc., defaulted to false. So we perpetuate the
-	# old default behavior of true here, while also allowing the client to override that behavior.
-    return_source = params[:format] == "html" ? false : true
+    # Historically source_requested defaulted to true here, whereas all the other destroys in the API,
+    # for example for bookmarks, reblogs, etc., defaulted to false. So we perpetuate the
+    # old default behavior of true here, while also allowing the client to override that behavior.
+    return_source = params[:format] != 'html'
     json = render_to_body json: @status, serializer: REST::StatusSerializer, source_requested: return_source
 
     RemovalWorker.perform_async(@status.id, { 'redraft' => true })

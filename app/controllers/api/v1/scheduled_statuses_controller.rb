@@ -12,18 +12,18 @@ class Api::V1::ScheduledStatusesController < Api::BaseController
   after_action :insert_pagination_headers, only: :index
 
   def index
-    return_source = params[:format] == "source" ? true : false
+    return_source = params[:format] == 'source'
     render json: @statuses, each_serializer: REST::ScheduledStatusSerializer, source_requested: return_source
   end
 
   def show
-    return_source = params[:format] == "source" ? true : false
+    return_source = params[:format] == 'source'
     render json: @status, serializer: REST::ScheduledStatusSerializer, source_requested: return_source
   end
 
   def update
     @status.update!(scheduled_status_params)
-    return_source = params[:format] == "source" ? true : false
+    return_source = params[:format] == 'source'
     render json: @status, serializer: REST::ScheduledStatusSerializer, source_requested: return_source
   end
 

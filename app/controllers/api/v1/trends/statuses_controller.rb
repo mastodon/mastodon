@@ -9,7 +9,7 @@ class Api::V1::Trends::StatusesController < Api::BaseController
 
   def index
     cache_if_unauthenticated!
-    return_source = params[:format] == "source" ? true : false
+    return_source = params[:format] == 'source'
     render json: @statuses, each_serializer: REST::StatusSerializer, source_requested: return_source
   end
 

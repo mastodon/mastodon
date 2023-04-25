@@ -10,7 +10,7 @@ class Api::V1::Statuses::PinsController < Api::BaseController
   def create
     StatusPin.create!(account: current_account, status: @status)
     distribute_add_activity!
-    return_source = params[:format] == "source" ? true : false
+    return_source = params[:format] == 'source'
     render json: @status, serializer: REST::StatusSerializer, source_requested: return_source
   end
 
@@ -22,7 +22,7 @@ class Api::V1::Statuses::PinsController < Api::BaseController
       distribute_remove_activity!
     end
 
-    return_source = params[:format] == "source" ? true : false
+    return_source = params[:format] == 'source'
     render json: @status, serializer: REST::StatusSerializer, source_requested: return_source
   end
 

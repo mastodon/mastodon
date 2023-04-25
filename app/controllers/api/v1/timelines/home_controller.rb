@@ -8,7 +8,7 @@ class Api::V1::Timelines::HomeController < Api::BaseController
   def show
     @statuses = load_statuses
 
-    return_source = params[:format] == "source" ? true : false
+    return_source = params[:format] == 'source'
     render json: @statuses,
            each_serializer: REST::StatusSerializer,
            relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id),
