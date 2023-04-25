@@ -1052,7 +1052,7 @@ a.status-card.compact:hover {
     width: 0;
     position: absolute;
     top: 0;
-    inset-inline-start: 16px + ((46px - 2px) / 2);
+    inset-inline-start: 16px + ((46px - 2px) * 0.5);
 
     &--full {
       top: 0;
