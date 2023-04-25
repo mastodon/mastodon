@@ -46,6 +46,16 @@ class Follows extends React.PureComponent {
   render () {
     const { onBack, isLoading, suggestions, account } = this.props;
 
+    let loadedContent;
+
+    if (isLoading) {
+      loadedContent = (new Array(8)).fill().map((_, i) => <EmptyAccount key={i} />);
+    } else if (suggestions.isEmpty()) {
+      loadedContent = <div className='follow-recommendations__empty'><FormattedMessage id='onboarding.follows.empty' defaultMessage='Unfortunately, no results can be shown right now. You can try using search or browsing the explore page to find people to follow, or try again later.' /></div>;
+    } else {
+      loadedContent = suggestions.map(suggestion => <Account id={suggestion.get('account')} key={suggestion.get('account')} />);
+    }
+
     return (
       <Column>
         <ColumnBackButton onClick={onBack} />
@@ -59,12 +69,10 @@ class Follows extends React.PureComponent {
           <ProgressIndicator steps={7} completed={account.get('following_count') * 1} />
 
           <div className='follow-recommendations'>
-            {isLoading ? (new Array(8)).fill().map((_, i) => <EmptyAccount key={i} />) : suggestions.map(suggestion => (
-              <Account id={suggestion.get('account')} key={suggestion.get('account')} />
-            ))}
+            {loadedContent}
           </div>
 
-          <p className='onboarding__lead'><FormattedHTMLMessage id='onboarding.tips.accounts_from_other_servers' defaultMessage='<strong>Did you know?</strong> Since Mastodon is decentralized, some profiles you come across will be hosted on servers other than yours. And yet you can interact with them seamlessly! Their server is in the second half of their username!' values={{ strong: text => <strong>{text}</strong> }} /></p>
+          <p className='onboarding__lead'><FormattedHTMLMessage id='onboarding.tips.accounts_from_other_servers' defaultMessage='<strong>Did you know?</strong> Since Mastodon is decentralized, some profiles you come across will be hosted on servers other than yours. And yet you can interact with them seamlessly! Their server is in the second half of their username!' /></p>
 
           <div className='onboarding__footer'>
             <button className='link-button' onClick={onBack}><FormattedMessage id='onboarding.actions.back' defaultMessage='Take me back' /></button>
