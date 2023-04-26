@@ -6,22 +6,28 @@ on:
     paths:
       - 'package.json'
       - 'yarn.lock'
+      - 'tsconfig.json'
       - '.nvmrc'
       - '.prettier*'
       - '.eslint*'
       - '**/*.js'
       - '**/*.jsx'
+      - '**/*.ts'
+      - '**/*.tsx'
       - '.github/workflows/lint-js.yml'
 
   pull_request:
     paths:
       - 'package.json'
       - 'yarn.lock'
+      - 'tsconfig.json'
       - '.nvmrc'
       - '.prettier*'
       - '.eslint*'
       - '**/*.js'
       - '**/*.jsx'
+      - '**/*.ts'
+      - '**/*.tsx'
       - '.github/workflows/lint-js.yml'
 
 jobs:
@@ -43,3 +49,6 @@ jobs:
 
       - name: ESLint
         run: yarn test:lint:js
+
+      - name: Typecheck
+        run: yarn test:typecheck

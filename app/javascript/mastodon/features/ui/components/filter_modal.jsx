@@ -131,4 +131,4 @@ class FilterModal extends ImmutablePureComponent {
 
 }
 
-export default connect(injectIntl(FilterModal));
+export default connect()(injectIntl(FilterModal));

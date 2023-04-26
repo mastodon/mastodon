@@ -7,7 +7,7 @@ hu:
       send_paranoid_instructions: Ha az e-mail címed már szerepel az adatbázisunkban, néhány percen belül kapsz egy levelet az e-mail cím megerősítésére vonatkozó utasításokkal. Kérjük, ellenőrizd a spam mappád, ha nem látod az e-mailt.
     failure:
       already_authenticated: Már bejelentkeztél.
-      inactive: A fiók még nincs aktiválva.
+      inactive: Fiókodat még nem aktiválták.
       invalid: Helytelen %{authentication_keys} vagy jelszó.
       last_attempt: Már csak egy próbálkozásod maradt, mielőtt a fiókodat zároljuk.
       locked: A fiókodat zároltuk.
@@ -88,9 +88,9 @@ hu:
       updated_not_active: A jelszó sikeresen megváltoztatásra került.
     registrations:
       destroyed: Viszontásátásra! A fiók sikeresen törlésre került. Reméljük hamarosan visszatér.
-      signed_up: Üdvözlet! A regisztráció sikeres volt.
-      signed_up_but_inactive: A regisztráció sikeres volt. Ennek ellenére nem lehet belépni, mert a fiók még nem lett aktiválva.
-      signed_up_but_locked: A regisztráció sikeres volt. Ennek ellenére nem lehet belépni, mert a fiók lezárásra került.
+      signed_up: Üdvözlünk! Sikeresen regisztráltál.
+      signed_up_but_inactive: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókodat még nem aktiválták.
+      signed_up_but_locked: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókod le van zárva.
       signed_up_but_pending: Egy megerősítési hivatkozással ellátott üzenetet kiküldtünk az e-mail címedre. Ha kattintasz a hivatkozásra, átnézzük a kérelmedet. Értesítünk, ha jóváhagytuk.
       signed_up_but_unconfirmed: Egy megerősítési hivatkozással ellátott üzenetet kiküldtünk az e-mail címedre. Kérjük használd a hivatkozást a fiókod aktiválásához. Ellenőrizd a spam mappádat, ha nem kaptad meg ezt a levelet.
       update_needs_confirmation: A fiókodat sikeresen frissítésre került, de szükség van az email cím megerősítésére. Ellenőrizzük az emailt és kövessük a benne levő megerősítési hivatkozást az email cím megerősítéséhez. Ellenőrizzük a levélszemét mappát, ha nemérkezett volna meg ez az email.

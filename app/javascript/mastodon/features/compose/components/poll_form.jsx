@@ -82,7 +82,7 @@ class OptionIntl extends React.PureComponent {
             onClick={this.handleToggleMultiple}
             onKeyPress={this.handleCheckboxKeypress}
             role='button'
-            tabIndex='0'
+            tabIndex={0}
             title={intl.formatMessage(isPollMultiple ? messages.switchToSingle : messages.switchToMultiple)}
             aria-label={intl.formatMessage(isPollMultiple ? messages.switchToSingle : messages.switchToMultiple)}
           />

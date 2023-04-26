@@ -8,7 +8,7 @@ module HomeHelper
   end
 
   def account_link_to(account, button = '', path: nil)
-    content_tag(:div, class: 'account') do
+    content_tag(:div, class: 'account account--minimal') do
       content_tag(:div, class: 'account__wrapper') do
         section = if account.nil?
                     content_tag(:div, class: 'account__display-name') do

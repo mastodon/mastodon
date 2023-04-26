@@ -826,7 +826,7 @@ body > [data-popper-placement] {
 }
 
 .reply-indicator__cancel {
-  float: inline-end;
+  float: right;
   line-height: 24px;
 }
 
@@ -841,7 +841,7 @@ body > [data-popper-placement] {
 }
 
 .reply-indicator__display-avatar {
-  float: inline-start;
+  float: left;
   margin-inline-end: 5px;
 }
 
@@ -1145,6 +1145,58 @@ body > [data-popper-placement] {
       }
     }
   }
+
+  &--in-thread {
+    border-bottom: 0;
+
+    .status__content,
+    .status__action-bar,
+    .media-gallery,
+    .video,
+    .audio,
+    .attachment-list {
+      margin-left: 46px + 10px;
+      width: calc(100% - (46px + 10px));
+    }
+  }
+
+  &--first-in-thread {
+    border-top: 1px solid lighten($ui-base-color, 8%);
+  }
+
+  &__line {
+    height: 16px - 4px;
+    border-inline-start: 2px solid lighten($ui-base-color, 8%);
+    width: 0;
+    position: absolute;
+    top: 0;
+    inset-inline-start: 16px + ((46px - 2px) * 0.5);
+
+    &--full {
+      top: 0;
+      height: 100%;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 16px - 4px;
+        height: 46px + 4px + 4px;
+        width: 2px;
+        background: $ui-base-color;
+        inset-inline-start: -2px;
+      }
+    }
+
+    &--first {
+      top: 16px + 46px + 4px;
+      height: calc(100% - (16px + 46px + 4px));
+
+      &::before {
+        display: none;
+      }
+    }
+  }
 }
 
 .status__relative-time {
@@ -1159,7 +1211,7 @@ body > [data-popper-placement] {
 
 .notification__relative_time {
   color: $dark-text-color;
-  float: inline-end;
+  float: right;
   font-size: 14px;
   padding-bottom: 1px;
 }
@@ -1244,7 +1296,7 @@ body > [data-popper-placement] {
 .status__prepend {
   padding: 16px;
   padding-bottom: 0;
-  display: flex;
+  display: inline-flex;
   gap: 10px;
   font-size: 15px;
   line-height: 22px;
@@ -1259,6 +1311,18 @@ body > [data-popper-placement] {
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+}
+
+.status__wrapper-direct {
+  background: mix($ui-base-color, $ui-highlight-color, 95%);
+
+  &:focus {
+    background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+  }
+
+  .status__prepend {
+    color: $highlight-text-color;
   }
 }
 
@@ -1281,6 +1345,7 @@ body > [data-popper-placement] {
 .detailed-status {
   background: lighten($ui-base-color, 4%);
   padding: 16px;
+  border-top: 1px solid lighten($ui-base-color, 8%);
 
   &--flex {
     display: flex;
@@ -1315,6 +1380,11 @@ body > [data-popper-placement] {
   .audio-player {
     margin-top: 16px;
   }
+
+  .status__prepend {
+    padding: 0;
+    margin-bottom: 16px;
+  }
 }
 
 .detailed-status__meta {
@@ -1331,6 +1401,32 @@ body > [data-popper-placement] {
   display: flex;
   flex-direction: row;
   padding: 10px 0;
+}
+
+.detailed-status__wrapper-direct {
+  .detailed-status,
+  .detailed-status__action-bar {
+    background: mix($ui-base-color, $ui-highlight-color, 95%);
+  }
+
+  &:focus {
+    .detailed-status,
+    .detailed-status__action-bar {
+      background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+    }
+  }
+
+  .detailed-status__action-bar {
+    border-top-color: mix(
+      lighten($ui-base-color, 8%),
+      $ui-highlight-color,
+      95%
+    );
+  }
+
+  .status__prepend {
+    color: $highlight-text-color;
+  }
 }
 
 .detailed-status__link {
@@ -1384,15 +1480,6 @@ body > [data-popper-placement] {
   padding: 16px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
 
-  &.compact {
-    padding: 0;
-    border-bottom: 0;
-
-    .account__avatar-wrapper {
-      margin-inline-start: 0;
-    }
-  }
-
   .account__display-name {
     flex: 1 1 auto;
     display: flex;
@@ -1412,21 +1499,25 @@ body > [data-popper-placement] {
     }
   }
 
+  &--minimal {
+    .account__display-name {
+      .display-name {
+        margin-bottom: 0;
+      }
+
+      .display-name strong {
+        display: block;
+      }
+    }
+  }
+
   &__note {
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     color: $ui-secondary-color;
-  }
-}
-
-.follow-recommendations-account {
-  .icon-button {
-    color: $ui-primary-color;
-
-    &.active {
-      color: $valid-value-color;
-    }
   }
 }
 
@@ -1461,7 +1552,7 @@ body > [data-popper-placement] {
     position: relative;
 
     & > div {
-      float: inline-start;
+      float: left;
       position: relative;
       box-sizing: border-box;
     }
@@ -1576,7 +1667,7 @@ a .account__avatar {
   text-decoration: none;
   overflow: hidden;
   flex: 0 1 100%;
-  border-inset-inline-end: 1px solid lighten($ui-base-color, 8%);
+  border-inline-end: 1px solid lighten($ui-base-color, 8%);
   padding: 10px 0;
   border-bottom: 4px solid transparent;
 
@@ -1616,7 +1707,7 @@ a .account__avatar {
 }
 
 .account-authorize__avatar {
-  float: inline-start;
+  float: left;
   margin-inline-end: 10px;
 }
 
@@ -1691,6 +1782,7 @@ a.account__display-name {
 .status__avatar {
   width: 46px;
   height: 46px;
+  box-shadow: 0 0 0 2px $ui-base-color;
 }
 
 .muted {
@@ -1823,6 +1915,11 @@ a.account__display-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  &__account {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 }
 
 .display-name__html {
@@ -2596,7 +2693,7 @@ $ui-header-height: 55px;
     .navigation-panel {
       margin: 0;
       background: $ui-base-color;
-      border-inset-inline-start: 1px solid lighten($ui-base-color, 8%);
+      border-inline-start: 1px solid lighten($ui-base-color, 8%);
       height: 100vh;
     }
 
@@ -2698,13 +2795,7 @@ $ui-header-height: 55px;
 
 .column-title {
   text-align: center;
-  padding: 40px;
-
-  .logo {
-    width: 50px;
-    margin: 0 auto;
-    margin-bottom: 40px;
-  }
+  padding-bottom: 40px;
 
   h3 {
     font-size: 24px;
@@ -2719,45 +2810,297 @@ $ui-header-height: 55px;
     font-weight: 400;
     color: $darker-text-color;
   }
-}
 
-.follow-recommendations-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.column-actions {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 40px;
-  padding-top: 40px;
-  padding-bottom: 200px;
-  flex-grow: 1;
-  position: relative;
-
-  &__background {
-    position: absolute;
-    inset-inline-start: 0;
-    bottom: 0;
-    height: 220px;
-    width: auto;
+  @media screen and (min-width: 600px) {
+    padding: 40px;
   }
 }
 
-.column-list {
-  margin: 0 20px;
-  border: 1px solid lighten($ui-base-color, 8%);
-  background: darken($ui-base-color, 2%);
-  border-radius: 4px;
+.onboarding__footer {
+  margin-top: 30px;
+  color: $dark-text-color;
+  text-align: center;
+  font-size: 14px;
 
-  &__empty-message {
-    padding: 40px;
+  .link-button {
+    display: inline-block;
+    color: inherit;
+    font-size: inherit;
+  }
+}
+
+.onboarding__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: $highlight-text-color;
+  background: lighten($ui-base-color, 4%);
+  border-radius: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 17px;
+  height: 56px;
+  text-decoration: none;
+
+  svg {
+    height: 1.5em;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($ui-base-color, 8%);
+  }
+}
+
+.onboarding__illustration {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  max-height: 200px;
+  width: auto;
+}
+
+.onboarding__lead {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: $darker-text-color;
+  text-align: center;
+  margin-bottom: 30px;
+
+  strong {
+    font-weight: 700;
+    color: $secondary-text-color;
+  }
+}
+
+.onboarding__links {
+  margin-bottom: 30px;
+
+  & > * {
+    margin-bottom: 2px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.onboarding__steps {
+  margin-bottom: 30px;
+
+  &__item {
+    background: lighten($ui-base-color, 4%);
+    border: 0;
+    border-radius: 8px;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 2px;
+    text-decoration: none;
+    text-align: start;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: lighten($ui-base-color, 8%);
+    }
+
+    &__icon {
+      flex: 0 0 auto;
+      background: $ui-base-color;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      color: $dark-text-color;
+
+      @media screen and (min-width: 600px) {
+        display: flex;
+      }
+    }
+
+    &__progress {
+      flex: 0 0 auto;
+      background: $valid-value-color;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 21px;
+      height: 21px;
+      color: $primary-text-color;
+
+      svg {
+        height: 14px;
+        width: auto;
+      }
+    }
+
+    &__description {
+      flex: 1 1 auto;
+      line-height: 18px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      h6 {
+        color: $primary-text-color;
+        font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      p {
+        color: $darker-text-color;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.onboarding__progress-indicator {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  position: sticky;
+  background: $ui-base-color;
+
+  @media screen and (min-width: 600) {
+    padding: 0 40px;
+  }
+
+  &__line {
+    height: 4px;
+    flex: 1 1 auto;
+    background: lighten($ui-base-color, 4%);
+  }
+
+  &__step {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    background: lighten($ui-base-color, 4%);
+    border-radius: 50%;
+    color: $primary-text-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 15px;
+      height: auto;
+    }
+
+    &.active {
+      background: $valid-value-color;
+    }
+  }
+
+  &__step.active,
+  &__line.active {
+    background: $valid-value-color;
+    background-image: linear-gradient(
+      90deg,
+      $valid-value-color,
+      lighten($valid-value-color, 8%),
+      $valid-value-color
+    );
+    background-size: 200px 100%;
+    animation: skeleton 1.2s ease-in-out infinite;
+  }
+}
+
+.follow-recommendations {
+  background: darken($ui-base-color, 4%);
+  border-radius: 8px;
+  margin-bottom: 30px;
+
+  .account:last-child {
+    border-bottom: 0;
+  }
+
+  &__empty {
     text-align: center;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 400;
     color: $darker-text-color;
+    font-weight: 500;
+    padding: 40px;
+  }
+}
+
+.tip-carousel {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 30px;
+
+  &:focus {
+    outline: 0;
+    border-color: $highlight-text-color;
+  }
+
+  .media-modal__pagination {
+    margin-bottom: 0;
+  }
+}
+
+.copy-paste-text {
+  background: lighten($ui-base-color, 4%);
+  border-radius: 8px;
+  border: 1px solid lighten($ui-base-color, 8%);
+  padding: 16px;
+  color: $primary-text-color;
+  font-size: 15px;
+  line-height: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  transition: border-color 300ms linear;
+  margin-bottom: 30px;
+
+  &:focus,
+  &.focused {
+    transition: none;
+    outline: 0;
+    border-color: $highlight-text-color;
+  }
+
+  &.copied {
+    border-color: $valid-value-color;
+    transition: none;
+  }
+
+  textarea {
+    width: 100%;
+    height: auto;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    border: 0;
+    padding: 0;
+    margin-bottom: 30px;
+    resize: none;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.compose-form__highlightable {
+  border-radius: 4px;
+  transition: box-shadow 300ms linear;
+
+  &.active {
+    transition: none;
+    box-shadow: 0 0 0 2px rgba(lighten($highlight-text-color, 8%), 0.7);
   }
 }
 
@@ -2895,7 +3238,6 @@ $ui-header-height: 55px;
     width: 85%;
     height: 100%;
     pointer-events: none;
-    user-drag: none;
     user-select: none;
   }
 
@@ -2917,6 +3259,8 @@ $ui-header-height: 55px;
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
+  border-radius: 4px;
+  overflow: hidden;
 
   a {
     transition: background 100ms ease-in;
@@ -3470,6 +3814,10 @@ a.status-card {
 
 .status-card__description {
   color: $darker-text-color;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .status-card__host {
@@ -3831,7 +4179,7 @@ a.status-card.compact:hover {
 }
 
 .column-header__setting-arrows {
-  float: inline-end;
+  float: right;
 
   .column-header__setting-btn {
     padding: 5px;
@@ -4292,6 +4640,7 @@ a.status-card.compact:hover {
 .follow_requests-unlocked_explanation {
   background: darken($ui-base-color, 4%);
   contain: initial;
+  flex-grow: 0;
 }
 
 .error-column {
@@ -4770,6 +5119,86 @@ a.status-card.compact:hover {
 .search {
   margin-bottom: 10px;
   position: relative;
+
+  &__popout {
+    box-sizing: border-box;
+    display: none;
+    position: absolute;
+    inset-inline-start: 0;
+    margin-top: -2px;
+    width: 100%;
+    background: $ui-base-color;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
+    z-index: 2;
+    font-size: 13px;
+    padding: 15px 5px;
+
+    h4 {
+      text-transform: uppercase;
+      color: $dark-text-color;
+      font-weight: 500;
+      padding: 0 10px;
+      margin-bottom: 10px;
+    }
+
+    &__menu {
+      &__message {
+        color: $dark-text-color;
+        padding: 0 10px;
+      }
+
+      &__item {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        border: 0;
+        font: inherit;
+        background: transparent;
+        color: $darker-text-color;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        text-align: start;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+        &--flex {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .icon-button {
+          transition: none;
+        }
+
+        &:hover,
+        &:focus,
+        &:active,
+        &.selected {
+          background: $ui-highlight-color;
+          color: $primary-text-color;
+
+          .icon-button {
+            color: $primary-text-color;
+          }
+        }
+
+        mark {
+          background: transparent;
+          font-weight: 700;
+          color: $primary-text-color;
+        }
+      }
+    }
+  }
+
+  &.active {
+    .search__popout {
+      display: block;
+    }
+  }
 }
 
 .search__input {
@@ -5132,6 +5561,11 @@ a.status-card.compact:hover {
 
   &.active {
     opacity: 1;
+  }
+
+  &:focus {
+    outline: 0;
+    background-color: $highlight-text-color;
   }
 }
 
@@ -5625,7 +6059,7 @@ a.status-card.compact:hover {
 
 .report-modal__comment {
   padding: 20px;
-  border-inset-inline-end: 1px solid $ui-secondary-color;
+  border-inline-end: 1px solid $ui-secondary-color;
   max-width: 320px;
 
   p {
@@ -5916,7 +6350,7 @@ a.status-card.compact:hover {
     color: $dark-text-color;
     padding: 8px 18px;
     cursor: default;
-    border-inset-inline-end: 1px solid lighten($ui-base-color, 8%);
+    border-inline-end: 1px solid lighten($ui-base-color, 8%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -5981,7 +6415,7 @@ a.status-card.compact:hover {
   border: 0;
   box-sizing: border-box;
   display: block;
-  float: inline-start;
+  float: left;
   position: relative;
   border-radius: 4px;
   overflow: hidden;
@@ -6557,7 +6991,7 @@ a.status-card.compact:hover {
         content: '';
         position: absolute;
         bottom: 0;
-        inset-inline-start: 50%;
+        left: 50%;
         width: 0;
         height: 0;
         transform: translateX(-50%);
@@ -6647,10 +7081,6 @@ a.status-card.compact:hover {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 0;
-}
-
-.search-popout {
-  @include search-popout;
 }
 
 noscript {
@@ -6839,7 +7269,8 @@ noscript {
 }
 
 .moved-account-banner,
-.follow-request-banner {
+.follow-request-banner,
+.account-memorial-banner {
   padding: 20px;
   background: lighten($ui-base-color, 4%);
   display: flex;
@@ -6872,6 +7303,10 @@ noscript {
 
 .follow-request-banner .button {
   width: 100%;
+}
+
+.account-memorial-banner__message {
+  margin-bottom: 0;
 }
 
 .column-inline-form {
@@ -6924,6 +7359,7 @@ noscript {
 
   .drawer__pager {
     height: 50vh;
+    border-radius: 4px;
   }
 
   .drawer__inner {
@@ -7367,6 +7803,8 @@ noscript {
   align-items: center;
   color: $valid-value-color;
   gap: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   a {
     color: inherit;
@@ -7805,7 +8243,7 @@ noscript {
       inset-inline-start: 0;
       width: 100%;
       height: 100%;
-      border-inset-inline-start: 4px solid $highlight-text-color;
+      border-inline-start: 4px solid $highlight-text-color;
       pointer-events: none;
     }
   }
@@ -7937,6 +8375,10 @@ noscript {
   .search__input {
     border: 1px solid lighten($ui-base-color, 8%);
     padding: 10px;
+  }
+
+  .search__popout {
+    border: 1px solid lighten($ui-base-color, 8%);
   }
 
   .search .fa {
