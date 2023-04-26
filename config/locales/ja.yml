@@ -122,6 +122,8 @@ ja:
       removed_header_msg: "%{username}さんのヘッダー画像を削除しました"
       resend_confirmation:
         already_confirmed: メールアドレスは確認済みです
+        send: 確認メールを再送
+        success: 確認メールを再送信しました
       reset: リセット
       reset_password: パスワード再設定
       resubscribe: 再講読
@@ -968,6 +970,7 @@ ja:
       prefix_invited_by_user: "@%{name}さんがあなたをこのMastodonサーバーに招待しました"
       prefix_sign_up: 今すぐMastodonを始めよう！
       suffix: アカウントがあれば、どんなMastodon互換サーバーのユーザーでもフォローしたりメッセージをやり取りできるようになります！
+    didnt_get_confirmation: 確認メールを受信できない場合は
     dont_have_your_security_key: セキュリティキーを持っていませんか？
     forgot_password: パスワードをお忘れですか？
     invalid_reset_password_token: パスワードリセットトークンが正しくないか期限切れです。もう一度リクエストしてください。
@@ -990,6 +993,7 @@ ja:
       saml: SAML
     register: 登録する
     registration_closed: "%{instance}は現在、新規登録停止中です"
+    resend_confirmation: 確認メールを再送
     reset_password: パスワードを再発行
     rules:
       accept: 同意する
@@ -998,10 +1002,17 @@ ja:
       title: いくつかのルールがあります。
     security: セキュリティ
     set_new_password: 新しいパスワード
+    setup:
+      email_below_hint_html: 確認メールが迷惑メールフォルダに振り分けられていないか確認してください。メールアドレスを間違えた場合は、ここでメールアドレスの変更と確認メールの再送ができます。
+      email_settings_hint_html: メールに記載のリンクを開いて %{email} を確認してください。
+      link_not_received: 確認メールを受信できない場合は
+      new_confirmation_instructions_sent: 確認用のリンクを記載した新しいメールを送信しました
+      title: 確認メールを送信しました
     sign_in:
       preamble_html: "<strong>%{domain}</strong> の資格情報でサインインします。 あなたのアカウントが別のサーバーでホストされている場合は、ここでログインすることはできません。"
       title: "%{domain}にログイン"
     sign_up:
+      manual_review: "%{domain} への登録にはモデレーターによる承認が必要です。審査の参考になるように、簡単な自己紹介や %{domain} に登録したい理由などを記入してください。"
       preamble: この Mastodon サーバーのアカウントがあれば、ネットワーク上の他の人のアカウントがどこでホストされているかに関係なく、その人をフォローすることができます。
       title: さあ %{domain} でセットアップしましょう.
     status:
