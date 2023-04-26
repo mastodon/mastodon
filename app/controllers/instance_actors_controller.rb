@@ -3,7 +3,7 @@
 class InstanceActorsController < ApplicationController
   include AccountOwnedConcern
 
-  vary_by -> { public_fetch_mode? ? '' : 'Signature' }
+  vary_by ''
 
   skip_before_action :check_account_confirmation
   skip_around_action :set_locale
