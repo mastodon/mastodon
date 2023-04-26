@@ -173,11 +173,6 @@ Lint/EmptyClass:
   Exclude:
     - 'spec/controllers/api/base_controller_spec.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Lint/NonDeterministicRequireOrder:
-  Exclude:
-    - 'spec/rails_helper.rb'
-
 Lint/NonLocalExitFromIterator:
   Exclude:
     - 'app/helpers/jsonld_helper.rb'
@@ -2207,16 +2202,11 @@ Style/MapToHash:
 # SupportedStyles: literals, strict
 Style/MutableConstant:
   Exclude:
-    - 'app/lib/link_details_extractor.rb'
     - 'app/models/account.rb'
-    - 'app/models/custom_emoji.rb'
     - 'app/models/tag.rb'
-    - 'app/services/account_search_service.rb'
     - 'app/services/delete_account_service.rb'
-    - 'app/services/fetch_link_card_service.rb'
-    - 'app/services/resolve_url_service.rb'
     - 'config/initializers/twitter_regex.rb'
-    - 'lib/mastodon/snowflake.rb'
+    - 'lib/mastodon/migration_warning.rb'
     - 'spec/controllers/api/base_controller_spec.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
