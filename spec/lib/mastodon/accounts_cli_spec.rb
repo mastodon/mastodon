@@ -761,4 +761,61 @@ RSpec.describe Mastodon::AccountsCLI do
       end
     end
   end
+
+  describe '#rotate' do
+    context 'when neither USERNAME nor --all option are provided' do
+      it 'returns an error message' do
+        expect { described_class.new.invoke(:rotate, nil, nil) }
+          .to output(
+            a_string_including('No account(s) given')
+          ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when provided USERNAME is not found' do
+      let(:arguments) { ['non_existent_username'] }
+
+      it 'returns an error message' do
+        expect { described_class.new.invoke(:rotate, arguments) }
+          .to output(
+            a_string_including('No such account')
+          ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when USERNAME is provided' do
+      let(:account) { Fabricate(:account) }
+      let(:arguments) { [account.username] }
+
+      it 'rotates keys for the specified account correctly' do
+        old_private_key = account.private_key
+        old_public_key = account.public_key
+
+        described_class.new.invoke(:rotate, arguments)
+        account.reload
+
+        expect(account.private_key).to_not eq(old_private_key)
+        expect(account.public_key).to_not eq(old_public_key)
+      end
+    end
+
+    context 'when --all option is provided' do
+      let(:accounts) { Fabricate.times(3, :account) }
+      let(:options) { { all: true } }
+
+      before { allow(Account).to receive(:local).and_return(Account.where(id: accounts.map(&:id))) }
+
+      it 'rotates keys for all local accounts' do
+        cli = described_class.new
+        allow(cli).to receive(:rotate_keys_for_account).exactly(3).times
+
+        cli.options = { all: true }
+        cli.rotate
+
+        expect(cli).to have_received(:rotate_keys_for_account).exactly(3).times
+      end
+    end
+  end
 end
