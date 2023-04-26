@@ -44,7 +44,7 @@ class Scheduler::AccountsStatusesCleanupScheduler
       num_processed_accounts = 0
 
       scope = AccountStatusesCleanupPolicy.where(enabled: true)
-      scope.where(Account.arel_table[:id].gt(first_policy_id)) if first_policy_id.present?
+      scope = scope.where(id: first_policy_id...) if first_policy_id.present?
       scope.find_each(order: :asc) do |policy|
         num_deleted = AccountStatusesCleanupService.new.call(policy, [budget, PER_ACCOUNT_BUDGET].min)
         num_processed_accounts += 1 unless num_deleted.zero?
@@ -81,14 +81,14 @@ class Scheduler::AccountsStatusesCleanupScheduler
   end
 
   def last_processed_id
-    redis.get('account_statuses_cleanup_scheduler:last_account_id')
+    redis.get('account_statuses_cleanup_scheduler:last_policy_id')
   end
 
   def save_last_processed_id(id)
     if id.nil?
-      redis.del('account_statuses_cleanup_scheduler:last_account_id')
+      redis.del('account_statuses_cleanup_scheduler:last_policy_id')
     else
-      redis.set('account_statuses_cleanup_scheduler:last_account_id', id, ex: 1.hour.seconds)
+      redis.set('account_statuses_cleanup_scheduler:last_policy_id', id, ex: 1.hour.seconds)
     end
   end
 end

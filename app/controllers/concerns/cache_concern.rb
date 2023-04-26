@@ -156,11 +156,25 @@ module CacheConcern
   end
 
   class_methods do
-    def vary_by(value)
-      before_action do |controller|
+    def vary_by(value, **kwargs)
+      before_action(**kwargs) do |controller|
         response.headers['Vary'] = value.respond_to?(:call) ? controller.instance_exec(&value) : value
       end
     end
+  end
+
+  included do
+    after_action :enforce_cache_control!
+  end
+
+  # Prevents high-entropy headers such as `Cookie`, `Signature` or `Authorization`
+  # from being used as cache keys, while allowing to `Vary` on them (to not serve
+  # anonymous cached data to authenticated requests when authentication matters)
+  def enforce_cache_control!
+    vary = response.headers['Vary']&.split&.map { |x| x.strip.downcase }
+    return unless vary.present? && %w(cookie authorization signature).any? { |header| vary.include?(header) && request.headers[header].present? }
+
+    response.cache_control.replace(private: true, no_store: true)
   end
 
   def render_with_cache(**options)

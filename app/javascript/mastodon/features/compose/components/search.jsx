@@ -161,9 +161,9 @@ class Search extends React.PureComponent {
 
   handleURLClick = () => {
     const { router } = this.context;
-    const { onOpenURL } = this.props;
+    const { value, onOpenURL } = this.props;
 
-    onOpenURL(router.history);
+    onOpenURL(value, router.history);
   };
 
   handleStatusSearch = () => {

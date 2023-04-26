@@ -168,7 +168,7 @@ module ApplicationHelper
   end
 
   def body_classes
-    output = (@body_classes || '').split
+    output = body_class_string.split
     output << "theme-#{current_theme.parameterize}"
     output << 'system-font' if current_account&.user&.setting_system_font_ui
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')

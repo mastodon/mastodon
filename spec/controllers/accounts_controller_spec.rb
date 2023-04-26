@@ -218,8 +218,8 @@ RSpec.describe AccountsController, type: :controller do
           expect(response.media_type).to eq 'application/activity+json'
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
+        it 'returns private Cache-Control header' do
+          expect(response.headers['Cache-Control']).to include 'private'
         end
 
         it 'renders account' do

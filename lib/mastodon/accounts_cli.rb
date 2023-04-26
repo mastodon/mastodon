@@ -103,6 +103,7 @@ module Mastodon
           return
         elsif account.user.present?
           DeleteAccountService.new.call(account, reserve_email: false)
+          account = Account.new(username: username)
         end
       end
 
