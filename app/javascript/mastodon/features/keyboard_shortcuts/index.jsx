@@ -126,6 +126,10 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.federated' defaultMessage='to open federated timeline' /></td>
               </tr>
               <tr>
+                <td><kbd>.</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.refresh_timeline' defaultMessage='to refresh timeline' /></td>
+              </tr>
+              <tr>
                 <td><kbd>g</kbd>+<kbd>d</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.direct' defaultMessage='to open direct messages column' /></td>
               </tr>
