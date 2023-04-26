@@ -7,7 +7,15 @@
     "noEmit": true,
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["app/javascript/*"]
+    }
   },
-  "include": ["app/javascript/mastodon", "app/javascript/packs"]
+  "include": [
+    "app/javascript/mastodon",
+    "app/javascript/flavours/glitch",
+    "app/javascript/packs"
+  ]
 }

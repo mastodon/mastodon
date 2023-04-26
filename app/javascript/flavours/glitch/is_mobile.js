@@ -36,6 +36,7 @@ export const layoutFromWindow = (layout_local_setting) => {
   }
 };
 
+// @ts-expect-error
 const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
@@ -45,7 +46,7 @@ let userTouching = false;
 const touchListener = () => {
   userTouching = true;
 
-  window.removeEventListener('touchstart', touchListener, listenerOptions);
+  window.removeEventListener('touchstart', touchListener);
 };
 
 window.addEventListener('touchstart', touchListener, listenerOptions);

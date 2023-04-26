@@ -46,6 +46,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
   connectStream(channelName, params, (dispatch, getState) => {
     const locale = getState().getIn(['meta', 'locale']);
 
+    // @ts-expect-error
     let pollingId;
 
     /**
@@ -61,6 +62,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
       onConnect() {
         dispatch(connectTimeline(timelineId));
 
+        // @ts-expect-error
         if (pollingId) {
           clearTimeout(pollingId);
           pollingId = null;
@@ -75,6 +77,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
         dispatch(disconnectTimeline(timelineId));
 
         if (options.fallback) {
+          // @ts-expect-error
           pollingId = setTimeout(() => useFallback(options.fallback), randomUpTo(40000));
         }
       },
@@ -82,24 +85,30 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
       onReceive (data) {
         switch(data.event) {
         case 'update':
+          // @ts-expect-error
           dispatch(updateTimeline(timelineId, JSON.parse(data.payload), options.accept));
           break;
         case 'status.update':
+          // @ts-expect-error
           dispatch(updateStatus(JSON.parse(data.payload)));
           break;
         case 'delete':
           dispatch(deleteFromTimelines(data.payload));
           break;
         case 'notification':
+          // @ts-expect-error
           dispatch(updateNotifications(JSON.parse(data.payload), messages, locale));
           break;
         case 'conversation':
+          // @ts-expect-error
           dispatch(updateConversations(JSON.parse(data.payload)));
           break;
         case 'announcement':
+          // @ts-expect-error
           dispatch(updateAnnouncements(JSON.parse(data.payload)));
           break;
         case 'announcement.reaction':
+          // @ts-expect-error
           dispatch(updateAnnouncementsReaction(JSON.parse(data.payload)));
           break;
         case 'announcement.delete':
@@ -115,7 +124,9 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
  * @param {function(): void} done
  */
 const refreshHomeTimelineAndNotification = (dispatch, done) => {
+  // @ts-expect-error
   dispatch(expandHomeTimeline({}, () =>
+    // @ts-expect-error
     dispatch(expandNotifications({}, () =>
       dispatch(fetchAnnouncements(done))))));
 };
@@ -124,6 +135,7 @@ const refreshHomeTimelineAndNotification = (dispatch, done) => {
  * @return {function(): void}
  */
 export const connectUserStream = () =>
+  // @ts-expect-error
   connectTimelineStream('home', 'user', {}, { fallback: refreshHomeTimelineAndNotification, fillGaps: fillHomeTimelineGaps });
 
 /**
