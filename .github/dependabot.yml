@@ -17,18 +17,10 @@ updates:
       - dependency-name: '@rails/ujs'
         versions:
           - '7.x'
-      # TODO: This version got stuck in https://github.com/mastodon/mastodon/pull/14004 and this should be deleted to fix
-      - dependency-name: 'pg'
-        versions:
-          - '8.x'
       # TODO: This was ignored in https://github.com/mastodon/mastodon/pull/19120
       - dependency-name: 'uuid'
         versions:
           - '9.x'
-      # TODO: This version got stuck in https://github.com/mastodon/mastodon/pull/14073 and this should be deleted to fix
-      - dependency-name: 'history'
-        versions:
-          - '5.x'
       # TODO: This requires code changes for migration
       - dependency-name: 'tesseract.js'
         versions:
@@ -38,10 +30,6 @@ updates:
       - dependency-name: 'react-hotkeys'
         versions:
           - '2.x'
-      # TODO: This version got stuck in https://github.com/mastodon/mastodon/pull/15206 and this should be deleted to fix
-      - dependency-name: 'terser'
-        versions:
-          - '5.x'
 
   - package-ecosystem: bundler
     directory: '/'
