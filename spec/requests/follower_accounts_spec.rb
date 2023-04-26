@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'FollowerAccountsController', type: :request do
+RSpec.describe 'FollowerAccountsController' do
   describe 'The follower_accounts route' do
     it "returns a http 'moved_permanently' code" do
       get '/users/:username/followers'
