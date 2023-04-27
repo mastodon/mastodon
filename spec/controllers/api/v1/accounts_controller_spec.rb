@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::V1::AccountsController, type: :controller do
@@ -144,6 +146,17 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
         expect(json[:following]).to be true
         expect(json[:showing_reblogs]).to be false
         expect(json[:notifying]).to be true
+      end
+
+      it 'changes languages option' do
+        post :follow, params: { id: other_account.id, languages: %w(en es) }
+
+        json = body_as_json
+
+        expect(json[:following]).to be true
+        expect(json[:showing_reblogs]).to be false
+        expect(json[:notifying]).to be false
+        expect(json[:languages]).to match_array %w(en es)
       end
     end
   end

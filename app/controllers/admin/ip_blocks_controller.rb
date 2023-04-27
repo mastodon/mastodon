@@ -5,7 +5,7 @@ module Admin
     def index
       authorize :ip_block, :index?
 
-      @ip_blocks = IpBlock.page(params[:page])
+      @ip_blocks = IpBlock.order(ip: :asc).page(params[:page])
       @form      = Form::IpBlockBatch.new
     end
 

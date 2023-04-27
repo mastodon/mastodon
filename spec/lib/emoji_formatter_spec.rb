@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe EmojiFormatter do
@@ -24,7 +26,7 @@ RSpec.describe EmojiFormatter do
       let(:text) { preformat_text(':coolcat: Beep boop') }
 
       it 'converts the shortcode to an image tag' do
-        is_expected.to match(/<img rel="emoji" draggable="false" width="16" height="16" class="emojione custom-emoji" alt=":coolcat:"/)
+        expect(subject).to match(/<img rel="emoji" draggable="false" width="16" height="16" class="emojione custom-emoji" alt=":coolcat:"/)
       end
     end
 
@@ -32,7 +34,7 @@ RSpec.describe EmojiFormatter do
       let(:text) { preformat_text('Beep :coolcat: boop') }
 
       it 'converts the shortcode to an image tag' do
-        is_expected.to match(/Beep <img rel="emoji" draggable="false" width="16" height="16" class="emojione custom-emoji" alt=":coolcat:"/)
+        expect(subject).to match(/Beep <img rel="emoji" draggable="false" width="16" height="16" class="emojione custom-emoji" alt=":coolcat:"/)
       end
     end
 
@@ -40,7 +42,7 @@ RSpec.describe EmojiFormatter do
       let(:text) { preformat_text(':coolcat::coolcat:') }
 
       it 'does not touch the shortcodes' do
-        is_expected.to match(/:coolcat::coolcat:/)
+        expect(subject).to match(/:coolcat::coolcat:/)
       end
     end
 
@@ -48,7 +50,7 @@ RSpec.describe EmojiFormatter do
       let(:text) { preformat_text('Beep boop :coolcat:') }
 
       it 'converts the shortcode to an image tag' do
-        is_expected.to match(/boop <img rel="emoji" draggable="false" width="16" height="16" class="emojione custom-emoji" alt=":coolcat:"/)
+        expect(subject).to match(/boop <img rel="emoji" draggable="false" width="16" height="16" class="emojione custom-emoji" alt=":coolcat:"/)
       end
     end
   end

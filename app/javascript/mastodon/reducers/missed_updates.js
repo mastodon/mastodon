@@ -18,4 +18,4 @@ export default function missed_updates(state = initialState, action) {
   default:
     return state;
   }
-};
+}

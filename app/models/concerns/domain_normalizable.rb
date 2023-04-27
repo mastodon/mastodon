@@ -11,5 +11,7 @@ module DomainNormalizable
 
   def normalize_domain
     self.domain = TagManager.instance.normalize_domain(domain&.strip)
+  rescue Addressable::URI::InvalidURIError
+    errors.add(:domain, :invalid)
   end
 end

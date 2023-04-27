@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: instances
@@ -47,6 +48,8 @@ class Instance < ApplicationRecord
   def to_param
     domain
   end
+
+  alias to_log_human_identifier to_param
 
   delegate :exhausted_deliveries_days, to: :delivery_failure_tracker
 

@@ -14,6 +14,7 @@ module Admin
       @user.current_account = current_account
 
       if @user.update(resource_params)
+        log_action :change_role, @user
         redirect_to admin_account_path(@user.account_id), notice: I18n.t('admin.accounts.change_role.changed_msg')
       else
         render :show

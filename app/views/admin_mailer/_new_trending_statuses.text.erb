@@ -2,13 +2,7 @@
 
 <% @statuses.each do |status| %>
 - <%= ActivityPub::TagManager.instance.url_for(status) %>
-  <%= raw t('admin.trends.tags.current_score', score: Trends.statuses.score(status.id).round(2)) %>
-<% end %>
-
-<% if @lowest_trending_status %>
-<%= raw t('admin_mailer.new_trends.new_trending_statuses.requirements', lowest_status_url: ActivityPub::TagManager.instance.url_for(@lowest_trending_status), lowest_status_score: Trends.statuses.score(@lowest_trending_status.id).round(2), rank: Trends.statuses.options[:review_threshold]) %>
-<% else %>
-<%= raw t('admin_mailer.new_trends.new_trending_statuses.no_approved_statuses') %>
+  <%= standard_locale_name(status.language) %> • <%= raw t('admin.trends.tags.current_score', score: status.trend.score.round(2)) %>
 <% end %>
 
 <%= raw t('application_mailer.view')%> <%= admin_trends_statuses_url %>

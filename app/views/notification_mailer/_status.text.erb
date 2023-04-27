@@ -5,4 +5,4 @@
 <% end %>
 > <%= raw word_wrap(extract_status_plain_text(status), break_sequence: "\n> ") %>
 
-<%= raw t('application_mailer.view')%> <%= web_url("statuses/#{status.id}") %>
+<%= raw t('application_mailer.view')%> <%= web_url("@#{status.account.pretty_acct}/#{status.id}") %>

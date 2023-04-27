@@ -1,19 +1,5 @@
-import {
-  SET_BROWSER_SUPPORT,
-  SET_SUBSCRIPTION,
-  CLEAR_SUBSCRIPTION,
-  SET_ALERTS,
-  setAlerts,
-} from './setter';
-import { register, saveSettings } from './registerer';
-
-export {
-  SET_BROWSER_SUPPORT,
-  SET_SUBSCRIPTION,
-  CLEAR_SUBSCRIPTION,
-  SET_ALERTS,
-  register,
-};
+import { setAlerts } from './setter';
+import { saveSettings } from './registerer';
 
 export function changeAlerts(path, value) {
   return dispatch => {
@@ -21,3 +7,11 @@ export function changeAlerts(path, value) {
     dispatch(saveSettings());
   };
 }
+
+export {
+  CLEAR_SUBSCRIPTION,
+  SET_BROWSER_SUPPORT,
+  SET_SUBSCRIPTION,
+  SET_ALERTS,
+} from './setter';
+export { register } from './registerer';

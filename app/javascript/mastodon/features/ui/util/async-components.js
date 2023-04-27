@@ -82,12 +82,12 @@ export function FollowRequests () {
   return import(/* webpackChunkName: "features/follow_requests" */'../../follow_requests');
 }
 
-export function GenericNotFound () {
-  return import(/* webpackChunkName: "features/generic_not_found" */'../../generic_not_found');
-}
-
 export function FavouritedStatuses () {
   return import(/* webpackChunkName: "features/favourited_statuses" */'../../favourited_statuses');
+}
+
+export function FollowedTags () {
+  return import(/* webpackChunkName: "features/followed_tags" */'../../followed_tags');
 }
 
 export function BookmarkedStatuses () {
@@ -150,8 +150,8 @@ export function Directory () {
   return import(/* webpackChunkName: "features/directory" */'../../directory');
 }
 
-export function FollowRecommendations () {
-  return import(/* webpackChunkName: "features/follow_recommendations" */'../../follow_recommendations');
+export function Onboarding () {
+  return import(/* webpackChunkName: "features/onboarding" */'../../onboarding');
 }
 
 export function CompareHistoryModal () {
@@ -164,4 +164,24 @@ export function Explore () {
 
 export function FilterModal () {
   return import(/*webpackChunkName: "modals/filter_modal" */'../components/filter_modal');
+}
+
+export function InteractionModal () {
+  return import(/*webpackChunkName: "modals/interaction_modal" */'../../interaction_modal');
+}
+
+export function SubscribedLanguagesModal () {
+  return import(/*webpackChunkName: "modals/subscribed_languages_modal" */'../../subscribed_languages_modal');
+}
+
+export function ClosedRegistrationsModal () {
+  return import(/*webpackChunkName: "modals/closed_registrations_modal" */'../../closed_registrations_modal');
+}
+
+export function About () {
+  return import(/*webpackChunkName: "features/about" */'../../about');
+}
+
+export function PrivacyPolicy () {
+  return import(/*webpackChunkName: "features/privacy_policy" */'../../privacy_policy');
 }

@@ -49,7 +49,7 @@ class Import::RelationshipWorker
         .with_error_handler { |error, handle| error.is_a?(HTTP::Error) || error.is_a?(OpenSSL::SSL::SSLError) ? handle.call(error) : raise(error) }
         .run
     else
-      block.call
+      yield
     end
   end
 end

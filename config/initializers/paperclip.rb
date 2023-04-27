@@ -67,6 +67,12 @@ if ENV['S3_ENABLED'] == 'true'
       retry_limit: 0,
     }
   )
+  
+  if ENV['S3_PERMISSION'] == ''
+    Paperclip::Attachment.default_options.merge!(
+      s3_permissions: ->(*) { nil }
+    )
+  end
 
   if ENV.has_key?('S3_ENDPOINT')
     Paperclip::Attachment.default_options[:s3_options].merge!(
@@ -81,6 +87,12 @@ if ENV['S3_ENABLED'] == 'true'
     Paperclip::Attachment.default_options.merge!(
       url: ':s3_alias_url',
       s3_host_alias: ENV['S3_ALIAS_HOST'] || ENV['S3_CLOUDFRONT_HOST']
+    )
+  end
+
+  if ENV.has_key?('S3_STORAGE_CLASS')
+    Paperclip::Attachment.default_options[:s3_headers].merge!(
+      'X-Amz-Storage-Class' => ENV['S3_STORAGE_CLASS']
     )
   end
 
@@ -118,7 +130,10 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
       openstack_domain_name: ENV.fetch('SWIFT_DOMAIN_NAME') { 'default' },
       openstack_region: ENV['SWIFT_REGION'],
       openstack_cache_ttl: ENV.fetch('SWIFT_CACHE_TTL') { 60 },
+      openstack_temp_url_key: ENV['SWIFT_TEMP_URL_KEY'],
     },
+    
+    fog_file: { 'Cache-Control' => 'public, max-age=315576000, immutable' },
 
     fog_directory: ENV['SWIFT_CONTAINER'],
     fog_host: ENV['SWIFT_OBJECT_URL'],

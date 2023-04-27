@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::V1::FiltersController, type: :controller do
@@ -22,9 +24,11 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
 
   describe 'POST #create' do
     let(:scopes) { 'write:filters' }
+    let(:irreversible) { true }
+    let(:whole_word)   { false }
 
     before do
-      post :create, params: { phrase: 'magic', context: %w(home), irreversible: true }
+      post :create, params: { phrase: 'magic', context: %w(home), irreversible: irreversible, whole_word: whole_word }
     end
 
     it 'returns http success' do
@@ -34,10 +38,28 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
     it 'creates a filter' do
       filter = user.account.custom_filters.first
       expect(filter).to_not be_nil
-      expect(filter.keywords.pluck(:keyword)).to eq ['magic']
+      expect(filter.keywords.pluck(:keyword, :whole_word)).to eq [['magic', whole_word]]
       expect(filter.context).to eq %w(home)
-      expect(filter.irreversible?).to be true
+      expect(filter.irreversible?).to be irreversible
       expect(filter.expires_at).to be_nil
+    end
+
+    context 'with different parameters' do
+      let(:irreversible) { false }
+      let(:whole_word)   { true }
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'creates a filter' do
+        filter = user.account.custom_filters.first
+        expect(filter).to_not be_nil
+        expect(filter.keywords.pluck(:keyword, :whole_word)).to eq [['magic', whole_word]]
+        expect(filter.context).to eq %w(home)
+        expect(filter.irreversible?).to be irreversible
+        expect(filter.expires_at).to be_nil
+      end
     end
   end
 

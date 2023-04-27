@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe PurgeDomainService, type: :service do
+  subject { PurgeDomainService.new }
+
   let!(:old_account) { Fabricate(:account, domain: 'obsolete.org') }
   let!(:old_status1) { Fabricate(:status, account: old_account) }
   let!(:old_status2) { Fabricate(:status, account: old_account) }
   let!(:old_attachment) { Fabricate(:media_attachment, account: old_account, status: old_status2, file: attachment_fixture('attachment.jpg')) }
-
-  subject { PurgeDomainService.new }
 
   describe 'for a suspension' do
     before do

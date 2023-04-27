@@ -3,7 +3,7 @@ da:
   activerecord:
     attributes:
       poll:
-        expires_at: Deadline
+        expires_at: 截止时间
         options: Valgmuligheder
       user:
         agreement: Tjenesteaftale
@@ -29,6 +29,10 @@ da:
           attributes:
             website:
               invalid: "'er ikke en gyldig URL"
+        import:
+          attributes:
+            data:
+              malformed: er forkert udformet
         status:
           attributes:
             reblog:
@@ -48,3 +52,4 @@ da:
               own_role: kan ikke ændres med din aktuelle rolle
             position:
               elevated: kan ikke være højere end din aktuelle rolle
+              own_role: kan ikke ændres med din aktuelle rolle

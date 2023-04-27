@@ -1,0 +1,34 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
+- content_for :page_title do
+  = t('admin.settings.appearance.title')
+
+- content_for :heading do
+  %h2= t('admin.settings.title')
+  = render partial: 'admin/settings/shared/links'
+
+= simple_form_for @admin_settings, url: admin_settings_appearance_path, html: { method: :patch } do |f|
+  = render 'shared/error_messages', object: @admin_settings
+
+  %p.lead= t('admin.settings.appearance.preamble')
+
+  .fields-group
+    = f.input :theme, collection: Themes.instance.names, label_method: lambda { |theme| I18n.t("themes.#{theme}", default: theme) }, wrapper: :with_label, include_blank: false
+
+  .fields-group
+    = f.input :custom_css, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }
+
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :mascot, as: :file, wrapper: :with_block_label
+
+    .fields-row__column.fields-row__column-6.fields-group
+      - if @admin_settings.mascot.persisted?
+        = image_tag @admin_settings.mascot.file.url, class: 'fields-group__thumbnail'
+        = link_to admin_site_upload_path(@admin_settings.mascot), data: { method: :delete }, class: 'link-button link-button--destructive' do
+          = fa_icon 'trash fw'
+          = t('admin.site_uploads.delete')
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit

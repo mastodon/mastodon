@@ -58,8 +58,8 @@ class AccountMigration < ApplicationRecord
   private
 
   def set_target_account
-    self.target_account = ResolveAccountService.new.call(acct)
-  rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::Error
+    self.target_account = ResolveAccountService.new.call(acct, skip_cache: true)
+  rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::Error, Addressable::URI::InvalidURIError
     # Validation will take care of it
   end
 

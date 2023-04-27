@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Notification, type: :model do
@@ -68,7 +70,7 @@ RSpec.describe Notification, type: :model do
       let(:notifications) { [] }
 
       it 'returns []' do
-        is_expected.to eq []
+        expect(subject).to eq []
       end
     end
 

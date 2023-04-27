@@ -5,13 +5,51 @@ et:
       poll:
         expires_at: Tähtaeg
         options: Valikud
+      user:
+        agreement: Teenusetingimused
+        email: E-posti aadress
+        locale: Keel
+        password: Salasõna
+      user/account:
+        username: Kasutajanimi
+      user/invite_request:
+        text: Põhjus
     errors:
       models:
         account:
           attributes:
             username:
               invalid: ainult tähtmärgid, numbrid ja alakriipsud
+              reserved: on reserveeritud
+        admin/webhook:
+          attributes:
+            url:
+              invalid: pole sobiv URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: pole sobiv URL
+        import:
+          attributes:
+            data:
+              malformed: on vigasel kujul
         status:
           attributes:
             reblog:
-              taken: staatusel juba eksisteerib
+              taken: postitusel on juba
+        user:
+          attributes:
+            email:
+              blocked: kasutab mitte lubatud e-posti teenusepakkujat
+              unreachable: ei paista eksisteerivat
+            role_id:
+              elevated: ei saa olla kõrgem kui enda roll
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: hõlmata õiguseid, mis ei ole turvalised baasrollile
+              elevated: ei saa hõlmata õiguseid, mida sinu praegune roll ei sisalda
+              own_role: ei saa muuta sinu praeguse rolliga
+            position:
+              elevated: ei saa olla kõrgem, kui sinu praegune roll
+              own_role: ei saa muuta sinu praeguse rolliga

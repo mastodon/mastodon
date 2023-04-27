@@ -11,7 +11,7 @@
   h_class           = microformats_h_class(status, is_predecessor, is_successor, include_threads)
   style_classes     = style_classes(status, is_predecessor, is_successor, include_threads)
   mf_classes        = microformats_classes(status, is_direct_parent, is_direct_child)
-  entry_classes     = h_class + ' ' + mf_classes + ' ' + style_classes
+  entry_classes     = "#{h_class} #{mf_classes} #{style_classes}"
 
 - if status.reply? && include_threads
   - if @next_ancestor

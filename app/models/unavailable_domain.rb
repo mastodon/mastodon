@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: unavailable_domains
@@ -15,6 +16,10 @@ class UnavailableDomain < ApplicationRecord
   validates :domain, presence: true, uniqueness: true
 
   after_commit :reset_cache!
+
+  def to_log_human_identifier
+    domain
+  end
 
   private
 

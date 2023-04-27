@@ -38,6 +38,7 @@ sk:
         application: Aplikácia
         callback_url: Návratová URL
         delete: Vymaž
+        empty: Nemáte žiadne aplikácie.
         name: Názov
         new: Nová aplikácia
         scopes: Oprávnenia
@@ -59,6 +60,8 @@ sk:
       error:
         title: Nastala chyba
       new:
+        prompt_html: "%{client_name} žiada o povolenie na prístup k vášmu účtu. Ide o aplikáciu tretej strany. <strong>Ak jej nedôverujete, nemali by ste ju autorizovať.</strong>"
+        review_permissions: Preskúmať povolenia
         title: Je potrebná autorizácia
       show:
         title: Skopíruj tento autorizačný kód a vlož ho do aplikácie.
@@ -68,6 +71,12 @@ sk:
       confirmations:
         revoke: Si si istý?
       index:
+        authorized_at: Autorizované dňa %{date}
+        description_html: Ide o aplikácie, ktoré môžu pristupovať k vášmu účtu pomocou rozhrania API. Ak sa tu nachádzajú aplikácie, ktoré nepoznáte, alebo ak sa niektorá aplikácia správa nesprávne, môžete jej zrušiť prístup.
+        last_used_at: Posledne použitý dňa %{date}
+        never_used: Nikdy nepoužité
+        scopes: Oprávnenia
+        superapp: Interný
         title: Tvoje povolené aplikácie
     errors:
       messages:
@@ -76,6 +85,10 @@ sk:
         invalid_client: Overenie klienta zlyhalo. Neznámy klient, chýbajú údaje o klientovi alebo nepodporovaná metóda overovania.
         invalid_grant: Dané oprávnenie je neplatné, vypršané, zrušené, nesúhlasí s presmerovacou URI použitou v autorizačnej požiadavke, alebo bolo vydané pre iný klient.
         invalid_redirect_uri: Presmerovacia URI je neplatná.
+        invalid_request:
+          missing_param: 'Chýba požadovaný parameter: %{value}.'
+          request_not_authorized: Žiadosť je potrebné autorizovať. Chýba požadovaný parameter pre autorizáciu žiadosti alebo je neplatný.
+          unknown: V požiadavke chýba požadovaný parameter, obsahuje nepodporovanú hodnotu parametra alebo je inak chybne vytvorená.
         invalid_resource_owner: Uvedené prihlasovacie údaje sú neplatné alebo nenájdené
         invalid_scope: Požadovaný rozsah je neplatný, neznámy alebo poškodený.
         invalid_token:
@@ -100,9 +113,31 @@ sk:
         destroy:
           notice: Oprávnenia aplikácie zrušené.
     grouped_scopes:
+      access:
+        read: Prístup len na čítanie
+        read/write: Prístup na čítanie a zápis
+        write: Prístup len na zápis
       title:
+        accounts: Účty
+        admin/accounts: Správa účtov
+        admin/all: Všetky administratívne funkcie
+        admin/reports: Správa reportov
+        all: Plný prístup k tvojmu Mastodon účtu
         blocks: Blokovania
+        bookmarks: Záložky
+        conversations: Konverzácie
+        crypto: Šifrovanie End-to-end
+        favourites: Obľúbené
+        filters: Filtre
+        follows: Sledovania
+        lists: Zoznamy
+        media: Mediálne prílohy
         mutes: Nevšímané
+        notifications: Oznámenia
+        push: Push notifikácie
+        reports: Reporty
+        search: Hľadať
+        statuses: Príspevky
     layouts:
       admin:
         nav:
@@ -117,6 +152,7 @@ sk:
       admin:write: uprav všetky dáta na serveri
       admin:write:accounts: urob moderovacie úkony na účtoch
       admin:write:reports: urob moderovacie úkony voči hláseniam
+      crypto: používať end-to-end šifrovanie
       follow: uprav vzťahy svojho účtu
       push: dostávaj oboznámenia ohľadom tvojho účtu na obrazovku
       read: prezri si všetky dáta ohľadom svojho účetu

@@ -4,6 +4,7 @@ class Admin::Trends::LinksController < Admin::BaseController
   def index
     authorize :preview_card, :review?
 
+    @locales       = PreviewCardTrend.pluck('distinct language')
     @preview_cards = filtered_preview_cards.page(params[:page])
     @form          = Trends::PreviewCardBatch.new
   end
@@ -14,7 +15,7 @@ class Admin::Trends::LinksController < Admin::BaseController
     @form = Trends::PreviewCardBatch.new(trends_preview_card_batch_params.merge(current_account: current_account, action: action_from_button))
     @form.save
   rescue ActionController::ParameterMissing
-    flash[:alert] = I18n.t('admin.accounts.no_account_selected')
+    flash[:alert] = I18n.t('admin.trends.links.no_link_selected')
   ensure
     redirect_to admin_trends_links_path(filter_params)
   end

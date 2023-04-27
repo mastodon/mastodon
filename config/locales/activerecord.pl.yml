@@ -29,6 +29,10 @@ pl:
           attributes:
             website:
               invalid: nie jest poprawnym adresem URL
+        import:
+          attributes:
+            data:
+              malformed: jest uszkodzona
         status:
           attributes:
             reblog:
@@ -48,4 +52,4 @@ pl:
               own_role: nie można zmienić z aktualną rolą
             position:
               elevated: nie może być wyższa niż twoja bieżąca rola
-              own_role: nie można zmienić z aktualną rolą
+              own_role: nie może być zmieniona z twoją aktualną rolą

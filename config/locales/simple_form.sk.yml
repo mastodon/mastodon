@@ -42,18 +42,18 @@ sk:
         setting_show_application: Aplikácia, ktorú používaš na písanie príspevkov, bude zobrazená v podrobnom náhľade jednotlivých tvojích príspevkov
         setting_use_blurhash: Prechody sú založené na farbách skrytých vizuálov, ale zahaľujú akékoľvek podrobnosti
         setting_use_pending_items: Skry aktualizovanie časovej osi tak, aby bola načitávaná iba po kliknutí, namiesto samostatného posúvania
-        username: Tvoja prezývka bude unikátna pre server %{domain}
         whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel, bude použité iba ak sa zhoduje s celým výrazom
       domain_allow:
         domain: Táto doména bude schopná získavať dáta z tohto servera, a prichádzajúce dáta ním budú spracovávané a uložené
-      featured_tag:
-        name: 'Možno by si chcel/a použiť niektoré z týchto:'
       form_challenge:
         current_password: Vstupuješ do zabezpečenej časti
       imports:
         data: CSV súbor vyexportovaný z iného Mastodon serveru
       invite_request:
         text: Toto pomôže s vyhodnocovaním tvojej žiadosti
+      ip_block:
+        severities:
+          sign_up_block: Nové registrácie nebudú možné
       sessions:
         otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích obnovovacích kódov:'
       tag:
@@ -146,6 +146,9 @@ sk:
         whole_word: Celé slovo
       featured_tag:
         name: Haštag
+      form_admin_settings:
+        peers_api_enabled: Zverejni zoznam objavených serverov v API
+        status_page_url: URL adresa stránky stavu
       interactions:
         must_be_follower: Blokuj oboznámenia od užívateľov, ktorí ma nenasledujú
         must_be_following: Blokuj oboznámenia od ľudí, ktorých nesledujem
@@ -160,13 +163,13 @@ sk:
       notification_emails:
         digest: Zasielať súhrnné emaily
         favourite: Zaslať email, ak si niekto obľúbi tvoj príspevok
-        follow: Zaslať email, ak ťa niekto začne následovať
+        follow: Niekto ťa začal nasledovať
         follow_request: Zaslať email, ak ti niekto pošle žiadosť o sledovanie
         mention: Zaslať email, ak ťa niekto spomenie vo svojom príspevku
         pending_account: Zaslať email, ak treba prehodnotiť nový účet
         reblog: Zaslať email, ak niekto re-tootne tvoj príspevok
       tag:
-        listable: Povoľ zobrazovanie tohto haštagu v zozname profilov
+        listable: Povoľ zobrazovanie tohto haštagu v návrhoch vyhľadávaní
         name: Haštag
         trendable: Povoľ zobrazovanie tohto haštagu medzi trendujúcimi
         usable: Povoľ používanie tohto haštagu v príspevkoch

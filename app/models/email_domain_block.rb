@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: email_domain_blocks
@@ -11,12 +12,13 @@
 #
 
 class EmailDomainBlock < ApplicationRecord
-  self.ignored_columns = %w(
+  self.ignored_columns += %w(
     ips
     last_refresh_at
   )
 
   include DomainNormalizable
+  include Paginable
 
   belongs_to :parent, class_name: 'EmailDomainBlock', optional: true
   has_many :children, class_name: 'EmailDomainBlock', foreign_key: :parent_id, inverse_of: :parent, dependent: :destroy
@@ -25,6 +27,10 @@ class EmailDomainBlock < ApplicationRecord
 
   # Used for adding multiple blocks at once
   attr_accessor :other_domains
+
+  def to_log_human_identifier
+    domain
+  end
 
   def history
     @history ||= Trends::History.new('email_domain_blocks', id)
@@ -64,13 +70,11 @@ class EmailDomainBlock < ApplicationRecord
 
     def extract_uris(domain_or_domains)
       Array(domain_or_domains).map do |str|
-        domain = begin
-          if str.include?('@')
-            str.split('@', 2).last
-          else
-            str
-          end
-        end
+        domain = if str.include?('@')
+                   str.split('@', 2).last
+                 else
+                   str
+                 end
 
         Addressable::URI.new.tap { |u| u.host = domain.strip } if domain.present?
       rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError

@@ -1,10 +1,29 @@
 # frozen_string_literal: true
 
 class ActivityPub::AddSerializer < ActivityPub::Serializer
+  class UriSerializer < ActiveModel::Serializer
+    include RoutingHelper
+
+    def serializable_hash(*_args)
+      ActivityPub::TagManager.instance.uri_for(object)
+    end
+  end
+
+  def self.serializer_for(model, options)
+    case model.class.name
+    when 'Status'
+      UriSerializer
+    when 'FeaturedTag'
+      ActivityPub::HashtagSerializer
+    else
+      super
+    end
+  end
+
   include RoutingHelper
 
   attributes :type, :actor, :target
-  attribute :proper_object, key: :object
+  has_one :proper_object, key: :object
 
   def type
     'Add'
@@ -15,7 +34,7 @@ class ActivityPub::AddSerializer < ActivityPub::Serializer
   end
 
   def proper_object
-    ActivityPub::TagManager.instance.uri_for(object)
+    object
   end
 
   def target

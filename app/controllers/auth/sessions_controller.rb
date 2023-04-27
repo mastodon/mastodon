@@ -14,6 +14,10 @@ class Auth::SessionsController < Devise::SessionsController
   before_action :set_instance_presenter, only: [:new]
   before_action :set_body_classes
 
+  content_security_policy only: :new do |p|
+    p.form_action(false)
+  end
+
   def check_suspicious!
     user = find_user
     @login_is_suspicious = suspicious_sign_in?(user) unless user.nil?
@@ -48,9 +52,9 @@ class Auth::SessionsController < Devise::SessionsController
 
       session[:webauthn_challenge] = options_for_get.challenge
 
-      render json: options_for_get, status: :ok
+      render json: options_for_get, status: 200
     else
-      render json: { error: t('webauthn_credentials.not_enabled') }, status: :unauthorized
+      render json: { error: t('webauthn_credentials.not_enabled') }, status: 401
     end
   end
 
@@ -106,9 +110,7 @@ class Auth::SessionsController < Devise::SessionsController
   def home_paths(resource)
     paths = [about_path]
 
-    if single_user_mode? && resource.is_a?(User)
-      paths << short_account_path(username: resource.account)
-    end
+    paths << short_account_path(username: resource.account) if single_user_mode? && resource.is_a?(User)
 
     paths
   end

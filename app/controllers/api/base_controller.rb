@@ -6,15 +6,36 @@ class Api::BaseController < ApplicationController
 
   include RateLimitHeaders
   include AccessTokenTrackingConcern
+  include ApiCachingConcern
 
-  skip_before_action :store_current_location
   skip_before_action :require_functional!, unless: :whitelist_mode?
 
   before_action :require_authenticated_user!, if: :disallow_unauthenticated_api_access?
   before_action :require_not_suspended!
-  before_action :set_cache_headers
+
+  vary_by 'Authorization'
 
   protect_from_forgery with: :null_session
+
+  content_security_policy do |p|
+    # Set every directive that does not have a fallback
+    p.default_src :none
+    p.frame_ancestors :none
+    p.form_action :none
+
+    # Disable every directive with a fallback to cut on response size
+    p.base_uri false
+    p.font_src false
+    p.img_src false
+    p.style_src false
+    p.media_src false
+    p.frame_src false
+    p.manifest_src false
+    p.connect_src false
+    p.script_src false
+    p.child_src false
+    p.worker_src false
+  end
 
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
     render json: { error: e.to_s }, status: 422
@@ -22,6 +43,10 @@ class Api::BaseController < ApplicationController
 
   rescue_from ActiveRecord::RecordNotUnique do
     render json: { error: 'Duplicate record' }, status: 422
+  end
+
+  rescue_from Date::Error do
+    render json: { error: 'Invalid date supplied' }, status: 422
   end
 
   rescue_from ActiveRecord::RecordNotFound do
@@ -53,7 +78,7 @@ class Api::BaseController < ApplicationController
     render json: { error: I18n.t('errors.429') }, status: 429
   end
 
-  rescue_from ActionController::ParameterMissing do |e|
+  rescue_from ActionController::ParameterMissing, Mastodon::InvalidParameterError do |e|
     render json: { error: e.to_s }, status: 400
   end
 
@@ -124,11 +149,13 @@ class Api::BaseController < ApplicationController
     doorkeeper_authorize!(*scopes) if doorkeeper_token
   end
 
-  def set_cache_headers
-    response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
+  def disallow_unauthenticated_api_access?
+    ENV['DISALLOW_UNAUTHENTICATED_API_ACCESS'] == 'true' || Rails.configuration.x.whitelist_mode
   end
 
-  def disallow_unauthenticated_api_access?
-    authorized_fetch_mode?
+  private
+
+  def respond_with_error(code)
+    render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code
   end
 end

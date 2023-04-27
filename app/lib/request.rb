@@ -30,7 +30,8 @@ class Request
     @verb        = verb
     @url         = Addressable::URI.parse(url).normalize
     @http_client = options.delete(:http_client)
-    @options     = options.merge(socket_class: use_proxy? ? ProxySocket : Socket)
+    @allow_local = options.delete(:allow_local)
+    @options     = options.merge(socket_class: use_proxy? || @allow_local ? ProxySocket : Socket)
     @options     = @options.merge(proxy_url) if use_proxy?
     @headers     = {}
 
@@ -40,12 +41,11 @@ class Request
     set_digest! if options.key?(:body)
   end
 
-  def on_behalf_of(account, key_id_format = :uri, sign_with: nil)
-    raise ArgumentError, 'account must not be nil' if account.nil?
+  def on_behalf_of(actor, sign_with: nil)
+    raise ArgumentError, 'actor must not be nil' if actor.nil?
 
-    @account       = account
-    @keypair       = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : @account.keypair
-    @key_id_format = key_id_format
+    @actor         = actor
+    @keypair       = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : @actor.keypair
 
     self
   end
@@ -63,8 +63,6 @@ class Request
     end
 
     begin
-      response = response.extend(ClientLimit)
-
       # If we are using a persistent connection, we have to
       # read every response to be able to move forward at all.
       # However, simply calling #to_s or #flush may not be safe,
@@ -79,7 +77,7 @@ class Request
   end
 
   def headers
-    (@account ? @headers.merge('Signature' => signature) : @headers).without(REQUEST_TARGET)
+    (@actor ? @headers.merge('Signature' => signature) : @headers).without(REQUEST_TARGET)
   end
 
   class << self
@@ -128,12 +126,7 @@ class Request
   end
 
   def key_id
-    case @key_id_format
-    when :acct
-      @account.to_webfinger_s
-    when :uri
-      [ActivityPub::TagManager.instance.uri_for(@account), '#main-key'].join
-    end
+    ActivityPub::TagManager.instance.key_uri_for(@actor)
   end
 
   def http_client
@@ -161,9 +154,7 @@ class Request
   end
 
   module ClientLimit
-    def body_with_limit(limit = 1.megabyte)
-      raise Mastodon::LengthValidationError if content_length.present? && content_length > limit
-
+    def truncated_body(limit = 1.megabyte)
       if charset.nil?
         encoding = Encoding::BINARY
       else
@@ -180,10 +171,27 @@ class Request
         contents << chunk
         chunk.clear
 
-        raise Mastodon::LengthValidationError if contents.bytesize > limit
+        break if contents.bytesize > limit
       end
 
       contents
+    end
+
+    def body_with_limit(limit = 1.megabyte)
+      raise Mastodon::LengthValidationError if content_length.present? && content_length > limit
+
+      contents = truncated_body(limit)
+      raise Mastodon::LengthValidationError if contents.bytesize > limit
+
+      contents
+    end
+  end
+
+  if ::HTTP::Response.methods.include?(:body_with_limit) && !Rails.env.production?
+    abort 'HTTP::Response#body_with_limit is already defined, the monkey patch will not be applied'
+  else
+    class ::HTTP::Response
+      include Request::ClientLimit
     end
   end
 
@@ -199,7 +207,8 @@ class Request
         rescue IPAddr::InvalidAddressError
           Resolv::DNS.open do |dns|
             dns.timeouts = 5
-            addresses = dns.getaddresses(host).take(2)
+            addresses = dns.getaddresses(host)
+            addresses = addresses.filter { |addr| addr.is_a?(Resolv::IPv6) }.take(2) + addresses.filter { |addr| !addr.is_a?(Resolv::IPv6) }.take(2)
           end
         end
 
@@ -207,26 +216,24 @@ class Request
         addr_by_socket = {}
 
         addresses.each do |address|
-          begin
-            check_private_address(address)
+          check_private_address(address, host)
 
-            sock     = ::Socket.new(address.is_a?(Resolv::IPv6) ? ::Socket::AF_INET6 : ::Socket::AF_INET, ::Socket::SOCK_STREAM, 0)
-            sockaddr = ::Socket.pack_sockaddr_in(port, address.to_s)
+          sock     = ::Socket.new(address.is_a?(Resolv::IPv6) ? ::Socket::AF_INET6 : ::Socket::AF_INET, ::Socket::SOCK_STREAM, 0)
+          sockaddr = ::Socket.pack_sockaddr_in(port, address.to_s)
 
-            sock.setsockopt(::Socket::IPPROTO_TCP, ::Socket::TCP_NODELAY, 1)
+          sock.setsockopt(::Socket::IPPROTO_TCP, ::Socket::TCP_NODELAY, 1)
 
-            sock.connect_nonblock(sockaddr)
+          sock.connect_nonblock(sockaddr)
 
-            # If that hasn't raised an exception, we somehow managed to connect
-            # immediately, close pending sockets and return immediately
-            socks.each(&:close)
-            return sock
-          rescue IO::WaitWritable
-            socks << sock
-            addr_by_socket[sock] = sockaddr
-          rescue => e
-            outer_e = e
-          end
+          # If that hasn't raised an exception, we somehow managed to connect
+          # immediately, close pending sockets and return immediately
+          socks.each(&:close)
+          return sock
+        rescue IO::WaitWritable
+          socks << sock
+          addr_by_socket[sock] = sockaddr
+        rescue => e
+          outer_e = e
         end
 
         until socks.empty?
@@ -264,23 +271,23 @@ class Request
 
       alias new open
 
-      def check_private_address(address)
+      def check_private_address(address, host)
         addr = IPAddr.new(address.to_s)
-        return if private_address_exceptions.any? { |range| range.include?(addr) }
-        raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(addr)
+
+        return if Rails.env.development? || private_address_exceptions.any? { |range| range.include?(addr) }
+
+        raise Mastodon::PrivateNetworkAddressError, host if PrivateAddressCheck.private_address?(addr)
       end
 
       def private_address_exceptions
-        @private_address_exceptions = begin
-          (ENV['ALLOWED_PRIVATE_ADDRESSES'] || '').split(',').map { |addr| IPAddr.new(addr) }
-        end
+        @private_address_exceptions = (ENV['ALLOWED_PRIVATE_ADDRESSES'] || '').split(',').map { |addr| IPAddr.new(addr) }
       end
     end
   end
 
   class ProxySocket < Socket
     class << self
-      def check_private_address(_address)
+      def check_private_address(_address, _host)
         # Accept connections to private addresses as HTTP proxies will usually
         # be on local addresses
         nil

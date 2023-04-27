@@ -29,6 +29,10 @@ ja:
           attributes:
             website:
               invalid: は無効なURLです
+        import:
+          attributes:
+            data:
+              malformed: は不正です
         status:
           attributes:
             reblog:
@@ -38,9 +42,14 @@ ja:
             email:
               blocked: は禁止されているメールプロバイダを使用しています
               unreachable: は存在しないようです
+            role_id:
+              elevated: 現在と同じロールには変更できません
         user_role:
           attributes:
             permissions_as_keys:
+              dangerous: 基本ロールにとって安全でない権限を含みます
+              elevated: 現在のロールが所有していない権限は含めることはできません
               own_role: 現在と同じロールには変更できません
             position:
+              elevated: 現在と同じロールには変更できません
               own_role: 現在と同じロールには変更できません

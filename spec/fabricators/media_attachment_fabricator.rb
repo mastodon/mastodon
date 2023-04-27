@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Fabricator(:media_attachment) do
   account
 

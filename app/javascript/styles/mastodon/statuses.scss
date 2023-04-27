@@ -97,7 +97,7 @@
     width: 20px;
     height: auto;
     vertical-align: middle;
-    margin-right: 5px;
+    margin-inline-end: 5px;
     fill: $primary-text-color;
   }
 
@@ -137,9 +137,8 @@ a.button.logo-button {
   justify-content: center;
 }
 
-.embed,
-.public-layout {
-  .status__content[data-spoiler="folded"] {
+.embed {
+  .status__content[data-spoiler='folded'] {
     .e-content {
       display: none;
     }
@@ -163,7 +162,7 @@ a.button.logo-button {
     min-height: 48px + 2px;
 
     &__avatar {
-      left: 15px;
+      inset-inline-start: 15px;
       top: 17px;
 
       .account__avatar {
@@ -177,12 +176,12 @@ a.button.logo-button {
     }
 
     &__prepend {
-      margin-left: 48px + 15px * 2;
+      margin-inline-start: 48px + 15px * 2;
       padding-top: 15px;
     }
 
     &__prepend-icon-wrapper {
-      left: -32px;
+      inset-inline-start: -32px;
     }
 
     .media-gallery,

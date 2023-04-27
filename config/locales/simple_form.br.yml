@@ -11,6 +11,10 @@ br:
       form_challenge:
         current_password: Emaoc'h o tont-tre ul lec'h diogel
     labels:
+      account:
+        fields:
+          name: Label
+          value: Endalc'h
       account_warning_preset:
         title: Titl
       admin_account_action:
@@ -18,6 +22,7 @@ br:
         types:
           disable: Skornañ
           sensitive: Kizidik
+          silence: Bevenn
           suspend: Astalañ
       announcement:
         all_day: Darvoud a-hed an devezh
@@ -38,11 +43,14 @@ br:
         header: Talbenn
         locale: Yezh ar c'hetal
         new_password: Ger-tremen nevez
+        note: Kinnig
         password: Ger-tremen
         phrase: Ger-alc'hwez pe frazenn
         setting_display_media_default: Dre ziouer
         setting_display_media_hide_all: Kuzhat pep tra
         setting_display_media_show_all: Diskouez pep tra
+        setting_use_pending_items: Mod gorrek
+        title: Titl
         username: Anv
         whole_word: Ger a-bezh
       featured_tag:
@@ -50,12 +58,20 @@ br:
       invite:
         comment: Evezhiadenn
       ip_block:
+        comment: Evezhiadenn
         ip: IP
+        severity: Reolenn
       notification_emails:
         follow: Heuliañ a ra {name} ac'hanoc'h
+      rule:
+        text: Reolenn
       tag:
         name: Ger-klik
         trendable: Aotren an hashtag-mañ da zont war wel dindan tuadurioù
+      user:
+        role: Roll
+      user_role:
+        name: Anv
     'no': Ket
     recommended: Erbedet
     required:

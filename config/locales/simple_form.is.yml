@@ -18,8 +18,8 @@ is:
           disable: Koma í veg fyrir að notandinn noti aðganginn sinn, en ekki eyða eða fela efnið þeirra.
           none: Nota þetta til að senda aðvörun til notandans, án þess að setja neina aðra aðgerð í gang.
           sensitive: Þvinga fram að öll myndefnisviðhengi þessa notanda verði flögguð sem viðkvæmt efni.
-          silence: Koma í veg fyrir að notandinn geti birt færslur opinberlega, fela færslur þeirra og tilkynningar fyrir fólki sem ekki er að fylgjast með notandanum.
-          suspend: Koma í veg fyrir öll samskipti til eða frá þessum aðgangi og eyða öllu efni hans. Afturkallanlegt innan 30 daga.
+          silence: Koma í veg fyrir að notandinn geti birt færslur opinberlega, fela færslur þeirra og tilkynningar fyrir fólki sem ekki er að fylgjast með notandanum. Lokar öllum kærum gagnvart þessum aðgangi.
+          suspend: Koma í veg fyrir öll samskipti til eða frá þessum aðgangi og eyða öllu efni hans. Afturkallanlegt innan 30 daga. Lokar öllum kærum gagnvart þessum aðgangi.
         warning_preset_id: Valkvætt. Þú getur ennþá bætt sérsniðnum texta við enda forstillinga
       announcement:
         all_day: Þegar merkt er við þetta, munu einungis birtast dagsetningar tímarammans
@@ -59,7 +59,7 @@ is:
         setting_show_application: Nafnið á forritinu sem þú notar til að senda færslur mun birtast í ítarlegri sýn á færslunum þínum
         setting_use_blurhash: Litstiglarnir byggja á litunum í földu myndunum, en gera öll smáatriði óskýr
         setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er, í stað þess að hún skruni streyminu sjálfvirkt
-        username: Notandanafnið þitt verður einstakt á %{domain}
+        username: Þú mátt nota bókstafi, tölur og undirstrik
         whole_word: Þegar stikkorð eða setning er einungis tölur og bókstafir, verður það aðeins notað ef það samsvarar heilu orði
       domain_allow:
         domain: Þetta lén mun geta sótt gögn af þessum vefþjóni og tekið verður á móti innsendum gögnum frá léninu til vinnslu og geymslu
@@ -67,12 +67,37 @@ is:
         domain: Þetta getur verið lénið sem birtist í tölvupóstfanginu eða MX-færslunni sem það notar. Þetta verður yfirfarið við nýskráningu.
         with_dns_records: Tilraun verður gerð til að leysa DNS-færslur uppgefins léns og munu niðurstöðurnar einnig verða útilokaðar
       featured_tag:
-        name: 'Þú gætir viljað nota eitt af þessum:'
+        name: 'Hér eru nokkur af þeim myllumerkjum sem þú hefur notað nýlega:'
       filters:
         action: Veldu hvaða aðgerð á að framkvæma þegar færsla samsvarar síunni
         actions:
           hide: Fela síað efni algerlega, rétt eins og það sé ekki til staðar
           warn: Fela síað efni á bakvið aðvörun sem tekur fram titil síunnar
+      form_admin_settings:
+        activity_api_enabled: Fjöldi staðværra stöðufærslna, virkra notenda og nýskráninga í vikulegum skömmtum
+        backups_retention_period: Halda safni notandans í tiltekinn fjölda daga.
+        bootstrap_timeline_accounts: Þessir notendaaðgangar verða festir efst í meðmælum til nýrra notenda um að fylgjast með þeim.
+        closed_registrations_message: Birtist þegar lokað er á nýskráningar
+        content_cache_retention_period: Færslum af öðrum netþjónum verður eytt eftir tiltekinn fjölda daga þegar þetta er jákvætt gildi. Þetta gæti verið óafturkallanleg aðgerð.
+        custom_css: Þú getur virkjað sérsniðna stíla í vefútgáfu Mastodon.
+        mascot: Þetta tekyr yfir myndskreytinguna í ítarlega vefviðmótinu.
+        media_cache_retention_period: Sóttu myndefni verður eytt eftir tiltekinn fjölda daga þegar þetta er jákvætt gildi og síðan sótt aftur eftir þörfum.
+        peers_api_enabled: Listi yfir þau lénaheiti sem þessi netþjónn hefur rekist á í skýjasambandinu. Engin gögn eru hér sem gefa til kynna hvort þú sért í sambandi við tiltekinn netþjón, bara að netþjónninn þinn viti um hann. Þetta er notað af þjónustum sem safna tölfræði um skýjasambönd á almennan hátt.
+        profile_directory: Notendamappan telur upp alla þá notendur sem hafa valið að vera uppgötvanlegir.
+        require_invite_text: Þegar nýskráningar krefjast handvirks samþykkis, þá skal gera textann í “Hvers vegna viltu taka þátt?” að kröfu en ekki valkvæðan
+        site_contact_email: Hovernig fólk getur haft samband við þig til að fá aðstoð eða vegna lagalegra mála.
+        site_contact_username: Hovernig fólk getur haft samband við þig á Mastodon.
+        site_extended_description: Hverjar þær viðbótarupplýsingar sem gætu nýst gestum þínum og notendum. Má sníða með Markdown-málskipan.
+        site_short_description: Stutt lýsing sem hjálpar til við að auðkenna netþjóninn þinn. Hver er að reka hann, fyrir hverja er hann?
+        site_terms: Notaðu þína eigin persónuverndarstefnu eða skildu þetta eftir autt til að nota sjálfgefna stefnu. Má sníða með Markdown-málskipan.
+        site_title: Hvað fólk kallar netþjóninn þinn annað en með heiti lénsins.
+        status_page_url: Slóð á síðu þar sem fólk getur séð ástand netþjónsins þegar vandræði koma upp
+        theme: Þema sem útskráðir gestir og nýjir notendur sjá.
+        thumbnail: Mynd um það bil 2:1 sem birtist samhliða upplýsingum um netþjóninn þinn.
+        timeline_preview: Gestir sem ekki eru skráðir inn munu geta skoðað nýjustu opinberu færslurnar sem tiltækar eru á þjóninum.
+        trendable_by_default: Sleppa handvirkri yfirferð á vinsælu efni. Áfram verður hægt að fjarlægja stök atriði úr vinsældarlistum.
+        trends: Vinsældir sýna hvaða færslur, myllumerki og fréttasögur séu í umræðunni á netþjóninum þínum.
+        trends_as_landing_page: Sýna vinsælt efni til ekki-innskráðra notenda í stað lýsingar á þessum netþjóni. Krefst þess að vinsældir efnis sé virkjað.
       form_challenge:
         current_password: Þú ert að fara inn á öryggissvæði
       imports:
@@ -85,6 +110,7 @@ is:
         ip: Settu inn IPv4 eða IPv6 vistfang. Þú getur lokað á svið vistfanga með því að nota CIDR-framsetningu. Gættu þess að loka ekki sjálfa/n þig úti!
         severities:
           no_access: Loka á aðgang að öllum tilföngum
+          sign_up_block: Nýskráningar verða ekki mögulegar
           sign_up_requires_approval: Nýskráningar munu þurfa samþykki þitt
         severity: Veldu hvað munir gerast við beiðnir frá þessu IP-vistfangi
       rule:
@@ -125,10 +151,10 @@ is:
         type: Aðgerð
         types:
           disable: Gera innskráningu óvirka
-          none: Gera ekkert
+          none: Senda aðvörun
           sensitive: Viðkvæmt
           silence: Hylja
-          suspend: Setja í bið og eyða endanlega gögnum notandaaðgangsins
+          suspend: Setja í frysti
         warning_preset_id: Nota forstillta aðvörun
       announcement:
         all_day: Heilsdags atburður
@@ -141,7 +167,7 @@ is:
       defaults:
         autofollow: Bjóða að fylgjast með aðgangnum þínum
         avatar: Auðkennismynd
-        bot: Þetta er aðgangur fyrir vélmenni
+        bot: Þetta er aðgangur fyrir yrki
         chosen_languages: Sía tungumál
         confirm_new_password: Staðfestu nýja lykilorðið
         confirm_password: Staðfestu lykilorðið
@@ -158,7 +184,7 @@ is:
         inbox_url: URL-slóð á innhólf endurvarpa
         irreversible: Fella niður í staðinn fyrir að fela
         locale: Tungumál viðmóts
-        locked: Læsa aðgangi
+        locked: Krefjast fylgjendabeiðna
         max_uses: Hámarksfjöldi afnota
         new_password: Nýtt lykilorð
         note: Æviágrip
@@ -181,7 +207,7 @@ is:
         setting_display_media_hide_all: Fela allt
         setting_display_media_show_all: Birta allt
         setting_expand_spoilers: Alltaf útfella færslur sem eru með aðvörun vegna efnisins
-        setting_hide_network: Fela netkerfið þitt
+        setting_hide_network: Fela félagsnetið þitt
         setting_noindex: Afþakka atriðaskráningu í leitarvélum
         setting_reduce_motion: Minnka hreyfingu í hreyfimyndum
         setting_show_application: Upplýsa um forrit sem er til að senda færslur
@@ -206,6 +232,34 @@ is:
         actions:
           hide: Fela alveg
           warn: Fela með aðvörun
+      form_admin_settings:
+        activity_api_enabled: Birta samantektartölfræði um virkni notanda í API-kerfisviðmótinu
+        backups_retention_period: Tímalengd sem safni notandans er haldið eftir
+        bootstrap_timeline_accounts: Alltaf mæla með þessum notendaaðgöngum fyrir nýja notendur
+        closed_registrations_message: Sérsniðin skilaboð þegar ekki er hægt að nýskrá
+        content_cache_retention_period: Tímalengd sem haldið er í biðminni
+        custom_css: Sérsniðið CSS
+        mascot: Sérsniðið gæludýr (eldra)
+        media_cache_retention_period: Tímalengd sem myndefni haldið
+        peers_api_enabled: Birta lista yfir uppgötvaða netþjóna í API-kerfisviðmótinu
+        profile_directory: Virkja notendamöppu
+        registrations_mode: Hverjir geta nýskráð sig
+        require_invite_text: Krefjast ástæðu fyrir þátttöku
+        show_domain_blocks: Sýna útilokanir léna
+        show_domain_blocks_rationale: Sýna af hverju lokað var á lén
+        site_contact_email: Tölvupóstfang tengiliðar
+        site_contact_username: Notandanafn tengiliðar
+        site_extended_description: Ítarleg lýsing
+        site_short_description: Lýsing á vefþjóni
+        site_terms: Persónuverndarstefna
+        site_title: Heiti vefþjóns
+        status_page_url: Slóð á ástandssíðu
+        theme: Sjálfgefið þema
+        thumbnail: Smámynd vefþjóns
+        timeline_preview: Leyfa óauðkenndan aðgang að opinberum tímalínum
+        trendable_by_default: Leyfa vinsælt efni án undanfarandi yfirferðar
+        trends: Virkja vinsælt
+        trends_as_landing_page: Nota vinsælasta sem upphafssíðu
       interactions:
         must_be_follower: Loka á tilkynningar frá þeim sem ekki eru fylgjendur
         must_be_following: Loka á tilkynningar frá þeim sem þú fylgist ekki með
@@ -219,6 +273,7 @@ is:
         ip: IP-vistfang
         severities:
           no_access: Loka á aðgang
+          sign_up_block: Loka á nýskráningar
           sign_up_requires_approval: Takmarka nýskráningar
         severity: Regla
       notification_emails:
@@ -231,13 +286,13 @@ is:
         pending_account: Nýr notandaaðgangur þarfnast yfirferðar
         reblog: Einhver endurbirti færsluna þína
         report: Ný kæra hefur verið send inn
-        trending_tag: Ný tilhneiging krefst yfirferðar
+        trending_tag: Nýtt vinsælt efni krefst yfirferðar
       rule:
         text: Regla
       tag:
         listable: Leyfa þessu myllumerki að birtast í leitum og í persónusniðamöppunni
         name: Myllumerki
-        trendable: Leyfa þessu myllumerki að birtast undir tilhneigingum
+        trendable: Leyfa þessu myllumerki að birtast undir vinsælu efni
         usable: Leyfa færslum að nota þetta myllumerki
       user:
         role: Hlutverk
@@ -251,6 +306,7 @@ is:
         events: Virkjaðir atburðir
         url: Slóð á endapunkt
     'no': Nei
+    not_recommended: Ekki mælt með þessu
     recommended: Mælt með
     required:
       mark: "*"

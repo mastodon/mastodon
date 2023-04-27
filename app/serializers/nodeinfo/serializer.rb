@@ -38,7 +38,7 @@ class NodeInfo::Serializer < ActiveModel::Serializer
   end
 
   def metadata
-    []
+    {}
   end
 
   private

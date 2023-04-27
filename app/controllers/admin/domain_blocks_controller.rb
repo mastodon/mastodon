@@ -2,7 +2,19 @@
 
 module Admin
   class DomainBlocksController < BaseController
-    before_action :set_domain_block, only: [:show, :destroy, :edit, :update]
+    before_action :set_domain_block, only: [:destroy, :edit, :update]
+
+    def batch
+      authorize :domain_block, :create?
+      @form = Form::DomainBlockBatch.new(form_domain_block_batch_params.merge(current_account: current_account, action: action_from_button))
+      @form.save
+    rescue ActionController::ParameterMissing
+      flash[:alert] = I18n.t('admin.domain_blocks.no_domain_block_selected')
+    rescue Mastodon::NotPermittedError
+      flash[:alert] = I18n.t('admin.domain_blocks.not_permitted')
+    else
+      redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
+    end
 
     def new
       authorize :domain_block, :create?
@@ -43,12 +55,8 @@ module Admin
     def update
       authorize :domain_block, :update?
 
-      @domain_block.update(update_params)
-
-      severity_changed = @domain_block.severity_changed?
-
-      if @domain_block.save
-        DomainBlockWorker.perform_async(@domain_block.id, severity_changed)
+      if @domain_block.update(update_params)
+        DomainBlockWorker.perform_async(@domain_block.id, @domain_block.severity_previously_changed?)
         log_action :update, @domain_block
         redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
       else
@@ -75,6 +83,14 @@ module Admin
 
     def resource_params
       params.require(:domain_block).permit(:domain, :severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate)
+    end
+
+    def form_domain_block_batch_params
+      params.require(:form_domain_block_batch).permit(domain_blocks_attributes: [:enabled, :domain, :severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate])
+    end
+
+    def action_from_button
+      'save' if params[:save]
     end
   end
 end

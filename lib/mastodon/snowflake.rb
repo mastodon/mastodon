@@ -115,7 +115,7 @@ module Mastodon::Snowflake
         # And only those that are using timestamp_id.
         next unless (data = DEFAULT_REGEX.match(id_col.default_function))
 
-        seq_name = data[:seq_prefix] + '_id_seq'
+        seq_name = "#{data[:seq_prefix]}_id_seq"
 
         # If we were on Postgres 9.5+, we could do CREATE SEQUENCE IF
         # NOT EXISTS, but we can't depend on that. Instead, catch the

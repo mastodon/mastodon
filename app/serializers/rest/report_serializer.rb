@@ -9,4 +9,12 @@ class REST::ReportSerializer < ActiveModel::Serializer
   def id
     object.id.to_s
   end
+
+  def status_ids
+    object&.status_ids&.map(&:to_s)
+  end
+
+  def rule_ids
+    object&.rule_ids&.map(&:to_s)
+  end
 end

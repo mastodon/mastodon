@@ -67,7 +67,7 @@ module ApplicationHelper
   def link_to_login(name = nil, html_options = nil, &block)
     target = new_user_session_path
 
-    html_options = name if block_given?
+    html_options = name if block
 
     if omniauth_only? && Devise.mappings[:user].omniauthable? && User.omniauth_providers.size == 1
       target = omniauth_authorize_path(:user, User.omniauth_providers[0])
@@ -75,7 +75,7 @@ module ApplicationHelper
       html_options[:method] = :post
     end
 
-    if block_given?
+    if block
       link_to(target, html_options, &block)
     else
       link_to(name, target, html_options)
@@ -85,10 +85,6 @@ module ApplicationHelper
   def provider_sign_in_link(provider)
     label = Devise.omniauth_configs[provider]&.strategy&.display_name.presence || I18n.t("auth.providers.#{provider}", default: provider.to_s.chomp('_oauth2').capitalize)
     link_to label, omniauth_authorize_path(:user, provider), class: "button button-#{provider}", method: :post
-  end
-
-  def open_deletion?
-    Setting.open_deletion
   end
 
   def locale_direction
@@ -109,15 +105,20 @@ module ApplicationHelper
 
   def can?(action, record)
     return false if record.nil?
+
     policy(record).public_send("#{action}?")
   end
 
   def fa_icon(icon, attributes = {})
     class_names = attributes[:class]&.split(' ') || []
     class_names << 'fa'
-    class_names += icon.split(' ').map { |cl| "fa-#{cl}" }
+    class_names += icon.split.map { |cl| "fa-#{cl}" }
 
     content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
+  end
+
+  def check_icon
+    content_tag(:svg, tag(:path, 'fill-rule': 'evenodd', 'clip-rule': 'evenodd', d: 'M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'), xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 20 20', fill: 'currentColor')
   end
 
   def visibility_icon(status)
@@ -167,7 +168,7 @@ module ApplicationHelper
   end
 
   def body_classes
-    output = (@body_classes || '').split(' ')
+    output = body_class_string.split
     output << "theme-#{current_theme.parameterize}"
     output << 'system-font' if current_account&.user&.setting_system_font_ui
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
@@ -198,10 +199,7 @@ module ApplicationHelper
 
   def render_initial_state
     state_params = {
-      settings: {
-        known_fediverse: Setting.show_known_fediverse_at_about_page,
-      },
-
+      settings: {},
       text: [params[:title], params[:text], params[:url]].compact.join(' '),
     }
 
@@ -210,13 +208,20 @@ module ApplicationHelper
     permit_visibilities.shift(permit_visibilities.index(default_privacy) + 1) if default_privacy.present?
     state_params[:visibility] = params[:visibility] if permit_visibilities.include? params[:visibility]
 
-    if user_signed_in?
+    if user_signed_in? && current_user.functional?
       state_params[:settings]          = state_params[:settings].merge(Web::Setting.find_by(user: current_user)&.data || {})
       state_params[:push_subscription] = current_account.user.web_push_subscription(current_session)
       state_params[:current_account]   = current_account
       state_params[:token]             = current_session.token
       state_params[:admin]             = Account.find_local(Setting.site_contact_username.strip.gsub(/\A@/, ''))
     end
+
+    if user_signed_in? && !current_user.functional?
+      state_params[:disabled_account] = current_account
+      state_params[:moved_to_account] = current_account.moved_to_account
+    end
+
+    state_params[:owner] = Account.local.without_suspended.where('id > 0').first if single_user_mode?
 
     json = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params), serializer: InitialStateSerializer).to_json
     # rubocop:disable Rails/OutputSafety

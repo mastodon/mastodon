@@ -8,7 +8,7 @@ tr:
     failure:
       already_authenticated: Zaten oturum açtınız.
       inactive: Hesabınız henüz etkinleştirilmedi.
-      invalid: Geçersiz %{authentication_keys} ya da şifre.
+      invalid: Geçersiz %{authentication_keys} ya da parola.
       last_attempt: Hesabınız kilitlenmeden önce bir kez daha denemeniz gerekir.
       locked: Hesabınız kilitlendi.
       not_found_in_database: Geçersiz %{authentication_keys} ya da parola.
@@ -31,7 +31,7 @@ tr:
         subject: 'Mastodon: E-posta adresi değişti'
         title: Yeni e-posta adresi
       password_change:
-        explanation: Hesabınızın şifresi değiştirildi.
+        explanation: Hesabınızın parolası değiştirildi.
         extra: Parolanızı değiştirmediyseniz, büyük olasılıkla birileri hesabınıza erişmiş olabilir. Lütfen derhal parolanızı değiştirin veya hesabınız kilitlendiyse sunucu yöneticisine başvurun.
         subject: 'Mastodon: Parola değiştirildi'
         title: Parola değiştirildi
@@ -81,11 +81,11 @@ tr:
       failure: '%{kind}''den kimliğiniz doğrulanamadı çünkü "%{reason}".'
       success: "%{kind} hesabından başarıyla kimlik doğrulaması yapıldı."
     passwords:
-      no_token: Bu sayfaya şifre sıfırlama e-postasından gelmeden erişemezsiniz. Şifre sıfırlama e-postasından geliyorsanız lütfen sağlanan tam URL'yi kullandığınızdan emin olun.
+      no_token: Bu sayfaya parola sıfırlama e-postasından gelmeden erişemezsiniz. Parola sıfırlama e-postasından geliyorsanız lütfen sağlanan tam URL'yi kullandığınızdan emin olun.
       send_instructions: E-posta adresiniz veritabanımızda varsa, e-posta adresinize birkaç dakika içinde bir parola kurtarma bağlantısı gönderilir. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
       send_paranoid_instructions: E-posta adresiniz veritabanımızda varsa, e-posta adresinize birkaç dakika içinde bir parola kurtarma bağlantısı gönderilir. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
-      updated: Şifreniz başarılı bir şekilde değiştirildi. Şu an oturum açtınız.
-      updated_not_active: Şifreniz başarıyla değiştirildi.
+      updated: Parolanız başarılı bir şekilde değiştirildi. Şu an oturum açtınız.
+      updated_not_active: Parolanız başarıyla değiştirildi.
     registrations:
       destroyed: Görüşürüz! hesabın başarıyla iptal edildi. Umarız seni sonra tekrar görürüz.
       signed_up: Hoş geldiniz! Başarılı bir şekilde oturum açtınız.

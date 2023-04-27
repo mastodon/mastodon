@@ -29,6 +29,10 @@ ru:
           attributes:
             website:
               invalid: не является допустимым URL
+        import:
+          attributes:
+            data:
+              malformed: неверный формат
         status:
           attributes:
             reblog:
@@ -44,4 +48,8 @@ ru:
           attributes:
             permissions_as_keys:
               dangerous: включить разрешения, небезопасные для базовой роли
+              elevated: не может включать разрешения, которыми не обладает ваша текущая роль
+              own_role: невозможно изменить с вашей текущей ролью
+            position:
+              elevated: не может быть выше, чем ваша текущая роль
               own_role: невозможно изменить с вашей текущей ролью

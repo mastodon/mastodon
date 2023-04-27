@@ -1,4 +1,4 @@
-class AddIndexOnStatusesForApiV1AccountsAccountIdStatuses < ActiveRecord::Migration[5.1]
+class AddIndexOnStatusesForApiV1AccountsAccountIdStatuses < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def change

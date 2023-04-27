@@ -12,7 +12,7 @@ class FetchResourceService < BaseService
 
     process(url)
   rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
-    Rails.logger.debug "Error fetching resource #{@url}: #{e}"
+    Rails.logger.debug { "Error fetching resource #{@url}: #{e}" }
     nil
   end
 
@@ -47,7 +47,7 @@ class FetchResourceService < BaseService
       body = response.body_with_limit
       json = body_to_json(body)
 
-      [json['id'], { prefetched_body: body, id: true }] if supported_context?(json) && (equals_or_includes_any?(json['type'], ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES) || expected_type?(json))
+      [json['id'], { prefetched_body: body, id: true }] if supported_context?(json) && (equals_or_includes_any?(json['type'], ActivityPub::FetchRemoteActorService::SUPPORTED_TYPES) || expected_type?(json))
     elsif !terminal
       link_header = response['Link'] && parse_link_header(response)
 

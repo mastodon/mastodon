@@ -21,6 +21,18 @@ eu:
             username:
               invalid: letrak, zenbakiak eta gidoi baxuak besterik ez
               reserved: erreserbatuta dago
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ez da baliozko URL bat
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: ez da baliozko URL bat
+        import:
+          attributes:
+            data:
+              malformed: gaizki eratua dago
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ eu:
             email:
               blocked: onartu gabeko e-posta hornitzaile bat erabiltzen du
               unreachable: dirudienez ez da existitzen
+            role_id:
+              elevated: ezin du gaur egungo zure rola baino goragokoa izan
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: oinarrizko rolarentzat seguruak ez diren baimenak ditu
+              elevated: ezin du eduki zure uneko rolak ez duen baimenik
+              own_role: ezin da aldatu zure uneko rolarekin aldatu
+            position:
+              elevated: ezin du zure uneko rola baino goragokoa izan
+              own_role: ezin da aldatu zure uneko rolarekin

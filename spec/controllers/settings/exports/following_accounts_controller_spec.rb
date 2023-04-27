@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Settings::Exports::FollowingAccountsController do
@@ -11,7 +13,7 @@ describe Settings::Exports::FollowingAccountsController do
       sign_in user, scope: :user
       get :index, format: :csv
 
-      expect(response.body).to eq "Account address,Show boosts\nusername@domain,true\n"
+      expect(response.body).to eq "Account address,Show boosts,Notify on new posts,Languages\nusername@domain,true,false,\n"
     end
   end
 end

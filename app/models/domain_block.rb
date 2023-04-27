@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: domain_blocks
@@ -20,7 +21,7 @@ class DomainBlock < ApplicationRecord
   include DomainNormalizable
   include DomainMaterializable
 
-  enum severity: [:silence, :suspend, :noop]
+  enum severity: { silence: 0, suspend: 1, noop: 2 }
 
   validates :domain, presence: true, uniqueness: true, domain: true
 
@@ -28,8 +29,13 @@ class DomainBlock < ApplicationRecord
   delegate :count, to: :accounts, prefix: true
 
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
-  scope :with_user_facing_limitations, -> { where(severity: [:silence, :suspend]).or(where(reject_media: true)) }
-  scope :by_severity, -> { order(Arel.sql('(CASE severity WHEN 0 THEN 1 WHEN 1 THEN 2 WHEN 2 THEN 0 END), reject_media, domain')) }
+  scope :with_user_facing_limitations, -> { where(severity: [:silence, :suspend]) }
+  scope :with_limitations, -> { where(severity: [:silence, :suspend]).or(where(reject_media: true)) }
+  scope :by_severity, -> { order(Arel.sql('(CASE severity WHEN 0 THEN 1 WHEN 1 THEN 2 WHEN 2 THEN 0 END), domain')) }
+
+  def to_log_human_identifier
+    domain
+  end
 
   def policies
     if suspend?

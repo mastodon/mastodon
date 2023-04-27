@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: imports
@@ -24,7 +25,7 @@ class Import < ApplicationRecord
 
   belongs_to :account
 
-  enum type: [:following, :blocking, :muting, :domain_blocking, :bookmarks]
+  enum type: { following: 0, blocking: 1, muting: 2, domain_blocking: 3, bookmarks: 4 }
 
   validates :type, presence: true
   validates_with ImportValidator, on: :create

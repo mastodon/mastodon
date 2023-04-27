@@ -121,22 +121,22 @@ zh-CN:
         accounts: 账号
         admin/accounts: 账号管理
         admin/all: 所有管理功能
-        admin/reports: 管理报表
-        all: 所有
+        admin/reports: 举报管理
+        all: 完全访问您的Mastodon账户
         blocks: 屏蔽
-        bookmarks: 收藏
+        bookmarks: 书签
         conversations: 会话
         crypto: 端到端加密
         favourites: 喜欢
         filters: 过滤器
-        follow: 关系
+        follow: 关注者，隐藏与屏蔽
         follows: 关注
         lists: 列表
         media: 媒体文件
         mutes: 已被隐藏的
         notifications: 通知
         push: 推送通知
-        reports: 报告
+        reports: 举报
         search: 搜索
         statuses: 嘟文
     layouts:
@@ -149,14 +149,24 @@ zh-CN:
     scopes:
       admin:read: 读取服务器上的所有数据
       admin:read:accounts: 读取所有账号的敏感信息
+      admin:read:canonical_email_blocks: 读取所有标准电子邮件块的敏感信息
+      admin:read:domain_allows: 读取所有域的敏感信息
+      admin:read:domain_blocks: 读取所有域块的敏感信息
+      admin:read:email_domain_blocks: 读取所有电子邮件域块的敏感信息
+      admin:read:ip_blocks: 读取所有IP块的敏感信息
       admin:read:reports: 读取所有举报和被举报账号的敏感信息
       admin:write: 修改服务器上的所有数据
       admin:write:accounts: 对账号执行管理操作
+      admin:write:canonical_email_blocks: 在标准电子邮件块上执行管理操作
+      admin:write:domain_allows: 在域上执行管理操作
+      admin:write:domain_blocks: 在域块上执行管理操作
+      admin:write:email_domain_blocks: 在电子邮件域块上执行管理操作
+      admin:write:ip_blocks: 在 IP 块上执行管理操作
       admin:write:reports: 对举报执行管理操作
       crypto: 使用端到端加密
       follow: 关注或屏蔽用户
-      push: 接收你的帐户的推送通知
-      read: 读取你的帐户数据
+      push: 接收你的账户的推送通知
+      read: 读取你的账户数据
       read:accounts: 查看账号信息
       read:blocks: 查看你的屏蔽列表
       read:bookmarks: 查看你的书签

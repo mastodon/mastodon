@@ -23,6 +23,7 @@ module Admin
       @role.current_account = current_account
 
       if @role.save
+        log_action :create, @role
         redirect_to admin_roles_path
       else
         render :new
@@ -39,6 +40,7 @@ module Admin
       @role.current_account = current_account
 
       if @role.update(resource_params)
+        log_action :update, @role
         redirect_to admin_roles_path
       else
         render :edit
@@ -48,6 +50,7 @@ module Admin
     def destroy
       authorize @role, :destroy?
       @role.destroy!
+      log_action :destroy, @role
       redirect_to admin_roles_path
     end
 

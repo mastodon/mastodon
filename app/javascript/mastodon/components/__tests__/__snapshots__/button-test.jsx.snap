@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> adds class "button-secondary" if props.secondary given 1`] = `
+<button
+  className="button button-secondary"
+  onClick={[Function]}
+  type="button"
+/>
+`;
+
+exports[`<Button /> renders a button element 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+  type="button"
+/>
+`;
+
+exports[`<Button /> renders a disabled attribute if props.disabled given 1`] = `
+<button
+  className="button"
+  disabled={true}
+  onClick={[Function]}
+  type="button"
+/>
+`;
+
+exports[`<Button /> renders class="button--block" if props.block given 1`] = `
+<button
+  className="button button--block"
+  onClick={[Function]}
+  type="button"
+/>
+`;
+
+exports[`<Button /> renders the children 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+  type="button"
+>
+  <p>
+    children
+  </p>
+</button>
+`;
+
+exports[`<Button /> renders the given text 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+  type="button"
+>
+  foo
+</button>
+`;
+
+exports[`<Button /> renders the props.text instead of children 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+  type="button"
+>
+  foo
+</button>
+`;

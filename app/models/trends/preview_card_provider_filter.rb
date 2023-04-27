@@ -30,7 +30,7 @@ class Trends::PreviewCardProviderFilter
     when 'status'
       status_scope(value)
     else
-      raise "Unknown filter: #{key}"
+      raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end
   end
 
@@ -43,7 +43,7 @@ class Trends::PreviewCardProviderFilter
     when 'pending_review'
       PreviewCardProvider.pending_review
     else
-      raise "Unknown status: #{value}"
+      raise Mastodon::InvalidParameterError, "Unknown status: #{value}"
     end
   end
 end

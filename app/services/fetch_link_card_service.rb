@@ -30,7 +30,7 @@ class FetchLinkCardService < BaseService
 
     attach_card if @card&.persisted?
   rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
-    Rails.logger.debug "Error fetching link #{@original_url}: #{e}"
+    Rails.logger.debug { "Error fetching link #{@original_url}: #{e}" }
     nil
   end
 
@@ -45,7 +45,7 @@ class FetchLinkCardService < BaseService
   def html
     return @html if defined?(@html)
 
-    Request.new(:get, @url).add_headers('Accept' => 'text/html', 'User-Agent' => Mastodon::Version.user_agent + ' Bot').perform do |res|
+    Request.new(:get, @url).add_headers('Accept' => 'text/html', 'User-Agent' => "#{Mastodon::Version.user_agent} Bot").perform do |res|
       # We follow redirects, and ideally we want to save the preview card for
       # the destination URL and not any link shortener in-between, so here
       # we set the URL to the one of the last response in the redirect chain
@@ -69,16 +69,14 @@ class FetchLinkCardService < BaseService
   end
 
   def parse_urls
-    urls = begin
-      if @status.local?
-        @status.text.scan(URL_PATTERN).map { |array| Addressable::URI.parse(array[1]).normalize }
-      else
-        document = Nokogiri::HTML(@status.text)
-        links    = document.css('a')
+    urls = if @status.local?
+             @status.text.scan(URL_PATTERN).map { |array| Addressable::URI.parse(array[1]).normalize }
+           else
+             document = Nokogiri::HTML(@status.text)
+             links = document.css('a')
 
-        links.filter_map { |a| Addressable::URI.parse(a['href']) unless skip_link?(a) }.filter_map(&:normalize)
-      end
-    end
+             links.filter_map { |a| Addressable::URI.parse(a['href']) unless skip_link?(a) }.filter_map(&:normalize)
+           end
 
     urls.reject { |uri| bad_url?(uri) }.first
   end

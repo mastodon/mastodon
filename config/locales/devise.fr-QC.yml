@@ -1,0 +1,115 @@
+---
+fr-QC:
+  devise:
+    confirmations:
+      confirmed: Votre adresse de courriel a été validée avec succès.
+      send_instructions: Vous allez recevoir un courriel avec des instructions nécessaires à la confirmation de votre adresse dans quelques minutes. Veuillez vérifier votre dossier de pourriels si vous n'avez pas reçu ce message.
+      send_paranoid_instructions: Si votre adresse courriel existe dans notre base de données, vous allez recevoir un courriel contenant les instructions de confirmation de votre adresse. Veuillez vérifier votre dossier de pourriels si vous n'avez pas reçu ce message.
+    failure:
+      already_authenticated: Vous êtes déjà connecté·e.
+      inactive: Votre compte n’est pas encore activé.
+      invalid: "%{authentication_keys} ou mot de passe invalide."
+      last_attempt: Vous avez droit à une dernière tentative avant que votre compte ne soit verrouillé.
+      locked: Votre compte est verrouillé.
+      not_found_in_database: "%{authentication_keys} ou mot de passe invalide."
+      pending: Votre compte est toujours en cours d'approbation.
+      timeout: Votre session a expiré. Veuillez vous reconnecter pour continuer.
+      unauthenticated: Vous devez vous connecter ou vous inscrire pour continuer.
+      unconfirmed: Vous devez valider votre adresse courriel pour continuer.
+    mailer:
+      confirmation_instructions:
+        action: Vérifier l’adresse courriel
+        action_with_app: Confirmer et retourner à %{app}
+        explanation: Vous avez créé un compte sur %{host} avec cette adresse courriel. Vous êtes à un clic de l’activer. Si ce n'était pas vous, veuiller ignorer ce courriel.
+        explanation_when_pending: Vous avez demandé à vous inscrire à %{host} avec cette adresse courriel. Une fois que vous aurez confirmé cette adresse, nous étudierons votre demande. Vous pouvez vous connecter pour changer vos détails ou supprimer votre compte, mais vous ne pouvez pas accéder à la plupart des fonctionalités du compte avant que votre compte ne soit approuvé. Si votre demande est rejetée, vos données seront supprimées, donc aucune action supplémentaire ne sera requise de votre part. Si ce n'était pas vous, veuiller ignorer ce courriel.
+        extra_html: Veuillez également consulter <a href="%{terms_path}">les règles du serveur</a> et <a href="%{policy_path}">nos conditions d’utilisation</a>.
+        subject: 'Mastodon: Instructions de confirmation pour %{instance}'
+        title: Vérifier l’adresse courriel
+      email_changed:
+        explanation: 'L’adresse courriel de votre compte est en cours de modification pour devenir:'
+        extra: Si vous n’avez pas changé votre adresse courriel, il est probable que quelqu’un ait eu accès à votre compte. Veuillez changer votre mot de passe immédiatement ou contacter l’administrateur·rice du serveur si vous êtes bloqué hors de votre compte.
+        subject: 'Mastodon: Courriel modifié'
+        title: Nouvelle adresse courriel
+      password_change:
+        explanation: Le mot de passe de votre compte a été changé.
+        extra: Si vous n’avez pas changé votre mot de passe, il est probable que quelqu’un ait eu accès à votre compte. Veuillez changer votre mot de passe immédiatement ou contacter l’administrateur·rice du serveur si vous êtes bloqué hors de votre compte.
+        subject: 'Mastodon: Mot de passe modifié'
+        title: Mot de passe modifié
+      reconfirmation_instructions:
+        explanation: Confirmez la nouvelle adresse pour changer votre courriel.
+        extra: Si ce changement n’a pas été initié par vous, veuillez ignorer ce courriel. L’adresse courriel du compte Mastodon ne changera pas tant que vous n’aurez pas cliqué sur le lien ci-dessus.
+        subject: 'Mastodon: Confirmer l’adresse courriel pour %{instance}'
+        title: Vérifier l’adresse courriel
+      reset_password_instructions:
+        action: Changer votre mot de passe
+        explanation: Vous avez demandé un nouveau mot de passe pour votre compte.
+        extra: Si vous ne avez pas demandé ceci, veuillez ignorer ce courriel. Votre mot de passe ne changera pas tant que vous n’aurez pas cliqué sur le lien ci-dessus et n’en aurez pas créé un nouveau.
+        subject: 'Mastodon: Instructions pour changer votre mot de passe'
+        title: Réinitialisation du mot de passe
+      two_factor_disabled:
+        explanation: L'authentification à deux facteurs pour votre compte a été désactivée. La connexion est maintenant possible en utilisant uniquement l'adresse courriel et le mot de passe.
+        subject: 'Mastodon: authentification à deux facteurs désactivée'
+        title: A2F désactivée
+      two_factor_enabled:
+        explanation: L'authentification à deux facteurs a été activée pour votre compte. Un jeton généré par l'application appairée TOTP sera nécessaire pour vous connecter.
+        subject: 'Mastodon: authentification à deux facteurs activée'
+        title: A2F activée
+      two_factor_recovery_codes_changed:
+        explanation: Les codes de récupération précédents ont été invalidés et de nouveaux ont été générés.
+        subject: 'Mastodon: codes de récupération à deux facteurs régénérés'
+        title: Codes de récupération A2F modifiés
+      unlock_instructions:
+        subject: 'Mastodon: Instructions pour déverrouiller votre compte'
+      webauthn_credential:
+        added:
+          explanation: La clé de sécurité suivante a été ajoutée à votre compte
+          subject: 'Mastodon: Nouvelle clé de sécurité'
+          title: Une nouvelle clé de sécurité a été ajoutée
+        deleted:
+          explanation: La clé de sécurité suivante a été supprimée de votre compte
+          subject: 'Mastodon: Clé de sécurité supprimée'
+          title: Une de vos clés de sécurité a été supprimée
+      webauthn_disabled:
+        explanation: L'authentification avec les clés de sécurité a été désactivée pour votre compte. La connexion est maintenant possible en utilisant uniquement le jeton généré par l'application TOTP appairée.
+        subject: 'Mastodon: Authentification avec clés de sécurité désactivée'
+        title: Clés de sécurité désactivées
+      webauthn_enabled:
+        explanation: L'authentification par clé de sécurité a été activée pour votre compte. Votre clé de sécurité peut maintenant être utilisée pour vous connecter.
+        subject: 'Mastodon: Authentification de la clé de sécurité activée'
+        title: Clés de sécurité activées
+    omniauth_callbacks:
+      failure: Nous n’avons pas pu vous authentifier via %{kind} car « %{reason} ».
+      success: Authentifié·e avec succès via %{kind}.
+    passwords:
+      no_token: Vous ne pouvez accéder à cette page sans venir d'un courriel de réinitialisation de mot de passe. Si vous êtes passé par un courriel de ce type, assurez-vous d’utiliser l’URL complet.
+      send_instructions: Si votre adresse courriel existe dans notre base de données, vous allez recevoir les instructions de réinitialisation du mot de passe à votre adresse dans quelques instants. Veuillez vérifier votre dossier de pourriel si vous n'avez reçu ce message.
+      send_paranoid_instructions: Si votre adresse courriel existe dans notre base de données, vous allez recevoir les instructions de réinitialisation du mot de passe à votre adresse dans quelques instants. Veuillez vérifier votre dossier de pourriel si vous n'avez reçu ce message.
+      updated: Votre mot de passe a été modifié avec succès. Vous êtes maintenant connecté·e.
+      updated_not_active: Votre mot de passe a été modifié avec succès.
+    registrations:
+      destroyed: Au revoir! Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt.
+      signed_up: Bienvenue! Vous êtes connecté·e.
+      signed_up_but_inactive: Vous êtes bien enregistré·e. Vous ne pouvez cependant pas vous connecter car votre compte n’est pas encore activé.
+      signed_up_but_locked: Vous êtes bien enregistré·e. Vous ne pouvez cependant pas vous connecter car votre compte est verrouillé.
+      signed_up_but_pending: Un message avec un lien de confirmation a été envoyé à votre adresse courriel. Après avoir cliqué sur le lien, nous examinerons votre demande. Vous serez informé·e si elle a été approuvée.
+      signed_up_but_unconfirmed: Un message contenant un lien de confirmation a été envoyé à votre adresse courriel. Ouvrez ce lien pour activer votre compte. Veuillez vérifier votre dossier de pourriels si vous n'avez pas reçu le courriel.
+      update_needs_confirmation: Votre compte a été mis à jour avec succès, mais nous devons vérifier votre nouvelle adresse courriel. Merci de vérifier vos courriels et de cliquer sur le lien de confirmation pour valider votre nouvelle adresse. Veuillez vérifier votre dossier de pourriels si vous ne recevez pas le courriel.
+      updated: Votre compte a été modifié avec succès.
+    sessions:
+      already_signed_out: Déconnexion réussie.
+      signed_in: Connexion réussie.
+      signed_out: Déconnexion réussie.
+    unlocks:
+      send_instructions: Vous allez recevoir un courriel avec des instructions nécessaires au déverrouillage de votre compte dans quelques minutes. Veuillez vérifier votre dossier de pourriels si vous ne recevez pas ce courriel.
+      send_paranoid_instructions: Si votre compte existe, vous allez recevoir un courriel avec les instructions pour le déverrouiller dans quelques minutes. Veuillez vérifier votre dossier d'indésirables si vous ne recevez pas ce courriel.
+      unlocked: Votre compte a été déverrouillé avec succès. Veuillez vous connecter pour continuer.
+  errors:
+    messages:
+      already_confirmed: a déjà été validée, veuillez essayer de vous connecter
+      confirmation_period_expired: à confirmer dans les %{period}, veuillez en faire une nouvelle demande
+      expired: a expiré, veuillez en faire une nouvelle demande
+      not_found: n’a pas été trouvé
+      not_locked: n’était pas verrouillé
+      not_saved:
+        one: '1 erreur a empêché ce·tte %{resource} d’être sauvegardé·e:'
+        other: "%{count} erreurs ont empêché %{resource} d’être sauvegardé⋅e :"

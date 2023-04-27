@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Export do
   let(:account) { Fabricate(:account) }
   let(:target_accounts) do
-    [ {}, { username: 'one', domain: 'local.host' } ].map(&method(:Fabricate).curry(2).call(:account))
+    [{}, { username: 'one', domain: 'local.host' }].map(&method(:Fabricate).curry(2).call(:account))
   end
 
   describe 'to_csv' do
@@ -35,8 +37,8 @@ describe Export do
       results = export.strip.split("\n")
 
       expect(results.size).to eq 3
-      expect(results.first).to eq 'Account address,Show boosts'
-      expect(results.second).to eq 'one@local.host,true'
+      expect(results.first).to eq 'Account address,Show boosts,Notify on new posts,Languages'
+      expect(results.second).to eq 'one@local.host,true,false,'
     end
   end
 

@@ -14,7 +14,7 @@ class AccountStatusesCleanupService < BaseService
     last_deleted = nil
 
     account_policy.statuses_to_delete(budget, cutoff_id, account_policy.last_inspected).reorder(nil).find_each(order: :asc) do |status|
-      status.discard
+      status.discard_with_reblogs
       RemovalWorker.perform_async(status.id, { 'redraft' => false })
       num_deleted += 1
       last_deleted = status.id

@@ -3,17 +3,6 @@
 require 'rails_helper'
 
 describe 'The account show page' do
-  it 'Has an h-feed with correct number of h-entry objects in it' do
-    alice = Fabricate(:account, username: 'alice', display_name: 'Alice')
-    _status = Fabricate(:status, account: alice, text: 'Hello World')
-    _status2 = Fabricate(:status, account: alice, text: 'Hello World Again')
-    _status3 = Fabricate(:status, account: alice, text: 'Are You Still There World?')
-
-    get '/@alice'
-
-    expect(h_feed_entries.size).to eq(3)
-  end
-
   it 'has valid opengraph tags' do
     alice = Fabricate(:account, username: 'alice', display_name: 'Alice')
     _status = Fabricate(:status, account: alice, text: 'Hello World')
@@ -32,9 +21,5 @@ describe 'The account show page' do
 
   def head_section
     Nokogiri::Slop(response.body).html.head
-  end
-
-  def h_feed_entries
-    Nokogiri::HTML(response.body).search('.h-feed .h-entry')
   end
 end

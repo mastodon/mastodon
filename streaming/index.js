@@ -1,12 +1,11 @@
 // @ts-check
 
-const os = require('os');
-const throng = require('throng');
 const dotenv = require('dotenv');
 const express = require('express');
 const http = require('http');
 const redis = require('redis');
 const pg = require('pg');
+const dbUrlToConfig = require('pg-connection-string').parse;
 const log = require('npmlog');
 const url = require('url');
 const uuid = require('uuid');
@@ -14,51 +13,13 @@ const fs = require('fs');
 const WebSocket = require('ws');
 const { JSDOM } = require('jsdom');
 
-const env = process.env.NODE_ENV || 'development';
-const alwaysRequireAuth = process.env.LIMITED_FEDERATION_MODE === 'true' || process.env.WHITELIST_MODE === 'true' || process.env.AUTHORIZED_FETCH === 'true';
+const environment = process.env.NODE_ENV || 'development';
 
 dotenv.config({
-  path: env === 'production' ? '.env.production' : '.env',
+  path: environment === 'production' ? '.env.production' : '.env',
 });
 
 log.level = process.env.LOG_LEVEL || 'verbose';
-
-/**
- * @param {string} dbUrl
- * @return {Object.<string, any>}
- */
-const dbUrlToConfig = (dbUrl) => {
-  if (!dbUrl) {
-    return {};
-  }
-
-  const params = url.parse(dbUrl, true);
-  const config = {};
-
-  if (params.auth) {
-    [config.user, config.password] = params.auth.split(':');
-  }
-
-  if (params.hostname) {
-    config.host = params.hostname;
-  }
-
-  if (params.port) {
-    config.port = params.port;
-  }
-
-  if (params.pathname) {
-    config.database = params.pathname.split('/')[1];
-  }
-
-  const ssl = params.query && params.query.ssl;
-
-  if (ssl && ssl === 'true' || ssl === '1') {
-    config.ssl = true;
-  }
-
-  return config;
-};
 
 /**
  * @param {Object.<string, any>} defaultConfig
@@ -89,8 +50,6 @@ const redisUrlToClient = async (defaultConfig, redisUrl) => {
   return client;
 };
 
-const numWorkers = +process.env.STREAMING_CLUSTER_NUM || (env === 'development' ? 1 : Math.max(os.cpus().length - 1, 1));
-
 /**
  * @param {string} json
  * @param {any} req
@@ -109,57 +68,74 @@ const parseJSON = (json, req) => {
   }
 };
 
-const startMaster = () => {
-  if (!process.env.SOCKET && process.env.PORT && isNaN(+process.env.PORT)) {
-    log.warn('UNIX domain socket is now supported by using SOCKET. Please migrate from PORT hack.');
-  }
-
-  log.warn(`Starting streaming API server master with ${numWorkers} workers`);
-};
-
-const startWorker = async (workerId) => {
-  log.warn(`Starting worker ${workerId}`);
-
+/**
+ * @param {Object.<string, any>} env the `process.env` value to read configuration from
+ * @return {Object.<string, any>} the configuration for the PostgreSQL connection
+ */
+const pgConfigFromEnv = (env) => {
   const pgConfigs = {
     development: {
-      user:     process.env.DB_USER || pg.defaults.user,
-      password: process.env.DB_PASS || pg.defaults.password,
-      database: process.env.DB_NAME || 'mastodon_development',
-      host:     process.env.DB_HOST || pg.defaults.host,
-      port:     process.env.DB_PORT || pg.defaults.port,
-      max:      10,
+      user:     env.DB_USER || pg.defaults.user,
+      password: env.DB_PASS || pg.defaults.password,
+      database: env.DB_NAME || 'mastodon_development',
+      host:     env.DB_HOST || pg.defaults.host,
+      port:     env.DB_PORT || pg.defaults.port,
     },
 
     production: {
-      user:     process.env.DB_USER || 'mastodon',
-      password: process.env.DB_PASS || '',
-      database: process.env.DB_NAME || 'mastodon_production',
-      host:     process.env.DB_HOST || 'localhost',
-      port:     process.env.DB_PORT || 5432,
-      max:      10,
+      user:     env.DB_USER || 'mastodon',
+      password: env.DB_PASS || '',
+      database: env.DB_NAME || 'mastodon_production',
+      host:     env.DB_HOST || 'localhost',
+      port:     env.DB_PORT || 5432,
     },
   };
 
-  if (!!process.env.DB_SSLMODE && process.env.DB_SSLMODE !== 'disable') {
-    pgConfigs.development.ssl = true;
-    pgConfigs.production.ssl = true;
+  let baseConfig;
+
+  if (env.DATABASE_URL) {
+    baseConfig = dbUrlToConfig(env.DATABASE_URL);
+  } else {
+    baseConfig = pgConfigs[environment];
+
+    if (env.DB_SSLMODE) {
+      switch(env.DB_SSLMODE) {
+      case 'disable':
+      case '':
+        baseConfig.ssl = false;
+        break;
+      case 'no-verify':
+        baseConfig.ssl = { rejectUnauthorized: false };
+        break;
+      default:
+        baseConfig.ssl = {};
+        break;
+      }
+    }
   }
 
-  const app = express();
+  return {
+    ...baseConfig,
+    max: env.DB_POOL || 10,
+    connectionTimeoutMillis: 15000,
+    application_name: '',
+  };
+};
 
-  app.set('trust proxy', process.env.TRUSTED_PROXY_IP ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/) : 'loopback,uniquelocal');
-
-  const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL)));
-  const server = http.createServer(app);
-  const redisNamespace = process.env.REDIS_NAMESPACE || null;
+/**
+ * @param {Object.<string, any>} env the `process.env` value to read configuration from
+ * @return {Object.<string, any>} configuration for the Redis connection
+ */
+const redisConfigFromEnv = (env) => {
+  const redisNamespace = env.REDIS_NAMESPACE || null;
 
   const redisParams = {
     socket: {
-      host: process.env.REDIS_HOST || '127.0.0.1',
-      port: process.env.REDIS_PORT || 6379,
+      host: env.REDIS_HOST || '127.0.0.1',
+      port: env.REDIS_PORT || 6379,
     },
-    database: process.env.REDIS_DB || 0,
-    password: process.env.REDIS_PASSWORD || undefined,
+    database: env.REDIS_DB || 0,
+    password: env.REDIS_PASSWORD || undefined,
   };
 
   if (redisNamespace) {
@@ -168,13 +144,30 @@ const startWorker = async (workerId) => {
 
   const redisPrefix = redisNamespace ? `${redisNamespace}:` : '';
 
+  return {
+    redisParams,
+    redisPrefix,
+    redisUrl: env.REDIS_URL,
+  };
+};
+
+const startServer = async () => {
+  const app = express();
+
+  app.set('trust proxy', process.env.TRUSTED_PROXY_IP ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/) : 'loopback,uniquelocal');
+
+  const pgPool = new pg.Pool(pgConfigFromEnv(process.env));
+  const server = http.createServer(app);
+
+  const { redisParams, redisUrl, redisPrefix } = redisConfigFromEnv(process.env);
+
   /**
    * @type {Object.<string, Array.<function(string): void>>}
    */
   const subs = {};
 
-  const redisSubscribeClient = await redisUrlToClient(redisParams, process.env.REDIS_URL);
-  const redisClient = await redisUrlToClient(redisParams, process.env.REDIS_URL);
+  const redisSubscribeClient = await redisUrlToClient(redisParams, redisUrl);
+  const redisClient = await redisUrlToClient(redisParams, redisUrl);
 
   /**
    * @param {string[]} channels
@@ -355,22 +348,17 @@ const startWorker = async (workerId) => {
    * @param {boolean=} required
    * @return {Promise.<void>}
    */
-  const accountFromRequest = (req, required = true) => new Promise((resolve, reject) => {
+  const accountFromRequest = (req) => new Promise((resolve, reject) => {
     const authorization = req.headers.authorization;
     const location      = url.parse(req.url, true);
     const accessToken   = location.query.access_token || req.headers['sec-websocket-protocol'];
 
     if (!authorization && !accessToken) {
-      if (required) {
-        const err = new Error('Missing access token');
-        err.status = 401;
+      const err = new Error('Missing access token');
+      err.status = 401;
 
-        reject(err);
-        return;
-      } else {
-        resolve();
-        return;
-      }
+      reject(err);
+      return;
     }
 
     const token = authorization ? authorization.replace(/^Bearer /, '') : accessToken;
@@ -473,7 +461,7 @@ const startWorker = async (workerId) => {
     // variables. OAuth scope checks are moved to the point of subscription
     // to a specific stream.
 
-    accountFromRequest(info.req, alwaysRequireAuth).then(() => {
+    accountFromRequest(info.req).then(() => {
       callback(true, undefined, undefined);
     }).catch(err => {
       log.error(info.req.requestId, err.toString());
@@ -547,7 +535,7 @@ const startWorker = async (workerId) => {
       return;
     }
 
-    accountFromRequest(req, alwaysRequireAuth).then(() => checkScopes(req, channelNameFromPath(req))).then(() => {
+    accountFromRequest(req).then(() => checkScopes(req, channelNameFromPath(req))).then(() => {
       subscribeHttpToSystemChannel(req, res);
     }).then(() => {
       next();
@@ -681,8 +669,8 @@ const startWorker = async (workerId) => {
           queries.push(client.query('SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2', [req.accountId, accountDomain]));
         }
 
-        if (!unpackedPayload.filter_results && !req.cachedFilters) {
-          queries.push(client.query('SELECT filter.id AS id, filter.phrase AS title, filter.context AS context, filter.expires_at AS expires_at, filter.action AS filter_action, keyword.keyword AS keyword, keyword.whole_word AS whole_word FROM custom_filter_keywords keyword JOIN custom_filters filter ON keyword.custom_filter_id = filter.id WHERE filter.account_id = $1 AND filter.expires_at IS NULL OR filter.expires_at > NOW()', [req.accountId]));
+        if (!unpackedPayload.filtered && !req.cachedFilters) {
+          queries.push(client.query('SELECT filter.id AS id, filter.phrase AS title, filter.context AS context, filter.expires_at AS expires_at, filter.action AS filter_action, keyword.keyword AS keyword, keyword.whole_word AS whole_word FROM custom_filter_keywords keyword JOIN custom_filters filter ON keyword.custom_filter_id = filter.id WHERE filter.account_id = $1 AND (filter.expires_at IS NULL OR filter.expires_at > NOW())', [req.accountId]));
         }
 
         Promise.all(queries).then(values => {
@@ -692,7 +680,7 @@ const startWorker = async (workerId) => {
             return;
           }
 
-          if (!unpackedPayload.filter_results && !req.cachedFilters) {
+          if (!unpackedPayload.filtered && !req.cachedFilters) {
             const filterRows = values[accountDomain ? 2 : 1].rows;
 
             req.cachedFilters = filterRows.reduce((cache, row) => {
@@ -707,7 +695,7 @@ const startWorker = async (workerId) => {
                     title: row.title,
                     context: row.context,
                     expires_at: row.expires_at,
-                    filter_action: row.filter_action,
+                    filter_action: ['warn', 'hide'][row.filter_action],
                   },
                 };
               }
@@ -717,7 +705,7 @@ const startWorker = async (workerId) => {
 
             Object.keys(req.cachedFilters).forEach((key) => {
               req.cachedFilters[key].regexp = new RegExp(req.cachedFilters[key].keywords.map(([keyword, whole_word]) => {
-                let expr = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');;
+                let expr = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
                 if (whole_word) {
                   if (/^[\w]/.test(expr)) {
@@ -735,18 +723,18 @@ const startWorker = async (workerId) => {
           }
 
           // Check filters
-          if (req.cachedFilters && !unpackedPayload.filter_results) {
+          if (req.cachedFilters && !unpackedPayload.filtered) {
             const status = unpackedPayload;
             const searchContent = ([status.spoiler_text || '', status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
             const searchIndex = JSDOM.fragment(searchContent).textContent;
 
             const now = new Date();
-            payload.filter_results = [];
+            payload.filtered = [];
             Object.values(req.cachedFilters).forEach((cachedFilter) => {
               if ((cachedFilter.expires_at === null || cachedFilter.expires_at > now)) {
                 const keyword_matches = searchIndex.match(cachedFilter.regexp);
                 if (keyword_matches) {
-                  payload.filter_results.push({
+                  payload.filtered.push({
                     filter: cachedFilter.repr,
                     keyword_matches,
                   });
@@ -849,6 +837,27 @@ const startWorker = async (workerId) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('OK');
   });
+
+  app.get('/metrics', (req, res) => server.getConnections((err, count) => {
+    res.writeHeader(200, { 'Content-Type': 'application/openmetrics-text; version=1.0.0; charset=utf-8' });
+    res.write('# TYPE connected_clients gauge\n');
+    res.write('# HELP connected_clients The number of clients connected to the streaming server\n');
+    res.write(`connected_clients ${count}.0\n`);
+    res.write('# TYPE connected_channels gauge\n');
+    res.write('# HELP connected_channels The number of Redis channels the streaming server is subscribed to\n');
+    res.write(`connected_channels ${Object.keys(subs).length}.0\n`);
+    res.write('# TYPE pg_pool_total_connections gauge\n');
+    res.write('# HELP pg_pool_total_connections The total number of clients existing within the pool\n');
+    res.write(`pg_pool_total_connections ${pgPool.totalCount}.0\n`);
+    res.write('# TYPE pg_pool_idle_connections gauge\n');
+    res.write('# HELP pg_pool_idle_connections The number of clients which are not checked out but are currently idle in the pool\n');
+    res.write(`pg_pool_idle_connections ${pgPool.idleCount}.0\n`);
+    res.write('# TYPE pg_pool_waiting_queries gauge\n');
+    res.write('# HELP pg_pool_waiting_queries The number of queued requests waiting on a client when all clients are checked out\n');
+    res.write(`pg_pool_waiting_queries ${pgPool.waitingCount}.0\n`);
+    res.write('# EOF\n');
+    res.end();
+  }));
 
   app.use(authenticationMiddleware);
   app.use(errorMiddleware);
@@ -1224,11 +1233,10 @@ const startWorker = async (workerId) => {
   }, 30000);
 
   attachServerWithConfig(server, address => {
-    log.warn(`Worker ${workerId} now listening on ${address}`);
+    log.warn(`Streaming API now listening on ${address}`);
   });
 
   const onExit = () => {
-    log.warn(`Worker ${workerId} exiting`);
     server.close();
     process.exit(0);
   };
@@ -1266,34 +1274,4 @@ const attachServerWithConfig = (server, onSuccess) => {
   }
 };
 
-/**
- * @param {function(Error=): void} onSuccess
- */
-const onPortAvailable = onSuccess => {
-  const testServer = http.createServer();
-
-  testServer.once('error', err => {
-    onSuccess(err);
-  });
-
-  testServer.once('listening', () => {
-    testServer.once('close', () => onSuccess());
-    testServer.close();
-  });
-
-  attachServerWithConfig(testServer);
-};
-
-onPortAvailable(err => {
-  if (err) {
-    log.error('Could not start server, the port or socket is in use');
-    return;
-  }
-
-  throng({
-    workers: numWorkers,
-    lifetime: Infinity,
-    start: startWorker,
-    master: startMaster,
-  });
-});
+startServer();

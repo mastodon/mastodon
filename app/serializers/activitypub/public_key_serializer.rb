@@ -6,7 +6,7 @@ class ActivityPub::PublicKeySerializer < ActivityPub::Serializer
   attributes :id, :owner, :public_key_pem
 
   def id
-    [ActivityPub::TagManager.instance.uri_for(object), '#main-key'].join
+    ActivityPub::TagManager.instance.key_uri_for(object)
   end
 
   def owner

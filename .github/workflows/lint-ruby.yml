@@ -1,0 +1,49 @@
+name: Ruby Linting
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+    paths:
+      - 'Gemfile*'
+      - '.rubocop*.yml'
+      - '.ruby-version'
+      - '.bundler-audit.yml'
+      - '**/*.rb'
+      - '**/*.rake'
+      - '.github/workflows/lint-ruby.yml'
+
+  pull_request:
+    paths:
+      - 'Gemfile*'
+      - '.rubocop*.yml'
+      - '.ruby-version'
+      - '.bundler-audit.yml'
+      - '**/*.rb'
+      - '**/*.rake'
+      - '.github/workflows/lint-ruby.yml'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Install native Ruby dependencies
+        run: sudo apt-get install -y libicu-dev libidn11-dev
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Set-up RuboCop Problem Matcher
+        uses: r7kamura/rubocop-problem-matchers-action@v1
+
+      - name: Run rubocop
+        run: bundle exec rubocop
+
+      - name: Run bundler-audit
+        run: bundle exec bundler-audit

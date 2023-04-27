@@ -1,1 +1,52 @@
+---
 ga:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Ainm feidhmchláir
+        redirect_uri: Atreoraigh URI
+        website: Suíomh gréasáin feidhmchláir
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Ceadaigh
+        cancel: Cealaigh
+        destroy: Scrios
+        edit: Cuir in eagar
+        submit: Cuir isteach
+      confirmations:
+        destroy: An bhfuil tú cinnte?
+      index:
+        application: Ainm feidhmchláir
+        delete: Scrios
+        name: Ainm
+        show: Taispeáin
+      show:
+        application_id: Eochair chliaint
+        secret: Rún cliaint
+        title: 'Ainm feidhmchláir: %{name}'
+    authorizations:
+      buttons:
+        authorize: Ceadaigh
+        deny: Diúltaigh
+    authorized_applications:
+      confirmations:
+        revoke: An bhfuil tú cinnte?
+      index:
+        scopes: Ceadanna
+        superapp: Inmheánach
+    grouped_scopes:
+      title:
+        accounts: Cuntais
+        bookmarks: Leabharmharcanna
+        conversations: Comhráite
+        favourites: Toghanna
+        filters: Scagairí
+        follows: Cuntais leanta
+        lists: Liostaí
+        notifications: Fógraí
+        search: Cuardaigh
+        statuses: Postálacha
+    scopes:
+      write:filters: cruthaigh scagairí
+      write:lists: cruthaigh liostaí

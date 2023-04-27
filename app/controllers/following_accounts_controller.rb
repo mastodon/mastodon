@@ -3,9 +3,11 @@
 class FollowingAccountsController < ApplicationController
   include AccountControllerConcern
   include SignatureVerification
+  include WebAppControllerConcern
 
-  before_action :require_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
-  before_action :set_cache_headers
+  vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
+
+  before_action :require_account_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
 
   skip_around_action :set_locale, if: -> { request.format == :json }
   skip_before_action :require_functional!, unless: :whitelist_mode?
@@ -14,10 +16,6 @@ class FollowingAccountsController < ApplicationController
     respond_to do |format|
       format.html do
         expires_in 0, public: true unless user_signed_in?
-
-        next if @account.hide_collections?
-
-        follows
       end
 
       format.json do
@@ -69,7 +67,7 @@ class FollowingAccountsController < ApplicationController
         id: account_following_index_url(@account, page: params.fetch(:page, 1)),
         type: :ordered,
         size: @account.following_count,
-        items: follows.map { |f| ActivityPub::TagManager.instance.uri_for(f.target_account) },
+        items: follows.map { |follow| ActivityPub::TagManager.instance.uri_for(follow.target_account) },
         part_of: account_following_index_url(@account),
         next: next_page_url,
         prev: prev_page_url

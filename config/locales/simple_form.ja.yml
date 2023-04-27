@@ -18,8 +18,8 @@ ja:
           disable: ユーザーが自分のアカウントを使用できないようにします。コンテンツを削除したり非表示にすることはありません。
           none: これを使用すると、他の操作をせずにユーザーに警告を送信できます。
           sensitive: このユーザーが添付したメディアを強制的に閲覧注意にする
-          silence: ユーザーが公開投稿できないようにし、フォローしていない人に投稿や通知が表示されないようにする。
-          suspend: このアカウントとのやりとりを止め、コンテンツを削除します。30日以内は取消可能です。
+          silence: ユーザーによる公開投稿を禁止し、フォローしていない人に投稿や通知が表示されないようにします。また、このアカウントに対するすべての通報をクローズします。
+          suspend: このアカウントによるすべての活動を禁止し、コンテンツを削除します。この操作は30日以内であれば取り消しが可能です。また、このアカウントに対するすべての通報をクローズします。
         warning_preset_id: オプションです。プリセット警告文の末尾に任意の文字列を追加することができます
       announcement:
         all_day: 有効化すると、対象期間の箇所に日付だけが表示されます
@@ -59,7 +59,7 @@ ja:
         setting_show_application: 投稿するのに使用したアプリが投稿の詳細ビューに表示されるようになります
         setting_use_blurhash: ぼかしはメディアの色を元に生成されますが、細部は見えにくくなっています
         setting_use_pending_items: 新着があってもタイムラインを自動的にスクロールしないようにします
-        username: あなたのユーザー名は%{domain}の中で重複していない必要があります
+        username: アルファベット大文字と小文字、数字、アンダーバー「_」が使えます
         whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
       domain_allow:
         domain: 登録するとこのサーバーからデータを受信したり、このドメインから受信するデータを処理して保存できるようになります
@@ -67,7 +67,37 @@ ja:
         domain: 電子メールアドレスのドメイン名、または使用されるMXレコードを指定できます。新規登録時にチェックされます。
         with_dns_records: 指定したドメインのDNSレコードを取得し、その結果もメールドメインブロックに登録されます
       featured_tag:
-        name: 'これらを使うといいかもしれません:'
+        name: 最近使用したハッシュタグ
+      filters:
+        action: 投稿がフィルタに一致したときに実行するアクションを選択
+        actions:
+          hide: フィルタに一致した投稿を完全に非表示にします
+          warn: フィルタに一致した投稿を非表示にし、フィルタのタイトルを含む警告を表示します
+      form_admin_settings:
+        activity_api_enabled: 週単位でローカルで公開された投稿数、アクティブユーザー数、新規登録者数を表示します
+        backups_retention_period: 生成されたユーザーのアーカイブを指定した日数の間保持します。
+        bootstrap_timeline_accounts: これらのアカウントは、新しいユーザー向けのおすすめユーザーの一番上にピン留めされます。
+        closed_registrations_message: アカウント作成を停止している時に表示されます
+        content_cache_retention_period: 正の値に設定されている場合、他のサーバーの投稿は指定された日数の後に削除されます。元に戻せません。
+        custom_css: ウェブ版のMastodonでカスタムスタイルを適用できます。
+        mascot: 上級者向けWebインターフェースのイラストを上書きします。
+        media_cache_retention_period: 正の値に設定されている場合、ダウンロードされたメディアファイルは指定された日数の後に削除され、リクエストに応じて再ダウンロードされます。
+        peers_api_enabled: このサーバーが Fediverse で遭遇したドメイン名のリストです。このサーバーが知っているだけで、特定のサーバーと連合しているかのデータは含まれません。これは一般的に Fediverse に関する統計情報を収集するサービスによって使用されます。
+        profile_directory: ディレクトリには、掲載する設定をしたすべてのユーザーが一覧表示されます。
+        require_invite_text: アカウント登録が承認制の場合、登録の際の申請事由の入力を必須にします
+        site_contact_email: 法律またはサポートに関する問い合わせ先
+        site_contact_username: マストドンでの連絡方法
+        site_extended_description: 訪問者やユーザーに役立つかもしれない任意の追加情報。Markdownが使えます。
+        site_short_description: 運営している人や組織、想定しているユーザーなど、サーバーの特徴を説明する短いテキスト
+        site_terms: 独自のプライバシーポリシーを使用するか空白にしてデフォルトのプライバシーポリシーを使用します。Markdownが使えます。
+        site_title: ドメイン名以外でサーバーを参照する方法
+        status_page_url: 障害発生時などにユーザーがサーバーの状態を確認できるページのURL
+        theme: ログインしていない人と新規ユーザーに表示されるテーマ。
+        thumbnail: サーバー情報と共に表示される、アスペクト比が約 2:1 の画像。
+        timeline_preview: ログインしていないユーザーがサーバー上の最新の公開投稿を閲覧できるようにします。
+        trendable_by_default: トレンドの審査を省略します。トレンドは掲載後でも個別に除外できます。
+        trends: トレンドは、サーバー上で人気を集めている投稿、ハッシュタグ、ニュース記事などが表示されます。
+        trends_as_landing_page: ログインしていないユーザーに対して、サーバーの説明の代わりにトレンドコンテンツを表示します。トレンドを有効にする必要があります。
       form_challenge:
         current_password: セキュリティ上重要なエリアにアクセスしています
       imports:
@@ -80,6 +110,7 @@ ja:
         ip: IPv4またはIPv6アドレスを入力してください。CIDR構文を用いて範囲指定でブロックすることもできます。自分自身を締め出さないよう注意してください！
         severities:
           no_access: すべてのリソースへのアクセスをブロックします
+          sign_up_block: 新規のアカウント作成はできません
           sign_up_requires_approval: 承認するまで新規登録が完了しなくなります
         severity: このIPに対する措置を選択してください
       rule:
@@ -91,10 +122,16 @@ ja:
         name: 視認性向上などのためにアルファベット大文字小文字の変更のみ行うことができます
       user:
         chosen_languages: 選択すると、選択した言語の投稿のみが公開タイムラインに表示されるようになります
+        role: このロールはユーザーが持つ権限を管理します
       user_role:
-        highlighted: これにより、役割が公開されます。
-        name: 役割をバッジ表示する際の表示名
-        permissions_as_keys: この役割を持つユーザーは次の機能にアクセスできます
+        color: UI 全体でロールの表示に使用される色（16進数RGB形式）
+        highlighted: これによりロールが公開されます。
+        name: ロールのバッジを表示する際の表示名
+        permissions_as_keys: このロールを持つユーザーは次の機能にアクセスできます
+        position: 場合により、より高いロールのユーザーが紛争の解決を決定します。特定のアクションは優先度が低いロールでのみ実行できます。
+      webhook:
+        events: 送信するイベントを選択
+        url: イベントの送信先
     labels:
       account:
         fields:
@@ -191,6 +228,38 @@ ja:
         with_dns_records: ドメインのMXレコードとIPアドレスを含む
       featured_tag:
         name: ハッシュタグ
+      filters:
+        actions:
+          hide: 完全に隠す
+          warn: 警告付きで隠す
+      form_admin_settings:
+        activity_api_enabled: APIでユーザーアクティビティに関する集計統計を公開する
+        backups_retention_period: ユーザーアーカイブの保持期間
+        bootstrap_timeline_accounts: おすすめユーザーに常に表示するアカウント
+        closed_registrations_message: アカウント作成を停止している時のカスタムメッセージ
+        content_cache_retention_period: コンテンツキャッシュの保持期間
+        custom_css: カスタムCSS
+        mascot: カスタムマスコット（レガシー）
+        media_cache_retention_period: メディアキャッシュの保持期間
+        peers_api_enabled: 発見したサーバーのリストをAPIで公開する
+        profile_directory: ディレクトリを有効にする
+        registrations_mode: 新規登録が可能な人
+        require_invite_text: 申請事由の入力を必須にする
+        show_domain_blocks: ドメインブロックを表示
+        show_domain_blocks_rationale: ドメインがブロックされた理由を表示
+        site_contact_email: 連絡先メールアドレス
+        site_contact_username: 連絡先ユーザー名
+        site_extended_description: 詳細説明
+        site_short_description: サーバーの説明
+        site_terms: プライバシーポリシー
+        site_title: サーバーの名前
+        status_page_url: ステータスページのURL
+        theme: デフォルトテーマ
+        thumbnail: サーバーのサムネイル
+        timeline_preview: 公開タイムラインへの未認証のアクセスを許可する
+        trendable_by_default: 審査前のトレンドの掲載を許可する
+        trends: トレンドを有効にする
+        trends_as_landing_page: 新規登録画面にトレンドを表示する
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック
@@ -204,6 +273,7 @@ ja:
         ip: IP
         severities:
           no_access: ブロック
+          sign_up_block: アカウント作成をブロック
           sign_up_requires_approval: 登録を制限
         severity: ルール
       notification_emails:
@@ -225,10 +295,10 @@ ja:
         trendable: トレンドへの表示を許可する
         usable: 投稿への使用を許可する
       user:
-        role: 役割
+        role: ロール
       user_role:
         color: バッジの色
-        highlighted: プロフィールに役割のバッジを表示する
+        highlighted: プロフィールにロールのバッジを表示する
         name: 名前
         permissions_as_keys: 権限
         position: 優先度
@@ -236,6 +306,7 @@ ja:
         events: 有効なイベント
         url: エンドポイントURL
     'no': いいえ
+    not_recommended: 非推奨
     recommended: おすすめ
     required:
       mark: "*"

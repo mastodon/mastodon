@@ -19,4 +19,4 @@ export default function meta(state = initialState, action) {
   default:
     return state;
   }
-};
+}

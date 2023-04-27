@@ -1,1 +1,97 @@
+---
 ms:
+  devise:
+    confirmations:
+      confirmed: Alamat e-mel anda telah berjaya disahkan.
+      send_instructions: Anda akan menerima e-mel dengan arahan untuk mengesahkan alamat e-mel anda dalam beberapa minit lagi. Sila semak folder spam anda jika tidak menerima e-mel ini.
+      send_paranoid_instructions: Jika e-mel anda wujud dalam database kami, anda akan menerima e-mel dengan arahan untuk mengesahkan alamat e-mel anda dalam beberapa minit lagi. Sila semak folder spam anda jika tidak menerima e-mel ini.
+    failure:
+      already_authenticated: Anda sudah daftar masuk.
+      inactive: Akaun anda belum diaktifkan.
+      invalid: "%{authentication_keys} atau kata laluan tidak sah."
+      last_attempt: Anda mempunyai satu lagi percubaan sebelum akaun anda dikunci.
+      locked: Akaun anda dikunci.
+      not_found_in_database: "%{authentication_keys} atau kata laluan tidak sah."
+      pending: Akaun anda masih dalam semakan.
+      timeout: Sesi anda telah tamat. Sila daftar masuk semula.
+      unauthenticated: Anda perlu daftar masuk atau mendaftar sebelum meneruskan.
+      unconfirmed: Anda perlu menyesahkan alamat e-mel anda sebelum meneruskan.
+    mailer:
+      confirmation_instructions:
+        action: Sahkan alamat e-mel
+        action_with_app: Sahkan dan kembali ke %{app}
+        explanation: Anda telah mencipta akaun pada %{host} dengan alamat e-mel ini. Anda satu klik sahaja daripada mengaktifkannya. Jika anda tidak mencipta akaun tersebut, sila abaikan e-mel ini.
+        explanation_when_pending: Anda telah memohon untuk undangan ke %{host} dengan alamat e-mel ini. Setelah anda mengesahkan alamat e-mel anda, kami akan menyemak permohonan tersebut. Anda boleh melog masuk untuk mengubah butiran atau menghapuskan akaun anda, tetapi anda tidak boleh mencapai kebanyakan fungsi sehinggalah akaun anda diluluskan. Jika permohonan anda ditolak, data anda akan dibuang dan tiada tindakan lanjut diperlukan. Jika ini bukan anda, sila abaikan e-mel ini.
+        extra_html: Sila periksa <a href="%{terms_path}">peraturan pelayan</a> serta <a href="%{policy_path}">terma perkhidmatan kami juga</a>.
+        subject: 'Mastodon: Arahan pengesahan untuk %{instance}'
+        title: Sahkan alamat e-mel
+      email_changed:
+        explanation: 'Alamat e-mel untuk akaun anda sedang diubah kepada:'
+        extra: Jika anda tidak mengubah alamat e-mel anda, berkemungkinan seseorang telah memperoleh capaian kepada akaun anda. Sila ubah kata laluan anda dengan segera atau hubungi pentadbir pelayan jika anda dikunci daripada akaun anda.
+        subject: 'Mastodon: E-mel ditukar'
+        title: Alamat e-mel baru
+      password_change:
+        explanation: Kata laluan untuk akaun anda telah ditukar.
+        extra: Jika anda tidak mengubah kata laluan anda, berkemungkinan seseorang telah memperoleh capaian kepada akaun anda. Sila ubah kata laluan anda dengan segera atau hubungi pentadbir pelayan jika anda dikunci daripada akaun anda.
+        subject: 'Mastodon: Kata laluan diubah'
+        title: Kata laluan ditukar
+      reconfirmation_instructions:
+        explanation: Sahkan alamat baru untuk menukarkan e-mel anda.
+        extra: Jika perubahan ini tidak anda lakukan, sila abaikan e-mel ini. Alamat e-mel untuk akaun Mastodon tidak akan berubah sehinggalah anda mencapai pautan di atas.
+        subject: 'Mastodon: Sahkan e-mel untuk %{instance}'
+        title: Sahkan alamat e-mel
+      reset_password_instructions:
+        action: Tukar kata laluan
+        explanation: Anda meminta kata laluan baru untuk akaun anda.
+        extra: Jika anda tidak membuat permintaan ini, sila abaikan e-mel ini. Kata laluan anda tidak akan berubah sehinggalah anda mencapai pautan di atas dan membuat yang baharu.
+        subject: 'Mastodon: Arahan set semula kata laluan'
+        title: Set semula kata laluan
+      two_factor_disabled:
+        explanation: Pengesahan dwifaktor untuk akaun anda telah dilumpuhkan. Log masuk kini dibenarkan dengan hanya menggunakan alamat e-mel dan kata laluan.
+        subject: 'Mastodon: Pengesahan dwifaktor dilumpuhkan'
+        title: 2FA dinyahaktifkan
+      two_factor_enabled:
+        explanation: Pengesahan dwifaktor untuk akaun anda telah didayakan. Satu token yang dijanakan oleh aplikasi TOTP diperlukan untuk melog masuk.
+        subject: 'Mastodon: Pengesahan dwifaktor didayakan'
+        title: 2FA diaktifkan
+      two_factor_recovery_codes_changed:
+        explanation: Kod pemulihan lama tidak lagi sah dan kod baharu telah dijanakan.
+        subject: 'Mastodon: Kod pemulihan dwifaktor dijanakan semula'
+        title: Kod pemulihan 2FA diubah
+      unlock_instructions:
+        subject: 'Mastodon: Arahan membuka kunci'
+      webauthn_credential:
+        added:
+          explanation: Kunci keselamatan berikut telah ditambahkan kepada akaun anda
+          subject: 'Mastodon: Kunci keselamatan baharu'
+          title: Kunci keselamatan baharu telah ditambahkan
+        deleted:
+          explanation: Kunci keselamatan berikut telah dihapuskan daripada akaun anda
+          subject: 'Mastodon: Kunci keselamatan dihapuskan'
+          title: Salah satu daripada kunci keselamatan anda telah dihapuskan
+      webauthn_disabled:
+        explanation: Pengesahan dengan kunci keselamatan untuk akaun anda telah dilumpuhkan. Log masuk kini dibenarkan dengan hanya menggunakan token yang dijanakan oleh aplikasi TOTP.
+        subject: 'Mastodon: Pengesahan dengan kunci keselamatan dilumpuhkan'
+        title: Kunci keselamatan dilumpuhkan
+      webauthn_enabled:
+        explanation: Pengesahan kunci keselamatan untuk akaun anda kini didayakan. Kunci keselamatan anda kini boleh digunakan untuk melog masuk.
+        subject: 'Mastodon: Pengesahan kunci keselamatan didayakan'
+        title: Kunci keselamatan didayakan
+    omniauth_callbacks:
+      failure: Tidak dapat mengesahkan anda daripada %{kind} disebabkan oleh “%{reason}”.
+      success: Berjaya disahkan daripada akaun %{kind}.
+    passwords:
+      updated: Kata laluan anda telah berjaya ditukar. Anda telah didaftar masuk.
+      updated_not_active: Kata laluan anda telah berjaya ditukar.
+    registrations:
+      destroyed: Selamat tinggal! Akaun anda telah berjaya dibatalkan. Kami harap berjumpa lagi.
+      signed_up: Selamat datang! Anda telah berjaya mendaftar.
+      signed_up_but_inactive: Anda telah berjaya mendaftar. Namun, kami tidak dapat mendaftar masuk anda kerana akaun anda belum diaktifkan.
+    sessions:
+      already_signed_out: Daftar keluar berjaya.
+      signed_in: Daftar masuk berjaya.
+      signed_out: Daftar keluar berjaya.
+  errors:
+    messages:
+      already_confirmed: sudah disahkan, sila cuba mendaftar masuk
+      not_found: tidak dijumpai

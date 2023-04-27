@@ -11,7 +11,7 @@ namespace :mastodon do
     # When the application code gets loaded, it runs `lib/mastodon/redis_configuration.rb`.
     # This happens before application environment configuration and sets REDIS_URL etc.
     # These variables are then used even when REDIS_HOST etc. are changed, so clear them
-    # out so they don't interfer with our new configuration.
+    # out so they don't interfere with our new configuration.
     ENV.delete('REDIS_URL')
     ENV.delete('CACHE_REDIS_URL')
     ENV.delete('SIDEKIQ_REDIS_URL')
@@ -92,7 +92,7 @@ namespace :mastodon do
           prompt.ok 'Database configuration works! 🎆'
           db_connection_works = true
           break
-        rescue StandardError => e
+        rescue => e
           prompt.error 'Database connection could not be established with this configuration, try again.'
           prompt.error e.message
           break unless prompt.yes?('Try again?')
@@ -132,7 +132,7 @@ namespace :mastodon do
           redis.ping
           prompt.ok 'Redis configuration works! 🎆'
           break
-        rescue StandardError => e
+        rescue => e
           prompt.error 'Redis connection could not be established with this configuration, try again.'
           prompt.error e.message
           break unless prompt.yes?('Try again?')
@@ -142,7 +142,40 @@ namespace :mastodon do
       prompt.say "\n"
 
       if prompt.yes?('Do you want to store uploaded files on the cloud?', default: false)
-        case prompt.select('Provider', ['Amazon S3', 'Wasabi', 'Minio', 'Google Cloud Storage'])
+        case prompt.select('Provider', ['DigitalOcean Spaces', 'Amazon S3', 'Wasabi', 'Minio', 'Google Cloud Storage', 'Storj DCS'])
+        when 'DigitalOcean Spaces'
+          env['S3_ENABLED'] = 'true'
+          env['S3_PROTOCOL'] = 'https'
+
+          env['S3_BUCKET'] = prompt.ask('Space name:') do |q|
+            q.required true
+            q.default "files.#{env['LOCAL_DOMAIN']}"
+            q.modify :strip
+          end
+
+          env['S3_REGION'] = prompt.ask('Space region:') do |q|
+            q.required true
+            q.default 'nyc3'
+            q.modify :strip
+          end
+
+          env['S3_HOSTNAME'] = prompt.ask('Space endpoint:') do |q|
+            q.required true
+            q.default 'nyc3.digitaloceanspaces.com'
+            q.modify :strip
+          end
+
+          env['S3_ENDPOINT'] = "https://#{env['S3_HOSTNAME']}"
+
+          env['AWS_ACCESS_KEY_ID'] = prompt.ask('Space access key:') do |q|
+            q.required true
+            q.modify :strip
+          end
+
+          env['AWS_SECRET_ACCESS_KEY'] = prompt.ask('Space secret key:') do |q|
+            q.required true
+            q.modify :strip
+          end
         when 'Amazon S3'
           env['S3_ENABLED']  = 'true'
           env['S3_PROTOCOL'] = 'https'
@@ -161,7 +194,7 @@ namespace :mastodon do
 
           env['S3_HOSTNAME'] = prompt.ask('S3 hostname:') do |q|
             q.required true
-            q.default 's3-us-east-1.amazonaws.com'
+            q.default 's3.us-east-1.amazonaws.com'
             q.modify :strip
           end
 
@@ -224,6 +257,42 @@ namespace :mastodon do
             q.required true
             q.modify :strip
           end
+        when 'Storj DCS'
+          env['S3_ENABLED']  = 'true'
+          env['S3_PROTOCOL'] = 'https'
+          env['S3_REGION']   = 'global'
+
+          env['S3_ENDPOINT'] = prompt.ask('Storj DCS endpoint URL:') do |q|
+            q.required true
+            q.default 'https://gateway.storjshare.io'
+            q.modify :strip
+          end
+
+          env['S3_PROTOCOL'] = env['S3_ENDPOINT'].start_with?('https') ? 'https' : 'http'
+          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(/\Ahttps?:\/\//, '')
+
+          env['S3_BUCKET'] = prompt.ask('Storj DCS bucket name:') do |q|
+            q.required true
+            q.default "files.#{env['LOCAL_DOMAIN']}"
+            q.modify :strip
+          end
+
+          env['AWS_ACCESS_KEY_ID'] = prompt.ask('Storj Gateway access key (uplink share --register --readonly=false --not-after=none sj://bucket):') do |q|
+            q.required true
+            q.modify :strip
+          end
+
+          env['AWS_SECRET_ACCESS_KEY'] = prompt.ask('Storj Gateway secret key:') do |q|
+            q.required true
+            q.modify :strip
+          end
+
+          linksharing_access_key = prompt.ask('Storj Linksharing access key (uplink share --register --public --readonly=true --disallow-lists --not-after=none sj://bucket):') do |q|
+            q.required true
+            q.modify :strip
+          end
+          env['S3_ALIAS_HOST'] = "link.storjshare.io/raw/#{linksharing_access_key}/#{env['S3_BUCKET']}"
+
         when 'Google Cloud Storage'
           env['S3_ENABLED']             = 'true'
           env['S3_PROTOCOL']            = 'https'
@@ -271,6 +340,7 @@ namespace :mastodon do
           env['SMTP_PORT'] = 25
           env['SMTP_AUTH_METHOD'] = 'none'
           env['SMTP_OPENSSL_VERIFY_MODE'] = 'none'
+          env['SMTP_ENABLE_STARTTLS'] = 'auto'
         else
           env['SMTP_SERVER'] = prompt.ask('SMTP server:') do |q|
             q.required true
@@ -299,6 +369,8 @@ namespace :mastodon do
           end
 
           env['SMTP_OPENSSL_VERIFY_MODE'] = prompt.select('SMTP OpenSSL verify mode:', %w(none peer client_once fail_if_no_peer_cert))
+
+          env['SMTP_ENABLE_STARTTLS'] = prompt.select('Enable STARTTLS:', %w(auto always never))
         end
 
         env['SMTP_FROM_ADDRESS'] = prompt.ask('E-mail address to send e-mails "from":') do |q|
@@ -312,15 +384,30 @@ namespace :mastodon do
         send_to = prompt.ask('Send test e-mail to:', required: true)
 
         begin
+          enable_starttls = nil
+          enable_starttls_auto = nil
+
+          case env['SMTP_ENABLE_STARTTLS']
+          when 'always'
+            enable_starttls = true
+          when 'never'
+            enable_starttls = false
+          when 'auto'
+            enable_starttls_auto = true
+          else
+            enable_starttls_auto = env['SMTP_ENABLE_STARTTLS_AUTO'] != 'false'
+          end
+
           ActionMailer::Base.smtp_settings = {
-            port:                 env['SMTP_PORT'],
-            address:              env['SMTP_SERVER'],
-            user_name:            env['SMTP_LOGIN'].presence,
-            password:             env['SMTP_PASSWORD'].presence,
-            domain:               env['LOCAL_DOMAIN'],
-            authentication:       env['SMTP_AUTH_METHOD'] == 'none' ? nil : env['SMTP_AUTH_METHOD'] || :plain,
-            openssl_verify_mode:  env['SMTP_OPENSSL_VERIFY_MODE'],
-            enable_starttls_auto: true,
+            port: env['SMTP_PORT'],
+            address: env['SMTP_SERVER'],
+            user_name: env['SMTP_LOGIN'].presence,
+            password: env['SMTP_PASSWORD'].presence,
+            domain: env['LOCAL_DOMAIN'],
+            authentication: env['SMTP_AUTH_METHOD'] == 'none' ? nil : env['SMTP_AUTH_METHOD'] || :plain,
+            openssl_verify_mode: env['SMTP_OPENSSL_VERIFY_MODE'],
+            enable_starttls: enable_starttls,
+            enable_starttls_auto: enable_starttls_auto,
           }
 
           ActionMailer::Base.default_options = {
@@ -330,7 +417,7 @@ namespace :mastodon do
           mail = ActionMailer::Base.new.mail to: send_to, subject: 'Test', body: 'Mastodon SMTP configuration works!'
           mail.deliver
           break
-        rescue StandardError => e
+        rescue => e
           prompt.error 'E-mail could not be sent with this configuration, try again.'
           prompt.error e.message
           break unless prompt.yes?('Try again?')
@@ -344,18 +431,11 @@ namespace :mastodon do
         incompatible_syntax = false
 
         env_contents = env.each_pair.map do |key, value|
-          if value.is_a?(String) && value =~ /[\s\#\\"]/
-            incompatible_syntax = true
+          value = value.to_s
+          escaped = dotenv_escape(value)
+          incompatible_syntax = true if value != escaped
 
-            if value =~ /[']/
-              value = value.to_s.gsub(/[\\"\$]/) { |x| "\\#{x}" }
-              "#{key}=\"#{value}\""
-            else
-              "#{key}='#{value}'"
-            end
-          else
-            "#{key}=#{value}"
-          end
+          "#{key}=#{escaped}"
         end.join("\n")
 
         generated_header = "# Generated with mastodon:setup on #{Time.now.utc}\n\n".dup
@@ -365,7 +445,7 @@ namespace :mastodon do
           generated_header << "# using docker-compose or not.\n\n"
         end
 
-        File.write(Rails.root.join('.env.production'), "#{generated_header}#{env_contents}\n")
+        Rails.root.join('.env.production').write("#{generated_header}#{env_contents}\n")
 
         if using_docker
           prompt.ok 'Below is your configuration, save it to an .env.production file outside Docker:'
@@ -383,10 +463,10 @@ namespace :mastodon do
           prompt.say 'Running `RAILS_ENV=production rails db:setup` ...'
           prompt.say "\n\n"
 
-          if !system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production', 'SAFETY_ASSURED' => '1' }), 'rails db:setup')
-            prompt.error 'That failed! Perhaps your configuration is not right'
-          else
+          if system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production', 'SAFETY_ASSURED' => '1' }), 'rails db:setup')
             prompt.ok 'Done!'
+          else
+            prompt.error 'That failed! Perhaps your configuration is not right'
           end
         end
 
@@ -399,10 +479,10 @@ namespace :mastodon do
             prompt.say 'Running `RAILS_ENV=production rails assets:precompile` ...'
             prompt.say "\n\n"
 
-            if !system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production' }), 'rails assets:precompile')
-              prompt.error 'That failed! Maybe you need swap space?'
-            else
+            if system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production' }), 'rails assets:precompile')
               prompt.say 'Done!'
+            else
+              prompt.error 'That failed! Maybe you need swap space?'
             end
           end
         end
@@ -433,8 +513,11 @@ namespace :mastodon do
 
           password = SecureRandom.hex(16)
 
-          user = User.new(admin: true, email: email, password: password, confirmed_at: Time.now.utc, account_attributes: { username: username }, bypass_invite_request_check: true)
+          owner_role = UserRole.find_by(name: 'Owner')
+          user = User.new(email: email, password: password, confirmed_at: Time.now.utc, account_attributes: { username: username }, bypass_invite_request_check: true, role: owner_role)
           user.save(validate: false)
+
+          Setting.site_contact_username = username
 
           prompt.ok "You can login with the password: #{password}"
           prompt.warn 'You can change your password once you login.'
@@ -464,4 +547,50 @@ def disable_log_stdout!
   ActiveRecord::Base.logger    = dev_null
   HttpLog.configuration.logger = dev_null
   Paperclip.options[:log]      = false
+end
+
+def dotenv_escape(value)
+  # Dotenv has its own parser, which unfortunately deviates somewhat from
+  # what shells actually do.
+  #
+  # In particular, we can't use Shellwords::escape because it outputs a
+  # non-quotable string, while Dotenv requires `#` to always be in quoted
+  # strings.
+  #
+  # Therefore, we need to write our own escape code…
+  # Dotenv's parser has a *lot* of edge cases, and I think not every
+  # ASCII string can even be represented into something Dotenv can parse,
+  # so this is a best effort thing.
+  #
+  # In particular, strings with all the following probably cannot be
+  # escaped:
+  # - `#`, or ends with spaces, which requires some form of quoting (simply escaping won't work)
+  # - `'` (single quote), preventing us from single-quoting
+  # - `\` followed by either `r` or `n`
+
+  # No character that would cause Dotenv trouble
+  return value unless /[\s\#\\"'$]/.match?(value)
+
+  # As long as the value doesn't include single quotes, we can safely
+  # rely on single quotes
+  return "'#{value}'" unless /[']/.match?(value)
+
+  # If the value contains the string '\n' or '\r' we simply can't use
+  # a double-quoted string, because Dotenv will expand \n or \r no
+  # matter how much escaping we add.
+  double_quoting_disallowed = /\\[rn]/.match?(value)
+
+  value = value.gsub(double_quoting_disallowed ? /[\\"'\s]/ : /[\\"']/) { |x| "\\#{x}" }
+
+  # Dotenv is especially tricky with `$` as unbalanced
+  # parenthesis will make it not unescape `\$` as `$`…
+
+  # Variables
+  value = value.gsub(/\$(?!\()/) { |x| "\\#{x}" }
+  # Commands
+  value = value.gsub(/\$(?<cmd>\((?:[^()]|\g<cmd>)+\))/) { |x| "\\#{x}" }
+
+  value = "\"#{value}\"" unless double_quoting_disallowed
+
+  value
 end

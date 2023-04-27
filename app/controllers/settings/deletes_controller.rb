@@ -4,7 +4,6 @@ class Settings::DeletesController < Settings::BaseController
   skip_before_action :require_functional!
 
   before_action :require_not_suspended!
-  before_action :check_enabled_deletion
 
   def show
     @confirmation = Form::DeleteConfirmation.new
@@ -20,10 +19,6 @@ class Settings::DeletesController < Settings::BaseController
   end
 
   private
-
-  def check_enabled_deletion
-    redirect_to root_path unless Setting.open_deletion
-  end
 
   def resource_params
     params.require(:form_delete_confirmation).permit(:password, :username)

@@ -57,6 +57,7 @@ module Mastodon
     option :role
     option :reattach, type: :boolean
     option :force, type: :boolean
+    option :approve, type: :boolean
     desc 'create USERNAME', 'Create a new user account'
     long_desc <<-LONG_DESC
       Create a new user account with a given USERNAME and an
@@ -72,6 +73,8 @@ module Mastodon
       account is still in use by someone else, you can supply
       the --force option to delete the old record and reattach the
       username to the new account anyway.
+
+      With the --approve option, the account will be approved.
     LONG_DESC
     def create(username)
       role_id  = nil
@@ -89,7 +92,7 @@ module Mastodon
 
       account  = Account.new(username: username)
       password = SecureRandom.hex
-      user     = User.new(email: options[:email], password: password, agreement: true, approved: true, role_id: role_id, confirmed_at: options[:confirmed] ? Time.now.utc : nil, bypass_invite_request_check: true)
+      user     = User.new(email: options[:email], password: password, agreement: true, role_id: role_id, confirmed_at: options[:confirmed] ? Time.now.utc : nil, bypass_invite_request_check: true)
 
       if options[:reattach]
         account = Account.find_local(username) || Account.new(username: username)
@@ -100,6 +103,7 @@ module Mastodon
           return
         elsif account.user.present?
           DeleteAccountService.new.call(account, reserve_email: false)
+          account = Account.new(username: username)
         end
       end
 
@@ -111,6 +115,8 @@ module Mastodon
           user.confirmed_at = nil
           user.confirm!
         end
+
+        user.approve! if options[:approve]
 
         say('OK', :green)
         say("New password: #{password}")
@@ -126,6 +132,7 @@ module Mastodon
     end
 
     option :role
+    option :remove_role, type: :boolean
     option :email
     option :confirm, type: :boolean
     option :enable, type: :boolean
@@ -137,7 +144,8 @@ module Mastodon
     long_desc <<-LONG_DESC
       Modify a user account.
 
-      With the --role option, update the user's role.
+      With the --role option, update the user's role. To remove the user's
+      role, i.e. demote to normal user, use --remove-role.
 
       With the --email option, update the user's e-mail address. With
       the --confirm option, mark the user's e-mail as confirmed.
@@ -171,6 +179,8 @@ module Mastodon
         end
 
         user.role_id = role.id
+      elsif options[:remove_role]
+        user.role_id = nil
       end
 
       password = SecureRandom.hex if options[:reset_password]
@@ -180,9 +190,10 @@ module Mastodon
       user.disabled = true if options[:disable]
       user.approved = true if options[:approve]
       user.otp_required_for_login = false if options[:disable_2fa]
-      user.confirm if options[:confirm]
 
       if user.save
+        user.confirm if options[:confirm]
+
         say('OK', :green)
         say("New password: #{password}") if options[:reset_password]
       else
@@ -196,21 +207,44 @@ module Mastodon
       end
     end
 
-    desc 'delete USERNAME', 'Delete a user'
+    option :email
+    option :dry_run, type: :boolean
+    desc 'delete [USERNAME]', 'Delete a user'
     long_desc <<-LONG_DESC
       Remove a user account with a given USERNAME.
-    LONG_DESC
-    def delete(username)
-      account = Account.find_local(username)
 
-      if account.nil?
-        say('No user with such username', :red)
+      With the --email option, the user is selected based on email
+      rather than username.
+    LONG_DESC
+    def delete(username = nil)
+      if username.present? && options[:email].present?
+        say('Use username or --email, not both', :red)
+        exit(1)
+      elsif username.blank? && options[:email].blank?
+        say('No username provided', :red)
         exit(1)
       end
 
-      say("Deleting user with #{account.statuses_count} statuses, this might take a while...")
-      DeleteAccountService.new.call(account, reserve_email: false)
-      say('OK', :green)
+      dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
+      account = nil
+
+      if username.present?
+        account = Account.find_local(username)
+        if account.nil?
+          say('No user with such username', :red)
+          exit(1)
+        end
+      else
+        account = Account.left_joins(:user).find_by(user: { email: options[:email] })
+        if account.nil?
+          say('No user with such email', :red)
+          exit(1)
+        end
+      end
+
+      say("Deleting user with #{account.statuses_count} statuses, this might take a while...#{dry_run}")
+      DeleteAccountService.new.call(account, reserve_email: false) unless options[:dry_run]
+      say("OK#{dry_run}", :green)
     end
 
     option :force, type: :boolean, aliases: [:f], description: 'Override public key check'
@@ -345,16 +379,16 @@ module Mastodon
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :verbose, type: :boolean, aliases: [:v]
     option :dry_run, type: :boolean
-    desc 'refresh [USERNAME]', 'Fetch remote user data and files'
+    desc 'refresh [USERNAMES]', 'Fetch remote user data and files'
     long_desc <<-LONG_DESC
       Fetch remote user data and files for one or multiple accounts.
 
       With the --all option, all remote accounts will be processed.
       Through the --domain option, this can be narrowed down to a
-      specific domain only. Otherwise, a single remote account must
-      be specified with USERNAME.
+      specific domain only. Otherwise, remote accounts must be
+      specified with space-separated USERNAMES.
     LONG_DESC
-    def refresh(username = nil)
+    def refresh(*usernames)
       dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
 
       if options[:domain] || options[:all]
@@ -370,19 +404,25 @@ module Mastodon
         end
 
         say("Refreshed #{processed} accounts#{dry_run}", :green, true)
-      elsif username.present?
-        username, domain = username.split('@')
-        account = Account.find_remote(username, domain)
+      elsif !usernames.empty?
+        usernames.each do |user|
+          user, domain = user.split('@')
+          account = Account.find_remote(user, domain)
 
-        if account.nil?
-          say('No such account', :red)
-          exit(1)
-        end
+          if account.nil?
+            say('No such account', :red)
+            exit(1)
+          end
 
-        unless options[:dry_run]
-          account.reset_avatar!
-          account.reset_header!
-          account.save
+          next if options[:dry_run]
+
+          begin
+            account.reset_avatar!
+            account.reset_header!
+            account.save
+          rescue Mastodon::UnexpectedResponseError
+            say("Account failed: #{user}@#{domain}", :red)
+          end
         end
 
         say("OK#{dry_run}", :green)
@@ -463,14 +503,12 @@ module Mastodon
         scope = Account.where(id: ::Follow.where(account: account).select(:target_account_id))
 
         scope.find_each do |target_account|
-          begin
-            UnfollowService.new.call(account, target_account)
-          rescue => e
-            progress.log pastel.red("Error processing #{target_account.id}: #{e}")
-          ensure
-            progress.increment
-            processed += 1
-          end
+          UnfollowService.new.call(account, target_account)
+        rescue => e
+          progress.log pastel.red("Error processing #{target_account.id}: #{e}")
+        ensure
+          progress.increment
+          processed += 1
         end
 
         BootstrapTimelineWorker.perform_async(account.id)
@@ -480,14 +518,12 @@ module Mastodon
         scope = Account.where(id: ::Follow.where(target_account: account).select(:account_id))
 
         scope.find_each do |target_account|
-          begin
-            UnfollowService.new.call(target_account, account)
-          rescue => e
-            progress.log pastel.red("Error processing #{target_account.id}: #{e}")
-          ensure
-            progress.increment
-            processed += 1
-          end
+          UnfollowService.new.call(target_account, account)
+        rescue => e
+          progress.log pastel.red("Error processing #{target_account.id}: #{e}")
+        ensure
+          progress.increment
+          processed += 1
         end
       end
 
@@ -508,7 +544,7 @@ module Mastodon
       if options[:all]
         User.pending.find_each(&:approve!)
         say('OK', :green)
-      elsif options[:number]
+      elsif options[:number]&.positive?
         User.pending.limit(options[:number]).each(&:approve!)
         say('OK', :green)
       elsif username.present?
@@ -522,8 +558,119 @@ module Mastodon
         account.user&.approve!
         say('OK', :green)
       else
+        say('Number must be positive', :red) if options[:number]
         exit(1)
       end
+    end
+
+    option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :dry_run, type: :boolean
+    desc 'prune', 'Prune remote accounts that never interacted with local users'
+    long_desc <<-LONG_DESC
+      Prune remote account that
+      - follows no local accounts
+      - is not followed by any local accounts
+      - has no statuses on local
+      - has not been mentioned
+      - has not been favourited local posts
+      - not muted/blocked by us
+    LONG_DESC
+    def prune
+      dry_run = options[:dry_run] ? ' (dry run)' : ''
+
+      query = Account.remote.where.not(actor_type: %i(Application Service))
+      query = query.where('NOT EXISTS (SELECT 1 FROM mentions WHERE account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM favourites WHERE account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM statuses WHERE account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM follows WHERE account_id = accounts.id OR target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM blocks WHERE account_id = accounts.id OR target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM mutes WHERE target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM reports WHERE target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM follow_requests WHERE account_id = accounts.id OR target_account_id = accounts.id)')
+
+      _, deleted = parallelize_with_progress(query) do |account|
+        next if account.bot? || account.group?
+        next if account.suspended?
+        next if account.silenced?
+
+        account.destroy unless options[:dry_run]
+        1
+      end
+
+      say("OK, pruned #{deleted} accounts#{dry_run}", :green)
+    end
+
+    option :force, type: :boolean
+    option :replay, type: :boolean
+    option :target
+    desc 'migrate USERNAME', 'Migrate a local user to another account'
+    long_desc <<~LONG_DESC
+      With --replay, replay the last migration of the specified account, in
+      case some remote server may not have properly processed the associated
+      `Move` activity.
+
+      With --target, specify another account to migrate to.
+
+      With --force, perform the migration even if the selected account
+      redirects to a different account that the one specified.
+    LONG_DESC
+    def migrate(username)
+      if options[:replay].present? && options[:target].present?
+        say('Use --replay or --target, not both', :red)
+        exit(1)
+      end
+
+      if options[:replay].blank? && options[:target].blank?
+        say('Use either --replay or --target', :red)
+        exit(1)
+      end
+
+      account = Account.find_local(username)
+
+      if account.nil?
+        say("No such account: #{username}", :red)
+        exit(1)
+      end
+
+      migration = nil
+
+      if options[:replay]
+        migration = account.migrations.last
+        if migration.nil?
+          say('The specified account has not performed any migration', :red)
+          exit(1)
+        end
+
+        unless options[:force] || migration.target_account_id == account.moved_to_account_id
+          say('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway', :red)
+          exit(1)
+        end
+      end
+
+      if options[:target]
+        target_account = ResolveAccountService.new.call(options[:target])
+
+        if target_account.nil?
+          say("The specified target account could not be found: #{options[:target]}", :red)
+          exit(1)
+        end
+
+        unless options[:force] || account.moved_to_account_id.nil? || account.moved_to_account_id == target_account.id
+          say('The specified account is redirecting to a different target account. Use --force if you want to change the migration target', :red)
+          exit(1)
+        end
+
+        begin
+          migration = account.migrations.create!(acct: target_account.acct)
+        rescue ActiveRecord::RecordInvalid => e
+          say("Error: #{e.message}", :red)
+          exit(1)
+        end
+      end
+
+      MoveService.new.call(migration)
+
+      say("OK, migrated #{account.acct} to #{migration.target_account.acct}", :green)
     end
 
     private
@@ -537,7 +684,7 @@ module Mastodon
       old_key = account.private_key
       new_key = OpenSSL::PKey::RSA.new(2048)
       account.update(private_key: new_key.to_pem, public_key: new_key.public_key.to_pem)
-      ActivityPub::UpdateDistributionWorker.perform_in(delay, account.id, sign_with: old_key)
+      ActivityPub::UpdateDistributionWorker.perform_in(delay, account.id, { 'sign_with' => old_key })
     end
   end
 end

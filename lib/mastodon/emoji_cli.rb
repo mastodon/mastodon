@@ -49,7 +49,7 @@ module Mastodon
           next if filename.start_with?('._')
 
           shortcode    = [options[:prefix], filename, options[:suffix]].compact.join
-          custom_emoji = CustomEmoji.local.find_by("LOWER(shortcode) = ?", shortcode.downcase)
+          custom_emoji = CustomEmoji.local.find_by('LOWER(shortcode) = ?', shortcode.downcase)
 
           if custom_emoji && !options[:overwrite]
             skipped += 1
@@ -68,7 +68,7 @@ module Mastodon
             failed += 1
             say('Failure/Error: ', :red)
             say(entry.full_name)
-            say('    ' + custom_emoji.errors[:image].join(', '), :red)
+            say("    #{custom_emoji.errors[:image].join(', ')}", :red)
           end
         end
       end

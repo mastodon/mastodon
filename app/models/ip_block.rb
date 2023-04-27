@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: ip_blocks
@@ -16,6 +17,7 @@ class IpBlock < ApplicationRecord
   CACHE_KEY = 'blocked_ips'
 
   include Expireable
+  include Paginable
 
   enum severity: {
     sign_up_requires_approval: 5000,
@@ -24,8 +26,13 @@ class IpBlock < ApplicationRecord
   }
 
   validates :ip, :severity, presence: true
+  validates :ip, uniqueness: true
 
   after_commit :reset_cache
+
+  def to_log_human_identifier
+    "#{ip}/#{ip.prefix}"
+  end
 
   class << self
     def blocked?(remote_ip)

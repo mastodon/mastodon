@@ -35,4 +35,5 @@ SidekiqUniqueJobs.configure do |config|
   config.reaper_count    = 1000
   config.reaper_interval = 600
   config.reaper_timeout  = 150
+  config.lock_ttl        = 50.days.to_i
 end

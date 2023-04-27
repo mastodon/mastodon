@@ -15,22 +15,24 @@
               = link_to root_path do
                 = logo_as_symbol(:wordmark)
 
-            = link_to '#', class: 'sidebar__toggle__icon' do
+            = link_to '#', class: 'sidebar__toggle__icon', 'aria-label': t('navigation.toggle_menu'), 'aria-expanded': 'false' do
               = fa_icon 'bars'
+              = fa_icon 'times'
 
           = render_navigation
 
     .content-wrapper
       .content
-        .content-heading
+        .content__heading
           - if content_for?(:heading)
             = yield :heading
           - else
-            %h2= yield :page_title
+            .content__heading__row
+              %h2= yield :page_title
 
-          - if :heading_actions
-            .content-heading-actions
-              = yield :heading_actions
+              - if content_for?(:heading_actions)
+                .content__heading__actions
+                  = yield :heading_actions
 
         = render 'application/flashes'
 

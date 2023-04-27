@@ -26,6 +26,7 @@ class ActivityPub::TagManager
       target.instance_actor? ? about_more_url(instance_actor: true) : short_account_url(target)
     when :note, :comment, :activity
       return activity_account_status_url(target.account, target) if target.reblog?
+
       short_account_status_url(target.account, target)
     end
   end
@@ -38,10 +39,15 @@ class ActivityPub::TagManager
       target.instance_actor? ? instance_actor_url : account_url(target)
     when :note, :comment, :activity
       return activity_account_status_url(target.account, target) if target.reblog?
+
       account_status_url(target.account, target)
     when :emoji
       emoji_url(target)
     end
+  end
+
+  def key_uri_for(target)
+    [uri_for(target), '#main-key'].join
   end
 
   def uri_for_username(username)
@@ -153,6 +159,10 @@ class ActivityPub::TagManager
     path_params = Rails.application.routes.recognize_path(uri)
     path_params[:username] = Rails.configuration.x.local_domain if path_params[:controller] == 'instance_actors'
     path_params[param]
+  end
+
+  def uri_to_actor(uri)
+    uri_to_resource(uri, Account)
   end
 
   def uri_to_resource(uri, klass)

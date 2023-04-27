@@ -113,4 +113,4 @@ export default function conversations(state = initialState, action) {
   default:
     return state;
   }
-};
+}

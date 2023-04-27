@@ -33,7 +33,7 @@ class AnnouncementFilter
     when 'unpublished'
       Announcement.unpublished
     else
-      raise "Unknown filter: #{key}"
+      raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end
   end
 end

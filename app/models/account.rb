@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: accounts
@@ -52,7 +53,7 @@
 #
 
 class Account < ApplicationRecord
-  self.ignored_columns = %w(
+  self.ignored_columns += %w(
     subscription_expires_at
     secret
     remote_url
@@ -64,6 +65,7 @@ class Account < ApplicationRecord
   USERNAME_RE   = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
   MENTION_RE    = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]\.\-]+[[:word:]]+)?)/i
   URL_PREFIX_RE = /\Ahttp(s?):\/\/[^\/]+/
+  USERNAME_ONLY_RE = /\A#{USERNAME_RE}\z/i
 
   include Attachmentable
   include AccountAssociations
@@ -77,14 +79,14 @@ class Account < ApplicationRecord
   include DomainMaterializable
   include AccountMerging
 
-  enum protocol: [:ostatus, :activitypub]
-  enum suspension_origin: [:local, :remote], _prefix: true
+  enum protocol: { ostatus: 0, activitypub: 1 }
+  enum suspension_origin: { local: 0, remote: 1 }, _prefix: true
 
   validates :username, presence: true
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
 
-  # Remote user validations
-  validates :username, format: { with: /\A#{USERNAME_RE}\z/i }, if: -> { !local? && will_save_change_to_username? }
+  # Remote user validations, also applies to internal actors
+  validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { (!local? || actor_type == 'Application') && will_save_change_to_username? }
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
@@ -106,7 +108,7 @@ class Account < ApplicationRecord
   scope :bots, -> { where(actor_type: %w(Application Service)) }
   scope :groups, -> { where(actor_type: 'Group') }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
-  scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
+  scope :matches_username, ->(value) { where('lower((username)::text) LIKE lower(?)', "#{value}%") }
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
   scope :without_unapproved, -> { left_outer_joins(:user).remote.or(left_outer_joins(:user).merge(User.approved.confirmed)) }
@@ -119,6 +121,8 @@ class Account < ApplicationRecord
   scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches("%.#{domain}"))) }
   scope :not_excluded_by_account, ->(account) { where.not(id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { where(arel_table[:domain].eq(nil).or(arel_table[:domain].not_in(account.excluded_from_timeline_domains))) }
+
+  after_update_commit :trigger_update_webhooks
 
   delegate :email,
            :unconfirmed_email,
@@ -134,6 +138,7 @@ class Account < ApplicationRecord
            :role,
            :locale,
            :shows_application?,
+           :prefers_noindex?,
            to: :user,
            prefix: true,
            allow_nil: true
@@ -188,10 +193,6 @@ class Account < ApplicationRecord
 
   def to_webfinger_s
     "acct:#{local_username_and_domain}"
-  end
-
-  def searchable?
-    !(suspended? || moved?) && (!local? || (approved? && confirmed?))
   end
 
   def possibly_stale?
@@ -258,6 +259,10 @@ class Account < ApplicationRecord
     update!(memorial: true)
   end
 
+  def trendable?
+    boolean_with_default('trendable', Setting.trendable_by_default)
+  end
+
   def sign?
     true
   end
@@ -294,7 +299,7 @@ class Account < ApplicationRecord
 
   def fields
     (self[:fields] || []).map do |f|
-      Field.new(self, f)
+      Account::Field.new(self, f)
     rescue
       nil
     end.compact
@@ -311,9 +316,7 @@ class Account < ApplicationRecord
 
         previous = old_fields.find { |item| item['value'] == attr[:value] }
 
-        if previous && previous['verified_at'].present?
-          attr[:verified_at] = previous['verified_at']
-        end
+        attr[:verified_at] = previous['verified_at'] if previous && previous['verified_at'].present?
 
         fields << attr
       end
@@ -339,9 +342,15 @@ class Account < ApplicationRecord
 
   def save_with_optional_media!
     save!
-  rescue ActiveRecord::RecordInvalid
-    self.avatar = nil
-    self.header = nil
+  rescue ActiveRecord::RecordInvalid => e
+    errors = e.record.errors.errors
+    errors.each do |err|
+      if err.attribute == :avatar
+        self.avatar = nil
+      elsif err.attribute == :header
+        self.header = nil
+      end
+    end
 
     save!
   end
@@ -360,6 +369,10 @@ class Account < ApplicationRecord
 
   def to_param
     username
+  end
+
+  def to_log_human_identifier
+    acct
   end
 
   def excluded_from_timeline_account_ids
@@ -396,51 +409,14 @@ class Account < ApplicationRecord
     requires_review? && !requested_review?
   end
 
-  class Field < ActiveModelSerializers::Model
-    attributes :name, :value, :verified_at, :account
-
-    def initialize(account, attributes)
-      @original_field = attributes
-      string_limit = account.local? ? 255 : 2047
-      super(
-        account:     account,
-        name:        attributes['name'].strip[0, string_limit],
-        value:       attributes['value'].strip[0, string_limit],
-        verified_at: attributes['verified_at']&.to_datetime,
-      )
-    end
-
-    def verified?
-      verified_at.present?
-    end
-
-    def value_for_verification
-      @value_for_verification ||= begin
-        if account.local?
-          value
-        else
-          ActionController::Base.helpers.strip_tags(value)
-        end
-      end
-    end
-
-    def verifiable?
-      value_for_verification.present? && value_for_verification.start_with?('http://', 'https://')
-    end
-
-    def mark_verified!
-      self.verified_at = Time.now.utc
-      @original_field['verified_at'] = verified_at
-    end
-
-    def to_h
-      { name: name, value: value, verified_at: verified_at }
-    end
-  end
-
   class << self
-    DISALLOWED_TSQUERY_CHARACTERS = /['?\\:‘’]/.freeze
+    DISALLOWED_TSQUERY_CHARACTERS = /['?\\:‘’]/
     TEXTSEARCH = "(setweight(to_tsvector('simple', accounts.display_name), 'A') || setweight(to_tsvector('simple', accounts.username), 'B') || setweight(to_tsvector('simple', coalesce(accounts.domain, '')), 'C'))"
+
+    REPUTATION_SCORE_FUNCTION = '(greatest(0, coalesce(s.followers_count, 0)) / (greatest(0, coalesce(s.following_count, 0)) + 1.0))'
+    FOLLOWERS_SCORE_FUNCTION  = 'log(greatest(0, coalesce(s.followers_count, 0)) + 2)'
+    TIME_DISTANCE_FUNCTION    = '(case when s.last_status_at is null then 0 else exp(-1.0 * ((greatest(0, abs(extract(DAY FROM age(s.last_status_at))) - 30.0)^2) / (2.0 * ((-1.0 * 30^2) / (2.0 * ln(0.3)))))) end)'
+    BOOST                     = "((#{REPUTATION_SCORE_FUNCTION} + #{FOLLOWERS_SCORE_FUNCTION} + #{TIME_DISTANCE_FUNCTION}) / 3.0)"
 
     def readonly_attributes
       super - %w(statuses_count following_count followers_count)
@@ -457,9 +433,10 @@ class Account < ApplicationRecord
       sql = <<-SQL.squish
         SELECT
           accounts.*,
-          ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
+          #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
         FROM accounts
         LEFT JOIN users ON accounts.id = users.account_id
+        LEFT JOIN account_stats AS s ON accounts.id = s.account_id
         WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
           AND accounts.suspended_at IS NULL
           AND accounts.moved_to_account_id IS NULL
@@ -485,13 +462,12 @@ class Account < ApplicationRecord
       return [] if text.blank?
 
       text.scan(MENTION_RE).map { |match| match.first.split('@', 2) }.uniq.filter_map do |(username, domain)|
-        domain = begin
-          if TagManager.instance.local_domain?(domain)
-            nil
-          else
-            TagManager.instance.normalize_domain(domain)
-          end
-        end
+        domain = if TagManager.instance.local_domain?(domain)
+                   nil
+                 else
+                   TagManager.instance.normalize_domain(domain)
+                 end
+
         EntityCache.instance.mention(username, domain)
       end
     end
@@ -521,14 +497,15 @@ class Account < ApplicationRecord
           )
           SELECT
             accounts.*,
-            (count(f.id) + 1) * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
+            (count(f.id) + 1) * #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
           FROM accounts
           LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id)
+          LEFT JOIN account_stats AS s ON accounts.id = s.account_id
           WHERE accounts.id IN (SELECT * FROM first_degree)
             AND to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
             AND accounts.suspended_at IS NULL
             AND accounts.moved_to_account_id IS NULL
-          GROUP BY accounts.id
+          GROUP BY accounts.id, s.id
           ORDER BY rank DESC
           LIMIT :limit OFFSET :offset
         SQL
@@ -536,16 +513,18 @@ class Account < ApplicationRecord
         <<-SQL.squish
           SELECT
             accounts.*,
-            (count(f.id) + 1) * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
+            #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank,
+            count(f.id) AS followed
           FROM accounts
           LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id) OR (accounts.id = f.target_account_id AND f.account_id = :id)
           LEFT JOIN users ON accounts.id = users.account_id
+          LEFT JOIN account_stats AS s ON accounts.id = s.account_id
           WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
             AND accounts.suspended_at IS NULL
             AND accounts.moved_to_account_id IS NULL
             AND (accounts.domain IS NOT NULL OR (users.approved = TRUE AND users.confirmed_at IS NOT NULL))
-          GROUP BY accounts.id
-          ORDER BY rank DESC
+          GROUP BY accounts.id, s.id
+          ORDER BY followed DESC, rank DESC
           LIMIT :limit OFFSET :offset
         SQL
       end
@@ -563,6 +542,7 @@ class Account < ApplicationRecord
 
   def ensure_keys!
     return unless local? && private_key.blank? && public_key.blank?
+
     generate_keys
     save!
   end
@@ -614,5 +594,10 @@ class Account < ApplicationRecord
     return unless local?
 
     CanonicalEmailBlock.where(reference_account: self).delete_all
+  end
+
+  # NOTE: the `account.created` webhook is triggered by the `User` model, not `Account`.
+  def trigger_update_webhooks
+    TriggerWebhookWorker.perform_async('account.updated', 'Account', id) if local?
   end
 end

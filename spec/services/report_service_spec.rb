@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ReportService, type: :service do
@@ -29,12 +31,12 @@ RSpec.describe ReportService, type: :service do
   end
 
   context 'when the reported status is a DM' do
-    let(:target_account) { Fabricate(:account) }
-    let(:status) { Fabricate(:status, account: target_account, visibility: :direct) }
-
     subject do
       -> { described_class.new.call(source_account, target_account, status_ids: [status.id]) }
     end
+
+    let(:target_account) { Fabricate(:account) }
+    let(:status) { Fabricate(:status, account: target_account, visibility: :direct) }
 
     context 'when it is addressed to the reporter' do
       before do
@@ -42,32 +44,64 @@ RSpec.describe ReportService, type: :service do
       end
 
       it 'creates a report' do
-        is_expected.to change { target_account.targeted_reports.count }.from(0).to(1)
+        expect { subject.call }.to change { target_account.targeted_reports.count }.from(0).to(1)
+      end
+
+      it 'attaches the DM to the report' do
+        subject.call
+        expect(target_account.targeted_reports.pluck(:status_ids)).to eq [[status.id]]
       end
     end
 
     context 'when it is not addressed to the reporter' do
       it 'errors out' do
-        is_expected.to raise_error
+        expect { subject.call }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context 'when the reporter is remote' do
+      let(:source_account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/users/1') }
+
+      context 'when it is addressed to the reporter' do
+        before do
+          status.mentions.create(account: source_account)
+        end
+
+        it 'creates a report' do
+          expect { subject.call }.to change { target_account.targeted_reports.count }.from(0).to(1)
+        end
+
+        it 'attaches the DM to the report' do
+          subject.call
+          expect(target_account.targeted_reports.pluck(:status_ids)).to eq [[status.id]]
+        end
+      end
+
+      context 'when it is not addressed to the reporter' do
+        it 'does not add the DM to the report' do
+          subject.call
+          expect(target_account.targeted_reports.pluck(:status_ids)).to eq [[]]
+        end
       end
     end
   end
 
   context 'when other reports already exist for the same target' do
-    let!(:target_account) { Fabricate(:account) }
-    let!(:other_report)   { Fabricate(:report, target_account: target_account) }
-
     subject do
       -> {  described_class.new.call(source_account, target_account) }
     end
 
+    let!(:target_account) { Fabricate(:account) }
+    let!(:other_report)   { Fabricate(:report, target_account: target_account) }
+
     before do
       ActionMailer::Base.deliveries.clear
-      source_account.user.settings.notification_emails['report'] = true
+      source_account.user.settings['notification_emails.report'] = true
+      source_account.user.save
     end
 
     it 'does not send an e-mail' do
-      is_expected.to_not change(ActionMailer::Base.deliveries, :count).from(0)
+      expect { subject.call }.to_not change(ActionMailer::Base.deliveries, :count).from(0)
     end
   end
 end

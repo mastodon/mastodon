@@ -6,7 +6,6 @@ class MediaProxyController < ApplicationController
   include Redisable
   include Lockable
 
-  skip_before_action :store_current_location
   skip_before_action :require_functional!
 
   before_action :authenticate_user!, if: :whitelist_mode?
@@ -23,7 +22,7 @@ class MediaProxyController < ApplicationController
       redownload! if @media_attachment.needs_redownload? && !reject_media?
     end
 
-    redirect_to full_asset_url(@media_attachment.file.url(version))
+    redirect_to full_asset_url(@media_attachment.file.url(version)), allow_other_host: true
   end
 
   private

@@ -1,1 +1,1 @@
-assets/sw.js
+packs/sw.js

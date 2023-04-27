@@ -5,18 +5,64 @@ require 'rails_helper'
 RSpec.describe Api::V2::SearchController, type: :controller do
   render_views
 
-  let(:user)  { Fabricate(:user) }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:search') }
+  context 'with token' do
+    let(:user)  { Fabricate(:user) }
+    let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:search') }
 
-  before do
-    allow(controller).to receive(:doorkeeper_token) { token }
+    before do
+      allow(controller).to receive(:doorkeeper_token) { token }
+    end
+
+    describe 'GET #index' do
+      before do
+        get :index, params: { q: 'test' }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+    end
   end
 
-  describe 'GET #index' do
-    it 'returns http success' do
-      get :index, params: { q: 'test' }
+  context 'without token' do
+    describe 'GET #index' do
+      let(:search_params) {}
 
-      expect(response).to have_http_status(200)
+      before do
+        get :index, params: search_params
+      end
+
+      context 'with a `q` shorter than 5 characters' do
+        let(:search_params) { { q: 'test' } }
+
+        it 'returns http success' do
+          expect(response).to have_http_status(200)
+        end
+      end
+
+      context 'with a `q` equal to or longer than 5 characters' do
+        let(:search_params) { { q: 'test1' } }
+
+        it 'returns http success' do
+          expect(response).to have_http_status(200)
+        end
+
+        context 'with truthy `resolve`' do
+          let(:search_params) { { q: 'test1', resolve: '1' } }
+
+          it 'returns http unauthorized' do
+            expect(response).to have_http_status(401)
+          end
+        end
+
+        context 'with `offset`' do
+          let(:search_params) { { q: 'test1', offset: 1 } }
+
+          it 'returns http unauthorized' do
+            expect(response).to have_http_status(401)
+          end
+        end
+      end
     end
   end
 end
