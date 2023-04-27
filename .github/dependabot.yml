@@ -16,32 +16,43 @@ updates:
       # This version needs to match Rails major version, so stick to 6.x only
       - dependency-name: '@rails/ujs'
         versions:
-          - '7.x'
-      # TODO: This version got stuck in https://github.com/mastodon/mastodon/pull/14004 and this should be deleted to fix
-      - dependency-name: 'pg'
-        versions:
-          - '8.x'
+          - '>= 7'
       # TODO: This was ignored in https://github.com/mastodon/mastodon/pull/19120
       - dependency-name: 'uuid'
         versions:
-          - '9.x'
-      # TODO: This version got stuck in https://github.com/mastodon/mastodon/pull/14073 and this should be deleted to fix
-      - dependency-name: 'history'
-        versions:
-          - '5.x'
+          - '>= 9'
       # TODO: This requires code changes for migration
       - dependency-name: 'tesseract.js'
         versions:
-          - '3.x'
-          - '4.x'
+          - '>= 3'
       # TODO: This version needs manual updates for breaking changes
       - dependency-name: 'react-hotkeys'
         versions:
-          - '2.x'
-      # TODO: This version got stuck in https://github.com/mastodon/mastodon/pull/15206 and this should be deleted to fix
-      - dependency-name: 'terser'
+          - '>= 2'
+      # TODO: This version has breaking changes
+      - dependency-name: 'intl-messageformat'
         versions:
-          - '5.x'
+          - '>= 3'
+      # TODO: This version has breaking changes
+      - dependency-name: 'react-intl'
+        versions:
+          - '>= 3'
+      # TODO: This version has breaking changes
+      - dependency-name: 'babel-plugin-react-intl'
+        versions:
+          - '>= 7'
+      # TODO: This version requires code changes
+      - dependency-name: 'webpack-dev-server'
+        versions:
+          - '>= 4'
+      # TODO: This version requires code changes https://github.com/reduxjs/react-redux/releases/tag/v8.0.0
+      - dependency-name: 'react-redux'
+        versions:
+          - '>= 4'
+      # TODO: This version was ignored in https://github.com/mastodon/mastodon/pull/15238
+      - dependency-name: 'webpack-cli'
+        versions:
+          - '>= 4'
 
   - package-ecosystem: bundler
     directory: '/'
@@ -54,11 +65,31 @@ updates:
       # This version needs to match Rails major version, so stick to 6.x only
       - dependency-name: 'rails-i18n'
         versions:
-          - '7.x'
+          - '>= 7.0.0'
       # This version needs manual updates https://github.com/rails/sprockets/blob/master/UPGRADING.md#guide-to-upgrading-from-sprockets-3x-to-4x
       - dependency-name: 'sprockets'
         versions:
-          - '4.x'
+          - '>= 4.0.0'
+      # This version needs manual updates https://github.com/rails/sprockets/blob/master/UPGRADING.md#guide-to-upgrading-from-sprockets-3x-to-4x
+      - dependency-name: 'strong_migrations'
+        versions:
+          - '>= 1.0.0'
+      # This version needs updates and to sync with sidekiq-unique-jobs
+      - dependency-name: 'sidekiq'
+        versions:
+          - '>= 7.0.0'
+      # This version needs updates and to sync with sidekiq
+      - dependency-name: 'sidekiq-unique-jobs'
+        versions:
+          - '>= 8.0.0'
+      # This version needs updates and to sync with sidekiq and sidekiq-unique-jobs
+      - dependency-name: 'redis'
+        versions:
+          - '>= 5.0.0'
+      # TODO: was ignored in https://github.com/mastodon/mastodon/pull/13964
+      - dependency-name: 'fog-openstack'
+        versions:
+          - '>= 1.0.0'
 
   - package-ecosystem: github-actions
     directory: '/'
