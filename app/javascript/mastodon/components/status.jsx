@@ -460,12 +460,9 @@ class Status extends ImmutablePureComponent {
                 src={attachment.get('url')}
                 alt={attachment.get('description')}
                 lang={status.get('language')}
-                width={this.props.cachedMediaWidth}
-                height={110}
                 inline
                 sensitive={status.get('sensitive')}
                 onOpenVideo={this.handleOpenVideo}
-                cacheWidth={this.props.cacheMediaWidth}
                 deployPictureInPicture={pictureInPicture.get('available') ? this.handleDeployPictureInPicture : undefined}
                 visible={this.state.showMedia}
                 onToggleVisibility={this.handleToggleMediaVisibility}
