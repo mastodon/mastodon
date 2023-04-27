@@ -411,7 +411,7 @@ class Status extends ImmutablePureComponent {
     }
 
     if (pictureInPicture.get('inUse')) {
-      media = <PictureInPicturePlaceholder width={this.props.cachedMediaWidth} />;
+      media = <PictureInPicturePlaceholder />;
     } else if (status.get('media_attachments').size > 0) {
       if (this.props.muted) {
         media = (
