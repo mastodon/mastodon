@@ -849,4 +849,141 @@ RSpec.describe Mastodon::AccountsCLI do
       end
     end
   end
+
+  describe '#merge' do
+    context 'when "from_account" is not found' do
+      let(:to_account) { Fabricate(:account, domain: 'example.com') }
+      let(:arguments) { ['non_existent_username@domain.com', "#{to_account.username}@#{to_account.domain}"] }
+
+      it 'returns an error message' do
+        expect { cli.invoke(:merge, arguments) }
+          .to output(
+            a_string_including("No such account (#{arguments.first})")
+          ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when "from_account" is local' do
+      let(:from_account) { Fabricate(:account, domain: nil) }
+      let(:to_account) { Fabricate(:account, domain: 'example.com') }
+      let(:arguments) { [from_account.username, "#{to_account.username}@#{to_account.domain}"] }
+
+      it 'returns an error message' do
+        expect { cli.invoke(:merge, arguments) }
+          .to output(
+            a_string_including("No such account (#{arguments.first})")
+          ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when "to_account" is not found' do
+      let(:from_account) { Fabricate(:account, domain: 'example.com') }
+      let(:arguments) { ["#{from_account.username}@#{from_account.domain}", 'non_existent_username'] }
+
+      it 'returns an error message' do
+        expect { cli.invoke(:merge, arguments) }
+          .to output(
+            a_string_including("No such account (#{arguments.last})")
+          ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when "to_account" is local' do
+      let(:from_account) { Fabricate(:account, domain: 'example.com') }
+      let(:to_account) { Fabricate(:account, domain: nil) }
+      let(:arguments) do
+        ["#{from_account.username}@#{from_account.domain}", "#{to_account.username}@#{to_account.domain}"]
+      end
+
+      it 'returns an error message' do
+        expect { cli.invoke(:merge, arguments) }
+          .to output(
+            a_string_including("No such account (#{arguments.last})")
+          ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when "from_account" and "to_account" public keys do not match' do
+      let(:from_account) { instance_double(Account, username: 'bob', domain: 'example1.com', local?: false) }
+      let(:to_account) { instance_double(Account, username: 'bob', domain: 'example2.com', local?: false) }
+
+      let(:arguments) do
+        ["#{from_account.username}@#{from_account.domain}", "#{to_account.username}@#{to_account.domain}"]
+      end
+
+      before do
+        allow(Account).to receive(:find_remote).with(from_account.username, from_account.domain).and_return(from_account)
+        allow(Account).to receive(:find_remote).with(to_account.username, to_account.domain).and_return(to_account)
+        allow(from_account).to receive(:public_key).and_return('from_account')
+        allow(to_account).to receive(:public_key).and_return('to_account')
+      end
+
+      it 'returns a warning message' do
+        expect { cli.invoke(:merge, arguments) }
+          .to output(
+            a_string_including("Accounts don't have the same public key, might not be duplicates!\nOverride with --force")
+          ).to_stdout
+          .and raise_error(SystemExit)
+      end
+
+      context 'with --force option' do
+        let(:options) { { force: true } }
+
+        before do
+          allow(to_account).to receive(:merge_with!).with(from_account)
+          allow(from_account).to receive(:destroy)
+        end
+
+        it 'merges "from_account" into "to_account"' do
+          cli.invoke(:merge, arguments, options)
+
+          expect(to_account).to have_received(:merge_with!).with(from_account)
+        end
+
+        it 'deletes "from_account"' do
+          cli.invoke(:merge, arguments, options)
+
+          expect(from_account).to have_received(:destroy)
+        end
+      end
+    end
+
+    context 'when "from_account" and "to_account" public keys match' do
+      let(:from_account) { instance_double(Account, username: 'bob', domain: 'example1.com', local?: false) }
+      let(:to_account) { instance_double(Account, username: 'bob', domain: 'example2.com', local?: false) }
+
+      let(:arguments) do
+        ["#{from_account.username}@#{from_account.domain}", "#{to_account.username}@#{to_account.domain}"]
+      end
+
+      before do
+        allow(Account).to receive(:find_remote).with(from_account.username, from_account.domain).and_return(from_account)
+        allow(Account).to receive(:find_remote).with(to_account.username, to_account.domain).and_return(to_account)
+        allow(from_account).to receive(:public_key).and_return('pub_key')
+        allow(to_account).to receive(:public_key).and_return('pub_key')
+      end
+
+      it 'merges "from_account" into "to_account"' do
+        allow(to_account).to receive(:merge_with!).with(from_account)
+        allow(from_account).to receive(:destroy)
+
+        cli.invoke(:merge, arguments)
+
+        expect(to_account).to have_received(:merge_with!).with(from_account)
+      end
+
+      it 'deletes "from_account"' do
+        allow(to_account).to receive(:merge_with!).with(from_account)
+        allow(from_account).to receive(:destroy)
+
+        cli.invoke(:merge, arguments)
+
+        expect(from_account).to have_received(:destroy)
+      end
+    end
+  end
 end
