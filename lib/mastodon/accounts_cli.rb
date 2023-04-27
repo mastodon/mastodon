@@ -102,7 +102,7 @@ module Mastodon
           say('Use --force to reattach it anyway and delete the other user')
           return
         elsif account.user.present?
-          DeleteAccountService.new.call(account, reserve_email: false)
+          DeleteAccountService.new.call(account, reserve_email: false, reserve_username: false)
           account = Account.new(username: username)
         end
       end
