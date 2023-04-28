@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
@@ -25,7 +25,9 @@ import Step from './components/step';
 import Follows from './follows';
 import Share from './share';
 
-
+const messages = defineMessages({
+  template: { id: 'onboarding.compose.template', defaultMessage: 'Hello #Mastodon!' },
+});
 
 const mapStateToProps = () => {
   const getAccount = makeGetAccount();
@@ -69,10 +71,10 @@ class Onboarding extends ImmutablePureComponent {
   };
 
   handleComposeClick = () => {
-    const { dispatch } = this.props;
+    const { dispatch, intl } = this.props;
     const { router } = this.context;
 
-    dispatch(focusCompose(router.history));
+    dispatch(focusCompose(router.history, intl.formatMessage(messages.template)));
   };
 
   handleShareClick = () => {
@@ -146,4 +148,4 @@ class Onboarding extends ImmutablePureComponent {
 
 }
 
-export default connect(mapStateToProps)(Onboarding);
+export default connect(mapStateToProps)(injectIntl(Onboarding));
