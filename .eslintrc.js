@@ -249,7 +249,6 @@ module.exports = {
     'jsdoc/require-param': 'off',
     'jsdoc/require-property-description': 'off',
     'jsdoc/require-returns-description': 'off',
-    'jsdoc/require-returns-type': 'off',
     'jsdoc/require-returns': 'off',
   },
 
