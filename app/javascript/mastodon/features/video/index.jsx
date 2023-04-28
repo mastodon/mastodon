@@ -354,7 +354,8 @@ class Video extends React.PureComponent {
     const videos = document.querySelectorAll('video');
 
     videos.forEach((video) => {
-      video.addEventListener('click', () => {
+      const button = video.nextElementSibling;
+      button.addEventListener('click', () => {
         if (video.paused) {
           videos.forEach((e) => {
             if (e !== video) {
