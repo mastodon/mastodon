@@ -986,4 +986,222 @@ RSpec.describe Mastodon::AccountsCLI do
       end
     end
   end
+
+  describe '#migrate' do
+    it 'exits with an error message if both --replay and --target options are provided' do
+      target_account = Fabricate(:account, domain: 'example.com')
+      options = { replay: true, target: "#{target_account.username}@example.com" }
+      arguments = [target_account.username]
+
+      expect { cli.invoke(:migrate, arguments, options) }
+        .to output(
+          a_string_including('Use --replay or --target, not both')
+        ).to_stdout
+        .and raise_error(SystemExit)
+    end
+
+    it 'exits with an error message if option is provided' do
+      target_account = Fabricate(:account, domain: 'example.com')
+      arguments = [target_account.username]
+
+      expect { cli.invoke(:migrate, arguments, {}) }
+        .to output(
+          a_string_including('Use either --replay or --target')
+        ).to_stdout
+        .and raise_error(SystemExit)
+    end
+
+    it 'exits with an error message if provided USERNAME is not found' do
+      arguments = ['non_existent_username']
+      options = { replay: true }
+
+      expect { cli.invoke(:migrate, arguments, options) }
+        .to output(
+          a_string_including("No such account: #{arguments.first}")
+        ).to_stdout
+        .and raise_error(SystemExit)
+    end
+
+    context 'with --replay option' do
+      let(:source_account) { Fabricate(:account) }
+      let(:arguments) { [source_account.username] }
+      let(:options) { { replay: true } }
+
+      context 'when given account has no previous migrations' do
+        it 'exits with an error message' do
+          expect { cli.invoke(:migrate, arguments, options) }
+            .to output(
+              a_string_including('The specified account has not performed any migration')
+            ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'when account has a previous migration' do
+        let(:target_account) { Fabricate(:account, domain: 'example.com') }
+        let(:move_service) { instance_double(MoveService) }
+        let(:migration) { instance_double(AccountMigration, target_account: target_account, target_account_id: target_account.id) }
+
+        before do
+          allow(Account).to receive(:find_local).with(source_account.username).and_return(source_account)
+          allow(source_account).to receive(:moved_to_account_id).and_return(target_account.id)
+          allow(source_account.migrations).to receive(:last).and_return(migration)
+
+          allow(MoveService).to receive(:new).and_return(move_service)
+          allow(move_service).to receive(:call).with(migration)
+        end
+
+        it 'calls the MoveService for the last migration' do
+          cli.invoke(:migrate, arguments, options)
+
+          expect(move_service).to have_received(:call).with(migration)
+        end
+
+        it 'migrates account successfully' do
+          expect { cli.invoke(:migrate, arguments, options) }
+            .to output(
+              a_string_including("OK, migrated #{source_account.acct} to #{target_account.acct}")
+            ).to_stdout
+        end
+
+        context 'when specified account is redirecting to a different target account' do
+          it 'exits with an error message' do
+            allow(source_account).to receive(:moved_to_account_id).and_return(-1)
+
+            expect { cli.invoke(:migrate, arguments, options) }
+              .to output(
+                a_string_including('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway')
+              ).to_stdout
+              .and raise_error(SystemExit)
+          end
+        end
+
+        context 'with --force option' do
+          let(:options) { { replay: true, force: true } }
+
+          before { allow(source_account).to receive(:moved_to_account_id).and_return(-1) }
+
+          it 'calls the MoveService for the last migration' do
+            cli.invoke(:migrate, arguments, options)
+
+            expect(move_service).to have_received(:call).with(migration)
+          end
+
+          it 'migrates account successfully' do
+            expect { cli.invoke(:migrate, arguments, options) }
+              .to output(
+                a_string_including("OK, migrated #{source_account.acct} to #{target_account.acct}")
+              ).to_stdout
+          end
+        end
+      end
+    end
+
+    context 'with --target option' do
+      let(:source_account) { Fabricate(:account) }
+      let(:arguments) { [source_account.username] }
+      let(:resolve_account_service) { instance_double(ResolveAccountService) }
+
+      it 'exits with an error message if specified target account is not found' do
+        options = { target: 'non_existent@404.com' }
+
+        allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service)
+        allow(resolve_account_service).to receive(:call).and_return(nil)
+
+        expect { cli.invoke(:migrate, arguments, options) }
+          .to output(
+            a_string_including("The specified target account could not be found: #{options[:target]}")
+          ).to_stdout
+          .and raise_error(SystemExit)
+      end
+
+      context 'when target account exists' do
+        let(:target_account) { Fabricate(:account, username: 'target', domain: 'example.com') }
+        let(:options) { { target: target_account.acct } }
+
+        before do
+          target_account.aliases.create!(acct: source_account.acct)
+
+          allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service)
+          allow(resolve_account_service).to receive(:call).with(target_account.acct, any_args).and_return(target_account)
+        end
+
+        it 'creates a migration for the specified account with the target account' do
+          cli.invoke(:migrate, arguments, options)
+
+          last_migration = source_account.migrations.last
+
+          expect(last_migration.acct).to eq(target_account.acct)
+        end
+
+        it 'displays success message' do
+          expect { cli.invoke(:migrate, arguments, options) }
+            .to output(
+              a_string_including("OK, migrated #{source_account.acct} to #{target_account.acct}")
+            ).to_stdout
+        end
+      end
+
+      context 'when migration record is invalid' do
+        let(:target_account) { Fabricate(:account, username: 'target', domain: 'example.com') }
+        let(:options) { { target: target_account.acct } }
+
+        before do
+          allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service)
+          allow(resolve_account_service).to receive(:call).with(target_account.acct, any_args).and_return(target_account)
+        end
+
+        it 'exits with an error' do
+          expect { cli.invoke(:migrate, arguments, options) }
+            .to output(
+              a_string_including('Error: Validation failed')
+            ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'when specified account is redirecting to a different target account' do
+        let(:target_account) { Fabricate(:account, domain: 'example.com') }
+        let(:options) { { target: target_account.acct } }
+
+        before do
+          allow(Account).to receive(:find_local).with(source_account.username).and_return(source_account)
+          allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service)
+          allow(resolve_account_service).to receive(:call).with(target_account.acct, any_args).and_return(target_account)
+        end
+
+        it 'exits with an error message' do
+          allow(source_account).to receive(:moved_to_account_id).and_return(-1)
+
+          expect { cli.invoke(:migrate, arguments, options) }
+            .to output(
+              a_string_including('The specified account is redirecting to a different target account. Use --force if you want to change the migration target')
+            ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'with --target and --force options' do
+        let(:target_account) { Fabricate(:account, domain: 'example.com') }
+        let(:options) { { target: target_account.acct, force: true } }
+
+        before do
+          target_account.aliases.create!(acct: source_account.acct)
+
+          allow(Account).to receive(:find_local).with(source_account.username).and_return(source_account)
+          allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service)
+          allow(resolve_account_service).to receive(:call).with(target_account.acct, any_args).and_return(target_account)
+        end
+
+        it 'displays success message' do
+          allow(source_account).to receive(:moved_to_account_id).and_return(-1)
+
+          expect { cli.invoke(:migrate, arguments, options) }
+            .to output(
+              a_string_including("OK, migrated #{source_account.acct} to #{target_account.acct}")
+            ).to_stdout
+        end
+      end
+    end
+  end
 end
