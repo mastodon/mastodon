@@ -180,16 +180,6 @@ class Audio extends React.PureComponent {
 
     this.audio.play();
     currentAudio = this.audio;
-
-    // if (!this.audioContext) {
-    //   this._initAudioContext();
-    // }
-
-    // if (this.state.paused) {
-    //   this.setState({ paused: false }, () => this.audio.play());
-    // } else {
-    //   this.setState({ paused: true }, () => this.audio.pause());
-    // }
   };
 
   handleResize = debounce(() => {
