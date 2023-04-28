@@ -76,11 +76,11 @@ services:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    build: .
+    build: ./streaming/
     image: ghcr.io/mastodon/mastodon
     restart: always
     env_file: .env.production
-    command: node ./streaming
+    command: node index.js
     networks:
       - external_network
       - internal_network
