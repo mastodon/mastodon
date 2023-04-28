@@ -5,7 +5,8 @@ require 'rails_helper'
 describe Settings::Migration::RedirectsController do
   render_views
 
-  let!(:user) { Fabricate(:user, password: 'testtest') }
+  let(:password) { Faker::Internet.password(min_length: 12) }
+  let(:user) { Fabricate(:user, password: password) }
 
   before do
     sign_in user, scope: :user
@@ -30,7 +31,7 @@ describe Settings::Migration::RedirectsController do
       before { stub_resolver }
 
       it 'redirects to the settings migration path' do
-        post :create, params: { form_redirect: { acct: 'new@host.com', current_password: 'testtest' } }
+        post :create, params: { form_redirect: { acct: 'new@host.com', current_password: password } }
 
         expect(response).to redirect_to(settings_migration_path)
       end

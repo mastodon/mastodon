@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe Auth::RegistrationsController do
   render_views
 
+  let(:password) { Faker::Internet.password(min_length: 12) }
+
   shared_examples 'checks for enabled registrations' do |path|
     around do |example|
       registrations_mode = Setting.registrations_mode
@@ -115,7 +117,7 @@ RSpec.describe Auth::RegistrationsController do
       subject do
         Setting.registrations_mode = 'open'
         request.headers['Accept-Language'] = accept_language
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } }
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: password, password_confirmation: password, agreement: 'true' } }
       end
 
       around do |example|
@@ -141,7 +143,7 @@ RSpec.describe Auth::RegistrationsController do
       subject do
         Setting.registrations_mode = 'open'
         request.headers['Accept-Language'] = accept_language
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'false' } }
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: password, password_confirmation: password, agreement: 'false' } }
       end
 
       around do |example|
@@ -161,7 +163,7 @@ RSpec.describe Auth::RegistrationsController do
       subject do
         Setting.registrations_mode = 'approved'
         request.headers['Accept-Language'] = accept_language
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } }
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: password, password_confirmation: password, agreement: 'true' } }
       end
 
       around do |example|
@@ -189,7 +191,7 @@ RSpec.describe Auth::RegistrationsController do
         Setting.registrations_mode = 'approved'
         request.headers['Accept-Language'] = accept_language
         invite = Fabricate(:invite, max_uses: nil, expires_at: 1.hour.ago)
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', invite_code: invite.code, agreement: 'true' } }
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: password, password_confirmation: password, invite_code: invite.code, agreement: 'true' } }
       end
 
       around do |example|
@@ -219,7 +221,7 @@ RSpec.describe Auth::RegistrationsController do
         Setting.require_invite_text = true
         request.headers['Accept-Language'] = accept_language
         invite = Fabricate(:invite, user: inviter, max_uses: nil, expires_at: 1.hour.from_now)
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', invite_code: invite.code, agreement: 'true' } }
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: password, password_confirmation: password, invite_code: invite.code, agreement: 'true' } }
       end
 
       around do |example|

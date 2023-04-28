@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'devise_two_factor/spec_helpers'
 
 RSpec.describe User do
-  let(:password) { 'abcd1234' }
+  let(:password) { Faker::Internet.password(min_length: 12) }
   let(:account) { Fabricate(:account, username: 'alice') }
 
   it_behaves_like 'two_factor_backupable'
@@ -426,7 +426,7 @@ RSpec.describe User do
   end
 
   describe '#reset_password!' do
-    subject(:user) { Fabricate(:user, password: 'foobar12345') }
+    subject(:user) { Fabricate(:user, password: password) }
 
     let!(:session_activation) { Fabricate(:session_activation, user: user) }
     let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
@@ -437,7 +437,7 @@ RSpec.describe User do
     end
 
     it 'changes the password immediately' do
-      expect(user.external_or_valid_password?('foobar12345')).to be false
+      expect(user.external_or_valid_password?(password)).to be false
     end
 
     it 'deactivates all sessions' do
