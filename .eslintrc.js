@@ -240,7 +240,6 @@ module.exports = {
     'formatjs/prefer-formatted-message': 'error',
     'formatjs/prefer-pound-in-plural': 'error',
 
-    'jsdoc/check-alignment': 'off',
     'jsdoc/check-param-names': 'off',
     'jsdoc/check-tag-names': 'off',
     'jsdoc/check-types': 'off',

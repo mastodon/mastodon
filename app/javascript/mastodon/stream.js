@@ -17,10 +17,10 @@ let sharedConnection;
  */
 
 /**
-  * @typedef StreamEvent
-  * @property {string} event
-  * @property {object} payload
-  */
+ * @typedef StreamEvent
+ * @property {string} event
+ * @property {object} payload
+ */
 
 /**
  * @type {Array.<Subscription>}
