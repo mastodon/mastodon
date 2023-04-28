@@ -252,7 +252,6 @@ module.exports = {
     'jsdoc/require-returns-description': 'off',
     'jsdoc/require-returns-type': 'off',
     'jsdoc/require-returns': 'off',
-    'jsdoc/tag-lines': 'off',
   },
 
   overrides: [

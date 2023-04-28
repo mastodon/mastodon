@@ -20,7 +20,6 @@ import PropTypes from 'prop-types';
 
 /**
  * Component that is used to render blurred of blurhash string
- *
  * @param {BlurhashProps} param1 Props of the component
  * @returns Canvas which will render blurred region element to embed
  */
