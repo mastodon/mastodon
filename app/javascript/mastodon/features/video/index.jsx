@@ -94,6 +94,8 @@ export const fileNameFromURL = str => {
   return pathname.slice(index + 1);
 };
 
+var currentVideo = null;
+
 class Video extends React.PureComponent {
 
   static propTypes = {
@@ -186,6 +188,7 @@ class Video extends React.PureComponent {
   };
 
   handlePause = () => {
+    this.video.pause();
     this.setState({ paused: true });
   };
 
@@ -348,11 +351,31 @@ class Video extends React.PureComponent {
   };
 
   togglePlay = () => {
-    if (this.state.paused) {
-      this.setState({ paused: false }, () => this.video.play());
-    } else {
-      this.setState({ paused: true }, () => this.video.pause());
+    const videos = document.querySelectorAll('video');
+
+    videos.forEach((video) => {
+      video.addEventListener('click', () => {
+        if (video.paused) {
+          videos.forEach((e) => {
+            if (e !== video) {
+              e.pause();
+            }
+          });
+          video.play();
+          this.setState({ paused: false });
+        } else {
+          video.pause();
+          this.setState({ paused: true });
+        }
+      });
+    });
+
+    if (currentVideo !== null) {
+      currentVideo.pause();
     }
+
+    this.video.play();
+    currentVideo = this.video;
   };
 
   toggleFullscreen = () => {
