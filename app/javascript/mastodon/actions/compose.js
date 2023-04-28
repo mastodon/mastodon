@@ -126,9 +126,10 @@ export function resetCompose() {
   };
 }
 
-export const focusCompose = routerHistory => dispatch => {
+export const focusCompose = (routerHistory, defaultText) => dispatch => {
   dispatch({
     type: COMPOSE_FOCUS,
+    defaultText,
   });
 
   ensureComposeIsVisible(routerHistory);
