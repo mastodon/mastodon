@@ -22,6 +22,8 @@ const messages = defineMessages({
 const TICK_SIZE = 10;
 const PADDING   = 180;
 
+var currentAudio = null;
+
 class Audio extends React.PureComponent {
 
   static propTypes = {
@@ -152,15 +154,42 @@ class Audio extends React.PureComponent {
   }
 
   togglePlay = () => {
-    if (!this.audioContext) {
-      this._initAudioContext();
+    const audios = document.querySelectorAll('audio');
+
+    audios.forEach((audio) => {
+      const button = audio.previousElementSibling;
+      button.addEventListener('click', () => {
+        if(audio.paused) {
+          audios.forEach((e) => {
+            if (e !== audio) {
+              e.pause();
+            }
+          });
+          audio.play();
+          this.setState({ paused: false });
+        } else {
+          audio.pause();
+          this.setState({ paused: true });
+        }
+      });
+    });
+
+    if (currentAudio !== null) {
+      currentAudio.pause();
     }
 
-    if (this.state.paused) {
-      this.setState({ paused: false }, () => this.audio.play());
-    } else {
-      this.setState({ paused: true }, () => this.audio.pause());
-    }
+    this.audio.play();
+    currentAudio = this.audio;
+
+    // if (!this.audioContext) {
+    //   this._initAudioContext();
+    // }
+
+    // if (this.state.paused) {
+    //   this.setState({ paused: false }, () => this.audio.play());
+    // } else {
+    //   this.setState({ paused: true }, () => this.audio.pause());
+    // }
   };
 
   handleResize = debounce(() => {
@@ -182,6 +211,7 @@ class Audio extends React.PureComponent {
   };
 
   handlePause = () => {
+    this.audio.pause();
     this.setState({ paused: true });
 
     if (this.audioContext) {
