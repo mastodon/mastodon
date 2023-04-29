@@ -263,7 +263,7 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {any} res
-   * @param {function(Error=): void}
+   * @param {function(Error=): void} next
    */
   const allowCrossDomain = (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -276,7 +276,7 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {any} res
-   * @param {function(Error=): void}
+   * @param {function(Error=): void} next
    */
   const setRequestId = (req, res, next) => {
     req.requestId = uuid.v4();
@@ -288,7 +288,7 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {any} res
-   * @param {function(Error=): void}
+   * @param {function(Error=): void} next
    */
   const setRemoteAddress = (req, res, next) => {
     req.remoteAddress = req.connection.remoteAddress;
