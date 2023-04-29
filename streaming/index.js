@@ -224,6 +224,7 @@ const startServer = async () => {
 
   /**
    * @param {string} channel
+   * @param {function(string): void} callback
    */
   const unsubscribe = (channel, callback) => {
     log.silly(`Removing listener for ${channel}`);
