@@ -675,7 +675,7 @@ class Status extends ImmutablePureComponent {
               inline
               sensitive={status.get('sensitive')}
               letterbox={settings.getIn(['media', 'letterbox'])}
-              fullwidth={settings.getIn(['media', 'fullwidth'])}
+              fullwidth={!rootId && settings.getIn(['media', 'fullwidth'])}
               preventPlayback={isCollapsed || !isExpanded}
               onOpenVideo={this.handleOpenVideo}
               width={this.props.cachedMediaWidth}
@@ -696,7 +696,7 @@ class Status extends ImmutablePureComponent {
                 lang={status.get('language')}
                 sensitive={status.get('sensitive')}
                 letterbox={settings.getIn(['media', 'letterbox'])}
-                fullwidth={settings.getIn(['media', 'fullwidth'])}
+                fullwidth={!rootId && settings.getIn(['media', 'fullwidth'])}
                 hidden={isCollapsed || !isExpanded}
                 onOpenMedia={this.handleOpenMedia}
                 cacheWidth={this.props.cacheMediaWidth}
