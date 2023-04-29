@@ -346,7 +346,6 @@ const startServer = async () => {
 
   /**
    * @param {any} req
-   * @param {boolean=} required
    * @returns {Promise.<void>}
    */
   const accountFromRequest = (req) => new Promise((resolve, reject) => {
