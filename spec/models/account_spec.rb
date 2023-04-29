@@ -951,10 +951,10 @@ RSpec.describe Account, type: :model do
   end
 
   context 'when is local' do
-    # Test disabled because test environment omits autogenerating keys for performance
-    xit 'generates keys' do
+    it 'generates keys' do
       account = Account.create!(domain: nil, username: Faker::Internet.user_name(separators: ['_']))
-      expect(account.keypair.private?).to be true
+      expect(account.keypair).to be_private
+      expect(account.keypair).to be_public
     end
   end
 
