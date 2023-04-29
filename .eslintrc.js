@@ -27,6 +27,7 @@ module.exports = {
     'import',
     'promise',
     '@typescript-eslint',
+    'formatjs',
   ],
 
   parserOptions: {
@@ -71,7 +72,7 @@ module.exports = {
     'comma-style': ['warn', 'last'],
     'consistent-return': 'error',
     'dot-notation': 'error',
-    eqeqeq: 'error',
+    eqeqeq: ['error', 'always', { 'null': 'ignore' }],
     indent: ['warn', 2],
     'jsx-quotes': ['error', 'prefer-single'],
     'no-case-declarations': 'off',
@@ -218,6 +219,25 @@ module.exports = {
     'promise/no-callback-in-promise': 'off',
     'promise/no-nesting': 'off',
     'promise/no-promise-in-callback': 'off',
+
+    'formatjs/blocklist-elements': 'error',
+    'formatjs/enforce-default-message': ['error', 'literal'],
+    'formatjs/enforce-description': 'off', // description values not currently used
+    'formatjs/enforce-id': 'off', // Explicit IDs are used in the project
+    'formatjs/enforce-placeholders': 'off', // Issues in short_number.jsx
+    'formatjs/enforce-plural-rules': 'error',
+    'formatjs/no-camel-case': 'off', // disabledAccount is only non-conforming
+    'formatjs/no-complex-selectors': 'error',
+    'formatjs/no-emoji': 'error',
+    'formatjs/no-id': 'off', // IDs are used for translation keys
+    'formatjs/no-invalid-icu': 'error',
+    'formatjs/no-literal-string-in-jsx': 'off', // Should be looked at, but mainly flagging punctuation outside of strings
+    'formatjs/no-multiple-plurals': 'off', // Only used by hashtag.jsx
+    'formatjs/no-multiple-whitespaces': 'error',
+    'formatjs/no-offset': 'error',
+    'formatjs/no-useless-message': 'error',
+    'formatjs/prefer-formatted-message': 'error',
+    'formatjs/prefer-pound-in-plural': 'error',
   },
 
   overrides: [

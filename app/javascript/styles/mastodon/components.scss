@@ -1145,6 +1145,59 @@ body > [data-popper-placement] {
       }
     }
   }
+
+  &--in-thread {
+    border-bottom: 0;
+
+    .status__content,
+    .status__action-bar,
+    .media-gallery,
+    .video-player,
+    .audio-player,
+    .attachment-list,
+    .status-card {
+      margin-inline-start: 46px + 10px;
+      width: calc(100% - (46px + 10px));
+    }
+  }
+
+  &--first-in-thread {
+    border-top: 1px solid lighten($ui-base-color, 8%);
+  }
+
+  &__line {
+    height: 16px - 4px;
+    border-inline-start: 2px solid lighten($ui-base-color, 8%);
+    width: 0;
+    position: absolute;
+    top: 0;
+    inset-inline-start: 16px + ((46px - 2px) * 0.5);
+
+    &--full {
+      top: 0;
+      height: 100%;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 16px - 4px;
+        height: 46px + 4px + 4px;
+        width: 2px;
+        background: $ui-base-color;
+        inset-inline-start: -2px;
+      }
+    }
+
+    &--first {
+      top: 16px + 46px + 4px;
+      height: calc(100% - (16px + 46px + 4px));
+
+      &::before {
+        display: none;
+      }
+    }
+  }
 }
 
 .status__relative-time {
@@ -1293,6 +1346,7 @@ body > [data-popper-placement] {
 .detailed-status {
   background: lighten($ui-base-color, 4%);
   padding: 16px;
+  border-top: 1px solid lighten($ui-base-color, 8%);
 
   &--flex {
     display: flex;
@@ -1459,20 +1513,12 @@ body > [data-popper-placement] {
   }
 
   &__note {
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     color: $ui-secondary-color;
-  }
-}
-
-.follow-recommendations-account {
-  .icon-button {
-    color: $ui-primary-color;
-
-    &.active {
-      color: $valid-value-color;
-    }
   }
 }
 
@@ -1737,6 +1783,7 @@ a.account__display-name {
 .status__avatar {
   width: 46px;
   height: 46px;
+  box-shadow: 0 0 0 2px $ui-base-color;
 }
 
 .muted {
@@ -1869,6 +1916,11 @@ a.account__display-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  &__account {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 }
 
 .display-name__html {
@@ -2344,10 +2396,9 @@ $ui-header-height: 55px;
   height: $ui-header-height;
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 3;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden;
 
   &__logo {
     display: inline-flex;
@@ -2356,6 +2407,20 @@ $ui-header-height: 55px;
     .logo {
       height: $ui-header-height - 30px;
       width: auto;
+    }
+
+    .logo--wordmark {
+      display: none;
+    }
+
+    @media screen and (min-width: 320px) {
+      .logo--wordmark {
+        display: block;
+      }
+
+      .logo--icon {
+        display: none;
+      }
     }
   }
 
@@ -2744,13 +2809,7 @@ $ui-header-height: 55px;
 
 .column-title {
   text-align: center;
-  padding: 40px;
-
-  .logo {
-    width: 50px;
-    margin: 0 auto;
-    margin-bottom: 40px;
-  }
+  padding-bottom: 40px;
 
   h3 {
     font-size: 24px;
@@ -2765,45 +2824,297 @@ $ui-header-height: 55px;
     font-weight: 400;
     color: $darker-text-color;
   }
-}
 
-.follow-recommendations-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.column-actions {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 40px;
-  padding-top: 40px;
-  padding-bottom: 200px;
-  flex-grow: 1;
-  position: relative;
-
-  &__background {
-    position: absolute;
-    inset-inline-start: 0;
-    bottom: 0;
-    height: 220px;
-    width: auto;
+  @media screen and (min-width: 600px) {
+    padding: 40px;
   }
 }
 
-.column-list {
-  margin: 0 20px;
-  border: 1px solid lighten($ui-base-color, 8%);
-  background: darken($ui-base-color, 2%);
-  border-radius: 4px;
+.onboarding__footer {
+  margin-top: 30px;
+  color: $dark-text-color;
+  text-align: center;
+  font-size: 14px;
 
-  &__empty-message {
-    padding: 40px;
+  .link-button {
+    display: inline-block;
+    color: inherit;
+    font-size: inherit;
+  }
+}
+
+.onboarding__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: $highlight-text-color;
+  background: lighten($ui-base-color, 4%);
+  border-radius: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 17px;
+  height: 56px;
+  text-decoration: none;
+
+  svg {
+    height: 1.5em;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($ui-base-color, 8%);
+  }
+}
+
+.onboarding__illustration {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  max-height: 200px;
+  width: auto;
+}
+
+.onboarding__lead {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: $darker-text-color;
+  text-align: center;
+  margin-bottom: 30px;
+
+  strong {
+    font-weight: 700;
+    color: $secondary-text-color;
+  }
+}
+
+.onboarding__links {
+  margin-bottom: 30px;
+
+  & > * {
+    margin-bottom: 2px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.onboarding__steps {
+  margin-bottom: 30px;
+
+  &__item {
+    background: lighten($ui-base-color, 4%);
+    border: 0;
+    border-radius: 8px;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 2px;
+    text-decoration: none;
+    text-align: start;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: lighten($ui-base-color, 8%);
+    }
+
+    &__icon {
+      flex: 0 0 auto;
+      background: $ui-base-color;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      color: $dark-text-color;
+
+      @media screen and (min-width: 600px) {
+        display: flex;
+      }
+    }
+
+    &__progress {
+      flex: 0 0 auto;
+      background: $valid-value-color;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 21px;
+      height: 21px;
+      color: $primary-text-color;
+
+      svg {
+        height: 14px;
+        width: auto;
+      }
+    }
+
+    &__description {
+      flex: 1 1 auto;
+      line-height: 18px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      h6 {
+        color: $primary-text-color;
+        font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      p {
+        color: $darker-text-color;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.onboarding__progress-indicator {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  position: sticky;
+  background: $ui-base-color;
+
+  @media screen and (min-width: 600) {
+    padding: 0 40px;
+  }
+
+  &__line {
+    height: 4px;
+    flex: 1 1 auto;
+    background: lighten($ui-base-color, 4%);
+  }
+
+  &__step {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    background: lighten($ui-base-color, 4%);
+    border-radius: 50%;
+    color: $primary-text-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 15px;
+      height: auto;
+    }
+
+    &.active {
+      background: $valid-value-color;
+    }
+  }
+
+  &__step.active,
+  &__line.active {
+    background: $valid-value-color;
+    background-image: linear-gradient(
+      90deg,
+      $valid-value-color,
+      lighten($valid-value-color, 8%),
+      $valid-value-color
+    );
+    background-size: 200px 100%;
+    animation: skeleton 1.2s ease-in-out infinite;
+  }
+}
+
+.follow-recommendations {
+  background: darken($ui-base-color, 4%);
+  border-radius: 8px;
+  margin-bottom: 30px;
+
+  .account:last-child {
+    border-bottom: 0;
+  }
+
+  &__empty {
     text-align: center;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 400;
     color: $darker-text-color;
+    font-weight: 500;
+    padding: 40px;
+  }
+}
+
+.tip-carousel {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 30px;
+
+  &:focus {
+    outline: 0;
+    border-color: $highlight-text-color;
+  }
+
+  .media-modal__pagination {
+    margin-bottom: 0;
+  }
+}
+
+.copy-paste-text {
+  background: lighten($ui-base-color, 4%);
+  border-radius: 8px;
+  border: 1px solid lighten($ui-base-color, 8%);
+  padding: 16px;
+  color: $primary-text-color;
+  font-size: 15px;
+  line-height: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  transition: border-color 300ms linear;
+  margin-bottom: 30px;
+
+  &:focus,
+  &.focused {
+    transition: none;
+    outline: 0;
+    border-color: $highlight-text-color;
+  }
+
+  &.copied {
+    border-color: $valid-value-color;
+    transition: none;
+  }
+
+  textarea {
+    width: 100%;
+    height: auto;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    border: 0;
+    padding: 0;
+    margin-bottom: 30px;
+    resize: none;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.compose-form__highlightable {
+  border-radius: 4px;
+  transition: box-shadow 300ms linear;
+
+  &.active {
+    transition: none;
+    box-shadow: 0 0 0 2px rgba(lighten($highlight-text-color, 8%), 0.7);
   }
 }
 
@@ -3517,6 +3828,10 @@ a.status-card {
 
 .status-card__description {
   color: $darker-text-color;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .status-card__host {
@@ -4829,7 +5144,7 @@ a.status-card.compact:hover {
     background: $ui-base-color;
     border-radius: 0 0 4px 4px;
     box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
-    z-index: 2;
+    z-index: 99;
     font-size: 13px;
     padding: 15px 5px;
 
@@ -5260,6 +5575,11 @@ a.status-card.compact:hover {
 
   &.active {
     opacity: 1;
+  }
+
+  &:focus {
+    outline: 0;
+    background-color: $highlight-text-color;
   }
 }
 
@@ -6202,7 +6522,6 @@ a.status-card.compact:hover {
   background: darken($ui-base-color, 8%);
   border-radius: 4px;
   padding-bottom: 44px;
-  direction: ltr;
 
   &.editable {
     border-radius: 0;
@@ -6269,7 +6588,6 @@ a.status-card.compact:hover {
   max-width: 100%;
   border-radius: 4px;
   box-sizing: border-box;
-  direction: ltr;
   color: $white;
 
   &.editable {
@@ -6313,6 +6631,7 @@ a.status-card.compact:hover {
 
   &__controls {
     position: absolute;
+    direction: ltr;
     z-index: 2;
     bottom: 0;
     inset-inline-start: 0;
@@ -7497,6 +7816,8 @@ noscript {
   align-items: center;
   color: $valid-value-color;
   gap: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   a {
     color: inherit;

@@ -24,7 +24,7 @@ de:
         explanation_when_pending: Du hast dich für eine Einladung bei %{host} mit dieser E-Mail-Adresse beworben. Sobald du deine E-Mail-Adresse bestätigt hast, werden wir deine Anfrage überprüfen. Du kannst dich in dieser Zeit nicht anmelden. Wenn deine Anfrage abgelehnt wird, werden deine Daten entfernt – von dir ist keine weitere Handlung notwendig. Wenn du das nicht warst, kannst du diese E-Mail ignorieren.
         extra_html: Bitte beachte auch die <a href="%{terms_path}">Serverregeln</a> und <a href="%{policy_path}">unsere Datenschutzerklärung</a>.
         subject: 'Mastodon: Bestätigung deines Kontos bei %{instance}'
-        title: E-Mail-Adresse verifizieren
+        title: Verifiziere E-Mail-Adresse
       email_changed:
         explanation: 'Die E-Mail-Adresse deines Accounts wird geändert zu:'
         extra: Wenn du deine E-Mail-Adresse nicht geändert hast, dann wird es vermutlich so sein, dass jemand Zugriff zu deinem Account erhalten hat. Bitte ändere sofort dein Passwort oder kontaktiere den Administrator des Servers, wenn du dich ausgesperrt hast.
@@ -39,7 +39,7 @@ de:
         explanation: Bestätige deine neue E-Mail-Adresse, um sie zu ändern.
         extra: Wenn diese Änderung nicht von dir ausgeführt wurde, dann solltest du diese E-Mail ignorieren. Die E-Mail-Adresse für deinen Mastodon-Account wird sich nicht ändern, bis du den obigen Link anklickst.
         subject: 'Mastodon: E-Mail-Adresse für %{instance} bestätigen'
-        title: E-Mail-Adresse verifizieren
+        title: Verifiziere E-Mail-Adresse
       reset_password_instructions:
         action: Passwort ändern
         explanation: Du hast ein neues Passwort für deinen Account angefragt.
@@ -102,7 +102,7 @@ de:
     unlocks:
       send_instructions: Du erhältst in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du dein Konto entsperren kannst.
       send_paranoid_instructions: Falls deine E-Mail-Adresse in unserer Datenbank hinterlegt ist, erhältst du in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du dein Konto entsperren kannst.
-      unlocked: Dein Konto wurde entsperrt. Du bist jetzt angemeldet.
+      unlocked: Dein Konto wurde erfolgreich entsperrt. Bitte melde dich an, um fortzufahren.
   errors:
     messages:
       already_confirmed: wurde bereits bestätigt, bitte versuche dich anzumelden

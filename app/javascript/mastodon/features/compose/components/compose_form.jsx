@@ -20,6 +20,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 import { countableText } from '../util/counter';
 import Icon from 'mastodon/components/icon';
+import classNames from 'classnames';
 import { maxChars } from '../../../initial_state';
 
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
@@ -69,6 +70,10 @@ class ComposeForm extends ImmutablePureComponent {
 
   static defaultProps = {
     autoFocus: false,
+  };
+
+  state = {
+    highlighted: false,
   };
 
   handleChange = (e) => {
@@ -144,6 +149,10 @@ class ComposeForm extends ImmutablePureComponent {
     this._updateFocusAndSelection({ });
   }
 
+  componentWillUnmount () {
+    if (this.timeout) clearTimeout(this.timeout);
+  }
+
   componentDidUpdate (prevProps) {
     this._updateFocusAndSelection(prevProps);
   }
@@ -174,6 +183,8 @@ class ComposeForm extends ImmutablePureComponent {
       Promise.resolve().then(() => {
         this.autosuggestTextarea.textarea.setSelectionRange(selectionStart, selectionEnd);
         this.autosuggestTextarea.textarea.focus();
+        this.setState({ highlighted: true });
+        this.timeout = setTimeout(() => this.setState({ highlighted: false }), 700);
       }).catch(console.error);
     } else if(prevProps.isSubmitting && !this.props.isSubmitting) {
       this.autosuggestTextarea.textarea.focus();
@@ -208,6 +219,7 @@ class ComposeForm extends ImmutablePureComponent {
 
   render () {
     const { intl, onPaste, autoFocus } = this.props;
+    const { highlighted } = this.state;
     const disabled = this.props.isSubmitting;
 
     let publishText = '';
@@ -246,41 +258,43 @@ class ComposeForm extends ImmutablePureComponent {
           />
         </div>
 
-        <AutosuggestTextarea
-          ref={this.setAutosuggestTextarea}
-          placeholder={intl.formatMessage(messages.placeholder)}
-          disabled={disabled}
-          value={this.props.text}
-          onChange={this.handleChange}
-          suggestions={this.props.suggestions}
-          onFocus={this.handleFocus}
-          onKeyDown={this.handleKeyDown}
-          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          onSuggestionSelected={this.onSuggestionSelected}
-          onPaste={onPaste}
-          autoFocus={autoFocus}
-          lang={this.props.lang}
-        >
-          <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
+        <div className={classNames('compose-form__highlightable', { active: highlighted })}>
+          <AutosuggestTextarea
+            ref={this.setAutosuggestTextarea}
+            placeholder={intl.formatMessage(messages.placeholder)}
+            disabled={disabled}
+            value={this.props.text}
+            onChange={this.handleChange}
+            suggestions={this.props.suggestions}
+            onFocus={this.handleFocus}
+            onKeyDown={this.handleKeyDown}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            onSuggestionSelected={this.onSuggestionSelected}
+            onPaste={onPaste}
+            autoFocus={autoFocus}
+            lang={this.props.lang}
+          >
+            <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
 
-          <div className='compose-form__modifiers'>
-            <UploadFormContainer />
-            <PollFormContainer />
-          </div>
-        </AutosuggestTextarea>
+            <div className='compose-form__modifiers'>
+              <UploadFormContainer />
+              <PollFormContainer />
+            </div>
+          </AutosuggestTextarea>
 
-        <div className='compose-form__buttons-wrapper'>
-          <div className='compose-form__buttons'>
-            <UploadButtonContainer />
-            <PollButtonContainer />
-            <PrivacyDropdownContainer disabled={this.props.isEditing} />
-            <SpoilerButtonContainer />
-            <LanguageDropdown />
-          </div>
+          <div className='compose-form__buttons-wrapper'>
+            <div className='compose-form__buttons'>
+              <UploadButtonContainer />
+              <PollButtonContainer />
+              <PrivacyDropdownContainer disabled={this.props.isEditing} />
+              <SpoilerButtonContainer />
+              <LanguageDropdown />
+            </div>
 
-          <div className='character-counter__wrapper'>
-            <CharacterCounter max={maxChars} text={this.getFulltextForCharacterCounting()} />
+            <div className='character-counter__wrapper'>
+              <CharacterCounter max={maxChars} text={this.getFulltextForCharacterCounting()} />
+            </div>
           </div>
         </div>
 

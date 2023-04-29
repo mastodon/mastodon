@@ -352,17 +352,17 @@ RSpec.describe Status, type: :model do
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with([tag1.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status5.id])
-        expect(Status.tagged_with([tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status2.id, status5.id])
-        expect(Status.tagged_with([tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status3.id, status5.id])
+        expect(Status.tagged_with([tag1.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status5.id)
+        expect(Status.tagged_with([tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status5.id)
+        expect(Status.tagged_with([tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status3.id, status5.id)
       end
     end
 
     context 'when given multiple tags' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status2.id, status5.id])
-        expect(Status.tagged_with([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status3.id, status5.id])
-        expect(Status.tagged_with([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status2.id, status3.id, status5.id])
+        expect(Status.tagged_with([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status2.id, status5.id)
+        expect(Status.tagged_with([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status3.id, status5.id)
+        expect(Status.tagged_with([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status3.id, status5.id)
       end
     end
   end
@@ -379,15 +379,15 @@ RSpec.describe Status, type: :model do
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_all([tag1.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status5.id])
-        expect(Status.tagged_with_all([tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status2.id, status5.id])
-        expect(Status.tagged_with_all([tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status3.id])
+        expect(Status.tagged_with_all([tag1.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status5.id)
+        expect(Status.tagged_with_all([tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status5.id)
+        expect(Status.tagged_with_all([tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status3.id)
       end
     end
 
     context 'when given multiple tags' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_all([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status5.id])
+        expect(Status.tagged_with_all([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status5.id)
         expect(Status.tagged_with_all([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to eq []
         expect(Status.tagged_with_all([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to eq []
       end
@@ -406,17 +406,17 @@ RSpec.describe Status, type: :model do
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_none([tag1.id]).reorder(:id).pluck(:id).uniq).to match_array([status2.id, status3.id, status4.id])
-        expect(Status.tagged_with_none([tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status3.id, status4.id])
-        expect(Status.tagged_with_none([tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status2.id, status4.id])
+        expect(Status.tagged_with_none([tag1.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status3.id, status4.id)
+        expect(Status.tagged_with_none([tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status3.id, status4.id)
+        expect(Status.tagged_with_none([tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status2.id, status4.id)
       end
     end
 
     context 'when given multiple tags' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_none([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status3.id, status4.id])
-        expect(Status.tagged_with_none([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status2.id, status4.id])
-        expect(Status.tagged_with_none([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status4.id])
+        expect(Status.tagged_with_none([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status3.id, status4.id)
+        expect(Status.tagged_with_none([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status4.id)
+        expect(Status.tagged_with_none([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status4.id)
       end
     end
   end

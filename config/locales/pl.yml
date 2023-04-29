@@ -131,8 +131,8 @@ pl:
       removed_header_msg: Pomyślnie usunięto obraz nagłówka %{username}
       resend_confirmation:
         already_confirmed: To konto zostało już potwierdzone
-        send: Wyślij ponownie e-mail z potwierdzeniem
-        success: E-mail z potwierdzeniem został wysłany!
+        send: Wyślij ponownie link potwierdzający
+        success: Link potwierdzający został pomyślnie wysłany!
       reset: Resetuj
       reset_password: Resetuj hasło
       resubscribe: Ponów subskrypcję
@@ -1024,7 +1024,7 @@ pl:
       prefix_invited_by_user: "@%{name} zaprasza Cię do dołączenia na ten serwer Mastodona!"
       prefix_sign_up: Zarejestruj się na Mastodon już dziś!
       suffix: Mając konto, możesz obserwować ludzi, publikować wpisy i wymieniać się wiadomościami z użytkownikami innych serwerów Mastodona i nie tylko!
-    didnt_get_confirmation: Nie otrzymałeś(-aś) instrukcji weryfikacji?
+    didnt_get_confirmation: Nie otrzymano linku potwierdzającego?
     dont_have_your_security_key: Nie masz klucza bezpieczeństwa?
     forgot_password: Nie pamiętasz hasła?
     invalid_reset_password_token: Token do resetowania hasła jest nieprawidłowy lub utracił ważność. Spróbuj uzyskać nowy.
@@ -1037,12 +1037,17 @@ pl:
     migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">zrobić to tutaj</a>.
     or_log_in_with: Lub zaloguj się z użyciem
     privacy_policy_agreement_html: Przeczytałem/am i akceptuję <a href="%{privacy_policy_path}" target="_blank">politykę prywatności</a>
+    progress:
+      confirm: Potwierdź e-mail
+      details: Twoje dane
+      review: Nasza opinia
+      rules: Akceptuj zasady
     providers:
       cas: CAS
       saml: SAML
     register: Rejestracja
     registration_closed: "%{instance} nie przyjmuje nowych członków"
-    resend_confirmation: Ponownie prześlij instrukcje weryfikacji
+    resend_confirmation: Wyślij ponownie link potwierdzający
     reset_password: Zresetuj hasło
     rules:
       accept: Zaakceptuj
@@ -1052,9 +1057,10 @@ pl:
     security: Bezpieczeństwo
     set_new_password: Ustaw nowe hasło
     setup:
-      email_below_hint_html: Jeżeli poniższy adres e-mail jest nieprawidłowy, możesz zmienić go tutaj i otrzymać nowy e-mail potwierdzający.
-      email_settings_hint_html: E-mail potwierdzający został wysłany na %{email}. Jeżeli adres e-mail nie jest prawidłowy, możesz zmienić go w ustawieniach konta.
-      title: Konfiguracja
+      email_settings_hint_html: Kliknij link, który wysłaliśmy do Ciebie w celu zweryfikowania %{email}. Poczekamy tutaj.
+      link_not_received: Nie otrzymano linku?
+      new_confirmation_instructions_sent: Za kilka minut otrzymasz nowy e-mail z linkiem potwierdzającym!
+      title: Sprawdź swoją skrzynkę odbiorczą
     sign_in:
       preamble_html: Zaloguj się przy użyciu danych logowania <strong>%{domain}</strong>. Jeśli Twoje konto jest hostowane na innym serwerze, nie będziesz mógł się zalogować tutaj.
       title: Zaloguj się do %{domain}

@@ -408,7 +408,7 @@ class Account < ApplicationRecord
   end
 
   class << self
-    DISALLOWED_TSQUERY_CHARACTERS = /['?\\:‘’]/.freeze
+    DISALLOWED_TSQUERY_CHARACTERS = /['?\\:‘’]/
     TEXTSEARCH = "(setweight(to_tsvector('simple', accounts.display_name), 'A') || setweight(to_tsvector('simple', accounts.username), 'B') || setweight(to_tsvector('simple', coalesce(accounts.domain, '')), 'C'))"
 
     REPUTATION_SCORE_FUNCTION = '(greatest(0, coalesce(s.followers_count, 0)) / (greatest(0, coalesce(s.following_count, 0)) + 1.0))'

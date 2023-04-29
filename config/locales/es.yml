@@ -125,8 +125,8 @@ es:
       removed_header_msg: Se ha eliminado con éxito la imagen de cabecera de %{username}
       resend_confirmation:
         already_confirmed: Este usuario ya está confirmado
-        send: Reenviar el correo electrónico de confirmación
-        success: "¡Correo electrónico de confirmación enviado con éxito!"
+        send: Reenviar enlace de confirmación
+        success: "¡Enlace de confirmación enviado con éxito!"
       reset: Reiniciar
       reset_password: Reiniciar contraseña
       resubscribe: Re-suscribir
@@ -988,7 +988,7 @@ es:
       prefix_invited_by_user: "¡@%{name} te invita a unirte a este servidor de Mastodon!"
       prefix_sign_up: "¡Únete a Mastodon hoy!"
       suffix: "¡Con una cuenta podrás seguir a gente, publicar novedades e intercambiar mensajes con usuarios de cualquier servidor de Mastodon y más!"
-    didnt_get_confirmation: "¿No recibió el correo de confirmación?"
+    didnt_get_confirmation: "¿No recibiste un enlace de confirmación?"
     dont_have_your_security_key: "¿No tienes tu clave de seguridad?"
     forgot_password: "¿Olvidaste tu contraseña?"
     invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
@@ -1001,12 +1001,17 @@ es:
     migrate_account_html: Si deseas redireccionar esta cuenta a otra distinta, puedes <a href="%{path}">configurarlo aquí</a>.
     or_log_in_with: O inicia sesión con
     privacy_policy_agreement_html: He leído y acepto la <a href="%{privacy_policy_path}" target="_blank">política de privacidad</a>
+    progress:
+      confirm: Confirmar dirección de correo
+      details: Tus detalles
+      review: Nuestra revisión
+      rules: Aceptar reglas
     providers:
       cas: CAS
       saml: SAML
     register: Registrarse
     registration_closed: "%{instance} no está aceptando nuevos miembros"
-    resend_confirmation: Volver a enviar el correo de confirmación
+    resend_confirmation: Reenviar enlace de confirmación
     reset_password: Restablecer contraseña
     rules:
       accept: Aceptar
@@ -1016,13 +1021,16 @@ es:
     security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
     setup:
-      email_below_hint_html: Si la dirección de correo electrónico que aparece a continuación es incorrecta, se puede cambiarla aquí y recibir un nuevo correo electrónico de confirmación.
-      email_settings_hint_html: El correo electrónico de confirmación fue enviado a %{email}. Si esa dirección de correo electrónico no sea correcta, se puede cambiarla en la configuración de la cuenta.
-      title: Configuración
+      email_below_hint_html: Comprueba tu carpeta de correo no deseado o solicita otro enlace de confirmación. Puedes corregir tu dirección de correo electrónico si está mal.
+      email_settings_hint_html: Pulsa el enlace que te hemos enviado para verificar %{email}. Esperaremos aquí mismo.
+      link_not_received: "¿No recibiste un enlace?"
+      new_confirmation_instructions_sent: "¡Recibirás un nuevo correo electrónico con el enlace de confirmación en unos minutos!"
+      title: Revisa tu bandeja de entrada
     sign_in:
       preamble_html: Inicia sesión con tus credenciales de <strong>%{domain}</strong>. Si tu cuenta está alojada en un servidor diferente, no podrás iniciar sesión aquí.
       title: Iniciar sesión en %{domain}
     sign_up:
+      manual_review: Los registros en %{domain} pasan por la revisión manual de nuestros moderadores. Para ayudarnos a procesar tu registro, escribe un poco sobre ti mismo y por qué quieres una cuenta en %{domain}.
       preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra persona en la red, independientemente del servidor en el que se encuentre.
       title: Crear cuenta de Mastodon en %{domain}.
     status:

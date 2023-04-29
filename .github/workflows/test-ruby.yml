@@ -104,7 +104,6 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '2.7'
           - '3.0'
           - '3.1'
           - '.ruby-version'
@@ -135,10 +134,6 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version}}
           bundler-cache: true
-
-      - name: Update system gems
-        if: matrix.ruby-version == '2.7'
-        run: gem update --system
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'

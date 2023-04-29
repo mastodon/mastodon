@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.7.0', '< 3.3.0'
+ruby '>= 3.0.0'
 
 gem 'pkg-config', '~> 1.5'
 
@@ -9,10 +9,10 @@ gem 'puma', '~> 6.2'
 gem 'rails', '~> 6.1.7'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
-gem 'rack', '~> 2.2.6'
+gem 'rack', '~> 2.2.7'
 
 gem 'haml-rails', '~>2.0'
-gem 'pg', '~> 1.4'
+gem 'pg', '~> 1.5'
 gem 'makara', '~> 0.5'
 gem 'pghero'
 gem 'dotenv-rails', '~> 2.8'
@@ -30,7 +30,10 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.3'
 gem 'devise', '~> 4.9'
-gem 'devise-two-factor', '~> 4.0'
+# The below `v4.x` branch allows attr_encrypted 4.x, which is required for Rails 7.
+# Once a new gem version is pushed, we can go back to released gem and off of github branch.
+gem 'devise-two-factor', github: 'tinfoil/devise-two-factor', branch: 'v4.x'
+gem 'attr_encrypted', '~> 4.0'
 
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
@@ -76,7 +79,7 @@ gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 2.1'
-gem 'ruby-progressbar', '~> 1.11'
+gem 'ruby-progressbar', '~> 1.13'
 gem 'sanitize', '~> 6.0'
 gem 'scenic', '~> 1.7'
 gem 'sidekiq', '~> 6.5'
@@ -121,7 +124,7 @@ group :test do
   gem 'capybara', '~> 3.39'
   gem 'climate_control'
   gem 'faker', '~> 3.2'
-  gem 'json-schema', '~> 3.0'
+  gem 'json-schema', '~> 4.0'
   gem 'rack-test', '~> 2.1'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec_junit_formatter', '~> 0.6'

@@ -71,7 +71,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
     end
 
     it 'sets expected posts as pinned posts' do
-      expect(actor.pinned_statuses.pluck(:uri)).to match_array ['https://example.com/account/pinned/1', 'https://example.com/account/pinned/2', 'https://example.com/account/pinned/4']
+      expect(actor.pinned_statuses.pluck(:uri)).to contain_exactly('https://example.com/account/pinned/1', 'https://example.com/account/pinned/2', 'https://example.com/account/pinned/4')
     end
   end
 
