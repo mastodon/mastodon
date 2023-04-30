@@ -798,6 +798,7 @@ sl:
         remove_from_report: Odstrani iz prijave
         report: Poročaj
       deleted: Izbrisano
+      favourites: Priljubljeni
       history: Zgodovina različic
       in_reply_to: Odgovarja
       language: Jezik
@@ -880,6 +881,7 @@ sl:
       statuses:
         allow: Dovoli objavo
         allow_account: Dovoli avtorja
+        description_html: To so objave, za katere vaš strežnik ve, da so trenutno v skupni rabi in med priljubljenimi. Vašim novim uporabnikom in uporabnikom, ki se vračajo, lahko pomaga najti več oseb, ki jim bodo sledili. Nobena objava ni javno prikazana, dokler avtorja ne odobrite in avtor ne dovoli, da se njegov račun predlaga drugim. Posamezne objave lahko tudi dovolite ali zavrnete.
         disallow: Ne dovoli objave
         disallow_account: Ne dovoli avtorja
         no_status_selected: Nobena trendna objava ni bila spremenjena, ker ni bila nobena izbrana
@@ -1380,6 +1382,10 @@ sl:
         subject: "%{name} je oddal/a prijavo"
       sign_up:
         subject: "%{name} se je vpisal/a"
+    favourite:
+      body: '%{name} je vzljubil/a vašo objavo:'
+      subject: "%{name} je vzljubil/a vašo objavo"
+      title: Novo priljubljeno
     follow:
       body: "%{name} vam sedaj sledi!"
       subject: "%{name} vam sedaj sledi"
@@ -1623,8 +1629,10 @@ sl:
     enabled_hint: Samodejno izbriše vaše objave, ko dosežejo določen starostni prag, razen če ne ustrezajo eni od spodnjih izjem
     exceptions: Izjeme
     explanation: Ker je brisanje objav draga operacija, se to postopoma izvaja počasi, ko strežnik sicer ni zaseden. Zaradi tega se lahko vaše objave izbrišejo nekaj časa po tem, ko dosežejo starostni prag.
+    ignore_favs: Prezri priljubljene
     ignore_reblogs: Prezri izpostavitve
     interaction_exceptions: Izjeme na osnovi interakcije
+    interaction_exceptions_explanation: Upoštevajte, da ni nobene garancije za objave, ki bodo izbrisane, če padejo pod prag priljubljenosti ali izpostavljenosti, ko so ga že enkrat presegle.
     keep_direct: Ohrani neposredna sporočila
     keep_direct_hint: Ne izbriše nobenega izmed vaših neposrednih sporočil
     keep_media: Ohrani objave z medijskimi priponkami
@@ -1635,6 +1643,8 @@ sl:
     keep_polls_hint: Ne izbriše vaših anket
     keep_self_bookmark: Ohrani objave z zaznamki
     keep_self_bookmark_hint: Ne izbriše vaših lastnih objav, če ste jih postavili med zaznamke
+    keep_self_fav: Ohrani priljubljene objave
+    keep_self_fav_hint: Ne izbriše vaših lastnih objav, če ste jih postavili med priljubljene
     min_age:
       '1209600': 2 tedna
       '15778476': 6 mesecev
@@ -1645,6 +1655,8 @@ sl:
       '63113904': 2 leti
       '7889238': 3 mesece
     min_age_label: Starostna meja
+    min_favs: Obrži objave priljubljene vsaj
+    min_favs_hint: Ne izbriše nobene od vaših objav, ki je prejela vsaj takšno število priljubljenih. Pustite prazno, če želite izbrisati objave ne glede na število všečkov
     min_reblogs: Obdrži objave izpostavljene vsaj
     min_reblogs_hint: Ne izbriše nobene od vaših objav, ki je bila vsaj tolikokrat podprta. Pustite prazno, če želite izbrisati objave ne glede na število izpostavitev
   stream_entries:
