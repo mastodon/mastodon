@@ -5,7 +5,7 @@ type Props = {
   hash: string;
   width?: number;
   height?: number;
-  dummy?: boolean;
+  dummy?: boolean; // Whether dummy mode is enabled. If enabled, nothing is rendered and canvas left untouched
   children?: never;
   [key: string]: any;
 }
