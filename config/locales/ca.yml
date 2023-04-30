@@ -770,6 +770,7 @@ ca:
         remove_from_report: Treu de l'informe
         report: Denuncia
       deleted: Eliminada
+      favourites: Favorits
       history: Històric de versions
       in_reply_to: Responent a
       language: Llengua
@@ -850,6 +851,7 @@ ca:
       statuses:
         allow: Permet publicació
         allow_account: Permet autor
+        description_html: Això són publicacions que el teu servidor veu i que ara mateix es comparteixen i afavoreixen molt. Poden ajudar els teus usuari nous i recurrents a trobar més gent a qui seguir. No se'n mostra cap públicament fins que no n'aprovis l'autor i aquest permeti que el seu compte sigui suggerit. També pots acceptar o rebutjar publicacions una a una.
         disallow: Rebutja tut
         disallow_account: Rebutja autor
         no_status_selected: No s'han canviat els tuts en tendència perquè cap ha estat seleccionat
@@ -1330,6 +1332,10 @@ ca:
         subject: "%{name} ha presentat un informe"
       sign_up:
         subject: "%{name} s'ha registrat"
+    favourite:
+      body: '%{name} ha afavorit la teva publicació:'
+      subject: "%{name} ha afavorit la teva publicació"
+      title: Nou favorit
     follow:
       body: "%{name} t'està seguint!"
       subject: "%{name} t'està seguint"
@@ -1561,8 +1567,10 @@ ca:
     enabled_hint: Suprimeix automàticament els teus tuts quan arribin a un llindar d’edat especificat, tret que coincideixin amb una de les excepcions següents
     exceptions: Excepcions
     explanation: Com que suprimir tuts és una operació cara, es fa lentament amb el pas del temps i quan el servidor no està ocupat. Per aquest motiu, és possible que els teus tuts se suprimeixin un temps després d’assolir el llindar d’edat.
+    ignore_favs: Ignora els favorits
     ignore_reblogs: Ignora impulsos
     interaction_exceptions: Excepcions basades en interaccions
+    interaction_exceptions_explanation: Tingues en compte que no es garanteix que se suprimeixen les publicacions si resten per sota del llindar de favorit o impuls després d'haver-lo superat.
     keep_direct: Mantenir missatges directes
     keep_direct_hint: No esborra cap dels teus missatges directes
     keep_media: Mantenir els tuts amb contingut gràfic
@@ -1573,6 +1581,8 @@ ca:
     keep_polls_hint: No esborra cap de les teves enquestes
     keep_self_bookmark: Mantenir els tuts que has desat a les adreces d'interès
     keep_self_bookmark_hint: No esborra els teus propis tuts si els has desat en les adreces d'interès
+    keep_self_fav: Mantén les publicacions que has afavorit
+    keep_self_fav_hint: No esborra les teves publicacions si les has afavorit
     min_age:
       '1209600': 2 setmanes
       '15778476': 6 mesos
@@ -1583,6 +1593,8 @@ ca:
       '63113904': 2 anys
       '7889238': 3 mesos
     min_age_label: Antiguitat
+    min_favs: Mantén les publicacions afavorides més de
+    min_favs_hint: No esborra cap de les teves publicacions que hagin rebut com a mínim aquest nombre de favorits. En blanc per a suprimir-les tant li fa el nombre de favorits
     min_reblogs: Mantenir les publicacions impulsades més de
     min_reblogs_hint: No suprimeix cap de les teves publicacions que s'hagin impulsat més que aquest nombre de vegades. Deixa-ho en blanc per a suprimir les publicacions independentment del nombre d'impulsos que tinguin.
   stream_entries:
