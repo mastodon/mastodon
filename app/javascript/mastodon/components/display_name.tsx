@@ -18,11 +18,10 @@ export default class DisplayName extends React.PureComponent<Props> {
 
     const emojis = currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
 
-    for (let i = 0; i < emojis.length; i++) {
-      const emoji = emojis[i];
+    emojis.forEach(emoji => {
       const originalSrc = emoji.getAttribute('data-original');
       if(originalSrc != null) emoji.src = originalSrc;
-    }
+    });
   };
 
   handleMouseLeave: React.ReactEventHandler<HTMLSpanElement> = ({ currentTarget }) => {
@@ -32,11 +31,10 @@ export default class DisplayName extends React.PureComponent<Props> {
 
     const emojis = currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
 
-    for (let i = 0; i < emojis.length; i++) {
-      const emoji = emojis[i];
-      const originalSrc = emoji.getAttribute('data-static');
-      if(originalSrc != null) emoji.src = originalSrc;
-    }
+    emojis.forEach(emoji => {
+      const staticSrc = emoji.getAttribute('data-static');
+      if(staticSrc != null) emoji.src = staticSrc;
+    });
   };
 
   render () {
