@@ -770,6 +770,7 @@ en-GB:
         remove_from_report: Remove from report
         report: Report
       deleted: Deleted
+      favourites: Favourites
       history: Version history
       in_reply_to: Replying to
       language: Language
@@ -850,10 +851,14 @@ en-GB:
       statuses:
         allow: Allow post
         allow_account: Allow author
+        description_html: These are posts that your server knows about that are currently being shared and favourited a lot at the moment. It can help your new and returning users to find more people to follow. No posts are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual posts.
         disallow: Disallow post
         disallow_account: Disallow author
         no_status_selected: No trending posts were changed as none were selected
         not_discoverable: Author has not opted-in to being discoverable
+        shared_by:
+          one: Shared or favourited one time
+          other: Shared and favourited %{friendly_count} times
         title: Trending posts
       tags:
         current_score: Current score %{score}
@@ -1330,6 +1335,10 @@ en-GB:
         subject: "%{name} submitted a report"
       sign_up:
         subject: "%{name} signed up"
+    favourite:
+      body: 'Your post was favourited by %{name}:'
+      subject: "%{name} favourited your post"
+      title: New favourite
     follow:
       body: "%{name} is now following you!"
       subject: "%{name} is now following you"
@@ -1561,8 +1570,10 @@ en-GB:
     enabled_hint: Automatically deletes your posts once they reach a specified age threshold, unless they match one of the exceptions below
     exceptions: Exceptions
     explanation: Because deleting posts is an expensive operation, this is done slowly over time when the server is not otherwise busy. For this reason, your posts may be deleted a while after they reach the age threshold.
+    ignore_favs: Ignore favourites
     ignore_reblogs: Ignore boosts
     interaction_exceptions: Exceptions based on interactions
+    interaction_exceptions_explanation: Note that there is no guarantee for posts to be deleted if they go below the favourite or boost threshold after having once gone over them.
     keep_direct: Keep direct messages
     keep_direct_hint: Doesn't delete any of your direct messages
     keep_media: Keep posts with media attachments
@@ -1573,6 +1584,8 @@ en-GB:
     keep_polls_hint: Doesn't delete any of your polls
     keep_self_bookmark: Keep posts you bookmarked
     keep_self_bookmark_hint: Doesn't delete your own posts if you have bookmarked them
+    keep_self_fav: Keep posts you favourited
+    keep_self_fav_hint: Doesn't delete your own posts if you have favourited them
     min_age:
       '1209600': 2 weeks
       '15778476': 6 months
@@ -1583,6 +1596,8 @@ en-GB:
       '63113904': 2 years
       '7889238': 3 months
     min_age_label: Age threshold
+    min_favs: Keep posts favourited at least
+    min_favs_hint: Doesn't delete any of your posts that has received at least this number of favourites. Leave blank to delete posts regardless of their number of favourites
     min_reblogs: Keep posts boosted at least
     min_reblogs_hint: Doesn't delete any of your posts that has been boosted at least this number of times. Leave blank to delete posts regardless of their number of boosts
   stream_entries:
