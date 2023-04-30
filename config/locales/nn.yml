@@ -1,10 +1,9 @@
----
 nn:
   about:
     about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
     contact_missing: Ikkje sett
     contact_unavailable: I/T
-    hosted_on: "%{domain} er vert for Mastodon"
+    hosted_on: '%{domain} er vert for Mastodon'
     title: Om
   accounts:
     follow: Fylg
@@ -125,6 +124,8 @@ nn:
       removed_header_msg: Fjerna %{username} sitt toppbilete
       resend_confirmation:
         already_confirmed: Denne brukaren er allereie stadfesta
+        send: Send bekreftelseslenken på nytt
+        success: Bekreftelseslenken ble sendt!
       reset: Attstill
       reset_password: Attstill passord
       resubscribe: Ting på nytt
@@ -629,7 +630,7 @@ nn:
           mark_as_sensitive_html: Markera dei påtala mediefilene som sensitive
           silence_html: Sterkt avgrensa korleis <strong>@%{acct}</strong> kan samhandla ved å gjera brukarprofilen og innhaldet synleg berre for folk som allereie fylgjer brukarkontoen eller søkjer han opp manuelt
           suspend_html: Stengja brukarkontoen til <strong>@%{acct}</strong>, slik at brukarprofilen og innhaldet blir utilgjengeleg og umogleg å samhandla med
-        close_report: Marker rapport nr. %{id} som løyst
+        close_report: 'Marker rapport nr. %{id} som løyst'
         close_reports_html: Marker <strong>alle</strong> rapportane om <strong>@%{acct}</strong> som løyste
         delete_data_html: Slett brukarprofilen og innhaldet til<strong>@%{acct}</strong> om 30 dagar frå no med mindre brukarkontoen blir opna att
         preview_preamble_html: "<strong>@%{acct}</strong> vil få ei åtvaring med dette innhaldet:"
@@ -763,7 +764,6 @@ nn:
         remove_from_report: Fjern fra rapport
         report: Rapport
       deleted: Sletta
-      favourites: Favorittar
       history: Versjonshistorikk
       in_reply_to: Svarar på
       language: Språk
@@ -804,6 +804,12 @@ nn:
         message_html: Du har ikke definert noen serverregler.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-prosess kjører for %{value} køen(e). Vennligst se gjennom Sidekiq-konfigurasjonen din
+      upload_check_privacy_error:
+        action: Sjekk her for mer informasjon
+        message_html: "<strong>Webserveren din er feilkonfigurert. Personvernet til brukerne dine er i fare.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Sjekk her for mer informasjon
+        message_html: "<strong>Objektlagringen din er feilkonfigurert. Personvernet til brukerne dine er i fare.</strong>"
     tags:
       review: Sjå gjennom status
       updated_msg: Emneknagginnstillingane er oppdaterte
@@ -838,14 +844,10 @@ nn:
       statuses:
         allow: Tillat innlegg
         allow_account: Tillat forfatter
-        description_html: Dette er innlegg som tenaren din veit om og som blir mykje delt og markerte som favorittar no for tida. Dei kan hjelpa nye og gamle brukarar å finna folk dei vil fylgja. Ingen innlegg vert vist offentleg utan at du tillet forfattaren, og utan at forfattaren tillet kontoen deira å bli foreslått for andre. Du kan også tillata eller avvisa individuelle innlegg.
         disallow: Ikke tillat innlegg
         disallow_account: Forby forfattar
         no_status_selected: Ingen populære innlegg vart endra sidan ingen var valde
         not_discoverable: Forfattaren har ikkje valt å kunna bli oppdaga
-        shared_by:
-          one: Delt eller markert som favoritt ein gong
-          other: Delt og markert som favoritt %{friendly_count} gongar
         title: Populære innlegg
       tags:
         current_score: Gjeldande poengsum %{score}
@@ -917,7 +919,7 @@ nn:
     new_report:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Nokon frå %{domain} har meldt %{target}
-      subject: Ny rapport for %{instance} (#%{id})
+      subject: 'Ny rapport for %{instance} (#%{id})'
     new_trends:
       body: 'Du må sjå gjennom desse elementa før dei kan visast offentleg:'
       new_trending_links:
@@ -950,7 +952,7 @@ nn:
     toot_layout: Tutoppsett
   application_mailer:
     notification_preferences: Endr e-post-innstillingane
-    salutation: Hei %{name},
+    salutation: "Hei %{name},"
     settings: 'Endr e-post-innstillingar: %{link}'
     view: 'Sjå:'
     view_profile: Sjå profil
@@ -974,6 +976,7 @@ nn:
       prefix_invited_by_user: "@%{name} spør deg om å verta med i ein Mastodon-tenar!"
       prefix_sign_up: Meld deg på Mastodon i dag!
       suffix: Med ein konto kan du fylgja folk, skriva innlegg og veksla meldingar med brukarar frå kva som helst annan Mastodon-tenar og meir!
+    didnt_get_confirmation: Mottok du ikke en bekreftelseslenke?
     dont_have_your_security_key: Har du ikke sikkerhetsnøkkelen din?
     forgot_password: Har du gløymt passordet ditt?
     invalid_reset_password_token: Tilgangsnykelen er ugyldig eller utgått. Ver venleg å beda om ein ny ein.
@@ -986,6 +989,11 @@ nn:
     migrate_account_html: Om du vil visa denne kontoen til ein anna, kan du <a href="%{path}">skipe det her</a>.
     or_log_in_with: Eller logg inn med
     privacy_policy_agreement_html: Jeg har lest og godtar <a href="%{privacy_policy_path}" target="_blank">retningslinjer for personvern</a>
+    progress:
+      confirm: Bekreft e-postadresse
+      details: Dine opplysninger
+      review: Vår gjennomgang
+      rules: Godta regler
     providers:
       cas: CAS
       saml: SAML
@@ -1290,10 +1298,6 @@ nn:
         subject: "%{name} leverte en rapport"
       sign_up:
         subject: "%{name} registrerte seg"
-    favourite:
-      body: 'Statusen din vart merkt som favoritt av %{name}:'
-      subject: "%{name} merkte statusen din som favoritt"
-      title: Nye favorittar
     follow:
       body: "%{name} fylgjer deg!"
       subject: "%{name} fylgjer deg"
@@ -1505,7 +1509,7 @@ nn:
     show_older: Vis eldre
     show_thread: Vis tråden
     sign_in_to_participate: Logg inn for å verta med i samtalen
-    title: "%{name}: «%{quote}»"
+    title: '%{name}: «%{quote}»'
     visibilities:
       direct: Direkte
       private: Berre fylgjarar
@@ -1519,10 +1523,8 @@ nn:
     enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor
     exceptions: Unntak
     explanation: Siden sletting av innlegg er en krevende operasjon, blir dette gjort sakte over tid når tjeneren ellers ikke er opptatt. Av denne grunn kan det hende at innleggene dine slettes først en stund etter at de har nådd aldersgrensen.
-    ignore_favs: Ignorer favoritter
     ignore_reblogs: Ignorer fremhevinger
     interaction_exceptions: Unntak basert på interaksjoner
-    interaction_exceptions_explanation: Merk at det ikke er noen garanti for at innlegg blir slettet hvis de går under favoritt- eller fremhevelsesgrensen etter å ha gått over dem en gang.
     keep_direct: Behold direktemeldinger
     keep_direct_hint: Sletter ingen av direktemeldingene dine
     keep_media: Behold innlegg med mediavedlegg
@@ -1533,8 +1535,6 @@ nn:
     keep_polls_hint: Sletter ingen av dine røystingar
     keep_self_bookmark: Behald bokmerka innlegg
     keep_self_bookmark_hint: Sletter ikkje dine eigne innlegg om du har bokmerka dei
-    keep_self_fav: Behald innlegg som favoritt
-    keep_self_fav_hint: Sletter ikkje dine eigne innlegg om du har favorittmerka dei
     min_age:
       '1209600': 2 veker
       '15778476': 6 månader
@@ -1545,8 +1545,6 @@ nn:
       '63113904': 2 år
       '7889238': 3 månader
     min_age_label: Aldersterskel
-    min_favs: Behold innlegg som er favorittmarkert av minst
-    min_favs_hint: Slettar ingen av innlegga dine som har fått minst så mange favorittar. La det stå tomt for å sletta innlegga uansett kor mange favorittar dei har fått
     min_reblogs: Behold innlegg fremhevet av minst
     min_reblogs_hint: Sletter ikke noen av dine innlegg som har blitt fremhevet minst dette antall ganger. La stå tom for å slette innlegg uavhengig av antall fremhevinger
   stream_entries:
@@ -1646,11 +1644,13 @@ nn:
       title: Velkomen om bord, %{name}!
   users:
     follow_limit_reached: Du kan ikkje fylgja fleire enn %{limit} folk
+    go_to_sso_account_settings: Gå til din identitetsleverandørs kontoinnstillinger
     invalid_otp_token: Ugyldig tostegskode
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
     seamless_external_login: Du er logga inn gjennom eit eksternt reiskap, so passord og e-postinstillingar er ikkje tilgjengelege.
     signed_in_as: 'Logga inn som:'
   verification:
+    explanation_html: 'Du kan <strong>bekrefte at du selv eier lenkene i din profilmetadata</strong>. For å gjøre det, må det tillenkede nettstedet inneholde en lenke som fører tilbake til Mastodon-profilen din. Etter å ha laget den lenken må du kanskje komme tilbake hit og lagre profilen på ny, for at verifisering skal kunne gjennomføres. Lenken tilbake <strong>må</strong> ha en <code>rel="me"</code>-attributt. Tekstinnholdet til lenken er irrelevant. Her er et eksempel:'
     verification: Stadfesting
   webauthn_credentials:
     add: Legg til ny sikkerhetsnøkkel
