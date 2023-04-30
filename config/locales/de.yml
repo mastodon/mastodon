@@ -851,14 +851,14 @@ de:
       statuses:
         allow: Beitrag erlauben
         allow_account: Autor*in erlauben
-        description_html: Dies sind Beiträge, von denen Dein Server weiß, dass sie derzeit viel geteilt und favorisiert werden. Es kann Dir helfen neue und wiederkehrende Personen zu finden, denen Du folgen kannst. Die Beiträge werden erst dann öffentlich angezeigt, wenn Du die AutorIn genehmigst und sie es zulässt, dass ihr Profil anderen vorgeschlagen wird. Du kannst auch einzelne Beiträge zulassen oder ablehnen.
+        description_html: Dies sind Beiträge, von denen dein Server weiß, dass sie derzeit viel geteilt und favorisiert werden. Dies kann neuen und wiederkehrenden Personen helfen, weitere Profile zu finden, denen sie folgen können. Die Beiträge werden erst dann öffentlich angezeigt, wenn du die Person genehmigst und sie es zulässt, dass ihr Profil anderen vorgeschlagen wird. Du kannst auch einzelne Beiträge zulassen oder ablehnen.
         disallow: Beitrag verbieten
         disallow_account: Autor*in verweigern
         no_status_selected: Keine angesagten Beiträge wurden geändert, da keine ausgewählt wurden
         not_discoverable: Autor*in hat sich dafür entschieden, nicht entdeckt zu werden
         shared_by:
           one: Einmal geteilt oder favorisiert
-          other: '%{friendly_count} mal geteilt oder favorisiert'
+          other: '%{friendly_count}-mal geteilt oder favorisiert'
         title: Angesagte Beiträge
       tags:
         current_score: Aktuelle Punktzahl %{score}
@@ -1573,7 +1573,7 @@ de:
     ignore_favs: Favoriten ignorieren
     ignore_reblogs: Geteilte Beiträge ignorieren
     interaction_exceptions: Ausnahmen basierend auf Interaktionen
-    interaction_exceptions_explanation: Beachte, dass Beiträge nicht gelöscht werden, sobald deine Grenzwerte für Favoriten oder geteilte Beiträge einmal überschritten worden sind – auch dann nicht, wenn diese Schwellenwerte mittlerweile nicht mehr erreicht werden.
+    interaction_exceptions_explanation: Beachte, dass Beiträge nicht gelöscht werden, sobald deine Grenzwerte für Favoriten oder geteilte Beiträge einmal überschritten wurden – auch dann nicht, wenn diese Schwellenwerte mittlerweile nicht mehr erreicht werden.
     keep_direct: Direktnachrichten behalten
     keep_direct_hint: Löscht keine deiner privaten Nachrichten
     keep_media: Beiträge mit angehängten Medien-Dateien behalten
@@ -1585,7 +1585,7 @@ de:
     keep_self_bookmark: Als Lesezeichen markierte Beiträge behalten
     keep_self_bookmark_hint: Löscht keinen deiner Beiträge, die du als Lesezeichen gesetzt hast
     keep_self_fav: Favorisierte Beiträge behalten
-    keep_self_fav_hint: Eigene Beiträge nicht entfernen, wenn du sie favorisiert hast
+    keep_self_fav_hint: Löscht keinen deiner Beiträge, die du favorisiert hast
     min_age:
       '1209600': 2 Wochen
       '15778476': 6 Monate
@@ -1596,7 +1596,7 @@ de:
       '63113904': 2 Jahre
       '7889238': 3 Monate
     min_age_label: Altersgrenze
-    min_favs: Behalte Beiträge, die öfter favorisiert wurden als
+    min_favs: Beiträge mit mindestens dieser Anzahl an Favoriten behalten
     min_favs_hint: Löscht keine Beiträge, die mindestens so oft favorisiert worden sind. Lass das Feld leer, um alle Beiträge, unabhängig der Anzahl an Favoriten zu löschen
     min_reblogs: Behalte Beiträge, die öfter geteilt wurden als
     min_reblogs_hint: Löscht keine Beiträge, die mindestens so oft geteilt worden sind. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an geteilten Beiträgen – zu löschen
