@@ -770,6 +770,7 @@ pt-PT:
         remove_from_report: Remover da denúncia
         report: Denúncia
       deleted: Eliminado
+      favourites: Favoritos
       history: Histórico de versões
       in_reply_to: A responder a
       language: Língua
@@ -850,10 +851,14 @@ pt-PT:
       statuses:
         allow: Permitir publicação
         allow_account: Permitir autor
+        description_html: Estas são publicações que o seu servidor conhece e que atualmente estão a ser frequentemente partilhadas e adicionadas aos favoritos. Isto pode ajudar os seus utilizadores, novos e retornados, a encontrar mais pessoas para seguir. Nenhuma publicação será exibida publicamente até que aprove o autor, e o autor permita que a sua conta seja sugerida a outros. Você também pode permitir ou rejeitar publicações individualmente.
         disallow: Não permitir publicação
         disallow_account: Não permitir autor
         no_status_selected: Nenhuma publicação em alta foi alterada, pois nenhuma foi selecionada
         not_discoverable: O autor optou por não permitir que a sua conta seja sugerida a outros
+        shared_by:
+          one: Partilhada ou adicionada aos favoritos uma vez
+          other: Partilhada ou adicionada aos favoritos %{friendly_count} vezes
         title: Publicações em alta
       tags:
         current_score: Pontuação atual %{score}
@@ -1330,6 +1335,10 @@ pt-PT:
         subject: "%{name} submeteu uma denúncia"
       sign_up:
         subject: "%{name} inscreveu-se"
+    favourite:
+      body: 'A sua publicação foi adicionada aos favoritos por %{name}:'
+      subject: "%{name} adicionou a sua publicação aos favoritos"
+      title: Novo favorito
     follow:
       body: "%{name} é teu seguidor!"
       subject: "%{name} começou a seguir-te"
@@ -1561,6 +1570,7 @@ pt-PT:
     enabled_hint: Apaga automaticamente as suas publicações assim que atingirem um certo limite de tempo, a não ser que correspondam a uma das seguintes excepções
     exceptions: Exceções
     explanation: Como apagar publicações é uma operação custosa, isto é feito lentamente ao longo do tempo, quando o servidor não está ocupado. Por esta razão, as suas publicações podem ser apagadas um pouco depois de atingirem o limite de idade definido.
+    ignore_favs: Ignorar favoritos
     ignore_reblogs: Ignorar reforços
     interaction_exceptions: Exceções baseadas em interações
     keep_direct: Manter mensagens diretas
