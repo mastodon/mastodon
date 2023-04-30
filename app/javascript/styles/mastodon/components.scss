@@ -1152,10 +1152,12 @@ body > [data-popper-placement] {
     .status__content,
     .status__action-bar,
     .media-gallery,
-    .video,
-    .audio,
-    .attachment-list {
-      margin-left: 46px + 10px;
+    .video-player,
+    .audio-player,
+    .attachment-list,
+    .picture-in-picture-placeholder,
+    .status-card {
+      margin-inline-start: 46px + 10px;
       width: calc(100% - (46px + 10px));
     }
   }
@@ -2395,10 +2397,9 @@ $ui-header-height: 55px;
   height: $ui-header-height;
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 3;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden;
 
   &__logo {
     display: inline-flex;
@@ -2407,6 +2408,20 @@ $ui-header-height: 55px;
     .logo {
       height: $ui-header-height - 30px;
       width: auto;
+    }
+
+    .logo--wordmark {
+      display: none;
+    }
+
+    @media screen and (min-width: 320px) {
+      .logo--wordmark {
+        display: block;
+      }
+
+      .logo--icon {
+        display: none;
+      }
     }
   }
 
@@ -5130,7 +5145,7 @@ a.status-card.compact:hover {
     background: $ui-base-color;
     border-radius: 0 0 4px 4px;
     box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
-    z-index: 2;
+    z-index: 99;
     font-size: 13px;
     padding: 15px 5px;
 
@@ -6508,7 +6523,7 @@ a.status-card.compact:hover {
   background: darken($ui-base-color, 8%);
   border-radius: 4px;
   padding-bottom: 44px;
-  direction: ltr;
+  width: 100%;
 
   &.editable {
     border-radius: 0;
@@ -6575,7 +6590,6 @@ a.status-card.compact:hover {
   max-width: 100%;
   border-radius: 4px;
   box-sizing: border-box;
-  direction: ltr;
   color: $white;
 
   &.editable {
@@ -6619,6 +6633,7 @@ a.status-card.compact:hover {
 
   &__controls {
     position: absolute;
+    direction: ltr;
     z-index: 2;
     bottom: 0;
     inset-inline-start: 0;

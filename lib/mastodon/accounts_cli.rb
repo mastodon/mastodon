@@ -102,7 +102,7 @@ module Mastodon
           say('Use --force to reattach it anyway and delete the other user')
           return
         elsif account.user.present?
-          DeleteAccountService.new.call(account, reserve_email: false)
+          DeleteAccountService.new.call(account, reserve_email: false, reserve_username: false)
           account = Account.new(username: username)
         end
       end
@@ -545,7 +545,7 @@ module Mastodon
         User.pending.find_each(&:approve!)
         say('OK', :green)
       elsif options[:number]&.positive?
-        User.pending.limit(options[:number]).each(&:approve!)
+        User.pending.order(created_at: :asc).limit(options[:number]).each(&:approve!)
         say('OK', :green)
       elsif username.present?
         account = Account.find_local(username)
