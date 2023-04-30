@@ -1399,12 +1399,6 @@ Rails/OutputSafety:
   Exclude:
     - 'config/initializers/simple_form.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: NotNilAndNotEmpty, NotBlank, UnlessBlank.
-Rails/Present:
-  Exclude:
-    - 'config/initializers/content_security_policy.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: Include.
 # Include: **/Rakefile, **/*.rake
