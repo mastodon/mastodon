@@ -542,7 +542,7 @@ module Mastodon
         User.pending.find_each(&:approve!)
         say('OK', :green)
       elsif options[:number]
-        User.pending.limit(options[:number]).each(&:approve!)
+        User.pending.order(created_at: :asc).limit(options[:number]).each(&:approve!)
         say('OK', :green)
       elsif username.present?
         account = Account.find_local(username)
