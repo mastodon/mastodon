@@ -770,6 +770,7 @@ fi:
         remove_from_report: Poista raportista
         report: Raportti
       deleted: Poistettu
+      favourites: Suosikit
       history: Versiohistoria
       in_reply_to: Vastaa
       language: Kieli
@@ -850,10 +851,14 @@ fi:
       statuses:
         allow: Salli viesti
         allow_account: Salli tekijä
+        description_html: Nämä ovat julkaisuja, joita on palvelimesi mukaan jaettu tai merkitty suosikiksi paljon. Tämä voi auttaa uusia ja palaavia käyttäjiä löytämään lisää seurattavia. Julkaisuja ei näytetä julkisesti ennen kuin hyväksyt niiden julkaisijan, ja julkaisija sallii tilinsä ehdottamisen. Voit myös sallia tai hylätä yksittäisiä julkaisuja.
         disallow: Estä viesti
         disallow_account: Estä tekijä
         no_status_selected: Suosittuja viestejä ei muutettu, koska yhtään ei valittu
         not_discoverable: Tekijä ei ole ilmoittanut olevansa löydettävissä
+        shared_by:
+          one: Jaettu tai merkitty suosikiksi kerran
+          other: Jaettu ja merkitty suosikiksi %{friendly_count} kertaa
         title: Suositut viestit
       tags:
         current_score: Nykyinen tulos %{score}
@@ -1330,6 +1335,10 @@ fi:
         subject: "%{name} lähetti raportin"
       sign_up:
         subject: "%{name} rekisteröityi"
+    favourite:
+      body: '%{name} merkitsi julkaisusi suosikiksi:'
+      subject: "%{name} merkitsi julkaisusi suosikiksi"
+      title: Uusi suosikki
     follow:
       body: "%{name} seuraa nyt sinua!"
       subject: "%{name} seuraa nyt sinua"
@@ -1561,8 +1570,10 @@ fi:
     enabled_hint: Poistaa viestit automaattisesti, kun ne saavuttavat tietyn ikärajan, elleivät ne täsmää yhtä alla olevista poikkeuksista
     exceptions: Poikkeukset
     explanation: Koska viestien poistaminen on kallista toimintaa, sitä tehdään hitaasti ajan mittaan, kun palvelin ei ole muutoin kiireinen. Viestejäsi voidaankin siis poistaa myös viiveellä verrattuna niille määrittämääsi aikarajaan.
+    ignore_favs: Älä huomioi suosikkeja
     ignore_reblogs: Ohita tehostukset
     interaction_exceptions: Poikkeukset, jotka perustuvat vuorovaikutukseen
+    interaction_exceptions_explanation: Huomioi, että viestien poistumisesta ei ole varmuutta, jos ne alittavat suosikki- tai tehostusrajan vaikka raja olisikin aiemmin ylitetty.
     keep_direct: Säilytä yksityisviestit
     keep_direct_hint: Ei poista mitään sinun suoria viestejä
     keep_media: Säilytä viestit, joissa on liitetiedostoja
@@ -1573,6 +1584,8 @@ fi:
     keep_polls_hint: Ei poista yhtäkään äänestystä
     keep_self_bookmark: Säilytä kirjanmerkkeihin lisäämäsi viestit
     keep_self_bookmark_hint: Ei poista viestejäsi, jos olet lisännyt ne kirjanmerkkeihin
+    keep_self_fav: Säilytä suosikkijulkaisusi
+    keep_self_fav_hint: Ei poista omia julkaisujasi, jos olet merkinnyt ne suosikeiksi
     min_age:
       '1209600': 2 viikkoa
       '15778476': 6 kuukautta
@@ -1583,6 +1596,8 @@ fi:
       '63113904': 2 vuotta
       '7889238': 3 kuukautta
     min_age_label: Ikäraja
+    min_favs: Säilytä julkaisujen suosikkimerkintä ainakin
+    min_favs_hint: Ei poista julkaisujasi, jotka on merkitty suosikiksi ainakin niin monta kertaa kuin tässä on määritetty. Jätä tyhjäksi, jos haluat julkaisujen poistuvan riippumatta niiden suosikkimerkintämäärästä.
     min_reblogs: Pidä viestit tehostettuna vähintään
     min_reblogs_hint: Ei poista yhtään viestiäsi, jota on tehostettu vähintään näin monta kertaa. Jätä tyhjäksi poistaaksesi viestejä riippumatta niiden tehosteiden määrästä
   stream_entries:
