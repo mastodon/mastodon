@@ -1,4 +1,3 @@
----
 fy:
   activerecord:
     attributes:
@@ -147,49 +146,49 @@ fy:
       application:
         title: OAuth-autorisaasje fereaske
     scopes:
-      admin:read: alle gegevens op de server lêze
-      admin:read:accounts: gefoelige ynformaasje fan alle accounts lêze
-      admin:read:canonical_email_blocks: lês gefoelige ynformaasje fan alle kanonike e-mailblokken
-      admin:read:domain_allows: lês gefoelige ynformaasje fan alle domeinen
-      admin:read:domain_blocks: lês gefoelige ynformaasje fan alle domeinblokken
-      admin:read:email_domain_blocks: lês gefoelige ynformaasje fan alle e-maildomeinblokken
-      admin:read:ip_blocks: lês gefoelige ynformaasje fan alle IP-blokken
-      admin:read:reports: gefoelige ynformaasje fan alle rapportaazjes en rapportearre accounts lêze
-      admin:write: wizigje alle gegevens op de server
-      admin:write:accounts: moderaasjemaatregelen tsjin accounts nimme
-      admin:write:canonical_email_blocks: fier moderaasje-aksjes út op kanonike e-mailblokken
-      admin:write:domain_allows: fier moderaasje-aksjes út op domeintastimmingen
-      admin:write:domain_blocks: fier moderaasje-aksjes út op domeinblokkaden
-      admin:write:email_domain_blocks: fier moderaasje-aksjes út op e-maildomeinen
-      admin:write:ip_blocks: fier moderaasje-aksjes út op IP-adresblokken
-      admin:write:reports: moderaasjemaatregelen nimme yn rapportaazjes
+      "admin:read": alle gegevens op de server lêze
+      "admin:read:accounts": gefoelige ynformaasje fan alle accounts lêze
+      "admin:read:canonical_email_blocks": lês gefoelige ynformaasje fan alle kanonike e-mailblokken
+      "admin:read:domain_allows": lês gefoelige ynformaasje fan alle domeinen
+      "admin:read:domain_blocks": lês gefoelige ynformaasje fan alle domeinblokken
+      "admin:read:email_domain_blocks": lês gefoelige ynformaasje fan alle e-maildomeinblokken
+      "admin:read:ip_blocks": lês gefoelige ynformaasje fan alle IP-blokken
+      "admin:read:reports": gefoelige ynformaasje fan alle rapportaazjes en rapportearre accounts lêze
+      "admin:write": wizigje alle gegevens op de server
+      "admin:write:accounts": moderaasjemaatregelen tsjin accounts nimme
+      "admin:write:canonical_email_blocks": fier moderaasje-aksjes út op kanonike e-mailblokken
+      "admin:write:domain_allows": fier moderaasje-aksjes út op domeintastimmingen
+      "admin:write:domain_blocks": fier moderaasje-aksjes út op domeinblokkaden
+      "admin:write:email_domain_blocks": fier moderaasje-aksjes út op e-maildomeinen
+      "admin:write:ip_blocks": fier moderaasje-aksjes út op IP-adresblokken
+      "admin:write:reports": moderaasjemaatregelen nimme yn rapportaazjes
       crypto: ein-ta-ein-fersifering brûke
       follow: relaasjes tusken accounts bewurkje
       push: dyn pushmeldingen ûntfange
       read: alle gegevens fan dyn account lêze
-      read:accounts: accountynformaasje besjen
-      read:blocks: dyn blokkearre brûkers besjen
-      read:bookmarks: dyn blêdwizers besjen
-      read:favourites: jo favoriten besjen
-      read:filters: dyn filters besjen
-      read:follows: de accounts dy’tsto folgest besjen
-      read:lists: dyn listen besjen
-      read:mutes: dyn negearre brûkers besjen
-      read:notifications: dyn meldingen besjen
-      read:reports: dyn rapportearre berjochten besjen
-      read:search: út dyn namme sykje
-      read:statuses: alle berjochten besjen
+      "read:accounts": accountynformaasje besjen
+      "read:blocks": dyn blokkearre brûkers besjen
+      "read:bookmarks": dyn blêdwizers besjen
+      "read:favourites": jo favoriten besjen
+      "read:filters": dyn filters besjen
+      "read:follows": de accounts dy’tsto folgest besjen
+      "read:lists": dyn listen besjen
+      "read:mutes": dyn negearre brûkers besjen
+      "read:notifications": dyn meldingen besjen
+      "read:reports": dyn rapportearre berjochten besjen
+      "read:search": út dyn namme sykje
+      "read:statuses": alle berjochten besjen
       write: alle gegevens fan dyn account bewurkje
-      write:accounts: dyn profyl bewurkje
-      write:blocks: accounts en domeinen blokkearje
-      write:bookmarks: berjochten oan blêdwizers tafoegje
-      write:conversations: petearen negearre en fuortsmite
-      write:favourites: berjochten as favoryt markearje
-      write:filters: filters oanmeitsje
-      write:follows: minsken folgje
-      write:lists: listen oanmeitsje
-      write:media: mediabestannen oplade
-      write:mutes: minsken en petearen dôvje
-      write:notifications: meldingen fuortsmite
-      write:reports: oare minsken rapportearje
-      write:statuses: berjochten pleatse
+      "write:accounts": dyn profyl bewurkje
+      "write:blocks": accounts en domeinen blokkearje
+      "write:bookmarks": berjochten oan blêdwizers tafoegje
+      "write:conversations": petearen negearre en fuortsmite
+      "write:favourites": berjochten as favoryt markearje
+      "write:filters": filters oanmeitsje
+      "write:follows": minsken folgje
+      "write:lists": listen oanmeitsje
+      "write:media": mediabestannen oplade
+      "write:mutes": minsken en petearen dôvje
+      "write:notifications": meldingen fuortsmite
+      "write:reports": oare minsken rapportearje
+      "write:statuses": berjochten pleatse
