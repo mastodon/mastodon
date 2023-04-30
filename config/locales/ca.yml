@@ -1,4 +1,3 @@
----
 ca:
   about:
     about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Tingues el control de les teves dades amb Mastodon!'
@@ -56,7 +55,7 @@ ca:
       delete: Esborra les dades
       deleted: Eliminat
       demote: Degrada
-      destroyed_msg: Les dades de %{username} son a la cua per a ser esborrades en breu
+      destroyed_msg: "Les dades de %{username} son a la cua per a ser esborrades en breu"
       disable: Inhabilita
       disable_sign_in_token_auth: Desactivar l'autenticació de token per correu
       disable_two_factor_authentication: Desactiva 2FA
@@ -548,7 +547,7 @@ ca:
       no_ip_block_selected: No s’ha canviat cap regla IP perquè no s’han seleccionat
       title: Regles IP
     relationships:
-      title: relacions del %{acct}
+      title: "relacions del %{acct}"
     relays:
       add_new: Afegiu un nou relay
       delete: Elimina
@@ -771,7 +770,6 @@ ca:
         remove_from_report: Treu de l'informe
         report: Denuncia
       deleted: Eliminada
-      favourites: Favorits
       history: Històric de versions
       in_reply_to: Responent a
       language: Llengua
@@ -852,14 +850,10 @@ ca:
       statuses:
         allow: Permet publicació
         allow_account: Permet autor
-        description_html: Aquests són tuts que el teu servidor veu i que ara mateix s'estan compartint i afavorint molt. Poden ajudar als teus nous usuaris i als que retornen a trobar més gent a qui seguir. Cap tut es mostra públicament fins que no aprovis l'autor i l'autor permeti que el seu compte sigui suggerit a altres. També pots acceptar o rebutjar tuts individualment.
         disallow: Rebutja tut
         disallow_account: Rebutja autor
         no_status_selected: No s'han canviat els tuts en tendència perquè cap ha estat seleccionat
         not_discoverable: L'autor no ha activat poder ser detectable
-        shared_by:
-          one: Compartit o afavorit una vegada
-          other: Compartit i afavorit %{friendly_count} vegades
         title: Tuts en tendència
       tags:
         current_score: Puntuació actual %{score}
@@ -931,7 +925,7 @@ ca:
     new_report:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des del domini %{domain} ha informat sobre %{target}
-      subject: Informe nou per a %{instance} (#%{id})
+      subject: 'Informe nou per a %{instance} (#%{id})'
     new_trends:
       body: 'Els següents elements necessiten una revisió abans de que puguin ser mostrats públicament:'
       new_trending_links:
@@ -1074,7 +1068,7 @@ ca:
       about_x_years: "%{count} anys"
       almost_x_years: "%{count}anys"
       half_a_minute: Ara mateix
-      less_than_x_minutes: fa %{count} minuts
+      less_than_x_minutes: "fa %{count} minuts"
       less_than_x_seconds: Ara mateix
       over_x_years: "%{count} anys"
       x_days: "%{count} dies"
@@ -1336,10 +1330,6 @@ ca:
         subject: "%{name} ha presentat un informe"
       sign_up:
         subject: "%{name} s'ha registrat"
-    favourite:
-      body: "%{name} ha marcat com a favorit el teu estat:"
-      subject: "%{name} ha marcat com a favorit el teu estat"
-      title: Favorit nou
     follow:
       body: "%{name} t'està seguint!"
       subject: "%{name} t'està seguint"
@@ -1351,13 +1341,13 @@ ca:
       title: Nova sol·licitud de seguiment
     mention:
       action: Respon
-      body: "%{name} t'ha mencionat en:"
-      subject: "%{name} t'ha mencionat"
+      body: '%{name} t''ha mencionat en:'
+      subject: '%{name} t''ha mencionat'
       title: Menció nova
     poll:
       subject: Ha finalitzat l'enquesta de %{name}
     reblog:
-      body: "%{name} ha impulsat el teu estat:"
+      body: '%{name} ha impulsat el teu estat:'
       subject: "%{name} ha impulsat el teu estat"
       title: Nou impuls
     status:
@@ -1571,10 +1561,8 @@ ca:
     enabled_hint: Suprimeix automàticament els teus tuts quan arribin a un llindar d’edat especificat, tret que coincideixin amb una de les excepcions següents
     exceptions: Excepcions
     explanation: Com que suprimir tuts és una operació cara, es fa lentament amb el pas del temps i quan el servidor no està ocupat. Per aquest motiu, és possible que els teus tuts se suprimeixin un temps després d’assolir el llindar d’edat.
-    ignore_favs: Ignora favorits
     ignore_reblogs: Ignora impulsos
     interaction_exceptions: Excepcions basades en interaccions
-    interaction_exceptions_explanation: Has de tenir en compte que no es garanteix que es suprimeixen els tuts si passen per sota del llindar de favorit o impuls després d'haver-lo superat.
     keep_direct: Mantenir missatges directes
     keep_direct_hint: No esborra cap dels teus missatges directes
     keep_media: Mantenir els tuts amb contingut gràfic
@@ -1585,8 +1573,6 @@ ca:
     keep_polls_hint: No esborra cap de les teves enquestes
     keep_self_bookmark: Mantenir els tuts que has desat a les adreces d'interès
     keep_self_bookmark_hint: No esborra els teus propis tuts si els has desat en les adreces d'interès
-    keep_self_fav: Mantenir els tuts que has afavorit
-    keep_self_fav_hint: No esborra els teus propis tuts si les has afavorit
     min_age:
       '1209600': 2 setmanes
       '15778476': 6 mesos
@@ -1597,8 +1583,6 @@ ca:
       '63113904': 2 anys
       '7889238': 3 mesos
     min_age_label: Antiguitat
-    min_favs: Mantenir els tuts afavorits més de
-    min_favs_hint: No suprimeix cap dels teus tuts que hagin rebut més d'aquesta quantitat de favorits. Deixa-ho en blanc per a suprimir tuts independentment del nombre de favorits
     min_reblogs: Mantenir les publicacions impulsades més de
     min_reblogs_hint: No suprimeix cap de les teves publicacions que s'hagin impulsat més que aquest nombre de vegades. Deixa-ho en blanc per a suprimir les publicacions independentment del nombre d'impulsos que tinguin.
   stream_entries:
