@@ -1348,19 +1348,6 @@ Rails/I18nLocaleTexts:
     - 'lib/tasks/mastodon.rake'
     - 'spec/helpers/flashes_helper_spec.rb'
 
-# Configuration parameters: IgnoreScopes, Include.
-# Include: app/models/**/*.rb
-Rails/InverseOf:
-  Exclude:
-    - 'app/models/appeal.rb'
-    - 'app/models/concerns/account_interactions.rb'
-    - 'app/models/custom_emoji.rb'
-    - 'app/models/domain_block.rb'
-    - 'app/models/follow_recommendation.rb'
-    - 'app/models/instance.rb'
-    - 'app/models/notification.rb'
-    - 'app/models/status.rb'
-
 # Configuration parameters: Include.
 # Include: app/controllers/**/*.rb, app/mailers/**/*.rb
 Rails/LexicallyScopedActionFilter:
