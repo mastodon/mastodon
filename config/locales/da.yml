@@ -125,8 +125,8 @@ da:
       removed_header_msg: "%{username}s overskriftsbillede fjernet"
       resend_confirmation:
         already_confirmed: Denne bruger er allerede bekræftet
-        send: Gensend bekræftelses e-mail
-        success: Bekræftelses e-mail afsendt!
+        send: Gensend bekræftelseslink
+        success: Bekræftelseslink afsendt!
       reset: Nulstil
       reset_password: Nulstil adgangskode
       resubscribe: Genabonnér
@@ -988,7 +988,7 @@ da:
       prefix_invited_by_user: "@%{name} inviterer dig ind på denne Mastodon-server!"
       prefix_sign_up: Tilmeld dig Mastodon i dag!
       suffix: Du vil med en konto kunne følge personer, indsende opdateringer og udveksle beskeder med brugere fra enhver Mastodon-server, og meget mere!
-    didnt_get_confirmation: Ikke modtaget nogle bekræftelsesinstruktioner?
+    didnt_get_confirmation: Intet bekræftelseslink modtaget?
     dont_have_your_security_key: Har ikke din sikkerhedsnøgle?
     forgot_password: Glemt din adgangskode?
     invalid_reset_password_token: Adgangskodenulstillingstoken ugyldigt eller udløbet. Anmod om et nyt.
@@ -1001,12 +1001,17 @@ da:
     migrate_account_html: Ønsker du at omdirigere denne konto til en anden, kan du <a href="%{path}">opsætte dette hér</a>.
     or_log_in_with: Eller log ind med
     privacy_policy_agreement_html: Jeg accepterer <a href="%{privacy_policy_path}" target="_blank">privatlivspolitikken</a>
+    progress:
+      confirm: Bekræft e-mail
+      details: Dine detaljer
+      review: Vores gennemgang
+      rules: Acceptér regler
     providers:
       cas: CAS
       saml: SAML
     register: Opret dig
     registration_closed: "%{instance} accepterer ikke nye medlemmer"
-    resend_confirmation: Gensend bekræftelsesinstruktioner
+    resend_confirmation: Gensend bekræftelseslink
     reset_password: Nulstil adgangskode
     rules:
       accept: Acceptér
@@ -1016,13 +1021,16 @@ da:
     security: Sikkerhed
     set_new_password: Opsæt ny adgangskode
     setup:
-      email_below_hint_html: Er nedenstående e-mailadresse forkert, kan du rette den hér og modtage en ny bekræftelses-e-mail.
-      email_settings_hint_html: Bekræftelses-e-mailen er sendt til %{email}. Er denne e-mailadresse forkert, kan du rette den via kontoindstillingerne.
-      title: Opsætning
+      email_below_hint_html: Tjek Spam-mappen eller anmod om et nyt link. Om nødvendigt kan e-mailadressen rettes.
+      email_settings_hint_html: Tryk på det tilsendte link for at bekræfte %{email}.
+      link_not_received: Intet link modtaget?
+      new_confirmation_instructions_sent: Du bør om få minutter modtage en ny e-mail med bekræftelseslinket!
+      title: Tjek indbakken
     sign_in:
       preamble_html: Log ind med dine <strong>%{domain}</strong>-legitimationsoplysninger. Hostes kontoen på en anden server, vil der ikke kunne logges ind her.
       title: Log ind på %{domain}
     sign_up:
+      manual_review: Tilmeldinger på %{domain} undergår manuel moderatorgennemgang. For at hjælpe med behandlingen af tilmeldingen, så skriv en smule om dig selv, samt hvorfor du ønsker en konto på %{domain}.
       preamble: Med en konto på denne Mastodon-server vil man kunne følge enhver anden person på netværket, uanset hvor vedkommendes konto hostes.
       title: Lad os få dig sat op på %{domain}.
     status:

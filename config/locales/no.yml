@@ -125,8 +125,8 @@
       removed_header_msg: Fjernet %{username} sin topptekst bilde
       resend_confirmation:
         already_confirmed: Denne brukeren er allerede bekreftet
-        send: Send bekreftelses-epost på nytt
-        success: Bekreftelses e-post er vellykket sendt!
+        send: Send bekreftelseslenken på nytt
+        success: Bekreftelseslenken ble sendt!
       reset: Tilbakestill
       reset_password: Nullstill passord
       resubscribe: Abonner på nytt
@@ -476,6 +476,7 @@
       content_policies:
         comment: Internt notat
         description_html: Du kan definere innholdsregler som vil bli brukt på alle kontoer fra dette domenet og hvilket som helst av underdomenene.
+        limited_federation_mode_description_html: Du kan velge om føderasjon med dette domenet tillates.
         policies:
           reject_media: Avvis media
           reject_reports: Avvis rapporter
@@ -769,6 +770,7 @@
         suspend: "%{name} suspenderte %{target}s konto"
       appeal_approved: Klage tatt til følge
       appeal_pending: Klage behandles
+      appeal_rejected: Anke avvist
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
@@ -782,6 +784,12 @@
         message_html: Du har ikke definert noen serverregler.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-prosess kjører for %{value} køen(e). Vennligst se gjennom Sidekiq-konfigurasjonen din
+      upload_check_privacy_error:
+        action: Sjekk her for mer informasjon
+        message_html: "<strong>Webserveren din er feilkonfigurert. Personvernet til brukerne dine er i fare.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Sjekk her for mer informasjon
+        message_html: "<strong>Objektlagringen din er feilkonfigurert. Personvernet til brukerne dine er i fare.</strong>"
     tags:
       review: Gjennomgangsstatus
       updated_msg: Emneknagg innstillinger vellykket oppdatert
@@ -804,6 +812,7 @@
           other: Delt av %{count} personer i løpet av den siste uken
         title: Populære lenker
         usage_comparison: Delt %{today} ganger i dag, sammenlignet med %{yesterday} i går
+      not_allowed_to_trend: Ikke tillatt å trende
       only_allowed: Kun tillatte
       pending_review: Avventer gjennomgang
       preview_card_providers:
@@ -912,6 +921,7 @@
   applications:
     created: Søknaden ble vellykket oppretttet
     destroyed: Søknaden ble vellykket slettet
+    logout: Logg ut
     regenerate_token: Regenerer tilgangsnøkkel
     token_regenerated: Tilgangsnøkkel vellykket regenerert
     warning: Vær veldig forsiktig med denne data. Aldri del den med noen!
@@ -925,7 +935,7 @@
       prefix_invited_by_user: "@%{name} inviterer deg til å bli med på denne serveren til Mastodon!"
       prefix_sign_up: Registrer deg på Mastodon i dag!
       suffix: Med en konto, vil kunne følge folk, skrive innlegg, og utveksle meldinger med brukere fra enhver Mastodon-tjener, og mer til!
-    didnt_get_confirmation: Mottok du ikke instruksjoner om bekreftelse?
+    didnt_get_confirmation: Mottok du ikke en bekreftelseslenke?
     dont_have_your_security_key: Har du ikke sikkerhetsnøkkelen din?
     forgot_password: Har du glemt passordet ditt?
     invalid_reset_password_token: Tilbakestillingsnøkkelen for passord er ugyldig eller utløpt. Vennligst be om en ny.
@@ -938,22 +948,24 @@
     migrate_account_html: Hvis du ønsker å henvise denne kontoen til en annen, kan du <a href="%{path}">konfigurere det her</a>.
     or_log_in_with: Eller logg inn med
     privacy_policy_agreement_html: Jeg har lest og godtar <a href="%{privacy_policy_path}" target="_blank">retningslinjer for personvern</a>
+    progress:
+      confirm: Bekreft e-postadresse
+      details: Dine opplysninger
+      review: Vår gjennomgang
+      rules: Godta regler
     providers:
       cas: CAS
       saml: SAML
     register: Meld deg på
     registration_closed: "%{instance} tar ikke imot nye medlemmer"
-    resend_confirmation: Send bekreftelsesinstruksjoner på nytt
     reset_password: Tilbakestill passord
     rules:
+      accept: Godta
+      back: Tilbake
       preamble: Disse angis og håndheves av %{domain}-moderatorene.
       title: Noen grunnregler.
     security: Sikkerhet
     set_new_password: Angi nytt passord
-    setup:
-      email_below_hint_html: Dersom E-postadressen nedenfor er feil, kan du endre det her og motta en ny bekreftelses-E-post.
-      email_settings_hint_html: Bekreftelses-E-posten ble sendt til %{email}. Dersom den E-postadressen ikke var riktig, kan du endre den i kontoinnstillingene.
-      title: Innstillinger
     sign_in:
       preamble_html: Logg inn med ditt <strong>%{domain}</strong> brukeropplysninger. Hvis kontoen din er plassert på en annen server, vil du ikke kunne logge inn her.
       title: Logg inn på %{domain}
@@ -1092,6 +1104,8 @@
     storage: Medialagring
   featured_tags:
     add_new: Legg til ny
+    errors:
+      limit: Du har allerede fremhevet det maksimale antall emneknagger
     hint_html: "<strong>Hva er utvalgte emneknagger?</strong> De vises frem tydelig på din offentlige profil, og lar folk bla i dine offentlige innlegg som spesifikt har de emneknaggene. De er et bra verktøy for å holde styr på kreative verk eller langtidsprosjekter."
   filters:
     contexts:
@@ -1193,6 +1207,9 @@
       expires_at: Utløper
       uses: Bruk
     title: Inviter personer
+  lists:
+    errors:
+      limit: Du har nådd den øvre grensen for antall lister
   login_activities:
     authentication_methods:
       otp: to-faktor autentiseringsapp
@@ -1334,6 +1351,7 @@
   relationships:
     activity: Kontoaktivitet
     dormant: Dormende
+    follow_failure: Kunne ikke følge noen av de valgte kontoene.
     follow_selected_followers: Følg valgte tilhengere
     followers: Følgere
     following: Følginger
@@ -1373,6 +1391,7 @@
       electron: Electron
       firefox: Firefox
       generic: Ukjent nettleser
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi-nettleser
@@ -1382,6 +1401,7 @@
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Ukjent Nettleser
       weibo: Weibo
     current_session: Nåværende økt
     description: "%{browser} på %{platform}"
@@ -1394,8 +1414,10 @@
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
+      unknown_platform: Ukjent plattform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1508,6 +1530,7 @@
       '7889238': 3 måneder
     min_age_label: Terskel for alder
     min_favs: Behold innlegg som er favorittmarkert av minst
+    min_favs_hint: Sletter ikke noen av dine innlegg som har mottatt minst dette antall favorittmarkeringer. La stå tom for å slette innlegg uavhengig av antall favorittmarkeringer
     min_reblogs: Behold innlegg fremhevet av minst
     min_reblogs_hint: Sletter ikke noen av dine innlegg som har blitt fremhevet minst dette antall ganger. La stå tom for å slette innlegg uavhengig av antall fremhevinger
   stream_entries:
@@ -1607,11 +1630,13 @@
       title: Velkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan ikke følge mer enn %{limit} personer
+    go_to_sso_account_settings: Gå til din identitetsleverandørs kontoinnstillinger
     invalid_otp_token: Ugyldig to-faktorkode
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
     seamless_external_login: Du er logget inn via en ekstern tjeneste, så passord og e-post innstillinger er ikke tilgjengelige.
     signed_in_as: 'Innlogget som:'
   verification:
+    explanation_html: 'Du kan <strong>bekrefte at du selv eier lenkene i din profilmetadata</strong>. For å gjøre det, må det tillenkede nettstedet inneholde en lenke som fører tilbake til Mastodon-profilen din. Etter å ha laget den lenken må du kanskje komme tilbake hit og lagre profilen på ny, for at verifisering skal kunne gjennomføres. Lenken tilbake <strong>må</strong> ha en <code>rel="me"</code>-attributt. Tekstinnholdet til lenken er irrelevant. Her er et eksempel:'
     verification: Bekreftelse
   webauthn_credentials:
     add: Legg til ny sikkerhetsnøkkel

@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from 'flavours/glitch/components/logo';
+import { WordmarkLogo, SymbolLogo } from 'flavours/glitch/components/logo';
 import { Link, withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { registrationsOpen, me } from 'flavours/glitch/initial_state';
@@ -74,7 +74,10 @@ class Header extends React.PureComponent {
 
     return (
       <div className='ui__header'>
-        <Link to='/' className='ui__header__logo'><Logo /></Link>
+        <Link to='/' className='ui__header__logo'>
+          <WordmarkLogo />
+          <SymbolLogo />
+        </Link>
 
         <div className='ui__header__links'>
           {content}

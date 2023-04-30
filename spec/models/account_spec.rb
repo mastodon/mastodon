@@ -339,7 +339,7 @@ RSpec.describe Account, type: :model do
     it 'returns the domains blocked by the account' do
       account = Fabricate(:account)
       account.block_domain!('domain')
-      expect(account.excluded_from_timeline_domains).to match_array ['domain']
+      expect(account.excluded_from_timeline_domains).to contain_exactly('domain')
     end
   end
 
@@ -877,7 +877,7 @@ RSpec.describe Account, type: :model do
       it 'returns an array of accounts who have a domain' do
         account_1 = Fabricate(:account, domain: nil)
         account_2 = Fabricate(:account, domain: 'example.com')
-        expect(Account.remote).to match_array([account_2])
+        expect(Account.remote).to contain_exactly(account_2)
       end
     end
 
@@ -885,7 +885,7 @@ RSpec.describe Account, type: :model do
       it 'returns an array of accounts who do not have a domain' do
         account_1 = Fabricate(:account, domain: nil)
         account_2 = Fabricate(:account, domain: 'example.com')
-        expect(Account.where('id > 0').local).to match_array([account_1])
+        expect(Account.where('id > 0').local).to contain_exactly(account_1)
       end
     end
 
@@ -911,7 +911,7 @@ RSpec.describe Account, type: :model do
       it 'returns an array of accounts who are silenced' do
         account_1 = Fabricate(:account, silenced: true)
         account_2 = Fabricate(:account, silenced: false)
-        expect(Account.silenced).to match_array([account_1])
+        expect(Account.silenced).to contain_exactly(account_1)
       end
     end
 
@@ -919,7 +919,7 @@ RSpec.describe Account, type: :model do
       it 'returns an array of accounts who are suspended' do
         account_1 = Fabricate(:account, suspended: true)
         account_2 = Fabricate(:account, suspended: false)
-        expect(Account.suspended).to match_array([account_1])
+        expect(Account.suspended).to contain_exactly(account_1)
       end
     end
 
@@ -941,11 +941,11 @@ RSpec.describe Account, type: :model do
       end
 
       it 'returns every usable non-suspended account' do
-        expect(Account.searchable).to match_array([silenced_local, silenced_remote, local_account, remote_account])
+        expect(Account.searchable).to contain_exactly(silenced_local, silenced_remote, local_account, remote_account)
       end
 
       it 'does not mess with previously-applied scopes' do
-        expect(Account.where.not(id: remote_account.id).searchable).to match_array([silenced_local, silenced_remote, local_account])
+        expect(Account.where.not(id: remote_account.id).searchable).to contain_exactly(silenced_local, silenced_remote, local_account)
       end
     end
   end

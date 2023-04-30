@@ -8,6 +8,7 @@ class Oauth::AuthorizedApplicationsController < Doorkeeper::AuthorizedApplicatio
   before_action :set_pack
   before_action :require_not_suspended!, only: :destroy
   before_action :set_body_classes
+  before_action :set_cache_headers
 
   skip_before_action :require_functional!
 
@@ -34,5 +35,9 @@ class Oauth::AuthorizedApplicationsController < Doorkeeper::AuthorizedApplicatio
 
   def require_not_suspended!
     forbidden if current_account.suspended?
+  end
+
+  def set_cache_headers
+    response.cache_control.replace(private: true, no_store: true)
   end
 end

@@ -1,7 +1,5 @@
 // @ts-check
 
-const os = require('os');
-const throng = require('throng');
 const dotenv = require('dotenv');
 const express = require('express');
 const http = require('http');
@@ -15,10 +13,10 @@ const fs = require('fs');
 const WebSocket = require('ws');
 const { JSDOM } = require('jsdom');
 
-const env = process.env.NODE_ENV || 'development';
+const environment = process.env.NODE_ENV || 'development';
 
 dotenv.config({
-  path: env === 'production' ? '.env.production' : '.env',
+  path: environment === 'production' ? '.env.production' : '.env',
 });
 
 log.level = process.env.LOG_LEVEL || 'verbose';
@@ -52,8 +50,6 @@ const redisUrlToClient = async (defaultConfig, redisUrl) => {
   return client;
 };
 
-const numWorkers = +process.env.STREAMING_CLUSTER_NUM || (env === 'development' ? 1 : Math.max(os.cpus().length - 1, 1));
-
 /**
  * @param {string} json
  * @param {any} req
@@ -72,45 +68,38 @@ const parseJSON = (json, req) => {
   }
 };
 
-const startMaster = () => {
-  if (!process.env.SOCKET && process.env.PORT && isNaN(+process.env.PORT)) {
-    log.warn('UNIX domain socket is now supported by using SOCKET. Please migrate from PORT hack.');
-  }
-
-  log.warn(`Starting streaming API server master with ${numWorkers} workers`);
-};
-
 /**
- * @return {Object.<string, any>}
+ * @param {Object.<string, any>} env the `process.env` value to read configuration from
+ * @return {Object.<string, any>} the configuration for the PostgreSQL connection
  */
-const pgConfigFromEnv = () => {
+const pgConfigFromEnv = (env) => {
   const pgConfigs = {
     development: {
-      user:     process.env.DB_USER || pg.defaults.user,
-      password: process.env.DB_PASS || pg.defaults.password,
-      database: process.env.DB_NAME || 'mastodon_development',
-      host:     process.env.DB_HOST || pg.defaults.host,
-      port:     process.env.DB_PORT || pg.defaults.port,
+      user:     env.DB_USER || pg.defaults.user,
+      password: env.DB_PASS || pg.defaults.password,
+      database: env.DB_NAME || 'mastodon_development',
+      host:     env.DB_HOST || pg.defaults.host,
+      port:     env.DB_PORT || pg.defaults.port,
     },
 
     production: {
-      user:     process.env.DB_USER || 'mastodon',
-      password: process.env.DB_PASS || '',
-      database: process.env.DB_NAME || 'mastodon_production',
-      host:     process.env.DB_HOST || 'localhost',
-      port:     process.env.DB_PORT || 5432,
+      user:     env.DB_USER || 'mastodon',
+      password: env.DB_PASS || '',
+      database: env.DB_NAME || 'mastodon_production',
+      host:     env.DB_HOST || 'localhost',
+      port:     env.DB_PORT || 5432,
     },
   };
 
   let baseConfig;
 
-  if (process.env.DATABASE_URL) {
-    baseConfig = dbUrlToConfig(process.env.DATABASE_URL);
+  if (env.DATABASE_URL) {
+    baseConfig = dbUrlToConfig(env.DATABASE_URL);
   } else {
-    baseConfig = pgConfigs[env];
+    baseConfig = pgConfigs[environment];
 
-    if (process.env.DB_SSLMODE) {
-      switch(process.env.DB_SSLMODE) {
+    if (env.DB_SSLMODE) {
+      switch(env.DB_SSLMODE) {
       case 'disable':
       case '':
         baseConfig.ssl = false;
@@ -127,30 +116,26 @@ const pgConfigFromEnv = () => {
 
   return {
     ...baseConfig,
-    max: process.env.DB_POOL || 10,
+    max: env.DB_POOL || 10,
     connectionTimeoutMillis: 15000,
     application_name: '',
   };
 };
 
-const startWorker = async (workerId) => {
-  log.warn(`Starting worker ${workerId}`);
-
-  const app = express();
-
-  app.set('trust proxy', process.env.TRUSTED_PROXY_IP ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/) : 'loopback,uniquelocal');
-
-  const pgPool = new pg.Pool(pgConfigFromEnv());
-  const server = http.createServer(app);
-  const redisNamespace = process.env.REDIS_NAMESPACE || null;
+/**
+ * @param {Object.<string, any>} env the `process.env` value to read configuration from
+ * @return {Object.<string, any>} configuration for the Redis connection
+ */
+const redisConfigFromEnv = (env) => {
+  const redisNamespace = env.REDIS_NAMESPACE || null;
 
   const redisParams = {
     socket: {
-      host: process.env.REDIS_HOST || '127.0.0.1',
-      port: process.env.REDIS_PORT || 6379,
+      host: env.REDIS_HOST || '127.0.0.1',
+      port: env.REDIS_PORT || 6379,
     },
-    database: process.env.REDIS_DB || 0,
-    password: process.env.REDIS_PASSWORD || undefined,
+    database: env.REDIS_DB || 0,
+    password: env.REDIS_PASSWORD || undefined,
   };
 
   if (redisNamespace) {
@@ -159,13 +144,30 @@ const startWorker = async (workerId) => {
 
   const redisPrefix = redisNamespace ? `${redisNamespace}:` : '';
 
+  return {
+    redisParams,
+    redisPrefix,
+    redisUrl: env.REDIS_URL,
+  };
+};
+
+const startServer = async () => {
+  const app = express();
+
+  app.set('trust proxy', process.env.TRUSTED_PROXY_IP ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/) : 'loopback,uniquelocal');
+
+  const pgPool = new pg.Pool(pgConfigFromEnv(process.env));
+  const server = http.createServer(app);
+
+  const { redisParams, redisUrl, redisPrefix } = redisConfigFromEnv(process.env);
+
   /**
    * @type {Object.<string, Array.<function(string): void>>}
    */
   const subs = {};
 
-  const redisSubscribeClient = await redisUrlToClient(redisParams, process.env.REDIS_URL);
-  const redisClient = await redisUrlToClient(redisParams, process.env.REDIS_URL);
+  const redisSubscribeClient = await redisUrlToClient(redisParams, redisUrl);
+  const redisClient = await redisUrlToClient(redisParams, redisUrl);
 
   /**
    * @param {string[]} channels
@@ -1253,11 +1255,10 @@ const startWorker = async (workerId) => {
   }, 30000);
 
   attachServerWithConfig(server, address => {
-    log.warn(`Worker ${workerId} now listening on ${address}`);
+    log.warn(`Streaming API now listening on ${address}`);
   });
 
   const onExit = () => {
-    log.warn(`Worker ${workerId} exiting`);
     server.close();
     process.exit(0);
   };
@@ -1295,34 +1296,4 @@ const attachServerWithConfig = (server, onSuccess) => {
   }
 };
 
-/**
- * @param {function(Error=): void} onSuccess
- */
-const onPortAvailable = onSuccess => {
-  const testServer = http.createServer();
-
-  testServer.once('error', err => {
-    onSuccess(err);
-  });
-
-  testServer.once('listening', () => {
-    testServer.once('close', () => onSuccess());
-    testServer.close();
-  });
-
-  attachServerWithConfig(testServer);
-};
-
-onPortAvailable(err => {
-  if (err) {
-    log.error('Could not start server, the port or socket is in use');
-    return;
-  }
-
-  throng({
-    workers: numWorkers,
-    lifetime: Infinity,
-    start: startWorker,
-    master: startMaster,
-  });
-});
+startServer();

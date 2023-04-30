@@ -7,6 +7,12 @@ module WebAppControllerConcern
     prepend_before_action :redirect_unauthenticated_to_permalinks!
     before_action :set_pack
     before_action :set_app_body_class
+
+    vary_by 'Accept, Accept-Language, Cookie'
+  end
+
+  def skip_csrf_meta_tags?
+    current_user.nil?
   end
 
   def set_app_body_class

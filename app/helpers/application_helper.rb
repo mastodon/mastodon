@@ -155,20 +155,8 @@ module ApplicationHelper
     tag(:meta, content: content, property: property)
   end
 
-  def react_component(name, props = {}, &block)
-    if block.nil?
-      content_tag(:div, nil, data: { component: name.to_s.camelcase, props: Oj.dump(props) })
-    else
-      content_tag(:div, data: { component: name.to_s.camelcase, props: Oj.dump(props) }, &block)
-    end
-  end
-
-  def react_admin_component(name, props = {})
-    content_tag(:div, nil, data: { 'admin-component': name.to_s.camelcase, props: Oj.dump({ locale: I18n.locale }.merge(props)) })
-  end
-
   def body_classes
-    output = (@body_classes || '').split
+    output = body_class_string.split
     output << "flavour-#{current_flavour.parameterize}"
     output << "skin-#{current_skin.parameterize}"
     output << 'system-font' if current_account&.user&.setting_system_font_ui

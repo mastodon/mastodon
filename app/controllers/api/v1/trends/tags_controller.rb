@@ -8,6 +8,7 @@ class Api::V1::Trends::TagsController < Api::BaseController
   DEFAULT_TAGS_LIMIT = (ENV['MAX_TRENDING_TAGS'] || 10).to_i
 
   def index
+    cache_if_unauthenticated!
     render json: @tags, each_serializer: REST::TagSerializer, relationships: TagRelationshipsPresenter.new(@tags, current_user&.account_id)
   end
 

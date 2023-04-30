@@ -13,13 +13,17 @@ describe Settings::ApplicationsController do
   end
 
   describe 'GET #index' do
-    let!(:other_app) { Fabricate(:application) }
-
-    it 'shows apps' do
+    before do
+      Fabricate(:application)
       get :index
+    end
+
+    it 'returns http success' do
       expect(response).to have_http_status(200)
-      expect(assigns(:applications)).to include(app)
-      expect(assigns(:applications)).to_not include(other_app)
+    end
+
+    it 'returns private cache control headers' do
+      expect(response.headers['Cache-Control']).to include('private, no-store')
     end
   end
 

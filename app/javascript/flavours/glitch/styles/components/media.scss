@@ -381,7 +381,6 @@
   background: darken($ui-base-color, 8%);
   border-radius: 4px;
   padding-bottom: 44px;
-  direction: ltr;
 
   &.editable {
     border-radius: 0;
@@ -448,7 +447,6 @@
   max-width: 100%;
   border-radius: 4px;
   box-sizing: border-box;
-  direction: ltr;
   color: $white;
 
   &.editable {
@@ -500,6 +498,7 @@
 
   &__controls {
     position: absolute;
+    direction: ltr;
     z-index: 2;
     bottom: 0;
     inset-inline-start: 0;

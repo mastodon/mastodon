@@ -15,6 +15,10 @@ describe StatusesController do
       expect(session).to be_empty
     end
 
+    it 'returns Vary header' do
+      expect(response.headers['Vary']).to include 'Accept, Accept-Language, Cookie'
+    end
+
     it 'returns public Cache-Control header' do
       expect(response.headers['Cache-Control']).to include 'public'
     end
@@ -80,7 +84,7 @@ describe StatusesController do
         end
 
         it 'returns Vary header' do
-          expect(response.headers['Vary']).to eq 'Accept'
+          expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
         end
 
         it 'returns public Cache-Control header' do
@@ -105,7 +109,7 @@ describe StatusesController do
         end
 
         it 'returns Vary header' do
-          expect(response.headers['Vary']).to eq 'Accept'
+          expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
         end
 
         it_behaves_like 'cacheable response'
@@ -204,11 +208,11 @@ describe StatusesController do
           end
 
           it 'returns Vary header' do
-            expect(response.headers['Vary']).to eq 'Accept'
+            expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
           end
 
-          it 'returns no Cache-Control header' do
-            expect(response.headers).to_not include 'Cache-Control'
+          it 'returns private Cache-Control header' do
+            expect(response.headers['Cache-Control']).to include 'private'
           end
 
           it 'renders status' do
@@ -229,11 +233,11 @@ describe StatusesController do
           end
 
           it 'returns Vary header' do
-            expect(response.headers['Vary']).to eq 'Accept'
+            expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
           end
 
-          it 'returns public Cache-Control header' do
-            expect(response.headers['Cache-Control']).to include 'public'
+          it 'returns private Cache-Control header' do
+            expect(response.headers['Cache-Control']).to include 'private'
           end
 
           it 'returns Content-Type header' do
@@ -268,11 +272,11 @@ describe StatusesController do
             end
 
             it 'returns Vary header' do
-              expect(response.headers['Vary']).to eq 'Accept'
+              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
             end
 
-            it 'returns no Cache-Control header' do
-              expect(response.headers).to_not include 'Cache-Control'
+            it 'returns private Cache-Control header' do
+              expect(response.headers['Cache-Control']).to include 'private'
             end
 
             it 'renders status' do
@@ -293,7 +297,7 @@ describe StatusesController do
             end
 
             it 'returns Vary header' do
-              expect(response.headers['Vary']).to eq 'Accept'
+              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
             end
 
             it 'returns private Cache-Control header' do
@@ -355,11 +359,11 @@ describe StatusesController do
             end
 
             it 'returns Vary header' do
-              expect(response.headers['Vary']).to eq 'Accept'
+              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
             end
 
-            it 'returns no Cache-Control header' do
-              expect(response.headers).to_not include 'Cache-Control'
+            it 'returns private Cache-Control header' do
+              expect(response.headers['Cache-Control']).to include 'private'
             end
 
             it 'renders status' do
@@ -380,7 +384,7 @@ describe StatusesController do
             end
 
             it 'returns Vary header' do
-              expect(response.headers['Vary']).to eq 'Accept'
+              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
             end
 
             it 'returns private Cache-Control header' do
@@ -468,11 +472,11 @@ describe StatusesController do
           end
 
           it 'returns Vary header' do
-            expect(response.headers['Vary']).to eq 'Accept'
+            expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
           end
 
-          it 'returns no Cache-Control header' do
-            expect(response.headers).to_not include 'Cache-Control'
+          it 'returns private Cache-Control header' do
+            expect(response.headers['Cache-Control']).to include 'private'
           end
 
           it 'renders status' do
@@ -493,7 +497,7 @@ describe StatusesController do
           end
 
           it 'returns Vary header' do
-            expect(response.headers['Vary']).to eq 'Accept'
+            expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
           end
 
           it_behaves_like 'cacheable response'
@@ -530,11 +534,11 @@ describe StatusesController do
             end
 
             it 'returns Vary header' do
-              expect(response.headers['Vary']).to eq 'Accept'
+              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
             end
 
-            it 'returns no Cache-Control header' do
-              expect(response.headers).to_not include 'Cache-Control'
+            it 'returns private Cache-Control header' do
+              expect(response.headers['Cache-Control']).to include 'private'
             end
 
             it 'renders status' do
@@ -555,7 +559,7 @@ describe StatusesController do
             end
 
             it 'returns Vary header' do
-              expect(response.headers['Vary']).to eq 'Accept'
+              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
             end
 
             it 'returns private Cache-Control header' do
@@ -617,11 +621,11 @@ describe StatusesController do
             end
 
             it 'returns Vary header' do
-              expect(response.headers['Vary']).to eq 'Accept'
+              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
             end
 
-            it 'returns no Cache-Control header' do
-              expect(response.headers).to_not include 'Cache-Control'
+            it 'returns private Cache-Control header' do
+              expect(response.headers['Cache-Control']).to include 'private'
             end
 
             it 'renders status' do
@@ -642,7 +646,7 @@ describe StatusesController do
             end
 
             it 'returns Vary header' do
-              expect(response.headers['Vary']).to eq 'Accept'
+              expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
             end
 
             it 'returns private Cache-Control header' do
@@ -823,7 +827,7 @@ describe StatusesController do
       end
 
       it 'returns Vary header' do
-        expect(response.headers['Vary']).to eq 'Accept'
+        expect(response.headers['Vary']).to eq 'Accept, Accept-Language, Cookie'
       end
 
       it 'returns public Cache-Control header' do
