@@ -1,4 +1,3 @@
----
 sq:
   about:
     about_mastodon_html: 'Rrjeti shoqëror i së ardhmes: Pa reklama, pa survejim nga korporata, konceptim etik dhe decentralizim! Jini zot i të dhënave tuaja, me Mastodon-in!'
@@ -56,7 +55,7 @@ sq:
       delete: Fshiji të dhënat
       deleted: U fshi
       demote: Zhgradoje
-      destroyed_msg: Të dhënat e %{username} tani janë vënë në radhë për fshirje të menjëhershme
+      destroyed_msg: "Të dhënat e %{username} tani janë vënë në radhë për fshirje të menjëhershme"
       disable: Çaktivizoje
       disable_sign_in_token_auth: Çaktivizo mirëfilltësim me token email-i
       disable_two_factor_authentication: Çaktivizoni 2FA-në
@@ -87,7 +86,7 @@ sq:
       media_attachments: Bashkëngjitje media
       memorialize: Shndërroje në përkujtimore
       memorialized: U shndërrua në përkujtimore
-      memorialized_msg: "%{username} u kthye me sukses në një llogari përkujtimore"
+      memorialized_msg: '%{username} u kthye me sukses në një llogari përkujtimore'
       moderation:
         active: Aktiv
         all: Krejt
@@ -547,7 +546,7 @@ sq:
       no_ip_block_selected: S’u ndryshua ndonjë rregull IP, ngaqë s’u përzgjodh ndonjë i tillë
       title: Rregulla IP
     relationships:
-      title: Marrëdhënie të %{acct}
+      title: "Marrëdhënie të %{acct}"
     relays:
       add_new: Shtoni rele të re
       delete: Fshije
@@ -768,7 +767,6 @@ sq:
         remove_from_report: Hiqe prej raportimit
         report: Raportojeni
       deleted: E fshirë
-      favourites: Të parapëlqyer
       history: Historik versioni
       in_reply_to: Përgjigje për
       language: Gjuhë
@@ -848,14 +846,10 @@ sq:
       statuses:
         allow: Lejo postim
         allow_account: Lejo autor
-        description_html: Këto janë postime të cilat shërbyesi juaj di se po ndahen shumë dhe po zgjidhen si të parapëlqyera për çastin. Mund të ndihmojnë përdoruesit tuaj të rinj dhe të riardhur të gjejnë më tepër vetë për të ndjekur. S’shfaqen postime publikisht, pa miratuar ju autorin dhe autori lejon që llogaria e tij t’u sugjerohet të tjerëve. Mundeni edhe të lejoni, ose hidhni, poshtë postime individuale.
         disallow: Mos lejo postim
         disallow_account: Mos lejo autor
         no_status_selected: S’u ndryshuan postime në modë, ngaqë s’qe përzgjedhur i tillë
         not_discoverable: Autori s’ka zgjedhur të jetë i zbulueshëm
-        shared_by:
-          one: Ndarë me të tjerë, ose shënuar si e parapëlqyer një herë
-          other: Ndarë me të tjerë, ose shënuar si e parapëlqyer %{friendly_count} herë
         title: Postime në modë
       tags:
         current_score: Vlera aktuale %{score}
@@ -901,7 +895,7 @@ sq:
         one: 1 akt i aktivizuar
         other: "%{count}s akte të aktivizuar"
       events: Akte
-      new: "<em>Webhook</em> i ri"
+      new: <em>Webhook</em> i ri
       rotate_secret: Ciklo të fshehtën
       secret: E fshehtë nënshkrimesh
       status: Gjendje
@@ -926,7 +920,7 @@ sq:
     new_report:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
-      subject: Raportim i ri për %{instance} (#%{id})
+      subject: 'Raportim i ri për %{instance} (#%{id})'
     new_trends:
       body: 'Gjërat vijuese lypin një shqyrtim, përpara se të mund të shfaqen publikisht:'
       new_trending_links:
@@ -1107,7 +1101,7 @@ sq:
       description_html: Këto janë veprime të ndërmarra kundër llogarisë tuaj dhe sinjalizime që ju janë dërguar nga stafi i %{instance}.
       recipient: Drejtuar
       reject_appeal: Hidheni poshtë apelimin
-      status: "#%{id} postimi"
+      status: '#%{id} postimi'
       status_removed: Postim i hequr tashmë nga sistemi
       title: "%{action} prej %{date}"
       title_actions:
@@ -1206,10 +1200,10 @@ sq:
   generic:
     all: Krejt
     all_items_on_page_selected_html:
-      one: Në këtë faqe është i përzgjedhur <strong>%{count}</strong> objekt.
+      one: "Në këtë faqe është i përzgjedhur <strong>%{count}</strong> objekt."
       other: Në këtë faqe janë përzgjedhur krejt <strong>%{count}</strong> objektet.
     all_matching_items_selected_html:
-      one: Është përzgjedhur <strong>%{count}</strong> objekt me përkim me kërkimin tuaj.
+      one: "Është përzgjedhur <strong>%{count}</strong> objekt me përkim me kërkimin tuaj."
       other: Janë përzgjedhur krejt <strong>%{count}</strong> objektet me përkim me kërkimin tuaj.
     changes_saved_msg: Ndryshimet u ruajtën me sukses!
     copy: Kopjoje
@@ -1329,13 +1323,9 @@ sq:
         subject: "%{name} parashtroi një raportim"
       sign_up:
         subject: "%{name} u regjistrua"
-    favourite:
-      body: 'Gjendja juaj u parapëlqye nga %{name}:'
-      subject: "%{name} parapëlqeu gjendjen tuaj"
-      title: E parapëlqyer e re
     follow:
-      body: Tani ju ndjek %{name}!
-      subject: Tani ju ndjek %{name}
+      body: "Tani ju ndjek %{name}!"
+      subject: "Tani ju ndjek %{name}"
       title: Ndjekës i ri
     follow_request:
       action: Administroni kërkesa ndjekjeje
@@ -1564,10 +1554,8 @@ sq:
     enabled_hint: Fshin automatikisht postimet tuaja, pasi mbërrijnë një prag të caktuar moshe, hiq rastin kur ka përputhje me një nga përjashtimet më poshtë
     exceptions: Përjashtime
     explanation: Ngaqë fshirja e postimeve është një veprim i shtrenjtë, kjo bëhet ngadalë, gjatë kohës kur shërbyesi s’është i zënë. Për këtë arsye, postimet tuaja mund të fshihen pas ca kohësh pasi të ketë mbërritur pragun e moshës për to.
-    ignore_favs: Shpërfilli të parapëlqyerit
     ignore_reblogs: Shpërfilli përforcimet
     interaction_exceptions: Përjashtime bazuar në ndërveprime
-    interaction_exceptions_explanation: Kini parasysh se nuk ka garanci se postimet do të fshihen, nëse kalojnë nën pragun për të parapëlqyerat ose përforcimet, pasi kanë kaluar një herë në to.
     keep_direct: Mbaj mesazhet e drejtpërdrejtë
     keep_direct_hint: S’fshihet ndonjë nga mesazhet tuaj të drejtpërdrejtë
     keep_media: Mbaj postime me bashkëngjitje media
@@ -1578,8 +1566,6 @@ sq:
     keep_polls_hint: S’fshihet ndonjë nga pyetësorët tuaj
     keep_self_bookmark: Mbaj postime që keni faqeruajtur
     keep_self_bookmark_hint: S’fshihen postimet tuaja, nëse i keni faqeruajtur
-    keep_self_fav: Mbaji postimet që keni parapëlqyer
-    keep_self_fav_hint: Nuk fshihen postimet tuaja, nëse i keni parapëlqyer
     min_age:
       '1209600': 2 javë
       '15778476': 6 muaj
@@ -1590,8 +1576,6 @@ sq:
       '63113904': 2 vjet
       '7889238': 3 muaj
     min_age_label: Prag moshe
-    min_favs: Mbaji postimet e parapëlqyera më shumë se
-    min_favs_hint: Mos fshini ndonjë nga postimet tuaja që kanë marrë të paktën këtë numër si të parapëlqyer. Lëreni të zbrazët, që të fshihen postime pavarësisht nga numri se sa herë janë të parapëlqyer
     min_reblogs: Mbaji postimet e përforcuara më shumë se
     min_reblogs_hint: Nuk fshihet ndonjë nga postimet tuaja që kanë marrë më shumë se sa ky numër përforcimesh. Lëreni të zbrazët për të fshirë postimet, pavarësisht të numrit të përforcimeve për to
   stream_entries:
