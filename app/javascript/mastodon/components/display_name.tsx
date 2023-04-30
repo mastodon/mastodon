@@ -1,40 +1,41 @@
 import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import PropTypes from 'prop-types';
-import { autoPlayGif } from 'mastodon/initial_state';
-import Skeleton from 'mastodon/components/skeleton';
+import { autoPlayGif } from '..//initial_state';
+import Skeleton from './skeleton';
+import { Account } from '../../types/resources';
+import { List } from 'immutable';
 
-export default class DisplayName extends React.PureComponent {
+type Props = {
+  account: Account;
+  others: List<Account>;
+  localDomain: string;
+}
+export default class DisplayName extends React.PureComponent<Props> {
 
-  static propTypes = {
-    account: ImmutablePropTypes.map,
-    others: ImmutablePropTypes.list,
-    localDomain: PropTypes.string,
-  };
-
-  handleMouseEnter = ({ currentTarget }) => {
+  handleMouseEnter: React.ReactEventHandler<HTMLSpanElement> = ({ currentTarget }) => {
     if (autoPlayGif) {
       return;
     }
 
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
+    const emojis = currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
 
-    for (var i = 0; i < emojis.length; i++) {
-      let emoji = emojis[i];
-      emoji.src = emoji.getAttribute('data-original');
+    for (let i = 0; i < emojis.length; i++) {
+      const emoji = emojis[i];
+      const originalSrc = emoji.getAttribute('data-original');
+      if(originalSrc != null) emoji.src = originalSrc;
     }
   };
 
-  handleMouseLeave = ({ currentTarget }) => {
+  handleMouseLeave: React.ReactEventHandler<HTMLSpanElement> = ({ currentTarget }) => {
     if (autoPlayGif) {
       return;
     }
 
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
+    const emojis = currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
 
-    for (var i = 0; i < emojis.length; i++) {
-      let emoji = emojis[i];
-      emoji.src = emoji.getAttribute('data-static');
+    for (let i = 0; i < emojis.length; i++) {
+      const emoji = emojis[i];
+      const originalSrc = emoji.getAttribute('data-static');
+      if(originalSrc != null) emoji.src = originalSrc;
     }
   };
 
@@ -56,13 +57,13 @@ export default class DisplayName extends React.PureComponent {
         account = this.props.account;
       }
 
-      let acct = account.get('acct');
+      let acct = account?.get('acct');
 
       if (acct.indexOf('@') === -1 && localDomain) {
         acct = `${acct}@${localDomain}`;
       }
 
-      displayName = <bdi><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }} /></bdi>;
+      displayName = <bdi><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: account?.get('display_name_html') }} /></bdi>;
       suffix      = <span className='display-name__account'>@{acct}</span>;
     } else {
       displayName = <bdi><strong className='display-name__html'><Skeleton width='10ch' /></strong></bdi>;
