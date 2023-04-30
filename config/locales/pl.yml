@@ -798,6 +798,7 @@ pl:
         remove_from_report: Usuń ze zgłoszenia
         report: Zgłoszenie
       deleted: Usunięto
+      favourites: Ulubione
       history: Historia wersji
       in_reply_to: W odpowiedzi na
       language: Język
@@ -880,10 +881,16 @@ pl:
       statuses:
         allow: Zezwól na post
         allow_account: Zezwól na autora
+        description_html: Są to wpisy, o których Twój serwer wie i które są obecnie często udostępniane i dodawane do ulubionych. Może to pomóc nowym i powracającym użytkownikom znaleźć więcej osób do obserwacji. Żadne posty nie są wyświetlane publicznie, dopóki nie zatwierdzisz autora, a autor ustawi zezwolenie na wyświetlanie się w katalogu. Możesz również zezwolić lub odrzucić poszczególne posty.
         disallow: Nie zezwalaj na post
         disallow_account: Nie zezwalaj na autora
         no_status_selected: Żadne popularne wpisy nie zostały zmienione, ponieważ żadnych nie wybrano
         not_discoverable: Autor nie włączył opcji, by być wyświetlany w katalogu
+        shared_by:
+          one: Udostępnione lub dodane do ulubionych jednorazowo
+          few: Udostępnione i dodane do ulubionych %{friendly_count} razy
+          many: Udostępnione i dodane do ulubionych %{friendly_count} razy
+          other: Udostępnione i dodane do ulubionych %{friendly_count} razy
         title: Popularne teraz
       tags:
         current_score: Bieżący wynik %{score}
@@ -1380,6 +1387,10 @@ pl:
         subject: "%{name} wysłał zgłoszenie"
       sign_up:
         subject: "%{name} zarejestrował(-a) się"
+    favourite:
+      body: 'Twój wpis został polubiony przez %{name}:'
+      subject: "%{name} dodaje Twój wpis do ulubionych"
+      title: Nowe polubienie
     follow:
       body: "%{name} Cię obserwuje!"
       subject: "%{name} Cię obserwuje"
@@ -1623,8 +1634,10 @@ pl:
     enabled_hint: Automatycznie usuwa Twoje posty, gdy osiągną określony próg wiekowy, chyba że spełniają jeden z poniższych wyjątków
     exceptions: Wyjątki
     explanation: Ponieważ usuwanie postów jest kosztowną operacją, odbywa się to powoli, gdy serwer nie jest zajęty. Z tego powodu Twoje posty mogą zostać usunięte po pewnym czasie po osiągnięciu progu wiekowego.
+    ignore_favs: Ignoruj polubienia
     ignore_reblogs: Ignoruj podbicia
     interaction_exceptions: Wyjątki oparte na interakcjach
+    interaction_exceptions_explanation: Zauważ, że nie ma gwarancji usunięcia wpisów, jeśli ich wartość spadnie poniżej progu ulubionych lub podbić po tym, kiedy już były raz sprawdzone.
     keep_direct: Zachowaj bezpośrednie wiadomości
     keep_direct_hint: Nie usuwa żadnych bezpośrednich wiadomości
     keep_media: Zachowaj posty z załącznikami multimedialnymi
@@ -1635,6 +1648,8 @@ pl:
     keep_polls_hint: Nie usuwa żadnej z ankiet
     keep_self_bookmark: Zachowaj posty, które dodałeś do zakładek
     keep_self_bookmark_hint: Nie usuwaj własnych postów, jeśli je dodałeś do zakładek
+    keep_self_fav: Zachowaj polubione posty
+    keep_self_fav_hint: Nie usuwaj własnych postów, jeśli je polubiono
     min_age:
       '1209600': 2 tygodnie
       '15778476': 6 miesięcy
@@ -1645,6 +1660,8 @@ pl:
       '63113904': 2 lata
       '7889238': 3 miesiące
     min_age_label: Próg wieku
+    min_favs: Zachowaj polubione posty więcej niż
+    min_favs_hint: Nie usuwa żadnego z Twoich wpisów, które otrzymały więcej niż tę liczbę polubień. Pozostaw puste, aby usunąć posty bez względu na ich liczbę polubień
     min_reblogs: Utrzymuj posty wzmocnione więcej niż
     min_reblogs_hint: Nie usuwa żadnego z Twoich wpisów, które zostały wzmocnione więcej niż tyle razy. Pozostaw puste, aby usunąć posty bez względu na ich liczbę wzmocnień
   stream_entries:
