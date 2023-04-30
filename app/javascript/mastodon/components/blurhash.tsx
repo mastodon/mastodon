@@ -1,39 +1,27 @@
-// @ts-check
-
 import { decode } from 'blurhash';
 import React, { useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
 
-/**
- * @typedef BlurhashPropsBase
- * @property {string?} hash Hash to render
- * @property {number} width
- * Width of the blurred region in pixels. Defaults to 32
- * @property {number} [height]
- * Height of the blurred region in pixels. Defaults to width
- * @property {boolean} [dummy]
- * Whether dummy mode is enabled. If enabled, nothing is rendered
- * and canvas left untouched
- */
-
-/** @typedef {JSX.IntrinsicElements['canvas'] & BlurhashPropsBase} BlurhashProps */
-
-/**
- * Component that is used to render blurred of blurhash string
- * @param {BlurhashProps} param1 Props of the component
- * @returns {JSX.Element} Canvas which will render blurred region element to embed
- */
+type Props = {
+  hash: string;
+  width?: number;
+  height?: number;
+  dummy?: boolean;
+  children?: never;
+  [key: string]: any;
+}
 function Blurhash({
   hash,
   width = 32,
   height = width,
   dummy = false,
   ...canvasProps
-}) {
-  const canvasRef = /** @type {import('react').MutableRefObject<HTMLCanvasElement>} */ (useRef());
+}: Props) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const { current: canvas } = canvasRef;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const canvas = canvasRef.current!;
+    // eslint-disable-next-line no-self-assign
     canvas.width = canvas.width; // resets canvas
 
     if (dummy || !hash) return;
@@ -43,8 +31,7 @@ function Blurhash({
       const ctx = canvas.getContext('2d');
       const imageData = new ImageData(pixels, width, height);
 
-      // @ts-expect-error
-      ctx.putImageData(imageData, 0, 0);
+      ctx?.putImageData(imageData, 0, 0);
     } catch (err) {
       console.error('Blurhash decoding failure', { err, hash });
     }
@@ -54,12 +41,5 @@ function Blurhash({
     <canvas {...canvasProps} ref={canvasRef} width={width} height={height} />
   );
 }
-
-Blurhash.propTypes = {
-  hash: PropTypes.string.isRequired,
-  width: PropTypes.number,
-  height: PropTypes.number,
-  dummy: PropTypes.bool,
-};
 
 export default React.memo(Blurhash);
