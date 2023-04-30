@@ -1520,15 +1520,6 @@ Rails/SkipsModelValidations:
     - 'spec/services/follow_service_spec.rb'
     - 'spec/services/update_account_service_spec.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/SquishedSQLHeredocs:
-  Exclude:
-    - 'db/migrate/20170920024819_status_ids_to_timestamp_ids.rb'
-    - 'db/migrate/20180608213548_reject_following_blocked_users.rb'
-    - 'db/post_migrate/20190519130537_remove_boosts_widening_audience.rb'
-    - 'lib/mastodon/snowflake.rb'
-    - 'lib/tasks/tests.rake'
-
 Rails/TransactionExitStatement:
   Exclude:
     - 'app/lib/activitypub/activity/announce.rb'
