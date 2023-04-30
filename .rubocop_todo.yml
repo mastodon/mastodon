@@ -1213,12 +1213,6 @@ Rails/CompactBlank:
     - 'app/services/import_service.rb'
     - 'config/initializers/paperclip.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-Rails/ContentTag:
-  Exclude:
-    - 'app/helpers/application_helper.rb'
-    - 'app/helpers/branding_helper.rb'
-
 # Configuration parameters: Include.
 # Include: db/migrate/*.rb
 Rails/CreateTableWithTimestamps:
