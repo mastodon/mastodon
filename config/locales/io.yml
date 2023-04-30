@@ -1,7 +1,6 @@
----
 io:
   about:
-    about_mastodon_html: Mastodon esas <em>gratuita, apertitkodexa</em> sociala reto. Ol esas <em>sencentra</em> altra alternativo a komercala servadi. Ol evitigas, ke sola firmo guvernez tua tota komunikadol. Selektez servero, quan tu fidas. Irge qua esas tua selekto, tu povas komunikar kun omna altra uzeri. Irgu povas krear sua propra instaluro di Mastodon en sua servero, e partoprenar en la <em>sociala reto</em> tote glate.
+    about_mastodon_html: 'Mastodon esas <em>gratuita, apertitkodexa</em> sociala reto. Ol esas <em>sencentra</em> altra alternativo a komercala servadi. Ol evitigas, ke sola firmo guvernez tua tota komunikadol. Selektez servero, quan tu fidas. Irge qua esas tua selekto, tu povas komunikar kun omna altra uzeri. Irgu povas krear sua propra instaluro di Mastodon en sua servero, e partoprenar en la <em>sociala reto</em> tote glate.'
     contact_missing: Ne fixigita
     contact_unavailable: Nula
     hosted_on: Mastodon hostigesas che %{domain}
@@ -56,7 +55,7 @@ io:
       delete: Efacez informi
       deleted: Efacita
       demote: Despromocez
-      destroyed_msg: Informi di %{username} nun aranjesis por efacesar aparante
+      destroyed_msg: "Informi di %{username} nun aranjesis por efacesar aparante"
       disable: Frostigez
       disable_sign_in_token_auth: Desaktivigez retpostofichyurizeso
       disable_two_factor_authentication: Desaktivigez 2FA
@@ -525,7 +524,7 @@ io:
     relays:
       add_new: Insertez nova relayo
       delete: Efacez
-      description_html: "<strong>Federatrelayo</strong> esas mediatajservilo quo interchanjas multa publika posti inter servili quo abonas e publikigas ibe. <strong>Ol povas helpar mikra e mezgranda servili deskovrar kontenajo de fediverso</strong>, quale ne bezonas lokala uzanti manuale sequar altra personi en nelokala servili."
+      description_html: <strong>Federatrelayo</strong> esas mediatajservilo quo interchanjas multa publika posti inter servili quo abonas e publikigas ibe. <strong>Ol povas helpar mikra e mezgranda servili deskovrar kontenajo de fediverso</strong>, quale ne bezonas lokala uzanti manuale sequar altra personi en nelokala servili.
       disable: Desaktivigez
       disabled: Desaktivigita
       enable: Aktivigez
@@ -771,14 +770,10 @@ io:
       statuses:
         allow: Permisez posto
         allow_account: Permisez skribanto
-        description_html: Co esas posti quon vua servilo savas quale nun partigesas e favorizesas multe nun. Ol povas helpar vua nova e retrovenanta uzanti trovar plu multa personi por sequar. Posti ne publike montresas til vu aprobar la skribanto, e la skribanto permisas sua konto sugestesas a altra personi. Vu povas anke permisar o refuzar individuala posti.
         disallow: Despermisez posto
         disallow_account: Despermisez skribanto
         no_status_selected: Nula tendencoza posti chanjesis pro ke nulo selektesis
         not_discoverable: Skribanto ne konsentis pri esar deskovrebla
-        shared_by:
-          one: Partigesis o favorizesis 1 foye
-          other: Partigesis o favorizesis %{friendly_count} foye
         title: Tendencoza posti
       tags:
         current_score: Nuna punto esas %{score}
@@ -814,7 +809,7 @@ io:
     webhooks:
       add_new: Insertez finpunto
       delete: Efacez
-      description_html: "<strong>Rethoko</strong> povigas Mastodon sendar <strong>samtempoavizi</strong> pri selektita eventi a vua sua apliko, por ke vua apliko povas <strong>automate kauzigar reakti</strong>."
+      description_html: <strong>Rethoko</strong> povigas Mastodon sendar <strong>samtempoavizi</strong> pri selektita eventi a vua sua apliko, por ke vua apliko povas <strong>automate kauzigar reakti</strong>.
       disable: Desaktivigez
       disabled: Desaktivigita
       edit: Modifikez finpunto
@@ -850,7 +845,7 @@ io:
     new_report:
       body: "%{reporter} raportizis %{target}"
       body_remote: Ulu de %{domain} raportizis %{target}
-      subject: Nova raporto por %{instance} (#%{id})
+      subject: 'Nova raporto por %{instance} (#%{id})'
     new_trends:
       body: 'Ca kozi bezonas kontrol ante ol povas montresar publike:'
       new_trending_links:
@@ -1226,10 +1221,6 @@ io:
         subject: "%{name} sendis raporto"
       sign_up:
         subject: "%{name} registris"
-    favourite:
-      body: "%{name} favoris tua mesajo:"
-      subject: "%{name} favoris tua mesajo"
-      title: Nova favorato
     follow:
       body: "%{name} sequeskas tu!"
       subject: "%{name} sequeskas tu"
@@ -1237,17 +1228,17 @@ io:
     follow_request:
       action: Jerez sequodemandi
       body: "%{name} demandis sequar tu"
-      subject: "%{name} demandis sequar tu"
+      subject: '%{name} demandis sequar tu'
       title: Nova sequodemando
     mention:
       action: Respondez
-      body: "%{name} mencionis tu en:"
-      subject: "%{name} mencionis tu"
+      body: '%{name} mencionis tu en:'
+      subject: '%{name} mencionis tu'
       title: Nova menciono
     poll:
       subject: Votposto di %{name} finis
     reblog:
-      body: "%{name} diskonocigis tua mesajo:"
+      body: '%{name} diskonocigis tua mesajo:'
       subject: "%{name} diskonocigis tua mesajo"
       title: Nova busto
     status:
@@ -1453,10 +1444,8 @@ io:
     enabled_hint: Automata efacez vua posti pos oli atingar fixita oldeslimito, se oli ne parigesas a 1 de suba ecepti
     exceptions: Ecepti
     explanation: Pro ke efacar posti esas nechipa procedo, co agas lente progresive kande servilo ne esas okupata. Do, vua posti forsan efacesos kurte pos oli atingas oldeslimito.
-    ignore_favs: Ignorez favorati
     ignore_reblogs: Ignorez busti
     interaction_exceptions: Ecepti segun interagi
-    interaction_exceptions_explanation: Notale, ne existas garantio ke posti efacesos se oli iras sub favorato o bustlimito pos iras super ol.
     keep_direct: Retenez direta mesaji
     keep_direct_hint: Ne efacas irga vua direta mesaji
     keep_media: Retenez posti kun mediiatachaji
@@ -1467,8 +1456,6 @@ io:
     keep_polls_hint: Ne efacas irga vua votposti
     keep_self_bookmark: Retenez posti quon vu libromarkizis
     keep_self_bookmark_hint: Ne efacas vua sua posti se vu libromarkizis li
-    keep_self_fav: Retenez posti quon vu favorizis
-    keep_self_fav_hint: Ne efacas vua sua posti se vu favorizis li
     min_age:
       '1209600': 2 semani
       '15778476': 6 monati
@@ -1479,7 +1466,6 @@ io:
       '63113904': 2 yari
       '7889238': 3 monati
     min_age_label: Oldeslimito
-    min_favs: Retenez favorizita posti mine
     min_reblogs: Retenez bustita posti mine
     min_reblogs_hint: Ne efacas irga vua posti quo bustigesos mine ca foyoquanto. Restez quale vakua por efacar posti sen suciar olia foyoquanto
   stream_entries:
