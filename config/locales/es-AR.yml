@@ -770,6 +770,7 @@ es-AR:
         remove_from_report: Quitar de la denuncia
         report: Denunciar
       deleted: Eliminado
+      favourites: Favoritos
       history: Historial de versiones
       in_reply_to: Respondiendo a
       language: Idioma
@@ -850,10 +851,14 @@ es-AR:
       statuses:
         allow: Permitir mensaje
         allow_account: Permitir autor
+        description_html: Estos son mensajes que tu servidor detecta que están siendo compartidos y marcados como favoritos muchas veces en este momento. Esto puede ayudar a tus usuarios nuevos y retornantes a encontrar más cuentas para seguir. No hay mensajes que se muestren públicamente hasta que aprobés al autor, y el autor permita que su cuenta sea sugerida a otros. También podés permitir o rechazar mensajes individuales.
         disallow: Rechazar mensaje
         disallow_account: Rechazar autor
         no_status_selected: No se cambió ningún mensaje en tendencia, ya que ninguno fue seleccionado
         not_discoverable: El autor optó ser detectable
+        shared_by:
+          one: Compartido y marcado como favorito %{friendly_count} vez
+          other: Compartido y marcado como favorito %{friendly_count} veces
         title: Mensajes en tendencia
       tags:
         current_score: Puntuación actual %{score}
@@ -1330,6 +1335,10 @@ es-AR:
         subject: "%{name} envió una denuncia"
       sign_up:
         subject: "Se registró %{name}"
+    favourite:
+      body: 'Tu mensaje fue marcado como favorito por %{name}:'
+      subject: "%{name} marcó tu mensaje como favorito"
+      title: Nuevo favorito
     follow:
       body: "¡%{name} te está siguiendo!"
       subject: "%{name} te está siguiendo"
@@ -1561,8 +1570,10 @@ es-AR:
     enabled_hint: Elimina automáticamente tus mensajes una vez que alcancen un umbral de edad especificado, a menos que coincidan con una de las excepciones a continuación
     exceptions: Exepciones
     explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente con el tiempo cuando el servidor no está ocupado. Por esta razón, tus mensajes pueden ser borrados un poco después de que alcancen el umbral de edad.
+    ignore_favs: Ignorar mensajes marcados como favoritos
     ignore_reblogs: Ignorar adhesiones
     interaction_exceptions: Excepciones basadas en interacciones
+    interaction_exceptions_explanation: Tené en cuenta que no hay garantía de que los mensajes se eliminen si van por debajo del umbral de los mensajes marcados como favorito o de las adhesiones después de haberlos superado una vez.
     keep_direct: Conservar mensajes directos
     keep_direct_hint: No elimina ninguno de tus mensajes directos
     keep_media: Conservar mensajes con archivos adjuntos
@@ -1573,6 +1584,8 @@ es-AR:
     keep_polls_hint: No elimina ninguna de tus encuestas
     keep_self_bookmark: Conservar mensajes que marcaste como favoritos
     keep_self_bookmark_hint: No elimina tus propios mensajes si los marcaste como favoritos
+    keep_self_fav: Conservar mensajes marcados como favoritos
+    keep_self_fav_hint: No elimina tus propios mensajes si los marcaste como favoritos
     min_age:
       '1209600': 2 semanas
       '15778476': 6 meses
@@ -1583,6 +1596,8 @@ es-AR:
       '63113904': 2 años
       '7889238': 3 meses
     min_age_label: Umbral de edad
+    min_favs: Conservar mensajes marcados como favoritos de por lo menos
+    min_favs_hint: No elimina ninguno de tus mensajes que haya recibido al menos esta cantidad de favoritos. Dejá en blanco para eliminar mensajes independientemente de su número de favoritos.
     min_reblogs: Conservar adhesiones de por lo menos
     min_reblogs_hint: No elimina ninguno de tus mensajes que haya recibido más de esta cantidad de adhesiones. Dejá en blanco para eliminar mensajes independientemente de su número de adhesiones.
   stream_entries:
