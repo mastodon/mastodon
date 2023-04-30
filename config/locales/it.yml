@@ -1,4 +1,3 @@
----
 it:
   about:
     about_mastodon_html: 'Il social network del futuro: Nessuna pubblicità, zero sorveglianza azienale, design etico e decentralizzazione! Sii il proprietario dei tuoi dati, con Mastodon!'
@@ -56,7 +55,7 @@ it:
       delete: Elimina i dati
       deleted: Eliminato
       demote: Retrocedi
-      destroyed_msg: I dati di %{username} sono ora accodati per l'imminente eliminazione
+      destroyed_msg: "I dati di %{username} sono ora accodati per l'imminente eliminazione"
       disable: Congela
       disable_sign_in_token_auth: Disabilita l'autenticazione con token via email
       disable_two_factor_authentication: Disabilita A2F
@@ -87,7 +86,7 @@ it:
       media_attachments: Allegati multimediali
       memorialize: Trasforma in memoriam
       memorialized: Commemorato
-      memorialized_msg: "%{username} trasformato correttamente in un profilo commemorativo"
+      memorialized_msg: '%{username} trasformato correttamente in un profilo commemorativo'
       moderation:
         active: Attivo
         all: Tutto
@@ -548,7 +547,7 @@ it:
       no_ip_block_selected: Nessuna regola IP è stata modificata poiché nessuna è stata selezionata
       title: Regole IP
     relationships:
-      title: Relazioni di %{acct}
+      title: "Relazioni di %{acct}"
     relays:
       add_new: Aggiungi ripetitore
       delete: Cancella
@@ -771,7 +770,6 @@ it:
         remove_from_report: Rimuovi dal report
         report: Rapporto
       deleted: Cancellato
-      favourites: Preferiti
       history: Cronologia delle versioni
       in_reply_to: In risposta a
       language: Lingua
@@ -852,14 +850,10 @@ it:
       statuses:
         allow: Consenti post
         allow_account: Consenti autore
-        description_html: Questi sono post noti al tuo server che sono attualmente molto condivisi e preferiti. Può aiutare i tuoi utenti (nuovi e non) a trovare più persone da seguire. Nessun post viene visualizzato pubblicamente fino a quando si approva l'autore, e l'autore permette che il suo account sia suggerito ad altri. È anche possibile permettere o rifiutare singoli post.
         disallow: Non consentire post
         disallow_account: Non consentire autore
         no_status_selected: Nessun post di tendenza è stato modificato in quanto nessuno è stato selezionato
         not_discoverable: L'autore non ha optato di essere scopribile
-        shared_by:
-          one: Condiviso o preferito una volta
-          other: Condiviso e preferito %{friendly_count} volte
         title: Post di tendenza
       tags:
         current_score: Punteggio corrente %{score}
@@ -931,7 +925,7 @@ it:
     new_report:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
-      subject: Nuova segnalazione per %{instance} (#%{id})
+      subject: 'Nuova segnalazione per %{instance} (#%{id})'
     new_trends:
       body: 'I seguenti elementi necessitano di un controllo prima che possano essere visualizzati pubblicamente:'
       new_trending_links:
@@ -952,9 +946,7 @@ it:
     remove: Scollega alias
   appearance:
     advanced_web_interface: Interfaccia web avanzata
-    advanced_web_interface_hint: |-
-      Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:
-      Home, notifiche, timeline federata, qualsiasi numero di liste e etichette.
+    advanced_web_interface_hint: "Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:\nHome, notifiche, timeline federata, qualsiasi numero di liste e etichette."
     animations_and_accessibility: Animazioni e accessibilità
     confirmation_dialogs: Dialoghi di conferma
     discovery: Scoperta
@@ -1338,10 +1330,6 @@ it:
         subject: "%{name} ha inviato una segnalazione"
       sign_up:
         subject: "%{name} si è iscritto"
-    favourite:
-      body: 'Il tuo status è stato apprezzato da %{name}:'
-      subject: "%{name} ha apprezzato il tuo status"
-      title: Nuovo preferito
     follow:
       body: "%{name} ti sta seguendo!"
       subject: "%{name} ti sta seguendo"
@@ -1573,10 +1561,8 @@ it:
     enabled_hint: Cancella automaticamente i tuoi post quando diventano più vecchi di una soglia di età specificata, a meno che non corrispondano a una delle eccezioni sotto
     exceptions: Eccezioni
     explanation: Poiché l'eliminazione dei post è un'operazione che richiede molte risorse, questa viene eseguita quando il server non è occupato da altre operazioni. Per questo motivo, i tuoi post possono essere cancellati un po' dopo che raggiungono la soglia di età.
-    ignore_favs: Ignora preferiti
     ignore_reblogs: Ignora condivisioni
     interaction_exceptions: Eccezioni basate sulle interazioni
-    interaction_exceptions_explanation: Tieni conto che non c'è garanzia che i post vengano cancellati se vanno al di sotto della soglia per i preferiti o i condivisi dopo averla superata.
     keep_direct: Conserva messaggi diretti
     keep_direct_hint: Non cancella nessuno dei tuoi messaggi diretti
     keep_media: Conserva post con media allegati
@@ -1587,8 +1573,6 @@ it:
     keep_polls_hint: Non cancella nessuno dei tuoi sondaggi
     keep_self_bookmark: Conserva post che hai marcato con segnalibro
     keep_self_bookmark_hint: Non cancella i tuoi post se li hai marcati con segnalibro
-    keep_self_fav: Conserva post che hai marcato come apprezzato
-    keep_self_fav_hint: Non cancella i tuoi post se li hai marcati come apprezzati
     min_age:
       '1209600': 2 settimane
       '15778476': 6 mesi
@@ -1599,8 +1583,6 @@ it:
       '63113904': 2 anni
       '7889238': 3 mesi
     min_age_label: Soglia di età
-    min_favs: Conserva i post preferiti più di
-    min_favs_hint: Non cancella nessuno dei tuoi post che ha ricevuto almeno questo numero di preferiti. Lascia vuoto per cancellare i post indipendentemente dal loro numero di preferiti
     min_reblogs: Conserva i post condivisi più di
     min_reblogs_hint: Non cancella nessuno dei tuoi post che è stato condiviso più di questo numero di volte. Lascia vuoto per cancellare i post indipendentemente dal loro numero di condivisioni
   stream_entries:
