@@ -1,10 +1,9 @@
----
 vi:
   about:
     about_mastodon_html: 'Mạng xã hội của tương lai: Không quảng cáo, không bán thông tin người dùng và phi tập trung! Làm chủ dữ liệu của bạn với Mastodon!'
     contact_missing: Chưa thiết lập
     contact_unavailable: N/A
-    hosted_on: "%{domain} vận hành nhờ Mastodon"
+    hosted_on: '%{domain} vận hành nhờ Mastodon'
     title: Giới thiệu
   accounts:
     follow: Theo dõi
@@ -54,7 +53,7 @@ vi:
       delete: Xóa dữ liệu
       deleted: Đã xóa
       demote: Xóa vai trò
-      destroyed_msg: Dữ liệu %{username} sẽ được lên lịch xóa ngay bây giờ
+      destroyed_msg: "Dữ liệu %{username} sẽ được lên lịch xóa ngay bây giờ"
       disable: Khóa
       disable_sign_in_token_auth: Vô hiệu hóa xác minh bằng email
       disable_two_factor_authentication: Vô hiệu hóa xác minh 2 bước
@@ -537,11 +536,11 @@ vi:
       no_ip_block_selected: Bạn chưa chọn bất kỳ IP nào
       title: Những IP bị chặn
     relationships:
-      title: Mối quan hệ của %{acct}
+      title: "Mối quan hệ của %{acct}"
     relays:
       add_new: Thêm liên hợp mới
       delete: Loại bỏ
-      description_html: "<strong>Liên hợp</strong> nghĩa là cho phép bài đăng công khai của máy chủ này xuất hiện trên bảng tin của máy chủ khác và ngược lại. <strong>Nó giúp các máy chủ vừa và nhỏ tiếp cận nội dung từ các máy chủ lớn hơn</strong>. Nếu không chọn, người ở máy chủ này vẫn có thể theo dõi người khác trên các máy chủ khác."
+      description_html: <strong>Liên hợp</strong> nghĩa là cho phép bài đăng công khai của máy chủ này xuất hiện trên bảng tin của máy chủ khác và ngược lại. <strong>Nó giúp các máy chủ vừa và nhỏ tiếp cận nội dung từ các máy chủ lớn hơn</strong>. Nếu không chọn, người ở máy chủ này vẫn có thể theo dõi người khác trên các máy chủ khác.
       disable: Tắt
       disabled: Đã tắt
       enable: Kích hoạt
@@ -582,7 +581,7 @@ vi:
       category_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn khi giao tiếp với họ
       comment:
         none: Không có mô tả
-      comment_description_html: "%{name} cho biết thêm:"
+      comment_description_html: '%{name} cho biết thêm:'
       confirm: Xác nhận
       confirm_action: Xác nhận kiểm duyệt với %{acct}
       created_at: Báo cáo lúc
@@ -757,7 +756,6 @@ vi:
         remove_from_report: Xóa khỏi báo cáo
         report: Báo cáo
       deleted: Đã xóa
-      favourites: Lượt thích
       history: Lịch sử phiên bản
       in_reply_to: Trả lời đến
       language: Ngôn ngữ
@@ -822,7 +820,7 @@ vi:
         publishers:
           no_publisher_selected: Không có nguồn đăng nào thay đổi vì không có nguồn đăng nào được chọn
         shared_by_over_week:
-          other: "%{count} người chia sẻ tuần rồi"
+          other: '%{count} người chia sẻ tuần rồi'
         title: Liên kết nổi bật
         usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
       not_allowed_to_trend: Không được phép thành xu hướng
@@ -837,13 +835,10 @@ vi:
       statuses:
         allow: Cho phép tút
         allow_account: Cho phép người đăng
-        description_html: Đây là những tút đang được đăng lại và yêu thích rất nhiều trên máy chủ của bạn. Nó có thể giúp người mới và người cũ tìm thấy nhiều người hơn để theo dõi. Không có tút nào được hiển thị công khai cho đến khi bạn cho phép người đăng và người cho phép đề xuất tài khoản của họ cho người khác. Bạn cũng có thể cho phép hoặc từ chối từng tút riêng.
         disallow: Cấm tút
         disallow_account: Cấm người đăng
         no_status_selected: Không có tút thịnh hành nào thay đổi vì không có tút nào được chọn
         not_discoverable: Tác giả đã chọn không tham gia mục khám phá
-        shared_by:
-          other: Được thích và đăng lại %{friendly_count} lần
         title: Tút nổi bật
       tags:
         current_score: Chỉ số gần đây %{score}
@@ -866,7 +861,7 @@ vi:
         usable: Có thể dùng
         usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
         used_by_over_week:
-          other: "%{count} người dùng tuần rồi"
+          other: '%{count} người dùng tuần rồi'
       title: Xu hướng
       trending: Thịnh hành
     warning_presets:
@@ -878,7 +873,7 @@ vi:
     webhooks:
       add_new: Thêm endpoint
       delete: Xóa bỏ
-      description_html: "<strong>Webhook</strong> cho phép Mastodon gửi nhận <strong>thông báo đẩy thời gian thật</strong> về những sự kiện cho ứng dụng thứ ba của bạn, cho ứng dụng của bạn có thể <strong>tự động kích hoạt reaction</strong>."
+      description_html: <strong>Webhook</strong> cho phép Mastodon gửi nhận <strong>thông báo đẩy thời gian thật</strong> về những sự kiện cho ứng dụng thứ ba của bạn, cho ứng dụng của bạn có thể <strong>tự động kích hoạt reaction</strong>.
       disable: Tắt
       disabled: Đã tắt
       edit: Sửa endpoint
@@ -913,7 +908,7 @@ vi:
     new_report:
       body: "%{reporter} vừa báo cáo %{target}"
       body_remote: Ai đó từ %{domain} đã báo cáo %{target}
-      subject: "(%{instance}) Báo cáo #%{id}"
+      subject: '(%{instance}) Báo cáo #%{id}'
     new_trends:
       body: 'Các mục sau đây cần được xem xét trước khi chúng hiển thị công khai:'
       new_trending_links:
@@ -1029,8 +1024,8 @@ vi:
     already_requested: Bạn vừa gửi một yêu cầu theo dõi tới người này
     error: Rất tiếc, đã xảy ra lỗi khi tìm kiếm tài khoản từ nơi khác
     follow: Theo dõi
-    follow_request: Bạn đã gửi yêu cầu theo dõi tới
-    following: Chúc mừng! Bạn đã trở thành người theo dõi
+    follow_request: 'Bạn đã gửi yêu cầu theo dõi tới'
+    following: 'Chúc mừng! Bạn đã trở thành người theo dõi'
     post_follow:
       close: Bạn có thể đóng cửa sổ này rồi.
       return: Xem trang hồ sơ
@@ -1310,12 +1305,8 @@ vi:
         subject: "%{name} đã gửi báo cáo"
       sign_up:
         subject: "%{name} đã được đăng ký"
-    favourite:
-      body: Tút của bạn vừa được thích bởi %{name}
-      subject: "%{name} vừa thích tút của bạn"
-      title: Lượt thích mới
     follow:
-      body: Bạn vừa được %{name} theo dõi!
+      body: "Bạn vừa được %{name} theo dõi!"
       subject: "%{name} vừa theo dõi bạn"
       title: Người theo dõi mới
     follow_request:
@@ -1331,11 +1322,11 @@ vi:
     poll:
       subject: Cuộc bình chọn của %{name} kết thúc
     reblog:
-      body: Tút của bạn vừa được %{name} đăng lại
+      body: 'Tút của bạn vừa được %{name} đăng lại'
       subject: "%{name} vừa đăng lại tút của bạn"
       title: Lượt đăng lại mới
     status:
-      subject: Bài đăng mới từ %{name}
+      subject: "Bài đăng mới từ %{name}"
     update:
       subject: "%{name} đã sửa một tút"
   notifications:
@@ -1539,10 +1530,8 @@ vi:
     enabled_hint: Tự động xóa các tút của bạn khi chúng tới thời điểm nhất định, trừ những trường hợp ngoại lệ bên dưới
     exceptions: Ngoại lệ
     explanation: Số lượng tút sẽ tăng dần theo năm tháng. Bạn nên xóa những tút cũ khi tới một thời điểm nhất định.
-    ignore_favs: Bỏ qua số lượt thích
     ignore_reblogs: Bỏ qua lượt đăng lại
     interaction_exceptions: Ngoại lệ dựa trên tương tác
-    interaction_exceptions_explanation: Lưu ý rằng không có gì đảm bảo rằng các tút sẽ bị xóa nếu chúng tụt dưới ngưỡng mức yêu thích hoặc đăng lại, dù đã từng đạt.
     keep_direct: Giữ lại tin nhắn
     keep_direct_hint: Không xóa tin nhắn của bạn
     keep_media: Giữ lại những tút có đính kèm media
@@ -1553,8 +1542,6 @@ vi:
     keep_polls_hint: Không xóa những tút dạng bình chọn
     keep_self_bookmark: Giữ lại những tút đã lưu
     keep_self_bookmark_hint: Không xóa những tút của bạn nếu bạn có lưu chúng
-    keep_self_fav: Giữ lại những tút yêu thích
-    keep_self_fav_hint: Không xóa những tút của bạn nếu bạn có thích chúng
     min_age:
       '1209600': 2 tuần
       '15778476': 6 tháng
@@ -1565,8 +1552,6 @@ vi:
       '63113904': 2 năm
       '7889238': 3 tháng
     min_age_label: Thời điểm
-    min_favs: Giữ những tút yêu thích lâu hơn
-    min_favs_hint: Những tút có lượt thích nhiều hơn số này sẽ không bị xóa. Để trống nếu bạn muốn xóa hết
     min_reblogs: Giữ những tút đã đăng lại lâu hơn
     min_reblogs_hint: Những tút có lượt đăng lại nhiều hơn số này sẽ không bị xóa. Để trống nếu bạn muốn xóa hết
   stream_entries:
