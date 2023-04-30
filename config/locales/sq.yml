@@ -982,6 +982,7 @@ sq:
       prefix_invited_by_user: "@%{name} ju fton të bëheni pjesë e këtij shërbyesi Mastodon!"
       prefix_sign_up: Regjistrohuni në Mastodon që sot!
       suffix: Me një llogari, do të jeni në gjendje të ndiqni persona, përditësime postimesh dhe të shkëmbeni mesazhe me përdorues nga cilido shërbyes Mastodon, etj!
+    didnt_get_confirmation: S’morët një lidhje ripohimi?
     dont_have_your_security_key: S’i keni kyçet tuaj të sigurisë?
     forgot_password: Harruat fjalëkalimin tuaj?
     invalid_reset_password_token: Token-i i ricaktimit të fjalëkalimit është i pavlefshëm ose ka skaduar. Ju lutemi, kërkoni një të ri.
@@ -994,11 +995,16 @@ sq:
     migrate_account_html: Nëse doni ta ridrejtoni këtë llogari te një tjetër, këtë mund <a href="%{path}">ta formësoni këtu</a>.
     or_log_in_with: Ose bëni hyrjen me
     privacy_policy_agreement_html: I kam lexuar dhe pajtohem me <a href="%{privacy_policy_path}" target="_blank">rregullat e privatësisë</a>
+    progress:
+      confirm: Email ripohimi
+      details: Hollësitë tuaja
+      review: Shqyrtimi ynë
     providers:
       cas: CAS
       saml: SAML
     register: Regjistrohuni
     registration_closed: "%{instance} s’pranon anëtarë të rinj"
+    resend_confirmation: Ridërgo lidhje ripohimi
     reset_password: Ricaktoni fjalëkalimin
     rules:
       accept: Pranoje
@@ -1007,10 +1013,17 @@ sq:
       title: Disa rregulla bazë.
     security: Siguri
     set_new_password: Caktoni fjalëkalim të ri
+    setup:
+      email_below_hint_html: Shihni te dosja juaj e të padëshiruara, ose kërkoni një tjetër. Mund të ndreqni adresën tuaj email, nëse është e gabuar.
+      email_settings_hint_html: Që të verifikoni %{email}, klikoni lidhjen që ju dërguam. Do të presim këtu.
+      link_not_received: S’morët lidhje?
+      new_confirmation_instructions_sent: Pas pak minutash do të merrni një email të ri me lidhjen e ripohimit!
+      title: Shihni te email-et tuaj
     sign_in:
       preamble_html: Hyni me kredencialet tuaja për te <strong>%{domain}</strong>. Nëse llogaria juaj strehohet në një tjetër shërbyes, s’do të jeni në gjendje të bëni hyrjen këtu.
       title: Bëni hyrjen te %{domain}
     sign_up:
+      manual_review: Regjistrimet te %{domain} kalojnë një shqyrtim dorazi nga moderatorët tanë. Që të na ndihmoni të përfundojmë regjistrimin tuaj, na shkruani pakëz mbi veten dhe pse doni një llogari në %{domain}.
       preamble: Me një llogari në këtë shërbyes Mastodon, do të jeni në gjendje të ndiqni cilindo person tjetër në rrjet, pavarësisht se ku strehohet llogaria e tyre.
       title: Le të ujdisim llogarinë tuaj në %{domain}.
     status:

@@ -125,6 +125,8 @@ sv:
       removed_header_msg: Tog bort %{username}s sidhuvudsbild
       resend_confirmation:
         already_confirmed: Den här användaren är redan bekräftad
+        send: Skicka bekräftelselänken igen
+        success: Bekräftelselänken har skickats!
       reset: Återställ
       reset_password: Återställ lösenord
       resubscribe: Starta en ny prenumeration
@@ -986,6 +988,7 @@ sv:
       prefix_invited_by_user: "@%{name} bjuder in dig att gå med i en Mastodon-server!"
       prefix_sign_up: Registrera dig på Mastodon idag!
       suffix: Med ett konto kommer du att kunna följa personer, göra inlägg och utbyta meddelanden med användare från andra Mastodon-servrar, och ännu mer!
+    didnt_get_confirmation: Fick du ingen bekräftelselänk?
     dont_have_your_security_key: Har du inte din säkerhetsnyckel?
     forgot_password: Glömt ditt lösenord?
     invalid_reset_password_token: Lösenordsåterställningstoken är ogiltig eller utgått. Vänligen be om en ny.
@@ -998,11 +1001,15 @@ sv:
     migrate_account_html: Om du vill omdirigera detta konto till ett annat, kan du <a href="%{path}">konfigurera det här</a>.
     or_log_in_with: Eller logga in med
     privacy_policy_agreement_html: Jag har läst och godkänner <a href="%{privacy_policy_path}" target="_blank">integritetspolicyn</a>
+    progress:
+      confirm: Bekräfta e-postadress
+      details: Dina uppgifter
     providers:
       cas: CAS
       saml: SAML
     register: Registrera
     registration_closed: "%{instance} accepterar inte nya medlemmar"
+    resend_confirmation: Skicka bekräftelselänken igen
     reset_password: Återställ lösenord
     rules:
       accept: Godkänn
@@ -1011,6 +1018,8 @@ sv:
       title: Några grundregler.
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
+    setup:
+      link_not_received: Fick du ingen länk?
     sign_in:
       preamble_html: Logga in med dina användaruppgifter på <strong>%{domain}</strong>. Om ditt konto finns på en annan server kommer du inte att kunna logga in här.
       title: Logga in på %{domain}
