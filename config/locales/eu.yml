@@ -770,6 +770,7 @@ eu:
         remove_from_report: Kendu txostenetik
         report: Salatu
       deleted: Ezabatuta
+      favourites: Gogokoak
       history: Bertsio-historia
       in_reply_to: Honi erantzuten
       language: Hizkuntza
@@ -850,6 +851,7 @@ eu:
       statuses:
         allow: Onartu bidalketa
         allow_account: Onartu egilea
+        description_html: Hauek dira gehien partekatzen eta gogokoenetara gehien gehitzen diren argitalpenak, zure zerbitzariak dakienaren arabera. Zure erabiltzaile berriei nahiz itzultzen direnei jarrai dezaketen jendea aurkitzen lagun ditzake. Argitalpenik ez da publikoki erakutsiko egilea onartzen duzun arte eta egileak berak bere kontua besteei iradokitzea onartzen badu. Baita ere, argitalpen bakoitza baimendu edo uka dezakezu.
         disallow: Ez onartu bidalketa
         disallow_account: Ez onartu egilea
         no_status_selected: Ez da joerarik aldatu ez delako bat ere hautatu
@@ -1330,6 +1332,10 @@ eu:
         subject: "%{name} erabiltzaileak txosten bat bidali du"
       sign_up:
         subject: "%{name} erabiltzailea erregistratu da"
+    favourite:
+      body: '%{name}-(e)k zure argitalpena gogokoenetara gehitu du:'
+      subject: "%{name}-(e)k zure argitalpena datsegi"
+      title: Gogoko berria
     follow:
       body: "%{name}(e)k jarraitzen zaitu!"
       subject: "%{name}(e)k jarraitzen zaitu"
@@ -1561,6 +1567,7 @@ eu:
     enabled_hint: Zure bidalketa zaharrak automatikoki ezabatzen ditu zehazturiko denbora mugara iristean, beheko baldintza bat betetzen ez bada
     exceptions: Salbuespenak
     explanation: Bidalketak ezabatzea eragiketa garestia denez, mantso egiten da, zerbitzaria lasai dagoenean. Horregatik, zure bidalketak denbora mugara iristen direnetik ezabatu arte tarte bat igaro daiteke.
+    ignore_favs: Alde batera utzi gogokoak
     ignore_reblogs: Ez ezabatu bultzadak
     interaction_exceptions: Elkarrekintzetan oinarritutako salbuespenak
     keep_direct: Mantendu mezu zuzenak
