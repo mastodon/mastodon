@@ -1,4 +1,3 @@
----
 en-GB:
   activerecord:
     attributes:
@@ -147,49 +146,49 @@ en-GB:
       application:
         title: OAuth authorisation required
     scopes:
-      admin:read: read all data on the server
-      admin:read:accounts: read sensitive information of all accounts
-      admin:read:canonical_email_blocks: read sensitive information of all canonical email blocks
-      admin:read:domain_allows: read sensitive information of all domain allows
-      admin:read:domain_blocks: read sensitive information of all domain blocks
-      admin:read:email_domain_blocks: read sensitive information of all email domain blocks
-      admin:read:ip_blocks: read sensitive information of all IP blocks
-      admin:read:reports: read sensitive information of all reports and reported accounts
-      admin:write: modify all data on the server
-      admin:write:accounts: perform moderation actions on accounts
-      admin:write:canonical_email_blocks: perform moderation actions on canonical email blocks
-      admin:write:domain_allows: perform moderation actions on domain allows
-      admin:write:domain_blocks: perform moderation actions on domain blocks
-      admin:write:email_domain_blocks: perform moderation actions on email domain blocks
-      admin:write:ip_blocks: perform moderation actions on IP blocks
-      admin:write:reports: perform moderation actions on reports
+      "admin:read": read all data on the server
+      "admin:read:accounts": read sensitive information of all accounts
+      "admin:read:canonical_email_blocks": read sensitive information of all canonical email blocks
+      "admin:read:domain_allows": read sensitive information of all domain allows
+      "admin:read:domain_blocks": read sensitive information of all domain blocks
+      "admin:read:email_domain_blocks": read sensitive information of all email domain blocks
+      "admin:read:ip_blocks": read sensitive information of all IP blocks
+      "admin:read:reports": read sensitive information of all reports and reported accounts
+      "admin:write": modify all data on the server
+      "admin:write:accounts": perform moderation actions on accounts
+      "admin:write:canonical_email_blocks": perform moderation actions on canonical email blocks
+      "admin:write:domain_allows": perform moderation actions on domain allows
+      "admin:write:domain_blocks": perform moderation actions on domain blocks
+      "admin:write:email_domain_blocks": perform moderation actions on email domain blocks
+      "admin:write:ip_blocks": perform moderation actions on IP blocks
+      "admin:write:reports": perform moderation actions on reports
       crypto: use end-to-end encryption
       follow: modify account relationships
       push: receive your push notifications
       read: read all your account's data
-      read:accounts: see accounts information
-      read:blocks: see your blocks
-      read:bookmarks: see your bookmarks
-      read:favourites: see your favourites
-      read:filters: see your filters
-      read:follows: see your follows
-      read:lists: see your lists
-      read:mutes: see your mutes
-      read:notifications: see your notifications
-      read:reports: see your reports
-      read:search: search on your behalf
-      read:statuses: see all posts
+      "read:accounts": see accounts information
+      "read:blocks": see your blocks
+      "read:bookmarks": see your bookmarks
+      "read:favourites": see your favourites
+      "read:filters": see your filters
+      "read:follows": see your follows
+      "read:lists": see your lists
+      "read:mutes": see your mutes
+      "read:notifications": see your notifications
+      "read:reports": see your reports
+      "read:search": search on your behalf
+      "read:statuses": see all posts
       write: modify all your account's data
-      write:accounts: modify your profile
-      write:blocks: block accounts and domains
-      write:bookmarks: bookmark posts
-      write:conversations: mute and delete conversations
-      write:favourites: favourite posts
-      write:filters: create filters
-      write:follows: follow people
-      write:lists: create lists
-      write:media: upload media files
-      write:mutes: mute people and conversations
-      write:notifications: clear your notifications
-      write:reports: report other people
-      write:statuses: publish posts
+      "write:accounts": modify your profile
+      "write:blocks": block accounts and domains
+      "write:bookmarks": bookmark posts
+      "write:conversations": mute and delete conversations
+      "write:favourites": favourite posts
+      "write:filters": create filters
+      "write:follows": follow people
+      "write:lists": create lists
+      "write:media": upload media files
+      "write:mutes": mute people and conversations
+      "write:notifications": clear your notifications
+      "write:reports": report other people
+      "write:statuses": publish posts
