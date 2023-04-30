@@ -756,6 +756,7 @@ zh-TW:
         remove_from_report: 從檢舉報告中移除
         report: 檢舉報告
       deleted: 已刪除
+      favourites: 最愛
       history: 版本紀錄
       in_reply_to: 正在回覆
       language: 語言
@@ -835,10 +836,13 @@ zh-TW:
       statuses:
         allow: 允許嘟文
         allow_account: 允許作者
+        description_html: 這些是您伺服器上已知被正在大量分享及加入最愛之嘟文。這些嘟文能幫助您伺服器上舊雨新知發現更多帳號來跟隨。除非您核准該作者且作者允許他們的帳號被推薦至其他人，嘟文將不被公開展示。您可以核准或駁回個別嘟文。
         disallow: 不允許嘟文
         disallow_account: 不允許作者
         no_status_selected: 因未選取任何熱門嘟文，所以什麼事都沒發生
         not_discoverable: 嘟文作者選擇不被發現
+        shared_by:
+          other: 分享過或／及收藏過 %{friendly_count} 次
         title: 熱門嘟文
       tags:
         current_score: 目前分數 %{score} 分
@@ -1305,6 +1309,10 @@ zh-TW:
         subject: "%{name} 已送出一則檢舉報告"
       sign_up:
         subject: "%{name} 已進行註冊"
+    favourite:
+      body: '您的嘟文被 %{name} 加入了最愛：'
+      subject: "%{name} 將您的嘟文加入了最愛"
+      title: 新的最愛
     follow:
       body: "%{name} 開始跟隨您！"
       subject: "%{name} 開始跟隨您"
@@ -1530,8 +1538,10 @@ zh-TW:
     enabled_hint: 一旦達到指定的保存期限，就會自動刪除您的嘟文，除非該嘟文符合下列例外
     exceptions: 例外
     explanation: 因為刪除嘟文是耗費資源的操作，當伺服器不那麼忙碌時才會慢慢完成。因此，您的嘟文會在到達保存期限後一段時間才會被刪除。
+    ignore_favs: 忽略最愛數
     ignore_reblogs: 忽略轉嘟數
     interaction_exceptions: 基於互動的例外規則
+    interaction_exceptions_explanation: 請注意嘟文是無法保證被刪除的，如果在一次處理過後嘟文低於最愛或轉嘟的門檻。
     keep_direct: 保留私訊
     keep_direct_hint: 不會刪除任何您的私訊
     keep_media: 保留包含多媒體附加檔案之嘟文
@@ -1542,6 +1552,8 @@ zh-TW:
     keep_polls_hint: 不會刪除您的投票
     keep_self_bookmark: 保留您已標記為書籤之嘟文
     keep_self_bookmark_hint: 不會刪除您已標記為書籤之嘟文
+    keep_self_fav: 保留您已標記為最愛之嘟文
+    keep_self_fav_hint: 不會刪除您已標記為最愛之嘟文
     min_age:
       '1209600': 2 週
       '15778476': 6 個月
@@ -1552,6 +1564,8 @@ zh-TW:
       '63113904': 2 年
       '7889238': 3 個月
     min_age_label: 保存期限
+    min_favs: 保留超過嘟文最愛門檻
+    min_favs_hint: 如果您嘟文已收到超過最愛門檻則不會刪除。留白表示不論最愛數量皆刪除該嘟文。
     min_reblogs: 保留超過嘟文轉嘟門檻
     min_reblogs_hint: 如果您嘟文已收到超過轉嘟門檻則不會刪除。留白表示不論轉嘟數量皆刪除該嘟文。
   stream_entries:
