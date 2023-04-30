@@ -770,6 +770,7 @@ tr:
         remove_from_report: Bildirimden kaldır
         report: Bildirim
       deleted: Silindi
+      favourites: Favoriler
       history: Sürüm geçmişi
       in_reply_to: Yanıtlanan
       language: Dil
@@ -850,10 +851,14 @@ tr:
       statuses:
         allow: Gönderiye izin ver
         allow_account: Yazara izin ver
+        description_html: Bunlar, sunucunuzca bilinen, şu an sıklıkla paylaşılan ve favorilere eklenen gönderilerdir. Yeni ve geri dönen kullanıcılarınızın takip etmesi için daha fazla kullanıcı bulmasına yararlar. Siz yazarı onaylamadığınız ve yazar hesabının başkalarına önerilmesine izin vermediği sürece gönderileri herkese açık olarak gösterilmez. Tekil gönderileri de onaylayabilir veya reddedebilirsiniz.
         disallow: Gönderi iznini kaldır
         disallow_account: Yazar iznini kaldır
         no_status_selected: Hiçbiri seçilmediğinden hiçbir öne çıkan gönderi değiştirilmedi
         not_discoverable: Yazar keşfedilebilir olmamayı seçiyor
+        shared_by:
+          one: Bir defa paylaşıldı veya beğenildi
+          other: '%{friendly_count} defa paylaşıldı veya beğenildi'
         title: Öne çıkan gönderiler
       tags:
         current_score: Mevcut puan %{score}
@@ -1330,6 +1335,10 @@ tr:
         subject: "%{name} bir bildirim gönderdi"
       sign_up:
         subject: "%{name} kaydoldu"
+    favourite:
+      body: '%{name} gönderini favorilerine ekledi:'
+      subject: "%{name} gönderini favorilerine ekledi"
+      title: Yeni Favori
     follow:
       body: "%{name} artık seni takip ediyor!"
       subject: "%{name} artık seni takip ediyor"
@@ -1561,8 +1570,10 @@ tr:
     enabled_hint: Belirli bir zaman eşiğine ulaşan eski gönderilerinizi, aşağıdaki istisnalara uymadıkları sürece otomatik olarak siler
     exceptions: İstisnalar
     explanation: Gönderi silme maliyetli bir iş olduğu için, sunucu çok yoğun olmadığında yavaş yavaş yapılmaktadır. Bu nedenle, gönderilerinizin zaman eşiği geldiğinde silinmesi belirli bir süre alabilir.
+    ignore_favs: Favorileri yoksay
     ignore_reblogs: Teşvikleri yoksay
     interaction_exceptions: Etkileşimlere dayalı istisnalar
+    interaction_exceptions_explanation: Bir kere değerlendirmeye alındıktan sonra, belirtilen favori veya teşvik eşiğinin altında düşünce gönderilerin silinmesinin bir güvencesi yok.
     keep_direct: Doğrudan iletileri sakla
     keep_direct_hint: Herhangi bir doğrudan iletinizi silmez
     keep_media: Görüntü eki olan gönderileri sakla
@@ -1573,6 +1584,8 @@ tr:
     keep_polls_hint: Herhangi bir anketinizi silmez
     keep_self_bookmark: Yer imi olarak eklenmiş gönderileri sakla
     keep_self_bookmark_hint: Herhangi bir yer imi olarak eklenmiş gönderinizi silmez
+    keep_self_fav: Favorilere eklediğin gönderileri sakla
+    keep_self_fav_hint: Favorilere eklediğiniz gönderilerinizi silmez
     min_age:
       '1209600': 2 hafta
       '15778476': 6 ay
@@ -1583,6 +1596,8 @@ tr:
       '63113904': 2 yıl
       '7889238': 3 ay
     min_age_label: Zaman eşiği
+    min_favs: Şundan daha fazla favorilere eklenen gönderileri sakla
+    min_favs_hint: En az bu belirtilen defa favorilere eklenen gönderilerinizin herhangi birini silmez. Favori sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
     min_reblogs: Şundan daha fazla teşvik edilen gönderileri sakla
     min_reblogs_hint: Bu belirtilenden daha fazla teşvik edilen gönderilerinizin herhangi birini silmez. Teşvik sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
   stream_entries:
