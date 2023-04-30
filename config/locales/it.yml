@@ -770,6 +770,7 @@ it:
         remove_from_report: Rimuovi dal report
         report: Rapporto
       deleted: Cancellato
+      favourites: Preferiti
       history: Cronologia delle versioni
       in_reply_to: In risposta a
       language: Lingua
@@ -850,10 +851,14 @@ it:
       statuses:
         allow: Consenti post
         allow_account: Consenti autore
+        description_html: Questi sono post noti al tuo server che sono attualmente molto condivisi e preferiti. Può aiutare i tuoi utenti (nuovi e non) a trovare più persone da seguire. Nessun post viene visualizzato pubblicamente fino a quando si approva l'autore, e l'autore permette che il suo account sia suggerito ad altri. È anche possibile permettere o rifiutare singoli post.
         disallow: Non consentire post
         disallow_account: Non consentire autore
         no_status_selected: Nessun post di tendenza è stato modificato in quanto nessuno è stato selezionato
         not_discoverable: L'autore non ha optato di essere scopribile
+        shared_by:
+          one: Condiviso o preferito una volta
+          other: Condiviso e preferito %{friendly_count} volte
         title: Post di tendenza
       tags:
         current_score: Punteggio corrente %{score}
@@ -1330,6 +1335,10 @@ it:
         subject: "%{name} ha inviato una segnalazione"
       sign_up:
         subject: "%{name} si è iscritto"
+    favourite:
+      body: 'Il tuo status è stato apprezzato da %{name}:'
+      subject: "%{name} ha apprezzato il tuo post"
+      title: Nuovo preferito
     follow:
       body: "%{name} ti sta seguendo!"
       subject: "%{name} ti sta seguendo"
@@ -1561,8 +1570,10 @@ it:
     enabled_hint: Cancella automaticamente i tuoi post quando diventano più vecchi di una soglia di età specificata, a meno che non corrispondano a una delle eccezioni sotto
     exceptions: Eccezioni
     explanation: Poiché l'eliminazione dei post è un'operazione che richiede molte risorse, questa viene eseguita quando il server non è occupato da altre operazioni. Per questo motivo, i tuoi post possono essere cancellati un po' dopo che raggiungono la soglia di età.
+    ignore_favs: Ignora preferiti
     ignore_reblogs: Ignora condivisioni
     interaction_exceptions: Eccezioni basate sulle interazioni
+    interaction_exceptions_explanation: Tieni conto che non c'è garanzia che i post vengano cancellati se vanno al di sotto della soglia per i preferiti o i condivisi dopo averla superata.
     keep_direct: Conserva messaggi diretti
     keep_direct_hint: Non cancella nessuno dei tuoi messaggi diretti
     keep_media: Conserva post con media allegati
@@ -1573,6 +1584,8 @@ it:
     keep_polls_hint: Non cancella nessuno dei tuoi sondaggi
     keep_self_bookmark: Conserva post che hai marcato con segnalibro
     keep_self_bookmark_hint: Non cancella i tuoi post se li hai marcati con segnalibro
+    keep_self_fav: Mantieni i post che hai indicato come preferiti
+    keep_self_fav_hint: Non cancella i tuoi post se li hai marcati come preferiti
     min_age:
       '1209600': 2 settimane
       '15778476': 6 mesi
@@ -1583,6 +1596,8 @@ it:
       '63113904': 2 anni
       '7889238': 3 mesi
     min_age_label: Soglia di età
+    min_favs: Conserva i post preferiti più di
+    min_favs_hint: Non cancella nessuno dei tuoi post che ha ricevuto almeno questo numero di preferiti. Lascia vuoto per cancellare i post indipendentemente dal loro numero di preferiti
     min_reblogs: Conserva i post condivisi più di
     min_reblogs_hint: Non cancella nessuno dei tuoi post che è stato condiviso più di questo numero di volte. Lascia vuoto per cancellare i post indipendentemente dal loro numero di condivisioni
   stream_entries:
