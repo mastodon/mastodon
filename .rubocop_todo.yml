@@ -1388,13 +1388,6 @@ Rails/NegateInclude:
     - 'app/workers/web/push_notification_worker.rb'
     - 'lib/paperclip/color_extractor.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Include.
-# Include: app/**/*.rb, config/**/*.rb, db/**/*.rb, lib/**/*.rb
-Rails/Output:
-  Exclude:
-    - 'lib/mastodon/ip_blocks_cli.rb'
-
 Rails/OutputSafety:
   Exclude:
     - 'config/initializers/simple_form.rb'
