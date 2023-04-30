@@ -1,4 +1,3 @@
----
 id:
   about:
     about_mastodon_html: 'Jaringan sosial masa depan: Tanpa iklan, tanpa pemantauan perusahaan, desain etis, dan terdesentralisasi! Miliki data Anda dengan Mastodon!'
@@ -54,7 +53,7 @@ id:
       delete: Hapus data
       deleted: Terhapus
       demote: Turunkan
-      destroyed_msg: Data %{username} masuk antrean untuk dihapus segera
+      destroyed_msg: "Data %{username} masuk antrean untuk dihapus segera"
       disable: Nonaktifkan
       disable_sign_in_token_auth: Nonaktifkan otentikasi token email
       disable_two_factor_authentication: Nonaktifkan 2FA
@@ -436,7 +435,7 @@ id:
         title: Impor blok domain
       no_file: Tidak ada file dipilih
     follow_recommendations:
-      description_html: <strong>"Rekomendasi untuk diikuti" membantu pengguna baru untuk secara cepat menemukan konten yang menarik</strong>. Ketika pengguna belum cukup berinteraksi dengan lainnya sehingga belum memunculkan rekomendasi, akun-akun ini akan direkomendasikan. Mereka dihitung ulang secara harian dari campuran akun-akun dengan keterlibatan tertinggi baru-baru ini dan jumlah pengikut lokal tertinggi untuk bahasa tertentu.
+      description_html: "<strong>\"Rekomendasi untuk diikuti\" membantu pengguna baru untuk secara cepat menemukan konten yang menarik</strong>. Ketika pengguna belum cukup berinteraksi dengan lainnya sehingga belum memunculkan rekomendasi, akun-akun ini akan direkomendasikan. Mereka dihitung ulang secara harian dari campuran akun-akun dengan keterlibatan tertinggi baru-baru ini dan jumlah pengikut lokal tertinggi untuk bahasa tertentu."
       language: Untuk bahasa
       status: Status
       suppress: Hapus akun yang direkomendasikan untuk diikuti
@@ -531,11 +530,11 @@ id:
       no_ip_block_selected: Tak ada aturan IP yang berubah karena tak ada yang dipilih
       title: Aturan IP
     relationships:
-      title: Hubungan %{acct}
+      title: "Hubungan %{acct}"
     relays:
       add_new: Tambah relai baru
       delete: Hapus
-      description_html: "<strong>Relai gabungan</strong> adalah server perantara yang menukarkan kiriman publik dalam jumlah besar antara server yang berlangganan dengan yang menerbitkannya. <strong>Ini akan membantu server kecil hingga medium menemukan konten dari fediverse</strong>, yang tentu saja mengharuskan pengguna lokal untuk mengikuti orang lain dari server jarak jauh."
+      description_html: <strong>Relai gabungan</strong> adalah server perantara yang menukarkan kiriman publik dalam jumlah besar antara server yang berlangganan dengan yang menerbitkannya. <strong>Ini akan membantu server kecil hingga medium menemukan konten dari fediverse</strong>, yang tentu saja mengharuskan pengguna lokal untuk mengikuti orang lain dari server jarak jauh.
       disable: Matikan
       disabled: Dimatikan
       enable: Aktifkan
@@ -619,7 +618,7 @@ id:
         special: Khusus
       delete: Hapus
       description_html: Dengan <strong>peran pengguna</strong>, Anda dapat mengubah fungsi dan area Mastodon apa pengguna Anda dapat mengakses.
-      edit: ערכי את התפקיד של '%{name}'
+      edit: ערכי את התפקיד של '%{name}' 
       everyone: Izin bawaan
       everyone_full_description_html: Ini adalah <strong>peran dasaran</strong> yang memengaruhi <strong>semua pengguna</strong>, bahkan tanpa yang memiliki sebuah peran yang diberikan. Semua peran lainnya mendapatkan izin dari ini.
       permissions_count:
@@ -723,7 +722,6 @@ id:
         remove_from_report: Hapus dari laporan
         report: Laporan
       deleted: Dihapus
-      favourites: Favorit
       history: Riwayat versi
       in_reply_to: Membalas ke
       language: Bahasa
@@ -795,13 +793,10 @@ id:
       statuses:
         allow: Izinkan kiriman
         allow_account: Izinkan penulis
-        description_html: Ini adalah kiriman yang diketahui server Anda yang kini sedang dibagikan dan difavoritkan banyak akun. Ini akan membantu pengguna baru dan lama Anda menemukan lebih banyak orang untuk diikuti. Tidak ada kiriman yang ditampilkan secara publik kecuali jika sudah disetujui pemilik akun, dan pemilik akun mengizinkan akun mereka disarankan untuk orang lain. Anda juga dapat mengizinkan atau menolak kiriman individu.
         disallow: Jangan beri izin kiriman
         disallow_account: Jangan beri izin penulis
         no_status_selected: Tidak ada kiriman yang sedang tren karena tidak ada yang dipilih
         not_discoverable: Pemilik akun memilih untuk tidak dapat ditemukan
-        shared_by:
-          other: Dibagikan dan difavoritkan %{friendly_count} kali
         title: Kiriman yang sedang tren
       tags:
         current_score: Skor saat ini %{score}
@@ -871,7 +866,7 @@ id:
     new_report:
       body: "%{reporter} telah melaporkan %{target}"
       body_remote: Seseorang dari %{domain} telah melaporkan %{target}
-      subject: Laporan baru untuk %{instance} (#%{id})
+      subject: 'Laporan baru untuk %{instance} (#%{id})'
     new_trends:
       body: 'Item berikut harus ditinjau sebelum ditampilkan secara publik:'
       new_trending_links:
@@ -1128,9 +1123,9 @@ id:
   generic:
     all: Semua
     all_items_on_page_selected_html:
-      other: "<strong>%{count}</strong> item di laman ini dipilih."
+      other: <strong>%{count}</strong> item di laman ini dipilih.
     all_matching_items_selected_html:
-      other: "<strong>%{count}</strong> item yang cocok dengan pencarian Anda dipilih."
+      other: <strong>%{count}</strong> item yang cocok dengan pencarian Anda dipilih.
     changes_saved_msg: Perubahan berhasil disimpan!
     copy: Salin
     delete: Hapus
@@ -1243,10 +1238,6 @@ id:
         subject: "%{name} mengirim sebuah laporan"
       sign_up:
         subject: "%{name} mendaftar"
-    favourite:
-      body: 'Status anda disukai oleh %{name}:'
-      subject: "%{name} menyukai status anda"
-      title: Favorit baru
     follow:
       body: "%{name} mengikuti anda!"
       subject: "%{name} menjadi pengikut anda"
@@ -1464,10 +1455,8 @@ id:
     enabled_hint: "Otomatis menghapus kiriman Anda saat sudah mencapai batasan usia, kecuali yang cocok \nsesuai di bawah ini"
     exceptions: Pengecualian
     explanation: Karena menghapus kiriman adalah operasi dengan sumber daya besar, ini akan dilakukan perlahan ketika server tidak sedang sibuk. Karena alasan ini, kiriman akan dihapus setelah mencapai batas waktu.
-    ignore_favs: Abaikan favorit
     ignore_reblogs: Abaikan boost
     interaction_exceptions: Pengecualian berdasar interaksi
-    interaction_exceptions_explanation: Perlu diingat tidak ada jaminan kiriman akan dihapus jika ia di bawah batas favorit atau boost setelah sebelumnya berhasil melewatinya.
     keep_direct: Simpan pesan langsung
     keep_direct_hint: Tidak mengapus pesan langsung Anda
     keep_media: Simpan kiriman dengan lampiran media
@@ -1478,8 +1467,6 @@ id:
     keep_polls_hint: Tidak menghapus japat Anda
     keep_self_bookmark: Simpan kiriman yang Anda markahi
     keep_self_bookmark_hint: Tidak menghapus kiriman Anda sendiri jika Anda telah memasukkannya ke markah
-    keep_self_fav: Simpan kiriman favorit Anda
-    keep_self_fav_hint: Tidak menghapus kiriman Anda yang Anda favoritkan
     min_age:
       '1209600': 2 minggu
       '15778476': 6 bulan
@@ -1490,7 +1477,6 @@ id:
       '63113904': 2 tahun
       '7889238': 3 bulan
     min_age_label: Batas usia
-    min_favs: Simpan kiriman favorit lebih dari
     min_reblogs: Simpan kiriman yang di-boost lebih dari
     min_reblogs_hint: Tidak menghapus kiriman Anda yang di-boost lebih dari sekian kali. Kosongkan bila ingin menghapus kiriman tanpa peduli jumlah boost-nya
   stream_entries:
