@@ -17,6 +17,7 @@ import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import { displayMedia } from '../initial_state';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
+import AccountBadge from 'mastodon/features/account/components/account_badge';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -531,7 +532,7 @@ class Status extends ImmutablePureComponent {
                   {statusAvatar}
                 </div>
 
-                <DisplayName account={status.get('account')} />
+                <DisplayName account={status.get('account')} /> <AccountBadge account={status.get('account')} />
               </a>
             </div>
 
