@@ -784,6 +784,7 @@ lv:
         remove_from_report: Noņemt no ziņojuma
         report: Ziņojums
       deleted: Dzēstie
+      favourites: Izlase
       history: Versiju vēsture
       in_reply_to: Atbildot uz
       language: Valoda
@@ -865,10 +866,15 @@ lv:
       statuses:
         allow: Atļaut publicēt
         allow_account: Atļaut autoru
+        description_html: Šīs ir ziņas, par kurām tavs serveris zina un kuras pašlaik tiek koplietotas un šbrīd tiek daudz pievienotas izlasei. Tas var palīdzēt taviem jaunajiem un atkal pievienotajiem lietotājiem atrast vairāk cilvēku, kam sekot. Neviena ziņa netiek publiski rādīta, kamēr neesi apstiprinājis autoru un autors atļauj savu kontu ieteikt citiem. Vari arī atļaut vai noraidīt atsevišķas ziņas.
         disallow: Neatļaut publicēt
         disallow_account: Neatļaut autoru
         no_status_selected: Neviena populāra ziņa netika mainīta, jo neviena netika atlasīta
         not_discoverable: Autors nav izvēlējies būt atklājams
+        shared_by:
+          zero: '%{friendly_count} reižu kopīgots un pievienots izlasei'
+          one: Vienreiz kopīgots vai pievienots izlasei
+          other: '%{friendly_count} reizes kopīgots un pievienots izlasei'
         title: Populārākās ziņas
       tags:
         current_score: Pašreizējais rezultāts %{score}
@@ -1355,6 +1361,10 @@ lv:
         subject: "%{name} iesniedza ziņojumu"
       sign_up:
         subject: "%{name} ir pierakstījies"
+    favourite:
+      body: 'Tavu ziņu izlasei pievienoja %{name}:'
+      subject: "%{name} pievienoja tavu ziņu izlasei"
+      title: Jauna izlase
     follow:
       body: "%{name} tagad tev seko!"
       subject: "%{name} tagad tev seko"
@@ -1592,8 +1602,10 @@ lv:
     enabled_hint: Automātiski izdzēš tavas ziņas, tiklīdz tās sasniedz noteiktu vecuma slieksni, ja vien tās neatbilst kādam no tālāk norādītajiem izņēmumiem
     exceptions: Izņēmumi
     explanation: Tā kā ziņu dzēšana ir dārga darbība, tā tiek veikta lēnām laika gaitā, kad serveris nav citādi aizņemts. Šī iemesla dēļ tavas ziņas var tikt izdzēstas kādu laiku pēc vecuma sliekšņa sasniegšanas.
+    ignore_favs: Ignorēt izlasi
     ignore_reblogs: Ignorēt izcēlumus
     interaction_exceptions: Izņēmumi, kuru pamatā ir mijiedarbība
+    interaction_exceptions_explanation: Ņem vērā, ka nav garantijas, ka ziņas tiks dzēstas, ja tās pārsniegs izlases pievienošanas vai izcelšanas slieksni.
     keep_direct: Saglabāt tiešos ziņojumus
     keep_direct_hint: Nedzēš nevienu tavu tiešo ziņojumu
     keep_media: Saglabāt ziņas ar multivides pielikumiem
@@ -1604,6 +1616,8 @@ lv:
     keep_polls_hint: Nedzēš nevienu tavu aptauju
     keep_self_bookmark: Saglabāt ziņas, kuras esi pievienojis grāmatzīmēm
     keep_self_bookmark_hint: Neizdzēš tavas ziņas, ja esi tās pievienojis grāmatzīmēm
+    keep_self_fav: Saglabāt ziņas, kuras esi pievienojis izlasei
+    keep_self_fav_hint: Neizdzēš tavas ziņas, ja esi tās pievienojis izlasei
     min_age:
       '1209600': 2 nedēļas
       '15778476': 6 mēneši
@@ -1614,6 +1628,8 @@ lv:
       '63113904': 2 gadi
       '7889238': 3 mēneši
     min_age_label: Vecuma slieksnis
+    min_favs: Saglabāt vismaz izlases ziņas
+    min_favs_hint: Neizdzēš nevienu tavu ziņu, kas ir saņēmusi vismaz tik daudz izlases. Atstāj tukšu, lai dzēstu ziņas neatkarīgi no to izlases skaita
     min_reblogs: Saglabāt ziņas izceltas vismaz
     min_reblogs_hint: Neizdzēš nevienu no tavām ziņām, kas ir izceltas vismaz tik reižu. Atstāj tukšu, lai dzēstu ziņas neatkarīgi no to izcēlumu skaita
   stream_entries:
