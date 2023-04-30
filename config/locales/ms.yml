@@ -1,4 +1,3 @@
----
 ms:
   about:
     about_mastodon_html: 'Rangkaian sosial masa hadapan: Tiada iklan, tiada pengawasan korporat, reka bentuk beretika, dan desentralisasi! Miliki data anda dengan Mastodon!'
@@ -54,7 +53,7 @@ ms:
       delete: Padam data
       deleted: Dipadamkan
       demote: Turunkan taraf
-      destroyed_msg: Data %{username} kini menunggu giliran untuk dipadam sebentar lagi
+      destroyed_msg: "Data %{username} kini menunggu giliran untuk dipadam sebentar lagi"
       disable: Bekukan
       disable_sign_in_token_auth: Nyahdaya pengesahan token e-mel
       disable_two_factor_authentication: Lumpuhkan 2FA
@@ -503,11 +502,11 @@ ms:
       no_ip_block_selected: Tiada peraturan alamat IP diubah kerana tiada yang dipilih
       title: Peraturan alamat IP
     relationships:
-      title: Hubungan %{acct}
+      title: "Hubungan %{acct}"
     relays:
       add_new: Tambah geganti baharu
       delete: Padam
-      description_html: "<strong>Geganti persekutuan</strong> ialah pelayan perantara yang saling menukar hantaran awam dalam jumlah yang banyak di antara pelayan yang melanggan ia dan menerbitkan kepadanya. <strong>Ia boleh bantu pelayan kecil dan sederhana untuk menemui kandungan daripada dunia persekutuan</strong>, yang mana jika tidak digunakan akan memerlukan pengguna tempatan mengikut orang lain di pelayan jarak jauh secara manual."
+      description_html: <strong>Geganti persekutuan</strong> ialah pelayan perantara yang saling menukar hantaran awam dalam jumlah yang banyak di antara pelayan yang melanggan ia dan menerbitkan kepadanya. <strong>Ia boleh bantu pelayan kecil dan sederhana untuk menemui kandungan daripada dunia persekutuan</strong>, yang mana jika tidak digunakan akan memerlukan pengguna tempatan mengikut orang lain di pelayan jarak jauh secara manual.
       disable: Nyahdayakan
       disabled: Dinyahdayakan
       enable: Dayakan
@@ -671,7 +670,6 @@ ms:
     statuses:
       account: Penulis
       deleted: Dipadamkan
-      favourites: Gemaran
       history: Sejarah versi
       language: Bahasa
       media:
@@ -825,6 +823,7 @@ ms:
     '422':
       title: Pengesahan keselamatan gagal
     '429': Terlalu banyak permintaan
+    '500':
     '503': Halaman tidak dapat disampaikan kerana kegagalan pelayan sementara.
   exports:
     archive_takeout:
@@ -956,8 +955,6 @@ ms:
     keep_pinned_hint: Tidak memadamkan mana-mana hantaran yang anda sematkan
     keep_self_bookmark: Simpan hantaran yang anda menandabuku
     keep_self_bookmark_hint: Tidak memadamkan hantaran anda jika anda sudah menandabukunya
-    keep_self_fav: Simpan hantaran yang anda gemarkan
-    keep_self_fav_hint: Tidak memadamkan hantaran anda jika anda telah menggemarkannya
     min_age:
       '1209600': 2 minggu
       '15778476': 6 bulan
@@ -967,7 +964,6 @@ ms:
       '604800': Seminggu
       '63113904': 2 tahun
       '7889238': 3 bulan
-    min_favs: Simpan hantaran digemarkan sekurang-kurangnya
   stream_entries:
     pinned: Hantaran disemat
     sensitive_content: Kandungan sensitif
