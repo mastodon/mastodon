@@ -5,6 +5,7 @@ type Props = {
   id: string;
   className?: string;
   fixedWidth?: boolean;
+  children?: never;
   [key: string]: any;
 }
 export const Icon: React.FC<Props> = ({ id, className, fixedWidth, ...other }) =>
