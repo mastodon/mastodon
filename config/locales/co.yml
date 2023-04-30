@@ -1,4 +1,3 @@
----
 co:
   about:
     about_mastodon_html: 'A rete suciale di u futuru: micca pubblicità, micca surveglianza, cuncezzione etica, è dicentralizazione! Firmate in cuntrollu di i vostri dati cù Mastodon!'
@@ -48,7 +47,7 @@ co:
       delete: Sguassà dati
       deleted: Sguassatu
       demote: Ritrugradà
-      destroyed_msg: I dati di %{username} sò avà in fila d'attesa per esse tolti da quì à pocu
+      destroyed_msg: "I dati di %{username} sò avà in fila d'attesa per esse tolti da quì à pocu"
       disable: Disattivà
       disable_sign_in_token_auth: Disattivà l'autentificazione à codice e-mail
       disable_two_factor_authentication: Disattivà l’identificazione à 2 fattori
@@ -397,7 +396,7 @@ co:
       no_ip_block_selected: E regule ùn sò micca state mudificate perchè manc'un'era selezziunata
       title: Regule IP
     relationships:
-      title: Rilazione di %{acct}
+      title: "Rilazione di %{acct}"
     relays:
       add_new: Aghjunghje un ripetitore
       delete: Sguassà
@@ -518,7 +517,7 @@ co:
     new_report:
       body: "%{reporter} hà palisatu %{target}"
       body_remote: Qualch’unu da %{domain} hà palisatu %{target}
-      subject: Novu signalamentu nant’à %{instance} (#%{id})
+      subject: 'Novu signalamentu nant’à %{instance} (#%{id})'
   aliases:
     add_new: Creà un pseudonimu
     created_msg: Novu pseudonimu creatu. Pudete avà inizià u trasferimentu da u vechju contu.
@@ -794,10 +793,6 @@ co:
     carry_mutes_over_text: St'utilizatore hà traslucatu dapoi %{acct}, ch'aviate piattatu.
     copy_account_note_text: 'St''utilizatore hà traslucatu dapoi %{acct}, eccu e vostr''anziane note nant''à ellu:'
   notification_mailer:
-    favourite:
-      body: "%{name} hà aghjuntu u vostru statutu à i so favuriti :"
-      subject: "%{name} hà messu u vostru post in i so favuriti"
-      title: Novu favuritu
     follow:
       body: "%{name} s’hè abbunatu à u vostru contu !"
       subject: "%{name} vi seguita"
@@ -809,8 +804,8 @@ co:
       title: Nova dumanda d’abbunamentu
     mention:
       action: Risposta
-      body: "%{name} v’hà mintuvatu·a indè :"
-      subject: "%{name} v’hà mintuvatu·a"
+      body: '%{name} v’hà mintuvatu·a indè :'
+      subject: '%{name} v’hà mintuvatu·a'
       title: Nova menzione
     poll:
       subject: Un scandagliu da %{name} hè finitu
@@ -1006,8 +1001,6 @@ co:
     keep_polls_hint: Ùn sguassa micca i vostri missaghji ch'anu scandagli
     keep_self_bookmark: Cunservà i statuti ch'avete segnalibrati
     keep_self_bookmark_hint: Ùn sguassa micca i vostri propii missaghji s'e voi l'avete aghjunti à i vostri segnalibri
-    keep_self_fav: Cunservà i statuti ch'avete favurizati
-    keep_self_fav_hint: Ùn sguassa micca i vostri propii missaghji s'e voi l'avete aghjunti à i vostri favuriti
     min_age:
       '1209600': 2 settimane
       '15778476': 6 mesi
@@ -1018,7 +1011,6 @@ co:
       '63113904': 2 anni
       '7889238': 3 mesi
     min_age_label: Età minima
-    min_favs: Cunservà i statuti favurizzati più di
     min_reblogs: Cunservà i statuti spartuti più di
     min_reblogs_hint: Ùn sguassa micca i vostri statuti chì anu ricevuti più chì stu numeru di spartere. Lasciate viotu per sguassà i statuti senza piglià in contu u numaru di spartere
   stream_entries:
