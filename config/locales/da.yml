@@ -1,4 +1,3 @@
----
 da:
   about:
     about_mastodon_html: 'Fremtidens sociale netværk: Ingen annoncer, ingen virksomhedsovervågning, etisk design og decentralisering! Vær ejer af egne data med Mastodon!'
@@ -69,7 +68,7 @@ da:
       enable: Optø
       enable_sign_in_token_auth: Aktivér e-mailtoken godkendelse
       enabled: Aktiveret
-      enabled_msg: "%{username}s konto er optøet"
+      enabled_msg: '%{username}s konto er optøet'
       followers: Følgere
       follows: Følger
       header: Overskrift
@@ -87,7 +86,7 @@ da:
       media_attachments: Medievedhæftninger
       memorialize: Omdan til mindekonto
       memorialized: Gjort til mindekonto
-      memorialized_msg: "%{username} gjort til mindekonto"
+      memorialized_msg: '%{username} gjort til mindekonto'
       moderation:
         active: Aktiv
         all: Alle
@@ -114,15 +113,15 @@ da:
       public: Offentlig
       push_subscription_expires: PuSH-abonnement udløber
       redownload: Opfrisk profil
-      redownloaded_msg: "%{username}s profil opfrisket fra oprindelsesserver"
+      redownloaded_msg: '%{username}s profil opfrisket fra oprindelsesserver'
       reject: Afvis
-      rejected_msg: "%{username}s tilmeldingsansøgning afvist"
+      rejected_msg: '%{username}s tilmeldingsansøgning afvist'
       remote_suspension_irreversible: Denne kontos data er slettet permanent.
       remote_suspension_reversible_hint_html: Kontoen er suspenderet på den pågældende server, og kontodata fjernes fuldstændig pr. %{date}. Indtil da vil fjernserveren kunne foretage en komplet reetablering af kontoen. Ønskes alle kontodata fjernet straks, kan dette gøres nedenfor.
       remove_avatar: Fjern profilbillede
       remove_header: Fjern overskrift
-      removed_avatar_msg: "%{username}s profilbillede fjernet"
-      removed_header_msg: "%{username}s overskriftsbillede fjernet"
+      removed_avatar_msg: '%{username}s profilbillede fjernet'
+      removed_header_msg: '%{username}s overskriftsbillede fjernet'
       resend_confirmation:
         already_confirmed: Denne bruger er allerede bekræftet
         send: Gensend bekræftelseslink
@@ -155,14 +154,14 @@ da:
       suspension_reversible_hint_html: Kontoen er blevet suspenderet, og dens data fjernes helt d. %{date}. Indtil da kan kontoen genoprettes uden datatab mv. Ønsker alle kontodata fjernet straks, kan dette gøres nedenfor.
       title: Konti
       unblock_email: Afblokér e-mailadresse
-      unblocked_email_msg: "%{username}s e-mail-adresse afblokeret"
+      unblocked_email_msg: '%{username}s e-mail-adresse afblokeret'
       unconfirmed_email: Ubekræftet e-mail
       undo_sensitized: Fortryd gennemtving sensitiv
       undo_silenced: Fortryd begrænsning
       undo_suspension: Fortryd suspendering
-      unsilenced_msg: "%{username}s kontobegrænsning er fjernet"
+      unsilenced_msg: '%{username}s kontobegrænsning er fjernet'
       unsubscribe: Opsig abonnement
-      unsuspended_msg: "%{username}s konto er afsuspenderet"
+      unsuspended_msg: '%{username}s konto er afsuspenderet'
       username: Brugernavn
       view_domain: Vis domæneoversigt
       warn: Advar
@@ -386,7 +385,7 @@ da:
       destroyed_msg: Domæneblokering er blevet fjernet
       domain: Domæne
       edit: Redigér domæneblokering
-      existing_domain_block: "%{name} er allerede pålagt strengere restriktioner."
+      existing_domain_block: '%{name} er allerede pålagt strengere restriktioner.'
       existing_domain_block_html: Der har allerede pålagt %{name} strengere begrænsninger, så dette kræver først en <a href="%{unblock_url}">afblokering</a>.
       export: Eksportér
       import: Importér
@@ -771,7 +770,6 @@ da:
         remove_from_report: Fjern fra anmeldelse
         report: Anmeldelse
       deleted: Slettet
-      favourites: Favoritter
       history: Versionshistorik
       in_reply_to: Svarer på
       language: Sprog
@@ -852,14 +850,10 @@ da:
       statuses:
         allow: Tillad indlæg
         allow_account: Tillad forfatter
-        description_html: Disse er indlæg, serveren kender til, som pt. deles og favoritmarkeres meget. Det kan hjælpe nye og tilbagevendende brugere til at finde flere personer at følge. Ingen indlæg vises offentligt, før man godkender forfatteren, samt denne tillader sin konto at blive foreslået andre. Man kan også tillade/afvise individuelle indlæg.
         disallow: Tillad ikke indlæg
         disallow_account: Tillad ikke forfatter
         no_status_selected: Intet tendensindlæg ændret (da intet var valgt)
         not_discoverable: Forfatteren har ikke valgt at kunne findes
-        shared_by:
-          one: Delt eller favoritmarkeret én gang
-          other: Delt eller favoritmarkeret %{friendly_count} gange
         title: Populære opslag
       tags:
         current_score: Aktuel score %{score}
@@ -931,7 +925,7 @@ da:
     new_report:
       body: "%{reporter} har anmeldt %{target}"
       body_remote: Nogen fra %{domain} har anmeldt %{target}
-      subject: Ny anmeldelse for %{instance} (#%{id})
+      subject: 'Ny anmeldelse for %{instance} (#%{id})'
     new_trends:
       body: 'Flg. emner kræver revision, inden de kan vises offentligt:'
       new_trending_links:
@@ -1336,10 +1330,6 @@ da:
         subject: "%{name} indsendte en anmeldelse"
       sign_up:
         subject: "%{name} tilmeldte sig"
-    favourite:
-      body: "%{name} favoritmarkerede dit indlæg:"
-      subject: "%{name} favoritmarkerede dit indlæg"
-      title: Ny favorit
     follow:
       body: "%{name} følger dig nu!"
       subject: "%{name} følger dig nu"
@@ -1571,10 +1561,8 @@ da:
     enabled_hint: Sletter automatisk dine indlæg, når disse når en bestemt alder, medmindre de matcher en af undtagelserne nedenfor
     exceptions: Undtagelser
     explanation: Sletning af indlæg er en ressourcekrævende operation, hvorfor dette sker gradvist over tid, når serveren ellers ikke er optaget. Indlæg kan derfor blive slettet efter, at de reelt har passeret aldersgrænsen.
-    ignore_favs: Ignorér favoritter
     ignore_reblogs: Ignorér boosts
     interaction_exceptions: Undtagelser baseret på interaktioner
-    interaction_exceptions_explanation: Bemærk, at det ikke garanteres, at indlæg slettes, hvis de når under favorit- eller boost-tærsklerne efter én gang at været nået over dem.
     keep_direct: Behold direkte besked
     keep_direct_hint: Sletter ingen af dine direkte beskeder
     keep_media: Behold indlæg med medievedhæftninger
@@ -1585,8 +1573,6 @@ da:
     keep_polls_hint: Sletter ingen af dine afstemninger
     keep_self_bookmark: Behold bogmærkede indlæg
     keep_self_bookmark_hint: Sletter ikke egne indlæg, såfremt de er bogmærket
-    keep_self_fav: Behold favoritmarkerede indlæg
-    keep_self_fav_hint: Sletter ikke egne indlæg, såfremt de er favoritmarkeret
     min_age:
       '1209600': 2 uger
       '15778476': 6 måneder
@@ -1597,8 +1583,6 @@ da:
       '63113904': 2 år
       '7889238': 3 måneder
     min_age_label: Alderstærskel
-    min_favs: Behold indlæg favoritmarkeret mindst
-    min_favs_hint: Sletter ingen egne indlæg, som har modtaget minimum dette antal favoritmarkeringer. Lad stå tomt for at slette indlæg uanset favoritmarkeringer
     min_reblogs: Behold indlæg boostet mindst
     min_reblogs_hint: Sletter ingen egne indlæg, som er boostet flere end dette antal gange. Lad stå tomt for at ignorere denne tærskel under sletning
   stream_entries:
