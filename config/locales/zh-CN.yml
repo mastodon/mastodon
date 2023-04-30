@@ -756,6 +756,7 @@ zh-CN:
         remove_from_report: 从报告中移除
         report: 举报
       deleted: 已删除
+      favourites: 收藏夹
       history: 版本历史记录
       in_reply_to: 回复给
       language: 语言
@@ -839,6 +840,8 @@ zh-CN:
         disallow_account: 禁止发布者
         no_status_selected: 因为没有选中任何热门嘟文，所以没有更改
         not_discoverable: 发布者选择不被发现
+        shared_by:
+          other: 被分享或收藏 %{friendly_count} 次
         title: 热门嘟文
       tags:
         current_score: 当前 %{score} 分
@@ -1305,6 +1308,10 @@ zh-CN:
         subject: "%{name} 提交了举报"
       sign_up:
         subject: "%{name} 注册了"
+    favourite:
+      body: '你的嘟文被 %{name} 收藏了：'
+      subject: "%{name} 收藏了你的嘟文"
+      title: 添加收藏
     follow:
       body: "%{name} 关注了你！"
       subject: "%{name} 关注了你"
@@ -1530,6 +1537,7 @@ zh-CN:
     enabled_hint: 达到指定过期时间后自动删除您的嘟文，除非满足下列条件之一
     exceptions: 例外
     explanation: 删除嘟文是一个消耗系统资源的耗时操作，所以这个操作会在服务器空闲时完成。因此，您的嘟文可能会在达到过期阈值之后一段时间才会被删除。
+    ignore_favs: 忽略收藏
     ignore_reblogs: 忽略转嘟
     interaction_exceptions: 基于互动的例外
     keep_direct: 保留私信
