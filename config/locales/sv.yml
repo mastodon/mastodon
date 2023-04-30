@@ -1,4 +1,3 @@
----
 sv:
   about:
     about_mastodon_html: 'Framtidens sociala medium: Ingen reklam. Ingen övervakning. Etisk design och decentralisering! Äg din data med Mastodon!'
@@ -33,7 +32,7 @@ sv:
     accounts:
       add_email_domain_block: Blockera e-postdomän
       approve: Godkänn
-      approved_msg: "%{username}s registreringsansökan godkändes"
+      approved_msg: '%{username}s registreringsansökan godkändes'
       are_you_sure: Är du säker?
       avatar: Profilbild
       by_domain: Domän
@@ -155,7 +154,7 @@ sv:
       suspension_reversible_hint_html: Kontot har stängts av och all data som tillhör det kommer att raderas permanent den %{date}. Tills dess kan kontot återställas utan dataförlust. Om du vill radera all kontodata redan nu, kan du göra detta nedan.
       title: Konton
       unblock_email: Avblockera e-postadress
-      unblocked_email_msg: "%{username}s e-postadress avblockerad"
+      unblocked_email_msg: '%{username}s e-postadress avblockerad'
       unconfirmed_email: Obekräftad e-postadress
       undo_sensitized: Ångra tvinga känsligt
       undo_silenced: Ångra tystnad
@@ -771,7 +770,6 @@ sv:
         remove_from_report: Ta bort från rapport
         report: Rapportera
       deleted: Raderad
-      favourites: Favoriter
       history: Versionshistorik
       in_reply_to: Svarar på
       language: Språk
@@ -852,14 +850,10 @@ sv:
       statuses:
         allow: Tillåt inlägg
         allow_account: Godkänn författare
-        description_html: Detta är inlägg som din server vet om som för närvarande delas och favoriseras mycket just nu. Det kan hjälpa dina nya och återvändande användare att hitta fler människor att följa. Inga inlägg visas offentligt förrän du godkänner författaren, och författaren tillåter att deras konto föreslås till andra. Du kan också tillåta eller avvisa enskilda inlägg.
         disallow: Tillåt inte inlägg
         disallow_account: Tillåt inte författare
         no_status_selected: Inga trendande inlägg ändrades eftersom inga valdes
         not_discoverable: Författaren har valt att inte vara upptäckbar
-        shared_by:
-          one: Delad eller favoritmarkerad en gång
-          other: Delade och favoritmarkerade %{friendly_count} gånger
         title: Trendande inlägg
       tags:
         current_score: Nuvarande poäng %{score}
@@ -931,7 +925,7 @@ sv:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
-      subject: Ny rapport för %{instance} (#%{id})
+      subject: 'Ny rapport för %{instance} (#%{id})'
     new_trends:
       body: 'Följande objekt behöver granskas innan de kan visas publikt:'
       new_trending_links:
@@ -1207,10 +1201,10 @@ sv:
     all: Alla
     all_items_on_page_selected_html:
       one: "<strong>%{count}</strong> objekt på denna sida valt."
-      other: "<strong>%{count}</strong> objekt på denna sida valda."
+      other: <strong>%{count}</strong> objekt på denna sida valda.
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> objekt som matchar din sökning är valt."
-      other: "<strong>%{count}</strong> objekt som matchar din sökning är valda."
+      other: <strong>%{count}</strong> objekt som matchar din sökning är valda.
     changes_saved_msg: Ändringar sparade!
     copy: Kopiera
     delete: Radera
@@ -1329,10 +1323,6 @@ sv:
         subject: "%{name} skickade in en rapport"
       sign_up:
         subject: "%{name} registrerade sig"
-    favourite:
-      body: 'Din status favoritmarkerades av %{name}:'
-      subject: "%{name} favoritmarkerade din status"
-      title: Ny favorit
     follow:
       body: "%{name} följer nu dig!"
       subject: "%{name} följer nu dig"
@@ -1564,10 +1554,8 @@ sv:
     enabled_hint: Raderar dina inlägg automatiskt när de når en specifik ålder, såvida de inte matchar något av undantagen nedan
     exceptions: Undantag
     explanation: Eftersom inläggsradering är resursintensivt görs detta stegvis när servern inte är högbelastad. Därför kan det dröja innan dina inlägg raderas efter att de uppnått ålderströskeln.
-    ignore_favs: Bortse från favoriter
     ignore_reblogs: Ignorera boostar
     interaction_exceptions: Undantag baserat på interaktioner
-    interaction_exceptions_explanation: Observera att det inte finns någon garanti att inlägg blir raderade om de går under favorit- eller boost-tröskeln efter att en gång ha gått över dem.
     keep_direct: Behåll direktmeddelanden
     keep_direct_hint: Tar inte bort någon av dina direktmeddelanden
     keep_media: Behåll inlägg med mediebilagor
@@ -1578,8 +1566,6 @@ sv:
     keep_polls_hint: Tar inte bort någon av dina undersökningar
     keep_self_bookmark: Behåll inlägg du har bokmärkt
     keep_self_bookmark_hint: Tar inte bort dina egna inlägg om du har bokmärkt dem
-    keep_self_fav: Behåll inlägg du favoritmarkerat
-    keep_self_fav_hint: Tar inte bort dina egna inlägg om du har favoritmarkerat dem
     min_age:
       '1209600': 2 veckor
       '15778476': 6 månader
@@ -1590,8 +1576,6 @@ sv:
       '63113904': 2 år
       '7889238': 3 månader
     min_age_label: Åldersgräns
-    min_favs: Behåll favoritmarkerade inlägg i minst
-    min_favs_hint: Raderar inte några av dina inlägg som har fått minst detta antalet av favoritmarkeringar. Lämna tomt för att ta bort inlägg oavsett hur många favoritmarkeringar de har fått
     min_reblogs: Behåll boostade inlägg i minst
     min_reblogs_hint: Raderar inte något av dina inlägg som har blivit boostat minst detta antal gånger. Lämna tomt för att radera inlägg oavsett antal boostar
   stream_entries:
