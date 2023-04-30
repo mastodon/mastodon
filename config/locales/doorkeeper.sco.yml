@@ -1,4 +1,3 @@
----
 sco:
   activerecord:
     attributes:
@@ -145,39 +144,39 @@ sco:
       application:
         title: OAuth authorization requirit
     scopes:
-      admin:read: read aw data on the server
-      admin:read:accounts: read sensitive information fae aw accoonts
-      admin:read:reports: read sensitive information fae aw clyped an clyped on accoonts
-      admin:write: modify aw data on the server
-      admin:write:accounts: perform moderation actions on accoonts
-      admin:write:reports: perform moderation actions on clypes
+      "admin:read": read aw data on the server
+      "admin:read:accounts": read sensitive information fae aw accoonts
+      "admin:read:reports": read sensitive information fae aw clyped an clyped on accoonts
+      "admin:write": modify aw data on the server
+      "admin:write:accounts": perform moderation actions on accoonts
+      "admin:write:reports": perform moderation actions on clypes
       crypto: uise en-tae-en encryption
       follow: modify accoont relationships
       push: get yer push notifications
       read: read aw yer accoont's data
-      read:accounts: see accoonts information
-      read:blocks: see yer dingies
-      read:bookmarks: see yer buikmairks
-      read:favourites: see yer favourites
-      read:filters: see yer filters
-      read:follows: see yer follaes
-      read:lists: see yer lists
-      read:mutes: see yet wheeshts
-      read:notifications: see yer notes
-      read:reports: see yer clypes
-      read:search: seirch on yer behauf
-      read:statuses: see aw posts
+      "read:accounts": see accoonts information
+      "read:blocks": see yer dingies
+      "read:bookmarks": see yer buikmairks
+      "read:favourites": see yer favourites
+      "read:filters": see yer filters
+      "read:follows": see yer follaes
+      "read:lists": see yer lists
+      "read:mutes": see yet wheeshts
+      "read:notifications": see yer notes
+      "read:reports": see yer clypes
+      "read:search": seirch on yer behauf
+      "read:statuses": see aw posts
       write: modify aw yer accoont's data
-      write:accounts: modify yer profile
-      write:blocks: dingie accoonts an domains
-      write:bookmarks: buikmairk posts
-      write:conversations: wheesht an delete conversations
-      write:favourites: favourite posts
-      write:filters: mak filters
-      write:follows: follae fowk
-      write:lists: mak lists
-      write:media: upload media files
-      write:mutes: wheesht fowk an conversations
-      write:notifications: claer yer notes
-      write:reports: clype on ither fowk
-      write:statuses: publish posts
+      "write:accounts": modify yer profile
+      "write:blocks": dingie accoonts an domains
+      "write:bookmarks": buikmairk posts
+      "write:conversations": wheesht an delete conversations
+      "write:favourites": favourite posts
+      "write:filters": mak filters
+      "write:follows": follae fowk
+      "write:lists": mak lists
+      "write:media": upload media files
+      "write:mutes": wheesht fowk an conversations
+      "write:notifications": claer yer notes
+      "write:reports": clype on ither fowk
+      "write:statuses": publish posts
