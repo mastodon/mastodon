@@ -35,7 +35,6 @@ class SilentErrorBoundary extends React.Component {
 
 /**
  * Used to render counter of how much people are talking about hashtag
- *
  * @type {(displayNumber: JSX.Element, pluralReady: number) => JSX.Element}
  */
 export const accountsCountRenderer = (displayNumber, pluralReady) => (
