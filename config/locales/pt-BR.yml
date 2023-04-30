@@ -1,4 +1,3 @@
----
 pt-BR:
   about:
     about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
@@ -56,7 +55,7 @@ pt-BR:
       delete: Excluir dados
       deleted: Excluído
       demote: Rebaixar
-      destroyed_msg: Os dados de %{username} estão na fila para serem excluídos em breve
+      destroyed_msg: "Os dados de %{username} estão na fila para serem excluídos em breve"
       disable: Congelar
       disable_sign_in_token_auth: Desativar autenticação via token por email
       disable_two_factor_authentication: Desativar autenticação de dois fatores
@@ -548,7 +547,7 @@ pt-BR:
       no_ip_block_selected: Nenhuma regra de IP foi alterada pois nenhuma foi selecionada
       title: Regras de IP
     relationships:
-      title: Relações de %{acct}
+      title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
       delete: Excluir
@@ -771,7 +770,6 @@ pt-BR:
         remove_from_report: Remover da denúncia
         report: Denunciar
       deleted: Excluídos
-      favourites: Favoritos
       history: Histórico de versões
       in_reply_to: Em resposta a
       language: Idioma
@@ -852,14 +850,10 @@ pt-BR:
       statuses:
         allow: Permitir publicação
         allow_account: Permitir autor
-        description_html: Estes são as publicações que seu servidor sabe que estão sendo muito compartilhadas e favorecidas no momento. Isso pode ajudar seus usuários, novos e atuais, a encontrar mais pessoas para seguir. Nenhuma publicação é exibida publicamente até que você aprove o autor e o autor permitir que sua conta seja sugerida a outros. Você também pode permitir ou rejeitar publicações individuais.
         disallow: Proibir publicação
         disallow_account: Proibir autor
         no_status_selected: Nenhuma publicação em alta foi alterada, pois, nenhuma foi selecionada
         not_discoverable: O autor optou por permitir que seja descoberto
-        shared_by:
-          one: Compartilhado ou favoritado uma vez
-          other: Compartilhado e favoritado %{friendly_count} vezes
         title: Publicações em alta
       tags:
         current_score: Pontuação atual %{score}
@@ -931,7 +925,7 @@ pt-BR:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém de %{domain} denunciou %{target}
-      subject: Nova denúncia sobre %{instance} (#%{id})
+      subject: 'Nova denúncia sobre %{instance} (#%{id})'
     new_trends:
       body: 'Os seguintes itens precisam de uma análise antes que possam ser exibidos publicamente:'
       new_trending_links:
@@ -1336,10 +1330,6 @@ pt-BR:
         subject: "%{name} enviou uma denúncia"
       sign_up:
         subject: "%{name} se inscreveu"
-    favourite:
-      body: "%{name} favoritou sua publicação:"
-      subject: "%{name} favoritou sua publicação"
-      title: Novo favorito
     follow:
       body: "%{name} te seguiu!"
       subject: "%{name} te seguiu"
@@ -1351,13 +1341,13 @@ pt-BR:
       title: Novo seguidor pendente
     mention:
       action: Responder
-      body: "%{name} te mencionou em:"
-      subject: "%{name} te mencionou"
+      body: '%{name} te mencionou em:'
+      subject: '%{name} te mencionou'
       title: Nova menção
     poll:
       subject: Uma enquete por %{name} terminou
     reblog:
-      body: "%{name} impulsionou a sua publicação:"
+      body: '%{name} impulsionou a sua publicação:'
       subject: "%{name} impulsionou a sua publicação"
       title: Novo impulso
     status:
@@ -1571,10 +1561,8 @@ pt-BR:
     enabled_hint: Exclui suas publicações automaticamente assim que elas alcançam sua validade, a não ser que se enquadrem em alguma das exceções abaixo
     exceptions: Exceções
     explanation: Já que a exclusão de publicações é uma operação custosa, ela é feita lentamente quando o servidor não está ocupado. Por isso suas publicações podem ser excluídas algum tempo depois de alcançarem sua validade.
-    ignore_favs: Ignorar favoritos
     ignore_reblogs: Ignorar impulsos
     interaction_exceptions: Exceções baseadas nas interações
-    interaction_exceptions_explanation: Note que não há garantia de que as publicações sejam excluídas se ficarem abaixo do limite de favoritos ou boosts depois de tê-lo ultrapassado.
     keep_direct: Manter mensagens diretas
     keep_direct_hint: Não exclui nenhuma de suas mensagens diretas
     keep_media: Manter publicações com mídia
@@ -1585,8 +1573,6 @@ pt-BR:
     keep_polls_hint: Não exclui nenhuma de suas enquetes
     keep_self_bookmark: Manter publicações que você salvou
     keep_self_bookmark_hint: Não exclui suas próprias publicações se você as salvou
-    keep_self_fav: Manter publicações que você favoritou
-    keep_self_fav_hint: Não exclui suas próprias publicações se você as favoritou
     min_age:
       '1209600': 2 semanas
       '15778476': 6 meses
@@ -1597,8 +1583,6 @@ pt-BR:
       '63113904': 2 anos
       '7889238': 3 meses
     min_age_label: Validade
-    min_favs: Manter publicações favoritadas por ao menos
-    min_favs_hint: Não exclui suas publicações que receberam pelo menos esta quantidade de favoritos. Deixe em branco para excluir publicações independentemente da quantidade de favoritos
     min_reblogs: Manter publicações impulsionadas por ao menos
     min_reblogs_hint: Não exclui publicações que receberam pelo menos esta quantidade de impulsos. Deixe em branco para excluir publicações independentemente da quantidade de impulsos
   stream_entries:
