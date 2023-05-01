@@ -181,6 +181,20 @@ describe ApplicationHelper do
     end
   end
 
+  describe 'quote_wrap' do
+    it 'indents and quote wraps text' do
+      text = <<~TEXT
+        Hello this is a nice message for you to quote.
+        Be careful because it has two lines.
+      TEXT
+
+      expect(helper.quote_wrap(text)).to eq <<~EXPECTED.strip
+        > Hello this is a nice message for you to quote.
+        > Be careful because it has two lines.
+      EXPECTED
+    end
+  end
+
   describe 'storage_host' do
     context 'when S3 alias is present' do
       around do |example|
