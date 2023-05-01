@@ -32,10 +32,6 @@ module ApplicationHelper
     paths.any? { |path| current_page?(path) } ? 'active' : ''
   end
 
-  def active_link_to(label, path, **options)
-    link_to label, path, options.merge(class: active_nav_class(path))
-  end
-
   def show_landing_strip?
     !user_signed_in? && !single_user_mode?
   end
