@@ -33,7 +33,7 @@
       border-radius: 4px 4px 0 0;
     }
 
-    @media screen and (max-width: 600px) {
+    @media screen and (width <= 600px) {
       height: 200px;
     }
   }
@@ -158,7 +158,7 @@
     color: lighten($inverted-text-color, 10%);
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (width <= 700px) {
     padding: 30px 20px;
 
     .page {
