@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class MoveGlitchUserSettings < ActiveRecord::Migration[6.1]
+  disable_ddl_transaction!
+
   class User < ApplicationRecord; end
 
   MAPPING = {
