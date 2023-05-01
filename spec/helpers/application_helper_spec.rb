@@ -123,6 +123,38 @@ describe ApplicationHelper do
     end
   end
 
+  describe 'available_sign_up_path' do
+    context 'when registrations are closed' do
+      before do
+        without_partial_double_verification do
+          allow(Setting).to receive(:registrations_mode).and_return('none')
+        end
+      end
+
+      it 'redirects to joinmastodon site' do
+        expect(helper.available_sign_up_path).to match(/joinmastodon.org/)
+      end
+    end
+
+    context 'when in omniauth only mode' do
+      around do |example|
+        ClimateControl.modify OMNIAUTH_ONLY: 'true' do
+          example.run
+        end
+      end
+
+      it 'redirects to joinmastodon site' do
+        expect(helper.available_sign_up_path).to match(/joinmastodon.org/)
+      end
+    end
+
+    context 'when registrations are allowed' do
+      it 'returns a link to the registration page' do
+        expect(helper.available_sign_up_path).to eq(new_user_registration_path)
+      end
+    end
+  end
+
   describe 'title' do
     around do |example|
       site_title = Setting.site_title
