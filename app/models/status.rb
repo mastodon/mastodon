@@ -38,6 +38,7 @@ class Status < ApplicationRecord
   include StatusThreadingConcern
   include StatusSnapshotConcern
   include RateLimitable
+  include AccountLimitPublicStatuses
 
   rate_limit by: :account, family: :statuses
 
