@@ -119,15 +119,6 @@ Lint/ConstantDefinitionInBlock:
     - 'spec/lib/connection_pool/shared_timed_stack_spec.rb'
     - 'spec/models/concerns/remotable_spec.rb'
 
-# Configuration parameters: IgnoreLiteralBranches, IgnoreConstantBranches.
-Lint/DuplicateBranch:
-  Exclude:
-    - 'app/lib/permalink_redirector.rb'
-    - 'app/models/account_statuses_filter.rb'
-    - 'app/validators/email_mx_validator.rb'
-    - 'app/validators/vote_validator.rb'
-    - 'lib/mastodon/maintenance_cli.rb'
-
 # Configuration parameters: AllowComments, AllowEmptyLambdas.
 Lint/EmptyBlock:
   Exclude:

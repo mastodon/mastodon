@@ -6,14 +6,22 @@ class VoteValidator < ActiveModel::Validator
 
     vote.errors.add(:base, I18n.t('polls.errors.invalid_choice')) if invalid_choice?(vote)
 
-    if vote.poll_multiple? && already_voted_for_same_choice_on_multiple_poll?(vote)
-      vote.errors.add(:base, I18n.t('polls.errors.already_voted'))
-    elsif !vote.poll_multiple? && already_voted_on_non_multiple_poll?(vote)
-      vote.errors.add(:base, I18n.t('polls.errors.already_voted'))
-    end
+    vote.errors.add(:base, I18n.t('polls.errors.already_voted')) if additional_voting_not_allowed?(vote)
   end
 
   private
+
+  def additional_voting_not_allowed?(vote)
+    poll_multiple_and_already_voted?(vote) || poll_non_multiple_and_already_voted?(vote)
+  end
+
+  def poll_multiple_and_already_voted?(vote)
+    vote.poll_multiple? && already_voted_for_same_choice_on_multiple_poll?(vote)
+  end
+
+  def poll_non_multiple_and_already_voted?(vote)
+    !vote.poll_multiple? && already_voted_on_non_multiple_poll?(vote)
+  end
 
   def invalid_choice?(vote)
     vote.choice.negative? || vote.choice >= vote.poll.options.size
