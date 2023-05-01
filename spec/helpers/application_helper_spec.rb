@@ -181,6 +181,38 @@ describe ApplicationHelper do
     end
   end
 
+  describe 'storage_host?' do
+    context 'when S3 alias is present' do
+      around do |example|
+        ClimateControl.modify S3_ALIAS_HOST: 's3.alias' do
+          example.run
+        end
+      end
+
+      it 'returns true' do
+        expect(helper.storage_host?).to be true
+      end
+    end
+
+    context 'when S3 cloudfront is present' do
+      around do |example|
+        ClimateControl.modify S3_CLOUDFRONT_HOST: 's3.cloudfront' do
+          example.run
+        end
+      end
+
+      it 'returns true' do
+        expect(helper.storage_host?).to be true
+      end
+    end
+
+    context 'when neither env value is present' do
+      it 'returns false' do
+        expect(helper.storage_host?).to be false
+      end
+    end
+  end
+
   describe 'visibility_icon' do
     it 'returns a globe icon for a public visible status' do
       result = helper.visibility_icon Status.new(visibility: 'public')
