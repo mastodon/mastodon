@@ -3,14 +3,16 @@
 require 'rails_helper'
 
 describe ApplicationController, type: :controller do
-  class WrappedActor
-    attr_reader :wrapped_account
+  let(:wrapped_actor_class) do
+    Class.new do
+      attr_reader :wrapped_account
 
-    def initialize(wrapped_account)
-      @wrapped_account = wrapped_account
+      def initialize(wrapped_account)
+        @wrapped_account = wrapped_account
+      end
+
+      delegate :uri, :keypair, to: :wrapped_account
     end
-
-    delegate :uri, :keypair, to: :wrapped_account
   end
 
   controller do
@@ -93,7 +95,7 @@ describe ApplicationController, type: :controller do
     end
 
     context 'with a valid actor that is not an Account' do
-      let(:actor) { WrappedActor.new(author) }
+      let(:actor) { wrapped_actor_class.new(author) }
 
       before do
         get :success

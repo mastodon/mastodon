@@ -106,19 +106,6 @@ Lint/AmbiguousOperatorPrecedence:
   Exclude:
     - 'config/initializers/rack_attack.rb'
 
-# Configuration parameters: AllowedMethods.
-# AllowedMethods: enums
-Lint/ConstantDefinitionInBlock:
-  Exclude:
-    - 'spec/controllers/api/base_controller_spec.rb'
-    - 'spec/controllers/application_controller_spec.rb'
-    - 'spec/controllers/concerns/accountable_concern_spec.rb'
-    - 'spec/controllers/concerns/signature_verification_spec.rb'
-    - 'spec/lib/activitypub/adapter_spec.rb'
-    - 'spec/lib/connection_pool/shared_connection_pool_spec.rb'
-    - 'spec/lib/connection_pool/shared_timed_stack_spec.rb'
-    - 'spec/models/concerns/remotable_spec.rb'
-
 # Configuration parameters: AllowComments, AllowEmptyLambdas.
 Lint/EmptyBlock:
   Exclude:
