@@ -155,6 +155,32 @@ describe ApplicationHelper do
     end
   end
 
+  describe 'omniauth_only?' do
+    context 'when env var is set to true' do
+      around do |example|
+        ClimateControl.modify OMNIAUTH_ONLY: 'true' do
+          example.run
+        end
+      end
+
+      it 'returns true' do
+        expect(helper).to be_omniauth_only
+      end
+    end
+
+    context 'when env var is not set' do
+      around do |example|
+        ClimateControl.modify OMNIAUTH_ONLY: nil do
+          example.run
+        end
+      end
+
+      it 'returns false' do
+        expect(helper).to_not be_omniauth_only
+      end
+    end
+  end
+
   describe 'title' do
     around do |example|
       site_title = Setting.site_title
