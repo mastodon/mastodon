@@ -159,11 +159,6 @@ Lint/EmptyBlock:
     - 'spec/models/user_role_spec.rb'
     - 'spec/models/web/setting_spec.rb'
 
-# Configuration parameters: AllowComments.
-Lint/EmptyClass:
-  Exclude:
-    - 'spec/controllers/api/base_controller_spec.rb'
-
 Lint/NonLocalExitFromIterator:
   Exclude:
     - 'app/helpers/jsonld_helper.rb'
