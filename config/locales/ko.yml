@@ -287,7 +287,7 @@ ko:
       empty: 로그를 찾을 수 없습니다
       filter_by_action: 행동으로 거르기
       filter_by_user: 사용자로 거르기
-      title: 감사 기록
+      title: 감사 로그
     announcements:
       destroyed_msg: 공지가 성공적으로 삭제되었습니다!
       edit:
@@ -560,7 +560,7 @@ ko:
       account:
         notes:
           other: "%{count} 개의 참고사항"
-      action_log: 감사 기록
+      action_log: 감사 로그
       action_taken_by: 신고 처리자
       actions:
         delete_description_html: 신고된 게시물은 삭제될 것이며 이 처벌기록은 같은 계정의 향후 규정 위반에 대해 참고사항으로 쓰일 수 있도록 저장됩니다.
@@ -1024,7 +1024,7 @@ ko:
     already_requested: 이미 이 계정에게 팔로우 요청을 보냈습니다
     error: 리모트 계정을 확인하는 도중 오류가 발생했습니다
     follow: 팔로우
-    follow_request: '당신은 다음 계정에 팔로우 신청을 했습니다:'
+    follow_request: '팔로우 요청을 보냄:'
     following: '성공! 당신은 다음 계정을 팔로우 하고 있습니다:'
     post_follow:
       close: 혹은, 그저 이 창을 닫을 수도 있습니다.
@@ -1114,8 +1114,8 @@ ko:
     '406': 이 페이지는 요청한 자료형으로 제공되지 않습니다.
     '410': 찾는 페이지가 더 이상 존재하지 않습니다.
     '422':
-      content: 보안 인증에 실패했습니다. 쿠키를 차단하고 있진 않습니까?
-      title: 보안 인증 실패
+      content: 보안 검증에 실패했습니다. 쿠키를 차단했나요?
+      title: 보안 검증 실패
     '429': 요청 횟수 제한에 도달했습니다
     '500':
       content: 죄송합니다, 뭔가 잘못 되었습니다.
@@ -1228,10 +1228,10 @@ ko:
       '21600': 6 시간
       '3600': 1 시간
       '43200': 12 시간
-      '604800': 1주일
-      '86400': 하루
+      '604800': 1 주
+      '86400': 1 일
     expires_in_prompt: 영원히
-    generate: 생성
+    generate: 초대 링크 생성하기
     invited_by: '당신을 초대한 사람:'
     max_uses:
       other: "%{count}회"
@@ -1239,8 +1239,8 @@ ko:
     prompt: 이 서버에 대한 초대 링크를 만들고 공유합니다
     table:
       expires_at: 만료
-      uses: 사용됨
-    title: 초대
+      uses: 이용 수
+    title: 초대하기
   lists:
     errors:
       limit: 리스트 최대 개수를 초과합니다
@@ -1262,7 +1262,7 @@ ko:
       too_many: 최대 4개까지 첨부할 수 있습니다
   migrations:
     acct: 새 계정의 username@domain
-    cancel: 리디렉션 취소
+    cancel: 리디렉트 취소하기
     cancel_explanation: 리다이렉트를 취소하면 현재 계정이 다시 활성화 됩니다, 새 계정으로 이동한 팔로워를 되찾을 수는 없습니다.
     cancelled_msg: 리다이렉트를 성공적으로 취소했습니다.
     errors:
@@ -1474,7 +1474,7 @@ ko:
     import_and_export: 가져오기 & 내보내기
     migrate: 계정 이동
     notifications: 알림
-    preferences: 사용자 설정
+    preferences: 환경설정
     profile: 프로필
     relationships: 팔로잉과 팔로워
     statuses_cleanup: 게시물 자동 삭제
