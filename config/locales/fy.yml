@@ -1217,7 +1217,9 @@ fy:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> item dat mei jo sykopdracht oerienkomt is selektearre."
       other: Alle <strong>%{count}</strong> items dy’t mei jo sykopdracht oerienkomme binne selektearre.
+    cancel: Annulearje
     changes_saved_msg: Wizigingen mei sukses bewarre!
+    confirm: Befêstigje
     copy: Kopiearje
     delete: Fuortsmite
     deselect: Alles deselektearje
@@ -1233,15 +1235,43 @@ fy:
       other: Der is wat net hielendal goed! Besjoch ûndersteande %{count} flaters
   imports:
     errors:
+      empty: Leech CSV-bestân
+      incompatible_type: Ynkompatibel mei it keazen ymporttype
       invalid_csv_file: 'Unjildich CSV-bestân. Flater: %{error}'
       over_rows_processing_limit: befettet mear as %{count} rigen
+      too_large: Bestân is te grut
+    failures: Flaters
+    imported: Ymportearre
+    mismatched_types_warning: It liket der op dat jo it ferkearde ymporttype selektearre hawwe, kontrolearje nochris.
     modes:
       merge: Gearfoegje
       merge_long: Besteande gegevens behâlde en nije tafoegje
       overwrite: Oerskriuwe
       overwrite_long: Aktuele gegevens mei de nije gegevens ferfange
+    overwrite_preambles:
+      blocking_html: Jo steane op it punt om <strong>jo blokkearlist</strong> mei mear as <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> te ferfangen.
+      bookmarks_html: Jo steane op it punt om <strong>jo blêdwizers</strong> mei mear as <strong>%{total_items} artikelen</strong> fan <strong>%{filename}</strong> te ferfangen.
+      domain_blocking_html: Jo steane op it punt om <strong>jo domeinblokkearlist</strong> mei mear as <strong>%{total_items} domeinen</strong> fan <strong>%{filename}</strong> te ferfangen.
     preface: Jo kinne bepaalde gegevens, lykas de minsken dy’t jo folgje of blokkearre hawwe, nei jo account op dizze server ymportearje. Jo moatte dizze gegevens wol earst op de oarspronklike server eksportearje.
+    recent_imports: Resinte ymports
+    states:
+      finished: Klear
+      in_progress: Dwaande
+      scheduled: Pland
+      unconfirmed: Net befêstige
+    status: Steat
     success: Jo gegevens binne mei sukses opladen en wurde ynkoarten ferwurke
+    time_started: Start op
+    titles:
+      blocking: Blokkearre accounts ymportearje
+      bookmarks: Blêdwizers ymportearje
+      domain_blocking: Blokkearre domeinen ymportearje
+      following: Folge accounts ymportearje
+      muting: Negearre accounts ymportearje
+    type: Ymporttype
+    type_groups:
+      constructive: Folgje ik & blêdwizers
+      destructive: Blokkearre & negearre
     types:
       blocking: Blokkearlist
       bookmarks: Blêdwizers
