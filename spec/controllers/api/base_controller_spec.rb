@@ -2,9 +2,11 @@
 
 require 'rails_helper'
 
-class FakeService; end
-
 describe Api::BaseController do
+  before do
+    stub_const('FakeService', Class.new)
+  end
+
   controller do
     def success
       head 200
