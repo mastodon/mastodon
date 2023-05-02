@@ -6330,30 +6330,25 @@ a.status-card.compact:hover {
   z-index: 9999;
 }
 
-.media-gallery__gifv__label {
-  display: block;
+.media-gallery__item__badges {
   position: absolute;
-  color: $primary-text-color;
-  background: rgba($base-overlay-background, 0.5);
   bottom: 6px;
   inset-inline-start: 6px;
-  padding: 2px 6px;
-  border-radius: 2px;
-  font-size: 11px;
-  font-weight: 600;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.9;
-  transition: opacity 0.1s ease;
-  line-height: 18px;
+  display: flex;
+  gap: 2px;
 }
 
-.media-gallery__gifv {
-  &:hover {
-    .media-gallery__gifv__label {
-      opacity: 1;
-    }
-  }
+.media-gallery__gifv__label {
+  display: block;
+  color: $white;
+  background: rgba($black, 0.65);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  z-index: 1;
+  pointer-events: none;
+  line-height: 18px;
 }
 
 .attachment-list {
@@ -6428,16 +6423,27 @@ a.status-card.compact:hover {
   position: relative;
   width: 100%;
   min-height: 64px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  gap: 2px;
 }
 
 .media-gallery__item {
   border: 0;
   box-sizing: border-box;
   display: block;
-  float: left;
   position: relative;
   border-radius: 4px;
   overflow: hidden;
+
+  &--tall {
+    grid-row: span 2;
+  }
+
+  &--wide {
+    grid-column: span 2;
+  }
 
   &.standalone {
     .media-gallery__item-gifv-thumbnail {
