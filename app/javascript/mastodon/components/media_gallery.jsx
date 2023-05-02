@@ -83,10 +83,6 @@ class Item extends React.PureComponent {
 
     let width  = 50;
     let height = 100;
-    let top    = 'auto';
-    let left   = 'auto';
-    let bottom = 'auto';
-    let right  = 'auto';
 
     if (size === 1) {
       width = 100;
@@ -96,45 +92,11 @@ class Item extends React.PureComponent {
       height = 50;
     }
 
-    if (size === 2) {
-      if (index === 0) {
-        right = '2px';
-      } else {
-        left = '2px';
-      }
-    } else if (size === 3) {
-      if (index === 0) {
-        right = '2px';
-      } else if (index > 0) {
-        left = '2px';
-      }
-
-      if (index === 1) {
-        bottom = '2px';
-      } else if (index > 1) {
-        top = '2px';
-      }
-    } else if (size === 4) {
-      if (index === 0 || index === 2) {
-        right = '2px';
-      }
-
-      if (index === 1 || index === 3) {
-        left = '2px';
-      }
-
-      if (index < 2) {
-        bottom = '2px';
-      } else {
-        top = '2px';
-      }
-    }
-
     let thumbnail = '';
 
     if (attachment.get('type') === 'unknown') {
       return (
-        <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
+        <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
           <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url') || attachment.get('url')} style={{ cursor: 'pointer' }} title={attachment.get('description')} lang={lang} target='_blank' rel='noopener noreferrer'>
             <Blurhash
               hash={attachment.get('blurhash')}
@@ -208,7 +170,7 @@ class Item extends React.PureComponent {
     }
 
     return (
-      <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
+      <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
         <Blurhash
           hash={attachment.get('blurhash')}
           dummy={!useBlurhash}
