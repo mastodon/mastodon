@@ -1222,6 +1222,16 @@ th:
       merge_long: เก็บระเบียนที่มีอยู่และเพิ่มระเบียนใหม่
       overwrite: เขียนทับ
       overwrite_long: แทนที่ระเบียนปัจจุบันด้วยระเบียนใหม่
+    overwrite_preambles:
+      blocking_html: คุณกำลังจะ <strong>แทนที่รายการการปิดกั้นของคุณ</strong> ด้วยมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
+      bookmarks_html: คุณกำลังจะ <strong>แทนที่ที่คั่นหน้าของคุณ</strong> ด้วยมากถึง <strong>%{total_items} โพสต์</strong> จาก <strong>%{filename}</strong>
+      domain_blocking_html: คุณกำลังจะ <strong>แทนที่รายการการปิดกั้นโดเมนของคุณ</strong> ด้วยมากถึง <strong>%{total_items} โดเมน</strong> จาก <strong>%{filename}</strong>
+    preambles:
+      blocking_html: คุณกำลังจะ <strong>ปิดกั้น</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
+      bookmarks_html: คุณกำลังจะเพิ่มมากถึง <strong>%{total_items} โพสต์</strong> จาก <strong>%{filename}</strong> ไปยัง <strong>ที่คั่นหน้า</strong> ของคุณ
+      domain_blocking_html: คุณกำลังจะ <strong>ปิดกั้น</strong> มากถึง <strong>%{total_items} โดเมน</strong> จาก <strong>%{filename}</strong>
+      following_html: คุณกำลังจะ <strong>ติดตาม</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
+      muting_html: คุณกำลังจะ <strong>ซ่อน</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
     preface: คุณสามารถนำเข้าข้อมูลที่คุณได้ส่งออกจากเซิร์ฟเวอร์อื่น เช่น รายการผู้คนที่คุณกำลังติดตามหรือกำลังปิดกั้น
     recent_imports: การนำเข้าล่าสุด
     states:
@@ -1231,6 +1241,7 @@ th:
       unconfirmed: ยังไม่ได้ยืนยัน
     status: สถานะ
     success: อัปโหลดข้อมูลของคุณสำเร็จและจะได้รับการประมวลผลในเวลาที่ครบกำหนด
+    time_started: เริ่มเมื่อ
     titles:
       blocking: กำลังนำเข้าบัญชีที่ปิดกั้นอยู่
       bookmarks: กำลังนำเข้าที่คั่นหน้า
@@ -1242,9 +1253,9 @@ th:
       constructive: การติดตามและที่คั่นหน้า
       destructive: การปิดกั้นและการซ่อน
     types:
-      blocking: รายการปิดกั้น
+      blocking: รายการการปิดกั้น
       bookmarks: ที่คั่นหน้า
-      domain_blocking: รายการปิดกั้นโดเมน
+      domain_blocking: รายการการปิดกั้นโดเมน
       following: รายการติดตาม
       muting: รายการซ่อน
     upload: อัปโหลด
