@@ -20,6 +20,10 @@ export const STATUS_MUTE_REQUEST = 'STATUS_MUTE_REQUEST';
 export const STATUS_MUTE_SUCCESS = 'STATUS_MUTE_SUCCESS';
 export const STATUS_MUTE_FAIL    = 'STATUS_MUTE_FAIL';
 
+export const STATUS_CLEAR_NOTIFICATONS_REQUEST = 'STATUS_CLEAR_NOTIFICATONS_REQUEST';
+export const STATUS_CLEAR_NOTIFICATONS_SUCCESS = 'STATUS_CLEAR_NOTIFICATONS_SUCCESS';
+export const STATUS_CLEAR_NOTIFICATONS_FAIL    = 'STATUS_CLEAR_NOTIFICATONS_FAIL';
+
 export const STATUS_UNMUTE_REQUEST = 'STATUS_UNMUTE_REQUEST';
 export const STATUS_UNMUTE_SUCCESS = 'STATUS_UNMUTE_SUCCESS';
 export const STATUS_UNMUTE_FAIL    = 'STATUS_UNMUTE_FAIL';
@@ -230,6 +234,17 @@ export function muteStatus(id) {
   };
 }
 
+export function clearStatusNotifications(id) {
+  return (dispatch, getState) => {
+    dispatch(clearStatusNotificationRequest(id));
+
+    api(getState).post(`/api/v1/statuses/${id}/clear_notifications`).then(() => {
+      dispatch(clearStatusNotificationSuccess(id));
+    }).catch(error => {
+      dispatch(clearStatusNotificationFail(id, error));
+    });
+  };
+}
 export function muteStatusRequest(id) {
   return {
     type: STATUS_MUTE_REQUEST,
@@ -247,6 +262,28 @@ export function muteStatusSuccess(id) {
 export function muteStatusFail(id, error) {
   return {
     type: STATUS_MUTE_FAIL,
+    id,
+    error,
+  };
+}
+
+export function clearStatusNotificationRequest(id) {
+  return {
+    type: STATUS_CLEAR_NOTIFICATONS_REQUEST,
+    id,
+  };
+}
+
+export function clearStatusNotificationSuccess(id) {
+  return {
+    type: STATUS_CLEAR_NOTIFICATONS_SUCCESS,
+    id,
+  };
+}
+
+export function clearStatusNotificationFail(id, error) {
+  return {
+    type: STATUS_CLEAR_NOTIFICATONS_FAIL,
     id,
     error,
   };
