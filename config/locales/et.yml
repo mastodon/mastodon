@@ -1217,7 +1217,9 @@ et:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> otsinguvaste valitud."
       other: Kõik <strong>%{count}</strong> otsinguvastet valitud.
+    cancel: Tühista
     changes_saved_msg: Muudatuste salvestamine õnnestus!
+    confirm: Kinnita
     copy: Kopeeri
     delete: Kustuta
     deselect: Ära vali midagi
@@ -1233,8 +1235,14 @@ et:
       other: Midagi pole ikka õigesti! Palun vaata all olevad %{count} veateadet üle
   imports:
     errors:
+      empty: Tühi CSV-fail
+      incompatible_type: Ei sobi kokku valitud importimistüübiga
       invalid_csv_file: 'Vigane CSV-fail. Tõrge: %{error}'
       over_rows_processing_limit: sisaldab rohkem, kui %{count} rida
+      too_large: Fail on liiga suur
+    failures: Ebaõnnestumised
+    imported: Imporditud
+    mismatched_types_warning: Näib, et oled selle importimise jaoks valinud vale tüübi. Palun kontrolli üle.
     modes:
       merge: Lõimi
       merge_long: Hoia olemasolevad andmed ja lisa uusi
