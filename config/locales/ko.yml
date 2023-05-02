@@ -10,7 +10,7 @@ ko:
     followers:
       other: 팔로워
     following: 팔로잉
-    instance_actor_flash: 이 계정은 서버 자신을 나타내기 위한 가상의 계정이며 개인 사용자가 아닙니다. 이 계정은 연합을 위해 사용되며 정지되지 않아야 합니다.
+    instance_actor_flash: 이 계정은 서버 자신을 나타내기 위한 가상의 계정이며 개인 이용자가 아닙니다. 이 계정은 연합을 위해 사용되며 정지되지 않아야 합니다.
     last_active: 최근 활동
     link_verified_on: '%{date}에 이 링크의 소유가 확인되었습니다'
     nothing_here: 아무 것도 없습니다!
@@ -82,9 +82,9 @@ ko:
         title: 위치
       login_status: 로그인 상태
       media_attachments: 첨부된 미디어
-      memorialize: 추모비로 전환
-      memorialized: 추모비화 됨
-      memorialized_msg: 성공적으로 %{username}를 추모비 계정으로 전환하였습니다
+      memorialize: 고인의 계정으로 전환
+      memorialized: 고인의 계정으로 바꿈
+      memorialized_msg: 성공적으로 %{username}를 고인의 계정으로 전환하였습니다
       moderation:
         active: 활동
         all: 전체
@@ -120,7 +120,7 @@ ko:
       removed_avatar_msg: 성공적으로 %{username}의 아바타 이미지를 삭제하였습니다
       removed_header_msg: 성공적으로 %{username}의 헤더 이미지를 삭제하였습니다
       resend_confirmation:
-        already_confirmed: 이 사용자는 이미 확인되었습니다
+        already_confirmed: 이 이용자는 이미 확인하였습니다
         send: 확인 링크 다시 보내기
         success: 확인 링크를 잘 보냈습니다!
       reset: 초기화
@@ -128,8 +128,8 @@ ko:
       resubscribe: 다시 구독
       role: 역할
       search: 검색
-      search_same_email_domain: 같은 이메일 도메인을 가진 다른 사용자들
-      search_same_ip: 같은 IP의 다른 사용자들
+      search_same_email_domain: 같은 이메일 도메인을 가진 다른 이용자
+      search_same_ip: 같은 IP의 다른 이용자
       security: 보안
       security_measures:
         only_password: 암호만
@@ -167,11 +167,11 @@ ko:
     action_logs:
       action_types:
         approve_appeal: 이의제기 승인
-        approve_user: 사용자 승인
+        approve_user: 이용자 승낙
         assigned_to_self_report: 신고 맡기
-        change_email_user: 사용자의 이메일 변경
+        change_email_user: 이용자의 이메일 변경
         change_role_user: 사용자 역할 변경
-        confirm_user: 사용자 확인
+        confirm_user: 이용자 확인
         create_account_warning: 경고 생성
         create_announcement: 공지사항 생성
         create_canonical_email_block: 이메일 차단 생성
@@ -182,7 +182,7 @@ ko:
         create_ip_block: IP 규칙 만들기
         create_unavailable_domain: 사용 불가능한 도메인 생성
         create_user_role: 역할 생성
-        demote_user: 사용자 강등
+        demote_user: 이용자 강등
         destroy_announcement: 공지사항 삭제
         destroy_canonical_email_block: 이메일 차단 삭제
         destroy_custom_emoji: 커스텀 에모지 삭제
@@ -196,15 +196,15 @@ ko:
         destroy_user_role: 역할 삭제
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
-        disable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 비활성화
-        disable_user: 사용자 비활성화
+        disable_sign_in_token_auth_user: 이용자에 대한 이메일 토큰 인증 비활성화
+        disable_user: 이용자 비활성화
         enable_custom_emoji: 커스텀 에모지 활성화
-        enable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 활성화
-        enable_user: 사용자 활성화
-        memorialize_account: 추모계정으로 전환
-        promote_user: 사용자 승급
+        enable_sign_in_token_auth_user: 이용자에 대한 이메일 토큰 인증 활성화
+        enable_user: 이용자 활성화
+        memorialize_account: 고인의 계정으로 전환
+        promote_user: 이용자 승급
         reject_appeal: 이의 제기 거절
-        reject_user: 사용자 거부
+        reject_user: 이용자 거부
         remove_avatar_user: 아바타 지우기
         reopen_report: 신고 다시 열기
         resend_user: 확인 메일 다시 보내기
@@ -226,11 +226,11 @@ ko:
         update_user_role: 역할 수정
       actions:
         approve_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의 제기를 승인했습니다"
-        approve_user_html: "%{name} 님이 %{target}의 가입을 승인했습니다"
+        approve_user_html: "%{name} 님이 %{target} 님의 가입을 승인했습니다"
         assigned_to_self_report_html: "%{name} 님이 신고 %{target}을 자신에게 할당했습니다"
-        change_email_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 변경했습니다"
+        change_email_user_html: "%{name} 님이 이용자 %{target} 님의 이메일 주소를 변경했습니다"
         change_role_user_html: "%{name} 님이 %{target} 님의 역할을 수정했습니다"
-        confirm_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 승인했습니다"
+        confirm_user_html: "%{name} 님이 이용자 %{target} 님의 이메일 주소를 승인했습니다"
         create_account_warning_html: "%{name} 님이 %{target}에게 경고를 보냈습니다"
         create_announcement_html: "%{name} 님이 새 공지 %{target}을 만들었습니다"
         create_canonical_email_block_html: "%{name} 님이 %{target} 해시를 가진 이메일을 차단했습니다"
@@ -241,7 +241,7 @@ ko:
         create_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 만들었습니다"
         create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지했습니다"
         create_user_role_html: "%{name} 님이 %{target} 역할을 생성했습니다"
-        demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
+        demote_user_html: "%{name} 님이 이용자 %{target} 님을 강등했습니다"
         destroy_announcement_html: "%{name} 님이 공지 %{target}을 삭제했습니다"
         destroy_canonical_email_block_html: "%{name} 님이 %{target} 해시를 가진 이메일을 차단 해제했습니다"
         destroy_custom_emoji_html: "%{name} 님이 에모지 %{target}를 삭제했습니다"
@@ -253,21 +253,21 @@ ko:
         destroy_status_html: "%{name} 님이 %{target} 님의 게시물을 삭제했습니다"
         destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
         destroy_user_role_html: "%{name} 님이 %{target} 역할을 삭제했습니다"
-        disable_2fa_user_html: "%{name} 님이 사용자 %{target}의 2FA를 비활성화 했습니다"
+        disable_2fa_user_html: "%{name} 님이 이용자 %{target} 님의 2단계 인증을 비활성화 했습니다"
         disable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 비활성화했습니다"
         disable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 비활성화했습니다"
         disable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 비활성화했습니다"
         enable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 활성화했습니다"
         enable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 활성화했습니다"
         enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화했습니다"
-        memorialize_account_html: "%{name} 님이 %{target}의 계정을 추모비 페이지로 전환했습니다"
-        promote_user_html: "%{name} 님이 사용자 %{target}를 승급시켰습니다"
+        memorialize_account_html: "%{name} 님이 %{target}의 계정을 고인의 계정 페이지로 전환했습니다"
+        promote_user_html: "%{name} 님이 이용자 %{target} 님을 승급 하였습니다."
         reject_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의 제기를 거절했습니다"
-        reject_user_html: "%{name} 님이 %{target}의 가입을 거부했습니다"
-        remove_avatar_user_html: "%{name} 님이 %{target}의 아바타를 지웠습니다"
+        reject_user_html: "%{name} 님이 %{target} 님의 가입을 거부했습니다"
+        remove_avatar_user_html: "%{name} 님이 %{target} 님의 아바타를 지웠습니다"
         reopen_report_html: "%{name} 님이 신고 %{target}을 다시 열었습니다"
         resend_user_html: "%{name} 님이 %{target} 님에 대한 확인 메일을 다시 보냈습니다"
-        reset_password_user_html: "%{name} 님이 사용자 %{target}의 암호를 초기화했습니다"
+        reset_password_user_html: "%{name} 님이 이용자 %{target} 님의 암호를 초기화했습니다"
         resolve_report_html: "%{name} 님이 신고 %{target}를 처리됨으로 변경하였습니다"
         sensitive_account_html: "%{name} 님이 %{target}의 미디어를 민감함으로 표시했습니다"
         silence_account_html: "%{name} 님이 %{target}의 계정을 제한시켰습니다"
@@ -340,7 +340,7 @@ ko:
       updated_msg: 성공적으로 에모지를 업데이트했습니다!
       upload: 업로드
     dashboard:
-      active_users: 활성 사용자
+      active_users: 활성 이용자
       interactions: 상호 작용
       media_storage: 미디어 저장소
       new_users: 새 사용자
@@ -440,7 +440,7 @@ ko:
         title: 도메인 차단 불러오기
       no_file: 선택된 파일이 없습니다
     follow_recommendations:
-      description_html: "<strong>팔로우 추천은 새 사용자들이 관심 가는 콘텐트를 빠르게 찾을 수 있도록 도와줍니다</strong>. 사용자가 개인화 된 팔로우 추천이 만들어지기 위한 충분한 상호작용을 하지 않은 경우, 이 계정들이 대신 추천 됩니다. 이들은 해당 언어에 대해 많은 관심을 갖거나 많은 로컬 팔로워를 가지고 있는 계정들을 섞어서 날마다 다시 계산 됩니다."
+      description_html: "<strong>팔로우 추천은 새 사용자들이 관심 가는 콘텐트를 빠르게 찾을 수 있도록 도와줍니다</strong>. 이용자가 개인화 된 팔로우 추천이 만들어지기 위한 충분한 상호작용을 하지 않은 경우, 이 계정들이 대신 추천 됩니다. 이들은 해당 언어에 대해 많은 관심을 갖거나 많은 로컬 팔로워를 가지고 있는 계정들을 섞어서 날마다 다시 계산 됩니다."
       language: 언어 필터
       status: 상태
       suppress: 팔로우 추천 숨기기
@@ -602,7 +602,7 @@ ko:
       notes_description_html: 확인하고 다른 중재자나 미래의 자신을 위해 기록을 작성합니다
       processed_msg: '신고 #%{id}가 정상적으로 처리되었습니다'
       quick_actions_description_html: '빠른 조치를 취하거나 아래로 스크롤해서 신고된 콘텐츠를 확인하세요:'
-      remote_user_placeholder: '%{instance}의 리모트 사용자'
+      remote_user_placeholder: '%{instance}의 리모트 이용자'
       reopen: 신고 재검토
       report: '신고 #%{id}'
       reported_account: 신고 대상 계정
@@ -836,7 +836,7 @@ ko:
       statuses:
         allow: 게시물 허용
         allow_account: 작성자 허용
-        description_html: 당신의 서버가 알기로 현재 많은 수의 공유와 좋아요가 되고 있는 게시물들입니다. 새로운 사용자나 돌아오는 사용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
+        description_html: 당신의 서버가 알기로 현재 많은 수의 공유와 좋아요가 되고 있는 게시물들입니다. 새로운 이용자나 돌아오는 이용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
         disallow: 게시물 비허용
         disallow_account: 작성자 불허
         no_status_selected: 아무 것도 선택 되지 않아 어떤 유행중인 게시물도 바뀌지 않았습니다
@@ -1065,7 +1065,7 @@ ko:
   deletes:
     challenge_not_passed: 입력한 정보가 올바르지 않습니다
     confirm_password: 본인 확인을 위해 현재 사용 중인 암호를 입력해 주십시오
-    confirm_username: 절차를 진행하려면 당신의 사용자명을 입력하세요
+    confirm_username: 절차를 진행하려면 당신의 아이디를 입력하세요
     proceed: 계정 삭제
     success_msg: 계정이 성공적으로 삭제되었습니다
     warning:
@@ -1077,8 +1077,8 @@ ko:
       email_reconfirmation_html: 아직 확인 메일이 도착하지 않은 경우, <a href="%{path}">다시 요청할 수 있습니다</a>
       irreversible: 계정을 복구하거나 다시 사용할 수 없게 됩니다
       more_details_html: 더 자세한 정보는, <a href="%{terms_path}">개인정보처리방침</a>을 참고하세요.
-      username_available: 당신의 계정명은 다시 사용할 수 있게 됩니다
-      username_unavailable: 당신의 계정명은 앞으로 사용할 수 없습니다
+      username_available: 해당 아이디는 다시 사용할 수 있게 됩니다
+      username_unavailable: 해당 아이디는 앞으로 사용할 수 없습니다
   disputes:
     strikes:
       action_taken: 내려진 징계
@@ -1298,8 +1298,8 @@ ko:
   moderation:
     title: 중재
   move_handler:
-    carry_blocks_over_text: 이 사용자는 당신이 차단한 %{acct}로부터 이주 했습니다.
-    carry_mutes_over_text: 이 사용자는 당신이 뮤트한 %{acct}로부터 이주 했습니다.
+    carry_blocks_over_text: 이 이용자는 예전에 차단한 %{acct}에서 이주 했습니다.
+    carry_mutes_over_text: 이 이용자는 예전에 뮤트한 %{acct}에서 이주 했습니다.
     copy_account_note_text: '이 사용자는 %{acct}로부터 이동하였습니다. 당신의 이전 노트는 이렇습니다:'
   navigation:
     toggle_menu: 토글 메뉴
@@ -1604,17 +1604,17 @@ ko:
   user_mailer:
     appeal_approved:
       action: 내 계정으로 가기
-      explanation: '%{strike_date}에 일어난 중재결정에 대한 소명을 %{appeal_date}에 작성했으며 승낙되었습니다. 당신의 계정은 정상적인 상태로 돌아왔습니다.'
-      subject: '%{date}에 작성한 소명이 승인되었습니다'
+      explanation: '%{strike_date}의 중재사항에 대해 제출한 소명이 %{appeal_date}에 승낙되었습니다. 귀하의 계정이 다시 정상화되었습니다.'
+      subject: 귀하가 %{date}에 작성한 소명이 승낙되었습니다
       title: 소명이 받아들여짐
     appeal_rejected:
-      explanation: '%{strike_date}에 일어난 중재결정에 대한 소명을 %{appeal_date}에 작성했지만 거절되었습니다.'
-      subject: '%{date}에 작성한 소명이 거절되었습니다'
+      explanation: '%{strike_date}의 중재사항에 대해 제출한 소명이 %{appeal_date}에 반려되었습니다.'
+      subject: '%{date}에 작성한 소명이 반려되었습니다.'
       title: 이의 제기가 거절되었습니다
     backup_ready:
-      explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
-      subject: 당신의 아카이브를 다운로드 가능합니다
-      title: 아카이브 테이크 아웃
+      explanation: 마스토돈 계정의 전체 백업을 요청하셨지요. 이제 다운로드할 수 있습니다!
+      subject: 아카이브를 다운로드할 수 있습니다
+      title: 아카이브 테이크아웃
     suspicious_sign_in:
       change_password: 암호 변경
       details: '로그인에 대한 상세 정보입니다:'
