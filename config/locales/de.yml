@@ -1217,7 +1217,9 @@ de:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> Element trifft auf ihre Suche zu."
       other: Alle <strong>%{count}</strong> Elemente, die Ihrer Suche entsprechen, werden ausgewählt.
+    cancel: Abbrechen
     changes_saved_msg: Änderungen erfolgreich gespeichert!
+    confirm: Bestätigen
     copy: Kopieren
     delete: Löschen
     deselect: Alle abwählen
@@ -1233,15 +1235,38 @@ de:
       other: Etwas ist noch nicht ganz richtig! Bitte korrigiere %{count} Fehler
   imports:
     errors:
+      empty: Leere CSV-Datei
+      incompatible_type: Inkompatibel mit dem ausgewählten Importtyp
       invalid_csv_file: 'Ungültige CSV-Datei. Fehler: %{error}'
       over_rows_processing_limit: enthält mehr als %{count} Zeilen
+      too_large: Datei ist zu groß
+    failures: Fehler
+    imported: Importiert
     modes:
       merge: Zusammenführen
       merge_long: Behalte existierende Datensätze und füge neue hinzu
       overwrite: Überschreiben
       overwrite_long: Ersetze aktuelle Datensätze mit neuen
     preface: Daten, die du von einem Mastodon-Server exportiert hast, kannst du hierher importieren. Das betrifft beispielsweise die Listen von Profilen, denen du folgst oder die du gesperrt hast.
+    recent_imports: Neueste Importe
+    states:
+      finished: Erledigt
+      in_progress: In Arbeit
+      scheduled: Geplant
+      unconfirmed: Unbestätigt
+    status: Status
     success: Deine Daten wurden erfolgreich hochgeladen und werden in Kürze verarbeitet
+    time_started: Gestartet am
+    titles:
+      blocking: Gesperrte Konten importieren
+      bookmarks: Lesezeichen importieren
+      domain_blocking: Gesperrte Server importieren
+      following: Gefolgte Konten importieren
+      muting: Stummgeschaltete Konten importieren
+    type: Importtyp
+    type_groups:
+      constructive: Folge ich & Lesezeichen
+      destructive: Gesperrte & Stummgeschaltete
     types:
       blocking: Gesperrte Profile
       bookmarks: Lesezeichen
