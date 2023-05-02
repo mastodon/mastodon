@@ -1263,7 +1263,9 @@ pl:
       few: Wszystkie <strong>%{count}</strong> elementy pasujące do Twojego wyszukiwania zostały wybrane.
       many: Wszystkie <strong>%{count}</strong> elementy pasujące do Twojego wyszukiwania zostały wybrane.
       other: Wszystkie <strong>%{count}</strong> elementy pasujące do Twojego wyszukiwania zostały wybrane.
+    cancel: Anuluj
     changes_saved_msg: Ustawienia zapisane!
+    confirm: Zatwierdź
     copy: Kopiuj
     delete: Usuń
     deselect: Odznacz wszystkie
@@ -1283,15 +1285,41 @@ pl:
       other: Coś jest wciąż nie tak! Przejrzyj poniższe błędy (%{count})
   imports:
     errors:
+      empty: Pusty plik CSV
+      incompatible_type: Niezgodny z wybranym typem importu
       invalid_csv_file: 'Nieprawidłowy plik CSV. Błąd: %{error}'
       over_rows_processing_limit: zawiera więcej niż %{count} wierszy
+      too_large: Plik jest zbyt duży
+    failures: Błędy
+    imported: Zaimportowano
+    mismatched_types_warning: Wygląda na to, że wybrałeś nieprawidłowy typ dla tego importu, sprawdź dwukrotnie.
     modes:
       merge: Połącz
       merge_long: Zachowaj obecne wpisy i dodaj nowe
       overwrite: Nadpisz
       overwrite_long: Zastąp obecne wpisy nowymi
+    overwrite_preambles:
+      blocking_html: Zamierzasz <strong>zastąpić swoją listę bloków</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
     preface: Możesz zaimportować pewne dane (np. lista kont, które obserwujesz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
+    recent_imports: Ostatnie importy
+    states:
+      finished: Zakończono
+      in_progress: W toku
+      scheduled: Zaplanowane
+      unconfirmed: Niepotwierdzone
+    status: Wpisy
     success: Twoje dane zostały załadowane i zostaną niebawem przetworzone
+    time_started: Rozpoczęto o
+    titles:
+      blocking: Importowanie zablokowanych kont
+      bookmarks: Importowanie zakładek
+      domain_blocking: Importowanie zablokowanych domen
+      following: Importowanie obserwowanych kont
+      muting: Importowanie wyciszonych kont
+    type: Typ importu
+    type_groups:
+      constructive: Obserwowani i zakładki
+      destructive: Zablokowani i wyciszeni użytkownicy
     types:
       blocking: Lista blokowanych
       bookmarks: Zakładki
