@@ -1214,7 +1214,9 @@ ca:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> article coincident amb la teva cerca està seleccionat."
       other: Tots <strong>%{count}</strong> articles coincidents amb la teva cerca estan seleccionats.
+    cancel: Cancel·la
     changes_saved_msg: Els canvis s'han desat correctament!
+    confirm: Confirma
     copy: Copiar
     delete: Elimina
     deselect: Desfer selecció
@@ -1230,15 +1232,51 @@ ca:
       other: Alguna cosa no va bé! Si us plau, revisa %{count} errors més a baix
   imports:
     errors:
+      empty: Fitxer CSV buit
+      incompatible_type: Incompatible amb el tipus d'importació seleccionada
       invalid_csv_file: 'Fitxer CSV invàlid. Error: %{error}'
       over_rows_processing_limit: conté més de %{count} files
+      too_large: El fitxer és massa gran
+    failures: Fallades
+    imported: Importat
+    mismatched_types_warning: Sembla que has seleccionat un tipus erròni per aquesta importació, si ja plau revisa-ho.
     modes:
       merge: Fusionar
       merge_long: Mantenir els registres existents i afegir-ne de nous
       overwrite: Sobreescriu
       overwrite_long: Reemplaça els registres actuals amb els nous
+    overwrite_preambles:
+      blocking_html: Ets a punt per a <strong>reemplaçar la teva llista de bloquejos</strong> de fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
+      bookmarks_html: Ets a punt de <strong>reemplaçar els teus marcadors</strong> de fins a <strong>%{total_items} tuts</strong> des de <strong>%{filename}</strong>.
+      domain_blocking_html: Ets a punt de <strong>reemplaçar la teva llista de dominis bloquejats</strong> de fins a <strong>%{total_items} dominis</strong> des de <strong>%{filename}</strong>.
+      following_html: Ets a punt de <strong>seguir</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong> i <strong>deixar de seguir a la resta</strong>.
+      muting_html: Ets a punt de <strong>reemplaçar la teva llista de comptes silenciats</strong> de fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Ets a punt de <strong>bloquejar</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
+      bookmarks_html: Ets a punt d'afegir fins a <strong>%{total_items} tuts</strong> des de <strong>%{filename}</strong> als teus <strong>marcadors</strong>.
+      domain_blocking_html: Ets a punt de <strong>bloquejar</strong> fins a <strong>%{total_items} dominis</strong> des de <strong>%{filename}</strong>.
+      following_html: Ets a punt de <strong>seguir</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
+      muting_html: Ets a punt de <strong>silenciar</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
     preface: Pots importar algunes les dades que has exportat des d'un altre servidor, com ara el llistat de les persones que estàs seguint o bloquejant.
+    recent_imports: Importacions recents
+    states:
+      finished: Finalitzat
+      in_progress: En curs
+      scheduled: Planificat
+      unconfirmed: Sense confirmar
+    status: Estat
     success: Les dades s'han rebut correctament i es processaran en breu
+    time_started: Va començar el
+    titles:
+      blocking: Important comptes bloquejats
+      bookmarks: Important marcadors
+      domain_blocking: Important dominis bloquejats
+      following: Important comptes seguits
+      muting: Important comptes silenciats
+    type: Tipus d'importació
+    type_groups:
+      constructive: Seguits i Marcadors
+      destructive: Bloquejos i Silenciats
     types:
       blocking: Llista de blocats
       bookmarks: Marcadors
