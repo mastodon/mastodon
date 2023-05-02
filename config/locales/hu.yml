@@ -1217,7 +1217,9 @@ hu:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong>, a keresésnek megfelelő elem kiválasztva."
       other: Mind a(z) <strong>%{count}</strong>, a keresésnek megfelelő elem kiválasztva.
+    cancel: Mégsem
     changes_saved_msg: A változásokat elmentettük!
+    confirm: Megerősítés
     copy: Másolás
     delete: Törlés
     deselect: Összes kiválasztás megszüntetése
@@ -1233,15 +1235,51 @@ hu:
       other: Valami nincs rendjén! Tekintsd meg a(z) %{count} hibát lent
   imports:
     errors:
+      empty: Üres CSV fájl
+      incompatible_type: Nem kompatibilis a kiválasztott importálás típussal.
       invalid_csv_file: 'Érvénytelen CSV-fájl. Hiba: %{error}'
       over_rows_processing_limit: több mint %{count} sort tartalmaz
+      too_large: A fájl túl nagy.
+    failures: Hibák
+    imported: Importálva
+    mismatched_types_warning: Úgy tűnik, hogy rossz típust választottunk az importáláshoz. Ellenőrizzük még egyszer.
     modes:
       merge: Összefésülés
       merge_long: Megtartjuk a meglévő bejegyzéseket és hozzávesszük az újakat
       overwrite: Felülírás
       overwrite_long: Lecseréljük újakkal a jelenlegi bejegyzéseket
+    overwrite_preambles:
+      blocking_html: 'Arra készülünk, hogy <strong>lecseréljük letiltási listát</strong> legfeljebb <strong>%{total_items} fiókra</strong>: <strong>%{filename}</strong>.'
+      bookmarks_html: 'Arra készülünk, hogy <strong>lecseréljük a könyvjelzőket</strong> legfeljebb <strong>%{total_items} bejegyzésre</strong>: <strong>%{filename}</strong>.'
+      domain_blocking_html: 'Arra készülünk, hogy <strong>lecseréljük a domain blokkolási listát</strong> legfeljebb <strong>%{total_items} domainre</strong>: <strong>%{filename}</strong>.'
+      following_html: 'Legfeljebb <strong>%{total_items} fiókot</strong> <strong>készülünk követni</strong>: <strong>%{filename}</strong> és <strong>felhagyunk bármi más követésével</strong>.'
+      muting_html: 'Arra készülünk, hogy <strong>lecseréljük a némított fiókok listáját</strong> legfeljebb <strong>%{total_items} fiókra</strong>: <strong>%{filename}</strong>.'
+    preambles:
+      blocking_html: 'Legfeljebb <strong>%{total_items} fiók</strong> <strong>letiltására</strong> készülünk: <strong>%{filename}</strong>.'
+      bookmarks_html: Legfeljebb <strong>%{total_items} bejegyzés</strong> hozzáadására készülünk a <strong>%{filename}</strong> mappából a <strong>könyvjelzőkhöz</strong>.
+      domain_blocking_html: 'Legfeljebb <strong>%{total_items} domain</strong> <strong>blokkolására</strong> készülünk: <strong>%{filename}</strong>.'
+      following_html: 'Legfeljebb <strong>%{total_items} fiók</strong> <strong>követésére készülünk</strong>: <strong>%{filename}</strong>.'
+      muting_html: 'Legfeljebb <strong>%{total_items} fiók</strong> <strong>némítására készülünk</strong>: <strong>%{filename}</strong>.'
     preface: Itt importálhatod egy másik kiszolgálóról lementett adataidat, például követettjeid és letiltott felhasználóid listáját.
+    recent_imports: Legutóbbi importálások
+    states:
+      finished: Befejezve
+      in_progress: Folyamatban
+      scheduled: Időzítve
+      unconfirmed: Nem-megrősítve
+    status: Állapot
     success: Adataidat sikeresen feltöltöttük és feldolgozásukat megkezdtük
+    time_started: Kezdés
+    titles:
+      blocking: A blokkolt fiókok importálása
+      bookmarks: A könyvejlzők importálása
+      domain_blocking: A blokkolt domainek importálása
+      following: A követett fiókok importálása
+      muting: A némított fiókok importálása
+    type: Importálás típus
+    type_groups:
+      constructive: Követések és könyvjelzők
+      destructive: Blokkolások és némítások
     types:
       blocking: Letiltottak listája
       bookmarks: Könyvjelzők
