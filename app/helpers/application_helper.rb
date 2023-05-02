@@ -32,10 +32,6 @@ module ApplicationHelper
     paths.any? { |path| current_page?(path) } ? 'active' : ''
   end
 
-  def active_link_to(label, path, **options)
-    link_to label, path, options.merge(class: active_nav_class(path))
-  end
-
   def show_landing_strip?
     !user_signed_in? && !single_user_mode?
   end
@@ -173,11 +169,11 @@ module ApplicationHelper
   end
 
   def storage_host
-    "https://#{ENV['S3_ALIAS_HOST'].presence || ENV['S3_CLOUDFRONT_HOST']}"
+    URI::HTTPS.build(host: storage_host_name).to_s
   end
 
   def storage_host?
-    ENV['S3_ALIAS_HOST'].present? || ENV['S3_CLOUDFRONT_HOST'].present?
+    storage_host_name.present?
   end
 
   def quote_wrap(text, line_width: 80, break_sequence: "\n")
@@ -234,5 +230,11 @@ module ApplicationHelper
 
   def prerender_custom_emojis(html, custom_emojis, other_options = {})
     EmojiFormatter.new(html, custom_emojis, other_options.merge(animate: prefers_autoplay?)).to_s
+  end
+
+  private
+
+  def storage_host_name
+    ENV.fetch('S3_ALIAS_HOST', nil) || ENV.fetch('S3_CLOUDFRONT_HOST', nil)
   end
 end
