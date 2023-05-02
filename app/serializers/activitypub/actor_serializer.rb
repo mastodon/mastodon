@@ -189,6 +189,11 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     include FormattingHelper
 
     attributes :type, :name, :value
+    attribute :context, key: '@context'
+
+    def context
+      { 'name' => 'schema:name' }
+    end
 
     def type
       'PropertyValue'
@@ -198,6 +203,29 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
       account_field_value_format(object)
     end
   end
+
+  # This class is for backward compatibility with Mastodon 3.5.2 and below,
+  # which may compact incoming activities with a broken context (see https://github.com/mastodon/mastodon/issues/18361)
+  class Account::CompatFieldSerializer < ActivityPub::Serializer
+    include FormattingHelper
+
+    attributes :type, :name
+    attribute :value, key: 'http://schema.org#value'
+
+    def type
+      'http://schema.org#PropertyValue'
+    end
+
+    def value
+      account_field_value_format(object)
+    end
+  end
+
+  # Compatibility values are added to an array with the expanded identifier as a key.
+  # In JSON-LD, this is equivalent to appending them to the `attachment` array, but
+  # it is much easier to do it this way in ActiveModelSerializers, and it guarantees
+  # this will not mess with pure-JSON implementations.
+  has_many :virtual_attachments, key: :'https://www.w3.org/ns/activitystreams#attachment', serializer: Account::CompatFieldSerializer
 
   class AccountIdentityProofSerializer < ActivityPub::Serializer
     attributes :type, :name, :signature_algorithm, :signature_value

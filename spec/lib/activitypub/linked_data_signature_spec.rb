@@ -77,6 +77,24 @@ RSpec.describe ActivityPub::LinkedDataSignature do
     it 'can be verified again' do
       expect(described_class.new(subject).verify_actor!).to eq sender
     end
+
+    context 'with attribute fields' do
+      let(:sender) { Fabricate(:account, fields: [{ 'name' => 'foo', 'value' => 'bar' }]) }
+      let(:raw_json) { ActiveModelSerializers::SerializableResource.new(sender, serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter).as_json }
+
+      it 'returns a hash' do
+        expect(subject).to be_a Hash
+      end
+
+      it 'contains signature' do
+        expect(subject['signature']).to be_a Hash
+        expect(subject['signature']['signatureValue']).to be_present
+      end
+
+      it 'can be verified again' do
+        expect(described_class.new(subject).verify_actor!).to eq sender
+      end
+    end
   end
 
   def sign(from_actor, options, document)
