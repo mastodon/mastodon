@@ -1206,7 +1206,9 @@ sv:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> objekt som matchar din sökning är valt."
       other: <strong>%{count}</strong> objekt som matchar din sökning är valda.
+    cancel: Avbryt
     changes_saved_msg: Ändringar sparade!
+    confirm: Bekräfta
     copy: Kopiera
     delete: Radera
     deselect: Avmarkera alla
@@ -1222,6 +1224,7 @@ sv:
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
   imports:
     errors:
+      empty: Tom CSV-fil
       invalid_csv_file: 'Ogiltig CSV-fil. Felmeddelande: %{error}'
       over_rows_processing_limit: innehåller fler än %{count} rader
     modes:
