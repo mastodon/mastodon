@@ -60,7 +60,7 @@ class TranslateStatusService < BaseService
   end
 
   def build_status_translation(translations)
-    status_translation = StatusTranslation.new(
+    status_translation = Translation.new(
       detected_source_language: translations.first&.detected_source_language,
       language: @target_language,
       provider: translations.first&.provider,
@@ -79,11 +79,11 @@ class TranslateStatusService < BaseService
       when :spoiler_text
         status_translation.spoiler_text = detect_custom_emojis(translation.text).content
       when Poll::Option
-        status_translation.poll_options << StatusTranslation::Option.new(
+        status_translation.poll_options << Translation::Option.new(
           title: detect_custom_emojis(translation.text).content
         )
       when MediaAttachment
-        status_translation.media_attachments << StatusTranslation::MediaAttachment.new(
+        status_translation.media_attachments << Translation::MediaAttachment.new(
           id: source.id,
           description: translation.text
         )

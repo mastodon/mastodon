@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StatusTranslation < ActiveModelSerializers::Model
+class Translation < ActiveModelSerializers::Model
   attributes :status, :detected_source_language, :language, :provider,
              :content, :spoiler_text, :poll_options, :media_attachments
 

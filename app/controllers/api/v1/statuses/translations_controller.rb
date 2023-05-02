@@ -11,7 +11,7 @@ class Api::V1::Statuses::TranslationsController < Api::BaseController
   rescue_from TranslationService::UnexpectedResponseError, TranslationService::QuotaExceededError, TranslationService::TooManyRequestsError, with: :service_unavailable
 
   def create
-    render json: @status_translation, serializer: REST::StatusTranslationSerializer
+    render json: @translation, serializer: REST::TranslationSerializer
   end
 
   private
@@ -24,6 +24,6 @@ class Api::V1::Statuses::TranslationsController < Api::BaseController
   end
 
   def set_translation
-    @status_translation = TranslateStatusService.new.call(@status, content_locale)
+    @translation = TranslateStatusService.new.call(@status, content_locale)
   end
 end
