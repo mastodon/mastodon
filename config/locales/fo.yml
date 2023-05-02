@@ -1217,7 +1217,9 @@ fo:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> lutur, sum samsvarar við tína leiting, er valdur."
       other: Allir <strong>%{count}</strong> lutir, sum samsvara við tína leiting, eru valdir.
+    cancel: Ógilda
     changes_saved_msg: Broytingar goymdar!
+    confirm: Vátta
     copy: Avrita
     delete: Strika
     deselect: Frável alt
@@ -1233,8 +1235,11 @@ fo:
       other: Okkurt er ikki heilt rætt enn! Vinarliga eftirhygg teir %{count} feilirnar niðanfyri
   imports:
     errors:
+      empty: Tóm CSV fíla
+      incompatible_type: Ikki sambærligt við valda innflytingarslagnum
       invalid_csv_file: 'Ógildug CSV-fíla. Error: %{error}'
       over_rows_processing_limit: hevur fleiri enn %{count} rekkjur
+      too_large: Fílan er ov stór
     modes:
       merge: Flætta
       merge_long: Varðveit verandi teigarøð og legg nýggjar afturat
