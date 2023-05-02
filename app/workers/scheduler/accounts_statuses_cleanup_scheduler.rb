@@ -104,7 +104,7 @@ class Scheduler::AccountsStatusesCleanupScheduler
       if first_iteration
         scope.where(id: first_policy_id...)
       else
-        scope.where(id: ...first_policy_id).or(scope.where(id: affected_policies))
+        scope.where(id: ..first_policy_id).or(scope.where(id: affected_policies))
       end
     else
       # Otherwise, examine only policies that previously yielded posts to delete
