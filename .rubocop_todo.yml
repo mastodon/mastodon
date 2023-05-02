@@ -304,21 +304,6 @@ Performance/CollectionLiteralInLoop:
     - 'lib/mastodon/media_cli.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: SafeMultiline.
-Performance/DeletePrefix:
-  Exclude:
-    - 'app/controllers/authorize_interactions_controller.rb'
-    - 'app/controllers/concerns/signature_verification.rb'
-    - 'app/controllers/intents_controller.rb'
-    - 'app/lib/activitypub/case_transform.rb'
-    - 'app/lib/permalink_redirector.rb'
-    - 'app/lib/webfinger_resource.rb'
-    - 'app/services/activitypub/fetch_remote_actor_service.rb'
-    - 'app/services/backup_service.rb'
-    - 'app/services/resolve_account_service.rb'
-    - 'app/services/tag_search_service.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
 Performance/MapCompact:
   Exclude:
     - 'app/lib/admin/metrics/dimension.rb'

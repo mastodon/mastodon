@@ -52,7 +52,7 @@ class PermalinkRedirector
   end
 
   def path_segments
-    @path_segments ||= @path.gsub(/\A\//, '').split('/')
+    @path_segments ||= @path.delete_prefix('/').split('/')
   end
 
   def find_status_url_by_id(id)

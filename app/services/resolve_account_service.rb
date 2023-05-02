@@ -100,7 +100,7 @@ class ResolveAccountService < BaseService
   end
 
   def split_acct(acct)
-    acct.gsub(/\Aacct:/, '').split('@')
+    acct.delete_prefix('acct:').split('@')
   end
 
   def fetch_account!
