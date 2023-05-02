@@ -1258,7 +1258,9 @@ sl:
       two: Izbrana sta <strong>%{count}</strong> elementa, ki ustrezata vašemu iskanju.
       few: Izbrani so <strong>%{count}</strong> elementi, ki ustrezajo vašemu iskanju.
       other: Izbranih je <strong>%{count}</strong> elementov, ki ustrezajo vašemu iskanju.
+    cancel: Prekliči
     changes_saved_msg: Spremembe so uspešno shranjene!
+    confirm: Potrdi
     copy: Kopiraj
     delete: Izbriši
     deselect: Prekliči ves izbor
@@ -1278,15 +1280,31 @@ sl:
       other: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napak
   imports:
     errors:
+      incompatible_type: Nezdružljivo z izbrano vrsto uvoza
       invalid_csv_file: 'Neveljavna datoteka CSV. Napaka: %{error}'
       over_rows_processing_limit: vsebuje več kot %{count} vrstic
+      too_large: Datoteka je prevelika
+    imported: Uvoženo
     modes:
       merge: Združi
       merge_long: Ohrani obstoječe zapise in dodaj nove
       overwrite: Prepiši
       overwrite_long: Zamenjaj trenutne zapise z novimi
     preface: Podatke, ki ste jih izvozili iz drugega strežnika, lahko uvozite. Na primer seznam oseb, ki jih spremljate ali blokirate.
+    recent_imports: Nedavni uvozi
+    states:
+      finished: Končano
+      in_progress: V teku
+      scheduled: Načrtovano
+      unconfirmed: Nepotrjeno
+    status: Stanje
     success: Vaši podatki so bili uspešno naloženi in bodo zdaj pravočasno obdelani
+    time_started: Začetek ob
+    titles:
+      blocking: Uvažanje blokiranih računov
+      bookmarks: Uvažanje zaznamkov
+      domain_blocking: Uvažanje blokiranih domen
+    type: Vrsta uvoza
     types:
       blocking: Seznam blokiranih
       bookmarks: Zaznamki
