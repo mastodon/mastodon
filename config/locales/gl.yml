@@ -1217,7 +1217,9 @@ gl:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> elemento coincidente coa busca está seleccionado."
       other: Tódolos <strong>%{count}</strong> elementos coincidentes coa busca están seleccionados.
+    cancel: Cancelar
     changes_saved_msg: Cambios gardados correctamente!!
+    confirm: Confirmar
     copy: Copiar
     delete: Eliminar
     deselect: Desmarcar todo
@@ -1233,15 +1235,51 @@ gl:
       other: Algo aínda non está ben! Por favor revise os %{count} erros abaixo
   imports:
     errors:
+      empty: Ficheiro CSV de baleiro
+      incompatible_type: Non é compatible co tipo de importación seleccionado
       invalid_csv_file: 'Ficheiro CSV non válido. Erro: %{error}'
       over_rows_processing_limit: contén máis de %{count} filas
+      too_large: O ficheiro é demasiado grande
+    failures: Erros
+    imported: Importado
+    mismatched_types_warning: Semella que elexiches o tipo de ficheiro incorrecto para esta importación, compróbao.
     modes:
       merge: Fusionar
       merge_long: Manter os rexistros actuais e engadir novos
       overwrite: Sobreescribir
       overwrite_long: Sustituír rexistros actuais cos novos
+    overwrite_preambles:
+      blocking_html: Vas <strong>substituír a lista de bloqueos</strong> por <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong>.
+      bookmarks_html: Vas <strong>substituír os marcadores</strong> por <strong>%{total_items} publicacións</strong> desde <strong>%{filename}</strong>.
+      domain_blocking_html: Vas <strong>substituír a lista de dominios bloqueados</strong> por <strong>%{total_items} dominios</strong> desde <strong>%{filename}</strong>.
+      following_html: Vas <strong>seguir</strong> estas <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong> e deixar de seguir a <strong>todas as outras contas</strong>.
+      muting_html: Vas <strong>substituír a lista de contas acaladas</strong> por <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Vas <strong>bloquear</strong> estas <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong>.
+      bookmarks_html: Vas engadir <strong>%{total_items} publicacións</strong> desde <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
+      domain_blocking_html: Vas <strong>bloquear</strong> estes <strong>%{total_items} dominios</strong> desde <strong>%{filename}</strong>.
+      following_html: Vas <strong>seguir</strong> estas <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong>.
+      muting_html: Vas <strong>acalar</strong> estas <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong>.
     preface: Podes importar os datos que exportaches doutro servidor, tales como a lista de usuarias que estás a seguir ou bloquear.
+    recent_imports: Importacións recentes
+    states:
+      finished: Completada
+      in_progress: En curso
+      scheduled: Programada
+      unconfirmed: Sen confirmar
+    status: Estado
     success: Os teus datos foron correctamente subidos e serán procesados ao momento
+    time_started: Iniciada o
+    titles:
+      blocking: Importando contas bloqueadas
+      bookmarks: Importando marcadores
+      domain_blocking: Importando dominios bloqueados
+      following: Importando contas seguidas
+      muting: Importando contas acaladas
+    type: Tipo de importación
+    type_groups:
+      constructive: Seguimentos e Marcadores
+      destructive: Bloqueadas e Acaladas
     types:
       blocking: Lista de bloqueo
       bookmarks: Marcadores
