@@ -1257,7 +1257,9 @@ cs:
       few: <strong>%{count}</strong> položky odpovídající vašemu hledání jsou vybrány.
       many: <strong>%{count}</strong> položek odpovídající vašemu hledání je vybráno.
       other: Všech <strong>%{count}</strong> položek odpovídající vašemu hledání je vybráno.
+    cancel: Zrušit
     changes_saved_msg: Změny byly úspěšně uloženy!
+    confirm: Potvrdit
     copy: Kopírovat
     delete: Smazat
     deselect: Zrušit výběr všeho
@@ -1277,15 +1279,36 @@ cs:
       other: Něco ještě není úplně v pořádku! Zkontrolujte prosím %{count} chyb uvedených níže
   imports:
     errors:
+      empty: Prázdný CSV soubor
+      incompatible_type: Nekompatibilní s vybraným typem importu
       invalid_csv_file: 'Neplatný soubor CSV. Chyba: %{error}'
       over_rows_processing_limit: obsahuje více než %{count} řádků
+      too_large: Soubor je příliš velký
+    failures: Chyby
+    imported: Importováno
+    mismatched_types_warning: Zdá se, že jste pro tento import vybrali nesprávný typ, zkontrolujte, prosím, znova.
     modes:
       merge: Sloučit
       merge_long: Ponechat existující záznamy a přidat nové
       overwrite: Přepsat
       overwrite_long: Nahradit aktuální záznamy novými
     preface: Můžete importovat data, která jste exportovali z jiného serveru, jako například seznam lidí, které sledujete či blokujete.
+    recent_imports: Nedávné importy
+    states:
+      finished: Dokončeno
+      in_progress: Probíhá
+      scheduled: Naplánováno
+      unconfirmed: Nepotvrzeno
+    status: Stav
     success: Vaše data byla úspěšně nahrána a budou zpracována v pravý čas
+    time_started: Zahájeno v
+    titles:
+      blocking: Import blokovaných účtů
+      bookmarks: Import záložek
+      domain_blocking: Import blokovaných domén
+      following: Import sledovaných účtů
+      muting: Import ztlumených účtů
+    type: Typ importu
     types:
       blocking: Seznam blokovaných
       bookmarks: Záložky
@@ -1381,6 +1404,10 @@ cs:
         subject: "Uživatel %{name} podal hlášení"
       sign_up:
         subject: "Uživatel %{name} se zaregistroval"
+    favourite:
+      body: 'Váš příspěvek si oblíbil uživatel %{name}:'
+      subject: "%{name} si oblíbil/a váš příspěvek"
+      title: Nová oblíbená položka
     follow:
       body: "%{name} vás nyní sleduje!"
       subject: "%{name} vás nyní sleduje"
@@ -1624,6 +1651,7 @@ cs:
     enabled_hint: Automaticky maže vaše příspěvky poté, co dosáhnou stanoveného stáří, nesplňují-li některou z výjimek níže
     exceptions: Výjimky
     explanation: Protože je mazání příspěvků nákladná operace, je prováděno pomalu v čase, kdy server není zaneprázdněn ničím jiným. Z tohoto důvodu mohou být vaše příspěvky smazány delší dobu po dosažení stanoveného stáří.
+    ignore_favs: Ignorovat oblíbené
     ignore_reblogs: Ignorovat boosty
     interaction_exceptions: Výjimky založené na interakcích
     keep_direct: Zachovat přímé zprávy
@@ -1636,6 +1664,8 @@ cs:
     keep_polls_hint: Nesmaže žádnou z vašich anket
     keep_self_bookmark: Zachovat příspěvky, které jste přidali do záložek
     keep_self_bookmark_hint: Nesmaže vaše vlastní příspěvky, pokud jste je přidali do záložek
+    keep_self_fav: Zachovat příspěvky, které jste si oblíbili
+    keep_self_fav_hint: Nesmaže vaše vlastní příspěvky, pokud jste si je oblíbili
     min_age:
       '1209600': 2 týdny
       '15778476': 6 měsíců
