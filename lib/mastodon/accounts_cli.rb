@@ -121,10 +121,10 @@ module Mastodon
         say('OK', :green)
         say("New password: #{password}")
       else
-        user.errors.to_h.each do |key, error|
+        user.errors.each do |error|
           say('Failure/Error: ', :red)
-          say(key)
-          say("    #{error}", :red)
+          say(error.attribute)
+          say("    #{error.type}", :red)
         end
 
         exit(1)
@@ -197,10 +197,10 @@ module Mastodon
         say('OK', :green)
         say("New password: #{password}") if options[:reset_password]
       else
-        user.errors.to_h.each do |key, error|
+        user.errors.each do |error|
           say('Failure/Error: ', :red)
-          say(key)
-          say("    #{error}", :red)
+          say(error.attribute)
+          say("    #{error.type}", :red)
         end
 
         exit(1)
