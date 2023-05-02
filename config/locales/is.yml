@@ -1235,21 +1235,51 @@ is:
       other: Ennþá er ekki alveg allt í lagi! Skoðaðu vel villurnar %{count} hér fyrir neðan
   imports:
     errors:
+      empty: Tóm CSV-skrá
+      incompatible_type: Ekki samhæfanlegt valinni tegund innflutnings
       invalid_csv_file: 'Ógild CSV-skrá. Villa: %{error}'
       over_rows_processing_limit: inniheldur meira en %{count} raðir
       too_large: Skráin er of stór
     failures: Mistök
+    imported: Flutt inn
+    mismatched_types_warning: Það lítur út fyrir að þú hafir valið ranga tegund innflutnings, yfirfarðu upplýsingarnar.
     modes:
       merge: Sameina
       merge_long: Halda fyrirliggjandi færslum og bæta við nýjum
       overwrite: Skrifa yfir
       overwrite_long: Skipta út fyrirliggjandi færslum með þeim nýju
+    overwrite_preambles:
+      blocking_html: Þú er í þann mund að fara að <strong>skipta út útilokanalistanum þínum</strong> með allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong>.
+      bookmarks_html: Þú er í þann mund að fara að <strong>skipta út bókamerkjunum þínum</strong> með allt að <strong>%{total_items} færslum</strong> úr <strong>%{filename}</strong>.
+      domain_blocking_html: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokuð lén</strong> með allt að <strong>%{total_items} lénum</strong> úr <strong>%{filename}</strong>.
+      following_html: Þú er í þann mund að fara að <strong>fylgjast með</strong> allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong> og <strong>hætta að fylgjast með öllum öðrum</strong>.
+      muting_html: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokaða aðganga</strong> með allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Þú er í þann mund að fara að <strong>útiloka</strong> allt að <strong>%{total_items} aðganga</strong> úr <strong>%{filename}</strong>.
+      bookmarks_html: Þú er í þann mund að fara að bæta við allt að <strong>%{total_items} færslum</strong> úr <strong>%{filename}</strong> við <strong>bókamerkin</strong> þín.
+      domain_blocking_html: Þú er í þann mund að fara að <strong>útiloka</strong> allt að <strong>%{total_items} lén</strong> úr <strong>%{filename}</strong>.
+      following_html: Þú er í þann mund að fara að <strong>fylgjast með</strong> allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong>.
+      muting_html: Þú er í þann mund að fara að <strong>þagga</strong> allt að <strong>%{total_items} aðganga</strong> úr <strong>%{filename}</strong>.
     preface: Þú getur flutt inn gögn sem þú hefur flutt út frá öðrum vefþjóni, svo sem lista yfir fólk sem þú fylgist með eða útilokar.
+    recent_imports: Nýlega flutt inn
     states:
+      finished: Lokið
+      in_progress: Í vinnslu
+      scheduled: Áætlað
       unconfirmed: Óstaðfest
     status: Staða
     success: Það tókst að senda inn gögnin þín og verður unnið með þau þegar færi gefst
+    time_started: Hófst
+    titles:
+      blocking: Flyt inn útilokaða aðganga
+      bookmarks: Flyt inn bókamerki
+      domain_blocking: Flyt inn útilokuð lén
+      following: Flyt inn aðganga sem fylgst er með
+      muting: Flyt inn þaggaða aðganga
     type: Tegund innflutnings
+    type_groups:
+      constructive: Fylgst með og bókamerki
+      destructive: Útilokanir og þagganir
     types:
       blocking: Listi yfir útilokanir
       bookmarks: Bókamerki
