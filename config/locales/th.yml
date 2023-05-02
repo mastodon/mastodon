@@ -1194,7 +1194,9 @@ th:
       other: เลือกอยู่ทั้งหมด <strong>%{count}</strong> รายการในหน้านี้
     all_matching_items_selected_html:
       other: เลือกอยู่ทั้งหมด <strong>%{count}</strong> รายการที่ตรงกับการค้นหาของคุณ
+    cancel: ยกเลิก
     changes_saved_msg: บันทึกการเปลี่ยนแปลงสำเร็จ!
+    confirm: ยืนยัน
     copy: คัดลอก
     delete: ลบ
     deselect: ไม่เลือกทั้งหมด
@@ -1208,15 +1210,26 @@ th:
       other: ยังมีบางอย่างไม่ถูกต้อง! โปรดตรวจทาน %{count} ข้อผิดพลาดด้านล่าง
   imports:
     errors:
+      empty: ไฟล์ CSV ว่างเปล่า
       invalid_csv_file: 'ไฟล์ CSV ไม่ถูกต้อง ข้อผิดพลาด: %{error}'
       over_rows_processing_limit: มีมากกว่า %{count} แถว
+      too_large: ไฟล์มีขนาดใหญ่เกินไป
+    failures: ล้มเหลว
+    imported: นำเข้าแล้ว
     modes:
       merge: ผสาน
       merge_long: เก็บระเบียนที่มีอยู่และเพิ่มระเบียนใหม่
       overwrite: เขียนทับ
       overwrite_long: แทนที่ระเบียนปัจจุบันด้วยระเบียนใหม่
     preface: คุณสามารถนำเข้าข้อมูลที่คุณได้ส่งออกจากเซิร์ฟเวอร์อื่น เช่น รายการผู้คนที่คุณกำลังติดตามหรือกำลังปิดกั้น
+    states:
+      finished: เสร็จสิ้นแล้ว
+      in_progress: อยู่ระหว่างดำเนินการ
+      scheduled: กำหนดการ
+      unconfirmed: ไม่ได้รับการยืนยัน
+    status: สถานะ
     success: อัปโหลดข้อมูลของคุณสำเร็จและจะได้รับการประมวลผลในเวลาที่ครบกำหนด
+    type: ชนิดการนำเข้า
     types:
       blocking: รายการปิดกั้น
       bookmarks: ที่คั่นหน้า
