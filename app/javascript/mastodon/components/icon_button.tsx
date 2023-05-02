@@ -1,34 +1,36 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Icon from 'mastodon/components/icon';
-import AnimatedNumber from 'mastodon/components/animated_number';
+import { Icon } from './icon';
+import { AnimatedNumber } from './animated_number';
 
-export default class IconButton extends React.PureComponent {
-
-  static propTypes = {
-    className: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    icon: PropTypes.string.isRequired,
-    onClick: PropTypes.func,
-    onMouseDown: PropTypes.func,
-    onKeyDown: PropTypes.func,
-    onKeyPress: PropTypes.func,
-    size: PropTypes.number,
-    active: PropTypes.bool,
-    expanded: PropTypes.bool,
-    style: PropTypes.object,
-    activeStyle: PropTypes.object,
-    disabled: PropTypes.bool,
-    inverted: PropTypes.bool,
-    animate: PropTypes.bool,
-    overlay: PropTypes.bool,
-    tabIndex: PropTypes.number,
-    counter: PropTypes.number,
-    obfuscateCount: PropTypes.bool,
-    href: PropTypes.string,
-    ariaHidden: PropTypes.bool,
-  };
+type Props = {
+  className?: string;
+  title: string;
+  icon: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onMouseDown?: React.MouseEventHandler<HTMLButtonElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
+  onKeyPress?: React.KeyboardEventHandler<HTMLButtonElement>;
+  size: number;
+  active: boolean;
+  expanded?: boolean;
+  style?: React.CSSProperties;
+  activeStyle?: React.CSSProperties;
+  disabled: boolean;
+  inverted?: boolean;
+  animate: boolean;
+  overlay: boolean;
+  tabIndex: number;
+  counter?: number;
+  obfuscateCount?: boolean;
+  href?: string;
+  ariaHidden: boolean;
+}
+type States = {
+  activate: boolean,
+  deactivate: boolean,
+}
+export default class IconButton extends React.PureComponent<Props, States> {
 
   static defaultProps = {
     size: 18,
@@ -45,7 +47,7 @@ export default class IconButton extends React.PureComponent {
     deactivate: false,
   };
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps: Props) {
     if (!nextProps.animate) return;
 
     if (this.props.active && !nextProps.active) {
@@ -55,27 +57,27 @@ export default class IconButton extends React.PureComponent {
     }
   }
 
-  handleClick = (e) =>  {
+  handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) =>  {
     e.preventDefault();
 
-    if (!this.props.disabled) {
+    if (!this.props.disabled && this.props.onClick != null) {
       this.props.onClick(e);
     }
   };
 
-  handleKeyPress = (e) => {
+  handleKeyPress: React.KeyboardEventHandler<HTMLButtonElement> = (e) => {
     if (this.props.onKeyPress && !this.props.disabled) {
       this.props.onKeyPress(e);
     }
   };
 
-  handleMouseDown = (e) => {
+  handleMouseDown: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     if (!this.props.disabled && this.props.onMouseDown) {
       this.props.onMouseDown(e);
     }
   };
 
-  handleKeyDown = (e) => {
+  handleKeyDown: React.KeyboardEventHandler<HTMLButtonElement> = (e) => {
     if (!this.props.disabled && this.props.onKeyDown) {
       this.props.onKeyDown(e);
     }
@@ -132,7 +134,7 @@ export default class IconButton extends React.PureComponent {
       </React.Fragment>
     );
 
-    if (href && !this.prop) {
+    if (href != null) {
       contents = (
         <a href={href} target='_blank' rel='noopener noreferrer'>
           {contents}
