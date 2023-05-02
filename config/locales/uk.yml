@@ -1263,7 +1263,9 @@ uk:
       few: Усі <strong>%{count}</strong> елементи, що збігаються з вашим пошуком вибрано.
       many: Усі <strong>%{count}</strong> елементів, що збігаються з вашим пошуком вибрано.
       other: Усі <strong>%{count}</strong> елементи, що збігаються з вашим пошуком вибрано.
+    cancel: Скасувати
     changes_saved_msg: Зміни успішно збережені!
+    confirm: Підтвердити
     copy: Копіювати
     delete: Видалити
     deselect: Скасувати вибір
@@ -1283,8 +1285,13 @@ uk:
       other: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
   imports:
     errors:
+      empty: Очистити CSV-файл
+      incompatible_type: Несумісний з обраним типом імпорту
       invalid_csv_file: 'Хибний файл CSV. Помилка: %{error}'
       over_rows_processing_limit: містить більше ніж %{count} рядків
+      too_large: Файл завеликий
+    failures: Невдачі
+    imported: Імпортовано
     modes:
       merge: Злиття
       merge_long: Зберегти наявні записи та додати нові
