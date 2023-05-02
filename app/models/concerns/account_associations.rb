@@ -71,5 +71,8 @@ module AccountAssociations
 
     # Imports
     has_many :bulk_imports, inverse_of: :account, dependent: :delete_all
+
+    # Bloom filter for reach (servers knowing about that actor)
+    has_one :reach_filter, class_name: 'AccountReachFilter', inverse_of: :account, dependent: :destroy
   end
 end

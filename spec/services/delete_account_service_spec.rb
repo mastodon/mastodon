@@ -63,19 +63,39 @@ RSpec.describe DeleteAccountService, type: :service do
     before do
       stub_request(:post, 'https://alice.com/inbox').to_return(status: 201)
       stub_request(:post, 'https://bob.com/inbox').to_return(status: 201)
+      stub_request(:post, 'https://eve.com/inbox').to_return(status: 201)
     end
 
     let!(:remote_alice) { Fabricate(:account, inbox_url: 'https://alice.com/inbox', protocol: :activitypub) }
-    let!(:remote_bob) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
+    let!(:remote_bob)   { Fabricate(:account, inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
+    let!(:remote_eve)   { Fabricate(:account, inbox_url: 'https://eve.com/inbox', protocol: :activitypub) }
 
     include_examples 'common behavior' do
       let!(:account) { Fabricate(:account) }
       let!(:local_follower) { Fabricate(:account) }
 
-      it 'sends a delete actor activity to all known inboxes' do
-        subject
-        expect(a_request(:post, 'https://alice.com/inbox')).to have_been_made.once
-        expect(a_request(:post, 'https://bob.com/inbox')).to have_been_made.once
+      context 'without a reach filter' do
+        it 'sends a delete actor activity to all known inboxes' do
+          subject
+          expect(a_request(:post, 'https://alice.com/inbox')).to have_been_made.once
+          expect(a_request(:post, 'https://bob.com/inbox')).to have_been_made.once
+          expect(a_request(:post, 'https://eve.com/inbox')).to have_been_made.once
+        end
+      end
+
+      context 'with a reach filter' do
+        before do
+          account.build_reach_filter
+          account.reach_filter.add('alice.com')
+          account.reach_filter.add('bob.com')
+        end
+
+        it 'sends a delete actor activity to inboxes matching the reach filter' do
+          subject
+          expect(a_request(:post, 'https://alice.com/inbox')).to have_been_made.once
+          expect(a_request(:post, 'https://bob.com/inbox')).to have_been_made.once
+          expect(a_request(:post, 'https://eve.com/inbox')).to_not have_been_made
+        end
       end
     end
   end

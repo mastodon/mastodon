@@ -778,6 +778,18 @@ RSpec.describe Account, type: :model do
     end
 
     context 'when is remote' do
+      it 'has a valid fabricator' do
+        account = Fabricate.build(:account, domain: 'example.org', protocol: :activitypub)
+        account.valid?
+        expect(account).to be_valid
+      end
+
+      it 'is invalid if it does not have an inbox URL' do
+        account = Fabricate.build(:account, domain: 'example.com', inbox_url: '')
+        account.valid?
+        expect(account).to model_have_error_on_field(:inbox_url)
+      end
+
       it 'is invalid if the username is same among accounts in the same normalized domain' do
         Fabricate(:account, domain: 'にゃん', username: 'username')
         account = Fabricate.build(:account, domain: 'xn--r9j5b5b', username: 'username')
@@ -961,12 +973,12 @@ RSpec.describe Account, type: :model do
   context 'when is remote' do
     it 'does not generate keys' do
       key = OpenSSL::PKey::RSA.new(1024).public_key
-      account = Account.create!(domain: 'remote', username: Faker::Internet.user_name(separators: ['_']), public_key: key.to_pem)
+      account = Account.create!(domain: 'remote', username: Faker::Internet.user_name(separators: ['_']), public_key: key.to_pem, inbox_url: 'https://remote/inbox')
       expect(account.keypair.params).to eq key.params
     end
 
     it 'normalizes domain' do
-      account = Account.create!(domain: 'にゃん', username: Faker::Internet.user_name(separators: ['_']))
+      account = Account.create!(domain: 'にゃん', username: Faker::Internet.user_name(separators: ['_']), inbox_url: 'https://remote/inbox')
       expect(account.domain).to eq 'xn--r9j5b5b'
     end
   end

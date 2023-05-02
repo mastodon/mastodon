@@ -21,6 +21,9 @@ describe MoveWorker do
     blocking_account.block!(source_account)
     muting_account.mute!(source_account)
 
+    stub_request(:post, source_account.inbox_url).to_return status: 201, body: '{}' unless source_account.local?
+    stub_request(:post, target_account.inbox_url).to_return status: 201, body: '{}' unless target_account.local?
+
     allow(BlockService).to receive(:new).and_return(block_service)
     allow(block_service).to receive(:call)
   end

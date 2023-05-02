@@ -175,6 +175,9 @@ RSpec.describe AccountsController, type: :controller do
 
       context do
         before do
+          account.build_reach_filter
+          account.save!
+
           get :show, params: { username: account.username, format: format }
         end
 
@@ -199,6 +202,10 @@ RSpec.describe AccountsController, type: :controller do
           it 'returns http unauthorized' do
             expect(response).to have_http_status(401)
           end
+        end
+
+        it 'removes reach filter (because authorized fetch is disabled)' do
+          expect(account.reload.reach_filter.present?).to be false
         end
       end
 
@@ -229,9 +236,12 @@ RSpec.describe AccountsController, type: :controller do
       end
 
       context 'with signature' do
-        let(:remote_account) { Fabricate(:account, domain: 'example.com') }
+        let(:remote_account) { Fabricate(:account, domain: 'example.com', inbox_url: 'https://example.com/inbox') }
 
         before do
+          account.build_reach_filter
+          account.save!
+
           allow(controller).to receive(:signed_request_actor).and_return(remote_account)
           get :show, params: { username: account.username, format: format }
         end
@@ -249,6 +259,10 @@ RSpec.describe AccountsController, type: :controller do
         it 'renders account' do
           json = body_as_json
           expect(json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
+        end
+
+        it 'removes reach filter (because authorized fetch is disabled)' do
+          expect(account.reload.reach_filter.present?).to be false
         end
 
         context 'in authorized fetch mode' do
@@ -273,6 +287,14 @@ RSpec.describe AccountsController, type: :controller do
           it 'renders account' do
             json = body_as_json
             expect(json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
+          end
+
+          it 'adds example.com to the reach filter' do
+            expect(account.reach_filter.reload.include?('example.com')).to be true
+          end
+
+          it 'does not add unrelated domains to the reach filter' do
+            expect(account.reach_filter.reload.include?('bad.com')).to be false
           end
         end
       end

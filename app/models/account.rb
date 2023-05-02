@@ -85,8 +85,9 @@ class Account < ApplicationRecord
   validates :username, presence: true
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
 
-  # Remote user validations, also applies to internal actors
+  # Remote user validations
   validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { (!local? || actor_type == 'Application') && will_save_change_to_username? }
+  validates :inbox_url, presence: true, if: -> { !local? && (new_record? || will_save_change_to_inbox_url?) }
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
@@ -537,6 +538,7 @@ class Account < ApplicationRecord
 
   before_create :generate_keys
   before_validation :prepare_contents, if: :local?
+  before_validation :prepare_reach_filter, if: :local?
   before_validation :prepare_username, on: :create
   before_destroy :clean_feed_manager
 
@@ -548,6 +550,12 @@ class Account < ApplicationRecord
   end
 
   private
+
+  def prepare_reach_filter
+    return if instance_actor?
+
+    build_reach_filter if %w(true all actors).include?(ENV.fetch('AUTHORIZED_FETCH', 'false')) || Rails.configuration.x.whitelist_mode
+  end
 
   def prepare_contents
     display_name&.strip!

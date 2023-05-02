@@ -13,5 +13,6 @@ Fabricator(:account) do
   suspended_at        { |attrs| attrs[:suspended] ? Time.now.utc : nil }
   silenced_at         { |attrs| attrs[:silenced] ? Time.now.utc : nil }
   user                { |attrs| attrs[:domain].nil? ? Fabricate.build(:user, account: nil) : nil }
+  inbox_url           { |attrs| attrs.fetch(:inbox_url) { attrs[:domain].nil? ? '' : "https://#{attrs[:domain]}/inbox" } }
   discoverable        true
 end
