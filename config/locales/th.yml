@@ -1217,6 +1217,7 @@ th:
       too_large: ไฟล์ใหญ่เกินไป
     failures: ความล้มเหลว
     imported: นำเข้าแล้ว
+    mismatched_types_warning: ดูเหมือนว่าคุณอาจเลือกชนิดที่ผิดสำหรับการนำเข้านี้ โปรดตรวจสอบอีกครั้ง
     modes:
       merge: ผสาน
       merge_long: เก็บระเบียนที่มีอยู่และเพิ่มระเบียนใหม่
@@ -1226,6 +1227,8 @@ th:
       blocking_html: คุณกำลังจะ <strong>แทนที่รายการการปิดกั้นของคุณ</strong> ด้วยมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
       bookmarks_html: คุณกำลังจะ <strong>แทนที่ที่คั่นหน้าของคุณ</strong> ด้วยมากถึง <strong>%{total_items} โพสต์</strong> จาก <strong>%{filename}</strong>
       domain_blocking_html: คุณกำลังจะ <strong>แทนที่รายการการปิดกั้นโดเมนของคุณ</strong> ด้วยมากถึง <strong>%{total_items} โดเมน</strong> จาก <strong>%{filename}</strong>
+      following_html: คุณกำลังจะ <strong>ติดตาม</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong> และ <strong>หยุดการติดตามคนอื่นใด</strong>
+      muting_html: คุณกำลังจะ <strong>แทนที่รายการบัญชีที่ซ่อนอยู่ของคุณ</strong> ด้วยมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
     preambles:
       blocking_html: คุณกำลังจะ <strong>ปิดกั้น</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
       bookmarks_html: คุณกำลังจะเพิ่มมากถึง <strong>%{total_items} โพสต์</strong> จาก <strong>%{filename}</strong> ไปยัง <strong>ที่คั่นหน้า</strong> ของคุณ
