@@ -1242,27 +1242,40 @@ de:
       too_large: Datei ist zu groß
     failures: Fehler
     imported: Importiert
+    mismatched_types_warning: Es scheint, als ob Du den falschen Typ für diesen Import ausgewählt hast, bitte überprüfe ihn.
     modes:
       merge: Zusammenführen
       merge_long: Behalte existierende Datensätze und füge neue hinzu
       overwrite: Überschreiben
       overwrite_long: Ersetze aktuelle Datensätze mit neuen
+    overwrite_preambles:
+      blocking_html: Du bist dabei <strong>Deine Blockliste</strong> durch bis zu <strong>%{total_items} Konten</strong> durch <strong>%{filename}</strong> zu ersetzen.
+      bookmarks_html: Du bist dabei <strong>Deine Favoriten</strong> durch bis zu <strong>%{total_items} Beiträge</strong> durch <strong>%{filename}</strong> zu ersetzen.
+      domain_blocking_html: Du bist dabei <strong>Deine Domain Blockliste</strong> durch bis zu <strong>%{total_items} Domains</strong> durch <strong>%{filename}</strong> zu ersetzen.
+      following_html: Du bist dabei bis zu <strong>%{total_items} Konten zu folgen</strong> aus <strong>%{filename}</strong> und <strong>keinen weiteren</strong>.
+      muting_html: Du bist dabei, <strong>Deine Liste stumm geschalteter Konten</strong> durch <strong>%{total_items} Konten zu ersetzen</strong> aus <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Du bist dabei bis zu <strong>%{total_items} Konten zu blocken</strong> durch <strong>%{filename}</strong>.
+      bookmarks_html: Du bist dabei, bis zu <strong>%{total_items} Beiträge</strong> von <strong>%{filename}</strong> zu Deinen <strong>Lesezeichen</strong> hinzuzufügen.
+      domain_blocking_html: Du bist dabei bis zu <strong>%{total_items} Domains zu blocken</strong> durch <strong>%{filename}</strong>.
+      following_html: Du bist dabei bis zu <strong>%{total_items} Konten zu folgen</strong> aus <strong>%{filename}</strong>.
+      muting_html: Du bist dabei bis zu <strong>%{total_items} Konten stumm zu schalten</strong> durch <strong>%{filename}</strong>.
     preface: Daten, die du von einem Mastodon-Server exportiert hast, kannst du hierher importieren. Das betrifft beispielsweise die Listen von Profilen, denen du folgst oder die du gesperrt hast.
-    recent_imports: Neueste Importe
+    recent_imports: Zuletzt importiert
     states:
-      finished: Erledigt
-      in_progress: In Arbeit
+      finished: Fertig
+      in_progress: In Bearbeitung
       scheduled: Geplant
       unconfirmed: Unbestätigt
     status: Status
     success: Deine Daten wurden erfolgreich hochgeladen und werden in Kürze verarbeitet
-    time_started: Gestartet am
+    time_started: Gestartet um
     titles:
-      blocking: Gesperrte Konten importieren
-      bookmarks: Lesezeichen importieren
-      domain_blocking: Gesperrte Server importieren
-      following: Gefolgte Konten importieren
-      muting: Stummgeschaltete Konten importieren
+      blocking: Importiere gesperrte Konten
+      bookmarks: Importiere Lesezeichen
+      domain_blocking: Importiere gesperrte Domains
+      following: Importiere gefolgte Konten
+      muting: Importiere stumm geschaltete Konten
     type: Importtyp
     type_groups:
       constructive: Folge ich & Lesezeichen
