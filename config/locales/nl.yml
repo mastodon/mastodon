@@ -1217,7 +1217,9 @@ nl:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> item dat met jouw zoekopdracht overeenkomt is geselecteerd."
       other: Alle <strong>%{count}</strong> items die met jouw zoekopdracht overeenkomen zijn geselecteerd.
+    cancel: Annuleren
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
+    confirm: Bevestigen
     copy: Kopiëren
     delete: Verwijderen
     deselect: Alles deselecteren
@@ -1233,15 +1235,43 @@ nl:
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
   imports:
     errors:
+      empty: Leeg CSV-bestand
+      incompatible_type: Incompatibel met het geselecteerde importtype
       invalid_csv_file: 'Ongeldig CSV-bestand. Fout: %{error}'
       over_rows_processing_limit: bevat meer dan %{count} rijen
+      too_large: Bestand is te groot
+    failures: Gebreken
+    imported: Geïmporteerd
+    mismatched_types_warning: Het lijkt erop dat u het verkeerde type heeft gekozen voor deze import, gelieve na te kijken.
     modes:
       merge: Samenvoegen
       merge_long: Bestaande gegevens behouden en nieuwe toevoegen
       overwrite: Overschrijven
       overwrite_long: Huidige gegevens met de nieuwe gegevens vervangen
+    overwrite_preambles:
+      blocking_html: U staat op het punt <strong>uw bloklijst</strong> te vervangen door maximaal <strong>%{total_items} accounts</strong> van <strong>%{filename}</strong>.
+      bookmarks_html: U staat op het punt <strong>uw bloklijst</strong> te vervangen door maximaal <strong>%{total_items} posts</strong> van <strong>%{filename}</strong>.
+      domain_blocking_html: U staat op het punt <strong>uw bloklijst</strong> te vervangen door maximaal <strong>%{total_items} domeinen</strong> uit <strong>%{filename}</strong>.
+      following_html: U staat op het punt om <strong>%{total_items} accounts</strong> <strong>te volgen</strong> uit <strong>%{filename}</strong> en <strong>het stoppen met volgen van alle anderen</strong>.
     preface: Je kunt bepaalde gegevens, zoals de mensen die jij volgt of hebt geblokkeerd, naar jouw account op deze server importeren. Je moet deze gegevens wel eerst op de oorspronkelijke server exporteren.
+    recent_imports: Recent geïmporteerd
+    states:
+      finished: Voltooid
+      in_progress: In uitvoering
+      scheduled: Gepland
+      unconfirmed: Niet bevestigd
+    status: Status
     success: Jouw gegevens zijn succesvol geüpload en worden binnenkort verwerkt
+    time_started: Begonnen op
+    titles:
+      blocking: Importeren van geblokkeerde accounts
+      bookmarks: Importeren van bookmarks
+      domain_blocking: Importeren van geblokkeerde domeinen
+      following: Importeren van gevolgde accounts
+      muting: Importeren van gemute accounts
+    type: Importtype
+    type_groups:
+      destructive: Blokkeren & muten
     types:
       blocking: Blokkeerlijst
       bookmarks: Bladwijzers
