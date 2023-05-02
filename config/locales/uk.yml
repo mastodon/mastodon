@@ -1285,7 +1285,7 @@ uk:
       other: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
   imports:
     errors:
-      empty: Очистити CSV-файл
+      empty: Порожній CSV-файл
       incompatible_type: Несумісний з обраним типом імпорту
       invalid_csv_file: 'Хибний файл CSV. Помилка: %{error}'
       over_rows_processing_limit: містить більше ніж %{count} рядків
@@ -1298,7 +1298,15 @@ uk:
       overwrite: Перезаписувати
       overwrite_long: Замінити наявні записи новими
     preface: Ви можете імпортувати дані, які ви експортували з іншого сервера, наприклад, список людей, яких ви відстежуєте або блокуєте.
+    recent_imports: Останні імпорти
+    states:
+      finished: Завершені
+      in_progress: Тривають
+      scheduled: Заплановані
+      unconfirmed: Непідтверджені
+    status: Стан
     success: Ваші дані завантажено та буде оброблено найближчим часом
+    type: Тип імпорту
     types:
       blocking: Список блокувань
       bookmarks: Закладки
