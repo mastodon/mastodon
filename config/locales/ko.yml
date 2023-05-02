@@ -1194,7 +1194,9 @@ ko:
       other: 현재 페이지에서 <strong>%{count}</strong>개의 항목이 선택되었습니다
     all_matching_items_selected_html:
       other: 검색에 잡힌 <strong>%{count}</strong>개의 항목이 모두 선택되었습니다
+    cancel: 취소
     changes_saved_msg: 정상적으로 변경되었습니다!
+    confirm: 확인
     copy: 복사
     delete: 삭제
     deselect: 전체 선택 해제
@@ -1208,15 +1210,38 @@ ko:
       other: 오류가 발생했습니다. 아래 %{count}개 오류를 확인해 주십시오
   imports:
     errors:
+      empty: 빈 CSV 파일
+      incompatible_type: 호환되지 않는 가져오기 유형을 선택함
       invalid_csv_file: '올바르지 않은 CSV 파일입니다. 오류: %{error}'
       over_rows_processing_limit: '%{count}개 이상의 열을 포함합니다'
+      too_large: 파일이 너무 큼
+    failures: 실패함
+    imported: 가져옴
     modes:
       merge: 병합
       merge_long: 기존 것을 그대로 둔 채 새로 추가
       overwrite: 덮어쓰기
       overwrite_long: 기존 것을 모두 지우고 새로 추가
     preface: 다른 서버에서 내보내기 한 파일에서 팔로우 / 차단 정보를 이 계정으로 불러올 수 있습니다.
+    recent_imports: 최근의 가져오기
+    states:
+      finished: 끝냄
+      in_progress: 진행 중
+      scheduled: 예약됨
+      unconfirmed: 미확인
+    status: 상태
     success: 파일이 정상적으로 업로드되었으며, 현재 처리 중입니다
+    time_started: 시작 시간
+    titles:
+      blocking: 차단한 계정 가져오는 중
+      bookmarks: 북마크 가져오는 중
+      domain_blocking: 차단한 도메인 가져오는 중
+      following: 팔로우한 계정 가져오는 중
+      muting: 뮤트한 계정 가져오는 중
+    type: 가져오기 유형
+    type_groups:
+      constructive: 팔로우 & 북마크
+      destructive: 차단 & 뮤트
     types:
       blocking: 차단한 계정 목록
       bookmarks: 북마크
