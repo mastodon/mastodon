@@ -1,17 +1,10 @@
-export const APP_FOCUS   = 'APP_FOCUS';
-export const APP_UNFOCUS = 'APP_UNFOCUS';
+import { createAction } from '@reduxjs/toolkit';
 
-export const focusApp = () => ({
-  type: APP_FOCUS,
-});
+export const focusApp = createAction('APP_FOCUS');
+export const unfocusApp = createAction('APP_UNFOCUS');
 
-export const unfocusApp = () => ({
-  type: APP_UNFOCUS,
-});
-
-export const APP_LAYOUT_CHANGE = 'APP_LAYOUT_CHANGE';
-
-export const changeLayout = layout => ({
-  type: APP_LAYOUT_CHANGE,
-  layout,
-});
+type ChangeLayoutPayload = {
+  layout: 'mobile' | 'single-column' | 'multi-column';
+};
+export const changeLayout =
+  createAction<ChangeLayoutPayload>('APP_LAYOUT_CHANGE');
