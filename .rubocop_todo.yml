@@ -309,12 +309,6 @@ Performance/CollectionLiteralInLoop:
     - 'lib/mastodon/media_cli.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
-Performance/Count:
-  Exclude:
-    - 'app/lib/importer/accounts_index_importer.rb'
-    - 'app/lib/importer/tags_index_importer.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: SafeMultiline.
 Performance/DeletePrefix:
   Exclude:
