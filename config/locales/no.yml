@@ -742,6 +742,7 @@
         remove_from_report: Fjern fra rapport
         report: Rapport
       deleted: Slettet
+      favourites: Favoritter
       history: Versjonshistorikk
       in_reply_to: Svarer til
       language: Språk
@@ -821,6 +822,7 @@
       statuses:
         allow: Tillat innlegg
         allow_account: Tillat forfatter
+        description_html: Dette er innlegg som serveren din vet om at de blir delt og favorisert for øyeblikket. Dette kan hjelpe dine nye og returnerede brukere med å finne flere å følge. Ingen innlegg vises offentlig før du godkjenner forfatteren, og forfatteren tillater at kontoen deres foreslås til andre. Du kan også tillate eller avvise individuelle innlegg.
         disallow: Ikke tillat innlegg
         disallow_account: Forby forfatter
         title: Populære innlegg
@@ -1268,6 +1270,10 @@
         subject: "%{name} leverte en rapport"
       sign_up:
         subject: "%{name} registrerte seg"
+    favourite:
+      body: 'Innlegget ditt ble favorittmarkert av %{name}:'
+      subject: "%{name} favorittmarkerte innlegget ditt"
+      title: Ny favoritt
     follow:
       body: "%{name} følger deg!"
       subject: "%{name} følger deg"
@@ -1496,8 +1502,10 @@
     enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor
     exceptions: Unntak
     explanation: Siden sletting av innlegg er en krevende operasjon, blir dette gjort sakte over tid når tjeneren ellers ikke er opptatt. Av denne grunn kan det hende at innleggene dine slettes først en stund etter at de har nådd aldersgrensen.
+    ignore_favs: Ignorer favoritter
     ignore_reblogs: Ignorer fremhevinger
     interaction_exceptions: Unntak basert på interaksjoner
+    interaction_exceptions_explanation: Merk at det ikke er noen garanti for at innlegg blir slettet hvis de går under favoritt- eller fremhevelsesgrensen etter å ha gått over dem en gang.
     keep_direct: Behold direktemeldinger
     keep_direct_hint: Sletter ingen av direktemeldingene dine
     keep_media: Behold innlegg med mediavedlegg
@@ -1508,6 +1516,8 @@
     keep_polls_hint: Sletter ingen av avstemningene dine
     keep_self_bookmark: Behold innlegg med dine bokmerker
     keep_self_bookmark_hint: Sletter ikke dine egne innlegg hvis du har gitt dem et bokmerke
+    keep_self_fav: Behold innlegg du har favorittmarkert
+    keep_self_fav_hint: Sletter ikke dine egne innlegg hvis du har favorittmarkert de
     min_age:
       '1209600': 2 uker
       '15778476': 6 måneder
@@ -1518,6 +1528,8 @@
       '63113904': 2 år
       '7889238': 3 måneder
     min_age_label: Terskel for alder
+    min_favs: Behold innlegg som er favorittmarkert av minst
+    min_favs_hint: Sletter ikke noen av dine innlegg som har mottatt minst dette antall favorittmarkeringer. La stå tom for å slette innlegg uavhengig av antall favorittmarkeringer
     min_reblogs: Behold innlegg fremhevet av minst
     min_reblogs_hint: Sletter ikke noen av dine innlegg som har blitt fremhevet minst dette antall ganger. La stå tom for å slette innlegg uavhengig av antall fremhevinger
   stream_entries:
