@@ -1217,7 +1217,9 @@ es:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> elemento que coincide con su búsqueda está seleccionado."
       other: Todos los <strong>%{count}</strong> elementos que coinciden con su búsqueda están seleccionados.
+    cancel: Cancelar
     changes_saved_msg: '¡Cambios guardados con éxito!'
+    confirm: Confirmar
     copy: Copiar
     delete: Eliminar
     deselect: Deseleccionar todo
@@ -1233,15 +1235,51 @@ es:
       other: '¡Algo no está bien! Por favor, revise %{count} errores más abajo'
   imports:
     errors:
+      empty: Archivo CSV vacío
+      incompatible_type: Incompatible con el tipo de importación seleccionado
       invalid_csv_file: 'Archivo CSV no válido. Error: %{error}'
       over_rows_processing_limit: contiene más de %{count} filas
+      too_large: El archivo es demasiado grande
+    failures: Fallos
+    imported: Importado
+    mismatched_types_warning: Parece que podrías haber seleccionado el tipo incorrecto para esta importación, por favor vuelve a verificarlo.
     modes:
       merge: Unir
       merge_long: Mantener registros existentes y añadir nuevos
       overwrite: Sobrescribir
       overwrite_long: Reemplazar registros actuales con los nuevos
+    overwrite_preambles:
+      blocking_html: Estás a punto de <strong>reemplazar tu lista de bloqueos</strong> por hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      bookmarks_html: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{total_items} publicaciones</strong> provenientes de <strong>%{filename}</strong>.
+      domain_blocking_html: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
+      following_html: Estás a punto de <strong>seguir</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong> y <strong>dejar de seguir a cualquier otra cuenta</strong>.
+      muting_html: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con hasta <strong>%{total_items} cuentas</strong> proveninetes de <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} cuentas</strong> proveninetes de <strong>%{filename}</strong>.
+      bookmarks_html: Está a punto de añadir hasta <strong>%{total_items} publicaciones</strong> proveninetes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
+      domain_blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
+      following_html: Estás a punto de <strong>seguir</strong> hasta <strong>cuentas%{total_items}</strong> provenientes de <strong>%{filename}</strong>.
+      muting_html: Estás a punto de <strong>silenciar</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
     preface: Puedes importar ciertos datos, como todas las personas que estás siguiendo o bloqueando en tu cuenta en esta instancia, desde archivos exportados de otra instancia.
+    recent_imports: Importaciones recientes
+    states:
+      finished: Finalizado
+      in_progress: En curso
+      scheduled: Programado
+      unconfirmed: No confirmado
+    status: Estado
     success: Sus datos se han cargado correctamente y serán procesados en brevedad
+    time_started: Comenzado el
+    titles:
+      blocking: Importando cuentas bloqueadas
+      bookmarks: Importando marcadores
+      domain_blocking: Importando dominios bloqueados
+      following: Importando cuentas seguidas
+      muting: Importando cuentas silenciadas
+    type: Importar tipo
+    type_groups:
+      constructive: Seguidores y marcadores
+      destructive: Bloqueos y silencios
     types:
       blocking: Lista de bloqueados
       bookmarks: Marcadores
@@ -1335,6 +1373,10 @@ es:
         subject: "%{name} envió un informe"
       sign_up:
         subject: "%{name} se registró"
+    favourite:
+      body: 'Tu publicación fue marcada como favorita por %{name}:'
+      subject: "%{name} marcó como favorita tu publicación"
+      title: Nuevo favorito
     follow:
       body: "¡%{name} te está siguiendo!"
       subject: "%{name} te está siguiendo"
@@ -1566,8 +1608,10 @@ es:
     enabled_hint: Elimina automáticamente tus publicaciones una vez que alcancen un umbral de tiempo especificado, a menos que coincidan con alguna de las excepciones detalladas debajo
     exceptions: Excepciones
     explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente, a lo largo de un tiempo, cuando el servidor no está ocupado. Por este motivo, puede que tus publicaciones sean borradas algo después de que alcancen el umbral de tiempo especificado.
+    ignore_favs: Ignorar favoritos
     ignore_reblogs: Ignorar reblogueos
     interaction_exceptions: Excepciones basadas en interacciones
+    interaction_exceptions_explanation: Ten en cuenta que no hay garantía de que se eliminen las publicaciones que están por debajo de los umbrales de favoritos o de reblogueos si los han superado en algún momento.
     keep_direct: Mantener mensajes directos
     keep_direct_hint: No elimina ninguno de tus mensajes directos
     keep_media: Mantener publicaciones con multimedia adjunto
@@ -1578,6 +1622,8 @@ es:
     keep_polls_hint: No borra ninguna de tus encuestas
     keep_self_bookmark: Mantener publicaciones a las que has añadido un marcador
     keep_self_bookmark_hint: No borra tus propias publicaciones si les has añadido un marcador
+    keep_self_fav: Mantener publicaciones que marcaste como favoritas
+    keep_self_fav_hint: No borra tus propios publicaciones si las has marcado como favoritas
     min_age:
       '1209600': 2 semanas
       '15778476': 6 meses
@@ -1588,6 +1634,8 @@ es:
       '63113904': 2 años
       '7889238': 3 meses
     min_age_label: Umbral de tiempo
+    min_favs: Mantener publicaciones marcadas como favoritas al menos
+    min_favs_hint: No borra ninguna de tus publicaciones que haya recibido al menos este número de favoritos. Déjalo en blanco para eliminar mensajes independientemente de su número de favoritos
     min_reblogs: Mantener publicaciones reblogueadas más de
     min_reblogs_hint: No borra ninguna de las publicaciones que hayan sido reblogueadas más de este número de veces. Deja en blanco para eliminar publicaciones sin importar el número de reblogueos
   stream_entries:
