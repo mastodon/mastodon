@@ -5,7 +5,7 @@ import { IntlProvider, addLocaleData } from 'react-intl';
 import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { ScrollContext } from 'react-router-scroll-4';
-import configureStore from 'mastodon/store/configureStore';
+import { store } from 'mastodon/store/configureStore';
 import UI from 'mastodon/features/ui';
 import { fetchCustomEmojis } from 'mastodon/actions/custom_emojis';
 import { hydrateStore } from 'mastodon/actions/store';
@@ -19,7 +19,6 @@ addLocaleData(localeData);
 
 const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
 
-export const store = configureStore();
 const hydrateAction = hydrateStore(initialState);
 
 store.dispatch(hydrateAction);
