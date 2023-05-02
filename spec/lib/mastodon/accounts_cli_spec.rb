@@ -1204,4 +1204,83 @@ RSpec.describe Mastodon::AccountsCLI do
       end
     end
   end
+
+  describe '#fix_duplicates' do
+    context 'when there are no duplicates' do
+      it 'exits with no error' do
+        expect { cli.invoke(:fix_duplicates) }
+          .to_not raise_error
+      end
+    end
+
+    context 'when there are duplicates' do
+      let(:uri) { 'https://ap.example.com/users/foo' }
+
+      before do
+        Fabricate(:account, username: 'foo', domain: 'old.example.com', uri: uri)
+        Fabricate(:account, username: 'foo', domain: 'new.example.com', uri: uri)
+
+        stub_request(:get, 'https://quitter.no/avatar/7477-300-20160211190340.png').to_return(request_fixture('avatar.txt'))
+        stub_request(:get, 'https://ap.example.com/.well-known/webfinger?resource=acct:foo@ap.example.com').to_return(request_fixture('activitypub-webfinger.txt'))
+        stub_request(:get, 'https://ap.example.com/users/foo').to_return(request_fixture('activitypub-actor.txt'))
+        stub_request(:get, %r{https://ap\.example\.com/users/foo/\w+}).to_return(status: 404)
+      end
+
+      it 'merges accounts' do
+        cli.invoke(:fix_duplicates)
+
+        expect(Account.where(uri: uri).count).to eq(1)
+      end
+
+      it 'displays duplicates for given URI' do
+        expect { cli.invoke(:fix_duplicates) }
+          .to output(
+            a_string_including("Duplicates found for #{uri}")
+          ).to_stdout
+      end
+    end
+
+    context 'when an error is raised' do
+      let(:fetch_remote_account_service) { instance_double(ActivityPub::FetchRemoteAccountService) }
+      let(:uri) { 'https://ap.example.com/users/foo' }
+
+      before do
+        Fabricate(:account, username: 'foo', domain: 'old.example.com', uri: uri)
+        Fabricate(:account, username: 'foo', domain: 'new.example.com', uri: uri)
+
+        allow(ActivityPub::FetchRemoteAccountService).to receive(:new).and_return(fetch_remote_account_service)
+      end
+
+      it 'displays error message' do
+        error_message = 'Uncaught error'
+        allow(fetch_remote_account_service).to receive(:call).with(uri).and_raise(error_message)
+
+        expect { cli.invoke(:fix_duplicates) }
+          .to output(
+            a_string_including("Error processing #{uri}: #{error_message}")
+          ).to_stdout
+      end
+    end
+
+    context 'with --dry-run option' do
+      let(:fetch_remote_account_service) { instance_double(ActivityPub::FetchRemoteAccountService) }
+      let(:uri) { 'https://ap.example.com/users/foo' }
+      let(:options) { { dry_run: true } }
+
+      before do
+        Fabricate(:account, username: 'foo', domain: 'old.example.com', uri: uri)
+        Fabricate(:account, username: 'foo', domain: 'new.example.com', uri: uri)
+
+        allow(ActivityPub::FetchRemoteAccountService).to receive(:new).and_return(fetch_remote_account_service)
+      end
+
+      it 'does not call FetchRemoteAccountService' do
+        allow(fetch_remote_account_service).to receive(:call).with(uri)
+
+        cli.invoke(:fix_duplicates, nil, options)
+
+        expect(fetch_remote_account_service).to_not have_received(:call).with(uri)
+      end
+    end
+  end
 end
