@@ -1240,7 +1240,9 @@ sr:
       one: "<strong>%{count}</strong> ставка која се поклапа са Вашом претрагом је изабрана."
       few: Све <strong>%{count}</strong> ставке које се поклапају са Вашом претрагом су изабране.
       other: Свих <strong>%{count}</strong> ставки које се поклапају са Вашом претрагом су изабране.
+    cancel: Откажи
     changes_saved_msg: Измене успешно сачуване!
+    confirm: Потврди
     copy: Копирај
     delete: Избриши
     deselect: Поништи све изборе
@@ -1258,15 +1260,51 @@ sr:
       other: Нешто није баш како треба! Прегледајте %{count} грешака испод
   imports:
     errors:
+      empty: Празна CSV датотека
+      incompatible_type: Некомпатибилно са изабраним типом увоза
       invalid_csv_file: 'Неисправан CSV фајл. Грешка: %{error}'
       over_rows_processing_limit: садржи више од %{count} редова
+      too_large: Датотека је превелика
+    failures: Неуспеси
+    imported: Увезено
+    mismatched_types_warning: Изгледа да сте можда изабрали погрешан тип за овај увоз, проверите још једном.
     modes:
       merge: Стапање
       merge_long: Задржите постојеће записе и додајте нове
       overwrite: Замени
       overwrite_long: Замени тренутне записе новима
+    overwrite_preambles:
+      blocking_html: Управо ћете <strong>заменити своју листу блокираних</strong> са до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
+      bookmarks_html: Управо ћете <strong>заменити своје обележиваче</strong> са до <strong>%{total_items} објава</strong> из <strong>%{filename}</strong>.
+      domain_blocking_html: Управо ћете <strong>заменити своју листу блокираних домена</strong> са до <strong>%{total_items} домена</strong> из <strong>%{filename}</strong>.
+      following_html: Управо ћете <strong>пратити</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong> and <strong>и престати са праћењем било кога другог</strong>.
+      muting_html: Управо ћете <strong>заменити своју листу игнорисаних налога</strong> са до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Управо ћете <strong>блокирати</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
+      bookmarks_html: Управо ћете додати до <strong>%{total_items} објава</strong> из <strong>%{filename}</strong> у ваше <strong>обележиваче</strong>.
+      domain_blocking_html: Управо ћете <strong>блокирати</strong> до <strong>%{total_items} домена</strong> из <strong>%{filename}</strong>.
+      following_html: Управо ћете <strong>пратити</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
+      muting_html: Управо ћете <strong>игнорисати</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
     preface: Можете увести податке које сте извезли са друге инстанце, као што су листе људи које сте пратили или блокирали.
+    recent_imports: Недавни увози
+    states:
+      finished: Завршено
+      in_progress: У току
+      scheduled: Планирано
+      unconfirmed: Непотврђено
+    status: Статус
     success: Ваши подаци су успешно отпремљени и биће обрађени ускоро
+    time_started: Започето у
+    titles:
+      blocking: Увоз блокираних налога
+      bookmarks: Увоз обележивача
+      domain_blocking: Увоз блокираних домена
+      following: Увоз праћених налога
+      muting: Увоз игнорисаних налога
+    type: Тип увоза
+    type_groups:
+      constructive: Праћења и обележивачи
+      destructive: Блокирања и игнорисања
     types:
       blocking: Листа блокирања
       bookmarks: Обележивачи
