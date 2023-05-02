@@ -1217,7 +1217,9 @@ it:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> elemento corrispondente alla tua ricerca è selezionato."
       other: Tutti i <strong>%{count}</strong> elementi corrispondenti alla tua ricerca sono selezionati.
+    cancel: Annulla
     changes_saved_msg: Modifiche effettuate con successo!
+    confirm: Conferma
     copy: Copia
     delete: Cancella
     deselect: Deseleziona tutto
@@ -1233,13 +1235,24 @@ it:
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
   imports:
     errors:
+      empty: File CSV vuoto
+      incompatible_type: Incompatibile con il tipo di importazione selezionato
       invalid_csv_file: 'File CSV non valido. Errore: %{error}'
       over_rows_processing_limit: contiene più di %{count} righe
+      too_large: Il file è troppo grande
+    failures: Fallimenti
+    imported: Importato
+    mismatched_types_warning: Sembra che tu abbia selezionato il tipo sbagliato per questa importazione, ricontrolla per favore.
     modes:
       merge: Fondi
       merge_long: Mantieni record esistenti e aggiungine di nuovi
       overwrite: Sovrascrivi
       overwrite_long: Sostituisci record attuali con quelli nuovi
+    overwrite_preambles:
+      blocking_html: Stai per <strong>sostituire la tua lista di blocchi</strong> con un massimo di <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
+      bookmarks_html: Stai per <strong>sostituire i tuoi segnalibri</strong> con un massimo di <strong>%{total_items} post</strong> da <strong>%{filename}</strong>.
+      domain_blocking_html: Stai per <strong>sostituire la tua lista di domini bloccati</strong> con un massimo di <strong>%{total_items} domini</strong> da <strong>%{filename}</strong>.
+      following_html: Stai per <strong>seguire</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong> e <strong>smettere di seguire chiunque altro</strong>.
     preface: Puoi importare alcune informazioni, come le persone che segui o hai bloccato su questo server, da file creati da un'esportazione su un altro server.
     success: Le tue impostazioni sono state importate correttamente e verranno applicate in breve tempo
     types:
