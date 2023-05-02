@@ -1253,6 +1253,13 @@ nl:
       bookmarks_html: U staat op het punt <strong>uw bloklijst</strong> te vervangen door maximaal <strong>%{total_items} posts</strong> van <strong>%{filename}</strong>.
       domain_blocking_html: U staat op het punt <strong>uw bloklijst</strong> te vervangen door maximaal <strong>%{total_items} domeinen</strong> uit <strong>%{filename}</strong>.
       following_html: U staat op het punt om <strong>%{total_items} accounts</strong> <strong>te volgen</strong> uit <strong>%{filename}</strong> en <strong>het stoppen met volgen van alle anderen</strong>.
+      muting_html: U staat op het punt <strong>uw lijst met gemute accounts</strong> te vervangen door maximaal <strong>%{total_items} accounts</strong> van <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: U staat op het punt <strong>uw bloklijst</strong> te vervangen door maximaal <strong>%{total_items} accounts</strong> van <strong>%{filename}</strong>.
+      bookmarks_html: U staat op het punt om tot <strong>%{total_items} berichten</strong> van <strong>%{filename}</strong> toe te voegen aan uw <strong>bookmarks</strong>.
+      domain_blocking_html: U staat op het punt <strong>uw bloklijst</strong> te vervangen door maximaal <strong>%{total_items} domeinen</strong> van <strong>%{filename}</strong>.
+      following_html: U staat op het punt om <strong> %{total_items} accounts te volgen</strong> van <strong>%{filename}</strong>.
+      muting_html: U staat op het punt om <strong>%{total_items} accounts te muten</strong> van <strong>%{filename}</strong>.
     preface: Je kunt bepaalde gegevens, zoals de mensen die jij volgt of hebt geblokkeerd, naar jouw account op deze server importeren. Je moet deze gegevens wel eerst op de oorspronkelijke server exporteren.
     recent_imports: Recent geïmporteerd
     states:
@@ -1271,6 +1278,7 @@ nl:
       muting: Importeren van gemute accounts
     type: Importtype
     type_groups:
+      constructive: Volgt & Bladwijzers
       destructive: Blokkeren & muten
     types:
       blocking: Blokkeerlijst
