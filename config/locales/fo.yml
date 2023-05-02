@@ -770,6 +770,7 @@ fo:
         remove_from_report: Strika frá melding
         report: Melding
       deleted: Strikað
+      favourites: Dámdir postar
       history: Útgávusøga
       in_reply_to: Svarar
       language: Mál
@@ -850,10 +851,14 @@ fo:
       statuses:
         allow: Loyv posti
         allow_account: Loyv høvundi
+        description_html: Hetta eru postar, sum tín ambætari veit um og sum í løtuni vera deildir og dámaðir ofta. At vísa teir kann hjálpa nýggjum og afturvendandi brúkarum at finna fleiri fólk, sum tey vilja fylgja. Eingir postar verða vístir almenninginum, áðrenn tú góðkennir høvundin, og høvundurin loyvir teirra kontu at vera skotin upp fyri øðrum. Tú kanst eisini góðkenna ella vraka einstakar postar.
         disallow: Vraka post
         disallow_account: Vraka høvund
         no_status_selected: Eingir vælumtóktir postar vóru broyttir, tí eingir vóru valdir
         not_discoverable: Høvundurin hevur ikki valt at blíva funnin
+        shared_by:
+          one: Deildir ella dámdir eina ferð
+          other: Deildir ella dámdir %{friendly_count} ferð
         title: Vælumtóktir postar
       tags:
         current_score: Verandi stigatal %{score}
@@ -1330,6 +1335,10 @@ fo:
         subject: "%{name} sendi eina melding"
       sign_up:
         subject: "%{name} meldaði seg til"
+    favourite:
+      body: '%{name} dámdi postin hjá tær:'
+      subject: "%{name} dámdi postin hjá tær"
+      title: Nýggjur dámdur postur
     follow:
       body: "%{name} fylgir tær nú!"
       subject: "%{name} fylgir tær nú"
@@ -1561,8 +1570,10 @@ fo:
     enabled_hint: Strikar postar tínar sjálvvirkandi, tá teir verða eldri enn eitt vist, uttan so at teir samsvara við eitt av undantøkunum niðanfyri
     exceptions: Undantøk
     explanation: Av tí at striking av postum er dýrt virksemi, so verður tað gjørt spakuliga yvir tíð, tá ambætarin annars ikki er upptikin. Tí kunnu postarnir hjá tær verða strikaðir eina løtu aftaná, at tíðarfreistin er rokkin.
+    ignore_favs: Sí burtur frá dámdum postum
     ignore_reblogs: Sí burtur frá stimbranum
     interaction_exceptions: Undantøk grundað á samvirkni
+    interaction_exceptions_explanation: Legg til merkis, at eingin trygd er fyri at postar verða strikaðir, um teir fara undir mørkini fyri dámdar postar ella stimbranir eftir at teir einaferð eru farnir uppum.
     keep_direct: Varðveit beinleiðis boð
     keep_direct_hint: Strikar ikki beinleiðis boð hjá tær
     keep_media: Varðveit postar, sum hava viðheftar miðlafílur
@@ -1573,6 +1584,8 @@ fo:
     keep_polls_hint: Strikar ikki tínar atkvøðugreiðslur
     keep_self_bookmark: Varðveit postar, sum tú hevur bókamerkt
     keep_self_bookmark_hint: Strikar ikki tínar egnu postar, um tú hevur bókamerkt teir
+    keep_self_fav: Varðveit postar, sum tú hevur dámað
+    keep_self_fav_hint: Strikar ikki tínar egnu postar, um tú hevur dámað teir
     min_age:
       '1209600': 2 vikur
       '15778476': 6 mánaðir
@@ -1583,6 +1596,7 @@ fo:
       '63113904': 2 ár
       '7889238': 3 mánaðir
     min_age_label: Tíðarfreist
+    min_favs: Varðveit dámdar postar í minsta lagi
     min_reblogs: Varðveit postar, sum eru stimbraðir í minsta lagi
     min_reblogs_hint: Strikar ikki postar hjá tær, sum eru stimbraðir í minsta lagi so ofta. Lat vera blankt, um postar skulu strikast óansæð, hvussu ofta teir eru stimbraðir
   stream_entries:
