@@ -1410,13 +1410,6 @@ Rails/SkipsModelValidations:
     - 'spec/services/follow_service_spec.rb'
     - 'spec/services/update_account_service_spec.rb'
 
-Rails/TransactionExitStatement:
-  Exclude:
-    - 'app/lib/activitypub/activity/announce.rb'
-    - 'app/lib/activitypub/activity/create.rb'
-    - 'app/lib/activitypub/activity/delete.rb'
-    - 'app/services/activitypub/process_account_service.rb'
-
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb
 Rails/UniqueValidationWithoutIndex:
