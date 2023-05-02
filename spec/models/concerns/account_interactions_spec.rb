@@ -683,4 +683,28 @@ describe AccountInteractions do
       end
     end
   end
+
+  describe '#lists_for_local_distribution' do
+    let!(:inactive_follower_user) { Fabricate(:user, current_sign_in_at: 5.years.ago) }
+    let!(:follower_user)          { Fabricate(:user, current_sign_in_at: Time.now.utc) }
+    let!(:follow_request_user)    { Fabricate(:user, current_sign_in_at: Time.now.utc) }
+
+    let!(:inactive_follower_list) { Fabricate(:list, account: inactive_follower_user.account) }
+    let!(:follower_list)          { Fabricate(:list, account: follower_user.account) }
+    let!(:follow_request_list)    { Fabricate(:list, account: follow_request_user.account) }
+
+    before do
+      inactive_follower_user.account.follow!(account)
+      follower_user.account.follow!(account)
+      follow_request_user.account.follow_requests.create!(target_account: account)
+
+      inactive_follower_list.accounts << account
+      follower_list.accounts << account
+      follow_request_list.accounts << account
+    end
+
+    it 'includes only the list from the active follower' do
+      expect(account.lists_for_local_distribution.to_a).to eq [follower_list]
+    end
+  end
 end
