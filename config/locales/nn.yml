@@ -1305,6 +1305,10 @@ nn:
         subject: "%{name} leverte en rapport"
       sign_up:
         subject: "%{name} registrerte seg"
+    favourite:
+      body: 'Innlegget ditt ble favorittmarkert av %{name}:'
+      subject: "%{name} favorittmarkerte innlegget ditt"
+      title: Ny favoritt
     follow:
       body: "%{name} fylgjer deg!"
       subject: "%{name} fylgjer deg"
@@ -1530,8 +1534,10 @@ nn:
     enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor
     exceptions: Unntak
     explanation: Siden sletting av innlegg er en krevende operasjon, blir dette gjort sakte over tid når tjeneren ellers ikke er opptatt. Av denne grunn kan det hende at innleggene dine slettes først en stund etter at de har nådd aldersgrensen.
+    ignore_favs: Ignorer favoritter
     ignore_reblogs: Ignorer fremhevinger
     interaction_exceptions: Unntak basert på interaksjoner
+    interaction_exceptions_explanation: Merk at det ikke er noen garanti for at innlegg blir slettet hvis de går under favoritt- eller fremhevelsesgrensen etter å ha gått over dem en gang.
     keep_direct: Behold direktemeldinger
     keep_direct_hint: Sletter ingen av direktemeldingene dine
     keep_media: Behold innlegg med mediavedlegg
@@ -1542,6 +1548,8 @@ nn:
     keep_polls_hint: Sletter ingen av dine røystingar
     keep_self_bookmark: Behald bokmerka innlegg
     keep_self_bookmark_hint: Sletter ikkje dine eigne innlegg om du har bokmerka dei
+    keep_self_fav: Behold innlegg du har favorittmarkert
+    keep_self_fav_hint: Sletter ikke dine egne innlegg hvis du har favorittmarkert de
     min_age:
       '1209600': 2 veker
       '15778476': 6 månader
@@ -1552,6 +1560,8 @@ nn:
       '63113904': 2 år
       '7889238': 3 månader
     min_age_label: Aldersterskel
+    min_favs: Behold innlegg som er favorittmarkert av minst
+    min_favs_hint: Sletter ikke noen av dine innlegg som har mottatt minst dette antall favorittmarkeringer. La stå tom for å slette innlegg uavhengig av antall favorittmarkeringer
     min_reblogs: Behold innlegg fremhevet av minst
     min_reblogs_hint: Sletter ikke noen av dine innlegg som har blitt fremhevet minst dette antall ganger. La stå tom for å slette innlegg uavhengig av antall fremhevinger
   stream_entries:
