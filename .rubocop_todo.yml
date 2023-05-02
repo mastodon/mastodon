@@ -1114,19 +1114,6 @@ RSpec/VerifiedDoubles:
     - 'spec/workers/feed_insert_worker_spec.rb'
     - 'spec/workers/regeneration_worker_spec.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/ActiveRecordCallbacksOrder:
-  Exclude:
-    - 'app/models/account.rb'
-    - 'app/models/account_conversation.rb'
-    - 'app/models/announcement_reaction.rb'
-    - 'app/models/block.rb'
-    - 'app/models/media_attachment.rb'
-    - 'app/models/session_activation.rb'
-    - 'app/models/status.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Rails/ApplicationController:
   Exclude:

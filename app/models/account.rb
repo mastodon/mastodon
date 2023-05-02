@@ -439,9 +439,9 @@ class Account < ApplicationRecord
     @emojis ||= CustomEmoji.from_text(emojifiable_text, domain)
   end
 
-  before_create :generate_keys
   before_validation :prepare_contents, if: :local?
   before_validation :prepare_username, on: :create
+  before_create :generate_keys
   before_destroy :clean_feed_manager
 
   def ensure_keys!
