@@ -358,12 +358,10 @@ class MediaGallery extends React.PureComponent {
 
     const computedClass = classNames('media-gallery', { 'full-width': fullwidth });
 
-    if (this.isStandaloneEligible() && width) {
-      style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
-    } else if (width) {
-      style.height = width / (16/9);
+    if (this.isStandaloneEligible()) { // TODO: cropImages setting
+      style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
     } else {
-      return (<div className={computedClass} ref={this.handleRef} />);
+      style.aspectRatio = '16 / 9';
     }
 
     if (this.isStandaloneEligible()) {

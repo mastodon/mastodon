@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { is } from 'immutable';
-import { throttle, debounce } from 'lodash';
+import { throttle } from 'lodash';
 import classNames from 'classnames';
 import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
 import { displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
@@ -102,8 +102,6 @@ class Video extends React.PureComponent {
     src: PropTypes.string.isRequired,
     alt: PropTypes.string,
     lang: PropTypes.string,
-    width: PropTypes.number,
-    height: PropTypes.number,
     sensitive: PropTypes.bool,
     currentTime: PropTypes.number,
     onOpenVideo: PropTypes.func,
@@ -112,7 +110,6 @@ class Video extends React.PureComponent {
     inline: PropTypes.bool,
     editable: PropTypes.bool,
     alwaysVisible: PropTypes.bool,
-    cacheWidth: PropTypes.func,
     visible: PropTypes.bool,
     letterbox: PropTypes.bool,
     fullwidth: PropTypes.bool,
@@ -138,40 +135,15 @@ class Video extends React.PureComponent {
     volume: 0.5,
     paused: true,
     dragging: false,
-    containerWidth: this.props.width,
     fullscreen: false,
     hovered: false,
     muted: false,
     revealed: this.props.visible !== undefined ? this.props.visible : (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all'),
   };
 
-  componentWillReceiveProps (nextProps) {
-    if (!is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
-      this.setState({ revealed: nextProps.visible });
-    }
-  }
-
   setPlayerRef = c => {
     this.player = c;
-
-    if (this.player) {
-      this._setDimensions();
-    }
   };
-
-  _setDimensions () {
-    const width = this.player.offsetWidth;
-
-    if (width && width !== this.state.containerWidth) {
-      if (this.props.cacheWidth) {
-        this.props.cacheWidth(width);
-      }
-
-      this.setState({
-        containerWidth: width,
-      });
-    }
-  }
 
   setVideoRef = c => {
     this.video = c;
@@ -381,12 +353,10 @@ class Video extends React.PureComponent {
     document.addEventListener('MSFullscreenChange', this.handleFullscreenChange, true);
 
     window.addEventListener('scroll', this.handleScroll);
-    window.addEventListener('resize', this.handleResize, { passive: true });
   }
 
   componentWillUnmount () {
     window.removeEventListener('scroll', this.handleScroll);
-    window.removeEventListener('resize', this.handleResize);
 
     document.removeEventListener('fullscreenchange', this.handleFullscreenChange, true);
     document.removeEventListener('webkitfullscreenchange', this.handleFullscreenChange, true);
@@ -403,25 +373,17 @@ class Video extends React.PureComponent {
     }
   }
 
-  componentDidUpdate (prevProps) {
-    if (this.player && this.player.offsetWidth && this.player.offsetWidth !== this.state.containerWidth && !this.state.fullscreen) {
-      if (this.props.cacheWidth) this.props.cacheWidth(this.player.offsetWidth);
-      this.setState({
-        containerWidth: this.player.offsetWidth,
-      });
+  componentWillReceiveProps (nextProps) {
+    if (!is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
+      this.setState({ revealed: nextProps.visible });
     }
+  }
+
+  componentDidUpdate (prevProps) {
     if (this.video && this.state.revealed && this.props.preventPlayback && !prevProps.preventPlayback) {
       this.video.pause();
     }
   }
-
-  handleResize = debounce(() => {
-    if (this.player) {
-      this._setDimensions();
-    }
-  }, 250, {
-    trailing: true,
-  });
 
   handleScroll = throttle(() => {
     if (!this.video) {
@@ -540,21 +502,12 @@ class Video extends React.PureComponent {
 
   render () {
     const { preview, src, inline, onOpenVideo, onCloseVideo, intl, alt, lang, letterbox, fullwidth, detailed, sensitive, editable, blurhash, autoFocus } = this.props;
-    const { containerWidth, currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
+    const { currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
     const playerStyle = {};
 
-    const computedClass = classNames('video-player', { inactive: !revealed, detailed, inline: inline && !fullscreen, fullscreen, editable, letterbox, 'full-width': fullwidth });
-
-    let { width, height } = this.props;
-
-    if (inline && containerWidth) {
-      width  = containerWidth;
-      height = containerWidth / (16/9);
-
-      playerStyle.height = height;
-    } else if (inline) {
-      return (<div className={computedClass} ref={this.setPlayerRef} tabIndex={0} />);
+    if (inline) {
+      playerStyle.aspectRatio = '16 / 9';
     }
 
     let preload;
@@ -578,7 +531,7 @@ class Video extends React.PureComponent {
     return (
       <div
         role='menuitem'
-        className={computedClass}
+        className={classNames('video-player', { inactive: !revealed, detailed, inline: inline && !fullscreen, fullscreen, editable, letterbox, 'full-width': fullwidth })}
         style={playerStyle}
         ref={this.setPlayerRef}
         onMouseEnter={this.handleMouseEnter}
@@ -605,8 +558,6 @@ class Video extends React.PureComponent {
           aria-label={alt}
           title={alt}
           lang={lang}
-          width={width}
-          height={height}
           volume={volume}
           onClick={this.togglePlay}
           onKeyDown={this.handleVideoKeyDown}
@@ -615,6 +566,7 @@ class Video extends React.PureComponent {
           onLoadedData={this.handleLoadedData}
           onProgress={this.handleProgress}
           onVolumeChange={this.handleVolumeChange}
+          style={{ ...playerStyle, width: '100%' }}
         />}
 
         <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed || editable })}>

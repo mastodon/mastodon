@@ -8,7 +8,6 @@ import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
 import Icon from 'flavours/glitch/components/icon';
 import { useBlurhash } from 'flavours/glitch/initial_state';
 import Blurhash from 'flavours/glitch/components/blurhash';
-import { debounce } from 'lodash';
 
 const getHostname = url => {
   const parser = document.createElement('a');
@@ -45,8 +44,6 @@ export default class Card extends React.PureComponent {
     card: ImmutablePropTypes.map,
     onOpenMedia: PropTypes.func.isRequired,
     compact: PropTypes.bool,
-    defaultWidth: PropTypes.number,
-    cacheWidth: PropTypes.func,
     sensitive: PropTypes.bool,
   };
 
@@ -55,7 +52,6 @@ export default class Card extends React.PureComponent {
   };
 
   state = {
-    width: this.props.defaultWidth || 280,
     previewLoaded: false,
     embedded: false,
     revealed: !this.props.sensitive,
@@ -77,24 +73,6 @@ export default class Card extends React.PureComponent {
   componentWillUnmount () {
     window.removeEventListener('resize', this.handleResize);
   }
-
-  _setDimensions () {
-    const width = this.node.offsetWidth;
-
-    if (this.props.cacheWidth) {
-      this.props.cacheWidth(width);
-    }
-
-    this.setState({ width });
-  }
-
-  handleResize = debounce(() => {
-    if (this.node) {
-      this._setDimensions();
-    }
-  }, 250, {
-    trailing: true,
-  });
 
   handlePhotoClick = () => {
     const { card, onOpenMedia } = this.props;
@@ -129,10 +107,6 @@ export default class Card extends React.PureComponent {
 
   setRef = c => {
     this.node = c;
-
-    if (this.node) {
-      this._setDimensions();
-    }
   };
 
   handleImageLoad = () => {
@@ -148,36 +122,31 @@ export default class Card extends React.PureComponent {
   renderVideo () {
     const { card }  = this.props;
     const content   = { __html: addAutoPlay(card.get('html')) };
-    const { width } = this.state;
-    const ratio     = card.get('width') / card.get('height');
-    const height    = width / ratio;
 
     return (
       <div
         ref={this.setRef}
         className='status-card__image status-card-video'
         dangerouslySetInnerHTML={content}
-        style={{ height }}
+        style={{ aspectRatio: `${card.get('width')} / ${card.get('height')}` }}
       />
     );
   }
 
   render () {
     const { card, compact } = this.props;
-    const { width, embedded, revealed } = this.state;
+    const { embedded, revealed } = this.state;
 
     if (card === null) {
       return null;
     }
 
     const provider    = card.get('provider_name').length === 0 ? decodeIDNA(getHostname(card.get('url'))) : card.get('provider_name');
-    const horizontal  = (!compact && card.get('width') > card.get('height') && (card.get('width') + 100 >= width)) || card.get('type') !== 'link' || embedded;
+    const horizontal  = (!compact && card.get('width') > card.get('height')) || card.get('type') !== 'link' || embedded;
     const interactive = card.get('type') !== 'link';
     const className   = classnames('status-card', { horizontal, compact, interactive });
     const title       = interactive ? <a className='status-card__title' href={card.get('url')} title={card.get('title')} rel='noopener noreferrer' target='_blank'><strong>{card.get('title')}</strong></a> : <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>;
     const language    = card.get('language') || '';
-    const ratio       = card.get('width') / card.get('height');
-    const height      = (compact && !embedded) ? (width / (16 / 9)) : (width / ratio);
 
     const description = (
       <div className='status-card__content' lang={language}>
@@ -186,6 +155,14 @@ export default class Card extends React.PureComponent {
         <span className='status-card__host'>{provider}</span>
       </div>
     );
+
+    const thumbnailStyle = {
+      visibility: revealed? null : 'hidden',
+    };
+
+    if (horizontal) {
+      thumbnailStyle.aspectRatio = (compact && !embedded) ? '16 / 9' : `${card.get('width')} / ${card.get('height')}`;
+    }
 
     let embed     = '';
     let canvas = (
@@ -197,7 +174,7 @@ export default class Card extends React.PureComponent {
         dummy={!useBlurhash}
       />
     );
-    let thumbnail = <img src={card.get('image')} alt='' style={{ width: horizontal ? width : null, height: horizontal ? height : null, visibility: revealed ? null : 'hidden' }} onLoad={this.handleImageLoad} className='status-card__image-image' />;
+    let thumbnail = <img src={card.get('image')} alt='' style={thumbnailStyle} onLoad={this.handleImageLoad} className='status-card__image-image' />;
     let spoilerButton = (
       <button type='button' onClick={this.handleReveal} className='spoiler-button__overlay'>
         <span className='spoiler-button__overlay__label'><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
