@@ -770,6 +770,7 @@ es:
         remove_from_report: Eliminar del reporte
         report: Reporte
       deleted: Eliminado
+      favourites: Favoritos
       history: Historial de versiones
       in_reply_to: En respuesta a
       language: Idioma
@@ -850,10 +851,14 @@ es:
       statuses:
         allow: Permitir publicación
         allow_account: Permitir autor
+        description_html: Estos son publicaciones que tu servidor conoce que están siendo compartidas y marcadas como favoritas mucho en este momento. Pueden ayudar a tus usuarios nuevos y retornantes a encontrar más gente a la que seguir. No hay mensajes que se muestren públicamente hasta que apruebes el autor y el autor permita que su cuenta sea sugerida a otros. También puedes permitir o rechazar mensajes individuales.
         disallow: No permitir publicación
         disallow_account: No permitir autor
         no_status_selected: No se cambió ninguna publicación en tendencia ya que no se seleccionó ninguna
         not_discoverable: El autor no ha optado por ser detectable
+        shared_by:
+          one: Compartido o marcado como favorito una vez
+          other: Compatido o marcado como favorito %{friendly_count} veces
         title: Publicaciones destacadas
       tags:
         current_score: Puntuación actual %{score}
