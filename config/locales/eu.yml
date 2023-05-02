@@ -1214,7 +1214,9 @@ eu:
     all_matching_items_selected_html:
       one: "Zure bilaketarekin bat datorren elementu <strong>%{count}</strong> hautatuta."
       other: Zure bilaketarekin bat datozen <strong>%{count}</strong> elementu hautatuta.
+    cancel: Utzi
     changes_saved_msg: Aldaketak ongi gorde dira!
+    confirm: Berretsi
     copy: Kopiatu
     delete: Ezabatu
     deselect: Desautatu guztiak
@@ -1230,8 +1232,14 @@ eu:
       other: Zerbait ez dabil ongi! Egiaztatu beheko %{count}  erroreak mesedez
   imports:
     errors:
+      empty: CSV fitxategi hutsa
+      incompatible_type: Ez da bateragarria aukeratutako inportatze-motarekin
       invalid_csv_file: 'CSV fitxategi baliogabea. Errorea: %{error}'
       over_rows_processing_limit: '%{count} lerro baina gehiago ditu'
+      too_large: Fitxategia handiegia da
+    failures: Akatsak
+    imported: Inportatuta
+    mismatched_types_warning: Badirudi mota okerra aukeratu duzula inportatze honetarako, mesedez, berrikusi.
     modes:
       merge: Bateratu
       merge_long: Mantendu dauden erregistroak eta gehitu berriak
