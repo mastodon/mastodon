@@ -372,14 +372,6 @@ Performance/StartWith:
     - 'app/lib/extractor.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: OnlySumOrWithInitialValue.
-Performance/Sum:
-  Exclude:
-    - 'app/lib/activity_tracker.rb'
-    - 'app/models/trends/history.rb'
-    - 'lib/paperclip/color_extractor.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
 Performance/TimesMap:
   Exclude:
     - 'spec/controllers/api/v1/blocks_controller_spec.rb'
