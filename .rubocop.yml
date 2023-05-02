@@ -65,6 +65,7 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
   Exclude:
+    - 'config/routes.rb'
     - 'lib/mastodon/*_cli.rb'
     - 'lib/tasks/*.rake'
     - 'app/models/concerns/account_associations.rb'
@@ -130,6 +131,7 @@ Metrics/ClassLength:
     - 'app/services/activitypub/process_account_service.rb'
     - 'app/services/activitypub/process_status_update_service.rb'
     - 'app/services/backup_service.rb'
+    - 'app/services/bulk_import_service.rb'
     - 'app/services/delete_account_service.rb'
     - 'app/services/fan_out_on_write_service.rb'
     - 'app/services/fetch_link_card_service.rb'

@@ -144,7 +144,13 @@ Rails.application.routes.draw do
       resource :other, only: [:show, :update], controller: :other
     end
 
-    resource :import, only: [:show, :create]
+    resources :imports, only: [:index, :show, :destroy, :create] do
+      member do
+        post :confirm
+        get :failures
+      end
+    end
+
     resource :export, only: [:show, :create]
 
     namespace :exports, constraints: { format: :csv } do

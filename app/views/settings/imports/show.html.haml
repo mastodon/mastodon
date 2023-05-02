@@ -1,15 +1,15 @@
 - content_for :page_title do
-  = t('settings.import')
+  = t("imports.titles.#{@bulk_import.type.to_s}")
 
-= simple_form_for @import, url: settings_import_path do |f|
-  .field-group
-    = f.input :type, collection: Import.types.keys, wrapper: :with_block_label, include_blank: false, label_method: lambda { |type| I18n.t("imports.types.#{type}") }, hint: t('imports.preface')
+- if @bulk_import.likely_mismatched?
+  .flash-message.warning= t("imports.mismatched_types_warning")
 
-  .fields-row
-    .fields-group.fields-row__column.fields-row__column-6
-      = f.input :data, wrapper: :with_block_label, hint: t('simple_form.hints.imports.data')
-    .fields-group.fields-row__column.fields-row__column-6
-      = f.input :mode, as: :radio_buttons, collection: Import::MODES, label_method: lambda { |mode| safe_join([I18n.t("imports.modes.#{mode}"), content_tag(:span, I18n.t("imports.modes.#{mode}_long"), class: 'hint')]) }, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+- if @bulk_import.overwrite?
+  %p.hint= t("imports.overwrite_preambles.#{@bulk_import.type.to_s}_html", filename: @bulk_import.original_filename, total_items: @bulk_import.total_items)
+- else
+  %p.hint= t("imports.preambles.#{@bulk_import.type.to_s}_html", filename: @bulk_import.original_filename, total_items: @bulk_import.total_items)
 
+.simple_form
   .actions
-    = f.button :button, t('imports.upload'), type: :submit
+    = link_to t('generic.cancel'), settings_import_path(@bulk_import), method: :delete, class: 'button button-tertiary'
+    = link_to t('generic.confirm'), confirm_settings_import_path(@bulk_import), method: :post, class: 'button'
