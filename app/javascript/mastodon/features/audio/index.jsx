@@ -384,7 +384,7 @@ class Audio extends React.PureComponent {
   }
 
   _getRadius () {
-    return parseInt(((this.state.height || this.props.height) - (PADDING * this._getScaleCoefficient()) * 2) / 2);
+    return parseInt((this.state.height || this.props.height) / 2 - PADDING * this._getScaleCoefficient());
   }
 
   _getScaleCoefficient () {
@@ -396,7 +396,7 @@ class Audio extends React.PureComponent {
   }
 
   _getCY() {
-    return Math.floor(this._getRadius() + (PADDING * this._getScaleCoefficient()));
+    return Math.floor((this.state.height || this.props.height) / 2);
   }
 
   _getAccentColor () {
@@ -470,7 +470,7 @@ class Audio extends React.PureComponent {
     }
 
     return (
-      <div className={classNames('audio-player', { editable, inactive: !revealed })} ref={this.setPlayerRef} style={{ backgroundColor: this._getBackgroundColor(), color: this._getForegroundColor(), width: '100%', height: this.props.fullscreen ? '100%' : (this.state.height || this.props.height) }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} tabIndex={0} onKeyDown={this.handleKeyDown}>
+      <div className={classNames('audio-player', { editable, inactive: !revealed })} ref={this.setPlayerRef} style={{ backgroundColor: this._getBackgroundColor(), color: this._getForegroundColor(), aspectRatio: '16 / 9' }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} tabIndex={0} onKeyDown={this.handleKeyDown}>
 
         <Blurhash
           hash={blurhash}
@@ -515,9 +515,16 @@ class Audio extends React.PureComponent {
         {(revealed || editable) && <img
           src={this.props.poster}
           alt=''
-          width={(this._getRadius() - TICK_SIZE) * 2}
-          height={(this._getRadius() - TICK_SIZE) * 2}
-          style={{ position: 'absolute', left: this._getCX(), top: this._getCY(), transform: 'translate(-50%, -50%)', borderRadius: '50%', pointerEvents: 'none' }}
+          style={{
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            height: `calc(${(100 - 2 * 100 * PADDING / 982)}% - ${TICK_SIZE * 2}px)`,
+            aspectRatio: '1',
+            transform: 'translate(-50%, -50%)',
+            borderRadius: '50%',
+            pointerEvents: 'none',
+          }}
         />}
 
         <div className='video-player__seek' onMouseDown={this.handleMouseDown} ref={this.setSeekRef}>

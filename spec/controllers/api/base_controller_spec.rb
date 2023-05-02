@@ -2,9 +2,11 @@
 
 require 'rails_helper'
 
-class FakeService; end
-
 describe Api::BaseController do
+  before do
+    stub_const('FakeService', Class.new)
+  end
+
   controller do
     def success
       head 200
@@ -13,6 +15,12 @@ describe Api::BaseController do
     def error
       FakeService.new
     end
+  end
+
+  it 'returns private cache control headers by default' do
+    routes.draw { get 'success' => 'api/base#success' }
+    get :success
+    expect(response.headers['Cache-Control']).to include('private, no-store')
   end
 
   describe 'forgery protection' do

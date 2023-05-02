@@ -146,7 +146,7 @@ module Mastodon::Snowflake
     private
 
     def already_defined?
-      connection.execute(<<~SQL).values.first.first
+      connection.execute(<<~SQL.squish).values.first.first
         SELECT EXISTS(
           SELECT * FROM pg_proc WHERE proname = 'timestamp_id'
         );

@@ -71,17 +71,20 @@ class Explore extends React.PureComponent {
                 <NavLink exact to='/explore'>
                   <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Posts' />
                 </NavLink>
+
                 <NavLink exact to='/explore/tags'>
                   <FormattedMessage tagName='div' id='explore.trending_tags' defaultMessage='Hashtags' />
                 </NavLink>
+
+                {signedIn && (
+                  <NavLink exact to='/explore/suggestions'>
+                    <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='People' />
+                  </NavLink>
+                )}
+
                 <NavLink exact to='/explore/links'>
                   <FormattedMessage tagName='div' id='explore.trending_links' defaultMessage='News' />
                 </NavLink>
-                {signedIn && (
-                  <NavLink exact to='/explore/suggestions'>
-                    <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='For you' />
-                  </NavLink>
-                )}
               </div>
 
               <Switch>

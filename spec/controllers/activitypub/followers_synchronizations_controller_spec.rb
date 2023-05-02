@@ -50,7 +50,7 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
 
       it 'returns orderedItems with followers from example.com' do
         expect(body[:orderedItems]).to be_an Array
-        expect(body[:orderedItems]).to match_array([follower_4.uri, follower_1.uri, follower_2.uri])
+        expect(body[:orderedItems]).to contain_exactly(follower_4.uri, follower_1.uri, follower_2.uri)
       end
 
       it 'returns private Cache-Control header' do

@@ -18,6 +18,14 @@ describe Admin::BaseController, type: :controller do
     expect(response).to have_http_status(403)
   end
 
+  it 'returns private cache control headers' do
+    routes.draw { get 'success' => 'admin/base#success' }
+    sign_in(Fabricate(:user, role: UserRole.find_by(name: 'Moderator')))
+    get :success
+
+    expect(response.headers['Cache-Control']).to include('private, no-store')
+  end
+
   it 'renders admin layout as a moderator' do
     routes.draw { get 'success' => 'admin/base#success' }
     sign_in(Fabricate(:user, role: UserRole.find_by(name: 'Moderator')))

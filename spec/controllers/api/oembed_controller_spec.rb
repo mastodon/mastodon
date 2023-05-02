@@ -17,5 +17,9 @@ RSpec.describe Api::OEmbedController, type: :controller do
     it 'returns http success' do
       expect(response).to have_http_status(200)
     end
+
+    it 'returns private cache control headers' do
+      expect(response.headers['Cache-Control']).to include('private, no-store')
+    end
   end
 end
