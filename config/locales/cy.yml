@@ -826,6 +826,7 @@ cy:
         remove_from_report: Dileu o'r adroddiad
         report: Adroddiad
       deleted: Dilëwyd
+      favourites: Ffefrynnau
       history: Hanes fersiynau
       in_reply_to: Ymateb i
       language: Iaith
@@ -910,10 +911,18 @@ cy:
       statuses:
         allow: Caniatáu postiad
         allow_account: Caniatáu awdur
+        description_html: Mae'r rhain yn bostiadau y mae eich gweinydd yn gwybod amdanyn nhw sy'n cael eu rhannu a'u ffafrio'n aml ar hyn o bryd. Gall hyn helpu'ch defnyddwyr newydd a'r rhai sy'n dychwelyd i ddod o hyd i fwy o bobl i'w dilyn. Ni chaiff unrhyw bostiadau eu dangos yn gyhoeddus nes i chi gymeradwyo'r awdur, ac mae'r awdur yn caniatáu i'w cyfrif gael ei awgrymu i eraill. Gallwch hefyd ganiatáu neu wrthod postiadau unigol.
         disallow: Gwrthod postiad
         disallow_account: Gwrthod awdur
         no_status_selected: Heb newid unrhyw bostiadau'n trendio gan na chafodd yr un ohonyn nhw eu dewis
         not_discoverable: Nid yw'r awdur wedi dewis bod yn ddarganfyddadwy
+        shared_by:
+          zero: Wedi'i rannu a'i ffefrynnu %{friendly_count} gwaith
+          one: Wedi'i rannu neu ei ffefrynnu unwaith
+          two: Wedi'i rannu a'i ffefrynnu %{friendly_count} gwaith
+          few: Wedi'i rannu a'i ffefrynnu %{friendly_count} gwaith
+          many: Wedi'i rannu a'i ffefrynnu %{friendly_count} gwaith
+          other: Wedi'i rannu a'i ffefrynnu %{friendly_count} gwaith
         title: Postiadau sy'n trendio
       tags:
         current_score: Sgôr cyfredol %{score}
@@ -1300,7 +1309,9 @@ cy:
       few: Mae pob un o'r <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
       many: Mae pob un o'r <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
       other: Mae pob un o'r <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
+    cancel: Diddymu
     changes_saved_msg: Llwyddwyd i gadw'r newidiadau!
+    confirm: Cadarnhau
     copy: Copïo
     delete: Dileu
     deselect: Dad-ddewis y cwbl
@@ -1324,15 +1335,51 @@ cy:
       other: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod, os gwelwch yn dda
   imports:
     errors:
+      empty: Ffeil CSV wag
+      incompatible_type: Nid yw'n gydnaws â'r math mewnforio a ddewiswyd
       invalid_csv_file: 'Ffeil CSV annilys. Gwall: %{error}'
       over_rows_processing_limit: yn cynnwys mwy na %{count} o resi
+      too_large: Mae'r ffeil yn rhy fawr
+    failures: Methiannau
+    imported: Mewnforwyd
+    mismatched_types_warning: Mae'n ymddangos eich bod wedi dewis y math anghywir ar gyfer y mewnforiad hwn, edrychwch eto.
     modes:
       merge: Cyfuno
       merge_long: Cadw'r cofnodion presennol ac ychwanegu rhai newydd
       overwrite: Trosysgrifio
       overwrite_long: Amnewid y cofnodion cyfredol gyda'r rhai newydd
+    overwrite_preambles:
+      blocking_html: Rydych ar fin <strong>amnewid eich rhestr rhwystro</strong> gyda hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> .
+      bookmarks_html: Rydych ar fin <strong>amnewid eich nodau tudalen</strong> gyda hyd at <strong>%{total_items} o bostiadau</strong> gan <strong>%{filename}</strong> .
+      domain_blocking_html: Rydych ar fin <strong>amnewid eich rhestr rhwystro parth</strong> gyda hyd at <strong>%{total_items} parth</strong> o <strong>%{filename}</strong> .
+      following_html: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> a <strong>pheidio a ddilyn unrhyw un arall</strong> .
+      muting_html: Rydych ar fin <strong>amnewid eich rhestr o gyfrifon tawel</strong> gyda hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> .
+    preambles:
+      blocking_html: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> .
+      bookmarks_html: Rydych ar fin ychwanegu hyd at <strong>%{total_items} o bostiadau</strong> o <strong>%{filename}</strong> at eich <strong>nodau tudalen</strong> .
+      domain_blocking_html: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{total_items} parth</strong> o <strong>%{filename}</strong> .
+      following_html: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{total_items} cyfrif</strong> gan <strong>%{filename}</strong> .
+      muting_html: Rydych ar fin <strong>tewi</strong> hyd at <strong>%{total_items} cyfrif</strong> o <strong>%{filename}</strong> .
     preface: Gallwch fewnforio data rydych chi wedi'i allforio o weinydd arall, fel rhestr o'r bobl rydych chi'n eu dilyn neu'n eu blocio.
+    recent_imports: Mewnforion diweddar
+    states:
+      finished: Wedi gorffen
+      in_progress: Ar waith
+      scheduled: Amserlenwyd
+      unconfirmed: Heb ei gadarnhau
+    status: Statws
     success: Llwythwyd eich data yn llwyddiannus a bydd yn cael ei brosesu mewn da bryd
+    time_started: Cychwynnwyd yn
+    titles:
+      blocking: Mewnforio cyfrifon sydd wedi'u rhwystro
+      bookmarks: Mewnforio nodau tudalen
+      domain_blocking: Mewnforio parthau sydd wedi'u rhwystro
+      following: Mewnforio cyfrifon yn cael eu dilyn
+      muting: Mewnforio cyfrifon wedi'u tewi
+    type: Math o fewnforion
+    type_groups:
+      constructive: Dilyn a Nodau Tudalen
+      destructive: Rhwystro a Thewi
     types:
       blocking: Rhestr blocio
       bookmarks: Llyfrnodau
@@ -1430,6 +1477,10 @@ cy:
         subject: "Mae %{name} wedi cyflwyno adroddiad"
       sign_up:
         subject: "Mae %{name} wedi cofrestru"
+    favourite:
+      body: 'Cafodd eich postiad ei ffafrio gan %{name}:'
+      subject: "Ffefrynodd %{name} eich postiad"
+      title: Ffefryn newydd
     follow:
       body: "Mae %{name} bellach yn eich dilyn!"
       subject: "Mae %{name} bellach yn eich dilyn"
@@ -1685,8 +1736,10 @@ cy:
     enabled_hint: Yn dileu eich postiadau yn awtomatig ar ôl iddyn nhw gyrraedd trothwy oed penodedig, oni bai eu bod yn cyfateb i un o'r eithriadau isod
     exceptions: Eithriadau
     explanation: Oherwydd bod dileu postiadau yn weithrediad drud, mae hyn yn cael ei wneud yn araf dros amser pan nad yw'r gweinydd yn brysur fel arall. Am y rheswm hwn, efallai y bydd eich postiadau yn cael eu dileu ychydig ar ôl iddyn nhw gyrraedd y trothwy oed.
+    ignore_favs: Anwybyddu ffefrynnau
     ignore_reblogs: Anwybyddu hybiau
     interaction_exceptions: Eithriadau yn seiliedig ar ryngweithio
+    interaction_exceptions_explanation: Sylwch nad oes unrhyw sicrwydd y bydd postiadau'n cael eu dileu os ydyn nhw'n mynd o dan y trothwy hoffi neu hybu ar ôl mynd drostyn nhw unwaith.
     keep_direct: Cadw negeseuon uniongyrchol
     keep_direct_hint: Nid yw'n dileu unrhyw un o'ch negeseuon uniongyrchol
     keep_media: Cadw postiadau gydag atodiadau cyfryngau
@@ -1697,6 +1750,8 @@ cy:
     keep_polls_hint: Nid yw'n dileu unrhyw un o'ch arolygon
     keep_self_bookmark: Cadw y postiadau wedi'u cadw fel llyfrnodau
     keep_self_bookmark_hint: Nid yw'n dileu eich postiadau eich hun os ydych wedi rhoi llyfrnodau arnyn nhw
+    keep_self_fav: Cadw postiadau roeddech yn eu hoffi
+    keep_self_fav_hint: Nid yw'n dileu eich postiadau eich hun os ydych wedi eu ffafrio
     min_age:
       '1209600': 2 wythnos
       '15778476': 6 mis
@@ -1707,6 +1762,8 @@ cy:
       '63113904': 2 flynedd
       '7889238': 3 mis
     min_age_label: Trothwy oedran
+    min_favs: Cadwch bostiadau yn ffefryn o leiaf
+    min_favs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi derbyn o leiaf y nifer hyn o ffefrynnu. Gadewch yn wag i ddileu postiadau waeth beth fo'u nifer o ffefrynnu
     min_reblogs: Cadw postiadau wedi eu hybu o leiaf
     min_reblogs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi cael eu hybu o leiaf y nifer hwn o weithiau. Gadewch yn wag i ddileu postiadau waeth beth fo'u nifer o hybiadau
   stream_entries:
