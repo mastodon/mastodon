@@ -313,7 +313,7 @@ class MediaGallery extends React.PureComponent {
   }
 
   render () {
-    const { media, lang, intl, sensitive, height, defaultWidth, standalone, autoplay } = this.props;
+    const { media, lang, intl, sensitive, defaultWidth, standalone, autoplay } = this.props;
     const { visible } = this.state;
     const width = this.state.width || defaultWidth;
 
@@ -322,13 +322,9 @@ class MediaGallery extends React.PureComponent {
     const style = {};
 
     if (this.isFullSizeEligible() && (standalone || !cropImages)) {
-      if (width) {
-        style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
-      }
-    } else if (width) {
-      style.height = width / (16/9);
+      style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
     } else {
-      style.height = height;
+      style.aspectRatio = '16 / 9';
     }
 
     const size     = media.take(4).size;

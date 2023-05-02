@@ -3804,6 +3804,10 @@ a.status-card {
 }
 
 .status-card-video {
+  // Firefox has a bug where frameborder=0 iframes add some extra blank space
+  // see https://bugzilla.mozilla.org/show_bug.cgi?id=155174
+  overflow: hidden;
+
   iframe {
     width: 100%;
     height: 100%;
@@ -8332,6 +8336,7 @@ noscript {
   font-weight: 500;
   cursor: pointer;
   color: $darker-text-color;
+  aspect-ratio: 16 / 9;
 
   i {
     display: block;
