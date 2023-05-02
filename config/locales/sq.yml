@@ -1205,7 +1205,9 @@ sq:
     all_matching_items_selected_html:
       one: "Është përzgjedhur <strong>%{count}</strong> objekt me përkim me kërkimin tuaj."
       other: Janë përzgjedhur krejt <strong>%{count}</strong> objektet me përkim me kërkimin tuaj.
+    cancel: Anuloje
     changes_saved_msg: Ndryshimet u ruajtën me sukses!
+    confirm: Ripohojeni
     copy: Kopjoje
     delete: Fshije
     deselect: Shpërzgjidhi krejt
@@ -1221,15 +1223,47 @@ sq:
       other: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni %{count} gabimet më poshtë
   imports:
     errors:
+      empty: Kartelë CSV e zbrazët
+      incompatible_type: E papërputhshme me llojin e përzgjedhur për importim
       invalid_csv_file: 'Kartelë CSV e pavlefshme. Gabim: %{error}'
       over_rows_processing_limit: përmban më shumë se %{count} rreshta
+      too_large: Kartela është shumë e madhe
+    failures: Dështime
+    imported: Të importuar
+    mismatched_types_warning: Duket të keni përzgjedhur llojin e gabuar për këtë importim, ju lutemi, rikontrollojeni.
     modes:
       merge: Përzieji
       merge_long: Mbaji zërat ekzistues dhe shto të rinjtë
       overwrite: Mbishkruaje
       overwrite_long: Zëvendësoji zërat ekzistues me të rinjtë
+    overwrite_preambles:
+      blocking_html: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të bllokimeve</strong> me <strong>%{total_items} llogari</strong> nga <strong>%{filename}</strong>.
+      bookmarks_html: Ju ndan një hap nga <strong>zëvendësimi i faqerojtësve tuaj</strong> me <strong>%{total_items} postime</strong> nga <strong>%{filename}</strong>.
+      domain_blocking_html: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të bllokimit të përkatësive</strong> me <strong>%{total_items} përkatësi</strong> nga <strong>%{filename}</strong>.
+      following_html: Ju ndan një hap nga <strong>ndjekja</strong> e <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong> dhe <strong>reshtja së ndjekuri këdo tjetër</strong>.
+      muting_html: Ju ndan një hpa nga <strong>zëvendësimi i listës suaj të llogarive të heshtuara</strong> me <strong>%{total_items} llogari</strong> nga <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Ju ndan një hap nga <strong>bllokimi</strong> i <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong>.
     preface: Mund të importoni të dhëna që keni eksportuar nga një shërbyes tjetër, bie fjala, një listë të personave që ndiqni ose bllokoni.
+    recent_imports: Importime së fundi
+    states:
+      finished: Të përfunduar
+      in_progress: Në kryerje e sipër
+      scheduled: Të planifikuar
+      unconfirmed: Të paripohuar
+    status: Gjendje
     success: Të dhënat tuaja u ngarkuan me sukses dhe tani do të përpunohet në kohë
+    time_started: Filluar më
+    titles:
+      blocking: Po importohen llogari të bllokuara
+      bookmarks: Po importohen faqerojtës
+      domain_blocking: Po importohen përkatësi të bllokuara
+      following: Po importohen llogari të ndjekura
+      muting: Po importohen llogari të heshtuara
+    type: Lloj importimi
+    type_groups:
+      constructive: Ndjekje & Faqerojtës
+      destructive: Bllokime & heshtime
     types:
       blocking: Listë bllokimesh
       bookmarks: Faqerojtës
