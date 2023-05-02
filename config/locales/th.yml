@@ -1211,10 +1211,11 @@ th:
   imports:
     errors:
       empty: ไฟล์ CSV ว่างเปล่า
+      incompatible_type: เข้ากันไม่ได้กับชนิดการนำเข้าที่เลือก
       invalid_csv_file: 'ไฟล์ CSV ไม่ถูกต้อง ข้อผิดพลาด: %{error}'
       over_rows_processing_limit: มีมากกว่า %{count} แถว
-      too_large: ไฟล์มีขนาดใหญ่เกินไป
-    failures: ล้มเหลว
+      too_large: ไฟล์ใหญ่เกินไป
+    failures: ความล้มเหลว
     imported: นำเข้าแล้ว
     modes:
       merge: ผสาน
@@ -1222,14 +1223,24 @@ th:
       overwrite: เขียนทับ
       overwrite_long: แทนที่ระเบียนปัจจุบันด้วยระเบียนใหม่
     preface: คุณสามารถนำเข้าข้อมูลที่คุณได้ส่งออกจากเซิร์ฟเวอร์อื่น เช่น รายการผู้คนที่คุณกำลังติดตามหรือกำลังปิดกั้น
+    recent_imports: การนำเข้าล่าสุด
     states:
       finished: เสร็จสิ้นแล้ว
-      in_progress: อยู่ระหว่างดำเนินการ
-      scheduled: กำหนดการ
-      unconfirmed: ไม่ได้รับการยืนยัน
+      in_progress: กำลังดำเนินการ
+      scheduled: จัดกำหนดการแล้ว
+      unconfirmed: ยังไม่ได้ยืนยัน
     status: สถานะ
     success: อัปโหลดข้อมูลของคุณสำเร็จและจะได้รับการประมวลผลในเวลาที่ครบกำหนด
+    titles:
+      blocking: กำลังนำเข้าบัญชีที่ปิดกั้นอยู่
+      bookmarks: กำลังนำเข้าที่คั่นหน้า
+      domain_blocking: กำลังนำเข้าโดเมนที่ปิดกั้นอยู่
+      following: กำลังนำเข้าบัญชีที่ติดตาม
+      muting: กำลังนำเข้าบัญชีที่ซ่อนอยู่
     type: ชนิดการนำเข้า
+    type_groups:
+      constructive: การติดตามและที่คั่นหน้า
+      destructive: การปิดกั้นและการซ่อน
     types:
       blocking: รายการปิดกั้น
       bookmarks: ที่คั่นหน้า
