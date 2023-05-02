@@ -1994,7 +1994,6 @@ Style/HashAsLastArrayItem:
   Exclude:
     - 'app/controllers/admin/statuses_controller.rb'
     - 'app/controllers/api/v1/statuses_controller.rb'
-    - 'app/models/account.rb'
     - 'app/models/concerns/account_counters.rb'
     - 'app/models/concerns/status_threading_concern.rb'
     - 'app/models/status.rb'
@@ -2068,7 +2067,6 @@ Style/MapToHash:
 # SupportedStyles: literals, strict
 Style/MutableConstant:
   Exclude:
-    - 'app/models/account.rb'
     - 'app/models/tag.rb'
     - 'app/services/delete_account_service.rb'
     - 'config/initializers/twitter_regex.rb'
