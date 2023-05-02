@@ -81,6 +81,8 @@ class Item extends React.PureComponent {
   render () {
     const { attachment, lang, index, size, standalone, displayWidth, visible } = this.props;
 
+    let badges = [], thumbnail;
+
     let width  = 50;
     let height = 100;
 
@@ -92,7 +94,9 @@ class Item extends React.PureComponent {
       height = 50;
     }
 
-    let thumbnail = '';
+    if (attachment.get('description')?.length > 0) {
+      badges.push(<span key='alt' className='media-gallery__gifv__label'>ALT</span>);
+    }
 
     if (attachment.get('type') === 'unknown') {
       return (
@@ -146,6 +150,8 @@ class Item extends React.PureComponent {
     } else if (attachment.get('type') === 'gifv') {
       const autoPlay = this.getAutoPlay();
 
+      badges.push(<span key='gif' className='media-gallery__gifv__label'>GIF</span>);
+
       thumbnail = (
         <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
           <video
@@ -163,8 +169,6 @@ class Item extends React.PureComponent {
             loop
             muted
           />
-
-          <span className='media-gallery__gifv__label'>GIF</span>
         </div>
       );
     }
@@ -178,7 +182,14 @@ class Item extends React.PureComponent {
             'media-gallery__preview--hidden': visible && this.state.loaded,
           })}
         />
+
         {visible && thumbnail}
+
+        {badges && (
+          <div className='media-gallery__item__badges'>
+            {badges}
+          </div>
+        )}
       </div>
     );
   }
