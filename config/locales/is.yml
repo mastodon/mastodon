@@ -1217,7 +1217,9 @@ is:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> atriði sem samsvarar leitinni þinni er valið."
       other: Öll <strong>%{count}</strong> atriðin sem samsvara leitinni þinni eru valin.
+    cancel: Hætta við
     changes_saved_msg: Það tókst að vista breytingarnar!
+    confirm: Staðfesta
     copy: Afrita
     delete: Eyða
     deselect: Afvelja allt
@@ -1235,13 +1237,19 @@ is:
     errors:
       invalid_csv_file: 'Ógild CSV-skrá. Villa: %{error}'
       over_rows_processing_limit: inniheldur meira en %{count} raðir
+      too_large: Skráin er of stór
+    failures: Mistök
     modes:
       merge: Sameina
       merge_long: Halda fyrirliggjandi færslum og bæta við nýjum
       overwrite: Skrifa yfir
       overwrite_long: Skipta út fyrirliggjandi færslum með þeim nýju
     preface: Þú getur flutt inn gögn sem þú hefur flutt út frá öðrum vefþjóni, svo sem lista yfir fólk sem þú fylgist með eða útilokar.
+    states:
+      unconfirmed: Óstaðfest
+    status: Staða
     success: Það tókst að senda inn gögnin þín og verður unnið með þau þegar færi gefst
+    type: Tegund innflutnings
     types:
       blocking: Listi yfir útilokanir
       bookmarks: Bókamerki
