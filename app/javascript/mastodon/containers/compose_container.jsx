@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
-import configureStore from '../store/configureStore';
+import { store } from '../store/configureStore';
 import { hydrateStore } from '../actions/store';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from '../locales';
@@ -11,8 +11,6 @@ import { fetchCustomEmojis } from '../actions/custom_emojis';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
-
-const store = configureStore();
 
 if (initialState) {
   store.dispatch(hydrateStore(initialState));
