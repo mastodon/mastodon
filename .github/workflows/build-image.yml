@@ -26,48 +26,14 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: true
 
+    # conditionally enable dockerhub login if the credentials are set there. We
+    # just use USERNAME so that we don't accidentally leak secrets in the
+    # environment. Don't just set the username while omitting the TOKEN unless
+    # you want to be sad.
+    env:
+      docker_credentials_set: ${{ secrets.DOCKERHUB_USERNAME }}
+
     steps:
-      - name: Extract release name
-        env:
-          INPUT_IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
-        shell: bash
-        run: |
-          if [ -z "$INPUT_IMAGE_NAME" ]; then
-              if [[ "$IMAGE_NAME" == "mastodon/mastodon" ]]; then
-                  image_name=tootsuite/mastodon
-              else
-                  image_name=$IMAGE_NAME
-              fi
-          else
-              image_name=$INPUT_IMAGE_NAME
-          fi
-          echo IMAGE_NAME=$image_name >> $GITHUB_ENV
-        id: extract_image_name
-
-      - name: Configure Docker
-        env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-          REGISTRY: ${{ secrets.REGISTRY }}
-        shell: bash
-        run: |
-          if [ -z "$DOCKERHUB_TOKEN" ]; then
-              echo DOCKER_TOKEN=${{ secrets.GITHUB_TOKEN }} >> $GITHUB_ENV
-          else
-              echo DOCKER_TOKEN=$DOCKERHUB_TOKEN >> $GITHUB_ENV
-          fi
-          if [ -z "$DOCKERHUB_USERNAME" ]; then
-              echo DOCKER_USERNAME=${{ github.actor }} >> $GITHUB_ENV
-          else
-              echo DOCKER_USERNAME=$DOCKERHUB_USERNAME >> $GITHUB_ENV
-          fi
-          if [ ! -z "$REGISTRY" ]; then
-              echo REGISTRY=$REGISTRY >> $GITHUB_ENV
-              echo IMAGE=$REGISTRY/$IMAGE_NAME >> $GITHUB_ENV
-          else
-              echo IMAGE=$IMAGE_NAME >> $GITHUB_ENV
-          fi
-
       - uses: actions/checkout@v3
       - uses: hadolint/hadolint-action@v3.1.0
       - uses: docker/setup-qemu-action@v2
@@ -78,7 +44,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-        if: github.repository == 'mastodon/mastodon' && github.event_name != 'pull_request'
+        if: env.docker_credentials_set != '' && github.event_name != 'pull_request'
 
       - name: Log in to the Github Container registry
         uses: docker/login-action@v2
@@ -86,7 +52,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-        if: github.repository == 'mastodon/mastodon' && github.event_name != 'pull_request'
 
       - uses: docker/metadata-action@v4
         id: meta
@@ -106,7 +71,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           provenance: false
           builder: ${{ steps.buildx.outputs.name }}
-          push: ${{ github.repository == 'mastodon/mastodon' && github.event_name != 'pull_request' }}
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
