@@ -271,8 +271,8 @@ module AccountInteractions
   end
 
   def lists_for_local_distribution
-    lists.joins(account: :user)
-         .where.not(list_accounts: { follow_id: nil })
+    scope = lists.joins(account: :user)
+    scope.where.not(list_accounts: { follow_id: nil }).or(scope.where(account_id: id))
          .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
   end
 
