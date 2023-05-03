@@ -1,17 +1,16 @@
-import { Map } from 'immutable';
+import { Record } from 'immutable';
 import type { Action } from 'redux';
 import { NOTIFICATIONS_UPDATE } from '../actions/notifications';
-import type { MastodonMap } from '../../types/util';
 import { focusApp, unfocusApp } from '../actions/app';
 
-type MissedUpdatesState = MastodonMap<{
+type MissedUpdatesState = {
   focused: boolean;
   unread: number;
-}>;
-const initialState: MissedUpdatesState = Map({
+};
+const initialState = Record<MissedUpdatesState>({
   focused: true,
   unread: 0,
-});
+})();
 
 export default function missed_updates(
   state = initialState,
