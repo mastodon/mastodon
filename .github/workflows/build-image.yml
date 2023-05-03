@@ -17,14 +17,9 @@ permissions:
 jobs:
   build-image:
     runs-on: ubuntu-latest
-
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
-
+    environment: prod
     steps:
       - uses: actions/checkout@v3
-      - uses: hadolint/hadolint-action@v3.1.0
       - uses: docker/setup-qemu-action@v2
       - uses: docker/setup-buildx-action@v2
 
@@ -46,9 +41,7 @@ jobs:
       - uses: docker/metadata-action@v4
         id: meta
         with:
-          images: |
-            tootsuite/mastodon
-            ghcr.io/mastodon/mastodon
+          images: emmaae/mastodon-ab
           flavor: |
             latest=auto
           tags: |
@@ -61,7 +54,6 @@ jobs:
         with:
           context: .
           platforms: linux/amd64,linux/arm64
-          provenance: false
           builder: ${{ steps.buildx.outputs.name }}
           push: ${{ github.repository == 'mastodon/mastodon' && github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
