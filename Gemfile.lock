@@ -644,6 +644,8 @@ GEM
     sanitize (6.0.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     scenic (1.7.0)
       activerecord (>= 4.0.0)
       railties (>= 4.0.0)
@@ -879,6 +881,7 @@ DEPENDENCIES
   ruby-progressbar (~> 1.13)
   rubyzip (~> 2.3)
   sanitize (~> 6.0)
+  sassc (~> 2.4)
   scenic (~> 1.7)
   sidekiq (~> 6.5)
   sidekiq-bulk (~> 0.2.0)
@@ -901,3 +904,9 @@ DEPENDENCIES
   webpacker (~> 5.4)
   webpush!
   xorcist (~> 1.1)
+
+RUBY VERSION
+   ruby 3.2.2p53
+
+BUNDLED WITH
+   2.4.12
