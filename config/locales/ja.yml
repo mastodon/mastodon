@@ -1194,7 +1194,9 @@ ja:
       other: このページの <strong>%{count}</strong> 件すべてが選択されています。
     all_matching_items_selected_html:
       other: 検索条件に一致する <strong>%{count}</strong> 件すべてが選択されています。
+    cancel: キャンセル
     changes_saved_msg: 正常に変更されました！
+    confirm: 続ける
     copy: コピー
     delete: 削除
     deselect: 選択解除
@@ -1208,13 +1210,31 @@ ja:
       other: エラーが発生しました！ 以下の%{count}件のエラーを確認してください
   imports:
     errors:
+      empty: CSVファイルの内容がありません
+      incompatible_type: 選択したインポート項目とファイルの内容が異なります
       invalid_csv_file: '無効なCSVファイルです。エラー: %{error}'
       over_rows_processing_limit: '%{count}行以上'
+      too_large: ファイルが大きすぎます
+    failures: 失敗
+    imported: インポート済み
+    mismatched_types_warning: インポート項目と異なるファイルを選択している可能性があります。続ける前にファイルの内容をもう一度確認してください。
     modes:
       merge: 統合
       merge_long: 現在のレコードを保持したまま新しいものを追加します
       overwrite: 上書き
       overwrite_long: 現在のレコードを新しいもので置き換えます
+    overwrite_preambles:
+      blocking_html: <strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>で<strong>ブロックしたアカウントリストを置き換えます</strong>。
+      bookmarks_html: <strong>%{filename}</strong>の<strong>%{total_items}件の投稿</strong>で<strong>ブックマークの一覧を置き換えます</strong>。
+      domain_blocking_html: <strong>%{filename}</strong>の<strong>%{total_items}個のドメイン</strong>で<strong>非表示にしたドメインリストを置き換えます</strong>。
+      following_html: <strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>フォローします</strong>。また、<strong>この中に含まれていないアカウントのフォローを解除します</strong>。
+      muting_html: <strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>で<strong>ミュートしたアカウントリストを置き換えます</strong>。
+    preambles:
+      blocking_html: <strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>ブロックします</strong>。
+      bookmarks_html: <strong>%{filename}</strong>の<strong>%{total_items}件の投稿</strong>を<strong>ブックマークに追加します</strong>。
+      domain_blocking_html: <strong>%{filename}</strong>の<strong>%{total_items}個のドメイン</strong>を<strong>非表示にします</strong>。
+      following_html: <strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>フォローします</strong>。
+      muting_html: <strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>ミュートします</strong>。
     preface: 他のサーバーでエクスポートされたファイルから、フォロー/ブロックした情報をこのサーバー上のアカウントにインポートできます。
     success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
     types:
