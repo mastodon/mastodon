@@ -194,11 +194,12 @@ class Status extends ImmutablePureComponent {
 
   handleOpenVideo = (options) => {
     const status = this._properStatus();
-    this.props.onOpenVideo(status.get('id'), status.getIn(['media_attachments', 0]), options);
+    this.props.onOpenVideo(status.get('id'), status.getIn(['media_attachments', 0]), status.get('language'), options);
   };
 
   handleOpenMedia = (media, index) => {
-    this.props.onOpenMedia(this._properStatus().get('id'), media, index);
+    const status = this._properStatus();
+    this.props.onOpenMedia(status.get('id'), media, index, status.get('language'));
   };
 
   handleHotkeyOpenMedia = e => {
@@ -208,10 +209,11 @@ class Status extends ImmutablePureComponent {
     e.preventDefault();
 
     if (status.get('media_attachments').size > 0) {
+      const lang = status.get('language');
       if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        onOpenVideo(status.get('id'), status.getIn(['media_attachments', 0]), { startTime: 0 });
+        onOpenVideo(status.get('id'), status.getIn(['media_attachments', 0]), lang, { startTime: 0 });
       } else {
-        onOpenMedia(status.get('id'), status.get('media_attachments'), 0);
+        onOpenMedia(status.get('id'), status.get('media_attachments'), 0, lang);
       }
     }
   };
