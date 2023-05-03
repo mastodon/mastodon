@@ -1542,4 +1542,64 @@ RSpec.describe Mastodon::AccountsCLI do
       end
     end
   end
+
+  describe '#prune' do
+    let!(:local_account) { Fabricate(:account) }
+    let!(:bot_account) { Fabricate(:account, bot: true, domain: 'example.com') }
+    let!(:group_account) { Fabricate(:account, actor_type: 'Group', domain: 'example.com') }
+    let!(:mentioned_account) { Fabricate(:account, domain: 'example.com') }
+
+    let!(:prunable_accounts) do
+      Fabricate.times(5, :account, domain: 'example.com', bot: false, suspended_at: nil, silenced_at: nil)
+    end
+
+    before do
+      account = Fabricate(:account, domain: 'example.com')
+      account.follow!(local_account)
+
+      Fabricate(:mention, account: mentioned_account, status: Fabricate(:status, account: Fabricate(:account)))
+
+      allow_any_instance_of(Mastodon::CLIHelper).to receive(:reset_connection_pools!)
+    end
+
+    it 'prunes all remote accounts with no interactions with local users' do
+      cli.invoke(:prune)
+
+      prunable_account_ids = prunable_accounts.pluck(:id)
+
+      expect(Account.where(id: prunable_account_ids).count).to eq(0)
+    end
+
+    it 'displays success message' do
+      expect { cli.invoke(:prune) }
+        .to output(
+          a_string_including("OK, pruned #{prunable_accounts.size} accounts")
+        ).to_stdout
+    end
+
+    it 'does not prune local accounts' do
+      cli.invoke(:prune)
+
+      expect(Account.exists?(id: local_account.id)).to be(true)
+    end
+
+    it 'does not prune bot accounts' do
+      cli.invoke(:prune)
+
+      expect(Account.exists?(id: bot_account.id)).to be(true)
+    end
+
+    it 'does not prune group accounts' do
+      cli.invoke(:prune)
+
+      expect(Account.exists?(id: group_account.id)).to be(true)
+    end
+
+    it 'does not prune accounts that have been mentioned' do
+      cli.invoke(:prune)
+
+      expect(Account.exists?(id: mentioned_account.id)).to be true
+      expect(Account.where(id: prunable_accounts.pluck(:id)).count).to eq(0)
+    end
+  end
 end
