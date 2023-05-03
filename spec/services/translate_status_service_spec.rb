@@ -222,6 +222,11 @@ RSpec.describe TranslateStatusService, type: :service do
         fragment = service.send(:detect_custom_emojis, '<p>Hello <span translate="no">:highfive:</span>!</p>')
         expect(fragment.to_html).to eq '<p>Hello :highfive:!</p>'
       end
+
+      it 'preserves other attributes than translate=no' do
+        fragment = service.send(:detect_custom_emojis, '<p>Hello <span translate="no" class="foo">:highfive:</span>!</p>')
+        expect(fragment.to_html).to eq '<p>Hello <span class="foo">:highfive:</span>!</p>'
+      end
     end
   end
 end
