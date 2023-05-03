@@ -1292,11 +1292,24 @@ uk:
       too_large: Файл завеликий
     failures: Невдачі
     imported: Імпортовано
+    mismatched_types_warning: Схоже, ви обрали неправильний тип для цього імпорту, перевірте його ще раз.
     modes:
       merge: Злиття
       merge_long: Зберегти наявні записи та додати нові
       overwrite: Перезаписувати
       overwrite_long: Замінити наявні записи новими
+    overwrite_preambles:
+      blocking_html: Ви збираєтеся <strong>замінити ваш список блокування</strong> з <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong>.
+      bookmarks_html: Ви збираєтеся <strong>замінити ваші закладки</strong> з <strong>%{total_items} дописами</strong> з <strong>%{filename}</strong>.
+      domain_blocking_html: Ви збираєтеся <strong>замінити ваш список блокування доменів</strong> з <strong>%{total_items} доменами</strong> з <strong>%{filename}</strong>.
+      following_html: Ви збираєтеся <strong>слідкувати</strong> за <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong> і <strong>перестати слідкувати за всіма іншими</strong>.
+      muting_html: Ви збираєтеся <strong>замінити ваш список ігнорованих облікових записів</strong> з <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Ви збираєтеся <strong>заблокувати</strong> <strong>%{total_items} облікових записів</strong> з <strong>%{filename}</strong>.
+      bookmarks_html: Ви збираєтеся додати <strong>%{total_items} дописів</strong> з <strong>%{filename}</strong> до ваших <strong>закладок</strong>.
+      domain_blocking_html: Ви збираєтеся <strong>заблокувати</strong> <strong>%{total_items} доменів</strong> з <strong>%{filename}</strong>.
+      following_html: Ви збираєтеся <strong>слідкувати</strong> за <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong>.
+      muting_html: Ви збираєтеся <strong>ігнорувати</strong> <strong>%{total_items} облікових записів</strong> з <strong>%{filename}</strong>.
     preface: Ви можете імпортувати дані, які ви експортували з іншого сервера, наприклад, список людей, яких ви відстежуєте або блокуєте.
     recent_imports: Останні імпорти
     states:
@@ -1306,7 +1319,17 @@ uk:
       unconfirmed: Непідтверджені
     status: Стан
     success: Ваші дані завантажено та буде оброблено найближчим часом
+    time_started: Розпочато о
+    titles:
+      blocking: Імпортування заблокованих облікових записів
+      bookmarks: Імпортування закладок
+      domain_blocking: Імпортування заблокованих доменів
+      following: Імпортування відстежуваних облікових записів
+      muting: Імпортування ігнорованих облікових записів
     type: Тип імпорту
+    type_groups:
+      constructive: Підписки та закладки
+      destructive: Блокування та ігнорування
     types:
       blocking: Список блокувань
       bookmarks: Закладки
