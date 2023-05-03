@@ -5,36 +5,7 @@ const WORD = '\\p{L}\\p{M}\\p{N}\\p{Pc}';
 const buildHashtagPatternRegex = () => {
   try {
     return new RegExp(
-      '(?:^|[^\\/\\)\\w])#((' +
-        '[' +
-        WORD +
-        '_]' +
-        '[' +
-        WORD +
-        HASHTAG_SEPARATORS +
-        ']*' +
-        '[' +
-        ALPHA +
-        HASHTAG_SEPARATORS +
-        ']' +
-        '[' +
-        WORD +
-        HASHTAG_SEPARATORS +
-        ']*' +
-        '[' +
-        WORD +
-        '_]' +
-        ')|(' +
-        '[' +
-        WORD +
-        '_]*' +
-        '[' +
-        ALPHA +
-        ']' +
-        '[' +
-        WORD +
-        '_]*' +
-        '))',
+      `(?:^|[^\\/\\)\\w])#(([${WORD}_][${WORD}${HASHTAG_SEPARATORS}]*[${ALPHA}${HASHTAG_SEPARATORS}][${WORD}${HASHTAG_SEPARATORS}]*[${WORD}_])|([${WORD}_]*[${ALPHA}][${WORD}_]*))`,
       'iu'
     );
   } catch {
@@ -45,36 +16,7 @@ const buildHashtagPatternRegex = () => {
 const buildHashtagRegex = () => {
   try {
     return new RegExp(
-      '^((' +
-        '[' +
-        WORD +
-        '_]' +
-        '[' +
-        WORD +
-        HASHTAG_SEPARATORS +
-        ']*' +
-        '[' +
-        ALPHA +
-        HASHTAG_SEPARATORS +
-        ']' +
-        '[' +
-        WORD +
-        HASHTAG_SEPARATORS +
-        ']*' +
-        '[' +
-        WORD +
-        '_]' +
-        ')|(' +
-        '[' +
-        WORD +
-        '_]*' +
-        '[' +
-        ALPHA +
-        ']' +
-        '[' +
-        WORD +
-        '_]*' +
-        '))$',
+      `^(([${WORD}_][${WORD}${HASHTAG_SEPARATORS}]*[${ALPHA}${HASHTAG_SEPARATORS}][${WORD}${HASHTAG_SEPARATORS}]*[${WORD}_])|([${WORD}_]*[${ALPHA}][${WORD}_]*))$`,
       'iu'
     );
   } catch {
