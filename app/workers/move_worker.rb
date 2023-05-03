@@ -31,6 +31,32 @@ class MoveWorker
   def rewrite_follows!
     num_moved = 0
 
+    # First, approve pending follow requests for the new account,
+    # this allows correctly processing list memberships with pending
+    # follow requests
+    FollowRequest.where(account: @source_account.followers, target_account_id: @target_account.id).find_each do |follow_request|
+      ListAccount.where(follow_id: follow_request.id).includes(:list).find_each do |list_account|
+        list_account.list.accounts << @target_account
+      rescue ActiveRecord::RecordInvalid
+        nil
+      end
+
+      follow_request.authorize!
+    end
+
+    # Then handle accounts that follow both the old and new account
+    @source_account.passive_relationships
+                   .where(account: Account.local)
+                   .where(account: @target_account.followers.local)
+                   .in_batches do |follows|
+      ListAccount.where(follow: follows).includes(:list).find_each do |list_account|
+        list_account.list.accounts << @target_account
+      rescue ActiveRecord::RecordInvalid
+        nil
+      end
+    end
+
+    # Finally, handle the common case of accounts not following the new account
     @source_account.passive_relationships
                    .where(account: Account.local)
                    .where.not(account: @target_account.followers.local)
