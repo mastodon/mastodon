@@ -362,7 +362,7 @@ class UI extends React.PureComponent {
 
     if (layout !== this.props.layout) {
       this.handleLayoutChange.cancel();
-      this.props.dispatch(changeLayout(layout));
+      this.props.dispatch(changeLayout({ layout }));
     } else {
       this.handleLayoutChange();
     }
