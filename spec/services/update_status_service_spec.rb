@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe UpdateStatusService, type: :service do
@@ -87,16 +89,40 @@ RSpec.describe UpdateStatusService, type: :service do
     end
   end
 
+  context 'when already-attached media changes' do
+    let!(:status) { Fabricate(:status, text: 'Foo') }
+    let!(:media_attachment) { Fabricate(:media_attachment, account: status.account, description: 'Old description') }
+
+    before do
+      status.media_attachments << media_attachment
+      subject.call(status, status.account_id, text: 'Foo', media_ids: [media_attachment.id], media_attributes: [{ id: media_attachment.id, description: 'New description' }])
+    end
+
+    it 'does not detach media attachment' do
+      expect(media_attachment.reload.status_id).to eq status.id
+    end
+
+    it 'updates the media attachment description' do
+      expect(media_attachment.reload.description).to eq 'New description'
+    end
+
+    it 'saves edit history' do
+      expect(status.edits.map { |edit| edit.ordered_media_attachments.map(&:description) }).to eq [['Old description'], ['New description']]
+    end
+  end
+
   context 'when poll changes' do
     let(:account) { Fabricate(:account) }
-    let!(:status) { Fabricate(:status, text: 'Foo', account: account, poll_attributes: {options: %w(Foo Bar), account: account, multiple: false, hide_totals: false, expires_at: 7.days.from_now }) }
+    let!(:status) { Fabricate(:status, text: 'Foo', account: account, poll_attributes: { options: %w(Foo Bar), account: account, multiple: false, hide_totals: false, expires_at: 7.days.from_now }) }
     let!(:poll)   { status.poll }
     let!(:voter) { Fabricate(:account) }
 
     before do
       status.update(poll: poll)
       VoteService.new.call(voter, poll, [0])
-      subject.call(status, status.account_id, text: 'Foo', poll: { options: %w(Bar Baz Foo), expires_in: 5.days.to_i })
+      Sidekiq::Testing.fake! do
+        subject.call(status, status.account_id, text: 'Foo', poll: { options: %w(Bar Baz Foo), expires_in: 5.days.to_i })
+      end
     end
 
     it 'updates poll' do
@@ -113,6 +139,11 @@ RSpec.describe UpdateStatusService, type: :service do
 
     it 'saves edit history' do
       expect(status.edits.pluck(:poll_options)).to eq [%w(Foo Bar), %w(Bar Baz Foo)]
+    end
+
+    it 'requeues expiration notification' do
+      poll = status.poll.reload
+      expect(PollExpirationNotifyWorker).to have_enqueued_sidekiq_job(poll.id).at(poll.expires_at + 5.minutes)
     end
   end
 
@@ -131,7 +162,7 @@ RSpec.describe UpdateStatusService, type: :service do
     end
 
     it 'keeps old mentions as silent mentions' do
-      expect(status.mentions.pluck(:account_id)).to match_array([alice.id, bob.id])
+      expect(status.mentions.pluck(:account_id)).to contain_exactly(alice.id, bob.id)
     end
   end
 

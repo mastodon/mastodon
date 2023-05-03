@@ -16,6 +16,16 @@ class Api::V1::Admin::DomainAllowsController < Api::BaseController
 
   PAGINATION_PARAMS = %i(limit).freeze
 
+  def index
+    authorize :domain_allow, :index?
+    render json: @domain_allows, each_serializer: REST::Admin::DomainAllowSerializer
+  end
+
+  def show
+    authorize @domain_allow, :show?
+    render json: @domain_allow, serializer: REST::Admin::DomainAllowSerializer
+  end
+
   def create
     authorize :domain_allow, :create?
 
@@ -26,16 +36,6 @@ class Api::V1::Admin::DomainAllowsController < Api::BaseController
       log_action :create, @domain_allow
     end
 
-    render json: @domain_allow, serializer: REST::Admin::DomainAllowSerializer
-  end
-
-  def index
-    authorize :domain_allow, :index?
-    render json: @domain_allows, each_serializer: REST::Admin::DomainAllowSerializer
-  end
-
-  def show
-    authorize @domain_allow, :show?
     render json: @domain_allow, serializer: REST::Admin::DomainAllowSerializer
   end
 

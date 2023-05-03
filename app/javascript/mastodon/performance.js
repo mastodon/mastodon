@@ -12,6 +12,7 @@ if (process.env.NODE_ENV === 'development') {
     // See: https://bugzilla.mozilla.org/show_bug.cgi?id=1331135
     performance.setResourceTimingBufferSize(Infinity);
   }
+
   marky = require('marky');
   // allows us to easily do e.g. ReactPerf.printWasted() while debugging
   //window.ReactPerf = require('react-addons-perf');

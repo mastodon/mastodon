@@ -54,7 +54,7 @@ namespace :branding do
       rsvg_convert.run(size: size, input: favicon_source, output: output_path)
     end
 
-    convert.run(input: favicons, output: Rails.root.join('public', 'favicon.ico'))
+    convert.run(input: favicons, output: Rails.public_path.join('favicon.ico'))
 
     apple_icon_sizes.each do |size|
       rsvg_convert.run(size: size, input: app_icon_source, output: output_dest.join("apple-touch-icon-#{size}x#{size}.png"))
@@ -69,7 +69,7 @@ namespace :branding do
   task generate_app_badge: :environment do
     rsvg_convert = Terrapin::CommandLine.new('rsvg-convert', '--stylesheet :stylesheet -w :size -h :size --keep-aspect-ratio :input -o :output')
     badge_source = Rails.root.join('app', 'javascript', 'images', 'logo-symbol-icon.svg')
-    output_dest  = Rails.root.join('public')
+    output_dest  = Rails.public_path
     stylesheet   = Rails.root.join('lib', 'assets', 'wordmark.light.css')
 
     rsvg_convert.run(stylesheet: stylesheet, input: badge_source, size: 192, output: output_dest.join('badge.png'))

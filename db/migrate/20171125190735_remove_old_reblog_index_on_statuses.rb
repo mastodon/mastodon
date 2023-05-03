@@ -1,4 +1,4 @@
-class RemoveOldReblogIndexOnStatuses < ActiveRecord::Migration[5.1]
+class RemoveOldReblogIndexOnStatuses < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def up

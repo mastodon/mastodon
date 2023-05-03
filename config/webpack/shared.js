@@ -55,7 +55,7 @@ module.exports = {
           chunks: 'all',
           minChunks: 2,
           minSize: 0,
-          test: /^(?!.*[\\\/]node_modules[\\\/]react-intl[\\\/]).+$/,
+          test: /^(?!.*[\\/]node_modules[\\/]react-intl[\\/]).+$/,
         },
       },
     },

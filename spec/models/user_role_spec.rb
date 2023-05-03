@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe UserRole, type: :model do
@@ -58,7 +60,7 @@ RSpec.describe UserRole, type: :model do
   end
 
   describe '#permissions_as_keys=' do
-    let(:input) { }
+    let(:input) {}
 
     before do
       subject.permissions_as_keys = input
@@ -127,7 +129,7 @@ RSpec.describe UserRole, type: :model do
     subject { described_class.everyone }
 
     it 'returns a role' do
-      expect(subject).to be_kind_of(described_class)
+      expect(subject).to be_a(described_class)
     end
 
     it 'is identified as the everyone role' do
@@ -139,7 +141,7 @@ RSpec.describe UserRole, type: :model do
     end
 
     it 'has negative position' do
-      expect(subject.position).to eq -1
+      expect(subject.position).to eq(-1)
     end
   end
 
@@ -147,7 +149,7 @@ RSpec.describe UserRole, type: :model do
     subject { described_class.nobody }
 
     it 'returns a role' do
-      expect(subject).to be_kind_of(described_class)
+      expect(subject).to be_a(described_class)
     end
 
     it 'is identified as the nobody role' do
@@ -159,7 +161,7 @@ RSpec.describe UserRole, type: :model do
     end
 
     it 'has negative position' do
-      expect(subject.position).to eq -1
+      expect(subject.position).to eq(-1)
     end
   end
 

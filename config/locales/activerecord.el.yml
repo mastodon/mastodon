@@ -21,6 +21,14 @@ el:
             username:
               invalid: μόνο γράμματα, αριθμοί και κάτω παύλες
               reserved: είναι δεσμευμένο
+        admin/webhook:
+          attributes:
+            url:
+              invalid: δεν είναι έγκυρο URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: δεν είναι έγκυρο URL
         import:
           attributes:
             data:
@@ -34,9 +42,14 @@ el:
             email:
               blocked: χρησιμοποιεί μη επιτρεπόμενο πάροχο e-mail
               unreachable: δεν φαίνεται να υπάρχει
+            role_id:
+              elevated: δεν μπορεί να είναι μεγαλύτερο από τον τρέχοντα ρόλο σας
         user_role:
           attributes:
             permissions_as_keys:
+              dangerous: προσθήκη δικαιωμάτων που δεν είναι ασφαλή για τον βασικό ρόλο
+              elevated: δεν είναι δυνατή η προσθήκη δικαιωμάτων που ο τρέχων ρόλος σας δεν κατέχει
               own_role: δεν μπορεί να αλλάξει με τον τρέχοντα ρόλο σας
             position:
+              elevated: δεν μπορεί να είναι μεγαλύτερο από τον τρέχοντα ρόλο σας
               own_role: δεν μπορεί να αλλάξει με τον τρέχοντα ρόλο σας

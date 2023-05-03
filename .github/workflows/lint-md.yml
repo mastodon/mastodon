@@ -1,0 +1,40 @@
+name: Markdown Linting
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+    paths:
+      - '.github/workflows/lint-md.yml'
+      - '.prettier*'
+      - '**/*.md'
+      - '!AUTHORS.md'
+      - 'package.json'
+      - 'yarn.lock'
+
+  pull_request:
+    paths:
+      - '.github/workflows/lint-md.yml'
+      - '.prettier*'
+      - '**/*.md'
+      - '!AUTHORS.md'
+      - 'package.json'
+      - 'yarn.lock'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+
+      - name: Install all yarn packages
+        run: yarn --frozen-lockfile
+
+      - name: Prettier
+        run: yarn prettier --check "**/*.md"

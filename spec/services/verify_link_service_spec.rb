@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe VerifyLinkService, type: :service do
@@ -73,6 +75,33 @@ RSpec.describe VerifyLinkService, type: :service do
       end
     end
 
+    context 'when a document is truncated but the link back is valid' do
+      let(:html) do
+        "
+          <!doctype html>
+          <body>
+            <a rel=\"me\" href=\"#{ActivityPub::TagManager.instance.url_for(account)}\"
+        "
+      end
+
+      it 'marks the field as not verified' do
+        expect(field.verified?).to be false
+      end
+    end
+
+    context 'when a link back might be truncated' do
+      let(:html) do
+        "
+          <!doctype html>
+          <body>
+            <a rel=\"me\" href=\"#{ActivityPub::TagManager.instance.url_for(account)}"
+      end
+
+      it 'does not mark the field as verified' do
+        expect(field.verified?).to be false
+      end
+    end
+
     context 'when a link does not contain a link back' do
       let(:html) { '' }
 
@@ -121,6 +150,28 @@ RSpec.describe VerifyLinkService, type: :service do
 
       it 'marks the field as verified' do
         expect(field.verified?).to be true
+      end
+    end
+
+    context 'when the link contains a link with a missing protocol slash' do
+      # This was seen in the wild where a user had three pages:
+      # 1. their mastodon profile, which linked to github and the personal website
+      # 2. their personal website correctly linking back to mastodon
+      # 3. a github profile that was linking to the personal website, but with
+      #    a malformed protocol of http:/
+      #
+      # This caused link verification between the mastodon profile and the
+      # website to fail.
+      #
+      # apparently github allows the user to enter website URLs with a single
+      # slash and makes no attempts to correct that.
+      let(:html) { '<a href="http:/unrelated.example">Hello</a>' }
+
+      it 'does not crash' do
+        # We could probably put more effort into perhaps auto-correcting the
+        # link and following it anyway, but at the very least we shouldn't let
+        # exceptions bubble up
+        expect(field.verified?).to be false
       end
     end
   end

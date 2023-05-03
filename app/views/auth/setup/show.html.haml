@@ -1,20 +1,22 @@
 - content_for :page_title do
   = t('auth.setup.title')
 
-- if missing_email?
-  = simple_form_for(@user, url: auth_setup_path) do |f|
-    = render 'shared/error_messages', object: @user
+= simple_form_for(@user, url: auth_setup_path) do |f|
+  = render 'auth/shared/progress', stage: 'confirm'
 
-    .fields-group
-      %p.hint= t('auth.setup.email_below_hint_html')
+  %h1.title= t('auth.setup.title')
+  %p.lead= t('auth.setup.email_settings_hint_html', email: content_tag(:strong, @user.email))
 
-    .fields-group
-      = f.input :email, required: true, hint: false, input_html: { 'aria-label': t('simple_form.labels.defaults.email'), autocomplete: 'off' }
+  = render 'shared/error_messages', object: @user
 
-    .actions
-      = f.submit t('admin.accounts.change_email.label'), class: 'button'
-- else
-  .simple_form
-    %p.hint= t('auth.setup.email_settings_hint_html', email: content_tag(:strong, @user.email))
+  %p.lead
+    %strong= t('auth.setup.link_not_received')
+  %p.lead= t('auth.setup.email_below_hint_html')
+
+  .fields-group
+    = f.input :email, required: true, hint: false, input_html: { 'aria-label': t('simple_form.labels.defaults.email'), autocomplete: 'off' }
+
+  .actions
+    = f.submit t('auth.resend_confirmation'), class: 'button'
 
 .form-footer= render 'auth/shared/links'

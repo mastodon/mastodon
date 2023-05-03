@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controller do
@@ -32,10 +34,11 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
     end
 
     context 'with signature from example.com' do
-      let(:remote_account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/instance') }
+      subject(:body) { body_as_json }
 
       subject(:response) { get :show, params: { account_username: account.username } }
-      subject(:body) { body_as_json }
+
+      let(:remote_account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/instance') }
 
       it 'returns http success' do
         expect(response).to have_http_status(200)
@@ -47,7 +50,7 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
 
       it 'returns orderedItems with followers from example.com' do
         expect(body[:orderedItems]).to be_an Array
-        expect(body[:orderedItems]).to match_array([follower_4.uri, follower_1.uri, follower_2.uri])
+        expect(body[:orderedItems]).to contain_exactly(follower_4.uri, follower_1.uri, follower_2.uri)
       end
 
       it 'returns private Cache-Control header' do

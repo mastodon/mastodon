@@ -10,7 +10,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
   shared_examples 'cacheable response' do
     it 'does not set cookies' do
       expect(response.cookies).to be_empty
-      expect(response.headers['Set-Cookies']).to be nil
+      expect(response.headers['Set-Cookies']).to be_nil
     end
 
     it 'does not set sessions' do
@@ -35,10 +35,11 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
   describe 'GET #show' do
     context 'when id is "featured"' do
       context 'without signature' do
-        let(:remote_account) { nil }
+        subject(:body) { body_as_json }
 
         subject(:response) { get :show, params: { id: 'featured', account_username: account.username } }
-        subject(:body) { body_as_json }
+
+        let(:remote_account) { nil }
 
         it 'returns http success' do
           expect(response).to have_http_status(200)
@@ -60,7 +61,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
         end
 
         it 'does not include contents of private pinned status' do
-          expect(response.body).not_to include(private_pinned.text)
+          expect(response.body).to_not include(private_pinned.text)
         end
 
         context 'when account is permanently suspended' do
@@ -115,7 +116,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
           end
 
           it 'does not include contents of private pinned status' do
-            expect(response.body).not_to include(private_pinned.text)
+            expect(response.body).to_not include(private_pinned.text)
           end
         end
 

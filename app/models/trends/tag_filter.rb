@@ -13,13 +13,11 @@ class Trends::TagFilter
   end
 
   def results
-    scope = begin
-      if params[:status] == 'pending_review'
-        Tag.unscoped
-      else
-        trending_scope
-      end
-    end
+    scope = if params[:status] == 'pending_review'
+              Tag.unscoped
+            else
+              trending_scope
+            end
 
     params.each do |key, value|
       next if key.to_s == 'page'

@@ -10,6 +10,7 @@ RSpec.describe AccountRelationshipsPresenter do
       allow(Account).to receive(:blocking_map).with(account_ids, current_account_id).and_return(default_map)
       allow(Account).to receive(:muting_map).with(account_ids, current_account_id).and_return(default_map)
       allow(Account).to receive(:requested_map).with(account_ids, current_account_id).and_return(default_map)
+      allow(Account).to receive(:requested_by_map).with(account_ids, current_account_id).and_return(default_map)
       allow(Account).to receive(:domain_blocking_map).with(account_ids, current_account_id).and_return(default_map)
     end
 
@@ -68,6 +69,14 @@ RSpec.describe AccountRelationshipsPresenter do
 
       it 'sets @requested merged with default_map and options[:requested_map]' do
         expect(presenter.requested).to eq default_map.merge(options[:requested_map])
+      end
+    end
+
+    context 'options[:requested_by_map] is set' do
+      let(:options) { { requested_by_map: { 6 => true } } }
+
+      it 'sets @requested merged with default_map and options[:requested_by_map]' do
+        expect(presenter.requested_by).to eq default_map.merge(options[:requested_by_map])
       end
     end
 

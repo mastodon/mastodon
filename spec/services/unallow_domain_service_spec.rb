@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe UnallowDomainService, type: :service do
+  subject { UnallowDomainService.new }
+
   let!(:bad_account) { Fabricate(:account, username: 'badguy666', domain: 'evil.org') }
   let!(:bad_status1) { Fabricate(:status, account: bad_account, text: 'You suck') }
   let!(:bad_status2) { Fabricate(:status, account: bad_account, text: 'Hahaha') }
   let!(:bad_attachment) { Fabricate(:media_attachment, account: bad_account, status: bad_status2, file: attachment_fixture('attachment.jpg')) }
   let!(:already_banned_account) { Fabricate(:account, username: 'badguy', domain: 'evil.org', suspended: true, silenced: true) }
   let!(:domain_allow) { Fabricate(:domain_allow, domain: 'evil.org') }
-
-  subject { UnallowDomainService.new }
 
   context 'in limited federation mode' do
     before do

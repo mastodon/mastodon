@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe AccountsController, type: :controller do
@@ -8,11 +10,15 @@ RSpec.describe AccountsController, type: :controller do
   shared_examples 'cacheable response' do
     it 'does not set cookies' do
       expect(response.cookies).to be_empty
-      expect(response.headers['Set-Cookies']).to be nil
+      expect(response.headers['Set-Cookies']).to be_nil
     end
 
     it 'does not set sessions' do
       expect(session).to be_empty
+    end
+
+    it 'returns Vary header' do
+      expect(response.headers['Vary']).to include 'Accept'
     end
 
     it 'returns public Cache-Control header' do
@@ -212,8 +218,8 @@ RSpec.describe AccountsController, type: :controller do
           expect(response.media_type).to eq 'application/activity+json'
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
+        it 'returns private Cache-Control header' do
+          expect(response.headers['Cache-Control']).to include 'private'
         end
 
         it 'renders account' do

@@ -73,7 +73,7 @@ const stringFromCodePoint = _String.fromCodePoint || function () {
 
 const _JSON = JSON;
 
-const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/;
+const COLONS_REGEX = /^(?::([^:]+):)(?::skin-tone-(\d):)?$/;
 const SKINS = [
   '1F3FA', '1F3FB', '1F3FC',
   '1F3FD', '1F3FE', '1F3FF',
@@ -135,19 +135,19 @@ function getData(emoji, skin, set) {
       }
     }
 
-    if (data.short_names.hasOwnProperty(emoji)) {
+    if (Object.prototype.hasOwnProperty.call(data.short_names, emoji)) {
       emoji = data.short_names[emoji];
     }
 
-    if (data.emojis.hasOwnProperty(emoji)) {
+    if (Object.prototype.hasOwnProperty.call(data.emojis, emoji)) {
       emojiData = data.emojis[emoji];
     }
   } else if (emoji.id) {
-    if (data.short_names.hasOwnProperty(emoji.id)) {
+    if (Object.prototype.hasOwnProperty.call(data.short_names, emoji.id)) {
       emoji.id = data.short_names[emoji.id];
     }
 
-    if (data.emojis.hasOwnProperty(emoji.id)) {
+    if (Object.prototype.hasOwnProperty.call(data.emojis, emoji.id)) {
       emojiData = data.emojis[emoji.id];
       skin = skin || emoji.skin;
     }
@@ -216,7 +216,7 @@ function deepMerge(a, b) {
     let originalValue = a[key],
       value = originalValue;
 
-    if (b.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(b, key)) {
       value = b[key];
     }
 

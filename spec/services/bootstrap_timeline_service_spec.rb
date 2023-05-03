@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe BootstrapTimelineService, type: :service do
@@ -32,6 +34,5 @@ RSpec.describe BootstrapTimelineService, type: :service do
         expect(service).to_not have_received(:call)
       end
     end
-
   end
 end

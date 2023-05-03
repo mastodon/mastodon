@@ -14,24 +14,24 @@ export function submitAccountNote(id, value) {
       dispatch(submitAccountNoteSuccess(response.data));
     }).catch(error => dispatch(submitAccountNoteFail(error)));
   };
-};
+}
 
 export function submitAccountNoteRequest() {
   return {
     type: ACCOUNT_NOTE_SUBMIT_REQUEST,
   };
-};
+}
 
 export function submitAccountNoteSuccess(relationship) {
   return {
     type: ACCOUNT_NOTE_SUBMIT_SUCCESS,
     relationship,
   };
-};
+}
 
 export function submitAccountNoteFail(error) {
   return {
     type: ACCOUNT_NOTE_SUBMIT_FAIL,
     error,
   };
-};
+}

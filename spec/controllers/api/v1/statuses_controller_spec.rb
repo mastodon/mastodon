@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::V1::StatusesController, type: :controller do
@@ -133,6 +135,23 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
         end
       end
 
+      context 'with a safeguard' do
+        let!(:alice) { Fabricate(:account, username: 'alice') }
+        let!(:bob)   { Fabricate(:account, username: 'bob') }
+
+        before do
+          post :create, params: { status: '@alice hm, @bob is really annoying lately', allowed_mentions: [alice.id] }
+        end
+
+        it 'returns http unprocessable entity' do
+          expect(response).to have_http_status(422)
+        end
+
+        it 'returns serialized extra accounts in body' do
+          expect(body_as_json[:unexpected_accounts].map { |a| a.slice(:id, :acct) }).to eq [{ id: bob.id.to_s, acct: bob.acct }]
+        end
+      end
+
       context 'with missing parameters' do
         before do
           post :create, params: {}
@@ -178,7 +197,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
       end
 
       it 'removes the status' do
-        expect(Status.find_by(id: status.id)).to be nil
+        expect(Status.find_by(id: status.id)).to be_nil
       end
     end
 
@@ -202,7 +221,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
 
   context 'without an oauth token' do
     before do
-      allow(controller).to receive(:doorkeeper_token) { nil }
+      allow(controller).to receive(:doorkeeper_token).and_return(nil)
     end
 
     context 'with a private status' do

@@ -1,5 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe StatusEdit, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe StatusEdit do
+  describe '#reblog?' do
+    it 'returns false' do
+      record = described_class.new
+
+      expect(record).to_not be_a_reblog
+    end
+  end
 end

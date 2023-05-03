@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: preview_card_providers
@@ -17,6 +18,7 @@
 #
 
 class PreviewCardProvider < ApplicationRecord
+  include Paginable
   include DomainNormalizable
   include Attachmentable
 

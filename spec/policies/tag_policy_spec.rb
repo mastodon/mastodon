@@ -8,7 +8,7 @@ RSpec.describe TagPolicy do
   let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
   let(:john)    { Fabricate(:account) }
 
-  permissions :index?, :show?, :update? do
+  permissions :index?, :show?, :update?, :review? do
     context 'staff?' do
       it 'permits' do
         expect(subject).to permit(admin, Tag)

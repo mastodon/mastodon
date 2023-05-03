@@ -20,8 +20,8 @@ module ProfileStories
   end
 
   def with_alice_as_local_user
-    @alice_bio = '@alice and @bob are fictional characters commonly used as'\
-                 'placeholder names in #cryptology, as well as #science and'\
+    @alice_bio = '@alice and @bob are fictional characters commonly used as' \
+                 'placeholder names in #cryptology, as well as #science and' \
                  'engineering 📖 literature. Not affiliated with @pepe.'
 
     @alice = Fabricate(

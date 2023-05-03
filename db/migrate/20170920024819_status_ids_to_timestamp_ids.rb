@@ -4,7 +4,7 @@ class StatusIdsToTimestampIds < ActiveRecord::Migration[5.1]
     Mastodon::Snowflake.define_timestamp_id
 
     # Set up the statuses.id column to use our timestamp-based IDs.
-    ActiveRecord::Base.connection.execute(<<~SQL)
+    ActiveRecord::Base.connection.execute(<<~SQL.squish)
       ALTER TABLE statuses
       ALTER COLUMN id
       SET DEFAULT timestamp_id('statuses')
@@ -21,7 +21,7 @@ class StatusIdsToTimestampIds < ActiveRecord::Migration[5.1]
 
     # We lock the table during this so that the ID won't get clobbered,
     # but ID is indexed, so this should be a fast operation.
-    ActiveRecord::Base.connection.execute(<<~SQL)
+    ActiveRecord::Base.connection.execute(<<~SQL.squish)
       LOCK statuses;
       SELECT setval('statuses_id_seq', (SELECT MAX(id) FROM statuses));
       ALTER TABLE statuses

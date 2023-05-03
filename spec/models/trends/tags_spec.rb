@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Trends::Tags do
@@ -22,7 +24,9 @@ RSpec.describe Trends::Tags do
   end
 
   describe '#query' do
-    pending
+    it 'returns a composable query scope' do
+      expect(subject.query).to be_a Trends::Query
+    end
   end
 
   describe '#refresh' do

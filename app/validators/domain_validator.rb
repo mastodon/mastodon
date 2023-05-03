@@ -4,13 +4,11 @@ class DomainValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     return if value.blank?
 
-    domain = begin
-      if options[:acct]
-        value.split('@').last
-      else
-        value
-      end
-    end
+    domain = if options[:acct]
+               value.split('@').last
+             else
+               value
+             end
 
     record.errors.add(attribute, I18n.t('domain_validator.invalid_domain')) unless compliant?(domain)
   end

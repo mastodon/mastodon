@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Fabricator :access_grant, from: 'Doorkeeper::AccessGrant' do
   application
   resource_owner_id { Fabricate(:user).id }
