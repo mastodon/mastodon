@@ -169,6 +169,8 @@ class MediaAttachment < ApplicationRecord
     original: IMAGE_STYLES[:small].freeze,
   }.freeze
 
+  DEFAULT_STYLES = [:original].freeze
+
   GLOBAL_CONVERT_OPTIONS = {
     all: '-quality 90 +profile "!icc,*" +set modify-date +set create-date',
   }.freeze
