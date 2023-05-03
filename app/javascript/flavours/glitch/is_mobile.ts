@@ -1,21 +1,12 @@
-// @ts-check
-
 import { supportsPassiveEvents } from 'detect-passive-events';
 import { forceSingleColumn } from 'flavours/glitch/initial_state';
 
 const LAYOUT_BREAKPOINT = 630;
 
-/**
- * @param {number} width
- * @returns {boolean}
- */
-export const isMobile = width => width <= LAYOUT_BREAKPOINT;
+export const isMobile = (width: number) => width <= LAYOUT_BREAKPOINT;
 
-/**
- * @param {string} layout_local_setting
- * @returns {string}
- */
-export const layoutFromWindow = (layout_local_setting) => {
+export type LayoutType = 'mobile' | 'single-column' | 'multi-column';
+export const layoutFromWindow = (layout_local_setting : string): LayoutType => {
   switch (layout_local_setting) {
   case 'multiple':
     return 'multi-column';
@@ -36,8 +27,9 @@ export const layoutFromWindow = (layout_local_setting) => {
   }
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
-const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && window.MSStream != null;
 
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
