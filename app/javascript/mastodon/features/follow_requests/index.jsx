@@ -25,8 +25,6 @@ const mapStateToProps = state => ({
   domain: state.getIn(['meta', 'domain']),
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class FollowRequests extends ImmutablePureComponent {
 
   static propTypes = {
@@ -89,3 +87,5 @@ class FollowRequests extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(FollowRequests));

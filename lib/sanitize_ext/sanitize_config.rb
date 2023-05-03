@@ -51,29 +51,22 @@ class Sanitize
     end
 
     UNSUPPORTED_ELEMENTS_TRANSFORMER = lambda do |env|
-      return unless %w(h1 h2 h3 h4 h5 h6 blockquote pre ul ol li).include?(env[:node_name])
+      return unless %w(h1 h2 h3 h4 h5 h6).include?(env[:node_name])
 
       current_node = env[:node]
 
-      case env[:node_name]
-      when 'li'
-        current_node.traverse do |node|
-          next unless %w(p ul ol li).include?(node.name)
-
-          node.add_next_sibling('<br>') if node.next_sibling
-          node.replace(node.children) unless node.text?
-        end
-      else
-        current_node.name = 'p'
-      end
+      current_node.name = 'strong'
+      current_node.wrap('<p></p>')
     end
 
     MASTODON_STRICT ||= freeze_config(
-      elements: %w(p br span a),
+      elements: %w(p br span a del pre blockquote code b strong u i em ul ol li),
 
       attributes: {
         'a' => %w(href rel class),
         'span' => %w(class),
+        'ol' => %w(start reversed),
+        'li' => %w(value),
       },
 
       add_attributes: {

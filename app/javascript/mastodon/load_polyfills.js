@@ -12,10 +12,8 @@ function importExtraPolyfills() {
 
 function loadPolyfills() {
   const needsBasePolyfills = !(
-    Array.prototype.includes &&
     HTMLCanvasElement.prototype.toBlob &&
     window.Intl &&
-    Number.isNaN &&
     Object.assign &&
     Object.values &&
     window.Symbol &&

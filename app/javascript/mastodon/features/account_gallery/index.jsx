@@ -13,10 +13,10 @@ import MediaItem from './components/media_item';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import LoadMore from 'mastodon/components/load_more';
-import MissingIndicator from 'mastodon/components/missing_indicator';
 import { openModal } from 'mastodon/actions/modal';
 import { FormattedMessage } from 'react-intl';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
+import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
@@ -60,7 +60,6 @@ class LoadMoreMedia extends ImmutablePureComponent {
 
 }
 
-export default @connect(mapStateToProps)
 class AccountGallery extends ImmutablePureComponent {
 
   static propTypes = {
@@ -162,9 +161,7 @@ class AccountGallery extends ImmutablePureComponent {
 
     if (!isAccount) {
       return (
-        <Column>
-          <MissingIndicator />
-        </Column>
+        <BundleColumnError multiColumn={multiColumn} errorType='routing' />
       );
     }
 
@@ -226,3 +223,5 @@ class AccountGallery extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(AccountGallery);

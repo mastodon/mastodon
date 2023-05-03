@@ -249,7 +249,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Edited {count, plural, one {{count} time} other {{count} times}}",
+        "defaultMessage": "Edited {count, plural, one {# time} other {# times}}",
         "id": "status.edited_x_times"
       },
       {
@@ -299,7 +299,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "{count, plural, one {{counter} person} other {{counter} people}} in the past {days, plural, one {day} other {{days} days}}",
+        "defaultMessage": "{count, plural, one {{counter} person} other {{counter} people}} in the past {days, plural, one {day} other {# days}}",
         "id": "trends.counter_by_accounts"
       }
     ],
@@ -352,19 +352,6 @@
       }
     ],
     "path": "app/javascript/mastodon/components/media_gallery.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Not found",
-        "id": "missing_indicator.label"
-      },
-      {
-        "defaultMessage": "This resource could not be found",
-        "id": "missing_indicator.sublabel"
-      }
-    ],
-    "path": "app/javascript/mastodon/components/missing_indicator.json"
   },
   {
     "descriptors": [
@@ -560,7 +547,7 @@
         "id": "status.edit"
       },
       {
-        "defaultMessage": "Direct message @{name}",
+        "defaultMessage": "Privately mention @{name}",
         "id": "status.direct"
       },
       {
@@ -762,6 +749,10 @@
         "id": "status.reblogged_by"
       },
       {
+        "defaultMessage": "Private mention",
+        "id": "status.direct_indicator"
+      },
+      {
         "defaultMessage": "Replied to {name}",
         "id": "status.replied_to"
       }
@@ -832,6 +823,14 @@
       {
         "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
         "id": "confirmations.reply.message"
+      },
+      {
+        "defaultMessage": "Edit",
+        "id": "confirmations.edit.confirm"
+      },
+      {
+        "defaultMessage": "Editing now will overwrite the message you are currently composing. Are you sure you want to proceed?",
+        "id": "confirmations.edit.message"
       },
       {
         "defaultMessage": "Hide entire domain",
@@ -947,6 +946,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/account_timeline/components/limited_account_hint.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "In Memoriam.",
+        "id": "account.in_memoriam"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account_timeline/components/memorial_note.json"
   },
   {
     "descriptors": [
@@ -1101,7 +1109,7 @@
         "id": "account.mention"
       },
       {
-        "defaultMessage": "Direct message @{name}",
+        "defaultMessage": "Privately mention @{name}",
         "id": "account.direct"
       },
       {
@@ -1653,7 +1661,7 @@
         "id": "suggestions.header"
       },
       {
-        "defaultMessage": "People",
+        "defaultMessage": "Profiles",
         "id": "search_results.accounts"
       },
       {
@@ -1669,7 +1677,7 @@
         "id": "search_results.hashtags"
       },
       {
-        "defaultMessage": "{count, number} {count, plural, one {result} other {results}}",
+        "defaultMessage": "{count, plural, one {# result} other {# results}}",
         "id": "search_results.total"
       }
     ],
@@ -1686,28 +1694,36 @@
         "id": "search.search_or_paste"
       },
       {
-        "defaultMessage": "Simple text returns statuses you have written, favourited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.",
-        "id": "search_popout.tips.full_text"
+        "defaultMessage": "Open URL in Mastodon",
+        "id": "search.quick_action.open_url"
       },
       {
-        "defaultMessage": "Simple text returns matching display names, usernames and hashtags",
-        "id": "search_popout.tips.text"
+        "defaultMessage": "Go to hashtag {x}",
+        "id": "search.quick_action.go_to_hashtag"
       },
       {
-        "defaultMessage": "Advanced search format",
-        "id": "search_popout.search_format"
+        "defaultMessage": "Go to profile {x}",
+        "id": "search.quick_action.go_to_account"
       },
       {
-        "defaultMessage": "hashtag",
-        "id": "search_popout.tips.hashtag"
+        "defaultMessage": "Posts matching {x}",
+        "id": "search.quick_action.status_search"
       },
       {
-        "defaultMessage": "user",
-        "id": "search_popout.tips.user"
+        "defaultMessage": "Profiles matching {x}",
+        "id": "search.quick_action.account_search"
       },
       {
-        "defaultMessage": "status",
-        "id": "search_popout.tips.status"
+        "defaultMessage": "Recent searches",
+        "id": "search_popout.recent"
+      },
+      {
+        "defaultMessage": "No recent searches",
+        "id": "search.no_recent_searches"
+      },
+      {
+        "defaultMessage": "Quick actions",
+        "id": "search_popout.quick_actions"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/search.json"
@@ -1917,7 +1933,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Direct messages",
+        "defaultMessage": "Private mentions",
         "id": "column.direct"
       },
       {
@@ -1929,7 +1945,7 @@
         "id": "compose_form.direct_message_warning_learn_more"
       },
       {
-        "defaultMessage": "You don't have any direct messages yet. When you send or receive one, it will show up here.",
+        "defaultMessage": "You don't have any private mentions yet. When you send or receive one, it will show up here.",
         "id": "empty_column.direct"
       }
     ],
@@ -2057,12 +2073,12 @@
         "id": "explore.trending_tags"
       },
       {
-        "defaultMessage": "News",
-        "id": "explore.trending_links"
+        "defaultMessage": "People",
+        "id": "explore.suggested_follows"
       },
       {
-        "defaultMessage": "For you",
-        "id": "explore.suggested_follows"
+        "defaultMessage": "News",
+        "id": "explore.trending_links"
       }
     ],
     "path": "app/javascript/mastodon/features/explore/index.json"
@@ -2095,7 +2111,7 @@
         "id": "search_results.all"
       },
       {
-        "defaultMessage": "People",
+        "defaultMessage": "Profiles",
         "id": "search_results.accounts"
       },
       {
@@ -2251,40 +2267,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Follow",
-        "id": "account.follow"
-      },
-      {
-        "defaultMessage": "Unfollow",
-        "id": "account.unfollow"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/follow_recommendations/components/account.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Follow people you'd like to see posts from! Here are some suggestions.",
-        "id": "follow_recommendations.heading"
-      },
-      {
-        "defaultMessage": "Posts from people you follow will show up in chronological order on your home feed. Don't be afraid to make mistakes, you can unfollow people just as easily any time!",
-        "id": "follow_recommendations.lead"
-      },
-      {
-        "defaultMessage": "Looks like no suggestions could be generated for you. You can try using search to look for people you might know or explore trending hashtags.",
-        "id": "empty_column.follow_recommendations"
-      },
-      {
-        "defaultMessage": "Done",
-        "id": "follow_recommendations.done"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/follow_recommendations/index.json"
-  },
-  {
-    "descriptors": [
-      {
         "defaultMessage": "Authorize",
         "id": "follow_request.authorize"
       },
@@ -2424,7 +2406,7 @@
         "id": "navigation_bar.explore"
       },
       {
-        "defaultMessage": "Direct messages",
+        "defaultMessage": "Private mentions",
         "id": "navigation_bar.direct"
       },
       {
@@ -3162,7 +3144,7 @@
         "id": "report_notification.categories.violation"
       },
       {
-        "defaultMessage": "{count, plural, one {{count} post} other {{count} posts}} attached",
+        "defaultMessage": "{count, plural, one {# post} other {# posts}} attached",
         "id": "report_notification.attached_statuses"
       }
     ],
@@ -3201,6 +3183,145 @@
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Unfortunately, no results can be shown right now. You can try using search or browsing the explore page to find people to follow, or try again later.",
+        "id": "onboarding.follows.empty"
+      },
+      {
+        "defaultMessage": "Popular on Mastodon",
+        "id": "onboarding.follows.title"
+      },
+      {
+        "defaultMessage": "You curate your own home feed. The more people you follow, the more active and interesting it will be. These profiles may be a good starting point—you can always unfollow them later!",
+        "id": "onboarding.follows.lead"
+      },
+      {
+        "defaultMessage": "<strong>Did you know?</strong> Since Mastodon is decentralized, some profiles you come across will be hosted on servers other than yours. And yet you can interact with them seamlessly! Their server is in the second half of their username!",
+        "id": "onboarding.tips.accounts_from_other_servers"
+      },
+      {
+        "defaultMessage": "Take me back",
+        "id": "onboarding.actions.back"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/onboarding/follows.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Hello #Mastodon!",
+        "id": "onboarding.compose.template"
+      },
+      {
+        "defaultMessage": "You've made it!",
+        "id": "onboarding.start.title"
+      },
+      {
+        "defaultMessage": "Your new Mastodon account is ready to go. Here's how you can make the most of it:",
+        "id": "onboarding.start.lead"
+      },
+      {
+        "defaultMessage": "Customize your profile",
+        "id": "onboarding.steps.setup_profile.title"
+      },
+      {
+        "defaultMessage": "Others are more likely to interact with you with a filled out profile.",
+        "id": "onboarding.steps.setup_profile.body"
+      },
+      {
+        "defaultMessage": "Follow {count, plural, one {one person} other {# people}}",
+        "id": "onboarding.steps.follow_people.title"
+      },
+      {
+        "defaultMessage": "You curate your own feed. Lets fill it with interesting people.",
+        "id": "onboarding.steps.follow_people.body"
+      },
+      {
+        "defaultMessage": "Make your first post",
+        "id": "onboarding.steps.publish_status.title"
+      },
+      {
+        "defaultMessage": "Say hello to the world.",
+        "id": "onboarding.steps.publish_status.body"
+      },
+      {
+        "defaultMessage": "Share your profile",
+        "id": "onboarding.steps.share_profile.title"
+      },
+      {
+        "defaultMessage": "Let your friends know how to find you on Mastodon!",
+        "id": "onboarding.steps.share_profile.body"
+      },
+      {
+        "defaultMessage": "Want to skip right ahead?",
+        "id": "onboarding.start.skip"
+      },
+      {
+        "defaultMessage": "See what's trending",
+        "id": "onboarding.actions.go_to_explore"
+      },
+      {
+        "defaultMessage": "Don't show this screen again",
+        "id": "onboarding.actions.close"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/onboarding/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "I'm {username} on #Mastodon! Come follow me at {url}",
+        "id": "onboarding.share.message"
+      },
+      {
+        "defaultMessage": "Copied",
+        "id": "copypaste.copied"
+      },
+      {
+        "defaultMessage": "Copy to clipboard",
+        "id": "copypaste.copy_to_clipboard"
+      },
+      {
+        "defaultMessage": "Share your profile",
+        "id": "onboarding.share.title"
+      },
+      {
+        "defaultMessage": "Let people know how they can find you on Mastodon!",
+        "id": "onboarding.share.lead"
+      },
+      {
+        "defaultMessage": "<strong>Did you know?</strong> You can verify your account by putting a link to your Mastodon profile on your own website and adding the website to your profile. No fees or documents necessary!",
+        "id": "onboarding.tips.verification"
+      },
+      {
+        "defaultMessage": "<strong>Did you know?</strong> If you feel like {domain} is not a great server choice for you in the future, you can move to another Mastodon server without losing your followers. You can even host your own server!",
+        "id": "onboarding.tips.migration"
+      },
+      {
+        "defaultMessage": "<strong>Did you know?</strong> You can secure your account by setting up two-factor authentication in your account settings. It works with any TOTP app of your choice, no phone number necessary!",
+        "id": "onboarding.tips.2fa"
+      },
+      {
+        "defaultMessage": "Possible next steps:",
+        "id": "onboarding.share.next_steps"
+      },
+      {
+        "defaultMessage": "Go to your home feed",
+        "id": "onboarding.actions.go_to_home"
+      },
+      {
+        "defaultMessage": "See what's trending",
+        "id": "onboarding.actions.go_to_explore"
+      },
+      {
+        "defaultMessage": "Take me back",
+        "id": "onboarding.action.back"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/onboarding/share.json"
   },
   {
     "descriptors": [
@@ -3542,7 +3663,7 @@
         "id": "status.edit"
       },
       {
-        "defaultMessage": "Direct message @{name}",
+        "defaultMessage": "Privately mention @{name}",
         "id": "status.direct"
       },
       {
@@ -3682,6 +3803,10 @@
       {
         "defaultMessage": "Direct",
         "id": "privacy.direct.short"
+      },
+      {
+        "defaultMessage": "Private mention",
+        "id": "status.direct_indicator"
       }
     ],
     "path": "app/javascript/mastodon/features/status/components/detailed_status.json"
@@ -3711,6 +3836,10 @@
       {
         "defaultMessage": "Show less for all",
         "id": "status.show_less_all"
+      },
+      {
+        "defaultMessage": "{user} posted {attachmentCount, plural, one {an attachment} other {# attachments}}",
+        "id": "status.title.with_attachments"
       },
       {
         "defaultMessage": "Detailed conversation view",
@@ -4191,7 +4320,7 @@
         "id": "tabs_bar.federated_timeline"
       },
       {
-        "defaultMessage": "Direct messages",
+        "defaultMessage": "Private mentions",
         "id": "navigation_bar.direct"
       },
       {
@@ -4334,5 +4463,22 @@
       }
     ],
     "path": "app/javascript/mastodon/features/video/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "That username is taken. Try another",
+        "id": "username.taken"
+      },
+      {
+        "defaultMessage": "Password confirmation exceeds the maximum password length",
+        "id": "password_confirmation.exceeds_maxlength"
+      },
+      {
+        "defaultMessage": "Password confirmation does not match",
+        "id": "password_confirmation.mismatching"
+      }
+    ],
+    "path": "app/javascript/packs/public.json"
   }
 ]

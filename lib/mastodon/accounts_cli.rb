@@ -57,6 +57,7 @@ module Mastodon
     option :role
     option :reattach, type: :boolean
     option :force, type: :boolean
+    option :approve, type: :boolean
     desc 'create USERNAME', 'Create a new user account'
     long_desc <<-LONG_DESC
       Create a new user account with a given USERNAME and an
@@ -72,6 +73,8 @@ module Mastodon
       account is still in use by someone else, you can supply
       the --force option to delete the old record and reattach the
       username to the new account anyway.
+
+      With the --approve option, the account will be approved.
     LONG_DESC
     def create(username)
       role_id  = nil
@@ -89,7 +92,7 @@ module Mastodon
 
       account  = Account.new(username: username)
       password = SecureRandom.hex
-      user     = User.new(email: options[:email], password: password, agreement: true, approved: true, role_id: role_id, confirmed_at: options[:confirmed] ? Time.now.utc : nil, bypass_invite_request_check: true)
+      user     = User.new(email: options[:email], password: password, agreement: true, role_id: role_id, confirmed_at: options[:confirmed] ? Time.now.utc : nil, bypass_invite_request_check: true)
 
       if options[:reattach]
         account = Account.find_local(username) || Account.new(username: username)
@@ -99,7 +102,8 @@ module Mastodon
           say('Use --force to reattach it anyway and delete the other user')
           return
         elsif account.user.present?
-          DeleteAccountService.new.call(account, reserve_email: false)
+          DeleteAccountService.new.call(account, reserve_email: false, reserve_username: false)
+          account = Account.new(username: username)
         end
       end
 
@@ -112,13 +116,15 @@ module Mastodon
           user.confirm!
         end
 
+        user.approve! if options[:approve]
+
         say('OK', :green)
         say("New password: #{password}")
       else
-        user.errors.to_h.each do |key, error|
+        user.errors.each do |error|
           say('Failure/Error: ', :red)
-          say(key)
-          say("    #{error}", :red)
+          say(error.attribute)
+          say("    #{error.type}", :red)
         end
 
         exit(1)
@@ -184,16 +190,17 @@ module Mastodon
       user.disabled = true if options[:disable]
       user.approved = true if options[:approve]
       user.otp_required_for_login = false if options[:disable_2fa]
-      user.confirm if options[:confirm]
 
       if user.save
+        user.confirm if options[:confirm]
+
         say('OK', :green)
         say("New password: #{password}") if options[:reset_password]
       else
-        user.errors.to_h.each do |key, error|
+        user.errors.each do |error|
           say('Failure/Error: ', :red)
-          say(key)
-          say("    #{error}", :red)
+          say(error.attribute)
+          say("    #{error.type}", :red)
         end
 
         exit(1)
@@ -346,7 +353,7 @@ module Mastodon
 
         begin
           code = Request.new(:head, account.uri).perform(&:code)
-        rescue HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
+        rescue HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError, Mastodon::PrivateNetworkAddressError
           skip_domains << account.domain
         end
 
@@ -372,16 +379,16 @@ module Mastodon
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :verbose, type: :boolean, aliases: [:v]
     option :dry_run, type: :boolean
-    desc 'refresh [USERNAME]', 'Fetch remote user data and files'
+    desc 'refresh [USERNAMES]', 'Fetch remote user data and files'
     long_desc <<-LONG_DESC
       Fetch remote user data and files for one or multiple accounts.
 
       With the --all option, all remote accounts will be processed.
       Through the --domain option, this can be narrowed down to a
-      specific domain only. Otherwise, a single remote account must
-      be specified with USERNAME.
+      specific domain only. Otherwise, remote accounts must be
+      specified with space-separated USERNAMES.
     LONG_DESC
-    def refresh(username = nil)
+    def refresh(*usernames)
       dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
 
       if options[:domain] || options[:all]
@@ -397,19 +404,25 @@ module Mastodon
         end
 
         say("Refreshed #{processed} accounts#{dry_run}", :green, true)
-      elsif username.present?
-        username, domain = username.split('@')
-        account = Account.find_remote(username, domain)
+      elsif !usernames.empty?
+        usernames.each do |user|
+          user, domain = user.split('@')
+          account = Account.find_remote(user, domain)
 
-        if account.nil?
-          say('No such account', :red)
-          exit(1)
-        end
+          if account.nil?
+            say('No such account', :red)
+            exit(1)
+          end
 
-        unless options[:dry_run]
-          account.reset_avatar!
-          account.reset_header!
-          account.save
+          next if options[:dry_run]
+
+          begin
+            account.reset_avatar!
+            account.reset_header!
+            account.save
+          rescue Mastodon::UnexpectedResponseError
+            say("Account failed: #{user}@#{domain}", :red)
+          end
         end
 
         say("OK#{dry_run}", :green)
@@ -531,8 +544,8 @@ module Mastodon
       if options[:all]
         User.pending.find_each(&:approve!)
         say('OK', :green)
-      elsif options[:number]
-        User.pending.limit(options[:number]).each(&:approve!)
+      elsif options[:number]&.positive?
+        User.pending.order(created_at: :asc).limit(options[:number]).each(&:approve!)
         say('OK', :green)
       elsif username.present?
         account = Account.find_local(username)
@@ -545,6 +558,7 @@ module Mastodon
         account.user&.approve!
         say('OK', :green)
       else
+        say('Number must be positive', :red) if options[:number]
         exit(1)
       end
     end
@@ -627,7 +641,7 @@ module Mastodon
           exit(1)
         end
 
-        unless options[:force] || migration.target_acount_id == account.moved_to_account_id
+        unless options[:force] || migration.target_account_id == account.moved_to_account_id
           say('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway', :red)
           exit(1)
         end

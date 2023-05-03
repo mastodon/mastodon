@@ -1,5 +1,5 @@
 - thumbnail     = @instance_presenter.thumbnail
-- description ||= strip_tags(@instance_presenter.description.presence || t('about.about_mastodon_html'))
+- description ||= @instance_presenter.description.presence || strip_tags(t('about.about_mastodon_html'))
 
 %meta{ name: 'description', content: description }/
 

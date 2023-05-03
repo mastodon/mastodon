@@ -2,7 +2,7 @@
 
 module Admin
   class DomainBlocksController < BaseController
-    before_action :set_domain_block, only: [:show, :destroy, :edit, :update]
+    before_action :set_domain_block, only: [:destroy, :edit, :update]
 
     def batch
       authorize :domain_block, :create?

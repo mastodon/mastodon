@@ -13,7 +13,7 @@ import { debounce } from 'lodash';
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { expandHomeTimeline } from '../../actions/timelines';
 import { expandNotifications } from '../../actions/notifications';
-import { fetchServer } from '../../actions/server';
+import { fetchServer, fetchServerTranslationLanguages } from '../../actions/server';
 import { clearHeight } from '../../actions/height_cache';
 import { focusApp, unfocusApp, changeLayout } from 'mastodon/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodon/actions/markers';
@@ -51,12 +51,12 @@ import {
   Lists,
   Directory,
   Explore,
-  FollowRecommendations,
+  Onboarding,
   About,
   PrivacyPolicy,
 } from './util/async-components';
 import initialState, { me, owner, singleUserMode, showTrends, trendsAsLanding } from '../../initial_state';
-import { closeOnboarding, INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
+import { INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
 import Header from './components/header';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
@@ -192,7 +192,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
           <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
-          <WrappedRoute path='/start' component={FollowRecommendations} content={children} />
+          <WrappedRoute path='/start' exact component={Onboarding} content={children} />
           <WrappedRoute path='/directory' component={Directory} content={children} />
           <WrappedRoute path={['/explore', '/search']} component={Explore} content={children} />
           <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
@@ -229,9 +229,6 @@ class SwitchingColumnsArea extends React.PureComponent {
 
 }
 
-export default @connect(mapStateToProps)
-@injectIntl
-@withRouter
 class UI extends React.PureComponent {
 
   static contextTypes = {
@@ -392,13 +389,13 @@ class UI extends React.PureComponent {
     // On first launch, redirect to the follow recommendations page
     if (signedIn && this.props.firstLaunch) {
       this.context.router.history.replace('/start');
-      this.props.dispatch(closeOnboarding());
     }
 
     if (signedIn) {
       this.props.dispatch(fetchMarkers());
       this.props.dispatch(expandHomeTimeline());
       this.props.dispatch(expandNotifications());
+      this.props.dispatch(fetchServerTranslationLanguages());
 
       setTimeout(() => this.props.dispatch(fetchServer()), 3000);
     }
@@ -474,10 +471,10 @@ class UI extends React.PureComponent {
   };
 
   handleHotkeyBack = () => {
-    if (window.history && window.history.length === 1) {
-      this.context.router.history.push('/');
-    } else {
+    if (window.history && window.history.state) {
       this.context.router.history.goBack();
+    } else {
+      this.context.router.history.push('/');
     }
   };
 
@@ -587,3 +584,5 @@ class UI extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(withRouter(UI)));

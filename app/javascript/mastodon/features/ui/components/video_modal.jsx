@@ -2,15 +2,21 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Video from 'mastodon/features/video';
+import { connect } from 'react-redux';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Footer from 'mastodon/features/picture_in_picture/components/footer';
 import { getAverageFromBlurhash } from 'mastodon/blurhash';
 
-export default class VideoModal extends ImmutablePureComponent {
+const mapStateToProps = (state, { statusId }) => ({
+  language: state.getIn(['statuses', statusId, 'language']),
+});
+
+class VideoModal extends ImmutablePureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
     statusId: PropTypes.string,
+    language: PropTypes.string,
     options: PropTypes.shape({
       startTime: PropTypes.number,
       autoPlay: PropTypes.bool,
@@ -31,7 +37,7 @@ export default class VideoModal extends ImmutablePureComponent {
   }
 
   render () {
-    const { media, statusId, onClose } = this.props;
+    const { media, statusId, language, onClose } = this.props;
     const options = this.props.options || {};
 
     return (
@@ -49,6 +55,7 @@ export default class VideoModal extends ImmutablePureComponent {
             autoFocus
             detailed
             alt={media.get('description')}
+            lang={language}
           />
         </div>
 
@@ -60,3 +67,5 @@ export default class VideoModal extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, null, null, { forwardRef: true })(VideoModal);

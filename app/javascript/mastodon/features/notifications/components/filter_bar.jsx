@@ -12,7 +12,6 @@ const tooltips = defineMessages({
   statuses: { id: 'notifications.filter.statuses', defaultMessage: 'Updates from people you follow' },
 });
 
-export default @injectIntl
 class FilterBar extends React.PureComponent {
 
   static propTypes = {
@@ -108,3 +107,5 @@ class FilterBar extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(FilterBar);

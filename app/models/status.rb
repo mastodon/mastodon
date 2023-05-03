@@ -30,8 +30,6 @@
 #
 
 class Status < ApplicationRecord
-  before_destroy :unlink_from_conversations!
-
   include Discard::Model
   include Paginable
   include Cacheable
@@ -56,7 +54,7 @@ class Status < ApplicationRecord
   belongs_to :account, inverse_of: :statuses
   belongs_to :in_reply_to_account, class_name: 'Account', optional: true
   belongs_to :conversation, optional: true
-  belongs_to :preloadable_poll, class_name: 'Poll', foreign_key: 'poll_id', optional: true
+  belongs_to :preloadable_poll, class_name: 'Poll', foreign_key: 'poll_id', optional: true, inverse_of: false
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies, optional: true
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, optional: true
@@ -111,6 +109,29 @@ class Status < ApplicationRecord
     where('NOT EXISTS (SELECT * FROM statuses_tags forbidden WHERE forbidden.status_id = statuses.id AND forbidden.tag_id IN (?))', tag_ids)
   }
 
+  after_create_commit :trigger_create_webhooks
+  after_update_commit :trigger_update_webhooks
+
+  after_create_commit  :increment_counter_caches
+  after_destroy_commit :decrement_counter_caches
+
+  after_create_commit :store_uri, if: :local?
+  after_create_commit :update_statistics, if: :local?
+
+  before_validation :prepare_contents, if: :local?
+  before_validation :set_reblog
+  before_validation :set_visibility
+  before_validation :set_conversation
+  before_validation :set_local
+
+  around_create Mastodon::Snowflake::Callbacks
+
+  after_create :set_poll_id
+
+  # The `prepend: true` option below ensures this runs before
+  # the `dependent: destroy` callbacks remove relevant records
+  before_destroy :unlink_from_conversations!, prepend: true
+
   cache_associated :application,
                    :media_attachments,
                    :conversation,
@@ -136,6 +157,10 @@ class Status < ApplicationRecord
   delegate :domain, to: :account, prefix: true
 
   REAL_TIME_WINDOW = 6.hours
+
+  def cache_key
+    "v2:#{super}"
+  end
 
   def searchable_by(preloaded = nil)
     ids = []
@@ -304,22 +329,6 @@ class Status < ApplicationRecord
     attributes['trendable'].nil? && account.requires_review_notification?
   end
 
-  after_create_commit  :increment_counter_caches
-  after_destroy_commit :decrement_counter_caches
-
-  after_create_commit :store_uri, if: :local?
-  after_create_commit :update_statistics, if: :local?
-
-  before_validation :prepare_contents, if: :local?
-  before_validation :set_reblog
-  before_validation :set_visibility
-  before_validation :set_conversation
-  before_validation :set_local
-
-  around_create Mastodon::Snowflake::Callbacks
-
-  after_create :set_poll_id
-
   class << self
     def selectable_visibilities
       visibilities.keys - %w(direct limited)
@@ -384,33 +393,41 @@ class Status < ApplicationRecord
     super || build_status_stat
   end
 
-  # Hack to use a "INSERT INTO ... SELECT ..." query instead of "INSERT INTO ... VALUES ..." query
+  # This is a hack to ensure that no reblogs of discarded statuses are created,
+  # as this cannot be enforced through database constraints the same way we do
+  # for reblogs of deleted statuses.
+  #
+  # To achieve this, we redefine the internal method responsible for issuing
+  # the "INSERT" statement and replace the "INSERT INTO ... VALUES ..." query
+  # with an "INSERT INTO ... SELECT ..." query with a "WHERE deleted_at IS NULL"
+  # clause on the reblogged status to ensure consistency at the database level.
+  #
+  # Otherwise, the code is kept as close as possible to ActiveRecord::Persistence
+  # code, and actually calls it if we are not handling a reblog.
   def self._insert_record(values)
-    if values.is_a?(Hash) && values['reblog_of_id'].present?
-      primary_key = self.primary_key
-      primary_key_value = nil
+    return super unless values.is_a?(Hash) && values['reblog_of_id'].present?
 
-      if primary_key
-        primary_key_value = values[primary_key]
+    primary_key = self.primary_key
+    primary_key_value = nil
 
-        if !primary_key_value && prefetch_primary_key?
-          primary_key_value = next_sequence_value
-          values[primary_key] = primary_key_value
-        end
+    if primary_key
+      primary_key_value = values[primary_key]
+
+      if !primary_key_value && prefetch_primary_key?
+        primary_key_value = next_sequence_value
+        values[primary_key] = primary_key_value
       end
-
-      # The following line is where we differ from stock ActiveRecord implementation
-      im = _compile_reblog_insert(values)
-
-      # Since we are using SELECT instead of VALUES, a non-error `nil` return is possible.
-      # For our purposes, it's equivalent to a foreign key constraint violation
-      result = connection.insert(im, "#{self} Create", primary_key || false, primary_key_value)
-      raise ActiveRecord::InvalidForeignKey, "(reblog_of_id)=(#{values['reblog_of_id']}) is not present in table \"statuses\"" if result.nil?
-
-      result
-    else
-      super
     end
+
+    # The following line is where we differ from stock ActiveRecord implementation
+    im = _compile_reblog_insert(values)
+
+    # Since we are using SELECT instead of VALUES, a non-error `nil` return is possible.
+    # For our purposes, it's equivalent to a foreign key constraint violation
+    result = connection.insert(im, "#{self} Create", primary_key || false, primary_key_value)
+    raise ActiveRecord::InvalidForeignKey, "(reblog_of_id)=(#{values['reblog_of_id']}) is not present in table \"statuses\"" if result.nil?
+
+    result
   end
 
   def self._compile_reblog_insert(values)
@@ -534,5 +551,13 @@ class Status < ApplicationRecord
     account&.decrement_count!(:statuses_count)
     reblog&.decrement_count!(:reblogs_count) if reblog?
     thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && distributable?
+  end
+
+  def trigger_create_webhooks
+    TriggerWebhookWorker.perform_async('status.created', 'Status', id) if local?
+  end
+
+  def trigger_update_webhooks
+    TriggerWebhookWorker.perform_async('status.updated', 'Status', id) if local?
   end
 end

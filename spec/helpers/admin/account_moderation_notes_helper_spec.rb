@@ -42,13 +42,11 @@ RSpec.describe Admin::AccountModerationNotesHelper, type: :helper do
       let(:account) { Fabricate(:account) }
 
       it 'calls #link_to' do
-        expect(helper).to receive(:link_to).with(
-          admin_account_path(account.id),
-          class: name_tag_classes(account, true),
-          title: account.acct
-        )
+        result = helper.admin_account_inline_link_to(account)
 
-        helper.admin_account_inline_link_to(account)
+        expect(result).to match(name_tag_classes(account, true))
+        expect(result).to match(account.acct)
+        expect(result).to match(admin_account_path(account.id))
       end
     end
   end

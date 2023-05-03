@@ -100,8 +100,6 @@ class ImageLoader extends React.PureComponent {
 
 }
 
-export default @connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true })
-@(component => injectIntl(component, { withRef: true }))
 class FocalPointModal extends ImmutablePureComponent {
 
   static propTypes = {
@@ -385,7 +383,7 @@ class FocalPointModal extends ImmutablePureComponent {
             {focals && (
               <div className={classNames('focal-point', { dragging })} ref={this.setRef} onMouseDown={this.handleMouseDown} onTouchStart={this.handleTouchStart}>
                 {media.get('type') === 'image' && <ImageLoader src={media.get('url')} width={width} height={height} alt='' />}
-                {media.get('type') === 'gifv' && <GIFV src={media.get('url')} width={width} height={height} />}
+                {media.get('type') === 'gifv' && <GIFV src={media.get('url')} key={media.get('url')} width={width} height={height} />}
 
                 <div className='focal-point__preview'>
                   <strong><FormattedMessage id='upload_modal.preview_label' defaultMessage='Preview ({ratio})' values={{ ratio: '16:9' }} /></strong>
@@ -428,3 +426,7 @@ class FocalPointModal extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  forwardRef: true,
+})(injectIntl(FocalPointModal, { withRef: true }));

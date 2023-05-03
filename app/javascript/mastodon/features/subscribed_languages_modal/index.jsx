@@ -36,8 +36,6 @@ const mapDispatchToProps = (dispatch, { accountId }) => ({
 
 });
 
-export default @connect(mapStateToProps, mapDispatchToProps)
-@injectIntl
 class SubscribedLanguagesModal extends ImmutablePureComponent {
 
   static propTypes = {
@@ -123,3 +121,5 @@ class SubscribedLanguagesModal extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(SubscribedLanguagesModal));

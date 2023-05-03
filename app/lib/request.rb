@@ -273,7 +273,9 @@ class Request
 
       def check_private_address(address, host)
         addr = IPAddr.new(address.to_s)
-        return if private_address_exceptions.any? { |range| range.include?(addr) }
+
+        return if Rails.env.development? || private_address_exceptions.any? { |range| range.include?(addr) }
+
         raise Mastodon::PrivateNetworkAddressError, host if PrivateAddressCheck.private_address?(addr)
       end
 

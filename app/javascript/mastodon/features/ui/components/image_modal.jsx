@@ -9,7 +9,6 @@ const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
-export default @injectIntl
 class ImageModal extends React.PureComponent {
 
   static propTypes = {
@@ -57,3 +56,5 @@ class ImageModal extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(ImageModal);

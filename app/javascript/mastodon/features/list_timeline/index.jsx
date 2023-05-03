@@ -10,13 +10,12 @@ import { openModal } from 'mastodon/actions/modal';
 import { connectListStream } from 'mastodon/actions/streaming';
 import { expandListTimeline } from 'mastodon/actions/timelines';
 import Column from 'mastodon/components/column';
-import ColumnBackButton from 'mastodon/components/column_back_button';
 import ColumnHeader from 'mastodon/components/column_header';
 import Icon from 'mastodon/components/icon';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
-import MissingIndicator from 'mastodon/components/missing_indicator';
 import RadioButton from 'mastodon/components/radio_button';
 import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
+import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
@@ -31,8 +30,6 @@ const mapStateToProps = (state, props) => ({
   hasUnread: state.getIn(['timelines', `list:${props.params.id}`, 'unread']) > 0,
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class ListTimeline extends React.PureComponent {
 
   static contextTypes = {
@@ -158,10 +155,7 @@ class ListTimeline extends React.PureComponent {
       );
     } else if (list === false) {
       return (
-        <Column>
-          <ColumnBackButton multiColumn={multiColumn} />
-          <MissingIndicator />
-        </Column>
+        <BundleColumnError multiColumn={multiColumn} errorType='routing' />
       );
     }
 
@@ -178,11 +172,11 @@ class ListTimeline extends React.PureComponent {
           multiColumn={multiColumn}
         >
           <div className='column-settings__row column-header__links'>
-            <button type='button' className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleEditClick}>
+            <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleEditClick}>
               <Icon id='pencil' /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
             </button>
 
-            <button type='button' className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleDeleteClick}>
+            <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
               <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
           </div>
@@ -219,3 +213,5 @@ class ListTimeline extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(ListTimeline));

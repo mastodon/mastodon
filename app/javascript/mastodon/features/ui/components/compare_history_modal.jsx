@@ -12,6 +12,7 @@ import RelativeTimestamp from 'mastodon/components/relative_timestamp';
 import MediaAttachments from 'mastodon/components/media_attachments';
 
 const mapStateToProps = (state, { statusId }) => ({
+  language: state.getIn(['statuses', statusId, 'language']),
   versions: state.getIn(['history', statusId, 'items']),
 });
 
@@ -23,18 +24,18 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-export default @connect(mapStateToProps, mapDispatchToProps)
 class CompareHistoryModal extends React.PureComponent {
 
   static propTypes = {
     onClose: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     statusId: PropTypes.string.isRequired,
+    language: PropTypes.string.isRequired,
     versions: ImmutablePropTypes.list.isRequired,
   };
 
   render () {
-    const { index, versions, onClose } = this.props;
+    const { index, versions, language, onClose } = this.props;
     const currentVersion = versions.get(index);
 
     const emojiMap = currentVersion.get('emojis').reduce((obj, emoji) => {
@@ -65,12 +66,12 @@ class CompareHistoryModal extends React.PureComponent {
           <div className='status__content'>
             {currentVersion.get('spoiler_text').length > 0 && (
               <React.Fragment>
-                <div className='translate' dangerouslySetInnerHTML={spoilerContent} />
+                <div className='translate' dangerouslySetInnerHTML={spoilerContent} lang={language} />
                 <hr />
               </React.Fragment>
             )}
 
-            <div className='status__content__text status__content__text--visible translate' dangerouslySetInnerHTML={content} />
+            <div className='status__content__text status__content__text--visible translate' dangerouslySetInnerHTML={content} lang={language} />
 
             {!!currentVersion.get('poll') && (
               <div className='poll'>
@@ -82,6 +83,7 @@ class CompareHistoryModal extends React.PureComponent {
                       <span
                         className='poll__option__text translate'
                         dangerouslySetInnerHTML={{ __html: emojify(escapeTextContentForBrowser(option.get('title')), emojiMap) }}
+                        lang={language}
                       />
                     </li>
                   ))}
@@ -89,7 +91,7 @@ class CompareHistoryModal extends React.PureComponent {
               </div>
             )}
 
-            <MediaAttachments status={currentVersion} />
+            <MediaAttachments status={currentVersion} lang={language} />
           </div>
         </div>
       </div>
@@ -97,3 +99,5 @@ class CompareHistoryModal extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(CompareHistoryModal);

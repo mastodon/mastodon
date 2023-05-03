@@ -8,7 +8,6 @@ const messages = defineMessages({
   placeholder: { id: 'report.placeholder', defaultMessage: 'Type or paste additional comments' },
 });
 
-export default @injectIntl
 class Comment extends React.PureComponent {
 
   static propTypes = {
@@ -81,3 +80,5 @@ class Comment extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(Comment);

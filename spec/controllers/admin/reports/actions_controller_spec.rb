@@ -57,6 +57,9 @@ describe Admin::Reports::ActionsController do
     let!(:media)         { Fabricate(:media_attachment, account: target_account, status: statuses[0]) }
     let(:report)         { Fabricate(:report, target_account: target_account, status_ids: statuses.map(&:id)) }
     let(:text)           { 'hello' }
+    let(:common_params) do
+      { report_id: report.id, text: text }
+    end
 
     shared_examples 'common behavior' do
       it 'closes the report' do
@@ -71,6 +74,26 @@ describe Admin::Reports::ActionsController do
       it 'redirects' do
         subject
         expect(response).to redirect_to(admin_reports_path)
+      end
+
+      context 'when text is unset' do
+        let(:common_params) do
+          { report_id: report.id }
+        end
+
+        it 'closes the report' do
+          expect { subject }.to change { report.reload.action_taken? }.from(false).to(true)
+        end
+
+        it 'creates a strike with the expected text' do
+          expect { subject }.to change { report.target_account.strikes.count }.by(1)
+          expect(report.target_account.strikes.last.text).to eq ''
+        end
+
+        it 'redirects' do
+          subject
+          expect(response).to redirect_to(admin_reports_path)
+        end
       end
     end
 
@@ -124,13 +147,13 @@ describe Admin::Reports::ActionsController do
     end
 
     context 'action as submit button' do
-      subject { post :create, params: { report_id: report.id, text: text, action => '' } }
+      subject { post :create, params: common_params.merge({ action => '' }) }
 
       it_behaves_like 'all action types'
     end
 
     context 'action as submit button' do
-      subject { post :create, params: { report_id: report.id, text: text, moderation_action: action } }
+      subject { post :create, params: common_params.merge({ moderation_action: action }) }
 
       it_behaves_like 'all action types'
     end

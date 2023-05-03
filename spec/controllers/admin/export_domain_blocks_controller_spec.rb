@@ -29,7 +29,7 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
       end
 
       it 'renders page with expected domain blocks' do
-        expect(assigns(:domain_blocks).map { |block| [block.domain, block.severity.to_sym] }).to match_array [['bad.domain', :silence], ['worse.domain', :suspend], ['reject.media', :noop]]
+        expect(assigns(:domain_blocks).map { |block| [block.domain, block.severity.to_sym] }).to contain_exactly(['bad.domain', :silence], ['worse.domain', :suspend], ['reject.media', :noop])
       end
 
       it 'returns http success' do
@@ -43,7 +43,7 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
       end
 
       it 'renders page with expected domain blocks' do
-        expect(assigns(:domain_blocks).map { |block| [block.domain, block.severity.to_sym] }).to match_array [['bad.domain', :suspend], ['worse.domain', :suspend], ['reject.media', :suspend]]
+        expect(assigns(:domain_blocks).map { |block| [block.domain, block.severity.to_sym] }).to contain_exactly(['bad.domain', :suspend], ['worse.domain', :suspend], ['reject.media', :suspend])
       end
 
       it 'returns http success' do
