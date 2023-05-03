@@ -9,6 +9,7 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:promise/recommended',
     'plugin:jsdoc/recommended',
+    'plugin:prettier/recommended',
   ],
 
   env: {
@@ -62,20 +63,9 @@ module.exports = {
   },
 
   rules: {
-    'brace-style': 'warn',
-    'comma-dangle': ['error', 'always-multiline'],
-    'comma-spacing': [
-      'warn',
-      {
-        before: false,
-        after: true,
-      },
-    ],
-    'comma-style': ['warn', 'last'],
     'consistent-return': 'error',
     'dot-notation': 'error',
     eqeqeq: ['error', 'always', { 'null': 'ignore' }],
-    indent: ['warn', 2],
     'jsx-quotes': ['error', 'prefer-single'],
     'no-case-declarations': 'off',
     'no-catch-shadow': 'error',
@@ -95,7 +85,6 @@ module.exports = {
       { property: 'substr', message: 'Use .slice instead of .substr.' },
     ],
     'no-self-assign': 'off',
-    'no-trailing-spaces': 'warn',
     'no-unused-expressions': 'error',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
@@ -107,29 +96,14 @@ module.exports = {
         ignoreRestSiblings: true,
       },
     ],
-    'object-curly-spacing': ['error', 'always'],
-    'padded-blocks': [
-      'error',
-      {
-        classes: 'always',
-      },
-    ],
-    quotes: ['error', 'single'],
-    semi: 'error',
     'valid-typeof': 'error',
 
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', 'tsx'] }],
     'react/jsx-boolean-value': 'error',
-    'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
-    'react/jsx-curly-spacing': 'error',
     'react/display-name': 'off',
     'react/jsx-equals-spacing': 'error',
-    'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
-    'react/jsx-indent': ['error', 2],
     'react/jsx-no-bind': 'error',
     'react/jsx-no-target-blank': 'off',
-    'react/jsx-tag-spacing': 'error',
-    'react/jsx-wrap-multilines': 'error',
     'react/no-deprecated': 'off',
     'react/no-unknown-property': 'off',
     'react/self-closing-comp': 'error',
@@ -291,6 +265,7 @@ module.exports = {
         'plugin:import/typescript',
         'plugin:promise/recommended',
         'plugin:jsdoc/recommended',
+        'plugin:prettier/recommended',
       ],
 
       rules: {
