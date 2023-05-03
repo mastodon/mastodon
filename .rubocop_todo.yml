@@ -328,12 +328,6 @@ Performance/MethodObjectAsBlock:
     - 'spec/models/export_spec.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AllowRegexpMatch.
-Performance/RedundantEqualityComparisonBlock:
-  Exclude:
-    - 'spec/requests/link_headers_spec.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: MaxKeyValuePairs.
 Performance/RedundantMerge:
   Exclude:
