@@ -8,9 +8,9 @@ class MoveWorker
     @target_account = Account.find(target_account_id)
 
     if @target_account.local? && @source_account.local?
-      nb_moved = rewrite_follows!
-      @source_account.update_count!(:followers_count, -nb_moved)
-      @target_account.update_count!(:followers_count, nb_moved)
+      num_moved = rewrite_follows!
+      @source_account.update_count!(:followers_count, -num_moved)
+      @target_account.update_count!(:followers_count, num_moved)
     else
       queue_follow_unfollows!
     end
@@ -29,12 +29,18 @@ class MoveWorker
   private
 
   def rewrite_follows!
+    num_moved = 0
+
     @source_account.passive_relationships
                    .where(account: Account.local)
                    .where.not(account: @target_account.followers.local)
                    .where.not(account_id: @target_account.id)
-                   .in_batches
-                   .update_all(target_account_id: @target_account.id)
+                   .in_batches do |follows|
+      ListAccount.where(follow: follows).in_batches.update_all(account_id: @target_account.id)
+      num_moved += follows.update_all(target_account_id: @target_account.id)
+    end
+
+    num_moved
   end
 
   def queue_follow_unfollows!
