@@ -1,5 +1,5 @@
 import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
-import { APP_LAYOUT_CHANGE } from 'flavours/glitch/actions/app';
+import { changeLayout } from 'flavours/glitch/actions/app';
 import { Map as ImmutableMap } from 'immutable';
 import { layoutFromWindow } from 'flavours/glitch/is_mobile';
 
@@ -16,8 +16,8 @@ export default function meta(state = initialState, action) {
     return state.merge(action.state.get('meta'))
       .set('permissions', action.state.getIn(['role', 'permissions']))
       .set('layout', layoutFromWindow(action.state.getIn(['local_settings', 'layout'])));
-  case APP_LAYOUT_CHANGE:
-    return state.set('layout', action.layout);
+  case changeLayout.type:
+    return state.set('layout', action.payload.layout);
   default:
     return state;
   }
