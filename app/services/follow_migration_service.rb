@@ -9,10 +9,10 @@ class FollowMigrationService < FollowService
   def call(source_account, target_account, old_target_account, bypass_locked: false)
     @old_target_account = old_target_account
 
-    follow    = source_account.active_relationships.find_by(target_account: old_target_account)
-    reblogs   = follow&.show_reblogs?
-    notify    = follow&.notify?
-    languages = follow&.languages
+    @original_follow = source_account.active_relationships.find_by(target_account: old_target_account)
+    reblogs          = @original_follow&.show_reblogs?
+    notify           = @original_follow&.notify?
+    languages        = @original_follow&.languages
 
     super(source_account, target_account, reblogs: reblogs, notify: notify, languages: languages, bypass_locked: bypass_locked, bypass_limit: true)
   end
@@ -21,6 +21,7 @@ class FollowMigrationService < FollowService
 
   def request_follow!
     follow_request = @source_account.request_follow!(@target_account, **follow_options.merge(rate_limit: @options[:with_rate_limit], bypass_limit: @options[:bypass_limit]))
+    migrate_list_accounts!
 
     if @target_account.local?
       LocalNotificationWorker.perform_async(@target_account.id, follow_request.id, follow_request.class.name, 'follow_request')
@@ -34,7 +35,16 @@ class FollowMigrationService < FollowService
 
   def direct_follow!
     follow = super
+
+    migrate_list_accounts!
     UnfollowService.new.call(@source_account, @old_target_account, skip_unmerge: true)
+
     follow
+  end
+
+  def migrate_list_accounts!
+    ListAccount.where(follow_id: @original_follow.id).includes(:list).find_each do |list_account|
+      list_account.list.accounts << @target_account
+    end
   end
 end
