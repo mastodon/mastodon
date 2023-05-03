@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Settings::PreferencesController < Settings::BaseController
+class Settings::Preferences::BaseController < Settings::BaseController
   def show; end
 
   def update
