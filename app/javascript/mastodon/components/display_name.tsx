@@ -8,42 +8,58 @@ type Props = {
   account: Account;
   others: List<Account>;
   localDomain: string;
-}
+};
 export default class DisplayName extends React.PureComponent<Props> {
 
-  handleMouseEnter: React.ReactEventHandler<HTMLSpanElement> = ({ currentTarget }) => {
+  handleMouseEnter: React.ReactEventHandler<HTMLSpanElement> = ({
+    currentTarget,
+  }) => {
     if (autoPlayGif) {
       return;
     }
 
-    const emojis = currentTarget.querySelectorAll<HTMLImageElement>('img.custom-emoji');
+    const emojis =
+      currentTarget.querySelectorAll<HTMLImageElement>('img.custom-emoji');
 
-    emojis.forEach(emoji => {
+    emojis.forEach((emoji) => {
       const originalSrc = emoji.getAttribute('data-original');
-      if(originalSrc != null) emoji.src = originalSrc;
+      if (originalSrc != null) emoji.src = originalSrc;
     });
   };
 
-  handleMouseLeave: React.ReactEventHandler<HTMLSpanElement> = ({ currentTarget }) => {
+  handleMouseLeave: React.ReactEventHandler<HTMLSpanElement> = ({
+    currentTarget,
+  }) => {
     if (autoPlayGif) {
       return;
     }
 
-    const emojis = currentTarget.querySelectorAll<HTMLImageElement>('img.custom-emoji');
+    const emojis =
+      currentTarget.querySelectorAll<HTMLImageElement>('img.custom-emoji');
 
-    emojis.forEach(emoji => {
+    emojis.forEach((emoji) => {
       const staticSrc = emoji.getAttribute('data-static');
-      if(staticSrc != null) emoji.src = staticSrc;
+      if (staticSrc != null) emoji.src = staticSrc;
     });
   };
 
-  render () {
+  render() {
     const { others, localDomain } = this.props;
 
     let displayName: React.ReactNode, suffix: React.ReactNode, account: Account;
 
     if (others && others.size > 1) {
-      displayName = others.take(2).map(a => <bdi key={a.get('id')}><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }} /></bdi>).reduce((prev, cur) => [prev, ', ', cur]);
+      displayName = others
+        .take(2)
+        .map((a) => (
+          <bdi key={a.get('id')}>
+            <strong
+              className='display-name__html'
+              dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }}
+            />
+          </bdi>
+        ))
+        .reduce((prev, cur) => [prev, ', ', cur]);
 
       if (others.size - 2 > 0) {
         suffix = `+${others.size - 2}`;
@@ -61,15 +77,38 @@ export default class DisplayName extends React.PureComponent<Props> {
         acct = `${acct}@${localDomain}`;
       }
 
-      displayName = <bdi><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }} /></bdi>;
-      suffix      = <span className='display-name__account'>@{acct}</span>;
+      displayName = (
+        <bdi>
+          <strong
+            className='display-name__html'
+            dangerouslySetInnerHTML={{
+              __html: account.get('display_name_html'),
+            }}
+          />
+        </bdi>
+      );
+      suffix = <span className='display-name__account'>@{acct}</span>;
     } else {
-      displayName = <bdi><strong className='display-name__html'><Skeleton width='10ch' /></strong></bdi>;
-      suffix = <span className='display-name__account'><Skeleton width='7ch' /></span>;
+      displayName = (
+        <bdi>
+          <strong className='display-name__html'>
+            <Skeleton width='10ch' />
+          </strong>
+        </bdi>
+      );
+      suffix = (
+        <span className='display-name__account'>
+          <Skeleton width='7ch' />
+        </span>
+      );
     }
 
     return (
-      <span className='display-name' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <span
+        className='display-name'
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+      >
         {displayName} {suffix}
       </span>
     );
