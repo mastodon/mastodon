@@ -1236,7 +1236,25 @@ ja:
       following_html: <strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>フォローします</strong>。
       muting_html: <strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>ミュートします</strong>。
     preface: 他のサーバーでエクスポートされたファイルから、フォロー/ブロックした情報をこのサーバー上のアカウントにインポートできます。
+    recent_imports: 最近のインポート
+    states:
+      finished: 完了
+      in_progress: 処理中
+      scheduled: スケジュール済み
+      unconfirmed: 確認が必要です
+    status: 状態
     success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
+    time_started: 開始日時
+    titles:
+      blocking: ブロックのインポート
+      bookmarks: ブックマークのインポート
+      domain_blocking: ドメイン非表示のインポート
+      following: フォローのインポート
+      muting: ミュートのインポート
+    type: インポートする項目
+    type_groups:
+      constructive: フォロー・ブックマーク
+      destructive: ブロック・ミュート
     types:
       blocking: ブロックしたアカウントリスト
       bookmarks: ブックマーク
