@@ -310,12 +310,6 @@ Performance/MapCompact:
     - 'spec/presenters/status_relationships_presenter_spec.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: MaxKeyValuePairs.
-Performance/RedundantMerge:
-  Exclude:
-    - 'config/initializers/paperclip.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: SafeMultiline.
 Performance/StartWith:
   Exclude:
