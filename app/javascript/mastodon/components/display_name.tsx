@@ -40,7 +40,7 @@ export default class DisplayName extends React.PureComponent<Props> {
   render () {
     const { others, localDomain } = this.props;
 
-    let displayName, suffix, account;
+    let displayName: React.ReactNode, suffix: React.ReactNode, account: Account;
 
     if (others && others.size > 1) {
       displayName = others.take(2).map(a => <bdi key={a.get('id')}><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }} /></bdi>).reduce((prev, cur) => [prev, ', ', cur]);
@@ -55,13 +55,13 @@ export default class DisplayName extends React.PureComponent<Props> {
         account = this.props.account;
       }
 
-      let acct = account?.get('acct');
+      let acct = account.get('acct');
 
       if (acct.indexOf('@') === -1 && localDomain) {
         acct = `${acct}@${localDomain}`;
       }
 
-      displayName = <bdi><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: account?.get('display_name_html') }} /></bdi>;
+      displayName = <bdi><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }} /></bdi>;
       suffix      = <span className='display-name__account'>@{acct}</span>;
     } else {
       displayName = <bdi><strong className='display-name__html'><Skeleton width='10ch' /></strong></bdi>;
