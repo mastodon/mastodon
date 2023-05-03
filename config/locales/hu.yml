@@ -1217,7 +1217,7 @@ hu:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong>, a keresésnek megfelelő elem kiválasztva."
       other: Mind a(z) <strong>%{count}</strong>, a keresésnek megfelelő elem kiválasztva.
-    cancel: Mégsem
+    cancel: Mégse
     changes_saved_msg: A változásokat elmentettük!
     confirm: Megerősítés
     copy: Másolás
@@ -1235,14 +1235,14 @@ hu:
       other: Valami nincs rendjén! Tekintsd meg a(z) %{count} hibát lent
   imports:
     errors:
-      empty: Üres CSV fájl
-      incompatible_type: Nem kompatibilis a kiválasztott importálás típussal.
+      empty: Üres CSV-fájl
+      incompatible_type: Nem kompatibilis a kiválasztott importálási típussal
       invalid_csv_file: 'Érvénytelen CSV-fájl. Hiba: %{error}'
       over_rows_processing_limit: több mint %{count} sort tartalmaz
-      too_large: A fájl túl nagy.
+      too_large: A fájl túl nagy
     failures: Hibák
     imported: Importálva
-    mismatched_types_warning: Úgy tűnik, hogy rossz típust választottunk az importáláshoz. Ellenőrizzük még egyszer.
+    mismatched_types_warning: Úgy tűnik, hogy rossz típust választottál az importáláshoz. Ellenőrizd még egyszer.
     modes:
       merge: Összefésülés
       merge_long: Megtartjuk a meglévő bejegyzéseket és hozzávesszük az újakat
@@ -1269,14 +1269,14 @@ hu:
       unconfirmed: Nem-megrősítve
     status: Állapot
     success: Adataidat sikeresen feltöltöttük és feldolgozásukat megkezdtük
-    time_started: Kezdés
+    time_started: 'Kezdés ideje:'
     titles:
       blocking: A blokkolt fiókok importálása
-      bookmarks: A könyvejlzők importálása
-      domain_blocking: A blokkolt domainek importálása
-      following: A követett fiókok importálása
-      muting: A némított fiókok importálása
-    type: Importálás típus
+      bookmarks: Könyvjelzők importálása
+      domain_blocking: Blokkolt domainek importálása
+      following: Követett fiókok importálása
+      muting: Némított fiókok importálása
+    type: Importálás típusa
     type_groups:
       constructive: Követések és könyvjelzők
       destructive: Blokkolások és némítások
