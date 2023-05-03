@@ -1193,7 +1193,9 @@ my:
       other: ဤစာမျက်နှာရှိ <strong>%{count}</strong> အိုက်တမ်များအားလုံးကို ရွေးချယ်ထားသည်။
     all_matching_items_selected_html:
       other: သင့်ရှာဖွေမှုနှင့် ကိုက်ညီသည့် <strong>%{count}</strong> အိုက်တမ်အားလုံးကို ရွေးချယ်ထားသည်။
+    cancel: ပယ်ဖျက်
     changes_saved_msg: အပြောင်းအလဲများကို သိမ်းဆည်းပြီးပါပြီ။
+    confirm: အတည်ပြု
     copy: ကူးယူပါ
     delete: ဖျက်ပါ
     deselect: အားလုံး ရွေးထားခြင်းကို ဖျက်မည်
@@ -1207,15 +1209,47 @@ my:
       other: မမှန်သေးပါ။ ကျေးဇူးပြု၍ အောက်ပါ %{count} အမှားများကို ပြန်လည်သုံးသပ်ပါ
   imports:
     errors:
+      empty: CSV ဖိုင်အလွတ်
+      incompatible_type: ရွေးချယ်ထားသော ထည့်သွင်းထားသည့်အမျိုးအစားနှင့် ကိုက်ညီမှုမရှိပါ
       invalid_csv_file: 'မမှန်ကန်သော CSV ဖိုင်။ အမှား - %{error}'
       over_rows_processing_limit: '%{count} တန်းထက် ပိုနေပါသည်'
+      too_large: ဖိုင်ဆိုဒ်ကြီးနေပါသည်
+    failures: မအောင်မြင်
+    imported: ထည့်သွင်းခြင်း
     modes:
       merge: ပေါင်း
       merge_long: ရှိပြီးသားမှတ်တမ်းများ သိမ်းဆည်းပြီး အသစ်များ ထပ်ထည့်ပါ
       overwrite: ထပ်ရေးရန်
       overwrite_long: လက်ရှိမှတ်တမ်းများကို အသစ်များဖြင့် အစားထိုးပါ
+    overwrite_preambles:
+      domain_blocking_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} ဒိုမိန်းများ</strong> ဖြင့် <strong>သင်၏ ဒိုမိန်းပိတ်ဆို့စာရင်း</strong>ကို အစားထိုးပါတော့မည်။
+      following_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} အကောင့်များ</strong> အထိ <strong>စောင့်ကြည့်</strong> ပြီး <strong>အခြားမည်သူ့ကိုမျှ စောင့်မကြည့်တော့ပါ</strong> ။
+      muting_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} အကောင့်များ</strong> ဖြင့် <strong>အသံပိတ်ထားသော သင့်အကောင့်များစာရင်း</strong>ကို အစားထိုးပါတော့မည်။
+    preambles:
+      blocking_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} အကောင့်များ</strong> အထိ <strong>ပိတ်ဆို့</strong>ပါတော့မည်။
+      bookmarks_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} ပို့စ်များ</strong> အထိ သင့် <strong> Bookmark များ</strong> သို့ ပေါင်းထည့်တော့မည်။
+      domain_blocking_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} ဒိုမိန်းများ</strong> အထိ <strong>ပိတ်ဆို့</strong>ပါတော့မည်။
+      following_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} အကောင့်များ</strong> အထိ <strong>စောင့်ကြည့်</strong> ပါတော့မည်။
+      muting_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} အကောင့်များ</strong> အထိ <strong>အသံတိတ်</strong>ပါတော့မည်။
     preface: သင်စောင့်ကြည့်နေသည့်လူများစာရင်း သို့မဟုတ် ပိတ်ပင်ထားသည့်စာရင်းကဲ့သို့သော အခြားဆာဗာတစ်ခုမှ သင်ထုတ်ယူထားသည့်အချက်အလက်များကို ပြန်လည်ထည့်သွင်းနိုင်သည်။
+    recent_imports: လတ်တလောထည့်သွင်းမှုများ
+    states:
+      finished: ပြီးစီးပြီး
+      in_progress: လုပ်ဆောင်နေသည်
+      scheduled: စီစဉ်ထားသည်
+      unconfirmed: အတည်မပြုနိုင်ပါ
+    status: အခြေအနေ
     success: သင့်အချက်အလက်ကို အပ်လုဒ်လုပ်ပြီး သတ်မှတ်ချိန်အတွင်း ဆောင်ရွက်ပါမည်
+    time_started: တွင် စတင်ခဲ့သည်
+    titles:
+      blocking: ပိတ်ထားသောအကောင့်များ ထည့်သွင်းခြင်း
+      bookmarks: Bookmark များ ထည့်သွင်းခြင်း
+      domain_blocking: ပိတ်ထားသောဒိုမိန်းများ ထည့်သွင်းခြင်း
+      following: စောင့်ကြည့်ထားသောအကောင့်များထည့်သွင်းခြင်း
+      muting: အသံတိတ်အကောင့်များထည့်သွင်းခြင်း
+    type: ထည့်သွင်းမှုအမျိုးအစား
+    type_groups:
+      constructive: စောင့်ကြည့်မှုများ & Bookmark များ
     types:
       blocking: ပိတ်ပင်ထားသည့်စာရင်း
       bookmarks: Bookmarks
