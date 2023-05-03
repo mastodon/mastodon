@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { setupBrowserNotifications } from 'flavours/glitch/actions/notifications';
-import Mastodon, { store } from 'flavours/glitch/containers/mastodon';
+import Mastodon from 'flavours/glitch/containers/mastodon';
+import { store } from 'flavours/glitch/store/configureStore';
 import { me } from 'flavours/glitch/initial_state';
 import ready from 'flavours/glitch/ready';
 
