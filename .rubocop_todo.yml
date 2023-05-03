@@ -322,11 +322,6 @@ Performance/MapCompact:
     - 'db/migrate/20200407202420_migrate_unavailable_inboxes.rb'
     - 'spec/presenters/status_relationships_presenter_spec.rb'
 
-Performance/MethodObjectAsBlock:
-  Exclude:
-    - 'app/models/account_suggestions/source.rb'
-    - 'spec/models/export_spec.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: MaxKeyValuePairs.
 Performance/RedundantMerge:
