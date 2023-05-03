@@ -93,14 +93,64 @@ describe MoveWorker do
   end
 
   shared_examples 'lists handling' do
-    it 'updates lists' do
+    it 'puts the new account on the list' do
       subject.perform(source_account.id, target_account.id)
       expect(list.accounts.include?(target_account)).to be true
     end
+
+    it 'does not create invalid list memberships' do
+      subject.perform(source_account.id, target_account.id)
+      expect(ListAccount.all).to all be_valid
+    end
   end
 
-  context 'both accounts are distant' do
-    describe 'perform' do
+  shared_examples 'common tests' do
+    include_examples 'user note handling'
+    include_examples 'block and mute handling'
+    include_examples 'followers count handling'
+    include_examples 'lists handling'
+
+    context 'when a local user already follows both source and target' do
+      before do
+        local_follower.request_follow!(target_account)
+      end
+
+      include_examples 'user note handling'
+      include_examples 'block and mute handling'
+      include_examples 'followers count handling'
+      include_examples 'lists handling'
+
+      context 'and the local user already has the target in a list' do
+        before do
+          list.accounts << target_account
+        end
+
+        include_examples 'lists handling'
+      end
+    end
+
+    context 'when a local follower already has a pending request to the target' do
+      before do
+        local_follower.follow!(target_account)
+      end
+
+      include_examples 'user note handling'
+      include_examples 'block and mute handling'
+      include_examples 'followers count handling'
+      include_examples 'lists handling'
+
+      context 'and the local user already has the target in a list' do
+        before do
+          list.accounts << target_account
+        end
+
+        include_examples 'lists handling'
+      end
+    end
+  end
+
+  describe '#perform' do
+    context 'when both accounts are distant' do
       it 'calls UnfollowFollowWorker' do
         Sidekiq::Testing.fake! do
           subject.perform(source_account.id, target_account.id)
@@ -109,17 +159,12 @@ describe MoveWorker do
         end
       end
 
-      include_examples 'user note handling'
-      include_examples 'block and mute handling'
-      include_examples 'followers count handling'
-      include_examples 'lists handling'
+      include_examples 'common tests'
     end
-  end
 
-  context 'target account is local' do
-    let(:target_account) { Fabricate(:account) }
+    context 'when target account is local' do
+      let(:target_account) { Fabricate(:account) }
 
-    describe 'perform' do
       it 'calls UnfollowFollowWorker' do
         Sidekiq::Testing.fake! do
           subject.perform(source_account.id, target_account.id)
@@ -128,35 +173,19 @@ describe MoveWorker do
         end
       end
 
-      include_examples 'user note handling'
-      include_examples 'block and mute handling'
-      include_examples 'followers count handling'
-      include_examples 'lists handling'
+      include_examples 'common tests'
     end
-  end
 
-  context 'both target and source accounts are local' do
-    let(:target_account) { Fabricate(:account) }
-    let(:source_account) { Fabricate(:account) }
+    context 'when both target and source accounts are local' do
+      let(:target_account) { Fabricate(:account) }
+      let(:source_account) { Fabricate(:account) }
 
-    describe 'perform' do
       it 'calls makes local followers follow the target account' do
         subject.perform(source_account.id, target_account.id)
         expect(local_follower.following?(target_account)).to be true
       end
 
-      include_examples 'user note handling'
-      include_examples 'block and mute handling'
-      include_examples 'followers count handling'
-      include_examples 'lists handling'
-
-      it 'does not fail when a local user is already following both accounts' do
-        double_follower = Fabricate(:account)
-        double_follower.follow!(source_account)
-        double_follower.follow!(target_account)
-        subject.perform(source_account.id, target_account.id)
-        expect(local_follower.following?(target_account)).to be true
-      end
+      include_examples 'common tests'
 
       it 'does not allow the moved account to follow themselves' do
         source_account.follow!(target_account)

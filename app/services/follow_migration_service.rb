@@ -33,6 +33,16 @@ class FollowMigrationService < FollowService
     follow_request
   end
 
+  def change_follow_options!
+    migrate_list_accounts!
+    super
+  end
+
+  def change_follow_request_options!
+    migrate_list_accounts!
+    super
+  end
+
   def direct_follow!
     follow = super
 
@@ -45,6 +55,8 @@ class FollowMigrationService < FollowService
   def migrate_list_accounts!
     ListAccount.where(follow_id: @original_follow.id).includes(:list).find_each do |list_account|
       list_account.list.accounts << @target_account
+    rescue ActiveRecord::RecordInvalid
+      nil
     end
   end
 end
