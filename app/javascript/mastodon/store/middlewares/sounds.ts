@@ -2,8 +2,8 @@ import { Middleware, AnyAction } from 'redux';
 import { RootState } from '..';
 
 interface AudioSource {
-  src: string
-  type: string
+  src: string;
+  type: string;
 }
 
 const createAudio = (sources: AudioSource[]) => {
@@ -30,8 +30,11 @@ const play = (audio: HTMLAudioElement) => {
   audio.play();
 };
 
-export  const soundsMiddleware = (): Middleware<Record<string, never>, RootState> => {
-  const soundCache: {[key: string]: HTMLAudioElement} = {
+export const soundsMiddleware = (): Middleware<
+  Record<string, never>,
+  RootState
+> => {
+  const soundCache: { [key: string]: HTMLAudioElement } = {
     boop: createAudio([
       {
         src: '/sounds/boop.ogg',
@@ -44,7 +47,7 @@ export  const soundsMiddleware = (): Middleware<Record<string, never>, RootState
     ]),
   };
 
-  return () => next => (action: AnyAction) => {
+  return () => (next) => (action: AnyAction) => {
     const sound = action?.meta?.sound;
 
     if (sound && soundCache[sound]) {
