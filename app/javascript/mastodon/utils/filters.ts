@@ -1,4 +1,4 @@
-export const toServerSideType = columnType => {
+export const toServerSideType = (columnType: string) => {
   switch (columnType) {
   case 'home':
   case 'notifications':

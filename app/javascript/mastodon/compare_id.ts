@@ -1,4 +1,4 @@
-export default function compareId (id1, id2) {
+export default function compareId (id1: string, id2: string) {
   if (id1 === id2) {
     return 0;
   }
