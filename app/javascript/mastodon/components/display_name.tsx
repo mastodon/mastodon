@@ -16,7 +16,7 @@ export default class DisplayName extends React.PureComponent<Props> {
       return;
     }
 
-    const emojis = currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
+    const emojis = currentTarget.querySelectorAll<HTMLImageElement>('img.custom-emoji');
 
     emojis.forEach(emoji => {
       const originalSrc = emoji.getAttribute('data-original');
@@ -29,7 +29,7 @@ export default class DisplayName extends React.PureComponent<Props> {
       return;
     }
 
-    const emojis = currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
+    const emojis = currentTarget.querySelectorAll<HTMLImageElement>('img.custom-emoji');
 
     emojis.forEach(emoji => {
       const staticSrc = emoji.getAttribute('data-static');
