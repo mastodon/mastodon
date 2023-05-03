@@ -15,7 +15,7 @@ class Settings::Preferences::BaseController < Settings::BaseController
   private
 
   def after_update_redirect_path
-    settings_preferences_path
+    raise 'Override in controller'
   end
 
   def user_params
