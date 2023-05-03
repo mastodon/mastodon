@@ -1,18 +1,17 @@
-export const MODAL_OPEN  = 'MODAL_OPEN';
-export const MODAL_CLOSE = 'MODAL_CLOSE';
+import { createAction } from '@reduxjs/toolkit';
 
-export function openModal(type, props) {
-  return {
-    type: MODAL_OPEN,
-    modalType: type,
-    modalProps: props,
-  };
-}
+import type { MODAL_COMPONENTS } from '../features/ui/components/modal_root';
 
-export function closeModal(type, options = { ignoreFocus: false }) {
-  return {
-    type: MODAL_CLOSE,
-    modalType: type,
-    ignoreFocus: options.ignoreFocus,
-  };
+export type ModalType = keyof typeof MODAL_COMPONENTS;
+
+interface OpenModalPayload {
+  modalType: ModalType;
+  modalProps: unknown;
 }
+export const openModal = createAction<OpenModalPayload>('MODAL_OPEN');
+
+interface CloseModalPayload {
+  modalType: ModalType;
+  ignoreFocus: boolean;
+}
+export const closeModal = createAction<CloseModalPayload>('MODAL_CLOSE');
