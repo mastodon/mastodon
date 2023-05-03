@@ -94,14 +94,14 @@ class TranslateStatusService < BaseService
   end
 
   def prerender_custom_emojis(text)
-    EmojiFormatter.new(html_escape(text), @status.emojis, { data_shortcode: true }).to_s
+    EmojiFormatter.new(html_escape(text), @status.emojis, { raw_shortcode: true }).to_s
   end
 
   def detect_custom_emojis(html)
     fragment = Nokogiri::HTML.fragment(html)
-    fragment.css('img[data-shortcode]').each do |element|
-      node = Nokogiri::XML::Text.new(":#{element['data-shortcode']}:", fragment.document)
-      element.replace(node)
+    fragment.css('span[translate="no"]').each do |element|
+      element.remove_attribute('translate')
+      element.replace(element.children) if element.attributes.empty?
     end
     fragment
   end

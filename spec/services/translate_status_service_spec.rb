@@ -126,8 +126,7 @@ RSpec.describe TranslateStatusService, type: :service do
 
       it 'returns formatted content' do
         source_texts = service.send(:source_texts)
-        expect(source_texts[:content]).to include '<p>Hello <img'
-        expect(source_texts[:content]).to include 'data-shortcode="highfive"'
+        expect(source_texts[:content]).to eq '<p>Hello <span translate="no">:highfive:</span></p>'
       end
     end
 
@@ -146,8 +145,7 @@ RSpec.describe TranslateStatusService, type: :service do
 
       it 'returns formatted spoiler text' do
         source_texts = service.send(:source_texts)
-        expect(source_texts[:spoiler_text]).to include 'Hello <img'
-        expect(source_texts[:spoiler_text]).to include 'data-shortcode="highfive"'
+        expect(source_texts[:spoiler_text]).to eq 'Hello <span translate="no">:highfive:</span>'
       end
     end
 
@@ -178,8 +176,7 @@ RSpec.describe TranslateStatusService, type: :service do
 
       it 'returns formatted poll options' do
         html = service.send(:source_texts).values.last
-        expect(html).to include 'Green <img'
-        expect(html).to include 'data-shortcode="highfive"'
+        expect(html).to eq 'Green <span translate="no">:highfive:</span>'
       end
     end
 
@@ -208,8 +205,7 @@ RSpec.describe TranslateStatusService, type: :service do
 
       it 'renders the emoji' do
         html = service.send(:prerender_custom_emojis, 'Hello :highfive:')
-        expect(html).to include 'Hello <img'
-        expect(html).to include 'data-shortcode="highfive"'
+        expect(html).to eq 'Hello <span translate="no">:highfive:</span>'
       end
     end
 
@@ -223,7 +219,7 @@ RSpec.describe TranslateStatusService, type: :service do
   describe '#detect_custom_emojis' do
     describe 'string contains custom emoji' do
       it 'inserts the shortcode' do
-        fragment = service.send(:detect_custom_emojis, '<p>Hello <img data-shortcode="highfive">!</p>')
+        fragment = service.send(:detect_custom_emojis, '<p>Hello <span translate="no">:highfive:</span>!</p>')
         expect(fragment.to_html).to eq '<p>Hello :highfive:!</p>'
       end
     end
