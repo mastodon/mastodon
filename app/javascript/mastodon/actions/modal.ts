@@ -11,7 +11,7 @@ interface OpenModalPayload {
 export const openModal = createAction<OpenModalPayload>('MODAL_OPEN');
 
 interface CloseModalPayload {
-  modalType: ModalType;
+  modalType: ModalType | undefined;
   ignoreFocus: boolean;
 }
 export const closeModal = createAction<CloseModalPayload>('MODAL_CLOSE');
