@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Instances::ActivityController, type: :controller do
       expect(response).to have_http_status(200)
     end
 
-    context '!Setting.activity_api_enabled' do
+    context 'with !Setting.activity_api_enabled' do
       it 'returns 404' do
         Setting.activity_api_enabled = false
 

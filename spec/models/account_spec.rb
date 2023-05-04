@@ -171,7 +171,7 @@ RSpec.describe Account, type: :model do
   describe '#possibly_stale?' do
     let(:account) { Fabricate(:account, last_webfingered_at: last_webfingered_at) }
 
-    context 'last_webfingered_at is nil' do
+    context 'when last_webfingered_at is nil' do
       let(:last_webfingered_at) { nil }
 
       it 'returns true' do
@@ -179,7 +179,7 @@ RSpec.describe Account, type: :model do
       end
     end
 
-    context 'last_webfingered_at is more than 24 hours before' do
+    context 'when last_webfingered_at is more than 24 hours before' do
       let(:last_webfingered_at) { 25.hours.ago }
 
       it 'returns true' do
@@ -187,7 +187,7 @@ RSpec.describe Account, type: :model do
       end
     end
 
-    context 'last_webfingered_at is less than 24 hours before' do
+    context 'when last_webfingered_at is less than 24 hours before' do
       let(:last_webfingered_at) { 23.hours.ago }
 
       it 'returns false' do
@@ -200,7 +200,7 @@ RSpec.describe Account, type: :model do
     let(:account) { Fabricate(:account, domain: domain) }
     let(:acct)    { account.acct }
 
-    context 'domain is nil' do
+    context 'when domain is nil' do
       let(:domain) { nil }
 
       it 'returns nil' do
@@ -213,7 +213,7 @@ RSpec.describe Account, type: :model do
       end
     end
 
-    context 'domain is present' do
+    context 'when domain is present' do
       let(:domain) { 'example.com' }
 
       it 'calls ResolveAccountService#call' do

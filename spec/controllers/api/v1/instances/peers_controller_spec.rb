@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Instances::PeersController, type: :controller do
       expect(response).to have_http_status(200)
     end
 
-    context '!Setting.peers_api_enabled' do
+    context 'with !Setting.peers_api_enabled' do
       it 'returns 404' do
         Setting.peers_api_enabled = false
 

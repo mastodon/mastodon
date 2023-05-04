@@ -157,7 +157,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       end
     end
 
-    context 'approval-based registrations without invite' do
+    context 'with Approval-based registrations without invite' do
       subject do
         Setting.registrations_mode = 'approved'
         request.headers['Accept-Language'] = accept_language
@@ -184,7 +184,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       end
     end
 
-    context 'approval-based registrations with expired invite' do
+    context 'with Approval-based registrations with expired invite' do
       subject do
         Setting.registrations_mode = 'approved'
         request.headers['Accept-Language'] = accept_language
@@ -212,7 +212,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       end
     end
 
-    context 'approval-based registrations with valid invite and required invite text' do
+    context 'with Approval-based registrations with valid invite and required invite text' do
       subject do
         inviter = Fabricate(:user, confirmed_at: 2.days.ago)
         Setting.registrations_mode = 'approved'

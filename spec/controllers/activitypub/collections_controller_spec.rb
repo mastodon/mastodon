@@ -119,7 +119,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
           end
         end
 
-        context 'in authorized fetch mode' do
+        context 'with authorized fetch mode' do
           before do
             allow(controller).to receive(:authorized_fetch_mode?).and_return(true)
           end
