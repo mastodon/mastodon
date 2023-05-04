@@ -18,11 +18,17 @@ const mapDispatchToProps = dispatch => ({
           modalProps: {
             message: confirmationMessage.message,
             confirm: confirmationMessage.confirm,
-            onConfirm: () => dispatch(closeModal(undefined, { ignoreFocus })),
+            onConfirm: () => dispatch(closeModal({
+              modalType: undefined,
+              ignoreFocus: { ignoreFocus },
+            })),
           } }),
       );
     } else {
-      dispatch(closeModal(undefined, { ignoreFocus }));
+      dispatch(closeModal({
+        modalType: undefined,
+        ignoreFocus: { ignoreFocus },
+      }));
     }
   },
 });

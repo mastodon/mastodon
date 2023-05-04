@@ -18,7 +18,10 @@ const mapStateToProps = (state, { accountId }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onSignupClick() {
-    dispatch(closeModal());
+    dispatch(closeModal({
+      modalType: undefined,
+      ignoreFocus: false,
+    }));
     dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' }));
   },
 });

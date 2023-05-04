@@ -20,7 +20,10 @@ const mapDispatchToProps = dispatch => ({
     modalType: 'ACTIONS',
     modalProps: props,
   })),
-  onModalClose: () => dispatch(closeModal()),
+  onModalClose: () => dispatch(closeModal({
+    modalType: undefined,
+    ignoreFocus: false,
+  })),
 
 });
 

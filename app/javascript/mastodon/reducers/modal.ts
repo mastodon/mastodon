@@ -30,7 +30,7 @@ const initialState = ImmutableRecord<ModalState>({
 
 type PopModal = (
   state: typeof initialState,
-  option: { modalType: ModalType; ignoreFocus: boolean }
+  option: { modalType: ModalType | undefined; ignoreFocus: boolean }
 ) => typeof initialState;
 const popModal: PopModal = (state, { modalType, ignoreFocus }) => {
   if (
