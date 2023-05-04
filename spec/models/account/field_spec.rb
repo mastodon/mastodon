@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Account::Field, type: :model do
+RSpec.describe Account::Field do
   describe '#verified?' do
     subject { described_class.new(account, 'name' => 'Foo', 'value' => 'Bar', 'verified_at' => verified_at) }
 

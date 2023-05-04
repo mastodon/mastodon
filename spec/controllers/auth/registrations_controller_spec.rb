@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Auth::RegistrationsController, type: :controller do
+RSpec.describe Auth::RegistrationsController do
   render_views
 
   shared_examples 'checks for enabled registrations' do |path|

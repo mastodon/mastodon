@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Setting, type: :model do
+RSpec.describe Setting do
   describe '#to_param' do
     let(:setting) { Fabricate(:setting, var: var) }
     let(:var)     { 'var' }

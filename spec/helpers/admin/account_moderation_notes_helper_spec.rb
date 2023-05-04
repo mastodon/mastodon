@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::AccountModerationNotesHelper, type: :helper do
+RSpec.describe Admin::AccountModerationNotesHelper do
   include AccountsHelper
 
   describe '#admin_account_link_to' do

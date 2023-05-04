@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe EmailDomainBlock, type: :model do
+RSpec.describe EmailDomainBlock do
   describe 'block?' do
     let(:input) { nil }
 

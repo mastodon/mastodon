@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CustomEmoji, type: :model do
+RSpec.describe CustomEmoji do
   describe '#search' do
     subject { described_class.search(search_term) }
 

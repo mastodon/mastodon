@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::InboxesController, type: :controller do
+RSpec.describe ActivityPub::InboxesController do
   let(:remote_account) { nil }
 
   before do

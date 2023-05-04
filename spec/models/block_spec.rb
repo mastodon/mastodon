@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Block, type: :model do
+RSpec.describe Block do
   describe 'validations' do
     it 'is invalid without an account' do
       block = Fabricate.build(:block, account: nil)

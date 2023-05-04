@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AccountMigration, type: :model do
+RSpec.describe AccountMigration do
   describe 'validations' do
     let(:source_account) { Fabricate(:account) }
     let(:target_acct)    { target_account.acct }

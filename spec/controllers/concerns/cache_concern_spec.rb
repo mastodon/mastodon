@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CacheConcern, type: :controller do
+RSpec.describe CacheConcern do
   controller(ApplicationController) do
     include CacheConcern
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Status, type: :model do
+RSpec.describe Status do
   subject { Fabricate(:status, account: alice) }
 
   let(:alice) { Fabricate(:account, username: 'alice') }

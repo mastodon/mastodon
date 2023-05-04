@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Instances::ActivityController, type: :controller do
+RSpec.describe Api::V1::Instances::ActivityController do
   describe 'GET #show' do
     it 'returns 200' do
       get :show

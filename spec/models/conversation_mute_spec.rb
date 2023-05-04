@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe ConversationMute, type: :model do
+RSpec.describe ConversationMute do
 end
