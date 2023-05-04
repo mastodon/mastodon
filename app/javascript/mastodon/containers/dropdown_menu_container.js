@@ -18,10 +18,13 @@ const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
       dispatch(fetchRelationships([status.getIn(['account', 'id'])]));
     }
 
-    dispatch(isUserTouching() ? openModal('ACTIONS', {
-      status,
-      actions: items,
-      onClick: onItemClick,
+    dispatch(isUserTouching() ? openModal({
+      modalType: 'ACTIONS',
+      modalProps: {
+        status,
+        actions: items,
+        onClick: onItemClick,
+      },
     }) : openDropdownMenu(id, keyboard, scrollKey));
   },
 
