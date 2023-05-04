@@ -22,13 +22,6 @@ Layout/ArgumentAlignment:
     - 'config/initializers/session_store.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: empty_lines, no_empty_lines
-Layout/EmptyLinesAroundBlockBody:
-  Exclude:
-    - 'config/routes.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
 Layout/ExtraSpacing:
   Exclude:
@@ -491,24 +484,12 @@ RSpec/InstanceVariable:
     - 'spec/controllers/statuses_cleanup_controller_spec.rb'
     - 'spec/models/concerns/account_finder_concern_spec.rb'
     - 'spec/models/concerns/account_interactions_spec.rb'
-    - 'spec/models/concerns/remotable_spec.rb'
     - 'spec/models/public_feed_spec.rb'
     - 'spec/serializers/activitypub/note_serializer_spec.rb'
     - 'spec/serializers/activitypub/update_poll_serializer_spec.rb'
     - 'spec/services/remove_status_service_spec.rb'
     - 'spec/services/search_service_spec.rb'
     - 'spec/services/unblock_domain_service_spec.rb'
-
-RSpec/LeakyConstantDeclaration:
-  Exclude:
-    - 'spec/controllers/api/base_controller_spec.rb'
-    - 'spec/controllers/application_controller_spec.rb'
-    - 'spec/controllers/concerns/accountable_concern_spec.rb'
-    - 'spec/controllers/concerns/signature_verification_spec.rb'
-    - 'spec/lib/activitypub/adapter_spec.rb'
-    - 'spec/lib/connection_pool/shared_connection_pool_spec.rb'
-    - 'spec/lib/connection_pool/shared_timed_stack_spec.rb'
-    - 'spec/models/concerns/remotable_spec.rb'
 
 RSpec/LetSetup:
   Exclude:
@@ -726,7 +707,6 @@ RSpec/VerifiedDoubles:
     - 'spec/controllers/api/web/embeds_controller_spec.rb'
     - 'spec/controllers/auth/sessions_controller_spec.rb'
     - 'spec/controllers/disputes/appeals_controller_spec.rb'
-    - 'spec/controllers/settings/imports_controller_spec.rb'
     - 'spec/helpers/statuses_helper_spec.rb'
     - 'spec/lib/suspicious_sign_in_detector_spec.rb'
     - 'spec/models/account/field_spec.rb'
@@ -1052,7 +1032,6 @@ Style/CombinableLoops:
 # Configuration parameters: AllowedVars.
 Style/FetchEnvVar:
   Exclude:
-    - 'app/helpers/application_helper.rb'
     - 'app/lib/redis_configuration.rb'
     - 'app/lib/translation_service.rb'
     - 'config/environments/development.rb'
@@ -1502,7 +1481,6 @@ Style/GuardClause:
     - 'app/controllers/auth/passwords_controller.rb'
     - 'app/controllers/settings/two_factor_authentication/webauthn_credentials_controller.rb'
     - 'app/lib/activitypub/activity/block.rb'
-    - 'app/lib/connection_pool/shared_connection_pool.rb'
     - 'app/lib/request.rb'
     - 'app/lib/request_pool.rb'
     - 'app/lib/webfinger.rb'
@@ -1601,7 +1579,6 @@ Style/MutableConstant:
     - 'app/services/delete_account_service.rb'
     - 'config/initializers/twitter_regex.rb'
     - 'lib/mastodon/migration_warning.rb'
-    - 'spec/controllers/api/base_controller_spec.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 Style/NilLambda:
@@ -1685,7 +1662,6 @@ Style/RedundantRegexpEscape:
 Style/RegexpLiteral:
   Exclude:
     - 'app/lib/link_details_extractor.rb'
-    - 'app/lib/permalink_redirector.rb'
     - 'app/lib/plain_text_formatter.rb'
     - 'app/lib/tag_manager.rb'
     - 'app/lib/text_formatter.rb'
@@ -1807,11 +1783,14 @@ Style/TrailingCommaInHashLiteral:
     - 'config/environments/test.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: WordRegex.
+# Configuration parameters: EnforcedStyle, MinSize, WordRegex.
 # SupportedStyles: percent, brackets
 Style/WordArray:
-  EnforcedStyle: percent
-  MinSize: 6
+  Exclude:
+    - 'app/helpers/languages_helper.rb'
+    - 'config/initializers/cors.rb'
+    - 'spec/controllers/settings/imports_controller_spec.rb'
+    - 'spec/models/form/import_spec.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
