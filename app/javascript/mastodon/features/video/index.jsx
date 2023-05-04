@@ -8,6 +8,7 @@ import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/full
 import { displayMedia, useBlurhash } from '../../initial_state';
 import Icon from 'mastodon/components/icon';
 import Blurhash from 'mastodon/components/blurhash';
+import { currentMedia, setCurrentMedia } from '../../reducers/media_attachments';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
@@ -93,8 +94,6 @@ export const fileNameFromURL = str => {
 
   return pathname.slice(index + 1);
 };
-
-var currentVideo = null;
 
 class Video extends React.PureComponent {
 
@@ -371,12 +370,12 @@ class Video extends React.PureComponent {
       });
     });
 
-    if (currentVideo !== null) {
-      currentVideo.pause();
+    if (currentMedia !== null) {
+      currentMedia.pause();
     }
 
     this.video.play();
-    currentVideo = this.video;
+    setCurrentMedia(this.video);
   };
 
   toggleFullscreen = () => {

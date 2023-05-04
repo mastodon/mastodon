@@ -9,6 +9,7 @@ import Visualizer from './visualizer';
 import { displayMedia, useBlurhash } from '../../initial_state';
 import Blurhash from '../../components/blurhash';
 import { is } from 'immutable';
+import { currentMedia, setCurrentMedia } from '../../reducers/media_attachments';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
@@ -21,8 +22,6 @@ const messages = defineMessages({
 
 const TICK_SIZE = 10;
 const PADDING   = 180;
-
-var currentAudio = null;
 
 class Audio extends React.PureComponent {
 
@@ -174,12 +173,12 @@ class Audio extends React.PureComponent {
       });
     });
 
-    if (currentAudio !== null) {
-      currentAudio.pause();
+    if (currentMedia !== null) {
+      currentMedia.pause();
     }
 
     this.audio.play();
-    currentAudio = this.audio;
+    setCurrentMedia(this.audio);
   };
 
   handleResize = debounce(() => {
