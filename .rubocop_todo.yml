@@ -192,6 +192,12 @@ Lint/Void:
 Metrics/AbcSize:
   Max: 150
 
+# Configuration parameters: CountComments, Max, CountAsOne, AllowedMethods, AllowedPatterns, inherit_mode.
+# AllowedMethods: refine
+Metrics/BlockLength:
+  Exclude:
+    - 'app/models/concerns/status_safe_reblog_insert.rb'
+
 # Configuration parameters: CountBlocks, Max.
 Metrics/BlockNesting:
   Exclude:
