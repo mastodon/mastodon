@@ -114,7 +114,10 @@ class ListTimeline extends PureComponent {
   };
 
   handleEditClick = () => {
-    this.props.dispatch(openModal('LIST_EDITOR', { listId: this.props.params.id }));
+    this.props.dispatch(openModal({
+      modalType: 'LIST_EDITOR',
+      modalProps: { listId: this.props.params.id },
+    }));
   };
 
   handleDeleteClick = () => {
