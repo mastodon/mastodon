@@ -1602,4 +1602,174 @@ RSpec.describe Mastodon::AccountsCLI do
       expect(Account.where(id: prunable_accounts.pluck(:id)).count).to eq(0)
     end
   end
+
+  describe '#cull' do
+    context 'when no DOMAIN is provided' do
+      let!(:account1) do
+        Fabricate(:account, username: 'cull', protocol: :activitypub, domain: 'example.com', uri: 'https://example.com/users/cull', last_webfingered_at: nil)
+      end
+      let!(:account2) do
+        Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.net', uri: 'https://example.net/users/bob', last_webfingered_at: nil)
+      end
+      let(:delete_account_service) { instance_double(DeleteAccountService) }
+      let(:scope) { Account.remote.where(protocol: :activitypub).partitioned }
+
+      before do
+        stub_request(:head, 'https://example.com/users/cull').to_return(status: 404)
+        allow(DeleteAccountService).to receive(:new).and_return(delete_account_service)
+        allow(delete_account_service).to receive(:call)
+        allow(cli).to receive(:parallelize_with_progress).and_yield(account1).and_yield(account2).and_return([2, 1])
+      end
+
+      it 'removes accounts that have not confirmed any activity within the last week' do
+        account1.update(updated_at: 10.days.ago)
+
+        cli.cull
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope)
+        expect(delete_account_service).to have_received(:call).with(account1, any_args).once
+      end
+
+      it 'skips accounts that have been updated within the last week' do
+        account2.update(updated_at: 1.day.ago)
+
+        cli.cull
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope)
+        expect(delete_account_service).to_not have_received(:call).with(account2, any_args)
+      end
+
+      it 'skips accounts that have been webfingered within the last week' do
+        account2.update(last_webfingered_at: 1.day.ago)
+
+        cli.cull
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope)
+        expect(delete_account_service).to_not have_received(:call).with(account2, any_args)
+      end
+
+      it 'displays success message' do
+        expect { cli.cull }
+          .to output(
+            a_string_including('Visited 2 accounts, removed 1')
+          ).to_stdout
+      end
+
+      context 'when a connection error is raised' do
+        let(:request) { instance_double(Request) }
+
+        before do
+          account1.update(updated_at: 10.days.ago)
+          account2.update(updated_at: 10.days.ago)
+          allow(Request).to receive(:new).and_return(request)
+          allow(request).to receive(:perform).and_raise(HTTP::TimeoutError)
+          allow(cli).to receive(:parallelize_with_progress).and_yield(account1).and_yield(account2).and_return([2, 0])
+        end
+
+        it 'skips domains' do
+          cli.cull
+
+          expect(delete_account_service).to_not have_received(:call)
+        end
+
+        it 'displays skipped domains' do
+          expect { cli.cull }
+            .to output(
+              a_string_including(<<~STR
+                The following domains were not available during the check:
+                    #{account1.domain}
+                    #{account2.domain}
+              STR
+                                )
+            ).to_stdout
+        end
+      end
+
+      context 'when HEAD request returns a successful status' do
+        before do
+          stub_request(:head, 'https://example.com/users/cull').to_return(status: 200)
+        end
+
+        it 'touches accounts' do
+          account1.update(updated_at: 10.days.ago)
+          allow(account1).to receive(:touch).once
+
+          cli.cull
+
+          expect(account1).to have_received(:touch).once
+        end
+      end
+
+      context 'with --dry-run option' do
+        before do
+          account1.update(updated_at: 10.days.ago)
+          account2.update(updated_at: 10.days.ago)
+
+          stub_request(:head, 'https://example.net/users/bob').to_return(status: 410)
+          allow(cli).to receive(:parallelize_with_progress).and_yield(account1).and_yield(account2).and_return([2, 0])
+
+          cli.options = { dry_run: true }
+        end
+
+        it 'does not remove any account' do
+          cli.cull
+
+          expect(cli).to have_received(:parallelize_with_progress).with(scope)
+          expect(delete_account_service).to_not have_received(:call).with(account1, any_args)
+          expect(delete_account_service).to_not have_received(:call).with(account2, any_args)
+        end
+
+        it 'displays success message with DRY RUN' do
+          expect { cli.cull }
+            .to output(
+              a_string_including('Visited 2 accounts, removed 0 (DRY RUN)')
+            ).to_stdout
+        end
+      end
+    end
+
+    context 'when DOMAINS are provided' do
+      let!(:account1) do
+        Fabricate(:account, username: 'charles', protocol: :activitypub, domain: 'example.com', uri: 'https://example.com/users/charles', last_webfingered_at: nil)
+      end
+      let!(:account2) do
+        Fabricate(:account, username: 'bob', protocol: :activitypub, domain: domain, uri: 'https://example.net/users/bob', last_webfingered_at: nil)
+      end
+      let(:domain) { 'example.net' }
+      let(:delete_account_service) { instance_double(DeleteAccountService) }
+      let(:scope) { Account.remote.where(protocol: :activitypub, domain: domain).partitioned }
+
+      before do
+        stub_request(:head, 'https://example.net/users/bob').to_return(status: 410)
+        allow(DeleteAccountService).to receive(:new).and_return(delete_account_service)
+        allow(delete_account_service).to receive(:call)
+        allow(cli).to receive(:parallelize_with_progress).and_yield(account2).and_return([2, 1])
+      end
+
+      it 'skips accounts from diffent domains' do
+        account1.update(updated_at: 10.days.ago)
+
+        cli.cull(domain)
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope)
+        expect(delete_account_service).to_not have_received(:call).with(account1, any_args)
+      end
+
+      it 'removes accounts from specified domain' do
+        account2.update(updated_at: 10.days.ago)
+
+        cli.cull(domain)
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope)
+        expect(delete_account_service).to have_received(:call).with(account2, any_args).once
+      end
+
+      it 'displays success message' do
+        expect { cli.cull(domain) }
+          .to output(
+            a_string_including('Visited 2 accounts, removed 1')
+          ).to_stdout
+      end
+    end
+  end
 end
