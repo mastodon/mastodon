@@ -273,10 +273,13 @@ class Status extends ImmutablePureComponent {
 
     if (signedIn) {
       if (askReplyConfirmation) {
-        dispatch(openModal('CONFIRM', {
-          message: intl.formatMessage(messages.replyMessage),
-          confirm: intl.formatMessage(messages.replyConfirm),
-          onConfirm: () => dispatch(replyCompose(status, this.context.router.history)),
+        dispatch(openModal({
+          modalType: 'CONFIRM',
+          modalProps: {
+            message: intl.formatMessage(messages.replyMessage),
+            confirm: intl.formatMessage(messages.replyConfirm),
+            onConfirm: () => dispatch(replyCompose(status, this.context.router.history)),
+          },
         }));
       } else {
         dispatch(replyCompose(status, this.context.router.history));
@@ -331,10 +334,13 @@ class Status extends ImmutablePureComponent {
     if (!deleteModal) {
       dispatch(deleteStatus(status.get('id'), history, withRedraft));
     } else {
-      dispatch(openModal('CONFIRM', {
-        message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
-        confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
-        onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
+      dispatch(openModal({
+        modalType: 'CONFIRM',
+        modalProps: {
+          message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
+          confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
+          onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
+        },
       }));
     }
   };
@@ -443,10 +449,13 @@ class Status extends ImmutablePureComponent {
   };
 
   handleBlockDomainClick = domain => {
-    this.props.dispatch(openModal('CONFIRM', {
-      message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.' values={{ domain: <strong>{domain}</strong> }} />,
-      confirm: this.props.intl.formatMessage(messages.blockDomainConfirm),
-      onConfirm: () => this.props.dispatch(blockDomain(domain)),
+    this.props.dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.' values={{ domain: <strong>{domain}</strong> }} />,
+        confirm: this.props.intl.formatMessage(messages.blockDomainConfirm),
+        onConfirm: () => this.props.dispatch(blockDomain(domain)),
+      },
     }));
   };
 

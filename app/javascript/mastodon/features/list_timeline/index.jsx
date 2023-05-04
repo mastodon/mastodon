@@ -121,17 +121,20 @@ class ListTimeline extends PureComponent {
     const { dispatch, columnId, intl } = this.props;
     const { id } = this.props.params;
 
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.deleteMessage),
-      confirm: intl.formatMessage(messages.deleteConfirm),
-      onConfirm: () => {
-        dispatch(deleteList(id));
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.deleteMessage),
+        confirm: intl.formatMessage(messages.deleteConfirm),
+        onConfirm: () => {
+          dispatch(deleteList(id));
 
-        if (columnId) {
-          dispatch(removeColumn(columnId));
-        } else {
-          this.context.router.history.push('/lists');
-        }
+          if (columnId) {
+            dispatch(removeColumn(columnId));
+          } else {
+            this.context.router.history.push('/lists');
+          }
+        },
       },
     }));
   };

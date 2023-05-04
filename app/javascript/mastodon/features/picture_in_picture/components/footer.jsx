@@ -74,10 +74,13 @@ class Footer extends ImmutablePureComponent {
 
     if (signedIn) {
       if (askReplyConfirmation) {
-        dispatch(openModal('CONFIRM', {
-          message: intl.formatMessage(messages.replyMessage),
-          confirm: intl.formatMessage(messages.replyConfirm),
-          onConfirm: this._performReply,
+        dispatch(openModal({
+          modalType: 'CONFIRM',
+          modalProps: {
+            message: intl.formatMessage(messages.replyMessage),
+            confirm: intl.formatMessage(messages.replyConfirm),
+            onConfirm: this._performReply,
+          },
         }));
       } else {
         this._performReply();
