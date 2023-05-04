@@ -78,10 +78,13 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onInteractionModal (account) {
-    dispatch(openModal('INTERACTION', {
-      type: 'follow',
-      accountId: account.get('id'),
-      url: account.get('url'),
+    dispatch(openModal({
+      modalType: 'INTERACTION',
+      modalProps: {
+        type: 'follow',
+        accountId: account.get('id'),
+        url: account.get('url'),
+      },
     }));
   },
 
