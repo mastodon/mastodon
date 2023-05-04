@@ -131,7 +131,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onOpenMedia (media, index, lang) {
-    dispatch(openModal('MEDIA', { media, index, lang }));
+    dispatch(openModal({
+      modalType: 'MEDIA',
+      modalProps: { media, index, lang },
+    }));
   },
 
   onOpenVideo (media, lang, options) {

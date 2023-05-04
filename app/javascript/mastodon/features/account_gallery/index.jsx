@@ -150,7 +150,10 @@ class AccountGallery extends ImmutablePureComponent {
       const media = attachment.getIn(['status', 'media_attachments']);
       const index = media.findIndex(x => x.get('id') === attachment.get('id'));
 
-      dispatch(openModal('MEDIA', { media, index, statusId, lang }));
+      dispatch(openModal({
+        modalType: 'MEDIA',
+        modalProps: { media, index, statusId, lang },
+      }));
     }
   };
 
