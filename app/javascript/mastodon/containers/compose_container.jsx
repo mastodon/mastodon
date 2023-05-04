@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
-import { store } from '../store/configureStore';
+import { store } from '../store';
 import { hydrateStore } from '../actions/store';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from '../locales';
