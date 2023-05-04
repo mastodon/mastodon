@@ -40,9 +40,9 @@ class Media extends Component {
     const { paused } = this.state;
 
     return (
-      <div title={title} onClick={this.handleMediaClick}>
+      <button title={title} onClick={this.handleMediaClick}>
         Media Component - {paused ? 'Paused' : 'Playing'}
-      </div>
+      </button>
     );
   }
 
