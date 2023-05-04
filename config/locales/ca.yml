@@ -72,7 +72,7 @@ ca:
       followers: Seguidors
       follows: Seguits
       header: Capçalera
-      inbox_url: URL de la safata d'entrada
+      inbox_url: Enllaç de la safata d'entrada
       invite_request_text: Motiu del registre
       invited_by: Convidat per
       ip: IP
@@ -139,7 +139,7 @@ ca:
         password_and_2fa: Contrasenya i 2FA
       sensitive: Sensible
       sensitized: marcar com a sensible
-      shared_inbox_url: URL de la safata d'entrada compartida
+      shared_inbox_url: Enllaç de la safata d'entrada compartida
       show:
         created_reports: Informes creats
         targeted_reports: Informes realitzats per altres
@@ -557,7 +557,7 @@ ca:
       enable: Activat
       enable_hint: Una vegada habilitat, el teu servidor es subscriurà a tots els tuts públics d'aquest relay i començarà a enviar-hi tots els tuts públics d'aquest servidor.
       enabled: Activat
-      inbox_url: URL del Relay
+      inbox_url: Enllaç del Relay
       pending: S'està esperant l'aprovació del relay
       save_and_enable: Desa i activa
       setup: Configura una connexió de relay
@@ -856,6 +856,9 @@ ca:
         disallow_account: Rebutja autor
         no_status_selected: No s'han canviat els tuts en tendència perquè cap ha estat seleccionat
         not_discoverable: L'autor no ha activat poder ser detectable
+        shared_by:
+          one: Compartida o afavorida una vegada
+          other: Compartida o afavorida %{friendly_count} vegades
         title: Tuts en tendència
       tags:
         current_score: Puntuació actual %{score}
@@ -1469,7 +1472,7 @@ ca:
     remove_selected_follows: Deixa de seguir els usuaris seleccionats
     status: Estat del compte
   remote_follow:
-    missing_resource: No s'ha pogut trobar l'URL de redirecció necessària per al compte
+    missing_resource: No s'ha pogut trobar l'enllaç de redirecció necessari per al compte
   reports:
     errors:
       invalid_rules: no fa referència a normes vàlides
