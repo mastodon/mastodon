@@ -191,7 +191,10 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   onOpenVideo (statusId, media, lang, options) {
-    dispatch(openModal('VIDEO', { statusId, media, lang, options }));
+    dispatch(openModal({
+      modalType: 'VIDEO',
+      modalProps: { statusId, media, lang, options },
+    }));
   },
 
   onBlock (status) {

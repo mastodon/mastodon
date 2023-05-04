@@ -359,7 +359,10 @@ class Status extends ImmutablePureComponent {
   };
 
   handleOpenVideo = (media, lang, options) => {
-    this.props.dispatch(openModal('VIDEO', { statusId: this.props.status.get('id'), media, lang, options }));
+    this.props.dispatch(openModal({
+      modalType: 'VIDEO',
+      modalProps: { statusId: this.props.status.get('id'), media, lang, options },
+    }));
   };
 
   handleHotkeyOpenMedia = e => {

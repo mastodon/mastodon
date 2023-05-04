@@ -143,7 +143,10 @@ class AccountGallery extends ImmutablePureComponent {
     const lang = attachment.getIn(['status', 'language']);
 
     if (attachment.get('type') === 'video') {
-      dispatch(openModal('VIDEO', { media: attachment, statusId, lang, options: { autoPlay: true } }));
+      dispatch(openModal({
+        modalType: 'VIDEO',
+        modalProps: { media: attachment, statusId, lang, options: { autoPlay: true } },
+      }));
     } else if (attachment.get('type') === 'audio') {
       dispatch(openModal('AUDIO', { media: attachment, statusId, lang, options: { autoPlay: true } }));
     } else {
