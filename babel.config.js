@@ -1,14 +1,10 @@
 module.exports = (api) => {
-  const env = api.env();
-
-  const reactOptions = {
-    development: false,
-  };
+  const isDev = api.env() === 'development';
 
   const envOptions = {
     loose: true,
     modules: false,
-    debug: false,
+    debug: isDev,
     include: [
       'proposal-numeric-separator',
     ],
@@ -17,7 +13,9 @@ module.exports = (api) => {
   const config = {
     presets: [
       '@babel/preset-typescript',
-      ['@babel/react', reactOptions],
+      ['@babel/react', {
+        development: isDev,
+      }],
       ['@babel/env', envOptions],
     ],
     plugins: [
@@ -25,20 +23,6 @@ module.exports = (api) => {
       'preval',
       '@babel/plugin-proposal-optional-chaining',
       '@babel/plugin-proposal-nullish-coalescing-operator',
-    ],
-    overrides: [
-      {
-        test: /tesseract\.js/,
-        presets: [
-          ['@babel/env', { ...envOptions, modules: 'commonjs' }],
-        ],
-      },
-    ],
-  };
-
-  switch (env) {
-  case 'production':
-    config.plugins.push(...[
       'lodash',
       [
         'transform-react-remove-prop-types',
@@ -59,16 +43,16 @@ module.exports = (api) => {
           useESModules: true,
         },
       ],
-    ]);
-    break;
-  case 'development':
-    reactOptions.development = true;
-    envOptions.debug = true;
-    break;
-  case 'test':
-    envOptions.modules = 'commonjs';
-    break;
-  }
+    ],
+    overrides: [
+      {
+        test: /tesseract\.js/,
+        presets: [
+          ['@babel/env', { ...envOptions, modules: 'commonjs' }],
+        ],
+      },
+    ],
+  };
 
   return config;
 };
