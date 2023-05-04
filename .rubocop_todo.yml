@@ -945,6 +945,30 @@ Rails/SkipsModelValidations:
     - 'spec/services/update_account_service_spec.rb'
 
 # Configuration parameters: Include.
+# Include: db/**/*.rb
+Rails/ThreeStateBooleanColumn:
+  Exclude:
+    - 'db/migrate/20160325130944_add_admin_to_users.rb'
+    - 'db/migrate/20161123093447_add_sensitive_to_statuses.rb'
+    - 'db/migrate/20170123203248_add_reject_media_to_domain_blocks.rb'
+    - 'db/migrate/20170127165745_add_devise_two_factor_to_users.rb'
+    - 'db/migrate/20170209184350_add_reply_to_statuses.rb'
+    - 'db/migrate/20170330163835_create_imports.rb'
+    - 'db/migrate/20170905165803_add_local_to_statuses.rb'
+    - 'db/migrate/20181203021853_add_discoverable_to_accounts.rb'
+    - 'db/migrate/20190509164208_add_by_moderator_to_tombstone.rb'
+    - 'db/migrate/20190805123746_add_capabilities_to_tags.rb'
+    - 'db/migrate/20191212163405_add_hide_collections_to_accounts.rb'
+    - 'db/migrate/20200309150742_add_forwarded_to_reports.rb'
+    - 'db/migrate/20210609202149_create_login_activities.rb'
+    - 'db/migrate/20210621221010_add_skip_sign_in_token_to_users.rb'
+    - 'db/migrate/20211031031021_create_preview_card_providers.rb'
+    - 'db/migrate/20211115032527_add_trendable_to_preview_cards.rb'
+    - 'db/migrate/20220202200743_add_trendable_to_accounts.rb'
+    - 'db/migrate/20220202200926_add_trendable_to_statuses.rb'
+    - 'db/migrate/20220303000827_add_ordered_media_attachment_ids_to_status_edits.rb'
+
+# Configuration parameters: Include.
 # Include: app/models/**/*.rb
 Rails/UniqueValidationWithoutIndex:
   Exclude:
@@ -1539,22 +1563,8 @@ Style/IfUnlessModifier:
 # Configuration parameters: InverseMethods, InverseBlocks.
 Style/InverseMethods:
   Exclude:
-    - 'app/controllers/concerns/signature_verification.rb'
-    - 'app/helpers/jsonld_helper.rb'
-    - 'app/lib/activitypub/activity/create.rb'
-    - 'app/lib/activitypub/activity/move.rb'
-    - 'app/lib/feed_manager.rb'
-    - 'app/lib/link_details_extractor.rb'
-    - 'app/models/concerns/attachmentable.rb'
-    - 'app/models/concerns/remotable.rb'
     - 'app/models/custom_filter.rb'
-    - 'app/models/webhook.rb'
-    - 'app/services/activitypub/process_status_update_service.rb'
-    - 'app/services/fetch_link_card_service.rb'
-    - 'app/services/search_service.rb'
     - 'app/services/update_account_service.rb'
-    - 'app/workers/web/push_notification_worker.rb'
-    - 'lib/paperclip/color_extractor.rb'
     - 'spec/controllers/activitypub/replies_controller_spec.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
