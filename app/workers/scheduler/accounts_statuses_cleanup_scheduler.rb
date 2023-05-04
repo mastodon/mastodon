@@ -79,6 +79,7 @@ class Scheduler::AccountsStatusesCleanupScheduler
       # and start back after the last processed account otherwise
       break if budget.zero? || (num_processed_accounts.zero? && !full_iteration)
 
+      full_iteration  = false unless first_iteration
       first_iteration = false
     end
   end
