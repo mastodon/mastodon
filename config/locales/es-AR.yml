@@ -1217,7 +1217,9 @@ es-AR:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> elemento que coincide con tu búsqueda está seleccionado."
       other: Todos los <strong>%{count}</strong> elementos que coinciden con tu búsqueda están seleccionados.
+    cancel: Cancelar
     changes_saved_msg: '¡Cambios guardados exitosamente!'
+    confirm: Confirmar
     copy: Copiar
     delete: Eliminar
     deselect: Deseleccionar todo
@@ -1233,15 +1235,51 @@ es-AR:
       other: '¡Falta algo! Por favor, revisá los %{count} errores abajo'
   imports:
     errors:
+      empty: Archivo CSV vacío
+      incompatible_type: Incompatible con el tipo de importación seleccionado
       invalid_csv_file: 'Archivo CSV no válido. Error: %{error}'
       over_rows_processing_limit: contiene más de %{count} filas
+      too_large: El archivo es demasiado grande
+    failures: Fallos
+    imported: Importadas
+    mismatched_types_warning: Parece que podrías haber seleccionado el tipo incorrecto para esta importación; por favor, volvé a verificarlo.
     modes:
       merge: Combinar
       merge_long: Mantener registros existentes y agregar nuevos
       overwrite: Sobrescribir
       overwrite_long: Reemplazar registros actuales con los nuevos
+    overwrite_preambles:
+      blocking_html: Estás a punto de <strong>reemplazar tu lista de bloqueos</strong> por hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      bookmarks_html: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{total_items} mensajes</strong> provenientes de <strong>%{filename}</strong>.
+      domain_blocking_html: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
+      following_html: Estás a punto de <strong>seguir</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong> y <strong>dejar de seguir a cualquier otra cuenta</strong>.
+      muting_html: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      bookmarks_html: Está a punto de agregar hasta <strong>%{total_items} mensajes</strong> provenientes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
+      domain_blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
+      following_html: Estás a punto de <strong>seguir</strong> hasta <strong>cuentas%{total_items}</strong> provenientes de <strong>%{filename}</strong>.
+      muting_html: Estás a punto de <strong>silenciar</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
     preface: Podés importar ciertos datos que exportaste desde otro servidor, como una lista de las cuentas que estás siguiendo o bloqueando.
+    recent_imports: Importaciones recientes
+    states:
+      finished: Finalizadas
+      in_progress: En progreso
+      scheduled: Programadas
+      unconfirmed: Sin confirmar
+    status: Estado
     success: Tus datos se subieron exitosamente y serán procesados en brevedad
+    time_started: Comenzada el
+    titles:
+      blocking: Importación de cuentas bloqueadas
+      bookmarks: Importación de marcadores
+      domain_blocking: Importación de dominios bloqueados
+      following: Importación de cuentas seguidas
+      muting: Importación de cuentas silenciadas
+    type: Importar tipo
+    type_groups:
+      constructive: Seguimientos y marcadores
+      destructive: Bloqueos y silencios
     types:
       blocking: Lista de bloqueados
       bookmarks: Marcadores
