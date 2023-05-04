@@ -2,6 +2,10 @@
 # This needs to be bullseye-slim because the Ruby image is built on bullseye-slim
 ARG NODE_VERSION="16.20-bullseye-slim"
 
+# Use those args to specify your own version flags & suffixes
+ARG MASTODON_VERSION_FLAGS=""
+ARG MASTODON_VERSION_SUFFIX=""
+
 FROM ghcr.io/moritzheiber/ruby-jemalloc:3.2.2-slim as ruby
 FROM node:${NODE_VERSION} as build
 
@@ -84,7 +88,9 @@ COPY --chown=mastodon:mastodon --from=build /opt/mastodon /opt/mastodon
 ENV RAILS_ENV="production" \
     NODE_ENV="production" \
     RAILS_SERVE_STATIC_FILES="true" \
-    BIND="0.0.0.0"
+    BIND="0.0.0.0" \
+    MASTODON_VERSION_FLAGS="${MASTODON_VERSION_FLAGS}" \
+    MASTODON_VERSION_SUFFIX="${MASTODON_VERSION_SUFFIX}"
 
 # Set the run user
 USER mastodon
