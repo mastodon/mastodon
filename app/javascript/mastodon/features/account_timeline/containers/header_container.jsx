@@ -153,8 +153,11 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onAddToList (account) {
-    dispatch(openModal('LIST_ADDER', {
-      accountId: account.get('id'),
+    dispatch(openModal({
+      modalType: 'LIST_ADDER',
+      modalProps: {
+        accountId: account.get('id'),
+      },
     }));
   },
 
