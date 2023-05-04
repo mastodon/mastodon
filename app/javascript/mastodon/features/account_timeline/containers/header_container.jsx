@@ -162,8 +162,11 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onChangeLanguages (account) {
-    dispatch(openModal('SUBSCRIBED_LANGUAGES', {
-      accountId: account.get('id'),
+    dispatch(openModal({
+      modalType: 'SUBSCRIBED_LANGUAGES',
+      modalProps: {
+        accountId: account.get('id'),
+      },
     }));
   },
 
