@@ -1196,7 +1196,7 @@
       following_html: Du er i ferd med å <strong>følge</strong> inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong>.
       muting_html: Du er i ferd med å <strong>dempe</strong> inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong>.
     preface: Du kan importere data om brukere du følger eller blokkerer til kontoen din på denne instansen med eksportfiler fra andre instanser.
-    recent_imports: Seneste importer
+    recent_imports: Siste importer
     states:
       finished: Fullført
       in_progress: Pågående
@@ -1211,9 +1211,10 @@
       domain_blocking: Importerer blokkerte domener
       following: Importerer fulgte kontoer
       muting: Importerer dempede kontoer
-    type: Importeringstype
+    type: Type import
     type_groups:
-      constructive: Følginger & Bokmerker
+      constructive: Følginger og bokmerker
+      destructive: Blokkeringer og dempinger
     types:
       blocking: Blokkeringsliste
       bookmarks: Bokmerker
