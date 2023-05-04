@@ -35,8 +35,8 @@ describe ApplicationController do
 
   before do
     routes.draw do
-      match via: [:get, :post], 'success' => 'anonymous#success'
-      match via: [:get, :post], 'signature_required' => 'anonymous#signature_required'
+      match :via => [:get, :post], 'success' => 'anonymous#success'
+      match :via => [:get, :post], 'signature_required' => 'anonymous#signature_required'
     end
   end
 

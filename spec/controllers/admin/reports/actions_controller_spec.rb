@@ -15,7 +15,7 @@ describe Admin::Reports::ActionsController do
     let(:report) { Fabricate(:report) }
 
     before do
-      post :preview, params: { report_id: report.id, action => '' }
+      post :preview, params: { :report_id => report.id, action => '' }
     end
 
     context 'when the action is "suspend"' do
