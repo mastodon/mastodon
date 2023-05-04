@@ -22,8 +22,8 @@ export default class ColumnBackButton extends React.PureComponent {
     if (onClick) {
       onClick();
     } 
-    // Check if there is pervious page in the app to go back to per https://stackoverflow.com/a/70532858/9703201
-    // When upgrading to V6, check location.key !== 'default' instead per https://github.com/remix-run/history/blob/main/docs/api-reference.md#location
+    // Check if there is a previous page in the app to go back to per https://stackoverflow.com/a/70532858/9703201
+    // When upgrading to V6, check `location.key !== 'default'` instead per https://github.com/remix-run/history/blob/main/docs/api-reference.md#location
     else if (router.location.key) {
       router.history.goBack();
     } else {
