@@ -2,10 +2,6 @@
 # This needs to be bullseye-slim because the Ruby image is built on bullseye-slim
 ARG NODE_VERSION="16.20-bullseye-slim"
 
-# Use those args to specify your own version flags & suffixes
-ARG MASTODON_VERSION_FLAGS=""
-ARG MASTODON_VERSION_SUFFIX=""
-
 FROM ghcr.io/moritzheiber/ruby-jemalloc:3.2.2-slim as ruby
 FROM node:${NODE_VERSION} as build
 
@@ -44,6 +40,10 @@ RUN apt-get update && \
     yarn cache clean
 
 FROM node:${NODE_VERSION}
+
+# Use those args to specify your own version flags & suffixes
+ARG MASTODON_VERSION_FLAGS=""
+ARG MASTODON_VERSION_SUFFIX=""
 
 ARG UID="991"
 ARG GID="991"
