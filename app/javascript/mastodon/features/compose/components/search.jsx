@@ -139,10 +139,6 @@ class Search extends PureComponent {
     this.setState({ expanded: false, selectedOption: -1 });
   };
 
-  findTarget = () => {
-    return this.searchForm;
-  };
-
   handleHashtagClick = () => {
     const { router } = this.context;
     const { value, onClickSearchResult } = this.props;
