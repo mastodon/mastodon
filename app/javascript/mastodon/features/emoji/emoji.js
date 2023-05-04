@@ -96,8 +96,7 @@ const emojifyTextNode = (node, customEmojis) => {
       const { filename, shortCode } = unicodeMapping[unicode_emoji];
       const title = shortCode ? `:${shortCode}:` : '';
 
-      
-      = document.createElement('picture');
+      replacement = document.createElement('picture');
       let source = document.createElement('source');
       source.setAttribute('media', '(prefers-color-scheme: dark)');
       source.setAttribute('srcset', `${assetHost}/emoji/${emojiFilenameInSystemDarkMode(filename)}.svg`);
