@@ -163,6 +163,7 @@ class UserRole < ApplicationRecord
 
   def in_permissions?(privilege)
     raise ArgumentError, "Unknown privilege: #{privilege}" unless FLAGS.key?(privilege)
+
     computed_permissions & FLAGS[privilege] == FLAGS[privilege]
   end
 
@@ -172,6 +173,7 @@ class UserRole < ApplicationRecord
 
   def validate_own_role_edition
     return unless defined?(@current_account) && @current_account.user_role.id == id
+
     errors.add(:permissions_as_keys, :own_role) if permissions_changed?
     errors.add(:position, :own_role) if position_changed?
   end

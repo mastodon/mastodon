@@ -188,7 +188,7 @@ class LinkDetailsExtractor
   end
 
   def language
-    valid_locale_or_nil(structured_data&.language || opengraph_tag('og:locale') || document.xpath('//html').map { |element| element['lang'] }.first)
+    valid_locale_or_nil(structured_data&.language || opengraph_tag('og:locale') || document.xpath('//html').pick('lang'))
   end
 
   def icon
@@ -220,38 +220,36 @@ class LinkDetailsExtractor
   end
 
   def link_tag(name)
-    document.xpath("//link[@rel=\"#{name}\"]").map { |link| link['href'] }.first
+    document.xpath("//link[@rel=\"#{name}\"]").pick('href')
   end
 
   def opengraph_tag(name)
-    document.xpath("//meta[@property=\"#{name}\" or @name=\"#{name}\"]").map { |meta| meta['content'] }.first
+    document.xpath("//meta[@property=\"#{name}\" or @name=\"#{name}\"]").pick('content')
   end
 
   def meta_tag(name)
-    document.xpath("//meta[@name=\"#{name}\"]").map { |meta| meta['content'] }.first
+    document.xpath("//meta[@name=\"#{name}\"]").pick('content')
   end
 
   def structured_data
-    @structured_data ||= begin
-      # Some publications have more than one JSON-LD definition on the page,
-      # and some of those definitions aren't valid JSON either, so we have
-      # to loop through here until we find something that is the right type
-      # and doesn't break
-      document.xpath('//script[@type="application/ld+json"]').filter_map do |element|
-        json_ld = element.content&.gsub(CDATA_JUNK_PATTERN, '')
+    # Some publications have more than one JSON-LD definition on the page,
+    # and some of those definitions aren't valid JSON either, so we have
+    # to loop through here until we find something that is the right type
+    # and doesn't break
+    @structured_data ||= document.xpath('//script[@type="application/ld+json"]').filter_map do |element|
+      json_ld = element.content&.gsub(CDATA_JUNK_PATTERN, '')
 
-        next if json_ld.blank?
+      next if json_ld.blank?
 
-        structured_data = StructuredData.new(html_entities.decode(json_ld))
+      structured_data = StructuredData.new(html_entities.decode(json_ld))
 
-        next unless structured_data.valid?
+      next unless structured_data.valid?
 
-        structured_data
-      rescue Oj::ParseError, EncodingError
-        Rails.logger.debug("Invalid JSON-LD in #{@original_url}")
-        next
-      end.first
-    end
+      structured_data
+    rescue Oj::ParseError, EncodingError
+      Rails.logger.debug { "Invalid JSON-LD in #{@original_url}" }
+      next
+    end.first
   end
 
   def document

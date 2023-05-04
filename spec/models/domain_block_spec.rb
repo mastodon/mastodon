@@ -1,12 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe DomainBlock, type: :model do
   describe 'validations' do
-    it 'has a valid fabricator' do
-      domain_block = Fabricate.build(:domain_block)
-      expect(domain_block).to be_valid
-    end
-
     it 'is invalid without a domain' do
       domain_block = Fabricate.build(:domain_block, domain: nil)
       domain_block.valid?
@@ -24,16 +21,16 @@ RSpec.describe DomainBlock, type: :model do
   describe '.blocked?' do
     it 'returns true if the domain is suspended' do
       Fabricate(:domain_block, domain: 'example.com', severity: :suspend)
-      expect(DomainBlock.blocked?('example.com')).to eq true
+      expect(DomainBlock.blocked?('example.com')).to be true
     end
 
     it 'returns false even if the domain is silenced' do
       Fabricate(:domain_block, domain: 'example.com', severity: :silence)
-      expect(DomainBlock.blocked?('example.com')).to eq false
+      expect(DomainBlock.blocked?('example.com')).to be false
     end
 
     it 'returns false if the domain is not suspended nor silenced' do
-      expect(DomainBlock.blocked?('example.com')).to eq false
+      expect(DomainBlock.blocked?('example.com')).to be false
     end
   end
 

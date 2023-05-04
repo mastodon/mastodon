@@ -74,9 +74,9 @@ describe('emoji', () => {
         .toEqual('<span class="invisible">😄<br>😴</span><picture><source media="(prefers-color-scheme: dark)" srcset="/emoji/1f607.svg"><img draggable="false" class="emojione" alt="😇" title=":innocent:" src="/emoji/1f607.svg"></picture>');
     });
 
-    it('skips the textual presentation VS15 character', () => {
+    it('does not emojify emojis with textual presentation VS15 character', () => {
       expect(emojify('✴︎')) // This is U+2734 EIGHT POINTED BLACK STAR then U+FE0E VARIATION SELECTOR-15
-        .toEqual('<picture><source media="(prefers-color-scheme: dark)" srcset="/emoji/2734_border.svg"><img draggable="false" class="emojione" alt="✴" title=":eight_pointed_black_star:" src="/emoji/2734_border.svg"></picture>');
+        .toEqual('✴︎');
     });
 
     it('does a simple emoji properly', () => {

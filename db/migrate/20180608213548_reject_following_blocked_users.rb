@@ -2,14 +2,14 @@ class RejectFollowingBlockedUsers < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def up
-    blocked_follows = Follow.find_by_sql(<<-SQL)
+    blocked_follows = Follow.find_by_sql(<<-SQL.squish)
       select f.* from follows f
       inner join blocks b on
         f.account_id = b.target_account_id and
         f.target_account_id = b.account_id
     SQL
 
-    domain_blocked_follows = Follow.find_by_sql(<<-SQL)
+    domain_blocked_follows = Follow.find_by_sql(<<-SQL.squish)
       select f.* from follows f
       inner join accounts following on f.account_id = following.id
       inner join account_domain_blocks b on

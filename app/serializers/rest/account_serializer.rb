@@ -16,6 +16,28 @@ class REST::AccountSerializer < ActiveModel::Serializer
   attribute :silenced, key: :limited, if: :silenced?
   attribute :noindex, if: :local?
 
+  attribute :memorial, if: :memorial?
+
+  class AccountDecorator < SimpleDelegator
+    def self.model_name
+      Account.model_name
+    end
+
+    def moved?
+      false
+    end
+  end
+
+  class RoleSerializer < ActiveModel::Serializer
+    attributes :id, :name, :color
+
+    def id
+      object.id.to_s
+    end
+  end
+
+  has_many :roles, serializer: RoleSerializer, if: :local?
+
   class FieldSerializer < ActiveModel::Serializer
     include FormattingHelper
 
@@ -85,7 +107,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def moved_to_account
-    object.suspended? ? nil : object.moved_to_account
+    object.suspended? ? nil : AccountDecorator.new(object.moved_to_account)
   end
 
   def emojis
@@ -104,13 +126,25 @@ class REST::AccountSerializer < ActiveModel::Serializer
     object.silenced?
   end
 
+  def memorial
+    object.memorial?
+  end
+
+  def roles
+    if object.suspended? || object.user.nil?
+      []
+    else
+      [object.user.role].compact.filter(&:highlighted?)
+    end
+  end
+
   def noindex
     object.user_prefers_noindex?
   end
 
-  delegate :suspended?, :silenced?, :local?, to: :object
+  delegate :suspended?, :silenced?, :local?, :memorial?, to: :object
 
   def moved_and_not_nested?
-    object.moved? && object.moved_to_account.moved_to_account_id.nil?
+    object.moved?
   end
 end

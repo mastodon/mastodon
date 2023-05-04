@@ -99,4 +99,4 @@ export default function announcementsReducer(state = initialState, action) {
   default:
     return state;
   }
-};
+}

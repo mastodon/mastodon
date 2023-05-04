@@ -1,6 +1,96 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe StatusesHelper, type: :helper do
+describe StatusesHelper do
+  describe 'status_text_summary' do
+    context 'with blank text' do
+      let(:status) { Status.new(spoiler_text: '') }
+
+      it 'returns immediately with nil' do
+        result = helper.status_text_summary(status)
+        expect(result).to be_nil
+      end
+    end
+
+    context 'with present text' do
+      let(:status) { Status.new(spoiler_text: 'SPOILERS!!!') }
+
+      it 'returns the content warning' do
+        result = helper.status_text_summary(status)
+        expect(result).to eq(I18n.t('statuses.content_warning', warning: 'SPOILERS!!!'))
+      end
+    end
+  end
+
+  def status_text_summary(status)
+    return if status.spoiler_text.blank?
+
+    I18n.t('statuses.content_warning', warning: status.spoiler_text)
+  end
+
+  describe 'link_to_newer' do
+    it 'returns a link to newer content' do
+      url = 'https://example.com'
+      result = helper.link_to_newer(url)
+
+      expect(result).to match('load-more')
+      expect(result).to match(I18n.t('statuses.show_newer'))
+    end
+  end
+
+  describe 'link_to_older' do
+    it 'returns a link to older content' do
+      url = 'https://example.com'
+      result = helper.link_to_older(url)
+
+      expect(result).to match('load-more')
+      expect(result).to match(I18n.t('statuses.show_older'))
+    end
+  end
+
+  describe 'fa_visibility_icon' do
+    context 'with a status that is public' do
+      let(:status) { Status.new(visibility: 'public') }
+
+      it 'returns the correct fa icon' do
+        result = helper.fa_visibility_icon(status)
+
+        expect(result).to match('fa-globe')
+      end
+    end
+
+    context 'with a status that is unlisted' do
+      let(:status) { Status.new(visibility: 'unlisted') }
+
+      it 'returns the correct fa icon' do
+        result = helper.fa_visibility_icon(status)
+
+        expect(result).to match('fa-unlock')
+      end
+    end
+
+    context 'with a status that is private' do
+      let(:status) { Status.new(visibility: 'private') }
+
+      it 'returns the correct fa icon' do
+        result = helper.fa_visibility_icon(status)
+
+        expect(result).to match('fa-lock')
+      end
+    end
+
+    context 'with a status that is direct' do
+      let(:status) { Status.new(visibility: 'direct') }
+
+      it 'returns the correct fa icon' do
+        result = helper.fa_visibility_icon(status)
+
+        expect(result).to match('fa-at')
+      end
+    end
+  end
+
   describe '#stream_link_target' do
     it 'returns nil if it is not an embedded view' do
       set_not_embedded_view

@@ -1,13 +1,16 @@
-ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+# frozen_string_literal: true
 
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../config/environment', __dir__)
+
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 
 require 'spec_helper'
 require 'rspec/rails'
 require 'webmock/rspec'
 require 'paperclip/matchers'
 require 'capybara/rspec'
+require 'chewy/rspec'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -32,18 +35,43 @@ Devise::Test::ControllerHelpers.module_eval do
   end
 end
 
+module SignedRequestHelpers
+  def get(path, headers: nil, sign_with: nil, **args)
+    return super path, headers: headers, **args if sign_with.nil?
+
+    headers ||= {}
+    headers['Date'] = Time.now.utc.httpdate
+    headers['Host'] = ENV.fetch('LOCAL_DOMAIN')
+    signed_headers = headers.merge('(request-target)' => "get #{path}").slice('(request-target)', 'Host', 'Date')
+
+    key_id = ActivityPub::TagManager.instance.key_uri_for(sign_with)
+    keypair = sign_with.keypair
+    signed_string = signed_headers.map { |key, value| "#{key.downcase}: #{value}" }.join("\n")
+    signature = Base64.strict_encode64(keypair.sign(OpenSSL::Digest.new('SHA256'), signed_string))
+
+    headers['Signature'] = "keyId=\"#{key_id}\",algorithm=\"rsa-sha256\",headers=\"#{signed_headers.keys.join(' ').downcase}\",signature=\"#{signature}\""
+
+    super path, headers: headers, **args
+  end
+end
+
 RSpec.configure do |config|
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = "#{Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true
   config.order = 'random'
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :helper
   config.include Devise::Test::ControllerHelpers, type: :view
+  config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Paperclip::Shoulda::Matchers
   config.include ActiveSupport::Testing::TimeHelpers
+  config.include Chewy::Rspec::Helpers
   config.include Redisable
+  config.include SignedRequestHelpers, type: :request
 
   config.before :each, type: :feature do
     https = ENV['LOCAL_HTTPS'] == 'true'
@@ -71,11 +99,11 @@ end
 RSpec::Matchers.define_negated_matcher :not_change, :change
 
 def request_fixture(name)
-  File.read(Rails.root.join('spec', 'fixtures', 'requests', name))
+  Rails.root.join('spec', 'fixtures', 'requests', name).read
 end
 
 def attachment_fixture(name)
-  File.open(Rails.root.join('spec', 'fixtures', 'files', name))
+  Rails.root.join('spec', 'fixtures', 'files', name).open
 end
 
 def stub_jsonld_contexts!

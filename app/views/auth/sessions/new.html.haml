@@ -6,6 +6,8 @@
 
 - unless omniauth_only?
   = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    %h1.title= t('auth.sign_in.title', domain: site_hostname)
+    %p.lead= t('auth.sign_in.preamble_html', domain: site_hostname)
     .fields-group
       - if use_seamless_external_login?
         = f.input :email, autofocus: true, wrapper: :with_label, label: t('simple_form.labels.defaults.username_or_email'), input_html: { 'aria-label': t('simple_form.labels.defaults.username_or_email') }, hint: false
@@ -17,7 +19,7 @@
     .actions
       = f.button :button, t('auth.login'), type: :submit
 
-- if devise_mapping.omniauthable? and resource_class.omniauth_providers.any?
+- if devise_mapping.omniauthable? && resource_class.omniauth_providers.any?
   .simple_form.alternative-login
     %h4= omniauth_only? ? t('auth.log_in_with') : t('auth.or_log_in_with')
 

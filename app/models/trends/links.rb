@@ -113,13 +113,11 @@ class Trends::Links < Trends::Base
       max_score = preview_card.max_score
       max_score = 0 if max_time.nil? || max_time < (at_time - options[:max_score_cooldown])
 
-      score = begin
-        if expected > observed || observed < options[:threshold]
-          0
-        else
-          ((observed - expected)**2) / expected
-        end
-      end
+      score = if expected > observed || observed < options[:threshold]
+                0
+              else
+                ((observed - expected)**2) / expected
+              end
 
       if score > max_score
         max_score = score
@@ -129,13 +127,11 @@ class Trends::Links < Trends::Base
         preview_card.update_columns(max_score: max_score, max_score_at: max_time)
       end
 
-      decaying_score = begin
-        if max_score.zero? || !valid_locale?(preview_card.language)
-          0
-        else
-          max_score * (0.5**((at_time.to_f - max_time.to_f) / options[:max_score_halflife].to_f))
-        end
-      end
+      decaying_score = if max_score.zero? || !valid_locale?(preview_card.language)
+                         0
+                       else
+                         max_score * (0.5**((at_time.to_f - max_time.to_f) / options[:max_score_halflife].to_f))
+                       end
 
       [decaying_score, preview_card]
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 keypair     = OpenSSL::PKey::RSA.new(2048)
 public_key  = keypair.public_key.to_pem
 private_key = keypair.to_pem

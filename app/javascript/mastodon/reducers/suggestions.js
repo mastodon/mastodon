@@ -34,4 +34,4 @@ export default function suggestionsReducer(state = initialState, action) {
   default:
     return state;
   }
-};
+}

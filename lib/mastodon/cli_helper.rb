@@ -42,17 +42,17 @@ module Mastodon
 
         items.each do |item|
           futures << Concurrent::Future.execute(executor: pool) do
-            begin
-              if !progress.total.nil? && progress.progress + 1 > progress.total
-                # The number of items has changed between start and now,
-                # since there is no good way to predict the final count from
-                # here, just change the progress bar to an indeterminate one
+            if !progress.total.nil? && progress.progress + 1 > progress.total
+              # The number of items has changed between start and now,
+              # since there is no good way to predict the final count from
+              # here, just change the progress bar to an indeterminate one
 
-                progress.total = nil
-              end
+              progress.total = nil
+            end
 
-              progress.log("Processing #{item.id}") if options[:verbose]
+            progress.log("Processing #{item.id}") if options[:verbose]
 
+            Chewy.strategy(:mastodon) do
               result = ActiveRecord::Base.connection_pool.with_connection do
                 yield(item)
               ensure
@@ -61,11 +61,11 @@ module Mastodon
               end
 
               aggregate.increment(result) if result.is_a?(Integer)
-            rescue => e
-              progress.log pastel.red("Error processing #{item.id}: #{e}")
-            ensure
-              progress.increment
             end
+          rescue => e
+            progress.log pastel.red("Error processing #{item.id}: #{e}")
+          ensure
+            progress.increment
           end
         end
 

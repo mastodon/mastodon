@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Fabricator('Admin::ActionLog') do
-  account nil
-  action  "MyString"
+  account
+  action  'MyString'
   target  nil
 end

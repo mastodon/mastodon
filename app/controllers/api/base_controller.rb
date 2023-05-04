@@ -6,15 +6,36 @@ class Api::BaseController < ApplicationController
 
   include RateLimitHeaders
   include AccessTokenTrackingConcern
+  include ApiCachingConcern
 
-  skip_before_action :store_current_location
   skip_before_action :require_functional!, unless: :whitelist_mode?
 
   before_action :require_authenticated_user!, if: :disallow_unauthenticated_api_access?
   before_action :require_not_suspended!
-  before_action :set_cache_headers
+
+  vary_by 'Authorization'
 
   protect_from_forgery with: :null_session
+
+  content_security_policy do |p|
+    # Set every directive that does not have a fallback
+    p.default_src :none
+    p.frame_ancestors :none
+    p.form_action :none
+
+    # Disable every directive with a fallback to cut on response size
+    p.base_uri false
+    p.font_src false
+    p.img_src false
+    p.style_src false
+    p.media_src false
+    p.frame_src false
+    p.manifest_src false
+    p.connect_src false
+    p.script_src false
+    p.child_src false
+    p.worker_src false
+  end
 
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
     render json: { error: e.to_s }, status: 422
@@ -126,10 +147,6 @@ class Api::BaseController < ApplicationController
 
   def authorize_if_got_token!(*scopes)
     doorkeeper_authorize!(*scopes) if doorkeeper_token
-  end
-
-  def set_cache_headers
-    response.headers['Cache-Control'] = 'private, no-store'
   end
 
   def disallow_unauthenticated_api_access?

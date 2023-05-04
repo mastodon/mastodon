@@ -40,6 +40,7 @@ class FavouriteService < BaseService
   def bump_potential_friendship(account, status)
     ActivityTracker.increment('activity:interactions')
     return if account.following?(status.account_id)
+
     PotentialFriendshipTracker.record(account.id, status.account_id, :favourite)
   end
 

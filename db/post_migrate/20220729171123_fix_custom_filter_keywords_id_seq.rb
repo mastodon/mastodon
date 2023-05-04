@@ -5,7 +5,7 @@ class FixCustomFilterKeywordsIdSeq < ActiveRecord::Migration[6.1]
 
   def up
     # 20220613110711 manually inserts items with set `id` in the database, but
-    # we also need to bump the sequence number, otherwise 
+    # we also need to bump the sequence number, otherwise
     safety_assured do
       execute <<-SQL.squish
         BEGIN;

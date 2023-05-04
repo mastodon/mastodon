@@ -116,4 +116,44 @@ RSpec.describe AccountPolicy do
       end
     end
   end
+
+  permissions :review? do
+    context 'admin' do
+      it 'permits' do
+        expect(subject).to permit(admin)
+      end
+    end
+
+    context 'not admin' do
+      it 'denies' do
+        expect(subject).to_not permit(john)
+      end
+    end
+  end
+
+  permissions :destroy? do
+    context 'admin' do
+      context 'with a temporarily suspended account' do
+        before { allow(alice).to receive(:suspended_temporarily?).and_return(true) }
+
+        it 'permits' do
+          expect(subject).to permit(admin, alice)
+        end
+      end
+
+      context 'with a not temporarily suspended account' do
+        before { allow(alice).to receive(:suspended_temporarily?).and_return(false) }
+
+        it 'denies' do
+          expect(subject).to_not permit(admin, alice)
+        end
+      end
+    end
+
+    context 'not admin' do
+      it 'denies' do
+        expect(subject).to_not permit(john, alice)
+      end
+    end
+  end
 end

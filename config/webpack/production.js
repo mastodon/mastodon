@@ -34,6 +34,12 @@ module.exports = merge(sharedConfig, {
       cache: true,
       test: /\.(js|css|html|json|ico|svg|eot|otf|ttf|map)$/,
     }),
+    new CompressionPlugin({
+      filename: '[path][base].br[query]',
+      algorithm: 'brotliCompress',
+      cache: true,
+      test: /\.(js|css|html|json|ico|svg|eot|otf|ttf|map)$/,
+    }),
     new BundleAnalyzerPlugin({ // generates report.html
       analyzerMode: 'static',
       openAnalyzer: false,

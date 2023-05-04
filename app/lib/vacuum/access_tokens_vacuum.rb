@@ -9,10 +9,10 @@ class Vacuum::AccessTokensVacuum
   private
 
   def vacuum_revoked_access_tokens!
-    Doorkeeper::AccessToken.where('revoked_at IS NOT NULL').where('revoked_at < NOW()').delete_all
+    Doorkeeper::AccessToken.where.not(revoked_at: nil).where('revoked_at < NOW()').delete_all
   end
 
   def vacuum_revoked_access_grants!
-    Doorkeeper::AccessGrant.where('revoked_at IS NOT NULL').where('revoked_at < NOW()').delete_all
+    Doorkeeper::AccessGrant.where.not(revoked_at: nil).where('revoked_at < NOW()').delete_all
   end
 end

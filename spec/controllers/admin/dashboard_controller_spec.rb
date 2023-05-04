@@ -8,10 +8,10 @@ describe Admin::DashboardController, type: :controller do
   describe 'GET #index' do
     before do
       allow(Admin::SystemCheck).to receive(:perform).and_return([
-        Admin::SystemCheck::Message.new(:database_schema_check),
-        Admin::SystemCheck::Message.new(:rules_check, nil, admin_rules_path),
-        Admin::SystemCheck::Message.new(:sidekiq_process_check, 'foo, bar'),
-      ])
+                                                                  Admin::SystemCheck::Message.new(:database_schema_check),
+                                                                  Admin::SystemCheck::Message.new(:rules_check, nil, admin_rules_path),
+                                                                  Admin::SystemCheck::Message.new(:sidekiq_process_check, 'foo, bar'),
+                                                                ])
       sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin'))
     end
 

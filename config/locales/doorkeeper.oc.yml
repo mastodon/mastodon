@@ -122,14 +122,14 @@ oc:
         admin/accounts: Administracion de comptes
         admin/all: Totas las foncions administrativas
         admin/reports: Administracion de senhalaments
-        all: Tot
+        all: Accès complèt a vòstre compte Mastodon
         blocks: Blocatges
         bookmarks: Marcadors
         conversations: Conversacions
         crypto: Chiframent del cap a la fin
         favourites: Favorits
         filters: Filtres
-        follow: Relacions
+        follow: Seguidors, Silenciats e blocats
         follows: Abonaments
         lists: Listas
         media: Fichièrs junts
@@ -149,6 +149,11 @@ oc:
     scopes:
       admin:read: lectura de totas las donadas del servidor
       admin:read:accounts: lectura de las informacions sensiblas dels comptes
+      admin:read:canonical_email_blocks: legir las informacions sensiblas de totes los blocs d’e-mails canonics
+      admin:read:domain_allows: legir las informacions sensiblas de totes los domenis autorizats
+      admin:read:domain_blocks: legir las informacions sensiblas de totes los domenis blocats
+      admin:read:email_domain_blocks: legir las informacions sensiblas de totes los blocs de domenis d’e-mail
+      admin:read:ip_blocks: legir las informacions sensiblas de totes los blocats d’IP
       admin:read:reports: lectura de las informacions sensiblas dels senhalaments e dels comptes senhalats
       admin:write: modificacion de las donadas del servidor
       admin:write:accounts: realizacion d’accions de moderacion suls comptes

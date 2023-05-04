@@ -2,14 +2,14 @@
 pt-PT:
   devise:
     confirmations:
-      confirmed: O teu endereço de e-mail foi confirmado com sucesso.
+      confirmed: O seu endereço correio electrónico foi correctamente confirmado.
       send_instructions: Vais receber um e-mail com as instruções para confirmar o teu endereço de e-mail dentro de alguns minutos. Por favor, verifica a caixa de spam se não recebeu o e-mail.
       send_paranoid_instructions: Se o teu endereço de e-mail já existir na nossa base de dados, vais receber um e-mail com as instruções de confirmação dentro de alguns minutos. Por favor, verifica a caixa de spam se não recebeu o e-mail.
     failure:
       already_authenticated: A tua sessão já está aberta.
       inactive: A tua conta ainda não está ativada.
       invalid: "%{authentication_keys} ou palavra-passe inválida."
-      last_attempt: Tens mais uma tentativa antes de a tua conta ser bloqueada.
+      last_attempt: Tem só mais uma tentativa antes da sua conta ser bloqueada.
       locked: A tua conta está bloqueada.
       not_found_in_database: "%{authentication_keys} ou palavra-passe inválida."
       pending: A sua conta está ainda a aguardar revisão.
@@ -21,8 +21,8 @@ pt-PT:
         action: Verificar o endereço de e-mail
         action_with_app: Confirmar e regressar a %{app}
         explanation: Criou uma conta em %{host} com este endereço de e-mail. Está a um clique de ativá-la. Se não foi você que fez este registo, por favor ignore esta mensagem.
-        explanation_when_pending: Você solicitou um convite para %{host} com este endereço de e-mail. Logo que confirme o seu endereço de e-mail, iremos rever a sua inscrição. Pode iniciar sessão para alterar os seus dados ou eliminar a sua conta, mas não poderá aceder à maioria das funções até que a sua conta seja aprovada. Se a sua inscrição for rejeitada, os seus dados serão eliminados, pelo que não será necessária qualquer ação adicional da sua parte. Se não solicitou este convite, por favor, ignore este e-mail.
-        extra_html: Por favor leia <a href="%{terms_path}">as regras da instância</a> e os <a href="%{policy_path}"> nossos termos de serviço</a>.
+        explanation_when_pending: Candidatou-se com um convite para %{host} com este endereço de e-mail. Logo que confirme o seu endereço de e-mail, iremos rever a sua candidatura. Pode iniciar sessão para alterar os seus dados ou eliminar a sua conta, mas não poderá aceder à maioria das funções até que a sua conta seja aprovada. Se a sua inscrição for indeferida, os seus dados serão eliminados, pelo que não será necessária qualquer ação adicional da sua parte. Se não solicitou este convite, queira ignorar este e-mail.
+        extra_html: Por favor leia as <a href="%{terms_path}">regras da instância</a> e os <a href="%{policy_path}">nossos termos de serviço</a>.
         subject: 'Mastodon: Instruções de confirmação %{instance}'
         title: Verificar o endereço de e-mail
       email_changed:
@@ -33,18 +33,18 @@ pt-PT:
       password_change:
         explanation: A palavra-passe da tua conta foi alterada.
         extra: Se não alterou a sua palavra-passe, é possível que alguém tenha conseguido aceder à sua conta. Por favor altere a sua palavra-passe imediatamente ou entre em contacto com um administrador da instância se tiver ficado sem acesso à sua conta.
-        subject: 'Mastodon: Nova palavra-passe'
+        subject: 'Mastodon: palavra-passe alterada'
         title: Palavra-passe alterada
       reconfirmation_instructions:
         explanation: Confirme o seu novo endereço para alterar o e-mail.
-        extra: Se esta mudança não foi iniciada por si, por favor ignore este e-mail. O endereço de e-mail para a sua conta do Mastodon não irá mudar enquanto não aceder ao link acima.
+        extra: Se esta mudança não foi iniciada por si, queira ignorar este e-mail. O endereço de correio electrónico da sua conta do Mastodon não irá mudar enquanto não aceder à hiperligação acima.
         subject: 'Mastodon: Confirmação de e-mail %{instance}'
         title: Validar o endereço de e-mail
       reset_password_instructions:
         action: Alterar palavra-passe
         explanation: Pediste a alteração da palavra-passe da tua conta.
-        extra: Se não fez este pedido, por favor ignore este e-mail. A sua palavra-passe não irá mudar se não aceder ao link acima e criar uma nova.
-        subject: 'Mastodon: Instruções para alterar a palavra-passe'
+        extra: Se não fez este pedido, queira ignorar este e-mail. A sua palavra-passe não irá mudar se não aceder à hiperligação acima e criar uma nova.
+        subject: 'Mastodon: Instruções para redefinir a palavra-passe'
         title: Solicitar nova palavra-passe
       two_factor_disabled:
         explanation: A autenticação em duas etapas para a sua conta foi desativada. É agora possível aceder apenas com o seu endereço de e-mail e palavra-passe.
@@ -70,7 +70,7 @@ pt-PT:
           subject: 'Mastodon: Chave de segurança eliminada'
           title: Uma das suas chaves de segurança foi eliminada
       webauthn_disabled:
-        explanation: A autenticação com chave de segurança foi desativada para sua conta. É agora possível aceder à sua conta utilizando apenas o token gerado pelo aplicativo TOTP pareado.
+        explanation: A autenticação com chave de segurança foi desativada para a sua conta. Tornou-se possível aceder à sua conta usando apenas o token gerado pela aplicação TOTP emparelhada.
         subject: 'Mastodon: Autenticação com chave de segurança desativada'
         title: Chaves de segurança desativadas
       webauthn_enabled:
@@ -79,30 +79,30 @@ pt-PT:
         title: Chaves de segurança ativadas
     omniauth_callbacks:
       failure: Não foi possível autenticar %{kind} porque "%{reason}".
-      success: Autenticado com sucesso na conta %{kind}.
+      success: Autenticado correctamente na conta %{kind}.
     passwords:
-      no_token: Não pode aceder a esta página se não vier através do link enviado por e-mail para alteração da sua palavra-passe. Se usou esse link para chegar aqui, por favor verifique que o endereço URL atual é igual ao que foi enviado no e-mail.
+      no_token: Não pode aceder a esta página se não vier através da ligação enviada por e-mail para alteração da sua palavra-passe. Se de facto usou essa ligação para chegar até aqui, queira garantir de que usou o endereço URL completo.
       send_instructions: Vai receber um e-mail com instruções para alterar a palavra-passe dentro de alguns minutos.
-      send_paranoid_instructions: Se o seu endereço de e-mail existir na nossa base de dados, vai receber um link para recuperar a palavra-passe dentro de alguns minutos.
+      send_paranoid_instructions: Se o seu endereço de e-mail existir na nossa base de dados, dentro de alguns minutos irá receber uma ligação para recuperar a palavra-passe.
       updated: A tua palavra-passe foi alterada. Estás agora autenticado na tua conta.
       updated_not_active: A tua palavra-passe foi alterada.
     registrations:
       destroyed: Adeus! A tua conta foi cancelada. Esperamos ver-te em breve.
-      signed_up: Bem-vindo! A tua conta foi registada com sucesso.
+      signed_up: Seja bem-vindo! A sua conta foi correctamente registada.
       signed_up_but_inactive: A tua conta foi registada. No entanto ainda não está activa.
-      signed_up_but_locked: A sua conta foi registada com sucesso. No entanto, não pudemos iniciar a sua sessão porque a conta está bloqueada.
-      signed_up_but_pending: Uma mensagem com um link de confirmação foi enviada para o seu endereço de e-mail. Depois de clicar no link, iremos rever a sua inscrição. Será notificado se a sua conta for aprovada.
-      signed_up_but_unconfirmed: Uma mensagem com um link de confirmação foi enviada para o seu e-mail. Por favor utilize esse link para ativar a sua conta.
-      update_needs_confirmation: Alteraste o teu endereço de e-mail ou palavra-passe, mas é necessário confirmar essa alteração. Por favor vá ao seu e-mail e utilize o link que lhe enviámos.
-      updated: A tua conta foi actualizada com sucesso.
+      signed_up_but_locked: A sua conta foi correctamente registada. Contudo, não pudemos iniciar sessão porque a sua conta está bloqueada.
+      signed_up_but_pending: Foi enviada uma hiperligação de confirmação para o seu correio electrónico. Só depois de clicar na hiperligação avaliaremos a sua inscrição. Será notificado caso a sua conta seja aprovada.
+      signed_up_but_unconfirmed: Foi enviada uma hiperligação de confirmação para o seu correio electrónico. Queira usar essa hiperligação para activar a sua conta.
+      update_needs_confirmation: Solicitou uma alteração da informação da sua conta, mas para tal é necessário confirmá-la. Queira ver o seu correio electrónico e seguir a hiperligação para a confirmar. Se não encontrar essa mensagem, veja se está na pasta de lixo electrónico.
+      updated: A sua conta foi correctamente actualizada.
     sessions:
       already_signed_out: Sessão encerrada.
       signed_in: Sessão iniciada.
       signed_out: Sessão encerrada.
     unlocks:
-      send_instructions: Vai receber um e-mail com instruções para desbloquear a sua conta dentro de alguns minutos.
-      send_paranoid_instructions: Se a sua conta existe, vais receber um e-mail com instruções a detalhar como a desbloquear dentro de alguns minutos.
-      unlocked: A sua conta foi desbloqueada com sucessos. Por favor, inicie uma nova sessão para continuar.
+      send_instructions: Dentro de alguns momentos, irá receber um e-mail com instruções para desbloquear a sua conta. Consulte a sua pasta de lixo electrónico se não o encontrar.
+      send_paranoid_instructions: Se a sua conta existir, dentro de momentos irá receber um e-mail com instruções para a desbloquear. Consulte a sua pasta de lixo electrónico se não o encontrar.
+      unlocked: A sua conta foi correctamente desbloqueada. Queira iniciar uma nova sessão para continuar.
   errors:
     messages:
       already_confirmed: já confirmado, por favor tente iniciar sessão
@@ -111,5 +111,5 @@ pt-PT:
       not_found: não encontrado
       not_locked: não estava bloqueada
       not_saved:
-        one: '1 erro impediu este %{resource} de ser guardado:'
+        one: 'Um erro impediu este %{resource} de ser guardado:'
         other: "%{count} erros impediram este %{resource} de ser guardado:"

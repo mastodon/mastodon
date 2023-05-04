@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Export do
   let(:account) { Fabricate(:account) }
   let(:target_accounts) do
-    [ {}, { username: 'one', domain: 'local.host' } ].map(&method(:Fabricate).curry(2).call(:account))
+    [{}, { username: 'one', domain: 'local.host' }].map(&method(:Fabricate).curry(2).call(:account))
   end
 
   describe 'to_csv' do
     it 'returns a csv of the blocked accounts' do
-      target_accounts.each(&account.method(:block!))
+      target_accounts.each { |target_account| account.block!(target_account) }
 
       export = Export.new(account).to_blocked_accounts_csv
       results = export.strip.split
@@ -18,7 +20,7 @@ describe Export do
     end
 
     it 'returns a csv of the muted accounts' do
-      target_accounts.each(&account.method(:mute!))
+      target_accounts.each { |target_account| account.mute!(target_account) }
 
       export = Export.new(account).to_muted_accounts_csv
       results = export.strip.split("\n")
@@ -29,7 +31,7 @@ describe Export do
     end
 
     it 'returns a csv of the following accounts' do
-      target_accounts.each(&account.method(:follow!))
+      target_accounts.each { |target_account| account.follow!(target_account) }
 
       export = Export.new(account).to_following_accounts_csv
       results = export.strip.split("\n")
@@ -49,17 +51,17 @@ describe Export do
 
   describe 'total_follows' do
     it 'returns the total number of the followed accounts' do
-      target_accounts.each(&account.method(:follow!))
+      target_accounts.each { |target_account| account.follow!(target_account) }
       expect(Export.new(account.reload).total_follows).to eq 2
     end
 
     it 'returns the total number of the blocked accounts' do
-      target_accounts.each(&account.method(:block!))
+      target_accounts.each { |target_account| account.block!(target_account) }
       expect(Export.new(account.reload).total_blocks).to eq 2
     end
 
     it 'returns the total number of the muted accounts' do
-      target_accounts.each(&account.method(:mute!))
+      target_accounts.each { |target_account| account.mute!(target_account) }
       expect(Export.new(account.reload).total_mutes).to eq 2
     end
   end

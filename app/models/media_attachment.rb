@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: media_attachments
@@ -33,16 +34,16 @@ class MediaAttachment < ApplicationRecord
 
   include Attachmentable
 
-  enum type: [:image, :gifv, :video, :unknown, :audio]
-  enum processing: [:queued, :in_progress, :complete, :failed], _prefix: true
+  enum type: { :image => 0, :gifv => 1, :video => 2, :unknown => 3, :audio => 4 }
+  enum processing: { :queued => 0, :in_progress => 1, :complete => 2, :failed => 3 }, _prefix: true
 
   MAX_DESCRIPTION_LENGTH = 1_500
 
-  IMAGE_LIMIT = 10.megabytes
-  VIDEO_LIMIT = 40.megabytes
+  IMAGE_LIMIT = 16.megabytes
+  VIDEO_LIMIT = 99.megabytes
 
-  MAX_VIDEO_MATRIX_LIMIT = 2_304_000 # 1920x1200px
-  MAX_VIDEO_FRAME_RATE   = 60
+  MAX_VIDEO_MATRIX_LIMIT = 8_294_400 # 3840x2160px
+  MAX_VIDEO_FRAME_RATE   = 120
 
   IMAGE_FILE_EXTENSIONS = %w(.jpg .jpeg .png .gif .webp .heic .heif .avif).freeze
   VIDEO_FILE_EXTENSIONS = %w(.webm .mp4 .m4v .mov).freeze
@@ -68,7 +69,7 @@ class MediaAttachment < ApplicationRecord
 
   IMAGE_STYLES = {
     original: {
-      pixels: 2_073_600, # 1920x1080px
+      pixels: 8_294_400, # 3840x2160px
       file_geometry_parser: FastGeometryParser,
     }.freeze,
 
@@ -210,6 +211,8 @@ class MediaAttachment < ApplicationRecord
 
   default_scope { order(id: :asc) }
 
+  attr_accessor :skip_download
+
   def local?
     remote_url.blank?
   end
@@ -268,11 +271,11 @@ class MediaAttachment < ApplicationRecord
     delay_processing? && attachment_name == :file
   end
 
-  after_commit :enqueue_processing, on: :create
-  after_commit :reset_parent_cache, on: :update
-
   before_create :set_unknown_type
   before_create :set_processing
+
+  after_commit :enqueue_processing, on: :create
+  after_commit :reset_parent_cache, on: :update
 
   after_post_process :set_meta
 
@@ -370,7 +373,7 @@ class MediaAttachment < ApplicationRecord
     return {} if width.nil?
 
     {
-      width:  width,
+      width: width,
       height: height,
       size: "#{width}x#{height}",
       aspect: width.to_f / height,

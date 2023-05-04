@@ -19,7 +19,7 @@ class Webhooks::DeliveryWorker
   private
 
   def perform_request
-    request = Request.new(:post, @webhook.url, body: @body)
+    request = Request.new(:post, @webhook.url, body: @body, allow_local: true)
 
     request.add_headers(
       'Content-Type' => 'application/json',
