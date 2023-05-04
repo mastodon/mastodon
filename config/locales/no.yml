@@ -1152,7 +1152,9 @@
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> element som matcher søket ditt er valgt."
       other: Alle <strong>%{count}</strong> elementer som matcher søket velges.
+    cancel: Avbryt
     changes_saved_msg: Vellykket lagring av endringer!
+    confirm: Bekreft
     copy: Kopier
     delete: Slett
     deselect: Fjern all merking
@@ -1168,15 +1170,50 @@
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
   imports:
     errors:
+      empty: Tom CSV-fil
+      incompatible_type: Ikke kompatibel med den valgte importtypen
       invalid_csv_file: 'Ugyldig CSV-fil. Feil: %{error}'
       over_rows_processing_limit: inneholder flere enn %{count} rader
+      too_large: Filen er for stor
+    failures: Feil
+    imported: Importert
+    mismatched_types_warning: Det ser ut til at du har valgt feil importtype, vennligst dobbeltsjekk.
     modes:
       merge: Slå sammen
       merge_long: Behold eksisterende og legg til nye
       overwrite: Overskriv
       overwrite_long: Erstatt gjeldende med de nye
+    overwrite_preambles:
+      blocking_html: Du er i ferd med å <strong>erstatte din blokkeringsliste</strong> med inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong>.
+      bookmarks_html: Du er i ferd med å <strong>erstatte dine bokmerker</strong> med inntil <strong>%{total_items} innlegg</strong> fra <strong>%{filename}</strong>.
+      domain_blocking_html: Du er i ferd med å <strong>erstatte din domene-blokkeringsliste</strong> med inntil <strong>%{total_items} domener</strong> fra <strong>%{filename}</strong>.
+      following_html: Du er i ferd med å <strong>følge</strong> inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong> og <strong>slutte å følge alle andre</strong>.
+      muting_html: Du er i ferd med å <strong>erstatte listen over dempede kontoer</strong> med inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Du er i ferd med å <strong>blokkere</strong> inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong>.
+      bookmarks_html: Du er i ferd med å legge til inntil <strong>%{total_items} innlegg</strong> fra <strong>%{filename}</strong> til dine <strong>bokmerker</strong>.
+      domain_blocking_html: Du er i ferd med å <strong>blokkere</strong> inntil <strong>%{total_items} domener</strong> fra <strong>%{filename}</strong>.
+      following_html: Du er i ferd med å <strong>følge</strong> inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong>.
+      muting_html: Du er i ferd med å <strong>dempe</strong> inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong>.
     preface: Du kan importere data om brukere du følger eller blokkerer til kontoen din på denne instansen med eksportfiler fra andre instanser.
+    recent_imports: Seneste importer
+    states:
+      finished: Fullført
+      in_progress: Pågående
+      scheduled: Planlagt
+      unconfirmed: Ubekreftet
+    status: Status
     success: Dine data ble mottatt og vil bli behandlet så fort som mulig
+    time_started: Startet
+    titles:
+      blocking: Importerer blokkerte kontoer
+      bookmarks: Importerer bokmerker
+      domain_blocking: Importerer blokkerte domener
+      following: Importerer fulgte kontoer
+      muting: Importerer dempede kontoer
+    type: Importeringstype
+    type_groups:
+      constructive: Følginger & Bokmerker
     types:
       blocking: Blokkeringsliste
       bookmarks: Bokmerker
