@@ -34,10 +34,9 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
     end
 
     context 'with signature from example.com' do
-      subject(:body) { body_as_json }
-
       subject(:response) { get :show, params: { account_username: account.username } }
 
+      let(:body) { body_as_json }
       let(:remote_account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/instance') }
 
       it 'returns http success' do

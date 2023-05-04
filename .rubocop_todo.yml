@@ -732,17 +732,6 @@ RSpec/MultipleExpectations:
 RSpec/MultipleMemoizedHelpers:
   Max: 21
 
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/MultipleSubjects:
-  Exclude:
-    - 'spec/controllers/activitypub/collections_controller_spec.rb'
-    - 'spec/controllers/activitypub/followers_synchronizations_controller_spec.rb'
-    - 'spec/controllers/activitypub/outboxes_controller_spec.rb'
-    - 'spec/controllers/api/web/embeds_controller_spec.rb'
-    - 'spec/controllers/emojis_controller_spec.rb'
-    - 'spec/controllers/follower_accounts_controller_spec.rb'
-    - 'spec/controllers/following_accounts_controller_spec.rb'
-
 # Configuration parameters: AllowedGroups.
 RSpec/NestedGroups:
   Max: 6
