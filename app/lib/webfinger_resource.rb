@@ -11,6 +11,8 @@ class WebfingerResource
 
   def username
     case resource
+    when Rails.configuration.x.local_domain
+      Rails.configuration.x.local_domain
     when /\Ahttps?/i
       username_from_url
     when /@/

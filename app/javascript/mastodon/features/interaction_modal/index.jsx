@@ -1,95 +1,253 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import React from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
+import { throttle, escapeRegExp } from 'lodash';
+
 import { openModal, closeModal } from 'mastodon/actions/modal';
+import api from 'mastodon/api';
+import Button from 'mastodon/components/button';
 import { Icon }  from 'mastodon/components/icon';
 import { registrationsOpen } from 'mastodon/initial_state';
 
+const messages = defineMessages({
+  loginPrompt: { id: 'interaction_modal.login.prompt', defaultMessage: 'Domain of your home server, e.g. mastodon.social' },
+});
+
 const mapStateToProps = (state, { accountId }) => ({
   displayNameHtml: state.getIn(['accounts', accountId, 'display_name_html']),
-  signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], null) || '/auth/sign_up',
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSignupClick() {
-    dispatch(closeModal({
-      modalType: undefined,
-      ignoreFocus: false,
-    }));
-    dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' }));
+    dispatch(closeModal());
+    dispatch(openModal('CLOSED_REGISTRATIONS'));
   },
 });
 
-class Copypaste extends PureComponent {
+const PERSISTENCE_KEY = 'mastodon_home';
+
+const isValidDomain = value => {
+  const url = new URL('https:///path');
+  url.hostname = value;
+  return url.hostname === value;
+};
+
+const valueToDomain = value => {
+  // If the user uses a URL to their profile page or server
+  if (/^https?:\/\//.test(value)) {
+    try {
+      return (new URL(value)).host;
+    } catch {
+      return '';
+    }
+  // If the user writes their full handle including username
+  } else if (value.includes('@')) {
+    const segments = value.split('@');
+
+    if (segments.length === 2) {
+      return segments[1];
+    } else {
+      return '';
+    }
+  }
+
+  return value;
+};
+
+class LoginForm extends React.PureComponent {
 
   static propTypes = {
-    value: PropTypes.string,
+    resourceUrl: PropTypes.string,
+    intl: PropTypes.object.isRequired,
   };
 
   state = {
-    copied: false,
+    value: localStorage ? (localStorage.getItem(PERSISTENCE_KEY) || '') : '',
+    expanded: false,
+    selectedOption: -1,
+    isLoading: false,
+    isSubmitting: false,
+    error: false,
+    options: [],
   };
 
   setRef = c => {
     this.input = c;
   };
 
-  handleInputClick = () => {
-    this.setState({ copied: false });
-    this.input.focus();
-    this.input.select();
-    this.input.setSelectionRange(0, this.input.value.length);
+  handleChange = ({ target }) => {
+    this.setState({ value: target.value, isLoading: true, error: false }, () => this._loadOptions());
   };
 
-  handleButtonClick = () => {
-    const { value } = this.props;
-    navigator.clipboard.writeText(value);
-    this.input.blur();
-    this.setState({ copied: true });
-    this.timeout = setTimeout(() => this.setState({ copied: false }), 700);
+  handleSubmit = () => {
+    const { value } = this.state;
+    const { resourceUrl } = this.props;
+
+    const domain = valueToDomain(value);
+
+    if (!isValidDomain(domain)) {
+      this.setState({ error: true });
+      return;
+    }
+
+    if (localStorage) {
+      localStorage.setItem(PERSISTENCE_KEY, domain);
+    }
+
+    const fallbackUrl = `https://${domain}/authorize_interaction?uri={uri}`;
+
+    this.setState({ isSubmitting: true });
+
+    api().get(`https://${domain}/.well-known/webfinger`, { params: { resource: domain } }).then(({ data }) => {
+      const template = data.links.find(link => link.rel === 'http://ostatus.org/schema/1.0/subscribe')?.template;
+      window.location.href = (template || fallbackUrl).replace('{uri}', encodeURIComponent(resourceUrl));
+    }).catch(() => {
+      this.setState({ isSubmitting: false });
+      window.location.href = fallbackUrl.replace('{uri}', encodeURIComponent(resourceUrl));
+    });
   };
 
-  componentWillUnmount () {
-    if (this.timeout) clearTimeout(this.timeout);
-  }
+  handleFocus = () => {
+    this.setState({ expanded: true });
+  };
+
+  handleBlur = () => {
+    this.setState({ expanded: false });
+  };
+
+  handleKeyDown = (e) => {
+    const { options, selectedOption } = this.state;
+
+    switch(e.key) {
+    case 'ArrowDown':
+      e.preventDefault();
+
+      if (options.length > 0) {
+        this.setState({ selectedOption: Math.min(selectedOption + 1, options.length - 1) });
+      }
+
+      break;
+    case 'ArrowUp':
+      e.preventDefault();
+
+      if (options.length > 0) {
+        this.setState({ selectedOption: Math.max(selectedOption - 1, -1) });
+      }
+
+      break;
+    case 'Enter':
+      e.preventDefault();
+
+      if (selectedOption === -1) {
+        this.handleSubmit();
+      } else if (options.length > 0) {
+        this.setState({ value: options[selectedOption], error: false }, () => this.handleSubmit());
+      }
+
+      break;
+    }
+  };
+
+  handleOptionClick = e => {
+    const index  = Number(e.currentTarget.getAttribute('data-index'));
+    const option = this.state.options[index];
+
+    e.preventDefault();
+    this.setState({ selectedOption: index, value: option, error: false }, () => this.handleSubmit());
+  };
+
+  _loadOptions = throttle(() => {
+    const { value } = this.state;
+    const domain = valueToDomain(value);
+
+    if (domain.trim().length === 0) {
+      this.setState({ options: [], isLoading: false, error: value.trim().length > 0 });
+      return;
+    }
+
+    api().get('/api/v1/peers/search', { params: { q: domain } }).then(({ data }) => {
+      if (!data) {
+        data = [];
+      }
+
+      if (domain.includes('.') && !data.includes(domain) && isValidDomain(domain)) {
+        data.unshift(domain);
+      }
+
+      this.setState({ options: data, isLoading: false });
+    }).catch(() => {
+      this.setState({ isLoading: false });
+    });
+  }, 200, { leading: true, trailing: true });
 
   render () {
-    const { value } = this.props;
-    const { copied } = this.state;
+    const { intl } = this.props;
+    const { value, expanded, options, selectedOption, error, isSubmitting } = this.state;
+    const domain = valueToDomain(value).trim();
+    const domainRegExp = new RegExp(`(${escapeRegExp(domain)})`, 'gi');
+    const hasPopOut = domain.length > 0 && options.length > 0;
 
     return (
-      <div className={classNames('copypaste', { copied })}>
-        <input
-          type='text'
-          ref={this.setRef}
-          value={value}
-          readOnly
-          onClick={this.handleInputClick}
-        />
+      <div className={classNames('interaction-modal__login', { focused: expanded, expanded: hasPopOut, invalid: error })}>
+        <div className='interaction-modal__login__input'>
+          <input
+            ref={this.setRef}
+            type='text'
+            value={value}
+            placeholder={intl.formatMessage(messages.loginPrompt)}
+            aria-label={intl.formatMessage(messages.loginPrompt)}
+            autoFocus
+            onChange={this.handleChange}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+            onKeyDown={this.handleKeyDown}
+          />
 
-        <button className='button' onClick={this.handleButtonClick}>
-          {copied ? <FormattedMessage id='copypaste.copied' defaultMessage='Copied' /> : <FormattedMessage id='copypaste.copy' defaultMessage='Copy' />}
-        </button>
+          <Button onClick={this.handleSubmit} disabled={isSubmitting}><FormattedMessage id='interaction_modal.login.action' defaultMessage='Take me home' /></Button>
+        </div>
+
+        {hasPopOut && (
+          <div className='search__popout'>
+            <div className='search__popout__menu'>
+              {options.map((option, i) => (
+                <button key={option} onMouseDown={this.handleOptionClick} data-index={i} className={classNames('search__popout__menu__item', { selected: selectedOption === i })}>
+                  {option.split(domainRegExp).map((part, i) => (
+                    part.toLowerCase() === domain.toLowerCase() ? (
+                      <mark key={i}>
+                        {part}
+                      </mark>
+                    ) : (
+                      <span key={i}>
+                        {part}
+                      </span>
+                    )
+                  ))}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     );
   }
 
 }
 
-class InteractionModal extends PureComponent {
+const IntlLoginForm = injectIntl(LoginForm);
+
+class InteractionModal extends React.PureComponent {
 
   static propTypes = {
     displayNameHtml: PropTypes.string,
     url: PropTypes.string,
     type: PropTypes.oneOf(['reply', 'reblog', 'favourite', 'follow']),
     onSignupClick: PropTypes.func.isRequired,
-    signupUrl: PropTypes.string.isRequired,
   };
 
   handleSignupClick = () => {
@@ -97,7 +255,7 @@ class InteractionModal extends PureComponent {
   };
 
   render () {
-    const { url, type, displayNameHtml, signupUrl } = this.props;
+    const { url, type, displayNameHtml } = this.props;
 
     const name = <bdi dangerouslySetInnerHTML={{ __html: displayNameHtml }} />;
 
@@ -130,13 +288,13 @@ class InteractionModal extends PureComponent {
 
     if (registrationsOpen) {
       signupButton = (
-        <a href={signupUrl} className='button button--block button-tertiary'>
+        <a href='/auth/sign_up' className='link-button'>
           <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
         </a>
       );
     } else {
       signupButton = (
-        <button className='button button--block button-tertiary' onClick={this.handleSignupClick}>
+        <button className='link-button' onClick={this.handleSignupClick}>
           <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
         </button>
       );
@@ -146,22 +304,12 @@ class InteractionModal extends PureComponent {
       <div className='modal-root__modal interaction-modal'>
         <div className='interaction-modal__lead'>
           <h3><span className='interaction-modal__icon'>{icon}</span> {title}</h3>
-          <p>{actionDescription} <FormattedMessage id='interaction_modal.preamble' defaultMessage="Since Mastodon is decentralized, you can use your existing account hosted by another Mastodon server or compatible platform if you don't have an account on this one." /></p>
+          <p>{actionDescription} <strong><FormattedMessage id='interaction_modal.sign_in' defaultMessage='You are not signed in. Where is your account hosted?' /></strong> <FormattedMessage id='interaction_modal.sign_in_hint' defaultMessage="Tip: It's the second half of your username." /></p>
         </div>
 
-        <div className='interaction-modal__choices'>
-          <div className='interaction-modal__choices__choice'>
-            <h3><FormattedMessage id='interaction_modal.on_this_server' defaultMessage='On this server' /></h3>
-            <a href='/auth/sign_in' className='button button--block'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' /></a>
-            {signupButton}
-          </div>
+        <IntlLoginForm resourceUrl={url} />
 
-          <div className='interaction-modal__choices__choice'>
-            <h3><FormattedMessage id='interaction_modal.on_another_server' defaultMessage='On a different server' /></h3>
-            <p><FormattedMessage id='interaction_modal.other_server_instructions' defaultMessage='Copy and paste this URL into the search field of your favorite Mastodon app or the web interface of your Mastodon server.' /></p>
-            <Copypaste value={url} />
-          </div>
-        </div>
+        <p><FormattedMessage id='interaction_modal.no_account_yet' defaultMessage='Not on Mastodon?' /> {signupButton}</p>
       </div>
     );
   }
