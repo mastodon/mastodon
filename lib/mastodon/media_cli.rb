@@ -9,6 +9,8 @@ module Mastodon
     include ActionView::Helpers::NumberHelper
     include CLIHelper
 
+    VALID_PATH_SEGMENTS_SIZE = [7, 10].freeze
+
     def self.exit_on_failure?
       true
     end
@@ -133,7 +135,7 @@ module Mastodon
             path_segments = object.key.split('/')
             path_segments.delete('cache')
 
-            unless [7, 10].include?(path_segments.size)
+            unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
               progress.log(pastel.yellow("Unrecognized file found: #{object.key}"))
               next
             end
@@ -177,7 +179,7 @@ module Mastodon
           path_segments = key.split(File::SEPARATOR)
           path_segments.delete('cache')
 
-          unless [7, 10].include?(path_segments.size)
+          unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
             progress.log(pastel.yellow("Unrecognized file found: #{key}"))
             next
           end
@@ -310,7 +312,7 @@ module Mastodon
       path_segments = path.split('/')[2..]
       path_segments.delete('cache')
 
-      unless [7, 10].include?(path_segments.size)
+      unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
         say('Not a media URL', :red)
         exit(1)
       end
@@ -363,7 +365,7 @@ module Mastodon
         segments = object.key.split('/')
         segments.delete('cache')
 
-        next unless [7, 10].include?(segments.size)
+        next unless VALID_PATH_SEGMENTS_SIZE.include?(segments.size)
 
         model_name = segments.first.classify
         record_id  = segments[2..-2].join.to_i

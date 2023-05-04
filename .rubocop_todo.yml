@@ -275,21 +275,6 @@ Naming/VariableNumber:
     - 'spec/models/user_spec.rb'
     - 'spec/services/activitypub/fetch_featured_collection_service_spec.rb'
 
-# Configuration parameters: MinSize.
-Performance/CollectionLiteralInLoop:
-  Exclude:
-    - 'app/models/admin/appeal_filter.rb'
-    - 'app/models/admin/status_filter.rb'
-    - 'app/models/relationship_filter.rb'
-    - 'app/models/trends/preview_card_filter.rb'
-    - 'app/models/trends/status_filter.rb'
-    - 'app/presenters/status_relationships_presenter.rb'
-    - 'app/services/fetch_resource_service.rb'
-    - 'app/services/suspend_account_service.rb'
-    - 'app/services/unsuspend_account_service.rb'
-    - 'config/deploy.rb'
-    - 'lib/mastodon/media_cli.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Performance/MapCompact:
   Exclude:
