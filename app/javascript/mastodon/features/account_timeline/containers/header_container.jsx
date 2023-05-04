@@ -156,9 +156,12 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onOpenAvatar (account) {
-    dispatch(openModal('IMAGE', {
-      src: account.get('avatar'),
-      alt: account.get('acct'),
+    dispatch(openModal({
+      modalType: 'IMAGE',
+      modalProps: {
+        src: account.get('avatar'),
+        alt: account.get('acct'),
+      },
     }));
   },
 
