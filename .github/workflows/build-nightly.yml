@@ -44,7 +44,7 @@ jobs:
       - name: Generate version suffix
         id: version_vars
         run: |
-          echo mastodon_version_suffix=\"+nightly-$(date +'%Y%m%d')\" >> $GITHUB_OUTPUT
+          echo mastodon_version_suffix=+nightly-$(date +'%Y%m%d') >> $GITHUB_OUTPUT
 
       - uses: docker/build-push-action@v4
         with:
