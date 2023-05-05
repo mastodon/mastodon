@@ -15,7 +15,6 @@ import classNames from 'classnames';
 import IconWithBadge from 'mastodon/components/icon_with_badge';
 import NotSignedInIndicator from 'mastodon/components/not_signed_in_indicator';
 import { Helmet } from 'react-helmet';
-import refreshFeed from '../../hoc/refresh_feed';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -174,4 +173,4 @@ class HomeTimeline extends React.PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(refreshFeed(HomeTimeline)));
+export default connect(mapStateToProps)(injectIntl(HomeTimeline));

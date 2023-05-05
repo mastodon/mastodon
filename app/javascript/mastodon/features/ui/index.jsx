@@ -94,6 +94,7 @@ const keyMap = {
   moveDown: ['down', 'j'],
   moveUp: ['up', 'k'],
   back: 'backspace',
+  refreshFeed: '.',
   goToHome: 'g h',
   goToNotifications: 'g n',
   goToLocal: 'g l',
@@ -479,6 +480,24 @@ class UI extends React.PureComponent {
     }
   };
 
+  handleHotkeyRefreshFeed = () => {
+    const handleKeyDown = (event) => {
+      if (event.key === '.' && !event.ctrlKey && !event.shiftKey && !event.altKey && !event.metaKey) {
+        event.preventDefault();
+        const firstArticle = document.querySelector('article');
+        if (firstArticle) {
+          firstArticle.scrollIntoView();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+
+  };
+
   setHotkeysRef = c => {
     this.hotkeys = c;
   };
@@ -551,6 +570,7 @@ class UI extends React.PureComponent {
       toggleComposeSpoilers: this.handleHotkeyToggleComposeSpoilers,
       focusColumn: this.handleHotkeyFocusColumn,
       back: this.handleHotkeyBack,
+      refreshFeed: this.handleHotkeyRefreshFeed,
       goToHome: this.handleHotkeyGoToHome,
       goToNotifications: this.handleHotkeyGoToNotifications,
       goToLocal: this.handleHotkeyGoToLocal,

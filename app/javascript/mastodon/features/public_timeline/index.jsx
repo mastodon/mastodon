@@ -11,7 +11,6 @@ import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectPublicStream } from '../../actions/streaming';
 import { Helmet } from 'react-helmet';
 import DismissableBanner from 'mastodon/components/dismissable_banner';
-import refreshFeed from '../../hoc/refresh_feed';
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Federated timeline' },
@@ -160,4 +159,4 @@ class PublicTimeline extends React.PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(refreshFeed(PublicTimeline)));
+export default connect(mapStateToProps)(injectIntl(PublicTimeline));

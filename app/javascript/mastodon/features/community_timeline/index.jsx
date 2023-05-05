@@ -12,7 +12,6 @@ import { connectCommunityStream } from '../../actions/streaming';
 import { Helmet } from 'react-helmet';
 import { domain } from 'mastodon/initial_state';
 import DismissableBanner from 'mastodon/components/dismissable_banner';
-import refreshFeed from '../../hoc/refresh_feed';
 
 const messages = defineMessages({
   title: { id: 'column.community', defaultMessage: 'Local timeline' },
@@ -158,4 +157,4 @@ class CommunityTimeline extends React.PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(refreshFeed(CommunityTimeline)));
+export default connect(mapStateToProps)(injectIntl(CommunityTimeline));
