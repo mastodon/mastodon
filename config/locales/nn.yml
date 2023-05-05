@@ -351,6 +351,12 @@ nn:
       pending_appeals_html:
         one: "<strong>%{count}</strong> ventande ankar"
         other: "<strong>%{count}</strong> ventande klagar"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> ventande rapportar"
+        other: "<strong>%{count}</strong> ventande rapportar"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> ventande emneknaggar"
+        other: "<strong>%{count}</strong> ventande emneknaggar"
       pending_users_html:
         one: "<strong>%{count}</strong> ventande brukarar"
         other: "<strong>%{count}</strong> ventande brukarar"
@@ -1180,6 +1186,9 @@ nn:
       empty: Du har ingen filtre.
       expires_in: Går ut om %{distance}
       expires_on: Går ut %{date}
+      keywords:
+        one: "%{count} stikkord"
+        other: "%{count} stikkord"
       title: Filter
     new:
       save: Lagre nytt filter
@@ -1535,6 +1544,9 @@ nn:
       image:
         one: "%{count} bilete"
         other: "%{count} bilete"
+      video:
+        one: "%{count} video"
+        other: "%{count} videoar"
     boosted_from_html: Framheva av %{acct_link}
     content_warning: 'Innhaldsåtvaring: %{warning}'
     default_language: Samme språk som brukergrensesnittet
@@ -1552,6 +1564,9 @@ nn:
       ownership: Du kan ikkje festa andre sine tut
       reblog: Ei framheving kan ikkje festast
     poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} folk"
       total_votes:
         one: "%{count} røyst"
         other: "%{count} røyster"
@@ -1590,7 +1605,7 @@ nn:
     keep_self_bookmark: Behald bokmerka innlegg
     keep_self_bookmark_hint: Sletter ikkje dine eigne innlegg om du har bokmerka dei
     keep_self_fav: Behald innlegg som favoritt
-    keep_self_fav_hint: Sletter ikke dine egne innlegg hvis du har favorittmarkert de
+    keep_self_fav_hint: Slettar ikkje dine eigne innlegg viss du har favorittmerkt dei
     min_age:
       '1209600': 2 veker
       '15778476': 6 månader
@@ -1601,8 +1616,8 @@ nn:
       '63113904': 2 år
       '7889238': 3 månader
     min_age_label: Aldersterskel
-    min_favs: Behold innlegg som er favorittmarkert av minst
-    min_favs_hint: Sletter ikke noen av dine innlegg som har mottatt minst dette antall favorittmarkeringer. La stå tom for å slette innlegg uavhengig av antall favorittmarkeringer
+    min_favs: Behald innlegg som er favorittmerkte minst
+    min_favs_hint: Slettar ingen av inlegga dine som har fått minst så mange favorittmerke. La stå tomt for å sletta innlegg uansett kor mange favorittmerke dei har fått
     min_reblogs: Behold innlegg fremhevet av minst
     min_reblogs_hint: Sletter ikke noen av dine innlegg som har blitt fremhevet minst dette antall ganger. La stå tom for å slette innlegg uavhengig av antall fremhevinger
   stream_entries:
@@ -1702,13 +1717,13 @@ nn:
       title: Velkomen om bord, %{name}!
   users:
     follow_limit_reached: Du kan ikkje fylgja fleire enn %{limit} folk
-    go_to_sso_account_settings: Gå til din identitetsleverandørs kontoinnstillinger
+    go_to_sso_account_settings: Gå til kontoinnstillingane hjå identitetsleverandøren din
     invalid_otp_token: Ugyldig tostegskode
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
     seamless_external_login: Du er logga inn gjennom eit eksternt reiskap, so passord og e-postinstillingar er ikkje tilgjengelege.
     signed_in_as: 'Logga inn som:'
   verification:
-    explanation_html: 'Du kan <strong>bekrefte at du selv eier lenkene i din profilmetadata</strong>. For å gjøre det, må det tillenkede nettstedet inneholde en lenke som fører tilbake til Mastodon-profilen din. Etter å ha laget den lenken må du kanskje komme tilbake hit og lagre profilen på ny, for at verifisering skal kunne gjennomføres. Lenken tilbake <strong>må</strong> ha en <code>rel="me"</code>-attributt. Tekstinnholdet til lenken er irrelevant. Her er et eksempel:'
+    explanation_html: 'Du kan <strong>stadfesta at du sjølv eig lenkene du har lagt inn i profilen din</strong>. For å gjera det, må nettstaden du lenka til innehalda ei lenke som fører tilbake til Mastodon-profilen din. Etter å ha laga lenka, må du kanskje koma tilbake hit og lagra profilen på ny, slik at profilen blir godkjent. Lenka tilbake <strong>må</strong> innehalda <code>rel="me"</code>. Tekstinnhaldet i lenka spelar inga rolle. Her er eit døme:'
     verification: Stadfesting
   webauthn_credentials:
     add: Legg til ny sikkerhetsnøkkel
