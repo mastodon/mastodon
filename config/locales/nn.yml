@@ -1014,10 +1014,13 @@ nn:
       email_below_hint_html: Sjekk søppelpostmappa di, eller be om ein ny. Du kan endra epostadressa di dersom ho er feil.
       email_settings_hint_html: Klikk lenka me sende deg for å stadfesta %{email}. Me sit her og ventar.
       link_not_received: Fekk du ikkje lenka?
+      new_confirmation_instructions_sent: Du burde få ein ny epost med stadfestingslenke innan nokre minutt!
+      title: Sjekk innboksen din
     sign_in:
       preamble_html: Logg inn med brukaropplysningar for <strong>%{domain}</strong>. Dersom kontoen din er registrert på ein annan tenar vil du ikkje kunne logga inn her.
       title: Logg inn på %{domain}
     sign_up:
+      manual_review: Når du lagar ein konto på %{domain}, vil moderatorane våre gå gjennom påmeldinga di manuelt. For å hjelpa oss med påmeldinga di, er det fint om du skriv litt om deg sjølv og kvifor du vil ha ein konto på %{domain}.
       preamble: Med en konto på denne Mastodon-tjeneren vil du kunne følge andre personer på nettverket, uansett hvor kontoen deres holder til.
       title: La oss få deg satt i gang på %{domain}.
     status:
@@ -1190,7 +1193,9 @@ nn:
         title: Filtrerte innlegg
   generic:
     all: Alle
+    cancel: Avbryt
     changes_saved_msg: Alle endringane vart lagra!
+    confirm: Stadfest
     copy: Kopier
     delete: Slett
     deselect: Vel ingen
@@ -1203,15 +1208,51 @@ nn:
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
   imports:
     errors:
+      empty: Tom CSV-fil
+      incompatible_type: Ikkje kompatibel med importtypen du valde
       invalid_csv_file: 'Ugyldig CSV-fil. Feil: %{error}'
       over_rows_processing_limit: inneholder flere enn %{count} rader
+      too_large: Fila er for stor
+    failures: Feil
+    imported: Importert
+    mismatched_types_warning: Det ser ut som du har valt feil type for denne importen. Sjekk ein gong til.
     modes:
       merge: Set saman
       merge_long: Hald på eksisterande data og legg til nye
       overwrite: Skriv over
       overwrite_long: Byt ut dei noverande oppføringane med dei nye
+    overwrite_preambles:
+      blocking_html: Du skal til å <strong>byta ut blokkeringslista di</strong> med opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
+      bookmarks_html: Du skal til å <strong>byta ut bokmerka dine</strong> med opp til <strong>%{total_items} innlegg</strong> frå <strong>%{filename}</strong>.
+      domain_blocking_html: Du skal til å <strong>byta ut domeneblokkeringslista di</strong> med opp til <strong>%{total_items} domene</strong> frå <strong>%{filename}</strong>.
+      following_html: Du skal til å <strong>fylgja</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong> og <strong>slutta å fylgja alle andre</strong>.
+      muting_html: Du skal til å <strong>byta ut lista di over dempa brukarkontoar</strong> med opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Du skal til å <strong>blokkera</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
+      bookmarks_html: Du skal til å leggja til opp til <strong>%{total_items} innlegg</strong> frå <strong>%{filename}</strong> til <strong>bokmerka dine</strong>.
+      domain_blocking_html: Du skal til å <strong>blokkera</strong> opp til <strong>%{total_items} domene</strong> frå <strong>%{filename}</strong>.
+      following_html: Du skal til å <strong>fylgja</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
+      muting_html: Du skal til å <strong>dempa</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
     preface: Du kan henta inn data som du har eksportert frå ein annan tenar, som t.d. ei liste over folka du fylgjer eller blokkerer.
+    recent_imports: Siste importar
+    states:
+      finished: Ferdig
+      in_progress: Pågår
+      scheduled: Planlagt
+      unconfirmed: Ikkje stadfesta
+    status: Status
     success: Dataa dine vart lasta opp og vert no handsama så fort som mogeleg
+    time_started: Starta
+    titles:
+      blocking: Importerer blokkerte brukarkontoar
+      bookmarks: Importerer bokmerke
+      domain_blocking: Importerer blokkerte domene
+      following: Importerer fylgde brukarkontoar
+      muting: Importerer dempa brukarkontoar
+    type: Type import
+    type_groups:
+      constructive: Fylgjer og bokmerke
+      destructive: Blokkeringar og dempingar
     types:
       blocking: Blokkeringsliste
       bookmarks: Bokmerker
@@ -1306,8 +1347,8 @@ nn:
       sign_up:
         subject: "%{name} registrerte seg"
     favourite:
-      body: 'Innlegget ditt ble favorittmarkert av %{name}:'
-      subject: "%{name} favorittmarkerte innlegget ditt"
+      body: '%{name} favorittmerkte innlegget ditt:'
+      subject: "%{name} favorittmerkte innlegget ditt"
       title: Ny favoritt
     follow:
       body: "%{name} fylgjer deg!"
@@ -1534,7 +1575,7 @@ nn:
     enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor
     exceptions: Unntak
     explanation: Siden sletting av innlegg er en krevende operasjon, blir dette gjort sakte over tid når tjeneren ellers ikke er opptatt. Av denne grunn kan det hende at innleggene dine slettes først en stund etter at de har nådd aldersgrensen.
-    ignore_favs: Ignorer favoritter
+    ignore_favs: Ignorer favorittar
     ignore_reblogs: Ignorer fremhevinger
     interaction_exceptions: Unntak basert på interaksjoner
     interaction_exceptions_explanation: Merk at det ikke er noen garanti for at innlegg blir slettet hvis de går under favoritt- eller fremhevelsesgrensen etter å ha gått over dem en gang.
