@@ -1190,7 +1190,9 @@ vi:
       other: Toàn bộ <strong>%{count}</strong> mục trong trang này đã được chọn.
     all_matching_items_selected_html:
       other: Toàn bộ <strong>%{count}</strong> mục trùng khớp với tìm kiếm đã được chọn.
+    cancel: Hủy bỏ
     changes_saved_msg: Đã lưu thay đổi!
+    confirm: Xác nhận
     copy: Sao chép
     delete: Xóa
     deselect: Bỏ chọn tất cả
@@ -1204,15 +1206,39 @@ vi:
       other: Đã có %{count} lỗi xảy ra! Xem chi tiết bên dưới
   imports:
     errors:
+      empty: File CSV trống
+      incompatible_type: Không tương thích với loại nhập đã chọn
       invalid_csv_file: 'Tập tin CSV không hợp lệ. Lỗi: %{error}'
       over_rows_processing_limit: chứa nhiều hơn %{count} hàng
+      too_large: Tập tin quá lớn
+    failures: Thất bại
+    imported: Đã nhập
+    mismatched_types_warning: Có vẻ như bạn đã chọn sai loại cho lần nhập này, vui lòng kiểm tra lại.
     modes:
       merge: Hợp nhất
       merge_long: Giữ hồ sơ hiện có và thêm hồ sơ mới
       overwrite: Ghi đè
       overwrite_long: Thay thế các bản ghi hiện tại bằng những cái mới
     preface: Bạn có thể nhập dữ liệu mà bạn đã xuất từ một máy chủ khác, chẳng hạn như danh sách những người bạn đang theo dõi hoặc chặn.
+    recent_imports: Đã nhập gần đây
+    states:
+      finished: Đã hoàn thành
+      in_progress: Đang xử lý
+      scheduled: Đã xếp lịch
+      unconfirmed: Chưa xác nhận
+    status: Trạng thái
     success: Dữ liệu của bạn đã được tải lên thành công và hiện đang xử lý
+    time_started: Bắt đầu lúc
+    titles:
+      blocking: Đang nhập tài khoản đã chặn
+      bookmarks: Đang nhập lượt lưu
+      domain_blocking: Đang nhập máy chủ đã chặn
+      following: Đang nhập người theo dõi
+      muting: Đang nhập người đã ẩn
+    type: Kiểu nhập
+    type_groups:
+      constructive: Lượt theo dõi và những thứ đã lưu
+      destructive: Lượt chặn và ẩn
     types:
       blocking: Danh sách chặn
       bookmarks: Tút đã lưu
