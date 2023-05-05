@@ -97,7 +97,7 @@ RSpec.describe Auth::RegistrationsController do
   end
 
   describe 'POST #create' do
-    let(:accept_language) { Rails.application.config.i18n.available_locales.sample.to_s }
+    let(:accept_language) { 'de' }
 
     before do
       session[:registration_form_time] = 5.seconds.ago
