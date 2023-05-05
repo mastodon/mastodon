@@ -770,6 +770,7 @@ pt-BR:
         remove_from_report: Remover da denúncia
         report: Denunciar
       deleted: Excluídos
+      favourites: Favoritos
       history: Histórico de versões
       in_reply_to: Em resposta a
       language: Idioma
@@ -850,6 +851,7 @@ pt-BR:
       statuses:
         allow: Permitir publicação
         allow_account: Permitir autor
+        description_html: Estas são postagens que seu servidor conhece que atualmente estão sendo compartilhadas e muito favoritadas no momento. Isso pode ajudar seus usuários novos e que estão retornando a encontrar mais pessoas a seguir. Nenhum post é exibido publicamente até que você aprove o autor e o autor permita que sua conta seja sugerida a outros. Você também pode permitir ou rejeitar publicações individuais.
         disallow: Proibir publicação
         disallow_account: Proibir autor
         no_status_selected: Nenhuma publicação em alta foi alterada, pois, nenhuma foi selecionada
@@ -1212,7 +1214,9 @@ pt-BR:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> item correspondente à sua pesquisa está selecionado."
       other: Todos os <strong>%{count}</strong> itens correspondentes à sua pesquisa estão selecionados.
+    cancel: Cancelar
     changes_saved_msg: Alterações salvas!
+    confirm: Confirmar
     copy: Copiar
     delete: Excluir
     deselect: Desmarcar todos
@@ -1228,15 +1232,51 @@ pt-BR:
       other: Algo não está certo! Analise os %{count} erros abaixo
   imports:
     errors:
+      empty: Arquivo CSV vazio
+      incompatible_type: Incompatível com o tipo de importação selecionado
       invalid_csv_file: 'Arquivo CSV inválido. Erro: %{error}'
       over_rows_processing_limit: contém mais de %{count} linhas
+      too_large: O arquivo é muito grande
+    failures: Falhas
+    imported: Importado
+    mismatched_types_warning: Parece que você selecionou o tipo errado para esta importação, por favor verifique novamente.
     modes:
       merge: Juntar
       merge_long: Manter os registros existentes e adicionar novos
       overwrite: Sobrescrever
       overwrite_long: Substituir os registros atuais com os novos
+    overwrite_preambles:
+      blocking_html: Você está prestes a <strong>substituir sua lista de bloqueios</strong> com até <strong>contas%{total_items}</strong> de <strong>%{filename}</strong>.
+      bookmarks_html: Você está prestes a <strong>substituir seus favoritos</strong> por até <strong>%{total_items} posts</strong> de <strong>%{filename}</strong>.
+      domain_blocking_html: Você está prestes a <strong>substituir sua lista de bloqueio de domínio</strong> com até <strong>domínios%{total_items}</strong> de <strong>%{filename}</strong>.
+      following_html: Você está prestes a <strong>seguir</strong> até <strong>%{total_items} contas</strong> de <strong>%{filename}</strong> e <strong>parar de seguir todos os outros</strong>.
+      muting_html: Você está prestes a <strong>substituir sua lista de contas silenciadas</strong> com até <strong>%{total_items} contas</strong> de <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Você está prestes a <strong>bloquear</strong> até <strong>%{total_items} contas</strong> de <strong>%{filename}</strong>.
+      bookmarks_html: Você está prestes a adicionar até <strong>%{total_items} posts</strong> de <strong>%{filename}</strong> para seus <strong>favoritos</strong>.
+      domain_blocking_html: Você está prestes a <strong>bloquear</strong> até <strong>%{total_items} domínios</strong> de <strong>%{filename}</strong>.
+      following_html: Você está prestes a <strong>seguir</strong> até <strong>%{total_items} contas</strong> de <strong>%{filename}</strong>.
+      muting_html: Você está prestes a <strong>silenciar</strong> até <strong>contas%{total_items}</strong> de <strong>%{filename}</strong>.
     preface: Você pode importar dados que você exportou de outro servidor, como a lista de pessoas que você segue ou bloqueou.
+    recent_imports: Importações recentes
+    states:
+      finished: Finalizado
+      in_progress: Em progresso
+      scheduled: Agendado
+      unconfirmed: Não confirmado
+    status: Estado
     success: Seus dados foram enviados e serão processados em instantes
+    time_started: Iniciado em
+    titles:
+      blocking: Importando contas bloqueadas
+      bookmarks: Importando favoritos
+      domain_blocking: Importando contas bloqueadas
+      following: Importando contas seguidas
+      muting: Importando contas silenciadas
+    type: Tipo de importação
+    type_groups:
+      constructive: Seguidores e Favoritos
+      destructive: Bloqueios e silenciamentos
     types:
       blocking: Lista de bloqueio
       bookmarks: Marcadores
@@ -1330,6 +1370,10 @@ pt-BR:
         subject: "%{name} enviou uma denúncia"
       sign_up:
         subject: "%{name} se inscreveu"
+    favourite:
+      body: 'Sua publicação foi favoritada por %{name}:'
+      subject: "%{name} favoritou sua publicação"
+      title: Novo favorito
     follow:
       body: "%{name} te seguiu!"
       subject: "%{name} te seguiu"
@@ -1561,8 +1605,10 @@ pt-BR:
     enabled_hint: Exclui suas publicações automaticamente assim que elas alcançam sua validade, a não ser que se enquadrem em alguma das exceções abaixo
     exceptions: Exceções
     explanation: Já que a exclusão de publicações é uma operação custosa, ela é feita lentamente quando o servidor não está ocupado. Por isso suas publicações podem ser excluídas algum tempo depois de alcançarem sua validade.
+    ignore_favs: Ignorar favoritos
     ignore_reblogs: Ignorar impulsos
     interaction_exceptions: Exceções baseadas nas interações
+    interaction_exceptions_explanation: Note que não há garantia de que os posts sejam excluídos se eles ficarem abaixo do limite de favoritos ou de impulso depois de terem excedido eles.
     keep_direct: Manter mensagens diretas
     keep_direct_hint: Não exclui nenhuma de suas mensagens diretas
     keep_media: Manter publicações com mídia
@@ -1573,6 +1619,8 @@ pt-BR:
     keep_polls_hint: Não exclui nenhuma de suas enquetes
     keep_self_bookmark: Manter publicações que você salvou
     keep_self_bookmark_hint: Não exclui suas próprias publicações se você as salvou
+    keep_self_fav: Manter publicações que você favoritou
+    keep_self_fav_hint: Não exclui as suas próprias mensagens se você as favoritou
     min_age:
       '1209600': 2 semanas
       '15778476': 6 meses
@@ -1583,6 +1631,8 @@ pt-BR:
       '63113904': 2 anos
       '7889238': 3 meses
     min_age_label: Validade
+    min_favs: Manter publicações favoritadas por ao menos
+    min_favs_hint: Não exclui nenhuma das suas publicações que tenha recebido pelo menos este número de favoritos. Deixe em branco para excluir postagens independentemente do número de favoritos
     min_reblogs: Manter publicações impulsionadas por ao menos
     min_reblogs_hint: Não exclui publicações que receberam pelo menos esta quantidade de impulsos. Deixe em branco para excluir publicações independentemente da quantidade de impulsos
   stream_entries:
