@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-describe('scrollTo on keyDown', () => {
-  it('calls window.scrollTo when "." key is pressed', () => {
+describe('Scrolls to the first element', () => {
+  it('calls scrollIntoView() when "." key is pressed', () => {
     const refreshFeedMock = jest.fn();
 
     const Component = render(<div title='timeline' />).getByTitle('timeline');
@@ -20,5 +20,4 @@ describe('scrollTo on keyDown', () => {
       }
     }
   });
-
 });
