@@ -9,7 +9,6 @@ on:
 env:
   BUNDLE_CLEAN: true
   BUNDLE_FROZEN: true
-  BUNDLE_WITHOUT: 'development production'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -19,8 +18,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: true
+      matrix:
+        mode:
+          - production
+          - test
     env:
-      RAILS_ENV: test
+      RAILS_ENV: ${{ matrix.mode }}
+      BUNDLE_WITH: ${{ matrix.mode }}
+      OTP_SECRET: precompile_placeholder
+      SECRET_KEY_BASE: precompile_placeholder
 
     steps:
       - uses: actions/checkout@v3
@@ -50,6 +58,7 @@ jobs:
           ./bin/rails assets:precompile
 
       - uses: actions/upload-artifact@v3
+        if: matrix.mode == 'test'
         with:
           path: |-
             ./public/assets
@@ -97,7 +106,7 @@ jobs:
       PAM_ENABLED: true
       PAM_DEFAULT_SERVICE: pam_test
       PAM_CONTROLLED_SERVICE: pam_test_controlled
-      BUNDLE_WITH: 'pam_authentication'
+      BUNDLE_WITH: 'pam_authentication test'
       CI_JOBS: ${{ matrix.ci_job }}/4
 
     strategy:
