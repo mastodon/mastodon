@@ -1217,7 +1217,9 @@ pt-PT:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> item que corresponde à sua pesquisa está selecionado."
       other: Todos os <strong>%{count}</strong> items que correspondem à sua pesquisa estão selecionados.
+    cancel: Cancelar
     changes_saved_msg: Alterações guardadas!
+    confirm: Confirmar
     copy: Copiar
     delete: Eliminar
     deselect: Desmarcar todos
@@ -1233,6 +1235,7 @@ pt-PT:
       other: Algo não está bem. Queira analisar os %{count} erros abaixo
   imports:
     errors:
+      empty: Ficheiro CSV vazio
       invalid_csv_file: 'Arquivo CSV inválido. Erro: %{error}'
       over_rows_processing_limit: contém mais de %{count} linhas
     modes:
