@@ -157,8 +157,42 @@ const redisConfigFromEnv = (env) => {
 
 const startServer = async () => {
   const app = express();
+  const api = express.Router();
 
   app.set('trust proxy', process.env.TRUSTED_PROXY_IP ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/) : 'loopback,uniquelocal');
+
+  // When checking metrics in the browser, the favicon is requested
+  // this prevents the request from falling through to the external API:
+  app.get('/favicon.ico', (req, res) => res.end());
+
+  app.get('/api/v1/streaming/health', (req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('OK');
+  });
+
+  app.get('/metrics', async (req, res) => server.getConnections((err, count) => {
+    res.writeHeader(200, { 'Content-Type': 'application/openmetrics-text; version=1.0.0; charset=utf-8' });
+    res.write('# TYPE connected_clients gauge\n');
+    res.write('# HELP connected_clients The number of clients connected to the streaming server\n');
+    res.write(`connected_clients ${count}.0\n`);
+    res.write('# TYPE connected_channels gauge\n');
+    res.write('# HELP connected_channels The number of Redis channels the streaming server is subscribed to\n');
+    res.write(`connected_channels ${Object.keys(subs).length}.0\n`);
+    res.write('# TYPE pg_pool_total_connections gauge\n');
+    res.write('# HELP pg_pool_total_connections The total number of clients existing within the pool\n');
+    res.write(`pg_pool_total_connections ${pgPool.totalCount}.0\n`);
+    res.write('# TYPE pg_pool_idle_connections gauge\n');
+    res.write('# HELP pg_pool_idle_connections The number of clients which are not checked out but are currently idle in the pool\n');
+    res.write(`pg_pool_idle_connections ${pgPool.idleCount}.0\n`);
+    res.write('# TYPE pg_pool_waiting_queries gauge\n');
+    res.write('# HELP pg_pool_waiting_queries The number of queued requests waiting on a client when all clients are checked out\n');
+    res.write(`pg_pool_waiting_queries ${pgPool.waitingCount}.0\n`);
+    res.write('# EOF\n');
+    res.end();
+
+  }));
+
+  app.use('/api/v1/streaming', api);
 
   const pgPool = new pg.Pool(pgConfigFromEnv(process.env));
   const server = http.createServer(app);
@@ -379,23 +413,23 @@ const startServer = async () => {
     const onlyMedia = isTruthy(query.only_media);
 
     switch (path) {
-    case '/api/v1/streaming/user':
+    case '/user':
       return 'user';
-    case '/api/v1/streaming/user/notification':
+    case '/user/notification':
       return 'user:notification';
-    case '/api/v1/streaming/public':
+    case '/public':
       return onlyMedia ? 'public:media' : 'public';
-    case '/api/v1/streaming/public/local':
+    case '/public/local':
       return onlyMedia ? 'public:local:media' : 'public:local';
-    case '/api/v1/streaming/public/remote':
+    case '/public/remote':
       return onlyMedia ? 'public:remote:media' : 'public:remote';
-    case '/api/v1/streaming/hashtag':
+    case '/hashtag':
       return 'hashtag';
-    case '/api/v1/streaming/hashtag/local':
+    case '/hashtag/local':
       return 'hashtag:local';
-    case '/api/v1/streaming/direct':
+    case '/direct':
       return 'direct';
-    case '/api/v1/streaming/list':
+    case '/list':
       return 'list';
     default:
       return undefined;
@@ -833,40 +867,14 @@ const startServer = async () => {
     res.end(JSON.stringify({ error: 'Not found' }));
   };
 
-  app.use(setRequestId);
-  app.use(setRemoteAddress);
-  app.use(allowCrossDomain);
+  api.use(setRequestId);
+  api.use(setRemoteAddress);
+  api.use(allowCrossDomain);
 
-  app.get('/api/v1/streaming/health', (req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('OK');
-  });
+  api.use(authenticationMiddleware);
+  api.use(errorMiddleware);
 
-  app.get('/metrics', (req, res) => server.getConnections((err, count) => {
-    res.writeHeader(200, { 'Content-Type': 'application/openmetrics-text; version=1.0.0; charset=utf-8' });
-    res.write('# TYPE connected_clients gauge\n');
-    res.write('# HELP connected_clients The number of clients connected to the streaming server\n');
-    res.write(`connected_clients ${count}.0\n`);
-    res.write('# TYPE connected_channels gauge\n');
-    res.write('# HELP connected_channels The number of Redis channels the streaming server is subscribed to\n');
-    res.write(`connected_channels ${Object.keys(subs).length}.0\n`);
-    res.write('# TYPE pg_pool_total_connections gauge\n');
-    res.write('# HELP pg_pool_total_connections The total number of clients existing within the pool\n');
-    res.write(`pg_pool_total_connections ${pgPool.totalCount}.0\n`);
-    res.write('# TYPE pg_pool_idle_connections gauge\n');
-    res.write('# HELP pg_pool_idle_connections The number of clients which are not checked out but are currently idle in the pool\n');
-    res.write(`pg_pool_idle_connections ${pgPool.idleCount}.0\n`);
-    res.write('# TYPE pg_pool_waiting_queries gauge\n');
-    res.write('# HELP pg_pool_waiting_queries The number of queued requests waiting on a client when all clients are checked out\n');
-    res.write(`pg_pool_waiting_queries ${pgPool.waitingCount}.0\n`);
-    res.write('# EOF\n');
-    res.end();
-  }));
-
-  app.use(authenticationMiddleware);
-  app.use(errorMiddleware);
-
-  app.get('/api/v1/streaming/*', (req, res) => {
+  api.get('*', (req, res) => {
     channelNameToIds(req, channelNameFromPath(req), req.query).then(({ channelIds, options }) => {
       const onSend = streamToHttp(req, res);
       const onEnd = streamHttpEnd(req, subscriptionHeartbeat(channelIds));
