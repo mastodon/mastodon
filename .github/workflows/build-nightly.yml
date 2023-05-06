@@ -11,6 +11,15 @@ jobs:
   build-nightly-image:
     runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - context: ./
+            image: ghcr.io/mastodon/mastodon
+          - context: ./streaming/
+            image: ghcr.io/mastodon/mastodon-streaming
+
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: true
@@ -31,8 +40,7 @@ jobs:
       - uses: docker/metadata-action@v4
         id: meta
         with:
-          images: |
-            ghcr.io/mastodon/mastodon
+          images: ${{ matrix.image }}
           flavor: |
             latest=auto
           tags: |
@@ -48,7 +56,7 @@ jobs:
 
       - uses: docker/build-push-action@v4
         with:
-          context: .
+          context: ${{ matrix.context }}
           build-args: MASTODON_VERSION_SUFFIX=${{ steps.version_vars.outputs.mastodon_version_suffix }}
           platforms: linux/amd64,linux/arm64
           provenance: false
