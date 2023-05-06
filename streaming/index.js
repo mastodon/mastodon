@@ -14,6 +14,10 @@ const fs = require('fs');
 const WebSocket = require('ws');
 const { JSDOM } = require('jsdom');
 
+const metrics = require('prom-client');
+
+metrics.collectDefaultMetrics();
+
 const environment = process.env.NODE_ENV || 'development';
 
 // Only attempt to load dotenv outside of docker containers:
@@ -170,32 +174,59 @@ const startServer = async () => {
     res.end('OK');
   });
 
-  app.get('/metrics', async (req, res) => server.getConnections((err, count) => {
-    res.writeHeader(200, { 'Content-Type': 'application/openmetrics-text; version=1.0.0; charset=utf-8' });
-    res.write('# TYPE connected_clients gauge\n');
-    res.write('# HELP connected_clients The number of clients connected to the streaming server\n');
-    res.write(`connected_clients ${count}.0\n`);
-    res.write('# TYPE connected_channels gauge\n');
-    res.write('# HELP connected_channels The number of Redis channels the streaming server is subscribed to\n');
-    res.write(`connected_channels ${Object.keys(subs).length}.0\n`);
-    res.write('# TYPE pg_pool_total_connections gauge\n');
-    res.write('# HELP pg_pool_total_connections The total number of clients existing within the pool\n');
-    res.write(`pg_pool_total_connections ${pgPool.totalCount}.0\n`);
-    res.write('# TYPE pg_pool_idle_connections gauge\n');
-    res.write('# HELP pg_pool_idle_connections The number of clients which are not checked out but are currently idle in the pool\n');
-    res.write(`pg_pool_idle_connections ${pgPool.idleCount}.0\n`);
-    res.write('# TYPE pg_pool_waiting_queries gauge\n');
-    res.write('# HELP pg_pool_waiting_queries The number of queued requests waiting on a client when all clients are checked out\n');
-    res.write(`pg_pool_waiting_queries ${pgPool.waitingCount}.0\n`);
-    res.write('# EOF\n');
-    res.end();
-
-  }));
+  app.get('/metrics', async (req, res) => {
+    try {
+      res.set('Content-Type', metrics.register.contentType);
+      res.end(await metrics.register.metrics());
+    } catch (ex) {
+      res.status(500).end(ex);
+    }
+  });
 
   app.use('/api/v1/streaming', api);
 
   const pgPool = new pg.Pool(pgConfigFromEnv(process.env));
   const server = http.createServer(app);
+
+  new metrics.Gauge({
+    name: 'pg_pool_total_connections',
+    help: 'The total number of clients existing within the pool',
+    collect() {
+      this.set(pgPool.totalCount);
+    },
+  });
+
+  new metrics.Gauge({
+    name: 'pg_pool_idle_connections',
+    help: 'The number of clients which are not checked out but are currently idle in the pool',
+    collect() {
+      this.set(pgPool.idleCount);
+    },
+  });
+
+  new metrics.Gauge({
+    name: 'pg_pool_waiting_queries',
+    help: 'The number of queued requests waiting on a client when all clients are checked out',
+    collect() {
+      this.set(pgPool.waitingCount);
+    },
+  });
+
+  const connectedClients = new metrics.Gauge({
+    name: 'connected_clients',
+    help: 'The number of clients connected to the streaming server',
+    labelNames: ['type'],
+  });
+
+  const subscriptionCounter = new metrics.Gauge({
+    name: 'connected_channels',
+    help: 'The number of Redis channels the streaming server is subscribed to',
+  });
+
+  const streamingLatency = new metrics.Histogram({
+    name: 'streaming_latency',
+    help: 'The delta between when events are pushed to redis and the streaming server processes the event'
+  });
 
   const { redisParams, redisUrl, redisPrefix } = redisConfigFromEnv(process.env);
 
@@ -255,6 +286,7 @@ const startServer = async () => {
     if (subs[channel].length === 0) {
       log.verbose(`Subscribe ${channel}`);
       redisSubscribeClient.subscribe(channel, onRedisMessage);
+      subscriptionCounter.inc();
     }
 
     subs[channel].push(callback);
@@ -276,6 +308,7 @@ const startServer = async () => {
     if (subs[channel].length === 0) {
       log.verbose(`Unsubscribe ${channel}`);
       redisSubscribeClient.unsubscribe(channel);
+      subscriptionCounter.dec();
       delete subs[channel];
     }
   };
@@ -659,6 +692,8 @@ const startServer = async () => {
         const delta = now - queued_at;
         const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
 
+        streamingLatency.observe(delta);
+
         log.silly(req.requestId, `Transmitting for ${accountId}: ${event} ${encodedPayload} Delay: ${delta}ms`);
         output(event, encodedPayload);
       };
@@ -808,6 +843,8 @@ const startServer = async () => {
   const streamToHttp = (req, res) => {
     const accountId = req.accountId || req.remoteAddress;
 
+    connectedClients.labels({ type: 'http' }).inc();
+
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-store');
     res.setHeader('Transfer-Encoding', 'chunked');
@@ -817,6 +854,7 @@ const startServer = async () => {
     const heartbeat = setInterval(() => res.write(':thump\n'), 15000);
 
     req.on('close', () => {
+      connectedClients.labels({ type: 'http' }).dec();
       log.verbose(req.requestId, `Ending stream for ${accountId}`);
       clearInterval(heartbeat);
     });
@@ -1183,6 +1221,8 @@ const startServer = async () => {
       ws.isAlive = true;
     });
 
+    connectedClients.labels({ type: 'websocket' }).inc();
+
     /**
      * @type {WebSocketSession}
      */
@@ -1193,6 +1233,7 @@ const startServer = async () => {
     };
 
     const onEnd = () => {
+      connectedClients.labels({ type: 'websocket' }).dec();
       const keys = Object.keys(session.subscriptions);
 
       keys.forEach(channelIds => {
