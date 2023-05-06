@@ -8,10 +8,11 @@ import { autoPlayGif } from '../initial_state';
 import Skeleton from './skeleton';
 
 interface Props {
-  account: Account;
-  others: List<Account>;
-  localDomain: string;
+  account?: Account;
+  others?: List<Account>;
+  localDomain?: string;
 }
+
 export class DisplayName extends React.PureComponent<Props> {
   handleMouseEnter: React.ReactEventHandler<HTMLSpanElement> = ({
     currentTarget,

@@ -7,7 +7,7 @@ import { fetchSuggestions } from 'mastodon/actions/suggestions';
 import { markAsPartial } from 'mastodon/actions/timelines';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Account from 'mastodon/containers/account_container';
-import EmptyAccount from 'mastodon/components/account';
+import { EmptyAccount } from 'mastodon/components/empty_account';
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 import { makeGetAccount } from 'mastodon/selectors';
 import { me } from 'mastodon/initial_state';
