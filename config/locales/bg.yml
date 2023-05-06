@@ -1217,7 +1217,9 @@ bg:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> елементи, съвпадащи с вашето търсене, са избрани."
       other: Всички <strong>%{count}</strong> елементи, съвпадащи с вашето търсене, са избрани.
+    cancel: Отказ
     changes_saved_msg: Успешно запазване на промените!
+    confirm: Потвърждаване
     copy: Копиране
     delete: Изтриване
     deselect: Размаркиране на всичко
@@ -1233,15 +1235,39 @@ bg:
       other: Нещо още не е напълно наред! Прегледайте %{count} грешки долу
   imports:
     errors:
+      empty: Празен файл CSV
+      incompatible_type: Несъвместимо с избрания вид на внасяне
       invalid_csv_file: 'Невалиден файл CSV. Грешка: %{error}'
       over_rows_processing_limit: съдържа повече от %{count} реда
+      too_large: Преголям файл
+    failures: Неуспехи
+    imported: Внесено
+    mismatched_types_warning: Изглежда сте избрали грешния вид за това внасяне, така че проверете пак.
     modes:
       merge: Сливане
       merge_long: Пази текущите записи и добавя нови
       overwrite: Презаписване
       overwrite_long: Заменя текущите записи с новите
     preface: Можеш да импортираш някои данни, като например всички хора, които следваш или блокираш в акаунта си на тази инстанция, от файлове, създадени чрез експорт в друга инстанция.
+    recent_imports: Скорошни внасяния
+    states:
+      finished: Завършено
+      in_progress: В ход
+      scheduled: Планирано
+      unconfirmed: Непотвърдено
+    status: Състояние
     success: Твоите данни бяха успешно качени и ще бъдат обработени впоследствие
+    time_started: Започна в
+    titles:
+      blocking: Внасяне на блокираните акаунти
+      bookmarks: Внасяне на отметките
+      domain_blocking: Внасяне на блокираните домейни
+      following: Внасяне на последваните акаунти
+      muting: Внасяне на заглушените акаунти
+    type: Тип на внасяне
+    type_groups:
+      constructive: Последвания и отметки
+      destructive: Блокирания и заглушавания
     types:
       blocking: Списък на блокираните
       bookmarks: Отметки
