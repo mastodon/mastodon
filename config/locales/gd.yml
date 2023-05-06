@@ -1057,6 +1057,7 @@ gd:
     set_new_password: Suidhich facal-faire ùr
     setup:
       email_below_hint_html: Thoir sùil air pasgan an spama agad no iarr fear eile. ’S urrainn dhut an seòladh puist-d agad a chur ceart ma tha e ceàrr.
+      email_settings_hint_html: Briog air a’ cheangal a chuir sinn thugad a dhearbhadh %{email}. Fuirichidh sinn ort an-seo.
       link_not_received: Nach d’fhuair thu ceangal?
       new_confirmation_instructions_sent: Gheibh thu post-d ùr le ceangal dearbhaidh an ceann corra mionaid!
       title: Thoir sùil air a’ bhogsa a-steach agad
@@ -1064,6 +1065,7 @@ gd:
       preamble_html: Clàraich a-steach le do theisteas <strong>%{domain}</strong>. Ma tha an cunntas agad ’ga òstadh air frithealaiche eile, chan urrainn dhut clàradh a-steach an-seo.
       title: Clàraich a-steach gu %{domain}
     sign_up:
+      manual_review: Nì na maoir againn lèirmheas a làimh air clàraidhean air %{domain}. Airson ar cuideachadh le làimhseachadh do chlàraidh, sgrìobh beagan mu do dhèidhinn agus carson a tha thu ag iarraidh cunntas air %{domain}.
       preamble: Le cunntas air an fhrithealaiche Mastodon seo, ’s urrainn dhut neach sam bith a leantainn air an lìonra, ge b’ e càit a bheil an cunntas aca-san ’ga òstadh.
       title: Suidhicheamaid %{domain} dhut.
     status:
@@ -1296,6 +1298,18 @@ gd:
       merge_long: Cùm na reacordan a tha ann is cuir feadhainn ùr ris
       overwrite: Sgrìobh thairis air
       overwrite_long: Cuir na reacordan ùra an àite na feadhna a tha ann
+    overwrite_preambles:
+      blocking_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean</strong> agad.
+      bookmarks_html: Tha thu an impis suas ri <strong>%{total_items} post(aichean)</strong> o <strong>%{filename}</strong> a chur <strong>an àite nan comharra-lìn</strong> agad.
+      domain_blocking_html: Tha thu an impis suas ri <strong>%{total_items} àrainn(ean)</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean àrainne</strong> agad.
+      following_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn duine sam bith eile</strong>.
+      muting_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nan cunntasan mùchte</strong> agad.
+    preambles:
+      blocking_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
+      bookmarks_html: Tha thu an impis suas ri <strong>%{total_items} post(aichean)</strong> o <strong>%{filename}</strong> a chur ris na h-<strong>annsachdan</strong> agad.
+      domain_blocking_html: Tha thu an impis suas ri <strong>%{total_items} àrainn(ean)</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
+      following_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a <strong>leantainn</strong>.
+      muting_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a <strong>mhùchadh</strong>.
     preface: '’S urrainn dhut dàta ion-phortadh a dh’às-phortaich thu o fhrithealaiche eile, can liosta nan daoine a leanas tu no a tha thu a’ bacadh.'
     recent_imports: Ion-phortaidhean o chionn goirid
     states:
@@ -1314,7 +1328,7 @@ gd:
       muting: Ag ion-phortadh cunntasan mùchte
     type: Seòrsa an ion-phortaidh
     type_groups:
-      constructive: Leantainn ⁊ comharran-lìn 
+      constructive: Leantainn ⁊ comharran-lìn
       destructive: Bacadh ⁊ mùchadh
     types:
       blocking: Liosta-bhacaidh
@@ -1412,6 +1426,8 @@ gd:
       sign_up:
         subject: "Chlàraich %{name}"
     favourite:
+      body: 'Chuir %{name} am post agad ris a h-annsachdan:'
+      subject: "Chuir %{name} am post agad ris na h-annsachdan"
       title: Annsachd ùr
     follow:
       body: "Tha %{name} ’gad leantainn a-nis!"
