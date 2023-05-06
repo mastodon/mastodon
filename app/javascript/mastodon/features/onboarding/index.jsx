@@ -40,6 +40,7 @@ class Onboarding extends ImmutablePureComponent {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     account: ImmutablePropTypes.map,
+    multiColumn: PropTypes.bool,
   };
 
   state = {
@@ -93,14 +94,14 @@ class Onboarding extends ImmutablePureComponent {
   }
 
   render () {
-    const { account } = this.props;
+    const { account, multiColumn } = this.props;
     const { step, shareClicked } = this.state;
 
     switch(step) {
     case 'follows':
-      return <Follows onBack={this.handleBackClick} />;
+      return <Follows onBack={this.handleBackClick} multiColumn={multiColumn} />;
     case 'share':
-      return <Share onBack={this.handleBackClick} />;
+      return <Share onBack={this.handleBackClick} multiColumn={multiColumn} />;
     }
 
     return (
