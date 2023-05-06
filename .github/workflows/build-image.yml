@@ -19,15 +19,19 @@ jobs:
   build-image:
     runs-on: ubuntu-latest
 
+    name: build-image (${{ name }})
+
     strategy:
       fail-fast: false
       matrix:
         include:
-          - context: ./
+          - name: mastodon
+            context: ./
             image: |
               tootsuite/mastodon
               ghcr.io/mastodon/mastodon
-          - context: ./streaming
+          - name: mastodon-streaming
+            context: ./streaming
             image: |
               tootsuite/mastodon-streaming
               ghcr.io/mastodon/mastodon-streaming

@@ -11,13 +11,17 @@ jobs:
   build-nightly-image:
     runs-on: ubuntu-latest
 
+    name: build-nightly-image (${{ name }})
+
     strategy:
       fail-fast: false
       matrix:
         include:
-          - context: ./
+          - name: mastodon
+            context: ./
             image: ghcr.io/mastodon/mastodon
-          - context: ./streaming/
+          - name: mastodon-streaming
+            context: ./streaming/
             image: ghcr.io/mastodon/mastodon-streaming
 
     concurrency:
