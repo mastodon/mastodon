@@ -1,5 +1,6 @@
 // @ts-check
 
+const isDocker = require('is-docker');
 const dotenv = require('dotenv');
 const express = require('express');
 const http = require('http');
@@ -15,9 +16,12 @@ const { JSDOM } = require('jsdom');
 
 const environment = process.env.NODE_ENV || 'development';
 
-dotenv.config({
-  path: environment === 'production' ? '.env.production' : '.env',
-});
+// Only attempt to load dotenv outside of docker containers:
+if (!isDocker) {
+  dotenv.config({
+    path: environment === 'production' ? '../.env.production' : '../.env',
+  });
+}
 
 log.level = process.env.LOG_LEVEL || 'verbose';
 
