@@ -17,7 +17,7 @@ const { JSDOM } = require('jsdom');
 const environment = process.env.NODE_ENV || 'development';
 
 // Only attempt to load dotenv outside of docker containers:
-if (!isDocker) {
+if (!isDocker()) {
   dotenv.config({
     path: environment === 'production' ? '../.env.production' : '../.env',
   });
@@ -200,7 +200,7 @@ const startServer = async () => {
   const onRedisMessage = (message, channel) => {
     const callbacks = subs[channel];
 
-    log.silly(`New message on channel ${channel}`);
+    log.silly(`New message on channel ${channel}\n${message}`);
 
     if (!callbacks) {
       return;
