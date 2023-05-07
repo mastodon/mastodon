@@ -3,7 +3,10 @@ import IconButton from './icon_button';
 import { InjectedIntl, defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
-  unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
+  unblockDomain: {
+    id: 'account.unblock_domain',
+    defaultMessage: 'Unblock domain {domain}',
+  },
 });
 
 type Props = {
@@ -24,7 +27,12 @@ const _Domain: React.FC<Props> = ({ domain, onUnblockDomain, intl }) => {
         </span>
 
         <div className='domain__buttons'>
-          <IconButton active icon='unlock' title={intl.formatMessage(messages.unblockDomain, { domain })} onClick={handleDomainUnblock} />
+          <IconButton
+            active
+            icon='unlock'
+            title={intl.formatMessage(messages.unblockDomain, { domain })}
+            onClick={handleDomainUnblock}
+          />
         </div>
       </div>
     </div>
