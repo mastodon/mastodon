@@ -1,35 +1,30 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default class RadioButton extends React.PureComponent {
+type Props = {
+  value: string;
+  checked: boolean;
+  name: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  label: React.ReactNode;
+};
 
-  static propTypes = {
-    value: PropTypes.string.isRequired,
-    checked: PropTypes.bool,
-    name: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    label: PropTypes.node.isRequired,
-  };
+export const RadioButton: React.FC<Props> = ({ name, value, checked, onChange, label }) => {
+  return (
+    <label className='radio-button'>
+      <input
+        name={name}
+        type='radio'
+        value={value}
+        checked={checked}
+        onChange={onChange}
+      />
 
-  render () {
-    const { name, value, checked, onChange, label } = this.props;
+      <span className={classNames('radio-button__input', { checked })} />
 
-    return (
-      <label className='radio-button'>
-        <input
-          name={name}
-          type='radio'
-          value={value}
-          checked={checked}
-          onChange={onChange}
-        />
+      <span>{label}</span>
+    </label>
+  );
+};
 
-        <span className={classNames('radio-button__input', { checked })} />
-
-        <span>{label}</span>
-      </label>
-    );
-  }
-
-}
+export default RadioButton;
