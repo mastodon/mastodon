@@ -1242,18 +1242,18 @@ fi:
       too_large: Tiedosto on liian suuri
     failures: Virheet
     imported: Tuodut
-    mismatched_types_warning: Näyttää siltä, että olet valinnut väärän tyypin tälle tuonnille, ole hyvä ja tarkista.
+    mismatched_types_warning: Vaikuttaa siltä, ettei tuontityypin valinta ole oikea. Ole hyvä ja tarkista asia.
     modes:
       merge: Yhdistä
       merge_long: Säilytä olemassa olevat tietueet ja lisää uusia
       overwrite: Korvaa
       overwrite_long: Korvaa nykyiset tietueet uusilla
     overwrite_preambles:
-      blocking_html: Olet aikeissa <strong>korvata blokkiluettelon</strong> yhteensä <strong>%{total_items} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
-      bookmarks_html: Olet aikeissa <strong>korvata kirjanmerkit</strong> yhteensä <strong>%{total_items} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
-      domain_blocking_html: Olet aikeissa <strong>korvata verkkotunnusten blokkiluettelon</strong> yhteensä <strong>%{total_items} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
-      following_html: Olet <strong>seuraamassa</strong> <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettamassa kaikkien muiden seuraamisen</strong>.
-      muting_html: Olet <strong>korvaamassa mykistettyjä tilejäsi</strong> yhteensä <strong>%{total_items} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+      blocking_html: Olet aikeissa <strong>korvata estoluettelon</strong> kaikkiaan <strong>%{total_items} tilillä</strong> tiedostoon <strong>%{filename}</strong> perustuen.
+      bookmarks_html: Olet aikeissa <strong>korvata kirjanmerkit</strong> kaikkiaan <strong>%{total_items} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
+      domain_blocking_html: Olet aikeissa <strong>korvata verkkotunnusestot</strong> kaikkiaan <strong>%{total_items} verkkotunnuksella</strong> tiedostoon <strong>%{filename}</strong> perustuen.
+      following_html: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostoon <strong>%{filename}</strong> perustuen. Aiot lisäksi <strong>lopettaa kaikkien muiden seuraamisen</strong>.
+      muting_html: Olet <strong>korvaamassa mykistettyjä tilejäsi</strong> kaikkiaan <strong>%{total_items} tilillä</strong> tiedostoon <strong>%{filename}</strong> perustuen.
     preambles:
       blocking_html: Olet <strong>estämässä</strong> yhteensä <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
       bookmarks_html: Olet lisäämässä <strong>%{total_items} julkaisua</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
