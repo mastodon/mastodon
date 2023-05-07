@@ -1,33 +1,27 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useCallback, useState } from 'react';
 import Blurhash from './blurhash';
 import classNames from 'classnames';
 
-export default class Image extends React.PureComponent {
-
-  static propTypes = {
-    src: PropTypes.string,
-    srcSet: PropTypes.string,
-    blurhash: PropTypes.string,
-    className: PropTypes.string,
-  };
-
-  state = {
-    loaded: false,
-  };
-
-  handleLoad = () => this.setState({ loaded: true });
-
-  render () {
-    const { src, srcSet, blurhash, className } = this.props;
-    const { loaded } = this.state;
-
-    return (
-      <div className={classNames('image', { loaded }, className)} role='presentation'>
-        {blurhash && <Blurhash hash={blurhash} className='image__preview' />}
-        <img src={src} srcSet={srcSet} alt='' onLoad={this.handleLoad} />
-      </div>
-    );
-  }
-
+type Props = {
+  src: string;
+  srcSet?: string;
+  blurhash?: string;
+  className?: string;
 }
+
+export const Image: React.FC<Props> = ({ src, srcSet, blurhash, className }) => {
+  const [loaded, setLoaded] = useState(false);
+
+  const handleLoad = useCallback(() => {
+    setLoaded(true);
+  }, [setLoaded]);
+
+  return (
+    <div className={classNames('image', { loaded }, className)} role='presentation'>
+      {blurhash && <Blurhash hash={blurhash} className='image__preview' />}
+      <img src={src} srcSet={srcSet} alt='' onLoad={handleLoad} />
+    </div>
+  );
+};
+
+export default Image;
