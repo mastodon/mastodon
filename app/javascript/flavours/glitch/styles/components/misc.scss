@@ -827,7 +827,7 @@ body > [data-popper-placement] {
   overflow: hidden;
 }
 
-@media screen and (min-width: 631px) {
+@media screen and (width >= 631px) {
   .columns-area {
     padding: 0;
   }
@@ -1134,19 +1134,19 @@ body > [data-popper-placement] {
       }
     }
 
-    @media screen and (max-height: 810px) {
+    @media screen and (height <= 810px) {
       .trends__item:nth-of-type(3) {
         display: none;
       }
     }
 
-    @media screen and (max-height: 720px) {
+    @media screen and (height <= 720px) {
       .trends__item:nth-of-type(2) {
         display: none;
       }
     }
 
-    @media screen and (max-height: 670px) {
+    @media screen and (height <= 670px) {
       display: none;
     }
 

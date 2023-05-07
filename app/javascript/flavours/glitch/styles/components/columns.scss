@@ -79,7 +79,7 @@ $ui-header-height: 55px;
       display: none;
     }
 
-    @media screen and (min-width: 320px) {
+    @media screen and (width >= 320px) {
       .logo--wordmark {
         display: block;
       }
@@ -205,7 +205,7 @@ $ui-header-height: 55px;
 
   &:last-child {
     padding: 0;
-    padding-inline-end: 15px;;
+    padding-inline-end: 15px;
   }
 }
 
@@ -441,9 +441,7 @@ $ui-header-height: 55px;
   align-items: stretch;
   justify-content: space-around;
 
-  button {
-    @extend .column-header__button;
-
+  .column-header__button {
     background: transparent;
     text-align: center;
     padding: 10px 5px;
@@ -809,7 +807,7 @@ $ui-header-height: 55px;
         background: lighten($ui-base-color, 4%);
       }
 
-      @media screen and (max-width: 600px) {
+      @media screen and (width <= 600px) {
         font-size: 16px;
       }
     }

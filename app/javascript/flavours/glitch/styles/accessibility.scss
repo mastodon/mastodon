@@ -24,9 +24,11 @@ $emojis-requiring-inversion: 'back' 'copyright' 'curly_loop' 'currency_exchange'
     position: absolute;
     content: '\F00C';
     font-size: 50%;
-    font-family: FontAwesome;
     inset-inline-end: -0.55em;
     top: -0.44em;
+
+    /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword -- this is an icon font, this can't use a generic font */
+    font-family: FontAwesome;
   }
 }
 

@@ -1,8 +1,6 @@
 $doodle-background: #d9e1e8;
 
 .doodle-modal {
-  @extend .boost-modal;
-
   width: unset;
 }
 
@@ -16,8 +14,6 @@ $doodle-background: #d9e1e8;
 }
 
 .doodle-modal__action-bar {
-  @extend .boost-modal__action-bar;
-
   .filler {
     flex-grow: 1;
     margin: 0;
