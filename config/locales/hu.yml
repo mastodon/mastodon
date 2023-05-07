@@ -851,7 +851,7 @@ hu:
       statuses:
         allow: Bejegyzés engedélyezése
         allow_account: Szerző engedélyezése
-        description_html: Ezek olyan bejegyzések, amelyekről a szerver tud és amelyeket jelenleg gyakran megosztanak és kedvencek közé helyeznek. Segítségével az új és visszatérő felhasználók több követendő személyt találhatnak. Egyetlen bejegyzés sem jelenik meg nyilvánosan a szerző jóváhagyása és a szerző fiókjának ajánlása nélkül. Az egyes bejegyzéseket külön engedélyezhetük vagy elutasíthatjuk.
+        description_html: Ezek olyan, a szervered által ismert bejegyzések, melyeket mostanság gyakran osztanak meg vagy jelölnek kedvencnek. Ez segíthet az új vagy visszatérő felhasználóidnak, hogy több követhető személyt találjanak. Egyetlen bejegyzés sem jelenik meg nyilvánosan, amíg ennek szerzőjét nem hagytad jóvá és ő nem járult hozzá, hogy őt másoknak ajánlják. Bejegyzéseket egyenként is engedélyezhetsz vagy visszautasíthatsz.
         disallow: Bejegyzés tiltása
         disallow_account: Szerző tiltása
         no_status_selected: Nem változott meg egy felkapott bejegyzés sem, mert semmi sem volt kiválasztva
@@ -1249,15 +1249,15 @@ hu:
       overwrite: Felülírás
       overwrite_long: Lecseréljük újakkal a jelenlegi bejegyzéseket
     overwrite_preambles:
-      blocking_html: 'Arra készülsz, hogy <strong>lecseréld a blokkolási listát</strong> legfeljebb <strong>%{total_items} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
+      blocking_html: 'Arra készülsz, hogy <strong>lecseréld a letiltási listát</strong> legfeljebb <strong>%{total_items} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
       bookmarks_html: 'Arra készülsz, hogy <strong>lecseréld a könyvjelzőket</strong> legfeljebb <strong>%{total_items} bejegyzésre</strong> a következőből: <strong>%{filename}</strong>.'
-      domain_blocking_html: 'Arra készülsz, hogy <strong>lecseréld a domain blokkolási listát</strong> legfeljebb <strong>%{total_items} domainre</strong> a következőből: <strong>%{filename}</strong>.'
+      domain_blocking_html: 'Arra készülsz, hogy <strong>lecseréld a domain letiltási listát</strong> legfeljebb <strong>%{total_items} domainre</strong> a következőből: <strong>%{filename}</strong>.'
       following_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>, és <strong>abbahagyd mindenki más követését</strong>.'
       muting_html: 'Arra készülsz, hogy <strong>lecseréld a némított fiókok listáját</strong> legfeljebb <strong>%{total_items} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
     preambles:
-      blocking_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>blokkolj</strong> a következőből: <strong>%{filename}</strong>.'
+      blocking_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
       bookmarks_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} bejegyzést</strong> adj hozzá a <strong>könyvjelzőkhöz</strong> a következőből: <strong>%{filename}</strong>.'
-      domain_blocking_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} domaint</strong> <strong>blokkolj</strong> a következőből: <strong>%{filename}</strong>.'
+      domain_blocking_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} domaint</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
       following_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>.'
       muting_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>némíts</strong> a következőből: <strong>%{filename}</strong>.'
     preface: Itt importálhatod egy másik kiszolgálóról lementett adataidat, például követettjeid és letiltott felhasználóid listáját.
@@ -1271,15 +1271,15 @@ hu:
     success: Adataidat sikeresen feltöltöttük és feldolgozásukat megkezdtük
     time_started: 'Kezdés ideje:'
     titles:
-      blocking: A blokkolt fiókok importálása
+      blocking: Letiltott fiókok importálása
       bookmarks: Könyvjelzők importálása
-      domain_blocking: Blokkolt domainek importálása
+      domain_blocking: Letiltott domainek importálása
       following: Követett fiókok importálása
       muting: Némított fiókok importálása
     type: Importálás típusa
     type_groups:
       constructive: Követések és könyvjelzők
-      destructive: Blokkolások és némítások
+      destructive: Letiltások és némítások
     types:
       blocking: Letiltottak listája
       bookmarks: Könyvjelzők
@@ -1374,7 +1374,7 @@ hu:
       sign_up:
         subject: "%{name} feliratkozott"
     favourite:
-      body: 'A bejegyzést %{name} kedvencnek jelölte:'
+      body: 'A bejegyzésedet %{name} kedvencnek jelölte:'
       subject: "%{name} kedvencnek jelölte a bejegyzésedet"
       title: Új kedvenc
     follow:
@@ -1635,7 +1635,7 @@ hu:
       '7889238': 3 hónap
     min_age_label: Korhatár
     min_favs: Bejegyzések megtartása, melyeket többször jelöltek kedvencnek, mint
-    min_favs_hint: Nem törli azokat a bejegyzéseket, amelyek legalább ennyiszer kaptak kedvelést. Hagyjuk üresen a bejegyzések törléséhez függetlenül a kedvencek számától.
+    min_favs_hint: Nem törli egyetlen olyan bejegyzésedet sem, melyeket legalább ennyiszer jelöltek kedvencnek. Hagyd üresen, hogy a kedvencnek jelölések számától függetlenül törölve legyenek.
     min_reblogs: Bejegyzések megtartása, melyeket többször toltak meg, mint
     min_reblogs_hint: Egyetlen olyan bejegyzésedet sem törli, melyet ennél többször toltak meg. Hagyd üresen, hogy a megtolások számától függetlenül töröljük a bejegyzéseket
   stream_entries:
