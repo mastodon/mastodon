@@ -457,6 +457,7 @@ export default function compose(state = initialState, action) {
       map.set('privacy', state.get('default_privacy'));
       map.set('id', null);
       map.set('poll', null);
+      map.set('language', state.get('default_language'));
       map.update(
         'advanced_options',
         map => map.mergeWith(overwrite, state.get('default_advanced_options')),
