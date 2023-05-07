@@ -257,10 +257,16 @@ const startServer = async () => {
    * @returns {function(): void}
    */
   const subscriptionHeartbeat = channels => {
+    // keeps the Ruby side emitting messages on certain topics for 18 minutes,
+    // refreshes every 6 minutes, even if there's no listeners for those
+    // messages
     const interval = 6 * 60;
 
     const tellSubscribed = () => {
-      channels.forEach(channel => redisClient.set(`${redisPrefix}subscribed:${channel}`, '1', 'EX', interval * 3));
+      channels.forEach(channel => redisClient.set(`${redisPrefix}subscribed:${channel}`, '1', {
+        EX: interval * 3,
+        NX: true,
+      }));
     };
 
     tellSubscribed();
