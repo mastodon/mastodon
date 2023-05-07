@@ -228,6 +228,9 @@ const startServer = async () => {
     help: 'The delta between when events are pushed to redis and the streaming server processes the event'
   });
 
+  // FIXME: streamingLatency can't be calculated
+  streamingLatency.observe(0);
+
   const { redisParams, redisUrl, redisPrefix } = redisConfigFromEnv(process.env);
 
   /**
@@ -685,14 +688,15 @@ const startServer = async () => {
 
       if (!json) return;
 
-      const { event, payload, queued_at } = json;
+      const { event, payload } = json;
 
       const transmit = () => {
-        const now = new Date().getTime();
-        const delta = now - queued_at;
-        const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
+        // FIXME: most stream events don't actually carry a queued_at timestamp
+        // const now = new Date().getTime();
+        // const delta = now - queued_at;
+        // streamingLatency.observe(delta);
 
-        streamingLatency.observe(delta);
+        const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
 
         log.silly(req.requestId, `Transmitting for ${accountId}: ${event} ${encodedPayload} Delay: ${delta}ms`);
         output(event, encodedPayload);
