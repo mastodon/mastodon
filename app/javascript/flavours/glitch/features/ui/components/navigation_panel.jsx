@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
-import { Link } from 'react-router-dom';
 import { timelinePreview, showTrends } from 'flavours/glitch/initial_state';
-import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
+import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
 import FollowRequestsColumnLink from './follow_requests_column_link';
 import ListPanel from './list_panel';
 import NotificationsCounterIcon from './notifications_counter_icon';
 import SignInBanner from './sign_in_banner';
-import { preferencesLink, relationshipsLink } from 'flavours/glitch/utils/backend_links';
+import { preferencesLink } from 'flavours/glitch/utils/backend_links';
 import NavigationPortal from 'flavours/glitch/components/navigation_portal';
 
 const messages = defineMessages({
@@ -37,6 +36,7 @@ class NavigationPanel extends React.Component {
   };
 
   static propTypes = {
+    intl: PropTypes.object.isRequired,
     onOpenSettings: PropTypes.func,
   };
 

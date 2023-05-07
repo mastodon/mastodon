@@ -50,7 +50,6 @@ export default class ColumnsArea extends ImmutablePureComponent {
     columns: ImmutablePropTypes.list.isRequired,
     singleColumn: PropTypes.bool,
     children: PropTypes.node,
-    navbarUnder: PropTypes.bool,
     openSettings: PropTypes.func,
   };
 
@@ -136,7 +135,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   };
 
   render () {
-    const { columns, children, singleColumn, navbarUnder, openSettings } = this.props;
+    const { columns, children, singleColumn, openSettings } = this.props;
     const { renderComposePanel } = this.state;
 
     if (singleColumn) {

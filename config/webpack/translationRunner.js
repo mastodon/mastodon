@@ -95,7 +95,7 @@ const provideExtractedMessages = () => {
 
   originalExtractedMessages.forEach(file => {
     file.descriptors.forEach(descriptor => {
-      originalKeys.add(descriptor.id)
+      originalKeys.add(descriptor.id);
     });
   });
 

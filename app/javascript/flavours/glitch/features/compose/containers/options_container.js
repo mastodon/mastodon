@@ -9,7 +9,6 @@ import {
 import { openModal } from 'flavours/glitch/actions/modal';
 
 function mapStateToProps (state) {
-  const spoilersAlwaysOn = state.getIn(['local_settings', 'always_show_spoilers_field']);
   const poll = state.getIn(['compose', 'poll']);
   const media = state.getIn(['compose', 'media_attachments']);
   const pending_media = state.getIn(['compose', 'pending_media_attachments']);
@@ -18,7 +17,6 @@ function mapStateToProps (state) {
     resetFileKey: state.getIn(['compose', 'resetFileKey']),
     hasPoll: !!poll,
     allowMedia: !poll && (media ? media.size + pending_media < 4 && !media.some(item => ['video', 'audio'].includes(item.get('type'))) : pending_media < 4),
-    hasMedia: media && !!media.size,
     allowPoll: !(media && !!media.size),
     showContentTypeChoice: state.getIn(['local_settings', 'show_content_type_choice']),
     contentType: state.getIn(['compose', 'content_type']),

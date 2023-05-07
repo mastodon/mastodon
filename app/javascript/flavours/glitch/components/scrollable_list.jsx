@@ -90,15 +90,19 @@ class ScrollableList extends PureComponent {
   lastScrollWasSynthetic = false;
   scrollToTopOnMouseIdle = false;
 
+  _getScrollingElement = () => {
+    if (this.props.bindToDocument) {
+      return (document.scrollingElement || document.body);
+    } else {
+      return this.node;
+    }
+  };
+
   setScrollTop = newScrollTop => {
     if (this.getScrollTop() !== newScrollTop) {
       this.lastScrollWasSynthetic = true;
 
-      if (this.props.bindToDocument) {
-        document.scrollingElement.scrollTop = newScrollTop;
-      } else {
-        this.node.scrollTop = newScrollTop;
-      }
+      this._getScrollingElement().scrollTop = newScrollTop;
     }
   };
 
@@ -106,6 +110,7 @@ class ScrollableList extends PureComponent {
     if (this.mouseIdleTimer === null) {
       return;
     }
+
     clearTimeout(this.mouseIdleTimer);
     this.mouseIdleTimer = null;
   };
@@ -113,13 +118,13 @@ class ScrollableList extends PureComponent {
   handleMouseMove = throttle(() => {
     // As long as the mouse keeps moving, clear and restart the idle timer.
     this.clearMouseIdleTimer();
-    this.mouseIdleTimer =
-      setTimeout(this.handleMouseIdle, MOUSE_IDLE_DELAY);
+    this.mouseIdleTimer = setTimeout(this.handleMouseIdle, MOUSE_IDLE_DELAY);
 
     if (!this.mouseMovedRecently && this.getScrollTop() === 0) {
       // Only set if we just started moving and are scrolled to the top.
       this.scrollToTopOnMouseIdle = true;
     }
+
     // Save setting this flag for last, so we can do the comparison above.
     this.mouseMovedRecently = true;
   }, MOUSE_IDLE_DELAY / 2);
@@ -134,6 +139,7 @@ class ScrollableList extends PureComponent {
     if (this.scrollToTopOnMouseIdle && !this.props.preventScroll) {
       this.setScrollTop(0);
     }
+
     this.mouseMovedRecently = false;
     this.scrollToTopOnMouseIdle = false;
   };
@@ -141,6 +147,7 @@ class ScrollableList extends PureComponent {
   componentDidMount () {
     this.attachScrollListener();
     this.attachIntersectionObserver();
+
     attachFullscreenListener(this.onFullScreenChange);
 
     // Handle initial scroll position
@@ -156,15 +163,15 @@ class ScrollableList extends PureComponent {
   };
 
   getScrollTop = () => {
-    return this.props.bindToDocument ? document.scrollingElement.scrollTop : this.node.scrollTop;
+    return this._getScrollingElement().scrollTop;
   };
 
   getScrollHeight = () => {
-    return this.props.bindToDocument ? document.scrollingElement.scrollHeight : this.node.scrollHeight;
+    return this._getScrollingElement().scrollHeight;
   };
 
   getClientHeight = () => {
-    return this.props.bindToDocument ? document.scrollingElement.clientHeight : this.node.clientHeight;
+    return this._getScrollingElement().clientHeight;
   };
 
   updateScrollBottom = (snapshot) => {
@@ -173,11 +180,7 @@ class ScrollableList extends PureComponent {
     this.setScrollTop(newScrollTop);
   };
 
-  cacheMediaWidth = (width) => {
-    if (width && this.state.cachedMediaWidth != width) this.setState({ cachedMediaWidth: width });
-  };
-
-  getSnapshotBeforeUpdate (prevProps, prevState) {
+  getSnapshotBeforeUpdate (prevProps) {
     const someItemInserted = React.Children.count(prevProps.children) > 0 &&
       React.Children.count(prevProps.children) < React.Children.count(this.props.children) &&
       this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
@@ -198,10 +201,17 @@ class ScrollableList extends PureComponent {
     }
   }
 
+  cacheMediaWidth = (width) => {
+    if (width && this.state.cachedMediaWidth !== width) {
+      this.setState({ cachedMediaWidth: width });
+    }
+  };
+
   componentWillUnmount () {
     this.clearMouseIdleTimer();
     this.detachScrollListener();
     this.detachIntersectionObserver();
+
     detachFullscreenListener(this.onFullScreenChange);
   }
 
@@ -210,10 +220,13 @@ class ScrollableList extends PureComponent {
   };
 
   attachIntersectionObserver () {
-    this.intersectionObserverWrapper.connect({
+    let nodeOptions = {
       root: this.node,
       rootMargin: '300% 0px',
-    });
+    };
+
+    this.intersectionObserverWrapper
+      .connect(this.props.bindToDocument ? {} : nodeOptions);
   }
 
   detachIntersectionObserver () {

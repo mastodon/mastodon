@@ -711,31 +711,6 @@ $ui-header-height: 55px;
   }
 }
 
-// more fixes for the navbar-under mode
-@mixin fix-margins-for-navbar-under {
-  .tabs-bar {
-    margin-top: 0 !important;
-    margin-bottom: -6px !important;
-  }
-}
-
-.single-column.navbar-under {
-  @include fix-margins-for-navbar-under;
-}
-
-.auto-columns.navbar-under {
-  @media screen and (max-width: $no-gap-breakpoint) {
-    @include fix-margins-for-navbar-under;
-  }
-}
-
-.auto-columns.navbar-under .react-swipeable-view-container .columns-area,
-.single-column.navbar-under .react-swipeable-view-container .columns-area {
-  @media screen and (max-width: $no-gap-breakpoint) {
-    height: 100% !important;
-  }
-}
-
 .column-inline-form {
   padding: 7px 15px;
   padding-inline-end: 5px;

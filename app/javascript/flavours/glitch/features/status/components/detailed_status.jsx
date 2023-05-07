@@ -122,9 +122,8 @@ class DetailedStatus extends ImmutablePureComponent {
 
   render () {
     const status = (this.props.status && this.props.status.get('reblog')) ? this.props.status.get('reblog') : this.props.status;
-    const { expanded, onToggleHidden, settings, pictureInPicture, intl } = this.props;
     const outerStyle = { boxSizing: 'border-box' };
-    const { compact } = this.props;
+    const { compact, pictureInPicture, expanded, onToggleHidden, settings } = this.props;
 
     if (!status) {
       return null;

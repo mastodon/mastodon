@@ -373,7 +373,6 @@ const startServer = async () => {
   const channelNameFromPath = req => {
     const { path, query } = req;
     const onlyMedia = isTruthy(query.only_media);
-    const allowLocalOnly = isTruthy(query.allow_local_only);
 
     switch (path) {
     case '/api/v1/streaming/user':
@@ -990,7 +989,7 @@ const startServer = async () => {
     case 'public:media':
       resolve({
         channelIds: ['timeline:public:media'],
-        options: { needsFiltering: true, allowLocalOnly: isTruthy(query.allow_local_only) },
+        options: { needsFiltering: true, allowLocalOnly: isTruthy(params.allow_local_only) },
       });
 
       break;

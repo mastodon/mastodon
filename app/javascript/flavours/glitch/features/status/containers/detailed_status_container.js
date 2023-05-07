@@ -18,8 +18,6 @@ import {
   muteStatus,
   unmuteStatus,
   deleteStatus,
-  hideStatus,
-  revealStatus,
 } from 'flavours/glitch/actions/statuses';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initBlockModal } from 'flavours/glitch/actions/blocks';

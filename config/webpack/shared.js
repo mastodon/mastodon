@@ -1,11 +1,10 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
 const webpack = require('webpack');
-const { basename, dirname, join, relative, resolve } = require('path');
-const { sync } = require('glob');
+const { resolve } = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const AssetsManifestPlugin = require('webpack-assets-manifest');
-const { env, settings, core, flavours, output } = require('./configuration.js');
+const { env, settings, core, flavours, output } = require('./configuration');
 const rules = require('./rules');
 const localePacks = require('./generateLocalePacks');
 
@@ -50,7 +49,7 @@ const entries = Object.assign(
   { locales: resolve('app', 'javascript', 'locales') },
   localePacks,
   reducePacks(core),
-  Object.values(flavours).reduce((map, data) => reducePacks(data, map), {})
+  Object.values(flavours).reduce((map, data) => reducePacks(data, map), {}),
 );
 
 

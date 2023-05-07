@@ -8,7 +8,6 @@ import { LOCAL_SETTING_CHANGE, LOCAL_SETTING_DELETE } from 'flavours/glitch/acti
 const initialState = ImmutableMap({
   layout    : 'auto',
   stretch   : true,
-  navbar_under : false,
   side_arm  : 'none',
   side_arm_reply_mode : 'keep',
   show_reply_count : false,
