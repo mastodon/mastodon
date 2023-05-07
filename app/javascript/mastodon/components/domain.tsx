@@ -1,20 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import IconButton from './icon_button';
-import { defineMessages, injectIntl } from 'react-intl';
+import { InjectedIntl, defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
 });
 
-class Account extends ImmutablePureComponent {
-
-  static propTypes = {
-    domain: PropTypes.string,
-    onUnblockDomain: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired,
-  };
+type Props = {
+  domain: string;
+  onUnblockDomain: (domain: string) => void;
+  intl: InjectedIntl;
+}
+class Domain extends ImmutablePureComponent<Props> {
 
   handleDomainUnblock = () => {
     this.props.onUnblockDomain(this.props.domain);
@@ -40,4 +38,4 @@ class Account extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(Account);
+export default injectIntl(Domain);
