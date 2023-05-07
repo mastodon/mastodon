@@ -2,12 +2,13 @@
 
 const isDocker = require('is-docker');
 const dotenv = require('dotenv');
+const { pino } = require('pino');
+const { pinoHttp } = require('pino-http');
 const express = require('express');
 const http = require('http');
 const redis = require('redis');
 const pg = require('pg');
 const dbUrlToConfig = require('pg-connection-string').parse;
-const log = require('npmlog');
 const url = require('url');
 const uuid = require('uuid');
 const fs = require('fs');
@@ -27,7 +28,15 @@ if (!isDocker()) {
   });
 }
 
-log.level = process.env.LOG_LEVEL || 'verbose';
+let logLevel = 'info';
+if (process.env.LOG_LEVEL && typeof pino.levels.values[process.env.LOG_LEVEL] === 'number') {
+  logLevel = process.env.LOG_LEVEL;
+}
+
+const logger = pino({
+  level: logLevel,
+  redact: ['req.query.access_token'],
+});
 
 /**
  * @param {Object.<string, any>} defaultConfig
@@ -52,7 +61,7 @@ const redisUrlToClient = async (defaultConfig, redisUrl) => {
     }));
   }
 
-  client.on('error', (err) => log.error('Redis Client Error!', err));
+  client.on('error', (err) => logger.error('Redis Client Error!', err));
   await client.connect();
 
   return client;
@@ -68,9 +77,9 @@ const parseJSON = (json, req) => {
     return JSON.parse(json);
   } catch (err) {
     if (req.accountId) {
-      log.warn(req.requestId, `Error parsing message from user ${req.accountId}: ${err}`);
+      req.log.error(`Error parsing message from user ${req.accountId}: ${err}`);
     } else {
-      log.silly(req.requestId, `Error parsing message from ${req.remoteAddress}: ${err}`);
+      req.log.error(`Error parsing message from ${req.remoteAddress}: ${err}`);
     }
     return null;
   }
@@ -183,6 +192,8 @@ const startServer = async () => {
     }
   });
 
+  app.use(pinoHttp({ logger }));
+
   app.use('/api/v1/streaming', api);
 
   const pgPool = new pg.Pool(pgConfigFromEnv(process.env));
@@ -225,7 +236,7 @@ const startServer = async () => {
 
   const streamingLatency = new metrics.Histogram({
     name: 'streaming_latency',
-    help: 'The delta between when events are pushed to redis and the streaming server processes the event'
+    help: 'The delta between when events are pushed to redis and the streaming server processes the event',
   });
 
   // FIXME: streamingLatency can't be calculated
@@ -268,7 +279,7 @@ const startServer = async () => {
   const onRedisMessage = (message, channel) => {
     const callbacks = subs[channel];
 
-    log.silly(`New message on channel ${channel}\n${message}`);
+    logger.debug(`New message on channel ${channel}\n${message}`);
 
     if (!callbacks) {
       return;
@@ -280,14 +291,15 @@ const startServer = async () => {
   /**
    * @param {string} channel
    * @param {function(string): void} callback
+   * @param {logger} logger
    */
-  const subscribe = (channel, callback) => {
-    log.silly(`Adding listener for ${channel}`);
+  const subscribe = (channel, callback, logger) => {
+    logger.debug('Adding listener for %s', channel);
 
     subs[channel] = subs[channel] || [];
 
     if (subs[channel].length === 0) {
-      log.verbose(`Subscribe ${channel}`);
+      logger.info('Subscribe %s', channel);
       redisSubscribeClient.subscribe(channel, onRedisMessage);
       subscriptionCounter.inc();
     }
@@ -297,10 +309,11 @@ const startServer = async () => {
 
   /**
    * @param {string} channel
-   * @param {function(string): void} callback
+   * @param {null | function(string): void} callback
+   * @param {logger} logger
    */
-  const unsubscribe = (channel, callback) => {
-    log.silly(`Removing listener for ${channel}`);
+  const unsubscribe = (channel, callback, logger) => {
+    logger.debug('Removing listener for %s', channel);
 
     if (!subs[channel]) {
       return;
@@ -309,7 +322,7 @@ const startServer = async () => {
     subs[channel] = subs[channel].filter(item => item !== callback);
 
     if (subs[channel].length === 0) {
-      log.verbose(`Unsubscribe ${channel}`);
+      logger.info('Unsubscribe %s', channel);
       redisSubscribeClient.unsubscribe(channel);
       subscriptionCounter.dec();
       delete subs[channel];
@@ -489,7 +502,7 @@ const startServer = async () => {
    * @returns {Promise.<void>}
    */
   const checkScopes = (req, channelName) => new Promise((resolve, reject) => {
-    log.silly(req.requestId, `Checking OAuth scopes for ${channelName}`);
+    req.log.debug('Checking OAuth scopes for %s', channelName);
 
     // When accessing public channels, no scopes are needed
     if (PUBLIC_CHANNELS.includes(channelName)) {
@@ -538,7 +551,7 @@ const startServer = async () => {
     accountFromRequest(info.req).then(() => {
       callback(true, undefined, undefined);
     }).catch(err => {
-      log.error(info.req.requestId, err.toString());
+      info.req.log.error(err);
       callback(false, 401, 'Unauthorized');
     });
   };
@@ -561,13 +574,13 @@ const startServer = async () => {
 
       const { event } = json;
 
-      log.silly(req.requestId, `System message for ${req.accountId}: ${event}`);
+      req.log.debug('System message for %s', req.accountId, event);
 
       if (event === 'kill') {
-        log.verbose(req.requestId, `Closing connection for ${req.accountId} due to expired access token`);
+        req.log.info(`Closing connection for ${req.accountId} due to expired access token`);
         eventHandlers.onKill();
       } else if (event === 'filters_changed') {
-        log.verbose(req.requestId, `Invalidating filters cache for ${req.accountId}`);
+        req.log.info(`Invalidating filters cache for ${req.accountId}`);
         req.cachedFilters = null;
       }
     };
@@ -590,12 +603,12 @@ const startServer = async () => {
     });
 
     res.on('close', () => {
-      unsubscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-      unsubscribe(`${redisPrefix}${systemChannelId}`, listener);
+      unsubscribe(`${redisPrefix}${accessTokenChannelId}`, listener, req.log);
+      unsubscribe(`${redisPrefix}${systemChannelId}`, listener, req.log);
     });
 
-    subscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-    subscribe(`${redisPrefix}${systemChannelId}`, listener);
+    subscribe(`${redisPrefix}${accessTokenChannelId}`, listener, req.log);
+    subscribe(`${redisPrefix}${systemChannelId}`, listener, req.log);
   };
 
   /**
@@ -625,7 +638,7 @@ const startServer = async () => {
    * @param {function(Error=): void} next
    */
   const errorMiddleware = (err, req, res, next) => {
-    log.error(req.requestId, err.toString());
+    req.log.error(err);
 
     if (res.headersSent) {
       next(err);
@@ -681,7 +694,7 @@ const startServer = async () => {
   const streamFrom = (ids, req, output, attachCloseHandler, needsFiltering = false) => {
     const accountId = req.accountId || req.remoteAddress;
 
-    log.verbose(req.requestId, `Starting stream from ${ids.join(', ')} for ${accountId}`);
+    req.log.info(`Starting stream from ${ids.join(', ')} for ${accountId}`);
 
     const listener = message => {
       const json = parseJSON(message, req);
@@ -698,7 +711,7 @@ const startServer = async () => {
 
         const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
 
-        log.silly(req.requestId, `Transmitting for ${accountId}: ${event} ${encodedPayload} Delay: ${delta}ms`);
+        req.log.debug(`Transmitting for ${accountId}: ${event} ${encodedPayload}`);
         output(event, encodedPayload);
       };
 
@@ -714,7 +727,7 @@ const startServer = async () => {
       const accountDomain = unpackedPayload.account.acct.split('@')[1];
 
       if (Array.isArray(req.chosenLanguages) && unpackedPayload.language !== null && req.chosenLanguages.indexOf(unpackedPayload.language) === -1) {
-        log.silly(req.requestId, `Message ${unpackedPayload.id} filtered by language (${unpackedPayload.language})`);
+        req.log.debug(`Message ${unpackedPayload.id} filtered by language (${unpackedPayload.language})`);
         return;
       }
 
@@ -726,7 +739,7 @@ const startServer = async () => {
 
       pgPool.connect((err, client, done) => {
         if (err) {
-          log.error(err);
+          req.log.error(err, 'Failed to acquire postgresql connection');
           return;
         }
 
@@ -822,14 +835,14 @@ const startServer = async () => {
 
           transmit();
         }).catch(err => {
-          log.error(err);
+          req.log.error(err);
           done();
         });
       });
     };
 
     ids.forEach(id => {
-      subscribe(`${redisPrefix}${id}`, listener);
+      subscribe(`${redisPrefix}${id}`, listener, req.log);
     });
 
     if (attachCloseHandler) {
@@ -859,7 +872,7 @@ const startServer = async () => {
 
     req.on('close', () => {
       connectedClients.labels({ type: 'http' }).dec();
-      log.verbose(req.requestId, `Ending stream for ${accountId}`);
+      req.log.debug(`Ending stream for ${accountId}`);
       clearInterval(heartbeat);
     });
 
@@ -878,7 +891,7 @@ const startServer = async () => {
   const streamHttpEnd = (req, closeHandler = undefined) => (ids, listener) => {
     req.on('close', () => {
       ids.forEach(id => {
-        unsubscribe(id, listener);
+        unsubscribe(id, listener, req.log);
       });
 
       if (closeHandler) {
@@ -895,7 +908,7 @@ const startServer = async () => {
    */
   const streamToWs = (req, ws, streamName) => (event, payload) => {
     if (ws.readyState !== ws.OPEN) {
-      log.error(req.requestId, 'Tried writing to closed socket');
+      req.log.error('Tried writing to closed socket');
       return;
     }
 
@@ -924,7 +937,7 @@ const startServer = async () => {
 
       streamFrom(channelIds, req, onSend, onEnd, options.needsFiltering);
     }).catch(err => {
-      log.verbose(req.requestId, 'Subscription error:', err.toString());
+      req.log.error(err, 'Subscription error');
       httpNotFound(res);
     });
   });
@@ -1138,7 +1151,7 @@ const startServer = async () => {
         stopHeartbeat,
       };
     }).catch(err => {
-      log.verbose(request.requestId, 'Subscription error:', err.toString());
+      request.log.error(err, 'Subscription error');
       socket.send(JSON.stringify({ error: err.toString() }));
     });
 
@@ -1149,7 +1162,7 @@ const startServer = async () => {
    */
   const unsubscribeWebsocketFromChannel = ({ socket, request, subscriptions }, channelName, params) =>
     channelNameToIds(request, channelName, params).then(({ channelIds }) => {
-      log.verbose(request.requestId, `Ending stream from ${channelIds.join(', ')} for ${request.accountId}`);
+      request.log.debug(`Ending stream from ${channelIds.join(', ')} for ${request.accountId}`);
 
       const subscription = subscriptions[channelIds.join(';')];
 
@@ -1160,14 +1173,14 @@ const startServer = async () => {
       const { listener, stopHeartbeat } = subscription;
 
       channelIds.forEach(channelId => {
-        unsubscribe(`${redisPrefix}${channelId}`, listener);
+        unsubscribe(`${redisPrefix}${channelId}`, listener, request.log);
       });
 
       stopHeartbeat();
 
       delete subscriptions[channelIds.join(';')];
     }).catch(err => {
-      log.verbose(request.requestId, 'Unsubscription error:', err);
+      request.log.error(err, 'Unsubscription error');
       socket.send(JSON.stringify({ error: err.toString() }));
     });
 
@@ -1186,8 +1199,8 @@ const startServer = async () => {
 
     });
 
-    subscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-    subscribe(`${redisPrefix}${systemChannelId}`, listener);
+    subscribe(`${redisPrefix}${accessTokenChannelId}`, listener, request.log);
+    subscribe(`${redisPrefix}${systemChannelId}`, listener, request.log);
 
     subscriptions[accessTokenChannelId] = {
       listener,
@@ -1220,6 +1233,9 @@ const startServer = async () => {
     req.requestId = uuid.v4();
     req.remoteAddress = ws._socket.remoteAddress;
 
+    req.log = logger.child({ reqId: req.requestId });
+    req.log.debug('Opened connection');
+
     ws.isAlive = true;
 
     ws.on('pong', () => {
@@ -1245,11 +1261,13 @@ const startServer = async () => {
         const { listener, stopHeartbeat } = session.subscriptions[channelIds];
 
         channelIds.split(';').forEach(channelId => {
-          unsubscribe(`${redisPrefix}${channelId}`, listener);
+          unsubscribe(`${redisPrefix}${channelId}`, listener, req.log);
         });
 
         stopHeartbeat();
       });
+
+      req.log.debug('Closed connection');
     };
 
     ws.on('close', onEnd);
@@ -1267,6 +1285,7 @@ const startServer = async () => {
       } else if (type === 'unsubscribe') {
         unsubscribeWebsocketFromChannel(session, firstParam(stream), params);
       } else {
+        req.log.error('Received unknown action type: %s', type);
         // Unknown action type
       }
     });
@@ -1291,7 +1310,7 @@ const startServer = async () => {
   }, 30000);
 
   attachServerWithConfig(server, address => {
-    log.warn(`Streaming API now listening on ${address}`);
+    logger.info('Streaming API now listening on %s', address);
   });
 
   const onExit = () => {
@@ -1300,7 +1319,7 @@ const startServer = async () => {
   };
 
   const onError = (err) => {
-    log.error(err);
+    logger.error(err);
     server.close();
     process.exit(0);
   };
