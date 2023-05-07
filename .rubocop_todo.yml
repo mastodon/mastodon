@@ -225,6 +225,8 @@ Lint/Void:
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
   Max: 150
+  Exclude:
+    - 'app/serializers/initial_state_serializer.rb'
 
 # Configuration parameters: CountBlocks, Max.
 Metrics/BlockNesting:
@@ -247,6 +249,7 @@ Metrics/ModuleLength:
     - 'app/helpers/jsonld_helper.rb'
     - 'app/models/concerns/account_interactions.rb'
     - 'app/models/concerns/has_user_settings.rb'
+    - 'lib/sanitize_ext/sanitize_config.rb'
 
 # Configuration parameters: Max, CountKeywordArgs, MaxOptionalParameters.
 Metrics/ParameterLists:

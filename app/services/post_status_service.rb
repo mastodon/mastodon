@@ -64,14 +64,16 @@ class PostStatusService < BaseService
   def fill_blank_text!
     return unless @text.blank? && @options[:spoiler_text].present?
 
-    if @media&.any?(&:video?) || @media&.any?(&:gifv?)
-      @text = '📹'
-    elsif @media&.any?(&:audio?)
-      @text = '🎵'
-    elsif @media&.any?(&:image?)
-      @text = '🖼'
-    else
-      @text = '.'
+    @text = begin
+      if @media&.any?(&:video?) || @media&.any?(&:gifv?)
+        '📹'
+      elsif @media&.any?(&:audio?)
+        '🎵'
+      elsif @media&.any?(&:image?)
+        '🖼'
+      else
+        '.'
+      end
     end
   end
 
