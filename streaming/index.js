@@ -1273,9 +1273,17 @@ const startServer = async () => {
     ws.on('close', onEnd);
     ws.on('error', onEnd);
 
-    ws.on('message', data => {
-      const json = parseJSON(data, session.request);
+    ws.on('message', (data, isBinary) => {
+      if (isBinary) {
+        req.log.debug('Received binary data, closing connection');
+        ws.close(1003, 'The mastodon streaming server does not support binary messages');
+        return;
+      }
+      const message = data.toString('utf8');
 
+      req.log.debug('Received message: %s', message);
+
+      const json = parseJSON(message, session.request);
       if (!json) return;
 
       const { type, stream, ...params } = json;
