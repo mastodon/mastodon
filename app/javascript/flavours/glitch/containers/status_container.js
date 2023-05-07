@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import Status from 'flavours/glitch/components/status';
-import { List as ImmutableList } from 'immutable';
 import { makeGetStatus, makeGetPictureInPicture } from 'flavours/glitch/selectors';
 import {
   replyCompose,
@@ -37,13 +36,9 @@ import { initBoostModal } from 'flavours/glitch/actions/boosts';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { deployPictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/initial_state';
-import { filterEditLink } from 'flavours/glitch/utils/backend_links';
 import { showAlertForError } from '../actions/alerts';
-import AccountContainer from 'flavours/glitch/containers/account_container';
-import Spoilers from '../components/spoilers';
-import Icon from 'flavours/glitch/components/icon';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },

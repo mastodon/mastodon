@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl } from 'react-intl';
 import Dropdown from './dropdown';
 

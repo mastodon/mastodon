@@ -1,5 +1,5 @@
 import api, { getLinks } from '../api';
-import { importAccount, importFetchedAccount, importFetchedAccounts } from './importer';
+import { importFetchedAccount, importFetchedAccounts } from './importer';
 
 export const ACCOUNT_FETCH_REQUEST = 'ACCOUNT_FETCH_REQUEST';
 export const ACCOUNT_FETCH_SUCCESS = 'ACCOUNT_FETCH_SUCCESS';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';

@@ -3,7 +3,7 @@ import { submitMarkers } from './markers';
 import api, { getLinks } from 'flavours/glitch/api';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import compareId from 'flavours/glitch/compare_id';
-import { me, usePendingItems as preferPendingItems } from 'flavours/glitch/initial_state';
+import { usePendingItems as preferPendingItems } from 'flavours/glitch/initial_state';
 import { toServerSideType } from 'flavours/glitch/utils/filters';
 
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
@@ -121,7 +121,6 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
 
     api(getState).get(path, { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
-
       dispatch(importFetchedStatuses(response.data));
       dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.status === 206, isLoadingRecent, isLoadingMore, isLoadingRecent && preferPendingItems));
 
@@ -163,10 +162,10 @@ export const expandListTimeline            = (id, { maxId } = {}, done = noOp) =
 export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = {}, done = noOp) => {
   return expandTimeline(`hashtag:${hashtag}${local ? ':local' : ''}`, `/api/v1/timelines/tag/${hashtag}`, {
     max_id: maxId,
-    any: parseTags(tags, 'any'),
-    all: parseTags(tags, 'all'),
-    none: parseTags(tags, 'none'),
-    local: local,
+    any:    parseTags(tags, 'any'),
+    all:    parseTags(tags, 'all'),
+    none:   parseTags(tags, 'none'),
+    local:  local,
   }, done);
 };
 

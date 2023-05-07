@@ -9,9 +9,9 @@ import {
   enterNotificationClearingMode,
   expandNotifications,
   scrollTopNotifications,
+  loadPending,
   mountNotifications,
   unmountNotifications,
-  loadPending,
   markNotificationsAsRead,
 } from 'flavours/glitch/actions/notifications';
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
@@ -79,16 +79,6 @@ const mapDispatchToProps = dispatch => ({
   onEnterCleaningMode(yes) {
     dispatch(enterNotificationClearingMode(yes));
   },
-  onMarkAsRead() {
-    dispatch(markNotificationsAsRead());
-    dispatch(submitMarkers({ immediate: true }));
-  },
-  onMount() {
-    dispatch(mountNotifications());
-  },
-  onUnmount() {
-    dispatch(unmountNotifications());
-  },
   dispatch,
 });
 
@@ -112,8 +102,6 @@ class Notifications extends React.PureComponent {
     localSettings: ImmutablePropTypes.map,
     notifCleaningActive: PropTypes.bool,
     onEnterCleaningMode: PropTypes.func,
-    onMount: PropTypes.func,
-    onUnmount: PropTypes.func,
     lastReadId: PropTypes.string,
     canMarkAsRead: PropTypes.bool,
     needsNotificationPermission: PropTypes.bool,
@@ -126,6 +114,18 @@ class Notifications extends React.PureComponent {
   state = {
     animatingNCD: false,
   };
+
+  componentDidMount() {
+    this.props.dispatch(mountNotifications());
+  }
+
+  componentWillUnmount () {
+    this.handleLoadOlder.cancel();
+    this.handleScrollToTop.cancel();
+    this.handleScroll.cancel();
+    // this.props.dispatch(scrollTopNotifications(false));
+    this.props.dispatch(unmountNotifications());
+  }
 
   handleLoadGap = (maxId) => {
     this.props.dispatch(expandNotifications({ maxId }));
@@ -195,20 +195,6 @@ class Notifications extends React.PureComponent {
     }
   }
 
-  componentDidMount () {
-    const { onMount } = this.props;
-    if (onMount) {
-      onMount();
-    }
-  }
-
-  componentWillUnmount () {
-    const { onUnmount } = this.props;
-    if (onUnmount) {
-      onUnmount();
-    }
-  }
-
   handleTransitionEndNCD = () => {
     this.setState({ animatingNCD: false });
   };
@@ -219,12 +205,13 @@ class Notifications extends React.PureComponent {
   };
 
   handleMarkAsRead = () => {
-    this.props.onMarkAsRead();
+    this.props.dispatch(markNotificationsAsRead());
+    this.props.dispatch(submitMarkers({ immediate: true }));
   };
 
   render () {
     const { intl, notifications, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar, lastReadId, canMarkAsRead, needsNotificationPermission } = this.props;
-    const { notifCleaning, notifCleaningActive } = this.props;
+    const { notifCleaningActive } = this.props;
     const { animatingNCD } = this.state;
     const pinned = !!columnId;
     const emptyMessage = <FormattedMessage id='empty_column.notifications' defaultMessage="You don't have any notifications yet. When other people interact with you, you will see it here." />;

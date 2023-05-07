@@ -145,6 +145,7 @@ class PollForm extends ImmutablePureComponent {
         </ul>
 
         <div className='poll__footer'>
+          {/* eslint-disable-next-line jsx-a11y/no-onchange */}
           <select value={isMultiple ? 'true' : 'false'} onChange={this.handleSelectMultiple}>
             <option value='false'>{intl.formatMessage(messages.single_choice)}</option>
             <option value='true'>{intl.formatMessage(messages.multiple_choices)}</option>

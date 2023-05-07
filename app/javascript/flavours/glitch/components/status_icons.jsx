@@ -64,18 +64,15 @@ class StatusIcons extends React.PureComponent {
   mediaIconTitleText (mediaIcon) {
     const { intl } = this.props;
 
-    switch (mediaIcon) {
-    case 'link':
-      return intl.formatMessage(messages.previewCard);
-    case 'picture-o':
-      return intl.formatMessage(messages.pictures);
-    case 'tasks':
-      return intl.formatMessage(messages.poll);
-    case 'video-camera':
-      return intl.formatMessage(messages.video);
-    case 'music':
-      return intl.formatMessage(messages.audio);
-    }
+    const message = {
+      'link': messages.previewCard,
+      'picture-o': messages.pictures,
+      'tasks': messages.poll,
+      'video-camera': messages.video,
+      'music': messages.audio,
+    }[mediaIcon];
+
+    return message && intl.formatMessage(message);
   }
 
   renderIcon (mediaIcon) {

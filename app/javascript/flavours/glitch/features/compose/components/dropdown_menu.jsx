@@ -1,7 +1,6 @@
 //  Package imports.
 import PropTypes from 'prop-types';
 import React from 'react';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 import classNames from 'classnames';
 
 //  Components.
@@ -9,7 +8,6 @@ import Icon from 'flavours/glitch/components/icon';
 
 //  Utils.
 import { withPassive } from 'flavours/glitch/utils/dom_helpers';
-import { assignHandlers } from 'flavours/glitch/utils/react_helpers';
 
 //  The component.
 export default class ComposerOptionsDropdownContent extends React.PureComponent {
@@ -78,7 +76,8 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
       items,
     } = this.props;
 
-    const { name } = this.props.items[i];
+    const { name } = items[i];
+
     e.preventDefault();  //  Prevents change in focus on click
     if (closeOnChange) {
       onClose();
@@ -131,7 +130,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
 
     if (element) {
       element.focus();
-      this.handleChange(this.props.items[Number(element.getAttribute('data-index'))].name);
+      this.handleChange(items[Number(element.getAttribute('data-index'))].name);
       e.preventDefault();
       e.stopPropagation();
     }
@@ -169,6 +168,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
         role='option'
+        aria-selected={active}
         tabIndex={0}
         key={name}
         data-index={i}
@@ -183,8 +183,6 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
   render () {
     const {
       items,
-      onChange,
-      onClose,
       style,
     } = this.props;
 

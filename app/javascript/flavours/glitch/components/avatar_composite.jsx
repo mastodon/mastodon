@@ -9,6 +9,7 @@ export default class AvatarComposite extends React.PureComponent {
     accounts: ImmutablePropTypes.list.isRequired,
     animate: PropTypes.bool,
     size: PropTypes.number.isRequired,
+    onAccountClick: PropTypes.func.isRequired,
   };
 
   static defaultProps = {

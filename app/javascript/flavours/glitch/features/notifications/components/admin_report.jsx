@@ -2,21 +2,16 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
 
 // Our imports.
 import Permalink from 'flavours/glitch/components/permalink';
-import AccountContainer from 'flavours/glitch/containers/account_container';
 import NotificationOverlayContainer from '../containers/overlay_container';
 import Icon from 'flavours/glitch/components/icon';
 import Report from './report';
-
-const messages = defineMessages({
-  adminReport: { id: 'notification.admin.report', defaultMessage: '{name} reported {target}' },
-});
 
 export default class AdminReport extends ImmutablePureComponent {
 
@@ -67,7 +62,7 @@ export default class AdminReport extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, account, notification, unread, report } = this.props;
+    const { account, notification, unread, report } = this.props;
 
     if (!report) {
       return null;

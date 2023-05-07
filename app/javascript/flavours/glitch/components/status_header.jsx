@@ -6,7 +6,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 //  Mastodon imports.
 import Avatar from './avatar';
 import AvatarOverlay from './avatar_overlay';
-import AvatarComposite from './avatar_composite';
 import DisplayName from './display_name';
 
 export default class StatusHeader extends React.PureComponent {

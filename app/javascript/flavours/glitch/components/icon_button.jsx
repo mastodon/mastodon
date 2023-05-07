@@ -1,6 +1,4 @@
 import React from 'react';
-import Motion from '../features/ui/util/optional_motion';
-import spring from 'react-motion/lib/spring';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
@@ -25,7 +23,7 @@ export default class IconButton extends React.PureComponent {
     inverted: PropTypes.bool,
     animate: PropTypes.bool,
     overlay: PropTypes.bool,
-    tabIndex: PropTypes.string,
+    tabIndex: PropTypes.number,
     label: PropTypes.string,
     counter: PropTypes.number,
     obfuscateCount: PropTypes.bool,
@@ -39,7 +37,7 @@ export default class IconButton extends React.PureComponent {
     disabled: false,
     animate: false,
     overlay: false,
-    tabIndex: '0',
+    tabIndex: 0,
     ariaHidden: false,
   };
 
@@ -156,6 +154,7 @@ export default class IconButton extends React.PureComponent {
 
     return (
       <button
+        type='button'
         aria-label={title}
         aria-expanded={expanded}
         aria-hidden={ariaHidden}

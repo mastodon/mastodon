@@ -1,10 +1,8 @@
 //  This file will be loaded on public pages, regardless of theme.
 
 import 'packs/public-path';
-import ready from '../mastodon/ready';
 
 const { delegate } = require('@rails/ujs');
-const { length } = require('stringz');
 
 const getProfileAvatarAnimationHandler = (swapTo) => {
   //animate avatar gifs on the profile page when moused over

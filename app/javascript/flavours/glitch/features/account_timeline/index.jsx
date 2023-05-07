@@ -9,7 +9,6 @@ import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
 import ProfileColumnHeader from 'flavours/glitch/features/account/components/profile_column_header';
 import HeaderContainer from './containers/header_container';
-import ColumnBackButton from 'flavours/glitch/components/column_back_button';
 import { List as ImmutableList } from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';

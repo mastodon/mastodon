@@ -133,9 +133,9 @@ class ListTimeline extends React.PureComponent {
   };
 
   handleRepliesPolicyChange = ({ target }) => {
-    const { dispatch, list } = this.props;
+    const { dispatch } = this.props;
     const { id } = this.props.params;
-    this.props.dispatch(updateList(id, undefined, false, target.value));
+    dispatch(updateList(id, undefined, false, target.value));
   };
 
   render () {
@@ -172,11 +172,11 @@ class ListTimeline extends React.PureComponent {
           multiColumn={multiColumn}
         >
           <div className='column-settings__row column-header__links'>
-            <button className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleEditClick}>
+            <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleEditClick}>
               <Icon id='pencil' /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
             </button>
 
-            <button className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
+            <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
               <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
           </div>
@@ -202,7 +202,7 @@ class ListTimeline extends React.PureComponent {
           scrollKey={`list_timeline-${columnId}`}
           timelineId={`list:${id}`}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet.' />}
+          emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet. When members of this list post new statuses, they will appear here.' />}
           bindToDocument={!multiColumn}
         />
 
