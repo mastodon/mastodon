@@ -1002,7 +1002,7 @@ fi:
     privacy_policy_agreement_html: Olen lukenut ja hyväksynyt <a href="%{privacy_policy_path}" target="_blank">tietosuojakäytännön</a>
     progress:
       confirm: Vahvista sähköpostiosoite
-      details: Omat tiedot
+      details: Omat tietosi
       review: Arviomme
       rules: Hyväksy säännöt
     providers:
@@ -1024,12 +1024,12 @@ fi:
       email_settings_hint_html: Napsauta lähettämäämme linkkiä vahvistaaksesi osoitteen %{email}. Odotamme täällä.
       link_not_received: Etkö saanut linkkiä?
       new_confirmation_instructions_sent: Saat uuden vahvistuslinkin sisältävän sähköpostiviestin muutaman minuutin sisällä!
-      title: Tarkasta postilaatikkosi
+      title: Tarkista saamasi viestit
     sign_in:
       preamble_html: Kirjaudu sisään <strong>%{domain}</strong>-tunnuksillasi. Jos tilisi sijaitsee eri palvelimella, et voi sisäänkirjautua täällä.
       title: Kirjaudu palveluun %{domain}
     sign_up:
-      manual_review: Palvelimen %{domain} ylläpito tarkastaa rekisteröitymiset manuaalisesti. Helpottaaksesi rekisteröitymisesi käsittelyä, kirjoita hieman itsestäsi ja miksi haluat tilin palvelimelle %{domain}.
+      manual_review: Palvelimen %{domain} ylläpito tarkastaa rekisteröitymiset käsin. Helpottaaksesi rekisteröitymisesi käsittelyä, kerro hieman itsestäsi ja miksi haluat luoda käyttäjätilin palvelimelle %{domain}.
       preamble: Kun sinulla on tili tällä Mastodon-palvelimella, voit seurata kaikkia muita verkossa olevia henkilöitä riippumatta siitä, missä heidän tilinsä on.
       title: Otetaan sinulle käyttöön %{domain}.
     status:
@@ -1255,30 +1255,30 @@ fi:
       following_html: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostoon <strong>%{filename}</strong> perustuen. Aiot lisäksi <strong>lopettaa kaikkien muiden seuraamisen</strong>.
       muting_html: Olet <strong>korvaamassa mykistettyjä tilejäsi</strong> kaikkiaan <strong>%{total_items} tilillä</strong> tiedostoon <strong>%{filename}</strong> perustuen.
     preambles:
-      blocking_html: Olet <strong>estämässä</strong> yhteensä <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+      blocking_html: Olet <strong>estämässä</strong> yhteensä <strong>%{total_items} tiliä</strong> tiedostoon <strong>%{filename}</strong> perustuen.
       bookmarks_html: Olet lisäämässä <strong>%{total_items} julkaisua</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
-      domain_blocking_html: Olet <strong>estämässä</strong> yhteensä <strong>%{total_items} verkkotunnusta</strong> tiedostosta <strong>%{filename}</strong>.
-      following_html: Olet <strong>seuraamassa</strong> yhteensä <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+      domain_blocking_html: Olet <strong>estämässä</strong> yhteensä <strong>%{total_items} verkkotunnusta</strong> tiedoston <strong>%{filename}</strong> nojalla.
+      following_html: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostoon <strong>%{filename}</strong> perustuen.
       muting_html: Olet <strong>hiljentämässä</strong> yhteensä <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
     preface: Voit tuoda toisesta instanssista viemiäsi tietoja, kuten esimerkiksi seuraamiesi tai estämiesi henkilöiden listan.
     recent_imports: Viimeksi tuotu
     states:
       finished: Valmis
-      in_progress: Käynnissä
+      in_progress: Toiminto käynnissä
       scheduled: Ajoitettu
       unconfirmed: Varmistamaton
     status: Tila
     success: Tietojen lähettäminen onnistui, ja ne käsitellään kohtapuoliin
     time_started: Aloitettu
     titles:
-      blocking: Tuodaan estetyt tilit
-      bookmarks: Tuodaan kirjanmerkit
-      domain_blocking: Tuodaan estetyt verkkotunnukset
-      following: Tuodaan seuratut tilit
-      muting: Tuodaan hiljennetyt tilit
+      blocking: Tuodaan estettyjä tilejä
+      bookmarks: Tuodaan kirjanmerkkejä
+      domain_blocking: Tuodaan estettyjä verkkotunnuksia
+      following: Tuodaan seurattuja tilejä
+      muting: Tuodaan hiljennettyjä tilejä
     type: Tuonnin tyyppi
     type_groups:
-      constructive: Seuratut & kirjanmerkit
+      constructive: Seuratut ja kirjanmerkit
       destructive: Estot ja hiljennykset
     types:
       blocking: Estettyjen lista
