@@ -1351,7 +1351,15 @@ const attachServerWithConfig = (server, onSuccess) => {
       }
     });
   } else {
-    server.listen(+process.env.PORT || 4000, process.env.BIND || '127.0.0.1', () => {
+    let port = 4000;
+    if (process.env.PORT) {
+      let parsedPort = parseInt(process.env.PORT, 10);
+      if (!isNaN(parsedPort)) {
+        port = parsedPort;
+      }
+    }
+
+    server.listen(port, process.env.BIND || '127.0.0.1', () => {
       if (onSuccess) {
         onSuccess(`${server.address().address}:${server.address().port}`);
       }
