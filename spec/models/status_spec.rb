@@ -216,7 +216,7 @@ RSpec.describe Status do
         subject.text = "A toot #{subject.local_only_emoji}"
       end
 
-      context 'if the status originates from this instance' do
+      context 'when the status originates from this instance' do
         before do
           subject.account = local_account
         end
@@ -228,7 +228,7 @@ RSpec.describe Status do
         end
       end
 
-      context 'if the status is remote' do
+      context 'when the status is remote' do
         before do
           subject.account = remote_account
         end
