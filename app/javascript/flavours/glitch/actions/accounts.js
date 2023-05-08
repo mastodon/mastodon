@@ -81,7 +81,10 @@ export const PINNED_ACCOUNTS_FETCH_REQUEST = 'PINNED_ACCOUNTS_FETCH_REQUEST';
 export const PINNED_ACCOUNTS_FETCH_SUCCESS = 'PINNED_ACCOUNTS_FETCH_SUCCESS';
 export const PINNED_ACCOUNTS_FETCH_FAIL    = 'PINNED_ACCOUNTS_FETCH_FAIL';
 
-export const PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_READY  = 'PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_READY';
+export const PINNED_ACCOUNTS_SUGGESTIONS_FETCH_REQUEST  = 'PINNED_ACCOUNTS_SUGGESTIONS_FETCH_REQUEST';
+export const PINNED_ACCOUNTS_SUGGESTIONS_FETCH_SUCCESS  = 'PINNED_ACCOUNTS_SUGGESTIONS_FETCH_SUCCESS';
+export const PINNED_ACCOUNTS_SUGGESTIONS_FETCH_FAIL     = 'PINNED_ACCOUNTS_SUGGESTIONS_FETCH_FAIL';
+
 export const PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CLEAR  = 'PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CLEAR';
 export const PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CHANGE = 'PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CHANGE';
 
@@ -841,6 +844,8 @@ export function fetchPinnedAccountsFail(error) {
 
 export function fetchPinnedAccountsSuggestions(q) {
   return (dispatch, getState) => {
+    dispatch(fetchPinnedAccountsSuggestionsRequest());
+
     const params = {
       q,
       resolve: false,
@@ -850,16 +855,29 @@ export function fetchPinnedAccountsSuggestions(q) {
 
     api(getState).get('/api/v1/accounts/search', { params }).then(response => {
       dispatch(importFetchedAccounts(response.data));
-      dispatch(fetchPinnedAccountsSuggestionsReady(q, response.data));
-    });
+      dispatch(fetchPinnedAccountsSuggestionsSuccess(q, response.data));
+    }).catch(err => dispatch(fetchPinnedAccountsSuggestionsFail(err)));
   };
 }
 
-export function fetchPinnedAccountsSuggestionsReady(query, accounts) {
+export function fetchPinnedAccountsSuggestionsRequest() {
   return {
-    type: PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_READY,
+    type: PINNED_ACCOUNTS_SUGGESTIONS_FETCH_REQUEST,
+  };
+}
+
+export function fetchPinnedAccountsSuggestionsSuccess(query, accounts) {
+  return {
+    type: PINNED_ACCOUNTS_SUGGESTIONS_FETCH_SUCCESS,
     query,
     accounts,
+  };
+}
+
+export function fetchPinnedAccountsSuggestionsFail(error) {
+  return {
+    type: PINNED_ACCOUNTS_SUGGESTIONS_FETCH_FAIL,
+    error,
   };
 }
 

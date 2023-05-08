@@ -4,7 +4,7 @@ import Warning from '../components/warning';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { me } from 'flavours/glitch/initial_state';
-import { profileLink, termsLink } from 'flavours/glitch/utils/backend_links';
+import { profileLink, privacyPolicyLink } from 'flavours/glitch/utils/backend_links';
 
 const buildHashtagRE = () => {
   try {
@@ -49,7 +49,7 @@ const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning
   if (directMessageWarning) {
     const message = (
       <span>
-        <FormattedMessage id='compose_form.encryption_warning' defaultMessage='Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.' /> {!!termsLink && <a href={termsLink} target='_blank'><FormattedMessage id='compose_form.direct_message_warning_learn_more' defaultMessage='Learn more' /></a>}
+        <FormattedMessage id='compose_form.encryption_warning' defaultMessage='Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.' /> {!!privacyPolicyLink && <a href={privacyPolicyLink} target='_blank'><FormattedMessage id='compose_form.direct_message_warning_learn_more' defaultMessage='Learn more' /></a>}
       </span>
     );
 

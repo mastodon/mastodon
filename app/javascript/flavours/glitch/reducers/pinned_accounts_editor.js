@@ -4,7 +4,7 @@ import {
   PINNED_ACCOUNTS_FETCH_REQUEST,
   PINNED_ACCOUNTS_FETCH_SUCCESS,
   PINNED_ACCOUNTS_FETCH_FAIL,
-  PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_READY,
+  PINNED_ACCOUNTS_SUGGESTIONS_FETCH_SUCCESS,
   PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CLEAR,
   PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CHANGE,
   ACCOUNT_PIN_SUCCESS,
@@ -38,10 +38,10 @@ export default function listEditorReducer(state = initialState, action) {
       map.set('loaded', true);
       map.set('items', ImmutableList(action.accounts.map(item => item.id)));
     }));
+  case PINNED_ACCOUNTS_SUGGESTIONS_FETCH_SUCCESS:
+    return state.setIn(['suggestions', 'items'], ImmutableList(action.accounts.map(item => item.id)));
   case PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CHANGE:
     return state.setIn(['suggestions', 'value'], action.value);
-  case PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_READY:
-    return state.setIn(['suggestions', 'items'], ImmutableList(action.accounts.map(item => item.id)));
   case PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CLEAR:
     return state.update('suggestions', suggestions => suggestions.withMutations(map => {
       map.set('items', ImmutableList());
