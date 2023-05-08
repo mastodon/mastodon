@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import Blurhash from './blurhash';
+import { Blurhash } from './blurhash';
 import classNames from 'classnames';
 
 type Props = {
@@ -23,5 +23,3 @@ export const Image: React.FC<Props> = ({ src, srcSet, blurhash, className }) => 
     </div>
   );
 };
-
-export default Image;

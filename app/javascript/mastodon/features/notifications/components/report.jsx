@@ -3,8 +3,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import AvatarOverlay from 'mastodon/components/avatar_overlay';
-import RelativeTimestamp from 'mastodon/components/relative_timestamp';
+import { AvatarOverlay } from 'mastodon/components/avatar_overlay';
+import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 
 const messages = defineMessages({
   openReport: { id: 'report_notification.open', defaultMessage: 'Open report' },

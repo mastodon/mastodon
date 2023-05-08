@@ -1,3 +1,4 @@
+/* eslint-disable import/no-default-export */
 declare module '*.avif' {
   const path: string;
   export default path;

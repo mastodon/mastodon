@@ -33,7 +33,7 @@ import conversations from './conversations';
 import suggestions from './suggestions';
 import polls from './polls';
 import trends from './trends';
-import missed_updates from './missed_updates';
+import { missedUpdatesReducer } from './missed_updates';
 import announcements from './announcements';
 import markers from './markers';
 import picture_in_picture from './picture_in_picture';
@@ -79,7 +79,7 @@ const reducers = {
   suggestions,
   polls,
   trends,
-  missed_updates,
+  missed_updates: missedUpdatesReducer,
   markers,
   picture_in_picture,
   history,

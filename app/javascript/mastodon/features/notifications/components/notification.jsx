@@ -9,7 +9,7 @@ import StatusContainer from 'mastodon/containers/status_container';
 import AccountContainer from 'mastodon/containers/account_container';
 import Report from './report';
 import FollowRequestContainer from '../containers/follow_request_container';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
