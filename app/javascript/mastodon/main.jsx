@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { setupBrowserNotifications } from 'mastodon/actions/notifications';
 import Mastodon from 'mastodon/containers/mastodon';
 import { store } from 'mastodon/store';
@@ -17,7 +17,8 @@ function main() {
     const mountNode = document.getElementById('mastodon');
     const props = JSON.parse(mountNode.getAttribute('data-props'));
 
-    ReactDOM.render(<Mastodon {...props} />, mountNode);
+    const root = createRoot(mountNode);
+    root.render(<Mastodon {...props} />);
     store.dispatch(setupBrowserNotifications());
 
     if (process.env.NODE_ENV === 'production' && me && 'serviceWorker' in navigator) {
