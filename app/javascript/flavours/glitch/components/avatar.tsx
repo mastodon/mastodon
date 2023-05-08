@@ -2,7 +2,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { autoPlayGif } from 'flavours/glitch/initial_state';
 import { useHovering } from 'hooks/useHovering';
-import type { Account } from 'types/resources';
+import type { Account } from 'flavours/glitch/types/resources';
 
 type Props = {
   account: Account | undefined;
