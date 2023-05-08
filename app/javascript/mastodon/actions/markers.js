@@ -1,7 +1,6 @@
 import api from '../api';
 import { debounce } from 'lodash';
 import compareId from '../compare_id';
-import { List as ImmutableList } from 'immutable';
 
 export const MARKERS_FETCH_REQUEST = 'MARKERS_FETCH_REQUEST';
 export const MARKERS_FETCH_SUCCESS = 'MARKERS_FETCH_SUCCESS';
@@ -64,14 +63,7 @@ export const synchronouslySubmitMarkers = () => (dispatch, getState) => {
 const _buildParams = (state) => {
   const params = {};
 
-  const lastHomeId         = state.getIn(['timelines', 'home', 'items'], ImmutableList()).find(item => item !== null);
   const lastNotificationId = state.getIn(['notifications', 'lastReadId']);
-
-  if (lastHomeId && compareId(lastHomeId, state.getIn(['markers', 'home'])) > 0) {
-    params.home = {
-      last_read_id: lastHomeId,
-    };
-  }
 
   if (lastNotificationId && compareId(lastNotificationId, state.getIn(['markers', 'notifications'])) > 0) {
     params.notifications = {
