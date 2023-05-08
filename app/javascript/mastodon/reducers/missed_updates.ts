@@ -3,10 +3,10 @@ import type { Action } from 'redux';
 import { NOTIFICATIONS_UPDATE } from '../actions/notifications';
 import { focusApp, unfocusApp } from '../actions/app';
 
-type MissedUpdatesState = {
+interface MissedUpdatesState {
   focused: boolean;
   unread: number;
-};
+}
 const initialState = Record<MissedUpdatesState>({
   focused: true,
   unread: 0,

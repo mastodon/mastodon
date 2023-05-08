@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-type Props = {
+interface Props extends React.HTMLAttributes<HTMLImageElement> {
   id: string;
   className?: string;
   fixedWidth?: boolean;

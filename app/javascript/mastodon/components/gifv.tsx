@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
-type Props = {
+interface Props {
   src: string;
   key: string;
   alt?: string;

@@ -257,7 +257,9 @@ module.exports = {
 
       extends: [
         'eslint:recommended',
+        'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
         'plugin:jsx-a11y/recommended',
@@ -268,8 +270,17 @@ module.exports = {
         'plugin:prettier/recommended',
       ],
 
+      parserOptions: {
+        project: './tsconfig.json',
+        tsconfigRootDir: __dirname,
+      },
+
       rules: {
-        '@typescript-eslint/no-explicit-any': 'off',
+        'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+
+        '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
+        '@typescript-eslint/consistent-type-exports': 'error',
+        '@typescript-eslint/consistent-type-imports': 'error',
 
         'jsdoc/require-jsdoc': 'off',
 

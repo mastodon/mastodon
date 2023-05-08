@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { Blurhash } from './blurhash';
 import classNames from 'classnames';
 
-type Props = {
+interface Props {
   src: string;
   srcSet?: string;
   blurhash?: string;

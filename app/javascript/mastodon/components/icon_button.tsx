@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Icon } from './icon';
 import { AnimatedNumber } from './animated_number';
 
-type Props = {
+interface Props {
   className?: string;
   title: string;
   icon: string;
@@ -26,7 +26,7 @@ type Props = {
   href?: string;
   ariaHidden: boolean;
 };
-type States = {
+interface States {
   activate: boolean;
   deactivate: boolean;
 };
