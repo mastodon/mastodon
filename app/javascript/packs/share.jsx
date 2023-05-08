@@ -1,5 +1,5 @@
 import './public-path';
-import loadPolyfills from '../mastodon/load_polyfills';
+import { loadPolyfills } from '../mastodon/polyfills';
 import { start } from '../mastodon/common';
 import ready from '../mastodon/ready';
 import ComposeContainer  from '../mastodon/containers/compose_container';
