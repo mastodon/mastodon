@@ -45,7 +45,7 @@ class Report extends ImmutablePureComponent {
 
         <div className='notification__report__details'>
           <div>
-            <RelativeTimestamp timestamp={report.get('created_at')} short={false} /> · <FormattedMessage id='report_notification.attached_statuses' defaultMessage='{count, plural, one {{count} post} other {{count} posts}} attached' values={{ count: report.get('status_ids').size }} />
+            <RelativeTimestamp timestamp={report.get('created_at')} short={false} /> · <FormattedMessage id='report_notification.attached_statuses' defaultMessage='{count, plural, one {# post} other {# posts}} attached' values={{ count: report.get('status_ids').size }} />
             <br />
             <strong>{intl.formatMessage(messages[report.get('category')])}</strong>
           </div>

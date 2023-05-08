@@ -27,7 +27,7 @@ const { messages } = getLocale();
 
 /**
  * @param {number} max
- * @return {number}
+ * @returns {number}
  */
 const randomUpTo = max =>
   Math.floor(Math.random() * Math.floor(max));
@@ -40,7 +40,7 @@ const randomUpTo = max =>
  * @param {function(Function, Function): void} [options.fallback]
  * @param {function(): void} [options.fillGaps]
  * @param {function(object): boolean} [options.accept]
- * @return {function(): void}
+ * @returns {function(): void}
  */
 export const connectTimelineStream = (timelineId, channelName, params = {}, options = {}) =>
   connectStream(channelName, params, (dispatch, getState) => {
@@ -132,7 +132,7 @@ const refreshHomeTimelineAndNotification = (dispatch, done) => {
 };
 
 /**
- * @return {function(): void}
+ * @returns {function(): void}
  */
 export const connectUserStream = () =>
   // @ts-expect-error
@@ -141,7 +141,7 @@ export const connectUserStream = () =>
 /**
  * @param {Object} options
  * @param {boolean} [options.onlyMedia]
- * @return {function(): void}
+ * @returns {function(): void}
  */
 export const connectCommunityStream = ({ onlyMedia } = {}) =>
   connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => (fillCommunityTimelineGaps({ onlyMedia })) });
@@ -150,7 +150,7 @@ export const connectCommunityStream = ({ onlyMedia } = {}) =>
  * @param {Object} options
  * @param {boolean} [options.onlyMedia]
  * @param {boolean} [options.onlyRemote]
- * @return {function(): void}
+ * @returns {function(): void}
  */
 export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
   connectTimelineStream(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => fillPublicTimelineGaps({ onlyMedia, onlyRemote }) });
@@ -160,20 +160,20 @@ export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
  * @param {string} tagName
  * @param {boolean} onlyLocal
  * @param {function(object): boolean} accept
- * @return {function(): void}
+ * @returns {function(): void}
  */
 export const connectHashtagStream = (columnId, tagName, onlyLocal, accept) =>
   connectTimelineStream(`hashtag:${columnId}${onlyLocal ? ':local' : ''}`, `hashtag${onlyLocal ? ':local' : ''}`, { tag: tagName }, { accept });
 
 /**
- * @return {function(): void}
+ * @returns {function(): void}
  */
 export const connectDirectStream = () =>
   connectTimelineStream('direct', 'direct');
 
 /**
  * @param {string} listId
- * @return {function(): void}
+ * @returns {function(): void}
  */
 export const connectListStream = listId =>
   connectTimelineStream(`list:${listId}`, 'list', { list: listId }, { fillGaps: () => fillListTimelineGaps(listId) });

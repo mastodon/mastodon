@@ -108,8 +108,6 @@ hy:
       removed_header_msg: Յաջողութեամբ հեռացուեց %{username}֊ի գլխանկարը
       resend_confirmation:
         already_confirmed: Օգտատէրն արդէն հաստատուած է
-        send: Հաստատման իմակն ուղարկել կրկին
-        success: Հաստատման իմակը բարեյաջող ուղարկուեց
       reset: Վերականգնել
       reset_password: Վերականգնել գաղտանաբառը
       resubscribe: Կրկին բաժանորդագրուել
@@ -468,7 +466,6 @@ hy:
     delete_account: Ջնջել հաշիվը
     description:
       prefix_sign_up: Գրանցուի՛ր Մաստոդոնում հենց այսօր
-    didnt_get_confirmation: Չե՞ս ստացել հաստատման ուղեցոյց։
     dont_have_your_security_key: Չունե՞ս անվտանգութեան բանալի։
     forgot_password: Մոռացե՞լ ես գաղտնաբառդ
     login: Մտնել
@@ -480,8 +477,6 @@ hy:
     reset_password: Վերականգնել գաղտանաբառը
     security: Անվտանգություն
     set_new_password: Սահմանել նոր գաղտնաբառ
-    setup:
-      title: Կարգավորում
     status:
       account_status: Հաշուի կարգավիճակ
       pending: Դիմումը պէտք է քննուի մեր անձնակազմի կողմից, ինչը կարող է մի փոքր ժամանակ խլել։ Դիմումի հաստատուելու դէպքում, կտեղեկացնենք նամակով։
@@ -534,15 +529,10 @@ hy:
   domain_validator:
     invalid_domain: անվաւէր տիրոյթի անուն
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
     '404': Էջը, որը փնտրում ես գոյութիւն չունի։
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
     '429': Չափազանց շատ հարցումներ
     '500':
       title: Էջը ճիշտ չէ
-    '503': The page could not be served due to a temporary server failure.
   existing_username_validator:
     not_found: չյաջողուեց գտնել այս ծածկագրով լոկալ օգտատիրոջ
     not_found_multiple: չյաջողուեց գտնել %{usernames}

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V2::SearchController, type: :controller do
+RSpec.describe Api::V2::SearchController do
   render_views
 
   context 'with token' do

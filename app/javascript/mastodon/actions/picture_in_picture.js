@@ -20,7 +20,7 @@ export const PICTURE_IN_PICTURE_REMOVE = 'PICTURE_IN_PICTURE_REMOVE';
  * @param {string} accountId
  * @param {string} playerType
  * @param {MediaProps} props
- * @return {object}
+ * @returns {object}
  */
 export const deployPictureInPicture = (statusId, accountId, playerType, props) => {
   // @ts-expect-error

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ActivityPub::ProcessAccountService, type: :service do
   subject { described_class.new }
 
-  context 'property values' do
+  context 'with property values' do
     let(:payload) do
       {
         id: 'https://foo.test',
@@ -82,7 +82,7 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
       account.suspend!(origin: suspension_origin)
     end
 
-    context 'locally' do
+    context 'when locally' do
       let(:suspension_origin) { :local }
 
       it 'does not unsuspend it' do
@@ -94,7 +94,7 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
       end
     end
 
-    context 'remotely' do
+    context 'when remotely' do
       let(:suspension_origin) { :remote }
 
       it 'unsuspends it' do
@@ -112,7 +112,7 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
     end
   end
 
-  context 'discovering many subdomains in a short timeframe' do
+  context 'when discovering many subdomains in a short timeframe' do
     before do
       stub_const 'ActivityPub::ProcessAccountService::SUBDOMAINS_RATELIMIT', 5
     end
@@ -138,7 +138,7 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
     end
   end
 
-  context 'accounts referencing other accounts' do
+  context 'when Accounts referencing other accounts' do
     before do
       stub_const 'ActivityPub::ProcessAccountService::DISCOVERIES_PER_REQUEST', 5
     end

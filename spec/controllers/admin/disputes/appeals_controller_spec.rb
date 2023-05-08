@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::Disputes::AppealsController, type: :controller do
+RSpec.describe Admin::Disputes::AppealsController do
   render_views
 
   before { sign_in current_user, scope: :user }

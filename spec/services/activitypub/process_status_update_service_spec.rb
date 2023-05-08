@@ -269,7 +269,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
     end
 
-    context 'originally without tags' do
+    context 'when originally without tags' do
       before do
         subject.call(status, json)
       end
@@ -279,7 +279,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
     end
 
-    context 'originally with tags' do
+    context 'when originally with tags' do
       let(:tags) { [Fabricate(:tag, name: 'test'), Fabricate(:tag, name: 'foo')] }
 
       let(:payload) do
@@ -305,7 +305,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
     end
 
-    context 'originally without mentions' do
+    context 'when originally without mentions' do
       before do
         subject.call(status, json)
       end
@@ -315,7 +315,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
     end
 
-    context 'originally with mentions' do
+    context 'when originally with mentions' do
       let(:mentions) { [alice, bob] }
 
       before do
@@ -327,7 +327,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
     end
 
-    context 'originally without media attachments' do
+    context 'when originally without media attachments' do
       before do
         stub_request(:get, 'https://example.com/foo.png').to_return(body: attachment_fixture('emojo.png'))
         subject.call(status, json)
@@ -362,7 +362,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
     end
 
-    context 'originally with media attachments' do
+    context 'when originally with media attachments' do
       let(:media_attachments) { [Fabricate(:media_attachment, remote_url: 'https://example.com/foo.png'), Fabricate(:media_attachment, remote_url: 'https://example.com/unused.png')] }
 
       let(:payload) do
@@ -404,7 +404,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
     end
 
-    context 'originally with a poll' do
+    context 'when originally with a poll' do
       before do
         poll = Fabricate(:poll, status: status)
         status.update(preloadable_poll: poll)
@@ -420,7 +420,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
     end
 
-    context 'originally without a poll' do
+    context 'when originally without a poll' do
       let(:payload) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',

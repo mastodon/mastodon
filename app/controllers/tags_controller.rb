@@ -7,6 +7,8 @@ class TagsController < ApplicationController
   PAGE_SIZE     = 20
   PAGE_SIZE_MAX = 200
 
+  vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
+
   before_action :require_account_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :authenticate_user!, if: :whitelist_mode?
   before_action :set_local
@@ -19,7 +21,7 @@ class TagsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        expires_in 0, public: true unless user_signed_in?
+        expires_in(15.seconds, public: true, stale_while_revalidate: 30.seconds, stale_if_error: 1.hour) unless user_signed_in?
       end
 
       format.rss do

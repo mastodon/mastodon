@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { setupBrowserNotifications } from 'mastodon/actions/notifications';
-import Mastodon, { store } from 'mastodon/containers/mastodon';
+import Mastodon from 'mastodon/containers/mastodon';
+import { store } from 'mastodon/store/configureStore';
 import { me } from 'mastodon/initial_state';
 import ready from 'mastodon/ready';
 

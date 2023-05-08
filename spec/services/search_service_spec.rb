@@ -23,7 +23,7 @@ describe SearchService, type: :service do
         @query = 'http://test.host/query'
       end
 
-      context 'that does not find anything' do
+      context 'when it does not find anything' do
         it 'returns the empty results' do
           service = double(call: nil)
           allow(ResolveURLService).to receive(:new).and_return(service)
@@ -34,7 +34,7 @@ describe SearchService, type: :service do
         end
       end
 
-      context 'that finds an account' do
+      context 'when it finds an account' do
         it 'includes the account in the results' do
           account = Account.new
           service = double(call: account)
@@ -46,7 +46,7 @@ describe SearchService, type: :service do
         end
       end
 
-      context 'that finds a status' do
+      context 'when it finds a status' do
         it 'includes the status in the results' do
           status = Status.new
           service = double(call: status)
@@ -60,7 +60,7 @@ describe SearchService, type: :service do
     end
 
     describe 'with a non-url query' do
-      context 'that matches an account' do
+      context 'when it matches an account' do
         it 'includes the account in the results' do
           query = 'username'
           account = Account.new
@@ -73,7 +73,7 @@ describe SearchService, type: :service do
         end
       end
 
-      context 'that matches a tag' do
+      context 'when it matches a tag' do
         it 'includes the tag in the results' do
           query = '#tag'
           tag = Tag.new

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_15_074423) do
+ActiveRecord::Schema.define(version: 2023_03_30_155710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -294,6 +294,31 @@ ActiveRecord::Schema.define(version: 2023_02_15_074423) do
     t.index ["status_id"], name: "index_bookmarks_on_status_id"
   end
 
+  create_table "bulk_import_rows", force: :cascade do |t|
+    t.bigint "bulk_import_id", null: false
+    t.jsonb "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bulk_import_id"], name: "index_bulk_import_rows_on_bulk_import_id"
+  end
+
+  create_table "bulk_imports", force: :cascade do |t|
+    t.integer "type", null: false
+    t.integer "state", null: false
+    t.integer "total_items", default: 0, null: false
+    t.integer "imported_items", default: 0, null: false
+    t.integer "processed_items", default: 0, null: false
+    t.datetime "finished_at"
+    t.boolean "overwrite", default: false, null: false
+    t.boolean "likely_mismatched", default: false, null: false
+    t.string "original_filename", default: "", null: false
+    t.bigint "account_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_bulk_imports_on_account_id"
+    t.index ["id"], name: "index_bulk_imports_unconfirmed", where: "(state = 0)"
+  end
+
   create_table "canonical_email_blocks", force: :cascade do |t|
     t.string "canonical_email_hash", default: "", null: false
     t.bigint "reference_account_id"
@@ -529,8 +554,10 @@ ActiveRecord::Schema.define(version: 2023_02_15_074423) do
     t.bigint "list_id", null: false
     t.bigint "account_id", null: false
     t.bigint "follow_id"
+    t.bigint "follow_request_id"
     t.index ["account_id", "list_id"], name: "index_list_accounts_on_account_id_and_list_id", unique: true
     t.index ["follow_id"], name: "index_list_accounts_on_follow_id", where: "(follow_id IS NOT NULL)"
+    t.index ["follow_request_id"], name: "index_list_accounts_on_follow_request_id", where: "(follow_request_id IS NOT NULL)"
     t.index ["list_id", "account_id"], name: "index_list_accounts_on_list_id_and_account_id"
   end
 
@@ -1146,6 +1173,8 @@ ActiveRecord::Schema.define(version: 2023_02_15_074423) do
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade
   add_foreign_key "bookmarks", "accounts", on_delete: :cascade
   add_foreign_key "bookmarks", "statuses", on_delete: :cascade
+  add_foreign_key "bulk_import_rows", "bulk_imports", on_delete: :cascade
+  add_foreign_key "bulk_imports", "accounts", on_delete: :cascade
   add_foreign_key "canonical_email_blocks", "accounts", column: "reference_account_id", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
@@ -1171,6 +1200,7 @@ ActiveRecord::Schema.define(version: 2023_02_15_074423) do
   add_foreign_key "imports", "accounts", name: "fk_6db1b6e408", on_delete: :cascade
   add_foreign_key "invites", "users", on_delete: :cascade
   add_foreign_key "list_accounts", "accounts", on_delete: :cascade
+  add_foreign_key "list_accounts", "follow_requests", on_delete: :cascade
   add_foreign_key "list_accounts", "follows", on_delete: :cascade
   add_foreign_key "list_accounts", "lists", on_delete: :cascade
   add_foreign_key "lists", "accounts", on_delete: :cascade

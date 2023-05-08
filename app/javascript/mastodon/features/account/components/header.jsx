@@ -80,6 +80,7 @@ class Header extends ImmutablePureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,
+    router: PropTypes.object,
   };
 
   static propTypes = {
@@ -101,9 +102,14 @@ class Header extends ImmutablePureComponent {
     onChangeLanguages: PropTypes.func.isRequired,
     onInteractionModal: PropTypes.func.isRequired,
     onOpenAvatar: PropTypes.func.isRequired,
+    onOpenURL: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
+  };
+
+  setRef = c => {
+    this.node = c;
   };
 
   openEditProfile = () => {
@@ -161,6 +167,61 @@ class Header extends ImmutablePureComponent {
       if (e.name !== 'AbortError') console.error(e);
     });
   };
+
+  handleHashtagClick = e => {
+    const { router } = this.context;
+    const value = e.currentTarget.textContent.replace(/^#/, '');
+
+    if (router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      router.history.push(`/tags/${value}`);
+    }
+  };
+
+  handleMentionClick = e => {
+    const { router } = this.context;
+    const { onOpenURL } = this.props;
+
+    if (router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+
+      const link = e.currentTarget;
+
+      onOpenURL(link.href, router.history, () => {
+        window.location = link.href;
+      });
+    }
+  };
+
+  _attachLinkEvents () {
+    const node = this.node;
+
+    if (!node) {
+      return;
+    }
+
+    const links = node.querySelectorAll('a');
+
+    let link;
+
+    for (var i = 0; i < links.length; ++i) {
+      link = links[i];
+
+      if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
+        link.addEventListener('click', this.handleHashtagClick, false);
+      } else if (link.classList.contains('mention')) {
+        link.addEventListener('click', this.handleMentionClick, false);
+      }
+    }
+  }
+
+  componentDidMount () {
+    this._attachLinkEvents();
+  }
+
+  componentDidUpdate () {
+    this._attachLinkEvents();
+  }
 
   render () {
     const { account, hidden, intl, domain } = this.props;
@@ -360,7 +421,7 @@ class Header extends ImmutablePureComponent {
 
           {!(suspended || hidden) && (
             <div className='account__header__extra'>
-              <div className='account__header__bio'>
+              <div className='account__header__bio' ref={this.setRef}>
                 {(account.get('id') !== me && signedIn) && <AccountNoteContainer account={account} />}
 
                 {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content translate' dangerouslySetInnerHTML={content} />}
