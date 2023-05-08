@@ -174,6 +174,7 @@ module.exports = {
     ],
     'import/first': 'error',
     'import/newline-after-import': 'error',
+    'import/no-anonymous-default-export': 'error',
     'import/no-extraneous-dependencies': [
       'error',
       {
@@ -188,6 +189,8 @@ module.exports = {
     'import/no-amd': 'error',
     'import/no-commonjs': 'error',
     'import/no-import-module-exports': 'error',
+    'import/no-self-import': 'error',
+    'import/no-useless-path-segments': 'error',
     'import/no-webpack-loader-syntax': 'error',
 
     'promise/always-return': 'off',
