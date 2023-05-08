@@ -291,6 +291,7 @@ module.exports = {
         // to enforce better practices when converting from JS
         'import/no-default-export': 'warn',
         'react/prefer-stateless-function': 'warn',
+        'react/function-component-definition': ['error', { namedComponents: 'arrow-function' }],
       },
     },
     {
