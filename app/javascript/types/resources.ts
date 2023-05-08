@@ -1,8 +1,4 @@
-interface MastodonMap<T> {
-  get<K extends keyof T>(key: K): T[K];
-  has<K extends keyof T>(key: K): boolean;
-  set<K extends keyof T>(key: K, value: T[K]): this;
-}
+import type { Record } from 'immutable';
 
 type AccountValues = {
   id: number;
@@ -10,4 +6,5 @@ type AccountValues = {
   avatar_static: string;
   [key: string]: any;
 };
-export type Account = MastodonMap<AccountValues>;
+
+export type Account = Record<AccountValues>;

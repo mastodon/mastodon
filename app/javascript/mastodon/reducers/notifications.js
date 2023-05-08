@@ -23,8 +23,8 @@ import {
   MARKERS_FETCH_SUCCESS,
 } from '../actions/markers';
 import {
-  APP_FOCUS,
-  APP_UNFOCUS,
+  focusApp,
+  unfocusApp,
 } from '../actions/app';
 import { DOMAIN_BLOCK_SUCCESS } from 'mastodon/actions/domain_blocks';
 import { TIMELINE_DELETE, TIMELINE_DISCONNECT } from '../actions/timelines';
@@ -258,9 +258,9 @@ export default function notifications(state = initialState, action) {
     return updateMounted(state);
   case NOTIFICATIONS_UNMOUNT:
     return state.update('mounted', count => count - 1);
-  case APP_FOCUS:
+  case focusApp.type:
     return updateVisibility(state, true);
-  case APP_UNFOCUS:
+  case unfocusApp.type:
     return updateVisibility(state, false);
   case NOTIFICATIONS_LOAD_PENDING:
     return state.update('items', list => state.get('pendingItems').concat(list.take(40))).set('pendingItems', ImmutableList()).set('unread', 0);

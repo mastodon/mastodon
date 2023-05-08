@@ -75,8 +75,8 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
     end
   end
 
-  describe '#get_budget' do
-    context 'on a single thread' do
+  describe '#compute_budget' do
+    context 'with a single thread' do
       let(:process_set_stub) { [{ 'concurrency' => 1, 'queues' => %w(push default) }] }
 
       it 'returns a low value' do
@@ -84,7 +84,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
       end
     end
 
-    context 'on a lot of threads' do
+    context 'with a lot of threads' do
       let(:process_set_stub) do
         [
           { 'concurrency' => 2, 'queues' => %w(push default) },
@@ -129,6 +129,33 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
           .and change { account1.statuses.count }
           .and change { account3.statuses.count }
           .and change { account5.statuses.count }
+      end
+
+      context 'when given a big budget' do
+        let(:process_set_stub) { [{ 'concurrency' => 400, 'queues' => %w(push default) }] }
+
+        before do
+          stub_const 'Scheduler::AccountsStatusesCleanupScheduler::MAX_BUDGET', 400
+        end
+
+        it 'correctly handles looping in a single run' do
+          expect(subject.compute_budget).to eq(400)
+          expect { subject.perform }.to change { Status.count }.by(-30)
+        end
+      end
+
+      context 'when there is no work to be done' do
+        let(:process_set_stub) { [{ 'concurrency' => 400, 'queues' => %w(push default) }] }
+
+        before do
+          stub_const 'Scheduler::AccountsStatusesCleanupScheduler::MAX_BUDGET', 400
+          subject.perform
+        end
+
+        it 'does not get stuck' do
+          expect(subject.compute_budget).to eq(400)
+          expect { subject.perform }.to_not change { Status.count }
+        end
       end
     end
   end

@@ -57,7 +57,7 @@ class WebfingerResource
   end
 
   def resource_without_acct_string
-    resource.gsub(/\Aacct:/, '')
+    resource.delete_prefix('acct:')
   end
 
   def local_username

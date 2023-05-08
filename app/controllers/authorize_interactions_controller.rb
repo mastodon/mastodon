@@ -60,7 +60,7 @@ class AuthorizeInteractionsController < ApplicationController
   end
 
   def uri_param
-    params[:uri] || params.fetch(:acct, '').gsub(/\Aacct:/, '')
+    params[:uri] || params.fetch(:acct, '').delete_prefix('acct:')
   end
 
   def set_body_classes

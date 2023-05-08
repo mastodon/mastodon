@@ -1,22 +1,18 @@
-// @ts-check
+import type { ValueOf } from '../../types/util';
 
 export const DECIMAL_UNITS = Object.freeze({
   ONE: 1,
   TEN: 10,
-  HUNDRED: Math.pow(10, 2),
-  THOUSAND: Math.pow(10, 3),
-  MILLION: Math.pow(10, 6),
-  BILLION: Math.pow(10, 9),
-  TRILLION: Math.pow(10, 12),
+  HUNDRED: 100,
+  THOUSAND: 1_000,
+  MILLION: 1_000_000,
+  BILLION: 1_000_000_000,
+  TRILLION: 1_000_000_000_000,
 });
+export type DecimalUnits = ValueOf<typeof DECIMAL_UNITS>;
 
 const TEN_THOUSAND = DECIMAL_UNITS.THOUSAND * 10;
 const TEN_MILLIONS = DECIMAL_UNITS.MILLION * 10;
-
-/**
- * @typedef {[number, number, number]} ShortNumber
- * Array of: shorten number, unit of shorten number and maximum fraction digits
- */
 
 /**
  * @param {number} sourceNumber Number to convert to short number
@@ -25,7 +21,8 @@ const TEN_MILLIONS = DECIMAL_UNITS.MILLION * 10;
  * shortNumber(5936);
  * // => [5.936, 1000, 1]
  */
-export function toShortNumber(sourceNumber) {
+export type ShortNumber = [number, DecimalUnits, 0 | 1] // Array of: shorten number, unit of shorten number and maximum fraction digits
+export function toShortNumber(sourceNumber: number): ShortNumber {
   if (sourceNumber < DECIMAL_UNITS.THOUSAND) {
     return [sourceNumber, DECIMAL_UNITS.ONE, 0];
   } else if (sourceNumber < DECIMAL_UNITS.MILLION) {
@@ -59,20 +56,16 @@ export function toShortNumber(sourceNumber) {
  * pluralReady(1793, DECIMAL_UNITS.THOUSAND)
  * // => 1790
  */
-export function pluralReady(sourceNumber, division) {
+export function pluralReady(sourceNumber: number, division: DecimalUnits): number {
   if (division == null || division < DECIMAL_UNITS.HUNDRED) {
     return sourceNumber;
   }
 
-  let closestScale = division / DECIMAL_UNITS.TEN;
+  const closestScale = division / DECIMAL_UNITS.TEN;
 
   return Math.trunc(sourceNumber / closestScale) * closestScale;
 }
 
-/**
- * @param {number} num
- * @returns {number}
- */
-export function roundTo10(num) {
+export function roundTo10(num: number): number {
   return Math.round(num * 0.1) / 0.1;
 }

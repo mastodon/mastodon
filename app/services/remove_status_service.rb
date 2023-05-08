@@ -18,7 +18,7 @@ class RemoveStatusService < BaseService
     @account  = status.account
     @options  = options
 
-    with_lock("distribute:#{@status.id}") do
+    with_redis_lock("distribute:#{@status.id}") do
       @status.discard_with_reblogs
 
       StatusPin.find_by(status: @status)&.destroy

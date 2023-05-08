@@ -1,21 +1,12 @@
-// @ts-check
-
 import { supportsPassiveEvents } from 'detect-passive-events';
-// @ts-expect-error
-import { forceSingleColumn } from 'mastodon/initial_state';
+import { forceSingleColumn } from './initial_state';
 
 const LAYOUT_BREAKPOINT = 630;
 
-/**
- * @param {number} width
- * @returns {boolean}
- */
-export const isMobile = width => width <= LAYOUT_BREAKPOINT;
+export const isMobile = (width: number) => width <= LAYOUT_BREAKPOINT;
 
-/**
- * @returns {string}
- */
-export const layoutFromWindow = () => {
+export type LayoutType = 'mobile' | 'single-column' | 'multi-column';
+export const layoutFromWindow = (): LayoutType => {
   if (isMobile(window.innerWidth)) {
     return 'mobile';
   } else if (forceSingleColumn) {
@@ -25,8 +16,9 @@ export const layoutFromWindow = () => {
   }
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
-const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && window.MSStream != null;
 
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 

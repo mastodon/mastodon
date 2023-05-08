@@ -78,6 +78,7 @@ class Account < ApplicationRecord
   include DomainNormalizable
   include DomainMaterializable
   include AccountMerging
+  include AccountSearch
 
   MAX_DISPLAY_NAME_LENGTH = (ENV['MAX_DISPLAY_NAME_CHARS'] || 30).to_i
   MAX_NOTE_LENGTH = (ENV['MAX_BIO_CHARS'] || 500).to_i
@@ -408,14 +409,6 @@ class Account < ApplicationRecord
   end
 
   class << self
-    DISALLOWED_TSQUERY_CHARACTERS = /['?\\:‘’]/
-    TEXTSEARCH = "(setweight(to_tsvector('simple', accounts.display_name), 'A') || setweight(to_tsvector('simple', accounts.username), 'B') || setweight(to_tsvector('simple', coalesce(accounts.domain, '')), 'C'))"
-
-    REPUTATION_SCORE_FUNCTION = '(greatest(0, coalesce(s.followers_count, 0)) / (greatest(0, coalesce(s.following_count, 0)) + 1.0))'
-    FOLLOWERS_SCORE_FUNCTION  = 'log(greatest(0, coalesce(s.followers_count, 0)) + 2)'
-    TIME_DISTANCE_FUNCTION    = '(case when s.last_status_at is null then 0 else exp(-1.0 * ((greatest(0, abs(extract(DAY FROM age(s.last_status_at))) - 30.0)^2) / (2.0 * ((-1.0 * 30^2) / (2.0 * ln(0.3)))))) end)'
-    BOOST                     = "((#{REPUTATION_SCORE_FUNCTION} + #{FOLLOWERS_SCORE_FUNCTION} + #{TIME_DISTANCE_FUNCTION}) / 3.0)"
-
     def readonly_attributes
       super - %w(statuses_count following_count followers_count)
     end
@@ -423,37 +416,6 @@ class Account < ApplicationRecord
     def inboxes
       urls = reorder(nil).where(protocol: :activitypub).group(:preferred_inbox_url).pluck(Arel.sql("coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url) AS preferred_inbox_url"))
       DeliveryFailureTracker.without_unavailable(urls)
-    end
-
-    def search_for(terms, limit: 10, offset: 0)
-      tsquery = generate_query_for_search(terms)
-
-      sql = <<-SQL.squish
-        SELECT
-          accounts.*,
-          #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
-        FROM accounts
-        LEFT JOIN users ON accounts.id = users.account_id
-        LEFT JOIN account_stats AS s ON accounts.id = s.account_id
-        WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
-          AND accounts.suspended_at IS NULL
-          AND accounts.moved_to_account_id IS NULL
-          AND (accounts.domain IS NOT NULL OR (users.approved = TRUE AND users.confirmed_at IS NOT NULL))
-        ORDER BY rank DESC
-        LIMIT :limit OFFSET :offset
-      SQL
-
-      records = find_by_sql([sql, limit: limit, offset: offset, tsquery: tsquery])
-      ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
-      records
-    end
-
-    def advanced_search_for(terms, account, limit: 10, following: false, offset: 0)
-      tsquery = generate_query_for_search(terms)
-      sql = advanced_search_for_sql_template(following)
-      records = find_by_sql([sql, id: account.id, limit: limit, offset: offset, tsquery: tsquery])
-      ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
-      records
     end
 
     def from_text(text)
@@ -469,73 +431,15 @@ class Account < ApplicationRecord
         EntityCache.instance.mention(username, domain)
       end
     end
-
-    private
-
-    def generate_query_for_search(unsanitized_terms)
-      terms = unsanitized_terms.gsub(DISALLOWED_TSQUERY_CHARACTERS, ' ')
-
-      # The final ":*" is for prefix search.
-      # The trailing space does not seem to fit any purpose, but `to_tsquery`
-      # behaves differently with and without a leading space if the terms start
-      # with `./`, `../`, or `.. `. I don't understand why, so, in doubt, keep
-      # the same query.
-      "' #{terms} ':*"
-    end
-
-    def advanced_search_for_sql_template(following)
-      if following
-        <<-SQL.squish
-          WITH first_degree AS (
-            SELECT target_account_id
-            FROM follows
-            WHERE account_id = :id
-            UNION ALL
-            SELECT :id
-          )
-          SELECT
-            accounts.*,
-            (count(f.id) + 1) * #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
-          FROM accounts
-          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id)
-          LEFT JOIN account_stats AS s ON accounts.id = s.account_id
-          WHERE accounts.id IN (SELECT * FROM first_degree)
-            AND to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
-            AND accounts.suspended_at IS NULL
-            AND accounts.moved_to_account_id IS NULL
-          GROUP BY accounts.id, s.id
-          ORDER BY rank DESC
-          LIMIT :limit OFFSET :offset
-        SQL
-      else
-        <<-SQL.squish
-          SELECT
-            accounts.*,
-            #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank,
-            count(f.id) AS followed
-          FROM accounts
-          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id) OR (accounts.id = f.target_account_id AND f.account_id = :id)
-          LEFT JOIN users ON accounts.id = users.account_id
-          LEFT JOIN account_stats AS s ON accounts.id = s.account_id
-          WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
-            AND accounts.suspended_at IS NULL
-            AND accounts.moved_to_account_id IS NULL
-            AND (accounts.domain IS NOT NULL OR (users.approved = TRUE AND users.confirmed_at IS NOT NULL))
-          GROUP BY accounts.id, s.id
-          ORDER BY followed DESC, rank DESC
-          LIMIT :limit OFFSET :offset
-        SQL
-      end
-    end
   end
 
   def emojis
     @emojis ||= CustomEmoji.from_text(emojifiable_text, domain)
   end
 
-  before_create :generate_keys
   before_validation :prepare_contents, if: :local?
   before_validation :prepare_username, on: :create
+  before_create :generate_keys
   before_destroy :clean_feed_manager
 
   def ensure_keys!

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DomainBlock, type: :model do
+RSpec.describe DomainBlock do
   describe 'validations' do
     it 'is invalid without a domain' do
       domain_block = Fabricate.build(:domain_block, domain: nil)

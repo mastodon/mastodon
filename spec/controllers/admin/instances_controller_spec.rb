@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::InstancesController, type: :controller do
+RSpec.describe Admin::InstancesController do
   render_views
 
   let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }

@@ -9,6 +9,9 @@ module.exports = (api) => {
     loose: true,
     modules: false,
     debug: false,
+    include: [
+      'proposal-numeric-separator',
+    ],
   };
 
   const config = {

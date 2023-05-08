@@ -46,36 +46,36 @@ describe Rack::Attack, type: :request do
   let(:remote_ip) { '1.2.3.5' }
 
   describe 'throttle excessive sign-up requests by IP address' do
-    context 'through the website' do
+    context 'when accessed through the website' do
       let(:limit)  { 25 }
       let(:period) { 5.minutes }
       let(:request) { -> { post path, headers: { 'REMOTE_ADDR' => remote_ip } } }
 
-      context 'for exact path' do
+      context 'with exact path' do
         let(:path) { '/auth' }
 
         it_behaves_like 'throttled endpoint'
       end
 
-      context 'for path with format' do
+      context 'with path with format' do
         let(:path) { '/auth.html' }
 
         it_behaves_like 'throttled endpoint'
       end
     end
 
-    context 'through the API' do
+    context 'when accessed through the API' do
       let(:limit)  { 5 }
       let(:period) { 30.minutes }
       let(:request) { -> { post path, headers: { 'REMOTE_ADDR' => remote_ip } } }
 
-      context 'for exact path' do
+      context 'with exact path' do
         let(:path) { '/api/v1/accounts' }
 
         it_behaves_like 'throttled endpoint'
       end
 
-      context 'for path with format' do
+      context 'with path with format' do
         let(:path)  { '/api/v1/accounts.json' }
 
         it 'returns http not found' do
@@ -91,13 +91,13 @@ describe Rack::Attack, type: :request do
     let(:period) { 5.minutes }
     let(:request) { -> { post path, headers: { 'REMOTE_ADDR' => remote_ip } } }
 
-    context 'for exact path' do
+    context 'with exact path' do
       let(:path) { '/auth/sign_in' }
 
       it_behaves_like 'throttled endpoint'
     end
 
-    context 'for path with format' do
+    context 'with path with format' do
       let(:path) { '/auth/sign_in.html' }
 
       it_behaves_like 'throttled endpoint'

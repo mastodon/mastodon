@@ -41,9 +41,15 @@ jobs:
           labels: |
             org.opencontainers.image.description=Nightly build image used for testing purposes
 
+      - name: Generate version suffix
+        id: version_vars
+        run: |
+          echo mastodon_version_suffix=+nightly-$(date +'%Y%m%d') >> $GITHUB_OUTPUT
+
       - uses: docker/build-push-action@v4
         with:
           context: .
+          build-args: MASTODON_VERSION_SUFFIX=${{ steps.version_vars.outputs.mastodon_version_suffix }}
           platforms: linux/amd64,linux/arm64
           provenance: false
           builder: ${{ steps.buildx.outputs.name }}

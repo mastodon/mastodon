@@ -30,7 +30,7 @@ describe Admin::StatusesController do
       end
     end
 
-    context 'filtering by media' do
+    context 'when filtering by media' do
       before do
         get :index, params: { account_id: account.id, media: '1' }
       end
@@ -43,7 +43,7 @@ describe Admin::StatusesController do
 
   describe 'POST #batch' do
     before do
-      post :batch, params: { account_id: account.id, action => '', admin_status_batch_action: { status_ids: status_ids } }
+      post :batch, params: { :account_id => account.id, action => '', :admin_status_batch_action => { status_ids: status_ids } }
     end
 
     let(:status_ids) { [media_attached_status.id] }

@@ -27,18 +27,6 @@ GIT
     rails-settings-cached (0.6.6)
       rails (>= 4.2.0)
 
-GIT
-  remote: https://github.com/tinfoil/devise-two-factor.git
-  revision: e685f91ce62d036259885fbe31fcb4fa930bcfcb
-  branch: v4.x
-  specs:
-    devise-two-factor (4.0.2)
-      activesupport (< 7.1)
-      attr_encrypted (>= 1.3, < 5, != 2)
-      devise (~> 4.0)
-      railties (< 7.1)
-      rotp (~> 6.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -218,6 +206,12 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-two-factor (4.1.0)
+      activesupport (< 7.1)
+      attr_encrypted (>= 1.3, < 5, != 2)
+      devise (~> 4.0)
+      railties (< 7.1)
+      rotp (~> 6.0)
     devise_pam_authenticatable2 (9.2.0)
       devise (>= 4.0.0)
       rpam2 (~> 4.0)
@@ -354,15 +348,15 @@ GEM
     ipaddress (0.8.3)
     jmespath (1.6.2)
     json (2.6.3)
-    json-canonicalization (0.3.1)
+    json-canonicalization (0.3.2)
     json-jwt (1.15.3)
       activesupport (>= 4.2)
       aes_key_wrap
       bindata
       httpclient
-    json-ld (3.2.4)
+    json-ld (3.2.5)
       htmlentities (~> 4.3)
-      json-canonicalization (~> 0.3)
+      json-canonicalization (~> 0.3, >= 0.3.2)
       link_header (~> 0.0, >= 0.0.8)
       multi_json (~> 1.15)
       rack (>= 2.2, < 4)
@@ -492,7 +486,7 @@ GEM
     parslet (2.0.0)
     pastel (0.8.0)
       tty-color (~> 0.5)
-    pg (1.5.2)
+    pg (1.5.3)
     pghero (3.3.3)
       activerecord (>= 6)
     pkg-config (1.5.1)
@@ -626,7 +620,7 @@ GEM
     rubocop-performance (1.17.1)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
-    rubocop-rails (2.18.0)
+    rubocop-rails (2.19.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
@@ -638,6 +632,7 @@ GEM
       nokogiri (>= 1.10.5)
       rexml
     ruby2_keywords (0.0.5)
+    rubyzip (2.3.2)
     rufus-scheduler (3.8.2)
       fugit (~> 1.1, >= 1.1.6)
     safety_net_attestation (0.4.0)
@@ -777,7 +772,6 @@ DEPENDENCIES
   active_model_serializers (~> 0.10)
   addressable (~> 2.8)
   annotate (~> 3.2)
-  attr_encrypted (~> 4.0)
   aws-sdk-s3 (~> 1.120)
   better_errors (~> 2.9)
   binding_of_caller (~> 1.0)
@@ -799,7 +793,7 @@ DEPENDENCIES
   concurrent-ruby
   connection_pool
   devise (~> 4.9)
-  devise-two-factor!
+  devise-two-factor (~> 4.1)
   devise_pam_authenticatable2 (~> 9.2)
   discard (~> 1.2)
   doorkeeper (~> 5.6)
@@ -879,6 +873,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   ruby-progressbar (~> 1.13)
+  rubyzip (~> 2.3)
   sanitize (~> 6.0)
   scenic (~> 1.7)
   sidekiq (~> 6.5)
