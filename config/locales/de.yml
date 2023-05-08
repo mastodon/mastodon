@@ -838,7 +838,7 @@ de:
           one: In den vergangenen 7 Tagen von einem Profil geteilt
           other: In den vergangenen 7 Tagen von %{count} Profilen geteilt
         title: Angesagte Links
-        usage_comparison: Heute %{today} Mal geteilt, gestern %{yesterday} Mal
+        usage_comparison: Heute %{today}-mal und gestern %{yesterday}-mal geteilt
       not_allowed_to_trend: Darf nicht trenden
       only_allowed: Nur Genehmigte
       pending_review: Überprüfung ausstehend
@@ -879,7 +879,7 @@ de:
         trendable: Darf in den Trends erscheinen
         trending_rank: 'Platz %{rank}'
         usable: Darf verwendet werden
-        usage_comparison: Heute %{today}-mal und gestern %{yesterday}-mal genutzt
+        usage_comparison: Heute %{today}-mal und gestern %{yesterday}-mal verwendet
         used_by_over_week:
           one: In der letzten Woche von einer Person genutzt
           other: In der letzten Woche von %{count} Personen genutzt
@@ -1245,9 +1245,9 @@ de:
     mismatched_types_warning: Möglicherweise hast du den falschen Typ für diesen Import ausgewählt. Bitte überprüfe alles noch einmal.
     modes:
       merge: Zusammenführen
-      merge_long: Behalte existierende Datensätze und füge neue hinzu
+      merge_long: Bestehende Datensätze beibehalten und neue hinzufügen
       overwrite: Überschreiben
-      overwrite_long: Ersetze aktuelle Datensätze mit neuen
+      overwrite_long: Bestehende Datensätze durch neue ersetzen
     overwrite_preambles:
       blocking_html: Du bist dabei, <strong>deine Liste blockierter Konten</strong> durch bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>.
       bookmarks_html: Du bist dabei, <strong>deine Lesezeichen</strong> durch bis zu <strong>%{total_items} Beiträge</strong> aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>.
@@ -1482,7 +1482,7 @@ de:
       account: Öffentliche Beiträge von @%{acct}
       tag: 'Öffentliche Beiträge mit dem Hashtag #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Du hast das heutige Limit für geplante Beiträge, das %{limit} beträgt, erreicht
+    over_daily_limit: Du hast das Limit von %{limit} geplanten Beiträgen für heute erreicht
     over_total_limit: Du hast das Limit für geplante Beiträge, das %{limit} beträgt, erreicht
     too_soon: Das geplante Datum muss in der Zukunft liegen
   sessions:
@@ -1614,7 +1614,7 @@ de:
     interaction_exceptions_explanation: Beachte, dass Beiträge nicht gelöscht werden, sobald deine Grenzwerte für Favoriten oder geteilte Beiträge einmal überschritten wurden – auch dann nicht, wenn diese Schwellenwerte mittlerweile nicht mehr erreicht werden.
     keep_direct: Direktnachrichten behalten
     keep_direct_hint: Löscht keine deiner privaten Nachrichten
-    keep_media: Beiträge mit angehängten Medien-Dateien behalten
+    keep_media: Beiträge mit angehängten Mediendateien behalten
     keep_media_hint: Löscht keinen deiner Beiträge mit angehängten Medien-Dateien
     keep_pinned: Angeheftete Beiträge behalten
     keep_pinned_hint: Löscht keinen deiner angehefteten Beiträge im Profil
@@ -1636,7 +1636,7 @@ de:
     min_age_label: Altersgrenze
     min_favs: Beiträge mit mindestens dieser Anzahl an Favoriten behalten
     min_favs_hint: Löscht keine Beiträge, die mindestens so oft favorisiert wurden. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an Favoriten – zu löschen
-    min_reblogs: Behalte Beiträge, die öfter geteilt wurden als
+    min_reblogs: Beiträge behalten, die mindestens so oft geteilt wurden
     min_reblogs_hint: Löscht keine Beiträge, die mindestens so oft geteilt worden sind. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an geteilten Beiträgen – zu löschen
   stream_entries:
     pinned: Angehefteter Beitrag
