@@ -527,6 +527,28 @@ RSpec.describe User, type: :model do
   end
 
   describe '.those_who_can' do
-    pending
+    let!(:moderator_user) { Fabricate(:user, role: UserRole.find_by(name: 'Moderator')) }
+
+    context 'when there are not any user roles' do
+      before { UserRole.destroy_all }
+
+      it 'returns an empty list' do
+        expect(User.those_who_can(:manage_blocks)).to eq([])
+      end
+    end
+
+    context 'when there are not users with the needed role' do
+      it 'returns an empty list' do
+        expect(User.those_who_can(:manage_blocks)).to eq([])
+      end
+    end
+
+    context 'when there are users with roles' do
+      let!(:admin_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+
+      it 'returns the users with the role' do
+        expect(User.those_who_can(:manage_blocks)).to eq([admin_user])
+      end
+    end
   end
 end

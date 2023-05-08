@@ -445,7 +445,6 @@ class User < ApplicationRecord
     return if chosen_languages.nil?
 
     chosen_languages.compact_blank!
-
     self.chosen_languages = nil if chosen_languages.empty?
   end
 

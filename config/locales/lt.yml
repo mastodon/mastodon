@@ -298,10 +298,8 @@ lt:
     proceed: Ištrinti paskyrą
     success_msg: Jūsų paskyra sėkmingai ištrinta
   errors:
-    '400': The request you submitted was invalid or malformed.
     '403': Jūs neturie prieigos matyti šiam puslapiui.
     '404': Puslapis nerastas.
-    '406': This page is not available in the requested format.
     '410': Puslapis neegzistuoja.
     '422':
       content: Apsaugos patvirtinmas klaidingas. Ar jūs blokuojate sausainius?
@@ -310,7 +308,6 @@ lt:
     '500':
       content: Atsiprašome, tačiau mūsų pusėje įvyko klaida.
       title: Netinkamas puslapis
-    '503': The page could not be served due to a temporary server failure.
     noscript_html: Kad naudotumėtės Mastodon web aplikacija, prašome įsijungti JavaScript. Alternatyviai, pabandykite viena iš <a href="%{apps_path}">vietinių aplikacijų</a> Mastodon savo platformai.
   exports:
     archive_takeout:

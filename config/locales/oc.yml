@@ -560,7 +560,6 @@ oc:
   domain_validator:
     invalid_domain: es pas un nom de domeni valid
   errors:
-    '400': The request you submitted was invalid or malformed.
     '403': Avètz pas l’autorizacion de veire aquesta pagina.
     '404': La pagina que cercatz existís pas aquí.
     '406': La pagina es pas disponibla dins lo format demandat.
@@ -572,7 +571,6 @@ oc:
     '500':
       content: Un quicomet a pas foncionat coma caliá.
       title: Aquesta pagina es pas corrècta
-    '503': The page could not be served due to a temporary server failure.
     noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="%{apps_path}">una aplicacion</a> per vòstra plataforma coma alernativa.
   existing_username_validator:
     not_found: impossible de trobar un utilizaire local amb aqueste nom d’utilizaire

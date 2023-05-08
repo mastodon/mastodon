@@ -108,9 +108,9 @@ module Mastodon
       IpBlock.where(severity: :no_access).find_each do |ip_block|
         case options[:format]
         when 'nginx'
-          puts "deny #{ip_block.ip}/#{ip_block.ip.prefix};"
+          say "deny #{ip_block.ip}/#{ip_block.ip.prefix};"
         else
-          puts "#{ip_block.ip}/#{ip_block.ip.prefix}"
+          say "#{ip_block.ip}/#{ip_block.ip.prefix}"
         end
       end
     end

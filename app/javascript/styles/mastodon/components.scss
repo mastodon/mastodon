@@ -1155,6 +1155,7 @@ body > [data-popper-placement] {
     .video-player,
     .audio-player,
     .attachment-list,
+    .picture-in-picture-placeholder,
     .status-card {
       margin-inline-start: 46px + 10px;
       width: calc(100% - (46px + 10px));
@@ -6522,6 +6523,7 @@ a.status-card.compact:hover {
   background: darken($ui-base-color, 8%);
   border-radius: 4px;
   padding-bottom: 44px;
+  width: 100%;
 
   &.editable {
     border-radius: 0;

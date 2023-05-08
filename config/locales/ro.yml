@@ -492,10 +492,8 @@ ro:
       email_change_html: Puteți <a href="%{path}">schimba adresa de e-mail</a> fără a șterge contul dvs
       email_contact_html: Dacă tot nu ajunge, puteți trimite e-mail la <a href="mailto:%{email}">%{email}</a> pentru ajutor
   errors:
-    '400': The request you submitted was invalid or malformed.
     '403': Nu ai permisiunea să vizitezi această pagină.
     '404': Pagina pe care o cauți nu există.
-    '406': This page is not available in the requested format.
     '410': Pagina pe care o cauți nu mai există.
     '422':
       content: Verificarea securității a eșuat. Ai blocat cookiurile?
@@ -504,7 +502,6 @@ ro:
     '500':
       content: Ne pare rău, dar ceva a funcționat greșit. Încercați din nou!?
       title: Această pagină nu este corectă
-    '503': The page could not be served due to a temporary server failure.
     noscript_html: Pentru a utiliza o aplicație web Mastodon, te rog activează JavaScript. Alternativ, încearcă una din <a href="%{apps_path}">aplicațiile native</a> Mastodon pentru platforma ta.
   exports:
     archive_takeout:

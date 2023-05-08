@@ -428,10 +428,6 @@ RSpec/AnyInstance:
     - 'spec/workers/activitypub/delivery_worker_spec.rb'
     - 'spec/workers/web/push_notification_worker_spec.rb'
 
-RSpec/BeforeAfterAll:
-  Exclude:
-    - 'spec/requests/localization_spec.rb'
-
 # Configuration parameters: Prefixes, AllowedPatterns.
 # Prefixes: when, with, without
 RSpec/ContextWording:
@@ -861,7 +857,6 @@ RSpec/PendingWithoutReason:
   Exclude:
     - 'spec/controllers/statuses_controller_spec.rb'
     - 'spec/models/account_spec.rb'
-    - 'spec/models/user_spec.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: Strict, EnforcedStyle, AllowedExplicitMatchers.
@@ -1154,32 +1149,6 @@ RSpec/VerifiedDoubles:
     - 'spec/workers/regeneration_worker_spec.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: ExpectedOrder, Include.
-# ExpectedOrder: index, show, new, edit, create, update, destroy
-# Include: app/controllers/**/*.rb
-Rails/ActionOrder:
-  Exclude:
-    - 'app/controllers/admin/announcements_controller.rb'
-    - 'app/controllers/admin/roles_controller.rb'
-    - 'app/controllers/admin/rules_controller.rb'
-    - 'app/controllers/admin/warning_presets_controller.rb'
-    - 'app/controllers/admin/webhooks_controller.rb'
-    - 'app/controllers/api/v1/admin/domain_allows_controller.rb'
-    - 'app/controllers/api/v1/admin/domain_blocks_controller.rb'
-    - 'app/controllers/api/v1/admin/email_domain_blocks_controller.rb'
-    - 'app/controllers/api/v1/admin/ip_blocks_controller.rb'
-    - 'app/controllers/api/v1/filters_controller.rb'
-    - 'app/controllers/api/v1/media_controller.rb'
-    - 'app/controllers/api/v1/push/subscriptions_controller.rb'
-    - 'app/controllers/api/v2/filters/keywords_controller.rb'
-    - 'app/controllers/api/v2/filters/statuses_controller.rb'
-    - 'app/controllers/api/v2/filters_controller.rb'
-    - 'app/controllers/auth/registrations_controller.rb'
-    - 'app/controllers/filters_controller.rb'
-    - 'app/controllers/settings/applications_controller.rb'
-    - 'app/controllers/settings/two_factor_authentication/webauthn_credentials_controller.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb
 Rails/ActiveRecordCallbacksOrder:
@@ -1233,22 +1202,6 @@ Rails/BulkChangeTable:
     - 'db/migrate/20220227041951_add_last_used_at_to_oauth_access_tokens.rb'
     - 'db/migrate/20220303000827_add_ordered_media_attachment_ids_to_status_edits.rb'
     - 'db/migrate/20220824164433_add_human_identifier_to_admin_action_logs.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/CompactBlank:
-  Exclude:
-    - 'app/helpers/application_helper.rb'
-    - 'app/helpers/statuses_helper.rb'
-    - 'app/models/concerns/attachmentable.rb'
-    - 'app/models/poll.rb'
-    - 'app/services/import_service.rb'
-    - 'config/initializers/paperclip.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-Rails/ContentTag:
-  Exclude:
-    - 'app/helpers/application_helper.rb'
-    - 'app/helpers/branding_helper.rb'
 
 # Configuration parameters: Include.
 # Include: db/migrate/*.rb
@@ -1373,38 +1326,10 @@ Rails/HasManyOrHasOneDependent:
     - 'app/models/user.rb'
     - 'app/models/web/push_subscription.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: Include.
-# Include: spec/**/*, test/**/*
-Rails/HttpPositionalArguments:
-  Exclude:
-    - 'spec/config/initializers/rack_attack_spec.rb'
-
-# Configuration parameters: Include.
-# Include: spec/**/*.rb, test/**/*.rb
-Rails/I18nLocaleAssignment:
-  Exclude:
-    - 'spec/controllers/auth/registrations_controller_spec.rb'
-    - 'spec/helpers/application_helper_spec.rb'
-    - 'spec/requests/localization_spec.rb'
-
 Rails/I18nLocaleTexts:
   Exclude:
     - 'lib/tasks/mastodon.rake'
     - 'spec/helpers/flashes_helper_spec.rb'
-
-# Configuration parameters: IgnoreScopes, Include.
-# Include: app/models/**/*.rb
-Rails/InverseOf:
-  Exclude:
-    - 'app/models/appeal.rb'
-    - 'app/models/concerns/account_interactions.rb'
-    - 'app/models/custom_emoji.rb'
-    - 'app/models/domain_block.rb'
-    - 'app/models/follow_recommendation.rb'
-    - 'app/models/instance.rb'
-    - 'app/models/notification.rb'
-    - 'app/models/status.rb'
 
 # Configuration parameters: Include.
 # Include: app/controllers/**/*.rb, app/mailers/**/*.rb
@@ -1433,22 +1358,9 @@ Rails/NegateInclude:
     - 'app/workers/web/push_notification_worker.rb'
     - 'lib/paperclip/color_extractor.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Include.
-# Include: app/**/*.rb, config/**/*.rb, db/**/*.rb, lib/**/*.rb
-Rails/Output:
-  Exclude:
-    - 'lib/mastodon/ip_blocks_cli.rb'
-
 Rails/OutputSafety:
   Exclude:
     - 'config/initializers/simple_form.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: NotNilAndNotEmpty, NotBlank, UnlessBlank.
-Rails/Present:
-  Exclude:
-    - 'config/initializers/content_security_policy.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: Include.
@@ -1532,15 +1444,6 @@ Rails/SkipsModelValidations:
     - 'spec/lib/activitypub/activity/follow_spec.rb'
     - 'spec/services/follow_service_spec.rb'
     - 'spec/services/update_account_service_spec.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/SquishedSQLHeredocs:
-  Exclude:
-    - 'db/migrate/20170920024819_status_ids_to_timestamp_ids.rb'
-    - 'db/migrate/20180608213548_reject_following_blocked_users.rb'
-    - 'db/post_migrate/20190519130537_remove_boosts_widening_audience.rb'
-    - 'lib/mastodon/snowflake.rb'
-    - 'lib/tasks/tests.rake'
 
 Rails/TransactionExitStatement:
   Exclude:
