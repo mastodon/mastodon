@@ -2,7 +2,7 @@ import { createRoot }  from 'react-dom/client';
 
 import './public-path';
 
-import * as IntlMessageFormat  from 'intl-messageformat';
+import { IntlMessageFormat }  from 'intl-messageformat';
 import { defineMessages } from 'react-intl';
 
 import { delegate }  from '@rails/ujs';
@@ -47,7 +47,7 @@ window.addEventListener('message', e => {
 });
 
 function loaded() {
-  const { localeData } = getLocale();
+  const { messages: localeData } = getLocale();
 
   const scrollToDetailedStatus = () => {
     const history = createBrowserHistory();
