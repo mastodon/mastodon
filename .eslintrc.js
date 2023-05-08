@@ -102,6 +102,7 @@ module.exports = {
       {
         vars: 'all',
         args: 'after-used',
+        destructuredArrayIgnorePattern: '^_',
         ignoreRestSiblings: true,
       },
     ],
@@ -208,6 +209,9 @@ module.exports = {
         ],
       },
     ],
+    'import/no-amd': 'error',
+    'import/no-commonjs': 'error',
+    'import/no-import-module-exports': 'error',
     'import/no-webpack-loader-syntax': 'error',
 
     'promise/always-return': 'off',
@@ -255,6 +259,7 @@ module.exports = {
         '*.config.js',
         '.*rc.js',
         'ide-helper.js',
+        'config/webpack/**/*',
       ],
 
       env: {
@@ -263,6 +268,10 @@ module.exports = {
 
       parserOptions: {
         sourceType: 'script',
+      },
+
+      rules: {
+        'import/no-commonjs': 'off',
       },
     },
     {
@@ -296,6 +305,14 @@ module.exports = {
 
       env: {
         jest: true,
+      },
+    },
+    {
+      files: [
+        'streaming/**/*',
+      ],
+      rules: {
+        'import/no-commonjs': 'off',
       },
     },
   ],
