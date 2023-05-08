@@ -5,32 +5,35 @@ class MagicController < ApplicationController
 
   before_action :authenticate_user!
 
-  class Answer
-    attr_accessor :success, :msg
-  end
-
   def show
-    # protect against mass assignment vulnerability
     params.permit(:owa, :bdest, :dest)
 
     expires_in 0, public: true unless user_signed_in?
 
-    # get request parameters
     @dest = params.key?(:bdest) ? hex2bin(params[:bdest]) : params[:dest].to_s
     owa = params[:owa].to_s
 
-    log("Magic - dest = #{@dest}")
+    log("Magic invoked - destination = #{@dest}")
 
     expires_in 0, public: true unless owa == '1'
 
     account = @current_account
-    log("Current user:#{current_user.to_json}")
+    debug("Current user:#{current_user.to_json}")
 
     data = { OpenWebAuth: random_string }.to_json
 
-    # TODO: what if dest cannot be parsed => add 'rescue' block for URI::InvalidURIError ?
     parsed = URI.parse(@dest)
     host = parsed.host
+    port = parsed.port
+
+    owapath = URI("#{parsed.scheme}://#{host}#{port == 80 ? '' : ":#{port}"}/owa")
+    debug("Sending to #{owapath}")
+
+    # I could not find a better way to get the user URL  (account.url is empty)
+    # I found this way in the content_security_policy.rb initializer
+    base_host = Rails.configuration.x.web_domain
+    user_url = "#{host_to_url(base_host)}/@#{account.username}"
+    debug("User URL: #{user_url}")
 
     headers = {
       'Accept' => 'application/json',
@@ -40,29 +43,20 @@ class MagicController < ApplicationController
       'Host' => host,
       '(request-target)' => 'post /owa',
     }
-    owapath = URI("#{parsed.scheme}://#{host}#{parsed.port == 80 ? '' : ":#{parsed.port}"}/owa")
-    log("Sending to #{owapath}")
-
-    # I could not find a better way to get the user URL  (account.url is empty)
-    # I found this way in the content_security_policy.rb initializer
-    base_host = Rails.configuration.x.web_domain
-    user_url = "#{host_to_url(base_host)}/@#{account.username}"
-    log("User URL: #{user_url}")
-
     privkey = OpenSSL::PKey.read(account.private_key)
     signed_headers = generate_signed_headers(headers, privkey, user_url)
-    log("Headers to send = #{signed_headers}")
+    debug("Headers to send = #{signed_headers}")
 
     # returns Net::HTTPResponse object
     res = Net::HTTP.post(owapath, data, signed_headers)
-    log("Status result: #{res.code}")
+    debug("Status result: #{res.code}")
     redirect_fallthrough and return unless res.code == '200'
 
     body = JSON.parse(res.body)
     redirect_fallthrough and return unless body.key?('encrypted_token') && body.key?('success') && body['success'] != 'true'
 
     encrypted_token = body['encrypted_token']
-    log('Success returned!')
+    debug('Success returned!')
 
     # decrypt encrypted token
     token = privkey.private_decrypt(Base64.urlsafe_decode64(encrypted_token))
@@ -70,8 +64,11 @@ class MagicController < ApplicationController
     args = splitrest[2].empty? ? "?f=&owt=#{token}" : "&owt=#{token}"
 
     redirectdest = @dest + args
-    log("Redirecting to #{redirectdest} now")
+    log("Magic - Redirecting to #{redirectdest} now")
     redirect_to redirectdest
+  rescue URI::InvalidURIError
+    log('Magic - Could not parse destination')
+    render status: 404
   end
 
   private
@@ -90,7 +87,7 @@ class MagicController < ApplicationController
   end
 
   def sign(message, pkey, alg = 'SHA256')
-    log("Signing with private key (#{pkey.p.num_bits} bits)")
+    debug("Signing with private key (#{pkey.p.num_bits} bits)")
 
     pkey.sign(alg, message)
   end
@@ -111,11 +108,15 @@ class MagicController < ApplicationController
   end
 
   def redirect_fallthrough
-    log('FAIL - Fallthrough!')
+    log('Magic - FAIL: Fallthrough to destination')
     redirect_to @dest
   end
 
   def log(msg)
     Rails.logger.info msg
+  end
+
+  def debug(msg)
+    Rails.logger.debug msg
   end
 end
