@@ -1,4 +1,5 @@
 import React from 'react';
+
 import type { InjectedIntl } from 'react-intl';
 import { injectIntl, defineMessages } from 'react-intl';
 

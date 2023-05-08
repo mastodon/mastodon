@@ -1,4 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
+
 import type { LayoutType } from '../is_mobile';
 
 export const focusApp = createAction('APP_FOCUS');

@@ -1,14 +1,17 @@
 import React from 'react';
-import { autoPlayGif } from '..//initial_state';
-import Skeleton from './skeleton';
-import { Account } from '../../types/resources';
-import { List } from 'immutable';
 
-type Props = {
+import type { List } from 'immutable';
+
+import type { Account } from '../../types/resources';
+import { autoPlayGif } from '../initial_state';
+
+import Skeleton from './skeleton';
+
+interface Props {
   account: Account;
   others: List<Account>;
   localDomain: string;
-};
+}
 export class DisplayName extends React.PureComponent<Props> {
   handleMouseEnter: React.ReactEventHandler<HTMLSpanElement> = ({
     currentTarget,

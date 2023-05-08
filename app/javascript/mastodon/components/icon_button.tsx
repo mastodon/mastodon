@@ -1,7 +1,9 @@
 import React from 'react';
+
 import classNames from 'classnames';
-import { Icon } from './icon';
+
 import { AnimatedNumber } from './animated_number';
+import { Icon } from './icon';
 
 interface Props {
   className?: string;

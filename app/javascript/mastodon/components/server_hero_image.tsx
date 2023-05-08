@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from 'react';
-import { Blurhash } from './blurhash';
+
 import classNames from 'classnames';
+
+import { Blurhash } from './blurhash';
 
 interface Props {
   src: string;

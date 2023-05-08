@@ -1,7 +1,9 @@
 import { Record } from 'immutable';
+
 import type { Action } from 'redux';
-import { NOTIFICATIONS_UPDATE } from '../actions/notifications';
+
 import { focusApp, unfocusApp } from '../actions/app';
+import { NOTIFICATIONS_UPDATE } from '../actions/notifications';
 
 interface MissedUpdatesState {
   focused: boolean;

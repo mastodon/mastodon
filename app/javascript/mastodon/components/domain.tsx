@@ -1,7 +1,10 @@
 import React, { useCallback } from 'react';
-import { IconButton } from './icon_button';
+
 import type { InjectedIntl } from 'react-intl';
 import { defineMessages, injectIntl } from 'react-intl';
+
+import { IconButton } from './icon_button';
+
 
 const messages = defineMessages({
   unblockDomain: {

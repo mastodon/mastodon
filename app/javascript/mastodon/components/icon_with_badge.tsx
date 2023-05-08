@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Icon } from './icon';
 
 const formatNumber = (num: number): number | string => (num > 40 ? '40+' : num);

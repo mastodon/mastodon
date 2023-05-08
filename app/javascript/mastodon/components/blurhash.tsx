@@ -1,5 +1,6 @@
-import { decode } from 'blurhash';
 import React, { useRef, useEffect } from 'react';
+
+import { decode } from 'blurhash';
 
 interface Props extends React.HTMLAttributes<HTMLCanvasElement> {
   hash: string;
