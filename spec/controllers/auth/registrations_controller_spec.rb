@@ -104,9 +104,9 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
     end
 
     around do |example|
-      current_locale = I18n.locale
-      example.run
-      I18n.locale = current_locale
+      I18n.with_locale(I18n.locale) do
+        example.run
+      end
     end
 
     before { request.env['devise.mapping'] = Devise.mappings[:user] }

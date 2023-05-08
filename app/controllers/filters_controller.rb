@@ -18,6 +18,8 @@ class FiltersController < ApplicationController
     @filter.keywords.build
   end
 
+  def edit; end
+
   def create
     @filter = current_account.custom_filters.build(resource_params)
 
@@ -27,8 +29,6 @@ class FiltersController < ApplicationController
       render action: :new
     end
   end
-
-  def edit; end
 
   def update
     if @filter.update(resource_params)

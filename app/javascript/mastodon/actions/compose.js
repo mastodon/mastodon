@@ -408,16 +408,12 @@ export function changeUploadCompose(id, params) {
     // Editing already-attached media is deferred to editing the post itself.
     // For simplicity's sake, fake an API reply.
     if (media && !media.get('unattached')) {
-      let { description, focus } = params;
-      const data = media.toJS();
-
-      if (description) {
-        data.description = description;
-      }
+      const { focus, ...other } = params;
+      const data = { ...media.toJS(), ...other };
 
       if (focus) {
-        focus = focus.split(',');
-        data.meta = { focus: { x: parseFloat(focus[0]), y: parseFloat(focus[1]) } };
+        const [x, y] = focus.split(',');
+        data.meta = { focus: { x: parseFloat(x), y: parseFloat(y) } };
       }
 
       dispatch(changeUploadComposeSuccess(data, true));

@@ -7,7 +7,7 @@ Paperclip.interpolates :filename do |attachment, style|
   if style == :original
     attachment.original_filename
   else
-    [basename(attachment, style), extension(attachment, style)].delete_if(&:blank?).join('.')
+    [basename(attachment, style), extension(attachment, style)].compact_blank!.join('.')
   end
 end
 

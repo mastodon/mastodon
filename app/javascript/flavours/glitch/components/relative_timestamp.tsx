@@ -1,6 +1,5 @@
 import React from 'react';
-import { injectIntl, defineMessages } from 'react-intl';
-import PropTypes from 'prop-types';
+import { injectIntl, defineMessages, InjectedIntl } from 'react-intl';
 
 const messages = defineMessages({
   today: { id: 'relative_time.today', defaultMessage: 'today' },
@@ -28,12 +27,12 @@ const dateFormatOptions = {
   day: '2-digit',
   hour: '2-digit',
   minute: '2-digit',
-};
+} as const;
 
 const shortDateFormatOptions = {
   month: 'short',
   day: 'numeric',
-};
+} as const;
 
 const SECOND = 1000;
 const MINUTE = 1000 * 60;
@@ -42,7 +41,7 @@ const DAY    = 1000 * 60 * 60 * 24;
 
 const MAX_DELAY = 2147483647;
 
-const selectUnits = delta => {
+const selectUnits = (delta: number) => {
   const absDelta = Math.abs(delta);
 
   if (absDelta < MINUTE) {
@@ -56,7 +55,7 @@ const selectUnits = delta => {
   return 'day';
 };
 
-const getUnitDelay = units => {
+const getUnitDelay = (units: string) => {
   switch (units) {
   case 'second':
     return SECOND;
@@ -71,7 +70,7 @@ const getUnitDelay = units => {
   }
 };
 
-export const timeAgoString = (intl, date, now, year, timeGiven, short) => {
+export const timeAgoString = (intl: InjectedIntl, date: Date, now: number, year: number, timeGiven: boolean, short?: boolean) => {
   const delta = now - date.getTime();
 
   let relativeTime;
@@ -99,7 +98,7 @@ export const timeAgoString = (intl, date, now, year, timeGiven, short) => {
   return relativeTime;
 };
 
-const timeRemainingString = (intl, date, now, timeGiven = true) => {
+const timeRemainingString = (intl: InjectedIntl, date: Date, now: number, timeGiven = true) => {
   const delta = date.getTime() - now;
 
   let relativeTime;
@@ -121,15 +120,17 @@ const timeRemainingString = (intl, date, now, timeGiven = true) => {
   return relativeTime;
 };
 
-class RelativeTimestamp extends React.Component {
-
-  static propTypes = {
-    intl: PropTypes.object.isRequired,
-    timestamp: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    futureDate: PropTypes.bool,
-    short: PropTypes.bool,
-  };
+type Props = {
+  intl: InjectedIntl;
+  timestamp: string;
+  year: number;
+  futureDate?: boolean;
+  short?: boolean;
+}
+type States = {
+  now: number;
+}
+class RelativeTimestamp extends React.Component<Props, States> {
 
   state = {
     now: this.props.intl.now(),
@@ -140,7 +141,9 @@ class RelativeTimestamp extends React.Component {
     short: true,
   };
 
-  shouldComponentUpdate (nextProps, nextState) {
+  _timer: number | undefined;
+
+  shouldComponentUpdate (nextProps: Props, nextState: States) {
     // As of right now the locale doesn't change without a new page load,
     // but we might as well check in case that ever changes.
     return this.props.timestamp !== nextProps.timestamp ||
@@ -148,7 +151,7 @@ class RelativeTimestamp extends React.Component {
       this.state.now !== nextState.now;
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps: Props) {
     if (this.props.timestamp !== nextProps.timestamp) {
       this.setState({ now: this.props.intl.now() });
     }
@@ -158,16 +161,16 @@ class RelativeTimestamp extends React.Component {
     this._scheduleNextUpdate(this.props, this.state);
   }
 
-  componentWillUpdate (nextProps, nextState) {
+  UNSAFE_componentWillUpdate (nextProps: Props, nextState: States) {
     this._scheduleNextUpdate(nextProps, nextState);
   }
 
   componentWillUnmount () {
-    clearTimeout(this._timer);
+    window.clearTimeout(this._timer);
   }
 
-  _scheduleNextUpdate (props, state) {
-    clearTimeout(this._timer);
+  _scheduleNextUpdate (props: Props, state: States) {
+    window.clearTimeout(this._timer);
 
     const { timestamp }  = props;
     const delta          = (new Date(timestamp)).getTime() - state.now;
@@ -176,7 +179,7 @@ class RelativeTimestamp extends React.Component {
     const updateInterval = 1000 * 10;
     const delay          = delta < 0 ? Math.max(updateInterval, unitDelay - unitRemainder) : Math.max(updateInterval, unitRemainder);
 
-    this._timer = setTimeout(() => {
+    this._timer = window.setTimeout(() => {
       this.setState({ now: this.props.intl.now() });
     }, delay);
   }

@@ -19,7 +19,7 @@ class Appeal < ApplicationRecord
   MAX_STRIKE_AGE = 20.days
 
   belongs_to :account
-  belongs_to :strike, class_name: 'AccountWarning', foreign_key: 'account_warning_id'
+  belongs_to :strike, class_name: 'AccountWarning', foreign_key: 'account_warning_id', inverse_of: :appeal
   belongs_to :approved_by_account, class_name: 'Account', optional: true
   belongs_to :rejected_by_account, class_name: 'Account', optional: true
 

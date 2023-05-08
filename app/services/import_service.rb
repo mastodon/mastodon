@@ -132,7 +132,7 @@ class ImportService < BaseService
   def parse_import_data!(default_headers)
     data = CSV.parse(import_data, headers: true)
     data = CSV.parse(import_data, headers: default_headers) unless data.headers&.first&.strip&.include?(' ')
-    @data = data.reject(&:blank?)
+    @data = data.compact_blank
   end
 
   def import_data

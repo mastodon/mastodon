@@ -53,7 +53,7 @@ const redisUrlToClient = async (defaultConfig, redisUrl) => {
 /**
  * @param {string} json
  * @param {any} req
- * @return {Object.<string, any>|null}
+ * @returns {Object.<string, any>|null}
  */
 const parseJSON = (json, req) => {
   try {
@@ -70,7 +70,7 @@ const parseJSON = (json, req) => {
 
 /**
  * @param {Object.<string, any>} env the `process.env` value to read configuration from
- * @return {Object.<string, any>} the configuration for the PostgreSQL connection
+ * @returns {Object.<string, any>} the configuration for the PostgreSQL connection
  */
 const pgConfigFromEnv = (env) => {
   const pgConfigs = {
@@ -124,7 +124,7 @@ const pgConfigFromEnv = (env) => {
 
 /**
  * @param {Object.<string, any>} env the `process.env` value to read configuration from
- * @return {Object.<string, any>} configuration for the Redis connection
+ * @returns {Object.<string, any>} configuration for the Redis connection
  */
 const redisConfigFromEnv = (env) => {
   const redisNamespace = env.REDIS_NAMESPACE || null;
@@ -171,7 +171,7 @@ const startServer = async () => {
 
   /**
    * @param {string[]} channels
-   * @return {function(): void}
+   * @returns {function(): void}
    */
   const subscriptionHeartbeat = channels => {
     const interval = 6 * 60;
@@ -224,6 +224,7 @@ const startServer = async () => {
 
   /**
    * @param {string} channel
+   * @param {function(string): void} callback
    */
   const unsubscribe = (channel, callback) => {
     log.silly(`Removing listener for ${channel}`);
@@ -255,7 +256,7 @@ const startServer = async () => {
 
   /**
    * @param {any} value
-   * @return {boolean}
+   * @returns {boolean}
    */
   const isTruthy = value =>
     value && !FALSE_VALUES.includes(value);
@@ -263,7 +264,7 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {any} res
-   * @param {function(Error=): void}
+   * @param {function(Error=): void} next
    */
   const allowCrossDomain = (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -276,7 +277,7 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {any} res
-   * @param {function(Error=): void}
+   * @param {function(Error=): void} next
    */
   const setRequestId = (req, res, next) => {
     req.requestId = uuid.v4();
@@ -288,7 +289,7 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {any} res
-   * @param {function(Error=): void}
+   * @param {function(Error=): void} next
    */
   const setRemoteAddress = (req, res, next) => {
     req.remoteAddress = req.connection.remoteAddress;
@@ -299,7 +300,7 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {string[]} necessaryScopes
-   * @return {boolean}
+   * @returns {boolean}
    */
   const isInScope = (req, necessaryScopes) =>
     req.scopes.some(scope => necessaryScopes.includes(scope));
@@ -307,7 +308,7 @@ const startServer = async () => {
   /**
    * @param {string} token
    * @param {any} req
-   * @return {Promise.<void>}
+   * @returns {Promise.<void>}
    */
   const accountFromToken = (token, req) => new Promise((resolve, reject) => {
     pgPool.connect((err, client, done) => {
@@ -345,8 +346,7 @@ const startServer = async () => {
 
   /**
    * @param {any} req
-   * @param {boolean=} required
-   * @return {Promise.<void>}
+   * @returns {Promise.<void>}
    */
   const accountFromRequest = (req) => new Promise((resolve, reject) => {
     const authorization = req.headers.authorization;
@@ -368,7 +368,7 @@ const startServer = async () => {
 
   /**
    * @param {any} req
-   * @return {string}
+   * @returns {string}
    */
   const channelNameFromPath = req => {
     const { path, query } = req;
@@ -412,7 +412,7 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {string} channelName
-   * @return {Promise.<void>}
+   * @returns {Promise.<void>}
    */
   const checkScopes = (req, channelName) => new Promise((resolve, reject) => {
     log.silly(req.requestId, `Checking OAuth scopes for ${channelName}`);
@@ -477,7 +477,7 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {SystemMessageHandlers} eventHandlers
-   * @return {function(string): void}
+   * @returns {function(string): void}
    */
   const createSystemMessageListener = (req, eventHandlers) => {
     return message => {
@@ -565,14 +565,14 @@ const startServer = async () => {
   /**
    * @param {array} arr
    * @param {number=} shift
-   * @return {string}
+   * @returns {string}
    */
   const placeholders = (arr, shift = 0) => arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
 
   /**
    * @param {string} listId
    * @param {any} req
-   * @return {Promise.<void>}
+   * @returns {Promise.<void>}
    */
   const authorizeListAccess = (listId, req) => new Promise((resolve, reject) => {
     const { accountId } = req;
@@ -603,7 +603,7 @@ const startServer = async () => {
    * @param {function(string[], function(string): void): void} attachCloseHandler
    * @param {boolean=} needsFiltering
    * @param {boolean=} allowLocalOnly
-   * @return {function(string): void}
+   * @returns {function(string): void}
    */
   const streamFrom = (ids, req, output, attachCloseHandler, needsFiltering = false, allowLocalOnly = false) => {
     const accountId = req.accountId || req.remoteAddress;
@@ -772,7 +772,7 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {any} res
-   * @return {function(string, string): void}
+   * @returns {function(string, string): void}
    */
   const streamToHttp = (req, res) => {
     const accountId = req.accountId || req.remoteAddress;
@@ -799,7 +799,7 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {function(): void} [closeHandler]
-   * @return {function(string[]): void}
+   * @returns {function(string[]): void}
    */
   const streamHttpEnd = (req, closeHandler = undefined) => (ids) => {
     req.on('close', () => {
@@ -817,7 +817,7 @@ const startServer = async () => {
    * @param {any} req
    * @param {any} ws
    * @param {string[]} streamName
-   * @return {function(string, string): void}
+   * @returns {function(string, string): void}
    */
   const streamToWs = (req, ws, streamName) => (event, payload) => {
     if (ws.readyState !== ws.OPEN) {
@@ -892,7 +892,7 @@ const startServer = async () => {
 
   /**
    * @param {any} req
-   * @return {string[]}
+   * @returns {string[]}
    */
   const channelsForUserStream = req => {
     const arr = [`timeline:${req.accountId}`];
@@ -917,7 +917,7 @@ const startServer = async () => {
 
   /**
    * @param {string} str
-   * @return {string}
+   * @returns {string}
    */
   const foldToASCII = str => {
     const regex = new RegExp(NON_ASCII_CHARS.split('').join('|'), 'g');
@@ -930,7 +930,7 @@ const startServer = async () => {
 
   /**
    * @param {string} str
-   * @return {string}
+   * @returns {string}
    */
   const normalizeHashtag = str => {
     return foldToASCII(str.normalize('NFKC').toLowerCase()).replace(/[^\p{L}\p{N}_\u00b7\u200c]/gu, '');
@@ -940,7 +940,7 @@ const startServer = async () => {
    * @param {any} req
    * @param {string} name
    * @param {StreamParams} params
-   * @return {Promise.<{ channelIds: string[], options: { needsFiltering: boolean } }>}
+   * @returns {Promise.<{ channelIds: string[], options: { needsFiltering: boolean } }>}
    */
   const channelNameToIds = (req, name, params) => new Promise((resolve, reject) => {
     switch (name) {
@@ -1062,7 +1062,7 @@ const startServer = async () => {
   /**
    * @param {string} channelName
    * @param {StreamParams} params
-   * @return {string[]}
+   * @returns {string[]}
    */
   const streamNameFromChannelName = (channelName, params) => {
     if (channelName === 'list') {
@@ -1170,7 +1170,7 @@ const startServer = async () => {
 
   /**
    * @param {string|string[]} arrayOrString
-   * @return {string}
+   * @returns {string}
    */
   const firstParam = arrayOrString => {
     if (Array.isArray(arrayOrString)) {

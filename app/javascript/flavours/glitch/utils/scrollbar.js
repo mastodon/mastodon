@@ -2,7 +2,7 @@
 let cachedScrollbarWidth = null;
 
 /**
- * @return {number}
+ * @returns {number}
  */
 const getActualScrollbarWidth = () => {
   const outer = document.createElement('div');
@@ -20,7 +20,7 @@ const getActualScrollbarWidth = () => {
 };
 
 /**
- * @return {number}
+ * @returns {number}
  */
 export const getScrollbarWidth = () => {
   if (cachedScrollbarWidth !== null) {

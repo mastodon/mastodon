@@ -7,6 +7,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:import/recommended',
     'plugin:promise/recommended',
+    'plugin:jsdoc/recommended',
   ],
 
   env: {
@@ -238,6 +239,14 @@ module.exports = {
     'formatjs/no-useless-message': 'error',
     'formatjs/prefer-formatted-message': 'error',
     'formatjs/prefer-pound-in-plural': 'error',
+
+    'jsdoc/check-types': 'off',
+    'jsdoc/no-undefined-types': 'off',
+    'jsdoc/require-jsdoc': 'off',
+    'jsdoc/require-param-description': 'off',
+    'jsdoc/require-property-description': 'off',
+    'jsdoc/require-returns-description': 'off',
+    'jsdoc/require-returns': 'off',
   },
 
   overrides: [
@@ -270,10 +279,13 @@ module.exports = {
         'plugin:import/recommended',
         'plugin:import/typescript',
         'plugin:promise/recommended',
+        'plugin:jsdoc/recommended',
       ],
 
       rules: {
         '@typescript-eslint/no-explicit-any': 'off',
+
+        'jsdoc/require-jsdoc': 'off',
       },
     },
     {
