@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage, FormattedHTMLMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
@@ -168,9 +168,9 @@ class Share extends PureComponent {
           <CopyPasteText value={intl.formatMessage(messages.shareableMessage, { username: `@${account.get('username')}@${domain}`, url })} />
 
           <TipCarousel>
-            <div><p className='onboarding__lead'><FormattedHTMLMessage id='onboarding.tips.verification' defaultMessage='<strong>Did you know?</strong> You can verify your account by putting a link to your Mastodon profile on your own website and adding the website to your profile. No fees or documents necessary!' /></p></div>
-            <div><p className='onboarding__lead'><FormattedHTMLMessage id='onboarding.tips.migration' defaultMessage='<strong>Did you know?</strong> If you feel like {domain} is not a great server choice for you in the future, you can move to another Mastodon server without losing your followers. You can even host your own server!' values={{ domain }} /></p></div>
-            <div><p className='onboarding__lead'><FormattedHTMLMessage id='onboarding.tips.2fa' defaultMessage='<strong>Did you know?</strong> You can secure your account by setting up two-factor authentication in your account settings. It works with any TOTP app of your choice, no phone number necessary!' /></p></div>
+            <div><p className='onboarding__lead'><FormattedMessage id='onboarding.tips.verification' defaultMessage='<strong>Did you know?</strong> You can verify your account by putting a link to your Mastodon profile on your own website and adding the website to your profile. No fees or documents necessary!'  values={{ strong: chunks => <strong>{chunks}</strong> }}  /></p></div>
+            <div><p className='onboarding__lead'><FormattedMessage id='onboarding.tips.migration' defaultMessage='<strong>Did you know?</strong> If you feel like {domain} is not a great server choice for you in the future, you can move to another Mastodon server without losing your followers. You can even host your own server!' values={{ domain, strong: chunks => <strong>{chunks}</strong> }} /></p></div>
+            <div><p className='onboarding__lead'><FormattedMessage id='onboarding.tips.2fa' defaultMessage='<strong>Did you know?</strong> You can secure your account by setting up two-factor authentication in your account settings. It works with any TOTP app of your choice, no phone number necessary!'  values={{ strong: chunks => <strong>{chunks}</strong> }}  /></p></div>
           </TipCarousel>
 
           <p className='onboarding__lead'><FormattedMessage id='onboarding.share.next_steps' defaultMessage='Possible next steps:' /></p>
