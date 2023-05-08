@@ -55,10 +55,7 @@ module.exports = {
       '\\.(css|scss|json)$',
     ],
     'import/resolver': {
-      node: {
-        paths: ['app/javascript'],
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      },
+      typescript: {},
     },
   },
 
@@ -168,6 +165,7 @@ module.exports = {
       {
         js: 'never',
         jsx: 'never',
+        mjs: 'never',
         ts: 'never',
         tsx: 'never',
       },
@@ -189,6 +187,7 @@ module.exports = {
     'import/no-amd': 'error',
     'import/no-commonjs': 'error',
     'import/no-import-module-exports': 'error',
+    'import/no-relative-packages': 'error',
     'import/no-self-import': 'error',
     'import/no-useless-path-segments': 'error',
     'import/no-webpack-loader-syntax': 'error',
