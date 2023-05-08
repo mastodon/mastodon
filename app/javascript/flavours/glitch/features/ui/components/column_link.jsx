@@ -32,6 +32,7 @@ const ColumnLink = ({ icon, text, to, onClick, href, method, badge, transparent,
       return onClick(e);
     };
     return (
+      // eslint-disable-next-line jsx-a11y/anchor-is-valid -- intentional to have the same look and feel as other menu items
       <a href='#' onClick={onClick && handleOnClick} className={className} title={text} {...other} tabIndex={0}>
         {iconElement}
         <span>{text}</span>
