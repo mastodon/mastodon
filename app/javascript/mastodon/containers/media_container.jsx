@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 import { createPortal } from 'react-dom';
 
-import { IntlProvider, addLocaleData } from 'react-intl';
+import { IntlProvider } from 'react-intl';
 
 import { fromJS } from 'immutable';
 
@@ -17,8 +17,7 @@ import Video from 'mastodon/features/video';
 import { getLocale } from 'mastodon/locales';
 import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
 
-const { localeData, messages } = getLocale();
-addLocaleData(localeData);
+const { messages } = getLocale();
 
 const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag, Audio };
 

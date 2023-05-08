@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { IntlProvider, addLocaleData } from 'react-intl';
+import { IntlProvider } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 import { BrowserRouter, Route } from 'react-router-dom';
@@ -19,8 +19,7 @@ import initialState, { title as siteTitle } from 'mastodon/initial_state';
 import { getLocale } from 'mastodon/locales';
 import { store } from 'mastodon/store';
 
-const { localeData, messages } = getLocale();
-addLocaleData(localeData);
+const { messages } = getLocale();
 
 const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
 

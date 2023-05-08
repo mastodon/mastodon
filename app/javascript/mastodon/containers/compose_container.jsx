@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { IntlProvider, addLocaleData } from 'react-intl';
+import { IntlProvider } from 'react-intl';
 
 import { Provider } from 'react-redux';
 
@@ -12,8 +12,7 @@ import initialState from '../initial_state';
 import { getLocale } from '../locales';
 import { store } from '../store';
 
-const { localeData, messages } = getLocale();
-addLocaleData(localeData);
+const { messages } = getLocale();
 
 if (initialState) {
   store.dispatch(hydrateStore(initialState));
