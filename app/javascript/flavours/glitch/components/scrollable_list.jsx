@@ -8,6 +8,7 @@ import IntersectionObserverWrapper from 'flavours/glitch/features/ui/util/inters
 import { throttle } from 'lodash';
 import { List as ImmutableList } from 'immutable';
 import classNames from 'classnames';
+import { supportsPassiveEvents } from 'detect-passive-events';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
 import LoadingIndicator from './loading_indicator';
 import { connect } from 'react-redux';
@@ -236,10 +237,10 @@ class ScrollableList extends PureComponent {
   attachScrollListener () {
     if (this.props.bindToDocument) {
       document.addEventListener('scroll', this.handleScroll);
-      document.addEventListener('wheel', this.handleWheel);
+      document.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : undefined);
     } else {
       this.node.addEventListener('scroll', this.handleScroll);
-      this.node.addEventListener('wheel', this.handleWheel);
+      this.node.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : undefined);
     }
   }
 
