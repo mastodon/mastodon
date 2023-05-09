@@ -98,9 +98,9 @@ export const decode83 = (str: string) => {
 };
 
 export const intToRGB = (int: number) => ({
-  r: Math.max(0, (int >> 16)),
+  r: Math.max(0, int >> 16),
   g: Math.max(0, (int >> 8) & 255),
-  b: Math.max(0, (int & 255)),
+  b: Math.max(0, int & 255),
 });
 
 export const getAverageFromBlurhash = (blurhash: string) => {
