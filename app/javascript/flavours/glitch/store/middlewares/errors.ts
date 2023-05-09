@@ -5,7 +5,9 @@ import { RootState } from '..';
 const defaultFailSuffix = 'FAIL';
 
 export const errorsMiddleware: Middleware<Record<string, never>, RootState> =
-  ({ dispatch }) => next => action => {
+  ({ dispatch }) =>
+  (next) =>
+  (action) => {
     if (action.type && !action.skipAlert) {
       const isFail = new RegExp(`${defaultFailSuffix}$`, 'g');
 

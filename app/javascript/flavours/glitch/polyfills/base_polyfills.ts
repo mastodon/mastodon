@@ -10,7 +10,7 @@ if (!HTMLCanvasElement.prototype.toBlob) {
   const BASE64_MARKER = ';base64,';
 
   Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
-    value(callback: BlobCallback, type = 'image/png', quality: any)  {
+    value(callback: BlobCallback, type = 'image/png', quality: any) {
       const dataURL = this.toDataURL(type, quality);
       let data;
 
