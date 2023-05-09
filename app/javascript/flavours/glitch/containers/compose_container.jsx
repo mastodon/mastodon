@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
-import { store } from 'flavours/glitch/store/configureStore';
+import { store } from 'flavours/glitch/store';
 import { hydrateStore } from 'flavours/glitch/actions/store';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from 'mastodon/locales';

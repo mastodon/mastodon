@@ -5,7 +5,7 @@ import { IntlProvider, addLocaleData } from 'react-intl';
 import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { ScrollContext } from 'react-router-scroll-4';
-import { store } from 'flavours/glitch/store/configureStore';
+import { store } from 'flavours/glitch/store';
 import UI from 'flavours/glitch/features/ui';
 import { fetchCustomEmojis } from 'flavours/glitch/actions/custom_emojis';
 import { hydrateStore } from 'flavours/glitch/actions/store';
