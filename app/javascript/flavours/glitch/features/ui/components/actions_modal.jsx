@@ -5,7 +5,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import StatusContent from 'flavours/glitch/components/status_content';
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
-import DisplayName from 'flavours/glitch/components/display_name';
+import { DisplayName } from 'flavours/glitch/components/display_name';
 import classNames from 'classnames';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 

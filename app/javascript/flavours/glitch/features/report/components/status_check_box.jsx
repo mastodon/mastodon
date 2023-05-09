@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusContent from 'flavours/glitch/components/status_content';
 import { Avatar } from 'flavours/glitch/components/avatar';
-import DisplayName from 'flavours/glitch/components/display_name';
+import { DisplayName } from 'flavours/glitch/components/display_name';
 import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
 import Option from './option';
 import MediaAttachments from 'flavours/glitch/components/media_attachments';
