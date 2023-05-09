@@ -6,7 +6,7 @@ import AccountContainer from 'flavours/glitch/containers/account_container';
 import StatusContainer from 'flavours/glitch/containers/status_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
-import Icon from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/glitch/components/icon';
 import { searchEnabled } from 'flavours/glitch/initial_state';
 import LoadMore from 'flavours/glitch/components/load_more';
 

@@ -9,7 +9,7 @@ import {
 import Overlay from 'react-overlays/Overlay';
 
 //  Components.
-import Icon from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/glitch/components/icon';
 
 //  Utils.
 import { focusRoot } from 'flavours/glitch/utils/dom_helpers';

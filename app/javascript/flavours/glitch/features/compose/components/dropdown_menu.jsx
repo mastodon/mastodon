@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 //  Components.
-import Icon from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/glitch/components/icon';
 
 //  Utils.
 import { withPassive } from 'flavours/glitch/utils/dom_helpers';

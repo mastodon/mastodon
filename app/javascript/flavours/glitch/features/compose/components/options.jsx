@@ -7,7 +7,7 @@ import Toggle from 'react-toggle';
 import { connect } from 'react-redux';
 
 //  Components.
-import IconButton from 'flavours/glitch/components/icon_button';
+import { IconButton } from 'flavours/glitch/components/icon_button';
 import TextIconButton from './text_icon_button';
 import DropdownContainer from '../containers/dropdown_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/glitch/components/icon';
 import { removePictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';

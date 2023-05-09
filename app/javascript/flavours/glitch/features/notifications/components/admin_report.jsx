@@ -10,7 +10,7 @@ import classNames from 'classnames';
 // Our imports.
 import Permalink from 'flavours/glitch/components/permalink';
 import NotificationOverlayContainer from '../containers/overlay_container';
-import Icon from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/glitch/components/icon';
 import Report from './report';
 
 export default class AdminReport extends ImmutablePureComponent {

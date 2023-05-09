@@ -25,10 +25,10 @@ import { List as ImmutableList } from 'immutable';
 import { debounce } from 'lodash';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import LoadGap from 'flavours/glitch/components/load_gap';
-import Icon from 'flavours/glitch/components/icon';
-import compareId from 'flavours/glitch/compare_id';
+import { Icon } from 'flavours/glitch/components/icon';
+import { compareId } from 'flavours/glitch/compare_id';
 import NotificationsPermissionBanner from './components/notifications_permission_banner';
-import NotSignedInIndicator from 'flavours/glitch/components/not_signed_in_indicator';
+import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
 import { Helmet } from 'react-helmet';
 
 import NotificationPurgeButtonsContainer from 'flavours/glitch/containers/notification_purge_buttons_container';

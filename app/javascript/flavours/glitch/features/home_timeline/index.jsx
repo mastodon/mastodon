@@ -12,8 +12,8 @@ import { Link } from 'react-router-dom';
 import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/glitch/actions/announcements';
 import AnnouncementsContainer from 'flavours/glitch/features/getting_started/containers/announcements_container';
 import classNames from 'classnames';
-import IconWithBadge from 'flavours/glitch/components/icon_with_badge';
-import NotSignedInIndicator from 'flavours/glitch/components/not_signed_in_indicator';
+import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';
+import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
 import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({

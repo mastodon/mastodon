@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { registrationsOpen } from 'flavours/glitch/initial_state';
 import { connect } from 'react-redux';
-import Icon from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/glitch/components/icon';
 import classNames from 'classnames';
 import { openModal, closeModal } from 'flavours/glitch/actions/modal';
 

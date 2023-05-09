@@ -1,5 +1,5 @@
 import React from 'react';
-import IconButton from './icon_button';
+import { IconButton } from './icon_button';
 import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 import { bannerSettings } from 'flavours/glitch/settings';

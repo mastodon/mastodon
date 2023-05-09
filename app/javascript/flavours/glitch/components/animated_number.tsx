@@ -54,5 +54,3 @@ export const AnimatedNumber: React.FC<Props> = ({
     </TransitionMotion>
   );
 };
-
-export default AnimatedNumber;

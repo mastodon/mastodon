@@ -5,9 +5,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage } from 'react-intl';
 import classnames from 'classnames';
 import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
-import Icon from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/glitch/components/icon';
 import { useBlurhash } from 'flavours/glitch/initial_state';
-import Blurhash from 'flavours/glitch/components/blurhash';
+import { Blurhash } from 'flavours/glitch/components/blurhash';
 
 const getHostname = url => {
   const parser = document.createElement('a');

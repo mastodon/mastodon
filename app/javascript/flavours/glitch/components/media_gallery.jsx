@@ -2,12 +2,12 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { is } from 'immutable';
-import IconButton from './icon_button';
+import { IconButton } from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
 import { debounce } from 'lodash';
-import Blurhash from 'flavours/glitch/components/blurhash';
+import { Blurhash } from 'flavours/glitch/components/blurhash';
 
 const messages = defineMessages({
   hidden: {

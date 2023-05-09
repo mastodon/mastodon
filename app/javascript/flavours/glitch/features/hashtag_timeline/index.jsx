@@ -12,7 +12,7 @@ import { connectHashtagStream } from 'flavours/glitch/actions/streaming';
 import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
 import { isEqual } from 'lodash';
 import { fetchHashtag, followHashtag, unfollowHashtag } from 'flavours/glitch/actions/tags';
-import Icon from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/glitch/components/icon';
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 

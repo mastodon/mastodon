@@ -3,7 +3,7 @@ import { WordmarkLogo, SymbolLogo } from 'flavours/glitch/components/logo';
 import { Link, withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { registrationsOpen, me } from 'flavours/glitch/initial_state';
-import Avatar from 'flavours/glitch/components/avatar';
+import { Avatar } from 'flavours/glitch/components/avatar';
 import Permalink from 'flavours/glitch/components/permalink';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';

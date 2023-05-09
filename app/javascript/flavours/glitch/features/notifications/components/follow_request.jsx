@@ -1,15 +1,15 @@
 import React, { Fragment } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import Avatar from 'flavours/glitch/components/avatar';
+import { Avatar } from 'flavours/glitch/components/avatar';
 import DisplayName from 'flavours/glitch/components/display_name';
 import Permalink from 'flavours/glitch/components/permalink';
-import IconButton from 'flavours/glitch/components/icon_button';
+import { IconButton } from 'flavours/glitch/components/icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import NotificationOverlayContainer from '../containers/overlay_container';
 import { HotKeys } from 'react-hotkeys';
-import Icon from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/glitch/components/icon';
 import classNames from 'classnames';
 
 const messages = defineMessages({

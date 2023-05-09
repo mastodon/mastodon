@@ -52,7 +52,7 @@ import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/initial
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
 import { textForScreenReader, defaultMediaVisibility } from 'flavours/glitch/components/status';
-import Icon from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/glitch/components/icon';
 import { Helmet } from 'react-helmet';
 import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
 
