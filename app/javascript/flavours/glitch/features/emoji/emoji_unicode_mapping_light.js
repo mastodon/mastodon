@@ -2,14 +2,17 @@
 // (i.e. the svg filename) and a shortCode intended to be shown
 // as a "title" attribute in an HTML element (aka tooltip).
 
+import emojiCompressed from './emoji_compressed';
+
+import { unicodeToFilename } from './unicode_to_filename';
+
 const [
   shortCodesToEmojiData,
-  skins, // eslint-disable-line @typescript-eslint/no-unused-vars
-  categories, // eslint-disable-line @typescript-eslint/no-unused-vars
-  short_names, // eslint-disable-line @typescript-eslint/no-unused-vars
+  _skins,
+  _categories,
+  _short_names,
   emojisWithoutShortCodes,
-] = require('./emoji_compressed');
-const { unicodeToFilename } = require('./unicode_to_filename');
+] = emojiCompressed;
 
 // decompress
 const unicodeMapping = {};
@@ -32,4 +35,4 @@ Object.keys(shortCodesToEmojiData).forEach((shortCode) => {
 });
 emojisWithoutShortCodes.forEach(emojiMapData => processEmojiMapData(emojiMapData));
 
-module.exports = unicodeMapping;
+export default unicodeMapping;

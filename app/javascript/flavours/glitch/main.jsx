@@ -6,7 +6,7 @@ import { store } from 'flavours/glitch/store/configureStore';
 import { me } from 'flavours/glitch/initial_state';
 import ready from 'flavours/glitch/ready';
 
-const perf = require('flavours/glitch/performance');
+import * as perf from 'flavours/glitch/performance';
 
 /**
  * @returns {Promise<void>}
