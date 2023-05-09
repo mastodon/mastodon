@@ -851,11 +851,14 @@ eu:
       statuses:
         allow: Onartu bidalketa
         allow_account: Onartu egilea
-        description_html: Hauek dira gehien partekatzen eta gogokoenetara gehien gehitzen diren argitalpenak, zure zerbitzariak dakienaren arabera. Zure erabiltzaile berriei nahiz itzultzen direnei jarrai dezaketen jendea aurkitzen lagun ditzake. Argitalpenik ez da publikoki erakutsiko egilea onartzen duzun arte eta egileak berak bere kontua besteei iradokitzea onartzen badu. Baita ere, argitalpen bakoitza baimendu edo uka dezakezu.
+        description_html: Hauek dira une honetan gehien partekatzen eta gogoko gehien dituzten bidalketak, zure zerbitzariak dakienaren arabera. Zure erabiltzaile berriei nahiz itzultzen direnei lagun diezaieke jarraitzeko jendea aurkitzen. Bidalketak ez dira publikoki bistaratuko zuk egilea onartu eta egileak berak bere kontua besteei iradokitzea onartu arte. Bidalketak banan-bana ere baimendu edo uka ditzakezu.
         disallow: Ez onartu bidalketa
         disallow_account: Ez onartu egilea
         no_status_selected: Ez da joerarik aldatu ez delako bat ere hautatu
         not_discoverable: Egileak ez du aukeratu aurkikuntza ezaugarrietan agertzea
+        shared_by:
+          one: Partekatua edo behin gogokoenatara gehitua
+          other: '%{friendly_count} aldiz partekatua edo gogoko egina'
         title: Bidalketen joerak
       tags:
         current_score: Uneko emaitza%{score}
@@ -1246,7 +1249,25 @@ eu:
       overwrite: Gainidatzi
       overwrite_long: Ordeztu oraingo erregistroak berriekin
     preface: Beste zerbitzari bateko datuak inportatu ditzakezu, esaterako jarraitzen duzun edo blokeatu duzun jendearen zerrenda.
+    recent_imports: Azken inportazioak
+    states:
+      finished: Amaitua
+      in_progress: Abian
+      scheduled: Programatuta
+      unconfirmed: Berretsi gabe
+    status: Egoera
     success: Zure datuak ongi igo dira eta dagokionean prozesatuko dira
+    time_started: Noiz hasia
+    titles:
+      blocking: Blokeatutako kontuak inportatzen
+      bookmarks: Laster-markak inportatzen
+      domain_blocking: Blokeatutako domeinuak inportatzen
+      following: Jarraitutako kontuak inportatzen
+      muting: Mutututako kontuak inportatzen
+    type: Inportazio mota
+    type_groups:
+      constructive: Jarraipenak eta laster-markak
+      destructive: Blokeatzeak eta mututzeak
     types:
       blocking: Blokeatutakoen zerrenda
       bookmarks: Laster-markak
@@ -1341,7 +1362,7 @@ eu:
       sign_up:
         subject: "%{name} erabiltzailea erregistratu da"
     favourite:
-      body: '%{name}-(e)k zure argitalpena gogokoenetara gehitu du:'
+      body: '%{name}(e)k zure bidalketa gogoko du:'
       subject: "%{name}-(e)k zure argitalpena datsegi"
       title: Gogoko berria
     follow:
@@ -1588,6 +1609,8 @@ eu:
     keep_polls_hint: Zure inkestak ez dira ezabatuko
     keep_self_bookmark: Mantendu laster-marka duten bidalketak
     keep_self_bookmark_hint: Laster-marka egin diezun zure bidalketak ez dira ezabatuko
+    keep_self_fav: Mantendu gogoko bidalketak
+    keep_self_fav_hint: Gogoko bezala markatu dituzun zure bidalketak ez ditu ezabatuko
     min_age:
       '1209600': 2 aste
       '15778476': 6 hilabete
@@ -1598,6 +1621,8 @@ eu:
       '63113904': 2 urte
       '7889238': 3 hilabete
     min_age_label: Denbora muga
+    min_favs: Mantendu gogoko kopuru hau duten bidalketak
+    min_favs_hint: Gogoko dutenen kopuru hau gutxienez duten bidalketak ez dira ezabatuko. Hutsik utzi, gogoko dutenen kopurua aintzat hartu gabe bidalketak ezabatzeko
     min_reblogs: Mantendu bultzada kopuru hau duten bidalketak
     min_reblogs_hint: Gutxienez bultzada kopuru hau jaso duten zure bidalketak ez dira ezabatuko. Hutsik utziz gero bultzada kopurua ez da kontuan hartuko bidalketak ezabatzean
   stream_entries:
