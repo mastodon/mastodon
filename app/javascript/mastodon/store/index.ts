@@ -1,9 +1,13 @@
+import type { TypedUseSelectorHook } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { configureStore } from '@reduxjs/toolkit';
+
 import { rootReducer } from '../reducers';
-import { loadingBarMiddleware } from './middlewares/loading_bar';
+
 import { errorsMiddleware } from './middlewares/errors';
+import { loadingBarMiddleware } from './middlewares/loading_bar';
 import { soundsMiddleware } from './middlewares/sounds';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 export const store = configureStore({
   reducer: rootReducer,

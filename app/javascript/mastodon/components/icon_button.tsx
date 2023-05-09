@@ -27,11 +27,11 @@ interface Props {
   obfuscateCount?: boolean;
   href?: string;
   ariaHidden: boolean;
-};
+}
 interface States {
   activate: boolean;
   deactivate: boolean;
-};
+}
 export class IconButton extends React.PureComponent<Props, States> {
   static defaultProps = {
     size: 18,

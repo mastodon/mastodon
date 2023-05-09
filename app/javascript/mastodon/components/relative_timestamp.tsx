@@ -195,10 +195,10 @@ interface Props {
   year: number;
   futureDate?: boolean;
   short?: boolean;
-};
+}
 interface States {
   now: number;
-};
+}
 class RelativeTimestamp extends React.Component<Props, States> {
   state = {
     now: this.props.intl.now(),

@@ -9,7 +9,7 @@ interface Props {
   srcSet?: string;
   blurhash?: string;
   className?: string;
-};
+}
 
 export const ServerHeroImage: React.FC<Props> = ({
   src,

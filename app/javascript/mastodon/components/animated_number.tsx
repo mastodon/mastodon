@@ -19,7 +19,7 @@ const obfuscatedCount = (count: number) => {
 interface Props {
   value: number;
   obfuscate?: boolean;
-};
+}
 export const AnimatedNumber: React.FC<Props> = ({ value, obfuscate }) => {
   const [previousValue, setPreviousValue] = useState(value);
   const [direction, setDirection] = useState<1 | -1>(1);
@@ -60,7 +60,19 @@ export const AnimatedNumber: React.FC<Props> = ({ value, obfuscate }) => {
       {(items) => (
         <span className='animated-number'>
           {items.map(({ key, data, style }) => (
-            <span key={key} style={{ position: (direction * style.y) > 0 ? 'absolute' : 'static', transform: `translateY(${style.y * 100}%)` }}>{obfuscate ? obfuscatedCount(data as number) : <ShortNumber value={data as number} />}</span>
+            <span
+              key={key}
+              style={{
+                position: direction * style.y > 0 ? 'absolute' : 'static',
+                transform: `translateY(${style.y * 100}%)`,
+              }}
+            >
+              {obfuscate ? (
+                obfuscatedCount(data as number)
+              ) : (
+                <ShortNumber value={data as number} />
+              )}
+            </span>
           ))}
         </span>
       )}

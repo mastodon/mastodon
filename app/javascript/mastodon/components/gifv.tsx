@@ -8,7 +8,7 @@ interface Props {
   width: number;
   height: number;
   onClick?: () => void;
-};
+}
 
 export const GIFV: React.FC<Props> = ({
   src,

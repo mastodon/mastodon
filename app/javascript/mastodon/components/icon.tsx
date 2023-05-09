@@ -7,8 +7,8 @@ interface Props extends React.HTMLAttributes<HTMLImageElement> {
   className?: string;
   fixedWidth?: boolean;
   children?: never;
-  [key: string]: any;
-};
+}
+
 export const Icon: React.FC<Props> = ({
   id,
   className,
