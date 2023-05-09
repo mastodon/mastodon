@@ -2,7 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import { makeGetAccount } from 'mastodon/selectors';
-import Avatar from 'mastodon/components/avatar';
+import { Avatar } from 'mastodon/components/avatar';
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();

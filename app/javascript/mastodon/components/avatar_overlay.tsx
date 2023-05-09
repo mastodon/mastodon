@@ -47,5 +47,3 @@ export const AvatarOverlay: React.FC<Props> = ({
     </div>
   );
 };
-
-export default AvatarOverlay;

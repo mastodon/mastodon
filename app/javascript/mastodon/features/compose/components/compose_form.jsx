@@ -19,7 +19,7 @@ import LanguageDropdown from '../containers/language_dropdown_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 import { countableText } from '../util/counter';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import classNames from 'classnames';
 import { maxChars } from '../../../initial_state';
 

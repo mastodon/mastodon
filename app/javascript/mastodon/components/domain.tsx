@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import IconButton from './icon_button';
+import { IconButton } from './icon_button';
 import { InjectedIntl, defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({

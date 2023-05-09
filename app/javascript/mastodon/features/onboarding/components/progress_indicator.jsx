@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Check from 'mastodon/components/check';
+import { Check } from 'mastodon/components/check';
 import classNames from 'classnames';
 
 const ProgressIndicator = ({ steps, completed }) => (

@@ -26,5 +26,3 @@ export const RadioButton: React.FC<Props> = ({ name, value, checked, onChange, l
     </label>
   );
 };
-
-export default RadioButton;
