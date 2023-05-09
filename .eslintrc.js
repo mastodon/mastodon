@@ -297,6 +297,12 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
 
         'jsdoc/require-jsdoc': 'off',
+
+        // Those rules set stricter rules for TS files
+        // to enforce better practices when converting from JS
+        'import/no-default-export': 'warn',
+        'react/prefer-stateless-function': 'warn',
+        'react/function-component-definition': ['error', { namedComponents: 'arrow-function' }],
       },
     },
     {

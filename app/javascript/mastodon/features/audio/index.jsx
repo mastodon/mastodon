@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import { formatTime, getPointerPosition, fileNameFromURL } from 'mastodon/features/video';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import classNames from 'classnames';
 import { throttle, debounce } from 'lodash';
 import Visualizer from './visualizer';
 import { displayMedia, useBlurhash } from '../../initial_state';
-import Blurhash from '../../components/blurhash';
+import { Blurhash } from '../../components/blurhash';
 import { is } from 'immutable';
 
 const messages = defineMessages({

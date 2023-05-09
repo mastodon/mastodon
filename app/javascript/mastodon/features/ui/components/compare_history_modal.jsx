@@ -7,8 +7,8 @@ import { closeModal } from 'mastodon/actions/modal';
 import emojify from 'mastodon/features/emoji/emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import InlineAccount from 'mastodon/components/inline_account';
-import IconButton from 'mastodon/components/icon_button';
-import RelativeTimestamp from 'mastodon/components/relative_timestamp';
+import { IconButton } from 'mastodon/components/icon_button';
+import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import MediaAttachments from 'mastodon/components/media_attachments';
 
 const mapStateToProps = (state, { statusId }) => ({

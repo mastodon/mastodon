@@ -64,5 +64,3 @@ export const GIFV: React.FC<Props> = ({
     </div>
   );
 };
-
-export default GIFV;

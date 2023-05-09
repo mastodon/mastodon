@@ -58,7 +58,7 @@ import { HotKeys } from 'react-hotkeys';
 import { boostModal, deleteModal } from '../../initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import { Helmet } from 'react-helmet';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 

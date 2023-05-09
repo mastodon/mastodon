@@ -7,7 +7,7 @@ import ShortNumber from 'mastodon/components/short_number';
 import Skeleton from 'mastodon/components/skeleton';
 import Account from 'mastodon/containers/account_container';
 import { domain } from 'mastodon/initial_state';
-import Image from 'mastodon/components/image';
+import { Image } from 'mastodon/components/image';
 import { Link } from 'react-router-dom';
 
 const messages = defineMessages({

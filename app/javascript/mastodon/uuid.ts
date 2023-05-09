@@ -1,4 +1,4 @@
-export default function uuid(a?: string): string {
+export function uuid(a?: string): string {
   return a
     ? (
       (a as any as number) ^

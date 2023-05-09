@@ -6,7 +6,7 @@ import AccountContainer from '../../../containers/account_container';
 import StatusContainer from '../../../containers/status_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { ImmutableHashtag as Hashtag } from '../../../components/hashtag';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import { searchEnabled } from '../../../initial_state';
 import LoadMore from 'mastodon/components/load_more';
 
