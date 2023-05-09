@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import Icon from 'flavours/glitch/components/icon';
-import Check from 'flavours/glitch/components/check';
+import { Icon }  from 'flavours/glitch/components/icon';
+import { Check } from 'flavours/glitch/components/check';
 
 const Step = ({ label, description, icon, completed, onClick, href }) => {
   const content = (

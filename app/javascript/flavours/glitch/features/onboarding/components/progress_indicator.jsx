@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Check from 'flavours/glitch/components/check';
+import { Check } from 'flavours/glitch/components/check';
 import classNames from 'classnames';
 
 const ProgressIndicator = ({ steps, completed }) => (
