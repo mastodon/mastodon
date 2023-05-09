@@ -1,8 +1,14 @@
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
+import { Middleware } from 'redux';
+import { RootState } from '..';
 
-const defaultTypeSuffixes = ['PENDING', 'FULFILLED', 'REJECTED'];
+interface Config {
+  promiseTypeSuffixes?: string[]
+}
 
-export default function loadingBarMiddleware(config = {}) {
+const defaultTypeSuffixes: Config['promiseTypeSuffixes'] = ['PENDING', 'FULFILLED', 'REJECTED'];
+
+export  const loadingBarMiddleware = (config: Config = {}): Middleware<Record<string, never>, RootState> => {
   const promiseTypeSuffixes = config.promiseTypeSuffixes || defaultTypeSuffixes;
 
   return ({ dispatch }) => next => (action) => {
@@ -22,4 +28,4 @@ export default function loadingBarMiddleware(config = {}) {
 
     return next(action);
   };
-}
+};

@@ -16,10 +16,6 @@ export const layoutFromWindow = (): LayoutType => {
   }
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && window.MSStream != null;
-
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 let userTouching = false;
@@ -33,5 +29,3 @@ const touchListener = () => {
 window.addEventListener('touchstart', touchListener, listenerOptions);
 
 export const isUserTouching = () => userTouching;
-
-export const isIOS = () => iOS;

@@ -1,9 +1,11 @@
-import { showAlertForError } from '../actions/alerts';
+import { Middleware } from 'redux';
+import { showAlertForError } from '../../actions/alerts';
+import { RootState } from '..';
 
 const defaultFailSuffix = 'FAIL';
 
-export default function errorsMiddleware() {
-  return ({ dispatch }) => next => action => {
+export const errorsMiddleware: Middleware<Record<string, never>, RootState> =
+  ({ dispatch }) => next => action => {
     if (action.type && !action.skipAlert) {
       const isFail = new RegExp(`${defaultFailSuffix}$`, 'g');
 
@@ -14,4 +16,3 @@ export default function errorsMiddleware() {
 
     return next(action);
   };
-}
