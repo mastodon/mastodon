@@ -12,7 +12,7 @@ import { defineMessages } from 'react-intl';
 import * as IntlMessageFormat  from 'intl-messageformat';
 import { timeAgoString }  from '../mastodon/components/relative_timestamp';
 import { delegate }  from '@rails/ujs';
-import * as emojify  from '../mastodon/features/emoji/emoji';
+import emojify  from '../mastodon/features/emoji/emoji';
 import { getLocale }  from '../mastodon/locales';
 import React  from 'react';
 import ReactDOM  from 'react-dom';
