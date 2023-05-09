@@ -17,11 +17,11 @@ module Mastodon
     end
 
     def flags
-      ''
+      ENV.fetch('MASTODON_VERSION_FLAGS', '')
     end
 
     def suffix
-      '+glitch'
+      "+glitch#{ENV.fetch('MASTODON_VERSION_SUFFIX', '')}"
     end
 
     def to_a

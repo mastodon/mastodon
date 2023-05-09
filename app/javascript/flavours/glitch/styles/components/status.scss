@@ -691,7 +691,6 @@ a.status__display-name,
   margin-inline-end: 10px;
   height: 48px;
   width: 48px;
-  box-shadow: 0 0 0 2px $ui-base-color;
 }
 
 .muted {
@@ -809,6 +808,10 @@ a.status-card {
 }
 
 .status-card-video {
+  // Firefox has a bug where frameborder=0 iframes add some extra blank space
+  // see https://bugzilla.mozilla.org/show_bug.cgi?id=155174
+  overflow: hidden;
+
   iframe {
     width: 100%;
     height: 100%;
@@ -1154,6 +1157,7 @@ a.status-card.compact:hover {
   font-weight: 500;
   cursor: pointer;
   color: $darker-text-color;
+  aspect-ratio: 16 / 9;
 
   i {
     display: block;

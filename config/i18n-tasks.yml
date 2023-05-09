@@ -72,6 +72,8 @@ ignore_unused:
   - 'themes.*'
   - 'move_handler.carry_{mutes,blocks}_over_text'
   - 'notification_mailer.*'
+  - 'imports.overwrite_preambles.{following,blocking,muting,domain_blocking,bookmarks}_html'
+  - 'imports.preambles.{following,blocking,muting,domain_blocking,bookmarks}_html'
 
 ignore_inconsistent_interpolations:
   - '*.one'

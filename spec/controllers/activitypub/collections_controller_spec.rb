@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::CollectionsController, type: :controller do
+RSpec.describe ActivityPub::CollectionsController do
   let!(:account) { Fabricate(:account) }
   let!(:private_pinned) { Fabricate(:status, account: account, text: 'secret private stuff', visibility: :private) }
   let(:remote_account) { nil }
@@ -35,10 +35,9 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
   describe 'GET #show' do
     context 'when id is "featured"' do
       context 'without signature' do
-        subject(:body) { body_as_json }
-
         subject(:response) { get :show, params: { id: 'featured', account_username: account.username } }
 
+        let(:body) { body_as_json }
         let(:remote_account) { nil }
 
         it 'returns http success' do
@@ -120,7 +119,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
           end
         end
 
-        context 'in authorized fetch mode' do
+        context 'with authorized fetch mode' do
           before do
             allow(controller).to receive(:authorized_fetch_mode?).and_return(true)
           end

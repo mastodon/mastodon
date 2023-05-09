@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Emails::ConfirmationsController, type: :controller do
+RSpec.describe Api::V1::Emails::ConfirmationsController do
   let(:confirmed_at) { nil }
   let(:user)         { Fabricate(:user, confirmed_at: confirmed_at) }
   let(:app)          { Fabricate(:application) }
@@ -15,14 +15,14 @@ RSpec.describe Api::V1::Emails::ConfirmationsController, type: :controller do
         allow(controller).to receive(:doorkeeper_token) { token }
       end
 
-      context 'from a random app' do
+      context 'when from a random app' do
         it 'returns http forbidden' do
           post :create
           expect(response).to have_http_status(403)
         end
       end
 
-      context 'from an app that created the account' do
+      context 'when from an app that created the account' do
         before do
           user.update(created_by_application: token.application)
         end
@@ -35,7 +35,7 @@ RSpec.describe Api::V1::Emails::ConfirmationsController, type: :controller do
             expect(response).to have_http_status(403)
           end
 
-          context 'but user changed e-mail and has not confirmed it' do
+          context 'with user changed e-mail and has not confirmed it' do
             before do
               user.update(email: 'foo@bar.com')
             end

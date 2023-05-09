@@ -65,6 +65,7 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
   Exclude:
+    - 'config/routes.rb'
     - 'lib/mastodon/*_cli.rb'
     - 'lib/tasks/*.rake'
     - 'app/models/concerns/account_associations.rb'
@@ -85,6 +86,7 @@ Metrics/BlockLength:
     - 'config/initializers/simple_form.rb'
     - 'config/navigation.rb'
     - 'config/routes.rb'
+    - 'config/routes/*.rb'
     - 'db/post_migrate/20221101190723_backfill_admin_action_logs.rb'
     - 'db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb'
     - 'lib/paperclip/gif_transcoder.rb'
@@ -130,6 +132,7 @@ Metrics/ClassLength:
     - 'app/services/activitypub/process_account_service.rb'
     - 'app/services/activitypub/process_status_update_service.rb'
     - 'app/services/backup_service.rb'
+    - 'app/services/bulk_import_service.rb'
     - 'app/services/delete_account_service.rb'
     - 'app/services/fan_out_on_write_service.rb'
     - 'app/services/fetch_link_card_service.rb'
@@ -157,6 +160,11 @@ Metrics/MethodLength:
 # https://docs.rubocop.org/rubocop/cops_style.html#stylerescuestandarderror
 Metrics/ModuleLength:
   CountAsOne: [array, heredoc]
+
+# Reason: Prevailing style is argument file paths
+# https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsfilepath
+Rails/FilePath:
+  EnforcedStyle: arguments
 
 # Reason: Prevailing style uses numeric status codes, matches RSpec/Rails/HttpStatus
 # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railshttpstatus

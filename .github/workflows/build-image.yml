@@ -43,9 +43,16 @@ jobs:
             type=edge,branch=main
             type=sha,prefix=,format=long
 
+      - name: Generate version suffix
+        id: version_vars
+        if: github.repository == 'mastodon/mastodon' && github.event_name == 'push' && github.ref_name == 'main'
+        run: |
+          echo mastodon_version_suffix=+edge-$(git rev-parse --short HEAD) >> $GITHUB_OUTPUT
+
       - uses: docker/build-push-action@v4
         with:
           context: .
+          build-args: MASTODON_VERSION_SUFFIX=${{ steps.version_vars.outputs.mastodon_version_suffix }}
           platforms: linux/amd64,linux/arm64
           provenance: false
           builder: ${{ steps.buildx.outputs.name }}

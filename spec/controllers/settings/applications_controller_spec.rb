@@ -50,7 +50,7 @@ describe Settings::ApplicationsController do
   end
 
   describe 'POST #create' do
-    context 'success (passed scopes as a String)' do
+    context 'when success (passed scopes as a String)' do
       def call_create
         post :create, params: {
           doorkeeper_application: {
@@ -72,7 +72,7 @@ describe Settings::ApplicationsController do
       end
     end
 
-    context 'success (passed scopes as an Array)' do
+    context 'when success (passed scopes as an Array)' do
       def call_create
         post :create, params: {
           doorkeeper_application: {
@@ -94,7 +94,7 @@ describe Settings::ApplicationsController do
       end
     end
 
-    context 'failure' do
+    context 'with failure request' do
       before do
         post :create, params: {
           doorkeeper_application: {
@@ -117,7 +117,7 @@ describe Settings::ApplicationsController do
   end
 
   describe 'PATCH #update' do
-    context 'success' do
+    context 'when success' do
       let(:opts) do
         {
           website: 'https://foo.bar/',
@@ -142,7 +142,7 @@ describe Settings::ApplicationsController do
       end
     end
 
-    context 'failure' do
+    context 'with failure request' do
       before do
         patch :update, params: {
           id: app.id,

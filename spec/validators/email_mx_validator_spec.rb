@@ -6,7 +6,7 @@ describe EmailMxValidator do
   describe '#validate' do
     let(:user) { double(email: 'foo@example.com', sign_up_ip: '1.2.3.4', errors: double(add: nil)) }
 
-    context 'for an e-mail domain that is explicitly allowed' do
+    context 'with an e-mail domain that is explicitly allowed' do
       around do |block|
         tmp = Rails.configuration.x.email_domains_whitelist
         Rails.configuration.x.email_domains_whitelist = 'example.com'

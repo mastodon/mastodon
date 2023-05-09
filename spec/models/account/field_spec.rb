@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Account::Field, type: :model do
+RSpec.describe Account::Field do
   describe '#verified?' do
     subject { described_class.new(account, 'name' => 'Foo', 'value' => 'Bar', 'verified_at' => verified_at) }
 
@@ -49,10 +49,10 @@ RSpec.describe Account::Field, type: :model do
 
     let(:account) { double('Account', local?: local) }
 
-    context 'for local accounts' do
+    context 'with local accounts' do
       let(:local) { true }
 
-      context 'for a URL with misleading authentication' do
+      context 'with a URL with misleading authentication' do
         let(:value) { 'https://spacex.com                                                                                            @h.43z.one' }
 
         it 'returns false' do
@@ -60,7 +60,7 @@ RSpec.describe Account::Field, type: :model do
         end
       end
 
-      context 'for a URL' do
+      context 'with a URL' do
         let(:value) { 'https://example.com' }
 
         it 'returns true' do
@@ -68,7 +68,7 @@ RSpec.describe Account::Field, type: :model do
         end
       end
 
-      context 'for an IDN URL' do
+      context 'with an IDN URL' do
         let(:value) { 'https://twitter.com∕dougallj∕status∕1590357240443437057.ê.cc/twitter.html' }
 
         it 'returns false' do
@@ -76,7 +76,7 @@ RSpec.describe Account::Field, type: :model do
         end
       end
 
-      context 'for a URL with a non-normalized path' do
+      context 'with a URL with a non-normalized path' do
         let(:value) { 'https://github.com/octocatxxxxxxxx/../mastodon' }
 
         it 'returns false' do
@@ -84,7 +84,7 @@ RSpec.describe Account::Field, type: :model do
         end
       end
 
-      context 'for text that is not a URL' do
+      context 'with text that is not a URL' do
         let(:value) { 'Hello world' }
 
         it 'returns false' do
@@ -92,7 +92,7 @@ RSpec.describe Account::Field, type: :model do
         end
       end
 
-      context 'for text that contains a URL' do
+      context 'with text that contains a URL' do
         let(:value) { 'Hello https://example.com world' }
 
         it 'returns false' do
@@ -100,7 +100,7 @@ RSpec.describe Account::Field, type: :model do
         end
       end
 
-      context 'for text which is blank' do
+      context 'with text which is blank' do
         let(:value) { '' }
 
         it 'returns false' do
@@ -109,10 +109,10 @@ RSpec.describe Account::Field, type: :model do
       end
     end
 
-    context 'for remote accounts' do
+    context 'with remote accounts' do
       let(:local) { false }
 
-      context 'for a link' do
+      context 'with a link' do
         let(:value) { '<a href="https://www.patreon.com/mastodon" target="_blank" rel="nofollow noopener noreferrer me"><span class="invisible">https://www.</span><span class="">patreon.com/mastodon</span><span class="invisible"></span></a>' }
 
         it 'returns true' do
@@ -120,7 +120,7 @@ RSpec.describe Account::Field, type: :model do
         end
       end
 
-      context 'for a link with misleading authentication' do
+      context 'with a link with misleading authentication' do
         let(:value) { '<a href="https://google.com                                                                                            @h.43z.one" target="_blank" rel="nofollow noopener noreferrer me"><span class="invisible">https://</span><span class="">google.com</span><span class="invisible">                                                                                            @h.43z.one</span></a>' }
 
         it 'returns false' do
@@ -128,7 +128,7 @@ RSpec.describe Account::Field, type: :model do
         end
       end
 
-      context 'for HTML that has more than just a link' do
+      context 'with HTML that has more than just a link' do
         let(:value) { '<a href="https://google.com" target="_blank" rel="nofollow noopener noreferrer me"><span class="invisible">https://</span><span class="">google.com</span><span class="invisible"></span></a>                                                                                            @h.43z.one' }
 
         it 'returns false' do
@@ -136,7 +136,7 @@ RSpec.describe Account::Field, type: :model do
         end
       end
 
-      context 'for a link with different visible text' do
+      context 'with a link with different visible text' do
         let(:value) { '<a href="https://google.com/bar">https://example.com/foo</a>' }
 
         it 'returns false' do
@@ -144,7 +144,7 @@ RSpec.describe Account::Field, type: :model do
         end
       end
 
-      context 'for text that is a URL but is not linked' do
+      context 'with text that is a URL but is not linked' do
         let(:value) { 'https://example.com/foo' }
 
         it 'returns false' do
@@ -152,7 +152,7 @@ RSpec.describe Account::Field, type: :model do
         end
       end
 
-      context 'for text which is blank' do
+      context 'with text which is blank' do
         let(:value) { '' }
 
         it 'returns false' do

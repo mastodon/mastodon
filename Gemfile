@@ -30,10 +30,7 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.3'
 gem 'devise', '~> 4.9'
-# The below `v4.x` branch allows attr_encrypted 4.x, which is required for Rails 7.
-# Once a new gem version is pushed, we can go back to released gem and off of github branch.
-gem 'devise-two-factor', github: 'tinfoil/devise-two-factor', branch: 'v4.x'
-gem 'attr_encrypted', '~> 4.0'
+gem 'devise-two-factor', '~> 4.1'
 
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
@@ -164,3 +161,4 @@ gem 'hcaptcha', '~> 7.1'
 gem 'cocoon', '~> 1.2'
 
 gem 'net-http', '~> 0.3.2'
+gem 'rubyzip', '~> 2.3'

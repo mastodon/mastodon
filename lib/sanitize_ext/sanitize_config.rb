@@ -127,7 +127,7 @@ class Sanitize
       node = env[:node]
 
       rel = (node['rel'] || '').split & ['tag']
-      rel += ['nofollow', 'noopener', 'noreferrer'] unless TagManager.instance.local_url?(node['href'])
+      rel += %w(nofollow noopener noreferrer) unless TagManager.instance.local_url?(node['href'])
 
       if rel.empty?
         node.remove_attribute('rel')

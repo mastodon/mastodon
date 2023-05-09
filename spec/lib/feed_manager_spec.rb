@@ -27,7 +27,7 @@ RSpec.describe FeedManager do
     let(:bob)   { Fabricate(:account, username: 'bob', domain: 'example.com') }
     let(:jeff)  { Fabricate(:account, username: 'jeff') }
 
-    context 'for home feed' do
+    context 'with home feed' do
       it 'returns false for followee\'s status' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         bob.follow!(alice)
@@ -162,7 +162,7 @@ RSpec.describe FeedManager do
       end
     end
 
-    context 'for mentions feed' do
+    context 'with mentions feed' do
       it 'returns true for status that mentions blocked account' do
         bob.block!(jeff)
         status = PostStatusService.new.call(alice, text: 'Hey @jeff')
@@ -195,7 +195,7 @@ RSpec.describe FeedManager do
     it 'trims timelines if they will have more than FeedManager::MAX_ITEMS' do
       account = Fabricate(:account)
       status = Fabricate(:status)
-      members = FeedManager::MAX_ITEMS.times.map { |count| [count, count] }
+      members = Array.new(FeedManager::MAX_ITEMS) { |count| [count, count] }
       redis.zadd("feed:home:#{account.id}", members)
 
       FeedManager.instance.push_to_home(account, status)
@@ -203,7 +203,7 @@ RSpec.describe FeedManager do
       expect(redis.zcard("feed:home:#{account.id}")).to eq FeedManager::MAX_ITEMS
     end
 
-    context 'reblogs' do
+    context 'with reblogs' do
       it 'saves reblogs of unseen statuses' do
         account = Fabricate(:account)
         reblogged = Fabricate(:status)
@@ -240,7 +240,7 @@ RSpec.describe FeedManager do
       it 'does not save a new reblog of a recently-reblogged status' do
         account = Fabricate(:account)
         reblogged = Fabricate(:status)
-        reblogs = 2.times.map { Fabricate(:status, reblog: reblogged) }
+        reblogs = Array.new(2) { Fabricate(:status, reblog: reblogged) }
 
         # The first reblog will be accepted
         FeedManager.instance.push_to_home(account, reblogs.first)
@@ -269,7 +269,7 @@ RSpec.describe FeedManager do
       it 'does not save a new reblog of a multiply-reblogged-then-unreblogged status' do
         account   = Fabricate(:account)
         reblogged = Fabricate(:status)
-        reblogs = 3.times.map { Fabricate(:status, reblog: reblogged) }
+        reblogs = Array.new(3) { Fabricate(:status, reblog: reblogged) }
 
         # Accept the reblogs
         FeedManager.instance.push_to_home(account, reblogs[0])
@@ -285,7 +285,7 @@ RSpec.describe FeedManager do
       it 'saves a new reblog of a long-ago-reblogged status' do
         account = Fabricate(:account)
         reblogged = Fabricate(:status)
-        reblogs = 2.times.map { Fabricate(:status, reblog: reblogged) }
+        reblogs = Array.new(2) { Fabricate(:status, reblog: reblogged) }
 
         # The first reblog will be accepted
         FeedManager.instance.push_to_home(account, reblogs.first)
@@ -466,7 +466,7 @@ RSpec.describe FeedManager do
 
     it 'leaves a multiply-reblogged status if another reblog was in feed' do
       reblogged = Fabricate(:status)
-      reblogs   = 3.times.map { Fabricate(:status, reblog: reblogged) }
+      reblogs   = Array.new(3) { Fabricate(:status, reblog: reblogged) }
 
       reblogs.each do |reblog|
         FeedManager.instance.push_to_home(receiver, reblog)

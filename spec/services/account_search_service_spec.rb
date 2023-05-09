@@ -20,7 +20,7 @@ describe AccountSearchService, type: :service do
       end
     end
 
-    context 'searching for a simple term that is not an exact match' do
+    context 'when searching for a simple term that is not an exact match' do
       it 'does not return a nil entry in the array for the exact match' do
         account = Fabricate(:account, username: 'matchingusername')
         results = subject.call('match', nil, limit: 5)

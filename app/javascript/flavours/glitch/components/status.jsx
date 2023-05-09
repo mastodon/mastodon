@@ -624,7 +624,7 @@ class Status extends ImmutablePureComponent {
     attachments = status.get('media_attachments');
 
     if (pictureInPicture.get('inUse')) {
-      media.push(<PictureInPicturePlaceholder width={this.props.cachedMediaWidth} />);
+      media.push(<PictureInPicturePlaceholder />);
       mediaIcons.push('video-camera');
     } else if (attachments.size > 0) {
       if (muted || attachments.some(item => item.get('type') === 'unknown')) {
@@ -680,8 +680,6 @@ class Status extends ImmutablePureComponent {
               fullwidth={!rootId && settings.getIn(['media', 'fullwidth'])}
               preventPlayback={isCollapsed || !isExpanded}
               onOpenVideo={this.handleOpenVideo}
-              width={this.props.cachedMediaWidth}
-              cacheWidth={this.props.cacheMediaWidth}
               deployPictureInPicture={pictureInPicture.get('available') ? this.handleDeployPictureInPicture : undefined}
               visible={this.state.showMedia}
               onToggleVisibility={this.handleToggleMediaVisibility}
@@ -721,8 +719,6 @@ class Status extends ImmutablePureComponent {
           onOpenMedia={this.handleOpenMedia}
           card={status.get('card')}
           compact
-          cacheWidth={this.props.cacheMediaWidth}
-          defaultWidth={this.props.cachedMediaWidth}
           sensitive={status.get('sensitive')}
         />,
       );

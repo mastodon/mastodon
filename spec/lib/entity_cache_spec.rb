@@ -9,7 +9,7 @@ RSpec.describe EntityCache do
   describe '#emoji' do
     subject { EntityCache.instance.emoji(shortcodes, domain) }
 
-    context 'called with an empty list of shortcodes' do
+    context 'when called with an empty list of shortcodes' do
       let(:shortcodes) { [] }
       let(:domain)     { 'example.org' }
 

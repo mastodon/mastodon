@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SessionActivation, type: :model do
+RSpec.describe SessionActivation do
   describe '#detection' do
     let(:session_activation) { Fabricate(:session_activation, user_agent: 'Chrome/62.0.3202.89') }
 
@@ -40,7 +40,7 @@ RSpec.describe SessionActivation, type: :model do
   describe '.active?' do
     subject { described_class.active?(id) }
 
-    context 'id is absent' do
+    context 'when id is absent' do
       let(:id) { nil }
 
       it 'returns nil' do
@@ -48,17 +48,17 @@ RSpec.describe SessionActivation, type: :model do
       end
     end
 
-    context 'id is present' do
+    context 'when id is present' do
       let(:id) { '1' }
       let!(:session_activation) { Fabricate(:session_activation, session_id: id) }
 
-      context 'id exists as session_id' do
+      context 'when id exists as session_id' do
         it 'returns true' do
           expect(subject).to be true
         end
       end
 
-      context 'id does not exist as session_id' do
+      context 'when id does not exist as session_id' do
         before do
           session_activation.update!(session_id: '2')
         end
@@ -85,7 +85,7 @@ RSpec.describe SessionActivation, type: :model do
   end
 
   describe '.deactivate' do
-    context 'id is absent' do
+    context 'when id is absent' do
       let(:id) { nil }
 
       it 'returns nil' do
@@ -93,7 +93,7 @@ RSpec.describe SessionActivation, type: :model do
       end
     end
 
-    context 'id exists' do
+    context 'when id exists' do
       let(:id) { '1' }
 
       it 'calls where.destroy_all' do

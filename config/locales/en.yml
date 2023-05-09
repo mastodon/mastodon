@@ -1218,7 +1218,9 @@ en:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> item matching your search is selected."
       other: All <strong>%{count}</strong> items matching your search are selected.
+    cancel: Cancel
     changes_saved_msg: Changes successfully saved!
+    confirm: Confirm
     copy: Copy
     delete: Delete
     deselect: Deselect all
@@ -1234,15 +1236,51 @@ en:
       other: Something isn't quite right yet! Please review %{count} errors below
   imports:
     errors:
+      empty: Empty CSV file
+      incompatible_type: Incompatible with the selected import type
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
       over_rows_processing_limit: contains more than %{count} rows
+      too_large: File is too large
+    failures: Failures
+    imported: Imported
+    mismatched_types_warning: It appears you may have selected the wrong type for this import, please double-check.
     modes:
       merge: Merge
       merge_long: Keep existing records and add new ones
       overwrite: Overwrite
       overwrite_long: Replace current records with the new ones
+    overwrite_preambles:
+      blocking_html: You are about to <strong>replace your block list</strong> with up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
+      bookmarks_html: You are about to <strong>replace your bookmarks</strong> with up to <strong>%{total_items} posts</strong> from <strong>%{filename}</strong>.
+      domain_blocking_html: You are about to <strong>replace your domain block list</strong> with up to <strong>%{total_items} domains</strong> from <strong>%{filename}</strong>.
+      following_html: You are about to <strong>follow</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong> and <strong>stop following anyone else</strong>.
+      muting_html: You are about to <strong>replace your list of muted accounts</strong> with up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: You are about to <strong>block</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
+      bookmarks_html: You are about to add up to <strong>%{total_items} posts</strong> from <strong>%{filename}</strong> to your <strong>bookmarks</strong>.
+      domain_blocking_html: You are about to <strong>block</strong> up to <strong>%{total_items} domains</strong> from <strong>%{filename}</strong>.
+      following_html: You are about to <strong>follow</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
+      muting_html: You are about to <strong>mute</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
     preface: You can import data that you have exported from another server, such as a list of the people you are following or blocking.
+    recent_imports: Recent imports
+    states:
+      finished: Finished
+      in_progress: In progress
+      scheduled: Scheduled
+      unconfirmed: Unconfirmed
+    status: Status
     success: Your data was successfully uploaded and will be processed in due time
+    time_started: Started at
+    titles:
+      blocking: Importing blocked accounts
+      bookmarks: Importing bookmarks
+      domain_blocking: Importing blocked domains
+      following: Importing followed accounts
+      muting: Importing muted accounts
+    type: Import type
+    type_groups:
+      constructive: Follows & Bookmarks
+      destructive: Blocks & mutes
     types:
       blocking: Blocking list
       bookmarks: Bookmarks

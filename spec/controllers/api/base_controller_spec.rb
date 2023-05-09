@@ -2,9 +2,11 @@
 
 require 'rails_helper'
 
-class FakeService; end
-
 describe Api::BaseController do
+  before do
+    stub_const('FakeService', Class.new)
+  end
+
   controller do
     def success
       head 200
@@ -72,7 +74,11 @@ describe Api::BaseController do
   end
 
   describe 'error handling' do
-    ERRORS_WITH_CODES = {
+    before do
+      routes.draw { get 'error' => 'api/base#error' }
+    end
+
+    {
       ActiveRecord::RecordInvalid => 422,
       Mastodon::ValidationError => 422,
       ActiveRecord::RecordNotFound => 404,
@@ -80,13 +86,7 @@ describe Api::BaseController do
       HTTP::Error => 503,
       OpenSSL::SSL::SSLError => 503,
       Mastodon::NotPermittedError => 403,
-    }
-
-    before do
-      routes.draw { get 'error' => 'api/base#error' }
-    end
-
-    ERRORS_WITH_CODES.each do |error, code|
+    }.each do |error, code|
       it "Handles error class of #{error}" do
         expect(FakeService).to receive(:new).and_raise(error)
 
