@@ -151,4 +151,101 @@ RSpec.describe Mastodon::IpBlocksCLI do
       end
     end
   end
+
+  describe '#remove' do
+    context 'when removing exact matches' do
+      let(:ip_list) do
+        [
+          '192.0.2.1',
+          '172.16.0.1',
+          '192.0.2.0/24',
+          '172.16.0.0/16',
+          '10.0.0.0/8',
+          '2001:0db8:85a3:0000:0000:8a2e:0370:7334',
+          'fe80::1',
+          '::1',
+          '2001:0db8::/32',
+          'fe80::/10',
+          '::/128',
+        ]
+      end
+
+      before do
+        ip_list.each { |ip| IpBlock.create(ip: ip, severity: :no_access) }
+      end
+
+      it 'removes exact IP blocks' do
+        cli.invoke(:remove, ip_list)
+
+        expect(IpBlock.where(ip: ip_list).count).to be_zero
+      end
+
+      it 'displays success message with a summary' do
+        expect { cli.invoke(:remove, ip_list) }.to output(
+          a_string_including("Removed #{ip_list.size}, skipped 0")
+        ).to_stdout
+      end
+    end
+
+    context 'with --force option' do
+      let!(:block1) { IpBlock.create(ip: '192.168.0.0/24', severity: :no_access) }
+      let!(:block2) { IpBlock.create(ip: '10.0.0.0/16', severity: :no_access) }
+      let!(:block3) { IpBlock.create(ip: '172.16.0.0/20', severity: :no_access) }
+      let(:arguments) { ['192.168.0.5', '10.0.1.50'] }
+      let(:options) { { force: true } }
+
+      it 'removes blocks for IP ranges that cover given IP(s)' do
+        cli.invoke(:remove, arguments, options)
+
+        expect(IpBlock.where(id: [block1.id, block2.id])).to_not exist
+      end
+
+      it 'does not remove other IP ranges' do
+        cli.invoke(:remove, arguments, options)
+
+        expect(IpBlock.where(id: block3.id)).to exist
+      end
+    end
+
+    context 'when a specified IP address is not blocked' do
+      let(:unblocked_ip) { '192.0.2.1' }
+
+      it 'skips the IP address' do
+        expect { cli.invoke(:remove, [unblocked_ip]) }.to output(
+          a_string_including("#{unblocked_ip} is not yet blocked")
+        ).to_stdout
+      end
+
+      it 'displays the summary correctly' do
+        expect { cli.invoke(:remove, [unblocked_ip]) }.to output(
+          a_string_including('Removed 0, skipped 1')
+        ).to_stdout
+      end
+    end
+
+    context 'when a specified IP address is invalid' do
+      let(:invalid_ip) { '320.15.175.0' }
+
+      it 'skips the invalid IP address' do
+        expect { cli.invoke(:remove, [invalid_ip]) }.to output(
+          a_string_including("#{invalid_ip} is invalid")
+        ).to_stdout
+      end
+
+      it 'displays the summary correctly' do
+        expect { cli.invoke(:remove, [invalid_ip]) }.to output(
+          a_string_including('Removed 0, skipped 1')
+        ).to_stdout
+      end
+    end
+
+    context 'when no IP address is provided' do
+      it 'exits with an error message' do
+        expect { cli.remove }.to output(
+          a_string_including('No IP(s) given')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+  end
 end
