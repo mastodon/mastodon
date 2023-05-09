@@ -7,7 +7,7 @@ import { supportsPassiveEvents } from 'detect-passive-events';
 import classNames from 'classnames';
 import { CircularProgress } from 'mastodon/components/loading_indicator';
 
-const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
+const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 let id = 0;
 
 class DropdownMenu extends React.PureComponent {
@@ -39,8 +39,8 @@ class DropdownMenu extends React.PureComponent {
   };
 
   componentDidMount () {
-    document.addEventListener('click', this.handleDocumentClick, false);
-    document.addEventListener('keydown', this.handleKeyDown, false);
+    document.addEventListener('click', this.handleDocumentClick, { capture: true });
+    document.addEventListener('keydown', this.handleKeyDown, { capture: true });
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
 
     if (this.focusedItem && this.props.openedViaKeyboard) {
@@ -49,8 +49,8 @@ class DropdownMenu extends React.PureComponent {
   }
 
   componentWillUnmount () {
-    document.removeEventListener('click', this.handleDocumentClick, false);
-    document.removeEventListener('keydown', this.handleKeyDown, false);
+    document.removeEventListener('click', this.handleDocumentClick, { capture: true });
+    document.removeEventListener('keydown', this.handleKeyDown, { capture: true });
     document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
   }
 
