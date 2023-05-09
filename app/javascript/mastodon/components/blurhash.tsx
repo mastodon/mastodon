@@ -8,7 +8,7 @@ type Props = {
   dummy?: boolean; // Whether dummy mode is enabled. If enabled, nothing is rendered and canvas left untouched
   children?: never;
   [key: string]: any;
-}
+};
 const Blurhash: React.FC<Props> = ({
   hash,
   width = 32,
