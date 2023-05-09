@@ -9,8 +9,7 @@ type Props = {
   others: List<Account>;
   localDomain: string;
 };
-export default class DisplayName extends React.PureComponent<Props> {
-
+export class DisplayName extends React.PureComponent<Props> {
   handleMouseEnter: React.ReactEventHandler<HTMLSpanElement> = ({
     currentTarget,
   }) => {
@@ -113,5 +112,4 @@ export default class DisplayName extends React.PureComponent<Props> {
       </span>
     );
   }
-
 }
