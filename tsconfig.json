@@ -10,7 +10,9 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "*": ["app/javascript/*"],
+      "locales": ["app/javascript/locales"],
+      "flavours/glitch": ["app/javascript/flavours/glitch"],
+      "flavours/glitch/*": ["app/javascript/flavours/glitch/*"],
       "mastodon": ["app/javascript/mastodon"],
       "mastodon/*": ["app/javascript/mastodon/*"]
     }
