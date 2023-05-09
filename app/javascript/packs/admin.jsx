@@ -1,6 +1,8 @@
 import './public-path';
 import { delegate } from '@rails/ujs';
 import ready from '../mastodon/ready';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 const setAnnouncementEndsAttributes = (target) => {
   const valid = target?.value && target?.validity?.valid;
@@ -222,9 +224,6 @@ ready(() => {
   if (announcementStartsAt) {
     setAnnouncementEndsAttributes(announcementStartsAt);
   }
-
-  const React    = require('react');
-  const ReactDOM = require('react-dom');
 
   [].forEach.call(document.querySelectorAll('[data-admin-component]'), element => {
     const componentName  = element.getAttribute('data-admin-component');

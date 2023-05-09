@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 import classNames from 'classnames';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import ArrowSmallRight from './components/arrow_small_right';
 import { Link } from 'react-router-dom';
 import SwipeableViews from 'react-swipeable-views';

@@ -12,8 +12,8 @@ import { Link } from 'react-router-dom';
 import { fetchAnnouncements, toggleShowAnnouncements } from 'mastodon/actions/announcements';
 import AnnouncementsContainer from 'mastodon/features/getting_started/containers/announcements_container';
 import classNames from 'classnames';
-import IconWithBadge from 'mastodon/components/icon_with_badge';
-import NotSignedInIndicator from 'mastodon/components/not_signed_in_indicator';
+import { IconWithBadge } from 'mastodon/components/icon_with_badge';
+import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
 import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
