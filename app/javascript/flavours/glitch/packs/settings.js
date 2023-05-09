@@ -1,5 +1,5 @@
 import 'packs/public-path';
-import loadPolyfills from 'flavours/glitch/load_polyfills';
+import { loadPolyfills } from 'flavours/glitch/polyfills';
 import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
 import { delegate }  from '@rails/ujs';
 import 'cocoon-js-vanilla';

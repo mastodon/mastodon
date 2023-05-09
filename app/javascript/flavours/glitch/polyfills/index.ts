@@ -10,14 +10,14 @@ function importExtraPolyfills() {
   return import(/* webpackChunkName: "extra_polyfills" */ './extra_polyfills');
 }
 
-function loadPolyfills() {
+export function loadPolyfills() {
   const needsBasePolyfills = !(
-    HTMLCanvasElement.prototype.toBlob &&
-    window.Intl &&
-    Object.assign &&
-    Object.values &&
-    window.Symbol &&
-    Promise.prototype.finally
+    'toBlob' in HTMLCanvasElement.prototype &&
+    'Intl' in window &&
+    'assign' in Object &&
+    'values' in Object &&
+    'Symbol' in window &&
+    'finally' in Promise.prototype
   );
 
   // Latest version of Firefox and Safari do not have IntersectionObserver.
@@ -36,5 +36,3 @@ function loadPolyfills() {
     needsExtraPolyfills && importExtraPolyfills(),
   ]);
 }
-
-export default loadPolyfills;

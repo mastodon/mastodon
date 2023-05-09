@@ -1,5 +1,5 @@
 import 'packs/public-path';
-import loadPolyfills from 'flavours/glitch/load_polyfills';
+import { loadPolyfills } from 'flavours/glitch/polyfills';
 import ComposeContainer from 'flavours/glitch/containers/compose_container';
 import React from 'react';
 import ReactDOM from 'react-dom';

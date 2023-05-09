@@ -1,5 +1,5 @@
 import 'packs/public-path';
-import loadPolyfills from 'flavours/glitch/load_polyfills';
+import { loadPolyfills } from 'flavours/glitch/polyfills';
 import ready from 'flavours/glitch/ready';
 import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
 import axios from 'axios';
