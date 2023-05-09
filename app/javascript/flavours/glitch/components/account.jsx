@@ -9,7 +9,7 @@ import { Skeleton } from 'flavours/glitch/components/skeleton';
 import { counterRenderer } from 'flavours/glitch/components/common_counter';
 import ShortNumber from 'flavours/glitch/components/short_number';
 import classNames from 'classnames';
-import VerifiedBadge from 'flavours/glitch/components/verified_badge';
+import { VerifiedBadge } from 'flavours/glitch/components/verified_badge';
 
 import { me } from '../initial_state';
 
