@@ -1,9 +1,9 @@
 import './public-path';
-import loadPolyfills from '../mastodon/load_polyfills';
+import escapeTextContentForBrowser from 'escape-html';
+import { loadPolyfills } from '../mastodon/polyfills';
+import ready from '../mastodon/ready';
 import { start } from '../mastodon/common';
 
-import escapeTextContentForBrowser from 'escape-html';
-import ready from '../mastodon/ready';
 import loadKeyboardExtensions from '../mastodon/load_keyboard_extensions';
 import 'cocoon-js-vanilla';
 import axios from 'axios';
