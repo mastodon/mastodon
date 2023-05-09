@@ -59,7 +59,7 @@ const pushModal: PushModal = (state, modalType, modalProps) => {
   });
 };
 
-export default function modal(
+export function modal(
   state = initialState,
   action: PayloadAction<{
     modalType: ModalType;

@@ -25,7 +25,7 @@ import markers from './markers';
 import media_attachments from './media_attachments';
 import meta from './meta';
 import { missedUpdatesReducer } from './missed_updates';
-import modal from './modal';
+import { modal } from './modal';
 import mutes from './mutes';
 import notifications from './notifications';
 import picture_in_picture from './picture_in_picture';
