@@ -9,7 +9,7 @@ type Props = {
   className?: string;
 };
 
-export const Image: React.FC<Props> = ({
+export const ServerHeroImage: React.FC<Props> = ({
   src,
   srcSet,
   blurhash,
