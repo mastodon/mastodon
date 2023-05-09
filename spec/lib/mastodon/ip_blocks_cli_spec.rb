@@ -248,4 +248,62 @@ RSpec.describe Mastodon::IpBlocksCLI do
       end
     end
   end
+
+  describe '#export' do
+    let(:block1) { IpBlock.create(ip: '192.168.0.0/24', severity: :no_access) }
+    let(:block2) { IpBlock.create(ip: '10.0.0.0/16', severity: :no_access) }
+    let(:block3) { IpBlock.create(ip: '127.0.0.1', severity: :sign_up_block) }
+
+    context 'when --format option is set to "plain"' do
+      let(:options) { { format: 'plain' } }
+
+      it 'exports blocked IPs with "no_access" severity in plain format' do
+        expect { cli.invoke(:export, nil, options) }.to output(
+          a_string_including(<<~STR
+            #{block1.ip}/#{block1.ip.prefix}
+            #{block2.ip}/#{block2.ip.prefix}
+          STR
+                            )
+        ).to_stdout
+      end
+
+      it 'does not export bloked IPs with different severities' do
+        expect { cli.invoke(:export, nil, options) }.to_not output(
+          a_string_including("#{block3.ip}/#{block1.ip.prefix}")
+        ).to_stdout
+      end
+    end
+
+    context 'when --format option is set to "nginx"' do
+      let(:options) { { format: 'nginx' } }
+
+      it 'exports blocked IPs with "no_access" severity in plain format' do
+        expect { cli.invoke(:export, nil, options) }.to output(
+          a_string_including(<<~STR
+            deny #{block1.ip}/#{block1.ip.prefix};
+            deny #{block2.ip}/#{block2.ip.prefix};
+          STR
+                            )
+        ).to_stdout
+      end
+
+      it 'does not export bloked IPs with different severities' do
+        expect { cli.invoke(:export, nil, options) }.to_not output(
+          a_string_including("deny #{block3.ip}/#{block1.ip.prefix};")
+        ).to_stdout
+      end
+    end
+
+    context 'when --format option is not provided' do
+      it 'exports blocked IPs in plain format by default' do
+        expect { cli.export }.to output(
+          a_string_including(<<~STR
+            #{block1.ip}/#{block1.ip.prefix}
+            #{block2.ip}/#{block2.ip.prefix}
+          STR
+                            )
+        ).to_stdout
+      end
+    end
+  end
 end
