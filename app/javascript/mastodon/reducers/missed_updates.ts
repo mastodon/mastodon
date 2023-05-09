@@ -12,7 +12,7 @@ const initialState = Record<MissedUpdatesState>({
   unread: 0,
 })();
 
-export default function missed_updates(
+export function missedUpdatesReducer(
   state = initialState,
   action: Action<string>,
 ) {

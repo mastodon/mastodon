@@ -1,9 +1,9 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import Avatar from './avatar';
-import AvatarOverlay from './avatar_overlay';
-import RelativeTimestamp from './relative_timestamp';
+import { Avatar } from './avatar';
+import { AvatarOverlay } from './avatar_overlay';
+import { RelativeTimestamp } from './relative_timestamp';
 import DisplayName from './display_name';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
@@ -14,7 +14,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import { displayMedia } from '../initial_state';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 

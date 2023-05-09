@@ -8,5 +8,3 @@ export const NotSignedInIndicator: React.FC = () => (
     </div>
   </div>
 );
-
-export default NotSignedInIndicator;

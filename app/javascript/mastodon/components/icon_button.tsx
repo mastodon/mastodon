@@ -30,7 +30,7 @@ type States = {
   activate: boolean,
   deactivate: boolean,
 }
-export default class IconButton extends React.PureComponent<Props, States> {
+export class IconButton extends React.PureComponent<Props, States> {
 
   static defaultProps = {
     size: 18,

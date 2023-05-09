@@ -10,5 +10,3 @@ export const VerifiedBadge: React.FC<Props> = ({ link }) => (
     <span dangerouslySetInnerHTML={{ __html: link }} />
   </span>
 );
-
-export default VerifiedBadge;

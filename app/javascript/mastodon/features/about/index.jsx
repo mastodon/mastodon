@@ -9,9 +9,9 @@ import { Helmet } from 'react-helmet';
 import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'mastodon/actions/server';
 import Account from 'mastodon/containers/account_container';
 import Skeleton from 'mastodon/components/skeleton';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import classNames from 'classnames';
-import Image from 'mastodon/components/image';
+import { Image } from 'mastodon/components/image';
 
 const messages = defineMessages({
   title: { id: 'column.about', defaultMessage: 'About' },

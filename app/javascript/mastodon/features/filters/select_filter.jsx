@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { toServerSideType } from 'mastodon/utils/filters';
 import { loupeIcon, deleteIcon } from 'mastodon/utils/icons';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import fuzzysort from 'fuzzysort';
 
 const messages = defineMessages({

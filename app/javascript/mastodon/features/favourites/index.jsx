@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import ColumnHeader from 'mastodon/components/column_header';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import { fetchFavourites } from 'mastodon/actions/interactions';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 import ScrollableList from 'mastodon/components/scrollable_list';

@@ -200,4 +200,6 @@ class RelativeTimestamp extends React.Component<Props, States> {
 
 }
 
-export default injectIntl(RelativeTimestamp);
+const RelativeTimestampWithIntl = injectIntl(RelativeTimestamp);
+
+export { RelativeTimestampWithIntl as RelativeTimestamp };

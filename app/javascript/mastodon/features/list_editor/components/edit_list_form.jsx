@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { changeListEditorTitle, submitListEditor } from '../../../actions/lists';
-import IconButton from '../../../components/icon_button';
+import { IconButton } from '../../../components/icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
