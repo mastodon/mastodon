@@ -7,7 +7,7 @@ import Button from '../../../components/button';
 import StatusContent from '../../../components/status_content';
 import { Avatar } from '../../../components/avatar';
 import { RelativeTimestamp } from '../../../components/relative_timestamp';
-import DisplayName from '../../../components/display_name';
+import { DisplayName } from '../../../components/display_name';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { Icon }  from 'mastodon/components/icon';
 import AttachmentList from 'mastodon/components/attachment_list';
