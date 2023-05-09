@@ -3,7 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { Avatar } from '../../../components/avatar';
 import { IconButton } from '../../../components/icon_button';
-import DisplayName from '../../../components/display_name';
+import { DisplayName } from '../../../components/display_name';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import AttachmentList from 'mastodon/components/attachment_list';
