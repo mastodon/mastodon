@@ -21,7 +21,7 @@ type Props = {
   animate: boolean;
   overlay: boolean;
   tabIndex: number;
-  label: string;
+  label?: string;
   counter?: number;
   obfuscateCount?: boolean;
   href?: string;
