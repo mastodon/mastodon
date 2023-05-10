@@ -12,6 +12,8 @@ pl:
       locked: Twoje konto zostało zablokowane.
       not_found_in_database: Nieprawidłowy %{authentication_keys} lub hasło.
       pending: Twoje konto oczekuje na przegląd.
+      timeout: Twoja sesja wygasła. Zaloguj się ponownie, aby kontynuować.
+      unauthenticated: Aby kontynuować, musisz się zalogować lub zarejestrować.
       unconfirmed: Zweryfikuj adres e-mail, aby kontynuować.
     mailer:
       confirmation_instructions:
@@ -99,6 +101,7 @@ pl:
     unlocks:
       send_instructions: W ciągu kilku minut otrzymasz wiadomość e-mail z instrukcjami odblokowania konta. Jeżeli nie otrzymano wiadomości, sprawdź folder ze spamem.
       send_paranoid_instructions: Jeśli Twoje konto istnieje, instrukcje odblokowania go otrzymasz w wiadomości e-mail w ciągu kilku minut. Jeżeli nie otrzymano wiadomości, sprawdź folder ze spamem.
+      unlocked: Twoje konto zostało odblokowane. Zaloguj się, aby kontynuować.
   errors:
     messages:
       already_confirmed: był już potwierdzony, spróbuj się zalogować
