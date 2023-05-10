@@ -45,15 +45,15 @@ class TranslateStatusService < BaseService
 
   def source_texts
     texts = {}
-    texts[:content] = prerender_custom_emojis(status_content_format(@status)) if @status.content.present?
-    texts[:spoiler_text] = prerender_custom_emojis(@status.spoiler_text) if @status.spoiler_text.present?
+    texts[:content] = wrap_emoji_shortcodes(status_content_format(@status)) if @status.content.present?
+    texts[:spoiler_text] = wrap_emoji_shortcodes(html_escape(@status.spoiler_text)) if @status.spoiler_text.present?
 
     @status.preloadable_poll&.loaded_options&.each do |option|
-      texts[option] = prerender_custom_emojis(option.title)
+      texts[option] = wrap_emoji_shortcodes(html_escape(option.title))
     end
 
     @status.media_attachments.each do |media_attachment|
-      texts[media_attachment] = media_attachment.description
+      texts[media_attachment] = html_escape(media_attachment.description)
     end
 
     texts
@@ -75,17 +75,17 @@ class TranslateStatusService < BaseService
 
       case source
       when :content
-        status_translation.content = detect_custom_emojis(translation.text).to_html
+        status_translation.content = unwrap_emoji_shortcodes(translation.text).to_html
       when :spoiler_text
-        status_translation.spoiler_text = detect_custom_emojis(translation.text).content
+        status_translation.spoiler_text = unwrap_emoji_shortcodes(translation.text).content
       when Poll::Option
         status_translation.poll_options << Translation::Option.new(
-          title: detect_custom_emojis(translation.text).content
+          title: unwrap_emoji_shortcodes(translation.text).content
         )
       when MediaAttachment
         status_translation.media_attachments << Translation::MediaAttachment.new(
           id: source.id,
-          description: translation.text
+          description: html_entities.decode(translation.text)
         )
       end
     end
@@ -93,16 +93,20 @@ class TranslateStatusService < BaseService
     status_translation
   end
 
-  def prerender_custom_emojis(text)
-    EmojiFormatter.new(html_escape(text), @status.emojis, { raw_shortcode: true }).to_s
+  def wrap_emoji_shortcodes(text)
+    EmojiFormatter.new(text, @status.emojis, { raw_shortcode: true }).to_s
   end
 
-  def detect_custom_emojis(html)
+  def unwrap_emoji_shortcodes(html)
     fragment = Nokogiri::HTML.fragment(html)
     fragment.css('span[translate="no"]').each do |element|
       element.remove_attribute('translate')
       element.replace(element.children) if element.attributes.empty?
     end
     fragment
+  end
+
+  def html_entities
+    HTMLEntities.new
   end
 end

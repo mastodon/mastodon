@@ -50,10 +50,10 @@ RSpec.describe TranslateStatusService, type: :service do
     end
 
     describe 'status has content with custom emoji' do
-      let(:text) { 'Hello :highfive:' }
+      let(:text) { 'Hello & :highfive:' }
 
       it 'does not translate shortcode' do
-        expect(service.call(status, 'es').content).to eq '<p>Hola :highfive:</p>'
+        expect(service.call(status, 'es').content).to eq '<p>Hola &amp; :highfive:</p>'
       end
     end
 
@@ -64,10 +64,10 @@ RSpec.describe TranslateStatusService, type: :service do
     end
 
     describe 'status has spoiler_text' do
-      let(:spoiler_text) { 'Hello!!!' }
+      let(:spoiler_text) { 'Hello & Hello!' }
 
       it 'translates the spoiler text' do
-        expect(service.call(status, 'es').spoiler_text).to eq 'Hola!!!'
+        expect(service.call(status, 'es').spoiler_text).to eq 'Hola & Hola!'
       end
     end
 
@@ -98,14 +98,14 @@ RSpec.describe TranslateStatusService, type: :service do
     end
 
     describe 'status has media attachment' do
-      let(:media_attachments) { [Fabricate(:media_attachment, description: 'Hello :highfive:')] }
+      let(:media_attachments) { [Fabricate(:media_attachment, description: 'Hello & :highfive:')] }
 
       it 'translates the media attachment description' do
         status_translation = service.call(status, 'es')
 
         media_attachment = status_translation.media_attachments.first
         expect(media_attachment.id).to eq media_attachments.first.id
-        expect(media_attachment.description).to eq 'Hola :highfive:'
+        expect(media_attachment.description).to eq 'Hola & :highfive:'
       end
     end
   end
@@ -195,7 +195,7 @@ RSpec.describe TranslateStatusService, type: :service do
     end
   end
 
-  describe '#prerender_custom_emojis' do
+  describe '#wrap_emoji_shortcodes' do
     before do
       service.instance_variable_set(:@status, status)
     end
@@ -204,27 +204,21 @@ RSpec.describe TranslateStatusService, type: :service do
       let(:text) { ':highfive:' }
 
       it 'renders the emoji' do
-        html = service.send(:prerender_custom_emojis, 'Hello :highfive:')
+        html = service.send(:wrap_emoji_shortcodes, 'Hello :highfive:'.html_safe)
         expect(html).to eq 'Hello <span translate="no">:highfive:</span>'
-      end
-    end
-
-    describe 'string contains unescaped HTML' do
-      it 'escapes the text' do
-        expect(service.send(:prerender_custom_emojis, 'Simon & Garfunkel')).to eq 'Simon &amp; Garfunkel'
       end
     end
   end
 
-  describe '#detect_custom_emojis' do
+  describe '#unwrap_emoji_shortcodes' do
     describe 'string contains custom emoji' do
       it 'inserts the shortcode' do
-        fragment = service.send(:detect_custom_emojis, '<p>Hello <span translate="no">:highfive:</span>!</p>')
+        fragment = service.send(:unwrap_emoji_shortcodes, '<p>Hello <span translate="no">:highfive:</span>!</p>')
         expect(fragment.to_html).to eq '<p>Hello :highfive:!</p>'
       end
 
       it 'preserves other attributes than translate=no' do
-        fragment = service.send(:detect_custom_emojis, '<p>Hello <span translate="no" class="foo">:highfive:</span>!</p>')
+        fragment = service.send(:unwrap_emoji_shortcodes, '<p>Hello <span translate="no" class="foo">:highfive:</span>!</p>')
         expect(fragment.to_html).to eq '<p>Hello <span class="foo">:highfive:</span>!</p>'
       end
     end
