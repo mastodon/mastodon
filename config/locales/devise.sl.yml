@@ -1,4 +1,3 @@
----
 sl:
   devise:
     confirmations:
@@ -13,8 +12,6 @@ sl:
       locked: Vaš račun je zaklenjen.
       not_found_in_database: Neveljavno %{authentication_keys} ali geslo.
       pending: Vaš račun je še vedno pod drobnogledom.
-      timeout: Vaša seja je potekla. Če želite nadaljevati, se znova prijavite.
-      unauthenticated: Pred nadaljevanjem se morate prijaviti ali vpisati.
       unconfirmed: Pred nadaljevanjem morate potrditi svoj e-poštni naslov.
     mailer:
       confirmation_instructions:
@@ -102,7 +99,6 @@ sl:
     unlocks:
       send_instructions: Prejeli boste e-pošto z navodili o tem, kako v nekaj minutah odklenete svoj račun. Če niste prejeli te e-pošte, preverite mapo z neželeno pošto.
       send_paranoid_instructions: Če vaš račun obstaja, boste prejeli e-pošto z navodili za njegovo odklepanje v nekaj minutah. Če niste prejeli te e-pošte, preverite mapo z neželeno pošto.
-      unlocked: Vaš račun je bil uspešno odklenjen. Če želite nadaljevati, se prijavite.
   errors:
     messages:
       already_confirmed: je bil potrjen, poskusite se prijaviti
@@ -111,7 +107,7 @@ sl:
       not_found: ni najdeno
       not_locked: ni bil zaklenjen
       not_saved:
-        few: "%{count} napake so preprečile shranjevanje vira %{resource}:"
         one: '1 napaka je preprečila shranjevanje %{resource}:'
-        other: "%{count} napak je preprečilo shranjevanje vira %{resource}:"
         two: "%{count} napaki sta preprečili shranjevanje vira %{resource}:"
+        few: "%{count} napake so preprečile shranjevanje vira %{resource}:"
+        other: "%{count} napak je preprečilo shranjevanje vira %{resource}:"
