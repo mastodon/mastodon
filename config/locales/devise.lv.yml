@@ -1,4 +1,3 @@
----
 lv:
   devise:
     confirmations:
@@ -13,8 +12,6 @@ lv:
       locked: Tavs konts ir bloķēts.
       not_found_in_database: Nederīga %{authentication_keys} vai parole.
       pending: Tavs konts joprojām tiek pārskatīts.
-      timeout: Tava sesija ir beigusies. Lūdzu, pieraksties vēlreiz, lai turpinātu.
-      unauthenticated: Lai turpinātu, tev ir jāpierakstās vai jāreģistrējas.
       unconfirmed: Lai turpinātu, tev ir jāapstiprina savu e-pasta adresi.
     mailer:
       confirmation_instructions:
@@ -102,7 +99,6 @@ lv:
     unlocks:
       send_instructions: Pēc dažām minūtēm tu saņemsi e-pastu ar norādījumiem, kā atbloķēt savu kontu. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
       send_paranoid_instructions: Ja tavs konts eksistē, dažu minūšu laikā tu saņemsi e-pastu ar norādījumiem, kā to atbloķēt. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
-      unlocked: Tavs konts ir veiksmīgi atbloķēts. Lūdzu, pieraksties, lai turpinātu.
   errors:
     messages:
       already_confirmed: jau tika apstiprināts, lūdzu, mēģini pierakstīties
@@ -111,6 +107,6 @@ lv:
       not_found: nav atrasts
       not_locked: nebija bloķēts
       not_saved:
+        zero: "%{count} kļūdas liedza saglabāt šo %{resource}:"
         one: '1 kļūda liedza saglabāt šo %{resource}:'
         other: "%{count} kļūdas liedza saglabāt šo %{resource}:"
-        zero: "%{count} kļūdas liedza saglabāt šo %{resource}:"
