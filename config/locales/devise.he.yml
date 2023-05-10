@@ -1,4 +1,3 @@
----
 he:
   devise:
     confirmations:
@@ -8,13 +7,11 @@ he:
     failure:
       already_authenticated: חשבון זה כבר מחובר.
       inactive: חשבון זה טרם הופעל.
-      invalid: "%{authentication_keys} או סיסמא לא נכונים."
+      invalid: '%{authentication_keys} או סיסמא לא נכונים.'
       last_attempt: יש לך עוד ניסיון אחד לפני נעילת החשבון.
       locked: חשבון זה נעול.
-      not_found_in_database: "%{authentication_keys} או סיסמא לא נכונים."
+      not_found_in_database: '%{authentication_keys} או סיסמא לא נכונים.'
       pending: חשבונך נמצא עדיין בבדיקה.
-      timeout: פג תוקף השהיה בחשבון. נא להכנס מחדש על מנת להמשיך.
-      unauthenticated: יש להרשם או להכנס לחשבון על מנת להמשיך.
       unconfirmed: יש לאמת את כתובת הדוא"ל על מנת להמשיך.
     mailer:
       confirmation_instructions:
@@ -102,7 +99,6 @@ he:
     unlocks:
       send_instructions: בדקות הקרובות ישלח אליך דוא"ל עם הוראות לביטול נעילת החשבון. יש לבדוק את תיבת הספאם ליתר בטחון אם ההודעה לא הגיעה תוך דקות ספורות.
       send_paranoid_instructions: אם חשבונך קיים, בדקות הקרובות ישלח אליך דוא"ל עם הוראות לביטול נעילת החשבון. יש לבדוק את תיבת הספאם ליתר בטחון אם ההודעה לא הגיעה תוך דקות ספורות.
-      unlocked: נעילת חשבונך בוטלה בהצלחה. נא להכנס לחשבון על מנת להמשיך.
   errors:
     messages:
       already_confirmed: כבר אושר. נא לנסות להכנס לחשבון
@@ -111,7 +107,7 @@ he:
       not_found: לא נמצא
       not_locked: לא היה נעול
       not_saved:
-        many: "%{count} שגיאות מנעו מ%{resource} זה מלהשמר:"
         one: 'שגיאה אחת מנעה מ%{resource} זה מלהשמר:'
-        other: "%{count} שגיאות מנעו מ%{resource} זה מלהשמר:"
         two: " %{count} שגיאות מנעו מ%{resource} זה מלהשמר:"
+        many: "%{count} שגיאות מנעו מ%{resource} זה מלהשמר:"
+        other: "%{count} שגיאות מנעו מ%{resource} זה מלהשמר:"
