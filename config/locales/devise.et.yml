@@ -1,4 +1,3 @@
----
 et:
   devise:
     confirmations:
@@ -13,8 +12,6 @@ et:
       locked: Konto on lukustatud.
       not_found_in_database: Valed %{authentication_keys} või salasõna.
       pending: Sinu konto on siiani läbivaatamisel.
-      timeout: Sinu sessioon on aegunud. Jätkamiseks palun sisene uuesti.
-      unauthenticated: Pead sisenema või looma konto enne kui jätkad.
       unconfirmed: Pead kinnitama oma e-postiaadressi enne kui jätkad.
     mailer:
       confirmation_instructions:
@@ -102,7 +99,6 @@ et:
     unlocks:
       send_instructions: Saad paari minuti pärast juhistega e-kirja, kuidas oma konto lukust lahti teha. Palun kontrolli oma rämpsposti kausta, kui selline kiri ei saabunud.
       send_paranoid_instructions: Kui konto on olemas, saabub paari minuti pärast e-kiri juhistega, kuidas konto lukust lahti teha. Palun kontrolli rämpsposti kausta, kui selline e-kiri ei saabunud.
-      unlocked: Sinu konto avamine õnnestus. Jätkamiseks palun logi sisse.
   errors:
     messages:
       already_confirmed: on juba kinnitatud, palun proovi sisse logida
