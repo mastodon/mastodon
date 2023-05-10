@@ -1,16 +1,18 @@
 import * as React from 'react';
+
 import classNames from 'classnames';
-import { autoPlayGif } from 'flavours/glitch/initial_state';
+
 import { useHovering } from 'flavours/glitch/hooks/useHovering';
+import { autoPlayGif } from 'flavours/glitch/initial_state';
 import type { Account } from 'flavours/glitch/types/resources';
 
-type Props = {
+interface Props {
   account: Account | undefined;
   className?: string;
   size: number;
   style?: React.CSSProperties;
   inline?: boolean;
-};
+}
 
 export const Avatar: React.FC<Props> = ({
   account,

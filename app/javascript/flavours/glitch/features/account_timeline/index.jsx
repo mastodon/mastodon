@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { lookupAccount, fetchAccount } from 'flavours/glitch/actions/accounts';
-import { expandAccountFeaturedTimeline, expandAccountTimeline } from 'flavours/glitch/actions/timelines';
+import { expandAccountFeaturedTimeline, expandAccountTimeline } from '../../actions/timelines';
 import StatusList from '../../components/status_list';
 import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';

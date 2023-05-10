@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { changeUploadCompose, uploadThumbnail, onChangeMediaDescription, onChangeMediaFocus } from 'flavours/glitch/actions/compose';
+import { changeUploadCompose, uploadThumbnail, onChangeMediaDescription, onChangeMediaFocus } from '../../../actions/compose';
 import Video, { getPointerPosition } from 'flavours/glitch/features/video';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { IconButton } from 'flavours/glitch/components/icon_button';
