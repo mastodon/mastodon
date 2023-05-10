@@ -1,4 +1,3 @@
----
 pt-BR:
   devise:
     confirmations:
@@ -8,13 +7,11 @@ pt-BR:
     failure:
       already_authenticated: Você entrou na sua conta.
       inactive: Sua conta não foi confirmada ainda.
-      invalid: "%{authentication_keys} ou senha inválida."
+      invalid: '%{authentication_keys} ou senha inválida.'
       last_attempt: Você tem mais uma tentativa antes de sua conta ser bloqueada.
       locked: Sua conta está bloqueada.
-      not_found_in_database: "%{authentication_keys} ou senha inválida."
+      not_found_in_database: '%{authentication_keys} ou senha inválida.'
       pending: Sua conta está sendo revisada.
-      timeout: Você saiu de sua conta. Entre novamente para continuar.
-      unauthenticated: Você precisa entrar ou criar uma conta antes de continuar.
       unconfirmed: Você precisa confirmar o seu endereço de e-mail antes de continuar.
     mailer:
       confirmation_instructions:
@@ -102,7 +99,6 @@ pt-BR:
     unlocks:
       send_instructions: Você receberá um e-mail com instruções para desbloquear sua conta em alguns minutos. Verifique sua caixa de spam se não recebeu este e-mail.
       send_paranoid_instructions: Se a sua conta existe, você receberá um e-mail com instruções para desbloqueá-la em alguns minutos. Verifique sua caixa de spam se você não recebeu este e-mail.
-      unlocked: Sua conta foi desbloqueada com sucesso! Entre na sua conta para continuar.
   errors:
     messages:
       already_confirmed: confirmado, agora tente entrar na sua conta
