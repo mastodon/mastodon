@@ -1,4 +1,3 @@
----
 pt-PT:
   devise:
     confirmations:
@@ -8,13 +7,11 @@ pt-PT:
     failure:
       already_authenticated: A tua sessão já está aberta.
       inactive: A tua conta ainda não está ativada.
-      invalid: "%{authentication_keys} ou palavra-passe inválida."
+      invalid: '%{authentication_keys} ou palavra-passe inválida.'
       last_attempt: Tem só mais uma tentativa antes da sua conta ser bloqueada.
       locked: A tua conta está bloqueada.
-      not_found_in_database: "%{authentication_keys} ou palavra-passe inválida."
+      not_found_in_database: '%{authentication_keys} ou palavra-passe inválida.'
       pending: A sua conta está ainda a aguardar revisão.
-      timeout: A tua sessão expirou. Por favor, entra de novo para continuares.
-      unauthenticated: Precisas de entrar na tua conta ou de te registares antes de continuar.
       unconfirmed: Tens de confirmar o teu endereço de e-mail antes de continuar.
     mailer:
       confirmation_instructions:
@@ -102,7 +99,6 @@ pt-PT:
     unlocks:
       send_instructions: Dentro de alguns momentos, irá receber um e-mail com instruções para desbloquear a sua conta. Consulte a sua pasta de lixo electrónico se não o encontrar.
       send_paranoid_instructions: Se a sua conta existir, dentro de momentos irá receber um e-mail com instruções para a desbloquear. Consulte a sua pasta de lixo electrónico se não o encontrar.
-      unlocked: A sua conta foi correctamente desbloqueada. Queira iniciar uma nova sessão para continuar.
   errors:
     messages:
       already_confirmed: já confirmado, por favor tente iniciar sessão
