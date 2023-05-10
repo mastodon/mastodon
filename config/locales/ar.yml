@@ -868,6 +868,13 @@ ar:
         disallow_account: رفض الناشر
         no_status_selected: لم يتم تغيير أي منشورات متداوله حيث لم يتم اختيار أي منهم
         not_discoverable: الكاتب لم يختار أن يكون قابلا للاكتشاف
+        shared_by:
+          zero: لم يتم مشاركته أو تفضيله مطلقًا
+          one: تمت مشاركته وتفضيله مرة واحدة
+          two: تمت مشاركته وتفضيله مرتين
+          few: تمت مشاركته وتفضيله %{friendly_count} مرات
+          many: تمت مشاركته وتفضيله %{friendly_count} مرات
+          other: تمت مشاركته وتفضيله %{friendly_count} مرات
         title: المنشورات المتداولة
       tags:
         current_score: التقييم الحالي %{score}
@@ -1013,6 +1020,7 @@ ar:
     progress:
       confirm: تأكيد عنوان البريد الإلكتروني
       details: تفاصيلك
+      review: مراجعتنا
       rules: قبول القواعد
     providers:
       cas: CAS
@@ -1035,9 +1043,10 @@ ar:
       new_confirmation_instructions_sent: سوف تتلقى رسالة بريد إلكتروني جديدة مع رابط التأكيد في غضون بضع دقائق!
       title: تحقَّق من بريدك الوارِد
     sign_in:
-      preamble_html: قم بتسجيل الدخول باستخدام بيانات الاعتماد الخاصة بك علي <strong>%{domain}</strong> إذا تم استضافة حسابك على خادم مختلف، فلن تتمكن من تسجيل الدخول هنا.
+      preamble_html: قم بتسجيل الدخول باستخدام بيانات الاعتماد الخاصة بك علي <strong>%{domain}</strong> إذا تم استضافة حسابك على خادم مختلف، لن تتمكن من تسجيل الدخول هنا.
       title: تسجيل الدخول إلى %{domain}
     sign_up:
+      manual_review: عمليات التسجيل في %{domain} تمر من خلال المراجعة اليدوية من قبل المشرفين لدينا. لمساعدتنا في معالجة عملية التسجيل الخاصة بك، تواصل معنا واكتب قليلًا عن نفسك ولماذا تريد حساب على %{domain}.
       preamble: مع حساب على خادم ماستدون هذا، ستتمكن من متابعة أي شخص آخر على الشبكة، بغض النظر عن المكان الذي يستضيف فيه حسابهم.
       title: دعنا نجهّز %{domain}.
     status:
@@ -1224,7 +1233,9 @@ ar:
         title: الرسائل المصفّاة
   generic:
     all: الكل
+    cancel: إلغاء
     changes_saved_msg: تم حفظ التعديلات بنجاح!
+    confirm: تأكيد
     copy: نسخ
     delete: احذف
     deselect: إلغاء تحديد الكل
@@ -1241,8 +1252,14 @@ ar:
       other: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
   imports:
     errors:
+      empty: ملف CSV فارغ
+      incompatible_type: غير متوافق مع نوع الاستيراد المحدد
       invalid_csv_file: 'ملف CSV غير صالح. خطأ: %{error}'
       over_rows_processing_limit: يحتوي على أكثر من %{count} صف
+      too_large: الملف كبير جدًا
+    failures: فشل
+    imported: مستورد
+    mismatched_types_warning: يبدو أنك اخترت نوعًا خاطئًا لهذا الاستيراد، تأكد من فضلك.
     modes:
       merge: دمج
       merge_long: الإبقاء علي التسجيلات الحالية وإضافة الجديدة
@@ -1587,7 +1604,6 @@ ar:
     show_newer: إظهار أحدث
     show_older: إظهار أقدم
     show_thread: اعرض خيط المحادثة
-    sign_in_to_participate: قم بتسجيل الدخول للمشاركة في هذه المحادثة
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: مباشرة
