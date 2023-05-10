@@ -1,4 +1,3 @@
----
 cs:
   devise:
     confirmations:
@@ -13,8 +12,6 @@ cs:
       locked: Váš účet je uzamčen.
       not_found_in_database: Neplatné %{authentication_keys} nebo heslo.
       pending: Váš účet je stále posuzován.
-      timeout: Vaše relace vypršela. Pro pokračování se prosím přihlaste znovu.
-      unauthenticated: Před pokračováním se musíte přihlásit nebo zaregistrovat.
       unconfirmed: Před pokračováním musíte potvrdit svůj e-mail.
     mailer:
       confirmation_instructions:
@@ -102,7 +99,6 @@ cs:
     unlocks:
       send_instructions: Za několik minut obdržíte e-mail s instrukcemi pro odemčení vašeho účtu. Pokud tento e-mail neobdržíte, podívejte se prosím také do složky „spam“.
       send_paranoid_instructions: Pokud váš účet existuje, za několik minut obdržíte e-mail s instrukcemi pro odemčení vašeho účtu. Pokud tento e-mail neobdržíte, podívejte se prosím také do složky „spam“.
-      unlocked: Váš účet byl úspěšně odemčen. Pro pokračování se prosím přihlaste.
   errors:
     messages:
       already_confirmed: byl již potvrzen, zkuste se prosím přihlásit
@@ -111,7 +107,7 @@ cs:
       not_found: nenalezen
       not_locked: nebyl uzamčen
       not_saved:
+        one: '1 chyba zabránila uložení tohoto %{resource}:'
         few: "%{count} chyby zabránily uložení tohoto %{resource}:"
         many: "%{count} chyb zabránilo uložení tohoto %{resource}:"
-        one: '1 chyba zabránila uložení tohoto %{resource}:'
         other: "%{count} chyb zabránilo uložení tohoto %{resource}:"
