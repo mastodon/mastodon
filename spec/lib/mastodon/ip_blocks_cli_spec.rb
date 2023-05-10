@@ -28,7 +28,10 @@ RSpec.describe Mastodon::IpBlocksCLI do
       it 'blocks all specified IP addresses' do
         cli.invoke(:add, ip_list, options)
 
-        expect(IpBlock.where(ip: ip_list).count).to eq(ip_list.size)
+        blocked_ip_addresses = IpBlock.where(ip: ip_list).pluck(:ip)
+        expected_ip_addresses = ip_list.map { |ip| IPAddr.new(ip) }
+
+        expect(blocked_ip_addresses).to match_array(expected_ip_addresses)
       end
 
       it 'sets the severity for all blocked IP addresses' do
@@ -63,11 +66,7 @@ RSpec.describe Mastodon::IpBlocksCLI do
 
       it 'displays the correct summary' do
         expect { cli.invoke(:add, ip_list, options) }.to output(
-          a_string_including(<<~STR
-            #{ip_list.last} is already blocked
-            Added #{ip_list.size - 1}, skipped 1, failed 0
-          STR
-                            )
+          a_string_including("#{ip_list.last} is already blocked\nAdded #{ip_list.size - 1}, skipped 1, failed 0")
         ).to_stdout
       end
 
@@ -91,11 +90,7 @@ RSpec.describe Mastodon::IpBlocksCLI do
 
       it 'displays the correct summary' do
         expect { cli.invoke(:add, ip_list, options) }.to output(
-          a_string_including(<<~STR
-            #{ip_list.first} is invalid
-            Added #{ip_list.size - 1}, skipped 0, failed 1
-          STR
-                            )
+          a_string_including("#{ip_list.first} is invalid\nAdded #{ip_list.size - 1}, skipped 0, failed 1")
         ).to_stdout
       end
     end
@@ -177,7 +172,7 @@ RSpec.describe Mastodon::IpBlocksCLI do
       it 'removes exact IP blocks' do
         cli.invoke(:remove, ip_list)
 
-        expect(IpBlock.where(ip: ip_list).count).to be_zero
+        expect(IpBlock.where(ip: ip_list)).to_not exist
       end
 
       it 'displays success message with a summary' do
@@ -259,11 +254,7 @@ RSpec.describe Mastodon::IpBlocksCLI do
 
       it 'exports blocked IPs with "no_access" severity in plain format' do
         expect { cli.invoke(:export, nil, options) }.to output(
-          a_string_including(<<~STR
-            #{block1.ip}/#{block1.ip.prefix}
-            #{block2.ip}/#{block2.ip.prefix}
-          STR
-                            )
+          a_string_including("#{block1.ip}/#{block1.ip.prefix}\n#{block2.ip}/#{block2.ip.prefix}")
         ).to_stdout
       end
 
@@ -279,11 +270,7 @@ RSpec.describe Mastodon::IpBlocksCLI do
 
       it 'exports blocked IPs with "no_access" severity in plain format' do
         expect { cli.invoke(:export, nil, options) }.to output(
-          a_string_including(<<~STR
-            deny #{block1.ip}/#{block1.ip.prefix};
-            deny #{block2.ip}/#{block2.ip.prefix};
-          STR
-                            )
+          a_string_including("deny #{block1.ip}/#{block1.ip.prefix};\ndeny #{block2.ip}/#{block2.ip.prefix};")
         ).to_stdout
       end
 
@@ -297,11 +284,7 @@ RSpec.describe Mastodon::IpBlocksCLI do
     context 'when --format option is not provided' do
       it 'exports blocked IPs in plain format by default' do
         expect { cli.export }.to output(
-          a_string_including(<<~STR
-            #{block1.ip}/#{block1.ip.prefix}
-            #{block2.ip}/#{block2.ip.prefix}
-          STR
-                            )
+          a_string_including("#{block1.ip}/#{block1.ip.prefix}\n#{block2.ip}/#{block2.ip.prefix}")
         ).to_stdout
       end
     end
