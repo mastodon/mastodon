@@ -93,7 +93,7 @@ class Notifications extends React.PureComponent {
     trackScroll: true,
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.props.dispatch(mountNotifications());
   }
 
