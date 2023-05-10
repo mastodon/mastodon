@@ -1,4 +1,3 @@
----
 da:
   devise:
     confirmations:
@@ -13,8 +12,6 @@ da:
       locked: Din konto er låst.
       not_found_in_database: Ugyldig %{authentication_keys} eller adgangskode.
       pending: Din konto er stadig under revision.
-      timeout: Session udløbet. Log ind igen for at fortsætte.
-      unauthenticated: Log ind eller tilmelde dig for at fortsætte.
       unconfirmed: Bekræft din e-mailadresse for at fortsætte.
     mailer:
       confirmation_instructions:
@@ -102,7 +99,6 @@ da:
     unlocks:
       send_instructions: Instruktioner e-mailes til dig om, hvordan du oplåser din konto. Er e-mailen ikke er i din indbakke inden for få minutter, så tjek i Spam.
       send_paranoid_instructions: Findes din konto, e-mailes du instrukser om, hvordan du oplåser den. Er e-mailen i din indbakke indenfor få minutter, så tjek i Spam.
-      unlocked: Din konto er nu oplåst. Log ind for at fortsætte.
   errors:
     messages:
       already_confirmed: er allerede bekræftet. Prøv at logge ind
