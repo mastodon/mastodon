@@ -1,4 +1,5 @@
 import React from 'react';
+
 import logo from 'mastodon/../images/logo.svg';
 
 export const WordmarkLogo: React.FC = () => (
