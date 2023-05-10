@@ -12,6 +12,7 @@ class EmojiFormatter
   # @param [Hash] options
   # @option options [Boolean] :animate
   # @option options [String] :style
+  # @option options [String] :raw_shortcode
   def initialize(html, custom_emojis, options = {})
     raise ArgumentError unless html.html_safe?
 
