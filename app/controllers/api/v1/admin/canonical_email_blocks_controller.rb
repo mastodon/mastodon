@@ -58,6 +58,8 @@ class Api::V1::Admin::CanonicalEmailBlocksController < Api::BaseController
   end
 
   def set_canonical_email_blocks_from_test
+    raise(Mastodon::ValidationError, "Email can't be blank") if params[:email].blank?
+
     @canonical_email_blocks = CanonicalEmailBlock.matching_email(params[:email])
   end
 
