@@ -1,4 +1,3 @@
----
 zh-HK:
   devise:
     confirmations:
@@ -13,8 +12,6 @@ zh-HK:
       locked: 你的帳號已被鎖定。
       not_found_in_database: 不正確的%{authentication_keys}或密碼。
       pending: 你的帳號仍在審核中
-      timeout: 你的登入階段已經過期，請重新登入以繼續使用。
-      unauthenticated: 你必須先登入或登記，以繼續使用。
       unconfirmed: 你必須先確認電郵地址，繼續使用。
     mailer:
       confirmation_instructions:
@@ -26,9 +23,9 @@ zh-HK:
         subject: 'Mastodon: 確認電郵地址 %{instance}'
         title: 驗證電子郵件地址
       email_changed:
-        explanation: 你的帳號的電郵地址即將變更為：
+        explanation: '你的帳號的電郵地址即將變更為：'
         extra: 如果你沒有更改你的電郵地址，那很有可能已經有其他人入侵你的帳號。請立即更改你的密碼；如果你已經無法訪問你的帳戶，請聯繫服務站的管理員請求協助。
-        subject: Mastodon：電郵地址已被更改
+        subject: 'Mastodon：電郵地址已被更改'
         title: 新電郵地址
       password_change:
         explanation: 你的帳號的密碼已被更改。
@@ -38,7 +35,7 @@ zh-HK:
       reconfirmation_instructions:
         explanation: 點擊下面的連結來確認你的新電郵地址。
         extra: 如果你沒有請求本次變更，請忽略此郵件。 Mastodon 帳戶的電子郵件地址只有在你點擊上面的連結後才會更改。
-        subject: Mastodon：確認 %{instance} 電郵地址
+        subject: 'Mastodon：確認 %{instance} 電郵地址'
         title: 驗證電郵地址
       reset_password_instructions:
         action: 更改密碼
@@ -48,15 +45,15 @@ zh-HK:
         title: 重設密碼
       two_factor_disabled:
         explanation: 帳號的雙重認證已被停用。現在只需使用電郵地址和密碼，即可登入。
-        subject: Mastodon：已關閉雙重認證
+        subject: 'Mastodon：已關閉雙重認證'
         title: 已關閉雙重認證
       two_factor_enabled:
         explanation: 賬號的雙重認證已被啟用。登錄時，將需要已配對 TOTP 應用程式生成的驗證碼。
-        subject: Mastodon：已啟用雙重認證
+        subject: 'Mastodon：已啟用雙重認證'
         title: 已啟用雙重認證
       two_factor_recovery_codes_changed:
         explanation: 之前的恢復碼失效了，新的已生成。
-        subject: Mastodon：已產生新的雙重認證恢復碼
+        subject: 'Mastodon：已產生新的雙重認證恢復碼'
         title: 雙重認證恢復碼已更改
       unlock_instructions:
         subject: 'Mastodon: 解除帳號鎖定'
@@ -102,7 +99,6 @@ zh-HK:
     unlocks:
       send_instructions: 你將在幾分鐘內收到解除用戶鎖定的電郵指示。如果未能在收件箱找到電郵指示，請檢查垃圾郵件箱。
       send_paranoid_instructions: 如果你的電郵地址已經存在於我們的資料庫，你將在幾分鐘內收到解除用戶鎖定的電郵指示。如果未能在收件箱找到電郵指示，請檢查垃圾郵件箱。
-      unlocked: 你的帳號已經解鎖，請登入以繼續。
   errors:
     messages:
       already_confirmed: 先前已經確認，請嘗試登入
