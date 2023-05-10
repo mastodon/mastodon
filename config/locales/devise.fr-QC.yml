@@ -1,4 +1,3 @@
----
 fr-QC:
   devise:
     confirmations:
@@ -8,13 +7,11 @@ fr-QC:
     failure:
       already_authenticated: Vous êtes déjà connecté·e.
       inactive: Votre compte n’est pas encore activé.
-      invalid: "%{authentication_keys} ou mot de passe invalide."
+      invalid: '%{authentication_keys} ou mot de passe invalide.'
       last_attempt: Vous avez droit à une dernière tentative avant que votre compte ne soit verrouillé.
       locked: Votre compte est verrouillé.
-      not_found_in_database: "%{authentication_keys} ou mot de passe invalide."
+      not_found_in_database: '%{authentication_keys} ou mot de passe invalide.'
       pending: Votre compte est toujours en cours d'approbation.
-      timeout: Votre session a expiré. Veuillez vous reconnecter pour continuer.
-      unauthenticated: Vous devez vous connecter ou vous inscrire pour continuer.
       unconfirmed: Vous devez valider votre adresse courriel pour continuer.
     mailer:
       confirmation_instructions:
@@ -102,7 +99,6 @@ fr-QC:
     unlocks:
       send_instructions: Vous allez recevoir un courriel avec des instructions nécessaires au déverrouillage de votre compte dans quelques minutes. Veuillez vérifier votre dossier de pourriels si vous ne recevez pas ce courriel.
       send_paranoid_instructions: Si votre compte existe, vous allez recevoir un courriel avec les instructions pour le déverrouiller dans quelques minutes. Veuillez vérifier votre dossier d'indésirables si vous ne recevez pas ce courriel.
-      unlocked: Votre compte a été déverrouillé avec succès. Veuillez vous connecter pour continuer.
   errors:
     messages:
       already_confirmed: a déjà été validée, veuillez essayer de vous connecter
