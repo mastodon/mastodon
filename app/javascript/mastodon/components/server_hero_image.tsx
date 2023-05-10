@@ -1,13 +1,15 @@
 import React, { useCallback, useState } from 'react';
-import { Blurhash } from './blurhash';
+
 import classNames from 'classnames';
 
-type Props = {
+import { Blurhash } from './blurhash';
+
+interface Props {
   src: string;
   srcSet?: string;
   blurhash?: string;
   className?: string;
-};
+}
 
 export const ServerHeroImage: React.FC<Props> = ({
   src,

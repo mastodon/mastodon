@@ -12,7 +12,7 @@ type AccountField = Record<{
   verified_at: string | null;
 }>;
 
-type AccountApiResponseValues = {
+interface AccountApiResponseValues {
   acct: string;
   avatar: string;
   avatar_static: string;
@@ -34,7 +34,7 @@ type AccountApiResponseValues = {
   statuses_count: number;
   url: string;
   username: string;
-};
+}
 
 type NormalizedAccountField = Record<{
   name_emojified: string;
@@ -42,12 +42,12 @@ type NormalizedAccountField = Record<{
   value_plain: string;
 }>;
 
-type NormalizedAccountValues = {
+interface NormalizedAccountValues {
   display_name_html: string;
   fields: NormalizedAccountField[];
   note_emojified: string;
   note_plain: string;
-};
+}
 
 export type Account = Record<
   AccountApiResponseValues & NormalizedAccountValues

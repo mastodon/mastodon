@@ -1,15 +1,16 @@
 import React from 'react';
-import type { Account } from '../../types/resources';
+
 import { useHovering } from '../../hooks/useHovering';
+import type { Account } from '../../types/resources';
 import { autoPlayGif } from '../initial_state';
 
-type Props = {
+interface Props {
   account: Account;
   friend: Account;
   size?: number;
   baseSize?: number;
   overlaySize?: number;
-};
+}
 
 export const AvatarOverlay: React.FC<Props> = ({
   account,
