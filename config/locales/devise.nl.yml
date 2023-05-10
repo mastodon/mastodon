@@ -1,4 +1,3 @@
----
 nl:
   devise:
     confirmations:
@@ -8,13 +7,11 @@ nl:
     failure:
       already_authenticated: Je bent al ingelogd.
       inactive: Jouw account is nog niet geactiveerd.
-      invalid: "%{authentication_keys} of wachtwoord ongeldig."
+      invalid: '%{authentication_keys} of wachtwoord ongeldig.'
       last_attempt: Je hebt nog één poging over voordat jouw account wordt opgeschort.
       locked: Jouw account is opgeschort.
-      not_found_in_database: "%{authentication_keys} of wachtwoord ongeldig."
+      not_found_in_database: '%{authentication_keys} of wachtwoord ongeldig.'
       pending: Jouw account moet nog steeds worden beoordeeld.
-      timeout: Jouw sessie is verlopen, log opnieuw in.
-      unauthenticated: Je dient in te loggen of te registreren.
       unconfirmed: Je dient eerst jouw account te bevestigen.
     mailer:
       confirmation_instructions:
@@ -102,7 +99,6 @@ nl:
     unlocks:
       send_instructions: Je ontvangt via e-mail instructies hoe je het opschorten van jouw account ongedaan kunt maken. Kijk tussen je spam wanneer niks werd ontvangen.
       send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je het opschorten van jouw account ongedaan kunt maken. Kijk tussen je spam wanneer niks werd ontvangen.
-      unlocked: Jouw account is niet meer opgeschort. Je kunt nu weer inloggen.
   errors:
     messages:
       already_confirmed: is reeds bevestigd
