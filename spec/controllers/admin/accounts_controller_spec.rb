@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::AccountsController, type: :controller do
+RSpec.describe Admin::AccountsController do
   render_views
 
   before { sign_in current_user, scope: :user }

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::BlocksController, type: :controller do
+RSpec.describe Api::V1::BlocksController do
   render_views
 
   let(:user)   { Fabricate(:user) }

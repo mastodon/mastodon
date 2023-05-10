@@ -17,7 +17,7 @@ import {
   ACCOUNT_UNFOLLOW_SUCCESS,
 } from '../actions/accounts';
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
-import compareId from '../compare_id';
+import { compareId } from '../compare_id';
 
 const initialState = ImmutableMap();
 

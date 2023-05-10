@@ -123,7 +123,7 @@ class SwitchingColumnsArea extends React.PureComponent {
     mobile: PropTypes.bool,
   };
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     if (this.props.mobile) {
       document.body.classList.toggle('layout-single-column', true);
       document.body.classList.toggle('layout-multiple-columns', false);
@@ -362,7 +362,7 @@ class UI extends React.PureComponent {
 
     if (layout !== this.props.layout) {
       this.handleLayoutChange.cancel();
-      this.props.dispatch(changeLayout(layout));
+      this.props.dispatch(changeLayout({ layout }));
     } else {
       this.handleLayoutChange();
     }

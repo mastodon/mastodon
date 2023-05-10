@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Settings::ProfilesController, type: :controller do
+RSpec.describe Settings::ProfilesController do
   render_views
 
   let!(:user) { Fabricate(:user) }

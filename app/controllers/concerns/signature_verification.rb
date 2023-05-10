@@ -180,14 +180,15 @@ module SignatureVerification
 
   def build_signed_string
     signed_headers.map do |signed_header|
-      if signed_header == Request::REQUEST_TARGET
+      case signed_header
+      when Request::REQUEST_TARGET
         "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.path}"
-      elsif signed_header == '(created)'
+      when '(created)'
         raise SignatureVerificationError, 'Invalid pseudo-header (created) for rsa-sha256' unless signature_algorithm == 'hs2019'
         raise SignatureVerificationError, 'Pseudo-header (created) used but corresponding argument missing' if signature_params['created'].blank?
 
         "(created): #{signature_params['created']}"
-      elsif signed_header == '(expires)'
+      when '(expires)'
         raise SignatureVerificationError, 'Invalid pseudo-header (expires) for rsa-sha256' unless signature_algorithm == 'hs2019'
         raise SignatureVerificationError, 'Pseudo-header (expires) used but corresponding argument missing' if signature_params['expires'].blank?
 

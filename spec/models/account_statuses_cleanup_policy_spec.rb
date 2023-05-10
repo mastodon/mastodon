@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AccountStatusesCleanupPolicy, type: :model do
+RSpec.describe AccountStatusesCleanupPolicy do
   let(:account) { Fabricate(:account, username: 'alice', domain: nil) }
 
   describe 'validation' do

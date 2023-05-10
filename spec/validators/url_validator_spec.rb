@@ -15,7 +15,7 @@ RSpec.describe URLValidator, type: :validator do
     let(:value)     { '' }
     let(:attribute) { :foo }
 
-    context 'unless compliant?' do
+    context 'when not compliant?' do
       let(:compliant) { false }
 
       it 'calls errors.add' do
@@ -23,7 +23,7 @@ RSpec.describe URLValidator, type: :validator do
       end
     end
 
-    context 'if compliant?' do
+    context 'when compliant?' do
       let(:compliant) { true }
 
       it 'not calls errors.add' do

@@ -58,7 +58,7 @@ import { HotKeys } from 'react-hotkeys';
 import { boostModal, deleteModal } from '../../initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import { Helmet } from 'react-helmet';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 
@@ -207,7 +207,7 @@ class Status extends ImmutablePureComponent {
     loadedStatusId: undefined,
   };
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.props.dispatch(fetchStatus(this.props.params.statusId));
   }
 
@@ -215,7 +215,7 @@ class Status extends ImmutablePureComponent {
     attachFullscreenListener(this.onFullScreenChange);
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
       this._scrolledIntoView = false;
       this.props.dispatch(fetchStatus(nextProps.params.statusId));

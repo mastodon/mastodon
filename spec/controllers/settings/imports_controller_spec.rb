@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Settings::ImportsController, type: :controller do
+RSpec.describe Settings::ImportsController do
   render_views
 
   let(:user) { Fabricate(:user) }

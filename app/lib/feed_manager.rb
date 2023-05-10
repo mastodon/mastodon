@@ -357,10 +357,10 @@ class FeedManager
     return true  if crutches[:languages][status.account_id].present? && status.language.present? && !crutches[:languages][status.account_id].include?(status.language)
 
     check_for_blocks = crutches[:active_mentions][status.id] || []
-    check_for_blocks.concat([status.account_id])
+    check_for_blocks.push(status.account_id)
 
     if status.reblog?
-      check_for_blocks.concat([status.reblog.account_id])
+      check_for_blocks.push(status.reblog.account_id)
       check_for_blocks.concat(crutches[:active_mentions][status.reblog_of_id] || [])
     end
 
@@ -396,7 +396,7 @@ class FeedManager
     # the notification has been checked for mute/block. Therefore, it's not
     # necessary to check the author of the toot for mute/block again
     check_for_blocks = status.active_mentions.pluck(:account_id)
-    check_for_blocks.concat([status.in_reply_to_account]) if status.reply? && !status.in_reply_to_account_id.nil?
+    check_for_blocks.push(status.in_reply_to_account) if status.reply? && !status.in_reply_to_account_id.nil?
 
     should_filter   = blocks_or_mutes?(receiver_id, check_for_blocks, :mentions)                                                         # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked (or muted)
     should_filter ||= (status.account.silenced? && !Follow.where(account_id: receiver_id, target_account_id: status.account_id).exists?) # of if the account is silenced and I'm not following them
@@ -533,10 +533,10 @@ class FeedManager
 
     check_for_blocks = statuses.flat_map do |s|
       arr = crutches[:active_mentions][s.id] || []
-      arr.concat([s.account_id])
+      arr.push(s.account_id)
 
       if s.reblog?
-        arr.concat([s.reblog.account_id])
+        arr.push(s.reblog.account_id)
         arr.concat(crutches[:active_mentions][s.reblog_of_id] || [])
       end
 

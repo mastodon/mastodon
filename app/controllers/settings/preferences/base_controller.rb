@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Settings::PreferencesController < Settings::BaseController
+class Settings::Preferences::BaseController < Settings::BaseController
   def show; end
 
   def update
@@ -15,7 +15,7 @@ class Settings::PreferencesController < Settings::BaseController
   private
 
   def after_update_redirect_path
-    settings_preferences_path
+    raise 'Override in controller'
   end
 
   def user_params

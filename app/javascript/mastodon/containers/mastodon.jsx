@@ -5,7 +5,7 @@ import { IntlProvider, addLocaleData } from 'react-intl';
 import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { ScrollContext } from 'react-router-scroll-4';
-import { store } from 'mastodon/store/configureStore';
+import { store } from 'mastodon/store';
 import UI from 'mastodon/features/ui';
 import { fetchCustomEmojis } from 'mastodon/actions/custom_emojis';
 import { hydrateStore } from 'mastodon/actions/store';

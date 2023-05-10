@@ -275,7 +275,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
         end
 
         context 'when user have not enabled webauthn' do
-          context 'creation succeeds' do
+          context 'when creation succeeds' do
             it 'creates a webauthn credential' do
               @controller.session[:webauthn_challenge] = challenge
 

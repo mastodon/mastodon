@@ -64,6 +64,7 @@ module.exports = {
 
   module: {
     rules: Object.keys(rules).map(key => rules[key]),
+    strictExportPresence: true,
   },
 
   plugins: [

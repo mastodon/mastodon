@@ -9,13 +9,13 @@ RSpec.describe AccountModerationNotePolicy do
   let(:john)    { Fabricate(:account) }
 
   permissions :create? do
-    context 'staff' do
+    context 'when staff' do
       it 'grants to create' do
         expect(subject).to permit(admin, AccountModerationNotePolicy)
       end
     end
 
-    context 'not staff' do
+    context 'when not staff' do
       it 'denies to create' do
         expect(subject).to_not permit(john, AccountModerationNotePolicy)
       end
@@ -29,19 +29,19 @@ RSpec.describe AccountModerationNotePolicy do
                 target_account: Fabricate(:account))
     end
 
-    context 'admin' do
+    context 'when admin' do
       it 'grants to destroy' do
         expect(subject).to permit(admin, account_moderation_note)
       end
     end
 
-    context 'owner' do
+    context 'when owner' do
       it 'grants to destroy' do
         expect(subject).to permit(john, account_moderation_note)
       end
     end
 
-    context 'neither admin nor owner' do
+    context 'when neither admin nor owner' do
       let(:kevin) { Fabricate(:account) }
 
       it 'denies to destroy' do

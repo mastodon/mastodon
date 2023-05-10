@@ -30,7 +30,7 @@ describe ResolveURLService, type: :service do
       expect(subject.call(url)).to eq known_account
     end
 
-    context 'searching for a remote private status' do
+    context 'when searching for a remote private status' do
       let(:account)  { Fabricate(:account) }
       let(:poster)   { Fabricate(:account, domain: 'example.com') }
       let(:url)      { 'https://example.com/@foo/42' }
@@ -95,7 +95,7 @@ describe ResolveURLService, type: :service do
       end
     end
 
-    context 'searching for a local private status' do
+    context 'when searching for a local private status' do
       let(:account) { Fabricate(:account) }
       let(:poster)  { Fabricate(:account) }
       let!(:status) { Fabricate(:status, account: poster, visibility: :private) }
@@ -127,7 +127,7 @@ describe ResolveURLService, type: :service do
       end
     end
 
-    context 'searching for a link that redirects to a local public status' do
+    context 'when searching for a link that redirects to a local public status' do
       let(:account) { Fabricate(:account) }
       let(:poster)  { Fabricate(:account) }
       let!(:status) { Fabricate(:status, account: poster, visibility: :public) }
