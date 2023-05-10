@@ -1,4 +1,3 @@
----
 eu:
   devise:
     confirmations:
@@ -13,15 +12,13 @@ eu:
       locked: Zure kontua giltzapetuta dago.
       not_found_in_database: Baliogabeko %{authentication_keys} edo pasahitza.
       pending: Zure kontua oraindik berrikusteke dago.
-      timeout: Zure saioa iraungitu da. Hasi saioa berriro jarraitzeko.
-      unauthenticated: Saioa hasi edo izena eman behar duzu jarraitu aurretik.
       unconfirmed: Zure e-mail helbidea baieztatu behar duzu jarraitu aurretik.
     mailer:
       confirmation_instructions:
         action: Baieztatu e-mail helbidea
         action_with_app: Berretsi eta itzuli %{app} aplikaziora
         explanation: Kontu bat sortu duzu %{host} ostalarian e-mail helbide honekin. Aktibatzeko klik bat falta zaizu. Ez baduzu zuk sortu, ez egin ezer e-mail honekin.
-        explanation_when_pending: "%{host} instantziara gonbidatua izatea eskatu duzu e-mail helbide honekin. Behin zure e-mail helbidea berresten duzula, zure eskaera berrikusiko da. Ezin duzu aurretik saioa hasi. Zure eskaera ukatuko balitz, zure datuak ezabatuko lirateke, eta ez zenuke beste ezer egiteko beharrik. Hau ez bazara zu izan, ezikusi e-mail hau."
+        explanation_when_pending: '%{host} instantziara gonbidatua izatea eskatu duzu e-mail helbide honekin. Behin zure e-mail helbidea berresten duzula, zure eskaera berrikusiko da. Ezin duzu aurretik saioa hasi. Zure eskaera ukatuko balitz, zure datuak ezabatuko lirateke, eta ez zenuke beste ezer egiteko beharrik. Hau ez bazara zu izan, ezikusi e-mail hau.'
         extra_html: Egiaztatu <a href="%{terms_path}">zerbitzariaren arauak</a> eta <a href="%{policy_path}">zerbitzuaren erabilera baldintzak</a>.
         subject: 'Mastodon: %{instance} instantziaren argibideak baieztapenerako'
         title: Baieztatu e-mail helbidea
@@ -102,7 +99,6 @@ eu:
     unlocks:
       send_instructions: Kontua desblokeatzeko argibideak dituen e-mail jasoko duzu minutu gutxi barru. Egiaztatu spam karpeta ez baduzu e-mail hau jaso.
       send_paranoid_instructions: Zure kontua existitzen bada, hau desblokeatzeko argibideak dituen e-mail bat jasoko duzu minutu gutxi barru. Egiaztatu spam karpeta ez baduzu mezu hau jasotzen.
-      unlocked: Zure kontua ongi desblokeatu da. Hasi saioa jarraitzeko.
   errors:
     messages:
       already_confirmed: ba<zegoen baieztatuta, saiatu saioa hasten
