@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Follow, type: :model do
+RSpec.describe Follow do
   let(:alice) { Fabricate(:account, username: 'alice') }
   let(:bob)   { Fabricate(:account, username: 'bob') }
 

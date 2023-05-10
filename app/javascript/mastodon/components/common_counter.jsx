@@ -4,7 +4,6 @@ import { FormattedMessage } from 'react-intl';
 
 /**
  * Returns custom renderer for one of the common counter types
- *
  * @param {"statuses" | "following" | "followers"} counterType
  * Type of the counter
  * @param {boolean} isBold Whether display number must be displayed in bold

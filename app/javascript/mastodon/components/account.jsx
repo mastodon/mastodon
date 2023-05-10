@@ -1,19 +1,19 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import Avatar from './avatar';
-import DisplayName from './display_name';
-import IconButton from './icon_button';
+import { Avatar } from './avatar';
+import { DisplayName } from './display_name';
+import { IconButton } from './icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me } from '../initial_state';
-import RelativeTimestamp from './relative_timestamp';
+import { RelativeTimestamp } from './relative_timestamp';
 import Skeleton from 'mastodon/components/skeleton';
 import { Link } from 'react-router-dom';
 import { counterRenderer } from 'mastodon/components/common_counter';
 import ShortNumber from 'mastodon/components/short_number';
-import Icon from 'mastodon/components/icon';
 import classNames from 'classnames';
+import { VerifiedBadge } from 'mastodon/components/verified_badge';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -26,26 +26,6 @@ const messages = defineMessages({
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
 });
-
-class VerifiedBadge extends React.PureComponent {
-
-  static propTypes = {
-    link: PropTypes.string.isRequired,
-    verifiedAt: PropTypes.string.isRequired,
-  };
-
-  render () {
-    const { link } = this.props;
-
-    return (
-      <span className='verified-badge'>
-        <Icon id='check' className='verified-badge__mark' />
-        <span dangerouslySetInnerHTML={{ __html: link }} />
-      </span>
-    );
-  }
-
-}
 
 class Account extends ImmutablePureComponent {
 
@@ -171,7 +151,7 @@ class Account extends ImmutablePureComponent {
     const firstVerifiedField = account.get('fields').find(item => !!item.get('verified_at'));
 
     if (firstVerifiedField) {
-      verification = <>· <VerifiedBadge link={firstVerifiedField.get('value')} verifiedAt={firstVerifiedField.get('verified_at')} /></>;
+      verification = <>· <VerifiedBadge link={firstVerifiedField.get('value')} /></>;
     }
 
     return (

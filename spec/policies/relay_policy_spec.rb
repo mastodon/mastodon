@@ -9,13 +9,13 @@ RSpec.describe RelayPolicy do
   let(:john)    { Fabricate(:account) }
 
   permissions :update? do
-    context 'admin?' do
+    context 'when admin?' do
       it 'permits' do
         expect(subject).to permit(admin, Relay)
       end
     end
 
-    context '!admin?' do
+    context 'with !admin?' do
       it 'denies' do
         expect(subject).to_not permit(john, Relay)
       end

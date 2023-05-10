@@ -1,23 +1,23 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.7.0', '< 3.3.0'
+ruby '>= 3.0.0'
 
 gem 'pkg-config', '~> 1.5'
 
-gem 'puma', '~> 6.1'
+gem 'puma', '~> 6.2'
 gem 'rails', '~> 6.1.7'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
-gem 'rack', '~> 2.2.6'
+gem 'rack', '~> 2.2.7'
 
 gem 'haml-rails', '~>2.0'
-gem 'pg', '~> 1.4'
+gem 'pg', '~> 1.5'
 gem 'makara', '~> 0.5'
 gem 'pghero'
 gem 'dotenv-rails', '~> 2.8'
 
-gem 'aws-sdk-s3', '~> 1.119', require: false
+gem 'aws-sdk-s3', '~> 1.120', require: false
 gem 'fog-core', '<= 2.4.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'kt-paperclip', '~> 7.1', github: 'kreeti/kt-paperclip', ref: '11abf222dc31bff71160a1d138b445214f434b2b'
@@ -28,15 +28,15 @@ gem 'addressable', '~> 2.8'
 gem 'bootsnap', '~> 1.16.0', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
-gem 'chewy', '~> 7.2'
+gem 'chewy', '~> 7.3'
 gem 'devise', '~> 4.9'
-gem 'devise-two-factor', '~> 4.0'
+gem 'devise-two-factor', '~> 4.1'
 
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
 end
 
-gem 'net-ldap', '~> 0.17'
+gem 'net-ldap', '~> 0.18'
 gem 'omniauth-cas', '~> 2.0'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth_openid_connect', '~> 0.6.1'
@@ -76,7 +76,7 @@ gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 2.1'
-gem 'ruby-progressbar', '~> 1.11'
+gem 'ruby-progressbar', '~> 1.13'
 gem 'sanitize', '~> 6.0'
 gem 'scenic', '~> 1.7'
 gem 'sidekiq', '~> 6.5'
@@ -118,10 +118,10 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.38'
+  gem 'capybara', '~> 3.39'
   gem 'climate_control'
-  gem 'faker', '~> 3.1'
-  gem 'json-schema', '~> 3.0'
+  gem 'faker', '~> 3.2'
+  gem 'json-schema', '~> 4.0'
   gem 'rack-test', '~> 2.1'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec_junit_formatter', '~> 0.6'
@@ -159,3 +159,4 @@ gem 'xorcist', '~> 1.1'
 gem 'cocoon', '~> 1.2'
 
 gem 'net-http', '~> 0.3.2'
+gem 'rubyzip', '~> 2.3'

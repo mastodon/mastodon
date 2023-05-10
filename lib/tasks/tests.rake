@@ -113,7 +113,7 @@ namespace :tests do
 
     desc 'Populate the database with test data for 2.4.0'
     task populate_v2_4: :environment do # rubocop:disable Naming/VariableNumber
-      ActiveRecord::Base.connection.execute(<<~SQL)
+      ActiveRecord::Base.connection.execute(<<~SQL.squish)
         INSERT INTO "settings"
           (id, thing_type, thing_id, var, value, created_at, updated_at)
         VALUES

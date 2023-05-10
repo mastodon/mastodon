@@ -6,11 +6,12 @@ class StatusesController < ApplicationController
   include Authorization
   include AccountOwnedConcern
 
+  vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
+
   before_action :require_account_signature!, only: [:show, :activity], if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_status
   before_action :set_instance_presenter
   before_action :redirect_to_original, only: :show
-  before_action :set_cache_headers
   before_action :set_body_classes, only: :embed
 
   after_action :set_link_headers
@@ -29,7 +30,7 @@ class StatusesController < ApplicationController
       end
 
       format.json do
-        expires_in 3.minutes, public: @status.distributable? && public_fetch_mode?
+        expires_in 3.minutes, public: true if @status.distributable? && public_fetch_mode?
         render_with_cache json: @status, content_type: 'application/activity+json', serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter
       end
     end

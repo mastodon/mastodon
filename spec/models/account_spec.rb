@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Account, type: :model do
+RSpec.describe Account do
   context do
     subject { Fabricate(:account) }
 
@@ -171,7 +171,7 @@ RSpec.describe Account, type: :model do
   describe '#possibly_stale?' do
     let(:account) { Fabricate(:account, last_webfingered_at: last_webfingered_at) }
 
-    context 'last_webfingered_at is nil' do
+    context 'when last_webfingered_at is nil' do
       let(:last_webfingered_at) { nil }
 
       it 'returns true' do
@@ -179,7 +179,7 @@ RSpec.describe Account, type: :model do
       end
     end
 
-    context 'last_webfingered_at is more than 24 hours before' do
+    context 'when last_webfingered_at is more than 24 hours before' do
       let(:last_webfingered_at) { 25.hours.ago }
 
       it 'returns true' do
@@ -187,7 +187,7 @@ RSpec.describe Account, type: :model do
       end
     end
 
-    context 'last_webfingered_at is less than 24 hours before' do
+    context 'when last_webfingered_at is less than 24 hours before' do
       let(:last_webfingered_at) { 23.hours.ago }
 
       it 'returns false' do
@@ -200,7 +200,7 @@ RSpec.describe Account, type: :model do
     let(:account) { Fabricate(:account, domain: domain) }
     let(:acct)    { account.acct }
 
-    context 'domain is nil' do
+    context 'when domain is nil' do
       let(:domain) { nil }
 
       it 'returns nil' do
@@ -213,7 +213,7 @@ RSpec.describe Account, type: :model do
       end
     end
 
-    context 'domain is present' do
+    context 'when domain is present' do
       let(:domain) { 'example.com' }
 
       it 'calls ResolveAccountService#call' do
@@ -339,7 +339,7 @@ RSpec.describe Account, type: :model do
     it 'returns the domains blocked by the account' do
       account = Fabricate(:account)
       account.block_domain!('domain')
-      expect(account.excluded_from_timeline_domains).to match_array ['domain']
+      expect(account.excluded_from_timeline_domains).to contain_exactly('domain')
     end
   end
 
@@ -877,7 +877,7 @@ RSpec.describe Account, type: :model do
       it 'returns an array of accounts who have a domain' do
         account_1 = Fabricate(:account, domain: nil)
         account_2 = Fabricate(:account, domain: 'example.com')
-        expect(Account.remote).to match_array([account_2])
+        expect(Account.remote).to contain_exactly(account_2)
       end
     end
 
@@ -885,7 +885,7 @@ RSpec.describe Account, type: :model do
       it 'returns an array of accounts who do not have a domain' do
         account_1 = Fabricate(:account, domain: nil)
         account_2 = Fabricate(:account, domain: 'example.com')
-        expect(Account.where('id > 0').local).to match_array([account_1])
+        expect(Account.where('id > 0').local).to contain_exactly(account_1)
       end
     end
 
@@ -902,7 +902,7 @@ RSpec.describe Account, type: :model do
 
     describe 'recent' do
       it 'returns a relation of accounts sorted by recent creation' do
-        matches = 2.times.map { Fabricate(:account) }
+        matches = Array.new(2) { Fabricate(:account) }
         expect(Account.where('id > 0').recent).to match_array(matches)
       end
     end
@@ -911,7 +911,7 @@ RSpec.describe Account, type: :model do
       it 'returns an array of accounts who are silenced' do
         account_1 = Fabricate(:account, silenced: true)
         account_2 = Fabricate(:account, silenced: false)
-        expect(Account.silenced).to match_array([account_1])
+        expect(Account.silenced).to contain_exactly(account_1)
       end
     end
 
@@ -919,7 +919,7 @@ RSpec.describe Account, type: :model do
       it 'returns an array of accounts who are suspended' do
         account_1 = Fabricate(:account, suspended: true)
         account_2 = Fabricate(:account, suspended: false)
-        expect(Account.suspended).to match_array([account_1])
+        expect(Account.suspended).to contain_exactly(account_1)
       end
     end
 
@@ -941,20 +941,20 @@ RSpec.describe Account, type: :model do
       end
 
       it 'returns every usable non-suspended account' do
-        expect(Account.searchable).to match_array([silenced_local, silenced_remote, local_account, remote_account])
+        expect(Account.searchable).to contain_exactly(silenced_local, silenced_remote, local_account, remote_account)
       end
 
       it 'does not mess with previously-applied scopes' do
-        expect(Account.where.not(id: remote_account.id).searchable).to match_array([silenced_local, silenced_remote, local_account])
+        expect(Account.where.not(id: remote_account.id).searchable).to contain_exactly(silenced_local, silenced_remote, local_account)
       end
     end
   end
 
   context 'when is local' do
-    # Test disabled because test environment omits autogenerating keys for performance
-    xit 'generates keys' do
+    it 'generates keys' do
       account = Account.create!(domain: nil, username: Faker::Internet.user_name(separators: ['_']))
-      expect(account.keypair.private?).to be true
+      expect(account.keypair).to be_private
+      expect(account.keypair).to be_public
     end
   end
 

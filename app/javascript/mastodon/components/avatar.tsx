@@ -45,5 +45,3 @@ export const Avatar: React.FC<Props> = ({
     </div>
   );
 };
-
-export default Avatar;

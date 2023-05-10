@@ -46,7 +46,7 @@ module Attachmentable
   def set_file_extension(attachment) # rubocop:disable Naming/AccessorMethodName
     return if attachment.blank?
 
-    attachment.instance_write :file_name, [Paperclip::Interpolations.basename(attachment, :original), appropriate_extension(attachment)].delete_if(&:blank?).join('.')
+    attachment.instance_write :file_name, [Paperclip::Interpolations.basename(attachment, :original), appropriate_extension(attachment)].compact_blank!.join('.')
   end
 
   def check_image_dimension(attachment)

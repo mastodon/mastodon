@@ -17,10 +17,10 @@ let sharedConnection;
  */
 
 /**
-  * @typedef StreamEvent
-  * @property {string} event
-  * @property {object} payload
-  */
+ * @typedef StreamEvent
+ * @property {string} event
+ * @property {object} payload
+ */
 
 /**
  * @type {Array.<Subscription>}
@@ -126,7 +126,7 @@ const sharedCallbacks = {
 /**
  * @param {string} channelName
  * @param {Object.<string, string>} params
- * @return {string}
+ * @returns {string}
  */
 const channelNameWithInlineParams = (channelName, params) => {
   if (Object.keys(params).length === 0) {
@@ -140,7 +140,7 @@ const channelNameWithInlineParams = (channelName, params) => {
  * @param {string} channelName
  * @param {Object.<string, string>} params
  * @param {function(Function, Function): { onConnect: (function(): void), onReceive: (function(StreamEvent): void), onDisconnect: (function(): void) }} callbacks
- * @return {function(): void}
+ * @returns {function(): void}
  */
 // @ts-expect-error
 export const connectStream = (channelName, params, callbacks) => (dispatch, getState) => {
@@ -227,7 +227,7 @@ const handleEventSourceMessage = (e, received) => {
  * @param {string} accessToken
  * @param {string} channelName
  * @param {{ connected: Function, received: function(StreamEvent): void, disconnected: Function, reconnected: Function }} callbacks
- * @return {WebSocketClient | EventSource}
+ * @returns {WebSocketClient | EventSource}
  */
 const createConnection = (streamingAPIBaseURL, accessToken, channelName, { connected, received, disconnected, reconnected }) => {
   const params = channelName.split('&');

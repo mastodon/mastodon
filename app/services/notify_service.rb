@@ -6,6 +6,8 @@ class NotifyService < BaseService
   NON_EMAIL_TYPES = %i(
     admin.report
     admin.sign_up
+    update
+    poll
   ).freeze
 
   def call(recipient, type, activity)

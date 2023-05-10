@@ -1,13 +1,54 @@
-interface MastodonMap<T> {
-  get<K extends keyof T>(key: K): T[K];
-  has<K extends keyof T>(key: K): boolean;
-  set<K extends keyof T>(key: K, value: T[K]): this;
-}
+import type { Record } from 'immutable';
 
-type AccountValues = {
-  id: number;
+type CustomEmoji = Record<{
+  shortcode: string;
+  static_url: string;
+  url: string;
+}>;
+
+type AccountField = Record<{
+  name: string;
+  value: string;
+  verified_at: string | null;
+}>;
+
+type AccountApiResponseValues = {
+  acct: string;
   avatar: string;
   avatar_static: string;
-  [key: string]: any;
+  bot: boolean;
+  created_at: string;
+  discoverable: boolean;
+  display_name: string;
+  emojis: CustomEmoji[];
+  fields: AccountField[];
+  followers_count: number;
+  following_count: number;
+  group: boolean;
+  header: string;
+  header_static: string;
+  id: string;
+  last_status_at: string;
+  locked: boolean;
+  note: string;
+  statuses_count: number;
+  url: string;
+  username: string;
 };
-export type Account = MastodonMap<AccountValues>;
+
+type NormalizedAccountField = Record<{
+  name_emojified: string;
+  value_emojified: string;
+  value_plain: string;
+}>;
+
+type NormalizedAccountValues = {
+  display_name_html: string;
+  fields: NormalizedAccountField[];
+  note_emojified: string;
+  note_plain: string;
+};
+
+export type Account = Record<
+  AccountApiResponseValues & NormalizedAccountValues
+>;

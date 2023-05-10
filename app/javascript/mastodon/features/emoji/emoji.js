@@ -20,68 +20,88 @@ const emojiFilename = (filename) => {
 };
 
 const emojifyTextNode = (node, customEmojis) => {
+  const VS15 = 0xFE0E;
+  const VS16 = 0xFE0F;
+
   let str = node.textContent;
 
   const fragment = new DocumentFragment();
+  let i = 0;
 
   for (;;) {
-    let match, i = 0;
+    let unicode_emoji;
 
+    // Skip to the next potential emoji to replace (either custom emoji or custom emoji :shortcode:
     if (customEmojis === null) {
-      while (i < str.length && !(match = trie.search(str.slice(i)))) {
+      while (i < str.length && !(unicode_emoji = trie.search(str.slice(i)))) {
         i += str.codePointAt(i) < 65536 ? 1 : 2;
       }
     } else {
-      while (i < str.length && str[i] !== ':' && !(match = trie.search(str.slice(i)))) {
+      while (i < str.length && str[i] !== ':' && !(unicode_emoji = trie.search(str.slice(i)))) {
         i += str.codePointAt(i) < 65536 ? 1 : 2;
       }
     }
 
-    let rend, replacement = null;
+    // We reached the end of the string, nothing to replace
     if (i === str.length) {
       break;
-    } else if (str[i] === ':') {
-      if (!(() => {
-        rend = str.indexOf(':', i + 1) + 1;
-        if (!rend) return false; // no pair of ':'
-        const shortname = str.slice(i, rend);
-        // now got a replacee as ':shortname:'
-        // if you want additional emoji handler, add statements below which set replacement and return true.
-        if (shortname in customEmojis) {
-          const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
-          replacement = document.createElement('img');
-          replacement.setAttribute('draggable', 'false');
-          replacement.setAttribute('class', 'emojione custom-emoji');
-          replacement.setAttribute('alt', shortname);
-          replacement.setAttribute('title', shortname);
-          replacement.setAttribute('src', filename);
-          replacement.setAttribute('data-original', customEmojis[shortname].url);
-          replacement.setAttribute('data-static', customEmojis[shortname].static_url);
-          return true;
-        }
-        return false;
-      })()) rend = ++i;
-    } else { // matched to unicode emoji
-      const { filename, shortCode } = unicodeMapping[match];
+    }
+
+    let rend, replacement = null;
+    if (str[i] === ':') { // Potentially the start of a custom emoji :shortcode:
+      rend = str.indexOf(':', i + 1) + 1;
+
+      // no matching ending ':', skip
+      if (!rend) {
+        i++;
+        continue;
+      }
+
+      const shortcode = str.slice(i, rend);
+      const custom_emoji = customEmojis[shortcode];
+
+      // not a recognized shortcode, skip
+      if (!custom_emoji) {
+        i++;
+        continue;
+      }
+
+      // now got a replacee as ':shortcode:'
+      // if you want additional emoji handler, add statements below which set replacement and return true.
+      const filename = autoPlayGif ? custom_emoji.url : custom_emoji.static_url;
+      replacement = document.createElement('img');
+      replacement.setAttribute('draggable', 'false');
+      replacement.setAttribute('class', 'emojione custom-emoji');
+      replacement.setAttribute('alt', shortcode);
+      replacement.setAttribute('title', shortcode);
+      replacement.setAttribute('src', filename);
+      replacement.setAttribute('data-original', custom_emoji.url);
+      replacement.setAttribute('data-static', custom_emoji.static_url);
+    } else { // start of an unicode emoji
+      rend = i + unicode_emoji.length;
+
+      // If the matched character was followed by VS15 (for selecting text presentation), skip it.
+      if (str.codePointAt(rend - 1) !== VS16 && str.codePointAt(rend) === VS15) {
+        i = rend + 1;
+        continue;
+      }
+
+      const { filename, shortCode } = unicodeMapping[unicode_emoji];
       const title = shortCode ? `:${shortCode}:` : '';
+
       replacement = document.createElement('img');
       replacement.setAttribute('draggable', 'false');
       replacement.setAttribute('class', 'emojione');
-      replacement.setAttribute('alt', match);
+      replacement.setAttribute('alt', unicode_emoji);
       replacement.setAttribute('title', title);
       replacement.setAttribute('src', `${assetHost}/emoji/${emojiFilename(filename)}.svg`);
-      rend = i + match.length;
-      // If the matched character was followed by VS15 (for selecting text presentation), skip it.
-      if (str.codePointAt(rend) === 65038) {
-        rend += 1;
-      }
     }
 
+    // Add the processed-up-to-now string and the emoji replacement
     fragment.append(document.createTextNode(str.slice(0, i)));
-    if (replacement) {
-      fragment.append(replacement);
-    }
+    fragment.append(replacement);
     str = str.slice(rend);
+    i = 0;
   }
 
   fragment.append(document.createTextNode(str));

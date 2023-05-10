@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import { createPortal } from 'react-dom';
 
 export default class ColumnBackButton extends React.PureComponent {
@@ -12,13 +12,21 @@ export default class ColumnBackButton extends React.PureComponent {
 
   static propTypes = {
     multiColumn: PropTypes.bool,
+    onClick: PropTypes.func,
   };
 
   handleClick = () => {
-    if (window.history && window.history.state) {
-      this.context.router.history.goBack();
+    const { router } = this.context;
+    const { onClick } = this.props;
+
+    if (onClick) {
+      onClick();
+    // Check if there is a previous page in the app to go back to per https://stackoverflow.com/a/70532858/9703201
+    // When upgrading to V6, check `location.key !== 'default'` instead per https://github.com/remix-run/history/blob/main/docs/api-reference.md#location
+    } else if (router.route.location.key) {
+      router.history.goBack();
     } else {
-      this.context.router.history.push('/');
+      router.history.push('/');
     }
   };
 

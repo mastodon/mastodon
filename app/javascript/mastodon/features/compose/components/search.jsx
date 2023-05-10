@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { searchEnabled } from 'mastodon/initial_state';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import classNames from 'classnames';
 import { HASHTAG_REGEX } from 'mastodon/utils/hashtags';
 
@@ -161,9 +161,9 @@ class Search extends React.PureComponent {
 
   handleURLClick = () => {
     const { router } = this.context;
-    const { onOpenURL } = this.props;
+    const { value, onOpenURL } = this.props;
 
-    onOpenURL(router.history);
+    onOpenURL(value, router.history);
   };
 
   handleStatusSearch = () => {

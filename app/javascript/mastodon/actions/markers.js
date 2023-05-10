@@ -1,6 +1,6 @@
 import api from '../api';
 import { debounce } from 'lodash';
-import compareId from '../compare_id';
+import { compareId } from '../compare_id';
 import { List as ImmutableList } from 'immutable';
 
 export const MARKERS_FETCH_REQUEST = 'MARKERS_FETCH_REQUEST';
@@ -55,7 +55,7 @@ export const synchronouslySubmitMarkers = () => (dispatch, getState) => {
     client.open('POST', '/api/v1/markers', false);
     client.setRequestHeader('Content-Type', 'application/json');
     client.setRequestHeader('Authorization', `Bearer ${accessToken}`);
-    client.SUBMIT(JSON.stringify(params));
+    client.send(JSON.stringify(params));
   } catch (e) {
     // Do not make the BeforeUnload handler error out
   }

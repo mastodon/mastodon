@@ -3,8 +3,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import AvatarOverlay from 'mastodon/components/avatar_overlay';
-import RelativeTimestamp from 'mastodon/components/relative_timestamp';
+import { AvatarOverlay } from 'mastodon/components/avatar_overlay';
+import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 
 const messages = defineMessages({
   openReport: { id: 'report_notification.open', defaultMessage: 'Open report' },
@@ -45,7 +45,7 @@ class Report extends ImmutablePureComponent {
 
         <div className='notification__report__details'>
           <div>
-            <RelativeTimestamp timestamp={report.get('created_at')} short={false} /> · <FormattedMessage id='report_notification.attached_statuses' defaultMessage='{count, plural, one {{count} post} other {{count} posts}} attached' values={{ count: report.get('status_ids').size }} />
+            <RelativeTimestamp timestamp={report.get('created_at')} short={false} /> · <FormattedMessage id='report_notification.attached_statuses' defaultMessage='{count, plural, one {# post} other {# posts}} attached' values={{ count: report.get('status_ids').size }} />
             <br />
             <strong>{intl.formatMessage(messages[report.get('category')])}</strong>
           </div>

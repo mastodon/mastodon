@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AccountsController, type: :controller do
+RSpec.describe AccountsController do
   render_views
 
   let(:account) { Fabricate(:account) }
@@ -15,6 +15,10 @@ RSpec.describe AccountsController, type: :controller do
 
     it 'does not set sessions' do
       expect(session).to be_empty
+    end
+
+    it 'returns Vary header' do
+      expect(response.headers['Vary']).to include 'Accept'
     end
 
     it 'returns public Cache-Control header' do
@@ -53,7 +57,7 @@ RSpec.describe AccountsController, type: :controller do
       end
     end
 
-    context 'as HTML' do
+    context 'with HTML' do
       let(:format) { 'html' }
 
       it_behaves_like 'preliminary checks'
@@ -136,7 +140,7 @@ RSpec.describe AccountsController, type: :controller do
       end
     end
 
-    context 'as JSON' do
+    context 'with JSON' do
       let(:authorized_fetch_mode) { false }
       let(:format) { 'json' }
 
@@ -189,7 +193,7 @@ RSpec.describe AccountsController, type: :controller do
           expect(json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
         end
 
-        context 'in authorized fetch mode' do
+        context 'with authorized fetch mode' do
           let(:authorized_fetch_mode) { true }
 
           it 'returns http unauthorized' do
@@ -214,8 +218,8 @@ RSpec.describe AccountsController, type: :controller do
           expect(response.media_type).to eq 'application/activity+json'
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
+        it 'returns private Cache-Control header' do
+          expect(response.headers['Cache-Control']).to include 'private'
         end
 
         it 'renders account' do
@@ -247,7 +251,7 @@ RSpec.describe AccountsController, type: :controller do
           expect(json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
         end
 
-        context 'in authorized fetch mode' do
+        context 'with authorized fetch mode' do
           let(:authorized_fetch_mode) { true }
 
           it 'returns http success' do
@@ -274,7 +278,7 @@ RSpec.describe AccountsController, type: :controller do
       end
     end
 
-    context 'as RSS' do
+    context 'with RSS' do
       let(:format) { 'rss' }
 
       it_behaves_like 'preliminary checks'

@@ -9,13 +9,13 @@ RSpec.describe TagPolicy do
   let(:john)    { Fabricate(:account) }
 
   permissions :index?, :show?, :update?, :review? do
-    context 'staff?' do
+    context 'when staff?' do
       it 'permits' do
         expect(subject).to permit(admin, Tag)
       end
     end
 
-    context '!staff?' do
+    context 'with !staff?' do
       it 'denies' do
         expect(subject).to_not permit(john, Tag)
       end

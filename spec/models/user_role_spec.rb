@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UserRole, type: :model do
+RSpec.describe UserRole do
   subject { described_class.create(name: 'Foo', position: 1) }
 
   describe '#can?' do

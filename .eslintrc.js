@@ -4,9 +4,12 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:import/recommended',
     'plugin:promise/recommended',
+    'plugin:jsdoc/recommended',
+    'plugin:prettier/recommended',
   ],
 
   env: {
@@ -27,6 +30,7 @@ module.exports = {
     'import',
     'promise',
     '@typescript-eslint',
+    'formatjs',
   ],
 
   parserOptions: {
@@ -59,20 +63,9 @@ module.exports = {
   },
 
   rules: {
-    'brace-style': 'warn',
-    'comma-dangle': ['error', 'always-multiline'],
-    'comma-spacing': [
-      'warn',
-      {
-        before: false,
-        after: true,
-      },
-    ],
-    'comma-style': ['warn', 'last'],
     'consistent-return': 'error',
     'dot-notation': 'error',
-    eqeqeq: 'error',
-    indent: ['warn', 2],
+    eqeqeq: ['error', 'always', { 'null': 'ignore' }],
     'jsx-quotes': ['error', 'prefer-single'],
     'no-case-declarations': 'off',
     'no-catch-shadow': 'error',
@@ -92,7 +85,6 @@ module.exports = {
       { property: 'substr', message: 'Use .slice instead of .substr.' },
     ],
     'no-self-assign': 'off',
-    'no-trailing-spaces': 'warn',
     'no-unused-expressions': 'error',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
@@ -100,33 +92,18 @@ module.exports = {
       {
         vars: 'all',
         args: 'after-used',
+        destructuredArrayIgnorePattern: '^_',
         ignoreRestSiblings: true,
       },
     ],
-    'object-curly-spacing': ['error', 'always'],
-    'padded-blocks': [
-      'error',
-      {
-        classes: 'always',
-      },
-    ],
-    quotes: ['error', 'single'],
-    semi: 'error',
     'valid-typeof': 'error',
 
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', 'tsx'] }],
     'react/jsx-boolean-value': 'error',
-    'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
-    'react/jsx-curly-spacing': 'error',
     'react/display-name': 'off',
     'react/jsx-equals-spacing': 'error',
-    'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
-    'react/jsx-indent': ['error', 2],
     'react/jsx-no-bind': 'error',
     'react/jsx-no-target-blank': 'off',
-    'react/jsx-tag-spacing': 'error',
-    'react/jsx-wrap-multilines': 'error',
-    'react/no-deprecated': 'off',
     'react/self-closing-comp': 'error',
 
     // recommended values found in https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/src/index.js
@@ -205,6 +182,9 @@ module.exports = {
         ],
       },
     ],
+    'import/no-amd': 'error',
+    'import/no-commonjs': 'error',
+    'import/no-import-module-exports': 'error',
     'import/no-webpack-loader-syntax': 'error',
 
     'promise/always-return': 'off',
@@ -217,6 +197,33 @@ module.exports = {
     'promise/no-callback-in-promise': 'off',
     'promise/no-nesting': 'off',
     'promise/no-promise-in-callback': 'off',
+
+    'formatjs/blocklist-elements': 'error',
+    'formatjs/enforce-default-message': ['error', 'literal'],
+    'formatjs/enforce-description': 'off', // description values not currently used
+    'formatjs/enforce-id': 'off', // Explicit IDs are used in the project
+    'formatjs/enforce-placeholders': 'off', // Issues in short_number.jsx
+    'formatjs/enforce-plural-rules': 'error',
+    'formatjs/no-camel-case': 'off', // disabledAccount is only non-conforming
+    'formatjs/no-complex-selectors': 'error',
+    'formatjs/no-emoji': 'error',
+    'formatjs/no-id': 'off', // IDs are used for translation keys
+    'formatjs/no-invalid-icu': 'error',
+    'formatjs/no-literal-string-in-jsx': 'off', // Should be looked at, but mainly flagging punctuation outside of strings
+    'formatjs/no-multiple-plurals': 'off', // Only used by hashtag.jsx
+    'formatjs/no-multiple-whitespaces': 'error',
+    'formatjs/no-offset': 'error',
+    'formatjs/no-useless-message': 'error',
+    'formatjs/prefer-formatted-message': 'error',
+    'formatjs/prefer-pound-in-plural': 'error',
+
+    'jsdoc/check-types': 'off',
+    'jsdoc/no-undefined-types': 'off',
+    'jsdoc/require-jsdoc': 'off',
+    'jsdoc/require-param-description': 'off',
+    'jsdoc/require-property-description': 'off',
+    'jsdoc/require-returns-description': 'off',
+    'jsdoc/require-returns': 'off',
   },
 
   overrides: [
@@ -225,6 +232,7 @@ module.exports = {
         '*.config.js',
         '.*rc.js',
         'ide-helper.js',
+        'config/webpack/**/*',
       ],
 
       env: {
@@ -233,6 +241,10 @@ module.exports = {
 
       parserOptions: {
         sourceType: 'script',
+      },
+
+      rules: {
+        'import/no-commonjs': 'off',
       },
     },
     {
@@ -245,14 +257,25 @@ module.exports = {
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:react/recommended',
+        'plugin:react-hooks/recommended',
         'plugin:jsx-a11y/recommended',
         'plugin:import/recommended',
         'plugin:import/typescript',
         'plugin:promise/recommended',
+        'plugin:jsdoc/recommended',
+        'plugin:prettier/recommended',
       ],
 
       rules: {
         '@typescript-eslint/no-explicit-any': 'off',
+
+        'jsdoc/require-jsdoc': 'off',
+
+        // Those rules set stricter rules for TS files
+        // to enforce better practices when converting from JS
+        'import/no-default-export': 'warn',
+        'react/prefer-stateless-function': 'warn',
+        'react/function-component-definition': ['error', { namedComponents: 'arrow-function' }],
       },
     },
     {
@@ -263,6 +286,14 @@ module.exports = {
 
       env: {
         jest: true,
+      },
+    },
+    {
+      files: [
+        'streaming/**/*',
+      ],
+      rules: {
+        'import/no-commonjs': 'off',
       },
     },
   ],

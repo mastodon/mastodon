@@ -74,6 +74,7 @@ export const COMPOSE_CHANGE_MEDIA_DESCRIPTION = 'COMPOSE_CHANGE_MEDIA_DESCRIPTIO
 export const COMPOSE_CHANGE_MEDIA_FOCUS       = 'COMPOSE_CHANGE_MEDIA_FOCUS';
 
 export const COMPOSE_SET_STATUS = 'COMPOSE_SET_STATUS';
+export const COMPOSE_FOCUS = 'COMPOSE_FOCUS';
 
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
@@ -124,6 +125,15 @@ export function resetCompose() {
     type: COMPOSE_RESET,
   };
 }
+
+export const focusCompose = (routerHistory, defaultText) => dispatch => {
+  dispatch({
+    type: COMPOSE_FOCUS,
+    defaultText,
+  });
+
+  ensureComposeIsVisible(routerHistory);
+};
 
 export function mentionCompose(account, routerHistory) {
   return (dispatch, getState) => {
@@ -396,16 +406,12 @@ export function changeUploadCompose(id, params) {
     // Editing already-attached media is deferred to editing the post itself.
     // For simplicity's sake, fake an API reply.
     if (media && !media.get('unattached')) {
-      let { description, focus } = params;
-      const data = media.toJS();
-
-      if (description) {
-        data.description = description;
-      }
+      const { focus, ...other } = params;
+      const data = { ...media.toJS(), ...other };
 
       if (focus) {
-        focus = focus.split(',');
-        data.meta = { focus: { x: parseFloat(focus[0]), y: parseFloat(focus[1]) } };
+        const [x, y] = focus.split(',');
+        data.meta = { focus: { x: parseFloat(x), y: parseFloat(y) } };
       }
 
       dispatch(changeUploadComposeSuccess(data, true));
