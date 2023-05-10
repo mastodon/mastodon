@@ -33,11 +33,11 @@ class Bundle extends React.Component {
     forceRender: false,
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.load(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.fetchComponent !== this.props.fetchComponent) {
       this.load(nextProps);
     }
