@@ -1,5 +1,4 @@
----
-'no':
+"no":
   devise:
     confirmations:
       confirmed: E-postaddressen din er blitt bekreftet.
@@ -13,8 +12,6 @@
       locked: Kontoen din er låst.
       not_found_in_database: Ugyldig %{authentication_keys} eller passord.
       pending: Kontoen din er fortsatt under gjennomgang.
-      timeout: Økten din har utløpt. Logg inn igjen for å fortsette.
-      unauthenticated: Du må logge inn eller registrere deg før du kan fortsette.
       unconfirmed: Du må bekrefte e-postadressen din før du kan fortsette.
     mailer:
       confirmation_instructions:
@@ -102,7 +99,6 @@
     unlocks:
       send_instructions: Du vil motta en e-post med instruksjoner for å låse opp kontoen din om noen få minutter. Sjekk spam-mappen din hvis du ikke mottok e-posten.
       send_paranoid_instructions: Hvis kontoen din eksisterer vil du motta en e-post med instruksjoner for å låse opp kontoen din om noen få minutter. Sjekk spam-katalogen din hvis du ikke mottok denne e-posten.
-      unlocked: Kontoen din er nå låst opp. Logg på for å fortsette.
   errors:
     messages:
       already_confirmed: har allerede blitt bekreftet, prøv å logge på istedet
