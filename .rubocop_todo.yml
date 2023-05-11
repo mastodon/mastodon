@@ -22,13 +22,6 @@ Layout/ArgumentAlignment:
     - 'config/initializers/session_store.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: empty_lines, no_empty_lines
-Layout/EmptyLinesAroundBlockBody:
-  Exclude:
-    - 'config/routes.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
 Layout/ExtraSpacing:
   Exclude:
@@ -198,6 +191,12 @@ Lint/Void:
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
   Max: 150
+
+# Configuration parameters: CountComments, Max, CountAsOne, AllowedMethods, AllowedPatterns, inherit_mode.
+# AllowedMethods: refine
+Metrics/BlockLength:
+  Exclude:
+    - 'app/models/concerns/status_safe_reblog_insert.rb'
 
 # Configuration parameters: CountBlocks, Max.
 Metrics/BlockNesting:
@@ -491,24 +490,12 @@ RSpec/InstanceVariable:
     - 'spec/controllers/statuses_cleanup_controller_spec.rb'
     - 'spec/models/concerns/account_finder_concern_spec.rb'
     - 'spec/models/concerns/account_interactions_spec.rb'
-    - 'spec/models/concerns/remotable_spec.rb'
     - 'spec/models/public_feed_spec.rb'
     - 'spec/serializers/activitypub/note_serializer_spec.rb'
     - 'spec/serializers/activitypub/update_poll_serializer_spec.rb'
     - 'spec/services/remove_status_service_spec.rb'
     - 'spec/services/search_service_spec.rb'
     - 'spec/services/unblock_domain_service_spec.rb'
-
-RSpec/LeakyConstantDeclaration:
-  Exclude:
-    - 'spec/controllers/api/base_controller_spec.rb'
-    - 'spec/controllers/application_controller_spec.rb'
-    - 'spec/controllers/concerns/accountable_concern_spec.rb'
-    - 'spec/controllers/concerns/signature_verification_spec.rb'
-    - 'spec/lib/activitypub/adapter_spec.rb'
-    - 'spec/lib/connection_pool/shared_connection_pool_spec.rb'
-    - 'spec/lib/connection_pool/shared_timed_stack_spec.rb'
-    - 'spec/models/concerns/remotable_spec.rb'
 
 RSpec/LetSetup:
   Exclude:
@@ -656,14 +643,6 @@ RSpec/RepeatedExampleGroupBody:
   Exclude:
     - 'spec/controllers/statuses_controller_spec.rb'
 
-RSpec/ScatteredSetup:
-  Exclude:
-    - 'spec/controllers/activitypub/followers_synchronizations_controller_spec.rb'
-    - 'spec/controllers/activitypub/outboxes_controller_spec.rb'
-    - 'spec/controllers/admin/disputes/appeals_controller_spec.rb'
-    - 'spec/controllers/auth/registrations_controller_spec.rb'
-    - 'spec/services/activitypub/process_account_service_spec.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 RSpec/SharedContext:
   Exclude:
@@ -721,7 +700,6 @@ RSpec/VerifiedDoubles:
     - 'spec/controllers/api/web/embeds_controller_spec.rb'
     - 'spec/controllers/auth/sessions_controller_spec.rb'
     - 'spec/controllers/disputes/appeals_controller_spec.rb'
-    - 'spec/controllers/settings/imports_controller_spec.rb'
     - 'spec/helpers/statuses_helper_spec.rb'
     - 'spec/lib/suspicious_sign_in_detector_spec.rb'
     - 'spec/models/account/field_spec.rb'
@@ -960,6 +938,30 @@ Rails/SkipsModelValidations:
     - 'spec/services/update_account_service_spec.rb'
 
 # Configuration parameters: Include.
+# Include: db/**/*.rb
+Rails/ThreeStateBooleanColumn:
+  Exclude:
+    - 'db/migrate/20160325130944_add_admin_to_users.rb'
+    - 'db/migrate/20161123093447_add_sensitive_to_statuses.rb'
+    - 'db/migrate/20170123203248_add_reject_media_to_domain_blocks.rb'
+    - 'db/migrate/20170127165745_add_devise_two_factor_to_users.rb'
+    - 'db/migrate/20170209184350_add_reply_to_statuses.rb'
+    - 'db/migrate/20170330163835_create_imports.rb'
+    - 'db/migrate/20170905165803_add_local_to_statuses.rb'
+    - 'db/migrate/20181203021853_add_discoverable_to_accounts.rb'
+    - 'db/migrate/20190509164208_add_by_moderator_to_tombstone.rb'
+    - 'db/migrate/20190805123746_add_capabilities_to_tags.rb'
+    - 'db/migrate/20191212163405_add_hide_collections_to_accounts.rb'
+    - 'db/migrate/20200309150742_add_forwarded_to_reports.rb'
+    - 'db/migrate/20210609202149_create_login_activities.rb'
+    - 'db/migrate/20210621221010_add_skip_sign_in_token_to_users.rb'
+    - 'db/migrate/20211031031021_create_preview_card_providers.rb'
+    - 'db/migrate/20211115032527_add_trendable_to_preview_cards.rb'
+    - 'db/migrate/20220202200743_add_trendable_to_accounts.rb'
+    - 'db/migrate/20220202200926_add_trendable_to_statuses.rb'
+    - 'db/migrate/20220303000827_add_ordered_media_attachment_ids_to_status_edits.rb'
+
+# Configuration parameters: Include.
 # Include: app/models/**/*.rb
 Rails/UniqueValidationWithoutIndex:
   Exclude:
@@ -1047,7 +1049,6 @@ Style/CombinableLoops:
 # Configuration parameters: AllowedVars.
 Style/FetchEnvVar:
   Exclude:
-    - 'app/helpers/application_helper.rb'
     - 'app/lib/redis_configuration.rb'
     - 'app/lib/translation_service.rb'
     - 'config/environments/development.rb'
@@ -1497,7 +1498,6 @@ Style/GuardClause:
     - 'app/controllers/auth/passwords_controller.rb'
     - 'app/controllers/settings/two_factor_authentication/webauthn_credentials_controller.rb'
     - 'app/lib/activitypub/activity/block.rb'
-    - 'app/lib/connection_pool/shared_connection_pool.rb'
     - 'app/lib/request.rb'
     - 'app/lib/request_pool.rb'
     - 'app/lib/webfinger.rb'
@@ -1556,22 +1556,8 @@ Style/IfUnlessModifier:
 # Configuration parameters: InverseMethods, InverseBlocks.
 Style/InverseMethods:
   Exclude:
-    - 'app/controllers/concerns/signature_verification.rb'
-    - 'app/helpers/jsonld_helper.rb'
-    - 'app/lib/activitypub/activity/create.rb'
-    - 'app/lib/activitypub/activity/move.rb'
-    - 'app/lib/feed_manager.rb'
-    - 'app/lib/link_details_extractor.rb'
-    - 'app/models/concerns/attachmentable.rb'
-    - 'app/models/concerns/remotable.rb'
     - 'app/models/custom_filter.rb'
-    - 'app/models/webhook.rb'
-    - 'app/services/activitypub/process_status_update_service.rb'
-    - 'app/services/fetch_link_card_service.rb'
-    - 'app/services/search_service.rb'
     - 'app/services/update_account_service.rb'
-    - 'app/workers/web/push_notification_worker.rb'
-    - 'lib/paperclip/color_extractor.rb'
     - 'spec/controllers/activitypub/replies_controller_spec.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
@@ -1596,7 +1582,6 @@ Style/MutableConstant:
     - 'app/services/delete_account_service.rb'
     - 'config/initializers/twitter_regex.rb'
     - 'lib/mastodon/migration_warning.rb'
-    - 'spec/controllers/api/base_controller_spec.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 Style/NilLambda:
@@ -1680,7 +1665,6 @@ Style/RedundantRegexpEscape:
 Style/RegexpLiteral:
   Exclude:
     - 'app/lib/link_details_extractor.rb'
-    - 'app/lib/permalink_redirector.rb'
     - 'app/lib/plain_text_formatter.rb'
     - 'app/lib/tag_manager.rb'
     - 'app/lib/text_formatter.rb'
@@ -1802,11 +1786,14 @@ Style/TrailingCommaInHashLiteral:
     - 'config/environments/test.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: WordRegex.
+# Configuration parameters: EnforcedStyle, MinSize, WordRegex.
 # SupportedStyles: percent, brackets
 Style/WordArray:
-  EnforcedStyle: percent
-  MinSize: 6
+  Exclude:
+    - 'app/helpers/languages_helper.rb'
+    - 'config/initializers/cors.rb'
+    - 'spec/controllers/settings/imports_controller_spec.rb'
+    - 'spec/models/form/import_spec.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.

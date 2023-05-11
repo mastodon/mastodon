@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 import classNames from 'classnames';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import ArrowSmallRight from './components/arrow_small_right';
 import { Link } from 'react-router-dom';
 import SwipeableViews from 'react-swipeable-views';
@@ -140,17 +140,18 @@ class Share extends React.PureComponent {
   static propTypes = {
     onBack: PropTypes.func,
     account: ImmutablePropTypes.map,
+    multiColumn: PropTypes.bool,
     intl: PropTypes.object,
   };
 
   render () {
-    const { onBack, account, intl } = this.props;
+    const { onBack, account, multiColumn, intl } = this.props;
 
     const url = (new URL(`/@${account.get('username')}`, document.baseURI)).href;
 
     return (
       <Column>
-        <ColumnBackButton onClick={onBack} />
+        <ColumnBackButton multiColumn={multiColumn} onClick={onBack} />
 
         <div className='scrollable privacy-policy'>
           <div className='column-title'>

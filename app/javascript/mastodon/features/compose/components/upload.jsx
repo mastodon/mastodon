@@ -5,7 +5,7 @@ import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 
 export default class Upload extends ImmutablePureComponent {
 

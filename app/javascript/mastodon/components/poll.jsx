@@ -8,8 +8,8 @@ import Motion from 'mastodon/features/ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import escapeTextContentForBrowser from 'escape-html';
 import emojify from 'mastodon/features/emoji/emoji';
-import RelativeTimestamp from './relative_timestamp';
-import Icon from 'mastodon/components/icon';
+import { RelativeTimestamp } from './relative_timestamp';
+import { Icon }  from 'mastodon/components/icon';
 
 const messages = defineMessages({
   closed: {

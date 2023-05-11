@@ -3,7 +3,7 @@ import { WordmarkLogo, SymbolLogo } from 'mastodon/components/logo';
 import { Link, withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { registrationsOpen, me } from 'mastodon/initial_state';
-import Avatar from 'mastodon/components/avatar';
+import { Avatar } from 'mastodon/components/avatar';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { openModal } from 'mastodon/actions/modal';
@@ -51,13 +51,13 @@ class Header extends React.PureComponent {
 
       if (registrationsOpen) {
         signupButton = (
-          <a href='/auth/sign_up' className='button button-tertiary'>
+          <a href='/auth/sign_up' className='button'>
             <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
           </a>
         );
       } else {
         signupButton = (
-          <button className='button button-tertiary' onClick={openClosedRegistrationsModal}>
+          <button className='button' onClick={openClosedRegistrationsModal}>
             <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
           </button>
         );
@@ -65,8 +65,8 @@ class Header extends React.PureComponent {
 
       content = (
         <>
-          <a href='/auth/sign_in' className='button'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Sign in' /></a>
           {signupButton}
+          <a href='/auth/sign_in' className='button button-tertiary'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' /></a>
         </>
       );
     }

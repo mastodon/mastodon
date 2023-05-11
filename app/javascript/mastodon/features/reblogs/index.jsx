@@ -9,7 +9,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
 import ScrollableList from '../../components/scrollable_list';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import ColumnHeader from '../../components/column_header';
 import { Helmet } from 'react-helmet';
 
@@ -31,13 +31,13 @@ class Reblogs extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     if (!this.props.accountIds) {
       this.props.dispatch(fetchReblogs(this.props.params.statusId));
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
       this.props.dispatch(fetchReblogs(nextProps.params.statusId));
     }

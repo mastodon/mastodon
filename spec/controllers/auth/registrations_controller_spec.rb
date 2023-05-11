@@ -101,6 +101,8 @@ RSpec.describe Auth::RegistrationsController do
 
     before do
       session[:registration_form_time] = 5.seconds.ago
+
+      request.env['devise.mapping'] = Devise.mappings[:user]
     end
 
     around do |example|
@@ -108,8 +110,6 @@ RSpec.describe Auth::RegistrationsController do
         example.run
       end
     end
-
-    before { request.env['devise.mapping'] = Devise.mappings[:user] }
 
     context do
       subject do
