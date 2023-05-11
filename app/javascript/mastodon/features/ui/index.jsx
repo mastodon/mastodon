@@ -40,8 +40,7 @@ import {
   HashtagTimeline,
   Notifications,
   FollowRequests,
-  FavouritedStatuses,
-  BookmarkedStatuses,
+  SavedStatuses,
   FollowedTags,
   ListTimeline,
   Blocks,
@@ -187,9 +186,8 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
           <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
           <WrappedRoute path='/notifications' component={Notifications} content={children} />
-          <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
 
-          <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
+          <WrappedRoute path='/saved' component={SavedStatuses} content={children} />
           <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
           <WrappedRoute path='/start' exact component={Onboarding} content={children} />

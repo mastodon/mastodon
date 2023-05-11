@@ -61,28 +61,28 @@
         "id": "account.requested"
       },
       {
-        "defaultMessage": "Unblock @{name}",
-        "id": "account.unblock"
+        "defaultMessage": "Unblock",
+        "id": "account.unblock_short"
       },
       {
-        "defaultMessage": "Unmute @{name}",
-        "id": "account.unmute"
+        "defaultMessage": "Unmute",
+        "id": "account.unmute_short"
       },
       {
-        "defaultMessage": "Mute notifications from @{name}",
-        "id": "account.mute_notifications"
+        "defaultMessage": "Mute notifications",
+        "id": "account.mute_notifications_short"
       },
       {
-        "defaultMessage": "Unmute notifications from @{name}",
-        "id": "account.unmute_notifications"
+        "defaultMessage": "Unmute notifications",
+        "id": "account.unmute_notifications_short"
       },
       {
-        "defaultMessage": "Mute @{name}",
-        "id": "account.mute"
+        "defaultMessage": "Mute",
+        "id": "account.mute_short"
       },
       {
-        "defaultMessage": "Block @{name}",
-        "id": "account.block"
+        "defaultMessage": "Block",
+        "id": "account.block_short"
       }
     ],
     "path": "app/javascript/mastodon/components/account.json"
@@ -2410,10 +2410,6 @@
         "id": "navigation_bar.direct"
       },
       {
-        "defaultMessage": "Bookmarks",
-        "id": "navigation_bar.bookmarks"
-      },
-      {
         "defaultMessage": "Preferences",
         "id": "navigation_bar.preferences"
       },
@@ -2422,8 +2418,8 @@
         "id": "navigation_bar.follow_requests"
       },
       {
-        "defaultMessage": "Favourites",
-        "id": "navigation_bar.favourites"
+        "defaultMessage": "Saved posts",
+        "id": "navigation_bar.saved"
       },
       {
         "defaultMessage": "Blocked users",
@@ -3232,11 +3228,11 @@
         "id": "onboarding.steps.setup_profile.body"
       },
       {
-        "defaultMessage": "Follow {count, plural, one {one person} other {# people}}",
+        "defaultMessage": "Find at least {count, plural, one {one person} other {# people}} to follow",
         "id": "onboarding.steps.follow_people.title"
       },
       {
-        "defaultMessage": "You curate your own feed. Lets fill it with interesting people.",
+        "defaultMessage": "You curate your own home feed. Lets fill it with interesting people.",
         "id": "onboarding.steps.follow_people.body"
       },
       {
@@ -3647,6 +3643,41 @@
       }
     ],
     "path": "app/javascript/mastodon/features/report/thanks.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "You don't have any bookmarked posts yet. When you bookmark one, it will show up here.",
+        "id": "empty_column.bookmarked_statuses"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/saved_statuses/bookmarks.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "You don't have any favourite posts yet. When you favourite one, it will show up here.",
+        "id": "empty_column.favourited_statuses"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/saved_statuses/favourites.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Saved posts",
+        "id": "saved.title"
+      },
+      {
+        "defaultMessage": "Favourites",
+        "id": "favourites.title"
+      },
+      {
+        "defaultMessage": "Bookmarks",
+        "id": "bookmarks.title"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/saved_statuses/index.json"
   },
   {
     "descriptors": [
@@ -4324,12 +4355,8 @@
         "id": "navigation_bar.direct"
       },
       {
-        "defaultMessage": "Favourites",
-        "id": "navigation_bar.favourites"
-      },
-      {
-        "defaultMessage": "Bookmarks",
-        "id": "navigation_bar.bookmarks"
+        "defaultMessage": "Saved posts",
+        "id": "navigation_bar.saved"
       },
       {
         "defaultMessage": "Lists",

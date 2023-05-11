@@ -19,8 +19,7 @@ const messages = defineMessages({
   local: { id: 'tabs_bar.local_timeline', defaultMessage: 'Local' },
   federated: { id: 'tabs_bar.federated_timeline', defaultMessage: 'Federated' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
-  bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
+  saved: { id: 'navigation_bar.saved', defaultMessage: 'Saved posts' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   followsAndFollowers: { id: 'navigation_bar.follows_and_followers', defaultMessage: 'Follows and followers' },
@@ -81,8 +80,7 @@ class NavigationPanel extends React.Component {
         {signedIn && (
           <React.Fragment>
             <ColumnLink transparent to='/conversations' icon='at' text={intl.formatMessage(messages.direct)} />
-            <ColumnLink transparent to='/bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} />
-            <ColumnLink transparent to='/favourites' icon='star' text={intl.formatMessage(messages.favourites)} />
+            <ColumnLink transparent to='/saved' icon='bookmark' text={intl.formatMessage(messages.saved)} />
             <ColumnLink transparent to='/lists' icon='list-ul' text={intl.formatMessage(messages.lists)} />
 
             <ListPanel />

@@ -15,12 +15,11 @@ Rails.application.routes.draw do
     /conversations
     /lists/(*any)
     /notifications
-    /favourites
-    /bookmarks
     /pinned
     /start
     /directory
     /explore/(*any)
+    /saved/(*any)
     /search
     /publish
     /follow_requests

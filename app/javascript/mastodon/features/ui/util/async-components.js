@@ -78,6 +78,10 @@ export function Favourites () {
   return import(/* webpackChunkName: "features/favourites" */'../../favourites');
 }
 
+export function SavedStatuses () {
+  return import(/* webpackChunkName: "features/saved_statuses" */'../../saved_statuses');
+}
+
 export function FollowRequests () {
   return import(/* webpackChunkName: "features/follow_requests" */'../../follow_requests');
 }
