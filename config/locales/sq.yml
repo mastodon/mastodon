@@ -846,10 +846,14 @@ sq:
       statuses:
         allow: Lejo postim
         allow_account: Lejo autor
+        description_html: Këto janë postime që shërbyesi juaj di se tani po ndahen shpesh me të tjerë dhe po shndërrohen në të pëlqyer. Kjo mund të ndihmojë përdorues tuajt të rinj dhe të rikthyer të gjejnë më tepër persona për ndjekje. S’shfaqet ndonjë postim publikisht, pa miratuar ju autorin dhe autori lejon që llogaria e tij t’u sugjerohet të tjerëve. Mundeni edhe të lejoni ose të hidhni tej postime individuale.
         disallow: Mos lejo postim
         disallow_account: Mos lejo autor
         no_status_selected: S’u ndryshuan postime në modë, ngaqë s’qe përzgjedhur i tillë
         not_discoverable: Autori s’ka zgjedhur të jetë i zbulueshëm
+        shared_by:
+          one: Ndarë ose parapëlqyer një herë
+          other: Ndarë ose parapëlqyer %{friendly_count} herë
         title: Postime në modë
       tags:
         current_score: Vlera aktuale %{score}
@@ -993,6 +997,7 @@ sq:
       confirm: Email ripohimi
       details: Hollësitë tuaja
       review: Shqyrtimi ynë
+      rules: Pranoni rregulla
     providers:
       cas: CAS
       saml: SAML
@@ -1013,6 +1018,9 @@ sq:
       link_not_received: S’morët lidhje?
       new_confirmation_instructions_sent: Pas pak minutash do të merrni një email të ri me lidhjen e ripohimit!
       title: Shihni te email-et tuaj
+    sign_in:
+      preamble_html: Bëni hyrjen me kredencialet tuaja <strong>%{domain}</strong>. Nëse llogaria juaj strehohet në një shërbyes tjetër, s’do të jeni në gjendje të bëni hyrjen këtu.
+      title: Bëni hyrjen te %{domain}
     sign_up:
       manual_review: Regjistrimet te %{domain} kalojnë një shqyrtim dorazi nga moderatorët tanë. Që të na ndihmoni të përfundojmë regjistrimin tuaj, na shkruani pakëz mbi veten dhe pse doni një llogari në %{domain}.
       preamble: Me një llogari në këtë shërbyes Mastodon, do të jeni në gjendje të ndiqni cilindo person tjetër në rrjet, pavarësisht se ku strehohet llogaria e tyre.
@@ -1358,6 +1366,10 @@ sq:
         subject: "%{name} parashtroi një raportim"
       sign_up:
         subject: "%{name} u regjistrua"
+    favourite:
+      body: 'Postimi juaj u bë i parapëlqyer nga %{name}:'
+      subject: "%{name} e bëri të parapëlqyer postimin tuaj"
+      title: I parapëlqyer i ri
     follow:
       body: "Tani ju ndjek %{name}!"
       subject: "Tani ju ndjek %{name}"
@@ -1574,6 +1586,7 @@ sq:
     show_newer: Shfaq më të reja
     show_older: Shfaq më të vjetra
     show_thread: Shfaq rrjedhën
+    sign_in_to_participate: Që të merrni pjesë te biseda, bëni hyrjen
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: I drejtpërdrejtë
@@ -1588,8 +1601,10 @@ sq:
     enabled_hint: Fshin automatikisht postimet tuaja, pasi mbërrijnë një prag të caktuar moshe, hiq rastin kur ka përputhje me një nga përjashtimet më poshtë
     exceptions: Përjashtime
     explanation: Ngaqë fshirja e postimeve është një veprim i shtrenjtë, kjo bëhet ngadalë, gjatë kohës kur shërbyesi s’është i zënë. Për këtë arsye, postimet tuaja mund të fshihen pas ca kohësh pasi të ketë mbërritur pragun e moshës për to.
+    ignore_favs: Shpërfilli të parapëlqyerit
     ignore_reblogs: Shpërfilli përforcimet
     interaction_exceptions: Përjashtime bazuar në ndërveprime
+    interaction_exceptions_explanation: Kini parasysh se s’ka garanci se postimet do të fshihen, nëse bien nën pragun e të parapëlqyerve ose përforcimit, pasi njëri të ketë kaluar një herë tej pragut.
     keep_direct: Mbaj mesazhet e drejtpërdrejtë
     keep_direct_hint: S’fshihet ndonjë nga mesazhet tuaj të drejtpërdrejtë
     keep_media: Mbaj postime me bashkëngjitje media
@@ -1600,6 +1615,8 @@ sq:
     keep_polls_hint: S’fshihet ndonjë nga pyetësorët tuaj
     keep_self_bookmark: Mbaj postime që keni faqeruajtur
     keep_self_bookmark_hint: S’fshihen postimet tuaja, nëse i keni faqeruajtur
+    keep_self_fav: Mbaj postime që keni parapëlqyer
+    keep_self_fav_hint: Nuk fshin postimet tuaja, nëse i keni parapëlqyer
     min_age:
       '1209600': 2 javë
       '15778476': 6 muaj
@@ -1610,6 +1627,8 @@ sq:
       '63113904': 2 vjet
       '7889238': 3 muaj
     min_age_label: Prag moshe
+    min_favs: Mba postime të parapëlqyer të paktën
+    min_favs_hint: S’fshin ndonjë nga postimet tuaja që kanë marrë të paktën këtë numër parapëlqimesh. Lëreni të zbrazët që të fshihen postimet pavarësisht numrit të parapëlqimeve për to
     min_reblogs: Mbaji postimet e përforcuara më shumë se
     min_reblogs_hint: Nuk fshihet ndonjë nga postimet tuaja që kanë marrë më shumë se sa ky numër përforcimesh. Lëreni të zbrazët për të fshirë postimet, pavarësisht të numrit të përforcimeve për to
   stream_entries:
