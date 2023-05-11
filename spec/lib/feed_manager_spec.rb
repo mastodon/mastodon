@@ -160,7 +160,7 @@ RSpec.describe FeedManager do
         alice.follow!(bob)
         list.accounts << bob
         allow(List).to receive(:where).and_return(list)
-        status = Fabricate(:status, text:"I post a lot", account: bob)
+        status = Fabricate(:status, text: 'I post a lot', account: bob)
         expect(FeedManager.instance.filter?(:home, status, alice)).to be true
       end
 
@@ -169,7 +169,7 @@ RSpec.describe FeedManager do
         alice.follow!(jeff)
         list.accounts << jeff
         allow(List).to receive(:where).and_return(list)
-        status = Fabricate(:status, text:"I post a lot", account: bob)
+        status = Fabricate(:status, text: 'I post a lot', account: bob)
         reblog = Fabricate(:status, reblog: status, account: jeff)
         expect(FeedManager.instance.filter?(:home, reblog, alice)).to be true
       end
@@ -178,7 +178,7 @@ RSpec.describe FeedManager do
         list.exclusive = false
         alice.follow!(bob)
         list.accounts << bob
-        status = Fabricate(:status, text:"I post a lot", account: bob)
+        status = Fabricate(:status, text: 'I post a lot', account: bob)
         expect(FeedManager.instance.filter?(:home, status, alice)).to be false
       end
 
@@ -186,7 +186,7 @@ RSpec.describe FeedManager do
         list.exclusive = false
         alice.follow!(jeff)
         list.accounts << jeff
-        status = Fabricate(:status, text:"I post a lot", account: bob)
+        status = Fabricate(:status, text: 'I post a lot', account: bob)
         reblog = Fabricate(:status, reblog: status, account: jeff)
         expect(FeedManager.instance.filter?(:home, reblog, alice)).to be false
       end
