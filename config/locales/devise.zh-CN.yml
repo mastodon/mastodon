@@ -12,6 +12,8 @@ zh-CN:
       locked: 你的账户已被锁定。
       not_found_in_database: '%{authentication_keys}或密码错误。'
       pending: 你的账号仍在审核中。
+      timeout: 你的会话已过期。请重新登录再继续操作。
+      unauthenticated: 继续操作前请注册或者登录。
       unconfirmed: 你必须先确认你的电子邮件地址才能继续。
     mailer:
       confirmation_instructions:
@@ -99,6 +101,7 @@ zh-CN:
     unlocks:
       send_instructions: 几分钟后，你将收到一封解锁账户的邮件。如果没有，请检查你的垃圾邮箱。
       send_paranoid_instructions: 如果你的账号存在，你将会在几分钟内收到一封指引你如何解锁账号的邮件。如果你没有收到这封邮件，请检查你邮箱的垃圾箱。
+      unlocked: 你的账户已成功解锁。登录以继续。
   errors:
     messages:
       already_confirmed: 已经成功确认，请尝试登录
