@@ -12,6 +12,8 @@ ko:
       locked: 계정이 잠겼습니다.
       not_found_in_database: 올바르지 않은 %{authentication_keys} 혹은 암호입니다.
       pending: 이 계정은 아직 검토 중입니다.
+      timeout: 세션이 만료 되었습니다. 다시 로그인 해 주세요.
+      unauthenticated: 계속 하려면 로그인 해야 합니다.
       unconfirmed: 계속 하려면 이메일을 확인 받아야 합니다.
     mailer:
       confirmation_instructions:
@@ -99,6 +101,7 @@ ko:
     unlocks:
       send_instructions: 몇 분 이내로 계정 잠금 해제에 대한 안내 메일이 발송 됩니다. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
       send_paranoid_instructions: 계정이 존재한다면 몇 분 이내로 계정 잠금 해제에 대한 안내 메일이 발송 됩니다. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
+      unlocked: 계정이 성공적으로 잠금 해제 되었습니다. 계속 하려면 로그인 하세요.
   errors:
     messages:
       already_confirmed: 이미 확인 되었습니다, 로그인 하세요
