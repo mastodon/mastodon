@@ -23,10 +23,10 @@ describe Api::V1::Admin::CanonicalEmailBlocksController do
 
   describe 'POST #test' do
     context 'when required email is not provided' do
-      it 'returns http unprocessable entity' do
+      it 'returns http bad request' do
         post :test
 
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(400)
       end
     end
 
