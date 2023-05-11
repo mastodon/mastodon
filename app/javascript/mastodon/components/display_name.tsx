@@ -8,10 +8,11 @@ import { autoPlayGif } from '../initial_state';
 import Skeleton from './skeleton';
 
 interface Props {
-  account: Account;
-  others: List<Account>;
-  localDomain: string;
+  account?: Account;
+  others?: List<Account>;
+  localDomain?: string;
 }
+
 export class DisplayName extends React.PureComponent<Props> {
   handleMouseEnter: React.ReactEventHandler<HTMLSpanElement> = ({
     currentTarget,
@@ -48,7 +49,15 @@ export class DisplayName extends React.PureComponent<Props> {
   render() {
     const { others, localDomain } = this.props;
 
-    let displayName: React.ReactNode, suffix: React.ReactNode, account: Account;
+    let displayName: React.ReactNode,
+      suffix: React.ReactNode,
+      account: Account | undefined;
+
+    if (others && others.size > 0) {
+      account = others.first();
+    } else if (this.props.account) {
+      account = this.props.account;
+    }
 
     if (others && others.size > 1) {
       displayName = others
@@ -66,13 +75,7 @@ export class DisplayName extends React.PureComponent<Props> {
       if (others.size - 2 > 0) {
         suffix = `+${others.size - 2}`;
       }
-    } else if ((others && others.size > 0) || this.props.account) {
-      if (others && others.size > 0) {
-        account = others.first();
-      } else {
-        account = this.props.account;
-      }
-
+    } else if (account) {
       let acct = account.get('acct');
 
       if (acct.indexOf('@') === -1 && localDomain) {
