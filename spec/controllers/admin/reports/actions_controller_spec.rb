@@ -15,7 +15,7 @@ describe Admin::Reports::ActionsController do
     let(:report) { Fabricate(:report) }
 
     before do
-      post :preview, params: { report_id: report.id, action => '' }
+      post :preview, params: { :report_id => report.id, action => '' }
     end
 
     context 'when the action is "suspend"' do
@@ -146,13 +146,13 @@ describe Admin::Reports::ActionsController do
       end
     end
 
-    context 'action as submit button' do
+    context 'with Action as submit button' do
       subject { post :create, params: common_params.merge({ action => '' }) }
 
       it_behaves_like 'all action types'
     end
 
-    context 'action as submit button' do
+    context 'with Action as submit button' do
       subject { post :create, params: common_params.merge({ moderation_action: action }) }
 
       it_behaves_like 'all action types'

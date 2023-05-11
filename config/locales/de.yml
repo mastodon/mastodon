@@ -125,8 +125,8 @@ de:
       removed_header_msg: Titelbild von %{username} wurde erfolgreich entfernt
       resend_confirmation:
         already_confirmed: Dieses Profil wurde bereits bestätigt
-        send: Bestätigungs-E-Mail erneut senden
-        success: Bestätigungs-E-Mail erfolgreich verschickt!
+        send: Bestätigungslink erneut zusenden
+        success: Bestätigungslink erfolgreich gesendet!
       reset: Zurücksetzen
       reset_password: Passwort zurücksetzen
       resubscribe: Erneut abonnieren
@@ -286,7 +286,7 @@ de:
         update_domain_block_html: "%{name} hat die Domain-Sperre für %{target} aktualisiert"
         update_ip_block_html: "%{name} änderte die Regel für die IP-Adresse %{target}"
         update_status_html: "%{name} überarbeitete einen Beitrag von %{target}"
-        update_user_role_html: "%{name} hat die Rolle %{target} geändert"
+        update_user_role_html: "%{name} änderte die Rolle von %{target}"
       deleted_account: gelöschtes Konto
       empty: Protokolle nicht gefunden.
       filter_by_action: Nach Aktion filtern
@@ -461,7 +461,7 @@ de:
         description_html:
           one: Wenn die Zustellung an die Domain <strong>%{count} Tag</strong> lang erfolglos bleibt, werden keine weiteren Zustellversuche unternommen, bis eine Zustellung <em>von</em> der Domain empfangen wird.
           other: Wenn die Zustellung an die Domain an <strong>%{count} unterschiedlichen Tagen</strong> erfolglos bleibt, werden keine weiteren Zustellversuche unternommen, bis eine Zustellung <em>von</em> der Domain empfangen wird.
-        failure_threshold_reached: Fehlschlag-Schwelle am %{date} erreicht.
+        failure_threshold_reached: Grenzwert von Fehlschlägen am %{date} überschritten.
         failures_recorded:
           one: Fehlgeschlagener Versuch an %{count} Tag.
           other: Fehlgeschlagene Versuche an %{count} unterschiedlichen Tagen.
@@ -756,7 +756,7 @@ de:
       registrations_mode:
         modes:
           approved: Registrierung muss genehmigt werden
-          none: Niemand kann sich registrieren
+          none: Niemand darf sich registrieren
           open: Alle können sich registrieren
       title: Server-Einstellungen
     site_uploads:
@@ -809,7 +809,7 @@ de:
         version_comparison: Elasticsearch %{running_version} läuft, aber %{required_version} wird benötigt
       rules_check:
         action: Serverregeln verwalten
-        message_html: Du hast keine Serverregeln definiert.
+        message_html: Du hast keine Serverregeln festgelegt.
       sidekiq_process_check:
         message_html: Kein Sidekiq-Prozess läuft für die %{value} Warteschlange(n). Bitte überprüfe deine Sidekiq-Konfiguration
       upload_check_privacy_error:
@@ -836,8 +836,8 @@ de:
         publishers:
           no_publisher_selected: Keine Herausgeber wurden geändert, da keine ausgewählt wurden
         shared_by_over_week:
-          one: In der letzten Woche von einer Person geteilt
-          other: In der letzten Woche von %{count} Personen geteilt
+          one: In den vergangenen 7 Tagen von einem Profil geteilt
+          other: In den vergangenen 7 Tagen von %{count} Profilen geteilt
         title: Angesagte Links
         usage_comparison: Heute %{today} Mal geteilt, gestern %{yesterday} Mal
       not_allowed_to_trend: Darf nicht trenden
@@ -866,14 +866,14 @@ de:
         dashboard:
           tag_accounts_measure: eindeutige Verwendungen
           tag_languages_dimension: Meistverwendete Sprachen
-          tag_servers_dimension: Top Server
+          tag_servers_dimension: Top-Server
           tag_servers_measure: verschiedene Server
           tag_uses_measure: Gesamtnutzungen
         description_html: Diese Hashtags werden derzeit in vielen Beiträgen verwendet, die dein Server sieht. Dies kann deinen Nutzer*innen helfen, herauszufinden, worüber die Leute im Moment am meisten schreiben. Hashtags werden erst dann öffentlich angezeigt, wenn du sie genehmigst.
         listable: Kann vorgeschlagen werden
         no_tag_selected: Keine Tags wurden geändert, da keine ausgewählt wurden
         not_listable: Wird nicht vorgeschlagen
-        not_trendable: Wird nicht unter Trends angezeigt
+        not_trendable: Wird in den Trends nicht angezeigt
         not_usable: Kann nicht verwendet werden
         peaked_on_and_decaying: In den Trends am %{date}, jetzt absteigend
         title: Angesagte Hashtags
@@ -923,7 +923,7 @@ de:
         silence: das Beschränken des Kontos
         suspend: um deren Konto zu sperren
       body: "%{target} hat etwas gegen eine Moderationsentscheidung von %{action_taken_by} vom %{date}, die %{type} war. Die Person schrieb:"
-      next_steps: Du kannst dem Einspruch zustimmen und die Moderationsentscheidung rückgängig machen oder ignorieren.
+      next_steps: Du kannst dem Einspruch zustimmen, womit die Entscheidung der Moderation rückgängig gemacht wird, oder ihn ignorieren.
       subject: "%{username} hat Einspruch gegen eine Moderationsentscheidung von %{instance} eingelegt"
     new_pending_account:
       body: Die Details von diesem neuem Konto sind unten. Du kannst die Anfrage akzeptieren oder ablehnen.
@@ -988,7 +988,7 @@ de:
       prefix_invited_by_user: "@%{name} lädt dich ein, diesem Server von Mastodon beizutreten!"
       prefix_sign_up: Registriere dich noch heute bei Mastodon!
       suffix: Mit einem Konto kannst du Profilen folgen, neue Beiträge veröffentlichen, Nachrichten mit Personen von jedem Mastodon-Server austauschen und vieles mehr!
-    didnt_get_confirmation: Keine Bestätigungsanweisungen erhalten?
+    didnt_get_confirmation: Keinen Bestätigungslink erhalten?
     dont_have_your_security_key: Du hast keinen Sicherheitsschlüssel?
     forgot_password: Passwort vergessen?
     invalid_reset_password_token: Das Token zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordere ein neues an.
@@ -1001,12 +1001,17 @@ de:
     migrate_account_html: Wenn du dieses Konto auf ein anderes umleiten möchtest, kannst du es <a href="%{path}">hier konfigurieren</a>.
     or_log_in_with: Oder anmelden mit
     privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> gelesen und stimme ihr zu
+    progress:
+      confirm: E-Mail-Adresse bestätigen
+      details: Deine Details
+      review: Unsere Überprüfung
+      rules: Regeln akzeptieren
     providers:
       cas: CAS
       saml: SAML
     register: Registrieren
     registration_closed: "%{instance} akzeptiert keine neuen Mitglieder"
-    resend_confirmation: Bestätigungs-E-Mail erneut versenden
+    resend_confirmation: Bestätigungslink erneut zusenden
     reset_password: Passwort zurücksetzen
     rules:
       accept: Akzeptieren
@@ -1016,13 +1021,16 @@ de:
     security: Sicherheit
     set_new_password: Neues Passwort einrichten
     setup:
-      email_below_hint_html: Wenn die unten stehende E-Mail-Adresse falsch ist, kannst du sie hier ändern und eine neue Bestätigungs-E-Mail erhalten.
-      email_settings_hint_html: Die Bestätigungs-E-Mail wurde an %{email} gesendet. Wenn diese E-Mail-Adresse nicht korrekt ist, kannst du sie in den Einstellungen ändern.
-      title: Konfiguration
+      email_below_hint_html: Überprüfe deinen Spam-Ordner oder lass dir den Bestätigungslink erneut zusenden. Falls die angegebene E-Mail-Adresse falsch ist, kannst du sie auch korrigieren.
+      email_settings_hint_html: Klicke den Bestätigungslink in der E-Mail an, damit wir deine Adresse %{email} verifizieren können. Wir warten hier auf dich.
+      link_not_received: Keinen Bestätigungslink erhalten?
+      new_confirmation_instructions_sent: In wenigen Minuten wirst du eine neue E-Mail mit dem Bestätigungslink erhalten!
+      title: Überprüfe dein E-Mail-Postfach
     sign_in:
       preamble_html: Melde dich mit deinen Zugangsdaten für <strong>%{domain}</strong> an. Solltest du dein Konto auf einem anderen Server registriert haben, ist eine Anmeldung hier nicht möglich.
       title: Bei %{domain} anmelden
     sign_up:
+      manual_review: Registrierungen für den Server %{domain} werden manuell durch unsere Moderator*innen überprüft. Um uns dabei zu unterstützen, schreibe etwas über dich und sage uns, weshalb du ein Konto auf %{domain} anlegen möchtest.
       preamble: Mit einem Konto auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Account gehostet ist.
       title: Okay, lass uns mit %{domain} anfangen.
     status:
@@ -1139,7 +1147,7 @@ de:
     noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   existing_username_validator:
     not_found: kann lokale*n Benutzer*in mit diesem Profilnamen nicht finden
-    not_found_multiple: "%{usernames} können nicht gefunden werden"
+    not_found_multiple: "%{usernames} konnten nicht gefunden werden"
   exports:
     archive_takeout:
       date: Datum
@@ -1210,7 +1218,7 @@ de:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> Element trifft auf ihre Suche zu."
       other: Alle <strong>%{count}</strong> Elemente, die Ihrer Suche entsprechen, werden ausgewählt.
-    changes_saved_msg: Änderungen gespeichert!
+    changes_saved_msg: Änderungen erfolgreich gespeichert!
     copy: Kopieren
     delete: Löschen
     deselect: Alle abwählen
@@ -1277,17 +1285,17 @@ de:
     empty: Kein Authentisierungsverlauf verfügbar
     failed_sign_in_html: Fehler beim Anmeldeversuch mit %{method} von %{ip} (%{browser})
     successful_sign_in_html: Erfolgreiche Anmeldung mit %{method} von %{ip} (%{browser})
-    title: Authentifizierungsverlauf
+    title: Authentisierungsverlauf
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
       not_ready: Dateien, die noch nicht bearbeitet wurden, können nicht angehängt werden. Versuche es gleich noch einmal!
-      too_many: Es können nicht mehr als 4 Dateien angehängt werden
+      too_many: Es können nicht mehr als vier Medien angehängt werden
   migrations:
     acct: umgezogen nach
-    cancel: Umleitung abbrechen
+    cancel: Umleitung beenden
     cancel_explanation: Das Abbrechen der Umleitung wird dein aktuelles Konto erneut aktivieren, aber keine Follower, die auf dieses Konto verschoben wurden, zurückholen.
-    cancelled_msg: Die Umleitung wurde erfolgreich abgebrochen.
+    cancelled_msg: Die Umleitung wurde erfolgreich beendet.
     errors:
       already_moved: ist das gleiche Konto, zu dem du bereits umgezogen bist
       missing_also_known_as: referenziert nicht zurück auf dieses Konto
@@ -1404,7 +1412,7 @@ de:
   reactions:
     errors:
       limit_reached: Limit für verschiedene Reaktionen erreicht
-      unrecognized_emoji: ist kein anerkanntes Emoji
+      unrecognized_emoji: ist ein unbekanntes Emoji
   relationships:
     activity: Kontoaktivität
     confirm_follow_selected_followers: Bist du dir sicher, dass du den ausgewählten Followern folgen möchtest?
@@ -1661,9 +1669,9 @@ de:
         silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen, und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
         suspend: Du kannst dein Konto nicht mehr verwenden und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um eine Sicherung deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
       reason: 'Begründung:'
-      statuses: 'Zitierte Beiträge:'
+      statuses: 'Betroffene Beiträge:'
       subject:
-        delete_statuses: Deine Beiträge auf %{acct} wurden entfernt
+        delete_statuses: Deine Beiträge von %{acct} wurden entfernt
         disable: Dein Konto %{acct} wurde eingefroren
         mark_statuses_as_sensitive: Deine Beiträge von %{acct} wurden mit einer Inhaltswarnung versehen
         none: Warnung für %{acct}
@@ -1685,11 +1693,11 @@ de:
       final_action: Mit erstem Beitrag starten
       final_step: 'Fang jetzt an zu posten! Selbst ohne Follower werden deine öffentlichen Beiträge von anderen gesehen, zum Beispiel in der lokalen Timeline oder über die Hashtags. Möglicherweise möchtest du dich allen mit dem Hashtag #neuhier vorstellen.'
       full_handle: Dein vollständiger Profilname
-      full_handle_hint: Dies ist, was du deinen Freunden sagen kannst, damit sie dich anschreiben oder dir von einem anderen Server folgen können.
+      full_handle_hint: Dies würdest du deinen Freund*innen mitteilen, damit sie dich anschreiben oder dir von einem anderen Server folgen können.
       subject: Willkommen bei Mastodon!
       title: Willkommen an Bord, %{name}!
   users:
-    follow_limit_reached: Du kannst nicht mehr als %{limit} Leuten folgen
+    follow_limit_reached: Du kannst nicht mehr als %{limit} Profilen folgen
     go_to_sso_account_settings: Kontoeinstellungen des Identitätsanbieters aufrufen
     invalid_otp_token: Ungültiger Code der Zwei-Faktor-Authentisierung (2FA)
     otp_lost_help_html: Wenn du beides nicht mehr weißt, melde dich bitte bei uns unter der E-Mail-Adresse %{email}

@@ -26,6 +26,7 @@ const mapDispatchToProps = dispatch => ({
   },
 
   onClose (value) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- this is not a react hook
     dispatch(useLanguage(value));
   },
 

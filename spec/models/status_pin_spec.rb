@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StatusPin, type: :model do
+RSpec.describe StatusPin do
   describe 'validations' do
     it 'allows pins of own statuses' do
       account = Fabricate(:account)

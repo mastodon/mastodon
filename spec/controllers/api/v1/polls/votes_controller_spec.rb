@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Polls::VotesController, type: :controller do
+RSpec.describe Api::V1::Polls::VotesController do
   render_views
 
   let(:user)   { Fabricate(:user) }

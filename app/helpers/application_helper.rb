@@ -32,10 +32,6 @@ module ApplicationHelper
     paths.any? { |path| current_page?(path) } ? 'active' : ''
   end
 
-  def active_link_to(label, path, **options)
-    link_to label, path, options.merge(class: active_nav_class(path))
-  end
-
   def show_landing_strip?
     !user_signed_in? && !single_user_mode?
   end
@@ -118,7 +114,7 @@ module ApplicationHelper
   end
 
   def check_icon
-    content_tag(:svg, tag(:path, 'fill-rule': 'evenodd', 'clip-rule': 'evenodd', d: 'M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'), xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 20 20', fill: 'currentColor')
+    content_tag(:svg, tag.path('fill-rule': 'evenodd', 'clip-rule': 'evenodd', d: 'M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'), xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 20 20', fill: 'currentColor')
   end
 
   def visibility_icon(status)
@@ -147,33 +143,21 @@ module ApplicationHelper
     if prefers_autoplay?
       image_tag(custom_emoji.image.url, class: 'emojione', alt: ":#{custom_emoji.shortcode}:")
     else
-      image_tag(custom_emoji.image.url(:static), class: 'emojione custom-emoji', alt: ":#{custom_emoji.shortcode}", 'data-original' => full_asset_url(custom_emoji.image.url), 'data-static' => full_asset_url(custom_emoji.image.url(:static)))
+      image_tag(custom_emoji.image.url(:static), :class => 'emojione custom-emoji', :alt => ":#{custom_emoji.shortcode}", 'data-original' => full_asset_url(custom_emoji.image.url), 'data-static' => full_asset_url(custom_emoji.image.url(:static)))
     end
   end
 
   def opengraph(property, content)
-    tag(:meta, content: content, property: property)
-  end
-
-  def react_component(name, props = {}, &block)
-    if block.nil?
-      content_tag(:div, nil, data: { component: name.to_s.camelcase, props: Oj.dump(props) })
-    else
-      content_tag(:div, data: { component: name.to_s.camelcase, props: Oj.dump(props) }, &block)
-    end
-  end
-
-  def react_admin_component(name, props = {})
-    content_tag(:div, nil, data: { 'admin-component': name.to_s.camelcase, props: Oj.dump({ locale: I18n.locale }.merge(props)) })
+    tag.meta(content: content, property: property)
   end
 
   def body_classes
-    output = (@body_classes || '').split
+    output = body_class_string.split
     output << "theme-#{current_theme.parameterize}"
     output << 'system-font' if current_account&.user&.setting_system_font_ui
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
     output << 'rtl' if locale_direction == 'rtl'
-    output.reject(&:blank?).join(' ')
+    output.compact_blank.join(' ')
   end
 
   def cdn_host
@@ -185,11 +169,11 @@ module ApplicationHelper
   end
 
   def storage_host
-    "https://#{ENV['S3_ALIAS_HOST'].presence || ENV['S3_CLOUDFRONT_HOST']}"
+    URI::HTTPS.build(host: storage_host_name).to_s
   end
 
   def storage_host?
-    ENV['S3_ALIAS_HOST'].present? || ENV['S3_CLOUDFRONT_HOST'].present?
+    storage_host_name.present?
   end
 
   def quote_wrap(text, line_width: 80, break_sequence: "\n")
@@ -246,5 +230,11 @@ module ApplicationHelper
 
   def prerender_custom_emojis(html, custom_emojis, other_options = {})
     EmojiFormatter.new(html, custom_emojis, other_options.merge(animate: prefers_autoplay?)).to_s
+  end
+
+  private
+
+  def storage_host_name
+    ENV.fetch('S3_ALIAS_HOST', nil) || ENV.fetch('S3_CLOUDFRONT_HOST', nil)
   end
 end

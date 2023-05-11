@@ -67,6 +67,7 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props),
+    nextInReplyToId: props.nextId ? state.getIn(['statuses', props.nextId, 'in_reply_to_id']) : null,
     pictureInPicture: getPictureInPicture(state, props),
   });
 
@@ -181,12 +182,12 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     dispatch(mentionCompose(account, router));
   },
 
-  onOpenMedia (statusId, media, index) {
-    dispatch(openModal('MEDIA', { statusId, media, index }));
+  onOpenMedia (statusId, media, index, lang) {
+    dispatch(openModal('MEDIA', { statusId, media, index, lang }));
   },
 
-  onOpenVideo (statusId, media, options) {
-    dispatch(openModal('VIDEO', { statusId, media, options }));
+  onOpenVideo (statusId, media, lang, options) {
+    dispatch(openModal('VIDEO', { statusId, media, lang, options }));
   },
 
   onBlock (status) {

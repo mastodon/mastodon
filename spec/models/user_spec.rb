@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'devise_two_factor/spec_helpers'
 
-RSpec.describe User, type: :model do
+RSpec.describe User do
   let(:password) { 'abcd1234' }
   let(:account) { Fabricate(:account, username: 'alice') }
 
@@ -65,7 +65,7 @@ RSpec.describe User, type: :model do
       it 'returns an array of users who are confirmed' do
         user_1 = Fabricate(:user, confirmed_at: nil)
         user_2 = Fabricate(:user, confirmed_at: Time.zone.now)
-        expect(User.confirmed).to match_array([user_2])
+        expect(User.confirmed).to contain_exactly(user_2)
       end
     end
 
@@ -74,7 +74,7 @@ RSpec.describe User, type: :model do
         specified = Fabricate(:user, current_sign_in_at: 15.days.ago)
         Fabricate(:user, current_sign_in_at: 6.days.ago)
 
-        expect(User.inactive).to match_array([specified])
+        expect(User.inactive).to contain_exactly(specified)
       end
     end
 
@@ -83,7 +83,7 @@ RSpec.describe User, type: :model do
         specified = Fabricate(:user, email: 'specified@spec')
         Fabricate(:user, email: 'unspecified@spec')
 
-        expect(User.matches_email('specified')).to match_array([specified])
+        expect(User.matches_email('specified')).to contain_exactly(specified)
       end
     end
 
@@ -96,7 +96,7 @@ RSpec.describe User, type: :model do
         Fabricate(:session_activation, user: user2, ip: '2160:8888::24', session_id: '3')
         Fabricate(:session_activation, user: user2, ip: '2160:8888::25', session_id: '4')
 
-        expect(User.matches_ip('2160:2160::/32')).to match_array([user1])
+        expect(User.matches_ip('2160:2160::/32')).to contain_exactly(user1)
       end
     end
   end
@@ -527,6 +527,28 @@ RSpec.describe User, type: :model do
   end
 
   describe '.those_who_can' do
-    pending
+    let!(:moderator_user) { Fabricate(:user, role: UserRole.find_by(name: 'Moderator')) }
+
+    context 'when there are not any user roles' do
+      before { UserRole.destroy_all }
+
+      it 'returns an empty list' do
+        expect(User.those_who_can(:manage_blocks)).to eq([])
+      end
+    end
+
+    context 'when there are not users with the needed role' do
+      it 'returns an empty list' do
+        expect(User.those_who_can(:manage_blocks)).to eq([])
+      end
+    end
+
+    context 'when there are users with roles' do
+      let!(:admin_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+
+      it 'returns the users with the role' do
+        expect(User.those_who_can(:manage_blocks)).to eq([admin_user])
+      end
+    end
   end
 end

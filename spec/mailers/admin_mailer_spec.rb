@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AdminMailer, type: :mailer do
+RSpec.describe AdminMailer do
   describe '.new_report' do
     let(:sender)    { Fabricate(:account, username: 'John') }
     let(:recipient) { Fabricate(:account, username: 'Mike') }
