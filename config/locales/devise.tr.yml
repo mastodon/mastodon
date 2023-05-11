@@ -12,6 +12,8 @@ tr:
       locked: Hesabınız kilitlendi.
       not_found_in_database: Geçersiz %{authentication_keys} ya da parola.
       pending: Hesabınız hala inceleniyor.
+      timeout: Oturum süreniz sona erdi. Lütfen devam etmek için yeniden oturum açınız.
+      unauthenticated: Devam etmeden önce oturum açmanız veya kayıt olmanız gerek.
       unconfirmed: Devam etmeden önce e-posta adresini onaylamanız gerekli.
     mailer:
       confirmation_instructions:
@@ -99,6 +101,7 @@ tr:
     unlocks:
       send_instructions: Hesabınızı birkaç dakika içinde nasıl açacağınıza ilişkin talimatları içeren bir e-posta alacaksınız. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
       send_paranoid_instructions: Hesabınız varsa, birkaç dakika içinde nasıl kilidini açacağınıza ilişkin talimatları içeren bir e-posta alacaksınız. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
+      unlocked: Hesabınızın kilidi başarıyla açıldı. Devam etmek için lütfen oturum açın.
   errors:
     messages:
       already_confirmed: zaten onaylanmış, lütfen tekrar oturum açmayı deneyin
