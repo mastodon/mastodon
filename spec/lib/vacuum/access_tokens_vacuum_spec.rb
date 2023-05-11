@@ -5,9 +5,11 @@ RSpec.describe Vacuum::AccessTokensVacuum do
 
   describe '#perform' do
     let!(:revoked_access_token) { Fabricate(:access_token, revoked_at: 1.minute.ago) }
+    let!(:expired_access_token) { Fabricate(:access_token, expires_in: 59.minutes.to_i, created_at: 1.hour.ago) }
     let!(:active_access_token) { Fabricate(:access_token) }
 
     let!(:revoked_access_grant) { Fabricate(:access_grant, revoked_at: 1.minute.ago) }
+    let!(:expired_access_grant) { Fabricate(:access_grant, expires_in: 59.minutes.to_i, created_at: 1.hour.ago) }
     let!(:active_access_grant) { Fabricate(:access_grant) }
 
     before do
@@ -18,8 +20,16 @@ RSpec.describe Vacuum::AccessTokensVacuum do
       expect { revoked_access_token.reload }.to raise_error ActiveRecord::RecordNotFound
     end
 
+    it 'deletes expired access tokens' do
+      expect { expired_access_token.reload }.to raise_error ActiveRecord::RecordNotFound
+    end
+
     it 'deletes revoked access grants' do
       expect { revoked_access_grant.reload }.to raise_error ActiveRecord::RecordNotFound
+    end
+
+    it 'deletes expired access grants' do
+      expect { expired_access_grant.reload }.to raise_error ActiveRecord::RecordNotFound
     end
 
     it 'does not delete active access tokens' do
