@@ -42,8 +42,6 @@ const renderStatuses = (results, onLoadMore) => appendLoadMore('statuses', resul
   <Status key={`status-${item}`} id={item} />
 )), onLoadMore);
 
-export default @connect(mapStateToProps)
-@injectIntl
 class Results extends React.PureComponent {
 
   static propTypes = {
@@ -107,7 +105,7 @@ class Results extends React.PureComponent {
       <React.Fragment>
         <div className='account__section-headline'>
           <button onClick={this.handleSelectAll} className={type === 'all' && 'active'}><FormattedMessage id='search_results.all' defaultMessage='All' /></button>
-          <button onClick={this.handleSelectAccounts} className={type === 'accounts' && 'active'}><FormattedMessage id='search_results.accounts' defaultMessage='People' /></button>
+          <button onClick={this.handleSelectAccounts} className={type === 'accounts' && 'active'}><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></button>
           <button onClick={this.handleSelectHashtags} className={type === 'hashtags' && 'active'}><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></button>
           <button onClick={this.handleSelectStatuses} className={type === 'statuses' && 'active'}><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></button>
         </div>
@@ -124,3 +122,5 @@ class Results extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(Results));

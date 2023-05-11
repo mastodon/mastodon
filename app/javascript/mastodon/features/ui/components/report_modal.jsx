@@ -9,7 +9,7 @@ import { makeGetAccount } from 'mastodon/selectors';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import { OrderedSet } from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import IconButton from 'mastodon/components/icon_button';
+import { IconButton } from 'mastodon/components/icon_button';
 import Category from 'mastodon/features/report/category';
 import Statuses from 'mastodon/features/report/statuses';
 import Rules from 'mastodon/features/report/rules';
@@ -30,8 +30,6 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-export default @connect(makeMapStateToProps)
-@injectIntl
 class ReportModal extends ImmutablePureComponent {
 
   static propTypes = {
@@ -217,3 +215,5 @@ class ReportModal extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(makeMapStateToProps)(injectIntl(ReportModal));

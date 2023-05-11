@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe NotificationMailer, type: :mailer do
+RSpec.describe NotificationMailer do
   let(:receiver)       { Fabricate(:user) }
   let(:sender)         { Fabricate(:account, username: 'bob') }
   let(:foreign_status) { Fabricate(:status, account: sender, text: 'The body of the foreign status') }
@@ -29,7 +29,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
     it 'renders the headers' do
       expect(mail.subject).to eq('You were mentioned by bob')
-      expect(mail.to).to eq([receiver.email])
+      expect(mail[:to].value).to eq("#{receiver.account.username} <#{receiver.email}>")
     end
 
     it 'renders the body' do
@@ -46,7 +46,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
     it 'renders the headers' do
       expect(mail.subject).to eq('bob is now following you')
-      expect(mail.to).to eq([receiver.email])
+      expect(mail[:to].value).to eq("#{receiver.account.username} <#{receiver.email}>")
     end
 
     it 'renders the body' do
@@ -61,12 +61,12 @@ RSpec.describe NotificationMailer, type: :mailer do
     include_examples 'localized subject', 'notification_mailer.favourite.subject', name: 'bob'
 
     it 'renders the headers' do
-      expect(mail.subject).to eq('bob favourited your post')
-      expect(mail.to).to eq([receiver.email])
+      expect(mail.subject).to eq('bob favorited your post')
+      expect(mail[:to].value).to eq("#{receiver.account.username} <#{receiver.email}>")
     end
 
     it 'renders the body' do
-      expect(mail.body.encoded).to match('Your post was favourited by bob')
+      expect(mail.body.encoded).to match('Your post was favorited by bob')
       expect(mail.body.encoded).to include 'The body of the own status'
     end
   end
@@ -79,7 +79,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
     it 'renders the headers' do
       expect(mail.subject).to eq('bob boosted your post')
-      expect(mail.to).to eq([receiver.email])
+      expect(mail[:to].value).to eq("#{receiver.account.username} <#{receiver.email}>")
     end
 
     it 'renders the body' do
@@ -96,7 +96,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
     it 'renders the headers' do
       expect(mail.subject).to eq('Pending follower: bob')
-      expect(mail.to).to eq([receiver.email])
+      expect(mail[:to].value).to eq("#{receiver.account.username} <#{receiver.email}>")
     end
 
     it 'renders the body' do

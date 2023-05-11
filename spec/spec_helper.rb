@@ -5,8 +5,10 @@ GC.disable
 if ENV['DISABLE_SIMPLECOV'] != 'true'
   require 'simplecov'
   SimpleCov.start 'rails' do
-    add_group 'Services', 'app/services'
+    add_group 'Policies', 'app/policies'
     add_group 'Presenters', 'app/presenters'
+    add_group 'Serializers', 'app/serializers'
+    add_group 'Services', 'app/services'
     add_group 'Validators', 'app/validators'
   end
 end
@@ -36,7 +38,7 @@ RSpec.configure do |config|
 
   config.after :suite do
     gc_counter = 0
-    FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
+    FileUtils.rm_rf(Dir[Rails.root.join('spec', 'test_files')])
   end
 
   config.after :each do

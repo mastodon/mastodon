@@ -9,7 +9,6 @@ const mapStateToProps = state => ({
   message: state.getIn(['server', 'server', 'registrations', 'message']),
 });
 
-export default @connect(mapStateToProps)
 class ClosedRegistrationsModal extends ImmutablePureComponent {
 
   componentDidMount () {
@@ -73,3 +72,5 @@ class ClosedRegistrationsModal extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(ClosedRegistrationsModal);

@@ -32,8 +32,6 @@ const mapStateToProps = state => ({
   lists: getOrderedLists(state),
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class Lists extends ImmutablePureComponent {
 
   static propTypes = {
@@ -44,7 +42,7 @@ class Lists extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.props.dispatch(fetchLists());
   }
 
@@ -87,3 +85,5 @@ class Lists extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(Lists));

@@ -24,7 +24,7 @@ class ActivityPub::ProcessAccountService < BaseService
     # The key does not need to be unguessable, it just needs to be somewhat unique
     @options[:request_id] ||= "#{Time.now.utc.to_i}-#{username}@#{domain}"
 
-    with_lock("process_account:#{@uri}") do
+    with_redis_lock("process_account:#{@uri}") do
       @account            = Account.remote.find_by(uri: @uri) if @options[:only_key]
       @account          ||= Account.find_remote(@username, @domain)
       @old_public_key     = @account&.public_key

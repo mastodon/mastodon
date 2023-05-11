@@ -18,7 +18,7 @@ RSpec.describe PollValidator, type: :validator do
       expect(errors).to_not have_received(:add)
     end
 
-    context 'expires just 5 min ago' do
+    context 'when expires is just 5 min ago' do
       let(:expires_at) { 5.minutes.from_now }
 
       it 'not calls errors add' do

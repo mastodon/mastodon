@@ -5,18 +5,17 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { changeUploadCompose, uploadThumbnail, onChangeMediaDescription, onChangeMediaFocus } from '../../../actions/compose';
-import { getPointerPosition } from '../../video';
+import Video, { getPointerPosition } from '../../video';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
-import IconButton from 'mastodon/components/icon_button';
+import { IconButton } from 'mastodon/components/icon_button';
 import Button from 'mastodon/components/button';
-import Video from 'mastodon/features/video';
 import Audio from 'mastodon/features/audio';
 import Textarea from 'react-textarea-autosize';
 import UploadProgress from 'mastodon/features/compose/components/upload_progress';
 import CharacterCounter from 'mastodon/features/compose/components/character_counter';
 import { length } from 'stringz';
 import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
-import GIFV from 'mastodon/components/gifv';
+import { GIFV } from 'mastodon/components/gifv';
 import { me } from 'mastodon/initial_state';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
@@ -100,8 +99,6 @@ class ImageLoader extends React.PureComponent {
 
 }
 
-export default @connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true })
-@(component => injectIntl(component, { withRef: true }))
 class FocalPointModal extends ImmutablePureComponent {
 
   static propTypes = {
@@ -385,7 +382,7 @@ class FocalPointModal extends ImmutablePureComponent {
             {focals && (
               <div className={classNames('focal-point', { dragging })} ref={this.setRef} onMouseDown={this.handleMouseDown} onTouchStart={this.handleTouchStart}>
                 {media.get('type') === 'image' && <ImageLoader src={media.get('url')} width={width} height={height} alt='' />}
-                {media.get('type') === 'gifv' && <GIFV src={media.get('url')} width={width} height={height} />}
+                {media.get('type') === 'gifv' && <GIFV src={media.get('url')} key={media.get('url')} width={width} height={height} />}
 
                 <div className='focal-point__preview'>
                   <strong><FormattedMessage id='upload_modal.preview_label' defaultMessage='Preview ({ratio})' values={{ ratio: '16:9' }} /></strong>
@@ -428,3 +425,7 @@ class FocalPointModal extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  forwardRef: true,
+})(injectIntl(FocalPointModal, { withRef: true }));

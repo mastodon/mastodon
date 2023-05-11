@@ -7,7 +7,7 @@ import ShortNumber from 'mastodon/components/short_number';
 import Skeleton from 'mastodon/components/skeleton';
 import Account from 'mastodon/containers/account_container';
 import { domain } from 'mastodon/initial_state';
-import Image from 'mastodon/components/image';
+import { ServerHeroImage } from 'mastodon/components/server_hero_image';
 import { Link } from 'react-router-dom';
 
 const messages = defineMessages({
@@ -18,8 +18,6 @@ const mapStateToProps = state => ({
   server: state.getIn(['server', 'server']),
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class ServerBanner extends React.PureComponent {
 
   static propTypes = {
@@ -43,7 +41,7 @@ class ServerBanner extends React.PureComponent {
           <FormattedMessage id='server_banner.introduction' defaultMessage='{domain} is part of the decentralized social network powered by {mastodon}.' values={{ domain: <strong>{domain}</strong>, mastodon: <a href='https://joinmastodon.org' target='_blank'>Mastodon</a> }} />
         </div>
 
-        <Image blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} className='server-banner__hero' />
+        <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} className='server-banner__hero' />
 
         <div className='server-banner__description'>
           {isLoading ? (
@@ -61,7 +59,7 @@ class ServerBanner extends React.PureComponent {
           <div className='server-banner__meta__column'>
             <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
 
-            <Account id={server.getIn(['contact', 'account', 'id'])} size={36} />
+            <Account id={server.getIn(['contact', 'account', 'id'])} size={36} minimal />
           </div>
 
           <div className='server-banner__meta__column'>
@@ -91,3 +89,5 @@ class ServerBanner extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(ServerBanner));

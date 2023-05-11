@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::BookmarksController, type: :controller do
+RSpec.describe Api::V1::BookmarksController do
   render_views
 
   let(:user)  { Fabricate(:user) }
@@ -57,7 +57,7 @@ RSpec.describe Api::V1::BookmarksController, type: :controller do
 
           get :index
 
-          expect(assigns(:statuses)).to match_array [bookmarked_by_user.status]
+          expect(assigns(:statuses)).to contain_exactly(bookmarked_by_user.status)
         end
 
         it 'adds pagination headers if necessary' do

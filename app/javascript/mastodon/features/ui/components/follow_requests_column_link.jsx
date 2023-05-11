@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import { connect } from 'react-redux';
 import ColumnLink from 'mastodon/features/ui/components/column_link';
-import IconWithBadge from 'mastodon/components/icon_with_badge';
+import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { List as ImmutableList } from 'immutable';
 import { injectIntl, defineMessages } from 'react-intl';
 
@@ -15,8 +15,6 @@ const mapStateToProps = state => ({
   count: state.getIn(['user_lists', 'follow_requests', 'items'], ImmutableList()).size,
 });
 
-export default @injectIntl
-@connect(mapStateToProps)
 class FollowRequestsColumnLink extends React.Component {
 
   static propTypes = {
@@ -49,3 +47,5 @@ class FollowRequestsColumnLink extends React.Component {
   }
 
 }
+
+export default injectIntl(connect(mapStateToProps)(FollowRequestsColumnLink));

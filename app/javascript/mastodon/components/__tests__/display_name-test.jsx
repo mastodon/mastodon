@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { fromJS }  from 'immutable';
-import DisplayName from '../display_name';
+import { DisplayName } from '../display_name';
 
 describe('<DisplayName />', () => {
   it('renders display name + account name', () => {

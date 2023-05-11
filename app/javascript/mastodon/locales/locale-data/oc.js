@@ -2,7 +2,7 @@
 /*eslint no-nested-ternary: "off"*/
 /*eslint quotes: "off"*/
 
-export default [{
+const rules = [{
   locale: "oc",
   pluralRuleFunction: function (e, a) {
     return a ? 1 == e ? "one" : "other" : e >= 0 && e < 2 ? "one" : "other";
@@ -106,3 +106,5 @@ export default [{
     },
   },
 }];
+
+export default rules;

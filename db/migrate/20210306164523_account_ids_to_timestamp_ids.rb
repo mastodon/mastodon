@@ -1,4 +1,4 @@
-class AccountIdsToTimestampIds < ActiveRecord::Migration[5.1]
+class AccountIdsToTimestampIds < ActiveRecord::Migration[5.2]
   def up
     # Set up the accounts.id column to use our timestamp-based IDs.
     safety_assured do

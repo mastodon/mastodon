@@ -4,4 +4,4 @@
 
 <%= t 'user_mailer.backup_ready.explanation' %>
 
-=> <%= full_asset_url(@backup.dump.url) %>
+=> <%= download_backup_url(@backup) %>

@@ -13,11 +13,13 @@ class Instance < ApplicationRecord
 
   attr_accessor :failure_days
 
-  has_many :accounts, foreign_key: :domain, primary_key: :domain
+  has_many :accounts, foreign_key: :domain, primary_key: :domain, inverse_of: false
 
-  belongs_to :domain_block, foreign_key: :domain, primary_key: :domain
-  belongs_to :domain_allow, foreign_key: :domain, primary_key: :domain
-  belongs_to :unavailable_domain, foreign_key: :domain, primary_key: :domain # skipcq: RB-RL1031
+  with_options foreign_key: :domain, primary_key: :domain, inverse_of: false do
+    belongs_to :domain_block
+    belongs_to :domain_allow
+    belongs_to :unavailable_domain # skipcq: RB-RL1031
+  end
 
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
 

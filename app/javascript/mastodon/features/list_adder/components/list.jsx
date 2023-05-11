@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import IconButton from '../../../components/icon_button';
+import { IconButton }  from '../../../components/icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 import { removeFromListAdder, addToListAdder } from '../../../actions/lists';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 
 const messages = defineMessages({
   remove: { id: 'lists.account.remove', defaultMessage: 'Remove from list' },
@@ -23,8 +23,6 @@ const mapDispatchToProps = (dispatch, { listId }) => ({
   onAdd: () => dispatch(addToListAdder(listId)),
 });
 
-export default @connect(MapStateToProps, mapDispatchToProps)
-@injectIntl
 class List extends ImmutablePureComponent {
 
   static propTypes = {
@@ -67,3 +65,5 @@ class List extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(MapStateToProps, mapDispatchToProps)(injectIntl(List));

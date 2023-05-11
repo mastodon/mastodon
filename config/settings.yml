@@ -12,48 +12,14 @@ defaults: &defaults
   registrations_mode: 'open'
   profile_directory: true
   closed_registrations_message: ''
-  open_deletion: true
-  min_invite_role: 'admin'
   timeline_preview: true
   show_staff_badge: true
-  default_sensitive: false
-  unfollow_modal: false
-  boost_modal: false
-  delete_modal: true
-  auto_play_gif: false
-  display_media: 'default'
-  expand_spoilers: false
   preview_sensitive_media: false
-  reduce_motion: false
-  disable_swiping: false
-  show_application: true
-  system_font_ui: false
   noindex: false
   theme: 'default'
-  aggregate_reblogs: true
-  advanced_layout: false
-  use_blurhash: true
-  use_pending_items: false
   trends: true
   trends_as_landing_page: true
   trendable_by_default: false
-  crop_images: true
-  notification_emails:
-    follow: true
-    reblog: false
-    favourite: false
-    mention: true
-    follow_request: true
-    digest: true
-    report: true
-    pending_account: true
-    trending_tag: true
-    appeal: true
-  always_send_emails: false
-  interactions:
-    must_be_follower: false
-    must_be_following: false
-    must_be_following_dm: false
   reserved_usernames:
     - admin
     - support

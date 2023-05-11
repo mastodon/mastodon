@@ -43,8 +43,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default @connect(mapStateToProps, mapDispatchToProps)
-@injectIntl
 class MuteModal extends React.PureComponent {
 
   static propTypes = {
@@ -138,3 +136,5 @@ class MuteModal extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(MuteModal));

@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Link } from 'react-router-dom';
-import Avatar from '../../../components/avatar';
-import DisplayName from '../../../components/display_name';
-import IconButton from '../../../components/icon_button';
+import { Avatar } from '../../../components/avatar';
+import { DisplayName } from '../../../components/display_name';
+import { IconButton } from '../../../components/icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
@@ -13,7 +13,6 @@ const messages = defineMessages({
   reject: { id: 'follow_request.reject', defaultMessage: 'Reject' },
 });
 
-export default @injectIntl
 class AccountAuthorize extends ImmutablePureComponent {
 
   static propTypes = {
@@ -47,3 +46,5 @@ class AccountAuthorize extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(AccountAuthorize);

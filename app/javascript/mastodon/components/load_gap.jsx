@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 
 const messages = defineMessages({
   load_more: { id: 'status.load_more', defaultMessage: 'Load more' },
 });
 
-export default @injectIntl
 class LoadGap extends React.PureComponent {
 
   static propTypes = {
@@ -32,3 +31,5 @@ class LoadGap extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(LoadGap);

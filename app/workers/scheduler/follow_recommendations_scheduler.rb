@@ -20,7 +20,7 @@ class Scheduler::FollowRecommendationsScheduler
 
     Trends.available_locales.each do |locale|
       recommendations = if AccountSummary.safe.filtered.localized(locale).exists? # We can skip the work if no accounts with that language exist
-                          FollowRecommendation.localized(locale).order(rank: :desc).limit(SET_SIZE).map { |recommendation| [recommendation.account_id, recommendation.rank] }
+                          FollowRecommendation.localized(locale).order(rank: :desc).limit(SET_SIZE).map { |recommendation| [recommendation.rank, recommendation.account_id] }
                         else
                           []
                         end
@@ -33,14 +33,14 @@ class Scheduler::FollowRecommendationsScheduler
 
         # Language-specific results should be above language-agnostic ones,
         # otherwise language-agnostic ones will always overshadow them
-        recommendations.map! { |(account_id, rank)| [account_id, rank + max_fallback_rank] }
+        recommendations.map! { |(rank, account_id)| [rank + max_fallback_rank, account_id] }
 
         added = 0
 
         fallback_recommendations.each do |recommendation|
-          next if recommendations.any? { |(account_id, _)| account_id == recommendation.account_id }
+          next if recommendations.any? { |(_, account_id)| account_id == recommendation.account_id }
 
-          recommendations << [recommendation.account_id, recommendation.rank]
+          recommendations << [recommendation.rank, recommendation.account_id]
           added += 1
 
           break if added >= missing
@@ -49,10 +49,7 @@ class Scheduler::FollowRecommendationsScheduler
 
       redis.multi do |multi|
         multi.del(key(locale))
-
-        recommendations.each do |(account_id, rank)|
-          multi.zadd(key(locale), rank, account_id)
-        end
+        multi.zadd(key(locale), recommendations)
       end
     end
   end

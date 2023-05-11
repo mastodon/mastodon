@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { changeListEditorTitle, submitListEditor } from '../../../actions/lists';
-import IconButton from '../../../components/icon_button';
+import { IconButton } from '../../../components/icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
@@ -19,8 +19,6 @@ const mapDispatchToProps = dispatch => ({
   onSubmit: () => dispatch(submitListEditor(false)),
 });
 
-export default @connect(mapStateToProps, mapDispatchToProps)
-@injectIntl
 class ListForm extends React.PureComponent {
 
   static propTypes = {
@@ -68,3 +66,5 @@ class ListForm extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(ListForm));

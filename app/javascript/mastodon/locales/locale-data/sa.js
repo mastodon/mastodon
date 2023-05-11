@@ -2,9 +2,8 @@
 /*eslint no-nested-ternary: "off"*/
 /*eslint quotes: "off"*/
 /*eslint comma-dangle: "off"*/
-/*eslint semi: "off"*/
 
-export default [
+const rules = [
   {
     locale: "sa",
     fields: {
@@ -94,4 +93,6 @@ export default [
       }
     }
   }
-]
+];
+
+export default rules;

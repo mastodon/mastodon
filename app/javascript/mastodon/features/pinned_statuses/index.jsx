@@ -19,8 +19,6 @@ const mapStateToProps = state => ({
   hasMore: !!state.getIn(['status_lists', 'pins', 'next']),
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class PinnedStatuses extends ImmutablePureComponent {
 
   static propTypes = {
@@ -31,7 +29,7 @@ class PinnedStatuses extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.props.dispatch(fetchPinnedStatuses());
   }
 
@@ -63,3 +61,5 @@ class PinnedStatuses extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(PinnedStatuses));

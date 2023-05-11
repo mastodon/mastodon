@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { defineMessages, injectIntl } from 'react-intl';
 import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';
 import classNames from 'classnames';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 
 const messages = defineMessages({
   search: { id: 'lists.search', defaultMessage: 'Search among people you follow' },
@@ -20,8 +20,6 @@ const mapDispatchToProps = dispatch => ({
   onChange: value => dispatch(changeListSuggestions(value)),
 });
 
-export default @connect(mapStateToProps, mapDispatchToProps)
-@injectIntl
 class Search extends React.PureComponent {
 
   static propTypes = {
@@ -65,7 +63,7 @@ class Search extends React.PureComponent {
           />
         </label>
 
-        <div role='button' tabIndex='0' className='search__icon' onClick={this.handleClear}>
+        <div role='button' tabIndex={0} className='search__icon' onClick={this.handleClear}>
           <Icon id='search' className={classNames({ active: !hasValue })} />
           <Icon id='times-circle' aria-label={intl.formatMessage(messages.search)} className={classNames({ active: hasValue })} />
         </div>
@@ -74,3 +72,5 @@ class Search extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Search));

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import DropdownMenu from './containers/dropdown_menu_container';
 import { connect } from 'react-redux';
 import { openModal } from 'mastodon/actions/modal';
-import RelativeTimestamp from 'mastodon/components/relative_timestamp';
+import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import InlineAccount from 'mastodon/components/inline_account';
 
 const mapDispatchToProps = (dispatch, { statusId }) => ({
@@ -16,8 +16,6 @@ const mapDispatchToProps = (dispatch, { statusId }) => ({
 
 });
 
-export default @connect(null, mapDispatchToProps)
-@injectIntl
 class EditedTimestamp extends React.PureComponent {
 
   static propTypes = {
@@ -34,7 +32,7 @@ class EditedTimestamp extends React.PureComponent {
 
   renderHeader = items => {
     return (
-      <FormattedMessage id='status.edited_x_times' defaultMessage='Edited {count, plural, one {{count} time} other {{count} times}}' values={{ count: items.size - 1 }} />
+      <FormattedMessage id='status.edited_x_times' defaultMessage='Edited {count, plural, one {# time} other {# times}}' values={{ count: items.size - 1 }} />
     );
   };
 
@@ -68,3 +66,5 @@ class EditedTimestamp extends React.PureComponent {
   }
 
 }
+
+export default connect(null, mapDispatchToProps)(injectIntl(EditedTimestamp));
