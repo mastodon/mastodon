@@ -10,7 +10,6 @@ import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon } from 'mastodon/components/icon';
 import { currentMedia, setCurrentMedia } from '../../reducers/media_attachments';
 
-
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
   pause: { id: 'video.pause', defaultMessage: 'Pause' },
