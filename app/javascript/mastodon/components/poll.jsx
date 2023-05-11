@@ -49,6 +49,7 @@ class Poll extends ImmutablePureComponent {
   state = {
     selected: {},
     expired: null,
+    seeResults: false,
   };
 
   static getDerivedStateFromProps (props, state) {
@@ -125,6 +126,14 @@ class Poll extends ImmutablePureComponent {
     this.props.refresh();
   };
 
+  handleRevealResults = () => {
+    if (this.props.disabled) {
+      return;
+    }
+
+    this.setState({ seeResults: !this.state.seeResults });
+  };
+
   renderOption (option, optionIndex, showResults) {
     const { poll, lang, disabled, intl } = this.props;
     const pollVotesCount  = poll.get('voters_count') || poll.get('votes_count');
@@ -199,13 +208,14 @@ class Poll extends ImmutablePureComponent {
   render () {
     const { poll, intl } = this.props;
     const { expired } = this.state;
+    const { seeResults } = this.state;
 
     if (!poll) {
       return null;
     }
 
     const timeRemaining = expired ? intl.formatMessage(messages.closed) : <RelativeTimestamp timestamp={poll.get('expires_at')} futureDate />;
-    const showResults   = poll.get('voted') || expired;
+    const showResults   = poll.get('voted') || expired || seeResults;
     const disabled      = this.props.disabled || Object.entries(this.state.selected).every(item => !item);
 
     let votesCount = null;
@@ -226,6 +236,7 @@ class Poll extends ImmutablePureComponent {
           {!showResults && <button className='button button-secondary' disabled={disabled || !this.context.identity.signedIn} onClick={this.handleVote}><FormattedMessage id='poll.vote' defaultMessage='Vote' /></button>}
           {showResults && !this.props.disabled && <span><button className='poll__link' onClick={this.handleRefresh}><FormattedMessage id='poll.refresh' defaultMessage='Refresh' /></button> · </span>}
           {votesCount}
+          {!showResults && <span> (<button className='poll__link' onClick={this.handleRevealResults}><FormattedMessage id='poll.reveal_votes' defaultMessage='See results without voting' /></button>) </span>}
           {poll.get('expires_at') && <span> · {timeRemaining}</span>}
         </div>
       </div>
