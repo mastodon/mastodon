@@ -354,7 +354,7 @@ class FeedManager
   def filter_from_home?(status, receiver_id, crutches, timeline_type = :home)
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
-    
+
     unless timeline_type == :list
       # find all exclusive lists
       lists = List.where(account_id: receiver_id, exclusive: true)
