@@ -6,9 +6,10 @@ import { throttle } from 'lodash';
 import classNames from 'classnames';
 import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
 import { displayMedia, useBlurhash } from '../../initial_state';
-import Icon from 'mastodon/components/icon';
-import Blurhash from 'mastodon/components/blurhash';
+import { Blurhash } from 'mastodon/components/blurhash';
+import { Icon } from 'mastodon/components/icon';
 import { currentMedia, setCurrentMedia } from '../../reducers/media_attachments';
+
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
