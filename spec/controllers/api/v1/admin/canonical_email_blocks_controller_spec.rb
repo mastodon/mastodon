@@ -282,4 +282,40 @@ describe Api::V1::Admin::CanonicalEmailBlocksController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    let!(:canonical_email_block) { Fabricate(:canonical_email_block) }
+    let(:params) { { id: canonical_email_block.id } }
+
+    context 'with wrong scope' do
+      before do
+        delete :destroy, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'read:statuses'
+    end
+
+    context 'with wrong role' do
+      before do
+        delete :destroy, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for wrong role', 'Moderator'
+    end
+
+    it 'returns http success' do
+      delete :destroy, params: params
+
+      expect(response).to have_http_status(200)
+    end
+
+    context 'when canonical email block is not found' do
+      it 'returns http not found' do
+        delete :destroy, params: { id: 0 }
+
+        expect(response).to have_http_status(404)
+      end
+    end
+  end
 end
