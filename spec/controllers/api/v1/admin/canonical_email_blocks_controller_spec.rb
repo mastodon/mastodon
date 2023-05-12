@@ -127,6 +127,23 @@ describe Api::V1::Admin::CanonicalEmailBlocksController do
   end
 
   describe 'POST #test' do
+    context 'with wrong scope' do
+      before do
+        post :test
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'read:statuses'
+    end
+
+    context 'with wrong role' do
+      before do
+        post :test, params: { email: 'whatever@email.com' }
+      end
+
+      it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for wrong role', 'Moderator'
+    end
+
     context 'when required email is not provided' do
       it 'returns http bad request' do
         post :test
