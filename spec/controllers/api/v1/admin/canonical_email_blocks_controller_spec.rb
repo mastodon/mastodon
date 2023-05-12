@@ -5,19 +5,77 @@ require 'rails_helper'
 describe Api::V1::Admin::CanonicalEmailBlocksController do
   render_views
 
-  let(:user)    { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'admin:read') }
+  let(:role)    { UserRole.find_by(name: 'Admin') }
+  let(:user)    { Fabricate(:user, role: role) }
+  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:account) { Fabricate(:account) }
+  let(:scopes)  { 'admin:read:canonical_email_blocks admin:write:canonical_email_blocks' }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
+  shared_examples 'forbidden for wrong scope' do |wrong_scope|
+    let(:scopes) { wrong_scope }
+
+    it 'returns http forbidden' do
+      expect(response).to have_http_status(403)
+    end
+  end
+
+  shared_examples 'forbidden for wrong role' do |wrong_role|
+    let(:role) { UserRole.find_by(name: wrong_role) }
+
+    it 'returns http forbidden' do
+      expect(response).to have_http_status(403)
+    end
+  end
+
   describe 'GET #index' do
+    context 'with wrong scope' do
+      before do
+        get :index
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'read:statuses'
+    end
+
+    context 'with wrong role' do
+      before do
+        get :index
+      end
+
+      it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for wrong role', 'Moderator'
+    end
+
     it 'returns http success' do
-      get :index, params: { account_id: account.id, limit: 2 }
+      get :index
 
       expect(response).to have_http_status(200)
+    end
+
+    context 'when there is no canonical email block' do
+      it 'returns an empty list' do
+        get :index
+
+        body = body_as_json
+
+        expect(body).to be_empty
+      end
+    end
+
+    context 'when there are canonical email blocks' do
+      let!(:canonical_email_blocks) { Fabricate.times(5, :canonical_email_block) }
+      let(:expected_email_hashes) { canonical_email_blocks.pluck(:canonical_email_hash) }
+
+      it 'returns the correct canonical email hashes' do
+        get :index
+
+        json = body_as_json
+
+        expect(json.pluck(:canonical_email_hash)).to match_array(expected_email_hashes)
+      end
     end
   end
 
