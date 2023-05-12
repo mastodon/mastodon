@@ -79,6 +79,53 @@ describe Api::V1::Admin::CanonicalEmailBlocksController do
     end
   end
 
+  describe 'GET #show' do
+    let!(:canonical_email_block) { Fabricate(:canonical_email_block) }
+    let(:params) { { id: canonical_email_block.id } }
+
+    context 'with wrong scope' do
+      before do
+        get :show, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'read:statuses'
+    end
+
+    context 'with wrong role' do
+      before do
+        get :show, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for wrong role', 'Moderator'
+    end
+
+    context 'when canonical email block exists' do
+      it 'returns http success' do
+        get :show, params: params
+
+        expect(response).to have_http_status(200)
+      end
+
+      it 'returns canonical email block data correctly' do
+        get :show, params: params
+
+        json = body_as_json
+
+        expect(json[:id]).to eq(canonical_email_block.id.to_s)
+        expect(json[:canonical_email_hash]).to eq(canonical_email_block.canonical_email_hash)
+      end
+    end
+
+    context 'when canonical block does not exist' do
+      it 'returns http not found' do
+        get :show, params: { id: 0 }
+
+        expect(response).to have_http_status(404)
+      end
+    end
+  end
+
   describe 'POST #test' do
     context 'when required email is not provided' do
       it 'returns http bad request' do
