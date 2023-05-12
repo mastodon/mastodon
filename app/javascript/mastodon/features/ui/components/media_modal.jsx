@@ -3,7 +3,6 @@ import ReactSwipeableViews from 'react-swipeable-views';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Video from 'mastodon/features/video';
-import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { defineMessages, injectIntl } from 'react-intl';
 import { IconButton } from 'mastodon/components/icon_button';
@@ -21,15 +20,12 @@ const messages = defineMessages({
   next: { id: 'lightbox.next', defaultMessage: 'Next' },
 });
 
-const mapStateToProps = (state, { statusId }) => ({
-  status: state.getIn(['statuses', statusId]),
-});
-
 class MediaModal extends ImmutablePureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.list.isRequired,
     statusId: PropTypes.string,
+    lang: PropTypes.string,
     index: PropTypes.number.isRequired,
     onClose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -37,7 +33,6 @@ class MediaModal extends ImmutablePureComponent {
     currentTime: PropTypes.number,
     autoPlay: PropTypes.bool,
     volume: PropTypes.number,
-    status: ImmutablePropTypes.map.isRequired,
   };
 
   state = {
@@ -134,15 +129,13 @@ class MediaModal extends ImmutablePureComponent {
   };
 
   render () {
-    const { media, status, intl, onClose } = this.props;
+    const { media, statusId, lang, intl, onClose } = this.props;
     const { navigationHidden } = this.state;
 
     const index = this.getIndex();
 
     const leftNav  = media.size > 1 && <button tabIndex={0} className='media-modal__nav media-modal__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><Icon id='chevron-left' fixedWidth /></button>;
     const rightNav = media.size > 1 && <button tabIndex={0} className='media-modal__nav  media-modal__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' fixedWidth /></button>;
-
-    const language = status.getIn(['translation', 'language']) || status.get('language');
 
     const content = media.map((image) => {
       const width  = image.getIn(['meta', 'original', 'width']) || null;
@@ -157,7 +150,7 @@ class MediaModal extends ImmutablePureComponent {
             width={width}
             height={height}
             alt={description}
-            lang={language}
+            lang={lang}
             key={image.get('url')}
             onClick={this.toggleNavigation}
             zoomButtonHidden={this.state.zoomButtonHidden}
@@ -180,7 +173,7 @@ class MediaModal extends ImmutablePureComponent {
             onCloseVideo={onClose}
             detailed
             alt={description}
-            lang={language}
+            lang={lang}
             key={image.get('url')}
           />
         );
@@ -192,7 +185,7 @@ class MediaModal extends ImmutablePureComponent {
             height={height}
             key={image.get('url')}
             alt={description}
-            lang={language}
+            lang={lang}
             onClick={this.toggleNavigation}
           />
         );
@@ -251,7 +244,7 @@ class MediaModal extends ImmutablePureComponent {
 
           <div className='media-modal__overlay'>
             {pagination && <ul className='media-modal__pagination'>{pagination}</ul>}
-            {status && <Footer statusId={status.get('id')} withOpenButton onClose={onClose} />}
+            {statusId && <Footer statusId={statusId} withOpenButton onClose={onClose} />}
           </div>
         </div>
       </div>
@@ -260,4 +253,4 @@ class MediaModal extends ImmutablePureComponent {
 
 }
 
-export default connect(mapStateToProps, null, null, { forwardRef: true })(injectIntl(MediaModal));
+export default injectIntl(MediaModal);

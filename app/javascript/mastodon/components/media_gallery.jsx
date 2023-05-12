@@ -258,7 +258,7 @@ class MediaGallery extends React.PureComponent {
   };
 
   handleClick = (index) => {
-    this.props.onOpenMedia(this.props.media, index);
+    this.props.onOpenMedia(this.props.media, index, this.props.lang);
   };
 
   handleRef = c => {

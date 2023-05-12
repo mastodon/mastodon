@@ -5,15 +5,15 @@ require 'rails_helper'
 RSpec.describe Admin::Disputes::AppealsController do
   render_views
 
-  before { sign_in current_user, scope: :user }
+  before do
+    sign_in current_user, scope: :user
+
+    target_account.suspend!
+  end
 
   let(:target_account) { Fabricate(:account) }
   let(:strike) { Fabricate(:account_warning, target_account: target_account, action: :suspend) }
   let(:appeal) { Fabricate(:appeal, strike: strike, account: target_account) }
-
-  before do
-    target_account.suspend!
-  end
 
   describe 'POST #approve' do
     let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }

@@ -469,7 +469,7 @@ class Video extends React.PureComponent {
   handleOpenVideo = () => {
     this.video.pause();
 
-    this.props.onOpenVideo({
+    this.props.onOpenVideo(this.props.lang, {
       startTime: this.video.currentTime,
       autoPlay: !this.state.paused,
       defaultVolume: this.state.volume,
