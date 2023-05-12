@@ -190,4 +190,96 @@ describe Api::V1::Admin::CanonicalEmailBlocksController do
       end
     end
   end
+
+  describe 'POST #create' do
+    let(:params) { { email: 'example@email.com' } }
+    let(:canonical_email_block) { CanonicalEmailBlock.new(email: params[:email]) }
+
+    context 'with wrong scope' do
+      before do
+        post :create, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'read:statuses'
+    end
+
+    context 'with wrong role' do
+      before do
+        post :create, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for wrong role', 'Moderator'
+    end
+
+    it 'returns http success' do
+      post :create, params: params
+
+      expect(response).to have_http_status(200)
+    end
+
+    it 'returns canonical_email_hash correctly' do
+      post :create, params: params
+
+      json = body_as_json
+
+      expect(json[:canonical_email_hash]).to eq(canonical_email_block.canonical_email_hash)
+    end
+
+    context 'when required email param is not provided' do
+      it 'returns http unprocessable entity' do
+        post :create
+
+        expect(response).to have_http_status(422)
+      end
+    end
+
+    context 'when canonical_email_hash param is provided instead of email' do
+      let(:params) { { canonical_email_hash: 'dd501ce4e6b08698f19df96f2f15737e48a75660b1fa79b6ff58ea25ee4851a4' } }
+
+      it 'returns http success' do
+        post :create, params: params
+
+        expect(response).to have_http_status(200)
+      end
+
+      it 'returns correct canonical_email_hash' do
+        post :create, params: params
+
+        json = body_as_json
+
+        expect(json[:canonical_email_hash]).to eq(params[:canonical_email_hash])
+      end
+    end
+
+    context 'when both email and canonical_email_hash params are provided' do
+      let(:params) { { email: 'example@email.com', canonical_email_hash: 'dd501ce4e6b08698f19df96f2f15737e48a75660b1fa79b6ff58ea25ee4851a4' } }
+
+      it 'returns http success' do
+        post :create, params: params
+
+        expect(response).to have_http_status(200)
+      end
+
+      it 'ignores canonical_email_hash param' do
+        post :create, params: params
+
+        json = body_as_json
+
+        expect(json[:canonical_email_hash]).to eq(canonical_email_block.canonical_email_hash)
+      end
+    end
+
+    context 'when canonical email was already blocked' do
+      before do
+        canonical_email_block.save
+      end
+
+      it 'returns http unprocessable entity' do
+        post :create, params: params
+
+        expect(response).to have_http_status(422)
+      end
+    end
+  end
 end
