@@ -12,7 +12,7 @@ import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
 import { connectHashtagStream } from 'mastodon/actions/streaming';
 import { isEqual } from 'lodash';
 import { fetchHashtag, followHashtag, unfollowHashtag } from 'mastodon/actions/tags';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 

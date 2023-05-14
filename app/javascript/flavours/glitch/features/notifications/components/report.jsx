@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import AvatarOverlay from 'flavours/glitch/components/avatar_overlay';
-import RelativeTimestamp from 'flavours/glitch/components/relative_timestamp';
+import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
 
 const messages = defineMessages({
   openReport: { id: 'report_notification.open', defaultMessage: 'Open report' },

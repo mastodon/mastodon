@@ -1,5 +1,5 @@
 import 'packs/public-path';
-import loadPolyfills from 'flavours/glitch/load_polyfills';
+import { loadPolyfills } from 'flavours/glitch/polyfills';
 
 loadPolyfills().then(async () => {
   const { default: main } = await import('flavours/glitch/main');

@@ -1,3 +1,5 @@
+/* eslint-disable import/no-commonjs --
+   We need to use CommonJS here due to preval */
 // @preval
 // http://www.unicode.org/Public/emoji/5.0/emoji-test.txt
 // This file contains the compressed version of the emoji data from

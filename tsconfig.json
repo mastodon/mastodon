@@ -2,20 +2,26 @@
   "compilerOptions": {
     "jsx": "react",
     "target": "esnext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "allowJs": true,
     "noEmit": true,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "*": ["app/javascript/*"]
+      "locales": ["app/javascript/locales"],
+      "flavours/glitch": ["app/javascript/flavours/glitch"],
+      "flavours/glitch/*": ["app/javascript/flavours/glitch/*"],
+      "mastodon": ["app/javascript/mastodon"],
+      "mastodon/*": ["app/javascript/mastodon/*"]
     }
   },
   "include": [
     "app/javascript/mastodon",
-    "app/javascript/flavours/glitch",
-    "app/javascript/packs"
+    "app/javascript/packs",
+    "app/javascript/types",
+    "app/javascript/flavours/glitch"
   ]
 }

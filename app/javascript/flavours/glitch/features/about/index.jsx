@@ -9,9 +9,9 @@ import { Helmet } from 'react-helmet';
 import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'flavours/glitch/actions/server';
 import Account from 'flavours/glitch/containers/account_container';
 import Skeleton from 'flavours/glitch/components/skeleton';
-import Icon from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/glitch/components/icon';
 import classNames from 'classnames';
-import Image from 'flavours/glitch/components/image';
+import { Image } from 'flavours/glitch/components/image';
 
 const messages = defineMessages({
   title: { id: 'column.about', defaultMessage: 'About' },

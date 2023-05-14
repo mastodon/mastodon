@@ -52,8 +52,10 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
     /**
      * @param {function(Function, Function): void} fallback
      */
+
     const useFallback = fallback => {
       fallback(dispatch, () => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks -- this is not a react hook
         pollingId = setTimeout(() => useFallback(fallback), 20000 + randomUpTo(20000));
       });
     };

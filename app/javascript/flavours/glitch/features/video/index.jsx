@@ -6,8 +6,8 @@ import { throttle } from 'lodash';
 import classNames from 'classnames';
 import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
 import { displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
-import Icon from 'flavours/glitch/components/icon';
-import Blurhash from 'flavours/glitch/components/blurhash';
+import { Icon } from 'flavours/glitch/components/icon';
+import { Blurhash } from 'flavours/glitch/components/blurhash';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },

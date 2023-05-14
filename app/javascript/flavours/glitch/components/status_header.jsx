@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 //  Mastodon imports.
-import Avatar from './avatar';
+import { Avatar } from './avatar';
 import AvatarOverlay from './avatar_overlay';
 import DisplayName from './display_name';
 

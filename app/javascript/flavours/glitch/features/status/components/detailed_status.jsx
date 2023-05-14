@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Avatar from 'flavours/glitch/components/avatar';
+import { Avatar } from 'flavours/glitch/components/avatar';
 import DisplayName from 'flavours/glitch/components/display_name';
 import StatusContent from 'flavours/glitch/components/status_content';
 import MediaGallery from 'flavours/glitch/components/media_gallery';
@@ -16,8 +16,8 @@ import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
 import scheduleIdleTask from '../../ui/util/schedule_idle_task';
 import classNames from 'classnames';
 import PollContainer from 'flavours/glitch/containers/poll_container';
-import Icon from 'flavours/glitch/components/icon';
-import AnimatedNumber from 'flavours/glitch/components/animated_number';
+import { Icon } from 'flavours/glitch/components/icon';
+import { AnimatedNumber } from 'flavours/glitch/components/animated_number';
 import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
 import EditedTimestamp from 'flavours/glitch/components/edited_timestamp';
 

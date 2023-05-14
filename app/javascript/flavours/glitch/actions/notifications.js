@@ -13,7 +13,7 @@ import { defineMessages } from 'react-intl';
 import { List as ImmutableList } from 'immutable';
 import { unescapeHTML } from 'flavours/glitch/utils/html';
 import { usePendingItems as preferPendingItems } from 'flavours/glitch/initial_state';
-import compareId from 'flavours/glitch/compare_id';
+import { compareId } from 'flavours/glitch/compare_id';
 import { requestNotificationPermission } from 'flavours/glitch/utils/notifications';
 
 export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';

@@ -16,13 +16,10 @@ const obfuscatedCount = (count: number) => {
 type Props = {
   value: number;
   obfuscate?: boolean;
-}
-export const AnimatedNumber: React.FC<Props> = ({
-  value,
-  obfuscate,
-})=> {
+};
+export const AnimatedNumber: React.FC<Props> = ({ value, obfuscate }) => {
   const [previousValue, setPreviousValue] = useState(value);
-  const [direction, setDirection] = useState<1|-1>(1);
+  const [direction, setDirection] = useState<1 | -1>(1);
 
   if (previousValue !== value) {
     setPreviousValue(value);
@@ -30,29 +27,48 @@ export const AnimatedNumber: React.FC<Props> = ({
   }
 
   const willEnter = useCallback(() => ({ y: -1 * direction }), [direction]);
-  const willLeave = useCallback(() => ({ y: spring(1 * direction, { damping: 35, stiffness: 400 }) }), [direction]);
+  const willLeave = useCallback(
+    () => ({ y: spring(1 * direction, { damping: 35, stiffness: 400 }) }),
+    [direction]
+  );
 
   if (reduceMotion) {
-    return obfuscate ? <>{obfuscatedCount(value)}</> : <ShortNumber value={value} />;
+    return obfuscate ? (
+      <>{obfuscatedCount(value)}</>
+    ) : (
+      <ShortNumber value={value} />
+    );
   }
 
-  const styles = [{
-    key: `${value}`,
-    data: value,
-    style: { y: spring(0, { damping: 35, stiffness: 400 }) },
-  }];
+  const styles = [
+    {
+      key: `${value}`,
+      data: value,
+      style: { y: spring(0, { damping: 35, stiffness: 400 }) },
+    },
+  ];
 
   return (
-    <TransitionMotion styles={styles} willEnter={willEnter} willLeave={willLeave}>
-      {items => (
+    <TransitionMotion
+      styles={styles}
+      willEnter={willEnter}
+      willLeave={willLeave}
+    >
+      {(items) => (
         <span className='animated-number'>
           {items.map(({ key, data, style }) => (
-            <span key={key} style={{ position: (direction * style.y) > 0 ? 'absolute' : 'static', transform: `translateY(${style.y * 100}%)` }}>{obfuscate ? obfuscatedCount(data) : <ShortNumber value={data} />}</span>
+            <span
+              key={key}
+              style={{
+                position: direction * style.y > 0 ? 'absolute' : 'static',
+                transform: `translateY(${style.y * 100}%)`,
+              }}
+            >
+              {obfuscate ? obfuscatedCount(data) : <ShortNumber value={data} />}
+            </span>
           ))}
         </span>
       )}
     </TransitionMotion>
   );
 };
-
-export default AnimatedNumber;

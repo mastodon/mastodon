@@ -21,7 +21,7 @@ const TEN_MILLIONS = DECIMAL_UNITS.MILLION * 10;
  * shortNumber(5936);
  * // => [5.936, 1000, 1]
  */
-export type ShortNumber = [number, DecimalUnits, 0 | 1] // Array of: shorten number, unit of shorten number and maximum fraction digits
+export type ShortNumber = [number, DecimalUnits, 0 | 1]; // Array of: shorten number, unit of shorten number and maximum fraction digits
 export function toShortNumber(sourceNumber: number): ShortNumber {
   if (sourceNumber < DECIMAL_UNITS.THOUSAND) {
     return [sourceNumber, DECIMAL_UNITS.ONE, 0];
@@ -38,11 +38,7 @@ export function toShortNumber(sourceNumber: number): ShortNumber {
       sourceNumber < TEN_MILLIONS ? 1 : 0,
     ];
   } else if (sourceNumber < DECIMAL_UNITS.TRILLION) {
-    return [
-      sourceNumber / DECIMAL_UNITS.BILLION,
-      DECIMAL_UNITS.BILLION,
-      0,
-    ];
+    return [sourceNumber / DECIMAL_UNITS.BILLION, DECIMAL_UNITS.BILLION, 0];
   }
 
   return [sourceNumber, DECIMAL_UNITS.ONE, 0];
@@ -56,7 +52,10 @@ export function toShortNumber(sourceNumber: number): ShortNumber {
  * pluralReady(1793, DECIMAL_UNITS.THOUSAND)
  * // => 1790
  */
-export function pluralReady(sourceNumber: number, division: DecimalUnits): number {
+export function pluralReady(
+  sourceNumber: number,
+  division: DecimalUnits
+): number {
   if (division == null || division < DECIMAL_UNITS.HUNDRED) {
     return sourceNumber;
   }

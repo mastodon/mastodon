@@ -58,7 +58,7 @@ import {
 } from './util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import initialState, { me, owner, singleUserMode, showTrends, trendsAsLanding } from '../../initial_state';
-import { closeOnboarding, INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';
+// TODO: import { closeOnboarding, INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import Header from './components/header';
 
@@ -82,7 +82,7 @@ const mapStateToProps = state => ({
   showFaviconBadge: state.getIn(['local_settings', 'notifications', 'favicon_badge']),
   hicolorPrivacyIcons: state.getIn(['local_settings', 'hicolor_privacy_icons']),
   moved: state.getIn(['accounts', me, 'moved']) && state.getIn(['accounts', state.getIn(['accounts', me, 'moved'])]),
-  firstLaunch: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
+  firstLaunch: false, // TODO: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
   username: state.getIn(['accounts', me, 'username']),
 });
 
@@ -405,7 +405,7 @@ class UI extends React.Component {
     // On first launch, redirect to the follow recommendations page
     if (signedIn && this.props.firstLaunch) {
       this.context.router.history.replace('/start');
-      this.props.dispatch(closeOnboarding());
+      // TODO: this.props.dispatch(closeOnboarding());
     }
 
     if (signedIn) {

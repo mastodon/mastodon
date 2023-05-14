@@ -8,7 +8,7 @@ import { is, List as ImmutableList, Set as ImmutableSet } from 'immutable';
 import { languages as preloadedLanguages } from 'flavours/glitch/initial_state';
 import Option from 'flavours/glitch/features/report/components/option';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
-import IconButton from 'flavours/glitch/components/icon_button';
+import { IconButton } from 'flavours/glitch/components/icon_button';
 import Button from 'flavours/glitch/components/button';
 import { followAccount } from 'flavours/glitch/actions/accounts';
 

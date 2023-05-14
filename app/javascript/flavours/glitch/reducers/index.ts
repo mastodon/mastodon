@@ -12,12 +12,13 @@ import accounts_counters from './accounts_counters';
 import statuses from './statuses';
 import relationships from './relationships';
 import settings from './settings';
+import local_settings from './local_settings';
 import push_notifications from './push_notifications';
 import status_lists from './status_lists';
 import mutes from './mutes';
 import blocks from './blocks';
-import boosts from './boosts';
 import server from './server';
+import boosts from './boosts';
 import contexts from './contexts';
 import compose from './compose';
 import search from './search';
@@ -31,11 +32,12 @@ import listAdder from './list_adder';
 import filters from './filters';
 import conversations from './conversations';
 import suggestions from './suggestions';
+import pinnedAccountsEditor from './pinned_accounts_editor';
 import polls from './polls';
 import trends from './trends';
-import missed_updates from './missed_updates';
 import announcements from './announcements';
 import markers from './markers';
+import account_notes from './account_notes';
 import picture_in_picture from './picture_in_picture';
 import accounts_map from './accounts_map';
 import history from './history';
@@ -59,11 +61,12 @@ const reducers = {
   statuses,
   relationships,
   settings,
+  local_settings,
   push_notifications,
   mutes,
   blocks,
-  boosts,
   server,
+  boosts,
   contexts,
   compose,
   search,
@@ -77,14 +80,17 @@ const reducers = {
   filters,
   conversations,
   suggestions,
+  pinnedAccountsEditor,
   polls,
   trends,
-  missed_updates,
   markers,
+  account_notes,
   picture_in_picture,
   history,
   tags,
   followed_tags,
 };
 
-export default combineReducers(reducers);
+const rootReducer = combineReducers(reducers);
+
+export { rootReducer };

@@ -6,7 +6,7 @@ import Atrament from 'atrament'; // the doodling library
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { doodleSet, uploadCompose } from 'flavours/glitch/actions/compose';
-import IconButton from 'flavours/glitch/components/icon_button';
+import { IconButton } from 'flavours/glitch/components/icon_button';
 import { debounce, mapValues } from 'lodash';
 import classNames from 'classnames';
 

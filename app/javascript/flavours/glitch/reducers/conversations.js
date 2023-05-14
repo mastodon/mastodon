@@ -11,7 +11,7 @@ import {
 } from '../actions/conversations';
 import { ACCOUNT_BLOCK_SUCCESS, ACCOUNT_MUTE_SUCCESS } from 'flavours/glitch/actions/accounts';
 import { DOMAIN_BLOCK_SUCCESS } from 'flavours/glitch/actions/domain_blocks';
-import compareId from '../compare_id';
+import { compareId } from '../compare_id';
 
 const initialState = ImmutableMap({
   items: ImmutableList(),

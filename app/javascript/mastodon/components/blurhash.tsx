@@ -8,14 +8,14 @@ type Props = {
   dummy?: boolean; // Whether dummy mode is enabled. If enabled, nothing is rendered and canvas left untouched
   children?: never;
   [key: string]: any;
-}
-function Blurhash({
+};
+const Blurhash: React.FC<Props> = ({
   hash,
   width = 32,
   height = width,
   dummy = false,
   ...canvasProps
-}: Props) {
+}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -40,6 +40,8 @@ function Blurhash({
   return (
     <canvas {...canvasProps} ref={canvasRef} width={width} height={height} />
   );
-}
+};
 
-export default React.memo(Blurhash);
+const MemoizedBlurhash = React.memo(Blurhash);
+
+export { MemoizedBlurhash as Blurhash };

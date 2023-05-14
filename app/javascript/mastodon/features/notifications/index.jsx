@@ -23,10 +23,10 @@ import { List as ImmutableList } from 'immutable';
 import { debounce } from 'lodash';
 import ScrollableList from '../../components/scrollable_list';
 import LoadGap from '../../components/load_gap';
-import Icon from 'mastodon/components/icon';
-import compareId from 'mastodon/compare_id';
+import { Icon }  from 'mastodon/components/icon';
+import { compareId } from 'mastodon/compare_id';
 import NotificationsPermissionBanner from './components/notifications_permission_banner';
-import NotSignedInIndicator from 'mastodon/components/not_signed_in_indicator';
+import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
 import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({

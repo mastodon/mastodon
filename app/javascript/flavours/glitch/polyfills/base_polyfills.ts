@@ -1,26 +1,16 @@
 import 'intl';
 import 'intl/locale-data/jsonp/en';
-import 'es6-symbol/implement';
-import assign from 'object-assign';
-import values from 'object.values';
-import { decode as decodeBase64 } from './utils/base64';
-import promiseFinally from 'promise.prototype.finally';
-
-if (!Object.assign) {
-  Object.assign = assign;
-}
-
-if (!Object.values) {
-  values.shim();
-}
-
-promiseFinally.shim();
+import 'core-js/features/object/assign';
+import 'core-js/features/object/values';
+import 'core-js/features/symbol';
+import 'core-js/features/promise/finally';
+import { decode as decodeBase64 } from '../utils/base64';
 
 if (!HTMLCanvasElement.prototype.toBlob) {
   const BASE64_MARKER = ';base64,';
 
   Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
-    value(callback, type = 'image/png', quality) {
+    value(callback: BlobCallback, type = 'image/png', quality: any) {
       const dataURL = this.toDataURL(type, quality);
       let data;
 

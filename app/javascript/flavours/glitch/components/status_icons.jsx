@@ -5,9 +5,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl } from 'react-intl';
 
 //  Mastodon imports.
-import IconButton from './icon_button';
+import { IconButton } from './icon_button';
 import VisibilityIcon from './status_visibility_icon';
-import Icon from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/glitch/components/icon';
 import { languages } from 'flavours/glitch/initial_state';
 
 //  Messages for use with internationalization stuff.

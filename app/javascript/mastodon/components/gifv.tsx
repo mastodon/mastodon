@@ -8,7 +8,7 @@ type Props = {
   width: number;
   height: number;
   onClick?: () => void;
-}
+};
 
 export const GIFV: React.FC<Props> = ({
   src,
@@ -17,19 +17,23 @@ export const GIFV: React.FC<Props> = ({
   width,
   height,
   onClick,
-})=> {
+}) => {
   const [loading, setLoading] = useState(true);
 
-  const handleLoadedData: React.ReactEventHandler<HTMLVideoElement> = useCallback(() => {
-    setLoading(false);
-  }, [setLoading]);
+  const handleLoadedData: React.ReactEventHandler<HTMLVideoElement> =
+    useCallback(() => {
+      setLoading(false);
+    }, [setLoading]);
 
-  const handleClick: React.MouseEventHandler = useCallback((e) => {
-    if (onClick) {
-      e.stopPropagation();
-      onClick();
-    }
-  }, [onClick]);
+  const handleClick: React.MouseEventHandler = useCallback(
+    (e) => {
+      if (onClick) {
+        e.stopPropagation();
+        onClick();
+      }
+    },
+    [onClick]
+  );
 
   return (
     <div className='gifv' style={{ position: 'relative' }}>
@@ -64,5 +68,3 @@ export const GIFV: React.FC<Props> = ({
     </div>
   );
 };
-
-export default GIFV;

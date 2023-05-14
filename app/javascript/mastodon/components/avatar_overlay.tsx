@@ -18,13 +18,19 @@ export const AvatarOverlay: React.FC<Props> = ({
   baseSize = 36,
   overlaySize = 24,
 }) => {
-  const { hovering, handleMouseEnter, handleMouseLeave } = useHovering(autoPlayGif);
-  const accountSrc = hovering ? account?.get('avatar') : account?.get('avatar_static');
-  const friendSrc = hovering ? friend?.get('avatar') : friend?.get('avatar_static');
+  const { hovering, handleMouseEnter, handleMouseLeave } =
+    useHovering(autoPlayGif);
+  const accountSrc = hovering
+    ? account?.get('avatar')
+    : account?.get('avatar_static');
+  const friendSrc = hovering
+    ? friend?.get('avatar')
+    : friend?.get('avatar_static');
 
   return (
     <div
-      className='account__avatar-overlay' style={{ width: size, height: size }}
+      className='account__avatar-overlay'
+      style={{ width: size, height: size }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -47,5 +53,3 @@ export const AvatarOverlay: React.FC<Props> = ({
     </div>
   );
 };
-
-export default AvatarOverlay;

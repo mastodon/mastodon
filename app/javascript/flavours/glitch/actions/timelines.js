@@ -2,7 +2,7 @@ import { importFetchedStatus, importFetchedStatuses } from './importer';
 import { submitMarkers } from './markers';
 import api, { getLinks } from 'flavours/glitch/api';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
-import compareId from 'flavours/glitch/compare_id';
+import { compareId } from 'flavours/glitch/compare_id';
 import { usePendingItems as preferPendingItems } from 'flavours/glitch/initial_state';
 import { toServerSideType } from 'flavours/glitch/utils/filters';
 

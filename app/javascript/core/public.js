@@ -2,7 +2,7 @@
 
 import 'packs/public-path';
 
-const { delegate } = require('@rails/ujs');
+import { delegate } from '@rails/ujs';
 
 const getProfileAvatarAnimationHandler = (swapTo) => {
   //animate avatar gifs on the profile page when moused over

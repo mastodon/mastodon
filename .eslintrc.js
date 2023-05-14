@@ -4,10 +4,12 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:import/recommended',
     'plugin:promise/recommended',
     'plugin:jsdoc/recommended',
+    'plugin:prettier/recommended',
   ],
 
   env: {
@@ -61,20 +63,9 @@ module.exports = {
   },
 
   rules: {
-    'brace-style': 'warn',
-    'comma-dangle': ['error', 'always-multiline'],
-    'comma-spacing': [
-      'warn',
-      {
-        before: false,
-        after: true,
-      },
-    ],
-    'comma-style': ['warn', 'last'],
     'consistent-return': 'error',
     'dot-notation': 'error',
     eqeqeq: ['error', 'always', { 'null': 'ignore' }],
-    indent: ['warn', 2],
     'jsx-quotes': ['error', 'prefer-single'],
     'no-case-declarations': 'off',
     'no-catch-shadow': 'error',
@@ -94,7 +85,6 @@ module.exports = {
       { property: 'substr', message: 'Use .slice instead of .substr.' },
     ],
     'no-self-assign': 'off',
-    'no-trailing-spaces': 'warn',
     'no-unused-expressions': 'error',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
@@ -102,32 +92,18 @@ module.exports = {
       {
         vars: 'all',
         args: 'after-used',
+        destructuredArrayIgnorePattern: '^_',
         ignoreRestSiblings: true,
       },
     ],
-    'object-curly-spacing': ['error', 'always'],
-    'padded-blocks': [
-      'error',
-      {
-        classes: 'always',
-      },
-    ],
-    quotes: ['error', 'single'],
-    semi: 'error',
     'valid-typeof': 'error',
 
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', 'tsx'] }],
     'react/jsx-boolean-value': 'error',
-    'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
-    'react/jsx-curly-spacing': 'error',
     'react/display-name': 'off',
     'react/jsx-equals-spacing': 'error',
-    'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
-    'react/jsx-indent': ['error', 2],
     'react/jsx-no-bind': 'error',
     'react/jsx-no-target-blank': 'off',
-    'react/jsx-tag-spacing': 'error',
-    'react/jsx-wrap-multilines': 'error',
     'react/no-deprecated': 'off',
     'react/no-unknown-property': 'off',
     'react/self-closing-comp': 'error',
@@ -208,6 +184,9 @@ module.exports = {
         ],
       },
     ],
+    'import/no-amd': 'error',
+    'import/no-commonjs': 'error',
+    'import/no-import-module-exports': 'error',
     'import/no-webpack-loader-syntax': 'error',
 
     'promise/always-return': 'off',
@@ -255,6 +234,7 @@ module.exports = {
         '*.config.js',
         '.*rc.js',
         'ide-helper.js',
+        'config/webpack/**/*',
       ],
 
       env: {
@@ -263,6 +243,10 @@ module.exports = {
 
       parserOptions: {
         sourceType: 'script',
+      },
+
+      rules: {
+        'import/no-commonjs': 'off',
       },
     },
     {
@@ -275,17 +259,25 @@ module.exports = {
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:react/recommended',
+        'plugin:react-hooks/recommended',
         'plugin:jsx-a11y/recommended',
         'plugin:import/recommended',
         'plugin:import/typescript',
         'plugin:promise/recommended',
         'plugin:jsdoc/recommended',
+        'plugin:prettier/recommended',
       ],
 
       rules: {
         '@typescript-eslint/no-explicit-any': 'off',
 
         'jsdoc/require-jsdoc': 'off',
+
+        // Those rules set stricter rules for TS files
+        // to enforce better practices when converting from JS
+        'import/no-default-export': 'warn',
+        'react/prefer-stateless-function': 'warn',
+        'react/function-component-definition': ['error', { namedComponents: 'arrow-function' }],
       },
     },
     {
@@ -296,6 +288,14 @@ module.exports = {
 
       env: {
         jest: true,
+      },
+    },
+    {
+      files: [
+        'streaming/**/*',
+      ],
+      rules: {
+        'import/no-commonjs': 'off',
       },
     },
   ],

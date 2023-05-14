@@ -29,7 +29,7 @@ import {
 import { DOMAIN_BLOCK_SUCCESS } from 'mastodon/actions/domain_blocks';
 import { TIMELINE_DELETE, TIMELINE_DISCONNECT } from '../actions/timelines';
 import { fromJS, Map as ImmutableMap, List as ImmutableList } from 'immutable';
-import compareId from '../compare_id';
+import { compareId } from '../compare_id';
 
 const initialState = ImmutableMap({
   pendingItems: ImmutableList(),

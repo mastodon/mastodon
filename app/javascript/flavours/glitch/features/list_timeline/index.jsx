@@ -11,9 +11,9 @@ import { connectListStream } from 'flavours/glitch/actions/streaming';
 import { expandListTimeline } from 'flavours/glitch/actions/timelines';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
-import Icon from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/glitch/components/icon';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
-import RadioButton from 'flavours/glitch/components/radio_button';
+import { RadioButton } from 'flavours/glitch/components/radio_button';
 import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
 import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
 

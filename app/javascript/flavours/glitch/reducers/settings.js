@@ -6,7 +6,7 @@ import { EMOJI_USE } from 'flavours/glitch/actions/emojis';
 import { LANGUAGE_USE } from 'flavours/glitch/actions/languages';
 import { LIST_DELETE_SUCCESS, LIST_FETCH_FAIL } from '../actions/lists';
 import { Map as ImmutableMap, fromJS } from 'immutable';
-import uuid from '../uuid';
+import { uuid } from '../uuid';
 
 const initialState = ImmutableMap({
   saved: true,

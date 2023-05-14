@@ -7,8 +7,8 @@ import { closeModal } from 'flavours/glitch/actions/modal';
 import emojify from 'flavours/glitch/features/emoji/emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import InlineAccount from 'flavours/glitch/components/inline_account';
-import IconButton from 'flavours/glitch/components/icon_button';
-import RelativeTimestamp from 'flavours/glitch/components/relative_timestamp';
+import { IconButton } from 'flavours/glitch/components/icon_button';
+import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
 import MediaAttachments from 'flavours/glitch/components/media_attachments';
 
 const mapStateToProps = (state, { statusId }) => ({

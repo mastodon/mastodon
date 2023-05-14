@@ -8,7 +8,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Components.
 import Button from 'flavours/glitch/components/button';
-import Icon from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/glitch/components/icon';
 
 //  Utils.
 import { maxChars } from 'flavours/glitch/initial_state';

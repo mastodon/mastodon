@@ -1,10 +1,18 @@
 import 'packs/public-path';
-import loadPolyfills from 'flavours/glitch/load_polyfills';
+import { loadPolyfills } from 'flavours/glitch/polyfills';
 import ready from 'flavours/glitch/ready';
 import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
 import axios from 'axios';
 import { throttle } from 'lodash';
 import { defineMessages } from 'react-intl';
+import * as IntlMessageFormat  from 'intl-messageformat';
+import { timeAgoString }  from 'flavours/glitch/components/relative_timestamp';
+import { delegate }  from '@rails/ujs';
+import emojify  from 'flavours/glitch/features/emoji/emoji';
+import { getLocale }  from 'locales';
+import React  from 'react';
+import ReactDOM  from 'react-dom';
+import { createBrowserHistory }  from 'history';
 
 const messages = defineMessages({
   usernameTaken: { id: 'username.taken', defaultMessage: 'That username is taken. Try another' },
@@ -13,15 +21,7 @@ const messages = defineMessages({
 });
 
 function main() {
-  const IntlMessageFormat = require('intl-messageformat').default;
-  const { timeAgoString } = require('flavours/glitch/components/relative_timestamp');
-  const { delegate } = require('@rails/ujs');
-  const emojify = require('flavours/glitch/features/emoji/emoji').default;
-  const { getLocale } = require('locales');
   const { localeData } = getLocale();
-  const React = require('react');
-  const ReactDOM = require('react-dom');
-  const { createBrowserHistory } = require('history');
 
   const scrollToDetailedStatus = () => {
     const history = createBrowserHistory();
