@@ -2,6 +2,8 @@
 // If there are no polyfills, then this is just Promise.resolve() which means
 // it will execute in the same tick of the event loop (i.e. near-instant).
 
+import { loadIntlPolyfills } from './intl';
+
 function importBasePolyfills() {
   return import(/* webpackChunkName: "base_polyfills" */ './base_polyfills');
 }
@@ -13,7 +15,6 @@ function importExtraPolyfills() {
 export function loadPolyfills() {
   const needsBasePolyfills = !(
     'toBlob' in HTMLCanvasElement.prototype &&
-    'Intl' in window &&
     'assign' in Object &&
     'values' in Object &&
     'Symbol' in window &&
@@ -32,6 +33,7 @@ export function loadPolyfills() {
   );
 
   return Promise.all([
+    loadIntlPolyfills(),
     needsBasePolyfills && importBasePolyfills(),
     needsExtraPolyfills && importExtraPolyfills(),
   ]);
