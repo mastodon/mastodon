@@ -1,8 +1,6 @@
 import { createRoot }  from 'react-dom/client';
 
-import './public-path';
-
-import { IntlMessageFormat }  from 'intl-messageformat';
+import { IntlMessageFormat } from 'intl-messageformat';
 import { defineMessages } from 'react-intl';
 
 import Rails from '@rails/ujs';
@@ -17,6 +15,7 @@ import { loadLocale, getLocale } from '../mastodon/locales';
 import { loadPolyfills } from '../mastodon/polyfills';
 import ready from '../mastodon/ready';
 
+import "styles/application.scss";
 import 'cocoon-js-vanilla';
 
 start();

@@ -1,28 +1,15 @@
-// To see this message, add the following to the `<head>` section in your
-// views/layouts/application.html.erb
-//
-//    <%= vite_client_tag %>
-//    <%= vite_javascript_tag 'application' %>
-console.log('Vite ⚡️ Rails');
+import { start } from '../mastodon/common';
+import { loadLocale } from '../mastodon/load_locale';
+import { loadPolyfills } from '../mastodon/polyfills';
 
-// If using a TypeScript entrypoint file:
-//     <%= vite_typescript_tag 'application' %>
-//
-// If you want to use .jsx or .tsx, add the extension:
-//     <%= vite_javascript_tag 'application.jsx' %>
+import 'styles/application.scss';
 
-console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails');
+start();
 
-// Example: Load Rails libraries in Vite.
-//
-// import * as Turbo from '@hotwired/turbo'
-// Turbo.start()
-//
-// import ActiveStorage from '@rails/activestorage'
-// ActiveStorage.start()
-//
-// // Import all channels.
-// const channels = import.meta.globEager('./**/*_channel.js')
+loadPolyfills().then(loadLocale).then(async () => {
+  const { main } = await import('mastodon/main');
 
-// Example: Import a stylesheet in app/frontend/index.css
-// import '~/index.css'
+  return main();
+}).catch(e => {
+  console.error(e);
+});
