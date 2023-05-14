@@ -34,6 +34,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
   handleDocumentClick = e => {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
+      e.stopPropagation();
     }
   };
 
