@@ -4,7 +4,7 @@ module RoutingHelper
   extend ActiveSupport::Concern
 
   include ActionView::Helpers::AssetTagHelper
-  include Webpacker::Helper
+  include ViteRails::TagHelpers
 
   included do
     include Rails.application.routes.url_helpers
@@ -25,7 +25,7 @@ module RoutingHelper
   end
 
   def frontend_asset_path(source, **options)
-    asset_pack_path("media/#{source}", **options)
+    vite_asset_path(source, **options)
   end
 
   def frontend_asset_url(source, **options)
