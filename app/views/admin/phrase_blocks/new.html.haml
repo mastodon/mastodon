@@ -1,0 +1,12 @@
+- content_for :page_title do
+  = t('admin.phrase_blocks.new.title')
+
+.flash-message.warning= t('beta_feature.notice')
+
+= simple_form_for @phrase_block, url: admin_phrase_blocks_path do |f|
+  = render 'shared/error_messages', object: @phrase_block
+
+  = render 'fields', f: f
+
+  .actions
+    = f.button :button, t('.create'), type: :submit

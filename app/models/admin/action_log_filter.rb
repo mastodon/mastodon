@@ -26,6 +26,7 @@ class Admin::ActionLogFilter
     create_unavailable_domain: { target_type: 'UnavailableDomain', action: 'create' }.freeze,
     create_user_role: { target_type: 'UserRole', action: 'create' }.freeze,
     create_canonical_email_block: { target_type: 'CanonicalEmailBlock', action: 'create' }.freeze,
+    create_phrase_block: { target_type: 'PhraseBlock', action: 'create' }.freeze,
     demote_user: { target_type: 'User', action: 'demote' }.freeze,
     destroy_announcement: { target_type: 'Announcement', action: 'destroy' }.freeze,
     destroy_custom_emoji: { target_type: 'CustomEmoji', action: 'destroy' }.freeze,
@@ -38,6 +39,7 @@ class Admin::ActionLogFilter
     destroy_status: { target_type: 'Status', action: 'destroy' }.freeze,
     destroy_user_role: { target_type: 'UserRole', action: 'destroy' }.freeze,
     destroy_canonical_email_block: { target_type: 'CanonicalEmailBlock', action: 'destroy' }.freeze,
+    destroy_phrase_block: { target_type: 'PhraseBlock', action: 'destroy' }.freeze,
     disable_2fa_user: { target_type: 'User', action: 'disable' }.freeze,
     disable_custom_emoji: { target_type: 'CustomEmoji', action: 'disable' }.freeze,
     disable_user: { target_type: 'User', action: 'disable' }.freeze,
@@ -62,6 +64,7 @@ class Admin::ActionLogFilter
     update_status: { target_type: 'Status', action: 'update' }.freeze,
     update_user_role: { target_type: 'UserRole', action: 'update' }.freeze,
     update_ip_block: { target_type: 'IpBlock', action: 'update' }.freeze,
+    update_phrase_block: { target_type: 'PhraseBlock', action: 'update' }.freeze,
     unblock_email_account: { target_type: 'Account', action: 'unblock_email' }.freeze,
   }.freeze
 

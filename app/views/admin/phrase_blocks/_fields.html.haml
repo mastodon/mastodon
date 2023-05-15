@@ -1,0 +1,8 @@
+.fields-group
+  = f.input :phrase, as: :string, wrapper: :with_block_label, label: t('admin.phrase_blocks.phrase'), hint: t('admin.phrase_blocks.phrase_hint')
+
+.fields-group
+  = f.input :filter_type, as: :radio_buttons, collection: %i(text regexp), label: t('admin.phrase_blocks.type.title'), label_method: ->(type) { safe_join([t("admin.phrase_blocks.types.#{type}"), content_tag(:span, I18n.t("admin.phrase_blocks.types.#{type}_hint"), class: 'hint')]) }
+
+.fields-group
+  = f.input :whole_word, wrapper: :with_label

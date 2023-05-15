@@ -30,6 +30,8 @@ namespace :admin do
     end
   end
 
+  resources :phrase_blocks, except: [:show]
+
   resources :action_logs, only: [:index]
   resources :warning_presets, except: [:new]
 
