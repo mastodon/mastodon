@@ -41,7 +41,7 @@ It is not always possible to phrase every change in such a manner, but it is des
 
 **Pull requests that do not pass automated checks may not be reviewed**. In particular, you need to keep in mind:
 
-- Unit and integration tests (rspec, jest)
+- Unit and integration tests (rspec, vitest)
 - Code style rules (rubocop, eslint)
 - Normalization of locale files (i18n-tasks)
 

@@ -41,7 +41,7 @@ describe('computeHashtagBarForStatus', () => {
 
     expect(hashtagsInBar).toEqual(['test']);
     expect(statusContentProps.statusContent).toMatchInlineSnapshot(
-      `"<p>Simple text <a href="test">#hashtag</a></p>"`,
+      '"<p>Simple text <a href=\\"test\\">#hashtag</a></p>"',
     );
   });
 
@@ -86,7 +86,7 @@ describe('computeHashtagBarForStatus', () => {
 
     expect(hashtagsInBar).toEqual([]);
     expect(statusContentProps.statusContent).toMatchInlineSnapshot(
-      `"<p>Simple text with a <a href="test">#hashtag</a></p>"`,
+      '"<p>Simple text with a <a href=\\"test\\">#hashtag</a></p>"',
     );
   });
 
@@ -101,7 +101,7 @@ describe('computeHashtagBarForStatus', () => {
 
     expect(hashtagsInBar).toEqual([]);
     expect(statusContentProps.statusContent).toMatchInlineSnapshot(
-      `"<p><a href="test">#test</a>. And another <a href="test">#hashtag</a></p>"`,
+      '"<p><a href=\\"test\\">#test</a>. And another <a href=\\"test\\">#hashtag</a></p>"',
     );
   });
 
@@ -146,7 +146,7 @@ describe('computeHashtagBarForStatus', () => {
 
     expect(hashtagsInBar).toEqual([]);
     expect(statusContentProps.statusContent).toMatchInlineSnapshot(
-      `"<p>Text <a href="test">#Éaa</a></p>"`,
+      '"<p>Text <a href=\\"test\\">#Éaa</a></p>"',
     );
   });
 
@@ -161,7 +161,7 @@ describe('computeHashtagBarForStatus', () => {
 
     expect(hashtagsInBar).toEqual([]);
     expect(statusContentProps.statusContent).toMatchInlineSnapshot(
-      `"<p><a href="test">#test</a>  <a href="test">#hashtag</a></p>"`,
+      '"<p><a href=\\"test\\">#test</a>  <a href=\\"test\\">#hashtag</a></p>"',
     );
   });
 
@@ -177,7 +177,7 @@ describe('computeHashtagBarForStatus', () => {
 
     expect(hashtagsInBar).toEqual([]);
     expect(statusContentProps.statusContent).toMatchInlineSnapshot(
-      `"<p>This is my content! <a href="test">#hashtag</a></p>"`,
+      '"<p>This is my content! <a href=\\"test\\">#hashtag</a></p>"',
     );
   });
 
@@ -208,7 +208,7 @@ describe('computeHashtagBarForStatus', () => {
 
     expect(hashtagsInBar).toEqual([]);
     expect(statusContentProps.statusContent).toMatchInlineSnapshot(
-      `"<p><a href="test">#test</a>  <a href="test">#hashtag</a></p>"`,
+      '"<p><a href=\\"test\\">#test</a>  <a href=\\"test\\">#hashtag</a></p>"',
     );
   });
 });
