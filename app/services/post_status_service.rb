@@ -43,6 +43,8 @@ class PostStatusService < BaseService
     validate_media!
     preprocess_attributes!
 
+    screen_for_spam!
+
     if scheduled?
       schedule_status!
     else
@@ -60,6 +62,10 @@ class PostStatusService < BaseService
   end
 
   private
+
+  def screen_for_spam!
+    raise Mastodon::NotPermittedError, I18n.t('statuses.errors.blocked_content') if PhraseBlock.cached_regexp.match?(@text)
+  end
 
   def preprocess_attributes!
     @sensitive    = (@options[:sensitive].nil? ? @account.user&.setting_default_sensitive : @options[:sensitive]) || @options[:spoiler_text].present?

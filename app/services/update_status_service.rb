@@ -28,6 +28,7 @@ class UpdateStatusService < BaseService
       update_media_attachments! if @options.key?(:media_ids)
       update_poll! if @options.key?(:poll)
       update_immediate_attributes!
+
       create_edit!
     end
 
@@ -45,6 +46,10 @@ class UpdateStatusService < BaseService
   end
 
   private
+
+  def screen_for_spam!
+    raise Mastodon::NotPermittedError, I18n.t('statuses.errors.blocked_content') if @status.text_changed? && PhraseBlock.cached_regexp.match?(@status.text)
+  end
 
   def update_media_attachments!
     previous_media_attachments = @status.ordered_media_attachments.to_a
@@ -112,6 +117,8 @@ class UpdateStatusService < BaseService
     @status.spoiler_text = @options[:spoiler_text] || '' if @options.key?(:spoiler_text)
     @status.sensitive    = @options[:sensitive] || @options[:spoiler_text].present? if @options.key?(:sensitive) || @options.key?(:spoiler_text)
     @status.language     = valid_locale_cascade(@options[:language], @status.language, @status.account.user&.preferred_posting_language, I18n.default_locale)
+
+    screen_for_spam!
 
     # We raise here to rollback the entire transaction
     raise NoChangesSubmittedError unless significant_changes?
