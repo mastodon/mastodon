@@ -42,18 +42,21 @@ module Mastodon
       true
     end
 
-    desc 'enable', 'Enable emergency mode'
+    desc 'enable REASON', 'Enable emergency mode for one hour'
     long_desc <<~LONG_DESC
       Enable emergency mode, switching to stricter rate limits.
+
+      The REASON will be shown to moderators in the administration
+      dashboard.
     LONG_DESC
-    def enable
-      Setting.emergency_mode = true
+    def enable(reason)
+      EmergencyMode.enable!(reason, 1.hour)
       say('OK', :green)
     end
 
     desc 'disable', 'Disable emergency mode'
     def disable
-      Setting.emergency_mode = false
+      EmergencyMode.disable!
       say('OK', :green)
     end
   end
