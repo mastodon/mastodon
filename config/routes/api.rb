@@ -268,6 +268,11 @@ namespace :api, format: false do
           post :test
         end
       end
+
+      resource :emergency_mode, only: [:show] do
+        post :enable, to: 'emergency_mode#enable'
+        post :disable, to: 'emergency_mode#disable'
+      end
     end
   end
 
