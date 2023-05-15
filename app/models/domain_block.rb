@@ -24,6 +24,7 @@ class DomainBlock < ApplicationRecord
   enum severity: { silence: 0, suspend: 1, noop: 2 }
 
   validates :domain, presence: true, uniqueness: true, domain: true
+  validates :severity, inclusion: { in: severities.keys }
 
   has_many :accounts, foreign_key: :domain, primary_key: :domain, inverse_of: false
   delegate :count, to: :accounts, prefix: true
@@ -107,5 +108,11 @@ class DomainBlock < ApplicationRecord
 
   def domain_digest
     Digest::SHA256.hexdigest(domain)
+  end
+
+  def severity=(value)
+    super
+  rescue ArgumentError
+    @attributes.write_cast_value('severity', value)
   end
 end

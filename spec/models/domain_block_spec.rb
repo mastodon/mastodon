@@ -16,6 +16,23 @@ RSpec.describe DomainBlock do
       domain_block_2.valid?
       expect(domain_block_2).to model_have_error_on_field(:domain)
     end
+
+    context 'with a valid severity value' do
+      it 'is valid' do
+        domain_block = Fabricate.build(:domain_block, severity: :silence)
+
+        expect(domain_block).to be_valid
+      end
+    end
+
+    context 'with an invalid severity value' do
+      it 'is invalid' do
+        domain_block = Fabricate.build(:domain_block, severity: :invalid)
+
+        expect(domain_block).to be_invalid
+        expect(domain_block).to model_have_error_on_field(:severity)
+      end
+    end
   end
 
   describe '.blocked?' do
