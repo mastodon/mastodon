@@ -66,6 +66,14 @@ class Rack::Attack
     IpBlock.blocked?(req.remote_ip)
   end
 
+  throttle('throttle_posts_in_emergency/user', limit: 2, period: 1.minute) do |req|
+    req.authenticated_user_id if req.post? && req.path == '/api/v1/statuses' && Setting.emergency_mode
+  end
+
+  throttle('throttle_posts_in_emergency/ip', limit: 20, period: 1.minute) do |req|
+    req.throttleable_remote_ip if req.post? && req.path == '/api/v1/statuses' && Setting.emergency_mode
+  end
+
   throttle('throttle_authenticated_api', limit: 1_500, period: 5.minutes) do |req|
     req.authenticated_user_id if req.api_request?
   end

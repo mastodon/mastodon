@@ -37,8 +37,32 @@ module Mastodon
     end
   end
 
+  class EmergencyCLI < Thor
+    def self.exit_on_failure?
+      true
+    end
+
+    desc 'enable', 'Enable emergency mode'
+    long_desc <<~LONG_DESC
+      Enable emergency mode, switching to stricter rate limits.
+    LONG_DESC
+    def enable
+      Setting.emergency_mode = true
+      say('OK', :green)
+    end
+
+    desc 'disable', 'Disable emergency mode'
+    def disable
+      Setting.emergency_mode = false
+      say('OK', :green)
+    end
+  end
+
   class SettingsCLI < Thor
     desc 'registrations SUBCOMMAND ...ARGS', 'Manage state of registrations'
     subcommand 'registrations', RegistrationsCLI
+
+    desc 'emergency SUBCOMMAND ...ARGS', 'Manage emergency mode'
+    subcommand 'emergency', EmergencyCLI
   end
 end
