@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_30_155710) do
+ActiveRecord::Schema.define(version: 2023_05_15_084229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -719,6 +719,14 @@ ActiveRecord::Schema.define(version: 2023_03_30_155710) do
     t.bigint "size"
     t.datetime "captured_at"
     t.index ["database", "captured_at"], name: "index_pghero_space_stats_on_database_and_captured_at"
+  end
+
+  create_table "phrase_blocks", force: :cascade do |t|
+    t.text "phrase", null: false
+    t.integer "filter_type", default: 0, null: false
+    t.boolean "whole_word", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "poll_votes", force: :cascade do |t|
