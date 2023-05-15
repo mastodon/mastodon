@@ -49,14 +49,16 @@ class MagicController < ApplicationController
 
     # returns Net::HTTPResponse object
     res = Net::HTTP.post(owapath, data, signed_headers)
+    debug("Response: #{res}")
     debug("Status result: #{res.code}")
-    redirect_fallthrough and return unless res.code == '200'
+    redirect_fallthrough and return unless res.is_a? Net::HTTPSuccess
 
     body = JSON.parse(res.body)
-    redirect_fallthrough and return unless body.key?('encrypted_token') && body.key?('success') && body['success'] != 'true'
+    debug("Response body: #{body}")
+    redirect_fallthrough and return unless body.key?('encrypted_token') && body.key?('success') && body['success'] == true
 
     encrypted_token = body['encrypted_token']
-    debug('Success returned!')
+    debug("Success returned! Encrypted token = #{encrypted_token}")
 
     # decrypt encrypted token
     token = privkey.private_decrypt(Base64.urlsafe_decode64(encrypted_token))
@@ -66,9 +68,12 @@ class MagicController < ApplicationController
     redirectdest = @dest + args
     log("Magic - Redirecting to #{redirectdest} now")
     redirect_to redirectdest
+  rescue OpenSSL::PKey::RSAError => e
+    log("Magic - RSA error: #{e.message}")
+    redirect_fallthrough
   rescue URI::InvalidURIError
-    log('Magic - Could not parse destination')
-    render status: 404
+    log("Magic - Could not parse destination: #{@dest}")
+    redirect_fallthrough
   end
 
   private
