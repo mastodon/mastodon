@@ -76,6 +76,44 @@ describe Api::V1::Admin::CanonicalEmailBlocksController do
 
         expect(json.pluck(:canonical_email_hash)).to match_array(expected_email_hashes)
       end
+
+      context 'with limit param' do
+        let(:params) { { limit: 2 } }
+
+        it 'returns only the requested number of canonical email blocks' do
+          get :index, params: params
+
+          json = body_as_json
+
+          expect(json.size).to eq(params[:limit])
+        end
+      end
+
+      context 'with since_id param' do
+        let(:params) { { since_id: canonical_email_blocks[1].id } }
+
+        it 'returns only the canonical email blocks after since_id' do
+          get :index, params: params
+
+          canonical_email_blocks_ids = canonical_email_blocks.pluck(:id).map(&:to_s)
+          json = body_as_json
+
+          expect(json.pluck(:id)).to match_array(canonical_email_blocks_ids[2..])
+        end
+      end
+
+      context 'with max_id param' do
+        let(:params) { { max_id: canonical_email_blocks[3].id } }
+
+        it 'returns only the canonical email blocks before max_id' do
+          get :index, params: params
+
+          canonical_email_blocks_ids = canonical_email_blocks.pluck(:id).map(&:to_s)
+          json = body_as_json
+
+          expect(json.pluck(:id)).to match_array(canonical_email_blocks_ids[..2])
+        end
+      end
     end
   end
 
