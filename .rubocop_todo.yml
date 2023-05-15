@@ -94,11 +94,6 @@ Lint/AmbiguousBlockAssociation:
     - 'spec/services/unsuspend_account_service_spec.rb'
     - 'spec/workers/scheduler/accounts_statuses_cleanup_scheduler_spec.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-Lint/AmbiguousOperatorPrecedence:
-  Exclude:
-    - 'config/initializers/rack_attack.rb'
-
 # Configuration parameters: AllowComments, AllowEmptyLambdas.
 Lint/EmptyBlock:
   Exclude:
