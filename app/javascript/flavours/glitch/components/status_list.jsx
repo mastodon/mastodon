@@ -26,6 +26,7 @@ export default class StatusList extends ImmutablePureComponent {
     alwaysPrepend: PropTypes.bool,
     withCounters: PropTypes.bool,
     timelineId: PropTypes.string.isRequired,
+    lastId: PropTypes.string,
     regex: PropTypes.string,
   };
 
@@ -56,7 +57,8 @@ export default class StatusList extends ImmutablePureComponent {
   };
 
   handleLoadOlder = debounce(() => {
-    this.props.onLoadMore(this.props.statusIds.size > 0 ? this.props.statusIds.last() : undefined);
+    const { statusIds, lastId, onLoadMore } = this.props;
+    onLoadMore(lastId || (statusIds.size > 0 ? statusIds.last() : undefined));
   }, 300, { leading: true });
 
   _selectChild (index, align_top) {
