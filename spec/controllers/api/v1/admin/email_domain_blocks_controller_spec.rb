@@ -5,19 +5,115 @@ require 'rails_helper'
 describe Api::V1::Admin::EmailDomainBlocksController do
   render_views
 
-  let(:user)    { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'admin:read') }
+  let(:role) { UserRole.find_by(name: 'Admin') }
+  let(:user)    { Fabricate(:user, role: role) }
+  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:account) { Fabricate(:account) }
+  let(:scopes) { 'admin:read:email_domain_blocks admin:write:email_domain_blocks' }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
+  shared_examples 'forbidden for wrong scope' do |wrong_scope|
+    let(:scopes) { wrong_scope }
+
+    it 'returns http forbidden' do
+      expect(response).to have_http_status(403)
+    end
+  end
+
+  shared_examples 'forbidden for wrong role' do |wrong_role|
+    let(:role) { UserRole.find_by(name: wrong_role) }
+
+    it 'returns http forbidden' do
+      expect(response).to have_http_status(403)
+    end
+  end
+
   describe 'GET #index' do
+    context 'with wrong scope' do
+      before do
+        get :index
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'read:statuses'
+    end
+
+    context 'with wrong role' do
+      before do
+        get :index
+      end
+
+      it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for wrong role', 'Moderator'
+    end
+
     it 'returns http success' do
-      get :index, params: { account_id: account.id, limit: 2 }
+      get :index
 
       expect(response).to have_http_status(200)
+    end
+
+    context 'when there is no email domain block' do
+      it 'returns an empty list' do
+        get :index
+
+        json = body_as_json
+
+        expect(json).to be_empty
+      end
+    end
+
+    context 'when there are email domain blocks' do
+      let!(:email_domain_blocks) { Fabricate.times(5, :email_domain_block) }
+      let(:blocked_email_domains) { email_domain_blocks.pluck(:domain) }
+
+      it 'return the correct blocked email domains' do
+        get :index
+
+        json = body_as_json
+
+        expect(json.pluck(:domain)).to match_array(blocked_email_domains)
+      end
+
+      context 'with limit param' do
+        let(:params) { { limit: 2 } }
+
+        it 'returns only the requested number of email domain blocks' do
+          get :index, params: params
+
+          json = body_as_json
+
+          expect(json.size).to eq(params[:limit])
+        end
+      end
+
+      context 'with since_id param' do
+        let(:params) { { since_id: email_domain_blocks[1].id } }
+
+        it 'returns only the email domain blocks after since_id' do
+          get :index, params: params
+
+          email_domain_blocks_ids = email_domain_blocks.pluck(:id).map(&:to_s)
+          json = body_as_json
+
+          expect(json.pluck(:id)).to match_array(email_domain_blocks_ids[2..])
+        end
+      end
+
+      context 'with max_id param' do
+        let(:params) { { max_id: email_domain_blocks[3].id } }
+
+        it 'returns only the email domain blocks before max_id' do
+          get :index, params: params
+
+          email_domain_blocks_ids = email_domain_blocks.pluck(:id).map(&:to_s)
+          json = body_as_json
+
+          expect(json.pluck(:id)).to match_array(email_domain_blocks_ids[..2])
+        end
+      end
     end
   end
 end
