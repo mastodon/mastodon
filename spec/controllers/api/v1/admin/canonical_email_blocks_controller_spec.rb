@@ -8,7 +8,6 @@ describe Api::V1::Admin::CanonicalEmailBlocksController do
   let(:role)    { UserRole.find_by(name: 'Admin') }
   let(:user)    { Fabricate(:user, role: role) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:account) { Fabricate(:account) }
   let(:scopes)  { 'admin:read:canonical_email_blocks admin:write:canonical_email_blocks' }
 
   before do
