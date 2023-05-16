@@ -216,6 +216,18 @@ describe Api::V1::Admin::EmailDomainBlocksController do
         expect(response).to have_http_status(422)
       end
     end
+
+    context 'when provided domain is already blocked' do
+      before do
+        EmailDomainBlock.create(params)
+      end
+
+      it 'returns http unprocessable entity' do
+        post :create, params: params
+
+        expect(response).to have_http_status(422)
+      end
+    end
   end
 
   describe 'DELETE #destroy' do
