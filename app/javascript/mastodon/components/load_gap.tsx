@@ -1,35 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { injectIntl, defineMessages } from 'react-intl';
-import Icon from 'mastodon/components/icon';
+import React, { useCallback } from 'react';
+import { injectIntl, defineMessages, InjectedIntl } from 'react-intl';
+import { Icon } from 'mastodon/components/icon';
 
 const messages = defineMessages({
   load_more: { id: 'status.load_more', defaultMessage: 'Load more' },
 });
 
-class LoadGap extends React.PureComponent {
+type Props = {
+  disabled: boolean,
+  maxId: string,
+  onClick: (maxId: string) => void,
+  intl: InjectedIntl
+};
 
-  static propTypes = {
-    disabled: PropTypes.bool,
-    maxId: PropTypes.string,
-    onClick: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired,
-  };
+const LoadGap: React.FC<Props> = ({ disabled, maxId, onClick, intl }) => {
+  const handleClick = useCallback(() => {
+    onClick(maxId);
+  }, [maxId, onClick]);
 
-  handleClick = () => {
-    this.props.onClick(this.props.maxId);
-  };
-
-  render () {
-    const { disabled, intl } = this.props;
-
-    return (
-      <button className='load-more load-gap' disabled={disabled} onClick={this.handleClick} aria-label={intl.formatMessage(messages.load_more)}>
-        <Icon id='ellipsis-h' />
-      </button>
-    );
-  }
-
-}
+  return (
+    <button className='load-more load-gap' disabled={disabled} onClick={handleClick} aria-label={intl.formatMessage(messages.load_more)}>
+      <Icon id='ellipsis-h' />
+    </button>
+  );
+};
 
 export default injectIntl(LoadGap);
