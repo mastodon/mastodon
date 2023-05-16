@@ -217,4 +217,56 @@ describe Api::V1::Admin::EmailDomainBlocksController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    let!(:email_domain_block) { Fabricate(:email_domain_block) }
+    let(:params) { { id: email_domain_block.id } }
+
+    context 'with wrong scope' do
+      before do
+        delete :destroy, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'read:statuses'
+    end
+
+    context 'with wrong role' do
+      before do
+        delete :destroy, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for wrong role', 'Moderator'
+    end
+
+    it 'returns http success' do
+      delete :destroy, params: params
+
+      expect(response).to have_http_status(200)
+    end
+
+    it 'returns an empty body' do
+      delete :destroy, params: params
+
+      json = body_as_json
+
+      expect(json).to be_empty
+    end
+
+    it 'deletes email domain block' do
+      delete :destroy, params: params
+
+      email_domain_block = EmailDomainBlock.find_by(id: params[:id])
+
+      expect(email_domain_block).to be_nil
+    end
+
+    context 'when email domain block does not exist' do
+      it 'returns http not found' do
+        delete :destroy, params: { id: 0 }
+
+        expect(response).to have_http_status(404)
+      end
+    end
+  end
 end
