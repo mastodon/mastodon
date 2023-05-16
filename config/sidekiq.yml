@@ -26,6 +26,10 @@
       every: '5m'
       class: Scheduler::IndexingScheduler
       queue: scheduler
+    user_registration_protection_scheduler:
+      every: '5m'
+      class: Scheduler::UserRegistrationProtectionScheduler
+      queue: scheduler
     vacuum_scheduler:
       cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
       class: Scheduler::VacuumScheduler
