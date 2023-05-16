@@ -36,4 +36,13 @@ module Admin::DashboardHelper
 
     content_tag(:time, l(timestamp), class: 'time-ago', datetime: timestamp.iso8601, title: l(timestamp))
   end
+
+  def emergency_mode_notice
+    reason = EmergencyMode.reason
+    return if reason.blank?
+
+    content_tag(:div, class: 'flash-message') do
+      I18n.t('admin.emergency_mode.notice', reason: reason)
+    end
+  end
 end

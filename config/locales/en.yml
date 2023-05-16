@@ -433,6 +433,8 @@ en:
       resolved_dns_records_hint_html: The domain name resolves to the following MX domains, which are ultimately responsible for accepting e-mail. Blocking an MX domain will block sign-ups from any e-mail address which uses the same MX domain, even if the visible domain name is different. <strong>Be careful not to block major e-mail providers.</strong>
       resolved_through_html: Resolved through %{domain}
       title: Blocked e-mail domains
+    emergency_mode:
+      notice: 'Emergency mode is enabled: %{reason}'
     export_domain_allows:
       new:
         title: Import domain allows

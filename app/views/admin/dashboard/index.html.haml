@@ -9,6 +9,8 @@
   = ' - '
   = l(@time_period.last)
 
+= emergency_mode_notice
+
 - unless @system_checks.empty?
   .flash-message-stack
     - @system_checks.each do |message|
