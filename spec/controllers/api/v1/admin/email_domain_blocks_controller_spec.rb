@@ -119,7 +119,7 @@ describe Api::V1::Admin::EmailDomainBlocksController do
 
   describe 'GET #show' do
     let!(:email_domain_block) { Fabricate(:email_domain_block) }
-    let(:params) { { id: email_domain_block } }
+    let(:params) { { id: email_domain_block.id } }
 
     context 'with wrong scope' do
       before do
