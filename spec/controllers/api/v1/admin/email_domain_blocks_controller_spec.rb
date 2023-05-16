@@ -162,4 +162,59 @@ describe Api::V1::Admin::EmailDomainBlocksController do
       end
     end
   end
+
+  describe 'POST #create' do
+    let(:params) { { domain: 'example.com' } }
+
+    context 'with wrong scope' do
+      before do
+        post :create, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'read:statuses'
+    end
+
+    context 'with wrong role' do
+      before do
+        post :create, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for wrong role', 'Moderator'
+    end
+
+    it 'returns http success' do
+      post :create, params: params
+
+      expect(response).to have_http_status(200)
+    end
+
+    it 'returns the correct blocked email domain' do
+      post :create, params: params
+
+      json = body_as_json
+
+      expect(json[:domain]).to eq(params[:domain])
+    end
+
+    context 'when domain param is not provided' do
+      let(:params) { { domain: '' } }
+
+      it 'returns http unprocessable entity' do
+        post :create, params: params
+
+        expect(response).to have_http_status(422)
+      end
+    end
+
+    context 'when provided domain name has an invalid character' do
+      let(:params) { { domain: 'do\uD800.com' } }
+
+      it 'returns http unprocessable entity' do
+        post :create, params: params
+
+        expect(response).to have_http_status(422)
+      end
+    end
+  end
 end
