@@ -9,6 +9,7 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:promise/recommended',
     'plugin:jsdoc/recommended',
+    'plugin:prettier/recommended',
   ],
 
   env: {
@@ -54,28 +55,14 @@ module.exports = {
       '\\.(css|scss|json)$',
     ],
     'import/resolver': {
-      node: {
-        paths: ['app/javascript'],
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      },
+      typescript: {},
     },
   },
 
   rules: {
-    'brace-style': 'warn',
-    'comma-dangle': ['error', 'always-multiline'],
-    'comma-spacing': [
-      'warn',
-      {
-        before: false,
-        after: true,
-      },
-    ],
-    'comma-style': ['warn', 'last'],
     'consistent-return': 'error',
     'dot-notation': 'error',
     eqeqeq: ['error', 'always', { 'null': 'ignore' }],
-    indent: ['warn', 2],
     'jsx-quotes': ['error', 'prefer-single'],
     'no-case-declarations': 'off',
     'no-catch-shadow': 'error',
@@ -95,7 +82,6 @@ module.exports = {
       { property: 'substr', message: 'Use .slice instead of .substr.' },
     ],
     'no-self-assign': 'off',
-    'no-trailing-spaces': 'warn',
     'no-unused-expressions': 'error',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
@@ -107,30 +93,14 @@ module.exports = {
         ignoreRestSiblings: true,
       },
     ],
-    'object-curly-spacing': ['error', 'always'],
-    'padded-blocks': [
-      'error',
-      {
-        classes: 'always',
-      },
-    ],
-    quotes: ['error', 'single'],
-    semi: 'error',
     'valid-typeof': 'error',
 
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', 'tsx'] }],
     'react/jsx-boolean-value': 'error',
-    'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
-    'react/jsx-curly-spacing': 'error',
     'react/display-name': 'off',
     'react/jsx-equals-spacing': 'error',
-    'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
-    'react/jsx-indent': ['error', 2],
     'react/jsx-no-bind': 'error',
     'react/jsx-no-target-blank': 'off',
-    'react/jsx-tag-spacing': 'error',
-    'react/jsx-wrap-multilines': 'error',
-    'react/no-deprecated': 'off',
     'react/no-unknown-property': 'off',
     'react/self-closing-comp': 'error',
 
@@ -194,11 +164,14 @@ module.exports = {
       {
         js: 'never',
         jsx: 'never',
+        mjs: 'never',
         ts: 'never',
         tsx: 'never',
       },
     ],
+    'import/first': 'error',
     'import/newline-after-import': 'error',
+    'import/no-anonymous-default-export': 'error',
     'import/no-extraneous-dependencies': [
       'error',
       {
@@ -213,6 +186,9 @@ module.exports = {
     'import/no-amd': 'error',
     'import/no-commonjs': 'error',
     'import/no-import-module-exports': 'error',
+    'import/no-relative-packages': 'error',
+    'import/no-self-import': 'error',
+    'import/no-useless-path-segments': 'error',
     'import/no-webpack-loader-syntax': 'error',
 
     'promise/always-return': 'off',
@@ -284,6 +260,7 @@ module.exports = {
       extends: [
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
         'plugin:jsx-a11y/recommended',
@@ -291,10 +268,69 @@ module.exports = {
         'plugin:import/typescript',
         'plugin:promise/recommended',
         'plugin:jsdoc/recommended',
+        'plugin:prettier/recommended',
       ],
 
+      parserOptions: {
+        project: './tsconfig.json',
+        tsconfigRootDir: __dirname,
+      },
+
       rules: {
-        '@typescript-eslint/no-explicit-any': 'off',
+        'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+
+        'import/order': [
+          'error',
+          {
+            alphabetize: { order: 'asc' },
+            'newlines-between': 'always',
+            groups: [
+              'builtin',
+              'external',
+              'internal',
+              'parent',
+              ['index', 'sibling'],
+              'object',
+            ],
+            pathGroups: [
+              // React core packages
+              {
+                pattern: '{react,react-dom,prop-types}',
+                group: 'builtin',
+                position: 'after',
+              },
+              // I18n
+              {
+                pattern: 'react-intl',
+                group: 'builtin',
+                position: 'after',
+              },
+              // Common React utilities
+              {
+                pattern: '{classnames,react-helmet}',
+                group: 'external',
+                position: 'before',
+              },
+              // Immutable / Redux / data store
+              {
+                pattern: '{immutable,react-redux,react-immutable-proptypes,react-immutable-pure-component,reselect}',
+                group: 'external',
+                position: 'before',
+              },
+              // Internal packages
+              {
+                pattern: '{mastodon/**}',
+                group: 'internal',
+                position: 'after',
+              },
+            ],
+            pathGroupsExcludedImportTypes: [],
+          },
+        ],
+
+        '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
+        '@typescript-eslint/consistent-type-exports': 'error',
+        '@typescript-eslint/consistent-type-imports': 'error',
 
         'jsdoc/require-jsdoc': 'off',
 

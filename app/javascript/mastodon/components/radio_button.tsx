@@ -1,15 +1,22 @@
 import React from 'react';
+
 import classNames from 'classnames';
 
-type Props = {
+interface Props {
   value: string;
   checked: boolean;
   name: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   label: React.ReactNode;
-};
+}
 
-export const RadioButton: React.FC<Props> = ({ name, value, checked, onChange, label }) => {
+export const RadioButton: React.FC<Props> = ({
+  name,
+  value,
+  checked,
+  onChange,
+  label,
+}) => {
   return (
     <label className='radio-button'>
       <input

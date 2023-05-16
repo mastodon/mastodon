@@ -17,10 +17,6 @@ updates:
       - dependency-name: '@rails/ujs'
         versions:
           - '>= 7'
-      # TODO: This was ignored in https://github.com/mastodon/mastodon/pull/19120
-      - dependency-name: 'uuid'
-        versions:
-          - '>= 9'
       # TODO: This requires code changes for migration
       - dependency-name: 'tesseract.js'
         versions:

@@ -139,10 +139,6 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
   end
 
   context 'when Accounts referencing other accounts' do
-    before do
-      stub_const 'ActivityPub::ProcessAccountService::DISCOVERIES_PER_REQUEST', 5
-    end
-
     let(:payload) do
       {
         '@context': ['https://www.w3.org/ns/activitystreams'],
@@ -155,6 +151,8 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
     end
 
     before do
+      stub_const 'ActivityPub::ProcessAccountService::DISCOVERIES_PER_REQUEST', 5
+
       8.times do |i|
         actor_json = {
           '@context': ['https://www.w3.org/ns/activitystreams'],

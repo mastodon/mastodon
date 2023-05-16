@@ -94,11 +94,6 @@ Lint/AmbiguousBlockAssociation:
     - 'spec/services/unsuspend_account_service_spec.rb'
     - 'spec/workers/scheduler/accounts_statuses_cleanup_scheduler_spec.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-Lint/AmbiguousOperatorPrecedence:
-  Exclude:
-    - 'config/initializers/rack_attack.rb'
-
 # Configuration parameters: AllowComments, AllowEmptyLambdas.
 Lint/EmptyBlock:
   Exclude:
@@ -642,24 +637,6 @@ RSpec/RepeatedExample:
 RSpec/RepeatedExampleGroupBody:
   Exclude:
     - 'spec/controllers/statuses_controller_spec.rb'
-
-RSpec/RepeatedExampleGroupDescription:
-  Exclude:
-    - 'spec/controllers/admin/reports/actions_controller_spec.rb'
-    - 'spec/policies/report_note_policy_spec.rb'
-
-RSpec/ScatteredSetup:
-  Exclude:
-    - 'spec/controllers/activitypub/followers_synchronizations_controller_spec.rb'
-    - 'spec/controllers/activitypub/outboxes_controller_spec.rb'
-    - 'spec/controllers/admin/disputes/appeals_controller_spec.rb'
-    - 'spec/controllers/auth/registrations_controller_spec.rb'
-    - 'spec/services/activitypub/process_account_service_spec.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/SharedContext:
-  Exclude:
-    - 'spec/services/unsuspend_account_service_spec.rb'
 
 RSpec/StubbedMock:
   Exclude:

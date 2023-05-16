@@ -1,9 +1,9 @@
 import './public-path';
-import loadPolyfills from '../mastodon/load_polyfills';
+import escapeTextContentForBrowser from 'escape-html';
+import { loadPolyfills } from '../mastodon/polyfills';
+import ready from '../mastodon/ready';
 import { start } from '../mastodon/common';
 
-import escapeTextContentForBrowser from 'escape-html';
-import ready from '../mastodon/ready';
 import loadKeyboardExtensions from '../mastodon/load_keyboard_extensions';
 import 'cocoon-js-vanilla';
 import axios from 'axios';
@@ -12,7 +12,7 @@ import { defineMessages } from 'react-intl';
 import * as IntlMessageFormat  from 'intl-messageformat';
 import { timeAgoString }  from '../mastodon/components/relative_timestamp';
 import { delegate }  from '@rails/ujs';
-import * as emojify  from '../mastodon/features/emoji/emoji';
+import emojify  from '../mastodon/features/emoji/emoji';
 import { getLocale }  from '../mastodon/locales';
 import React  from 'react';
 import ReactDOM  from 'react-dom';

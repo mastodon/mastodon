@@ -1,16 +1,18 @@
 import * as React from 'react';
+
 import classNames from 'classnames';
-import { autoPlayGif } from '../initial_state';
+
 import { useHovering } from '../../hooks/useHovering';
 import type { Account } from '../../types/resources';
+import { autoPlayGif } from '../initial_state';
 
-type Props = {
+interface Props {
   account: Account;
   size: number;
   style?: React.CSSProperties;
   inline?: boolean;
   animate?: boolean;
-};
+}
 
 export const Avatar: React.FC<Props> = ({
   account,
