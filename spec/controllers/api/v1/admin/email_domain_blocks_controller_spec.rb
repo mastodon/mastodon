@@ -116,4 +116,50 @@ describe Api::V1::Admin::EmailDomainBlocksController do
       end
     end
   end
+
+  describe 'GET #show' do
+    let!(:email_domain_block) { Fabricate(:email_domain_block) }
+    let(:params) { { id: email_domain_block } }
+
+    context 'with wrong scope' do
+      before do
+        get :show, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'read:statuses'
+    end
+
+    context 'with wrong role' do
+      before do
+        get :show, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for wrong role', 'Moderator'
+    end
+
+    context 'when email domain block exists' do
+      it 'returns http success' do
+        get :show, params: params
+
+        expect(response).to have_http_status(200)
+      end
+
+      it 'returns the correct blocked domain' do
+        get :show, params: params
+
+        json = body_as_json
+
+        expect(json[:domain]).to eq(email_domain_block.domain)
+      end
+    end
+
+    context 'when email domain block does not exist' do
+      it 'returns http not found' do
+        get :show, params: { id: 0 }
+
+        expect(response).to have_http_status(404)
+      end
+    end
+  end
 end
