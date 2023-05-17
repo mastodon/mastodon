@@ -5,11 +5,11 @@ require 'rails_helper'
 describe Api::V1::Admin::EmailDomainBlocksController do
   render_views
 
-  let(:role) { UserRole.find_by(name: 'Admin') }
+  let(:role)    { UserRole.find_by(name: 'Admin') }
   let(:user)    { Fabricate(:user, role: role) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:account) { Fabricate(:account) }
-  let(:scopes) { 'admin:read:email_domain_blocks admin:write:email_domain_blocks' }
+  let(:scopes)  { 'admin:read:email_domain_blocks admin:write:email_domain_blocks' }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
