@@ -151,4 +151,83 @@ describe Api::V1::Admin::IpBlocksController do
       end
     end
   end
+
+  describe 'POST #create' do
+    let(:params) { { ip: '151.0.32.55', severity: 'no_access', comment: 'Spam' } }
+
+    context 'with wrong scope' do
+      before do
+        post :create, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'admin:read:ip_blocks'
+    end
+
+    context 'with wrong role' do
+      before do
+        post :create, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for wrong role', 'Moderator'
+    end
+
+    it 'reurns http success' do
+      post :create, params: params
+
+      expect(response).to have_http_status(200)
+    end
+
+    it 'returns the correct ip block' do
+      post :create, params: params
+
+      json = body_as_json
+
+      expect(json[:ip]).to eq("#{params[:ip]}/32")
+      expect(json[:severity]).to eq(params[:severity])
+      expect(json[:comment]).to eq(params[:comment])
+    end
+
+    context 'when ip is not provided' do
+      let(:params) { { ip: '', severity: 'no_access' } }
+
+      it 'returns http unprocessable entity' do
+        post :create, params: params
+
+        expect(response).to have_http_status(422)
+      end
+    end
+
+    context 'when severity is not provided' do
+      let(:params) { { ip: '173.65.23.1', severity: '' } }
+
+      it 'returns http unprocessable entity' do
+        post :create, params: params
+
+        expect(response).to have_http_status(422)
+      end
+    end
+
+    context 'when provided ip is already blocked' do
+      before do
+        IpBlock.create(params)
+      end
+
+      it 'returns http unprocessable entity' do
+        post :create, params: params
+
+        expect(response).to have_http_status(422)
+      end
+    end
+
+    context 'when provided ip address is invalid' do
+      let(:params) { { ip: '520.13.54.120', severity: 'no_access' } }
+
+      it 'returns http unprocessable entity' do
+        post :create, params: params
+
+        expect(response).to have_http_status(422)
+      end
+    end
+  end
 end
