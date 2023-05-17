@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_19_141645) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_19_171126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -452,6 +452,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_19_141645) do
     t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "emergency_setting_override_actions", force: :cascade do |t|
+    t.bigint "emergency_rule_id", null: false
+    t.string "setting", null: false
+    t.string "value", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["emergency_rule_id"], name: "index_emergency_setting_override_actions_on_emergency_rule_id"
   end
 
   create_table "emergency_triggers", force: :cascade do |t|
@@ -1250,6 +1259,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_19_141645) do
   add_foreign_key "devices", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
   add_foreign_key "email_domain_blocks", "email_domain_blocks", column: "parent_id", on_delete: :cascade
   add_foreign_key "emergency_rate_limit_actions", "emergency_rules", on_delete: :cascade
+  add_foreign_key "emergency_setting_override_actions", "emergency_rules", on_delete: :cascade
   add_foreign_key "emergency_triggers", "emergency_rules", on_delete: :cascade
   add_foreign_key "encrypted_messages", "accounts", column: "from_account_id", on_delete: :cascade
   add_foreign_key "encrypted_messages", "devices", on_delete: :cascade

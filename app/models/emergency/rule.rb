@@ -15,6 +15,7 @@ class Emergency::Rule < ApplicationRecord
 
   has_many :triggers, class_name: 'Emergency::Trigger', foreign_key: 'emergency_rule_id', inverse_of: :emergency_rule, dependent: :destroy
   has_many :rate_limit_actions, class_name: 'Emergency::RateLimitAction', foreign_key: 'emergency_rule_id', inverse_of: :emergency_rule, dependent: :destroy
+  has_many :setting_override_actions, class_name: 'Emergency::SettingOverrideAction', foreign_key: 'emergency_rule_id', inverse_of: :emergency_rule, dependent: :destroy
 
   validates :name, presence: true
 
