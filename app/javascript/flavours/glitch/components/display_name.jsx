@@ -9,12 +9,9 @@ export default class DisplayName extends React.PureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map,
-    className: PropTypes.string,
-    inline: PropTypes.bool,
-    localDomain: PropTypes.string,
     others: ImmutablePropTypes.list,
-    handleClick: PropTypes.func,
-    onAccountClick: PropTypes.func,
+    localDomain: PropTypes.string,
+    inline: PropTypes.bool,
   };
 
   handleMouseEnter = ({ currentTarget }) => {
@@ -43,48 +40,30 @@ export default class DisplayName extends React.PureComponent {
     }
   };
 
-  render() {
-    const { account, className, inline, localDomain, others, onAccountClick } = this.props;
+  render () {
+    const { others, localDomain, inline } = this.props;
 
-    const computedClass = classNames('display-name', { inline }, className);
+    let displayName, suffix, account;
 
-    let displayName, suffix;
-    let acct;
+    if (others && others.size > 1) {
+      displayName = others.take(2).map(a => <bdi key={a.get('id')}><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }} /></bdi>).reduce((prev, cur) => [prev, ', ', cur]);
 
-    if (account) {
-      acct = account.get('acct');
+      if (others.size - 2 > 0) {
+        suffix = `+${others.size - 2}`;
+      }
+    } else if ((others && others.size > 0) || this.props.account) {
+      if (others && others.size > 0) {
+        account = others.first();
+      } else {
+        account = this.props.account;
+      }
+
+      let acct = account.get('acct');
 
       if (acct.indexOf('@') === -1 && localDomain) {
         acct = `${acct}@${localDomain}`;
       }
-    }
 
-    if (others && others.size > 0) {
-      displayName = others.take(2).map(a => (
-        <a
-          key={a.get('id')}
-          href={a.get('url')}
-          target='_blank'
-          onClick={(e) => onAccountClick(a.get('acct'), e)}
-          title={`@${a.get('acct')}`}
-          rel='noopener noreferrer'
-        >
-          <bdi key={a.get('id')}>
-            <strong className='display-name__html' dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }} />
-          </bdi>
-        </a>
-      )).reduce((prev, cur) => [prev, ', ', cur]);
-
-      if (others.size - 2 > 0) {
-        displayName.push(` +${others.size - 2}`);
-      }
-
-      suffix = (
-        <a href={account.get('url')} target='_blank' onClick={(e) => onAccountClick(account.get('acct'), e)} rel='noopener noreferrer'>
-          <span className='display-name__account'>@{acct}</span>
-        </a>
-      );
-    } else if (account) {
       displayName = <bdi><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }} /></bdi>;
       suffix      = <span className='display-name__account'>@{acct}</span>;
     } else {
@@ -93,7 +72,7 @@ export default class DisplayName extends React.PureComponent {
     }
 
     return (
-      <span className={computedClass} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <span className={classNames('display-name', { inline })} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         {displayName}
         {inline ? ' ' : null}
         {suffix}
