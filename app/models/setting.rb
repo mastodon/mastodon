@@ -96,6 +96,12 @@ class Setting < ApplicationRecord
       hash = content.empty? ? {} : YAML.safe_load(ERB.new(content).result, aliases: true).to_hash
       @default_settings = (hash[Rails.env] || {}).freeze
     end
+
+    Emergency::SettingOverrideAction::ALLOWED_SETTINGS.each_key do |key|
+      define_method(key) do
+        Emergency::SettingOverrideAction.overridden_setting(key) || self[key]
+      end
+    end
   end
 
   # get the value field, YAML decoded
