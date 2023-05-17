@@ -106,4 +106,49 @@ describe Api::V1::Admin::IpBlocksController do
       end
     end
   end
+
+  describe 'GET #show' do
+    let!(:ip_block) { IpBlock.create(ip: '192.0.2.0/24', severity: :no_access) }
+    let(:params) { { id: ip_block.id } }
+
+    context 'with wrong scope' do
+      before do
+        get :show, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'admin:write:ip_blocks'
+    end
+
+    context 'with wrong role' do
+      before do
+        get :show, params: params
+      end
+
+      it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for wrong role', 'Moderator'
+    end
+
+    it 'returns http success' do
+      get :show, params: params
+
+      expect(response).to have_http_status(200)
+    end
+
+    it 'returns the correct ip block' do
+      get :show, params: params
+
+      json = body_as_json
+
+      expect(json[:ip]).to eq("#{ip_block.ip}/#{ip_block.ip.prefix}")
+      expect(json[:severity]).to eq(ip_block.severity.to_s)
+    end
+
+    context 'when ip block does not exist' do
+      it 'returns http not found' do
+        get :show, params: { id: 0 }
+
+        expect(response).to have_http_status(404)
+      end
+    end
+  end
 end
