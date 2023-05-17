@@ -61,7 +61,7 @@ class RateLimiter
   private
 
   def limits
-    @limits ||= [default_limit]
+    @limits ||= [default_limit, Emergency::RateLimitAction.get_rate_limits_for(@family, @by, last_epoch_time)].flatten.compact
   end
 
   def default_limit

@@ -16,13 +16,16 @@ class Emergency::Tracker
   end
 
   def add(value = 1, at_time = Time.now.utc)
-    DURATIONS.each do |duration_type, duration|
+    counts = DURATIONS.to_h do |duration_type, duration|
       key = key_at(at_time, duration_type)
-      redis.incrby(key, value)
-      redis.expire(key, duration * RETENTION_FACTOR)
+      count = redis.multi do |transaction|
+        transaction.incrby(key, value)
+        transaction.expire(key, duration * RETENTION_FACTOR)
+      end.first
+      [duration_type, count]
     end
 
-    # TODO: trigger stuff
+    Emergency::Trigger.process_event(@prefix, at_time, counts)
   end
 
   class << self
