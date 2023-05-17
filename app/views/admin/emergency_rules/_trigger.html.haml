@@ -1,0 +1,9 @@
+%li.permissions-list__item
+  .permissions-list__item__icon
+    = fa_icon('cogs')
+  .permissions-list__item__text
+    .permissions-list__item__text__title
+      = t("admin.emergency_rules.triggers.title.#{trigger.event}")
+    .permissions-list__item__text__type
+      - period = t("admin.emergency_rules.triggers.periods.#{trigger.duration_bucket}")
+      = t('admin.emergency_rules.triggers.description', threshold: trigger.threshold, period: period)

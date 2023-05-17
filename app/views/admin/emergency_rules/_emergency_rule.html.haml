@@ -1,0 +1,24 @@
+.filters-list__item
+  .filters-list__item__title
+    = emergency_rule.name
+
+    - if emergency_rule.active?
+      .expiration
+        - if can?(:deactivate, emergency_rule)
+          = link_to t('admin.emergency_rules.index.deactivate'), deactivate_admin_emergency_rule_path(emergency_rule.id), method: :post, class: 'button button-tertiary button--destructive'
+        - else
+          = t('admin.emergency_rules.active')
+
+  .filters-list__item__permissions
+    %ul.permissions-list
+      = render partial: 'trigger', collection: emergency_rule.triggers
+      = render partial: 'rate_limit_action', collection: emergency_rule.rate_limit_actions
+      = render partial: 'setting_override_action', collection: emergency_rule.setting_override_actions
+
+  .announcements-list__item__action-bar
+    .announcements-list__item__meta
+      -# TODO: history
+      - if emergency_rule.duration.present?
+        = t('admin.emergency_rules.expires_after_duration', duration: distance_of_time_in_words(Time.at(0).utc, Time.at(emergency_rule.duration).utc))
+      - else
+        = t('admin.emergency_rules.no_expiration')

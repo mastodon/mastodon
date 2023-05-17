@@ -36,4 +36,12 @@ module Admin::DashboardHelper
 
     content_tag(:time, l(timestamp), class: 'time-ago', datetime: timestamp.iso8601, title: l(timestamp))
   end
+
+  def emergency_rule_notice
+    return unless Emergency::Rule.any_active?
+
+    content_tag(:div, class: 'flash-message warning') do
+      I18n.t('admin.emergency_rules.notice_html', path: admin_emergency_rules_path).html_safe
+    end
+  end
 end

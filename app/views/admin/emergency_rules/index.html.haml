@@ -1,0 +1,13 @@
+- content_for :page_title do
+  = t('admin.emergency_rules.index.title')
+
+- content_for :heading_actions do
+  = link_to t('admin.emergency_rules.index.add'), new_admin_emergency_rule_path, class: 'button' if can?(:create, [:emergency, :rule])
+
+  %p.lead= t('admin.emergency_rules.index.preamble')
+
+- if @rules.empty?
+  .muted-hint.center-text= t 'admin.emergency_rules.index.empty'
+- else
+  .applications-list
+    = render partial: 'emergency_rule', collection: @rules

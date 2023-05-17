@@ -1,0 +1,8 @@
+%li.permissions-list__item
+  .permissions-list__item__icon
+    = fa_icon('gavel')
+  .permissions-list__item__text
+    .permissions-list__item__text__title
+      = t("admin.emergency_rules.setting_override_actions.#{setting_override_action.setting}.title_#{setting_override_action.value}")
+    .permissions-list__item__text__type
+      = t('admin.emergency_rules.setting_override_actions.description')

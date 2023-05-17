@@ -444,6 +444,40 @@ en:
       resolved_dns_records_hint_html: The domain name resolves to the following MX domains, which are ultimately responsible for accepting e-mail. Blocking an MX domain will block sign-ups from any e-mail address which uses the same MX domain, even if the visible domain name is different. <strong>Be careful not to block major e-mail providers.</strong>
       resolved_through_html: Resolved through %{domain}
       title: Blocked e-mail domains
+    emergency_rules:
+      active: Active
+      deactivated_msg: Successfully deactivated emergency rule
+      expires_after_duration: Deactivates %{duration} after most recent trigger
+      index:
+        add: Add new rule
+        deactivate: Deactivate
+        empty: There are currently no emergency rules set up on this server.
+        preamble: Emergency rules are configurable automated rules meant to give moderators some time to breath when the server is facing an unusual surge of activity.
+        title: Emergency rules
+      no_expiration: Needs to be manually disabled once triggered
+      notice_html: An <a href="%{path}">emergency rule</a> is currently enabled.
+      rate_limit_actions:
+        description: All local accounts get heavily rate-limited when this rule is active
+        new_users_description: Accounts confirmed around or after this rule got triggered get heavily rate-limited
+        new_users_title: Heavily rate-limit new users
+        title: Heavily rate-limit users
+      setting_override_actions:
+        captcha_enabled:
+          title_true: Enable CAPTCHA
+        description: Overrides the server settings when this rule is active
+        registrations_mode:
+          title_approved: Switch registrations to approval-based
+          title_none: Close registrations
+      triggers:
+        description: Triggers when reaching %{threshold} per %{period}
+        periods:
+          day: day
+          hour: hour
+          minute: minute
+        title:
+          local:confirmations: New account confirmations
+          local:posts: New posts
+          local:signups: New registrations
     export_domain_allows:
       new:
         title: Import domain allows
