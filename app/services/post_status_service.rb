@@ -49,6 +49,8 @@ class PostStatusService < BaseService
       process_status!
     end
 
+    Emergency::Tracker.increment('local:posts')
+
     redis.setex(idempotency_key, 3_600, @status.id) if idempotency_given?
 
     unless scheduled?

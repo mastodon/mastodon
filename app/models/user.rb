@@ -123,6 +123,7 @@ class User < ApplicationRecord
   before_validation :sanitize_role
   before_create :set_approved
   after_commit :send_pending_devise_notifications
+  after_create_commit :track_sign_ups
   after_create_commit :trigger_webhooks
 
   normalizes :locale, with: ->(locale) { I18n.available_locales.exclude?(locale.to_sym) ? nil : locale }
@@ -437,6 +438,8 @@ class User < ApplicationRecord
       # the user at the same time
       reload unless approved?
 
+      Emergency::Tracker.increment('local:confirmations')
+
       if approved?
         prepare_new_user!
       else
@@ -527,6 +530,10 @@ class User < ApplicationRecord
 
   def invite_text_required?
     Setting.require_invite_text && !open_registrations? && !invited? && !external? && !bypass_invite_request_check?
+  end
+
+  def track_sign_ups
+    Emergency::Tracker.increment('local:signups')
   end
 
   def trigger_webhooks
