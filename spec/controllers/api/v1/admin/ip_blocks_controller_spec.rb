@@ -230,4 +230,45 @@ describe Api::V1::Admin::IpBlocksController do
       end
     end
   end
+
+  describe 'PUT #update' do
+    context 'when ip block exists' do
+      let!(:ip_block) { IpBlock.create(ip: '185.200.13.3', severity: 'no_access', comment: 'Spam', expires_in: 48.hours) }
+      let(:params) { { id: ip_block.id, severity: 'sign_up_requires_approval', comment: 'Decreasing severity' } }
+
+      it 'returns http success' do
+        put :update, params: params
+
+        expect(response).to have_http_status(200)
+      end
+
+      it 'returns the correct ip block' do
+        put :update, params: params
+
+        json = body_as_json
+
+        expect(json).to match(hash_including({
+          ip: "#{ip_block.ip}/#{ip_block.ip.prefix}",
+          severity: 'sign_up_requires_approval',
+          comment: 'Decreasing severity',
+        }))
+      end
+
+      it 'updates the severity correctly' do
+        expect { put :update, params: params }.to change { ip_block.reload.severity }.from('no_access').to('sign_up_requires_approval')
+      end
+
+      it 'updates the comment correctly' do
+        expect { put :update, params: params }.to change { ip_block.reload.comment }.from('Spam').to('Decreasing severity')
+      end
+    end
+
+    context 'when ip block does not exist' do
+      it 'returns http not found' do
+        put :update, params: { id: 0 }
+
+        expect(response).to have_http_status(404)
+      end
+    end
+  end
 end
