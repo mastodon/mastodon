@@ -271,4 +271,39 @@ describe Api::V1::Admin::IpBlocksController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    context 'when ip block exists' do
+      let!(:ip_block) { IpBlock.create(ip: '185.200.13.3', severity: 'no_access') }
+      let(:params) { { id: ip_block.id } }
+
+      it 'returns http success' do
+        delete :destroy, params: params
+
+        expect(response).to have_http_status(200)
+      end
+
+      it 'returns an empty body' do
+        delete :destroy, params: params
+
+        json = body_as_json
+
+        expect(json).to be_empty
+      end
+
+      it 'deletes the ip block' do
+        delete :destroy, params: params
+
+        expect(IpBlock.find_by(id: ip_block.id)).to be_nil
+      end
+    end
+
+    context 'when ip block does not exist' do
+      it 'returns http not found' do
+        delete :destroy, params: { id: 0 }
+
+        expect(response).to have_http_status(404)
+      end
+    end
+  end
 end
