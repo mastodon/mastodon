@@ -85,7 +85,7 @@ describe Api::V1::Admin::IpBlocksController do
         end
       end
 
-      it 'return the correct blocked ips' do
+      it 'returns the correct blocked ips' do
         get :index
 
         json = body_as_json
@@ -172,7 +172,7 @@ describe Api::V1::Admin::IpBlocksController do
       it_behaves_like 'forbidden for wrong role', 'Moderator'
     end
 
-    it 'reurns http success' do
+    it 'returns http success' do
       post :create, params: params
 
       expect(response).to have_http_status(200)
