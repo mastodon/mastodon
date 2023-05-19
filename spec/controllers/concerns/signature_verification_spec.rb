@@ -129,7 +129,7 @@ describe ApplicationController do
       end
     end
 
-    context 'with request with unparseable Date header' do
+    context 'with request with unparsable Date header' do
       before do
         get :success
 

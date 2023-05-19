@@ -55,7 +55,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND="noninteractive" \
     PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
 
-# Ignoreing these here since we don't want to pin any versions and the Debian image removes apt-get content after use
+# Ignoring these here since we don't want to pin any versions and the Debian image removes apt-get content after use
 # hadolint ignore=DL3008,DL3009
 RUN apt-get update && \
     echo "Etc/UTC" > /etc/localtime && \
