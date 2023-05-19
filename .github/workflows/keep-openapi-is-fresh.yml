@@ -1,0 +1,39 @@
+name: Keep openapi is fresh
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+    paths:
+      - 'openapi'
+      - '.github/workflows/keep-openapi-is-fresh.yml'
+
+  pull_request:
+    paths:
+      - 'openapi'
+      - '.github/workflows/keep-openapi-is-fresh.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version-file: '.nvmrc'
+
+      - name: Set up java (for OpenAPI generator)
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'microsoft'
+          java-version: 17
+
+      - name: Install all yarn packages
+        run: yarn --frozen-lockfile
+
+      - name: build and check diff
+        run: yarn openapi:build:ts && git diff --check --exit-code
