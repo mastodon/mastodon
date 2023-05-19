@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::ConfirmationsController, type: :controller do
+RSpec.describe Admin::ConfirmationsController do
   render_views
 
   before do
@@ -32,7 +32,7 @@ RSpec.describe Admin::ConfirmationsController, type: :controller do
     end
   end
 
-  describe 'POST #resernd' do
+  describe 'POST #resend' do
     subject { post :resend, params: { account_id: user.account.id } }
 
     let!(:user) { Fabricate(:user, confirmed_at: confirmed_at) }

@@ -22,8 +22,6 @@ const mapDispatchToProps = dispatch => ({
   onReset: () => dispatch(resetListEditor()),
 });
 
-export default @connect(mapStateToProps, mapDispatchToProps)
-@injectIntl
 class ListEditor extends ImmutablePureComponent {
 
   static propTypes = {
@@ -62,7 +60,7 @@ class ListEditor extends ImmutablePureComponent {
             {accountIds.map(accountId => <Account key={accountId} accountId={accountId} added />)}
           </div>
 
-          {showSearch && <div role='button' tabIndex='-1' className='drawer__backdrop' onClick={onClear} />}
+          {showSearch && <div role='button' tabIndex={-1} className='drawer__backdrop' onClick={onClear} />}
 
           <Motion defaultStyle={{ x: -100 }} style={{ x: spring(showSearch ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
             {({ x }) => (
@@ -77,3 +75,5 @@ class ListEditor extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(ListEditor));

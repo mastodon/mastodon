@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe HomeFeed, type: :model do
+RSpec.describe HomeFeed do
   subject { described_class.new(account) }
 
   let(:account) { Fabricate(:account) }

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AccountsHelper, type: :helper do
+RSpec.describe AccountsHelper do
   def set_not_embedded_view
     params[:controller] = "not_#{StatusesHelper::EMBEDDED_CONTROLLER}"
     params[:action] = "not_#{StatusesHelper::EMBEDDED_ACTION}"

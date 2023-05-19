@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 
 const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
@@ -12,7 +12,6 @@ const messages = defineMessages({
   moveRight: { id: 'column_header.moveRight_settings', defaultMessage: 'Move column to the right' },
 });
 
-export default @injectIntl
 class ColumnHeader extends React.PureComponent {
 
   static contextTypes = {
@@ -209,3 +208,5 @@ class ColumnHeader extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(ColumnHeader);

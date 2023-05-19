@@ -125,8 +125,6 @@ sk:
       removed_header_msg: Úspešne odstránený obrázok hlavičky %{username}
       resend_confirmation:
         already_confirmed: Tento užívateľ je už potvrdený
-        send: Odošli potvrdzovací email znovu
-        success: Potvrdzujúci email bol úspešne odoslaný!
       reset: Resetuj
       reset_password: Obnov heslo
       resubscribe: Znovu odoberaj
@@ -231,6 +229,14 @@ sk:
         destroy_status_html: "%{name} zmazal/a príspevok od %{target}"
         memorialize_account_html: "%{name} zmenil/a účet %{target} na pamätnú stránku"
         reject_appeal_html: "%{name} zamietol/la námietku moderovacieho rozhodnutia od %{target}"
+        reopen_report_html: "%{name} znovu otvoril/a nahlásenie %{target}"
+        resend_user_html: "%{name} znovu odoslal/a potvrdzovací email pre %{target}"
+        reset_password_user_html: "%{name} resetoval/a heslo používateľa %{target}"
+        resolve_report_html: "%{name} vyriešil/a nahlásenie %{target}"
+        sensitive_account_html: "%{name} označil médium od %{target} za chúlostivé"
+        silence_account_html: "%{name} obmedzil/a účet %{target}"
+        suspend_account_html: "%{name} zablokoval/a účet používateľa %{target}"
+        unassigned_report_html: "%{name} odobral/a report od %{target}"
       deleted_account: zmazaný účet
       empty: Žiadne záznamy nenájdené.
       filter_by_action: Filtruj podľa úkonu
@@ -587,6 +593,10 @@ sk:
       rules_check:
         action: Spravuj serverové pravidlá
         message_html: Neurčil/a si žiadne serverové pravidlá.
+      upload_check_privacy_error:
+        action: Pozri tu pre viac informácií
+      upload_check_privacy_error_object_storage:
+        action: Pozri tu pre viac informácií
     tags:
       review: Prehodnoť stav
       updated_msg: Nastavenia haštagov boli úspešne aktualizované
@@ -677,7 +687,6 @@ sk:
       prefix_invited_by_user: "@%{name} ťa pozýva na tento Mastodon server!"
       prefix_sign_up: Zaregistruj sa na Mastodone už dnes!
       suffix: S pomocou účtu budeš môcť nasledovať ľudí, posielať príspevky, a vymieňať si správy s užívateľmi na hocijakom Mastodon serveri, ale aj na iných serveroch!
-    didnt_get_confirmation: Neobdržal/a si kroky na potvrdenie?
     forgot_password: Zabudnuté heslo?
     invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítaj si nový.
     log_in_with: Prihlás sa s
@@ -688,16 +697,11 @@ sk:
     or_log_in_with: Alebo prihlás s
     register: Zaregistruj sa
     registration_closed: "%{instance} neprijíma nových členov"
-    resend_confirmation: Zašli potvrdzujúce pokyny znovu
     reset_password: Obnov heslo
     rules:
       back: Späť
     security: Zabezpečenie
     set_new_password: Nastav nové heslo
-    setup:
-      email_below_hint_html: Ak je nižšie uvedená emailová adresa nesprávna, môžeš ju zmeniť a dostať nový potvrdzovací email.
-      email_settings_hint_html: Potvrdzovací email bol odoslaný na %{email}. Ak táto emailová adresa nieje správna, môžeš si ju zmeniť v nastaveniach účtu.
-      title: Nastavenie
     status:
       account_status: Stav účtu
       confirming: Čaká sa na dokončenie potvrdenia emailom.
@@ -1153,5 +1157,4 @@ sk:
     seamless_external_login: Si prihlásená/ý cez externú službu, takže nastavenia hesla a emailu ti niesú prístupné.
     signed_in_as: 'Prihlásená/ý ako:'
   verification:
-    explanation_html: 'Môžeš sa <strong>overiť ako majiteľ odkazov v metadátach tvojho profilu</strong>. Na to ale musí odkazovaná stránka obsahovať odkaz späť na tvoj Mastodon profil. Tento spätný odkaz <strong>musí</strong> mať prívlastok <code>rel="me"</code>. Na texte odkazu nezáleží. Tu je príklad:'
     verification: Overenie

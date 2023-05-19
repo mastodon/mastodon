@@ -13,7 +13,7 @@ RSpec.describe ImportService, type: :service do
     stub_request(:post, 'https://example.com/inbox').to_return(status: 200)
   end
 
-  context 'import old-style list of muted users' do
+  context 'when importing old-style list of muted users' do
     subject { ImportService.new }
 
     let(:csv) { attachment_fixture('mute-imports.txt') }
@@ -51,7 +51,7 @@ RSpec.describe ImportService, type: :service do
     end
   end
 
-  context 'import new-style list of muted users' do
+  context 'when importing new-style list of muted users' do
     subject { ImportService.new }
 
     let(:csv) { attachment_fixture('new-mute-imports.txt') }
@@ -92,7 +92,7 @@ RSpec.describe ImportService, type: :service do
     end
   end
 
-  context 'import old-style list of followed users' do
+  context 'when importing old-style list of followed users' do
     subject { ImportService.new }
 
     let(:csv) { attachment_fixture('mute-imports.txt') }
@@ -134,7 +134,7 @@ RSpec.describe ImportService, type: :service do
     end
   end
 
-  context 'import new-style list of followed users' do
+  context 'when importing new-style list of followed users' do
     subject { ImportService.new }
 
     let(:csv) { attachment_fixture('new-following-imports.txt') }
@@ -181,7 +181,7 @@ RSpec.describe ImportService, type: :service do
   # Based on the bug report 20571 where UTF-8 encoded domains were rejecting import of their users
   #
   # https://github.com/mastodon/mastodon/issues/20571
-  context 'utf-8 encoded domains' do
+  context 'with a utf-8 encoded domains' do
     subject { ImportService.new }
 
     let!(:nare) { Fabricate(:account, username: 'nare', domain: 'թութ.հայ', locked: false, protocol: :activitypub, inbox_url: 'https://թութ.հայ/inbox') }
@@ -200,7 +200,7 @@ RSpec.describe ImportService, type: :service do
     end
   end
 
-  context 'import bookmarks' do
+  context 'when importing bookmarks' do
     subject { ImportService.new }
 
     let(:csv) { attachment_fixture('bookmark-imports.txt') }

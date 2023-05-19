@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from 'mastodon/components/icon_button';
+import { IconButton } from 'mastodon/components/icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
@@ -91,7 +91,6 @@ const normalizeWheel = event => {
   };
 };
 
-export default @injectIntl
 class ZoomableImage extends React.PureComponent {
 
   static propTypes = {
@@ -451,3 +450,5 @@ class ZoomableImage extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(ZoomableImage);

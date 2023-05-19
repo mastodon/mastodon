@@ -13,10 +13,10 @@ import MediaItem from './components/media_item';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import LoadMore from 'mastodon/components/load_more';
-import MissingIndicator from 'mastodon/components/missing_indicator';
 import { openModal } from 'mastodon/actions/modal';
 import { FormattedMessage } from 'react-intl';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
+import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
@@ -60,7 +60,6 @@ class LoadMoreMedia extends ImmutablePureComponent {
 
 }
 
-export default @connect(mapStateToProps)
 class AccountGallery extends ImmutablePureComponent {
 
   static propTypes = {
@@ -137,16 +136,17 @@ class AccountGallery extends ImmutablePureComponent {
   handleOpenMedia = attachment => {
     const { dispatch } = this.props;
     const statusId = attachment.getIn(['status', 'id']);
+    const lang = attachment.getIn(['status', 'language']);
 
     if (attachment.get('type') === 'video') {
-      dispatch(openModal('VIDEO', { media: attachment, statusId, options: { autoPlay: true } }));
+      dispatch(openModal('VIDEO', { media: attachment, statusId, lang, options: { autoPlay: true } }));
     } else if (attachment.get('type') === 'audio') {
-      dispatch(openModal('AUDIO', { media: attachment, statusId, options: { autoPlay: true } }));
+      dispatch(openModal('AUDIO', { media: attachment, statusId, lang, options: { autoPlay: true } }));
     } else {
       const media = attachment.getIn(['status', 'media_attachments']);
       const index = media.findIndex(x => x.get('id') === attachment.get('id'));
 
-      dispatch(openModal('MEDIA', { media, index, statusId }));
+      dispatch(openModal('MEDIA', { media, index, statusId, lang }));
     }
   };
 
@@ -162,9 +162,7 @@ class AccountGallery extends ImmutablePureComponent {
 
     if (!isAccount) {
       return (
-        <Column>
-          <MissingIndicator />
-        </Column>
+        <BundleColumnError multiColumn={multiColumn} errorType='routing' />
       );
     }
 
@@ -226,3 +224,5 @@ class AccountGallery extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(AccountGallery);

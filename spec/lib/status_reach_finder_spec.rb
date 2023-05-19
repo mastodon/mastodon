@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe StatusReachFinder do
   describe '#inboxes' do
-    context 'for a local status' do
+    context 'with a local status' do
       subject { described_class.new(status) }
 
       let(:parent_status) { nil }

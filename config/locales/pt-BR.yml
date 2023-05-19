@@ -125,8 +125,8 @@ pt-BR:
       removed_header_msg: A capa de %{username} foi removida
       resend_confirmation:
         already_confirmed: Este usuário já está confirmado
-        send: Reenviar o e-mail de confirmação
-        success: E-mail de confirmação enviado!
+        send: Reenviar link de confirmação
+        success: Link de confirmação enviado com sucesso!
       reset: Redefinir
       reset_password: Redefinir senha
       resubscribe: Reinscrever-se
@@ -441,8 +441,10 @@ pt-BR:
       import:
         description_html: Você está prestes a importar uma lista de boqueio de domínio. Por favor, revise esta lista com muito cuidado, especialmente se você mesmo não criou esta lista.
         existing_relationships_warning: Existem relações de seguimento
+        private_comment_description_html: 'Para ajudá-lo a rastrear de onde vêm os blocos importados, serão criados blocos importados com o seguinte comentário privado: <q>%{comment}</q>'
         private_comment_template: Importado de %{source} em %{date}
         title: Importar bloqueio de domínios
+      invalid_domain_block: 'Um ou mais blocos de domínio foram ignorados devido ao(s) seguinte(s) erro(s): %{error}'
       new:
         title: Importar bloqueio de domínios
       no_file: Nenhum arquivo selecionado
@@ -474,6 +476,7 @@ pt-BR:
       content_policies:
         comment: Nota interna
         description_html: Você pode definir políticas de conteúdo que serão aplicadas a todas as contas deste domínio e a qualquer um dos seus subdomínios.
+        limited_federation_mode_description_html: Você pode escolher se deseja permitir a associação com este domínio.
         policies:
           reject_media: Rejeitar mídia
           reject_reports: Rejeitar denúncias
@@ -578,7 +581,9 @@ pt-BR:
         other_description_html: Veja mais opções para controlar o comportamento da conta e personalizar a comunicação com a conta denunciada.
         resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma violação será guardada e a denúncia será encerrada.
         silence_description_html: A conta ficará visível apenas para aqueles que já a seguem ou que a procuram manualmente, limitando severamente seu alcance. Pode ser revertido a qualquer momento. Fecha todas as denúncias desta conta.
+        suspend_description_html: A conta e todo o seu conteúdo ficará inacessível e, eventualmente, excluído e interagir com ela será impossível. Reversível dentro de 30 dias. Encerra todas as denúncias contra esta conta.
       actions_description_html: Decida que medidas tomar para resolver esta denúncia. Se você decidir punir a conta denunciada, ela receberá uma notificação por e-mail, exceto quando for selecionada a categoria <strong>spam</strong> for selecionada.
+      actions_description_remote_html: Decida quais medidas tomará para resolver esta denúncia. Isso só afetará como <strong>seu servidor</strong> se comunica com esta conta remota e manipula seu conteúdo.
       add_to_report: Adicionar mais à denúncia
       are_you_sure: Você tem certeza?
       assign_to_self: Atribuir para si
@@ -629,12 +634,16 @@ pt-BR:
           suspend_html: 'Você está prestes a <strong>suspender</strong> <strong>a conta de @%{acct}</strong>. Isso irá:'
         actions:
           delete_html: Remover as publicações ofensivas
+          mark_as_sensitive_html: Marcar a mídia de posts ofensivos como sensível
+          silence_html: Limitar firmemente o alcance de <strong>@%{acct}</strong>, tornando seus perfis e conteúdos apenas visíveis para pessoas que já os estão seguindo ou olhando manualmente o perfil
           suspend_html: Suspender <strong>@%{acct}</strong>, tornando seu perfil e conteúdo inacessíveis, impossibilitando a interação
         close_report: 'Marcar denúncia #%{id} como resolvida'
         close_reports_html: Marcar <strong>todas</strong> as denúncias contra <strong>@%{acct}</strong> como resolvidas
         delete_data_html: Exclua o perfil e o conteúdo de <strong>@%{acct}</strong> daqui a 30 dias, a menos que a suspensão seja desfeita nesse meio tempo
         preview_preamble_html: "<strong>@%{acct}</strong> receberá um aviso com o seguinte conteúdo:"
+        record_strike_html: Registre uma ação contra <strong>@%{acct}</strong> para te ajudar em futuras violações desta conta
         send_email_html: Enviar <strong>@%{acct}</strong> um e-mail de aviso
+        warning_placeholder: Argumentos adicionais para a ação de moderação.
       target_origin: Origem da conta denunciada
       title: Denúncias
       unassign: Desatribuir
@@ -803,6 +812,12 @@ pt-BR:
         message_html: Você não definiu nenhuma regra de servidor.
       sidekiq_process_check:
         message_html: Nenhum processo Sidekiq rodando para a(s) fila(s) %{value}. Por favor, revise a sua configuração para Sidekiq
+      upload_check_privacy_error:
+        action: Confira aqui para mais informações
+        message_html: "<strong>Seu servidor está mal configurado. A privacidade de seus usuários está em risco.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Confira aqui para mais informações
+        message_html: "<strong>Seu armazenamento de objetos está mal configurado. A privacidade de seus usuários está em risco.</strong>"
     tags:
       review: Status da revisão
       updated_msg: Configurações de hashtag atualizadas
@@ -825,6 +840,7 @@ pt-BR:
           other: Compartilhado por %{count} pessoas na última semana
         title: Em alta no momento
         usage_comparison: Compartilhado %{today} vezes hoje, em comparação com %{yesterday} de ontem
+      not_allowed_to_trend: Não tem permissão para criar tendências
       only_allowed: Somente permitido
       pending_review: Revisão pendente
       preview_card_providers:
@@ -972,7 +988,7 @@ pt-BR:
       prefix_invited_by_user: "@%{name} convidou você para entrar neste servidor Mastodon!"
       prefix_sign_up: Crie uma conta no Mastodon hoje!
       suffix: Com uma conta, você poderá seguir pessoas, publicar atualizações, trocar mensagens com usuários de qualquer servidor Mastodon e muito mais!
-    didnt_get_confirmation: Não recebeu instruções de confirmação?
+    didnt_get_confirmation: Não recebeu um e-mail de confirmação?
     dont_have_your_security_key: Não está com a sua chave de segurança?
     forgot_password: Esqueceu a sua senha?
     invalid_reset_password_token: Código de alteração de senha é inválido ou expirou. Solicite um novo.
@@ -985,12 +1001,17 @@ pt-BR:
     migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configurar isso aqui</a>.
     or_log_in_with: Ou entre com
     privacy_policy_agreement_html: Eu li e concordo com a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
+    progress:
+      confirm: Confirmar e-mail
+      details: Suas informações
+      review: Nossa avaliação
+      rules: Aceitar regras
     providers:
       cas: CAS
       saml: SAML
     register: Criar conta
     registration_closed: "%{instance} não está aceitando novos membros"
-    resend_confirmation: Reenviar instruções de confirmação
+    resend_confirmation: Reenviar link de confirmação
     reset_password: Redefinir senha
     rules:
       accept: Aceitar
@@ -1000,13 +1021,16 @@ pt-BR:
     security: Segurança
     set_new_password: Definir uma nova senha
     setup:
-      email_below_hint_html: Se o endereço de e-mail abaixo não for seu, você pode alterá-lo aqui e receber um novo e-mail de confirmação.
-      email_settings_hint_html: O e-mail de confirmação foi enviado para %{email}. Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
-      title: Configurações
+      email_below_hint_html: Verifique a sua pasta de spam, ou solicite outro link de confirmação. Você pode corrigir seu endereço de e-mail se estiver errado.
+      email_settings_hint_html: Clique no link que te enviamos para verificar %{email}. Esperaremos aqui.
+      link_not_received: Não recebeu um link?
+      new_confirmation_instructions_sent: Você receberá um novo e-mail com o link de confirmação em alguns minutos!
+      title: Verifique sua caixa de entrada
     sign_in:
       preamble_html: Entre com suas credenciais de domínios ( <strong>%{domain}</strong> ) . Se sua conta estiver hospedada em um servidor diferente, você não deve conseguir acessar este conteúdo.
       title: Entrar em %{domain}
     sign_up:
+      manual_review: Inscrições no %{domain} passam pela revisão manual dos nossos moderadores. Para nos ajudar a processar o seu cadastro, escreva um pouco sobre você e por que você quer uma conta no %{domain}.
       preamble: Com uma conta neste servidor Mastodon, você poderá seguir qualquer outra pessoa na rede, independentemente de onde sua conta esteja hospedada.
       title: Então vamos lá criar uma conta em %{domain}.
     status:
@@ -1574,6 +1598,7 @@ pt-BR:
       '7889238': 3 meses
     min_age_label: Validade
     min_favs: Manter publicações favoritadas por ao menos
+    min_favs_hint: Não exclui suas publicações que receberam pelo menos esta quantidade de favoritos. Deixe em branco para excluir publicações independentemente da quantidade de favoritos
     min_reblogs: Manter publicações impulsionadas por ao menos
     min_reblogs_hint: Não exclui publicações que receberam pelo menos esta quantidade de impulsos. Deixe em branco para excluir publicações independentemente da quantidade de impulsos
   stream_entries:
@@ -1673,12 +1698,13 @@ pt-BR:
       title: Boas vindas, %{name}!
   users:
     follow_limit_reached: Você não pode seguir mais de %{limit} pessoas
+    go_to_sso_account_settings: Vá para as configurações de conta do seu provedor de identidade
     invalid_otp_token: Código de dois fatores inválido
     otp_lost_help_html: Se você perder o acesso à ambos, você pode entrar em contato com %{email}
     seamless_external_login: Você entrou usando um serviço externo, então configurações de e-mail e senha não estão disponíveis.
     signed_in_as: 'Entrou como:'
   verification:
-    explanation_html: 'Você pode <strong>verificar os links nos metadados do seu perfil</strong>. Para isso, o site citado deve conter um link de volta para o seu perfil do Mastodon. O link de volta <strong>deve</strong> conter um atributo <code>rel="me"</code>. O conteúdo ou texto do link não importa. Aqui está um exemplo:'
+    explanation_html: 'Você pode <strong>se verificar como proprietário dos links nos metadados do seu perfil</strong>. Para isso, o site vinculado deve conter um link de volta para o seu perfil de Mastodon. Depois de adicionar o link, talvez você precise voltar aqui e salvar novamente o seu perfil para que a verificação tenha efeito. O link de volta <strong>deve</strong> ter um atributo <code>rel="me"</code>. O conteúdo do texto do link não importa. Aqui está um exemplo:'
     verification: Verificação
   webauthn_credentials:
     add: Adicionar nova chave de segurança

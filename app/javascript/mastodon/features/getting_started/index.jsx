@@ -23,7 +23,7 @@ const messages = defineMessages({
   settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
   community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   explore: { id: 'navigation_bar.explore', defaultMessage: 'Explore' },
-  direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
+  direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
@@ -58,8 +58,6 @@ const badgeDisplay = (number, limit) => {
   }
 };
 
-export default @connect(mapStateToProps, mapDispatchToProps)
-@injectIntl
 class GettingStarted extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -153,3 +151,5 @@ class GettingStarted extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(GettingStarted));

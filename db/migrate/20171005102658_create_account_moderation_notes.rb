@@ -1,4 +1,4 @@
-class CreateAccountModerationNotes < ActiveRecord::Migration[5.1]
+class CreateAccountModerationNotes < ActiveRecord::Migration[5.2]
   def change
     create_table :account_moderation_notes do |t|
       t.text :content, null: false

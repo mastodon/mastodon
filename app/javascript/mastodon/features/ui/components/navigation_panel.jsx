@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
-import Logo from 'mastodon/components/logo';
+import { WordmarkLogo } from 'mastodon/components/logo';
 import { timelinePreview, showTrends } from 'mastodon/initial_state';
 import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
@@ -18,7 +18,7 @@ const messages = defineMessages({
   explore: { id: 'explore.title', defaultMessage: 'Explore' },
   local: { id: 'tabs_bar.local_timeline', defaultMessage: 'Local' },
   federated: { id: 'tabs_bar.federated_timeline', defaultMessage: 'Federated' },
-  direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
+  direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
@@ -28,7 +28,6 @@ const messages = defineMessages({
   search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
 });
 
-export default @injectIntl
 class NavigationPanel extends React.Component {
 
   static contextTypes = {
@@ -47,7 +46,7 @@ class NavigationPanel extends React.Component {
     return (
       <div className='navigation-panel'>
         <div className='navigation-panel__logo'>
-          <Link to='/' className='column-link column-link--logo'><Logo /></Link>
+          <Link to='/' className='column-link column-link--logo'><WordmarkLogo /></Link>
           <hr />
         </div>
 
@@ -105,3 +104,5 @@ class NavigationPanel extends React.Component {
   }
 
 }
+
+export default injectIntl(NavigationPanel);

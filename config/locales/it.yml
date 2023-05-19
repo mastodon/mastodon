@@ -125,8 +125,8 @@ it:
       removed_header_msg: Immagine d'intestazione di %{username} rimossa correttamente
       resend_confirmation:
         already_confirmed: Questo utente è già confermato
-        send: Reinvia l'email di conferma
-        success: Email di conferma inviata correttamente!
+        send: Invia nuovamente il link di conferma
+        success: Link di conferma inviato con successo!
       reset: Ripristina
       reset_password: Ripristina la password
       resubscribe: Reiscriviti
@@ -812,6 +812,12 @@ it:
         message_html: Non hai definito alcuna regola del server.
       sidekiq_process_check:
         message_html: Nessun processo di Sidekiq in esecuzione per le code di %{value}. Sei pregato di revisionare la tua configurazione di Sidekiq
+      upload_check_privacy_error:
+        action: Controlla qui per maggiori informazioni
+        message_html: "<strong>Il tuo server web è mal configurato. La privacy dei tuoi utenti è a rischio.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Controlla qui per maggiori informazioni
+        message_html: "<strong>La tua archiviazione oggetti è mal configurata. La privacy dei tuoi utenti è a rischio.</strong>"
     tags:
       review: Esamina status
       updated_msg: Impostazioni hashtag aggiornate con successo
@@ -984,7 +990,7 @@ it:
       prefix_invited_by_user: "@%{name} ti invita a iscriverti a questo server Mastodon!"
       prefix_sign_up: Iscriviti oggi a Mastodon!
       suffix: Con un account, sarai in grado di seguire le persone, pubblicare aggiornamenti e scambiare messaggi con gli utenti da qualsiasi server di Mastodon e altro ancora!
-    didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
+    didnt_get_confirmation: Non hai ricevuto un link di conferma?
     dont_have_your_security_key: Non hai la tua chiave di sicurezza?
     forgot_password: Hai dimenticato la tua password?
     invalid_reset_password_token: Il token di reimpostazione della password non è valido o è scaduto. Per favore richiedine uno nuovo.
@@ -997,12 +1003,17 @@ it:
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso, puoi <a href="%{path}">configurarlo qui</a>.
     or_log_in_with: Oppure accedi con
     privacy_policy_agreement_html: Ho letto e accetto l'<a href="%{privacy_policy_path}" target="_blank">informativa sulla privacy</a>
+    progress:
+      confirm: Conferma l'e-mail
+      details: I tuoi dettagli
+      review: La nostra revisione
+      rules: Accetta le regole
     providers:
       cas: CAS
       saml: SAML
     register: Iscriviti
     registration_closed: "%{instance} non accetta nuovi membri"
-    resend_confirmation: Invia di nuovo le istruzioni di conferma
+    resend_confirmation: Invia nuovamente il link di conferma
     reset_password: Resetta la password
     rules:
       accept: Accetta
@@ -1012,13 +1023,16 @@ it:
     security: Credenziali
     set_new_password: Imposta una nuova password
     setup:
-      email_below_hint_html: Se l'indirizzo e-mail sottostante non è corretto, puoi cambiarlo qui e ricevere una nuova e-mail di conferma.
-      email_settings_hint_html: L'email di conferma è stata inviata a %{email}. Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
-      title: Configurazione
+      email_below_hint_html: Controlla la tua cartella spam o richiedine un altro. Puoi correggere il tuo indirizzo e-mail, se fosse sbagliato.
+      email_settings_hint_html: Fai clic sul link che ti abbiamo inviato per verificare %{email}. Aspetteremo proprio qui.
+      link_not_received: Non hai ricevuto un link?
+      new_confirmation_instructions_sent: Riceverai una nuova e-mail con il link di conferma entro pochi minuti!
+      title: Controlla la tua posta in arrivo
     sign_in:
       preamble_html: Accedi con le tue credenziali <strong>%{domain}</strong>. Se il tuo account si trova su un server diverso, non potrai accedere qui.
       title: Accedi a %{domain}
     sign_up:
+      manual_review: Le registrazioni su %{domain} vengono sottoposte a revisione manuale da parte dei nostri moderatori. Per aiutarci a elaborare la tua registrazione, scrivi qualcosa su di te e sul motivo per cui desideri un account su %{domain}.
       preamble: Con un account su questo server Mastodon, sarai in grado di seguire qualsiasi altra persona sulla rete, indipendentemente da dove sia ospitato il suo account.
       title: Lascia che ti configuriamo su %{domain}.
     status:
@@ -1686,12 +1700,13 @@ it:
       title: Benvenuto a bordo, %{name}!
   users:
     follow_limit_reached: Non puoi seguire più di %{limit} persone
+    go_to_sso_account_settings: Vai alle impostazioni dell'account del tuo provider di identità
     invalid_otp_token: Codice d'accesso non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
     seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, quindi le impostazioni di password e e-mail non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
   verification:
-    explanation_html: 'Puoi <strong>certificare te stesso come proprietario dei link nei metadati del tuo profilo</strong>. Per farlo, il sito a cui punta il link deve contenere un link che punta al tuo profilo Mastodon. Il link di ritorno <strong>deve</strong> avere l''attributo <code>rel="me"</code>. Il testo del link non ha importanza. Ecco un esempio:'
+    explanation_html: 'Puoi <strong>verificarti come proprietario dei link nei metadati del tuo profilo</strong>. Per questo, il sito web collegato deve contenere un collegamento al tuo profilo Mastodon. Dopo aver aggiunto il collegamento, potrebbe essere necessario tornare qui e salvare nuovamente il profilo affinché la verifica abbia effetto. Il link di ritorno <strong>deve</strong> avere un attributo <code>rel="me"</code>. Il contenuto del testo del collegamento non ha importanza. Ecco un esempio:'
     verification: Verifica
   webauthn_credentials:
     add: Aggiungi una nuova chiave di sicurezza

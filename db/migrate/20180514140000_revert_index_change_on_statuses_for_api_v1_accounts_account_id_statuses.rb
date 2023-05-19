@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RevertIndexChangeOnStatusesForApiV1AccountsAccountIdStatuses < ActiveRecord::Migration[5.1]
+class RevertIndexChangeOnStatusesForApiV1AccountsAccountIdStatuses < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def change

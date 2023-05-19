@@ -2,6 +2,9 @@
 
 require 'csv'
 
+# NOTE: This is a deprecated service, only kept to not break ongoing imports
+# on upgrade. See `BulkImportService` for its replacement.
+
 class ImportService < BaseService
   ROWS_PROCESSING_LIMIT = 20_000
 
@@ -120,7 +123,7 @@ class ImportService < BaseService
     end
 
     account_ids         = statuses.map(&:account_id)
-    preloaded_relations = relations_map_for_account(@account, account_ids)
+    preloaded_relations = @account.relations_map(account_ids, skip_blocking_and_muting: true)
 
     statuses.keep_if { |status| StatusPolicy.new(@account, status, preloaded_relations).show? }
 
@@ -132,20 +135,10 @@ class ImportService < BaseService
   def parse_import_data!(default_headers)
     data = CSV.parse(import_data, headers: true)
     data = CSV.parse(import_data, headers: default_headers) unless data.headers&.first&.strip&.include?(' ')
-    @data = data.reject(&:blank?)
+    @data = data.compact_blank
   end
 
   def import_data
     Paperclip.io_adapters.for(@import.data).read.force_encoding(Encoding::UTF_8)
-  end
-
-  def relations_map_for_account(account, account_ids)
-    {
-      blocking: {},
-      blocked_by: Account.blocked_by_map(account_ids, account.id),
-      muting: {},
-      following: Account.following_map(account_ids, account.id),
-      domain_blocking_by_domain: {},
-    }
   end
 end

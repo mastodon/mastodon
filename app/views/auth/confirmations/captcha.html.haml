@@ -1,0 +1,15 @@
+- content_for :page_title do
+  = t('auth.captcha_confirmation.title')
+
+= form_tag auth_captcha_confirmation_url, method: 'POST', class: 'simple_form' do
+  = render 'auth/shared/progress', stage: 'confirm'
+
+  = hidden_field_tag :confirmation_token, params[:confirmation_token]
+
+  %p.lead= t('auth.captcha_confirmation.hint_html')
+
+  .field-group
+    = render_captcha
+
+  .actions
+    %button.button= t('challenge.confirm')

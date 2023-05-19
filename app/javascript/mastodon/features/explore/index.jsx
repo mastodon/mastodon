@@ -24,8 +24,6 @@ const mapStateToProps = state => ({
   isSearching: state.getIn(['search', 'submitted']) || !showTrends,
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class Explore extends React.PureComponent {
 
   static contextTypes = {
@@ -73,24 +71,29 @@ class Explore extends React.PureComponent {
                 <NavLink exact to='/explore'>
                   <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Posts' />
                 </NavLink>
+
                 <NavLink exact to='/explore/tags'>
                   <FormattedMessage tagName='div' id='explore.trending_tags' defaultMessage='Hashtags' />
                 </NavLink>
+
+                {signedIn && (
+                  <NavLink exact to='/explore/suggestions'>
+                    <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='People' />
+                  </NavLink>
+                )}
+
                 <NavLink exact to='/explore/links'>
                   <FormattedMessage tagName='div' id='explore.trending_links' defaultMessage='News' />
                 </NavLink>
-                {signedIn && (
-                  <NavLink exact to='/explore/suggestions'>
-                    <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='For you' />
-                  </NavLink>
-                )}
               </div>
 
               <Switch>
                 <Route path='/explore/tags' component={Tags} />
                 <Route path='/explore/links' component={Links} />
                 <Route path='/explore/suggestions' component={Suggestions} />
-                <Route exact path={['/explore', '/explore/posts', '/search']} component={Statuses} componentParams={{ multiColumn }} />
+                <Route exact path={['/explore', '/explore/posts', '/search']}>
+                  <Statuses multiColumn={multiColumn} />
+                </Route>
               </Switch>
 
               <Helmet>
@@ -105,3 +108,5 @@ class Explore extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(Explore));
