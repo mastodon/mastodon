@@ -601,8 +601,6 @@ GEM
       sidekiq (>= 2.4.0)
     rspec-support (3.12.0)
     rspec_chunked (0.6)
-    rspec_junit_formatter (0.6.0)
-      rspec-core (>= 2, < 4, != 2.12.0)
     rubocop (1.50.2)
       json (~> 2.3)
       parallel (~> 1.10)
@@ -787,7 +785,7 @@ DEPENDENCIES
   capybara (~> 3.39)
   charlock_holmes (~> 0.7.7)
   chewy (~> 7.3)
-  climate_control
+  climate_control (~> 0.2)
   cocoon (~> 1.2)
   color_diff (~> 0.1)
   concurrent-ruby
@@ -866,7 +864,6 @@ DEPENDENCIES
   rspec-rails (~> 6.0)
   rspec-sidekiq (~> 3.1)
   rspec_chunked (~> 0.6)
-  rspec_junit_formatter (~> 0.6)
   rubocop
   rubocop-capybara
   rubocop-performance
