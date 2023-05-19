@@ -7,6 +7,7 @@ class RelationshipsController < ApplicationController
   before_action :set_accounts, only: :show
   before_action :set_relationships, only: :show
   before_action :set_body_classes
+  before_action :set_cache_headers
 
   helper_method :following_relationship?, :followed_by_relationship?, :mutual_relationship?
 
@@ -19,6 +20,8 @@ class RelationshipsController < ApplicationController
     @form.save
   rescue ActionController::ParameterMissing
     # Do nothing
+  rescue Mastodon::NotPermittedError, ActiveRecord::RecordNotFound
+    flash[:alert] = I18n.t('relationships.follow_failure') if action_from_button == 'follow'
   ensure
     redirect_to relationships_path(filter_params)
   end
@@ -60,12 +63,16 @@ class RelationshipsController < ApplicationController
       'unfollow'
     elsif params[:remove_from_followers]
       'remove_from_followers'
-    elsif params[:block_domains]
-      'block_domains'
+    elsif params[:block_domains] || params[:remove_domains_from_followers]
+      'remove_domains_from_followers'
     end
   end
 
   def set_body_classes
     @body_classes = 'admin'
+  end
+
+  def set_cache_headers
+    response.cache_control.replace(private: true, no_store: true)
   end
 end

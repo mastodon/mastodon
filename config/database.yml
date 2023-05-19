@@ -5,6 +5,7 @@ default: &default
   connect_timeout: 15
   encoding: unicode
   sslmode: <%= ENV['DB_SSLMODE'] || "prefer" %>
+  application_name: ''
 
 development:
   <<: *default

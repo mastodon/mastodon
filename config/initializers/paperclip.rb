@@ -7,7 +7,7 @@ Paperclip.interpolates :filename do |attachment, style|
   if style == :original
     attachment.original_filename
   else
-    [basename(attachment, style), extension(attachment, style)].delete_if(&:blank?).join('.')
+    [basename(attachment, style), extension(attachment, style)].compact_blank!.join('.')
   end
 end
 
@@ -68,11 +68,7 @@ if ENV['S3_ENABLED'] == 'true'
     }
   )
   
-  if ENV['S3_PERMISSION'] == ''
-    Paperclip::Attachment.default_options.merge!(
-      s3_permissions: ->(*) { nil }
-    )
-  end
+  Paperclip::Attachment.default_options[:s3_permissions] = ->(*) { nil } if ENV['S3_PERMISSION'] == ''
 
   if ENV.has_key?('S3_ENDPOINT')
     Paperclip::Attachment.default_options[:s3_options].merge!(
@@ -89,6 +85,8 @@ if ENV['S3_ENABLED'] == 'true'
       s3_host_alias: ENV['S3_ALIAS_HOST'] || ENV['S3_CLOUDFRONT_HOST']
     )
   end
+
+  Paperclip::Attachment.default_options[:s3_headers]['X-Amz-Storage-Class'] = ENV['S3_STORAGE_CLASS'] if ENV.has_key?('S3_STORAGE_CLASS')
 
   # Some S3-compatible providers might not actually be compatible with some APIs
   # used by kt-paperclip, see https://github.com/mastodon/mastodon/issues/16822
@@ -124,6 +122,7 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
       openstack_domain_name: ENV.fetch('SWIFT_DOMAIN_NAME') { 'default' },
       openstack_region: ENV['SWIFT_REGION'],
       openstack_cache_ttl: ENV.fetch('SWIFT_CACHE_TTL') { 60 },
+      openstack_temp_url_key: ENV['SWIFT_TEMP_URL_KEY'],
     },
     
     fog_file: { 'Cache-Control' => 'public, max-age=315576000, immutable' },

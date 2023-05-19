@@ -22,7 +22,7 @@ class InlineAlert extends React.PureComponent {
 
   static TRANSITION_DELAY = 200;
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (!this.props.show && nextProps.show) {
       this.setState({ mountMessage: true });
     } else if (this.props.show && !nextProps.show) {
@@ -43,7 +43,6 @@ class InlineAlert extends React.PureComponent {
 
 }
 
-export default @injectIntl
 class AccountNote extends ImmutablePureComponent {
 
   static propTypes = {
@@ -59,11 +58,11 @@ class AccountNote extends ImmutablePureComponent {
     saved: false,
   };
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this._reset();
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     const accountWillChange = !is(this.props.account, nextProps.account);
     const newState = {};
 
@@ -168,3 +167,5 @@ class AccountNote extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(AccountNote);

@@ -39,6 +39,14 @@ RSpec.describe StatusPolicy, type: :model do
       expect(subject).to permit(alice, status)
     end
 
+    it 'grants access when direct and non-owner viewer is mentioned and mentions are loaded' do
+      status.visibility = :direct
+      status.mentions = [Fabricate(:mention, account: bob)]
+      status.mentions.load
+
+      expect(subject).to permit(bob, status)
+    end
+
     it 'denies access when direct and viewer is not mentioned' do
       viewer = Fabricate(:account)
       status.visibility = :direct

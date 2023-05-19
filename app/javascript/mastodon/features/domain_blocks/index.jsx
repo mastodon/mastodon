@@ -23,8 +23,6 @@ const mapStateToProps = state => ({
   hasMore: !!state.getIn(['domain_lists', 'blocks', 'next']),
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class Blocks extends ImmutablePureComponent {
 
   static propTypes = {
@@ -36,7 +34,7 @@ class Blocks extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.props.dispatch(fetchDomainBlocks());
   }
 
@@ -81,3 +79,5 @@ class Blocks extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(Blocks));

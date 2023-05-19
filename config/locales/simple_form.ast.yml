@@ -3,7 +3,10 @@ ast:
   simple_form:
     hints:
       admin_account_action:
-        text_html: Opcional. Pues usar la sintaxis de los artículos ya amestar <a href="%{path}">amestar preconfiguraes</a> p'aforrar tiempu
+        text_html: Opcional. Pues usar la sintaxis de los artículos ya amestar <a href="%{path}">alvertencies preconfiguraes</a> p'aforrar tiempu
+        type_html: Escueyi qué facer con <strong>%{acct}</strong>
+        types:
+          none: Usa esta opción pa unviar una alvertencia al perfil, ensin aicionar nenguna otra aición.
       announcement:
         all_day: Al marcar la opción, namás apaecen les dates del intervalu de tiempu
         ends_at: Opcional. L'anunciu dexa de tar espublizáu na data qu'indiques
@@ -32,7 +35,6 @@ ast:
         setting_noindex: Afeuta al perfil públicu ya a les páxines de los artículos
         setting_show_application: L'aplicación qu'uses pa espublizar apaez na vista detallada de los tos artículos
         setting_use_blurhash: Los dilíos básense nos colores del conteníu multimedia anubríu mas desenfonca los detalles
-        username: 'El nome d''usuariu va ser únicu en: %{domain}'
       featured_tag:
         name: 'Equí tán dalgunes de les etiquetes qu''usesti apocayá:'
       form_admin_settings:
@@ -56,6 +58,10 @@ ast:
       ip_block:
         comment: Opcional. Un recordatoriu de por qué amestesti esta norma.
         expires_in: Les direiciones IP son un recursu finitu, suelen compartise ya cambiar de manes. Por esti motivu, nun s'aconseyen los bloqueos indefiníos de direiciones IP.
+        severities:
+          no_access: Bloquia l'accesu a tolos recursos
+          sign_up_block: Fai que nun se puedan rexistrar cuentes nueves
+          sign_up_requires_approval: Fai que se tengan de revisar les cuentes rexistraes nueves
       user:
         chosen_languages: Namás los artículos de les llingües que marques son los que van apaecer nes llinies de tiempu públiques
     labels:
@@ -68,8 +74,10 @@ ast:
       admin_account_action:
         include_statuses: Incluyir nel mensaxe los artículos de los que s'informó
         send_email_notification: Avisar al perfil per corréu electrónicu
+        text: Alvertencia personalizada
         type: Aición
         types:
+          sensitive: Marcar como cuenta sensible
           suspend: Suspender
       announcement:
         all_day: Eventu de tol día
@@ -156,7 +164,12 @@ ast:
       invite_request:
         text: "¿Por qué quies xunite?"
       ip_block:
+        comment: Comentariu
         ip: IP
+        severities:
+          no_access: Bloquiar l'accesu
+          sign_up_block: Bloquiar el rexistru de cuentes nueves
+          sign_up_requires_approval: Llendar les cuentes rexistraes nueves
       notification_emails:
         favourite: Daquién marcó como favoritu'l to artículu
         follow: Daquién te sigue

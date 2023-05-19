@@ -7,7 +7,7 @@ RSpec.describe ReportService, type: :service do
 
   let(:source_account) { Fabricate(:account) }
 
-  context 'for a remote account' do
+  context 'with a remote account' do
     let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
 
     before do
@@ -96,7 +96,8 @@ RSpec.describe ReportService, type: :service do
 
     before do
       ActionMailer::Base.deliveries.clear
-      source_account.user.settings.notification_emails['report'] = true
+      source_account.user.settings['notification_emails.report'] = true
+      source_account.user.save
     end
 
     it 'does not send an e-mail' do

@@ -1,30 +1,13 @@
+// For more details, see https://aka.ms/devcontainer.json.
 {
   "name": "Mastodon",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
-  "workspaceFolder": "/mastodon",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
-  // Configure tool-specific properties.
-  "customizations": {
-    // Configure properties specific to VS Code.
-    "vscode": {
-      // Set *default* container specific settings.json values on container create.
-      "settings": {},
-
-      // Add the IDs of extensions you want installed when the container is created.
-      "extensions": [
-        "EditorConfig.EditorConfig",
-        "dbaeumer.vscode-eslint",
-        "rebornix.Ruby",
-        "webben.browserslist"
-      ]
-    }
-  },
-
+  // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
-    "ghcr.io/devcontainers/features/sshd:1": {
-      "version": "latest"
-    }
+    "ghcr.io/devcontainers/features/sshd:1": {}
   },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -32,8 +15,18 @@
   "forwardPorts": [3000, 4000],
 
   // Use 'postCreateCommand' to run commands after the container is created.
+  "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
   "postCreateCommand": ".devcontainer/post-create.sh",
+  "waitFor": "postCreateCommand",
 
-  // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "vscode"
+  // Configure tool-specific properties.
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      // Set *default* container specific settings.json values on container create.
+      "settings": {},
+      // Add the IDs of extensions you want installed when the container is created.
+      "extensions": ["EditorConfig.EditorConfig", "webben.browserslist"]
+    }
+  }
 }

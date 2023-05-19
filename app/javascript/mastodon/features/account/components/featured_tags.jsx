@@ -10,7 +10,6 @@ const messages = defineMessages({
   empty: { id: 'account.featured_tags.last_status_never', defaultMessage: 'No posts' },
 });
 
-export default @injectIntl
 class FeaturedTags extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -50,3 +49,5 @@ class FeaturedTags extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(FeaturedTags);

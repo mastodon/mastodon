@@ -1,5 +1,5 @@
 import React from 'react';
-import IconButton from '../../../components/icon_button';
+import { IconButton } from '../../../components/icon_button';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
@@ -23,8 +23,6 @@ const iconStyle = {
   lineHeight: '27px',
 };
 
-export default @connect(makeMapStateToProps)
-@injectIntl
 class UploadButton extends ImmutablePureComponent {
 
   static propTypes = {
@@ -81,3 +79,5 @@ class UploadButton extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(makeMapStateToProps)(injectIntl(UploadButton));

@@ -55,10 +55,10 @@ export default class ConversationsList extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { conversations, onLoadMore, ...other } = this.props;
+    const { conversations, isLoading, onLoadMore, ...other } = this.props;
 
     return (
-      <ScrollableList {...other} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
+      <ScrollableList {...other} isLoading={isLoading} showLoading={isLoading && conversations.isEmpty()} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
         {conversations.map(item => (
           <ConversationContainer
             key={item.get('id')}

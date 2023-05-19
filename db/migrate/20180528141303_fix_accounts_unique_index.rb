@@ -1,4 +1,8 @@
+require_relative '../../lib/mastodon/migration_warning'
+
 class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
+  include Mastodon::MigrationWarning
+
   class Account < ApplicationRecord
     # Dummy class, to make migration possible across version changes
     has_one :user, inverse_of: :account
@@ -35,22 +39,11 @@ class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def up
-    if $stdout.isatty
-      say ''
-      say 'WARNING: This migration may take a *long* time for large instances'
-      say 'It will *not* lock tables for any significant time, but it may run'
-      say 'for a very long time. We will pause for 10 seconds to allow you to'
-      say 'interrupt this migration if you are not ready.'
-      say ''
-      say 'This migration will irreversibly delete user accounts with duplicate'
-      say 'usernames. You may use the `rake mastodon:maintenance:find_duplicate_usernames`'
-      say 'task to manually deal with such accounts before running this migration.'
-
-      10.downto(1) do |i|
-        say "Continuing in #{i} second#{i == 1 ? '' : 's'}...", true
-        sleep 1
-      end
-    end
+    migration_duration_warning(<<~EXPLANATION)
+      This migration will irreversibly delete user accounts with duplicate
+      usernames. You may use the `rake mastodon:maintenance:find_duplicate_usernames`
+      task to manually deal with such accounts before running this migration.
+    EXPLANATION
 
     duplicates = Account.connection.select_all('SELECT string_agg(id::text, \',\') AS ids FROM accounts GROUP BY lower(username), lower(domain) HAVING count(*) > 1').to_ary
 

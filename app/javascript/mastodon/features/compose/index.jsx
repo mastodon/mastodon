@@ -14,7 +14,7 @@ import SearchResultsContainer from './containers/search_results_container';
 import { openModal } from 'mastodon/actions/modal';
 import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
 import { mascot } from '../../initial_state';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import { logOut } from 'mastodon/utils/log_out';
 import Column from 'mastodon/components/column';
 import { Helmet } from 'react-helmet';
@@ -38,8 +38,6 @@ const mapStateToProps = (state, ownProps) => ({
   showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : false,
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class Compose extends React.PureComponent {
 
   static propTypes = {
@@ -148,3 +146,5 @@ class Compose extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(Compose));

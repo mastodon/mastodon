@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Button from '../../../components/button';
 import StatusContent from '../../../components/status_content';
-import Avatar from '../../../components/avatar';
-import RelativeTimestamp from '../../../components/relative_timestamp';
-import DisplayName from '../../../components/display_name';
+import { Avatar } from '../../../components/avatar';
+import { RelativeTimestamp } from '../../../components/relative_timestamp';
+import { DisplayName } from '../../../components/display_name';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import AttachmentList from 'mastodon/components/attachment_list';
 import PrivacyDropdown from 'mastodon/features/compose/components/privacy_dropdown';
 import classNames from 'classnames';
@@ -38,8 +38,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default @connect(mapStateToProps, mapDispatchToProps)
-@injectIntl
 class BoostModal extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -140,3 +138,5 @@ class BoostModal extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(BoostModal));
