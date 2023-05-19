@@ -10,6 +10,7 @@ describe 'GET /api/v1/accounts/{account_id}' do
 
     aggregate_failures do
       expect(response).to have_http_status(200)
+      expect { assert_schema_conform(200) }.to_not raise_error
       expect(body_as_json[:id]).to eq(account.id.to_s)
     end
   end
@@ -19,6 +20,7 @@ describe 'GET /api/v1/accounts/{account_id}' do
 
     aggregate_failures do
       expect(response).to have_http_status(404)
+      expect { assert_schema_conform(404) }.to_not raise_error
       expect(body_as_json[:error]).to eq('Record not found')
     end
   end
@@ -33,6 +35,7 @@ describe 'GET /api/v1/accounts/{account_id}' do
 
       aggregate_failures do
         expect(response).to have_http_status(200)
+        expect { assert_schema_conform(200) }.to_not raise_error
         expect(body_as_json[:id]).to eq(account.id.to_s)
       end
     end
@@ -46,6 +49,7 @@ describe 'GET /api/v1/accounts/{account_id}' do
 
       aggregate_failures do
         expect(response).to have_http_status(403)
+        expect { assert_schema_conform(403) }.to_not raise_error
         expect(body_as_json[:error]).to eq('This action is outside the authorized scopes')
       end
     end

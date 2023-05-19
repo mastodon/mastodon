@@ -11,6 +11,7 @@ require 'webmock/rspec'
 require 'paperclip/matchers'
 require 'capybara/rspec'
 require 'chewy/rspec'
+require 'committee/rails'
 
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
@@ -76,6 +77,14 @@ RSpec.configure do |config|
   config.include Chewy::Rspec::Helpers
   config.include Redisable
   config.include SignedRequestHelpers, type: :request
+  config.include Committee::Rails::Test::Methods
+  config.add_setting :committee_options
+  config.committee_options = {
+    schema_path: Rails.root.join('openapi', 'dist', 'openapi.json').to_s,
+    query_hash_key: 'rack.request.query_hash',
+    parse_response_by_content_type: true,
+    strict_reference_validation: true,
+  }
 
   config.before :each, type: :cli do
     stub_stdout
