@@ -123,7 +123,7 @@ group :test do
   # Used to mock environment variables
   gem 'climate_control', '~> 0.2'
 
-  # Generating fake datafor specs
+  # Generating fake data for specs
   gem 'faker', '~> 3.2'
 
   # Generate test objects for specs
