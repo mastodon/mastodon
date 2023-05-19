@@ -59,7 +59,7 @@ const pushModal: PushModal = (state, modalType, modalProps) => {
   });
 };
 
-export function modal(
+export function modalReducer(
   state = initialState,
   action: PayloadAction<{
     modalType: ModalType;
