@@ -3,8 +3,11 @@
 import fs from 'fs';
 import path from 'path';
 
+import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
 import react from '@vitejs/plugin-react';
+import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
+import CompressionPlugin from 'vite-plugin-compression';
 import RubyPlugin from 'vite-plugin-ruby';
 import { configDefaults } from 'vitest/config';
 
@@ -24,11 +27,27 @@ directories.forEach((directory) => {
 
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        // Use a custom name for chunks, to avoid having too many of them called "index"
+        chunkFileNames: (chunkInfo) => {
+          if (chunkInfo.name === 'index' && chunkInfo.facadeModuleId) {
+            const parts = chunkInfo.facadeModuleId?.split('/');
+
+            const parent = parts.at(-2);
+
+            if (parent) return `${parent}-[name]-[hash].js`;
+          }
+          return `[name]-[hash].js`;
+        },
+      },
+    },
+  },
   resolve: {
     alias: {
       ...aliasesFromJavascriptRoot,
-      // can add more aliases, as "old" images or "@assets", see below
-      images: path.resolve(__dirname, './app/assets/images'),
+      // images: path.resolve(__dirname, './app/javascript/images'),
     },
   },
   plugins: [
@@ -39,12 +58,16 @@ export default defineConfig({
         plugins: [
           //  ['@babel/proposal-decorators', { legacy: true }],
           'formatjs',
-          'lodash',
           'preval',
           'transform-react-remove-prop-types',
         ],
       },
     }),
+    optimizeLodashImports(),
+    CompressionPlugin({ verbose: false }),
+    CompressionPlugin({ verbose: false, algorithm: 'brotliCompress' }),
+    !!process.env.ANALYZE_BUNDLE_SIZE &&
+      visualizer({ open: true, gzipSize: true, brotliSize: true }),
   ],
   test: {
     environment: 'jsdom',
