@@ -114,7 +114,7 @@ Object.keys(emojiIndex.emojis).forEach(key => {
 
 // JSON.parse/stringify is to emulate what @preval is doing and avoid any
 // inconsistent behavior in dev mode
-const ex = JSON.parse(JSON.stringify([
+const emojiData = JSON.parse(JSON.stringify([
   shortCodesToEmojiData,
   /*
    * The property `skins` is not found in the current context.
@@ -132,4 +132,4 @@ const ex = JSON.parse(JSON.stringify([
   emojisWithoutShortCodes,
 ]));
 
-export default ex;
+export default emojiData;

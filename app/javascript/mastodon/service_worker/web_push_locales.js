@@ -32,6 +32,6 @@ filenames.forEach(filename => {
   };
 });
 
-const ex = JSON.parse(JSON.stringify(filtered));
+const normalizedLocales = JSON.parse(JSON.stringify(filtered));
 
-export default ex;
+export default normalizedLocales;
