@@ -16,6 +16,7 @@
   "properties": {
     "version": {
       "description": "The schema version, must be 2.0.",
+      "type": "string",
       "enum": ["2.0"]
     },
     "software": {
@@ -40,6 +41,7 @@
       "type": "array",
       "minItems": 1,
       "items": {
+        "type": "string",
         "enum": [
           "activitypub",
           "buddycloud",
@@ -65,6 +67,7 @@
           "type": "array",
           "minItems": 0,
           "items": {
+            "type": "string",
             "enum": [
               "atom1.0",
               "gnusocial",
@@ -82,6 +85,7 @@
           "type": "array",
           "minItems": 0,
           "items": {
+            "type": "string",
             "enum": [
               "atom1.0",
               "blogger",

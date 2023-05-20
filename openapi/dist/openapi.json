@@ -58,6 +58,24 @@
         "summary" : "View information about a profile.",
         "tags" : [ "accounts" ]
       }
+    },
+    "/nodeinfo/2.0" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/nodeinfo_2.0"
+                }
+              }
+            },
+            "description" : "node info"
+          }
+        },
+        "summary" : "Show node info",
+        "tags" : [ "server" ]
+      }
     }
   },
   "components" : {
@@ -158,6 +176,47 @@
         "required" : [ "error" ],
         "type" : "object"
       },
+      "nodeinfo_2.0" : {
+        "additionalProperties" : false,
+        "description" : "NodeInfo schema version 2.0.",
+        "properties" : {
+          "version" : {
+            "description" : "The schema version, must be 2.0.",
+            "enum" : [ "2.0" ],
+            "type" : "string"
+          },
+          "software" : {
+            "$ref" : "#/components/schemas/nodeinfo_2_0_software"
+          },
+          "protocols" : {
+            "description" : "The protocols supported on this server.",
+            "items" : {
+              "enum" : [ "activitypub", "buddycloud", "dfrn", "diaspora", "libertree", "ostatus", "pumpio", "tent", "xmpp", "zot" ],
+              "type" : "string"
+            },
+            "minItems" : 1,
+            "type" : "array"
+          },
+          "services" : {
+            "$ref" : "#/components/schemas/nodeinfo_2_0_services"
+          },
+          "openRegistrations" : {
+            "description" : "Whether this server allows open self-registration.",
+            "type" : "boolean"
+          },
+          "usage" : {
+            "$ref" : "#/components/schemas/nodeinfo_2_0_usage"
+          },
+          "metadata" : {
+            "additionalProperties" : true,
+            "description" : "Free form key value pairs for software specific values. Clients should not rely on any specific key present.",
+            "minProperties" : 0,
+            "type" : "object"
+          }
+        },
+        "required" : [ "metadata", "openRegistrations", "protocols", "services", "software", "usage", "version" ],
+        "type" : "object"
+      },
       "null" : {
         "enum" : [ null ],
         "nullable" : true,
@@ -224,6 +283,92 @@
         }, {
           "$ref" : "#/components/schemas/null"
         } ]
+      },
+      "nodeinfo_2_0_software" : {
+        "additionalProperties" : false,
+        "description" : "Metadata about server software in use.",
+        "properties" : {
+          "name" : {
+            "description" : "The canonical name of this server software.",
+            "pattern" : "^[a-z0-9-]+$",
+            "type" : "string"
+          },
+          "version" : {
+            "description" : "The version of this server software.",
+            "type" : "string"
+          }
+        },
+        "required" : [ "name", "version" ],
+        "type" : "object"
+      },
+      "nodeinfo_2_0_services" : {
+        "additionalProperties" : false,
+        "description" : "The third party sites this server can connect to via their application API.",
+        "properties" : {
+          "inbound" : {
+            "description" : "The third party sites this server can retrieve messages from for combined display with regular traffic.",
+            "items" : {
+              "enum" : [ "atom1.0", "gnusocial", "imap", "pnut", "pop3", "pumpio", "rss2.0", "twitter" ],
+              "type" : "string"
+            },
+            "minItems" : 0,
+            "type" : "array"
+          },
+          "outbound" : {
+            "description" : "The third party sites this server can publish messages to on the behalf of a user.",
+            "items" : {
+              "enum" : [ "atom1.0", "blogger", "buddycloud", "diaspora", "dreamwidth", "drupal", "facebook", "friendica", "gnusocial", "google", "insanejournal", "libertree", "linkedin", "livejournal", "mediagoblin", "myspace", "pinterest", "pnut", "posterous", "pumpio", "redmatrix", "rss2.0", "smtp", "tent", "tumblr", "twitter", "wordpress", "xmpp" ],
+              "type" : "string"
+            },
+            "minItems" : 0,
+            "type" : "array"
+          }
+        },
+        "required" : [ "inbound", "outbound" ],
+        "type" : "object"
+      },
+      "nodeinfo_2_0_usage_users" : {
+        "additionalProperties" : false,
+        "description" : "statistics about the users of this server.",
+        "properties" : {
+          "total" : {
+            "description" : "The total amount of on this server registered users.",
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "activeHalfyear" : {
+            "description" : "The amount of users that signed in at least once in the last 180 days.",
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "activeMonth" : {
+            "description" : "The amount of users that signed in at least once in the last 30 days.",
+            "minimum" : 0,
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "nodeinfo_2_0_usage" : {
+        "additionalProperties" : false,
+        "description" : "Usage statistics for this server.",
+        "properties" : {
+          "users" : {
+            "$ref" : "#/components/schemas/nodeinfo_2_0_usage_users"
+          },
+          "localPosts" : {
+            "description" : "The amount of posts that were made by users that are registered on this server.",
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "localComments" : {
+            "description" : "The amount of comments that were made by users that are registered on this server.",
+            "minimum" : 0,
+            "type" : "integer"
+          }
+        },
+        "required" : [ "users" ],
+        "type" : "object"
       }
     },
     "securitySchemes" : {

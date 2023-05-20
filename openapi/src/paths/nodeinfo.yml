@@ -1,0 +1,11 @@
+get:
+  summary: Show node info
+  tags:
+    - server
+  responses:
+    '200':
+      description: node info
+      content:
+        application/json:
+          schema:
+            $ref: '../components/entities/nodeinfo_2.0.json'

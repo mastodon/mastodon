@@ -7,6 +7,8 @@ info:
 paths:
   /api/v1/accounts/{account_id}:
     $ref: './paths/v1/accounts/account_id.yml'
+  /nodeinfo/2.0:
+    $ref: './paths/nodeinfo.yml'
 components:
   securitySchemes:
     Authorization:
