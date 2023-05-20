@@ -1,0 +1,16 @@
+type: object
+additionalProperties: false
+required:
+  - name
+  - value
+  - verified_at
+properties:
+  name:
+    type: string
+  value:
+    type: string
+  verified_at:
+    oneOf:
+      - type: string
+        format: datetime
+      - $ref: './null.yml'

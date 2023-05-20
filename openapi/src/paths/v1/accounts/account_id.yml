@@ -1,0 +1,32 @@
+get:
+  summary: View information about a profile.
+  tags:
+    - accounts
+  security:
+    - Authorization:
+  parameters:
+    - name: account_id
+      in: path
+      required: true
+      description: account id
+      schema:
+        type: string
+  responses:
+    '200':
+      description: account profile
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/entities/account.yml'
+    '403':
+      description: forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/entities/error.yml'
+    '404':
+      description: not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/entities/error.yml'

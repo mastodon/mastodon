@@ -1,0 +1,14 @@
+openapi: '3.0.0'
+info:
+  version: 0.1.0
+  title: mastodon API
+  license:
+    name: AGPLv3.0
+paths:
+  /api/v1/accounts/{account_id}:
+    $ref: './paths/v1/accounts/account_id.yml'
+components:
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer

@@ -1,0 +1,236 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "license" : {
+      "name" : "AGPLv3.0"
+    },
+    "title" : "mastodon API",
+    "version" : "0.1.0"
+  },
+  "servers" : [ {
+    "url" : "/"
+  } ],
+  "paths" : {
+    "/api/v1/accounts/{account_id}" : {
+      "get" : {
+        "parameters" : [ {
+          "description" : "account id",
+          "in" : "path",
+          "name" : "account_id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/account"
+                }
+              }
+            },
+            "description" : "account profile"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              }
+            },
+            "description" : "forbidden"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              }
+            },
+            "description" : "not found"
+          }
+        },
+        "security" : [ { } ],
+        "summary" : "View information about a profile.",
+        "tags" : [ "accounts" ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "account" : {
+        "additionalProperties" : false,
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "username" : {
+            "type" : "string"
+          },
+          "acct" : {
+            "type" : "string"
+          },
+          "display_name" : {
+            "type" : "string"
+          },
+          "locked" : {
+            "type" : "boolean"
+          },
+          "bot" : {
+            "type" : "boolean"
+          },
+          "created_at" : {
+            "format" : "datetime",
+            "type" : "string"
+          },
+          "note" : {
+            "type" : "string"
+          },
+          "url" : {
+            "type" : "string"
+          },
+          "avatar" : {
+            "type" : "string"
+          },
+          "avatar_static" : {
+            "type" : "string"
+          },
+          "header" : {
+            "type" : "string"
+          },
+          "header_static" : {
+            "type" : "string"
+          },
+          "followers_count" : {
+            "type" : "integer"
+          },
+          "following_count" : {
+            "type" : "integer"
+          },
+          "statuses_count" : {
+            "type" : "integer"
+          },
+          "last_status_at" : {
+            "$ref" : "#/components/schemas/account_last_status_at"
+          },
+          "fields" : {
+            "items" : {
+              "$ref" : "#/components/schemas/account_field"
+            },
+            "type" : "array"
+          },
+          "emojis" : {
+            "items" : {
+              "$ref" : "#/components/schemas/custom_emoji"
+            },
+            "type" : "array"
+          },
+          "discoverable" : {
+            "type" : "boolean"
+          },
+          "group" : {
+            "type" : "boolean"
+          },
+          "noindex" : {
+            "type" : "boolean"
+          },
+          "roles" : {
+            "items" : {
+              "$ref" : "#/components/schemas/account_role"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "acct", "avatar", "avatar_static", "bot", "created_at", "discoverable", "display_name", "emojis", "fields", "followers_count", "following_count", "group", "header", "header_static", "id", "last_status_at", "locked", "noindex", "note", "roles", "statuses_count", "url", "username" ],
+        "type" : "object"
+      },
+      "error" : {
+        "additionalProperties" : false,
+        "properties" : {
+          "error" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "error" ],
+        "type" : "object"
+      },
+      "null" : {
+        "enum" : [ null ],
+        "nullable" : true,
+        "type" : "string"
+      },
+      "account_field" : {
+        "additionalProperties" : false,
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "value" : {
+            "type" : "string"
+          },
+          "verified_at" : {
+            "$ref" : "#/components/schemas/account_last_status_at"
+          }
+        },
+        "required" : [ "name", "value", "verified_at" ],
+        "type" : "object"
+      },
+      "custom_emoji" : {
+        "additionalProperties" : false,
+        "properties" : {
+          "shortcode" : {
+            "type" : "string"
+          },
+          "url" : {
+            "type" : "string"
+          },
+          "static_url" : {
+            "type" : "string"
+          },
+          "visible_in_picker" : {
+            "type" : "boolean"
+          },
+          "category" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "category", "shortcode", "static_url", "url", "visible_in_picker" ],
+        "type" : "object"
+      },
+      "account_role" : {
+        "additionalProperties" : false,
+        "properties" : {
+          "color" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "color", "id", "name" ],
+        "type" : "object"
+      },
+      "account_last_status_at" : {
+        "oneOf" : [ {
+          "format" : "datetime",
+          "type" : "string"
+        }, {
+          "$ref" : "#/components/schemas/null"
+        } ]
+      }
+    },
+    "securitySchemes" : {
+      "Authorization" : {
+        "scheme" : "bearer",
+        "type" : "http"
+      }
+    }
+  }
+}

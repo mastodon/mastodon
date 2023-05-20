@@ -1,0 +1,19 @@
+type: object
+additionalProperties: false
+required:
+  - shortcode
+  - url
+  - static_url
+  - visible_in_picker
+  - category
+properties:
+  shortcode:
+    type: string
+  url:
+    type: string
+  static_url:
+    type: string
+  visible_in_picker:
+    type: boolean
+  category:
+    type: string

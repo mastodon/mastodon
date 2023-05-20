@@ -1,0 +1,83 @@
+type: object
+additionalProperties: false
+required:
+  - id
+  - username
+  - acct
+  - display_name
+  - locked
+  - bot
+  - created_at
+  - note
+  - url
+  - avatar
+  - avatar_static
+  - header
+  - header_static
+  - followers_count
+  - following_count
+  - statuses_count
+  - last_status_at
+  - emojis
+  - fields
+  - discoverable
+  - group
+  - noindex
+  - roles
+properties:
+  id:
+    type: string
+  username:
+    type: string
+  acct:
+    type: string
+  display_name:
+    type: string
+  locked:
+    type: boolean
+  bot:
+    type: boolean
+  created_at:
+    type: string
+    format: datetime
+  note:
+    type: string
+  url:
+    type: string
+  avatar:
+    type: string
+  avatar_static:
+    type: string
+  header:
+    type: string
+  header_static:
+    type: string
+  followers_count:
+    type: integer
+  following_count:
+    type: integer
+  statuses_count:
+    type: integer
+  last_status_at:
+    oneOf:
+      - type: string
+        format: datetime
+      - $ref: './null.yml'
+  fields:
+    type: array
+    items:
+      $ref: './account_field.yml'
+  emojis:
+    type: array
+    items:
+      $ref: './custom_emoji.yml'
+  discoverable:
+    type: boolean
+  group:
+    type: boolean
+  noindex:
+    type: boolean
+  roles:
+    type: array
+    items:
+      $ref: './account_role.yml'
