@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -17,6 +17,7 @@ import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import StatusContent from 'mastodon/components/status_content';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { autoPlayGif } from 'mastodon/initial_state';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
@@ -30,10 +31,6 @@ const messages = defineMessages({
 
 class Conversation extends ImmutablePureComponent {
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   static propTypes = {
     conversationId: PropTypes.string.isRequired,
     accounts: ImmutablePropTypes.list.isRequired,
@@ -45,6 +42,7 @@ class Conversation extends ImmutablePureComponent {
     markRead: PropTypes.func.isRequired,
     delete: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    ...WithRouterPropTypes,
   };
 
   handleMouseEnter = ({ currentTarget }) => {
@@ -74,7 +72,7 @@ class Conversation extends ImmutablePureComponent {
   };
 
   handleClick = () => {
-    if (!this.context.router) {
+    if (!this.props.history) {
       return;
     }
 
@@ -84,7 +82,7 @@ class Conversation extends ImmutablePureComponent {
       markRead();
     }
 
-    this.context.router.history.push(`/@${lastStatus.getIn(['account', 'acct'])}/${lastStatus.get('id')}`);
+    this.props.history.push(`/@${lastStatus.getIn(['account', 'acct'])}/${lastStatus.get('id')}`);
   };
 
   handleMarkAsRead = () => {
@@ -92,7 +90,7 @@ class Conversation extends ImmutablePureComponent {
   };
 
   handleReply = () => {
-    this.props.reply(this.props.lastStatus, this.context.router.history);
+    this.props.reply(this.props.lastStatus, this.props.history);
   };
 
   handleDelete = () => {
@@ -202,4 +200,4 @@ class Conversation extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(Conversation);
+export default withRouter(injectIntl(Conversation));

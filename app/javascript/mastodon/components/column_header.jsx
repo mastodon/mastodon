@@ -5,8 +5,10 @@ import { createPortal } from 'react-dom';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
+import { withRouter } from 'react-router-dom';
 
 import { Icon }  from 'mastodon/components/icon';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
@@ -18,7 +20,6 @@ const messages = defineMessages({
 class ColumnHeader extends PureComponent {
 
   static contextTypes = {
-    router: PropTypes.object,
     identity: PropTypes.object,
   };
 
@@ -38,6 +39,7 @@ class ColumnHeader extends PureComponent {
     onClick: PropTypes.func,
     appendContent: PropTypes.node,
     collapseIssues: PropTypes.bool,
+    ...WithRouterPropTypes,
   };
 
   state = {
@@ -63,12 +65,12 @@ class ColumnHeader extends PureComponent {
   };
 
   handleBackClick = () => {
-    const { router } = this.context;
+    const { history } = this.props;
 
-    if (router.history.location?.state?.fromMastodon) {
-      router.history.goBack();
+    if (history.location?.state?.fromMastodon) {
+      history.goBack();
     } else {
-      router.history.push('/');
+      history.push('/');
     }
   };
 
@@ -78,7 +80,7 @@ class ColumnHeader extends PureComponent {
 
   handlePin = () => {
     if (!this.props.pinned) {
-      this.context.router.history.replace('/');
+      this.props.history.replace('/');
     }
 
     this.props.onPin();
@@ -215,4 +217,4 @@ class ColumnHeader extends PureComponent {
 
 }
 
-export default injectIntl(ColumnHeader);
+export default injectIntl(withRouter(ColumnHeader));

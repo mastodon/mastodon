@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -11,6 +12,7 @@ import { HotKeys } from 'react-hotkeys';
 
 import { Icon }  from 'mastodon/components/icon';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import Card from '../features/status/components/card';
 // We use the component (and not the container) since we do not want
@@ -72,10 +74,6 @@ const messages = defineMessages({
 
 class Status extends ImmutablePureComponent {
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   static propTypes = {
     status: ImmutablePropTypes.map,
     account: ImmutablePropTypes.map,
@@ -116,6 +114,7 @@ class Status extends ImmutablePureComponent {
       inUse: PropTypes.bool,
       available: PropTypes.bool,
     }),
+    ...WithRouterPropTypes,
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -258,7 +257,7 @@ class Status extends ImmutablePureComponent {
 
   handleHotkeyReply = e => {
     e.preventDefault();
-    this.props.onReply(this._properStatus(), this.context.router.history);
+    this.props.onReply(this._properStatus(), this.props.history);
   };
 
   handleHotkeyFavourite = () => {
@@ -271,7 +270,7 @@ class Status extends ImmutablePureComponent {
 
   handleHotkeyMention = e => {
     e.preventDefault();
-    this.props.onMention(this._properStatus().get('account'), this.context.router.history);
+    this.props.onMention(this._properStatus().get('account'), this.props.history);
   };
 
   handleHotkeyOpen = () => {
@@ -596,4 +595,4 @@ class Status extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(Status);
+export default withRouter(injectIntl(Status));

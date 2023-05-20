@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl, defineMessages, FormattedDate, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -13,6 +13,7 @@ import EditedTimestamp from 'mastodon/components/edited_timestamp';
 import { getHashtagBarForStatus } from 'mastodon/components/hashtag_bar';
 import { Icon }  from 'mastodon/components/icon';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';
@@ -33,10 +34,6 @@ const messages = defineMessages({
 
 class DetailedStatus extends ImmutablePureComponent {
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   static propTypes = {
     status: ImmutablePropTypes.map,
     onOpenMedia: PropTypes.func.isRequired,
@@ -53,6 +50,7 @@ class DetailedStatus extends ImmutablePureComponent {
       available: PropTypes.bool,
     }),
     onToggleMediaVisibility: PropTypes.func,
+    ...WithRouterPropTypes,
   };
 
   state = {
@@ -60,9 +58,9 @@ class DetailedStatus extends ImmutablePureComponent {
   };
 
   handleAccountClick = (e) => {
-    if (e.button === 0 && !(e.ctrlKey || e.metaKey) && this.context.router) {
+    if (e.button === 0 && !(e.ctrlKey || e.metaKey) && this.props.history) {
       e.preventDefault();
-      this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
+      this.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
     }
 
     e.stopPropagation();
@@ -237,7 +235,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
     if (['private', 'direct'].includes(status.get('visibility'))) {
       reblogLink = '';
-    } else if (this.context.router) {
+    } else if (this.props.history) {
       reblogLink = (
         <>
           {' · '}
@@ -263,7 +261,7 @@ class DetailedStatus extends ImmutablePureComponent {
       );
     }
 
-    if (this.context.router) {
+    if (this.props.history) {
       favouriteLink = (
         <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/favourites`} className='detailed-status__link'>
           <Icon id='star' />
@@ -333,4 +331,4 @@ class DetailedStatus extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(DetailedStatus);
+export default withRouter(injectIntl(DetailedStatus));
