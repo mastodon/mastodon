@@ -62,7 +62,7 @@ export interface components {
       discoverable: boolean;
       group: boolean;
       noindex: boolean;
-      roles: string[];
+      roles: components["schemas"]["account_role"][];
     };
     error: {
       error: string;
@@ -80,6 +80,11 @@ export interface components {
       static_url: string;
       visible_in_picker: boolean;
       category: string;
+    };
+    account_role: {
+      color: string;
+      id: string;
+      name: string;
     };
     account_last_status_at: string | components["schemas"]["null"];
   };

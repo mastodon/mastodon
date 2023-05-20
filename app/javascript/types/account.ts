@@ -1,54 +1,23 @@
 import type { Record } from 'immutable';
 
-type CustomEmoji = Record<{
-  shortcode: string;
-  static_url: string;
-  url: string;
-}>;
+import type { components } from '../../../openapi/lib/mastodon';
 
-type AccountField = Record<{
-  name: string;
-  value: string;
-  verified_at: string | null;
-}>;
+type AccountApiRawValues = components['schemas']['account'];
 
-interface AccountApiResponseValues {
-  acct: string;
-  avatar: string;
-  avatar_static: string;
-  bot: boolean;
-  created_at: string;
-  discoverable: boolean;
-  display_name: string;
-  emojis: CustomEmoji[];
-  fields: AccountField[];
-  followers_count: number;
-  following_count: number;
-  group: boolean;
-  header: string;
-  header_static: string;
-  id: string;
-  last_status_at: string;
-  locked: boolean;
-  note: string;
-  statuses_count: number;
-  url: string;
-  username: string;
-}
-
-type NormalizedAccountField = Record<{
-  name_emojified: string;
-  value_emojified: string;
-  value_plain: string;
-}>;
+type CustomEmoji = Record<components['schemas']['custom_emoji']>;
+type AccountField = Record<components['schemas']['account_field']>;
+type AccountRole = Record<components['schemas']['account_role']>;
 
 interface NormalizedAccountValues {
   display_name_html: string;
-  fields: NormalizedAccountField[];
+  emojis: CustomEmoji[];
+  fields: AccountField[];
   note_emojified: string;
   note_plain: string;
+  roles: AccountRole[];
 }
 
 export type Account = Record<
-  AccountApiResponseValues & NormalizedAccountValues
+  Exclude<AccountApiRawValues, 'emojis' | 'fields' | 'roles'> &
+    NormalizedAccountValues
 >;
