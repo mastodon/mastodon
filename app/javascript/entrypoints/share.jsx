@@ -1,13 +1,15 @@
 import { createRoot } from 'react-dom/client';
 
 import { start } from '../mastodon/common';
-import ComposeContainer  from '../mastodon/containers/compose_container';
 import { loadPolyfills } from '../mastodon/polyfills';
 import ready from '../mastodon/ready';
 
+import 'styles/application.scss';
+
 start();
 
-function loaded() {
+async function loaded() {
+  const { ComposeContainer } = await import('../mastodon/containers/compose_container');
   const mountNode = document.getElementById('mastodon-compose');
 
   if (mountNode) {
