@@ -98,6 +98,7 @@ module.exports = {
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', 'tsx'] }],
     'react/jsx-boolean-value': 'error',
     'react/display-name': 'off',
+    'react/jsx-fragments': ['error', 'syntax'],
     'react/jsx-equals-spacing': 'error',
     'react/jsx-no-bind': 'error',
     'react/jsx-no-target-blank': 'off',

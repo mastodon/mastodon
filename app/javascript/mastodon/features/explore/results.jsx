@@ -1,4 +1,4 @@
-import { PureComponent, Fragment } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
@@ -102,7 +102,7 @@ class Results extends PureComponent {
     }
 
     return (
-      <Fragment>
+      <>
         <div className='account__section-headline'>
           <button onClick={this.handleSelectAll} className={type === 'all' && 'active'}><FormattedMessage id='search_results.all' defaultMessage='All' /></button>
           <button onClick={this.handleSelectAccounts} className={type === 'accounts' && 'active'}><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></button>
@@ -117,7 +117,7 @@ class Results extends PureComponent {
         <Helmet>
           <title>{intl.formatMessage(messages.title, { q })}</title>
         </Helmet>
-      </Fragment>
+      </>
     );
   }
 

@@ -1,4 +1,4 @@
-import { PureComponent, Fragment } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
@@ -65,10 +65,10 @@ class CompareHistoryModal extends PureComponent {
         <div className='compare-history-modal__container'>
           <div className='status__content'>
             {currentVersion.get('spoiler_text').length > 0 && (
-              <Fragment>
+              <>
                 <div className='translate' dangerouslySetInnerHTML={spoilerContent} lang={language} />
                 <hr />
-              </Fragment>
+              </>
             )}
 
             <div className='status__content__text status__content__text--visible translate' dangerouslySetInnerHTML={content} lang={language} />

@@ -1,4 +1,4 @@
-import { PureComponent, cloneElement, Children, Fragment } from 'react';
+import { PureComponent, cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { IconButton } from './icon_button';
@@ -306,7 +306,7 @@ export default class Dropdown extends PureComponent {
     );
 
     return (
-      <Fragment>
+      <>
         <span ref={this.setTargetRef}>
           {button}
         </span>
@@ -329,7 +329,7 @@ export default class Dropdown extends PureComponent {
             </div>
           )}
         </Overlay>
-      </Fragment>
+      </>
     );
   }
 
