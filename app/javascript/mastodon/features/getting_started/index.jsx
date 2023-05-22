@@ -1,4 +1,3 @@
-import React from 'react';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import ColumnLink from '../ui/components/column_link';

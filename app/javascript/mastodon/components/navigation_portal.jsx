@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { showTrends } from 'mastodon/initial_state';
 import Trends from 'mastodon/features/getting_started/containers/trends_container';
@@ -15,7 +15,7 @@ const DefaultNavigation = () => (
   </>
 );
 
-class NavigationPortal extends React.PureComponent {
+class NavigationPortal extends PureComponent {
 
   render () {
     return (

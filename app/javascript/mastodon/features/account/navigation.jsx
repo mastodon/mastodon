@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FeaturedTags from 'mastodon/features/account/containers/featured_tags_container';
@@ -19,7 +19,7 @@ const mapStateToProps = (state, { match: { params: { acct } } }) => {
   };
 };
 
-class AccountNavigation extends React.PureComponent {
+class AccountNavigation extends PureComponent {
 
   static propTypes = {
     match: PropTypes.shape({

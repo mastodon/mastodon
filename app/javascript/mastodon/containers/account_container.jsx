@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { makeGetAccount } from '../selectors';

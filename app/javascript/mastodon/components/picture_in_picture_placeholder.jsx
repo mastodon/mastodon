@@ -1,11 +1,11 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Icon }  from 'mastodon/components/icon';
 import { removePictureInPicture } from 'mastodon/actions/picture_in_picture';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
-class PictureInPicturePlaceholder extends React.PureComponent {
+class PictureInPicturePlaceholder extends PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,

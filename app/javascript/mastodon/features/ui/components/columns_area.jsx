@@ -1,4 +1,4 @@
-import React from 'react';
+import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -173,7 +173,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
           );
         })}
 
-        {React.Children.map(children, child => React.cloneElement(child, { multiColumn: true }))}
+        {Children.map(children, child => cloneElement(child, { multiColumn: true }))}
       </div>
     );
   }

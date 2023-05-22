@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -22,7 +22,7 @@ const mapStateToProps = (state, { contextType }) => ({
   ]),
 });
 
-class SelectFilter extends React.PureComponent {
+class SelectFilter extends PureComponent {
 
   static propTypes = {
     onSelectFilter: PropTypes.func.isRequired,
@@ -169,7 +169,7 @@ class SelectFilter extends React.PureComponent {
     const results = this.search();
 
     return (
-      <React.Fragment>
+      <Fragment>
         <h3 className='report-dialog-modal__title'><FormattedMessage id='filter_modal.select_filter.title' defaultMessage='Filter this post' /></h3>
         <p className='report-dialog-modal__lead'><FormattedMessage id='filter_modal.select_filter.subtitle' defaultMessage='Use an existing category or create a new one' /></p>
 
@@ -183,7 +183,7 @@ class SelectFilter extends React.PureComponent {
           {isSearching && this.renderCreateNew(searchValue) }
         </div>
 
-      </React.Fragment>
+      </Fragment>
     );
   }
 

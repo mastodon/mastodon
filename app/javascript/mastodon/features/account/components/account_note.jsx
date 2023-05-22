@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -10,7 +10,7 @@ const messages = defineMessages({
   placeholder: { id: 'account_note.placeholder', defaultMessage: 'Click to add a note' },
 });
 
-class InlineAlert extends React.PureComponent {
+class InlineAlert extends PureComponent {
 
   static propTypes = {
     show: PropTypes.bool,

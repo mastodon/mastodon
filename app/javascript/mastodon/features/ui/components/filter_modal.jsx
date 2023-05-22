@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { fetchStatus } from 'mastodon/actions/statuses';
 import { fetchFilters, createFilter, createFilterStatus } from 'mastodon/actions/filters';
