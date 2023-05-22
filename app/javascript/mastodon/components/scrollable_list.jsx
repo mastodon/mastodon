@@ -15,6 +15,8 @@ import { connect } from 'react-redux';
 
 const MOUSE_IDLE_DELAY = 300;
 
+const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
+
 const mapStateToProps = (state, { scrollKey }) => {
   return {
     preventScroll: scrollKey === state.getIn(['dropdown_menu', 'scroll_key']),
@@ -237,20 +239,20 @@ class ScrollableList extends PureComponent {
   attachScrollListener () {
     if (this.props.bindToDocument) {
       document.addEventListener('scroll', this.handleScroll);
-      document.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : undefined);
+      document.addEventListener('wheel', this.handleWheel,  listenerOptions);
     } else {
       this.node.addEventListener('scroll', this.handleScroll);
-      this.node.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : undefined);
+      this.node.addEventListener('wheel', this.handleWheel, listenerOptions);
     }
   }
 
   detachScrollListener () {
     if (this.props.bindToDocument) {
       document.removeEventListener('scroll', this.handleScroll);
-      document.removeEventListener('wheel', this.handleWheel);
+      document.removeEventListener('wheel', this.handleWheel, listenerOptions);
     } else {
       this.node.removeEventListener('scroll', this.handleScroll);
-      this.node.removeEventListener('wheel', this.handleWheel);
+      this.node.removeEventListener('wheel', this.handleWheel, listenerOptions);
     }
   }
 
