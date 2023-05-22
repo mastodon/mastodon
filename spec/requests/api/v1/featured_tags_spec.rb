@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'FeaturedTags' do
+RSpec.describe 'FeaturedTags' do
   let(:user)    { Fabricate(:user) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:scopes)  { 'read:accounts write:accounts' }
@@ -133,6 +133,68 @@ describe 'FeaturedTags' do
         post '/api/v1/featured_tags', headers: headers, params: params
 
         expect(response).to have_http_status(422)
+      end
+    end
+  end
+
+  describe 'DELETE /api/v1/featured_tags' do
+    let!(:featured_tag) { FeaturedTag.create(name: 'tag', account: user.account) }
+    let(:id) { featured_tag.id }
+
+    it 'returns http success' do
+      delete "/api/v1/featured_tags/#{id}", headers: headers
+
+      expect(response).to have_http_status(200)
+    end
+
+    it 'returns an empty body' do
+      delete "/api/v1/featured_tags/#{id}", headers: headers
+
+      body = body_as_json
+
+      expect(body).to be_empty
+    end
+
+    it 'deletes the featured tag' do
+      delete "/api/v1/featured_tags/#{id}", headers: headers
+
+      featured_tag = FeaturedTag.find_by(id: id)
+
+      expect(featured_tag).to be_nil
+    end
+
+    context 'with wrong scope' do
+      before do
+        delete "/api/v1/featured_tags/#{id}", headers: headers
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'read:statuses'
+    end
+
+    context 'with missing Authorization header' do
+      it 'returns http unauthorized' do
+        delete "/api/v1/featured_tags/#{id}"
+
+        expect(response).to have_http_status(401)
+      end
+    end
+
+    context 'when featured tag with given id does not exist' do
+      it 'returns http not found' do
+        delete '/api/v1/featured_tags/0', headers: headers
+
+        expect(response).to have_http_status(404)
+      end
+    end
+
+    context 'when deleting a featured tag of another user' do
+      let!(:other_user_featured_tag) { Fabricate(:featured_tag) }
+      let(:id) { other_user_featured_tag.id }
+
+      it 'returns http not found' do
+        delete "/api/v1/featured_tags/#{id}", headers: headers
+
+        expect(response).to have_http_status(404)
       end
     end
   end
