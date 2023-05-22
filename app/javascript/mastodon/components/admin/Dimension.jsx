@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import api from 'mastodon/api';
 import { FormattedNumber } from 'react-intl';
 import { roundTo10 } from 'mastodon/utils/numbers';
-import Skeleton from 'mastodon/components/skeleton';
+import { Skeleton } from 'mastodon/components/skeleton';
 
 export default class Dimension extends React.PureComponent {
 
