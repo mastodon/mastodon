@@ -1,9 +1,12 @@
-import { PureComponent } from 'react';
-import ColumnHeader from './column_header';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { debounce } from 'lodash';
-import { scrollTop } from '../../../scroll';
+
 import { isMobile } from '../../../is_mobile';
+import { scrollTop } from '../../../scroll';
+
+import ColumnHeader from './column_header';
 
 export default class Column extends PureComponent {
 

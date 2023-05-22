@@ -1,18 +1,23 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
-import { Helmet } from 'react-helmet';
+
 import { IntlProvider, addLocaleData } from 'react-intl';
-import { Provider as ReduxProvider } from 'react-redux';
+
+import { Helmet } from 'react-helmet';
 import { BrowserRouter, Route } from 'react-router-dom';
+
+import { Provider as ReduxProvider } from 'react-redux';
+
 import { ScrollContext } from 'react-router-scroll-4';
-import { store } from 'mastodon/store';
-import UI from 'mastodon/features/ui';
+
 import { fetchCustomEmojis } from 'mastodon/actions/custom_emojis';
 import { hydrateStore } from 'mastodon/actions/store';
 import { connectUserStream } from 'mastodon/actions/streaming';
 import ErrorBoundary from 'mastodon/components/error_boundary';
+import UI from 'mastodon/features/ui';
 import initialState, { title as siteTitle } from 'mastodon/initial_state';
 import { getLocale } from 'mastodon/locales';
+import { store } from 'mastodon/store';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);

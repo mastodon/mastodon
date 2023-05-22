@@ -1,12 +1,16 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import Story from './components/story';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
-import { connect } from 'react-redux';
-import { fetchTrendingLinks } from 'mastodon/actions/trends';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
+import { fetchTrendingLinks } from 'mastodon/actions/trends';
 import DismissableBanner from 'mastodon/components/dismissable_banner';
+import LoadingIndicator from 'mastodon/components/loading_indicator';
+
+import Story from './components/story';
 
 const mapStateToProps = state => ({
   links: state.getIn(['trends', 'links', 'items']),

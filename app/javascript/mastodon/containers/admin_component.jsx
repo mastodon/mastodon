@@ -1,6 +1,8 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { IntlProvider, addLocaleData } from 'react-intl';
+
 import { getLocale } from '../locales';
 
 const { localeData, messages } = getLocale();

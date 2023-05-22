@@ -1,7 +1,8 @@
+import { Stack as ImmutableStack, Map as ImmutableMap } from 'immutable';
+
+import { COMPOSE_UPLOAD_CHANGE_SUCCESS } from '../actions/compose';
 import { MODAL_OPEN, MODAL_CLOSE } from '../actions/modal';
 import { TIMELINE_DELETE } from '../actions/timelines';
-import { COMPOSE_UPLOAD_CHANGE_SUCCESS } from '../actions/compose';
-import { Stack as ImmutableStack, Map as ImmutableMap } from 'immutable';
 
 const initialState = ImmutableMap({
   ignoreFocus: false,

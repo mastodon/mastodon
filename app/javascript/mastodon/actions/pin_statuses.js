@@ -1,7 +1,8 @@
 import api from '../api';
+import { me } from '../initial_state';
+
 import { importFetchedStatuses } from './importer';
 
-import { me } from '../initial_state';
 
 export const PINNED_STATUSES_FETCH_REQUEST = 'PINNED_STATUSES_FETCH_REQUEST';
 export const PINNED_STATUSES_FETCH_SUCCESS = 'PINNED_STATUSES_FETCH_SUCCESS';

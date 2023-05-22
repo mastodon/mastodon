@@ -1,7 +1,10 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { autoPlayGif } from '../initial_state';
+
 import { Avatar } from './avatar';
 
 export default class AvatarComposite extends PureComponent {

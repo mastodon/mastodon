@@ -1,11 +1,14 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { injectIntl, FormattedMessage } from 'react-intl';
-import Column from 'mastodon/components/column';
-import Button from 'mastodon/components/button';
+
+import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import classNames from 'classnames';
+
+import Button from 'mastodon/components/button';
+import Column from 'mastodon/components/column';
 import { autoPlayGif } from 'mastodon/initial_state';
 
 class GIF extends PureComponent {

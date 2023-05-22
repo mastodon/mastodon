@@ -1,14 +1,16 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
-const webpack = require('webpack');
 const { basename, dirname, join, relative, resolve } = require('path');
+
 const { sync } = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const AssetsManifestPlugin = require('webpack-assets-manifest');
 const extname = require('path-complete-extname');
+const webpack = require('webpack');
+const AssetsManifestPlugin = require('webpack-assets-manifest');
+
 const { env, settings, themes, output } = require('./configuration');
-const rules = require('./rules');
 const localePackPaths = require('./generateLocalePacks');
+const rules = require('./rules');
 
 const extensionGlob = `**/*{${settings.extensions.join(',')}}*`;
 const entryPath = join(settings.source_path, settings.source_entry_path);

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import {
   changeSearch,
   clearSearch,
@@ -8,6 +9,7 @@ import {
   clickSearchResult,
   forgetSearchResult,
 } from 'mastodon/actions/search';
+
 import Search from '../components/search';
 
 const mapStateToProps = state => ({

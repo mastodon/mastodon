@@ -1,13 +1,16 @@
-import { PureComponent } from 'react';
-import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
-import { store } from '../store';
-import { hydrateStore } from '../actions/store';
+import { PureComponent } from 'react';
+
 import { IntlProvider, addLocaleData } from 'react-intl';
-import { getLocale } from '../locales';
+
+import { Provider } from 'react-redux';
+
+import { fetchCustomEmojis } from '../actions/custom_emojis';
+import { hydrateStore } from '../actions/store';
 import Compose from '../features/standalone/compose';
 import initialState from '../initial_state';
-import { fetchCustomEmojis } from '../actions/custom_emojis';
+import { getLocale } from '../locales';
+import { store } from '../store';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);

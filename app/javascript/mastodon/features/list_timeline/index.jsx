@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
-import { Helmet } from 'react-helmet';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
+
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { fetchList, deleteList, updateList } from 'mastodon/actions/lists';
 import { openModal } from 'mastodon/actions/modal';
@@ -14,8 +18,8 @@ import ColumnHeader from 'mastodon/components/column_header';
 import { Icon }  from 'mastodon/components/icon';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 import { RadioButton } from 'mastodon/components/radio_button';
-import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
