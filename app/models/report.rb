@@ -38,7 +38,10 @@ class Report < ApplicationRecord
   scope :resolved,   -> { where.not(action_taken_at: nil) }
   scope :with_accounts, -> { includes([:account, :target_account, :action_taken_by_account, :assigned_account].index_with({ user: [:invite_request, :invite] })) }
 
-  validates :comment, length: { maximum: 1_000 }
+  # A report is considered local if the reporter is local
+  delegate :local?, to: :account
+
+  validates :comment, length: { maximum: 1_000 }, if: :local?
   validates :rule_ids, absence: true, unless: :violation?
 
   validate :validate_rule_ids
@@ -48,10 +51,6 @@ class Report < ApplicationRecord
     spam: 1_000,
     violation: 2_000,
   }
-
-  def local?
-    false # Force uri_for to use uri attribute
-  end
 
   before_validation :set_uri, only: :create
 

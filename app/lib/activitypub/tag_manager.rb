@@ -27,6 +27,8 @@ class ActivityPub::TagManager
     when :note, :comment, :activity
       return activity_account_status_url(target.account, target) if target.reblog?
       short_account_status_url(target.account, target)
+    when :flag
+      target.uri
     end
   end
 
@@ -41,6 +43,8 @@ class ActivityPub::TagManager
       account_status_url(target.account, target)
     when :emoji
       emoji_url(target)
+    when :flag
+      target.uri
     end
   end
 
