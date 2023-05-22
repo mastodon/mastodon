@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import { scrollTop } from '../scroll';
 
-const listenerOptions = supportsPassiveEvents ? { passive: true } : true;
+const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 export default class Column extends React.PureComponent {
 

@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 
 const MOUSE_IDLE_DELAY = 300;
 
-const listenerOptions = supportsPassiveEvents ? { passive: true } : true;
+const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 const mapStateToProps = (state, { scrollKey }) => {
   return {
