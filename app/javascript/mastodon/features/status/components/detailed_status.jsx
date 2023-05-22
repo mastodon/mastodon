@@ -207,7 +207,7 @@ class DetailedStatus extends ImmutablePureComponent {
     } else if (this.context.router) {
       reblogLink = (
         <>
-          <> · </>
+           · 
           <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reblogs`} className='detailed-status__link'>
             <Icon id={reblogIcon} />
             <span className='detailed-status__reblogs'>
@@ -219,7 +219,7 @@ class DetailedStatus extends ImmutablePureComponent {
     } else {
       reblogLink = (
         <>
-          <> · </>
+           · 
           <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
             <Icon id={reblogIcon} />
             <span className='detailed-status__reblogs'>
@@ -253,7 +253,7 @@ class DetailedStatus extends ImmutablePureComponent {
     if (status.get('edited_at')) {
       edited = (
         <>
-          <> · </>
+           · 
           <EditedTimestamp statusId={status.get('id')} timestamp={status.get('edited_at')} />
         </>
       );

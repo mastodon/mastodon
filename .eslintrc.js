@@ -101,6 +101,7 @@ module.exports = {
     'react/jsx-fragments': ['error', 'syntax'],
     'react/jsx-equals-spacing': 'error',
     'react/jsx-no-bind': 'error',
+    'react/jsx-no-useless-fragment': 'error',
     'react/jsx-no-target-blank': 'off',
     'react/jsx-tag-spacing': 'error',
     'react/jsx-uses-react': 'off', // not needed with new JSX transform

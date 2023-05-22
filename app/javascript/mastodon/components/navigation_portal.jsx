@@ -5,14 +5,12 @@ import Trends from 'mastodon/features/getting_started/containers/trends_containe
 import AccountNavigation from 'mastodon/features/account/navigation';
 
 const DefaultNavigation = () => (
-  <>
-    {showTrends && (
-      <>
-        <div className='flex-spacer' />
-        <Trends />
-      </>
-    )}
-  </>
+  showTrends ? (
+    <>
+      <div className='flex-spacer' />
+      <Trends />
+    </>
+  ) : null
 );
 
 class NavigationPortal extends PureComponent {
