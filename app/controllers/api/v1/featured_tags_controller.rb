@@ -31,8 +31,4 @@ class Api::V1::FeaturedTagsController < Api::BaseController
   def set_featured_tags
     @featured_tags = current_account.featured_tags.order(statuses_count: :desc)
   end
-
-  def featured_tag_params
-    params.require(:name)
-  end
 end
