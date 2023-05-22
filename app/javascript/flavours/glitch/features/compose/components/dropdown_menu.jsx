@@ -2,12 +2,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { supportsPassiveEvents } from 'detect-passive-events';
 
 //  Components.
 import { Icon } from 'flavours/glitch/components/icon';
 
-//  Utils.
-import { withPassive } from 'flavours/glitch/utils/dom_helpers';
+const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 
 //  The component.
 export default class ComposerOptionsDropdownContent extends React.PureComponent {
@@ -41,6 +41,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
   handleDocumentClick = (e) => {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
+      e.stopPropagation();
     }
   };
 
@@ -51,8 +52,8 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
 
   //  On mounting, we add our listeners.
   componentDidMount () {
-    document.addEventListener('click', this.handleDocumentClick, false);
-    document.addEventListener('touchend', this.handleDocumentClick, withPassive);
+    document.addEventListener('click', this.handleDocumentClick, { capture: true });
+    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
     if (this.focusedItem) {
       this.focusedItem.focus({ preventScroll: true });
     } else {
@@ -62,8 +63,8 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
 
   //  On unmounting, we remove our listeners.
   componentWillUnmount () {
-    document.removeEventListener('click', this.handleDocumentClick, false);
-    document.removeEventListener('touchend', this.handleDocumentClick, withPassive);
+    document.removeEventListener('click', this.handleDocumentClick, { capture: true });
+    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
   }
 
   handleClick = (e) => {

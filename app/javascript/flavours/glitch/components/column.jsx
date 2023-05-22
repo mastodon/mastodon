@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import { scrollTop } from '../scroll';
 
+const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
+
 export default class Column extends React.PureComponent {
 
   static propTypes = {
@@ -37,17 +39,17 @@ export default class Column extends React.PureComponent {
 
   componentDidMount () {
     if (this.props.bindToDocument) {
-      document.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
+      document.addEventListener('wheel', this.handleWheel, listenerOptions);
     } else {
-      this.node.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
+      this.node.addEventListener('wheel', this.handleWheel, listenerOptions);
     }
   }
 
   componentWillUnmount () {
     if (this.props.bindToDocument) {
-      document.removeEventListener('wheel', this.handleWheel);
+      document.removeEventListener('wheel', this.handleWheel, listenerOptions);
     } else {
-      this.node.removeEventListener('wheel', this.handleWheel);
+      this.node.removeEventListener('wheel', this.handleWheel, listenerOptions);
     }
   }
 
