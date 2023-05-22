@@ -9,7 +9,6 @@ const config = {
     '<rootDir>/public/',
     '<rootDir>/tmp/',
   ],
-  setupFiles: ['raf/polyfill'],
   setupFilesAfterEnv: ['<rootDir>/app/javascript/mastodon/test_setup.js'],
   collectCoverageFrom: [
     'app/javascript/mastodon/**/*.{js,jsx,ts,tsx}',
