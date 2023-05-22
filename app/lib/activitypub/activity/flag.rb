@@ -16,6 +16,7 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
         @account,
         target_account,
         status_ids: target_statuses.nil? ? [] : target_statuses.map(&:id),
+        category: report_category,
         comment: @json['content'] || '',
         uri: report_uri
       )
@@ -34,5 +35,18 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
 
   def report_uri
     @json['id'] unless @json['id'].nil? || non_matching_uri_hosts?(@account.uri, @json['id'])
+  end
+
+  def report_category
+    summary = @json['summary']
+
+    # If the summary is set to "violation", then we relabel as "other", as there will
+    # be a mismatch between Reporting Instance's Rules and the Local Instance's
+    # Rules causing the Report validation to fail.
+    return 'other' if summary == 'violation'
+
+    # Otherwise, return the summary as the category if it is in the list of
+    # available Report categories, otherwise default to "other"
+    Report.categories.include?(summary) ? summary : 'other'
   end
 end
