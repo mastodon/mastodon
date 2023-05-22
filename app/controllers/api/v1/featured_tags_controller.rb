@@ -33,6 +33,6 @@ class Api::V1::FeaturedTagsController < Api::BaseController
   end
 
   def featured_tag_params
-    params.permit(:name)
+    params.require(:name)
   end
 end
