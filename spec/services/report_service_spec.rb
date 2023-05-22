@@ -4,6 +4,14 @@ RSpec.describe ReportService, type: :service do
   subject { described_class.new }
 
   let(:source_account) { Fabricate(:account) }
+  let(:target_account) { Fabricate(:account) }
+
+  context 'with a local account' do
+    it 'has a uri' do
+      report = subject.call(source_account, target_account)
+      expect(report.uri).to_not be_nil
+    end
+  end
 
   context 'for a remote account' do
     let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
