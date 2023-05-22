@@ -25,7 +25,7 @@ RSpec.describe 'FeaturedTags' do
       it_behaves_like 'forbidden for wrong scope', 'read:statuses'
     end
 
-    context 'with missing Authorization header' do
+    context 'when Authorization header is missing' do
       it 'returns http unauthorized' do
         get '/api/v1/featured_tags'
 
@@ -98,7 +98,7 @@ RSpec.describe 'FeaturedTags' do
       it_behaves_like 'forbidden for wrong scope', 'read:statuses'
     end
 
-    context 'with missing Authorization header' do
+    context 'when Authorization header is missing' do
       it 'returns http unauthorized' do
         post '/api/v1/featured_tags', params: params
 
@@ -171,7 +171,7 @@ RSpec.describe 'FeaturedTags' do
       it_behaves_like 'forbidden for wrong scope', 'read:statuses'
     end
 
-    context 'with missing Authorization header' do
+    context 'when Authorization header is missing' do
       it 'returns http unauthorized' do
         delete "/api/v1/featured_tags/#{id}"
 
