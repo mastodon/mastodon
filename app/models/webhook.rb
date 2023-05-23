@@ -53,7 +53,7 @@ class Webhook < ApplicationRecord
   end
 
   def strip_events
-    self.events = events.map { |str| str.strip.presence }.compact if events.present?
+    self.events = events.filter_map { |str| str.strip.presence } if events.present?
   end
 
   def generate_secret
