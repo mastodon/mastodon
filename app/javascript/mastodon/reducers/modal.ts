@@ -27,12 +27,16 @@ const initialState = ImmutableRecord<ModalState>({
   ignoreFocus: false,
   stack: Stack(),
 })();
+type State = typeof initialState;
 
-type PopModal = (
-  state: typeof initialState,
-  option: { modalType: ModalType | undefined; ignoreFocus: boolean }
-) => typeof initialState;
-const popModal: PopModal = (state, { modalType, ignoreFocus }) => {
+interface PopModalOption {
+  modalType: ModalType | undefined;
+  ignoreFocus: boolean;
+}
+const popModal = (
+  state: State,
+  { modalType, ignoreFocus }: PopModalOption
+): State => {
   if (
     modalType === undefined ||
     modalType === state.get('stack').get(0)?.get('modalType')
@@ -45,12 +49,11 @@ const popModal: PopModal = (state, { modalType, ignoreFocus }) => {
   }
 };
 
-type PushModal = (
-  state: typeof initialState,
+const pushModal = (
+  state: State,
   modalType: ModalType,
   modalProps: ModalProps
-) => typeof initialState;
-const pushModal: PushModal = (state, modalType, modalProps) => {
+): State => {
   return state.withMutations((record) => {
     record.set('ignoreFocus', false);
     record.update('stack', (stack) =>
@@ -60,7 +63,7 @@ const pushModal: PushModal = (state, modalType, modalProps) => {
 };
 
 export function modalReducer(
-  state = initialState,
+  state: State = initialState,
   action: PayloadAction<{
     modalType: ModalType;
     ignoreFocus: boolean;
