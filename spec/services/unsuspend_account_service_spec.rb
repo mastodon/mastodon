@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe UnsuspendAccountService, type: :service do
-  shared_examples 'common behavior' do
+  shared_context 'with common context' do
     subject { described_class.new.call(account) }
 
     let!(:local_follower) { Fabricate(:user, current_sign_in_at: 1.hour.ago).account }
@@ -36,7 +36,7 @@ RSpec.describe UnsuspendAccountService, type: :service do
       expect { subject }.to_not change { account.suspended? }
     end
 
-    include_examples 'common behavior' do
+    include_examples 'with common context' do
       let!(:account)         { Fabricate(:account) }
       let!(:remote_follower) { Fabricate(:account, uri: 'https://alice.com', inbox_url: 'https://alice.com/inbox', protocol: :activitypub) }
       let!(:remote_reporter) { Fabricate(:account, uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
@@ -61,7 +61,7 @@ RSpec.describe UnsuspendAccountService, type: :service do
   end
 
   describe 'unsuspending a remote account' do
-    include_examples 'common behavior' do
+    include_examples 'with common context' do
       let!(:account)                 { Fabricate(:account, domain: 'bob.com', uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
       let!(:resolve_account_service) { double }
 

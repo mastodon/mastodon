@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'mastodon/settings_cli'
+require 'mastodon/cli/settings'
 
-RSpec.describe Mastodon::SettingsCLI do
+RSpec.describe Mastodon::CLI::Settings do
   describe 'subcommand "registrations"' do
-    let(:cli) { Mastodon::RegistrationsCLI.new }
+    let(:cli) { Mastodon::CLI::Registrations.new }
 
     before do
       Setting.registrations_mode = nil

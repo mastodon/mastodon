@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative '../../config/boot'
-require_relative '../../config/environment'
-require_relative 'cli_helper'
+require_relative '../../../config/boot'
+require_relative '../../../config/environment'
+require_relative 'helper'
 
-module Mastodon
-  class UpgradeCLI < Thor
-    include CLIHelper
+module Mastodon::CLI
+  class Upgrade < Thor
+    include Helper
 
     def self.exit_on_failure?
       true

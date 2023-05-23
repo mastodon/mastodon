@@ -1,12 +1,15 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { IconButton }  from '../../../components/icon_button';
+
 import { defineMessages, injectIntl } from 'react-intl';
-import { removeFromListAdder, addToListAdder } from '../../../actions/lists';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
 import { Icon }  from 'mastodon/components/icon';
+
+import { removeFromListAdder, addToListAdder } from '../../../actions/lists';
+import { IconButton }  from '../../../components/icon_button';
 
 const messages = defineMessages({
   remove: { id: 'lists.account.remove', defaultMessage: 'Remove from list' },

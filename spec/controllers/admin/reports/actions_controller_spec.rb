@@ -146,13 +146,13 @@ describe Admin::Reports::ActionsController do
       end
     end
 
-    context 'with Action as submit button' do
+    context 'with action as submit button' do
       subject { post :create, params: common_params.merge({ action => '' }) }
 
       it_behaves_like 'all action types'
     end
 
-    context 'with Action as submit button' do
+    context 'with moderation action as an extra field' do
       subject { post :create, params: common_params.merge({ moderation_action: action }) }
 
       it_behaves_like 'all action types'

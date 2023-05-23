@@ -21,6 +21,27 @@ RSpec.describe BackupService, type: :service do
     end
   end
 
+  context 'when the user has an avatar and header' do
+    before do
+      user.account.update!(avatar: attachment_fixture('avatar.gif'))
+      user.account.update!(header: attachment_fixture('emojo.png'))
+    end
+
+    it 'stores them as expected' do
+      service_call
+
+      json = Oj.load(read_zip_file(backup, 'actor.json'))
+      avatar_path = json.dig('icon', 'url')
+      header_path = json.dig('image', 'url')
+
+      expect(avatar_path).to_not be_nil
+      expect(header_path).to_not be_nil
+
+      expect(read_zip_file(backup, avatar_path)).to be_present
+      expect(read_zip_file(backup, header_path)).to be_present
+    end
+  end
+
   it 'marks the backup as processed' do
     expect { service_call }.to change(backup, :processed).from(false).to(true)
   end

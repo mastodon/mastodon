@@ -1,20 +1,25 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import { Helmet } from 'react-helmet';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
 import { connect } from 'react-redux';
+
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { mountConversations, unmountConversations, expandConversations } from 'mastodon/actions/conversations';
 import { connectDirectStream } from 'mastodon/actions/streaming';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
+
 import ConversationsListContainer from './containers/conversations_list_container';
 
 const messages = defineMessages({
   title: { id: 'column.direct', defaultMessage: 'Private mentions' },
 });
 
-class DirectTimeline extends React.PureComponent {
+class DirectTimeline extends PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,

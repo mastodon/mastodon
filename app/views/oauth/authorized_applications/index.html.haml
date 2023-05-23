@@ -18,8 +18,8 @@
 
       .announcements-list__item__action-bar
         .announcements-list__item__meta
-          - if application.most_recently_used_access_token
-            = t('doorkeeper.authorized_applications.index.last_used_at', date: l(application.most_recently_used_access_token.last_used_at.to_date))
+          - if @last_used_at_by_app[application.id]
+            = t('doorkeeper.authorized_applications.index.last_used_at', date: l(@last_used_at_by_app[application.id].to_date))
           - else
             = t('doorkeeper.authorized_applications.index.never_used')
 

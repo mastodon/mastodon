@@ -1,10 +1,12 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { MediaGallery, Video, Audio } from 'mastodon/features/ui/util/async-components';
-import Bundle from 'mastodon/features/ui/components/bundle';
+
 import noop from 'lodash/noop';
+
+import Bundle from 'mastodon/features/ui/components/bundle';
+import { MediaGallery, Video, Audio } from 'mastodon/features/ui/util/async-components';
 
 export default class MediaAttachments extends ImmutablePureComponent {
 

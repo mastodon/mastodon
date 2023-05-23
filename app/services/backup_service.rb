@@ -101,8 +101,8 @@ class BackupService < BaseService
     actor[:likes]       = 'likes.json'
     actor[:bookmarks]   = 'bookmarks.json'
 
-    download_to_zip(tar, account.avatar, "avatar#{File.extname(account.avatar.path)}") if account.avatar.exists?
-    download_to_zip(tar, account.header, "header#{File.extname(account.header.path)}") if account.header.exists?
+    download_to_zip(zipfile, account.avatar, "avatar#{File.extname(account.avatar.path)}") if account.avatar.exists?
+    download_to_zip(zipfile, account.header, "header#{File.extname(account.header.path)}") if account.header.exists?
 
     json = Oj.dump(actor)
 

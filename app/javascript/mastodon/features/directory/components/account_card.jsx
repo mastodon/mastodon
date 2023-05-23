@@ -1,16 +1,14 @@
-import React from 'react';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { makeGetAccount } from 'mastodon/selectors';
-import { Avatar } from 'mastodon/components/avatar';
-import { DisplayName } from 'mastodon/components/display_name';
-import { Link } from 'react-router-dom';
-import Button from 'mastodon/components/button';
+
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
-import { autoPlayGif, me, unfollowModal } from 'mastodon/initial_state';
-import ShortNumber from 'mastodon/components/short_number';
+
+import classNames from 'classnames';
+import { Link } from 'react-router-dom';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
 import {
   followAccount,
   unfollowAccount,
@@ -18,7 +16,12 @@ import {
   unmuteAccount,
 } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
-import classNames from 'classnames';
+import { Avatar } from 'mastodon/components/avatar';
+import Button from 'mastodon/components/button';
+import { DisplayName } from 'mastodon/components/display_name';
+import ShortNumber from 'mastodon/components/short_number';
+import { autoPlayGif, me, unfollowModal } from 'mastodon/initial_state';
+import { makeGetAccount } from 'mastodon/selectors';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },

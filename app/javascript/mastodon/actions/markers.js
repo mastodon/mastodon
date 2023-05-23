@@ -1,7 +1,9 @@
-import api from '../api';
-import { debounce } from 'lodash';
-import { compareId } from '../compare_id';
 import { List as ImmutableList } from 'immutable';
+
+import { debounce } from 'lodash';
+
+import api from '../api';
+import { compareId } from '../compare_id';
 
 export const MARKERS_FETCH_REQUEST = 'MARKERS_FETCH_REQUEST';
 export const MARKERS_FETCH_SUCCESS = 'MARKERS_FETCH_SUCCESS';

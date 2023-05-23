@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'mastodon/ip_blocks_cli'
+require 'mastodon/cli/ip_blocks'
 
-RSpec.describe Mastodon::IpBlocksCLI do
+RSpec.describe Mastodon::CLI::IpBlocks do
   let(:cli) { described_class.new }
 
   describe '#add' do

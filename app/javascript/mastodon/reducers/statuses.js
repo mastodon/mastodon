@@ -1,3 +1,7 @@
+import { Map as ImmutableMap, fromJS } from 'immutable';
+
+import { STATUS_IMPORT, STATUSES_IMPORT } from '../actions/importer';
+import { normalizeStatusTranslation } from '../actions/importer/normalizer';
 import {
   REBLOG_REQUEST,
   REBLOG_FAIL,
@@ -19,9 +23,6 @@ import {
   STATUS_FETCH_FAIL,
 } from '../actions/statuses';
 import { TIMELINE_DELETE } from '../actions/timelines';
-import { STATUS_IMPORT, STATUSES_IMPORT } from '../actions/importer';
-import { normalizeStatusTranslation } from '../actions/importer/normalizer';
-import { Map as ImmutableMap, fromJS } from 'immutable';
 
 const importStatus = (state, status) => state.set(status.id, fromJS(status));
 

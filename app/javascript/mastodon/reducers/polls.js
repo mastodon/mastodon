@@ -1,7 +1,9 @@
-import { POLLS_IMPORT } from 'mastodon/actions/importer';
-import { STATUS_TRANSLATE_SUCCESS, STATUS_TRANSLATE_UNDO } from '../actions/statuses';
-import { normalizePollOptionTranslation } from '../actions/importer/normalizer';
 import { Map as ImmutableMap, fromJS } from 'immutable';
+
+import { POLLS_IMPORT } from 'mastodon/actions/importer';
+
+import { normalizePollOptionTranslation } from '../actions/importer/normalizer';
+import { STATUS_TRANSLATE_SUCCESS, STATUS_TRANSLATE_UNDO } from '../actions/statuses';
 
 const importPolls = (state, polls) => state.withMutations(map => polls.forEach(poll => map.set(poll.id, fromJS(poll))));
 
