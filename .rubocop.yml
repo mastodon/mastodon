@@ -171,10 +171,11 @@ Rails/FilePath:
 Rails/HttpStatus:
   EnforcedStyle: numeric
 
-# Reason: Allowed only in the `tootctl` CLI application code
+# Reason: Allowed in `tootctl` CLI code and in boot ENV checker
 # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsexit
 Rails/Exit:
   Exclude:
+    - 'config/boot.rb'
     - 'lib/mastodon/*_cli.rb'
     - 'lib/mastodon/cli_helper.rb'
     - 'lib/cli.rb'

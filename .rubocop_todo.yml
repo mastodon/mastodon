@@ -713,12 +713,6 @@ Rails/DuplicateAssociation:
     - 'app/serializers/activitypub/note_serializer.rb'
 
 # Configuration parameters: Include.
-# Include: app/**/*.rb, config/**/*.rb, lib/**/*.rb
-Rails/Exit:
-  Exclude:
-    - 'config/boot.rb'
-
-# Configuration parameters: Include.
 # Include: app/models/**/*.rb
 Rails/HasAndBelongsToMany:
   Exclude:
