@@ -48,7 +48,7 @@ RSpec.describe PostStatusService, type: :service do
       expect(status.params['text']).to eq 'Hi future!'
       expect(status.params['media_ids']).to eq [media.id]
       expect(media.reload.status).to be_nil
-      expect(Status.where(text: 'Hi future!').exists?).to be_falsey
+      expect(Status.where(text: 'Hi future!')).to_not exist
     end
 
     it 'does not change statuses count' do
