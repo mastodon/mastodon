@@ -1,4 +1,4 @@
-import { PureComponent, Fragment } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 import Button from 'mastodon/components/button';
@@ -47,7 +47,7 @@ class Comment extends PureComponent {
     const { comment, isRemote, forward, domain, isSubmitting, intl } = this.props;
 
     return (
-      <Fragment>
+      <>
         <h3 className='report-dialog-modal__title'><FormattedMessage id='report.comment.title' defaultMessage='Is there anything else you think we should know?' /></h3>
 
         <textarea
@@ -60,14 +60,14 @@ class Comment extends PureComponent {
         />
 
         {isRemote && (
-          <Fragment>
+          <>
             <p className='report-dialog-modal__lead'><FormattedMessage id='report.forward_hint' defaultMessage='The account is from another server. Send an anonymized copy of the report there as well?' /></p>
 
             <label className='report-dialog-modal__toggle'>
               <Toggle checked={forward} disabled={isSubmitting} onChange={this.handleForwardChange} />
               <FormattedMessage id='report.forward' defaultMessage='Forward to {target}' values={{ target: domain }} />
             </label>
-          </Fragment>
+          </>
         )}
 
         <div className='flex-spacer' />
@@ -75,7 +75,7 @@ class Comment extends PureComponent {
         <div className='report-dialog-modal__actions'>
           <Button onClick={this.handleClick} disabled={isSubmitting}><FormattedMessage id='report.submit' defaultMessage='Submit report' /></Button>
         </div>
-      </Fragment>
+      </>
     );
   }
 

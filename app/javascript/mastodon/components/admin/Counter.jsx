@@ -1,4 +1,4 @@
-import { PureComponent, Fragment } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import api from 'mastodon/api';
 import { FormattedNumber } from 'react-intl';
@@ -62,25 +62,25 @@ export default class Counter extends PureComponent {
 
     if (loading) {
       content = (
-        <Fragment>
+        <>
           <span className='sparkline__value__total'><Skeleton width={43} /></span>
           <span className='sparkline__value__change'><Skeleton width={43} /></span>
-        </Fragment>
+        </>
       );
     } else {
       const measure = data[0];
       const percentChange = measure.previous_total && percIncrease(measure.previous_total * 1, measure.total * 1);
 
       content = (
-        <Fragment>
+        <>
           <span className='sparkline__value__total'>{measure.human_value || <FormattedNumber value={measure.total} />}</span>
           {measure.previous_total && (<span className={classNames('sparkline__value__change', { positive: percentChange > 0, negative: percentChange < 0 })}>{percentChange > 0 && '+'}<FormattedNumber value={percentChange} style='percent' /></span>)}
-        </Fragment>
+        </>
       );
     }
 
     const inner = (
-      <Fragment>
+      <>
         <div className='sparkline__value'>
           {content}
         </div>
@@ -96,7 +96,7 @@ export default class Counter extends PureComponent {
             </Sparklines>
           )}
         </div>
-      </Fragment>
+      </>
     );
 
     if (href) {
