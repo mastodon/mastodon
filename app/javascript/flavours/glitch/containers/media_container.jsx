@@ -73,6 +73,13 @@ export default class MediaContainer extends PureComponent {
   render () {
     const { locale, components } = this.props;
 
+    let handleOpenVideo;
+
+    // Don't offer to expand the video in a lightbox if we're in a frame
+    if (window.self === window.top) {
+      handleOpenVideo = this.handleOpenVideo;
+    }
+
     return (
       <IntlProvider locale={locale} messages={messages}>
         <>
@@ -89,7 +96,7 @@ export default class MediaContainer extends PureComponent {
 
               ...(componentName === 'Video' ? {
                 componentIndex: i,
-                onOpenVideo: this.handleOpenVideo,
+                onOpenVideo: handleOpenVideo,
               } : {
                 onOpenMedia: this.handleOpenMedia,
               }),
