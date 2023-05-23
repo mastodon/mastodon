@@ -39,6 +39,10 @@ module HasUserSettings
     settings['web.delete_modal']
   end
 
+  def setting_mention_modal
+    settings['web.mention_modal']
+  end
+
   def setting_reduce_motion
     settings['web.reduce_motion']
   end

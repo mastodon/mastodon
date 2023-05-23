@@ -42,10 +42,12 @@ class Account extends ImmutablePureComponent {
     actionTitle: PropTypes.string,
     defaultAction: PropTypes.string,
     onActionClick: PropTypes.func,
+    interactive: PropTypes.bool,
   };
 
   static defaultProps = {
     size: 46,
+    interactive: true,
   };
 
   handleFollow = () => {
@@ -73,7 +75,7 @@ class Account extends ImmutablePureComponent {
   };
 
   render () {
-    const { account, intl, hidden, onActionClick, actionIcon, actionTitle, defaultAction, size, minimal } = this.props;
+    const { account, intl, hidden, onActionClick, actionIcon, actionTitle, defaultAction, size, minimal, interactive } = this.props;
 
     if (!account) {
       return <EmptyAccount size={size} minimal={minimal} />;
@@ -140,21 +142,33 @@ class Account extends ImmutablePureComponent {
       verification = <>· <VerifiedBadge link={firstVerifiedField.get('value')} /></>;
     }
 
+    const contents = (
+      <React.Fragment>
+        <div className='account__avatar-wrapper'>
+          <Avatar account={account} size={size} />
+        </div>
+
+        <div>
+          <DisplayName account={account} />
+          {!minimal && <><ShortNumber value={account.get('followers_count')} renderer={counterRenderer('followers')} /> {verification} {muteTimeRemaining}</>}
+        </div>
+      </React.Fragment>
+    );
+
     return (
       <div className={classNames('account', { 'account--minimal': minimal })}>
         <div className='account__wrapper'>
-          <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`}>
-            <div className='account__avatar-wrapper'>
-              <Avatar account={account} size={size} />
-            </div>
+          { interactive ? (
+            <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`}>
+              {contents}
+            </Link>
+          ) : (
+            <span key={account.get('id')} className='account__display-name' title={account.get('acct')}>
+              {contents}
+            </span>
+          )}
 
-            <div>
-              <DisplayName account={account} />
-              {!minimal && <><ShortNumber value={account.get('followers_count')} renderer={counterRenderer('followers')} /> {verification} {muteTimeRemaining}</>}
-            </div>
-          </Link>
-
-          {!minimal && (
+          {interactive && !minimal && (
             <div className='account__relationship'>
               {buttons}
             </div>
