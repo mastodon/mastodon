@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import { connect } from 'react-redux';
@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
   count: state.getIn(['user_lists', 'follow_requests', 'items'], ImmutableList()).size,
 });
 
-class FollowRequestsColumnLink extends React.Component {
+class FollowRequestsColumnLink extends Component {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,

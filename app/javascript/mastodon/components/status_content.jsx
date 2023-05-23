@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
@@ -11,7 +11,7 @@ import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_s
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
-class TranslateButton extends React.PureComponent {
+class TranslateButton extends PureComponent {
 
   static propTypes = {
     translation: ImmutablePropTypes.map,
@@ -52,7 +52,7 @@ const mapStateToProps = state => ({
   languages: state.getIn(['server', 'translationLanguages', 'items']),
 });
 
-class StatusContent extends React.PureComponent {
+class StatusContent extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

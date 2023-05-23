@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -9,7 +9,7 @@ const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
-class ImageModal extends React.PureComponent {
+class ImageModal extends PureComponent {
 
   static propTypes = {
     src: PropTypes.string.isRequired,

@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -47,7 +47,7 @@ const addAutoPlay = html => {
   return html;
 };
 
-export default class Card extends React.PureComponent {
+export default class Card extends PureComponent {
 
   static propTypes = {
     card: ImmutablePropTypes.map,

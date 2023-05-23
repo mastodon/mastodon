@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import api from 'mastodon/api';
 import { FormattedMessage, FormattedNumber, FormattedDate } from 'react-intl';
@@ -14,7 +14,7 @@ const dateForCohort = cohort => {
   }
 };
 
-export default class Retention extends React.PureComponent {
+export default class Retention extends PureComponent {
 
   static propTypes = {
     start_at: PropTypes.string,

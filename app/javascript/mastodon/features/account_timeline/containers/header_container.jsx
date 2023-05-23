@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { makeGetAccount, getAccountHidden } from '../../../selectors';
 import Header from '../components/header';

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { Children, cloneElement, PureComponent } from 'react';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import PropTypes from 'prop-types';
 import IntersectionObserverArticleContainer from '../containers/intersection_observer_article_container';
@@ -184,8 +184,8 @@ class ScrollableList extends PureComponent {
   };
 
   getSnapshotBeforeUpdate (prevProps) {
-    const someItemInserted = React.Children.count(prevProps.children) > 0 &&
-      React.Children.count(prevProps.children) < React.Children.count(this.props.children) &&
+    const someItemInserted = Children.count(prevProps.children) > 0 &&
+      Children.count(prevProps.children) < Children.count(this.props.children) &&
       this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
     const pendingChanged = (prevProps.numPending > 0) !== (this.props.numPending > 0);
 
@@ -293,7 +293,7 @@ class ScrollableList extends PureComponent {
   render () {
     const { children, scrollKey, trackScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, append, emptyMessage, onLoadMore } = this.props;
     const { fullscreen } = this.state;
-    const childrenCount = React.Children.count(children);
+    const childrenCount = Children.count(children);
 
     const loadMore     = (hasMore && onLoadMore) ? <LoadMore visible={!isLoading} onClick={this.handleLoadMore} /> : null;
     const loadPending  = (numPending > 0) ? <LoadPending count={numPending} onClick={this.handleLoadPending} /> : null;
@@ -319,7 +319,7 @@ class ScrollableList extends PureComponent {
 
             {loadPending}
 
-            {React.Children.map(this.props.children, (child, index) => (
+            {Children.map(this.props.children, (child, index) => (
               <IntersectionObserverArticleContainer
                 key={child.key}
                 id={child.key}
@@ -328,7 +328,7 @@ class ScrollableList extends PureComponent {
                 intersectionObserverWrapper={this.intersectionObserverWrapper}
                 saveHeightKey={trackScroll ? `${this.context.router.route.location.key}:${scrollKey}` : null}
               >
-                {React.cloneElement(child, {
+                {cloneElement(child, {
                   getScrollPosition: this.getScrollPosition,
                   updateScrollBottom: this.updateScrollBottom,
                   cachedMediaWidth: this.state.cachedMediaWidth,

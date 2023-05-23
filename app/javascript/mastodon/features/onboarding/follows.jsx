@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import Column from 'mastodon/components/column';
 import ColumnBackButton from 'mastodon/components/column_back_button';
 import PropTypes from 'prop-types';
@@ -23,7 +23,7 @@ const mapStateToProps = () => {
   });
 };
 
-class Follows extends React.PureComponent {
+class Follows extends PureComponent {
 
   static propTypes = {
     onBack: PropTypes.func,

@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Video from 'mastodon/features/video';
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
   ...state.get('picture_in_picture'),
 });
 
-class PictureInPicture extends React.Component {
+class PictureInPicture extends Component {
 
   static propTypes = {
     statusId: PropTypes.string,

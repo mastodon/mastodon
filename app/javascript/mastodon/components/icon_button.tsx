@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 
 import classNames from 'classnames';
 
@@ -32,7 +32,7 @@ interface States {
   activate: boolean;
   deactivate: boolean;
 }
-export class IconButton extends React.PureComponent<Props, States> {
+export class IconButton extends PureComponent<Props, States> {
   static defaultProps = {
     size: 18,
     active: false,
@@ -127,14 +127,14 @@ export class IconButton extends React.PureComponent<Props, States> {
     }
 
     let contents = (
-      <React.Fragment>
+      <>
         <Icon id={icon} fixedWidth aria-hidden='true' />{' '}
         {typeof counter !== 'undefined' && (
           <span className='icon-button__counter'>
             <AnimatedNumber value={counter} obfuscate={obfuscateCount} />
           </span>
         )}
-      </React.Fragment>
+      </>
     );
 
     if (href != null) {

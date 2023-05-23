@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { Avatar } from 'mastodon/components/avatar';
@@ -31,10 +31,10 @@ class FollowRequest extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <React.Fragment>
+        <Fragment>
           {account.get('display_name')}
           {account.get('username')}
-        </React.Fragment>
+        </Fragment>
       );
     }
 

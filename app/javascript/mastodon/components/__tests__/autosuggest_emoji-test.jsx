@@ -1,4 +1,3 @@
-import React from 'react';
 import renderer from 'react-test-renderer';
 import AutosuggestEmoji from '../autosuggest_emoji';
 

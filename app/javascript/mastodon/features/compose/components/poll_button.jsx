@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { IconButton } from '../../../components/icon_button';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -13,7 +13,7 @@ const iconStyle = {
   lineHeight: '27px',
 };
 
-class PollButton extends React.PureComponent {
+class PollButton extends PureComponent {
 
   static propTypes = {
     disabled: PropTypes.bool,

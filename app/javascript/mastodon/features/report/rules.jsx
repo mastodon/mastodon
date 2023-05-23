@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
   rules: state.getIn(['server', 'server', 'rules']),
 });
 
-class Rules extends React.PureComponent {
+class Rules extends PureComponent {
 
   static propTypes = {
     onNextStep: PropTypes.func.isRequired,
@@ -33,7 +33,7 @@ class Rules extends React.PureComponent {
     const { rules, selectedRuleIds } = this.props;
 
     return (
-      <React.Fragment>
+      <Fragment>
         <h3 className='report-dialog-modal__title'><FormattedMessage id='report.rules.title' defaultMessage='Which rules are being violated?' /></h3>
         <p className='report-dialog-modal__lead'><FormattedMessage id='report.rules.subtitle' defaultMessage='Select all that apply' /></p>
 
@@ -56,7 +56,7 @@ class Rules extends React.PureComponent {
         <div className='report-dialog-modal__actions'>
           <Button onClick={this.handleNextClick} disabled={selectedRuleIds.size < 1}><FormattedMessage id='report.next' defaultMessage='Next' /></Button>
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 

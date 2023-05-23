@@ -1,4 +1,3 @@
-import React from 'react';
 import Column from 'mastodon/components/column';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
