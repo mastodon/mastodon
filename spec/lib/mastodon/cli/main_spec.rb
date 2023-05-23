@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'cli'
+require 'mastodon/cli/main'
 
-describe Mastodon::CLI do
+describe Mastodon::CLI::Main do
   describe 'version' do
     it 'returns the Mastodon version' do
       expect { described_class.new.invoke(:version) }.to output(

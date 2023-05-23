@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative '../../config/boot'
-require_relative '../../config/environment'
-require_relative 'cli_helper'
+require_relative '../../../config/boot'
+require_relative '../../../config/environment'
+require_relative 'helper'
 
-module Mastodon
-  class StatusesCLI < Thor
-    include CLIHelper
+module Mastodon::CLI
+  class Statuses < Thor
+    include Helper
     include ActionView::Helpers::NumberHelper
 
     def self.exit_on_failure?

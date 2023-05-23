@@ -846,9 +846,9 @@ Rails/SkipsModelValidations:
     - 'db/post_migrate/20220617202502_migrate_roles.rb'
     - 'db/post_migrate/20221101190723_backfill_admin_action_logs.rb'
     - 'db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb'
-    - 'lib/cli.rb'
-    - 'lib/mastodon/accounts_cli.rb'
-    - 'lib/mastodon/maintenance_cli.rb'
+    - 'lib/mastodon/cli/accounts.rb'
+    - 'lib/mastodon/cli/main.rb'
+    - 'lib/mastodon/cli/maintenance.rb'
     - 'spec/controllers/api/v1/admin/accounts_controller_spec.rb'
     - 'spec/lib/activitypub/activity/follow_spec.rb'
     - 'spec/services/follow_service_spec.rb'
@@ -929,7 +929,7 @@ Rails/WhereExists:
     - 'app/validators/vote_validator.rb'
     - 'app/workers/move_worker.rb'
     - 'db/migrate/20190529143559_preserve_old_layout_for_existing_users.rb'
-    - 'lib/mastodon/email_domain_blocks_cli.rb'
+    - 'lib/mastodon/cli/email_domain_blocks.rb'
     - 'lib/tasks/tests.rake'
     - 'spec/controllers/api/v1/accounts/notes_controller_spec.rb'
     - 'spec/controllers/api/v1/tags_controller_spec.rb'
@@ -991,7 +991,7 @@ Style/FormatStringToken:
   Exclude:
     - 'app/models/privacy_policy.rb'
     - 'config/initializers/devise.rb'
-    - 'lib/mastodon/maintenance_cli.rb'
+    - 'lib/mastodon/cli/maintenance.rb'
     - 'lib/paperclip/color_extractor.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -1436,9 +1436,9 @@ Style/GuardClause:
     - 'db/post_migrate/20220704024901_migrate_settings_to_user_roles.rb'
     - 'lib/devise/two_factor_ldap_authenticatable.rb'
     - 'lib/devise/two_factor_pam_authenticatable.rb'
-    - 'lib/mastodon/accounts_cli.rb'
-    - 'lib/mastodon/maintenance_cli.rb'
-    - 'lib/mastodon/media_cli.rb'
+    - 'lib/mastodon/cli/accounts.rb'
+    - 'lib/mastodon/cli/maintenance.rb'
+    - 'lib/mastodon/cli/media.rb'
     - 'lib/paperclip/attachment_extensions.rb'
     - 'lib/tasks/repo.rake'
 
