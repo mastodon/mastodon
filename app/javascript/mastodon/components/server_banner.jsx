@@ -4,7 +4,7 @@ import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { fetchServer } from 'mastodon/actions/server';
 import ShortNumber from 'mastodon/components/short_number';
-import Skeleton from 'mastodon/components/skeleton';
+import { Skeleton } from 'mastodon/components/skeleton';
 import Account from 'mastodon/containers/account_container';
 import { domain } from 'mastodon/initial_state';
 import { ServerHeroImage } from 'mastodon/components/server_hero_image';
