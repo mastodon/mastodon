@@ -256,12 +256,6 @@ Performance/MapCompact:
     - 'spec/presenters/status_relationships_presenter_spec.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: SafeMultiline.
-Performance/StartWith:
-  Exclude:
-    - 'app/lib/extractor.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
 Performance/UnfreezeString:
   Exclude:
     - 'app/lib/rss/builder.rb'
