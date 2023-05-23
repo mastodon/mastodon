@@ -23,7 +23,7 @@ import { RelativeTimestamp } from './relative_timestamp';
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
-  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' },
+  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   mute_notifications: { id: 'account.mute_notifications', defaultMessage: 'Mute notifications from @{name}' },

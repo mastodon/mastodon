@@ -16,7 +16,7 @@ const messages = defineMessages({
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
   followed_tags: { id: 'navigation_bar.followed_tags', defaultMessage: 'Followed hashtags' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
-  domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
+  domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Blocked domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   filters: { id: 'navigation_bar.filters', defaultMessage: 'Muted words' },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
