@@ -17,6 +17,10 @@ const Account = connect(state => ({
   </Permalink>
 ));
 
+const mapStateToProps = (state) => ({
+  signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], '/auth/sign_up'),
+});
+
 const mapDispatchToProps = (dispatch) => ({
   openClosedRegistrationsModal() {
     dispatch(openModal('CLOSED_REGISTRATIONS'));
@@ -32,11 +36,12 @@ class Header extends PureComponent {
   static propTypes = {
     openClosedRegistrationsModal: PropTypes.func,
     location: PropTypes.object,
+    signupUrl: PropTypes.string.isRequired,
   };
 
   render () {
     const { signedIn } = this.context.identity;
-    const { location, openClosedRegistrationsModal } = this.props;
+    const { location, openClosedRegistrationsModal, signupUrl } = this.props;
 
     let content;
 
@@ -52,7 +57,7 @@ class Header extends PureComponent {
 
       if (registrationsOpen) {
         signupButton = (
-          <a href='/auth/sign_up' className='button'>
+          <a href={signupUrl} className='button'>
             <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
           </a>
         );
@@ -88,4 +93,4 @@ class Header extends PureComponent {
 
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Header));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
