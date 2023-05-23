@@ -12,7 +12,7 @@ import HeaderContainer from './containers/header_container';
 import { List as ImmutableList } from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
-import TimelineHint from 'flavours/glitch/components/timeline_hint';
+import { TimelineHint } from 'flavours/glitch/components/timeline_hint';
 import LimitedAccountHint from './components/limited_account_hint';
 import { getAccountHidden } from 'flavours/glitch/selectors';
 import { fetchFeaturedTags } from '../../actions/featured_tags';

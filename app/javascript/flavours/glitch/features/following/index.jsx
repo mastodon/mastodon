@@ -17,7 +17,7 @@ import ProfileColumnHeader from 'flavours/glitch/features/account/components/pro
 import HeaderContainer from 'flavours/glitch/features/account_timeline/containers/header_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import TimelineHint from 'flavours/glitch/components/timeline_hint';
+import { TimelineHint } from 'flavours/glitch/components/timeline_hint';
 import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
 import { getAccountHidden } from 'flavours/glitch/selectors';
 import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
