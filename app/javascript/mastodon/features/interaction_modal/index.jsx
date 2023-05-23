@@ -9,6 +9,7 @@ import { openModal, closeModal } from 'mastodon/actions/modal';
 
 const mapStateToProps = (state, { accountId }) => ({
   displayNameHtml: state.getIn(['accounts', accountId, 'display_name_html']),
+  signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], '/auth/sign_up'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -81,6 +82,7 @@ class InteractionModal extends PureComponent {
     url: PropTypes.string,
     type: PropTypes.oneOf(['reply', 'reblog', 'favourite', 'follow']),
     onSignupClick: PropTypes.func.isRequired,
+    signupUrl: PropTypes.string.isRequired,
   };
 
   handleSignupClick = () => {
@@ -88,7 +90,7 @@ class InteractionModal extends PureComponent {
   };
 
   render () {
-    const { url, type, displayNameHtml } = this.props;
+    const { url, type, displayNameHtml, signupUrl } = this.props;
 
     const name = <bdi dangerouslySetInnerHTML={{ __html: displayNameHtml }} />;
 
@@ -121,7 +123,7 @@ class InteractionModal extends PureComponent {
 
     if (registrationsOpen) {
       signupButton = (
-        <a href='/auth/sign_up' className='button button--block button-tertiary'>
+        <a href={signupUrl} className='button button--block button-tertiary'>
           <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
         </a>
       );
