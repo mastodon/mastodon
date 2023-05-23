@@ -9,7 +9,7 @@ import { openModal, closeModal } from 'mastodon/actions/modal';
 
 const mapStateToProps = (state, { accountId }) => ({
   displayNameHtml: state.getIn(['accounts', accountId, 'display_name_html']),
-  signupUrl: state.getIn(['server', 'server', 'registrations', 'sign_up_url'], '/auth/sign_up'),
+  signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], '/auth/sign_up'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
