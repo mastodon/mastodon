@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface Props {
-  width: number | string;
+  width?: number | string;
   height?: number | string;
 }
 
