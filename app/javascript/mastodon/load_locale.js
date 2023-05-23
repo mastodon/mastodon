@@ -7,7 +7,6 @@ export async function loadLocale() {
     /* webpackMode: "lazy" */
     /* webpackChunkName: "locale/[request]" */
     /* webpackInclude: /\.json$/ */
-    /* webpackExclude: /(defaultMessages.json|whitelist_.+)$/ */
     /* webpackPreload: true */
     `mastodon/locales/${locale}.json`);
 
