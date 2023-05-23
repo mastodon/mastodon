@@ -16,7 +16,7 @@ import { connectUserStream } from 'mastodon/actions/streaming';
 import ErrorBoundary from 'mastodon/components/error_boundary';
 import UI from 'mastodon/features/ui';
 import initialState, { title as siteTitle } from 'mastodon/initial_state';
-import { getLocale } from 'mastodon/locales';
+import { getLocale, onProviderError } from 'mastodon/locales';
 import { store } from 'mastodon/store';
 
 const { messages } = getLocale();
@@ -82,7 +82,7 @@ export default class Mastodon extends PureComponent {
     const { locale } = this.props;
 
     return (
-      <IntlProvider locale={locale} messages={messages}>
+      <IntlProvider locale={locale} messages={messages} onError={onProviderError}>
         <ReduxProvider store={store}>
           <ErrorBoundary>
             <BrowserRouter>

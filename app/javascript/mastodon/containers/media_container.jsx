@@ -14,7 +14,7 @@ import Audio from 'mastodon/features/audio';
 import Card from 'mastodon/features/status/components/card';
 import MediaModal from 'mastodon/features/ui/components/media_modal';
 import Video from 'mastodon/features/video';
-import { getLocale } from 'mastodon/locales';
+import { getLocale, onProviderError } from 'mastodon/locales';
 import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
 
 const { messages } = getLocale();
@@ -83,7 +83,7 @@ export default class MediaContainer extends PureComponent {
     }
 
     return (
-      <IntlProvider locale={locale} messages={messages}>
+      <IntlProvider locale={locale} messages={messages} onError={onProviderError}>
         <>
           {[].map.call(components, (component, i) => {
             const componentName = component.getAttribute('data-component');
