@@ -25,5 +25,3 @@ export const TimelineHint: React.FC<Props> = ({ resource, url }) => (
     </a>
   </div>
 );
-
-export default TimelineHint;

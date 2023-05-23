@@ -17,7 +17,7 @@ import Column from '../ui/components/column';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import ColumnBackButton from '../../components/column_back_button';
 import ScrollableList from '../../components/scrollable_list';
-import TimelineHint from 'mastodon/components/timeline_hint';
+import { TimelineHint } from 'mastodon/components/timeline_hint';
 import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
 import { getAccountHidden } from 'mastodon/selectors';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
