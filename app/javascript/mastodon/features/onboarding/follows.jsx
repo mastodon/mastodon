@@ -7,7 +7,7 @@ import { fetchSuggestions } from 'mastodon/actions/suggestions';
 import { markAsPartial } from 'mastodon/actions/timelines';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Account from 'mastodon/containers/account_container';
-import EmptyAccount from 'mastodon/components/account';
+import { EmptyAccount } from 'mastodon/components/empty_account';
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 import { makeGetAccount } from 'mastodon/selectors';
 import { me } from 'mastodon/initial_state';
@@ -31,6 +31,7 @@ class Follows extends React.PureComponent {
     suggestions: ImmutablePropTypes.list,
     account: ImmutablePropTypes.map,
     isLoading: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   componentDidMount () {
@@ -44,7 +45,7 @@ class Follows extends React.PureComponent {
   }
 
   render () {
-    const { onBack, isLoading, suggestions, account } = this.props;
+    const { onBack, isLoading, suggestions, account, multiColumn } = this.props;
 
     let loadedContent;
 
@@ -58,7 +59,7 @@ class Follows extends React.PureComponent {
 
     return (
       <Column>
-        <ColumnBackButton onClick={onBack} />
+        <ColumnBackButton multiColumn={multiColumn} onClick={onBack} />
 
         <div className='scrollable privacy-policy'>
           <div className='column-title'>

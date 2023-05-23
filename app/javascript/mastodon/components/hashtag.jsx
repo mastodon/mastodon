@@ -5,10 +5,8 @@ import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Link } from 'react-router-dom';
-// @ts-expect-error
 import ShortNumber from 'mastodon/components/short_number';
-// @ts-expect-error
-import Skeleton from 'mastodon/components/skeleton';
+import { Skeleton } from 'mastodon/components/skeleton';
 import classNames from 'classnames';
 
 class SilentErrorBoundary extends React.Component {

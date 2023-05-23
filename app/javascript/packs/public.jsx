@@ -1,21 +1,30 @@
 import './public-path';
 import escapeTextContentForBrowser from 'escape-html';
-import loadPolyfills from '../mastodon/load_polyfills';
+import { loadPolyfills } from '../mastodon/polyfills';
 import ready from '../mastodon/ready';
 import { start } from '../mastodon/common';
+
 import loadKeyboardExtensions from '../mastodon/load_keyboard_extensions';
 import 'cocoon-js-vanilla';
 import axios from 'axios';
 import { throttle } from 'lodash';
 import { defineMessages } from 'react-intl';
+import * as IntlMessageFormat  from 'intl-messageformat';
+import { timeAgoString }  from '../mastodon/components/relative_timestamp';
+import { delegate }  from '@rails/ujs';
+import emojify  from '../mastodon/features/emoji/emoji';
+import { getLocale }  from '../mastodon/locales';
+import React  from 'react';
+import { createRoot }  from 'react-dom/client';
+import { createBrowserHistory }  from 'history';
+
+start();
 
 const messages = defineMessages({
   usernameTaken: { id: 'username.taken', defaultMessage: 'That username is taken. Try another' },
   passwordExceedsLength: { id: 'password_confirmation.exceeds_maxlength', defaultMessage: 'Password confirmation exceeds the maximum password length' },
   passwordDoesNotMatch: { id: 'password_confirmation.mismatching', defaultMessage: 'Password confirmation does not match' },
 });
-
-start();
 
 window.addEventListener('message', e => {
   const data = e.data || {};
@@ -33,16 +42,8 @@ window.addEventListener('message', e => {
   });
 });
 
-function main() {
-  const IntlMessageFormat = require('intl-messageformat').default;
-  const { timeAgoString } = require('../mastodon/components/relative_timestamp');
-  const { delegate } = require('@rails/ujs');
-  const emojify = require('../mastodon/features/emoji/emoji').default;
-  const { getLocale } = require('../mastodon/locales');
+function loaded() {
   const { localeData } = getLocale();
-  const React = require('react');
-  const ReactDOM = require('react-dom');
-  const { createBrowserHistory } = require('history');
 
   const scrollToDetailedStatus = () => {
     const history = createBrowserHistory();
@@ -152,7 +153,8 @@ function main() {
 
           const content = document.createElement('div');
 
-          ReactDOM.render(<MediaContainer locale={locale} components={reactComponents} />, content);
+          const root = createRoot(content);
+          root.render(<MediaContainer locale={locale} components={reactComponents} />);
           document.body.appendChild(content);
           scrollToDetailedStatus();
         })
@@ -339,6 +341,11 @@ function main() {
       }
     });
   });
+}
+
+
+function main() {
+  ready(loaded);
 }
 
 loadPolyfills()

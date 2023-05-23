@@ -3109,12 +3109,16 @@ $ui-header-height: 55px;
 }
 
 .compose-form__highlightable {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 0 1 auto;
   border-radius: 4px;
   transition: box-shadow 300ms linear;
 
   &.active {
     transition: none;
-    box-shadow: 0 0 0 2px rgba(lighten($highlight-text-color, 8%), 0.7);
+    box-shadow: 0 0 0 6px rgba(lighten($highlight-text-color, 8%), 0.7);
   }
 }
 
@@ -6443,13 +6447,6 @@ a.status-card.compact:hover {
   &--wide {
     grid-column: span 2;
   }
-
-  &.standalone {
-    .media-gallery__item-gifv-thumbnail {
-      transform: none;
-      top: 0;
-    }
-  }
 }
 
 .media-gallery__item-thumbnail {
@@ -6497,11 +6494,7 @@ a.status-card.compact:hover {
   cursor: zoom-in;
   height: 100%;
   object-fit: cover;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
   width: 100%;
-  z-index: 1;
 }
 
 .media-gallery__item-thumbnail-label {
@@ -6600,6 +6593,8 @@ a.status-card.compact:hover {
   border-radius: 4px;
   box-sizing: border-box;
   color: $white;
+  display: flex;
+  align-items: center;
 
   &.editable {
     border-radius: 0;
@@ -6634,9 +6629,6 @@ a.status-card.compact:hover {
   &.inline {
     video {
       object-fit: contain;
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
     }
   }
 

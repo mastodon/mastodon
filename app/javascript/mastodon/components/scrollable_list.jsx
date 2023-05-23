@@ -8,11 +8,14 @@ import IntersectionObserverWrapper from '../features/ui/util/intersection_observ
 import { throttle } from 'lodash';
 import { List as ImmutableList } from 'immutable';
 import classNames from 'classnames';
+import { supportsPassiveEvents } from 'detect-passive-events';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
 import LoadingIndicator from './loading_indicator';
 import { connect } from 'react-redux';
 
 const MOUSE_IDLE_DELAY = 300;
+
+const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 const mapStateToProps = (state, { scrollKey }) => {
   return {
@@ -236,20 +239,20 @@ class ScrollableList extends PureComponent {
   attachScrollListener () {
     if (this.props.bindToDocument) {
       document.addEventListener('scroll', this.handleScroll);
-      document.addEventListener('wheel', this.handleWheel);
+      document.addEventListener('wheel', this.handleWheel,  listenerOptions);
     } else {
       this.node.addEventListener('scroll', this.handleScroll);
-      this.node.addEventListener('wheel', this.handleWheel);
+      this.node.addEventListener('wheel', this.handleWheel, listenerOptions);
     }
   }
 
   detachScrollListener () {
     if (this.props.bindToDocument) {
       document.removeEventListener('scroll', this.handleScroll);
-      document.removeEventListener('wheel', this.handleWheel);
+      document.removeEventListener('wheel', this.handleWheel, listenerOptions);
     } else {
       this.node.removeEventListener('scroll', this.handleScroll);
-      this.node.removeEventListener('wheel', this.handleWheel);
+      this.node.removeEventListener('wheel', this.handleWheel, listenerOptions);
     }
   }
 

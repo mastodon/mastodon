@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Avatar from '../../../components/avatar';
-import DisplayName from '../../../components/display_name';
+import { Avatar } from '../../../components/avatar';
+import { DisplayName } from '../../../components/display_name';
 import StatusContent from '../../../components/status_content';
 import MediaGallery from '../../../components/media_gallery';
 import { Link } from 'react-router-dom';
@@ -13,8 +13,8 @@ import Video from '../../video';
 import Audio from '../../audio';
 import scheduleIdleTask from '../../ui/util/schedule_idle_task';
 import classNames from 'classnames';
-import Icon from 'mastodon/components/icon';
-import AnimatedNumber from 'mastodon/components/animated_number';
+import { Icon }  from 'mastodon/components/icon';
+import { AnimatedNumber } from 'mastodon/components/animated_number';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 import EditedTimestamp from 'mastodon/components/edited_timestamp';
 

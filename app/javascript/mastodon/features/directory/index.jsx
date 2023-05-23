@@ -9,7 +9,7 @@ import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'mastodo
 import { fetchDirectory, expandDirectory } from 'mastodon/actions/directory';
 import { List as ImmutableList } from 'immutable';
 import AccountCard from './components/account_card';
-import RadioButton from 'mastodon/components/radio_button';
+import { RadioButton } from 'mastodon/components/radio_button';
 import LoadMore from 'mastodon/components/load_more';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
