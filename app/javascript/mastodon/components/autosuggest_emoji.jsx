@@ -5,7 +5,6 @@ import { assetHost } from 'mastodon/utils/config';
 
 import unicodeMapping from '../features/emoji/emoji_unicode_mapping_light';
 
-
 export default class AutosuggestEmoji extends PureComponent {
 
   static propTypes = {

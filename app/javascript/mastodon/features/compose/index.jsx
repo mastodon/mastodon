@@ -9,13 +9,7 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-
-
-
-
-
 import spring from 'react-motion/lib/spring';
-
 
 import { openModal } from 'mastodon/actions/modal';
 import Column from 'mastodon/components/column';

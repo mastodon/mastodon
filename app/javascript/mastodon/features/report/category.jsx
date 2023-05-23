@@ -7,11 +7,9 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-
 import Button from 'mastodon/components/button';
 
 import Option from './components/option';
-
 
 const messages = defineMessages({
   dislike: { id: 'report.reasons.dislike', defaultMessage: 'I don\'t like it' },

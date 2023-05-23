@@ -16,8 +16,6 @@ import LoadingIndicator from 'mastodon/components/loading_indicator';
 import Account from 'mastodon/containers/account_container';
 import Status from 'mastodon/containers/status_container';
 
-
-
 const messages = defineMessages({
   title: { id: 'search_results.title', defaultMessage: 'Search for {q}' },
 });

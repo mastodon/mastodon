@@ -5,7 +5,6 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-
 import SettingToggle from '../../notifications/components/setting_toggle';
 
 class ColumnSettings extends PureComponent {

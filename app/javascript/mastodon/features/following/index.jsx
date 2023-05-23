@@ -27,7 +27,6 @@ import LimitedAccountHint from '../account_timeline/components/limited_account_h
 import HeaderContainer from '../account_timeline/containers/header_container';
 import Column from '../ui/components/column';
 
-
 const mapStateToProps = (state, { params: { acct, id } }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
 

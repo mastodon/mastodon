@@ -12,8 +12,6 @@ import { CircularProgress } from 'mastodon/components/loading_indicator';
 
 import { IconButton } from './icon_button';
 
-
-
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 let id = 0;
 

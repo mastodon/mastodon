@@ -7,13 +7,10 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-
 import { Avatar } from '../../../components/avatar';
 import { IconButton } from '../../../components/icon_button';
 
 import ActionBar from './action_bar';
-
-
 
 export default class NavigationBar extends ImmutablePureComponent {
 

@@ -11,7 +11,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
 
-
 import ShortNumber from 'mastodon/components/short_number';
 import { Skeleton } from 'mastodon/components/skeleton';
 

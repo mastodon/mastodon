@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-
 import { AnimatedNumber } from 'mastodon/components/animated_number';
 import EditedTimestamp from 'mastodon/components/edited_timestamp';
 import { Icon }  from 'mastodon/components/icon';
@@ -23,8 +22,6 @@ import scheduleIdleTask from '../../ui/util/schedule_idle_task';
 import Video from '../../video';
 
 import Card from './card';
-
-
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
@@ -216,7 +213,7 @@ class DetailedStatus extends ImmutablePureComponent {
     } else if (this.context.router) {
       reblogLink = (
         <>
-           · 
+           ·
           <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reblogs`} className='detailed-status__link'>
             <Icon id={reblogIcon} />
             <span className='detailed-status__reblogs'>
@@ -228,7 +225,7 @@ class DetailedStatus extends ImmutablePureComponent {
     } else {
       reblogLink = (
         <>
-           · 
+           ·
           <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
             <Icon id={reblogIcon} />
             <span className='detailed-status__reblogs'>
@@ -262,7 +259,7 @@ class DetailedStatus extends ImmutablePureComponent {
     if (status.get('edited_at')) {
       edited = (
         <>
-           · 
+           ·
           <EditedTimestamp statusId={status.get('id')} timestamp={status.get('edited_at')} />
         </>
       );

@@ -13,9 +13,6 @@ import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import StatusList from '../../components/status_list';
 import Column from '../ui/components/column';
 
-
-
-
 const messages = defineMessages({
   heading: { id: 'column.pins', defaultMessage: 'Pinned post' },
 });

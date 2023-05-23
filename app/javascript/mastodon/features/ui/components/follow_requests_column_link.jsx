@@ -10,8 +10,6 @@ import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import ColumnLink from 'mastodon/features/ui/components/column_link';
 
-
-
 const messages = defineMessages({
   text: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
 });

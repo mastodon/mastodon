@@ -5,7 +5,6 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-
 import { IconButton } from 'mastodon/components/icon_button';
 
 import ImageLoader from './image_loader';

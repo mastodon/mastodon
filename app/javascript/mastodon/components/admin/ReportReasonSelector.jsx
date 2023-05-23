@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-
 import { injectIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';

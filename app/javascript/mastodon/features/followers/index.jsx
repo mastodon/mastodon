@@ -6,7 +6,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-
 import { debounce } from 'lodash';
 
 import { TimelineHint } from 'mastodon/components/timeline_hint';
@@ -27,7 +26,6 @@ import AccountContainer from '../../containers/account_container';
 import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import Column from '../ui/components/column';
-
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);

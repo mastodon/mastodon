@@ -36,13 +36,6 @@ import ColumnSettingsContainer from './containers/column_settings_container';
 import FilterBarContainer from './containers/filter_bar_container';
 import NotificationContainer from './containers/notification_container';
 
-
-
-
-
-
-
-
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
   markAsRead : { id: 'notifications.mark_as_read', defaultMessage: 'Mark every notification as read' },

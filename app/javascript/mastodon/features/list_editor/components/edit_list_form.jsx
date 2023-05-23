@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { changeListEditorTitle, submitListEditor } from '../../../actions/lists';
 import { IconButton } from '../../../components/icon_button';
 
-
 const messages = defineMessages({
   title: { id: 'lists.edit.submit', defaultMessage: 'Change title' },
 });

@@ -19,7 +19,6 @@ import LoadMore from './load_more';
 import LoadPending from './load_pending';
 import LoadingIndicator from './loading_indicator';
 
-
 const MOUSE_IDLE_DELAY = 300;
 
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;

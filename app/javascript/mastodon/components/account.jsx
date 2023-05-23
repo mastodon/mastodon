@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-
 import { counterRenderer } from 'mastodon/components/common_counter';
 import { EmptyAccount } from 'mastodon/components/empty_account';
 import ShortNumber from 'mastodon/components/short_number';
@@ -20,8 +19,6 @@ import { Avatar } from './avatar';
 import { DisplayName } from './display_name';
 import { IconButton } from './icon_button';
 import { RelativeTimestamp } from './relative_timestamp';
-
-
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },

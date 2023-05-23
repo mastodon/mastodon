@@ -11,7 +11,6 @@ import Button from 'mastodon/components/button';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 import StatusCheckBox from 'mastodon/features/report/containers/status_check_box_container';
 
-
 const mapStateToProps = (state, { accountId }) => ({
   availableStatusIds: OrderedSet(state.getIn(['timelines', `account:${accountId}:with_replies`, 'items'])),
   isLoading: state.getIn(['timelines', `account:${accountId}:with_replies`, 'isLoading']),

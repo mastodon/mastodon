@@ -7,8 +7,6 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-
-
 import { openModal } from 'mastodon/actions/modal';
 import { disabledAccountId, movedToAccountId, domain } from 'mastodon/initial_state';
 import { logOut } from 'mastodon/utils/log_out';

@@ -6,7 +6,6 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-
 import escapeTextContentForBrowser from 'escape-html';
 
 import { closeModal } from 'mastodon/actions/modal';

@@ -10,8 +10,6 @@ import { fetchSuggestions } from 'mastodon/actions/suggestions';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 import AccountCard from 'mastodon/features/directory/components/account_card';
 
-
-
 const mapStateToProps = state => ({
   suggestions: state.getIn(['suggestions', 'items']),
   isLoading: state.getIn(['suggestions', 'isLoading']),

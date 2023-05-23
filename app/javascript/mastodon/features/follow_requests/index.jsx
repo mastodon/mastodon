@@ -8,8 +8,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-
-
 import { debounce } from 'lodash';
 
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
@@ -19,8 +17,6 @@ import { me } from '../../initial_state';
 import Column from '../ui/components/column';
 
 import AccountAuthorizeContainer from './containers/account_authorize_container';
-
-
 
 const messages = defineMessages({
   heading: { id: 'column.follow_requests', defaultMessage: 'Follow requests' },

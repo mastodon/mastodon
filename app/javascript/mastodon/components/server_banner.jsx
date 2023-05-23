@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-
 import { fetchServer } from 'mastodon/actions/server';
 import { ServerHeroImage } from 'mastodon/components/server_hero_image';
 import ShortNumber from 'mastodon/components/short_number';

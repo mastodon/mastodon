@@ -10,9 +10,6 @@ import classnames from 'classnames';
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-
-
-
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon }  from 'mastodon/components/icon';
 import { useBlurhash } from 'mastodon/initial_state';

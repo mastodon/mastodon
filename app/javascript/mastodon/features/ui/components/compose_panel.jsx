@@ -11,7 +11,6 @@ import SearchContainer from 'mastodon/features/compose/containers/search_contain
 
 import LinkFooter from './link_footer';
 
-
 class ComposePanel extends PureComponent {
 
   static contextTypes = {

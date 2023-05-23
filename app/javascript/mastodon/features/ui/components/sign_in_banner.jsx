@@ -2,10 +2,10 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { openModal } from 'mastodon/actions/modal';
 import { registrationsOpen } from 'mastodon/initial_state';
+import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const SignInBanner = () => {
   const dispatch = useAppDispatch();

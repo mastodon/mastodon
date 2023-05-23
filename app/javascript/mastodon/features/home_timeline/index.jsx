@@ -9,10 +9,6 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-
-
-
-
 import { fetchAnnouncements, toggleShowAnnouncements } from 'mastodon/actions/announcements';
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
@@ -25,7 +21,6 @@ import ColumnHeader from '../../components/column_header';
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import ColumnSettingsContainer from './containers/column_settings_container';
-
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },

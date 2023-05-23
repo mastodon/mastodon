@@ -7,7 +7,6 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-
 import { openModal } from 'mastodon/actions/modal';
 import { Avatar } from 'mastodon/components/avatar';
 import { WordmarkLogo, SymbolLogo } from 'mastodon/components/logo';

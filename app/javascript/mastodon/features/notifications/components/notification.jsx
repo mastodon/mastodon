@@ -19,9 +19,6 @@ import FollowRequestContainer from '../containers/follow_request_container';
 
 import Report from './report';
 
-
-
-
 const messages = defineMessages({
   favourite: { id: 'notification.favourite', defaultMessage: '{name} favourited your status' },
   follow: { id: 'notification.follow', defaultMessage: '{name} followed you' },

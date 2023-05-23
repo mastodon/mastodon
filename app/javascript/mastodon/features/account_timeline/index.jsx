@@ -24,11 +24,6 @@ import Column from '../ui/components/column';
 import LimitedAccountHint from './components/limited_account_hint';
 import HeaderContainer from './containers/header_container';
 
-
-
-
-
-
 const emptyList = ImmutableList();
 
 const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = false }) => {

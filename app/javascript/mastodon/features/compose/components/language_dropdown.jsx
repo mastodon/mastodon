@@ -12,7 +12,6 @@ import Overlay from 'react-overlays/Overlay';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
 import { loupeIcon, deleteIcon } from 'mastodon/utils/icons';
 
-
 import TextIconButton from './text_icon_button';
 
 const messages = defineMessages({

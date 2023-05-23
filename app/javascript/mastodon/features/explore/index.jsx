@@ -8,7 +8,6 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import Search from 'mastodon/features/compose/containers/search_container';
@@ -19,8 +18,6 @@ import SearchResults from './results';
 import Statuses from './statuses';
 import Suggestions from './suggestions';
 import Tags from './tags';
-
-
 
 const messages = defineMessages({
   title: { id: 'explore.title', defaultMessage: 'Explore' },

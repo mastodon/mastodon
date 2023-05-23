@@ -16,7 +16,6 @@ import ScrollableList from 'mastodon/components/scrollable_list';
 import AccountContainer from 'mastodon/containers/account_container';
 import Column from 'mastodon/features/ui/components/column';
 
-
 const messages = defineMessages({
   refresh: { id: 'refresh', defaultMessage: 'Refresh' },
 });

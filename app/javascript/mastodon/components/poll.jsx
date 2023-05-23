@@ -14,9 +14,7 @@ import { Icon }  from 'mastodon/components/icon';
 import emojify from 'mastodon/features/emoji/emoji';
 import Motion from 'mastodon/features/ui/util/optional_motion';
 
-
 import { RelativeTimestamp } from './relative_timestamp';
-
 
 const messages = defineMessages({
   closed: {

@@ -7,7 +7,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-
 import { fetchLists } from 'mastodon/actions/lists';
 
 import ColumnLink from './column_link';

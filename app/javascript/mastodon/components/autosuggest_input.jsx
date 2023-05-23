@@ -10,8 +10,6 @@ import AutosuggestAccountContainer from '../features/compose/containers/autosugg
 import AutosuggestEmoji from './autosuggest_emoji';
 import AutosuggestHashtag from './autosuggest_hashtag';
 
-
-
 const textAtCursorMatchesToken = (str, caretPosition, searchTokens) => {
   let word;
 

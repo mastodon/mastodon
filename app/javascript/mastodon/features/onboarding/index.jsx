@@ -24,8 +24,6 @@ import Step from './components/step';
 import Follows from './follows';
 import Share from './share';
 
-
-
 const messages = defineMessages({
   template: { id: 'onboarding.compose.template', defaultMessage: 'Hello #Mastodon!' },
 });

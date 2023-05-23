@@ -19,15 +19,7 @@ import NavigationContainer from '../compose/containers/navigation_container';
 import ColumnLink from '../ui/components/column_link';
 import ColumnSubheading from '../ui/components/column_subheading';
 
-
-
-
-
-
-
-
 import TrendsContainer from './containers/trends_container';
-
 
 const messages = defineMessages({
   home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },

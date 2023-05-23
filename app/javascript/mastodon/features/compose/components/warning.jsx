@@ -5,7 +5,6 @@ import spring from 'react-motion/lib/spring';
 
 import Motion from '../../ui/util/optional_motion';
 
-
 export default class Warning extends PureComponent {
 
   static propTypes = {

@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { changeListEditorTitle, submitListEditor } from 'mastodon/actions/lists';
 import Button from 'mastodon/components/button';
 
-
 const messages = defineMessages({
   label: { id: 'lists.new.title_placeholder', defaultMessage: 'New list title' },
   title: { id: 'lists.new.create', defaultMessage: 'Add list' },

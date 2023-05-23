@@ -5,7 +5,6 @@ import classNames from 'classnames';
 
 import { Check } from 'mastodon/components/check';
 
-
 const ProgressIndicator = ({ steps, completed }) => (
   <div className='onboarding__progress-indicator'>
     {(new Array(steps)).fill().map((_, i) => (

@@ -2,7 +2,6 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect }   from 'react-redux';
 
-
 import { openModal } from 'mastodon/actions/modal';
 import { logOut } from 'mastodon/utils/log_out';
 

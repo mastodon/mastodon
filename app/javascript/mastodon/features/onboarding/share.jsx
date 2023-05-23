@@ -16,12 +16,7 @@ import ColumnBackButton from 'mastodon/components/column_back_button';
 import { Icon }  from 'mastodon/components/icon';
 import { me, domain } from 'mastodon/initial_state';
 
-
-
-
-
 import ArrowSmallRight from './components/arrow_small_right';
-
 
 const messages = defineMessages({
   shareableMessage: { id: 'onboarding.share.message', defaultMessage: 'I\'m {username} on #Mastodon! Come follow me at {url}' },

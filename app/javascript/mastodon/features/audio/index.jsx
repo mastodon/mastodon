@@ -12,12 +12,10 @@ import { throttle, debounce } from 'lodash';
 import { Icon }  from 'mastodon/components/icon';
 import { formatTime, getPointerPosition, fileNameFromURL } from 'mastodon/features/video';
 
-
 import { Blurhash } from '../../components/blurhash';
 import { displayMedia, useBlurhash } from '../../initial_state';
 
 import Visualizer from './visualizer';
-
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },

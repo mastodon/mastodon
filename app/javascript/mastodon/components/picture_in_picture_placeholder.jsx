@@ -8,8 +8,6 @@ import { connect } from 'react-redux';
 import { removePictureInPicture } from 'mastodon/actions/picture_in_picture';
 import { Icon }  from 'mastodon/components/icon';
 
-
-
 class PictureInPicturePlaceholder extends PureComponent {
 
   static propTypes = {

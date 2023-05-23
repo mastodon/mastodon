@@ -1,14 +1,12 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
 import { is } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-
 
 import { debounce } from 'lodash';
 

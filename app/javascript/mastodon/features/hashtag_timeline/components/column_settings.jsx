@@ -5,7 +5,6 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-
 import { NonceProvider } from 'react-select';
 import AsyncSelect from 'react-select/async';
 import Toggle from 'react-toggle';

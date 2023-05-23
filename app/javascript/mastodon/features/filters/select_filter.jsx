@@ -5,7 +5,6 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-
 import fuzzysort from 'fuzzysort';
 
 import { Icon }  from 'mastodon/components/icon';

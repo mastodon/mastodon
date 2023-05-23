@@ -7,8 +7,6 @@ import ComposeContainer  from '../mastodon/containers/compose_container';
 import { loadPolyfills } from '../mastodon/polyfills';
 import ready from '../mastodon/ready';
 
-
-
 start();
 
 function loaded() {

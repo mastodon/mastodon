@@ -14,7 +14,6 @@ import { IconButton } from 'mastodon/components/icon_button';
 import Option from 'mastodon/features/report/components/option';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
 
-
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });

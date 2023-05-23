@@ -6,7 +6,6 @@ import { FormattedMessage } from 'react-intl';
 
 import { Icon }  from 'mastodon/components/icon';
 
-
 export default class ColumnBackButton extends PureComponent {
 
   static contextTypes = {
