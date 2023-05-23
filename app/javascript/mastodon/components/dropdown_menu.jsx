@@ -1,11 +1,16 @@
-import { PureComponent, cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { IconButton } from './icon_button';
-import Overlay from 'react-overlays/Overlay';
-import { supportsPassiveEvents } from 'detect-passive-events';
+import { PureComponent, cloneElement, Children } from 'react';
+
 import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
+import { supportsPassiveEvents } from 'detect-passive-events';
+import Overlay from 'react-overlays/Overlay';
+
 import { CircularProgress } from 'mastodon/components/loading_indicator';
+
+import { IconButton } from './icon_button';
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 let id = 0;

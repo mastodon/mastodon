@@ -1,6 +1,7 @@
-import { PureComponent } from 'react';
-import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage } from 'react-intl';
 
 export default class LoadPending extends PureComponent {
 

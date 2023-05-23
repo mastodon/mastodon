@@ -1,16 +1,20 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
-import { expandSearch } from 'mastodon/actions/search';
-import Account from 'mastodon/containers/account_container';
-import Status from 'mastodon/containers/status_container';
-import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
+
+import { Helmet } from 'react-helmet';
+
 import { List as ImmutableList } from 'immutable';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
+import { expandSearch } from 'mastodon/actions/search';
+import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import LoadMore from 'mastodon/components/load_more';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
-import { Helmet } from 'react-helmet';
+import Account from 'mastodon/containers/account_container';
+import Status from 'mastodon/containers/status_container';
 
 const messages = defineMessages({
   title: { id: 'search_results.title', defaultMessage: 'Search for {q}' },

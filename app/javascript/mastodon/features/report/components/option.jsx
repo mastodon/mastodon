@@ -1,6 +1,8 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import classNames from 'classnames';
+
 import { Check } from 'mastodon/components/check';
 
 export default class Option extends PureComponent {

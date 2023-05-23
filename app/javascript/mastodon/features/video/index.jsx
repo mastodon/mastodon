@@ -1,13 +1,19 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { is } from 'immutable';
-import { throttle } from 'lodash';
+
 import classNames from 'classnames';
-import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
-import { displayMedia, useBlurhash } from '../../initial_state';
-import { Icon }  from 'mastodon/components/icon';
+
+import { is } from 'immutable';
+
+import { throttle } from 'lodash';
+
 import { Blurhash } from 'mastodon/components/blurhash';
+import { Icon }  from 'mastodon/components/icon';
+
+import { displayMedia, useBlurhash } from '../../initial_state';
+import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },

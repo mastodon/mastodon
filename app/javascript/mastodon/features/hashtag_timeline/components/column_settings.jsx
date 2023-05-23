@@ -1,10 +1,14 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import Toggle from 'react-toggle';
-import AsyncSelect from 'react-select/async';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { NonceProvider } from 'react-select';
+import AsyncSelect from 'react-select/async';
+import Toggle from 'react-toggle';
+
 import SettingToggle from '../../notifications/components/setting_toggle';
 
 const messages = defineMessages({

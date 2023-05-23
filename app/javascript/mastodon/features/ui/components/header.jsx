@@ -1,12 +1,16 @@
-import { PureComponent } from 'react';
-import { WordmarkLogo, SymbolLogo } from 'mastodon/components/logo';
-import { Link, withRouter } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
-import { registrationsOpen, me } from 'mastodon/initial_state';
-import { Avatar } from 'mastodon/components/avatar';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
+import { Link, withRouter } from 'react-router-dom';
+
 import { connect } from 'react-redux';
+
 import { openModal } from 'mastodon/actions/modal';
+import { Avatar } from 'mastodon/components/avatar';
+import { WordmarkLogo, SymbolLogo } from 'mastodon/components/logo';
+import { registrationsOpen, me } from 'mastodon/initial_state';
 
 const Account = connect(state => ({
   account: state.getIn(['accounts', me]),

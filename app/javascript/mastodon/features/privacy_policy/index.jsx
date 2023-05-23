@@ -1,9 +1,12 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
+import { PureComponent } from 'react';
+
 import { FormattedMessage, FormattedDate, injectIntl, defineMessages } from 'react-intl';
-import Column from 'mastodon/components/column';
+
+import { Helmet } from 'react-helmet';
+
 import api from 'mastodon/api';
+import Column from 'mastodon/components/column';
 import { Skeleton } from 'mastodon/components/skeleton';
 
 const messages = defineMessages({

@@ -1,17 +1,23 @@
-import { Children, cloneElement, PureComponent } from 'react';
-import ScrollContainer from 'mastodon/containers/scroll_container';
 import PropTypes from 'prop-types';
+import { Children, cloneElement, PureComponent } from 'react';
+
+import classNames from 'classnames';
+
+import { List as ImmutableList } from 'immutable';
+import { connect } from 'react-redux';
+
+import { supportsPassiveEvents } from 'detect-passive-events';
+import { throttle } from 'lodash';
+
+import ScrollContainer from 'mastodon/containers/scroll_container';
+
 import IntersectionObserverArticleContainer from '../containers/intersection_observer_article_container';
+import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
+import IntersectionObserverWrapper from '../features/ui/util/intersection_observer_wrapper';
+
 import LoadMore from './load_more';
 import LoadPending from './load_pending';
-import IntersectionObserverWrapper from '../features/ui/util/intersection_observer_wrapper';
-import { throttle } from 'lodash';
-import { List as ImmutableList } from 'immutable';
-import classNames from 'classnames';
-import { supportsPassiveEvents } from 'detect-passive-events';
-import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
 import LoadingIndicator from './loading_indicator';
-import { connect } from 'react-redux';
 
 const MOUSE_IDLE_DELAY = 300;
 

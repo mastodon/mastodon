@@ -1,12 +1,16 @@
-import { PureComponent } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+
 import classnames from 'classnames';
-import PollContainer from 'mastodon/containers/poll_container';
+import { Link } from 'react-router-dom';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
 import { Icon }  from 'mastodon/components/icon';
+import PollContainer from 'mastodon/containers/poll_container';
 import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_state';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)

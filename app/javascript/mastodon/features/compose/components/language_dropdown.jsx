@@ -1,13 +1,18 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages } from 'react-intl';
-import TextIconButton from './text_icon_button';
-import Overlay from 'react-overlays/Overlay';
-import { supportsPassiveEvents } from 'detect-passive-events';
+
 import classNames from 'classnames';
+
+import { supportsPassiveEvents } from 'detect-passive-events';
+import fuzzysort from 'fuzzysort';
+import Overlay from 'react-overlays/Overlay';
+
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
 import { loupeIcon, deleteIcon } from 'mastodon/utils/icons';
-import fuzzysort from 'fuzzysort';
+
+import TextIconButton from './text_icon_button';
 
 const messages = defineMessages({
   changeLanguage: { id: 'compose.language.change', defaultMessage: 'Change language' },

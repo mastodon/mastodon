@@ -1,10 +1,15 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
-import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';
+
 import classNames from 'classnames';
+
+import { connect } from 'react-redux';
+
 import { Icon }  from 'mastodon/components/icon';
+
+import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';
 
 const messages = defineMessages({
   search: { id: 'lists.search', defaultMessage: 'Search among people you follow' },

@@ -1,8 +1,11 @@
-import { PureComponent } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
+import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 
 const messages = defineMessages({
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },

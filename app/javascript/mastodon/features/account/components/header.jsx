@@ -1,21 +1,26 @@
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import Button from 'mastodon/components/button';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { autoPlayGif, me, domain } from 'mastodon/initial_state';
+
 import classNames from 'classnames';
+import { Helmet } from 'react-helmet';
+import { NavLink } from 'react-router-dom';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { Avatar } from 'mastodon/components/avatar';
+import Button from 'mastodon/components/button';
+import { counterRenderer } from 'mastodon/components/common_counter';
 import { Icon }  from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
-import { Avatar } from 'mastodon/components/avatar';
-import { counterRenderer } from 'mastodon/components/common_counter';
 import ShortNumber from 'mastodon/components/short_number';
-import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
+import { autoPlayGif, me, domain } from 'mastodon/initial_state';
+import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
+
 import AccountNoteContainer from '../containers/account_note_container';
 import FollowRequestNoteContainer from '../containers/follow_request_note_container';
-import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
-import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },

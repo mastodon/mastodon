@@ -1,8 +1,10 @@
 import './public-path';
-import { delegate } from '@rails/ujs';
-import ready from '../mastodon/ready';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+
+import { delegate } from '@rails/ujs';
+
+import ready from '../mastodon/ready';
 
 const setAnnouncementEndsAttributes = (target) => {
   const valid = target?.value && target?.validity?.valid;

@@ -1,8 +1,11 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { revealAccount } from 'mastodon/actions/accounts';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
+
+import { connect } from 'react-redux';
+
+import { revealAccount } from 'mastodon/actions/accounts';
 import Button from 'mastodon/components/button';
 import { domain } from 'mastodon/initial_state';
 

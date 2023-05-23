@@ -198,6 +198,55 @@ module.exports = {
     'import/no-useless-path-segments': 'error',
     'import/no-webpack-loader-syntax': 'error',
 
+    'import/order': [
+      'error',
+      {
+        alphabetize: { order: 'asc' },
+        'newlines-between': 'always',
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          ['index', 'sibling'],
+          'object',
+        ],
+        pathGroups: [
+          // React core packages
+          {
+            pattern: '{react,react-dom,react-dom/client,prop-types}',
+            group: 'builtin',
+            position: 'after',
+          },
+          // I18n
+          {
+            pattern: '{react-intl,intl-messageformat}',
+            group: 'builtin',
+            position: 'after',
+          },
+          // Common React utilities
+          {
+            pattern: '{classnames,react-helmet,react-router-dom}',
+            group: 'external',
+            position: 'before',
+          },
+          // Immutable / Redux / data store
+          {
+            pattern: '{immutable,react-redux,react-immutable-proptypes,react-immutable-pure-component,reselect}',
+            group: 'external',
+            position: 'before',
+          },
+          // Internal packages
+          {
+            pattern: '{mastodon/**}',
+            group: 'internal',
+            position: 'after',
+          },
+        ],
+        pathGroupsExcludedImportTypes: [],
+      },
+    ],
+
     'promise/always-return': 'off',
     'promise/catch-or-return': [
       'error',
@@ -285,55 +334,6 @@ module.exports = {
 
       rules: {
         'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
-
-        'import/order': [
-          'error',
-          {
-            alphabetize: { order: 'asc' },
-            'newlines-between': 'always',
-            groups: [
-              'builtin',
-              'external',
-              'internal',
-              'parent',
-              ['index', 'sibling'],
-              'object',
-            ],
-            pathGroups: [
-              // React core packages
-              {
-                pattern: '{react,react-dom,prop-types}',
-                group: 'builtin',
-                position: 'after',
-              },
-              // I18n
-              {
-                pattern: 'react-intl',
-                group: 'builtin',
-                position: 'after',
-              },
-              // Common React utilities
-              {
-                pattern: '{classnames,react-helmet}',
-                group: 'external',
-                position: 'before',
-              },
-              // Immutable / Redux / data store
-              {
-                pattern: '{immutable,react-redux,react-immutable-proptypes,react-immutable-pure-component,reselect}',
-                group: 'external',
-                position: 'before',
-              },
-              // Internal packages
-              {
-                pattern: '{mastodon/**}',
-                group: 'internal',
-                position: 'after',
-              },
-            ],
-            pathGroupsExcludedImportTypes: [],
-          },
-        ],
 
         '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
         '@typescript-eslint/consistent-type-exports': 'error',

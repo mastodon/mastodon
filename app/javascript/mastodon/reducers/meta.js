@@ -1,6 +1,7 @@
-import { STORE_HYDRATE } from 'mastodon/actions/store';
-import { changeLayout } from 'mastodon/actions/app';
 import { Map as ImmutableMap } from 'immutable';
+
+import { changeLayout } from 'mastodon/actions/app';
+import { STORE_HYDRATE } from 'mastodon/actions/store';
 import { layoutFromWindow } from 'mastodon/is_mobile';
 
 const initialState = ImmutableMap({

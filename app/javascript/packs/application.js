@@ -1,6 +1,6 @@
 import './public-path';
-import { loadPolyfills } from '../mastodon/polyfills';
 import { start } from '../mastodon/common';
+import { loadPolyfills } from '../mastodon/polyfills';
 
 start();
 

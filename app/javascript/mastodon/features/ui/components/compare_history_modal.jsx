@@ -1,15 +1,19 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
-import { closeModal } from 'mastodon/actions/modal';
-import emojify from 'mastodon/features/emoji/emoji';
+
 import escapeTextContentForBrowser from 'escape-html';
-import InlineAccount from 'mastodon/components/inline_account';
+
+import { closeModal } from 'mastodon/actions/modal';
 import { IconButton } from 'mastodon/components/icon_button';
-import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
+import InlineAccount from 'mastodon/components/inline_account';
 import MediaAttachments from 'mastodon/components/media_attachments';
+import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
+import emojify from 'mastodon/features/emoji/emoji';
 
 const mapStateToProps = (state, { statusId }) => ({
   language: state.getIn(['statuses', statusId, 'language']),

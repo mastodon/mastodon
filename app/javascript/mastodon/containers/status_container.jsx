@@ -1,11 +1,26 @@
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
 import { connect } from 'react-redux';
-import Status from '../components/status';
-import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
+
+import {
+  unmuteAccount,
+  unblockAccount,
+} from '../actions/accounts';
+import { showAlertForError } from '../actions/alerts';
+import { initBlockModal } from '../actions/blocks';
+import { initBoostModal } from '../actions/boosts';
 import {
   replyCompose,
   mentionCompose,
   directCompose,
 } from '../actions/compose';
+import {
+  blockDomain,
+  unblockDomain,
+} from '../actions/domain_blocks';
+import {
+  initAddFilter,
+} from '../actions/filters';
 import {
   reblog,
   favourite,
@@ -16,6 +31,10 @@ import {
   pin,
   unpin,
 } from '../actions/interactions';
+import { openModal } from '../actions/modal';
+import { initMuteModal } from '../actions/mutes';
+import { deployPictureInPicture } from '../actions/picture_in_picture';
+import { initReport } from '../actions/reports';
 import {
   muteStatus,
   unmuteStatus,
@@ -27,26 +46,9 @@ import {
   translateStatus,
   undoStatusTranslation,
 } from '../actions/statuses';
-import {
-  unmuteAccount,
-  unblockAccount,
-} from '../actions/accounts';
-import {
-  blockDomain,
-  unblockDomain,
-} from '../actions/domain_blocks';
-import {
-  initAddFilter,
-} from '../actions/filters';
-import { initMuteModal } from '../actions/mutes';
-import { initBlockModal } from '../actions/blocks';
-import { initBoostModal } from '../actions/boosts';
-import { initReport } from '../actions/reports';
-import { openModal } from '../actions/modal';
-import { deployPictureInPicture } from '../actions/picture_in_picture';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import Status from '../components/status';
 import { boostModal, deleteModal } from '../initial_state';
-import { showAlertForError } from '../actions/alerts';
+import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },

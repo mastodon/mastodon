@@ -4,8 +4,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const rimraf = require('rimraf');
+
 const { mkdirp } = require('mkdirp');
+const rimraf = require('rimraf');
 
 const localesJsonPath = path.join(__dirname, '../../app/javascript/mastodon/locales');
 const locales = fs.readdirSync(localesJsonPath).filter(filename => {
