@@ -9,7 +9,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me } from 'flavours/glitch/initial_state';
 import { RelativeTimestamp } from './relative_timestamp';
-import Skeleton from 'flavours/glitch/components/skeleton';
+import { Skeleton } from 'flavours/glitch/components/skeleton';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },

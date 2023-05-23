@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage, FormattedDate, injectIntl, defineMessages } from 'react-intl';
 import Column from 'flavours/glitch/components/column';
 import api from 'flavours/glitch/api';
-import Skeleton from 'flavours/glitch/components/skeleton';
+import { Skeleton } from 'flavours/glitch/components/skeleton';
 
 const messages = defineMessages({
   title: { id: 'privacy_policy.title', defaultMessage: 'Privacy Policy' },

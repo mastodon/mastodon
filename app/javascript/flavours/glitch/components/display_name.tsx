@@ -8,7 +8,7 @@ import type { Account } from 'flavours/glitch/types/resources';
 
 import { autoPlayGif } from '../initial_state';
 
-import Skeleton from './skeleton';
+import { Skeleton } from './skeleton';
 
 interface Props {
   account: Account;

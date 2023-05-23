@@ -4,7 +4,7 @@ import api from 'flavours/glitch/api';
 import { FormattedNumber } from 'react-intl';
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
 import classNames from 'classnames';
-import Skeleton from 'flavours/glitch/components/skeleton';
+import { Skeleton } from 'flavours/glitch/components/skeleton';
 
 const percIncrease = (a, b) => {
   let percent;
