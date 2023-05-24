@@ -250,7 +250,7 @@ class StatusActionBar extends ImmutablePureComponent {
     menu.push({ text: intl.formatMessage(messages.copy), action: this.handleCopy });
 
     if (publicStatus && 'share' in navigator) {
-      menu.push({ text: intl.formatMessage(messages.share), action: this.handleShare });
+      menu.push({ text: intl.formatMessage(messages.share), action: this.handleShareClick });
     }
 
     if (publicStatus) {
