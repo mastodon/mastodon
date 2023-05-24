@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 
 import type { InjectedIntl } from 'react-intl';
 import { injectIntl, defineMessages } from 'react-intl';
