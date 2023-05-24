@@ -376,23 +376,6 @@ RSpec/EmptyExampleGroup:
 RSpec/ExampleLength:
   Max: 22
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: method_call, block
-RSpec/ExpectChange:
-  Exclude:
-    - 'spec/controllers/admin/account_moderation_notes_controller_spec.rb'
-    - 'spec/controllers/admin/custom_emojis_controller_spec.rb'
-    - 'spec/controllers/admin/invites_controller_spec.rb'
-    - 'spec/controllers/admin/report_notes_controller_spec.rb'
-    - 'spec/controllers/concerns/accountable_concern_spec.rb'
-    - 'spec/controllers/invites_controller_spec.rb'
-    - 'spec/controllers/settings/two_factor_authentication/webauthn_credentials_controller_spec.rb'
-    - 'spec/models/admin/account_action_spec.rb'
-    - 'spec/services/suspend_account_service_spec.rb'
-    - 'spec/services/unsuspend_account_service_spec.rb'
-    - 'spec/workers/scheduler/accounts_statuses_cleanup_scheduler_spec.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: implicit, each, example
