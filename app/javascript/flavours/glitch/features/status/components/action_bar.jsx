@@ -38,9 +38,9 @@ const messages = defineMessages({
   unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
   embed: { id: 'status.embed', defaultMessage: 'Embed' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
-  admin_status: { id: 'status.admin_status', defaultMessage: 'Open this status in the moderation interface' },
+  admin_status: { id: 'status.admin_status', defaultMessage: 'Open this post in the moderation interface' },
   admin_domain: { id: 'status.admin_domain', defaultMessage: 'Open moderation interface for {domain}' },
-  copy: { id: 'status.copy', defaultMessage: 'Copy link to status' },
+  copy: { id: 'status.copy', defaultMessage: 'Copy link to post' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
 });
 

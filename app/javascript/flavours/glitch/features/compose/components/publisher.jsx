@@ -24,7 +24,7 @@ const messages = defineMessages({
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Save changes' },
   public: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  private: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
+  private: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
   direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
 });
 

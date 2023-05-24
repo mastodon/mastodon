@@ -17,7 +17,7 @@ const messages = defineMessages({
   subheading: { id: 'column.subheading', defaultMessage: 'Miscellaneous options' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
-  domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
+  domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Blocked domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   show_me_around: { id: 'getting_started.onboarding', defaultMessage: 'Show me around' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },

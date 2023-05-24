@@ -35,7 +35,7 @@ const messages = defineMessages({
   pop_in_right: { id: 'settings.pop_in_right', defaultMessage:  'Right' },
   public: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  private: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
+  private: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
   direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
 });
 
