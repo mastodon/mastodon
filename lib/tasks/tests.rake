@@ -58,6 +58,11 @@ namespace :tests do
         puts 'User settings not kept as expected'
         exit(1)
       end
+
+      unless Account.find_remote('bob', 'ActivityPub.com').domain == 'activitypub.com'
+        puts 'Account domains not properly normalized'
+        exit(1)
+      end
     end
 
     desc 'Populate the database with test data for 2.4.3'
@@ -160,7 +165,7 @@ namespace :tests do
         INSERT INTO "accounts"
           (id, username, domain, private_key, public_key, created_at, updated_at, protocol, inbox_url, outbox_url, followers_url)
         VALUES
-          (6, 'bob', 'activitypub.com', NULL, #{remote_public_key_ap}, now(), now(),
+          (6, 'bob', 'ActivityPub.com', NULL, #{remote_public_key_ap}, now(), now(),
            1, 'https://activitypub.com/users/bob/inbox', 'https://activitypub.com/users/bob/outbox', 'https://activitypub.com/users/bob/followers');
 
         INSERT INTO "accounts"
