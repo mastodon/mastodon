@@ -28,7 +28,7 @@ import { compareId } from 'flavours/glitch/compare_id';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import { Icon } from 'flavours/glitch/components/icon';
-import LoadGap from 'flavours/glitch/components/load_gap';
+import { LoadGap } from 'flavours/glitch/components/load_gap';
 import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import NotificationPurgeButtonsContainer from 'flavours/glitch/containers/notification_purge_buttons_container';
