@@ -169,7 +169,6 @@ class ActionBar extends PureComponent {
 
   handleShare = () => {
     navigator.share({
-      text: this.props.status.get('search_index'),
       url: this.props.status.get('url'),
     });
   };
@@ -202,6 +201,11 @@ class ActionBar extends PureComponent {
       }
 
       menu.push({ text: intl.formatMessage(messages.copy), action: this.handleCopy });
+
+      if ('share' in navigator) {
+        menu.push({ text: intl.formatMessage(messages.share), action: this.handleShare });
+      }
+
       menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
       menu.push(null);
     }
@@ -260,10 +264,6 @@ class ActionBar extends PureComponent {
       }
     }
 
-    const shareButton = ('share' in navigator) && publicStatus && (
-      <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShare} /></div>
-    );
-
     let replyIcon;
     if (status.get('in_reply_to_id', null) === null) {
       replyIcon = 'reply';
@@ -287,11 +287,9 @@ class ActionBar extends PureComponent {
     return (
       <div className='detailed-status__action-bar'>
         <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} /></div>
-        <div className='detailed-status__button' ><IconButton className={classNames({ reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} /></div>
+        <div className='detailed-status__button'><IconButton className={classNames({ reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} /></div>
         <div className='detailed-status__button'><IconButton className='star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} /></div>
         <div className='detailed-status__button'><IconButton className='bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} /></div>
-
-        {shareButton}
 
         <div className='detailed-status__action-bar-dropdown'>
           <DropdownMenuContainer size={18} icon='ellipsis-h' disabled={!signedIn} status={status} items={menu} direction='left' title={intl.formatMessage(messages.more)} />
