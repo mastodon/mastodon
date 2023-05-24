@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_24_192812) do
+ActiveRecord::Schema.define(version: 2023_05_24_194155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1284,6 +1284,7 @@ ActiveRecord::Schema.define(version: 2023_05_24_192812) do
      FROM (domain_allows
        LEFT JOIN domain_counts ON (((domain_counts.domain)::text = (domain_allows.domain)::text)));
   SQL
+  add_index "instances", "reverse(('.'::text || (domain)::text)), domain", name: "index_instances_on_reverse_domain"
   add_index "instances", ["domain"], name: "index_instances_on_domain", unique: true
 
   create_view "user_ips", sql_definition: <<-SQL
