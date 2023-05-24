@@ -61,8 +61,8 @@ class Api::BaseController < ApplicationController
     render json: { error: 'Remote SSL certificate could not be verified' }, status: 503
   end
 
-  rescue_from Mastodon::NotPermittedError do
-    render json: { error: 'This action is not allowed' }, status: 403
+  rescue_from Mastodon::NotPermittedError do |e|
+    render json: { error: e.message.presence || 'This action is not allowed' }, status: 403
   end
 
   rescue_from Seahorse::Client::NetworkingError do |e|

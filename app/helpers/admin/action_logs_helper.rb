@@ -33,6 +33,8 @@ module Admin::ActionLogsHelper
       else
         I18n.t('admin.action_logs.deleted_account')
       end
+    when 'PhraseBlock'
+      link_to truncate(log.human_identifier), edit_admin_phrase_block_path(log.target_id)
     end
   end
 end

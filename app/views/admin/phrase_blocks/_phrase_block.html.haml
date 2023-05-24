@@ -1,0 +1,11 @@
+
+%tr
+  %td
+    %samp= phrase_block.phrase
+  %td
+    = t("admin.phrase_blocks.types.#{phrase_block.filter_type}")
+  %td
+    - if can?(:update, phrase_block)
+      = table_link_to 'pencil', t('filters.edit.title'), edit_admin_phrase_block_path(phrase_block)
+    - if can?(:destroy, phrase_block)
+      = table_link_to 'trash', t('admin.phrase_blocks.delete'), admin_phrase_block_path(phrase_block), method: :delete

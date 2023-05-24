@@ -547,6 +547,30 @@ en:
         title: Create new IP rule
       no_ip_block_selected: No IP rules were changed as none were selected
       title: IP rules
+    phrase_blocks:
+      add_new: Add new filter
+      created_msg: Banned word successfully added!
+      delete: Delete
+      description_html: Banned words prevent making posts that include a banned word or expression. This is meant to be used as an emergency anti-spam measure. Trying to send a post that includes a banned word or expression will result in an error.
+      destroyed_msg: Banned word successfully removed!
+      edit:
+        title: Edit banned word
+      empty: There is no banned word or expression yet.
+      new:
+        create: Create
+        title: Add banned word
+      phrase: Keyword, phrase or regular expression
+      phrase_hint: Forbid making posts containing this keyword, phrase, or regular expression. Attempting to do so will return an error.
+      text: Banned word or expression
+      title: Banned words
+      type:
+        title: Filter type
+      types:
+        regexp: Regular expression
+        regexp_hint: Use regular expressions if you want to prevent posts featuring more advanced patterns.
+        text: Simple text
+        text_hint: Use this for simple recurring keywords or if you do not know regular expressions.
+      updated_msg: Banned word successfully updated!
     relationships:
       title: "%{acct}'s relationships"
     relays:
@@ -1060,6 +1084,8 @@ en:
       return: Show the user's profile
       web: Go to web
     title: Follow %{acct}
+  beta_feature:
+    notice: This feature is in beta and may be changed, replaced or removed at any point in the future.
   challenge:
     confirm: Continue
     hint_html: "<strong>Tip:</strong> We won't ask you for your password again for the next hour."
@@ -1459,6 +1485,8 @@ en:
     errors:
       limit_reached: Limit of different reactions reached
       unrecognized_emoji: is not a recognized emoji
+  regex_validator:
+    invalid_regexp: 'error parsing regular expression: %{error}'
   relationships:
     activity: Account activity
     confirm_follow_selected_followers: Are you sure you want to follow selected followers?
@@ -1582,6 +1610,7 @@ en:
       other: 'contained the disallowed hashtags: %{tags}'
     edited_at_html: Edited %{date}
     errors:
+      blocked_content: This post includes forbidden words or expressions
       in_reply_not_found: The post you are trying to reply to does not appear to exist.
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
