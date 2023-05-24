@@ -1,18 +1,11 @@
 # frozen_string_literal: true
 
 require 'tty-prompt'
-require_relative '../../../config/boot'
-require_relative '../../../config/environment'
-require_relative 'helper'
+require_relative 'base'
 
 module Mastodon::CLI
-  class PreviewCards < Thor
+  class PreviewCards < Base
     include ActionView::Helpers::NumberHelper
-    include Helper
-
-    def self.exit_on_failure?
-      true
-    end
 
     option :days, type: :numeric, default: 180
     option :concurrency, type: :numeric, default: 5, aliases: [:c]

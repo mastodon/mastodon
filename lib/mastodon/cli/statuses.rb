@@ -1,17 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../../../config/boot'
-require_relative '../../../config/environment'
-require_relative 'helper'
+require_relative 'base'
 
 module Mastodon::CLI
-  class Statuses < Thor
-    include Helper
+  class Statuses < Base
     include ActionView::Helpers::NumberHelper
-
-    def self.exit_on_failure?
-      true
-    end
 
     option :days, type: :numeric, default: 90
     option :batch_size, type: :numeric, default: 1_000, aliases: [:b], desc: 'Number of records in each batch'

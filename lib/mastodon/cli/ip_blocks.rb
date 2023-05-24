@@ -1,16 +1,10 @@
 # frozen_string_literal: true
 
 require 'rubygems/package'
-require_relative '../../../config/boot'
-require_relative '../../../config/environment'
-require_relative 'helper'
+require_relative 'base'
 
 module Mastodon::CLI
-  class IpBlocks < Thor
-    def self.exit_on_failure?
-      true
-    end
-
+  class IpBlocks < Base
     option :severity, required: true, enum: %w(no_access sign_up_requires_approval sign_up_block), desc: 'Severity of the block'
     option :comment, aliases: [:c], desc: 'Optional comment'
     option :duration, aliases: [:d], type: :numeric, desc: 'Duration of the block in seconds'
