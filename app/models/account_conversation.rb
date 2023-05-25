@@ -17,6 +17,8 @@
 class AccountConversation < ApplicationRecord
   include Redisable
 
+  attr_writer :participant_accounts
+
   before_validation :set_last_status
   after_commit :push_to_streaming_api
 
@@ -41,12 +43,25 @@ class AccountConversation < ApplicationRecord
   end
 
   class << self
-    def to_a_paginated_by_id(limit, min_id: nil, max_id: nil, since_id: nil)
-      if min_id
-        paginate_by_min_id(limit, min_id, max_id).reverse
-      else
-        paginate_by_max_id(limit, max_id, since_id).to_a
+    def to_a_paginated_by_id(limit, min_id: nil, max_id: nil, since_id: nil, preload_participants: true)
+      array = begin
+        if min_id
+          paginate_by_min_id(limit, min_id, max_id).reverse
+        else
+          paginate_by_max_id(limit, max_id, since_id).to_a
+        end
       end
+
+      if preload_participants
+        participant_ids = array.flat_map(&:participant_account_ids)
+        accounts_by_id = Account.where(id: participant_ids).index_by(&:id)
+
+        array.each do |conversation|
+          conversation.participant_accounts = conversation.participant_account_ids.filter_map { |id| accounts_by_id[id] }
+        end
+      end
+
+      array
     end
 
     def paginate_by_min_id(limit, min_id = nil, max_id = nil)
