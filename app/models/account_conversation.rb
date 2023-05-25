@@ -41,11 +41,11 @@ class AccountConversation < ApplicationRecord
   end
 
   class << self
-    def to_a_paginated_by_id(limit, options = {})
-      if options[:min_id]
-        paginate_by_min_id(limit, options[:min_id], options[:max_id]).reverse
+    def to_a_paginated_by_id(limit, min_id: nil, max_id: nil, since_id: nil)
+      if min_id
+        paginate_by_min_id(limit, min_id, max_id).reverse
       else
-        paginate_by_max_id(limit, options[:max_id], options[:since_id]).to_a
+        paginate_by_max_id(limit, max_id, since_id).to_a
       end
     end
 
