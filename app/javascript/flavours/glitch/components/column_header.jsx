@@ -42,20 +42,6 @@ class ColumnHeader extends React.PureComponent {
     animating: false,
   };
 
-  historyBack = (skip) => {
-    // if history is exhausted, or we would leave mastodon, just go to root.
-    if (window.history.state) {
-      const state = this.context.router.history.location.state;
-      if (skip && state && state.mastodonBackSteps) {
-        this.context.router.history.go(-state.mastodonBackSteps);
-      } else {
-        this.context.router.history.goBack();
-      }
-    } else {
-      this.context.router.history.push('/');
-    }
-  };
-
   handleToggleClick = (e) => {
     e.stopPropagation();
     this.setState({ collapsed: !this.state.collapsed, animating: true });
@@ -73,8 +59,16 @@ class ColumnHeader extends React.PureComponent {
     this.props.onMove(1);
   };
 
-  handleBackClick = (event) => {
-    this.historyBack(event.shiftKey);
+  handleBackClick = () => {
+    const { router } = this.context;
+
+    // Check if there is a previous page in the app to go back to per https://stackoverflow.com/a/70532858/9703201
+    // When upgrading to V6, check `location.key !== 'default'` instead per https://github.com/remix-run/history/blob/main/docs/api-reference.md#location
+    if (router.route.location.key) {
+      router.history.goBack();
+    } else {
+      router.history.push('/');
+    }
   };
 
   handleTransitionEnd = () => {
@@ -83,8 +77,9 @@ class ColumnHeader extends React.PureComponent {
 
   handlePin = () => {
     if (!this.props.pinned) {
-      this.historyBack();
+      this.context.router.history.replace('/');
     }
+
     this.props.onPin();
   };
 

@@ -59,9 +59,7 @@ class Conversation extends ImmutablePureComponent {
         }
         destination = `/statuses/${lastStatus.get('id')}`;
       }
-      let state = { ...router.history.location.state };
-      state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
-      router.history.push(destination, state);
+      router.history.push(destination);
       e.preventDefault();
     }
   };
