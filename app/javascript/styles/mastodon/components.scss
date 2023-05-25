@@ -7837,7 +7837,12 @@ noscript {
   color: $valid-value-color;
   gap: 4px;
   overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   a {
     color: inherit;
