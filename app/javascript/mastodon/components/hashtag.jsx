@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Link } from 'react-router-dom';
 import ShortNumber from 'mastodon/components/short_number';
-import Skeleton from 'mastodon/components/skeleton';
+import { Skeleton } from 'mastodon/components/skeleton';
 import classNames from 'classnames';
 
 class SilentErrorBoundary extends React.Component {

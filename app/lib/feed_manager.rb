@@ -213,7 +213,7 @@ class FeedManager
     timeline_key        = key(:home, account.id)
     timeline_status_ids = redis.zrange(timeline_key, 0, -1)
     statuses            = Status.where(id: timeline_status_ids).select(:id, :reblog_of_id, :account_id).to_a
-    reblogged_ids       = Status.where(id: statuses.map(&:reblog_of_id).compact, account: target_account).pluck(:id)
+    reblogged_ids       = Status.where(id: statuses.filter_map(&:reblog_of_id), account: target_account).pluck(:id)
     with_mentions_ids   = Mention.active.where(status_id: statuses.flat_map { |s| [s.id, s.reblog_of_id] }.compact, account: target_account).pluck(:status_id)
 
     target_statuses = statuses.select do |status|
@@ -233,7 +233,7 @@ class FeedManager
     timeline_key        = key(:list, list.id)
     timeline_status_ids = redis.zrange(timeline_key, 0, -1)
     statuses            = Status.where(id: timeline_status_ids).select(:id, :reblog_of_id, :account_id).to_a
-    reblogged_ids       = Status.where(id: statuses.map(&:reblog_of_id).compact, account: target_account).pluck(:id)
+    reblogged_ids       = Status.where(id: statuses.filter_map(&:reblog_of_id), account: target_account).pluck(:id)
     with_mentions_ids   = Mention.active.where(status_id: statuses.flat_map { |s| [s.id, s.reblog_of_id] }.compact, account: target_account).pluck(:status_id)
 
     target_statuses = statuses.select do |status|
@@ -603,9 +603,9 @@ class FeedManager
       arr
     end
 
-    crutches[:following]       = Follow.where(account_id: receiver_id, target_account_id: statuses.map(&:in_reply_to_account_id).compact).pluck(:target_account_id).index_with(true)
+    crutches[:following]       = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:target_account_id).index_with(true)
     crutches[:languages]       = Follow.where(account_id: receiver_id, target_account_id: statuses.map(&:account_id)).pluck(:target_account_id, :languages).to_h
-    crutches[:hiding_reblogs]  = Follow.where(account_id: receiver_id, target_account_id: statuses.map { |s| s.account_id if s.reblog? }.compact, show_reblogs: false).pluck(:target_account_id).index_with(true)
+    crutches[:hiding_reblogs]  = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map { |s| s.account_id if s.reblog? }, show_reblogs: false).pluck(:target_account_id).index_with(true)
     crutches[:blocking]        = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
     crutches[:muting]          = Mute.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
     crutches[:domain_blocking] = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)

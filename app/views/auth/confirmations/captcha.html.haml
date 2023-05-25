@@ -5,6 +5,7 @@
   = render 'auth/shared/progress', stage: 'confirm'
 
   = hidden_field_tag :confirmation_token, params[:confirmation_token]
+  = hidden_field_tag :redirect_to_app, params[:redirect_to_app]
 
   %p.lead= t('auth.captcha_confirmation.hint_html')
 

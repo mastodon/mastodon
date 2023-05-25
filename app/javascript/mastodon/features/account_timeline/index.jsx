@@ -12,7 +12,7 @@ import ColumnBackButton from '../../components/column_back_button';
 import { List as ImmutableList } from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
-import TimelineHint from 'mastodon/components/timeline_hint';
+import { TimelineHint } from 'mastodon/components/timeline_hint';
 import { me } from 'mastodon/initial_state';
 import LimitedAccountHint from './components/limited_account_hint';
 import { getAccountHidden } from 'mastodon/selectors';

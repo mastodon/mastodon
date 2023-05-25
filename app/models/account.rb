@@ -299,11 +299,11 @@ class Account < ApplicationRecord
   end
 
   def fields
-    (self[:fields] || []).map do |f|
+    (self[:fields] || []).filter_map do |f|
       Account::Field.new(self, f)
     rescue
       nil
-    end.compact
+    end
   end
 
   def fields_attributes=(attributes)

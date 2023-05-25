@@ -15,7 +15,7 @@ RSpec.describe StatusRelationshipsPresenter do
     let(:presenter)          { StatusRelationshipsPresenter.new(statuses, current_account_id, **options) }
     let(:current_account_id) { Fabricate(:account).id }
     let(:statuses)           { [Fabricate(:status)] }
-    let(:status_ids)         { statuses.map(&:id) + statuses.map(&:reblog_of_id).compact }
+    let(:status_ids)         { statuses.map(&:id) + statuses.filter_map(&:reblog_of_id) }
     let(:default_map)        { { 1 => true } }
 
     context 'when options are not set' do

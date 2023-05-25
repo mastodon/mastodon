@@ -240,31 +240,6 @@ Naming/VariableNumber:
     - 'spec/services/activitypub/fetch_featured_collection_service_spec.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
-Performance/MapCompact:
-  Exclude:
-    - 'app/lib/admin/metrics/dimension.rb'
-    - 'app/lib/admin/metrics/measure.rb'
-    - 'app/lib/feed_manager.rb'
-    - 'app/models/account.rb'
-    - 'app/models/account_statuses_cleanup_policy.rb'
-    - 'app/models/account_suggestions/setting_source.rb'
-    - 'app/models/account_suggestions/source.rb'
-    - 'app/models/follow_recommendation_filter.rb'
-    - 'app/models/notification.rb'
-    - 'app/models/user_role.rb'
-    - 'app/models/webhook.rb'
-    - 'app/services/process_mentions_service.rb'
-    - 'app/validators/existing_username_validator.rb'
-    - 'db/migrate/20200407202420_migrate_unavailable_inboxes.rb'
-    - 'spec/presenters/status_relationships_presenter_spec.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: SafeMultiline.
-Performance/StartWith:
-  Exclude:
-    - 'app/lib/extractor.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
 Performance/UnfreezeString:
   Exclude:
     - 'app/lib/rss/builder.rb'
@@ -598,10 +573,6 @@ RSpec/PredicateMatcher:
     - 'spec/controllers/api/v1/accounts/notes_controller_spec.rb'
     - 'spec/models/user_spec.rb'
     - 'spec/services/post_status_service_spec.rb'
-
-RSpec/RepeatedExample:
-  Exclude:
-    - 'spec/policies/status_policy_spec.rb'
 
 RSpec/StubbedMock:
   Exclude:

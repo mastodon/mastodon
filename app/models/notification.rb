@@ -114,7 +114,7 @@ class Notification < ApplicationRecord
         ActiveRecord::Associations::Preloader.new.preload(grouped_notifications, associations)
       end
 
-      unique_target_statuses = notifications.map(&:target_status).compact.uniq
+      unique_target_statuses = notifications.filter_map(&:target_status).uniq
       # Call cache_collection in block
       cached_statuses_by_id = yield(unique_target_statuses).index_by(&:id)
 
