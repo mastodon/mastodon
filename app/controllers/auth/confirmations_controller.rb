@@ -57,9 +57,6 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
 
   def captcha_user_bypass?
     return true if @confirmation_user.nil? || @confirmation_user.confirmed?
-
-    invite = Invite.find(@confirmation_user.invite_id) if @confirmation_user.invite_id.present?
-    invite.present? && !invite.max_uses.nil?
   end
 
   def set_pack
