@@ -33,6 +33,19 @@ class Api::V1::ConversationsController < Api::BaseController
   def paginated_conversations
     AccountConversation.where(account: current_account)
                        .to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
+                       .includes(
+                         account: :account_stat,
+                         last_status: [
+                           :media_attachments,
+                           :preview_cards,
+                           :status_stat,
+                           :tags,
+                           {
+                             active_mentions: [account: :account_stat],
+                             account: :account_stat,
+                           },
+                         ]
+                       )
   end
 
   def insert_pagination_headers
