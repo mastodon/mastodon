@@ -41,6 +41,7 @@ class Form::AdminSettings
     content_cache_retention_period
     backups_retention_period
     status_page_url
+    captcha_enabled
   ).freeze
 
   INTEGER_KEYS = %i(
