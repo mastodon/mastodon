@@ -143,7 +143,7 @@ class Account extends ImmutablePureComponent {
     const firstVerifiedField = account.get('fields').find(item => !!item.get('verified_at'));
 
     if (firstVerifiedField) {
-      verification = <>· <VerifiedBadge link={firstVerifiedField.get('value')} /></>;
+      verification = <> <span className='separator'>·</span> <VerifiedBadge link={firstVerifiedField.get('value')} /></>;
     }
 
     return (
