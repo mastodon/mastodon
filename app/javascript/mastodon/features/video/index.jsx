@@ -1,13 +1,19 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { is } from 'immutable';
-import { throttle, debounce } from 'lodash';
+
 import classNames from 'classnames';
-import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
+
+import { is } from 'immutable';
+
+import { throttle } from 'lodash';
+
+import { Blurhash } from 'mastodon/components/blurhash';
+import { Icon }  from 'mastodon/components/icon';
+
 import { displayMedia, useBlurhash } from '../../initial_state';
-import Icon from 'mastodon/components/icon';
-import Blurhash from 'mastodon/components/blurhash';
+import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
@@ -94,7 +100,7 @@ export const fileNameFromURL = str => {
   return pathname.slice(index + 1);
 };
 
-class Video extends React.PureComponent {
+class Video extends PureComponent {
 
   static propTypes = {
     preview: PropTypes.string,
@@ -102,8 +108,6 @@ class Video extends React.PureComponent {
     src: PropTypes.string.isRequired,
     alt: PropTypes.string,
     lang: PropTypes.string,
-    width: PropTypes.number,
-    height: PropTypes.number,
     sensitive: PropTypes.bool,
     currentTime: PropTypes.number,
     onOpenVideo: PropTypes.func,
@@ -112,7 +116,6 @@ class Video extends React.PureComponent {
     inline: PropTypes.bool,
     editable: PropTypes.bool,
     alwaysVisible: PropTypes.bool,
-    cacheWidth: PropTypes.func,
     visible: PropTypes.bool,
     onToggleVisibility: PropTypes.func,
     deployPictureInPicture: PropTypes.func,
@@ -135,7 +138,6 @@ class Video extends React.PureComponent {
     volume: 0.5,
     paused: true,
     dragging: false,
-    containerWidth: this.props.width,
     fullscreen: false,
     hovered: false,
     muted: false,
@@ -144,23 +146,7 @@ class Video extends React.PureComponent {
 
   setPlayerRef = c => {
     this.player = c;
-
-    if (this.player) {
-      this._setDimensions();
-    }
   };
-
-  _setDimensions () {
-    const width = this.player.offsetWidth;
-
-    if (this.props.cacheWidth) {
-      this.props.cacheWidth(width);
-    }
-
-    this.setState({
-      containerWidth: width,
-    });
-  }
 
   setVideoRef = c => {
     this.video = c;
@@ -370,12 +356,10 @@ class Video extends React.PureComponent {
     document.addEventListener('MSFullscreenChange', this.handleFullscreenChange, true);
 
     window.addEventListener('scroll', this.handleScroll);
-    window.addEventListener('resize', this.handleResize, { passive: true });
   }
 
   componentWillUnmount () {
     window.removeEventListener('scroll', this.handleScroll);
-    window.removeEventListener('resize', this.handleResize);
 
     document.removeEventListener('fullscreenchange', this.handleFullscreenChange, true);
     document.removeEventListener('webkitfullscreenchange', this.handleFullscreenChange, true);
@@ -392,7 +376,7 @@ class Video extends React.PureComponent {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (!is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
       this.setState({ revealed: nextProps.visible });
     }
@@ -403,14 +387,6 @@ class Video extends React.PureComponent {
       this.video.pause();
     }
   }
-
-  handleResize = debounce(() => {
-    if (this.player) {
-      this._setDimensions();
-    }
-  }, 250, {
-    trailing: true,
-  });
 
   handleScroll = throttle(() => {
     if (!this.video) {
@@ -499,7 +475,7 @@ class Video extends React.PureComponent {
   handleOpenVideo = () => {
     this.video.pause();
 
-    this.props.onOpenVideo({
+    this.props.onOpenVideo(this.props.lang, {
       startTime: this.video.currentTime,
       autoPlay: !this.state.paused,
       defaultVolume: this.state.volume,
@@ -525,17 +501,12 @@ class Video extends React.PureComponent {
 
   render () {
     const { preview, src, inline, onOpenVideo, onCloseVideo, intl, alt, lang, detailed, sensitive, editable, blurhash, autoFocus } = this.props;
-    const { containerWidth, currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
+    const { currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
     const playerStyle = {};
 
-    let { width, height } = this.props;
-
-    if (inline && containerWidth) {
-      width  = containerWidth;
-      height = containerWidth / (16/9);
-
-      playerStyle.height = height;
+    if (inline) {
+      playerStyle.aspectRatio = '16 / 9';
     }
 
     let preload;
@@ -586,8 +557,6 @@ class Video extends React.PureComponent {
           aria-label={alt}
           title={alt}
           lang={lang}
-          width={width}
-          height={height}
           volume={volume}
           onClick={this.togglePlay}
           onKeyDown={this.handleVideoKeyDown}
@@ -596,6 +565,7 @@ class Video extends React.PureComponent {
           onLoadedData={this.handleLoadedData}
           onProgress={this.handleProgress}
           onVolumeChange={this.handleVolumeChange}
+          style={{ ...playerStyle, width: '100%' }}
         />}
 
         <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed || editable })}>

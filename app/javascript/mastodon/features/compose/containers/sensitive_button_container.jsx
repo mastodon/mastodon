@@ -1,9 +1,13 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { changeComposeSensitivity } from 'mastodon/actions/compose';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+
+import { connect } from 'react-redux';
+
+import { changeComposeSensitivity } from 'mastodon/actions/compose';
 
 const messages = defineMessages({
   marked: {
@@ -30,7 +34,7 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-class SensitiveButton extends React.PureComponent {
+class SensitiveButton extends PureComponent {
 
   static propTypes = {
     active: PropTypes.bool,

@@ -1,19 +1,22 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
+import { OrderedSet } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
-import StatusCheckBox from 'mastodon/features/report/containers/status_check_box_container';
-import { OrderedSet } from 'immutable';
-import { FormattedMessage } from 'react-intl';
+
 import Button from 'mastodon/components/button';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
+import StatusCheckBox from 'mastodon/features/report/containers/status_check_box_container';
 
 const mapStateToProps = (state, { accountId }) => ({
   availableStatusIds: OrderedSet(state.getIn(['timelines', `account:${accountId}:with_replies`, 'items'])),
   isLoading: state.getIn(['timelines', `account:${accountId}:with_replies`, 'isLoading']),
 });
 
-class Statuses extends React.PureComponent {
+class Statuses extends PureComponent {
 
   static propTypes = {
     onNextStep: PropTypes.func.isRequired,
@@ -33,7 +36,7 @@ class Statuses extends React.PureComponent {
     const { availableStatusIds, selectedStatusIds, onToggle, isLoading } = this.props;
 
     return (
-      <React.Fragment>
+      <>
         <h3 className='report-dialog-modal__title'><FormattedMessage id='report.statuses.title' defaultMessage='Are there any posts that back up this report?' /></h3>
         <p className='report-dialog-modal__lead'><FormattedMessage id='report.statuses.subtitle' defaultMessage='Select all that apply' /></p>
 
@@ -53,7 +56,7 @@ class Statuses extends React.PureComponent {
         <div className='report-dialog-modal__actions'>
           <Button onClick={this.handleNextClick}><FormattedMessage id='report.next' defaultMessage='Next' /></Button>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 

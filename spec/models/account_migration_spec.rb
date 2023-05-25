@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AccountMigration, type: :model do
+RSpec.describe AccountMigration do
   describe 'validations' do
     let(:source_account) { Fabricate(:account) }
     let(:target_acct)    { target_account.acct }
@@ -25,7 +25,7 @@ RSpec.describe AccountMigration, type: :model do
       end
     end
 
-    context 'with unresolveable account' do
+    context 'with unresolvable account' do
       let(:target_acct) { 'target@remote' }
 
       before do

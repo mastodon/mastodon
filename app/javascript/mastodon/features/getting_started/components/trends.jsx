@@ -1,10 +1,13 @@
-import React from 'react';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
+
 import { FormattedMessage } from 'react-intl';
+
 import { Link } from 'react-router-dom';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 
 export default class Trends extends ImmutablePureComponent {
 

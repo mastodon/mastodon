@@ -1,8 +1,7 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { makeGetAccount } from '../selectors';
-import Account from '../components/account';
+
+import { connect } from 'react-redux';
+
 import {
   followAccount,
   unfollowAccount,
@@ -13,7 +12,9 @@ import {
 } from '../actions/accounts';
 import { openModal } from '../actions/modal';
 import { initMuteModal } from '../actions/mutes';
+import Account from '../components/account';
 import { unfollowModal } from '../initial_state';
+import { makeGetAccount } from '../selectors';
 
 const messages = defineMessages({
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },

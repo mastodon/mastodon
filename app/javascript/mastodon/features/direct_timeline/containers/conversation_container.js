@@ -1,11 +1,14 @@
+import { defineMessages, injectIntl } from 'react-intl';
+
 import { connect } from 'react-redux';
-import Conversation from '../components/conversation';
-import { markConversationRead, deleteConversation } from 'mastodon/actions/conversations';
-import { makeGetStatus } from 'mastodon/selectors';
+
 import { replyCompose } from 'mastodon/actions/compose';
+import { markConversationRead, deleteConversation } from 'mastodon/actions/conversations';
 import { openModal } from 'mastodon/actions/modal';
 import { muteStatus, unmuteStatus, hideStatus, revealStatus } from 'mastodon/actions/statuses';
-import { defineMessages, injectIntl } from 'react-intl';
+import { makeGetStatus } from 'mastodon/selectors';
+
+import Conversation from '../components/conversation';
 
 const messages = defineMessages({
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },

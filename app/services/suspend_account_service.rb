@@ -68,7 +68,7 @@ class SuspendAccountService < BaseService
     @account.media_attachments.find_each do |media_attachment|
       attachment_names.each do |attachment_name|
         attachment = media_attachment.public_send(attachment_name)
-        styles     = [:original] | attachment.styles.keys
+        styles     = MediaAttachment::DEFAULT_STYLES | attachment.styles.keys
 
         next if attachment.blank?
 

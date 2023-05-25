@@ -14,7 +14,7 @@ class NotificationMailer < ApplicationMailer
 
     locale_for_account(@me) do
       thread_by_conversation(@status.conversation)
-      mail to: @me.user.email, subject: I18n.t('notification_mailer.mention.subject', name: @status.account.acct)
+      mail to: email_address_with_name(@me.user.email, @me.user.account.username), subject: I18n.t('notification_mailer.mention.subject', name: @status.account.acct)
     end
   end
 
@@ -25,7 +25,7 @@ class NotificationMailer < ApplicationMailer
     return unless @me.user.functional?
 
     locale_for_account(@me) do
-      mail to: @me.user.email, subject: I18n.t('notification_mailer.follow.subject', name: @account.acct)
+      mail to: email_address_with_name(@me.user.email, @me.user.account.username), subject: I18n.t('notification_mailer.follow.subject', name: @account.acct)
     end
   end
 
@@ -38,7 +38,7 @@ class NotificationMailer < ApplicationMailer
 
     locale_for_account(@me) do
       thread_by_conversation(@status.conversation)
-      mail to: @me.user.email, subject: I18n.t('notification_mailer.favourite.subject', name: @account.acct)
+      mail to: email_address_with_name(@me.user.email, @me.user.account.username), subject: I18n.t('notification_mailer.favourite.subject', name: @account.acct)
     end
   end
 
@@ -51,7 +51,7 @@ class NotificationMailer < ApplicationMailer
 
     locale_for_account(@me) do
       thread_by_conversation(@status.conversation)
-      mail to: @me.user.email, subject: I18n.t('notification_mailer.reblog.subject', name: @account.acct)
+      mail to: email_address_with_name(@me.user.email, @me.user.account.username), subject: I18n.t('notification_mailer.reblog.subject', name: @account.acct)
     end
   end
 
@@ -62,7 +62,7 @@ class NotificationMailer < ApplicationMailer
     return unless @me.user.functional?
 
     locale_for_account(@me) do
-      mail to: @me.user.email, subject: I18n.t('notification_mailer.follow_request.subject', name: @account.acct)
+      mail to: email_address_with_name(@me.user.email, @me.user.account.username), subject: I18n.t('notification_mailer.follow_request.subject', name: @account.acct)
     end
   end
 

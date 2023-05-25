@@ -3,12 +3,16 @@ module.exports = (api) => {
 
   const reactOptions = {
     development: false,
+    runtime: 'automatic',
   };
 
   const envOptions = {
     loose: true,
     modules: false,
     debug: false,
+    include: [
+      'proposal-numeric-separator',
+    ],
   };
 
   const config = {

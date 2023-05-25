@@ -16,19 +16,6 @@ class Api::V1::Admin::DomainAllowsController < Api::BaseController
 
   PAGINATION_PARAMS = %i(limit).freeze
 
-  def create
-    authorize :domain_allow, :create?
-
-    @domain_allow = DomainAllow.find_by(resource_params)
-
-    if @domain_allow.nil?
-      @domain_allow = DomainAllow.create!(resource_params)
-      log_action :create, @domain_allow
-    end
-
-    render json: @domain_allow, serializer: REST::Admin::DomainAllowSerializer
-  end
-
   def index
     authorize :domain_allow, :index?
     render json: @domain_allows, each_serializer: REST::Admin::DomainAllowSerializer
@@ -36,6 +23,19 @@ class Api::V1::Admin::DomainAllowsController < Api::BaseController
 
   def show
     authorize @domain_allow, :show?
+    render json: @domain_allow, serializer: REST::Admin::DomainAllowSerializer
+  end
+
+  def create
+    authorize :domain_allow, :create?
+
+    @domain_allow = DomainAllow.find_by(domain: resource_params[:domain])
+
+    if @domain_allow.nil?
+      @domain_allow = DomainAllow.create!(resource_params)
+      log_action :create, @domain_allow
+    end
+
     render json: @domain_allow, serializer: REST::Admin::DomainAllowSerializer
   end
 

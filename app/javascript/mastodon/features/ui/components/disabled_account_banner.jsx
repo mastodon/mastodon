@@ -1,10 +1,14 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { PureComponent } from 'react';
+
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
-import { disabledAccountId, movedToAccountId, domain } from 'mastodon/initial_state';
+
+import { Link } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+
 import { openModal } from 'mastodon/actions/modal';
+import { disabledAccountId, movedToAccountId, domain } from 'mastodon/initial_state';
 import { logOut } from 'mastodon/utils/log_out';
 
 const messages = defineMessages({
@@ -28,7 +32,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 });
 
-class DisabledAccountBanner extends React.PureComponent {
+class DisabledAccountBanner extends PureComponent {
 
   static propTypes = {
     disabledAcct: PropTypes.string.isRequired,

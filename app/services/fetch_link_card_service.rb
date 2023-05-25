@@ -23,7 +23,7 @@ class FetchLinkCardService < BaseService
 
     @url = @original_url.to_s
 
-    with_lock("fetch:#{@original_url}") do
+    with_redis_lock("fetch:#{@original_url}") do
       @card = PreviewCard.find_by(url: @url)
       process_url if @card.nil? || @card.updated_at <= 2.weeks.ago || @card.missing_image?
     end

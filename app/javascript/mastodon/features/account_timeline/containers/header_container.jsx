@@ -1,7 +1,9 @@
-import React from 'react';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
 import { connect } from 'react-redux';
-import { makeGetAccount, getAccountHidden } from '../../../selectors';
-import Header from '../components/header';
+
+import { openURL } from 'mastodon/actions/search';
+
 import {
   followAccount,
   unfollowAccount,
@@ -10,22 +12,23 @@ import {
   pinAccount,
   unpinAccount,
 } from '../../../actions/accounts';
+import { initBlockModal } from '../../../actions/blocks';
 import {
   mentionCompose,
   directCompose,
 } from '../../../actions/compose';
-import { initMuteModal } from '../../../actions/mutes';
-import { initBlockModal } from '../../../actions/blocks';
-import { initReport } from '../../../actions/reports';
-import { openModal } from '../../../actions/modal';
 import { blockDomain, unblockDomain } from '../../../actions/domain_blocks';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { openModal } from '../../../actions/modal';
+import { initMuteModal } from '../../../actions/mutes';
+import { initReport } from '../../../actions/reports';
 import { unfollowModal } from '../../../initial_state';
+import { makeGetAccount, getAccountHidden } from '../../../selectors';
+import Header from '../components/header';
 
 const messages = defineMessages({
   cancelFollowRequestConfirm: { id: 'confirmations.cancel_follow_request.confirm', defaultMessage: 'Withdraw request' },
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
-  blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Hide entire domain' },
+  blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Block entire domain' },
 });
 
 const makeMapStateToProps = () => {
@@ -157,6 +160,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       src: account.get('avatar'),
       alt: account.get('acct'),
     }));
+  },
+
+  onOpenURL (url, routerHistory, onFailure) {
+    dispatch(openURL(url, routerHistory, onFailure));
   },
 
 });

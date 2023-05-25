@@ -1,6 +1,7 @@
 import api from '../api';
-import { importFetchedAccounts } from './importer';
+
 import { showAlertForError } from './alerts';
+import { importFetchedAccounts } from './importer';
 
 export const LIST_FETCH_REQUEST = 'LIST_FETCH_REQUEST';
 export const LIST_FETCH_SUCCESS = 'LIST_FETCH_SUCCESS';
