@@ -6,7 +6,7 @@ class InvitePolicy < ApplicationPolicy
   end
 
   def create?
-    role.can?(:invite_users)
+    role.can?(:invite_users) && (current_user.created_at <= (Time.now.utc - 7.days) || unrestricted?)
   end
 
   def unrestricted?

@@ -7,7 +7,7 @@ RSpec.describe InvitePolicy do
   subject { described_class }
 
   let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
-  let(:john)    { Fabricate(:user).account }
+  let(:john)    { Fabricate(:user, created_at: 7.days.ago).account }
 
   permissions :index? do
     context 'when staff?' do

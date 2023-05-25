@@ -5,7 +5,7 @@ require 'rails_helper'
 describe InvitesController do
   render_views
 
-  let(:user) { Fabricate(:user) }
+  let(:user) { Fabricate(:user, created_at: 7.days.ago) }
 
   before do
     sign_in user
