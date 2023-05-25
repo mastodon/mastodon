@@ -152,7 +152,7 @@ namespace :api, format: false do
     namespace :accounts do
       get :verify_credentials, to: 'credentials#show'
       patch :update_credentials, to: 'credentials#update'
-      delete '/pictures/:picture', to: 'pictures#destroy'
+      resources :pictures, only: :destroy, param: :picture
       resource :search, only: :show, controller: :search
       resource :lookup, only: :show, controller: :lookup
       resources :relationships, only: :index
