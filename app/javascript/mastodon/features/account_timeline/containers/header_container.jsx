@@ -48,20 +48,26 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onFollow (account) {
     if (account.getIn(['relationship', 'following'])) {
       if (unfollowModal) {
-        dispatch(openModal('CONFIRM', {
-          message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-          confirm: intl.formatMessage(messages.unfollowConfirm),
-          onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+        dispatch(openModal({
+          modalType: 'CONFIRM',
+          modalProps: {
+            message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+            confirm: intl.formatMessage(messages.unfollowConfirm),
+            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+          },
         }));
       } else {
         dispatch(unfollowAccount(account.get('id')));
       }
     } else if (account.getIn(['relationship', 'requested'])) {
       if (unfollowModal) {
-        dispatch(openModal('CONFIRM', {
-          message: <FormattedMessage id='confirmations.cancel_follow_request.message' defaultMessage='Are you sure you want to withdraw your request to follow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-          confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
-          onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+        dispatch(openModal({
+          modalType: 'CONFIRM',
+          modalProps: {
+            message: <FormattedMessage id='confirmations.cancel_follow_request.message' defaultMessage='Are you sure you want to withdraw your request to follow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+            confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
+            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+          },
         }));
       } else {
         dispatch(unfollowAccount(account.get('id')));
@@ -72,10 +78,13 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onInteractionModal (account) {
-    dispatch(openModal('INTERACTION', {
-      type: 'follow',
-      accountId: account.get('id'),
-      url: account.get('url'),
+    dispatch(openModal({
+      modalType: 'INTERACTION',
+      modalProps: {
+        type: 'follow',
+        accountId: account.get('id'),
+        url: account.get('url'),
+      },
     }));
   },
 
@@ -132,10 +141,13 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onBlockDomain (domain) {
-    dispatch(openModal('CONFIRM', {
-      message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.' values={{ domain: <strong>{domain}</strong> }} />,
-      confirm: intl.formatMessage(messages.blockDomainConfirm),
-      onConfirm: () => dispatch(blockDomain(domain)),
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.' values={{ domain: <strong>{domain}</strong> }} />,
+        confirm: intl.formatMessage(messages.blockDomainConfirm),
+        onConfirm: () => dispatch(blockDomain(domain)),
+      },
     }));
   },
 
@@ -144,21 +156,30 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onAddToList (account) {
-    dispatch(openModal('LIST_ADDER', {
-      accountId: account.get('id'),
+    dispatch(openModal({
+      modalType: 'LIST_ADDER',
+      modalProps: {
+        accountId: account.get('id'),
+      },
     }));
   },
 
   onChangeLanguages (account) {
-    dispatch(openModal('SUBSCRIBED_LANGUAGES', {
-      accountId: account.get('id'),
+    dispatch(openModal({
+      modalType: 'SUBSCRIBED_LANGUAGES',
+      modalProps: {
+        accountId: account.get('id'),
+      },
     }));
   },
 
   onOpenAvatar (account) {
-    dispatch(openModal('IMAGE', {
-      src: account.get('avatar'),
-      alt: account.get('acct'),
+    dispatch(openModal({
+      modalType: 'IMAGE',
+      modalProps: {
+        src: account.get('avatar'),
+        alt: account.get('acct'),
+      },
     }));
   },
 
