@@ -154,7 +154,7 @@ class Account extends ImmutablePureComponent {
               <Avatar account={account} size={size} />
             </div>
 
-            <div>
+            <div className='account__contents'>
               <DisplayName account={account} />
               {!minimal && <><ShortNumber value={account.get('followers_count')} renderer={counterRenderer('followers')} /> {verification} {muteTimeRemaining}</>}
             </div>
