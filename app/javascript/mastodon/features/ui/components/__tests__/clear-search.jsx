@@ -1,7 +1,10 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-import ColumnLink from '../column_link';
+
 import { MemoryRouter } from 'react-router-dom';
+
+import { render, fireEvent, screen } from '@testing-library/react';
+
+import ColumnLink from '../column_link';
 
 describe('<ColumnLink />', () => {
   it('clears the search bar on explore click', () => {
