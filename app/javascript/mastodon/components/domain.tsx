@@ -1,6 +1,9 @@
 import React, { useCallback } from 'react';
+
+import type { InjectedIntl } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
+
 import { IconButton } from './icon_button';
-import { InjectedIntl, defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
   unblockDomain: {
@@ -9,11 +12,11 @@ const messages = defineMessages({
   },
 });
 
-type Props = {
+interface Props {
   domain: string;
   onUnblockDomain: (domain: string) => void;
   intl: InjectedIntl;
-};
+}
 const _Domain: React.FC<Props> = ({ domain, onUnblockDomain, intl }) => {
   const handleDomainUnblock = useCallback(() => {
     onUnblockDomain(domain);

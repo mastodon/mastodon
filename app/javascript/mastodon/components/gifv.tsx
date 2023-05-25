@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
-type Props = {
+interface Props {
   src: string;
   key: string;
   alt?: string;
@@ -8,7 +8,7 @@ type Props = {
   width: number;
   height: number;
   onClick?: () => void;
-};
+}
 
 export const GIFV: React.FC<Props> = ({
   src,

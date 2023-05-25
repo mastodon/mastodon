@@ -1,9 +1,11 @@
 import React from 'react';
-import classNames from 'classnames';
-import { Icon } from './icon';
-import { AnimatedNumber } from './animated_number';
 
-type Props = {
+import classNames from 'classnames';
+
+import { AnimatedNumber } from './animated_number';
+import { Icon } from './icon';
+
+interface Props {
   className?: string;
   title: string;
   icon: string;
@@ -25,11 +27,11 @@ type Props = {
   obfuscateCount?: boolean;
   href?: string;
   ariaHidden: boolean;
-};
-type States = {
+}
+interface States {
   activate: boolean;
   deactivate: boolean;
-};
+}
 export class IconButton extends React.PureComponent<Props, States> {
   static defaultProps = {
     size: 18,

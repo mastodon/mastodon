@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusContent from 'mastodon/components/status_content';
 import { Avatar } from 'mastodon/components/avatar';
-import DisplayName from 'mastodon/components/display_name';
+import { DisplayName } from 'mastodon/components/display_name';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import Option from './option';
 import MediaAttachments from 'mastodon/components/media_attachments';

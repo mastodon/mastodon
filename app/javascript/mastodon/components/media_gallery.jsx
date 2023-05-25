@@ -231,7 +231,7 @@ class MediaGallery extends React.PureComponent {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (!is(nextProps.media, this.props.media) && nextProps.visible === undefined) {
       this.setState({ visible: displayMedia !== 'hide_all' && !nextProps.sensitive || displayMedia === 'show_all' });
     } else if (!is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
@@ -256,7 +256,7 @@ class MediaGallery extends React.PureComponent {
   };
 
   handleClick = (index) => {
-    this.props.onOpenMedia(this.props.media, index);
+    this.props.onOpenMedia(this.props.media, index, this.props.lang);
   };
 
   handleRef = c => {
