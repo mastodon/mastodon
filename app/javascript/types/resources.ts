@@ -1,10 +1,6 @@
 import type { Record } from 'immutable';
 
-type CustomEmoji = Record<{
-  shortcode: string;
-  static_url: string;
-  url: string;
-}>;
+import type { CustomEmoji } from './custom_emoji';
 
 type AccountField = Record<{
   name: string;
