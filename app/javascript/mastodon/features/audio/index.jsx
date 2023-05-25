@@ -6,7 +6,6 @@ import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import classNames from 'classnames';
 
 import { is } from 'immutable';
-import { currentMedia, setCurrentMedia } from '../../reducers/media_attachments';
 
 import { throttle, debounce } from 'lodash';
 
@@ -15,6 +14,8 @@ import { formatTime, getPointerPosition, fileNameFromURL } from 'mastodon/featur
 
 import { Blurhash } from '../../components/blurhash';
 import { displayMedia, useBlurhash } from '../../initial_state';
+
+import { currentMedia, setCurrentMedia } from '../../reducers/media_attachments';
 
 import Visualizer from './visualizer';
 
