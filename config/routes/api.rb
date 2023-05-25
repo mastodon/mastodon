@@ -110,6 +110,7 @@ namespace :api, format: false do
 
     namespace :emails do
       resources :confirmations, only: [:create]
+      get :check_confirmation, to: 'confirmations#check'
     end
 
     resource :instance, only: [:show] do

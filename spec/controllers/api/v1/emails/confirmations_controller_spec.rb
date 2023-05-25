@@ -63,4 +63,72 @@ RSpec.describe Api::V1::Emails::ConfirmationsController do
       end
     end
   end
+
+  describe '#check' do
+    let(:scopes) { 'read' }
+
+    context 'with an oauth token' do
+      before do
+        allow(controller).to receive(:doorkeeper_token) { token }
+      end
+
+      context 'when the account is not confirmed' do
+        it 'returns http success' do
+          get :check
+          expect(response).to have_http_status(200)
+        end
+
+        it 'returns false' do
+          get :check
+          expect(body_as_json).to be false
+        end
+      end
+
+      context 'when the account is confirmed' do
+        let(:confirmed_at) { Time.now.utc }
+
+        it 'returns http success' do
+          get :check
+          expect(response).to have_http_status(200)
+        end
+
+        it 'returns true' do
+          get :check
+          expect(body_as_json).to be true
+        end
+      end
+    end
+
+    context 'with an authentication cookie' do
+      before do
+        sign_in user, scope: :user
+      end
+
+      context 'when the account is not confirmed' do
+        it 'returns http success' do
+          get :check
+          expect(response).to have_http_status(200)
+        end
+
+        it 'returns false' do
+          get :check
+          expect(body_as_json).to be false
+        end
+      end
+
+      context 'when the account is confirmed' do
+        let(:confirmed_at) { Time.now.utc }
+
+        it 'returns http success' do
+          get :check
+          expect(response).to have_http_status(200)
+        end
+
+        it 'returns true' do
+          get :check
+          expect(body_as_json).to be true
+        end
+      end
+    end
+  end
 end
