@@ -9,6 +9,13 @@ interface AccountFieldRawValues {
 }
 type AccountField = Record<AccountFieldRawValues>;
 
+interface AccountRoleRawValues {
+  color: string;
+  id: string;
+  name: string;
+}
+type AccountRole = Record<AccountRoleRawValues>;
+
 interface AccountApiRawValues {
   acct: string;
   avatar: string;
@@ -27,7 +34,9 @@ interface AccountApiRawValues {
   id: string;
   last_status_at: string;
   locked: boolean;
+  noindex: boolean;
   note: string;
+  roles: AccountRoleRawValues[];
   statuses_count: number;
   url: string;
   username: string;
@@ -39,8 +48,10 @@ interface NormalizedAccountValues {
   fields: AccountField[];
   note_emojified: string;
   note_plain: string;
+  roles: AccountRole[];
 }
 
 export type Account = Record<
-  Exclude<AccountApiRawValues, 'emojis' | 'fields'> & NormalizedAccountValues
+  Exclude<AccountApiRawValues, 'emojis' | 'fields' | 'roles'> &
+    NormalizedAccountValues
 >;
