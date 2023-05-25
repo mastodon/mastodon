@@ -1,14 +1,15 @@
 import type { Record } from 'immutable';
 
-import type { CustomEmoji } from './custom_emoji';
+import type { CustomEmoji, CustomEmojiRawValues } from './custom_emoji';
 
-type AccountField = Record<{
+interface AccountFieldRawValues {
   name: string;
   value: string;
   verified_at: string | null;
-}>;
+}
+type AccountField = Record<AccountFieldRawValues>;
 
-interface AccountApiResponseValues {
+interface AccountApiRawValues {
   acct: string;
   avatar: string;
   avatar_static: string;
@@ -16,8 +17,8 @@ interface AccountApiResponseValues {
   created_at: string;
   discoverable: boolean;
   display_name: string;
-  emojis: CustomEmoji[];
-  fields: AccountField[];
+  emojis: CustomEmojiRawValues[];
+  fields: AccountFieldRawValues[];
   followers_count: number;
   following_count: number;
   group: boolean;
@@ -32,19 +33,14 @@ interface AccountApiResponseValues {
   username: string;
 }
 
-type NormalizedAccountField = Record<{
-  name_emojified: string;
-  value_emojified: string;
-  value_plain: string;
-}>;
-
 interface NormalizedAccountValues {
   display_name_html: string;
-  fields: NormalizedAccountField[];
+  emojis: CustomEmoji[];
+  fields: AccountField[];
   note_emojified: string;
   note_plain: string;
 }
 
 export type Account = Record<
-  AccountApiResponseValues & NormalizedAccountValues
+  Exclude<AccountApiRawValues, 'emojis' | 'fields'> & NormalizedAccountValues
 >;
