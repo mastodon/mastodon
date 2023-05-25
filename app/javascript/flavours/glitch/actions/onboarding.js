@@ -6,7 +6,9 @@ export function showOnboardingOnce() {
     const alreadySeen = getState().getIn(['settings', 'onboarded']);
 
     if (!alreadySeen) {
-      dispatch(openModal('ONBOARDING'));
+      dispatch(openModal({
+        modalType: 'ONBOARDING',
+      }));
       dispatch(changeSetting(['onboarded'], true));
       dispatch(saveSettings());
     }

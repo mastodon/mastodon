@@ -10,7 +10,7 @@ const SignInBanner = () => {
   const dispatch = useAppDispatch();
 
   const openClosedRegistrationsModal = useCallback(
-    () => dispatch(openModal('CLOSED_REGISTRATIONS')),
+    () => dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' })),
     [dispatch],
   );
 

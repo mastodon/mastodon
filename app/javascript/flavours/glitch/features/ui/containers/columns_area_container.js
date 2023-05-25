@@ -12,7 +12,10 @@ const mapDispatchToProps = dispatch => ({
   openSettings (e) {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(openModal('SETTINGS', {}));
+    dispatch(openModal({
+      modalType: 'SETTINGS',
+      modalProps: {},
+    }));
   },
 });
 

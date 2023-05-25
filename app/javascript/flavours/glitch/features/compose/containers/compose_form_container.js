@@ -126,18 +126,24 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onMediaDescriptionConfirm(routerHistory, mediaId, overriddenVisibility = null) {
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.missingDescriptionMessage),
-      confirm: intl.formatMessage(messages.missingDescriptionConfirm),
-      onConfirm: () => {
-        if (overriddenVisibility) {
-          dispatch(changeComposeVisibility(overriddenVisibility));
-        }
-        dispatch(submitCompose(routerHistory));
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.missingDescriptionMessage),
+        confirm: intl.formatMessage(messages.missingDescriptionConfirm),
+        onConfirm: () => {
+          if (overriddenVisibility) {
+            dispatch(changeComposeVisibility(overriddenVisibility));
+          }
+          dispatch(submitCompose(routerHistory));
+        },
+        secondary: intl.formatMessage(messages.missingDescriptionEdit),
+        onSecondary: () => dispatch(openModal({
+          modalType: 'FOCAL_POINT',
+          modalProps: { id: mediaId },
+        })),
+        onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_missing_media_description'], false)),
       },
-      secondary: intl.formatMessage(messages.missingDescriptionEdit),
-      onSecondary: () => dispatch(openModal('FOCAL_POINT', { id: mediaId })),
-      onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_missing_media_description'], false)),
     }));
   },
 

@@ -7,7 +7,7 @@ import Dropdown from '../components/dropdown';
 
 const mapDispatchToProps = dispatch => ({
   isUserTouching,
-  onModalOpen: props => dispatch(openModal('ACTIONS', props)),
+  onModalOpen: props => dispatch(openModal({ modalType: 'ACTIONS', modalProps: props })),
   onModalClose: () => dispatch(closeModal()),
 });
 

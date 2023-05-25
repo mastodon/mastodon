@@ -23,10 +23,13 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onDeleteMarked() {
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.clearMessage),
-      confirm: intl.formatMessage(messages.clearConfirm),
-      onConfirm: () => dispatch(deleteMarkedNotifications()),
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.clearMessage),
+        confirm: intl.formatMessage(messages.clearConfirm),
+        onConfirm: () => dispatch(deleteMarkedNotifications()),
+      },
     }));
   },
 

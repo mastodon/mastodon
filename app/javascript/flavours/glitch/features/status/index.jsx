@@ -289,14 +289,23 @@ class Status extends ImmutablePureComponent {
         if ((e && e.shiftKey) || !favouriteModal) {
           this.handleModalFavourite(status);
         } else {
-          dispatch(openModal('FAVOURITE', { status, onFavourite: this.handleModalFavourite }));
+          dispatch(openModal({
+            modalType: 'FAVOURITE',
+            modalProps: {
+              status,
+              onFavourite: this.handleModalFavourite,
+            },
+          }));
         }
       }
     } else {
-      dispatch(openModal('INTERACTION', {
-        type: 'favourite',
-        accountId: status.getIn(['account', 'id']),
-        url: status.get('url'),
+      dispatch(openModal({
+        modalType: 'INTERACTION',
+        modalProps: {
+          type: 'favourite',
+          accountId: status.getIn(['account', 'id']),
+          url: status.get('url'),
+        },
       }));
     }
   };
@@ -315,20 +324,26 @@ class Status extends ImmutablePureComponent {
 
     if (signedIn) {
       if (askReplyConfirmation) {
-        dispatch(openModal('CONFIRM', {
-          message: intl.formatMessage(messages.replyMessage),
-          confirm: intl.formatMessage(messages.replyConfirm),
-          onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_before_clearing_draft'], false)),
-          onConfirm: () => dispatch(replyCompose(status, this.context.router.history)),
+        dispatch(openModal({
+          modalType: 'CONFIRM',
+          modalProps: {
+            message: intl.formatMessage(messages.replyMessage),
+            confirm: intl.formatMessage(messages.replyConfirm),
+            onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_before_clearing_draft'], false)),
+            onConfirm: () => dispatch(replyCompose(status, this.context.router.history)),
+          },
         }));
       } else {
         dispatch(replyCompose(status, this.context.router.history));
       }
     } else {
-      dispatch(openModal('INTERACTION', {
-        type: 'reply',
-        accountId: status.getIn(['account', 'id']),
-        url: status.get('url'),
+      dispatch(openModal({
+        modalType: 'INTERACTION',
+        modalProps: {
+          type: 'reply',
+          accountId: status.getIn(['account', 'id']),
+          url: status.get('url'),
+        },
       }));
     }
   };
@@ -356,10 +371,13 @@ class Status extends ImmutablePureComponent {
         dispatch(initBoostModal({ status, onReblog: this.handleModalReblog }));
       }
     } else {
-      dispatch(openModal('INTERACTION', {
-        type: 'reblog',
-        accountId: status.getIn(['account', 'id']),
-        url: status.get('url'),
+      dispatch(openModal({
+        modalType: 'INTERACTION',
+        modalProps: {
+          type: 'reblog',
+          accountId: status.getIn(['account', 'id']),
+          url: status.get('url'),
+        },
       }));
     }
   };
@@ -378,10 +396,13 @@ class Status extends ImmutablePureComponent {
     if (!deleteModal) {
       dispatch(deleteStatus(status.get('id'), history, withRedraft));
     } else {
-      dispatch(openModal('CONFIRM', {
-        message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
-        confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
-        onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
+      dispatch(openModal({
+        modalType: 'CONFIRM',
+        modalProps: {
+          message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
+          confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
+          onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
+        },
       }));
     }
   };
@@ -399,11 +420,17 @@ class Status extends ImmutablePureComponent {
   };
 
   handleOpenMedia = (media, index, lang) => {
-    this.props.dispatch(openModal('MEDIA', { statusId: this.props.status.get('id'), media, index, lang }));
+    this.props.dispatch(openModal({
+      modalType: 'MEDIA',
+      modalProps: { statusId: this.props.status.get('id'), media, index, lang },
+    }));
   };
 
   handleOpenVideo = (media, lang, options) => {
-    this.props.dispatch(openModal('VIDEO', { statusId: this.props.status.get('id'), media, lang, options }));
+    this.props.dispatch(openModal({
+      modalType: 'VIDEO',
+      modalProps: { statusId: this.props.status.get('id'), media, lang, options },
+    }));
   };
 
   handleHotkeyOpenMedia = e => {
@@ -470,7 +497,10 @@ class Status extends ImmutablePureComponent {
   };
 
   handleEmbed = (status) => {
-    this.props.dispatch(openModal('EMBED', { url: status.get('url') }));
+    this.props.dispatch(openModal({
+      modalType: 'EMBED',
+      modalProps: { url: status.get('url') },
+    }));
   };
 
   handleHotkeyToggleSensitive = () => {

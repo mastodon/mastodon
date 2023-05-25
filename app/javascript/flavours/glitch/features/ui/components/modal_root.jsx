@@ -40,7 +40,7 @@ import VideoModal from './video_modal';
 
 
 
-const MODAL_COMPONENTS = {
+export const MODAL_COMPONENTS = {
   'MEDIA': () => Promise.resolve({ default: MediaModal }),
   'ONBOARDING': OnboardingModal,
   'VIDEO': () => Promise.resolve({ default: VideoModal }),

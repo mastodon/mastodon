@@ -24,14 +24,17 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onSettingsClick (e) {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(openModal('SETTINGS', {}));
+    dispatch(openModal({ modalType: 'SETTINGS', modalProps: {} }));
   },
   onLogout () {
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.logoutMessage),
-      confirm: intl.formatMessage(messages.logoutConfirm),
-      closeWhenConfirm: false,
-      onConfirm: () => logOut(),
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.logoutMessage),
+        confirm: intl.formatMessage(messages.logoutConfirm),
+        closeWhenConfirm: false,
+        onConfirm: () => logOut(),
+      },
     }));
   },
 });

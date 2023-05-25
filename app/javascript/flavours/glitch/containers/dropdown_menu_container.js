@@ -13,10 +13,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
   onOpen(id, onItemClick, keyboard) {
-    dispatch(isUserTouching() ? openModal('ACTIONS', {
-      status,
-      actions: items,
-      onClick: onItemClick,
+    dispatch(isUserTouching() ? openModal({
+      modalType: 'ACTIONS',
+      modalProps: {
+        status,
+        actions: items,
+        onClick: onItemClick,
+      },
     }) : openDropdownMenu(id, keyboard, scrollKey));
   },
 

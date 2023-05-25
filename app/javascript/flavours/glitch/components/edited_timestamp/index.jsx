@@ -15,7 +15,10 @@ import DropdownMenu from './containers/dropdown_menu_container';
 const mapDispatchToProps = (dispatch, { statusId }) => ({
 
   onItemClick (index) {
-    dispatch(openModal('COMPARE_HISTORY', { index, statusId }));
+    dispatch(openModal({
+      modalType: 'COMPARE_HISTORY',
+      modalProps: { index, statusId },
+    }));
   },
 
 });

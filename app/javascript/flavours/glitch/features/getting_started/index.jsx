@@ -69,7 +69,10 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = dispatch => ({
   fetchFollowRequests: () => dispatch(fetchFollowRequests()),
   fetchLists: () => dispatch(fetchLists()),
-  openSettings: () => dispatch(openModal('SETTINGS', {})),
+  openSettings: () => dispatch(openModal({
+    modalType: 'SETTINGS',
+    modalProps: {},
+  })),
 });
 
 const badgeDisplay = (number, limit) => {

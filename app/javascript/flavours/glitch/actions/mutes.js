@@ -98,7 +98,7 @@ export function initMuteModal(account) {
       account,
     });
 
-    dispatch(openModal('MUTE'));
+    dispatch(openModal({ modalType: 'MUTE' }));
   };
 }
 
