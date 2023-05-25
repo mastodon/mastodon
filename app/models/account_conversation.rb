@@ -26,14 +26,17 @@ class AccountConversation < ApplicationRecord
 
   def participant_account_ids=(arr)
     self[:participant_account_ids] = arr.sort
+    @participant_accounts = nil
   end
 
   def participant_accounts
-    if participant_account_ids.empty?
-      [account]
-    else
-      participants = Account.where(id: participant_account_ids)
-      participants.empty? ? [account] : participants
+    @participant_accounts ||= begin
+      if participant_account_ids.empty?
+        [account]
+      else
+        participants = Account.where(id: participant_account_ids).to_a
+        participants.empty? ? [account] : participants
+      end
     end
   end
 
