@@ -121,10 +121,17 @@ describe Report do
   end
 
   describe 'validations' do
-    it 'is invalid if comment is longer than 1000 characters' do
+    let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
+
+    it 'is invalid if comment is longer than 1000 characters only if reporter is local' do
       report = Fabricate.build(:report, comment: Faker::Lorem.characters(number: 1001))
-      report.valid?
+      expect(report.valid?).to be false
       expect(report).to model_have_error_on_field(:comment)
+    end
+
+    it 'is valid if comment is longer than 1000 characters and reporter is not local' do
+      report = Fabricate.build(:report, account: remote_account, comment: Faker::Lorem.characters(number: 1001))
+      expect(report.valid?).to be true
     end
   end
 end
