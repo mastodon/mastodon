@@ -3328,23 +3328,6 @@ $ui-header-height: 55px;
   }
 }
 
-.scrollable,
-.search-results__section {
-  container: list-layout / inline-size;
-}
-
-@container list-layout (inline-size < 420px) {
-  .account__wrapper {
-    .separator {
-      display: none;
-    }
-
-    .verified-badge {
-      display: flex;
-    }
-  }
-}
-
 .column-back-button {
   box-sizing: border-box;
   width: 100%;
@@ -7833,6 +7816,12 @@ noscript {
 
 .account__contents {
   overflow: hidden;
+}
+
+.account__details {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1em;
 }
 
 .verified-badge {

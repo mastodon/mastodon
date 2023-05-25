@@ -143,7 +143,7 @@ class Account extends ImmutablePureComponent {
     const firstVerifiedField = account.get('fields').find(item => !!item.get('verified_at'));
 
     if (firstVerifiedField) {
-      verification = <> <span className='separator' aria-hidden='true'>·</span> <VerifiedBadge link={firstVerifiedField.get('value')} /></>;
+      verification = <VerifiedBadge link={firstVerifiedField.get('value')} />;
     }
 
     return (
@@ -156,7 +156,11 @@ class Account extends ImmutablePureComponent {
 
             <div className='account__contents'>
               <DisplayName account={account} />
-              {!minimal && <><ShortNumber value={account.get('followers_count')} renderer={counterRenderer('followers')} /> {verification} {muteTimeRemaining}</>}
+              {!minimal && (
+                <div className='account__details'>
+                  <ShortNumber value={account.get('followers_count')} renderer={counterRenderer('followers')} /> {verification} {muteTimeRemaining}
+                </div>
+              )}
             </div>
           </Link>
 
