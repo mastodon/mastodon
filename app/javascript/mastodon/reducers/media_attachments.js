@@ -1,12 +1,13 @@
 import { Map as ImmutableMap } from 'immutable';
 
+import { STORE_HYDRATE } from '../actions/store';
+
 export let currentMedia = null;
 
 export function setCurrentMedia(value) {
   currentMedia = value;
 }
 
-import { STORE_HYDRATE } from '../actions/store';
 
 const initialState = ImmutableMap({
   accept_content_types: [],

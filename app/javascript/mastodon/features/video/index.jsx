@@ -11,9 +11,9 @@ import { throttle } from 'lodash';
 
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon } from 'mastodon/components/icon';
-import { currentMedia, setCurrentMedia } from '../../reducers/media_attachments';
 
 import { displayMedia, useBlurhash } from '../../initial_state';
+import { currentMedia, setCurrentMedia } from '../../reducers/media_attachments';
 import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
 
 const messages = defineMessages({

@@ -14,7 +14,6 @@ import { formatTime, getPointerPosition, fileNameFromURL } from 'mastodon/featur
 
 import { Blurhash } from '../../components/blurhash';
 import { displayMedia, useBlurhash } from '../../initial_state';
-
 import { currentMedia, setCurrentMedia } from '../../reducers/media_attachments';
 
 import Visualizer from './visualizer';
