@@ -1,8 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
 import { createPortal } from 'react-dom';
-import classNames from 'classnames';
+
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
+
+import classNames from 'classnames';
+
 import { Icon }  from 'mastodon/components/icon';
 
 const messages = defineMessages({
@@ -12,7 +15,7 @@ const messages = defineMessages({
   moveRight: { id: 'column_header.moveRight_settings', defaultMessage: 'Move column to the right' },
 });
 
-class ColumnHeader extends React.PureComponent {
+class ColumnHeader extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

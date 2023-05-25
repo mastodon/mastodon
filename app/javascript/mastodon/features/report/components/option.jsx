@@ -1,9 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import classNames from 'classnames';
+
 import { Check } from 'mastodon/components/check';
 
-export default class Option extends React.PureComponent {
+export default class Option extends PureComponent {
 
   static propTypes = {
     name: PropTypes.string.isRequired,

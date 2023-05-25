@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 
 import type { InjectedIntl } from 'react-intl';
 import { injectIntl, defineMessages } from 'react-intl';
@@ -199,7 +199,7 @@ interface Props {
 interface States {
   now: number;
 }
-class RelativeTimestamp extends React.Component<Props, States> {
+class RelativeTimestamp extends Component<Props, States> {
   state = {
     now: this.props.intl.now(),
   };

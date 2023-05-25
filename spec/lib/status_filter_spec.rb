@@ -7,7 +7,7 @@ describe StatusFilter do
     let(:status) { Fabricate(:status) }
 
     context 'without an account' do
-      subject { described_class.new(status, nil) }
+      subject(:filter) { described_class.new(status, nil) }
 
       context 'when there are no connections' do
         it { is_expected.to_not be_filtered }
@@ -22,16 +22,16 @@ describe StatusFilter do
       end
 
       context 'when status policy does not allow show' do
-        before do
+        it 'filters the status' do
           expect_any_instance_of(StatusPolicy).to receive(:show?).and_return(false)
-        end
 
-        it { is_expected.to be_filtered }
+          expect(filter).to be_filtered
+        end
       end
     end
 
     context 'with real account' do
-      subject { described_class.new(status, account) }
+      subject(:filter) { described_class.new(status, account) }
 
       let(:account) { Fabricate(:account) }
 
@@ -73,11 +73,11 @@ describe StatusFilter do
       end
 
       context 'when status policy does not allow show' do
-        before do
+        it 'filters the status' do
           expect_any_instance_of(StatusPolicy).to receive(:show?).and_return(false)
-        end
 
-        it { is_expected.to be_filtered }
+          expect(filter).to be_filtered
+        end
       end
     end
   end

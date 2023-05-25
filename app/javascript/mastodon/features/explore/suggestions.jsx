@@ -1,18 +1,21 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import AccountCard from 'mastodon/features/directory/components/account_card';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
-import { connect } from 'react-redux';
-import { fetchSuggestions } from 'mastodon/actions/suggestions';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
+import { fetchSuggestions } from 'mastodon/actions/suggestions';
+import LoadingIndicator from 'mastodon/components/loading_indicator';
+import AccountCard from 'mastodon/features/directory/components/account_card';
 
 const mapStateToProps = state => ({
   suggestions: state.getIn(['suggestions', 'items']),
   isLoading: state.getIn(['suggestions', 'isLoading']),
 });
 
-class Suggestions extends React.PureComponent {
+class Suggestions extends PureComponent {
 
   static propTypes = {
     isLoading: PropTypes.bool,

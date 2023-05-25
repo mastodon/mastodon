@@ -1,11 +1,13 @@
-import { Blurhash } from 'mastodon/components/blurhash';
-import classNames from 'classnames';
-import { Icon }  from 'mastodon/components/icon';
-import { autoPlayGif, displayMedia, useBlurhash } from 'mastodon/initial_state';
 import PropTypes from 'prop-types';
-import React from 'react';
+
+import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { Blurhash } from 'mastodon/components/blurhash';
+import { Icon }  from 'mastodon/components/icon';
+import { autoPlayGif, displayMedia, useBlurhash } from 'mastodon/initial_state';
 
 export default class MediaItem extends ImmutablePureComponent {
 

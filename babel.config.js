@@ -3,6 +3,7 @@ module.exports = (api) => {
 
   const reactOptions = {
     development: false,
+    runtime: 'automatic',
   };
 
   const envOptions = {

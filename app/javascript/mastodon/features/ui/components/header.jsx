@@ -1,12 +1,16 @@
-import React from 'react';
-import { WordmarkLogo, SymbolLogo } from 'mastodon/components/logo';
-import { Link, withRouter } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
-import { registrationsOpen, me } from 'mastodon/initial_state';
-import { Avatar } from 'mastodon/components/avatar';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
+import { Link, withRouter } from 'react-router-dom';
+
 import { connect } from 'react-redux';
+
 import { openModal } from 'mastodon/actions/modal';
+import { Avatar } from 'mastodon/components/avatar';
+import { WordmarkLogo, SymbolLogo } from 'mastodon/components/logo';
+import { registrationsOpen, me } from 'mastodon/initial_state';
 
 const Account = connect(state => ({
   account: state.getIn(['accounts', me]),
@@ -16,13 +20,17 @@ const Account = connect(state => ({
   </Link>
 ));
 
+const mapStateToProps = (state) => ({
+  signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], null) || '/auth/sign_up',
+});
+
 const mapDispatchToProps = (dispatch) => ({
   openClosedRegistrationsModal() {
-    dispatch(openModal('CLOSED_REGISTRATIONS'));
+    dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' }));
   },
 });
 
-class Header extends React.PureComponent {
+class Header extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,
@@ -31,11 +39,12 @@ class Header extends React.PureComponent {
   static propTypes = {
     openClosedRegistrationsModal: PropTypes.func,
     location: PropTypes.object,
+    signupUrl: PropTypes.string.isRequired,
   };
 
   render () {
     const { signedIn } = this.context.identity;
-    const { location, openClosedRegistrationsModal } = this.props;
+    const { location, openClosedRegistrationsModal, signupUrl } = this.props;
 
     let content;
 
@@ -51,7 +60,7 @@ class Header extends React.PureComponent {
 
       if (registrationsOpen) {
         signupButton = (
-          <a href='/auth/sign_up' className='button'>
+          <a href={signupUrl} className='button'>
             <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
           </a>
         );
@@ -87,4 +96,4 @@ class Header extends React.PureComponent {
 
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Header));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

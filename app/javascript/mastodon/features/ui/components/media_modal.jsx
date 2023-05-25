@@ -1,18 +1,23 @@
-import React from 'react';
-import ReactSwipeableViews from 'react-swipeable-views';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import Video from 'mastodon/features/video';
-import classNames from 'classnames';
+
 import { defineMessages, injectIntl } from 'react-intl';
-import { IconButton } from 'mastodon/components/icon_button';
+
+import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import ImageLoader from './image_loader';
-import { Icon }  from 'mastodon/components/icon';
-import { GIFV } from 'mastodon/components/gifv';
-import { disableSwiping } from 'mastodon/initial_state';
-import Footer from 'mastodon/features/picture_in_picture/components/footer';
+
+import ReactSwipeableViews from 'react-swipeable-views';
+
 import { getAverageFromBlurhash } from 'mastodon/blurhash';
+import { GIFV } from 'mastodon/components/gifv';
+import { Icon }  from 'mastodon/components/icon';
+import { IconButton } from 'mastodon/components/icon_button';
+import Footer from 'mastodon/features/picture_in_picture/components/footer';
+import Video from 'mastodon/features/video';
+import { disableSwiping } from 'mastodon/initial_state';
+
+import ImageLoader from './image_loader';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

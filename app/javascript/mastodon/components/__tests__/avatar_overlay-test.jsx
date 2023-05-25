@@ -1,6 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
 import { fromJS } from 'immutable';
+
+import renderer from 'react-test-renderer';
+
 import { AvatarOverlay } from '../avatar_overlay';
 
 describe('<AvatarOverlay', () => {
