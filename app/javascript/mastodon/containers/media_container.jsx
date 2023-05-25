@@ -1,5 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
-import ReactDOM from 'react-dom';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { fromJS } from 'immutable';
@@ -95,7 +95,7 @@ export default class MediaContainer extends PureComponent {
               }),
             });
 
-            return ReactDOM.createPortal(
+            return createPortal(
               <Component {...props} key={`media-${i}`} />,
               component,
             );

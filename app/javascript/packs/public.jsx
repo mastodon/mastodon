@@ -15,7 +15,7 @@ import { delegate }  from '@rails/ujs';
 import emojify  from '../mastodon/features/emoji/emoji';
 import { getLocale }  from '../mastodon/locales';
 import React  from 'react';
-import ReactDOM  from 'react-dom';
+import { createRoot }  from 'react-dom/client';
 import { createBrowserHistory }  from 'history';
 
 start();
@@ -137,7 +137,8 @@ function loaded() {
 
           const content = document.createElement('div');
 
-          ReactDOM.render(<MediaContainer locale={locale} components={reactComponents} />, content);
+          const root = createRoot(content);
+          root.render(<MediaContainer locale={locale} components={reactComponents} />);
           document.body.appendChild(content);
           scrollToDetailedStatus();
         })
