@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-
 import { Component } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
@@ -7,11 +6,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import { clearSearch } from 'mastodon/actions/search';
-
 import { WordmarkLogo } from 'mastodon/components/logo';
-
 import NavigationPortal from 'mastodon/components/navigation_portal';
-
 import { timelinePreview, showTrends } from 'mastodon/initial_state';
 
 import ColumnLink from './column_link';
