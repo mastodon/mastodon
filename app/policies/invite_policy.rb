@@ -9,6 +9,10 @@ class InvitePolicy < ApplicationPolicy
     role.can?(:invite_users)
   end
 
+  def unrestricted?
+    role.can?(:bypass_invite_limits)
+  end
+
   def deactivate_all?
     role.can?(:manage_invites)
   end
