@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 import { useHovering } from '../../hooks/useHovering';
-import type { Account } from '../../types/resources';
+import type { Account } from '../../types/account';
 import { autoPlayGif } from '../initial_state';
 
 interface Props {
