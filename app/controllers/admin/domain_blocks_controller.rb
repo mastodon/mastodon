@@ -3,6 +3,7 @@
 module Admin
   class DomainBlocksController < BaseController
     before_action :set_domain_block, only: [:destroy, :edit, :update]
+    before_action :require_suspend_confirmation!, only: :create
 
     def batch
       authorize :domain_block, :create?
@@ -91,6 +92,15 @@ module Admin
 
     def action_from_button
       'save' if params[:save]
+    end
+
+    def require_suspend_confirmation!
+      return if params[:confirm] || resource_params[:severity] != 'suspend'
+
+      @domain_block = DomainBlock.new(resource_params)
+      return unless @domain_block.valid?
+
+      render :confirm_suspension
     end
   end
 end

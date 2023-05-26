@@ -382,6 +382,15 @@ en:
       undo: Disallow federation with domain
     domain_blocks:
       add_new: Add new domain block
+      confirm_suspension:
+        cancel: Cancel
+        confirm: Suspend
+        permanent_action: Undoing the suspension will not restore any data or relationship.
+        preamble_html: You are about to suspend <strong>%{domain}</strong> and its subdomains.
+        remove_all_data: This will remove all content, media, and profile data for this domain's accounts from your server.
+        stop_communication: Your server will stop communicating with these servers.
+        title: Confirm domain block for %{domain}
+        undo_relationships: This will undo any follow relationship between accounts of these servers and yours.
       created_msg: Domain block is now being processed
       destroyed_msg: Domain block has been undone
       domain: Domain
