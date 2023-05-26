@@ -1,6 +1,3 @@
-//  Package imports.
-import { supportsPassiveEvents } from 'detect-passive-events';
-
 //  Focuses the root element.
 export function focusRoot () {
   let e;
