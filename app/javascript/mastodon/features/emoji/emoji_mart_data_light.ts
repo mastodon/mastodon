@@ -47,7 +47,10 @@ Object.keys(shortCodesToEmojiData).forEach((shortCode) => {
     filenameData, // eslint-disable-line @typescript-eslint/no-unused-vars
     searchData,
   ] = shortCodesToEmojiData[shortCode];
-  let [native, short_names, search, unified] = searchData; // eslint-disable-line prefer-const
+  const native = searchData[0];
+  let short_names = searchData[1];
+  const search = searchData[2];
+  let unified = searchData[3];
 
   if (!unified) {
     // unified name can be derived from unicodeToUnifiedName
