@@ -1,10 +1,10 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
 
 const emptyComponent = () => null;
 const noop = () => { };
 
-class Bundle extends React.PureComponent {
+class Bundle extends PureComponent {
 
   static propTypes = {
     fetchComponent: PropTypes.func.isRequired,

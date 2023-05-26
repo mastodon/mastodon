@@ -1,7 +1,9 @@
-import React from 'react';
-import { IconButton } from '../../../components/icon_button';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
+import { IconButton } from '../../../components/icon_button';
 
 const messages = defineMessages({
   add_poll: { id: 'poll_button.add_poll', defaultMessage: 'Add a poll' },
@@ -13,7 +15,7 @@ const iconStyle = {
   lineHeight: '27px',
 };
 
-class PollButton extends React.PureComponent {
+class PollButton extends PureComponent {
 
   static propTypes = {
     disabled: PropTypes.bool,

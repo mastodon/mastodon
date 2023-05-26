@@ -1,14 +1,19 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { IconButton } from './icon_button';
-import DropdownMenuContainer from '../containers/dropdown_menu_container';
+
 import { defineMessages, injectIntl } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me } from '../initial_state';
+
 import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
+
+import DropdownMenuContainer from '../containers/dropdown_menu_container';
+import { me } from '../initial_state';
+
+import { IconButton } from './icon_button';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -109,7 +114,6 @@ class StatusActionBar extends ImmutablePureComponent {
 
   handleShareClick = () => {
     navigator.share({
-      text: this.props.status.get('search_index'),
       url: this.props.status.get('url'),
     }).catch((e) => {
       if (e.name !== 'AbortError') console.error(e);
@@ -251,6 +255,10 @@ class StatusActionBar extends ImmutablePureComponent {
 
     menu.push({ text: intl.formatMessage(messages.copy), action: this.handleCopy });
 
+    if (publicStatus && 'share' in navigator) {
+      menu.push({ text: intl.formatMessage(messages.share), action: this.handleShareClick });
+    }
+
     if (publicStatus) {
       menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
     }
@@ -347,10 +355,6 @@ class StatusActionBar extends ImmutablePureComponent {
       reblogTitle = intl.formatMessage(messages.cannot_reblog);
     }
 
-    const shareButton = ('share' in navigator) && publicStatus && (
-      <IconButton className='status__action-bar__button' title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShareClick} />
-    );
-
     const filterButton = this.props.onFilter && (
       <IconButton className='status__action-bar__button' title={intl.formatMessage(messages.hide)} icon='eye' onClick={this.handleHideClick} />
     );
@@ -361,8 +365,6 @@ class StatusActionBar extends ImmutablePureComponent {
         <IconButton className={classNames('status__action-bar__button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
         <IconButton className='status__action-bar__button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
         <IconButton className='status__action-bar__button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />
-
-        {shareButton}
 
         {filterButton}
 

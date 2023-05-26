@@ -1,18 +1,22 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+import { Link } from 'react-router-dom';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import StatusContent from 'mastodon/components/status_content';
+
+import { HotKeys } from 'react-hotkeys';
+
 import AttachmentList from 'mastodon/components/attachment_list';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import AvatarComposite from 'mastodon/components/avatar_composite';
-import { Link } from 'react-router-dom';
 import { IconButton } from 'mastodon/components/icon_button';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
-import { HotKeys } from 'react-hotkeys';
+import StatusContent from 'mastodon/components/status_content';
+import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { autoPlayGif } from 'mastodon/initial_state';
-import classNames from 'classnames';
 
 const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },

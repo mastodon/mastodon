@@ -1,6 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
 import { fromJS }  from 'immutable';
+
+import renderer from 'react-test-renderer';
+
 import { DisplayName } from '../display_name';
 
 describe('<DisplayName />', () => {

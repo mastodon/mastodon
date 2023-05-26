@@ -1,15 +1,19 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
-import { closeModal } from 'mastodon/actions/modal';
-import emojify from 'mastodon/features/emoji/emoji';
+
 import escapeTextContentForBrowser from 'escape-html';
-import InlineAccount from 'mastodon/components/inline_account';
+
+import { closeModal } from 'mastodon/actions/modal';
 import { IconButton } from 'mastodon/components/icon_button';
-import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
+import InlineAccount from 'mastodon/components/inline_account';
 import MediaAttachments from 'mastodon/components/media_attachments';
+import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
+import emojify from 'mastodon/features/emoji/emoji';
 
 const mapStateToProps = (state, { statusId }) => ({
   language: state.getIn(['statuses', statusId, 'language']),
@@ -19,12 +23,15 @@ const mapStateToProps = (state, { statusId }) => ({
 const mapDispatchToProps = dispatch => ({
 
   onClose() {
-    dispatch(closeModal());
+    dispatch(closeModal({
+      modalType: undefined,
+      ignoreFocus: false,
+    }));
   },
 
 });
 
-class CompareHistoryModal extends React.PureComponent {
+class CompareHistoryModal extends PureComponent {
 
   static propTypes = {
     onClose: PropTypes.func.isRequired,
@@ -65,10 +72,10 @@ class CompareHistoryModal extends React.PureComponent {
         <div className='compare-history-modal__container'>
           <div className='status__content'>
             {currentVersion.get('spoiler_text').length > 0 && (
-              <React.Fragment>
+              <>
                 <div className='translate' dangerouslySetInnerHTML={spoilerContent} lang={language} />
                 <hr />
-              </React.Fragment>
+              </>
             )}
 
             <div className='status__content__text status__content__text--visible translate' dangerouslySetInnerHTML={content} lang={language} />

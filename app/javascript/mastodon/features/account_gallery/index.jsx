@@ -1,22 +1,26 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { lookupAccount, fetchAccount } from 'mastodon/actions/accounts';
-import { expandAccountMediaTimeline } from '../../actions/timelines';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
-import Column from '../ui/components/column';
-import ColumnBackButton from 'mastodon/components/column_back_button';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { getAccountGallery } from 'mastodon/selectors';
-import MediaItem from './components/media_item';
-import HeaderContainer from '../account_timeline/containers/header_container';
-import ScrollContainer from 'mastodon/containers/scroll_container';
-import LoadMore from 'mastodon/components/load_more';
-import { openModal } from 'mastodon/actions/modal';
+
 import { FormattedMessage } from 'react-intl';
-import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
+import { lookupAccount, fetchAccount } from 'mastodon/actions/accounts';
+import { openModal } from 'mastodon/actions/modal';
+import ColumnBackButton from 'mastodon/components/column_back_button';
+import LoadMore from 'mastodon/components/load_more';
+import LoadingIndicator from 'mastodon/components/loading_indicator';
+import ScrollContainer from 'mastodon/containers/scroll_container';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
+import { getAccountGallery } from 'mastodon/selectors';
+
+import { expandAccountMediaTimeline } from '../../actions/timelines';
+import HeaderContainer from '../account_timeline/containers/header_container';
+import Column from '../ui/components/column';
+
+import MediaItem from './components/media_item';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
@@ -139,14 +143,23 @@ class AccountGallery extends ImmutablePureComponent {
     const lang = attachment.getIn(['status', 'language']);
 
     if (attachment.get('type') === 'video') {
-      dispatch(openModal('VIDEO', { media: attachment, statusId, lang, options: { autoPlay: true } }));
+      dispatch(openModal({
+        modalType: 'VIDEO',
+        modalProps: { media: attachment, statusId, lang, options: { autoPlay: true } },
+      }));
     } else if (attachment.get('type') === 'audio') {
-      dispatch(openModal('AUDIO', { media: attachment, statusId, lang, options: { autoPlay: true } }));
+      dispatch(openModal({
+        modalType: 'AUDIO',
+        modalProps: { media: attachment, statusId, lang, options: { autoPlay: true } },
+      }));
     } else {
       const media = attachment.getIn(['status', 'media_attachments']);
       const index = media.findIndex(x => x.get('id') === attachment.get('id'));
 
-      dispatch(openModal('MEDIA', { media, index, statusId, lang }));
+      dispatch(openModal({
+        modalType: 'MEDIA',
+        modalProps: { media, index, statusId, lang },
+      }));
     }
   };
 

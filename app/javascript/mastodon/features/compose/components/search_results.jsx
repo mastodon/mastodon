@@ -1,14 +1,17 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { Icon }  from 'mastodon/components/icon';
+import LoadMore from 'mastodon/components/load_more';
+
+import { ImmutableHashtag as Hashtag } from '../../../components/hashtag';
 import AccountContainer from '../../../containers/account_container';
 import StatusContainer from '../../../containers/status_container';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { ImmutableHashtag as Hashtag } from '../../../components/hashtag';
-import { Icon }  from 'mastodon/components/icon';
 import { searchEnabled } from '../../../initial_state';
-import LoadMore from 'mastodon/components/load_more';
 
 const messages = defineMessages({
   dismissSuggestion: { id: 'suggestions.dismiss', defaultMessage: 'Dismiss suggestion' },

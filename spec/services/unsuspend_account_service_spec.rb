@@ -33,7 +33,7 @@ RSpec.describe UnsuspendAccountService, type: :service do
     end
 
     it 'does not change the “suspended” flag' do
-      expect { subject }.to_not change { account.suspended? }
+      expect { subject }.to_not change(account, :suspended?)
     end
 
     include_examples 'with common context' do
@@ -86,7 +86,7 @@ RSpec.describe UnsuspendAccountService, type: :service do
         end
 
         it 'does not change the “suspended” flag' do
-          expect { subject }.to_not change { account.suspended? }
+          expect { subject }.to_not change(account, :suspended?)
         end
       end
 
@@ -110,7 +110,7 @@ RSpec.describe UnsuspendAccountService, type: :service do
         end
 
         it 'marks account as suspended' do
-          expect { subject }.to change { account.suspended? }.from(false).to(true)
+          expect { subject }.to change(account, :suspended?).from(false).to(true)
         end
       end
 

@@ -22,7 +22,7 @@ RSpec.describe AccountableConcern do
     it 'creates Admin::ActionLog' do
       expect do
         hoge.log_action(:create, target)
-      end.to change { Admin::ActionLog.count }.by(1)
+      end.to change(Admin::ActionLog, :count).by(1)
     end
   end
 end
