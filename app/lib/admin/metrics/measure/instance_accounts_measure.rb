@@ -16,7 +16,9 @@ class Admin::Metrics::Measure::InstanceAccountsMeasure < Admin::Metrics::Measure
   protected
 
   def perform_total_query
-    Account.where(domain: params[:domain]).count
+    domain = params[:domain]
+    domain = Instance.by_domain_and_subdomains(params[:domain]).select(:domain) if params[:include_subdomains]
+    Account.where(domain: domain).count
   end
 
   def perform_previous_total_query
@@ -53,6 +55,6 @@ class Admin::Metrics::Measure::InstanceAccountsMeasure < Admin::Metrics::Measure
   end
 
   def params
-    @params.permit(:domain)
+    @params.permit(:domain, :include_subdomains)
   end
 end

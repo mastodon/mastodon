@@ -26,7 +26,9 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
   protected
 
   def perform_total_query
-    MediaAttachment.joins(:account).merge(Account.where(domain: params[:domain])).sum('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')
+    domain = params[:domain]
+    domain = Instance.by_domain_and_subdomains(params[:domain]).select(:domain) if params[:include_subdomains]
+    MediaAttachment.joins(:account).merge(Account.where(domain: domain)).sum('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')
   end
 
   def perform_previous_total_query
@@ -64,6 +66,6 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
   end
 
   def params
-    @params.permit(:domain)
+    @params.permit(:domain, :include_subdomains)
   end
 end

@@ -16,7 +16,9 @@ class Admin::Metrics::Measure::InstanceFollowersMeasure < Admin::Metrics::Measur
   protected
 
   def perform_total_query
-    Follow.joins(:account).merge(Account.where(domain: params[:domain])).count
+    domain = params[:domain]
+    domain = Instance.by_domain_and_subdomains(params[:domain]).select(:domain) if params[:include_subdomains]
+    Follow.joins(:account).merge(Account.where(domain: domain)).count
   end
 
   def perform_previous_total_query
@@ -54,6 +56,6 @@ class Admin::Metrics::Measure::InstanceFollowersMeasure < Admin::Metrics::Measur
   end
 
   def params
-    @params.permit(:domain)
+    @params.permit(:domain, :include_subdomains)
   end
 end
