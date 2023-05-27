@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Avatar } from 'flavours/glitch/components/avatar';
-import DisplayName from 'flavours/glitch/components/display_name';
+import { DisplayName } from 'flavours/glitch/components/display_name';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import { defineMessages } from 'react-intl';
 

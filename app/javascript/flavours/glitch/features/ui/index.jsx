@@ -64,7 +64,7 @@ import Header from './components/header';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
-import '../../../glitch/components/status';
+import "../../components/status";
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
@@ -133,7 +133,7 @@ class SwitchingColumnsArea extends React.PureComponent {
     mobile: PropTypes.bool,
   };
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     if (this.props.mobile) {
       document.body.classList.toggle('layout-single-column', true);
       document.body.classList.toggle('layout-multiple-columns', false);
@@ -438,7 +438,7 @@ class UI extends React.Component {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (nextProps.layout_local_setting !== this.props.layout_local_setting) {
       const layout = layoutFromWindow(nextProps.layout_local_setting);
 

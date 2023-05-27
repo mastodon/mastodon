@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Permalink from './permalink';
 import ShortNumber from 'flavours/glitch/components/short_number';
-import Skeleton from 'flavours/glitch/components/skeleton';
+import { Skeleton } from 'flavours/glitch/components/skeleton';
 import classNames from 'classnames';
 
 class SilentErrorBoundary extends React.Component {

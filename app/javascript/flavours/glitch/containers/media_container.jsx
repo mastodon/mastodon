@@ -1,5 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
-import ReactDOM from 'react-dom';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { fromJS } from 'immutable';
@@ -29,19 +29,20 @@ export default class MediaContainer extends PureComponent {
   state = {
     media: null,
     index: null,
+    lang: null,
     time: null,
     backgroundColor: null,
     options: null,
   };
 
-  handleOpenMedia = (media, index) => {
+  handleOpenMedia = (media, index, lang) => {
     document.body.classList.add('with-modals--active');
     document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
 
-    this.setState({ media, index });
+    this.setState({ media, index, lang });
   };
 
-  handleOpenVideo = (options) => {
+  handleOpenVideo = (lang, options) => {
     const { components } = this.props;
     const { media } = JSON.parse(components[options.componentIndex].getAttribute('data-props'));
     const mediaList = fromJS(media);
@@ -49,7 +50,7 @@ export default class MediaContainer extends PureComponent {
     document.body.classList.add('with-modals--active');
     document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
 
-    this.setState({ media: mediaList, options });
+    this.setState({ media: mediaList, lang, options });
   };
 
   handleCloseMedia = () => {
@@ -94,7 +95,7 @@ export default class MediaContainer extends PureComponent {
               }),
             });
 
-            return ReactDOM.createPortal(
+            return createPortal(
               <Component {...props} key={`media-${i}`} />,
               component,
             );
@@ -105,6 +106,7 @@ export default class MediaContainer extends PureComponent {
               <MediaModal
                 media={this.state.media}
                 index={this.state.index || 0}
+                lang={this.state.lang}
                 currentTime={this.state.options?.startTime}
                 autoPlay={this.state.options?.autoPlay}
                 volume={this.state.options?.defaultVolume}

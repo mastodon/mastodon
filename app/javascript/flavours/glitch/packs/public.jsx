@@ -11,7 +11,7 @@ import { delegate }  from '@rails/ujs';
 import emojify  from 'flavours/glitch/features/emoji/emoji';
 import { getLocale }  from 'locales';
 import React  from 'react';
-import ReactDOM  from 'react-dom';
+import { createRoot }  from 'react-dom/client';
 import { createBrowserHistory }  from 'history';
 
 const messages = defineMessages({
@@ -130,7 +130,8 @@ function main() {
 
           const content = document.createElement('div');
 
-          ReactDOM.render(<MediaContainer locale={locale} components={reactComponents} />, content);
+          const root = createRoot(content);
+          root.render(<MediaContainer locale={locale} components={reactComponents} />);
           document.body.appendChild(content);
           scrollToDetailedStatus();
         })

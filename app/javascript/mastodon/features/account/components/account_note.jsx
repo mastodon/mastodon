@@ -22,7 +22,7 @@ class InlineAlert extends React.PureComponent {
 
   static TRANSITION_DELAY = 200;
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (!this.props.show && nextProps.show) {
       this.setState({ mountMessage: true });
     } else if (this.props.show && !nextProps.show) {
@@ -58,11 +58,11 @@ class AccountNote extends ImmutablePureComponent {
     saved: false,
   };
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this._reset();
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     const accountWillChange = !is(this.props.account, nextProps.account);
     const newState = {};
 

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { IconButton } from 'mastodon/components/icon_button';
 import { Link } from 'react-router-dom';
 import { Avatar } from 'mastodon/components/avatar';
-import DisplayName from 'mastodon/components/display_name';
+import { DisplayName } from 'mastodon/components/display_name';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({

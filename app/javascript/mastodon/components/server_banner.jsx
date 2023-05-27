@@ -4,10 +4,10 @@ import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { fetchServer } from 'mastodon/actions/server';
 import ShortNumber from 'mastodon/components/short_number';
-import Skeleton from 'mastodon/components/skeleton';
+import { Skeleton } from 'mastodon/components/skeleton';
 import Account from 'mastodon/containers/account_container';
 import { domain } from 'mastodon/initial_state';
-import { Image } from 'mastodon/components/image';
+import { ServerHeroImage } from 'mastodon/components/server_hero_image';
 import { Link } from 'react-router-dom';
 
 const messages = defineMessages({
@@ -41,7 +41,7 @@ class ServerBanner extends React.PureComponent {
           <FormattedMessage id='server_banner.introduction' defaultMessage='{domain} is part of the decentralized social network powered by {mastodon}.' values={{ domain: <strong>{domain}</strong>, mastodon: <a href='https://joinmastodon.org' target='_blank'>Mastodon</a> }} />
         </div>
 
-        <Image blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} className='server-banner__hero' />
+        <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} className='server-banner__hero' />
 
         <div className='server-banner__description'>
           {isLoading ? (

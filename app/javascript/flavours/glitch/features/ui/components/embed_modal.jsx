@@ -85,7 +85,7 @@ class EmbedModal extends ImmutablePureComponent {
             className='embed-modal__iframe'
             frameBorder='0'
             ref={this.setIframeRef}
-            sandbox='allow-same-origin'
+            sandbox='allow-scripts allow-same-origin'
             title='preview'
           />
         </div>

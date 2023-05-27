@@ -29,7 +29,7 @@ class Api::V1::Admin::DomainAllowsController < Api::BaseController
   def create
     authorize :domain_allow, :create?
 
-    @domain_allow = DomainAllow.find_by(resource_params)
+    @domain_allow = DomainAllow.find_by(domain: resource_params[:domain])
 
     if @domain_allow.nil?
       @domain_allow = DomainAllow.create!(resource_params)

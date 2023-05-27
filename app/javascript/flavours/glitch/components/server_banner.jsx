@@ -4,10 +4,10 @@ import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { fetchServer } from 'flavours/glitch/actions/server';
 import ShortNumber from 'flavours/glitch/components/short_number';
-import Skeleton from 'flavours/glitch/components/skeleton';
+import { Skeleton } from 'flavours/glitch/components/skeleton';
 import Account from 'flavours/glitch/containers/account_container';
 import { domain } from 'flavours/glitch/initial_state';
-import { Image } from 'flavours/glitch/components/image';
+import { ServerHeroImage } from 'flavours/glitch/components/server_hero_image';
 import { Link } from 'react-router-dom';
 
 const messages = defineMessages({
@@ -41,7 +41,7 @@ class ServerBanner extends React.PureComponent {
           <FormattedMessage id='server_banner.introduction' defaultMessage='{domain} is part of the decentralized social network powered by {mastodon}.' values={{ domain: <strong>{domain}</strong>, mastodon: <a href='https://joinmastodon.org' target='_blank'>Mastodon</a> }} />
         </div>
 
-        <Image blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} className='server-banner__hero' />
+        <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} className='server-banner__hero' />
 
         <div className='server-banner__description'>
           {isLoading ? (

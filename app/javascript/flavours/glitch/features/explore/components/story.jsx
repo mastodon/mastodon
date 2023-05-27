@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Blurhash } from 'flavours/glitch/components/blurhash';
 import { accountsCountRenderer } from 'flavours/glitch/components/hashtag';
 import ShortNumber from 'flavours/glitch/components/short_number';
-import Skeleton from 'flavours/glitch/components/skeleton';
+import { Skeleton } from 'flavours/glitch/components/skeleton';
 import classNames from 'classnames';
 
 export default class Story extends React.PureComponent {

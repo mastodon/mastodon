@@ -19,7 +19,7 @@ const messages = defineMessages({
   change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
 });
 
-const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
+const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 
 class PrivacyDropdownMenu extends React.PureComponent {
 
@@ -34,6 +34,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
   handleDocumentClick = e => {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
+      e.stopPropagation();
     }
   };
 
@@ -91,13 +92,13 @@ class PrivacyDropdownMenu extends React.PureComponent {
   };
 
   componentDidMount () {
-    document.addEventListener('click', this.handleDocumentClick, false);
+    document.addEventListener('click', this.handleDocumentClick, { capture: true });
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
     if (this.focusedItem) this.focusedItem.focus({ preventScroll: true });
   }
 
   componentWillUnmount () {
-    document.removeEventListener('click', this.handleDocumentClick, false);
+    document.removeEventListener('click', this.handleDocumentClick, { capture: true });
     document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
   }
 
@@ -212,7 +213,7 @@ class PrivacyDropdown extends React.PureComponent {
     this.props.onChange(value);
   };
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     const { intl: { formatMessage } } = this.props;
 
     this.options = [

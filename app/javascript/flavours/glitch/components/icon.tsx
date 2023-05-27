@@ -1,13 +1,14 @@
 import React from 'react';
+
 import classNames from 'classnames';
 
-type Props = {
+interface Props extends React.HTMLAttributes<HTMLImageElement> {
   id: string;
   className?: string;
   fixedWidth?: boolean;
   children?: never;
-  [key: string]: any;
-};
+}
+
 export const Icon: React.FC<Props> = ({
   id,
   className,

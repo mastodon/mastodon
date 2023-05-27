@@ -731,6 +731,9 @@ en:
       branding:
         preamble: Your server's branding differentiates it from other servers in the network. This information may be displayed across a variety of environments, such as Mastodon's web interface, native applications, in link previews on other websites and within messaging apps, and so on. For this reason, it is best to keep this information clear, short and concise.
         title: Branding
+      captcha_enabled:
+        desc_html: This relies on external scripts from hCaptcha, which may be a security and privacy concern. In addition, <strong>this can make the registration process significantly less accessible to some (especially disabled) people</strong>. For these reasons, please consider alternative measures such as approval-based or invite-based registration.
+        title: Require new users to solve a CAPTCHA to confirm their account
       content_retention:
         preamble: Control how user-generated content is stored in Mastodon.
         title: Content retention
@@ -979,6 +982,9 @@ en:
     your_token: Your access token
   auth:
     apply_for_account: Request an account
+    captcha_confirmation:
+      hint_html: Just one more step! To confirm your account, this server requires you to solve a CAPTCHA. You can <a href="/about/more">contact the server administrator</a> if you have questions or need assistance with confirming your account.
+      title: User verification
     change_password: Password
     confirmations:
       wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
@@ -1027,8 +1033,8 @@ en:
       new_confirmation_instructions_sent: You will receive a new e-mail with the confirmation link in a few minutes!
       title: Check your inbox
     sign_in:
-      preamble_html: Sign in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
-      title: Sign in to %{domain}
+      preamble_html: Login with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
+      title: Login to %{domain}
     sign_up:
       manual_review: Sign-ups on %{domain} go through manual review by our moderators. To help us process your registration, write a bit about yourself and why you want an account on %{domain}.
       preamble: With an account on this Mastodon server, you'll be able to follow any other person on the network, regardless of where their account is hosted.
@@ -1440,6 +1446,7 @@ en:
       expired: The poll has already ended
       invalid_choice: The chosen vote option does not exist
       over_character_limit: cannot be longer than %{max} characters each
+      self_vote: You cannot vote in your own polls
       too_few_options: must have more than one item
       too_many_options: can't contain more than %{max} items
   preferences:
@@ -1595,7 +1602,7 @@ en:
     show_newer: Show newer
     show_older: Show older
     show_thread: Show thread
-    sign_in_to_participate: Sign in to participate in the conversation
+    sign_in_to_participate: Login to participate in the conversation
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direct

@@ -61,13 +61,13 @@ if ENV['S3_ENABLED'] == 'true'
 
     s3_options: {
       signature_version: ENV.fetch('S3_SIGNATURE_VERSION') { 'v4' },
-      http_open_timeout: ENV.fetch('S3_OPEN_TIMEOUT'){ '5' }.to_i,
-      http_read_timeout: ENV.fetch('S3_READ_TIMEOUT'){ '5' }.to_i,
+      http_open_timeout: ENV.fetch('S3_OPEN_TIMEOUT') { '5' }.to_i,
+      http_read_timeout: ENV.fetch('S3_READ_TIMEOUT') { '5' }.to_i,
       http_idle_timeout: 5,
       retry_limit: 0,
     }
   )
-  
+
   Paperclip::Attachment.default_options[:s3_permissions] = ->(*) { nil } if ENV['S3_PERMISSION'] == ''
 
   if ENV.has_key?('S3_ENDPOINT')
@@ -124,7 +124,7 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
       openstack_cache_ttl: ENV.fetch('SWIFT_CACHE_TTL') { 60 },
       openstack_temp_url_key: ENV['SWIFT_TEMP_URL_KEY'],
     },
-    
+
     fog_file: { 'Cache-Control' => 'public, max-age=315576000, immutable' },
 
     fog_directory: ENV['SWIFT_CONTAINER'],

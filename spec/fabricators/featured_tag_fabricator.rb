@@ -3,5 +3,5 @@
 Fabricator(:featured_tag) do
   account
   tag
-  name 'Tag'
+  name { sequence(:name) { |i| "Tag#{i}" } }
 end

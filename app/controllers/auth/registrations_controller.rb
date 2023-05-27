@@ -132,7 +132,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_sessions
-    @sessions = current_user.session_activations
+    @sessions = current_user.session_activations.order(updated_at: :desc)
   end
 
   def set_strikes

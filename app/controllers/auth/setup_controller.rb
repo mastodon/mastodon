@@ -45,6 +45,6 @@ class Auth::SetupController < ApplicationController
   end
 
   def set_pack
-    use_pack 'auth'
+    use_pack 'sign_up'
   end
 end

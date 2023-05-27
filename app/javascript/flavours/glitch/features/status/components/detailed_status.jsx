@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Avatar } from 'flavours/glitch/components/avatar';
-import DisplayName from 'flavours/glitch/components/display_name';
+import { DisplayName } from 'flavours/glitch/components/display_name';
 import StatusContent from 'flavours/glitch/components/status_content';
 import MediaGallery from 'flavours/glitch/components/media_gallery';
 import AttachmentList from 'flavours/glitch/components/attachment_list';

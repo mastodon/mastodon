@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { Avatar } from 'flavours/glitch/components/avatar';
-import DisplayName from 'flavours/glitch/components/display_name';
+import { DisplayName } from 'flavours/glitch/components/display_name';
 import Permalink from 'flavours/glitch/components/permalink';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';

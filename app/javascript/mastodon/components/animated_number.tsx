@@ -1,7 +1,10 @@
 import React, { useCallback, useState } from 'react';
-import ShortNumber from './short_number';
+
 import { TransitionMotion, spring } from 'react-motion';
+
 import { reduceMotion } from '../initial_state';
+
+import ShortNumber from './short_number';
 
 const obfuscatedCount = (count: number) => {
   if (count < 0) {
@@ -13,10 +16,10 @@ const obfuscatedCount = (count: number) => {
   }
 };
 
-type Props = {
+interface Props {
   value: number;
   obfuscate?: boolean;
-};
+}
 export const AnimatedNumber: React.FC<Props> = ({ value, obfuscate }) => {
   const [previousValue, setPreviousValue] = useState(value);
   const [direction, setDirection] = useState<1 | -1>(1);
@@ -64,7 +67,11 @@ export const AnimatedNumber: React.FC<Props> = ({ value, obfuscate }) => {
                 transform: `translateY(${style.y * 100}%)`,
               }}
             >
-              {obfuscate ? obfuscatedCount(data) : <ShortNumber value={data} />}
+              {obfuscate ? (
+                obfuscatedCount(data as number)
+              ) : (
+                <ShortNumber value={data as number} />
+              )}
             </span>
           ))}
         </span>

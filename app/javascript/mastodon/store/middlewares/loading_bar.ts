@@ -1,6 +1,7 @@
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import { Middleware } from 'redux';
-import { RootState } from '..';
+import type { AnyAction, Middleware } from 'redux';
+
+import type { RootState } from '..';
 
 interface Config {
   promiseTypeSuffixes?: string[];
@@ -19,7 +20,7 @@ export const loadingBarMiddleware = (
 
   return ({ dispatch }) =>
     (next) =>
-    (action) => {
+    (action: AnyAction) => {
       if (action.type && !action.skipLoading) {
         const [PENDING, FULFILLED, REJECTED] = promiseTypeSuffixes;
 
@@ -27,13 +28,15 @@ export const loadingBarMiddleware = (
         const isFulfilled = new RegExp(`${FULFILLED}$`, 'g');
         const isRejected = new RegExp(`${REJECTED}$`, 'g');
 
-        if (action.type.match(isPending)) {
-          dispatch(showLoading());
-        } else if (
-          action.type.match(isFulfilled) ||
-          action.type.match(isRejected)
-        ) {
-          dispatch(hideLoading());
+        if (typeof action.type === 'string') {
+          if (action.type.match(isPending)) {
+            dispatch(showLoading());
+          } else if (
+            action.type.match(isFulfilled) ||
+            action.type.match(isRejected)
+          ) {
+            dispatch(hideLoading());
+          }
         }
       }
 

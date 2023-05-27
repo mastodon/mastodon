@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import { Link } from 'react-router-dom';
 import { Avatar } from 'flavours/glitch/components/avatar';
-import DisplayName from 'flavours/glitch/components/display_name';
+import { DisplayName } from 'flavours/glitch/components/display_name';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({

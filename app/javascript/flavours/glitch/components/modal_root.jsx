@@ -62,7 +62,7 @@ export default class ModalRoot extends React.PureComponent {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (!!nextProps.children && !this.props.children) {
       this.activeElement = document.activeElement;
 

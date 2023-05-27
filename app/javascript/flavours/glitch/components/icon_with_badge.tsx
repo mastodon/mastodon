@@ -1,14 +1,15 @@
 import React from 'react';
+
 import { Icon } from './icon';
 
 const formatNumber = (num: number): number | string => (num > 40 ? '40+' : num);
 
-type Props = {
+interface Props {
   id: string;
   count: number;
   issueBadge: boolean;
   className: string;
-};
+}
 export const IconWithBadge: React.FC<Props> = ({
   id,
   count,

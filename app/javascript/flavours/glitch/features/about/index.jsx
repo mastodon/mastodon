@@ -8,10 +8,10 @@ import LinkFooter from 'flavours/glitch/features/ui/components/link_footer';
 import { Helmet } from 'react-helmet';
 import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'flavours/glitch/actions/server';
 import Account from 'flavours/glitch/containers/account_container';
-import Skeleton from 'flavours/glitch/components/skeleton';
+import { Skeleton } from 'flavours/glitch/components/skeleton';
 import { Icon } from 'flavours/glitch/components/icon';
 import classNames from 'classnames';
-import { Image } from 'flavours/glitch/components/image';
+import { ServerHeroImage } from 'flavours/glitch/components/server_hero_image';
 
 const messages = defineMessages({
   title: { id: 'column.about', defaultMessage: 'About' },
@@ -114,7 +114,7 @@ class About extends React.PureComponent {
       <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
         <div className='scrollable about'>
           <div className='about__header'>
-            <Image blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} srcSet={server.getIn(['thumbnail', 'versions'])?.map((value, key) => `${value} ${key.replace('@', '')}`).join(', ')} className='about__header__hero' />
+            <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} srcSet={server.getIn(['thumbnail', 'versions'])?.map((value, key) => `${value} ${key.replace('@', '')}`).join(', ')} className='about__header__hero' />
             <h1>{isLoading ? <Skeleton width='10ch' /> : server.get('domain')}</h1>
             <p><FormattedMessage id='about.powered_by' defaultMessage='Decentralized social media powered by {mastodon}' values={{ mastodon: <a href='https://joinmastodon.org' className='about__mail' target='_blank'>Mastodon</a> }} /></p>
           </div>

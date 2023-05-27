@@ -13,7 +13,7 @@ class Api::V1::FeaturedTagsController < Api::BaseController
   end
 
   def create
-    featured_tag = CreateFeaturedTagService.new.call(current_account, featured_tag_params[:name])
+    featured_tag = CreateFeaturedTagService.new.call(current_account, params.require(:name))
     render json: featured_tag, serializer: REST::FeaturedTagSerializer
   end
 
@@ -33,6 +33,6 @@ class Api::V1::FeaturedTagsController < Api::BaseController
   end
 
   def featured_tag_params
-    params.permit(:name)
+    params.require(:name)
   end
 end

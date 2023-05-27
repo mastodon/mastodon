@@ -52,13 +52,13 @@ class Header extends React.PureComponent {
 
       if (registrationsOpen) {
         signupButton = (
-          <a href='/auth/sign_up' className='button button-tertiary'>
+          <a href='/auth/sign_up' className='button'>
             <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
           </a>
         );
       } else {
         signupButton = (
-          <button className='button button-tertiary' onClick={openClosedRegistrationsModal}>
+          <button className='button' onClick={openClosedRegistrationsModal}>
             <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
           </button>
         );
@@ -66,8 +66,8 @@ class Header extends React.PureComponent {
 
       content = (
         <>
-          <a href='/auth/sign_in' className='button'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Sign in' /></a>
           {signupButton}
+          <a href='/auth/sign_in' className='button button-tertiary'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' /></a>
         </>
       );
     }

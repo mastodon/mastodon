@@ -27,9 +27,7 @@ RSpec.describe ActivityPub::OutboxesController do
     Fabricate(:status, account: account, visibility: :private)
     Fabricate(:status, account: account, visibility: :direct)
     Fabricate(:status, account: account, visibility: :limited)
-  end
 
-  before do
     allow(controller).to receive(:signed_request_actor).and_return(remote_account)
   end
 

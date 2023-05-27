@@ -66,7 +66,7 @@ export default class Card extends React.PureComponent {
     revealed: !this.props.sensitive,
   };
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (!Immutable.is(this.props.card, nextProps.card)) {
       this.setState({ embedded: false, previewLoaded: false });
     }
