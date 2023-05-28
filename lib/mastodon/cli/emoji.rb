@@ -1,16 +1,10 @@
 # frozen_string_literal: true
 
 require 'rubygems/package'
-require_relative '../../../config/boot'
-require_relative '../../../config/environment'
-require_relative 'helper'
+require_relative 'base'
 
 module Mastodon::CLI
-  class Emoji < Thor
-    def self.exit_on_failure?
-      true
-    end
-
+  class Emoji < Base
     option :prefix
     option :suffix
     option :overwrite, type: :boolean

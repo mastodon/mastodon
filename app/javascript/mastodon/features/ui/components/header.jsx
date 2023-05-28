@@ -21,7 +21,7 @@ const Account = connect(state => ({
 ));
 
 const mapStateToProps = (state) => ({
-  signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], '/auth/sign_up'),
+  signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], null) || '/auth/sign_up',
 });
 
 const mapDispatchToProps = (dispatch) => ({

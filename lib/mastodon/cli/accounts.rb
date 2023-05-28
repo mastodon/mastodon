@@ -1,18 +1,10 @@
 # frozen_string_literal: true
 
 require 'set'
-require_relative '../../../config/boot'
-require_relative '../../../config/environment'
-require_relative 'helper'
+require_relative 'base'
 
 module Mastodon::CLI
-  class Accounts < Thor
-    include Helper
-
-    def self.exit_on_failure?
-      true
-    end
-
+  class Accounts < Base
     option :all, type: :boolean
     desc 'rotate [USERNAME]', 'Generate and broadcast new keys'
     long_desc <<-LONG_DESC

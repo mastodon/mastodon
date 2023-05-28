@@ -165,7 +165,6 @@ class Header extends ImmutablePureComponent {
     const { account } = this.props;
 
     navigator.share({
-      text: `${titleFromAccount(account)}\n${account.get('note_plain')}`,
       url: account.get('url'),
     }).catch((e) => {
       if (e.name !== 'AbortError') console.error(e);

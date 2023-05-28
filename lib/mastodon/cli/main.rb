@@ -1,29 +1,25 @@
 # frozen_string_literal: true
 
-require 'thor'
-require_relative 'media'
-require_relative 'emoji'
+require_relative 'base'
+
 require_relative 'accounts'
+require_relative 'cache'
+require_relative 'canonical_email_blocks'
+require_relative 'domains'
+require_relative 'email_domain_blocks'
+require_relative 'emoji'
 require_relative 'feeds'
+require_relative 'ip_blocks'
+require_relative 'maintenance'
+require_relative 'media'
+require_relative 'preview_cards'
 require_relative 'search'
 require_relative 'settings'
 require_relative 'statuses'
-require_relative 'domains'
-require_relative 'preview_cards'
-require_relative 'cache'
 require_relative 'upgrade'
-require_relative 'email_domain_blocks'
-require_relative 'canonical_email_blocks'
-require_relative 'ip_blocks'
-require_relative 'maintenance'
-require_relative '../version'
 
 module Mastodon::CLI
-  class Main < Thor
-    def self.exit_on_failure?
-      true
-    end
-
+  class Main < Base
     desc 'media SUBCOMMAND ...ARGS', 'Manage media files'
     subcommand 'media', Media
 

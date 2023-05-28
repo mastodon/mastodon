@@ -58,7 +58,7 @@ RSpec.describe Admin::AccountAction do
     it 'creates Admin::ActionLog' do
       expect do
         subject
-      end.to change { Admin::ActionLog.count }.by 1
+      end.to change(Admin::ActionLog, :count).by 1
     end
 
     it 'calls process_email!' do
