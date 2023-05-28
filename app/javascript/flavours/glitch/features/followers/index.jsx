@@ -27,7 +27,6 @@ import { getAccountHidden } from 'flavours/glitch/selectors';
 
 import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
 
-
 const mapStateToProps = (state, { params: { acct, id } }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
 

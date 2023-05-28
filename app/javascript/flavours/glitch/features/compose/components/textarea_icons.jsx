@@ -8,7 +8,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Components.
 import { Icon } from 'flavours/glitch/components/icon';
-
 //  Messages.
 const messages = defineMessages({
   localOnly: {

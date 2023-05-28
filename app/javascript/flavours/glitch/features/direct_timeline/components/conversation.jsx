@@ -18,7 +18,6 @@ import StatusContent from 'flavours/glitch/components/status_content';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import { autoPlayGif } from 'flavours/glitch/initial_state';
 
-
 const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
   open: { id: 'conversation.open', defaultMessage: 'View conversation' },

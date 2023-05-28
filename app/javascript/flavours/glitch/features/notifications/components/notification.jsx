@@ -13,7 +13,6 @@ import NotificationFollowRequestContainer from '../containers/follow_request_con
 import NotificationAdminSignup from './admin_signup';
 import NotificationFollow from './follow';
 
-
 export default class Notification extends ImmutablePureComponent {
 
   static propTypes = {

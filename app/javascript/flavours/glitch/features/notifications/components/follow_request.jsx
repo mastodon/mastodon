@@ -17,9 +17,6 @@ import Permalink from 'flavours/glitch/components/permalink';
 
 import NotificationOverlayContainer from '../containers/overlay_container';
 
-
-
-
 const messages = defineMessages({
   authorize: { id: 'follow_request.authorize', defaultMessage: 'Authorize' },
   reject: { id: 'follow_request.reject', defaultMessage: 'Reject' },

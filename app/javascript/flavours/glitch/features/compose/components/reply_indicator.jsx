@@ -10,7 +10,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import AccountContainer from 'flavours/glitch/containers/account_container';
-
 //  Messages.
 const messages = defineMessages({
   cancel: {

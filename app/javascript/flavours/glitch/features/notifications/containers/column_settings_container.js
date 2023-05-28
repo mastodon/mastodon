@@ -10,7 +10,6 @@ import { changeSetting } from 'flavours/glitch/actions/settings';
 
 import ColumnSettings from '../components/column_settings';
 
-
 const messages = defineMessages({
   clearMessage: { id: 'notifications.clear_confirmation', defaultMessage: 'Are you sure you want to permanently clear all your notifications?' },
   clearConfirm: { id: 'notifications.clear', defaultMessage: 'Clear notifications' },

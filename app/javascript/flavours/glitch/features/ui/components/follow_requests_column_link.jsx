@@ -10,8 +10,6 @@ import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
 import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';
 import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
 
-
-
 const messages = defineMessages({
   text: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
 });

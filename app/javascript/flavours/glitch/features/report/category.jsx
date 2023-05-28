@@ -11,7 +11,6 @@ import Button from 'flavours/glitch/components/button';
 
 import Option from './components/option';
 
-
 const messages = defineMessages({
   dislike: { id: 'report.reasons.dislike', defaultMessage: 'I don\'t like it' },
   dislike_description: { id: 'report.reasons.dislike_description', defaultMessage: 'It is not something you want to see' },

@@ -29,7 +29,6 @@ import ComposePanel from './compose_panel';
 import DrawerLoading from './drawer_loading';
 import NavigationPanel from './navigation_panel';
 
-
 const componentMap = {
   'COMPOSE': Compose,
   'HOME': HomeTimeline,

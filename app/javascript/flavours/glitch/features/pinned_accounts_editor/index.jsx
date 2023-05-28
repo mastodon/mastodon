@@ -14,7 +14,6 @@ import Motion from 'flavours/glitch/features/ui/util/optional_motion';
 import AccountContainer from './containers/account_container';
 import SearchContainer from './containers/search_container';
 
-
 const mapStateToProps = state => ({
   accountIds: state.getIn(['pinnedAccountsEditor', 'accounts', 'items']),
   searchAccountIds: state.getIn(['pinnedAccountsEditor', 'suggestions', 'items']),

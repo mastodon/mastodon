@@ -5,7 +5,6 @@ import { FormattedMessage } from 'react-intl';
 
 import ShortNumber from 'flavours/glitch/components/short_number';
 
-
 export default class AutosuggestHashtag extends PureComponent {
 
   static propTypes = {

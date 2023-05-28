@@ -24,7 +24,6 @@ import ShortNumber from 'flavours/glitch/components/short_number';
 import { autoPlayGif, me, unfollowModal } from 'flavours/glitch/initial_state';
 import { makeGetAccount } from 'flavours/glitch/selectors';
 
-
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },

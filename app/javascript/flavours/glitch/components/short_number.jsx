@@ -4,7 +4,6 @@ import { memo } from 'react';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 
 import { toShortNumber, pluralReady, DECIMAL_UNITS } from '../utils/numbers';
-
 // @ts-check
 
 /**

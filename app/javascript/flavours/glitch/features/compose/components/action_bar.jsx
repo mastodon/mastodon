@@ -9,8 +9,6 @@ import { preferencesLink, profileLink } from 'flavours/glitch/utils/backend_link
 
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 
-
-
 const messages = defineMessages({
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },

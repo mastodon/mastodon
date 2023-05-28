@@ -15,7 +15,6 @@ import { Skeleton } from 'flavours/glitch/components/skeleton';
 
 import Permalink from './permalink';
 
-
 class SilentErrorBoundary extends Component {
 
   static propTypes = {

@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 
 import { changeComposeSensitivity } from 'flavours/glitch/actions/compose';
 
-
 const messages = defineMessages({
   marked: {
     id: 'compose_form.sensitive.marked',

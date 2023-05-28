@@ -8,8 +8,6 @@ import { connect } from 'react-redux';
 import { removePictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
 import { Icon } from 'flavours/glitch/components/icon';
 
-
-
 class PictureInPicturePlaceholder extends PureComponent {
 
   static propTypes = {

@@ -5,7 +5,6 @@ import { debounce } from 'lodash';
 import api from '../api';
 import { compareId } from '../compare_id';
 
-
 export const MARKERS_FETCH_REQUEST = 'MARKERS_FETCH_REQUEST';
 export const MARKERS_FETCH_SUCCESS = 'MARKERS_FETCH_SUCCESS';
 export const MARKERS_FETCH_FAIL    = 'MARKERS_FETCH_FAIL';

@@ -12,9 +12,6 @@ import { debounce, mapValues } from 'lodash';
 import { doodleSet, uploadCompose } from 'flavours/glitch/actions/compose';
 import Button from 'flavours/glitch/components/button';
 import { IconButton } from 'flavours/glitch/components/icon_button';
-
-
-
 // palette nicked from MyPaint, CC0
 const palette = [
   ['rgb(  0,    0,    0)', 'Black'],

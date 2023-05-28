@@ -4,7 +4,6 @@ import axios from 'axios';
 import LinkHeader from 'http-link-header';
 
 import ready from './ready';
-
 /**
  * @param {import('axios').AxiosResponse} response
  * @returns {LinkHeader}

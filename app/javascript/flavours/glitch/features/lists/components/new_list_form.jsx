@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { changeListEditorTitle, submitListEditor } from 'flavours/glitch/actions/lists';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 
-
 const messages = defineMessages({
   label: { id: 'lists.new.title_placeholder', defaultMessage: 'New list title' },
   title: { id: 'lists.new.create', defaultMessage: 'Add list' },

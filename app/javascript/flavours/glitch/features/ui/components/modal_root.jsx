@@ -38,8 +38,6 @@ import MediaModal from './media_modal';
 import ModalLoading from './modal_loading';
 import VideoModal from './video_modal';
 
-
-
 export const MODAL_COMPONENTS = {
   'MEDIA': () => Promise.resolve({ default: MediaModal }),
   'ONBOARDING': OnboardingModal,

@@ -5,7 +5,6 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { IconButton } from 'flavours/glitch/components/icon_button';
 
-
 const messages = defineMessages({
   compress: { id: 'lightbox.compress', defaultMessage: 'Compress image view box' },
   expand: { id: 'lightbox.expand', defaultMessage: 'Expand image view box' },

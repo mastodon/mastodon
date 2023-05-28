@@ -13,7 +13,6 @@ import { store } from 'flavours/glitch/store';
 
 import { getLocale } from 'mastodon/locales';
 
-
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
 

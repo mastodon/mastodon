@@ -16,9 +16,6 @@ import Column from 'flavours/glitch/features/ui/components/column';
 
 import ScrollableList from '../../components/scrollable_list';
 
-
-
-
 const messages = defineMessages({
   heading: { id: 'column.blocks', defaultMessage: 'Blocked users' },
 });

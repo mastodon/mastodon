@@ -9,9 +9,6 @@ import { Icon } from 'flavours/glitch/components/icon';
 
 import Motion from '../../ui/util/optional_motion';
 
-
-
-
 export default class UploadProgress extends PureComponent {
 
   static propTypes = {

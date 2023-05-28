@@ -5,7 +5,6 @@ import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-
 export default class PillBarButton extends PureComponent {
 
   static propTypes = {

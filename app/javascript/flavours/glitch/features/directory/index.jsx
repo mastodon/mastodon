@@ -20,7 +20,6 @@ import ScrollContainer from 'flavours/glitch/containers/scroll_container';
 
 import AccountCard from './components/account_card';
 
-
 const messages = defineMessages({
   title: { id: 'column.directory', defaultMessage: 'Browse profiles' },
   recentlyActive: { id: 'directory.recently_active', defaultMessage: 'Recently active' },

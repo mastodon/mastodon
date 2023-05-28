@@ -10,8 +10,6 @@ import { fetchSuggestions, dismissSuggestion } from 'flavours/glitch/actions/sug
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 import AccountCard from 'flavours/glitch/features/directory/components/account_card';
 
-
-
 const mapStateToProps = state => ({
   suggestions: state.getIn(['suggestions', 'items']),
   isLoading: state.getIn(['suggestions', 'isLoading']),

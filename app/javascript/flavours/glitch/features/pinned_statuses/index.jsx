@@ -13,9 +13,6 @@ import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_
 import StatusList from 'flavours/glitch/components/status_list';
 import Column from 'flavours/glitch/features/ui/components/column';
 
-
-
-
 const messages = defineMessages({
   heading: { id: 'column.pins', defaultMessage: 'Pinned post' },
 });

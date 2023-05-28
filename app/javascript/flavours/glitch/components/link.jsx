@@ -9,7 +9,6 @@ import classNames from 'classnames';
 
 //  Utils.
 import { assignHandlers } from 'flavours/glitch/utils/react_helpers';
-
 //  Handlers.
 const handlers = {
 

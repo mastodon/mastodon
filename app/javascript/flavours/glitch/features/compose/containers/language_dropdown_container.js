@@ -7,7 +7,6 @@ import { useLanguage } from 'flavours/glitch/actions/languages';
 
 import LanguageDropdown from '../components/language_dropdown';
 
-
 const getFrequentlyUsedLanguages = createSelector([
   state => state.getIn(['settings', 'frequentlyUsedLanguages'], ImmutableMap()),
 ], languageCounters => (

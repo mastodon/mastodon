@@ -21,7 +21,6 @@ import { getAccountGallery } from 'flavours/glitch/selectors';
 
 import MediaItem from './components/media_item';
 
-
 const mapStateToProps = (state, { params: { acct, id } }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
 
