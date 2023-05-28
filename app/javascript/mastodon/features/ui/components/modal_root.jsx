@@ -32,7 +32,7 @@ import MediaModal from './media_modal';
 import ModalLoading from './modal_loading';
 import VideoModal from './video_modal';
 
-const MODAL_COMPONENTS = {
+export const MODAL_COMPONENTS = {
   'MEDIA': () => Promise.resolve({ default: MediaModal }),
   'VIDEO': () => Promise.resolve({ default: VideoModal }),
   'AUDIO': () => Promise.resolve({ default: AudioModal }),

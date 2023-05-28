@@ -231,34 +231,9 @@ module Mastodon::CLI
         end
       end
 
-      ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE confirmation_token IS NOT NULL GROUP BY confirmation_token HAVING count(*) > 1").each do |row|
-        users = User.where(id: row['ids'].split(',')).sort_by(&:created_at).reverse.drop(1)
-        @prompt.warn "Unsetting confirmation token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}"
-
-        users.each do |user|
-          user.update!(confirmation_token: nil)
-        end
-      end
-
-      if ActiveRecord::Migrator.current_version < 2022_01_18_183010
-        ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE remember_token IS NOT NULL GROUP BY remember_token HAVING count(*) > 1").each do |row|
-          users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse.drop(1)
-          @prompt.warn "Unsetting remember token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}"
-
-          users.each do |user|
-            user.update!(remember_token: nil)
-          end
-        end
-      end
-
-      ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE reset_password_token IS NOT NULL GROUP BY reset_password_token HAVING count(*) > 1").each do |row|
-        users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse.drop(1)
-        @prompt.warn "Unsetting password reset token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}"
-
-        users.each do |user|
-          user.update!(reset_password_token: nil)
-        end
-      end
+      deduplicate_users_process_confirmation_token
+      deduplicate_users_process_remember_token
+      deduplicate_users_process_password_token
 
       @prompt.say 'Restoring users indexes…'
       ActiveRecord::Base.connection.add_index :users, ['confirmation_token'], name: 'index_users_on_confirmation_token', unique: true
@@ -269,6 +244,41 @@ module Mastodon::CLI
         ActiveRecord::Base.connection.add_index :users, ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
       else
         ActiveRecord::Base.connection.add_index :users, ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true, where: 'reset_password_token IS NOT NULL', opclass: :text_pattern_ops
+      end
+    end
+
+    def deduplicate_users_process_confirmation_token
+      ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE confirmation_token IS NOT NULL GROUP BY confirmation_token HAVING count(*) > 1").each do |row|
+        users = User.where(id: row['ids'].split(',')).sort_by(&:created_at).reverse.drop(1)
+        @prompt.warn "Unsetting confirmation token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}"
+
+        users.each do |user|
+          user.update!(confirmation_token: nil)
+        end
+      end
+    end
+
+    def deduplicate_users_process_remember_token
+      if ActiveRecord::Migrator.current_version < 2022_01_18_183010
+        ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE remember_token IS NOT NULL GROUP BY remember_token HAVING count(*) > 1").each do |row|
+          users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse.drop(1)
+          @prompt.warn "Unsetting remember token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}"
+
+          users.each do |user|
+            user.update!(remember_token: nil)
+          end
+        end
+      end
+    end
+
+    def deduplicate_users_process_password_token
+      ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE reset_password_token IS NOT NULL GROUP BY reset_password_token HAVING count(*) > 1").each do |row|
+        users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse.drop(1)
+        @prompt.warn "Unsetting password reset token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}"
+
+        users.each do |user|
+          user.update!(reset_password_token: nil)
+        end
       end
     end
 

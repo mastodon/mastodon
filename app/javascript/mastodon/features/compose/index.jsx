@@ -71,11 +71,14 @@ class Compose extends PureComponent {
     e.preventDefault();
     e.stopPropagation();
 
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.logoutMessage),
-      confirm: intl.formatMessage(messages.logoutConfirm),
-      closeWhenConfirm: false,
-      onConfirm: () => logOut(),
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.logoutMessage),
+        confirm: intl.formatMessage(messages.logoutConfirm),
+        closeWhenConfirm: false,
+        onConfirm: () => logOut(),
+      },
     }));
 
     return false;

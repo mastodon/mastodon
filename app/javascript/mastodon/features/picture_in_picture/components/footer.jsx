@@ -74,19 +74,25 @@ class Footer extends ImmutablePureComponent {
 
     if (signedIn) {
       if (askReplyConfirmation) {
-        dispatch(openModal('CONFIRM', {
-          message: intl.formatMessage(messages.replyMessage),
-          confirm: intl.formatMessage(messages.replyConfirm),
-          onConfirm: this._performReply,
+        dispatch(openModal({
+          modalType: 'CONFIRM',
+          modalProps: {
+            message: intl.formatMessage(messages.replyMessage),
+            confirm: intl.formatMessage(messages.replyConfirm),
+            onConfirm: this._performReply,
+          },
         }));
       } else {
         this._performReply();
       }
     } else {
-      dispatch(openModal('INTERACTION', {
-        type: 'reply',
-        accountId: status.getIn(['account', 'id']),
-        url: status.get('url'),
+      dispatch(openModal({
+        modalType: 'INTERACTION',
+        modalProps: {
+          type: 'reply',
+          accountId: status.getIn(['account', 'id']),
+          url: status.get('url'),
+        },
       }));
     }
   };
@@ -102,10 +108,13 @@ class Footer extends ImmutablePureComponent {
         dispatch(favourite(status));
       }
     } else {
-      dispatch(openModal('INTERACTION', {
-        type: 'favourite',
-        accountId: status.getIn(['account', 'id']),
-        url: status.get('url'),
+      dispatch(openModal({
+        modalType: 'INTERACTION',
+        modalProps: {
+          type: 'favourite',
+          accountId: status.getIn(['account', 'id']),
+          url: status.get('url'),
+        },
       }));
     }
   };
@@ -128,10 +137,13 @@ class Footer extends ImmutablePureComponent {
         dispatch(initBoostModal({ status, onReblog: this._performReblog }));
       }
     } else {
-      dispatch(openModal('INTERACTION', {
-        type: 'reblog',
-        accountId: status.getIn(['account', 'id']),
-        url: status.get('url'),
+      dispatch(openModal({
+        modalType: 'INTERACTION',
+        modalProps: {
+          type: 'reblog',
+          accountId: status.getIn(['account', 'id']),
+          url: status.get('url'),
+        },
       }));
     }
   };
