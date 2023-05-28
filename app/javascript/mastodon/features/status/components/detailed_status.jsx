@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Avatar } from '../../../components/avatar';
@@ -190,7 +189,7 @@ class DetailedStatus extends ImmutablePureComponent {
     }
 
     if (status.get('application')) {
-      applicationLink = <Fragment> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener noreferrer'>{status.getIn(['application', 'name'])}</a></Fragment>;
+      applicationLink = <> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener noreferrer'>{status.getIn(['application', 'name'])}</a></>;
     }
 
     const visibilityIconInfo = {
@@ -201,33 +200,33 @@ class DetailedStatus extends ImmutablePureComponent {
     };
 
     const visibilityIcon = visibilityIconInfo[status.get('visibility')];
-    const visibilityLink = <Fragment> · <Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></Fragment>;
+    const visibilityLink = <> · <Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></>;
 
     if (['private', 'direct'].includes(status.get('visibility'))) {
       reblogLink = '';
     } else if (this.context.router) {
       reblogLink = (
-        <Fragment>
-          <Fragment> · </Fragment>
+        <>
+           · 
           <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reblogs`} className='detailed-status__link'>
             <Icon id={reblogIcon} />
             <span className='detailed-status__reblogs'>
               <AnimatedNumber value={status.get('reblogs_count')} />
             </span>
           </Link>
-        </Fragment>
+        </>
       );
     } else {
       reblogLink = (
-        <Fragment>
-          <Fragment> · </Fragment>
+        <>
+           · 
           <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
             <Icon id={reblogIcon} />
             <span className='detailed-status__reblogs'>
               <AnimatedNumber value={status.get('reblogs_count')} />
             </span>
           </a>
-        </Fragment>
+        </>
       );
     }
 
@@ -253,10 +252,10 @@ class DetailedStatus extends ImmutablePureComponent {
 
     if (status.get('edited_at')) {
       edited = (
-        <Fragment>
-          <Fragment> · </Fragment>
+        <>
+           · 
           <EditedTimestamp statusId={status.get('id')} timestamp={status.get('edited_at')} />
-        </Fragment>
+        </>
       );
     }
 

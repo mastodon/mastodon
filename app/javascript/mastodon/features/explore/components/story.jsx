@@ -1,4 +1,4 @@
-import { PureComponent, Fragment } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { accountsCountRenderer } from 'mastodon/components/hashtag';
@@ -38,10 +38,10 @@ export default class Story extends PureComponent {
 
         <div className='story__thumbnail'>
           {thumbnail ? (
-            <Fragment>
+            <>
               <div className={classNames('story__thumbnail__preview', { 'story__thumbnail__preview--hidden': thumbnailLoaded })}><Blurhash hash={blurhash} /></div>
               <img src={thumbnail} onLoad={this.handleImageLoad} alt='' role='presentation' />
-            </Fragment>
+            </>
           ) : <Skeleton />}
         </div>
       </a>

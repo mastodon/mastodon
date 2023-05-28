@@ -1,4 +1,4 @@
-import { PureComponent, Fragment } from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SearchContainer from 'mastodon/features/compose/containers/search_container';
@@ -46,17 +46,17 @@ class ComposePanel extends PureComponent {
         <SearchContainer openInRoute />
 
         {!signedIn && (
-          <Fragment>
+          <>
             <ServerBanner />
             <div className='flex-spacer' />
-          </Fragment>
+          </>
         )}
 
         {signedIn && (
-          <Fragment>
+          <>
             <NavigationContainer onClose={this.onBlur} />
             <ComposeFormContainer singleColumn />
-          </Fragment>
+          </>
         )}
 
         <LinkFooter />

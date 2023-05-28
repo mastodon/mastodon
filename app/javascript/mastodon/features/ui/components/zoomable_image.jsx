@@ -1,4 +1,4 @@
-import { PureComponent, Fragment } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { IconButton } from 'mastodon/components/icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -411,7 +411,7 @@ class ZoomableImage extends PureComponent {
     const zoomButtonTitle = this.state.zoomState === 'compress' ? intl.formatMessage(messages.compress) : intl.formatMessage(messages.expand);
 
     return (
-      <Fragment>
+      <>
         <IconButton
           className={`media-modal__zoom-button ${zoomButtonShouldHide}`}
           title={zoomButtonTitle}
@@ -445,7 +445,7 @@ class ZoomableImage extends PureComponent {
             onMouseDown={this.handleMouseDown}
           />
         </div>
-      </Fragment>
+      </>
     );
   }
 
