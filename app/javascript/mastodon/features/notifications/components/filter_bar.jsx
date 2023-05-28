@@ -1,6 +1,8 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
 import { Icon }  from 'mastodon/components/icon';
 
 const tooltips = defineMessages({

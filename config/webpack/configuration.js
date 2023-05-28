@@ -1,10 +1,11 @@
 // Common configuration for webpacker loaded from config/webpacker.yml
 
+const { lstatSync, readFileSync } = require('fs');
 const { basename, dirname, extname, join, resolve } = require('path');
 const { env } = require('process');
-const { load } = require('js-yaml');
-const { lstatSync, readFileSync } = require('fs');
+
 const glob = require('glob');
+const { load } = require('js-yaml');
 
 const configPath = resolve('config', 'webpacker.yml');
 const settings = load(readFileSync(configPath), 'utf8')[env.RAILS_ENV || env.NODE_ENV];

@@ -1,6 +1,8 @@
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import { Icon }  from 'mastodon/components/icon';
 
 export default class FollowRequestNote extends ImmutablePureComponent {

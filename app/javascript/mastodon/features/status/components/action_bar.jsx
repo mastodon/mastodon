@@ -1,13 +1,18 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { IconButton } from '../../../components/icon_button';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
-import { me } from '../../../initial_state';
+
 import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
+
+import { IconButton } from '../../../components/icon_button';
+import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
+import { me } from '../../../initial_state';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },

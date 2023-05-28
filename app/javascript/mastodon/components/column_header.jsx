@@ -1,8 +1,11 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
 import { createPortal } from 'react-dom';
-import classNames from 'classnames';
+
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
+
+import classNames from 'classnames';
+
 import { Icon }  from 'mastodon/components/icon';
 
 const messages = defineMessages({

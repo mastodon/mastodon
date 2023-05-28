@@ -1,6 +1,7 @@
 import './public-path';
-import ready from '../mastodon/ready';
 import { createRoot } from 'react-dom/client';
+
+import ready from '../mastodon/ready';
 
 ready(() => {
   [].forEach.call(document.querySelectorAll('[data-admin-component]'), element => {

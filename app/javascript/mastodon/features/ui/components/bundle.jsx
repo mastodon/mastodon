@@ -1,5 +1,5 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
 
 const emptyComponent = () => null;
 const noop = () => { };

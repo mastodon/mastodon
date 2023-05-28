@@ -1,13 +1,18 @@
-import { PureComponent } from 'react';
+import punycode from 'punycode';
+
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
+import classnames from 'classnames';
+
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { FormattedMessage } from 'react-intl';
-import punycode from 'punycode';
-import classnames from 'classnames';
+
+import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon }  from 'mastodon/components/icon';
 import { useBlurhash } from 'mastodon/initial_state';
-import { Blurhash } from 'mastodon/components/blurhash';
 
 const IDNA_PREFIX = 'xn--';
 

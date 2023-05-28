@@ -1,7 +1,9 @@
-import { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Check } from 'mastodon/components/check';
+import { Fragment } from 'react';
+
 import classNames from 'classnames';
+
+import { Check } from 'mastodon/components/check';
 
 const ProgressIndicator = ({ steps, completed }) => (
   <div className='onboarding__progress-indicator'>

@@ -1,13 +1,19 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';
-import Overlay from 'react-overlays/Overlay';
+
 import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { supportsPassiveEvents } from 'detect-passive-events';
-import { buildCustomEmojis, categoriesFromEmojis } from '../../emoji/emoji';
+import Overlay from 'react-overlays/Overlay';
+
 import { assetHost } from 'mastodon/utils/config';
+
+import { buildCustomEmojis, categoriesFromEmojis } from '../../emoji/emoji';
+import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';
 
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },

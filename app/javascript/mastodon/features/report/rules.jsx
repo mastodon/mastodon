@@ -1,9 +1,13 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
+
 import Button from 'mastodon/components/button';
+
 import Option from './components/option';
 
 const mapStateToProps = state => ({

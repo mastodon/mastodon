@@ -1,8 +1,11 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Motion from '../util/optional_motion';
-import spring from 'react-motion/lib/spring';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
+
+import spring from 'react-motion/lib/spring';
+
+import Motion from '../util/optional_motion';
 
 export default class UploadArea extends PureComponent {
 

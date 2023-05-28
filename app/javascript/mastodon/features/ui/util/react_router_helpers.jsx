@@ -1,9 +1,12 @@
-import { Component, PureComponent, cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
+import { Component, PureComponent, cloneElement, Children } from 'react';
+
 import { Switch, Route } from 'react-router-dom';
+
 import StackTrace from 'stacktrace-js';
-import ColumnLoading from '../components/column_loading';
+
 import BundleColumnError from '../components/bundle_column_error';
+import ColumnLoading from '../components/column_loading';
 import BundleContainer from '../containers/bundle_container';
 
 // Small wrapper to pass multiColumn to the route components

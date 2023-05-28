@@ -1,9 +1,12 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Icon }  from 'mastodon/components/icon';
-import { removePictureInPicture } from 'mastodon/actions/picture_in_picture';
-import { connect } from 'react-redux';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
+
+import { connect } from 'react-redux';
+
+import { removePictureInPicture } from 'mastodon/actions/picture_in_picture';
+import { Icon }  from 'mastodon/components/icon';
 
 class PictureInPicturePlaceholder extends PureComponent {
 

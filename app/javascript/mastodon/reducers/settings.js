@@ -1,11 +1,12 @@
-import { SETTING_CHANGE, SETTING_SAVE } from '../actions/settings';
-import { NOTIFICATIONS_FILTER_SET } from '../actions/notifications';
+import { Map as ImmutableMap, fromJS } from 'immutable';
+
 import { COLUMN_ADD, COLUMN_REMOVE, COLUMN_MOVE, COLUMN_PARAMS_CHANGE } from '../actions/columns';
-import { STORE_HYDRATE } from '../actions/store';
 import { EMOJI_USE } from '../actions/emojis';
 import { LANGUAGE_USE } from '../actions/languages';
 import { LIST_DELETE_SUCCESS, LIST_FETCH_FAIL } from '../actions/lists';
-import { Map as ImmutableMap, fromJS } from 'immutable';
+import { NOTIFICATIONS_FILTER_SET } from '../actions/notifications';
+import { SETTING_CHANGE, SETTING_SAVE } from '../actions/settings';
+import { STORE_HYDRATE } from '../actions/store';
 import { uuid } from '../uuid';
 
 const initialState = ImmutableMap({

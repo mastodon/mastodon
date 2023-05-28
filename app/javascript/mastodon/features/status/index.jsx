@@ -1,9 +1,51 @@
-import Immutable from 'immutable';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
 import classNames from 'classnames';
+import { Helmet } from 'react-helmet';
+
+import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+
+import { HotKeys } from 'react-hotkeys';
+
+import { Icon }  from 'mastodon/components/icon';
+import LoadingIndicator from 'mastodon/components/loading_indicator';
+import ScrollContainer from 'mastodon/containers/scroll_container';
+import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+
+import {
+  unblockAccount,
+  unmuteAccount,
+} from '../../actions/accounts';
+import { initBlockModal } from '../../actions/blocks';
+import { initBoostModal } from '../../actions/boosts';
+import {
+  replyCompose,
+  mentionCompose,
+  directCompose,
+} from '../../actions/compose';
+import {
+  blockDomain,
+  unblockDomain,
+} from '../../actions/domain_blocks';
+import {
+  favourite,
+  unfavourite,
+  bookmark,
+  unbookmark,
+  reblog,
+  unreblog,
+  pin,
+  unpin,
+} from '../../actions/interactions';
+import { openModal } from '../../actions/modal';
+import { initMuteModal } from '../../actions/mutes';
+import { initReport } from '../../actions/reports';
 import {
   fetchStatus,
   muteStatus,
@@ -15,51 +57,16 @@ import {
   translateStatus,
   undoStatusTranslation,
 } from '../../actions/statuses';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
-import DetailedStatus from './components/detailed_status';
-import ActionBar from './components/action_bar';
-import Column from '../ui/components/column';
-import {
-  favourite,
-  unfavourite,
-  bookmark,
-  unbookmark,
-  reblog,
-  unreblog,
-  pin,
-  unpin,
-} from '../../actions/interactions';
-import {
-  replyCompose,
-  mentionCompose,
-  directCompose,
-} from '../../actions/compose';
-import {
-  unblockAccount,
-  unmuteAccount,
-} from '../../actions/accounts';
-import {
-  blockDomain,
-  unblockDomain,
-} from '../../actions/domain_blocks';
-import { initMuteModal } from '../../actions/mutes';
-import { initBlockModal } from '../../actions/blocks';
-import { initBoostModal } from '../../actions/boosts';
-import { initReport } from '../../actions/reports';
-import { makeGetStatus, makeGetPictureInPicture } from '../../selectors';
-import ScrollContainer from 'mastodon/containers/scroll_container';
 import ColumnHeader from '../../components/column_header';
-import StatusContainer from '../../containers/status_container';
-import { openModal } from '../../actions/modal';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { HotKeys } from 'react-hotkeys';
-import { boostModal, deleteModal } from '../../initial_state';
-import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
-import { Icon }  from 'mastodon/components/icon';
-import { Helmet } from 'react-helmet';
-import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+import StatusContainer from '../../containers/status_container';
+import { boostModal, deleteModal } from '../../initial_state';
+import { makeGetStatus, makeGetPictureInPicture } from '../../selectors';
+import Column from '../ui/components/column';
+import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
+
+import ActionBar from './components/action_bar';
+import DetailedStatus from './components/detailed_status';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },

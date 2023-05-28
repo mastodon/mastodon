@@ -1,12 +1,16 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { Icon }  from 'mastodon/components/icon';
-import DropdownMenu from './containers/dropdown_menu_container';
+
 import { connect } from 'react-redux';
+
 import { openModal } from 'mastodon/actions/modal';
-import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
+import { Icon }  from 'mastodon/components/icon';
 import InlineAccount from 'mastodon/components/inline_account';
+import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
+
+import DropdownMenu from './containers/dropdown_menu_container';
 
 const mapDispatchToProps = (dispatch, { statusId }) => ({
 

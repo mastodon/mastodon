@@ -1,9 +1,13 @@
-import { PureComponent } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { changeComposeSensitivity } from 'mastodon/actions/compose';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+
+import { connect } from 'react-redux';
+
+import { changeComposeSensitivity } from 'mastodon/actions/compose';
 
 const messages = defineMessages({
   marked: {

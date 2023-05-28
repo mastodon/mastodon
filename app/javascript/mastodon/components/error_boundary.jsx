@@ -1,9 +1,13 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
-import { version, source_url } from 'mastodon/initial_state';
-import StackTrace from 'stacktrace-js';
+
 import { Helmet } from 'react-helmet';
+
+import StackTrace from 'stacktrace-js';
+
+import { version, source_url } from 'mastodon/initial_state';
 
 export default class ErrorBoundary extends PureComponent {
 

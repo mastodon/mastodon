@@ -1,9 +1,9 @@
 //  This file will be loaded on settings pages, regardless of theme.
 
 import 'packs/public-path';
+import { delegate } from '@rails/ujs';
 import escapeTextContentForBrowser from 'escape-html';
 
-import { delegate } from '@rails/ujs';
 
 import emojify from '../mastodon/features/emoji/emoji';
 

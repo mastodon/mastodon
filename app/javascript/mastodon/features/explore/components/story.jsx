@@ -1,10 +1,12 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import classNames from 'classnames';
+
 import { Blurhash } from 'mastodon/components/blurhash';
 import { accountsCountRenderer } from 'mastodon/components/hashtag';
 import ShortNumber from 'mastodon/components/short_number';
 import { Skeleton } from 'mastodon/components/skeleton';
-import classNames from 'classnames';
 
 export default class Story extends PureComponent {
 

@@ -1,8 +1,9 @@
+import { Map as ImmutableMap } from 'immutable';
+
 import {
   MARKERS_SUBMIT_SUCCESS,
 } from '../actions/markers';
 
-import { Map as ImmutableMap } from 'immutable';
 
 const initialState = ImmutableMap({
   home: '0',

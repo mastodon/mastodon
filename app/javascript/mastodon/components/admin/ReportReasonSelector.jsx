@@ -1,8 +1,11 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import api from 'mastodon/api';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages } from 'react-intl';
+
 import classNames from 'classnames';
+
+import api from 'mastodon/api';
 
 const messages = defineMessages({
   other: { id: 'report.categories.other', defaultMessage: 'Other' },

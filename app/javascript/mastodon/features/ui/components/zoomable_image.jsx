@@ -1,7 +1,9 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { IconButton } from 'mastodon/components/icon_button';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
+import { IconButton } from 'mastodon/components/icon_button';
 
 const messages = defineMessages({
   compress: { id: 'lightbox.compress', defaultMessage: 'Compress image view box' },

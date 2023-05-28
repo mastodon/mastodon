@@ -1,8 +1,10 @@
-import { PureComponent } from 'react';
-import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import { Icon }  from 'mastodon/components/icon';
+import { PureComponent } from 'react';
 import { createPortal } from 'react-dom';
+
+import { FormattedMessage } from 'react-intl';
+
+import { Icon }  from 'mastodon/components/icon';
 
 export default class ColumnBackButton extends PureComponent {
 

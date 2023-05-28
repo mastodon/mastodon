@@ -1,9 +1,10 @@
-import { connect } from 'react-redux';
-import EmojiPickerDropdown from '../components/emoji_picker_dropdown';
-import { changeSetting } from '../../../actions/settings';
-import { createSelector } from 'reselect';
 import { Map as ImmutableMap } from 'immutable';
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
+
 import { useEmoji } from '../../../actions/emojis';
+import { changeSetting } from '../../../actions/settings';
+import EmojiPickerDropdown from '../components/emoji_picker_dropdown';
 
 const perLine = 8;
 const lines   = 2;

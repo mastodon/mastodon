@@ -1,12 +1,15 @@
-import { PureComponent } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import SearchContainer from 'mastodon/features/compose/containers/search_container';
+import { PureComponent } from 'react';
+
+import { connect } from 'react-redux';
+
+import { changeComposing, mountCompose, unmountCompose } from 'mastodon/actions/compose';
+import ServerBanner from 'mastodon/components/server_banner';
 import ComposeFormContainer from 'mastodon/features/compose/containers/compose_form_container';
 import NavigationContainer from 'mastodon/features/compose/containers/navigation_container';
+import SearchContainer from 'mastodon/features/compose/containers/search_container';
+
 import LinkFooter from './link_footer';
-import ServerBanner from 'mastodon/components/server_banner';
-import { changeComposing, mountCompose, unmountCompose } from 'mastodon/actions/compose';
 
 class ComposePanel extends PureComponent {
 

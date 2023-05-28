@@ -1,27 +1,33 @@
-import { PureComponent } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+
+import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
-import { changeUploadCompose, uploadThumbnail, onChangeMediaDescription, onChangeMediaFocus } from '../../../actions/compose';
-import Video, { getPointerPosition } from '../../video';
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
-import { IconButton } from 'mastodon/components/icon_button';
-import Button from 'mastodon/components/button';
-import Audio from 'mastodon/features/audio';
+
 import Textarea from 'react-textarea-autosize';
-import UploadProgress from 'mastodon/features/compose/components/upload_progress';
-import CharacterCounter from 'mastodon/features/compose/components/character_counter';
 import { length } from 'stringz';
-import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
-import { GIFV } from 'mastodon/components/gifv';
-import { me } from 'mastodon/initial_state';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
 // eslint-disable-next-line import/extensions
 import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
+
+import Button from 'mastodon/components/button';
+import { GIFV } from 'mastodon/components/gifv';
+import { IconButton } from 'mastodon/components/icon_button';
+import Audio from 'mastodon/features/audio';
+import CharacterCounter from 'mastodon/features/compose/components/character_counter';
+import UploadProgress from 'mastodon/features/compose/components/upload_progress';
+import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
+import { me } from 'mastodon/initial_state';
 import { assetHost } from 'mastodon/utils/config';
+
+import { changeUploadCompose, uploadThumbnail, onChangeMediaDescription, onChangeMediaFocus } from '../../../actions/compose';
+import Video, { getPointerPosition } from '../../video';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

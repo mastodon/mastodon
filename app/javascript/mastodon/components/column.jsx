@@ -1,6 +1,8 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { supportsPassiveEvents } from 'detect-passive-events';
+
 import { scrollTop } from '../scroll';
 
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;

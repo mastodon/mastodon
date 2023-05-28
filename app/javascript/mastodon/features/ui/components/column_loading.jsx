@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import Column from '../../../components/column';
 import ColumnHeader from '../../../components/column_header';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 
 export default class ColumnLoading extends ImmutablePureComponent {
 

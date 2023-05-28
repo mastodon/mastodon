@@ -1,25 +1,31 @@
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { Avatar } from './avatar';
-import { AvatarOverlay } from './avatar_overlay';
-import { RelativeTimestamp } from './relative_timestamp';
-import { DisplayName } from './display_name';
-import StatusContent from './status_content';
-import StatusActionBar from './status_action_bar';
-import AttachmentList from './attachment_list';
-import Card from '../features/status/components/card';
+
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
-import { HotKeys } from 'react-hotkeys';
+
 import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { HotKeys } from 'react-hotkeys';
+
 import { Icon }  from 'mastodon/components/icon';
-import { displayMedia } from '../initial_state';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 
+import Card from '../features/status/components/card';
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
+import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
+import { displayMedia } from '../initial_state';
+
+import AttachmentList from './attachment_list';
+import { Avatar } from './avatar';
+import { AvatarOverlay } from './avatar_overlay';
+import { DisplayName } from './display_name';
+import { RelativeTimestamp } from './relative_timestamp';
+import StatusActionBar from './status_action_bar';
+import StatusContent from './status_content';
 
 export const textForScreenReader = (intl, status, rebloggedByText = false) => {
   const displayName = status.getIn(['account', 'display_name']);
