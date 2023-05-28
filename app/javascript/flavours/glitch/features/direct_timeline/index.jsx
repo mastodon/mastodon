@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { PureComponent } from 'react';
 import { Helmet } from 'react-helmet';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
   conversationsMode: state.getIn(['settings', 'direct', 'conversations']),
 });
 
-class DirectTimeline extends React.PureComponent {
+class DirectTimeline extends PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,

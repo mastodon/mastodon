@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'flavours/glitch/components/button';
 import ImmutablePureComponent from 'react-immutable-pure-component';

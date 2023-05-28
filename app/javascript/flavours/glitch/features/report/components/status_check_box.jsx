@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusContent from 'flavours/glitch/components/status_content';
@@ -9,7 +9,7 @@ import Option from './option';
 import MediaAttachments from 'flavours/glitch/components/media_attachments';
 import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
 
-export default class StatusCheckBox extends React.PureComponent {
+export default class StatusCheckBox extends PureComponent {
 
   static propTypes = {
     id: PropTypes.string.isRequired,

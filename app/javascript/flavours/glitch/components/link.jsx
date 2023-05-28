@@ -4,7 +4,7 @@
 //  Package imports.
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import { PureComponent } from 'react';
 
 //  Utils.
 import { assignHandlers } from 'flavours/glitch/utils/react_helpers';
@@ -25,7 +25,7 @@ const handlers = {
 };
 
 //  The component.
-export default class Link extends React.PureComponent {
+export default class Link extends PureComponent {
 
   //  Constructor.
   constructor (props) {

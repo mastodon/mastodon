@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
@@ -41,7 +41,7 @@ const mapStateToProps = state => ({
   domainBlocks: state.getIn(['server', 'domainBlocks']),
 });
 
-class Section extends React.PureComponent {
+class Section extends PureComponent {
 
   static propTypes = {
     title: PropTypes.string,
@@ -80,7 +80,7 @@ class Section extends React.PureComponent {
 
 }
 
-class About extends React.PureComponent {
+class About extends PureComponent {
 
   static propTypes = {
     server: ImmutablePropTypes.map,

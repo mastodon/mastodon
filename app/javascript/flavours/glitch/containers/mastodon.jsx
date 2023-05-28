@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { PureComponent } from 'react';
 import { Helmet } from 'react-helmet';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { Provider as ReduxProvider } from 'react-redux';
@@ -38,7 +38,7 @@ const createIdentityContext = state => ({
   permissions: state.role ? state.role.permissions : 0,
 });
 
-export default class Mastodon extends React.PureComponent {
+export default class Mastodon extends PureComponent {
 
   static propTypes = {
     locale: PropTypes.string.isRequired,

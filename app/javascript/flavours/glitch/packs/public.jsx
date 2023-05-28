@@ -10,7 +10,6 @@ import { timeAgoString }  from 'flavours/glitch/components/relative_timestamp';
 import { delegate }  from '@rails/ujs';
 import emojify  from 'flavours/glitch/features/emoji/emoji';
 import { getLocale }  from 'locales';
-import React  from 'react';
 import { createRoot }  from 'react-dom/client';
 import { createBrowserHistory }  from 'history';
 

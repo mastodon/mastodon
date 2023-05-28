@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import Column from 'flavours/glitch/features/ui/components/column';
 import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
 import ColumnSubheading from 'flavours/glitch/features/ui/components/column_subheading';
@@ -173,13 +173,13 @@ class GettingStarted extends ImmutablePureComponent {
             {multiColumn && <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />}
             {navItems}
             {signedIn && (
-              <React.Fragment>
+              <Fragment>
                 <ColumnSubheading text={intl.formatMessage(messages.lists_subheading)} />
                 {listItems}
                 <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
                 { preferencesLink !== undefined && <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href={preferencesLink} /> }
                 <ColumnLink icon='cogs' text={intl.formatMessage(messages.settings)} onClick={openSettings} />
-              </React.Fragment>
+              </Fragment>
             )}
           </div>
 

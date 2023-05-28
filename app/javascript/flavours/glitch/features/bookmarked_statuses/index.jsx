@@ -1,6 +1,5 @@
 import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
-import React from 'react';
 import { Helmet } from 'react-helmet';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';

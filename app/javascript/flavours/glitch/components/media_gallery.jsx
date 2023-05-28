@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { is } from 'immutable';
@@ -32,7 +32,7 @@ const messages = defineMessages({
   },
 });
 
-class Item extends React.PureComponent {
+class Item extends PureComponent {
 
   static propTypes = {
     attachment: ImmutablePropTypes.map.isRequired,
@@ -217,7 +217,7 @@ class Item extends React.PureComponent {
 
 }
 
-class MediaGallery extends React.PureComponent {
+class MediaGallery extends PureComponent {
 
   static propTypes = {
     sensitive: PropTypes.bool,

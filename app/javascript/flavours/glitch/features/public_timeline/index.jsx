@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
@@ -35,7 +35,7 @@ const mapStateToProps = (state, { columnId }) => {
   };
 };
 
-class PublicTimeline extends React.PureComponent {
+class PublicTimeline extends PureComponent {
 
   static defaultProps = {
     onlyMedia: false,

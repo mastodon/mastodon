@@ -1,4 +1,3 @@
-import React from 'react';
 import CharacterCounter from './character_counter';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';

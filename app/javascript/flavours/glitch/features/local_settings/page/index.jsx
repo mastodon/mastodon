@@ -1,5 +1,5 @@
 //  Package imports
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
@@ -35,7 +35,7 @@ const messages = defineMessages({
   direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
 });
 
-class LocalSettingsPage extends React.PureComponent {
+class LocalSettingsPage extends PureComponent {
 
   static propTypes = {
     index    : PropTypes.number,

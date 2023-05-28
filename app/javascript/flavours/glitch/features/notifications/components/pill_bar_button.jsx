@@ -1,9 +1,9 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import classNames from 'classnames';
 
-export default class PillBarButton extends React.PureComponent {
+export default class PillBarButton extends PureComponent {
 
   static propTypes = {
     prefix: PropTypes.string,

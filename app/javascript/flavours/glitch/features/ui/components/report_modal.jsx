@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { submitReport } from 'flavours/glitch/actions/reports';
 import { expandAccountTimeline } from 'flavours/glitch/actions/timelines';

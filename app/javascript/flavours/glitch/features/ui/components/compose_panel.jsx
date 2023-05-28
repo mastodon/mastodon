@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SearchContainer from 'flavours/glitch/features/compose/containers/search_container';
@@ -8,7 +8,7 @@ import LinkFooter from './link_footer';
 import ServerBanner from 'flavours/glitch/components/server_banner';
 import { mountCompose, unmountCompose } from 'flavours/glitch/actions/compose';
 
-class ComposePanel extends React.PureComponent {
+class ComposePanel extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object.isRequired,
@@ -36,17 +36,17 @@ class ComposePanel extends React.PureComponent {
         <SearchContainer openInRoute />
 
         {!signedIn && (
-          <React.Fragment>
+          <Fragment>
             <ServerBanner />
             <div className='flex-spacer' />
-          </React.Fragment>
+          </Fragment>
         )}
 
         {signedIn && (
-          <React.Fragment>
+          <Fragment>
             <NavigationContainer />
             <ComposeFormContainer singleColumn />
-          </React.Fragment>
+          </Fragment>
         )}
 
         <LinkFooter />

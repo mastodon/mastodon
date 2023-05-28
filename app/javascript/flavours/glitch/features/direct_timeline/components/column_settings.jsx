@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -10,7 +10,7 @@ const messages = defineMessages({
   settings: { id: 'home.settings', defaultMessage: 'Column settings' },
 });
 
-class ColumnSettings extends React.PureComponent {
+class ColumnSettings extends PureComponent {
 
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,

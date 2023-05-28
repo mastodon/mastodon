@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -13,7 +13,7 @@ const messages = defineMessages({
   user_setting_disable_swiping: { id: 'settings.swipe_to_change_columns', defaultMessage: 'Allow swiping to change columns (Mobile only)' },
 });
 
-class DeprecatedSettingsModal extends React.PureComponent {
+class DeprecatedSettingsModal extends PureComponent {
 
   static propTypes = {
     settings: ImmutablePropTypes.list.isRequired,

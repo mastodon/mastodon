@@ -1,5 +1,5 @@
 //  Package imports.
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -40,7 +40,7 @@ LanguageIcon.propTypes = {
   language: PropTypes.string.isRequired,
 };
 
-class StatusIcons extends React.PureComponent {
+class StatusIcons extends PureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,

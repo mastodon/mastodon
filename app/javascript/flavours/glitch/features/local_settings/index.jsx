@@ -1,5 +1,5 @@
 //  Package imports.
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-class LocalSettings extends React.PureComponent {
+class LocalSettings extends PureComponent {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,

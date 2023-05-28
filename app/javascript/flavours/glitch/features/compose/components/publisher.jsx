@@ -1,7 +1,6 @@
 //  Package imports.
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
 import { length } from 'stringz';
 import ImmutablePureComponent from 'react-immutable-pure-component';

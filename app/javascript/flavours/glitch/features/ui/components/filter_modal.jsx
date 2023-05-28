@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { fetchStatus } from 'flavours/glitch/actions/statuses';
 import { fetchFilters, createFilter, createFilterStatus } from 'flavours/glitch/actions/filters';

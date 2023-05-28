@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import { timelinePreview, showTrends } from 'flavours/glitch/initial_state';
@@ -28,7 +28,7 @@ const messages = defineMessages({
   app_settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
 });
 
-class NavigationPanel extends React.Component {
+class NavigationPanel extends Component {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
@@ -47,11 +47,11 @@ class NavigationPanel extends React.Component {
     return (
       <div className='navigation-panel'>
         {signedIn && (
-          <React.Fragment>
+          <Fragment>
             <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
             <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='column-link__icon' />} text={intl.formatMessage(messages.notifications)} />
             <FollowRequestsColumnLink />
-          </React.Fragment>
+          </Fragment>
         )}
 
         {showTrends ? (
@@ -75,7 +75,7 @@ class NavigationPanel extends React.Component {
         )}
 
         {signedIn && (
-          <React.Fragment>
+          <Fragment>
             <ColumnLink transparent to='/conversations' icon='at' text={intl.formatMessage(messages.direct)} />
             <ColumnLink transparent to='/bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} />
             <ColumnLink transparent to='/favourites' icon='star' text={intl.formatMessage(messages.favourites)} />
@@ -87,7 +87,7 @@ class NavigationPanel extends React.Component {
 
             {!!preferencesLink && <ColumnLink transparent href={preferencesLink} icon='cog' text={intl.formatMessage(messages.preferences)} />}
             <ColumnLink transparent onClick={onOpenSettings} icon='cogs' text={intl.formatMessage(messages.app_settings)} />
-          </React.Fragment>
+          </Fragment>
         )}
 
         <div className='navigation-panel__legal'>

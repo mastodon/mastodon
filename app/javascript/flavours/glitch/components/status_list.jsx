@@ -1,5 +1,4 @@
 import { debounce } from 'lodash';
-import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import StatusContainer from 'flavours/glitch/containers/status_container';

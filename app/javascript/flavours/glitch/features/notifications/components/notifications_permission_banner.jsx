@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { Icon } from 'flavours/glitch/components/icon';
 import Button from 'flavours/glitch/components/button';
 import { IconButton } from 'flavours/glitch/components/icon_button';
@@ -12,7 +12,7 @@ const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
-class NotificationsPermissionBanner extends React.PureComponent {
+class NotificationsPermissionBanner extends PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,

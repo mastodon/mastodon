@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { WordmarkLogo, SymbolLogo } from 'flavours/glitch/components/logo';
 import { Link, withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-class Header extends React.PureComponent {
+class Header extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,

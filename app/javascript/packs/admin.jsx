@@ -1,6 +1,5 @@
 import './public-path';
 import ready from '../mastodon/ready';
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 ready(() => {

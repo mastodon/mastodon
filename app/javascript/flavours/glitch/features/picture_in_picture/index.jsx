@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Video from 'flavours/glitch/features/video';
@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
   left: state.getIn(['local_settings', 'media', 'pop_in_position']) === 'left',
 });
 
-class PictureInPicture extends React.Component {
+class PictureInPicture extends Component {
 
   static propTypes = {
     statusId: PropTypes.string,

@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import Column from 'flavours/glitch/features/ui/components/column';
 import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';

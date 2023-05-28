@@ -1,4 +1,3 @@
-import React from 'react';
 import Column from 'flavours/glitch/components/column';
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';

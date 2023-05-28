@@ -14,7 +14,6 @@ import { timeAgoString }  from '../mastodon/components/relative_timestamp';
 import { delegate }  from '@rails/ujs';
 import emojify  from '../mastodon/features/emoji/emoji';
 import { getLocale }  from '../mastodon/locales';
-import React  from 'react';
 import { createRoot }  from 'react-dom/client';
 import { createBrowserHistory }  from 'history';
 

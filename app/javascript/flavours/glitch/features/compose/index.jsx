@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import ComposeFormContainer from './containers/compose_form_container';
 import NavigationContainer from './containers/navigation_container';
 import PropTypes from 'prop-types';
@@ -38,7 +38,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-class Compose extends React.PureComponent {
+class Compose extends PureComponent {
 
   static propTypes = {
     multiColumn: PropTypes.bool,

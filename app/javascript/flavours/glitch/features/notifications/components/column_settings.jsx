@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage } from 'react-intl';
@@ -8,7 +8,7 @@ import SettingToggle from './setting_toggle';
 import PillBarButton from './pill_bar_button';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_REPORTS } from 'flavours/glitch/permissions';
 
-export default class ColumnSettings extends React.PureComponent {
+export default class ColumnSettings extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,

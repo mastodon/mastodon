@@ -1,11 +1,11 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import api from 'flavours/glitch/api';
 import { FormattedNumber } from 'react-intl';
 import { roundTo10 } from 'flavours/glitch/utils/numbers';
 import { Skeleton } from 'flavours/glitch/components/skeleton';
 
-export default class Dimension extends React.PureComponent {
+export default class Dimension extends PureComponent {
 
   static propTypes = {
     dimension: PropTypes.string.isRequired,

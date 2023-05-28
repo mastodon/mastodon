@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -82,7 +82,7 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-class Notifications extends React.PureComponent {
+class Notifications extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,

@@ -1,11 +1,11 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import ColumnHeader from './column_header';
 import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
 import { scrollTop } from 'flavours/glitch/scroll';
 import { isMobile } from 'flavours/glitch/is_mobile';
 
-export default class Column extends React.PureComponent {
+export default class Column extends PureComponent {
 
   static propTypes = {
     heading: PropTypes.string,

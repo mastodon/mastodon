@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent, Component } from 'react';
 import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
@@ -121,7 +121,7 @@ const keyMap = {
   openMedia: 'e',
 };
 
-class SwitchingColumnsArea extends React.PureComponent {
+class SwitchingColumnsArea extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,
@@ -240,7 +240,7 @@ class SwitchingColumnsArea extends React.PureComponent {
 
 }
 
-class UI extends React.Component {
+class UI extends Component {
 
   static contextTypes = {
     identity: PropTypes.object.isRequired,

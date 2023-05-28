@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import Warning from '../components/warning';
 import PropTypes from 'prop-types';

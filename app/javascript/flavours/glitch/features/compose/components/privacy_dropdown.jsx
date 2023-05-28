@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { PureComponent } from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
 import Dropdown from './dropdown';
 
@@ -15,7 +15,7 @@ const messages = defineMessages({
   change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
 });
 
-class PrivacyDropdown extends React.PureComponent {
+class PrivacyDropdown extends PureComponent {
 
   static propTypes = {
     isUserTouching: PropTypes.func,

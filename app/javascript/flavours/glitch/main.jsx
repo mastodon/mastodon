@@ -1,4 +1,3 @@
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { setupBrowserNotifications } from 'flavours/glitch/actions/notifications';
 import Mastodon from 'flavours/glitch/containers/mastodon';

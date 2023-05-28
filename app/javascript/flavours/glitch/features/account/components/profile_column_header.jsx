@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ColumnHeader from '../../../components/column_header';
 import { injectIntl, defineMessages } from 'react-intl';
@@ -7,7 +7,7 @@ const messages = defineMessages({
   profile: { id: 'column_header.profile', defaultMessage: 'Profile' },
 });
 
-class ProfileColumnHeader extends React.PureComponent {
+class ProfileColumnHeader extends PureComponent {
 
   static propTypes = {
     onClick: PropTypes.func,

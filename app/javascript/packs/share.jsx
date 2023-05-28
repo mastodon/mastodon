@@ -3,7 +3,6 @@ import { loadPolyfills } from '../mastodon/polyfills';
 import { start } from '../mastodon/common';
 import ready from '../mastodon/ready';
 import ComposeContainer  from '../mastodon/containers/compose_container';
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 start();

@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -35,13 +35,13 @@ export default class ActionsModal extends ImmutablePureComponent {
 
     if (!contents) {
       contents = (
-        <React.Fragment>
+        <Fragment>
           {icon && <IconButton title={text} icon={icon} role='presentation' tabIndex={-1} inverted />}
           <div>
             <div className={classNames({ 'actions-modal__item-label': !!meta })}>{text}</div>
             <div>{meta}</div>
           </div>
-        </React.Fragment>
+        </Fragment>
       );
     }
 

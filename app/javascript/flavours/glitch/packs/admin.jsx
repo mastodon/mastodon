@@ -1,6 +1,5 @@
 import 'packs/public-path';
 import ready from 'flavours/glitch/ready';
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 ready(() => {

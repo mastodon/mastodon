@@ -1,10 +1,10 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import 'wicg-inert';
 import { createBrowserHistory } from 'history';
 import { multiply } from 'color-blend';
 
-export default class ModalRoot extends React.PureComponent {
+export default class ModalRoot extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

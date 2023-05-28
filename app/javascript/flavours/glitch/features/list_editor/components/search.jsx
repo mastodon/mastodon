@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages } from 'react-intl';
 import classNames from 'classnames';
@@ -8,7 +8,7 @@ const messages = defineMessages({
   search: { id: 'lists.search', defaultMessage: 'Search among people you follow' },
 });
 
-export default class Search extends React.PureComponent {
+export default class Search extends PureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,

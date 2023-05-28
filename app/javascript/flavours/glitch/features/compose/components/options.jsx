@@ -1,6 +1,6 @@
 //  Package imports.
 import PropTypes from 'prop-types';
-import React from 'react';
+import { Fragment } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl } from 'react-intl';
 import Toggle from 'react-toggle';
@@ -101,14 +101,14 @@ class ToggleOptionImpl extends ImmutablePureComponent {
     const { meta, text, checked } = this.props;
 
     return (
-      <React.Fragment>
+      <Fragment>
         <Toggle checked={checked} onChange={this.handleChange} />
 
         <div className='privacy-dropdown__option__content'>
           <strong>{text}</strong>
           {meta}
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 

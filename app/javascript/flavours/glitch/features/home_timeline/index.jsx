@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
 import PropTypes from 'prop-types';
@@ -31,7 +31,7 @@ const mapStateToProps = state => ({
   regex: state.getIn(['settings', 'home', 'regex', 'body']),
 });
 
-class HomeTimeline extends React.PureComponent {
+class HomeTimeline extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,

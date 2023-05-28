@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -43,7 +43,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class MuteModal extends React.PureComponent {
+class MuteModal extends PureComponent {
 
   static propTypes = {
     account: PropTypes.object.isRequired,

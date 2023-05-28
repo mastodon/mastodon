@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { Icon } from 'flavours/glitch/components/icon';
 import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
 import PropTypes from 'prop-types';
-import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 });
 
-class DisabledAccountBanner extends React.PureComponent {
+class DisabledAccountBanner extends PureComponent {
 
   static propTypes = {
     disabledAcct: PropTypes.string.isRequired,

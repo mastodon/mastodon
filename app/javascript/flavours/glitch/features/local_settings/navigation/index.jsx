@@ -1,5 +1,5 @@
 //  Package imports
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 
@@ -19,7 +19,7 @@ const messages = defineMessages({
   close: { id: 'settings.close', defaultMessage: 'Close' },
 });
 
-class LocalSettingsNavigation extends React.PureComponent {
+class LocalSettingsNavigation extends PureComponent {
 
   static propTypes = {
     index      : PropTypes.number,
