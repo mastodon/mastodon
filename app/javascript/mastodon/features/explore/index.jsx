@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
   isSearching: state.getIn(['search', 'submitted']) || !showTrends,
 });
 
-class Explore extends React.PureComponent {
+class Explore extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

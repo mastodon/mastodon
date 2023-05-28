@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -20,7 +20,7 @@ const messages = defineMessages({
   days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
 });
 
-class OptionIntl extends React.PureComponent {
+class OptionIntl extends PureComponent {
 
   static propTypes = {
     title: PropTypes.string.isRequired,

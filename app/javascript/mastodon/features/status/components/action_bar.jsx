@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { IconButton } from '../../../components/icon_button';
@@ -47,7 +47,7 @@ const mapStateToProps = (state, { status }) => ({
   relationship: state.getIn(['relationships', status.getIn(['account', 'id'])]),
 });
 
-class ActionBar extends React.PureComponent {
+class ActionBar extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

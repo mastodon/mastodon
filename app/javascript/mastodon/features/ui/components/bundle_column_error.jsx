@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import Column from 'mastodon/components/column';
@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { autoPlayGif } from 'mastodon/initial_state';
 
-class GIF extends React.PureComponent {
+class GIF extends PureComponent {
 
   static propTypes = {
     src: PropTypes.string.isRequired,
@@ -59,7 +59,7 @@ class GIF extends React.PureComponent {
 
 }
 
-class CopyButton extends React.PureComponent {
+class CopyButton extends PureComponent {
 
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -92,7 +92,7 @@ class CopyButton extends React.PureComponent {
 
 }
 
-class BundleColumnError extends React.PureComponent {
+class BundleColumnError extends PureComponent {
 
   static propTypes = {
     errorType: PropTypes.oneOf(['routing', 'network', 'error']),

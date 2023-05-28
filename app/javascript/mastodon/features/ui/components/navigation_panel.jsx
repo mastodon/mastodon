@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
@@ -28,7 +28,7 @@ const messages = defineMessages({
   search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
 });
 
-class NavigationPanel extends React.Component {
+class NavigationPanel extends Component {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
@@ -51,11 +51,11 @@ class NavigationPanel extends React.Component {
         </div>
 
         {signedIn && (
-          <React.Fragment>
+          <Fragment>
             <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
             <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='column-link__icon' />} text={intl.formatMessage(messages.notifications)} />
             <FollowRequestsColumnLink />
-          </React.Fragment>
+          </Fragment>
         )}
 
         {showTrends ? (
@@ -79,7 +79,7 @@ class NavigationPanel extends React.Component {
         )}
 
         {signedIn && (
-          <React.Fragment>
+          <Fragment>
             <ColumnLink transparent to='/conversations' icon='at' text={intl.formatMessage(messages.direct)} />
             <ColumnLink transparent to='/bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} />
             <ColumnLink transparent to='/favourites' icon='star' text={intl.formatMessage(messages.favourites)} />
@@ -90,7 +90,7 @@ class NavigationPanel extends React.Component {
             <hr />
 
             <ColumnLink transparent href='/settings/preferences' icon='cog' text={intl.formatMessage(messages.preferences)} />
-          </React.Fragment>
+          </Fragment>
         )}
 
         <div className='navigation-panel__legal'>

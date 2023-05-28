@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -26,7 +26,7 @@ const mapStateToProps = (state, props) => ({
   tag: state.getIn(['tags', props.params.id]),
 });
 
-class HashtagTimeline extends React.PureComponent {
+class HashtagTimeline extends PureComponent {
 
   disconnects = [];
 

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { registrationsOpen } from 'mastodon/initial_state';

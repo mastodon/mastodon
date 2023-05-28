@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { PureComponent } from 'react';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { fetchServer } from 'mastodon/actions/server';
@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
   server: state.getIn(['server', 'server']),
 });
 
-class ServerBanner extends React.PureComponent {
+class ServerBanner extends PureComponent {
 
   static propTypes = {
     server: PropTypes.object,

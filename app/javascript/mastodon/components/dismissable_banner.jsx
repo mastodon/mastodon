@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { IconButton } from './icon_button';
 import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
@@ -8,7 +8,7 @@ const messages = defineMessages({
   dismiss: { id: 'dismissable_banner.dismiss', defaultMessage: 'Dismiss' },
 });
 
-class DismissableBanner extends React.PureComponent {
+class DismissableBanner extends PureComponent {
 
   static propTypes = {
     id: PropTypes.string.isRequired,

@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -12,7 +12,7 @@ const messages = defineMessages({
   placeholderSignedIn: { id: 'search.search_or_paste', defaultMessage: 'Search or paste URL' },
 });
 
-class Search extends React.PureComponent {
+class Search extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,

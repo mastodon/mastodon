@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';

@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { changeListEditorTitle, submitListEditor } from 'mastodon/actions/lists';
@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
   onSubmit: () => dispatch(submitListEditor(true)),
 });
 
-class NewListForm extends React.PureComponent {
+class NewListForm extends PureComponent {
 
   static propTypes = {
     value: PropTypes.string.isRequired,

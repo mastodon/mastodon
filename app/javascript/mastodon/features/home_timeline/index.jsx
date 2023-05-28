@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { expandHomeTimeline } from '../../actions/timelines';
 import PropTypes from 'prop-types';
@@ -30,7 +30,7 @@ const mapStateToProps = state => ({
   showAnnouncements: state.getIn(['announcements', 'show']),
 });
 
-class HomeTimeline extends React.PureComponent {
+class HomeTimeline extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,

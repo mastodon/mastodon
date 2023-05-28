@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { registrationsOpen } from 'mastodon/initial_state';
@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-class Copypaste extends React.PureComponent {
+class Copypaste extends PureComponent {
 
   static propTypes = {
     value: PropTypes.string,
@@ -74,7 +74,7 @@ class Copypaste extends React.PureComponent {
 
 }
 
-class InteractionModal extends React.PureComponent {
+class InteractionModal extends PureComponent {
 
   static propTypes = {
     displayNameHtml: PropTypes.string,
