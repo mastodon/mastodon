@@ -1,6 +1,6 @@
 //  Package imports.
 import PropTypes from 'prop-types';
-import { PureComponent, Fragment } from 'react';
+import { PureComponent } from 'react';
 import classNames from 'classnames';
 import { supportsPassiveEvents } from 'detect-passive-events';
 
@@ -152,14 +152,14 @@ export default class ComposerOptionsDropdownContent extends PureComponent {
 
     if (!contents) {
       contents = (
-        <Fragment>
+        <>
           {icon && <Icon className='icon' fixedWidth id={icon} />}
 
           <div className='privacy-dropdown__option__content'>
             <strong>{text}</strong>
             {meta}
           </div>
-        </Fragment>
+        </>
       );
     }
 

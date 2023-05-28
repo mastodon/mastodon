@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { Avatar } from './avatar';
@@ -97,10 +96,10 @@ class Account extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <Fragment>
+        <>
           {account.get('display_name')}
           {account.get('username')}
-        </Fragment>
+        </>
       );
     }
 
@@ -128,10 +127,10 @@ class Account extends ImmutablePureComponent {
           hidingNotificationsButton = <IconButton active icon='bell-slash' title={intl.formatMessage(messages.mute_notifications, { name: account.get('username')  })} onClick={this.handleMuteNotifications} />;
         }
         buttons = (
-          <Fragment>
+          <>
             <IconButton active icon='volume-up' title={intl.formatMessage(messages.unmute, { name: account.get('username') })} onClick={this.handleMute} />
             {hidingNotificationsButton}
-          </Fragment>
+          </>
         );
       } else if (defaultAction === 'mute') {
         buttons = <IconButton icon='volume-off' title={intl.formatMessage(messages.mute, { name: account.get('username') })} onClick={this.handleMute} />;

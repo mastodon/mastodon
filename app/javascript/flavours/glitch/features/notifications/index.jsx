@@ -323,12 +323,6 @@ class Notifications extends PureComponent {
       </div>
     );
 
-    const extraButton = (
-      <>
-        {extraButtons}
-      </>
-    );
-
     return (
       <Column
         bindToDocument={!multiColumn}
@@ -347,7 +341,7 @@ class Notifications extends PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
           localSettings={this.props.localSettings}
-          extraButton={extraButton}
+          extraButton={extraButtons}
           appendContent={notifCleaningDrawer}
         >
           <ColumnSettingsContainer />

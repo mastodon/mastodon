@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
@@ -31,9 +30,9 @@ class Report extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <Fragment>
+        <>
           {report.get('id')}
-        </Fragment>
+        </>
       );
     }
 

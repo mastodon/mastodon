@@ -5,14 +5,12 @@ import Trends from 'flavours/glitch/features/getting_started/containers/trends_c
 import AccountNavigation from 'flavours/glitch/features/account/navigation';
 
 const DefaultNavigation = () => (
-  <>
-    {showTrends && (
-      <>
-        <div className='flex-spacer' />
-        <Trends />
-      </>
-    )}
-  </>
+  showTrends ? (
+    <>
+      <div className='flex-spacer' />
+      <Trends />
+    </>
+  ) : null
 );
 
 class NavigationPortal extends PureComponent {

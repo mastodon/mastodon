@@ -1,4 +1,4 @@
-import { PureComponent, Fragment } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
@@ -33,7 +33,7 @@ class Rules extends PureComponent {
     const { rules, selectedRuleIds } = this.props;
 
     return (
-      <Fragment>
+      <>
         <h3 className='report-dialog-modal__title'><FormattedMessage id='report.rules.title' defaultMessage='Which rules are being violated?' /></h3>
         <p className='report-dialog-modal__lead'><FormattedMessage id='report.rules.subtitle' defaultMessage='Select all that apply' /></p>
 
@@ -56,7 +56,7 @@ class Rules extends PureComponent {
         <div className='report-dialog-modal__actions'>
           <Button onClick={this.handleNextClick} disabled={selectedRuleIds.size < 1}><FormattedMessage id='report.next' defaultMessage='Next' /></Button>
         </div>
-      </Fragment>
+      </>
     );
   }
 

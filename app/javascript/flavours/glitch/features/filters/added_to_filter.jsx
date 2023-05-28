@@ -1,4 +1,4 @@
-import { PureComponent, Fragment } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage } from 'react-intl';
@@ -30,7 +30,7 @@ class AddedToFilter extends PureComponent {
     let expiredMessage = null;
     if (filter.get('expires_at') && filter.get('expires_at') < new Date()) {
       expiredMessage = (
-        <Fragment>
+        <>
           <h4 className='report-dialog-modal__subtitle'><FormattedMessage id='filter_modal.added.expired_title' defaultMessage='Expired filter!' /></h4>
           <p className='report-dialog-modal__lead'>
             <FormattedMessage
@@ -38,14 +38,14 @@ class AddedToFilter extends PureComponent {
               defaultMessage='This filter category has expired, you will need to change the expiration date for it to apply.'
             />
           </p>
-        </Fragment>
+        </>
       );
     }
 
     let contextMismatchMessage = null;
     if (contextType && !filter.get('context').includes(toServerSideType(contextType))) {
       contextMismatchMessage = (
-        <Fragment>
+        <>
           <h4 className='report-dialog-modal__subtitle'><FormattedMessage id='filter_modal.added.context_mismatch_title' defaultMessage='Context mismatch!' /></h4>
           <p className='report-dialog-modal__lead'>
             <FormattedMessage
@@ -53,7 +53,7 @@ class AddedToFilter extends PureComponent {
               defaultMessage='This filter category does not apply to the context in which you have accessed this post. If you want the post to be filtered in this context too, you will have to edit the filter.'
             />
           </p>
-        </Fragment>
+        </>
       );
     }
 
@@ -67,7 +67,7 @@ class AddedToFilter extends PureComponent {
     );
 
     return (
-      <Fragment>
+      <>
         <h3 className='report-dialog-modal__title'><FormattedMessage id='filter_modal.added.title' defaultMessage='Filter added!' /></h3>
         <p className='report-dialog-modal__lead'>
           <FormattedMessage
@@ -94,7 +94,7 @@ class AddedToFilter extends PureComponent {
         <div className='report-dialog-modal__actions'>
           <Button onClick={this.handleCloseClick}><FormattedMessage id='report.close' defaultMessage='Done' /></Button>
         </div>
-      </Fragment>
+      </>
     );
   }
 

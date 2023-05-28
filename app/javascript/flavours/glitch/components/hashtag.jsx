@@ -1,5 +1,5 @@
 // @ts-check
-import { Component, Fragment } from 'react';
+import { Component } from 'react';
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
@@ -70,7 +70,7 @@ const Hashtag = ({ name, href, to, people, uses, history, className, description
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
       <Permalink href={href} to={to}>
-        {name ? <Fragment>#<span>{name}</span></Fragment> : <Skeleton width={50} />}
+        {name ? <>#<span>{name}</span></> : <Skeleton width={50} />}
       </Permalink>
 
       {description ? (
