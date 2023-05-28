@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative '../../config/boot'
-require_relative '../../config/environment'
-require_relative 'cli_helper'
+require_relative '../../../config/boot'
+require_relative '../../../config/environment'
+require_relative 'helper'
 
-module Mastodon
-  class MediaCLI < Thor
+module Mastodon::CLI
+  class Media < Thor
     include ActionView::Helpers::NumberHelper
-    include CLIHelper
+    include Helper
 
     VALID_PATH_SEGMENTS_SIZE = [7, 10].freeze
 

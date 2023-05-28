@@ -9,8 +9,8 @@ HttpLog.configuration.logger = dev_null
 Paperclip.options[:log]      = false
 Chewy.logger                 = dev_null
 
-module Mastodon
-  module CLIHelper
+module Mastodon::CLI
+  module Helper
     def dry_run?
       options[:dry_run]
     end

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative '../../config/boot'
-require_relative '../../config/environment'
-require_relative 'cli_helper'
+require_relative '../../../config/boot'
+require_relative '../../../config/environment'
+require_relative 'helper'
 
-module Mastodon
-  class RegistrationsCLI < Thor
+module Mastodon::CLI
+  class Registrations < Thor
     def self.exit_on_failure?
       true
     end
@@ -37,8 +37,8 @@ module Mastodon
     end
   end
 
-  class SettingsCLI < Thor
+  class Settings < Thor
     desc 'registrations SUBCOMMAND ...ARGS', 'Manage state of registrations'
-    subcommand 'registrations', RegistrationsCLI
+    subcommand 'registrations', Registrations
   end
 end

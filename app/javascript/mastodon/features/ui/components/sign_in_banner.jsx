@@ -1,11 +1,11 @@
 import { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from 'mastodon/store';
 import { registrationsOpen } from 'mastodon/initial_state';
 import { openModal } from 'mastodon/actions/modal';
 
 const SignInBanner = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const openClosedRegistrationsModal = useCallback(
     () => dispatch(openModal('CLOSED_REGISTRATIONS')),
@@ -14,9 +14,11 @@ const SignInBanner = () => {
 
   let signupButton;
 
+  const signupUrl = useAppSelector((state) => state.getIn(['server', 'server', 'registrations', 'url'], '/auth/sign_up'));
+
   if (registrationsOpen) {
     signupButton = (
-      <a href='/auth/sign_up' className='button button--block'>
+      <a href={signupUrl} className='button button--block'>
         <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
       </a>
     );

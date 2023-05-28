@@ -396,12 +396,6 @@ RSpec/ExpectChange:
     - 'spec/services/unsuspend_account_service_spec.rb'
     - 'spec/workers/scheduler/accounts_statuses_cleanup_scheduler_spec.rb'
 
-RSpec/ExpectInHook:
-  Exclude:
-    - 'spec/controllers/api/v1/media_controller_spec.rb'
-    - 'spec/controllers/settings/applications_controller_spec.rb'
-    - 'spec/lib/status_filter_spec.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: implicit, each, example
@@ -565,15 +559,6 @@ RSpec/PendingWithoutReason:
   Exclude:
     - 'spec/models/account_spec.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Strict, EnforcedStyle, AllowedExplicitMatchers.
-# SupportedStyles: inflected, explicit
-RSpec/PredicateMatcher:
-  Exclude:
-    - 'spec/controllers/api/v1/accounts/notes_controller_spec.rb'
-    - 'spec/models/user_spec.rb'
-    - 'spec/services/post_status_service_spec.rb'
-
 RSpec/StubbedMock:
   Exclude:
     - 'spec/controllers/api/base_controller_spec.rb'
@@ -716,12 +701,6 @@ Rails/DuplicateAssociation:
     - 'app/serializers/activitypub/note_serializer.rb'
 
 # Configuration parameters: Include.
-# Include: app/**/*.rb, config/**/*.rb, lib/**/*.rb
-Rails/Exit:
-  Exclude:
-    - 'config/boot.rb'
-
-# Configuration parameters: Include.
 # Include: app/models/**/*.rb
 Rails/HasAndBelongsToMany:
   Exclude:
@@ -855,9 +834,9 @@ Rails/SkipsModelValidations:
     - 'db/post_migrate/20220617202502_migrate_roles.rb'
     - 'db/post_migrate/20221101190723_backfill_admin_action_logs.rb'
     - 'db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb'
-    - 'lib/cli.rb'
-    - 'lib/mastodon/accounts_cli.rb'
-    - 'lib/mastodon/maintenance_cli.rb'
+    - 'lib/mastodon/cli/accounts.rb'
+    - 'lib/mastodon/cli/main.rb'
+    - 'lib/mastodon/cli/maintenance.rb'
     - 'spec/controllers/api/v1/admin/accounts_controller_spec.rb'
     - 'spec/lib/activitypub/activity/follow_spec.rb'
     - 'spec/services/follow_service_spec.rb'
@@ -939,7 +918,7 @@ Rails/WhereExists:
     - 'app/validators/vote_validator.rb'
     - 'app/workers/move_worker.rb'
     - 'db/migrate/20190529143559_preserve_old_layout_for_existing_users.rb'
-    - 'lib/mastodon/email_domain_blocks_cli.rb'
+    - 'lib/mastodon/cli/email_domain_blocks.rb'
     - 'lib/tasks/tests.rake'
     - 'spec/controllers/api/v1/accounts/notes_controller_spec.rb'
     - 'spec/controllers/api/v1/tags_controller_spec.rb'
@@ -1001,7 +980,7 @@ Style/FormatStringToken:
   Exclude:
     - 'app/models/privacy_policy.rb'
     - 'config/initializers/devise.rb'
-    - 'lib/mastodon/maintenance_cli.rb'
+    - 'lib/mastodon/cli/maintenance.rb'
     - 'lib/paperclip/color_extractor.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -1446,9 +1425,9 @@ Style/GuardClause:
     - 'db/post_migrate/20220704024901_migrate_settings_to_user_roles.rb'
     - 'lib/devise/two_factor_ldap_authenticatable.rb'
     - 'lib/devise/two_factor_pam_authenticatable.rb'
-    - 'lib/mastodon/accounts_cli.rb'
-    - 'lib/mastodon/maintenance_cli.rb'
-    - 'lib/mastodon/media_cli.rb'
+    - 'lib/mastodon/cli/accounts.rb'
+    - 'lib/mastodon/cli/maintenance.rb'
+    - 'lib/mastodon/cli/media.rb'
     - 'lib/paperclip/attachment_extensions.rb'
     - 'lib/tasks/repo.rake'
 

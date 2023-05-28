@@ -1,73 +1,73 @@
 # frozen_string_literal: true
 
 require 'thor'
-require_relative 'mastodon/media_cli'
-require_relative 'mastodon/emoji_cli'
-require_relative 'mastodon/accounts_cli'
-require_relative 'mastodon/feeds_cli'
-require_relative 'mastodon/search_cli'
-require_relative 'mastodon/settings_cli'
-require_relative 'mastodon/statuses_cli'
-require_relative 'mastodon/domains_cli'
-require_relative 'mastodon/preview_cards_cli'
-require_relative 'mastodon/cache_cli'
-require_relative 'mastodon/upgrade_cli'
-require_relative 'mastodon/email_domain_blocks_cli'
-require_relative 'mastodon/canonical_email_blocks_cli'
-require_relative 'mastodon/ip_blocks_cli'
-require_relative 'mastodon/maintenance_cli'
-require_relative 'mastodon/version'
+require_relative 'media'
+require_relative 'emoji'
+require_relative 'accounts'
+require_relative 'feeds'
+require_relative 'search'
+require_relative 'settings'
+require_relative 'statuses'
+require_relative 'domains'
+require_relative 'preview_cards'
+require_relative 'cache'
+require_relative 'upgrade'
+require_relative 'email_domain_blocks'
+require_relative 'canonical_email_blocks'
+require_relative 'ip_blocks'
+require_relative 'maintenance'
+require_relative '../version'
 
-module Mastodon
-  class CLI < Thor
+module Mastodon::CLI
+  class Main < Thor
     def self.exit_on_failure?
       true
     end
 
     desc 'media SUBCOMMAND ...ARGS', 'Manage media files'
-    subcommand 'media', Mastodon::MediaCLI
+    subcommand 'media', Media
 
     desc 'emoji SUBCOMMAND ...ARGS', 'Manage custom emoji'
-    subcommand 'emoji', Mastodon::EmojiCLI
+    subcommand 'emoji', Emoji
 
     desc 'accounts SUBCOMMAND ...ARGS', 'Manage accounts'
-    subcommand 'accounts', Mastodon::AccountsCLI
+    subcommand 'accounts', Accounts
 
     desc 'feeds SUBCOMMAND ...ARGS', 'Manage feeds'
-    subcommand 'feeds', Mastodon::FeedsCLI
+    subcommand 'feeds', Feeds
 
     desc 'search SUBCOMMAND ...ARGS', 'Manage the search engine'
-    subcommand 'search', Mastodon::SearchCLI
+    subcommand 'search', Search
 
     desc 'settings SUBCOMMAND ...ARGS', 'Manage dynamic settings'
-    subcommand 'settings', Mastodon::SettingsCLI
+    subcommand 'settings', Settings
 
     desc 'statuses SUBCOMMAND ...ARGS', 'Manage statuses'
-    subcommand 'statuses', Mastodon::StatusesCLI
+    subcommand 'statuses', Statuses
 
     desc 'domains SUBCOMMAND ...ARGS', 'Manage account domains'
-    subcommand 'domains', Mastodon::DomainsCLI
+    subcommand 'domains', Domains
 
     desc 'preview_cards SUBCOMMAND ...ARGS', 'Manage preview cards'
-    subcommand 'preview_cards', Mastodon::PreviewCardsCLI
+    subcommand 'preview_cards', PreviewCards
 
     desc 'cache SUBCOMMAND ...ARGS', 'Manage cache'
-    subcommand 'cache', Mastodon::CacheCLI
+    subcommand 'cache', Cache
 
     desc 'upgrade SUBCOMMAND ...ARGS', 'Various version upgrade utilities'
-    subcommand 'upgrade', Mastodon::UpgradeCLI
+    subcommand 'upgrade', Upgrade
 
     desc 'email_domain_blocks SUBCOMMAND ...ARGS', 'Manage e-mail domain blocks'
-    subcommand 'email_domain_blocks', Mastodon::EmailDomainBlocksCLI
+    subcommand 'email_domain_blocks', EmailDomainBlocks
 
     desc 'ip_blocks SUBCOMMAND ...ARGS', 'Manage IP blocks'
-    subcommand 'ip_blocks', Mastodon::IpBlocksCLI
+    subcommand 'ip_blocks', IpBlocks
 
     desc 'canonical_email_blocks SUBCOMMAND ...ARGS', 'Manage canonical e-mail blocks'
-    subcommand 'canonical_email_blocks', Mastodon::CanonicalEmailBlocksCLI
+    subcommand 'canonical_email_blocks', CanonicalEmailBlocks
 
     desc 'maintenance SUBCOMMAND ...ARGS', 'Various maintenance utilities'
-    subcommand 'maintenance', Mastodon::MaintenanceCLI
+    subcommand 'maintenance', Maintenance
 
     option :dry_run, type: :boolean
     desc 'self-destruct', 'Erase the server from the federation'

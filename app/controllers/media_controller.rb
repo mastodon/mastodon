@@ -46,7 +46,7 @@ class MediaController < ApplicationController
   end
 
   def allow_iframing
-    response.headers['X-Frame-Options'] = 'ALLOWALL'
+    response.headers.delete('X-Frame-Options')
   end
 
   def set_pack
