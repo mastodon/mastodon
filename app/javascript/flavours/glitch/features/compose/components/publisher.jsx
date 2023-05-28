@@ -1,18 +1,17 @@
-//  Package imports.
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
+
 import { defineMessages, injectIntl } from 'react-intl';
-import { length } from 'stringz';
+
+import classNames from 'classnames';
+
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-//  Components.
+import { length } from 'stringz';
+
 import Button from 'flavours/glitch/components/button';
 import { Icon } from 'flavours/glitch/components/icon';
-
-//  Utils.
 import { maxChars } from 'flavours/glitch/initial_state';
 
-//  Messages.
 const messages = defineMessages({
   publish: {
     defaultMessage: 'Publish',

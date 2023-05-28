@@ -1,6 +1,8 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { connect } from 'react-redux';
+
 import FeaturedTags from 'flavours/glitch/features/account/containers/featured_tags_container';
 import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
 

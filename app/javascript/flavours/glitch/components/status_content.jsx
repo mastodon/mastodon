@@ -1,13 +1,18 @@
-import { PureComponent } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { FormattedMessage, injectIntl } from 'react-intl';
-import Permalink from './permalink';
-import { connect } from 'react-redux';
+
 import classnames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
 import { Icon } from 'flavours/glitch/components/icon';
 import { autoPlayGif, languages as preloadedLanguages } from 'flavours/glitch/initial_state';
 import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
+
+import Permalink from './permalink';
 
 const textMatchesTarget = (text, origin, host) => {
   return (text === origin || text === host

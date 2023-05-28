@@ -1,11 +1,14 @@
+import { defineMessages, injectIntl } from 'react-intl';
+
 import { connect } from 'react-redux';
-import Conversation from '../components/conversation';
-import { markConversationRead, deleteConversation } from 'flavours/glitch/actions/conversations';
-import { makeGetStatus } from 'flavours/glitch/selectors';
+
 import { replyCompose } from 'flavours/glitch/actions/compose';
+import { markConversationRead, deleteConversation } from 'flavours/glitch/actions/conversations';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { muteStatus, unmuteStatus, hideStatus, revealStatus } from 'flavours/glitch/actions/statuses';
-import { defineMessages, injectIntl } from 'react-intl';
+import { makeGetStatus } from 'flavours/glitch/selectors';
+
+import Conversation from '../components/conversation';
 
 const messages = defineMessages({
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },

@@ -1,4 +1,5 @@
 import { Map as ImmutableMap } from 'immutable';
+
 import { HEIGHT_CACHE_SET, HEIGHT_CACHE_CLEAR } from 'flavours/glitch/actions/height_cache';
 
 const initialState = ImmutableMap();

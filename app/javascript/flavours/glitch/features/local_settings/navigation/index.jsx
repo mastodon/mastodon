@@ -1,11 +1,13 @@
 //  Package imports
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages } from 'react-intl';
 
 //  Our imports
-import LocalSettingsNavigationItem from './item';
 import { preferencesLink } from 'flavours/glitch/utils/backend_links';
+
+import LocalSettingsNavigationItem from './item';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 

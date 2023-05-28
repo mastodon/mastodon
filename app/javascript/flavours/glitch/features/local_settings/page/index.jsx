@@ -1,14 +1,18 @@
 //  Package imports
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
 
 //  Our imports
 import { expandSpoilers } from 'flavours/glitch/initial_state';
 import { preferenceLink } from 'flavours/glitch/utils/backend_links';
-import LocalSettingsPageItem from './item';
+
 import DeprecatedLocalSettingsPageItem from './deprecated_item';
+import LocalSettingsPageItem from './item';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 

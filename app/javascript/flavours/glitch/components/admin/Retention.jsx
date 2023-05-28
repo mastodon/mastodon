@@ -1,8 +1,11 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import api from 'flavours/glitch/api';
+import { PureComponent } from 'react';
+
 import { FormattedMessage, FormattedNumber, FormattedDate } from 'react-intl';
+
 import classNames from 'classnames';
+
+import api from 'flavours/glitch/api';
 import { roundTo10 } from 'flavours/glitch/utils/numbers';
 
 const dateForCohort = cohort => {

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Options from '../components/options';
+
 import {
   changeComposeAdvancedOption,
   changeComposeContentType,
@@ -7,6 +7,8 @@ import {
   removePoll,
 } from 'flavours/glitch/actions/compose';
 import { openModal } from 'flavours/glitch/actions/modal';
+
+import Options from '../components/options';
 
 function mapStateToProps (state) {
   const poll = state.getIn(['compose', 'poll']);

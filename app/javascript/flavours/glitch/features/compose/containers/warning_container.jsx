@@ -1,9 +1,13 @@
-import { connect } from 'react-redux';
-import Warning from '../components/warning';
 import PropTypes from 'prop-types';
+
 import { FormattedMessage } from 'react-intl';
+
+import { connect } from 'react-redux';
+
 import { me } from 'flavours/glitch/initial_state';
 import { profileLink, privacyPolicyLink } from 'flavours/glitch/utils/backend_links';
+
+import Warning from '../components/warning';
 
 const buildHashtagRE = () => {
   try {

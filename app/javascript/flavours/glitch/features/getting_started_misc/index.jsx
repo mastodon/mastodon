@@ -1,12 +1,16 @@
 import PropTypes from 'prop-types';
-import Column from 'flavours/glitch/features/ui/components/column';
-import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
+import { openModal } from 'flavours/glitch/actions/modal';
+import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
+import Column from 'flavours/glitch/features/ui/components/column';
 import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
 import ColumnSubheading from 'flavours/glitch/features/ui/components/column_subheading';
-import { openModal } from 'flavours/glitch/actions/modal';
-import { connect } from 'react-redux';
+
 
 const messages = defineMessages({
   heading: { id: 'column.heading', defaultMessage: 'Misc' },

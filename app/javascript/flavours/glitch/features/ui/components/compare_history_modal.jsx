@@ -1,15 +1,19 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
-import { closeModal } from 'flavours/glitch/actions/modal';
-import emojify from 'flavours/glitch/features/emoji/emoji';
+
 import escapeTextContentForBrowser from 'escape-html';
-import InlineAccount from 'flavours/glitch/components/inline_account';
+
+import { closeModal } from 'flavours/glitch/actions/modal';
 import { IconButton } from 'flavours/glitch/components/icon_button';
-import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
+import InlineAccount from 'flavours/glitch/components/inline_account';
 import MediaAttachments from 'flavours/glitch/components/media_attachments';
+import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
+import emojify from 'flavours/glitch/features/emoji/emoji';
 
 const mapStateToProps = (state, { statusId }) => ({
   language: state.getIn(['statuses', statusId, 'language']),

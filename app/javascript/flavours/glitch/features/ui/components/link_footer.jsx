@@ -1,12 +1,16 @@
-import { connect } from 'react-redux';
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+
 import { Link } from 'react-router-dom';
-import { domain, version, source_url, statusPageUrl, profile_directory as profileDirectory } from 'flavours/glitch/initial_state';
-import { logOut } from 'flavours/glitch/utils/log_out';
+
+import { connect } from 'react-redux';
+
 import { openModal } from 'flavours/glitch/actions/modal';
+import { domain, version, source_url, statusPageUrl, profile_directory as profileDirectory } from 'flavours/glitch/initial_state';
 import { PERMISSION_INVITE_USERS } from 'flavours/glitch/permissions';
+import { logOut } from 'flavours/glitch/utils/log_out';
 
 const messages = defineMessages({
   logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },

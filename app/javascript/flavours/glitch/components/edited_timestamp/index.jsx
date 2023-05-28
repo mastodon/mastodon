@@ -1,12 +1,16 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { Icon } from 'flavours/glitch/components/icon';
-import DropdownMenu from './containers/dropdown_menu_container';
+
 import { connect } from 'react-redux';
+
 import { openModal } from 'flavours/glitch/actions/modal';
-import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
+import { Icon } from 'flavours/glitch/components/icon';
 import InlineAccount from 'flavours/glitch/components/inline_account';
+import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
+
+import DropdownMenu from './containers/dropdown_menu_container';
 
 const mapDispatchToProps = (dispatch, { statusId }) => ({
 

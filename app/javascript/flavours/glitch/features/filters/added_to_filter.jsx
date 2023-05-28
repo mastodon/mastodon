@@ -1,10 +1,13 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
-import { toServerSideType } from 'flavours/glitch/utils/filters';
-import Button from 'flavours/glitch/components/button';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
+
+import Button from 'flavours/glitch/components/button';
+import { toServerSideType } from 'flavours/glitch/utils/filters';
 
 const mapStateToProps = (state, { filterId }) => ({
   filter: state.getIn(['filters', filterId]),

@@ -1,3 +1,5 @@
+import { Map as ImmutableMap, fromJS } from 'immutable';
+
 import {
   REBLOG_REQUEST,
   REBLOG_FAIL,
@@ -21,8 +23,8 @@ import {
 import {
   TIMELINE_DELETE,
 } from 'flavours/glitch/actions/timelines';
+
 import { STATUS_IMPORT, STATUSES_IMPORT } from '../actions/importer';
-import { Map as ImmutableMap, fromJS } from 'immutable';
 
 const importStatus = (state, status) => state.set(status.id, fromJS(status));
 

@@ -1,8 +1,11 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
-import Button from 'flavours/glitch/components/button';
+
 import Toggle from 'react-toggle';
+
+import Button from 'flavours/glitch/components/button';
 
 const messages = defineMessages({
   placeholder: { id: 'report.placeholder', defaultMessage: 'Type or paste additional comments' },

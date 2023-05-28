@@ -1,8 +1,11 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import api from 'flavours/glitch/api';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages } from 'react-intl';
+
 import classNames from 'classnames';
+
+import api from 'flavours/glitch/api';
 
 const messages = defineMessages({
   other: { id: 'report.categories.other', defaultMessage: 'Other' },

@@ -1,4 +1,5 @@
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+
 import {
   PINNED_ACCOUNTS_EDITOR_RESET,
   PINNED_ACCOUNTS_FETCH_REQUEST,

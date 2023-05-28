@@ -1,22 +1,29 @@
+import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
+import { List as ImmutableList } from 'immutable';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
+
+import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
+import { fetchLists } from 'flavours/glitch/actions/lists';
+import { openModal } from 'flavours/glitch/actions/modal';
 import Column from 'flavours/glitch/features/ui/components/column';
 import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
 import ColumnSubheading from 'flavours/glitch/features/ui/components/column_subheading';
-import { defineMessages, injectIntl } from 'react-intl';
-import { connect } from 'react-redux';
-import { openModal } from 'flavours/glitch/actions/modal';
-import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, showTrends } from 'flavours/glitch/initial_state';
-import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
-import { List as ImmutableList } from 'immutable';
-import { createSelector } from 'reselect';
-import { fetchLists } from 'flavours/glitch/actions/lists';
-import { preferencesLink } from 'flavours/glitch/utils/backend_links';
-import NavigationBar from '../compose/components/navigation_bar';
 import LinkFooter from 'flavours/glitch/features/ui/components/link_footer';
+import { me, showTrends } from 'flavours/glitch/initial_state';
+import { preferencesLink } from 'flavours/glitch/utils/backend_links';
+
+import NavigationBar from '../compose/components/navigation_bar';
+
 import TrendsContainer from './containers/trends_container';
-import { Helmet } from 'react-helmet';
+
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },

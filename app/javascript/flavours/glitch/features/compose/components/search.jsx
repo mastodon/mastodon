@@ -1,19 +1,17 @@
-//  Package imports.
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import {
   injectIntl,
   FormattedMessage,
   defineMessages,
 } from 'react-intl';
+
 import Overlay from 'react-overlays/Overlay';
 
-//  Components.
 import { Icon } from 'flavours/glitch/components/icon';
-
-//  Utils.
-import { focusRoot } from 'flavours/glitch/utils/dom_helpers';
 import { searchEnabled } from 'flavours/glitch/initial_state';
+import { focusRoot } from 'flavours/glitch/utils/dom_helpers';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },

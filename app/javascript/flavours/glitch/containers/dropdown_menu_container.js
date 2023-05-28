@@ -1,7 +1,9 @@
+import { connect } from 'react-redux';
+
 import { openDropdownMenu, closeDropdownMenu } from 'flavours/glitch/actions/dropdown_menu';
 import { openModal, closeModal } from 'flavours/glitch/actions/modal';
-import { connect } from 'react-redux';
 import DropdownMenu from 'flavours/glitch/components/dropdown_menu';
+
 import { isUserTouching } from '../is_mobile';
 
 const mapStateToProps = state => ({

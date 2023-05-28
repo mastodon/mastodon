@@ -1,6 +1,10 @@
+import { defineMessages, injectIntl } from 'react-intl';
+
 import { connect } from 'react-redux';
-import DetailedStatus from '../components/detailed_status';
-import { makeGetStatus } from 'flavours/glitch/selectors';
+
+import { showAlertForError } from 'flavours/glitch/actions/alerts';
+import { initBlockModal } from 'flavours/glitch/actions/blocks';
+import { initBoostModal } from 'flavours/glitch/actions/boosts';
 import {
   replyCompose,
   mentionCompose,
@@ -14,19 +18,18 @@ import {
   pin,
   unpin,
 } from 'flavours/glitch/actions/interactions';
+import { openModal } from 'flavours/glitch/actions/modal';
+import { initMuteModal } from 'flavours/glitch/actions/mutes';
+import { initReport } from 'flavours/glitch/actions/reports';
 import {
   muteStatus,
   unmuteStatus,
   deleteStatus,
 } from 'flavours/glitch/actions/statuses';
-import { initMuteModal } from 'flavours/glitch/actions/mutes';
-import { initBlockModal } from 'flavours/glitch/actions/blocks';
-import { initReport } from 'flavours/glitch/actions/reports';
-import { initBoostModal } from 'flavours/glitch/actions/boosts';
-import { openModal } from 'flavours/glitch/actions/modal';
-import { defineMessages, injectIntl } from 'react-intl';
 import { boostModal, deleteModal } from 'flavours/glitch/initial_state';
-import { showAlertForError } from 'flavours/glitch/actions/alerts';
+import { makeGetStatus } from 'flavours/glitch/selectors';
+
+import DetailedStatus from '../components/detailed_status';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },

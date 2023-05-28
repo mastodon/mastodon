@@ -1,8 +1,9 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import 'wicg-inert';
-import { createBrowserHistory } from 'history';
 import { multiply } from 'color-blend';
+import { createBrowserHistory } from 'history';
 
 export default class ModalRoot extends PureComponent {
 

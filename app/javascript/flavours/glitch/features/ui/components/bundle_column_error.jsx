@@ -1,11 +1,14 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { injectIntl, FormattedMessage } from 'react-intl';
-import Column from 'flavours/glitch/components/column';
-import Button from 'flavours/glitch/components/button';
+
+import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import classNames from 'classnames';
+
+import Button from 'flavours/glitch/components/button';
+import Column from 'flavours/glitch/components/column';
 import { autoPlayGif } from 'flavours/glitch/initial_state';
 
 class GIF extends PureComponent {

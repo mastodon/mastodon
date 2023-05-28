@@ -1,4 +1,5 @@
 import { FormattedMessage } from 'react-intl';
+
 import illustration from 'flavours/glitch/images/elephant_ui_working.svg';
 
 const RegenerationIndicator = () => (

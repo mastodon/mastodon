@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
+
 import { openModal, closeModal } from 'flavours/glitch/actions/modal';
+
 import ModalRoot from '../components/modal_root';
 
 const mapStateToProps = state => ({

@@ -1,11 +1,14 @@
 //  Package imports.
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
+
+import classNames from 'classnames';
+
 import Overlay from 'react-overlays/Overlay';
 
 //  Components.
 import { IconButton } from 'flavours/glitch/components/icon_button';
+
 import DropdownMenu from './dropdown_menu';
 
 //  The component.

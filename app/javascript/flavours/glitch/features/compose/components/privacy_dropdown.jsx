@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
 import Dropdown from './dropdown';
 
 const messages = defineMessages({

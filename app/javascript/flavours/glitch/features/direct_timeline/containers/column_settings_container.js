@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
-import ColumnSettings from '../components/column_settings';
+
 import { changeSetting } from 'flavours/glitch/actions/settings';
+
+import ColumnSettings from '../components/column_settings';
 
 const mapStateToProps = state => ({
   settings: state.getIn(['settings', 'direct']),

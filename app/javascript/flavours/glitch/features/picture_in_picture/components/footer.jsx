@@ -1,16 +1,20 @@
-import { connect } from 'react-redux';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import classNames from 'classnames';
-import { me, boostModal } from 'flavours/glitch/initial_state';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
+import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
+import { initBoostModal } from 'flavours/glitch/actions/boosts';
 import { replyCompose } from 'flavours/glitch/actions/compose';
 import { reblog, favourite, unreblog, unfavourite } from 'flavours/glitch/actions/interactions';
-import { makeGetStatus } from 'flavours/glitch/selectors';
 import { openModal } from 'flavours/glitch/actions/modal';
-import { initBoostModal } from 'flavours/glitch/actions/boosts';
+import { IconButton } from 'flavours/glitch/components/icon_button';
+import { me, boostModal } from 'flavours/glitch/initial_state';
+import { makeGetStatus } from 'flavours/glitch/selectors';
 
 const messages = defineMessages({
   reply: { id: 'status.reply', defaultMessage: 'Reply' },

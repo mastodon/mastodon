@@ -1,7 +1,9 @@
 //  Package imports.
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
+
 import classNames from 'classnames';
+
 import { supportsPassiveEvents } from 'detect-passive-events';
 
 //  Components.

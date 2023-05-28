@@ -1,27 +1,33 @@
-import { PureComponent } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+
+import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
-import { changeUploadCompose, uploadThumbnail, onChangeMediaDescription, onChangeMediaFocus } from '../../../actions/compose';
-import Video, { getPointerPosition } from 'flavours/glitch/features/video';
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import Button from 'flavours/glitch/components/button';
-import Audio from 'flavours/glitch/features/audio';
+
 import Textarea from 'react-textarea-autosize';
-import UploadProgress from 'flavours/glitch/features/compose/components/upload_progress';
-import CharacterCounter from 'flavours/glitch/features/compose/components/character_counter';
 import { length } from 'stringz';
-import { Tesseract as fetchTesseract } from 'flavours/glitch/features/ui/util/async-components';
-import { GIFV } from 'flavours/glitch/components/gifv';
-import { me } from 'flavours/glitch/initial_state';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
 // eslint-disable-next-line import/extensions
 import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
+
+import Button from 'flavours/glitch/components/button';
+import { GIFV } from 'flavours/glitch/components/gifv';
+import { IconButton } from 'flavours/glitch/components/icon_button';
+import Audio from 'flavours/glitch/features/audio';
+import CharacterCounter from 'flavours/glitch/features/compose/components/character_counter';
+import UploadProgress from 'flavours/glitch/features/compose/components/upload_progress';
+import { Tesseract as fetchTesseract } from 'flavours/glitch/features/ui/util/async-components';
+import Video, { getPointerPosition } from 'flavours/glitch/features/video';
+import { me } from 'flavours/glitch/initial_state';
 import { assetHost } from 'flavours/glitch/utils/config';
+
+import { changeUploadCompose, uploadThumbnail, onChangeMediaDescription, onChangeMediaFocus } from '../../../actions/compose';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

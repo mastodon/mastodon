@@ -1,8 +1,11 @@
-import { openModal } from 'flavours/glitch/actions/modal';
-import { connect }   from 'react-redux';
 import { defineMessages, injectIntl } from 'react-intl';
-import Header from '../components/header';
+
+import { connect }   from 'react-redux';
+
+import { openModal } from 'flavours/glitch/actions/modal';
 import { logOut } from 'flavours/glitch/utils/log_out';
+
+import Header from '../components/header';
 
 const messages = defineMessages({
   logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },

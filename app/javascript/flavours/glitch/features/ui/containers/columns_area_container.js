@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
-import ColumnsArea from '../components/columns_area';
+
 import { openModal } from 'flavours/glitch/actions/modal';
+
+import ColumnsArea from '../components/columns_area';
 
 const mapStateToProps = state => ({
   columns: state.getIn(['settings', 'columns']),

@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
-import { isUserTouching } from 'flavours/glitch/is_mobile';
+
 import { openModal, closeModal } from 'flavours/glitch/actions/modal';
+import { isUserTouching } from 'flavours/glitch/is_mobile';
+
 import Dropdown from '../components/dropdown';
 
 const mapDispatchToProps = dispatch => ({

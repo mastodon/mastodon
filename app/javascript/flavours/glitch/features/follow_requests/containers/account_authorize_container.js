@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
-import { makeGetAccount } from 'flavours/glitch/selectors';
-import AccountAuthorize from '../components/account_authorize';
+
 import { authorizeFollowRequest, rejectFollowRequest } from 'flavours/glitch/actions/accounts';
+import { makeGetAccount } from 'flavours/glitch/selectors';
+
+import AccountAuthorize from '../components/account_authorize';
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();

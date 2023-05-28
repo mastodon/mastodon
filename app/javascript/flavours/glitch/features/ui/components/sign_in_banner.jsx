@@ -1,8 +1,10 @@
 import { useCallback } from 'react';
+
 import { FormattedMessage } from 'react-intl';
-import { useAppDispatch, useAppSelector } from 'flavours/glitch/store';
-import { registrationsOpen } from 'flavours/glitch/initial_state';
+
 import { openModal } from 'flavours/glitch/actions/modal';
+import { registrationsOpen } from 'flavours/glitch/initial_state';
+import { useAppDispatch, useAppSelector } from 'flavours/glitch/store';
 
 const SignInBanner = () => {
   const dispatch = useAppDispatch();

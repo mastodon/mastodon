@@ -1,6 +1,7 @@
 //  Package imports
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

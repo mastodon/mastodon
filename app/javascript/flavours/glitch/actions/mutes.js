@@ -1,7 +1,9 @@
+import { openModal } from 'flavours/glitch/actions/modal';
+
 import api, { getLinks } from '../api';
+
 import { fetchRelationships } from './accounts';
 import { importFetchedAccounts } from './importer';
-import { openModal } from 'flavours/glitch/actions/modal';
 
 export const MUTES_FETCH_REQUEST = 'MUTES_FETCH_REQUEST';
 export const MUTES_FETCH_SUCCESS = 'MUTES_FETCH_SUCCESS';

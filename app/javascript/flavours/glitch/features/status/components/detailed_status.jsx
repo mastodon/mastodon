@@ -1,24 +1,33 @@
 import PropTypes from 'prop-types';
+
+import { injectIntl, FormattedDate } from 'react-intl';
+
+import classNames from 'classnames';
+import { Link } from 'react-router-dom';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { AnimatedNumber } from 'flavours/glitch/components/animated_number';
+import AttachmentList from 'flavours/glitch/components/attachment_list';
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { DisplayName } from 'flavours/glitch/components/display_name';
-import StatusContent from 'flavours/glitch/components/status_content';
-import MediaGallery from 'flavours/glitch/components/media_gallery';
-import AttachmentList from 'flavours/glitch/components/attachment_list';
-import { Link } from 'react-router-dom';
-import { injectIntl, FormattedDate } from 'react-intl';
-import Card from './card';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import Video from 'flavours/glitch/features/video';
-import Audio from 'flavours/glitch/features/audio';
-import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
-import scheduleIdleTask from '../../ui/util/schedule_idle_task';
-import classNames from 'classnames';
-import PollContainer from 'flavours/glitch/containers/poll_container';
-import { Icon } from 'flavours/glitch/components/icon';
-import { AnimatedNumber } from 'flavours/glitch/components/animated_number';
-import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
 import EditedTimestamp from 'flavours/glitch/components/edited_timestamp';
+import { Icon } from 'flavours/glitch/components/icon';
+import MediaGallery from 'flavours/glitch/components/media_gallery';
+import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
+import StatusContent from 'flavours/glitch/components/status_content';
+import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
+import PollContainer from 'flavours/glitch/containers/poll_container';
+import Audio from 'flavours/glitch/features/audio';
+import Video from 'flavours/glitch/features/video';
+
+import scheduleIdleTask from '../../ui/util/schedule_idle_task';
+
+import Card from './card';
+
+
+
 
 class DetailedStatus extends ImmutablePureComponent {
 

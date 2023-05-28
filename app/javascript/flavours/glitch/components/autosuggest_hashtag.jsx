@@ -1,7 +1,10 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import ShortNumber from 'flavours/glitch/components/short_number';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
+
+import ShortNumber from 'flavours/glitch/components/short_number';
+
 
 export default class AutosuggestHashtag extends PureComponent {
 

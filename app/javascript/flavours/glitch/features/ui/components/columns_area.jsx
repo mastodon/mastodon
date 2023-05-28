@@ -1,11 +1,14 @@
-import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
+import { Children, cloneElement } from 'react';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { supportsPassiveEvents } from 'detect-passive-events';
+
+import { scrollRight } from 'flavours/glitch/scroll';
+
 import BundleContainer from '../containers/bundle_container';
-import ColumnLoading from './column_loading';
-import DrawerLoading from './drawer_loading';
-import BundleColumnError from './bundle_column_error';
 import {
   Compose,
   Notifications,
@@ -19,11 +22,13 @@ import {
   ListTimeline,
   Directory,
 } from '../util/async-components';
+
+import BundleColumnError from './bundle_column_error';
+import ColumnLoading from './column_loading';
 import ComposePanel from './compose_panel';
+import DrawerLoading from './drawer_loading';
 import NavigationPanel from './navigation_panel';
 
-import { supportsPassiveEvents } from 'detect-passive-events';
-import { scrollRight } from 'flavours/glitch/scroll';
 
 const componentMap = {
   'COMPOSE': Compose,

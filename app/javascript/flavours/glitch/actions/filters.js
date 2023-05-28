@@ -1,4 +1,5 @@
 import api from '../api';
+
 import { openModal } from './modal';
 
 export const FILTERS_FETCH_REQUEST = 'FILTERS_FETCH_REQUEST';

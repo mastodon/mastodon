@@ -1,15 +1,24 @@
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { HotKeys } from 'react-hotkeys';
+
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { DisplayName } from 'flavours/glitch/components/display_name';
-import Permalink from 'flavours/glitch/components/permalink';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import NotificationOverlayContainer from '../containers/overlay_container';
-import { HotKeys } from 'react-hotkeys';
 import { Icon } from 'flavours/glitch/components/icon';
-import classNames from 'classnames';
+import { IconButton } from 'flavours/glitch/components/icon_button';
+import Permalink from 'flavours/glitch/components/permalink';
+
+import NotificationOverlayContainer from '../containers/overlay_container';
+
+
+
 
 const messages = defineMessages({
   authorize: { id: 'follow_request.authorize', defaultMessage: 'Authorize' },

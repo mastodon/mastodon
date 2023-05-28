@@ -1,14 +1,17 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
-import Button from 'flavours/glitch/components/button';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
+
 import {
   unfollowAccount,
   muteAccount,
   blockAccount,
 } from 'flavours/glitch/actions/accounts';
+import Button from 'flavours/glitch/components/button';
 
 const mapStateToProps = () => ({});
 

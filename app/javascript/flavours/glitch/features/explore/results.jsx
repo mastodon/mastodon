@@ -1,16 +1,22 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
-import { expandSearch } from 'flavours/glitch/actions/search';
-import Account from 'flavours/glitch/containers/account_container';
-import Status from 'flavours/glitch/containers/status_container';
-import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
+
+import { Helmet } from 'react-helmet';
+
 import { List as ImmutableList } from 'immutable';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
+import { expandSearch } from 'flavours/glitch/actions/search';
+import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
 import LoadMore from 'flavours/glitch/components/load_more';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
-import { Helmet } from 'react-helmet';
+import Account from 'flavours/glitch/containers/account_container';
+import Status from 'flavours/glitch/containers/status_container';
+
+
 
 const messages = defineMessages({
   title: { id: 'search_results.title', defaultMessage: 'Search for {q}' },

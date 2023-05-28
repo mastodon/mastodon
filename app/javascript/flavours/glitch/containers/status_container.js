@@ -1,11 +1,17 @@
+import { defineMessages, injectIntl } from 'react-intl';
+
 import { connect } from 'react-redux';
-import Status from 'flavours/glitch/components/status';
-import { makeGetStatus, makeGetPictureInPicture } from 'flavours/glitch/selectors';
+
+import { initBlockModal } from 'flavours/glitch/actions/blocks';
+import { initBoostModal } from 'flavours/glitch/actions/boosts';
 import {
   replyCompose,
   mentionCompose,
   directCompose,
 } from 'flavours/glitch/actions/compose';
+import {
+  initAddFilter,
+} from 'flavours/glitch/actions/filters';
 import {
   reblog,
   favourite,
@@ -16,6 +22,11 @@ import {
   pin,
   unpin,
 } from 'flavours/glitch/actions/interactions';
+import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
+import { openModal } from 'flavours/glitch/actions/modal';
+import { initMuteModal } from 'flavours/glitch/actions/mutes';
+import { deployPictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
+import { initReport } from 'flavours/glitch/actions/reports';
 import {
   muteStatus,
   unmuteStatus,
@@ -26,18 +37,10 @@ import {
   translateStatus,
   undoStatusTranslation,
 } from 'flavours/glitch/actions/statuses';
-import {
-  initAddFilter,
-} from 'flavours/glitch/actions/filters';
-import { initMuteModal } from 'flavours/glitch/actions/mutes';
-import { initBlockModal } from 'flavours/glitch/actions/blocks';
-import { initReport } from 'flavours/glitch/actions/reports';
-import { initBoostModal } from 'flavours/glitch/actions/boosts';
-import { openModal } from 'flavours/glitch/actions/modal';
-import { deployPictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
-import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
-import { defineMessages, injectIntl } from 'react-intl';
+import Status from 'flavours/glitch/components/status';
 import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/initial_state';
+import { makeGetStatus, makeGetPictureInPicture } from 'flavours/glitch/selectors';
+
 import { showAlertForError } from '../actions/alerts';
 
 const messages = defineMessages({

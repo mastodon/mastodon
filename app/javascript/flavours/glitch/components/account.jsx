@@ -1,14 +1,19 @@
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { Skeleton } from 'flavours/glitch/components/skeleton';
+import { me } from 'flavours/glitch/initial_state';
+
 import { Avatar } from './avatar';
 import { DisplayName } from './display_name';
-import Permalink from './permalink';
 import { IconButton } from './icon_button';
-import { defineMessages, injectIntl } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me } from 'flavours/glitch/initial_state';
+import Permalink from './permalink';
 import { RelativeTimestamp } from './relative_timestamp';
-import { Skeleton } from 'flavours/glitch/components/skeleton';
+
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },

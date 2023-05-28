@@ -1,6 +1,8 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { injectIntl, FormattedMessage } from 'react-intl';
+
 import Button from 'flavours/glitch/components/button';
 
 class ConfirmationModal extends PureComponent {

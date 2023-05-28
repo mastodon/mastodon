@@ -1,7 +1,10 @@
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import AvatarOverlay from 'flavours/glitch/components/avatar_overlay';
 import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
 

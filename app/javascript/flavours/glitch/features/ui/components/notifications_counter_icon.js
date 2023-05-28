@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';
 
 const mapStateToProps = state => ({

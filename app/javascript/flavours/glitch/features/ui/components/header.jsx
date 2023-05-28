@@ -1,13 +1,17 @@
-import { PureComponent } from 'react';
-import { WordmarkLogo, SymbolLogo } from 'flavours/glitch/components/logo';
-import { Link, withRouter } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
-import { registrationsOpen, me } from 'flavours/glitch/initial_state';
-import { Avatar } from 'flavours/glitch/components/avatar';
-import Permalink from 'flavours/glitch/components/permalink';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
+import { Link, withRouter } from 'react-router-dom';
+
 import { connect } from 'react-redux';
+
 import { openModal } from 'flavours/glitch/actions/modal';
+import { Avatar } from 'flavours/glitch/components/avatar';
+import { WordmarkLogo, SymbolLogo } from 'flavours/glitch/components/logo';
+import Permalink from 'flavours/glitch/components/permalink';
+import { registrationsOpen, me } from 'flavours/glitch/initial_state';
 
 const Account = connect(state => ({
   account: state.getIn(['accounts', me]),

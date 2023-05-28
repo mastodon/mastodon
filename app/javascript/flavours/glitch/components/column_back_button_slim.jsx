@@ -1,6 +1,8 @@
-import { PureComponent } from 'react';
-import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
 import { Icon } from 'flavours/glitch/components/icon';
 
 export default class ColumnBackButtonSlim extends PureComponent {

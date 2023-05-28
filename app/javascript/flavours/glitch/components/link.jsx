@@ -2,9 +2,10 @@
 //  ~ 😘 kibi!
 
 //  Package imports.
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
+
+import classNames from 'classnames';
 
 //  Utils.
 import { assignHandlers } from 'flavours/glitch/utils/react_helpers';

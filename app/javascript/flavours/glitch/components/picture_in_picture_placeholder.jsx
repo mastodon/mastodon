@@ -1,9 +1,14 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Icon } from 'flavours/glitch/components/icon';
-import { removePictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
-import { connect } from 'react-redux';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
+
+import { connect } from 'react-redux';
+
+import { removePictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
+import { Icon } from 'flavours/glitch/components/icon';
+
+
 
 class PictureInPicturePlaceholder extends PureComponent {
 

@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
+
 import { makeGetReport } from 'flavours/glitch/selectors';
+
 import AdminReport from '../components/admin_report';
 
 const mapStateToProps = (state, { notification }) => {

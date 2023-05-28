@@ -1,7 +1,8 @@
+import { Stack as ImmutableStack, Map as ImmutableMap } from 'immutable';
+
+import { COMPOSE_UPLOAD_CHANGE_SUCCESS } from 'flavours/glitch/actions/compose';
 import { MODAL_OPEN, MODAL_CLOSE } from 'flavours/glitch/actions/modal';
 import { TIMELINE_DELETE } from 'flavours/glitch/actions/timelines';
-import { COMPOSE_UPLOAD_CHANGE_SUCCESS } from 'flavours/glitch/actions/compose';
-import { Stack as ImmutableStack, Map as ImmutableMap } from 'immutable';
 
 const initialState = ImmutableMap({
   ignoreFocus: false,

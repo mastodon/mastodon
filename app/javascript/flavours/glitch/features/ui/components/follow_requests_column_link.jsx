@@ -1,11 +1,16 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
-import { connect } from 'react-redux';
-import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
-import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';
-import { List as ImmutableList } from 'immutable';
+import { Component } from 'react';
+
 import { injectIntl, defineMessages } from 'react-intl';
+
+import { List as ImmutableList } from 'immutable';
+import { connect } from 'react-redux';
+
+import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
+import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';
+import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
+
+
 
 const messages = defineMessages({
   text: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },

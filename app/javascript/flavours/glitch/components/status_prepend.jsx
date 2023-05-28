@@ -1,8 +1,11 @@
 //  Package imports  //
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { Icon } from 'flavours/glitch/components/icon';
 import { me } from 'flavours/glitch/initial_state';
 

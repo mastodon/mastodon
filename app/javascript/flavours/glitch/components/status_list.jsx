@@ -1,11 +1,15 @@
-import { debounce } from 'lodash';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import StatusContainer from 'flavours/glitch/containers/status_container';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { debounce } from 'lodash';
+
+import RegenerationIndicator from 'flavours/glitch/components/regeneration_indicator';
+import StatusContainer from 'flavours/glitch/containers/status_container';
+
 import LoadGap from './load_gap';
 import ScrollableList from './scrollable_list';
-import RegenerationIndicator from 'flavours/glitch/components/regeneration_indicator';
 
 export default class StatusList extends ImmutablePureComponent {
 

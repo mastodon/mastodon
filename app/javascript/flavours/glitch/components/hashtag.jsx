@@ -1,13 +1,20 @@
 // @ts-check
-import { Component } from 'react';
-import { Sparklines, SparklinesCurve } from 'react-sparklines';
-import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Permalink from './permalink';
+
+import { Sparklines, SparklinesCurve } from 'react-sparklines';
+
 import ShortNumber from 'flavours/glitch/components/short_number';
 import { Skeleton } from 'flavours/glitch/components/skeleton';
-import classNames from 'classnames';
+
+import Permalink from './permalink';
+
 
 class SilentErrorBoundary extends Component {
 

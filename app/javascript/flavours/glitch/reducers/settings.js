@@ -1,11 +1,13 @@
-import { SETTING_CHANGE, SETTING_SAVE } from 'flavours/glitch/actions/settings';
-import { NOTIFICATIONS_FILTER_SET } from 'flavours/glitch/actions/notifications';
+import { Map as ImmutableMap, fromJS } from 'immutable';
+
 import { COLUMN_ADD, COLUMN_REMOVE, COLUMN_MOVE, COLUMN_PARAMS_CHANGE } from 'flavours/glitch/actions/columns';
-import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
 import { EMOJI_USE } from 'flavours/glitch/actions/emojis';
 import { LANGUAGE_USE } from 'flavours/glitch/actions/languages';
+import { NOTIFICATIONS_FILTER_SET } from 'flavours/glitch/actions/notifications';
+import { SETTING_CHANGE, SETTING_SAVE } from 'flavours/glitch/actions/settings';
+import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
+
 import { LIST_DELETE_SUCCESS, LIST_FETCH_FAIL } from '../actions/lists';
-import { Map as ImmutableMap, fromJS } from 'immutable';
 import { uuid } from '../uuid';
 
 const initialState = ImmutableMap({

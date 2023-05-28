@@ -1,8 +1,8 @@
 import api from '../api';
 
-import { deleteFromTimelines } from './timelines';
-import { importFetchedStatus, importFetchedStatuses } from './importer';
 import { ensureComposeIsVisible, setComposeToStatus } from './compose';
+import { importFetchedStatus, importFetchedStatuses } from './importer';
+import { deleteFromTimelines } from './timelines';
 
 export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
 export const STATUS_FETCH_SUCCESS = 'STATUS_FETCH_SUCCESS';

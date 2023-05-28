@@ -1,9 +1,14 @@
-import { PureComponent } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { changeComposeSensitivity } from 'flavours/glitch/actions/compose';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+
+import { connect } from 'react-redux';
+
+import { changeComposeSensitivity } from 'flavours/glitch/actions/compose';
+
 
 const messages = defineMessages({
   marked: {

@@ -1,18 +1,22 @@
+import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 import { createPortal } from 'react-dom';
-import PropTypes from 'prop-types';
+
 import { IntlProvider, addLocaleData } from 'react-intl';
+
 import { fromJS } from 'immutable';
-import { getLocale } from 'mastodon/locales';
-import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
-import MediaGallery from 'flavours/glitch/components/media_gallery';
-import Poll from 'flavours/glitch/components/poll';
+
 import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
+import MediaGallery from 'flavours/glitch/components/media_gallery';
 import ModalRoot from 'flavours/glitch/components/modal_root';
+import Poll from 'flavours/glitch/components/poll';
+import Audio from 'flavours/glitch/features/audio';
+import Card from 'flavours/glitch/features/status/components/card';
 import MediaModal from 'flavours/glitch/features/ui/components/media_modal';
 import Video from 'flavours/glitch/features/video';
-import Card from 'flavours/glitch/features/status/components/card';
-import Audio from 'flavours/glitch/features/audio';
+import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
+
+import { getLocale } from 'mastodon/locales';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);

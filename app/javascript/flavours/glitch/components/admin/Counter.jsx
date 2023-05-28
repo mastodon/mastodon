@@ -1,9 +1,13 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import api from 'flavours/glitch/api';
+import { PureComponent } from 'react';
+
 import { FormattedNumber } from 'react-intl';
-import { Sparklines, SparklinesCurve } from 'react-sparklines';
+
 import classNames from 'classnames';
+
+import { Sparklines, SparklinesCurve } from 'react-sparklines';
+
+import api from 'flavours/glitch/api';
 import { Skeleton } from 'flavours/glitch/components/skeleton';
 
 const percIncrease = (a, b) => {

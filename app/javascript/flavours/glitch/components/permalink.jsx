@@ -1,5 +1,5 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
 
 export default class Permalink extends PureComponent {
 

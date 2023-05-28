@@ -1,10 +1,14 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { PureComponent } from 'react';
+
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
-import { disabledAccountId, movedToAccountId, domain } from 'flavours/glitch/initial_state';
+
+import { Link } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+
 import { openModal } from 'flavours/glitch/actions/modal';
+import { disabledAccountId, movedToAccountId, domain } from 'flavours/glitch/initial_state';
 import { logOut } from 'flavours/glitch/utils/log_out';
 
 const messages = defineMessages({

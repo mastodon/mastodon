@@ -1,11 +1,15 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
-import { registrationsOpen } from 'flavours/glitch/initial_state';
-import { connect } from 'react-redux';
-import { Icon } from 'flavours/glitch/components/icon';
+
 import classNames from 'classnames';
+
+import { connect } from 'react-redux';
+
 import { openModal, closeModal } from 'flavours/glitch/actions/modal';
+import { Icon } from 'flavours/glitch/components/icon';
+import { registrationsOpen } from 'flavours/glitch/initial_state';
 
 const mapStateToProps = (state, { accountId }) => ({
   displayNameHtml: state.getIn(['accounts', accountId, 'display_name_html']),

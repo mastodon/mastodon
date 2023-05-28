@@ -1,12 +1,16 @@
-import { PureComponent } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import { connect } from 'react-redux';
+
 import Toggle from 'react-toggle';
-import Button from 'flavours/glitch/components/button';
-import { closeModal } from 'flavours/glitch/actions/modal';
+
 import { muteAccount } from 'flavours/glitch/actions/accounts';
+import { closeModal } from 'flavours/glitch/actions/modal';
 import { toggleHideNotifications, changeMuteDuration } from 'flavours/glitch/actions/mutes';
+import Button from 'flavours/glitch/components/button';
 
 const messages = defineMessages({
   minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },

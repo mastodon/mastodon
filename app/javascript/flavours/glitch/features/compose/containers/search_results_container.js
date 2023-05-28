@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
-import SearchResults from '../components/search_results';
-import { fetchSuggestions, dismissSuggestion } from 'flavours/glitch/actions/suggestions';
+
 import { expandSearch } from 'flavours/glitch/actions/search';
+import { fetchSuggestions, dismissSuggestion } from 'flavours/glitch/actions/suggestions';
+
+import SearchResults from '../components/search_results';
 
 const mapStateToProps = state => ({
   results: state.getIn(['search', 'results']),

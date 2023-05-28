@@ -1,6 +1,7 @@
-import { connect } from 'react-redux';
 import { defineMessages, injectIntl } from 'react-intl';
-import ComposeForm from '../components/compose_form';
+
+import { connect } from 'react-redux';
+
 import {
   changeCompose,
   changeComposeSpoilerText,
@@ -13,12 +14,13 @@ import {
   submitCompose,
   uploadCompose,
 } from 'flavours/glitch/actions/compose';
+import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
 import {
   openModal,
 } from 'flavours/glitch/actions/modal';
-import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
-
 import { privacyPreference } from 'flavours/glitch/utils/privacy_preference';
+
+import ComposeForm from '../components/compose_form';
 
 const messages = defineMessages({
   missingDescriptionMessage: {

@@ -1,7 +1,9 @@
 //  Package imports.
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Components.

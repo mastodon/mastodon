@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 
+import { fetchBundleRequest, fetchBundleSuccess, fetchBundleFail } from 'flavours/glitch/actions/bundles';
+
 import Bundle from '../components/bundle';
 
-import { fetchBundleRequest, fetchBundleSuccess, fetchBundleFail } from 'flavours/glitch/actions/bundles';
 
 const mapDispatchToProps = dispatch => ({
   onFetch () {

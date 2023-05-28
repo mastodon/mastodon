@@ -1,4 +1,5 @@
 import { expandSpoilers, disableSwiping } from 'flavours/glitch/initial_state';
+
 import { openModal } from './modal';
 
 export const LOCAL_SETTING_CHANGE = 'LOCAL_SETTING_CHANGE';

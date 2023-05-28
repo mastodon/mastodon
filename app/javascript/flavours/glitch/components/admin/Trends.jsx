@@ -1,8 +1,11 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import api from 'flavours/glitch/api';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
+
 import classNames from 'classnames';
+
+import api from 'flavours/glitch/api';
 import Hashtag from 'flavours/glitch/components/hashtag';
 
 export default class Trends extends PureComponent {

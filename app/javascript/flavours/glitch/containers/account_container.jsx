@@ -1,7 +1,7 @@
-import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { makeGetAccount } from 'flavours/glitch/selectors';
-import Account from 'flavours/glitch/components/account';
+
+import { connect } from 'react-redux';
+
 import {
   followAccount,
   unfollowAccount,
@@ -12,7 +12,9 @@ import {
 } from 'flavours/glitch/actions/accounts';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
+import Account from 'flavours/glitch/components/account';
 import { unfollowModal } from 'flavours/glitch/initial_state';
+import { makeGetAccount } from 'flavours/glitch/selectors';
 
 const messages = defineMessages({
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },

@@ -7,10 +7,14 @@
 
 //  Package imports  //
 import PropTypes from 'prop-types';
+
 import { defineMessages, injectIntl } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { Icon } from 'flavours/glitch/components/icon';
+
 import classNames from 'classnames';
+
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { Icon } from 'flavours/glitch/components/icon';
 
 const messages = defineMessages({
   btnAll : { id: 'notification_purge.btn_all', defaultMessage: 'Select\nall' },

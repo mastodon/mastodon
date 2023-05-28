@@ -1,6 +1,7 @@
 import 'packs/public-path';
-import ready from 'flavours/glitch/ready';
 import { createRoot } from 'react-dom/client';
+
+import ready from 'flavours/glitch/ready';
 
 ready(() => {
   [].forEach.call(document.querySelectorAll('[data-admin-component]'), element => {
