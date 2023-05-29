@@ -216,4 +216,46 @@ describe 'GET /api/v1/accounts/{account_id}' do
       end
     end
   end
+
+  describe 'about note' do
+    it 'presents note as HTML' do
+      Fabricate(:custom_emoji, shortcode: 'foo_emoji')
+      account = Fabricate(:account, note: <<~NOTE
+        This is note.
+        This is second line.
+        This line includes :foo_emoji:.
+      NOTE
+      )
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:note]).to eq('<p>This is note.<br />This is second line.<br />This line includes :foo_emoji:.</p>')
+        expect(response_body[:emojis]).to contain_exactly({
+          shortcode: 'foo_emoji',
+          url: be_an_http_url,
+          static_url: be_an_http_url,
+          visible_in_picker: true,
+        })
+      end
+    end
+
+    it 'is empty string when account is suspended even if value in note column is present' do
+      Fabricate(:custom_emoji, shortcode: 'foo_emoji')
+      account = Fabricate(:account, note: 'This line includes :foo_emoji:.', suspended: true)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:note]).to eq('')
+        expect(response_body[:emojis]).to eq([])
+      end
+    end
+  end
 end
