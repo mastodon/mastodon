@@ -26,6 +26,14 @@ class Admin::Metrics::Measure::InstanceFollowersMeasure < Admin::Metrics::Measur
   end
 
   def perform_data_query
+    account_matching_sql = begin
+      if params[:include_subdomains]
+        "accounts.domain IN (SELECT domain FROM instances WHERE reverse('.' || domain) LIKE reverse('.' || $3::text))"
+      else
+        'accounts.domain = $3::text'
+      end
+    end
+
     sql = <<-SQL.squish
       SELECT axis.*, (
         WITH new_followers AS (
@@ -33,7 +41,7 @@ class Admin::Metrics::Measure::InstanceFollowersMeasure < Admin::Metrics::Measur
           FROM follows
           INNER JOIN accounts ON follows.account_id = accounts.id
           WHERE date_trunc('day', follows.created_at)::date = axis.period
-            AND accounts.domain = $3::text
+            AND #{account_matching_sql}
         )
         SELECT count(*) FROM new_followers
       ) AS value
