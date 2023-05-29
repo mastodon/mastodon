@@ -421,4 +421,46 @@ describe 'GET /api/v1/accounts/{account_id}' do
       end
     end
   end
+
+  describe 'about fields' do
+    it 'is empty in default' do
+      account = Fabricate(:account)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:fields]).to eq([])
+      end
+    end
+
+    it 'presents fields when account has fields' do # rubocop:disable RSpec/ExampleLength
+      account = Fabricate(:account, fields: [{
+        name: 'field1_name',
+        value: 'field1_value',
+        verified_at: nil,
+      }, {
+        name: 'field2_name',
+        value: 'field2_value',
+        verified_at: '2023-05-20T20:00:00Z',
+      }])
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:fields]).to contain_exactly({
+          name: 'field1_name',
+          value: 'field1_value',
+          verified_at: nil,
+        }, {
+          name: 'field2_name',
+          value: 'field2_value',
+          verified_at: '2023-05-20T20:00:00.000+00:00',
+        })
+      end
+    end
+  end
 end
