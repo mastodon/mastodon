@@ -367,4 +367,20 @@ describe 'GET /api/v1/accounts/{account_id}' do
       end
     end
   end
+
+  describe 'about last_status_at' do
+    it 'is number of followers' do
+      account = Fabricate(:account)
+      status = Fabricate(:status, account: account)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:last_status_at]).to eq(status.created_at.strftime('%Y-%m-%d'))
+      end
+    end
+  end
 end
