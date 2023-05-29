@@ -1,4 +1,5 @@
-version: '3'
+version: '3.8'
+
 services:
   db:
     restart: always
@@ -8,10 +9,14 @@ services:
       - internal_network
     healthcheck:
       test: ['CMD', 'pg_isready', '-U', 'postgres']
+      interval: 10s
+      timeout: 3s
+      start_period: 5s
+      retries: 3
     volumes:
       - ./postgres14:/var/lib/postgresql/data
     environment:
-      - 'POSTGRES_HOST_AUTH_METHOD=trust'
+      POSTGRES_HOST_AUTH_METHOD: trust
 
   redis:
     restart: always
@@ -20,6 +25,10 @@ services:
       - internal_network
     healthcheck:
       test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 3s
+      start_period: 5s
+      retries: 3
     volumes:
       - ./redis:/data
 
@@ -66,12 +75,19 @@ services:
     healthcheck:
       # prettier-ignore
       test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:3000/health || exit 1']
+      interval: 10s
+      timeout: 3s
+      start_period: 5s
+      retries: 3
     ports:
       - '127.0.0.1:3000:3000'
     depends_on:
-      - db
-      - redis
-      # - es
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      # es:
+        # condition: service_healthy
     volumes:
       - ./public/system:/mastodon/public/system
 
@@ -87,11 +103,17 @@ services:
     healthcheck:
       # prettier-ignore
       test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1']
+      interval: 10s
+      timeout: 3s
+      start_period: 5s
+      retries: 3
     ports:
       - '127.0.0.1:4000:4000'
     depends_on:
-      - db
-      - redis
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
 
   sidekiq:
     build: .
@@ -100,8 +122,10 @@ services:
     env_file: .env.production
     command: bundle exec sidekiq
     depends_on:
-      - db
-      - redis
+      web:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - external_network
       - internal_network
@@ -109,23 +133,19 @@ services:
       - ./public/system:/mastodon/public/system
     healthcheck:
       test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+      interval: 10s
+      timeout: 3s
+      start_period: 5s
+      retries: 3
 
-  ## Uncomment to enable federation with tor instances along with adding the following ENV variables
-  ## http_proxy=http://privoxy:8118
-  ## ALLOW_ACCESS_TO_HIDDEN_SERVICE=true
-  # tor:
-  #   image: sirboops/tor
-  #   networks:
-  #      - external_network
-  #      - internal_network
-  #
-  # privoxy:
-  #   image: sirboops/privoxy
-  #   volumes:
-  #     - ./priv-config:/opt/config
-  #   networks:
-  #     - external_network
-  #     - internal_network
+  mailhog:
+    image: mailhog/mailhog:latest
+    restart: always
+    ports:
+      # - 1025:1025
+      - 8025:8025
+    networks:
+      - internal_network
 
 networks:
   external_network:
