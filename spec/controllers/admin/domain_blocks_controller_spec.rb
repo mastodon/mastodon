@@ -40,35 +40,66 @@ RSpec.describe Admin::DomainBlocksController do
   end
 
   describe 'POST #create' do
-    it 'blocks the domain when succeeded to save' do
+    before do
       allow(DomainBlockWorker).to receive(:perform_async).and_return(true)
-
-      post :create, params: { domain_block: { domain: 'example.com', severity: 'silence' } }
-
-      expect(DomainBlockWorker).to have_received(:perform_async)
-      expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
-      expect(response).to redirect_to(admin_instances_path(limited: '1'))
     end
 
-    it 'renders new when failed to save' do
-      Fabricate(:domain_block, domain: 'example.com', severity: 'suspend')
-      allow(DomainBlockWorker).to receive(:perform_async).and_return(true)
+    context 'with "silence" severity and no conflict' do
+      before do
+        post :create, params: { domain_block: { domain: 'example.com', severity: 'silence' } }
+      end
 
-      post :create, params: { domain_block: { domain: 'example.com', severity: 'silence' } }
+      it 'records a block' do
+        expect(DomainBlock.exists?(domain: 'example.com', severity: 'silence')).to be true
+      end
 
-      expect(DomainBlockWorker).to_not have_received(:perform_async)
-      expect(response).to render_template :new
+      it 'calls DomainBlockWorker' do
+        expect(DomainBlockWorker).to have_received(:perform_async)
+      end
+
+      it 'redirects with a success message' do
+        expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
+        expect(response).to redirect_to(admin_instances_path(limited: '1'))
+      end
     end
 
-    it 'allows upgrading a block' do
-      Fabricate(:domain_block, domain: 'example.com', severity: 'silence')
-      allow(DomainBlockWorker).to receive(:perform_async).and_return(true)
+    context 'when the new domain block conflicts with an existing one' do
+      before do
+        Fabricate(:domain_block, domain: 'example.com', severity: 'suspend')
+        post :create, params: { domain_block: { domain: 'example.com', severity: 'silence' } }
+      end
 
-      post :create, params: { domain_block: { domain: 'example.com', severity: 'silence', reject_media: true, reject_reports: true } }
+      it 'does not record a block' do
+        expect(DomainBlock.exists?(domain: 'example.com', severity: 'silence')).to be false
+      end
 
-      expect(DomainBlockWorker).to have_received(:perform_async)
-      expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
-      expect(response).to redirect_to(admin_instances_path(limited: '1'))
+      it 'does not call DomainBlockWorker' do
+        expect(DomainBlockWorker).to_not have_received(:perform_async)
+      end
+
+      it 'renders new' do
+        expect(response).to render_template :new
+      end
+    end
+
+    context 'when upgrading an existing block' do
+      before do
+        Fabricate(:domain_block, domain: 'example.com', severity: 'silence')
+        post :create, params: { domain_block: { domain: 'example.com', severity: 'suspend', reject_media: true, reject_reports: true } }
+      end
+
+      it 'updates the record' do
+        expect(DomainBlock.exists?(domain: 'example.com', severity: 'suspend')).to be true
+      end
+
+      it 'calls DomainBlockWorker' do
+        expect(DomainBlockWorker).to have_received(:perform_async)
+      end
+
+      it 'redirects with a success message' do
+        expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
+        expect(response).to redirect_to(admin_instances_path(limited: '1'))
+      end
     end
   end
 
