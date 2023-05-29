@@ -58,3 +58,7 @@
       interval: 1 minute
       class: Scheduler::SuspendedUserCleanupScheduler
       queue: scheduler
+    ip_blocklist_URL_scheduler:
+      every: '24h'
+      class: Scheduler::IPBlocklistURLScheduler
+      queue: scheduler
