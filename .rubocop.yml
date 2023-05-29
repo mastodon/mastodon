@@ -31,6 +31,12 @@ AllCops:
     - 'lib/json_ld/*' # Generated files
     - 'lib/templates/**/*'
 
+RSpec:
+  Language:
+    Includes:
+      Examples:
+        - they
+
 # Reason: Prefer Hashes without extreme indentation
 # https://docs.rubocop.org/rubocop/cops_layout.html#layoutfirsthashelementindentation
 Layout/FirstHashElementIndentation:
