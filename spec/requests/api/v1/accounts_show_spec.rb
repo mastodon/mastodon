@@ -201,4 +201,19 @@ describe 'GET /api/v1/accounts/{account_id}' do
       end
     end
   end
+
+  describe 'about created_at' do
+    it 'is truncated by day as UTC' do
+      account = Fabricate(:account, created_at: '2023/5/30 12:34:56 +00:00')
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:created_at]).to eq('2023-05-30T00:00:00.000Z')
+      end
+    end
+  end
 end
