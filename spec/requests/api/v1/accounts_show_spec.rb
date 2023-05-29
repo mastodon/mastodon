@@ -463,4 +463,45 @@ describe 'GET /api/v1/accounts/{account_id}' do
       end
     end
   end
+
+  describe 'about discoverable' do
+    it 'is true in default' do
+      account = Fabricate(:account)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:discoverable]).to be(true)
+      end
+    end
+
+    it 'is false when account setted as undiscoverable' do
+      account = Fabricate(:account, discoverable: false)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:discoverable]).to be(false)
+      end
+    end
+
+    it 'is false when account is suspended even if value in discoverable column is true' do
+      account = Fabricate(:account, discoverable: true, suspended: true)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:discoverable]).to be(false)
+      end
+    end
+  end
 end
