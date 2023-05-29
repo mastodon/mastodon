@@ -480,22 +480,14 @@ class UI extends React.PureComponent {
     }
   };
 
-  handleHotkeyRefreshFeed = () => {
-    const handleKeyDown = (event) => {
-      if (event.key === '.' && !event.ctrlKey && !event.shiftKey && !event.altKey && !event.metaKey) {
-        event.preventDefault();
-        const firstArticle = document.querySelector('article');
-        if (firstArticle) {
-          firstArticle.scrollIntoView();
-        }
+  handleHotkeyRefreshFeed = e => {
+    if (e.key === '.' && !e.ctrlKey && !e.shiftKey && !e.altKey && !e.metaKey) {
+      e.preventDefault();
+      const firstArticle = document.querySelector('article');
+      if (firstArticle) {
+        firstArticle.scrollIntoView();
       }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-
+    }
   };
 
   setHotkeysRef = c => {
