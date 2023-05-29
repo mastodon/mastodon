@@ -532,4 +532,49 @@ describe Mastodon::CLI::Accounts do
       end
     end
   end
+
+  describe '#follow' do
+    context 'when the given username is not found' do
+      let(:arguments) { ['non_existent_username'] }
+
+      it 'exits with an error message indicating that no account with the given username was found' do
+        expect { cli.invoke(:follow, arguments) }.to output(
+          a_string_including('No such account')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when the given username is found' do
+      let!(:target_account)   { Fabricate(:account) }
+      let!(:follower_bob)     { Fabricate(:account, username: 'bob') }
+      let!(:follower_rony)    { Fabricate(:account, username: 'rony') }
+      let!(:follower_charles) { Fabricate(:account, username: 'charles') }
+      let(:follow_service)    { instance_double(FollowService, call: nil) }
+      let(:scope)             { Account.local.without_suspended }
+
+      before do
+        allow(cli).to receive(:parallelize_with_progress).and_yield(follower_bob)
+                                                         .and_yield(follower_rony)
+                                                         .and_yield(follower_charles)
+                                                         .and_return([3, nil])
+        allow(FollowService).to receive(:new).and_return(follow_service)
+      end
+
+      it 'makes all local accounts follow the target account' do
+        cli.follow(target_account.username)
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+        expect(follow_service).to have_received(:call).with(follower_bob, target_account, any_args).once
+        expect(follow_service).to have_received(:call).with(follower_rony, target_account, any_args).once
+        expect(follow_service).to have_received(:call).with(follower_charles, target_account, any_args).once
+      end
+
+      it 'displays a successful message' do
+        expect { cli.follow(target_account.username) }.to output(
+          a_string_including('OK, followed target from 3 accounts')
+        ).to_stdout
+      end
+    end
+  end
 end
