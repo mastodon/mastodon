@@ -445,4 +445,91 @@ describe Mastodon::CLI::Accounts do
       end
     end
   end
+
+  describe '#approve' do
+    let(:total_users) { 10 }
+
+    before do
+      Form::AdminSettings.new(registrations_mode: 'approved').save
+      Fabricate.times(total_users, :user)
+    end
+
+    context 'with --all option' do
+      it 'approves all pending registrations' do
+        cli.invoke(:approve, nil, all: true)
+
+        expect(User.pluck(:approved).all?(true)).to be(true)
+      end
+    end
+
+    context 'with --number option' do
+      context 'when the number is positive' do
+        let(:options) { { number: 3 } }
+
+        it 'approves the earliest n pending registrations' do
+          cli.invoke(:approve, nil, options)
+
+          n_earliest_pending_registrations = User.order(created_at: :asc).first(options[:number])
+
+          expect(n_earliest_pending_registrations.all?(&:approved?)).to be(true)
+        end
+
+        it 'does not approve the remaining pending registrations' do
+          cli.invoke(:approve, nil, options)
+
+          pending_registrations = User.order(created_at: :asc).last(total_users - options[:number])
+
+          expect(pending_registrations.all?(&:approved?)).to be(false)
+        end
+      end
+
+      context 'when the number is negative' do
+        it 'exits with an error message indicating that the number must be positive' do
+          expect { cli.invoke(:approve, nil, number: -1) }.to output(
+            a_string_including('Number must be positive')
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'when the given number is greater than the number of users' do
+        let(:options) { { number: total_users * 2 } }
+
+        it 'approves all users' do
+          cli.invoke(:approve, nil, options)
+
+          expect(User.pluck(:approved).all?(true)).to be(true)
+        end
+
+        it 'does not raise any error' do
+          expect { cli.invoke(:approve, nil, options) }
+            .to_not raise_error
+        end
+      end
+    end
+
+    context 'with username argument' do
+      context 'when the given username is found' do
+        let(:user) { User.last }
+        let(:arguments) { [user.account.username] }
+
+        it 'approves the specified user successfully' do
+          cli.invoke(:approve, arguments)
+
+          expect(user.reload.approved?).to be(true)
+        end
+      end
+
+      context 'when the given username is not found' do
+        let(:arguments) { ['non_existent_username'] }
+
+        it 'exits with an error message indicating that no such account was found' do
+          expect { cli.invoke(:approve, arguments) }.to output(
+            a_string_including('No such account')
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+    end
+  end
 end
