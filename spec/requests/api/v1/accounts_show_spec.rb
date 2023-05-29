@@ -92,4 +92,31 @@ describe 'GET /api/v1/accounts/{account_id}' do
       end
     end
   end
+
+  describe 'about display_name' do
+    it 'is equal to value in display_name column' do
+      account = Fabricate(:account, display_name: 'this is display_name')
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:display_name]).to eq('this is display_name')
+      end
+    end
+
+    it 'is empty if account is suspended' do
+      account = Fabricate(:account, display_name: 'this is display_name', suspended: true)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:display_name]).to eq('')
+      end
+    end
+  end
 end
