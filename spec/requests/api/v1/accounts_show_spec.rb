@@ -383,4 +383,42 @@ describe 'GET /api/v1/accounts/{account_id}' do
       end
     end
   end
+
+  describe 'about emojis' do
+    it 'is empty in default' do
+      account = Fabricate(:account)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:emojis]).to eq([])
+      end
+    end
+
+    it 'presents emojis when account uses custom emoji' do
+      Fabricate(:custom_emoji, shortcode: 'foo_emoji')
+      Fabricate(:custom_emoji, shortcode: 'bar_emoji')
+      account = Fabricate(:account, display_name: ':foo_emoji:', note: 'This line includes :bar_emoji:. However, :baz_emoji: is not registerd.')
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:emojis]).to contain_exactly({
+          shortcode: 'foo_emoji',
+          url: be_an_http_url,
+          static_url: be_an_http_url,
+          visible_in_picker: true,
+        }, {
+          shortcode: 'bar_emoji',
+          url: be_an_http_url,
+          static_url: be_an_http_url,
+          visible_in_picker: true,
+        })
+      end
+    end
+  end
 end
