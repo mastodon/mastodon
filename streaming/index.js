@@ -117,7 +117,7 @@ const pgConfigFromEnv = (env) => {
 
   return {
     ...baseConfig,
-    max: env.DB_POOL || 10,
+    max: env.STREAMING_POOL || env.DB_POOL || 10,
     connectionTimeoutMillis: 15000,
     application_name: '',
   };
