@@ -65,4 +65,31 @@ describe 'GET /api/v1/accounts/{account_id}' do
       end
     end
   end
+
+  describe 'about acct' do
+    it 'is equal to username when account is local' do
+      account = Fabricate(:account, username: 'local_username')
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:acct]).to eq('local_username')
+      end
+    end
+
+    it 'includes domain of remote instance when account is remote' do
+      account = Fabricate(:account, username: 'remote_username', domain: 'remote.example.com')
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:acct]).to eq('remote_username@remote.example.com')
+      end
+    end
+  end
 end
