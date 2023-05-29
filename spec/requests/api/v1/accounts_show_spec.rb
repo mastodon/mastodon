@@ -50,4 +50,19 @@ describe 'GET /api/v1/accounts/{account_id}' do
       end
     end
   end
+
+  describe 'about username' do
+    it 'is equal to value in username column' do
+      account = Fabricate(:account, username: 'local_username')
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:username]).to eq('local_username')
+      end
+    end
+  end
 end
