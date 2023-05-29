@@ -14,6 +14,15 @@ describe 'GET /api/v1/accounts/{account_id}' do
     end
   end
 
+  it 'returns 404 if account not found' do
+    get '/api/v1/accounts/1'
+
+    aggregate_failures do
+      expect(response).to have_http_status(404)
+      expect(body_as_json[:error]).to eq('Record not found')
+    end
+  end
+
   context 'when with token' do
     it 'returns account entity as 200 OK if token is valid' do
       account = Fabricate(:account)
