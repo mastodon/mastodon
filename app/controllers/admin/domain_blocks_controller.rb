@@ -3,7 +3,6 @@
 module Admin
   class DomainBlocksController < BaseController
     before_action :set_domain_block, only: [:destroy, :edit, :update]
-    before_action :require_suspend_confirmation!, only: :create
 
     def batch
       authorize :domain_block, :create?
@@ -32,31 +31,41 @@ module Admin
       @domain_block = DomainBlock.new(resource_params)
       existing_domain_block = resource_params[:domain].present? ? DomainBlock.rule_for(resource_params[:domain]) : nil
 
+      # Disallow accidentally downgrading a domain block
       if existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
         @domain_block.save
         flash.now[:alert] = I18n.t('admin.domain_blocks.existing_domain_block_html', name: existing_domain_block.domain, unblock_url: admin_domain_block_path(existing_domain_block)).html_safe
         @domain_block.errors.delete(:domain)
-        render :new
-      else
-        if existing_domain_block.present?
-          @domain_block = existing_domain_block
-          @domain_block.update(resource_params)
-        end
+        return render :new
+      end
 
-        if @domain_block.save
-          DomainBlockWorker.perform_async(@domain_block.id)
-          log_action :create, @domain_block
-          redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
-        else
-          render :new
-        end
+      # Allow transparently upgrading a domain block
+      if existing_domain_block.present?
+        @domain_block = existing_domain_block
+        @domain_block.assign_attributes(resource_params)
+      end
+
+      # Require explicit confirmation when suspending
+      return render :confirm_suspension if requires_confirmation?
+
+      if @domain_block.save
+        DomainBlockWorker.perform_async(@domain_block.id)
+        log_action :create, @domain_block
+        redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
+      else
+        render :new
       end
     end
 
     def update
       authorize :domain_block, :update?
 
-      if @domain_block.update(update_params)
+      @domain_block.assign_attributes(update_params)
+
+      # Require explicit confirmation when suspending
+      return render :confirm_suspension if requires_confirmation?
+
+      if @domain_block.save
         DomainBlockWorker.perform_async(@domain_block.id, @domain_block.severity_previously_changed?)
         log_action :update, @domain_block
         redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
@@ -94,13 +103,8 @@ module Admin
       'save' if params[:save]
     end
 
-    def require_suspend_confirmation!
-      return if params[:confirm] || resource_params[:severity] != 'suspend'
-
-      @domain_block = DomainBlock.new(resource_params)
-      return unless @domain_block.valid?
-
-      render :confirm_suspension
+    def requires_confirmation?
+      @domain_block.valid? && (@domain_block.new_record? || @domain_block.severity_changed?) && @domain_block.severity.to_s == 'suspend' && !params[:confirm]
     end
   end
 end
