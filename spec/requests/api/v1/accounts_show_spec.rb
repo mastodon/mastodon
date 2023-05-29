@@ -258,4 +258,35 @@ describe 'GET /api/v1/accounts/{account_id}' do
       end
     end
   end
+
+  describe 'about url' do
+    it 'presents url that build by ActivityPub::TagManager when local account' do
+      account = Fabricate(:account, username: 'local_username')
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:url]).to be_an_http_url
+        expect(URI.parse(response_body[:url]).path).to eq('/@local_username')
+        expect(response_body[:url]).to eq(ActivityPub::TagManager.instance.url_for(account))
+      end
+    end
+
+    it 'presents value of url column when remote account' do
+      account = Fabricate(:account, username: 'remote_username', domain: 'remote.example.com', url: 'https://remote.example.com/users/remote_username')
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:url]).to eq('https://remote.example.com/users/remote_username')
+        expect(response_body[:url]).to eq(ActivityPub::TagManager.instance.url_for(account))
+      end
+    end
+  end
 end
