@@ -225,9 +225,8 @@ module Mastodon::CLI
         @prompt.warn "e-mail will be disabled for the following accounts: #{user.map(&:account).map(&:acct).join(', ')}"
         @prompt.warn 'Please reach out to them and set another address with `tootctl account modify` or delete them.'
 
-        i = 0
-        users.each do |user|
-          user.update!(email: "#{i} " + user.email)
+        users.each_with_index do |user, index|
+          user.update!(email: "#{index} " + user.email)
         end
       end
 
@@ -552,7 +551,16 @@ module Mastodon::CLI
       @prompt.warn 'All those accounts are distinct accounts but only the most recently-created one is fully-functional.'
 
       accounts.each_with_index do |account, idx|
-        @prompt.say format('%2d. %s: created at: %s; updated at: %s; last logged in at: %s; statuses: %5d; last status at: %s', idx, account.username, account.created_at, account.updated_at, account.user&.last_sign_in_at&.to_s || 'N/A', account.account_stat&.statuses_count || 0, account.account_stat&.last_status_at || 'N/A')
+        @prompt.say format(
+          '%<index>2d. %<username>s: created at: %<created_at>s; updated at: %<updated_at>s; last logged in at: %<last_log_in_at>s; statuses: %<status_count>5d; last status at: %<last_status_at>s',
+          index: idx,
+          username: account.username,
+          created_at: account.created_at,
+          updated_at: account.updated_at,
+          last_log_in_at: account.user&.last_sign_in_at&.to_s || 'N/A',
+          status_count: account.account_stat&.statuses_count || 0,
+          last_status_at: account.account_stat&.last_status_at || 'N/A'
+        )
       end
 
       @prompt.say 'Please chose the one to keep unchanged, other ones will be automatically renamed.'

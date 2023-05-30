@@ -71,7 +71,7 @@ module Mastodon::CLI
           size += (account.header_file_size || 0) if options[:headers]
           size += (account.avatar_file_size || 0) if options[:avatars]
 
-          unless options[:dry_run]
+          unless dry_run?
             account.header.destroy if options[:headers]
             account.avatar.destroy if options[:avatars]
             account.save!
@@ -80,7 +80,7 @@ module Mastodon::CLI
           size
         end
 
-        say("Visited #{processed} accounts and removed profile media totaling #{number_to_human_size(aggregate)}#{dry_run}", :green, true)
+        say("Visited #{processed} accounts and removed profile media totaling #{number_to_human_size(aggregate)}#{dry_run_mode_suffix}", :green, true)
       end
 
       if options[:attachments]
@@ -90,7 +90,7 @@ module Mastodon::CLI
 
           size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
 
-          unless options[:dry_run]
+          unless dry_run?
             media_attachment.file.destroy
             media_attachment.thumbnail.destroy
             media_attachment.save
@@ -99,7 +99,7 @@ module Mastodon::CLI
           size
         end
 
-        say("Removed #{processed} media attachments (approx. #{number_to_human_size(aggregate)})#{dry_run}", :green, true)
+        say("Removed #{processed} media attachments (approx. #{number_to_human_size(aggregate)})#{dry_run_mode_suffix}", :green, true)
       end
     end
 
@@ -118,7 +118,6 @@ module Mastodon::CLI
       progress        = create_progress_bar(nil)
       reclaimed_bytes = 0
       removed         = 0
-      dry_run         = options[:dry_run] ? ' (DRY RUN)' : ''
       prefix          = options[:prefix]
 
       case Paperclip::Attachment.default_options[:storage]
@@ -144,7 +143,7 @@ module Mastodon::CLI
           record_map = preload_records_from_mixed_objects(objects)
 
           objects.each do |object|
-            object.acl.put(acl: s3_permissions) if options[:fix_permissions] && !options[:dry_run]
+            object.acl.put(acl: s3_permissions) if options[:fix_permissions] && !dry_run?
 
             path_segments = object.key.split('/')
             path_segments.delete('cache')
@@ -166,7 +165,7 @@ module Mastodon::CLI
             next unless attachment.blank? || !attachment.variant?(file_name)
 
             begin
-              object.delete unless options[:dry_run]
+              object.delete unless dry_run?
 
               reclaimed_bytes += object.size
               removed += 1
@@ -215,7 +214,7 @@ module Mastodon::CLI
           begin
             size = File.size(path)
 
-            unless options[:dry_run]
+            unless dry_run?
               File.delete(path)
               begin
                 FileUtils.rmdir(File.dirname(path), parents: true)
@@ -237,7 +236,7 @@ module Mastodon::CLI
       progress.total = progress.progress
       progress.finish
 
-      say("Removed #{removed} orphans (approx. #{number_to_human_size(reclaimed_bytes)})#{dry_run}", :green, true)
+      say("Removed #{removed} orphans (approx. #{number_to_human_size(reclaimed_bytes)})#{dry_run_mode_suffix}", :green, true)
     end
 
     option :account, type: :string
@@ -267,8 +266,6 @@ module Mastodon::CLI
       not be re-downloaded. To force re-download of every URL, use --force.
     DESC
     def refresh
-      dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
-
       if options[:status]
         scope = MediaAttachment.where(status_id: options[:status])
       elsif options[:account]
@@ -295,7 +292,7 @@ module Mastodon::CLI
         next if media_attachment.remote_url.blank? || (!options[:force] && media_attachment.file_file_name.present?)
         next if DomainBlock.reject_media?(media_attachment.account.domain)
 
-        unless options[:dry_run]
+        unless dry_run?
           media_attachment.reset_file!
           media_attachment.reset_thumbnail!
           media_attachment.save
@@ -304,7 +301,7 @@ module Mastodon::CLI
         media_attachment.file_file_size + (media_attachment.thumbnail_file_size || 0)
       end
 
-      say("Downloaded #{processed} media attachments (approx. #{number_to_human_size(aggregate)})#{dry_run}", :green, true)
+      say("Downloaded #{processed} media attachments (approx. #{number_to_human_size(aggregate)})#{dry_run_mode_suffix}", :green, true)
     end
 
     desc 'usage', 'Calculate disk space consumed by Mastodon'
