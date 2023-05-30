@@ -17,7 +17,7 @@ const SignInBanner = () => {
 
   let signupButton;
 
-  const signupUrl = useAppSelector((state) => state.getIn(['server', 'server', 'registrations', 'url'], '/auth/sign_up'));
+  const signupUrl = useAppSelector((state) => state.getIn(['server', 'server', 'registrations', 'url'], null) || '/auth/sign_up');
 
   if (registrationsOpen) {
     signupButton = (
