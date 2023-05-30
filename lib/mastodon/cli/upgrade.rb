@@ -17,7 +17,6 @@ module Mastodon::CLI
     LONG_DESC
     def storage_schema
       progress = create_progress_bar(nil)
-      dry_run  = dry_run? ? ' (DRY RUN)' : ''
       records  = 0
 
       klasses = [
@@ -69,7 +68,7 @@ module Mastodon::CLI
       progress.total = progress.progress
       progress.finish
 
-      say("Upgraded storage schema of #{records} records#{dry_run}", :green, true)
+      say("Upgraded storage schema of #{records} records#{dry_run_mode_suffix}", :green, true)
     end
 
     private
