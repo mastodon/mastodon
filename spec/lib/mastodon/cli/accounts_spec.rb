@@ -345,4 +345,104 @@ describe Mastodon::CLI::Accounts do
       end
     end
   end
+
+  describe '#delete' do
+    let(:account) { Fabricate(:account) }
+    let(:arguments) { [account.username] }
+    let(:options) { { email: account.user.email } }
+    let(:delete_account_service) { instance_double(DeleteAccountService) }
+
+    before do
+      allow(DeleteAccountService).to receive(:new).and_return(delete_account_service)
+      allow(delete_account_service).to receive(:call)
+    end
+
+    context 'when both username and --email are provided' do
+      it 'exits with an error message indicating that only one should be used' do
+        expect { cli.invoke(:delete, arguments, options) }.to output(
+          a_string_including('Use username or --email, not both')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when neither username nor --email are provided' do
+      it 'exits with an error message indicating that no username was provided' do
+        expect { cli.invoke(:delete) }.to output(
+          a_string_including('No username provided')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when username is provided' do
+      it 'deletes the specified user successfully' do
+        cli.invoke(:delete, arguments)
+
+        expect(delete_account_service).to have_received(:call).with(account, reserve_email: false).once
+      end
+
+      context 'with --dry-run option' do
+        let(:options) { { dry_run: true } }
+
+        it 'does not delete the specified user' do
+          cli.invoke(:delete, arguments, options)
+
+          expect(delete_account_service).to_not have_received(:call).with(account, reserve_email: false)
+        end
+
+        it 'outputs a successful message in dry run mode' do
+          expect { cli.invoke(:delete, arguments, options) }.to output(
+            a_string_including('OK (DRY RUN)')
+          ).to_stdout
+        end
+      end
+
+      context 'when the given username is not found' do
+        let(:arguments) { ['non_existent_username'] }
+
+        it 'exits with an error message indicating that no user was found' do
+          expect { cli.invoke(:delete, arguments) }.to output(
+            a_string_including('No user with such username')
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+    end
+
+    context 'when --email is provided' do
+      it 'deletes the specified user successfully' do
+        cli.invoke(:delete, nil, options)
+
+        expect(delete_account_service).to have_received(:call).with(account, reserve_email: false).once
+      end
+
+      context 'with --dry-run option' do
+        let(:options) { { email: account.user.email, dry_run: true } }
+
+        it 'does not delete the user' do
+          cli.invoke(:delete, nil, options)
+
+          expect(delete_account_service).to_not have_received(:call).with(account, reserve_email: false)
+        end
+
+        it 'outputs a successful message in dry run mode' do
+          expect { cli.invoke(:delete, nil, options) }.to output(
+            a_string_including('OK (DRY RUN)')
+          ).to_stdout
+        end
+      end
+
+      context 'when the given email address is not found' do
+        let(:options) { { email: '404@example.com' } }
+
+        it 'exits with an error message indicating that no user was found' do
+          expect { cli.invoke(:delete, nil, options) }.to output(
+            a_string_including('No user with such email')
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+    end
+  end
 end
