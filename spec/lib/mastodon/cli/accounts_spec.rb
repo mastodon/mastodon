@@ -662,4 +662,266 @@ describe Mastodon::CLI::Accounts do
       end
     end
   end
+
+  describe '#refresh' do
+    context 'with --all option' do
+      let!(:local_account)              { Fabricate(:account, domain: nil) }
+      let!(:remote_account_example_com) { Fabricate(:account, domain: 'example.com') }
+      let!(:account_example_net)        { Fabricate(:account, domain: 'example.net') }
+      let(:scope)                       { Account.remote }
+
+      before do
+        allow(cli).to receive(:parallelize_with_progress).and_yield(remote_account_example_com)
+                                                         .and_yield(account_example_net)
+                                                         .and_return([2, nil])
+        cli.options = { all: true }
+      end
+
+      it 'refreshes the avatar for all remote accounts' do
+        allow(remote_account_example_com).to receive(:reset_avatar!)
+        allow(account_example_net).to receive(:reset_avatar!)
+
+        cli.refresh
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+        expect(remote_account_example_com).to have_received(:reset_avatar!).once
+        expect(account_example_net).to have_received(:reset_avatar!).once
+      end
+
+      it 'does not refresh avatar for local accounts' do
+        allow(local_account).to receive(:reset_avatar!)
+
+        cli.refresh
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+        expect(local_account).to_not have_received(:reset_avatar!)
+      end
+
+      it 'refreshes the header for all remote accounts' do
+        allow(remote_account_example_com).to receive(:reset_header!)
+        allow(account_example_net).to receive(:reset_header!)
+
+        cli.refresh
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+        expect(remote_account_example_com).to have_received(:reset_header!).once
+        expect(account_example_net).to have_received(:reset_header!).once
+      end
+
+      it 'does not refresh the header for local accounts' do
+        allow(local_account).to receive(:reset_header!)
+
+        cli.refresh
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+        expect(local_account).to_not have_received(:reset_header!)
+      end
+
+      it 'displays a successful message' do
+        expect { cli.refresh }.to output(
+          a_string_including('Refreshed 2 accounts')
+        ).to_stdout
+      end
+
+      context 'with --dry-run option' do
+        before do
+          cli.options = { all: true, dry_run: true }
+        end
+
+        it 'does not refresh the avatar for any account' do
+          allow(local_account).to receive(:reset_avatar!)
+          allow(remote_account_example_com).to receive(:reset_avatar!)
+          allow(account_example_net).to receive(:reset_avatar!)
+
+          cli.refresh
+
+          expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+          expect(local_account).to_not have_received(:reset_avatar!)
+          expect(remote_account_example_com).to_not have_received(:reset_avatar!)
+          expect(account_example_net).to_not have_received(:reset_avatar!)
+        end
+
+        it 'does not refresh the header for any account' do
+          allow(local_account).to receive(:reset_header!)
+          allow(remote_account_example_com).to receive(:reset_header!)
+          allow(account_example_net).to receive(:reset_header!)
+
+          cli.refresh
+
+          expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+          expect(local_account).to_not have_received(:reset_header!)
+          expect(remote_account_example_com).to_not have_received(:reset_header!)
+          expect(account_example_net).to_not have_received(:reset_header!)
+        end
+
+        it 'displays a successful message with (DRY RUN)' do
+          expect { cli.refresh }.to output(
+            a_string_including('Refreshed 2 accounts (DRY RUN)')
+          ).to_stdout
+        end
+      end
+    end
+
+    context 'with a list of accts' do
+      let!(:account_example_com_a) { Fabricate(:account, domain: 'example.com') }
+      let!(:account_example_com_b) { Fabricate(:account, domain: 'example.com') }
+      let!(:account_example_net)   { Fabricate(:account, domain: 'example.net') }
+      let(:arguments)              { [account_example_com_a.acct, account_example_com_b.acct] }
+
+      before do
+        allow(Account).to receive(:find_remote).with(account_example_com_a.username, account_example_com_a.domain).and_return(account_example_com_a)
+        allow(Account).to receive(:find_remote).with(account_example_com_b.username, account_example_com_b.domain).and_return(account_example_com_b)
+        allow(Account).to receive(:find_remote).with(account_example_net.username, account_example_net.domain).and_return(account_example_net)
+      end
+
+      it 'resets the avatar for the specified accounts' do
+        allow(account_example_com_a).to receive(:reset_avatar!)
+        allow(account_example_com_b).to receive(:reset_avatar!)
+
+        cli.refresh(*arguments)
+
+        expect(account_example_com_a).to have_received(:reset_avatar!).once
+        expect(account_example_com_b).to have_received(:reset_avatar!).once
+      end
+
+      it 'does not reset the avatar for unspecified accounts' do
+        allow(account_example_net).to receive(:reset_avatar!)
+
+        cli.refresh(*arguments)
+
+        expect(account_example_net).to_not have_received(:reset_avatar!)
+      end
+
+      it 'resets the header for the specified accounts' do
+        allow(account_example_com_a).to receive(:reset_header!)
+        allow(account_example_com_b).to receive(:reset_header!)
+
+        cli.refresh(*arguments)
+
+        expect(account_example_com_a).to have_received(:reset_header!).once
+        expect(account_example_com_b).to have_received(:reset_header!).once
+      end
+
+      it 'does not reset the header for unspecified accounts' do
+        allow(account_example_net).to receive(:reset_header!)
+
+        cli.refresh(*arguments)
+
+        expect(account_example_net).to_not have_received(:reset_header!)
+      end
+
+      context 'when an UnexpectedResponseError is raised' do
+        it 'displays a failure message' do
+          allow(account_example_com_a).to receive(:reset_avatar!).and_raise(Mastodon::UnexpectedResponseError)
+
+          expect { cli.refresh(*arguments) }
+            .to output(
+              a_string_including("Account failed: #{account_example_com_a.username}@#{account_example_com_a.domain}")
+            ).to_stdout
+        end
+      end
+
+      context 'when a specified account is not found' do
+        it 'exits with an error message' do
+          allow(Account).to receive(:find_remote).with(account_example_com_b.username, account_example_com_b.domain).and_return(nil)
+
+          expect { cli.refresh(*arguments) }.to output(
+            a_string_including('No such account')
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'with --dry-run option' do
+        before do
+          cli.options = { dry_run: true }
+        end
+
+        it 'does not refresh the avatar for any account' do
+          allow(account_example_com_a).to receive(:reset_avatar!)
+          allow(account_example_com_b).to receive(:reset_avatar!)
+
+          cli.refresh(*arguments)
+
+          expect(account_example_com_a).to_not have_received(:reset_avatar!)
+          expect(account_example_com_b).to_not have_received(:reset_avatar!)
+        end
+
+        it 'does not refresh the header for any account' do
+          allow(account_example_com_a).to receive(:reset_header!)
+          allow(account_example_com_b).to receive(:reset_header!)
+
+          cli.refresh(*arguments)
+
+          expect(account_example_com_a).to_not have_received(:reset_header!)
+          expect(account_example_com_b).to_not have_received(:reset_header!)
+        end
+      end
+    end
+
+    context 'with --domain option' do
+      let!(:account_example_com_a) { Fabricate(:account, domain: 'example.com') }
+      let!(:account_example_com_b) { Fabricate(:account, domain: 'example.com') }
+      let!(:account_example_net)   { Fabricate(:account, domain: 'example.net') }
+      let(:domain)                 { 'example.com' }
+      let(:scope)                  { Account.remote.where(domain: domain) }
+
+      before do
+        allow(cli).to receive(:parallelize_with_progress).and_yield(account_example_com_a)
+                                                         .and_yield(account_example_com_b)
+                                                         .and_return([2, nil])
+
+        cli.options = { domain: domain }
+      end
+
+      it 'refreshes the avatar for all accounts on specified domain' do
+        allow(account_example_com_a).to receive(:reset_avatar!)
+        allow(account_example_com_b).to receive(:reset_avatar!)
+
+        cli.refresh
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+        expect(account_example_com_a).to have_received(:reset_avatar!).once
+        expect(account_example_com_b).to have_received(:reset_avatar!).once
+      end
+
+      it 'does not refresh the avatar for accounts outside specified domain' do
+        allow(account_example_net).to receive(:reset_avatar!)
+
+        cli.refresh
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+        expect(account_example_net).to_not have_received(:reset_avatar!)
+      end
+
+      it 'refreshes the header for all accounts on specified domain' do
+        allow(account_example_com_a).to receive(:reset_header!)
+        allow(account_example_com_b).to receive(:reset_header!)
+
+        cli.refresh
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope)
+        expect(account_example_com_a).to have_received(:reset_header!).once
+        expect(account_example_com_b).to have_received(:reset_header!).once
+      end
+
+      it 'does not refresh the header for accounts outside specified domain' do
+        allow(account_example_net).to receive(:reset_header!)
+
+        cli.refresh
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+        expect(account_example_net).to_not have_received(:reset_header!)
+      end
+    end
+
+    context 'when neither a list of accts nor options are provided' do
+      it 'exits with an error message' do
+        expect { cli.refresh }.to output(
+          a_string_including('No account(s) given')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+  end
 end
