@@ -113,12 +113,7 @@ module Mastodon::CLI
         say('OK', :green)
         say("New password: #{password}")
       else
-        user.errors.each do |error|
-          say('Failure/Error: ', :red)
-          say(error.attribute)
-          say("    #{error.type}", :red)
-        end
-
+        report_errors(user.errors)
         exit(1)
       end
     end
@@ -189,12 +184,7 @@ module Mastodon::CLI
         say('OK', :green)
         say("New password: #{password}") if options[:reset_password]
       else
-        user.errors.each do |error|
-          say('Failure/Error: ', :red)
-          say(error.attribute)
-          say("    #{error.type}", :red)
-        end
-
+        report_errors(user.errors)
         exit(1)
       end
     end
@@ -660,6 +650,14 @@ module Mastodon::CLI
     end
 
     private
+
+    def report_errors(errors)
+      errors.each do |error|
+        say('Failure/Error: ', :red)
+        say(error.attribute)
+        say("    #{error.type}", :red)
+      end
+    end
 
     def rotate_keys_for_account(account, delay = 0)
       if account.nil?
