@@ -59,8 +59,8 @@ module Mastodon::CLI
         say('Usage of this command with no flags specifying media is deprecated and will be removed in the future.', :red, true)
       end
       # END deprecation
-      time_ago        = options[:days].days.ago
-      dry_run         = options[:dry_run] ? ' (DRY RUN)' : ''
+      time_ago             = options[:days].days.ago
+      dry_run_mode_suffix  = options[:dry_run] ? ' (DRY RUN)' : ''
 
       if options[:avatars] || options[:headers]
         processed, aggregate = parallelize_with_progress(Account.remote.where({ last_webfingered_at: ..time_ago, updated_at: ..time_ago })) do |account|
