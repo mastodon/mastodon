@@ -154,12 +154,6 @@ Lint/Void:
 Metrics/AbcSize:
   Max: 150
 
-# Configuration parameters: CountComments, Max, CountAsOne, AllowedMethods, AllowedPatterns, inherit_mode.
-# AllowedMethods: refine
-Metrics/BlockLength:
-  Exclude:
-    - 'app/models/concerns/status_safe_reblog_insert.rb'
-
 # Configuration parameters: CountBlocks, Max.
 Metrics/BlockNesting:
   Exclude:
@@ -168,27 +162,6 @@ Metrics/BlockNesting:
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/CyclomaticComplexity:
   Max: 25
-
-# Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
-Metrics/MethodLength:
-  Max: 58
-
-# Configuration parameters: CountComments, Max, CountAsOne.
-Metrics/ModuleLength:
-  Exclude:
-    - 'app/controllers/concerns/signature_verification.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/helpers/jsonld_helper.rb'
-    - 'app/models/concerns/account_interactions.rb'
-    - 'app/models/concerns/has_user_settings.rb'
-
-# Configuration parameters: Max, CountKeywordArgs, MaxOptionalParameters.
-Metrics/ParameterLists:
-  Exclude:
-    - 'app/models/concerns/account_interactions.rb'
-    - 'app/services/activitypub/fetch_remote_account_service.rb'
-    - 'app/services/activitypub/fetch_remote_actor_service.rb'
-    - 'app/services/activitypub/fetch_remote_status_service.rb'
 
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/PerceivedComplexity:
