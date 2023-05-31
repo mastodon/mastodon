@@ -95,6 +95,11 @@ Metrics/CyclomaticComplexity:
     - lib/mastodon/cli/*.rb
     - db/*migrate/**/*
 
+# Reason:
+# https://docs.rubocop.org/rubocop/cops_metrics.html#metricsparameterlists
+Metrics/ParameterLists:
+  CountKeywordArgs: false
+
 # Reason: Prevailing style is argument file paths
 # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsfilepath
 Rails/FilePath:

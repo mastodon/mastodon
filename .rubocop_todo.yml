@@ -163,14 +163,6 @@ Metrics/BlockNesting:
 Metrics/CyclomaticComplexity:
   Max: 25
 
-# Configuration parameters: Max, CountKeywordArgs, MaxOptionalParameters.
-Metrics/ParameterLists:
-  Exclude:
-    - 'app/models/concerns/account_interactions.rb'
-    - 'app/services/activitypub/fetch_remote_account_service.rb'
-    - 'app/services/activitypub/fetch_remote_actor_service.rb'
-    - 'app/services/activitypub/fetch_remote_status_service.rb'
-
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/PerceivedComplexity:
   Max: 28
