@@ -1356,4 +1356,83 @@ describe Mastodon::CLI::Accounts do
       end
     end
   end
+
+  describe '#prune' do
+    let!(:local_account)     { Fabricate(:account) }
+    let!(:bot_account)       { Fabricate(:account, bot: true, domain: 'example.com') }
+    let!(:group_account)     { Fabricate(:account, actor_type: 'Group', domain: 'example.com') }
+    let!(:mentioned_account) { Fabricate(:account, domain: 'example.com') }
+    let!(:prunable_accounts) do
+      Fabricate.times(3, :account, domain: 'example.com', bot: false, suspended_at: nil, silenced_at: nil)
+    end
+
+    before do
+      Fabricate(:mention, account: mentioned_account, status: Fabricate(:status, account: Fabricate(:account)))
+      allow(cli).to receive(:parallelize_with_progress).and_yield(prunable_accounts[0])
+                                                       .and_yield(prunable_accounts[1])
+                                                       .and_yield(prunable_accounts[2])
+                                                       .and_yield(bot_account)
+                                                       .and_yield(group_account)
+                                                       .and_return([nil, 3])
+    end
+
+    it 'prunes all remote accounts with no interactions with local users' do
+      cli.prune
+
+      prunable_account_ids = prunable_accounts.pluck(:id)
+
+      expect(cli).to have_received(:parallelize_with_progress).once
+      expect(Account.where(id: prunable_account_ids).count).to eq(0)
+    end
+
+    it 'displays a successful message' do
+      expect { cli.prune }.to output(
+        a_string_including("OK, pruned #{prunable_accounts.size} accounts")
+      ).to_stdout
+    end
+
+    it 'does not prune local accounts' do
+      cli.prune
+
+      expect(Account.exists?(id: local_account.id)).to be(true)
+    end
+
+    it 'does not prune bot accounts' do
+      cli.prune
+
+      expect(Account.exists?(id: bot_account.id)).to be(true)
+    end
+
+    it 'does not prune group accounts' do
+      cli.prune
+
+      expect(Account.exists?(id: group_account.id)).to be(true)
+    end
+
+    it 'does not prune accounts that have been mentioned' do
+      cli.prune
+
+      expect(Account.exists?(id: mentioned_account.id)).to be true
+    end
+
+    context 'with --dry-run option' do
+      before do
+        cli.options = { dry_run: true }
+      end
+
+      it 'does not prune any account' do
+        cli.prune
+
+        prunable_account_ids = prunable_accounts.pluck(:id)
+
+        expect(Account.where(id: prunable_account_ids).count).to eq(prunable_accounts.size)
+      end
+
+      it 'displays a successful message with (DRY RUN)' do
+        expect { cli.prune }.to output(
+          a_string_including("OK, pruned #{prunable_accounts.size} accounts (DRY RUN)")
+        ).to_stdout
+      end
+    end
+  end
 end
