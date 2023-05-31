@@ -624,4 +624,42 @@ describe Mastodon::CLI::Accounts do
       end
     end
   end
+
+  describe '#backup' do
+    context 'when the given username is not found' do
+      let(:arguments) { ['non_existent_username'] }
+
+      it 'exits with an error message indicating that there is no such account' do
+        expect { cli.invoke(:backup, arguments) }.to output(
+          a_string_including('No user with such username')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when the given username is found' do
+      let(:account) { Fabricate(:account) }
+      let(:user) { account.user }
+      let(:arguments) { [account.username] }
+
+      it 'creates a new backup for the specified user' do
+        expect { cli.invoke(:backup, arguments) }.to change { user.backups.count }.by(1)
+      end
+
+      it 'creates a backup job' do
+        allow(BackupWorker).to receive(:perform_async)
+
+        cli.invoke(:backup, arguments)
+        latest_backup = user.backups.last
+
+        expect(BackupWorker).to have_received(:perform_async).with(latest_backup.id).once
+      end
+
+      it 'displays a successful message' do
+        expect { cli.invoke(:backup, arguments) }.to output(
+          a_string_including('OK')
+        ).to_stdout
+      end
+    end
+  end
 end
