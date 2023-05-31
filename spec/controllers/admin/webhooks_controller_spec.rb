@@ -77,7 +77,9 @@ describe Admin::WebhooksController do
       end
 
       it 'does not update the record with invalid data' do
-        put :update, params: { id: webhook.id, webhook: { url: '' } }
+        expect do
+          put :update, params: { id: webhook.id, webhook: { url: '' } }
+        end.to_not change(webhook, :url)
 
         expect(response).to have_http_status(:success)
         expect(response).to render_template(:show)
