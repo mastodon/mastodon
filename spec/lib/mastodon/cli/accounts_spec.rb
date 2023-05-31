@@ -924,4 +924,78 @@ describe Mastodon::CLI::Accounts do
       end
     end
   end
+
+  describe '#rotate' do
+    context 'when neither username nor --all option are given' do
+      it 'exits with an error message' do
+        expect { cli.rotate }.to output(
+          a_string_including('No account(s) given')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when a username is given' do
+      let(:account) { Fabricate(:account) }
+
+      it 'correctly rotates keys for the specified account' do
+        old_private_key = account.private_key
+        old_public_key = account.public_key
+
+        cli.rotate(account.username)
+        account.reload
+
+        expect(account.private_key).to_not eq(old_private_key)
+        expect(account.public_key).to_not eq(old_public_key)
+      end
+
+      it 'broadcasts the new keys for the specified account' do
+        allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_in)
+
+        cli.rotate(account.username)
+
+        expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_in).with(anything, account.id, anything).once
+      end
+
+      context 'when the given username is not found' do
+        it 'exits with an error message when the specified username is not found' do
+          expect { cli.rotate('non_existent_username') }.to output(
+            a_string_including('No such account')
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+    end
+
+    context 'when --all option is provided' do
+      let(:accounts) { Fabricate.times(3, :account) }
+      let(:options)  { { all: true } }
+
+      before do
+        allow(Account).to receive(:local).and_return(Account.where(id: accounts.map(&:id)))
+        cli.options = { all: true }
+      end
+
+      it 'correctly rotates keys for all local accounts' do
+        old_private_keys = accounts.map(&:private_key)
+        old_public_keys = accounts.map(&:public_key)
+
+        cli.rotate
+        accounts.each(&:reload)
+
+        expect(accounts.map(&:private_key)).to_not eq(old_private_keys)
+        expect(accounts.map(&:public_key)).to_not eq(old_public_keys)
+      end
+
+      it 'broadcasts the new keys for each account' do
+        allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_in)
+
+        cli.rotate
+
+        accounts.each do |account|
+          expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_in).with(anything, account.id, anything).once
+        end
+      end
+    end
+  end
 end
