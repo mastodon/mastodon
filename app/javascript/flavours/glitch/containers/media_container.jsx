@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 import { createPortal } from 'react-dom';
 
-import { IntlProvider, addLocaleData } from 'react-intl';
+import { IntlProvider } from 'react-intl';
 
 import { fromJS } from 'immutable';
 
@@ -16,10 +16,9 @@ import MediaModal from 'flavours/glitch/features/ui/components/media_modal';
 import Video from 'flavours/glitch/features/video';
 import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
 
-import { getLocale } from 'mastodon/locales';
+import { getLocale, onProviderError } from 'mastodon/locales';
 
-const { localeData, messages } = getLocale();
-addLocaleData(localeData);
+const { messages } = getLocale();
 
 const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag, Audio };
 
@@ -85,7 +84,7 @@ export default class MediaContainer extends PureComponent {
     }
 
     return (
-      <IntlProvider locale={locale} messages={messages}>
+      <IntlProvider locale={locale} messages={messages} onError={onProviderError}>
         <>
           {[].map.call(components, (component, i) => {
             const componentName = component.getAttribute('data-component');

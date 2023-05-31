@@ -12,6 +12,7 @@ import { throttle } from 'lodash';
 import { timeAgoString }  from 'flavours/glitch/components/relative_timestamp';
 import emojify  from 'flavours/glitch/features/emoji/emoji';
 import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
+import { loadLocale } from 'flavours/glitch/load_locale';
 import { loadPolyfills } from 'flavours/glitch/polyfills';
 import ready from 'flavours/glitch/ready';
 import { getLocale }  from 'locales';
@@ -237,6 +238,7 @@ function main() {
 }
 
 loadPolyfills()
+  .then(loadLocale)
   .then(main)
   .then(loadKeyboardExtensions)
   .catch(error => {

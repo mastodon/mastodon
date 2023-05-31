@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { IntlProvider, addLocaleData } from 'react-intl';
+import { IntlProvider } from 'react-intl';
 
 import { Provider } from 'react-redux';
 
@@ -11,10 +11,9 @@ import Compose from 'flavours/glitch/features/standalone/compose';
 import initialState from 'flavours/glitch/initial_state';
 import { store } from 'flavours/glitch/store';
 
-import { getLocale } from 'mastodon/locales';
+import { getLocale, onProviderError } from 'mastodon/locales';
 
-const { localeData, messages } = getLocale();
-addLocaleData(localeData);
+const { messages } = getLocale();
 
 if (initialState) {
   store.dispatch(hydrateStore(initialState));
@@ -32,7 +31,7 @@ export default class TimelineContainer extends PureComponent {
     const { locale } = this.props;
 
     return (
-      <IntlProvider locale={locale} messages={messages}>
+      <IntlProvider locale={locale} messages={messages} onError={onProviderError}>
         <Provider store={store}>
           <Compose />
         </Provider>
