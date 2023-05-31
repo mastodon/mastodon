@@ -145,6 +145,7 @@ class MediaModal extends ImmutablePureComponent {
     const content = media.map((image) => {
       const width  = image.getIn(['meta', 'original', 'width']) || null;
       const height = image.getIn(['meta', 'original', 'height']) || null;
+      const description = image.getIn(['translation', 'description']) || image.get('description');
 
       if (image.get('type') === 'image') {
         return (
@@ -153,7 +154,7 @@ class MediaModal extends ImmutablePureComponent {
             src={image.get('url')}
             width={width}
             height={height}
-            alt={image.get('description')}
+            alt={description}
             lang={lang}
             key={image.get('url')}
             onClick={this.toggleNavigation}
@@ -176,7 +177,7 @@ class MediaModal extends ImmutablePureComponent {
             volume={volume || 1}
             onCloseVideo={onClose}
             detailed
-            alt={image.get('description')}
+            alt={description}
             lang={lang}
             key={image.get('url')}
           />
@@ -188,7 +189,7 @@ class MediaModal extends ImmutablePureComponent {
             width={width}
             height={height}
             key={image.get('url')}
-            alt={image.get('description')}
+            alt={description}
             lang={lang}
             onClick={this.toggleNavigation}
           />
