@@ -577,4 +577,51 @@ describe Mastodon::CLI::Accounts do
       end
     end
   end
+
+  describe '#unfollow' do
+    context 'when the given username is not found' do
+      let(:arguments) { ['non_existent_username'] }
+
+      it 'exits with an error message indicating that no account with the given username was found' do
+        expect { cli.invoke(:unfollow, arguments) }.to output(
+          a_string_including('No such account')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when the given username is found' do
+      let!(:target_account)  { Fabricate(:account) }
+      let!(:follower_chris)  { Fabricate(:account, username: 'chris') }
+      let!(:follower_rambo)  { Fabricate(:account, username: 'rambo') }
+      let!(:follower_ana)    { Fabricate(:account, username: 'ana') }
+      let(:unfollow_service) { instance_double(UnfollowService, call: nil) }
+      let(:scope)            { target_account.followers.local }
+
+      before do
+        accounts = [follower_chris, follower_rambo, follower_ana]
+        accounts.each { |account| target_account.follow!(account) }
+        allow(cli).to receive(:parallelize_with_progress).and_yield(follower_chris)
+                                                         .and_yield(follower_rambo)
+                                                         .and_yield(follower_ana)
+                                                         .and_return([3, nil])
+        allow(UnfollowService).to receive(:new).and_return(unfollow_service)
+      end
+
+      it 'makes all local accounts unfollow the target account' do
+        cli.unfollow(target_account.username)
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+        expect(unfollow_service).to have_received(:call).with(follower_chris, target_account).once
+        expect(unfollow_service).to have_received(:call).with(follower_rambo, target_account).once
+        expect(unfollow_service).to have_received(:call).with(follower_ana, target_account).once
+      end
+
+      it 'displays a successful message' do
+        expect { cli.unfollow(target_account.username) }.to output(
+          a_string_including('OK, unfollowed target from 3 accounts')
+        ).to_stdout
+      end
+    end
+  end
 end
