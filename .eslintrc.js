@@ -323,7 +323,7 @@ module.exports = {
         'plugin:import/recommended',
         'plugin:import/typescript',
         'plugin:promise/recommended',
-        'plugin:jsdoc/recommended',
+        'plugin:jsdoc/recommended-typescript',
         'plugin:prettier/recommended',
       ],
 
