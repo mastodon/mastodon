@@ -139,10 +139,12 @@ class Poll extends ImmutablePureComponent {
     const active          = !!this.state.selected[`${optionIndex}`];
     const voted           = option.get('voted') || (poll.get('own_votes') && poll.get('own_votes').includes(optionIndex));
 
-    let titleEmojified = option.get('title_emojified');
-    if (!titleEmojified) {
+    const title = option.getIn(['translation', 'title']) || option.get('title');
+    let titleHtml = option.getIn(['translation', 'titleHtml']) || option.get('titleHtml');
+
+    if (!titleHtml) {
       const emojiMap = makeEmojiMap(poll);
-      titleEmojified = emojify(escapeTextContentForBrowser(option.get('title')), emojiMap);
+      titleHtml = emojify(escapeTextContentForBrowser(title), emojiMap);
     }
 
     return (
@@ -164,7 +166,7 @@ class Poll extends ImmutablePureComponent {
               role={poll.get('multiple') ? 'checkbox' : 'radio'}
               onKeyPress={this.handleOptionKeyPress}
               aria-checked={active}
-              aria-label={option.get('title')}
+              aria-label={title}
               lang={lang}
               data-index={optionIndex}
             />
@@ -183,7 +185,7 @@ class Poll extends ImmutablePureComponent {
           <span
             className='poll__option__text translate'
             lang={lang}
-            dangerouslySetInnerHTML={{ __html: titleEmojified }}
+            dangerouslySetInnerHTML={{ __html: titleHtml }}
           />
 
           {!!voted && <span className='poll__voted'>
