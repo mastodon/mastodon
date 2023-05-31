@@ -86,6 +86,7 @@ RSpec.describe Form::Import do
     it_behaves_like 'too many CSV rows', 'muting', 'imports.txt', 1
     it_behaves_like 'too many CSV rows', 'domain_blocking', 'domain_blocks.csv', 2
     it_behaves_like 'too many CSV rows', 'bookmarks', 'bookmark-imports.txt', 3
+    it_behaves_like 'too many CSV rows', 'lists', 'lists.csv', 2
 
     # Importing list of addresses with no headers into various types
     it_behaves_like 'valid import', 'following', 'imports.txt'
@@ -97,6 +98,9 @@ RSpec.describe Form::Import do
 
     # Importing bookmarks list with no headers into expected type
     it_behaves_like 'valid import', 'bookmarks', 'bookmark-imports.txt'
+
+    # Importing lists with no headers into expected type
+    it_behaves_like 'valid import', 'lists', 'lists.csv'
 
     # Importing followed accounts with headers into various compatible types
     it_behaves_like 'valid import', 'following', 'following_accounts.csv'
@@ -271,6 +275,12 @@ RSpec.describe Form::Import do
     it_behaves_like 'on successful import', 'muting', 'merge', 'muted_accounts.csv', [
       { 'acct' => 'user@example.com', 'hide_notifications' => true },
       { 'acct' => 'user@test.com', 'hide_notifications' => false },
+    ]
+
+    it_behaves_like 'on successful import', 'lists', 'merge', 'lists.csv', [
+      { 'acct' => 'gargron@example.com', 'list_name' => 'Mastodon project' },
+      { 'acct' => 'mastodon@example.com', 'list_name' => 'Mastodon project' },
+      { 'acct' => 'foo@example.com', 'list_name' => 'test' },
     ]
 
     # Based on the bug report 20571 where UTF-8 encoded domains were rejecting import of their users
