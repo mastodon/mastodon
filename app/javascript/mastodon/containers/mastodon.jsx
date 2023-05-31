@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { IntlProvider, addLocaleData } from 'react-intl';
+import { IntlProvider } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 import { BrowserRouter, Route } from 'react-router-dom';
@@ -16,11 +16,10 @@ import { connectUserStream } from 'mastodon/actions/streaming';
 import ErrorBoundary from 'mastodon/components/error_boundary';
 import UI from 'mastodon/features/ui';
 import initialState, { title as siteTitle } from 'mastodon/initial_state';
-import { getLocale } from 'mastodon/locales';
+import { getLocale, onProviderError } from 'mastodon/locales';
 import { store } from 'mastodon/store';
 
-const { localeData, messages } = getLocale();
-addLocaleData(localeData);
+const { messages } = getLocale();
 
 const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
 
@@ -83,7 +82,7 @@ export default class Mastodon extends PureComponent {
     const { locale } = this.props;
 
     return (
-      <IntlProvider locale={locale} messages={messages}>
+      <IntlProvider locale={locale} messages={messages} onError={onProviderError}>
         <ReduxProvider store={store}>
           <ErrorBoundary>
             <BrowserRouter>

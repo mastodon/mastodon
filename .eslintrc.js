@@ -293,6 +293,7 @@ module.exports = {
         '.*rc.js',
         'ide-helper.js',
         'config/webpack/**/*',
+        'config/formatjs-formatter.js',
       ],
 
       env: {
