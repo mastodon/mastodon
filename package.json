@@ -28,7 +28,7 @@
     "postversion": "git push --tags",
     "prepare": "husky install",
     "start": "node ./streaming/index.js",
-    "test": "yarn lint && yarn run typecheck && yarn test:js",
+    "test": "yarn lint && yarn run typecheck && yarn test:js run",
     "test:js": "vitest",
     "typecheck": "tsc --noEmit"
   },
@@ -118,7 +118,6 @@
     "@formatjs/cli": "^6.1.1",
     "@optimize-lodash/rollup-plugin": "^4.0.3",
     "@testing-library/react": "^14.0.0",
-    "@types/babel__core": "^7.20.1",
     "@types/emoji-mart": "^3.0.9",
     "@types/escape-html": "^1.0.2",
     "@types/hoist-non-react-statics": "^3.3.1",
@@ -177,8 +176,7 @@
     "yargs": "^17.7.2"
   },
   "resolutions": {
-    "kind-of": "^6.0.3",
-    "webpack/terser-webpack-plugin": "^4.2.3"
+    "kind-of": "^6.0.3"
   },
   "peerDependenciesMeta": {
     "react": {
