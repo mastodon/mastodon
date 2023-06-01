@@ -1,19 +1,24 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { defineMessages, injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { defineMessages, injectIntl } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
+import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
+import { connect } from 'react-redux';
+
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'flavours/glitch/actions/columns';
 import { fetchDirectory, expandDirectory } from 'flavours/glitch/actions/directory';
-import { List as ImmutableList } from 'immutable';
-import AccountCard from './components/account_card';
-import { RadioButton } from 'flavours/glitch/components/radio_button';
+import Column from 'flavours/glitch/components/column';
+import ColumnHeader from 'flavours/glitch/components/column_header';
 import LoadMore from 'flavours/glitch/components/load_more';
-import ScrollContainer from 'flavours/glitch/containers/scroll_container';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
-import { Helmet } from 'react-helmet';
+import { RadioButton } from 'flavours/glitch/components/radio_button';
+import ScrollContainer from 'flavours/glitch/containers/scroll_container';
+
+import AccountCard from './components/account_card';
 
 const messages = defineMessages({
   title: { id: 'column.directory', defaultMessage: 'Browse profiles' },
@@ -29,7 +34,7 @@ const mapStateToProps = state => ({
   domain: state.getIn(['meta', 'domain']),
 });
 
-class Directory extends React.PureComponent {
+class Directory extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

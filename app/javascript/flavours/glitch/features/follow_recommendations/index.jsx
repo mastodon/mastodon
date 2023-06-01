@@ -1,18 +1,22 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+
 import { FormattedMessage } from 'react-intl';
-import { fetchSuggestions } from 'flavours/glitch/actions/suggestions';
-import { changeSetting, saveSettings } from 'flavours/glitch/actions/settings';
-import { requestBrowserPermission } from 'flavours/glitch/actions/notifications';
-import { markAsPartial } from 'flavours/glitch/actions/timelines';
-import Column from 'flavours/glitch/features/ui/components/column';
-import Account from './components/account';
-import imageGreeting from 'mastodon/../images/elephant_ui_greeting.svg';
-import Button from 'flavours/glitch/components/button';
+
 import { Helmet } from 'react-helmet';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
+import { requestBrowserPermission } from 'flavours/glitch/actions/notifications';
+import { changeSetting, saveSettings } from 'flavours/glitch/actions/settings';
+import { fetchSuggestions } from 'flavours/glitch/actions/suggestions';
+import { markAsPartial } from 'flavours/glitch/actions/timelines';
+import Button from 'flavours/glitch/components/button';
+import Column from 'flavours/glitch/features/ui/components/column';
+import imageGreeting from 'mastodon/../images/elephant_ui_greeting.svg';
+
+import Account from './components/account';
 
 const mapStateToProps = state => ({
   suggestions: state.getIn(['suggestions', 'items']),
@@ -86,7 +90,7 @@ class FollowRecommendations extends ImmutablePureComponent {
           </div>
 
           {!isLoading && (
-            <React.Fragment>
+            <>
               <div className='column-list'>
                 {suggestions.size > 0 ? suggestions.map(suggestion => (
                   <Account key={suggestion.get('account')} id={suggestion.get('account')} />
@@ -101,7 +105,7 @@ class FollowRecommendations extends ImmutablePureComponent {
                 <img src={imageGreeting} alt='' className='column-actions__background' />
                 <Button onClick={this.handleDone}><FormattedMessage id='follow_recommendations.done' defaultMessage='Done' /></Button>
               </div>
-            </React.Fragment>
+            </>
           )}
         </div>
 

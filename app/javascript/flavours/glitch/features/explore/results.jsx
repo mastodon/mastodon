@@ -1,16 +1,22 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
-import { expandSearch } from 'flavours/glitch/actions/search';
-import Account from 'flavours/glitch/containers/account_container';
-import Status from 'flavours/glitch/containers/status_container';
-import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
+
+import { Helmet } from 'react-helmet';
+
 import { List as ImmutableList } from 'immutable';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
+import { expandSearch } from 'flavours/glitch/actions/search';
+import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
 import LoadMore from 'flavours/glitch/components/load_more';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
-import { Helmet } from 'react-helmet';
+import Account from 'flavours/glitch/containers/account_container';
+import Status from 'flavours/glitch/containers/status_container';
+
+
 
 const messages = defineMessages({
   title: { id: 'search_results.title', defaultMessage: 'Search for {q}' },
@@ -42,7 +48,7 @@ const renderStatuses = (results, onLoadMore) => appendLoadMore('statuses', resul
   <Status key={`status-${item}`} id={item} />
 )), onLoadMore);
 
-class Results extends React.PureComponent {
+class Results extends PureComponent {
 
   static propTypes = {
     results: ImmutablePropTypes.map,
@@ -102,7 +108,7 @@ class Results extends React.PureComponent {
     }
 
     return (
-      <React.Fragment>
+      <>
         <div className='account__section-headline'>
           <button onClick={this.handleSelectAll} className={type === 'all' && 'active'}><FormattedMessage id='search_results.all' defaultMessage='All' /></button>
           <button onClick={this.handleSelectAccounts} className={type === 'accounts' && 'active'}><FormattedMessage id='search_results.accounts' defaultMessage='People' /></button>
@@ -117,7 +123,7 @@ class Results extends React.PureComponent {
         <Helmet>
           <title>{intl.formatMessage(messages.title, { q })}</title>
         </Helmet>
-      </React.Fragment>
+      </>
     );
   }
 

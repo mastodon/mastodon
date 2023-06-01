@@ -1,7 +1,9 @@
 //  Package imports.
 import PropTypes from 'prop-types';
-import React from 'react';
+import { PureComponent } from 'react';
+
 import classNames from 'classnames';
+
 import { supportsPassiveEvents } from 'detect-passive-events';
 
 //  Components.
@@ -10,7 +12,7 @@ import { Icon } from 'flavours/glitch/components/icon';
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 
 //  The component.
-export default class ComposerOptionsDropdownContent extends React.PureComponent {
+export default class ComposerOptionsDropdownContent extends PureComponent {
 
   static propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
@@ -152,14 +154,14 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
 
     if (!contents) {
       contents = (
-        <React.Fragment>
+        <>
           {icon && <Icon className='icon' fixedWidth id={icon} />}
 
           <div className='privacy-dropdown__option__content'>
             <strong>{text}</strong>
             {meta}
           </div>
-        </React.Fragment>
+        </>
       );
     }
 

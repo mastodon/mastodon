@@ -1,14 +1,16 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
-import AccountContainer from 'flavours/glitch/containers/account_container';
-import StatusContainer from 'flavours/glitch/containers/status_container';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
 import { Icon } from 'flavours/glitch/components/icon';
-import { searchEnabled } from 'flavours/glitch/initial_state';
 import LoadMore from 'flavours/glitch/components/load_more';
+import AccountContainer from 'flavours/glitch/containers/account_container';
+import StatusContainer from 'flavours/glitch/containers/status_container';
+import { searchEnabled } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   dismissSuggestion: { id: 'suggestions.dismiss', defaultMessage: 'Dismiss suggestion' },

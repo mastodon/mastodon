@@ -1,12 +1,16 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import { Icon } from 'flavours/glitch/components/icon';
+
 import AutosuggestInput from 'flavours/glitch/components/autosuggest_input';
-import classNames from 'classnames';
+import { Icon } from 'flavours/glitch/components/icon';
+import { IconButton } from 'flavours/glitch/components/icon_button';
 import { pollLimits } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
@@ -21,7 +25,7 @@ const messages = defineMessages({
   days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
 });
 
-class OptionIntl extends React.PureComponent {
+class OptionIntl extends PureComponent {
 
   static propTypes = {
     title: PropTypes.string.isRequired,

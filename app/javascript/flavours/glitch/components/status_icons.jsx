@@ -1,14 +1,18 @@
 //  Package imports.
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
 
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
+
 //  Mastodon imports.
-import { IconButton } from './icon_button';
-import VisibilityIcon from './status_visibility_icon';
 import { Icon } from 'flavours/glitch/components/icon';
 import { languages } from 'flavours/glitch/initial_state';
+
+import { IconButton } from './icon_button';
+import VisibilityIcon from './status_visibility_icon';
 
 //  Messages for use with internationalization stuff.
 const messages = defineMessages({
@@ -40,7 +44,7 @@ LanguageIcon.propTypes = {
   language: PropTypes.string.isRequired,
 };
 
-class StatusIcons extends React.PureComponent {
+class StatusIcons extends PureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,

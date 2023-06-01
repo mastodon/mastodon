@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
+
 import {
   changeSearch,
   clearSearch,
   submitSearch,
   showSearch,
 } from 'flavours/glitch/actions/search';
+
 import Search from '../components/search';
 
 const mapStateToProps = state => ({

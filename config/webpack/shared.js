@@ -1,12 +1,14 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
-const webpack = require('webpack');
 const { resolve } = require('path');
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 const AssetsManifestPlugin = require('webpack-assets-manifest');
+
 const { env, settings, core, flavours, output } = require('./configuration');
-const rules = require('./rules');
 const localePacks = require('./generateLocalePacks');
+const rules = require('./rules');
 
 function reducePacks (data, into = {}) {
   if (!data.pack) return into;

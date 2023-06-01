@@ -1,6 +1,7 @@
-import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
-import { changeLayout } from 'flavours/glitch/actions/app';
 import { Map as ImmutableMap } from 'immutable';
+
+import { changeLayout } from 'flavours/glitch/actions/app';
+import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
 import { layoutFromWindow } from 'flavours/glitch/is_mobile';
 
 const initialState = ImmutableMap({

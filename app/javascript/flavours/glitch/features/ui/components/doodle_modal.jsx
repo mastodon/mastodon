@@ -1,15 +1,17 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'flavours/glitch/components/button';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import Atrament from 'atrament'; // the doodling library
-import { connect } from 'react-redux';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { doodleSet, uploadCompose } from 'flavours/glitch/actions/compose';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import { debounce, mapValues } from 'lodash';
+
 import classNames from 'classnames';
 
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
+import Atrament from 'atrament'; // the doodling library
+import { debounce, mapValues } from 'lodash';
+
+import { doodleSet, uploadCompose } from 'flavours/glitch/actions/compose';
+import Button from 'flavours/glitch/components/button';
+import { IconButton } from 'flavours/glitch/components/icon_button';
 // palette nicked from MyPaint, CC0
 const palette = [
   ['rgb(  0,    0,    0)', 'Black'],

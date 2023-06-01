@@ -1,13 +1,15 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+
+import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import StatusContent from 'flavours/glitch/components/status_content';
+
 import { Avatar } from 'flavours/glitch/components/avatar';
-import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
 import { DisplayName } from 'flavours/glitch/components/display_name';
-import classNames from 'classnames';
 import { IconButton } from 'flavours/glitch/components/icon_button';
+import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
+import StatusContent from 'flavours/glitch/components/status_content';
 
 export default class ActionsModal extends ImmutablePureComponent {
 
@@ -35,13 +37,13 @@ export default class ActionsModal extends ImmutablePureComponent {
 
     if (!contents) {
       contents = (
-        <React.Fragment>
+        <>
           {icon && <IconButton title={text} icon={icon} role='presentation' tabIndex={-1} inverted />}
           <div>
             <div className={classNames({ 'actions-modal__item-label': !!meta })}>{text}</div>
             <div>{meta}</div>
           </div>
-        </React.Fragment>
+        </>
       );
     }
 

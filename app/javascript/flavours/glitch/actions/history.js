@@ -1,4 +1,5 @@
 import api from '../api';
+
 import { importFetchedAccounts } from './importer';
 
 export const HISTORY_FETCH_REQUEST = 'HISTORY_FETCH_REQUEST';

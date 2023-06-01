@@ -1,5 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
 
 import { IconButton } from 'flavours/glitch/components/icon_button';
@@ -10,7 +11,7 @@ const messages = defineMessages({
   close: { id: 'bundle_modal_error.close', defaultMessage: 'Close' },
 });
 
-class BundleModalError extends React.Component {
+class BundleModalError extends Component {
 
   static propTypes = {
     onRetry: PropTypes.func.isRequired,

@@ -1,12 +1,11 @@
-import React from 'react';
 import { createRoot } from 'react-dom/client';
+
 import { setupBrowserNotifications } from 'flavours/glitch/actions/notifications';
 import Mastodon from 'flavours/glitch/containers/mastodon';
-import { store } from 'flavours/glitch/store';
 import { me } from 'flavours/glitch/initial_state';
-import ready from 'flavours/glitch/ready';
-
 import * as perf from 'flavours/glitch/performance';
+import ready from 'flavours/glitch/ready';
+import { store } from 'flavours/glitch/store';
 
 /**
  * @returns {Promise<void>}

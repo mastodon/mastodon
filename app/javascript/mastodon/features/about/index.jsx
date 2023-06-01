@@ -1,17 +1,21 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Column from 'mastodon/components/column';
-import LinkFooter from 'mastodon/features/ui/components/link_footer';
-import { Helmet } from 'react-helmet';
-import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'mastodon/actions/server';
-import Account from 'mastodon/containers/account_container';
-import { Skeleton } from 'mastodon/components/skeleton';
-import { Icon }  from 'mastodon/components/icon';
+import { PureComponent } from 'react';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
 import classNames from 'classnames';
+import { Helmet } from 'react-helmet';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
+import { fetchServer, fetchExtendedDescription, fetchDomainBlocks  } from 'mastodon/actions/server';
+import Column from 'mastodon/components/column';
+import { Icon  }  from 'mastodon/components/icon';
 import { ServerHeroImage } from 'mastodon/components/server_hero_image';
+import { Skeleton } from 'mastodon/components/skeleton';
+import Account from 'mastodon/containers/account_container';
+import LinkFooter from 'mastodon/features/ui/components/link_footer';
 
 const messages = defineMessages({
   title: { id: 'column.about', defaultMessage: 'About' },
@@ -41,7 +45,7 @@ const mapStateToProps = state => ({
   domainBlocks: state.getIn(['server', 'domainBlocks']),
 });
 
-class Section extends React.PureComponent {
+class Section extends PureComponent {
 
   static propTypes = {
     title: PropTypes.string,
@@ -80,7 +84,7 @@ class Section extends React.PureComponent {
 
 }
 
-class About extends React.PureComponent {
+class About extends PureComponent {
 
   static propTypes = {
     server: ImmutablePropTypes.map,

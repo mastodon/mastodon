@@ -1,15 +1,17 @@
 //  Package imports.
-import React from 'react';
 import PropTypes from 'prop-types';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Our imports,
 import StatusContainer from 'flavours/glitch/containers/status_container';
-import NotificationFollow from './follow';
-import NotificationFollowRequestContainer from '../containers/follow_request_container';
-import NotificationAdminSignup from './admin_signup';
+
 import NotificationAdminReportContainer from '../containers/admin_report_container';
+import NotificationFollowRequestContainer from '../containers/follow_request_container';
+
+import NotificationAdminSignup from './admin_signup';
+import NotificationFollow from './follow';
 
 export default class Notification extends ImmutablePureComponent {
 

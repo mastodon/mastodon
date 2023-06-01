@@ -1,19 +1,26 @@
-import React from 'react';
-import ComposeFormContainer from './containers/compose_form_container';
-import NavigationContainer from './containers/navigation_container';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { mountCompose, unmountCompose, cycleElefriendCompose } from 'flavours/glitch/actions/compose';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages } from 'react-intl';
+
 import classNames from 'classnames';
-import SearchContainer from './containers/search_container';
-import Motion from '../ui/util/optional_motion';
-import spring from 'react-motion/lib/spring';
-import SearchResultsContainer from './containers/search_results_container';
-import { mascot } from 'flavours/glitch/initial_state';
-import HeaderContainer from './containers/header_container';
-import Column from 'flavours/glitch/components/column';
 import { Helmet } from 'react-helmet';
+
+import { connect } from 'react-redux';
+
+import spring from 'react-motion/lib/spring';
+
+import { mountCompose, unmountCompose, cycleElefriendCompose } from 'flavours/glitch/actions/compose';
+import Column from 'flavours/glitch/components/column';
+import { mascot } from 'flavours/glitch/initial_state';
+
+import Motion from '../ui/util/optional_motion';
+
+import ComposeFormContainer from './containers/compose_form_container';
+import HeaderContainer from './containers/header_container';
+import NavigationContainer from './containers/navigation_container';
+import SearchContainer from './containers/search_container';
+import SearchResultsContainer from './containers/search_results_container';
 
 const messages = defineMessages({
   compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new post' },
@@ -38,7 +45,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-class Compose extends React.PureComponent {
+class Compose extends PureComponent {
 
   static propTypes = {
     multiColumn: PropTypes.bool,

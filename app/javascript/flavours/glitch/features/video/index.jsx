@@ -1,13 +1,19 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { is } from 'immutable';
-import { throttle } from 'lodash';
+
 import classNames from 'classnames';
-import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
-import { displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
-import { Icon } from 'flavours/glitch/components/icon';
+
+import { is } from 'immutable';
+
+import { throttle } from 'lodash';
+
 import { Blurhash } from 'flavours/glitch/components/blurhash';
+import { Icon } from 'flavours/glitch/components/icon';
+import { displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
+
+import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
@@ -94,7 +100,7 @@ export const fileNameFromURL = str => {
   return pathname.slice(index + 1);
 };
 
-class Video extends React.PureComponent {
+class Video extends PureComponent {
 
   static propTypes = {
     preview: PropTypes.string,

@@ -1,19 +1,25 @@
-import React from 'react';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ReactSwipeableViews from 'react-swipeable-views';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { IconButton } from 'mastodon/components/icon_button';
-import { Icon }  from 'mastodon/components/icon';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl, FormattedMessage, FormattedDate } from 'react-intl';
-import { autoPlayGif, reduceMotion, disableSwiping, mascot } from 'mastodon/initial_state';
-import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
-import unicodeMapping from 'mastodon/features/emoji/emoji_unicode_mapping_light';
+
 import classNames from 'classnames';
-import EmojiPickerDropdown from 'mastodon/features/compose/containers/emoji_picker_dropdown_container';
-import { AnimatedNumber } from 'mastodon/components/animated_number';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
+import ReactSwipeableViews from 'react-swipeable-views';
+
+import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
+
+import { AnimatedNumber } from 'mastodon/components/animated_number';
+import { Icon }  from 'mastodon/components/icon';
+import { IconButton } from 'mastodon/components/icon_button';
+import EmojiPickerDropdown from 'mastodon/features/compose/containers/emoji_picker_dropdown_container';
+import unicodeMapping from 'mastodon/features/emoji/emoji_unicode_mapping_light';
+import { autoPlayGif, reduceMotion, disableSwiping, mascot } from 'mastodon/initial_state';
 import { assetHost } from 'mastodon/utils/config';
 
 const messages = defineMessages({
@@ -148,7 +154,7 @@ class Content extends ImmutablePureComponent {
 
 }
 
-class Emoji extends React.PureComponent {
+class Emoji extends PureComponent {
 
   static propTypes = {
     emoji: PropTypes.string.isRequired,

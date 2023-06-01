@@ -1,11 +1,11 @@
-import React from 'react';
 import { createRoot } from 'react-dom/client';
+
 import { setupBrowserNotifications } from 'mastodon/actions/notifications';
 import Mastodon from 'mastodon/containers/mastodon';
-import { store } from 'mastodon/store';
 import { me } from 'mastodon/initial_state';
-import ready from 'mastodon/ready';
 import * as perf from 'mastodon/performance';
+import ready from 'mastodon/ready';
+import { store } from 'mastodon/store';
 
 /**
  * @returns {Promise<void>}

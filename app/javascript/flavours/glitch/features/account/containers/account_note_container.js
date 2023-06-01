@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
+
 import { changeAccountNoteComment, submitAccountNote, initEditAccountNote, cancelAccountNote } from 'flavours/glitch/actions/account_notes';
+
 import AccountNote from '../components/account_note';
 
 const mapStateToProps = (state, { account }) => {

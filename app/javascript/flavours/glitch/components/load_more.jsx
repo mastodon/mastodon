@@ -1,8 +1,9 @@
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
 
-export default class LoadMore extends React.PureComponent {
+import { FormattedMessage } from 'react-intl';
+
+export default class LoadMore extends PureComponent {
 
   static propTypes = {
     onClick: PropTypes.func,

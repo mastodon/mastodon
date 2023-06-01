@@ -1,16 +1,19 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
+import { PureComponent } from 'react';
+
 import { FormattedMessage, FormattedDate, injectIntl, defineMessages } from 'react-intl';
-import Column from 'flavours/glitch/components/column';
+
+import { Helmet } from 'react-helmet';
+
 import api from 'flavours/glitch/api';
+import Column from 'flavours/glitch/components/column';
 import { Skeleton } from 'flavours/glitch/components/skeleton';
 
 const messages = defineMessages({
   title: { id: 'privacy_policy.title', defaultMessage: 'Privacy Policy' },
 });
 
-class PrivacyPolicy extends React.PureComponent {
+class PrivacyPolicy extends PureComponent {
 
   static propTypes = {
     intl: PropTypes.object,

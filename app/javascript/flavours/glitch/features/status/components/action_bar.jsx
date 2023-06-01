@@ -1,13 +1,17 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
-import { me } from 'flavours/glitch/initial_state';
-import { accountAdminLink, statusAdminLink } from 'flavours/glitch/utils/backend_links';
+
 import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
+import { IconButton } from 'flavours/glitch/components/icon_button';
+import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
+import { me } from 'flavours/glitch/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/glitch/permissions';
+import { accountAdminLink, statusAdminLink } from 'flavours/glitch/utils/backend_links';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -33,13 +37,13 @@ const messages = defineMessages({
   unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
   embed: { id: 'status.embed', defaultMessage: 'Embed' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
-  admin_status: { id: 'status.admin_status', defaultMessage: 'Open this status in the moderation interface' },
+  admin_status: { id: 'status.admin_status', defaultMessage: 'Open this post in the moderation interface' },
   admin_domain: { id: 'status.admin_domain', defaultMessage: 'Open moderation interface for {domain}' },
-  copy: { id: 'status.copy', defaultMessage: 'Copy link to status' },
+  copy: { id: 'status.copy', defaultMessage: 'Copy link to post' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
 });
 
-class ActionBar extends React.PureComponent {
+class ActionBar extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -123,7 +127,6 @@ class ActionBar extends React.PureComponent {
 
   handleShare = () => {
     navigator.share({
-      text: this.props.status.get('search_index'),
       url: this.props.status.get('url'),
     });
   };
@@ -155,6 +158,11 @@ class ActionBar extends React.PureComponent {
       }
 
       menu.push({ text: intl.formatMessage(messages.copy), action: this.handleCopy });
+
+      if ('share' in navigator) {
+        menu.push({ text: intl.formatMessage(messages.share), action: this.handleShare });
+      }
+
       menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
       menu.push(null);
     }
@@ -194,10 +202,6 @@ class ActionBar extends React.PureComponent {
       }
     }
 
-    const shareButton = ('share' in navigator) && publicStatus && (
-      <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShare} /></div>
-    );
-
     const reblogPrivate = status.getIn(['account', 'id']) === me && status.get('visibility') === 'private';
 
     let reblogTitle;
@@ -216,7 +220,6 @@ class ActionBar extends React.PureComponent {
         <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_id', null) === null ? 'reply' : 'reply-all'} onClick={this.handleReplyClick} /></div>
         <div className='detailed-status__button'><IconButton className={classNames({ reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} /></div>
         <div className='detailed-status__button'><IconButton className='star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} /></div>
-        {shareButton}
         <div className='detailed-status__button'><IconButton className='bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} /></div>
 
         <div className='detailed-status__action-bar-dropdown'>

@@ -1,11 +1,15 @@
-import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
+
+import { connect } from 'react-redux';
+
+import Search from 'flavours/glitch/features/list_editor/components/search';
+
 import {
   fetchPinnedAccountsSuggestions,
   clearPinnedAccountsSuggestions,
   changePinnedAccountsSuggestions,
 } from '../../../actions/accounts';
-import Search from 'flavours/glitch/features/list_editor/components/search';
+
 
 const mapStateToProps = state => ({
   value: state.getIn(['pinnedAccountsEditor', 'suggestions', 'value']),

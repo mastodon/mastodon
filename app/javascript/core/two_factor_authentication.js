@@ -1,6 +1,8 @@
 import 'packs/public-path';
-import axios from 'axios';
+
 import * as WebAuthnJSON from '@github/webauthn-json';
+import axios from 'axios';
+
 import ready from '../mastodon/ready';
 import 'regenerator-runtime/runtime';
 

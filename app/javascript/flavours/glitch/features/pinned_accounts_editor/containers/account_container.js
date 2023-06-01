@@ -1,8 +1,10 @@
-import { connect } from 'react-redux';
-import { makeGetAccount } from 'flavours/glitch/selectors';
 import { injectIntl } from 'react-intl';
+
+import { connect } from 'react-redux';
+
 import { pinAccount, unpinAccount } from 'flavours/glitch/actions/accounts';
 import Account from 'flavours/glitch/features/list_editor/components/account';
+import { makeGetAccount } from 'flavours/glitch/selectors';
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();

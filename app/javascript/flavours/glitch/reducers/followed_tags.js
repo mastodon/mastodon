@@ -1,3 +1,5 @@
+import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
+
 import {
   FOLLOWED_HASHTAGS_FETCH_REQUEST,
   FOLLOWED_HASHTAGS_FETCH_SUCCESS,
@@ -6,7 +8,6 @@ import {
   FOLLOWED_HASHTAGS_EXPAND_SUCCESS,
   FOLLOWED_HASHTAGS_EXPAND_FAIL,
 } from 'flavours/glitch/actions/tags';
-import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialState = ImmutableMap({
   items: ImmutableList(),

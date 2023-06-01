@@ -1,15 +1,21 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import classNames from 'classnames';
-import Motion from 'flavours/glitch/features/ui/util/optional_motion';
-import spring from 'react-motion/lib/spring';
+
 import escapeTextContentForBrowser from 'escape-html';
-import emojify from 'flavours/glitch/features/emoji/emoji';
-import { RelativeTimestamp } from './relative_timestamp';
+import spring from 'react-motion/lib/spring';
+
 import { Icon } from 'flavours/glitch/components/icon';
+import emojify from 'flavours/glitch/features/emoji/emoji';
+import Motion from 'flavours/glitch/features/ui/util/optional_motion';
+
+import { RelativeTimestamp } from './relative_timestamp';
+
 
 const messages = defineMessages({
   closed: {

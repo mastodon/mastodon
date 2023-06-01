@@ -1,7 +1,6 @@
 // @ts-check
 
 import WebSocketClient from '@gamestdio/websocket';
-
 /**
  * @type {WebSocketClient | undefined}
  */

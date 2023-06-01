@@ -1,20 +1,26 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
 import PropTypes from 'prop-types';
-import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
+import { PureComponent } from 'react';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+
+import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/glitch/actions/announcements';
+import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
+import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import ColumnSettingsContainer from './containers/column_settings_container';
-import { Link } from 'react-router-dom';
-import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/glitch/actions/announcements';
-import AnnouncementsContainer from 'flavours/glitch/features/getting_started/containers/announcements_container';
-import classNames from 'classnames';
 import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';
 import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
-import { Helmet } from 'react-helmet';
+import AnnouncementsContainer from 'flavours/glitch/features/getting_started/containers/announcements_container';
+import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
+
+import ColumnSettingsContainer from './containers/column_settings_container';
+
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -31,7 +37,7 @@ const mapStateToProps = state => ({
   regex: state.getIn(['settings', 'home', 'regex', 'body']),
 });
 
-class HomeTimeline extends React.PureComponent {
+class HomeTimeline extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,

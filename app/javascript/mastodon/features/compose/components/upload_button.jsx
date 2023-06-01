@@ -1,10 +1,12 @@
-import React from 'react';
-import { IconButton } from '../../../components/icon_button';
 import PropTypes from 'prop-types';
+
 import { defineMessages, injectIntl } from 'react-intl';
-import { connect } from 'react-redux';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
+import { IconButton } from '../../../components/icon_button';
 
 const messages = defineMessages({
   upload: { id: 'upload_button.label', defaultMessage: 'Add images, a video or an audio file' },

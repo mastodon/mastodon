@@ -1,7 +1,5 @@
 // @ts-check
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
-
 /**
  * Returns custom renderer for one of the common counter types
  * @param {"statuses" | "following" | "followers"} counterType

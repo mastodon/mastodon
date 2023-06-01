@@ -1,10 +1,20 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+import { Helmet } from 'react-helmet';
+
+import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
+
+import { debounce } from 'lodash';
+
+import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
+import { submitMarkers } from 'flavours/glitch/actions/markers';
 import {
   enterNotificationClearingMode,
   expandNotifications,
@@ -14,24 +24,24 @@ import {
   unmountNotifications,
   markNotificationsAsRead,
 } from 'flavours/glitch/actions/notifications';
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
-import { submitMarkers } from 'flavours/glitch/actions/markers';
-import NotificationContainer from './containers/notification_container';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { compareId } from 'flavours/glitch/compare_id';
+import Column from 'flavours/glitch/components/column';
+import ColumnHeader from 'flavours/glitch/components/column_header';
+import { Icon } from 'flavours/glitch/components/icon';
+import { LoadGap } from 'flavours/glitch/components/load_gap';
+import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
+import ScrollableList from 'flavours/glitch/components/scrollable_list';
+import NotificationPurgeButtonsContainer from 'flavours/glitch/containers/notification_purge_buttons_container';
+
+import NotificationsPermissionBanner from './components/notifications_permission_banner';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import FilterBarContainer from './containers/filter_bar_container';
-import { createSelector } from 'reselect';
-import { List as ImmutableList } from 'immutable';
-import { debounce } from 'lodash';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import LoadGap from 'flavours/glitch/components/load_gap';
-import { Icon } from 'flavours/glitch/components/icon';
-import { compareId } from 'flavours/glitch/compare_id';
-import NotificationsPermissionBanner from './components/notifications_permission_banner';
-import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
-import { Helmet } from 'react-helmet';
+import NotificationContainer from './containers/notification_container';
 
-import NotificationPurgeButtonsContainer from 'flavours/glitch/containers/notification_purge_buttons_container';
+
+
+
+
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
@@ -82,7 +92,7 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-class Notifications extends React.PureComponent {
+class Notifications extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,
@@ -323,12 +333,6 @@ class Notifications extends React.PureComponent {
       </div>
     );
 
-    const extraButton = (
-      <>
-        {extraButtons}
-      </>
-    );
-
     return (
       <Column
         bindToDocument={!multiColumn}
@@ -347,7 +351,7 @@ class Notifications extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
           localSettings={this.props.localSettings}
-          extraButton={extraButton}
+          extraButton={extraButtons}
           appendContent={notifCleaningDrawer}
         >
           <ColumnSettingsContainer />

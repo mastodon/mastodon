@@ -1,10 +1,14 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { searchEnabled } from 'mastodon/initial_state';
-import { Icon }  from 'mastodon/components/icon';
+
 import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
+import { Icon }  from 'mastodon/components/icon';
+import { searchEnabled } from 'mastodon/initial_state';
 import { HASHTAG_REGEX } from 'mastodon/utils/hashtags';
 
 const messages = defineMessages({
@@ -12,7 +16,7 @@ const messages = defineMessages({
   placeholderSignedIn: { id: 'search.search_or_paste', defaultMessage: 'Search or paste URL' },
 });
 
-class Search extends React.PureComponent {
+class Search extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,

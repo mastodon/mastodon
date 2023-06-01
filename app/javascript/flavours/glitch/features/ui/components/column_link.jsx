@@ -1,8 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
-import { Icon } from 'flavours/glitch/components/icon';
+
 import classNames from 'classnames';
+import { NavLink } from 'react-router-dom';
+
+import { Icon } from 'flavours/glitch/components/icon';
 
 const ColumnLink = ({ icon, text, to, onClick, href, method, badge, transparent, ...other }) => {
   const className = classNames('column-link', { 'column-link--transparent': transparent });

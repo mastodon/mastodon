@@ -1,14 +1,17 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
 import { fetchPinnedStatuses } from 'flavours/glitch/actions/pin_statuses';
-import Column from 'flavours/glitch/features/ui/components/column';
 import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
 import StatusList from 'flavours/glitch/components/status_list';
-import { defineMessages, injectIntl } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { Helmet } from 'react-helmet';
+import Column from 'flavours/glitch/features/ui/components/column';
 
 const messages = defineMessages({
   heading: { id: 'column.pins', defaultMessage: 'Pinned post' },

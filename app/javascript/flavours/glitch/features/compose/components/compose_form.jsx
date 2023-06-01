@@ -1,21 +1,26 @@
-import React from 'react';
-import CharacterCounter from './character_counter';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import ReplyIndicatorContainer from '../containers/reply_indicator_container';
-import AutosuggestTextarea from '../../../components/autosuggest_textarea';
-import AutosuggestInput from '../../../components/autosuggest_input';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { length } from 'stringz';
+
+import { maxChars } from 'flavours/glitch/initial_state';
+import { isMobile } from 'flavours/glitch/is_mobile';
+
+import AutosuggestInput from '../../../components/autosuggest_input';
+import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
+import OptionsContainer from '../containers/options_container';
 import PollFormContainer from '../containers/poll_form_container';
+import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
-import { isMobile } from 'flavours/glitch/is_mobile';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { length } from 'stringz';
 import { countableText } from '../util/counter';
-import { maxChars } from 'flavours/glitch/initial_state';
-import OptionsContainer from '../containers/options_container';
+
+import CharacterCounter from './character_counter';
 import Publisher from './publisher';
 import TextareaIcons from './textarea_icons';
 

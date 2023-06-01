@@ -1,19 +1,24 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
+import { fetchTrendingHashtags } from 'flavours/glitch/actions/trends';
+import DismissableBanner from 'flavours/glitch/components/dismissable_banner';
 import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
-import { connect } from 'react-redux';
-import { fetchTrendingHashtags } from 'flavours/glitch/actions/trends';
-import { FormattedMessage } from 'react-intl';
-import DismissableBanner from 'flavours/glitch/components/dismissable_banner';
+
+
 
 const mapStateToProps = state => ({
   hashtags: state.getIn(['trends', 'tags', 'items']),
   isLoadingHashtags: state.getIn(['trends', 'tags', 'isLoading']),
 });
 
-class Tags extends React.PureComponent {
+class Tags extends PureComponent {
 
   static propTypes = {
     hashtags: ImmutablePropTypes.list,

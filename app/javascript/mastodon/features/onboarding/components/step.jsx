@@ -1,7 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { Icon }  from 'mastodon/components/icon';
+
 import { Check } from 'mastodon/components/check';
+import { Icon }  from 'mastodon/components/icon';
 
 const Step = ({ label, description, icon, completed, onClick, href }) => {
   const content = (

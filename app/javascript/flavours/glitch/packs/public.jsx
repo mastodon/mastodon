@@ -1,18 +1,20 @@
 import 'packs/public-path';
+import { createRoot }  from 'react-dom/client';
+
+import * as IntlMessageFormat  from 'intl-messageformat';
+import { defineMessages } from 'react-intl';
+
+import { delegate }  from '@rails/ujs';
+import axios from 'axios';
+import { createBrowserHistory }  from 'history';
+import { throttle } from 'lodash';
+
+import { timeAgoString }  from 'flavours/glitch/components/relative_timestamp';
+import emojify  from 'flavours/glitch/features/emoji/emoji';
+import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
 import { loadPolyfills } from 'flavours/glitch/polyfills';
 import ready from 'flavours/glitch/ready';
-import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
-import axios from 'axios';
-import { throttle } from 'lodash';
-import { defineMessages } from 'react-intl';
-import * as IntlMessageFormat  from 'intl-messageformat';
-import { timeAgoString }  from 'flavours/glitch/components/relative_timestamp';
-import { delegate }  from '@rails/ujs';
-import emojify  from 'flavours/glitch/features/emoji/emoji';
 import { getLocale }  from 'locales';
-import React  from 'react';
-import { createRoot }  from 'react-dom/client';
-import { createBrowserHistory }  from 'history';
 
 const messages = defineMessages({
   usernameTaken: { id: 'username.taken', defaultMessage: 'That username is taken. Try another' },

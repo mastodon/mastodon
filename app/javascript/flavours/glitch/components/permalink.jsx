@@ -1,7 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
 
-export default class Permalink extends React.PureComponent {
+export default class Permalink extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

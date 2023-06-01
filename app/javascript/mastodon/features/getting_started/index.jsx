@@ -1,20 +1,25 @@
-import React from 'react';
-import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
-import ColumnLink from '../ui/components/column_link';
-import ColumnSubheading from '../ui/components/column_subheading';
-import { defineMessages, injectIntl } from 'react-intl';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
+import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, showTrends } from '../../initial_state';
+import { connect } from 'react-redux';
+
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
-import { List as ImmutableList } from 'immutable';
-import NavigationContainer from '../compose/containers/navigation_container';
+import Column from 'mastodon/components/column';
+import ColumnHeader from 'mastodon/components/column_header';
 import LinkFooter from 'mastodon/features/ui/components/link_footer';
+
+import { me, showTrends } from '../../initial_state';
+import NavigationContainer from '../compose/containers/navigation_container';
+import ColumnLink from '../ui/components/column_link';
+import ColumnSubheading from '../ui/components/column_subheading';
+
 import TrendsContainer from './containers/trends_container';
-import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -29,7 +34,7 @@ const messages = defineMessages({
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
-  domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
+  domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Blocked domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },

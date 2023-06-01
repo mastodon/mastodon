@@ -2,9 +2,10 @@
 import { connect } from 'react-redux';
 
 //  Our imports.
-import { makeGetNotification } from 'flavours/glitch/selectors';
-import Notification from '../components/notification';
 import { mentionCompose } from 'flavours/glitch/actions/compose';
+import { makeGetNotification } from 'flavours/glitch/selectors';
+
+import Notification from '../components/notification';
 
 const makeMapStateToProps = () => {
   const getNotification = makeGetNotification();

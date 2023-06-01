@@ -1,11 +1,11 @@
 //  Package imports
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
 
+import ImmutablePropTypes from 'react-immutable-proptypes';
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-export default class LocalSettingsPageItem extends React.PureComponent {
+export default class LocalSettingsPageItem extends PureComponent {
 
   static propTypes = {
     children: PropTypes.node.isRequired,

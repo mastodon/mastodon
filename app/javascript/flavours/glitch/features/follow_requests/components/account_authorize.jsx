@@ -1,12 +1,14 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl } from 'react-intl';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Permalink from 'flavours/glitch/components/permalink';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { DisplayName } from 'flavours/glitch/components/display_name';
 import { IconButton } from 'flavours/glitch/components/icon_button';
-import { defineMessages, injectIntl } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import Permalink from 'flavours/glitch/components/permalink';
 
 const messages = defineMessages({
   authorize: { id: 'follow_request.authorize', defaultMessage: 'Authorize' },

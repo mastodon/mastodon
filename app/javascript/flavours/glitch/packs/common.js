@@ -1,6 +1,5 @@
 import 'packs/public-path';
 import { start } from '@rails/ujs';
-
 import 'flavours/glitch/styles/index.scss';
 
 start();

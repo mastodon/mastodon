@@ -1,10 +1,12 @@
+import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+
 import {
   ACCOUNT_BLOCK_SUCCESS,
   ACCOUNT_MUTE_SUCCESS,
 } from 'flavours/glitch/actions/accounts';
 import { CONTEXT_FETCH_SUCCESS } from 'flavours/glitch/actions/statuses';
 import { TIMELINE_DELETE, TIMELINE_UPDATE } from 'flavours/glitch/actions/timelines';
-import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+
 import { compareId } from '../compare_id';
 
 const initialState = ImmutableMap({

@@ -1,11 +1,15 @@
-import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
-import React from 'react';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
 import { Helmet } from 'react-helmet';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+
+import { debounce } from 'lodash';
+
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import { fetchFavouritedStatuses, expandFavouritedStatuses } from 'flavours/glitch/actions/favourites';
 import ColumnHeader from 'flavours/glitch/components/column_header';

@@ -1,8 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import api from 'flavours/glitch/api';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages } from 'react-intl';
+
 import classNames from 'classnames';
+
+import api from 'flavours/glitch/api';
 
 const messages = defineMessages({
   other: { id: 'report.categories.other', defaultMessage: 'Other' },
@@ -10,7 +13,7 @@ const messages = defineMessages({
   violation: { id: 'report.categories.violation', defaultMessage: 'Content violates one or more server rules' },
 });
 
-class Category extends React.PureComponent {
+class Category extends PureComponent {
 
   static propTypes = {
     id: PropTypes.string.isRequired,
@@ -52,7 +55,7 @@ class Category extends React.PureComponent {
 
 }
 
-class Rule extends React.PureComponent {
+class Rule extends PureComponent {
 
   static propTypes = {
     id: PropTypes.string.isRequired,
@@ -84,7 +87,7 @@ class Rule extends React.PureComponent {
 
 }
 
-class ReportReasonSelector extends React.PureComponent {
+class ReportReasonSelector extends PureComponent {
 
   static propTypes = {
     id: PropTypes.string.isRequired,

@@ -1,9 +1,12 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import * as React from 'react';
+
 import { Switch, Route } from 'react-router-dom';
+
 import StackTrace from 'stacktrace-js';
-import ColumnLoading from 'flavours/glitch/features/ui/components/column_loading';
+
 import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
+import ColumnLoading from 'flavours/glitch/features/ui/components/column_loading';
 import BundleContainer from 'flavours/glitch/features/ui/containers/bundle_container';
 
 // Small wrapper to pass multiColumn to the route components

@@ -1,3 +1,5 @@
+import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
+
 import {
   TRENDS_TAGS_FETCH_REQUEST,
   TRENDS_TAGS_FETCH_SUCCESS,
@@ -6,7 +8,6 @@ import {
   TRENDS_LINKS_FETCH_SUCCESS,
   TRENDS_LINKS_FETCH_FAIL,
 } from 'flavours/glitch/actions/trends';
-import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialState = ImmutableMap({
   tags: ImmutableMap({

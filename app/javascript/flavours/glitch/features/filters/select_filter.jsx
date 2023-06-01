@@ -1,11 +1,15 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import { connect } from 'react-redux';
+
+import fuzzysort from 'fuzzysort';
+
+import { Icon } from 'flavours/glitch/components/icon';
 import { toServerSideType } from 'flavours/glitch/utils/filters';
 import { loupeIcon, deleteIcon } from 'flavours/glitch/utils/icons';
-import { Icon } from 'flavours/glitch/components/icon';
-import fuzzysort from 'fuzzysort';
 
 const messages = defineMessages({
   search: { id: 'filter_modal.select_filter.search', defaultMessage: 'Search or create' },
@@ -22,7 +26,7 @@ const mapStateToProps = (state, { contextType }) => ({
   ]),
 });
 
-class SelectFilter extends React.PureComponent {
+class SelectFilter extends PureComponent {
 
   static propTypes = {
     onSelectFilter: PropTypes.func.isRequired,
@@ -169,7 +173,7 @@ class SelectFilter extends React.PureComponent {
     const results = this.search();
 
     return (
-      <React.Fragment>
+      <>
         <h3 className='report-dialog-modal__title'><FormattedMessage id='filter_modal.select_filter.title' defaultMessage='Filter this post' /></h3>
         <p className='report-dialog-modal__lead'><FormattedMessage id='filter_modal.select_filter.subtitle' defaultMessage='Use an existing category or create a new one' /></p>
 
@@ -183,7 +187,7 @@ class SelectFilter extends React.PureComponent {
           {isSearching && this.renderCreateNew(searchValue) }
         </div>
 
-      </React.Fragment>
+      </>
     );
   }
 

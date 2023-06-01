@@ -1,19 +1,17 @@
-//  Package imports.
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
-import { length } from 'stringz';
+
+import classNames from 'classnames';
+
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-//  Components.
+import { length } from 'stringz';
+
 import Button from 'flavours/glitch/components/button';
 import { Icon } from 'flavours/glitch/components/icon';
-
-//  Utils.
 import { maxChars } from 'flavours/glitch/initial_state';
 
-//  Messages.
 const messages = defineMessages({
   publish: {
     defaultMessage: 'Publish',
@@ -26,7 +24,7 @@ const messages = defineMessages({
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Save changes' },
   public: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  private: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
+  private: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
   direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
 });
 

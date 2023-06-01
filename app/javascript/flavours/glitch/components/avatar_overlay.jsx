@@ -1,9 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { autoPlayGif } from 'flavours/glitch/initial_state';
 
-export default class AvatarOverlay extends React.PureComponent {
+export default class AvatarOverlay extends PureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,

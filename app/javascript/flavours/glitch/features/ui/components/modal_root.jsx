@@ -1,21 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
+import { PureComponent } from 'react';
+
+import { Helmet } from 'react-helmet';
+
 import Base from 'flavours/glitch/components/modal_root';
-import BundleContainer from '../containers/bundle_container';
-import BundleModalError from './bundle_modal_error';
-import ModalLoading from './modal_loading';
-import ActionsModal from './actions_modal';
-import MediaModal from './media_modal';
-import VideoModal from './video_modal';
-import BoostModal from './boost_modal';
-import FavouriteModal from './favourite_modal';
-import AudioModal from './audio_modal';
-import DoodleModal from './doodle_modal';
-import ConfirmationModal from './confirmation_modal';
-import FocalPointModal from './focal_point_modal';
-import DeprecatedSettingsModal from './deprecated_settings_modal';
-import ImageModal from './image_modal';
 import {
   OnboardingModal,
   MuteModal,
@@ -32,9 +20,25 @@ import {
   SubscribedLanguagesModal,
   ClosedRegistrationsModal,
 } from 'flavours/glitch/features/ui/util/async-components';
-import { Helmet } from 'react-helmet';
+import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
 
-const MODAL_COMPONENTS = {
+import BundleContainer from '../containers/bundle_container';
+
+import ActionsModal from './actions_modal';
+import AudioModal from './audio_modal';
+import BoostModal from './boost_modal';
+import BundleModalError from './bundle_modal_error';
+import ConfirmationModal from './confirmation_modal';
+import DeprecatedSettingsModal from './deprecated_settings_modal';
+import DoodleModal from './doodle_modal';
+import FavouriteModal from './favourite_modal';
+import FocalPointModal from './focal_point_modal';
+import ImageModal from './image_modal';
+import MediaModal from './media_modal';
+import ModalLoading from './modal_loading';
+import VideoModal from './video_modal';
+
+export const MODAL_COMPONENTS = {
   'MEDIA': () => Promise.resolve({ default: MediaModal }),
   'ONBOARDING': OnboardingModal,
   'VIDEO': () => Promise.resolve({ default: VideoModal }),
@@ -62,7 +66,7 @@ const MODAL_COMPONENTS = {
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
 };
 
-export default class ModalRoot extends React.PureComponent {
+export default class ModalRoot extends PureComponent {
 
   static propTypes = {
     type: PropTypes.string,

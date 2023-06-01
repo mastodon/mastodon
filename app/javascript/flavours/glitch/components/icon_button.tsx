@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import classNames from 'classnames';
 
@@ -138,7 +138,7 @@ export class IconButton extends React.PureComponent<Props, States> {
     }
 
     let contents = (
-      <React.Fragment>
+      <>
         <Icon id={icon} fixedWidth aria-hidden='true' />{' '}
         {typeof counter !== 'undefined' && (
           <span className='icon-button__counter'>
@@ -146,7 +146,7 @@ export class IconButton extends React.PureComponent<Props, States> {
           </span>
         )}
         {this.props.label}
-      </React.Fragment>
+      </>
     );
 
     if (href != null) {

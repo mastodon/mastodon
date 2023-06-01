@@ -1,10 +1,13 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import ConversationContainer from '../containers/conversation_container';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
+
 import { debounce } from 'lodash';
+
+import ScrollableList from 'flavours/glitch/components/scrollable_list';
+
+import ConversationContainer from '../containers/conversation_container';
 
 export default class ConversationsList extends ImmutablePureComponent {
 

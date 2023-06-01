@@ -1,14 +1,16 @@
 //  Package imports.
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 //  Our imports
-import LocalSettingsPage from './page';
-import LocalSettingsNavigation from './navigation';
-import { closeModal } from 'flavours/glitch/actions/modal';
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
+import { closeModal } from 'flavours/glitch/actions/modal';
+
+import LocalSettingsNavigation from './navigation';
+import LocalSettingsPage from './page';
 
 const mapStateToProps = state => ({
   settings: state.get('local_settings'),
@@ -23,7 +25,7 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-class LocalSettings extends React.PureComponent {
+class LocalSettings extends PureComponent {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,

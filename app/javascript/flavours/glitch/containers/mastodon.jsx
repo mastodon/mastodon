@@ -1,18 +1,23 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import { Helmet } from 'react-helmet';
+import { PureComponent } from 'react';
+
 import { IntlProvider, addLocaleData } from 'react-intl';
-import { Provider as ReduxProvider } from 'react-redux';
+
+import { Helmet } from 'react-helmet';
 import { BrowserRouter, Route } from 'react-router-dom';
+
+import { Provider as ReduxProvider } from 'react-redux';
+
 import { ScrollContext } from 'react-router-scroll-4';
-import { store } from 'flavours/glitch/store';
-import UI from 'flavours/glitch/features/ui';
+
 import { fetchCustomEmojis } from 'flavours/glitch/actions/custom_emojis';
-import { hydrateStore } from 'flavours/glitch/actions/store';
 import { checkDeprecatedLocalSettings } from 'flavours/glitch/actions/local_settings';
+import { hydrateStore } from 'flavours/glitch/actions/store';
 import { connectUserStream } from 'flavours/glitch/actions/streaming';
 import ErrorBoundary from 'flavours/glitch/components/error_boundary';
+import UI from 'flavours/glitch/features/ui';
 import initialState, { title as siteTitle } from 'flavours/glitch/initial_state';
+import { store } from 'flavours/glitch/store';
 import { getLocale } from 'locales';
 
 const { localeData, messages } = getLocale();
@@ -38,7 +43,7 @@ const createIdentityContext = state => ({
   permissions: state.role ? state.role.permissions : 0,
 });
 
-export default class Mastodon extends React.PureComponent {
+export default class Mastodon extends PureComponent {
 
   static propTypes = {
     locale: PropTypes.string.isRequired,

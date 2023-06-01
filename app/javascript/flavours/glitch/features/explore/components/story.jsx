@@ -1,12 +1,15 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import classNames from 'classnames';
+
 import { Blurhash } from 'flavours/glitch/components/blurhash';
 import { accountsCountRenderer } from 'flavours/glitch/components/hashtag';
 import ShortNumber from 'flavours/glitch/components/short_number';
 import { Skeleton } from 'flavours/glitch/components/skeleton';
-import classNames from 'classnames';
 
-export default class Story extends React.PureComponent {
+
+export default class Story extends PureComponent {
 
   static propTypes = {
     url: PropTypes.string,
@@ -38,10 +41,10 @@ export default class Story extends React.PureComponent {
 
         <div className='story__thumbnail'>
           {thumbnail ? (
-            <React.Fragment>
+            <>
               <div className={classNames('story__thumbnail__preview', { 'story__thumbnail__preview--hidden': thumbnailLoaded })}><Blurhash hash={blurhash} /></div>
               <img src={thumbnail} onLoad={this.handleImageLoad} alt='' role='presentation' />
-            </React.Fragment>
+            </>
           ) : <Skeleton />}
         </div>
       </a>

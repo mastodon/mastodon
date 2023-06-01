@@ -1,27 +1,31 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { FormattedMessage } from 'react-intl';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
 import { debounce } from 'lodash';
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+
 import {
   lookupAccount,
   fetchAccount,
   fetchFollowing,
   expandFollowing,
 } from 'flavours/glitch/actions/accounts';
-import { FormattedMessage } from 'react-intl';
-import AccountContainer from 'flavours/glitch/containers/account_container';
-import Column from 'flavours/glitch/features/ui/components/column';
-import ProfileColumnHeader from 'flavours/glitch/features/account/components/profile_column_header';
-import HeaderContainer from 'flavours/glitch/features/account_timeline/containers/header_container';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import { TimelineHint } from 'flavours/glitch/components/timeline_hint';
-import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
-import { getAccountHidden } from 'flavours/glitch/selectors';
-import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
+import AccountContainer from 'flavours/glitch/containers/account_container';
+import ProfileColumnHeader from 'flavours/glitch/features/account/components/profile_column_header';
+import HeaderContainer from 'flavours/glitch/features/account_timeline/containers/header_container';
 import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
+import Column from 'flavours/glitch/features/ui/components/column';
+import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
+import { getAccountHidden } from 'flavours/glitch/selectors';
+
+import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);

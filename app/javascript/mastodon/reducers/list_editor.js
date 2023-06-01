@@ -1,4 +1,5 @@
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+
 import {
   LIST_CREATE_REQUEST,
   LIST_CREATE_FAIL,

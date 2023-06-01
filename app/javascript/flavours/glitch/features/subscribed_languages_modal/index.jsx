@@ -1,16 +1,18 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+
+import { is, List as ImmutableList, Set as ImmutableSet } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { is, List as ImmutableList, Set as ImmutableSet } from 'immutable';
-import { languages as preloadedLanguages } from 'flavours/glitch/initial_state';
-import Option from 'flavours/glitch/features/report/components/option';
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import Button from 'flavours/glitch/components/button';
+
 import { followAccount } from 'flavours/glitch/actions/accounts';
+import Button from 'flavours/glitch/components/button';
+import { IconButton } from 'flavours/glitch/components/icon_button';
+import Option from 'flavours/glitch/features/report/components/option';
+import { languages as preloadedLanguages } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

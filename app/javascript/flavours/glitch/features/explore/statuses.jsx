@@ -1,12 +1,16 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import StatusList from 'flavours/glitch/components/status_list';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
-import { fetchTrendingStatuses, expandTrendingStatuses } from 'flavours/glitch/actions/trends';
+
 import { debounce } from 'lodash';
+
+import { fetchTrendingStatuses, expandTrendingStatuses } from 'flavours/glitch/actions/trends';
 import DismissableBanner from 'flavours/glitch/components/dismissable_banner';
+import StatusList from 'flavours/glitch/components/status_list';
 
 const mapStateToProps = state => ({
   statusIds: state.getIn(['status_lists', 'trending', 'items']),
@@ -14,7 +18,7 @@ const mapStateToProps = state => ({
   hasMore: !!state.getIn(['status_lists', 'trending', 'next']),
 });
 
-class Statuses extends React.PureComponent {
+class Statuses extends PureComponent {
 
   static propTypes = {
     statusIds: ImmutablePropTypes.list,

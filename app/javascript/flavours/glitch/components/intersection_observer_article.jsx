@@ -1,12 +1,12 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
-import getRectFromEntry from '../features/ui/util/get_rect_from_entry';
+import { cloneElement, Component } from 'react';
 
+import getRectFromEntry from '../features/ui/util/get_rect_from_entry';
+import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
 // Diff these props in the "unrendered" state
 const updateOnPropsForUnrendered = ['id', 'index', 'listLength', 'cachedHeight'];
 
-export default class IntersectionObserverArticle extends React.Component {
+export default class IntersectionObserverArticle extends Component {
 
   static propTypes = {
     intersectionObserverWrapper: PropTypes.object.isRequired,
@@ -123,7 +123,7 @@ export default class IntersectionObserverArticle extends React.Component {
         tabIndex={0}
         style={style}
       >
-        {children && React.cloneElement(children, { hidden: !isIntersecting && (isHidden || !!cachedHeight) })}
+        {children && cloneElement(children, { hidden: !isIntersecting && (isHidden || !!cachedHeight) })}
       </article>
     );
   }

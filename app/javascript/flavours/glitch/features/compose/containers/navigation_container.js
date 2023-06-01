@@ -1,9 +1,12 @@
-import { connect }   from 'react-redux';
 import { defineMessages, injectIntl } from 'react-intl';
-import NavigationBar from '../components/navigation_bar';
-import { logOut } from 'flavours/glitch/utils/log_out';
+
+import { connect }   from 'react-redux';
+
 import { openModal } from 'flavours/glitch/actions/modal';
 import { me } from 'flavours/glitch/initial_state';
+import { logOut } from 'flavours/glitch/utils/log_out';
+
+import NavigationBar from '../components/navigation_bar';
 
 const messages = defineMessages({
   logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
@@ -18,11 +21,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
   onLogout () {
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.logoutMessage),
-      confirm: intl.formatMessage(messages.logoutConfirm),
-      closeWhenConfirm: false,
-      onConfirm: () => logOut(),
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.logoutMessage),
+        confirm: intl.formatMessage(messages.logoutConfirm),
+        closeWhenConfirm: false,
+        onConfirm: () => logOut(),
+      },
     }));
   },
 });

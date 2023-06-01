@@ -1,9 +1,11 @@
+import { Map as ImmutableMap } from 'immutable';
 import { connect } from 'react-redux';
-import LanguageDropdown from '../components/language_dropdown';
+import { createSelector } from 'reselect';
+
 import { changeComposeLanguage } from 'flavours/glitch/actions/compose';
 import { useLanguage } from 'flavours/glitch/actions/languages';
-import { createSelector } from 'reselect';
-import { Map as ImmutableMap } from 'immutable';
+
+import LanguageDropdown from '../components/language_dropdown';
 
 const getFrequentlyUsedLanguages = createSelector([
   state => state.getIn(['settings', 'frequentlyUsedLanguages'], ImmutableMap()),

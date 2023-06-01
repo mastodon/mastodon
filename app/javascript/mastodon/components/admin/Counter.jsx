@@ -1,9 +1,13 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import api from 'mastodon/api';
+import { PureComponent } from 'react';
+
 import { FormattedNumber } from 'react-intl';
-import { Sparklines, SparklinesCurve } from 'react-sparklines';
+
 import classNames from 'classnames';
+
+import { Sparklines, SparklinesCurve } from 'react-sparklines';
+
+import api from 'mastodon/api';
 import { Skeleton } from 'mastodon/components/skeleton';
 
 const percIncrease = (a, b) => {
@@ -24,7 +28,7 @@ const percIncrease = (a, b) => {
   return percent;
 };
 
-export default class Counter extends React.PureComponent {
+export default class Counter extends PureComponent {
 
   static propTypes = {
     measure: PropTypes.string.isRequired,
@@ -62,25 +66,25 @@ export default class Counter extends React.PureComponent {
 
     if (loading) {
       content = (
-        <React.Fragment>
+        <>
           <span className='sparkline__value__total'><Skeleton width={43} /></span>
           <span className='sparkline__value__change'><Skeleton width={43} /></span>
-        </React.Fragment>
+        </>
       );
     } else {
       const measure = data[0];
       const percentChange = measure.previous_total && percIncrease(measure.previous_total * 1, measure.total * 1);
 
       content = (
-        <React.Fragment>
+        <>
           <span className='sparkline__value__total'>{measure.human_value || <FormattedNumber value={measure.total} />}</span>
           {measure.previous_total && (<span className={classNames('sparkline__value__change', { positive: percentChange > 0, negative: percentChange < 0 })}>{percentChange > 0 && '+'}<FormattedNumber value={percentChange} style='percent' /></span>)}
-        </React.Fragment>
+        </>
       );
     }
 
     const inner = (
-      <React.Fragment>
+      <>
         <div className='sparkline__value'>
           {content}
         </div>
@@ -96,7 +100,7 @@ export default class Counter extends React.PureComponent {
             </Sparklines>
           )}
         </div>
-      </React.Fragment>
+      </>
     );
 
     if (href) {

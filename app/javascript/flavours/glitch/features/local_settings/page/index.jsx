@@ -1,14 +1,18 @@
 //  Package imports
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
 
 //  Our imports
 import { expandSpoilers } from 'flavours/glitch/initial_state';
 import { preferenceLink } from 'flavours/glitch/utils/backend_links';
-import LocalSettingsPageItem from './item';
+
 import DeprecatedLocalSettingsPageItem from './deprecated_item';
+import LocalSettingsPageItem from './item';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -31,11 +35,11 @@ const messages = defineMessages({
   pop_in_right: { id: 'settings.pop_in_right', defaultMessage:  'Right' },
   public: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  private: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
+  private: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
   direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
 });
 
-class LocalSettingsPage extends React.PureComponent {
+class LocalSettingsPage extends PureComponent {
 
   static propTypes = {
     index    : PropTypes.number,

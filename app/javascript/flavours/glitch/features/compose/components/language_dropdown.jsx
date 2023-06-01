@@ -1,13 +1,18 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages } from 'react-intl';
-import TextIconButton from './text_icon_button';
-import Overlay from 'react-overlays/Overlay';
-import { supportsPassiveEvents } from 'detect-passive-events';
+
 import classNames from 'classnames';
+
+import { supportsPassiveEvents } from 'detect-passive-events';
+import fuzzysort from 'fuzzysort';
+import Overlay from 'react-overlays/Overlay';
+
 import { languages as preloadedLanguages } from 'flavours/glitch/initial_state';
 import { loupeIcon, deleteIcon } from 'flavours/glitch/utils/icons';
-import fuzzysort from 'fuzzysort';
+
+import TextIconButton from './text_icon_button';
 
 const messages = defineMessages({
   changeLanguage: { id: 'compose.language.change', defaultMessage: 'Change language' },
@@ -17,7 +22,7 @@ const messages = defineMessages({
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 
-class LanguageDropdownMenu extends React.PureComponent {
+class LanguageDropdownMenu extends PureComponent {
 
   static propTypes = {
     value: PropTypes.string.isRequired,
@@ -238,7 +243,7 @@ class LanguageDropdownMenu extends React.PureComponent {
 
 }
 
-class LanguageDropdown extends React.PureComponent {
+class LanguageDropdown extends PureComponent {
 
   static propTypes = {
     value: PropTypes.string,

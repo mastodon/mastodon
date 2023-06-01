@@ -1,6 +1,7 @@
-import { connect } from 'react-redux';
 import { defineMessages, injectIntl } from 'react-intl';
-import ComposeForm from '../components/compose_form';
+
+import { connect } from 'react-redux';
+
 import {
   changeCompose,
   changeComposeSpoilerText,
@@ -13,12 +14,13 @@ import {
   submitCompose,
   uploadCompose,
 } from 'flavours/glitch/actions/compose';
+import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
 import {
   openModal,
 } from 'flavours/glitch/actions/modal';
-import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
-
 import { privacyPreference } from 'flavours/glitch/utils/privacy_preference';
+
+import ComposeForm from '../components/compose_form';
 
 const messages = defineMessages({
   missingDescriptionMessage: {
@@ -124,18 +126,24 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onMediaDescriptionConfirm(routerHistory, mediaId, overriddenVisibility = null) {
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.missingDescriptionMessage),
-      confirm: intl.formatMessage(messages.missingDescriptionConfirm),
-      onConfirm: () => {
-        if (overriddenVisibility) {
-          dispatch(changeComposeVisibility(overriddenVisibility));
-        }
-        dispatch(submitCompose(routerHistory));
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.missingDescriptionMessage),
+        confirm: intl.formatMessage(messages.missingDescriptionConfirm),
+        onConfirm: () => {
+          if (overriddenVisibility) {
+            dispatch(changeComposeVisibility(overriddenVisibility));
+          }
+          dispatch(submitCompose(routerHistory));
+        },
+        secondary: intl.formatMessage(messages.missingDescriptionEdit),
+        onSecondary: () => dispatch(openModal({
+          modalType: 'FOCAL_POINT',
+          modalProps: { id: mediaId },
+        })),
+        onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_missing_media_description'], false)),
       },
-      secondary: intl.formatMessage(messages.missingDescriptionEdit),
-      onSecondary: () => dispatch(openModal('FOCAL_POINT', { id: mediaId })),
-      onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_missing_media_description'], false)),
     }));
   },
 

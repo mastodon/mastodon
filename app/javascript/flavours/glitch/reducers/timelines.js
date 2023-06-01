@@ -1,3 +1,10 @@
+import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
+
+import {
+  ACCOUNT_BLOCK_SUCCESS,
+  ACCOUNT_MUTE_SUCCESS,
+  ACCOUNT_UNFOLLOW_SUCCESS,
+} from 'flavours/glitch/actions/accounts';
 import {
   TIMELINE_UPDATE,
   TIMELINE_DELETE,
@@ -11,12 +18,7 @@ import {
   TIMELINE_LOAD_PENDING,
   TIMELINE_MARK_AS_PARTIAL,
 } from 'flavours/glitch/actions/timelines';
-import {
-  ACCOUNT_BLOCK_SUCCESS,
-  ACCOUNT_MUTE_SUCCESS,
-  ACCOUNT_UNFOLLOW_SUCCESS,
-} from 'flavours/glitch/actions/accounts';
-import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
+
 import { compareId } from '../compare_id';
 
 const initialState = ImmutableMap();

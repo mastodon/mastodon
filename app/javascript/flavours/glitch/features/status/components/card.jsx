@@ -1,13 +1,17 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
+import classnames from 'classnames';
+
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { FormattedMessage } from 'react-intl';
-import classnames from 'classnames';
-import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
+
+import { Blurhash } from 'flavours/glitch/components/blurhash';
 import { Icon } from 'flavours/glitch/components/icon';
 import { useBlurhash } from 'flavours/glitch/initial_state';
-import { Blurhash } from 'flavours/glitch/components/blurhash';
+import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
 
 const getHostname = url => {
   const parser = document.createElement('a');
@@ -38,7 +42,7 @@ const addAutoPlay = html => {
   return html;
 };
 
-export default class Card extends React.PureComponent {
+export default class Card extends PureComponent {
 
   static propTypes = {
     card: ImmutablePropTypes.map,

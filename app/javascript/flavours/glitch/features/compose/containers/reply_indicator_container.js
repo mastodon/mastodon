@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
+
 import { cancelReplyCompose } from 'flavours/glitch/actions/compose';
+
 import ReplyIndicator from '../components/reply_indicator';
 
 const makeMapStateToProps = () => {

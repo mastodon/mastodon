@@ -1,27 +1,31 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import Button from '../../../components/button';
-import StatusContent from '../../../components/status_content';
-import { Avatar } from '../../../components/avatar';
-import { RelativeTimestamp } from '../../../components/relative_timestamp';
-import { DisplayName } from '../../../components/display_name';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { Icon }  from 'mastodon/components/icon';
-import AttachmentList from 'mastodon/components/attachment_list';
-import PrivacyDropdown from 'mastodon/features/compose/components/privacy_dropdown';
+
 import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
 import { changeBoostPrivacy } from 'mastodon/actions/boosts';
+import AttachmentList from 'mastodon/components/attachment_list';
+import { Icon }  from 'mastodon/components/icon';
+import PrivacyDropdown from 'mastodon/features/compose/components/privacy_dropdown';
+
+import { Avatar } from '../../../components/avatar';
+import Button from '../../../components/button';
+import { DisplayName } from '../../../components/display_name';
+import { RelativeTimestamp } from '../../../components/relative_timestamp';
+import StatusContent from '../../../components/status_content';
 
 const messages = defineMessages({
   cancel_reblog: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
-  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
+  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
+  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
 });
 
 const mapStateToProps = state => {

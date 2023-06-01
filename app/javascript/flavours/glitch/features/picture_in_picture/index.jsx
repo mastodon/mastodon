@@ -1,19 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Video from 'flavours/glitch/features/video';
-import Audio from 'flavours/glitch/features/audio';
-import { removePictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
-import Header from './components/header';
-import Footer from './components/footer';
+import { Component } from 'react';
+
 import classNames from 'classnames';
+
+import { connect } from 'react-redux';
+
+import { removePictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
+import Audio from 'flavours/glitch/features/audio';
+import Video from 'flavours/glitch/features/video';
+
+import Footer from './components/footer';
+import Header from './components/header';
 
 const mapStateToProps = state => ({
   ...state.get('picture_in_picture'),
   left: state.getIn(['local_settings', 'media', 'pop_in_position']) === 'left',
 });
 
-class PictureInPicture extends React.Component {
+class PictureInPicture extends Component {
 
   static propTypes = {
     statusId: PropTypes.string,

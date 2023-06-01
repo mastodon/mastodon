@@ -1,15 +1,21 @@
 // @ts-check
-import React from 'react';
-import { Sparklines, SparklinesCurve } from 'react-sparklines';
-import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import Permalink from './permalink';
-import ShortNumber from 'flavours/glitch/components/short_number';
-import { Skeleton } from 'flavours/glitch/components/skeleton';
+import { Component } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
 import classNames from 'classnames';
 
-class SilentErrorBoundary extends React.Component {
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
+import { Sparklines, SparklinesCurve } from 'react-sparklines';
+
+import ShortNumber from 'flavours/glitch/components/short_number';
+import { Skeleton } from 'flavours/glitch/components/skeleton';
+
+import Permalink from './permalink';
+
+class SilentErrorBoundary extends Component {
 
   static propTypes = {
     children: PropTypes.node,
@@ -70,7 +76,7 @@ const Hashtag = ({ name, href, to, people, uses, history, className, description
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
       <Permalink href={href} to={to}>
-        {name ? <React.Fragment>#<span>{name}</span></React.Fragment> : <Skeleton width={50} />}
+        {name ? <>#<span>{name}</span></> : <Skeleton width={50} />}
       </Permalink>
 
       {description ? (

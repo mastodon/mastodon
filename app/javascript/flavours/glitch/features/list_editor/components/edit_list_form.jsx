@@ -1,9 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { defineMessages, injectIntl } from 'react-intl';
+
+import { connect } from 'react-redux';
+
 import { changeListEditorTitle, submitListEditor } from 'flavours/glitch/actions/lists';
 import { IconButton } from 'flavours/glitch/components/icon_button';
-import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
   title: { id: 'lists.edit.submit', defaultMessage: 'Change title' },
@@ -19,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
   onSubmit: () => dispatch(submitListEditor(false)),
 });
 
-class ListForm extends React.PureComponent {
+class ListForm extends PureComponent {
 
   static propTypes = {
     value: PropTypes.string.isRequired,

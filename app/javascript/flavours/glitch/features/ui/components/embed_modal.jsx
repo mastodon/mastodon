@@ -1,7 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import api from 'flavours/glitch/api';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 

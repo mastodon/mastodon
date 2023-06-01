@@ -1,16 +1,19 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import Button from 'flavours/glitch/components/button';
-import StatusContent from 'flavours/glitch/components/status_content';
-import { Avatar } from 'flavours/glitch/components/avatar';
-import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
-import { DisplayName } from 'flavours/glitch/components/display_name';
-import AttachmentList from 'flavours/glitch/components/attachment_list';
-import { Icon } from 'flavours/glitch/components/icon';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import AttachmentList from 'flavours/glitch/components/attachment_list';
+import { Avatar } from 'flavours/glitch/components/avatar';
+import Button from 'flavours/glitch/components/button';
+import { DisplayName } from 'flavours/glitch/components/display_name';
+import { Icon } from 'flavours/glitch/components/icon';
+import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
+import StatusContent from 'flavours/glitch/components/status_content';
 import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
 
 const messages = defineMessages({

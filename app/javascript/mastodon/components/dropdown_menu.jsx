@@ -1,16 +1,21 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { IconButton } from './icon_button';
-import Overlay from 'react-overlays/Overlay';
-import { supportsPassiveEvents } from 'detect-passive-events';
+import { PureComponent, cloneElement, Children } from 'react';
+
 import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
+import { supportsPassiveEvents } from 'detect-passive-events';
+import Overlay from 'react-overlays/Overlay';
+
 import { CircularProgress } from 'mastodon/components/loading_indicator';
+
+import { IconButton } from './icon_button';
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 let id = 0;
 
-class DropdownMenu extends React.PureComponent {
+class DropdownMenu extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -155,7 +160,7 @@ class DropdownMenu extends React.PureComponent {
 
 }
 
-export default class Dropdown extends React.PureComponent {
+export default class Dropdown extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -286,7 +291,7 @@ export default class Dropdown extends React.PureComponent {
 
     const open = this.state.id === openDropdownId;
 
-    const button = children ? React.cloneElement(React.Children.only(children), {
+    const button = children ? cloneElement(Children.only(children), {
       onClick: this.handleClick,
       onMouseDown: this.handleMouseDown,
       onKeyDown: this.handleButtonKeyDown,
@@ -306,7 +311,7 @@ export default class Dropdown extends React.PureComponent {
     );
 
     return (
-      <React.Fragment>
+      <>
         <span ref={this.setTargetRef}>
           {button}
         </span>
@@ -329,7 +334,7 @@ export default class Dropdown extends React.PureComponent {
             </div>
           )}
         </Overlay>
-      </React.Fragment>
+      </>
     );
   }
 

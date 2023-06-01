@@ -1,18 +1,22 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import StatusContent from 'flavours/glitch/components/status_content';
-import AttachmentList from 'flavours/glitch/components/attachment_list';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
-import AvatarComposite from 'flavours/glitch/components/avatar_composite';
-import Permalink from 'flavours/glitch/components/permalink';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
+
 import { HotKeys } from 'react-hotkeys';
+
+import AttachmentList from 'flavours/glitch/components/attachment_list';
+import AvatarComposite from 'flavours/glitch/components/avatar_composite';
+import { IconButton } from 'flavours/glitch/components/icon_button';
+import Permalink from 'flavours/glitch/components/permalink';
+import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
+import StatusContent from 'flavours/glitch/components/status_content';
+import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import { autoPlayGif } from 'flavours/glitch/initial_state';
-import classNames from 'classnames';
 
 const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },

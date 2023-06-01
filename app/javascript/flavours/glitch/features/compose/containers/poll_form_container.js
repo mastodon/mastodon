@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PollForm from '../components/poll_form';
+
 import {
   addPollOption,
   removePollOption,
@@ -9,6 +9,8 @@ import {
   fetchComposeSuggestions,
   selectComposeSuggestion,
 } from 'flavours/glitch/actions/compose';
+
+import PollForm from '../components/poll_form';
 
 const mapStateToProps = state => ({
   suggestions: state.getIn(['compose', 'suggestions']),

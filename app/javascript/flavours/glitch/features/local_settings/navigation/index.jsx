@@ -1,11 +1,13 @@
 //  Package imports
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages } from 'react-intl';
 
 //  Our imports
-import LocalSettingsNavigationItem from './item';
 import { preferencesLink } from 'flavours/glitch/utils/backend_links';
+
+import LocalSettingsNavigationItem from './item';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -19,7 +21,7 @@ const messages = defineMessages({
   close: { id: 'settings.close', defaultMessage: 'Close' },
 });
 
-class LocalSettingsNavigation extends React.PureComponent {
+class LocalSettingsNavigation extends PureComponent {
 
   static propTypes = {
     index      : PropTypes.number,

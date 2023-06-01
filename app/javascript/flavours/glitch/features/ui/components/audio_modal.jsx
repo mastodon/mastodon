@@ -1,9 +1,10 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import Audio from 'flavours/glitch/features/audio';
-import { connect } from 'react-redux';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
+import Audio from 'flavours/glitch/features/audio';
 import Footer from 'flavours/glitch/features/picture_in_picture/components/footer';
 
 const mapStateToProps = (state, { statusId }) => ({

@@ -1,16 +1,22 @@
 //  Package imports.
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+
 import { FormattedMessage } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { HotKeys } from 'react-hotkeys';
+
 import classNames from 'classnames';
 
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { HotKeys } from 'react-hotkeys';
+
+
 // Our imports.
-import Permalink from 'flavours/glitch/components/permalink';
-import NotificationOverlayContainer from '../containers/overlay_container';
 import { Icon } from 'flavours/glitch/components/icon';
+import Permalink from 'flavours/glitch/components/permalink';
+
+import NotificationOverlayContainer from '../containers/overlay_container';
+
 import Report from './report';
 
 export default class AdminReport extends ImmutablePureComponent {

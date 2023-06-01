@@ -43,7 +43,7 @@ Layout/LineLength:
     - !ruby/regexp / \# .*$/
     - !ruby/regexp /^\# .*$/
   Exclude:
-    - lib/**/*cli*.rb
+    - 'lib/mastodon/cli/*.rb'
     - db/*migrate/**/*
     - db/seeds/**/*
 
@@ -57,7 +57,7 @@ Lint/UselessAccessModifier:
 # https://docs.rubocop.org/rubocop/cops_metrics.html#metricsabcsize
 Metrics/AbcSize:
   Exclude:
-    - 'lib/**/*cli*.rb'
+    - 'lib/mastodon/cli/*.rb'
     - db/*migrate/**/*
 
 # Reason: Some functions cannot be broken up, but others may be refactor candidates
@@ -66,7 +66,7 @@ Metrics/BlockLength:
   CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
   Exclude:
     - 'config/routes.rb'
-    - 'lib/mastodon/*_cli.rb'
+    - 'lib/mastodon/cli/*.rb'
     - 'lib/tasks/*.rake'
     - 'app/models/concerns/account_associations.rb'
     - 'app/models/concerns/account_interactions.rb'
@@ -95,14 +95,14 @@ Metrics/BlockLength:
 # https://docs.rubocop.org/rubocop/cops_metrics.html#metricsblocknesting
 Metrics/BlockNesting:
   Exclude:
-    - 'lib/mastodon/*_cli.rb'
+    - 'lib/mastodon/cli/*.rb'
 
 # Reason: Some Excluded files would be candidates for refactoring but not currently addressed
 # https://docs.rubocop.org/rubocop/cops_metrics.html#metricsclasslength
 Metrics/ClassLength:
   CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
   Exclude:
-    - 'lib/mastodon/*_cli.rb'
+    - 'lib/mastodon/cli/*.rb'
     - 'app/controllers/admin/accounts_controller.rb'
     - 'app/controllers/api/base_controller.rb'
     - 'app/controllers/api/v1/admin/accounts_controller.rb'
@@ -146,7 +146,7 @@ Metrics/ClassLength:
 # https://docs.rubocop.org/rubocop/cops_metrics.html#metricscyclomaticcomplexity
 Metrics/CyclomaticComplexity:
   Exclude:
-    - lib/mastodon/*cli*.rb
+    - lib/mastodon/cli/*.rb
     - db/*migrate/**/*
 
 # Reason: Currently disabled in .rubocop_todo.yml
@@ -154,7 +154,7 @@ Metrics/CyclomaticComplexity:
 Metrics/MethodLength:
   CountAsOne: [array, heredoc]
   Exclude:
-    - 'lib/mastodon/*_cli.rb'
+    - 'lib/mastodon/cli/*.rb'
 
 # Reason:
 # https://docs.rubocop.org/rubocop/cops_metrics.html#metricsmodulelength
@@ -171,13 +171,12 @@ Rails/FilePath:
 Rails/HttpStatus:
   EnforcedStyle: numeric
 
-# Reason: Allowed only in the `tootctl` CLI application code
+# Reason: Allowed in `tootctl` CLI code and in boot ENV checker
 # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsexit
 Rails/Exit:
   Exclude:
-    - 'lib/mastodon/*_cli.rb'
-    - 'lib/mastodon/cli_helper.rb'
-    - 'lib/cli.rb'
+    - 'config/boot.rb'
+    - 'lib/mastodon/cli/*.rb'
 
 # Reason: Some single letter camel case files shouldn't be split
 # https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecfilepath

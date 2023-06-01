@@ -1,20 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import Button from 'flavours/glitch/components/button';
-import StatusContent from 'flavours/glitch/components/status_content';
-import { Avatar } from 'flavours/glitch/components/avatar';
-import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
-import { DisplayName } from 'flavours/glitch/components/display_name';
-import AttachmentList from 'flavours/glitch/components/attachment_list';
-import { Icon } from 'flavours/glitch/components/icon';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import PrivacyDropdown from 'flavours/glitch/features/compose/components/privacy_dropdown';
+
 import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
 import { changeBoostPrivacy } from 'flavours/glitch/actions/boosts';
+import AttachmentList from 'flavours/glitch/components/attachment_list';
+import { Avatar } from 'flavours/glitch/components/avatar';
+import Button from 'flavours/glitch/components/button';
+import { DisplayName } from 'flavours/glitch/components/display_name';
+import { Icon } from 'flavours/glitch/components/icon';
+import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
+import StatusContent from 'flavours/glitch/components/status_content';
 import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
+import PrivacyDropdown from 'flavours/glitch/features/compose/components/privacy_dropdown';
 
 const messages = defineMessages({
   cancel_reblog: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },

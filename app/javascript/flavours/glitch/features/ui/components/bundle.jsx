@@ -1,10 +1,10 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
 
 const emptyComponent = () => null;
 const noop = () => { };
 
-class Bundle extends React.Component {
+class Bundle extends Component {
 
   static propTypes = {
     fetchComponent: PropTypes.func.isRequired,

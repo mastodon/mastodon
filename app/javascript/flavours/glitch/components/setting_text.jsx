@@ -1,8 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-export default class SettingText extends React.PureComponent {
+export default class SettingText extends PureComponent {
 
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,

@@ -1,4 +1,5 @@
 import { expandSpoilers, disableSwiping } from 'flavours/glitch/initial_state';
+
 import { openModal } from './modal';
 
 export const LOCAL_SETTING_CHANGE = 'LOCAL_SETTING_CHANGE';
@@ -27,9 +28,12 @@ export function checkDeprecatedLocalSettings() {
     }
 
     if (changed_settings.length > 0) {
-      dispatch(openModal('DEPRECATED_SETTINGS', {
-        settings: changed_settings,
-        onConfirm: () => dispatch(clearDeprecatedLocalSettings()),
+      dispatch(openModal({
+        modalType: 'DEPRECATED_SETTINGS',
+        modalProps: {
+          settings: changed_settings,
+          onConfirm: () => dispatch(clearDeprecatedLocalSettings()),
+        },
       }));
     }
   };

@@ -1,20 +1,24 @@
-import React, { Fragment } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { Skeleton } from 'flavours/glitch/components/skeleton';
+import { me } from 'flavours/glitch/initial_state';
+
 import { Avatar } from './avatar';
 import { DisplayName } from './display_name';
-import Permalink from './permalink';
 import { IconButton } from './icon_button';
-import { defineMessages, injectIntl } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me } from 'flavours/glitch/initial_state';
+import Permalink from './permalink';
 import { RelativeTimestamp } from './relative_timestamp';
-import { Skeleton } from 'flavours/glitch/components/skeleton';
+
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
-  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' },
+  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   mute_notifications: { id: 'account.mute_notifications', defaultMessage: 'Mute notifications from @{name}' },
@@ -97,10 +101,10 @@ class Account extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <Fragment>
+        <>
           {account.get('display_name')}
           {account.get('username')}
-        </Fragment>
+        </>
       );
     }
 
@@ -128,10 +132,10 @@ class Account extends ImmutablePureComponent {
           hidingNotificationsButton = <IconButton active icon='bell-slash' title={intl.formatMessage(messages.mute_notifications, { name: account.get('username')  })} onClick={this.handleMuteNotifications} />;
         }
         buttons = (
-          <Fragment>
+          <>
             <IconButton active icon='volume-up' title={intl.formatMessage(messages.unmute, { name: account.get('username') })} onClick={this.handleMute} />
             {hidingNotificationsButton}
-          </Fragment>
+          </>
         );
       } else if (defaultAction === 'mute') {
         buttons = <IconButton icon='volume-off' title={intl.formatMessage(messages.mute, { name: account.get('username') })} onClick={this.handleMute} />;

@@ -1,12 +1,16 @@
-import { debounce } from 'lodash';
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import StatusContainer from '../containers/status_container';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import LoadGap from './load_gap';
-import ScrollableList from './scrollable_list';
+
+import { debounce } from 'lodash';
+
 import RegenerationIndicator from 'mastodon/components/regeneration_indicator';
+
+import StatusContainer from '../containers/status_container';
+
+import { LoadGap } from './load_gap';
+import ScrollableList from './scrollable_list';
 
 export default class StatusList extends ImmutablePureComponent {
 

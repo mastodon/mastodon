@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import classNames from 'classnames';
 
 import { useHovering } from '../../hooks/useHovering';

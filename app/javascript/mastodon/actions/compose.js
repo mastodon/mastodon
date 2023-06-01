@@ -1,9 +1,12 @@
+import { defineMessages } from 'react-intl';
+
 import axios from 'axios';
 import { throttle } from 'lodash';
-import { defineMessages } from 'react-intl';
+
 import api from 'mastodon/api';
 import { search as emojiSearch } from 'mastodon/features/emoji/emoji_mart_search_light';
 import { tagHistory } from 'mastodon/settings';
+
 import { showAlert, showAlertForError } from './alerts';
 import { useEmoji } from './emojis';
 import { importFetchedAccounts, importFetchedStatus } from './importer';
@@ -380,7 +383,10 @@ export function initMediaEditModal(id) {
       id,
     });
 
-    dispatch(openModal('FOCAL_POINT', { id }));
+    dispatch(openModal({
+      modalType: 'FOCAL_POINT',
+      modalProps: { id },
+    }));
   };
 }
 

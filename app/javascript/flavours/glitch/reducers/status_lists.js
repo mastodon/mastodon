@@ -1,3 +1,17 @@
+import { Map as ImmutableMap, OrderedSet as ImmutableOrderedSet } from 'immutable';
+
+import {
+  ACCOUNT_BLOCK_SUCCESS,
+  ACCOUNT_MUTE_SUCCESS,
+} from 'flavours/glitch/actions/accounts';
+import {
+  BOOKMARKED_STATUSES_FETCH_REQUEST,
+  BOOKMARKED_STATUSES_FETCH_SUCCESS,
+  BOOKMARKED_STATUSES_FETCH_FAIL,
+  BOOKMARKED_STATUSES_EXPAND_REQUEST,
+  BOOKMARKED_STATUSES_EXPAND_SUCCESS,
+  BOOKMARKED_STATUSES_EXPAND_FAIL,
+} from 'flavours/glitch/actions/bookmarks';
 import {
   FAVOURITED_STATUSES_FETCH_REQUEST,
   FAVOURITED_STATUSES_FETCH_SUCCESS,
@@ -7,13 +21,13 @@ import {
   FAVOURITED_STATUSES_EXPAND_FAIL,
 } from 'flavours/glitch/actions/favourites';
 import {
-  BOOKMARKED_STATUSES_FETCH_REQUEST,
-  BOOKMARKED_STATUSES_FETCH_SUCCESS,
-  BOOKMARKED_STATUSES_FETCH_FAIL,
-  BOOKMARKED_STATUSES_EXPAND_REQUEST,
-  BOOKMARKED_STATUSES_EXPAND_SUCCESS,
-  BOOKMARKED_STATUSES_EXPAND_FAIL,
-} from 'flavours/glitch/actions/bookmarks';
+  FAVOURITE_SUCCESS,
+  UNFAVOURITE_SUCCESS,
+  BOOKMARK_SUCCESS,
+  UNBOOKMARK_SUCCESS,
+  PIN_SUCCESS,
+  UNPIN_SUCCESS,
+} from 'flavours/glitch/actions/interactions';
 import {
   PINNED_STATUSES_FETCH_SUCCESS,
 } from 'flavours/glitch/actions/pin_statuses';
@@ -25,19 +39,8 @@ import {
   TRENDS_STATUSES_EXPAND_SUCCESS,
   TRENDS_STATUSES_EXPAND_FAIL,
 } from 'flavours/glitch/actions/trends';
-import { Map as ImmutableMap, OrderedSet as ImmutableOrderedSet } from 'immutable';
-import {
-  FAVOURITE_SUCCESS,
-  UNFAVOURITE_SUCCESS,
-  BOOKMARK_SUCCESS,
-  UNBOOKMARK_SUCCESS,
-  PIN_SUCCESS,
-  UNPIN_SUCCESS,
-} from 'flavours/glitch/actions/interactions';
-import {
-  ACCOUNT_BLOCK_SUCCESS,
-  ACCOUNT_MUTE_SUCCESS,
-} from 'flavours/glitch/actions/accounts';
+
+
 
 const initialState = ImmutableMap({
   favourites: ImmutableMap({

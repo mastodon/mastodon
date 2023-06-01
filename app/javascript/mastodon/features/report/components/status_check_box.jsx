@@ -1,23 +1,27 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { injectIntl, defineMessages } from 'react-intl';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import StatusContent from 'mastodon/components/status_content';
+
 import { Avatar } from 'mastodon/components/avatar';
 import { DisplayName } from 'mastodon/components/display_name';
-import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
-import Option from './option';
-import MediaAttachments from 'mastodon/components/media_attachments';
-import { injectIntl, defineMessages } from 'react-intl';
 import { Icon }  from 'mastodon/components/icon';
+import MediaAttachments from 'mastodon/components/media_attachments';
+import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
+import StatusContent from 'mastodon/components/status_content';
+
+import Option from './option';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
+  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
 });
 
-class StatusCheckBox extends React.PureComponent {
+class StatusCheckBox extends PureComponent {
 
   static propTypes = {
     id: PropTypes.string.isRequired,

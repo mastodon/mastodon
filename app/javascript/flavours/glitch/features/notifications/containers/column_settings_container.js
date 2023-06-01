@@ -1,11 +1,14 @@
-import { connect } from 'react-redux';
 import { defineMessages, injectIntl } from 'react-intl';
-import ColumnSettings from '../components/column_settings';
-import { changeSetting } from 'flavours/glitch/actions/settings';
+
+import { connect } from 'react-redux';
+
+import { showAlert } from 'flavours/glitch/actions/alerts';
+import { openModal } from 'flavours/glitch/actions/modal';
 import { setFilter, clearNotifications, requestBrowserPermission } from 'flavours/glitch/actions/notifications';
 import { changeAlerts as changePushNotifications } from 'flavours/glitch/actions/push_notifications';
-import { openModal } from 'flavours/glitch/actions/modal';
-import { showAlert } from 'flavours/glitch/actions/alerts';
+import { changeSetting } from 'flavours/glitch/actions/settings';
+
+import ColumnSettings from '../components/column_settings';
 
 const messages = defineMessages({
   clearMessage: { id: 'notifications.clear_confirmation', defaultMessage: 'Are you sure you want to permanently clear all your notifications?' },
@@ -57,10 +60,13 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onClear () {
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.clearMessage),
-      confirm: intl.formatMessage(messages.clearConfirm),
-      onConfirm: () => dispatch(clearNotifications()),
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.clearMessage),
+        confirm: intl.formatMessage(messages.clearConfirm),
+        onConfirm: () => dispatch(clearNotifications()),
+      },
     }));
   },
 

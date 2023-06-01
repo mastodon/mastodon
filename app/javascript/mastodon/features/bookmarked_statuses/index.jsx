@@ -1,11 +1,15 @@
-import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
-import React from 'react';
-import { Helmet } from 'react-helmet';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
+
+import { debounce } from 'lodash';
+
 import { fetchBookmarkedStatuses, expandBookmarkedStatuses } from 'mastodon/actions/bookmarks';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import ColumnHeader from 'mastodon/components/column_header';

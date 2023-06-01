@@ -1,3 +1,5 @@
+import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
+
 import {
   SERVER_FETCH_REQUEST,
   SERVER_FETCH_SUCCESS,
@@ -12,7 +14,6 @@ import {
   SERVER_DOMAIN_BLOCKS_FETCH_SUCCESS,
   SERVER_DOMAIN_BLOCKS_FETCH_FAIL,
 } from 'flavours/glitch/actions/server';
-import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialState = ImmutableMap({
   server: ImmutableMap({

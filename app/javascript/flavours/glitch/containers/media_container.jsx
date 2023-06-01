@@ -1,18 +1,22 @@
-import React, { PureComponent, Fragment } from 'react';
-import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+import { createPortal } from 'react-dom';
+
 import { IntlProvider, addLocaleData } from 'react-intl';
+
 import { fromJS } from 'immutable';
-import { getLocale } from 'mastodon/locales';
-import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
-import MediaGallery from 'flavours/glitch/components/media_gallery';
-import Poll from 'flavours/glitch/components/poll';
+
 import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
+import MediaGallery from 'flavours/glitch/components/media_gallery';
 import ModalRoot from 'flavours/glitch/components/modal_root';
+import Poll from 'flavours/glitch/components/poll';
+import Audio from 'flavours/glitch/features/audio';
+import Card from 'flavours/glitch/features/status/components/card';
 import MediaModal from 'flavours/glitch/features/ui/components/media_modal';
 import Video from 'flavours/glitch/features/video';
-import Card from 'flavours/glitch/features/status/components/card';
-import Audio from 'flavours/glitch/features/audio';
+import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
+
+import { getLocale } from 'mastodon/locales';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
@@ -73,9 +77,16 @@ export default class MediaContainer extends PureComponent {
   render () {
     const { locale, components } = this.props;
 
+    let handleOpenVideo;
+
+    // Don't offer to expand the video in a lightbox if we're in a frame
+    if (window.self === window.top) {
+      handleOpenVideo = this.handleOpenVideo;
+    }
+
     return (
       <IntlProvider locale={locale} messages={messages}>
-        <Fragment>
+        <>
           {[].map.call(components, (component, i) => {
             const componentName = component.getAttribute('data-component');
             const Component = MEDIA_COMPONENTS[componentName];
@@ -89,7 +100,7 @@ export default class MediaContainer extends PureComponent {
 
               ...(componentName === 'Video' ? {
                 componentIndex: i,
-                onOpenVideo: this.handleOpenVideo,
+                onOpenVideo: handleOpenVideo,
               } : {
                 onOpenMedia: this.handleOpenMedia,
               }),
@@ -115,7 +126,7 @@ export default class MediaContainer extends PureComponent {
               />
             )}
           </ModalRoot>
-        </Fragment>
+        </>
       </IntlProvider>
     );
   }

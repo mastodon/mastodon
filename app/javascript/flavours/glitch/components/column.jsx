@@ -1,11 +1,13 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { supportsPassiveEvents } from 'detect-passive-events';
+
 import { scrollTop } from '../scroll';
 
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
-export default class Column extends React.PureComponent {
+export default class Column extends PureComponent {
 
   static propTypes = {
     children: PropTypes.node,

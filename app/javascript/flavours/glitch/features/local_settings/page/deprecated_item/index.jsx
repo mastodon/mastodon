@@ -1,10 +1,10 @@
 //  Package imports
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-export default class LocalSettingsPageItem extends React.PureComponent {
+export default class LocalSettingsPageItem extends PureComponent {
 
   static propTypes = {
     children: PropTypes.node.isRequired,

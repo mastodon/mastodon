@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+
+// eslint-disable-next-line import/order
 const { default: manageTranslations, readMessageFiles } = require('react-intl-translations-manager');
 
 const RFC5646_REGEXP = /^[a-z]{2,3}(?:-(?:x|[A-Za-z]{2,4}))*$/;

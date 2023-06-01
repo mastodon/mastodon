@@ -1,13 +1,19 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';
-import Overlay from 'react-overlays/Overlay';
+
 import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { supportsPassiveEvents } from 'detect-passive-events';
-import { buildCustomEmojis, categoriesFromEmojis } from '../../emoji/emoji';
+import Overlay from 'react-overlays/Overlay';
+
 import { assetHost } from 'mastodon/utils/config';
+
+import { buildCustomEmojis, categoriesFromEmojis } from '../../emoji/emoji';
+import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';
 
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
@@ -47,7 +53,7 @@ const notFoundFn = () => (
   </div>
 );
 
-class ModifierPickerMenu extends React.PureComponent {
+class ModifierPickerMenu extends PureComponent {
 
   static propTypes = {
     active: PropTypes.bool,
@@ -108,7 +114,7 @@ class ModifierPickerMenu extends React.PureComponent {
 
 }
 
-class ModifierPicker extends React.PureComponent {
+class ModifierPicker extends PureComponent {
 
   static propTypes = {
     active: PropTypes.bool,
@@ -144,7 +150,7 @@ class ModifierPicker extends React.PureComponent {
 
 }
 
-class EmojiPickerMenuImpl extends React.PureComponent {
+class EmojiPickerMenuImpl extends PureComponent {
 
   static propTypes = {
     custom_emojis: ImmutablePropTypes.list,
@@ -306,7 +312,7 @@ class EmojiPickerMenuImpl extends React.PureComponent {
 
 const EmojiPickerMenu = injectIntl(EmojiPickerMenuImpl);
 
-class EmojiPickerDropdown extends React.PureComponent {
+class EmojiPickerDropdown extends PureComponent {
 
   static propTypes = {
     custom_emojis: ImmutablePropTypes.list,

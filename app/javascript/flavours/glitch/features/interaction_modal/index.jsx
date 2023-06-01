@@ -1,24 +1,32 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
-import { registrationsOpen } from 'flavours/glitch/initial_state';
-import { connect } from 'react-redux';
-import { Icon } from 'flavours/glitch/components/icon';
+
 import classNames from 'classnames';
+
+import { connect } from 'react-redux';
+
 import { openModal, closeModal } from 'flavours/glitch/actions/modal';
+import { Icon } from 'flavours/glitch/components/icon';
+import { registrationsOpen } from 'flavours/glitch/initial_state';
 
 const mapStateToProps = (state, { accountId }) => ({
   displayNameHtml: state.getIn(['accounts', accountId, 'display_name_html']),
+  signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], '/auth/sign_up'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSignupClick() {
-    dispatch(closeModal());
-    dispatch(openModal('CLOSED_REGISTRATIONS'));
+    dispatch(closeModal({
+      modalType: undefined,
+      ignoreFocus: false,
+    }));
+    dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' }));
   },
 });
 
-class Copypaste extends React.PureComponent {
+class Copypaste extends PureComponent {
 
   static propTypes = {
     value: PropTypes.string,
@@ -74,13 +82,14 @@ class Copypaste extends React.PureComponent {
 
 }
 
-class InteractionModal extends React.PureComponent {
+class InteractionModal extends PureComponent {
 
   static propTypes = {
     displayNameHtml: PropTypes.string,
     url: PropTypes.string,
     type: PropTypes.oneOf(['reply', 'reblog', 'favourite', 'follow']),
     onSignupClick: PropTypes.func.isRequired,
+    signupUrl: PropTypes.string.isRequired,
   };
 
   handleSignupClick = () => {
@@ -88,7 +97,7 @@ class InteractionModal extends React.PureComponent {
   };
 
   render () {
-    const { url, type, displayNameHtml } = this.props;
+    const { url, type, displayNameHtml, signupUrl } = this.props;
 
     const name = <bdi dangerouslySetInnerHTML={{ __html: displayNameHtml }} />;
 
@@ -121,7 +130,7 @@ class InteractionModal extends React.PureComponent {
 
     if (registrationsOpen) {
       signupButton = (
-        <a href='/auth/sign_up' className='button button--block button-tertiary'>
+        <a href={signupUrl} className='button button--block button-tertiary'>
           <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
         </a>
       );

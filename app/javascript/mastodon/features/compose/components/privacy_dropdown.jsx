@@ -1,11 +1,16 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages } from 'react-intl';
-import { IconButton } from '../../../components/icon_button';
-import Overlay from 'react-overlays/Overlay';
-import { supportsPassiveEvents } from 'detect-passive-events';
+
 import classNames from 'classnames';
+
+import { supportsPassiveEvents } from 'detect-passive-events';
+import Overlay from 'react-overlays/Overlay';
+
 import { Icon }  from 'mastodon/components/icon';
+
+import { IconButton } from '../../../components/icon_button';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
@@ -21,7 +26,7 @@ const messages = defineMessages({
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 
-class PrivacyDropdownMenu extends React.PureComponent {
+class PrivacyDropdownMenu extends PureComponent {
 
   static propTypes = {
     style: PropTypes.object,
@@ -133,7 +138,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
 
 }
 
-class PrivacyDropdown extends React.PureComponent {
+class PrivacyDropdown extends PureComponent {
 
   static propTypes = {
     isUserTouching: PropTypes.func,

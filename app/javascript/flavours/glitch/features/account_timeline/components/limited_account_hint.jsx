@@ -1,8 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { revealAccount } from 'flavours/glitch/actions/accounts';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
+
+import { connect } from 'react-redux';
+
+import { revealAccount } from 'flavours/glitch/actions/accounts';
 import Button from 'flavours/glitch/components/button';
 import { domain } from 'flavours/glitch/initial_state';
 
@@ -14,7 +17,7 @@ const mapDispatchToProps = (dispatch, { accountId }) => ({
 
 });
 
-class LimitedAccountHint extends React.PureComponent {
+class LimitedAccountHint extends PureComponent {
 
   static propTypes = {
     accountId: PropTypes.string.isRequired,

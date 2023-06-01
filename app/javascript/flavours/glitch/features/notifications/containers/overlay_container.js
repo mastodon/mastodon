@@ -2,8 +2,9 @@
 import { connect } from 'react-redux';
 
 //  Our imports.
-import NotificationOverlay from '../components/overlay';
 import { markNotificationForDelete } from 'flavours/glitch/actions/notifications';
+
+import NotificationOverlay from '../components/overlay';
 
 const mapDispatchToProps = dispatch => ({
   onMarkForDelete(id, yes) {

@@ -1,12 +1,15 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+
+import { FormattedMessage } from 'react-intl';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import ActionBar from './action_bar';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import { Avatar } from 'flavours/glitch/components/avatar';
 import Permalink from 'flavours/glitch/components/permalink';
-import { FormattedMessage } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 import { profileLink } from 'flavours/glitch/utils/backend_links';
+
+import ActionBar from './action_bar';
 
 export default class NavigationBar extends ImmutablePureComponent {
 

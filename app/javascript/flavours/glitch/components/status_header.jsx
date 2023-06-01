@@ -1,6 +1,7 @@
 //  Package imports.
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 //  Mastodon imports.
@@ -8,7 +9,7 @@ import { Avatar } from './avatar';
 import AvatarOverlay from './avatar_overlay';
 import { DisplayName } from './display_name';
 
-export default class StatusHeader extends React.PureComponent {
+export default class StatusHeader extends PureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,

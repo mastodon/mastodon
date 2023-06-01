@@ -1,15 +1,16 @@
 //  Package imports.
-import { connect } from 'react-redux';
 import { defineMessages, injectIntl } from 'react-intl';
 
+import { connect } from 'react-redux';
+
 //  Our imports.
-import NotificationPurgeButtons from 'flavours/glitch/components/notification_purge_buttons';
+import { openModal } from 'flavours/glitch/actions/modal';
 import {
   deleteMarkedNotifications,
   enterNotificationClearingMode,
   markAllNotifications,
 } from 'flavours/glitch/actions/notifications';
-import { openModal } from 'flavours/glitch/actions/modal';
+import NotificationPurgeButtons from 'flavours/glitch/components/notification_purge_buttons';
 
 const messages = defineMessages({
   clearMessage: { id: 'notifications.marked_clear_confirmation', defaultMessage: 'Are you sure you want to permanently clear all selected notifications?' },
@@ -22,10 +23,13 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onDeleteMarked() {
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.clearMessage),
-      confirm: intl.formatMessage(messages.clearConfirm),
-      onConfirm: () => dispatch(deleteMarkedNotifications()),
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.clearMessage),
+        confirm: intl.formatMessage(messages.clearConfirm),
+        onConfirm: () => dispatch(deleteMarkedNotifications()),
+      },
     }));
   },
 

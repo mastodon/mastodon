@@ -1,7 +1,9 @@
-import { connect } from 'react-redux';
-import FeaturedTags from '../components/featured_tags';
-import { makeGetAccount } from 'flavours/glitch/selectors';
 import { List as ImmutableList } from 'immutable';
+import { connect } from 'react-redux';
+
+import { makeGetAccount } from 'flavours/glitch/selectors';
+
+import FeaturedTags from '../components/featured_tags';
 
 const mapStateToProps = () => {
   const getAccount = makeGetAccount();

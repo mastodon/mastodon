@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Options from '../components/options';
+
 import {
   changeComposeAdvancedOption,
   changeComposeContentType,
@@ -7,6 +7,8 @@ import {
   removePoll,
 } from 'flavours/glitch/actions/compose';
 import { openModal } from 'flavours/glitch/actions/modal';
+
+import Options from '../components/options';
 
 function mapStateToProps (state) {
   const poll = state.getIn(['compose', 'poll']);
@@ -44,7 +46,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   onDoodleOpen() {
-    dispatch(openModal('DOODLE', { noEsc: true, noClose: true }));
+    dispatch(openModal({
+      modalType: 'DOODLE',
+      modalProps: { noEsc: true, noClose: true },
+    }));
   },
 });
 

@@ -1,26 +1,24 @@
-//  Package imports.
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import {
   injectIntl,
   FormattedMessage,
   defineMessages,
 } from 'react-intl';
+
 import Overlay from 'react-overlays/Overlay';
 
-//  Components.
 import { Icon } from 'flavours/glitch/components/icon';
-
-//  Utils.
-import { focusRoot } from 'flavours/glitch/utils/dom_helpers';
 import { searchEnabled } from 'flavours/glitch/initial_state';
+import { focusRoot } from 'flavours/glitch/utils/dom_helpers';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
   placeholderSignedIn: { id: 'search.search_or_paste', defaultMessage: 'Search or paste URL' },
 });
 
-class SearchPopout extends React.PureComponent {
+class SearchPopout extends PureComponent {
 
   render () {
     const extraInformation = searchEnabled ? <FormattedMessage id='search_popout.tips.full_text' defaultMessage='Simple text returns statuses you have written, favourited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.' /> : <FormattedMessage id='search_popout.tips.text' defaultMessage='Simple text returns matching display names, usernames and hashtags' />;
@@ -43,7 +41,7 @@ class SearchPopout extends React.PureComponent {
 }
 
 //  The component.
-class Search extends React.PureComponent {
+class Search extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,

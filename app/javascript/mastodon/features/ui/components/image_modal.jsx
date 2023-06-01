@@ -1,15 +1,19 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
+import classNames from 'classnames';
+
 import { IconButton } from 'mastodon/components/icon_button';
+
 import ImageLoader from './image_loader';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
-class ImageModal extends React.PureComponent {
+class ImageModal extends PureComponent {
 
   static propTypes = {
     src: PropTypes.string.isRequired,

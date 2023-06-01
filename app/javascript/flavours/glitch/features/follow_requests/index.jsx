@@ -1,17 +1,27 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { debounce } from 'lodash';
-import Column from 'flavours/glitch/features/ui/components/column';
-import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
-import AccountAuthorizeContainer from './containers/account_authorize_container';
-import { fetchFollowRequests, expandFollowRequests } from 'flavours/glitch/actions/accounts';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import { me } from 'flavours/glitch/initial_state';
+
 import { Helmet } from 'react-helmet';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
+import { debounce } from 'lodash';
+
+import { fetchFollowRequests, expandFollowRequests } from 'flavours/glitch/actions/accounts';
+import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
+import ScrollableList from 'flavours/glitch/components/scrollable_list';
+import Column from 'flavours/glitch/features/ui/components/column';
+import { me } from 'flavours/glitch/initial_state';
+
+import AccountAuthorizeContainer from './containers/account_authorize_container';
+
+
+
+
+
 
 const messages = defineMessages({
   heading: { id: 'column.follow_requests', defaultMessage: 'Follow requests' },

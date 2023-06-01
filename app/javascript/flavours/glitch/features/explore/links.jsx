@@ -1,19 +1,23 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import Story from './components/story';
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
-import { connect } from 'react-redux';
-import { fetchTrendingLinks } from 'flavours/glitch/actions/trends';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
+import { fetchTrendingLinks } from 'flavours/glitch/actions/trends';
 import DismissableBanner from 'flavours/glitch/components/dismissable_banner';
+import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+
+import Story from './components/story';
 
 const mapStateToProps = state => ({
   links: state.getIn(['trends', 'links', 'items']),
   isLoading: state.getIn(['trends', 'links', 'isLoading']),
 });
 
-class Links extends React.PureComponent {
+class Links extends PureComponent {
 
   static propTypes = {
     links: ImmutablePropTypes.list,

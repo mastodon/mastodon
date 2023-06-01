@@ -1,27 +1,30 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import StatusPrepend from './status_prepend';
+
+import { injectIntl, FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { HotKeys } from 'react-hotkeys';
+
+import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
+import PollContainer from 'flavours/glitch/containers/poll_container';
+import NotificationOverlayContainer from 'flavours/glitch/features/notifications/containers/overlay_container';
+import { displayMedia } from 'flavours/glitch/initial_state';
+import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
+
+import Card from '../features/status/components/card';
+import Bundle from '../features/ui/components/bundle';
+import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
+
+import AttachmentList from './attachment_list';
+import StatusActionBar from './status_action_bar';
+import StatusContent from './status_content';
 import StatusHeader from './status_header';
 import StatusIcons from './status_icons';
-import StatusContent from './status_content';
-import StatusActionBar from './status_action_bar';
-import AttachmentList from './attachment_list';
-import Card from '../features/status/components/card';
-import { injectIntl, FormattedMessage } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
-import { HotKeys } from 'react-hotkeys';
-import NotificationOverlayContainer from 'flavours/glitch/features/notifications/containers/overlay_container';
-import classNames from 'classnames';
-import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
-import PollContainer from 'flavours/glitch/containers/poll_container';
-import { displayMedia } from 'flavours/glitch/initial_state';
-import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
-
-// We use the component (and not the container) since we do not want
-// to use the progress bar to show download progress
-import Bundle from '../features/ui/components/bundle';
+import StatusPrepend from './status_prepend';
 
 export const textForScreenReader = (intl, status, rebloggedByText = false, expanded = false) => {
   const displayName = status.getIn(['account', 'display_name']);

@@ -1,11 +1,14 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { FormattedMessage } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { Icon } from 'flavours/glitch/components/icon';
+
 import AvatarOverlay from '../../../components/avatar_overlay';
 import { DisplayName } from '../../../components/display_name';
-import { Icon } from 'flavours/glitch/components/icon';
 
 export default class MovedNote extends ImmutablePureComponent {
 

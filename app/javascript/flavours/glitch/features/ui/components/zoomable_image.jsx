@@ -1,7 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { IconButton } from 'flavours/glitch/components/icon_button';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
+import { IconButton } from 'flavours/glitch/components/icon_button';
 
 const messages = defineMessages({
   compress: { id: 'lightbox.compress', defaultMessage: 'Compress image view box' },
@@ -91,7 +93,7 @@ const normalizeWheel = event => {
   };
 };
 
-class ZoomableImage extends React.PureComponent {
+class ZoomableImage extends PureComponent {
 
   static propTypes = {
     alt: PropTypes.string,
@@ -411,7 +413,7 @@ class ZoomableImage extends React.PureComponent {
     const zoomButtonTitle = this.state.zoomState === 'compress' ? intl.formatMessage(messages.compress) : intl.formatMessage(messages.expand);
 
     return (
-      <React.Fragment>
+      <>
         <IconButton
           className={`media-modal__zoom-button ${zoomButtonShouldHide}`}
           title={zoomButtonTitle}
@@ -445,7 +447,7 @@ class ZoomableImage extends React.PureComponent {
             onMouseDown={this.handleMouseDown}
           />
         </div>
-      </React.Fragment>
+      </>
     );
   }
 

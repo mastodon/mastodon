@@ -1,23 +1,29 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
-import { focusCompose } from 'mastodon/actions/compose';
-import Column from 'mastodon/features/ui/components/column';
+
+import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
+
 import { Helmet } from 'react-helmet';
-import illustration from 'mastodon/../images/elephant_ui_conversation.svg';
 import { Link } from 'react-router-dom';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
+import { debounce } from 'lodash';
+
+import illustration from 'mastodon/../images/elephant_ui_conversation.svg';
+
+import { fetchAccount } from 'mastodon/actions/accounts';
+import { focusCompose } from 'mastodon/actions/compose';
+import { closeOnboarding } from 'mastodon/actions/onboarding';
+import Column from 'mastodon/features/ui/components/column';
 import { me } from 'mastodon/initial_state';
 import { makeGetAccount } from 'mastodon/selectors';
-import { closeOnboarding } from 'mastodon/actions/onboarding';
-import { fetchAccount } from 'mastodon/actions/accounts';
+
+import ArrowSmallRight from './components/arrow_small_right';
+import Step from './components/step';
 import Follows from './follows';
 import Share from './share';
-import Step from './components/step';
-import ArrowSmallRight from './components/arrow_small_right';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
-import { debounce } from 'lodash';
 
 const messages = defineMessages({
   template: { id: 'onboarding.compose.template', defaultMessage: 'Hello #Mastodon!' },

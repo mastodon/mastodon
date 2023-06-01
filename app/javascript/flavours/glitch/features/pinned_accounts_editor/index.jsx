@@ -1,14 +1,18 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import { injectIntl, FormattedMessage } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
+import spring from 'react-motion/lib/spring';
+
 import { fetchPinnedAccounts, clearPinnedAccountsSuggestions, resetPinnedAccountsEditor } from 'flavours/glitch/actions/accounts';
+import Motion from 'flavours/glitch/features/ui/util/optional_motion';
+
 import AccountContainer from './containers/account_container';
 import SearchContainer from './containers/search_container';
-import Motion from 'flavours/glitch/features/ui/util/optional_motion';
-import spring from 'react-motion/lib/spring';
 
 const mapStateToProps = state => ({
   accountIds: state.getIn(['pinnedAccountsEditor', 'accounts', 'items']),

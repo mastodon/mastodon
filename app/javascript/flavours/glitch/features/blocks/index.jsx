@@ -1,16 +1,20 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
-import ScrollableList from '../../components/scrollable_list';
-import Column from 'flavours/glitch/features/ui/components/column';
-import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
-import AccountContainer from 'flavours/glitch/containers/account_container';
-import { fetchBlocks, expandBlocks } from 'flavours/glitch/actions/blocks';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
+import { debounce } from 'lodash';
+
+import { fetchBlocks, expandBlocks } from 'flavours/glitch/actions/blocks';
+import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
+import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import AccountContainer from 'flavours/glitch/containers/account_container';
+import Column from 'flavours/glitch/features/ui/components/column';
+
+import ScrollableList from '../../components/scrollable_list';
 
 const messages = defineMessages({
   heading: { id: 'column.blocks', defaultMessage: 'Blocked users' },

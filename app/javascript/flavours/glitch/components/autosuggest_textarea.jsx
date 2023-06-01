@@ -1,12 +1,16 @@
-import React from 'react';
+import PropTypes from 'prop-types';
+
+import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import Textarea from 'react-textarea-autosize';
+
 import AutosuggestAccountContainer from 'flavours/glitch/features/compose/containers/autosuggest_account_container';
+
 import AutosuggestEmoji from './autosuggest_emoji';
 import AutosuggestHashtag from './autosuggest_hashtag';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import PropTypes from 'prop-types';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import Textarea from 'react-textarea-autosize';
-import classNames from 'classnames';
 
 const textAtCursorMatchesToken = (str, caretPosition) => {
   let word;

@@ -1,14 +1,16 @@
 //  Package imports  //
-import React from 'react';
 import PropTypes from 'prop-types';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import { Icon } from 'flavours/glitch/components/icon';
 
 const messages = defineMessages({
   public: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  private: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
+  private: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
   direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
 });
 

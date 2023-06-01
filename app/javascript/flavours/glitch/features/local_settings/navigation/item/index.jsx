@@ -1,13 +1,14 @@
 //  Package imports
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import classNames from 'classnames';
 
 import { Icon } from 'flavours/glitch/components/icon';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-export default class LocalSettingsPage extends React.PureComponent {
+export default class LocalSettingsPage extends PureComponent {
 
   static propTypes = {
     active: PropTypes.bool,

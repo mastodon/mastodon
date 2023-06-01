@@ -1,14 +1,17 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { injectIntl, FormattedMessage } from 'react-intl';
-import Column from 'flavours/glitch/components/column';
-import Button from 'flavours/glitch/components/button';
+
+import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import classNames from 'classnames';
+
+import Button from 'flavours/glitch/components/button';
+import Column from 'flavours/glitch/components/column';
 import { autoPlayGif } from 'flavours/glitch/initial_state';
 
-class GIF extends React.PureComponent {
+class GIF extends PureComponent {
 
   static propTypes = {
     src: PropTypes.string.isRequired,
@@ -59,7 +62,7 @@ class GIF extends React.PureComponent {
 
 }
 
-class CopyButton extends React.PureComponent {
+class CopyButton extends PureComponent {
 
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -92,7 +95,7 @@ class CopyButton extends React.PureComponent {
 
 }
 
-class BundleColumnError extends React.PureComponent {
+class BundleColumnError extends PureComponent {
 
   static propTypes = {
     errorType: PropTypes.oneOf(['routing', 'network', 'error']),

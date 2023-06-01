@@ -1,11 +1,14 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { createSelector } from 'reselect';
+
+import { withRouter } from 'react-router-dom';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { createSelector } from 'reselect';
+
 import { fetchLists } from 'flavours/glitch/actions/lists';
+
 import ColumnLink from './column_link';
 
 const getOrderedLists = createSelector([state => state.get('lists')], lists => {

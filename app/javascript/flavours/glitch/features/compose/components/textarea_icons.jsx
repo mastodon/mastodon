@@ -1,13 +1,13 @@
 //  Package imports.
 import PropTypes from 'prop-types';
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Components.
 import { Icon } from 'flavours/glitch/components/icon';
-
 //  Messages.
 const messages = defineMessages({
   localOnly: {
