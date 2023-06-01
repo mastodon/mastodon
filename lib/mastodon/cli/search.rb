@@ -29,15 +29,7 @@ module Mastodon::CLI
       database will be imported into the indices, unless overridden with --no-import.
     LONG_DESC
     def deploy
-      if options[:concurrency] < 1
-        say('Cannot run with this concurrency setting, must be at least 1', :red)
-        exit(1)
-      end
-
-      if options[:batch_size] < 1
-        say('Cannot run with this batch_size setting, must be at least 1', :red)
-        exit(1)
-      end
+      verify_deploy_options!
 
       indices = if options[:only]
                   options[:only].map { |str| "#{str.camelize}Index".constantize }
@@ -97,6 +89,27 @@ module Mastodon::CLI
       progress.finish
 
       say("Indexed #{added} records, de-indexed #{removed}", :green, true)
+    end
+
+    private
+
+    def verify_deploy_options!
+      verify_deploy_concurrency!
+      verify_deploy_batch_size!
+    end
+
+    def verify_deploy_concurrency!
+      return unless options[:concurrency] < 1
+
+      say('Cannot run with this concurrency setting, must be at least 1', :red)
+      exit(1)
+    end
+
+    def verify_deploy_batch_size!
+      return unless options[:batch_size] < 1
+
+      say('Cannot run with this batch_size setting, must be at least 1', :red)
+      exit(1)
     end
   end
 end
