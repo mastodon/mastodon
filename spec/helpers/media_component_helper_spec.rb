@@ -49,7 +49,7 @@ describe MediaComponentHelper do
   end
 
   describe 'render_card_component' do
-    let(:status) { Fabricate(:status, preview_cards: [Fabricate(:preview_card)]) }
+    let(:status) { Fabricate(:status, preview_card: Fabricate(:preview_card)) }
     let(:result) { helper.render_card_component(status) }
 
     before do

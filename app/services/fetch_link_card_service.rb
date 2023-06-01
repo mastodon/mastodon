@@ -19,7 +19,7 @@ class FetchLinkCardService < BaseService
     @status       = status
     @original_url = parse_urls
 
-    return if @original_url.nil? || @status.preview_cards.any?
+    return if @original_url.nil? || @status.with_preview_card?
 
     @url = @original_url.to_s
 
@@ -63,7 +63,7 @@ class FetchLinkCardService < BaseService
   end
 
   def attach_card
-    @status.preview_cards << @card
+    @status.update!(preview_card: @card)
     Rails.cache.delete(@status)
     Trends.links.register(@status)
   end

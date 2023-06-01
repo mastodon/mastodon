@@ -72,7 +72,8 @@ class Status < ApplicationRecord
   has_many :media_attachments, dependent: :nullify
 
   has_and_belongs_to_many :tags
-  has_and_belongs_to_many :preview_cards
+
+  belongs_to :preview_card, optional: true
 
   has_one :notification, as: :activity, dependent: :destroy
   has_one :status_stat, inverse_of: :status
@@ -139,14 +140,14 @@ class Status < ApplicationRecord
                    :conversation,
                    :status_stat,
                    :tags,
-                   :preview_cards,
+                   :preview_card,
                    :preloadable_poll,
                    account: [:account_stat, user: :role],
                    active_mentions: { account: :account_stat },
                    reblog: [
                      :application,
                      :tags,
-                     :preview_cards,
+                     :preview_card,
                      :media_attachments,
                      :conversation,
                      :status_stat,
@@ -247,10 +248,6 @@ class Status < ApplicationRecord
     reblog
   end
 
-  def preview_card
-    preview_cards.first
-  end
-
   def hidden?
     !distributable?
   end
@@ -266,7 +263,7 @@ class Status < ApplicationRecord
   end
 
   def with_preview_card?
-    preview_cards.any?
+    preview_card.present?
   end
 
   def non_sensitive_with_media?

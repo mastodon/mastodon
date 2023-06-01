@@ -48,7 +48,7 @@ class PreviewCard < ApplicationRecord
   enum type: { link: 0, photo: 1, video: 2, rich: 3 }
   enum link_type: { unknown: 0, article: 1 }
 
-  has_and_belongs_to_many :statuses
+  has_many :statuses, dependent: :nullify
   has_one :trend, class_name: 'PreviewCardTrend', inverse_of: :preview_card, dependent: :destroy
 
   has_attached_file :image, processors: [:thumbnail, :blurhash_transcoder], styles: ->(f) { image_styles(f) }, convert_options: { all: '-quality 90 +profile "!icc,*" +set modify-date +set create-date' }, validate_media_type: false

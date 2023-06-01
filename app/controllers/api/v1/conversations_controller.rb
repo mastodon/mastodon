@@ -36,7 +36,7 @@ class Api::V1::ConversationsController < Api::BaseController
                          account: :account_stat,
                          last_status: [
                            :media_attachments,
-                           :preview_cards,
+                           :preview_card,
                            :status_stat,
                            :tags,
                            {

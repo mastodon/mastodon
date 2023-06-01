@@ -33,7 +33,7 @@ RSpec.describe FetchLinkCardService, type: :service do
 
       it 'works with SJIS' do
         expect(a_request(:get, 'http://example.com/sjis')).to have_been_made.at_least_once
-        expect(status.preview_cards.first.title).to eq('SJISのページ')
+        expect(status.preview_card.title).to eq('SJISのページ')
       end
     end
 
@@ -42,7 +42,7 @@ RSpec.describe FetchLinkCardService, type: :service do
 
       it 'works with SJIS even with wrong charset header' do
         expect(a_request(:get, 'http://example.com/sjis_with_wrong_charset')).to have_been_made.at_least_once
-        expect(status.preview_cards.first.title).to eq('SJISのページ')
+        expect(status.preview_card.title).to eq('SJISのページ')
       end
     end
 
@@ -51,7 +51,7 @@ RSpec.describe FetchLinkCardService, type: :service do
 
       it 'works with koi8-r' do
         expect(a_request(:get, 'http://example.com/koi8-r')).to have_been_made.at_least_once
-        expect(status.preview_cards.first.title).to eq('Московя начинаетъ только въ XVI ст. привлекать внимане иностранцевъ.')
+        expect(status.preview_card.title).to eq('Московя начинаетъ только въ XVI ст. привлекать внимане иностранцевъ.')
       end
     end
 
@@ -60,7 +60,7 @@ RSpec.describe FetchLinkCardService, type: :service do
 
       it 'works with windows-1251' do
         expect(a_request(:get, 'http://example.com/windows-1251')).to have_been_made.at_least_once
-        expect(status.preview_cards.first.title).to eq('сэмпл текст')
+        expect(status.preview_card.title).to eq('сэмпл текст')
       end
     end
 
@@ -69,7 +69,7 @@ RSpec.describe FetchLinkCardService, type: :service do
 
       it 'works with Japanese path string' do
         expect(a_request(:get, 'http://example.com/日本語')).to have_been_made.at_least_once
-        expect(status.preview_cards.first.title).to eq('SJISのページ')
+        expect(status.preview_card.title).to eq('SJISのページ')
       end
     end
 
