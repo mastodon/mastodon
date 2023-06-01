@@ -9,23 +9,19 @@ HttpLog.configuration.logger = dev_null
 Paperclip.options[:log]      = false
 Chewy.logger                 = dev_null
 
-module Mastodon::CLI
-  module Helper
-    def dry_run?
-      options[:dry_run]
-    end
+require 'ruby-progressbar/outputs/null'
 
-    def dry_run_mode_suffix
-      dry_run? ? ' (DRY RUN)' : ''
-    end
+module Mastodon::CLI
+  module ProgressHelper
+    PROGRESS_FORMAT = '%c/%u |%b%i| %e'
 
     def create_progress_bar(total = nil)
-      ProgressBar.create(total: total, format: '%c/%u |%b%i| %e')
-    end
-
-    def reset_connection_pools!
-      ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations[Rails.env].dup.tap { |config| config['pool'] = options[:concurrency] + 1 })
-      RedisConfiguration.establish_pool(options[:concurrency])
+      ProgressBar.create(
+        {
+          total: total,
+          format: PROGRESS_FORMAT,
+        }.merge(progress_output_options)
+      )
     end
 
     def parallelize_with_progress(scope)
@@ -82,8 +78,10 @@ module Mastodon::CLI
       [total.value, aggregate.value]
     end
 
-    def pastel
-      @pastel ||= Pastel.new
+    private
+
+    def progress_output_options
+      Rails.env.test? ? { output: ProgressBar::Outputs::Null } : {}
     end
   end
 end
