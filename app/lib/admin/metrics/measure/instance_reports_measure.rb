@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Measure::InstanceReportsMeasure < Admin::Metrics::Measure::BaseMeasure
+  include Admin::Metrics::Measure::QueryHelper
+
   def self.with_params?
     true
   end
@@ -25,34 +27,26 @@ class Admin::Metrics::Measure::InstanceReportsMeasure < Admin::Metrics::Measure:
     nil
   end
 
-  def perform_data_query
-    account_matching_sql = begin
-      if params[:include_subdomains]
-        "accounts.domain IN (SELECT domain FROM instances WHERE reverse('.' || domain) LIKE reverse('.' || $3::text))"
-      else
-        'accounts.domain = $3::text'
-      end
-    end
+  def sql_array
+    [sql_query_string, { start_at: @start_at, end_at: @end_at, domain: params[:domain] }]
+  end
 
-    sql = <<-SQL.squish
+  def sql_query_string
+    <<~SQL.squish
       SELECT axis.*, (
         WITH new_reports AS (
           SELECT reports.id
           FROM reports
           INNER JOIN accounts ON accounts.id = reports.target_account_id
           WHERE date_trunc('day', reports.created_at)::date = axis.period
-            AND #{account_matching_sql}
+            AND #{account_domain_sql(params[:include_subdomains])}
         )
         SELECT count(*) FROM new_reports
       ) AS value
       FROM (
-        SELECT generate_series(date_trunc('day', $1::timestamp)::date, date_trunc('day', $2::timestamp)::date, interval '1 day') AS period
+        SELECT generate_series(date_trunc('day', :start_at::timestamp)::date, date_trunc('day', :end_at::timestamp)::date, interval '1 day') AS period
       ) AS axis
     SQL
-
-    rows = ActiveRecord::Base.connection.select_all(sql, nil, [[nil, @start_at], [nil, @end_at], [nil, params[:domain]]])
-
-    rows.map { |row| { date: row['period'], value: row['value'].to_s } }
   end
 
   def time_period
