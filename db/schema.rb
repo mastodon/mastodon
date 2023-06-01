@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_01_132637) do
+ActiveRecord::Schema.define(version: 2023_06_01_142652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -800,12 +800,6 @@ ActiveRecord::Schema.define(version: 2023_06_01_132637) do
     t.boolean "trendable"
     t.integer "link_type"
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
-  end
-
-  create_table "preview_cards_statuses", id: false, force: :cascade do |t|
-    t.bigint "preview_card_id", null: false
-    t.bigint "status_id", null: false
-    t.index ["status_id", "preview_card_id"], name: "index_preview_cards_statuses_on_status_id_and_preview_card_id"
   end
 
   create_table "relays", force: :cascade do |t|
