@@ -27,6 +27,7 @@
 #  edited_at                    :datetime
 #  trendable                    :boolean
 #  ordered_media_attachment_ids :bigint(8)        is an Array
+#  preview_card_id              :bigint(8)
 #
 
 class Status < ApplicationRecord
