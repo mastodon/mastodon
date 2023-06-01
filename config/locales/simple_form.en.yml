@@ -78,8 +78,7 @@ en:
         backups_retention_period: Keep generated user archives for the specified number of days.
         bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations.
         closed_registrations_message: Displayed when sign-ups are closed
-        content_cache_retention_period_html: "<strong>All</strong> posts and boosts from other servers will be deleted after the specified number of days."
-        content_cache_retention_period_warning_html: 'This will delete all remote posts, including those which have been interacted with. As a result: <ul><li>Boosts will be lost and impossible to undo</li><li>Favourites will be lost and impossible to undo</li><li>Bookmarks will be lost</li><li>Non-public posts may be permanently lost</li></ul>'
+        content_cache_retention_period: All posts and boosts from other servers will be deleted after the specified number of days. Some posts may not be recoverable. All related bookmarks, favourites and boosts will also be lost and impossible to undo.
         custom_css: You can apply custom styles on the web version of Mastodon.
         mascot: Overrides the illustration in the advanced web interface.
         media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
