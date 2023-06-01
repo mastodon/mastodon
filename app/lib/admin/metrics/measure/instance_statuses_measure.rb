@@ -16,7 +16,9 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
   protected
 
   def perform_total_query
-    Status.joins(:account).merge(Account.where(domain: params[:domain])).count
+    domain = params[:domain]
+    domain = Instance.by_domain_and_subdomains(params[:domain]).select(:domain) if params[:include_subdomains]
+    Status.joins(:account).merge(Account.where(domain: domain)).count
   end
 
   def perform_previous_total_query
@@ -24,6 +26,14 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
   end
 
   def perform_data_query
+    account_matching_sql = begin
+      if params[:include_subdomains]
+        "accounts.domain IN (SELECT domain FROM instances WHERE reverse('.' || domain) LIKE reverse('.' || $5::text))"
+      else
+        'accounts.domain = $5::text'
+      end
+    end
+
     sql = <<-SQL.squish
       SELECT axis.*, (
         WITH new_statuses AS (
@@ -31,7 +41,7 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
           FROM statuses
           INNER JOIN accounts ON accounts.id = statuses.account_id
           WHERE statuses.id BETWEEN $3 AND $4
-            AND accounts.domain = $5::text
+            AND #{account_matching_sql}
             AND date_trunc('day', statuses.created_at)::date = axis.period
         )
         SELECT count(*) FROM new_statuses
@@ -55,6 +65,6 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
   end
 
   def params
-    @params.permit(:domain)
+    @params.permit(:domain, :include_subdomains)
   end
 end
