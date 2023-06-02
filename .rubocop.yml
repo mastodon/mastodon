@@ -11,6 +11,7 @@ require:
   - rubocop-rspec
   - rubocop-performance
   - rubocop-capybara
+  - ./lib/linter/rubocop_middle_dot
 
 AllCops:
   TargetRubyVersion: 3.0 # Set to minimum supported version of CI
@@ -205,3 +206,6 @@ Style/TrailingCommaInArrayLiteral:
 # https://docs.rubocop.org/rubocop/cops_style.html#styletrailingcommainhashliteral
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: 'comma'
+
+Style/MiddleDot:
+  Enabled: true
