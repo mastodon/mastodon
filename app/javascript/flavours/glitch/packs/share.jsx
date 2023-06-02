@@ -2,7 +2,6 @@ import 'packs/public-path';
 import { createRoot } from 'react-dom/client';
 
 import ComposeContainer from 'flavours/glitch/containers/compose_container';
-import { loadLocale } from 'flavours/glitch/load_locale';
 import { loadPolyfills } from 'flavours/glitch/polyfills';
 import ready from 'flavours/glitch/ready';
 
@@ -23,6 +22,6 @@ function main() {
   ready(loaded);
 }
 
-loadPolyfills().then(loadLocale).then(main).catch(error => {
+loadPolyfills().then(main).catch(error => {
   console.error(error);
 });
