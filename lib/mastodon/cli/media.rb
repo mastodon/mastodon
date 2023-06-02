@@ -33,7 +33,7 @@ module Mastodon::CLI
     def remove
       verify_remove_options!
 
-      if options[:prune_profiles] || options[:remove_headers]
+      if prune_profiles_or_remove_headers?
         processed, aggregate = parallelize_with_progress(Account.remote.where({ last_webfingered_at: ..time_ago, updated_at: ..time_ago })) do |account|
           next if !options[:include_follows] && Follow.where(account: account).or(Follow.where(target_account: account)).exists?
           next if account.avatar.blank? && account.header.blank?
@@ -54,7 +54,7 @@ module Mastodon::CLI
         say("Visited #{processed} accounts and removed profile media totaling #{number_to_human_size(aggregate)}#{dry_run_mode_suffix}", :green, true)
       end
 
-      unless options[:prune_profiles] || options[:remove_headers]
+      unless prune_profiles_or_remove_headers?
         processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where(created_at: ..time_ago)) do |media_attachment|
           next if media_attachment.file.blank?
 
@@ -356,6 +356,10 @@ module Mastodon::CLI
 
     def time_ago
       options[:days].days.ago
+    end
+
+    def prune_profiles_or_remove_headers?
+      options[:prune_profiles] || options[:remove_headers]
     end
 
     def preload_records_from_mixed_objects(objects)
