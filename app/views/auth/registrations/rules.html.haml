@@ -9,7 +9,7 @@
 
   - if @invite.present? && @invite.autofollow?
     %h1.title= t('auth.rules.title_invited')
-    %p.lead= t('auth.rules.invited_by', domain: site_hostname)
+    %p.lead.invited-by= t('auth.rules.invited_by', domain: site_hostname)
     = render 'application/card', account: @invite.user.account, compact: true
     %p.lead= t('auth.rules.preamble_invited', domain: site_hostname)
   - else
