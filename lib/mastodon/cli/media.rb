@@ -31,9 +31,7 @@ module Mastodon::CLI
       following anyone locally are pruned.
     DESC
     def remove
-      fail_with_message '--prune-profiles and --remove-headers should not be specified simultaneously' if options[:prune_profiles] && options[:remove_headers]
-
-      fail_with_message '--include-follows can only be used with --prune-profiles or --remove-headers' if options[:include_follows] && !(options[:prune_profiles] || options[:remove_headers])
+      verify_remove_options!
       time_ago = options[:days].days.ago
 
       if options[:prune_profiles] || options[:remove_headers]
@@ -326,6 +324,12 @@ module Mastodon::CLI
       PreviewCard
       SiteUpload
     ).freeze
+
+    def verify_remove_options!
+      fail_with_message '--prune-profiles and --remove-headers should not be specified simultaneously' if options[:prune_profiles] && options[:remove_headers]
+
+      fail_with_message '--include-follows can only be used with --prune-profiles or --remove-headers' if options[:include_follows] && !(options[:prune_profiles] || options[:remove_headers])
+    end
 
     def preload_records_from_mixed_objects(objects)
       preload_map = Hash.new { |hash, key| hash[key] = [] }
