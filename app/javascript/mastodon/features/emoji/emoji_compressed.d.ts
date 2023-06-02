@@ -23,7 +23,7 @@ export type EmojiCompressed = [
   ShortName[]
 ];
 
-// Since emoji_compressed.js is difficult to TS,
+// Because emoji_compressed.js is difficult to change to TS,
 // export we are temporarily allowing a default export
 // at this location to apply the TS type to the JS file export.
 declare const emojiCompressed: EmojiCompressed;
