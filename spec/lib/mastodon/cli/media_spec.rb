@@ -22,5 +22,15 @@ describe Mastodon::CLI::Media do
         ).to_stdout.and raise_error(SystemExit)
       end
     end
+
+    context 'with --include-follows but not including --prune-profiles and --remove-headers' do
+      let(:options) { { include_follows: true } }
+
+      it 'warns about usage and exits' do
+        expect { cli.invoke(:remove, [], options) }.to output(
+          a_string_including('--include-follows can only be used with --prune-profiles or --remove-headers')
+        ).to_stdout.and raise_error(SystemExit)
+      end
+    end
   end
 end
