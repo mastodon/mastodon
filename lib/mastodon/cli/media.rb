@@ -35,7 +35,7 @@ module Mastodon::CLI
 
       if prune_profiles_or_remove_headers?
         processed, aggregate = parallelize_with_progress(remote_stale_accounts) do |account|
-          next if !options[:include_follows] && Follow.where(account: account).or(Follow.where(target_account: account)).exists?
+          next if !options[:include_follows] && relevant_account_follow?(account)
           next if account.avatar.blank? && account.header.blank?
           next if options[:remove_headers] && account.header.blank?
 
@@ -374,6 +374,10 @@ module Mastodon::CLI
 
     def combined_attachments_file_size(media_attachment)
       (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
+    end
+
+    def relevant_account_follow?(account)
+      Follow.where(account: account).or(Follow.where(target_account: account)).exists?
     end
 
     def preload_records_from_mixed_objects(objects)
