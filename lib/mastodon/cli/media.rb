@@ -42,7 +42,7 @@ module Mastodon::CLI
           size = (account.header_file_size || 0)
           size += (account.avatar_file_size || 0) if options[:prune_profiles]
 
-          process_remove(account)
+          process_remove_account(account)
 
           size
         end
@@ -56,11 +56,7 @@ module Mastodon::CLI
 
           size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
 
-          unless dry_run?
-            media_attachment.file.destroy
-            media_attachment.thumbnail.destroy
-            media_attachment.save
-          end
+          process_remove_media_attachment(media_attachment)
 
           size
         end
@@ -362,11 +358,19 @@ module Mastodon::CLI
       Account.remote.where({ last_webfingered_at: ..time_ago, updated_at: ..time_ago })
     end
 
-    def process_remove(account)
+    def process_remove_account(account)
       unless dry_run?
         account.header.destroy
         account.avatar.destroy if options[:prune_profiles]
         account.save!
+      end
+    end
+
+    def process_remove_media_attachment(media_attachment)
+      unless dry_run?
+        media_attachment.file.destroy
+        media_attachment.thumbnail.destroy
+        media_attachment.save
       end
     end
 
