@@ -42,11 +42,7 @@ module Mastodon::CLI
           size = (account.header_file_size || 0)
           size += (account.avatar_file_size || 0) if options[:prune_profiles]
 
-          unless dry_run?
-            account.header.destroy
-            account.avatar.destroy if options[:prune_profiles]
-            account.save!
-          end
+          process_remove(account)
 
           size
         end
@@ -364,6 +360,14 @@ module Mastodon::CLI
 
     def remote_stale_accounts
       Account.remote.where({ last_webfingered_at: ..time_ago, updated_at: ..time_ago })
+    end
+
+    def process_remove(account)
+      unless dry_run?
+        account.header.destroy
+        account.avatar.destroy if options[:prune_profiles]
+        account.save!
+      end
     end
 
     def preload_records_from_mixed_objects(objects)
