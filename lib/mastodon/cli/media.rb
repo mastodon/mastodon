@@ -32,7 +32,6 @@ module Mastodon::CLI
     DESC
     def remove
       verify_remove_options!
-      time_ago = options[:days].days.ago
 
       if options[:prune_profiles] || options[:remove_headers]
         processed, aggregate = parallelize_with_progress(Account.remote.where({ last_webfingered_at: ..time_ago, updated_at: ..time_ago })) do |account|
@@ -353,6 +352,10 @@ module Mastodon::CLI
         say('--include-follows can only be used with --prune-profiles or --remove-headers', :red, true)
         exit(1)
       end
+    end
+
+    def time_ago
+      options[:days].days.ago
     end
 
     def preload_records_from_mixed_objects(objects)
