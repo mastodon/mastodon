@@ -22,3 +22,10 @@ export type EmojiCompressed = [
   Category[],
   ShortName[]
 ];
+
+// Since emoji_compressed.js is difficult to TS,
+// export we are temporarily allowing a default export
+// at this location to apply the TS type to the JS file export.
+declare const emojiCompressed: EmojiCompressed;
+
+export default emojiCompressed; // eslint-disable-line import/no-default-export

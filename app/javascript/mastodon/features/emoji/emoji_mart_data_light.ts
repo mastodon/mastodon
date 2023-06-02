@@ -2,14 +2,13 @@
 // "data" object, such that we can use it for a light version of emoji-mart's
 // emojiIndex.search functionality.
 import type {
-  EmojiCompressed,
   Native,
   Search,
   ShortCodesToEmojiData,
   ShortName,
   Unified,
 } from './emoji_compressed';
-import emojiCompressed_ from './emoji_compressed';
+import emojiCompressed from './emoji_compressed';
 import { unicodeToUnifiedName } from './unicode_to_unified_name';
 
 type Emojis = {
@@ -21,7 +20,6 @@ type Emojis = {
   };
 };
 
-const emojiCompressed = emojiCompressed_ as EmojiCompressed;
 const [shortCodesToEmojiData, skins, categories, short_names] = emojiCompressed;
 
 const emojis: Emojis = {};
