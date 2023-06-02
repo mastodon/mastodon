@@ -54,11 +54,9 @@ module Mastodon::CLI
         processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where(created_at: ..time_ago)) do |media_attachment|
           next if media_attachment.file.blank?
 
-          size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
-
-          process_remove_media_attachment(media_attachment)
-
-          size
+          combined_attachments_file_size(media_attachment).tap do
+            process_remove_media_attachment(media_attachment)
+          end
         end
 
         say("Removed #{processed} media attachments (approx. #{number_to_human_size(aggregate)})#{dry_run_mode_suffix}", :green, true)
@@ -372,6 +370,10 @@ module Mastodon::CLI
         media_attachment.thumbnail.destroy
         media_attachment.save
       end
+    end
+
+    def combined_attachments_file_size(media_attachment)
+      (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
     end
 
     def preload_records_from_mixed_objects(objects)
