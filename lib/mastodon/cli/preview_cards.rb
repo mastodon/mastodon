@@ -26,26 +26,55 @@ module Mastodon::CLI
       leaving video and photo cards untouched.
     DESC
     def remove
-      time_ago = options[:days].days.ago
-      link     = options[:link] ? 'link-type ' : ''
-      scope    = PreviewCard.cached
-      scope    = scope.where(type: :link) if options[:link]
-      scope    = scope.where('updated_at < ?', time_ago)
-
-      processed, aggregate = parallelize_with_progress(scope) do |preview_card|
+      processed, aggregate = parallelize_with_progress(preview_card_scope) do |preview_card|
         next if preview_card.image.blank?
 
-        size = preview_card.image_file_size
-
-        unless dry_run?
-          preview_card.image.destroy
-          preview_card.save
+        preview_card.image_file_size.tap do
+          process_preview_card(preview_card)
         end
-
-        size
       end
 
-      say("Removed #{processed} #{link}preview cards (approx. #{number_to_human_size(aggregate)})#{dry_run_mode_suffix}", :green, true)
+      say(summary_message(processed, aggregate), :green, true)
+    end
+
+    private
+
+    def time_ago
+      options[:days].days.ago
+    end
+
+    def link_option?
+      options[:link].present?
+    end
+
+    def link_type_s
+      link_option? ? 'link-type ' : ''
+    end
+
+    def preview_card_scope
+      PreviewCard.cached.tap do |scope|
+        scope.merge!(link_type_scope) if link_option?
+        scope.merge!(time_ago_scope)
+      end
+    end
+
+    def link_type_scope
+      PreviewCard.where(type: :link)
+    end
+
+    def time_ago_scope
+      PreviewCard.where('updated_at < ?', time_ago)
+    end
+
+    def process_preview_card(preview_card)
+      return if dry_run?
+
+      preview_card.image.destroy
+      preview_card.save
+    end
+
+    def summary_message(count, file_size)
+      "Removed #{count} #{link_type_s}preview cards (approx. #{number_to_human_size(file_size)})#{dry_run_mode_suffix}"
     end
   end
 end
