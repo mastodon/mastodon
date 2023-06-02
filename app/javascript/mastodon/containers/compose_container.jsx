@@ -6,7 +6,7 @@ import { fetchCustomEmojis } from '../actions/custom_emojis';
 import { hydrateStore } from '../actions/store';
 import Compose from '../features/standalone/compose';
 import initialState from '../initial_state';
-import { IntlProvider } from '../locales/intl_provider';
+import { IntlProvider } from '../locales';
 import { store } from '../store';
 
 

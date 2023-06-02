@@ -1,7 +1,7 @@
 import { Semaphore } from 'async-mutex';
 
-import type { LocaleData } from './locales';
-import { isLocaleLoaded, setLocale } from './locales';
+import type { LocaleData } from './global_locale';
+import { isLocaleLoaded, setLocale } from './global_locale';
 
 const localeLoadingSemaphore = new Semaphore(1);
 

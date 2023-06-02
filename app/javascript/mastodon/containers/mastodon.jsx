@@ -14,7 +14,7 @@ import { connectUserStream } from 'mastodon/actions/streaming';
 import ErrorBoundary from 'mastodon/components/error_boundary';
 import UI from 'mastodon/features/ui';
 import initialState, { title as siteTitle } from 'mastodon/initial_state';
-import { IntlProvider } from 'mastodon/locales/intl_provider';
+import { IntlProvider } from 'mastodon/locales';
 import { store } from 'mastodon/store';
 
 const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;

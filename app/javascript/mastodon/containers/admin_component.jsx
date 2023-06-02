@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { IntlProvider } from 'mastodon/locales/intl_provider';
+import { IntlProvider } from 'mastodon/locales';
 
 export default class AdminComponent extends PureComponent {
 
