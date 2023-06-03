@@ -3,6 +3,7 @@ on:
   push:
     branches-ignore:
       - 'dependabot/**'
+      - 'renovate/**'
   pull_request:
 
 jobs:
