@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   build-image:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     environment: prod
     steps:
       - uses: actions/checkout@v3
