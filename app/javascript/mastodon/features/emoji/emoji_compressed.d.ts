@@ -1,8 +1,21 @@
 import type { BaseEmoji, EmojiData, NimbleEmojiIndex } from 'emoji-mart';
 import type { Category, Data, Emoji } from 'emoji-mart/dist-es/utils/data';
 
-export type FilenameData = string[][];
+/*
+ * The 'search' property, although not defined in the [`Emoji`]{@link node_modules/@types/emoji-mart/dist-es/utils/data.d.ts#Emoji} type,
+ * is used in the application.
+ * This could be due to an oversight by the library maintainer.
+ * The `search` property is defined and used [here]{@link node_modules/emoji-mart/dist/utils/data.js#uncompress}.
+ */
 export type Search = string;
+/*
+ * The 'skins' property does not exist in the application data.
+ * This could be a potential area of refactoring or error handling.
+ * The non-existence of 'skins' property is evident at [this location]{@link app/javascript/mastodon/features/emoji/emoji_compressed.js:121}.
+ */
+export type Skins = null;
+
+export type FilenameData = string[][];
 export type ShortCodesToEmojiDataKey =
   | EmojiData['id']
   | BaseEmoji['native']
@@ -18,7 +31,6 @@ export type SearchData = [
 export interface ShortCodesToEmojiData {
   [key: ShortCodesToEmojiDataKey]: [FilenameData, SearchData];
 }
-export type Skins = null;
 
 export type EmojiCompressed = [
   ShortCodesToEmojiData,
