@@ -1,4 +1,4 @@
-export type FilenameData = string[];
+export type FilenameData = string[][];
 export type Native = string;
 export type ShortName = string;
 export type Search = string;
