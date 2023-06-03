@@ -15,11 +15,15 @@ export interface Category {
   name: string;
   emojis: string[];
 }
+export interface Alias {
+  [key: string]: string;
+}
 
 export type EmojiCompressed = [
   ShortCodesToEmojiData,
   Skins,
   Category[],
+  Alias[],
   ShortName[]
 ];
 

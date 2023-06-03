@@ -20,7 +20,9 @@ type Emojis = {
   };
 };
 
-const [shortCodesToEmojiData, skins, categories, short_names] = emojiCompressed;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const [shortCodesToEmojiData, skins, categories, aliases, short_names] =
+  emojiCompressed;
 
 const emojis: Emojis = {};
 
