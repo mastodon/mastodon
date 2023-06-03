@@ -12,6 +12,42 @@ describe Mastodon::CLI::Feeds do
     end
   end
 
+  describe '#build' do
+    before { Fabricate(:account) }
+
+    context 'with --all option' do
+      let(:options) { { all: true } }
+
+      it 'regenerates feeds for all accounts' do
+        expect { cli.invoke(:build, [], options) }.to output(
+          a_string_including('Regenerated feeds')
+        ).to_stdout
+      end
+    end
+
+    context 'with a username' do
+      before { Fabricate(:account, username: 'alice') }
+
+      let(:arguments) { ['alice'] }
+
+      it 'regenerates feeds for the account' do
+        expect { cli.invoke(:build, arguments) }.to output(
+          a_string_including('OK')
+        ).to_stdout
+      end
+    end
+
+    context 'with invalid username' do
+      let(:arguments) { ['invalid-username'] }
+
+      it 'displays an error and exits' do
+        expect { cli.invoke(:build, arguments) }.to output(
+          a_string_including('No such account')
+        ).to_stdout.and raise_error(SystemExit)
+      end
+    end
+  end
+
   describe '#clear' do
     before do
       allow(redis).to receive(:del).with(key_namespace)
