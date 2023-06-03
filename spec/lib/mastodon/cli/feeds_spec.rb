@@ -14,13 +14,19 @@ describe Mastodon::CLI::Feeds do
 
   describe '#clear' do
     before do
-      allow(redis).to receive(:del).with(redis.keys('feed:*'))
+      allow(redis).to receive(:del).with(key_namespace)
     end
 
     it 'clears the redis `feed:*` namespace' do
       expect { cli.invoke(:clear) }.to output(
         a_string_including('OK')
       ).to_stdout
+
+      expect(redis).to have_received(:del).with(key_namespace).once
+    end
+
+    def key_namespace
+      redis.keys('feed:*')
     end
   end
 end
