@@ -5,6 +5,7 @@ on:
       - 'dependabot/**'
     paths:
       - '.github/workflows/lint-md.yml'
+      - '.nvmrc'
       - '.prettier*'
       - '**/*.md'
       - '!AUTHORS.md'
@@ -14,6 +15,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/lint-md.yml'
+      - '.nvmrc'
       - '.prettier*'
       - '**/*.md'
       - '!AUTHORS.md'
@@ -32,9 +34,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: yarn
+          node-version-file: '.nvmrc'
 
       - name: Install all yarn packages
         run: yarn --frozen-lockfile
 
       - name: Prettier
-        run: yarn prettier --check "**/*.md"
+        run: yarn lint:md

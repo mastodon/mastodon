@@ -1,4 +1,5 @@
 import api from '../api';
+
 import { openModal } from './modal';
 
 export const REPORT_SUBMIT_REQUEST = 'REPORT_SUBMIT_REQUEST';
@@ -6,9 +7,12 @@ export const REPORT_SUBMIT_SUCCESS = 'REPORT_SUBMIT_SUCCESS';
 export const REPORT_SUBMIT_FAIL    = 'REPORT_SUBMIT_FAIL';
 
 export const initReport = (account, status) => dispatch =>
-  dispatch(openModal('REPORT', {
-    accountId: account.get('id'),
-    statusId: status?.get('id'),
+  dispatch(openModal({
+    modalType: 'REPORT',
+    modalProps: {
+      accountId: account.get('id'),
+      statusId: status?.get('id'),
+    },
   }));
 
 export const submitReport = (params, onSuccess, onFail) => (dispatch, getState) => {

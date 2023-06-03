@@ -44,4 +44,4 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Jest testing
-        run: yarn test:jest --reporters github-actions summary
+        run: yarn jest --reporters github-actions summary

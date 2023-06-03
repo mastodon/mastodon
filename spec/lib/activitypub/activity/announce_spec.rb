@@ -39,7 +39,7 @@ RSpec.describe ActivityPub::Activity::Announce do
         subject.perform
       end
 
-      context 'a known status' do
+      context 'with known status' do
         let(:object_json) do
           ActivityPub::TagManager.instance.uri_for(status)
         end
@@ -49,7 +49,7 @@ RSpec.describe ActivityPub::Activity::Announce do
         end
       end
 
-      context 'an unknown status' do
+      context 'with unknown status' do
         let(:object_json) { 'https://example.com/actor/hello-world' }
 
         it 'creates a reblog by sender of status' do
@@ -60,7 +60,7 @@ RSpec.describe ActivityPub::Activity::Announce do
         end
       end
 
-      context 'self-boost of a previously unknown status with correct attributedTo' do
+      context 'when self-boost of a previously unknown status with correct attributedTo' do
         let(:object_json) do
           {
             id: 'https://example.com/actor#bar',
@@ -76,7 +76,7 @@ RSpec.describe ActivityPub::Activity::Announce do
         end
       end
 
-      context 'self-boost of a previously unknown status with correct attributedTo, inlined Collection in audience' do
+      context 'when self-boost of a previously unknown status with correct attributedTo, inlined Collection in audience' do
         let(:object_json) do
           {
             id: 'https://example.com/actor#bar',
@@ -123,7 +123,7 @@ RSpec.describe ActivityPub::Activity::Announce do
         stub_request(:get, 'https://example.com/actor/hello-world').to_return(body: Oj.dump(unknown_object_json))
       end
 
-      context 'and the relay is enabled' do
+      context 'when the relay is enabled' do
         before do
           relay.update(state: :accepted)
           subject.perform
@@ -135,7 +135,7 @@ RSpec.describe ActivityPub::Activity::Announce do
         end
       end
 
-      context 'and the relay is disabled' do
+      context 'when the relay is disabled' do
         before do
           subject.perform
         end

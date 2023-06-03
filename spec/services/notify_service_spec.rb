@@ -49,7 +49,7 @@ RSpec.describe NotifyService, type: :service do
     expect { subject }.to_not change(Notification, :count)
   end
 
-  context 'for direct messages' do
+  context 'with direct messages' do
     let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct)) }
     let(:type)     { :mention }
 
@@ -58,14 +58,14 @@ RSpec.describe NotifyService, type: :service do
       user.save
     end
 
-    context 'if recipient is supposed to be following sender' do
+    context 'when recipient is supposed to be following sender' do
       let(:enabled) { true }
 
       it 'does not notify' do
         expect { subject }.to_not change(Notification, :count)
       end
 
-      context 'if the message chain is initiated by recipient, but is not direct message' do
+      context 'when the message chain is initiated by recipient, but is not direct message' do
         let(:reply_to) { Fabricate(:status, account: recipient) }
         let!(:mention) { Fabricate(:mention, account: sender, status: reply_to) }
         let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct, thread: reply_to)) }
@@ -75,7 +75,7 @@ RSpec.describe NotifyService, type: :service do
         end
       end
 
-      context 'if the message chain is initiated by recipient, but without a mention to the sender, even if the sender sends multiple messages in a row' do
+      context 'when the message chain is initiated by recipient, but without a mention to the sender, even if the sender sends multiple messages in a row' do
         let(:reply_to) { Fabricate(:status, account: recipient) }
         let!(:mention) { Fabricate(:mention, account: sender, status: reply_to) }
         let(:dummy_reply) { Fabricate(:status, account: sender, visibility: :direct, thread: reply_to) }
@@ -86,7 +86,7 @@ RSpec.describe NotifyService, type: :service do
         end
       end
 
-      context 'if the message chain is initiated by the recipient with a mention to the sender' do
+      context 'when the message chain is initiated by the recipient with a mention to the sender' do
         let(:reply_to) { Fabricate(:status, account: recipient, visibility: :direct) }
         let!(:mention) { Fabricate(:mention, account: sender, status: reply_to) }
         let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct, thread: reply_to)) }
@@ -97,7 +97,7 @@ RSpec.describe NotifyService, type: :service do
       end
     end
 
-    context 'if recipient is NOT supposed to be following sender' do
+    context 'when recipient is NOT supposed to be following sender' do
       let(:enabled) { false }
 
       it 'does notify' do

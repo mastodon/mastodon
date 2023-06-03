@@ -1,15 +1,20 @@
 # frozen_string_literal: true
 
 class Api::V1::Emails::ConfirmationsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :write, :'write:accounts' }
-  before_action :require_user_owned_by_application!
-  before_action :require_user_not_confirmed!
+  before_action -> { authorize_if_got_token! :read, :'read:accounts' }, only: :check
+  before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, except: :check
+  before_action :require_user_owned_by_application!, except: :check
+  before_action :require_user_not_confirmed!, except: :check
 
   def create
     current_user.update!(email: params[:email]) if params.key?(:email)
     current_user.resend_confirmation_instructions
 
     render_empty
+  end
+
+  def check
+    render json: current_user.confirmed?
   end
 
   private

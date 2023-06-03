@@ -12,7 +12,7 @@ require 'paperclip/matchers'
 require 'capybara/rspec'
 require 'chewy/rspec'
 
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(allow: Chewy.settings[:host])
@@ -56,11 +56,15 @@ module SignedRequestHelpers
 end
 
 RSpec.configure do |config|
-  config.fixture_path = "#{Rails.root}/spec/fixtures"
+  config.fixture_path = Rails.root.join('spec', 'fixtures')
   config.use_transactional_fixtures = true
   config.order = 'random'
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+
+  config.define_derived_metadata(file_path: Regexp.new('spec/lib/mastodon/cli')) do |metadata|
+    metadata[:type] = :cli
+  end
 
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :helper
@@ -72,6 +76,10 @@ RSpec.configure do |config|
   config.include Chewy::Rspec::Helpers
   config.include Redisable
   config.include SignedRequestHelpers, type: :request
+
+  config.before :each, type: :cli do
+    stub_stdout
+  end
 
   config.before :each, type: :feature do
     https = ENV['LOCAL_HTTPS'] == 'true'
@@ -104,6 +112,10 @@ end
 
 def attachment_fixture(name)
   Rails.root.join('spec', 'fixtures', 'files', name).open
+end
+
+def stub_stdout
+  allow($stdout).to receive(:write)
 end
 
 def stub_jsonld_contexts!

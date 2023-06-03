@@ -7,7 +7,7 @@ class BulkImportRowService
     @type    = row.bulk_import.type.to_sym
 
     case @type
-    when :following, :blocking, :muting
+    when :following, :blocking, :muting, :lists
       target_acct     = @data['acct']
       target_domain   = domain(target_acct)
       @target_account = stoplight_wrap_request(target_domain) { ResolveAccountService.new.call(target_acct, { check_delivery_availability: true }) }
@@ -33,6 +33,12 @@ class BulkImportRowService
       return false unless StatusPolicy.new(@account, @target_status).show?
 
       @account.bookmarks.find_or_create_by!(status: @target_status)
+    when :lists
+      list = @account.owned_lists.find_or_create_by!(title: @data['list_name'])
+
+      FollowService.new.call(@account, @target_account) unless @account.id == @target_account.id
+
+      list.accounts << @target_account
     end
 
     true

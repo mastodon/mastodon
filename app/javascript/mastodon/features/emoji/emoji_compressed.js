@@ -1,3 +1,5 @@
+/* eslint-disable import/no-commonjs --
+   We need to use CommonJS here due to preval */
 // @preval
 // http://www.unicode.org/Public/emoji/5.0/emoji-test.txt
 // This file contains the compressed version of the emoji data from
@@ -5,13 +7,14 @@
 // It's designed to be emitted in an array format to take up less space
 // over the wire.
 
-const { unicodeToFilename } = require('./unicode_to_filename');
-const { unicodeToUnifiedName } = require('./unicode_to_unified_name');
-const emojiMap = require('./emoji_map.json');
 const { emojiIndex } = require('emoji-mart');
+let data = require('emoji-mart/data/all.json');
 const { uncompress: emojiMartUncompress } = require('emoji-mart/dist/utils/data');
 
-let data = require('emoji-mart/data/all.json');
+const emojiMap = require('./emoji_map.json');
+const { unicodeToFilename } = require('./unicode_to_filename');
+const { unicodeToUnifiedName } = require('./unicode_to_unified_name');
+
 
 if(data.compressed) {
   data = emojiMartUncompress(data);

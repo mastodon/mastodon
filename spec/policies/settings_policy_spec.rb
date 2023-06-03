@@ -9,13 +9,13 @@ RSpec.describe SettingsPolicy do
   let(:john)    { Fabricate(:account) }
 
   permissions :update?, :show?, :destroy? do
-    context 'admin?' do
+    context 'when admin?' do
       it 'permits' do
         expect(subject).to permit(admin, Settings)
       end
     end
 
-    context '!admin?' do
+    context 'with !admin?' do
       it 'denies' do
         expect(subject).to_not permit(john, Settings)
       end

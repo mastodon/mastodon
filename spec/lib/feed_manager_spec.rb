@@ -27,7 +27,7 @@ RSpec.describe FeedManager do
     let(:bob)   { Fabricate(:account, username: 'bob', domain: 'example.com') }
     let(:jeff)  { Fabricate(:account, username: 'jeff') }
 
-    context 'for home feed' do
+    context 'with home feed' do
       it 'returns false for followee\'s status' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         bob.follow!(alice)
@@ -155,7 +155,7 @@ RSpec.describe FeedManager do
       end
     end
 
-    context 'for mentions feed' do
+    context 'with mentions feed' do
       it 'returns true for status that mentions blocked account' do
         bob.block!(jeff)
         status = PostStatusService.new.call(alice, text: 'Hey @jeff')
@@ -196,7 +196,7 @@ RSpec.describe FeedManager do
       expect(redis.zcard("feed:home:#{account.id}")).to eq FeedManager::MAX_ITEMS
     end
 
-    context 'reblogs' do
+    context 'with reblogs' do
       it 'saves reblogs of unseen statuses' do
         account = Fabricate(:account)
         reblogged = Fabricate(:status)

@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe List, type: :model do
+RSpec.describe List do
 end

@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-describe UserMailer, type: :mailer do
+describe UserMailer do
   let(:receiver) { Fabricate(:user) }
 
   shared_examples 'localized subject' do |*args, **kwrest|
     it 'renders subject localized for the locale of the receiver' do
-      locale = I18n.available_locales.sample
+      locale = :de
       receiver.update!(locale: locale)
       expect(mail.subject).to eq I18n.t(*args, **kwrest.merge(locale: locale))
     end

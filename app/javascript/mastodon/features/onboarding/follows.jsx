@@ -1,16 +1,20 @@
-import React from 'react';
-import Column from 'mastodon/components/column';
-import ColumnBackButton from 'mastodon/components/column_back_button';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
+
 import { fetchSuggestions } from 'mastodon/actions/suggestions';
 import { markAsPartial } from 'mastodon/actions/timelines';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import Column from 'mastodon/components/column';
+import ColumnBackButton from 'mastodon/components/column_back_button';
+import { EmptyAccount } from 'mastodon/components/empty_account';
 import Account from 'mastodon/containers/account_container';
-import EmptyAccount from 'mastodon/components/account';
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
-import { makeGetAccount } from 'mastodon/selectors';
 import { me } from 'mastodon/initial_state';
+import { makeGetAccount } from 'mastodon/selectors';
+
 import ProgressIndicator from './components/progress_indicator';
 
 const mapStateToProps = () => {
@@ -23,7 +27,7 @@ const mapStateToProps = () => {
   });
 };
 
-class Follows extends React.PureComponent {
+class Follows extends PureComponent {
 
   static propTypes = {
     onBack: PropTypes.func,
@@ -31,6 +35,7 @@ class Follows extends React.PureComponent {
     suggestions: ImmutablePropTypes.list,
     account: ImmutablePropTypes.map,
     isLoading: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   componentDidMount () {
@@ -44,7 +49,7 @@ class Follows extends React.PureComponent {
   }
 
   render () {
-    const { onBack, isLoading, suggestions, account } = this.props;
+    const { onBack, isLoading, suggestions, account, multiColumn } = this.props;
 
     let loadedContent;
 
@@ -58,7 +63,7 @@ class Follows extends React.PureComponent {
 
     return (
       <Column>
-        <ColumnBackButton onClick={onBack} />
+        <ColumnBackButton multiColumn={multiColumn} onClick={onBack} />
 
         <div className='scrollable privacy-policy'>
           <div className='column-title'>
@@ -72,7 +77,7 @@ class Follows extends React.PureComponent {
             {loadedContent}
           </div>
 
-          <p className='onboarding__lead'><FormattedHTMLMessage id='onboarding.tips.accounts_from_other_servers' defaultMessage='<strong>Did you know?</strong> Since Mastodon is decentralized, some profiles you come across will be hosted on servers other than yours. And yet you can interact with them seamlessly! Their server is in the second half of their username!' /></p>
+          <p className='onboarding__lead'><FormattedMessage id='onboarding.tips.accounts_from_other_servers' defaultMessage='<strong>Did you know?</strong> Since Mastodon is decentralized, some profiles you come across will be hosted on servers other than yours. And yet you can interact with them seamlessly! Their server is in the second half of their username!' values={{ strong: chunks => <strong>{chunks}</strong> }} /></p>
 
           <div className='onboarding__footer'>
             <button className='link-button' onClick={onBack}><FormattedMessage id='onboarding.actions.back' defaultMessage='Take me back' /></button>

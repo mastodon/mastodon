@@ -19,7 +19,7 @@ RSpec.describe PrecomputeFeedService, type: :service do
 
     it 'does not raise an error even if it could not find any status' do
       account = Fabricate(:account)
-      subject.call(account)
+      expect { subject.call(account) }.to_not raise_error
     end
 
     it 'filters statuses' do

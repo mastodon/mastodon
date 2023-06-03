@@ -2,13 +2,13 @@
 
 require 'rails_helper'
 
-RSpec.describe MediaAttachment, type: :model do
+RSpec.describe MediaAttachment do
   describe 'local?' do
     subject { media_attachment.local? }
 
     let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url) }
 
-    context 'remote_url is blank' do
+    context 'when remote_url is blank' do
       let(:remote_url) { '' }
 
       it 'returns true' do
@@ -16,7 +16,7 @@ RSpec.describe MediaAttachment, type: :model do
       end
     end
 
-    context 'remote_url is present' do
+    context 'when remote_url is present' do
       let(:remote_url) { 'remote_url' }
 
       it 'returns false' do
@@ -30,10 +30,10 @@ RSpec.describe MediaAttachment, type: :model do
 
     let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url, file: file) }
 
-    context 'file is blank' do
+    context 'when file is blank' do
       let(:file) { nil }
 
-      context 'remote_url is present' do
+      context 'when remote_url is present' do
         let(:remote_url) { 'remote_url' }
 
         it 'returns true' do
@@ -42,10 +42,10 @@ RSpec.describe MediaAttachment, type: :model do
       end
     end
 
-    context 'file is present' do
+    context 'when file is present' do
       let(:file) { attachment_fixture('avatar.gif') }
 
-      context 'remote_url is blank' do
+      context 'when remote_url is blank' do
         let(:remote_url) { '' }
 
         it 'returns false' do
@@ -53,7 +53,7 @@ RSpec.describe MediaAttachment, type: :model do
         end
       end
 
-      context 'remote_url is present' do
+      context 'when remote_url is present' do
         let(:remote_url) { 'remote_url' }
 
         it 'returns true' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe NotificationMailer, type: :mailer do
+RSpec.describe NotificationMailer do
   let(:receiver)       { Fabricate(:user) }
   let(:sender)         { Fabricate(:account, username: 'bob') }
   let(:foreign_status) { Fabricate(:status, account: sender, text: 'The body of the foreign status') }
@@ -10,7 +10,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
   shared_examples 'localized subject' do |*args, **kwrest|
     it 'renders subject localized for the locale of the receiver' do
-      locale = %i(de en).sample
+      locale = :de
       receiver.update!(locale: locale)
       expect(mail.subject).to eq I18n.t(*args, **kwrest.merge(locale: locale))
     end

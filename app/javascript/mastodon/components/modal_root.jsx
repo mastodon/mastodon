@@ -1,10 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import 'wicg-inert';
-import { createBrowserHistory } from 'history';
-import { multiply } from 'color-blend';
+import { PureComponent } from 'react';
 
-export default class ModalRoot extends React.PureComponent {
+import 'wicg-inert';
+import { multiply } from 'color-blend';
+import { createBrowserHistory } from 'history';
+
+export default class ModalRoot extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -57,7 +58,7 @@ export default class ModalRoot extends React.PureComponent {
     this.history = this.context.router ? this.context.router.history : createBrowserHistory();
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (!!nextProps.children && !this.props.children) {
       this.activeElement = document.activeElement;
 

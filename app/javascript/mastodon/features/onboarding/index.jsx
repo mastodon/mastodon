@@ -1,23 +1,28 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
-import { focusCompose } from 'mastodon/actions/compose';
-import Column from 'mastodon/features/ui/components/column';
+
+import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
+
 import { Helmet } from 'react-helmet';
-import illustration from 'mastodon/../images/elephant_ui_conversation.svg';
 import { Link } from 'react-router-dom';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
+import { debounce } from 'lodash';
+
+import illustration from 'mastodon/../images/elephant_ui_conversation.svg';
+import { fetchAccount } from 'mastodon/actions/accounts';
+import { focusCompose } from 'mastodon/actions/compose';
+import { closeOnboarding } from 'mastodon/actions/onboarding';
+import Column from 'mastodon/features/ui/components/column';
 import { me } from 'mastodon/initial_state';
 import { makeGetAccount } from 'mastodon/selectors';
-import { closeOnboarding } from 'mastodon/actions/onboarding';
-import { fetchAccount } from 'mastodon/actions/accounts';
+
+import ArrowSmallRight from './components/arrow_small_right';
+import Step from './components/step';
 import Follows from './follows';
 import Share from './share';
-import Step from './components/step';
-import ArrowSmallRight from './components/arrow_small_right';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
-import { debounce } from 'lodash';
 
 const messages = defineMessages({
   template: { id: 'onboarding.compose.template', defaultMessage: 'Hello #Mastodon!' },
@@ -40,6 +45,7 @@ class Onboarding extends ImmutablePureComponent {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     account: ImmutablePropTypes.map,
+    multiColumn: PropTypes.bool,
   };
 
   state = {
@@ -93,14 +99,14 @@ class Onboarding extends ImmutablePureComponent {
   }
 
   render () {
-    const { account } = this.props;
+    const { account, multiColumn } = this.props;
     const { step, shareClicked } = this.state;
 
     switch(step) {
     case 'follows':
-      return <Follows onBack={this.handleBackClick} />;
+      return <Follows onBack={this.handleBackClick} multiColumn={multiColumn} />;
     case 'share':
-      return <Share onBack={this.handleBackClick} />;
+      return <Share onBack={this.handleBackClick} multiColumn={multiColumn} />;
     }
 
     return (
@@ -114,7 +120,7 @@ class Onboarding extends ImmutablePureComponent {
 
           <div className='onboarding__steps'>
             <Step onClick={this.handleProfileClick} href='/settings/profile' completed={(!account.get('avatar').endsWith('missing.png')) || (account.get('display_name').length > 0 && account.get('note').length > 0)} icon='address-book-o' label={<FormattedMessage id='onboarding.steps.setup_profile.title' defaultMessage='Customize your profile' />} description={<FormattedMessage id='onboarding.steps.setup_profile.body' defaultMessage='Others are more likely to interact with you with a filled out profile.' />} />
-            <Step onClick={this.handleFollowClick} completed={(account.get('following_count') * 1) >= 7} icon='user-plus' label={<FormattedMessage id='onboarding.steps.follow_people.title' defaultMessage='Follow {count, plural, one {one person} other {# people}}' values={{ count: 7 }} />} description={<FormattedMessage id='onboarding.steps.follow_people.body' defaultMessage='You curate your own feed. Lets fill it with interesting people.' />} />
+            <Step onClick={this.handleFollowClick} completed={(account.get('following_count') * 1) >= 7} icon='user-plus' label={<FormattedMessage id='onboarding.steps.follow_people.title' defaultMessage='Follow {count, plural, one {one person} other {# people}}' values={{ count: 7 }} />} description={<FormattedMessage id='onboarding.steps.follow_people.body' defaultMessage="You curate your own feed. Let's fill it with interesting people." />} />
             <Step onClick={this.handleComposeClick} completed={(account.get('statuses_count') * 1) >= 1} icon='pencil-square-o' label={<FormattedMessage id='onboarding.steps.publish_status.title' defaultMessage='Make your first post' />} description={<FormattedMessage id='onboarding.steps.publish_status.body' defaultMessage='Say hello to the world.' />} />
             <Step onClick={this.handleShareClick} completed={shareClicked} icon='copy' label={<FormattedMessage id='onboarding.steps.share_profile.title' defaultMessage='Share your profile' />} description={<FormattedMessage id='onboarding.steps.share_profile.body' defaultMessage='Let your friends know how to find you on Mastodon!' />} />
           </div>
