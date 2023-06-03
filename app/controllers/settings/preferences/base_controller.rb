@@ -19,6 +19,6 @@ class Settings::Preferences::BaseController < Settings::BaseController
   end
 
   def user_params
-    params.require(:user).permit(:locale, chosen_languages: [], settings_attributes: UserSettings.keys)
+    params.require(:user).permit(:locale, :time_zone, chosen_languages: [], settings_attributes: UserSettings.keys)
   end
 end

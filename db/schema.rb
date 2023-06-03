@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_05_085710) do
+ActiveRecord::Schema.define(version: 2023_06_05_085711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1088,6 +1088,7 @@ ActiveRecord::Schema.define(version: 2023_06_05_085710) do
     t.boolean "skip_sign_in_token"
     t.bigint "role_id"
     t.text "settings"
+    t.string "time_zone"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id", where: "(created_by_application_id IS NOT NULL)"
