@@ -1,22 +1,19 @@
 // The output of this module is designed to mimic emoji-mart's
 // "data" object, such that we can use it for a light version of emoji-mart's
 // emojiIndex.search functionality.
-import type {
-  Native,
-  Search,
-  ShortCodesToEmojiData,
-  ShortName,
-  Unified,
-} from './emoji_compressed';
+import type { BaseEmoji } from 'emoji-mart';
+import type { Emoji } from 'emoji-mart/dist-es/utils/data';
+
+import type { Search, ShortCodesToEmojiData } from './emoji_compressed';
 import emojiCompressed from './emoji_compressed';
 import { unicodeToUnifiedName } from './unicode_to_unified_name';
 
 type Emojis = {
   [key in keyof ShortCodesToEmojiData]: {
-    native: Native;
+    native: BaseEmoji['native'];
     search: Search;
-    short_names: ShortName[];
-    unified: Unified;
+    short_names: Emoji['short_names'];
+    unified: Emoji['unified'];
   };
 };
 
@@ -42,7 +39,7 @@ Object.keys(shortCodesToEmojiData).forEach((shortCode) => {
     unified = unicodeToUnifiedName(native);
   }
 
-  short_names = [shortCode].concat(short_names);
+  if (short_names) short_names = [shortCode].concat(short_names);
   emojis[shortCode] = {
     native,
     search,

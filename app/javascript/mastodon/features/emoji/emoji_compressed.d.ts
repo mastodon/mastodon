@@ -1,30 +1,31 @@
-export type FilenameData = string[][];
-export type Native = string;
-export type ShortName = string;
-export type Search = string;
-export type Unified = string;
+import type { BaseEmoji, EmojiData, NimbleEmojiIndex } from 'emoji-mart';
+import type { Category, Data, Emoji } from 'emoji-mart/dist-es/utils/data';
 
-export type SearchData = [Native, ShortName[], Search, Unified];
+export type FilenameData = string[][];
+export type Search = string;
+export type ShortCodesToEmojiDataKey =
+  | EmojiData['id']
+  | BaseEmoji['native']
+  | keyof NimbleEmojiIndex['emojis'];
+
+export type SearchData = [
+  BaseEmoji['native'],
+  Emoji['short_names'],
+  Search,
+  Emoji['unified']
+];
 
 export interface ShortCodesToEmojiData {
-  [key: string]: [FilenameData, SearchData];
+  [key: ShortCodesToEmojiDataKey]: [FilenameData, SearchData];
 }
 export type Skins = null;
-export interface Category {
-  id: string;
-  name: string;
-  emojis: string[];
-}
-export interface Alias {
-  [key: string]: string;
-}
 
 export type EmojiCompressed = [
   ShortCodesToEmojiData,
   Skins,
   Category[],
-  Alias[],
-  ShortName[]
+  Data['aliases'],
+  Emoji['short_names']
 ];
 
 // Because emoji_compressed.js is difficult to change to TS,
