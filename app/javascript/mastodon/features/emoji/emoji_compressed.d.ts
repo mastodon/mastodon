@@ -31,13 +31,14 @@ export type SearchData = [
 export interface ShortCodesToEmojiData {
   [key: ShortCodesToEmojiDataKey]: [FilenameData, SearchData];
 }
+export type EmojisWithoutShortCodes = FilenameData[];
 
 export type EmojiCompressed = [
   ShortCodesToEmojiData,
   Skins,
   Category[],
   Data['aliases'],
-  Emoji['short_names']
+  EmojisWithoutShortCodes
 ];
 
 /*
