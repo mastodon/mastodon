@@ -24,7 +24,10 @@ const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
   },
 
   onClose(id) {
-    dispatch(closeModal('ACTIONS'));
+    dispatch(closeModal({
+      modalType: 'ACTIONS',
+      ignoreFocus: false,
+    }));
     dispatch(closeDropdownMenu(id));
   },
 });

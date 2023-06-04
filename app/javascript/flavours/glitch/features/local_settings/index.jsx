@@ -21,7 +21,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(changeLocalSetting(setting, value));
   },
   onClose () {
-    dispatch(closeModal());
+    dispatch(closeModal({
+      modalType: undefined,
+      ignoreFocus: false,
+    }));
   },
 });
 
