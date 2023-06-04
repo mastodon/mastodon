@@ -40,9 +40,11 @@ export type EmojiCompressed = [
   Emoji['short_names']
 ];
 
-// Because emoji_compressed.js is difficult to change to TS,
-// export we are temporarily allowing a default export
-// at this location to apply the TS type to the JS file export.
+/*
+ * `emoji_compressed.js` uses `babel-plugin-preval`, which makes it difficult to convert to TypeScript.
+ * As a temporary solution, we are allowing a default export here to apply the TypeScript type `EmojiCompressed` to the JS file export.
+ * - {@link app/javascript/mastodon/features/emoji/emoji_compressed.js}
+ */
 declare const emojiCompressed: EmojiCompressed;
 
 export default emojiCompressed; // eslint-disable-line import/no-default-export
