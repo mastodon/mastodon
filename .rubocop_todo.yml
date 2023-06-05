@@ -156,12 +156,6 @@ Metrics/AbcSize:
   Exclude:
     - 'app/serializers/initial_state_serializer.rb'
 
-# Configuration parameters: CountComments, Max, CountAsOne, AllowedMethods, AllowedPatterns, inherit_mode.
-# AllowedMethods: refine
-Metrics/BlockLength:
-  Exclude:
-    - 'app/models/concerns/status_safe_reblog_insert.rb'
-
 # Configuration parameters: CountBlocks, Max.
 Metrics/BlockNesting:
   Exclude:
@@ -170,28 +164,6 @@ Metrics/BlockNesting:
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/CyclomaticComplexity:
   Max: 25
-
-# Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
-Metrics/MethodLength:
-  Max: 58
-
-# Configuration parameters: CountComments, Max, CountAsOne.
-Metrics/ModuleLength:
-  Exclude:
-    - 'app/controllers/concerns/signature_verification.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/helpers/jsonld_helper.rb'
-    - 'app/models/concerns/account_interactions.rb'
-    - 'app/models/concerns/has_user_settings.rb'
-    - 'lib/sanitize_ext/sanitize_config.rb'
-
-# Configuration parameters: Max, CountKeywordArgs, MaxOptionalParameters.
-Metrics/ParameterLists:
-  Exclude:
-    - 'app/models/concerns/account_interactions.rb'
-    - 'app/services/activitypub/fetch_remote_account_service.rb'
-    - 'app/services/activitypub/fetch_remote_actor_service.rb'
-    - 'app/services/activitypub/fetch_remote_status_service.rb'
 
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/PerceivedComplexity:
@@ -894,7 +866,6 @@ Rails/WhereExists:
     - 'app/validators/vote_validator.rb'
     - 'app/workers/move_worker.rb'
     - 'db/migrate/20190529143559_preserve_old_layout_for_existing_users.rb'
-    - 'lib/mastodon/cli/email_domain_blocks.rb'
     - 'lib/tasks/tests.rake'
     - 'spec/controllers/api/v1/accounts/notes_controller_spec.rb'
     - 'spec/controllers/api/v1/tags_controller_spec.rb'
@@ -956,7 +927,6 @@ Style/FormatStringToken:
   Exclude:
     - 'app/models/privacy_policy.rb'
     - 'config/initializers/devise.rb'
-    - 'lib/mastodon/cli/maintenance.rb'
     - 'lib/paperclip/color_extractor.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
