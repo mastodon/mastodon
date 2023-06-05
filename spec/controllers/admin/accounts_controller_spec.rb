@@ -397,4 +397,40 @@ RSpec.describe Admin::AccountsController do
       end
     end
   end
+
+  describe 'POST #destroy' do
+    subject { post :destroy, params: { id: account.id } }
+
+    let(:current_user) { Fabricate(:user, role: role) }
+    let(:account) { Fabricate(:account) }
+
+    before do
+      account.suspend!
+    end
+
+    context 'when user is admin' do
+      let(:role) { UserRole.find_by(name: 'Admin') }
+
+      before do
+        allow(Admin::AccountDeletionWorker).to receive(:perform_async).with(account.id)
+      end
+
+      it 'destroys the account' do
+        subject
+
+        expect(Admin::AccountDeletionWorker).to have_received(:perform_async).with(account.id)
+        expect(response).to redirect_to admin_account_path(account.id)
+      end
+    end
+
+    context 'when user is not admin' do
+      let(:role) { UserRole.everyone }
+
+      it 'fails to change account' do
+        subject
+
+        expect(response).to have_http_status 403
+      end
+    end
+  end
 end
