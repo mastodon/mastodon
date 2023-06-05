@@ -67,4 +67,19 @@ describe Admin::RelaysController do
       expect(response).to redirect_to(admin_relays_path)
     end
   end
+
+  describe 'POST #enable' do
+    let(:relay) { Fabricate(:relay, state: :idle) }
+
+    before do
+      stub_request(:post, /example.com/).to_return(status: 200)
+    end
+
+    it 'updates a relay from idle to pending' do
+      post :enable, params: { id: relay.id }
+
+      expect(relay.reload).to be_pending
+      expect(response).to redirect_to(admin_relays_path)
+    end
+  end
 end
