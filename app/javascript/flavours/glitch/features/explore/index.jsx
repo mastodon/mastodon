@@ -69,7 +69,7 @@ class Explore extends PureComponent {
           <Search />
         </div>
 
-        <div className='scrollable scrollable--flex'>
+        <div className='scrollable scrollable--flex' data-nosnippet>
           {isSearching ? (
             <SearchResults />
           ) : (
