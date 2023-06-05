@@ -56,4 +56,15 @@ describe Admin::RelaysController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    let(:relay) { Fabricate(:relay) }
+
+    it 'deletes an existing relay' do
+      delete :destroy, params: { id: relay.id }
+
+      expect { relay.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect(response).to redirect_to(admin_relays_path)
+    end
+  end
 end
