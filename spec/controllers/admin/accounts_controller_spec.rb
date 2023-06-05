@@ -337,4 +337,32 @@ RSpec.describe Admin::AccountsController do
       end
     end
   end
+
+  describe 'POST #unsilence' do
+    subject { post :unsilence, params: { id: account.id } }
+
+    let(:current_user) { Fabricate(:user, role: role) }
+    let(:account) { Fabricate(:account, silenced_at: 1.year.ago) }
+
+    context 'when user is admin' do
+      let(:role) { UserRole.find_by(name: 'Admin') }
+
+      it 'marks accounts not silenced' do
+        subject
+
+        expect(account.reload).to_not be_silenced
+        expect(response).to redirect_to admin_account_path(account.id)
+      end
+    end
+
+    context 'when user is not admin' do
+      let(:role) { UserRole.everyone }
+
+      it 'fails to change account' do
+        subject
+
+        expect(response).to have_http_status 403
+      end
+    end
+  end
 end
