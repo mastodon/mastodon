@@ -138,7 +138,7 @@ export function normalizePollOptionTranslation(translation, poll) {
 
 export function normalizeAnnouncement(announcement) {
   const normalAnnouncement = { ...announcement };
-  const emojiMap = makeEmojiMap.emojis(normalAnnouncement);
+  const emojiMap = makeEmojiMap(normalAnnouncement.emojis);
 
   normalAnnouncement.contentHtml = emojify(normalAnnouncement.content, emojiMap);
 
