@@ -1,18 +1,23 @@
-import React from 'react';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+import { NavLink, Switch, Route } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
-import { NavLink, Switch, Route } from 'react-router-dom';
+import Search from 'mastodon/features/compose/containers/search_container';
+import { showTrends } from 'mastodon/initial_state';
+
 import Links from './links';
-import Tags from './tags';
+import SearchResults from './results';
 import Statuses from './statuses';
 import Suggestions from './suggestions';
-import Search from 'mastodon/features/compose/containers/search_container';
-import SearchResults from './results';
-import { Helmet } from 'react-helmet';
-import { showTrends } from 'mastodon/initial_state';
+import Tags from './tags';
 
 const messages = defineMessages({
   title: { id: 'explore.title', defaultMessage: 'Explore' },
@@ -24,7 +29,7 @@ const mapStateToProps = state => ({
   isSearching: state.getIn(['search', 'submitted']) || !showTrends,
 });
 
-class Explore extends React.PureComponent {
+class Explore extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

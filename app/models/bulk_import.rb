@@ -30,6 +30,7 @@ class BulkImport < ApplicationRecord
     muting: 2,
     domain_blocking: 3,
     bookmarks: 4,
+    lists: 5,
   }
 
   enum state: {

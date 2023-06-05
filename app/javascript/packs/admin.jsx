@@ -1,8 +1,10 @@
 import './public-path';
-import { delegate } from '@rails/ujs';
-import ready from '../mastodon/ready';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+
+import { delegate } from '@rails/ujs';
+
+import ready from '../mastodon/ready';
 
 const setAnnouncementEndsAttributes = (target) => {
   const valid = target?.value && target?.validity?.valid;
@@ -227,15 +229,17 @@ ready(() => {
 
   [].forEach.call(document.querySelectorAll('[data-admin-component]'), element => {
     const componentName  = element.getAttribute('data-admin-component');
-    const { locale, ...componentProps } = JSON.parse(element.getAttribute('data-props'));
+    const componentProps = JSON.parse(element.getAttribute('data-props'));
 
     import('../mastodon/containers/admin_component').then(({ default: AdminComponent }) => {
       return import('../mastodon/components/admin/' + componentName).then(({ default: Component }) => {
-        ReactDOM.render((
-          <AdminComponent locale={locale}>
+        const root = createRoot(element);
+
+        root.render (
+          <AdminComponent>
             <Component {...componentProps} />
-          </AdminComponent>
-        ), element);
+          </AdminComponent>,
+        );
       });
     }).catch(error => {
       console.error(error);

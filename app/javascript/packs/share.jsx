@@ -1,10 +1,10 @@
 import './public-path';
-import { loadPolyfills } from '../mastodon/polyfills';
+import { createRoot } from 'react-dom/client';
+
 import { start } from '../mastodon/common';
-import ready from '../mastodon/ready';
 import ComposeContainer  from '../mastodon/containers/compose_container';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { loadPolyfills } from '../mastodon/polyfills';
+import ready from '../mastodon/ready';
 
 start();
 
@@ -16,7 +16,8 @@ function loaded() {
     if(!attr) return;
 
     const props = JSON.parse(attr);
-    ReactDOM.render(<ComposeContainer {...props} />, mountNode);
+    const root = createRoot(mountNode);
+    root.render(<ComposeContainer {...props} />);
   }
 }
 

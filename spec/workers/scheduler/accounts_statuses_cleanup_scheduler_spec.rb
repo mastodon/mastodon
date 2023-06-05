@@ -103,7 +103,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
   describe '#perform' do
     context 'when the budget is lower than the number of toots to delete' do
       it 'deletes as many statuses as the given budget' do
-        expect { subject.perform }.to change { Status.count }.by(-subject.compute_budget)
+        expect { subject.perform }.to change(Status, :count).by(-subject.compute_budget)
       end
 
       it 'does not delete from accounts with no cleanup policy' do
@@ -117,7 +117,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
       it 'eventually deletes every deletable toot given enough runs' do
         stub_const 'Scheduler::AccountsStatusesCleanupScheduler::MAX_BUDGET', 4
 
-        expect { 10.times { subject.perform } }.to change { Status.count }.by(-30)
+        expect { 10.times { subject.perform } }.to change(Status, :count).by(-30)
       end
 
       it 'correctly round-trips between users across several runs' do
@@ -125,7 +125,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
         stub_const 'Scheduler::AccountsStatusesCleanupScheduler::PER_ACCOUNT_BUDGET', 2
 
         expect { 3.times { subject.perform } }
-          .to change { Status.count }.by(-3 * 3)
+          .to change(Status, :count).by(-3 * 3)
           .and change { account1.statuses.count }
           .and change { account3.statuses.count }
           .and change { account5.statuses.count }
@@ -140,7 +140,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
 
         it 'correctly handles looping in a single run' do
           expect(subject.compute_budget).to eq(400)
-          expect { subject.perform }.to change { Status.count }.by(-30)
+          expect { subject.perform }.to change(Status, :count).by(-30)
         end
       end
 
@@ -154,7 +154,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
 
         it 'does not get stuck' do
           expect(subject.compute_budget).to eq(400)
-          expect { subject.perform }.to_not change { Status.count }
+          expect { subject.perform }.to_not change(Status, :count)
         end
       end
     end

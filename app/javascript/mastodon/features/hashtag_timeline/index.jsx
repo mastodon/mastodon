@@ -1,20 +1,27 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import StatusListContainer from '../ui/containers/status_list_container';
-import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
-import ColumnSettingsContainer from './containers/column_settings_container';
-import { expandHashtagTimeline, clearTimeline } from 'mastodon/actions/timelines';
-import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
+import { PureComponent } from 'react';
+
 import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
-import { connectHashtagStream } from 'mastodon/actions/streaming';
-import { isEqual } from 'lodash';
-import { fetchHashtag, followHashtag, unfollowHashtag } from 'mastodon/actions/tags';
-import { Icon }  from 'mastodon/components/icon';
+
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
+import { isEqual } from 'lodash';
+
+import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
+import { connectHashtagStream } from 'mastodon/actions/streaming';
+import { fetchHashtag, followHashtag, unfollowHashtag } from 'mastodon/actions/tags';
+import { expandHashtagTimeline, clearTimeline } from 'mastodon/actions/timelines';
+import Column from 'mastodon/components/column';
+import ColumnHeader from 'mastodon/components/column_header';
+import { Icon }  from 'mastodon/components/icon';
+
+import StatusListContainer from '../ui/containers/status_list_container';
+
+import ColumnSettingsContainer from './containers/column_settings_container';
 
 const messages = defineMessages({
   followHashtag: { id: 'hashtag.follow', defaultMessage: 'Follow hashtag' },
@@ -26,7 +33,7 @@ const mapStateToProps = (state, props) => ({
   tag: state.getIn(['tags', props.params.id]),
 });
 
-class HashtagTimeline extends React.PureComponent {
+class HashtagTimeline extends PureComponent {
 
   disconnects = [];
 

@@ -22,7 +22,7 @@ class FollowRecommendationFilter
       account_ids = redis.zrevrange("follow_recommendations:#{@language}", 0, -1).map(&:to_i)
       accounts    = Account.where(id: account_ids).index_by(&:id)
 
-      account_ids.map { |id| accounts[id] }.compact
+      account_ids.filter_map { |id| accounts[id] }
     end
   end
 end

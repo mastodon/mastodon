@@ -1,24 +1,31 @@
-import React from 'react';
-import ComposeFormContainer from './containers/compose_form_container';
-import NavigationContainer from './containers/navigation_container';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { injectIntl, defineMessages } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
-import { changeComposing, mountCompose, unmountCompose } from '../../actions/compose';
-import { Link } from 'react-router-dom';
-import { injectIntl, defineMessages } from 'react-intl';
-import SearchContainer from './containers/search_container';
-import Motion from '../ui/util/optional_motion';
+
 import spring from 'react-motion/lib/spring';
-import SearchResultsContainer from './containers/search_results_container';
+
 import { openModal } from 'mastodon/actions/modal';
-import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
-import { mascot } from '../../initial_state';
+import Column from 'mastodon/components/column';
 import { Icon }  from 'mastodon/components/icon';
 import { logOut } from 'mastodon/utils/log_out';
-import Column from 'mastodon/components/column';
-import { Helmet } from 'react-helmet';
+
+import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
+import { changeComposing, mountCompose, unmountCompose } from '../../actions/compose';
+import { mascot } from '../../initial_state';
 import { isMobile } from '../../is_mobile';
+import Motion from '../ui/util/optional_motion';
+
+import ComposeFormContainer from './containers/compose_form_container';
+import NavigationContainer from './containers/navigation_container';
+import SearchContainer from './containers/search_container';
+import SearchResultsContainer from './containers/search_results_container';
 
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -38,7 +45,7 @@ const mapStateToProps = (state, ownProps) => ({
   showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : false,
 });
 
-class Compose extends React.PureComponent {
+class Compose extends PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -64,11 +71,14 @@ class Compose extends React.PureComponent {
     e.preventDefault();
     e.stopPropagation();
 
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.logoutMessage),
-      confirm: intl.formatMessage(messages.logoutConfirm),
-      closeWhenConfirm: false,
-      onConfirm: () => logOut(),
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.logoutMessage),
+        confirm: intl.formatMessage(messages.logoutConfirm),
+        closeWhenConfirm: false,
+        onConfirm: () => logOut(),
+      },
     }));
 
     return false;

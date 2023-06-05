@@ -97,10 +97,12 @@ RSpec.describe Auth::RegistrationsController do
   end
 
   describe 'POST #create' do
-    let(:accept_language) { Rails.application.config.i18n.available_locales.sample.to_s }
+    let(:accept_language) { 'de' }
 
     before do
       session[:registration_form_time] = 5.seconds.ago
+
+      request.env['devise.mapping'] = Devise.mappings[:user]
     end
 
     around do |example|
@@ -108,8 +110,6 @@ RSpec.describe Auth::RegistrationsController do
         example.run
       end
     end
-
-    before { request.env['devise.mapping'] = Devise.mappings[:user] }
 
     context do
       subject do
@@ -244,9 +244,26 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
-    it 'does nothing if user already exists' do
-      Fabricate(:account, username: 'test')
-      subject
+    context 'with an already taken username' do
+      subject do
+        Setting.registrations_mode = 'open'
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } }
+      end
+
+      before do
+        Fabricate(:account, username: 'test')
+      end
+
+      it 'responds with an error message about the username' do
+        subject
+
+        expect(response).to have_http_status(:success)
+        expect(username_error_text).to eq(I18n.t('errors.messages.taken'))
+      end
+
+      def username_error_text
+        Nokogiri::Slop(response.body).css('.user_account_username .error').text
+      end
     end
 
     include_examples 'checks for enabled registrations', :create

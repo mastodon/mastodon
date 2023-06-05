@@ -24,7 +24,7 @@ class PostProcessMediaWorker
     media_attachment.processing = :in_progress
     media_attachment.save
 
-    # Because paperclip-av-transcover overwrites this attribute
+    # Because paperclip-av-transcoder overwrites this attribute
     # we will save it here and restore it after reprocess is done
     previous_meta = media_attachment.file_meta
 

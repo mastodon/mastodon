@@ -1,14 +1,15 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
-const webpack = require('webpack');
 const { basename, dirname, join, relative, resolve } = require('path');
+
 const { sync } = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const AssetsManifestPlugin = require('webpack-assets-manifest');
 const extname = require('path-complete-extname');
+const webpack = require('webpack');
+const AssetsManifestPlugin = require('webpack-assets-manifest');
+
 const { env, settings, themes, output } = require('./configuration');
 const rules = require('./rules');
-const localePackPaths = require('./generateLocalePacks');
 
 const extensionGlob = `**/*{${settings.extensions.join(',')}}*`;
 const entryPath = join(settings.source_path, settings.source_entry_path);
@@ -20,11 +21,6 @@ module.exports = {
       const localMap = map;
       const namespace = relative(join(entryPath), dirname(entry));
       localMap[join(namespace, basename(entry, extname(entry)))] = resolve(entry);
-      return localMap;
-    }, {}),
-    localePackPaths.reduce((map, entry) => {
-      const localMap = map;
-      localMap[basename(entry, extname(entry, extname(entry)))] = resolve(entry);
       return localMap;
     }, {}),
     Object.keys(themes).reduce((themePaths, name) => {

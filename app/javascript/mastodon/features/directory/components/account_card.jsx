@@ -1,16 +1,14 @@
-import React from 'react';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { makeGetAccount } from 'mastodon/selectors';
-import { Avatar } from 'mastodon/components/avatar';
-import { DisplayName } from 'mastodon/components/display_name';
-import { Link } from 'react-router-dom';
-import Button from 'mastodon/components/button';
+
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
-import { autoPlayGif, me, unfollowModal } from 'mastodon/initial_state';
-import ShortNumber from 'mastodon/components/short_number';
+
+import classNames from 'classnames';
+import { Link } from 'react-router-dom';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
 import {
   followAccount,
   unfollowAccount,
@@ -18,7 +16,12 @@ import {
   unmuteAccount,
 } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
-import classNames from 'classnames';
+import { Avatar } from 'mastodon/components/avatar';
+import Button from 'mastodon/components/button';
+import { DisplayName } from 'mastodon/components/display_name';
+import ShortNumber from 'mastodon/components/short_number';
+import { autoPlayGif, me, unfollowModal } from 'mastodon/initial_state';
+import { makeGetAccount } from 'mastodon/selectors';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -47,27 +50,32 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     if (account.getIn(['relationship', 'following'])) {
       if (unfollowModal) {
         dispatch(
-          openModal('CONFIRM', {
-            message: (
-              <FormattedMessage
-                id='confirmations.unfollow.message'
-                defaultMessage='Are you sure you want to unfollow {name}?'
-                values={{ name: <strong>@{account.get('acct')}</strong> }}
-              />
-            ),
-            confirm: intl.formatMessage(messages.unfollowConfirm),
-            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
-          }),
+          openModal({
+            modalType: 'CONFIRM',
+            modalProps: {
+              message: (
+                <FormattedMessage
+                  id='confirmations.unfollow.message'
+                  defaultMessage='Are you sure you want to unfollow {name}?'
+                  values={{ name: <strong>@{account.get('acct')}</strong> }}
+                />
+              ),
+              confirm: intl.formatMessage(messages.unfollowConfirm),
+              onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+            } }),
         );
       } else {
         dispatch(unfollowAccount(account.get('id')));
       }
     } else if (account.getIn(['relationship', 'requested'])) {
       if (unfollowModal) {
-        dispatch(openModal('CONFIRM', {
-          message: <FormattedMessage id='confirmations.cancel_follow_request.message' defaultMessage='Are you sure you want to withdraw your request to follow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-          confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
-          onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+        dispatch(openModal({
+          modalType: 'CONFIRM',
+          modalProps: {
+            message: <FormattedMessage id='confirmations.cancel_follow_request.message' defaultMessage='Are you sure you want to withdraw your request to follow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+            confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
+            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+          },
         }));
       } else {
         dispatch(unfollowAccount(account.get('id')));

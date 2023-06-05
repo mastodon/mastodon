@@ -1,12 +1,15 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl } from 'react-intl';
+
+import { Link } from 'react-router-dom';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import { Avatar } from 'mastodon/components/avatar';
 import { DisplayName } from 'mastodon/components/display_name';
-import { Link } from 'react-router-dom';
 import { IconButton } from 'mastodon/components/icon_button';
-import { defineMessages, injectIntl } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   authorize: { id: 'follow_request.authorize', defaultMessage: 'Authorize' },
@@ -31,10 +34,10 @@ class FollowRequest extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <React.Fragment>
+        <>
           {account.get('display_name')}
           {account.get('username')}
-        </React.Fragment>
+        </>
       );
     }
 

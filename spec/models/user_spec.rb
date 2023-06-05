@@ -115,19 +115,19 @@ RSpec.describe User do
     it 'allows a non-blacklisted user to be created' do
       user = User.new(email: 'foo@example.com', account: account, password: password, agreement: true)
 
-      expect(user.valid?).to be_truthy
+      expect(user).to be_valid
     end
 
     it 'does not allow a blacklisted user to be created' do
       user = User.new(email: 'foo@mvrht.com', account: account, password: password, agreement: true)
 
-      expect(user.valid?).to be_falsey
+      expect(user).to_not be_valid
     end
 
     it 'does not allow a subdomain blacklisted user to be created' do
       user = User.new(email: 'foo@mvrht.com.topdomain.tld', account: account, password: password, agreement: true)
 
-      expect(user.valid?).to be_falsey
+      expect(user).to_not be_valid
     end
   end
 
@@ -350,17 +350,17 @@ RSpec.describe User do
 
     it 'does not allow a user to be created unless they are whitelisted' do
       user = User.new(email: 'foo@example.com', account: account, password: password, agreement: true)
-      expect(user.valid?).to be_falsey
+      expect(user).to_not be_valid
     end
 
     it 'allows a user to be created if they are whitelisted' do
       user = User.new(email: 'foo@mastodon.space', account: account, password: password, agreement: true)
-      expect(user.valid?).to be_truthy
+      expect(user).to be_valid
     end
 
     it 'does not allow a user with a whitelisted top domain as subdomain in their email address to be created' do
       user = User.new(email: 'foo@mastodon.space.userdomain.com', account: account, password: password, agreement: true)
-      expect(user.valid?).to be_falsey
+      expect(user).to_not be_valid
     end
 
     context do
@@ -374,7 +374,7 @@ RSpec.describe User do
         Rails.configuration.x.email_domains_blacklist = 'blacklisted.mastodon.space'
 
         user = User.new(email: 'foo@blacklisted.mastodon.space', account: account, password: password)
-        expect(user.valid?).to be_falsey
+        expect(user).to_not be_valid
       end
     end
   end

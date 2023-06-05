@@ -30,19 +30,17 @@ RSpec.describe ReportNotePolicy do
       end
     end
 
-    context 'when admin?' do
-      context 'when owner?' do
-        it 'permit' do
-          report_note = Fabricate(:report_note, account: john)
-          expect(subject).to permit(john, report_note)
-        end
+    context 'when owner?' do
+      it 'permit' do
+        report_note = Fabricate(:report_note, account: john)
+        expect(subject).to permit(john, report_note)
       end
+    end
 
-      context 'with !owner?' do
-        it 'denies' do
-          report_note = Fabricate(:report_note)
-          expect(subject).to_not permit(john, report_note)
-        end
+    context 'with !owner?' do
+      it 'denies' do
+        report_note = Fabricate(:report_note)
+        expect(subject).to_not permit(john, report_note)
       end
     end
   end

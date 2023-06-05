@@ -25,7 +25,7 @@ namespace :tests do
       end
 
       if Account.where(domain: Rails.configuration.x.local_domain).exists?
-        puts 'Faux remote accounts not properly claned up'
+        puts 'Faux remote accounts not properly cleaned up'
         exit(1)
       end
 
@@ -56,6 +56,11 @@ namespace :tests do
 
       unless User.find(1).settings['notification_emails.favourite'] == true && User.find(1).settings['notification_emails.mention'] == false
         puts 'User settings not kept as expected'
+        exit(1)
+      end
+
+      unless Account.find_remote('bob', 'ActivityPub.com').domain == 'activitypub.com'
+        puts 'Account domains not properly normalized'
         exit(1)
       end
     end
@@ -160,7 +165,7 @@ namespace :tests do
         INSERT INTO "accounts"
           (id, username, domain, private_key, public_key, created_at, updated_at, protocol, inbox_url, outbox_url, followers_url)
         VALUES
-          (6, 'bob', 'activitypub.com', NULL, #{remote_public_key_ap}, now(), now(),
+          (6, 'bob', 'ActivityPub.com', NULL, #{remote_public_key_ap}, now(), now(),
            1, 'https://activitypub.com/users/bob/inbox', 'https://activitypub.com/users/bob/outbox', 'https://activitypub.com/users/bob/followers');
 
         INSERT INTO "accounts"

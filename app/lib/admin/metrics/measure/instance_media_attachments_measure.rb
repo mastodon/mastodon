@@ -26,7 +26,9 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
   protected
 
   def perform_total_query
-    MediaAttachment.joins(:account).merge(Account.where(domain: params[:domain])).sum('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')
+    domain = params[:domain]
+    domain = Instance.by_domain_and_subdomains(params[:domain]).select(:domain) if params[:include_subdomains]
+    MediaAttachment.joins(:account).merge(Account.where(domain: domain)).sum('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')
   end
 
   def perform_previous_total_query
@@ -34,6 +36,14 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
   end
 
   def perform_data_query
+    account_matching_sql = begin
+      if params[:include_subdomains]
+        "accounts.domain IN (SELECT domain FROM instances WHERE reverse('.' || domain) LIKE reverse('.' || $3::text))"
+      else
+        'accounts.domain = $3::text'
+      end
+    end
+
     sql = <<-SQL.squish
       SELECT axis.*, (
         WITH new_media_attachments AS (
@@ -41,7 +51,7 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
           FROM media_attachments
           INNER JOIN accounts ON accounts.id = media_attachments.account_id
           WHERE date_trunc('day', media_attachments.created_at)::date = axis.period
-            AND accounts.domain = $3::text
+            AND #{account_matching_sql}
         )
         SELECT SUM(size) FROM new_media_attachments
       ) AS value
@@ -64,6 +74,6 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
   end
 
   def params
-    @params.permit(:domain)
+    @params.permit(:domain, :include_subdomains)
   end
 end

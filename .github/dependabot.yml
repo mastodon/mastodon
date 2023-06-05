@@ -25,24 +25,8 @@ updates:
       - dependency-name: 'react-hotkeys'
         versions:
           - '>= 2'
-      # TODO: This version has breaking changes
-      - dependency-name: 'intl-messageformat'
-        versions:
-          - '>= 3'
-      # TODO: This version has breaking changes
-      - dependency-name: 'react-intl'
-        versions:
-          - '>= 3'
-      # TODO: This version has breaking changes
-      - dependency-name: 'babel-plugin-react-intl'
-        versions:
-          - '>= 7'
       # TODO: This version requires code changes
       - dependency-name: 'webpack-dev-server'
-        versions:
-          - '>= 4'
-      # TODO: This version requires code changes https://github.com/reduxjs/react-redux/releases/tag/v8.0.0
-      - dependency-name: 'react-redux'
         versions:
           - '>= 4'
       # TODO: This version was ignored in https://github.com/mastodon/mastodon/pull/15238

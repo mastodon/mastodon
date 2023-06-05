@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
 
 const iconStyle = {
   height: null,
@@ -7,7 +7,7 @@ const iconStyle = {
   width: `${18 * 1.28571429}px`,
 };
 
-export default class TextIconButton extends React.PureComponent {
+export default class TextIconButton extends PureComponent {
 
   static propTypes = {
     label: PropTypes.string.isRequired,

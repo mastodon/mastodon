@@ -40,4 +40,4 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Prettier
-        run: yarn prettier --check "**/*.json"
+        run: yarn lint:json

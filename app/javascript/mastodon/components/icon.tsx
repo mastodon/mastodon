@@ -1,5 +1,3 @@
-import React from 'react';
-
 import classNames from 'classnames';
 
 interface Props extends React.HTMLAttributes<HTMLImageElement> {

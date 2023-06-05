@@ -1,7 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import api from 'mastodon/api';
 import { IconButton } from 'mastodon/components/icon_button';
 
@@ -85,7 +87,7 @@ class EmbedModal extends ImmutablePureComponent {
             className='embed-modal__iframe'
             frameBorder='0'
             ref={this.setIframeRef}
-            sandbox='allow-same-origin'
+            sandbox='allow-scripts allow-same-origin'
             title='preview'
           />
         </div>

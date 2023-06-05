@@ -117,12 +117,12 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   private
 
   def update_last_inspected
-    if EXCEPTION_BOOLS.map { |name| attribute_change_to_be_saved(name) }.compact.include?([true, false])
+    if EXCEPTION_BOOLS.filter_map { |name| attribute_change_to_be_saved(name) }.include?([true, false])
       # Policy has been widened in such a way that any previously-inspected status
       # may need to be deleted, so we'll have to start again.
       redis.del("account_cleanup:#{account_id}")
     end
-    redis.del("account_cleanup:#{account_id}") if EXCEPTION_THRESHOLDS.map { |name| attribute_change_to_be_saved(name) }.compact.any? { |old, new| old.present? && (new.nil? || new > old) }
+    redis.del("account_cleanup:#{account_id}") if EXCEPTION_THRESHOLDS.filter_map { |name| attribute_change_to_be_saved(name) }.any? { |old, new| old.present? && (new.nil? || new > old) }
   end
 
   def validate_local_account
