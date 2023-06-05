@@ -26,6 +26,7 @@ RSpec.describe FeedManager do
     let(:alice) { Fabricate(:account, username: 'alice') }
     let(:bob)   { Fabricate(:account, username: 'bob', domain: 'example.com') }
     let(:jeff)  { Fabricate(:account, username: 'jeff') }
+    let(:list) { Fabricate(:list, account: alice) }
 
     context 'with home feed' do
       it 'returns false for followee\'s status' do
@@ -152,6 +153,42 @@ RSpec.describe FeedManager do
         alice.follow!(bob, languages: %w(de))
         status = Fabricate(:status, text: 'Hallo Welt', account: bob, language: 'de')
         expect(FeedManager.instance.filter?(:home, status, alice)).to be false
+      end
+
+      it 'returns true for post from followee on exclusive list' do
+        list.exclusive = true
+        alice.follow!(bob)
+        list.accounts << bob
+        allow(List).to receive(:where).and_return(list)
+        status = Fabricate(:status, text: 'I post a lot', account: bob)
+        expect(FeedManager.instance.filter?(:home, status, alice)).to be true
+      end
+
+      it 'returns true for reblog from followee on exclusive list' do
+        list.exclusive = true
+        alice.follow!(jeff)
+        list.accounts << jeff
+        allow(List).to receive(:where).and_return(list)
+        status = Fabricate(:status, text: 'I post a lot', account: bob)
+        reblog = Fabricate(:status, reblog: status, account: jeff)
+        expect(FeedManager.instance.filter?(:home, reblog, alice)).to be true
+      end
+
+      it 'returns false for post from followee on non-exclusive list' do
+        list.exclusive = false
+        alice.follow!(bob)
+        list.accounts << bob
+        status = Fabricate(:status, text: 'I post a lot', account: bob)
+        expect(FeedManager.instance.filter?(:home, status, alice)).to be false
+      end
+
+      it 'returns false for reblog from followee on non-exclusive list' do
+        list.exclusive = false
+        alice.follow!(jeff)
+        list.accounts << jeff
+        status = Fabricate(:status, text: 'I post a lot', account: bob)
+        reblog = Fabricate(:status, reblog: status, account: jeff)
+        expect(FeedManager.instance.filter?(:home, reblog, alice)).to be false
       end
     end
 
