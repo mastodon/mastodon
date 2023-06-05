@@ -15,6 +15,10 @@ module Mastodon::CLI
       options[:dry_run]
     end
 
+    def dry_run_mode_suffix
+      dry_run? ? ' (DRY RUN)' : ''
+    end
+
     def create_progress_bar(total = nil)
       ProgressBar.create(total: total, format: '%c/%u |%b%i| %e')
     end

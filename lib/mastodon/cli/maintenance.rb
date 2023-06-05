@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'tty-prompt'
 require_relative 'base'
 
 module Mastodon::CLI
@@ -134,25 +133,23 @@ module Mastodon::CLI
       Mastodon has to be stopped to run this task, which will take a long time and may be destructive.
     LONG_DESC
     def fix_duplicates
-      @prompt = TTY::Prompt.new
-
       if ActiveRecord::Migrator.current_version < MIN_SUPPORTED_VERSION
-        @prompt.error 'Your version of the database schema is too old and is not supported by this script.'
-        @prompt.error 'Please update to at least Mastodon 3.0.0 before running this script.'
+        say 'Your version of the database schema is too old and is not supported by this script.', :red
+        say 'Please update to at least Mastodon 3.0.0 before running this script.', :red
         exit(1)
       elsif ActiveRecord::Migrator.current_version > MAX_SUPPORTED_VERSION
-        @prompt.warn 'Your version of the database schema is more recent than this script, this may cause unexpected errors.'
-        exit(1) unless @prompt.yes?('Continue anyway? (Yes/No)')
+        say 'Your version of the database schema is more recent than this script, this may cause unexpected errors.', :yellow
+        exit(1) unless yes?('Continue anyway? (Yes/No)')
       end
 
       if Sidekiq::ProcessSet.new.any?
-        @prompt.error 'It seems Sidekiq is running. All Mastodon processes need to be stopped when using this script.'
+        say 'It seems Sidekiq is running. All Mastodon processes need to be stopped when using this script.', :red
         exit(1)
       end
 
-      @prompt.warn 'This task will take a long time to run and is potentially destructive.'
-      @prompt.warn 'Please make sure to stop Mastodon and have a backup.'
-      exit(1) unless @prompt.yes?('Continue? (Yes/No)')
+      say 'This task will take a long time to run and is potentially destructive.', :yellow
+      say 'Please make sure to stop Mastodon and have a backup.', :yellow
+      exit(1) unless yes?('Continue? (Yes/No)')
 
       deduplicate_users!
       deduplicate_account_domain_blocks!
@@ -176,7 +173,7 @@ module Mastodon::CLI
       Scenic.database.refresh_materialized_view('instances', concurrently: true, cascade: false) if ActiveRecord::Migrator.current_version >= 2020_12_06_004238
       Rails.cache.clear
 
-      @prompt.say 'Finished!'
+      say 'Finished!'
     end
 
     private
@@ -184,7 +181,7 @@ module Mastodon::CLI
     def deduplicate_accounts!
       remove_index_if_exists!(:accounts, 'index_accounts_on_username_and_domain_lower')
 
-      @prompt.say 'Deduplicating accounts… for local accounts, you will be asked to chose which account to keep unchanged.'
+      say 'Deduplicating accounts… for local accounts, you will be asked to chose which account to keep unchanged.'
 
       find_duplicate_accounts.each do |row|
         accounts = Account.where(id: row['ids'].split(',')).to_a
@@ -196,14 +193,14 @@ module Mastodon::CLI
         end
       end
 
-      @prompt.say 'Restoring index_accounts_on_username_and_domain_lower…'
+      say 'Restoring index_accounts_on_username_and_domain_lower…'
       if ActiveRecord::Migrator.current_version < 2020_06_20_164023
         ActiveRecord::Base.connection.add_index :accounts, 'lower (username), lower(domain)', name: 'index_accounts_on_username_and_domain_lower', unique: true
       else
         ActiveRecord::Base.connection.add_index :accounts, "lower (username), COALESCE(lower(domain), '')", name: 'index_accounts_on_username_and_domain_lower', unique: true
       end
 
-      @prompt.say 'Reindexing textual indexes on accounts…'
+      say 'Reindexing textual indexes on accounts…'
       ActiveRecord::Base.connection.execute('REINDEX INDEX search_index;')
       ActiveRecord::Base.connection.execute('REINDEX INDEX index_accounts_on_uri;')
       ActiveRecord::Base.connection.execute('REINDEX INDEX index_accounts_on_url;')
@@ -215,19 +212,18 @@ module Mastodon::CLI
       remove_index_if_exists!(:users, 'index_users_on_remember_token')
       remove_index_if_exists!(:users, 'index_users_on_reset_password_token')
 
-      @prompt.say 'Deduplicating user records…'
+      say 'Deduplicating user records…'
 
       # Deduplicating email
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users GROUP BY email HAVING count(*) > 1").each do |row|
         users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse
         ref_user = users.shift
-        @prompt.warn "Multiple users registered with e-mail address #{ref_user.email}."
-        @prompt.warn "e-mail will be disabled for the following accounts: #{user.map(&:account).map(&:acct).join(', ')}"
-        @prompt.warn 'Please reach out to them and set another address with `tootctl account modify` or delete them.'
+        say "Multiple users registered with e-mail address #{ref_user.email}.", :yellow
+        say "e-mail will be disabled for the following accounts: #{user.map(&:account).map(&:acct).join(', ')}", :yellow
+        say 'Please reach out to them and set another address with `tootctl account modify` or delete them.', :yellow
 
-        i = 0
-        users.each do |user|
-          user.update!(email: "#{i} " + user.email)
+        users.each_with_index do |user, index|
+          user.update!(email: "#{index} " + user.email)
         end
       end
 
@@ -235,7 +231,7 @@ module Mastodon::CLI
       deduplicate_users_process_remember_token
       deduplicate_users_process_password_token
 
-      @prompt.say 'Restoring users indexes…'
+      say 'Restoring users indexes…'
       ActiveRecord::Base.connection.add_index :users, ['confirmation_token'], name: 'index_users_on_confirmation_token', unique: true
       ActiveRecord::Base.connection.add_index :users, ['email'], name: 'index_users_on_email', unique: true
       ActiveRecord::Base.connection.add_index :users, ['remember_token'], name: 'index_users_on_remember_token', unique: true if ActiveRecord::Migrator.current_version < 2022_01_18_183010
@@ -250,7 +246,7 @@ module Mastodon::CLI
     def deduplicate_users_process_confirmation_token
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE confirmation_token IS NOT NULL GROUP BY confirmation_token HAVING count(*) > 1").each do |row|
         users = User.where(id: row['ids'].split(',')).sort_by(&:created_at).reverse.drop(1)
-        @prompt.warn "Unsetting confirmation token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}"
+        say "Unsetting confirmation token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}", :yellow
 
         users.each do |user|
           user.update!(confirmation_token: nil)
@@ -262,7 +258,7 @@ module Mastodon::CLI
       if ActiveRecord::Migrator.current_version < 2022_01_18_183010
         ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE remember_token IS NOT NULL GROUP BY remember_token HAVING count(*) > 1").each do |row|
           users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse.drop(1)
-          @prompt.warn "Unsetting remember token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}"
+          say "Unsetting remember token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}", :yellow
 
           users.each do |user|
             user.update!(remember_token: nil)
@@ -274,7 +270,7 @@ module Mastodon::CLI
     def deduplicate_users_process_password_token
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE reset_password_token IS NOT NULL GROUP BY reset_password_token HAVING count(*) > 1").each do |row|
         users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse.drop(1)
-        @prompt.warn "Unsetting password reset token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}"
+        say "Unsetting password reset token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}", :yellow
 
         users.each do |user|
           user.update!(reset_password_token: nil)
@@ -285,12 +281,12 @@ module Mastodon::CLI
     def deduplicate_account_domain_blocks!
       remove_index_if_exists!(:account_domain_blocks, 'index_account_domain_blocks_on_account_id_and_domain')
 
-      @prompt.say 'Removing duplicate account domain blocks…'
+      say 'Removing duplicate account domain blocks…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM account_domain_blocks GROUP BY account_id, domain HAVING count(*) > 1").each do |row|
         AccountDomainBlock.where(id: row['ids'].split(',').drop(1)).delete_all
       end
 
-      @prompt.say 'Restoring account domain blocks indexes…'
+      say 'Restoring account domain blocks indexes…'
       ActiveRecord::Base.connection.add_index :account_domain_blocks, %w(account_id domain), name: 'index_account_domain_blocks_on_account_id_and_domain', unique: true
     end
 
@@ -299,12 +295,12 @@ module Mastodon::CLI
 
       remove_index_if_exists!(:account_identity_proofs, 'index_account_proofs_on_account_and_provider_and_username')
 
-      @prompt.say 'Removing duplicate account identity proofs…'
+      say 'Removing duplicate account identity proofs…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM account_identity_proofs GROUP BY account_id, provider, provider_username HAVING count(*) > 1").each do |row|
         AccountIdentityProof.where(id: row['ids'].split(',')).sort_by(&:id).reverse.drop(1).each(&:destroy)
       end
 
-      @prompt.say 'Restoring account identity proofs indexes…'
+      say 'Restoring account identity proofs indexes…'
       ActiveRecord::Base.connection.add_index :account_identity_proofs, %w(account_id provider provider_username), name: 'index_account_proofs_on_account_and_provider_and_username', unique: true
     end
 
@@ -313,19 +309,19 @@ module Mastodon::CLI
 
       remove_index_if_exists!(:announcement_reactions, 'index_announcement_reactions_on_account_id_and_announcement_id')
 
-      @prompt.say 'Removing duplicate account identity proofs…'
+      say 'Removing duplicate account identity proofs…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM announcement_reactions GROUP BY account_id, announcement_id, name HAVING count(*) > 1").each do |row|
         AnnouncementReaction.where(id: row['ids'].split(',')).sort_by(&:id).reverse.drop(1).each(&:destroy)
       end
 
-      @prompt.say 'Restoring announcement_reactions indexes…'
+      say 'Restoring announcement_reactions indexes…'
       ActiveRecord::Base.connection.add_index :announcement_reactions, %w(account_id announcement_id name), name: 'index_announcement_reactions_on_account_id_and_announcement_id', unique: true
     end
 
     def deduplicate_conversations!
       remove_index_if_exists!(:conversations, 'index_conversations_on_uri')
 
-      @prompt.say 'Deduplicating conversations…'
+      say 'Deduplicating conversations…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM conversations WHERE uri IS NOT NULL GROUP BY uri HAVING count(*) > 1").each do |row|
         conversations = Conversation.where(id: row['ids'].split(',')).sort_by(&:id).reverse
 
@@ -337,7 +333,7 @@ module Mastodon::CLI
         end
       end
 
-      @prompt.say 'Restoring conversations indexes…'
+      say 'Restoring conversations indexes…'
       if ActiveRecord::Migrator.current_version < 2022_03_07_083603
         ActiveRecord::Base.connection.add_index :conversations, ['uri'], name: 'index_conversations_on_uri', unique: true
       else
@@ -348,7 +344,7 @@ module Mastodon::CLI
     def deduplicate_custom_emojis!
       remove_index_if_exists!(:custom_emojis, 'index_custom_emojis_on_shortcode_and_domain')
 
-      @prompt.say 'Deduplicating custom_emojis…'
+      say 'Deduplicating custom_emojis…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM custom_emojis GROUP BY shortcode, domain HAVING count(*) > 1").each do |row|
         emojis = CustomEmoji.where(id: row['ids'].split(',')).sort_by(&:id).reverse
 
@@ -360,14 +356,14 @@ module Mastodon::CLI
         end
       end
 
-      @prompt.say 'Restoring custom_emojis indexes…'
+      say 'Restoring custom_emojis indexes…'
       ActiveRecord::Base.connection.add_index :custom_emojis, %w(shortcode domain), name: 'index_custom_emojis_on_shortcode_and_domain', unique: true
     end
 
     def deduplicate_custom_emoji_categories!
       remove_index_if_exists!(:custom_emoji_categories, 'index_custom_emoji_categories_on_name')
 
-      @prompt.say 'Deduplicating custom_emoji_categories…'
+      say 'Deduplicating custom_emoji_categories…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM custom_emoji_categories GROUP BY name HAVING count(*) > 1").each do |row|
         categories = CustomEmojiCategory.where(id: row['ids'].split(',')).sort_by(&:id).reverse
 
@@ -379,26 +375,26 @@ module Mastodon::CLI
         end
       end
 
-      @prompt.say 'Restoring custom_emoji_categories indexes…'
+      say 'Restoring custom_emoji_categories indexes…'
       ActiveRecord::Base.connection.add_index :custom_emoji_categories, ['name'], name: 'index_custom_emoji_categories_on_name', unique: true
     end
 
     def deduplicate_domain_allows!
       remove_index_if_exists!(:domain_allows, 'index_domain_allows_on_domain')
 
-      @prompt.say 'Deduplicating domain_allows…'
+      say 'Deduplicating domain_allows…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM domain_allows GROUP BY domain HAVING count(*) > 1").each do |row|
         DomainAllow.where(id: row['ids'].split(',')).sort_by(&:id).reverse.drop(1).each(&:destroy)
       end
 
-      @prompt.say 'Restoring domain_allows indexes…'
+      say 'Restoring domain_allows indexes…'
       ActiveRecord::Base.connection.add_index :domain_allows, ['domain'], name: 'index_domain_allows_on_domain', unique: true
     end
 
     def deduplicate_domain_blocks!
       remove_index_if_exists!(:domain_blocks, 'index_domain_blocks_on_domain')
 
-      @prompt.say 'Deduplicating domain_allows…'
+      say 'Deduplicating domain_allows…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM domain_blocks GROUP BY domain HAVING count(*) > 1").each do |row|
         domain_blocks = DomainBlock.where(id: row['ids'].split(',')).by_severity.reverse.to_a
 
@@ -415,7 +411,7 @@ module Mastodon::CLI
         domain_blocks.each(&:destroy)
       end
 
-      @prompt.say 'Restoring domain_blocks indexes…'
+      say 'Restoring domain_blocks indexes…'
       ActiveRecord::Base.connection.add_index :domain_blocks, ['domain'], name: 'index_domain_blocks_on_domain', unique: true
     end
 
@@ -424,37 +420,37 @@ module Mastodon::CLI
 
       remove_index_if_exists!(:unavailable_domains, 'index_unavailable_domains_on_domain')
 
-      @prompt.say 'Deduplicating unavailable_domains…'
+      say 'Deduplicating unavailable_domains…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM unavailable_domains GROUP BY domain HAVING count(*) > 1").each do |row|
         UnavailableDomain.where(id: row['ids'].split(',')).sort_by(&:id).reverse.drop(1).each(&:destroy)
       end
 
-      @prompt.say 'Restoring domain_allows indexes…'
+      say 'Restoring domain_allows indexes…'
       ActiveRecord::Base.connection.add_index :unavailable_domains, ['domain'], name: 'index_unavailable_domains_on_domain', unique: true
     end
 
     def deduplicate_email_domain_blocks!
       remove_index_if_exists!(:email_domain_blocks, 'index_email_domain_blocks_on_domain')
 
-      @prompt.say 'Deduplicating email_domain_blocks…'
+      say 'Deduplicating email_domain_blocks…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM email_domain_blocks GROUP BY domain HAVING count(*) > 1").each do |row|
         domain_blocks = EmailDomainBlock.where(id: row['ids'].split(',')).sort_by { |b| b.parent.nil? ? 1 : 0 }.to_a
         domain_blocks.drop(1).each(&:destroy)
       end
 
-      @prompt.say 'Restoring email_domain_blocks indexes…'
+      say 'Restoring email_domain_blocks indexes…'
       ActiveRecord::Base.connection.add_index :email_domain_blocks, ['domain'], name: 'index_email_domain_blocks_on_domain', unique: true
     end
 
     def deduplicate_media_attachments!
       remove_index_if_exists!(:media_attachments, 'index_media_attachments_on_shortcode')
 
-      @prompt.say 'Deduplicating media_attachments…'
+      say 'Deduplicating media_attachments…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM media_attachments WHERE shortcode IS NOT NULL GROUP BY shortcode HAVING count(*) > 1").each do |row|
         MediaAttachment.where(id: row['ids'].split(',').drop(1)).update_all(shortcode: nil)
       end
 
-      @prompt.say 'Restoring media_attachments indexes…'
+      say 'Restoring media_attachments indexes…'
       if ActiveRecord::Migrator.current_version < 2022_03_10_060626
         ActiveRecord::Base.connection.add_index :media_attachments, ['shortcode'], name: 'index_media_attachments_on_shortcode', unique: true
       else
@@ -465,19 +461,19 @@ module Mastodon::CLI
     def deduplicate_preview_cards!
       remove_index_if_exists!(:preview_cards, 'index_preview_cards_on_url')
 
-      @prompt.say 'Deduplicating preview_cards…'
+      say 'Deduplicating preview_cards…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM preview_cards GROUP BY url HAVING count(*) > 1").each do |row|
         PreviewCard.where(id: row['ids'].split(',')).sort_by(&:id).reverse.drop(1).each(&:destroy)
       end
 
-      @prompt.say 'Restoring preview_cards indexes…'
+      say 'Restoring preview_cards indexes…'
       ActiveRecord::Base.connection.add_index :preview_cards, ['url'], name: 'index_preview_cards_on_url', unique: true
     end
 
     def deduplicate_statuses!
       remove_index_if_exists!(:statuses, 'index_statuses_on_uri')
 
-      @prompt.say 'Deduplicating statuses…'
+      say 'Deduplicating statuses…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM statuses WHERE uri IS NOT NULL GROUP BY uri HAVING count(*) > 1").each do |row|
         statuses = Status.where(id: row['ids'].split(',')).sort_by(&:id)
         ref_status = statuses.shift
@@ -487,7 +483,7 @@ module Mastodon::CLI
         end
       end
 
-      @prompt.say 'Restoring statuses indexes…'
+      say 'Restoring statuses indexes…'
       if ActiveRecord::Migrator.current_version < 2022_03_10_060706
         ActiveRecord::Base.connection.add_index :statuses, ['uri'], name: 'index_statuses_on_uri', unique: true
       else
@@ -499,7 +495,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:tags, 'index_tags_on_name_lower')
       remove_index_if_exists!(:tags, 'index_tags_on_name_lower_btree')
 
-      @prompt.say 'Deduplicating tags…'
+      say 'Deduplicating tags…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM tags GROUP BY lower((name)::text) HAVING count(*) > 1").each do |row|
         tags = Tag.where(id: row['ids'].split(',')).sort_by { |t| [t.usable?, t.trendable?, t.listable?].count(false) }
         ref_tag = tags.shift
@@ -509,7 +505,7 @@ module Mastodon::CLI
         end
       end
 
-      @prompt.say 'Restoring tags indexes…'
+      say 'Restoring tags indexes…'
       if ActiveRecord::Migrator.current_version < 2021_04_21_121431
         ActiveRecord::Base.connection.add_index :tags, 'lower((name)::text)', name: 'index_tags_on_name_lower', unique: true
       else
@@ -522,12 +518,12 @@ module Mastodon::CLI
 
       remove_index_if_exists!(:webauthn_credentials, 'index_webauthn_credentials_on_external_id')
 
-      @prompt.say 'Deduplicating webauthn_credentials…'
+      say 'Deduplicating webauthn_credentials…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM webauthn_credentials GROUP BY external_id HAVING count(*) > 1").each do |row|
         WebauthnCredential.where(id: row['ids'].split(',')).sort_by(&:id).reverse.drop(1).each(&:destroy)
       end
 
-      @prompt.say 'Restoring webauthn_credentials indexes…'
+      say 'Restoring webauthn_credentials indexes…'
       ActiveRecord::Base.connection.add_index :webauthn_credentials, ['external_id'], name: 'index_webauthn_credentials_on_external_id', unique: true
     end
 
@@ -536,28 +532,37 @@ module Mastodon::CLI
 
       remove_index_if_exists!(:webhooks, 'index_webhooks_on_url')
 
-      @prompt.say 'Deduplicating webhooks…'
+      say 'Deduplicating webhooks…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM webhooks GROUP BY url HAVING count(*) > 1").each do |row|
         Webhooks.where(id: row['ids'].split(',')).sort_by(&:id).reverse.drop(1).each(&:destroy)
       end
 
-      @prompt.say 'Restoring webhooks indexes…'
+      say 'Restoring webhooks indexes…'
       ActiveRecord::Base.connection.add_index :webhooks, ['url'], name: 'index_webhooks_on_url', unique: true
     end
 
     def deduplicate_local_accounts!(accounts)
       accounts = accounts.sort_by(&:id).reverse
 
-      @prompt.warn "Multiple local accounts were found for username '#{accounts.first.username}'."
-      @prompt.warn 'All those accounts are distinct accounts but only the most recently-created one is fully-functional.'
+      say "Multiple local accounts were found for username '#{accounts.first.username}'.", :yellow
+      say 'All those accounts are distinct accounts but only the most recently-created one is fully-functional.', :yellow
 
       accounts.each_with_index do |account, idx|
-        @prompt.say format('%2d. %s: created at: %s; updated at: %s; last logged in at: %s; statuses: %5d; last status at: %s', idx, account.username, account.created_at, account.updated_at, account.user&.last_sign_in_at&.to_s || 'N/A', account.account_stat&.statuses_count || 0, account.account_stat&.last_status_at || 'N/A')
+        say format(
+          '%<index>2d. %<username>s: created at: %<created_at>s; updated at: %<updated_at>s; last logged in at: %<last_log_in_at>s; statuses: %<status_count>5d; last status at: %<last_status_at>s',
+          index: idx,
+          username: account.username,
+          created_at: account.created_at,
+          updated_at: account.updated_at,
+          last_log_in_at: account.user&.last_sign_in_at&.to_s || 'N/A',
+          status_count: account.account_stat&.statuses_count || 0,
+          last_status_at: account.account_stat&.last_status_at || 'N/A'
+        )
       end
 
-      @prompt.say 'Please chose the one to keep unchanged, other ones will be automatically renamed.'
+      say 'Please chose the one to keep unchanged, other ones will be automatically renamed.'
 
-      ref_id = @prompt.ask('Account to keep unchanged:') do |q|
+      ref_id = ask('Account to keep unchanged:') do |q|
         q.required true
         q.default 0
         q.convert :int

@@ -27,7 +27,6 @@ module Mastodon::CLI
     DESC
     def remove
       time_ago = options[:days].days.ago
-      dry_run  = options[:dry_run] ? ' (DRY RUN)' : ''
       link     = options[:link] ? 'link-type ' : ''
       scope    = PreviewCard.cached
       scope    = scope.where(type: :link) if options[:link]
@@ -38,7 +37,7 @@ module Mastodon::CLI
 
         size = preview_card.image_file_size
 
-        unless options[:dry_run]
+        unless dry_run?
           preview_card.image.destroy
           preview_card.save
         end
@@ -46,7 +45,7 @@ module Mastodon::CLI
         size
       end
 
-      say("Removed #{processed} #{link}preview cards (approx. #{number_to_human_size(aggregate)})#{dry_run}", :green, true)
+      say("Removed #{processed} #{link}preview cards (approx. #{number_to_human_size(aggregate)})#{dry_run_mode_suffix}", :green, true)
     end
   end
 end

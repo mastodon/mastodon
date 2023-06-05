@@ -22,7 +22,7 @@ class Instance < ApplicationRecord
   end
 
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
-  scope :by_domain_and_subdomain, ->(domain) { where("reverse('.' || domain) LIKE reverse(?)", "%.#{domain}") }
+  scope :by_domain_and_subdomains, ->(domain) { where("reverse('.' || domain) LIKE reverse(?)", "%.#{domain}") }
 
   def self.refresh
     Scenic.database.refresh_materialized_view(table_name, concurrently: true, cascade: false)
