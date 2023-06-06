@@ -50,9 +50,9 @@ class Webhooks::PayloadRenderer
 
   EXPRESSION_REGEXP = /
     \{\{
-      [a-z]+
+      [a-z_]+
       (\.
-        ([a-z]+|[0-9]+)
+        ([a-z_]+|[0-9]+)
       )*
     \}\}
   /iox
@@ -62,6 +62,6 @@ class Webhooks::PayloadRenderer
   end
 
   def render(template)
-    template.gsub(EXPRESSION_REGEXP) { |match| document.get(match[2...-2]) }
+    template.gsub(EXPRESSION_REGEXP) { |match| @document.get(match[2...-2]) }
   end
 end
