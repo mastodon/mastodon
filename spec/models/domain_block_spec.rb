@@ -91,4 +91,22 @@ RSpec.describe DomainBlock do
       expect(newer.stricter_than?(older)).to be false
     end
   end
+
+  describe '#public_domain' do
+    context 'with a domain block that is obfuscated' do
+      let(:domain_block) { Fabricate(:domain_block, domain: 'hostname.example.com', obfuscate: true) }
+
+      it 'garbles the domain' do
+        expect(domain_block.public_domain).to eq 'hostna**.******e.com'
+      end
+    end
+
+    context 'with a domain block that is not obfuscated' do
+      let(:domain_block) { Fabricate(:domain_block, domain: 'example.com', obfuscate: false) }
+
+      it 'returns the domain value' do
+        expect(domain_block.public_domain).to eq 'example.com'
+      end
+    end
+  end
 end
