@@ -13,7 +13,7 @@ import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'mastodo
 import { fetchDirectory, expandDirectory } from 'mastodon/actions/directory';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
-import LoadMore from 'mastodon/components/load_more';
+import { LoadMore } from 'mastodon/components/load_more';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 import { RadioButton } from 'mastodon/components/radio_button';
 import ScrollContainer from 'mastodon/containers/scroll_container';

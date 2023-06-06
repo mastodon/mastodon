@@ -6,7 +6,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { Icon }  from 'mastodon/components/icon';
-import LoadMore from 'mastodon/components/load_more';
+import { LoadMore } from 'mastodon/components/load_more';
 
 import { ImmutableHashtag as Hashtag } from '../../../components/hashtag';
 import AccountContainer from '../../../containers/account_container';
