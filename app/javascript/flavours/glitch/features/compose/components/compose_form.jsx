@@ -369,20 +369,20 @@ class ComposeForm extends ImmutablePureComponent {
               <PollFormContainer />
             </div>
           </AutosuggestTextarea>
-        </div>
 
-        <div className='compose-form__buttons-wrapper'>
-          <OptionsContainer
-            advancedOptions={advancedOptions}
-            disabled={isSubmitting}
-            onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
-            onUpload={onPaste}
-            isEditing={isEditing}
-            sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
-            spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
-          />
-          <div className='character-counter__wrapper'>
-            <CharacterCounter text={countText} max={maxChars} />
+          <div className='compose-form__buttons-wrapper'>
+            <OptionsContainer
+              advancedOptions={advancedOptions}
+              disabled={isSubmitting}
+              onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
+              onUpload={onPaste}
+              isEditing={isEditing}
+              sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
+              spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
+            />
+            <div className='character-counter__wrapper'>
+              <CharacterCounter text={countText} max={maxChars} />
+            </div>
           </div>
         </div>
 
