@@ -5,7 +5,7 @@ class TextFormatter
   include ERB::Util
   include RoutingHelper
 
-  URL_PREFIX_REGEX = /\A(https?:\/\/(www\.)?|xmpp:)/
+  URL_PREFIX_REGEX = %r{\A(https?://(www\.)?|xmpp:)}
 
   DEFAULT_REL = %w(nofollow noopener noreferrer).freeze
 
