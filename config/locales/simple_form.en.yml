@@ -131,6 +131,7 @@ en:
         position: Higher role decides conflict resolution in certain situations. Certain actions can only be performed on roles with a lower priority
       webhook:
         events: Select events to send
+        template: Compose your own JSON payload using variable interpolation. Leave blank for default JSON.
         url: Where events will be sent to
     labels:
       account:
@@ -304,6 +305,7 @@ en:
         position: Priority
       webhook:
         events: Enabled events
+        template: Payload template
         url: Endpoint URL
     'no': 'No'
     not_recommended: Not recommended

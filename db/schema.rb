@@ -1136,6 +1136,7 @@ ActiveRecord::Schema.define(version: 2023_06_05_085710) do
     t.boolean "enabled", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "template"
     t.index ["url"], name: "index_webhooks_on_url", unique: true
   end
 
