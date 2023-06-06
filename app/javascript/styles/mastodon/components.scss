@@ -3113,10 +3113,10 @@ $ui-header-height: 55px;
 .compose-form__highlightable {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   flex: 0 1 auto;
   border-radius: 4px;
   transition: box-shadow 300ms linear;
+  min-height: 0;
 
   &.active {
     transition: none;
@@ -3158,7 +3158,6 @@ $ui-header-height: 55px;
 
   .compose-form {
     flex: 1;
-    overflow-y: hidden;
     display: flex;
     flex-direction: column;
     min-height: 310px;
