@@ -1526,6 +1526,7 @@ body > [data-popper-placement] {
 .account__wrapper {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
 .account__avatar {
@@ -1594,9 +1595,10 @@ a .account__avatar {
 }
 
 .account__relationship {
-  height: 18px;
-  padding: 10px;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .account__disclaimer {
