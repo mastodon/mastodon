@@ -11,13 +11,13 @@ RSpec.describe AccountModerationNotePolicy do
   permissions :create? do
     context 'when staff' do
       it 'grants to create' do
-        expect(subject).to permit(admin, AccountModerationNotePolicy)
+        expect(subject).to permit(admin, described_class)
       end
     end
 
     context 'when not staff' do
       it 'denies to create' do
-        expect(subject).to_not permit(john, AccountModerationNotePolicy)
+        expect(subject).to_not permit(john, described_class)
       end
     end
   end

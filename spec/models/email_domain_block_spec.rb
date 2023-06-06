@@ -14,12 +14,12 @@ RSpec.describe EmailDomainBlock do
 
         it 'returns true if the domain is blocked' do
           Fabricate(:email_domain_block, domain: 'example.com')
-          expect(EmailDomainBlock.block?(input)).to be true
+          expect(described_class.block?(input)).to be true
         end
 
         it 'returns false if the domain is not blocked' do
           Fabricate(:email_domain_block, domain: 'other-example.com')
-          expect(EmailDomainBlock.block?(input)).to be false
+          expect(described_class.block?(input)).to be false
         end
       end
 
@@ -38,7 +38,7 @@ RSpec.describe EmailDomainBlock do
 
       it 'returns true if the domain is blocked' do
         Fabricate(:email_domain_block, domain: 'mail.foo.com')
-        expect(EmailDomainBlock.block?(input)).to be true
+        expect(described_class.block?(input)).to be true
       end
     end
   end

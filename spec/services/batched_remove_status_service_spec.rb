@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe BatchedRemoveStatusService, type: :service do
-  subject { BatchedRemoveStatusService.new }
+  subject { described_class.new }
 
   let!(:alice)  { Fabricate(:account) }
   let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com') }
