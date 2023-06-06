@@ -363,7 +363,7 @@ RSpec.describe User do
       expect(user).to_not be_valid
     end
 
-    context do
+    context 'with a blacklisted subdomain' do
       around do |example|
         old_blacklist = Rails.configuration.x.email_blacklist
         example.run

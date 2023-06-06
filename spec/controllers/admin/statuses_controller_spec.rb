@@ -20,7 +20,7 @@ describe Admin::StatusesController do
   end
 
   describe 'GET #index' do
-    context do
+    context 'with a valid account' do
       before do
         get :index, params: { account_id: account.id }
       end

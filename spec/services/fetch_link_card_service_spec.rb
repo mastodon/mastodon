@@ -20,7 +20,7 @@ RSpec.describe FetchLinkCardService, type: :service do
   end
 
   context 'with a local status' do
-    context do
+    context 'with an IDN url' do
       let(:status) { Fabricate(:status, text: 'Check out http://example.中国') }
 
       it 'works with IDN URLs' do
@@ -28,7 +28,7 @@ RSpec.describe FetchLinkCardService, type: :service do
       end
     end
 
-    context do
+    context 'with an SJIS url' do
       let(:status) { Fabricate(:status, text: 'Check out http://example.com/sjis') }
 
       it 'works with SJIS' do
@@ -37,7 +37,7 @@ RSpec.describe FetchLinkCardService, type: :service do
       end
     end
 
-    context do
+    context 'with invalid SJIS url' do
       let(:status) { Fabricate(:status, text: 'Check out http://example.com/sjis_with_wrong_charset') }
 
       it 'works with SJIS even with wrong charset header' do
@@ -46,7 +46,7 @@ RSpec.describe FetchLinkCardService, type: :service do
       end
     end
 
-    context do
+    context 'with an koi8-r url' do
       let(:status) { Fabricate(:status, text: 'Check out http://example.com/koi8-r') }
 
       it 'works with koi8-r' do
@@ -55,7 +55,7 @@ RSpec.describe FetchLinkCardService, type: :service do
       end
     end
 
-    context do
+    context 'with a windows-1251 url' do
       let(:status) { Fabricate(:status, text: 'Check out http://example.com/windows-1251') }
 
       it 'works with windows-1251' do
@@ -64,7 +64,7 @@ RSpec.describe FetchLinkCardService, type: :service do
       end
     end
 
-    context do
+    context 'with a japanese path url' do
       let(:status) { Fabricate(:status, text: 'テストhttp://example.com/日本語') }
 
       it 'works with Japanese path string' do
@@ -73,7 +73,7 @@ RSpec.describe FetchLinkCardService, type: :service do
       end
     end
 
-    context do
+    context 'with a hyphen-suffixed url' do
       let(:status) { Fabricate(:status, text: 'test http://example.com/test-') }
 
       it 'works with a URL ending with a hyphen' do
@@ -81,7 +81,7 @@ RSpec.describe FetchLinkCardService, type: :service do
       end
     end
 
-    context do
+    context 'with an isolated url' do
       let(:status) { Fabricate(:status, text: 'testhttp://example.com/sjis') }
 
       it 'does not fetch URLs with not isolated from their surroundings' do
@@ -89,7 +89,7 @@ RSpec.describe FetchLinkCardService, type: :service do
       end
     end
 
-    context do
+    context 'with a url that has a caret' do
       let(:status) { Fabricate(:status, text: 'test http://example.com/test?data=file.gpx^1') }
 
       it 'does fetch URLs with a caret in search params' do

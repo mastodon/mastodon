@@ -88,7 +88,7 @@ RSpec.describe ActivityPub::CollectionsController do
       context 'with signature' do
         let(:remote_account) { Fabricate(:account, domain: 'example.com') }
 
-        context do
+        context 'when getting a featured resource' do
           before do
             get :show, params: { id: 'featured', account_username: account.username }
           end

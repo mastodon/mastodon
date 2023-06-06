@@ -71,10 +71,8 @@ describe StatusReachFinder do
           bob.statuses.create!(thread: status, text: 'Hoge')
         end
 
-        context do
-          it 'includes the inbox of the replier' do
-            expect(subject.inboxes).to include 'https://foo.bar/inbox'
-          end
+        it 'includes the inbox of the replier' do
+          expect(subject.inboxes).to include 'https://foo.bar/inbox'
         end
 
         context 'when status is not public' do
@@ -90,10 +88,8 @@ describe StatusReachFinder do
         let(:bob) { Fabricate(:account, username: 'bob', domain: 'foo.bar', protocol: :activitypub, inbox_url: 'https://foo.bar/inbox') }
         let(:parent_status) { Fabricate(:status, account: bob) }
 
-        context do
-          it 'includes the inbox of the replied-to account' do
-            expect(subject.inboxes).to include 'https://foo.bar/inbox'
-          end
+        it 'includes the inbox of the replied-to account' do
+          expect(subject.inboxes).to include 'https://foo.bar/inbox'
         end
 
         context 'when status is not public and replied-to account is not mentioned' do

@@ -393,30 +393,6 @@ RSpec/MessageSpies:
     - 'spec/spec_helper.rb'
     - 'spec/validators/status_length_validator_spec.rb'
 
-RSpec/MissingExampleGroupArgument:
-  Exclude:
-    - 'spec/controllers/accounts_controller_spec.rb'
-    - 'spec/controllers/activitypub/collections_controller_spec.rb'
-    - 'spec/controllers/admin/statuses_controller_spec.rb'
-    - 'spec/controllers/admin/users/roles_controller_spec.rb'
-    - 'spec/controllers/api/v1/accounts_controller_spec.rb'
-    - 'spec/controllers/api/v1/admin/account_actions_controller_spec.rb'
-    - 'spec/controllers/api/v1/admin/domain_allows_controller_spec.rb'
-    - 'spec/controllers/api/v1/statuses_controller_spec.rb'
-    - 'spec/controllers/auth/registrations_controller_spec.rb'
-    - 'spec/features/log_in_spec.rb'
-    - 'spec/lib/activitypub/activity/undo_spec.rb'
-    - 'spec/lib/status_reach_finder_spec.rb'
-    - 'spec/models/account_spec.rb'
-    - 'spec/models/email_domain_block_spec.rb'
-    - 'spec/models/trends/statuses_spec.rb'
-    - 'spec/models/trends/tags_spec.rb'
-    - 'spec/models/user_role_spec.rb'
-    - 'spec/models/user_spec.rb'
-    - 'spec/services/fetch_link_card_service_spec.rb'
-    - 'spec/services/notify_service_spec.rb'
-    - 'spec/services/process_mentions_service_spec.rb'
-
 RSpec/MultipleExpectations:
   Max: 19
 
