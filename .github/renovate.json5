@@ -105,5 +105,10 @@
       extends: ['schedule:weekly'],
       addLabels: ['typescript'],
     },
+    // Add labels depending on package manager
+    { matchManagers: ['npm', 'nvm'], addLabels: ['javascript'] },
+    { matchManagers: ['bundler', 'ruby-version'], addLabels: ['ruby'] },
+    { matchManagers: ['docker-compose', 'dockerfile'], addLabels: ['docker'] },
+    { matchManagers: ['github-actions'], addLabels: ['github_actions'] },
   ],
 }
