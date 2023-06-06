@@ -1248,4 +1248,117 @@ describe Mastodon::CLI::Accounts do
       end
     end
   end
+
+  describe '#reset_relationships' do
+    let(:target_account) { Fabricate(:account) }
+    let(:arguments)      { [target_account.username] }
+
+    context 'when no option is given' do
+      it 'exits with an error message indicating that at least one option is required' do
+        expect { cli.invoke(:reset_relationships, arguments) }.to output(
+          a_string_including('Please specify either --follows or --followers, or both')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when the given username is not found' do
+      let(:arguments) { ['non_existent_username'] }
+
+      it 'exits with an error message indicating that there is no such account' do
+        expect { cli.invoke(:reset_relationships, arguments, follows: true) }.to output(
+          a_string_including('No such account')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when the given username is found' do
+      let(:total_relationships) { 10 }
+      let!(:accounts)           { Fabricate.times(total_relationships, :account) }
+
+      context 'with --follows option' do
+        let(:options) { { follows: true } }
+
+        before do
+          accounts.each { |account| target_account.follow!(account) }
+        end
+
+        it 'resets all "following" relationships from the target account' do
+          cli.invoke(:reset_relationships, arguments, options)
+
+          expect(target_account.reload.following).to be_empty
+        end
+
+        it 'calls BootstrapTimelineWorker once to rebuild the timeline' do
+          allow(BootstrapTimelineWorker).to receive(:perform_async)
+
+          cli.invoke(:reset_relationships, arguments, options)
+
+          expect(BootstrapTimelineWorker).to have_received(:perform_async).with(target_account.id).once
+        end
+
+        it 'displays a successful message' do
+          expect { cli.invoke(:reset_relationships, arguments, options) }.to output(
+            a_string_including("Processed #{total_relationships} relationships")
+          ).to_stdout
+        end
+      end
+
+      context 'with --followers option' do
+        let(:options) { { followers: true } }
+
+        before do
+          accounts.each { |account| account.follow!(target_account) }
+        end
+
+        it 'resets all "followers" relationships from the target account' do
+          cli.invoke(:reset_relationships, arguments, options)
+
+          expect(target_account.reload.followers).to be_empty
+        end
+
+        it 'displays a successful message' do
+          expect { cli.invoke(:reset_relationships, arguments, options) }.to output(
+            a_string_including("Processed #{total_relationships} relationships")
+          ).to_stdout
+        end
+      end
+
+      context 'with --follows and --followers options' do
+        let(:options) { { followers: true, follows: true } }
+
+        before do
+          accounts.first(6).each { |account| account.follow!(target_account) }
+          accounts.last(4).each  { |account| target_account.follow!(account) }
+        end
+
+        it 'resets all "followers" relationships from the target account' do
+          cli.invoke(:reset_relationships, arguments, options)
+
+          expect(target_account.reload.followers).to be_empty
+        end
+
+        it 'resets all "following" relationships from the target account' do
+          cli.invoke(:reset_relationships, arguments, options)
+
+          expect(target_account.reload.following).to be_empty
+        end
+
+        it 'calls BootstrapTimelineWorker once to rebuild the timeline' do
+          allow(BootstrapTimelineWorker).to receive(:perform_async)
+
+          cli.invoke(:reset_relationships, arguments, options)
+
+          expect(BootstrapTimelineWorker).to have_received(:perform_async).with(target_account.id).once
+        end
+
+        it 'displays a successful message' do
+          expect { cli.invoke(:reset_relationships, arguments, options) }.to output(
+            a_string_including("Processed #{total_relationships} relationships")
+          ).to_stdout
+        end
+      end
+    end
+  end
 end
