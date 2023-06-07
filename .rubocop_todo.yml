@@ -1236,11 +1236,6 @@ Style/GlobalStdStream:
     - 'config/environments/development.rb'
     - 'config/environments/production.rb'
 
-# Configuration parameters: AllowedVariables.
-Style/GlobalVars:
-  Exclude:
-    - 'config/initializers/statsd.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
 Style/GuardClause:
@@ -1374,7 +1369,6 @@ Style/RedundantConstantBase:
   Exclude:
     - 'config/environments/production.rb'
     - 'config/initializers/sidekiq.rb'
-    - 'config/initializers/statsd.rb'
     - 'config/locales/sr-Latn.rb'
     - 'config/locales/sr.rb'
 
