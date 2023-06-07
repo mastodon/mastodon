@@ -22,17 +22,14 @@ const [
   skins,
   categories,
   short_names,
-  emojisWithoutShortCodes, // eslint-disable-line @typescript-eslint/no-unused-vars
+  _emojisWithoutShortCodes,
 ] = emojiCompressed;
 
 const emojis: Emojis = {};
 
 // decompress
 Object.keys(shortCodesToEmojiData).forEach((shortCode) => {
-  const [
-    filenameData, // eslint-disable-line @typescript-eslint/no-unused-vars
-    searchData,
-  ] = shortCodesToEmojiData[shortCode];
+  const [_filenameData, searchData] = shortCodesToEmojiData[shortCode];
   const native = searchData[0];
   let short_names = searchData[1];
   const search = searchData[2];
