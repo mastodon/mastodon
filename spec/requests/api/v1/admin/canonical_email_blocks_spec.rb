@@ -130,7 +130,7 @@ RSpec.describe 'Canonical Email Blocks' do
 
     context 'when the requested canonical block does not exist' do
       it 'returns http not found' do
-        get '/api/v1/admin/canonical_email_blocks/-1'
+        get '/api/v1/admin/canonical_email_blocks/-1', headers: headers
 
         expect(response).to have_http_status(404)
       end
@@ -296,7 +296,7 @@ RSpec.describe 'Canonical Email Blocks' do
 
     context 'when the canonical email block is not found' do
       it 'returns http not found' do
-        delete '/api/v1/admin/canonical_email_blocks/0'
+        delete '/api/v1/admin/canonical_email_blocks/0', headers: headers
 
         expect(response).to have_http_status(404)
       end
