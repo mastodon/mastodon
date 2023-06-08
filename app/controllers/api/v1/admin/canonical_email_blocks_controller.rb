@@ -58,7 +58,7 @@ class Api::V1::Admin::CanonicalEmailBlocksController < Api::BaseController
   end
 
   def set_canonical_email_blocks_from_test
-    @canonical_email_blocks = CanonicalEmailBlock.matching_email(params[:email])
+    @canonical_email_blocks = CanonicalEmailBlock.matching_email(params.require(:email))
   end
 
   def set_canonical_email_block

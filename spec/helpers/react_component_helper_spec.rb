@@ -33,7 +33,7 @@ describe ReactComponentHelper do
 
     it 'returns a tag with data attributes' do
       expect(parsed_html.div['data-admin-component']).to eq('Name')
-      expect(parsed_html.div['data-props']).to eq('{"locale":"en","one":"two"}')
+      expect(parsed_html.div['data-props']).to eq('{"one":"two"}')
     end
   end
 

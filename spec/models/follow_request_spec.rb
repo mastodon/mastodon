@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe FollowRequest, type: :model do
+RSpec.describe FollowRequest do
   describe '#authorize!' do
     let!(:follow_request) { Fabricate(:follow_request, account: account, target_account: target_account) }
     let(:account)         { Fabricate(:account) }

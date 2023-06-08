@@ -8,7 +8,7 @@ class Webhooks::DeliveryWorker
 
   def perform(webhook_id, body)
     @webhook   = Webhook.find(webhook_id)
-    @body      = body
+    @body      = @webhook.template.blank? ? body : Webhooks::PayloadRenderer.new(body).render(@webhook.template)
     @response  = nil
 
     perform_request

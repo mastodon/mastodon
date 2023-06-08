@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::NotificationsController, type: :controller do
+RSpec.describe Api::V1::NotificationsController do
   render_views
 
   let(:user)  { Fabricate(:user, account_attributes: { username: 'alice' }) }

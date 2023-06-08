@@ -134,7 +134,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
           end
 
           it 'does not change webauthn_id' do
-            expect { get :options }.to_not change { user.webauthn_id }
+            expect { get :options }.to_not change(user, :webauthn_id)
           end
 
           it 'includes existing credentials in list of excluded credentials' do
@@ -238,7 +238,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
 
               expect do
                 post :create, params: { credential: new_webauthn_credential, nickname: nickname }
-              end.to_not change { user.webauthn_id }
+              end.to_not change(user, :webauthn_id)
             end
           end
 
@@ -275,7 +275,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
         end
 
         context 'when user have not enabled webauthn' do
-          context 'creation succeeds' do
+          context 'when creation succeeds' do
             it 'creates a webauthn credential' do
               @controller.session[:webauthn_challenge] = challenge
 

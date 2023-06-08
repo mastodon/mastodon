@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
+RSpec.describe Api::V1::Admin::DomainAllowsController do
   render_views
 
   let(:role)   { UserRole.find_by(name: 'Admin') }
@@ -96,7 +96,7 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
   describe 'POST #create' do
     let!(:domain_allow) { Fabricate(:domain_allow, domain: 'example.com') }
 
-    context do
+    context 'with a valid domain' do
       before do
         post :create, params: { domain: 'foo.bar.com' }
       end
@@ -125,6 +125,14 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
       end
 
       it 'returns http unprocessable entity' do
+        expect(response).to have_http_status(422)
+      end
+    end
+
+    context 'when domain name is not specified' do
+      it 'returns http unprocessable entity' do
+        post :create
+
         expect(response).to have_http_status(422)
       end
     end

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PurgeDomainService, type: :service do
-  subject { PurgeDomainService.new }
+  subject { described_class.new }
 
   let!(:old_account) { Fabricate(:account, domain: 'obsolete.org') }
   let!(:old_status1) { Fabricate(:status, account: old_account) }

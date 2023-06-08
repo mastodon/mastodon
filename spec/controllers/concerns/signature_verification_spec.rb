@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ApplicationController, type: :controller do
+describe ApplicationController do
   let(:wrapped_actor_class) do
     Class.new do
       attr_reader :wrapped_account
@@ -35,8 +35,8 @@ describe ApplicationController, type: :controller do
 
   before do
     routes.draw do
-      match via: [:get, :post], 'success' => 'anonymous#success'
-      match via: [:get, :post], 'signature_required' => 'anonymous#signature_required'
+      match :via => [:get, :post], 'success' => 'anonymous#success'
+      match :via => [:get, :post], 'signature_required' => 'anonymous#signature_required'
     end
   end
 
@@ -129,7 +129,7 @@ describe ApplicationController, type: :controller do
       end
     end
 
-    context 'with request with unparseable Date header' do
+    context 'with request with unparsable Date header' do
       before do
         get :success
 

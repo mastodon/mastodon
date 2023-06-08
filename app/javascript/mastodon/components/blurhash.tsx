@@ -1,26 +1,27 @@
-import { decode } from 'blurhash';
-import React, { useRef, useEffect } from 'react';
+import { memo, useRef, useEffect } from 'react';
 
-type Props = {
+import { decode } from 'blurhash';
+
+interface Props extends React.HTMLAttributes<HTMLCanvasElement> {
   hash: string;
   width?: number;
   height?: number;
   dummy?: boolean; // Whether dummy mode is enabled. If enabled, nothing is rendered and canvas left untouched
   children?: never;
-  [key: string]: any;
 }
-function Blurhash({
+const Blurhash: React.FC<Props> = ({
   hash,
   width = 32,
   height = width,
   dummy = false,
   ...canvasProps
-}: Props) {
+}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const canvas = canvasRef.current!;
+
     // eslint-disable-next-line no-self-assign
     canvas.width = canvas.width; // resets canvas
 
@@ -40,6 +41,8 @@ function Blurhash({
   return (
     <canvas {...canvasProps} ref={canvasRef} width={width} height={height} />
   );
-}
+};
 
-export default React.memo(Blurhash);
+const MemoizedBlurhash = memo(Blurhash);
+
+export { MemoizedBlurhash as Blurhash };

@@ -18,6 +18,7 @@ class Form::Import
     muting: ['Account address', 'Hide notifications'],
     domain_blocking: ['#domain'],
     bookmarks: ['#uri'],
+    lists: ['List name', 'Account address'],
   }.freeze
 
   KNOWN_FIRST_HEADERS = EXPECTED_HEADERS_BY_TYPE.values.map(&:first).uniq.freeze
@@ -30,6 +31,7 @@ class Form::Import
     'Hide notifications' => 'hide_notifications',
     '#domain' => 'domain',
     '#uri' => 'uri',
+    'List name' => 'list_name',
   }.freeze
 
   class EmptyFileError < StandardError; end
@@ -48,6 +50,7 @@ class Form::Import
     return :muting if data.original_filename&.start_with?('mutes') || data.original_filename&.start_with?('muted_accounts')
     return :domain_blocking if data.original_filename&.start_with?('domain_blocks') || data.original_filename&.start_with?('blocked_domains')
     return :bookmarks if data.original_filename&.start_with?('bookmarks')
+    return :lists if data.original_filename&.start_with?('lists')
   end
 
   # Whether the uploaded CSV file seems to correspond to a different import type than the one selected
@@ -76,14 +79,16 @@ class Form::Import
 
   private
 
-  def default_csv_header
+  def default_csv_headers
     case type.to_sym
     when :following, :blocking, :muting
-      'Account address'
+      ['Account address']
     when :domain_blocking
-      '#domain'
+      ['#domain']
     when :bookmarks
-      '#uri'
+      ['#uri']
+    when :lists
+      ['List name', 'Account address']
     end
   end
 
@@ -98,7 +103,7 @@ class Form::Import
         field&.split(',')&.map(&:strip)&.presence
       when 'Account address'
         field.strip.gsub(/\A@/, '')
-      when '#domain', '#uri'
+      when '#domain', '#uri', 'List name'
         field.strip
       else
         field
@@ -109,7 +114,7 @@ class Form::Import
     @csv_data.take(1) # Ensure the headers are read
     raise EmptyFileError if @csv_data.headers == true
 
-    @csv_data = CSV.open(data.path, encoding: 'UTF-8', skip_blanks: true, headers: [default_csv_header], converters: csv_converter) unless KNOWN_FIRST_HEADERS.include?(@csv_data.headers&.first)
+    @csv_data = CSV.open(data.path, encoding: 'UTF-8', skip_blanks: true, headers: default_csv_headers, converters: csv_converter) unless KNOWN_FIRST_HEADERS.include?(@csv_data.headers&.first)
     @csv_data
   end
 
@@ -133,7 +138,7 @@ class Form::Import
   def validate_data
     return if data.nil?
     return errors.add(:data, I18n.t('imports.errors.too_large')) if data.size > FILE_SIZE_LIMIT
-    return errors.add(:data, I18n.t('imports.errors.incompatible_type')) unless csv_data.headers.include?(default_csv_header)
+    return errors.add(:data, I18n.t('imports.errors.incompatible_type')) unless default_csv_headers.all? { |header| csv_data.headers.include?(header) }
 
     errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if csv_row_count > ROWS_PROCESSING_LIMIT
 

@@ -31,24 +31,42 @@ RSpec.describe TranslationService::LibreTranslate do
   describe '#translate' do
     it 'returns translation with specified source language' do
       stub_request(:post, 'https://libretranslate.example.com/translate')
-        .with(body: '{"q":"Hasta la vista","source":"es","target":"en","format":"html","api_key":"my-api-key"}')
-        .to_return(body: '{"translatedText": "See you"}')
+        .with(body: '{"q":["Hasta la vista"],"source":"es","target":"en","format":"html","api_key":"my-api-key"}')
+        .to_return(body: '{"translatedText": ["See you"]}')
 
-      translation = service.translate('Hasta la vista', 'es', 'en')
-      expect(translation.detected_source_language).to eq 'es'
+      translations = service.translate(['Hasta la vista'], 'es', 'en')
+      expect(translations.size).to eq 1
+
+      translation = translations.first
+      expect(translation.detected_source_language).to be 'es'
       expect(translation.provider).to eq 'LibreTranslate'
       expect(translation.text).to eq 'See you'
     end
 
     it 'returns translation with auto-detected source language' do
       stub_request(:post, 'https://libretranslate.example.com/translate')
-        .with(body: '{"q":"Guten Morgen","source":"auto","target":"en","format":"html","api_key":"my-api-key"}')
-        .to_return(body: '{"detectedLanguage":{"confidence":92,"language":"de"},"translatedText":"Good morning"}')
+        .with(body: '{"q":["Guten Morgen"],"source":"auto","target":"en","format":"html","api_key":"my-api-key"}')
+        .to_return(body: '{"detectedLanguage": [{"confidence": 92, "language": "de"}], "translatedText": ["Good morning"]}')
 
-      translation = service.translate('Guten Morgen', nil, 'en')
-      expect(translation.detected_source_language).to be_nil
+      translations = service.translate(['Guten Morgen'], nil, 'en')
+      expect(translations.size).to eq 1
+
+      translation = translations.first
+      expect(translation.detected_source_language).to eq 'de'
       expect(translation.provider).to eq 'LibreTranslate'
       expect(translation.text).to eq 'Good morning'
+    end
+
+    it 'returns translation of multiple texts' do
+      stub_request(:post, 'https://libretranslate.example.com/translate')
+        .with(body: '{"q":["Guten Morgen","Gute Nacht"],"source":"de","target":"en","format":"html","api_key":"my-api-key"}')
+        .to_return(body: '{"translatedText": ["Good morning", "Good night"]}')
+
+      translations = service.translate(['Guten Morgen', 'Gute Nacht'], 'de', 'en')
+      expect(translations.size).to eq 2
+
+      expect(translations.first.text).to eq 'Good morning'
+      expect(translations.last.text).to eq 'Good night'
     end
   end
 end

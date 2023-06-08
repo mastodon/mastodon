@@ -5,10 +5,6 @@ module SettingsHelper
     LanguagesHelper::SUPPORTED_LOCALES.keys
   end
 
-  def hash_to_object(hash)
-    HashObject.new(hash)
-  end
-
   def session_device_icon(session)
     device = session.detection.device
 

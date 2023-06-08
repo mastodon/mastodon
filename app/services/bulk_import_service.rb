@@ -16,6 +16,8 @@ class BulkImportService < BaseService
       import_domain_blocks!
     when :bookmarks
       import_bookmarks!
+    when :lists
+      import_lists!
     end
 
     @import.update!(state: :finished, finished_at: Time.now.utc) if @import.processed_items == @import.total_items
@@ -154,6 +156,26 @@ class BulkImportService < BaseService
     end
 
     Import::RowWorker.push_bulk(rows_by_uri.values) do |row|
+      [row.id]
+    end
+  end
+
+  def import_lists!
+    rows = @import.rows.to_a
+
+    if @import.overwrite?
+      included_lists = rows.map { |row| row.data['list_name'] }.uniq
+
+      @account.owned_lists.where.not(title: included_lists).destroy_all
+
+      # As list membership changes do not retroactively change timeline
+      # contents, simplify things by just clearing everything
+      @account.owned_lists.find_each do |list|
+        list.list_accounts.destroy_all
+      end
+    end
+
+    Import::RowWorker.push_bulk(rows) do |row|
       [row.id]
     end
   end

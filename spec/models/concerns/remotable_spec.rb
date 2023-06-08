@@ -156,7 +156,7 @@ RSpec.describe Remotable do
       context 'when the response is successful' do
         let(:code) { 200 }
 
-        context 'and contains Content-Disposition header' do
+        context 'when contains Content-Disposition header' do
           let(:file)      { 'filename="foo.txt"' }
           let(:headers)   { { 'content-disposition' => file } }
 

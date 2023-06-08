@@ -1,9 +1,15 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
+
+import Toggle from 'react-toggle';
+
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { fetchList, deleteList, updateList } from 'mastodon/actions/lists';
 import { openModal } from 'mastodon/actions/modal';
@@ -11,11 +17,11 @@ import { connectListStream } from 'mastodon/actions/streaming';
 import { expandListTimeline } from 'mastodon/actions/timelines';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
-import Icon from 'mastodon/components/icon';
+import { Icon }  from 'mastodon/components/icon';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
-import RadioButton from 'mastodon/components/radio_button';
-import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
+import { RadioButton } from 'mastodon/components/radio_button';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
@@ -30,7 +36,7 @@ const mapStateToProps = (state, props) => ({
   hasUnread: state.getIn(['timelines', `list:${props.params.id}`, 'unread']) > 0,
 });
 
-class ListTimeline extends React.PureComponent {
+class ListTimeline extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -76,7 +82,7 @@ class ListTimeline extends React.PureComponent {
     this.disconnect = dispatch(connectListStream(id));
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     const { dispatch } = this.props;
     const { id } = nextProps.params;
 
@@ -110,24 +116,30 @@ class ListTimeline extends React.PureComponent {
   };
 
   handleEditClick = () => {
-    this.props.dispatch(openModal('LIST_EDITOR', { listId: this.props.params.id }));
+    this.props.dispatch(openModal({
+      modalType: 'LIST_EDITOR',
+      modalProps: { listId: this.props.params.id },
+    }));
   };
 
   handleDeleteClick = () => {
     const { dispatch, columnId, intl } = this.props;
     const { id } = this.props.params;
 
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.deleteMessage),
-      confirm: intl.formatMessage(messages.deleteConfirm),
-      onConfirm: () => {
-        dispatch(deleteList(id));
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.deleteMessage),
+        confirm: intl.formatMessage(messages.deleteConfirm),
+        onConfirm: () => {
+          dispatch(deleteList(id));
 
-        if (columnId) {
-          dispatch(removeColumn(columnId));
-        } else {
-          this.context.router.history.push('/lists');
-        }
+          if (columnId) {
+            dispatch(removeColumn(columnId));
+          } else {
+            this.context.router.history.push('/lists');
+          }
+        },
       },
     }));
   };
@@ -135,7 +147,13 @@ class ListTimeline extends React.PureComponent {
   handleRepliesPolicyChange = ({ target }) => {
     const { dispatch } = this.props;
     const { id } = this.props.params;
-    dispatch(updateList(id, undefined, false, target.value));
+    dispatch(updateList(id, undefined, false, undefined, target.value));
+  };
+
+  onExclusiveToggle = ({ target }) => {
+    const { dispatch } = this.props;
+    const { id } = this.props.params;
+    dispatch(updateList(id, undefined, false, target.checked, undefined));
   };
 
   render () {
@@ -144,6 +162,7 @@ class ListTimeline extends React.PureComponent {
     const pinned = !!columnId;
     const title  = list ? list.get('title') : id;
     const replies_policy = list ? list.get('replies_policy') : undefined;
+    const isExclusive = list ? list.get('exclusive') : undefined;
 
     if (typeof list === 'undefined') {
       return (
@@ -179,6 +198,13 @@ class ListTimeline extends React.PureComponent {
             <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
               <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
+          </div>
+
+          <div className='setting-toggle'>
+            <Toggle id={`list-${id}-exclusive`} defaultChecked={isExclusive} onChange={this.onExclusiveToggle} />
+            <label htmlFor={`list-${id}-exclusive`} className='setting-toggle__label'>
+              <FormattedMessage id='lists.exclusive' defaultMessage='Hide these posts from home' />
+            </label>
           </div>
 
           { replies_policy !== undefined && (

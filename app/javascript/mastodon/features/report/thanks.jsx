@@ -1,18 +1,21 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
-import Button from 'mastodon/components/button';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
+
 import {
   unfollowAccount,
   muteAccount,
   blockAccount,
 } from 'mastodon/actions/accounts';
+import Button from 'mastodon/components/button';
 
 const mapStateToProps = () => ({});
 
-class Thanks extends React.PureComponent {
+class Thanks extends PureComponent {
 
   static propTypes = {
     submitted: PropTypes.bool,
@@ -48,17 +51,17 @@ class Thanks extends React.PureComponent {
     const { account, submitted } = this.props;
 
     return (
-      <React.Fragment>
+      <>
         <h3 className='report-dialog-modal__title'>{submitted ? <FormattedMessage id='report.thanks.title_actionable' defaultMessage="Thanks for reporting, we'll look into this." /> : <FormattedMessage id='report.thanks.title' defaultMessage="Don't want to see this?" />}</h3>
         <p className='report-dialog-modal__lead'>{submitted ? <FormattedMessage id='report.thanks.take_action_actionable' defaultMessage='While we review this, you can take action against @{name}:' values={{ name: account.get('username') }} /> : <FormattedMessage id='report.thanks.take_action' defaultMessage='Here are your options for controlling what you see on Mastodon:' />}</p>
 
         {account.getIn(['relationship', 'following']) && (
-          <React.Fragment>
+          <>
             <h4 className='report-dialog-modal__subtitle'><FormattedMessage id='report.unfollow' defaultMessage='Unfollow @{name}' values={{ name: account.get('username') }} /></h4>
             <p className='report-dialog-modal__lead'><FormattedMessage id='report.unfollow_explanation' defaultMessage='You are following this account. To not see their posts in your home feed anymore, unfollow them.' /></p>
             <Button secondary onClick={this.handleUnfollowClick}><FormattedMessage id='account.unfollow' defaultMessage='Unfollow' /></Button>
             <hr />
-          </React.Fragment>
+          </>
         )}
 
         <h4 className='report-dialog-modal__subtitle'><FormattedMessage id='account.mute' defaultMessage='Mute @{name}' values={{ name: account.get('username') }} /></h4>
@@ -76,7 +79,7 @@ class Thanks extends React.PureComponent {
         <div className='report-dialog-modal__actions'>
           <Button onClick={this.handleCloseClick}><FormattedMessage id='report.close' defaultMessage='Done' /></Button>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 

@@ -1,4 +1,5 @@
 import api from '../api';
+
 import { importFetchedAccount } from './importer';
 
 export const SERVER_FETCH_REQUEST = 'Server_FETCH_REQUEST';

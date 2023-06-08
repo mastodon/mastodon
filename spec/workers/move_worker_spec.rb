@@ -120,7 +120,7 @@ describe MoveWorker do
       include_examples 'followers count handling'
       include_examples 'lists handling'
 
-      context 'and the local user already has the target in a list' do
+      context 'when the local user already has the target in a list' do
         before do
           list.accounts << target_account
         end
@@ -139,7 +139,7 @@ describe MoveWorker do
       include_examples 'followers count handling'
       include_examples 'lists handling'
 
-      context 'and the local user already has the target in a list' do
+      context 'when the local user already has the target in a list' do
         before do
           list.accounts << target_account
         end

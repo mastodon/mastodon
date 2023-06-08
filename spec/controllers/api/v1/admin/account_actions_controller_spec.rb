@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Admin::AccountActionsController, type: :controller do
+RSpec.describe Api::V1::Admin::AccountActionsController do
   render_views
 
   let(:role)   { UserRole.find_by(name: 'Moderator') }
@@ -32,7 +32,7 @@ RSpec.describe Api::V1::Admin::AccountActionsController, type: :controller do
   end
 
   describe 'POST #create' do
-    context do
+    context 'with type of disable' do
       before do
         post :create, params: { account_id: account.id, type: 'disable' }
       end

@@ -37,6 +37,7 @@ defaults: &defaults
   show_domain_blocks_rationale: 'disabled'
   require_invite_text: false
   backups_retention_period: 7
+  captcha_enabled: false
 
 development:
   <<: *defaults

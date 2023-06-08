@@ -1,12 +1,16 @@
-import { connect } from 'react-redux';
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+
 import { Link } from 'react-router-dom';
-import { domain, version, source_url, statusPageUrl, profile_directory as profileDirectory } from 'mastodon/initial_state';
-import { logOut } from 'mastodon/utils/log_out';
+
+import { connect } from 'react-redux';
+
 import { openModal } from 'mastodon/actions/modal';
+import { domain, version, source_url, statusPageUrl, profile_directory as profileDirectory } from 'mastodon/initial_state';
 import { PERMISSION_INVITE_USERS } from 'mastodon/permissions';
+import { logOut } from 'mastodon/utils/log_out';
 
 const messages = defineMessages({
   logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
@@ -15,16 +19,19 @@ const messages = defineMessages({
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
   onLogout () {
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.logoutMessage),
-      confirm: intl.formatMessage(messages.logoutConfirm),
-      closeWhenConfirm: false,
-      onConfirm: () => logOut(),
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.logoutMessage),
+        confirm: intl.formatMessage(messages.logoutConfirm),
+        closeWhenConfirm: false,
+        onConfirm: () => logOut(),
+      },
     }));
   },
 });
 
-class LinkFooter extends React.PureComponent {
+class LinkFooter extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,
