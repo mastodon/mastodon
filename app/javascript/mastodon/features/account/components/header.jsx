@@ -1,22 +1,26 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import Button from 'mastodon/components/button';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { autoPlayGif, me, domain } from 'mastodon/initial_state';
+
 import classNames from 'classnames';
-import Icon from 'mastodon/components/icon';
-import IconButton from 'mastodon/components/icon_button';
-import Avatar from 'mastodon/components/avatar';
-import { counterRenderer } from 'mastodon/components/common_counter';
-import ShortNumber from 'mastodon/components/short_number';
+import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { Avatar } from 'mastodon/components/avatar';
+import Button from 'mastodon/components/button';
+import { counterRenderer } from 'mastodon/components/common_counter';
+import { Icon }  from 'mastodon/components/icon';
+import { IconButton } from 'mastodon/components/icon_button';
+import ShortNumber from 'mastodon/components/short_number';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
+import { autoPlayGif, me, domain } from 'mastodon/initial_state';
+import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
+
 import AccountNoteContainer from '../containers/account_note_container';
 import FollowRequestNoteContainer from '../containers/follow_request_note_container';
-import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
-import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -80,6 +84,7 @@ class Header extends ImmutablePureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,
+    router: PropTypes.object,
   };
 
   static propTypes = {
@@ -101,9 +106,14 @@ class Header extends ImmutablePureComponent {
     onChangeLanguages: PropTypes.func.isRequired,
     onInteractionModal: PropTypes.func.isRequired,
     onOpenAvatar: PropTypes.func.isRequired,
+    onOpenURL: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
+  };
+
+  setRef = c => {
+    this.node = c;
   };
 
   openEditProfile = () => {
@@ -155,12 +165,66 @@ class Header extends ImmutablePureComponent {
     const { account } = this.props;
 
     navigator.share({
-      text: `${titleFromAccount(account)}\n${account.get('note_plain')}`,
       url: account.get('url'),
     }).catch((e) => {
       if (e.name !== 'AbortError') console.error(e);
     });
   };
+
+  handleHashtagClick = e => {
+    const { router } = this.context;
+    const value = e.currentTarget.textContent.replace(/^#/, '');
+
+    if (router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      router.history.push(`/tags/${value}`);
+    }
+  };
+
+  handleMentionClick = e => {
+    const { router } = this.context;
+    const { onOpenURL } = this.props;
+
+    if (router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+
+      const link = e.currentTarget;
+
+      onOpenURL(link.href, router.history, () => {
+        window.location = link.href;
+      });
+    }
+  };
+
+  _attachLinkEvents () {
+    const node = this.node;
+
+    if (!node) {
+      return;
+    }
+
+    const links = node.querySelectorAll('a');
+
+    let link;
+
+    for (var i = 0; i < links.length; ++i) {
+      link = links[i];
+
+      if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
+        link.addEventListener('click', this.handleHashtagClick, false);
+      } else if (link.classList.contains('mention')) {
+        link.addEventListener('click', this.handleMentionClick, false);
+      }
+    }
+  }
+
+  componentDidMount () {
+    this._attachLinkEvents();
+  }
+
+  componentDidUpdate () {
+    this._attachLinkEvents();
+  }
 
   render () {
     const { account, hidden, intl, domain } = this.props;
@@ -268,16 +332,16 @@ class Header extends ImmutablePureComponent {
       if (account.getIn(['relationship', 'muting'])) {
         menu.push({ text: intl.formatMessage(messages.unmute, { name: account.get('username') }), action: this.props.onMute });
       } else {
-        menu.push({ text: intl.formatMessage(messages.mute, { name: account.get('username') }), action: this.props.onMute });
+        menu.push({ text: intl.formatMessage(messages.mute, { name: account.get('username') }), action: this.props.onMute, dangerous: true });
       }
 
       if (account.getIn(['relationship', 'blocking'])) {
         menu.push({ text: intl.formatMessage(messages.unblock, { name: account.get('username') }), action: this.props.onBlock });
       } else {
-        menu.push({ text: intl.formatMessage(messages.block, { name: account.get('username') }), action: this.props.onBlock });
+        menu.push({ text: intl.formatMessage(messages.block, { name: account.get('username') }), action: this.props.onBlock, dangerous: true });
       }
 
-      menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport });
+      menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport, dangerous: true });
     }
 
     if (signedIn && isRemote) {
@@ -286,7 +350,7 @@ class Header extends ImmutablePureComponent {
       if (account.getIn(['relationship', 'domain_blocking'])) {
         menu.push({ text: intl.formatMessage(messages.unblockDomain, { domain: remoteDomain }), action: this.props.onUnblockDomain });
       } else {
-        menu.push({ text: intl.formatMessage(messages.blockDomain, { domain: remoteDomain }), action: this.props.onBlockDomain });
+        menu.push({ text: intl.formatMessage(messages.blockDomain, { domain: remoteDomain }), action: this.props.onBlockDomain, dangerous: true });
       }
     }
 
@@ -338,10 +402,10 @@ class Header extends ImmutablePureComponent {
             {!suspended && (
               <div className='account__header__tabs__buttons'>
                 {!hidden && (
-                  <React.Fragment>
+                  <>
                     {actionBtn}
                     {bellBtn}
-                  </React.Fragment>
+                  </>
                 )}
 
                 <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' size={24} direction='right' />
@@ -360,7 +424,7 @@ class Header extends ImmutablePureComponent {
 
           {!(suspended || hidden) && (
             <div className='account__header__extra'>
-              <div className='account__header__bio'>
+              <div className='account__header__bio' ref={this.setRef}>
                 {(account.get('id') !== me && signedIn) && <AccountNoteContainer account={account} />}
 
                 {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content translate' dangerouslySetInnerHTML={content} />}

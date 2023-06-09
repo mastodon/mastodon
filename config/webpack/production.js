@@ -3,11 +3,13 @@
 const { createHash } = require('crypto');
 const { readFileSync } = require('fs');
 const { resolve } = require('path');
-const { merge } = require('webpack-merge');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const TerserPlugin = require('terser-webpack-plugin');
+
 const CompressionPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { merge } = require('webpack-merge');
 const { InjectManifest } = require('workbox-webpack-plugin');
+
 const sharedConfig = require('./shared');
 
 const root = resolve(__dirname, '..', '..');

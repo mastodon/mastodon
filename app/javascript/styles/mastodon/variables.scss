@@ -61,3 +61,10 @@ $no-gap-breakpoint: 1175px;
 $font-sans-serif: 'mastodon-font-sans-serif' !default;
 $font-display: 'mastodon-font-display' !default;
 $font-monospace: 'mastodon-font-monospace' !default;
+
+:root {
+  --dropdown-border-color: #{lighten($ui-base-color, 12%)};
+  --dropdown-background-color: #{lighten($ui-base-color, 4%)};
+  --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)},
+    0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
+}

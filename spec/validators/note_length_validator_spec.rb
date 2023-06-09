@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe NoteLengthValidator do
-  subject { NoteLengthValidator.new(attributes: { note: true }, maximum: 500) }
+  subject { described_class.new(attributes: { note: true }, maximum: 500) }
 
   describe '#validate' do
     it 'adds an error when text is over 500 characters' do

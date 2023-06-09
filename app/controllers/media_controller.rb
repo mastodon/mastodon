@@ -3,7 +3,6 @@
 class MediaController < ApplicationController
   include Authorization
 
-  skip_before_action :store_current_location
   skip_before_action :require_functional!, unless: :whitelist_mode?
 
   before_action :authenticate_user!, if: :whitelist_mode?
@@ -46,6 +45,6 @@ class MediaController < ApplicationController
   end
 
   def allow_iframing
-    response.headers['X-Frame-Options'] = 'ALLOWALL'
+    response.headers.delete('X-Frame-Options')
   end
 end

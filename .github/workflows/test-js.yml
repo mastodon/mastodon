@@ -3,12 +3,15 @@ on:
   push:
     branches-ignore:
       - 'dependabot/**'
+      - 'renovate/**'
     paths:
       - 'package.json'
       - 'yarn.lock'
       - '.nvmrc'
       - '**/*.js'
       - '**/*.jsx'
+      - '**/*.ts'
+      - '**/*.tsx'
       - '**/*.snap'
       - '.github/workflows/test-js.yml'
 
@@ -19,6 +22,8 @@ on:
       - '.nvmrc'
       - '**/*.js'
       - '**/*.jsx'
+      - '**/*.ts'
+      - '**/*.tsx'
       - '**/*.snap'
       - '.github/workflows/test-js.yml'
 
@@ -40,4 +45,4 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Jest testing
-        run: yarn test:jest --reporters github-actions summary
+        run: yarn jest --reporters github-actions summary

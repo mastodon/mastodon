@@ -514,7 +514,7 @@ body > [data-popper-placement] {
       outline: 0;
     }
 
-    @media screen and (max-width: 600px) {
+    @media screen and (width <= 600px) {
       font-size: 16px;
     }
   }
@@ -535,7 +535,7 @@ body > [data-popper-placement] {
       all: unset;
     }
 
-    @media screen and (max-width: 600px) {
+    @media screen and (width <= 600px) {
       height: 100px !important; // Prevent auto-resize textarea
       resize: vertical;
     }
@@ -1145,6 +1145,60 @@ body > [data-popper-placement] {
       }
     }
   }
+
+  &--in-thread {
+    border-bottom: 0;
+
+    .status__content,
+    .status__action-bar,
+    .media-gallery,
+    .video-player,
+    .audio-player,
+    .attachment-list,
+    .picture-in-picture-placeholder,
+    .status-card {
+      margin-inline-start: 46px + 10px;
+      width: calc(100% - (46px + 10px));
+    }
+  }
+
+  &--first-in-thread {
+    border-top: 1px solid lighten($ui-base-color, 8%);
+  }
+
+  &__line {
+    height: 16px - 4px;
+    border-inline-start: 2px solid lighten($ui-base-color, 8%);
+    width: 0;
+    position: absolute;
+    top: 0;
+    inset-inline-start: 16px + ((46px - 2px) * 0.5);
+
+    &--full {
+      top: 0;
+      height: 100%;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 16px - 4px;
+        height: 46px + 4px + 4px;
+        width: 2px;
+        background: $ui-base-color;
+        inset-inline-start: -2px;
+      }
+    }
+
+    &--first {
+      top: 16px + 46px + 4px;
+      height: calc(100% - (16px + 46px + 4px));
+
+      &::before {
+        display: none;
+      }
+    }
+  }
 }
 
 .status__relative-time {
@@ -1293,6 +1347,7 @@ body > [data-popper-placement] {
 .detailed-status {
   background: lighten($ui-base-color, 4%);
   padding: 16px;
+  border-top: 1px solid lighten($ui-base-color, 8%);
 
   &--flex {
     display: flex;
@@ -1459,26 +1514,19 @@ body > [data-popper-placement] {
   }
 
   &__note {
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     color: $ui-secondary-color;
-  }
-}
-
-.follow-recommendations-account {
-  .icon-button {
-    color: $ui-primary-color;
-
-    &.active {
-      color: $valid-value-color;
-    }
   }
 }
 
 .account__wrapper {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
 .account__avatar {
@@ -1547,108 +1595,10 @@ a .account__avatar {
 }
 
 .account__relationship {
-  height: 18px;
-  padding: 10px;
   white-space: nowrap;
-}
-
-.account__disclaimer {
-  padding: 10px;
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  color: $dark-text-color;
-
-  strong {
-    font-weight: 500;
-
-    @each $lang in $cjk-langs {
-      &:lang(#{$lang}) {
-        font-weight: 700;
-      }
-    }
-  }
-
-  a {
-    font-weight: 500;
-    color: inherit;
-    text-decoration: underline;
-
-    &:hover,
-    &:focus,
-    &:active {
-      text-decoration: none;
-    }
-  }
-}
-
-.account__action-bar {
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-  line-height: 36px;
-  overflow: hidden;
-  flex: 0 0 auto;
   display: flex;
-}
-
-.account__action-bar-dropdown {
-  padding: 10px;
-
-  .icon-button {
-    vertical-align: middle;
-  }
-
-  .dropdown--active {
-    .dropdown__content.dropdown__right {
-      inset-inline-start: 6px;
-      inset-inline-end: initial;
-    }
-
-    &::after {
-      bottom: initial;
-      margin-inline-start: 11px;
-      margin-top: -7px;
-      inset-inline-end: initial;
-    }
-  }
-}
-
-.account__action-bar-links {
-  display: flex;
-  flex: 1 1 auto;
-  line-height: 18px;
-  text-align: center;
-}
-
-.account__action-bar__tab {
-  text-decoration: none;
-  overflow: hidden;
-  flex: 0 1 100%;
-  border-inline-end: 1px solid lighten($ui-base-color, 8%);
-  padding: 10px 0;
-  border-bottom: 4px solid transparent;
-
-  &.active {
-    border-bottom: 4px solid $ui-highlight-color;
-  }
-
-  & > span {
-    display: block;
-    text-transform: uppercase;
-    font-size: 11px;
-    color: $darker-text-color;
-  }
-
-  strong {
-    display: block;
-    font-size: 15px;
-    font-weight: 500;
-    color: $primary-text-color;
-
-    @each $lang in $cjk-langs {
-      &:lang(#{$lang}) {
-        font-weight: 700;
-      }
-    }
-  }
+  align-items: center;
+  gap: 4px;
 }
 
 .account-authorize {
@@ -1869,6 +1819,11 @@ a.account__display-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  &__account {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 }
 
 .display-name__html {
@@ -1997,34 +1952,16 @@ a.account__display-name {
 }
 
 .dropdown-animation {
-  animation: dropdown 300ms cubic-bezier(0.1, 0.7, 0.1, 1);
+  animation: dropdown 150ms cubic-bezier(0.1, 0.7, 0.1, 1);
 
   @keyframes dropdown {
     from {
       opacity: 0;
-      transform: scaleX(0.85) scaleY(0.75);
     }
 
     to {
       opacity: 1;
-      transform: scaleX(1) scaleY(1);
     }
-  }
-
-  &.top {
-    transform-origin: bottom;
-  }
-
-  &.right {
-    transform-origin: left;
-  }
-
-  &.bottom {
-    transform-origin: top;
-  }
-
-  &.left {
-    transform-origin: right;
   }
 
   .reduce-motion & {
@@ -2042,16 +1979,17 @@ a.account__display-name {
 }
 
 .dropdown-menu__separator {
-  border-bottom: 1px solid darken($ui-secondary-color, 8%);
-  margin: 5px 7px 6px;
+  border-bottom: 1px solid var(--dropdown-border-color);
+  margin: 5px 0;
   height: 0;
 }
 
 .dropdown-menu {
-  background: $ui-secondary-color;
-  padding: 4px 0;
+  background: var(--dropdown-background-color);
+  border: 1px solid var(--dropdown-border-color);
+  padding: 4px;
   border-radius: 4px;
-  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  box-shadow: var(--dropdown-shadow);
   z-index: 9999;
 
   &__text-button {
@@ -2072,12 +2010,13 @@ a.account__display-name {
 
   &__container {
     &__header {
-      border-bottom: 1px solid darken($ui-secondary-color, 8%);
-      padding: 4px 14px;
-      padding-bottom: 8px;
+      border-bottom: 1px solid var(--dropdown-border-color);
+      padding: 10px 14px;
+      padding-bottom: 14px;
+      margin-bottom: 4px;
       font-size: 13px;
       line-height: 18px;
-      color: $inverted-text-color;
+      color: $darker-text-color;
     }
 
     &__list {
@@ -2114,100 +2053,40 @@ a.account__display-name {
   }
 }
 
-.dropdown-menu__arrow {
-  position: absolute;
-
-  &::before {
-    content: '';
-    display: block;
-    width: 14px;
-    height: 5px;
-    background-color: $ui-secondary-color;
-    mask-image: url("data:image/svg+xml;utf8,<svg width='14' height='5' xmlns='http://www.w3.org/2000/svg'><path d='M7 0L0 5h14L7 0z' fill='white'/></svg>");
-  }
-
-  &.top {
-    bottom: -5px;
-
-    &::before {
-      transform: rotate(180deg);
-    }
-  }
-
-  &.right {
-    inset-inline-start: -9px;
-
-    &::before {
-      transform: rotate(-90deg);
-    }
-  }
-
-  &.bottom {
-    top: -5px;
-  }
-
-  &.left {
-    inset-inline-end: -9px;
-
-    &::before {
-      transform: rotate(90deg);
-    }
-  }
-}
-
 .dropdown-menu__item {
   font-size: 13px;
   line-height: 18px;
+  font-weight: 500;
   display: block;
-  color: $inverted-text-color;
+
+  &--dangerous {
+    color: $error-value-color;
+  }
 
   a,
   button {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
+    font: inherit;
     display: block;
     width: 100%;
-    padding: 4px 14px;
+    padding: 10px 14px;
     border: 0;
     margin: 0;
+    background: transparent;
     box-sizing: border-box;
     text-decoration: none;
-    background: $ui-secondary-color;
     color: inherit;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     text-align: inherit;
+    border-radius: 4px;
 
     &:focus,
     &:hover,
     &:active {
-      background: $ui-highlight-color;
-      color: $secondary-text-color;
+      background: var(--dropdown-border-color);
       outline: 0;
     }
-  }
-}
-
-.dropdown-menu__item--text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: 4px 14px;
-}
-
-.dropdown-menu__item.edited-timestamp__history__item {
-  border-bottom: 1px solid darken($ui-secondary-color, 8%);
-
-  &:last-child {
-    border-bottom: 0;
-  }
-
-  &.dropdown-menu__item--text,
-  a,
-  button {
-    padding: 8px 14px;
   }
 }
 
@@ -2224,62 +2103,6 @@ a.account__display-name {
   strong {
     font-weight: 600;
   }
-}
-
-.dropdown--active .dropdown__content {
-  display: block;
-  line-height: 18px;
-  max-width: 311px;
-  inset-inline-end: 0;
-  text-align: start;
-  z-index: 9999;
-
-  & > ul {
-    list-style: none;
-    background: $ui-secondary-color;
-    padding: 4px 0;
-    border-radius: 4px;
-    box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
-    min-width: 140px;
-    position: relative;
-  }
-
-  &.dropdown__right {
-    inset-inline-end: 0;
-  }
-
-  &.dropdown__left {
-    & > ul {
-      inset-inline-start: -98px;
-    }
-  }
-
-  & > ul > li > a {
-    font-size: 13px;
-    line-height: 18px;
-    display: block;
-    padding: 4px 14px;
-    box-sizing: border-box;
-    text-decoration: none;
-    background: $ui-secondary-color;
-    color: $inverted-text-color;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    &:focus {
-      outline: 0;
-    }
-
-    &:hover {
-      background: $ui-highlight-color;
-      color: $secondary-text-color;
-    }
-  }
-}
-
-.dropdown__icon {
-  vertical-align: middle;
 }
 
 .columns-area {
@@ -2344,10 +2167,9 @@ $ui-header-height: 55px;
   height: $ui-header-height;
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 3;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden;
 
   &__logo {
     display: inline-flex;
@@ -2356,6 +2178,20 @@ $ui-header-height: 55px;
     .logo {
       height: $ui-header-height - 30px;
       width: auto;
+    }
+
+    .logo--wordmark {
+      display: none;
+    }
+
+    @media screen and (width >= 320px) {
+      .logo--wordmark {
+        display: block;
+      }
+
+      .logo--icon {
+        display: none;
+      }
     }
   }
 
@@ -2460,7 +2296,7 @@ $ui-header-height: 55px;
   overflow: hidden;
 }
 
-@media screen and (min-width: 631px) {
+@media screen and (width >= 631px) {
   .columns-area {
     padding: 0;
   }
@@ -2520,7 +2356,7 @@ $ui-header-height: 55px;
   &:hover,
   &:focus,
   &:active {
-    @media screen and (min-width: 631px) {
+    @media screen and (width >= 631px) {
       background: lighten($ui-base-color, 14%);
       border-bottom-color: lighten($ui-base-color, 14%);
     }
@@ -2537,7 +2373,7 @@ $ui-header-height: 55px;
   }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (width >= 600px) {
   .tabs-bar__link {
     span {
       display: inline;
@@ -2744,13 +2580,7 @@ $ui-header-height: 55px;
 
 .column-title {
   text-align: center;
-  padding: 40px;
-
-  .logo {
-    width: 50px;
-    margin: 0 auto;
-    margin-bottom: 40px;
-  }
+  padding-bottom: 40px;
 
   h3 {
     font-size: 24px;
@@ -2765,45 +2595,301 @@ $ui-header-height: 55px;
     font-weight: 400;
     color: $darker-text-color;
   }
-}
 
-.follow-recommendations-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.column-actions {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 40px;
-  padding-top: 40px;
-  padding-bottom: 200px;
-  flex-grow: 1;
-  position: relative;
-
-  &__background {
-    position: absolute;
-    inset-inline-start: 0;
-    bottom: 0;
-    height: 220px;
-    width: auto;
+  @media screen and (width >= 600px) {
+    padding: 40px;
   }
 }
 
-.column-list {
-  margin: 0 20px;
-  border: 1px solid lighten($ui-base-color, 8%);
-  background: darken($ui-base-color, 2%);
-  border-radius: 4px;
+.onboarding__footer {
+  margin-top: 30px;
+  color: $dark-text-color;
+  text-align: center;
+  font-size: 14px;
 
-  &__empty-message {
-    padding: 40px;
+  .link-button {
+    display: inline-block;
+    color: inherit;
+    font-size: inherit;
+  }
+}
+
+.onboarding__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: $highlight-text-color;
+  background: lighten($ui-base-color, 4%);
+  border-radius: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 17px;
+  height: 56px;
+  text-decoration: none;
+
+  svg {
+    height: 1.5em;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($ui-base-color, 8%);
+  }
+}
+
+.onboarding__illustration {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  max-height: 200px;
+  width: auto;
+}
+
+.onboarding__lead {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: $darker-text-color;
+  text-align: center;
+  margin-bottom: 30px;
+
+  strong {
+    font-weight: 700;
+    color: $secondary-text-color;
+  }
+}
+
+.onboarding__links {
+  margin-bottom: 30px;
+
+  & > * {
+    margin-bottom: 2px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.onboarding__steps {
+  margin-bottom: 30px;
+
+  &__item {
+    background: lighten($ui-base-color, 4%);
+    border: 0;
+    border-radius: 8px;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 2px;
+    text-decoration: none;
+    text-align: start;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: lighten($ui-base-color, 8%);
+    }
+
+    &__icon {
+      flex: 0 0 auto;
+      background: $ui-base-color;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      color: $dark-text-color;
+
+      @media screen and (width >= 600px) {
+        display: flex;
+      }
+    }
+
+    &__progress {
+      flex: 0 0 auto;
+      background: $valid-value-color;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 21px;
+      height: 21px;
+      color: $primary-text-color;
+
+      svg {
+        height: 14px;
+        width: auto;
+      }
+    }
+
+    &__description {
+      flex: 1 1 auto;
+      line-height: 18px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      h6 {
+        color: $primary-text-color;
+        font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      p {
+        color: $darker-text-color;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.onboarding__progress-indicator {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  position: sticky;
+  background: $ui-base-color;
+
+  @media screen and (width >= 600) {
+    padding: 0 40px;
+  }
+
+  &__line {
+    height: 4px;
+    flex: 1 1 auto;
+    background: lighten($ui-base-color, 4%);
+  }
+
+  &__step {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    background: lighten($ui-base-color, 4%);
+    border-radius: 50%;
+    color: $primary-text-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 15px;
+      height: auto;
+    }
+
+    &.active {
+      background: $valid-value-color;
+    }
+  }
+
+  &__step.active,
+  &__line.active {
+    background: $valid-value-color;
+    background-image: linear-gradient(
+      90deg,
+      $valid-value-color,
+      lighten($valid-value-color, 8%),
+      $valid-value-color
+    );
+    background-size: 200px 100%;
+    animation: skeleton 1.2s ease-in-out infinite;
+  }
+}
+
+.follow-recommendations {
+  background: darken($ui-base-color, 4%);
+  border-radius: 8px;
+  margin-bottom: 30px;
+
+  .account:last-child {
+    border-bottom: 0;
+  }
+
+  &__empty {
     text-align: center;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 400;
     color: $darker-text-color;
+    font-weight: 500;
+    padding: 40px;
+  }
+}
+
+.tip-carousel {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 30px;
+
+  &:focus {
+    outline: 0;
+    border-color: $highlight-text-color;
+  }
+
+  .media-modal__pagination {
+    margin-bottom: 0;
+  }
+}
+
+.copy-paste-text {
+  background: lighten($ui-base-color, 4%);
+  border-radius: 8px;
+  border: 1px solid lighten($ui-base-color, 8%);
+  padding: 16px;
+  color: $primary-text-color;
+  font-size: 15px;
+  line-height: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  transition: border-color 300ms linear;
+  margin-bottom: 30px;
+
+  &:focus,
+  &.focused {
+    transition: none;
+    outline: 0;
+    border-color: $highlight-text-color;
+  }
+
+  &.copied {
+    border-color: $valid-value-color;
+    transition: none;
+  }
+
+  textarea {
+    width: 100%;
+    height: auto;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    border: 0;
+    padding: 0;
+    margin-bottom: 30px;
+    resize: none;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.compose-form__highlightable {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+  border-radius: 4px;
+  transition: box-shadow 300ms linear;
+  min-height: 0;
+
+  &.active {
+    transition: none;
+    box-shadow: 0 0 0 6px rgba(lighten($highlight-text-color, 8%), 0.7);
   }
 }
 
@@ -2841,7 +2927,6 @@ $ui-header-height: 55px;
 
   .compose-form {
     flex: 1;
-    overflow-y: hidden;
     display: flex;
     flex-direction: column;
     min-height: 310px;
@@ -2944,7 +3029,7 @@ $ui-header-height: 55px;
     user-select: none;
   }
 
-  @media screen and (min-height: 640px) {
+  @media screen and (height >= 640px) {
     display: block;
   }
 }
@@ -3293,19 +3378,19 @@ $ui-header-height: 55px;
       }
     }
 
-    @media screen and (max-height: 810px) {
+    @media screen and (height <= 810px) {
       .trends__item:nth-of-type(3) {
         display: none;
       }
     }
 
-    @media screen and (max-height: 720px) {
+    @media screen and (height <= 720px) {
       .trends__item:nth-of-type(2) {
         display: none;
       }
     }
 
-    @media screen and (max-height: 670px) {
+    @media screen and (height <= 670px) {
       display: none;
     }
 
@@ -3389,7 +3474,7 @@ $ui-header-height: 55px;
     margin-bottom: 20px;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (width <= 600px) {
     font-size: 16px;
   }
 }
@@ -3492,6 +3577,10 @@ a.status-card {
 }
 
 .status-card-video {
+  // Firefox has a bug where frameborder=0 iframes add some extra blank space
+  // see https://bugzilla.mozilla.org/show_bug.cgi?id=155174
+  overflow: hidden;
+
   iframe {
     width: 100%;
     height: 100%;
@@ -3517,6 +3606,10 @@ a.status-card {
 
 .status-card__description {
   color: $darker-text-color;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .status-card__host {
@@ -4181,7 +4274,7 @@ a.status-card.compact:hover {
         background: lighten($ui-base-color, 4%);
       }
 
-      @media screen and (max-width: 600px) {
+      @media screen and (width <= 600px) {
         font-size: 16px;
       }
     }
@@ -4829,7 +4922,7 @@ a.status-card.compact:hover {
     background: $ui-base-color;
     border-radius: 0 0 4px 4px;
     box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
-    z-index: 2;
+    z-index: 99;
     font-size: 13px;
     padding: 15px 5px;
 
@@ -5147,7 +5240,7 @@ a.status-card.compact:hover {
   background: transparent;
   box-sizing: border-box;
   border: 0;
-  color: rgba($primary-text-color, 0.7);
+  color: rgba($white, 0.7);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -5162,7 +5255,7 @@ a.status-card.compact:hover {
   &:hover,
   &:focus,
   &:active {
-    color: $primary-text-color;
+    color: $white;
   }
 }
 
@@ -5260,6 +5353,11 @@ a.status-card.compact:hover {
 
   &.active {
     opacity: 1;
+  }
+
+  &:focus {
+    outline: 0;
+    background-color: $highlight-text-color;
   }
 }
 
@@ -5511,7 +5609,7 @@ a.status-card.compact:hover {
     font-weight: 700;
     margin-bottom: 15px;
 
-    @media screen and (max-height: 800px) {
+    @media screen and (height <= 800px) {
       font-size: 22px;
     }
   }
@@ -5698,7 +5796,7 @@ a.status-card.compact:hover {
   display: flex;
   border-top: 1px solid $ui-secondary-color;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (width <= 480px) {
     flex-wrap: wrap;
     overflow-y: auto;
   }
@@ -5709,7 +5807,7 @@ a.status-card.compact:hover {
   box-sizing: border-box;
   width: 50%;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (width <= 480px) {
     width: 100%;
   }
 }
@@ -5731,13 +5829,13 @@ a.status-card.compact:hover {
     color: $inverted-text-color;
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (width <= 480px) {
     max-height: 10vh;
   }
 }
 
 .focal-point-modal__content {
-  @media screen and (max-width: 480px) {
+  @media screen and (width <= 480px) {
     max-height: 40vh;
   }
 }
@@ -5788,7 +5886,7 @@ a.status-card.compact:hover {
     }
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (width <= 480px) {
     padding: 10px;
     max-width: 100%;
     order: 2;
@@ -6005,30 +6103,25 @@ a.status-card.compact:hover {
   z-index: 9999;
 }
 
-.media-gallery__gifv__label {
-  display: block;
+.media-gallery__item__badges {
   position: absolute;
-  color: $primary-text-color;
-  background: rgba($base-overlay-background, 0.5);
   bottom: 6px;
   inset-inline-start: 6px;
-  padding: 2px 6px;
-  border-radius: 2px;
-  font-size: 11px;
-  font-weight: 600;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.9;
-  transition: opacity 0.1s ease;
-  line-height: 18px;
+  display: flex;
+  gap: 2px;
 }
 
-.media-gallery__gifv {
-  &:hover {
-    .media-gallery__gifv__label {
-      opacity: 1;
-    }
-  }
+.media-gallery__gifv__label {
+  display: block;
+  color: $white;
+  background: rgba($black, 0.65);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  z-index: 1;
+  pointer-events: none;
+  line-height: 18px;
 }
 
 .attachment-list {
@@ -6103,22 +6196,26 @@ a.status-card.compact:hover {
   position: relative;
   width: 100%;
   min-height: 64px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  gap: 2px;
 }
 
 .media-gallery__item {
   border: 0;
   box-sizing: border-box;
   display: block;
-  float: left;
   position: relative;
   border-radius: 4px;
   overflow: hidden;
 
-  &.standalone {
-    .media-gallery__item-gifv-thumbnail {
-      transform: none;
-      top: 0;
-    }
+  &--tall {
+    grid-row: span 2;
+  }
+
+  &--wide {
+    grid-column: span 2;
   }
 }
 
@@ -6167,11 +6264,7 @@ a.status-card.compact:hover {
   cursor: zoom-in;
   height: 100%;
   object-fit: cover;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
   width: 100%;
-  z-index: 1;
 }
 
 .media-gallery__item-thumbnail-label {
@@ -6202,7 +6295,7 @@ a.status-card.compact:hover {
   background: darken($ui-base-color, 8%);
   border-radius: 4px;
   padding-bottom: 44px;
-  direction: ltr;
+  width: 100%;
 
   &.editable {
     border-radius: 0;
@@ -6269,8 +6362,9 @@ a.status-card.compact:hover {
   max-width: 100%;
   border-radius: 4px;
   box-sizing: border-box;
-  direction: ltr;
   color: $white;
+  display: flex;
+  align-items: center;
 
   &.editable {
     border-radius: 0;
@@ -6305,14 +6399,12 @@ a.status-card.compact:hover {
   &.inline {
     video {
       object-fit: contain;
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
     }
   }
 
   &__controls {
     position: absolute;
+    direction: ltr;
     z-index: 2;
     bottom: 0;
     inset-inline-start: 0;
@@ -6685,7 +6777,7 @@ a.status-card.compact:hover {
         content: '';
         position: absolute;
         bottom: 0;
-        inset-inline-start: 50%;
+        left: 50%;
         width: 0;
         height: 0;
         transform: translateX(-50%);
@@ -6817,7 +6909,7 @@ noscript {
   }
 }
 
-@media screen and (max-width: 630px) and (max-height: 400px) {
+@media screen and (width <= 630px) and (height <= 400px) {
   $duration: 400ms;
   $delay: 100ms;
 
@@ -6947,7 +7039,7 @@ noscript {
         background: lighten($ui-base-color, 4%);
       }
 
-      @media screen and (max-width: 600px) {
+      @media screen and (width <= 600px) {
         font-size: 16px;
       }
     }
@@ -6963,7 +7055,8 @@ noscript {
 }
 
 .moved-account-banner,
-.follow-request-banner {
+.follow-request-banner,
+.account-memorial-banner {
   padding: 20px;
   background: lighten($ui-base-color, 4%);
   display: flex;
@@ -6996,6 +7089,10 @@ noscript {
 
 .follow-request-banner .button {
   width: 100%;
+}
+
+.account-memorial-banner__message {
+  margin-bottom: 0;
 }
 
 .column-inline-form {
@@ -7033,7 +7130,7 @@ noscript {
   width: 380px;
   overflow: hidden;
 
-  @media screen and (max-width: 420px) {
+  @media screen and (width <= 420px) {
     width: 90%;
   }
 
@@ -7088,7 +7185,7 @@ noscript {
   width: 380px;
   overflow: hidden;
 
-  @media screen and (max-width: 420px) {
+  @media screen and (width <= 420px) {
     width: 90%;
   }
 
@@ -7187,7 +7284,7 @@ noscript {
     }
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (width <= 480px) {
     img,
     video {
       max-height: 100%;
@@ -7487,11 +7584,28 @@ noscript {
   }
 }
 
+.account__contents {
+  overflow: hidden;
+}
+
+.account__details {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1em;
+}
+
 .verified-badge {
   display: inline-flex;
   align-items: center;
   color: $valid-value-color;
   gap: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+
+  > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   a {
     color: inherit;
@@ -8004,6 +8118,7 @@ noscript {
   font-weight: 500;
   cursor: pointer;
   color: $darker-text-color;
+  aspect-ratio: 16 / 9;
 
   i {
     display: block;
@@ -8742,7 +8857,7 @@ noscript {
       margin-bottom: 20px;
     }
 
-    @media screen and (max-width: 600px) {
+    @media screen and (width <= 600px) {
       display: block;
 
       h4 {

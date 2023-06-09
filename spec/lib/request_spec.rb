@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'securerandom'
 
 describe Request do
-  subject { Request.new(:get, 'http://example.com') }
+  subject { described_class.new(:get, 'http://example.com') }
 
   describe '#headers' do
     it 'returns user agent' do

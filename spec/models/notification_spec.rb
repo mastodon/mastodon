@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Notification, type: :model do
+RSpec.describe Notification do
   describe '#target_status' do
     let(:notification) { Fabricate(:notification, activity: activity) }
     let(:status)       { Fabricate(:status) }
@@ -10,7 +10,7 @@ RSpec.describe Notification, type: :model do
     let(:favourite)    { Fabricate(:favourite, status: status) }
     let(:mention)      { Fabricate(:mention, status: status) }
 
-    context 'activity is reblog' do
+    context 'when Activity is reblog' do
       let(:activity) { reblog }
 
       it 'returns status' do
@@ -18,7 +18,7 @@ RSpec.describe Notification, type: :model do
       end
     end
 
-    context 'activity is favourite' do
+    context 'when Activity is favourite' do
       let(:type)     { :favourite }
       let(:activity) { favourite }
 
@@ -27,7 +27,7 @@ RSpec.describe Notification, type: :model do
       end
     end
 
-    context 'activity is mention' do
+    context 'when Activity is mention' do
       let(:activity) { mention }
 
       it 'returns status' do
@@ -38,22 +38,22 @@ RSpec.describe Notification, type: :model do
 
   describe '#type' do
     it 'returns :reblog for a Status' do
-      notification = Notification.new(activity: Status.new)
+      notification = described_class.new(activity: Status.new)
       expect(notification.type).to eq :reblog
     end
 
     it 'returns :mention for a Mention' do
-      notification = Notification.new(activity: Mention.new)
+      notification = described_class.new(activity: Mention.new)
       expect(notification.type).to eq :mention
     end
 
     it 'returns :favourite for a Favourite' do
-      notification = Notification.new(activity: Favourite.new)
+      notification = described_class.new(activity: Favourite.new)
       expect(notification.type).to eq :favourite
     end
 
     it 'returns :follow for a Follow' do
-      notification = Notification.new(activity: Follow.new)
+      notification = described_class.new(activity: Follow.new)
       expect(notification.type).to eq :follow
     end
   end
@@ -66,7 +66,7 @@ RSpec.describe Notification, type: :model do
       end
     end
 
-    context 'notifications are empty' do
+    context 'when notifications are empty' do
       let(:notifications) { [] }
 
       it 'returns []' do
@@ -74,7 +74,7 @@ RSpec.describe Notification, type: :model do
       end
     end
 
-    context 'notifications are present' do
+    context 'when notifications are present' do
       before do
         notifications.each(&:reload)
       end

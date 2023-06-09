@@ -11,6 +11,7 @@
 #  enabled    :boolean          default(TRUE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  template   :text
 #
 
 class Webhook < ApplicationRecord
@@ -30,6 +31,7 @@ class Webhook < ApplicationRecord
   validates :events, presence: true
 
   validate :validate_events
+  validate :validate_template
 
   before_validation :strip_events
   before_validation :generate_secret
@@ -49,11 +51,22 @@ class Webhook < ApplicationRecord
   private
 
   def validate_events
-    errors.add(:events, :invalid) if events.any? { |e| !EVENTS.include?(e) }
+    errors.add(:events, :invalid) if events.any? { |e| EVENTS.exclude?(e) }
+  end
+
+  def validate_template
+    return if template.blank?
+
+    begin
+      parser = Webhooks::PayloadRenderer::TemplateParser.new
+      parser.parse(template)
+    rescue Parslet::ParseFailed
+      errors.add(:template, :invalid)
+    end
   end
 
   def strip_events
-    self.events = events.map { |str| str.strip.presence }.compact if events.present?
+    self.events = events.filter_map { |str| str.strip.presence } if events.present?
   end
 
   def generate_secret

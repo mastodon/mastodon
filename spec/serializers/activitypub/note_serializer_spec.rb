@@ -15,7 +15,7 @@ describe ActivityPub::NoteSerializer do
   let!(:reply5)  { Fabricate(:status, account: account, thread: parent, visibility: :direct) }
 
   before(:each) do
-    @serialization = ActiveModelSerializers::SerializableResource.new(parent, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter)
+    @serialization = ActiveModelSerializers::SerializableResource.new(parent, serializer: described_class, adapter: ActivityPub::Adapter)
   end
 
   it 'has a Note type' do

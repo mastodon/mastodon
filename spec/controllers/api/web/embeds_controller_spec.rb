@@ -10,9 +10,9 @@ describe Api::Web::EmbedsController do
   before { sign_in user }
 
   describe 'POST #create' do
-    subject(:response) { post :create, params: { url: url } }
-
     subject(:body) { JSON.parse(response.body, symbolize_names: true) }
+
+    let(:response) { post :create, params: { url: url } }
 
     context 'when successfully finds status' do
       let(:status) { Fabricate(:status) }
