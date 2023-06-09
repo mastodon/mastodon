@@ -227,6 +227,12 @@ export function submitCompose(routerHistory) {
         insertIfOnline('public');
         insertIfOnline(`account:${response.data.account.id}`);
       }
+
+      if(window.location.pathname === `/@${response.data.account.username}`) {
+        routerHistory.push(window.location.pathname);
+      } else {
+        routerHistory.push('/home');
+      }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
     });
