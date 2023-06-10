@@ -12,7 +12,7 @@ RSpec.describe UnallowDomainService, type: :service do
   let!(:already_banned_account) { Fabricate(:account, username: 'badguy', domain: 'evil.org', suspended: true, silenced: true) }
   let!(:domain_allow) { Fabricate(:domain_allow, domain: 'evil.org') }
 
-  context 'with limited federation mode' do
+  context 'with limited federation mode', :sidekiq_inline do
     before do
       allow(Rails.configuration.x).to receive(:limited_federation_mode).and_return(true)
     end

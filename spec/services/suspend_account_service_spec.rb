@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SuspendAccountService, type: :service do
+RSpec.describe SuspendAccountService, :sidekiq_inline, type: :service do
   shared_examples 'common behavior' do
     subject { described_class.new.call(account) }
 

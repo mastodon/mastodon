@@ -41,7 +41,7 @@ RSpec.describe RejectFollowService, type: :service do
       expect(bob.following?(sender)).to be false
     end
 
-    it 'sends a reject activity' do
+    it 'sends a reject activity', :sidekiq_inline do
       expect(a_request(:post, bob.inbox_url)).to have_been_made.once
     end
   end
