@@ -37,4 +37,10 @@ describe Admin::Metrics::Measure::InstanceAccountsMeasure do
       end
     end
   end
+
+  describe '#data' do
+    it 'runs data query without error' do
+      expect { measure.data }.to_not raise_error
+    end
+  end
 end

@@ -56,4 +56,45 @@ describe Admin::RelaysController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    let(:relay) { Fabricate(:relay) }
+
+    it 'deletes an existing relay' do
+      delete :destroy, params: { id: relay.id }
+
+      expect { relay.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect(response).to redirect_to(admin_relays_path)
+    end
+  end
+
+  describe 'POST #enable' do
+    let(:relay) { Fabricate(:relay, state: :idle) }
+
+    before do
+      stub_request(:post, /example.com/).to_return(status: 200)
+    end
+
+    it 'updates a relay from idle to pending' do
+      post :enable, params: { id: relay.id }
+
+      expect(relay.reload).to be_pending
+      expect(response).to redirect_to(admin_relays_path)
+    end
+  end
+
+  describe 'POST #disable' do
+    let(:relay) { Fabricate(:relay, state: :pending) }
+
+    before do
+      stub_request(:post, /example.com/).to_return(status: 200)
+    end
+
+    it 'updates a relay from pending to idle' do
+      post :disable, params: { id: relay.id }
+
+      expect(relay.reload).to be_idle
+      expect(response).to redirect_to(admin_relays_path)
+    end
+  end
 end

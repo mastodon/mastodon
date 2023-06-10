@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PostStatusService, type: :service do
-  subject { PostStatusService.new }
+  subject { described_class.new }
 
   it 'creates a new status' do
     account = Fabricate(:account)

@@ -1,0 +1,114 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:base',
+    ':dependencyDashboard',
+    ':labels(dependencies)',
+    ':maintainLockFilesMonthly', // update non-direct dependencies monthly
+    ':prConcurrentLimit10', // only 10 open PRs at the same time
+  ],
+  stabilityDays: 3, // Wait 3 days after the package has been published before upgrading it
+  // packageRules order is important, they are applied from top to bottom and are merged,
+  // so for example grouping rules needs to be at the bottom
+  packageRules: [
+    {
+      // Ignore major version bumps for these node packages
+      matchManagers: ['npm'],
+      matchPackageNames: [
+        '@rails/ujs', // Needs to match the major Rails version
+        'tesseract.js', // Requires code changes
+        'react-hotkeys', // Requires code changes
+
+        // Requires Webpacker upgrade or replacement
+        '@types/webpack',
+        'babel-loader',
+        'compression-webpack-plugin',
+        'css-loader',
+        'imports-loader',
+        'mini-css-extract-plugin',
+        'postcss-loader',
+        'sass-loader',
+        'terser-webpack-plugin',
+        'webpack',
+        'webpack-assets-manifest',
+        'webpack-bundle-analyzer',
+        'webpack-dev-server',
+        'webpack-cli',
+
+        // react-router: Requires manual upgrade
+        'history',
+        'react-router-dom',
+      ],
+      matchUpdateTypes: ['major'],
+      enabled: false,
+    },
+    {
+      // Ignore major version bumps for these Ruby packages
+      matchManagers: ['bundler'],
+      matchPackageNames: [
+        'sprockets', // Requires manual upgrade https://github.com/rails/sprockets/blob/master/UPGRADING.md#guide-to-upgrading-from-sprockets-3x-to-4x
+        'strong_migrations', // Requires manual upgrade
+        'sidekiq', // Requires manual upgrade
+        'sidekiq-unique-jobs', // Requires manual upgrades and sync with Sidekiq version
+        'redis', // Requires manual upgrade and sync with Sidekiq version
+        'fog-openstack', // TODO: was ignored in https://github.com/mastodon/mastodon/pull/13964
+
+        // Needs major Rails version bump
+        'rack',
+        'rails',
+        'rails-i18n',
+      ],
+      matchUpdateTypes: ['major'],
+      enabled: false,
+    },
+    {
+      // Update Github Actions and Docker images weekly
+      matchManagers: ['github-actions', 'dockerfile', 'docker-compose'],
+      extends: ['schedule:weekly'],
+    },
+    {
+      // Ignore major & minor bumps for the ruby image, this needs to be synced with .ruby-version
+      matchManagers: ['dockerfile'],
+      matchPackageNames: ['moritzheiber/ruby-jemalloc'],
+      matchUpdateTypes: ['minor', 'major'],
+      enabled: false,
+    },
+    {
+      // Ignore major bump for the node image, this needs to be synced with .nvmrc
+      matchManagers: ['dockerfile'],
+      matchPackageNames: ['node'],
+      matchUpdateTypes: ['major'],
+      enabled: false,
+    },
+    {
+      // Ignore major postgres bumps in the docker-compose file, as those break dev environments
+      matchManagers: ['docker-compose'],
+      matchPackageNames: ['postgres'],
+      matchUpdateTypes: ['major'],
+      enabled: false,
+    },
+    {
+      // Update devDependencies every week, with one grouped PR
+      matchDepTypes: 'devDependencies',
+      matchUpdateTypes: ['patch', 'minor'],
+      excludePackageNames: [
+        'typescript', // Typescript has many changes in minor versions, needs to be checked every time
+      ],
+      groupName: 'devDependencies (non-major)',
+      extends: ['schedule:weekly'],
+    },
+    {
+      // Update @types/* packages every week, with one grouped PR
+      matchPackagePrefixes: '@types/',
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'DefinitelyTyped types (non-major)',
+      extends: ['schedule:weekly'],
+      addLabels: ['typescript'],
+    },
+    // Add labels depending on package manager
+    { matchManagers: ['npm', 'nvm'], addLabels: ['javascript'] },
+    { matchManagers: ['bundler', 'ruby-version'], addLabels: ['ruby'] },
+    { matchManagers: ['docker-compose', 'dockerfile'], addLabels: ['docker'] },
+    { matchManagers: ['github-actions'], addLabels: ['github_actions'] },
+  ],
+}

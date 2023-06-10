@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics::Measure::BaseMeasure
+  include Admin::Metrics::Measure::QueryHelper
   include ActionView::Helpers::NumberHelper
 
   def self.with_params?
@@ -35,34 +36,26 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
     nil
   end
 
-  def perform_data_query
-    account_matching_sql = begin
-      if params[:include_subdomains]
-        "accounts.domain IN (SELECT domain FROM instances WHERE reverse('.' || domain) LIKE reverse('.' || $3::text))"
-      else
-        'accounts.domain = $3::text'
-      end
-    end
+  def sql_array
+    [sql_query_string, { start_at: @start_at, end_at: @end_at, domain: params[:domain] }]
+  end
 
-    sql = <<-SQL.squish
+  def sql_query_string
+    <<~SQL.squish
       SELECT axis.*, (
         WITH new_media_attachments AS (
           SELECT COALESCE(media_attachments.file_file_size, 0) + COALESCE(media_attachments.thumbnail_file_size, 0) AS size
           FROM media_attachments
           INNER JOIN accounts ON accounts.id = media_attachments.account_id
           WHERE date_trunc('day', media_attachments.created_at)::date = axis.period
-            AND #{account_matching_sql}
+            AND #{account_domain_sql(params[:include_subdomains])}
         )
         SELECT SUM(size) FROM new_media_attachments
       ) AS value
       FROM (
-        SELECT generate_series(date_trunc('day', $1::timestamp)::date, date_trunc('day', $2::timestamp)::date, interval '1 day') AS period
+        SELECT generate_series(date_trunc('day', :start_at::timestamp)::date, date_trunc('day', :end_at::timestamp)::date, interval '1 day') AS period
       ) AS axis
     SQL
-
-    rows = ActiveRecord::Base.connection.select_all(sql, nil, [[nil, @start_at], [nil, @end_at], [nil, params[:domain]]])
-
-    rows.map { |row| { date: row['period'], value: row['value'].to_s } }
   end
 
   def time_period

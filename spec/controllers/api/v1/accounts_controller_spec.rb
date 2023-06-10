@@ -73,7 +73,7 @@ RSpec.describe Api::V1::AccountsController do
     let(:scopes) { 'write:follows' }
     let(:other_account) { Fabricate(:account, username: 'bob', locked: locked) }
 
-    context do
+    context 'when posting to an other account' do
       before do
         post :follow, params: { id: other_account.id }
       end

@@ -19,7 +19,7 @@ describe UserMailer do
   end
 
   describe 'confirmation_instructions' do
-    let(:mail) { UserMailer.confirmation_instructions(receiver, 'spec') }
+    let(:mail) { described_class.confirmation_instructions(receiver, 'spec') }
 
     it 'renders confirmation instructions' do
       receiver.update!(locale: nil)
@@ -34,7 +34,7 @@ describe UserMailer do
   end
 
   describe 'reconfirmation_instructions' do
-    let(:mail) { UserMailer.confirmation_instructions(receiver, 'spec') }
+    let(:mail) { described_class.confirmation_instructions(receiver, 'spec') }
 
     it 'renders reconfirmation instructions' do
       receiver.update!(email: 'new-email@example.com', locale: nil)
@@ -48,7 +48,7 @@ describe UserMailer do
   end
 
   describe 'reset_password_instructions' do
-    let(:mail) { UserMailer.reset_password_instructions(receiver, 'spec') }
+    let(:mail) { described_class.reset_password_instructions(receiver, 'spec') }
 
     it 'renders reset password instructions' do
       receiver.update!(locale: nil)
@@ -61,7 +61,7 @@ describe UserMailer do
   end
 
   describe 'password_change' do
-    let(:mail) { UserMailer.password_change(receiver) }
+    let(:mail) { described_class.password_change(receiver) }
 
     it 'renders password change notification' do
       receiver.update!(locale: nil)
@@ -73,7 +73,7 @@ describe UserMailer do
   end
 
   describe 'email_changed' do
-    let(:mail) { UserMailer.email_changed(receiver) }
+    let(:mail) { described_class.email_changed(receiver) }
 
     it 'renders email change notification' do
       receiver.update!(locale: nil)
@@ -86,7 +86,7 @@ describe UserMailer do
 
   describe 'warning' do
     let(:strike) { Fabricate(:account_warning, target_account: receiver.account, text: 'dont worry its just the testsuite', action: 'suspend') }
-    let(:mail)   { UserMailer.warning(receiver, strike) }
+    let(:mail)   { described_class.warning(receiver, strike) }
 
     it 'renders warning notification' do
       receiver.update!(locale: nil)
@@ -97,7 +97,7 @@ describe UserMailer do
 
   describe 'webauthn_credential_deleted' do
     let(:credential) { Fabricate(:webauthn_credential, user_id: receiver.id) }
-    let(:mail) { UserMailer.webauthn_credential_deleted(receiver, credential) }
+    let(:mail) { described_class.webauthn_credential_deleted(receiver, credential) }
 
     it 'renders webauthn credential deleted notification' do
       receiver.update!(locale: nil)
@@ -112,7 +112,7 @@ describe UserMailer do
     let(:ip) { '192.168.0.1' }
     let(:agent) { 'NCSA_Mosaic/2.0 (Windows 3.1)' }
     let(:timestamp) { Time.now.utc }
-    let(:mail) { UserMailer.suspicious_sign_in(receiver, ip, agent, timestamp) }
+    let(:mail) { described_class.suspicious_sign_in(receiver, ip, agent, timestamp) }
 
     it 'renders suspicious sign in notification' do
       receiver.update!(locale: nil)
@@ -125,7 +125,7 @@ describe UserMailer do
 
   describe 'appeal_approved' do
     let(:appeal) { Fabricate(:appeal, account: receiver.account, approved_at: Time.now.utc) }
-    let(:mail) { UserMailer.appeal_approved(receiver, appeal) }
+    let(:mail) { described_class.appeal_approved(receiver, appeal) }
 
     it 'renders appeal_approved notification' do
       expect(mail.subject).to eq I18n.t('user_mailer.appeal_approved.subject', date: I18n.l(appeal.created_at))
@@ -135,7 +135,7 @@ describe UserMailer do
 
   describe 'appeal_rejected' do
     let(:appeal) { Fabricate(:appeal, account: receiver.account, rejected_at: Time.now.utc) }
-    let(:mail) { UserMailer.appeal_rejected(receiver, appeal) }
+    let(:mail) { described_class.appeal_rejected(receiver, appeal) }
 
     it 'renders appeal_rejected notification' do
       expect(mail.subject).to eq I18n.t('user_mailer.appeal_rejected.subject', date: I18n.l(appeal.created_at))

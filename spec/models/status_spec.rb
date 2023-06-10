@@ -160,7 +160,7 @@ RSpec.describe Status do
       reblog = Fabricate(:status, account: bob, reblog: subject)
       expect(subject.reblogs_count).to eq 1
       expect { subject.destroy }.to_not raise_error
-      expect(Status.find_by(id: reblog.id)).to be_nil
+      expect(described_class.find_by(id: reblog.id)).to be_nil
     end
   end
 
@@ -206,7 +206,7 @@ RSpec.describe Status do
   end
 
   describe 'on create' do
-    subject { Status.new }
+    subject { described_class.new }
 
     let(:local_account) { Fabricate(:account, username: 'local', domain: nil) }
     let(:remote_account) { Fabricate(:account, username: 'remote', domain: 'example.com') }
@@ -243,7 +243,7 @@ RSpec.describe Status do
   end
 
   describe '.mutes_map' do
-    subject { Status.mutes_map([status.conversation.id], account) }
+    subject { described_class.mutes_map([status.conversation.id], account) }
 
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
@@ -259,7 +259,7 @@ RSpec.describe Status do
   end
 
   describe '.favourites_map' do
-    subject { Status.favourites_map([status], account) }
+    subject { described_class.favourites_map([status], account) }
 
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
@@ -275,7 +275,7 @@ RSpec.describe Status do
   end
 
   describe '.reblogs_map' do
-    subject { Status.reblogs_map([status], account) }
+    subject { described_class.reblogs_map([status], account) }
 
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
@@ -291,7 +291,7 @@ RSpec.describe Status do
   end
 
   describe '.as_direct_timeline' do
-    subject(:results) { Status.as_direct_timeline(account) }
+    subject(:results) { described_class.as_direct_timeline(account) }
 
     let(:account) { Fabricate(:account) }
     let(:followed) { Fabricate(:account) }
@@ -329,13 +329,13 @@ RSpec.describe Status do
 
     it 'includes direct statuses mentioning recipient from followed' do
       Fabricate(:mention, account: account, status: followed_direct_status)
-      results2 = Status.as_direct_timeline(account)
+      results2 = described_class.as_direct_timeline(account)
       expect(results2).to include(followed_direct_status)
     end
 
     it 'includes direct statuses mentioning recipient from non-followed' do
       Fabricate(:mention, account: account, status: not_followed_direct_status)
-      results2 = Status.as_direct_timeline(account)
+      results2 = described_class.as_direct_timeline(account)
       expect(results2).to include(not_followed_direct_status)
     end
   end
@@ -352,17 +352,17 @@ RSpec.describe Status do
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with([tag1.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status5.id)
-        expect(Status.tagged_with([tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status5.id)
-        expect(Status.tagged_with([tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status3.id, status5.id)
+        expect(described_class.tagged_with([tag1.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status5.id)
+        expect(described_class.tagged_with([tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status5.id)
+        expect(described_class.tagged_with([tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status3.id, status5.id)
       end
     end
 
     context 'when given multiple tags' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status2.id, status5.id)
-        expect(Status.tagged_with([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status3.id, status5.id)
-        expect(Status.tagged_with([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status3.id, status5.id)
+        expect(described_class.tagged_with([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status2.id, status5.id)
+        expect(described_class.tagged_with([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status3.id, status5.id)
+        expect(described_class.tagged_with([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status3.id, status5.id)
       end
     end
   end
@@ -379,17 +379,17 @@ RSpec.describe Status do
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_all([tag1.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status5.id)
-        expect(Status.tagged_with_all([tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status5.id)
-        expect(Status.tagged_with_all([tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status3.id)
+        expect(described_class.tagged_with_all([tag1.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status5.id)
+        expect(described_class.tagged_with_all([tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status5.id)
+        expect(described_class.tagged_with_all([tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status3.id)
       end
     end
 
     context 'when given multiple tags' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_all([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status5.id)
-        expect(Status.tagged_with_all([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to eq []
-        expect(Status.tagged_with_all([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to eq []
+        expect(described_class.tagged_with_all([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status5.id)
+        expect(described_class.tagged_with_all([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to eq []
+        expect(described_class.tagged_with_all([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to eq []
       end
     end
   end
@@ -406,17 +406,17 @@ RSpec.describe Status do
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_none([tag1.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status3.id, status4.id)
-        expect(Status.tagged_with_none([tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status3.id, status4.id)
-        expect(Status.tagged_with_none([tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status2.id, status4.id)
+        expect(described_class.tagged_with_none([tag1.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status3.id, status4.id)
+        expect(described_class.tagged_with_none([tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status3.id, status4.id)
+        expect(described_class.tagged_with_none([tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status2.id, status4.id)
       end
     end
 
     context 'when given multiple tags' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_none([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status3.id, status4.id)
-        expect(Status.tagged_with_none([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status4.id)
-        expect(Status.tagged_with_none([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status4.id)
+        expect(described_class.tagged_with_none([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status3.id, status4.id)
+        expect(described_class.tagged_with_none([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status4.id)
+        expect(described_class.tagged_with_none([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status4.id)
       end
     end
   end
@@ -431,21 +431,21 @@ RSpec.describe Status do
     end
 
     it 'creates new conversation for stand-alone status' do
-      expect(Status.create(account: alice, text: 'First').conversation_id).to_not be_nil
+      expect(described_class.create(account: alice, text: 'First').conversation_id).to_not be_nil
     end
 
     it 'keeps conversation of parent node' do
       parent = Fabricate(:status, text: 'First')
-      expect(Status.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
+      expect(described_class.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
     end
 
     it 'sets `local` to true for status by local account' do
-      expect(Status.create(account: alice, text: 'foo').local).to be true
+      expect(described_class.create(account: alice, text: 'foo').local).to be true
     end
 
     it 'sets `local` to false for status by remote account' do
       alice.update(domain: 'example.com')
-      expect(Status.create(account: alice, text: 'foo').local).to be false
+      expect(described_class.create(account: alice, text: 'foo').local).to be false
     end
   end
 
@@ -459,7 +459,7 @@ RSpec.describe Status do
 
   describe 'after_create' do
     it 'saves ActivityPub uri as uri for local status' do
-      status = Status.create(account: alice, text: 'foo')
+      status = described_class.create(account: alice, text: 'foo')
       status.reload
       expect(status.uri).to start_with('https://')
     end

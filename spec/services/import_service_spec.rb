@@ -14,7 +14,7 @@ RSpec.describe ImportService, type: :service do
   end
 
   context 'when importing old-style list of muted users' do
-    subject { ImportService.new }
+    subject { described_class.new }
 
     let(:csv) { attachment_fixture('mute-imports.txt') }
 
@@ -52,7 +52,7 @@ RSpec.describe ImportService, type: :service do
   end
 
   context 'when importing new-style list of muted users' do
-    subject { ImportService.new }
+    subject { described_class.new }
 
     let(:csv) { attachment_fixture('new-mute-imports.txt') }
 
@@ -93,7 +93,7 @@ RSpec.describe ImportService, type: :service do
   end
 
   context 'when importing old-style list of followed users' do
-    subject { ImportService.new }
+    subject { described_class.new }
 
     let(:csv) { attachment_fixture('mute-imports.txt') }
 
@@ -135,7 +135,7 @@ RSpec.describe ImportService, type: :service do
   end
 
   context 'when importing new-style list of followed users' do
-    subject { ImportService.new }
+    subject { described_class.new }
 
     let(:csv) { attachment_fixture('new-following-imports.txt') }
 
@@ -182,7 +182,7 @@ RSpec.describe ImportService, type: :service do
   #
   # https://github.com/mastodon/mastodon/issues/20571
   context 'with a utf-8 encoded domains' do
-    subject { ImportService.new }
+    subject { described_class.new }
 
     let!(:nare) { Fabricate(:account, username: 'nare', domain: 'թութ.հայ', locked: false, protocol: :activitypub, inbox_url: 'https://թութ.հայ/inbox') }
     let(:csv) { attachment_fixture('utf8-followers.txt') }
@@ -201,7 +201,7 @@ RSpec.describe ImportService, type: :service do
   end
 
   context 'when importing bookmarks' do
-    subject { ImportService.new }
+    subject { described_class.new }
 
     let(:csv) { attachment_fixture('bookmark-imports.txt') }
     let(:local_account)  { Fabricate(:account, username: 'foo', domain: '') }

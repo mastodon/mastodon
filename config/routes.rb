@@ -116,21 +116,21 @@ Rails.application.routes.draw do
 
   get '/:encoded_at(*path)', to: redirect("/@%{path}"), constraints: { encoded_at: /%40/ }
 
-  constraints(username: /[^@\/.]+/) do
+  constraints(username: %r{[^@/.]+}) do
     get '/@:username', to: 'accounts#show', as: :short_account
     get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
     get '/@:username/media', to: 'accounts#show', as: :short_account_media
     get '/@:username/tagged/:tag', to: 'accounts#show', as: :short_account_tag
   end
 
-  constraints(account_username: /[^@\/.]+/) do
+  constraints(account_username: %r{[^@/.]+}) do
     get '/@:account_username/following', to: 'following_accounts#index'
     get '/@:account_username/followers', to: 'follower_accounts#index'
     get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
     get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
   end
 
-  get '/@:username_with_domain/(*any)', to: 'home#index', constraints: { username_with_domain: /([^\/])+?/ }, format: false
+  get '/@:username_with_domain/(*any)', to: 'home#index', constraints: { username_with_domain: %r{([^/])+?} }, format: false
   get '/settings', to: redirect('/settings/profile')
 
   draw(:settings)
