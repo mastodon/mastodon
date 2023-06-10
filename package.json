@@ -21,7 +21,6 @@
     "lint:sass": "stylelint \"**/*.{css,scss}\" && prettier --check \"**/*.{css,scss}\"",
     "lint:yml": "prettier --check \"**/*.{yaml,yml}\"",
     "lint": "yarn lint:js && yarn lint:json && yarn lint:sass && yarn lint:yml",
-    "manage:translations": "node ./config/webpack/translationRunner.js",
     "postversion": "git push --tags",
     "prepare": "husky install",
     "start": "node ./streaming/index.js",

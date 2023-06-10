@@ -5,7 +5,7 @@
     .pending-account__header
       %samp= link_to "#{ip_block.ip}/#{ip_block.ip.prefix}", admin_accounts_path(ip: "#{ip_block.ip}/#{ip_block.ip.prefix}")
       - if ip_block.comment.present?
-        •
+        ·
         = ip_block.comment
       %br/
       = t("simple_form.labels.ip_block.severities.#{ip_block.severity}")

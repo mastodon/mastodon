@@ -998,4 +998,254 @@ describe Mastodon::CLI::Accounts do
       end
     end
   end
+
+  describe '#merge' do
+    shared_examples 'an account not found' do |acct|
+      it 'exits with an error message indicating that there is no such account' do
+        expect { cli.invoke(:merge, arguments) }.to output(
+          a_string_including("No such account (#{acct})")
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when "from_account" is not found' do
+      let(:to_account) { Fabricate(:account, domain: 'example.com') }
+      let(:arguments)  { ['non_existent_username@domain.com', "#{to_account.username}@#{to_account.domain}"] }
+
+      it_behaves_like 'an account not found', 'non_existent_username@domain.com'
+    end
+
+    context 'when "from_account" is a local account' do
+      let(:from_account) { Fabricate(:account, domain: nil, username: 'bob') }
+      let(:to_account)   { Fabricate(:account, domain: 'example.com') }
+      let(:arguments)    { [from_account.username, "#{to_account.username}@#{to_account.domain}"] }
+
+      it_behaves_like 'an account not found', 'bob'
+    end
+
+    context 'when "to_account" is not found' do
+      let(:from_account) { Fabricate(:account, domain: 'example.com') }
+      let(:arguments)    { ["#{from_account.username}@#{from_account.domain}", 'non_existent_username'] }
+
+      it_behaves_like 'an account not found', 'non_existent_username'
+    end
+
+    context 'when "to_account" is local' do
+      let(:from_account) { Fabricate(:account, domain: 'example.com') }
+      let(:to_account)   { Fabricate(:account, domain: nil, username: 'bob') }
+      let(:arguments) do
+        ["#{from_account.username}@#{from_account.domain}", "#{to_account.username}@#{to_account.domain}"]
+      end
+
+      it_behaves_like 'an account not found', 'bob@'
+    end
+
+    context 'when "from_account" and "to_account" public keys do not match' do
+      let(:from_account) { instance_double(Account, username: 'bob', domain: 'example1.com', local?: false, public_key: 'from_account') }
+      let(:to_account)   { instance_double(Account, username: 'bob', domain: 'example2.com', local?: false, public_key: 'to_account') }
+      let(:arguments) do
+        ["#{from_account.username}@#{from_account.domain}", "#{to_account.username}@#{to_account.domain}"]
+      end
+
+      before do
+        allow(Account).to receive(:find_remote).with(from_account.username, from_account.domain).and_return(from_account)
+        allow(Account).to receive(:find_remote).with(to_account.username, to_account.domain).and_return(to_account)
+      end
+
+      it 'exits with an error message indicating that the accounts do not have the same pub key' do
+        expect { cli.invoke(:merge, arguments) }.to output(
+          a_string_including("Accounts don't have the same public key, might not be duplicates!\nOverride with --force")
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+
+      context 'with --force option' do
+        let(:options) { { force: true } }
+
+        before do
+          allow(to_account).to receive(:merge_with!)
+          allow(from_account).to receive(:destroy)
+        end
+
+        it 'merges "from_account" into "to_account"' do
+          cli.invoke(:merge, arguments, options)
+
+          expect(to_account).to have_received(:merge_with!).with(from_account).once
+        end
+
+        it 'deletes "from_account"' do
+          cli.invoke(:merge, arguments, options)
+
+          expect(from_account).to have_received(:destroy).once
+        end
+      end
+    end
+
+    context 'when "from_account" and "to_account" public keys match' do
+      let(:from_account) { instance_double(Account, username: 'bob', domain: 'example1.com', local?: false, public_key: 'pub_key') }
+      let(:to_account)   { instance_double(Account, username: 'bob', domain: 'example2.com', local?: false, public_key: 'pub_key') }
+      let(:arguments) do
+        ["#{from_account.username}@#{from_account.domain}", "#{to_account.username}@#{to_account.domain}"]
+      end
+
+      before do
+        allow(Account).to receive(:find_remote).with(from_account.username, from_account.domain).and_return(from_account)
+        allow(Account).to receive(:find_remote).with(to_account.username, to_account.domain).and_return(to_account)
+        allow(to_account).to receive(:merge_with!)
+        allow(from_account).to receive(:destroy)
+      end
+
+      it 'merges "from_account" into "to_account"' do
+        cli.invoke(:merge, arguments)
+
+        expect(to_account).to have_received(:merge_with!).with(from_account).once
+      end
+
+      it 'deletes "from_account"' do
+        cli.invoke(:merge, arguments)
+
+        expect(from_account).to have_received(:destroy)
+      end
+    end
+  end
+
+  describe '#cull' do
+    let(:delete_account_service) { instance_double(DeleteAccountService, call: nil) }
+    let!(:tom)                   { Fabricate(:account, updated_at: 30.days.ago, username: 'tom', uri: 'https://example.com/users/tom', domain: 'example.com') }
+    let!(:bob)                   { Fabricate(:account, updated_at: 30.days.ago, last_webfingered_at: nil, username: 'bob', uri: 'https://example.org/users/bob', domain: 'example.org') }
+    let!(:gon)                   { Fabricate(:account, updated_at: 15.days.ago, last_webfingered_at: 15.days.ago, username: 'gon', uri: 'https://example.net/users/gon', domain: 'example.net') }
+    let!(:ana)                   { Fabricate(:account, username: 'ana', uri: 'https://example.com/users/ana', domain: 'example.com') }
+    let!(:tales)                 { Fabricate(:account, updated_at: 10.days.ago, last_webfingered_at: nil, username: 'tales', uri: 'https://example.net/users/tales', domain: 'example.net') }
+
+    before do
+      allow(DeleteAccountService).to receive(:new).and_return(delete_account_service)
+    end
+
+    context 'when no domain is specified' do
+      let(:scope) { Account.remote.where(protocol: :activitypub).partitioned }
+
+      before do
+        allow(cli).to receive(:parallelize_with_progress).and_yield(tom)
+                                                         .and_yield(bob)
+                                                         .and_yield(gon)
+                                                         .and_yield(ana)
+                                                         .and_yield(tales)
+                                                         .and_return([5, 3])
+        stub_request(:head, 'https://example.org/users/bob').to_return(status: 404)
+        stub_request(:head, 'https://example.net/users/gon').to_return(status: 410)
+        stub_request(:head, 'https://example.net/users/tales').to_return(status: 200)
+      end
+
+      it 'deletes all inactive remote accounts that longer exist in the origin server' do
+        cli.cull
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+        expect(delete_account_service).to have_received(:call).with(bob, reserve_username: false).once
+        expect(delete_account_service).to have_received(:call).with(gon, reserve_username: false).once
+      end
+
+      it 'does not delete any active remote account that still exists in the origin server' do
+        cli.cull
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+        expect(delete_account_service).to_not have_received(:call).with(tom, reserve_username: false)
+        expect(delete_account_service).to_not have_received(:call).with(ana, reserve_username: false)
+        expect(delete_account_service).to_not have_received(:call).with(tales, reserve_username: false)
+      end
+
+      it 'touches inactive remote accounts that have not been deleted' do
+        allow(tales).to receive(:touch)
+
+        cli.cull
+
+        expect(tales).to have_received(:touch).once
+      end
+
+      it 'displays the summary correctly' do
+        expect { cli.cull }.to output(
+          a_string_including('Visited 5 accounts, removed 3')
+        ).to_stdout
+      end
+    end
+
+    context 'when a domain is specified' do
+      let(:domain) { 'example.net' }
+      let(:scope)  { Account.remote.where(protocol: :activitypub, domain: domain).partitioned }
+
+      before do
+        allow(cli).to receive(:parallelize_with_progress).and_yield(gon)
+                                                         .and_yield(tales)
+                                                         .and_return([2, 2])
+        stub_request(:head, 'https://example.net/users/gon').to_return(status: 410)
+        stub_request(:head, 'https://example.net/users/tales').to_return(status: 404)
+      end
+
+      it 'deletes inactive remote accounts that longer exist in the specified domain' do
+        cli.cull(domain)
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+        expect(delete_account_service).to have_received(:call).with(gon, reserve_username: false).once
+        expect(delete_account_service).to have_received(:call).with(tales, reserve_username: false).once
+      end
+
+      it 'displays the summary correctly' do
+        expect { cli.cull }.to output(
+          a_string_including('Visited 2 accounts, removed 2')
+        ).to_stdout
+      end
+    end
+
+    context 'when a domain is unavailable' do
+      shared_examples 'an unavailable domain' do
+        before do
+          allow(cli).to receive(:parallelize_with_progress).and_yield(tales).and_return([1, 0])
+        end
+
+        it 'skips accounts from the unavailable domain' do
+          cli.cull
+
+          expect(delete_account_service).to_not have_received(:call).with(tales, reserve_username: false)
+        end
+
+        it 'displays the summary correctly' do
+          expect { cli.cull }.to output(
+            a_string_including("Visited 1 accounts, removed 0\nThe following domains were not available during the check:\n    example.net")
+          ).to_stdout
+        end
+      end
+
+      context 'when a connection timeout occurs' do
+        before do
+          stub_request(:head, 'https://example.net/users/tales').to_timeout
+        end
+
+        it_behaves_like 'an unavailable domain'
+      end
+
+      context 'when a connection error occurs' do
+        before do
+          stub_request(:head, 'https://example.net/users/tales').to_raise(HTTP::ConnectionError)
+        end
+
+        it_behaves_like 'an unavailable domain'
+      end
+
+      context 'when an ssl error occurs' do
+        before do
+          stub_request(:head, 'https://example.net/users/tales').to_raise(OpenSSL::SSL::SSLError)
+        end
+
+        it_behaves_like 'an unavailable domain'
+      end
+
+      context 'when a private network address error occurs' do
+        before do
+          stub_request(:head, 'https://example.net/users/tales').to_raise(Mastodon::PrivateNetworkAddressError)
+        end
+
+        it_behaves_like 'an unavailable domain'
+      end
+    end
+  end
 end

@@ -40,9 +40,9 @@ class FeedManager
   def filter?(timeline_type, status, receiver)
     case timeline_type
     when :home
-      filter_from_home?(status, receiver.id, build_crutches(receiver.id, [status]))
+      filter_from_home?(status, receiver.id, build_crutches(receiver.id, [status]), :home)
     when :list
-      filter_from_list?(status, receiver) || filter_from_home?(status, receiver.account_id, build_crutches(receiver.account_id, [status]))
+      filter_from_list?(status, receiver) || filter_from_home?(status, receiver.account_id, build_crutches(receiver.account_id, [status]), :list)
     when :mentions
       filter_from_mentions?(status, receiver.id)
     when :direct
@@ -401,10 +401,11 @@ class FeedManager
   # @param [Integer] receiver_id
   # @param [Hash] crutches
   # @return [Boolean]
-  def filter_from_home?(status, receiver_id, crutches)
+  def filter_from_home?(status, receiver_id, crutches, timeline_type = :home)
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
-    return true  if crutches[:languages][status.account_id].present? && status.language.present? && !crutches[:languages][status.account_id].include?(status.language)
+    return true if timeline_type != :list && crutches[:exclusive_list_users][status.account_id].present?
+    return true if crutches[:languages][status.account_id].present? && status.language.present? && !crutches[:languages][status.account_id].include?(status.language)
 
     check_for_blocks = crutches[:active_mentions][status.id] || []
     check_for_blocks.push(status.account_id)
@@ -603,13 +604,16 @@ class FeedManager
       arr
     end
 
-    crutches[:following]       = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:target_account_id).index_with(true)
-    crutches[:languages]       = Follow.where(account_id: receiver_id, target_account_id: statuses.map(&:account_id)).pluck(:target_account_id, :languages).to_h
-    crutches[:hiding_reblogs]  = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map { |s| s.account_id if s.reblog? }, show_reblogs: false).pluck(:target_account_id).index_with(true)
-    crutches[:blocking]        = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
-    crutches[:muting]          = Mute.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
-    crutches[:domain_blocking] = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
-    crutches[:blocked_by]      = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| [s.account_id, s.reblog&.account_id] }.flatten.compact).pluck(:account_id).index_with(true)
+    lists = List.where(account_id: receiver_id, exclusive: true)
+
+    crutches[:following]            = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:target_account_id).index_with(true)
+    crutches[:languages]            = Follow.where(account_id: receiver_id, target_account_id: statuses.map(&:account_id)).pluck(:target_account_id, :languages).to_h
+    crutches[:hiding_reblogs]       = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map { |s| s.account_id if s.reblog? }, show_reblogs: false).pluck(:target_account_id).index_with(true)
+    crutches[:blocking]             = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
+    crutches[:muting]               = Mute.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
+    crutches[:domain_blocking]      = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
+    crutches[:blocked_by]           = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| [s.account_id, s.reblog&.account_id] }.flatten.compact).pluck(:account_id).index_with(true)
+    crutches[:exclusive_list_users] = ListAccount.where(list: lists, account_id: statuses.map(&:account_id)).pluck(:account_id).index_with(true)
 
     crutches
   end
