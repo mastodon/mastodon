@@ -16,7 +16,9 @@ class Admin::Metrics::Measure::InstanceReportsMeasure < Admin::Metrics::Measure:
   protected
 
   def perform_total_query
-    Report.where(target_account: Account.where(domain: params[:domain])).count
+    domain = params[:domain]
+    domain = Instance.by_domain_and_subdomains(params[:domain]).select(:domain) if params[:include_subdomains]
+    Report.where(target_account: Account.where(domain: domain)).count
   end
 
   def perform_previous_total_query
@@ -24,6 +26,14 @@ class Admin::Metrics::Measure::InstanceReportsMeasure < Admin::Metrics::Measure:
   end
 
   def perform_data_query
+    account_matching_sql = begin
+      if params[:include_subdomains]
+        "accounts.domain IN (SELECT domain FROM instances WHERE reverse('.' || domain) LIKE reverse('.' || $3::text))"
+      else
+        'accounts.domain = $3::text'
+      end
+    end
+
     sql = <<-SQL.squish
       SELECT axis.*, (
         WITH new_reports AS (
@@ -31,7 +41,7 @@ class Admin::Metrics::Measure::InstanceReportsMeasure < Admin::Metrics::Measure:
           FROM reports
           INNER JOIN accounts ON accounts.id = reports.target_account_id
           WHERE date_trunc('day', reports.created_at)::date = axis.period
-            AND accounts.domain = $3::text
+            AND #{account_matching_sql}
         )
         SELECT count(*) FROM new_reports
       ) AS value
@@ -54,6 +64,6 @@ class Admin::Metrics::Measure::InstanceReportsMeasure < Admin::Metrics::Measure:
   end
 
   def params
-    @params.permit(:domain)
+    @params.permit(:domain, :include_subdomains)
   end
 end
