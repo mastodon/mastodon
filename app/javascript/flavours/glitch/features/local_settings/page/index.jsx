@@ -275,7 +275,7 @@ class LocalSettingsPage extends PureComponent {
     ),
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page content_warnings'>
-        <h1><FormattedMessage id='settings.content_warnings' defaultMessage='Content warnings' /></h1>
+        <h1><FormattedMessage id='settings.content_warnings' defaultMessage='Content Warnings' /></h1>
         <LocalSettingsPageItem
           settings={settings}
           item={['content_warnings', 'shared_state']}

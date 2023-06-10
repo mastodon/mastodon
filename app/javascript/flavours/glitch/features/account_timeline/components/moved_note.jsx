@@ -38,7 +38,7 @@ export default class MovedNote extends ImmutablePureComponent {
       <div className='account__moved-note'>
         <div className='account__moved-note__message'>
           <div className='account__moved-note__icon-wrapper'><Icon id='suitcase' className='account__moved-note__icon' fixedWidth /></div>
-          <FormattedMessage id='account.moved_to' defaultMessage='{name} has moved to:' values={{ name: <bdi><strong dangerouslySetInnerHTML={displayNameHtml} /></bdi> }} />
+          <FormattedMessage id='account.moved_to' defaultMessage='{name} has indicated that their new account is now:' values={{ name: <bdi><strong dangerouslySetInnerHTML={displayNameHtml} /></bdi> }} />
         </div>
 
         <a href={to.get('url')} onClick={this.handleAccountClick} className='detailed-status__display-name'>
