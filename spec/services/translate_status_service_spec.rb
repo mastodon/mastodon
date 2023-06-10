@@ -152,22 +152,31 @@ RSpec.describe TranslateStatusService, type: :service do
     describe 'status has poll' do
       let(:poll) { Fabricate(:poll, options: %w(Blue Green)) }
 
-      it 'returns formatted poll options' do
-        source_texts = service.send(:source_texts)
-        expect(source_texts.size).to eq 3
-        expect(source_texts.values).to eq %w(<p>Hello</p> Blue Green)
+      context 'with source texts from the service' do
+        let!(:source_texts) { service.send(:source_texts) }
 
-        expect(source_texts.keys.first).to eq :content
+        it 'returns formatted poll options' do
+          expect(source_texts.size).to eq 3
+          expect(source_texts.values).to eq %w(<p>Hello</p> Blue Green)
+        end
 
-        option1 = source_texts.keys.second
-        expect(option1).to be_a Poll::Option
-        expect(option1.id).to eq '0'
-        expect(option1.title).to eq 'Blue'
+        it 'has a first key with content' do
+          expect(source_texts.keys.first).to eq :content
+        end
 
-        option2 = source_texts.keys.third
-        expect(option2).to be_a Poll::Option
-        expect(option2.id).to eq '1'
-        expect(option2.title).to eq 'Green'
+        it 'has the first option in the second key with correct options' do
+          option1 = source_texts.keys.second
+          expect(option1).to be_a Poll::Option
+          expect(option1.id).to eq '0'
+          expect(option1.title).to eq 'Blue'
+        end
+
+        it 'has the second option in the third key with correct options' do
+          option2 = source_texts.keys.third
+          expect(option2).to be_a Poll::Option
+          expect(option2.id).to eq '1'
+          expect(option2.title).to eq 'Green'
+        end
       end
     end
 
