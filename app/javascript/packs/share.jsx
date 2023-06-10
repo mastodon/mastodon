@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 
 import { start } from '../mastodon/common';
 import ComposeContainer  from '../mastodon/containers/compose_container';
-import { loadLocale } from '../mastodon/load_locale';
 import { loadPolyfills } from '../mastodon/polyfills';
 import ready from '../mastodon/ready';
 
@@ -26,6 +25,6 @@ function main() {
   ready(loaded);
 }
 
-loadPolyfills().then(loadLocale).then(main).catch(error => {
+loadPolyfills().then(main).catch(error => {
   console.error(error);
 });

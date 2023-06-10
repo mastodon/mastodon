@@ -14,7 +14,6 @@ const config = {
   collectCoverageFrom: [
     'app/javascript/mastodon/**/*.{js,jsx,ts,tsx}',
     '!app/javascript/mastodon/features/emoji/emoji_compressed.js',
-    '!app/javascript/mastodon/locales/locale-data/*.js',
     '!app/javascript/mastodon/service_worker/entry.js',
     '!app/javascript/mastodon/test_setup.js',
   ],
