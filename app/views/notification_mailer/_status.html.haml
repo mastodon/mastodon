@@ -42,4 +42,4 @@
                                         = link_to a.remote_url, a.remote_url
 
                               %p.status-footer
-                                = link_to l(status.created_at), web_url("@#{status.account.pretty_acct}/#{status.id}")
+                                = link_to l(status.created_at.in_time_zone(time_zone)), web_url("@#{status.account.pretty_acct}/#{status.id}")
