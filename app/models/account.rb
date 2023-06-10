@@ -140,6 +140,7 @@ class Account < ApplicationRecord
            :locale,
            :shows_application?,
            :prefers_noindex?,
+           :time_zone,
            to: :user,
            prefix: true,
            allow_nil: true
