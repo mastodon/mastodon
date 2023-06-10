@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import type { InjectedIntl } from 'react-intl';
+import type { IntlShape } from 'react-intl';
 import { injectIntl, defineMessages } from 'react-intl';
 
 const messages = defineMessages({
@@ -103,7 +103,7 @@ const getUnitDelay = (units: string) => {
 };
 
 export const timeAgoString = (
-  intl: InjectedIntl,
+  intl: IntlShape,
   date: Date,
   now: number,
   year: number,
@@ -155,7 +155,7 @@ export const timeAgoString = (
 };
 
 const timeRemainingString = (
-  intl: InjectedIntl,
+  intl: IntlShape,
   date: Date,
   now: number,
   timeGiven = true
@@ -190,7 +190,7 @@ const timeRemainingString = (
 };
 
 interface Props {
-  intl: InjectedIntl;
+  intl: IntlShape;
   timestamp: string;
   year: number;
   futureDate?: boolean;
@@ -201,7 +201,7 @@ interface States {
 }
 class RelativeTimestamp extends Component<Props, States> {
   state = {
-    now: this.props.intl.now(),
+    now: Date.now(),
   };
 
   static defaultProps = {
@@ -223,7 +223,7 @@ class RelativeTimestamp extends Component<Props, States> {
 
   UNSAFE_componentWillReceiveProps(nextProps: Props) {
     if (this.props.timestamp !== nextProps.timestamp) {
-      this.setState({ now: this.props.intl.now() });
+      this.setState({ now: Date.now() });
     }
   }
 
@@ -253,7 +253,7 @@ class RelativeTimestamp extends Component<Props, States> {
         : Math.max(updateInterval, unitRemainder);
 
     this._timer = window.setTimeout(() => {
-      this.setState({ now: this.props.intl.now() });
+      this.setState({ now: Date.now() });
     }, delay);
   }
 

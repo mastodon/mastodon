@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { IntlProvider, addLocaleData } from 'react-intl';
+import { IntlProvider } from 'react-intl';
 
-import { getLocale } from '../locales';
+import { getLocale, onProviderError } from '../locales';
 
-const { localeData, messages } = getLocale();
-addLocaleData(localeData);
+const { messages } = getLocale();
 
 export default class AdminComponent extends PureComponent {
 
@@ -19,7 +18,7 @@ export default class AdminComponent extends PureComponent {
     const { locale, children } = this.props;
 
     return (
-      <IntlProvider locale={locale} messages={messages}>
+      <IntlProvider locale={locale} messages={messages} onError={onProviderError}>
         {children}
       </IntlProvider>
     );

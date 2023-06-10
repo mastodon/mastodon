@@ -29,9 +29,9 @@
     = javascript_pack_tag "locales", crossorigin: 'anonymous'
     - if @theme
       - if @theme[:supported_locales].include? I18n.locale.to_s
-        = javascript_pack_tag "locales/#{@theme[:flavour]}/#{I18n.locale}", crossorigin: 'anonymous'
+        = preload_pack_asset "locales/#{@theme[:flavour]}/#{I18n.locale}-json.js"
       - elsif @theme[:supported_locales].include? 'en'
-        = javascript_pack_tag "locales/#{@theme[:flavour]}/en", crossorigin: 'anonymous'
+        = preload_pack_asset "locales/#{@theme[:flavour]}/en-json.js"
     = csrf_meta_tags unless skip_csrf_meta_tags?
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
 
