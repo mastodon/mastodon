@@ -94,6 +94,12 @@ RSpec.configure do |config|
     stub_jsonld_contexts!
   end
 
+  config.before(:each) do |example|
+    unless example.metadata[:paperclip_processing]
+      allow_any_instance_of(Paperclip::Attachment).to receive(:post_process).and_return(true) # rubocop:disable RSpec/AnyInstance
+    end
+  end
+
   config.after :each do
     Rails.cache.clear
     redis.del(redis.keys)
