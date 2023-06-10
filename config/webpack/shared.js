@@ -47,7 +47,6 @@ function reducePacks (data, into = {}) {
 }
 
 const entries = Object.assign(
-  { locales: resolve('app', 'javascript', 'locales') },
   reducePacks(core),
   Object.values(flavours).reduce((map, data) => reducePacks(data, map), {}),
 );
@@ -67,7 +66,7 @@ module.exports = {
 
   optimization: {
     runtimeChunk: {
-      name: 'locales',
+      name: 'common',
     },
     splitChunks: {
       cacheGroups: {
