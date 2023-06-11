@@ -60,6 +60,7 @@ class Trends::Statuses < Trends::Base
   def refresh(at_time = Time.now.utc)
     statuses = Status.where(id: (recently_used_ids(at_time) + StatusTrend.pluck(:status_id)).uniq).includes(:status_stat, :account)
     calculate_scores(statuses, at_time)
+    store_highlights(at_time)
   end
 
   def request_review
@@ -121,6 +122,20 @@ class Trends::Statuses < Trends::Base
       StatusTrend.upsert_all(to_insert.map { |(score, status)| { status_id: status.id, account_id: status.account_id, score: score, language: status.language, allowed: status.trendable? || false } }, unique_by: :status_id) if to_insert.any?
       StatusTrend.where(status_id: to_delete.map { |(_, status)| status.id }).delete_all if to_delete.any?
       StatusTrend.connection.exec_update('UPDATE status_trends SET rank = t0.calculated_rank FROM (SELECT id, row_number() OVER w AS calculated_rank FROM status_trends WINDOW w AS (PARTITION BY language ORDER BY score DESC)) t0 WHERE status_trends.id = t0.id')
+    end
+  end
+
+  def store_highlights(at_time)
+    highlights = StatusTrend.allowed.below_rank(20)
+
+    highlights.find_each do |trend|
+      # Forced to resort to this monstrosity because upsert_all's on_duplicate option is only
+      # available starting with Rails 7...
+      StatusTrendHighlight.connection.exec_insert(<<~SQL.squish, nil, [[nil, at_time.beginning_of_day], [nil, trend.status_id], [nil, trend.account_id], [nil, trend.score], [nil, trend.language]])
+        INSERT INTO status_trend_highlights(period, status_id, account_id, score, language)
+        VALUES ($1, $2, $3, $4, $5)
+        ON CONFLICT (status_id) DO UPDATE SET score = GREATEST(status_trend_highlights.score, EXCLUDED.score)
+      SQL
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_05_085711) do
+ActiveRecord::Schema.define(version: 2023_06_05_085712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -932,6 +932,16 @@ ActiveRecord::Schema.define(version: 2023_06_05_085711) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["status_id"], name: "index_status_stats_on_status_id", unique: true
+  end
+
+  create_table "status_trend_highlights", force: :cascade do |t|
+    t.datetime "period", null: false
+    t.bigint "status_id", null: false
+    t.bigint "account_id", null: false
+    t.float "score", default: 0.0, null: false
+    t.string "language"
+    t.index ["account_id"], name: "index_status_trend_highlights_on_account_id"
+    t.index ["status_id"], name: "index_status_trend_highlights_on_status_id", unique: true
   end
 
   create_table "status_trends", force: :cascade do |t|
