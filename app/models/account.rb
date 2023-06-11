@@ -62,9 +62,9 @@ class Account < ApplicationRecord
     trust_level
   )
 
-  USERNAME_RE   = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
-  MENTION_RE    = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]\.\-]+[[:word:]]+)?)/i
-  URL_PREFIX_RE = /\Ahttp(s?):\/\/[^\/]+/
+  USERNAME_RE   = /[a-z0-9_]+([a-z0-9_.-]+[a-z0-9_]+)?/i
+  MENTION_RE    = %r{(?<=^|[^/[:word:]])@((#{USERNAME_RE})(?:@[[:word:].-]+[[:word:]]+)?)}i
+  URL_PREFIX_RE = %r{\Ahttp(s?)://[^/]+}
   USERNAME_ONLY_RE = /\A#{USERNAME_RE}\z/i
 
   include Attachmentable
@@ -144,6 +144,7 @@ class Account < ApplicationRecord
            :locale,
            :shows_application?,
            :prefers_noindex?,
+           :time_zone,
            to: :user,
            prefix: true,
            allow_nil: true

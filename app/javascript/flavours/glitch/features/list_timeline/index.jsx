@@ -8,6 +8,8 @@ import { Helmet } from 'react-helmet';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import Toggle from 'react-toggle';
+
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import { fetchList, deleteList, updateList } from 'flavours/glitch/actions/lists';
 import { openModal } from 'flavours/glitch/actions/modal';
@@ -145,7 +147,13 @@ class ListTimeline extends PureComponent {
   handleRepliesPolicyChange = ({ target }) => {
     const { dispatch } = this.props;
     const { id } = this.props.params;
-    dispatch(updateList(id, undefined, false, target.value));
+    dispatch(updateList(id, undefined, false, undefined, target.value));
+  };
+
+  onExclusiveToggle = ({ target }) => {
+    const { dispatch } = this.props;
+    const { id } = this.props.params;
+    dispatch(updateList(id, undefined, false, target.checked, undefined));
   };
 
   render () {
@@ -154,6 +162,7 @@ class ListTimeline extends PureComponent {
     const pinned = !!columnId;
     const title  = list ? list.get('title') : id;
     const replies_policy = list ? list.get('replies_policy') : undefined;
+    const isExclusive = list ? list.get('exclusive') : undefined;
 
     if (typeof list === 'undefined') {
       return (
@@ -189,6 +198,13 @@ class ListTimeline extends PureComponent {
             <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
               <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
+          </div>
+
+          <div className='setting-toggle'>
+            <Toggle id={`list-${id}-exclusive`} defaultChecked={isExclusive} onChange={this.onExclusiveToggle} />
+            <label htmlFor={`list-${id}-exclusive`} className='setting-toggle__label'>
+              <FormattedMessage id='lists.exclusive' defaultMessage='Hide these posts from home' />
+            </label>
           </div>
 
           { replies_policy !== undefined && (

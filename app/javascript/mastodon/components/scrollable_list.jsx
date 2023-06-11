@@ -15,7 +15,7 @@ import IntersectionObserverArticleContainer from '../containers/intersection_obs
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
 import IntersectionObserverWrapper from '../features/ui/util/intersection_observer_wrapper';
 
-import LoadMore from './load_more';
+import { LoadMore } from './load_more';
 import LoadPending from './load_pending';
 import LoadingIndicator from './loading_indicator';
 

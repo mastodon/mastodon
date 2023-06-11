@@ -16,6 +16,7 @@ import { VerifiedBadge } from 'mastodon/components/verified_badge';
 import { me } from '../initial_state';
 
 import { Avatar } from './avatar';
+import Button from './button';
 import { DisplayName } from './display_name';
 import { IconButton } from './icon_button';
 import { RelativeTimestamp } from './relative_timestamp';
@@ -23,13 +24,13 @@ import { RelativeTimestamp } from './relative_timestamp';
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
-  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
-  unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
-  unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
-  mute_notifications: { id: 'account.mute_notifications', defaultMessage: 'Mute notifications from @{name}' },
-  unmute_notifications: { id: 'account.unmute_notifications', defaultMessage: 'Unmute notifications from @{name}' },
-  mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
-  block: { id: 'account.block', defaultMessage: 'Block @{name}' },
+  cancel_follow_request: { id: 'account.cancel_follow_request', defaultMessage: 'Withdraw follow request' },
+  unblock: { id: 'account.unblock_short', defaultMessage: 'Unblock' },
+  unmute: { id: 'account.unmute_short', defaultMessage: 'Unmute' },
+  mute_notifications: { id: 'account.mute_notifications_short', defaultMessage: 'Mute notifications' },
+  unmute_notifications: { id: 'account.unmute_notifications_short', defaultMessage: 'Unmute notifications' },
+  mute: { id: 'account.mute_short', defaultMessage: 'Mute' },
+  block: { id: 'account.block_short', defaultMessage: 'Block' },
 });
 
 class Account extends ImmutablePureComponent {
@@ -96,39 +97,39 @@ class Account extends ImmutablePureComponent {
 
     let buttons;
 
-    if (actionIcon) {
-      if (onActionClick) {
-        buttons = <IconButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
-      }
-    } else if (account.get('id') !== me && account.get('relationship', null) !== null) {
+    if (actionIcon && onActionClick) {
+      buttons = <IconButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
+    } else if (!actionIcon && account.get('id') !== me && account.get('relationship', null) !== null) {
       const following = account.getIn(['relationship', 'following']);
       const requested = account.getIn(['relationship', 'requested']);
       const blocking  = account.getIn(['relationship', 'blocking']);
       const muting  = account.getIn(['relationship', 'muting']);
 
       if (requested) {
-        buttons = <IconButton disabled icon='hourglass' title={intl.formatMessage(messages.requested)} />;
+        buttons = <Button text={intl.formatMessage(messages.cancel_follow_request)} onClick={this.handleFollow} />;
       } else if (blocking) {
-        buttons = <IconButton active icon='unlock' title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.handleBlock} />;
+        buttons = <Button text={intl.formatMessage(messages.unblock)} onClick={this.handleBlock} />;
       } else if (muting) {
         let hidingNotificationsButton;
+
         if (account.getIn(['relationship', 'muting_notifications'])) {
-          hidingNotificationsButton = <IconButton active icon='bell' title={intl.formatMessage(messages.unmute_notifications, { name: account.get('username') })} onClick={this.handleUnmuteNotifications} />;
+          hidingNotificationsButton = <Button text={intl.formatMessage(messages.unmute_notifications)} onClick={this.handleUnmuteNotifications} />;
         } else {
-          hidingNotificationsButton = <IconButton active icon='bell-slash' title={intl.formatMessage(messages.mute_notifications, { name: account.get('username')  })} onClick={this.handleMuteNotifications} />;
+          hidingNotificationsButton = <Button text={intl.formatMessage(messages.mute_notifications)} onClick={this.handleMuteNotifications} />;
         }
+
         buttons = (
           <>
-            <IconButton active icon='volume-up' title={intl.formatMessage(messages.unmute, { name: account.get('username') })} onClick={this.handleMute} />
+            <Button text={intl.formatMessage(messages.unmute)} onClick={this.handleMute} />
             {hidingNotificationsButton}
           </>
         );
       } else if (defaultAction === 'mute') {
-        buttons = <IconButton icon='volume-off' title={intl.formatMessage(messages.mute, { name: account.get('username') })} onClick={this.handleMute} />;
+        buttons = <Button title={intl.formatMessage(messages.mute)} onClick={this.handleMute} />;
       } else if (defaultAction === 'block') {
-        buttons = <IconButton icon='lock' title={intl.formatMessage(messages.block, { name: account.get('username') })} onClick={this.handleBlock} />;
+        buttons = <Button text={intl.formatMessage(messages.block)} onClick={this.handleBlock} />;
       } else if (!account.get('moved') || following) {
-        buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} active={following} />;
+        buttons = <Button text={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} />;
       }
     }
 
@@ -143,7 +144,7 @@ class Account extends ImmutablePureComponent {
     const firstVerifiedField = account.get('fields').find(item => !!item.get('verified_at'));
 
     if (firstVerifiedField) {
-      verification = <>· <VerifiedBadge link={firstVerifiedField.get('value')} /></>;
+      verification = <VerifiedBadge link={firstVerifiedField.get('value')} />;
     }
 
     return (
@@ -154,9 +155,13 @@ class Account extends ImmutablePureComponent {
               <Avatar account={account} size={size} />
             </div>
 
-            <div>
+            <div className='account__contents'>
               <DisplayName account={account} />
-              {!minimal && <><ShortNumber value={account.get('followers_count')} renderer={counterRenderer('followers')} /> {verification} {muteTimeRemaining}</>}
+              {!minimal && (
+                <div className='account__details'>
+                  <ShortNumber value={account.get('followers_count')} renderer={counterRenderer('followers')} /> {verification} {muteTimeRemaining}
+                </div>
+              )}
             </div>
           </Link>
 

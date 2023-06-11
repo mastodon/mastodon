@@ -7,7 +7,6 @@ const webpack = require('webpack');
 const AssetsManifestPlugin = require('webpack-assets-manifest');
 
 const { env, settings, core, flavours, output } = require('./configuration');
-const localePacks = require('./generateLocalePacks');
 const rules = require('./rules');
 
 function reducePacks (data, into = {}) {
@@ -48,8 +47,6 @@ function reducePacks (data, into = {}) {
 }
 
 const entries = Object.assign(
-  { locales: resolve('app', 'javascript', 'locales') },
-  localePacks,
   reducePacks(core),
   Object.values(flavours).reduce((map, data) => reducePacks(data, map), {}),
 );
@@ -69,7 +66,7 @@ module.exports = {
 
   optimization: {
     runtimeChunk: {
-      name: 'locales',
+      name: 'common',
     },
     splitChunks: {
       cacheGroups: {

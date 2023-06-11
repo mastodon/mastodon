@@ -13,7 +13,7 @@ import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'flavour
 import { fetchDirectory, expandDirectory } from 'flavours/glitch/actions/directory';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
-import LoadMore from 'flavours/glitch/components/load_more';
+import { LoadMore } from 'flavours/glitch/components/load_more';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 import { RadioButton } from 'flavours/glitch/components/radio_button';
 import ScrollContainer from 'flavours/glitch/containers/scroll_container';

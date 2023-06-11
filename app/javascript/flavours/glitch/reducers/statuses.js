@@ -25,6 +25,7 @@ import {
 } from 'flavours/glitch/actions/timelines';
 
 import { STATUS_IMPORT, STATUSES_IMPORT } from '../actions/importer';
+import { normalizeStatusTranslation } from '../actions/importer/normalizer';
 
 const importStatus = (state, status) => state.set(status.id, fromJS(status));
 
@@ -37,6 +38,27 @@ const deleteStatus = (state, id, references) => {
   });
 
   return state.delete(id);
+};
+
+const statusTranslateSuccess = (state, id, translation) => {
+  return state.withMutations(map => {
+    map.setIn([id, 'translation'], fromJS(normalizeStatusTranslation(translation, map.get(id))));
+
+    const list = map.getIn([id, 'media_attachments']);
+    if (translation.media_attachments && list) {
+      translation.media_attachments.forEach(item => {
+        const index = list.findIndex(i => i.get('id') === item.id);
+        map.setIn([id, 'media_attachments', index, 'translation'], fromJS({ description: item.description }));
+      });
+    }
+  });
+};
+
+const statusTranslateUndo = (state, id) => {
+  return state.withMutations(map => {
+    map.deleteIn([id, 'translation']);
+    map.getIn([id, 'media_attachments']).forEach((item, index) => map.deleteIn([id, 'media_attachments', index, 'translation']));
+  });
 };
 
 const initialState = ImmutableMap();
@@ -90,9 +112,9 @@ export default function statuses(state = initialState, action) {
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
   case STATUS_TRANSLATE_SUCCESS:
-    return state.setIn([action.id, 'translation'], fromJS(action.translation));
+    return statusTranslateSuccess(state, action.id, action.translation);
   case STATUS_TRANSLATE_UNDO:
-    return state.deleteIn([action.id, 'translation']);
+    return statusTranslateUndo(state, action.id);
   default:
     return state;
   }

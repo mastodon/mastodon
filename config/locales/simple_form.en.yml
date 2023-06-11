@@ -78,7 +78,7 @@ en:
         backups_retention_period: Keep generated user archives for the specified number of days.
         bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations.
         closed_registrations_message: Displayed when sign-ups are closed
-        content_cache_retention_period: Posts from other servers will be deleted after the specified number of days when set to a positive value. This may be irreversible.
+        content_cache_retention_period: All posts and boosts from other servers will be deleted after the specified number of days. Some posts may not be recoverable. All related bookmarks, favourites and boosts will also be lost and impossible to undo.
         custom_css: You can apply custom styles on the web version of Mastodon.
         mascot: Overrides the illustration in the advanced web interface.
         media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
@@ -131,6 +131,7 @@ en:
         position: Higher role decides conflict resolution in certain situations. Certain actions can only be performed on roles with a lower priority
       webhook:
         events: Select events to send
+        template: Compose your own JSON payload using variable interpolation. Leave blank for default JSON.
         url: Where events will be sent to
     labels:
       account:
@@ -296,6 +297,7 @@ en:
         usable: Allow posts to use this hashtag
       user:
         role: Role
+        time_zone: Time zone
       user_role:
         color: Badge color
         highlighted: Display role as badge on user profiles
@@ -304,6 +306,7 @@ en:
         position: Priority
       webhook:
         events: Enabled events
+        template: Payload template
         url: Endpoint URL
     'no': 'No'
     not_recommended: Not recommended

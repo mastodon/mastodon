@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe MediaAttachment do
+RSpec.describe MediaAttachment, paperclip_processing: true do
   describe 'local?' do
     subject { media_attachment.local? }
 
@@ -85,7 +85,7 @@ RSpec.describe MediaAttachment do
   end
 
   describe 'animated gif conversion' do
-    let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture('avatar.gif')) }
+    let(:media) { described_class.create(account: Fabricate(:account), file: attachment_fixture('avatar.gif')) }
 
     it 'sets type to gifv' do
       expect(media.type).to eq 'gifv'
@@ -109,7 +109,7 @@ RSpec.describe MediaAttachment do
 
     fixtures.each do |fixture|
       context fixture[:filename] do
-        let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture(fixture[:filename])) }
+        let(:media) { described_class.create(account: Fabricate(:account), file: attachment_fixture(fixture[:filename])) }
 
         it 'sets type to image' do
           expect(media.type).to eq 'image'
@@ -129,7 +129,7 @@ RSpec.describe MediaAttachment do
   end
 
   describe 'ogg with cover art' do
-    let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture('boop.ogg')) }
+    let(:media) { described_class.create(account: Fabricate(:account), file: attachment_fixture('boop.ogg')) }
 
     it 'detects it as an audio file' do
       expect(media.type).to eq 'audio'
@@ -153,7 +153,7 @@ RSpec.describe MediaAttachment do
   end
 
   describe 'jpeg' do
-    let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture('attachment.jpg')) }
+    let(:media) { described_class.create(account: Fabricate(:account), file: attachment_fixture('attachment.jpg')) }
 
     it 'sets meta for different style' do
       expect(media.file.meta['original']['width']).to eq 600
@@ -171,7 +171,7 @@ RSpec.describe MediaAttachment do
 
   describe 'base64-encoded jpeg' do
     let(:base64_attachment) { "data:image/jpeg;base64,#{Base64.encode64(attachment_fixture('attachment.jpg').read)}" }
-    let(:media) { MediaAttachment.create(account: Fabricate(:account), file: base64_attachment) }
+    let(:media) { described_class.create(account: Fabricate(:account), file: base64_attachment) }
 
     it 'saves media attachment' do
       expect(media.persisted?).to be true
@@ -184,7 +184,7 @@ RSpec.describe MediaAttachment do
   end
 
   it 'is invalid without file' do
-    media = MediaAttachment.new(account: Fabricate(:account))
+    media = described_class.new(account: Fabricate(:account))
     expect(media.valid?).to be false
   end
 
@@ -192,26 +192,26 @@ RSpec.describe MediaAttachment do
     it 'rejects video files that are too large' do
       stub_const 'MediaAttachment::IMAGE_LIMIT', 100.megabytes
       stub_const 'MediaAttachment::VIDEO_LIMIT', 1.kilobyte
-      expect { MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.webm')) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect { described_class.create!(account: Fabricate(:account), file: attachment_fixture('attachment.webm')) }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
     it 'accepts video files that are small enough' do
       stub_const 'MediaAttachment::IMAGE_LIMIT', 1.kilobyte
       stub_const 'MediaAttachment::VIDEO_LIMIT', 100.megabytes
-      media = MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.webm'))
+      media = described_class.create!(account: Fabricate(:account), file: attachment_fixture('attachment.webm'))
       expect(media.valid?).to be true
     end
 
     it 'rejects image files that are too large' do
       stub_const 'MediaAttachment::IMAGE_LIMIT', 1.kilobyte
       stub_const 'MediaAttachment::VIDEO_LIMIT', 100.megabytes
-      expect { MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.jpg')) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect { described_class.create!(account: Fabricate(:account), file: attachment_fixture('attachment.jpg')) }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
     it 'accepts image files that are small enough' do
       stub_const 'MediaAttachment::IMAGE_LIMIT', 100.megabytes
       stub_const 'MediaAttachment::VIDEO_LIMIT', 1.kilobyte
-      media = MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.jpg'))
+      media = described_class.create!(account: Fabricate(:account), file: attachment_fixture('attachment.jpg'))
       expect(media.valid?).to be true
     end
   end

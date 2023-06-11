@@ -1,7 +1,7 @@
 import 'packs/public-path';
 import { createRoot }  from 'react-dom/client';
 
-import * as IntlMessageFormat  from 'intl-messageformat';
+import { IntlMessageFormat } from 'intl-messageformat';
 import { defineMessages } from 'react-intl';
 
 import { delegate }  from '@rails/ujs';
@@ -12,9 +12,9 @@ import { throttle } from 'lodash';
 import { timeAgoString }  from 'flavours/glitch/components/relative_timestamp';
 import emojify  from 'flavours/glitch/features/emoji/emoji';
 import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
+import { loadLocale, getLocale } from 'flavours/glitch/locales';
 import { loadPolyfills } from 'flavours/glitch/polyfills';
 import ready from 'flavours/glitch/ready';
-import { getLocale }  from 'locales';
 
 const messages = defineMessages({
   usernameTaken: { id: 'username.taken', defaultMessage: 'That username is taken. Try another' },
@@ -23,7 +23,7 @@ const messages = defineMessages({
 });
 
 function main() {
-  const { localeData } = getLocale();
+  const { messages: localeData } = getLocale();
 
   const scrollToDetailedStatus = () => {
     const history = createBrowserHistory();
@@ -237,6 +237,7 @@ function main() {
 }
 
 loadPolyfills()
+  .then(loadLocale)
   .then(main)
   .then(loadKeyboardExtensions)
   .catch(error => {

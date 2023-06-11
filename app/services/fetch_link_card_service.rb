@@ -7,7 +7,7 @@ class FetchLinkCardService < BaseService
   URL_PATTERN = %r{
     (#{Twitter::TwitterText::Regex[:valid_url_preceding_chars]})                                                                #   $1 preceding chars
     (                                                                                                                           #   $2 URL
-      (https?:\/\/)                                                                                                             #   $3 Protocol (required)
+      (https?://)                                                                                                               #   $3 Protocol (required)
       (#{Twitter::TwitterText::Regex[:valid_domain]})                                                                           #   $4 Domain(s)
       (?::(#{Twitter::TwitterText::Regex[:valid_port_number]}))?                                                                #   $5 Port number (optional)
       (/#{Twitter::TwitterText::Regex[:valid_url_path]}*)?                                                                      #   $6 URL Path and anchor

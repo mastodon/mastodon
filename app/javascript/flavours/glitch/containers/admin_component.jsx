@@ -1,25 +1,19 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { IntlProvider, addLocaleData } from 'react-intl';
-
-import { getLocale } from 'mastodon/locales';
-
-const { localeData, messages } = getLocale();
-addLocaleData(localeData);
+import { IntlProvider } from 'flavours/glitch/locales';
 
 export default class AdminComponent extends PureComponent {
 
   static propTypes = {
-    locale: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
   };
 
   render () {
-    const { locale, children } = this.props;
+    const { children } = this.props;
 
     return (
-      <IntlProvider locale={locale} messages={messages}>
+      <IntlProvider>
         {children}
       </IntlProvider>
     );

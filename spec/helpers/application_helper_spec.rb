@@ -209,6 +209,18 @@ describe ApplicationHelper do
       end
     end
 
+    context 'when S3 alias includes a path component' do
+      around do |example|
+        ClimateControl.modify S3_ALIAS_HOST: 's3.alias/path' do
+          example.run
+        end
+      end
+
+      it 'returns a correct URL' do
+        expect(helper.storage_host).to eq('https://s3.alias/path')
+      end
+    end
+
     context 'when S3 cloudfront is present' do
       around do |example|
         ClimateControl.modify S3_CLOUDFRONT_HOST: 's3.cloudfront' do
@@ -218,12 +230,6 @@ describe ApplicationHelper do
 
       it 'returns true' do
         expect(helper.storage_host).to eq('https://s3.cloudfront')
-      end
-    end
-
-    context 'when neither env value is present' do
-      it 'returns false' do
-        expect(helper.storage_host).to eq('https:')
       end
     end
   end

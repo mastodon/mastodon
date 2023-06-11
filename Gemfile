@@ -5,7 +5,7 @@ ruby '>= 3.0.0'
 
 gem 'pkg-config', '~> 1.5'
 
-gem 'puma', '~> 6.2'
+gem 'puma', '~> 6.3'
 gem 'rails', '~> 6.1.7'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
@@ -17,10 +17,10 @@ gem 'makara', '~> 0.5'
 gem 'pghero'
 gem 'dotenv-rails', '~> 2.8'
 
-gem 'aws-sdk-s3', '~> 1.122', require: false
+gem 'aws-sdk-s3', '~> 1.123', require: false
 gem 'fog-core', '<= 2.4.0'
 gem 'fog-openstack', '~> 0.3', require: false
-gem 'kt-paperclip', '~> 7.1', github: 'kreeti/kt-paperclip', ref: '11abf222dc31bff71160a1d138b445214f434b2b'
+gem 'kt-paperclip', '~> 7.2'
 gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
@@ -60,7 +60,6 @@ gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.4.1', require: 'mime/types/columnar'
 gem 'nokogiri', '~> 1.15'
-gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.14'
 gem 'ox', '~> 2.14'
 gem 'parslet'

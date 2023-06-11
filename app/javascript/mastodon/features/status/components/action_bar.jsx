@@ -219,8 +219,8 @@ class ActionBar extends PureComponent {
       menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.edit), action: this.handleEditClick });
-      menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
-      menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick });
+      menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick, dangerous: true });
+      menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick, dangerous: true });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
       menu.push(null);
@@ -228,16 +228,16 @@ class ActionBar extends PureComponent {
       if (relationship && relationship.get('muting')) {
         menu.push({ text: intl.formatMessage(messages.unmute, { name: account.get('username') }), action: this.handleMuteClick });
       } else {
-        menu.push({ text: intl.formatMessage(messages.mute, { name: account.get('username') }), action: this.handleMuteClick });
+        menu.push({ text: intl.formatMessage(messages.mute, { name: account.get('username') }), action: this.handleMuteClick, dangerous: true });
       }
 
       if (relationship && relationship.get('blocking')) {
         menu.push({ text: intl.formatMessage(messages.unblock, { name: account.get('username') }), action: this.handleBlockClick });
       } else {
-        menu.push({ text: intl.formatMessage(messages.block, { name: account.get('username') }), action: this.handleBlockClick });
+        menu.push({ text: intl.formatMessage(messages.block, { name: account.get('username') }), action: this.handleBlockClick, dangerous: true });
       }
 
-      menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
+      menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport, dangerous: true });
 
       if (account.get('acct') !== account.get('username')) {
         const domain = account.get('acct').split('@')[1];
@@ -247,7 +247,7 @@ class ActionBar extends PureComponent {
         if (relationship && relationship.get('domain_blocking')) {
           menu.push({ text: intl.formatMessage(messages.unblockDomain, { domain }), action: this.handleUnblockDomain });
         } else {
-          menu.push({ text: intl.formatMessage(messages.blockDomain, { domain }), action: this.handleBlockDomain });
+          menu.push({ text: intl.formatMessage(messages.blockDomain, { domain }), action: this.handleBlockDomain, dangerous: true });
         }
       }
 

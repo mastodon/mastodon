@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { IntlProvider, addLocaleData } from 'react-intl';
-
 import { Helmet } from 'react-helmet';
 import { BrowserRouter, Route } from 'react-router-dom';
 
@@ -17,11 +15,8 @@ import { connectUserStream } from 'flavours/glitch/actions/streaming';
 import ErrorBoundary from 'flavours/glitch/components/error_boundary';
 import UI from 'flavours/glitch/features/ui';
 import initialState, { title as siteTitle } from 'flavours/glitch/initial_state';
+import { IntlProvider } from 'flavours/glitch/locales';
 import { store } from 'flavours/glitch/store';
-import { getLocale } from 'locales';
-
-const { localeData, messages } = getLocale();
-addLocaleData(localeData);
 
 const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
 
@@ -44,10 +39,6 @@ const createIdentityContext = state => ({
 });
 
 export default class Mastodon extends PureComponent {
-
-  static propTypes = {
-    locale: PropTypes.string.isRequired,
-  };
 
   static childContextTypes = {
     identity: PropTypes.shape({
@@ -84,10 +75,8 @@ export default class Mastodon extends PureComponent {
   }
 
   render () {
-    const { locale } = this.props;
-
     return (
-      <IntlProvider locale={locale} messages={messages}>
+      <IntlProvider>
         <ReduxProvider store={store}>
           <ErrorBoundary>
             <BrowserRouter>

@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 
-import type { InjectedIntl } from 'react-intl';
-import { injectIntl, defineMessages } from 'react-intl';
+import { useIntl, defineMessages } from 'react-intl';
 
 import { Icon } from 'mastodon/components/icon';
 
@@ -13,10 +12,11 @@ interface Props {
   disabled: boolean;
   maxId: string;
   onClick: (maxId: string) => void;
-  intl: InjectedIntl;
 }
 
-const _LoadGap: React.FC<Props> = ({ disabled, maxId, onClick, intl }) => {
+export const LoadGap: React.FC<Props> = ({ disabled, maxId, onClick }) => {
+  const intl = useIntl();
+
   const handleClick = useCallback(() => {
     onClick(maxId);
   }, [maxId, onClick]);
@@ -32,5 +32,3 @@ const _LoadGap: React.FC<Props> = ({ disabled, maxId, onClick, intl }) => {
     </button>
   );
 };
-
-export const LoadGap = injectIntl(_LoadGap);

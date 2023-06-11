@@ -1,4 +1,4 @@
-import IntlMessageFormat from 'intl-messageformat';
+import { IntlMessageFormat } from 'intl-messageformat';
 import { defineMessages } from 'react-intl';
 
 import { List as ImmutableList } from 'immutable';

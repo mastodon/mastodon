@@ -121,10 +121,10 @@ class DropdownMenu extends PureComponent {
       return <li key={`sep-${i}`} className='dropdown-menu__separator' />;
     }
 
-    const { text, href = '#', target = '_blank', method } = option;
+    const { text, href = '#', target = '_blank', method, dangerous } = option;
 
     return (
-      <li className='dropdown-menu__item' key={`${text}-${i}`}>
+      <li className={classNames('dropdown-menu__item', { 'dropdown-menu__item--dangerous': dangerous })} key={`${text}-${i}`}>
         <a href={href} target={target} data-method={method} rel='noopener noreferrer' role='button' tabIndex={0} ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyPress={this.handleItemKeyPress} data-index={i}>
           {text}
         </a>

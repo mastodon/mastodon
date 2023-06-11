@@ -19,6 +19,14 @@ module RecommendedComponent
   end
 end
 
+module WarningHintComponent
+  def warning_hint(_wrapper_options = nil)
+    @warning_hint ||= begin
+      options[:warning_hint].to_s.html_safe if options[:warning_hint].present?
+    end
+  end
+end
+
 module GlitchOnlyComponent
   def glitch_only(_wrapper_options = nil)
     return unless options[:glitch_only]
@@ -30,6 +38,7 @@ end
 
 SimpleForm.include_component(AppendComponent)
 SimpleForm.include_component(RecommendedComponent)
+SimpleForm.include_component(WarningHintComponent)
 SimpleForm.include_component(GlitchOnlyComponent)
 
 SimpleForm.setup do |config|
@@ -112,6 +121,7 @@ SimpleForm.setup do |config|
     b.use :html5
     b.use :label
     b.use :hint, wrap_with: { tag: :span, class: :hint }
+    b.use :warning_hint, wrap_with: { tag: :span, class: [:hint, 'warning-hint'] }
     b.use :input, wrap_with: { tag: :div, class: :label_input }
     b.use :error, wrap_with: { tag: :span, class: :error }
   end

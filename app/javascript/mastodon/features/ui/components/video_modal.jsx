@@ -9,7 +9,7 @@ import Footer from 'mastodon/features/picture_in_picture/components/footer';
 import Video from 'mastodon/features/video';
 
 const mapStateToProps = (state, { statusId }) => ({
-  language: state.getIn(['statuses', statusId, 'language']),
+  status: state.getIn(['statuses', statusId]),
 });
 
 class VideoModal extends ImmutablePureComponent {
@@ -17,7 +17,7 @@ class VideoModal extends ImmutablePureComponent {
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
     statusId: PropTypes.string,
-    language: PropTypes.string,
+    status: ImmutablePropTypes.map,
     options: PropTypes.shape({
       startTime: PropTypes.number,
       autoPlay: PropTypes.bool,
@@ -38,8 +38,10 @@ class VideoModal extends ImmutablePureComponent {
   }
 
   render () {
-    const { media, statusId, language, onClose } = this.props;
+    const { media, status, onClose } = this.props;
     const options = this.props.options || {};
+    const language = status.getIn(['translation', 'language']) || status.get('language');
+    const description = media.getIn(['translation', 'description']) || media.get('description');
 
     return (
       <div className='modal-root__modal video-modal'>
@@ -55,13 +57,13 @@ class VideoModal extends ImmutablePureComponent {
             onCloseVideo={onClose}
             autoFocus
             detailed
-            alt={media.get('description')}
+            alt={description}
             lang={language}
           />
         </div>
 
         <div className='media-modal__overlay'>
-          {statusId && <Footer statusId={statusId} withOpenButton onClose={onClose} />}
+          {status && <Footer statusId={status.get('id')} withOpenButton onClose={onClose} />}
         </div>
       </div>
     );

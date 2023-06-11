@@ -44,7 +44,7 @@ RSpec.describe Trends::Tags do
       4.times  { |i| subject.add(tag2, i, today) }
     end
 
-    context do
+    context 'when tag trends are refreshed' do
       before do
         subject.refresh(yesterday + 12.hours)
         subject.refresh(at_time)

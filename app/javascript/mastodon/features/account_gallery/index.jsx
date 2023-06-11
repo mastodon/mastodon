@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { lookupAccount, fetchAccount } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
 import ColumnBackButton from 'mastodon/components/column_back_button';
-import LoadMore from 'mastodon/components/load_more';
+import { LoadMore } from 'mastodon/components/load_more';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';

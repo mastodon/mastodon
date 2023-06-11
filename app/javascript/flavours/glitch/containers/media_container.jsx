@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 import { createPortal } from 'react-dom';
 
-import { IntlProvider, addLocaleData } from 'react-intl';
-
 import { fromJS } from 'immutable';
 
 import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
@@ -14,19 +12,14 @@ import Audio from 'flavours/glitch/features/audio';
 import Card from 'flavours/glitch/features/status/components/card';
 import MediaModal from 'flavours/glitch/features/ui/components/media_modal';
 import Video from 'flavours/glitch/features/video';
+import { IntlProvider } from 'flavours/glitch/locales';
 import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
-
-import { getLocale } from 'mastodon/locales';
-
-const { localeData, messages } = getLocale();
-addLocaleData(localeData);
 
 const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag, Audio };
 
 export default class MediaContainer extends PureComponent {
 
   static propTypes = {
-    locale: PropTypes.string.isRequired,
     components: PropTypes.object.isRequired,
   };
 
@@ -75,7 +68,7 @@ export default class MediaContainer extends PureComponent {
   };
 
   render () {
-    const { locale, components } = this.props;
+    const { components } = this.props;
 
     let handleOpenVideo;
 
@@ -85,7 +78,7 @@ export default class MediaContainer extends PureComponent {
     }
 
     return (
-      <IntlProvider locale={locale} messages={messages}>
+      <IntlProvider>
         <>
           {[].map.call(components, (component, i) => {
             const componentName = component.getAttribute('data-component');

@@ -8,7 +8,7 @@ import Audio from 'flavours/glitch/features/audio';
 import Footer from 'flavours/glitch/features/picture_in_picture/components/footer';
 
 const mapStateToProps = (state, { statusId }) => ({
-  language: state.getIn(['statuses', statusId, 'language']),
+  status: state.getIn(['statuses', statusId]),
   accountStaticAvatar: state.getIn(['accounts', state.getIn(['statuses', statusId, 'account']), 'avatar_static']),
 });
 
@@ -17,7 +17,7 @@ class AudioModal extends ImmutablePureComponent {
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
     statusId: PropTypes.string.isRequired,
-    language: PropTypes.string,
+    status: ImmutablePropTypes.map.isRequired,
     accountStaticAvatar: PropTypes.string.isRequired,
     options: PropTypes.shape({
       autoPlay: PropTypes.bool,
@@ -31,15 +31,17 @@ class AudioModal extends ImmutablePureComponent {
   };
 
   render () {
-    const { media, language, accountStaticAvatar, statusId, onClose } = this.props;
+    const { media, status, accountStaticAvatar, onClose } = this.props;
     const options = this.props.options || {};
+    const language = status.getIn(['translation', 'language']) || status.get('language');
+    const description = media.getIn(['translation', 'description']) || media.get('description');
 
     return (
       <div className='modal-root__modal audio-modal'>
         <div className='audio-modal__container'>
           <Audio
             src={media.get('url')}
-            alt={media.get('description')}
+            alt={description}
             lang={language}
             duration={media.getIn(['meta', 'original', 'duration'], 0)}
             height={150}
@@ -52,7 +54,7 @@ class AudioModal extends ImmutablePureComponent {
         </div>
 
         <div className='media-modal__overlay'>
-          {statusId && <Footer statusId={statusId} withOpenButton onClose={onClose} />}
+          {status && <Footer statusId={status.get('id')} withOpenButton onClose={onClose} />}
         </div>
       </div>
     );

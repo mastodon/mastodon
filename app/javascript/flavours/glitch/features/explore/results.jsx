@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import { expandSearch } from 'flavours/glitch/actions/search';
 import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
-import LoadMore from 'flavours/glitch/components/load_more';
+import { LoadMore } from 'flavours/glitch/components/load_more';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 import Account from 'flavours/glitch/containers/account_container';
 import Status from 'flavours/glitch/containers/status_container';
@@ -113,7 +113,7 @@ class Results extends PureComponent {
           <button onClick={this.handleSelectAll} className={type === 'all' && 'active'}><FormattedMessage id='search_results.all' defaultMessage='All' /></button>
           <button onClick={this.handleSelectAccounts} className={type === 'accounts' && 'active'}><FormattedMessage id='search_results.accounts' defaultMessage='People' /></button>
           <button onClick={this.handleSelectHashtags} className={type === 'hashtags' && 'active'}><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></button>
-          <button onClick={this.handleSelectStatuses} className={type === 'statuses' && 'active'}><FormattedMessage id='search_results.statuses' defaultMessage='Toots' /></button>
+          <button onClick={this.handleSelectStatuses} className={type === 'statuses' && 'active'}><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></button>
         </div>
 
         <div className='explore__search-results'>

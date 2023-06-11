@@ -38,22 +38,22 @@ RSpec.describe Notification do
 
   describe '#type' do
     it 'returns :reblog for a Status' do
-      notification = Notification.new(activity: Status.new)
+      notification = described_class.new(activity: Status.new)
       expect(notification.type).to eq :reblog
     end
 
     it 'returns :mention for a Mention' do
-      notification = Notification.new(activity: Mention.new)
+      notification = described_class.new(activity: Mention.new)
       expect(notification.type).to eq :mention
     end
 
     it 'returns :favourite for a Favourite' do
-      notification = Notification.new(activity: Favourite.new)
+      notification = described_class.new(activity: Favourite.new)
       expect(notification.type).to eq :favourite
     end
 
     it 'returns :follow for a Follow' do
-      notification = Notification.new(activity: Follow.new)
+      notification = described_class.new(activity: Follow.new)
       expect(notification.type).to eq :follow
     end
   end
