@@ -5,5 +5,3 @@ export const LoadingIndicator: React.FC = () => (
     <CircularProgress size={50} strokeWidth={6} />
   </div>
 );
-
-export default LoadingIndicator;
