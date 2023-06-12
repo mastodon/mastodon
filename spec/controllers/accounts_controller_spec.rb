@@ -67,15 +67,14 @@ RSpec.describe AccountsController do
       end
 
       shared_examples 'common HTML response' do
-        it 'returns http success' do
+        it 'returns a standard HTML response', :aggregate_failures do
+          # returns http success
           expect(response).to have_http_status(200)
-        end
 
-        it 'returns Link header' do
+          # returns Link header
           expect(response.headers['Link'].to_s).to include ActivityPub::TagManager.instance.uri_for(account)
-        end
 
-        it 'renders show template' do
+          # renders show template
           expect(response).to render_template(:show)
         end
       end
