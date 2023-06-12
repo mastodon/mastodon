@@ -26,6 +26,7 @@ class Admin::AccountAction
   alias include_statuses? include_statuses
 
   validates :type, :target_account, :current_account, presence: true
+  validates :type, inclusion: { in: TYPES }
 
   def initialize(attributes = {})
     @send_email_notification = true
