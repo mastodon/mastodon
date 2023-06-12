@@ -158,20 +158,18 @@ RSpec.describe AccountsController do
           get :show, params: { username: account.username, format: format }
         end
 
-        it 'returns http success' do
+        it 'returns a JSON version of the account', :aggregate_failures do
+          # returns http success
           expect(response).to have_http_status(200)
-        end
 
-        it 'returns application/activity+json' do
+          # returns application/activity+json
           expect(response.media_type).to eq 'application/activity+json'
+
+          # renders account
+          expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
         end
 
         it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
-        it 'renders account' do
-          json = body_as_json
-          expect(json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
-        end
 
         context 'with authorized fetch mode' do
           let(:authorized_fetch_mode) { true }
@@ -190,21 +188,18 @@ RSpec.describe AccountsController do
           get :show, params: { username: account.username, format: format }
         end
 
-        it 'returns http success' do
+        it 'returns a private JSON version of the account', :aggregate_failures do
+          # returns http success
           expect(response).to have_http_status(200)
-        end
 
-        it 'returns application/activity+json' do
+          # returns application/activity+json
           expect(response.media_type).to eq 'application/activity+json'
-        end
 
-        it 'returns private Cache-Control header' do
+          # returns private Cache-Control header
           expect(response.headers['Cache-Control']).to include 'private'
-        end
 
-        it 'renders account' do
-          json = body_as_json
-          expect(json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
+          # renders account
+          expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
         end
       end
 
@@ -216,43 +211,37 @@ RSpec.describe AccountsController do
           get :show, params: { username: account.username, format: format }
         end
 
-        it 'returns http success' do
+        it 'returns a JSON version of the account', :aggregate_failures do
+          # returns http success
           expect(response).to have_http_status(200)
-        end
 
-        it 'returns application/activity+json' do
+          # returns application/activity+json
           expect(response.media_type).to eq 'application/activity+json'
+
+          # renders account
+          expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
         end
 
         it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
-        it 'renders account' do
-          json = body_as_json
-          expect(json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
-        end
-
         context 'with authorized fetch mode' do
           let(:authorized_fetch_mode) { true }
 
-          it 'returns http success' do
+          it 'returns a private signature JSON version of the account', :aggregate_failures do
+            # returns http success
             expect(response).to have_http_status(200)
-          end
 
-          it 'returns application/activity+json' do
+            # returns application/activity+json
             expect(response.media_type).to eq 'application/activity+json'
-          end
 
-          it 'returns private Cache-Control header' do
+            # returns private Cache-Control header
             expect(response.headers['Cache-Control']).to include 'private'
-          end
 
-          it 'returns Vary header with Signature' do
+            # returns Vary header with Signature
             expect(response.headers['Vary']).to include 'Signature'
-          end
 
-          it 'renders account' do
-            json = body_as_json
-            expect(json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
+            # renders account
+            expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
         end
       end
