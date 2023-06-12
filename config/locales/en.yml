@@ -993,8 +993,9 @@ en:
   auth:
     apply_for_account: Request an account
     captcha_confirmation:
-      hint_html: Just one more step! To confirm your account, this server requires you to solve a CAPTCHA. You can <a href="/about/more">contact the server administrator</a> if you have questions or need assistance with confirming your account.
-      title: User verification
+      help_html: If you have issues solving the CAPTCHA, you can get in touch with us through %{email} and we can assist you.
+      hint_html: Just one more thing! We need to confirm you're a human (this is so we can keep the spam out!). Solve the CAPTCHA below and click "Continue".
+      title: Security check
     change_password: Password
     confirmations:
       wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
