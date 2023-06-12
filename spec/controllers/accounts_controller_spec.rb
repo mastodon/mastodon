@@ -7,41 +7,41 @@ RSpec.describe AccountsController do
 
   let(:account) { Fabricate(:account) }
 
+  shared_examples 'unapproved account check' do
+    before { account.user.update(approved: false) }
+
+    it 'returns http not found' do
+      get :show, params: { username: account.username, format: format }
+
+      expect(response).to have_http_status(404)
+    end
+  end
+
+  shared_examples 'permanently suspended account check' do
+    before do
+      account.suspend!
+      account.deletion_request.destroy
+    end
+
+    it 'returns http gone' do
+      get :show, params: { username: account.username, format: format }
+
+      expect(response).to have_http_status(410)
+    end
+  end
+
+  shared_examples 'temporarily suspended account check' do |code: 403|
+    before { account.suspend! }
+
+    it 'returns http forbidden' do
+      get :show, params: { username: account.username, format: format }
+
+      expect(response).to have_http_status(code)
+    end
+  end
+
   describe 'GET #show' do
     context 'with basic account status checks' do
-      shared_examples 'unapproved account check' do
-        before { account.user.update(approved: false) }
-
-        it 'returns http not found' do
-          get :show, params: { username: account.username, format: format }
-
-          expect(response).to have_http_status(404)
-        end
-      end
-
-      shared_examples 'permanently suspended account check' do
-        before do
-          account.suspend!
-          account.deletion_request.destroy
-        end
-
-        it 'returns http gone' do
-          get :show, params: { username: account.username, format: format }
-
-          expect(response).to have_http_status(410)
-        end
-      end
-
-      shared_examples 'temporarily suspended account check' do |code: 403|
-        before { account.suspend! }
-
-        it 'returns http forbidden' do
-          get :show, params: { username: account.username, format: format }
-
-          expect(response).to have_http_status(code)
-        end
-      end
-
       context 'with HTML' do
         let(:format) { 'html' }
 
