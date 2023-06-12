@@ -8,8 +8,6 @@ RSpec.describe AccountsController do
   let(:account) { Fabricate(:account) }
 
   describe 'GET #show' do
-    let(:format) { 'html' }
-
     let!(:status) { Fabricate(:status, account: account) }
     let!(:status_reply) { Fabricate(:status, account: account, thread: Fabricate(:status)) }
     let!(:status_self_reply) { Fabricate(:status, account: account, thread: status) }
