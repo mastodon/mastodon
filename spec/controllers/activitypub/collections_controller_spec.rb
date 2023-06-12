@@ -7,22 +7,6 @@ RSpec.describe ActivityPub::CollectionsController do
   let!(:private_pinned) { Fabricate(:status, account: account, text: 'secret private stuff', visibility: :private) }
   let(:remote_account) { nil }
 
-  shared_examples 'cacheable response' do
-    it 'does not set cookies' do
-      expect(response.cookies).to be_empty
-      expect(response.headers['Set-Cookies']).to be_nil
-    end
-
-    it 'does not set sessions' do
-      response
-      expect(session).to be_empty
-    end
-
-    it 'returns public Cache-Control header' do
-      expect(response.headers['Cache-Control']).to include 'public'
-    end
-  end
-
   before do
     allow(controller).to receive(:signed_request_actor).and_return(remote_account)
 
@@ -48,7 +32,7 @@ RSpec.describe ActivityPub::CollectionsController do
           expect(response.media_type).to eq 'application/activity+json'
         end
 
-        it_behaves_like 'cacheable response'
+        it_behaves_like 'cacheable response', expects_vary: false
 
         it 'returns orderedItems with pinned statuses' do
           expect(body[:orderedItems]).to be_an Array
@@ -101,7 +85,7 @@ RSpec.describe ActivityPub::CollectionsController do
             expect(response.media_type).to eq 'application/activity+json'
           end
 
-          it_behaves_like 'cacheable response'
+          it_behaves_like 'cacheable response', expects_vary: false
 
           it 'returns orderedItems with pinned statuses' do
             json = body_as_json

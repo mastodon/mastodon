@@ -5,22 +5,6 @@ require 'rails_helper'
 RSpec.describe ActivityPub::OutboxesController do
   let!(:account) { Fabricate(:account) }
 
-  shared_examples 'cacheable response' do
-    it 'does not set cookies' do
-      expect(response.cookies).to be_empty
-      expect(response.headers['Set-Cookies']).to be_nil
-    end
-
-    it 'does not set sessions' do
-      response
-      expect(session).to be_empty
-    end
-
-    it 'returns public Cache-Control header' do
-      expect(response.headers['Cache-Control']).to include 'public'
-    end
-  end
-
   before do
     Fabricate(:status, account: account, visibility: :public)
     Fabricate(:status, account: account, visibility: :unlisted)
@@ -53,7 +37,7 @@ RSpec.describe ActivityPub::OutboxesController do
           expect(body[:totalItems]).to eq 4
         end
 
-        it_behaves_like 'cacheable response'
+        it_behaves_like 'cacheable response', expects_vary: false
 
         it 'does not have a Vary header' do
           expect(response.headers['Vary']).to be_nil
@@ -98,7 +82,7 @@ RSpec.describe ActivityPub::OutboxesController do
           expect(body[:orderedItems].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
         end
 
-        it_behaves_like 'cacheable response'
+        it_behaves_like 'cacheable response', expects_vary: false
 
         it 'returns Vary header with Signature' do
           expect(response.headers['Vary']).to include 'Signature'

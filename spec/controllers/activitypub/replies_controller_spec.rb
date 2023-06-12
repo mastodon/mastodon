@@ -8,22 +8,6 @@ RSpec.describe ActivityPub::RepliesController do
   let(:remote_reply_id) { 'https://foobar.com/statuses/1234' }
   let(:remote_querier) { nil }
 
-  shared_examples 'cacheable response' do
-    it 'does not set cookies' do
-      expect(response.cookies).to be_empty
-      expect(response.headers['Set-Cookies']).to be_nil
-    end
-
-    it 'does not set sessions' do
-      response
-      expect(session).to be_empty
-    end
-
-    it 'returns public Cache-Control header' do
-      expect(response.headers['Cache-Control']).to include 'public'
-    end
-  end
-
   shared_examples 'common behavior' do
     context 'when status is private' do
       let(:parent_visibility) { :private }
@@ -93,7 +77,7 @@ RSpec.describe ActivityPub::RepliesController do
         expect(response.media_type).to eq 'application/activity+json'
       end
 
-      it_behaves_like 'cacheable response'
+      it_behaves_like 'cacheable response', expects_vary: false
 
       context 'without only_other_accounts' do
         it "returns items with thread author's replies" do

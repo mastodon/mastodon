@@ -5,25 +5,6 @@ require 'rails_helper'
 describe StatusesController do
   render_views
 
-  shared_examples 'cacheable response' do
-    it 'does not set cookies' do
-      expect(response.cookies).to be_empty
-      expect(response.headers['Set-Cookies']).to be_nil
-    end
-
-    it 'does not set sessions' do
-      expect(session).to be_empty
-    end
-
-    it 'returns Vary header' do
-      expect(response.headers['Vary']).to include 'Accept, Accept-Language, Cookie'
-    end
-
-    it 'returns public Cache-Control header' do
-      expect(response.headers['Cache-Control']).to include 'public'
-    end
-  end
-
   describe 'GET #show' do
     let(:account) { Fabricate(:account) }
     let(:status)  { Fabricate(:status, account: account) }
