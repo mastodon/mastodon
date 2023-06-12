@@ -978,6 +978,7 @@ en:
     notification_preferences: Change e-mail preferences
     salutation: "%{name},"
     settings: 'Change e-mail preferences: %{link}'
+    unsubscribe: Unsubscribe
     view: 'View:'
     view_profile: View profile
     view_status: View post
@@ -1342,6 +1343,21 @@ en:
     failed_sign_in_html: Failed sign-in attempt with %{method} from %{ip} (%{browser})
     successful_sign_in_html: Successful sign-in with %{method} from %{ip} (%{browser})
     title: Authentication history
+  mail_subscriptions:
+    unsubscribe:
+      action: Yes, unsubscribe
+      complete: Unsubscribed
+      confirmation_html: Are you sure you want to unsubscribe from receiving %{type} for Mastodon on %{domain} to your e-mail at %{email}? You can always re-subscribe from your <a href="%{settings_path}">e-mail notification settings</a>.
+      emails:
+        notification_emails:
+          favourite: favorite notification e-mails
+          follow: follow notification e-mails
+          follow_request: follow request e-mails
+          mention: mention notification e-mails
+          reblog: boost notification e-mails
+      resubscribe_html: If you've unsubscribed by mistake, you can re-subscribe from your <a href="%{settings_path}">e-mail notification settings</a>.
+      success_html: You'll no longer receive %{type} for Mastodon on %{domain} to your e-mail at %{email}.
+      title: Unsubscribe
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a post that already contains images
