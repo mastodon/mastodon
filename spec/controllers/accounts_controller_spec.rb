@@ -88,13 +88,10 @@ RSpec.describe AccountsController do
 
         shared_examples 'common HTML response' do
           it 'returns a standard HTML response', :aggregate_failures do
-            # returns http success
             expect(response).to have_http_status(200)
 
-            # returns Link header
             expect(response.headers['Link'].to_s).to include ActivityPub::TagManager.instance.uri_for(account)
 
-            # renders show template
             expect(response).to render_template(:show)
           end
         end
@@ -154,13 +151,10 @@ RSpec.describe AccountsController do
           end
 
           it 'returns a JSON version of the account', :aggregate_failures do
-            # returns http success
             expect(response).to have_http_status(200)
 
-            # returns application/activity+json
             expect(response.media_type).to eq 'application/activity+json'
 
-            # renders account
             expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
 
@@ -184,16 +178,12 @@ RSpec.describe AccountsController do
           end
 
           it 'returns a private JSON version of the account', :aggregate_failures do
-            # returns http success
             expect(response).to have_http_status(200)
 
-            # returns application/activity+json
             expect(response.media_type).to eq 'application/activity+json'
 
-            # returns private Cache-Control header
             expect(response.headers['Cache-Control']).to include 'private'
 
-            # renders account
             expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
         end
@@ -207,13 +197,10 @@ RSpec.describe AccountsController do
           end
 
           it 'returns a JSON version of the account', :aggregate_failures do
-            # returns http success
             expect(response).to have_http_status(200)
 
-            # returns application/activity+json
             expect(response.media_type).to eq 'application/activity+json'
 
-            # renders account
             expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
 
@@ -223,19 +210,14 @@ RSpec.describe AccountsController do
             let(:authorized_fetch_mode) { true }
 
             it 'returns a private signature JSON version of the account', :aggregate_failures do
-              # returns http success
               expect(response).to have_http_status(200)
 
-              # returns application/activity+json
               expect(response.media_type).to eq 'application/activity+json'
 
-              # returns private Cache-Control header
               expect(response.headers['Cache-Control']).to include 'private'
 
-              # returns Vary header with Signature
               expect(response.headers['Vary']).to include 'Signature'
 
-              # renders account
               expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
             end
           end
