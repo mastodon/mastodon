@@ -105,6 +105,14 @@ RSpec.configure do |config|
     Rails.cache.clear
     redis.del(redis.keys)
   end
+
+  # Assign types based on dir name for non-inferred types
+  config.define_derived_metadata(file_path: %r{/spec/}) do |metadata|
+    unless metadata.key?(:type)
+      match = metadata[:location].match(%r{/spec/([^/]+)/})
+      metadata[:type] = match[1].singularize.to_sym
+    end
+  end
 end
 
 RSpec::Sidekiq.configure do |config|
