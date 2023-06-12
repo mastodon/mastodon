@@ -205,6 +205,16 @@ RSpec.describe 'Domain Blocks' do
         expect(response).to have_http_status(422)
       end
     end
+
+    context 'when the given severity is invalid' do
+      let(:params) { { domain: 'foo.bar', severity: 'invalid' } }
+
+      it 'returns http unprocessable entity' do
+        subject
+
+        expect(response).to have_http_status(422)
+      end
+    end
   end
 
   describe 'PUT /api/v1/admin/domain_blocks/:id' do
@@ -246,6 +256,16 @@ RSpec.describe 'Domain Blocks' do
         put '/api/v1/admin/domain_blocks/-1', headers: headers
 
         expect(response).to have_http_status(404)
+      end
+    end
+
+    context 'when the given severity is invalid' do
+      let(:params) { { severity: 'invalid' } }
+
+      it 'returns http unprocessable entity' do
+        subject
+
+        expect(response).to have_http_status(422)
       end
     end
   end
