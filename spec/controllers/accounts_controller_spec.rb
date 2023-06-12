@@ -8,6 +8,65 @@ RSpec.describe AccountsController do
   let(:account) { Fabricate(:account) }
 
   describe 'GET #show' do
+    context 'with basic account status checks' do
+      shared_examples 'unapproved account check' do
+        before { account.user.update(approved: false) }
+
+        it 'returns http not found' do
+          get :show, params: { username: account.username, format: format }
+
+          expect(response).to have_http_status(404)
+        end
+      end
+
+      shared_examples 'permanently suspended account check' do
+        before do
+          account.suspend!
+          account.deletion_request.destroy
+        end
+
+        it 'returns http gone' do
+          get :show, params: { username: account.username, format: format }
+
+          expect(response).to have_http_status(410)
+        end
+      end
+
+      shared_examples 'temporarily suspended account check' do |code: 403|
+        before { account.suspend! }
+
+        it 'returns http forbidden' do
+          get :show, params: { username: account.username, format: format }
+
+          expect(response).to have_http_status(code)
+        end
+      end
+
+      context 'with HTML' do
+        let(:format) { 'html' }
+
+        it_behaves_like 'unapproved account check'
+        it_behaves_like 'permanently suspended account check'
+        it_behaves_like 'temporarily suspended account check'
+      end
+
+      context 'with JSON' do
+        let(:format) { 'json' }
+
+        it_behaves_like 'unapproved account check'
+        it_behaves_like 'permanently suspended account check'
+        it_behaves_like 'temporarily suspended account check', code: 200
+      end
+
+      context 'with RSS' do
+        let(:format) { 'rss' }
+
+        it_behaves_like 'unapproved account check'
+        it_behaves_like 'permanently suspended account check'
+        it_behaves_like 'temporarily suspended account check'
+      end
+    end
+
     context 'with existing statuses' do
       let!(:status) { Fabricate(:status, account: account) }
       let!(:status_reply) { Fabricate(:status, account: account, thread: Fabricate(:status)) }
@@ -24,46 +83,8 @@ RSpec.describe AccountsController do
         account.pinned_statuses << status_private
       end
 
-      shared_examples 'preliminary checks' do
-        context 'when account is not approved' do
-          before do
-            account.user.update(approved: false)
-          end
-
-          it 'returns http not found' do
-            get :show, params: { username: account.username, format: format }
-            expect(response).to have_http_status(404)
-          end
-        end
-      end
-
       context 'with HTML' do
         let(:format) { 'html' }
-
-        it_behaves_like 'preliminary checks'
-
-        context 'when account is permanently suspended' do
-          before do
-            account.suspend!
-            account.deletion_request.destroy
-          end
-
-          it 'returns http gone' do
-            get :show, params: { username: account.username, format: format }
-            expect(response).to have_http_status(410)
-          end
-        end
-
-        context 'when account is temporarily suspended' do
-          before do
-            account.suspend!
-          end
-
-          it 'returns http forbidden' do
-            get :show, params: { username: account.username, format: format }
-            expect(response).to have_http_status(403)
-          end
-        end
 
         shared_examples 'common HTML response' do
           it 'returns a standard HTML response', :aggregate_failures do
@@ -125,31 +146,6 @@ RSpec.describe AccountsController do
 
         before do
           allow(controller).to receive(:authorized_fetch_mode?).and_return(authorized_fetch_mode)
-        end
-
-        it_behaves_like 'preliminary checks'
-
-        context 'when account is suspended permanently' do
-          before do
-            account.suspend!
-            account.deletion_request.destroy
-          end
-
-          it 'returns http gone' do
-            get :show, params: { username: account.username, format: format }
-            expect(response).to have_http_status(410)
-          end
-        end
-
-        context 'when account is suspended temporarily' do
-          before do
-            account.suspend!
-          end
-
-          it 'returns http success' do
-            get :show, params: { username: account.username, format: format }
-            expect(response).to have_http_status(200)
-          end
         end
 
         context 'with a normal account in a JSON request' do
@@ -248,31 +244,6 @@ RSpec.describe AccountsController do
 
       context 'with RSS' do
         let(:format) { 'rss' }
-
-        it_behaves_like 'preliminary checks'
-
-        context 'when account is permanently suspended' do
-          before do
-            account.suspend!
-            account.deletion_request.destroy
-          end
-
-          it 'returns http gone' do
-            get :show, params: { username: account.username, format: format }
-            expect(response).to have_http_status(410)
-          end
-        end
-
-        context 'when account is temporarily suspended' do
-          before do
-            account.suspend!
-          end
-
-          it 'returns http forbidden' do
-            get :show, params: { username: account.username, format: format }
-            expect(response).to have_http_status(403)
-          end
-        end
 
         shared_examples 'common RSS response' do
           it 'returns http success' do
