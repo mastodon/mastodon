@@ -66,7 +66,7 @@ RSpec.describe AccountsController do
         end
       end
 
-      shared_examples 'common response characteristics' do
+      shared_examples 'common HTML response' do
         it 'returns http success' do
           expect(response).to have_http_status(200)
         end
@@ -85,7 +85,7 @@ RSpec.describe AccountsController do
           get :show, params: { username: account.username, format: format }
         end
 
-        it_behaves_like 'common response characteristics'
+        it_behaves_like 'common HTML response'
       end
 
       context 'with replies' do
@@ -94,7 +94,7 @@ RSpec.describe AccountsController do
           get :show, params: { username: account.username, format: format }
         end
 
-        it_behaves_like 'common response characteristics'
+        it_behaves_like 'common HTML response'
       end
 
       context 'with media' do
@@ -103,7 +103,7 @@ RSpec.describe AccountsController do
           get :show, params: { username: account.username, format: format }
         end
 
-        it_behaves_like 'common response characteristics'
+        it_behaves_like 'common HTML response'
       end
 
       context 'with tag' do
@@ -117,7 +117,7 @@ RSpec.describe AccountsController do
           get :show, params: { username: account.username, format: format, tag: tag.to_param }
         end
 
-        it_behaves_like 'common response characteristics'
+        it_behaves_like 'common HTML response'
       end
     end
 
@@ -287,7 +287,7 @@ RSpec.describe AccountsController do
         end
       end
 
-      shared_examples 'common response characteristics' do
+      shared_examples 'common RSS response' do
         it 'returns http success' do
           expect(response).to have_http_status(200)
         end
@@ -300,7 +300,7 @@ RSpec.describe AccountsController do
           get :show, params: { username: account.username, format: format }
         end
 
-        it_behaves_like 'common response characteristics'
+        it_behaves_like 'common RSS response'
 
         it 'renders public status' do
           expect(response.body).to include(ActivityPub::TagManager.instance.url_for(status))
@@ -337,7 +337,7 @@ RSpec.describe AccountsController do
           get :show, params: { username: account.username, format: format }
         end
 
-        it_behaves_like 'common response characteristics'
+        it_behaves_like 'common RSS response'
 
         it 'renders public status' do
           expect(response.body).to include(ActivityPub::TagManager.instance.url_for(status))
@@ -374,7 +374,7 @@ RSpec.describe AccountsController do
           get :show, params: { username: account.username, format: format }
         end
 
-        it_behaves_like 'common response characteristics'
+        it_behaves_like 'common RSS response'
 
         it 'does not render public status' do
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status))
@@ -416,7 +416,7 @@ RSpec.describe AccountsController do
           get :show, params: { username: account.username, format: format, tag: tag.to_param }
         end
 
-        it_behaves_like 'common response characteristics'
+        it_behaves_like 'common RSS response'
 
         it 'does not render public status' do
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status))
