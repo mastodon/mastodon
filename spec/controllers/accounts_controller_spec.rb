@@ -290,31 +290,26 @@ RSpec.describe AccountsController do
 
         it_behaves_like 'common RSS response'
 
-        it 'renders public status' do
+        it 'responds with correct statuses', :aggregate_failures do
+          # renders public status
           expect(response.body).to include(ActivityPub::TagManager.instance.url_for(status))
-        end
 
-        it 'renders self-reply' do
+          # renders self-reply
           expect(response.body).to include(ActivityPub::TagManager.instance.url_for(status_self_reply))
-        end
 
-        it 'renders status with media' do
+          # renders status with media
           expect(response.body).to include(ActivityPub::TagManager.instance.url_for(status_media))
-        end
 
-        it 'does not render reblog' do
+          # does not render reblog
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_reblog.reblog))
-        end
 
-        it 'does not render private status' do
+          # does not render private status
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_private))
-        end
 
-        it 'does not render direct status' do
+          # does not render direct status
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_direct))
-        end
 
-        it 'does not render reply to someone else' do
+          # does not render reply to someone else
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_reply))
         end
       end
@@ -327,31 +322,26 @@ RSpec.describe AccountsController do
 
         it_behaves_like 'common RSS response'
 
-        it 'renders public status' do
+        it 'responds with correct statuses', :aggregate_failures do
+          # renders public status
           expect(response.body).to include(ActivityPub::TagManager.instance.url_for(status))
-        end
 
-        it 'renders self-reply' do
+          # renders self-reply
           expect(response.body).to include(ActivityPub::TagManager.instance.url_for(status_self_reply))
-        end
 
-        it 'renders status with media' do
+          # renders status with media
           expect(response.body).to include(ActivityPub::TagManager.instance.url_for(status_media))
-        end
 
-        it 'does not render reblog' do
+          # does not render reblog
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_reblog.reblog))
-        end
 
-        it 'does not render private status' do
+          # does not render private status
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_private))
-        end
 
-        it 'does not render direct status' do
+          # does not render direct status
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_direct))
-        end
 
-        it 'renders reply to someone else' do
+          # renders reply to someone else
           expect(response.body).to include(ActivityPub::TagManager.instance.url_for(status_reply))
         end
       end
@@ -364,31 +354,26 @@ RSpec.describe AccountsController do
 
         it_behaves_like 'common RSS response'
 
-        it 'does not render public status' do
+        it 'responds with correct statuses', :aggregate_failures do
+          # does not render public status
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status))
-        end
 
-        it 'does not render self-reply' do
+          # does not render self-reply
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_self_reply))
-        end
 
-        it 'renders status with media' do
+          # renders status with media
           expect(response.body).to include(ActivityPub::TagManager.instance.url_for(status_media))
-        end
 
-        it 'does not render reblog' do
+          # does not render reblog
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_reblog.reblog))
-        end
 
-        it 'does not render private status' do
+          # does not render private status
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_private))
-        end
 
-        it 'does not render direct status' do
+          # does not render direct status
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_direct))
-        end
 
-        it 'does not render reply to someone else' do
+          # does not render reply to someone else
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_reply))
         end
       end
@@ -406,35 +391,29 @@ RSpec.describe AccountsController do
 
         it_behaves_like 'common RSS response'
 
-        it 'does not render public status' do
+        it 'responds with correct statuses', :aggregate_failures do
+          # does not render public status
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status))
-        end
 
-        it 'does not render self-reply' do
+          # does not render self-reply
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_self_reply))
-        end
 
-        it 'does not render status with media' do
+          # does not render status with media
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_media))
-        end
 
-        it 'does not render reblog' do
+          # does not render reblog
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_reblog.reblog))
-        end
 
-        it 'does not render private status' do
+          # does not render private status
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_private))
-        end
 
-        it 'does not render direct status' do
+          # does not render direct status
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_direct))
-        end
 
-        it 'does not render reply to someone else' do
+          # does not render reply to someone else
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_reply))
-        end
 
-        it 'renders status with tag' do
+          # renders status with tag
           expect(response.body).to include(ActivityPub::TagManager.instance.url_for(status_tag))
         end
       end
