@@ -291,25 +291,12 @@ RSpec.describe AccountsController do
         it_behaves_like 'common RSS response'
 
         it 'responds with correct statuses', :aggregate_failures do
-          # renders public status
           expect(response.body).to include_status_tag(status)
-
-          # renders self-reply
           expect(response.body).to include_status_tag(status_self_reply)
-
-          # renders status with media
           expect(response.body).to include_status_tag(status_media)
-
-          # does not render reblog
           expect(response.body).to_not include_status_tag(status_reblog.reblog)
-
-          # does not render private status
           expect(response.body).to_not include_status_tag(status_private)
-
-          # does not render direct status
           expect(response.body).to_not include_status_tag(status_direct)
-
-          # does not render reply to someone else
           expect(response.body).to_not include_status_tag(status_reply)
         end
       end
@@ -323,25 +310,12 @@ RSpec.describe AccountsController do
         it_behaves_like 'common RSS response'
 
         it 'responds with correct statuses', :aggregate_failures do
-          # renders public status
           expect(response.body).to include_status_tag(status)
-
-          # renders self-reply
           expect(response.body).to include_status_tag(status_self_reply)
-
-          # renders status with media
           expect(response.body).to include_status_tag(status_media)
-
-          # does not render reblog
           expect(response.body).to_not include_status_tag(status_reblog.reblog)
-
-          # does not render private status
           expect(response.body).to_not include_status_tag(status_private)
-
-          # does not render direct status
           expect(response.body).to_not include_status_tag(status_direct)
-
-          # renders reply to someone else
           expect(response.body).to include_status_tag(status_reply)
         end
       end
@@ -355,25 +329,12 @@ RSpec.describe AccountsController do
         it_behaves_like 'common RSS response'
 
         it 'responds with correct statuses', :aggregate_failures do
-          # does not render public status
           expect(response.body).to_not include_status_tag(status)
-
-          # does not render self-reply
           expect(response.body).to_not include_status_tag(status_self_reply)
-
-          # renders status with media
           expect(response.body).to include_status_tag(status_media)
-
-          # does not render reblog
           expect(response.body).to_not include_status_tag(status_reblog.reblog)
-
-          # does not render private status
           expect(response.body).to_not include_status_tag(status_private)
-
-          # does not render direct status
           expect(response.body).to_not include_status_tag(status_direct)
-
-          # does not render reply to someone else
           expect(response.body).to_not include_status_tag(status_reply)
         end
       end
@@ -392,28 +353,13 @@ RSpec.describe AccountsController do
         it_behaves_like 'common RSS response'
 
         it 'responds with correct statuses', :aggregate_failures do
-          # does not render public status
           expect(response.body).to_not include_status_tag(status)
-
-          # does not render self-reply
           expect(response.body).to_not include_status_tag(status_self_reply)
-
-          # does not render status with media
           expect(response.body).to_not include_status_tag(status_media)
-
-          # does not render reblog
           expect(response.body).to_not include_status_tag(status_reblog.reblog)
-
-          # does not render private status
           expect(response.body).to_not include_status_tag(status_private)
-
-          # does not render direct status
           expect(response.body).to_not include_status_tag(status_direct)
-
-          # does not render reply to someone else
           expect(response.body).to_not include_status_tag(status_reply)
-
-          # renders status with tag
           expect(response.body).to include_status_tag(status_tag)
         end
       end
