@@ -9,16 +9,6 @@ RSpec.describe 'Canonical Email Blocks' do
   let(:scopes)  { 'admin:read:canonical_email_blocks admin:write:canonical_email_blocks' }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  shared_examples 'forbidden for wrong scope' do |wrong_scope|
-    let(:scopes) { wrong_scope }
-
-    it 'returns http forbidden' do
-      subject
-
-      expect(response).to have_http_status(403)
-    end
-  end
-
   shared_examples 'forbidden for wrong role' do |wrong_role|
     let(:role) { UserRole.find_by(name: wrong_role) }
 

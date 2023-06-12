@@ -13,14 +13,6 @@ RSpec.describe Api::V1::AccountsController do
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
-  shared_examples 'forbidden for wrong scope' do |wrong_scope|
-    let(:scopes) { wrong_scope }
-
-    it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
-    end
-  end
-
   describe 'POST #create' do
     let(:app) { Fabricate(:application) }
     let(:token) { Doorkeeper::AccessToken.find_or_create_for(application: app, resource_owner: nil, scopes: 'read write', use_refresh_token: false) }
