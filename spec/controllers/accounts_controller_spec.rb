@@ -309,7 +309,7 @@ RSpec.describe AccountsController do
 
         it_behaves_like 'common RSS response'
 
-        it 'responds with correct statuses', :aggregate_failures do
+        it 'responds with correct statuses with replies', :aggregate_failures do
           expect(response.body).to include_status_tag(status)
           expect(response.body).to include_status_tag(status_self_reply)
           expect(response.body).to include_status_tag(status_media)
@@ -328,7 +328,7 @@ RSpec.describe AccountsController do
 
         it_behaves_like 'common RSS response'
 
-        it 'responds with correct statuses', :aggregate_failures do
+        it 'responds with correct statuses with media', :aggregate_failures do
           expect(response.body).to_not include_status_tag(status)
           expect(response.body).to_not include_status_tag(status_self_reply)
           expect(response.body).to include_status_tag(status_media)
@@ -352,7 +352,7 @@ RSpec.describe AccountsController do
 
         it_behaves_like 'common RSS response'
 
-        it 'responds with correct statuses', :aggregate_failures do
+        it 'responds with correct statuses with a tag', :aggregate_failures do
           expect(response.body).to_not include_status_tag(status)
           expect(response.body).to_not include_status_tag(status_self_reply)
           expect(response.body).to_not include_status_tag(status_media)
