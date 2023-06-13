@@ -83,7 +83,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
       Fabricate(:account_statuses_cleanup_policy, account: account5)
 
       # Create a bunch of old statuses
-      10.times do
+      4.times do
         Fabricate(:status, account: account1, created_at: 3.years.ago)
         Fabricate(:status, account: account2, created_at: 3.years.ago)
         Fabricate(:status, account: account3, created_at: 3.years.ago)
@@ -93,17 +93,16 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
       end
 
       # Create a bunch of newer statuses
-      5.times do
-        Fabricate(:status, account: account1, created_at: 3.minutes.ago)
-        Fabricate(:status, account: account2, created_at: 3.minutes.ago)
-        Fabricate(:status, account: account3, created_at: 3.minutes.ago)
-        Fabricate(:status, account: account4, created_at: 3.minutes.ago)
-        Fabricate(:status, account: remote, created_at: 3.minutes.ago)
-      end
+      Fabricate(:status, account: account1, created_at: 3.minutes.ago)
+      Fabricate(:status, account: account2, created_at: 3.minutes.ago)
+      Fabricate(:status, account: account3, created_at: 3.minutes.ago)
+      Fabricate(:status, account: account4, created_at: 3.minutes.ago)
+      Fabricate(:status, account: remote, created_at: 3.minutes.ago)
     end
 
     context 'when the budget is lower than the number of toots to delete' do
       it 'deletes as many statuses as the given budget' do
+        expect(Status.count).to be > (subject.compute_budget) # Data check
         expect { subject.perform }.to change(Status, :count).by(-subject.compute_budget)
       end
 
