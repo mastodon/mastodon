@@ -86,12 +86,11 @@ RSpec.describe Trends::Statuses do
         subject.refresh(today)
       end
 
-      it 'calculates and re-calculates scores' do
-        expect(subject.query.limit(10).to_a).to eq [status2, status1]
-      end
+      it 'returns correct statuses from query' do
+        results = subject.query.limit(10).to_a
 
-      it 'omits statuses below threshold' do
-        expect(subject.query.limit(10).to_a).to_not include(status3)
+        expect(results).to eq [status2, status1]
+        expect(results).to_not include(status3)
       end
     end
 
