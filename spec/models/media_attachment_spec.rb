@@ -64,11 +64,11 @@ RSpec.describe MediaAttachment, paperclip_processing: true do
   end
 
   describe '#to_param' do
-    let(:media_attachment) { Fabricate(:media_attachment, shortcode: shortcode) }
-    let(:shortcode)        { nil }
+    let(:media_attachment) { Fabricate.build(:media_attachment, shortcode: shortcode, id: id) }
 
     context 'when media attachment has a shortcode' do
       let(:shortcode) { 'foo' }
+      let(:id) { 123 }
 
       it 'returns shortcode' do
         expect(media_attachment.to_param).to eq shortcode
@@ -77,9 +77,10 @@ RSpec.describe MediaAttachment, paperclip_processing: true do
 
     context 'when media attachment does not have a shortcode' do
       let(:shortcode) { nil }
+      let(:id) { 123 }
 
       it 'returns string representation of id' do
-        expect(media_attachment.to_param).to eq media_attachment.id.to_s
+        expect(media_attachment.to_param).to eq id.to_s
       end
     end
   end
