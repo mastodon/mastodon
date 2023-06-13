@@ -107,11 +107,11 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
       end
 
       it 'does not delete from accounts with no cleanup policy' do
-        expect { subject.perform }.to_not change { account2.statuses.count }
+        expect { subject.perform }.to_not(change { account2.statuses.count })
       end
 
       it 'does not delete from accounts with disabled cleanup policies' do
-        expect { subject.perform }.to_not change { account4.statuses.count }
+        expect { subject.perform }.to_not(change { account4.statuses.count })
       end
 
       it 'eventually deletes every deletable toot given enough runs' do
@@ -128,7 +128,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
           .to change(Status, :count).by(-3 * 3)
           .and change { account1.statuses.count }
           .and change { account3.statuses.count }
-          .and change { account5.statuses.count }
+          .and(change { account5.statuses.count })
       end
 
       context 'when given a big budget' do
