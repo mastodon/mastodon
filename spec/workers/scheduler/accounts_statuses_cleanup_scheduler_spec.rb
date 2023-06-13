@@ -30,31 +30,6 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
 
     sidekiq_stats_stub = instance_double(Sidekiq::Stats)
     allow(Sidekiq::Stats).to receive(:new).and_return(sidekiq_stats_stub)
-
-    # Policies for the accounts
-    Fabricate(:account_statuses_cleanup_policy, account: account1)
-    Fabricate(:account_statuses_cleanup_policy, account: account3)
-    Fabricate(:account_statuses_cleanup_policy, account: account4, enabled: false)
-    Fabricate(:account_statuses_cleanup_policy, account: account5)
-
-    # Create a bunch of old statuses
-    10.times do
-      Fabricate(:status, account: account1, created_at: 3.years.ago)
-      Fabricate(:status, account: account2, created_at: 3.years.ago)
-      Fabricate(:status, account: account3, created_at: 3.years.ago)
-      Fabricate(:status, account: account4, created_at: 3.years.ago)
-      Fabricate(:status, account: account5, created_at: 3.years.ago)
-      Fabricate(:status, account: remote, created_at: 3.years.ago)
-    end
-
-    # Create a bunch of newer statuses
-    5.times do
-      Fabricate(:status, account: account1, created_at: 3.minutes.ago)
-      Fabricate(:status, account: account2, created_at: 3.minutes.ago)
-      Fabricate(:status, account: account3, created_at: 3.minutes.ago)
-      Fabricate(:status, account: account4, created_at: 3.minutes.ago)
-      Fabricate(:status, account: remote, created_at: 3.minutes.ago)
-    end
   end
 
   describe '#under_load?' do
@@ -100,6 +75,33 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
   end
 
   describe '#perform' do
+    before do
+      # Policies for the accounts
+      Fabricate(:account_statuses_cleanup_policy, account: account1)
+      Fabricate(:account_statuses_cleanup_policy, account: account3)
+      Fabricate(:account_statuses_cleanup_policy, account: account4, enabled: false)
+      Fabricate(:account_statuses_cleanup_policy, account: account5)
+
+      # Create a bunch of old statuses
+      10.times do
+        Fabricate(:status, account: account1, created_at: 3.years.ago)
+        Fabricate(:status, account: account2, created_at: 3.years.ago)
+        Fabricate(:status, account: account3, created_at: 3.years.ago)
+        Fabricate(:status, account: account4, created_at: 3.years.ago)
+        Fabricate(:status, account: account5, created_at: 3.years.ago)
+        Fabricate(:status, account: remote, created_at: 3.years.ago)
+      end
+
+      # Create a bunch of newer statuses
+      5.times do
+        Fabricate(:status, account: account1, created_at: 3.minutes.ago)
+        Fabricate(:status, account: account2, created_at: 3.minutes.ago)
+        Fabricate(:status, account: account3, created_at: 3.minutes.ago)
+        Fabricate(:status, account: account4, created_at: 3.minutes.ago)
+        Fabricate(:status, account: remote, created_at: 3.minutes.ago)
+      end
+    end
+
     context 'when the budget is lower than the number of toots to delete' do
       it 'deletes as many statuses as the given budget' do
         expect { subject.perform }.to change(Status, :count).by(-subject.compute_budget)
