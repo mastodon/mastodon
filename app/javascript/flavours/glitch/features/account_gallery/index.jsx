@@ -10,7 +10,7 @@ import { lookupAccount, fetchAccount } from 'flavours/glitch/actions/accounts';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { expandAccountMediaTimeline } from 'flavours/glitch/actions/timelines';
 import { LoadMore } from 'flavours/glitch/components/load_more';
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import ScrollContainer from 'flavours/glitch/containers/scroll_container';
 import ProfileColumnHeader from 'flavours/glitch/features/account/components/profile_column_header';
 import HeaderContainer from 'flavours/glitch/features/account_timeline/containers/header_container';

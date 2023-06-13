@@ -46,7 +46,7 @@ import {
   undoStatusTranslation,
 } from 'flavours/glitch/actions/statuses';
 import { Icon } from 'flavours/glitch/components/icon';
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import { textForScreenReader, defaultMediaVisibility } from 'flavours/glitch/components/status';
 import ScrollContainer from 'flavours/glitch/containers/scroll_container';
 import StatusContainer from 'flavours/glitch/containers/status_container';

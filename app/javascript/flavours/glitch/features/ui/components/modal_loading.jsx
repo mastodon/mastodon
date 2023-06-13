@@ -1,4 +1,4 @@
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 
 // Keep the markup in sync with <BundleModalError />
 // (make sure they have the same dimensions)

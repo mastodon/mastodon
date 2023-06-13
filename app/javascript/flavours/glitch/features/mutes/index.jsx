@@ -12,7 +12,7 @@ import { debounce } from 'lodash';
 
 import { fetchMutes, expandMutes } from 'flavours/glitch/actions/mutes';
 import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import Column from 'flavours/glitch/features/ui/components/column';

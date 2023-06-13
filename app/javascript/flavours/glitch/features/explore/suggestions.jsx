@@ -7,7 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import { fetchSuggestions, dismissSuggestion } from 'flavours/glitch/actions/suggestions';
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import AccountCard from 'flavours/glitch/features/directory/components/account_card';
 
 const mapStateToProps = state => ({
