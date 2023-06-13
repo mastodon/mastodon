@@ -12,11 +12,6 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
   let!(:account5)  { Fabricate(:account, domain: nil) }
   let!(:remote)    { Fabricate(:account) }
 
-  let!(:policy1)   { Fabricate(:account_statuses_cleanup_policy, account: account1) }
-  let!(:policy2)   { Fabricate(:account_statuses_cleanup_policy, account: account3) }
-  let!(:policy3)   { Fabricate(:account_statuses_cleanup_policy, account: account4, enabled: false) }
-  let!(:policy4)   { Fabricate(:account_statuses_cleanup_policy, account: account5) }
-
   let(:queue_size)       { 0 }
   let(:queue_latency)    { 0 }
   let(:process_set_stub) do
@@ -37,6 +32,12 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
 
     sidekiq_stats_stub = double
     allow(Sidekiq::Stats).to receive(:new).and_return(sidekiq_stats_stub)
+
+    # Policies for the accounts
+    Fabricate(:account_statuses_cleanup_policy, account: account1)
+    Fabricate(:account_statuses_cleanup_policy, account: account3)
+    Fabricate(:account_statuses_cleanup_policy, account: account4, enabled: false)
+    Fabricate(:account_statuses_cleanup_policy, account: account5)
 
     # Create a bunch of old statuses
     10.times do
