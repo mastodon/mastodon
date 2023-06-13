@@ -6,7 +6,7 @@ RSpec.describe MediaAttachment, paperclip_processing: true do
   describe 'local?' do
     subject { media_attachment.local? }
 
-    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url) }
+    let(:media_attachment) { described_class.new(remote_url: remote_url) }
 
     context 'when remote_url is blank' do
       let(:remote_url) { '' }
