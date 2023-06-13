@@ -101,17 +101,13 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
     end
 
     context 'when the budget is lower than the number of toots to delete' do
-      it 'deletes as many statuses as the given budget' do
+      it 'deletes the appropriate statuses' do
         expect(Status.count).to be > (subject.compute_budget) # Data check
-        expect { subject.perform }.to change(Status, :count).by(-subject.compute_budget)
-      end
 
-      it 'does not delete from accounts with no cleanup policy' do
-        expect { subject.perform }.to_not(change { account2.statuses.count })
-      end
-
-      it 'does not delete from accounts with disabled cleanup policies' do
-        expect { subject.perform }.to_not(change { account4.statuses.count })
+        expect { subject.perform }
+          .to change(Status, :count).by(-subject.compute_budget) # Cleanable statuses
+          .and (not_change { account2.statuses.count }) # No cleanup policy for account
+          .and(not_change { account4.statuses.count }) # Disabled cleanup policy
       end
 
       it 'eventually deletes every deletable toot given enough runs' do
