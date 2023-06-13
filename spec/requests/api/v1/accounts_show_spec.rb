@@ -588,4 +588,36 @@ describe 'GET /api/v1/accounts/{account_id}' do
       end
     end
   end
+
+  describe 'about roles' do
+    it 'is empty in default' do
+      account = Fabricate(:account)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:roles]).to eq([])
+      end
+    end
+
+    it 'presents roles when account has roles' do
+      admin_role = UserRole.find_by(name: 'Admin')
+      admin_user = Fabricate(:user, role: admin_role)
+      account = Fabricate(:account, user: admin_user)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:roles]).to contain_exactly({
+          color: '',
+          name: 'Admin',
+          id: admin_role.id.to_s,
+        })
+      end
+    end
+  end
 end
