@@ -504,4 +504,45 @@ describe 'GET /api/v1/accounts/{account_id}' do
       end
     end
   end
+
+  describe 'about group' do
+    it 'is false in default' do
+      account = Fabricate(:account)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:group]).to be(false)
+      end
+    end
+
+    it 'is true when type of account are Group' do
+      account = Fabricate(:account, actor_type: :Group)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:group]).to be(true)
+      end
+    end
+
+    it 'is true even if account is suspended' do
+      account = Fabricate(:account, actor_type: :Group, suspended: true)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:group]).to be(true)
+      end
+    end
+  end
 end
