@@ -118,7 +118,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
       it 'eventually deletes every deletable toot given enough runs' do
         stub_const 'Scheduler::AccountsStatusesCleanupScheduler::MAX_BUDGET', 4
 
-        expect { 10.times { subject.perform } }.to change(Status, :count).by(-30)
+        expect { 10.times { subject.perform } }.to change(Status, :count).by(-cleanable_statuses_count)
       end
 
       it 'correctly round-trips between users across several runs' do
@@ -141,7 +141,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
 
         it 'correctly handles looping in a single run' do
           expect(subject.compute_budget).to eq(400)
-          expect { subject.perform }.to change(Status, :count).by(-30)
+          expect { subject.perform }.to change(Status, :count).by(-cleanable_statuses_count)
         end
       end
 
@@ -157,6 +157,13 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
           expect(subject.compute_budget).to eq(400)
           expect { subject.perform }.to_not change(Status, :count)
         end
+      end
+
+      def cleanable_statuses_count
+        Status
+          .where(account_id: [account1, account3, account5]) # Accounts with enabled policies
+          .where('created_at < ?', 2.weeks.ago) # Policy defaults is 2.weeks
+          .count
       end
     end
   end
