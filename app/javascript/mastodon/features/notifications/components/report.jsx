@@ -8,10 +8,12 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { AvatarOverlay } from 'mastodon/components/avatar_overlay';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 
+// This needs to be kept in sync with app/models/report.rb
 const messages = defineMessages({
   openReport: { id: 'report_notification.open', defaultMessage: 'Open report' },
   other: { id: 'report_notification.categories.other', defaultMessage: 'Other' },
   spam: { id: 'report_notification.categories.spam', defaultMessage: 'Spam' },
+  legal: { id: 'report_notification.categories.legal', defaultMessage: 'Legal' },
   violation: { id: 'report_notification.categories.violation', defaultMessage: 'Rule violation' },
 });
 
