@@ -545,4 +545,47 @@ describe 'GET /api/v1/accounts/{account_id}' do
       end
     end
   end
+
+  describe 'about noindex' do
+    it 'is false in default' do
+      account = Fabricate(:account)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:noindex]).to be(false)
+      end
+    end
+
+    it 'is true when account setted as noindex' do
+      user = Fabricate(:user, settings: { noindex: true })
+      account = Fabricate(:account, user: user)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:noindex]).to be(true)
+      end
+    end
+
+    it 'is true when account is suspended' do
+      user = Fabricate(:user, settings: { noindex: true })
+      account = Fabricate(:account, user: user, suspended: true)
+
+      get "/api/v1/accounts/#{account.id}"
+      response_body = body_as_json
+
+      aggregate_failures do
+        expect(response).to have_http_status(200)
+        expect(response_body[:id]).to eq(account.id.to_s)
+        expect(response_body[:noindex]).to be(true)
+      end
+    end
+  end
 end
