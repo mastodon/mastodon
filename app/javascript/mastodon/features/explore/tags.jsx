@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { fetchTrendingHashtags } from 'mastodon/actions/trends';
 import DismissableBanner from 'mastodon/components/dismissable_banner';
 import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 
 const mapStateToProps = state => ({
   hashtags: state.getIn(['trends', 'tags', 'items']),

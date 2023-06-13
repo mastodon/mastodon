@@ -17,7 +17,7 @@ import IntersectionObserverWrapper from '../features/ui/util/intersection_observ
 
 import { LoadMore } from './load_more';
 import { LoadPending } from './load_pending';
-import LoadingIndicator from './loading_indicator';
+import { LoadingIndicator } from './loading_indicator';
 
 const MOUSE_IDLE_DELAY = 300;
 
