@@ -90,7 +90,7 @@ RSpec.describe MediaAttachment, paperclip_processing: true do
       media.destroy
     end
 
-    it 'saves media attachment with correct metadata' do
+    it 'saves media attachment with correct file metadata' do
       expect(media.persisted?).to be true
       expect(media.file).to_not be_nil
 
@@ -105,7 +105,9 @@ RSpec.describe MediaAttachment, paperclip_processing: true do
 
       # sets file extension
       expect(media.file_file_name).to end_with extension
+    end
 
+    it 'saves media attachment with correct size metadata' do
       # strips original file name
       expect(media.file_file_name).to_not start_with '600x400'
 
@@ -161,15 +163,9 @@ RSpec.describe MediaAttachment, paperclip_processing: true do
   describe 'animated gif' do
     let(:media) { Fabricate(:media_attachment, file: attachment_fixture('avatar.gif')) }
 
-    it 'sets type to gifv' do
+    it 'sets correct file metadata' do
       expect(media.type).to eq 'gifv'
-    end
-
-    it 'converts original file to mp4' do
       expect(media.file_content_type).to eq 'video/mp4'
-    end
-
-    it 'sets meta' do
       expect(media.file.meta['original']['width']).to eq 128
       expect(media.file.meta['original']['height']).to eq 128
     end
@@ -185,15 +181,9 @@ RSpec.describe MediaAttachment, paperclip_processing: true do
       context fixture[:filename] do
         let(:media) { Fabricate(:media_attachment, file: attachment_fixture(fixture[:filename])) }
 
-        it 'sets type to image' do
+        it 'sets correct file metadata' do
           expect(media.type).to eq 'image'
-        end
-
-        it 'leaves original file as-is' do
           expect(media.file_content_type).to eq 'image/gif'
-        end
-
-        it 'sets meta' do
           expect(media.file.meta['original']['width']).to eq fixture[:width]
           expect(media.file.meta['original']['height']).to eq fixture[:height]
           expect(media.file.meta['original']['aspect']).to eq fixture[:aspect]
@@ -205,23 +195,11 @@ RSpec.describe MediaAttachment, paperclip_processing: true do
   describe 'ogg with cover art' do
     let(:media) { Fabricate(:media_attachment, file: attachment_fixture('boop.ogg')) }
 
-    it 'detects it as an audio file' do
+    it 'sets correct file metadata' do
       expect(media.type).to eq 'audio'
-    end
-
-    it 'sets meta for the duration' do
       expect(media.file.meta['original']['duration']).to be_within(0.05).of(0.235102)
-    end
-
-    it 'extracts thumbnail' do
       expect(media.thumbnail.present?).to be true
-    end
-
-    it 'extracts colors from thumbnail' do
       expect(media.file.meta['colors']['background']).to eq '#3088d4'
-    end
-
-    it 'gives the file a random name' do
       expect(media.file_file_name).to_not eq 'boop.ogg'
     end
   end
