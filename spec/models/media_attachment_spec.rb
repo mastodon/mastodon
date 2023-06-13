@@ -225,8 +225,10 @@ RSpec.describe MediaAttachment, paperclip_processing: true do
   end
 
   it 'is invalid without file' do
-    media = described_class.new(account: Fabricate(:account))
+    media = described_class.new
+
     expect(media.valid?).to be false
+    expect(media).to model_have_error_on_field(:file)
   end
 
   describe 'size limit validation' do
