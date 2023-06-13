@@ -28,7 +28,7 @@ RSpec.describe MediaAttachment, paperclip_processing: true do
   describe 'needs_redownload?' do
     subject { media_attachment.needs_redownload? }
 
-    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url, file: file) }
+    let(:media_attachment) { described_class.new(remote_url: remote_url, file: file) }
 
     context 'when file is blank' do
       let(:file) { nil }
