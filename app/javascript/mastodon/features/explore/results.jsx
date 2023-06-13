@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { expandSearch } from 'mastodon/actions/search';
 import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { LoadMore } from 'mastodon/components/load_more';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import Account from 'mastodon/containers/account_container';
 import Status from 'mastodon/containers/status_container';
 
