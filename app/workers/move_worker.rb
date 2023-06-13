@@ -125,7 +125,7 @@ class MoveWorker
 
   def carry_follows_over!
     @source_account.followers.local.find_each do |follower|
-      add_account_note_if_needed!(follower.account, 'move_handler.carry_follows_over_text')
+      add_account_note_if_needed!(follower, 'move_handler.carry_follows_over_text')
     rescue => e
       @deferred_error = e
     end
