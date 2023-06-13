@@ -117,7 +117,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
       it 'eventually deletes every deletable toot given enough runs' do
         stub_const 'Scheduler::AccountsStatusesCleanupScheduler::MAX_BUDGET', 4
 
-        expect { 10.times { subject.perform } }.to change(Status, :count).by(-cleanable_statuses_count)
+        expect { 3.times { subject.perform } }.to change(Status, :count).by(-cleanable_statuses_count)
       end
 
       it 'correctly round-trips between users across several runs' do
