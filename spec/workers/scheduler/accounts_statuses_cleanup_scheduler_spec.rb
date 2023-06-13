@@ -24,13 +24,11 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
   end
 
   before do
-    queue_stub = double
-    allow(queue_stub).to receive(:size).and_return(queue_size)
-    allow(queue_stub).to receive(:latency).and_return(queue_latency)
+    queue_stub = instance_double(Sidekiq::Queue, size: queue_size, latency: queue_latency)
     allow(Sidekiq::Queue).to receive(:new).and_return(queue_stub)
     allow(Sidekiq::ProcessSet).to receive(:new).and_return(process_set_stub)
 
-    sidekiq_stats_stub = double
+    sidekiq_stats_stub = instance_double(Sidekiq::Stats)
     allow(Sidekiq::Stats).to receive(:new).and_return(sidekiq_stats_stub)
 
     # Policies for the accounts
