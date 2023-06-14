@@ -106,6 +106,24 @@ describe RequestPool do
           expect(Thread).to_not have_received(:new)
         end
       end
+
+      context 'with valid pool and frequency' do
+        let(:frequency) { 10 }
+        let(:pool) { instance_double(described_class) }
+        let(:reaper) { subject.new(pool, frequency) }
+
+        before do
+          allow(reaper).to receive(:sleep).with(frequency)
+          allow(pool).to receive(:flush).and_raise(Timeout::Error)
+          allow(Thread).to receive(:new).and_yield(frequency, pool)
+        end
+
+        it 'runs a thread in a sleep/flush loop' do
+          expect { reaper.run }.to raise_error(Timeout::Error)
+          expect(reaper).to have_received(:sleep).with(frequency).once
+          expect(pool).to have_received(:flush).once
+        end
+      end
     end
   end
 end
