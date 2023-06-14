@@ -84,43 +84,44 @@ describe RequestPool do
     end
   end
 
-  describe 'Reaper' do
-    subject { described_class::Reaper }
+  describe RequestPool::Reaper do
+    subject { described_class.new(pool, frequency) }
 
     describe '#initialize' do
-      it 'sets pool and frequency values' do
-        reaper = subject.new(5, 10)
+      let(:pool) { 5 }
+      let(:frequency) { 10 }
 
-        expect(reaper.pool).to eq(5)
-        expect(reaper.frequency).to eq(10)
+      it 'sets pool and frequency values' do
+        expect(subject.pool).to eq(5)
+        expect(subject.frequency).to eq(10)
       end
     end
 
     describe '#run' do
       context 'with a negative frequency' do
-        it 'does not run a thread loop' do
-          reaper = subject.new(5, -10)
+        let(:pool) { 5 }
+        let(:frequency) { -10 }
 
+        it 'does not run a thread loop' do
           allow(Thread).to receive(:new)
-          expect(reaper.run).to be_nil
+          expect(subject.run).to be_nil
           expect(Thread).to_not have_received(:new)
         end
       end
 
       context 'with valid pool and frequency' do
+        let(:pool) { instance_double(RequestPool) }
         let(:frequency) { 10 }
-        let(:pool) { instance_double(described_class) }
-        let(:reaper) { subject.new(pool, frequency) }
 
         before do
-          allow(reaper).to receive(:sleep).with(frequency)
+          allow(subject).to receive(:sleep).with(frequency) # rubocop:disable RSpec/SubjectStub
           allow(pool).to receive(:flush).and_raise(Timeout::Error)
           allow(Thread).to receive(:new).and_yield(frequency, pool)
         end
 
         it 'runs a thread in a sleep/flush loop' do
-          expect { reaper.run }.to raise_error(Timeout::Error)
-          expect(reaper).to have_received(:sleep).with(frequency).once
+          expect { subject.run }.to raise_error(Timeout::Error)
+          expect(subject).to have_received(:sleep).with(frequency).once # rubocop:disable RSpec/SubjectStub
           expect(pool).to have_received(:flush).once
         end
       end
