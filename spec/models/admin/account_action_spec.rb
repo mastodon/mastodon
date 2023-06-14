@@ -55,6 +55,22 @@ RSpec.describe Admin::AccountAction do
       end
     end
 
+    context 'when type is invalid' do
+      let(:type) { 'whatever' }
+
+      it 'raises an invalid record error' do
+        expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+
+    context 'when type is not given' do
+      let(:type) { '' }
+
+      it 'raises an invalid record error' do
+        expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+
     it 'creates Admin::ActionLog' do
       expect do
         subject
