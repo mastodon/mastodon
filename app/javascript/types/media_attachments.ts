@@ -136,4 +136,18 @@ type MediaAttachmentVideo = Record<
   }
 >;
 
-export type MediaAttachment = MediaAttachmentImage | MediaAttachmentVideo;
+type MediaAttachmentGIFV = Record<
+  Exclude<MediaAttachmentGIFVRawValues, 'meta'> & {
+    meta: Record<
+      Exclude<MediaAttachmentGIFVMetaRawValues, 'original' | 'small'> & {
+        original: Record<MediaAttachmentMetaVideoInfoRawValues>;
+        small: Record<MediaAttachmentImageMetaRawValues>;
+      }
+    >;
+  }
+>;
+
+export type MediaAttachment =
+  | MediaAttachmentImage
+  | MediaAttachmentVideo
+  | MediaAttachmentGIFV;
