@@ -83,4 +83,17 @@ describe RequestPool do
       expect(described_class.current).to eq(pool)
     end
   end
+
+  describe 'Reaper' do
+    subject { described_class::Reaper }
+
+    describe 'initialize' do
+      it 'sets pool and frequency values' do
+        reaper = subject.new(5, 10)
+
+        expect(reaper.pool).to eq(5)
+        expect(reaper.frequency).to eq(10)
+      end
+    end
+  end
 end
