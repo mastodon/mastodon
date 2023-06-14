@@ -87,12 +87,24 @@ describe RequestPool do
   describe 'Reaper' do
     subject { described_class::Reaper }
 
-    describe 'initialize' do
+    describe '#initialize' do
       it 'sets pool and frequency values' do
         reaper = subject.new(5, 10)
 
         expect(reaper.pool).to eq(5)
         expect(reaper.frequency).to eq(10)
+      end
+    end
+
+    describe '#run' do
+      context 'with a negative frequency' do
+        it 'does not run a thread loop' do
+          reaper = subject.new(5, -10)
+
+          allow(Thread).to receive(:new)
+          expect(reaper.run).to be_nil
+          expect(Thread).to_not have_received(:new)
+        end
       end
     end
   end
