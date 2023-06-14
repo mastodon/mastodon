@@ -69,4 +69,18 @@ describe RequestPool do
       end
     end
   end
+
+  describe '.current' do
+    it 'returns a new instance of the class' do
+      pool = described_class.current
+
+      expect(pool).to be_a(described_class)
+    end
+
+    it 'caches the instance' do
+      pool = described_class.current
+
+      expect(described_class.current).to eq(pool)
+    end
+  end
 end
