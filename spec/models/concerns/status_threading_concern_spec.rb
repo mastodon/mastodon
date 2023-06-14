@@ -24,12 +24,12 @@ describe StatusThreadingConcern do
       expect(reply3.ancestors(4, viewer)).to_not include(reply1, status)
     end
 
-    it 'does not return conversation history from blocked users' do
+    it 'does not return conversation history from users blocked by the viewer' do
       viewer.block!(jeff)
       expect(reply3.ancestors(4, viewer)).to_not include(reply1)
     end
 
-    it 'does not return conversation history from muted users' do
+    it 'does not return conversation history from users muted by the viewer' do
       viewer.mute!(jeff)
       expect(reply3.ancestors(4, viewer)).to_not include(reply1)
     end
@@ -39,7 +39,7 @@ describe StatusThreadingConcern do
       expect(reply3.ancestors(4, viewer)).to_not include(reply1)
     end
 
-    it 'does not return conversation history from blocked domains' do
+    it 'does not return conversation history from domains blocked by the viewer' do
       viewer.block_domain!('example.com')
       expect(reply3.ancestors(4, viewer)).to_not include(reply2)
     end
@@ -82,10 +82,13 @@ describe StatusThreadingConcern do
     let!(:alice)  { Fabricate(:account, username: 'alice') }
     let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com') }
     let!(:jeff)   { Fabricate(:account, username: 'jeff') }
+    let!(:jack)   { Fabricate(:account, username: 'jack') }
     let!(:status) { Fabricate(:status, account: alice) }
     let!(:reply1) { Fabricate(:status, thread: status, account: alice) }
     let!(:reply2) { Fabricate(:status, thread: status, account: bob) }
     let!(:reply3) { Fabricate(:status, thread: reply1, account: jeff) }
+    let!(:reply4) { Fabricate(:status, thread: status, account: jack) }
+    let!(:reply5) { Fabricate(:status, thread: reply4, account: bob) }
     let!(:viewer) { Fabricate(:account, username: 'viewer') }
 
     it 'returns replies' do
@@ -99,12 +102,18 @@ describe StatusThreadingConcern do
       expect(status.descendants(4, viewer)).to_not include(reply1, reply3)
     end
 
-    it 'does not return replies from blocked users' do
+    it 'does not return replies from users blocked by the viewer' do
       viewer.block!(jeff)
       expect(status.descendants(4, viewer)).to_not include(reply3)
     end
 
-    it 'does not return replies from muted users' do
+    it 'does not return subthreads from users blocked by the author' do
+      alice.block!(jack)
+      expect(status.descendants(50, viewer)).to_not include(reply4)
+      expect(status.descendants(50, viewer)).to_not include(reply5)
+    end
+
+    it 'does not return replies from users muted by the viewer' do
       viewer.mute!(jeff)
       expect(status.descendants(4, viewer)).to_not include(reply3)
     end
@@ -114,7 +123,7 @@ describe StatusThreadingConcern do
       expect(status.descendants(4, viewer)).to_not include(reply3)
     end
 
-    it 'does not return replies from blocked domains' do
+    it 'does not return replies from domains blocked by the viewer' do
       viewer.block_domain!('example.com')
       expect(status.descendants(4, viewer)).to_not include(reply2)
     end
