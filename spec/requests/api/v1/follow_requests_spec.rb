@@ -8,16 +8,6 @@ RSpec.describe 'Follow requests' do
   let(:scopes)   { 'read:follows write:follows' }
   let(:headers)  { { 'Authorization' => "Bearer #{token.token}" } }
 
-  shared_examples 'forbidden for wrong scope' do |wrong_scope|
-    let(:scopes) { wrong_scope }
-
-    it 'returns http forbidden' do
-      subject
-
-      expect(response).to have_http_status(403)
-    end
-  end
-
   describe 'GET /api/v1/follow_requests' do
     subject do
       get '/api/v1/follow_requests', headers: headers, params: params
