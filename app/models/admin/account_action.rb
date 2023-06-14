@@ -72,6 +72,10 @@ class Admin::AccountAction
         TYPES - %w(none disable)
       end
     end
+
+    def i18n_scope
+      :activerecord
+    end
   end
 
   private
