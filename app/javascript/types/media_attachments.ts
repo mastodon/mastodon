@@ -1,3 +1,5 @@
+import type { Record } from 'immutable';
+
 interface MediaAttachmentMetaImageInfoRawValues {
   width: number;
   height: number;
@@ -113,3 +115,14 @@ export type MediaAttachmentRawValues =
   | MediaAttachmentVideoRawValues
   | MediaAttachmentGIFVRawValues
   | MediaAttachmentAudioRawValues;
+
+type MediaAttachmentImage = Record<
+  Exclude<MediaAttachmentImageRawValues, 'meta'> & {
+    meta: Record<{
+      original: Record<MediaAttachmentMetaImageInfoRawValues>;
+      small: Record<MediaAttachmentMetaImageInfoRawValues>;
+    }>;
+  }
+>;
+
+export type MediaAttachment = MediaAttachmentImage;
