@@ -58,6 +58,31 @@ interface MediaAttachmentVideoRawValues {
   blurhash: string;
 }
 
+interface MediaAttachmentGIFVMetaRawValues {
+  length: string;
+  duration: number;
+  fps: number;
+  size: string;
+  width: number;
+  height: number;
+  aspect: number;
+  original: MediaAttachmentMetaVideoInfoRawValues;
+  small: MediaAttachmentMetaImageInfoRawValues;
+}
+
+interface MediaAttachmentGIFVRawValues {
+  id: string;
+  type: 'gifv';
+  url: string;
+  preview_url: string;
+  remote_url: string | null;
+  text_url: string;
+  meta: MediaAttachmentGIFVMetaRawValues;
+  description: string | null;
+  blurhash: string;
+}
+
 export type MediaAttachmentRawValues =
   | MediaAttachmentImageRawValues
-  | MediaAttachmentVideoRawValues;
+  | MediaAttachmentVideoRawValues
+  | MediaAttachmentGIFVRawValues;
