@@ -147,7 +147,18 @@ type MediaAttachmentGIFV = Record<
   }
 >;
 
+type MediaAttachmentAudio = Record<
+  Exclude<MediaAttachmentAudioRawValues, 'meta'> & {
+    meta: Record<
+      Exclude<MediaAttachmentAudioMetaRawValues, 'original'> & {
+        original: Record<MediaAttachmentMetaAudioInfoRawValues>;
+      }
+    >;
+  }
+>;
+
 export type MediaAttachment =
   | MediaAttachmentImage
   | MediaAttachmentVideo
-  | MediaAttachmentGIFV;
+  | MediaAttachmentGIFV
+  | MediaAttachmentAudio;
