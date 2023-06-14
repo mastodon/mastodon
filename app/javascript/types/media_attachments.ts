@@ -82,7 +82,34 @@ interface MediaAttachmentGIFVRawValues {
   blurhash: string;
 }
 
+interface MediaAttachmentMetaAudioInfoRawValues {
+  duration: number;
+  bitrate: number;
+}
+
+interface MediaAttachmentAudioMetaRawValues {
+  length: string;
+  duration: number;
+  audio_encode: string;
+  audio_bitrate: string;
+  audio_channels: string;
+  original: MediaAttachmentMetaAudioInfoRawValues;
+}
+
+interface MediaAttachmentAudioRawValues {
+  id: string;
+  type: 'audio';
+  url: string;
+  preview_url: string;
+  remote_url: string | null;
+  text_url: string;
+  meta: MediaAttachmentAudioMetaRawValues;
+  description: string | null;
+  blurhash: null;
+}
+
 export type MediaAttachmentRawValues =
   | MediaAttachmentImageRawValues
   | MediaAttachmentVideoRawValues
-  | MediaAttachmentGIFVRawValues;
+  | MediaAttachmentGIFVRawValues
+  | MediaAttachmentAudioRawValues;
