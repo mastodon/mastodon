@@ -23,4 +23,41 @@ interface MediaAttachmentImageRawValues {
   blurhash: string;
 }
 
-export type MediaAttachmentRawValues = MediaAttachmentImageRawValues;
+interface MediaAttachmentMetaVideoInfoRawValues {
+  width: number;
+  height: number;
+  frame_rate: string;
+  duration: number;
+  bitrate: number;
+}
+
+interface MediaAttachmentVideoMetaRawValues {
+  length: string;
+  duration: number;
+  fps: number;
+  size: string;
+  width: number;
+  height: number;
+  aspect: number;
+  audio_encode: string;
+  audio_bitrate: string;
+  audio_channels: string;
+  original: MediaAttachmentMetaVideoInfoRawValues;
+  small: MediaAttachmentImageMetaRawValues;
+}
+
+interface MediaAttachmentVideoRawValues {
+  id: string;
+  type: 'video';
+  url: string;
+  preview_url: string;
+  remote_url: string | null;
+  text_url: string;
+  meta: MediaAttachmentVideoMetaRawValues;
+  description: string | null;
+  blurhash: string;
+}
+
+export type MediaAttachmentRawValues =
+  | MediaAttachmentImageRawValues
+  | MediaAttachmentVideoRawValues;
