@@ -13,14 +13,6 @@ RSpec.describe Api::V1::DomainBlocksController do
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
-  shared_examples 'forbidden for wrong scope' do |wrong_scope|
-    let(:scopes) { wrong_scope }
-
-    it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
-    end
-  end
-
   describe 'GET #show' do
     let(:scopes) { 'read:blocks' }
 
