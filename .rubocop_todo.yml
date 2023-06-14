@@ -56,7 +56,6 @@ Lint/AmbiguousBlockAssociation:
     - 'spec/controllers/settings/two_factor_authentication/otp_authentication_controller_spec.rb'
     - 'spec/services/activitypub/process_status_update_service_spec.rb'
     - 'spec/services/post_status_service_spec.rb'
-    - 'spec/workers/scheduler/accounts_statuses_cleanup_scheduler_spec.rb'
 
 # Configuration parameters: AllowComments, AllowEmptyLambdas.
 Lint/EmptyBlock:
@@ -359,7 +358,6 @@ RSpec/LetSetup:
     - 'spec/services/suspend_account_service_spec.rb'
     - 'spec/services/unallow_domain_service_spec.rb'
     - 'spec/services/unsuspend_account_service_spec.rb'
-    - 'spec/workers/scheduler/accounts_statuses_cleanup_scheduler_spec.rb'
     - 'spec/workers/scheduler/user_cleanup_scheduler_spec.rb'
 
 RSpec/MessageChain:
