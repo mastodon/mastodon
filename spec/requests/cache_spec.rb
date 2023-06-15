@@ -163,19 +163,38 @@ describe 'Caching behavior' do
     ActionController::Base.allow_forgery_protection = old
   end
 
-  let(:alice) { Fabricate(:account, username: 'alice') }
-  let(:user)  { Fabricate(:user, role: UserRole.find_by(name: 'Moderator')) }
-
-  before do
-    # rubocop:disable Style/NumericLiterals
-    status = Fabricate(:status, account: alice, id: 110224538612341312)
-    Fabricate(:status, account: alice, id: 110224538643211312, visibility: :private)
-    Fabricate(:invite, code: 'abcdef')
-    Fabricate(:poll, status: status, account: alice, id: 12345)
-    # rubocop:enable Style/NumericLiterals
-
-    user.account.follow!(alice)
+  # rubocop:disable RSpec/BeforeAfterAll
+  before(:context) do
+    DatabaseCleaner.start
+    create_database_records
   end
+
+  after(:context) do
+    DatabaseCleaner.clean
+  end
+  # rubocop:enable RSpec/BeforeAfterAll
+
+  # rubocop:disable RSpec/InstanceVariable
+  let(:alice) { @alice }
+  let(:user) { @user }
+  let(:token) { @token }
+  let(:remote_actor) { @remote_actor }
+
+  def create_database_records
+    @alice = Fabricate(:account, username: 'alice')
+    @user = Fabricate(:user, role: UserRole.find_by(name: 'Moderator'))
+    @token = Fabricate(:accessible_access_token, resource_owner_id: @user.id, scopes: 'read')
+
+    @status = Fabricate(:status, account: @alice, id: '110224538612341312')
+    Fabricate(:status, account: @alice, id: '110224538643211312', visibility: :private)
+    Fabricate(:invite, code: 'abcdef')
+    Fabricate(:poll, status: @status, account: @alice, id: '12345')
+
+    @user.account.follow!(@alice)
+
+    @remote_actor = Fabricate(:account, domain: 'example.org', uri: 'https://example.org/remote', protocol: :activitypub)
+  end
+  # rubocop:enable RSpec/InstanceVariable
 
   context 'when anonymously accessed' do
     TestEndpoints::ALWAYS_CACHED.each do |endpoint|
@@ -321,8 +340,6 @@ describe 'Caching behavior' do
   end
 
   context 'with an auth token' do
-    let!(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read') }
-
     TestEndpoints::ALWAYS_CACHED.each do |endpoint|
       describe endpoint do
         before do
@@ -401,7 +418,6 @@ describe 'Caching behavior' do
   end
 
   context 'with a Signature header' do
-    let(:remote_actor)    { Fabricate(:account, domain: 'example.org', uri: 'https://example.org/remote', protocol: :activitypub) }
     let(:dummy_signature) { 'dummy-signature' }
 
     before do
@@ -467,7 +483,6 @@ describe 'Caching behavior' do
     end
 
     context 'when providing a Signature' do
-      let(:remote_actor)    { Fabricate(:account, domain: 'example.org', uri: 'https://example.org/remote', protocol: :activitypub) }
       let(:dummy_signature) { 'dummy-signature' }
 
       before do
@@ -539,7 +554,6 @@ describe 'Caching behavior' do
     end
 
     context 'when providing a Signature from an allowed domain' do
-      let(:remote_actor)    { Fabricate(:account, domain: 'example.org', uri: 'https://example.org/remote', protocol: :activitypub) }
       let(:dummy_signature) { 'dummy-signature' }
 
       before do
@@ -575,7 +589,6 @@ describe 'Caching behavior' do
     end
 
     context 'when providing a Signature from a non-allowed domain' do
-      let(:remote_actor)    { Fabricate(:account, domain: 'example.org', uri: 'https://example.org/remote', protocol: :activitypub) }
       let(:dummy_signature) { 'dummy-signature' }
 
       describe '/actor' do
@@ -637,8 +650,6 @@ describe 'Caching behavior' do
     end
 
     context 'with an auth token' do
-      let!(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read') }
-
       TestEndpoints::ALWAYS_CACHED.each do |endpoint|
         describe endpoint do
           before do
