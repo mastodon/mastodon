@@ -57,4 +57,4 @@ emojisWithoutShortCodes.forEach((emojiMapData) =>
   processEmojiMapData(emojiMapData)
 );
 
-export default unicodeMapping; // eslint-disable-line import/no-default-export
+export { unicodeMapping };
