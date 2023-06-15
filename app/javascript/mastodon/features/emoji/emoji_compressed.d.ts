@@ -15,7 +15,12 @@ export type Search = string;
  */
 export type Skins = null;
 
-export type FilenameData = string[] | string[][];
+export type Filename = string;
+export type UnicodeFilename = string;
+export type FilenameData = [
+  filename: Filename,
+  unicodeFilename?: UnicodeFilename
+][];
 export type ShortCodesToEmojiDataKey =
   | EmojiData['id']
   | BaseEmoji['native']
