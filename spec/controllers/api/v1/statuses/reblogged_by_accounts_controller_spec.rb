@@ -24,14 +24,12 @@ RSpec.describe Api::V1::Statuses::RebloggedByAccountsController do
         Fabricate(:status, account: bob, reblog_of_id: status.id)
       end
 
-      it 'returns http success' do
+      it 'returns accounts who reblogged the status', :aggregate_failures do
         get :index, params: { status_id: status.id, limit: 2 }
+
         expect(response).to have_http_status(200)
         expect(response.headers['Link'].links.size).to eq(2)
-      end
 
-      it 'returns accounts who reblogged the status' do
-        get :index, params: { status_id: status.id, limit: 2 }
         expect(body_as_json.size).to eq 2
         expect([body_as_json[0][:id], body_as_json[1][:id]]).to contain_exactly(alice.id.to_s, bob.id.to_s)
       end

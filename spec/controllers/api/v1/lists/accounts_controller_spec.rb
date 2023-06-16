@@ -35,11 +35,8 @@ describe Api::V1::Lists::AccountsController do
         post :create, params: { list_id: list.id, account_ids: [bob.id] }
       end
 
-      it 'returns http success' do
+      it 'adds account to the list', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
-
-      it 'adds account to the list' do
         expect(list.accounts.include?(bob)).to be true
       end
     end
@@ -50,11 +47,8 @@ describe Api::V1::Lists::AccountsController do
         post :create, params: { list_id: list.id, account_ids: [bob.id] }
       end
 
-      it 'returns http success' do
+      it 'adds account to the list', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
-
-      it 'adds account to the list' do
         expect(list.accounts.include?(bob)).to be true
       end
     end
@@ -64,11 +58,8 @@ describe Api::V1::Lists::AccountsController do
         post :create, params: { list_id: list.id, account_ids: [bob.id] }
       end
 
-      it 'returns http not found' do
+      it 'does not add the account to the list', :aggregate_failures do
         expect(response).to have_http_status(404)
-      end
-
-      it 'does not add the account to the list' do
         expect(list.accounts.include?(bob)).to be false
       end
     end
@@ -81,11 +72,8 @@ describe Api::V1::Lists::AccountsController do
       delete :destroy, params: { list_id: list.id, account_ids: [list.accounts.first.id] }
     end
 
-    it 'returns http success' do
+    it 'removes account from the list', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
-
-    it 'removes account from the list' do
       expect(list.accounts.count).to eq 0
     end
   end
