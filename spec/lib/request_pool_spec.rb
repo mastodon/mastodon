@@ -60,9 +60,11 @@ describe RequestPool do
           http_client.get('/').flush
         end
 
-        expect(subject.size).to eq 1
+        expect { wait_for_idle_timeout }.to change(subject, :size).from(1).to(0)
+      end
+
+      def wait_for_idle_timeout
         sleep RequestPool::MAX_IDLE_TIME + 0.1 # Wait slightly longer than idle time
-        expect(subject.size).to eq 0
       end
     end
   end
