@@ -15,9 +15,14 @@ require 'chewy/rspec'
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
-WebMock.disable_net_connect!(allow: Chewy.settings[:host])
+WebMock.disable_net_connect!(allow: Chewy.settings[:host], allow_localhost: true)
 Sidekiq::Testing.inline!
 Sidekiq.logger = nil
+
+# DatabaseCleaner is used only for system tests
+DatabaseCleaner.strategy = [:deletion]
+
+streaming_server_manager = StreamingServerManager.new
 
 Devise::Test::ControllerHelpers.module_eval do
   alias_method :original_sign_in, :sign_in
@@ -83,8 +88,9 @@ RSpec.configure do |config|
   end
 
   config.before :each, type: :feature do
-    https = ENV['LOCAL_HTTPS'] == 'true'
-    Capybara.app_host = "http#{https ? 's' : ''}://#{ENV.fetch('LOCAL_DOMAIN')}"
+    # https = ENV['LOCAL_HTTPS'] == 'true'
+    # Capybara.app_host = "http#{https ? 's' : ''}://#{ENV.fetch('LOCAL_DOMAIN')}"
+    # Capybara.current_driver :rack_test
   end
 
   config.before :each, type: :controller do
@@ -93,6 +99,32 @@ RSpec.configure do |config|
 
   config.before :each, type: :service do
     stub_jsonld_contexts!
+  end
+
+  # Start the streaming server before any system test
+  config.before :all, type: :system do
+    streaming_server_manager.start
+  end
+
+  config.after :suite do
+    streaming_server_manager.stop
+  end
+
+  config.around :each, type: :system do |example|
+    driven_by :selenium, using: :headless_chrome, screen_size: [1600, 1200]
+
+    # The streaming server needs access to the database
+    # but with use_transactional_tests every transaction
+    # is rolled-back, so the streaming server never sees the data
+    # So we disable this feature for system tests, and use DatabaseCleaner to clean
+    # the database tables between each test
+    self.use_transactional_tests = false
+
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+
+    self.use_transactional_tests = true
   end
 
   config.before(:each) do |example|

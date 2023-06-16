@@ -96,6 +96,14 @@ const pgConfigFromEnv = (env) => {
       port:     env.DB_PORT || pg.defaults.port,
     },
 
+    test: {
+      user:     env.DB_USER || pg.defaults.user,
+      password: env.DB_PASS || pg.defaults.password,
+      database: env.DB_NAME || 'mastodon_test',
+      host:     env.DB_HOST || pg.defaults.host,
+      port:     env.DB_PORT || pg.defaults.port,
+    },
+
     production: {
       user:     env.DB_USER || 'mastodon',
       password: env.DB_PASS || '',
