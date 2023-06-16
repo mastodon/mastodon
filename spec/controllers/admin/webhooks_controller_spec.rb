@@ -48,7 +48,7 @@ describe Admin::WebhooksController do
   end
 
   context 'with an existing record' do
-    let!(:webhook) { Fabricate :webhook }
+    let!(:webhook) { Fabricate(:webhook, events: ['account.created', 'report.created']) }
 
     describe 'GET #show' do
       it 'returns http success and renders view' do

@@ -28,6 +28,7 @@ module Admin
       authorize :webhook, :create?
 
       @webhook = Webhook.new(resource_params)
+      @webhook.current_account = current_account
 
       if @webhook.save
         redirect_to admin_webhook_path(@webhook)
@@ -38,6 +39,8 @@ module Admin
 
     def update
       authorize @webhook, :update?
+
+      @webhook.current_account = current_account
 
       if @webhook.update(resource_params)
         redirect_to admin_webhook_path(@webhook)
