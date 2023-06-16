@@ -48,16 +48,22 @@ describe RequestPool do
       expect(subject.size).to be > 1
     end
 
-    it 'closes idle connections' do
-      stub_request(:get, 'http://example.com/').to_return(status: 200, body: 'Hello!')
-
-      subject.with('http://example.com') do |http_client|
-        http_client.get('/').flush
+    context 'with an idle connection' do
+      before do
+        stub_const('RequestPool::MAX_IDLE_TIME', 0.2) # Lower the idle time limit to 0.2 seconds
+        stub_const('RequestPool::REAPER_FREQUENCY', 0.1) # Run the reaper every 0.1 seconds
+        stub_request(:get, 'http://example.com/').to_return(status: 200, body: 'Hello!')
       end
 
-      expect(subject.size).to eq 1
-      sleep RequestPool::MAX_IDLE_TIME + 30 + 1
-      expect(subject.size).to eq 0
+      it 'closes the connections' do
+        subject.with('http://example.com') do |http_client|
+          http_client.get('/').flush
+        end
+
+        expect(subject.size).to eq 1
+        sleep RequestPool::MAX_IDLE_TIME + 0.1 # Wait slightly longer than idle time
+        expect(subject.size).to eq 0
+      end
     end
   end
 end
