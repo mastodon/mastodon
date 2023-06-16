@@ -6,7 +6,7 @@
   /**
    * @param {() => void} loaded
    */
-  var ready = function (loaded) {
+  const ready = function (loaded) {
     if (document.readyState === 'complete') {
       loaded();
     } else {
@@ -20,27 +20,32 @@
 
   ready(function () {
     /** @type {Map<number, HTMLIFrameElement>} */
-    var iframes = new Map();
+    const iframes = new Map();
 
     window.addEventListener('message', function (e) {
-      var data = e.data || {};
+      const data = e.data || {};
 
       if (typeof data !== 'object' || data.type !== 'setHeight' || !iframes.has(data.id)) {
         return;
       }
 
-      var iframe = iframes.get(data.id);
+      const iframe = iframes.get(data.id);
 
-      if ('source' in e && iframe.contentWindow !== e.source) {
-        return;
-      }
+			if (iframe != null) {
+				if ('source' in e && iframe.contentWindow !== e.source) {
+					return;
+				}
 
-      iframe.height = data.height;
+				iframe.height = data.height;
+			}
+
     });
 
     [].forEach.call(document.querySelectorAll('iframe.mastodon-embed'), function (iframe) {
       // select unique id for each iframe
-      var id = 0, failCount = 0, idBuffer = new Uint32Array(1);
+      let id = 0;
+      let failCount = 0;
+      const idBuffer = new Uint32Array(1);
       while (id === 0 || iframes.has(id)) {
         id = crypto.getRandomValues(idBuffer)[0];
         failCount++;
