@@ -119,6 +119,7 @@ const pgConfigFromEnv = (env) => {
         baseConfig.ssl = false;
         break;
       case 'no-verify':
+      case 'require':
         baseConfig.ssl = { rejectUnauthorized: false };
         break;
       default:
