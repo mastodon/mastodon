@@ -123,17 +123,37 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   handleTipClick = () => {
+    
     const { status } = this.props;
+
     const id = status.getIn(['account', 'id'])
-    console.log( "account.id", id );
-    console.log( "account.username", status.getIn(['account', 'username']) );
-    console.log( "account.username", status.getIn(['account', 'fields']) );
-    console.log( "account.acct", status.getIn(['account', 'acct']) );
+
     api().get(`/api/v1/accounts/${id}`).then(response => {
-      console.log("response.data", response.data)
+
+      if (response.data.fields || !response.data.fields.length) return window.alert('This user does not have a Nano.to or Address setup.')
+
+      var raw_address = response.data.fields.find(a => a.value && a.value.includes('nano_'))
+      var nano_to_name = response.data.fields.find(a => a.value && (a.value.includes('ӿ.to') || a.value.includes('nano.to') || a.value.includes('xno.to')))
+
+      if (raw_address) return window.location.href = `nano:${raw_address.value}`;
+
+      if (nano_to_name) {
+          api().get('https://nano.to/known.json').then(known => {
+            var name = nano_to_name.value.match(/href="([^"]*)"/)[1].split('\\').join('').split('/')[1]
+            var account = known.data.find(a => a.name === name) 
+            if (account) return window.location.href = `nano:${account.address}`
+            return false
+          }).catch((e) => {
+            console.log(e)
+          })
+      }
+
+      return false
+
     }).catch((e) => {
       console.log(e)
     }) 
+    
   };
 
   handleFavouriteClick = () => {
