@@ -1,3 +1,4 @@
+
 import PropTypes from 'prop-types';
 
 import { defineMessages, injectIntl } from 'react-intl';
@@ -10,6 +11,7 @@ import { connect } from 'react-redux';
 
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
 
+import api from '../api';
 import DropdownMenuContainer from '../containers/dropdown_menu_container';
 import { me } from '../initial_state';
 
@@ -122,10 +124,16 @@ class StatusActionBar extends ImmutablePureComponent {
 
   handleTipClick = () => {
     const { status } = this.props;
-    console.log( "account.id", status.getIn(['account', 'id']) );
+    const id = status.getIn(['account', 'id'])
+    console.log( "account.id", id );
     console.log( "account.username", status.getIn(['account', 'username']) );
     console.log( "account.username", status.getIn(['account', 'fields']) );
     console.log( "account.acct", status.getIn(['account', 'acct']) );
+    api().get(`/api/v1/accounts/${id}`).then(response => {
+      console.log("response.data", response.data)
+    }).catch((e) => {
+      console.log(e)
+    }) 
   };
 
   handleFavouriteClick = () => {
