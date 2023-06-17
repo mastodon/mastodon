@@ -121,9 +121,21 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   handleTipClick = () => {
+
+    const { account } = this.props;
+    const { signedIn } = this.context.identity;
+
+    console.log( account )
+    console.log( account.get('fields') )
+
+    if (signedIn) {
+      console.log( signedIn )
+      // this.props.onFavourite(this.props.status);
+    } else {
+      // this.props.onInteractionModal('favourite', this.props.status);
+    }
     // window.open("https://nano.to", "_blank")
-    const newWindow = window.open('https://nano.to', '_blank', 'noopener,noreferrer')
-    if (newWindow) newWindow.opener = null
+    
   };
 
   handleFavouriteClick = () => {
