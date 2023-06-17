@@ -125,7 +125,7 @@ class StatusActionBar extends ImmutablePureComponent {
     console.log( "account.id", status.getIn(['account', 'id']) );
     console.log( "account.username", status.getIn(['account', 'username']) );
     console.log( "account.username", status.getIn(['account', 'fields']) );
-    console.log( "account.acc", status.getIn(['account', 'acc']) );
+    console.log( "account.acct", status.getIn(['account', 'acct']) );
   };
 
   handleFavouriteClick = () => {
