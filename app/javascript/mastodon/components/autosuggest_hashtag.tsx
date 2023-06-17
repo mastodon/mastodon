@@ -18,8 +18,8 @@ interface Props {
   };
 }
 
-// eslint-disable-next-line react/prefer-stateless-function, import/no-default-export
-export default class AutosuggestHashtag extends PureComponent<Props> {
+// eslint-disable-next-line react/prefer-stateless-function
+export class AutosuggestHashtag extends PureComponent<Props> {
   render() {
     const { tag } = this.props;
     const weeklyUses = tag.history && (
