@@ -1,22 +1,25 @@
-/* eslint-disable */
-// @ts-nocheck
-
-import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
 import ShortNumber from 'mastodon/components/short_number';
 
-export default class AutosuggestHashtag extends PureComponent {
-  static propTypes = {
-    tag: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      url: PropTypes.string,
-      history: PropTypes.array,
-    }).isRequired,
+interface Props {
+  tag: {
+    name: string;
+    url?: string;
+    history?: Array<{
+      uses: number;
+      accounts: string;
+      day: string;
+    }>;
+    following?: boolean;
+    type: 'hashtag';
   };
+}
 
+// eslint-disable-next-line react/prefer-stateless-function, import/no-default-export
+export default class AutosuggestHashtag extends PureComponent<Props> {
   render() {
     const { tag } = this.props;
     const weeklyUses = tag.history && (
