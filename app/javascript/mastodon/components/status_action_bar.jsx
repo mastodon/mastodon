@@ -291,12 +291,11 @@ class StatusActionBar extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick, dangerous: true });
       menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick, dangerous: true });
     } else {
-      
-      menu.push({ text: intl.formatMessage('tipping', { name: account.get('username') }), action: this.handleTipClick });
-      
+   
       menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.handleMentionClick });
 
       menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.handleDirectClick });
+      
       menu.push(null);
 
       if (relationship && relationship.get('muting')) {
