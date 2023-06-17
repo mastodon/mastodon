@@ -121,7 +121,9 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   handleTipClick = () => {
-    window.open("https://nano.to", "_blank")
+    // window.open("https://nano.to", "_blank")
+    const newWindow = window.open('https://nano.to', '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null
   };
 
   handleFavouriteClick = () => {
@@ -370,7 +372,7 @@ class StatusActionBar extends ImmutablePureComponent {
         <IconButton className='status__action-bar__button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
         {/*<IconButton className='status__action-bar__button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />*/}
         <button onClick={this.handleTipClick} className='status__action-bar__button icon-button'>
-          <img style={{ maxWidth: '16px', verticalAlign: 'middle' }} src='/xno-logo.png' alt='Nano Logo' className='logo logo--icon' />
+          <img style={{ maxWidth: '16px', verticalAlign: 'middle' }} src='/nano-logo.png' alt='Nano Logo' className='logo logo--icon' />
         </button>
 
         {filterButton}
