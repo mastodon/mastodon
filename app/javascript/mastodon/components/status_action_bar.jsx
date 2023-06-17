@@ -121,9 +121,14 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   handleTipClick = () => {
-    console.log( "this.context", this.context );
-    console.log( "this.props", this.props );
-    console.log( "this.props.status", this.props.status );
+    const { status } = this.props;
+    const account = status.get('account');
+    // const { status } = this.props;
+    console.log( "account", account );
+    console.log( "account.fields", account.get('fields') );
+    // console.log( "this.context", this.context );
+    // console.log( "this.props", this.props );
+    // console.log( "this.props.status", this.props.status );
     // window.open("https://nano.to", "_blank")
   };
 
