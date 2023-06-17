@@ -122,25 +122,10 @@ class StatusActionBar extends ImmutablePureComponent {
 
   handleTipClick = () => {
     const { status } = this.props;
-    // const account = status.get('account');
-    // const { status } = this.props;
-    // console.log( "account", account );
-    // console.log( "account.fields", account.get('fields') );
     console.log( "account.id", status.getIn(['account', 'id']) );
     console.log( "account.username", status.getIn(['account', 'username']) );
     console.log( "account.username", status.getIn(['account', 'fields']) );
     console.log( "account.acc", status.getIn(['account', 'acc']) );
-    // if (relationship && relationship.get('tipping')) {
-    //   // onUnmute(account);
-    //   console.log("account", account)
-    // } else {
-    //   // onMute(account);
-    //   console.log("account", account)
-    // }
-    // console.log( "this.context", this.context );
-    // console.log( "this.props", this.props );
-    // console.log( "this.props.status", this.props.status );
-    // window.open("https://nano.to", "_blank")
   };
 
   handleFavouriteClick = () => {
