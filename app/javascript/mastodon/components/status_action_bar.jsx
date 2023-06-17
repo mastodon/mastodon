@@ -66,7 +66,6 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   static propTypes = {
-    account: ImmutablePropTypes.map,
     status: ImmutablePropTypes.map.isRequired,
     relationship: ImmutablePropTypes.map,
     onReply: PropTypes.func,
@@ -122,21 +121,10 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   handleTipClick = () => {
-
-    const { account } = this.props;
-    const { signedIn } = this.context.identity;
-
-    console.log( account )
-    console.log( account.get('fields') )
-
-    if (signedIn) {
-      console.log( signedIn )
-      // this.props.onFavourite(this.props.status);
-    } else {
-      // this.props.onInteractionModal('favourite', this.props.status);
-    }
+    console.log( "this.context", this.context );
+    console.log( "this.props", this.props );
+    console.log( "this.props.status", this.props.status );
     // window.open("https://nano.to", "_blank")
-
   };
 
   handleFavouriteClick = () => {
