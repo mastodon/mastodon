@@ -1,5 +1,3 @@
-import { PureComponent } from 'react';
-
 import { FormattedMessage } from 'react-intl';
 
 import ShortNumber from 'mastodon/components/short_number';
@@ -18,31 +16,27 @@ interface Props {
   };
 }
 
-// eslint-disable-next-line react/prefer-stateless-function
-export class AutosuggestHashtag extends PureComponent<Props> {
-  render() {
-    const { tag } = this.props;
-    const weeklyUses = tag.history && (
-      <ShortNumber
-        value={tag.history.reduce((total, day) => total + day.uses * 1, 0)}
-      />
-    );
+export const AutosuggestHashtag: React.FC<Props> = ({ tag }) => {
+  const weeklyUses = tag.history && (
+    <ShortNumber
+      value={tag.history.reduce((total, day) => total + day.uses * 1, 0)}
+    />
+  );
 
-    return (
-      <div className='autosuggest-hashtag'>
-        <div className='autosuggest-hashtag__name'>
-          #<strong>{tag.name}</strong>
-        </div>
-        {tag.history !== undefined && (
-          <div className='autosuggest-hashtag__uses'>
-            <FormattedMessage
-              id='autosuggest_hashtag.per_week'
-              defaultMessage='{count} per week'
-              values={{ count: weeklyUses }}
-            />
-          </div>
-        )}
+  return (
+    <div className='autosuggest-hashtag'>
+      <div className='autosuggest-hashtag__name'>
+        #<strong>{tag.name}</strong>
       </div>
-    );
-  }
-}
+      {tag.history !== undefined && (
+        <div className='autosuggest-hashtag__uses'>
+          <FormattedMessage
+            id='autosuggest_hashtag.per_week'
+            defaultMessage='{count} per week'
+            values={{ count: weeklyUses }}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
