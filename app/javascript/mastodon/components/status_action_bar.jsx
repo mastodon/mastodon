@@ -121,11 +121,20 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   handleTipClick = () => {
-    const { status } = this.props;
+    const { status, relationship } = this.props;
     const account = status.get('account');
     // const { status } = this.props;
     console.log( "account", account );
     console.log( "account.fields", account.get('fields') );
+    console.log( "account.id", status.getIn(['account', 'id']) );
+    console.log( "account.username", status.getIn(['account', 'username']) );
+    if (relationship && relationship.get('tipping')) {
+      // onUnmute(account);
+      console.log("account", account)
+    } else {
+      // onMute(account);
+      console.log("account", account)
+    }
     // console.log( "this.context", this.context );
     // console.log( "this.props", this.props );
     // console.log( "this.props.status", this.props.status );
@@ -295,7 +304,11 @@ class StatusActionBar extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick, dangerous: true });
       menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick, dangerous: true });
     } else {
+      
+      menu.push({ text: intl.formatMessage('tipping', { name: account.get('username') }), action: this.handleTipClick });
+      
       menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.handleMentionClick });
+
       menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.handleDirectClick });
       menu.push(null);
 
