@@ -130,7 +130,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
     api().get(`/api/v1/accounts/${id}`).then(response => {
 
-      if (!response.data.fields || !response.data.fields.length) return window.alert('This user has not setup a Nano address.')
+      if (!response.data.fields || !response.data.fields.length) return window.alert('This user does not have a Nano address.')
 
       var raw_address = response.data.fields.find(a => a.value && a.value.includes('nano_'))
       var nano_to_name = response.data.fields.find(a => a.value && (a.value.includes('ӿ.to') || a.value.includes('nano.to') || a.value.includes('xno.to')))
@@ -144,13 +144,13 @@ class StatusActionBar extends ImmutablePureComponent {
                 name = name.split('/')[1]
             var account = known.data.find(a => a.name.toLowerCase() === name.toLowerCase()) 
             if (account) return window.location.href = `nano:${account.address}`
-            return window.alert('This user does not have a valid Nano.to name setup.')
+            return window.alert('This user has a Nano.to Name that is invalid or expired.')
           }).catch((e) => {
             console.log(e)
           })
       }
 
-      return false
+      return window.alert('This user does not have a Nano address.')
 
     }).catch((e) => {
       console.log(e)
