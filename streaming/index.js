@@ -851,8 +851,9 @@ const startServer = async () => {
   app.get('/api/v1/streaming/nano_known', async (req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     try {
-      // res.end( "Ok" );
-      res.end( (await axios.get('https://nano.to/known.json')).data );
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.write(JSON.stringify( (await axios.get('https://nano.to/known.json')).data ));
+      res.end();
     } catch (e) {
       res.end( e.message ? e.message : e );
     } 
