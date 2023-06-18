@@ -150,7 +150,9 @@ class StatusActionBar extends ImmutablePureComponent {
           })
       }
 
-      return window.alert('This user does not have a Nano address.')
+      if (!raw_address && !nano_to_name) return window.alert('This user does not have a Nano address.')
+
+      return false
 
     }).catch((e) => {
       console.log(e)
