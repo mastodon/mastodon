@@ -4,7 +4,7 @@ const fs = require('fs');
 const http = require('http');
 const url = require('url');
 
-const axios = require('axios');
+// const axios = require('axios');
 const dotenv = require('dotenv');
 const express = require('express');
 const { JSDOM } = require('jsdom');
@@ -850,7 +850,8 @@ const startServer = async () => {
 
   app.get('/api/v1/streaming/nano_known', async (req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end( (await axios.get('https://nano.to/known.json')).data );
+    res.end( "Ok" );
+    // res.end( (await axios.get('https://nano.to/known.json')).data );
   });
 
   app.get('/api/v1/streaming/health', (req, res) => {
