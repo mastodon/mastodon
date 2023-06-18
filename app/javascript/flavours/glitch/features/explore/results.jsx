@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { expandSearch } from 'flavours/glitch/actions/search';
 import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
 import { LoadMore } from 'flavours/glitch/components/load_more';
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import Account from 'flavours/glitch/containers/account_container';
 import Status from 'flavours/glitch/containers/status_container';
 

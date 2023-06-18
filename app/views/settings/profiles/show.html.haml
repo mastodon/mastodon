@@ -1,76 +1,76 @@
 - content_for :page_title do
   = t('settings.edit_profile')
 
-- content_for :heading_actions do
-  = button_tag t('generic.save_changes'), class: 'button', form: 'edit_profile'
+- content_for :heading do
+  %h2= t('settings.profile')
+  = render partial: 'settings/shared/profile_navigation'
 
 = simple_form_for @account, url: settings_profile_path, html: { method: :put, id: 'edit_profile' } do |f|
   = render 'shared/error_messages', object: @account
 
-  .fields-row
-    .fields-row__column.fields-group.fields-row__column-6
-      = f.input :display_name, wrapper: :with_label, input_html: { maxlength: Account::MAX_DISPLAY_NAME_LENGTH, data: { default: @account.username } }, hint: false
-      = f.input :note, wrapper: :with_label, input_html: { maxlength: Account::MAX_NOTE_LENGTH }, hint: false
+  %p.lead= t('edit_profile.hint_html')
+
+  %h4= t('edit_profile.basic_information')
 
   .fields-row
     .fields-row__column.fields-row__column-6
-      = render 'application/card', account: @account
+      .fields-group
+        = f.input :display_name, wrapper: :with_block_label, input_html: { maxlength: Account::MAX_DISPLAY_NAME_LENGTH, data: { default: @account.username } }
 
-    .fields-row__column.fields-group.fields-row__column-6
-      = f.input :header, wrapper: :with_label, input_html: { accept: AccountHeader::IMAGE_MIME_TYPES.join(',') }, hint: picture_hint(t('simple_form.hints.defaults.header', dimensions: '1500x500', size: number_to_human_size(AccountHeader::LIMIT)), @account.header)
+      .fields-group
+        = f.input :note, wrapper: :with_block_label, input_html: { maxlength: Account::MAX_NOTE_LENGTH }
 
-      = f.input :avatar, wrapper: :with_label, input_html: { accept: AccountAvatar::IMAGE_MIME_TYPES.join(',') }, hint: picture_hint(t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(AccountAvatar::LIMIT)), @account.avatar)
-
-  %hr.spacer/
-
-  .fields-group
-    = f.input :locked, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.locked')
-
-  .fields-group
-    = f.input :bot, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.bot')
-
-  .fields-group
-    = f.input :discoverable, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.discoverable'), recommended: true
-
-  .fields-group
-    = f.input :hide_collections, as: :boolean, wrapper: :with_label, label: t('simple_form.labels.defaults.setting_hide_network'), hint: t('simple_form.hints.defaults.setting_hide_network')
-
-  %hr.spacer/
-
-  .fields-row
     .fields-row__column.fields-group.fields-row__column-6
       .input.with_block_label
         %label= t('simple_form.labels.defaults.fields')
-        %span.hint= t('simple_form.hints.defaults.fields', count: Account::DEFAULT_FIELDS_SIZE)
+        %span.hint= t('simple_form.hints.account.fields')
 
         = f.simple_fields_for :fields do |fields_f|
           .row
             = fields_f.input :name, placeholder: t('simple_form.labels.account.fields.name'), input_html: { maxlength: 255 }
             = fields_f.input :value, placeholder: t('simple_form.labels.account.fields.value'), input_html: { maxlength: 255 }
 
-    .fields-row__column.fields-group.fields-row__column-6
-      %h6= t('verification.verification')
-      %p.hint= t('verification.explanation_html')
+  .fields-row
+    .fields-row__column.fields-row__column-6
+      .fields-group
+        = f.input :avatar, wrapper: :with_block_label, input_html: { accept: AccountAvatar::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(AccountAvatar::LIMIT))
 
-      .input-copy
-        .input-copy__wrapper
-          %input{ type: :text, maxlength: '999', spellcheck: 'false', readonly: 'true', value: link_to('Mastodon', ActivityPub::TagManager.instance.url_for(@account), rel: 'me').to_str }
-        %button{ type: :button }= t('generic.copy')
+    - if @account.avatar.present?
+      .fields-row__column.fields-row__column-6
+        .fields-group
+          = image_tag @account.avatar.url, class: 'fields-group__thumbnail', width: 90, height: 90
+          = link_to settings_profile_picture_path('avatar'), data: { method: :delete }, class: 'link-button link-button--destructive' do
+            = fa_icon 'trash fw'
+            = t('generic.delete')
+
+  .fields-row
+    .fields-row__column.fields-row__column-6
+      .fields-group
+        = f.input :header, wrapper: :with_block_label, input_html: { accept: AccountHeader::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.header', dimensions: '1500x500', size: number_to_human_size(AccountHeader::LIMIT))
+
+    - if @account.header.present?
+      .fields-row__column.fields-row__column-6
+        .fields-group
+          = image_tag @account.header.url, class: 'fields-group__thumbnail'
+          = link_to settings_profile_picture_path('header'), data: { method: :delete }, class: 'link-button link-button--destructive' do
+            = fa_icon 'trash fw'
+            = t('generic.delete')
+
+  %h4= t('edit_profile.safety_and_privacy')
+
+  .fields-group
+    = f.input :discoverable, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.discoverable'), recommended: true
+
+  .fields-group
+    = f.input :locked, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.locked')
+
+  .fields-group
+    = f.input :hide_collections, as: :boolean, wrapper: :with_label, label: t('simple_form.labels.defaults.setting_hide_network'), hint: t('simple_form.hints.defaults.setting_hide_network')
+
+  %h4= t('edit_profile.other')
+
+  .fields-group
+    = f.input :bot, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.bot')
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
-
-%hr/
-
-%h6= t('auth.migrate_account')
-%p.muted-hint= t('auth.migrate_account_html', path: settings_migration_path)
-
-%hr.spacer/
-
-%h6= t 'migrations.incoming_migrations'
-%p.muted-hint= t('migrations.incoming_migrations_html', path: settings_aliases_path)
-
-%hr.spacer/
-
-%h6= t('auth.delete_account')
-%p.muted-hint= t('auth.delete_account_html', path: settings_delete_path)

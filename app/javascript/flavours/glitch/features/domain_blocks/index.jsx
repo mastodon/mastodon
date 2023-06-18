@@ -14,7 +14,7 @@ import ScrollableList from 'flavours/glitch/components/scrollable_list';
 
 import { fetchDomainBlocks, expandDomainBlocks } from '../../actions/domain_blocks';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
-import LoadingIndicator from '../../components/loading_indicator';
+import { LoadingIndicator } from '../../components/loading_indicator';
 import DomainContainer from '../../containers/domain_container';
 import Column from '../ui/components/column';
 

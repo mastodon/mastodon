@@ -16,8 +16,8 @@ import IntersectionObserverWrapper from 'flavours/glitch/features/ui/util/inters
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
 
 import { LoadMore } from './load_more';
-import LoadPending from './load_pending';
-import LoadingIndicator from './loading_indicator';
+import { LoadPending } from './load_pending';
+import { LoadingIndicator } from './loading_indicator';
 
 const MOUSE_IDLE_DELAY = 300;
 

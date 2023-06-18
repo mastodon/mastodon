@@ -14,7 +14,7 @@ import {
   fetchFollowers,
   expandFollowers,
 } from 'flavours/glitch/actions/accounts';
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import { TimelineHint } from 'flavours/glitch/components/timeline_hint';
 import AccountContainer from 'flavours/glitch/containers/account_container';

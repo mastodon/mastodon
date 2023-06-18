@@ -118,6 +118,16 @@ Object.keys(emojiIndex.emojis).forEach(key => {
 // inconsistent behavior in dev mode
 module.exports = JSON.parse(JSON.stringify([
   shortCodesToEmojiData,
+  /*
+   * The property `skins` is not found in the current context.
+   * This could potentially lead to issues when interacting with modules or data structures
+   * that expect the presence of `skins` property.
+   * Currently, no definitions or references to `skins` property can be found in:
+   * - {@link node_modules/emoji-mart/dist/utils/data.js}
+   * - {@link node_modules/emoji-mart/data/all.json}
+   * - {@link app/javascript/mastodon/features/emoji/emoji_compressed.d.ts#Skins}
+   * Future refactorings or updates should consider adding definitions or handling for `skins` property.
+   */
   emojiMartData.skins,
   emojiMartData.categories,
   emojiMartData.aliases,

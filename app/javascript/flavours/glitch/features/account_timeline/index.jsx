@@ -16,7 +16,7 @@ import { getAccountHidden } from 'flavours/glitch/selectors';
 
 import { fetchFeaturedTags } from '../../actions/featured_tags';
 import { expandAccountFeaturedTimeline, expandAccountTimeline } from '../../actions/timelines';
-import LoadingIndicator from '../../components/loading_indicator';
+import { LoadingIndicator } from '../../components/loading_indicator';
 import StatusList from '../../components/status_list';
 import Column from '../ui/components/column';
 

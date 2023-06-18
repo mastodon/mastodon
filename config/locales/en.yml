@@ -978,6 +978,7 @@ en:
     notification_preferences: Change e-mail preferences
     salutation: "%{name},"
     settings: 'Change e-mail preferences: %{link}'
+    unsubscribe: Unsubscribe
     view: 'View:'
     view_profile: View profile
     view_status: View post
@@ -992,9 +993,9 @@ en:
   auth:
     apply_for_account: Request an account
     captcha_confirmation:
-      hint_html: Just one more step! To confirm your account, this server requires you to solve a CAPTCHA. You can <a href="/about/more">contact the server administrator</a> if you have questions or need assistance with confirming your account.
-      title: User verification
-    change_password: Password
+      help_html: If you have issues solving the CAPTCHA, you can get in touch with us through %{email} and we can assist you.
+      hint_html: Just one more thing! We need to confirm you're a human (this is so we can keep the spam out!). Solve the CAPTCHA below and click "Continue".
+      title: Security check
     confirmations:
       wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Delete account
@@ -1148,6 +1149,11 @@ en:
       your_appeal_rejected: Your appeal has been rejected
   domain_validator:
     invalid_domain: is not a valid domain name
+  edit_profile:
+    basic_information: Basic information
+    hint_html: "<strong>Customize what people see on your public profile and next to your posts.</strong> Other people are more likely to follow you back and interact with you when you have a filled out profile and a profile picture."
+    other: Other
+    safety_and_privacy: Safety and privacy
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -1185,7 +1191,7 @@ en:
     add_new: Add new
     errors:
       limit: You have already featured the maximum number of hashtags
-    hint_html: "<strong>What are featured hashtags?</strong> They are displayed prominently on your public profile and allow people to browse your public posts specifically under those hashtags. They are a great tool for keeping track of creative works or long-term projects."
+    hint_html: "<strong>Feature your most important hashtags on your profile.</strong> A great tool for keeping track of your creative works and long-term projects, featured hashtags are displayed prominently on your profile and allow quick access to your own posts."
   filters:
     contexts:
       account: Profiles
@@ -1342,6 +1348,21 @@ en:
     failed_sign_in_html: Failed sign-in attempt with %{method} from %{ip} (%{browser})
     successful_sign_in_html: Successful sign-in with %{method} from %{ip} (%{browser})
     title: Authentication history
+  mail_subscriptions:
+    unsubscribe:
+      action: Yes, unsubscribe
+      complete: Unsubscribed
+      confirmation_html: Are you sure you want to unsubscribe from receiving %{type} for Mastodon on %{domain} to your e-mail at %{email}? You can always re-subscribe from your <a href="%{settings_path}">e-mail notification settings</a>.
+      emails:
+        notification_emails:
+          favourite: favorite notification e-mails
+          follow: follow notification e-mails
+          follow_request: follow request e-mails
+          mention: mention notification e-mails
+          reblog: boost notification e-mails
+      resubscribe_html: If you've unsubscribed by mistake, you can re-subscribe from your <a href="%{settings_path}">e-mail notification settings</a>.
+      success_html: You'll no longer receive %{type} for Mastodon on %{domain} to your e-mail at %{email}.
+      title: Unsubscribe
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a post that already contains images
@@ -1568,7 +1589,7 @@ en:
     migrate: Account migration
     notifications: Notifications
     preferences: Preferences
-    profile: Profile
+    profile: Public profile
     relationships: Follows and followers
     statuses_cleanup: Automated post deletion
     strikes: Moderation strikes
@@ -1762,8 +1783,12 @@ en:
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
   verification:
-    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. After adding the link you may need to come back here and re-save your profile for the verification to take effect. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
+    extra_instructions_html: <strong>Tip:</strong> The link on your website can be invisible. The important part is <code>rel="me"</code> which prevents impersonation on websites with user-generated content. You can even use a <code>link</code> tag in the header of the page instead of <code>a</code>, but the HTML must be accessible without executing JavaScript.
+    here_is_how: Here's how
+    hint_html: "<strong>Verifying your identity on Mastodon is for everyone.</strong> Based on open web standards, now and forever free. All you need is a personal website that people recognize you by. When you link to this website from your profile, we will check that the website links back to your profile and show a visual indicator on it."
+    instructions_html: Copy and paste the code below into the HTML of your website. Then add the address of your website into one of the extra fields on your profile from the "Edit profile" tab and save changes.
     verification: Verification
+    verified_links: Your verified links
   webauthn_credentials:
     add: Add new security key
     create:

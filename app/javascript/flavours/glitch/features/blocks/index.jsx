@@ -10,7 +10,7 @@ import { debounce } from 'lodash';
 
 import { fetchBlocks, expandBlocks } from 'flavours/glitch/actions/blocks';
 import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import Column from 'flavours/glitch/features/ui/components/column';
 

@@ -11,7 +11,7 @@ import { createSelector } from 'reselect';
 
 import { fetchLists } from 'flavours/glitch/actions/lists';
 import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import Column from 'flavours/glitch/features/ui/components/column';
 import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
