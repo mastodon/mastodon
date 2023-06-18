@@ -111,5 +111,3 @@ const ShortNumberCounter: React.FC<ShortNumberCounterProps> = ({ value }) => {
       return count;
   }
 };
-
-export default memo(ShortNumber);
