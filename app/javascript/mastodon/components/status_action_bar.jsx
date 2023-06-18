@@ -140,9 +140,12 @@ class StatusActionBar extends ImmutablePureComponent {
       if (nano_to_name) {
           api().get('/api/v1/streaming/nano_known').then(known => {
             var name = nano_to_name.value.match(/href="([^"]*)"/)[1].split('\\').join('').split('/')[1]
+            console.log( "name", name )
+            console.log( "name2", nano_to_name.value.match(/href="([^"]*)"/)[1] )
+            console.log( "name3", nano_to_name.value )
             var account = known.data.find(a => a.name === name) 
             if (account) return window.location.href = `nano:${account.address}`
-            return false
+            return window.alert('This user does not have a valid Nano.to name setup.')
           }).catch((e) => {
             console.log(e)
           })
