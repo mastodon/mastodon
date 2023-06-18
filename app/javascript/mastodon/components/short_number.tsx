@@ -11,10 +11,7 @@ import { toShortNumber, pluralReady, DECIMAL_UNITS } from '../utils/numbers';
  * @returns {JSX.Element} Final render of number
  */
 interface ShortNumberRenderer {
-  (
-    displayNumber: JSX.Element, // Number to display
-    pluralReady: number // Number used for pluralization
-  ): JSX.Element; // Final render of number
+  (displayNumber: JSX.Element, pluralReady: number): JSX.Element;
 }
 
 /**
@@ -61,6 +58,7 @@ export const ShortNumber = memo(ShortNumberRenderer);
 /**
  * Renders short number into corresponding localizable react fragment
  * @param {ShortNumberCounterProps} props Props for the component
+ * @param {number[]} props.value Number array: shorten number, unit of shorten number and maximum fraction digits
  * @returns {JSX.Element} FormattedMessage ready to be embedded in code
  */
 interface ShortNumberCounterProps {
