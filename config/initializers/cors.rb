@@ -32,7 +32,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   end
   allow do
     origins 'https://nano.to'
-    resource '*',
+    resource '/known.json',
       headers: :any,
       methods: [:get, :options, :head],
       credentials: false
