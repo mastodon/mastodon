@@ -3,9 +3,9 @@
   = javascript_pack_tag 'common', crossorigin: 'anonymous'
   - if @theme
     - if @theme[:supported_locales].include? I18n.locale.to_s
-      = preload_pack_asset "locales/#{@theme[:flavour]}/#{I18n.locale}-json.js"
+      = preload_pack_asset "locales/#{@theme[:flavour]}/#{I18n.locale}-json.js", crossorigin: 'anonymous'
     - elsif @theme[:supported_locales].include? 'en'
-      = preload_pack_asset "locales/#{@theme[:flavour]}/en-json.js"
+      = preload_pack_asset "locales/#{@theme[:flavour]}/en-json.js", crossorigin: 'anonymous'
   = render partial: 'layouts/theme', object: @core
   = render partial: 'layouts/theme', object: @theme
 
