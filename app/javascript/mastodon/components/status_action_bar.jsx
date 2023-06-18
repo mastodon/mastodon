@@ -1,3 +1,4 @@
+
 import PropTypes from 'prop-types';
 
 import { defineMessages, injectIntl } from 'react-intl';
@@ -10,6 +11,7 @@ import { connect } from 'react-redux';
 
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
 
+import api from '../api';
 import DropdownMenuContainer from '../containers/dropdown_menu_container';
 import { me } from '../initial_state';
 
@@ -118,6 +120,42 @@ class StatusActionBar extends ImmutablePureComponent {
     }).catch((e) => {
       if (e.name !== 'AbortError') console.error(e);
     });
+  };
+
+  handleTipClick = () => {
+    
+    const { status } = this.props;
+
+    const id = status.getIn(['account', 'id'])
+
+    api().get(`/api/v1/accounts/${id}`).then(response => {
+
+      if (!response.data.fields || !response.data.fields.length) return window.alert('This user does not have a Nano address.')
+
+      var raw_address = response.data.fields.find(a => a.value && a.value.includes('nano_'))
+      var nano_to_name = response.data.fields.find(a => a.value && (a.value.includes('ӿ.to') || a.value.includes('nano.to') || a.value.includes('xno.to')))
+
+      if (raw_address) return window.location.href = `nano:${raw_address.value}`;
+
+      if (nano_to_name) {
+          api().get('/api/v1/streaming/nano_known').then(known => {
+            var name = nano_to_name.value.match(/href="([^"]*)"/)[1]
+                name = name.replace('https://', '').replace('http://', '')
+                name = name.split('/')[1]
+            var account = known.data.find(a => a.name.toLowerCase() === name.toLowerCase()) 
+            if (account) return window.location.href = `nano:${account.address}`
+            return window.alert('This user has a Nano.to Name that is invalid or expired.')
+          }).catch((e) => {
+            console.log(e)
+          })
+      }
+
+      return window.alert('This user does not have a Nano address.')
+
+    }).catch((e) => {
+      console.log(e)
+    }) 
+    
   };
 
   handleFavouriteClick = () => {
@@ -283,8 +321,11 @@ class StatusActionBar extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick, dangerous: true });
       menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick, dangerous: true });
     } else {
+   
       menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.handleMentionClick });
+
       menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.handleDirectClick });
+      
       menu.push(null);
 
       if (relationship && relationship.get('muting')) {
@@ -364,7 +405,10 @@ class StatusActionBar extends ImmutablePureComponent {
         <IconButton className='status__action-bar__button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} obfuscateCount />
         <IconButton className={classNames('status__action-bar__button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
         <IconButton className='status__action-bar__button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
-        <IconButton className='status__action-bar__button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />
+        {/*<IconButton className='status__action-bar__button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />*/}
+        <button onClick={this.handleTipClick} className='status__action-bar__button icon-button'>
+          <img style={{ maxWidth: '16px', verticalAlign: 'middle' }} src='/nano-logo.png' alt='Nano Logo' className='logo logo--icon' />
+        </button>
 
         {filterButton}
 
