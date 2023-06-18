@@ -8,7 +8,6 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     origins '*'
-
     resource '/.well-known/*',
       headers: :any,
       methods: [:get],
@@ -29,6 +28,13 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     resource '/oauth/token',
       headers: :any,
       methods: [:post],
+      credentials: false
+  end
+  allow do
+    origins 'https://nano.to'
+    resource '*',
+      headers: :any,
+      methods: [:get, :options, :head],
       credentials: false
   end
 end
