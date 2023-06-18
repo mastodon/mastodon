@@ -99,73 +99,87 @@ RSpec.describe Notification do
         ]
       end
 
-      it 'preloads target status' do
-        # mention
-        expect(subject[0].type).to eq :mention
-        expect(subject[0].association(:mention)).to be_loaded
-        expect(subject[0].mention.association(:status)).to be_loaded
+      context 'with a preloaded target status' do
+        it 'preloads mention' do
+          expect(subject[0].type).to eq :mention
+          expect(subject[0].association(:mention)).to be_loaded
+          expect(subject[0].mention.association(:status)).to be_loaded
+        end
 
-        # status
-        expect(subject[1].type).to eq :status
-        expect(subject[1].association(:status)).to be_loaded
+        it 'preloads status' do
+          expect(subject[1].type).to eq :status
+          expect(subject[1].association(:status)).to be_loaded
+        end
 
-        # reblog
-        expect(subject[2].type).to eq :reblog
-        expect(subject[2].association(:status)).to be_loaded
-        expect(subject[2].status.association(:reblog)).to be_loaded
+        it 'preloads reblog' do
+          expect(subject[2].type).to eq :reblog
+          expect(subject[2].association(:status)).to be_loaded
+          expect(subject[2].status.association(:reblog)).to be_loaded
+        end
 
-        # follow: nothing
-        expect(subject[3].type).to eq :follow
-        expect(subject[3].target_status).to be_nil
+        it 'preloads follow as nil' do
+          expect(subject[3].type).to eq :follow
+          expect(subject[3].target_status).to be_nil
+        end
 
-        # follow_request: nothing
-        expect(subject[4].type).to eq :follow_request
-        expect(subject[4].target_status).to be_nil
+        it 'preloads follow_request as nill' do
+          expect(subject[4].type).to eq :follow_request
+          expect(subject[4].target_status).to be_nil
+        end
 
-        # favourite
-        expect(subject[5].type).to eq :favourite
-        expect(subject[5].association(:favourite)).to be_loaded
-        expect(subject[5].favourite.association(:status)).to be_loaded
+        it 'preloads favourite' do
+          expect(subject[5].type).to eq :favourite
+          expect(subject[5].association(:favourite)).to be_loaded
+          expect(subject[5].favourite.association(:status)).to be_loaded
+        end
 
-        # poll
-        expect(subject[6].type).to eq :poll
-        expect(subject[6].association(:poll)).to be_loaded
-        expect(subject[6].poll.association(:status)).to be_loaded
+        it 'preloads poll' do
+          expect(subject[6].type).to eq :poll
+          expect(subject[6].association(:poll)).to be_loaded
+          expect(subject[6].poll.association(:status)).to be_loaded
+        end
       end
 
-      it 'replaces to cached status' do
-        # mention
-        expect(subject[0].type).to eq :mention
-        expect(subject[0].target_status.association(:account)).to be_loaded
-        expect(subject[0].target_status).to eq mention.status
+      context 'with a cached status' do
+        it 'replaces mention' do
+          expect(subject[0].type).to eq :mention
+          expect(subject[0].target_status.association(:account)).to be_loaded
+          expect(subject[0].target_status).to eq mention.status
+        end
 
-        # status
-        expect(subject[1].type).to eq :status
-        expect(subject[1].target_status.association(:account)).to be_loaded
-        expect(subject[1].target_status).to eq status
+        it 'replaces status' do
+          expect(subject[1].type).to eq :status
+          expect(subject[1].target_status.association(:account)).to be_loaded
+          expect(subject[1].target_status).to eq status
+        end
 
-        # reblog
-        expect(subject[2].type).to eq :reblog
-        expect(subject[2].target_status.association(:account)).to be_loaded
-        expect(subject[2].target_status).to eq reblog.reblog
+        it 'replaces reblog' do
+          expect(subject[2].type).to eq :reblog
+          expect(subject[2].target_status.association(:account)).to be_loaded
+          expect(subject[2].target_status).to eq reblog.reblog
+        end
 
-        # follow: nothing
-        expect(subject[3].type).to eq :follow
-        expect(subject[3].target_status).to be_nil
+        it 'replaces follow' do
+          expect(subject[3].type).to eq :follow
+          expect(subject[3].target_status).to be_nil
+        end
 
-        # follow_request: nothing
-        expect(subject[4].type).to eq :follow_request
-        expect(subject[4].target_status).to be_nil
+        it 'replaces follow_request' do
+          expect(subject[4].type).to eq :follow_request
+          expect(subject[4].target_status).to be_nil
+        end
 
-        # favourite
-        expect(subject[5].type).to eq :favourite
-        expect(subject[5].target_status.association(:account)).to be_loaded
-        expect(subject[5].target_status).to eq favourite.status
+        it 'replaces favourite' do
+          expect(subject[5].type).to eq :favourite
+          expect(subject[5].target_status.association(:account)).to be_loaded
+          expect(subject[5].target_status).to eq favourite.status
+        end
 
-        # poll
-        expect(subject[6].type).to eq :poll
-        expect(subject[6].target_status.association(:account)).to be_loaded
-        expect(subject[6].target_status).to eq poll.status
+        it 'replaces poll' do
+          expect(subject[6].type).to eq :poll
+          expect(subject[6].target_status.association(:account)).to be_loaded
+          expect(subject[6].target_status).to eq poll.status
+        end
       end
     end
   end

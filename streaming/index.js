@@ -835,7 +835,11 @@ const startServer = async () => {
       return;
     }
 
-    ws.send(JSON.stringify({ stream: streamName, event, payload }));
+    ws.send(JSON.stringify({ stream: streamName, event, payload }), (err) => {
+      if (err) {
+        log.error(req.requestId, `Failed to send to websocket: ${err}`);
+      }
+    });
   };
 
   /**

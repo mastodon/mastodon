@@ -79,6 +79,7 @@ RSpec.configure do |config|
 
   config.before :each, type: :cli do
     stub_stdout
+    stub_reset_connection_pools
   end
 
   config.before :each, type: :feature do
@@ -121,7 +122,18 @@ def attachment_fixture(name)
 end
 
 def stub_stdout
+  # TODO: Is there a bettery way to:
+  # - Avoid CLI command output being printed out
+  # - Allow rspec to assert things against STDOUT
+  # - Avoid disabling stdout for other desirable output (deprecation warnings, for example)
   allow($stdout).to receive(:write)
+end
+
+def stub_reset_connection_pools
+  # TODO: Is there a better way to correctly run specs without stubbing this?
+  # (Avoids reset_connection_pools! in test env)
+  allow(ActiveRecord::Base).to receive(:establish_connection)
+  allow(RedisConfiguration).to receive(:establish_pool)
 end
 
 def stub_jsonld_contexts!
