@@ -130,7 +130,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
     api().get(`/api/v1/accounts/${id}`).then(response => {
 
-      if (!response.data.fields || !response.data.fields.length) return window.alert('This user does not Nano address setup.')
+      if (!response.data.fields || !response.data.fields.length) return window.alert('This user has not setup a Nano address.')
 
       var raw_address = response.data.fields.find(a => a.value && a.value.includes('nano_'))
       var nano_to_name = response.data.fields.find(a => a.value && (a.value.includes('ӿ.to') || a.value.includes('nano.to') || a.value.includes('xno.to')))
