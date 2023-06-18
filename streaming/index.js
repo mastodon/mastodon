@@ -849,7 +849,7 @@ const startServer = async () => {
   app.use(allowCrossDomain);
 
   app.get('/api/v1/streaming/nano_known', async (req, res) => {
-    // res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end( (await axios.get('https://nano.to/known.json')).data );
   });
 
