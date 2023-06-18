@@ -138,10 +138,11 @@ class StatusActionBar extends ImmutablePureComponent {
       if (raw_address) return window.location.href = `nano:${raw_address.value}`;
 
       if (nano_to_name) {
-          api().get('https://nano.to/known.json').then(known => {
-            var name = nano_to_name.value.match(/href="([^"]*)"/)[1].split('\\').join('').split('/')[1]
-            var account = known.data.find(a => a.name === name) 
-            if (account) return window.location.href = `nano:${account.address}`
+          var name = nano_to_name.value.match(/href="([^"]*)"/)[1].split('\\').join('').split('/')[1]
+          api().get(`https://nano.to/.well-known/nano-currency.json?names=${name}`).then(known => {
+            // var account = known.data.find(a => a.name === name) 
+            // if (account) return window.location.href = `nano:${account.address}`
+            console.log(known.data)
             return false
           }).catch((e) => {
             console.log(e)
