@@ -9,26 +9,6 @@ RSpec.describe 'Domain Allows' do
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  shared_examples 'forbidden for wrong scope' do |wrong_scope|
-    let(:scopes) { wrong_scope }
-
-    it 'returns http forbidden' do
-      subject
-
-      expect(response).to have_http_status(403)
-    end
-  end
-
-  shared_examples 'forbidden for wrong role' do |wrong_role|
-    let(:role) { UserRole.find_by(name: wrong_role) }
-
-    it 'returns http forbidden' do
-      subject
-
-      expect(response).to have_http_status(403)
-    end
-  end
-
   describe 'GET /api/v1/admin/domain_allows' do
     subject do
       get '/api/v1/admin/domain_allows', headers: headers, params: params

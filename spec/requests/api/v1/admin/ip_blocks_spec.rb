@@ -9,26 +9,6 @@ RSpec.describe 'IP Blocks' do
   let(:scopes)  { 'admin:read:ip_blocks admin:write:ip_blocks' }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  shared_examples 'forbidden for wrong scope' do |wrong_scope|
-    let(:scopes) { wrong_scope }
-
-    it 'returns http forbidden' do
-      subject
-
-      expect(response).to have_http_status(403)
-    end
-  end
-
-  shared_examples 'forbidden for wrong role' do |wrong_role|
-    let(:role) { UserRole.find_by(name: wrong_role) }
-
-    it 'returns http forbidden' do
-      subject
-
-      expect(response).to have_http_status(403)
-    end
-  end
-
   describe 'GET /api/v1/admin/ip_blocks' do
     subject do
       get '/api/v1/admin/ip_blocks', headers: headers, params: params
