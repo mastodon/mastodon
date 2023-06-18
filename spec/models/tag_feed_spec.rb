@@ -68,15 +68,15 @@ describe TagFeed, type: :service do
     end
 
     context 'when the feed contains a local-only status' do
-      let!(:status) { Fabricate(:status, tags: [tag1], local_only: true) }
+      let!(:status) { Fabricate(:status, tags: [tag_cats], local_only: true) }
 
       it 'does not show local-only statuses without a viewer' do
-        results = described_class.new(tag1, nil).get(20)
+        results = described_class.new(tag_cats, nil).get(20)
         expect(results).to_not include(status)
       end
 
       it 'shows local-only statuses given a viewer' do
-        results = described_class.new(tag1, account).get(20)
+        results = described_class.new(tag_cats, account).get(20)
         expect(results).to include(status)
       end
     end
