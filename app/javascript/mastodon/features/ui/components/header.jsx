@@ -8,6 +8,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { openModal } from 'mastodon/actions/modal';
+import { fetchServer } from 'mastodon/actions/server';
 import { Avatar } from 'mastodon/components/avatar';
 import { WordmarkLogo, SymbolLogo } from 'mastodon/components/logo';
 import { registrationsOpen, me } from 'mastodon/initial_state';
@@ -28,6 +29,9 @@ const mapDispatchToProps = (dispatch) => ({
   openClosedRegistrationsModal() {
     dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' }));
   },
+  dispatchServer() {
+    dispatch(fetchServer());
+  }
 });
 
 class Header extends PureComponent {
@@ -40,7 +44,13 @@ class Header extends PureComponent {
     openClosedRegistrationsModal: PropTypes.func,
     location: PropTypes.object,
     signupUrl: PropTypes.string.isRequired,
+    dispatchServer: PropTypes.func
   };
+
+  componentDidMount () {
+    const { dispatchServer } = this.props;
+    dispatchServer();
+  }
 
   render () {
     const { signedIn } = this.context.identity;
