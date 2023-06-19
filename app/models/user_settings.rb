@@ -72,7 +72,10 @@ class UserSettings
 
     raise KeyError, "Undefined setting: #{key}" unless self.class.definition_for?(key)
 
-    typecast_value = self.class.definition_for(key).type_cast(value)
+    setting_definition = self.class.definition_for(key)
+    typecast_value = setting_definition.type_cast(value)
+
+    raise ArgumentError, "Invalid value for setting #{key}: #{typecast_value}" if setting_definition.in.present? && setting_definition.in.exclude?(typecast_value)
 
     if typecast_value.nil?
       @original_hash.delete(key)
