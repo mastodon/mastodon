@@ -127,7 +127,7 @@ RSpec.describe 'Account actions' do
     context 'with invalid type' do
       let(:params) { { type: 'invalid' } }
 
-      it 'returns http 422' do
+      it 'returns http unprocessable entity' do
         subject
 
         expect(response).to have_http_status(422)
