@@ -12,6 +12,7 @@ class RemoveStatusService < BaseService
   # @option  [Boolean] :immediate
   # @option  [Boolean] :preserve
   # @option  [Boolean] :original_removed
+  # @option  [Boolean] :deliver_quietly
   def call(status, **options)
     @payload  = Oj.dump(event: :delete, payload: status.id.to_s)
     @status   = status
@@ -52,6 +53,9 @@ class RemoveStatusService < BaseService
 
   private
 
+  # The following FeedManager calls all do not result in redis publish's for
+  # streaming, as the `:update` option is false
+
   def remove_from_self
     FeedManager.instance.unpush_from_home(@account, @status)
   end
@@ -74,6 +78,8 @@ class RemoveStatusService < BaseService
     # and therefore the delete is already handled by sending it to all
     # followers. Here we send a delete to actively mentioned accounts
     # that may not follow the account
+
+    return if deliver_quietly?
 
     @status.active_mentions.find_each do |mention|
       redis.publish("timeline:#{mention.account_id}", @payload)
@@ -103,6 +109,8 @@ class RemoveStatusService < BaseService
     # without us being able to do all the fancy stuff
 
     @status.reblogs.rewhere(deleted_at: [nil, @status.deleted_at]).includes(:account).reorder(nil).find_each do |reblog|
+      # We don't pass through deliver_quietly? here as the Reblog may be much
+      # newer than the status being removed
       RemoveStatusService.new.call(reblog, original_removed: true)
     end
   end
@@ -114,6 +122,8 @@ class RemoveStatusService < BaseService
 
     return unless @status.public_visibility?
 
+    return if deliver_quietly?
+
     @status.tags.map(&:name).each do |hashtag|
       redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}", @payload)
       redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:local", @payload) if @status.local?
@@ -123,12 +133,16 @@ class RemoveStatusService < BaseService
   def remove_from_public
     return unless @status.public_visibility?
 
+    return if deliver_quietly?
+
     redis.publish('timeline:public', @payload)
     redis.publish(@status.local? ? 'timeline:public:local' : 'timeline:public:remote', @payload)
   end
 
   def remove_from_media
     return unless @status.public_visibility?
+
+    return if deliver_quietly?
 
     redis.publish('timeline:public:media', @payload)
     redis.publish(@status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', @payload)
@@ -142,5 +156,9 @@ class RemoveStatusService < BaseService
 
   def permanently?
     @options[:immediate] || !(@options[:preserve] || @status.reported?)
+  end
+
+  def deliver_quietly?
+    !!@options[:deliver_quietly]
   end
 end
