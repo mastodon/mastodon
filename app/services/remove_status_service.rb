@@ -109,9 +109,7 @@ class RemoveStatusService < BaseService
     # without us being able to do all the fancy stuff
 
     @status.reblogs.rewhere(deleted_at: [nil, @status.deleted_at]).includes(:account).reorder(nil).find_each do |reblog|
-      # We don't pass through deliver_quietly? here as the Reblog may be much
-      # newer than the status being removed
-      RemoveStatusService.new.call(reblog, original_removed: true)
+      RemoveStatusService.new.call(reblog, original_removed: true, deliver_quietly: deliver_quietly?)
     end
   end
 
