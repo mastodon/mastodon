@@ -50,8 +50,8 @@ describe RequestPool do
 
     context 'with an idle connection' do
       before do
-        stub_const('RequestPool::MAX_IDLE_TIME', 0.2) # Lower the idle time limit to 0.2 seconds
-        stub_const('RequestPool::REAPER_FREQUENCY', 0.1) # Run the reaper every 0.1 seconds
+        stub_const('RequestPool::MAX_IDLE_TIME', 1) # Lower idle time limit to 1 seconds
+        stub_const('RequestPool::REAPER_FREQUENCY', 0.1) # Run reaper every 0.1 seconds
         stub_request(:get, 'http://example.com/').to_return(status: 200, body: 'Hello!')
       end
 
@@ -60,11 +60,12 @@ describe RequestPool do
           http_client.get('/').flush
         end
 
-        expect { wait_for_idle_timeout }.to change(subject, :size).from(1).to(0)
+        expect { reaper_observes_idle_timeout }.to change(subject, :size).from(1).to(0)
       end
 
-      def wait_for_idle_timeout
-        sleep RequestPool::MAX_IDLE_TIME + 0.1 # Wait slightly longer than idle time
+      def reaper_observes_idle_timeout
+        # One full idle period and 2 reaper cycles more
+        sleep RequestPool::MAX_IDLE_TIME + (RequestPool::REAPER_FREQUENCY * 2)
       end
     end
   end
