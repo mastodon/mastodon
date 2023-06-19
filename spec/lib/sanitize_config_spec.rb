@@ -43,6 +43,10 @@ describe Sanitize::Config do
     it 'keeps a with supported scheme and no host' do
       expect(Sanitize.fragment('<a href="dweb:/a/foo">Test</a>', subject)).to eq '<a href="dweb:/a/foo" rel="nofollow noopener noreferrer" target="_blank">Test</a>'
     end
+
+    it 'keeps title in abbr' do
+      expect(Sanitize.fragment('<abbr title="HyperText Markup Language">HTML</abbr>', subject)).to eq '<abbr title="HyperText Markup Language">HTML</abbr>'
+    end
   end
 
   describe '::MASTODON_OUTGOING' do
