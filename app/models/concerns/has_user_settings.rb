@@ -107,6 +107,10 @@ module HasUserSettings
     settings['default_privacy'] || (account.locked? ? 'private' : 'public')
   end
 
+  def setting_retain_privacy
+    settings['retain_privacy']
+  end
+
   def allows_report_emails?
     settings['notification_emails.report']
   end

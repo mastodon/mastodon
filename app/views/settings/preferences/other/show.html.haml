@@ -24,6 +24,9 @@
         = ff.input :default_language, collection: [nil] + filterable_languages, wrapper: :with_label, label_method: lambda { |locale| locale.nil? ? I18n.t('statuses.default_language') : native_locale_name(locale) }, required: false, include_blank: false, hint: false, label: I18n.t('simple_form.labels.defaults.setting_default_language')
 
     .fields-group
+      = ff.input :retain_privacy, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_retain_privacy'), hint: I18n.t('simple_form.hints.defaults.setting_retain_privacy')
+
+    .fields-group
       = ff.input :default_sensitive, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_default_sensitive'), hint: I18n.t('simple_form.hints.defaults.setting_default_sensitive')
 
     .fields-group
