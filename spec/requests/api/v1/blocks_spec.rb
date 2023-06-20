@@ -34,8 +34,8 @@ RSpec.describe 'Blocks' do
       expect(body_as_json).to match_array(expected_response)
     end
 
-    context 'when limit param' do
-      let(:params) { { limit: 1 } }
+    context 'with limit param' do
+      let(:params) { { limit: 2 } }
 
       it 'returns only the requested number of blocked accounts' do
         subject
@@ -43,10 +43,16 @@ RSpec.describe 'Blocks' do
         expect(body_as_json.size).to eq(params[:limit])
       end
 
-      it 'sets the correct pagination headers' do
+      it 'sets the correct pagination header for the prev path' do
         subject
 
         expect(response.headers['Link'].find_link(%w(rel prev)).href).to eq(api_v1_blocks_url(limit: params[:limit], since_id: blocks.last.id))
+      end
+
+      it 'sets the correct pagination header for the next path' do
+        subject
+
+        expect(response.headers['Link'].find_link(%w(rel next)).href).to eq(api_v1_blocks_url(limit: params[:limit], max_id: blocks[1].id))
       end
     end
   end
