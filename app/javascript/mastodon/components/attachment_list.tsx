@@ -1,24 +1,20 @@
-import PropTypes from 'prop-types';
-
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { Icon }  from 'mastodon/components/icon';
+import type { MediaAttachment } from 'app/javascript/types/media_attachments';
+import { Icon } from 'mastodon/components/icon';
 
-const filename = url => url.split('/').pop().split('#')[0].split('?')[0];
+const filename = (url: string) => new URL(url).pathname.split('/').pop();
 
-export default class AttachmentList extends ImmutablePureComponent {
-
-  static propTypes = {
-    media: ImmutablePropTypes.list.isRequired,
-    compact: PropTypes.bool,
-  };
-
-  render () {
+interface Props {
+  media: MediaAttachment[];
+  compact: boolean;
+}
+export class AttachmentList extends ImmutablePureComponent<Props> {
+  render() {
     const { media, compact } = this.props;
 
     return (
@@ -30,15 +26,24 @@ export default class AttachmentList extends ImmutablePureComponent {
         )}
 
         <ul className='attachment-list__list'>
-          {media.map(attachment => {
-            const displayUrl = attachment.get('remote_url') || attachment.get('url');
+          {media.map((attachment) => {
+            const displayUrl =
+              attachment.get('remote_url', undefined) ||
+              attachment.get('url', undefined);
 
             return (
-              <li key={attachment.get('id')}>
+              <li key={attachment.get('id', undefined)}>
                 <a href={displayUrl} target='_blank' rel='noopener noreferrer'>
                   {compact && <Icon id='link' />}
-                  {compact && ' ' }
-                  {displayUrl ? filename(displayUrl) : <FormattedMessage id='attachments_list.unprocessed' defaultMessage='(unprocessed)' />}
+                  {compact && ' '}
+                  {displayUrl ? (
+                    filename(displayUrl)
+                  ) : (
+                    <FormattedMessage
+                      id='attachments_list.unprocessed'
+                      defaultMessage='(unprocessed)'
+                    />
+                  )}
                 </a>
               </li>
             );
@@ -47,5 +52,4 @@ export default class AttachmentList extends ImmutablePureComponent {
       </div>
     );
   }
-
 }

@@ -9,7 +9,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
 import { changeBoostPrivacy } from 'mastodon/actions/boosts';
-import AttachmentList from 'mastodon/components/attachment_list';
+import { AttachmentList } from 'mastodon/components/attachment_list';
 import { Icon }  from 'mastodon/components/icon';
 import PrivacyDropdown from 'mastodon/features/compose/components/privacy_dropdown';
 

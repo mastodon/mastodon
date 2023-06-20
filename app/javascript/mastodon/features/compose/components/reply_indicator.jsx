@@ -5,7 +5,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import AttachmentList from 'mastodon/components/attachment_list';
+import { AttachmentList } from 'mastodon/components/attachment_list';
 
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';
