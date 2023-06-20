@@ -23,7 +23,7 @@ RSpec.describe 'Account actions' do
     end
   end
 
-  shared_examples 'a successful logged action' do |action_type|
+  shared_examples 'a successful logged action' do |action_type, target_type|
     it 'logs action' do
       subject
 
@@ -32,7 +32,7 @@ RSpec.describe 'Account actions' do
       expect(log_item).to be_present
       expect(log_item.action).to eq(action_type)
       expect(log_item.account_id).to eq(user.account_id)
-      expect(log_item.target_id).to eq(action_type == :disable ? target_account.user.id : target_account.id)
+      expect(log_item.target_id).to eq(target_type == :user ? target_account.user.id : target_account.id)
     end
   end
 
@@ -49,7 +49,7 @@ RSpec.describe 'Account actions' do
       it_behaves_like 'forbidden for wrong scope', 'admin:read admin:read:accounts'
       it_behaves_like 'forbidden for wrong role', ''
       it_behaves_like 'a successful notification delivery'
-      it_behaves_like 'a successful logged action', :disable
+      it_behaves_like 'a successful logged action', :disable, :user
 
       it 'returns http success' do
         subject
@@ -68,7 +68,7 @@ RSpec.describe 'Account actions' do
       it_behaves_like 'forbidden for wrong scope', 'admin:read admin:read:accounts'
       it_behaves_like 'forbidden for wrong role', ''
       it_behaves_like 'a successful notification delivery'
-      it_behaves_like 'a successful logged action', :sensitive
+      it_behaves_like 'a successful logged action', :sensitive, :account
 
       it 'returns http success' do
         subject
@@ -87,7 +87,7 @@ RSpec.describe 'Account actions' do
       it_behaves_like 'forbidden for wrong scope', 'admin:read admin:read:accounts'
       it_behaves_like 'forbidden for wrong role', ''
       it_behaves_like 'a successful notification delivery'
-      it_behaves_like 'a successful logged action', :silence
+      it_behaves_like 'a successful logged action', :silence, :account
 
       it 'returns http success' do
         subject
@@ -106,7 +106,7 @@ RSpec.describe 'Account actions' do
       it_behaves_like 'forbidden for wrong scope', 'admin:read admin:read:accounts'
       it_behaves_like 'forbidden for wrong role', ''
       it_behaves_like 'a successful notification delivery'
-      it_behaves_like 'a successful logged action', :suspend
+      it_behaves_like 'a successful logged action', :suspend, :account
 
       it 'returns http success' do
         subject
