@@ -18,6 +18,7 @@ RSpec.describe Api::V1::ConversationsController do
 
     before do
       PostStatusService.new.call(other.account, text: 'Hey @alice', visibility: 'direct')
+      PostStatusService.new.call(user.account, text: 'Hey, nobody here', visibility: 'direct')
     end
 
     it 'returns http success' do
@@ -33,7 +34,8 @@ RSpec.describe Api::V1::ConversationsController do
     it 'returns conversations' do
       get :index
       json = body_as_json
-      expect(json.size).to eq 1
+      expect(json.size).to eq 2
+      expect(json[0][:accounts].size).to eq 1
     end
 
     context 'with since_id' do
@@ -41,7 +43,7 @@ RSpec.describe Api::V1::ConversationsController do
         it 'returns conversations' do
           get :index, params: { since_id: Mastodon::Snowflake.id_at(1.hour.ago, with_random: false) }
           json = body_as_json
-          expect(json.size).to eq 1
+          expect(json.size).to eq 2
         end
       end
 
