@@ -23,6 +23,19 @@ RSpec.describe 'Account actions' do
     end
   end
 
+  shared_examples 'a successful logged action' do |action_type|
+    it 'logs action' do
+      subject
+
+      log_item = Admin::ActionLog.last
+
+      expect(log_item).to be_present
+      expect(log_item.action).to eq(action_type)
+      expect(log_item.account_id).to eq(user.account_id)
+      expect(log_item.target_id).to eq(action_type == :disable ? target_account.user.id : target_account.id)
+    end
+  end
+
   describe 'POST /api/v1/admin/accounts/:id/action' do
     subject do
       post "/api/v1/admin/accounts/#{target_account.id}/action", headers: headers, params: params
@@ -36,6 +49,7 @@ RSpec.describe 'Account actions' do
       it_behaves_like 'forbidden for wrong scope', 'admin:read admin:read:accounts'
       it_behaves_like 'forbidden for wrong role', ''
       it_behaves_like 'a successful notification delivery'
+      it_behaves_like 'a successful logged action', :disable
 
       it 'returns http success' do
         subject
@@ -54,6 +68,7 @@ RSpec.describe 'Account actions' do
       it_behaves_like 'forbidden for wrong scope', 'admin:read admin:read:accounts'
       it_behaves_like 'forbidden for wrong role', ''
       it_behaves_like 'a successful notification delivery'
+      it_behaves_like 'a successful logged action', :sensitive
 
       it 'returns http success' do
         subject
@@ -72,6 +87,7 @@ RSpec.describe 'Account actions' do
       it_behaves_like 'forbidden for wrong scope', 'admin:read admin:read:accounts'
       it_behaves_like 'forbidden for wrong role', ''
       it_behaves_like 'a successful notification delivery'
+      it_behaves_like 'a successful logged action', :silence
 
       it 'returns http success' do
         subject
@@ -90,6 +106,7 @@ RSpec.describe 'Account actions' do
       it_behaves_like 'forbidden for wrong scope', 'admin:read admin:read:accounts'
       it_behaves_like 'forbidden for wrong role', ''
       it_behaves_like 'a successful notification delivery'
+      it_behaves_like 'a successful logged action', :suspend
 
       it 'returns http success' do
         subject
