@@ -16,30 +16,55 @@ describe Rack::Attack, type: :request do
       # https://github.com/rack/rack-attack/blob/v6.6.1/lib/rack/attack/cache.rb#L64-L66
       # So we want to minimize `Time.now.to_i % period`
 
-      travel_to Time.zone.at((Time.now.to_i / period.seconds).to_i * period.seconds)
+      travel_to Time.zone.at(counter_prefix * period.seconds)
     end
 
     context 'when the number of requests is lower than the limit' do
+      before do
+        below_limit.times { increment_counter }
+      end
+
       it 'does not change the request status' do
-        limit.times do
-          request.call
-          expect(response).to_not have_http_status(429)
-        end
+        expect { request.call }.to change { throttle_count }.by(1)
+
+        expect(response).to_not have_http_status(429)
       end
     end
 
     context 'when the number of requests is higher than the limit' do
+      before do
+        above_limit.times { increment_counter }
+      end
+
       it 'returns http too many requests after limit and returns to normal status after period' do
-        (limit * 2).times do |i|
-          request.call
-          expect(response).to have_http_status(429) if i > limit
-        end
+        expect { request.call }.to change { throttle_count }.by(1)
+        expect(response).to have_http_status(429)
 
         travel period
 
-        request.call
+        expect { request.call }.to change { throttle_count }.by(1)
         expect(response).to_not have_http_status(429)
       end
+    end
+
+    def below_limit
+      limit - 1
+    end
+
+    def above_limit
+      limit * 2
+    end
+
+    def throttle_count
+      described_class.cache.read("#{counter_prefix}:#{throttle}:#{remote_ip}") || 0
+    end
+
+    def counter_prefix
+      (Time.now.to_i / period.seconds).to_i
+    end
+
+    def increment_counter
+      described_class.cache.count("#{throttle}:#{remote_ip}", period)
     end
   end
 
@@ -47,6 +72,7 @@ describe Rack::Attack, type: :request do
 
   describe 'throttle excessive sign-up requests by IP address' do
     context 'when accessed through the website' do
+      let(:throttle) { 'throttle_sign_up_attempts/ip' }
       let(:limit)  { 25 }
       let(:period) { 5.minutes }
       let(:request) { -> { post path, headers: { 'REMOTE_ADDR' => remote_ip } } }
@@ -65,6 +91,7 @@ describe Rack::Attack, type: :request do
     end
 
     context 'when accessed through the API' do
+      let(:throttle) { 'throttle_api_sign_up' }
       let(:limit)  { 5 }
       let(:period) { 30.minutes }
       let(:request) { -> { post path, headers: { 'REMOTE_ADDR' => remote_ip } } }
@@ -87,6 +114,7 @@ describe Rack::Attack, type: :request do
   end
 
   describe 'throttle excessive sign-in requests by IP address' do
+    let(:throttle) { 'throttle_login_attempts/ip' }
     let(:limit)  { 25 }
     let(:period) { 5.minutes }
     let(:request) { -> { post path, headers: { 'REMOTE_ADDR' => remote_ip } } }
