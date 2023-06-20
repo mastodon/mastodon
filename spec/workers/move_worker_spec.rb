@@ -67,39 +67,31 @@ describe MoveWorker do
   end
 
   shared_examples 'block and mute handling' do
-    it 'makes blocks carry over and add a note' do
+    it 'makes blocks and mutes carry over and adds a note' do
       subject.perform(source_account.id, target_account.id)
+
       expect(block_service).to have_received(:call).with(blocking_account, target_account)
       expect(AccountNote.find_by(account: blocking_account, target_account: target_account).comment).to include(source_account.acct)
-    end
 
-    it 'makes mutes carry over and add a note' do
-      subject.perform(source_account.id, target_account.id)
       expect(muting_account.muting?(target_account)).to be true
       expect(AccountNote.find_by(account: muting_account, target_account: target_account).comment).to include(source_account.acct)
     end
   end
 
   shared_examples 'followers count handling' do
-    it 'updates the source account followers count' do
+    it 'updates the source and target account followers counts' do
       subject.perform(source_account.id, target_account.id)
-      expect(source_account.reload.followers_count).to eq(source_account.passive_relationships.count)
-    end
 
-    it 'updates the target account followers count' do
-      subject.perform(source_account.id, target_account.id)
+      expect(source_account.reload.followers_count).to eq(source_account.passive_relationships.count)
       expect(target_account.reload.followers_count).to eq(target_account.passive_relationships.count)
     end
   end
 
   shared_examples 'lists handling' do
-    it 'puts the new account on the list' do
+    it 'puts the new account on the list and makes valid lists', sidekiq: :inline do
       subject.perform(source_account.id, target_account.id)
-      expect(list.accounts.include?(target_account)).to be true
-    end
 
-    it 'does not create invalid list memberships' do
-      subject.perform(source_account.id, target_account.id)
+      expect(list.accounts.include?(target_account)).to be true
       expect(ListAccount.all).to all be_valid
     end
   end
