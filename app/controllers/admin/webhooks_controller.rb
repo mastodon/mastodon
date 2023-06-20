@@ -42,7 +42,7 @@ module Admin
       if @webhook.update(resource_params)
         redirect_to admin_webhook_path(@webhook)
       else
-        render :show
+        render :edit
       end
     end
 
