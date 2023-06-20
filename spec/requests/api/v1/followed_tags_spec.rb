@@ -41,12 +41,24 @@ RSpec.describe 'Followed tags' do
     end
 
     context 'with limit param' do
-      let(:params) { { limit: 1 } }
+      let(:params) { { limit: 3 } }
 
       it 'returns only the requested number of follow tags' do
         subject
 
         expect(body_as_json.size).to eq(params[:limit])
+      end
+
+      it 'sets the correct pagination header for the prev path' do
+        subject
+
+        expect(response.headers['Link'].find_link(%w(rel prev)).href).to eq(api_v1_followed_tags_url(limit: params[:limit], since_id: tag_follows.last.id))
+      end
+
+      it 'sets the correct pagination header for the next path' do
+        subject
+
+        expect(response.headers['Link'].find_link(%w(rel next)).href).to eq(api_v1_followed_tags_url(limit: params[:limit], max_id: tag_follows[2].id))
       end
     end
   end
