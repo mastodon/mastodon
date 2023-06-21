@@ -46,6 +46,26 @@ RSpec.describe 'Media' do
         expect(response).to have_http_status(206)
       end
     end
+
+    context 'when the media belongs to somebody else' do
+      let(:media) { Fabricate(:media_attachment) }
+
+      it 'returns http not found' do
+        subject
+
+        expect(response).to have_http_status(404)
+      end
+    end
+
+    context 'when media is attached to a status' do
+      let(:media) { Fabricate(:media_attachment, account: user.account, status: Fabricate.build(:status)) }
+
+      it 'returns http not found' do
+        subject
+
+        expect(response).to have_http_status(404)
+      end
+    end
   end
 
   describe 'POST /api/v1/media' do
