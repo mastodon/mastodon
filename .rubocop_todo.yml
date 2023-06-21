@@ -78,7 +78,6 @@ RSpec/AnyInstance:
     - 'spec/controllers/admin/accounts_controller_spec.rb'
     - 'spec/controllers/admin/resets_controller_spec.rb'
     - 'spec/controllers/admin/settings/branding_controller_spec.rb'
-    - 'spec/controllers/api/v1/media_controller_spec.rb'
     - 'spec/controllers/auth/sessions_controller_spec.rb'
     - 'spec/controllers/settings/two_factor_authentication/confirmations_controller_spec.rb'
     - 'spec/controllers/settings/two_factor_authentication/recovery_codes_controller_spec.rb'
@@ -178,7 +177,6 @@ RSpec/LetSetup:
 
 RSpec/MessageChain:
   Exclude:
-    - 'spec/controllers/api/v1/media_controller_spec.rb'
     - 'spec/models/concerns/remotable_spec.rb'
     - 'spec/models/session_activation_spec.rb'
     - 'spec/models/setting_spec.rb'
