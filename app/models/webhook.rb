@@ -20,6 +20,8 @@ class Webhook < ApplicationRecord
     report.created
   ).freeze
 
+  attr_writer :current_account
+
   scope :enabled, -> { where(enabled: true) }
 
   validates :url, presence: true, url: true
@@ -27,6 +29,7 @@ class Webhook < ApplicationRecord
   validates :events, presence: true
 
   validate :validate_events
+  validate :validate_permissions
 
   before_validation :strip_events
   before_validation :generate_secret
@@ -43,10 +46,27 @@ class Webhook < ApplicationRecord
     update!(enabled: false)
   end
 
+  def required_permissions
+    events.map { |event| Webhook.permission_for_event(event) }
+  end
+
+  def self.permission_for_event(event)
+    case event
+    when 'account.approved', 'account.created', 'account.updated'
+      :manage_users
+    when 'report.created'
+      :manage_reports
+    end
+  end
+
   private
 
   def validate_events
     errors.add(:events, :invalid) if events.any? { |e| !EVENTS.include?(e) }
+  end
+
+  def validate_permissions
+    errors.add(:events, :invalid_permissions) if defined?(@current_account) && required_permissions.any? { |permission| !@current_account.user_role.can?(permission) }
   end
 
   def strip_events
