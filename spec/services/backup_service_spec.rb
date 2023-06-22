@@ -30,7 +30,7 @@ RSpec.describe BackupService, type: :service do
     it 'stores them as expected' do
       service_call
 
-      json = Oj.load(read_zip_file(backup, 'actor.json'))
+      json = export_json(:actor)
       avatar_path = json.dig('icon', 'url')
       header_path = json.dig('image', 'url')
 
@@ -42,47 +42,60 @@ RSpec.describe BackupService, type: :service do
     end
   end
 
-  it 'marks the backup as processed' do
-    expect { service_call }.to change(backup, :processed).from(false).to(true)
+  it 'marks the backup as processed and exports files' do
+    expect { service_call }.to process_backup
+
+    expect_outbox_export
+    expect_likes_export
+    expect_bookmarks_export
   end
 
-  it 'exports outbox.json as expected' do
-    service_call
+  def process_backup
+    change(backup, :processed).from(false).to(true)
+  end
 
-    json = Oj.load(read_zip_file(backup, 'outbox.json'))
-    expect(json['@context']).to_not be_nil
-    expect(json['type']).to eq 'OrderedCollection'
-    expect(json['totalItems']).to eq 2
-    expect(json['orderedItems'][0]['@context']).to be_nil
-    expect(json['orderedItems'][0]).to include({
+  def expect_outbox_export
+    json = export_json(:outbox)
+
+    aggregate_failures do
+      expect(json['@context']).to_not be_nil
+      expect(json['type']).to eq 'OrderedCollection'
+      expect(json['totalItems']).to eq 2
+      expect(json['orderedItems'][0]['@context']).to be_nil
+      expect(json['orderedItems'][0]).to include_create_item(status)
+      expect(json['orderedItems'][1]).to include_create_item(private_status)
+    end
+  end
+
+  def expect_likes_export
+    json = export_json(:likes)
+
+    aggregate_failures do
+      expect(json['type']).to eq 'OrderedCollection'
+      expect(json['orderedItems']).to eq [ActivityPub::TagManager.instance.uri_for(favourite.status)]
+    end
+  end
+
+  def expect_bookmarks_export
+    json = export_json(:bookmarks)
+
+    aggregate_failures do
+      expect(json['type']).to eq 'OrderedCollection'
+      expect(json['orderedItems']).to eq [ActivityPub::TagManager.instance.uri_for(bookmark.status)]
+    end
+  end
+
+  def export_json(type)
+    Oj.load(read_zip_file(backup, "#{type}.json"))
+  end
+
+  def include_create_item(status)
+    include({
       'type' => 'Create',
       'object' => include({
         'id' => ActivityPub::TagManager.instance.uri_for(status),
-        'content' => '<p>Hello</p>',
+        'content' => "<p>#{status.text}</p>",
       }),
     })
-    expect(json['orderedItems'][1]).to include({
-      'type' => 'Create',
-      'object' => include({
-        'id' => ActivityPub::TagManager.instance.uri_for(private_status),
-        'content' => '<p>secret</p>',
-      }),
-    })
-  end
-
-  it 'exports likes.json as expected' do
-    service_call
-
-    json = Oj.load(read_zip_file(backup, 'likes.json'))
-    expect(json['type']).to eq 'OrderedCollection'
-    expect(json['orderedItems']).to eq [ActivityPub::TagManager.instance.uri_for(favourite.status)]
-  end
-
-  it 'exports bookmarks.json as expected' do
-    service_call
-
-    json = Oj.load(read_zip_file(backup, 'bookmarks.json'))
-    expect(json['type']).to eq 'OrderedCollection'
-    expect(json['orderedItems']).to eq [ActivityPub::TagManager.instance.uri_for(bookmark.status)]
   end
 end
