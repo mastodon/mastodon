@@ -8,6 +8,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { openModal } from 'flavours/glitch/actions/modal';
+import { fetchServer } from 'flavours/glitch/actions/server';
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { WordmarkLogo, SymbolLogo } from 'flavours/glitch/components/logo';
 import Permalink from 'flavours/glitch/components/permalink';
@@ -29,6 +30,9 @@ const mapDispatchToProps = (dispatch) => ({
   openClosedRegistrationsModal() {
     dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' }));
   },
+  dispatchServer() {
+    dispatch(fetchServer());
+  }
 });
 
 class Header extends PureComponent {
@@ -41,7 +45,13 @@ class Header extends PureComponent {
     openClosedRegistrationsModal: PropTypes.func,
     location: PropTypes.object,
     signupUrl: PropTypes.string.isRequired,
+    dispatchServer: PropTypes.func
   };
+
+  componentDidMount () {
+    const { dispatchServer } = this.props;
+    dispatchServer();
+  }
 
   render () {
     const { signedIn } = this.context.identity;
