@@ -15,13 +15,14 @@ import { fetchFavouritedStatuses, expandFavouritedStatuses } from 'mastodon/acti
 import ColumnHeader from 'mastodon/components/column_header';
 import StatusList from 'mastodon/components/status_list';
 import Column from 'mastodon/features/ui/components/column';
+import { getStatusList } from 'mastodon/selectors';
 
 const messages = defineMessages({
   heading: { id: 'column.favourites', defaultMessage: 'Favourites' },
 });
 
 const mapStateToProps = state => ({
-  statusIds: state.getIn(['status_lists', 'favourites', 'items']),
+  statusIds: getStatusList(state, 'favourites'),
   isLoading: state.getIn(['status_lists', 'favourites', 'isLoading'], true),
   hasMore: !!state.getIn(['status_lists', 'favourites', 'next']),
 });
