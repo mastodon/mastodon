@@ -8695,27 +8695,71 @@ noscript {
 }
 
 .dismissable-banner {
-  background: $ui-base-color;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-  display: flex;
-  align-items: center;
-  gap: 30px;
+  position: relative;
+  margin: 10px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  border: 1px solid $highlight-text-color;
+  background: rgba($highlight-text-color, 0.15);
+  padding-inline-end: 45px;
+  overflow: hidden;
+
+  &__background-image {
+    width: 125%;
+    position: absolute;
+    bottom: -25%;
+    inset-inline-end: -25%;
+    z-index: -1;
+    opacity: 0.15;
+    mix-blend-mode: luminosity;
+  }
 
   &__message {
     flex: 1 1 auto;
-    padding: 20px 15px;
-    cursor: default;
-    font-size: 14px;
-    line-height: 18px;
+    padding: 15px;
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 500;
     color: $primary-text-color;
+
+    p {
+      margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    h1 {
+      color: $highlight-text-color;
+      font-size: 22px;
+      line-height: 33px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 30px;
+    }
+
+    .button-tertiary {
+      background: rgba($ui-base-color, 0.15);
+      backdrop-filter: blur(8px);
+    }
   }
 
   &__action {
-    padding: 15px;
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    inset-inline-end: 0;
+    top: 0;
+    padding: 10px;
+
+    .icon-button {
+      color: $highlight-text-color;
+    }
   }
 }
 
