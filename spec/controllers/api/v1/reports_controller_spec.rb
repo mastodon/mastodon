@@ -23,7 +23,8 @@ RSpec.describe Api::V1::ReportsController do
     let(:rule_ids) { nil }
 
     before do
-      allow(AdminMailer).to receive(:new_report).and_return(double('email', deliver_later: nil))
+      allow(AdminMailer).to receive(:new_report)
+        .and_return(instance_double(ActionMailer::MessageDelivery, deliver_later: nil))
       post :create, params: { status_ids: [status.id], account_id: target_account.id, comment: 'reasons', category: category, rule_ids: rule_ids, forward: forward }
     end
 
