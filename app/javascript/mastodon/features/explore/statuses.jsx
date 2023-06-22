@@ -11,9 +11,10 @@ import { debounce } from 'lodash';
 import { fetchTrendingStatuses, expandTrendingStatuses } from 'mastodon/actions/trends';
 import DismissableBanner from 'mastodon/components/dismissable_banner';
 import StatusList from 'mastodon/components/status_list';
+import { getStatusList } from 'mastodon/selectors';
 
 const mapStateToProps = state => ({
-  statusIds: state.getIn(['status_lists', 'trending', 'items']),
+  statusIds: getStatusList(state, 'trending'),
   isLoading: state.getIn(['status_lists', 'trending', 'isLoading'], true),
   hasMore: !!state.getIn(['status_lists', 'trending', 'next']),
 });
