@@ -142,11 +142,8 @@ class CommunityTimeline extends PureComponent {
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
-        <DismissableBanner id='community_timeline'>
-          <FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} />
-        </DismissableBanner>
-
         <StatusListContainer
+          prepend={<DismissableBanner id='community_timeline'><FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} /></DismissableBanner>}
           trackScroll={!pinned}
           scrollKey={`community_timeline-${columnId}`}
           timelineId={`community${onlyMedia ? ':media' : ''}`}
