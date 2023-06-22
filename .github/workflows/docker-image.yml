@@ -32,8 +32,8 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
-          username: ${{ secrets.DOCKER_PASSWORD }}
-          password: ${{ secrets.DOCKER_USERNAME }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Generate version suffix
         id: version_vars
         if: github.repository == 'so02iti01/mastodon' && github.event_name == 'push' && github.ref_name == 'main'
