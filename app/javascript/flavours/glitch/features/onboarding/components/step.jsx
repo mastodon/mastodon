@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Check } from 'flavours/glitch/components/check';
 import { Icon }  from 'flavours/glitch/components/icon';
 
+import ArrowSmallRight from './arrow_small_right';
+
 const Step = ({ label, description, icon, completed, onClick, href }) => {
   const content = (
     <>
@@ -15,11 +17,9 @@ const Step = ({ label, description, icon, completed, onClick, href }) => {
         <p>{description}</p>
       </div>
 
-      {completed && (
-        <div className='onboarding__steps__item__progress'>
-          <Check />
-        </div>
-      )}
+      <div className={completed ? 'onboarding__steps__item__progress' : 'onboarding__steps__item__go'}>
+        {completed ? <Check /> : <ArrowSmallRight />}
+      </div>
     </>
   );
 

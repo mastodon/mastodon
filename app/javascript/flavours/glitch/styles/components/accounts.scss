@@ -36,12 +36,37 @@
   }
 
   &__note {
+    font-size: 14px;
+    font-weight: 400;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    color: $ui-secondary-color;
+    margin-top: 10px;
+    color: $darker-text-color;
+
+    &--missing {
+      color: $dark-text-color;
+    }
+
+    p {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      color: inherit;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+      }
+    }
   }
 }
 
