@@ -1514,12 +1514,37 @@ body > [data-popper-placement] {
   }
 
   &__note {
+    font-size: 14px;
+    font-weight: 400;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    color: $ui-secondary-color;
+    margin-top: 10px;
+    color: $darker-text-color;
+
+    &--missing {
+      color: $dark-text-color;
+    }
+
+    p {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      color: inherit;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+      }
+    }
   }
 }
 
@@ -2617,13 +2642,15 @@ $ui-header-height: 55px;
 .onboarding__link {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   color: $highlight-text-color;
   background: lighten($ui-base-color, 4%);
   border-radius: 8px;
-  padding: 10px;
+  padding: 10px 15px;
   box-sizing: border-box;
-  font-size: 17px;
+  font-size: 14px;
+  font-weight: 500;
   height: 56px;
   text-decoration: none;
 
@@ -2685,6 +2712,7 @@ $ui-header-height: 55px;
     align-items: center;
     gap: 10px;
     padding: 10px;
+    padding-inline-end: 15px;
     margin-bottom: 2px;
     text-decoration: none;
     text-align: start;
@@ -2697,14 +2725,14 @@ $ui-header-height: 55px;
 
     &__icon {
       flex: 0 0 auto;
-      background: $ui-base-color;
       border-radius: 50%;
       display: none;
       align-items: center;
       justify-content: center;
       width: 36px;
       height: 36px;
-      color: $dark-text-color;
+      color: $highlight-text-color;
+      font-size: 1.2rem;
 
       @media screen and (width >= 600px) {
         display: flex;
@@ -2728,16 +2756,33 @@ $ui-header-height: 55px;
       }
     }
 
+    &__go {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 21px;
+      height: 21px;
+      color: $highlight-text-color;
+      font-size: 17px;
+
+      svg {
+        height: 1.5em;
+        width: auto;
+      }
+    }
+
     &__description {
       flex: 1 1 auto;
-      line-height: 18px;
+      line-height: 20px;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
 
       h6 {
-        color: $primary-text-color;
-        font-weight: 700;
+        color: $highlight-text-color;
+        font-weight: 500;
+        font-size: 14px;
         overflow: hidden;
         text-overflow: ellipsis;
       }
