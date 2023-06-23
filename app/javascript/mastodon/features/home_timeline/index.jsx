@@ -35,21 +35,18 @@ const getHomeFeedSpeed = createSelector([
   state => state.get('statuses'),
 ], (statusIds, statusMap) => {
   const statuses = statusIds.take(20).map(id => statusMap.get(id));
-  const uniqueAccountIds = (new Set(statuses.map(status => status.get('account')).toArray())).size;
   const oldest = new Date(statuses.getIn([statuses.size - 1, 'created_at'], 0));
   const newest = new Date(statuses.getIn([0, 'created_at'], 0));
   const averageGap = (newest - oldest) / (1000 * (statuses.size + 1)); // Average gap between posts on first page in seconds
 
   return {
-    unique: uniqueAccountIds,
     gap: averageGap,
     newest,
   };
 });
 
 const homeTooSlow = createSelector(getHomeFeedSpeed, speed =>
-  speed.unique < 5 // If there are fewer than 5 different accounts visible
-  || speed.gap > (30 * 60) // If the average gap between posts is more than 20 minutes
+  speed.gap > (30 * 60) // If the average gap between posts is more than 20 minutes
   || (Date.now() - speed.newest) > (1000 * 3600) // If the most recent post is from over an hour ago
 );
 
