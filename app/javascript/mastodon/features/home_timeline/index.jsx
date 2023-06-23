@@ -14,6 +14,7 @@ import { fetchAnnouncements, toggleShowAnnouncements } from 'mastodon/actions/an
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
 import AnnouncementsContainer from 'mastodon/features/getting_started/containers/announcements_container';
+import { me } from 'mastodon/initial_state';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { expandHomeTimeline } from '../../actions/timelines';
@@ -34,22 +35,19 @@ const getHomeFeedSpeed = createSelector([
   state => state.getIn(['timelines', 'home', 'items'], ImmutableList()),
   state => state.get('statuses'),
 ], (statusIds, statusMap) => {
-  const statuses = statusIds.take(20).map(id => statusMap.get(id));
-  const uniqueAccountIds = (new Set(statuses.map(status => status.get('account')).toArray())).size;
+  const statuses = statusIds.map(id => statusMap.get(id)).filter(status => status.get('account') !== me).take(20);
   const oldest = new Date(statuses.getIn([statuses.size - 1, 'created_at'], 0));
   const newest = new Date(statuses.getIn([0, 'created_at'], 0));
   const averageGap = (newest - oldest) / (1000 * (statuses.size + 1)); // Average gap between posts on first page in seconds
 
   return {
-    unique: uniqueAccountIds,
     gap: averageGap,
     newest,
   };
 });
 
 const homeTooSlow = createSelector(getHomeFeedSpeed, speed =>
-  speed.unique < 5 // If there are fewer than 5 different accounts visible
-  || speed.gap > (30 * 60) // If the average gap between posts is more than 20 minutes
+  speed.gap > (30 * 60) // If the average gap between posts is more than 20 minutes
   || (Date.now() - speed.newest) > (1000 * 3600) // If the most recent post is from over an hour ago
 );
 
