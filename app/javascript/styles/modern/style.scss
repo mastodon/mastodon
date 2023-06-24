@@ -1,0 +1,4630 @@
+:root {
+  --tl-width: 750px;
+  --radius: 12px;
+  --radius-round: 24px;
+  --hover-color: rgba(170, 170, 170, 0.07);
+  --elevated-color: rgba(150, 150, 200, 0.1);
+  --border-color: rgba(120, 120, 200, 0.2);
+  --border-color-2: #787878;
+  --shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15);
+  --shadow-low: 0 8px 16px -10px rgba(0, 0, 0, 0.4);
+  --shadow-med: 0 8px 60px -30px rgba(0, 0, 0, 0.1);
+}
+.rtl p,
+.rtl textarea {
+  text-align: right;
+  direction: rtl;
+}
+a,
+button,
+label {
+  user-select: none;
+}
+.button--block {
+  font-weight: 700;
+}
+.unhandled-link {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.button,
+.compose-form__upload-thumbnail,
+.compose-form__warning,
+.input-copy,
+.privacy-dropdown__dropdown,
+.react-toggle-track,
+.reply-indicator,
+button:not(.column-header__button),
+iframe,
+input,
+select,
+textarea,
+video {
+  border-radius: var(--radius) !important;
+}
+.focusable:focus-visible,
+.media-gallery__item-thumbnail:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  box-shadow: inset 0 0 0 2px #dc7b18;
+  outline: #dc7b18 solid 2px;
+  outline-offset: -2px;
+}
+:not(.radio-button__input):not(input) {
+  font-display: swap !important;
+}
+:not(.radio-button__input):not(input):not(span) {
+  border-color: var(--border-color) !important;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .account,
+  .account__avatar,
+  .audio-player,
+  .button,
+  .column-back-button,
+  .column-header__back-button,
+  .column-link,
+  .load-more,
+  .media-gallery__item,
+  .setting-toggle,
+  .status-card,
+  .story,
+  .trends__item,
+  select {
+    transition: transform 0.4s cubic-bezier(0, 0, 0, 3) !important;
+  }
+  .account:active,
+  .account:focus-visible,
+  .account__avatar:active,
+  .account__avatar:focus-visible,
+  .audio-player:active,
+  .audio-player:focus-visible,
+  .button:active,
+  .button:focus-visible,
+  .column-back-button:active,
+  .column-back-button:focus-visible,
+  .column-header__back-button:active,
+  .column-header__back-button:focus-visible,
+  .column-link:active,
+  .column-link:focus-visible,
+  .load-more:active,
+  .load-more:focus-visible,
+  .media-gallery__item:active,
+  .media-gallery__item:focus-visible,
+  .setting-toggle:active,
+  .setting-toggle:focus-visible,
+  .status-card:active,
+  .status-card:focus-visible,
+  .story:active,
+  .story:focus-visible,
+  .trends__item:active,
+  .trends__item:focus-visible,
+  select:active,
+  select:focus-visible {
+    transform: scale(0.99);
+    transition: transform 0.4s cubic-bezier(0, 0, 0, 1) !important;
+  }
+  .column-header__button,
+  .column-header__buttons > .column-header__back-button,
+  .floating-action-button,
+  .icon-button,
+  .react-toggle-track {
+    transition: transform 0.4s cubic-bezier(0, 0, 0, 4) !important;
+  }
+  .column-header__button:active,
+  .column-header__buttons > .column-header__back-button:active,
+  .floating-action-button:active,
+  .icon-button:active,
+  .react-toggle-track:active {
+    transform: scale(0.95);
+    transition: transform 0.4s cubic-bezier(0, 0, 0, 1) !important;
+  }
+  .status__content__spoiler-link span {
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0, 0, 0, 4) !important;
+  }
+  .status__content__spoiler-link:active span {
+    transition: transform 0.4s cubic-bezier(0, 0, 0, 1) !important;
+    transform: translateY(1px);
+  }
+  @-moz-keyframes bounceIn {
+    0% {
+      transform: scale(1.1);
+      opacity: 0;
+    }
+    30% {
+      transform: scale(0.99);
+      opacity: 1;
+    }
+    60% {
+      transform: scale(1.005);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  @-webkit-keyframes bounceIn {
+    0% {
+      transform: scale(1.1);
+      opacity: 0;
+    }
+    30% {
+      transform: scale(0.99);
+      opacity: 1;
+    }
+    60% {
+      transform: scale(1.005);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  @-o-keyframes bounceIn {
+    0% {
+      transform: scale(1.1);
+      opacity: 0;
+    }
+    30% {
+      transform: scale(0.99);
+      opacity: 1;
+    }
+    60% {
+      transform: scale(1.005);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  @keyframes bounceIn {
+    0% {
+      transform: scale(1.1);
+      opacity: 0;
+    }
+    30% {
+      transform: scale(0.99);
+      opacity: 1;
+    }
+    60% {
+      transform: scale(1.005);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  @-moz-keyframes slideUp {
+    from {
+      transform: translateY(20px);
+    }
+  }
+  @-webkit-keyframes slideUp {
+    from {
+      transform: translateY(20px);
+    }
+  }
+  @-o-keyframes slideUp {
+    from {
+      transform: translateY(20px);
+    }
+  }
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+    }
+  }
+  @-moz-keyframes slideUpFade {
+    from {
+      transform: translateY(20px);
+      filter: opacity(0);
+    }
+  }
+  @-webkit-keyframes slideUpFade {
+    from {
+      transform: translateY(20px);
+      filter: opacity(0);
+    }
+  }
+  @-o-keyframes slideUpFade {
+    from {
+      transform: translateY(20px);
+      filter: opacity(0);
+    }
+  }
+  @keyframes slideUpFade {
+    from {
+      transform: translateY(20px);
+      filter: opacity(0);
+    }
+  }
+  @-moz-keyframes slideDowFade {
+    from {
+      transform: translateY(-20px);
+      filter: opacity(0);
+    }
+  }
+  @-webkit-keyframes slideDowFade {
+    from {
+      transform: translateY(-20px);
+      filter: opacity(0);
+    }
+  }
+  @-o-keyframes slideDowFade {
+    from {
+      transform: translateY(-20px);
+      filter: opacity(0);
+    }
+  }
+  @keyframes slideDowFade {
+    from {
+      transform: translateY(-20px);
+      filter: opacity(0);
+    }
+  }
+  @-moz-keyframes slideUpBig {
+    from {
+      transform: translateY(50vh);
+    }
+  }
+  @-webkit-keyframes slideUpBig {
+    from {
+      transform: translateY(50vh);
+    }
+  }
+  @-o-keyframes slideUpBig {
+    from {
+      transform: translateY(50vh);
+    }
+  }
+  @keyframes slideUpBig {
+    from {
+      transform: translateY(50vh);
+    }
+  }
+  @-moz-keyframes fadeUp {
+    from {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+  }
+  @-webkit-keyframes fadeUp {
+    from {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+  }
+  @-o-keyframes fadeUp {
+    from {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+  }
+  @keyframes fadeUp {
+    from {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+  }
+  @-moz-keyframes scaleIn {
+    from {
+      transform: scale(0.98);
+      opacity: 0;
+    }
+  }
+  @-webkit-keyframes scaleIn {
+    from {
+      transform: scale(0.98);
+      opacity: 0;
+    }
+  }
+  @-o-keyframes scaleIn {
+    from {
+      transform: scale(0.98);
+      opacity: 0;
+    }
+  }
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.98);
+      opacity: 0;
+    }
+  }
+  @-moz-keyframes fadeLeft {
+    from {
+      transform: translateX(20px) opacity(0);
+    }
+  }
+  @-webkit-keyframes fadeLeft {
+    from {
+      transform: translateX(20px) opacity(0);
+    }
+  }
+  @-o-keyframes fadeLeft {
+    from {
+      transform: translateX(20px) opacity(0);
+    }
+  }
+  @keyframes fadeLeft {
+    from {
+      transform: translateX(20px) opacity(0);
+    }
+  }
+  @-moz-keyframes rainbow {
+    to {
+      filter: hue-rotate(360deg);
+    }
+  }
+  @-webkit-keyframes rainbow {
+    to {
+      filter: hue-rotate(360deg);
+    }
+  }
+  @-o-keyframes rainbow {
+    to {
+      filter: hue-rotate(360deg);
+    }
+  }
+  @keyframes rainbow {
+    to {
+      filter: hue-rotate(360deg);
+    }
+  }
+}
+#profile_page_avatar,
+.account-card__title__avatar img,
+.account__avatar,
+.account__avatar-composite {
+  border-radius: 30% !important;
+}
+.audio-player,
+.column-header__collapsible-inner,
+.detailed-status__action-bar,
+.search__input {
+  border: 0 !important;
+}
+.dropdown-menu,
+.dropdown-menu__container__list,
+.interaction-modal {
+  border-radius: var(--radius);
+}
+.dropdown-menu__container__list {
+  overflow: hidden auto;
+  margin-block: -4px;
+  max-height: 70vh;
+}
+.dropdown-menu__item {
+  overflow: hidden;
+}
+.dropdown-menu__item a {
+  padding: 0.7em 1em !important;
+  transition: background-color 0.2s, color 0.2s;
+  min-width: 150px;
+}
+.dropdown-menu__separator {
+  margin: 0 !important;
+}
+.interaction-modal {
+  overflow-y: auto;
+}
+.interaction-modal__choices {
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.interaction-modal__choices .interaction-modal__choices__choice {
+  max-height: 50vh;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  flex: 1 0 270px;
+  border-radius: var(--radius);
+  transition: background 0.2s;
+  position: relative;
+}
+.compare-history-modal {
+  margin-block: 20px;
+}
+.compare-history-modal__container {
+  overflow: hidden auto;
+}
+.columns-area__panels {
+  --top: 5px;
+}
+@media (min-width: 1175px) {
+  .columns-area__panels {
+    padding-inline: 10px;
+    padding-top: var(--top);
+    box-sizing: border-box;
+    transition: padding 0.4s;
+    --top: 20px;
+  }
+  .columns-area__panels__pane {
+    height: unset !important;
+  }
+  .columns-area__panels__pane .columns-area__panels__pane__inner {
+    height: calc(100% + 20px) !important;
+  }
+}
+#mastodon .compose-panel {
+  margin-top: 0;
+  overflow-y: auto;
+  margin-top: calc(0px - var(--top));
+  padding-top: var(--top);
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  max-height: unset !important;
+}
+#mastodon .search,
+.search-popout {
+  margin-inline: 5px;
+  border-radius: var(--radius);
+}
+#mastodon .search label {
+  box-sizing: border-box;
+}
+#mastodon .search input {
+  border-radius: var(--radius-round) !important;
+  padding-inline-start: 20px !important;
+  padding-inline-end: 40px !important;
+}
+#mastodon .search .search__icon > i {
+  margin-inline: 5px;
+}
+#mastodon .compose__action-bar-dropdown .icon-button {
+  width: auto !important;
+  height: auto !important;
+  padding: 8px;
+}
+#mastodon .compose-form {
+  height: 0;
+}
+#mastodon .compose-form .reply-indicator {
+  position: relative;
+  transition: min-height 0.1s;
+}
+#mastodon .compose-form .reply-indicator__display-name {
+  padding: 0;
+}
+#mastodon .compose-form .autosuggest-textarea__textarea,
+#mastodon .compose-form .compose-form__autosuggest-wrapper {
+  border-radius: var(--radius) var(--radius) 0 0 !important;
+  border-bottom: 0;
+}
+#mastodon .compose-form .compose-form__buttons-wrapper {
+  border-radius: 0 0 var(--radius) var(--radius) !important;
+  position: sticky;
+  bottom: 0;
+}
+#mastodon
+  .compose-form
+  .compose-form__buttons-wrapper
+  .compose-form__buttons
+  > * {
+  border-radius: var(--radius-round);
+  overflow: hidden;
+}
+#mastodon .compose-form .compose-form__publish-button-wrapper {
+  overflow: visible !important;
+  max-width: 100%;
+}
+#mastodon .compose-form .compose-form__upload__actions {
+  z-index: 5;
+  position: relative;
+}
+#mastodon .compose-form .compose-form__upload-thumbnail {
+  display: flex;
+  flex-direction: column;
+}
+#mastodon .compose-form .compose-form__upload__warning {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  flex-grow: 1;
+  box-shadow: 0 -50px rgba(0, 0, 0, 0.7);
+}
+#mastodon .compose-form .compose-form__upload__warning > button {
+  width: 100%;
+  height: 100%;
+  font-weight: 700;
+  padding-inline: 1em;
+  color: #fff;
+}
+#mastodon .compose-form .compose-form__upload__warning > button i {
+  margin-inline-end: 0.2em;
+  transform: scale(1.2);
+}
+.server-banner {
+  padding-inline: 10px;
+}
+.server-banner .server-banner__hero {
+  width: 100%;
+  border-radius: var(--radius) var(--radius) 0 0;
+  border: 1px solid var(--border-color);
+  box-sizing: border-box;
+}
+.server-banner .server-banner__description {
+  border: 1px solid var(--border-color);
+  padding: 14px 12px;
+  margin-top: -20px;
+  line-height: 1.5;
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+.server-banner .server-banner__meta {
+  flex-direction: column;
+}
+.server-banner .server-banner__meta .server-banner__meta__column {
+  width: unset;
+  overflow: visible;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+.server-banner .server-banner__meta .server-banner__meta__column h4 {
+  margin: 0;
+  font-size: 0.9em !important;
+  width: 100%;
+}
+.server-banner .server-banner__meta .server-banner__meta__column .account {
+  margin-inline: -10px;
+  padding: 10px !important;
+  width: 100%;
+}
+.server-banner
+  .server-banner__meta
+  .server-banner__meta__column
+  .account::after {
+  content: unset !important;
+}
+.server-banner
+  .server-banner__meta
+  .server-banner__meta__column
+  .server-banner__number,
+.server-banner
+  .server-banner__meta
+  .server-banner__meta__column
+  .server-banner__number-label {
+  font-size: 1.1em;
+  line-height: 2;
+  margin-inline-end: 0.5em;
+}
+.server-banner
+  .server-banner__meta
+  .server-banner__meta__column
+  .server-banner__number-label {
+  font-weight: 400 !important;
+}
+.navigation-panel__sign-in-banner {
+  margin-inline: 5px;
+  position: relative;
+}
+.navigation-panel__sign-in-banner .sign-in-banner p {
+  line-height: 1.5;
+}
+.navigation-panel__sign-in-banner .sign-in-banner > :last-child {
+  margin-bottom: 0;
+}
+#mastodon .link-footer > p:last-child {
+  margin-bottom: 0;
+}
+.columns-area__panels__main {
+  overflow: visible !important;
+  transition: max-width 0.2s cubic-bezier(0, 0, 0, 1.1),
+    margin 0.2s cubic-bezier(0, 0, 0, 1.1);
+}
+@media (min-width: 1175px) {
+  .columns-area__panels__main {
+    width: 0;
+    flex-grow: 1;
+  }
+}
+@media (min-width: 1320px) {
+  .columns-area__panels {
+    --top: 30px;
+  }
+  .columns-area__panels__main {
+    max-width: var(--tl-width) !important;
+    padding: 0 15px;
+    margin: 0 10px;
+  }
+}
+@media (min-width: 890px) {
+  .columns-area__panels__main {
+    display: grid;
+    grid-template-columns: 100%;
+  }
+}
+.columns-area__panels__main > div {
+  border-radius: var(--radius);
+  grid-row: 1;
+}
+.columns-area__panels__main > div:last-child {
+  box-shadow: var(--shadow-med);
+}
+.columns-area__panels__main :not(.scrollable--flex) > .scrollable {
+  padding-bottom: 40vh !important;
+}
+.columns-area__panels__main .column-actions {
+  position: static;
+}
+.columns-area__panels__main .column-actions .column-actions__background {
+  border-bottom-left-radius: var(--radius);
+}
+#mastodon .column-back-button,
+#mastodon .column-header,
+#mastodon .scrollable {
+  border: 0;
+  border-radius: var(--radius);
+}
+#mastodon .activity-stream,
+#mastodon .scrollable:not(.scrollable--flex) {
+  border: 0 !important;
+  contain: unset !important;
+}
+#mastodon .activity-stream:not(.activity-stream):not(.privacy-policy),
+#mastodon
+  .scrollable:not(.scrollable--flex):not(.activity-stream):not(
+    .privacy-policy
+  ) {
+  padding: 10px;
+}
+#mastodon .activity-stream > [tabindex]:first-child > .focusable,
+#mastodon
+  .scrollable:not(.scrollable--flex)
+  > [tabindex]:first-child
+  > .focusable {
+  margin-top: 0 !important;
+}
+#mastodon .activity-stream > div > [tabindex]:last-child .status,
+#mastodon
+  .scrollable:not(.scrollable--flex)
+  > div
+  > [tabindex]:last-child
+  .status {
+  border: 0;
+}
+#mastodon .columns-area {
+  box-sizing: border-box;
+  padding-bottom: 20px;
+  height: 100% !important;
+}
+#mastodon .column,
+#mastodon .columns-area {
+  overflow: clip !important;
+}
+#mastodon .explore__search-results {
+  padding: 10px;
+}
+#mastodon .dismissable-banner {
+  border-inline: 0;
+  border-top: 0;
+  margin: -10px -10px 10px;
+}
+#mastodon .dismissable-banner ~ .scrollable {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+#mastodon .column > .dismissable-banner {
+  border-radius: var(--radius) var(--radius) 0 0 !important;
+  margin: 0;
+}
+#mastodon .scrollable--flex .account-timeline__header,
+#mastodon .scrollable > .dismissable-banner {
+  margin: 0 !important;
+}
+#mastodon .empty-column-indicator {
+  contain: unset;
+  padding: 10px !important;
+  color: unset;
+  opacity: 0.8;
+  font-size: 1.2em;
+  line-height: 2;
+}
+#mastodon .empty-column-indicator a {
+  display: block;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+#mastodon .item-list {
+  background-color: inherit;
+  border-radius: var(--radius);
+}
+#mastodon .account-timeline__header {
+  margin: -10px -10px 10px;
+  background-color: inherit;
+  border-radius: var(--radius) !important;
+  animation: slideUp backwards 0.4s cubic-bezier(0, 1, 1, 1);
+}
+#mastodon .account-timeline__header .account__moved-note {
+  box-sizing: border-box;
+  border-radius: var(--radius);
+  margin-bottom: calc(0px - var(--radius));
+  padding: 30px;
+  padding-bottom: calc(var(--radius) + 30px);
+  background: inherit;
+}
+#mastodon
+  .account-timeline__header
+  .account__moved-note
+  .detailed-status__display-name {
+  overflow: visible !important;
+}
+#mastodon .account-timeline__header .account__header {
+  overflow: visible !important;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+#mastodon .account-timeline__header .account__header__info {
+  z-index: 2;
+}
+#mastodon .account-timeline__header .account__header__image {
+  height: 0;
+  padding-bottom: 35%;
+  border-radius: var(--radius) var(--radius) 0 0;
+  position: sticky;
+  top: calc(0px - var(--radius));
+  overflow: clip;
+}
+#mastodon .account-timeline__header .account__header__image img {
+  position: absolute;
+}
+#mastodon
+  .account-timeline__header
+  .account__header__image
+  .account__header__info {
+  height: 100%;
+}
+#mastodon
+  .account-timeline__header
+  .account__header__image
+  .account__header__info
+  > span {
+  position: sticky;
+  top: var(--radius);
+}
+#mastodon .account-timeline__header .account__header__bar {
+  border: 0;
+  background: inherit !important;
+  border-radius: var(--radius) var(--radius) 0 0;
+  margin-top: calc(0px - var(--radius)) !important;
+  display: flex;
+  flex-direction: column;
+}
+#mastodon
+  .account-timeline__header
+  .account__header__bar
+  .account__header__tabs {
+  overflow: visible !important;
+  position: relative;
+}
+#mastodon
+  .account-timeline__header
+  .account__header__bar
+  .account__header__tabs::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -20px;
+  right: -20px;
+  bottom: -40px;
+  backdrop-filter: blur(40px);
+  filter: brightness(1.1);
+  pointer-events: none;
+  opacity: 0.7;
+  clip-path: inset(55px 0 0 0 round var(--radius));
+  mask: linear-gradient(transparent 55px, #000 50px, transparent);
+  -webkit-mask: linear-gradient(transparent 55px, #000 50px, transparent);
+}
+#mastodon
+  .account-timeline__header
+  .account__header__bar
+  .account__header__tabs
+  ~ div {
+  z-index: 2;
+}
+#mastodon .account-timeline__header .account__header__bar .avatar {
+  margin-inline-start: 0 !important;
+  overflow: visible !important;
+  position: relative;
+}
+#mastodon
+  .account-timeline__header
+  .account__header__bar
+  .avatar
+  .account-role {
+  position: absolute;
+  bottom: 0;
+  left: 100%;
+  border-radius: var(--radius-round);
+}
+#mastodon .account-timeline__header .account__header__bar .account__avatar {
+  border: 0;
+  box-shadow: var(--shadow);
+}
+#mastodon .account-timeline__header .account__header__tabs__name {
+  margin-bottom: 0;
+}
+#mastodon .account-timeline__header .account__header__tabs__name h1 {
+  display: flex;
+  flex-wrap: wrap;
+  white-space: unset;
+  gap: 0 0.4em;
+}
+#mastodon .account-timeline__header .account__header__extra {
+  margin-top: 10px;
+  line-height: 1.5;
+}
+#mastodon .account__header__account-note,
+#mastodon :not(.admin-account-bio) > div > .account__header__fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  gap: 2px;
+  background: 0 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  width: max-content;
+  max-width: 100%;
+}
+#mastodon .account__header__account-note.account__header__fields,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__fields {
+  margin-top: 10px;
+  margin-bottom: -10px;
+}
+.public-account-bio .account__header__fields {
+  padding: 20px 20px 0 !important;
+}
+#mastodon .account__header__account-note dl,
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note,
+#mastodon :not(.admin-account-bio) > div > .account__header__fields dl,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note {
+  border-radius: 0;
+  border: 0;
+  padding: 8px 12px !important;
+  position: relative;
+  overflow: hidden;
+  flex-grow: 1;
+}
+#mastodon .account__header__account-note dl:not(.verified),
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note:not(
+    .verified
+  ),
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields
+  dl:not(.verified),
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note:not(
+    .verified
+  ) {
+  background-color: var(--elevated-color);
+}
+#mastodon .account__header__account-note dl dt,
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note
+  dt,
+#mastodon :not(.admin-account-bio) > div > .account__header__fields dl dt,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note
+  dt {
+  color: unset;
+  opacity: 0.9;
+  text-transform: capitalize;
+}
+#mastodon .account__header__account-note dl dd,
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note
+  dd,
+#mastodon :not(.admin-account-bio) > div > .account__header__fields dl dd,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note
+  dd {
+  white-space: unset;
+  max-height: unset;
+}
+#mastodon
+  .account__header__account-note
+  dl
+  dd
+  .h-card:first-child:last-child
+  a::after,
+#mastodon
+  .account__header__account-note
+  dl
+  dd
+  > span
+  > a:first-child:last-child::after,
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note
+  dd
+  .h-card:first-child:last-child
+  a::after,
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note
+  dd
+  > span
+  > a:first-child:last-child::after,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields
+  dl
+  dd
+  .h-card:first-child:last-child
+  a::after,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields
+  dl
+  dd
+  > span
+  > a:first-child:last-child::after,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note
+  dd
+  .h-card:first-child:last-child
+  a::after,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note
+  dd
+  > span
+  > a:first-child:last-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--hover-color);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+#mastodon
+  .account__header__account-note
+  dl
+  dd
+  .h-card:first-child:last-child
+  a:focus:after,
+#mastodon
+  .account__header__account-note
+  dl
+  dd
+  .h-card:first-child:last-child
+  a:hover:after,
+#mastodon
+  .account__header__account-note
+  dl
+  dd
+  > span
+  > a:first-child:last-child:focus:after,
+#mastodon
+  .account__header__account-note
+  dl
+  dd
+  > span
+  > a:first-child:last-child:hover:after,
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note
+  dd
+  .h-card:first-child:last-child
+  a:focus:after,
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note
+  dd
+  .h-card:first-child:last-child
+  a:hover:after,
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note
+  dd
+  > span
+  > a:first-child:last-child:focus:after,
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note
+  dd
+  > span
+  > a:first-child:last-child:hover:after,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields
+  dl
+  dd
+  .h-card:first-child:last-child
+  a:focus:after,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields
+  dl
+  dd
+  .h-card:first-child:last-child
+  a:hover:after,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields
+  dl
+  dd
+  > span
+  > a:first-child:last-child:focus:after,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields
+  dl
+  dd
+  > span
+  > a:first-child:last-child:hover:after,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note
+  dd
+  .h-card:first-child:last-child
+  a:focus:after,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note
+  dd
+  .h-card:first-child:last-child
+  a:hover:after,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note
+  dd
+  > span
+  > a:first-child:last-child:focus:after,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note
+  dd
+  > span
+  > a:first-child:last-child:hover:after {
+  opacity: 1;
+}
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note {
+  margin-bottom: 10px;
+  gap: 0;
+  border: 0;
+  padding: 0 !important;
+  margin-inline: 0 !important;
+  background: 0 0 !important;
+  border-radius: 8px;
+  font-size: 12px;
+  width: unset;
+}
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note
+  label,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note
+  label {
+  z-index: 2;
+  padding: 0 !important;
+  padding-inline-end: 0.7em !important;
+  pointer-events: none;
+  line-height: inherit;
+  font-size: inherit;
+  vertical-align: unset;
+}
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note:focus-within,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note:focus-within {
+  padding: 0.5em 0.7em !important;
+  margin-inline: -5px !important;
+  border: 1px solid;
+}
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note:not(
+    :focus-within
+  ),
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note:not(
+    :focus-within
+  ) {
+  border-radius: 0;
+  border-bottom: 1px solid;
+  padding-bottom: 0.4em !important;
+}
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note
+  textarea,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note
+  textarea {
+  width: 0;
+  flex-grow: 1;
+  border-radius: 0;
+  margin: -100px !important;
+  padding: 100px !important;
+  padding-inline-end: 0.7em !important;
+  margin-inline-end: -0.7em !important;
+  line-height: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  vertical-align: unset;
+  background: 0 0;
+}
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note
+  textarea::placeholder,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note
+  textarea::placeholder {
+  font-weight: 600;
+}
+#mastodon
+  .account__header__account-note.account__header__account-note.account__header__account-note
+  label,
+#mastodon
+  :not(.admin-account-bio)
+  > div
+  > .account__header__fields.account__header__account-note.account__header__account-note
+  label {
+  margin: 0;
+  font-weight: 600;
+  padding-inline: 14px;
+}
+#mastodon .account__section-headline {
+  background: 0 0;
+  position: relative;
+  z-index: 2;
+}
+.with-modals #mastodon .account__section-headline {
+  border: 0 !important;
+}
+#mastodon .account__section-headline a,
+#mastodon .account__section-headline button {
+  background: 0 0;
+  border-radius: 0 !important;
+}
+#mastodon .account__section-headline a span,
+#mastodon .account__section-headline button span {
+  font-weight: 400;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+#mastodon .account__section-headline a.active span,
+#mastodon .account__section-headline button.active span {
+  font-weight: 700;
+  opacity: 1;
+}
+#mastodon .account__section-headline a:active span,
+#mastodon .account__section-headline a:hover span,
+#mastodon .account__section-headline button:active span,
+#mastodon .account__section-headline button:hover span {
+  opacity: 1 !important;
+}
+#mastodon .account__section-headline a::before,
+#mastodon .account__section-headline button::before {
+  border-color: transparent transparent var(--border-color);
+}
+#mastodon .notification__filter-bar {
+  border: 0 !important;
+  margin-bottom: calc(0px - var(--radius));
+  padding-bottom: var(--radius);
+}
+#mastodon .account-gallery__container {
+  border-radius: var(--radius);
+  overflow: clip;
+  padding: 0;
+  margin: 4px;
+  gap: 4px;
+  margin-bottom: calc(-40vh + 4px);
+}
+.account-gallery__item {
+  margin: 0;
+  flex: 1 1 calc(100px + 15%);
+  transition: flex 0.7s cubic-bezier(0, 0, 0, 1);
+  min-height: 180px !important;
+}
+.media-gallery__item-thumbnail {
+  transition: transform 0.2s;
+}
+.account-gallery__item:focus-within,
+.account-gallery__item:hover {
+  flex-grow: 1.5;
+}
+.account-gallery__item:focus-within .media-gallery__item-thumbnail,
+.account-gallery__item:hover .media-gallery__item-thumbnail {
+  transform: scale(1.02);
+}
+#mastodon .account-gallery__container > button {
+  width: unset;
+  flex-grow: 1;
+  flex: 1 1 calc(100px + 15% - 24px);
+  margin: 12px;
+  font-size: 1.2em;
+  font-weight: 700;
+  background: var(--elevated-color);
+  color: inherit;
+}
+#mastodon .account-gallery__container > button:hover:not(:focus) {
+  transform: scale(1.01);
+}
+#mastodon
+  .scrollable
+  > div:first-child
+  > [tabindex='-1']:last-child
+  .status__wrapper::after {
+  content: unset;
+}
+.account-card,
+.entry,
+.focusable,
+.scrollable :not(.focusable) > .account,
+.statuses-grid__item .detailed-status,
+.story,
+.timeline-hint,
+.trends__item {
+  overflow: clip;
+  border: 0 !important;
+  border-radius: var(--radius) !important;
+  transition: background 0.2s, box-shadow 0.4s, margin 0.2s, border 0.2s;
+  animation: slideUp backwards 0.4s cubic-bezier(0, 1, 1, 1);
+  position: relative;
+}
+.account-card.account-card,
+.account-card.story,
+.account-card.trends__item,
+.entry.account-card,
+.entry.story,
+.entry.trends__item,
+.focusable.account-card,
+.focusable.story,
+.focusable.trends__item,
+.scrollable :not(.focusable) > .account.account-card,
+.scrollable :not(.focusable) > .account.story,
+.scrollable :not(.focusable) > .account.trends__item,
+.statuses-grid__item .detailed-status.account-card,
+.statuses-grid__item .detailed-status.story,
+.statuses-grid__item .detailed-status.trends__item,
+.story.account-card,
+.story.story,
+.story.trends__item,
+.timeline-hint.account-card,
+.timeline-hint.story,
+.timeline-hint.trends__item,
+.trends__item.account-card,
+.trends__item.story,
+.trends__item.trends__item {
+  animation-name: slideUpFade;
+}
+.account-card.account-card:nth-child(1),
+.account-card.story:nth-child(1),
+.account-card.trends__item:nth-child(1),
+.entry.account-card:nth-child(1),
+.entry.story:nth-child(1),
+.entry.trends__item:nth-child(1),
+.focusable.account-card:nth-child(1),
+.focusable.story:nth-child(1),
+.focusable.trends__item:nth-child(1),
+.scrollable :not(.focusable) > .account.account-card:nth-child(1),
+.scrollable :not(.focusable) > .account.story:nth-child(1),
+.scrollable :not(.focusable) > .account.trends__item:nth-child(1),
+.statuses-grid__item .detailed-status.account-card:nth-child(1),
+.statuses-grid__item .detailed-status.story:nth-child(1),
+.statuses-grid__item .detailed-status.trends__item:nth-child(1),
+.story.account-card:nth-child(1),
+.story.story:nth-child(1),
+.story.trends__item:nth-child(1),
+.timeline-hint.account-card:nth-child(1),
+.timeline-hint.story:nth-child(1),
+.timeline-hint.trends__item:nth-child(1),
+.trends__item.account-card:nth-child(1),
+.trends__item.story:nth-child(1),
+.trends__item.trends__item:nth-child(1) {
+  animation-delay: 40ms;
+}
+.account-card.account-card:nth-child(2),
+.account-card.story:nth-child(2),
+.account-card.trends__item:nth-child(2),
+.entry.account-card:nth-child(2),
+.entry.story:nth-child(2),
+.entry.trends__item:nth-child(2),
+.focusable.account-card:nth-child(2),
+.focusable.story:nth-child(2),
+.focusable.trends__item:nth-child(2),
+.scrollable :not(.focusable) > .account.account-card:nth-child(2),
+.scrollable :not(.focusable) > .account.story:nth-child(2),
+.scrollable :not(.focusable) > .account.trends__item:nth-child(2),
+.statuses-grid__item .detailed-status.account-card:nth-child(2),
+.statuses-grid__item .detailed-status.story:nth-child(2),
+.statuses-grid__item .detailed-status.trends__item:nth-child(2),
+.story.account-card:nth-child(2),
+.story.story:nth-child(2),
+.story.trends__item:nth-child(2),
+.timeline-hint.account-card:nth-child(2),
+.timeline-hint.story:nth-child(2),
+.timeline-hint.trends__item:nth-child(2),
+.trends__item.account-card:nth-child(2),
+.trends__item.story:nth-child(2),
+.trends__item.trends__item:nth-child(2) {
+  animation-delay: 80ms;
+}
+.account-card.account-card:nth-child(3),
+.account-card.story:nth-child(3),
+.account-card.trends__item:nth-child(3),
+.entry.account-card:nth-child(3),
+.entry.story:nth-child(3),
+.entry.trends__item:nth-child(3),
+.focusable.account-card:nth-child(3),
+.focusable.story:nth-child(3),
+.focusable.trends__item:nth-child(3),
+.scrollable :not(.focusable) > .account.account-card:nth-child(3),
+.scrollable :not(.focusable) > .account.story:nth-child(3),
+.scrollable :not(.focusable) > .account.trends__item:nth-child(3),
+.statuses-grid__item .detailed-status.account-card:nth-child(3),
+.statuses-grid__item .detailed-status.story:nth-child(3),
+.statuses-grid__item .detailed-status.trends__item:nth-child(3),
+.story.account-card:nth-child(3),
+.story.story:nth-child(3),
+.story.trends__item:nth-child(3),
+.timeline-hint.account-card:nth-child(3),
+.timeline-hint.story:nth-child(3),
+.timeline-hint.trends__item:nth-child(3),
+.trends__item.account-card:nth-child(3),
+.trends__item.story:nth-child(3),
+.trends__item.trends__item:nth-child(3) {
+  animation-delay: 0.12s;
+}
+.account-card.account-card:nth-child(4),
+.account-card.story:nth-child(4),
+.account-card.trends__item:nth-child(4),
+.entry.account-card:nth-child(4),
+.entry.story:nth-child(4),
+.entry.trends__item:nth-child(4),
+.focusable.account-card:nth-child(4),
+.focusable.story:nth-child(4),
+.focusable.trends__item:nth-child(4),
+.scrollable :not(.focusable) > .account.account-card:nth-child(4),
+.scrollable :not(.focusable) > .account.story:nth-child(4),
+.scrollable :not(.focusable) > .account.trends__item:nth-child(4),
+.statuses-grid__item .detailed-status.account-card:nth-child(4),
+.statuses-grid__item .detailed-status.story:nth-child(4),
+.statuses-grid__item .detailed-status.trends__item:nth-child(4),
+.story.account-card:nth-child(4),
+.story.story:nth-child(4),
+.story.trends__item:nth-child(4),
+.timeline-hint.account-card:nth-child(4),
+.timeline-hint.story:nth-child(4),
+.timeline-hint.trends__item:nth-child(4),
+.trends__item.account-card:nth-child(4),
+.trends__item.story:nth-child(4),
+.trends__item.trends__item:nth-child(4) {
+  animation-delay: 0.16s;
+}
+.account-card.account-card:nth-child(5),
+.account-card.story:nth-child(5),
+.account-card.trends__item:nth-child(5),
+.entry.account-card:nth-child(5),
+.entry.story:nth-child(5),
+.entry.trends__item:nth-child(5),
+.focusable.account-card:nth-child(5),
+.focusable.story:nth-child(5),
+.focusable.trends__item:nth-child(5),
+.scrollable :not(.focusable) > .account.account-card:nth-child(5),
+.scrollable :not(.focusable) > .account.story:nth-child(5),
+.scrollable :not(.focusable) > .account.trends__item:nth-child(5),
+.statuses-grid__item .detailed-status.account-card:nth-child(5),
+.statuses-grid__item .detailed-status.story:nth-child(5),
+.statuses-grid__item .detailed-status.trends__item:nth-child(5),
+.story.account-card:nth-child(5),
+.story.story:nth-child(5),
+.story.trends__item:nth-child(5),
+.timeline-hint.account-card:nth-child(5),
+.timeline-hint.story:nth-child(5),
+.timeline-hint.trends__item:nth-child(5),
+.trends__item.account-card:nth-child(5),
+.trends__item.story:nth-child(5),
+.trends__item.trends__item:nth-child(5) {
+  animation-delay: 0.2s;
+}
+.account-card.account-card:nth-child(6),
+.account-card.story:nth-child(6),
+.account-card.trends__item:nth-child(6),
+.entry.account-card:nth-child(6),
+.entry.story:nth-child(6),
+.entry.trends__item:nth-child(6),
+.focusable.account-card:nth-child(6),
+.focusable.story:nth-child(6),
+.focusable.trends__item:nth-child(6),
+.scrollable :not(.focusable) > .account.account-card:nth-child(6),
+.scrollable :not(.focusable) > .account.story:nth-child(6),
+.scrollable :not(.focusable) > .account.trends__item:nth-child(6),
+.statuses-grid__item .detailed-status.account-card:nth-child(6),
+.statuses-grid__item .detailed-status.story:nth-child(6),
+.statuses-grid__item .detailed-status.trends__item:nth-child(6),
+.story.account-card:nth-child(6),
+.story.story:nth-child(6),
+.story.trends__item:nth-child(6),
+.timeline-hint.account-card:nth-child(6),
+.timeline-hint.story:nth-child(6),
+.timeline-hint.trends__item:nth-child(6),
+.trends__item.account-card:nth-child(6),
+.trends__item.story:nth-child(6),
+.trends__item.trends__item:nth-child(6) {
+  animation-delay: 0.24s;
+}
+.account-card.account-card:nth-child(7),
+.account-card.story:nth-child(7),
+.account-card.trends__item:nth-child(7),
+.entry.account-card:nth-child(7),
+.entry.story:nth-child(7),
+.entry.trends__item:nth-child(7),
+.focusable.account-card:nth-child(7),
+.focusable.story:nth-child(7),
+.focusable.trends__item:nth-child(7),
+.scrollable :not(.focusable) > .account.account-card:nth-child(7),
+.scrollable :not(.focusable) > .account.story:nth-child(7),
+.scrollable :not(.focusable) > .account.trends__item:nth-child(7),
+.statuses-grid__item .detailed-status.account-card:nth-child(7),
+.statuses-grid__item .detailed-status.story:nth-child(7),
+.statuses-grid__item .detailed-status.trends__item:nth-child(7),
+.story.account-card:nth-child(7),
+.story.story:nth-child(7),
+.story.trends__item:nth-child(7),
+.timeline-hint.account-card:nth-child(7),
+.timeline-hint.story:nth-child(7),
+.timeline-hint.trends__item:nth-child(7),
+.trends__item.account-card:nth-child(7),
+.trends__item.story:nth-child(7),
+.trends__item.trends__item:nth-child(7) {
+  animation-delay: 0.28s;
+}
+.account-card.account-card:nth-child(8),
+.account-card.story:nth-child(8),
+.account-card.trends__item:nth-child(8),
+.entry.account-card:nth-child(8),
+.entry.story:nth-child(8),
+.entry.trends__item:nth-child(8),
+.focusable.account-card:nth-child(8),
+.focusable.story:nth-child(8),
+.focusable.trends__item:nth-child(8),
+.scrollable :not(.focusable) > .account.account-card:nth-child(8),
+.scrollable :not(.focusable) > .account.story:nth-child(8),
+.scrollable :not(.focusable) > .account.trends__item:nth-child(8),
+.statuses-grid__item .detailed-status.account-card:nth-child(8),
+.statuses-grid__item .detailed-status.story:nth-child(8),
+.statuses-grid__item .detailed-status.trends__item:nth-child(8),
+.story.account-card:nth-child(8),
+.story.story:nth-child(8),
+.story.trends__item:nth-child(8),
+.timeline-hint.account-card:nth-child(8),
+.timeline-hint.story:nth-child(8),
+.timeline-hint.trends__item:nth-child(8),
+.trends__item.account-card:nth-child(8),
+.trends__item.story:nth-child(8),
+.trends__item.trends__item:nth-child(8) {
+  animation-delay: 0.32s;
+}
+.account-card.account-card:nth-child(9),
+.account-card.story:nth-child(9),
+.account-card.trends__item:nth-child(9),
+.entry.account-card:nth-child(9),
+.entry.story:nth-child(9),
+.entry.trends__item:nth-child(9),
+.focusable.account-card:nth-child(9),
+.focusable.story:nth-child(9),
+.focusable.trends__item:nth-child(9),
+.scrollable :not(.focusable) > .account.account-card:nth-child(9),
+.scrollable :not(.focusable) > .account.story:nth-child(9),
+.scrollable :not(.focusable) > .account.trends__item:nth-child(9),
+.statuses-grid__item .detailed-status.account-card:nth-child(9),
+.statuses-grid__item .detailed-status.story:nth-child(9),
+.statuses-grid__item .detailed-status.trends__item:nth-child(9),
+.story.account-card:nth-child(9),
+.story.story:nth-child(9),
+.story.trends__item:nth-child(9),
+.timeline-hint.account-card:nth-child(9),
+.timeline-hint.story:nth-child(9),
+.timeline-hint.trends__item:nth-child(9),
+.trends__item.account-card:nth-child(9),
+.trends__item.story:nth-child(9),
+.trends__item.trends__item:nth-child(9) {
+  animation-delay: 0.36s;
+}
+.account-card.account-card:nth-child(10),
+.account-card.story:nth-child(10),
+.account-card.trends__item:nth-child(10),
+.entry.account-card:nth-child(10),
+.entry.story:nth-child(10),
+.entry.trends__item:nth-child(10),
+.focusable.account-card:nth-child(10),
+.focusable.story:nth-child(10),
+.focusable.trends__item:nth-child(10),
+.scrollable :not(.focusable) > .account.account-card:nth-child(10),
+.scrollable :not(.focusable) > .account.story:nth-child(10),
+.scrollable :not(.focusable) > .account.trends__item:nth-child(10),
+.statuses-grid__item .detailed-status.account-card:nth-child(10),
+.statuses-grid__item .detailed-status.story:nth-child(10),
+.statuses-grid__item .detailed-status.trends__item:nth-child(10),
+.story.account-card:nth-child(10),
+.story.story:nth-child(10),
+.story.trends__item:nth-child(10),
+.timeline-hint.account-card:nth-child(10),
+.timeline-hint.story:nth-child(10),
+.timeline-hint.trends__item:nth-child(10),
+.trends__item.account-card:nth-child(10),
+.trends__item.story:nth-child(10),
+.trends__item.trends__item:nth-child(10) {
+  animation-delay: 0.4s;
+}
+.account-card.account-card:nth-child(11),
+.account-card.story:nth-child(11),
+.account-card.trends__item:nth-child(11),
+.entry.account-card:nth-child(11),
+.entry.story:nth-child(11),
+.entry.trends__item:nth-child(11),
+.focusable.account-card:nth-child(11),
+.focusable.story:nth-child(11),
+.focusable.trends__item:nth-child(11),
+.scrollable :not(.focusable) > .account.account-card:nth-child(11),
+.scrollable :not(.focusable) > .account.story:nth-child(11),
+.scrollable :not(.focusable) > .account.trends__item:nth-child(11),
+.statuses-grid__item .detailed-status.account-card:nth-child(11),
+.statuses-grid__item .detailed-status.story:nth-child(11),
+.statuses-grid__item .detailed-status.trends__item:nth-child(11),
+.story.account-card:nth-child(11),
+.story.story:nth-child(11),
+.story.trends__item:nth-child(11),
+.timeline-hint.account-card:nth-child(11),
+.timeline-hint.story:nth-child(11),
+.timeline-hint.trends__item:nth-child(11),
+.trends__item.account-card:nth-child(11),
+.trends__item.story:nth-child(11),
+.trends__item.trends__item:nth-child(11) {
+  animation-delay: 0.44s;
+}
+.account-card.focusable,
+.entry.focusable,
+.focusable.focusable,
+.scrollable :not(.focusable) > .account.focusable,
+.statuses-grid__item .detailed-status.focusable,
+.story.focusable,
+.timeline-hint.focusable,
+.trends__item.focusable {
+  background: 0 0;
+}
+.account-card.entry,
+.entry.entry,
+.focusable.entry,
+.scrollable :not(.focusable) > .account.entry,
+.statuses-grid__item .detailed-status.entry,
+.story.entry,
+.timeline-hint.entry,
+.trends__item.entry {
+  margin-bottom: 10px;
+}
+.account-card:not(.detailed-status__wrapper)::after,
+.entry:not(.detailed-status__wrapper)::after,
+.focusable:not(.detailed-status__wrapper)::after,
+.scrollable :not(.focusable) > .account:not(.detailed-status__wrapper)::after,
+.statuses-grid__item .detailed-status:not(.detailed-status__wrapper)::after,
+.story:not(.detailed-status__wrapper)::after,
+.timeline-hint:not(.detailed-status__wrapper)::after,
+.trends__item:not(.detailed-status__wrapper)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  inset-inline: var(--radius);
+  border-top: 1px solid var(--border-color);
+  pointer-events: none;
+}
+.account-card:not(.detailed-status__wrapper)::before,
+.entry:not(.detailed-status__wrapper)::before,
+.focusable:not(.detailed-status__wrapper)::before,
+.scrollable :not(.focusable) > .account:not(.detailed-status__wrapper)::before,
+.statuses-grid__item .detailed-status:not(.detailed-status__wrapper)::before,
+.story:not(.detailed-status__wrapper)::before,
+.timeline-hint:not(.detailed-status__wrapper)::before,
+.trends__item:not(.detailed-status__wrapper)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  bottom: 1px;
+  pointer-events: none;
+  transition: background-color 0.2s;
+}
+.account-card:not(.detailed-status__wrapper):focus-within::before,
+.account-card:not(.detailed-status__wrapper):hover::before,
+.entry:not(.detailed-status__wrapper):focus-within::before,
+.entry:not(.detailed-status__wrapper):hover::before,
+.focusable:not(.detailed-status__wrapper):focus-within::before,
+.focusable:not(.detailed-status__wrapper):hover::before,
+.scrollable
+  :not(.focusable)
+  > .account:not(.detailed-status__wrapper):focus-within::before,
+.scrollable
+  :not(.focusable)
+  > .account:not(.detailed-status__wrapper):hover::before,
+.statuses-grid__item
+  .detailed-status:not(.detailed-status__wrapper):focus-within::before,
+.statuses-grid__item
+  .detailed-status:not(.detailed-status__wrapper):hover::before,
+.story:not(.detailed-status__wrapper):focus-within::before,
+.story:not(.detailed-status__wrapper):hover::before,
+.timeline-hint:not(.detailed-status__wrapper):focus-within::before,
+.timeline-hint:not(.detailed-status__wrapper):hover::before,
+.trends__item:not(.detailed-status__wrapper):focus-within::before,
+.trends__item:not(.detailed-status__wrapper):hover::before {
+  background-color: var(--hover-color);
+}
+.explore__links {
+  padding: 10px !important;
+  display: flex;
+  flex-wrap: wrap;
+}
+.explore__links .trends__item {
+  margin: 7.5px;
+  padding: 25px !important;
+  box-shadow: var(--shadow-med);
+  width: 200px;
+  background: var(--elevated-color);
+}
+.explore__links .trends__item::after {
+  content: unset !important;
+  inset: 0 !important;
+  border-radius: var(--radius);
+  pointer-events: none;
+  border: 1px solid var(--border-color) !important;
+}
+.explore__links .trends__item a {
+  font-size: 1.4em;
+  line-height: 1.7em;
+}
+.explore__links .trends__item .trends__item__sparkline {
+  height: 100%;
+}
+.explore__links .trends__item .trends__item__sparkline svg {
+  height: 100%;
+  float: right;
+  overflow: visible !important;
+  position: relative;
+  z-index: -1;
+}
+.explore__links .trends__item .trends__item__sparkline svg path {
+  display: unset !important;
+  transition: transform 1s;
+}
+.explore__links .trends__item .trends__item__sparkline svg path:first-child {
+  transform-origin: center;
+}
+.explore__links .trends__item:focus-within svg path:first-child,
+.explore__links .trends__item:hover svg path:first-child {
+  transform: scale(2);
+}
+.account-card.story,
+.account-card.trends__item,
+.entry.story,
+.entry.trends__item,
+.focusable.story,
+.focusable.trends__item,
+.scrollable :not(.focusable) > .account.story,
+.scrollable :not(.focusable) > .account.trends__item,
+.statuses-grid__item .detailed-status.story,
+.statuses-grid__item .detailed-status.trends__item,
+.story.story,
+.story.trends__item,
+.timeline-hint.story,
+.timeline-hint.trends__item,
+.trends__item.story,
+.trends__item.trends__item {
+  padding: 10px;
+  flex-grow: 1;
+}
+.account-card.story,
+.entry.story,
+.focusable.story,
+.scrollable :not(.focusable) > .account.story,
+.statuses-grid__item .detailed-status.story,
+.story.story,
+.timeline-hint.story,
+.trends__item.story {
+  padding: 15px;
+}
+.account-card.story .story__details,
+.entry.story .story__details,
+.focusable.story .story__details,
+.scrollable :not(.focusable) > .account.story .story__details,
+.statuses-grid__item .detailed-status.story .story__details,
+.story.story .story__details,
+.timeline-hint.story .story__details,
+.trends__item.story .story__details {
+  padding-inline-start: 0 !important;
+}
+.account-card.story .story__thumbnail,
+.entry.story .story__thumbnail,
+.focusable.story .story__thumbnail,
+.scrollable :not(.focusable) > .account.story .story__thumbnail,
+.statuses-grid__item .detailed-status.story .story__thumbnail,
+.story.story .story__thumbnail,
+.timeline-hint.story .story__thumbnail,
+.trends__item.story .story__thumbnail {
+  margin-inline-end: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.account-card.account-card.account-card.account-card,
+.entry.account-card.account-card.account-card,
+.focusable.account-card.account-card.account-card,
+.scrollable :not(.focusable) > .account.account-card.account-card.account-card,
+.statuses-grid__item .detailed-status.account-card.account-card.account-card,
+.story.account-card.account-card.account-card,
+.timeline-hint.account-card.account-card.account-card,
+.trends__item.account-card.account-card.account-card {
+  display: flex;
+  flex-direction: column;
+  max-height: 320px;
+  margin: 0;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow);
+}
+.directory__list,
+.explore__suggestions {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+}
+.directory__list.directory__list,
+.explore__suggestions.directory__list {
+  padding: 15px 10px;
+}
+.account-card.account-card.account-card.account-card .account-card__header,
+.entry.account-card.account-card.account-card .account-card__header,
+.focusable.account-card.account-card.account-card .account-card__header,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__header,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__header,
+.story.account-card.account-card.account-card .account-card__header,
+.timeline-hint.account-card.account-card.account-card .account-card__header,
+.trends__item.account-card.account-card.account-card .account-card__header {
+  padding: 0 !important;
+}
+.account-card.account-card.account-card.account-card
+  .account-card__title__avatar,
+.entry.account-card.account-card.account-card .account-card__title__avatar,
+.focusable.account-card.account-card.account-card .account-card__title__avatar,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__title__avatar,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__title__avatar,
+.story.account-card.account-card.account-card .account-card__title__avatar,
+.timeline-hint.account-card.account-card.account-card
+  .account-card__title__avatar,
+.trends__item.account-card.account-card.account-card
+  .account-card__title__avatar {
+  padding-inline-end: 10px;
+  padding-bottom: 0;
+}
+.account-card.account-card.account-card.account-card .display-name,
+.entry.account-card.account-card.account-card .display-name,
+.focusable.account-card.account-card.account-card .display-name,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .display-name,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .display-name,
+.story.account-card.account-card.account-card .display-name,
+.timeline-hint.account-card.account-card.account-card .display-name,
+.trends__item.account-card.account-card.account-card .display-name {
+  padding-bottom: 0;
+}
+.account-card.account-card.account-card.account-card .display-name__account,
+.entry.account-card.account-card.account-card .display-name__account,
+.focusable.account-card.account-card.account-card .display-name__account,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .display-name__account,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .display-name__account,
+.story.account-card.account-card.account-card .display-name__account,
+.timeline-hint.account-card.account-card.account-card .display-name__account,
+.trends__item.account-card.account-card.account-card .display-name__account {
+  font-size: 0.9em !important;
+}
+.account-card.account-card.account-card.account-card
+  .account-card__title__avatar,
+.account-card.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar,
+.entry.account-card.account-card.account-card .account-card__title__avatar,
+.entry.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar,
+.focusable.account-card.account-card.account-card .account-card__title__avatar,
+.focusable.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__title__avatar,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__title__avatar,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar,
+.story.account-card.account-card.account-card .account-card__title__avatar,
+.story.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar,
+.timeline-hint.account-card.account-card.account-card
+  .account-card__title__avatar,
+.timeline-hint.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar,
+.trends__item.account-card.account-card.account-card
+  .account-card__title__avatar,
+.trends__item.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar {
+  width: 64px !important;
+  height: 64px !important;
+  background-size: 64px 64px !important;
+}
+.account-card.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar
+  img,
+.account-card.account-card.account-card.account-card
+  .account-card__title__avatar
+  img,
+.entry.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar
+  img,
+.entry.account-card.account-card.account-card .account-card__title__avatar img,
+.focusable.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar
+  img,
+.focusable.account-card.account-card.account-card
+  .account-card__title__avatar
+  img,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar
+  img,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__title__avatar
+  img,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar
+  img,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__title__avatar
+  img,
+.story.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar
+  img,
+.story.account-card.account-card.account-card .account-card__title__avatar img,
+.timeline-hint.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar
+  img,
+.timeline-hint.account-card.account-card.account-card
+  .account-card__title__avatar
+  img,
+.trends__item.account-card.account-card.account-card
+  .account-card__title__avatar
+  .account__avatar
+  img,
+.trends__item.account-card.account-card.account-card
+  .account-card__title__avatar
+  img {
+  width: inherit;
+  height: inherit;
+}
+.account-card.account-card.account-card.account-card .account-card__title,
+.entry.account-card.account-card.account-card .account-card__title,
+.focusable.account-card.account-card.account-card .account-card__title,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__title,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__title,
+.story.account-card.account-card.account-card .account-card__title,
+.timeline-hint.account-card.account-card.account-card .account-card__title,
+.trends__item.account-card.account-card.account-card .account-card__title {
+  margin-bottom: 10px;
+  margin-top: -26px;
+  padding-inline-end: 15px;
+}
+.account-card.account-card.account-card.account-card .display-name bdi,
+.entry.account-card.account-card.account-card .display-name bdi,
+.focusable.account-card.account-card.account-card .display-name bdi,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .display-name
+  bdi,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .display-name
+  bdi,
+.story.account-card.account-card.account-card .display-name bdi,
+.timeline-hint.account-card.account-card.account-card .display-name bdi,
+.trends__item.account-card.account-card.account-card .display-name bdi {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.account-card.account-card.account-card.account-card .account-card__bio,
+.entry.account-card.account-card.account-card .account-card__bio,
+.focusable.account-card.account-card.account-card .account-card__bio,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__bio,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__bio,
+.story.account-card.account-card.account-card .account-card__bio,
+.timeline-hint.account-card.account-card.account-card .account-card__bio,
+.trends__item.account-card.account-card.account-card .account-card__bio {
+  margin-top: 0 !important;
+  max-height: unset;
+  mask: linear-gradient(#000 65px, rgba(0, 0, 0, 0.5), transparent);
+  -webkit-mask: linear-gradient(#000 65px, rgba(0, 0, 0, 0.5), transparent);
+  flex-grow: 1;
+  margin-bottom: -15px;
+  font-size: 1em;
+  padding-bottom: 60px;
+}
+.account-card.account-card.account-card.account-card .account-card__bio::after,
+.entry.account-card.account-card.account-card .account-card__bio::after,
+.focusable.account-card.account-card.account-card .account-card__bio::after,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__bio::after,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__bio::after,
+.story.account-card.account-card.account-card .account-card__bio::after,
+.timeline-hint.account-card.account-card.account-card .account-card__bio::after,
+.trends__item.account-card.account-card.account-card .account-card__bio::after {
+  content: unset !important;
+}
+.account-card.account-card.account-card.account-card .account-card__bio p,
+.entry.account-card.account-card.account-card .account-card__bio p,
+.focusable.account-card.account-card.account-card .account-card__bio p,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__bio
+  p,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__bio
+  p,
+.story.account-card.account-card.account-card .account-card__bio p,
+.timeline-hint.account-card.account-card.account-card .account-card__bio p,
+.trends__item.account-card.account-card.account-card .account-card__bio p {
+  display: inline;
+}
+.account-card.account-card.account-card.account-card
+  .account-card__bio
+  p:not(:first-child)::before,
+.entry.account-card.account-card.account-card
+  .account-card__bio
+  p:not(:first-child)::before,
+.focusable.account-card.account-card.account-card
+  .account-card__bio
+  p:not(:first-child)::before,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__bio
+  p:not(:first-child)::before,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__bio
+  p:not(:first-child)::before,
+.story.account-card.account-card.account-card
+  .account-card__bio
+  p:not(:first-child)::before,
+.timeline-hint.account-card.account-card.account-card
+  .account-card__bio
+  p:not(:first-child)::before,
+.trends__item.account-card.account-card.account-card
+  .account-card__bio
+  p:not(:first-child)::before {
+  content: ' · ';
+}
+.account-card.account-card.account-card.account-card .account-card__bio br,
+.entry.account-card.account-card.account-card .account-card__bio br,
+.focusable.account-card.account-card.account-card .account-card__bio br,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__bio
+  br,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__bio
+  br,
+.story.account-card.account-card.account-card .account-card__bio br,
+.timeline-hint.account-card.account-card.account-card .account-card__bio br,
+.trends__item.account-card.account-card.account-card .account-card__bio br {
+  display: block;
+}
+.account-card.account-card.account-card.account-card .account-card__actions,
+.entry.account-card.account-card.account-card .account-card__actions,
+.focusable.account-card.account-card.account-card .account-card__actions,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__actions,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__actions,
+.story.account-card.account-card.account-card .account-card__actions,
+.timeline-hint.account-card.account-card.account-card .account-card__actions,
+.trends__item.account-card.account-card.account-card .account-card__actions {
+  margin-top: auto !important;
+  display: unset !important;
+}
+.account-card.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters,
+.entry.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters,
+.focusable.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters,
+.story.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters,
+.timeline-hint.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters,
+.trends__item.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters {
+  display: flex;
+  gap: 1em;
+  padding-inline: 15px;
+}
+.account-card.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item,
+.entry.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item,
+.focusable.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item,
+.story.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item,
+.timeline-hint.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item,
+.trends__item.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item {
+  display: flex;
+  align-items: center;
+  font-size: 1em;
+}
+.account-card.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item
+  > small,
+.entry.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item
+  > small,
+.focusable.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item
+  > small,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item
+  > small,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item
+  > small,
+.story.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item
+  > small,
+.timeline-hint.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item
+  > small,
+.trends__item.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__counters__item
+  > small {
+  display: inline !important;
+  margin-inline-start: 0.4em;
+  font-size: 1em !important;
+}
+.account-card.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button,
+.entry.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button,
+.focusable.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button,
+.story.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button,
+.timeline-hint.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button,
+.trends__item.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: var(--radius-round);
+  padding: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.account-card.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  a,
+.account-card.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  button,
+.entry.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  a,
+.entry.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  button,
+.focusable.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  a,
+.focusable.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  button,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  a,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  button,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  a,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  button,
+.story.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  a,
+.story.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  button,
+.timeline-hint.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  a,
+.timeline-hint.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  button,
+.trends__item.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  a,
+.trends__item.account-card.account-card.account-card
+  .account-card__actions
+  .account-card__actions__button
+  button {
+  border-radius: var(--radius-round) !important;
+  padding: 0.7em 1.7em;
+  min-height: unset;
+  line-height: 1.2;
+  font-size: 1em !important;
+}
+.account-card.account-card.account-card.account-card::after,
+.entry.account-card.account-card.account-card::after,
+.focusable.account-card.account-card.account-card::after,
+.scrollable
+  :not(.focusable)
+  > .account.account-card.account-card.account-card::after,
+.statuses-grid__item
+  .detailed-status.account-card.account-card.account-card::after,
+.story.account-card.account-card.account-card::after,
+.timeline-hint.account-card.account-card.account-card::after,
+.trends__item.account-card.account-card.account-card::after {
+  content: unset !important;
+}
+.account-card.empty-column-indicator,
+.entry.empty-column-indicator,
+.focusable.empty-column-indicator,
+.scrollable :not(.focusable) > .account.empty-column-indicator,
+.statuses-grid__item .detailed-status.empty-column-indicator,
+.story.empty-column-indicator,
+.timeline-hint.empty-column-indicator,
+.trends__item.empty-column-indicator {
+  display: block;
+}
+.account-card.timeline-hint,
+.entry.timeline-hint,
+.focusable.timeline-hint,
+.scrollable :not(.focusable) > .account.timeline-hint,
+.statuses-grid__item .detailed-status.timeline-hint,
+.story.timeline-hint,
+.timeline-hint.timeline-hint,
+.trends__item.timeline-hint {
+  display: block;
+}
+.account-card.timeline-hint a::before,
+.entry.timeline-hint a::before,
+.focusable.timeline-hint a::before,
+.scrollable :not(.focusable) > .account.timeline-hint a::before,
+.statuses-grid__item .detailed-status.timeline-hint a::before,
+.story.timeline-hint a::before,
+.timeline-hint.timeline-hint a::before,
+.trends__item.timeline-hint a::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+#mastodon .scrollable .account,
+#mastodon .status {
+  border: 0 !important;
+  padding-block: 15px;
+}
+#mastodon .scrollable .account:not(.account),
+#mastodon .status:not(.account) {
+  padding-inline-start: 15px !important;
+}
+#mastodon .scrollable .account::before,
+#mastodon .status::before {
+  inset: -10px !important;
+  border-radius: var(--radius);
+}
+#mastodon .account__relationship:empty {
+  display: none;
+}
+#mastodon .status__prepend {
+  white-space: nowrap;
+}
+#mastodon .status__prepend > span {
+  display: flex;
+  flex-grow: 1;
+  gap: 0.3em;
+}
+#mastodon .status__prepend > span > a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#mastodon .notification__message,
+#mastodon .status__prepend {
+  padding-top: 15px !important;
+  padding-bottom: 0 !important;
+  margin: 0 0 -10px !important;
+  z-index: 2;
+  position: relative;
+}
+#mastodon .notification__message [class*='icon-wrapper'],
+#mastodon .status__prepend [class*='icon-wrapper'] {
+  display: flex;
+  align-items: center;
+}
+#mastodon .notification__message a,
+#mastodon .status__prepend a {
+  white-space: nowrap;
+  font-weight: 700;
+}
+#mastodon
+  .notification-favourite
+  .notification__message
+  ~ div
+  .status__action-bar,
+#mastodon .notification-favourite .notification__message ~ div .status__info,
+#mastodon .notification-reblog .notification__message ~ div .status__action-bar,
+#mastodon .notification-reblog .notification__message ~ div .status__info {
+  display: none;
+}
+#mastodon .notification-favourite .notification__message ~ div .status,
+#mastodon .notification-reblog .notification__message ~ div .status {
+  min-height: unset;
+}
+#mastodon .notification-favourite .notification__message ~ div .attachment-list,
+#mastodon .notification-reblog .notification__message ~ div .attachment-list {
+  margin-top: 0;
+}
+#mastodon
+  .notification-favourite
+  .notification__message
+  ~ div
+  .status__content__text.status__content__text,
+#mastodon
+  .notification-reblog
+  .notification__message
+  ~ div
+  .status__content__text.status__content__text {
+  max-height: 80px !important;
+  mask: linear-gradient(#000 60px, transparent);
+  -webkit-mask: linear-gradient(#000 60px, transparent);
+}
+#mastodon
+  .notification-favourite
+  .notification__message
+  ~ div
+  .status__content__text.status__content__text
+  p,
+#mastodon
+  .notification-reblog
+  .notification__message
+  ~ div
+  .status__content__text.status__content__text
+  p {
+  margin: 0;
+}
+#mastodon
+  .notification-favourite
+  .notification__message
+  ~ div
+  .attachment-list__list,
+#mastodon
+  .notification-reblog
+  .notification__message
+  ~ div
+  .attachment-list__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 0 1em;
+  margin-top: 4px;
+  z-index: 2;
+  pointer-events: none;
+  max-width: 100%;
+}
+#mastodon
+  .notification-favourite
+  .notification__message
+  ~ div
+  .attachment-list__list
+  li,
+#mastodon
+  .notification-reblog
+  .notification__message
+  ~ div
+  .attachment-list__list
+  li {
+  display: contents;
+}
+#mastodon
+  .notification-favourite
+  .notification__message
+  ~ div
+  .attachment-list__list
+  a,
+#mastodon
+  .notification-reblog
+  .notification__message
+  ~ div
+  .attachment-list__list
+  a {
+  pointer-events: all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+#mastodon .status__avatar {
+  min-width: 45px;
+  box-shadow: unset;
+}
+#mastodon .account__avatar-overlay-base {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  border-radius: var(--radius);
+}
+#mastodon .account__avatar-overlay-base .account__avatar {
+  width: 90% !important;
+  height: 90% !important;
+}
+#mastodon .account__avatar-overlay-overlay {
+  border-radius: var(--radius-round);
+  overflow: hidden;
+}
+#mastodon .status__info {
+  margin-top: 5px;
+  align-items: flex-start;
+}
+#mastodon .status__info > * {
+  position: relative;
+  z-index: 2;
+}
+#mastodon .status__info .display-name {
+  color: unset !important;
+}
+#mastodon .status__info .display-name strong {
+  font-weight: 600;
+}
+#mastodon .status__info .status__relative-time {
+  display: flex;
+  font-weight: 500;
+  font-size: 15px;
+}
+#mastodon .status__info .status__relative-time .status__visibility-icon {
+  order: 2;
+  margin-inline-start: 0.4em;
+}
+#mastodon .status__info .status__relative-time abbr {
+  margin-inline-start: 0.7em;
+}
+#mastodon .status__info .status__relative-time abbr::after {
+  content: '';
+  font: normal normal normal 14px/1 FontAwesome;
+}
+#mastodon .focusable:not(.detailed-status__wrapper) .status__content {
+  overflow: hidden;
+}
+#mastodon
+  .focusable:not(.detailed-status__wrapper)
+  .status__content
+  .status__content__text {
+  max-height: inherit !important;
+  overflow: hidden;
+}
+#mastodon
+  .focusable:not(.detailed-status__wrapper)
+  .status__content
+  .status__content__text:not(.status__content__text--visible) {
+  mask: linear-gradient(#000 300px, transparent);
+  -webkit-mask: linear-gradient(#000 300px, transparent);
+}
+#mastodon
+  .focusable .status--in-thread
+  .status__content
+  ~ .status__content__read-more-button {
+  padding-top: 0 !important;
+  margin-left: 56px;
+}
+#mastodon .focusable:not(.detailed-status__wrapper) .status__content::after,
+#mastodon .focusable:not(.detailed-status__wrapper) .status__content::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  height: 900px;
+}
+#mastodon .focusable:not(.detailed-status__wrapper) .status__content::after {
+  bottom: 100%;
+  top: unset;
+}
+#mastodon .status__content {
+  padding-top: 2px;
+  text-align: unset !important;
+  line-height: 1.5;
+}
+#mastodon .status__content.status__content--with-spoiler > p:first-child {
+  margin-bottom: 0;
+}
+.rtl #mastodon .status__content {
+  text-align: right !important;
+}
+#mastodon .status__content .status__content__text > br:first-child {
+  display: none !important;
+}
+#mastodon .status__content p:empty {
+  max-height: 0;
+}
+#mastodon .status__content__spoiler-link {
+  display: block;
+  position: relative;
+  padding: 0.4em 1.2em;
+  border-radius: var(--radius-round) !important;
+  color: inherit;
+  background: var(--elevated-color);
+  margin-block: 8px;
+}
+#mastodon .status__content__spoiler-link::after,
+#mastodon .status__content__spoiler-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-round);
+  background-color: var(--hover-color);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+#mastodon .status__content__spoiler-link::after {
+  inset: -6px -9999px;
+}
+#mastodon .status__content__spoiler-link:focus::after,
+#mastodon .status__content__spoiler-link:focus::before,
+#mastodon .status__content__spoiler-link:hover::after,
+#mastodon .status__content__spoiler-link:hover::before {
+  opacity: 1;
+}
+#mastodon .audio-player,
+#mastodon .media-gallery,
+#mastodon .picture-in-picture-placeholder,
+#mastodon .status-card,
+#mastodon .status-card.horizontal.interactive,
+#mastodon .video-player {
+  box-shadow: var(--shadow-low);
+  border-radius: var(--radius);
+  margin-top: 15px !important;
+  margin-bottom: 10px !important;
+  animation: scaleIn 0.4s;
+  max-width: unset !important;
+  max-height: 80vh !important;
+  margin-left: unset !important;
+  width: unset;
+}
+#mastodon .audio-player.status-card,
+#mastodon .media-gallery.status-card,
+#mastodon .picture-in-picture-placeholder.status-card,
+#mastodon .status-card.horizontal.interactive.status-card,
+#mastodon .status-card.status-card,
+#mastodon .video-player.status-card {
+  box-shadow: var(--shadow);
+  box-shadow: none;
+}
+#mastodon .audio-player.status-card .status-card__content,
+#mastodon .media-gallery.status-card .status-card__content,
+#mastodon .picture-in-picture-placeholder.status-card .status-card__content,
+#mastodon .status-card.horizontal.interactive.status-card .status-card__content,
+#mastodon .status-card.status-card .status-card__content,
+#mastodon .video-player.status-card .status-card__content {
+  padding-inline: 12px;
+}
+#mastodon .audio-player.status-card:hover,
+#mastodon .media-gallery.status-card:hover,
+#mastodon .picture-in-picture-placeholder.status-card:hover,
+#mastodon .status-card.horizontal.interactive.status-card:hover,
+#mastodon .status-card.status-card:hover,
+#mastodon .video-player.status-card:hover {
+  background-color: var(--hover-color);
+}
+#mastodon .media-gallery__item:not([style*='50%']) {
+  border-radius: var(--radius);
+}
+#mastodon .audio-player .video-player__seek {
+  margin: var(--radius);
+}
+#mastodon .detailed-status {
+  padding: 15px 15px 5px !important;
+}
+#mastodon div:empty + div > .detailed-status__wrapper {
+  margin-top: 0 !important;
+}
+#mastodon .detailed-status,
+#mastodon .detailed-status__wrapper,
+#mastodon .picture-in-picture {
+  box-shadow: var(--shadow);
+}
+#mastodon .detailed-status .audio-player,
+#mastodon .detailed-status .media-gallery,
+#mastodon .detailed-status .picture-in-picture-placeholder,
+#mastodon .detailed-status .status-card,
+#mastodon .detailed-status .status-card.horizontal.interactive,
+#mastodon .detailed-status .video-player,
+#mastodon .detailed-status__wrapper .audio-player,
+#mastodon .detailed-status__wrapper .media-gallery,
+#mastodon .detailed-status__wrapper .picture-in-picture-placeholder,
+#mastodon .detailed-status__wrapper .status-card,
+#mastodon .detailed-status__wrapper .status-card.horizontal.interactive,
+#mastodon .detailed-status__wrapper .video-player,
+#mastodon .picture-in-picture .audio-player,
+#mastodon .picture-in-picture .media-gallery,
+#mastodon .picture-in-picture .picture-in-picture-placeholder,
+#mastodon .picture-in-picture .status-card,
+#mastodon .picture-in-picture .status-card.horizontal.interactive,
+#mastodon .picture-in-picture .video-player {
+  margin-inline: 0 !important;
+  max-height: unset !important;
+}
+#mastodon .detailed-status .status__content,
+#mastodon .detailed-status__wrapper .status__content,
+#mastodon .picture-in-picture .status__content {
+  min-height: unset !important;
+}
+#mastodon .picture-in-picture {
+  z-index: 101;
+}
+#mastodon .picture-in-picture .picture-in-picture__header {
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+#mastodon .picture-in-picture .audio-player,
+#mastodon .picture-in-picture .media-gallery,
+#mastodon .picture-in-picture .picture-in-picture-placeholder,
+#mastodon .picture-in-picture .status-card,
+#mastodon .picture-in-picture .status-card.horizontal.interactive,
+#mastodon .picture-in-picture .video-player {
+  --radius: 0;
+  margin: 0 !important;
+}
+#mastodon .picture-in-picture .picture-in-picture__footer {
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+#mastodon .status__action-bar {
+  margin-top: 0.4em;
+  margin-bottom: -8px;
+}
+#mastodon .status__action-bar .icon-button::before {
+  content: '';
+  position: absolute;
+  inset: -0.5em;
+}
+#mastodon .detailed-status__action-bar,
+#mastodon .picture-in-picture__footer,
+#mastodon .status__action-bar {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  gap: 18px;
+}
+#mastodon .detailed-status__action-bar > *,
+#mastodon .picture-in-picture__footer > *,
+#mastodon .status__action-bar > * {
+  pointer-events: all;
+}
+#mastodon .detailed-status__action-bar .icon-button,
+#mastodon .picture-in-picture__footer .icon-button,
+#mastodon .status__action-bar .icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: unset;
+  padding: 0.3em !important;
+  height: unset !important;
+  border-radius: var(--radius);
+  position: relative;
+}
+#mastodon .detailed-status__action-bar .icon-button:last-child,
+#mastodon .picture-in-picture__footer .icon-button:last-child,
+#mastodon .status__action-bar .icon-button:last-child {
+  margin: 0 !important;
+}
+#mastodon .detailed-status__action-bar .icon-button i,
+#mastodon .picture-in-picture__footer .icon-button i,
+#mastodon .status__action-bar .icon-button i {
+  min-width: 22px;
+}
+#mastodon .detailed-status__action-bar .icon-button[aria-label]::after,
+#mastodon .picture-in-picture__footer .icon-button[aria-label]::after,
+#mastodon .status__action-bar .icon-button[aria-label]::after {
+  all: unset;
+  font-size: 12px;
+  margin-inline-start: 0.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#mastodon .detailed-status__action-bar .icon-button .icon-button__counter,
+#mastodon .picture-in-picture__footer .icon-button .icon-button__counter,
+#mastodon .status__action-bar .icon-button .icon-button__counter {
+  width: auto !important;
+}
+#mastodon .detailed-status__action-bar .detailed-status__action-bar-dropdown,
+#mastodon .detailed-status__action-bar .detailed-status__button,
+#mastodon .detailed-status__action-bar .status__action-bar-dropdown,
+#mastodon .detailed-status__action-bar .status__action-bar__dropdown,
+#mastodon .picture-in-picture__footer .detailed-status__action-bar-dropdown,
+#mastodon .picture-in-picture__footer .detailed-status__button,
+#mastodon .picture-in-picture__footer .status__action-bar-dropdown,
+#mastodon .picture-in-picture__footer .status__action-bar__dropdown,
+#mastodon .status__action-bar .detailed-status__action-bar-dropdown,
+#mastodon .status__action-bar .detailed-status__button,
+#mastodon .status__action-bar .status__action-bar-dropdown,
+#mastodon .status__action-bar .status__action-bar__dropdown {
+  display: contents;
+}
+#mastodon .detailed-status__action-bar.detailed-status__action-bar,
+#mastodon .detailed-status__action-bar.picture-in-picture__footer,
+#mastodon .picture-in-picture__footer.detailed-status__action-bar,
+#mastodon .picture-in-picture__footer.picture-in-picture__footer,
+#mastodon .status__action-bar.detailed-status__action-bar,
+#mastodon .status__action-bar.picture-in-picture__footer {
+  padding-inline: 15px !important;
+}
+#mastodon .detailed-status__action-bar.picture-in-picture__footer .icon-button,
+#mastodon .picture-in-picture__footer.detailed-status__action-bar .icon-button,
+#mastodon .picture-in-picture__footer.picture-in-picture__footer .icon-button,
+#mastodon .status__action-bar.detailed-status__action-bar .icon-button,
+#mastodon .status__action-bar.picture-in-picture__footer .icon-button {
+  flex-grow: 1 !important;
+}
+#mastodon
+  .detailed-status__action-bar.picture-in-picture__footer
+  .icon-button::after,
+#mastodon
+  .picture-in-picture__footer.picture-in-picture__footer
+  .icon-button::after,
+#mastodon .status__action-bar.picture-in-picture__footer .icon-button::after {
+  content: unset !important;
+}
+.layout-single-column #mastodon .column-back-button--slim .column-back-button,
+.layout-single-column #mastodon .tabs-bar__wrapper {
+  z-index: 101;
+  grid-column: 2;
+  transition: margin 0.2s cubic-bezier(0, 0, 0, 1.1), top 0.4s;
+}
+.column-header,
+.column-inline-form {
+  font-weight: 600;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.column-header ~ .scrollable,
+.column-inline-form ~ .scrollable {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+@media (min-width: 890px) {
+  .layout-single-column #mastodon .column-back-button--slim .column-back-button,
+  .layout-single-column #mastodon .tabs-bar__wrapper {
+    width: 285px;
+    top: 0 !important;
+    top: var(--top) !important;
+    inset-inline: unset !important;
+    height: 50px !important;
+    margin-top: -50px !important;
+    margin-inline-start: 10px;
+    border-radius: var(--radius) !important;
+    box-shadow: 0 12px 12px -12px rgba(0, 0, 0, 0.1);
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button:not(.column-back-button),
+  .layout-single-column #mastodon .tabs-bar__wrapper:not(.column-back-button) {
+    padding-top: 0;
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .column-header__wrapper,
+  .layout-single-column #mastodon .tabs-bar__wrapper .column-header__wrapper {
+    gap: 2px !important;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .column-back-button,
+  .layout-single-column #mastodon .tabs-bar__wrapper .column-back-button {
+    background: 0 0;
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .column-header,
+  .layout-single-column #mastodon .tabs-bar__wrapper .column-header {
+    background: 0 0 !important;
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .column-header
+    > button,
+  .layout-single-column #mastodon .tabs-bar__wrapper .column-header > button {
+    z-index: 2;
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .column-header__buttons
+    button,
+  .layout-single-column
+    #mastodon
+    .tabs-bar__wrapper
+    .column-header__buttons
+    button {
+    transition: background 0.2s, transform 0.3s !important;
+    position: relative;
+    border-radius: 100px !important;
+    min-width: 40px;
+    margin: 5px;
+    margin-inline-start: 0;
+    font-size: 0.9em;
+    padding-inline: 15px;
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .column-header__buttons
+    button
+    .icon-with-badge,
+  .layout-single-column
+    #mastodon
+    .tabs-bar__wrapper
+    .column-header__buttons
+    button
+    .icon-with-badge {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .column-header__buttons
+    button
+    .icon-with-badge
+    .icon-with-badge__badge,
+  .layout-single-column
+    #mastodon
+    .tabs-bar__wrapper
+    .column-header__buttons
+    button
+    .icon-with-badge
+    .icon-with-badge__badge {
+    right: -2px;
+    left: unset;
+    top: unset;
+    bottom: 0;
+    border-radius: var(--radius-round);
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .column-header__buttons
+    button
+    .column-header__icon,
+  .layout-single-column
+    #mastodon
+    .tabs-bar__wrapper
+    .column-header__buttons
+    button
+    .column-header__icon {
+    margin-inline-end: 0;
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .column-header__buttons
+    button:not(.active),
+  .layout-single-column
+    #mastodon
+    .tabs-bar__wrapper
+    .column-header__buttons
+    button:not(.active) {
+    background: var(--elevated-color) !important;
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .column-header__buttons
+    button::before,
+  .layout-single-column
+    #mastodon
+    .tabs-bar__wrapper
+    .column-header__buttons
+    button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    top: calc(100% + 5px);
+    bottom: -5px;
+    background: inherit;
+    z-index: -1;
+    transition: inset 0.1s;
+    border-radius: 100px;
+    pointer-events: none;
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .column-header__buttons
+    button::after,
+  .layout-single-column
+    #mastodon
+    .tabs-bar__wrapper
+    .column-header__buttons
+    button::after {
+    position: absolute;
+    inset: 0;
+    background: var(--elevated-color);
+    border-radius: 100%;
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .column-header__buttons
+    button.active::before,
+  .layout-single-column
+    #mastodon
+    .tabs-bar__wrapper
+    .column-header__buttons
+    button.active::before {
+    inset: -10px -300px;
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .announcements,
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .column-header__collapsible:not(.collapsed),
+  .layout-single-column #mastodon .tabs-bar__wrapper .announcements,
+  .layout-single-column
+    #mastodon
+    .tabs-bar__wrapper
+    .column-header__collapsible:not(.collapsed) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    animation: slideDowFade 0.3s backwards cubic-bezier(0, 1, 0, 1.2);
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .column-header__collapsible,
+  .layout-single-column
+    #mastodon
+    .tabs-bar__wrapper
+    .column-header__collapsible {
+    transition: none;
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .announcements__container,
+  .layout-single-column #mastodon .tabs-bar__wrapper .announcements__container {
+    width: 100% !important;
+  }
+  .layout-single-column
+    #mastodon
+    .column-back-button--slim
+    .column-back-button
+    .announcements__mastodon,
+  .layout-single-column #mastodon .tabs-bar__wrapper .announcements__mastodon {
+    z-index: -1;
+    position: relative;
+  }
+}
+@media (min-width: 890px) and (min-width: 1320px) {
+  .layout-single-column #mastodon .column-back-button--slim .column-back-button,
+  .layout-single-column #mastodon .tabs-bar__wrapper {
+    margin-inline-start: 25px;
+  }
+}
+@media (min-width: 890px) and (max-width: 1174px) {
+  .layout-single-column #mastodon .column-back-button--slim .column-back-button,
+  .layout-single-column #mastodon .tabs-bar__wrapper {
+    width: 265px;
+    margin-top: -60px !important;
+    top: 10px !important;
+    margin-inline-start: 10px;
+  }
+}
+#mastodon .column-settings__hashtags,
+#mastodon .column-settings__row {
+  border-radius: var(--radius);
+  margin-bottom: 1em;
+}
+#mastodon .column-select__control {
+  border-radius: var(--radius);
+}
+#mastodon .setting-toggle {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0.7em;
+  background: var(--elevated-color);
+  margin-bottom: 2px !important;
+  overflow: hidden;
+}
+#mastodon .setting-toggle:first-child {
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+}
+#mastodon .setting-toggle:last-child {
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+#mastodon .setting-toggle .react-toggle {
+  order: 2;
+}
+#mastodon .setting-toggle .setting-toggle__label {
+  margin-bottom: 0 !important;
+  flex-grow: 1;
+  width: 0;
+}
+#mastodon .setting-toggle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--hover-color);
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+#mastodon .setting-toggle:focus-within::before,
+#mastodon .setting-toggle:hover::before {
+  opacity: 1;
+}
+#mastodon .navigation-panel {
+  box-sizing: border-box;
+  height: calc(100vh - var(--top) - 50px + var(--radius));
+  padding-bottom: 10px;
+  margin: 0;
+  margin-top: calc(0px - var(--radius));
+  padding-top: calc(10px + var(--radius));
+}
+#mastodon .navigation-panel > hr {
+  display: none;
+}
+#mastodon .navigation-panel hr {
+  margin-inline: 15px;
+}
+@media (min-width: 1175px) {
+  #mastodon .navigation-panel {
+    padding-top: calc(var(--radius) + 10px);
+    margin-top: calc(50px - var(--radius));
+  }
+  #mastodon .navigation-panel .navigation-panel__logo {
+    display: none;
+  }
+}
+@media (min-width: 890px) {
+  .column-link {
+    flex-grow: 100 !important;
+    display: flex !important;
+    align-items: center !important;
+    align-content: center;
+    max-height: 3.3em;
+    min-height: 2.7em !important;
+    padding-block: 0;
+    position: relative;
+    box-sizing: border-box;
+    opacity: 0.9;
+    overflow: hidden;
+    background: 0 0 !important;
+  }
+  .column-header > button .column-header__icon,
+  .column-link .column-link__icon {
+    margin-inline-end: 1em !important;
+    font-size: 16px !important;
+  }
+  .column-link::before {
+    content: '' !important;
+    position: absolute;
+    border-radius: 100px;
+    width: unset !important;
+    height: unset !important;
+    inset: 0 0 !important;
+    opacity: 0 !important;
+    background-color: rgba(150, 150, 150, 0.1);
+    transition: opacity 0.2s;
+  }
+  .column-link.active {
+    opacity: 1 !important;
+    font-weight: 600;
+  }
+  .column-link:focus:before,
+  .column-link:hover:before {
+    opacity: 1 !important;
+  }
+  .column-link[href='/lists'] + div hr {
+    display: none;
+  }
+  .column-link[href='/lists'] + div .column-link {
+    margin-bottom: 2px;
+  }
+  .column-link[href='/lists'] + div .column-link i {
+    opacity: 0.2;
+  }
+  #mastodon .getting-started__trends {
+    display: unset !important;
+  }
+}
+#mastodon .trends__item__sparkline,
+#mastodon .trends__item__sparkline svg,
+.about .account {
+  overflow: visible !important;
+}
+#mastodon .trends__item {
+  display: flex !important;
+}
+#mastodon .trends__item__name a::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+#mastodon .trends__item__current {
+  display: none;
+}
+#mastodon .trends__item__sparkline {
+  pointer-events: none;
+}
+#mastodon .trends__item__sparkline path:first-child {
+  filter: blur(10px);
+}
+#mastodon .trends__item__sparkline path:last-child {
+  mask: linear-gradient(to left, #000, #000, transparent);
+  -webkit-mask: linear-gradient(to left, #000, #000, transparent);
+}
+.rtl #mastodon .trends__item__sparkline {
+  transform: scaleX(-1);
+}
+.getting-started {
+  padding: 5px 10px;
+}
+.getting-started .getting-started__wrapper {
+  background: 0 0;
+}
+.getting-started .getting-started__wrapper > * {
+  border: 0 !important;
+  padding: 20px;
+  background: 0 0;
+}
+.getting-started .getting-started__footer {
+  padding-inline: 20px;
+}
+#mastodon.modal-layout .container-alt .public-layout,
+.about .account {
+  padding: 0 !important;
+}
+.getting-started .getting-started__footer a span {
+  font-size: 1.1em !important;
+  line-height: 2;
+}
+.about .account::after {
+  content: unset !important;
+}
+.about .about__meta {
+  border-radius: var(--radius);
+}
+.about .about__section__title {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-radius: 0 !important;
+}
+.about .about__section__body {
+  animation: slideDowFade 0.3s 0.1s backwards cubic-bezier(0, 1, 0, 1.2);
+}
+.about .about__section {
+  margin: 10px 0 !important;
+  border-radius: var(--radius);
+  overflow: clip;
+  transition: margin 0.2s cubic-bezier(0, 1, 0, 1), border-radius 0.2s;
+}
+.about .about__section:not(.active) {
+  border: 0 !important;
+}
+.about .about__section:not(.active) .about__section__title {
+  background: var(--elevated-color) !important;
+  border-radius: var(--radius);
+}
+#mastodon.modal-layout {
+  overflow: hidden;
+}
+#mastodon.modal-layout .container-alt {
+  background: inherit;
+  height: 100%;
+}
+#mastodon.modal-layout .container-alt .form-container {
+  max-width: 500px !important;
+  padding: 0;
+  background: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+#mastodon.modal-layout .container-alt .form-container h2 {
+  margin: 0;
+  padding: 20px;
+  font-weight: 600;
+}
+#mastodon.modal-layout .container-alt .form-container .follow-prompt {
+  margin: 0;
+  border-radius: 0 0 var(--radius) var(--radius);
+  overflow-y: auto;
+}
+#mastodon.modal-layout
+  .container-alt
+  .form-container
+  .follow-prompt
+  .activity-stream {
+  margin: 0 !important;
+}
+#mastodon.modal-layout .container-alt .entry {
+  border-radius: var(--radius) !important;
+}
+#mastodon.modal-layout #new_remote_follow {
+  position: sticky;
+  bottom: 0;
+  padding: 20px 20px 60px;
+  background: inherit;
+}
+@media (min-width: 890px) and (max-width: 1174px) {
+  .layout-single-column #mastodon .ui__header {
+    background: 0 0 !important;
+    border: 0;
+    margin-inline-end: 280px;
+    padding-top: 12px;
+    position: static;
+  }
+  .layout-single-column #mastodon .columns-area__panels__main {
+    margin-inline: 10px !important;
+    margin-top: 10px;
+  }
+  .layout-single-column #mastodon .columns-area__panels__main .columns-area {
+    padding-bottom: 0 !important;
+  }
+  .layout-single-column #mastodon .dismissable-banner {
+    border-top-left-radius: 0 !important;
+  }
+  .layout-single-column #mastodon .navigation-panel {
+    background: 0 0;
+    border: 0;
+    width: 265px !important;
+    padding-bottom: 10px;
+  }
+}
+@media (max-width: 889px) {
+  #mastodon .scrollable:not(.scrollable--flex) {
+    padding: 0 !important;
+    padding-bottom: 40vh !important;
+  }
+  #mastodon .scrollable:not(.scrollable--flex)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: inherit;
+    z-index: -1;
+  }
+  #mastodon .scrollable:not(.scrollable--flex) .account-timeline__header {
+    margin: 0 !important;
+  }
+  #mastodon .account-card,
+  #mastodon .entry,
+  #mastodon .focusable,
+  #mastodon .scrollable :not(.focusable) > .account,
+  #mastodon .statuses-grid__item .detailed-status,
+  #mastodon .story,
+  #mastodon .timeline-hint,
+  #mastodon .trends__item {
+    border-radius: 0 !important;
+  }
+  #mastodon [class*='explore__'] > * {
+    border-radius: var(--radius) !important;
+  }
+  #mastodon .detailed-status__wrapper {
+    margin: 0 !important;
+  }
+  #mastodon .icon-button {
+    justify-content: center;
+  }
+  #mastodon .status__action-bar {
+    gap: 0;
+    max-width: 350px;
+  }
+  #mastodon .detailed-status__action-bar,
+  #mastodon .picture-in-picture__footer,
+  #mastodon .status__action-bar {
+    flex-wrap: wrap;
+  }
+  #mastodon .columns-area--mobile > .column > div > div {
+    animation: fadeUp 0.4s;
+  }
+  #mastodon .columns-area--mobile > .column > .column-header__wrapper {
+    display: none;
+  }
+  .ui__header {
+    z-index: 101;
+    border-bottom: 0;
+    flex-wrap: wrap;
+    min-height: 55px;
+    height: auto;
+    position: relative;
+    padding-block: 10px;
+    box-sizing: border-box;
+    gap: 10px;
+  }
+  .ui__header::after {
+    content: '';
+    position: absolute;
+    right: 54px;
+    top: 100%;
+    width: var(--radius);
+    height: var(--radius);
+    background: inherit;
+    mask: radial-gradient(
+      var(--radius) at 0 var(--radius),
+      rgba(0, 0, 0, 0) 100%,
+      #000
+    );
+    -webkit-mask: radial-gradient(
+      var(--radius) at 0 var(--radius),
+      rgba(0, 0, 0, 0) 100%,
+      #000
+    );
+  }
+  .rtl .ui__header::after {
+    left: 54px !important;
+    right: unset;
+    transform: scaleX(-1);
+  }
+  .ui__header .ui__header__logo {
+    padding-block: 5px !important;
+  }
+  .ui__header [href^='/@'] {
+    position: fixed;
+    margin-inline: -35px;
+  }
+  .ui__header [href='/publish'] {
+    position: fixed;
+    bottom: 15px;
+    right: 60px;
+    border-radius: 100px !important;
+    height: 60px;
+    width: 60px;
+    font-size: 0;
+    box-shadow: var(--shadow-low);
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    animation: scaleIn 0.2s cubic-bezier(0, 0, 0, 1.1);
+  }
+  .ui__header [href='/publish']::before {
+    content: '';
+    font: normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }
+  .ui__header [href='/publish']:active {
+    animation: rainbow 4s infinite linear !important;
+  }
+  #mastodon .tabs-bar__wrapper {
+    top: 0;
+  }
+  #mastodon .column-back-button.column-back-button {
+    border-radius: 0 !important;
+  }
+  #mastodon .columns-area__panels {
+    justify-content: flex-start;
+    max-width: 100% !important;
+    flex-wrap: nowrap !important;
+  }
+  #mastodon .columns-area__panels__main {
+    padding: 0 !important;
+    max-width: unset;
+    border-top-right-radius: var(--radius);
+    overflow: clip !important;
+  }
+  .rtl #mastodon .columns-area__panels__main {
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: 0;
+  }
+  #mastodon .columns-area__panels__main > .columns-area--mobile {
+    overflow: visible !important;
+  }
+  .is-composing .columns-area__panels__main {
+    padding-bottom: 40px !important;
+  }
+  #mastodon .columns-area__panels__main .account__header__image,
+  #mastodon .columns-area__panels__main .scrollable,
+  #mastodon .columns-area__panels__main > div {
+    border-radius: 0 !important;
+  }
+  #mastodon .status {
+    padding-top: 14px !important;
+  }
+  #mastodon .status .status__avatar {
+    width: 42px !important;
+    min-width: 45px !important;
+    height: 45px !important;
+    background-size: 45px !important;
+  }
+  #mastodon .status .status__avatar > div {
+    width: 100% !important;
+    height: 100% !important;
+    background-size: cover !important;
+  }
+  #mastodon .status .audio-player,
+  #mastodon .status .media-gallery,
+  #mastodon .status .picture-in-picture-placeholder,
+  #mastodon .status .status-card,
+  #mastodon .status .status-card.horizontal.interactive,
+  #mastodon .status .video-player {
+    margin-bottom: 0 !important;
+  }
+  #mastodon .status__action-bar {
+    margin-bottom: -5px;
+  }
+  #mastodon .status__action-bar .icon-button {
+    margin: 0 !important;
+    justify-content: center;
+    padding-top: 0.7em !important;
+  }
+  #mastodon .icon-button:after {
+    content: unset !important;
+  }
+  #mastodon .navigation-panel {
+    margin-top: -200px;
+    padding-top: 200px;
+    height: calc(100vh + 200px - 55px);
+    border: 0;
+    margin-inline-start: 1px;
+    padding-bottom: 90px;
+  }
+  #mastodon .notification__filter-bar + .scrollable {
+    border-radius: var(--radius) var(--radius) 0 0 !important;
+  }
+  #mastodon .modal-root__modal .status.light {
+    overflow: hidden !important;
+    padding-inline-start: 70px !important;
+  }
+  #mastodon .columns-area {
+    padding-bottom: 0 !important;
+    overflow: hidden !important;
+  }
+  #mastodon .getting-started {
+    padding: 20px 20px 60px;
+  }
+  #mastodon .getting-started__wrapper {
+    flex-grow: 1;
+    overflow: visible !important;
+  }
+  #mastodon .columns-area__panels__main .compose-form {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  #mastodon .columns-area__panels__main .compose-form__autosuggest-wrapper {
+    overflow: hidden;
+  }
+  #mastodon .columns-area__panels__main .autosuggest-textarea,
+  #mastodon .columns-area__panels__main .autosuggest-textarea label,
+  #mastodon .columns-area__panels__main .autosuggest-textarea textarea,
+  #mastodon .columns-area__panels__main .compose-form__autosuggest-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  #mastodon .about {
+    margin-inline: 10px !important;
+  }
+  #mastodon .about .account {
+    margin-top: 0;
+  }
+  #mastodon .about .about__header__hero,
+  #mastodon .about .about__section.active {
+    margin-inline: -11px !important;
+    width: unset;
+    border-radius: 0;
+  }
+  #mastodon .about .about__section.active {
+    margin-block: 20px !important;
+  }
+  #mastodon .about .about__section {
+    margin-bottom: 0;
+    border-bottom: 1px solid;
+  }
+  .search-popout {
+    max-width: unset !important;
+    width: calc(100vw - 70px) !important;
+    position: fixed;
+    left: 15px;
+  }
+}
+.admin-wrapper .sidebar-wrapper {
+  overflow: visible !important;
+  width: unset;
+}
+.admin-wrapper .sidebar-wrapper .sidebar-wrapper__inner {
+  position: sticky;
+  top: 0;
+  max-height: 100vh !important;
+  overflow-y: auto !important;
+  pointer-events: all !important;
+  z-index: 100;
+}
+.admin-wrapper .sidebar-wrapper .sidebar-wrapper__inner .fa {
+  margin-inline-end: 1em !important;
+}
+.admin-wrapper .sidebar-wrapper .sidebar-wrapper__inner .sidebar > ul > li {
+  overflow: hidden;
+  margin-inline: 15px !important;
+}
+.admin-wrapper
+  .sidebar-wrapper
+  .sidebar-wrapper__inner
+  .sidebar
+  > ul
+  > li
+  > a:not(.selected) {
+  background: 0 0;
+}
+.admin-wrapper .sidebar-wrapper .sidebar-wrapper__inner .sidebar > ul > li a {
+  display: flex !important;
+  align-items: center;
+  white-space: unset;
+}
+.admin-wrapper
+  .sidebar-wrapper
+  .sidebar-wrapper__inner
+  .sidebar
+  > ul
+  > li.selected {
+  margin: 6px;
+  border-radius: var(--radius);
+}
+.admin-wrapper
+  .sidebar-wrapper
+  .sidebar-wrapper__inner
+  .sidebar
+  > ul
+  > li.selected
+  > a.selected {
+  font-weight: 600;
+  color: unset;
+  position: relative;
+  overflow: visible;
+  border-radius: 0 !important;
+  border: 0;
+}
+.admin-wrapper
+  .sidebar-wrapper
+  .sidebar-wrapper__inner
+  .sidebar
+  > ul
+  > li.selected
+  > a.selected::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  height: 9999px;
+  background: inherit;
+  z-index: -1;
+}
+.admin-wrapper
+  .sidebar-wrapper
+  .sidebar-wrapper__inner
+  .sidebar
+  > ul
+  > li
+  > ul {
+  border-radius: var(--radius) !important;
+  overflow: hidden !important;
+  gap: 2px !important;
+  margin: 0 8px 8px;
+  background: 0 0;
+}
+.admin-wrapper
+  .sidebar-wrapper
+  .sidebar-wrapper__inner
+  .sidebar
+  > ul
+  > li
+  > ul
+  > li {
+  border-radius: 8px;
+}
+.admin-wrapper
+  .sidebar-wrapper
+  .sidebar-wrapper__inner
+  .sidebar
+  > ul
+  > li
+  > ul
+  > li:not(:first-child):not(:last-child) {
+  margin-block: 2px;
+}
+.admin-wrapper
+  .sidebar-wrapper
+  .sidebar-wrapper__inner
+  .sidebar
+  > ul
+  > li
+  > ul
+  > li
+  a {
+  padding: 14px 16px;
+  font-weight: 600;
+  border: 0;
+}
+.admin-wrapper
+  .sidebar-wrapper
+  .sidebar-wrapper__inner
+  .sidebar
+  > ul
+  > li
+  > ul
+  > li:not(.selected)
+  a {
+  background-color: rgba(150, 150, 250, 0.1);
+}
+.admin-wrapper .content__heading {
+  margin-bottom: 2em;
+}
+.admin-wrapper h4 {
+  margin: 0;
+  border-bottom: 0;
+}
+.admin-wrapper form > h4 {
+  margin-top: 2em !important;
+  border-bottom: 0;
+  margin-bottom: 0 !important;
+}
+.admin-wrapper .applications-list__item,
+.admin-wrapper .filters-list__item,
+.admin-wrapper .flash-message {
+  border-radius: var(--radius);
+  border: 0;
+  overflow: clip;
+}
+.admin-wrapper .fields-row {
+  margin-inline: 0;
+  border-radius: var(--radius);
+  overflow: clip;
+  padding-top: 0;
+  gap: 2px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.admin-wrapper .fields-group:not(.fields-row__column),
+.admin-wrapper .fields-row {
+  margin-bottom: 1em !important;
+}
+.admin-wrapper .fields-row__column,
+.admin-wrapper .fields-row__column .fields-group {
+  border-radius: 0 !important;
+  margin: 0 !important;
+}
+.admin-wrapper .fields-row__column {
+  max-width: unset;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.admin-wrapper .fields-row__column > :last-child {
+  flex-grow: 1;
+  align-items: flex-start;
+  border: 0;
+}
+.admin-wrapper .fields-row__column > :not(:first-child):not(:last-child) {
+  padding-block: 0.5em !important;
+  margin-block: -3px;
+}
+.admin-wrapper .fields-group,
+.admin-wrapper .fields-row > *,
+.admin-wrapper .label_input > ul,
+.admin-wrapper .radio_buttons > ul,
+.admin-wrapper .with_block_label.radio_buttons .label_input {
+  border-radius: var(--radius);
+  overflow: clip;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.admin-wrapper .fields-group > *,
+.admin-wrapper .fields-row > * > *,
+.admin-wrapper .label_input > ul > *,
+.admin-wrapper .radio_buttons > ul > *,
+.admin-wrapper .with_block_label.radio_buttons .label_input > * {
+  background-color: var(--elevated-color);
+  padding: 0.8rem;
+  margin-block: 0;
+  position: relative;
+  border-radius: 0 !important;
+}
+.admin-wrapper .fields-group > :not(p):not(h6):not(.input-copy)::after,
+.admin-wrapper .fields-row > * > :not(p):not(h6):not(.input-copy)::after,
+.admin-wrapper .label_input > ul > :not(p):not(h6):not(.input-copy)::after,
+.admin-wrapper .radio_buttons > ul > :not(p):not(h6):not(.input-copy)::after,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  > :not(p):not(h6):not(.input-copy)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--hover-color);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.admin-wrapper
+  .fields-group
+  > :not(p):not(h6):not(.input-copy):focus-within::after,
+.admin-wrapper .fields-group > :not(p):not(h6):not(.input-copy):hover::after,
+.admin-wrapper
+  .fields-row
+  > *
+  > :not(p):not(h6):not(.input-copy):focus-within::after,
+.admin-wrapper .fields-row > * > :not(p):not(h6):not(.input-copy):hover::after,
+.admin-wrapper
+  .label_input
+  > ul
+  > :not(p):not(h6):not(.input-copy):focus-within::after,
+.admin-wrapper
+  .label_input
+  > ul
+  > :not(p):not(h6):not(.input-copy):hover::after,
+.admin-wrapper
+  .radio_buttons
+  > ul
+  > :not(p):not(h6):not(.input-copy):focus-within::after,
+.admin-wrapper
+  .radio_buttons
+  > ul
+  > :not(p):not(h6):not(.input-copy):hover::after,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  > :not(p):not(h6):not(.input-copy):focus-within::after,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  > :not(p):not(h6):not(.input-copy):hover::after {
+  opacity: 1;
+}
+.admin-wrapper .fields-group .input-copy__wrapper,
+.admin-wrapper .fields-row > * .input-copy__wrapper,
+.admin-wrapper .label_input > ul .input-copy__wrapper,
+.admin-wrapper .radio_buttons > ul .input-copy__wrapper,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  .input-copy__wrapper {
+  border: 1px solid var(--border-color-2);
+  border-radius: var(--radius);
+}
+.admin-wrapper .fields-group .checkbox,
+.admin-wrapper .fields-group .radio,
+.admin-wrapper .fields-group > .input,
+.admin-wrapper .fields-row > * .checkbox,
+.admin-wrapper .fields-row > * .radio,
+.admin-wrapper .fields-row > * > .input,
+.admin-wrapper .label_input > ul .checkbox,
+.admin-wrapper .label_input > ul .radio,
+.admin-wrapper .label_input > ul > .input,
+.admin-wrapper .radio_buttons > ul .checkbox,
+.admin-wrapper .radio_buttons > ul .radio,
+.admin-wrapper .radio_buttons > ul > .input,
+.admin-wrapper .with_block_label.radio_buttons .label_input .checkbox,
+.admin-wrapper .with_block_label.radio_buttons .label_input .radio,
+.admin-wrapper .with_block_label.radio_buttons .label_input > .input {
+  flex-grow: 1;
+}
+.admin-wrapper .fields-group .checkbox:not(:last-child),
+.admin-wrapper .fields-group .radio:not(:last-child),
+.admin-wrapper .fields-group > .input:not(:last-child),
+.admin-wrapper .fields-row > * .checkbox:not(:last-child),
+.admin-wrapper .fields-row > * .radio:not(:last-child),
+.admin-wrapper .fields-row > * > .input:not(:last-child),
+.admin-wrapper .label_input > ul .checkbox:not(:last-child),
+.admin-wrapper .label_input > ul .radio:not(:last-child),
+.admin-wrapper .label_input > ul > .input:not(:last-child),
+.admin-wrapper .radio_buttons > ul .checkbox:not(:last-child),
+.admin-wrapper .radio_buttons > ul .radio:not(:last-child),
+.admin-wrapper .radio_buttons > ul > .input:not(:last-child),
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  .checkbox:not(:last-child),
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  .radio:not(:last-child),
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  > .input:not(:last-child) {
+  margin-bottom: 0;
+}
+.admin-wrapper .fields-group .checkbox.checkbox .hint,
+.admin-wrapper .fields-group .checkbox.checkbox label,
+.admin-wrapper .fields-group .checkbox.radio .hint,
+.admin-wrapper .fields-group .checkbox.radio label,
+.admin-wrapper .fields-group .radio.checkbox .hint,
+.admin-wrapper .fields-group .radio.checkbox label,
+.admin-wrapper .fields-group .radio.radio .hint,
+.admin-wrapper .fields-group .radio.radio label,
+.admin-wrapper .fields-group > .input.checkbox .hint,
+.admin-wrapper .fields-group > .input.checkbox label,
+.admin-wrapper .fields-group > .input.radio .hint,
+.admin-wrapper .fields-group > .input.radio label,
+.admin-wrapper .fields-row > * .checkbox.checkbox .hint,
+.admin-wrapper .fields-row > * .checkbox.checkbox label,
+.admin-wrapper .fields-row > * .checkbox.radio .hint,
+.admin-wrapper .fields-row > * .checkbox.radio label,
+.admin-wrapper .fields-row > * .radio.checkbox .hint,
+.admin-wrapper .fields-row > * .radio.checkbox label,
+.admin-wrapper .fields-row > * .radio.radio .hint,
+.admin-wrapper .fields-row > * .radio.radio label,
+.admin-wrapper .fields-row > * > .input.checkbox .hint,
+.admin-wrapper .fields-row > * > .input.checkbox label,
+.admin-wrapper .fields-row > * > .input.radio .hint,
+.admin-wrapper .fields-row > * > .input.radio label,
+.admin-wrapper .label_input > ul .checkbox.checkbox .hint,
+.admin-wrapper .label_input > ul .checkbox.checkbox label,
+.admin-wrapper .label_input > ul .checkbox.radio .hint,
+.admin-wrapper .label_input > ul .checkbox.radio label,
+.admin-wrapper .label_input > ul .radio.checkbox .hint,
+.admin-wrapper .label_input > ul .radio.checkbox label,
+.admin-wrapper .label_input > ul .radio.radio .hint,
+.admin-wrapper .label_input > ul .radio.radio label,
+.admin-wrapper .label_input > ul > .input.checkbox .hint,
+.admin-wrapper .label_input > ul > .input.checkbox label,
+.admin-wrapper .label_input > ul > .input.radio .hint,
+.admin-wrapper .label_input > ul > .input.radio label,
+.admin-wrapper .radio_buttons > ul .checkbox.checkbox .hint,
+.admin-wrapper .radio_buttons > ul .checkbox.checkbox label,
+.admin-wrapper .radio_buttons > ul .checkbox.radio .hint,
+.admin-wrapper .radio_buttons > ul .checkbox.radio label,
+.admin-wrapper .radio_buttons > ul .radio.checkbox .hint,
+.admin-wrapper .radio_buttons > ul .radio.checkbox label,
+.admin-wrapper .radio_buttons > ul .radio.radio .hint,
+.admin-wrapper .radio_buttons > ul .radio.radio label,
+.admin-wrapper .radio_buttons > ul > .input.checkbox .hint,
+.admin-wrapper .radio_buttons > ul > .input.checkbox label,
+.admin-wrapper .radio_buttons > ul > .input.radio .hint,
+.admin-wrapper .radio_buttons > ul > .input.radio label,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  .checkbox.checkbox
+  .hint,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  .checkbox.checkbox
+  label,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  .checkbox.radio
+  .hint,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  .checkbox.radio
+  label,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  .radio.checkbox
+  .hint,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  .radio.checkbox
+  label,
+.admin-wrapper .with_block_label.radio_buttons .label_input .radio.radio .hint,
+.admin-wrapper .with_block_label.radio_buttons .label_input .radio.radio label,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  > .input.checkbox
+  .hint,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  > .input.checkbox
+  label,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  > .input.radio
+  .hint,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  > .input.radio
+  label {
+  margin-bottom: 0 !important;
+}
+.admin-wrapper .fields-group .checkbox .label_input,
+.admin-wrapper .fields-group .radio .label_input,
+.admin-wrapper .fields-group > .input .label_input,
+.admin-wrapper .fields-row > * .checkbox .label_input,
+.admin-wrapper .fields-row > * .radio .label_input,
+.admin-wrapper .fields-row > * > .input .label_input,
+.admin-wrapper .label_input > ul .checkbox .label_input,
+.admin-wrapper .label_input > ul .radio .label_input,
+.admin-wrapper .label_input > ul > .input .label_input,
+.admin-wrapper .radio_buttons > ul .checkbox .label_input,
+.admin-wrapper .radio_buttons > ul .radio .label_input,
+.admin-wrapper .radio_buttons > ul > .input .label_input,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  .checkbox
+  .label_input,
+.admin-wrapper .with_block_label.radio_buttons .label_input .radio .label_input,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  > .input
+  .label_input {
+  flex-direction: column;
+}
+.admin-wrapper .fields-group .checkbox .label_input > label,
+.admin-wrapper .fields-group .radio .label_input > label,
+.admin-wrapper .fields-group > .input .label_input > label,
+.admin-wrapper .fields-row > * .checkbox .label_input > label,
+.admin-wrapper .fields-row > * .radio .label_input > label,
+.admin-wrapper .fields-row > * > .input .label_input > label,
+.admin-wrapper .label_input > ul .checkbox .label_input > label,
+.admin-wrapper .label_input > ul .radio .label_input > label,
+.admin-wrapper .label_input > ul > .input .label_input > label,
+.admin-wrapper .radio_buttons > ul .checkbox .label_input > label,
+.admin-wrapper .radio_buttons > ul .radio .label_input > label,
+.admin-wrapper .radio_buttons > ul > .input .label_input > label,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  .checkbox
+  .label_input
+  > label,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  .radio
+  .label_input
+  > label,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  > .input
+  .label_input
+  > label {
+  margin-bottom: 0;
+  padding-top: 0.1em;
+}
+.admin-wrapper .fields-group .checkbox .label_input__wrapper > :not(.checkbox),
+.admin-wrapper .fields-group .radio .label_input__wrapper > :not(.checkbox),
+.admin-wrapper .fields-group > .input .label_input__wrapper > :not(.checkbox),
+.admin-wrapper
+  .fields-row
+  > *
+  .checkbox
+  .label_input__wrapper
+  > :not(.checkbox),
+.admin-wrapper .fields-row > * .radio .label_input__wrapper > :not(.checkbox),
+.admin-wrapper .fields-row > * > .input .label_input__wrapper > :not(.checkbox),
+.admin-wrapper
+  .label_input
+  > ul
+  .checkbox
+  .label_input__wrapper
+  > :not(.checkbox),
+.admin-wrapper .label_input > ul .radio .label_input__wrapper > :not(.checkbox),
+.admin-wrapper
+  .label_input
+  > ul
+  > .input
+  .label_input__wrapper
+  > :not(.checkbox),
+.admin-wrapper
+  .radio_buttons
+  > ul
+  .checkbox
+  .label_input__wrapper
+  > :not(.checkbox),
+.admin-wrapper
+  .radio_buttons
+  > ul
+  .radio
+  .label_input__wrapper
+  > :not(.checkbox),
+.admin-wrapper
+  .radio_buttons
+  > ul
+  > .input
+  .label_input__wrapper
+  > :not(.checkbox),
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  .checkbox
+  .label_input__wrapper
+  > :not(.checkbox),
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  .radio
+  .label_input__wrapper
+  > :not(.checkbox),
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  > .input
+  .label_input__wrapper
+  > :not(.checkbox) {
+  margin-top: 0.4em;
+}
+.admin-wrapper .fields-group .checkbox .checkbox,
+.admin-wrapper .fields-group .radio .checkbox,
+.admin-wrapper .fields-group > .input .checkbox,
+.admin-wrapper .fields-row > * .checkbox .checkbox,
+.admin-wrapper .fields-row > * .radio .checkbox,
+.admin-wrapper .fields-row > * > .input .checkbox,
+.admin-wrapper .label_input > ul .checkbox .checkbox,
+.admin-wrapper .label_input > ul .radio .checkbox,
+.admin-wrapper .label_input > ul > .input .checkbox,
+.admin-wrapper .radio_buttons > ul .checkbox .checkbox,
+.admin-wrapper .radio_buttons > ul .radio .checkbox,
+.admin-wrapper .radio_buttons > ul > .input .checkbox,
+.admin-wrapper .with_block_label.radio_buttons .label_input .checkbox .checkbox,
+.admin-wrapper .with_block_label.radio_buttons .label_input .radio .checkbox,
+.admin-wrapper .with_block_label.radio_buttons .label_input > .input .checkbox {
+  inset: 0;
+  padding: 1em !important;
+}
+.admin-wrapper .fields-group li.checkbox,
+.admin-wrapper .fields-row > * li.checkbox,
+.admin-wrapper .label_input > ul li.checkbox,
+.admin-wrapper .radio_buttons > ul li.checkbox,
+.admin-wrapper .with_block_label.radio_buttons .label_input li.checkbox {
+  width: calc(50% - 27px);
+}
+.admin-wrapper .fields-group li.checkbox label,
+.admin-wrapper .fields-row > * li.checkbox label,
+.admin-wrapper .label_input > ul li.checkbox label,
+.admin-wrapper .radio_buttons > ul li.checkbox label,
+.admin-wrapper .with_block_label.radio_buttons .label_input li.checkbox label {
+  position: static;
+  padding-top: 0;
+}
+.admin-wrapper .fields-group li.checkbox label::before,
+.admin-wrapper .fields-row > * li.checkbox label::before,
+.admin-wrapper .label_input > ul li.checkbox label::before,
+.admin-wrapper .radio_buttons > ul li.checkbox label::before,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  li.checkbox
+  label::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.admin-wrapper .fields-group li.checkbox label input,
+.admin-wrapper .fields-row > * li.checkbox label input,
+.admin-wrapper .label_input > ul li.checkbox label input,
+.admin-wrapper .radio_buttons > ul li.checkbox label input,
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  li.checkbox
+  label
+  input {
+  inset: 1em !important;
+}
+.admin-wrapper .fields-group > h6,
+.admin-wrapper .fields-group > p,
+.admin-wrapper .fields-row > * > h6,
+.admin-wrapper .fields-row > * > p,
+.admin-wrapper .label_input > ul > h6,
+.admin-wrapper .label_input > ul > p,
+.admin-wrapper .radio_buttons > ul > h6,
+.admin-wrapper .radio_buttons > ul > p,
+.admin-wrapper .with_block_label.radio_buttons .label_input > h6,
+.admin-wrapper .with_block_label.radio_buttons .label_input > p {
+  margin: 0;
+}
+.admin-wrapper .fields-group > h6:not(:last-child),
+.admin-wrapper .fields-group > p:not(:last-child),
+.admin-wrapper .fields-row > * > h6:not(:last-child),
+.admin-wrapper .fields-row > * > p:not(:last-child),
+.admin-wrapper .label_input > ul > h6:not(:last-child),
+.admin-wrapper .label_input > ul > p:not(:last-child),
+.admin-wrapper .radio_buttons > ul > h6:not(:last-child),
+.admin-wrapper .radio_buttons > ul > p:not(:last-child),
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  > h6:not(:last-child),
+.admin-wrapper
+  .with_block_label.radio_buttons
+  .label_input
+  > p:not(:last-child) {
+  padding-bottom: 0;
+}
+.admin-wrapper ul {
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin-top: 0.4em;
+}
+.admin-wrapper .spacer {
+  border-top: 1px solid var(--border-color) !important;
+}
+.batch-table,
+.table,
+:not(.batch-table__row__content) > table {
+  overflow: clip;
+  border-radius: var(--radius);
+  border-spacing: 0 2px;
+  border-collapse: separate;
+}
+.batch-table .batch-table__row,
+.batch-table .batch-table__toolbar,
+.batch-table tr > *,
+.table .batch-table__row,
+.table .batch-table__toolbar,
+.table tr > *,
+:not(.batch-table__row__content) > table .batch-table__row,
+:not(.batch-table__row__content) > table .batch-table__toolbar,
+:not(.batch-table__row__content) > table tr > * {
+  border: 0;
+  margin-bottom: 2px !important;
+}
+.batch-table .batch-table__row,
+.batch-table td,
+.batch-table th,
+.table .batch-table__row,
+.table td,
+.table th,
+:not(.batch-table__row__content) > table .batch-table__row,
+:not(.batch-table__row__content) > table td,
+:not(.batch-table__row__content) > table th {
+  position: relative;
+}
+.batch-table tr > td > div > span,
+.batch-table tr > th > div > span,
+.table tr > td > div > span,
+.table tr > th > div > span,
+:not(.batch-table__row__content) > table tr > td > div > span,
+:not(.batch-table__row__content) > table tr > th > div > span {
+  padding-inline: 0.7em;
+  display: inline-block;
+}
+.keyboard-shortcuts td {
+  padding: 0.7em;
+}
+.batch-table .batch-table__row,
+.batch-table tfoot td,
+.batch-table th,
+.batch-table > tbody > tr > td,
+.table .batch-table__row,
+.table tfoot td,
+.table th,
+.table > tbody > tr > td,
+:not(.batch-table__row__content) > table .batch-table__row,
+:not(.batch-table__row__content) > table tfoot td,
+:not(.batch-table__row__content) > table th,
+:not(.batch-table__row__content) > table > tbody > tr > td {
+  background: var(--elevated-color) !important;
+  vertical-align: middle;
+}
+.batch-table .batch-table__row::after,
+.batch-table tfoot td::after,
+.batch-table th::after,
+.batch-table > tbody > tr > td::after,
+.table .batch-table__row::after,
+.table tfoot td::after,
+.table th::after,
+.table > tbody > tr > td::after,
+:not(.batch-table__row__content) > table .batch-table__row::after,
+:not(.batch-table__row__content) > table tfoot td::after,
+:not(.batch-table__row__content) > table th::after,
+:not(.batch-table__row__content) > table > tbody > tr > td::after {
+  content: '';
+  position: absolute;
+  inset: 0 0;
+  background: var(--hover-color);
+  opacity: 0;
+  transition: 0.2s;
+  pointer-events: none;
+}
+.batch-table .batch-table__row:focus-within::after,
+.batch-table .batch-table__row:hover::after,
+.batch-table tfoot td:focus-within::after,
+.batch-table tfoot td:hover::after,
+.batch-table th:focus-within::after,
+.batch-table th:hover::after,
+.batch-table > tbody > tr > td:focus-within::after,
+.batch-table > tbody > tr > td:hover::after,
+.table .batch-table__row:focus-within::after,
+.table .batch-table__row:hover::after,
+.table tfoot td:focus-within::after,
+.table tfoot td:hover::after,
+.table th:focus-within::after,
+.table th:hover::after,
+.table > tbody > tr > td:focus-within::after,
+.table > tbody > tr > td:hover::after,
+:not(.batch-table__row__content) > table .batch-table__row:focus-within::after,
+:not(.batch-table__row__content) > table .batch-table__row:hover::after,
+:not(.batch-table__row__content) > table tfoot td:focus-within::after,
+:not(.batch-table__row__content) > table tfoot td:hover::after,
+:not(.batch-table__row__content) > table th:focus-within::after,
+:not(.batch-table__row__content) > table th:hover::after,
+:not(.batch-table__row__content) > table > tbody > tr > td:focus-within::after,
+:not(.batch-table__row__content) > table > tbody > tr > td:hover::after {
+  opacity: 1;
+}
+.batch-table .batch-table__row > a:first-child:last-child,
+.batch-table tfoot td > a:first-child:last-child,
+.batch-table th > a:first-child:last-child,
+.batch-table > tbody > tr > td > a:first-child:last-child,
+.table .batch-table__row > a:first-child:last-child,
+.table tfoot td > a:first-child:last-child,
+.table th > a:first-child:last-child,
+.table > tbody > tr > td > a:first-child:last-child,
+:not(.batch-table__row__content)
+  > table
+  .batch-table__row
+  > a:first-child:last-child,
+:not(.batch-table__row__content) > table tfoot td > a:first-child:last-child,
+:not(.batch-table__row__content) > table th > a:first-child:last-child,
+:not(.batch-table__row__content)
+  > table
+  > tbody
+  > tr
+  > td
+  > a:first-child:last-child {
+  margin: 0;
+  width: 100%;
+  padding: 0.5em;
+}
+.batch-table th:hover td:not([rowspan])::after,
+.batch-table th:hover th:not([rowspan])::after,
+.batch-table tr:hover td:not([rowspan])::after,
+.batch-table tr:hover th:not([rowspan])::after,
+.table th:hover td:not([rowspan])::after,
+.table th:hover th:not([rowspan])::after,
+.table tr:hover td:not([rowspan])::after,
+.table tr:hover th:not([rowspan])::after,
+:not(.batch-table__row__content) > table th:hover td:not([rowspan])::after,
+:not(.batch-table__row__content) > table th:hover th:not([rowspan])::after,
+:not(.batch-table__row__content) > table tr:hover td:not([rowspan])::after,
+:not(.batch-table__row__content) > table tr:hover th:not([rowspan])::after {
+  opacity: 1 !important;
+}
+.batch-table th [rowspan]:hover ~ td::after,
+.batch-table tr [rowspan]:hover ~ td::after,
+.table th [rowspan]:hover ~ td::after,
+.table tr [rowspan]:hover ~ td::after,
+:not(.batch-table__row__content) > table th [rowspan]:hover ~ td::after,
+:not(.batch-table__row__content) > table tr [rowspan]:hover ~ td::after {
+  opacity: 0 !important;
+}
+.batch-table th [rowspan]::after,
+.batch-table tr [rowspan]::after,
+.table th [rowspan]::after,
+.table tr [rowspan]::after,
+:not(.batch-table__row__content) > table th [rowspan]::after,
+:not(.batch-table__row__content) > table tr [rowspan]::after {
+  inset-inline: -900px;
+}
+.layout-multiple-columns #mastodon .columns-area {
+  overflow: auto hidden !important;
+  padding: 0;
+}
+.layout-multiple-columns
+  #mastodon
+  .columns-area
+  .scrollable:not(.scrollable--flex) {
+  padding: 0 !important;
+  padding-bottom: 40vh !important;
+}
+.layout-multiple-columns
+  #mastodon
+  .columns-area
+  .scrollable:not(.scrollable--flex)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: inherit;
+  z-index: -1;
+}
+.layout-multiple-columns
+  #mastodon
+  .columns-area
+  .scrollable:not(.scrollable--flex)
+  .account-timeline__header {
+  margin: 0 !important;
+}
+.layout-multiple-columns #mastodon .columns-area .account-card,
+.layout-multiple-columns #mastodon .columns-area .entry,
+.layout-multiple-columns #mastodon .columns-area .focusable,
+.layout-multiple-columns
+  #mastodon
+  .columns-area
+  .scrollable
+  :not(.focusable)
+  > .account,
+.layout-multiple-columns
+  #mastodon
+  .columns-area
+  .statuses-grid__item
+  .detailed-status,
+.layout-multiple-columns #mastodon .columns-area .story,
+.layout-multiple-columns #mastodon .columns-area .timeline-hint,
+.layout-multiple-columns #mastodon .columns-area .trends__item {
+  border-radius: 0 !important;
+}
+.layout-multiple-columns #mastodon .columns-area [class*='explore__'] > * {
+  border-radius: var(--radius) !important;
+}
+.layout-multiple-columns #mastodon .columns-area .detailed-status__wrapper {
+  margin: 0 !important;
+}
+.layout-multiple-columns #mastodon .columns-area .icon-button {
+  justify-content: center;
+}
+.layout-multiple-columns #mastodon .columns-area .status__action-bar {
+  margin-bottom: 0;
+  justify-content: space-between;
+  gap: 0;
+  max-width: 350px;
+}
+.layout-multiple-columns #mastodon .columns-area .detailed-status__action-bar,
+.layout-multiple-columns #mastodon .columns-area .picture-in-picture__footer,
+.layout-multiple-columns #mastodon .columns-area .status__action-bar {
+  flex-wrap: wrap;
+}
+.layout-multiple-columns #mastodon .columns-area .account__header__image,
+.layout-multiple-columns #mastodon .columns-area .column-back-button,
+.layout-multiple-columns #mastodon .columns-area .column-header,
+.layout-multiple-columns #mastodon .columns-area .scrollable {
+  border-radius: 0 !important;
+}
+.layout-multiple-columns #mastodon .columns-area .icon-button:after {
+  content: unset !important;
+}
+.layout-multiple-columns #mastodon .columns-area > div {
+  border: 0 !important;
+  padding: 0 !important;
+}
+.layout-multiple-columns
+  #mastodon
+  .columns-area
+  > div:not(.drawer):not(:last-child) {
+  margin-inline-end: 2px !important;
+}
+.layout-multiple-columns #mastodon .columns-area > div.column {
+  flex-grow: 1;
+  max-width: 600px;
+}
+.layout-multiple-columns #mastodon .columns-area > div:first-child {
+  margin-inline-start: auto !important;
+}
+.layout-multiple-columns #mastodon .columns-area > div:last-child {
+  margin-inline-end: auto !important;
+}
+.layout-multiple-columns #mastodon .columns-area .drawer {
+  padding-inline: 6px !important;
+  padding-top: 20px !important;
+}
+.layout-multiple-columns #mastodon .columns-area .drawer .drawer__header {
+  border-radius: var(--radius-round);
+  margin-inline: 10px;
+  overflow: hidden;
+  border: 0 !important;
+}
+.layout-multiple-columns #mastodon .columns-area .drawer .drawer__header a {
+  border: 0;
+}
+.layout-multiple-columns
+  #mastodon
+  .columns-area
+  .drawer
+  .drawer__header
+  a:first-child {
+  padding-inline-start: 15px !important;
+}
+.layout-multiple-columns
+  #mastodon
+  .columns-area
+  .drawer
+  .drawer__header
+  a:last-child {
+  padding-inline-end: 15px !important;
+}
+.layout-multiple-columns #mastodon .columns-area .drawer .search {
+  z-index: 2;
+}
+.layout-multiple-columns #mastodon .columns-area .drawer > .drawer__pager {
+  overflow: visible !important;
+}
+.layout-multiple-columns
+  #mastodon
+  .columns-area
+  .drawer
+  > .drawer__pager
+  > .drawer__inner:not(.darker) {
+  top: -20px;
+  margin-inline-start: -6px;
+  margin-inline-end: -4px;
+  width: calc(100% + 10px);
+  padding-inline-start: 6px;
+  padding-inline-end: 4px;
+  padding-top: 20px;
+  height: calc(100% + 20px);
+}
+.layout-multiple-columns
+  #mastodon
+  .columns-area
+  .drawer
+  .drawer__inner__mastodon {
+  margin-inline: -6px;
+  margin-inline-end: -4px;
+}
+.layout-multiple-columns #mastodon .columns-area .search {
+  margin-inline: 10px;
+}
+.layout-multiple-columns #mastodon .columns-area .drawer__inner:not(.darker),
+.layout-multiple-columns #mastodon .columns-area .drawer__inner__mastodon {
+  background-color: transparent;
+  border: 0 !important;
+}
+.layout-multiple-columns #mastodon .columns-area .drawer__inner.darker {
+  border-radius: var(--radius-round) var(--radius-round) 0 0;
+}
+.layout-multiple-columns #mastodon .columns-area .getting-started__trends {
+  padding: 0 20px;
+}
+.layout-multiple-columns #mastodon .columns-area .status {
+  padding-bottom: 10px !important;
+}
+.layout-multiple-columns
+  #mastodon
+  .columns-area
+  .detailed-status
+  .status__content {
+  font-size: 1.3em;
+}
+.modal-root__container {
+  animation: bounceIn 0.7s !important;
+}
