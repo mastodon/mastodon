@@ -1,0 +1,21 @@
+// http://www.anothermag.com/art-photography/3586/wes-andersons-colour-palettes
+$ui-base-color: darken(#8A9DA4, 15%); // darkest #1
+$ui-highlight-color: lighten(#56bedd, 15%); // vibrant #3
+$ui-secondary-color: #FAEFD1; // lightest #7
+$ui-primary-color: #cedce2; // lighter #0
+$ui-primary-color-alt: #56bedd; // darker, for external pages #2
+
+@import 'application';
+
+
+.display-name {
+  color: lighten($ui-highlight-color, 50%);
+}
+
+.status__content {
+  color: lighten($ui-primary-color, 6%) !important;
+}
+
+.status__display-name strong {
+  color: lighten($ui-primary-color, 15%) !important;
+}

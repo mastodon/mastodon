@@ -1,0 +1,25 @@
+/*
+Single column layout:
+- re-uses tab bar from mobile layout
+- hides search from drawer (redundant with search tab)
+
+author: trwnh
+license: Public Domain
+*/
+
+@media (min-width: 1024px) {
+  /* place constraints on app layout */
+  .ui {max-width: 960px; max-height: 100vh;}
+  .drawer {width: 300px}
+  .column:last-child, .drawer:last-child
+  {display: flex; flex: 1 1 100%;}
+  /* show tabs bar (from mobile layout) as header */
+  .tabs-bar {display: flex;}
+  /* hide redundant ui elements */
+  .column,
+  .drawer__header,
+  .drawer:first-child .search,
+  .drawer:first-child .search-results
+  {display: none;}
+  .drawer:first-child .drawer__inner.darker {z-index: -1}
+}

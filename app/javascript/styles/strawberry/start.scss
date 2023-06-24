@@ -1,0 +1,64 @@
+.getting-started {
+	color: $cui;
+}
+.getting-started,
+.flex-spacer,
+.column-subheading {
+	background: $blb;
+	color: $btxt;
+}
+.column-link {
+	background: $btt3;
+	color: $cui2;
+}
+.column-link:hover,
+.column-inline-form {
+	background: $btt2;
+}
+.column-subheading {
+	border-bottom: 1px dotted $cui;
+	border-top: 1px dotted $cui;
+}
+.getting-started__wrapper {
+	border-bottom: 1px dotted $cui;
+	background: $btt3;
+}
+.column-link__badge {
+	background: $curl;
+	color: white
+}
+
+.getting-started__footer a,
+.getting-started__footer p a {
+	color: $curl;
+	text-shadow: 0 0 5px $btt2;
+}
+
+.account--panel {
+	background: $blb;
+	border-color: $cui;
+}
+.setting-text {
+	color: $cui;
+	border-color: $cui;
+}
+.setting-text:focus,
+.setting-text:active {
+	border-color: $curl;
+	color: $btxt;
+}
+.column-back-button--slim .column-back-button,
+.column-header__buttons .column-header__back-button{
+	box-shadow: none;
+}
+.keyboard-shortcuts {
+	color: $cui2;
+}
+.keyboard-shortcuts kbd {
+	color: $cbut;
+	background: transparent;
+	border-radius: 3px;
+	border: 1px solid $cbut;
+	margin: auto 3px;
+	padding: 2px 6px
+}

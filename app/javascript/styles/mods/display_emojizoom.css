@@ -1,0 +1,23 @@
+  /*
+  Emoji hover zoom:
+  - makes emoji grow in size when moused over
+  
+  author: noiob
+  license: CC0 - Public Domain
+  source: https://userstyles.org/styles/150165
+  */
+  
+  .emojione:hover
+  {
+    width: 50px !important;
+ /* set the width and height of the expanded emojo here */
+    height: 50px !important;
+    transition: all 0.3s ease-in-out !important;
+    /* the 0.3s is the animation time for growing the emojo, it can be set to 0 */;
+  }
+
+  .emojione
+  {
+    transition: all 0.2s ease-in-out;
+    /* the 0.2s is the animation time for shrinking the emojo, it can be set to 0 */;
+  }

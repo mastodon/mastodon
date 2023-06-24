@@ -1,0 +1,15 @@
+/*
+* Rounded avatars:
+* - adjust the border radius around all avatar elements.
+* - default override is 50% (i.e. turn squares into circles),
+*   but you can set it to whatever you want.
+*
+* author: trwnh
+* license: Public Domain
+*/
+.card .avatar img,
+.activity-stream .status.light .status__avatar img,
+.account__avatar,
+    .account__avatar-overlay-base,
+    .account__avatar-overlay-overlay
+{border-radius: 50%}

@@ -1,0 +1,61 @@
+.search__input {
+	background: $btt;
+	color: $cui;
+}
+::placeholder {
+	color: $cui2;
+}
+.search__input:focus {
+	background: $btt2;
+}
+.search__icon .fa,
+.account .account__display-name,
+.trends__item__name {
+	color: $cui;
+}
+.fa-times-circle.active:hover,
+.trends__item__current {
+	color: $cbut;
+}
+.trends__item__name a {
+	color: $curl;
+}
+.trends__item__sparkline path {
+	stroke: $curl !important
+}
+
+.drawer__inner.darker {
+	background: $btt3;
+}
+.search-results__header,
+.trends__header {
+	color: $cbut;
+	background: $bhd;
+	border-color: $cui;
+}
+.search-results__section h5 {
+	color: $btxt;
+	border-color: $cui;
+	background: $blb;
+	box-shadow: 0 5px 20px -8px $cui inset;
+	border-top: 1px dotted $cui;
+}
+.search-results__section {
+	margin-bottom: 0;
+}
+.account,
+.trends__item {
+	border-color: $cui;
+	box-shadow: 0 5px 20px -8px $cui inset;
+}
+
+.search-popout {
+	background: $btt;
+	color: $cui;
+}
+.search-popout h4 {
+	color: $btxt;
+}
+.search-popout em {
+	color: $curl;
+}

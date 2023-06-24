@@ -1,0 +1,51 @@
+.public-layout .public-account-header__bar::before,
+.column .scrollable,
+.drawer__inner__mastodon,
+.getting-started,
+.hero-widget__text,
+.empty-column-indicator,
+.error-column,
+.regeneration-indicator {
+	border-radius: 0 0 10px 10px;
+}
+
+.search__input,
+.drawer__inner,
+.drawer__header,
+.drawer__tab,
+.tabs-bar,
+.landing-page__call-to-action,
+.contact-widget,
+.landing-page__information.contact-widget,
+.public-layout .public-account-header--no-bar .public-account-header__image,
+.public-layout .public-account-header--no-bar .public-account-header__image img,
+.public-layout .header,
+.box-widget,
+.hero-widget,
+.landing-page__information,
+.landing-page #mastodon-timeline,
+.landing-page__forms,
+.landing-page__hero,
+.landing-page__hero img,
+.search-popout {
+	border-radius: 10px;
+}
+
+.column-back-button,
+.column-header__back-button,
+.column-header,
+.column-header.active,
+.tabs-bar__link,
+.hero-widget__img {
+	border-radius: 10px 10px 0 0;
+}
+
+@media screen and (max-width: 700px){
+	.navigation-bar,
+	.getting-started__wrapper {
+		border-radius: 10px 10px 0 0;
+	}
+	.getting-started {
+		border-radius: 10px;
+	}
+}

@@ -1,0 +1,20 @@
+/*
+Use browser default font:
+- override mastodon-font-sans-serif with sans-serif
+- note: this is not the same as "use system default font"
+  in mastodon's preferences! that option uses a font that
+  would be *expected to load on that system*, and ignores
+  your browser's settings entirely. for example, if you
+  are running ms windows, you will see segoe ui, even if
+  your browser's default font is something else!
+
+author: trwnh
+license: Public Domain
+*/
+body,
+.landing-page #mastodon-timeline,
+.landing-page li,
+.landing-page p
+{
+    font-family: sans-serif
+}

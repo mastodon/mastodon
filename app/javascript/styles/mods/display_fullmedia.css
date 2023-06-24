@@ -1,0 +1,31 @@
+/*
+Full-height media previews:
+- normal media previews are forced to be 16:9 for consistency
+- use this if you prefer to see the aspect ratio unchanged
+
+author: Kevin
+license: CC0 - Public Domain
+source: https://userstyles.org/styles/167207 [in part]
+*/
+
+.media-gallery {
+    max-height: 100% !important;
+    height: 100% !important;
+}
+
+.media-gallery__item-gifv-thumbnail, .media-gallery__item-gifv-thumbnail img {
+    transform: translateY(0%) !important;
+    max-height: 100% !important;
+}
+
+.media-gallery__item-thumbnail, .media-gallery__item-thumbnail img, .media-gallery__gifv {
+    max-height: 100% !important;
+}
+
+.media-gallery__item {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    inset: 0 !important;
+    margin-bottom: 4px;
+}

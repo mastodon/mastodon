@@ -1,0 +1,138 @@
+.status-card {
+	border-color: $cui !important;
+	color: $cui;
+	background: $btt;
+}
+.status-card > div,
+.status-card__image,
+.status-card__actions > div {
+	background: transparent;
+}
+.status-card button,
+.status-card a {
+	color: $cbut;
+}
+
+a.status-card:hover,
+a.status-card.compact:hover {
+	background: $btt2;
+}
+.status-card__title,
+.text-btn:hover {
+	color: $curl;
+}
+.status-card__description {
+	color: $cui2;
+}
+.column-header__button.active,
+.column-header__button.active:hover {
+	background: transparent;
+	text-shadow: 0 0 10px $btt;
+	position: relative;
+}
+.column-header__collapsible-inner {
+	background: transparent;
+}
+.column-header__collapsible {
+	background: $btt2;
+	border-bottom: 1px dotted $cui;
+}
+.column-header__collapsible,
+.column-settings__section {
+	color: $cui;
+}
+.setting-toggle__label {
+	color: $cui2;
+}
+
+.react-toggle-track {
+	background-color: $blb;
+}
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+	background-color: $cui;
+}
+.react-toggle-thumb {
+	border-color: $blb;
+}
+.react-toggle--checked .react-toggle-track,
+.media-modal__button--active {
+	background-color: $cbut;
+}
+.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+	background-color: $curl;
+}
+.react-toggle--checked .react-toggle-thumb {
+	border-color: $cbut;
+}
+.column-header__collapsible hr {
+	border-color: $cui;
+}
+
+.dropdown-menu,
+.dropdown-menu__item a {
+	background: $btxt;
+	color: $btt;
+}
+.dropdown-menu__item a:hover {
+	background: $cui2;
+	color: $btt2;
+}
+.dropdown-menu__arrow.bottom {
+	border-bottom-color: $btxt;
+}
+.dropdown-menu__separator {
+	border-color: $cui;
+}
+
+.card>a {
+	border-radius: 10px;
+}
+.card__img,
+.card__img img {
+	border-radius: 10px 10px 0 0;
+	background: $btt;
+}
+
+.card__bar {
+	border-radius: 0 0 10px 10px;
+	background: $blb;
+	box-shadow: 0 8px 15px -8px $cui inset
+}
+.card > a .card__bar {
+	transition: all 0.15s linear;
+}
+.card > a:active .card__bar,
+.card > a:focus .card__bar,
+.card > a:hover .card__bar {
+	background: $btt2 !important;
+}
+.card__bar .display-name strong {
+	color: $ctxt;
+	text-shadow: 0 0 0.2em $btt2;
+}
+.card__bar .display-name span {
+	color: #fff;
+	text-shadow: 0 0 5px $ctxt;
+}
+
+.card > a .display-name span {
+	transition: all 0.15s linear;
+}
+.card > a:active .display-name span,
+.card > a:focus .display-name span,
+.card > a:hover .display-name span{
+	color: $cui;
+	text-shadow: none;
+}
+
+.list-editor h4 {
+	background: $bhd;
+	color: $curl;
+}
+.list-editor .search__input {
+	border-radius: 0;
+	border-bottom: 1px dotted $cui;
+}
+.list-editor .drawer__inner {
+	background: $btt3;
+}

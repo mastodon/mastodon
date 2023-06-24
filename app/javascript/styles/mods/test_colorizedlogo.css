@@ -1,0 +1,12 @@
+/*
+Colorize logo on landing page:
+- DO NOT IMPORT. It works as standalone CSS, but it makes Sass choke.
+
+author: trwnh
+license: Public Domain
+*/
+
+.landing-page__logo img {
+    filter: sepia(100%) hue-rotate(160deg) saturate(400%) brightness(40%);
+    mix-blend-mode: normal
+}

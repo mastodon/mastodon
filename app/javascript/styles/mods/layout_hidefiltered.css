@@ -1,0 +1,9 @@
+/*
+Remove the "Filtered" tombstone from timelines.
+- WARNING: this breaks keyboard scrolling with j/k!
+
+author: trwnh
+license: Public Domain
+*/
+
+.status__wrapper--filtered {display: none}
