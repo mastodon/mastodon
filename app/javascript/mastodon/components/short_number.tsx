@@ -9,28 +9,14 @@ import { toShortNumber, pluralReady, DECIMAL_UNITS } from '../utils/numbers';
 interface ShortNumberArgs {
   value: number;
   renderer: (displayNumber: ReactNode, pluralReady: number) => ReactNode;
-  children: (displayNumber: ReactNode, pluralReady: number) => ReactNode;
 }
-const _ShortNumber = ({
-  value,
-  renderer,
-  children,
-}: ShortNumberArgs): ReactNode => {
+const _ShortNumber = ({ value, renderer }: ShortNumberArgs): ReactNode => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
 
-  if (children != null && renderer != null) {
-    console.warn(
-      'Both renderer prop and renderer as a child provided. This is a mistake and you really should fix that. Only renderer passed as a child will be used.'
-    );
-  }
-
-  const customRenderer = children != null ? children : renderer;
-
   const displayNumber = <ShortNumberCounter value={shortNumber} />;
-
-  return customRenderer != null
-    ? customRenderer(displayNumber, pluralReady(value, division))
+  return renderer != null
+    ? renderer(displayNumber, pluralReady(value, division))
     : displayNumber;
 };
 
