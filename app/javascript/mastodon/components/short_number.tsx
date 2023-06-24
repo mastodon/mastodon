@@ -12,30 +12,19 @@ type ShortNumberRenderer = (
 interface ShortNumberProps {
   value: number;
   renderer?: ShortNumberRenderer;
-  children?: ShortNumberRenderer;
+  children?: never;
 }
 
 export const ShortNumberRenderer: React.FC<ShortNumberProps> = ({
   value,
   renderer,
-  children,
 }) => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
-
-  if (children && renderer) {
-    console.warn(
-      'Both renderer prop and renderer as a child provided. This is a mistake and you really should fix that. Only renderer passed as a child will be used.',
-    );
-  }
-
-  const customRenderer = children ?? renderer ?? null;
-
   const displayNumber = <ShortNumberCounter value={shortNumber} />;
 
   return (
-    customRenderer?.(displayNumber, pluralReady(value, division)) ??
-    displayNumber
+    renderer?.(displayNumber, pluralReady(value, division)) ?? displayNumber
   );
 };
 export const ShortNumber = memo(ShortNumberRenderer);
