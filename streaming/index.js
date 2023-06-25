@@ -1177,7 +1177,7 @@ const startServer = async () => {
     const location = url.parse(req.url, true);
 
     req.requestId = uuid.v4();
-    req.remoteAddress =  req.headers['x-forwarded-for'].split(',')[0].trim() || ws._socket.remoteAddress;
+    req.remoteAddress =  req.headers['x-forwarded-for']?.split(',')[0].trim() || ws._socket.remoteAddress;
 
     ws.isAlive = true;
 
