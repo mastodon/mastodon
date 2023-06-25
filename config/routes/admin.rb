@@ -3,7 +3,7 @@
 namespace :admin do
   get '/dashboard', to: 'dashboard#index'
 
-  resources :domain_allows, only: [:new, :create, :show, :destroy]
+  resources :domain_allows, only: [:new, :create, :destroy]
   resources :domain_blocks, only: [:new, :create, :destroy, :update, :edit] do
     collection do
       post :batch
