@@ -162,7 +162,7 @@ Rails.application.routes.draw do
   get '/backups/:id/download', to: 'backups#download', as: :download_backup, format: false
 
   resource :authorize_interaction, only: [:show, :create]
-  resource :share, only: [:show, :create]
+  resource :share, only: [:show]
 
   draw(:admin)
 
