@@ -15,7 +15,7 @@ class UserSettings
   setting :show_application, default: true
   setting :default_language, default: nil
   setting :default_sensitive, default: false
-  setting :default_privacy, default: nil
+  setting :default_privacy, default: nil, in: %w(public unlisted private)
   setting :default_content_type, default: 'text/plain'
   setting :hide_followers_count, default: false
 
@@ -79,7 +79,10 @@ class UserSettings
 
     raise KeyError, "Undefined setting: #{key}" unless self.class.definition_for?(key)
 
-    typecast_value = self.class.definition_for(key).type_cast(value)
+    setting_definition = self.class.definition_for(key)
+    typecast_value = setting_definition.type_cast(value)
+
+    raise ArgumentError, "Invalid value for setting #{key}: #{typecast_value}" if setting_definition.in.present? && setting_definition.in.exclude?(typecast_value)
 
     if typecast_value.nil?
       @original_hash.delete(key)

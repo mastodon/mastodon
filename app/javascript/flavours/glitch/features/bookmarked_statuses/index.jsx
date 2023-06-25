@@ -15,13 +15,14 @@ import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/col
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import StatusList from 'flavours/glitch/components/status_list';
 import Column from 'flavours/glitch/features/ui/components/column';
+import { getStatusList } from 'flavours/glitch/selectors';
 
 const messages = defineMessages({
   heading: { id: 'column.bookmarks', defaultMessage: 'Bookmarks' },
 });
 
 const mapStateToProps = state => ({
-  statusIds: state.getIn(['status_lists', 'bookmarks', 'items']),
+  statusIds: getStatusList(state, 'bookmarks'),
   isLoading: state.getIn(['status_lists', 'bookmarks', 'isLoading'], true),
   hasMore: !!state.getIn(['status_lists', 'bookmarks', 'next']),
 });

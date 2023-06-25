@@ -48,7 +48,7 @@ describe Request do
       end
 
       it 'executes a HTTP request when the first address is private' do
-        resolver = double
+        resolver = instance_double(Resolv::DNS)
 
         allow(resolver).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:4860:4860::8844))
         allow(resolver).to receive(:timeouts=).and_return(nil)
@@ -83,7 +83,7 @@ describe Request do
       end
 
       it 'raises Mastodon::ValidationError' do
-        resolver = double
+        resolver = instance_double(Resolv::DNS)
 
         allow(resolver).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:db8::face))
         allow(resolver).to receive(:timeouts=).and_return(nil)

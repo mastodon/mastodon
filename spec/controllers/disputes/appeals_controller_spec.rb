@@ -14,7 +14,8 @@ RSpec.describe Disputes::AppealsController do
     let(:strike) { Fabricate(:account_warning, target_account: current_user.account) }
 
     before do
-      allow(AdminMailer).to receive(:new_appeal).and_return(double('email', deliver_later: nil))
+      allow(AdminMailer).to receive(:new_appeal)
+        .and_return(instance_double(ActionMailer::MessageDelivery, deliver_later: nil))
       post :create, params: { strike_id: strike.id, appeal: { text: 'Foo' } }
     end
 

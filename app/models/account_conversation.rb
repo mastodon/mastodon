@@ -32,14 +32,8 @@ class AccountConversation < ApplicationRecord
   end
 
   def participant_accounts
-    @participant_accounts ||= begin
-      if participant_account_ids.empty?
-        [account]
-      else
-        participants = Account.where(id: participant_account_ids).to_a
-        participants.empty? ? [account] : participants
-      end
-    end
+    @participant_accounts ||= Account.where(id: participant_account_ids).to_a
+    @participant_accounts.presence || [account]
   end
 
   class << self

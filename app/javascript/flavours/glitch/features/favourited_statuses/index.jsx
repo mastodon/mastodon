@@ -15,13 +15,14 @@ import { fetchFavouritedStatuses, expandFavouritedStatuses } from 'flavours/glit
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import StatusList from 'flavours/glitch/components/status_list';
 import Column from 'flavours/glitch/features/ui/components/column';
+import { getStatusList } from 'flavours/glitch/selectors';
 
 const messages = defineMessages({
   heading: { id: 'column.favourites', defaultMessage: 'Favourites' },
 });
 
 const mapStateToProps = state => ({
-  statusIds: state.getIn(['status_lists', 'favourites', 'items']),
+  statusIds: getStatusList(state, 'favourites'),
   isLoading: state.getIn(['status_lists', 'favourites', 'isLoading'], true),
   hasMore: !!state.getIn(['status_lists', 'favourites', 'next']),
 });

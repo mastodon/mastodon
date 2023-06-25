@@ -11,9 +11,10 @@ import { debounce } from 'lodash';
 import { fetchTrendingStatuses, expandTrendingStatuses } from 'flavours/glitch/actions/trends';
 import DismissableBanner from 'flavours/glitch/components/dismissable_banner';
 import StatusList from 'flavours/glitch/components/status_list';
+import { getStatusList } from 'flavours/glitch/selectors';
 
 const mapStateToProps = state => ({
-  statusIds: state.getIn(['status_lists', 'trending', 'items']),
+  statusIds: getStatusList(state, 'trending'),
   isLoading: state.getIn(['status_lists', 'trending', 'isLoading'], true),
   hasMore: !!state.getIn(['status_lists', 'trending', 'next']),
 });
@@ -46,7 +47,7 @@ class Statuses extends PureComponent {
     return (
       <>
         <DismissableBanner id='explore/statuses'>
-          <FormattedMessage id='dismissable_banner.explore_statuses' defaultMessage='These posts from this and other servers in the decentralized network are gaining traction on this server right now.' />
+          <FormattedMessage id='dismissable_banner.explore_statuses' defaultMessage='These are posts from across the social web that are gaining traction today. Newer posts with more boosts and favourites are ranked higher.' />
         </DismissableBanner>
 
         <StatusList

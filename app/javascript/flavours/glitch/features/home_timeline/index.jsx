@@ -5,22 +5,25 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
 
+import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 
 import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/glitch/actions/announcements';
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
-import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
 import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';
 import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
 import AnnouncementsContainer from 'flavours/glitch/features/getting_started/containers/announcements_container';
-import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
+import { me } from 'flavours/glitch/initial_state';
 
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
+import { expandHomeTimeline } from '../../actions/timelines';
+import Column from '../../components/column';
+import ColumnHeader from '../../components/column_header';
+import StatusListContainer from '../ui/containers/status_list_container';
+
+import { ExplorePrompt } from './components/explore_prompt';
 import ColumnSettingsContainer from './containers/column_settings_container';
-
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -28,12 +31,33 @@ const messages = defineMessages({
   hide_announcements: { id: 'home.hide_announcements', defaultMessage: 'Hide announcements' },
 });
 
+const getHomeFeedSpeed = createSelector([
+  state => state.getIn(['timelines', 'home', 'items'], ImmutableList()),
+  state => state.get('statuses'),
+], (statusIds, statusMap) => {
+  const statuses = statusIds.map(id => statusMap.get(id)).filter(status => status.get('account') !== me).take(20);
+  const oldest = new Date(statuses.getIn([statuses.size - 1, 'created_at'], 0));
+  const newest = new Date(statuses.getIn([0, 'created_at'], 0));
+  const averageGap = (newest - oldest) / (1000 * (statuses.size + 1)); // Average gap between posts on first page in seconds
+
+  return {
+    gap: averageGap,
+    newest,
+  };
+});
+
+const homeTooSlow = createSelector(getHomeFeedSpeed, speed =>
+  speed.gap > (30 * 60) // If the average gap between posts is more than 20 minutes
+  || (Date.now() - speed.newest) > (1000 * 3600) // If the most recent post is from over an hour ago
+);
+
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'home', 'unread']) > 0,
   isPartial: state.getIn(['timelines', 'home', 'isPartial']),
   hasAnnouncements: !state.getIn(['announcements', 'items']).isEmpty(),
   unreadAnnouncements: state.getIn(['announcements', 'items']).count(item => !item.get('read')),
   showAnnouncements: state.getIn(['announcements', 'show']),
+  tooSlow: homeTooSlow(state),
   regex: state.getIn(['settings', 'home', 'regex', 'body']),
 });
 
@@ -53,6 +77,7 @@ class HomeTimeline extends PureComponent {
     hasAnnouncements: PropTypes.bool,
     unreadAnnouncements: PropTypes.number,
     showAnnouncements: PropTypes.bool,
+    tooSlow: PropTypes.bool,
     regex: PropTypes.string,
   };
 
@@ -123,11 +148,11 @@ class HomeTimeline extends PureComponent {
   };
 
   render () {
-    const { intl, hasUnread, columnId, multiColumn, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
+    const { intl, hasUnread, columnId, multiColumn, tooSlow, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
     const pinned = !!columnId;
     const { signedIn } = this.context.identity;
 
-    let announcementsButton = null;
+    let announcementsButton, banner;
 
     if (hasAnnouncements) {
       announcementsButton = (
@@ -140,6 +165,10 @@ class HomeTimeline extends PureComponent {
           <IconWithBadge id='bullhorn' count={unreadAnnouncements} />
         </button>
       );
+    }
+
+    if (tooSlow) {
+      banner = <ExplorePrompt />;
     }
 
     return (
@@ -161,11 +190,13 @@ class HomeTimeline extends PureComponent {
 
         {signedIn ? (
           <StatusListContainer
+            prepend={banner}
+            alwaysPrepend
             trackScroll={!pinned}
             scrollKey={`home_timeline-${columnId}`}
             onLoadMore={this.handleLoadMore}
             timelineId='home'
-            emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Follow more people to fill it up. {suggestions}' values={{ suggestions: <Link to='/start'><FormattedMessage id='empty_column.home.suggestions' defaultMessage='See some suggestions' /></Link> }} />}
+            emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Follow more people to fill it up.' />}
             bindToDocument={!multiColumn}
             regex={this.props.regex}
           />

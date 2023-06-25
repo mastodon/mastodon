@@ -8,17 +8,19 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { fetchPinnedStatuses } from 'flavours/glitch/actions/pin_statuses';
-import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
-import StatusList from 'flavours/glitch/components/status_list';
-import Column from 'flavours/glitch/features/ui/components/column';
+import { getStatusList } from 'flavours/glitch/selectors';
+
+import { fetchPinnedStatuses } from '../../actions/pin_statuses';
+import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import StatusList from '../../components/status_list';
+import Column from '../ui/components/column';
 
 const messages = defineMessages({
   heading: { id: 'column.pins', defaultMessage: 'Pinned post' },
 });
 
 const mapStateToProps = state => ({
-  statusIds: state.getIn(['status_lists', 'pins', 'items']),
+  statusIds: getStatusList(state, 'pins'),
   hasMore: !!state.getIn(['status_lists', 'pins', 'next']),
 });
 

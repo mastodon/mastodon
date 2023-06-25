@@ -10,8 +10,8 @@ RSpec.describe UnreservedUsernameValidator, type: :validator do
     end
 
     let(:validator) { described_class.new }
-    let(:account)   { double(username: username, errors: errors) }
-    let(:errors) { double(add: nil) }
+    let(:account)   { instance_double(Account, username: username, errors: errors) }
+    let(:errors) { instance_double(ActiveModel::Errors, add: nil) }
 
     context 'when @username is blank?' do
       let(:username) { nil }

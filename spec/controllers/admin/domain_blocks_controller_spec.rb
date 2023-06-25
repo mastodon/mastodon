@@ -213,7 +213,7 @@ RSpec.describe Admin::DomainBlocksController do
 
   describe 'DELETE #destroy' do
     it 'unblocks the domain' do
-      service = double(call: true)
+      service = instance_double(UnblockDomainService, call: true)
       allow(UnblockDomainService).to receive(:new).and_return(service)
       domain_block = Fabricate(:domain_block)
       delete :destroy, params: { id: domain_block.id }
