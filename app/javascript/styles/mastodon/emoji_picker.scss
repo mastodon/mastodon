@@ -16,6 +16,8 @@
 
 .emoji-mart-bar {
   border: 0 solid darken($ui-secondary-color, 8%);
+  overflow-x: scroll;
+  overflow-y: hidden;
 
   &:first-child {
     border-bottom-width: 1px;
@@ -44,8 +46,7 @@
   position: relative;
   flex: 1;
   text-align: center;
-  padding: 12px 4px;
-  overflow: hidden;
+  padding: 9px 3px;
   transition: color 0.1s ease-out;
   cursor: pointer;
   background: transparent;
