@@ -31,7 +31,7 @@ namespace :admin do
   end
 
   resources :action_logs, only: [:index]
-  resources :warning_presets, except: [:new]
+  resources :warning_presets, except: [:new, :show]
 
   resources :announcements, except: [:show] do
     member do
