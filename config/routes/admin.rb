@@ -75,7 +75,7 @@ namespace :admin do
     end
   end
 
-  resources :rules
+  resources :rules, only: [:index, :create, :edit, :update, :destroy]
 
   resources :webhooks do
     member do
