@@ -53,7 +53,7 @@ describe AccountSearchService, type: :service do
 
     context 'when there is a domain but no exact match' do
       it 'follows the remote account when resolve is true' do
-        service = double(call: nil)
+        service = instance_double(ResolveAccountService, call: nil)
         allow(ResolveAccountService).to receive(:new).and_return(service)
 
         results = subject.call('newuser@remote.com', nil, limit: 10, resolve: true)
@@ -61,7 +61,7 @@ describe AccountSearchService, type: :service do
       end
 
       it 'does not follow the remote account when resolve is false' do
-        service = double(call: nil)
+        service = instance_double(ResolveAccountService, call: nil)
         allow(ResolveAccountService).to receive(:new).and_return(service)
 
         results = subject.call('newuser@remote.com', nil, limit: 10, resolve: false)

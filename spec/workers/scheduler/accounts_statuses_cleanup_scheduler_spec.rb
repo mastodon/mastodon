@@ -75,6 +75,12 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
   end
 
   describe '#perform' do
+    around do |example|
+      Timeout.timeout(30) do
+        example.run
+      end
+    end
+
     before do
       # Policies for the accounts
       Fabricate(:account_statuses_cleanup_policy, account: account_alice)

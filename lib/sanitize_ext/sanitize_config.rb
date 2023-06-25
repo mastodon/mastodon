@@ -55,6 +55,11 @@ class Sanitize
       end
     end
 
+    TRANSLATE_TRANSFORMER = lambda do |env|
+      node = env[:node]
+      node.remove_attribute('translate') unless node['translate'] == 'no'
+    end
+
     UNSUPPORTED_HREF_TRANSFORMER = lambda do |env|
       return unless env[:node_name] == 'a'
 
@@ -73,9 +78,9 @@ class Sanitize
       elements: %w(p br span a abbr del pre blockquote code b strong u sub sup i em h1 h2 h3 h4 h5 ul ol li),
 
       attributes: {
-        'a' => %w(href rel class title),
+        'a' => %w(href rel class title translate),
         'abbr' => %w(title),
-        'span' => %w(class),
+        'span' => %w(class translate),
         'blockquote' => %w(cite),
         'ol' => %w(start reversed),
         'li' => %w(value),
@@ -96,6 +101,7 @@ class Sanitize
       transformers: [
         CLASS_WHITELIST_TRANSFORMER,
         IMG_TAG_TRANSFORMER,
+        TRANSLATE_TRANSFORMER,
         UNSUPPORTED_HREF_TRANSFORMER,
       ]
     )
@@ -151,7 +157,7 @@ class Sanitize
     MASTODON_OUTGOING ||= freeze_config MASTODON_STRICT.merge(
       attributes: merge(
         MASTODON_STRICT[:attributes],
-        'a' => %w(href rel class title target)
+        'a' => %w(href rel class title target translate)
       ),
 
       add_attributes: {},
@@ -159,6 +165,7 @@ class Sanitize
       transformers: [
         CLASS_WHITELIST_TRANSFORMER,
         IMG_TAG_TRANSFORMER,
+        TRANSLATE_TRANSFORMER,
         UNSUPPORTED_HREF_TRANSFORMER,
         LINK_REL_TRANSFORMER,
         LINK_TARGET_TRANSFORMER,

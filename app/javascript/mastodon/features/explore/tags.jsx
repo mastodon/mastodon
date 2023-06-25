@@ -34,7 +34,7 @@ class Tags extends PureComponent {
 
     const banner = (
       <DismissableBanner id='explore/tags'>
-        <FormattedMessage id='dismissable_banner.explore_tags' defaultMessage='These hashtags are gaining traction among people on this and other servers of the decentralized network right now.' />
+        <FormattedMessage id='dismissable_banner.explore_tags' defaultMessage='These are hashtags that are gaining traction on the social web today. Hashtags that are used by more different people are ranked higher.' />
       </DismissableBanner>
     );
 

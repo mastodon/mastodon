@@ -1514,12 +1514,37 @@ body > [data-popper-placement] {
   }
 
   &__note {
+    font-size: 14px;
+    font-weight: 400;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    color: $ui-secondary-color;
+    margin-top: 10px;
+    color: $darker-text-color;
+
+    &--missing {
+      color: $dark-text-color;
+    }
+
+    p {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      color: inherit;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+      }
+    }
   }
 }
 
@@ -2617,13 +2642,15 @@ $ui-header-height: 55px;
 .onboarding__link {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   color: $highlight-text-color;
   background: lighten($ui-base-color, 4%);
   border-radius: 8px;
-  padding: 10px;
+  padding: 10px 15px;
   box-sizing: border-box;
-  font-size: 17px;
+  font-size: 14px;
+  font-weight: 500;
   height: 56px;
   text-decoration: none;
 
@@ -2685,6 +2712,7 @@ $ui-header-height: 55px;
     align-items: center;
     gap: 10px;
     padding: 10px;
+    padding-inline-end: 15px;
     margin-bottom: 2px;
     text-decoration: none;
     text-align: start;
@@ -2697,14 +2725,14 @@ $ui-header-height: 55px;
 
     &__icon {
       flex: 0 0 auto;
-      background: $ui-base-color;
       border-radius: 50%;
       display: none;
       align-items: center;
       justify-content: center;
       width: 36px;
       height: 36px;
-      color: $dark-text-color;
+      color: $highlight-text-color;
+      font-size: 1.2rem;
 
       @media screen and (width >= 600px) {
         display: flex;
@@ -2728,16 +2756,33 @@ $ui-header-height: 55px;
       }
     }
 
+    &__go {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 21px;
+      height: 21px;
+      color: $highlight-text-color;
+      font-size: 17px;
+
+      svg {
+        height: 1.5em;
+        width: auto;
+      }
+    }
+
     &__description {
       flex: 1 1 auto;
-      line-height: 18px;
+      line-height: 20px;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
 
       h6 {
-        color: $primary-text-color;
-        font-weight: 700;
+        color: $highlight-text-color;
+        font-weight: 500;
+        font-size: 14px;
         overflow: hidden;
         text-overflow: ellipsis;
       }
@@ -8695,27 +8740,71 @@ noscript {
 }
 
 .dismissable-banner {
-  background: $ui-base-color;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-  display: flex;
-  align-items: center;
-  gap: 30px;
+  position: relative;
+  margin: 10px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  border: 1px solid $highlight-text-color;
+  background: rgba($highlight-text-color, 0.15);
+  padding-inline-end: 45px;
+  overflow: hidden;
+
+  &__background-image {
+    width: 125%;
+    position: absolute;
+    bottom: -25%;
+    inset-inline-end: -25%;
+    z-index: -1;
+    opacity: 0.15;
+    mix-blend-mode: luminosity;
+  }
 
   &__message {
     flex: 1 1 auto;
-    padding: 20px 15px;
-    cursor: default;
-    font-size: 14px;
-    line-height: 18px;
+    padding: 15px;
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 500;
     color: $primary-text-color;
+
+    p {
+      margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    h1 {
+      color: $highlight-text-color;
+      font-size: 22px;
+      line-height: 33px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 30px;
+    }
+
+    .button-tertiary {
+      background: rgba($ui-base-color, 0.15);
+      backdrop-filter: blur(8px);
+    }
   }
 
   &__action {
-    padding: 15px;
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    inset-inline-end: 0;
+    top: 0;
+    padding: 10px;
+
+    .icon-button {
+      color: $highlight-text-color;
+    }
   }
 }
 
