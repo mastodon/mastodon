@@ -1,8 +1,8 @@
 import api from '../api';
 
-import { deleteFromTimelines } from './timelines';
-import { importFetchedStatus, importFetchedStatuses, importFetchedAccount } from './importer';
 import { ensureComposeIsVisible, setComposeToStatus } from './compose';
+import { importFetchedStatus, importFetchedStatuses, importFetchedAccount } from './importer';
+import { deleteFromTimelines } from './timelines';
 
 export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
 export const STATUS_FETCH_SUCCESS = 'STATUS_FETCH_SUCCESS';
@@ -343,7 +343,8 @@ export const translateStatusFail = (id, error) => ({
   error,
 });
 
-export const undoStatusTranslation = id => ({
+export const undoStatusTranslation = (id, pollId) => ({
   type: STATUS_TRANSLATE_UNDO,
   id,
+  pollId,
 });

@@ -122,14 +122,14 @@ gd:
         admin/accounts: Rianachd nan cunntas
         admin/all: Gach gleus na rianachd
         admin/reports: Rianachd nan gearan
-        all: A h-uile rud
+        all: Làn-inntrigeadh dhan chunntas Mastodon agad
         blocks: Bacaidhean
         bookmarks: Comharran-lìn
         conversations: Còmhraidhean
         crypto: Crioptachadh o cheann gu ceann
         favourites: Annsachdan
         filters: Criathragan
-        follow: Dàimhean
+        follow: Leantainn, mùchaidhean is bacaidhean
         follows: Leantainn
         lists: Liostaichean
         media: Ceanglachain mheadhanan
@@ -149,9 +149,19 @@ gd:
     scopes:
       admin:read: dàta sam bith a leughadh air an fhrithealaiche
       admin:read:accounts: fiosrachadh dìomhair air a h-uile cunntas a leughadh
+      admin:read:canonical_email_blocks: fiosrachadh dìomhair air a h-uile bacadh puist-d gnàthach a leughadh
+      admin:read:domain_allows: fiosrachadh dìomhair air a h-uile cead àrainne a leughadh
+      admin:read:domain_blocks: fiosrachadh dìomhair air a h-uile bacadh àrainne a leughadh
+      admin:read:email_domain_blocks: fiosrachadh dìomhair air a h-uile bacadh àrainn puist-d a leughadh
+      admin:read:ip_blocks: fiosrachadh dìomhair air a h-uile bacadh IP a leughadh
       admin:read:reports: fiosrachadh dìomhair air a h-uile gearan is cunntasan a chaidh a ghearan mun dèidhinn a leughadh
       admin:write: dàta sam bith atharrachadh air an fhrithealaiche
       admin:write:accounts: gnìomhan na maorsainneachd a ghabhail air cunntasan
+      admin:write:canonical_email_blocks: gnìomhan na maorsainneachd a ghabhail air bacaidhean puist-d gnàthach
+      admin:write:domain_allows: gnìomhan na maorsainneachd a ghabhail air ceadan àrainn
+      admin:write:domain_blocks: gnìomhan na maorsainneachd a ghabhail air bacaidhean àrainne
+      admin:write:email_domain_blocks: gnìomhan na maorsainneachd a ghabhail air bacaidhean àrainn puist-d
+      admin:write:ip_blocks: gnìomhan na maorsainneachd a ghabhail air bacaidhean IP
       admin:write:reports: gnìomhan na maorsainneachd a ghabhail air gearanan
       crypto: crioptachadh o cheann gu ceann a chleachdadh
       follow: dàimhean chunntasan atharrachadh

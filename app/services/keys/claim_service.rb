@@ -9,10 +9,10 @@ class Keys::ClaimService < BaseService
 
     def initialize(account, device_id, key_attributes = {})
       super(
-        account:   account,
+        account: account,
         device_id: device_id,
-        key_id:    key_attributes[:key_id],
-        key:       key_attributes[:key],
+        key_id: key_attributes[:key_id],
+        key: key_attributes[:key],
         signature: key_attributes[:signature],
       )
     end
@@ -58,7 +58,7 @@ class Keys::ClaimService < BaseService
 
     @result = Result.new(@target_account, @device_id, key_id: json['id'], key: json['publicKeyBase64'], signature: json.dig('signature', 'signatureValue'))
   rescue HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::Error => e
-    Rails.logger.debug "Claiming one-time key for #{@target_account.acct}:#{@device_id} failed: #{e}"
+    Rails.logger.debug { "Claiming one-time key for #{@target_account.acct}:#{@device_id} failed: #{e}" }
     nil
   end
 

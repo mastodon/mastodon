@@ -49,7 +49,7 @@ module Admin
     private
 
     def set_instance
-      @instance = Instance.find(params[:id])
+      @instance = Instance.find(TagManager.instance.normalize_domain(params[:id]&.strip))
     end
 
     def set_instances

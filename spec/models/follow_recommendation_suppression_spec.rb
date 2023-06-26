@@ -1,4 +1,6 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe FollowRecommendationSuppression, type: :model do
+RSpec.describe FollowRecommendationSuppression do
 end

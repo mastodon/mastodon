@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::FetchRemoteKeyService, type: :service do
-  subject { ActivityPub::FetchRemoteKeyService.new }
+  subject { described_class.new }
 
   let(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice' }] } }
 

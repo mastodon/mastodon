@@ -1,6 +1,8 @@
-import { createSelector } from 'reselect';
 import { List as ImmutableList, Map as ImmutableMap } from 'immutable';
+import { createSelector } from 'reselect';
+
 import { toServerSideType } from 'mastodon/utils/filters';
+
 import { me } from '../initial_state';
 
 const getAccountBase         = (state, id) => state.getIn(['accounts', id], null);
@@ -121,8 +123,8 @@ export const getAccountGallery = createSelector([
   let medias = ImmutableList();
 
   statusIds.forEach(statusId => {
-    const status = statuses.get(statusId);
-    medias = medias.concat(status.get('media_attachments').map(media => media.set('status', status).set('account', account)));
+    const status = statuses.get(statusId).set('account', account);
+    medias = medias.concat(status.get('media_attachments').map(media => media.set('status', status)));
   });
 
   return medias;
@@ -135,3 +137,7 @@ export const getAccountHidden = createSelector([
 ], (hidden, followingOrRequested, isSelf) => {
   return hidden && !(isSelf || followingOrRequested);
 });
+
+export const getStatusList = createSelector([
+  (state, type) => state.getIn(['status_lists', type, 'items']),
+], (items) => items.toList());

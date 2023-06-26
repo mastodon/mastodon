@@ -9,7 +9,7 @@ describe RegenerationWorker do
     let(:account) { Fabricate(:account) }
 
     it 'calls the precompute feed service for the account' do
-      service = double(call: nil)
+      service = instance_double(PrecomputeFeedService, call: nil)
       allow(PrecomputeFeedService).to receive(:new).and_return(service)
       result = subject.perform(account.id)
 
@@ -20,7 +20,7 @@ describe RegenerationWorker do
     it 'fails when account does not exist' do
       result = subject.perform('aaa')
 
-      expect(result).to eq(true)
+      expect(result).to be(true)
     end
   end
 end

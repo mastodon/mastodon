@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Identity, type: :model do
+RSpec.describe Identity do
   describe '.find_for_oauth' do
     let(:auth) { Fabricate(:identity, user: Fabricate(:user)) }
 
@@ -10,7 +12,7 @@ RSpec.describe Identity, type: :model do
     end
 
     it 'returns an instance of Identity' do
-      expect(described_class.find_for_oauth(auth)).to be_instance_of Identity
+      expect(described_class.find_for_oauth(auth)).to be_instance_of described_class
     end
   end
 end

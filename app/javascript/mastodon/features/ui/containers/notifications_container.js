@@ -1,6 +1,9 @@
 import { injectIntl } from 'react-intl';
+
 import { connect } from 'react-redux';
+
 import { NotificationStack } from 'react-notification';
+
 import { dismissAlert } from '../../../actions/alerts';
 import { getAlerts } from '../../../selectors';
 

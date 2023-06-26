@@ -2,10 +2,12 @@
 
 class UnsuspendAccountService < BaseService
   include Payloadable
+
+  # Restores a recently-unsuspended account
+  # @param [Account] account Account to restore
   def call(account)
     @account = account
 
-    unsuspend!
     refresh_remote_account!
 
     return if @account.nil? || @account.suspended?
@@ -17,10 +19,6 @@ class UnsuspendAccountService < BaseService
   end
 
   private
-
-  def unsuspend!
-    @account.unsuspend! if @account.suspended?
-  end
 
   def refresh_remote_account!
     return if @account.local?
@@ -43,7 +41,7 @@ class UnsuspendAccountService < BaseService
 
     account_reach_finder = AccountReachFinder.new(@account)
 
-    ActivityPub::DeliveryWorker.push_bulk(account_reach_finder.inboxes) do |inbox_url|
+    ActivityPub::DeliveryWorker.push_bulk(account_reach_finder.inboxes, limit: 1_000) do |inbox_url|
       [signed_activity_json, @account.id, inbox_url]
     end
   end
@@ -66,7 +64,7 @@ class UnsuspendAccountService < BaseService
     @account.media_attachments.find_each do |media_attachment|
       attachment_names.each do |attachment_name|
         attachment = media_attachment.public_send(attachment_name)
-        styles     = [:original] | attachment.styles.keys
+        styles     = MediaAttachment::DEFAULT_STYLES | attachment.styles.keys
 
         next if attachment.blank?
 

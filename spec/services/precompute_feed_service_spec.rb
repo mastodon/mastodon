@@ -3,10 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe PrecomputeFeedService, type: :service do
-  subject { PrecomputeFeedService.new }
+  subject { described_class.new }
 
   describe 'call' do
     let(:account) { Fabricate(:account) }
+
     it 'fills a user timeline with statuses' do
       account = Fabricate(:account)
       status = Fabricate(:status, account: account)
@@ -18,7 +19,7 @@ RSpec.describe PrecomputeFeedService, type: :service do
 
     it 'does not raise an error even if it could not find any status' do
       account = Fabricate(:account)
-      subject.call(account)
+      expect { subject.call(account) }.to_not raise_error
     end
 
     it 'filters statuses' do
@@ -30,7 +31,7 @@ RSpec.describe PrecomputeFeedService, type: :service do
 
       subject.call(account)
 
-      expect(redis.zscore(FeedManager.instance.key(:home, account.id), reblog.id)).to eq nil
+      expect(redis.zscore(FeedManager.instance.key(:home, account.id), reblog.id)).to be_nil
     end
   end
 end

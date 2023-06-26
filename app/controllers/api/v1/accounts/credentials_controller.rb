@@ -13,7 +13,7 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
   def update
     @account = current_account
     UpdateAccountService.new.call(@account, account_params, raise_error: true)
-    UserSettingsDecorator.new(current_user).update(user_settings_params) if user_settings_params
+    current_user.update(user_params) if user_params
     ActivityPub::UpdateDistributionWorker.perform_async(@account.id)
     render json: @account, serializer: REST::CredentialAccountSerializer
   end
@@ -21,18 +21,30 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
   private
 
   def account_params
-    params.permit(:display_name, :note, :avatar, :header, :locked, :bot, :discoverable, fields_attributes: [:name, :value])
+    params.permit(
+      :display_name,
+      :note,
+      :avatar,
+      :header,
+      :locked,
+      :bot,
+      :discoverable,
+      :hide_collections,
+      fields_attributes: [:name, :value]
+    )
   end
 
-  def user_settings_params
+  def user_params
     return nil if params[:source].blank?
 
     source_params = params.require(:source)
 
     {
-      'setting_default_privacy' => source_params.fetch(:privacy, @account.user.setting_default_privacy),
-      'setting_default_sensitive' => source_params.fetch(:sensitive, @account.user.setting_default_sensitive),
-      'setting_default_language' => source_params.fetch(:language, @account.user.setting_default_language),
+      settings_attributes: {
+        default_privacy: source_params.fetch(:privacy, @account.user.setting_default_privacy),
+        default_sensitive: source_params.fetch(:sensitive, @account.user.setting_default_sensitive),
+        default_language: source_params.fetch(:language, @account.user.setting_default_language),
+      },
     }
   end
 end

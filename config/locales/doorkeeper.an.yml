@@ -122,14 +122,14 @@ an:
         admin/accounts: Administración de cuentas
         admin/all: Totas las funcions administrativas
         admin/reports: Administración d'informes
-        all: Tot
+        all: Acceso completo a la tuya cuenta de Mastodon
         blocks: Bloqueyos
         bookmarks: Marcadors
         conversations: Conversacions
         crypto: Zifrau de cabo a cabo
         favourites: Favoritos
         filters: Filtros
-        follow: Relacions
+        follow: Seguius, silenciaus y blocaus
         follows: Seguius
         lists: Listas
         media: Adjuntos multimedia
@@ -149,9 +149,19 @@ an:
     scopes:
       admin:read: leyer totz los datos en o servidor
       admin:read:accounts: leyer información sensible de totas las cuentas
+      admin:read:canonical_email_blocks: leyer información sensible de totz los bloqueyos canonicos de correu
+      admin:read:domain_allows: leyer información sensible de totz los dominios permesos
+      admin:read:domain_blocks: leyer información sensible de totz los bloqueyos de dominio
+      admin:read:email_domain_blocks: leyer información sensible de totz los bloqueyos de dominio de correu-e
+      admin:read:ip_blocks: leyer información sensible de totz los bloqueyos d'IP
       admin:read:reports: leyer información sensible de totz los informes y cuentas denunciadas
       admin:write: modificar totz los datos en o servidor
       admin:write:accounts: realizar accions de moderación en cuentas
+      admin:write:canonical_email_blocks: executar accions de moderación en bloqueyos canonicos de correu electronico
+      admin:write:domain_allows: executar accions de moderación en os dominios permesos
+      admin:write:domain_blocks: executar accions de moderación en bloqueyos de dominio
+      admin:write:email_domain_blocks: executar accions de moderación en bloqueyos de dominio de correu-e
+      admin:write:ip_blocks: executar accions de moderación en bloqueyos d'IP
       admin:write:reports: realizar accions de moderación en informes
       crypto: usar zifrau de cabo a extremo
       follow: seguir, blocar, desblocar y deixar de seguir cuentas

@@ -79,7 +79,7 @@ module StatusThreadingConcern
     statuses    = Status.with_accounts(ids).to_a
     account_ids = statuses.map(&:account_id).uniq
     domains     = statuses.filter_map(&:account_domain).uniq
-    relations   = relations_map_for_account(account, account_ids, domains)
+    relations   = account&.relations_map(account_ids, domains) || {}
 
     statuses.reject! { |status| StatusFilter.new(status, account, relations).filtered? }
 
@@ -107,17 +107,5 @@ module StatusThreadingConcern
     end
 
     arr
-  end
-
-  def relations_map_for_account(account, account_ids, domains)
-    return {} if account.nil?
-
-    {
-      blocking: Account.blocking_map(account_ids, account.id),
-      blocked_by: Account.blocked_by_map(account_ids, account.id),
-      muting: Account.muting_map(account_ids, account.id),
-      following: Account.following_map(account_ids, account.id),
-      domain_blocking_by_domain: Account.domain_blocking_map_by_domain(domains, account.id),
-    }
   end
 end

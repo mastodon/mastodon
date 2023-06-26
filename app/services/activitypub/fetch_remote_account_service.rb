@@ -6,7 +6,7 @@ class ActivityPub::FetchRemoteAccountService < ActivityPub::FetchRemoteActorServ
     actor = super
     return actor if actor.nil? || actor.is_a?(Account)
 
-    Rails.logger.debug "Fetching account #{uri} failed: Expected Account, got #{actor.class.name}"
+    Rails.logger.debug { "Fetching account #{uri} failed: Expected Account, got #{actor.class.name}" }
     raise Error, "Expected Account, got #{actor.class.name}" unless suppress_errors
   end
 end

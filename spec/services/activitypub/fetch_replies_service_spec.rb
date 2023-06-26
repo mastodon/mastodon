@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::FetchRepliesService, type: :service do
+  subject { described_class.new }
+
   let(:actor)          { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/account') }
   let(:status)         { Fabricate(:status, account: actor) }
   let(:collection_uri) { 'http://example.com/replies/1' }
@@ -27,8 +31,6 @@ RSpec.describe ActivityPub::FetchRepliesService, type: :service do
       items: items,
     }.with_indifferent_access
   end
-
-  subject { described_class.new }
 
   describe '#call' do
     context 'when the payload is a Collection with inlined replies' do
@@ -90,7 +92,7 @@ RSpec.describe ActivityPub::FetchRepliesService, type: :service do
             type: 'CollectionPage',
             partOf: collection_uri,
             items: items,
-          }
+          },
         }.with_indifferent_access
       end
 

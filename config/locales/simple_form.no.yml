@@ -18,8 +18,6 @@
           disable: Forhindre brukeren fra å bruke kontoen sin, men ikke slett eller skjul innholdet deres.
           none: Bruk dette for å sende en advarsel til brukeren uten å utløse noen andre handlinger.
           sensitive: Tving alle denne brukerens medievedlegg til å bli merket som følsomme.
-          silence: Hindre brukeren i å kunne skrive offentlig synlighet, skjule sine innlegg og varsler for personer som ikke kan følge dem.
-          suspend: Forhindre interaksjon fra eller til denne kontoen og slett innholdet der. Reversibel innen 30 dager.
         warning_preset_id: Valgfritt. Du kan fortsatt legge til tilpasset tekst til slutten av forhåndsinnstillingen
       announcement:
         all_day: Hvis noen av dem er valgt, vil kun datoene av tidsrammen bli vist
@@ -39,7 +37,6 @@
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
         discoverable: La kontoen din bli oppdaget av ukjente gjennom anbefalinger, trender og andre funksjoner
         email: Du vil bli tilsendt en bekreftelses-E-post
-        fields: Du kan ha opptil 4 gjenstander vist som en tabell på profilsiden din
         header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         inbox_url: Kopier URLen fra forsiden til overgangen du vil bruke
         irreversible: Filtrerte innlegg vil ugjenkallelig forsvinne, selv om filteret senere blir fjernet
@@ -59,7 +56,6 @@
         setting_show_application: Appen du bruker til å publisere innlegg vil bli vist i den detaljerte visningen til innleggene dine
         setting_use_blurhash: Gradientene er basert på fargene til de skjulte visualitetene, men gjør alle detaljer uklare
         setting_use_pending_items: Skjul tidslinjeoppdateringer bak et klikk, i stedet for å automatisk la strømmen skrolle
-        username: Brukernavnet ditt vil være unikt på %{domain}
         whole_word: Når søkeordet eller setningen bare er alfanumerisk, aktiveres det bare hvis det samsvarer med hele ordet
       domain_allow:
         domain: Dette domenet vil være i stand til å hente data fra denne serveren og dets innkommende data vil bli prosessert og lagret
@@ -89,6 +85,7 @@
         site_short_description: En kort beskrivelse for å bidra til å definere din tjeners identitet. Hvem kjører den, hvem er det for?
         site_terms: Bruk dine egne personvernregler eller la stå tom for å bruke standarden. Kan struktureres med Markdown-syntaks.
         site_title: Hva man kan kalle tjeneren din utover domenenavnet.
+        status_page_url: URL-adressen til en side hvor folk kan se tilstanden til denne tjeneren under et avbrudd
         theme: Tema som vises for nye brukere og besøkende som ikke er logget inn.
       form_challenge:
         current_password: Du går inn i et sikkert område
@@ -113,6 +110,15 @@
         name: Du kan bare forandre bruken av store/små bokstaver, f.eks. for å gjøre det mer lesbart
       user:
         chosen_languages: Hvis noen av dem er valgt, vil kun innlegg i de valgte språkene bli vist i de offentlige tidslinjene
+      user_role:
+        color: Farge som skal brukes for rollen gjennom hele UI, som RGB i hex-format
+        highlighted: Dette gjør rollen offentlig synlig
+        name: Offentlig navn på rollen hvis rollen skal vises som et merke
+        permissions_as_keys: Brukere med denne rollen vil ha tilgang til...
+        position: Høyere rolle bestemmer konfliktløsning i visse situasjoner. Enkelte tiltak kan bare utføres på roller med lavere prioritet
+      webhook:
+        events: Velg hendelser som skal sendes
+        url: Hvor hendelser vil bli sendt til
     labels:
       account:
         fields:
@@ -143,6 +149,8 @@
         scheduled_at: Planlegg publisering
         starts_at: Begynnelse av hendelsen
         text: Kunngjøring
+      appeal:
+        text: Forklar hvorfor denne beslutningen bør gjøres om
       defaults:
         autofollow: Inviter til å følge kontoen din
         avatar: Profilbilde
@@ -172,6 +180,7 @@
         phrase: Nøkkelord eller frase
         setting_advanced_layout: Skru på det avanserte nettgrensesnittet
         setting_aggregate_reblogs: Gruppefremhevinger i tidslinjer
+        setting_always_send_emails: Alltid send e-postvarslinger
         setting_auto_play_gif: Autoavspill animert GIF-filer
         setting_boost_modal: Vis bekreftelse før fremheving
         setting_crop_images: Klipp bilder i ikke-utvidede innlegg til 16:9
@@ -197,6 +206,7 @@
         setting_use_pending_items: Saktemodus
         severity: Alvorlighetsgrad
         sign_in_token_attempt: Sikkerhetskode
+        title: Tittel
         type: Importeringstype
         username: Brukernavn
         username_or_email: Brukernavn eller E-post
@@ -205,12 +215,32 @@
         with_dns_records: Inkluder MX-poster og IP-adresser for domenet
       featured_tag:
         name: Emneknagg
+      filters:
+        actions:
+          hide: Skjul fullstendig
+          warn: Skjul med en advarsel
       form_admin_settings:
+        backups_retention_period: Brukers oppbevaringsperiode for arkiv
+        bootstrap_timeline_accounts: Anbefaler alltid disse kontoene til nye brukere
+        closed_registrations_message: Egendefinert melding når registrering ikke er tilgjengelig
+        content_cache_retention_period: Oppbevaringsperiode for innholdsbuffer
+        custom_css: Egendefinert CSS
+        media_cache_retention_period: Oppbevaringsperiode for mediebuffer
         profile_directory: Aktiver profilkatalog
         registrations_mode: Hvem kan opprette konto
+        require_invite_text: Krev en grunn for å bli med
+        show_domain_blocks: Vis domeneblokker
         show_domain_blocks_rationale: Vis grunnen til at domener ble blokkert
         site_contact_email: E-postadresse for kontakt
+        site_contact_username: Kontakt brukernavn
+        site_extended_description: Utvidet beskrivelse
+        site_short_description: Beskrivelse av server
+        site_terms: Retningslinjer for personvern
         site_title: Servernavn
+        theme: Standard tema
+        thumbnail: Miniatyrbilde til server
+        trendable_by_default: Tillat trender uten foregående vurdering
+        trends: Aktiver trender
       interactions:
         must_be_follower: Blokker varslinger fra ikke-følgere
         must_be_following: Blokker varslinger fra personer du ikke følger
@@ -224,9 +254,11 @@
         ip: IP
         severities:
           no_access: Blokker tilgang
+          sign_up_block: Blokker registrering
           sign_up_requires_approval: Begrens påmeldinger
         severity: Oppføring
       notification_emails:
+        appeal: Noen klager på en moderator sin avgjørelse
         digest: Send sammendrag på e-post
         favourite: Send e-post når noen setter din status som favoritt
         follow: Send e-post når noen følger deg
@@ -234,6 +266,8 @@
         mention: Send e-post når noen nevner deg
         pending_account: Ny bruker avventer gjennomgang
         reblog: Send e-post når noen fremhever din status
+        report: Ny rapport er sendt
+        trending_tag: Ny trend krever gjennomgang
       rule:
         text: Regler
       tag:
@@ -244,9 +278,13 @@
       user:
         role: Rolle
       user_role:
+        color: Merkefarge
+        highlighted: Vis rolle som merke på brukerprofiler
         name: Navn
         permissions_as_keys: Tillatelser
         position: Prioritet
+      webhook:
+        events: Aktiverte hendelser
     'no': Nei
     not_recommended: Ikke anbefalt
     recommended: Anbefalt

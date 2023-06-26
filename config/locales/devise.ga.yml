@@ -1,7 +1,13 @@
 ---
 ga:
   devise:
+    failure:
+      locked: Tá do chuntas faoi ghlas.
     mailer:
+      email_changed:
+        title: Seoladh ríomhphoist nua
+      password_change:
+        title: Pasfhocal athraithe
       reset_password_instructions:
         action: Athraigh pasfhocal
   errors:

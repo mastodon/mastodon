@@ -74,7 +74,7 @@ bg:
         authorized_at: Упълномощено на %{date}
         description_html: Има приложения, можещи да имат достъп до акаунта ви, използвайки API. Ако тук има приложения, които не знаете, или работещи неправилно, то може да им откажете достъпа.
         last_used_at: Последно обновено на %{date}
-        never_used: Нивга ползвано
+        never_used: Никога употребявано
         scopes: Разрешения
         superapp: Вътрешно
         title: Упълномощените ви приложения
@@ -84,7 +84,7 @@ bg:
         credential_flow_not_configured: Resource Owner Password Credentials предизвика грешка, заради това, че настройките за Doorkeeper.configure.resource_owner_from_credentials липсват.
         invalid_client: Удостоверяването на клиента предизвика грешка, поради непознат клиент, липсващо клиентско удостоверяване, или заради това, че методът на удостоверяване не се поддържа.
         invalid_grant: Предоставеното удостоверение за достъп е невалидно, изтекло, отхвърлено, не съвпада с пренасочващото URI, използвано в заявката за удостоверение, или е бил издадено от друг клиент.
-        invalid_redirect_uri: Включеният пренасочващ URI адрес е невалиден.
+        invalid_redirect_uri: Включеният пренасочващ Uri е невалиден.
         invalid_request:
           missing_param: 'Липсва задължителен параметър: %{value}.'
           request_not_authorized: Заявката трябва да бъде упълномощена. Необходимият параметър за разрешаване на заявка липсва или е невалиден.
@@ -111,7 +111,7 @@ bg:
           notice: Приложението е обновено.
       authorized_applications:
         destroy:
-          notice: Приложението е отказано.
+          notice: Анулирано приложение.
     grouped_scopes:
       access:
         read: Достъп само за четене
@@ -122,14 +122,14 @@ bg:
         admin/accounts: Администриране на акаунтите
         admin/all: Всички административни функции
         admin/reports: Администриране на докладите
-        all: Всичко
+        all: Пълен достъп до акаунта ви в Mastodon
         blocks: Блокирания
         bookmarks: Отметки
         conversations: Разговори
         crypto: Криптиране от край до край
         favourites: Любими
         filters: Филтри
-        follow: Отношения
+        follow: Последвания, заглушавания и блокирания
         follows: Последвания
         lists: Списъци
         media: Прикачена мултимедия
@@ -143,7 +143,7 @@ bg:
       admin:
         nav:
           applications: Приложения
-          oauth2_provider: OAuth2 доставчик
+          oauth2_provider: Доставчик OAuth2
       application:
         title: Нужно е упълномощаване по OAuth
     scopes:
@@ -184,7 +184,7 @@ bg:
       write:blocks: блокиране на акаунти и домейни
       write:bookmarks: отмятане на публикации
       write:conversations: заглушаване и изтриване на разговорите
-      write:favourites: харесани публикации
+      write:favourites: любими публикации
       write:filters: създаване на филтри
       write:follows: последване на хора
       write:lists: създаване на списъци

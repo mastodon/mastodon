@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Report do
@@ -33,7 +35,7 @@ describe Report do
     end
 
     it 'assigns to a given account' do
-      is_expected.to eq current_account.id
+      expect(subject).to eq current_account.id
     end
   end
 
@@ -48,7 +50,7 @@ describe Report do
     end
 
     it 'unassigns' do
-      is_expected.to be_nil
+      expect(subject).to be_nil
     end
   end
 
@@ -87,13 +89,13 @@ describe Report do
 
     let(:report) { Fabricate(:report, action_taken_at: action_taken) }
 
-    context 'if action is taken' do
+    context 'when action is taken' do
       let(:action_taken) { Time.now.utc }
 
       it { is_expected.to be false }
     end
 
-    context 'if action not is taken' do
+    context 'when action not is taken' do
       let(:action_taken) { nil }
 
       it { is_expected.to be true }
@@ -119,16 +121,17 @@ describe Report do
   end
 
   describe 'validations' do
-    it 'has a valid fabricator' do
-      report = Fabricate(:report)
-      report.valid?
-      expect(report).to be_valid
+    let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
+
+    it 'is invalid if comment is longer than 1000 characters only if reporter is local' do
+      report = Fabricate.build(:report, comment: Faker::Lorem.characters(number: 1001))
+      expect(report.valid?).to be false
+      expect(report).to model_have_error_on_field(:comment)
     end
 
-    it 'is invalid if comment is longer than 1000 characters' do
-      report = Fabricate.build(:report, comment: Faker::Lorem.characters(number: 1001))
-      report.valid?
-      expect(report).to model_have_error_on_field(:comment)
+    it 'is valid if comment is longer than 1000 characters and reporter is not local' do
+      report = Fabricate.build(:report, account: remote_account, comment: Faker::Lorem.characters(number: 1001))
+      expect(report.valid?).to be true
     end
   end
 end

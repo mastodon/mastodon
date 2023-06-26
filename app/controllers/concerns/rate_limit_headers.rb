@@ -6,13 +6,11 @@ module RateLimitHeaders
   class_methods do
     def override_rate_limit_headers(method_name, options = {})
       around_action(only: method_name, if: :current_account) do |_controller, block|
-        begin
-          block.call
-        ensure
-          rate_limiter = RateLimiter.new(current_account, options)
-          rate_limit_headers = rate_limiter.to_headers
-          response.headers.merge!(rate_limit_headers) unless response.headers['X-RateLimit-Remaining'].present? && rate_limit_headers['X-RateLimit-Remaining'].to_i > response.headers['X-RateLimit-Remaining'].to_i
-        end
+        block.call
+      ensure
+        rate_limiter = RateLimiter.new(current_account, options)
+        rate_limit_headers = rate_limiter.to_headers
+        response.headers.merge!(rate_limit_headers) unless response.headers['X-RateLimit-Remaining'].present? && rate_limit_headers['X-RateLimit-Remaining'].to_i > response.headers['X-RateLimit-Remaining'].to_i
       end
     end
   end
@@ -67,6 +65,6 @@ module RateLimitHeaders
   end
 
   def reset_period_offset
-    api_throttle_data[:period] - request_time.to_i % api_throttle_data[:period]
+    api_throttle_data[:period] - (request_time.to_i % api_throttle_data[:period])
   end
 end

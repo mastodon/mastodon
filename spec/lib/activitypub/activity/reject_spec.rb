@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Reject do
@@ -25,7 +27,7 @@ RSpec.describe ActivityPub::Activity::Reject do
   describe '#perform' do
     subject { described_class.new(json, sender) }
 
-    context 'rejecting a pending follow request by target' do
+    context 'when rejecting a pending follow request by target' do
       before do
         Fabricate(:follow_request, account: recipient, target_account: sender)
         subject.perform
@@ -40,7 +42,7 @@ RSpec.describe ActivityPub::Activity::Reject do
       end
     end
 
-    context 'rejecting a pending follow request by uri' do
+    context 'when rejecting a pending follow request by uri' do
       before do
         Fabricate(:follow_request, account: recipient, target_account: sender, uri: 'bar')
         subject.perform
@@ -55,7 +57,7 @@ RSpec.describe ActivityPub::Activity::Reject do
       end
     end
 
-    context 'rejecting a pending follow request by uri only' do
+    context 'when rejecting a pending follow request by uri only' do
       let(:object_json) { 'bar' }
 
       before do
@@ -72,7 +74,7 @@ RSpec.describe ActivityPub::Activity::Reject do
       end
     end
 
-    context 'rejecting an existing follow relationship by target' do
+    context 'when rejecting an existing follow relationship by target' do
       before do
         Fabricate(:follow, account: recipient, target_account: sender)
         subject.perform
@@ -87,7 +89,7 @@ RSpec.describe ActivityPub::Activity::Reject do
       end
     end
 
-    context 'rejecting an existing follow relationship by uri' do
+    context 'when rejecting an existing follow relationship by uri' do
       before do
         Fabricate(:follow, account: recipient, target_account: sender, uri: 'bar')
         subject.perform
@@ -102,7 +104,7 @@ RSpec.describe ActivityPub::Activity::Reject do
       end
     end
 
-    context 'rejecting an existing follow relationship by uri only' do
+    context 'when rejecting an existing follow relationship by uri only' do
       let(:object_json) { 'bar' }
 
       before do
@@ -120,7 +122,9 @@ RSpec.describe ActivityPub::Activity::Reject do
     end
   end
 
-  context 'given a relay' do
+  context 'when given a relay' do
+    subject { described_class.new(json, sender) }
+
     let!(:relay) { Fabricate(:relay, state: :pending, follow_activity_id: 'https://abc-123/456') }
 
     let(:json) do
@@ -137,8 +141,6 @@ RSpec.describe ActivityPub::Activity::Reject do
         },
       }.with_indifferent_access
     end
-
-    subject { described_class.new(json, sender) }
 
     it 'marks the relay as rejected' do
       subject.perform
