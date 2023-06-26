@@ -64,7 +64,15 @@ class AttachmentBatch
             keys << attachment.style_name_as_path(style)
           when :filesystem
             logger.debug { "Deleting #{attachment.path(style)}" }
-            FileUtils.remove_file(attachment.path(style), true)
+            path = attachment.path(style)
+            FileUtils.remove_file(path, true)
+
+            begin
+              FileUtils.rmdir(File.dirname(path), parents: true)
+            rescue Errno::EEXIST, Errno::ENOTEMPTY, Errno::ENOENT, Errno::EINVAL, Errno::ENOTDIR, Errno::EACCES
+              # Ignore failure to delete a directory, with the same ignored errors
+              # as Paperclip
+            end
           when :fog
             logger.debug { "Deleting #{attachment.path(style)}" }
             attachment.directory.files.new(key: attachment.path(style)).destroy
