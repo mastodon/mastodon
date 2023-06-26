@@ -1,4 +1,4 @@
-import type { Record } from 'immutable';
+import type { List, Record } from 'immutable';
 
 import type { CustomEmoji, CustomEmojiRawValues } from './custom_emoji';
 
@@ -44,11 +44,11 @@ interface AccountApiRawValues {
 
 interface NormalizedAccountValues {
   display_name_html: string;
-  emojis: CustomEmoji[];
-  fields: AccountField[];
+  emojis: List<CustomEmoji>;
+  fields: List<AccountField>;
   note_emojified: string;
   note_plain: string;
-  roles: AccountRole[];
+  roles: List<AccountRole>;
 }
 
 export type Account = Record<
