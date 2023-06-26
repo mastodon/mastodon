@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 
 import { Link, withRouter } from 'react-router-dom';
 
@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { fetchServer } from 'flavours/glitch/actions/server';
 import { Avatar } from 'flavours/glitch/components/avatar';
+import { Icon } from 'flavours/glitch/components/icon';
 import { WordmarkLogo, SymbolLogo } from 'flavours/glitch/components/logo';
 import Permalink from 'flavours/glitch/components/permalink';
 import { registrationsOpen, me } from 'flavours/glitch/initial_state';
@@ -21,6 +22,10 @@ const Account = connect(state => ({
     <Avatar account={account} size={35} />
   </Permalink>
 ));
+
+const messages = defineMessages({
+  search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
+});
 
 const mapStateToProps = (state) => ({
   signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], null) || '/auth/sign_up',
@@ -45,7 +50,8 @@ class Header extends PureComponent {
     openClosedRegistrationsModal: PropTypes.func,
     location: PropTypes.object,
     signupUrl: PropTypes.string.isRequired,
-    dispatchServer: PropTypes.func
+    dispatchServer: PropTypes.func,
+    intl: PropTypes.object.isRequired,
   };
 
   componentDidMount () {
@@ -55,14 +61,15 @@ class Header extends PureComponent {
 
   render () {
     const { signedIn } = this.context.identity;
-    const { location, openClosedRegistrationsModal, signupUrl } = this.props;
+    const { location, openClosedRegistrationsModal, signupUrl, intl } = this.props;
 
     let content;
 
     if (signedIn) {
       content = (
         <>
-          {location.pathname !== '/publish' && <Link to='/publish' className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='Publish' /></Link>}
+          {location.pathname !== '/search' && <Link to='/search' className='button button-secondary' aria-label={intl.formatMessage(messages.search)}><Icon id='search' /></Link>}
+          {location.pathname !== '/publish' && <Link to='/publish' className='button button-secondary'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /></Link>}
           <Account />
         </>
       );
@@ -85,6 +92,7 @@ class Header extends PureComponent {
 
       content = (
         <>
+          {location.pathname !== '/search' && <Link to='/search' className='button button-secondary' aria-label={intl.formatMessage(messages.search)}><Icon id='search' /></Link>}
           {signupButton}
           <a href='/auth/sign_in' className='button button-tertiary'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' /></a>
         </>
@@ -107,4 +115,4 @@ class Header extends PureComponent {
 
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
+export default injectIntl(withRouter(connect(mapStateToProps, mapDispatchToProps)(Header)));
