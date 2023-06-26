@@ -33,9 +33,11 @@ const messages = defineMessages({
 
 const getHomeFeedSpeed = createSelector([
   state => state.getIn(['timelines', 'home', 'items'], ImmutableList()),
+  state => state.getIn(['timelines', 'home', 'pendingItems'], ImmutableList()),
   state => state.get('statuses'),
-], (statusIds, statusMap) => {
-  const statuses = statusIds.map(id => statusMap.get(id)).filter(status => status.get('account') !== me).take(20);
+], (statusIds, pendingStatusIds, statusMap) => {
+  const recentStatusIds = pendingStatusIds.size > 0 ? pendingStatusIds : statusIds;
+  const statuses = recentStatusIds.map(id => statusMap.get(id)).filter(status => status?.get('account') !== me).take(20);
   const oldest = new Date(statuses.getIn([statuses.size - 1, 'created_at'], 0));
   const newest = new Date(statuses.getIn([0, 'created_at'], 0));
   const averageGap = (newest - oldest) / (1000 * (statuses.size + 1)); // Average gap between posts on first page in seconds
@@ -46,9 +48,14 @@ const getHomeFeedSpeed = createSelector([
   };
 });
 
-const homeTooSlow = createSelector(getHomeFeedSpeed, speed =>
-  speed.gap > (30 * 60) // If the average gap between posts is more than 20 minutes
-  || (Date.now() - speed.newest) > (1000 * 3600) // If the most recent post is from over an hour ago
+const homeTooSlow = createSelector([
+  state => state.getIn(['timelines', 'home', 'isLoading']),
+  state => state.getIn(['timelines', 'home', 'isPartial']),
+  getHomeFeedSpeed,
+], (isLoading, isPartial, speed) =>
+  !isLoading && !isPartial // Only if the home feed has finished loading
+  && (speed.gap > (30 * 60) // If the average gap between posts is more than 20 minutes
+  || (Date.now() - speed.newest) > (1000 * 3600)) // If the most recent post is from over an hour ago
 );
 
 const mapStateToProps = state => ({
