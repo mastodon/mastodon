@@ -64,7 +64,7 @@ class AttachmentBatch
             keys << attachment.style_name_as_path(style)
           when :filesystem
             logger.debug { "Deleting #{attachment.path(style)}" }
-            FileUtils.remove_file(attachment.path(style))
+            FileUtils.remove_file(attachment.path(style), true)
           when :fog
             logger.debug { "Deleting #{attachment.path(style)}" }
             attachment.directory.files.new(key: attachment.path(style)).destroy
