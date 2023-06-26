@@ -8768,9 +8768,18 @@ noscript {
 
     &__actions {
       display: flex;
-      align-items: center;
+      flex-wrap: wrap;
       gap: 4px;
-      margin-top: 30px;
+
+      &__wrapper {
+        display: flex;
+        margin-top: 30px;
+      }
+
+      .button {
+        display: block;
+        flex-grow: 1;
+      }
     }
 
     .button-tertiary {
