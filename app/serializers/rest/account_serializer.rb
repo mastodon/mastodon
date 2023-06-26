@@ -129,8 +129,9 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def two_factor_enabled
     object.two_factor_enabled?
-
-    def memorial
+  end
+  
+  def memorial
     object.memorial?
   end
 
