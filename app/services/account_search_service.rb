@@ -134,9 +134,7 @@ class AccountSearchService < BaseService
 
   def must_clause
     fields = %w(username username.* display_name display_name.*)
-    if options[:use_searchable_text]
-      fields << 'text' << 'text.*'
-    end
+    fields << 'text' << 'text.*' if options[:use_searchable_text]
 
     [
       {
@@ -144,8 +142,8 @@ class AccountSearchService < BaseService
           query: terms_for_query,
           fields: fields,
           type: 'best_fields',
-          operator: 'or'
-        }
+          operator: 'or',
+        },
       },
     ]
   end
@@ -158,8 +156,8 @@ class AccountSearchService < BaseService
           fields: %w(username username.* display_name display_name.*),
           type: 'best_fields',
           operator: 'and',
-          boost: 10
-        }
+          boost: 10,
+        },
       },
     ]
   end
