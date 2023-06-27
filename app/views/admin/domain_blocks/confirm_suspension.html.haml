@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('.title', domain: Addressable::IDNA.to_unicode(@domain_block.domain))
 
-= simple_form_for @domain_block, url: admin_domain_blocks_path(@domain_block) do |f|
+= simple_form_for @domain_block, url: admin_domain_blocks_path, method: :post do |f|
 
   %p.hint= t('.preamble_html', domain: Addressable::IDNA.to_unicode(@domain_block.domain))
   %ul.hint
