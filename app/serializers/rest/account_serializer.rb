@@ -147,7 +147,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
     object.user_prefers_noindex?
   end
 
-  delegate :suspended?, :silenced?, :local?, :memorial?, to: :object
+  delegate :suspended?, :silenced?, :local?, :memorial?, :two_factor_enabled?, to: :object
 
   def moved_and_not_nested?
     object.moved?
