@@ -3,6 +3,8 @@
 source 'https://rubygems.org'
 ruby '>= 2.6.0', '< 3.1.0'
 
+gem 'subscription', path: 'subscription'
+
 gem 'pkg-config', '~> 1.4'
 gem 'rexml', '~> 3.2'
 
@@ -156,3 +158,5 @@ gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
 gem 'xorcist', '~> 1.1'
 gem 'cocoon', '~> 1.2'
+
+gem 'subscription', path: 'subscription'

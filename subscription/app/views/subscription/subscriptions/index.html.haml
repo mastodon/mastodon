@@ -1,0 +1,26 @@
+- content_for :page_title do
+  = "Subscriptions"
+
+.subscriptions.container
+  - if @subscriptions.empty?
+    Your account does not have any subscriptions
+  - else
+    .applications-list__item
+      %strong.announcements-list__item__title
+        %span
+        = "My Subscription"
+      .announcements-list__item__action-bar
+        .announcements-list__item__meta
+          = "view your current subscription & manage past subscriptions"
+      .announcements-list__item__permissions
+        %ul.permissions-list
+          - @subscriptions.each do |sub| 
+            %li.permissions-list__item
+              .permissions-list__item__icon
+                = fa_icon('cc-stripe')
+              .permissions-list__item__text
+                .permissions-list__item__text__title
+                  = link_to sub.subscription_id, settings_subscription.subscription_path(sub)
+                .permissions-list__item__text__type
+                  = sub.status
+ 
