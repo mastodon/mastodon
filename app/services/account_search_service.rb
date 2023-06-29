@@ -133,8 +133,12 @@ class AccountSearchService < BaseService
   end
 
   def must_clause
-    fields = %w(username username.* display_name display_name.*)
-    fields << 'text' << 'text.*' if options[:use_searchable_text]
+    if options[:start_with_hashtag]
+      fields = %w(text text.*)
+    else
+      fields = %w(username username.* display_name display_name.*)
+      fields << 'text' << 'text.*' if options[:use_searchable_text]
+    end
 
     [
       {
