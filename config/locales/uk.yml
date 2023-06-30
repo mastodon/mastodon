@@ -395,6 +395,8 @@ uk:
       undo: Видалити з білого списку
     domain_blocks:
       add_new: Додати нове
+      confirm_suspension:
+        confirm: Призупинити
       created_msg: Блокування домену обробляється
       destroyed_msg: Блокування домену знято
       domain: Домен
@@ -1001,6 +1003,7 @@ uk:
     notification_preferences: Змінити налаштування електронної пошти
     salutation: "%{name},"
     settings: 'Змінити налаштування електронної пошти: %{link}'
+    unsubscribe: Відписатися
     view: 'Перегляд:'
     view_profile: Показати профіль
     view_status: Показати допис
@@ -1164,6 +1167,10 @@ uk:
       your_appeal_rejected: Вашу апеляцію було відхилено
   domain_validator:
     invalid_domain: не є допустимим ім'ям домену
+  edit_profile:
+    basic_information: Основна інформація
+    other: Інше
+    safety_and_privacy: Безпека та конфіденційність
   errors:
     '400': Ваш запит був недійсним або неправильним.
     '403': У Вас немає доступу до перегляду даної сторінки.
@@ -1374,6 +1381,10 @@ uk:
     failed_sign_in_html: Не вдалося увійти з %{method} з %{ip} (%{browser})
     successful_sign_in_html: Успішний вхід з %{method} з %{ip} (%{browser})
     title: Історія входів
+  mail_subscriptions:
+    unsubscribe:
+      complete: Відписався
+      title: Відписатися
   media_attachments:
     validations:
       images_and_video: Не можна додати відео до допису з зображеннями
