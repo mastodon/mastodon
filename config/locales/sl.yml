@@ -395,6 +395,11 @@ sl:
       undo: Odstrani iz belega seznama
     domain_blocks:
       add_new: Dodaj nov domenski blok
+      confirm_suspension:
+        cancel: Prekliči
+        confirm: Suspendiraj
+        stop_communication: Vaš strežnik bo prenehal komunicirati s temi strežniki.
+        title: Potrdi domenski blok za %{domain}
       created_msg: Domenski blok se sedaj obdeluje
       destroyed_msg: Domenski blok je bil razveljavljen
       domain: Domena
@@ -886,6 +891,11 @@ sl:
         disallow_account: Ne dovoli avtorja
         no_status_selected: Nobena trendna objava ni bila spremenjena, ker ni bila nobena izbrana
         not_discoverable: Avtor ni dovolil, da bi ga bilo moč odkriti
+        shared_by:
+          one: Deljeno ali priljubljeno %{friendly_count}-krat
+          two: Deljeno ali priljubljeno %{friendly_count}-krat
+          few: Deljeno ali priljubljeno %{friendly_count}-krat
+          other: Deljeno ali priljubljeno %{friendly_count}-krat
         title: Trendne objave
       tags:
         current_score: Trenutni rezultat %{score}
@@ -996,6 +1006,7 @@ sl:
     notification_preferences: Spremenite e-poštne nastavitve
     salutation: "%{name},"
     settings: 'Spremenite e-poštne nastavitve: %{link}'
+    unsubscribe: Odjavi od naročnine
     view: 'Pogled:'
     view_profile: Ogled profila
     view_status: Pokaži objavo
@@ -1009,7 +1020,8 @@ sl:
     your_token: Vaš dostopni žeton
   auth:
     apply_for_account: Zaprosite za račun
-    change_password: Geslo
+    captcha_confirmation:
+      title: Varnostno preverjanje
     confirmations:
       wrong_email_hint: Če ta e-poštni naslov ni pravilen, ga lahko spremenite v nastavitvah računa.
     delete_account: Izbriši račun
@@ -1048,6 +1060,7 @@ sl:
       back: Nazaj
       preamble: Slednje določajo in njihovo spoštovanje zagotavljajo moderatorji %{domain}.
       title: Nekaj osnovnih pravil.
+      title_invited: Ste povabljeni.
     security: Varnost
     set_new_password: Nastavi novo geslo
     setup:
@@ -1058,7 +1071,7 @@ sl:
       title: Preverite svojo dohodno e-pošto
     sign_in:
       preamble_html: Prijavite se s svojimi poverilnicami <strong>%{domain}</strong>. Če vaš račun gostuje na drugem strežniku, se tukaj ne boste mogli prijaviti.
-      title: Prijavite se v %{domain}
+      title: Vpiši se v %{domain}
     sign_up:
       manual_review: Registracije na %{domain} ročno pregledajo naši moderatorji. Da nam olajšate obdelavo vaše prijave, zapišite kaj o sebi in zakaj si želite račun na %{domain}.
       preamble: Z računom na strežniku Mastodon boste lahko sledili vsem drugim v tem omrežju, ne glede na to, kje gostuje njihov račun.
@@ -1160,6 +1173,10 @@ sl:
       your_appeal_rejected: Vaša pritožba je bila zavržena
   domain_validator:
     invalid_domain: ni veljavno ime domene
+  edit_profile:
+    basic_information: Osnovni podatki
+    other: Drugo
+    safety_and_privacy: Varnost in zasebnost
   errors:
     '400': Zahteva, ki ste jo oddali, je neveljavna ali nepravilno oblikovana.
     '403': Nimate dovoljenja za ogled te strani.
@@ -1308,6 +1325,7 @@ sl:
       bookmarks: Uvažanje zaznamkov
       domain_blocking: Uvažanje blokiranih domen
       following: Uvažanje sledenih računov
+      muting: Uvažanje utišanih računov
     type: Vrsta uvoza
     types:
       blocking: Seznam blokiranih
@@ -1469,6 +1487,7 @@ sl:
       expired: Glasovanje se je že zaključilo
       invalid_choice: Izbrana možnost glasovanja ne obstaja
       over_character_limit: ne more biti daljše od %{max} znakov
+      self_vote: Ne morete glasovati v lastnih anketah
       too_few_options: mora imeti več kot en element
       too_many_options: ne more vsebovati več kot %{max} elementov
   preferences:
@@ -1784,8 +1803,9 @@ sl:
     seamless_external_login: Prijavljeni ste prek zunanje storitve, tako da nastavitve gesla in e-pošte niso na voljo.
     signed_in_as: 'Vpisani kot:'
   verification:
-    explanation_html: '<strong>V metapodatkih svojega profila se lahko potrdite kot lastnik povezav</strong>. Za to mora povezano spletno mesto vsebovati povezavo do vašega profila Mastodon. Po dodajanju povezave se boste morda morali vrniti sem in ponovno shraniti svoj profil, da bo overjanje učinkovalo. Povezava <strong>mora</strong> imeti atribut <code>el="me"</code>. Vsebina besedila povezave ni pomembna. Tukaj je primer:'
+    here_is_how: Kako to poteka
     verification: Potrditev
+    verified_links: Vaše preverjene povezave
   webauthn_credentials:
     add: Dodaj nov varnostni ključ
     create:
