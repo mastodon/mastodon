@@ -12,6 +12,8 @@ ro:
       locked: Contul tău este blocat.
       not_found_in_database: '%{authentication_keys} sau parolă greșită.'
       pending: Contul tău este încă în curs de revizuire.
+      timeout: Sesiunea ta a expirat. Te rugăm să te conectezi din nou pentru a continua.
+      unauthenticated: Trebuie să te conectezi sau să te înregistrezi înainte de a continua.
       unconfirmed: Trebuie să confirmi adresa ta de e-mail înainte de a continua.
     mailer:
       confirmation_instructions:
@@ -99,6 +101,7 @@ ro:
     unlocks:
       send_instructions: Veţi primi un e-mail cu instrucţiuni despre cum să vă deblocaţi contul în câteva minute. Te rugăm să verifici dosarul spam dacă nu ai primit acest e-mail.
       send_paranoid_instructions: Dacă contul tău există, vei primi un e-mail cu instrucțiuni pentru cum să-l deblochezi în câteva minute. Te rugăm să verifici dosarul spam dacă nu ai primit acest e-mail.
+      unlocked: Contul tău a fost deblocat cu succes. Te rugăm să te autentifici pentru a continua.
   errors:
     messages:
       already_confirmed: a fost deja confirmat, încercați să vă conectați
