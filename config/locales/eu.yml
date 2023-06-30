@@ -741,8 +741,8 @@ eu:
         preamble: Eduki interesgarria aurkitzea garrantzitsua da Mastodoneko erabiltzaile berrientzat, behar bada inor ez dutelako ezagutuko. Kontrolatu zure zerbitzariko aurkikuntza-ezaugarriek nola funtzionatzen duten.
         profile_directory: Profil-direktorioa
         public_timelines: Denbora-lerro publikoak
-        publish_discovered_servers: Deskubritutako zerbitzariak argitaratu
-        publish_statistics: Estatistikak argitaratu
+        publish_discovered_servers: Argitaratu aurkitutako zerbitzariak
+        publish_statistics: Argitaratu estatistikak
         title: Aurkitzea
         trends: Joerak
       domain_blocks:
@@ -851,13 +851,13 @@ eu:
       statuses:
         allow: Onartu bidalketa
         allow_account: Onartu egilea
-        description_html: Hauek dira une honetan gehien partekatzen eta gogoko gehien dituzten bidalketak, zure zerbitzariak dakienaren arabera. Zure erabiltzaile berriei nahiz itzultzen direnei lagun diezaieke jarraitzeko jendea aurkitzen. Bidalketak ez dira publikoki bistaratuko zuk egilea onartu eta egileak berak bere kontua besteei iradokitzea onartu arte. Bidalketak banan-bana ere baimendu edo uka ditzakezu.
+        description_html: Hauek dira une honetan asko partekatu eta gogokoak diren bidalketak (zure zerbitzariak ezagutzen dituenak). Erabiltzaile berrientzat eta bueltan itzuli direnentzat lagungarriak izan daitezke nor jarraitu aurkitzeko. Bidalketak ez dira publikoki erakusten zuk egilea onartu arte eta egileak gomendatua izatea onartu arte. Bidalketak banan bana ere onartu edo baztertu ditzakezu.
         disallow: Ez onartu bidalketa
         disallow_account: Ez onartu egilea
         no_status_selected: Ez da joerarik aldatu ez delako bat ere hautatu
         not_discoverable: Egileak ez du aukeratu aurkikuntza ezaugarrietan agertzea
         shared_by:
-          one: Partekatua edo behin gogokoenatara gehitua
+          one: Behin partekatua edo gogoko egina
           other: '%{friendly_count} aldiz partekatua edo gogoko egina'
         title: Bidalketen joerak
       tags:
@@ -977,8 +977,7 @@ eu:
     warning: Kontuz datu hauekin, ez partekatu inoiz inorekin!
     your_token: Zure sarbide token-a
   auth:
-    apply_for_account: Kontu bat eskatu
-    change_password: Pasahitza
+    apply_for_account: Eskatu kontu bat
     confirmations:
       wrong_email_hint: Helbide-elektroniko hori zuzena ez bada, kontuaren ezarpenetan alda dezakezu.
     delete_account: Ezabatu kontua
@@ -1026,8 +1025,8 @@ eu:
       new_confirmation_instructions_sent: Berrespen-esteka duen mezu berri bat jasoko duzu minutu gutxi barru!
       title: Begiratu zure sarrera-ontzia
     sign_in:
-      preamble_html: Hasi saioa zure <strong>%{domain}</strong>-(e)ko kredentzialekin. Zure kontua zerbitzari ezberdin batean ostatatua badago, ezin izango duzu hemen saioa hasi.
-      title: Hasi saioa %{domain}-(e)n
+      preamble_html: Zure <strong>%{domain}-(e)ko</strong> egiaztagiriekin saioa hasi. Zure kontua beste zerbitzari batean badago, ezin izango duzu hemen saioa hasi.
+      title: '%{domain}-(e)an saioa hasi'
     sign_up:
       manual_review: '%{domain}-(e)n eginiko izen-emateak gure moderatzaileek eskuz aztertzen dituzte. Zure izen-ematea prozesatzen lagun gaitzazun, idatz ezazu zertxobait zuri buruz eta azaldu zergatik nahi duzun %{domain}-(e)n kontu bat.'
       preamble: Mastodon zerbitzari honetako kontu batekin, aukera izango duzu sareko edozein pertsona jarraitzeko, ez dio axola kontua non ostatatua dagoen.
@@ -1363,7 +1362,7 @@ eu:
         subject: "%{name} erabiltzailea erregistratu da"
     favourite:
       body: '%{name}(e)k zure bidalketa gogoko du:'
-      subject: "%{name}-(e)k zure argitalpena datsegi"
+      subject: "%{name}(e)k zure bidalketa gogoko du"
       title: Gogoko berria
     follow:
       body: "%{name}(e)k jarraitzen zaitu!"
@@ -1581,7 +1580,7 @@ eu:
     show_newer: Erakutsi berriagoak
     show_older: Erakutsi zaharragoak
     show_thread: Erakutsi haria
-    sign_in_to_participate: Hasi saioa elkarrizketan parte hartzeko
+    sign_in_to_participate: Eman izena elkarrizketan parte hartzeko
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Zuzena
@@ -1596,9 +1595,10 @@ eu:
     enabled_hint: Zure bidalketa zaharrak automatikoki ezabatzen ditu zehazturiko denbora mugara iristean, beheko baldintza bat betetzen ez bada
     exceptions: Salbuespenak
     explanation: Bidalketak ezabatzea eragiketa garestia denez, mantso egiten da, zerbitzaria lasai dagoenean. Horregatik, zure bidalketak denbora mugara iristen direnetik ezabatu arte tarte bat igaro daiteke.
-    ignore_favs: Alde batera utzi gogokoak
+    ignore_favs: Ez ezabatu gogokoak
     ignore_reblogs: Ez ezabatu bultzadak
     interaction_exceptions: Elkarrekintzetan oinarritutako salbuespenak
+    interaction_exceptions_explanation: Kontuan izan ezin dela ziurtatu ez direnik ezabatuko gogoko edo bultzaden muga gainditzen duten bidalketak, ondoren mugatik behera gelditzen badira ere.
     keep_direct: Mantendu mezu zuzenak
     keep_direct_hint: Zure mezu zuzenak ez dira ezabatuko
     keep_media: Mantendu multimediak dituzten bidalketak
@@ -1728,7 +1728,6 @@ eu:
     seamless_external_login: Kanpo zerbitzu baten bidez hasi duzu saioa, beraz pasahitza eta e-mail ezarpenak ez daude eskuragarri.
     signed_in_as: 'Saioa honela hasita:'
   verification:
-    explanation_html: '<strong>Zure profileko metadatuetako esteken jabe zarela egiazta</strong> dezakezu. Horretarako, webguneak zure Mastodoneko profilaren esteka eduki behar du. Esteka webgunean erantsi ondoren, aldaketak berriro gorde beharko dituzu egiaztapena burutu ahal izateko. Estekak <code>rel="me"</code> atributua eduki <strong>behar</strong> du. Estekaren testu-edukia ez da aintzat hartzen. Hemen duzu adibide bat:'
     verification: Egiaztaketa
   webauthn_credentials:
     add: Gehitu segurtasun gako berria
