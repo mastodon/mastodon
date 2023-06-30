@@ -851,14 +851,14 @@ et:
       statuses:
         allow: Luba postitada
         allow_account: Luba autor
-        description_html: Need on postitused, mille kohta su server teab, et neid hetkel jagatakse palju ja märgitakse lemmikuks. See võib aidata uutel ja naasvatel kasutajatel leida rohkem inimesi, keda jälgida. Ühtegi postitust ei näidata avalikult enne, kui kinnitad autori ja autor lubab oma kontot teistele soovitada. Saad ka lubada üksikuid postitusi ja neid tagasi lükata.
+        description_html: Need on postitused, millest server teab ja mida praegu jagatakse ja mis on hetkel paljude lemmikud. See võib aidata uutel ja naasvatel kasutajatel leida rohkem inimesi, keda jälgida. Ühtegi postitust ei kuvata avalikult enne, kui autor on heaks kiidetud ja autor lubab oma kontot teistele soovitada. Samuti saab üksikuid postitusi lubada või tagasi lükata.
         disallow: Ära luba postitada
         disallow_account: Keela autor
         no_status_selected: Trendikaid postitusi ei muudetud, kuna ükski polnud valitud
         not_discoverable: Autor pole lubanud enda avastamist
         shared_by:
-          one: Üks jagamine või lemmikuks märkimine
-          other: Jagatud ja lemmikuks märgitud %{friendly_count} korda
+          one: Jagatud või meeldinud üks kord
+          other: Jagatud ja meeldinud %{friendly_count} korda
         title: Trendikad postitused
       tags:
         current_score: Skoor praegu %{score}
@@ -978,7 +978,6 @@ et:
     your_token: Su juurdepääsutunnus
   auth:
     apply_for_account: Konto taotluse esitamine
-    change_password: Salasõna
     confirmations:
       wrong_email_hint: Kui see e-postiaadress pole korrektne, saad seda kontosätetes muuta.
     delete_account: Konto kustutamine
@@ -1025,6 +1024,9 @@ et:
       link_not_received: Kas ei saanud linki?
       new_confirmation_instructions_sent: Saad mõne minutiga uue kinnituslingiga e-kirja!
       title: Kontrolli sisendkasti
+    sign_in:
+      preamble_html: Logi sisse oma <strong>%{domain}</strong> volitustega. Kui konto asub teises serveris, ei saa siin sisse logida.
+      title: Logi sisse kohta %{domain}
     sign_up:
       manual_review: Liitumised kohas %{domain} vaadatakse meie moderaatorite poolt käsitsi läbi. Aitamaks meil sinu taotlust läbi vaadata, kirjuta palun natuke endast ja miks soovid kontot kohas %{domain}.
       preamble: Selle kontoga saad jälgida ja suhelda kõigi teiste kasutajatega erinevates Mastodoni serverites.
@@ -1371,7 +1373,7 @@ et:
       sign_up:
         subject: "%{name} liitus"
     favourite:
-      body: 'Su postitus märgiti %{name} poolt lemmikuks:'
+      body: '%{name} lisas su postituse lemmikutesse:'
       subject: "%{name} märkis su postituse lemmikuks"
       title: Uus lemmik
     follow:
@@ -1590,6 +1592,7 @@ et:
     show_newer: Uuemate kuvamine
     show_older: Vanemate kuvamine
     show_thread: Kuva lõim
+    sign_in_to_participate: Logi sisse, et liituda vestlusega
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Otsene
@@ -1604,10 +1607,10 @@ et:
     enabled_hint: Kustutab automaatselt postitused, mis ületavad määratud ajalimiiti, välja arvatud allpool toodud erandite puhul
     exceptions: Erandid
     explanation: Kuna postituste kustutamine on kulukas toiming, tehakse seda aja jooksul aeglaselt, kui server pole muidu hõivatud. Sel põhjusel võidakse postitused kustutada alles mõne aja möödudes pärast vanusepiirini jõudmist.
-    ignore_favs: Ignoreeri lemmikuid
+    ignore_favs: Eira lemmikuid
     ignore_reblogs: Eira jagamisi
     interaction_exceptions: Interaktsioonidel põhinevad erandid
-    interaction_exceptions_explanation: 'Märkus: postituse kustutamine pole kindel, kui see on hetkel küll allpool jagamise või lemmikute piiri, kuid varem on postitus üle selle piiri olnud.'
+    interaction_exceptions_explanation: Postitused ei pruugi kustuda, kui meeldimiste või jagamiste arv langeb alla määratu, kui need on kord olnud sellest üle.
     keep_direct: Säilita otsesõnumid
     keep_direct_hint: Ei kustuta otsesõnumeid
     keep_media: Meedialisanditega postituste säilitamine
@@ -1618,8 +1621,8 @@ et:
     keep_polls_hint: Ei kustuta ühtegi küsitlust
     keep_self_bookmark: Säilita postitused järjehoidjates
     keep_self_bookmark_hint: Ei kustuta oma postitusi, kui need on järjehoidjates
-    keep_self_fav: Säilita enda lemmikpostitused
-    keep_self_fav_hint: Ei kustuta enda postitusi, kui oled need märkinud lemmikuks
+    keep_self_fav: Säilita meeldinud postitused
+    keep_self_fav_hint: Ei kustuta oma postitusi, kui need on märgitud meeldivaks
     min_age:
       '1209600': 2 nädalat
       '15778476': 6 kuud
@@ -1630,8 +1633,8 @@ et:
       '63113904': 2 aastat
       '7889238': 3 kuud
     min_age_label: Ajalimiit
-    min_favs: Hoia postitusi lemmikuna vähemalt
-    min_favs_hint: Ei kustuta ühtegi su postitust, mis on saanud vähemalt määratud arv lemmikuks märkimist. Jäta tühjaks, et kustutada postitusi sõltumata lemmikuks märkimise arvust
+    min_favs: Säilita postitused, meeldimistega vähemalt
+    min_favs_hint: "Ei kustuta ühtegi postitust, mis on saanud vähemalt nii palju lemmikuks märkimist. Postituste kustutamiseks olenemata nende lemmikuks märkimise arvust,\njäta tühjaks"
     min_reblogs: Säilita postitused jagatud vähemalt
     min_reblogs_hint: Ei kustuta postitusi, kui need on jagatud vähemalt nii mitu korda. Tühjaks jättes kustuvad postitused olenemata jagamistest
   stream_entries:
@@ -1737,7 +1740,6 @@ et:
     seamless_external_login: Välise teenuse kaudu sisse logides pole salasõna ja e-posti sätted saadaval.
     signed_in_as: 'Sisse logitud kasutajana:'
   verification:
-    explanation_html: 'Saad <strong>kinnitada ennast oma profiili metaandmete veebiviidete omanikuna.</strong> Selleks peab lingitud veebilehel olema viide tagasi sinu Mastodoni profiilile. Pärast lingi lisamist pead võib-olla siia tagasi tulema ja oma profiili uuesti salvestama, et kinnitus jõustuks. Tagasiviide <strong>peab</strong> sisaldama <code>rel="me"</code> atribuuti. Lingi tekstiline sisu ei ole oluline. Siin on näide:'
     verification: Kinnitamine
   webauthn_credentials:
     add: Uue turvavõtme lisamine
