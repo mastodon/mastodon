@@ -12,6 +12,8 @@ id:
       locked: Akun anda dikunci.
       not_found_in_database: Ada %{authentication_keys} atau kata sandi yang tidak cocok.
       pending: Akun Anda masih dalam peninjauan.
+      timeout: Sesi anda telah berakhir. Silahkan coba masuk lagi.
+      unauthenticated: Anda harus masuk atau mendaftar terlebih dahulu.
       unconfirmed: Anda harus mengkonfirmasi alamat email terlebih dahulu.
     mailer:
       confirmation_instructions:
@@ -99,6 +101,7 @@ id:
     unlocks:
       send_instructions: Anda akan menerima sebuah email berisi petunjuk bagaimana cara membuka akun anda dalam beberapa menit.
       send_paranoid_instructions: Jika akun anda telah terdaftar, anda akan menerima email berisi petunjuk cara membuka akun anda dalam beberapa menit.
+      unlocked: Akun anda berhasil dibuka. Silakan masuk untuk melanjutkan.
   errors:
     messages:
       already_confirmed: sudah dikonfirmasikan, silakan coba masuk
