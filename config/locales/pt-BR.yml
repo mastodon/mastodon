@@ -851,11 +851,14 @@ pt-BR:
       statuses:
         allow: Permitir publicação
         allow_account: Permitir autor
-        description_html: Estas são postagens que seu servidor conhece que atualmente estão sendo compartilhadas e muito favoritadas no momento. Isso pode ajudar seus usuários novos e que estão retornando a encontrar mais pessoas a seguir. Nenhum post é exibido publicamente até que você aprove o autor e o autor permita que sua conta seja sugerida a outros. Você também pode permitir ou rejeitar publicações individuais.
+        description_html: Estes são as publicações que seu servidor sabe que estão sendo muito compartilhadas e favorecidas no momento. Isso pode ajudar seus usuários, novos e atuais, a encontrar mais pessoas para seguir. Nenhuma publicação é exibida publicamente até que você aprove o autor e o autor permitir que sua conta seja sugerida a outros. Você também pode permitir ou rejeitar publicações individuais.
         disallow: Proibir publicação
         disallow_account: Proibir autor
         no_status_selected: Nenhuma publicação em alta foi alterada, pois, nenhuma foi selecionada
         not_discoverable: O autor optou por permitir que seja descoberto
+        shared_by:
+          one: Compartilhado ou favoritado uma vez
+          other: Compartilhado e favoritado %{friendly_count} vezes
         title: Publicações em alta
       tags:
         current_score: Pontuação atual %{score}
@@ -975,7 +978,6 @@ pt-BR:
     your_token: Seu código de acesso
   auth:
     apply_for_account: Solicitar uma conta
-    change_password: Senha
     confirmations:
       wrong_email_hint: Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
     delete_account: Excluir conta
@@ -1022,6 +1024,9 @@ pt-BR:
       link_not_received: Não recebeu um link?
       new_confirmation_instructions_sent: Você receberá um novo e-mail com o link de confirmação em alguns minutos!
       title: Verifique sua caixa de entrada
+    sign_in:
+      preamble_html: Entre com suas credenciais de domínios ( <strong>%{domain}</strong> ) . Se sua conta estiver hospedada em um servidor diferente, você não deve conseguir acessar este conteúdo.
+      title: Entrar em %{domain}
     sign_up:
       manual_review: Inscrições no %{domain} passam pela revisão manual dos nossos moderadores. Para nos ajudar a processar o seu cadastro, escreva um pouco sobre você e por que você quer uma conta no %{domain}.
       preamble: Com uma conta neste servidor Mastodon, você poderá seguir qualquer outra pessoa na rede, independentemente de onde sua conta esteja hospedada.
@@ -1368,7 +1373,7 @@ pt-BR:
       sign_up:
         subject: "%{name} se inscreveu"
     favourite:
-      body: 'Sua publicação foi favoritada por %{name}:'
+      body: '%{name} favoritou sua publicação:'
       subject: "%{name} favoritou sua publicação"
       title: Novo favorito
     follow:
@@ -1587,6 +1592,7 @@ pt-BR:
     show_newer: Mostrar mais recentes
     show_older: Mostrar mais antigos
     show_thread: Mostrar conversa
+    sign_in_to_participate: Entre para participar dessa conversa
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direto
@@ -1604,7 +1610,7 @@ pt-BR:
     ignore_favs: Ignorar favoritos
     ignore_reblogs: Ignorar impulsos
     interaction_exceptions: Exceções baseadas nas interações
-    interaction_exceptions_explanation: Note que não há garantia de que os posts sejam excluídos se eles ficarem abaixo do limite de favoritos ou de impulso depois de terem excedido eles.
+    interaction_exceptions_explanation: Note que não há garantia de que as publicações sejam excluídas se ficarem abaixo do limite de favoritos ou boosts depois de tê-lo ultrapassado.
     keep_direct: Manter mensagens diretas
     keep_direct_hint: Não exclui nenhuma de suas mensagens diretas
     keep_media: Manter publicações com mídia
@@ -1616,7 +1622,7 @@ pt-BR:
     keep_self_bookmark: Manter publicações que você salvou
     keep_self_bookmark_hint: Não exclui suas próprias publicações se você as salvou
     keep_self_fav: Manter publicações que você favoritou
-    keep_self_fav_hint: Não exclui as suas próprias mensagens se você as favoritou
+    keep_self_fav_hint: Não exclui suas próprias publicações se você as favoritou
     min_age:
       '1209600': 2 semanas
       '15778476': 6 meses
@@ -1628,7 +1634,7 @@ pt-BR:
       '7889238': 3 meses
     min_age_label: Validade
     min_favs: Manter publicações favoritadas por ao menos
-    min_favs_hint: Não exclui nenhuma das suas publicações que tenha recebido pelo menos este número de favoritos. Deixe em branco para excluir postagens independentemente do número de favoritos
+    min_favs_hint: Não exclui suas publicações que receberam pelo menos esta quantidade de favoritos. Deixe em branco para excluir publicações independentemente da quantidade de favoritos
     min_reblogs: Manter publicações impulsionadas por ao menos
     min_reblogs_hint: Não exclui publicações que receberam pelo menos esta quantidade de impulsos. Deixe em branco para excluir publicações independentemente da quantidade de impulsos
   stream_entries:
@@ -1734,7 +1740,6 @@ pt-BR:
     seamless_external_login: Você entrou usando um serviço externo, então configurações de e-mail e senha não estão disponíveis.
     signed_in_as: 'Entrou como:'
   verification:
-    explanation_html: 'Você pode <strong>se verificar como proprietário dos links nos metadados do seu perfil</strong>. Para isso, o site vinculado deve conter um link de volta para o seu perfil de Mastodon. Depois de adicionar o link, talvez você precise voltar aqui e salvar novamente o seu perfil para que a verificação tenha efeito. O link de volta <strong>deve</strong> ter um atributo <code>rel="me"</code>. O conteúdo do texto do link não importa. Aqui está um exemplo:'
     verification: Verificação
   webauthn_credentials:
     add: Adicionar nova chave de segurança
