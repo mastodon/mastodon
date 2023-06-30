@@ -474,7 +474,7 @@ lv:
           zero: Neizdevušies mēģinājumi %{count} dienās.
           one: Neizdevies mēģinājums %{count} dienā.
           other: Neizdevušies mēģinājumi %{count} dienās.
-        no_failures_recorded: Kļūmes nav reģistrētas.
+        no_failures_recorded: Nav reģistrētu kļūdu.
         title: Pieejamība
         warning: Pēdējais mēģinājums izveidot savienojumu ar šo serveri ir bijis neveiksmīgs
       back_to_all: Visas
@@ -866,15 +866,15 @@ lv:
       statuses:
         allow: Atļaut publicēt
         allow_account: Atļaut autoru
-        description_html: Šīs ir ziņas, par kurām tavs serveris zina un kuras pašlaik tiek koplietotas un šbrīd tiek daudz pievienotas izlasei. Tas var palīdzēt taviem jaunajiem un atkal pievienotajiem lietotājiem atrast vairāk cilvēku, kam sekot. Neviena ziņa netiek publiski rādīta, kamēr neesi apstiprinājis autoru un autors atļauj savu kontu ieteikt citiem. Vari arī atļaut vai noraidīt atsevišķas ziņas.
+        description_html: Šīs ir ziņas, par kurām tavs serveris zina un kuras pašlaik tiek koplietotas un pašlaik ir daudz izlasē. Tas var palīdzēt taviem jaunajiem un atkārtotiem lietotājiem atrast vairāk cilvēku, kam sekot. Neviena ziņa netiek publiski rādīta, kamēr neesi apstiprinājis autoru un autors atļauj savu kontu ieteikt citiem. Vari arī atļaut vai noraidīt atsevišķas ziņas.
         disallow: Neatļaut publicēt
         disallow_account: Neatļaut autoru
         no_status_selected: Neviena populāra ziņa netika mainīta, jo neviena netika atlasīta
         not_discoverable: Autors nav izvēlējies būt atklājams
         shared_by:
-          zero: '%{friendly_count} reižu kopīgots un pievienots izlasei'
+          zero: '%{friendly_count} reižu kopīgots vai pievienots izlasei'
           one: Vienreiz kopīgots vai pievienots izlasei
-          other: '%{friendly_count} reizes kopīgots un pievienots izlasei'
+          other: Kopīgots un pievienots izlasei %{friendly_count} reizes
         title: Populārākās ziņas
       tags:
         current_score: Pašreizējais rezultāts %{score}
@@ -996,7 +996,6 @@ lv:
     your_token: Tavs piekļuves marķieris
   auth:
     apply_for_account: Pieprasīt kontu
-    change_password: Parole
     confirmations:
       wrong_email_hint: Ja šī e-pasta adrese nav pareiza, varat to mainīt konta iestatījumos.
     delete_account: Dzēst kontu
@@ -1044,8 +1043,8 @@ lv:
       new_confirmation_instructions_sent: Pēc dažām minūtēm saņemsi jaunu e-pastu ar apstiprinājuma saiti!
       title: Pārbaudi savu iesūtni
     sign_in:
-      preamble_html: Piesakies ar saviem <strong>%{domain}</strong> akreditācijas datiem. Ja tavs konts ir mitināts citā serverī, tu nevarēsi pieteikties šeit.
-      title: Pieteikties %{domain}
+      preamble_html: Pierakstieties ar saviem <strong>%{domain}</strong> akreditācijas datiem. Ja jūsu konts ir mitināts citā serverī, jūs nevarēsit pieteikties šeit.
+      title: Pierakstīties %{domain}
     sign_up:
       manual_review: Reģistrācijas domēnā %{domain} manuāli pārbauda mūsu moderatori. Lai palīdzētu mums apstrādāt tavu reģistrāciju, uzraksti mazliet par sevi un to, kāpēc vēlies kontu %{domain}.
       preamble: Izmantojot kontu šajā Mastodon serverī, tu varēsi sekot jebkurai citai personai tīklā neatkarīgi no tā, kur tiek mitināts viņas konts.
@@ -1625,7 +1624,7 @@ lv:
     show_newer: Nekad nerādīt
     show_older: Rādīt senākus
     show_thread: Rādīt tematu
-    sign_in_to_participate: Lai piedalītos sarunā, piesakies
+    sign_in_to_participate: Lai piedalītos sarunā, pieraksties
     title: '%{name}: “%{quote}”'
     visibilities:
       direct: Tiešs
@@ -1643,7 +1642,7 @@ lv:
     ignore_favs: Ignorēt izlasi
     ignore_reblogs: Ignorēt izcēlumus
     interaction_exceptions: Izņēmumi, kuru pamatā ir mijiedarbība
-    interaction_exceptions_explanation: Ņem vērā, ka nav garantijas, ka ziņas tiks dzēstas, ja tās pārsniegs izlases pievienošanas vai izcelšanas slieksni.
+    interaction_exceptions_explanation: Ņemiet vērā, ka nav garantijas, ka ziņas tiks dzēstas, ja tās pārsniegs izlases vai izcēluma slieksni.
     keep_direct: Saglabāt tiešos ziņojumus
     keep_direct_hint: Nedzēš nevienu tavu tiešo ziņojumu
     keep_media: Saglabāt ziņas ar multivides pielikumiem
@@ -1666,8 +1665,8 @@ lv:
       '63113904': 2 gadi
       '7889238': 3 mēneši
     min_age_label: Vecuma slieksnis
-    min_favs: Saglabāt vismaz izlases ziņas
-    min_favs_hint: Neizdzēš nevienu tavu ziņu, kas ir saņēmusi vismaz tik daudz izlases. Atstāj tukšu, lai dzēstu ziņas neatkarīgi no to izlases skaita
+    min_favs: Saglabāt ziņas izlsasē vismaz
+    min_favs_hint: Nedzēš nevienu jūsu ziņu, kas ir saņēmusi vismaz tik daudz izcēlumu. Atstājiet tukšu, lai dzēstu ziņas neatkarīgi no to izcēlumu skaita
     min_reblogs: Saglabāt ziņas izceltas vismaz
     min_reblogs_hint: Neizdzēš nevienu no tavām ziņām, kas ir izceltas vismaz tik reižu. Atstāj tukšu, lai dzēstu ziņas neatkarīgi no to izcēlumu skaita
   stream_entries:
@@ -1773,7 +1772,6 @@ lv:
     seamless_external_login: Tu esi pieteicies, izmantojot ārēju pakalpojumu, tāpēc paroles un e-pasta iestatījumi nav pieejami.
     signed_in_as: 'Pierakstījies kā:'
   verification:
-    explanation_html: 'Tu vari <strong>apstiprināt sevi kā sava profila metadatos esošo saišu īpašnieku</strong>. Lai to izdarītu, saistītajā vietnē ir jābūt saitei uz tavu Mastodon profilu. Pēc saites pievienošanas tev, iespējams, vajadzēs atgriezties šeit un atkārtoti saglabāt savu profilu, lai pārbaude stātos spēkā. Atpakaļsaitē <strong>jābūt</strong> atribūtam <code>rel="me"</code>. Saites teksta saturam nav nozīmes. Šeit ir piemērs:'
     verification: Pārbaude
   webauthn_credentials:
     add: Pievienot jaunu drošības atslēgu
