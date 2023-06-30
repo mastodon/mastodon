@@ -1,3 +1,5 @@
 Subscription::Engine.routes.draw do
-  resources :subscriptions
+  post '/webhooks', to: 'webhooks#receive'
+
+  resources :subscriptions, only: [:index, :show]
 end
