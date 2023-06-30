@@ -33,9 +33,10 @@ export const ShortNumberRenderer: React.FC<ShortNumberProps> = ({
 
   const displayNumber = <ShortNumberCounter value={shortNumber} />;
 
-  return customRenderer
-    ? customRenderer(displayNumber, pluralReady(value, division))
-    : displayNumber;
+  return (
+    customRenderer?.(displayNumber, pluralReady(value, division)) ||
+    displayNumber
+  );
 };
 export const ShortNumber = memo(ShortNumberRenderer);
 
