@@ -12,6 +12,8 @@ sk:
       locked: Tvoj účet je zamknutý.
       not_found_in_database: Nesprávny %{authentication_keys}, alebo heslo.
       pending: Tvoj účet je stále prehodnocovaný.
+      timeout: Tvoja aktívna sezóna vypršala. Pre pokračovanie sa prosím prihlás znovu.
+      unauthenticated: K pokračovaniu sa musíš zaregistrovať alebo prihlásiť.
       unconfirmed: Pred pokračovaním musíš potvrdiť svoj email.
     mailer:
       confirmation_instructions:
@@ -99,6 +101,7 @@ sk:
     unlocks:
       send_instructions: O niekoľko minút obdržíš email s pokynmi, ako nastaviť nové heslo. Prosím, skontroluj ale aj svoju spam zložku, pokiaľ sa ti zdá, že si tento email nedostal/a.
       send_paranoid_instructions: Ak tvoj účet existuje, o niekoľko minút obdržíš email s pokynmi ako si ho odomknúť. Prosím, skontroluj ale aj svoju spam zložku, pokiaľ sa ti zdá, že si tento email nedostal/a.
+      unlocked: Tvoj účet bol úspešne odomknutý. Pre pokračovanie sa prosím prihlás.
   errors:
     messages:
       already_confirmed: bol už potvrdený, skús sa prihlásiť
