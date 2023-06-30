@@ -70,7 +70,7 @@ nl:
       enabled: Ingeschakeld
       enabled_msg: Het ontdooien van het account van %{username} is geslaagd
       followers: Volgers
-      follows: Volgt
+      follows: Gevolgde accounts
       header: Omslagfoto
       inbox_url: Inbox-URL
       invite_request_text: Redenen om te registreren
@@ -978,7 +978,6 @@ nl:
     your_token: Jouw toegangscode
   auth:
     apply_for_account: Account aanvragen
-    change_password: Wachtwoord
     confirmations:
       wrong_email_hint: Als dat e-mailadres niet correct is, kun je het wijzigen in je accountinstellingen.
     delete_account: Account verwijderen
@@ -1025,6 +1024,9 @@ nl:
       link_not_received: Geen link ontvangen?
       new_confirmation_instructions_sent: Je ontvangt binnen enkele minuten een nieuwe e-mail met de bevestigingslink!
       title: Kijk in je mailbox
+    sign_in:
+      preamble_html: Log in met de inloggegevens van <strong>%{domain}</strong>. Als jouw account zich op een andere server bevindt, kun je hier niet inloggen.
+      title: Inloggen op %{domain}
     sign_up:
       manual_review: Inschrijvingen op %{domain} worden handmatig door onze moderatoren beoordeeld. Schrijf wat over jezelf en waarom je een account op %{domain} wilt. Hiermee help je ons om de aanvraag van jouw account goed te kunnen verwerken.
       preamble: Je kunt met een Mastodon-account iedereen in het netwerk volgen, ongeacht waar deze persoon een account heeft.
@@ -1152,13 +1154,13 @@ nl:
       in_progress: Jouw archief wordt samengesteld...
       request: Jouw archief opvragen
       size: Omvang
-    blocks: Jij blokkeert
+    blocks: Geblokkeerde accounts
     bookmarks: Bladwijzers
     csv: CSV
-    domain_blocks: Domeinblokkades
+    domain_blocks: Geblokkeerde domeinen
     lists: Lijsten
-    mutes: Jij negeert
-    storage: Mediaopslag
+    mutes: Genegeerde accounts
+    storage: Mediabestanden
   featured_tags:
     add_new: Nieuwe toevoegen
     errors:
@@ -1237,52 +1239,52 @@ nl:
       invalid_csv_file: 'Ongeldig CSV-bestand. Fout: %{error}'
       over_rows_processing_limit: bevat meer dan %{count} rijen
       too_large: Bestand is te groot
-    failures: Gebreken
+    failures: Fouten
     imported: Geïmporteerd
-    mismatched_types_warning: Het lijkt erop dat u het verkeerde type heeft gekozen voor deze import, gelieve na te kijken.
+    mismatched_types_warning: Het lijkt erop dat je het verkeerde type hebt gekozen voor deze import. Gelieve dit na te kijken.
     modes:
       merge: Samenvoegen
       merge_long: Bestaande gegevens behouden en nieuwe toevoegen
       overwrite: Overschrijven
       overwrite_long: Huidige gegevens met de nieuwe gegevens vervangen
     overwrite_preambles:
-      blocking_html: U staat op het punt <strong>uw bloklijst</strong> te vervangen door maximaal <strong>%{total_items} accounts</strong> van <strong>%{filename}</strong>.
-      bookmarks_html: U staat op het punt <strong>uw bloklijst</strong> te vervangen door maximaal <strong>%{total_items} posts</strong> van <strong>%{filename}</strong>.
-      domain_blocking_html: U staat op het punt <strong>uw bloklijst</strong> te vervangen door maximaal <strong>%{total_items} domeinen</strong> uit <strong>%{filename}</strong>.
-      following_html: U staat op het punt om <strong>%{total_items} accounts</strong> <strong>te volgen</strong> uit <strong>%{filename}</strong> en <strong>het stoppen met volgen van alle anderen</strong>.
-      muting_html: U staat op het punt <strong>uw lijst met gemute accounts</strong> te vervangen door maximaal <strong>%{total_items} accounts</strong> van <strong>%{filename}</strong>.
+      blocking_html: Je staat op het punt <strong>jouw lijst met geblokkeerde accounts</strong> te vervangen door <strong>%{total_items} accounts</strong> vanuit <strong>%{filename}</strong>.
+      bookmarks_html: Je staat op het punt <strong>jouw bladwijzers</strong> te vervangen door <strong>%{total_items} berichten</strong> vanuit <strong>%{filename}</strong>.
+      domain_blocking_html: Je staat op het punt <strong>jouw lijst met geblokkeerde domeinen</strong> te vervangen door <strong>%{total_items} domeinen</strong> vanuit <strong>%{filename}</strong>.
+      following_html: Je staat op het punt om <strong>%{total_items} accounts</strong> <strong>te volgen</strong> vanuit <strong>%{filename}</strong> en <strong>te stoppen met het volgen van alle andere accounts</strong>.
+      muting_html: Je staat op het punt <strong>jouw lijst met genegeerde accounts</strong> te vervangen door <strong>%{total_items} accounts</strong> vanuit <strong>%{filename}</strong>.
     preambles:
-      blocking_html: U staat op het punt <strong>uw bloklijst</strong> te vervangen door maximaal <strong>%{total_items} accounts</strong> van <strong>%{filename}</strong>.
-      bookmarks_html: U staat op het punt om tot <strong>%{total_items} berichten</strong> van <strong>%{filename}</strong> toe te voegen aan uw <strong>bookmarks</strong>.
-      domain_blocking_html: U staat op het punt <strong>uw bloklijst</strong> te vervangen door maximaal <strong>%{total_items} domeinen</strong> van <strong>%{filename}</strong>.
-      following_html: U staat op het punt om <strong> %{total_items} accounts te volgen</strong> van <strong>%{filename}</strong>.
-      muting_html: U staat op het punt om <strong>%{total_items} accounts te muten</strong> van <strong>%{filename}</strong>.
+      blocking_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>blokkeren</strong> vanuit <strong>%{filename}</strong>.
+      bookmarks_html: Je staat op het punt om <strong>%{total_items} berichten</strong> aan je <strong>bladwijzers</strong> toe te voegen vanuit <strong>%{filename}</strong>.
+      domain_blocking_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>negeren</strong> vanuit <strong>%{filename}</strong>.
+      following_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>volgen</strong> vanuit <strong>%{filename}</strong>.
+      muting_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>negeren</strong> vanuit <strong>%{filename}</strong>.
     preface: Je kunt bepaalde gegevens, zoals de mensen die jij volgt of hebt geblokkeerd, naar jouw account op deze server importeren. Je moet deze gegevens wel eerst op de oorspronkelijke server exporteren.
     recent_imports: Recent geïmporteerd
     states:
       finished: Voltooid
-      in_progress: In uitvoering
-      scheduled: Gepland
-      unconfirmed: Niet bevestigd
+      in_progress: Bezig…
+      scheduled: Ingepland
+      unconfirmed: Onbevestigd
     status: Status
     success: Jouw gegevens zijn succesvol geüpload en worden binnenkort verwerkt
-    time_started: Begonnen op
+    time_started: Begonnen om
     titles:
-      blocking: Importeren van geblokkeerde accounts
-      bookmarks: Importeren van bookmarks
-      domain_blocking: Importeren van geblokkeerde domeinen
-      following: Importeren van gevolgde accounts
-      muting: Importeren van gemute accounts
+      blocking: Geblokkeerde accounts importeren
+      bookmarks: Bladwijzers importeren
+      domain_blocking: Geblokkeerde domeinen importeren
+      following: Gevolgde accounts importeren
+      muting: Genegeerde accounts importeren
     type: Importtype
     type_groups:
-      constructive: Volgt & Bladwijzers
-      destructive: Blokkeren & muten
+      constructive: Gevolgde accounts en bladwijzers
+      destructive: Geblokkeerde accounts/domeinen en genegeerde accounts
     types:
-      blocking: Blokkeerlijst
+      blocking: Geblokkeerde accounts
       bookmarks: Bladwijzers
-      domain_blocking: Lijst met geblokkeerde domeinen
-      following: Volglijst
-      muting: Negeerlijst
+      domain_blocking: Geblokkeerde domeinen
+      following: Gevolgde accounts
+      muting: Genegeerde accounts
     upload: Uploaden
   invites:
     delete: Deactiveren
@@ -1590,6 +1592,7 @@ nl:
     show_newer: Nieuwere tonen
     show_older: Oudere tonen
     show_thread: Gesprek tonen
+    sign_in_to_participate: Log in om deel te nemen aan het gesprek
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privébericht
@@ -1737,7 +1740,6 @@ nl:
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
   verification:
-    explanation_html: 'Je kunt <strong>jezelf verifiëren als de eigenaar van de links in de metadata van jouw profiel</strong>. Hiervoor moet op de gelinkte website een link terug naar jouw Mastodonprofiel staan. Na het toevoegen van de link moet je hier mogelijk terugkomen en je profiel opnieuw bewaren om de verificatie te bevestigen. Deze link <strong>moet</strong> het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de link maakt niet uit. Hier is een voorbeeld:'
     verification: Verificatie
   webauthn_credentials:
     add: Nieuwe beveiligingssleutel toevoegen
