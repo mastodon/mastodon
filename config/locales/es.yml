@@ -381,6 +381,15 @@ es:
       undo: Quitar de la lista blanca
     domain_blocks:
       add_new: Añadir nuevo
+      confirm_suspension:
+        cancel: Cancelar
+        confirm: Suspender
+        permanent_action: Deshacer la suspensión no recuperará ningún dato ni relación.
+        preamble_html: Estás a punto de suspender a <strong>%{domain}</strong> y sus subdominios.
+        remove_all_data: Esto eliminará todo el contenido, multimedia y datos de perfil de las cuentas de este dominio de tu servidor.
+        stop_communication: Tu servidor dejará de comunicarse con estos servidores.
+        title: Confirmar bloqueo del dominio %{domain}
+        undo_relationships: Esto deshará cualquier relación (seguidores y seguidos) entre las cuentas de estos servidores y el tuyo.
       created_msg: El bloqueo del dominio está siendo procesado
       destroyed_msg: El bloqueo del dominio se deshizo
       domain: Dominio
@@ -730,6 +739,9 @@ es:
       branding:
         preamble: La marca de tu servidor lo diferencia de otros servidores de la red. Esta información puede mostrarse a través de una variedad de entornos, como en la interfaz web de Mastodon, en aplicaciones nativas, en previsualizaciones de enlaces en otros sitios web y en aplicaciones de mensajería, etc. Por esta razón, es mejor mantener esta información clara, breve y concisa.
         title: Marca
+      captcha_enabled:
+        desc_html: Esto se basa en scripts externos de hCaptcha, que pueden suponer una preocupación de seguridad y privacidad. Además, <strong>esto puede volver el proceso de registro significativamente menos accesible para algunas personas (especialmente con discapacidades)</strong>. Por estas razones, por favor, considera medidas alternativas como el registro por aprobación manual o con invitación.
+        title: Solicita a los nuevos usuarios que resuelvan un CAPTCHA para confirmar su cuenta
       content_retention:
         preamble: Controlar cómo el contenido generado por el usuario se almacena en Mastodon.
         title: Retención de contenido
@@ -965,6 +977,7 @@ es:
     notification_preferences: Cambiar preferencias de correo electrónico
     salutation: "%{name}:"
     settings: 'Cambiar preferencias de correo: %{link}'
+    unsubscribe: Cancelar suscripción
     view: 'Vista:'
     view_profile: Ver perfil
     view_status: Ver estado
@@ -978,6 +991,10 @@ es:
     your_token: Tu token de acceso
   auth:
     apply_for_account: Solicitar una cuenta
+    captcha_confirmation:
+      help_html: Si tienes problemas resolviendo el CAPTCHA, puedes contactarnos por email en %{email} y te ayudaremos.
+      hint_html: '¡Una última cosita! Necesitamos confirmar que eres humano (¡así podemos evitar el spam!). Resuelve este CAPTCHA de debajo y pulsa en "Continuar".'
+      title: Comprobación de seguridad
     confirmations:
       wrong_email_hint: Si esa dirección de correo electrónico no es correcta, puedes cambiarla en la configuración de la cuenta.
     delete_account: Borrar cuenta
@@ -1014,8 +1031,11 @@ es:
     rules:
       accept: Aceptar
       back: Atrás
+      invited_by: 'Puedes unirte a %{domain} gracias a la invitación que has recibido de:'
       preamble: Estas son establecidas y aplicadas por los moderadores de %{domain}.
+      preamble_invited: Antes de continuar, por favor, revisa las reglas básicas establecidas por los moderadores de %{domain}.
       title: Algunas reglas básicas.
+      title_invited: Has sido invitado.
     security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
     setup:
@@ -1128,6 +1148,11 @@ es:
       your_appeal_rejected: Tu apelación ha sido rechazada
   domain_validator:
     invalid_domain: no es un nombre de dominio válido
+  edit_profile:
+    basic_information: Información básica
+    hint_html: "<strong>Personaliza lo que la gente ve en tu perfil público junto a tus publicaciones.</strong> Es más probable que otras personas te sigan e interactúen contigo cuando completas tu perfil y foto."
+    other: Otros
+    safety_and_privacy: Seguridad y privacidad
   errors:
     '400': La solicitud que has enviado no es valida o estaba malformada.
     '403': No tienes permiso para acceder a esta página.
@@ -1322,6 +1347,19 @@ es:
     failed_sign_in_html: Intento de inicio de sesión fallido con %{method} de %{ip} (%{browser})
     successful_sign_in_html: Inicio de sesión exitoso con %{method} desde %{ip} (%{browser})
     title: Historial de autenticación
+  mail_subscriptions:
+    unsubscribe:
+      action: Sí, cancelar suscripción
+      complete: Has cancelado tu suscripción
+      confirmation_html: '¿Estás seguro de que quieres dejar de recibir %{type} de Mastodon en %{domain} a tu email %{email}? Siempre podrás volver a suscribirte desde <a href="%{settings_path}"> los ajustes de notificación por correo.</a>.'
+      emails:
+        notification_emails:
+          favourite: notificaciones de me gusta por correo
+          follow: notificaciones de seguidores por correo
+          follow_request: notificaciones de peticiones de seguimiento por correo
+          mention: notificaciones de menciones por correo
+          reblog: notificaciones de impulsos por correo
+      resubscribe_html: Si te has dado de baja por error, puedes volver a darte de alta desde tus <a href="%{settings_path}">ajustes de notificaciones por correo</a>.
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
