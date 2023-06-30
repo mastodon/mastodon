@@ -12,6 +12,8 @@ is:
       locked: Notandaaðgangurinn þinn er læstur.
       not_found_in_database: Ógilt %{authentication_keys} eða lykilorð.
       pending: Notandaaðgangurinn þinn er enn til yfirferðar.
+      timeout: Setan þín er útrunnin. Skráðu þig aftur inn til að halda áfram.
+      unauthenticated: Þú þarft að skrá þig inn eða nýskrá þig áður en lengra er haldið.
       unconfirmed: Þú verður að staðfesta tölvupóstfangið þitt áður en lengra er haldið.
     mailer:
       confirmation_instructions:
@@ -99,6 +101,7 @@ is:
     unlocks:
       send_instructions: Þú munt innan nokkurra mínútna fá tölvupóst með leiðbeiningunum um hvernig eigi að aflæsa notandaaðgangnum þínum. Skoðaðu í ruslpóstmöppuna þína ef þú færð ekki þennan tölvupóst.
       send_paranoid_instructions: Ef notandaaðgangurinn þinn er til, munt þú innan nokkurra mínútna fá tölvupóst með leiðbeiningunum um hvernig eigi að aflæsa honum. Skoðaðu í ruslpóstmöppuna þína ef þú færð ekki þennan tölvupóst.
+      unlocked: Það tókst að aflæsa notandaaðgangnum þínum. Skráðu þig inn til að halda áfram.
   errors:
     messages:
       already_confirmed: var þegar staðfest, prófaðu að skrá þig inn
