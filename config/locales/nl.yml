@@ -385,6 +385,11 @@ nl:
         cancel: Annuleren
         confirm: Opschorten
         permanent_action: De schorsing ongedaan maken zal geen gegevens of relatie herstellen.
+        preamble_html: U staat op het punt <strong>%{domain}</strong> en subdomeinen op te schorten.
+        remove_all_data: Dit verwijdert alle inhoud, media en profielgegevens van de accounts van dit domein van uw server.
+        stop_communication: Uw server zal stoppen met communiceren met deze servers.
+        title: Blokkering van domein %{domain} bevestigen
+        undo_relationships: Dit zal elke volgrelatie tussen de accounts van deze servers ongedaan maken.
       created_msg: Domeinblokkade wordt nu verwerkt
       destroyed_msg: Domeinblokkade is ongedaan gemaakt
       domain: Domein
@@ -734,6 +739,9 @@ nl:
       branding:
         preamble: De branding van jouw server laat zien hoe het met andere servers in het netwerk verschilt. Deze informatie wordt op verschillende plekken getoond, zoals in de webomgeving van Mastodon, in mobiele apps, in voorvertoningen op andere websites en berichten-apps, enz. Daarom is het belangrijk om de informatie helder, kort en beknopt te houden.
         title: Branding
+      captcha_enabled:
+        desc_html: Dit is afhankelijk van externe scripts van hCaptcha, wat een zorg voor veiligheid en privacy kan zijn. Bovendien kan <strong>dit het registratieproces aanzienlijk minder toegankelijk maken voor sommige (vooral gehandicapten) mensen</strong>. Om deze redenen dient u alternatieve maatregelen te overwegen, zoals registraties op basis van goedkeuringen of op uitnodiging gebaseerde registratie.
+        title: Nieuwe gebruikers dienen een CAPTCHA op te lossen om hun account te bevestigen
       content_retention:
         preamble: Toezicht houden op hoe berichten en media van gebruikers op Mastodon worden bewaard.
         title: Bewaartermijn berichten
@@ -969,6 +977,7 @@ nl:
     notification_preferences: E-mailvoorkeuren wijzigen
     salutation: "%{name},"
     settings: 'E-mailvoorkeuren wijzigen: %{link}'
+    unsubscribe: Afmelden
     view: 'Bekijk:'
     view_profile: Profiel bekijken
     view_status: Bericht bekijken
@@ -982,6 +991,10 @@ nl:
     your_token: Jouw toegangscode
   auth:
     apply_for_account: Account aanvragen
+    captcha_confirmation:
+      help_html: Als u problemen ondervindt bij het oplossen van de CAPTCHA, kunt u contact met ons opnemen via %{email} en kunnen wij u assisteren.
+      hint_html: Nog maar één ding! Je moet bevestigen dat je een mens bent (dit is om de spam buiten de deur te houden!). Los de onderstaande CAPTCHA op en klik op "Doorgaan".
+      title: Veiligheidscontrole
     confirmations:
       wrong_email_hint: Als dat e-mailadres niet correct is, kun je het wijzigen in je accountinstellingen.
     delete_account: Account verwijderen
