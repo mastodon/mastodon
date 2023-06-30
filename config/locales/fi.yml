@@ -851,13 +851,13 @@ fi:
       statuses:
         allow: Salli viesti
         allow_account: Salli tekijä
-        description_html: Nämä ovat julkaisuja, joita on palvelimesi mukaan jaettu tai merkitty suosikiksi paljon. Tämä voi auttaa uusia ja palaavia käyttäjiä löytämään lisää seurattavia. Julkaisuja ei näytetä julkisesti ennen kuin hyväksyt niiden julkaisijan, ja julkaisija sallii tilinsä ehdottamisen. Voit myös sallia tai hylätä yksittäisiä julkaisuja.
+        description_html: Nämä ovat viestejä, jotka palvelimesi tietää tällä hetkellä jaetuksi ja suosituksi. Tämä voi auttaa uusia ja palaavia ihmisiä löytämään lisää ihmisiä, joita seurata seurata. Julkaisuja ei näytetä julkisesti ennen kuin hyväksyt tekijän ja kirjoittaja sallii tilinsä ehdottamisen muille. Voit myös sallia tai hylätä yksittäiset viestit.
         disallow: Estä viesti
         disallow_account: Estä tekijä
         no_status_selected: Suosittuja viestejä ei muutettu, koska yhtään ei valittu
         not_discoverable: Tekijä ei ole ilmoittanut olevansa löydettävissä
         shared_by:
-          one: Jaettu tai merkitty suosikiksi kerran
+          one: Jaettu tai suosikki kerran
           other: Jaettu tai merkitty suosikiksi %{friendly_count} kertaa
         title: Suositut viestit
       tags:
@@ -978,7 +978,6 @@ fi:
     your_token: Pääsytunnus
   auth:
     apply_for_account: Pyydä tiliä
-    change_password: Salasana
     confirmations:
       wrong_email_hint: Jos sähköpostiosoite ei ole oikein, voit muuttaa sen tilin asetuksista.
     delete_account: Poista tili
@@ -1025,6 +1024,9 @@ fi:
       link_not_received: Etkö saanut linkkiä?
       new_confirmation_instructions_sent: Saat uuden vahvistuslinkin sisältävän sähköpostiviestin muutaman minuutin sisällä!
       title: Tarkista saamasi viestit
+    sign_in:
+      preamble_html: Kirjaudu <strong>%{domain}</strong>-tunnuksellasi. Jos tilisi sijaitsee eri palvelimella, et voi kirjautua täällä.
+      title: Kirjaudu palvelimelle %{domain}
     sign_up:
       manual_review: Palvelimen %{domain} ylläpito tarkastaa rekisteröitymiset käsin. Helpottaaksesi rekisteröitymisesi käsittelyä, kerro hieman itsestäsi ja miksi haluat luoda käyttäjätilin palvelimelle %{domain}.
       preamble: Kun sinulla on tili tällä Mastodon-palvelimella, voit seurata kaikkia muita verkossa olevia henkilöitä riippumatta siitä, missä heidän tilinsä on.
@@ -1371,9 +1373,9 @@ fi:
       sign_up:
         subject: "%{name} rekisteröityi"
     favourite:
-      body: '%{name} merkitsi julkaisusi suosikiksi:'
-      subject: "%{name} merkitsi julkaisusi suosikiksi"
-      title: Uusi suosikki
+      body: '%{name} tykkäsi tilastasi:'
+      subject: "%{name} tykkäsi tilastasi"
+      title: Uusi tykkäys
     follow:
       body: "%{name} seuraa nyt sinua!"
       subject: "%{name} seuraa nyt sinua"
@@ -1590,6 +1592,7 @@ fi:
     show_newer: Näytä uudemmat
     show_older: Näytä vanhempi
     show_thread: Näytä ketju
+    sign_in_to_participate: Kirjaudu osallistuaksesi keskusteluun
     title: '%{name}: ”%{quote}”'
     visibilities:
       direct: Suoraan
@@ -1604,10 +1607,10 @@ fi:
     enabled_hint: Poistaa viestit automaattisesti, kun ne saavuttavat tietyn ikärajan, elleivät ne täsmää yhtä alla olevista poikkeuksista
     exceptions: Poikkeukset
     explanation: Koska viestien poistaminen on kallista toimintaa, sitä tehdään hitaasti ajan mittaan, kun palvelin ei ole muutoin kiireinen. Viestejäsi voidaankin siis poistaa myös viiveellä verrattuna niille määrittämääsi aikarajaan.
-    ignore_favs: Älä huomioi suosikkeja
+    ignore_favs: Ohita suosikit
     ignore_reblogs: Ohita tehostukset
     interaction_exceptions: Poikkeukset, jotka perustuvat vuorovaikutukseen
-    interaction_exceptions_explanation: Huomioi, että viestien poistumisesta ei ole varmuutta, jos ne alittavat suosikki- tai tehostusrajan vaikka raja olisikin aiemmin ylitetty.
+    interaction_exceptions_explanation: Huomaa, että ei ole takeita viestien poistamiselle, jos ne alittavat suosikki- tai tehostusrajan sen jälkeen, kun ne on kerran ylitetty.
     keep_direct: Säilytä yksityisviestit
     keep_direct_hint: Ei poista mitään sinun suoria viestejä
     keep_media: Säilytä viestit, joissa on liitetiedostoja
@@ -1618,8 +1621,8 @@ fi:
     keep_polls_hint: Ei poista yhtäkään äänestystä
     keep_self_bookmark: Säilytä kirjanmerkkeihin lisäämäsi viestit
     keep_self_bookmark_hint: Ei poista viestejäsi, jos olet lisännyt ne kirjanmerkkeihin
-    keep_self_fav: Säilytä suosikkijulkaisusi
-    keep_self_fav_hint: Ei poista omia julkaisujasi, jos olet merkinnyt ne suosikeiksi
+    keep_self_fav: Säilyttää viestit suosikeissa
+    keep_self_fav_hint: Ei poista omia viestejäsi, jos olet lisännyt ne suosikkeihin
     min_age:
       '1209600': 2 viikkoa
       '15778476': 6 kuukautta
@@ -1630,8 +1633,8 @@ fi:
       '63113904': 2 vuotta
       '7889238': 3 kuukautta
     min_age_label: Ikäraja
-    min_favs: Säilytä julkaisujen suosikkimerkintä ainakin
-    min_favs_hint: Ei poista julkaisujasi, jotka on merkitty suosikiksi ainakin niin monta kertaa kuin tässä on määritetty. Jätä tyhjäksi, jos haluat julkaisujen poistuvan riippumatta niiden suosikkimerkintämäärästä.
+    min_favs: Pidä viestit suosikeissa vähintään
+    min_favs_hint: Toiminto ei poista julkaisujasi, joista on tykätty vähintään tässä kohtaa määritellyn monesti. Jätä kenttä tyhjäksi, jos haluat poistaa julkaisut tykkäyksistä huolimatta
     min_reblogs: Pidä viestit tehostettuna vähintään
     min_reblogs_hint: Ei poista yhtään viestiäsi, jota on tehostettu vähintään näin monta kertaa. Jätä tyhjäksi poistaaksesi viestejä riippumatta niiden tehosteiden määrästä
   stream_entries:
@@ -1737,7 +1740,6 @@ fi:
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
     signed_in_as: 'Kirjautunut tilillä:'
   verification:
-    explanation_html: 'Voit <strong>vahvistaa olevasi profiilisi metatietojen sisältämien linkkien omistaja</strong>. Tätä varten linkitetyn verkkosivuston täytyy sisältää paluulinkki Mastodon-profiiliisi. Paluulinkillä <strong>täytyy</strong> olla määre <code>rel="me"</code>. Linkin tekstisisällöllä ei ole merkitystä. Tässä esimerkki:'
     verification: Vahvistus
   webauthn_credentials:
     add: Lisää uusi suojausavain
