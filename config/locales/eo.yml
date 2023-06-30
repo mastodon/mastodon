@@ -768,6 +768,7 @@ eo:
         remove_from_report: Forigi de raporto
         report: Raporti
       deleted: Forigita
+      favourites: Stelumoj
       history: Versia historio
       in_reply_to: Respondas al
       language: Lingvo
@@ -842,10 +843,14 @@ eo:
       statuses:
         allow: Permesi afiŝon
         allow_account: Permesi aŭtoron
+        description_html: Oni multe diskonigas kaj stelumas ĉi tiujn mesaĝojn nuntempe laŭ via servilo. Tio povas helpi novajn kaj revenantajn uzantojn trovi pli da homoj por sekvi. Mesaĝo estas montrita publike nur se vi aprobis la aŭtoron kaj se la aŭtoro aprobis ke ties konto estu proponita al aliaj. Vi ankaŭ povas permesi aŭ malakcepti specifajn mesaĝojn.
         disallow: Malpermesi afiŝon
         disallow_account: Malpermesi aŭtoron
         no_status_selected: Neniuj popularaj mesaĝoj ŝanĝitas ĉar nenio elektitas
         not_discoverable: Autoro ne volonte estas malkovrebla
+        shared_by:
+          one: Kundividita kaj stelumita unufoje
+          other: Kundividita kaj stelumita %{friendly_count}-foje
         title: Tendencantaj afiŝoj
       tags:
         current_score: Nuna puento %{score}
@@ -965,7 +970,6 @@ eo:
     your_token: Via alira ĵetono
   auth:
     apply_for_account: Peti konton
-    change_password: Pasvorto
     confirmations:
       wrong_email_hint: Se tiu retpoŝtadreso ne estas ĝusta, vi povas ŝanĝi ĝin en la agordoj pri la konto.
     delete_account: Forigi konton
@@ -999,6 +1003,9 @@ eo:
       title: Bazaj reguloj.
     security: Sekureco
     set_new_password: Elekti novan pasvorton
+    sign_in:
+      preamble_html: Ensalutu per via detaloj de <strong>%{domain}</strong>. Se via konto gastigantigas sur malsama servilo, vi ne povas ensaluti ĉi tie.
+      title: Saluti en %{domain}
     sign_up:
       preamble: Per konto ĉe ĉi tiu Mastodon-servilo, vi povas sekvi ajn personojn en la reto.
       title: Ni pretigu vin ĉe %{domain}.
@@ -1305,6 +1312,10 @@ eo:
         subject: "%{name} sendis raporton"
       sign_up:
         subject: "%{name} registriĝis"
+    favourite:
+      body: '%{name} stelumis vian afiŝon:'
+      subject: "%{name} stelumis vian afiŝon"
+      title: Nova stelumo
     follow:
       body: "%{name} nun sekvas vin!"
       subject: "%{name} nun sekvas vin"
@@ -1521,6 +1532,7 @@ eo:
     show_newer: Montri pli novajn
     show_older: Montri pli malnovajn
     show_thread: Montri la mesaĝaron
+    sign_in_to_participate: Ensalutu por partopreni la konversacion
     title: '%{name}: “%{quote}”'
     visibilities:
       direct: Rekta
@@ -1535,8 +1547,10 @@ eo:
     enabled_hint: Automate forigi viajn mesaĝojn kiam ili atingas la aĝlimon kaj havas escepton
     exceptions: Esceptoj
     explanation: Forigi mesaĝojn estas rimeda ago, do ĉi tio malrapide sekve faratas kiam la servilo ne estas okupita.
+    ignore_favs: Ignori stelumojn
     ignore_reblogs: Ignori diskonigojn
     interaction_exceptions: Esceptoj lau interagoj
+    interaction_exceptions_explanation: Sciu ke estas neniu garantio ke mesaĝo estos forigita se ĝi iras sub la limo de diskonigoj aŭ stelumoj post atingi ĝin.
     keep_direct: Konservi rektajn mesaĝojn
     keep_direct_hint: Ne forigos viajn rektajn mesagôjn
     keep_media: Konservi mesaĝojn kun aŭdovidaj aldonaĵoj
@@ -1547,6 +1561,8 @@ eo:
     keep_polls_hint: Ne forigi viajn ajn enketojn
     keep_self_bookmark: Konservi mesaĝojn kiun vi legsignis
     keep_self_bookmark_hint: Ne forigi viajn siajn mesaĝojn se vi legsignis ilin
+    keep_self_fav: Konservi mesaĝojn kiujn vi stelumis
+    keep_self_fav_hint: Ne forigi proprajn mesaĝojn se vi stelumis ilin
     min_age:
       '1209600': 2 semajnoj
       '15778476': 6 monatoj
@@ -1557,6 +1573,8 @@ eo:
       '63113904': 2 jaroj
       '7889238': 3 monatoj
     min_age_label: Aĝlimo
+    min_favs: Konservi mesaĝojn stelumitajn almenaŭ
+    min_favs_hint: Oni ne forigas viajn afiŝojn, kiuj estas diskonigitaj almenaŭ ĉi tiun nombron da fojoj. Lasu malplena por forigi afiŝojn sendepende de iliaj nombroj da diskonigoj
     min_reblogs: Konservi diskonitajn mesaĝojn almenau
     min_reblogs_hint: Oni ne forigas viajn afiŝojn kiuj estas diskonigitaj almenaŭ ĉi tiun nombron da fojoj. Lasu malplena por forigi afiŝojn sendepende de iliaj nombroj da diskonigoj
   stream_entries:
@@ -1661,7 +1679,6 @@ eo:
     seamless_external_login: Vi estas ensalutinta per ekstera servo, do pasvortaj kaj retadresaj agordoj ne estas disponeblaj.
     signed_in_as: 'Salutinta kiel:'
   verification:
-    explanation_html: 'Vi povas <strong>pruvi, ke vi estas la posedanto de la ligiloj en viaj profilaj metadatumoj</strong>. Por fari tion, la alligita retejo devas enhavi ligilon reen al via Mastodon-profilo. La religilo <strong>devas</strong> havi la atributon <code>rel="me"</code>. Ne gravas la teksta enhavo de la religilo. Jen ekzemplo:'
     verification: Kontrolo
   webauthn_credentials:
     add: Aldoni novan sekurecan ŝlosilon
