@@ -754,6 +754,7 @@ zh-HK:
         remove_from_report: 從檢舉中移除
         report: 檢舉
       deleted: 已刪除
+      favourites: 最愛
       history: 版本紀錄
       in_reply_to: 正在回覆
       language: 語言
@@ -833,10 +834,13 @@ zh-HK:
       statuses:
         allow: 允許帖文
         allow_account: 允許作者
+        description_html: 這些是在你的伺服器上已知被大量分享和加入到最愛的帖文。它幫助你的新和老用戶找到更多人去追蹤。在你批准作者，而且作者允許將他們的帳號推薦給他人之前，帖文不會公開顯示。你也可以核准或駁回個別帖子。
         disallow: 不允許帖文
         disallow_account: 不允許作者
         no_status_selected: 未選取任何熱門帖文，因此並未變更
         not_discoverable: 作者選擇不被發現
+        shared_by:
+          other: 分享或加入最愛 %{friendly_count} 次
         title: 熱門帖文
       tags:
         current_score: 目前 %{score} 分
@@ -954,7 +958,6 @@ zh-HK:
     your_token: token
   auth:
     apply_for_account: 申請帳號
-    change_password: 密碼
     confirmations:
       wrong_email_hint: 如果該電郵地址不正確，你可以在帳號設定中修改。
     delete_account: 刪除帳號
@@ -988,6 +991,9 @@ zh-HK:
       title: 一些基本規則。
     security: 登入資訊
     set_new_password: 設定新密碼
+    sign_in:
+      preamble_html: 請使用 <strong>%{domain}</strong> 的資料登入。如果您的帳戶託管在其他的伺服器，您將無法在此登入。
+      title: 登入 %{domain}
     sign_up:
       preamble: 有了這個 Mastodon 伺服器的帳號，無論將帳號託管在何處，你都可以追蹤網絡上任何人。
       title: 讓我為你在 %{domain} 上設定好。
@@ -1286,6 +1292,10 @@ zh-HK:
         subject: "%{name} 提交了檢舉"
       sign_up:
         subject: "%{name} 已註冊"
+    favourite:
+      body: '你的文章被 %{name} 喜愛：'
+      subject: "%{name} 喜歡你的文章"
+      title: 新的最愛
     follow:
       body: "%{name} 開始關注你！"
       subject: "%{name} 現正關注你"
@@ -1496,6 +1506,7 @@ zh-HK:
     show_newer: 顯示較新嘟文
     show_older: 顯示較舊嘟文
     show_thread: 顯示討論串
+    sign_in_to_participate: 登入以加入討論
     title: '%{name}：「%{quote}」'
     visibilities:
       direct: 私人訊息
@@ -1510,8 +1521,10 @@ zh-HK:
     enabled_hint: 當您的嘟文達到指定的時間門檻後，自動刪除嘟文，除非他們符合其中以下例外條件之一
     exceptions: 例外
     explanation: 由於刪除嘟文對伺服器而言是相當耗費資源的操作，將僅於伺服器不繁忙時慢慢執行。由此緣故，您的嘟文將可能超過設定之時間門檻一會兒後才被刪除。
+    ignore_favs: 忽略最愛
     ignore_reblogs: 忽略轉嘟
     interaction_exceptions: 根據互動的例外
+    interaction_exceptions_explanation: 請注意嘟文是無法保證被刪除的，如果在一次處理過後嘟文低於最愛或轉嘟的門檻。
     keep_direct: 保留私訊
     keep_direct_hint: 不會刪除任何您的私訊
     keep_media: 保留包含媒體內容的嘟文
@@ -1522,6 +1535,8 @@ zh-HK:
     keep_polls_hint: 不會刪除您的投票
     keep_self_bookmark: 保留您已標記為書簽之嘟文
     keep_self_bookmark_hint: 不會刪除您已標記為書簽之嘟文
+    keep_self_fav: 保留您已標記為最愛之嘟文
+    keep_self_fav_hint: 不會刪除您已標記為最愛之嘟文
     min_age:
       '1209600': 2 週
       '15778476': 6 個月
@@ -1532,6 +1547,8 @@ zh-HK:
       '63113904': 2 年
       '7889238': 3 個月
     min_age_label: 按時間篩選
+    min_favs: 保留超過嘟文最愛門檻
+    min_favs_hint: 收到此數量或更多最愛的帖文將不會被刪除。 留空可無視最愛數量刪除帖子
     min_reblogs: 保留超過嘟文轉嘟門檻
     min_reblogs_hint: 如果您嘟文已收到超過轉嘟門檻則不會刪除。留白表示不論轉嘟數量皆刪除嘟文。
   stream_entries:
@@ -1637,7 +1654,6 @@ zh-HK:
     seamless_external_login: 因為你正在使用第三方服務登入，所以不能設定密碼和電郵。
     signed_in_as: '目前登入的帳戶：'
   verification:
-    explanation_html: '你可以<strong>在你的個人檔案元數據中驗證自己是連結的擁有者</strong>。為此，連接的網站必須包含一條回到你 Mastodon 個人檔案的連結。加入連結後，你可能需要回到這裏，再次儲存你的個人檔案以便驗證生效。返回的連結<strong>必須</strong>有一個<code>rel="me"</code>的屬性。當中的文字內容並不重要。以下有一個例子：'
     verification: 驗證
   webauthn_credentials:
     add: 新增安全密鑰裝置
