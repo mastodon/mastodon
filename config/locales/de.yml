@@ -383,6 +383,8 @@ de:
       add_new: Neue Domain einschränken
       confirm_suspension:
         cancel: Abbrechen
+        confirm: Sperren
+        stop_communication: Dein Server wird die Kommunikation mit diesen Servern einstellen.
         title: Sperre für Domain %{domain} bestätigen
       created_msg: Die Domain ist jetzt gesperrt bzw. eingeschränkt
       destroyed_msg: Die Einschränkungen zu dieser Domain wurde entfernt
@@ -733,6 +735,8 @@ de:
       branding:
         preamble: Das Branding deines Servers unterscheidet ihn von anderen Servern im Netzwerk. Diese Informationen können in einer Vielzahl von Umgebungen angezeigt werden, z. B. in der Weboberfläche von Mastodon, in nativen Anwendungen, in Linkvorschauen auf anderen Websites und in Messaging-Apps und so weiter. Aus diesem Grund ist es am besten, diese Informationen klar, kurz und prägnant zu halten.
         title: Branding
+      captcha_enabled:
+        title: Neue Nutzer*innen müssen ein CAPTCHA lösen, um das Konto zu bestätigen
       content_retention:
         preamble: Lege fest, wie lange nutzergenerierte Inhalte auf deiner Mastodon-Instanz gespeichert werden.
         title: Cache & Archive
@@ -983,6 +987,8 @@ de:
   auth:
     apply_for_account: Konto beantragen
     captcha_confirmation:
+      help_html: Falls du Probleme beim Lösen des CAPTCHA hast, dann kannst uns über %{email} kontaktieren und wir werden versuchen, dir zu helfen.
+      hint_html: Fast geschafft! Wir müssen uns vergewissern, dass du ein Mensch bist (damit wir Spam verhindern können!). Bitte löse das CAPTCHA und klicke auf „Weiter“.
       title: Sicherheitsüberprüfung
     confirmations:
       wrong_email_hint: Sollte diese E-Mail-Adresse nicht korrekt sein, kannst du sie in den Kontoeinstellungen ändern.
@@ -1561,7 +1567,7 @@ de:
     migrate: Kontoumzug
     notifications: Benachrichtigungen
     preferences: Einstellungen
-    profile: Profil
+    profile: Öffentliches Profil
     relationships: Follower und Folge ich
     statuses_cleanup: Automatische Löschung
     strikes: Maßnahmen
