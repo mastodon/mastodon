@@ -770,10 +770,14 @@ io:
       statuses:
         allow: Permisez posto
         allow_account: Permisez skribanto
+        description_html: Co esas posti quon vua servilo savas quale nun partigesas e favorizesas multe nun. Ol povas helpar vua nova e retrovenanta uzanti trovar plu multa personi por sequar. Posti ne publike montresas til vu aprobar la skribanto, e la skribanto permisas sua konto sugestesas a altra personi. Vu povas anke permisar o refuzar individuala posti.
         disallow: Despermisez posto
         disallow_account: Despermisez skribanto
         no_status_selected: Nula tendencoza posti chanjesis pro ke nulo selektesis
         not_discoverable: Skribanto ne konsentis pri esar deskovrebla
+        shared_by:
+          one: Partigesis o favorizesis 1 foye
+          other: Partigesis o favorizesis %{friendly_count} foye
         title: Tendencoza posti
       tags:
         current_score: Nuna punto esas %{score}
@@ -891,7 +895,6 @@ io:
     warning: Sorgemez per ca informi. Ne partigez kun irgu!
     your_token: Vua acesficho
   auth:
-    change_password: Pasvorto
     delete_account: Efacez konto
     delete_account_html: Se vu volas efacar vua konto, vu povas <a href="%{path}">irar hike</a>. Vu demandesos konfirmar.
     description:
@@ -1221,6 +1224,10 @@ io:
         subject: "%{name} sendis raporto"
       sign_up:
         subject: "%{name} registris"
+    favourite:
+      body: '%{name} favoris tua mesajo:'
+      subject: "%{name} favoris tua mesajo"
+      title: Nova favorato
     follow:
       body: "%{name} sequeskas tu!"
       subject: "%{name} sequeskas tu"
@@ -1429,6 +1436,7 @@ io:
     show_newer: Montrez plu nova kozo
     show_older: Montrez plu olda kozo
     show_thread: Montrez postaro
+    sign_in_to_participate: Registrez por partoprenar en konverso
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direta
@@ -1443,8 +1451,10 @@ io:
     enabled_hint: Automata efacez vua posti pos oli atingar fixita oldeslimito, se oli ne parigesas a 1 de suba ecepti
     exceptions: Ecepti
     explanation: Pro ke efacar posti esas nechipa procedo, co agas lente progresive kande servilo ne esas okupata. Do, vua posti forsan efacesos kurte pos oli atingas oldeslimito.
+    ignore_favs: Ignorez favorati
     ignore_reblogs: Ignorez busti
     interaction_exceptions: Ecepti segun interagi
+    interaction_exceptions_explanation: Notale, ne existas garantio ke posti efacesos se oli iras sub favorato o bustlimito pos iras super ol.
     keep_direct: Retenez direta mesaji
     keep_direct_hint: Ne efacas irga vua direta mesaji
     keep_media: Retenez posti kun mediiatachaji
@@ -1455,6 +1465,8 @@ io:
     keep_polls_hint: Ne efacas irga vua votposti
     keep_self_bookmark: Retenez posti quon vu libromarkizis
     keep_self_bookmark_hint: Ne efacas vua sua posti se vu libromarkizis li
+    keep_self_fav: Retenez posti quon vu favorizis
+    keep_self_fav_hint: Ne efacas vua sua posti se vu favorizis li
     min_age:
       '1209600': 2 semani
       '15778476': 6 monati
@@ -1465,6 +1477,7 @@ io:
       '63113904': 2 yari
       '7889238': 3 monati
     min_age_label: Oldeslimito
+    min_favs: Retenez favorizita posti mine
     min_reblogs: Retenez bustita posti mine
     min_reblogs_hint: Ne efacas irga vua posti quo bustigesos mine ca foyoquanto. Restez quale vakua por efacar posti sen suciar olia foyoquanto
   stream_entries:
