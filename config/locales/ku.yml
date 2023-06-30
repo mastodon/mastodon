@@ -735,6 +735,7 @@ ku:
         remove_from_report: Ji ragihandinê rake
         report: Ragihîne
       deleted: Hate jêbirin
+      favourites: Bijarte
       history: Dîroka guhertoyê
       in_reply_to: Bersiv bide
       language: Ziman
@@ -807,10 +808,14 @@ ku:
       statuses:
         allow: Mafê bide şandiyê
         allow_account: Mafê bide nivîskar
+        description_html: Van şandiyên ku rajekarê te pê dizane ku niha pir têne parvekirin û bijartekirin. Ew dikare ji bikarhênerên te yên nû û yên vedigerin re bibe alîkar ku bêtir mirovên ku bişopînin bibînin. Heya ku tu nivîskar nepejirînî, tu şandî bi gelemperî nayên xuyangkirin, û nivîskar mafê dide ku ajimêrê xwe ji kesên din re were pêşniyarkirin. Her weha tu dikarî mafê bidî şandiyên kesane an jî nedî.
         disallow: Mafê nede şandiyê
         disallow_account: Mafê nede nivîskar
         no_status_selected: Tu şandiyên rojevê nehatin hilbijartin ji ber vê tu şandî jî nehatin guhertin
         not_discoverable: Nivîskar nejilbijartiye ji bo ku were kifşkirin
+        shared_by:
+          one: Yek carî parvekirî an bijartî
+          other: '%{friendly_count} carên parvekirî û bijartî'
         title: Şandiyên rojevê
       tags:
         current_score: Encama niha %{score}
@@ -929,7 +934,6 @@ ku:
     your_token: Nîşana gihîştinê te
   auth:
     apply_for_account: Ajimêrekê bixwaze
-    change_password: Borînpeyv
     delete_account: Ajimêr jê bibe
     delete_account_html: Ku tu dixwazî ajimêra xwe jê bibe, tu dikarî <a href="%{path}">li vir bidomîne</a>. Ji te tê xwestin ku were pejirandin.
     description:
@@ -959,6 +963,9 @@ ku:
       title: Hinek rêzikên bingehîn.
     security: Ewlehî
     set_new_password: Borînpeyveke nû ji nû ve saz bike
+    sign_in:
+      preamble_html: Têketinê bike bi riya <strong>%{domain}</strong> xwe. Ku ajimêrê te li ser rajekareke cuda hatiye pêşkêşkirin, tu yê nikaribû têketinê bikî vir.
+      title: Têkeve %{domain}
     sign_up:
       preamble: Bi ajimêrekê li ser vê rajekarê Mastodon re, tu yê karîbî her keseke din li ser torê bişopînî, her ku ajimêrê wan li ku derê tê pêşkêşkirin.
       title: Ka em te bi rê bixin li ser %{domain}.
@@ -1260,6 +1267,10 @@ ku:
         subject: "%{name} ragihandinek şand"
       sign_up:
         subject: "%{name} tomar bû"
+    favourite:
+      body: 'Şandiya te hate bijartin ji alî %{name} ve:'
+      subject: "%{name} şandiya te hez kir"
+      title: Bijarteyek nû
     follow:
       body: "%{name} niha te dişopîne!"
       subject: "%{name} niha te dişopîne"
@@ -1468,6 +1479,7 @@ ku:
     show_newer: Nûtirîn nîşan bide
     show_older: Kevntirîn nîşan bide
     show_thread: Mijarê nîşan bide
+    sign_in_to_participate: Ji bo tevlî sohbetê bibî xwe tomar bike
     title: '%{name}%{quote}'
     visibilities:
       direct: Rasterast
@@ -1482,8 +1494,10 @@ ku:
     enabled_hint: Gava ku ew gihîştibe sînorê temenê diyarkirî, şandiyên te bi xweberî jê dibe, ji bilî van awareteyên jêrîn
     exceptions: Awarte
     explanation: Ji ber ku jêbirina şandiyan pêvajoyeke biha ye, ev hêdî hêdî bi demê re tê kirin dema ku rajekar wekî din mijûl nebe. Ji ber vê sedemê, dibe ku şandiyên te demek şûnda ku bigihîjin sînorê temenê wê werin jêbirin.
+    ignore_favs: Ecibandinan paşguh bike
     ignore_reblogs: Bilindkirinan piştguh bike
     interaction_exceptions: Awarteyên li ser bingehên têkiliyan
+    interaction_exceptions_explanation: Bizanibe ku şandiyeke ku ji binî ve têkeve jêrî bijarte yan bilindkirinê piştî ku carek din di ser wan re derbas bibe, garantiyek tune ku werin jêbirin.
     keep_direct: Peyamên rasterast veşêre
     keep_direct_hint: Tu peyamên te yekcar jê naçe
     keep_media: Peyamên bi pêvekên medyayê ve ne biveşêre
@@ -1494,6 +1508,8 @@ ku:
     keep_polls_hint: Yek ji rapirsiyên te jê nabe
     keep_self_bookmark: Şandiyên ku wek şûnpel hatine tevlêkirin veşêre
     keep_self_bookmark_hint: Şandî ku te wek şûnpel tomar kiriye wê neyê jêbirin
+    keep_self_fav: Şandiyên ku te eciband veşêre
+    keep_self_fav_hint: Ger te şandiyên xwe ecibandibe jê nabe
     min_age:
       '1209600': 2 hefte
       '15778476': 6 meh
@@ -1504,6 +1520,7 @@ ku:
       '63113904': 2 sal
       '7889238': 3 meh
     min_age_label: Şêmûga demê
+    min_favs: Peyamên ku ji wê zêdetir hatine ecibandin veşêre
     min_reblogs: Şandiyên ku bêtir hatine bilindkirin veşêre
     min_reblogs_hint: Şandî ku ji ji vê hejmarê bêtir bilindkirin wergirtibe nayê jêbirin. Vala bihêle da ku şandiyan jê bibî tevlî ku çiqas hezkirin wergirtibe
   stream_entries:
