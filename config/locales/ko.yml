@@ -86,12 +86,12 @@ ko:
       memorialized: 고인의 계정으로 바꿈
       memorialized_msg: 성공적으로 %{username}를 고인의 계정으로 전환하였습니다
       moderation:
-        active: 활동
+        active: 활성
         all: 전체
-        disabled: 비활성화됨
+        disabled: 비활성
         pending: 대기 중
         silenced: 제한됨
-        suspended: 정지 중
+        suspended: 정지
         title: 중재
       moderation_notes: 중재 참고사항
       most_recent_activity: 최근 활동
@@ -499,7 +499,7 @@ ko:
         other: "%{count} 개의 알려진 계정"
       moderation:
         all: 모두
-        limited: 제한됨
+        limited: 제한
         title: 중재
       private_comment: 비공개 주석
       public_comment: 공개 주석
@@ -960,6 +960,8 @@ ko:
     your_token: 액세스 토큰
   auth:
     apply_for_account: 가입 요청하기
+    captcha_confirmation:
+      title: 보안 체크
     confirmations:
       wrong_email_hint: 만약 이메일 주소가 올바르지 않다면, 계정 설정에서 수정할 수 있습니다.
     delete_account: 계정 삭제
@@ -1110,6 +1112,8 @@ ko:
       your_appeal_rejected: 소명이 기각되었습니다
   domain_validator:
     invalid_domain: 올바른 도메인 네임이 아닙니다
+  edit_profile:
+    basic_information: 기본 정보
   errors:
     '400': 제출한 요청이 올바르지 않습니다.
     '403': 이 페이지를 표시할 권한이 없습니다.
@@ -1200,7 +1204,7 @@ ko:
     delete: 삭제
     deselect: 전체 선택 해제
     none: 없음
-    order_by: 순서
+    order_by: 정렬
     save_changes: 변경 사항을 저장
     select_all_matching_items:
       other: 검색에 잡힌 %{count}개의 항목을 모두 선택하기
