@@ -1,6 +1,10 @@
 gl:
   simple_form:
     hints:
+      account:
+        display_name: O teu nome completo ou un nome divertido.
+        fields: Páxina web, pronome, idade, o que ti queiras.
+        note: 'Podes @mencionar a outras persoas ou #cancelos.'
       account_alias:
         acct: Indica o usuaria@servidor da conta desde a cal queres migrar
       account_migration:
@@ -294,6 +298,7 @@ gl:
         usable: Permitir que as publicacións utilicen este cancelo
       user:
         role: Rol
+        time_zone: Fuso horario
       user_role:
         color: Cor da insignia
         highlighted: Mostrar rol como insignia en perfís de usuarias
