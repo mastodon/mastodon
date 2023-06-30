@@ -50,7 +50,7 @@ de:
         title: Rolle für %{username} ändern
       confirm: Bestätigen
       confirmed: Bestätigt
-      confirming: Bestätigung
+      confirming: Auf Bestätigung wartend
       custom: Angepasst
       delete: Daten löschen
       deleted: Gelöscht
@@ -347,7 +347,7 @@ de:
       interactions: Interaktionen
       media_storage: Medien
       new_users: neue Benutzer*innen
-      opened_reports: Erstellte Meldungen
+      opened_reports: ungelöste Meldungen
       pending_appeals_html:
         one: "<strong>%{count}</strong> ausstehender Einspruch"
         other: "<strong>%{count}</strong> ausstehende Einsprüche"
@@ -381,6 +381,8 @@ de:
       undo: Von der Föderation ausschließen
     domain_blocks:
       add_new: Neue Domain einschränken
+      confirm_suspension:
+        cancel: Abbrechen
       created_msg: Die Domain ist jetzt gesperrt bzw. eingeschränkt
       destroyed_msg: Die Einschränkungen zu dieser Domain wurde entfernt
       domain: Domain
@@ -439,7 +441,7 @@ de:
     export_domain_blocks:
       import:
         description_html: Du bist dabei, eine Liste von Domains zu importieren, die auf diesem Server gesperrt oder anderweitig eingeschränkt werden. Bitte überprüfe diese Liste sehr sorgfältig, insbesondere dann, wenn du sie nicht selbst erstellt hast.
-        existing_relationships_warning: Bestehende Folgebeziehungen
+        existing_relationships_warning: Vorhandene Follower-Beziehungen
         private_comment_description_html: 'Damit du später nachvollziehen kannst, woher die importierten Sperren stammen, werden sie mit diesem privaten Kommentar erstellt: <q>%{comment}</q>'
         private_comment_template: Importiert von %{source} am %{date}
         title: Domains importieren
@@ -515,7 +517,7 @@ de:
       private_comment: Privater Kommentar
       public_comment: Öffentlicher Kommentar
       purge: Säubern
-      purge_description_html: Wenn du glaubst, dass diese Domain endgültig offline ist, kannst du alle Account-Datensätze und zugehörigen Daten von diesem Server löschen. Das kann eine Weile dauern.
+      purge_description_html: Wenn du glaubst, dass diese Domain endgültig offline ist, dann kannst du alle Kontodatensätze und zugehörigen Daten dieser Domain löschen. Das kann eine Weile dauern.
       title: Föderation
       total_blocked_by_us: Von uns gesperrt
       total_followed_by_them: Gefolgt von denen
@@ -551,7 +553,7 @@ de:
     relays:
       add_new: Neues Relais hinzufügen
       delete: Entfernen
-      description_html: Ein <strong>Föderierungsrelay</strong> ist ein vermittelnder Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern austauscht, die es abonnieren und zu ihm veröffentlichen.<strong> Es kann kleinen und mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>, was andernfalls das manuelle Folgen anderer Leute auf entfernten Servern durch lokale Nutzer erfordern würde.
+      description_html: Ein <strong>Föderierungsrelai</strong> ist ein vermittelnder Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern, die das Relai abonnieren und zu ihm veröffentlichen, austauscht.<strong> Es kann kleinen und mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>, was andernfalls das manuelle Folgen anderer Leute auf entfernten Servern durch lokale Nutzer erfordern würde.
       disable: Ausschalten
       disabled: Ausgeschaltet
       enable: Einschalten
@@ -636,7 +638,7 @@ de:
           mark_as_sensitive_html: Medien der anstößigen Beiträge mit einer Inhaltswarnung versehen
           silence_html: Schränkt die Reichweite von <strong>@%{acct}</strong> stark ein, indem das Profil und dessen Inhalte nur für Personen sichtbar sind, die dem Profil bereits folgen oder es manuell aufrufen
           suspend_html: <strong>@%{acct}</strong> sperren, sodass das Profil und dessen Inhalte nicht mehr zugänglich sind und keine Interaktion mehr möglich ist
-        close_report: 'Meldung #%{id} als erledigt markieren'
+        close_report: 'Meldung Nr. %{id} als erledigt markieren'
         close_reports_html: <strong>Alle</strong> Meldungen gegen <strong>@%{acct}</strong> als erledigt markieren
         delete_data_html: Das Profil und die Inhalte von <strong>@%{acct}</strong> werden in 30 Tagen gelöscht, es sei denn, sie werden in der Zwischenzeit entsperrt
         preview_preamble_html: "<strong>@%{acct}</strong> wird eine Warnung mit folgenden Inhalten erhalten:"
@@ -828,7 +830,7 @@ de:
       links:
         allow: Link erlauben
         allow_provider: Herausgeber*in erlauben
-        description_html: Dies sind Links, die derzeit von zahlreichen Accounts geteilt werden und die deinem Server aufgefallen sind. Die Benutzer*innen können darüber herausfinden, was in der Welt vor sich geht. Die Links werden allerdings erst dann öffentlich vorgeschlagen, wenn du die Herausgeber*innen genehmigt hast. Du kannst alternativ aber auch nur einzelne URLs zulassen oder ablehnen.
+        description_html: Dies sind Links, die derzeit von zahlreichen Konten geteilt werden und die deinem Server aufgefallen sind. Die Benutzer*innen können darüber herausfinden, was in der Welt vor sich geht. Die Links werden allerdings erst dann öffentlich vorgeschlagen, wenn du die Herausgeber*innen genehmigt hast. Du kannst alternativ aber auch nur einzelne URLs zulassen oder ablehnen.
         disallow: Link verbieten
         disallow_provider: Herausgeber*in verbieten
         no_link_selected: Keine Links wurden geändert, da keine ausgewählt wurden
@@ -881,8 +883,8 @@ de:
         usable: Darf verwendet werden
         usage_comparison: Heute %{today}-mal und gestern %{yesterday}-mal verwendet
         used_by_over_week:
-          one: In der letzten Woche von einer Person genutzt
-          other: In der letzten Woche von %{count} Personen genutzt
+          one: In der letzten Woche von einer Person verwendet
+          other: In der letzten Woche von %{count} Personen verwendet
       title: Trends
       trending: Angesagt
     warning_presets:
@@ -947,7 +949,7 @@ de:
     created_msg: Neuer Alias erfolgreich erstellt. Du kannst nun den Umzug vom alten zum neuen Konto starten.
     deleted_msg: Der Alias wurde erfolgreich entfernt. Aus jenem Konto zu diesem zu verschieben, ist nicht mehr möglich.
     empty: Du hast keine Aliase.
-    hint_html: Wenn du von einem Konto zu einem anderen Konto wechseln möchtest, dann kannst du einen Alias erstellen, welcher benötigt wird, bevor du deine Follower vom alten Account zu diesen migrierst. Die Aktion allein ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Die Kontenmigration wird vom alten Konto aus eingeleitet</strong>.
+    hint_html: Wenn du von einem anderen Konto auf dieses umziehen möchtest, dann kannst du hier einen Alias erstellen, der erforderlich ist, um deine Follower vom alten Konto auf dieses zu migrieren. Diese Aktion ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Die Kontenmigration wird vom alten Konto aus eingeleitet</strong>.
     remove: Alle Aliase aufheben
   appearance:
     advanced_web_interface: Erweitertes Webinterface
@@ -978,7 +980,6 @@ de:
     your_token: Dein Zugangs-Token
   auth:
     apply_for_account: Konto beantragen
-    change_password: Passwort
     confirmations:
       wrong_email_hint: Sollte diese E-Mail-Adresse nicht korrekt sein, kannst du sie in den Kontoeinstellungen ändern.
     delete_account: Konto löschen
@@ -997,7 +998,7 @@ de:
     login: Anmelden
     logout: Abmelden
     migrate_account: Zu einem anderen Konto umziehen
-    migrate_account_html: Wenn du dieses Konto auf ein anderes weiterleiten möchtest, kannst du es <a href="%{path}">hier konfigurieren</a>.
+    migrate_account_html: Wenn du dieses Konto auf ein anderes umleiten möchtest, kannst du es <a href="%{path}">hier konfigurieren</a>.
     or_log_in_with: Oder anmelden mit
     privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> gelesen und stimme ihr zu
     progress:
@@ -1017,6 +1018,7 @@ de:
       back: Zurück
       preamble: Diese werden von den %{domain}-Moderator*innen festgelegt und erzwungen.
       title: Einige Grundregeln.
+      title_invited: Du wurdest eingeladen.
     security: Sicherheit
     set_new_password: Neues Passwort einrichten
     setup:
@@ -1030,7 +1032,7 @@ de:
       title: Bei %{domain} anmelden
     sign_up:
       manual_review: Registrierungen für den Server %{domain} werden manuell durch unsere Moderator*innen überprüft. Um uns dabei zu unterstützen, schreibe etwas über dich und sage uns, weshalb du ein Konto auf %{domain} anlegen möchtest.
-      preamble: Mit einem Konto auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Account gehostet ist.
+      preamble: Mit einem Konto auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Konto registriert ist.
       title: Okay, lass uns mit %{domain} anfangen.
     status:
       account_status: Kontostatus
@@ -1039,7 +1041,7 @@ de:
       pending: Die Prüfung deiner Bewerbung steht noch aus. Dies kann einige Zeit in Anspruch nehmen. Sobald deine Bewerbung genehmigt wurde, erhältst du eine E-Mail.
       redirecting_to: Dein Konto ist inaktiv, weil es zu %{acct} umgezogen ist.
       view_strikes: Vorherige Verstöße deines Kontos ansehen
-    too_fast: Formular zu schnell abgeschickt, versuche es erneut.
+    too_fast: Formular zu schnell übermittelt. Bitte versuche es erneut.
     use_security_key: Sicherheitsschlüssel verwenden
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
@@ -1129,6 +1131,8 @@ de:
       your_appeal_rejected: Dein Einspruch wurde abgelehnt
   domain_validator:
     invalid_domain: ist keine gültige Domain
+  edit_profile:
+    safety_and_privacy: Sicherheit und Datenschutz
   errors:
     '400': Die Anfrage, die du gestellt hast, war ungültig oder fehlerhaft.
     '403': Dir fehlt die Berechtigung, diese Seite aufzurufen.
@@ -1215,8 +1219,8 @@ de:
       one: "<strong>%{count}</strong> Element auf dieser Seite ausgewählt."
       other: Alle <strong>%{count}</strong> Elemente auf dieser Seite ausgewählt.
     all_matching_items_selected_html:
-      one: "<strong>%{count}</strong> Element trifft auf ihre Suche zu."
-      other: Alle <strong>%{count}</strong> Elemente, die Ihrer Suche entsprechen, werden ausgewählt.
+      one: "<strong>%{count}</strong> Element, das den Suchkriterien entspricht, ist ausgewählt."
+      other: Alle <strong>%{count}</strong> Elemente, die den Suchkriterien entsprechen, sind ausgewählt.
     cancel: Abbrechen
     changes_saved_msg: Änderungen erfolgreich gespeichert!
     confirm: Bestätigen
@@ -1227,8 +1231,8 @@ de:
     order_by: Sortieren nach
     save_changes: Änderungen speichern
     select_all_matching_items:
-      one: Wähle %{count} Element, das deiner Suche entspricht.
-      other: Wählen Sie alle %{count} Elemente, die Ihrer Suche entsprechen.
+      one: Wähle %{count} Element, das deinen Suchkriterien entspricht.
+      other: Wähle alle %{count} Elemente, die deinen Suchkriterien entsprechen.
     today: heute
     validation_errors:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
@@ -1323,6 +1327,9 @@ de:
     failed_sign_in_html: Fehler beim Anmeldeversuch mit %{method} von %{ip} (%{browser})
     successful_sign_in_html: Erfolgreiche Anmeldung mit %{method} von %{ip} (%{browser})
     title: Authentisierungsverlauf
+  mail_subscriptions:
+    unsubscribe:
+      title: Abbestellen
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
@@ -1339,7 +1346,7 @@ de:
       move_to_self: darf nicht das aktuelles Konto sein
       not_found: konnte nicht gefunden werden
       on_cooldown: Die Abklingzeit läuft gerade
-    followers_count: Anzahl der Follower zum Zeitpunkt der Migration des Accounts
+    followers_count: Anzahl der Follower zum Zeitpunkt des Umzugs
     incoming_migrations: Von einem anderen Konto umziehen
     incoming_migrations_html: Um von einem anderen Konto zu diesem zu wechseln, musst du zuerst <a href="%{path}">einen Kontoalias</a> erstellen.
     moved_msg: Dein Konto wird jetzt auf %{acct} weitergeleitet und deine Follower werden übertragen.
@@ -1438,6 +1445,7 @@ de:
       expired: Diese Umfrage ist bereits beendet
       invalid_choice: Diese Auswahl existiert nicht
       over_character_limit: kann nicht länger als jeweils %{max} Zeichen sein
+      self_vote: Du kannst an deinen eigenen Umfragen nicht selbst teilnehmen
       too_few_options: muss mindestens einen Eintrag haben
       too_many_options: kann nicht mehr als %{max} Einträge beinhalten
   preferences:
@@ -1615,7 +1623,7 @@ de:
     keep_direct: Direktnachrichten behalten
     keep_direct_hint: Löscht keine deiner privaten Nachrichten
     keep_media: Beiträge mit angehängten Mediendateien behalten
-    keep_media_hint: Löscht keinen deiner Beiträge mit angehängten Medien-Dateien
+    keep_media_hint: Löscht keinen deiner Beiträge mit angehängten Mediendateien
     keep_pinned: Angeheftete Beiträge behalten
     keep_pinned_hint: Löscht keinen deiner angehefteten Beiträge im Profil
     keep_polls: Umfragen behalten
@@ -1634,8 +1642,8 @@ de:
       '63113904': 2 Jahre
       '7889238': 3 Monate
     min_age_label: Altersgrenze
-    min_favs: Beiträge mit mindestens dieser Anzahl an Favoriten behalten
-    min_favs_hint: Löscht keine Beiträge, die mindestens so oft favorisiert wurden. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an Favoriten – zu löschen
+    min_favs: Behalte Beiträge, die häufiger favorisiert wurden als …
+    min_favs_hint: Löscht keine Beiträge, die mindestens so oft favorisiert worden sind. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an Favoriten – zu löschen
     min_reblogs: Beiträge behalten, die mindestens so oft geteilt wurden
     min_reblogs_hint: Löscht keine Beiträge, die mindestens so oft geteilt worden sind. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an geteilten Beiträgen – zu löschen
   stream_entries:
@@ -1703,7 +1711,7 @@ de:
         disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und andere Daten bleiben unversehrt. Du kannst eine Sicherung deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
         mark_statuses_as_sensitive: Ein oder mehrere deiner Beiträge wurden von den Moderator*innen von %{instance} mit einer Inhaltswarnung versehen. Das bedeutet, dass Besucher*innen diese Medien in den Beiträgen zunächst antippen müssen, um die Vorschau anzuzeigen. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
         sensitive: Von nun an werden alle deine hochgeladenen Mediendateien mit einer Inhaltswarnung versehen und hinter einer Warnung versteckt.
-        silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen, und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
+        silence: Du kannst dein Konto weiterhin verwenden, aber nur Personen, die dir bereits folgen, sehen deine Beiträge auf diesem Server. Ebenso kannst du von verschiedenen Entdeckungsfunktionen ausgeschlossen werden. Andere können dir jedoch weiterhin manuell folgen.
         suspend: Du kannst dein Konto nicht mehr verwenden und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um eine Sicherung deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
       reason: 'Begründung:'
       statuses: 'Betroffene Beiträge:'
@@ -1741,8 +1749,9 @@ de:
     seamless_external_login: Du bist über einen externen Dienst angemeldet, daher sind Passwort- und E-Mail-Einstellungen nicht verfügbar.
     signed_in_as: 'Angemeldet als:'
   verification:
-    explanation_html: "Du kannst <strong>bestätigen, dass die Links in deinen Profil-Metadaten dir gehören</strong>. Dafür muss die verlinkte Website einen Link zurück auf dein Mastodon-Profil enthalten. \nNach dem Hinzufügen des Links musst du möglicherweise hierhin zurückkommen und dein Profil erneut speichern, um dass die Verifikation wirksam wird. Der Link zurück <strong>muss</strong> ein <code>rel=\"me\"</code>-Attribut enthalten. Der Linktext ist dabei egal. Hier ist ein Beispiel:"
+    here_is_how: So funktioniert's
     verification: Verifizierung
+    verified_links: Deine verifizierten Links
   webauthn_credentials:
     add: Sicherheitsschlüssel hinzufügen
     create:
