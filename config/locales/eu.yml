@@ -381,6 +381,15 @@ eu:
       undo: Kendu zerrenda zuritik
     domain_blocks:
       add_new: Gehitu domeinuaren blokeo berria
+      confirm_suspension:
+        cancel: Utzi
+        confirm: Eten
+        permanent_action: Etenaldia uzteak ez ditu datuak edo elkarreraginak leheneratuko.
+        preamble_html: <strong>%{domain}</strong> eta bere azpidomeinuak etetzera zoaz.
+        remove_all_data: Honek domeinuko kontuen eduki, media, eta profiletako datu guztiak kenduko ditu zure zerbitzaritik.
+        stop_communication: Zure zerbitzariak zerbitzari hauekin komunikatzeari utziko dio.
+        title: Berretsi %{domain} domeinuaren blokeoa
+        undo_relationships: Honek zerbitzari honetako eta zure zerbitzariko edozein elkarreragin desegingo ditu.
       created_msg: Domeinuaren blokeoa orain prozesatzen ari da
       destroyed_msg: Domeinuaren blokeoa desegin da
       domain: Domeinua
