@@ -383,6 +383,7 @@ de:
       add_new: Neue Domain einschränken
       confirm_suspension:
         cancel: Abbrechen
+        title: Sperre für Domain %{domain} bestätigen
       created_msg: Die Domain ist jetzt gesperrt bzw. eingeschränkt
       destroyed_msg: Die Einschränkungen zu dieser Domain wurde entfernt
       domain: Domain
@@ -967,6 +968,7 @@ de:
     notification_preferences: E-Mail-Einstellungen ändern
     salutation: "%{name},"
     settings: 'E-Mail-Einstellungen ändern: %{link}'
+    unsubscribe: Abbestellen
     view: 'Hier überprüfen:'
     view_profile: Profil anzeigen
     view_status: Beitrag anschauen
@@ -980,6 +982,8 @@ de:
     your_token: Dein Zugangs-Token
   auth:
     apply_for_account: Konto beantragen
+    captcha_confirmation:
+      title: Sicherheitsüberprüfung
     confirmations:
       wrong_email_hint: Sollte diese E-Mail-Adresse nicht korrekt sein, kannst du sie in den Kontoeinstellungen ändern.
     delete_account: Konto löschen
@@ -1132,6 +1136,8 @@ de:
   domain_validator:
     invalid_domain: ist keine gültige Domain
   edit_profile:
+    basic_information: Allgemeine Informationen
+    other: Andere
     safety_and_privacy: Sicherheit und Datenschutz
   errors:
     '400': Die Anfrage, die du gestellt hast, war ungültig oder fehlerhaft.
