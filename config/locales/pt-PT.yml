@@ -770,7 +770,7 @@ pt-PT:
         remove_from_report: Remover da denúncia
         report: Denúncia
       deleted: Eliminado
-      favourites: Favoritos
+      favourites: Marcadores
       history: Histórico de versões
       in_reply_to: A responder a
       language: Língua
@@ -857,8 +857,8 @@ pt-PT:
         no_status_selected: Nenhuma publicação em alta foi alterada, pois nenhuma foi selecionada
         not_discoverable: O autor optou por não permitir que a sua conta seja sugerida a outros
         shared_by:
-          one: Partilhada ou adicionada aos favoritos uma vez
-          other: Partilhada ou adicionada aos favoritos %{friendly_count} vezes
+          one: Partilhado ou adicionado aos marcadores uma vez
+          other: Partilhado e adicionado aos marcadores %{friendly_count} vezes
         title: Publicações em alta
       tags:
         current_score: Pontuação atual %{score}
@@ -978,7 +978,6 @@ pt-PT:
     your_token: O teu token de acesso
   auth:
     apply_for_account: Solicitar uma conta
-    change_password: Palavra-passe
     confirmations:
       wrong_email_hint: Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
     delete_account: Eliminar conta
@@ -1025,6 +1024,9 @@ pt-PT:
       link_not_received: Não recebeu um link?
       new_confirmation_instructions_sent: Receberá um novo e-mail com o link de confirmação daqui a poucos minutos!
       title: Verifique a caixa de entrada do seu e-mail
+    sign_in:
+      preamble_html: Iniciar sessão com as suas credenciais de <strong>%{domain}</strong>. Se a sua conta estiver hospedada noutro servidor, não poderá iniciar sessão aqui.
+      title: Iniciar sessão em %{domain}
     sign_up:
       manual_review: Inscrições no %{domain} passam por uma revisão manual pelos nossos moderadores. Para nos ajudar a processar o seu pedido de inscrição, escreva um pouco sobre si e o porquê de quer uma conta no %{domain}.
       preamble: Com uma conta neste servidor Mastodon, poderá seguir qualquer outra pessoa na rede, independentemente do servidor onde a conta esteja hospedada.
@@ -1371,9 +1373,9 @@ pt-PT:
       sign_up:
         subject: "%{name} inscreveu-se"
     favourite:
-      body: 'A sua publicação foi adicionada aos favoritos por %{name}:'
-      subject: "%{name} adicionou a sua publicação aos favoritos"
-      title: Novo favorito
+      body: 'A sua publicação foi adicionada aos marcadores por %{name}:'
+      subject: "%{name} adicionou a sua publicação aos marcadores"
+      title: Novo marcador
     follow:
       body: "%{name} é teu seguidor!"
       subject: "%{name} começou a seguir-te"
@@ -1590,6 +1592,7 @@ pt-PT:
     show_newer: Mostrar mais recentes
     show_older: Mostrar mais antigos
     show_thread: Mostrar conversa
+    sign_in_to_participate: Inicie a sessão para participar na conversa
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direto
@@ -1604,10 +1607,10 @@ pt-PT:
     enabled_hint: Apaga automaticamente as suas publicações assim que atingirem um certo limite de tempo, a não ser que correspondam a uma das seguintes excepções
     exceptions: Exceções
     explanation: Como apagar publicações é uma operação custosa, isto é feito lentamente ao longo do tempo, quando o servidor não está ocupado. Por esta razão, as suas publicações podem ser apagadas um pouco depois de atingirem o limite de idade definido.
-    ignore_favs: Ignorar favoritos
+    ignore_favs: Ignorar marcadores
     ignore_reblogs: Ignorar reforços
     interaction_exceptions: Exceções baseadas em interações
-    interaction_exceptions_explanation: Tenha em atenção que não há garantia que as publicações sejam eliminadas se ficarem abaixo do limiar de favoritos ou de partilhas, uma vez tenham sido ultrapassados.
+    interaction_exceptions_explanation: Note que não há garantia de que as publicações sejam excluídas se ficarem abaixo do limite de favoritos ou partilhas após as ter verificado uma vez.
     keep_direct: Manter mensagens diretas
     keep_direct_hint: Não apaga nenhuma das suas mensagens diretas
     keep_media: Manter publicações com anexos de multimédia
@@ -1618,8 +1621,8 @@ pt-PT:
     keep_polls_hint: Não apaga nenhuma das suas sondagens
     keep_self_bookmark: Manter as publicações que guardou
     keep_self_bookmark_hint: Não apaga as suas próprias publicações se as tiver guardado
-    keep_self_fav: Manter as publicações que adicionou aos favoritos
-    keep_self_fav_hint: Não elimina as suas próprias publicações se as tiver adicionado aos favoritos
+    keep_self_fav: Manter as publicações que marcou
+    keep_self_fav_hint: Não apaga as suas próprias publicações se as tiver marcado
     min_age:
       '1209600': 2 semanas
       '15778476': 6 meses
@@ -1630,8 +1633,8 @@ pt-PT:
       '63113904': 2 anos
       '7889238': 3 meses
     min_age_label: Limite de idade
-    min_favs: Manter publicações adicionados aos favortios pelos menos
-    min_favs_hint: Não elimina nenhuma das suas publicações que tenha sido adicionada aos favoritos este número de vezes. Deixe em branco para eliminar publicações, independentemente do número de vezes que tenham sido adicionadas aos favoritos
+    min_favs: Manter pelo menos as publicações dos marcadores
+    min_favs_hint: Não elimina nenhuma das suas publicações que tenha recebido pelo menos este número de favoritos. Deixe em branco para eliminar publicações, independentemente do seu número de favoritos
     min_reblogs: Manter as publicações reforçadas mais de
     min_reblogs_hint: Não apaga nenhuma das suas publicações que tenha sido partilhada mais do que este número de vezes. Deixe em branco para apagar as publicações, independentemente do número de partilhas
   stream_entries:
@@ -1737,7 +1740,6 @@ pt-PT:
     seamless_external_login: Tu estás ligado via um serviço externo. Por isso, as configurações da palavra-passe e do e-mail não estão disponíveis.
     signed_in_as: 'Registado como:'
   verification:
-    explanation_html: 'Pode <strong>comprovar que é o dono das hiperligações nos metadados do seu perfil</strong>. Para isso, a página para a qual a hiperligação aponta tem de conter uma outra para o seu perfil do Mastodon. Após adicionar a hiperligação, poderá ter de voltar aqui e voltar a guardar o seu perfil para que a verificação produza efeito. Essa hiperligação <strong>tem</strong> de ter um atributo <code>rel="me"</code>. O conteúdo do texto não é importante. Eis um exemplo:'
     verification: Verificação
   webauthn_credentials:
     add: Adicionar nova chave de segurança
