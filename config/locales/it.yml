@@ -978,7 +978,6 @@ it:
     your_token: Il tuo token di accesso
   auth:
     apply_for_account: Richiedi un account
-    change_password: Password
     confirmations:
       wrong_email_hint: Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
     delete_account: Elimina account
@@ -1026,7 +1025,7 @@ it:
       new_confirmation_instructions_sent: Riceverai una nuova e-mail con il link di conferma entro pochi minuti!
       title: Controlla la tua posta in arrivo
     sign_in:
-      preamble_html: Accedi con le tue credenziali <strong>%{domain}</strong>. Se il tuo account è ospitato su un server diverso, non potrai accedere qui.
+      preamble_html: Accedi con le tue credenziali <strong>%{domain}</strong>. Se il tuo account si trova su un server diverso, non potrai accedere qui.
       title: Accedi a %{domain}
     sign_up:
       manual_review: Le registrazioni su %{domain} vengono sottoposte a revisione manuale da parte dei nostri moderatori. Per aiutarci a elaborare la tua registrazione, scrivi qualcosa su di te e sul motivo per cui desideri un account su %{domain}.
@@ -1375,7 +1374,7 @@ it:
         subject: "%{name} si è iscritto"
     favourite:
       body: 'Il tuo status è stato apprezzato da %{name}:'
-      subject: "%{name} ha apprezzato il tuo post"
+      subject: "%{name} ha apprezzato il tuo status"
       title: Nuovo preferito
     follow:
       body: "%{name} ti sta seguendo!"
@@ -1622,8 +1621,8 @@ it:
     keep_polls_hint: Non cancella nessuno dei tuoi sondaggi
     keep_self_bookmark: Conserva post che hai marcato con segnalibro
     keep_self_bookmark_hint: Non cancella i tuoi post se li hai marcati con segnalibro
-    keep_self_fav: Mantieni i post che hai indicato come preferiti
-    keep_self_fav_hint: Non cancella i tuoi post se li hai marcati come preferiti
+    keep_self_fav: Conserva post che hai marcato come apprezzato
+    keep_self_fav_hint: Non cancella i tuoi post se li hai marcati come apprezzati
     min_age:
       '1209600': 2 settimane
       '15778476': 6 mesi
@@ -1741,7 +1740,6 @@ it:
     seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, quindi le impostazioni di password e e-mail non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
   verification:
-    explanation_html: 'Puoi <strong>verificarti come proprietario dei link nei metadati del tuo profilo</strong>. Per questo, il sito web collegato deve contenere un collegamento al tuo profilo Mastodon. Dopo aver aggiunto il collegamento, potrebbe essere necessario tornare qui e salvare nuovamente il profilo affinché la verifica abbia effetto. Il link di ritorno <strong>deve</strong> avere un attributo <code>rel="me"</code>. Il contenuto del testo del collegamento non ha importanza. Ecco un esempio:'
     verification: Verifica
   webauthn_credentials:
     add: Aggiungi una nuova chiave di sicurezza
