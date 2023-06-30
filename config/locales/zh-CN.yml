@@ -836,13 +836,13 @@ zh-CN:
       statuses:
         allow: 允许嘟文
         allow_account: 允许发布者
-        description_html: 这些是当前此服务器可见的被大量分享和喜欢的嘟文。这些嘟文可以帮助新老用户找到更多可关注的账号。批准发布者且发布者允许将其账号推荐给其他用户前，服务器不会公开显示任何嘟文。你也可以批准或拒绝个别嘟文。
+        description_html: 这些是当前此服务器可见的被大量分享和喜欢的嘟文。这些嘟文可以帮助新老用户找到更多可关注的账号。批准发布者且发布者允许将其账号推荐给其他用户前，不会公开显示任何嘟文。你也可以批准或拒绝个别嘟文。
         disallow: 禁止嘟文
         disallow_account: 禁止发布者
         no_status_selected: 因为没有选中任何热门嘟文，所以没有更改
         not_discoverable: 发布者选择不被发现
         shared_by:
-          other: 被分享或收藏 %{friendly_count} 次
+          other: 被分享和喜欢%{friendly_count}次
         title: 热门嘟文
       tags:
         current_score: 当前 %{score} 分
@@ -960,7 +960,6 @@ zh-CN:
     your_token: 你的访问令牌
   auth:
     apply_for_account: 申请账号
-    change_password: 密码
     confirmations:
       wrong_email_hint: 如果该电子邮件地址不正确，您可以在帐户设置中进行更改。
     delete_account: 删除帐户
@@ -1348,9 +1347,9 @@ zh-CN:
       sign_up:
         subject: "%{name} 注册了"
     favourite:
-      body: '你的嘟文被 %{name} 收藏了：'
-      subject: "%{name} 收藏了你的嘟文"
-      title: 添加收藏
+      body: '你的嘟文被 %{name} 喜欢了：'
+      subject: "%{name} 喜欢了你的嘟文"
+      title: 新的喜欢
     follow:
       body: "%{name} 关注了你！"
       subject: "%{name} 关注了你"
@@ -1576,7 +1575,7 @@ zh-CN:
     enabled_hint: 达到指定过期时间后自动删除您的嘟文，除非满足下列条件之一
     exceptions: 例外
     explanation: 删除嘟文是一个消耗系统资源的耗时操作，所以这个操作会在服务器空闲时完成。因此，您的嘟文可能会在达到过期阈值之后一段时间才会被删除。
-    ignore_favs: 忽略收藏
+    ignore_favs: 取消喜欢
     ignore_reblogs: 忽略转嘟
     interaction_exceptions: 基于互动的例外
     interaction_exceptions_explanation: 请注意，如果嘟文超出转嘟和喜欢的阈值之后，又降到阈值以下，则可能不会被删除。
@@ -1709,7 +1708,6 @@ zh-CN:
     seamless_external_login: 因为你是通过外部服务登录的，所以密码和电子邮件地址设置都不可用。
     signed_in_as: '当前登录的账户：'
   verification:
-    explanation_html: '您可以 <strong>验证自己是个人资料元数据中的链接的所有者</strong> 。为此，链接的网站必须包含返回到您的 Mastodon 个人资料的链接。添加链接后，您可能需要回到这里并重新保存个人资料以使验证生效。 <strong>必须</strong> 在返回链接上使用 <code>rel="me"</code> 属性。 链接的文本内容无关紧要。以下是一个示例：'
     verification: 验证
   webauthn_credentials:
     add: 添加新的安全密钥
