@@ -381,6 +381,15 @@ ca:
       undo: No permetis la federació amb el domini
     domain_blocks:
       add_new: Afegeix nou bloqueig de domini
+      confirm_suspension:
+        cancel: Cancel·la
+        confirm: Suspèn
+        permanent_action: Desfer la suspensió no restaurarà cap dada o relació.
+        preamble_html: Ets a punt de suspendre <strong>%{domain}</strong> i els seus sub dominis.
+        remove_all_data: Això eliminarà tot el contingut, mèdia i dades dels perfils dels comptes d'aquest domini en el teu servidor.
+        stop_communication: El teu servidor deixarà de comunicar-se amb aquests servidors.
+        title: Confirma el bloqueig de domini per a %{domain}
+        undo_relationships: Això desferà qualsevol relació de seguiment entre els comptes d'aquests servidors i el teu.
       created_msg: S'està processant el bloqueig de domini
       destroyed_msg: El bloqueig de domini s'ha desfet
       domain: Domini
