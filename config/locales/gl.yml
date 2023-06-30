@@ -381,6 +381,15 @@ gl:
       undo: Eliminar da listaxe branca
     domain_blocks:
       add_new: Engadir novo bloqueo de dominio
+      confirm_suspension:
+        cancel: Cancelar
+        confirm: Suspender
+        permanent_action: Ao retirar a suspensión non restableces os datos ou a relación.
+        preamble_html: Vas suspender a <strong>%{domain}</strong> e os seus subdominios.
+        remove_all_data: Eliminarás do teu servidor todo o contido, multimedia e datos de perfil para as contas deste dominio.
+        stop_communication: O teu servidor deixará de comunicarse con estos servidores.
+        title: Confirma o bloqueo do dominio %{domain}
+        undo_relationships: Isto desfará as relacións de seguimento entre as contas destes servidores e o teu.
       created_msg: Estase a procesar o bloqueo do dominio
       destroyed_msg: Desfíxose o bloqueo de dominio
       domain: Dominio
@@ -730,6 +739,9 @@ gl:
       branding:
         preamble: A personalización do teu servidor diferénciao doutros servidores da rede. A información podería mostrarse en diversos entornos, como a interface web de Mastodon, aplicacións nativas, vista previa das ligazóns noutras webs e apps de mensaxería, e similares. Debido a isto é recomendable que a información sexa clara, curta e concisa.
         title: Personalización
+      captcha_enabled:
+        desc_html: Ten dependencia de scripts externos desde hCaptcha, que podería ser un problema de seguridade e privacidade. Ademáis, <strong>pode diminuír a accesiblidade para algunhas persoas (principalmente as discapacitadas)</strong>. Por estas razóns, considera medidas alternativas como o rexistro por convite e a aprobación manual das contas.
+        title: Pedirlle ás novas usuarias resolver un CAPTCHA para confirmar a súa conta
       content_retention:
         preamble: Controla como se gardan en Mastodon os contidos creados polas usuarias.
         title: Retención do contido
@@ -965,6 +977,7 @@ gl:
     notification_preferences: Cambiar os axustes de email
     salutation: "%{name},"
     settings: 'Mudar as preferencias de e-mail: %{link}'
+    unsubscribe: Anular subscrición
     view: 'Vista:'
     view_profile: Ver perfil
     view_status: Ver publicación
@@ -978,6 +991,10 @@ gl:
     your_token: O seu testemuño de acceso
   auth:
     apply_for_account: Solicita unha conta
+    captcha_confirmation:
+      help_html: Se tes problemas para resolver o CAPTCHA, podes contactar con nós no correo electrónico %{email} e axudarémosche.
+      hint_html: Unha cousa máis! Temos que confirmar que es un ser humano (para poder evitar contas de spam!). Resolve o CAPTCHA de aquí embaixo e preme en "Continuar".
+      title: Comprobación de seguridade
     confirmations:
       wrong_email_hint: Se o enderezo de email non é correcto, podes cambialo nos axustes da conta.
     delete_account: Eliminar conta
@@ -1014,8 +1031,11 @@ gl:
     rules:
       accept: Aceptar
       back: Volver
+      invited_by: 'Podes unirte a %{domain} grazas ao convite que recibiches de parte de:'
       preamble: Son establecidas e aplicadas pola moderación de %{domain}.
+      preamble_invited: Antes de continuar adica un minuto a ler as regras básicas establecidas para %{domain}.
       title: Algunhas regras básicas.
+      title_invited: Convidáronte.
     security: Seguranza
     set_new_password: Estabelecer novo contrasinal
     setup:
@@ -1128,6 +1148,11 @@ gl:
       your_appeal_rejected: A apelación foi rexeitada
   domain_validator:
     invalid_domain: non é un nome de dominio válido
+  edit_profile:
+    basic_information: Información básica
+    hint_html: "<strong>Personaliza o que van ver no teu perfil público e ao lado das túas publicacións.</strong> As outras persoas estarán máis animadas a seguirte e interactuar contigo se engades algún dato sobre ti así como unha imaxe de perfil."
+    other: Outros
+    safety_and_privacy: Seguridade e privacidade
   errors:
     '400': A solicitude que enviou non é válida ou ten formato incorrecto.
     '403': Non ten permiso para ver esta páxina.
@@ -1322,6 +1347,19 @@ gl:
     failed_sign_in_html: Intento de acceso errado con %{method} desde %{ip} (%{browser})
     successful_sign_in_html: Acceso correcto con %{method} desde %{ip} (%{browser})
     title: Historial de autenticación
+  mail_subscriptions:
+    unsubscribe:
+      action: Si, retirar subscrición
+      complete: Subscrición anulada
+      confirmation_html: Tes a certeza de querer retirar a subscrición a Mastodon en %{domain} para recibir %{type} no teu correo electrónico en %{email}? Poderás volver a subscribirte desde os <a href="%{settings_path}">axustes de notificacións por correo</a>.
+      emails:
+        notification_emails:
+          favourite: notificacións de favoritos
+          follow: notificacións de seguimentos
+          follow_request: notificacións de solicitudes de seguimento
+          mention: notificacións de mencións
+          reblog: notificacións de promocións
+      resubscribe_html: Se por un erro eliminaches a subscrición, podes volver a subscribirte desde os <a href="%{settings_path}">axustes de notificacións por correo electrónico</a>.
   media_attachments:
     validations:
       images_and_video: Non podes anexar un vídeo a unha publicación que xa contén imaxes
