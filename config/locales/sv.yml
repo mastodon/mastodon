@@ -851,10 +851,14 @@ sv:
       statuses:
         allow: Tillåt inlägg
         allow_account: Godkänn författare
+        description_html: Detta är inlägg som din server vet om som för närvarande delas och favoriseras mycket just nu. Det kan hjälpa dina nya och återvändande användare att hitta fler människor att följa. Inga inlägg visas offentligt förrän du godkänner författaren, och författaren tillåter att deras konto föreslås till andra. Du kan också tillåta eller avvisa enskilda inlägg.
         disallow: Tillåt inte inlägg
         disallow_account: Tillåt inte författare
         no_status_selected: Inga trendande inlägg ändrades eftersom inga valdes
         not_discoverable: Författaren har valt att inte vara upptäckbar
+        shared_by:
+          one: Delad eller favoritmarkerad en gång
+          other: Delade och favoritmarkerade %{friendly_count} gånger
         title: Trendande inlägg
       tags:
         current_score: Nuvarande poäng %{score}
@@ -974,7 +978,6 @@ sv:
     your_token: Din access token
   auth:
     apply_for_account: Ansök om konto
-    change_password: Lösenord
     confirmations:
       wrong_email_hint: Om e-postadressen inte är rätt, kan du ändra den i kontoinställningarna.
     delete_account: Radera konto
@@ -999,6 +1002,8 @@ sv:
     progress:
       confirm: Bekräfta e-postadress
       details: Dina uppgifter
+      review: Vår recension
+      rules: Acceptera regler
     providers:
       cas: CAS
       saml: SAML
@@ -1014,7 +1019,13 @@ sv:
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
     setup:
+      email_below_hint_html: Kolla din skräppost-mapp eller begär en annan. Du kan korrigera din e-postadress om den är fel.
+      email_settings_hint_html: Klicka på länken som vi har skickat till dig för att bekräfta %{email}. Vi väntar här.
       link_not_received: Fick du ingen länk?
+      title: Kolla din inkorg
+    sign_in:
+      preamble_html: Logga in med dina användaruppgifter på <strong>%{domain}</strong>. Om ditt konto finns på en annan server kommer du inte att kunna logga in här.
+      title: Logga in på %{domain}
     sign_up:
       preamble: Med ett konto på denna Mastodon-server kan du följa alla andra personer på nätverket, oavsett vilken server deras konto tillhör.
       title: Låt oss få igång dig på %{domain}.
@@ -1224,14 +1235,24 @@ sv:
       empty: Tom CSV-fil
       invalid_csv_file: 'Ogiltig CSV-fil. Felmeddelande: %{error}'
       over_rows_processing_limit: innehåller fler än %{count} rader
+      too_large: Filen är för stor
     modes:
       merge: Slå ihop
       merge_long: Behåll befintliga uppgifter och lägg till nya
       overwrite: Skriv över
       overwrite_long: Ersätt de nuvarande uppgifterna med de nya
     preface: Du kan importera data som du exporterat från en annan instans, till exempel en lista över personer du följer eller blockerar.
+    states:
+      in_progress: Pågår
+      unconfirmed: Obekräftade
     status: Status
     success: Dina uppgifter har laddats upp och kommer att behandlas snarast
+    time_started: Började vid
+    titles:
+      blocking: Importerar blockerade konton
+      bookmarks: Importerar bokmärken
+      domain_blocking: Importerar blockerade domäner
+    type: Typ av import
     types:
       blocking: Lista av blockerade
       bookmarks: Bokmärken
@@ -1326,6 +1347,8 @@ sv:
       sign_up:
         subject: "%{name} registrerade sig"
     favourite:
+      body: 'Din status favoritmarkerades av %{name}:'
+      subject: "%{name} favoritmarkerade din status"
       title: Ny favorit
     follow:
       body: "%{name} följer nu dig!"
@@ -1543,6 +1566,7 @@ sv:
     show_newer: Visa nyare
     show_older: Visa äldre
     show_thread: Visa tråd
+    sign_in_to_participate: Logga in för att delta i konversationen
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkt
@@ -1557,9 +1581,10 @@ sv:
     enabled_hint: Raderar dina inlägg automatiskt när de når en specifik ålder, såvida de inte matchar något av undantagen nedan
     exceptions: Undantag
     explanation: Eftersom inläggsradering är resursintensivt görs detta stegvis när servern inte är högbelastad. Därför kan det dröja innan dina inlägg raderas efter att de uppnått ålderströskeln.
-    ignore_favs: Ignorera favoriter
+    ignore_favs: Bortse från favoriter
     ignore_reblogs: Ignorera boostar
     interaction_exceptions: Undantag baserat på interaktioner
+    interaction_exceptions_explanation: Observera att det inte finns någon garanti att inlägg blir raderade om de går under favorit- eller boost-tröskeln efter att en gång ha gått över dem.
     keep_direct: Behåll direktmeddelanden
     keep_direct_hint: Tar inte bort någon av dina direktmeddelanden
     keep_media: Behåll inlägg med mediebilagor
@@ -1570,6 +1595,8 @@ sv:
     keep_polls_hint: Tar inte bort någon av dina undersökningar
     keep_self_bookmark: Behåll inlägg du har bokmärkt
     keep_self_bookmark_hint: Tar inte bort dina egna inlägg om du har bokmärkt dem
+    keep_self_fav: Behåll inlägg du favoritmarkerat
+    keep_self_fav_hint: Tar inte bort dina egna inlägg om du har favoritmarkerat dem
     min_age:
       '1209600': 2 veckor
       '15778476': 6 månader
@@ -1580,6 +1607,8 @@ sv:
       '63113904': 2 år
       '7889238': 3 månader
     min_age_label: Åldersgräns
+    min_favs: Behåll favoritmarkerade inlägg i minst
+    min_favs_hint: Raderar inte några av dina inlägg som har fått minst detta antalet av favoritmarkeringar. Lämna tomt för att ta bort inlägg oavsett hur många favoritmarkeringar de har fått
     min_reblogs: Behåll boostade inlägg i minst
     min_reblogs_hint: Raderar inte något av dina inlägg som har blivit boostat minst detta antal gånger. Lämna tomt för att radera inlägg oavsett antal boostar
   stream_entries:
@@ -1685,7 +1714,6 @@ sv:
     seamless_external_login: Du är inloggad via en extern tjänst, inställningar för lösenord och e-post är därför inte tillgängliga.
     signed_in_as: 'Inloggad som:'
   verification:
-    explanation_html: 'Du kan <strong>bekräfta att du är ägare till länkarna i dina profilmetadata</strong>. För detta krävs att den länkade webbplatsen innehåller en länk tillbaka till din Mastodon-profil. När du har lagt till länken kan du behöva komma tillbaka hit och spara din profil på nytt för att verifieringen ska träda i kraft. Tillbakalänken <strong>måste</strong> ha attributet <code>rel="me"</code>. Länkens textinnehåll spelar ingen roll. Här är ett exempel:'
     verification: Bekräftelse
   webauthn_credentials:
     add: Lägg till ny säkerhetsnyckel
