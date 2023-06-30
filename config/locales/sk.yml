@@ -572,6 +572,7 @@ sk:
       batch:
         report: Hlásenie
       deleted: Vymazané
+      favourites: Obľúbené
       history: História verzií
       in_reply_to: Odpoveď na
       language: Jazyk
@@ -678,7 +679,6 @@ sk:
     warning: Na tieto údaje dávaj ohromný pozor. Nikdy ich s nikým nezďieľaj!
     your_token: Tvoj prístupový token
   auth:
-    change_password: Heslo
     delete_account: Vymaž účet
     delete_account_html: Pokiaľ chceš svoj účet odtiaľto vymazať, môžeš tak <a href="%{path}">urobiť tu</a>. Budeš požiadaný/á o potvrdenie tohto kroku.
     description:
@@ -920,6 +920,10 @@ sk:
     carry_blocks_over_text: Tento užívateľ sa presunul z účtu %{acct}, ktorý si mal/a zablokovaný.
     carry_mutes_over_text: Tento užívateľ sa presunul z účtu %{acct}, ktorý si mal/a stíšený.
   notification_mailer:
+    favourite:
+      body: 'Tvoj príspevok bol uložený medzi obľúbené užívateľa %{name}:'
+      subject: "%{name} si obľúbil/a tvoj príspevok"
+      title: Nové obľúbené
     follow:
       body: "%{name} ťa teraz následuje!"
       subject: "%{name} ťa teraz nasleduje"
@@ -1083,6 +1087,7 @@ sk:
       vote: Hlasuj
     show_more: Ukáž viac
     show_thread: Ukáž diskusné vlákno
+    sign_in_to_participate: Prihlás sa pre zapojenie do diskusie
     title: '%{name}: „%{quote}"'
     visibilities:
       private: Iba pre sledovateľov
