@@ -37,7 +37,7 @@ const getHomeFeedSpeed = createSelector([
   state => state.get('statuses'),
 ], (statusIds, pendingStatusIds, statusMap) => {
   const recentStatusIds = pendingStatusIds.size > 0 ? pendingStatusIds : statusIds;
-  const statuses = recentStatusIds.map(id => statusMap.get(id)).filter(status => status?.get('account') !== me).take(20);
+  const statuses = recentStatusIds.filter(id => id !== null).map(id => statusMap.get(id)).filter(status => status?.get('account') !== me).take(20);
   const oldest = new Date(statuses.getIn([statuses.size - 1, 'created_at'], 0));
   const newest = new Date(statuses.getIn([0, 'created_at'], 0));
   const averageGap = (newest - oldest) / (1000 * (statuses.size + 1)); // Average gap between posts on first page in seconds
