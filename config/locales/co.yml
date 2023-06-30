@@ -552,7 +552,6 @@ co:
     warning: Abbadate à quessi dati. Ùn i date à nisunu!
     your_token: Rigenerà a fiscia d’accessu
   auth:
-    change_password: Chjave d’accessu
     delete_account: Sguassà u contu
     delete_account_html: S’è voi vulete toglie u vostru contu <a href="%{path}">ghjè quì</a>. Duverete cunfirmà a vostra scelta.
     description:
@@ -793,6 +792,10 @@ co:
     carry_mutes_over_text: St'utilizatore hà traslucatu dapoi %{acct}, ch'aviate piattatu.
     copy_account_note_text: 'St''utilizatore hà traslucatu dapoi %{acct}, eccu e vostr''anziane note nant''à ellu:'
   notification_mailer:
+    favourite:
+      body: '%{name} hà aghjuntu u vostru statutu à i so favuriti :'
+      subject: "%{name} hà messu u vostru post in i so favuriti"
+      title: Novu favuritu
     follow:
       body: "%{name} s’hè abbunatu à u vostru contu !"
       subject: "%{name} vi seguita"
@@ -979,6 +982,7 @@ co:
     show_newer: Vede i più ricenti
     show_older: Vede i più anziani
     show_thread: Vede u filu
+    sign_in_to_participate: Cunnettatevi per participà à a cunversazione
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direttu
@@ -1000,6 +1004,8 @@ co:
     keep_polls_hint: Ùn sguassa micca i vostri missaghji ch'anu scandagli
     keep_self_bookmark: Cunservà i statuti ch'avete segnalibrati
     keep_self_bookmark_hint: Ùn sguassa micca i vostri propii missaghji s'e voi l'avete aghjunti à i vostri segnalibri
+    keep_self_fav: Cunservà i statuti ch'avete favurizati
+    keep_self_fav_hint: Ùn sguassa micca i vostri propii missaghji s'e voi l'avete aghjunti à i vostri favuriti
     min_age:
       '1209600': 2 settimane
       '15778476': 6 mesi
@@ -1010,6 +1016,7 @@ co:
       '63113904': 2 anni
       '7889238': 3 mesi
     min_age_label: Età minima
+    min_favs: Cunservà i statuti favurizzati più di
     min_reblogs: Cunservà i statuti spartuti più di
     min_reblogs_hint: Ùn sguassa micca i vostri statuti chì anu ricevuti più chì stu numeru di spartere. Lasciate viotu per sguassà i statuti senza piglià in contu u numaru di spartere
   stream_entries:
