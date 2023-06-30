@@ -887,10 +887,10 @@ gd:
         no_status_selected: Cha deach post a’ treandadh sam bith atharrachadh o nach deach gin dhiubh a thaghadh
         not_discoverable: Cha do chuir an t-ùghdar roimhe gun gabh a rùrachadh
         shared_by:
-          one: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} turas
-          two: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} thuras
-          few: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} tursan
-          other: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} turas
+          one: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} turas
+          two: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} thuras
+          few: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} tursan
+          other: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} turas
         title: Postaichean a’ treandadh
       tags:
         current_score: Sgòr làithreach de %{score}
@@ -1014,7 +1014,6 @@ gd:
     your_token: An tòcan inntrigidh agad
   auth:
     apply_for_account: Iarr cunntas
-    change_password: Facal-faire
     confirmations:
       wrong_email_hint: Mur eil an seòladh puist-d seo mar bu chòir, ’s urrainn dhut atharrachadh ann an roghainnean a’ chunntais.
     delete_account: Sguab às an cunntas
@@ -1061,6 +1060,9 @@ gd:
       link_not_received: Nach d’fhuair thu ceangal?
       new_confirmation_instructions_sent: Gheibh thu post-d ùr le ceangal dearbhaidh an ceann corra mionaid!
       title: Thoir sùil air a’ bhogsa a-steach agad
+    sign_in:
+      preamble_html: Clàraich a-steach le do theisteas <strong>%{domain}</strong>. Ma tha an cunntas agad ’ga òstadh air frithealaiche eile, chan urrainn dhut clàradh a-steach an-seo.
+      title: Clàraich a-steach gu %{domain}
     sign_up:
       manual_review: Nì na maoir againn lèirmheas a làimh air clàraidhean air %{domain}. Airson ar cuideachadh le làimhseachadh do chlàraidh, sgrìobh beagan mu do dhèidhinn agus carson a tha thu ag iarraidh cunntas air %{domain}.
       preamble: Le cunntas air an fhrithealaiche Mastodon seo, ’s urrainn dhut neach sam bith a leantainn air an lìonra, ge b’ e càit a bheil an cunntas aca-san ’ga òstadh.
@@ -1423,8 +1425,8 @@ gd:
       sign_up:
         subject: "Chlàraich %{name}"
     favourite:
-      body: 'Chuir %{name} am post agad ris a h-annsachdan:'
-      subject: "Chuir %{name} am post agad ris na h-annsachdan"
+      body: 'Is annsa le %{name} am post agad:'
+      subject: "Is annsa le %{name} am post agad"
       title: Annsachd ùr
     follow:
       body: "Tha %{name} ’gad leantainn a-nis!"
@@ -1654,6 +1656,7 @@ gd:
     show_newer: Seall feadhainn as ùire
     show_older: Seall feadhainn as sine
     show_thread: Seall an snàithlean
+    sign_in_to_participate: Clàraich a-steach a ghabhail pàirt sa chòmhradh
     title: '%{name}: “%{quote}”'
     visibilities:
       direct: Dìreach
@@ -1682,7 +1685,7 @@ gd:
     keep_polls_hint: Cha dèid gin dhe na cunntasan-bheachd agad a sguabadh às
     keep_self_bookmark: Cùm na chuir thu ris comharran-lìn
     keep_self_bookmark_hint: Cha dèid gin dhe na postaichean agad fhèin a chuir thu ris na comharran-lìn agad a sguabadh às
-    keep_self_fav: Cùm na postaichean a chuir thu ris na h-annsachdan
+    keep_self_fav: Cùm na chuir thu ris na h-annsachdan
     keep_self_fav_hint: Cha dèid gin dhe na postaichean agad fhèin a chuir thu ris na h-annsachdan agad a sguabadh às
     min_age:
       '1209600': 2 sheachdain
@@ -1694,8 +1697,8 @@ gd:
       '63113904': 2 bhliadhna
       '7889238': 3 mìosan
     min_age_label: Stairsneach aoise
-    min_favs: Cùm na postaichean a chaidh a chur ris na h-annsachdan co-dhiù
-    min_favs_hint: Cha dèid gin dhe na postaichean agad a sguabadh às a chaidh a chur ris na h-annsachdan an àireamh seo de thursan air a char as lugha. Fàg seo bàn airson na postaichean a sguabadh às ge b’ e co mheud neach a chuir ris na h-annsachdan iad
+    min_favs: Cùm na tha ’na annsachd aig co-dhiù
+    min_favs_hint: Cha dèid gin dhe na postaichean agad a sguabadh às a tha ’nan annsachd an àireamh de thursan seo air a char as lugha. Fàg seo bàn airson postaichean a sguabadh às ge b’ e co mheud turas a tha iad ’nan annsachd
     min_reblogs: Cùm na tha ’ga bhrosnachadh le co-dhiù
     min_reblogs_hint: Cha dèid gin dhe na postaichean agad a sguabadh às a tha ’gam brosnachadh an àireamh de thursan seo air a char as lugha. Fàg seo bàn airson postaichean a sguabadh às ge b’ e co mheud turas a tha iad ’gam brosnachadh
   stream_entries:
@@ -1801,7 +1804,6 @@ gd:
     seamless_external_login: Rinn thu clàradh a-steach le seirbheis on taobh a-muigh, mar sin chan eil roghainnean an fhacail-fhaire ’s a’ phuist-d ri làimh dhut.
     signed_in_as: 'Chlàraich thu a-steach mar:'
   verification:
-    explanation_html: '’S urrainn dhut <strong>dearbhadh gur e seilbheadair nan ceanglaichean ann am meata-dàta na pròifil agad a th’ annad</strong>. Airson sin a dhèanamh, feumaidh ceangal air ais dhan phròifil Mastodon a bhith aig an làrach-lìn cheangailte. Nuair a bhios tu air a’ cheangal a chur ris, dh’fhaoidte gum bi agad ri tilleadh an-seo agus a’ phròifil agad a shàbhaladh a-rithist mus obraich an dearbhadh. <strong>Feumaidh</strong> buadh <code>rel="me"</code> a bhith aig a’ cheangal air ais. Chan eil e gu diofar dè an t-susbaint a tha ann an teacsa a’ cheangail. Seo ball-eisimpleir dhut:'
     verification: Dearbhadh
   webauthn_credentials:
     add: Cuir iuchair tèarainteachd ùr ris
