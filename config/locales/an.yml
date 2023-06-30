@@ -740,6 +740,7 @@ an:
         remove_from_report: Eliminar d'o reporte
         report: Reporte
       deleted: Eliminau
+      favourites: Favoritos
       history: Historial de versions
       in_reply_to: En respuesta a
       language: Idioma
@@ -812,10 +813,14 @@ an:
       statuses:
         allow: Permitir publicación
         allow_account: Permitir autor
+        description_html: Estes son publicacions que lo suyo servidor conoixe que son estando compartidas y marcadas como favoritas muito en este momento. Pueden aduyar a los tuyos usuarios nuevos y retornantes a trobar mas chent a la quala seguir. No i hai mensaches que s'amuestren publicament dica que aprebes l'autor y l'autor permita que la suya cuenta sía sucherida a atros. Tamién puetz permitir u refusar mensaches individuals.
         disallow: No permitir publicación
         disallow_account: No permitir autor
         no_status_selected: No se cambió garra publicación en tendencia ya que no se trió garra
         not_discoverable: L'autor no ha optado per estar detectable
+        shared_by:
+          one: Compartiu u marcau como favorito una vegada
+          other: Compatido u marcau como favorito %{friendly_count} vegadas
         title: Publicacions destacadas
       tags:
         current_score: Puntuación actual %{score}
@@ -934,7 +939,6 @@ an:
     your_token: Lo tuyo token d'acceso
   auth:
     apply_for_account: Solicitar una cuenta
-    change_password: Clau
     delete_account: Borrar cuenta
     delete_account_html: Si deseya eliminar la suya cuenta, puede <a href="%{path}">proceder aquí</a>. Será pediu d'una confirmación.
     description:
@@ -964,6 +968,9 @@ an:
       title: Qualques reglas basicas.
     security: Cambiar clau
     set_new_password: Establir nueva clau
+    sign_in:
+      preamble_html: Inicia sesión con as tuys credencials <strong>%{domain}</strong>. Si la tuya cuenta se troba en un servidor diferent, no podrás iniciar aquí una sesión.
+      title: Iniciar sesión en %{domain}
     sign_up:
       preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a qualsequier atra persona en o ret, independientment d'o servidor en o qual se trobe.
       title: Creyar cuenta de Mastodon en %{domain}.
@@ -1265,6 +1272,10 @@ an:
         subject: "%{name} ninvió un informe"
       sign_up:
         subject: "%{name} se rechistró"
+    favourite:
+      body: 'Lo tuyo estau estió marcau como favorito per %{name}:'
+      subject: "%{name} marcó como favorito lo tuyo estau"
+      title: Nuevo favorito
     follow:
       body: "%{name} te ye seguindo!"
       subject: "%{name} te ye seguindo"
@@ -1476,6 +1487,7 @@ an:
     show_newer: Amostrar mas recients
     show_older: Amostrar mas antigos
     show_thread: Amostrar discusión
+    sign_in_to_participate: Rechistra-te pa participar en a conversación
     title: '%{name}: «%{quote}»'
     visibilities:
       direct: Directa
@@ -1490,8 +1502,10 @@ an:
     enabled_hint: Elimina automaticament las tuyas publicacions una vegada que aconsigan un branquil de tiempo especificau, de no estar que coincidan con bella d'as excepcions detalladas debaixo
     exceptions: Excepcions
     explanation: A causa que la eliminación de mensaches ye una operación costosa, esto se fa lentament, a lo largo d'un tiempo, quan lo servidor no ye ocupau. Per este motivo, puede que las tuyas publicacions sían borradas bella cosa dimpués que aconsigan lo branquil de tiempo especificau.
+    ignore_favs: Ignorar favoritos
     ignore_reblogs: Ignorar reblogueos
     interaction_exceptions: Excepcions basadas en interaccions
+    interaction_exceptions_explanation: Tiene en cuenta que no i hai guarencia que s'eliminen las publicacions que son per debaixo d'os branquils de favoritos u de reblogueos si los han superau en bell momento.
     keep_direct: Mantener mensaches directos
     keep_direct_hint: No elimina garra d'os tuyos mensaches directos
     keep_media: Mantener publicacions con multimedia adchunto
@@ -1502,6 +1516,8 @@ an:
     keep_polls_hint: No borra garra d'as tuyas enqüestas
     keep_self_bookmark: Mantener publicacions a las qualas has anyadiu un marcador
     keep_self_bookmark_hint: No borra las tuyas propias publicacions si les has anyadiu un marcador
+    keep_self_fav: Mantener publicacions que marqués como favoritas
+    keep_self_fav_hint: No borra publicacions tuyas que haigas marcau como favoritas
     min_age:
       '1209600': 2 semanas
       '15778476': 6 meses
@@ -1512,6 +1528,7 @@ an:
       '63113904': 2 anyos
       '7889238': 3 meses
     min_age_label: Branquil de tiempo
+    min_favs: Mantener mensaches con un numero de favoritos mayor que
     min_reblogs: Mantener publicacions reblogueadas mas de
     min_reblogs_hint: No borra garra d'as publicacions que haigan estau reblogueadas mas d'este numero de vegadas. Deixa en blanco pa eliminar publicacions sin importar lo numero de reblogueos
   stream_entries:
