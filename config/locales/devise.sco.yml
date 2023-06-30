@@ -12,6 +12,8 @@ sco:
       locked: Yer accoont is snibbed.
       not_found_in_database: No a valid %{authentication_keys} or passwird.
       pending: Yer accoont is stull gettin luiked at the noo.
+      timeout: Yer session is expirit. Please sign in again fit tae gae forret.
+      unauthenticated: Ye'r needin tae sign in or sign up afore gaein forret.
       unconfirmed: Ye hae tae confirm yer email address afore gaun forret.
     mailer:
       confirmation_instructions:
@@ -99,6 +101,7 @@ sco:
     unlocks:
       send_instructions: Ye'll get a email wi instructions fir hou tae unsnib yer accoont in a wee minute. Please tak a deek at yer mince folder if ye didnae get this email.
       send_paranoid_instructions: Gin yer accoont exists, ye'll get a email wi instructions fir hou tae unsnib it in a wee minute. Please tak a deek at yer mince folder if ye didnae get this email.
+      unlocked: Yer accoont haes been unsnibbed successfully. Please sign in fir tae gae forret.
   errors:
     messages:
       already_confirmed: wis awriddy confirmt, please try signing in
