@@ -12,6 +12,8 @@ oc:
       locked: Vòstre compte es blocat.
       not_found_in_database: '%{authentication_keys} invalida.'
       pending: Vòstre compte es encara en aprobacion.
+      timeout: Vòstra session a expirat. Mercés de vos tornar connectar per contunhar.
+      unauthenticated: Vos cal vos connectar o marcar abans de contunhar.
       unconfirmed: Vos cal confirmar vòstra adreça de corrièl abans de contunhar.
     mailer:
       confirmation_instructions:
@@ -99,6 +101,7 @@ oc:
     unlocks:
       send_instructions: Recebretz un corrièl amb las consignas per o desblocar dins una estona. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
       send_paranoid_instructions: Se vòstre compte existís recebretz un corrièl amb las consignas per o desblocar dins una estona. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
+      unlocked: Vòstre compte es estat desblocat amb succès. Mercés de vos connectar per contunhar.
   errors:
     messages:
       already_confirmed: es ja estat confirmat, mercés d’ensejar de vos connectar
