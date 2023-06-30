@@ -504,7 +504,7 @@ cy:
           few: Ymdrechion wedi methu ar %{count} diwrnod gwahanol.
           many: Ymdrechion wedi methu ar %{count} diwrnod gwahanol.
           other: Ymdrechion wedi methu ar %{count} diwrnod gwahanol.
-        no_failures_recorded: Dim methiannau wedi'u cofnodi
+        no_failures_recorded: Dim methiannau wedi'u cofnodi.
         title: Argaeledd
         warning: Bu'r ymgais olaf i gysylltu â'r gweinydd hwn yn aflwyddiannus
       back_to_all: Popeth
@@ -713,7 +713,7 @@ cy:
         invites: Gwahoddiadau
         moderation: Cymedroli
         special: Arbennig
-      delete: 'Dileu:'
+      delete: Dileu
       description_html: Gyda <strong>rolau defnyddwyr</strong>, gallwch chi gyfaddasu pa swyddogaethau a meysydd o Mastodon y gall eich defnyddwyr gael mynediad iddyn nhw.
       edit: Golygu rôl '%{name}'
       everyone: Caniatâd rhagosodedig
@@ -911,7 +911,7 @@ cy:
       statuses:
         allow: Caniatáu postiad
         allow_account: Caniatáu awdur
-        description_html: Mae'r rhain yn bostiadau y mae eich gweinydd yn gwybod amdanyn nhw sy'n cael eu rhannu a'u ffafrio'n aml ar hyn o bryd. Gall hyn helpu'ch defnyddwyr newydd a'r rhai sy'n dychwelyd i ddod o hyd i fwy o bobl i'w dilyn. Ni chaiff unrhyw bostiadau eu dangos yn gyhoeddus nes i chi gymeradwyo'r awdur, ac mae'r awdur yn caniatáu i'w cyfrif gael ei awgrymu i eraill. Gallwch hefyd ganiatáu neu wrthod postiadau unigol.
+        description_html: Mae'r rhain yn bostiadau y mae eich gweinydd yn gwybod amdanyn nhw sy'n cael eu rhannu a'u ffafrio llawer ar hyn o bryd. Gall helpu eich defnyddwyr newydd a'ch defnyddwyr sy'n dychwelyd i ddod o hyd i fwy o bobl i'w dilyn. Ni chaiff unrhyw bostiadau eu dangos yn gyhoeddus nes i chi gymeradwyo'r awdur, ac mae'r awdur yn caniatáu i'w cyfrif gael ei awgrymu i eraill. Gallwch hefyd ganiatáu neu wrthod postiadau unigol.
         disallow: Gwrthod postiad
         disallow_account: Gwrthod awdur
         no_status_selected: Heb newid unrhyw bostiadau'n trendio gan na chafodd yr un ohonyn nhw eu dewis
@@ -1050,7 +1050,6 @@ cy:
     your_token: Eich tocyn mynediad
   auth:
     apply_for_account: Gofyn am gyfrif
-    change_password: Cyfrinair
     confirmations:
       wrong_email_hint: Os nad yw'r cyfeiriad e-bost hwnnw'n gywir, gallwch ei newid yng ngosodiadau'r cyfrif.
     delete_account: Dileu cyfrif
@@ -1097,6 +1096,9 @@ cy:
       link_not_received: Heb gael dolen?
       new_confirmation_instructions_sent: Byddwch yn derbyn e-bost newydd gyda'r ddolen cadarnhau ymhen ychydig funudau!
       title: Gwiriwch eich blwch derbyn
+    sign_in:
+      preamble_html: Mewngofnodwch gyda'ch manylion <strong>%{domain}</strong>. Os yw eich cyfrif yn cael ei gynnal ar weinydd gwahanol, ni fydd modd i chi fewngofnodi yma.
+      title: Mewngofnodi i %{domain}
     sign_up:
       manual_review: Mae cofrestriadau ar %{domain} yn cael eu hadolygu â llaw gan ein cymedrolwyr. Er mwyn ein helpu i brosesu eich cofrestriad, ysgrifennwch ychydig amdanoch chi'ch hun a pham rydych chi eisiau cyfrif ar %{domain}.
       preamble: Gyda chyfrif ar y gweinydd Mastodon hwn, byddwch yn gallu dilyn unrhyw berson arall ar y rhwydwaith, lle bynnag mae eu cyfrif yn cael ei gynnal.
@@ -1475,8 +1477,8 @@ cy:
       sign_up:
         subject: "Mae %{name} wedi cofrestru"
     favourite:
-      body: 'Cafodd eich postiad ei ffafrio gan %{name}:'
-      subject: "Ffefrynodd %{name} eich postiad"
+      body: 'Cafodd eich postiad ei hoffi gan %{name}:'
+      subject: "Hoffodd %{name} eich postiad"
       title: Ffefryn newydd
     follow:
       body: "Mae %{name} bellach yn eich dilyn!"
@@ -1718,6 +1720,7 @@ cy:
     show_newer: Dangos y diweddaraf
     show_older: Dangos pethau hŷn
     show_thread: Dangos trywydd
+    sign_in_to_participate: Mengofnodwch i gymryd rhan yn y sgwrs
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Uniongyrchol
@@ -1735,7 +1738,7 @@ cy:
     ignore_favs: Anwybyddu ffefrynnau
     ignore_reblogs: Anwybyddu hybiau
     interaction_exceptions: Eithriadau yn seiliedig ar ryngweithio
-    interaction_exceptions_explanation: Sylwch nad oes unrhyw sicrwydd y bydd postiadau'n cael eu dileu os ydyn nhw'n mynd o dan y trothwy hoffi neu hybu ar ôl mynd drostyn nhw unwaith.
+    interaction_exceptions_explanation: Sylwch nad oes unrhyw sicrwydd y bydd postiadau'n cael eu dileu os ydyn nhw'n mynd o dan y trothwy ffefrynnau neu hybu ar ôl mynd drostyn nhw unwaith.
     keep_direct: Cadw negeseuon uniongyrchol
     keep_direct_hint: Nid yw'n dileu unrhyw un o'ch negeseuon uniongyrchol
     keep_media: Cadw postiadau gydag atodiadau cyfryngau
@@ -1746,8 +1749,8 @@ cy:
     keep_polls_hint: Nid yw'n dileu unrhyw un o'ch arolygon
     keep_self_bookmark: Cadw y postiadau wedi'u cadw fel llyfrnodau
     keep_self_bookmark_hint: Nid yw'n dileu eich postiadau eich hun os ydych wedi rhoi llyfrnodau arnyn nhw
-    keep_self_fav: Cadw postiadau roeddech yn eu hoffi
-    keep_self_fav_hint: Nid yw'n dileu eich postiadau eich hun os ydych wedi eu ffafrio
+    keep_self_fav: Cadw'r postiadau yr oeddech yn eu ffefrynnu
+    keep_self_fav_hint: Nid yw'n dileu eich postiadau eich hun os ydych wedi eu ffefrynnu
     min_age:
       '1209600': 2 wythnos
       '15778476': 6 mis
@@ -1758,8 +1761,8 @@ cy:
       '63113904': 2 flynedd
       '7889238': 3 mis
     min_age_label: Trothwy oedran
-    min_favs: Cadwch bostiadau yn ffefryn o leiaf
-    min_favs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi derbyn o leiaf y nifer hyn o ffefrynnu. Gadewch yn wag i ddileu postiadau waeth beth fo'u nifer o ffefrynnu
+    min_favs: Cadw postiadau ffafriwyd am o leiaf
+    min_favs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi derbyn o leiaf y nifer hwn o ffefrynnau. Gadewch yn wag i ddileu postiadau, beth bynnag yw eu ffefrynnau
     min_reblogs: Cadw postiadau wedi eu hybu o leiaf
     min_reblogs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi cael eu hybu o leiaf y nifer hwn o weithiau. Gadewch yn wag i ddileu postiadau waeth beth fo'u nifer o hybiadau
   stream_entries:
@@ -1790,7 +1793,7 @@ cy:
     generate_recovery_codes: Cynhyrchu codau adfer
     lost_recovery_codes: Mae codau adfer yn caniatáu ichi adennill mynediad i'ch cyfrif os byddwch chi'n colli'ch ffôn. Os ydych chi wedi colli'ch codau adfer, gallwch chi eu hadfywio yma. Bydd eich hen godau adfer yn annilys.
     methods: Dulliau dau ffactor
-    otp: Ap dilysu.
+    otp: Ap dilysu
     recovery_codes: Creu copi wrth gefn o godau adfer
     recovery_codes_regenerated: Llwyddwyd i ail greu codau adfer
     recovery_instructions_html: Os ydych chi'n colli mynediad i'ch ffôn, mae modd i chi ddefnyddio un o'r codau adfer isod i gael mynediad at eich cyfrif. <strong>Cadwch y codau adfer yn breifat</strong>. Er enghraifft, gallwch chi eu argraffu a'u cadw gyda dogfennau eraill pwysig.
@@ -1865,7 +1868,6 @@ cy:
     seamless_external_login: Yr ydych wedi'ch mewngofnodi drwy wasanaeth allanol, felly nid yw gosodiadau cyfrinair ac e-bost ar gael.
     signed_in_as: 'Wedi mewngofnodi fel:'
   verification:
-    explanation_html: 'Gallwch <strong>wirio eich hun fel perchennog y dolenni ym metadata eich proffil</strong> . Ar gyfer gwneud hynny, rhaid i''r wefan gysylltiedig gynnwys dolen yn ôl i''ch proffil Mastodon. Ar ôl ychwanegu''r ddolen efallai y bydd angen i chi ddod yn ôl yma ac ail-gadw''ch proffil er mwyn i''r dilysiad ddod i rym. <strong>Rhaid</strong> i''r ddolen yn ôl gael priodoledd <code>rêl="me"</code>. Nid yw cynnwys testun y ddolen o bwys. Dyma enghraifft:'
     verification: Dilysu
   webauthn_credentials:
     add: Ychwanegu allwedd ddiogelwch newydd
