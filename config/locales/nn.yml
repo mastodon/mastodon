@@ -851,11 +851,14 @@ nn:
       statuses:
         allow: Tillat innlegg
         allow_account: Tillat forfatter
-        description_html: Dette er innlegg som tenaren din veit om og som blir mykje delte og markerte som favorittar no for tida. Dei kan hjelpa nye og gamle brukarar å finna folk dei vil fylgja. Ingen innlegg vert viste offentleg utan at du godkjenner forfattaren, og utan at forfattaren tillèt at kontoen kjem opp som forslag for andre. Du kan også tillata eller avvisa individuelle innlegg.
+        description_html: Dette er innlegg som tenaren din veit om og som blir mykje delt og markerte som favorittar no for tida. Dei kan hjelpa nye og gamle brukarar å finna folk dei vil fylgja. Ingen innlegg vert vist offentleg utan at du tillet forfattaren, og utan at forfattaren tillet kontoen deira å bli foreslått for andre. Du kan også tillata eller avvisa individuelle innlegg.
         disallow: Ikke tillat innlegg
         disallow_account: Forby forfattar
         no_status_selected: Ingen populære innlegg vart endra sidan ingen var valde
         not_discoverable: Forfattaren har ikkje valt å kunna bli oppdaga
+        shared_by:
+          one: Delt eller markert som favoritt ein gong
+          other: Delt og markert som favoritt %{friendly_count} gongar
         title: Populære innlegg
       tags:
         current_score: Gjeldande poengsum %{score}
@@ -975,7 +978,6 @@ nn:
     your_token: Tilgangsnykelen din
   auth:
     apply_for_account: Søk om ein konto
-    change_password: Passord
     confirmations:
       wrong_email_hint: Viss epostadressa er feil, kan du endra ho i kontoinnstillingane.
     delete_account: Slett konto
@@ -1022,6 +1024,9 @@ nn:
       link_not_received: Fekk du ikkje lenka?
       new_confirmation_instructions_sent: Du burde få ein ny epost med stadfestingslenke innan nokre minutt!
       title: Sjekk innboksen din
+    sign_in:
+      preamble_html: Logg inn med brukaropplysningar for <strong>%{domain}</strong>. Dersom kontoen din er registrert på ein annan tenar vil du ikkje kunne logga inn her.
+      title: Logg inn på %{domain}
     sign_up:
       manual_review: Når du lagar ein konto på %{domain}, vil moderatorane våre gå gjennom påmeldinga di manuelt. For å hjelpa oss med påmeldinga di, er det fint om du skriv litt om deg sjølv og kvifor du vil ha ein konto på %{domain}.
       preamble: Med en konto på denne Mastodon-tjeneren vil du kunne følge andre personer på nettverket, uansett hvor kontoen deres holder til.
@@ -1353,9 +1358,9 @@ nn:
       sign_up:
         subject: "%{name} registrerte seg"
     favourite:
-      body: '%{name} favorittmerkte innlegget ditt:'
-      subject: "%{name} favorittmerkte innlegget ditt"
-      title: Ny favoritt
+      body: 'Statusen din vart merkt som favoritt av %{name}:'
+      subject: "%{name} merkte statusen din som favoritt"
+      title: Nye favorittar
     follow:
       body: "%{name} fylgjer deg!"
       subject: "%{name} fylgjer deg"
@@ -1572,6 +1577,7 @@ nn:
     show_newer: Vis nyere
     show_older: Vis eldre
     show_thread: Vis tråden
+    sign_in_to_participate: Logg inn for å verta med i samtalen
     title: '%{name}: «%{quote}»'
     visibilities:
       direct: Direkte
@@ -1586,10 +1592,10 @@ nn:
     enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor
     exceptions: Unntak
     explanation: Siden sletting av innlegg er en krevende operasjon, blir dette gjort sakte over tid når tjeneren ellers ikke er opptatt. Av denne grunn kan det hende at innleggene dine slettes først en stund etter at de har nådd aldersgrensen.
-    ignore_favs: Ignorer favorittar
+    ignore_favs: Ignorer favoritter
     ignore_reblogs: Ignorer fremhevinger
     interaction_exceptions: Unntak basert på interaksjoner
-    interaction_exceptions_explanation: Hugs at det ikkje er nokon garanti for at innlegg blir sletta viss dei kjem under terskelen for favorittar og framhevingar etter at dei har vore over terskelen ein gong.
+    interaction_exceptions_explanation: Merk at det ikke er noen garanti for at innlegg blir slettet hvis de går under favoritt- eller fremhevelsesgrensen etter å ha gått over dem en gang.
     keep_direct: Behold direktemeldinger
     keep_direct_hint: Sletter ingen av direktemeldingene dine
     keep_media: Behold innlegg med mediavedlegg
@@ -1601,7 +1607,7 @@ nn:
     keep_self_bookmark: Behald bokmerka innlegg
     keep_self_bookmark_hint: Sletter ikkje dine eigne innlegg om du har bokmerka dei
     keep_self_fav: Behald innlegg som favoritt
-    keep_self_fav_hint: Slettar ikkje dine eigne innlegg viss du har favorittmerkt dei
+    keep_self_fav_hint: Sletter ikkje dine eigne innlegg om du har favorittmerka dei
     min_age:
       '1209600': 2 veker
       '15778476': 6 månader
@@ -1612,8 +1618,8 @@ nn:
       '63113904': 2 år
       '7889238': 3 månader
     min_age_label: Aldersterskel
-    min_favs: Behald innlegg som er favorittmerkte minst
-    min_favs_hint: Slettar ingen av inlegga dine som har fått minst så mange favorittmerke. La stå tomt for å sletta innlegg uansett kor mange favorittmerke dei har fått
+    min_favs: Behold innlegg som er favorittmarkert av minst
+    min_favs_hint: Slettar ingen av innlegga dine som har fått minst så mange favorittar. La det stå tomt for å sletta innlegga uansett kor mange favorittar dei har fått
     min_reblogs: Behold innlegg fremhevet av minst
     min_reblogs_hint: Sletter ikke noen av dine innlegg som har blitt fremhevet minst dette antall ganger. La stå tom for å slette innlegg uavhengig av antall fremhevinger
   stream_entries:
@@ -1719,7 +1725,6 @@ nn:
     seamless_external_login: Du er logga inn gjennom eit eksternt reiskap, so passord og e-postinstillingar er ikkje tilgjengelege.
     signed_in_as: 'Logga inn som:'
   verification:
-    explanation_html: 'Du kan <strong>stadfesta at du sjølv eig lenkene du har lagt inn i profilen din</strong>. For å gjera det, må nettstaden du lenka til innehalda ei lenke som fører tilbake til Mastodon-profilen din. Etter å ha laga lenka, må du kanskje koma tilbake hit og lagra profilen på ny, slik at profilen blir godkjent. Lenka tilbake <strong>må</strong> innehalda <code>rel="me"</code>. Tekstinnhaldet i lenka spelar inga rolle. Her er eit døme:'
     verification: Stadfesting
   webauthn_credentials:
     add: Legg til ny sikkerhetsnøkkel
