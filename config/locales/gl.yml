@@ -1360,6 +1360,8 @@ gl:
           mention: notificacións de mencións
           reblog: notificacións de promocións
       resubscribe_html: Se por un erro eliminaches a subscrición, podes volver a subscribirte desde os <a href="%{settings_path}">axustes de notificacións por correo electrónico</a>.
+      success_html: Non vas recibir %{type} de Mastodon en %{domain} no teu enderezo %{email}.
+      title: Anular subscrición
   media_attachments:
     validations:
       images_and_video: Non podes anexar un vídeo a unha publicación que xa contén imaxes
@@ -1475,6 +1477,7 @@ gl:
       expired: A enquisa rematou
       invalid_choice: A opción de voto escollida non existe
       over_character_limit: non poden ter máis de %{max} caracteres cada unha
+      self_vote: Non podes votar nas túas enquisas
       too_few_options: debe ter máis de unha opción
       too_many_options: non pode haber máis de %{max} opcións
   preferences:
@@ -1778,7 +1781,12 @@ gl:
     seamless_external_login: Accedeches a través dun servizo externo, polo que os axustes de contrasinal e email non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
   verification:
+    extra_instructions_html: <strong>Truco:</strong> A ligazón pode estar agochada na túa páxina web. A parte importante é <code>rel="me"</code> que impide a suplantación en sitios web con contido creado polas usuarias. Incluso podes usar a etiqueta <code>link</code> na cabeceira da páxina en lugar de <code>a</code>, pero o HTML debe ser accesible sen precisar usar JavaScript.
+    here_is_how: Podes facelo así
+    hint_html: "<strong>É moi fácil verificar a túa identidade en Mastodon.</strong> Baseado en estándares web, gratuíto para sempre. O único que precisas é un sitio web persoal polo que a xente te recoñeza. Cando relacionas ese sitio web co teu perfil, nós comprobamos que esa web ten unha ligazón de volta ao teu perfil e mostraremos unha indicación visual nel."
+    instructions_html: Copia e pega o código inferior no HTML do teu sitio web. Despois engade o enderezo da túa web nun dos campos de datos extra do teu perfil dispoñibles na lapela "Editar perfil" e garda os cambios.
     verification: Validación
+    verified_links: As túas ligazóns verificadas
   webauthn_credentials:
     add: Engadir nova chave de seguridade
     create:
