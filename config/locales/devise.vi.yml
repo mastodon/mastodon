@@ -12,6 +12,8 @@ vi:
       locked: Tài khoản của bạn bị khóa.
       not_found_in_database: '%{authentication_keys} không có trong dữ liệu.'
       pending: Tài khoản của bạn vẫn đang được xem xét.
+      timeout: Phiên của bạn đã hết hạn. Vui lòng đăng nhập lại để tiếp tục.
+      unauthenticated: Bạn cần đăng nhập hoặc đăng ký trước khi tiếp tục.
       unconfirmed: Bạn phải xác minh địa chỉ email trước khi tiếp tục.
     mailer:
       confirmation_instructions:
@@ -99,6 +101,7 @@ vi:
     unlocks:
       send_instructions: Bạn sẽ nhận được một email hướng dẫn về cách mở khóa tài khoản của bạn trong vài phút tới. Xin kiểm tra thư mục thư rác nếu như bạn không thấy email này.
       send_paranoid_instructions: Nếu tài khoản của bạn tồn tại, bạn sẽ nhận được email hướng dẫn cách mở khóa trong vài phút tới. Xin kiểm tra thư mục thư rác nếu như bạn không thấy email này.
+      unlocked: Tài khoản của bạn đã được mở khóa thành công. Vui lòng đăng nhập để tiếp tục.
   errors:
     messages:
       already_confirmed: đã được xác minh, vui lòng đăng nhập lại
