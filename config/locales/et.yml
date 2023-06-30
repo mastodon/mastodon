@@ -386,6 +386,10 @@ et:
         confirm: Peata
         permanent_action: Peatamise tühistamine ei taasta andmeid ega seoseid.
         preamble_html: Oled peatamas domeeni <strong>%{domain}</strong> ja selle alamdomeene.
+        remove_all_data: See eemaldab sinu serverist selle domeeni kontode kogu sisu, meedia ja profiilide info.
+        stop_communication: Sinu server lõpetab infovahetuse nende serveritega.
+        title: Kinnita domeeni %{domain} blokeerimine
+        undo_relationships: See tühistab kõik sinu ja nende serverite kontode vahel loodud jälgimisseosed.
       created_msg: Domeeni blokeeringut töödeldakse
       destroyed_msg: Domeeniblokeering on tagasi võetud
       domain: Domeen
@@ -735,6 +739,8 @@ et:
       branding:
         preamble: Serveri bränding eristab seda teistest serveritest võrgus. Seda teavet võidakse kuvada erinevates keskkondades, näiteks Mastodoni veebiliideses, rakendustes, viitade eelvaadetes teistel veebisaitidel, sõnumsiderakendustes jne. Sel põhjusel on kõige parem hoida see teave selge, lühike ja ülevaatlik.
         title: Märgistus
+      captcha_enabled:
+        desc_html: See tugineb välistele hCaptcha skriptidele, mis võib olla turvalisuse ja privaatsuse probleem. Lisaks <strong>võib see muuta registreerimisprotsessi mõnede inimeste (eriti puudega inimeste) jaoks, oluliselt vähem ligipääsetavaks.</strong> Neil põhjustel kaalu palun teisi võimalusi, näiteks kinnitamis- või kutsepõhiseid registreerimislahendusi.
       content_retention:
         preamble: Määra, kuidas kasutajate loodud sisu Mastodonis talletatakse.
         title: Sisu talletamine
