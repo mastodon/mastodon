@@ -1,6 +1,6 @@
 ca:
   about:
-    about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Tingues el control de les teves dades amb Mastodon!'
+    about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, amb un disseny ètic i descentralització. Amb Mastodon controles les teves dades!'
     contact_missing: No configurat
     contact_unavailable: N/D
     hosted_on: Mastodon allotjat a %{domain}
@@ -32,7 +32,7 @@ ca:
     accounts:
       add_email_domain_block: Bloca el domini del correu
       approve: Aprova
-      approved_msg: L’aplicació del registre de %{username} s’ha aprovat amb èxit
+      approved_msg: S'ha aprovat la petició de registre de %{username}
       are_you_sure: N'estàs segur?
       avatar: Avatar
       by_domain: Domini
@@ -115,7 +115,7 @@ ca:
       redownload: Actualitza el perfil
       redownloaded_msg: El perfil de %{username} s’ha refrescat des de l’origen amb èxit
       reject: Rebutja
-      rejected_msg: L’aplicació de registre de %{username} s’ha rebutjat amb èxit
+      rejected_msg: S'ha rebutjat la petició de registre de %{username}
       remote_suspension_irreversible: Les dades d'aquest compte s'han esborrat irreversiblement.
       remote_suspension_reversible_hint_html: El compte ha estat suspès en el seu servidor i les dades seran totalment suprimides el %{date}. Fins llavors, el servidor remot pot restaurar aquest compte sense efectes negatius. Si vols suprimir immediatament totes les dades del compte, ho pots fer a continuació.
       remove_avatar: Eliminar avatar
@@ -171,7 +171,7 @@ ca:
       action_types:
         approve_appeal: Aprova l'apel·lació
         approve_user: Aprova l'usuari
-        assigned_to_self_report: Assigna l'informe
+        assigned_to_self_report: Assigna un informe
         change_email_user: Canvia l'adreça electrònica per l'usuari
         change_role_user: Canvia el Rol del Usuari
         confirm_user: Confirma l'usuari
@@ -199,10 +199,10 @@ ca:
         destroy_user_role: Destrueix Rol
         disable_2fa_user: Desactiva 2FA
         disable_custom_emoji: Desactiva l'emoji personalitzat
-        disable_sign_in_token_auth_user: Desactivar l'autenticació de token per correu per l'usuari
+        disable_sign_in_token_auth_user: Desactivr l'autenticació de token per correu per a l'usuari
         disable_user: Deshabilita l'usuari
         enable_custom_emoji: Activa l'emoji personalitzat
-        enable_sign_in_token_auth_user: Activar l'autenticació de token per correu pel l'usuari
+        enable_sign_in_token_auth_user: Activa l'autenticació de token per correu per a l'usuari
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
@@ -275,7 +275,7 @@ ca:
         sensitive_account_html: "%{name} ha marcat els mèdia de %{target} com a sensibles"
         silence_account_html: "%{name} ha silenciat el compte de %{target}"
         suspend_account_html: "%{name} ha suspès el compte de %{target}"
-        unassigned_report_html: "%{name} ha des-assignat l'informe %{target}"
+        unassigned_report_html: "%{name} ha eliminat l'assignació de l'informe %{target}"
         unblock_email_account_html: "%{name} ha desbloquejat l'adreça de correu de %{target}"
         unsensitive_account_html: "%{name} ha desmarcat com sensibles els mèdia de %{target}"
         unsilence_account_html: "%{name} ha llevat el silenci del compte %{target}"
@@ -429,7 +429,7 @@ ca:
         title: Nova adreça de correu en la llista negra
       no_email_domain_block_selected: No s'han canviat els bloquejos de domini perquè cap s'ha seleccionat
       not_permitted: No permés
-      resolved_dns_records_hint_html: El nom del domini resol als següents dominis MX, els quals son els responsables finals per a acceptar els correus. Bloquejar un domini MX bloquejarà els registres des de qualsevol adreça de correu que utilitzi el mateix domini MX, encara que el nom visible del domini sigui diferent. <strong>Ves amb compte no bloquegis els grans proveïdors de correu electrònic.</strong>
+      resolved_dns_records_hint_html: El nom del domini resol als següents dominis MX, els quals són els responsables finals per a acceptar els correus. Blocar un domini MX blocarà els registres des de qualsevol adreça de correu que utilitzi el mateix domini MX, encara que el nom visible del domini sigui diferent. <strong>Ves amb compte no bloquegis els grans proveïdors de correu electrònic.</strong>
       resolved_through_html: Resolt mitjançant %{domain}
       title: Llista negra de correus electrònics
     export_domain_allows:
@@ -561,7 +561,7 @@ ca:
       pending: S'està esperant l'aprovació del relay
       save_and_enable: Desa i activa
       setup: Configura una connexió de relay
-      signatures_not_enabled: Els relays no treballaran correctament mentre estiguin habilitats el mode segur o llista blanca
+      signatures_not_enabled: Els relays no funcionaran bé mentre estiguin habilitats els modes segur o de llista blanca
       status: Estat
       title: Relays
     report_notes:
@@ -645,7 +645,7 @@ ca:
         warning_placeholder: Opcional raó adicional d'aquesta acció de moderació.
       target_origin: Origen del compte denunciat
       title: Informes
-      unassign: Treu l'assignació
+      unassign: Elimina l'assignació
       unknown_action_msg: 'Acció desconeguda: %{action}'
       unresolved: No resolt
       updated_at: Actualitzat
@@ -665,7 +665,7 @@ ca:
       description_html: Amb <strong>rols d'usuari</strong>, pots personalitzar quines funcions i àrees de Mastodon els teus usuaris poden accedir.
       edit: Editar el rol %{name}
       everyone: Permisos per defecte
-      everyone_full_description_html: Aquest és el <strong>rol base</strong> que afecta <strong>tots els usuaris</strong>, fins i tot els que no en tenen cap d'assignat. Tots els altres rols n'hereten els permisos.
+      everyone_full_description_html: Aquest és el <strong>rol base</strong> que afecta <strong>tots els usuaris</strong>, fins i tot els que no en tenen cap d'assignat. Tots els altres n'hereten els permisos.
       permissions_count:
         one: "%{count} permís"
         other: "%{count} permisos"
@@ -691,7 +691,7 @@ ca:
         manage_reports: Gestiona informes
         manage_reports_description: Permet als usuaris revisar informes i realitzar accions de moderació contra ells
         manage_roles: Gestionar rols
-        manage_roles_description: Permet als usuaris gestionar i assignar rols per sota dels seus
+        manage_roles_description: Permet als usuaris de gestionar i assignar rols per sota dels seus
         manage_rules: Gestiona normes
         manage_rules_description: Permet als usuaris canviar les normes del servidor
         manage_settings: Gestiona configuració
@@ -754,8 +754,8 @@ ca:
         title: Registres
       registrations_mode:
         modes:
-          approved: Es requereix l’aprovació per registrar-se
-          none: Ningú no pot registrar-se
+          approved: Cal l’aprovació per a registrar-se
+          none: No es pot registrar ningú
           open: Qualsevol pot registrar-se
       title: Paràmetres del servidor
     site_uploads:
@@ -851,14 +851,14 @@ ca:
       statuses:
         allow: Permet publicació
         allow_account: Permet autor
-        description_html: Això són publicacions que el teu servidor veu i que ara mateix es comparteixen i afavoreixen molt. Poden ajudar els teus usuari nous i recurrents a trobar més gent a qui seguir. No se'n mostra cap públicament fins que no n'aprovis l'autor i aquest permeti que el seu compte sigui suggerit. També pots acceptar o rebutjar publicacions una a una.
+        description_html: Aquests són tuts que el teu servidor veu i que ara mateix s'estan compartint i afavorint molt. Poden ajudar als teus nous usuaris i als que retornen a trobar més gent a qui seguir. Cap tut es mostra públicament fins que no aprovis l'autor i l'autor permeti que el seu compte sigui suggerit a altres. També pots acceptar o rebutjar tuts individualment.
         disallow: Rebutja tut
         disallow_account: Rebutja autor
         no_status_selected: No s'han canviat els tuts en tendència perquè cap ha estat seleccionat
         not_discoverable: L'autor no ha activat poder ser detectable
         shared_by:
-          one: Compartida o afavorida una vegada
-          other: Compartida o afavorida %{friendly_count} vegades
+          one: Compartit o afavorit una vegada
+          other: Compartit i afavorit %{friendly_count} vegades
         title: Tuts en tendència
       tags:
         current_score: Puntuació actual %{score}
@@ -907,7 +907,7 @@ ca:
       events: Esdeveniments
       new: Nou webhook
       rotate_secret: Rota el secret
-      secret: Signant el secret
+      secret: Clau de la signatura
       status: Estat
       title: Webhooks
       webhook: Webhook
@@ -978,7 +978,6 @@ ca:
     your_token: El teu identificador d'accés
   auth:
     apply_for_account: Sol·licitar un compte
-    change_password: Contrasenya
     confirmations:
       wrong_email_hint: Si aquesta adreça de correu electrònic no és correcte, pots canviar-la en els ajustos del compte.
     delete_account: Elimina el compte
@@ -1026,12 +1025,12 @@ ca:
       new_confirmation_instructions_sent: Rebràs un nou correu electrònic amb l'enllaç de confirmació en pocs minuts!
       title: Comprova la teva safata d'entrada
     sign_in:
-      preamble_html: Inicia sessió amb les teves credencials de <strong>%{domain}</strong>. Si el teu compte es troba a un servidor diferent, no podràs iniciar sessió aquí.
+      preamble_html: Inicia la sessió amb les teves credencials de <strong>%{domain}</strong>. Si el teu compte es troba a un servidor diferent, no podràs iniciar sessió aquí.
       title: Inicia sessió a %{domain}
     sign_up:
       manual_review: Els registres a %{domain} passen per una revisió manual dels nostres moderadors. Per ajudar-nos a processar el teu registre, escriu-nos quelcom sobre tu i perquè vols un compte a %{domain}.
-      preamble: Amb un compte en aquest servidor Mastodon, podràs seguir qualsevol altre persona de la xarxa, independentment d'on tingui el seu compte.
-      title: Anem a configurar-te a %{domain}.
+      preamble: Amb un compte en aquest servidor Mastodon podràs seguir qualsevol altra persona de la xarxa, independentment d'on tingui el compte.
+      title: Configurem-te a %{domain}.
     status:
       account_status: Estat del compte
       confirming: Esperant que es completi la confirmació del correu electrònic.
@@ -1320,8 +1319,8 @@ ca:
       webauthn: claus de seguretat
     description_html: Si veus activitat que no reconeixes, considera canviar la teva contrasenya i activar l'autenticació de dos factors.
     empty: Historial d'autenticació no disponible
-    failed_sign_in_html: Intent d'inici de sessió errat amb %{method} des-de %{ip} (%{browser})
-    successful_sign_in_html: Inici de sessió exitós amb %{method} des-de %{ip} (%{browser})
+    failed_sign_in_html: Intent d'inici de sessió errat amb %{method} des de %{ip} (%{browser})
+    successful_sign_in_html: Inici de sessió exitós amb %{method} des de %{ip} (%{browser})
     title: Historial d'autenticació
   media_attachments:
     validations:
@@ -1374,9 +1373,9 @@ ca:
       sign_up:
         subject: "%{name} s'ha registrat"
     favourite:
-      body: '%{name} ha afavorit la teva publicació:'
-      subject: "%{name} ha afavorit la teva publicació"
-      title: Nou favorit
+      body: '%{name} ha marcat com a favorit el teu estat:'
+      subject: "%{name} ha marcat com a favorit el teu estat"
+      title: Favorit nou
     follow:
       body: "%{name} t'està seguint!"
       subject: "%{name} t'està seguint"
@@ -1608,10 +1607,10 @@ ca:
     enabled_hint: Suprimeix automàticament els teus tuts quan arribin a un llindar d’edat especificat, tret que coincideixin amb una de les excepcions següents
     exceptions: Excepcions
     explanation: Com que suprimir tuts és una operació cara, es fa lentament amb el pas del temps i quan el servidor no està ocupat. Per aquest motiu, és possible que els teus tuts se suprimeixin un temps després d’assolir el llindar d’edat.
-    ignore_favs: Ignora els favorits
+    ignore_favs: Ignora favorits
     ignore_reblogs: Ignora impulsos
     interaction_exceptions: Excepcions basades en interaccions
-    interaction_exceptions_explanation: Tingues en compte que no es garanteix que se suprimeixen les publicacions si resten per sota del llindar de favorit o impuls després d'haver-lo superat.
+    interaction_exceptions_explanation: Has de tenir en compte que no es garanteix que es suprimeixen els tuts si passen per sota del llindar de favorit o impuls després d'haver-lo superat.
     keep_direct: Mantenir missatges directes
     keep_direct_hint: No esborra cap dels teus missatges directes
     keep_media: Mantenir els tuts amb contingut gràfic
@@ -1622,8 +1621,8 @@ ca:
     keep_polls_hint: No esborra cap de les teves enquestes
     keep_self_bookmark: Mantenir els tuts que has desat a les adreces d'interès
     keep_self_bookmark_hint: No esborra els teus propis tuts si els has desat en les adreces d'interès
-    keep_self_fav: Mantén les publicacions que has afavorit
-    keep_self_fav_hint: No esborra les teves publicacions si les has afavorit
+    keep_self_fav: Mantenir els tuts que has afavorit
+    keep_self_fav_hint: No esborra els teus propis tuts si les has afavorit
     min_age:
       '1209600': 2 setmanes
       '15778476': 6 mesos
@@ -1634,8 +1633,8 @@ ca:
       '63113904': 2 anys
       '7889238': 3 mesos
     min_age_label: Antiguitat
-    min_favs: Mantén les publicacions afavorides més de
-    min_favs_hint: No esborra cap de les teves publicacions que hagin rebut com a mínim aquest nombre de favorits. En blanc per a suprimir-les tant li fa el nombre de favorits
+    min_favs: Mantenir els tuts afavorits més de
+    min_favs_hint: No suprimeix cap dels teus tuts que hagin rebut més d'aquesta quantitat de favorits. Deixa-ho en blanc per a suprimir tuts independentment del nombre de favorits
     min_reblogs: Mantenir les publicacions impulsades més de
     min_reblogs_hint: No suprimeix cap de les teves publicacions que s'hagin impulsat més que aquest nombre de vegades. Deixa-ho en blanc per a suprimir les publicacions independentment del nombre d'impulsos que tinguin.
   stream_entries:
@@ -1687,11 +1686,11 @@ ca:
       title: Recollida de l'arxiu
     suspicious_sign_in:
       change_password: canvia la teva contrasenya
-      details: 'Aquí estan els detalls de l''inici de sessió:'
-      explanation: Hem detectat un inici de sessió del teu compte des d'una nova adreça IP.
+      details: 'Aquest són els detalls de l''inici de sessió:'
+      explanation: Hem detectat un inici de sessió del teu compte des d'una adreça IP nova.
       further_actions_html: Si no has estat tu, %{action} immediatament i activa l'autenticació de dos-factors per a mantenir el teu compte segur.
       subject: S'ha accedit al teu compte des d'una adreça IP nova
-      title: Un nou inici de sessió
+      title: Un inici de sessió nou
     warning:
       appeal: Envia una apel·lació
       appeal_description: Si creus que això és un error, pots enviar una apel·lació a l'equip de %{instance}.
@@ -1701,7 +1700,7 @@ ca:
       explanation:
         delete_statuses: S'ha trobat que algunes de les teves publicacions violen una o més directrius de la comunitat i, per tant, han estat eliminades pels moderadors de %{instance}.
         disable: Ja no pots utilitzar el teu compte, però el teu perfil i altres dades encara són intactes. Pots demanar una còpia de les teves dades, canviar els ajustaments del teu compte o esborrar-lo.
-        mark_statuses_as_sensitive: Algunes de les teves publicacions han estat marcades com a sensibles pels moderadors de %{instance}. Això significa que la gent necessitarà tocar els mèdia en les publicacions perquè la previsualització es mostri. Tu mateix pots marcar els teus mèdia com a sensibles quan publiquis en el futur.
+        mark_statuses_as_sensitive: Algunes de les teves publicacions han estat marcades com a sensibles pels moderadors de %{instance}. Això significa que la gent haurà de tocar els mèdia a les publicacions perquè es mostri la previsualització. Pots marcar els teus mateixos mèdia com a sensibles quan publiquis en el futur.
         sensitive: A partir d'ara, tots els fitxers pujats seran marcats com a sensibles i ocultats darrere d'un avís.
         silence: Encara pots fer servir el teu compte però només la gent que ja t'està seguint veuran les teves publicacions en aquest servidor i tu podries ser exclòs de les diverses opcions de descobriment. De totes maneres altres podrien encara seguir-te manualment.
         suspend: Ja no pots usar el teu compte i el teu perfil i altres dades ja no són accessibles. Encara pots iniciar sessió per a demanar una còpia de les teves dades fins que siguin totalment eliminades al cap de 30 dies, però es mantindran les dades bàsiques per a evitar que esquivis la suspensió.
@@ -1741,7 +1740,6 @@ ca:
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'
   verification:
-    explanation_html: 'Pots <strong>verificar-te com a propietari dels enllaços a les metadades del teu perfil</strong>. Per això, el lloc web enllaçat ha de contenir un enllaç al teu perfil de Mastodon. Després d''afegir l''enllaç, podries necessitar tornar aquí a desar el teu perfil per a fer efectiva la verificació. El vincle <strong>ha de</strong> tenir l''atribut <code>rel="me"</code>. El contingut del text de l''enllaç no importa. Aquí tens un exemple:'
     verification: Verificació
   webauthn_credentials:
     add: Afegir nova clau de seguretat
