@@ -586,7 +586,6 @@ ckb:
     warning: زۆر ئاگاداربە لەم داتایە. هەرگیز لەگەڵ کەس دا هاوبەشی مەکە!
     your_token: کۆدی دەستپێگەیشتنی ئێوە
   auth:
-    change_password: تێپەڕوشە
     delete_account: سڕینەوەی هەژمارە
     delete_account_html: گەر هەرەکتە هەژمارەکەت بسڕیتەوە، لە <a href="%{path}">لەم قوناغانە</a> بڕۆیتە پێشەوە. داوای پەسەند کردنتان لێدەگیرێت.
     description:
@@ -825,6 +824,10 @@ ckb:
     carry_mutes_over_text: ئەم بەکارهێنەرە گواسترایەوە بۆ %{acct}، تۆ بێدەنگت کردووە.
     copy_account_note_text: 'ئەم بەکارهێنەرە لە %{acct} ەوە گواستیەوە، تێبینیەکانی پێشووت دەربارەیان بوون:'
   notification_mailer:
+    favourite:
+      body: 'دۆخت پەسەندکراوە لەلایەن %{name}:'
+      subject: "%{name} دۆخی تۆی پەسەند کرد"
+      title: دڵخوازکردنی نوێ
     follow:
       body: "%{name} ئێستا شوێنکەوتوو ئێوەیە!"
       subject: "%{name} ئێستا شوێنکەوتوو ئێوەیە"
@@ -992,6 +995,7 @@ ckb:
     show_newer: نوێتر پیشان بدە
     show_older: پیشاندانی کۆنتر
     show_thread: نیشاندانی ڕشتە
+    sign_in_to_participate: بچۆ ژوورەوە بۆ بەشداریکردن لە گفتوگۆکەدا
     visibilities:
       private: شوێنکەوتوانی تەنها
       private_long: تەنها بۆ شوێنکەوتوانی پیشان بدە
