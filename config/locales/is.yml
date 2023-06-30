@@ -857,7 +857,7 @@ is:
         no_status_selected: Engum vinsælum færslum var breytt þar sem engar voru valdar
         not_discoverable: Höfundur hefur ekki beðið um að vera finnanlegur
         shared_by:
-          one: Deilt eða gert að eftirlæti einu sinni
+          one: ShaDeilt eða gert að eftirlæti einu sinni
           other: Deilt eða gert að eftirlæti %{friendly_count} sinnum
         title: Vinsælar færslur
       tags:
@@ -978,7 +978,6 @@ is:
     your_token: Aðgangsteiknið þitt
   auth:
     apply_for_account: Biðja um notandaaðgang
-    change_password: Lykilorð
     confirmations:
       wrong_email_hint: Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
     delete_account: Eyða notandaaðgangi
@@ -1025,6 +1024,9 @@ is:
       link_not_received: Fékkstu ekki neinn tengil?
       new_confirmation_instructions_sent: Þú munt fá nýjan tölvupóst með staðfestingartengli innan skamms!
       title: Athugaðu pósthólfið þitt
+    sign_in:
+      preamble_html: Skráðu þig inn með auðkennum þínum fyrir <strong>%{domain}</strong>. Ef aðgangurinn þinn er hýstur á öðrum netþjóni, muntu ekki geta skráð þig inn hér.
+      title: Skrá inn á %{domain}
     sign_up:
       manual_review: Nýskráningar á %{domain} fara í gegnum handvirka yfirferð hjá umsjónarfólkinu okkar. Til að flýta fyrir skráningarferlinu, ættirðu að skrifa smávegis um þig og ástæður þess að þú viljir skrá þig á %{domain}.
       preamble: Með notandaaðgangi á þessum Mastodon-þjóni geturðu fylgst með hverjum sem er á netkerfinu, sama hvar notandaaðgangurinn þeirra er hýstur.
@@ -1590,6 +1592,7 @@ is:
     show_newer: Sýna nýrri
     show_older: Sýna eldri
     show_thread: Birta þráð
+    sign_in_to_participate: Skráðu þig inn til að taka þátt í samtalinu
     title: '%{name}: „%{quote}‟'
     visibilities:
       direct: Beint
@@ -1737,7 +1740,6 @@ is:
     seamless_external_login: Innskráning þín er í gegnum utanaðkomandi þjónustu, þannig að stillingar fyrir lykilorð og tölvupóst eru ekki aðgengilegar.
     signed_in_as: 'Skráð inn sem:'
   verification:
-    explanation_html: 'Þú getur <strong>sannvottað sjálfa/n þig sem eiganda tenglanna í notandasniðinu þinu</strong>. Til að það virki, þarf tilvísaða vefsvæðið að innihalda tengil til baka á notandasnið þitt á Mastodon. Eftir að tenglinum hefur verið bætt inn, gætirðu þurft að koma aftur hingað og vista aftur notandasniðið þitt áður en sannvottunin fer að virka. Tengillinn til baka <strong>verður</strong> að innihalda <code>rel="me"</code> eigindi. Efni textans í tenglinum skiptir ekki máli. Hér er dæmi:'
     verification: Sannprófun
   webauthn_credentials:
     add: Bæta við nýjum öryggislykli
