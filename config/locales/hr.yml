@@ -2,6 +2,7 @@ hr:
   about:
     about_mastodon_html: 'Društvena mreža budućnosti: bez oglasa, bez korporativnog nadzora, etički dizajn i decentralizacija! Budite u vlasništvu svojih podataka pomoću Mastodona!'
     contact_missing: Nije postavljeno
+    title: O aplikaciji
   accounts:
     follow: Prati
     following: Praćenih
@@ -16,8 +17,10 @@ hr:
     accounts:
       approve: Odobri
       are_you_sure: Jeste li sigurni?
+      avatar: Avatar
       by_domain: Domena
       change_email:
+        changed_msg: E-pošta računa uspješno je promijenjena!
         current_email: Trenutna e-pošta
         label: Promijeni e-poštu
         new_email: Nova e-pošta
@@ -26,6 +29,7 @@ hr:
       confirm: Potvrdi
       confirmed: Potvrđeno
       confirming: Potvrđivanje
+      custom: Prilagođeno
       delete: Izbriši podatke
       deleted: Izbrisano
       display_name: Prikazano ime
@@ -128,6 +132,9 @@ hr:
       few: "%{count} korištenja"
       other: "%{count} korištenja"
   notification_mailer:
+    favourite:
+      body: '%{name} je označio/la Vaš status favoritom:'
+      subject: "%{name} je označio/la Vaš status favoritom"
     follow:
       body: "%{name} Vas sada prati!"
       subject: "%{name} Vas sada prati"
