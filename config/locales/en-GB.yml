@@ -978,7 +978,6 @@ en-GB:
     your_token: Your access token
   auth:
     apply_for_account: Request an account
-    change_password: Password
     confirmations:
       wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Delete account
@@ -1025,6 +1024,9 @@ en-GB:
       link_not_received: Didn't get a link?
       new_confirmation_instructions_sent: You will receive a new e-mail with the confirmation link in a few minutes!
       title: Check your inbox
+    sign_in:
+      preamble_html: Sign in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
+      title: Sign in to %{domain}
     sign_up:
       manual_review: Sign-ups on %{domain} go through manual review by our moderators. To help us process your registration, write a bit about yourself and why you want an account on %{domain}.
       preamble: With an account on this Mastodon server, you'll be able to follow any other person on the network, regardless of where their account is hosted.
@@ -1590,6 +1592,7 @@ en-GB:
     show_newer: Show newer
     show_older: Show older
     show_thread: Show thread
+    sign_in_to_participate: Sign in to participate in the conversation
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direct
@@ -1737,7 +1740,6 @@ en-GB:
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
   verification:
-    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. After adding the link you may need to come back here and re-save your profile for the verification to take effect. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
     verification: Verification
   webauthn_credentials:
     add: Add new security key
