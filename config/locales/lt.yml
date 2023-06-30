@@ -253,7 +253,6 @@ lt:
     warning: Būkite atsargūs su šia informacija. Niekada jos nesidalinkite!
     your_token: Jūsų prieigos žetonas
   auth:
-    change_password: Slaptažodis
     delete_account: Ištrinti paskyrą
     delete_account_html: Jeigu norite ištrinti savo paskyrą, galite eiti <a href="%{path}">čia</a>. Jūsų prašys patvirtinti pasirinkimą.
     forgot_password: Pamiršote slaptažodį?
@@ -387,6 +386,10 @@ lt:
   moderation:
     title: Moderacija
   notification_mailer:
+    favourite:
+      body: 'Jūsų statusą pamėgo %{name}:'
+      subject: "%{name} pamėgo Jūsų statusą"
+      title: Naujas mėgstamas
     follow:
       body: "%{name} pradėjo jus sekti!"
       subject: "%{name} pradėjo jus sekti"
@@ -454,6 +457,7 @@ lt:
       ownership: Kitų vartotojų toot'ai negali būti prisegti
       reblog: Pakeltos žinutės negali būti prisegtos
     show_more: Daugiau
+    sign_in_to_participate: Prisijunkite jeigu norite dalyvauti pokalbyje
     visibilities:
       private: Tik sekėjams
       private_long: Rodyti tik sekėjams
