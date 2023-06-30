@@ -12,6 +12,8 @@ nn:
       locked: Kontoen din er låst.
       not_found_in_database: Ugyldig %{authentication_keys} eller passord.
       pending: Kontoen din er vert gjennomgått enno.
+      timeout: Økta di er utgått. Logg inn omatt for å halde fram.
+      unauthenticated: Du må logge inn eller registere deg før du kan halde fram.
       unconfirmed: Du må stadfesta e-postadressa di før du kan gå vidare.
     mailer:
       confirmation_instructions:
@@ -99,6 +101,7 @@ nn:
     unlocks:
       send_instructions: Om nokre minutt får du ein epost med instruksjonar for korleis du kan låse opp kontoen din. Sjekk søppelpostmappa om du ikkje finn den eposten.
       send_paranoid_instructions: Dersom du har konto her, får du ein epost med instruksjonar for korleis du kan låse opp kontoen din om nokre minutt. Sjekk søppelpostmappa om du ikkje finn den eposten.
+      unlocked: Kontoen din har vorte låst opp. Logg inn for å halde fram.
   errors:
     messages:
       already_confirmed: er allereie stadfesta, prøv å logge inn
