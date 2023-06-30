@@ -127,6 +127,8 @@ sr-Latn:
       removed_header_msg: Uspešno obrisana slika zaglavlja korisnika %{username}
       resend_confirmation:
         already_confirmed: Ovaj korisnik je već potvrđen
+        send: Ponovo pošalji vezu za potvrdu
+        success: Veza za potvrdu je uspešno poslata!
       reset: Resetuj
       reset_password: Resetuj lozinku
       resubscribe: Ponovo se pretplati
@@ -782,6 +784,7 @@ sr-Latn:
         remove_from_report: Uklonite iz prijave
         report: Prijavi
       deleted: Obrisano
+      favourites: Omiljeno
       history: Istorija verzijâ
       in_reply_to: Odgovor na
       language: Jezik
@@ -863,10 +866,15 @@ sr-Latn:
       statuses:
         allow: Dozvoli objavu
         allow_account: Odobri autora
+        description_html: Ovo su objave za koje Vaš server zna, a koje se trenutno često dele i koje korisnici često stavljaju u „omiljene”. Mogu pomoći Vašim novim korisnicima i povratnicima da pronađu još ljudi za praćenje. Nijedna objava nije prikazana javno sve dok Vi ne odobrite autora, odnosno dok autor ne dozvoli da njegov/njen nalog bude preporučen drugima. Takođe možete da odobrite ili odbijete zasebne objave.
         disallow: Zabrani objavu
         disallow_account: Zabrani autora
         no_status_selected: Nijedna objava u trendu nije promenjena jer nijedna nije izabrana
         not_discoverable: Autor nije dao saglasnost da bude preporučen
+        shared_by:
+          one: Podeljeno ili stavljeno u „omiljene” jednom
+          few: Podeljeno i stavljeno u „omiljene” %{friendly_count} puta
+          other: Podeljeno i stavljeno u „omiljene” %{friendly_count} puta
         title: Objave u trendu
       tags:
         current_score: Trenutna vrednost %{score}
@@ -988,7 +996,6 @@ sr-Latn:
     your_token: Vaš pristupni token
   auth:
     apply_for_account: Zatražite nalog
-    change_password: Lozinka
     confirmations:
       wrong_email_hint: Ako ta imejl adresa nije ispravna, možete je promeniti u podešavanjima naloga.
     delete_account: Brisanje naloga
@@ -997,6 +1004,7 @@ sr-Latn:
       prefix_invited_by_user: "@%{name} Vas poziva da se pridružite ovom serveru Mastodona!"
       prefix_sign_up: Pridružite se Mastodonu danas!
       suffix: Sa nalogom, moći ćete da pratite ljude, objavljujete novosti i razmenjujete poruke sa korisnicima bilo kog Mastodon servera i više!
+    didnt_get_confirmation: Niste primili vezu za potvrdu?
     dont_have_your_security_key: Nemate sigurnosni ključ?
     forgot_password: Zaboravili ste lozinku?
     invalid_reset_password_token: Token za resetovanje lozinke je neispravan ili je istekao. Zatražite novi.
@@ -1009,11 +1017,17 @@ sr-Latn:
     migrate_account_html: Ako želite da preusmerite ovaj nalog na neki drugi, možete to <a href="%{path}">podesiti ovde</a>.
     or_log_in_with: Ili se prijavite sa
     privacy_policy_agreement_html: Pročitao/-la sam i saglasan/-a sam sa <a href="%{privacy_policy_path}" target="_blank">politikom privatnosti</a>
+    progress:
+      confirm: Potvrdite e-poštu
+      details: Vaši detalji
+      review: Naš pregled
+      rules: Prihvatite pravila
     providers:
       cas: CAS-om
       saml: SAML-om
     register: Registruj se
     registration_closed: "%{instance} ne prima nove članove"
+    resend_confirmation: Ponovo pošalji vezu za potvrdu
     reset_password: Resetuj lozinku
     rules:
       accept: Prihvati
@@ -1022,7 +1036,17 @@ sr-Latn:
       title: Neka osnovna pravila.
     security: Bezbednost
     set_new_password: Postavi novu lozinku
+    setup:
+      email_below_hint_html: Proverite svoju fasciklu neželjene pošte ili zatražite drugu. Možete da ispravite svoju adresu e-pošte ako je pogrešna.
+      email_settings_hint_html: Kliknite na vezu koji smo vam poslali da verifikujete %{email}. Čekaćemo ovde.
+      link_not_received: Niste dobili vezu?
+      new_confirmation_instructions_sent: Za nekoliko minuta primićete novu e-poruku sa vezom za potvrdu!
+      title: Proverite svoje prijemno sanduče
+    sign_in:
+      preamble_html: Prijavite se sa svojim podacima za <strong>%{domain}</strong>. Ako se Vaš nalog nalazi na drugom serveru, nećete moći da se prijavite ovde.
+      title: Prijavite se na %{domain}
     sign_up:
+      manual_review: Naši moderatori ručno pregledaju registracije na %{domain}. Da biste nam pomogli da obradimo vašu registraciju, napišite nešto o sebi i zašto želite nalog na %{domain}.
       preamble: Sa nalogom na ovom Mastodon serveru, moći ćete da pratite bilo koga sa mreže, bez obzira na to na kom serveru se njegov/njen nalog nalazi.
       title: Hajde da Vam namestimo nalog na %{domain}.
     status:
@@ -1215,7 +1239,9 @@ sr-Latn:
       one: "<strong>%{count}</strong> stavka koja se poklapa sa Vašom pretragom je izabrana."
       few: Sve <strong>%{count}</strong> stavke koje se poklapaju sa Vašom pretragom su izabrane.
       other: Svih <strong>%{count}</strong> stavki koje se poklapaju sa Vašom pretragom su izabrane.
+    cancel: Otkaži
     changes_saved_msg: Izmene uspešno sačuvane!
+    confirm: Potvrdi
     copy: Kopiraj
     delete: Izbriši
     deselect: Poništi sve izbore
@@ -1233,15 +1259,51 @@ sr-Latn:
       other: Nešto nije baš kako treba! Pregledajte %{count} grešaka ispod
   imports:
     errors:
+      empty: Prazna CSV datoteka
+      incompatible_type: Nekompatibilno sa izabranim tipom uvoza
       invalid_csv_file: 'Neispravan CSV fajl. Greška: %{error}'
       over_rows_processing_limit: sadrži više od %{count} redova
+      too_large: Datoteka je prevelika
+    failures: Neuspesi
+    imported: Uvezeno
+    mismatched_types_warning: Izgleda da ste možda izabrali pogrešan tip za ovaj uvoz, proverite još jednom.
     modes:
       merge: Stapanje
       merge_long: Zadržite postojeće zapise i dodajte nove
       overwrite: Zameni
       overwrite_long: Zameni trenutne zapise novima
+    overwrite_preambles:
+      blocking_html: Upravo ćete <strong>zameniti svoju listu blokiranih</strong> sa do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
+      bookmarks_html: Upravo ćete <strong>zameniti svoje obeleživače</strong> sa do <strong>%{total_items} objava</strong> iz <strong>%{filename}</strong>.
+      domain_blocking_html: Upravo ćete <strong>zameniti svoju listu blokiranih domena</strong> sa do <strong>%{total_items} domena</strong> iz <strong>%{filename}</strong>.
+      following_html: Upravo ćete <strong>pratiti</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong> and <strong>i prestati sa praćenjem bilo koga drugog</strong>.
+      muting_html: Upravo ćete <strong>zameniti svoju listu ignorisanih naloga</strong> sa do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Upravo ćete <strong>blokirati</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
+      bookmarks_html: Upravo ćete dodati do <strong>%{total_items} objava</strong> iz <strong>%{filename}</strong> u vaše <strong>obeleživače</strong>.
+      domain_blocking_html: Upravo ćete <strong>blokirati</strong> do <strong>%{total_items} domena</strong> iz <strong>%{filename}</strong>.
+      following_html: Upravo ćete <strong>pratiti</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
+      muting_html: Upravo ćete <strong>ignorisati</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
     preface: Možete uvesti podatke koje ste izvezli sa druge instance, kao što su liste ljudi koje ste pratili ili blokirali.
+    recent_imports: Nedavni uvozi
+    states:
+      finished: Završeno
+      in_progress: U toku
+      scheduled: Planirano
+      unconfirmed: Nepotvrđeno
+    status: Status
     success: Vaši podaci su uspešno otpremljeni i biće obrađeni uskoro
+    time_started: Započeto u
+    titles:
+      blocking: Uvoz blokiranih naloga
+      bookmarks: Uvoz obeleživača
+      domain_blocking: Uvoz blokiranih domena
+      following: Uvoz praćenih naloga
+      muting: Uvoz ignorisanih naloga
+    type: Tip uvoza
+    type_groups:
+      constructive: Praćenja i obeleživači
+      destructive: Blokiranja i ignorisanja
     types:
       blocking: Lista blokiranja
       bookmarks: Obeleživači
@@ -1336,6 +1398,10 @@ sr-Latn:
         subject: "%{name} je podneo/-la prijavu"
       sign_up:
         subject: "%{name} se registrovao/-la"
+    favourite:
+      body: '%{name} je postavio kao omiljen Vaš status:'
+      subject: "%{name} je postavio kao omiljen Vaš status"
+      title: Novi omiljeni
     follow:
       body: "%{name} Vas je zapratio!"
       subject: "%{name} Vas je zapratio"
@@ -1558,6 +1624,7 @@ sr-Latn:
     show_newer: Nikad ne prikazuj
     show_older: Prikaži starije
     show_thread: Prikaži niz
+    sign_in_to_participate: Prijavite se da učestvujete u razgovoru
     title: '%{name}: „%{quote}”'
     visibilities:
       direct: Direktno
@@ -1572,8 +1639,10 @@ sr-Latn:
     enabled_hint: Automatski briše vaše objave kada dostignu određeni starosni prag, osim ako se ne podudaraju sa jednim od izuzetaka u nastavku
     exceptions: Izuzeci
     explanation: Pošto je brisanje objava skupa operacija, ovo se radi polako tokom vremena kada server inače nije zauzet. Iz tog razloga, vaše objave mogu biti izbrisane neko vreme nakon što dostignu starosni prag.
+    ignore_favs: Ignoriši omiljene
     ignore_reblogs: Ignoriši podržavanja
     interaction_exceptions: Izuzeci zasnovani na interakcijama
+    interaction_exceptions_explanation: Imajte na umu da ne postoji garancija da će objave biti izbrisane ako broj označavanja kao omiljenih ili broj podržavanja padne ispod praga nakon što ga premaše.
     keep_direct: Zadrži direktne poruke
     keep_direct_hint: Ne briše nijednu od vaših direktnih poruka
     keep_media: Zadrži objave sa medijskim prilozima
@@ -1584,6 +1653,8 @@ sr-Latn:
     keep_polls_hint: Ne briše nijednu od vaših anketa
     keep_self_bookmark: Zadrži objave koje ste dodali u obeleživače
     keep_self_bookmark_hint: Ne briše vaše sopstvene objave ako ste ih dodlai u obeleživače
+    keep_self_fav: Zadrži omiljene objave
+    keep_self_fav_hint: Ne briše vaše sopstvene objave ako ste ih označili kao omiljene
     min_age:
       '1209600': 2 sedmice
       '15778476': 6 meseci
@@ -1594,6 +1665,8 @@ sr-Latn:
       '63113904': 2 godine
       '7889238': 3 meseca
     min_age_label: Starosni prag
+    min_favs: Zadrži objave označene kao omiljene najmanje
+    min_favs_hint: Ne briše nijednu vašu objavu koja je dobila najmanje ovaj broj omiljenih. Ostavite prazno za brisanje objava bez obzira na njihov broj omiljenih
     min_reblogs: Zadrži objave podržane barem
     min_reblogs_hint: Ne briše nijednu vašu objavu koja je bila podržana najmanje ovoliko puta. Ostavite prazno za brisanje objava bez obzira na njihov broj podržavanja
   stream_entries:
