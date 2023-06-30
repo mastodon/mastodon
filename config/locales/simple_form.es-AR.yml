@@ -80,7 +80,7 @@ es-AR:
         backups_retention_period: Conservar los archivos historiales generados por el usuario durante el número de días especificado.
         bootstrap_timeline_accounts: Estas cuentas serán fijadas a la parte superior de las recomendaciones de cuentas a seguir para nuevos usuarios.
         closed_registrations_message: Mostrado cuando los registros están cerrados
-        content_cache_retention_period: Los mensajes de otros servidores se eliminarán después del número especificado de días cuando se establezca un valor positivo. Esto puede ser irreversible.
+        content_cache_retention_period: Todos los mensajes y adhesiones de otros servidores se eliminarán después del número especificado de días. Es posible que algunos mensajes no sean recuperables. Todos los marcadores relacionados, mensajes marcados como favoritos y adhesiones también se perderán y será imposible de deshacer.
         custom_css: Podés aplicar estilos personalizados a la versión web de Mastodon.
         mascot: Reemplaza la ilustración en la interface web avanzada.
         media_cache_retention_period: Los archivos de medios descargados se eliminarán después del número especificado de días cuando se establezca un valor positivo, y se volverán a descargar a pedido.
@@ -170,7 +170,7 @@ es-AR:
       defaults:
         autofollow: Invitar para seguir tu cuenta
         avatar: Avatar
-        bot: Esta es una cuenta bot
+        bot: Esta es una cuenta automatizada
         chosen_languages: Filtrar idiomas
         confirm_new_password: Confirmar nueva contraseña
         confirm_password: Confirmar contraseña
@@ -181,7 +181,7 @@ es-AR:
         display_name: Nombre para mostrar
         email: Dirección de correo electrónico
         expires_in: Vence después de
-        fields: Metadatos de perfil
+        fields: Campos extras
         header: Cabecera
         honeypot: "%{label} (no rellenar)"
         inbox_url: Dirección web de la bandeja de entrada del relé
