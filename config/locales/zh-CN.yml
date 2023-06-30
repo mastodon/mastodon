@@ -374,6 +374,9 @@ zh-CN:
       undo: 不允许和该域名跨站交互
     domain_blocks:
       add_new: 添加新屏蔽域名
+      confirm_suspension:
+        cancel: 取消
+        confirm: 封禁
       created_msg: 正在进行域名屏蔽
       destroyed_msg: 域名屏蔽已撤销
       domain: 域名
@@ -947,6 +950,7 @@ zh-CN:
     notification_preferences: 更改电子邮件首选项
     salutation: "%{name}："
     settings: '使用此链接更改你的电子邮件首选项：%{link}'
+    unsubscribe: 取消订阅
     view: '点此链接查看详情：'
     view_profile: 查看个人资料页
     view_status: 查看嘟文
@@ -960,6 +964,8 @@ zh-CN:
     your_token: 你的访问令牌
   auth:
     apply_for_account: 申请账号
+    captcha_confirmation:
+      title: 安全检查
     confirmations:
       wrong_email_hint: 如果该电子邮件地址不正确，您可以在帐户设置中进行更改。
     delete_account: 删除帐户
@@ -998,6 +1004,7 @@ zh-CN:
       back: 返回
       preamble: 这些由 %{domain} 监察员设置和执行。
       title: 一些基本规则。
+      title_invited: 您已经被邀请。
     security: 账户安全
     set_new_password: 设置新密码
     setup:
@@ -1110,6 +1117,10 @@ zh-CN:
       your_appeal_rejected: 你的申诉已被驳回
   domain_validator:
     invalid_domain: 不是一个有效的域名
+  edit_profile:
+    basic_information: 基本信息
+    other: 其他
+    safety_and_privacy: 安全和隐私
   errors:
     '400': 你提交的请求无效或格式不正确。
     '403': 你没有访问这个页面的权限。
@@ -1296,6 +1307,11 @@ zh-CN:
     failed_sign_in_html: 失败的 %{method} 登录尝试，来自 %{ip} (%{browser})
     successful_sign_in_html: 通过 %{method} 成功登录，来自 %{ip} (%{browser})
     title: 认证历史
+  mail_subscriptions:
+    unsubscribe:
+      action: 是，取消订阅
+      complete: 已取消订阅
+      title: 取消订阅
   media_attachments:
     validations:
       images_and_video: 无法在嘟文中同时插入视频和图片
