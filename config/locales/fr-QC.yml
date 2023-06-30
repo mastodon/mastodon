@@ -34,7 +34,7 @@ fr-QC:
       approve: Approuver
       approved_msg: La demande d’inscription de %{username} a été approuvée avec succès
       are_you_sure: Voulez-vous vraiment faire ça ?
-      avatar: Avatar
+      avatar: Image de profil
       by_domain: Domaine
       change_email:
         changed_msg: Courriel modifié avec succès !
@@ -124,6 +124,8 @@ fr-QC:
       removed_header_msg: L’image d’en-tête de %{username} a été supprimée avec succès
       resend_confirmation:
         already_confirmed: Cet·te utilisateur·rice est déjà confirmé·e
+        send: Renvoyer le courriel de confirmation
+        success: Courriel de confirmation envoyé avec succès!
       reset: Réinitialiser
       reset_password: Réinitialiser le mot de passe
       resubscribe: Se réabonner
@@ -768,6 +770,7 @@ fr-QC:
         remove_from_report: Retirer du rapport
         report: Signalement
       deleted: Supprimé
+      favourites: Favoris
       history: Historique de version
       in_reply_to: Répondre à
       language: Langue
@@ -848,10 +851,14 @@ fr-QC:
       statuses:
         allow: Autoriser le message
         allow_account: Autoriser l'auteur·rice
+        description_html: Voici les messages dont votre serveur a connaissance qui sont beaucoup partagés et mis en favoris en ce moment. Cela peut aider vos utilisateur⋅rice⋅s, néophytes comme aguerri⋅e⋅s, à trouver plus de comptes à suivre. Aucun message n'est publiquement affiché tant que vous n'en avez pas approuvé l'auteur⋅rice, et seulement si icellui permet que son compte soit suggéré aux autres. Vous pouvez également autoriser ou rejeter les messages individuellement.
         disallow: Proscrire le message
         disallow_account: Proscrire l'auteur·rice
         no_status_selected: Aucune publication en tendance n'a été changée car aucune n'a été sélectionnée
         not_discoverable: L'auteur⋅rice n'a pas choisi de pouvoir être découvert⋅e
+        shared_by:
+          one: Partagé ou ajouté aux favoris une fois
+          other: Partagé et ajouté aux favoris %{friendly_count} fois
         title: Messages tendance
       tags:
         current_score: Score actuel %{score}
@@ -971,7 +978,6 @@ fr-QC:
     your_token: Votre jeton d’accès
   auth:
     apply_for_account: Demander un compte
-    change_password: Mot de passe
     confirmations:
       wrong_email_hint: Si cette adresse de courriel est incorrecte, vous pouvez la modifier dans vos paramètres de compte.
     delete_account: Supprimer le compte
@@ -980,6 +986,7 @@ fr-QC:
       prefix_invited_by_user: "@%{name} vous invite à rejoindre ce serveur Mastodon !"
       prefix_sign_up: Inscrivez-vous aujourd’hui sur Mastodon !
       suffix: Avec un compte, vous pourrez suivre des gens, publier des statuts et échanger des messages avec les utilisateur·rice·s de n'importe quel serveur Mastodon et bien plus !
+    didnt_get_confirmation: Vous n'avez pas reçu de lien de confirmation ?
     dont_have_your_security_key: Vous n'avez pas votre clé de sécurité?
     forgot_password: Mot de passe oublié ?
     invalid_reset_password_token: Le lien de réinitialisation du mot de passe est invalide ou a expiré. Merci de réessayer.
@@ -992,11 +999,16 @@ fr-QC:
     migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez le <a href="%{path}">configurer ici</a>.
     or_log_in_with: Ou authentifiez-vous avec
     privacy_policy_agreement_html: J’ai lu et j’accepte la <a href="%{privacy_policy_path}" target="_blank">politique de confidentialité</a>
+    progress:
+      confirm: Confirmez l'e-mail
+      details: Vos infos
+      rules: Accepter les règles
     providers:
       cas: CAS
       saml: SAML
     register: S’inscrire
     registration_closed: "%{instance} a désactivé les inscriptions"
+    resend_confirmation: Renvoyer le courriel de confirmation
     reset_password: Réinitialiser le mot de passe
     rules:
       accept: Accepter
@@ -1005,6 +1017,11 @@ fr-QC:
       title: Quelques règles de base.
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
+    setup:
+      new_confirmation_instructions_sent: Vous recevrez un nouveau courriel avec votre lien de confirmation dans quelques minutes!
+    sign_in:
+      preamble_html: Connectez-vous avec vos identifiants sur <strong>%{domain}</strong>. Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
+      title: Se connecter à %{domain}
     sign_up:
       preamble: Avec un compte sur ce serveur Mastodon, vous serez en mesure de suivre toute autre personne sur le réseau, quel que soit l’endroit où son compte est hébergé.
       title: Mettons les choses en place pour %{domain}.
@@ -1193,7 +1210,9 @@ fr-QC:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> élément correspondant à votre recherche est sélectionné."
       other: L'ensemble des <strong>%{count}</strong> éléments correspondant à votre recherche est sélectionné.
+    cancel: Annuler
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
+    confirm: Confirmer
     copy: Copier
     delete: Supprimer
     deselect: Tout déselectionner
@@ -1311,6 +1330,10 @@ fr-QC:
         subject: "%{name} a soumis un signalement"
       sign_up:
         subject: "%{name} s'est inscrit·e"
+    favourite:
+      body: '%{name} a ajouté votre message à ses favoris :'
+      subject: "%{name} a ajouté votre message à ses favoris"
+      title: Nouveau favori
     follow:
       body: "%{name} vous suit !"
       subject: "%{name} vous suit"
@@ -1527,6 +1550,7 @@ fr-QC:
     show_newer: Plus récents
     show_older: Plus anciens
     show_thread: Afficher le fil de discussion
+    sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
     title: '%{name} : « %{quote} »'
     visibilities:
       direct: Direct
@@ -1541,8 +1565,10 @@ fr-QC:
     enabled_hint: Supprime automatiquement vos messages une fois qu'ils ont atteint un seuil d'ancienneté défini, à moins qu'ils ne correspondent à l'une des exceptions ci-dessous
     exceptions: Exceptions
     explanation: Parce que la suppression de messages est une opération lourde, cela se fait lentement au fil du temps lorsque le serveur n'est pas autrement occupé. Pour cette raison, vos messages peuvent être supprimés un peu plus tard que le seuil d'ancienneté défini.
+    ignore_favs: Ignorer les favoris
     ignore_reblogs: Ignorer les partages
     interaction_exceptions: Exceptions basées sur les interactions
+    interaction_exceptions_explanation: Notez qu'il n'est pas garanti que les messages soient supprimés s'ils passent sous le seuil des favoris ou des partages une fois qu'ils les ont dépassés.
     keep_direct: Conserver les messages directs
     keep_direct_hint: Ne supprime aucun de vos messages directs
     keep_media: Conserver les messages avec des fichiers médias joints
@@ -1553,6 +1579,8 @@ fr-QC:
     keep_polls_hint: Ne supprime aucun de vos sondages
     keep_self_bookmark: Conserver les messages que vous avez mis en marque-page
     keep_self_bookmark_hint: Ne supprime pas vos propres messages si vous les avez ajoutés aux marque-pages
+    keep_self_fav: Conserver les messages que vous avez mis dans vos favoris
+    keep_self_fav_hint: Ne supprime pas vos propres messages si vous les avez ajoutés à vos favoris
     min_age:
       '1209600': 2 semaines
       '15778476': 6 mois
@@ -1563,6 +1591,8 @@ fr-QC:
       '63113904': 2 ans
       '7889238': 3 mois
     min_age_label: Seuil d'ancienneté
+    min_favs: Conserver les messages mis en favoris au moins
+    min_favs_hint: Ne supprime aucun de vos messages qui ont reçu au moins ce nombre de favoris. Laisser vide pour supprimer les messages quel que soit leur nombre de favoris
     min_reblogs: Conserver les messages partagés au moins
     min_reblogs_hint: Ne supprime aucun de vos messages qui ont été partagés au moins ce nombre de fois. Laisser vide pour supprimer les messages indépendamment de leur nombre de partages
   stream_entries:
@@ -1668,7 +1698,6 @@ fr-QC:
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
   verification:
-    explanation_html: 'Vous pouvez <strong>vous vérifier en tant que propriétaire des liens dans les métadonnées de votre profil</strong>. Pour cela, le site web lié doit contenir un lien vers votre profil Mastodon. Le lien de retour <strong>doit</strong> avoir un attribut <code>rel="me"</code> . Le texte du lien n’a pas d’importance. Voici un exemple :'
     verification: Vérification
   webauthn_credentials:
     add: Ajouter une nouvelle clé de sécurité
