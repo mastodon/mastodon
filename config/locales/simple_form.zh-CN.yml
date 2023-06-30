@@ -1,6 +1,10 @@
 zh-CN:
   simple_form:
     hints:
+      account:
+        display_name: 您的全名或昵称。
+        fields: 你的主页、人称代词、年龄，以及任何你想要添加的内容。
+        note: '您可以提及 @其他人 或 #标签 。'
       account_alias:
         acct: 指定你想要迁移过来的原账号：用户名@站点域名
       account_migration:
@@ -129,6 +133,7 @@ zh-CN:
         position: 用于在特定情况下处理决策冲突。一些特定操作只能对优先级更低的角色执行
       webhook:
         events: 选择要发送的事件
+        template: 使用变量插值来构建自己的JSON负载。如果要使用默认的JSON，请留空。
         url: 事件将被发往的目的地
     labels:
       account:
@@ -294,6 +299,7 @@ zh-CN:
         usable: 允许嘟文使用此话题标签
       user:
         role: 角色
+        time_zone: 时区
       user_role:
         color: 徽章颜色
         highlighted: 在用户资料中显示角色徽章
@@ -302,6 +308,7 @@ zh-CN:
         position: 优先级
       webhook:
         events: 已启用事件
+        template: 载荷模板
         url: 对端 URL
     'no': '否'
     not_recommended: 不推荐
