@@ -377,6 +377,12 @@ zh-CN:
       confirm_suspension:
         cancel: 取消
         confirm: 封禁
+        permanent_action: 撤销暂停不会恢复任何数据或关系。
+        preamble_html: 您将要暂停 <strong>%{domain}</strong> 及其子域。
+        remove_all_data: 这将从您的实例上删除此域名下账户的所有内容、媒体和个人资料数据。
+        stop_communication: 您的实例将停止与这些实例的通信。
+        title: 确认对 %{domain} 的封锁
+        undo_relationships: 这将解除你的实例与这些实例上账户之间的任何关注。
       created_msg: 正在进行域名屏蔽
       destroyed_msg: 域名屏蔽已撤销
       domain: 域名
@@ -719,6 +725,9 @@ zh-CN:
       branding:
         preamble: 你的服务器与网络中其他服务器的招牌区别。此信息将可能在多种环境下显示，包括 Mastodon 网页界面、原生应用和其他网站的链接预览等。因此应尽量简明扼要。
         title: 招牌
+      captcha_enabled:
+        desc_html: 这依赖于来自hCaptcha的外部脚本，可能会带来安全和隐私问题。此外，<strong>这可能使注册过程对某些人（尤其是残疾人）的注册简易程度大幅下降</strong>。出于这些原因，请考虑采取其他措施，如基于批准或邀请的注册方式。
+        title: 要求新用户输入验证码以确认他们的账户
       content_retention:
         preamble: 控制用户生成的内容在 Mastodon 中如何存储。
         title: 内容保留
@@ -965,6 +974,8 @@ zh-CN:
   auth:
     apply_for_account: 申请账号
     captcha_confirmation:
+      help_html: 如果您在输入验证码时遇到问题，可以通过%{email} 与我们联系，我们将为您提供帮助。
+      hint_html: 只剩最后一件事了！我们需要确认您是一个人类（这样我们才能阻止恶意访问！）。请输入下面的验证码，然后点击“继续”。
       title: 安全检查
     confirmations:
       wrong_email_hint: 如果该电子邮件地址不正确，您可以在帐户设置中进行更改。
@@ -1002,7 +1013,9 @@ zh-CN:
     rules:
       accept: 接受
       back: 返回
+      invited_by: '你可以加入%{domain}，这是由于你收到了他人的邀请，邀请来自：'
       preamble: 这些由 %{domain} 监察员设置和执行。
+      preamble_invited: 在您继续之前，请考虑 %{domain} 的管理员设定的基本规则。
       title: 一些基本规则。
       title_invited: 您已经被邀请。
     security: 账户安全
@@ -1119,6 +1132,7 @@ zh-CN:
     invalid_domain: 不是一个有效的域名
   edit_profile:
     basic_information: 基本信息
+    hint_html: "<strong>自定义公开资料和帖子旁边显示的内容。</strong>当您填写完整的个人资料并设置了头像时，其他人更有可能关注您并与您互动。"
     other: 其他
     safety_and_privacy: 安全和隐私
   errors:
@@ -1311,6 +1325,10 @@ zh-CN:
     unsubscribe:
       action: 是，取消订阅
       complete: 已取消订阅
+      confirmation_html: 您确定要取消订阅来自 %{domain} 上的 Mastodon 的 %{type} 到您的邮箱 %{email} 吗？您可以随时在<a href="%{settings_path}">电子邮件通知设置</a>重新订阅。
+      emails:
+        notification_emails:
+          favourite: 嘟文被喜欢邮件通知
       title: 取消订阅
   media_attachments:
     validations:
