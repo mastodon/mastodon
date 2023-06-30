@@ -960,7 +960,6 @@ ja:
     your_token: アクセストークン
   auth:
     apply_for_account: アカウントのリクエスト
-    change_password: パスワード
     confirmations:
       wrong_email_hint: メールアドレスが正しくない場合は、アカウント設定で変更できます。
     delete_account: アカウントの削除
@@ -1007,6 +1006,9 @@ ja:
       link_not_received: 確認メールを受信できない場合は
       new_confirmation_instructions_sent: 確認用のリンクを記載した新しいメールを送信しました
       title: 確認メールを送信しました
+    sign_in:
+      preamble_html: <strong>%{domain}</strong> の資格情報でサインインします。 あなたのアカウントが別のサーバーでホストされている場合は、ここでログインすることはできません。
+      title: '%{domain}にログイン'
     sign_up:
       manual_review: '%{domain} への登録にはモデレーターによる承認が必要です。審査の参考になるように、簡単な自己紹介や %{domain} に登録したい理由などを記入してください。'
       preamble: この Mastodon サーバーのアカウントがあれば、ネットワーク上の他の人のアカウントがどこでホストされているかに関係なく、その人をフォローすることができます。
@@ -1558,6 +1560,7 @@ ja:
     show_newer: 新しいものを表示
     show_older: 古いものを表示
     show_thread: スレッドを表示
+    sign_in_to_participate: ログインして会話に参加
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: ダイレクト
@@ -1705,7 +1708,6 @@ ja:
     seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'
   verification:
-    explanation_html: '<strong>プロフィール補足情報のリンクの所有者であることを認証できます</strong>。認証するには、リンク先のウェブサイトにMastodonプロフィールへのリンクを追加してください。リンクを追加後、このページで変更の保存を再実行すると認証が反映されます。プロフィールへのリンクには<code>rel="me"</code>属性を<strong>かならず</strong>付与してください。リンク内のテキストは自由に記述できます。以下は一例です：'
     verification: 認証
   webauthn_credentials:
     add: セキュリティキーを追加
