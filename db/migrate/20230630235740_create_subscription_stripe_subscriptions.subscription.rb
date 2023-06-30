@@ -6,7 +6,7 @@ class CreateSubscriptionStripeSubscriptions < ActiveRecord::Migration[6.1]
       t.bigint :invite_id
       t.string :subscription_id
       t.string :customer_id
-      t.integer :status
+      t.string :status
 
       t.timestamps
     end
