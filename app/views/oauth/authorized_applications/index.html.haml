@@ -14,7 +14,7 @@
         %strong.announcements-list__item__title
           = application.name
           - if application.superapp?
-            %span.account-role.moderator= t('doorkeeper.authorized_applications.index.superapp')
+            %span.information-badge.superapp= t('doorkeeper.authorized_applications.index.superapp')
 
       .announcements-list__item__action-bar
         .announcements-list__item__meta
