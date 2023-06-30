@@ -36,11 +36,11 @@ ko:
       by_domain: 도메인
       change_email:
         changed_msg: 이메일이 성공적으로 변경되었습니다!
-        current_email: 현재 이메일 주소
-        label: 이메일 주소 변경
-        new_email: 새 이메일 주소
-        submit: 이메일 주소 변경
-        title: '%{username}의 이메일 주소 변경'
+        current_email: 현재 이메일
+        label: 이메일 바꾸기
+        new_email: 새 이메일
+        submit: 이메일 바꾸기
+        title: '%{username}의 이메일 바꾸기'
       change_role:
         changed_msg: 역할이 성공적으로 변경되었습니다!
         label: 역할 변경
@@ -150,7 +150,7 @@ ko:
       suspension_irreversible: 이 계정의 데이터는 복구할 수 없도록 삭제되었습니다. 계정을 정지 해제함으로서 계정을 다시 사용 가능하게 할 수 있지만 이전에 삭제한 어떤 데이터도 복구되지 않습니다.
       suspension_reversible_hint_html: 계정이 정지되었습니다, 그리고 %{date}에 데이터가 완전히 삭제될 것입니다. 그 때까지는 어떤 안 좋은 효과 없이 계정이 복구 될 수 있습니다. 만약 지금 당장 계정의 모든 데이터를 삭제하고 싶다면, 아래에서 행할 수 있습니다.
       title: 계정
-      unblock_email: 이메일 주소 차단 해제
+      unblock_email: 이메일 차단 해제하기
       unblocked_email_msg: '%{username}의 이메일 주소를 성공적으로 차단 해제했습니다'
       unconfirmed_email: 확인되지 않은 이메일 주소
       undo_sensitized: 민감함으로 설정 취소
@@ -406,21 +406,21 @@ ko:
       undo: 도메인 차단 취소
       view: 도메인 차단 보기
     email_domain_blocks:
-      add_new: 새로 추가
+      add_new: 새로 추가하기
       attempts_over_week:
         other: "지난 주 동안 %{count}건의 가입 시도가 있었습니다"
       created_msg: 이메일 도메인 차단 규칙을 생성했습니다
-      delete: 삭제
+      delete: 삭제하기
       dns:
         types:
           mx: MX 레코드
       domain: 도메인
       new:
-        create: 차단 규칙 생성
+        create: 도메인 추가하기
         resolve: 도메인 검사
         title: 새 이메일 도메인 차단
       no_email_domain_block_selected: 아무 것도 선택 되지 않아 어떤 이메일 도메인 차단도 변경되지 않았습니다
-      not_permitted: 권한 없음
+      not_permitted: 허용하지 않음
       resolved_dns_records_hint_html: 도메인 네임은 다음의 MX 도메인으로 연결되어 있으며, 이메일을 받는데 필수적입니다. MX 도메인을 차단하면 같은 MX 도메인을 사용하는 어떤 이메일이라도 가입할 수 없게 되며, 보여지는 도메인이 다르더라도 적용됩니다. <strong>주요 이메일 제공자를 차단하지 않도록 조심하세요.</strong>
       resolved_through_html: '%{domain}을 통해 리졸빙됨'
       title: Email 도메인 차단
@@ -794,7 +794,7 @@ ko:
         version_comparison: Elasticsearch %{required_version}버전이 필요하지만 %{running_version}버전이 실행 중입니다.
       rules_check:
         action: 서버 규칙 관리
-        message_html: 아직 서버규칙을 정하지 않았습니다.
+        message_html: 아직 서버 규칙을 정하지 않았습니다.
       sidekiq_process_check:
         message_html: '%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요'
       upload_check_privacy_error:
@@ -836,13 +836,13 @@ ko:
       statuses:
         allow: 게시물 허용
         allow_account: 작성자 허용
-        description_html: 당신의 서버가 알기로 현재 많은 수의 공유와 좋아요가 되고 있는 게시물들입니다. 새로운 이용자나 돌아오는 이용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
+        description_html: 여기에 여러분의 서버가 알아낸, 이 순간 가장 많은 공유하고 좋아요를 받은 게시물이 있습니다. 새로운 이용자나 돌아오는 이용자들이 팔로우 할 사람을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
         disallow: 게시물 비허용
         disallow_account: 작성자 불허
         no_status_selected: 아무 것도 선택 되지 않아 어떤 유행중인 게시물도 바뀌지 않았습니다
         not_discoverable: 작성자가 발견되기를 원치 않습니다
         shared_by:
-          other: '%{friendly_count} 번 공유되고 좋아요됨'
+          other: '%{friendly_count} 번 공유되고 마음에 들어했습니다'
         title: 유행하는 게시물
       tags:
         current_score: 현재 %{score}점
@@ -960,7 +960,6 @@ ko:
     your_token: 액세스 토큰
   auth:
     apply_for_account: 가입 요청하기
-    change_password: 암호
     confirmations:
       wrong_email_hint: 만약 이메일 주소가 올바르지 않다면, 계정 설정에서 수정할 수 있습니다.
     delete_account: 계정 삭제
@@ -983,7 +982,7 @@ ko:
     or_log_in_with: 다른 방법으로 로그인 하려면
     privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">개인정보처리방침</a>을 읽고 동의합니다
     progress:
-      confirm: 이메일 확인
+      confirm: 이메일 확인하기
       details: 세부사항
       review: 심사 결과
       rules: 규정을 수락합니다.
@@ -1002,7 +1001,7 @@ ko:
     security: 보안
     set_new_password: 새 암호 설정
     setup:
-      email_below_hint_html: 스팸 폴더를 확인해 보거나, 다시 요청할 수 있습니다. 만약 이메일 주소를 잘못 입력했다면 수정할 수 있습니다.
+      email_below_hint_html: 스팸 폴더를 체크해보거나, 이메일 주소를 틀렸을 수 있으니 새 확인 링크를 요청해보세요.
       email_settings_hint_html: '%{email}을 인증하기 위해 우리가 보낸 링크를 누르세요. 여기서 기다리겠습니다.'
       link_not_received: 링크를 못 받으셨나요?
       new_confirmation_instructions_sent: 확인 링크가 담긴 이메일이 몇 분 안에 도착할것입니다!
@@ -1051,7 +1050,7 @@ ko:
   datetime:
     distance_in_words:
       about_x_hours: "%{count}시간"
-      about_x_months: "%{count}월"
+      about_x_months: "%{count} 개월"
       about_x_years: "%{count}년"
       almost_x_years: "%{count}년"
       half_a_minute: 지금
@@ -1060,12 +1059,12 @@ ko:
       over_x_years: "%{count}년"
       x_days: "%{count}일"
       x_minutes: "%{count}분"
-      x_months: "%{count}월"
+      x_months: "%{count} 개월"
       x_seconds: "%{count}초"
   deletes:
     challenge_not_passed: 입력한 정보가 올바르지 않습니다
     confirm_password: 본인 확인을 위해 현재 사용 중인 암호를 입력해 주십시오
-    confirm_username: 절차를 진행하려면 당신의 아이디를 입력하세요
+    confirm_username: 절차를 진행하려면 당신의 사용자명을 입력하세요
     proceed: 계정 삭제
     success_msg: 계정이 성공적으로 삭제되었습니다
     warning:
@@ -1077,15 +1076,15 @@ ko:
       email_reconfirmation_html: 아직 확인 메일이 도착하지 않은 경우, <a href="%{path}">다시 요청할 수 있습니다</a>
       irreversible: 계정을 복구하거나 다시 사용할 수 없게 됩니다
       more_details_html: 더 자세한 정보는, <a href="%{terms_path}">개인정보처리방침</a>을 참고하세요.
-      username_available: 해당 아이디는 다시 사용할 수 있게 됩니다
-      username_unavailable: 해당 아이디는 앞으로 사용할 수 없습니다
+      username_available: 당신의 계정명은 다시 사용할 수 있게 됩니다
+      username_unavailable: 당신의 계정명은 앞으로 사용할 수 없습니다
   disputes:
     strikes:
       action_taken: 내려진 징계
       appeal: 이의제기
       appeal_approved: 이 중재기록은 소명이 받아들여졌으며 더이상 유효하지 않습니다
       appeal_rejected: 소명이 기각되었습니다
-      appeal_submitted_at: 이의제기 접수됨
+      appeal_submitted_at: 이의제기 제출일
       appealed_msg: 당신의 이의제기가 접수되었습니다. 만약 승인된다면, 알림을 받게 될 것입니다.
       appeals:
         submit: 이의 제출
@@ -1097,7 +1096,7 @@ ko:
       reject_appeal: 이의 제기 거절
       status: '게시물 #%{id}'
       status_removed: 게시물이 이미 시스템에서 지워졌습니다
-      title: "%{action} (%{date}에)"
+      title: "%{action}: %{date}"
       title_actions:
         delete_statuses: 게시물 삭제
         disable: 계정 동결
@@ -1106,9 +1105,9 @@ ko:
         sensitive: 계정을 민감함으로 표시
         silence: 계정의 제한
         suspend: 계정 정지
-      your_appeal_approved: 당신의 소명이 받아들여졌습니다
+      your_appeal_approved: 소명이 받아들여졌습니다
       your_appeal_pending: 소명을 제출했습니다
-      your_appeal_rejected: 당신의 소명이 기각되었습니다
+      your_appeal_rejected: 소명이 기각되었습니다
   domain_validator:
     invalid_domain: 올바른 도메인 네임이 아닙니다
   errors:
@@ -1348,8 +1347,8 @@ ko:
       sign_up:
         subject: "%{name} 님이 가입했습니다"
     favourite:
-      body: '내 게시물을 %{name} 님이 좋아합니다:'
-      subject: "%{name} 님이 내 게시물을 좋아합니다"
+      body: '당신의 게시물을 %{name} 님이 마음에 들어했습니다:'
+      subject: "%{name} 님이 내 게시물을 마음에 들어했습니다"
       title: 새 좋아요
     follow:
       body: "%{name} 님이 나를 팔로우했습니다!"
@@ -1435,8 +1434,8 @@ ko:
     followers: 팔로워
     following: 팔로잉
     invited: 초대함
-    last_active: 마지막 활동
-    most_recent: 가장 최근
+    last_active: 최근 활동
+    most_recent: 최신
     moved: 이동함
     mutual: 상호 팔로우
     primary: 주 계정
@@ -1460,7 +1459,7 @@ ko:
     over_total_limit: 예약 게시물 제한 %{limit}을 초과합니다
     too_soon: 예약 날짜는 미래여야 합니다
   sessions:
-    activity: 마지막 활동
+    activity: 최근 활동
     browser: 브라우저
     browsers:
       alipay: 알리페이
@@ -1561,7 +1560,7 @@ ko:
     show_newer: 새로운 것 표시
     show_older: 오래된 것 표시
     show_thread: 글타래 보기
-    sign_in_to_participate: 로그인 하여 이 대화에 참여하기
+    sign_in_to_participate: 대화에 참여 위해 로그인 하기
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: 다이렉트
@@ -1590,15 +1589,15 @@ ko:
     keep_polls_hint: 투표를 삭제하지 않습니다
     keep_self_bookmark: 북마크한 게시물 유지
     keep_self_bookmark_hint: 북마크한 본인의 게시물을 삭제하지 않습니다
-    keep_self_fav: 내가 좋아요한 게시물 유지
-    keep_self_fav_hint: 스스로 좋아요를 누른 본인의 게시물을 삭제하지 않습니다
+    keep_self_fav: 마음에 들어한 게시물 유지
+    keep_self_fav_hint: 내 스스로 마음에  들어한 본인의 게시물을 삭제하지 않습니다
     min_age:
       '1209600': 2 주
       '15778476': 6 개월
       '2629746': 1 개월
       '31556952': 1 년
       '5259492': 2 개월
-      '604800': 1주일
+      '604800': 1 주
       '63113904': 2 년
       '7889238': 3 개월
     min_age_label: 기한
@@ -1642,11 +1641,11 @@ ko:
   user_mailer:
     appeal_approved:
       action: 내 계정으로 가기
-      explanation: '%{strike_date}의 중재사항에 대해 제출한 소명이 %{appeal_date}에 승낙되었습니다. 귀하의 계정이 다시 정상화되었습니다.'
+      explanation: '%{strike_date}에 일어난 중재결정에 대한 소명을 %{appeal_date}에 작성했으며 승낙되었습니다. 당신의 계정은 정상적인 상태로 돌아왔습니다.'
       subject: 귀하가 %{date}에 작성한 소명이 승낙되었습니다
       title: 소명이 받아들여짐
     appeal_rejected:
-      explanation: '%{strike_date}의 중재사항에 대해 제출한 소명이 %{appeal_date}에 반려되었습니다.'
+      explanation: '%{strike_date}에 일어난 중재결정에 대한 소명을 %{appeal_date}에 작성했지만 반려되었습니다.'
       subject: '%{date}에 작성한 소명이 반려되었습니다.'
       title: 이의 제기가 거절되었습니다
     backup_ready:
@@ -1668,11 +1667,11 @@ ko:
         violation: 콘텐츠가 다음의 커뮤니티 규정을 위반합니다
       explanation:
         delete_statuses: 귀하의 게시물 중 일부가 하나 이상의 커뮤니티 가이드라인을 위반한 것으로 확인되어 %{instance}의 중재자에 의해 삭제되었습니다.
-        disable: 당신은 더이상 당신의 계정을 사용할 수 없습니다, 하지만 프로필과 다른 데이터들은 여전히 그대로 남아있습니다. 당신의 데이터에 대한 백업을 요청하거나, 계정 설정을 변경 또는 계정을 삭제할 수 있습니다.
+        disable: 귀하의 계정은 이제 이용할 수 없습니다만, 프로필과 다른 데이터들은 여전히 그대로 남아있습니다. 귀하의 데이터 백업을 요청하거나, 계정의 설정을 변경 또는 삭제할 수 있습니다.
         mark_statuses_as_sensitive: 당신의 몇몇 게시물들은 %{instance}의 중재자에 의해 민감함으로 설정되었습니다. 이것은 사람들이 미리보기를 보기 전에 미디어를 한번 눌러야 함을 의미합니다. 당신은 스스로도 자신의 게시물을 작성할 때 미디어를 민감함으로 설정할 수 있습니다.
         sensitive: 지금부터는, 당신이 업로드한 미디어 파일들은 민감함 표시가 뜨게 되고 클릭해야만 볼 수 있다는 경고문 뒤에 가려지게 됩니다.
         silence: 당신은 여전히 당신의 계정을 사용할 수 있지만 당신을 팔로우 하고 있는 사람들만 당신의 게시물을 볼 수 있으며, 여러가지 탐색 기능에서 제외됩니다. 하지만, 여전히 다른 사람들은 수동으로 당신을 팔로우 할 수 있습니다.
-        suspend: 당신은 더이상 당신의 계정을 사용할 수 없으며, 프로필과 데이터는 접근 불가능하게 됩니다. 데이터가 완전히 삭제되기 전인 30일동안은 여전히 백업을 요청하기 위해 로그인 할 수 있습니다, 하지만 계정 정지를 회피하는 것을 방지하기 위하여 몇 가지 정보는 유지됩니다.
+        suspend: 귀하의 계정은 이제 이용할 수 없으며, 프로필과 그 밖의 데이터에 접근할 수 없습니다. 귀하는 데이터가 완전히 삭제되기 전인 30일 간 여전히 백업을 요청하기 위해 로그인 할 수 있습니다만, 저희는 계정 정지의 회피 수단을 방지하기 위해 몇 기본 자료를 유지합니다.
       reason: '사유:'
       statuses: '인용된 게시물:'
       subject:
@@ -1709,7 +1708,6 @@ ko:
     seamless_external_login: 외부 서비스를 이용해 로그인했으므로 이메일과 암호는 설정할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'
   verification:
-    explanation_html: '<strong>내 프로필 메타데이터에 담긴 링크의 소유 여부를 검증</strong>할 수 있습니다. 이를 위해서 반드시 링크한 웹사이트에 Mastodon 프로필에 대한 역링크가 포함되어야 합니다. 링크를 추가한 후 이곳으로 돌아와서 프로필을 다시 저장해야 인증을 적용할 수 있습니다. 돌아오는 링크에는 <strong>반드시</strong> <code>rel="me"</code> 속성이 있어야 합니다. 링크의 텍스트 콘텐트는 중요하지 않습니다. 다음 예제를 참고하세요:'
     verification: 검증
   webauthn_credentials:
     add: 보안 키 추가
