@@ -215,7 +215,6 @@ ka:
     warning: იყავით ძალიან ფრთხილად ამ მონაცემთან. არასდროს გააზიაროთ ეს!
     your_token: თქვენი წვდომის ტოკენი
   auth:
-    change_password: პაროლი
     delete_account: ანგარიშის გაუქმება
     delete_account_html: თუ გსურთ გააუქმოთ თქვენი ანგარიში, შეგიძლიათ <a href="%{path}">გააგრძელოთ აქ</a>. საჭირო იქნება დამოწმება.
     forgot_password: დაგავიწყდათ პაროლი?
@@ -348,6 +347,10 @@ ka:
   moderation:
     title: მოდერაცია
   notification_mailer:
+    favourite:
+      body: 'თქვენი სტატუსი ფავორიტი გახადა %{name}-მა:'
+      subject: "%{name}-მა თქვენი სტატუსი გახადა ფავორიტი"
+      title: ახალი ფავორიტი
     follow:
       body: "%{name} ახლა მოგყვებათ!"
       subject: "%{name} ახლა მოგყვებათ"
@@ -453,6 +456,7 @@ ka:
       ownership: სხვისი ტუტი ვერ აიპინება
       reblog: ბუსტი ვერ აიპინება
     show_more: მეტის ჩვენება
+    sign_in_to_participate: საუბარში მონაწილეობისთვის გაიარეთ ავტორიზაცია
     visibilities:
       private: მხოლოდ-მიმდევრები
       private_long: აჩვენე მხოლოდ მიმდევრებს
