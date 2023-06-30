@@ -1329,6 +1329,12 @@ zh-CN:
       emails:
         notification_emails:
           favourite: 嘟文被喜欢邮件通知
+          follow: 账户被关注邮件通知
+          follow_request: 关注请求邮件通知
+          mention: 账户被提及邮件通知
+          reblog: 被转嘟邮件通知
+      resubscribe_html: 如果您不小心取消订阅，可以从您的<a href="%{settings_path}">电子邮件通知设置</a>重新订阅。
+      success_html: 您将不会在您的邮箱 %{email} 中收到 %{domain} 上的 Mastodon的 %{type}
       title: 取消订阅
   media_attachments:
     validations:
@@ -1445,6 +1451,7 @@ zh-CN:
       expired: 投票已经结束
       invalid_choice: 被选中的投票选项不存在
       over_character_limit: 每条不能超过 %{max} 个字符
+      self_vote: 您不能参与自己发起的投票
       too_few_options: 至少需要两个选项
       too_many_options: 不能超过 %{max} 项
   preferences:
@@ -1742,7 +1749,12 @@ zh-CN:
     seamless_external_login: 因为你是通过外部服务登录的，所以密码和电子邮件地址设置都不可用。
     signed_in_as: '当前登录的账户：'
   verification:
+    extra_instructions_html: <strong>提示：</strong>您网站上的链接可能是不可见的。重要的部分是 <code>rel="me"</code>，它可以防止在具有用户生成内容的网站上冒充身份。您甚至可以在页面头部使用 <code>link</code> 标签而不是 <code>a</code>，但 HTML 必须能够在不执行 JavaScript 的情况下访问。
+    here_is_how: 具体方法如下：
+    hint_html: "<strong>在Mastodon上验证您的身份对每个人都是必要的。</strong>基于开放网络标准，现在和将来永远免费。您只需要一个被人们认可的个人网站。当您在个人资料中链接到这个网站时，我们会检查该网站是否回链到您的资料，并显示一个指示符号。"
+    instructions_html: 将下面的代码复制并粘贴到您网站的HTML中。然后在“编辑个人资料”选项卡中的附加字段之一添加您网站的地址，并保存更改。
     verification: 验证
+    verified_links: 您已验证的链接
   webauthn_credentials:
     add: 添加新的安全密钥
     create:
