@@ -506,7 +506,6 @@ sc:
     warning: Dae cara a custos datos. Non ddos cumpartzas mai cun nemos!
     your_token: S'identificadore tuo de atzessu
   auth:
-    change_password: Crae
     delete_account: Cantzella su contu
     delete_account_html: Si boles cantzellare su contu, ddu podes <a href="%{path}">fàghere inoghe</a>. T'amus a dimandare una cunfirmatzione.
     description:
@@ -741,6 +740,10 @@ sc:
     carry_mutes_over_text: Custa persone s'est tramudada dae %{acct}, chi as postu a sa muda.
     copy_account_note_text: 'Custa persone s''est tramudada dae %{acct}, custas sunt is notas antepostas tuas chi ddi pertocant:'
   notification_mailer:
+    favourite:
+      body: '%{name} at marcadu comente a preferidu s''istadu tuo:'
+      subject: "%{name} at marcadu comente a preferidu s'istadu tuo"
+      title: Preferidu nou
     follow:
       body: "%{name} t'est sighende!"
       subject: "%{name} t'est sighende"
@@ -927,6 +930,7 @@ sc:
     show_newer: Ammustra is prus noos
     show_older: Ammustra is prus betzos
     show_thread: Ammustra su tema
+    sign_in_to_participate: Identìfica·ti pro partetzipare in s'arresonada
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Deretu
