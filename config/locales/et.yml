@@ -741,6 +741,7 @@ et:
         title: Märgistus
       captcha_enabled:
         desc_html: See tugineb välistele hCaptcha skriptidele, mis võib olla turvalisuse ja privaatsuse probleem. Lisaks <strong>võib see muuta registreerimisprotsessi mõnede inimeste (eriti puudega inimeste) jaoks, oluliselt vähem ligipääsetavaks.</strong> Neil põhjustel kaalu palun teisi võimalusi, näiteks kinnitamis- või kutsepõhiseid registreerimislahendusi.
+        title: Nõua uutelt kasutajatelt konto kinnitamiseks CAPTCHA lahendamist
       content_retention:
         preamble: Määra, kuidas kasutajate loodud sisu Mastodonis talletatakse.
         title: Sisu talletamine
@@ -976,6 +977,7 @@ et:
     notification_preferences: Muuda e-kirjade eelistusi
     salutation: "%{name}!"
     settings: 'Muuda e-kirjade eelistusi: %{link}'
+    unsubscribe: Loobu tellimisest
     view: 'Vaade:'
     view_profile: Vaata profiili
     view_status: Vaata postitust
@@ -989,6 +991,10 @@ et:
     your_token: Su juurdepääsutunnus
   auth:
     apply_for_account: Konto taotluse esitamine
+    captcha_confirmation:
+      help_html: Kui sul on probleeme CAPTCHA lahendamisega, saad meiega kontakti võta %{email} kaudu ja saame pakkuda sulle tuge.
+      hint_html: Üks asi veel! Me peame veenduma, et oled inimene (et me saaksime spämmi väljaspoole jätta!). Lahenda allpool olev CAPTCHA ja klõpsa "Jätka".
+      title: Turvalisuse kontroll
     confirmations:
       wrong_email_hint: Kui see e-postiaadress pole korrektne, saad seda kontosätetes muuta.
     delete_account: Konto kustutamine
@@ -1025,8 +1031,11 @@ et:
     rules:
       accept: Nõus
       back: Tagasi
+      invited_by: 'Saad ühineda paigaga %{domain} tänu saadud kutsele, mille said kohast:'
       preamble: Neist kinnipidamist jälgivad %{domain} moderaatorid.
+      preamble_invited: Enne jätkamist kaalu põhireegleid, mille on kehtestanud %{domain} moderaatorid.
       title: Mõned põhireeglid.
+      title_invited: Oled kutsutud.
     security: Turvalisus
     set_new_password: Uue salasõna määramine
     setup:
@@ -1139,6 +1148,11 @@ et:
       your_appeal_rejected: Vaidlustus on tagasi lükatud
   domain_validator:
     invalid_domain: ei ole sobiv domeeni nimi
+  edit_profile:
+    basic_information: Põhiinfo
+    hint_html: "<strong>Kohanda, mida inimesed näevad su avalikul profiilil ja postituste kõrval.</strong> Inimesed alustavad tõenäolisemalt sinu jälgimist ja interakteeruvad sinuga, kui sul on täidetud profiil ja profiilipilt."
+    other: Muu
+    safety_and_privacy: Turvalisus ja privaatsus
   errors:
     '400': Esitatud päring oli vigane või valesti vormindatud.
     '403': Sul puudub õigus seda lehte vaadata.
@@ -1333,6 +1347,17 @@ et:
     failed_sign_in_html: Nurjunud sisenemine meetodiga %{method} aadressilt %{ip} (%{browser})
     successful_sign_in_html: Edukas sisenemine meetodiga %{method} aadressilt %{ip} (%{browser})
     title: Autentimise ajalugu
+  mail_subscriptions:
+    unsubscribe:
+      action: Jah, lõpeta tellimine
+      complete: Tellimine lõpetatud
+      confirmation_html: Oled kindel, et soovid lõpetada domeenilt %{domain} Mastodoni %{type} teadete tellimise oma e-postile %{email}? Saad alati neid teavitusi uuesti tellida oma <a href="%{settings_path}">e-posti teavituste seadetest</a>.
+      emails:
+        notification_emails:
+          favourite: lemmikuks märkimise e-kirjad
+          follow: jälgimisest teatamise e-kirjad
+          follow_request: jälgimise taotluse e-kirjad
+          mention: mainimistest teatamise e-kirjad
   media_attachments:
     validations:
       images_and_video: Ei saa lisada video postitusele, milles on juba pildid
