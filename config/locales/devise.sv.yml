@@ -12,6 +12,8 @@ sv:
       locked: Ditt konto är låst.
       not_found_in_database: Ogiltigt %{authentication_keys} eller lösenord.
       pending: Ditt konto granskas fortfarande.
+      timeout: Din session har avslutats. Vänligen logga in igen för att fortsätta.
+      unauthenticated: Du måste logga in eller registrera dig innan du fortsätter.
       unconfirmed: Du måste bekräfta din e-postadress innan du fortsätter.
     mailer:
       confirmation_instructions:
@@ -99,6 +101,7 @@ sv:
     unlocks:
       send_instructions: Du kommer att få ett mail med instruktioner om hur du låser upp ditt konto inom några minuter. Kontrollera din spammapp om du inte fick det här e-postmeddelandet.
       send_paranoid_instructions: Om ditt konto finns, får du ett mail med instruktioner om hur du låser upp det på några minuter. Kontrollera din spammapp om du inte fick det här e-postmeddelandet.
+      unlocked: Ditt konto ha låsts upp. Vänligen logga in för att fortsätta.
   errors:
     messages:
       already_confirmed: var redan bekräftad, var god försök att logga in
