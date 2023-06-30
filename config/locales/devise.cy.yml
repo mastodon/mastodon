@@ -12,6 +12,8 @@ cy:
       locked: Mae eich cyfrif wedi ei gloi.
       not_found_in_database: '%{authentication_keys} neu gyfrinair annilys.'
       pending: Mae eich cyfrif dal o dan adolygiad.
+      timeout: Mae eich sesiwn wedi dod i ben. Mewngofnodwch eto i barhau.
+      unauthenticated: Mae angen i chi fewngofnodi neu gofrestru cyn parhau.
       unconfirmed: Mae rhaid i chi gadarnhau eich cyfeiriad e-bost cyn parhau.
     mailer:
       confirmation_instructions:
@@ -99,6 +101,7 @@ cy:
     unlocks:
       send_instructions: Mi fyddwch yn derbyn e-bost a chyfarwyddiadau ynghylch sut i ddatgloi eich cyfrif ymhen cwpl o funudau. Edrychwch yn eich ffolder sbam os na dderbynioch chi'r e-bost hwn os gwelwch yn dda.
       send_paranoid_instructions: Os yw eich cyfrif yn bodoli, mi fyddwch yn derbyn e-bost a cyfarwyddiadau o sut i ddatgloi eich cyfrif ymhen cwpl o funudau. Edrychwch yn eich ffolder sbam os na dderbynioch chi'r e-bost hwn, os gwelwch yn dda.
+      unlocked: Mae eich cyfrif wedi ei ddatgloi'n llwyddiannus. Mewngofnodwch i barhau.
   errors:
     messages:
       already_confirmed: wedi'i gadarnhau eisoes, ceisiwch fewngofnodi
