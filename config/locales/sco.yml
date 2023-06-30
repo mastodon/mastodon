@@ -730,6 +730,7 @@ sco:
         remove_from_report: Remove fae clype
         report: Clype
       deleted: Deletit
+      favourites: Favourites
       history: Version history
       in_reply_to: Replyin tae
       language: Leid
@@ -802,10 +803,14 @@ sco:
       statuses:
         allow: Alloo post
         allow_account: Alloo author
+        description_html: Thir's posts thit yer server kens aboot thit's bein shared an favourited a lot the noo. It kin help yer new an returnin uisers fir tae fin mair fowk tae follae. Nae posts get displayed publicly tae ye approve the author, an the author alloos their accoont tae be suggestit tae ithers. Ye kin alloo or rejeck individual posts tae.
         disallow: Disalloo post
         disallow_account: Disalloo author
         no_status_selected: Nae trendin posts wis chynged as naen wis selectit
         not_discoverable: Author haesnae optit-in tae bein discoverable
+        shared_by:
+          one: Shared or favouritit ae time
+          other: Shared an favouritit %{friendly_count} times
         title: Trendin posts
       tags:
         current_score: Current score %{score}
@@ -924,7 +929,6 @@ sco:
     your_token: Yer access token
   auth:
     apply_for_account: Request a accoont
-    change_password: Passwird
     delete_account: Delete accoont
     delete_account_html: If ye'r wantin tae delete yer accoont, ye kin <a href="%{path}">dae it here</a>. Ye'll get asked fir confirmation.
     description:
@@ -1255,6 +1259,10 @@ sco:
         subject: "%{name} submittit a clype"
       sign_up:
         subject: "%{name} signt up"
+    favourite:
+      body: 'Yer post wis favouritit bi %{name}:'
+      subject: "%{name} favouritit yer post"
+      title: New favourite
     follow:
       body: "%{name} is noo follaein ye!"
       subject: "%{name} is noo follaein ye"
@@ -1463,6 +1471,7 @@ sco:
     show_newer: Shaw newer
     show_older: Shaw aulder
     show_thread: Shaw threid
+    sign_in_to_participate: Sign in fir tae tak pairt in the conversation
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direck
@@ -1477,8 +1486,10 @@ sco:
     enabled_hint: Automatically deletes yer posts ance they reach a specified age threshold, unless they match ane o the exceptions ablow
     exceptions: Exceptions
     explanation: Acause deletin posts is an expensive operation, this is duin slow ower time whan the server isnae itherwise busy. Fir this raison, yer posts wull mibbie be deletit a wee while efter they reach the age threshaud.
+    ignore_favs: Ignore favourites
     ignore_reblogs: Ignore heezes
     interaction_exceptions: Exceptions based on interactions
+    interaction_exceptions_explanation: Note thit there nae guarantee fir posts tae get deletit if they gae ablow the favourite or heeze threshaud efter haein ance went ower them.
     keep_direct: Keep direck messages
     keep_direct_hint: Disnae delete onie o yer direck messages
     keep_media: Keep posts wi media attachments
@@ -1489,6 +1500,8 @@ sco:
     keep_polls_hint: Disnae delete onie o yer polls
     keep_self_bookmark: Keep posts thit ye buikmairkt
     keep_self_bookmark_hint: Disnae delete yer ain posts if ye'v buikmairkt them
+    keep_self_fav: Keep posts thit ye favouritit
+    keep_self_fav_hint: Disnae delete yer ain posts if ye'v favouritit them
     min_age:
       '1209600': 2 weeks
       '15778476': 6 month
@@ -1499,6 +1512,7 @@ sco:
       '63113904': 2 year
       '7889238': 3 month
     min_age_label: Age threshaud
+    min_favs: Keep posts favouritit at least
     min_reblogs: Keep posts heezed at least
     min_reblogs_hint: Disnae delete onie o yer posts thit's been heezed at least this nummer o times. Lea blank fir tae delete posts regairdless o their number o heezes
   stream_entries:
