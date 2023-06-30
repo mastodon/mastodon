@@ -730,6 +730,8 @@ fr-QC:
       branding:
         preamble: L'image de marque de votre serveur la différencie des autres serveurs du réseau. Ces informations peuvent être affichées dans nombre d'environnements, tels que l'interface web de Mastodon, les applications natives, dans les aperçus de liens sur d'autres sites Web et dans les applications de messagerie, etc. C'est pourquoi il est préférable de garder ces informations claires, courtes et concises.
         title: Thème
+      captcha_enabled:
+        title: Obliger les nouveaux utilisateurs à résoudre un CAPTCHA pour vérifier leur compte
       content_retention:
         preamble: Contrôle comment le contenu créé par les utilisateurs est enregistré et stocké dans Mastodon.
         title: Rétention du contenu
@@ -965,6 +967,7 @@ fr-QC:
     notification_preferences: Modifier les préférences de courriel
     salutation: "%{name},"
     settings: 'Changer les préférences courriel : %{link}'
+    unsubscribe: Se désabonner
     view: 'Voir :'
     view_profile: Voir le profil
     view_status: Afficher le message
@@ -978,6 +981,8 @@ fr-QC:
     your_token: Votre jeton d’accès
   auth:
     apply_for_account: Demander un compte
+    captcha_confirmation:
+      help_html: Si vous ne pouvez pas résoudre le CAPTCHA, vous pouvez nous contacter via %{email} et nous pouvons vous aider.
     confirmations:
       wrong_email_hint: Si cette adresse de courriel est incorrecte, vous pouvez la modifier dans vos paramètres de compte.
     delete_account: Supprimer le compte
@@ -1122,6 +1127,8 @@ fr-QC:
       your_appeal_rejected: Votre appel a été rejeté
   domain_validator:
     invalid_domain: n’est pas un nom de domaine valide
+  edit_profile:
+    safety_and_privacy: Sécurité et confidentialité
   errors:
     '400': La demande que vous avez soumise est invalide ou mal formée.
     '403': Vous n’avez pas accès à cette page.
