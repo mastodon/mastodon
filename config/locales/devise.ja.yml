@@ -12,6 +12,8 @@ ja:
       locked: アカウントはロックされました。
       not_found_in_database: '%{authentication_keys}かパスワードが誤っています。'
       pending: あなたのアカウントはまだ承認待ちです。
+      timeout: セッションの有効期限が切れました。続行するには再度ログインしてください。
+      unauthenticated: 続行するにはログインするか、アカウントを作成してください。
       unconfirmed: 続行するにはメールアドレスを確認する必要があります。
     mailer:
       confirmation_instructions:
@@ -99,6 +101,7 @@ ja:
     unlocks:
       send_instructions: まもなくアカウントのロックを解除するための方法を記載したメールが送信されます。
       send_paranoid_instructions: もしアカウントが存在すれば、まもなくアカウントのロックを解除するための方法を記載したメールが送信されます。
+      unlocked: アカウントロックは正常に解除されました。続行するにはログインしてください。
   errors:
     messages:
       already_confirmed: は確認されました。ログインを試してください
