@@ -767,6 +767,7 @@ sq:
         remove_from_report: Hiqe prej raportimit
         report: Raportojeni
       deleted: E fshirë
+      favourites: Të parapëlqyer
       history: Historik versioni
       in_reply_to: Përgjigje për
       language: Gjuhë
@@ -846,14 +847,14 @@ sq:
       statuses:
         allow: Lejo postim
         allow_account: Lejo autor
-        description_html: Këto janë postime që shërbyesi juaj di se tani po ndahen shpesh me të tjerë dhe po shndërrohen në të pëlqyer. Kjo mund të ndihmojë përdorues tuajt të rinj dhe të rikthyer të gjejnë më tepër persona për ndjekje. S’shfaqet ndonjë postim publikisht, pa miratuar ju autorin dhe autori lejon që llogaria e tij t’u sugjerohet të tjerëve. Mundeni edhe të lejoni ose të hidhni tej postime individuale.
+        description_html: Këto janë postime të cilat shërbyesi juaj di se po ndahen shumë dhe po zgjidhen si të parapëlqyera për çastin. Mund të ndihmojnë përdoruesit tuaj të rinj dhe të riardhur të gjejnë më tepër vetë për të ndjekur. S’shfaqen postime publikisht, pa miratuar ju autorin dhe autori lejon që llogaria e tij t’u sugjerohet të tjerëve. Mundeni edhe të lejoni, ose hidhni, poshtë postime individuale.
         disallow: Mos lejo postim
         disallow_account: Mos lejo autor
         no_status_selected: S’u ndryshuan postime në modë, ngaqë s’qe përzgjedhur i tillë
         not_discoverable: Autori s’ka zgjedhur të jetë i zbulueshëm
         shared_by:
-          one: Ndarë ose parapëlqyer një herë
-          other: Ndarë ose parapëlqyer %{friendly_count} herë
+          one: Ndarë me të tjerë, ose shënuar si e parapëlqyer një herë
+          other: Ndarë me të tjerë, ose shënuar si e parapëlqyer %{friendly_count} herë
         title: Postime në modë
       tags:
         current_score: Vlera aktuale %{score}
@@ -971,7 +972,6 @@ sq:
     your_token: Token-i juaj për hyrje
   auth:
     apply_for_account: Kërkoni një llogari
-    change_password: Fjalëkalim
     confirmations:
       wrong_email_hint: Nëse ajo adresë email s’është e saktë, mund ta ndryshoni te rregullimet e llogarisë.
     delete_account: Fshije llogarinë
@@ -1019,7 +1019,7 @@ sq:
       new_confirmation_instructions_sent: Pas pak minutash do të merrni një email të ri me lidhjen e ripohimit!
       title: Shihni te email-et tuaj
     sign_in:
-      preamble_html: Bëni hyrjen me kredencialet tuaja <strong>%{domain}</strong>. Nëse llogaria juaj strehohet në një shërbyes tjetër, s’do të jeni në gjendje të bëni hyrjen këtu.
+      preamble_html: Hyni me kredencialet tuaja për te <strong>%{domain}</strong>. Nëse llogaria juaj strehohet në një tjetër shërbyes, s’do të jeni në gjendje të bëni hyrjen këtu.
       title: Bëni hyrjen te %{domain}
     sign_up:
       manual_review: Regjistrimet te %{domain} kalojnë një shqyrtim dorazi nga moderatorët tanë. Që të na ndihmoni të përfundojmë regjistrimin tuaj, na shkruani pakëz mbi veten dhe pse doni një llogari në %{domain}.
@@ -1367,9 +1367,9 @@ sq:
       sign_up:
         subject: "%{name} u regjistrua"
     favourite:
-      body: 'Postimi juaj u bë i parapëlqyer nga %{name}:'
-      subject: "%{name} e bëri të parapëlqyer postimin tuaj"
-      title: I parapëlqyer i ri
+      body: 'Gjendja juaj u parapëlqye nga %{name}:'
+      subject: "%{name} parapëlqeu gjendjen tuaj"
+      title: E parapëlqyer e re
     follow:
       body: "Tani ju ndjek %{name}!"
       subject: "Tani ju ndjek %{name}"
@@ -1586,7 +1586,7 @@ sq:
     show_newer: Shfaq më të reja
     show_older: Shfaq më të vjetra
     show_thread: Shfaq rrjedhën
-    sign_in_to_participate: Që të merrni pjesë te biseda, bëni hyrjen
+    sign_in_to_participate: Bëni hyrjen, që të merrni pjesë te biseda
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: I drejtpërdrejtë
@@ -1604,7 +1604,7 @@ sq:
     ignore_favs: Shpërfilli të parapëlqyerit
     ignore_reblogs: Shpërfilli përforcimet
     interaction_exceptions: Përjashtime bazuar në ndërveprime
-    interaction_exceptions_explanation: Kini parasysh se s’ka garanci se postimet do të fshihen, nëse bien nën pragun e të parapëlqyerve ose përforcimit, pasi njëri të ketë kaluar një herë tej pragut.
+    interaction_exceptions_explanation: Kini parasysh se nuk ka garanci se postimet do të fshihen, nëse kalojnë nën pragun për të parapëlqyerat ose përforcimet, pasi kanë kaluar një herë në to.
     keep_direct: Mbaj mesazhet e drejtpërdrejtë
     keep_direct_hint: S’fshihet ndonjë nga mesazhet tuaj të drejtpërdrejtë
     keep_media: Mbaj postime me bashkëngjitje media
@@ -1615,8 +1615,8 @@ sq:
     keep_polls_hint: S’fshihet ndonjë nga pyetësorët tuaj
     keep_self_bookmark: Mbaj postime që keni faqeruajtur
     keep_self_bookmark_hint: S’fshihen postimet tuaja, nëse i keni faqeruajtur
-    keep_self_fav: Mbaj postime që keni parapëlqyer
-    keep_self_fav_hint: Nuk fshin postimet tuaja, nëse i keni parapëlqyer
+    keep_self_fav: Mbaji postimet që keni parapëlqyer
+    keep_self_fav_hint: Nuk fshihen postimet tuaja, nëse i keni parapëlqyer
     min_age:
       '1209600': 2 javë
       '15778476': 6 muaj
@@ -1627,8 +1627,8 @@ sq:
       '63113904': 2 vjet
       '7889238': 3 muaj
     min_age_label: Prag moshe
-    min_favs: Mba postime të parapëlqyer të paktën
-    min_favs_hint: S’fshin ndonjë nga postimet tuaja që kanë marrë të paktën këtë numër parapëlqimesh. Lëreni të zbrazët që të fshihen postimet pavarësisht numrit të parapëlqimeve për to
+    min_favs: Mbaji postimet e parapëlqyera më shumë se
+    min_favs_hint: Mos fshini ndonjë nga postimet tuaja që kanë marrë të paktën këtë numër si të parapëlqyer. Lëreni të zbrazët, që të fshihen postime pavarësisht nga numri se sa herë janë të parapëlqyer
     min_reblogs: Mbaji postimet e përforcuara më shumë se
     min_reblogs_hint: Nuk fshihet ndonjë nga postimet tuaja që kanë marrë më shumë se sa ky numër përforcimesh. Lëreni të zbrazët për të fshirë postimet, pavarësisht të numrit të përforcimeve për to
   stream_entries:
@@ -1734,7 +1734,6 @@ sq:
     seamless_external_login: Jeni futur përmes një shërbimi të jashtëm, ndaj s’ka rregullime fjalëkalimi dhe email.
     signed_in_as: 'I futur si:'
   verification:
-    explanation_html: 'Mundeni të <strong>verifikoni veten si i zoti i lidhjeve që nga tejtëdhëna të profilit tuaj</strong>. Për këtë, sajti i lidhur duhet të përmbajë një lidhje që shpie te profili juaj Mastodon. Pas shtimit të lidhjes mund t’ju duhet të ktheheni këtu dhe të riruani profilin tuaj, që verifikimi të ketë efekt. Lidhja e kthimit <strong>duhet</strong> të përmbajë një atribut <code>rel="me"</code>. Teksi i lidhjes s’ka rëndësi. Ja një shembull:'
     verification: Verifikim
   webauthn_credentials:
     add: Shtoni kyç të ri sigurie
