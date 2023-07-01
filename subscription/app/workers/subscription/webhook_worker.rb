@@ -17,7 +17,8 @@ module Subscription
           invite_id: invite.id,
         )
 
-      #   send email with invite link
+        customer = ::Stripe::Customer.retrieve(event[:data][:object][:customer])
+        Subscription::ApplicationMailer.send_invite(customer[:email], invite).deliver_later
       end
 
     rescue Stripe::InvalidRequestError

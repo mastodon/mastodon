@@ -15,6 +15,7 @@ describe Subscription::WebhookWorker do
       allow(contact).to receive(:account).and_return(account)
       allow(instance_presenter).to receive(:contact).and_return(contact)
       allow(InstancePresenter).to receive(:new).and_return(instance_presenter)
+      allow(::Stripe::Customer).to receive(:retrieve).and_return({ id: 'cus_123', email: 'example@example.com' })
     end
 
     it 'does nothing for non-existent event' do
