@@ -374,6 +374,15 @@ ko:
       undo: 허용 목록에서 제외
     domain_blocks:
       add_new: 도메인 차단 추가하기
+      confirm_suspension:
+        cancel: 취소
+        confirm: 정지
+        permanent_action: 정지를 취소한다고 해서 데이터나 관계가 돌아오진 않습니다.
+        preamble_html: <strong>%{domain}</strong>과 서브도메인들을 차단하려고 합니다.
+        remove_all_data: 이 동작은 이 도메인의 모든 콘텐츠, 미디어, 프로필 데이터를 서버에서 지울 것입니다.
+        stop_communication: 이 서버들과의 교신이 중지될 것입니다.
+        title: '%{domain} 도메인 차단 확인'
+        undo_relationships: 이 동작은 이 서버 계정들과 저 서버 계정들 사이의 팔로우 관계들을 취소할 것입니다.
       created_msg: 도메인 차단 처리를 완료했습니다
       destroyed_msg: 도메인 차단이 해제되었습니다
       domain: 도메인
@@ -716,6 +725,9 @@ ko:
       branding:
         preamble: 이 서버의 브랜딩은 네트워크의 다른 서버와 차별점을 부여합니다. 이 정보는 여러 환경에서 보여질 수 있는데, 예를 들면 마스토돈 인터페이스, 네이티브 앱, 다른 웹사이트나 메시지 앱에서 보이는 링크 미리보기, 기타 등등이 있습니다. 이러한 이유로 인해, 이 정보를 명확하고 짧고 간결하게 유지하는 것이 가장 좋습니다.
         title: 브랜딩
+      captcha_enabled:
+        desc_html: 이것은 hCaptcha의 외부 스크립트에 의존합니다, 이것은 개인정보 보호에 위협을 가할 수도 있습니다. 추가적으로, <strong>이것은 몇몇 사람들(특히나 장애인들)에게 가입 절차의 접근성을 심각하게 떨어트릴 수 있습니다</strong>. 이러한 이유로, 대체제로 승인 전용이나 초대제를 통한 가입을 고려해보세요.
+        title: 새로운 사용자가 계정 확인을 위해서는 CAPTCHA를 풀어야 하도록 합니다
       content_retention:
         preamble: 마스토돈에 저장된 사용자 콘텐츠를 어떻게 다룰지 제어합니다.
         title: 콘텐츠 보존기한
@@ -947,6 +959,7 @@ ko:
     notification_preferences: 메일 설정 변경
     salutation: "%{name} 님,"
     settings: '메일 설정을 변경: %{link}'
+    unsubscribe: 구독 해제
     view: '보기:'
     view_profile: 프로필 보기
     view_status: 게시물 보기
@@ -961,6 +974,8 @@ ko:
   auth:
     apply_for_account: 가입 요청하기
     captcha_confirmation:
+      help_html: 만약 CAPTCHA를 푸는데 문제가 생겼다면 %{email}을 통해 연락을 주시면 도와드릴 수 있습니다.
+      hint_html: 하나만 더! 당신이 사람인지 확인이 필요합니다 (스팸 계정을 거르기 위해서 필요한 과정입니다). 아래에 있는 CAPTCHA를 풀고 "계속"을 누르세요
       title: 보안 체크
     confirmations:
       wrong_email_hint: 만약 이메일 주소가 올바르지 않다면, 계정 설정에서 수정할 수 있습니다.
@@ -998,8 +1013,11 @@ ko:
     rules:
       accept: 수락
       back: 뒤로가기
+      invited_by: '당신이 받은 초대장 덕분에 %{domain}에 가입할 수 있습니다:'
       preamble: 다음은 %{domain}의 중재자들에 의해 설정되고 적용되는 규칙들입니다.
+      preamble_invited: 계속하기 전에, %{domain}의 중재자들이 정해놓은 규칙들을 검토해주세요.
       title: 몇 개의 규칙이 있습니다.
+      title_invited: 초대를 받았습니다.
     security: 보안
     set_new_password: 새 암호 설정
     setup:
@@ -1114,6 +1132,9 @@ ko:
     invalid_domain: 올바른 도메인 네임이 아닙니다
   edit_profile:
     basic_information: 기본 정보
+    hint_html: "<strong>내 공개 프로필과 게시물 옆에 보이는 부분을 꾸미세요.</strong> 다른 사람들은 프로필 내용과 사진이 채워진 계정과 더 상호작용하고 팔로우를 하고 싶어합니다."
+    other: 기타
+    safety_and_privacy: 안전과 개인정보
   errors:
     '400': 제출한 요청이 올바르지 않습니다.
     '403': 이 페이지를 표시할 권한이 없습니다.
@@ -1151,7 +1172,7 @@ ko:
     add_new: 추가
     errors:
       limit: 추천 해시태그 최대 개수를 초과합니다
-    hint_html: "<strong>추천 해시태그가 무엇일까요?</strong> 해시태그는 공개 프로필에 눈에 잘 띄게 표시되며, 사람들은 해당 해시태그로 내 공개 글을 검색할 수 있습니다. 창작물이나 장기 프로젝트를 추적하는 데 유용한 도구입니다."
+    hint_html: "<strong>내 가장 중요한 해시태그들을 프로필에서 추천하세요.</strong> 내 창작물이나 오래 걸리는 프로젝트를 따라가기 위한 도구이며 추천 해시태그는 내 프로필에 잘 보이게 표시되고 내 게시물에 대한 빠른 접근을 가능하게 합니다."
   filters:
     contexts:
       account: 프로필
@@ -1300,6 +1321,21 @@ ko:
     failed_sign_in_html: 실패한 로그인 시도 %{method} %{ip} (%{browser})
     successful_sign_in_html: 성공한 로그인 시도 %{method} %{ip} (%{browser})
     title: 인증 이력
+  mail_subscriptions:
+    unsubscribe:
+      action: 네, 구독 취소합니다
+      complete: 구독 취소됨
+      confirmation_html: 정말로 %{domain}에서 %{email}로 보내는 마스토돈의 %{type}에 대한 구독을 취소하시겠습니까? 언제든지 <a href="%{settings_path}">이메일 알림 설정</a>에서 다시 구독할 수 있습니다.
+      emails:
+        notification_emails:
+          favourite: 좋아요 알림 이메일
+          follow: 팔로우 알림 이메일
+          follow_request: 팔로우 요청 알림 이메일
+          mention: 멘션 알림 이메일
+          reblog: 부스트 알림 이메일
+      resubscribe_html: 만약 실수로 구독 취소를 했다면 <a href="%{settings_path}">이메일 알림 설정</a>에서 다시 구독할 수 있습니다.
+      success_html: 이제 더이상 %{domain}에서 %{email}로 마스토돈의 %{type} 알림을 보내지 않습니다.
+      title: 구독 취소
   media_attachments:
     validations:
       images_and_video: 이미 사진이 첨부된 게시물엔 동영상을 첨부할 수 없습니다.
@@ -1415,6 +1451,7 @@ ko:
       expired: 투표가 이미 끝났습니다
       invalid_choice: 선택한 투표 항목이 존재하지 않습니다
       over_character_limit: 각각 %{max} 글자를 넘을 수 없습니다
+      self_vote: 내가 만든 투표엔 투표 할 수 없습니다
       too_few_options: 한가지 이상의 항목을 포함해야 합니다
       too_many_options: 항목은 %{max}개를 넘을 수 없습니다
   preferences:
@@ -1524,7 +1561,7 @@ ko:
     migrate: 계정 이동
     notifications: 알림
     preferences: 환경설정
-    profile: 프로필
+    profile: 공개 프로필
     relationships: 팔로잉과 팔로워
     statuses_cleanup: 게시물 자동 삭제
     strikes: 중재 기록
@@ -1712,7 +1749,9 @@ ko:
     seamless_external_login: 외부 서비스를 이용해 로그인했으므로 이메일과 암호는 설정할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'
   verification:
+    here_is_how: 사용방법
     verification: 검증
+    verified_links: 인증된 링크들
   webauthn_credentials:
     add: 보안 키 추가
     create:
