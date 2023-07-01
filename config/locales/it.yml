@@ -389,6 +389,7 @@ it:
         remove_all_data: Questa operazione rimuoverà dal tuo server tutti i contenuti, i file multimediali e i dati del profilo per gli account di questo dominio.
         stop_communication: Il tuo server smetterà di comunicare con questi server.
         title: Conferma il blocco del dominio per %{domain}
+        undo_relationships: Questo annullerà qualsiasi relazione di follow tra gli account di questi server e il tuo.
       created_msg: Il blocco del dominio sta venendo processato
       destroyed_msg: Il blocco del dominio è stato rimosso
       domain: Dominio
@@ -1780,7 +1781,12 @@ it:
     seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, quindi le impostazioni di password e e-mail non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
   verification:
+    extra_instructions_html: <strong>Suggerimento:</strong> il collegamento sul tuo sito web può essere invisibile. La parte importante è <code>rel="me"</code> che impedisce l'impersonificazione su siti web con contenuti generati dagli utenti. Puoi anche usare un tag <code>link</code> nell'intestazione della pagina invece di <code>a</code>, ma l'HTML deve essere accessibile senza eseguire JavaScript.
+    here_is_how: Ecco come
+    hint_html: "<strong>La verifica della tua identità su Mastodon è per tutti.</strong> Basata su standard web aperti, ora e per sempre gratis. Tutto ciò di cui hai bisogno è un sito web personale in cui le persone ti riconoscano. Quando ti colleghi a questo sito web dal tuo profilo, verificheremo che il sito web rimandi al tuo profilo e mostreremo un indicatore visivo su di esso."
+    instructions_html: Copia e incolla il codice qui sotto nell'HTML del tuo sito web. Quindi, aggiungi l'indirizzo del tuo sito web in uno dei campi aggiuntivi del tuo profilo dalla scheda "Modifica profilo" e salva le modifiche.
     verification: Verifica
+    verified_links: I tuoi collegamenti verificati
   webauthn_credentials:
     add: Aggiungi una nuova chiave di sicurezza
     create:
