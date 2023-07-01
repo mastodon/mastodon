@@ -381,6 +381,14 @@ fi:
       undo: Estä liitto verkkotunnukselle
     domain_blocks:
       add_new: Lisää uusi
+      confirm_suspension:
+        cancel: Peruuta
+        confirm: Jäädytä
+        permanent_action: Jäädytyksen kumoaminen ei palauta mitään tietoja tai suhteita.
+        preamble_html: Olet jäädyttämässä verkkotunnuksen <strong>%{domain}</strong> ja sen aliverkkotunnukset.
+        remove_all_data: Tämä poistaa palvelimeltasi kaiken sisällön, median ja profiilitiedot tämän verkkotunnuksen tileiltä.
+        stop_communication: Palvelimesi lopettaa näiden palvelinten viestinnän.
+        title: Vahvista verkkotunnuksen %{domain} esto
       created_msg: Verkkotunnuksen estoa käsitellään
       destroyed_msg: Verkkotunnuksen esto on peruttu
       domain: Verkkotunnus
@@ -730,6 +738,8 @@ fi:
       branding:
         preamble: Palvelimesi brändäys erottaa sen muista verkon palvelimista. Nämä tiedot voidaan näyttää useissa eri ympäristöissä, kuten Mastodonin käyttöliittymässä, sovelluksissa, linkkien esikatselu muilla sivustoilla ja viestisovelluksien sisällä ja niin edelleen. Tästä syystä on parasta pitää nämä tiedot selkeinä, lyhyinä ja ytimekkäinä.
         title: Brändäys
+      captcha_enabled:
+        title: Vaadi uusia käyttäjiä vahvistaamaan tilinsä ratkaisemalla CAPTCHA-vahvistus
       content_retention:
         preamble: Määritä, miten käyttäjän luoma sisältö tallennetaan Mastodoniin.
         title: Sisällön säilyttäminen
@@ -965,6 +975,7 @@ fi:
     notification_preferences: Muuta sähköpostiasetuksia
     salutation: "%{name},"
     settings: 'Muuta sähköpostiasetuksia: %{link}'
+    unsubscribe: Lopeta tilaus
     view: 'Näytä:'
     view_profile: Näytä profiili
     view_status: Näytä tila
@@ -978,6 +989,10 @@ fi:
     your_token: Pääsytunnus
   auth:
     apply_for_account: Pyydä tiliä
+    captcha_confirmation:
+      help_html: Jos kohtaat ongelmia CAPTCHAn ratkaisemisessa, voit pyytää meiltä apua osoitteella %{email}.
+      hint_html: Vielä yksi juttu! Meidän on vahvistettava, että olet ihminen (tämän avulla pidämme roskapostin poissa!). Ratkaise alla oleva CAPTCHA-vahvistus ja paina "Jatka".
+      title: Turvatarkastus
     confirmations:
       wrong_email_hint: Jos sähköpostiosoite ei ole oikein, voit muuttaa sen tilin asetuksista.
     delete_account: Poista tili
@@ -1014,8 +1029,11 @@ fi:
     rules:
       accept: Hyväksy
       back: Takaisin
+      invited_by: 'Seuraavalta käyttäjältä vastaanottamasi kutsun ansiosta voit liittyä palvelimelle %{domain}:'
       preamble: '%{domain} valvojat määrittävät ja valvovat sääntöjä.'
+      preamble_invited: Ennen kuin jatkat, huomioi palvelimen %{domain} valvojien asettamat perussäännöt.
       title: Joitakin perussääntöjä.
+      title_invited: Sinut on kutsuttu.
     security: Tunnukset
     set_new_password: Aseta uusi salasana
     setup:
@@ -1128,6 +1146,10 @@ fi:
       your_appeal_rejected: Valituksesi on hylätty
   domain_validator:
     invalid_domain: ei ole kelvollinen toimialueen nimi
+  edit_profile:
+    basic_information: Perustiedot
+    other: Muu
+    safety_and_privacy: Turvallisuus ja yksityisyys
   errors:
     '400': Lähettämäsi pyyntö oli virheellinen tai muotoiltu virheellisesti.
     '403': Sinulla ei ole lupaa nähdä tätä sivua.
@@ -1322,6 +1344,11 @@ fi:
     failed_sign_in_html: Kirjautumisyritys epäonnistui %{method} - %{ip} (%{browser})
     successful_sign_in_html: Kirjautuminen onnistui %{method} - %{ip} (%{browser})
     title: Todennushistoria
+  mail_subscriptions:
+    unsubscribe:
+      action: Kyllä, peru tilaus
+      complete: Tilaus lopetettiin
+      title: Lopeta tilaus
   media_attachments:
     validations:
       images_and_video: Videota ei voi liittää tilapäivitykseen, jossa on jo kuvia
@@ -1437,6 +1464,7 @@ fi:
       expired: Äänestys on jo loppunut
       invalid_choice: Valittua äänestysvaihtoehtoa ei ole
       over_character_limit: voi olla enintään %{max} merkkiä
+      self_vote: Et voi äänestää omissa äänestyksissäsi
       too_few_options: on oltava useampi kuin yksi
       too_many_options: ei voi sisältää enempää kuin %{max} kohdetta
   preferences:
@@ -1741,6 +1769,7 @@ fi:
     signed_in_as: 'Kirjautunut tilillä:'
   verification:
     verification: Vahvistus
+    verified_links: Vahvistetut linkkisi
   webauthn_credentials:
     add: Lisää uusi suojausavain
     create:
