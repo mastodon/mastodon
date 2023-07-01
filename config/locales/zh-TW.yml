@@ -148,7 +148,7 @@ zh-TW:
       suspend: 停權
       suspended: 已停權
       suspension_irreversible: 已永久刪除此帳號的資料。您可以取消這個帳號的停權狀態，但無法還原已刪除的資料。
-      suspension_reversible_hint_html: 這個帳號已被停權，所有資料將會於 %{date} 被刪除。在此之前，此帳號可以被完全復原。如果您想即時刪除這個帳號的資料，可以在下面進行操作。
+      suspension_reversible_hint_html: 這個帳號已被暫停，所有數據將於 %{date} 被刪除。在此之前，您可以完全回復您的帳號。如果您想即時刪除這個帳號的數據，您可以在下面進行操作。
       title: 帳號
       unblock_email: 解除封鎖電子郵件地址
       unblocked_email_msg: 成功解除封鎖 %{username} 的電子郵件地址
@@ -374,6 +374,15 @@ zh-TW:
       undo: 從聯邦宇宙白名單移除
     domain_blocks:
       add_new: 新增網域黑名單
+      confirm_suspension:
+        cancel: 取消
+        confirm: 停權
+        permanent_action: 撤銷停權將不會回復任何資料或跟隨關係
+        preamble_html: 您將要停權 <strong>%{domain}</strong> 及其子網域。
+        remove_all_data: 此操作將從您伺服器移除所有來自此網域帳號之內容、媒體、個人檔案資料。
+        stop_communication: 您伺服器將停止與這些伺服器交流。
+        title: 確認對 %{domain} 網域之封鎖
+        undo_relationships: 此操作將撤銷任何您伺服器與此伺服器帳號間之跟隨關係。
       created_msg: 正在進行網域封鎖
       destroyed_msg: 已撤銷網域封鎖
       domain: 站點
