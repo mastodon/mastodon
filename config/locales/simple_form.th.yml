@@ -1,6 +1,9 @@
 th:
   simple_form:
     hints:
+      account:
+        display_name: ชื่อเต็มของคุณหรือชื่อแบบสนุกสนานของคุณ
+        note: 'คุณสามารถ @กล่าวถึง ผู้คนอื่น ๆ หรือ #แฮชแท็ก'
       account_alias:
         acct: ระบุ username@domain ของบัญชีที่คุณต้องการย้ายจาก
       account_migration:
@@ -294,6 +297,7 @@ th:
         usable: อนุญาตให้โพสต์ใช้แฮชแท็กนี้
       user:
         role: บทบาท
+        time_zone: โซนเวลา
       user_role:
         color: สีป้าย
         highlighted: แสดงบทบาทเป็นป้ายในโปรไฟล์ผู้ใช้
