@@ -1749,7 +1749,10 @@ ko:
     seamless_external_login: 외부 서비스를 이용해 로그인했으므로 이메일과 암호는 설정할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'
   verification:
+    extra_instructions_html: <strong>팁:</strong> 웹사이트에 안 보이는 링크로 삽입할 수 있습니다. 중요한 것은 나를 도용하는 것을 방지하는 <code>rel="me"</code> 부분입니다. 심지어 <code>a</code> 대신 <code>link</code>태그를 페이지 헤더에 넣는 것으로 대체할 수도 있습니다. 하지만 HTML 코드는 자바스크립트 실행 없이 접근이 가능해야 합니다.
     here_is_how: 사용방법
+    hint_html: "<strong>내 신분을 모두에게 증명하세요.</strong> 영원히 무료로 쓸 수 있는 웹 표준을 기반으로 합니다. 나를 확인할 수 있는 개인 웹사이트가 필요한 전부입니다. 이 웹사이트 링크를 프로필에 추가하면 우리는 그 웹사이트가 이 계정으로 역링크를 걸었는지 확인하고 프로필에 잘 보이는 마크를 보여줄 것입니다."
+    instructions_html: 웹사이트에 아래 코드를 복사해 붙여 넣으세요. 그리고 "프로필 수정" 탭에서 그 웹사이트 주소를 프로필의 추가 필드 중 하나에 넣고 변경사항을 저장하세요.
     verification: 검증
     verified_links: 인증된 링크들
   webauthn_credentials:
