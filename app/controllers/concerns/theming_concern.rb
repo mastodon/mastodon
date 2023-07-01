@@ -75,7 +75,7 @@ module ThemingConcern
     end
 
     fallbacks.each do |fallback|
-      return resolve_pack(Themes.instance.flavour(fallback), pack_name) if Themes.instance.flavour(fallback)
+      return resolve_pack(Themes.instance.flavour(fallback), pack_name, skin) if Themes.instance.flavour(fallback)
     end
 
     nil
