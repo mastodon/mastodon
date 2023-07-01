@@ -76,7 +76,7 @@ ko:
         backups_retention_period: 생성된 사용자 아카이브를 며칠동안 저장할 지.
         bootstrap_timeline_accounts: 이 계정들은 팔로우 추천 목록 상단에 고정됩니다.
         closed_registrations_message: 새 가입을 차단했을 때 표시됩니다
-        content_cache_retention_period: 양수로 설정되었다면 다른 서버의 게시물은 여기서 설정된 일수가 지나면 삭제될 것입니다. 되돌릴 수 없는 작업일 수 있습니다.
+        content_cache_retention_period: 다른 서버의 게시물과 부스트들은 지정한 일수가 지나면 삭제될 것입니다. 몇몇 게시물들은 복구가 불가능할 것입니다. 관련된 북마크, 좋아요, 부스트 또한 읽어버릴 것이며 취소도 할 수 없습니다.
         custom_css: 사용자 지정 스타일을 웹 버전의 마스토돈에 지정할 수 있습니다.
         mascot: 고급 사용자 인터페이스에 있는 일러스트를 교체합니다.
         media_cache_retention_period: 양수로 설정된 경우 다운로드된 미디어 파일들은 지정된 일수가 지나면 삭제될 것이고 필요할 때 다시 다운로드 될 것입니다.
@@ -164,7 +164,7 @@ ko:
         text: 이 결정을 번복해야만 하는 이유가 무엇입니까
       defaults:
         autofollow: 초대를 통한 팔로우
-        avatar: 아바타
+        avatar: 프로필 사진
         bot: 이것은 자동화된 계정입니다
         chosen_languages: 언어 필터링
         confirm_new_password: 암호 다시 입력
@@ -176,7 +176,7 @@ ko:
         display_name: 표시 이름
         email: 이메일 주소
         expires_in: 만료시각
-        fields: 프로필 메타데이터
+        fields: 추가 필드
         header: 헤더
         honeypot: "%{label} (채우지 마시오)"
         inbox_url: 릴레이 서버의 inbox URL
