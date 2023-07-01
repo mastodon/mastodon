@@ -130,5 +130,13 @@ RSpec.describe Api::V1::Emails::ConfirmationsController do
         end
       end
     end
+
+    context 'without an oauth token and an authentication cookie' do
+      it 'returns http unauthorized' do
+        get :check
+
+        expect(response).to have_http_status(401)
+      end
+    end
   end
 end
