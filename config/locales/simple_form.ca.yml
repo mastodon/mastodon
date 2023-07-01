@@ -1,6 +1,8 @@
 ca:
   simple_form:
     hints:
+      account:
+        note: 'Pots @mencionar altra gent o #etiquetes.'
       account_alias:
         acct: Especifica l'usuari@domini del compte des d'on et vols traslladar
       account_migration:
@@ -129,6 +131,7 @@ ca:
         position: El rol superior decideix la resolució de conflictes en certes situacions. Certes accions només es poden realitzar amb rols amb menor prioritat
       webhook:
         events: Selecciona esdeveniments a enviar
+        template: Crea el teu propi JSON fent servir interpolació variable. Buit per al JSON per defecte.
         url: On els esdeveniments seran enviats
     labels:
       account:
@@ -294,6 +297,7 @@ ca:
         usable: Permet als tuts emprar aquesta etiqueta
       user:
         role: Rol
+        time_zone: Zona horària
       user_role:
         color: Color de la insígnia
         highlighted: Mostra el rol com a insígnia en el perfil dels usuaris
@@ -302,6 +306,7 @@ ca:
         position: Prioritat
       webhook:
         events: Esdeveniments activats
+        template: Plantilla de càrrega
         url: Enllaç de l'extrem
     'no': 'No'
     not_recommended: No recomanat
