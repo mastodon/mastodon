@@ -36,8 +36,7 @@ import {
   Status,
   GettingStarted,
   KeyboardShortcuts,
-  PublicTimeline,
-  CommunityTimeline,
+  Firehose,
   AccountTimeline,
   AccountGallery,
   HomeTimeline,
@@ -188,8 +187,11 @@ class SwitchingColumnsArea extends PureComponent {
           <WrappedRoute path='/privacy-policy' component={PrivacyPolicy} content={children} />
 
           <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />
-          <WrappedRoute path={['/public', '/timelines/public']} exact component={PublicTimeline} content={children} />
-          <WrappedRoute path={['/public/local', '/timelines/public/local']} exact component={CommunityTimeline} content={children} />
+          <Redirect from='/timelines/public' to='/public' exact />
+          <Redirect from='/timelines/public/local' to='/public/local' exact />
+          <WrappedRoute path='/public' exact component={Firehose} componentParams={{ feedType: 'public' }} content={children} />
+          <WrappedRoute path='/public/local' exact component={Firehose} componentParams={{ feedType: 'community' }} content={children} />
+          <WrappedRoute path='/public/remote' exact component={Firehose} componentParams={{ feedType: 'public:remote' }} content={children} />
           <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
           <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
           <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
