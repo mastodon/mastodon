@@ -374,6 +374,9 @@ ja:
       undo: 連合許可を外す
     domain_blocks:
       add_new: ドメインブロックを追加
+      confirm_suspension:
+        cancel: キャンセル
+        confirm: 停止
       created_msg: ドメインブロック処理を完了しました
       destroyed_msg: ドメインブロックを外しました
       domain: ドメイン
@@ -947,6 +950,7 @@ ja:
     notification_preferences: メール設定の変更
     salutation: "%{name}さん"
     settings: 'メール設定の変更: %{link}'
+    unsubscribe: 購読解除
     view: 'リンク:'
     view_profile: プロフィールを表示
     view_status: 投稿を表示
@@ -960,6 +964,8 @@ ja:
     your_token: アクセストークン
   auth:
     apply_for_account: アカウントのリクエスト
+    captcha_confirmation:
+      title: セキュリティチェック
     confirmations:
       wrong_email_hint: メールアドレスが正しくない場合は、アカウント設定で変更できます。
     delete_account: アカウントの削除
@@ -998,6 +1004,7 @@ ja:
       back: 戻る
       preamble: これらは %{domain} モデレータによって設定され、実施されます。
       title: いくつかのルールがあります。
+      title_invited: あなたは招待済みです。
     security: セキュリティ
     set_new_password: 新しいパスワード
     setup:
@@ -1110,6 +1117,10 @@ ja:
       your_appeal_rejected: 申し立ては拒否されました
   domain_validator:
     invalid_domain: は無効なドメイン名です
+  edit_profile:
+    basic_information: 基本情報
+    other: その他
+    safety_and_privacy: 安全とプライバシー
   errors:
     '400': 送信されたリクエストは無効であるか、または不正なフォーマットです。
     '403': このページを表示する権限がありません。
@@ -1296,6 +1307,15 @@ ja:
     failed_sign_in_html: '%{ip} (%{browser}) から%{method}を利用したサインインに失敗しました。'
     successful_sign_in_html: '%{ip} (%{browser}) から%{method}を利用したサインインに成功しました'
     title: 認証履歴
+  mail_subscriptions:
+    unsubscribe:
+      action: はい、購読解除します
+      complete: 購読解除済み
+      emails:
+        notification_emails:
+          favourite: お気に入りの通知メール
+          follow: 通知メールをフォローする
+      title: 購読の解除
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません
