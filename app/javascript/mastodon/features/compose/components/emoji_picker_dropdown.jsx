@@ -18,7 +18,8 @@ import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components'
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
   emoji_search: { id: 'emoji_button.search', defaultMessage: 'Search...' },
-  custom: { id: 'emoji_button.custom', defaultMessage: 'Custom' },
+  /*  custom: { id: 'emoji_button.custom', defaultMessage: 'Custom' }, */
+  aru: { id: 'emoji_button.aru', defaultMessage: 'Aru' },
   recent: { id: 'emoji_button.recent', defaultMessage: 'Frequently used' },
   search_results: { id: 'emoji_button.search_results', defaultMessage: 'Search results' },
   people: { id: 'emoji_button.people', defaultMessage: 'People' },
@@ -213,6 +214,7 @@ class EmojiPickerMenuImpl extends PureComponent {
       categories: {
         search: intl.formatMessage(messages.search_results),
         recent: intl.formatMessage(messages.recent),
+        aru: intl.formatMessage(messages.aru),
         people: intl.formatMessage(messages.people),
         nature: intl.formatMessage(messages.nature),
         foods: intl.formatMessage(messages.food),
@@ -261,7 +263,8 @@ class EmojiPickerMenuImpl extends PureComponent {
 
     const categoriesSort = [
       'recent',
-      'people',
+      'aru',
+      'people',  
       'nature',
       'foods',
       'activity',
