@@ -381,6 +381,9 @@ tr:
       undo: Beyaz listeden çıkar
     domain_blocks:
       add_new: Yeni ekle
+      confirm_suspension:
+        cancel: İptal et
+        confirm: Askıya al
       created_msg: Domain bloğu şu an işleniyor
       destroyed_msg: Domain bloğu silindi
       domain: Alan adı
@@ -1128,6 +1131,8 @@ tr:
       your_appeal_rejected: İtirazınız reddedildi
   domain_validator:
     invalid_domain: geçerli bir alan adı değil
+  edit_profile:
+    other: Diğer
   errors:
     '400': Gönderdiğiniz istek geçersiz veya hatalı biçimlendirilmiş.
     '403': Bu sayfayı görmek için izniniz yok.
@@ -1322,6 +1327,10 @@ tr:
     failed_sign_in_html: '%{method} yöntemiyle %{ip} (%{browser}) adresinden başarısız oturum açma girişimi'
     successful_sign_in_html: '%{method} yöntemiyle %{ip} (%{browser}) adresinden başarılı oturum açma'
     title: Kimlik doğrulama geçmişi
+  mail_subscriptions:
+    unsubscribe:
+      complete: Abonelikten çık
+      title: Abonelikten çık
   media_attachments:
     validations:
       images_and_video: Zaten resim içeren bir duruma video eklenemez
