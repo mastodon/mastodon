@@ -374,6 +374,9 @@ my:
       undo: ဒိုမိန်းဖြင့် ဖက်ဒီကို ခွင့်မပြုပါ
     domain_blocks:
       add_new: ဒိုမိန်းပိတ်ပင်ခြင်းအသစ် ထည့်ပါ
+      confirm_suspension:
+        cancel: ပယ်ဖျက်
+        confirm: ရပ်ဆိုင်းရန်
       created_msg: ဒိုမိန်းပိတ်ပင်ခြင်းကို ယခုလုပ်ဆောင်နေပါသည်
       destroyed_msg: ဒိုမိန်းပိတ်ဆို့ခြင်းကို ပြန်ပြင်လိုက်ပါပြီ။
       domain: ဒိုမိန်း
@@ -947,6 +950,7 @@ my:
     notification_preferences: အီးမေးလ် သတ်မှတ်ချက်များကို ပြောင်းပါ
     salutation: "%{name}"
     settings: 'အီးမေးလ် သတ်မှတ်ချက်များကို ပြောင်းပါ - %{link}'
+    unsubscribe: စာရင်းမှထွက်ရန်
     view: 'ကြည့်ရှုရန် -'
     view_profile: ပရိုဖိုင်ကိုကြည့်ရန်
     view_status: ပို့စ်ကိုကြည့်ရန်
@@ -960,6 +964,8 @@ my:
     your_token: သင့် အသုံးပြုခွင့်တိုကင်
   auth:
     apply_for_account: အကောင့်တစ်ခုတောင်းဆိုပါ
+    captcha_confirmation:
+      title: လုံခြုံရေးစစ်ဆေးမှု
     confirmations:
       wrong_email_hint: ထိုအီးမေးလ်လိပ်စာ မမှန်ပါက အကောင့်သတ်မှတ်ချက်များတွင် ပြောင်းလဲနိုင်သည်။
     delete_account: အကောင့်ဖျက်ပါ
@@ -998,6 +1004,7 @@ my:
       back: နောက်သို့
       preamble: '၎င်းတို့ကို %{domain} စိစစ်သူများမှ အတည်ပြုပါသည်။'
       title: အခြေခံစည်းမျဉ်းအချို့
+      title_invited: သင့်ကို ဖိတ်ခေါ်ထားပြီးဖြစ်သည်။
     security: လုံခြုံရေး
     set_new_password: စကားဝှက်အသစ် သတ်မှတ်ပါ။
     setup:
@@ -1110,6 +1117,10 @@ my:
       your_appeal_rejected: အယူခံဝင်မှုကို ပယ်ချလိုက်သည်
   domain_validator:
     invalid_domain: တရားဝင်ဒိုမိန်းအမည်မဟုတ်ပါ
+  edit_profile:
+    basic_information: အခြေခံသတင်းအချက်အလက်
+    other: အခြား
+    safety_and_privacy: ဘေးကင်းရေးနှင့် လျှို့ဝှက်ရေး
   errors:
     '400': သင်တင်ပြသော တောင်းဆိုချက်မှာ မမှန်ကန်ပါ သို့မဟုတ် ပုံစံမမှန်ပါ။
     '403': ဤစာမျက်နှာကြည့်ရှုရန် သင့်တွင် ခွင့်ပြုချက်မရှိပါ။
@@ -1296,6 +1307,18 @@ my:
     failed_sign_in_html: '%{ip} (%{browser}) မှ %{method} ဖြင့် အကောင့်ဝင်ရောက်ခြင်း မအောင်မြင်ပါ'
     successful_sign_in_html: '%{ip} (%{browser}) မှ %{method} ဖြင့် အကောင့်ဝင်၍ရပါပြီ'
     title: အထောက်အထားမှတ်တမ်း
+  mail_subscriptions:
+    unsubscribe:
+      action: ဟုတ်ကဲ့၊ စာရင်းမှ ဖြုတ်လိုက်ပါပြီ
+      complete: စာရင်းမှထွက်ရန်
+      emails:
+        notification_emails:
+          favourite: favorite အသိပေးချက် အီးမေးလ်များ
+          follow: စောင့်ကြည့်ရန်အတွက် အသိပေးချက်အီးမေးလ်များ
+          follow_request: စောင့်ကြည့်တောင်းဆိုမှု အီးမေးလ်များ
+          mention: ဖော်ပြအသိပေးချက်အီးမေးလ်များ
+          reblog: boost အသိပေးချက်အီးမေးလ်များ
+      title: စာရင်းမှထွက်ရန်
   media_attachments:
     validations:
       images_and_video: ရုပ်ပုံပါရှိပြီးသားပို့စ်တွင် ဗီဒီယို ပူးတွဲ၍မရပါ
@@ -1708,7 +1731,9 @@ my:
     seamless_external_login: ပြင်ပဝန်ဆောင်မှုမှတစ်ဆင့် အကောင့်ဝင်ထားသောကြောင့် စကားဝှက်နှင့် အီးမေးလ်သတ်မှတ်ချက်များကို မရနိုင်ပါ။
     signed_in_as: 'အဖြစ် အကောင့်ဝင်ခဲ့သည် -'
   verification:
+    here_is_how: ဘယ်လိုလဲ
     verification: စိစစ်ခြင်း
+    verified_links: အတည်ပြုထားသောလင့်ခ်များ
   webauthn_credentials:
     add: လုံခြုံရေးကီးအသစ်ထည့်ပါ
     create:
