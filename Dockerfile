@@ -77,6 +77,7 @@ RUN apt-get update && \
         tzdata \
         libreadline8 \
         tini && \
+    rm -rf /var/lib/apt/lists/* && \
     ln -s /opt/mastodon /mastodon
 
 # Note: no, cleaning here since Debian does this automatically
