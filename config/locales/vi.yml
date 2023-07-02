@@ -726,6 +726,7 @@ vi:
         preamble: Thương hiệu máy chủ của bạn phân biệt nó với các máy chủ khác trong mạng. Thông tin này có thể được hiển thị trên nhiều môi trường khác nhau, chẳng hạn như giao diện web của Mastodon, các ứng dụng gốc, trong bản xem trước liên kết trên các trang web khác và trong các ứng dụng nhắn tin, v.v. Vì lý do này, cách tốt nhất là giữ cho thông tin này rõ ràng, ngắn gọn và súc tích.
         title: Thương hiệu
       captcha_enabled:
+        desc_html: Điều này phụ thuộc vào các mã lệnh bên ngoài từ hCaptcha, đây có thể là mối lo ngại về bảo mật và quyền riêng tư. Thêm vào đó, <strong>điều này có thể làm cho quá trình đăng ký khó hơn đối với một số người (đặc biệt là người khuyết tật)</strong>. Vì những lý do này, vui lòng xem xét các biện pháp thay thế như duyệt đăng ký thủ công hoặc tạo thư mời.
         title: Yêu cầu người dùng mới dùng CAPTCHA để xác minh tài khoản của họ
       content_retention:
         preamble: Kiểm soát cách lưu trữ nội dung cá nhân trong Mastodon.
@@ -974,6 +975,8 @@ vi:
     apply_for_account: Xin đăng ký
     captcha_confirmation:
       help_html: Nếu có vấn đề khi nhập CAPTCHA, hãy liên hệ %{email} để được hỗ trợ.
+      hint_html: Còn một xíu nữa! Chúng tôi cần xác minh bạn là con người (để chúng tôi có thể ngăn chặn thư rác!). Nhập CAPTCHA bên dưới và nhấn "Tiếp tục".
+      title: Kiểm tra an toàn
     confirmations:
       wrong_email_hint: Nếu địa chỉ email đó không chính xác, bạn có thể thay đổi nó trong cài đặt tài khoản.
     delete_account: Xóa tài khoản
@@ -1010,8 +1013,11 @@ vi:
     rules:
       accept: Chấp nhận
       back: Quay lại
+      invited_by: 'Bạn có thể tham gia %{domain} với thư mời từ:'
       preamble: Được ban hành và áp dụng bởi quản trị máy chủ %{domain}.
+      preamble_invited: Trước khi tiếp tục, hãy đọc nội quy của %{domain}.
       title: Nội quy máy chủ.
+      title_invited: Bạn vừa được mời.
     security: Bảo mật
     set_new_password: Đặt mật khẩu mới
     setup:
@@ -1124,6 +1130,11 @@ vi:
       your_appeal_rejected: Khiếu nại của bạn bị từ chối
   domain_validator:
     invalid_domain: không phải là một tên miền hợp lệ
+  edit_profile:
+    basic_information: Thông tin cơ bản
+    hint_html: "<strong>Tùy chỉnh những gì mọi người nhìn thấy trên hồ sơ công khai của bạn và bên cạnh tút của bạn.</strong> Mọi người sẽ muốn theo dõi lại bạn và tương tác với bạn hơn khi bạn có một hồ sơ đầy đủ và một ảnh hồ sơ."
+    other: Khác
+    safety_and_privacy: An toàn và bảo mật
   errors:
     '400': Yêu cầu bạn gửi không hợp lệ hoặc sai hình thức.
     '403': Bạn không có quyền xem trang này.
@@ -1310,6 +1321,21 @@ vi:
     failed_sign_in_html: Đăng nhập thất bại bằng %{method} từ %{ip} (%{browser})
     successful_sign_in_html: Đăng nhập thành công bằng %{method} từ %{ip} (%{browser})
     title: Lịch sử đăng nhập
+  mail_subscriptions:
+    unsubscribe:
+      action: Đúng, hủy đăng ký
+      complete: Đã hủy đăng ký
+      confirmation_html: Bạn có có chắc muốn hủy đăng ký %{type} Mastodon trên %{domain} cho %{email}? Bạn có thể đăng ký lại từ <a href="%{settings_path}">cài đặt thông báo email</a>.
+      emails:
+        notification_emails:
+          favourite: email thông báo lượt thích
+          follow: email thông báo theo dõi
+          follow_request: email thông báo yêu cầu theo dõi
+          mention: email thông báo lượt nhắc đến
+          reblog: email thông báo lượt đăng lại
+      resubscribe_html: Nếu đổi ý, bạn có thể đăng ký lại từ <a href="%{settings_path}">cài đặt thông báo email</a>.
+      success_html: Bạn sẽ không còn nhận %{type} Mastodon trên %{domain} cho %{email}.
+      title: Hủy đăng ký
   media_attachments:
     validations:
       images_and_video: Không thể đính kèm video vào tút đã chứa hình ảnh
@@ -1425,6 +1451,7 @@ vi:
       expired: Cuộc bình chọn đã kết thúc
       invalid_choice: Lựa chọn không tồn tại
       over_character_limit: độ dài tối đa %{max} ký tự
+      self_vote: Bạn không thể bình chọn cho tút của chính bạn
       too_few_options: phải có nhiều hơn một mục
       too_many_options: tối đa %{max} lựa chọn
   preferences:
@@ -1722,7 +1749,12 @@ vi:
     seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy mật khẩu và email không khả dụng.
     signed_in_as: 'Đăng nhập bằng:'
   verification:
+    extra_instructions_html: <strong>Mẹo:</strong> Liên kết trên trang web của bạn có thể ẩn. Phần quan trọng là <code>rel="me"</code> ngăn chặn việc mạo danh trên các trang web có nội dung do người dùng tạo. Bạn thậm chí có thể sử dụng một thẻ <code>link</code> trên header của trang thay vì <code>a</code>, nhưng HTML phải có thể truy cập được mà không cần thực thi JavaScript.
+    here_is_how: Cách thực hiện
+    hint_html: "<strong>Xác minh danh tính trên Mastodon là dành cho tất cả mọi người.</strong> Dựa trên các tiêu chuẩn web mở, miễn phí bây giờ và mãi mãi. Tất cả những gì bạn cần là một trang web cá nhân để mọi người nhận ra bạn. Khi bạn liên kết đến trang web này từ hồ sơ của mình, chúng tôi sẽ kiểm tra xem trang web đó có liên kết lại với hồ sơ của bạn hay không và hiển thị một chỉ báo trực quan trên đó."
+    instructions_html: Sao chép và dán mã bên dưới vào HTML của trang web của bạn. Sau đó, thêm địa chỉ trang web của bạn vào một trong các trường bổ sung trên hồ sơ của bạn từ tab "Chỉnh sửa hồ sơ" và lưu các thay đổi.
     verification: Xác minh
+    verified_links: Những liên kết bạn đã xác minh
   webauthn_credentials:
     add: Thêm khóa bảo mật mới
     create:
