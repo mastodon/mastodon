@@ -1324,6 +1324,16 @@ be:
       overwrite_long: Замяніць бягучыя запісы на новыя
     overwrite_preambles:
       blocking_html: Вы збіраецеся <strong>замяніць свой спіс блакіровак</strong> на <strong>%{total_items} уліковых запісаў</strong> з файла <strong>%{filename}</strong>.
+      bookmarks_html: Вы збіраецеся <strong>замяніць свае закладкі</strong> на <strong>%{total_items} допісаў</strong> з файла <strong>%{filename}</strong>.
+      domain_blocking_html: Вы збіраецеся <strong>замяніць свой спіс блакіроўкі даменаў</strong> на <strong>%{total_items} даменаў</strong> з файла <strong>%{filename}</strong>.
+      following_html: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{total_items} уліковых запісаў</strong> з файла <strong>%{filename}</strong> і <strong> адпісацца ад усіх іншых карыстальнікаў</strong>.
+      muting_html: Вы збіраецеся <strong>замяніць свой спіс ігнараваных уліковых запісаў</strong> на <strong>%{total_items} уліковых запісаў</strong> з файла <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Вы збіраецеся <strong>заблакіраваць</strong> да <strong>%{total_items} уліковых запісаў</strong> з файла<strong>%{filename}</strong>.
+      bookmarks_html: Вы збіраецеся дадаць да <strong>%{total_items} паведамленняў</strong> з файла <strong>%{filename}</strong> у вашы <strong>закладкі</strong>.
+      domain_blocking_html: Вы збіраецеся <strong>заблакіраваць</strong> да <strong>%{total_items} даменаў</strong> з файла <strong>%{filename}</strong>.
+      following_html: Вы збіраецеся <strong>падпісацца </strong> на<strong>%{total_items} уліковых запісаў</strong> з файла <strong>%{filename}</strong>.
+      muting_html: Вы збіраецеся <strong>ігнараваць</strong> да <strong>%{total_items} уліковых запісаў</strong> з файла <strong>%{filename}</strong>.
     preface: Вы можаце імпартаваць даныя, экспартаваныя вамі з іншага сервера, напрыклад, спіс людзей, на якіх вы падпісаны або якіх блакуеце.
     recent_imports: Нядаўнія імпарты
     states:
@@ -1393,6 +1403,14 @@ be:
     unsubscribe:
       action: Так, адпісацца
       complete: Адпісаны
+      confirmation_html: Вы ўпэўнены, што жадаеце адмовіцца ад %{type} з Mastodon на дамене %{domain} на вашу электронную пошту %{email}? Вы заўсёды можаце паўторна падпісацца у <a href="%{settings_path}">наладах апавяшчэнняў па электроннай пошце</a>.
+      emails:
+        notification_emails:
+          favourite: апавяшчэнні на пошту пра упадабанае
+          follow: апавяшчэнні на пошту пра падпіскі
+          follow_request: апавяшчэнні на пошту пра запыты на падпіску
+          mention: апавяшчэнні на пошту пра згадванні
+          reblog: апавяшчэнні на пошту пра пашырэнні
       resubscribe_html: Калі вы адмовіліся ад падпіскі памылкова, вы можаце зноў падпісацца ў <a href="%{settings_path}">наладах апавяшчэнняў па электроннай пошце</a>.
       success_html: Вы больш не будзеце атрымліваць %{type} на сваю электронную пошту %{email} ад Mastodon на дамене %{domain}.
       title: Адпісацца
