@@ -1011,6 +1011,8 @@ sr:
     apply_for_account: Затражите налог
     captcha_confirmation:
       help_html: Ако имате проблема са решавањем CAPTCHA, можете нас контактирати преко %{email} и можемо вам помоћи.
+      hint_html: Само још једна ствар! Морамо да потврдимо да сте људско биће (ово је да бисмо спречили нежељену пошту!). Решите CAPTCHA испод и кликните на „Настави”.
+      title: Безбедоносна провера
     confirmations:
       wrong_email_hint: Ако та имејл адреса није исправна, можете је променити у подешавањима налога.
     delete_account: Брисање налога
@@ -1047,8 +1049,11 @@ sr:
     rules:
       accept: Прихвати
       back: Назад
+      invited_by: 'Можете се придружити %{domain} захваљујући позивници коју сте добили од:'
       preamble: Ово су правила која су успоставили и која спроводе модератори сервера %{domain}.
+      preamble_invited: Пре него што наставите, размотрите основна правила која су поставили модератори %{domain}.
       title: Нека основна правила.
+      title_invited: Позвани сте.
     security: Безбедност
     set_new_password: Постави нову лозинку
     setup:
@@ -1161,6 +1166,10 @@ sr:
       your_appeal_rejected: Ваша жалба је одбијена
   domain_validator:
     invalid_domain: нелегитимно име домена
+  edit_profile:
+    basic_information: Основне информације
+    other: Остало
+    safety_and_privacy: Сигурност и приватност
   errors:
     '400': Захтев који сте поднели је био нелегитиман или у погрешном формату.
     '403': Немате дозвола да видите ову страну.
@@ -1363,6 +1372,11 @@ sr:
     failed_sign_in_html: Неуспешан покушај пријављивања путем %{method} са %{ip} (%{browser})
     successful_sign_in_html: Успешан покушај пријављивања путем %{method} са %{ip} (%{browser})
     title: Историја аутентификације
+  mail_subscriptions:
+    unsubscribe:
+      action: Да, одјави ме
+      complete: Одјављен
+      title: Одјави се
   media_attachments:
     validations:
       images_and_video: Не може да се прикачи видео на статус који већ има слике
@@ -1787,7 +1801,9 @@ sr:
     seamless_external_login: Пријављени сте путем спољашње услуге, тако да лозинка и подешавања Е-поште нису доступни.
     signed_in_as: 'Пријављен/а као:'
   verification:
+    here_is_how: Ево како
     verification: Провера
+    verified_links: Ваше верификоване везе
   webauthn_credentials:
     add: Додајте нови сигурносни кључ
     create:
