@@ -28,24 +28,6 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
     resource.email = current_user.unconfirmed_email || current_user.email if user_signed_in?
   end
 
-  def create
-    # Since we don't allow users to request confirmation emails for other accounts when they
-    # are already logged in, so we can cut on the expensive queries by simply reusing the
-    # current user.
-    if user_signed_in?
-      self.resource = current_user
-      resource.send_confirmation_instructions
-    else
-      self.resource = current_user || User.send_confirmation_instructions(resource_params)
-    end
-
-    if successfully_sent?(resource)
-      respond_with({}, location: after_resending_confirmation_instructions_path_for(resource_name))
-    else
-      respond_with(resource)
-    end
-  end
-
   def confirm_captcha
     check_captcha! do |message|
       flash.now[:alert] = message
