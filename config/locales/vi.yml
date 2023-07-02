@@ -374,6 +374,15 @@ vi:
       undo: Xóa khỏi danh sách trắng
     domain_blocks:
       add_new: Chặn máy chủ
+      confirm_suspension:
+        cancel: Hủy bỏ
+        confirm: Vô hiệu hóa
+        permanent_action: Bỏ vô hiệu hóa sẽ không khôi phục bất kỳ dữ liệu hoặc mối quan hệ nào.
+        preamble_html: Bạn sắp vô hiệu hóa <strong>%{domain}</strong> và các tên miền phụ của nó.
+        remove_all_data: Thao tác này sẽ xóa tất cả nội dung, media và dữ liệu hồ sơ cho các tài khoản của máy chủ này khỏi máy chủ của bạn.
+        stop_communication: Máy chủ của bạn sẽ ngừng giao tiếp với các máy chủ này.
+        title: Xác nhận chặn máy chủ %{domain}
+        undo_relationships: Thao tác này sẽ hoàn tác mọi mối quan hệ theo dõi giữa tài khoản của các máy chủ này và của bạn.
       created_msg: Đang tiến hành chặn máy chủ
       destroyed_msg: Đã thôi chặn máy chủ
       domain: Máy chủ
@@ -716,6 +725,8 @@ vi:
       branding:
         preamble: Thương hiệu máy chủ của bạn phân biệt nó với các máy chủ khác trong mạng. Thông tin này có thể được hiển thị trên nhiều môi trường khác nhau, chẳng hạn như giao diện web của Mastodon, các ứng dụng gốc, trong bản xem trước liên kết trên các trang web khác và trong các ứng dụng nhắn tin, v.v. Vì lý do này, cách tốt nhất là giữ cho thông tin này rõ ràng, ngắn gọn và súc tích.
         title: Thương hiệu
+      captcha_enabled:
+        title: Yêu cầu người dùng mới dùng CAPTCHA để xác minh tài khoản của họ
       content_retention:
         preamble: Kiểm soát cách lưu trữ nội dung cá nhân trong Mastodon.
         title: Lưu giữ nội dung
@@ -947,6 +958,7 @@ vi:
     notification_preferences: Thay đổi tùy chọn email
     salutation: "%{name},"
     settings: 'Thay đổi tùy chọn email: %{link}'
+    unsubscribe: Hủy đăng ký
     view: 'Chi tiết:'
     view_profile: Xem trang hồ sơ
     view_status: Xem tút
@@ -960,6 +972,8 @@ vi:
     your_token: Mã truy cập của bạn
   auth:
     apply_for_account: Xin đăng ký
+    captcha_confirmation:
+      help_html: Nếu có vấn đề khi nhập CAPTCHA, hãy liên hệ %{email} để được hỗ trợ.
     confirmations:
       wrong_email_hint: Nếu địa chỉ email đó không chính xác, bạn có thể thay đổi nó trong cài đặt tài khoản.
     delete_account: Xóa tài khoản
