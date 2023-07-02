@@ -49,6 +49,12 @@ const ColumnSettings = () => {
           onChange={onChange}
           label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />}
         />
+        <SettingToggle
+          settings={settings}
+          settingPath={['allowLocalOnly']}
+          onChange={onChange}
+          label={<FormattedMessage id='firehose.column_settings.allow_local_only' defaultMessage='Show local-only posts in "All"' />}
+        />
       </div>
     </div>
   );
@@ -63,6 +69,8 @@ const Firehose = ({ feedType, multiColumn }) => {
   const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
   const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
 
+  const allowLocalOnly = useAppSelector((state) => state.getIn(['settings', 'firehose', 'allowLocalOnly']));
+
   const handlePin = useCallback(
     () => {
       switch(feedType) {
@@ -70,14 +78,14 @@ const Firehose = ({ feedType, multiColumn }) => {
         dispatch(addColumn('COMMUNITY', { other: { onlyMedia } }));
         break;
       case 'public':
-        dispatch(addColumn('PUBLIC', { other: { onlyMedia } }));
+        dispatch(addColumn('PUBLIC', { other: { onlyMedia, allowLocalOnly } }));
         break;
       case 'public:remote':
         dispatch(addColumn('REMOTE', { other: { onlyMedia, onlyRemote: true } }));
         break;
       }
     },
-    [dispatch, onlyMedia, feedType],
+    [dispatch, onlyMedia, feedType, allowLocalOnly],
   );
 
   const handleLoadMore = useCallback(
@@ -87,7 +95,7 @@ const Firehose = ({ feedType, multiColumn }) => {
         dispatch(expandCommunityTimeline({ onlyMedia }));
         break;
       case 'public':
-        dispatch(expandPublicTimeline({ maxId, onlyMedia }));
+        dispatch(expandPublicTimeline({ maxId, onlyMedia, allowLocalOnly }));
         break;
       case 'public:remote':
         dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote: true }));
@@ -112,7 +120,7 @@ const Firehose = ({ feedType, multiColumn }) => {
     case 'public':
       dispatch(expandPublicTimeline({ onlyMedia }));
       if (signedIn) {
-        disconnect = dispatch(connectPublicStream({ onlyMedia }));
+        disconnect = dispatch(connectPublicStream({ onlyMedia, allowLocalOnly }));
       }
       break;
     case 'public:remote':
