@@ -398,6 +398,7 @@ be:
       confirm_suspension:
         cancel: Скасаваць
         confirm: Прыпыніць
+        title: Пацвердзіць блакіроўку дамена %{domain}
       created_msg: Даменны блок быў апрацаваны
       destroyed_msg: Даменны блок быў адменены
       domain: Дамен
@@ -1290,16 +1291,31 @@ be:
       other: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце %{count} памылак ніжэй
   imports:
     errors:
+      empty: Пусты CSV файл
       invalid_csv_file: 'Несапраўдны файл CSV. Памылка: %{error}'
       over_rows_processing_limit: колькасць радкоў большая за %{count}
+      too_large: Файл занадта вялікі
+    failures: Няўдала
+    imported: Імпартавана
     modes:
       merge: Аб'яднаць
       merge_long: Захаваць існуючыя запісы і дадаць новыя
       overwrite: Перазапісаць
       overwrite_long: Замяніць бягучыя запісы на новыя
     preface: Вы можаце імпартаваць даныя, экспартаваныя вамі з іншага сервера, напрыклад, спіс людзей, на якіх вы падпісаны або якіх блакуеце.
+    states:
+      finished: Завершана
+      in_progress: Выконваецца
+      scheduled: Запланавана
+      unconfirmed: Непацверджана
     status: Стан
     success: Вашы даныя паспяхова запампаваныя і будуць неўзабаве апрацаваны
+    time_started: Пачатак
+    titles:
+      blocking: Імпарт заблакіраваных уліковых запісаў
+      bookmarks: Імпарт закладак
+      domain_blocking: Імпарт заблакіраваных даменаў
+    type: Тып імпарту
     types:
       blocking: Спіс заблакіраваных
       bookmarks: Закладкі
@@ -1345,6 +1361,9 @@ be:
     failed_sign_in_html: Няўдалая спроба ўваходу праз %{method} з %{ip} (%{browser})
     successful_sign_in_html: Паспяховы ўваход праз %{method} з %{ip} (%{browser})
     title: Гісторыя ўваходаў
+  mail_subscriptions:
+    unsubscribe:
+      title: Адпісацца
   media_attachments:
     validations:
       images_and_video: Немагчыма прымацаваць відэа да допісу, які ўжо змяшчае выявы
@@ -1775,6 +1794,7 @@ be:
     seamless_external_login: Вы ўвайшлі праз знешні сэрвіс, таму налады пароля і эл. пошты недаступныя.
     signed_in_as: 'Увайшлі як:'
   verification:
+    here_is_how: Як гэта зрабіць
     verification: Верыфікацыя
   webauthn_credentials:
     add: Дадаць новы ключ бяспекі
