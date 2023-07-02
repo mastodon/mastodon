@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_02_131023) do
+ActiveRecord::Schema.define(version: 2023_07_02_151753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1097,6 +1097,7 @@ ActiveRecord::Schema.define(version: 2023_07_02_131023) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, opclass: :text_pattern_ops, where: "(reset_password_token IS NOT NULL)"
     t.index ["role_id"], name: "index_users_on_role_id", where: "(role_id IS NOT NULL)"
+    t.index ["unconfirmed_email"], name: "index_users_on_unconfirmed_email", where: "(unconfirmed_email IS NOT NULL)"
   end
 
   create_table "web_push_subscriptions", force: :cascade do |t|
