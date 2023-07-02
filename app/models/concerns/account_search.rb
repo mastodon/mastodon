@@ -106,6 +106,17 @@ module AccountSearch
     LIMIT :limit OFFSET :offset
   SQL
 
+  def searchable_text
+    PlainTextFormatter.new(note, local?).to_s if discoverable?
+  end
+
+  def searchable_properties
+    [].tap do |properties|
+      properties << 'bot' if bot?
+      properties << 'verified' if fields.any?(&:verified?)
+    end
+  end
+
   class_methods do
     def search_for(terms, limit: 10, offset: 0)
       tsquery = generate_query_for_search(terms)

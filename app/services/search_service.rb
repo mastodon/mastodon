@@ -30,7 +30,8 @@ class SearchService < BaseService
       @account,
       limit: @limit,
       resolve: @resolve,
-      offset: @offset
+      offset: @offset,
+      use_searchable_text: true
     )
   end
 

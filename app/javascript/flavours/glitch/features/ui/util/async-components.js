@@ -22,6 +22,10 @@ export function CommunityTimeline () {
   return import(/* webpackChunkName: "flavours/glitch/async/community_timeline" */'flavours/glitch/features/community_timeline');
 }
 
+export function Firehose () {
+  return import(/* webpackChunkName: "flavours/glitch/async/firehose" */'../../firehose');
+}
+
 export function HashtagTimeline () {
   return import(/* webpackChunkName: "flavours/glitch/async/hashtag_timeline" */'flavours/glitch/features/hashtag_timeline');
 }

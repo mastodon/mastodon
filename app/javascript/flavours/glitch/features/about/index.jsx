@@ -161,7 +161,7 @@ class About extends PureComponent {
           </Section>
 
           <Section title={intl.formatMessage(messages.rules)}>
-            {!isLoading && (server.get('rules').isEmpty() ? (
+            {!isLoading && (server.get('rules', []).isEmpty() ? (
               <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
             ) : (
               <ol className='rules-list'>
