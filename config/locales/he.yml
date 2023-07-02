@@ -395,6 +395,15 @@ he:
       undo: אסור מַאֲחָד (פדרציה) עם שם המתחם
     domain_blocks:
       add_new: הוספת חדש
+      confirm_suspension:
+        cancel: ביטול
+        confirm: השעייה
+        permanent_action: ביטול ההשעיה לא יגרום לשחזר מידע או יחסים.
+        preamble_html: יש לאשר את השעיית <strong>%{domain}</strong> ותתי-הכתובות של שם המתחם.
+        remove_all_data: פעולה זו תסיר כל תוכן, מדיה ומידע הפרופילים של שם המתחם הזה מהשרת שלך.
+        stop_communication: השרת שלך יפסיק לתקשר עם שרתים אלו.
+        title: נא לאשר חסימת מתחם של %{domain}
+        undo_relationships: הפעולה תבטל את כל יחסי העקיבה בין חשבונות מהשרתים האלו לבין שלך.
       created_msg: חסימת שרת בתהליך
       destroyed_msg: חסימת שרת בוטלה
       domain: שרת
@@ -758,6 +767,8 @@ he:
       branding:
         preamble: המיתוג של השרת שלך מבדל אותו משרתים אחרים ברשת. המידע יכול להיות מוצג בסביבות שונות כגון מנשק הווב של מסטודון, יישומים מקומיים, בצפיה מקדימה של קישור או בתוך יישומוני הודעות וכולי. מסיבה זו מומלץ לשמור על המידע ברור, קצר וממצה.
         title: מיתוג
+      captcha_enabled:
+        title: לדרוש פתרון CAPTCHA כדי לאשרר למשתמשים את חשבונם
       content_retention:
         preamble: שליטה על דרך אחסון תוכן המשתמשים במסטודון.
         title: תקופת השמירה של תכנים
@@ -1001,6 +1012,7 @@ he:
     notification_preferences: שינוי העדפות דוא"ל
     salutation: "%{name},"
     settings: 'שינוי הגדרות דוא"ל: %{link}'
+    unsubscribe: בטל מנוי
     view: 'תצוגה:'
     view_profile: צפיה בפרופיל
     view_status: הצגת הודעה
@@ -1050,8 +1062,11 @@ he:
     rules:
       accept: הסכמה
       back: בחזרה
+      invited_by: 'ניתן להצטרף אל %{domain} הודות להזמנה מאת:'
       preamble: אלו נקבעים ונאכפים ע"י המנחים של %{domain}.
+      preamble_invited: לפני ההמשך יש להתחשב בחוקי המקום כפי שקבעו מנהלי הדיון על %{domain}.
       title: כמה חוקים בסיסיים.
+      title_invited: קיבלת הזמנה.
     security: אבטחה
     set_new_password: סיסמה חדשה
     setup:
@@ -1164,6 +1179,10 @@ he:
       your_appeal_rejected: ערעורך נדחה
   domain_validator:
     invalid_domain: הוא לא שם דומיין קביל
+  edit_profile:
+    basic_information: מידע בסיסי
+    other: אחר
+    safety_and_privacy: בטחון ופרטיות
   errors:
     '400': הבקשה שהגשת לא תקינה.
     '403': חסרות לך הרשאות לצפיה בעמוד זה.
@@ -1374,6 +1393,20 @@ he:
     failed_sign_in_html: נסיון כניסה כושל בשיטת %{method} מכתובת %{ip} (%{browser})
     successful_sign_in_html: נסיון כניסה מוצלח בשיטה %{method} מכתובת %{ip} (%{browser})
     title: הסטוריית אימותים
+  mail_subscriptions:
+    unsubscribe:
+      action: כן, לבטל הרשמה
+      complete: הפסקת הרשמה
+      emails:
+        notification_emails:
+          favourite: הודעות דואל לגבי חיבובים
+          follow: הודעות דואל לגבי עוקבים חדשים
+          follow_request: הודעות דואל לגבי בקשות מעקב
+          mention: הודעות דואל לגבי איזכורים
+          reblog: הודעות דואל לגבי הידהודים
+      resubscribe_html: אם ביטול ההרשמה היה בטעות, ניתן להרשם מחדש מתוך <a href="%{settings_path}">מסך הגדרות ההרשמה</a> שלך.
+      success_html: לא יגיעו אליך יותר הודעות %{type} משרת מסטודון %{domain} לכתובת הדואל %{email}.
+      title: הפסקת הרשמה
   media_attachments:
     validations:
       images_and_video: לא ניתן להוסיף וידאו להודעה שכבר מכילה תמונות
@@ -1489,6 +1522,7 @@ he:
       expired: סקר זה כבר הסתיים
       invalid_choice: ההצבעה שנבחרה אינה קיימת
       over_character_limit: לא יכולים להיות יותר מ-%{max} תוים כל אחד
+      self_vote: אין אפשרות להצביע במשאל שפרסמת בעצמך
       too_few_options: חייב להכיל יותר מפריט אחד
       too_many_options: לא יכול להכיל יותר מ-%{max} פריטים
   preferences:
@@ -1804,7 +1838,9 @@ he:
     seamless_external_login: את.ה מחובר דרך שירות חיצוני, לכן אפשרויות הסיסמא והדוא"ל לא מאופשרות.
     signed_in_as: 'מחובר בתור:'
   verification:
+    here_is_how: זה נעשה כך
     verification: אימות
+    verified_links: קישוריך המאומתים
   webauthn_credentials:
     add: הוספת מפתח אבטחה חדש
     create:
