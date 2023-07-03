@@ -395,6 +395,15 @@ gd:
       undo: Na ceadaich co-nasgadh leis an àrainn
     domain_blocks:
       add_new: Cuir bacadh àrainne ùr ris
+      confirm_suspension:
+        cancel: Sguir dheth
+        confirm: Cuir à rèim
+        permanent_action: Ma chuireas tu seo ann an rèim a-rithist, cha dèid dàta no dàimh sam bith aiseag.
+        preamble_html: Tha thu an impis <strong>%{domain}</strong> ’s na fo-àrainnean aige a chur à rèim.
+        remove_all_data: Bheir seo air falbh gach susbaint, meadhan is dàta pròifil aig cunntasan na h-àrainne seo on fhrithealaiche agad.
+        stop_communication: Cha dèan am frithealaiche agad conaltradh leis na frithealaichean sin tuilleadh.
+        title: Dearbh bacadh na h-àrainne %{domain}
+        undo_relationships: Brisidh seo dàimh leantainn sam bith eadar cunntasan o na frithealaichean sin is am frithealaiche agad-sa.
       created_msg: Tha bacadh na h-àrainne ’ga phròiseasadh
       destroyed_msg: Chan eil an àrainn ’ga bacadh tuilleadh
       domain: Àrainn
@@ -758,6 +767,9 @@ gd:
       branding:
         preamble: Tha branndadh an fhrithealaiche agad eadar-dhealaichte o fhrithealaichean eile san lìonra. Faodaidh gun nochd am fiosrachadh seo thar iomadh àrainneachd, can eadar-aghaidh-lìn Mhastodon, aplacaidean tùsail, ro-sheallaidhean air ceanglaichean air làraichean-lìn eile agus am broinn aplacaidean theachdaireachdan is mar sin air adhart. Air an adhbhar seo, mholamaid gun cùm thu am fiosrachadh seo soilleir is goirid.
         title: Branndadh
+      captcha_enabled:
+        desc_html: Tha seo an eisimeil air sgriobtaichean hCaptcha on taobh a-muigh a dh’fhaodadh a bhith ’na dhragh tèarainteachd ’s prìobhaideachd. A bharrachd air sin, <strong>nì seo an clàradh mòran nas do-ruigsinn no chuid (gu h-àraidh an fheadhainn air a bheil ciorram)</strong>. Air na h-adhbharan sin, beachdaich air dòighean eile mar clàradh stèidhichte air aontachadh no cuireadh.
+        title: Iarr air cleachdaichean ùra gum fuasgail iad CAPTCHA gus an cunntas aca a dhearbhadh
       content_retention:
         preamble: Stiùirich mar a tha susbaint an luchd-cleachdaidh ’ga stòradh ann am Mastodon.
         title: Glèidheadh na susbaint
@@ -1001,6 +1013,7 @@ gd:
     notification_preferences: Atharraich roghainnean a’ phuist-d
     salutation: "%{name},"
     settings: 'Atharraich roghainnean a’ phuist-d: %{link}'
+    unsubscribe: Cuir crìoch air an fho-sgrìobhadh
     view: 'Faic:'
     view_profile: Seall a’ phròifil
     view_status: Seall am post
@@ -1014,6 +1027,10 @@ gd:
     your_token: An tòcan inntrigidh agad
   auth:
     apply_for_account: Iarr cunntas
+    captcha_confirmation:
+      help_html: Ma tha duilgheadas agad le fuasgladh a’ CAPTCHA, leig fios leinn air %{email} ach an cuidich sinn thu.
+      hint_html: Dìreach aon rud eile! Feumaidh sinn dearbhadh gu bheil thu daonna (ach am fàg sinn an spama aig an doras!). Fuasgail an CAPTCHA gu h-ìosal is briog air “Lean air adhart”.
+      title: Deuchainn tèarainteachd
     confirmations:
       wrong_email_hint: Mur eil an seòladh puist-d seo mar bu chòir, ’s urrainn dhut atharrachadh ann an roghainnean a’ chunntais.
     delete_account: Sguab às an cunntas
@@ -1050,8 +1067,11 @@ gd:
     rules:
       accept: Gabh ris
       back: Air ais
+      invited_by: '’S urrainn dhut ballrachd fhaighinn air %{domain} leis a’ chuireadh a fhuair thu o:'
       preamble: Tha iad ’gan stèidheachadh is a chur an gnìomh leis na maoir aig %{domain}.
+      preamble_invited: Mus lean thu air adhart, thoir an aire air na riaghailtean a shuidhich na maoir aig %{domain}.
       title: Riaghailtean bunasach.
+      title_invited: Fhuair thu cuireadh.
     security: Tèarainteachd
     set_new_password: Suidhich facal-faire ùr
     setup:
@@ -1164,6 +1184,11 @@ gd:
       your_appeal_rejected: Chaidh an t-ath-thagradh agad a dhiùltadh
   domain_validator:
     invalid_domain: '– chan eil seo ’na ainm àrainne dligheach'
+  edit_profile:
+    basic_information: Fiosrachadh bunasach
+    hint_html: "<strong>Gnàthaich na chithear air a’ phròifil phoblach agad is ri taobh nam postaichean agad.</strong> Bidh càch nas buailtiche do leantainn agus conaltradh leat nuair a bhios tu air a’ phròifil agad a lìonadh agus dealbh rithe."
+    other: Eile
+    safety_and_privacy: Sàbhailteachd is prìobhaideachd
   errors:
     '400': Cha robh an t-iarrtas a chuir thu a-null dligheach no bha droch-chruth air.
     '403': Chan eil cead agad gus an duilleag seo a shealltainn.
@@ -1374,6 +1399,21 @@ gd:
     failed_sign_in_html: Oidhirp clàraidh a-steach nach deach leis le %{method} o %{ip} (%{browser})
     successful_sign_in_html: Oidhirp clàraidh a-steach a shoirbhich leis le %{method} o %{ip} (%{browser})
     title: Eachdraidh an dearbhaidh
+  mail_subscriptions:
+    unsubscribe:
+      action: Tha, cuir crìoch air an fho-sgrìobhadh
+      complete: Chaidh crìoch a chur air an fho-sgrìobhadh
+      confirmation_html: A bheil thu cinnteach nach eil thu airson %{type} fhaighinn tuilleadh o Mhastodon air %{domain} dhan post-d agad aig %{email}? ’S urrainn dhut fo-sgrìobhadh a-rithist uair sam bith o <a href="%{settings_path}">roghainnean a’ puist-d agad</a>.
+      emails:
+        notification_emails:
+          favourite: puist-d le brathan mu annsachdan
+          follow: puist-d le brathan mu leantainn
+          follow_request: puist-d le brathan mu iarrtasan leantainn
+          mention: puist-d le brathan mu iomraidhean
+          reblog: puist-d le brathan mu bhrosnachaidhean
+      resubscribe_html: Ma chuir thu crìoch air an fho-sgrìobhadh le mearachd, ’s urrainn dhut fo-sgrìobhadh a-rithist o <a href="%{settings_path}">roghainnean a’ puist-d agad</a>.
+      success_html: Chan fhaigh thu %{type} o Mhastodon air %{domain} dhan phost-d agad aig %{email} tuilleadh.
+      title: Cuir crìoch air an fho-sgrìobhadh
   media_attachments:
     validations:
       images_and_video: Chan urrainn dhut video a cheangal ri post sa bheil dealbh mu thràth
@@ -1489,6 +1529,7 @@ gd:
       expired: Tha an cunntas-bheachd air a thighinn gu crìoch
       invalid_choice: Chan eil an roghainn dhan a bhòt thu ann
       over_character_limit: '– chan fhaod a bhith nas fhaide na %{max} caractar'
+      self_vote: Chan urrainn dhut bhòtadh sna chunntasan-bheachd agad fhèin
       too_few_options: '– feumaidh iomadh nì a bhith aige'
       too_many_options: '– chan fhaod còrr is %{max} nì a bhith ’na bhroinn'
   preferences:
@@ -1804,7 +1845,12 @@ gd:
     seamless_external_login: Rinn thu clàradh a-steach le seirbheis on taobh a-muigh, mar sin chan eil roghainnean an fhacail-fhaire ’s a’ phuist-d ri làimh dhut.
     signed_in_as: 'Chlàraich thu a-steach mar:'
   verification:
+    extra_instructions_html: <strong>Gliocas:</strong>Faodaidh an ceangal air an làrach-lìn agad a bhith do-fhaicsinneach. ’S e <code>rel="me"</code> a tha sa phàirt chudromach a bhacas riochd cuideigin eile air làraichean-lìn le susbaint air a gintinn o chleachdaiche. ’S urrainn dhut fiù taga <code>link</code> a chleachdadh ann am bann-cinn na duilleige seach <code>a</code> ach feumaidh sinn an HTML ruigsinn gun a bhith a’ ruith JavaScript.
+    here_is_how: Seo mar a nì thu e
+    hint_html: "<strong>Gheibh duine sam bith dearbhadh an aithne air Mastodon.</strong> Tha seo stèidhichte air stannardan-lìn fosgailte agus bidh e saor ’s an-asgaidh gu bràth. Chan fheum thu dad ach làrach-lìn phearsanta leis an aithnich daoine thu. Nuair a nì thu ceangal dhan làrach-lìn sin on phròifil agad, dearbhaidh sinn gu bheil an làrach-lìn a’ ceangal air ais dhan phròifil agad agus seallaidh sinn taisbeanair lèirsinneach oirre."
+    instructions_html: Dèan lethbhreac dhen chòd gu h-ìosal is cuir a-steach ann an HTML na làraich-lìn agad e. An uairsin, cuir seòladh na làraich-lìn agad ri fear dhe na raointean a bharrachd air a’ phròifil agad o thaba “Deasaich a’ phròifil” agus sàbhail na h-atharraichean.
     verification: Dearbhadh
+    verified_links: Na ceanglaichean dearbhte agad
   webauthn_credentials:
     add: Cuir iuchair tèarainteachd ùr ris
     create:
