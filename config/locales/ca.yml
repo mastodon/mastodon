@@ -974,6 +974,7 @@ ca:
     notification_preferences: Canvia les preferències de correu
     salutation: "%{name},"
     settings: 'Canvia les preferències de correu: %{link}'
+    unsubscribe: Cancel·la la subscripció
     view: 'Visualització:'
     view_profile: Mostra el perfil
     view_status: Mostra el tut
@@ -987,6 +988,8 @@ ca:
     your_token: El teu identificador d'accés
   auth:
     apply_for_account: Sol·licitar un compte
+    captcha_confirmation:
+      title: Revisió de seguretat
     confirmations:
       wrong_email_hint: Si aquesta adreça de correu electrònic no és correcte, pots canviar-la en els ajustos del compte.
     delete_account: Elimina el compte
@@ -1137,6 +1140,9 @@ ca:
       your_appeal_rejected: La teva apel·lació ha estat rebutjada
   domain_validator:
     invalid_domain: no es un nom de domini vàlid
+  edit_profile:
+    basic_information: Informació bàsica
+    safety_and_privacy: Seguretat i privacitat
   errors:
     '400': La sol·licitud que vas emetre no era vàlida o no era correcta.
     '403': No tens permís per a veure aquesta pàgina.
@@ -1331,6 +1337,10 @@ ca:
     failed_sign_in_html: Intent d'inici de sessió errat amb %{method} des de %{ip} (%{browser})
     successful_sign_in_html: Inici de sessió exitós amb %{method} des de %{ip} (%{browser})
     title: Historial d'autenticació
+  mail_subscriptions:
+    unsubscribe:
+      action: Sí, canceŀla la subscripció
+      complete: Subscripció cancel·lada
   media_attachments:
     validations:
       images_and_video: No es pot adjuntar un vídeo a una publicació que ja contingui imatges
@@ -1750,6 +1760,7 @@ ca:
     signed_in_as: 'Sessió iniciada com a:'
   verification:
     verification: Verificació
+    verified_links: Els teus enllaços verificats
   webauthn_credentials:
     add: Afegir nova clau de seguretat
     create:
