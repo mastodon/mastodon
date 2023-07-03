@@ -13,8 +13,8 @@ RSpec.describe ImportService, type: :service do
     stub_request(:post, 'https://example.com/inbox').to_return(status: 200)
   end
 
-  context 'import old-style list of muted users' do
-    subject { ImportService.new }
+  context 'when importing old-style list of muted users' do
+    subject { described_class.new }
 
     let(:csv) { attachment_fixture('mute-imports.txt') }
 
@@ -51,8 +51,8 @@ RSpec.describe ImportService, type: :service do
     end
   end
 
-  context 'import new-style list of muted users' do
-    subject { ImportService.new }
+  context 'when importing new-style list of muted users' do
+    subject { described_class.new }
 
     let(:csv) { attachment_fixture('new-mute-imports.txt') }
 
@@ -92,8 +92,8 @@ RSpec.describe ImportService, type: :service do
     end
   end
 
-  context 'import old-style list of followed users' do
-    subject { ImportService.new }
+  context 'when importing old-style list of followed users' do
+    subject { described_class.new }
 
     let(:csv) { attachment_fixture('mute-imports.txt') }
 
@@ -134,8 +134,8 @@ RSpec.describe ImportService, type: :service do
     end
   end
 
-  context 'import new-style list of followed users' do
-    subject { ImportService.new }
+  context 'when importing new-style list of followed users' do
+    subject { described_class.new }
 
     let(:csv) { attachment_fixture('new-following-imports.txt') }
 
@@ -181,8 +181,8 @@ RSpec.describe ImportService, type: :service do
   # Based on the bug report 20571 where UTF-8 encoded domains were rejecting import of their users
   #
   # https://github.com/mastodon/mastodon/issues/20571
-  context 'utf-8 encoded domains' do
-    subject { ImportService.new }
+  context 'with a utf-8 encoded domains' do
+    subject { described_class.new }
 
     let!(:nare) { Fabricate(:account, username: 'nare', domain: 'թութ.հայ', locked: false, protocol: :activitypub, inbox_url: 'https://թութ.հայ/inbox') }
     let(:csv) { attachment_fixture('utf8-followers.txt') }
@@ -200,8 +200,8 @@ RSpec.describe ImportService, type: :service do
     end
   end
 
-  context 'import bookmarks' do
-    subject { ImportService.new }
+  context 'when importing bookmarks' do
+    subject { described_class.new }
 
     let(:csv) { attachment_fixture('bookmark-imports.txt') }
     let(:local_account)  { Fabricate(:account, username: 'foo', domain: '') }
@@ -219,7 +219,7 @@ RSpec.describe ImportService, type: :service do
     end
 
     before do
-      service = double
+      service = instance_double(ActivityPub::FetchRemoteStatusService)
       allow(ActivityPub::FetchRemoteStatusService).to receive(:new).and_return(service)
       allow(service).to receive(:call).with('https://unknown-remote.com/users/bar/statuses/1') do
         Fabricate(:status, uri: 'https://unknown-remote.com/users/bar/statuses/1')

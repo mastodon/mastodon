@@ -9,21 +9,21 @@ RSpec.describe UserPolicy do
   let(:john)    { Fabricate(:account) }
 
   permissions :reset_password?, :change_email? do
-    context 'staff?' do
-      context '!record.staff?' do
+    context 'when staff?' do
+      context 'with !record.staff?' do
         it 'permits' do
           expect(subject).to permit(admin, john.user)
         end
       end
 
-      context 'record.staff?' do
+      context 'when record.staff?' do
         it 'denies' do
           expect(subject).to_not permit(admin, admin.user)
         end
       end
     end
 
-    context '!staff?' do
+    context 'with !staff?' do
       it 'denies' do
         expect(subject).to_not permit(john, User)
       end
@@ -31,21 +31,21 @@ RSpec.describe UserPolicy do
   end
 
   permissions :disable_2fa? do
-    context 'admin?' do
-      context '!record.staff?' do
+    context 'when admin?' do
+      context 'with !record.staff?' do
         it 'permits' do
           expect(subject).to permit(admin, john.user)
         end
       end
 
-      context 'record.staff?' do
+      context 'when record.staff?' do
         it 'denies' do
           expect(subject).to_not permit(admin, admin.user)
         end
       end
     end
 
-    context '!admin?' do
+    context 'with !admin?' do
       it 'denies' do
         expect(subject).to_not permit(john, User)
       end
@@ -53,15 +53,15 @@ RSpec.describe UserPolicy do
   end
 
   permissions :confirm? do
-    context 'staff?' do
-      context '!record.confirmed?' do
+    context 'when staff?' do
+      context 'with !record.confirmed?' do
         it 'permits' do
           john.user.update(confirmed_at: nil)
           expect(subject).to permit(admin, john.user)
         end
       end
 
-      context 'record.confirmed?' do
+      context 'when record.confirmed?' do
         it 'denies' do
           john.user.confirm!
           expect(subject).to_not permit(admin, john.user)
@@ -69,7 +69,7 @@ RSpec.describe UserPolicy do
       end
     end
 
-    context '!staff?' do
+    context 'with !staff?' do
       it 'denies' do
         expect(subject).to_not permit(john, User)
       end
@@ -77,13 +77,13 @@ RSpec.describe UserPolicy do
   end
 
   permissions :enable? do
-    context 'staff?' do
+    context 'when staff?' do
       it 'permits' do
         expect(subject).to permit(admin, User)
       end
     end
 
-    context '!staff?' do
+    context 'with !staff?' do
       it 'denies' do
         expect(subject).to_not permit(john, User)
       end
@@ -91,21 +91,21 @@ RSpec.describe UserPolicy do
   end
 
   permissions :disable? do
-    context 'staff?' do
-      context '!record.admin?' do
+    context 'when staff?' do
+      context 'with !record.admin?' do
         it 'permits' do
           expect(subject).to permit(admin, john.user)
         end
       end
 
-      context 'record.admin?' do
+      context 'when record.admin?' do
         it 'denies' do
           expect(subject).to_not permit(admin, admin.user)
         end
       end
     end
 
-    context '!staff?' do
+    context 'with !staff?' do
       it 'denies' do
         expect(subject).to_not permit(john, User)
       end

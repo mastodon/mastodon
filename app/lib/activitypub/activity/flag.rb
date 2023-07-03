@@ -16,7 +16,7 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
         @account,
         target_account,
         status_ids: target_statuses.nil? ? [] : target_statuses.map(&:id),
-        comment: @json['content'] || '',
+        comment: report_comment,
         uri: report_uri
       )
     end
@@ -33,6 +33,10 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
   end
 
   def report_uri
-    @json['id'] unless @json['id'].nil? || invalid_origin?(@json['id'])
+    @json['id'] unless @json['id'].nil? || non_matching_uri_hosts?(@account.uri, @json['id'])
+  end
+
+  def report_comment
+    (@json['content'] || '')[0...5000]
   end
 end

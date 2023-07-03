@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UserRole, type: :model do
+RSpec.describe UserRole do
   subject { described_class.create(name: 'Foo', position: 1) }
 
   describe '#can?' do
@@ -118,10 +118,8 @@ RSpec.describe UserRole, type: :model do
       end
     end
 
-    context do
-      it 'returns permissions combined with the everyone role' do
-        expect(subject.computed_permissions).to eq described_class.everyone.permissions
-      end
+    it 'returns permissions combined with the everyone role' do
+      expect(subject.computed_permissions).to eq described_class.everyone.permissions
     end
   end
 

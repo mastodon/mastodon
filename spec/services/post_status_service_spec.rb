@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PostStatusService, type: :service do
-  subject { PostStatusService.new }
+  subject { described_class.new }
 
   it 'creates a new status' do
     account = Fabricate(:account)
@@ -48,7 +48,7 @@ RSpec.describe PostStatusService, type: :service do
       expect(status.params['text']).to eq 'Hi future!'
       expect(status.params['media_ids']).to eq [media.id]
       expect(media.reload.status).to be_nil
-      expect(Status.where(text: 'Hi future!').exists?).to be_falsey
+      expect(Status.where(text: 'Hi future!')).to_not exist
     end
 
     it 'does not change statuses count' do
@@ -132,7 +132,7 @@ RSpec.describe PostStatusService, type: :service do
   end
 
   it 'processes mentions' do
-    mention_service = double(:process_mentions_service)
+    mention_service = instance_double(ProcessMentionsService)
     allow(mention_service).to receive(:call)
     allow(ProcessMentionsService).to receive(:new).and_return(mention_service)
     account = Fabricate(:account)
@@ -163,7 +163,7 @@ RSpec.describe PostStatusService, type: :service do
   end
 
   it 'processes hashtags' do
-    hashtags_service = double(:process_hashtags_service)
+    hashtags_service = instance_double(ProcessHashtagsService)
     allow(hashtags_service).to receive(:call)
     allow(ProcessHashtagsService).to receive(:new).and_return(hashtags_service)
     account = Fabricate(:account)

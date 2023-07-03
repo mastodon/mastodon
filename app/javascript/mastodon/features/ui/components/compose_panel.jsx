@@ -1,14 +1,17 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import SearchContainer from 'mastodon/features/compose/containers/search_container';
+import { PureComponent } from 'react';
+
+import { connect } from 'react-redux';
+
+import { changeComposing, mountCompose, unmountCompose } from 'mastodon/actions/compose';
+import ServerBanner from 'mastodon/components/server_banner';
 import ComposeFormContainer from 'mastodon/features/compose/containers/compose_form_container';
 import NavigationContainer from 'mastodon/features/compose/containers/navigation_container';
-import LinkFooter from './link_footer';
-import ServerBanner from 'mastodon/components/server_banner';
-import { changeComposing, mountCompose, unmountCompose } from 'mastodon/actions/compose';
+import SearchContainer from 'mastodon/features/compose/containers/search_container';
 
-class ComposePanel extends React.PureComponent {
+import LinkFooter from './link_footer';
+
+class ComposePanel extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object.isRequired,
@@ -46,17 +49,17 @@ class ComposePanel extends React.PureComponent {
         <SearchContainer openInRoute />
 
         {!signedIn && (
-          <React.Fragment>
+          <>
             <ServerBanner />
             <div className='flex-spacer' />
-          </React.Fragment>
+          </>
         )}
 
         {signedIn && (
-          <React.Fragment>
+          <>
             <NavigationContainer onClose={this.onBlur} />
             <ComposeFormContainer singleColumn />
-          </React.Fragment>
+          </>
         )}
 
         <LinkFooter />

@@ -3,11 +3,7 @@
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |n|
     n.item :web, safe_join([fa_icon('chevron-left fw'), t('settings.back')]), root_path
-
-    n.item :profile, safe_join([fa_icon('user fw'), t('settings.profile')]), settings_profile_path, if: -> { current_user.functional? } do |s|
-      s.item :profile, safe_join([fa_icon('pencil fw'), t('settings.appearance')]), settings_profile_path
-      s.item :featured_tags, safe_join([fa_icon('hashtag fw'), t('settings.featured_tags')]), settings_featured_tags_path
-    end
+    n.item :profile, safe_join([fa_icon('user fw'), t('settings.profile')]), settings_profile_path, if: -> { current_user.functional? }, highlights_on: %r{/settings/profile|/settings/featured_tags|/settings/verification}
 
     n.item :preferences, safe_join([fa_icon('cog fw'), t('settings.preferences')]), settings_preferences_path, if: -> { current_user.functional? } do |s|
       s.item :appearance, safe_join([fa_icon('desktop fw'), t('settings.appearance')]), settings_preferences_appearance_path
@@ -26,7 +22,7 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     n.item :data, safe_join([fa_icon('cloud-download fw'), t('settings.import_and_export')]), settings_export_path do |s|
-      s.item :import, safe_join([fa_icon('cloud-upload fw'), t('settings.import')]), settings_import_path, if: -> { current_user.functional? }
+      s.item :import, safe_join([fa_icon('cloud-upload fw'), t('settings.import')]), settings_imports_path, if: -> { current_user.functional? }
       s.item :export, safe_join([fa_icon('cloud-download fw'), t('settings.export')]), settings_export_path
     end
 
