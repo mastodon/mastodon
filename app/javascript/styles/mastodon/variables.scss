@@ -62,8 +62,8 @@ $darker-text-color: $ui-primary-color !default;
 $dark-text-color: $ui-base-lighter-color !default;
 $secondary-text-color: $ui-secondary-color !default;
 $highlight-text-color: lighten($ui-highlight-color, 8%) !default;
-$action-button-color: $ui-base-color !default;
-$action-button-focus-color: $ui-base-color !default;
+$action-button-color: $ui-base-lighter-color !default;
+$action-button-focus-color: lighten($ui-base-lighter-color, 4%) !default;
 $passive-text-color: $gold-star !default;
 $active-passive-text-color: $success-green !default;
 
