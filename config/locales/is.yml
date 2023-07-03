@@ -388,6 +388,8 @@ is:
         preamble_html: Þú ert við það að setja <strong>%{domain}</strong> í bið ásamt undirlénum.
         remove_all_data: Þetta mun fjarlægja allt efni og notendaupplýsingar fyrir aðganga frá þessu léni af þínum vefþjóni.
         stop_communication: Vefþjónnin þinn mun slíta samskiptum við þessa vefþjóna.
+        title: Staðfesta útilokun á léni fyrir %{domain}
+        undo_relationships: Þetta mun afturkalla öll fylgjendavensl milli aðganaga þessa vefþjóns og þíns.
       created_msg: Útilokun léns er núna í vinnslu
       destroyed_msg: Útilokun léns hefur verið aflétt
       domain: Lén
@@ -1141,6 +1143,7 @@ is:
     invalid_domain: er ekki leyfilegt nafn á léni
   edit_profile:
     basic_information: Grunnupplýsingar
+    safety_and_privacy: Öryggi og friðhelgi
   errors:
     '400': Beiðnin sem þú sendir er ógild eða rangt uppsett.
     '403': Þú hefur ekki heimildir til að skoða þessari síðu.
@@ -1339,6 +1342,10 @@ is:
     unsubscribe:
       action: Já, hætta í áskrift
       complete: Hætta í áskrift
+      emails:
+        notification_emails:
+          follow: fylgjendatilkynningatölvupóstar
+          follow_request: fylgjendabeiðnistölvupóstar
   media_attachments:
     validations:
       images_and_video: Ekki er hægt að hengja myndskeið við færslu sem þegar inniheldur myndir
@@ -1757,6 +1764,7 @@ is:
     seamless_external_login: Innskráning þín er í gegnum utanaðkomandi þjónustu, þannig að stillingar fyrir lykilorð og tölvupóst eru ekki aðgengilegar.
     signed_in_as: 'Skráð inn sem:'
   verification:
+    here_is_how: Svona gerum við það
     verification: Sannprófun
   webauthn_credentials:
     add: Bæta við nýjum öryggislykli
