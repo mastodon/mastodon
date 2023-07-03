@@ -82,9 +82,9 @@ A **Vagrant** configuration is included for development purposes. To use it, com
 - Run `vagrant ssh -c "cd /vagrant && foreman start"`
 - Open `http://mastodon.local` in your browser
 
-To set up **M1/2 MacOS** for native development, complete the following steps:
+To set up **MacOS** for native development, complete the following steps:
 
-- Install Ruby 3.2 (using [rbenv](https://github.com/rbenv/rbenv) for easy installation and management of ruby versions)
+- Install the latest stable Ruby version (use a ruby version manager for easy installation and management of ruby versions)
 - Run `brew install postgresql@15`
 - Run `brew install redis`
 - Run `brew install imagemagick`
