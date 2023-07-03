@@ -384,12 +384,12 @@ nl:
       confirm_suspension:
         cancel: Annuleren
         confirm: Opschorten
-        permanent_action: De schorsing ongedaan maken zal geen gegevens of relatie herstellen.
-        preamble_html: U staat op het punt <strong>%{domain}</strong> en subdomeinen op te schorten.
-        remove_all_data: Dit verwijdert alle inhoud, media en profielgegevens van de accounts van dit domein van uw server.
-        stop_communication: Uw server zal stoppen met communiceren met deze servers.
-        title: Blokkering van domein %{domain} bevestigen
-        undo_relationships: Dit zal elke volgrelatie tussen de accounts van deze servers ongedaan maken.
+        permanent_action: De schorsing ongedaan maken zal geen gegevens of volgrelaties herstellen.
+        preamble_html: Je staat op het punt om <strong>%{domain}</strong> en subdomeinen op te schorten.
+        remove_all_data: Dit verwijdert alle inhoud, media en profielgegevens van de accounts van dit domein van jouw server.
+        stop_communication: Jouw server zal niet langer met deze servers communiceren.
+        title: Domeinblokkade voor %{domain} bevestigen
+        undo_relationships: Dit zal elke volgrelatie tussen de accounts van deze servers en die van jou ongedaan maken.
       created_msg: Domeinblokkade wordt nu verwerkt
       destroyed_msg: Domeinblokkade is ongedaan gemaakt
       domain: Domein
@@ -740,7 +740,7 @@ nl:
         preamble: De branding van jouw server laat zien hoe het met andere servers in het netwerk verschilt. Deze informatie wordt op verschillende plekken getoond, zoals in de webomgeving van Mastodon, in mobiele apps, in voorvertoningen op andere websites en berichten-apps, enz. Daarom is het belangrijk om de informatie helder, kort en beknopt te houden.
         title: Branding
       captcha_enabled:
-        desc_html: Dit is afhankelijk van externe scripts van hCaptcha, wat een zorg voor veiligheid en privacy kan zijn. Bovendien kan <strong>dit het registratieproces aanzienlijk minder toegankelijk maken voor sommige (vooral gehandicapten) mensen</strong>. Om deze redenen dient u alternatieve maatregelen te overwegen, zoals registraties op basis van goedkeuringen of op uitnodiging gebaseerde registratie.
+        desc_html: Dit is afhankelijk van externe scripts van hCaptcha, wat veiligheids- en privacyrisico's met zich mee kan brengen. Bovendien kan <strong>dit het registratieproces aanzienlijk minder toegankelijk maken voor sommige (vooral gehandicapte) mensen</strong>. Om deze redenen kun je het beste alternatieve maatregelen overwegen, zoals registratie op basis van goedkeuring of op uitnodiging.
         title: Nieuwe gebruikers dienen een CAPTCHA op te lossen om hun account te bevestigen
       content_retention:
         preamble: Toezicht houden op hoe berichten en media van gebruikers op Mastodon worden bewaard.
@@ -992,7 +992,7 @@ nl:
   auth:
     apply_for_account: Account aanvragen
     captcha_confirmation:
-      help_html: Als u problemen ondervindt bij het oplossen van de CAPTCHA, kunt u contact met ons opnemen via %{email} en kunnen wij u assisteren.
+      help_html: Als je problemen ondervindt bij het oplossen van de CAPTCHA, kun je contact met ons opnemen via %{email}, zodat we je kunnen assisteren.
       hint_html: Nog maar één ding! Je moet bevestigen dat je een mens bent (dit is om de spam buiten de deur te houden!). Los de onderstaande CAPTCHA op en klik op "Doorgaan".
       title: Veiligheidscontrole
     confirmations:
@@ -1031,11 +1031,11 @@ nl:
     rules:
       accept: Accepteren
       back: Terug
-      invited_by: 'U kunt deelnemen aan %{domain} dankzij de uitnodiging die u heeft ontvangen van:'
+      invited_by: 'Je kunt je registreren op %{domain} dankzij de uitnodiging die je hebt ontvangen van:'
       preamble: Deze zijn vastgesteld en worden gehandhaafd door de moderatoren van %{domain}.
-      preamble_invited: Voordat u verder gaat, dient u eerst kennis te nemen van de basisregels die door de moderators van %{domain} zijn vastgesteld.
+      preamble_invited: Voordat je verder gaat, moet je eerst kennisnemen van de basisregels die door de moderatoren van %{domain} zijn vastgesteld.
       title: Enkele basisregels.
-      title_invited: U bent uitgenodigd.
+      title_invited: Je bent uitgenodigd.
     security: Beveiliging
     set_new_password: Nieuw wachtwoord instellen
     setup:
@@ -1150,7 +1150,7 @@ nl:
     invalid_domain: is een ongeldige domeinnaam
   edit_profile:
     basic_information: Algemene informatie
-    hint_html: "<strong>Pas aan wat mensen zien op uw openbare profiel en naast uw berichten.</strong> Andere mensen zullen u eerder volgen en met u communiceren wanneer u een gevuld profiel en een profielfoto hebt."
+    hint_html: "<strong>Pas aan wat mensen op jouw openbare profiel en naast je berichten zien.</strong> Andere mensen zullen je eerder volgen en met je communiceren wanneer je profiel is ingevuld en je een profielfoto hebt."
     other: Overige
     safety_and_privacy: Veiligheid en privacy
   errors:
@@ -1190,7 +1190,7 @@ nl:
     add_new: Nieuwe toevoegen
     errors:
       limit: Je hebt al het maximale aantal hashtags uitgelicht
-    hint_html: "<strong>Wat zijn uitgelichte hashtags?</strong> Deze worden prominent op jouw openbare profiel getoond en stelt mensen in staat om jouw openbare berichten per hashtag te bekijken. Het zijn een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden."
+    hint_html: "<strong>Toon je belangrijkste hashtags op je profiel</strong> Deze worden prominent op je openbare profiel getoond en stelt mensen in staat om je openbare berichten per hashtag te bekijken. Het is een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden."
   filters:
     contexts:
       account: Profielen
@@ -1351,14 +1351,14 @@ nl:
     unsubscribe:
       action: Ja, afmelden
       complete: Afgemeld
-      confirmation_html: Weet u zeker dat u zich wilt afmelden voor het ontvangen van %{type} voor Mastodon op %{domain} op uw e-mailadres %{email}? U kunt zich altijd opnieuw abonneren op uw <a href="%{settings_path}">instellingen voor e-mailmeldingen</a>.
+      confirmation_html: Weet je zeker dat je je wilt afmelden voor het ontvangen van %{type} van Mastodon op %{domain} op je e-mailadres %{email}? Je kunt je altijd opnieuw abonneren in jouw <a href="%{settings_path}">instellingen voor e-mailmeldingen</a>.
       emails:
         notification_emails:
-          favourite: '"favoriet" notificatie e-mails'
-          follow: '"volgen" notificatie e-mails'
-          follow_request: '"volgverzoek" e-mails'
-          mention: '"vermelding" notificatie e-mails'
-          reblog: '"boost" notificatie e-mails'
+          favourite: e-mailmeldingen voor favorieten
+          follow: e-mailmeldingen voor nieuwe volgers
+          follow_request: e-mailmeldingen voor volgverzoeken
+          mention: e-mailmeldingen voor vermeldingen
+          reblog: e-mailmeldingen voor boosts
       resubscribe_html: Als u zich per ongeluk hebt afgemeld, kunt u zich opnieuw abonneren op uw <a href="%{settings_path}">e-mailinstellingen</a>.
       success_html: U ontvangt niet langer %{type} voor Mastodon op %{domain} in uw e-mail %{email}.
       title: Afmelden
