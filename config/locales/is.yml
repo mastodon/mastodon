@@ -739,6 +739,9 @@ is:
       branding:
         preamble: Útlitsleg einkenni aðgreina netþjóninn þinn frá öðrum netþjónum á netkerfinu. Þessar upplýsingar geta birst á margvíslegum stöðum, eins og til dæmis í vefviðmóti Mastodon, einstökum forritum, í forskoðun tengla á öðrum vefsvæðum og innan samskiptaforrita, svo eitthvað sé talið. Þess vegna er vest að þessar upplýsingar séu skýrar, stuttar og tæmandi.
         title: Útlitsleg aðgreining
+      captcha_enabled:
+        desc_html: "Þetta stuðlast á utanaðkomandi forskriftum frá hCaptcha, sem gæti haft í för með sér öryggisveikleika og vegið að friðhelgi notenda.\nAukinheldur <strong> gæti þetta gert nýskráningarferlið óaðgengilegra sumum (sérstaklega fyrir fatlaða)</strong>. Þess vegna er rétt að skoða aðra valmöguleika svo sem nýskráningar háðar samþykki eða boði."
+        title: Nýir notendur munu þurfa að standast Turing skynpróf til að staðfesta notendaaðganginn
       content_retention:
         preamble: Stýrðu hvernig efni frá notendum sé geymt í Mastodon.
         title: Geymsla efnis
@@ -988,6 +991,8 @@ is:
   auth:
     apply_for_account: Biðja um notandaaðgang
     captcha_confirmation:
+      help_html: Ef þú átt í erfiðleikum með að leysa Turing skynpróf, geturðu hafst samband við okkur á netfanginu %{email} og við munum aðstoða þig.
+      hint_html: "Bara eitt enn! Við þurfum að ganga úr skugga um að þú sért mennskur (þetta er gert til að draga úr amapósti).\nLeystu Turing skynprófið og smelltu á \"Áfram\"."
       title: Öryggisathugun
     confirmations:
       wrong_email_hint: Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
@@ -1027,6 +1032,7 @@ is:
       back: Til baka
       invited_by: 'Þú getur tekið þátt í %{domain} þökk sé boði sem þú fékkst frá:'
       preamble: Þær eru settar og þeim framfylgt af umsjónarmönnum %{domain}.
+      preamble_invited: Áður en haldið er lengra, vinsamlegast kynntu þér reglurnar sem stjórnendur %{domain} hafa sett.
       title: Nokkrar grunnreglur.
       title_invited: Þér hefur verið boðið.
     security: Öryggi
