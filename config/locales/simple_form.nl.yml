@@ -2,9 +2,9 @@ nl:
   simple_form:
     hints:
       account:
-        display_name: Uw volledige naam of uw leuke bijnaam.
-        fields: Uw homepagina, voornaamwoorden, leeftijd, alles wat u wilt.
-        note: 'U kunt andere mensen vermelden met @mention of #hashtags gebruiken.'
+        display_name: Jouw volledige naam of een leuke bijnaam.
+        fields: Jouw website, persoonlijke voornaamwoorden, leeftijd, alles wat je maar kwijt wilt.
+        note: 'Je kunt andere mensen @vermelden of #hashtags gebruiken.'
       account_alias:
         acct: Vermeld de gebruikersnaam@domein van het account vanwaar je wilt verhuizen
       account_migration:
@@ -80,7 +80,7 @@ nl:
         backups_retention_period: De aangemaakte gebruikersarchieven voor het opgegeven aantal dagen behouden.
         bootstrap_timeline_accounts: Deze accounts worden bovenaan de aanbevelingen aan nieuwe gebruikers getoond. Meerdere gebruikersnamen met komma's scheiden.
         closed_registrations_message: Weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld
-        content_cache_retention_period: 'Berichten van andere servers worden na het opgegeven aantal dagen verwijderd. Let op: Dit is onomkeerbaar.'
+        content_cache_retention_period: Alle berichten van andere servers worden na het opgegeven aantal dagen verwijderd. Deze berichten kunnen daarna hoogstwaarschijnlijk niet meer worden hersteld. Alle gerelateerde bladwijzers, favorieten en boosts worden eveneens onomkeerbaar verwijderd.
         custom_css: Je kunt aangepaste CSS toepassen op de webversie van deze Mastodon-server.
         mascot: Overschrijft de illustratie in de geavanceerde webomgeving.
         media_cache_retention_period: Mediabestanden die van andere servers zijn gedownload worden na het opgegeven aantal dagen verwijderd en worden op verzoek opnieuw gedownload.
@@ -170,7 +170,7 @@ nl:
       defaults:
         autofollow: Uitnodigen om jouw account te volgen
         avatar: Profielfoto
-        bot: Dit is een bot-account
+        bot: Dit is een geautomatiseerd account
         chosen_languages: Talen filteren
         confirm_new_password: Nieuw wachtwoord bevestigen
         confirm_password: Wachtwoord bevestigen
@@ -181,7 +181,7 @@ nl:
         display_name: Weergavenaam
         email: E-mailadres
         expires_in: Vervalt na
-        fields: Metadata profiel
+        fields: Extra velden
         header: Omslagfoto
         honeypot: "%{label} (niet invullen)"
         inbox_url: Inbox-URL van de relayserver
