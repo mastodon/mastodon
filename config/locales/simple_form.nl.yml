@@ -1,6 +1,10 @@
 nl:
   simple_form:
     hints:
+      account:
+        display_name: Uw volledige naam of uw leuke bijnaam.
+        fields: Uw homepagina, voornaamwoorden, leeftijd, alles wat u wilt.
+        note: 'U kunt andere mensen vermelden met @mention of #hashtags gebruiken.'
       account_alias:
         acct: Vermeld de gebruikersnaam@domein van het account vanwaar je wilt verhuizen
       account_migration:
@@ -129,6 +133,7 @@ nl:
         position: Een hogere rol beslist in bepaalde situaties over het oplossen van conflicten. Bepaalde acties kunnen alleen worden uitgevoerd op rollen met een lagere prioriteit
       webhook:
         events: Selecteer de te verzenden gebeurtenissen
+        template: Maak een eigen JSON payload aan met variabele interpolatie. Laat leeg voor standaard JSON.
         url: Waar gebeurtenissen naartoe worden verzonden
     labels:
       account:
@@ -294,6 +299,7 @@ nl:
         usable: Toestaan dat deze hashtag in berichten gebruikt mag worden
       user:
         role: Rol
+        time_zone: Tijdzone
       user_role:
         color: Kleur van badge
         highlighted: Rol als badge op profielpagina's tonen
@@ -302,6 +308,7 @@ nl:
         position: Prioriteit
       webhook:
         events: Ingeschakelde gebeurtenissen
+        template: Sjabloon Payload
         url: Eindpunt URL
     'no': 'Nee'
     not_recommended: Niet aanbevolen
