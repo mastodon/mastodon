@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Settings::Preferences::OtherController < Settings::PreferencesController
+class Settings::Preferences::OtherController < Settings::Preferences::BaseController
   private
 
   def after_update_redirect_path

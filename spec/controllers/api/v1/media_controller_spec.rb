@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::MediaController, type: :controller do
+RSpec.describe Api::V1::MediaController do
   render_views
 
   let(:user)  { Fabricate(:user) }
@@ -15,29 +15,25 @@ RSpec.describe Api::V1::MediaController, type: :controller do
   describe 'POST #create' do
     describe 'with paperclip errors' do
       context 'when imagemagick cant identify the file type' do
-        before do
+        it 'returns http 422' do
           expect_any_instance_of(Account).to receive_message_chain(:media_attachments, :create!).and_raise(Paperclip::Errors::NotIdentifiedByImageMagickError)
           post :create, params: { file: fixture_file_upload('attachment.jpg', 'image/jpeg') }
-        end
 
-        it 'returns http 422' do
           expect(response).to have_http_status(422)
         end
       end
 
       context 'when there is a generic error' do
-        before do
+        it 'returns http 422' do
           expect_any_instance_of(Account).to receive_message_chain(:media_attachments, :create!).and_raise(Paperclip::Error)
           post :create, params: { file: fixture_file_upload('attachment.jpg', 'image/jpeg') }
-        end
 
-        it 'returns http 422' do
           expect(response).to have_http_status(500)
         end
       end
     end
 
-    context 'image/jpeg' do
+    context 'with image/jpeg' do
       before do
         post :create, params: { file: fixture_file_upload('attachment.jpg', 'image/jpeg') }
       end
@@ -59,7 +55,7 @@ RSpec.describe Api::V1::MediaController, type: :controller do
       end
     end
 
-    context 'image/gif' do
+    context 'with image/gif' do
       before do
         post :create, params: { file: fixture_file_upload('attachment.gif', 'image/gif') }
       end
@@ -81,7 +77,7 @@ RSpec.describe Api::V1::MediaController, type: :controller do
       end
     end
 
-    context 'video/webm' do
+    context 'with video/webm' do
       before do
         post :create, params: { file: fixture_file_upload('attachment.webm', 'video/webm') }
       end

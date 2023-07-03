@@ -1,0 +1,49 @@
+- content_for :page_title do
+  = t('settings.import')
+
+= simple_form_for @import, url: settings_imports_path do |f|
+  .field-group
+    = f.input :type, as: :grouped_select, collection: { constructive: %i(following bookmarks lists), destructive: %i(muting blocking domain_blocking) }, wrapper: :with_block_label, include_blank: false, label_method: ->(type) { I18n.t("imports.types.#{type}") }, group_label_method: ->(group) { I18n.t("imports.type_groups.#{group.first}") }, group_method: :last, hint: t('imports.preface')
+
+  .fields-row
+    .fields-group.fields-row__column.fields-row__column-6
+      = f.input :data, as: :file, wrapper: :with_block_label, hint: t('simple_form.hints.imports.data')
+    .fields-group.fields-row__column.fields-row__column-6
+      = f.input :mode, as: :radio_buttons, collection: Import::MODES, label_method: ->(mode) { safe_join([I18n.t("imports.modes.#{mode}"), content_tag(:span, I18n.t("imports.modes.#{mode}_long"), class: 'hint')]) }, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+
+  .actions
+    = f.button :button, t('imports.upload'), type: :submit
+
+- unless @recent_imports.empty?
+  %hr.spacer/
+
+  %h3= t('imports.recent_imports')
+
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th= t('imports.type')
+          %th= t('imports.status')
+          %th= t('imports.imported')
+          %th= t('imports.time_started')
+          %th= t('imports.failures')
+      %tbody
+        - @recent_imports.each do |import|
+          %tr
+            %td= t("imports.types.#{import.type}")
+            %td
+              - if import.unconfirmed?
+                = link_to t("imports.states.#{import.state}"), settings_import_path(import)
+              - else
+                = t("imports.states.#{import.state}")
+            %td
+              #{import.imported_items} / #{import.total_items}
+            %td= l(import.created_at)
+            %td
+              - num_failed = import.processed_items - import.imported_items
+              - if num_failed.positive?
+                - if import.finished?
+                  = link_to num_failed, failures_settings_import_path(import, format: 'csv')
+                - else
+                  = num_failed

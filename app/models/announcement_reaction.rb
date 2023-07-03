@@ -14,6 +14,7 @@
 #
 
 class AnnouncementReaction < ApplicationRecord
+  before_validation :set_custom_emoji
   after_commit :queue_publish
 
   belongs_to :account
@@ -22,8 +23,6 @@ class AnnouncementReaction < ApplicationRecord
 
   validates :name, presence: true
   validates_with ReactionValidator
-
-  before_validation :set_custom_emoji
 
   private
 

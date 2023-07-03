@@ -131,8 +131,6 @@ gd:
       removed_header_msg: Chaidh dealbh a’ bhanna-chinn aig %{username} a thoirt air falbh
       resend_confirmation:
         already_confirmed: Chaidh an cleachdaiche seo a dhearbhadh mu thràth
-        send: Cuir am post-d dearbhaidh a-rithist
-        success: Chaidh post-d dearbhaidh a chur!
       reset: Ath-shuidhich
       reset_password: Ath-shuidhich am facal-faire
       resubscribe: Fo-sgrìobh a-rithist
@@ -1015,7 +1013,6 @@ gd:
     your_token: An tòcan inntrigidh agad
   auth:
     apply_for_account: Iarr cunntas
-    change_password: Facal-faire
     confirmations:
       wrong_email_hint: Mur eil an seòladh puist-d seo mar bu chòir, ’s urrainn dhut atharrachadh ann an roghainnean a’ chunntais.
     delete_account: Sguab às an cunntas
@@ -1024,7 +1021,6 @@ gd:
       prefix_invited_by_user: Thug @%{name} cuireadh dhut ach am faigh thu ballrachd air an fhrithealaiche seo de Mhastodon!
       prefix_sign_up: Clàraich le Mastodon an-diugh!
       suffix: Le cunntas, ’s urrainn dhut daoine a leantainn, naidheachdan a phostadh agus conaltradh leis an luchd-chleachdaidh air frithealaiche Mastodon sam bith is a bharrachd!
-    didnt_get_confirmation: Nach d’fhuair thu an stiùireadh mun dearbhadh?
     dont_have_your_security_key: Nach eil iuchair tèarainteachd agad?
     forgot_password: Na dhìochuimhnich thu am facal-faire agad?
     invalid_reset_password_token: Tha tòcan ath-shuidheachadh an fhacail-fhaire mì-dhligheach no dh’fhalbh an ùine air. Feuch an iarr thu fear ùr.
@@ -1042,7 +1038,6 @@ gd:
       saml: SAML
     register: Clàraich leinn
     registration_closed: Cha ghabh %{instance} ri buill ùra
-    resend_confirmation: Cuir an stiùireadh mun dearbhadh a-rithist
     reset_password: Ath-shuidhich am facal-faire
     rules:
       accept: Gabh ris
@@ -1051,10 +1046,6 @@ gd:
       title: Riaghailtean bunasach.
     security: Tèarainteachd
     set_new_password: Suidhich facal-faire ùr
-    setup:
-      email_below_hint_html: Mur eil am post-d gu h-ìosal mar bu chòir, ’s urrainn dhut atharrachadh an-seo agus gheibh thu post-d dearbhaidh ùr.
-      email_settings_hint_html: Chaidh am post-d dearbhaidh a chur gu %{email}. Mur eil an seòladh puist-d seo mar bu chòir, ’s urrainn dhut atharrachadh ann an roghainnean a’ chunntais.
-      title: Suidheachadh
     sign_in:
       preamble_html: Clàraich a-steach le do theisteas <strong>%{domain}</strong>. Ma tha an cunntas agad ’ga òstadh air frithealaiche eile, chan urrainn dhut clàradh a-steach an-seo.
       title: Clàraich a-steach gu %{domain}
@@ -1760,7 +1751,6 @@ gd:
     seamless_external_login: Rinn thu clàradh a-steach le seirbheis on taobh a-muigh, mar sin chan eil roghainnean an fhacail-fhaire ’s a’ phuist-d ri làimh dhut.
     signed_in_as: 'Chlàraich thu a-steach mar:'
   verification:
-    explanation_html: '’S urrainn dhut <strong>dearbhadh gur e seilbheadair nan ceanglaichean ann am meata-dàta na pròifil agad a th’ annad</strong>. Airson sin a dhèanamh, feumaidh ceangal air ais dhan phròifil Mastodon a bhith aig an làrach-lìn cheangailte. Nuair a bhios tu air a’ cheangal a chur ris, dh’fhaoidte gum bi agad ri tilleadh an-seo agus a’ phròifil agad a shàbhaladh a-rithist mus obraich an dearbhadh. <strong>Feumaidh</strong> buadh <code>rel="me"</code> a bhith aig a’ cheangal air ais. Chan eil e gu diofar dè an t-susbaint a tha ann an teacsa a’ cheangail. Seo ball-eisimpleir dhut:'
     verification: Dearbhadh
   webauthn_credentials:
     add: Cuir iuchair tèarainteachd ùr ris

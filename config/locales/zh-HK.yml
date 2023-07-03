@@ -122,8 +122,6 @@ zh-HK:
       removed_header_msg: 成功刪除 %{username} 的頁面頂端圖片
       resend_confirmation:
         already_confirmed: 這個使用者先前已經被確認過
-        send: 重寄確認郵件
-        success: 確認電郵發送成功！
       reset: 重設
       reset_password: 重設密碼
       resubscribe: 重新訂閱
@@ -961,7 +959,6 @@ zh-HK:
     your_token: token
   auth:
     apply_for_account: 申請帳號
-    change_password: 密碼
     confirmations:
       wrong_email_hint: 如果該電郵地址不正確，你可以在帳號設定中修改。
     delete_account: 刪除帳號
@@ -970,7 +967,6 @@ zh-HK:
       prefix_invited_by_user: "@%{name} 邀請你加入這個 Mastodon 服務站！"
       prefix_sign_up: 立即註冊 Mastodon！
       suffix: 有了一個帳戶，就可以從任何Mastodon服務器關注任何人，發佈更新並與任何Mastodon服務器的用戶交流！
-    didnt_get_confirmation: 沒有收到確認指示電郵？
     dont_have_your_security_key: 找不到安全密鑰？
     forgot_password: 忘記了密碼？
     invalid_reset_password_token: 密碼重置 token 無效或已過期。請重新重設密碼。
@@ -988,7 +984,6 @@ zh-HK:
       saml: SAML
     register: 登記
     registration_closed: "%{instance} 並不接受新成員請求"
-    resend_confirmation: 重發確認指示電郵
     reset_password: 重設密碼
     rules:
       accept: 接受
@@ -997,10 +992,6 @@ zh-HK:
       title: 一些基本規則。
     security: 登入資訊
     set_new_password: 設定新密碼
-    setup:
-      email_below_hint_html: 如果下面的電郵地址不正確，你可在此修改，然後接收電郵進行確認。
-      email_settings_hint_html: 確認電郵已發送至 %{email}。電郵地址不正確的話，你可以在帳戶設置中進行更改。
-      title: 設定
     sign_in:
       preamble_html: 請使用 <strong>%{domain}</strong> 的資料登入。如果您的帳戶託管在其他的伺服器，您將無法在此登入。
       title: 登入 %{domain}
@@ -1664,7 +1655,6 @@ zh-HK:
     seamless_external_login: 因為你正在使用第三方服務登入，所以不能設定密碼和電郵。
     signed_in_as: 目前登入的帳戶：
   verification:
-    explanation_html: 你可以<strong>在你的個人檔案元數據中驗證自己是連結的擁有者</strong>。為此，連接的網站必須包含一條回到你 Mastodon 個人檔案的連結。加入連結後，你可能需要回到這裏，再次儲存你的個人檔案以便驗證生效。返回的連結<strong>必須</strong>有一個<code>rel="me"</code>的屬性。當中的文字內容並不重要。以下有一個例子：
     verification: 驗證
   webauthn_credentials:
     add: 新增安全密鑰裝置

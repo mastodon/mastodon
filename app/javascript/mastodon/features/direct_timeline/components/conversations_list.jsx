@@ -1,10 +1,12 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import ConversationContainer from '../containers/conversation_container';
-import ScrollableList from '../../../components/scrollable_list';
+
 import { debounce } from 'lodash';
+
+import ScrollableList from '../../../components/scrollable_list';
+import ConversationContainer from '../containers/conversation_container';
 
 export default class ConversationsList extends ImmutablePureComponent {
 
@@ -55,10 +57,10 @@ export default class ConversationsList extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { conversations, onLoadMore, ...other } = this.props;
+    const { conversations, isLoading, onLoadMore, ...other } = this.props;
 
     return (
-      <ScrollableList {...other} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
+      <ScrollableList {...other} isLoading={isLoading} showLoading={isLoading && conversations.isEmpty()} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
         {conversations.map(item => (
           <ConversationContainer
             key={item.get('id')}

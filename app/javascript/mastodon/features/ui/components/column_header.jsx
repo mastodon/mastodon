@@ -1,9 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import Icon from 'mastodon/components/icon';
+import { PureComponent } from 'react';
 
-export default class ColumnHeader extends React.PureComponent {
+import classNames from 'classnames';
+
+import { Icon }  from 'mastodon/components/icon';
+
+export default class ColumnHeader extends PureComponent {
 
   static propTypes = {
     icon: PropTypes.string,

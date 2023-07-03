@@ -1,14 +1,18 @@
-import React from 'react';
+import punycode from 'punycode';
+
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
+import classnames from 'classnames';
+
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { FormattedMessage } from 'react-intl';
-import punycode from 'punycode';
-import classnames from 'classnames';
-import Icon from 'mastodon/components/icon';
+
+import { Blurhash } from 'mastodon/components/blurhash';
+import { Icon }  from 'mastodon/components/icon';
 import { useBlurhash } from 'mastodon/initial_state';
-import Blurhash from 'mastodon/components/blurhash';
-import { debounce } from 'lodash';
 
 const IDNA_PREFIX = 'xn--';
 
@@ -23,16 +27,6 @@ const getHostname = url => {
   const parser = document.createElement('a');
   parser.href = url;
   return parser.hostname;
-};
-
-const trim = (text, len) => {
-  const cut = text.indexOf(' ', len);
-
-  if (cut === -1) {
-    return text;
-  }
-
-  return text.slice(0, cut) + (text.length > len ? '…' : '');
 };
 
 const domParser = new DOMParser();
@@ -58,31 +52,26 @@ const addAutoPlay = html => {
   return html;
 };
 
-export default class Card extends React.PureComponent {
+export default class Card extends PureComponent {
 
   static propTypes = {
     card: ImmutablePropTypes.map,
-    maxDescription: PropTypes.number,
     onOpenMedia: PropTypes.func.isRequired,
     compact: PropTypes.bool,
-    defaultWidth: PropTypes.number,
-    cacheWidth: PropTypes.func,
     sensitive: PropTypes.bool,
   };
 
   static defaultProps = {
-    maxDescription: 50,
     compact: false,
   };
 
   state = {
-    width: this.props.defaultWidth || 280,
     previewLoaded: false,
     embedded: false,
     revealed: !this.props.sensitive,
   };
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (!Immutable.is(this.props.card, nextProps.card)) {
       this.setState({ embedded: false, previewLoaded: false });
     }
@@ -98,24 +87,6 @@ export default class Card extends React.PureComponent {
   componentWillUnmount () {
     window.removeEventListener('resize', this.handleResize);
   }
-
-  _setDimensions () {
-    const width = this.node.offsetWidth;
-
-    if (this.props.cacheWidth) {
-      this.props.cacheWidth(width);
-    }
-
-    this.setState({ width });
-  }
-
-  handleResize = debounce(() => {
-    if (this.node) {
-      this._setDimensions();
-    }
-  }, 250, {
-    trailing: true,
-  });
 
   handlePhotoClick = () => {
     const { card, onOpenMedia } = this.props;
@@ -150,10 +121,6 @@ export default class Card extends React.PureComponent {
 
   setRef = c => {
     this.node = c;
-
-    if (this.node) {
-      this._setDimensions();
-    }
   };
 
   handleImageLoad = () => {
@@ -169,44 +136,47 @@ export default class Card extends React.PureComponent {
   renderVideo () {
     const { card }  = this.props;
     const content   = { __html: addAutoPlay(card.get('html')) };
-    const { width } = this.state;
-    const ratio     = card.get('width') / card.get('height');
-    const height    = width / ratio;
 
     return (
       <div
         ref={this.setRef}
         className='status-card__image status-card-video'
         dangerouslySetInnerHTML={content}
-        style={{ height }}
+        style={{ aspectRatio: `${card.get('width')} / ${card.get('height')}` }}
       />
     );
   }
 
   render () {
-    const { card, maxDescription, compact } = this.props;
-    const { width, embedded, revealed } = this.state;
+    const { card, compact } = this.props;
+    const { embedded, revealed } = this.state;
 
     if (card === null) {
       return null;
     }
 
     const provider    = card.get('provider_name').length === 0 ? decodeIDNA(getHostname(card.get('url'))) : card.get('provider_name');
-    const horizontal  = (!compact && card.get('width') > card.get('height') && (card.get('width') + 100 >= width)) || card.get('type') !== 'link' || embedded;
+    const horizontal  = (!compact && card.get('width') > card.get('height')) || card.get('type') !== 'link' || embedded;
     const interactive = card.get('type') !== 'link';
     const className   = classnames('status-card', { horizontal, compact, interactive });
     const title       = interactive ? <a className='status-card__title' href={card.get('url')} title={card.get('title')} rel='noopener noreferrer' target='_blank'><strong>{card.get('title')}</strong></a> : <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>;
     const language    = card.get('language') || '';
-    const ratio       = card.get('width') / card.get('height');
-    const height      = (compact && !embedded) ? (width / (16 / 9)) : (width / ratio);
 
     const description = (
       <div className='status-card__content' lang={language}>
         {title}
-        {!(horizontal || compact) && <p className='status-card__description'>{trim(card.get('description') || '', maxDescription)}</p>}
+        {!(horizontal || compact) && <p className='status-card__description' title={card.get('description')}>{card.get('description')}</p>}
         <span className='status-card__host'>{provider}</span>
       </div>
     );
+
+    const thumbnailStyle = {
+      visibility: revealed? null : 'hidden',
+    };
+
+    if (horizontal) {
+      thumbnailStyle.aspectRatio = (compact && !embedded) ? '16 / 9' : `${card.get('width')} / ${card.get('height')}`;
+    }
 
     let embed     = '';
     let canvas = (
@@ -218,7 +188,7 @@ export default class Card extends React.PureComponent {
         dummy={!useBlurhash}
       />
     );
-    let thumbnail = <img src={card.get('image')} alt='' style={{ width: horizontal ? width : null, height: horizontal ? height : null, visibility: revealed ? null : 'hidden' }} onLoad={this.handleImageLoad} className='status-card__image-image' />;
+    let thumbnail = <img src={card.get('image')} alt='' style={thumbnailStyle} onLoad={this.handleImageLoad} className='status-card__image-image' />;
     let spoilerButton = (
       <button type='button' onClick={this.handleReveal} className='spoiler-button__overlay'>
         <span className='spoiler-button__overlay__label'><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>

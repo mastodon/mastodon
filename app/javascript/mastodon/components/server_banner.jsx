@@ -1,14 +1,18 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { PureComponent } from 'react';
+
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+
+import { Link } from 'react-router-dom';
+
 import { connect } from 'react-redux';
+
 import { fetchServer } from 'mastodon/actions/server';
+import { ServerHeroImage } from 'mastodon/components/server_hero_image';
 import ShortNumber from 'mastodon/components/short_number';
-import Skeleton from 'mastodon/components/skeleton';
+import { Skeleton } from 'mastodon/components/skeleton';
 import Account from 'mastodon/containers/account_container';
 import { domain } from 'mastodon/initial_state';
-import Image from 'mastodon/components/image';
-import { Link } from 'react-router-dom';
 
 const messages = defineMessages({
   aboutActiveUsers: { id: 'server_banner.about_active_users', defaultMessage: 'People using this server during the last 30 days (Monthly Active Users)' },
@@ -18,7 +22,7 @@ const mapStateToProps = state => ({
   server: state.getIn(['server', 'server']),
 });
 
-class ServerBanner extends React.PureComponent {
+class ServerBanner extends PureComponent {
 
   static propTypes = {
     server: PropTypes.object,
@@ -41,7 +45,7 @@ class ServerBanner extends React.PureComponent {
           <FormattedMessage id='server_banner.introduction' defaultMessage='{domain} is part of the decentralized social network powered by {mastodon}.' values={{ domain: <strong>{domain}</strong>, mastodon: <a href='https://joinmastodon.org' target='_blank'>Mastodon</a> }} />
         </div>
 
-        <Image blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} className='server-banner__hero' />
+        <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} className='server-banner__hero' />
 
         <div className='server-banner__description'>
           {isLoading ? (

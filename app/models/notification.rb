@@ -55,13 +55,15 @@ class Notification < ApplicationRecord
   belongs_to :from_account, class_name: 'Account', optional: true
   belongs_to :activity, polymorphic: true, optional: true
 
-  belongs_to :mention,        foreign_key: 'activity_id', optional: true
-  belongs_to :status,         foreign_key: 'activity_id', optional: true
-  belongs_to :follow,         foreign_key: 'activity_id', optional: true
-  belongs_to :follow_request, foreign_key: 'activity_id', optional: true
-  belongs_to :favourite,      foreign_key: 'activity_id', optional: true
-  belongs_to :poll,           foreign_key: 'activity_id', optional: true
-  belongs_to :report,         foreign_key: 'activity_id', optional: true
+  with_options foreign_key: 'activity_id', optional: true do
+    belongs_to :mention, inverse_of: :notification
+    belongs_to :status, inverse_of: :notification
+    belongs_to :follow, inverse_of: :notification
+    belongs_to :follow_request, inverse_of: :notification
+    belongs_to :favourite, inverse_of: :notification
+    belongs_to :poll, inverse_of: false
+    belongs_to :report, inverse_of: false
+  end
 
   validates :type, inclusion: { in: TYPES }
 
@@ -112,7 +114,7 @@ class Notification < ApplicationRecord
         ActiveRecord::Associations::Preloader.new.preload(grouped_notifications, associations)
       end
 
-      unique_target_statuses = notifications.map(&:target_status).compact.uniq
+      unique_target_statuses = notifications.filter_map(&:target_status).uniq
       # Call cache_collection in block
       cached_statuses_by_id = yield(unique_target_statuses).index_by(&:id)
 

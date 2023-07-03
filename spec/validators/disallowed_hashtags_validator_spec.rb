@@ -11,10 +11,10 @@ RSpec.describe DisallowedHashtagsValidator, type: :validator do
       described_class.new.validate(status)
     end
 
-    let(:status) { double(errors: errors, local?: local, reblog?: reblog, text: disallowed_tags.map { |x| "##{x}" }.join(' ')) }
-    let(:errors) { double(add: nil) }
+    let(:status) { instance_double(Status, errors: errors, local?: local, reblog?: reblog, text: disallowed_tags.map { |x| "##{x}" }.join(' ')) }
+    let(:errors) { instance_double(ActiveModel::Errors, add: nil) }
 
-    context 'for a remote reblog' do
+    context 'with a remote reblog' do
       let(:local)  { false }
       let(:reblog) { true }
 
@@ -23,7 +23,7 @@ RSpec.describe DisallowedHashtagsValidator, type: :validator do
       end
     end
 
-    context 'for a local original status' do
+    context 'with a local original status' do
       let(:local)  { true }
       let(:reblog) { false }
 

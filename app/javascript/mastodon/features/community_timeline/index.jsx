@@ -1,17 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import StatusListContainer from '../ui/containers/status_list_container';
+import { PureComponent } from 'react';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
+import { connect } from 'react-redux';
+
+import DismissableBanner from 'mastodon/components/dismissable_banner';
+import { domain } from 'mastodon/initial_state';
+
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
+import { connectCommunityStream } from '../../actions/streaming';
+import { expandCommunityTimeline } from '../../actions/timelines';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import { expandCommunityTimeline } from '../../actions/timelines';
-import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
+import StatusListContainer from '../ui/containers/status_list_container';
+
 import ColumnSettingsContainer from './containers/column_settings_container';
-import { connectCommunityStream } from '../../actions/streaming';
-import { Helmet } from 'react-helmet';
-import { domain } from 'mastodon/initial_state';
-import DismissableBanner from 'mastodon/components/dismissable_banner';
 
 const messages = defineMessages({
   title: { id: 'column.community', defaultMessage: 'Local timeline' },
@@ -30,7 +36,7 @@ const mapStateToProps = (state, { columnId }) => {
   };
 };
 
-class CommunityTimeline extends React.PureComponent {
+class CommunityTimeline extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -134,11 +140,8 @@ class CommunityTimeline extends React.PureComponent {
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
-        <DismissableBanner id='community_timeline'>
-          <FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} />
-        </DismissableBanner>
-
         <StatusListContainer
+          prepend={<DismissableBanner id='community_timeline'><FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} /></DismissableBanner>}
           trackScroll={!pinned}
           scrollKey={`community_timeline-${columnId}`}
           timelineId={`community${onlyMedia ? ':media' : ''}`}
