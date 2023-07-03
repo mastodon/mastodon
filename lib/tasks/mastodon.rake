@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 require 'tty-prompt'
-require 'open3'
+require 'tty-command'
+# require 'open3'
 
 namespace :mastodon do
   desc 'Configure the instance for production use'
   task :setup do
     prompt = TTY::Prompt.new
-    env    = {}
+    command = TTY::Command.new(uuid: false, pty: true, printer: :quiet)
 
     domain_blocklists = [
       {
@@ -21,6 +22,9 @@ namespace :mastodon do
         csv: 'https://thebad.space/exports/mastodon',
       },
     ]
+
+    # Storage for the new environment variables:
+    env = {}
 
     # When the application code gets loaded, it runs `lib/mastodon/redis_configuration.rb`.
     # This happens before application environment configuration and sets REDIS_URL etc.
@@ -475,12 +479,13 @@ namespace :mastodon do
 
         if prompt.yes?('Prepare the database now?')
           prompt.say 'Running `RAILS_ENV=production rails db:setup` ...'
-          prompt.say "\n\n"
+          prompt.say "\n"
 
-          if system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production', 'SAFETY_ASSURED' => '1' }), 'rails db:setup')
-            prompt.ok 'Done!'
-          else
+          if command.run!(:rails, 'db:setup', env: env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production', 'SAFETY_ASSURED' => '1' })).failure?
             prompt.error 'That failed! Perhaps your configuration is not right'
+          else
+            prompt.say "\n"
+            prompt.ok 'Done!'
           end
         end
 
@@ -493,16 +498,16 @@ namespace :mastodon do
             prompt.say 'Running `RAILS_ENV=production rails assets:precompile` ...'
             prompt.say "\n\n"
 
-            if system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production' }), 'rails assets:precompile')
-              prompt.say 'Done!'
-            else
+            if command.run!(:rails, 'assets:precompile', env: env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production' })).failure?
               prompt.error 'That failed! Maybe you need swap space?'
+            else
+              prompt.say 'Done!'
             end
           end
         end
 
         prompt.say "\n"
-        prompt.ok 'All done! You can now power on the Mastodon server 🐘'
+        prompt.ok 'All configured!'
         prompt.say "\n"
 
         if db_connection_works && prompt.yes?('Do you want to create an admin user straight away?')
@@ -533,6 +538,7 @@ namespace :mastodon do
 
           Setting.site_contact_username = username
 
+          prompt.say "\n"
           prompt.ok "You can login with the password: #{password}"
           prompt.warn 'You can change your password once you login.'
         else
@@ -541,41 +547,31 @@ namespace :mastodon do
 
         prompt.say "\n"
 
-        blocklist = prompt.select("Would you like to import an initial domain blocklist for your instance?\n") do |menu|
+        blocklist = prompt.select("Would you like to import a domain blocklist for your instance?\n") do |menu|
           menu.enum '.'
 
           domain_blocklists.each do |list|
             menu.choice "#{list[:name]} - website: #{list[:website]}", { url: list[:csv], name: list[:name] }
           end
-          menu.choice 'No, skip setting up an initial blocklist', nil
+          menu.choice 'No, I do not wish to import a blocklist', nil
         end
 
         prompt.say "\n"
 
         if db_connection_works && blocklist.present?
-          prompt.say "Starting import of #{blocklist[:name]} blocklist...\n"
+          prompt.say "Starting import of blocklist...\n"
 
-          cmd_env = env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production' })
-          cmd = "./bin/tootctl domains blocklist import \"#{blocklist[:name]}\" \"#{blocklist[:url]}\""
-
-          Open3.popen2e(cmd_env, cmd) do |_stdin, stdout_err, wait_thr|
-            while (line = stdout_err.gets)
-              prompt.say "> #{line.chomp}", color: :dim
-            end
-
-            exit_status = wait_thr.value
-            if exit_status.success?
-              prompt.say 'Successfully imported blocklist!'
-            else
-              prompt.error 'Import failed!'
-            end
+          if command.run!('./bin/tootctl', 'domains', 'blocklist', 'import', blocklist[:name], blocklist[:url], env: env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production' })).failure?
+            prompt.error 'Import failed!'
+          else
+            prompt.say 'Successfully imported blocklist!'
           end
         else
           prompt.say 'Okay! You can always download a domain blocklist CSV later and import it via the Admin panel'
         end
 
         prompt.say "\n"
-        prompt.ok 'All done. Bye!'
+        prompt.ok 'All done! You can now power on the Mastodon server 🐘'
       else
         prompt.say "\n"
         prompt.warn 'Nothing saved. Bye!'

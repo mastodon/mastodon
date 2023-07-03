@@ -21,7 +21,9 @@ module Mastodon::CLI
   class DomainBlocklist < Base
     desc 'import [NAME] [URL]', 'Imports a blocklist from the given URL'
     def import(name, url)
+      global_private_comment = "Initial import of #{name} blocklist"
       filename = "#{name}.csv"
+
       tmpfile = Tempfile.new(filename)
 
       begin
@@ -38,23 +40,27 @@ module Mastodon::CLI
 
         tmpfile.write(response.body.to_s)
 
-        say('Fetched blocklist!')
-
         import = Admin::Import.new(data: DomainBlocklistData.from(filename, tmpfile.path))
-
         unless import.validate
           import_errors = import.errors.full_messages.map { |err| "- #{err}" }.join("\n")
 
-          say("Error: Failed to import blocklist, details:\n#{import_errors}", :red)
+          say("Error: Failed to import blocklist, invalid list:\n#{import_errors}", :red)
           exit(1)
         end
 
-        say("Importing #{import.csv_rows.count} domain blocks... (this may take a while)")
+        import_size = import.csv_rows.count
 
-        global_private_comment = "Initial import of #{name} blocklist"
-        domain_blocks = import.csv_rows.filter_map do |row|
+        say("Importing #{import_size} domain blocks... (this may take a while)")
+        progress = create_progress_bar(import_size)
+
+        result = import.csv_rows.filter_map do |row|
           domain = row['#domain'].strip
-          next if DomainBlock.rule_for(domain).present?
+
+          if DomainBlock.rule_for(domain).present?
+            progress.log pastel.yellow("Skipped existing domain block rule for: #{domain}")
+            progress.increment
+            next
+          end
 
           domain_block = DomainBlock.new(domain: domain,
                                          severity: row.fetch('#severity', :suspend),
@@ -65,18 +71,25 @@ module Mastodon::CLI
                                          obfuscate: row.fetch('#obfuscate', false))
 
           if domain_block.invalid?
-            say("Error importing block: #{domain}, #{domain_block.errors.full_messages.join(', ')}", :red)
+            progress.log pastel.red("Error processing #{domain}: #{domain_block.errors.full_messages.join(', ')}")
+            progress.increment
             next
           end
 
-          domain_block.save!
-          DomainBlockWorker.perform_async(domain_block.id)
-        rescue ArgumentError => e
-          say("Error importing blocklist, #{e.message}", :red)
-          next
+          begin
+            domain_block.save!
+            DomainBlockWorker.perform_async(domain_block.id)
+          rescue => e
+            progress.log pastel.red("Error processing #{item.id}: #{e}")
+          ensure
+            progress.increment
+            next domain_block
+          end
         end
 
-        say("Imported #{domain_blocks.length} domain blocks")
+        progress.stop
+
+        say("Imported #{result.length} domain blocks")
       ensure
         tmpfile.close
         tmpfile.unlink
