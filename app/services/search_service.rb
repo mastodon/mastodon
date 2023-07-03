@@ -32,7 +32,7 @@ class SearchService < BaseService
       resolve: @resolve,
       offset: @offset,
       use_searchable_text: true,
-      following: @options[:following]&.downcase == 'true'
+      following: @options[:following]
     )
   end
 
