@@ -84,7 +84,7 @@ const Firehose = ({ feedType, multiColumn }) => {
     (maxId) => {
       switch(feedType) {
       case 'community':
-        dispatch(expandCommunityTimeline({ onlyMedia }));
+        dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
         break;
       case 'public':
         dispatch(expandPublicTimeline({ maxId, onlyMedia }));
@@ -135,12 +135,13 @@ const Firehose = ({ feedType, multiColumn }) => {
       />
     </DismissableBanner>
   ) : (
-   <DismissableBanner id='public_timeline'>
-     <FormattedMessage
-       id='dismissable_banner.public_timeline'
-       defaultMessage='These are the most recent public posts from people on this and other servers of the decentralized network that this server knows about.'
-     />
-   </DismissableBanner>
+    <DismissableBanner id='public_timeline'>
+      <FormattedMessage
+        id='dismissable_banner.public_timeline'
+        defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.'
+        values={{ domain }}
+      />
+    </DismissableBanner>
   );
 
   const emptyMessage = feedType === 'community' ? (
@@ -149,10 +150,10 @@ const Firehose = ({ feedType, multiColumn }) => {
       defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!'
     />
   ) : (
-   <FormattedMessage
-     id='empty_column.public'
-     defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up'
-   />
+    <FormattedMessage
+      id='empty_column.public'
+      defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up'
+    />
   );
 
   return (
@@ -171,11 +172,11 @@ const Firehose = ({ feedType, multiColumn }) => {
       <div className='scrollable scrollable--flex'>
         <div className='account__section-headline'>
           <NavLink exact to='/public/local'>
-            <FormattedMessage tagName='div' id='firehose.local' defaultMessage='Local' />
+            <FormattedMessage tagName='div' id='firehose.local' defaultMessage='This server' />
           </NavLink>
 
           <NavLink exact to='/public/remote'>
-            <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Remote' />
+            <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Other servers' />
           </NavLink>
 
           <NavLink exact to='/public'>
