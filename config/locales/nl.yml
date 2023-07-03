@@ -1359,8 +1359,8 @@ nl:
           follow_request: e-mailmeldingen voor volgverzoeken
           mention: e-mailmeldingen voor vermeldingen
           reblog: e-mailmeldingen voor boosts
-      resubscribe_html: Als u zich per ongeluk hebt afgemeld, kunt u zich opnieuw abonneren op uw <a href="%{settings_path}">e-mailinstellingen</a>.
-      success_html: U ontvangt niet langer %{type} voor Mastodon op %{domain} in uw e-mail %{email}.
+      resubscribe_html: Als je je per ongeluk hebt afgemeld, kun je je opnieuw abonneren in jouw <a href="%{settings_path}">instellingen voor e-mailmeldingen</a>.
+      success_html: Je ontvangt niet langer %{type} van Mastodon op %{domain} op je e-mailadres %{email}.
       title: Afmelden
   media_attachments:
     validations:
@@ -1587,7 +1587,7 @@ nl:
     migrate: Accountmigratie
     notifications: Meldingen
     preferences: Voorkeuren
-    profile: Profiel
+    profile: Openbaar profiel
     relationships: Volgers en gevolgde accounts
     statuses_cleanup: Automatisch berichten verwijderen
     strikes: Vastgestelde overtredingen
@@ -1781,12 +1781,12 @@ nl:
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
   verification:
-    extra_instructions_html: <strong>Tip:</strong> De link op je website kan onzichtbaar zijn. Het belangrijke onderdeel is <code>rel="me"</code> dat impersonatie op websites met door de gebruiker gegenereerde inhoud voorkomt. U kunt zelfs een <code>link</code> tag gebruiken in de kop van de pagina in plaats van <code>een</code>, maar de HTML moet toegankelijk zijn zonder JavaScript uit te voeren.
+    extra_instructions_html: <strong>Tip:</strong> De link op je website kan onzichtbaar zijn. Het belangrijke onderdeel is <code>rel="me"</code> dat impersonatie op websites met user-generated content voorkomt. Je kunt zelfs een <code>link</code>-tag gebruiken in de header van de pagina in plaats van <code>a</code>, maar de HTML moet ook zonder JavaScript toegankelijk zijn.
     here_is_how: Zo werkt het
-    hint_html: "<strong>Verificatie van identiteit op Mastodon geldt voor iedereen.</strong> Gebaseerd op open webstandaarden, nu en voor altijd gratis. Alles wat nodig is is een persoonlijke website waar mensen u herkennen. Wanneer u vanuit uw profiel naar deze website linkt, zullen wij controleren of de website terugkoppelt naar uw profiel en daar een visuele indicator weergeven."
-    instructions_html: Kopieer en plak de onderstaande code in de HTML van uw website. Voeg vervolgens het adres van uw website toe aan een van de extra velden in uw profiel via de "Profiel bewerken" tab en sla de wijzigingen op.
+    hint_html: "<strong>Verificatie van je identiteit op Mastodon is voor iedereen.</strong> Het is gebaseerd op open webstandaarden, en is en blijft altijd gratis. Alles wat nodig is is een persoonlijke website waar mensen je aan kunnen herkennen. Wanneer je vanuit jouw profiel naar deze website linkt, zullen wij controleren of de website naar jouw profiel teruglinkt en daar een visuele indicator van tonen."
+    instructions_html: Kopieer en plak de onderstaande code in de HTML van je website. Voeg vervolgens het adres van je website toe aan een van de extra velden op je profiel op het tabblad "Profiel bewerken" en sla de wijzigingen op.
     verification: Verificatie
-    verified_links: Uw geverifieerde koppelingen
+    verified_links: Jouw geverifieerde links
   webauthn_credentials:
     add: Nieuwe beveiligingssleutel toevoegen
     create:
