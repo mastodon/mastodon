@@ -31,7 +31,8 @@ class SearchService < BaseService
       limit: @limit,
       resolve: @resolve,
       offset: @offset,
-      use_searchable_text: true
+      use_searchable_text: true,
+      following: @options[:following]&.downcase == 'true'
     )
   end
 

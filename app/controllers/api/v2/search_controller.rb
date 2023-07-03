@@ -39,6 +39,6 @@ class Api::V2::SearchController < Api::BaseController
   end
 
   def search_params
-    params.permit(:type, :offset, :min_id, :max_id, :account_id)
+    params.permit(:type, :offset, :min_id, :max_id, :account_id, :following)
   end
 end

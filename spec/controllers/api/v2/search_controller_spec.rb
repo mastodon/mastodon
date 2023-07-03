@@ -14,12 +14,39 @@ RSpec.describe Api::V2::SearchController do
     end
 
     describe 'GET #index' do
-      before do
-        get :index, params: { q: 'test' }
-      end
+      let!(:bob)   { Fabricate(:account, username: 'bob_test') }
+      let!(:ana)   { Fabricate(:account, username: 'ana_test') }
+      let!(:tom)   { Fabricate(:account, username: 'tom_test') }
+      let(:params) { { q: 'test' } }
 
       it 'returns http success' do
+        get :index, params: params
+
         expect(response).to have_http_status(200)
+      end
+
+      context 'when searching accounts' do
+        let(:params) { { q: 'test', type: 'accounts' } }
+
+        it 'returns all matching accounts' do
+          get :index, params: params
+
+          expect(body_as_json[:accounts].pluck(:id)).to contain_exactly(bob.id.to_s, ana.id.to_s, tom.id.to_s)
+        end
+
+        context 'with following=true' do
+          let(:params) { { q: 'test', type: 'accounts', following: 'true' } }
+
+          before do
+            user.account.follow!(ana)
+          end
+
+          it 'returns only the followed accounts' do
+            get :index, params: params
+
+            expect(body_as_json[:accounts].pluck(:id)).to contain_exactly(ana.id.to_s)
+          end
+        end
       end
     end
   end
