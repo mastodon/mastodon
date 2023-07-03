@@ -89,7 +89,7 @@ To set up **MacOS** for native development, complete the following steps:
 - Run `brew install redis`
 - Run `brew install imagemagick`
 - Install Foreman or a similar tool (such as [overmind](https://github.com/DarthSim/overmind)) to handle multiple process launching.
-- Navigate to Mastodon's root directory and run `brew install nvm` then `nvm use` (Node 16.20.1 at time of writing)
+- Navigate to Mastodon's root directory and run `brew install nvm` then `nvm use` to use the version from .nvmrc
 - Run `corepack enable && yarn set version classic`
 - Run `bundle exec rails db:setup` (optionally prepend `RAILS_ENV=development` to target the dev environment)
 - Finally, run `overmind start -f Procfile.dev`
