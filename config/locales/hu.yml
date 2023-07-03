@@ -387,6 +387,9 @@ hu:
         permanent_action: A felfüggesztés visszavonása nem fogja az adatokat vagy kapcsolatokat visszaállítani.
         preamble_html: A <strong>%{domain}</strong> domain és aldomainjeinek felfüggesztésére készülsz.
         remove_all_data: A kiszolgálódról a domainhez tartozó fiókok minden tartalmát, médiáját, profiladatát el fogja távolítani.
+        stop_communication: A kiszolgálód nem fog kommunikálni ezekkel a kiszolgálókkal.
+        title: '%{domain} domain letiltásának megerősítése'
+        undo_relationships: Minden kapcsolatot megszüntet az ezen kiszolgálókon lévő fiókok és a te kiszolgálód fiókjai között.
       created_msg: A domain-tiltás feldolgozása folyamatban
       destroyed_msg: A domain tiltása feloldva
       domain: Domain
@@ -736,6 +739,9 @@ hu:
       branding:
         preamble: A kiszolgáló márkajelzése különbözteti meg a hálózat többi kiszolgálójától. Ez az információ számos környezetben megjelenhet, például a Mastodon webes felületén, natív alkalmazásokban, más weboldalakon és üzenetküldő alkalmazásokban megjelenő hivatkozások előnézetben stb. Ezért a legjobb, ha ez az információ világos, rövid és tömör.
         title: Branding
+      captcha_enabled:
+        desc_html: Ez hCaptcha-ból származó külső scripteket használ, mely biztonsági vagy adatvédelmi résnek bizonyulhat. Ezen kívül ez <strong>a regisztrációs folyamatot jelentősen megnehezítheti bizonyos (kifejezetten különleges szükségletű) emberek számára</strong>. Emiatt fontold meg más módszerek, mint pl. jóváhagyás-alapú vagy meghívásalapú regisztráció használatát.
+        title: Az új felhasználóknak egy CAPTCHA-t kell megoldaniuk, hogy megerősítsék a fiókjuk regisztrációját
       content_retention:
         preamble: Felhasználók által generált tartalom Mastodonon való tárolásának szabályozása.
         title: Tartalom megtartása
@@ -971,6 +977,7 @@ hu:
     notification_preferences: E-mail beállítások módosítása
     salutation: "%{name}!"
     settings: 'E-mail beállítások módosítása: %{link}'
+    unsubscribe: Leiratkozás
     view: 'Megtekintés:'
     view_profile: Profil megtekintése
     view_status: Bejegyzés megtekintése
@@ -984,6 +991,10 @@ hu:
     your_token: Hozzáférési kulcsod
   auth:
     apply_for_account: Fiók kérése
+    captcha_confirmation:
+      help_html: Ha problémáid vannak a CAPTCHA-val, kapcsolatba léphetsz velünk a %{email} címen és segítünk.
+      hint_html: Még egy dolog! Meg kell győződnünk róla, hogy tényleg valós személy vagy (így távol tarthatjuk a spam-et). Oldd meg az alábbi CAPTCHA-t és kattints a "Folytatás"-ra.
+      title: Biztonsági ellenőrzés
     confirmations:
       wrong_email_hint: Ha az emailcím nem helyes, a fiókbeállításokban megváltoztathatod.
     delete_account: Felhasználói fiók törlése
@@ -1020,7 +1031,9 @@ hu:
     rules:
       accept: Elfogadás
       back: Vissza
+      invited_by: 'Csatlakozhatsz a %{domain} kiszolgálóhoz, köszönhetően a meghívónak, melyet tőle kaptál:'
       preamble: Ezeket a(z) %{domain} moderátorai adjak meg és tartatják be.
+      preamble_invited: Mielőtt csatlakozol, kérlek vedd fontolóra a %{domain} moderátorai által állított szabályokat.
       title: Néhány alapszabály.
     security: Biztonság
     set_new_password: Új jelszó beállítása
