@@ -1431,7 +1431,7 @@ nl:
       subject: Jij bent vermeld door %{name}
       title: Nieuwe vermelding
     poll:
-      subject: Een poll van %{name} is beëindigd
+      subject: Een peiling van %{name} is beëindigd
     reblog:
       body: 'Jouw bericht werd door %{name} geboost:'
       subject: "%{name} boostte jouw bericht"
@@ -1470,14 +1470,14 @@ nl:
     truncate: "&hellip;"
   polls:
     errors:
-      already_voted: Je hebt al op deze poll gestemd
+      already_voted: Je hebt al aan deze peiling deelgenomen
       duplicate_options: bevat dubbele items
       duration_too_long: ligt te ver in de toekomst
       duration_too_short: is te kort van duur
-      expired: De poll is al beëindigd
-      invalid_choice: De gekozen poll-optie bestaat niet
+      expired: De peiling is al beëindigd
+      invalid_choice: De gekozen peiling-optie bestaat niet
       over_character_limit: kan stuk voor stuk niet langer zijn dan %{max} tekens
-      self_vote: U kunt niet stemmen bij eigen peilingen
+      self_vote: Je kunt niet op eigen peilingen stemmen
       too_few_options: moet meer dan één item bevatten
       too_many_options: kan niet meer dan %{max} items bevatten
   preferences:
@@ -1658,8 +1658,8 @@ nl:
     keep_media_hint: Verwijdert geen enkel bericht met mediabijlagen
     keep_pinned: Vastgemaakte berichten behouden
     keep_pinned_hint: Verwijdert geen enkel vastgezet bericht van jou
-    keep_polls: Polls behouden
-    keep_polls_hint: Geen enkele poll van jou wordt verwijderd
+    keep_polls: Peilingen behouden
+    keep_polls_hint: Geen enkele peiling van jou wordt verwijderd
     keep_self_bookmark: Bladwijzers behouden
     keep_self_bookmark_hint: Eigen berichten die je aan je bladwijzers hebt toegevoegd worden niet verwijderd
     keep_self_fav: Favorieten behouden
