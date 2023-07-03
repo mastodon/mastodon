@@ -74,6 +74,16 @@ RSpec.describe 'Confirmations' do
             expect(user.reload.unconfirmed_email).to eq('foo@bar.com')
           end
         end
+
+        context 'with invalid email param' do
+          let(:params) { { email: 'invalid' } }
+
+          it 'returns http unprocessable entity' do
+            subject
+
+            expect(response).to have_http_status(422)
+          end
+        end
       end
     end
 
@@ -146,8 +156,10 @@ RSpec.describe 'Confirmations' do
     end
 
     context 'without an oauth token and an authentication cookie' do
+      let(:headers) { {} }
+
       it 'returns http unauthorized' do
-        get :check
+        subject
 
         expect(response).to have_http_status(401)
       end
