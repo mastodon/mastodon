@@ -2,7 +2,6 @@
 
 require 'tty-prompt'
 require 'tty-command'
-# require 'open3'
 
 namespace :mastodon do
   desc 'Configure the instance for production use'

@@ -21,6 +21,7 @@ module Mastodon::CLI
   class DomainBlocklist < Base
     desc 'import [NAME] [URL]', 'Imports a blocklist from the given URL'
     def import(name, url)
+      # TODO: don't clobber private comments: https://github.com/mastodon/mastodon/issues/25659
       global_private_comment = "Initial import of #{name} blocklist"
       filename = "#{name}.csv"
 
