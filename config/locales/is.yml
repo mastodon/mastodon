@@ -381,6 +381,13 @@ is:
       undo: Fjarlægja af lista yfir leyft
     domain_blocks:
       add_new: Bæta við nýrri útilokun á léni
+      confirm_suspension:
+        cancel: Hætta við
+        confirm: Setja í bið
+        permanent_action: Afturköllun biðstöðu mun ekki endurheimta nein gögn né vensl.
+        preamble_html: Þú ert við það að setja <strong>%{domain}</strong> í bið ásamt undirlénum.
+        remove_all_data: Þetta mun fjarlægja allt efni og notendaupplýsingar fyrir aðganga frá þessu léni af þínum vefþjóni.
+        stop_communication: Vefþjónnin þinn mun slíta samskiptum við þessa vefþjóna.
       created_msg: Útilokun léns er núna í vinnslu
       destroyed_msg: Útilokun léns hefur verið aflétt
       domain: Lén
@@ -978,6 +985,8 @@ is:
     your_token: Aðgangsteiknið þitt
   auth:
     apply_for_account: Biðja um notandaaðgang
+    captcha_confirmation:
+      title: Öryggisathugun
     confirmations:
       wrong_email_hint: Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
     delete_account: Eyða notandaaðgangi
@@ -1014,8 +1023,10 @@ is:
     rules:
       accept: Samþykkja
       back: Til baka
+      invited_by: 'Þú getur tekið þátt í %{domain} þökk sé boði sem þú fékkst frá:'
       preamble: Þær eru settar og þeim framfylgt af umsjónarmönnum %{domain}.
       title: Nokkrar grunnreglur.
+      title_invited: Þér hefur verið boðið.
     security: Öryggi
     set_new_password: Stilla nýtt lykilorð
     setup:
@@ -1128,6 +1139,8 @@ is:
       your_appeal_rejected: Áfrýjun þinni hefur verið hafnað
   domain_validator:
     invalid_domain: er ekki leyfilegt nafn á léni
+  edit_profile:
+    basic_information: Grunnupplýsingar
   errors:
     '400': Beiðnin sem þú sendir er ógild eða rangt uppsett.
     '403': Þú hefur ekki heimildir til að skoða þessari síðu.
@@ -1322,6 +1335,10 @@ is:
     failed_sign_in_html: Misheppnuð tilraun til innskráningar með %{method} frá %{ip} (%{browser})
     successful_sign_in_html: Vel heppnuð tilraun til innskráningar með %{method} frá %{ip} (%{browser})
     title: Auðkenningarferill
+  mail_subscriptions:
+    unsubscribe:
+      action: Já, hætta í áskrift
+      complete: Hætta í áskrift
   media_attachments:
     validations:
       images_and_video: Ekki er hægt að hengja myndskeið við færslu sem þegar inniheldur myndir
