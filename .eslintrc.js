@@ -81,6 +81,15 @@ module.exports = {
       { property: 'substring', message: 'Use .slice instead of .substring.' },
       { property: 'substr', message: 'Use .slice instead of .substr.' },
     ],
+    'no-restricted-syntax': [
+      'error',
+      {
+        // eslint-disable-next-line no-restricted-syntax
+        selector: 'Literal[value=/•/], JSXText[value=/•/]',
+        // eslint-disable-next-line no-restricted-syntax
+        message: "Use '·' (middle dot) instead of '•' (bullet)",
+      },
+    ],
     'no-self-assign': 'off',
     'no-unused-expressions': 'error',
     'no-unused-vars': 'off',
@@ -293,6 +302,7 @@ module.exports = {
         '.*rc.js',
         'ide-helper.js',
         'config/webpack/**/*',
+        'config/formatjs-formatter.js',
       ],
 
       env: {
@@ -323,7 +333,7 @@ module.exports = {
         'plugin:import/recommended',
         'plugin:import/typescript',
         'plugin:promise/recommended',
-        'plugin:jsdoc/recommended',
+        'plugin:jsdoc/recommended-typescript',
         'plugin:prettier/recommended',
       ],
 

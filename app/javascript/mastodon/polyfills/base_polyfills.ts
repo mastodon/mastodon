@@ -1,5 +1,3 @@
-import 'intl';
-import 'intl/locale-data/jsonp/en';
 import 'core-js/features/object/assign';
 import 'core-js/features/object/values';
 import 'core-js/features/symbol';

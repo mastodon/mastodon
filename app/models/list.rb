@@ -10,6 +10,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  replies_policy :integer          default("list"), not null
+#  exclusive      :boolean          default(FALSE)
 #
 
 class List < ApplicationRecord

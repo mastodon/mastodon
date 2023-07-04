@@ -2,5 +2,5 @@
 
 Fabricator(:notification) do
   activity fabricator: :status
-  account
+  account { Fabricate.build(:account) }
 end

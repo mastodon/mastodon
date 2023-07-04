@@ -7,10 +7,12 @@
   = hidden_field_tag :confirmation_token, params[:confirmation_token]
   = hidden_field_tag :redirect_to_app, params[:redirect_to_app]
 
+  %h1.title= t('auth.captcha_confirmation.title')
   %p.lead= t('auth.captcha_confirmation.hint_html')
 
-  .field-group
-    = render_captcha
+  = render_captcha
+
+  %p.lead= t('auth.captcha_confirmation.help_html', email: mail_to(Setting.site_contact_email, nil))
 
   .actions
-    %button.button= t('challenge.confirm')
+    = button_tag t('challenge.confirm'), class: 'button', type: :submit

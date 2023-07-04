@@ -11,8 +11,8 @@ RSpec.describe DisallowedHashtagsValidator, type: :validator do
       described_class.new.validate(status)
     end
 
-    let(:status) { double(errors: errors, local?: local, reblog?: reblog, text: disallowed_tags.map { |x| "##{x}" }.join(' ')) }
-    let(:errors) { double(add: nil) }
+    let(:status) { instance_double(Status, errors: errors, local?: local, reblog?: reblog, text: disallowed_tags.map { |x| "##{x}" }.join(' ')) }
+    let(:errors) { instance_double(ActiveModel::Errors, add: nil) }
 
     context 'with a remote reblog' do
       let(:local)  { false }

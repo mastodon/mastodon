@@ -1,12 +1,14 @@
 - content_for :page_title do
   = t('settings.featured_tags')
 
-%p= t('featured_tags.hint_html')
-
-%hr.spacer/
+- content_for :heading do
+  %h2= t('settings.profile')
+  = render partial: 'settings/shared/profile_navigation'
 
 = simple_form_for @featured_tag, url: settings_featured_tags_path do |f|
   = render 'shared/error_messages', object: @featured_tag
+
+  %p.lead= t('featured_tags.hint_html')
 
   .fields-group
     = f.input :name, wrapper: :with_block_label, hint: safe_join([t('simple_form.hints.featured_tag.name'), safe_join(@recently_used_tags.map { |tag| link_to("##{tag.display_name}", settings_featured_tags_path(featured_tag: { name: tag.name }), method: :post) }, ', ')], ' ')

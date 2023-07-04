@@ -48,25 +48,32 @@ describe Api::V1::Accounts::RelationshipsController do
         expect(response).to have_http_status(200)
       end
 
-      it 'returns JSON with correct data' do
-        json = body_as_json
+      context 'when there is returned JSON data' do
+        let(:json) { body_as_json }
 
-        expect(json).to be_a Enumerable
-        expect(json.first[:id]).to eq simon.id.to_s
-        expect(json.first[:following]).to be true
-        expect(json.first[:showing_reblogs]).to be true
-        expect(json.first[:followed_by]).to be false
-        expect(json.first[:muting]).to be false
-        expect(json.first[:requested]).to be false
-        expect(json.first[:domain_blocking]).to be false
+        it 'returns an enumerable json' do
+          expect(json).to be_a Enumerable
+        end
 
-        expect(json.second[:id]).to eq lewis.id.to_s
-        expect(json.second[:following]).to be false
-        expect(json.second[:showing_reblogs]).to be false
-        expect(json.second[:followed_by]).to be true
-        expect(json.second[:muting]).to be false
-        expect(json.second[:requested]).to be false
-        expect(json.second[:domain_blocking]).to be false
+        it 'returns a correct first element' do
+          expect(json.first[:id]).to eq simon.id.to_s
+          expect(json.first[:following]).to be true
+          expect(json.first[:showing_reblogs]).to be true
+          expect(json.first[:followed_by]).to be false
+          expect(json.first[:muting]).to be false
+          expect(json.first[:requested]).to be false
+          expect(json.first[:domain_blocking]).to be false
+        end
+
+        it 'returns a correct second element' do
+          expect(json.second[:id]).to eq lewis.id.to_s
+          expect(json.second[:following]).to be false
+          expect(json.second[:showing_reblogs]).to be false
+          expect(json.second[:followed_by]).to be true
+          expect(json.second[:muting]).to be false
+          expect(json.second[:requested]).to be false
+          expect(json.second[:domain_blocking]).to be false
+        end
       end
 
       it 'returns JSON with correct data on cached requests too' do

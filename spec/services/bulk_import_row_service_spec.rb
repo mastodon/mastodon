@@ -91,5 +91,77 @@ RSpec.describe BulkImportRowService do
         end
       end
     end
+
+    context 'when importing a list row' do
+      let(:import_type) { 'lists' }
+      let(:target_account) { Fabricate(:account) }
+      let(:data) do
+        { 'acct' => target_account.acct, 'list_name' => 'my list' }
+      end
+
+      shared_examples 'common behavior' do
+        context 'when the target account is already followed' do
+          before do
+            account.follow!(target_account)
+          end
+
+          it 'returns true' do
+            expect(subject.call(import_row)).to be true
+          end
+
+          it 'adds the target account to the list' do
+            expect { subject.call(import_row) }.to change { ListAccount.joins(:list).exists?(account_id: target_account.id, list: { title: 'my list' }) }.from(false).to(true)
+          end
+        end
+
+        context 'when the user already requested to follow the target account' do
+          before do
+            account.request_follow!(target_account)
+          end
+
+          it 'returns true' do
+            expect(subject.call(import_row)).to be true
+          end
+
+          it 'adds the target account to the list' do
+            expect { subject.call(import_row) }.to change { ListAccount.joins(:list).exists?(account_id: target_account.id, list: { title: 'my list' }) }.from(false).to(true)
+          end
+        end
+
+        context 'when the target account is neither followed nor requested' do
+          it 'returns true' do
+            expect(subject.call(import_row)).to be true
+          end
+
+          it 'adds the target account to the list' do
+            expect { subject.call(import_row) }.to change { ListAccount.joins(:list).exists?(account_id: target_account.id, list: { title: 'my list' }) }.from(false).to(true)
+          end
+        end
+
+        context 'when the target account is the user themself' do
+          let(:target_account) { account }
+
+          it 'returns true' do
+            expect(subject.call(import_row)).to be true
+          end
+
+          it 'adds the target account to the list' do
+            expect { subject.call(import_row) }.to change { ListAccount.joins(:list).exists?(account_id: target_account.id, list: { title: 'my list' }) }.from(false).to(true)
+          end
+        end
+      end
+
+      context 'when the list does not exist yet' do
+        include_examples 'common behavior'
+      end
+
+      context 'when the list exists' do
+        before do
+          Fabricate(:list, account: account, title: 'my list')
+        end
+
+        include_examples 'common behavior'
+      end
+    end
   end
 end

@@ -62,6 +62,10 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 
+  config.define_derived_metadata(file_path: Regexp.new('spec/lib/mastodon/cli')) do |metadata|
+    metadata[:type] = :cli
+  end
+
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :helper
   config.include Devise::Test::ControllerHelpers, type: :view
@@ -72,6 +76,11 @@ RSpec.configure do |config|
   config.include Chewy::Rspec::Helpers
   config.include Redisable
   config.include SignedRequestHelpers, type: :request
+
+  config.before :each, type: :cli do
+    stub_stdout
+    stub_reset_connection_pools
+  end
 
   config.before :each, type: :feature do
     https = ENV['LOCAL_HTTPS'] == 'true'
@@ -84,6 +93,12 @@ RSpec.configure do |config|
 
   config.before :each, type: :service do
     stub_jsonld_contexts!
+  end
+
+  config.before(:each) do |example|
+    unless example.metadata[:paperclip_processing]
+      allow_any_instance_of(Paperclip::Attachment).to receive(:post_process).and_return(true) # rubocop:disable RSpec/AnyInstance
+    end
   end
 
   config.after :each do
@@ -104,6 +119,21 @@ end
 
 def attachment_fixture(name)
   Rails.root.join('spec', 'fixtures', 'files', name).open
+end
+
+def stub_stdout
+  # TODO: Is there a bettery way to:
+  # - Avoid CLI command output being printed out
+  # - Allow rspec to assert things against STDOUT
+  # - Avoid disabling stdout for other desirable output (deprecation warnings, for example)
+  allow($stdout).to receive(:write)
+end
+
+def stub_reset_connection_pools
+  # TODO: Is there a better way to correctly run specs without stubbing this?
+  # (Avoids reset_connection_pools! in test env)
+  allow(ActiveRecord::Base).to receive(:establish_connection)
+  allow(RedisConfiguration).to receive(:establish_pool)
 end
 
 def stub_jsonld_contexts!

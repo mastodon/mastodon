@@ -19,7 +19,7 @@ module Mastodon::CLI
     LONG_DESC
     def build(username = nil)
       if options[:all] || username.nil?
-        processed, = parallelize_with_progress(Account.joins(:user).merge(User.active)) do |account|
+        processed, = parallelize_with_progress(active_user_accounts) do |account|
           PrecomputeFeedService.new.call(account) unless dry_run?
         end
 
@@ -46,6 +46,12 @@ module Mastodon::CLI
       keys = redis.keys('feed:*')
       redis.del(keys)
       say('OK', :green)
+    end
+
+    private
+
+    def active_user_accounts
+      Account.joins(:user).merge(User.active)
     end
   end
 end

@@ -309,4 +309,128 @@ RSpec.describe Admin::AccountsController do
       end
     end
   end
+
+  describe 'POST #unsensitive' do
+    subject { post :unsensitive, params: { id: account.id } }
+
+    let(:current_user) { Fabricate(:user, role: role) }
+    let(:account) { Fabricate(:account, sensitized_at: 1.year.ago) }
+
+    context 'when user is admin' do
+      let(:role) { UserRole.find_by(name: 'Admin') }
+
+      it 'marks accounts not sensitized' do
+        subject
+
+        expect(account.reload).to_not be_sensitized
+        expect(response).to redirect_to admin_account_path(account.id)
+      end
+    end
+
+    context 'when user is not admin' do
+      let(:role) { UserRole.everyone }
+
+      it 'fails to change account' do
+        subject
+
+        expect(response).to have_http_status 403
+      end
+    end
+  end
+
+  describe 'POST #unsilence' do
+    subject { post :unsilence, params: { id: account.id } }
+
+    let(:current_user) { Fabricate(:user, role: role) }
+    let(:account) { Fabricate(:account, silenced_at: 1.year.ago) }
+
+    context 'when user is admin' do
+      let(:role) { UserRole.find_by(name: 'Admin') }
+
+      it 'marks accounts not silenced' do
+        subject
+
+        expect(account.reload).to_not be_silenced
+        expect(response).to redirect_to admin_account_path(account.id)
+      end
+    end
+
+    context 'when user is not admin' do
+      let(:role) { UserRole.everyone }
+
+      it 'fails to change account' do
+        subject
+
+        expect(response).to have_http_status 403
+      end
+    end
+  end
+
+  describe 'POST #unsuspend' do
+    subject { post :unsuspend, params: { id: account.id } }
+
+    let(:current_user) { Fabricate(:user, role: role) }
+    let(:account) { Fabricate(:account) }
+
+    before do
+      account.suspend!
+    end
+
+    context 'when user is admin' do
+      let(:role) { UserRole.find_by(name: 'Admin') }
+
+      it 'marks accounts not suspended' do
+        subject
+
+        expect(account.reload).to_not be_suspended
+        expect(response).to redirect_to admin_account_path(account.id)
+      end
+    end
+
+    context 'when user is not admin' do
+      let(:role) { UserRole.everyone }
+
+      it 'fails to change account' do
+        subject
+
+        expect(response).to have_http_status 403
+      end
+    end
+  end
+
+  describe 'POST #destroy' do
+    subject { post :destroy, params: { id: account.id } }
+
+    let(:current_user) { Fabricate(:user, role: role) }
+    let(:account) { Fabricate(:account) }
+
+    before do
+      account.suspend!
+    end
+
+    context 'when user is admin' do
+      let(:role) { UserRole.find_by(name: 'Admin') }
+
+      before do
+        allow(Admin::AccountDeletionWorker).to receive(:perform_async).with(account.id)
+      end
+
+      it 'destroys the account' do
+        subject
+
+        expect(Admin::AccountDeletionWorker).to have_received(:perform_async).with(account.id)
+        expect(response).to redirect_to admin_account_path(account.id)
+      end
+    end
+
+    context 'when user is not admin' do
+      let(:role) { UserRole.everyone }
+
+      it 'fails to change account' do
+        subject
+
+        expect(response).to have_http_status 403
+      end
+    end
+  end
 end

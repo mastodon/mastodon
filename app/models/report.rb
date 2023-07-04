@@ -48,9 +48,11 @@ class Report < ApplicationRecord
 
   validate :validate_rule_ids
 
+  # entries here needs to be kept in sync with app/javascript/mastodon/features/notifications/components/report.jsx
   enum category: {
     other: 0,
     spam: 1_000,
+    legal: 1_500,
     violation: 2_000,
   }
 

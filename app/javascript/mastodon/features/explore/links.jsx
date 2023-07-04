@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import { fetchTrendingLinks } from 'mastodon/actions/trends';
 import DismissableBanner from 'mastodon/components/dismissable_banner';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 
 import Story from './components/story';
 
@@ -35,7 +35,7 @@ class Links extends PureComponent {
 
     const banner = (
       <DismissableBanner id='explore/links'>
-        <FormattedMessage id='dismissable_banner.explore_links' defaultMessage='These news stories are being talked about by people on this and other servers of the decentralized network right now.' />
+        <FormattedMessage id='dismissable_banner.explore_links' defaultMessage='These are news stories being shared the most on the social web today. Newer news stories posted by more different people are ranked higher.' />
       </DismissableBanner>
     );
 

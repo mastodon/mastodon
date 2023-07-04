@@ -6,7 +6,7 @@ RSpec.describe Account::Field do
   describe '#verified?' do
     subject { described_class.new(account, 'name' => 'Foo', 'value' => 'Bar', 'verified_at' => verified_at) }
 
-    let(:account) { double('Account', local?: true) }
+    let(:account) { instance_double(Account, local?: true) }
 
     context 'when verified_at is set' do
       let(:verified_at) { Time.now.utc.iso8601 }
@@ -28,7 +28,7 @@ RSpec.describe Account::Field do
   describe '#mark_verified!' do
     subject { described_class.new(account, original_hash) }
 
-    let(:account) { double('Account', local?: true) }
+    let(:account) { instance_double(Account, local?: true) }
     let(:original_hash) { { 'name' => 'Foo', 'value' => 'Bar' } }
 
     before do
@@ -47,7 +47,7 @@ RSpec.describe Account::Field do
   describe '#verifiable?' do
     subject { described_class.new(account, 'name' => 'Foo', 'value' => value) }
 
-    let(:account) { double('Account', local?: local) }
+    let(:account) { instance_double(Account, local?: local) }
 
     context 'with local accounts' do
       let(:local) { true }

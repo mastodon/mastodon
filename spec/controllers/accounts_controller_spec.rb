@@ -99,7 +99,7 @@ RSpec.describe AccountsController do
         end
       end
 
-      context do
+      context 'with a normal account in an HTML request' do
         before do
           get :show, params: { username: account.username, format: format }
         end
@@ -173,7 +173,7 @@ RSpec.describe AccountsController do
         end
       end
 
-      context do
+      context 'with a normal account in a JSON request' do
         before do
           get :show, params: { username: account.username, format: format }
         end
@@ -314,7 +314,7 @@ RSpec.describe AccountsController do
         it_behaves_like 'cacheable response'
       end
 
-      context do
+      context 'with a normal account in an RSS request' do
         before do
           get :show, params: { username: account.username, format: format }
         end

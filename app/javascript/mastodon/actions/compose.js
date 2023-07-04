@@ -129,13 +129,13 @@ export function resetCompose() {
   };
 }
 
-export const focusCompose = (routerHistory, defaultText) => dispatch => {
+export const focusCompose = (routerHistory, defaultText) => (dispatch, getState) => {
   dispatch({
     type: COMPOSE_FOCUS,
     defaultText,
   });
 
-  ensureComposeIsVisible(routerHistory);
+  ensureComposeIsVisible(getState, routerHistory);
 };
 
 export function mentionCompose(account, routerHistory) {

@@ -16,7 +16,7 @@ module PremailerWebpackStrategy
             Rails.public_path.join(url).read
           end
 
-    css.gsub(/url\(\//, "url(#{asset_host}/")
+    css.gsub(%r{url\(/}, "url(#{asset_host}/")
   end
 
   module_function :load

@@ -7,7 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import { fetchSuggestions } from 'mastodon/actions/suggestions';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import AccountCard from 'mastodon/features/directory/components/account_card';
 
 const mapStateToProps = state => ({

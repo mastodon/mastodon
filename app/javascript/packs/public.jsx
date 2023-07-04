@@ -2,7 +2,7 @@ import { createRoot }  from 'react-dom/client';
 
 import './public-path';
 
-import * as IntlMessageFormat  from 'intl-messageformat';
+import { IntlMessageFormat }  from 'intl-messageformat';
 import { defineMessages } from 'react-intl';
 
 import { delegate }  from '@rails/ujs';
@@ -15,7 +15,7 @@ import { start } from '../mastodon/common';
 import { timeAgoString }  from '../mastodon/components/relative_timestamp';
 import emojify  from '../mastodon/features/emoji/emoji';
 import loadKeyboardExtensions from '../mastodon/load_keyboard_extensions';
-import { getLocale }  from '../mastodon/locales';
+import { loadLocale, getLocale } from '../mastodon/locales';
 import { loadPolyfills } from '../mastodon/polyfills';
 import ready from '../mastodon/ready';
 
@@ -46,7 +46,7 @@ window.addEventListener('message', e => {
 });
 
 function loaded() {
-  const { localeData } = getLocale();
+  const { messages: localeData } = getLocale();
 
   const scrollToDetailedStatus = () => {
     const history = createBrowserHistory();
@@ -352,6 +352,7 @@ function main() {
 }
 
 loadPolyfills()
+  .then(loadLocale)
   .then(main)
   .then(loadKeyboardExtensions)
   .catch(error => {

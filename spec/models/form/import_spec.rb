@@ -86,6 +86,7 @@ RSpec.describe Form::Import do
     it_behaves_like 'too many CSV rows', 'muting', 'imports.txt', 1
     it_behaves_like 'too many CSV rows', 'domain_blocking', 'domain_blocks.csv', 2
     it_behaves_like 'too many CSV rows', 'bookmarks', 'bookmark-imports.txt', 3
+    it_behaves_like 'too many CSV rows', 'lists', 'lists.csv', 2
 
     # Importing list of addresses with no headers into various types
     it_behaves_like 'valid import', 'following', 'imports.txt'
@@ -97,6 +98,9 @@ RSpec.describe Form::Import do
 
     # Importing bookmarks list with no headers into expected type
     it_behaves_like 'valid import', 'bookmarks', 'bookmark-imports.txt'
+
+    # Importing lists with no headers into expected type
+    it_behaves_like 'valid import', 'lists', 'lists.csv'
 
     # Importing followed accounts with headers into various compatible types
     it_behaves_like 'valid import', 'following', 'following_accounts.csv'
@@ -241,17 +245,44 @@ RSpec.describe Form::Import do
         expect(account.bulk_imports.first.rows.pluck(:data)).to match_array(expected_rows)
       end
 
-      it 'creates a BulkImport with expected attributes' do
-        bulk_import = account.bulk_imports.first
-        expect(bulk_import).to_not be_nil
-        expect(bulk_import.type.to_sym).to eq subject.type.to_sym
-        expect(bulk_import.original_filename).to eq subject.data.original_filename
-        expect(bulk_import.likely_mismatched?).to eq subject.likely_mismatched?
-        expect(bulk_import.overwrite?).to eq !!subject.overwrite # rubocop:disable Style/DoubleNegation
-        expect(bulk_import.processed_items).to eq 0
-        expect(bulk_import.imported_items).to eq 0
-        expect(bulk_import.total_items).to eq bulk_import.rows.count
-        expect(bulk_import.unconfirmed?).to be true
+      context 'with a BulkImport' do
+        let(:bulk_import) { account.bulk_imports.first }
+
+        it 'creates a non-nil bulk import' do
+          expect(bulk_import).to_not be_nil
+        end
+
+        it 'matches the subjects type' do
+          expect(bulk_import.type.to_sym).to eq subject.type.to_sym
+        end
+
+        it 'matches the subjects original filename' do
+          expect(bulk_import.original_filename).to eq subject.data.original_filename
+        end
+
+        it 'matches the subjects likely_mismatched? value' do
+          expect(bulk_import.likely_mismatched?).to eq subject.likely_mismatched?
+        end
+
+        it 'matches the subject overwrite value' do
+          expect(bulk_import.overwrite?).to eq !!subject.overwrite # rubocop:disable Style/DoubleNegation
+        end
+
+        it 'has zero processed items' do
+          expect(bulk_import.processed_items).to eq 0
+        end
+
+        it 'has zero imported items' do
+          expect(bulk_import.imported_items).to eq 0
+        end
+
+        it 'has a correct total_items value' do
+          expect(bulk_import.total_items).to eq bulk_import.rows.count
+        end
+
+        it 'defaults to unconfirmed true' do
+          expect(bulk_import.unconfirmed?).to be true
+        end
       end
     end
 
@@ -271,6 +302,12 @@ RSpec.describe Form::Import do
     it_behaves_like 'on successful import', 'muting', 'merge', 'muted_accounts.csv', [
       { 'acct' => 'user@example.com', 'hide_notifications' => true },
       { 'acct' => 'user@test.com', 'hide_notifications' => false },
+    ]
+
+    it_behaves_like 'on successful import', 'lists', 'merge', 'lists.csv', [
+      { 'acct' => 'gargron@example.com', 'list_name' => 'Mastodon project' },
+      { 'acct' => 'mastodon@example.com', 'list_name' => 'Mastodon project' },
+      { 'acct' => 'foo@example.com', 'list_name' => 'test' },
     ]
 
     # Based on the bug report 20571 where UTF-8 encoded domains were rejecting import of their users

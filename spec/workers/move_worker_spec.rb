@@ -15,7 +15,7 @@ describe MoveWorker do
   let!(:account_note)    { Fabricate(:account_note, account: local_user.account, target_account: source_account, comment: comment) }
   let(:list)             { Fabricate(:list, account: local_follower) }
 
-  let(:block_service) { double }
+  let(:block_service) { instance_double(BlockService) }
 
   before do
     stub_request(:post, 'https://example.org/a/inbox').to_return(status: 200)

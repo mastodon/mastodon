@@ -12,7 +12,7 @@ import { createSelector } from 'reselect';
 import { fetchLists } from 'mastodon/actions/lists';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import ColumnLink from 'mastodon/features/ui/components/column_link';
 import ColumnSubheading from 'mastodon/features/ui/components/column_subheading';

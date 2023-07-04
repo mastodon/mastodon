@@ -47,11 +47,11 @@
 }
 
 .button {
-  background-color: darken($ui-highlight-color, 2%);
+  background-color: $ui-button-background-color;
   border: 10px none;
   border-radius: 4px;
   box-sizing: border-box;
-  color: $primary-text-color;
+  color: $ui-button-color;
   cursor: pointer;
   display: inline-block;
   font-family: inherit;
@@ -71,14 +71,14 @@
   &:active,
   &:focus,
   &:hover {
-    background-color: $ui-highlight-color;
+    background-color: $ui-button-focus-background-color;
   }
 
   &--destructive {
     &:active,
     &:focus,
     &:hover {
-      background-color: $error-red;
+      background-color: $ui-button-destructive-focus-background-color;
       transition: none;
     }
   }
@@ -108,38 +108,18 @@
     outline: 0 !important;
   }
 
-  &.button-alternative {
-    color: $inverted-text-color;
-    background: $ui-primary-color;
-
-    &:active,
-    &:focus,
-    &:hover {
-      background-color: lighten($ui-primary-color, 4%);
-    }
-  }
-
-  &.button-alternative-2 {
-    background: $ui-base-lighter-color;
-
-    &:active,
-    &:focus,
-    &:hover {
-      background-color: lighten($ui-base-lighter-color, 4%);
-    }
-  }
-
   &.button-secondary {
-    color: $darker-text-color;
+    color: $ui-button-secondary-color;
     background: transparent;
     padding: 6px 17px;
-    border: 1px solid $ui-primary-color;
+    border: 1px solid $ui-button-secondary-border-color;
 
     &:active,
     &:focus,
     &:hover {
-      border-color: lighten($ui-primary-color, 4%);
-      color: lighten($darker-text-color, 4%);
+      border-color: $ui-button-secondary-focus-background-color;
+      color: $ui-button-secondary-focus-color;
+      background-color: $ui-button-secondary-focus-background-color;
       text-decoration: none;
     }
 
@@ -151,14 +131,14 @@
   &.button-tertiary {
     background: transparent;
     padding: 6px 17px;
-    color: $highlight-text-color;
-    border: 1px solid $highlight-text-color;
+    color: $ui-button-tertiary-color;
+    border: 1px solid $ui-button-tertiary-border-color;
 
     &:active,
     &:focus,
     &:hover {
-      background: $ui-highlight-color;
-      color: $primary-text-color;
+      background-color: $ui-button-tertiary-focus-background-color;
+      color: $ui-button-tertiary-focus-color;
       border: 0;
       padding: 7px 18px;
     }
@@ -1514,18 +1494,44 @@ body > [data-popper-placement] {
   }
 
   &__note {
+    font-size: 14px;
+    font-weight: 400;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    color: $ui-secondary-color;
+    margin-top: 10px;
+    color: $darker-text-color;
+
+    &--missing {
+      color: $dark-text-color;
+    }
+
+    p {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      color: inherit;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+      }
+    }
   }
 }
 
 .account__wrapper {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
 .account__avatar {
@@ -1594,108 +1600,10 @@ a .account__avatar {
 }
 
 .account__relationship {
-  height: 18px;
-  padding: 10px;
   white-space: nowrap;
-}
-
-.account__disclaimer {
-  padding: 10px;
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  color: $dark-text-color;
-
-  strong {
-    font-weight: 500;
-
-    @each $lang in $cjk-langs {
-      &:lang(#{$lang}) {
-        font-weight: 700;
-      }
-    }
-  }
-
-  a {
-    font-weight: 500;
-    color: inherit;
-    text-decoration: underline;
-
-    &:hover,
-    &:focus,
-    &:active {
-      text-decoration: none;
-    }
-  }
-}
-
-.account__action-bar {
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-  line-height: 36px;
-  overflow: hidden;
-  flex: 0 0 auto;
   display: flex;
-}
-
-.account__action-bar-dropdown {
-  padding: 10px;
-
-  .icon-button {
-    vertical-align: middle;
-  }
-
-  .dropdown--active {
-    .dropdown__content.dropdown__right {
-      inset-inline-start: 6px;
-      inset-inline-end: initial;
-    }
-
-    &::after {
-      bottom: initial;
-      margin-inline-start: 11px;
-      margin-top: -7px;
-      inset-inline-end: initial;
-    }
-  }
-}
-
-.account__action-bar-links {
-  display: flex;
-  flex: 1 1 auto;
-  line-height: 18px;
-  text-align: center;
-}
-
-.account__action-bar__tab {
-  text-decoration: none;
-  overflow: hidden;
-  flex: 0 1 100%;
-  border-inline-end: 1px solid lighten($ui-base-color, 8%);
-  padding: 10px 0;
-  border-bottom: 4px solid transparent;
-
-  &.active {
-    border-bottom: 4px solid $ui-highlight-color;
-  }
-
-  & > span {
-    display: block;
-    text-transform: uppercase;
-    font-size: 11px;
-    color: $darker-text-color;
-  }
-
-  strong {
-    display: block;
-    font-size: 15px;
-    font-weight: 500;
-    color: $primary-text-color;
-
-    @each $lang in $cjk-langs {
-      &:lang(#{$lang}) {
-        font-weight: 700;
-      }
-    }
-  }
+  align-items: center;
+  gap: 4px;
 }
 
 .account-authorize {
@@ -2049,34 +1957,16 @@ a.account__display-name {
 }
 
 .dropdown-animation {
-  animation: dropdown 300ms cubic-bezier(0.1, 0.7, 0.1, 1);
+  animation: dropdown 150ms cubic-bezier(0.1, 0.7, 0.1, 1);
 
   @keyframes dropdown {
     from {
       opacity: 0;
-      transform: scaleX(0.85) scaleY(0.75);
     }
 
     to {
       opacity: 1;
-      transform: scaleX(1) scaleY(1);
     }
-  }
-
-  &.top {
-    transform-origin: bottom;
-  }
-
-  &.right {
-    transform-origin: left;
-  }
-
-  &.bottom {
-    transform-origin: top;
-  }
-
-  &.left {
-    transform-origin: right;
   }
 
   .reduce-motion & {
@@ -2094,16 +1984,17 @@ a.account__display-name {
 }
 
 .dropdown-menu__separator {
-  border-bottom: 1px solid darken($ui-secondary-color, 8%);
-  margin: 5px 7px 6px;
+  border-bottom: 1px solid var(--dropdown-border-color);
+  margin: 5px 0;
   height: 0;
 }
 
 .dropdown-menu {
-  background: $ui-secondary-color;
-  padding: 4px 0;
+  background: var(--dropdown-background-color);
+  border: 1px solid var(--dropdown-border-color);
+  padding: 4px;
   border-radius: 4px;
-  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  box-shadow: var(--dropdown-shadow);
   z-index: 9999;
 
   &__text-button {
@@ -2124,12 +2015,13 @@ a.account__display-name {
 
   &__container {
     &__header {
-      border-bottom: 1px solid darken($ui-secondary-color, 8%);
-      padding: 4px 14px;
-      padding-bottom: 8px;
+      border-bottom: 1px solid var(--dropdown-border-color);
+      padding: 10px 14px;
+      padding-bottom: 14px;
+      margin-bottom: 4px;
       font-size: 13px;
       line-height: 18px;
-      color: $inverted-text-color;
+      color: $darker-text-color;
     }
 
     &__list {
@@ -2166,100 +2058,40 @@ a.account__display-name {
   }
 }
 
-.dropdown-menu__arrow {
-  position: absolute;
-
-  &::before {
-    content: '';
-    display: block;
-    width: 14px;
-    height: 5px;
-    background-color: $ui-secondary-color;
-    mask-image: url("data:image/svg+xml;utf8,<svg width='14' height='5' xmlns='http://www.w3.org/2000/svg'><path d='M7 0L0 5h14L7 0z' fill='white'/></svg>");
-  }
-
-  &.top {
-    bottom: -5px;
-
-    &::before {
-      transform: rotate(180deg);
-    }
-  }
-
-  &.right {
-    inset-inline-start: -9px;
-
-    &::before {
-      transform: rotate(-90deg);
-    }
-  }
-
-  &.bottom {
-    top: -5px;
-  }
-
-  &.left {
-    inset-inline-end: -9px;
-
-    &::before {
-      transform: rotate(90deg);
-    }
-  }
-}
-
 .dropdown-menu__item {
   font-size: 13px;
   line-height: 18px;
+  font-weight: 500;
   display: block;
-  color: $inverted-text-color;
+
+  &--dangerous {
+    color: $error-value-color;
+  }
 
   a,
   button {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
+    font: inherit;
     display: block;
     width: 100%;
-    padding: 4px 14px;
+    padding: 10px 14px;
     border: 0;
     margin: 0;
+    background: transparent;
     box-sizing: border-box;
     text-decoration: none;
-    background: $ui-secondary-color;
     color: inherit;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     text-align: inherit;
+    border-radius: 4px;
 
     &:focus,
     &:hover,
     &:active {
-      background: $ui-highlight-color;
-      color: $secondary-text-color;
+      background: var(--dropdown-border-color);
       outline: 0;
     }
-  }
-}
-
-.dropdown-menu__item--text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: 4px 14px;
-}
-
-.dropdown-menu__item.edited-timestamp__history__item {
-  border-bottom: 1px solid darken($ui-secondary-color, 8%);
-
-  &:last-child {
-    border-bottom: 0;
-  }
-
-  &.dropdown-menu__item--text,
-  a,
-  button {
-    padding: 8px 14px;
   }
 }
 
@@ -2276,62 +2108,6 @@ a.account__display-name {
   strong {
     font-weight: 600;
   }
-}
-
-.dropdown--active .dropdown__content {
-  display: block;
-  line-height: 18px;
-  max-width: 311px;
-  inset-inline-end: 0;
-  text-align: start;
-  z-index: 9999;
-
-  & > ul {
-    list-style: none;
-    background: $ui-secondary-color;
-    padding: 4px 0;
-    border-radius: 4px;
-    box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
-    min-width: 140px;
-    position: relative;
-  }
-
-  &.dropdown__right {
-    inset-inline-end: 0;
-  }
-
-  &.dropdown__left {
-    & > ul {
-      inset-inline-start: -98px;
-    }
-  }
-
-  & > ul > li > a {
-    font-size: 13px;
-    line-height: 18px;
-    display: block;
-    padding: 4px 14px;
-    box-sizing: border-box;
-    text-decoration: none;
-    background: $ui-secondary-color;
-    color: $inverted-text-color;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    &:focus {
-      outline: 0;
-    }
-
-    &:hover {
-      background: $ui-highlight-color;
-      color: $secondary-text-color;
-    }
-  }
-}
-
-.dropdown__icon {
-  vertical-align: middle;
 }
 
 .columns-area {
@@ -2846,13 +2622,15 @@ $ui-header-height: 55px;
 .onboarding__link {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   color: $highlight-text-color;
   background: lighten($ui-base-color, 4%);
   border-radius: 8px;
-  padding: 10px;
+  padding: 10px 15px;
   box-sizing: border-box;
-  font-size: 17px;
+  font-size: 14px;
+  font-weight: 500;
   height: 56px;
   text-decoration: none;
 
@@ -2914,6 +2692,7 @@ $ui-header-height: 55px;
     align-items: center;
     gap: 10px;
     padding: 10px;
+    padding-inline-end: 15px;
     margin-bottom: 2px;
     text-decoration: none;
     text-align: start;
@@ -2926,14 +2705,14 @@ $ui-header-height: 55px;
 
     &__icon {
       flex: 0 0 auto;
-      background: $ui-base-color;
       border-radius: 50%;
       display: none;
       align-items: center;
       justify-content: center;
       width: 36px;
       height: 36px;
-      color: $dark-text-color;
+      color: $highlight-text-color;
+      font-size: 1.2rem;
 
       @media screen and (width >= 600px) {
         display: flex;
@@ -2957,16 +2736,33 @@ $ui-header-height: 55px;
       }
     }
 
+    &__go {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 21px;
+      height: 21px;
+      color: $highlight-text-color;
+      font-size: 17px;
+
+      svg {
+        height: 1.5em;
+        width: auto;
+      }
+    }
+
     &__description {
       flex: 1 1 auto;
-      line-height: 18px;
+      line-height: 20px;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
 
       h6 {
-        color: $primary-text-color;
-        font-weight: 700;
+        color: $highlight-text-color;
+        font-weight: 500;
+        font-size: 14px;
         overflow: hidden;
         text-overflow: ellipsis;
       }
@@ -3111,10 +2907,10 @@ $ui-header-height: 55px;
 .compose-form__highlightable {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   flex: 0 1 auto;
   border-radius: 4px;
   transition: box-shadow 300ms linear;
+  min-height: 0;
 
   &.active {
     transition: none;
@@ -3156,7 +2952,6 @@ $ui-header-height: 55px;
 
   .compose-form {
     flex: 1;
-    overflow-y: hidden;
     display: flex;
     flex-direction: column;
     min-height: 310px;
@@ -3331,7 +3126,7 @@ $ui-header-height: 55px;
 .column-back-button {
   box-sizing: border-box;
   width: 100%;
-  background: lighten($ui-base-color, 4%);
+  background: $ui-base-color;
   border-radius: 4px 4px 0 0;
   color: $highlight-text-color;
   cursor: pointer;
@@ -3339,6 +3134,7 @@ $ui-header-height: 55px;
   font-size: 16px;
   line-height: inherit;
   border: 0;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   text-align: unset;
   padding: 15px;
   margin: 0;
@@ -3351,7 +3147,7 @@ $ui-header-height: 55px;
 }
 
 .column-header__back-button {
-  background: lighten($ui-base-color, 4%);
+  background: $ui-base-color;
   border: 0;
   font-family: inherit;
   color: $highlight-text-color;
@@ -3386,7 +3182,7 @@ $ui-header-height: 55px;
   padding: 15px;
   position: absolute;
   inset-inline-end: 0;
-  top: -48px;
+  top: -50px;
 }
 
 .react-toggle {
@@ -4067,7 +3863,8 @@ a.status-card.compact:hover {
 .column-header {
   display: flex;
   font-size: 16px;
-  background: lighten($ui-base-color, 4%);
+  background: $ui-base-color;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px 4px 0 0;
   flex: 0 0 auto;
   cursor: pointer;
@@ -4122,7 +3919,7 @@ a.status-card.compact:hover {
 }
 
 .column-header__button {
-  background: lighten($ui-base-color, 4%);
+  background: $ui-base-color;
   border: 0;
   color: $darker-text-color;
   cursor: pointer;
@@ -4130,16 +3927,15 @@ a.status-card.compact:hover {
   padding: 0 15px;
 
   &:hover {
-    color: lighten($darker-text-color, 7%);
+    color: lighten($darker-text-color, 4%);
   }
 
   &.active {
     color: $primary-text-color;
-    background: lighten($ui-base-color, 8%);
+    background: lighten($ui-base-color, 4%);
 
     &:hover {
       color: $primary-text-color;
-      background: lighten($ui-base-color, 8%);
     }
   }
 
@@ -4153,6 +3949,7 @@ a.status-card.compact:hover {
   max-height: 70vh;
   overflow: hidden;
   overflow-y: auto;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   color: $darker-text-color;
   transition: max-height 150ms ease-in-out, opacity 300ms linear;
   opacity: 1;
@@ -4172,13 +3969,13 @@ a.status-card.compact:hover {
     height: 0;
     background: transparent;
     border: 0;
-    border-top: 1px solid lighten($ui-base-color, 12%);
+    border-top: 1px solid lighten($ui-base-color, 8%);
     margin: 10px 0;
   }
 }
 
 .column-header__collapsible-inner {
-  background: lighten($ui-base-color, 8%);
+  background: $ui-base-color;
   padding: 15px;
 }
 
@@ -4591,17 +4388,13 @@ a.status-card.compact:hover {
   color: $primary-text-color;
   margin-bottom: 4px;
   display: block;
-  background-color: $base-overlay-background;
-  text-transform: uppercase;
+  background-color: rgba($black, 0.45);
+  backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
   font-size: 11px;
-  font-weight: 500;
-  padding: 4px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 2px 6px;
   border-radius: 4px;
-  opacity: 0.7;
-
-  &:hover {
-    opacity: 1;
-  }
 }
 
 .setting-toggle {
@@ -4661,6 +4454,7 @@ a.status-card.compact:hover {
 
 .follow_requests-unlocked_explanation {
   background: darken($ui-base-color, 4%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   contain: initial;
   flex-grow: 0;
 }
@@ -5470,7 +5264,7 @@ a.status-card.compact:hover {
   background: transparent;
   box-sizing: border-box;
   border: 0;
-  color: rgba($primary-text-color, 0.7);
+  color: rgba($white, 0.7);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -5485,7 +5279,7 @@ a.status-card.compact:hover {
   &:hover,
   &:focus,
   &:active {
-    color: $primary-text-color;
+    color: $white;
   }
 }
 
@@ -5995,15 +5789,15 @@ a.status-card.compact:hover {
   }
 
   .button.button-secondary {
-    border-color: $inverted-text-color;
-    color: $inverted-text-color;
+    border-color: $ui-button-secondary-border-color;
+    color: $ui-button-secondary-color;
     flex: 0 0 auto;
 
     &:hover,
     &:focus,
     &:active {
-      border-color: lighten($inverted-text-color, 15%);
-      color: lighten($inverted-text-color, 15%);
+      border-color: $ui-button-secondary-focus-background-color;
+      color: $ui-button-secondary-focus-color;
     }
   }
 
@@ -6345,6 +6139,7 @@ a.status-card.compact:hover {
   display: block;
   color: $white;
   background: rgba($black, 0.65);
+  backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 11px;
@@ -7022,24 +6817,6 @@ a.status-card.compact:hover {
       }
     }
   }
-
-  &.directory__section-headline {
-    background: darken($ui-base-color, 2%);
-    border-bottom-color: transparent;
-
-    a,
-    button {
-      &.active {
-        &::before {
-          display: none;
-        }
-
-        &::after {
-          border-color: transparent transparent darken($ui-base-color, 7%);
-        }
-      }
-    }
-  }
 }
 
 .filter-form {
@@ -7554,7 +7331,6 @@ noscript {
 
 .account__header {
   overflow: hidden;
-  background: lighten($ui-base-color, 4%);
 
   &.inactive {
     opacity: 0.5;
@@ -7576,6 +7352,7 @@ noscript {
     height: 145px;
     position: relative;
     background: darken($ui-base-color, 4%);
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
 
     img {
       object-fit: cover;
@@ -7589,7 +7366,7 @@ noscript {
   &__bar {
     position: relative;
     padding: 0 20px;
-    border-bottom: 1px solid lighten($ui-base-color, 12%);
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
 
     .avatar {
       display: block;
@@ -7598,7 +7375,7 @@ noscript {
 
       .account__avatar {
         background: darken($ui-base-color, 8%);
-        border: 2px solid lighten($ui-base-color, 4%);
+        border: 2px solid $ui-base-color;
       }
     }
   }
@@ -7814,13 +7591,28 @@ noscript {
   }
 }
 
+.account__contents {
+  overflow: hidden;
+}
+
+.account__details {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1em;
+}
+
 .verified-badge {
   display: inline-flex;
   align-items: center;
   color: $valid-value-color;
   gap: 4px;
   overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   a {
     color: inherit;
@@ -8910,27 +8702,80 @@ noscript {
 }
 
 .dismissable-banner {
-  background: $ui-base-color;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-  display: flex;
-  align-items: center;
-  gap: 30px;
+  position: relative;
+  margin: 10px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  border: 1px solid $highlight-text-color;
+  background: rgba($highlight-text-color, 0.15);
+  padding-inline-end: 45px;
+  overflow: hidden;
+
+  &__background-image {
+    width: 125%;
+    position: absolute;
+    bottom: -25%;
+    inset-inline-end: -25%;
+    z-index: -1;
+    opacity: 0.15;
+    mix-blend-mode: luminosity;
+  }
 
   &__message {
     flex: 1 1 auto;
-    padding: 20px 15px;
-    cursor: default;
-    font-size: 14px;
-    line-height: 18px;
+    padding: 15px;
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 500;
     color: $primary-text-color;
+
+    p {
+      margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    h1 {
+      color: $highlight-text-color;
+      font-size: 22px;
+      line-height: 33px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+
+      &__wrapper {
+        display: flex;
+        margin-top: 30px;
+      }
+
+      .button {
+        display: block;
+        flex-grow: 1;
+      }
+    }
+
+    .button-tertiary {
+      background: rgba($ui-base-color, 0.15);
+      backdrop-filter: blur(8px);
+    }
   }
 
   &__action {
-    padding: 15px;
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    inset-inline-end: 0;
+    top: 0;
+    padding: 10px;
+
+    .icon-button {
+      color: $highlight-text-color;
+    }
   }
 }
 

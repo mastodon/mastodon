@@ -79,7 +79,7 @@ RSpec.describe Auth::RegistrationsController do
       request.env['devise.mapping'] = Devise.mappings[:user]
     end
 
-    context do
+    context 'with open registrations' do
       around do |example|
         registrations_mode = Setting.registrations_mode
         example.run
@@ -111,7 +111,7 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
-    context do
+    context 'when an accept language is present in headers' do
       subject do
         Setting.registrations_mode = 'open'
         request.headers['Accept-Language'] = accept_language

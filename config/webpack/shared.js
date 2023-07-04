@@ -9,7 +9,6 @@ const webpack = require('webpack');
 const AssetsManifestPlugin = require('webpack-assets-manifest');
 
 const { env, settings, themes, output } = require('./configuration');
-const localePackPaths = require('./generateLocalePacks');
 const rules = require('./rules');
 
 const extensionGlob = `**/*{${settings.extensions.join(',')}}*`;
@@ -22,11 +21,6 @@ module.exports = {
       const localMap = map;
       const namespace = relative(join(entryPath), dirname(entry));
       localMap[join(namespace, basename(entry, extname(entry)))] = resolve(entry);
-      return localMap;
-    }, {}),
-    localePackPaths.reduce((map, entry) => {
-      const localMap = map;
-      localMap[basename(entry, extname(entry, extname(entry)))] = resolve(entry);
       return localMap;
     }, {}),
     Object.keys(themes).reduce((themePaths, name) => {

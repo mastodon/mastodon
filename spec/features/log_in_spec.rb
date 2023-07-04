@@ -32,7 +32,7 @@ describe 'Log in' do
     expect(subject).to have_css('.flash-message', text: failure_message('invalid'))
   end
 
-  context do
+  context 'when confirmed at is nil' do
     let(:confirmed_at) { nil }
 
     it 'A unconfirmed user is able to log in' do

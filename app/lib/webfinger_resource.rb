@@ -13,7 +13,7 @@ class WebfingerResource
     case resource
     when /\Ahttps?/i
       username_from_url
-    when /\@/
+    when /@/
       username_from_acct
     else
       raise InvalidRequest
