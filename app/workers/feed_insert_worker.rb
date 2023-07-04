@@ -4,7 +4,7 @@ class FeedInsertWorker
   include Sidekiq::Worker
 
   def perform(status_id, id, type = 'home', options = {})
-    ActiveRecord.connects_to(role: :primary) do
+    ActiveRecord.connected_to(role: :primary) do
       @type      = type.to_sym
       @status    = Status.find(status_id)
       @options   = options.symbolize_keys
