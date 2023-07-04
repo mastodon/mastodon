@@ -19,6 +19,11 @@ class Api::V1::ConversationsController < Api::BaseController
     render json: @conversation, serializer: REST::ConversationSerializer
   end
 
+  def unread
+    @conversation.update!(unread: true)
+    render json: @conversation, serializer: REST::ConversationSerializer
+  end
+
   def destroy
     @conversation.destroy!
     render_empty

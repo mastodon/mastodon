@@ -7,6 +7,12 @@ $classic-primary-color: #9baec8;
 $classic-secondary-color: #d9e1e8;
 $classic-highlight-color: #6364ff;
 
+$blurple-600: #563acc; // Iris
+$blurple-500: #6364ff; // Brand purple
+$blurple-300: #858afa; // Faded Blue
+$grey-600: #4e4c5a; // Trout
+$grey-100: #dadaf3; // Topaz
+
 // Differences
 $success-green: lighten(#3c754d, 8%);
 
@@ -18,6 +24,13 @@ $ui-base-lighter-color: #b0c0cf;
 $ui-primary-color: #9bcbed;
 $ui-secondary-color: $classic-base-color !default;
 $ui-highlight-color: $classic-highlight-color !default;
+
+$ui-button-secondary-color: $grey-600 !default;
+$ui-button-secondary-border-color: $grey-600 !default;
+$ui-button-secondary-focus-color: $white !default;
+
+$ui-button-tertiary-color: $blurple-500 !default;
+$ui-button-tertiary-border-color: $blurple-500 !default;
 
 $primary-text-color: $black !default;
 $darker-text-color: $classic-base-color !default;

@@ -62,17 +62,10 @@ describe Admin::Reports::ActionsController do
     end
 
     shared_examples 'common behavior' do
-      it 'closes the report' do
-        expect { subject }.to change { report.reload.action_taken? }.from(false).to(true)
-      end
+      it 'closes the report and redirects' do
+        expect { subject }.to mark_report_action_taken.and create_target_account_strike
 
-      it 'creates a strike with the expected text' do
-        expect { subject }.to change { report.target_account.strikes.count }.by(1)
         expect(report.target_account.strikes.last.text).to eq text
-      end
-
-      it 'redirects' do
-        subject
         expect(response).to redirect_to(admin_reports_path)
       end
 
@@ -81,19 +74,20 @@ describe Admin::Reports::ActionsController do
           { report_id: report.id }
         end
 
-        it 'closes the report' do
-          expect { subject }.to change { report.reload.action_taken? }.from(false).to(true)
-        end
+        it 'closes the report and redirects' do
+          expect { subject }.to mark_report_action_taken.and create_target_account_strike
 
-        it 'creates a strike with the expected text' do
-          expect { subject }.to change { report.target_account.strikes.count }.by(1)
           expect(report.target_account.strikes.last.text).to eq ''
-        end
-
-        it 'redirects' do
-          subject
           expect(response).to redirect_to(admin_reports_path)
         end
+      end
+
+      def mark_report_action_taken
+        change { report.reload.action_taken? }.from(false).to(true)
+      end
+
+      def create_target_account_strike
+        change { report.target_account.strikes.count }.by(1)
       end
     end
 

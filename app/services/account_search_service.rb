@@ -9,12 +9,11 @@ class AccountSearchService < BaseService
   MIN_QUERY_LENGTH = 5
 
   def call(query, account = nil, options = {})
-    @acct_hint = query&.start_with?('@')
-    @query     = query&.strip&.gsub(/\A@/, '')
-    @limit     = options[:limit].to_i
-    @offset    = options[:offset].to_i
-    @options   = options
-    @account   = account
+    @query   = query&.strip&.gsub(/\A@/, '')
+    @limit   = options[:limit].to_i
+    @offset  = options[:offset].to_i
+    @options = options
+    @account = account
 
     search_service_results.compact.uniq
   end
@@ -72,8 +71,8 @@ class AccountSearchService < BaseService
   end
 
   def from_elasticsearch
-    must_clauses   = [{ multi_match: { query: terms_for_query, fields: likely_acct? ? %w(acct.edge_ngram acct) : %w(acct.edge_ngram acct display_name.edge_ngram display_name), type: 'most_fields', operator: 'and' } }]
-    should_clauses = []
+    must_clauses   = must_clause
+    should_clauses = should_clause
 
     if account
       return [] if options[:following] && following_ids.empty?
@@ -88,7 +87,7 @@ class AccountSearchService < BaseService
     query     = { bool: { must: must_clauses, should: should_clauses } }
     functions = [reputation_score_function, followers_score_function, time_distance_function]
 
-    records = AccountsIndex.query(function_score: { query: query, functions: functions, boost_mode: 'multiply', score_mode: 'avg' })
+    records = AccountsIndex.query(function_score: { query: query, functions: functions })
                            .limit(limit_for_non_exact_results)
                            .offset(offset)
                            .objects
@@ -131,6 +130,36 @@ class AccountSearchService < BaseService
         },
       },
     }
+  end
+
+  def must_clause
+    fields = %w(username username.* display_name display_name.*)
+    fields << 'text' << 'text.*' if options[:use_searchable_text]
+
+    [
+      {
+        multi_match: {
+          query: terms_for_query,
+          fields: fields,
+          type: 'best_fields',
+          operator: 'or',
+        },
+      },
+    ]
+  end
+
+  def should_clause
+    [
+      {
+        multi_match: {
+          query: terms_for_query,
+          fields: %w(username username.* display_name display_name.*),
+          type: 'best_fields',
+          operator: 'and',
+          boost: 10,
+        },
+      },
+    ]
   end
 
   def following_ids
@@ -181,9 +210,5 @@ class AccountSearchService < BaseService
 
   def username_complete?
     query.include?('@') && "@#{query}".match?(MENTION_ONLY_RE)
-  end
-
-  def likely_acct?
-    @acct_hint || username_complete?
   end
 end

@@ -437,45 +437,6 @@ RSpec/SubjectStub:
     - 'spec/services/unallow_domain_service_spec.rb'
     - 'spec/validators/blacklisted_email_validator_spec.rb'
 
-# Configuration parameters: IgnoreNameless, IgnoreSymbolicNames.
-RSpec/VerifiedDoubles:
-  Exclude:
-    - 'spec/controllers/admin/change_emails_controller_spec.rb'
-    - 'spec/controllers/admin/confirmations_controller_spec.rb'
-    - 'spec/controllers/admin/disputes/appeals_controller_spec.rb'
-    - 'spec/controllers/admin/domain_allows_controller_spec.rb'
-    - 'spec/controllers/admin/domain_blocks_controller_spec.rb'
-    - 'spec/controllers/api/v1/reports_controller_spec.rb'
-    - 'spec/controllers/api/web/embeds_controller_spec.rb'
-    - 'spec/controllers/auth/sessions_controller_spec.rb'
-    - 'spec/controllers/disputes/appeals_controller_spec.rb'
-    - 'spec/helpers/statuses_helper_spec.rb'
-    - 'spec/lib/suspicious_sign_in_detector_spec.rb'
-    - 'spec/models/account/field_spec.rb'
-    - 'spec/models/session_activation_spec.rb'
-    - 'spec/models/setting_spec.rb'
-    - 'spec/services/account_search_service_spec.rb'
-    - 'spec/services/post_status_service_spec.rb'
-    - 'spec/services/search_service_spec.rb'
-    - 'spec/validators/blacklisted_email_validator_spec.rb'
-    - 'spec/validators/disallowed_hashtags_validator_spec.rb'
-    - 'spec/validators/email_mx_validator_spec.rb'
-    - 'spec/validators/follow_limit_validator_spec.rb'
-    - 'spec/validators/note_length_validator_spec.rb'
-    - 'spec/validators/poll_validator_spec.rb'
-    - 'spec/validators/status_length_validator_spec.rb'
-    - 'spec/validators/status_pin_validator_spec.rb'
-    - 'spec/validators/unique_username_validator_spec.rb'
-    - 'spec/validators/unreserved_username_validator_spec.rb'
-    - 'spec/validators/url_validator_spec.rb'
-    - 'spec/views/statuses/show.html.haml_spec.rb'
-    - 'spec/workers/activitypub/processing_worker_spec.rb'
-    - 'spec/workers/admin/domain_purge_worker_spec.rb'
-    - 'spec/workers/domain_block_worker_spec.rb'
-    - 'spec/workers/domain_clear_media_worker_spec.rb'
-    - 'spec/workers/feed_insert_worker_spec.rb'
-    - 'spec/workers/regeneration_worker_spec.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Rails/ApplicationController:
   Exclude:

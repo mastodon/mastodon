@@ -15,7 +15,7 @@ RSpec.describe AccountMigration do
       before do
         target_account.aliases.create!(acct: source_account.acct)
 
-        service_double = double
+        service_double = instance_double(ResolveAccountService)
         allow(ResolveAccountService).to receive(:new).and_return(service_double)
         allow(service_double).to receive(:call).with(target_acct, anything).and_return(target_account)
       end
@@ -29,7 +29,7 @@ RSpec.describe AccountMigration do
       let(:target_acct) { 'target@remote' }
 
       before do
-        service_double = double
+        service_double = instance_double(ResolveAccountService)
         allow(ResolveAccountService).to receive(:new).and_return(service_double)
         allow(service_double).to receive(:call).with(target_acct, anything).and_return(nil)
       end

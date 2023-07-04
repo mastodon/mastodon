@@ -6,8 +6,8 @@ RSpec.describe BlacklistedEmailValidator, type: :validator do
   describe '#validate' do
     subject { described_class.new.validate(user); errors }
 
-    let(:user)   { double(email: 'info@mail.com', sign_up_ip: '1.2.3.4', errors: errors) }
-    let(:errors) { double(add: nil) }
+    let(:user)   { instance_double(User, email: 'info@mail.com', sign_up_ip: '1.2.3.4', errors: errors) }
+    let(:errors) { instance_double(ActiveModel::Errors, add: nil) }
 
     before do
       allow(user).to receive(:valid_invitation?).and_return(false)
