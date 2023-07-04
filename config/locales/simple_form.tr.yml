@@ -131,6 +131,7 @@ tr:
         position: Belirli durumlarda çatışmayı çözmek için daha yüksek rol belirleyicidir. Bazı eylemler ancak daha düşük öncelikteki rollere uygulanabilir
       webhook:
         events: Gönderilecek etkinlikleri seçin
+        template: Değişken değerleme kullanarak kendi JSON yükünüzü oluşturun. Varsayılan JSON için boş bırakın.
         url: Olayların gönderileceği yer
     labels:
       account:
@@ -305,6 +306,7 @@ tr:
         position: Öncelik
       webhook:
         events: Etkin olaylar
+        template: Yük şablonu
         url: Uç nokta URL’si
     'no': 'Hayır'
     not_recommended: Önerilmez
