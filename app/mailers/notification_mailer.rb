@@ -5,13 +5,7 @@ class NotificationMailer < ApplicationMailer
          :statuses,
          :routing
 
-  before_action do
-    @notification = params[:notification]
-    @me = params[:recipient]
-    @user = @me.user
-    @type = action_name
-  end
-
+  before_action :process_params
   before_action :set_status, only: [:mention, :favourite, :reblog]
   before_action :set_account, only: [:follow, :favourite, :reblog, :follow_request]
 
@@ -61,6 +55,13 @@ class NotificationMailer < ApplicationMailer
   end
 
   private
+
+  def process_params
+    @notification = params[:notification]
+    @me = params[:recipient]
+    @user = @me.user
+    @type = action_name
+  end
 
   def set_status
     @status = @notification.target_status
