@@ -23,7 +23,8 @@ RSpec.describe NotificationMailer do
 
   describe 'mention' do
     let(:mention) { Mention.create!(account: receiver.account, status: foreign_status) }
-    let(:mail) { described_class.with(recipient: receiver.account).mention(Notification.create!(account: receiver.account, activity: mention)) }
+    let(:notification) { Notification.create!(account: receiver.account, activity: mention) }
+    let(:mail) { described_class.with(recipient: receiver.account).mention(notification) }
 
     include_examples 'localized subject', 'notification_mailer.mention.subject', name: 'bob'
 
@@ -40,7 +41,8 @@ RSpec.describe NotificationMailer do
 
   describe 'follow' do
     let(:follow) { sender.follow!(receiver.account) }
-    let(:mail) { described_class.with(recipient: receiver.account).follow(Notification.create!(account: receiver.account, activity: follow)) }
+    let(:notification) { Notification.create!(account: receiver.account, activity: follow) }
+    let(:mail) { described_class.with(recipient: receiver.account).follow(notification) }
 
     include_examples 'localized subject', 'notification_mailer.follow.subject', name: 'bob'
 
@@ -56,7 +58,8 @@ RSpec.describe NotificationMailer do
 
   describe 'favourite' do
     let(:favourite) { Favourite.create!(account: sender, status: own_status) }
-    let(:mail) { described_class.with(recipient: own_status.account).favourite(Notification.create!(account: receiver.account, activity: favourite)) }
+    let(:notification) { Notification.create!(account: receiver.account, activity: favourite) }
+    let(:mail) { described_class.with(recipient: own_status.account).favourite(notification) }
 
     include_examples 'localized subject', 'notification_mailer.favourite.subject', name: 'bob'
 
@@ -73,7 +76,8 @@ RSpec.describe NotificationMailer do
 
   describe 'reblog' do
     let(:reblog) { Status.create!(account: sender, reblog: own_status) }
-    let(:mail) { described_class.with(recipient: own_status.account).reblog(Notification.create!(account: receiver.account, activity: reblog)) }
+    let(:notification) { Notification.create!(account: receiver.account, activity: reblog) }
+    let(:mail) { described_class.with(recipient: own_status.account).reblog(notification) }
 
     include_examples 'localized subject', 'notification_mailer.reblog.subject', name: 'bob'
 
@@ -90,7 +94,8 @@ RSpec.describe NotificationMailer do
 
   describe 'follow_request' do
     let(:follow_request) { Fabricate(:follow_request, account: sender, target_account: receiver.account) }
-    let(:mail) { described_class.with(recipient: receiver.account).follow_request(Notification.create!(account: receiver.account, activity: follow_request)) }
+    let(:notification) { Notification.create!(account: receiver.account, activity: follow_request) }
+    let(:mail) { described_class.with(recipient: receiver.account).follow_request(notification) }
 
     include_examples 'localized subject', 'notification_mailer.follow_request.subject', name: 'bob'
 
