@@ -85,7 +85,7 @@ A **Vagrant** configuration is included for development purposes. To use it, com
 To set up **MacOS** for native development, complete the following steps:
 
 - Install the latest stable Ruby version (use a ruby version manager for easy installation and management of ruby versions)
-- Run `brew install postgresql@15`
+- Run `brew install postgresql@14`
 - Run `brew install redis`
 - Run `brew install imagemagick`
 - Install Foreman or a similar tool (such as [overmind](https://github.com/DarthSim/overmind)) to handle multiple process launching.
