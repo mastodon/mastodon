@@ -12,11 +12,11 @@ class NotificationMailer < ApplicationMailer
     @type = action_name
   end
 
+  before_action :set_status, only: [:mention, :favourite, :reblog]
+
   default to: -> { email_address_with_name(@user.email, @me.username) }
 
   def mention
-    @status = @notification.target_status
-
     return unless @user.functional? && @status.present?
 
     locale_for_account(@me) do
@@ -37,7 +37,6 @@ class NotificationMailer < ApplicationMailer
 
   def favourite
     @account = @notification.from_account
-    @status  = @notification.target_status
 
     return unless @user.functional? && @status.present?
 
@@ -49,7 +48,6 @@ class NotificationMailer < ApplicationMailer
 
   def reblog
     @account = @notification.from_account
-    @status  = @notification.target_status
 
     return unless @user.functional? && @status.present?
 
@@ -70,6 +68,10 @@ class NotificationMailer < ApplicationMailer
   end
 
   private
+
+  def set_status
+    @status = @notification.target_status
+  end
 
   def thread_by_conversation(conversation)
     return if conversation.nil?
