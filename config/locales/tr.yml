@@ -389,6 +389,7 @@ tr:
         remove_all_data: Bu sunucunuzdaki bu alan adının hesaplarından tüm veriyi, içeriği, ve profil verisini kaldıracaktır.
         stop_communication: Sunucunuzun bu sunucularla iletişimi durduracaktır.
         title: '%{domain} için alan adı engelini doğrulayın'
+        undo_relationships: Bu kendi sunucularınız ve diğerlerindeki hesaplar arasındaki herhangi bir takip ilişkisini geri alacaktır.
       created_msg: Domain bloğu şu an işleniyor
       destroyed_msg: Domain bloğu silindi
       domain: Alan adı
@@ -738,6 +739,8 @@ tr:
       branding:
         preamble: Sunucunuzun markalaşması ağdaki diğer sunuculardan farklıdır. Bu bilgiler Mastodon'un web arayüzü, doğal uygulamalar, diğer sitelerdeki ve ileti uygulamalarındaki bağlantı önizlemeleri, vb. gibi çeşitli ortamlarda görüntülenebilir. Bu nedenle bu bilgiyi açık, kısa ve özlü tutmak en iyisidir.
         title: Marka
+      captcha_enabled:
+        title: Yeni kullanıcıların hesaplarını doğrulamaları için bir CAPTCHA çözmelerini gerektir
       content_retention:
         preamble: Kullanıcıların ürettiği içeriğin Mastodon'da nasıl saklanacağını denetleyin.
         title: İçerik saklama
@@ -973,6 +976,7 @@ tr:
     notification_preferences: E-posta tercihlerini değiştir
     salutation: "%{name},"
     settings: 'E-posta tercihlerini değiştir: %{link}'
+    unsubscribe: Abonelikten çık
     view: 'Görüntüle:'
     view_profile: Profili görüntüle
     view_status: Durumu görüntüle
@@ -986,6 +990,8 @@ tr:
     your_token: Erişim belirteciniz
   auth:
     apply_for_account: Bir hesap talep et
+    captcha_confirmation:
+      title: Güvenlik denetimi
     confirmations:
       wrong_email_hint: Eğer bu e-posta adresi doğru değilse, hesap ayarlarında değiştirebilirsiniz.
     delete_account: Hesabı sil
@@ -1024,6 +1030,7 @@ tr:
       back: Geri
       preamble: Bunlar, %{domain} moderatörleri tarafından ayarlanmış ve uygulanmıştır.
       title: Bazı temel kurallar.
+      title_invited: Davet edildiniz.
     security: Güvenlik
     set_new_password: Yeni parola belirle
     setup:
@@ -1137,7 +1144,9 @@ tr:
   domain_validator:
     invalid_domain: geçerli bir alan adı değil
   edit_profile:
+    basic_information: Temel bilgiler
     other: Diğer
+    safety_and_privacy: Güvenlik ve gizlilik
   errors:
     '400': Gönderdiğiniz istek geçersiz veya hatalı biçimlendirilmiş.
     '403': Bu sayfayı görmek için izniniz yok.
@@ -1334,7 +1343,15 @@ tr:
     title: Kimlik doğrulama geçmişi
   mail_subscriptions:
     unsubscribe:
+      action: Evet, abonelikten çık
       complete: Abonelikten çık
+      emails:
+        notification_emails:
+          favourite: bildirim e-postalarını favorile
+          follow: bildirim e-postalarını takip et
+          follow_request: istek e-postalarını takip et
+          mention: bildirim e-postalarına değin
+          reblog: bildirim e-postalarını yükselt
       title: Abonelikten çık
   media_attachments:
     validations:
@@ -1451,6 +1468,7 @@ tr:
       expired: Anket çoktan sona erdi
       invalid_choice: Seçilen oylama seçeneği mevcut değil
       over_character_limit: her biri %{max} karakterden daha uzun olamaz
+      self_vote: Kendi anketlerinizde oy kullanamazsınız
       too_few_options: birden fazla öğeye sahip olmalı
       too_many_options: '%{max} öğeden fazla öğe içeremez'
   preferences:
