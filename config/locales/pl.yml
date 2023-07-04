@@ -395,6 +395,10 @@ pl:
       undo: Usuń z białej listy
     domain_blocks:
       add_new: Dodaj nową
+      confirm_suspension:
+        cancel: Anuluj
+        confirm: Zawieś
+        permanent_action: Cofnięcie zawieszenia nie przywróci żadnych danych ani związków.
       created_msg: Blokada domen jest przetwarzana
       destroyed_msg: Blokada domeny nie może zostać odwrócona
       domain: Domena
@@ -1014,6 +1018,8 @@ pl:
     your_token: Twój token dostępu
   auth:
     apply_for_account: Poproś o założenie konta
+    captcha_confirmation:
+      title: Kontrola bezpieczeństwa
     confirmations:
       wrong_email_hint: Jeśli ten adres e-mail nie jest poprawny, możesz go zmienić w ustawieniach konta.
     delete_account: Usunięcie konta
@@ -1050,8 +1056,10 @@ pl:
     rules:
       accept: Zaakceptuj
       back: Wróć
+      invited_by: 'Możesz dołączyć do %{domain} dzięki zaproszeniu, które otrzymano od:'
       preamble: Są one ustawione i wymuszone przez moderatorów %{domain}.
       title: Kilka podstawowych zasad.
+      title_invited: Otrzymano zaproszenie.
     security: Bezpieczeństwo
     set_new_password: Ustaw nowe hasło
     setup:
@@ -1164,6 +1172,11 @@ pl:
       your_appeal_rejected: Twoje odwołanie zostało odrzucone
   domain_validator:
     invalid_domain: nie jest prawidłową nazwą domeny
+  edit_profile:
+    basic_information: Podstawowe informacje
+    hint_html: "<strong>Dostosuj to, co ludzie widzą na Twoim profilu publicznym i obok Twoich wpisów.</strong> Inne osoby są bardziej skłonne obserwować Cię i wchodzić z Tobą w interakcje, gdy masz wypełniony profil i zdjęcie profilowe."
+    other: Inne
+    safety_and_privacy: Bezpieczeństwo i prywatność
   errors:
     '400': Wysłane zgłoszenie jest nieprawidłowe lub uszkodzone.
     '403': Nie masz uprawnień, aby wyświetlić tę stronę.
@@ -1794,7 +1807,9 @@ pl:
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowano jako:'
   verification:
+    here_is_how: Oto jak
     verification: Weryfikacja
+    verified_links: Twoje zweryfikowane linki
   webauthn_credentials:
     add: Dodaj nowy klucz bezpieczeństwa
     create:
