@@ -8,10 +8,10 @@ class NotificationMailer < ApplicationMailer
   before_action do
     @me = params[:recipient]
     @user = @me.user
+    @type = action_name
   end
 
   def mention(notification)
-    @type   = 'mention'
     @status = notification.target_status
 
     return unless @user.functional? && @status.present?
@@ -23,7 +23,6 @@ class NotificationMailer < ApplicationMailer
   end
 
   def follow(notification)
-    @type    = 'follow'
     @account = notification.from_account
 
     return unless @user.functional?
@@ -34,7 +33,6 @@ class NotificationMailer < ApplicationMailer
   end
 
   def favourite(notification)
-    @type    = 'favourite'
     @account = notification.from_account
     @status  = notification.target_status
 
@@ -47,7 +45,6 @@ class NotificationMailer < ApplicationMailer
   end
 
   def reblog(notification)
-    @type    = 'reblog'
     @account = notification.from_account
     @status  = notification.target_status
 
@@ -60,7 +57,6 @@ class NotificationMailer < ApplicationMailer
   end
 
   def follow_request(notification)
-    @type    = 'follow_request'
     @account = notification.from_account
 
     return unless @user.functional?
