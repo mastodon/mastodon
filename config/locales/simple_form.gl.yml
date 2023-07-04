@@ -133,6 +133,7 @@ gl:
         position: O rol superior decide nos conflitos en certas situacións. Algunhas accións só poden aplicarse sobre roles cunha prioridade menor
       webhook:
         events: Elixir eventos a enviar
+        template: Crea o teu propio JSON interpolando variables. Déixao en branco para usar o JSON predeterminado.
         url: A onde se enviarán os eventos
     labels:
       account:
@@ -307,6 +308,7 @@ gl:
         position: Prioridade
       webhook:
         events: Eventos activados
+        template: Modelo de carga
         url: URL do extremo
     'no': 'Non'
     not_recommended: Non é recomendable
