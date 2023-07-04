@@ -18,7 +18,7 @@ class FeedInsertWorker
       end
     end
 
-    ActiveRecord.connects_to(role: :read, prevent_writes: true) do
+    ActiveRecord.connected_to(role: :read, prevent_writes: true) do
       check_and_insert
     end
   rescue ActiveRecord::RecordNotFound
