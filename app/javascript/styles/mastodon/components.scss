@@ -1127,6 +1127,8 @@ body > [data-popper-placement] {
   }
 
   &--in-thread {
+    $thread-margin: 46px + 10px;
+
     border-bottom: 0;
 
     .status__content,
@@ -1137,8 +1139,12 @@ body > [data-popper-placement] {
     .attachment-list,
     .picture-in-picture-placeholder,
     .status-card {
-      margin-inline-start: 46px + 10px;
-      width: calc(100% - (46px + 10px));
+      margin-inline-start: $thread-margin;
+      width: calc(100% - ($thread-margin));
+    }
+
+    .status__content__read-more-button {
+      margin-inline-start: $thread-margin;
     }
   }
 
