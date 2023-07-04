@@ -381,6 +381,10 @@
       undo: Fjern fra hvitelisten
     domain_blocks:
       add_new: Lag ny
+      confirm_suspension:
+        cancel: Avbryt
+        confirm: Suspender
+        permanent_action: Å oppheve suspensjonen vil ikke gjenopprette noe data eller koblinger.
       created_msg: Domeneblokkering blir nå behandlet
       destroyed_msg: Domeneblokkering har nå blitt angret
       domain: Domene
@@ -914,6 +918,7 @@
     notification_preferences: Endre E-postinnstillingene
     salutation: "%{name},"
     settings: 'Endre foretrukne e-postinnstillinger: %{link}'
+    unsubscribe: Avslutt abonnement
     view: 'Se:'
     view_profile: Vis Profil
     view_status: Vis innlegg
@@ -927,6 +932,8 @@
     your_token: Din tilgangsnøkkel
   auth:
     apply_for_account: Be om en konto
+    captcha_confirmation:
+      title: Sikkerhetskontroll
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette kontoen din, kan du <a href="%{path}">gå hit</a>. Du vil bli spurt om bekreftelse.
     description:
@@ -960,8 +967,11 @@
     rules:
       accept: Godta
       back: Tilbake
+      invited_by: 'Du kan bli med %{domain} takket være invitasjonen du fikk fra:'
       preamble: Disse angis og håndheves av %{domain}-moderatorene.
+      preamble_invited: Før du fortsetter, vennligst gå gjennom reglene som er satt av moderatorene av %{domain}.
       title: Noen grunnregler.
+      title_invited: Du har blitt invitert.
     security: Sikkerhet
     set_new_password: Angi nytt passord
     sign_in:
@@ -1067,6 +1077,11 @@
       your_appeal_rejected: Din klage har blitt avvist
   domain_validator:
     invalid_domain: er ikke et gyldig domenenavn
+  edit_profile:
+    basic_information: Grunnleggende informasjon
+    hint_html: "<strong>Tilpass hva folk ser på din offentlige profil og ved siden av dine innlegg.</strong> Det er mer sannsynlig at andre mennesker følger deg tilbake og samhandler med deg når du har fylt ut en profil og et profilbilde."
+    other: Annet
+    safety_and_privacy: Sikkerhet og personvern
   errors:
     '400': Forespørselen du sendte inn var ugyldig eller feil.
     '403': Du har ikke tillatelse til å vise denne siden.
@@ -1257,6 +1272,21 @@
     failed_sign_in_html: Mislykket innloggingsforsøk med %{method} fra %{ip} (%{browser})
     successful_sign_in_html: Vellykket innlogging med %{method} fra %{ip} (%{browser})
     title: Autentiseringshistorikk
+  mail_subscriptions:
+    unsubscribe:
+      action: Ja, avslutt abonnement
+      complete: Abonnement avsluttet
+      confirmation_html: Er du sikker på at du vil slutte å motta %{type} fra Mastodon %{domain} i e-posten din på %{email}? Du kan når som helst gjenoppta i <a href="%{settings_path}">innstillinger for e-postvarsling</a>.
+      emails:
+        notification_emails:
+          favourite: e-poster om favorittmarkeringer
+          follow: e-poster om følgere
+          follow_request: e-poster om følgeforespørsler
+          mention: e-poster om nevninger
+          reblog: e-poster om fremhevinger
+      resubscribe_html: Hvis du har avsluttet abonnementet ved en feiltakelse, kan du abonnere på nytt i <a href="%{settings_path}">innstillinger for e-postvarsling</a>.
+      success_html: Du vil ikke lenger motta %{type} fra Mastodon på %{domain} i e-posten din på %{email}.
+      title: Avslutt abonnement
   media_attachments:
     validations:
       images_and_video: Kan ikke legge ved video på en status som allerede inneholder bilder
@@ -1372,6 +1402,7 @@
       expired: Denne avstemningen er allerede ferdig
       invalid_choice: Det valgte stemmealternativet eksisterer ikke
       over_character_limit: kan ikke være lengre enn %{max} tegn hver
+      self_vote: Du kan ikke stemme i dine egne avstemninger
       too_few_options: må ha mer enn én gjenstand
       too_many_options: kan ikke ha mer enn %{max} gjenstander
   preferences:
@@ -1672,7 +1703,12 @@
     seamless_external_login: Du er logget inn via en ekstern tjeneste, så passord og e-post innstillinger er ikke tilgjengelige.
     signed_in_as: 'Innlogget som:'
   verification:
+    extra_instructions_html: <strong>Tips:</strong> Lenken på din nettside kan være usynlig. Den viktige delen er <code>rel="me"</code> som sikrer at nettsteder med brukergenerert innhold ikke kan utgi seg for å være deg. Du kan til og med bruke en <code>link</code> lenke i sidens topptekst i stedet for <code>a</code>, men HTML-koden må være tilgjengelig uten å kjøre JavaScript.
+    here_is_how: Slik gjør du
+    hint_html: "<strong>Verifisering av identiteten din på Mastodon er for alle.</strong> Basert på åpne nettstandarder, gratis nå og for alltid. Alt du trenger er en personlig nettside som gjør at folk kjenner deg igjen. Når du lenker til dette nettstedet fra din profil, vil vi sjekke at nettstedet lenker tilbake til profilen din og viser dette på profilen din."
+    instructions_html: Kopier og lim inn koden nedenfor i HTML til ditt nettsted. Deretter legger du til adressen til nettstedet ditt i et av ekstrafeltene på profilen din fra fanen "Rediger profil" og lagre endringer.
     verification: Bekreftelse
+    verified_links: Dine bekreftede lenker
   webauthn_credentials:
     add: Legg til ny sikkerhetsnøkkel
     create:
