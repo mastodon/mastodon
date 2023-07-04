@@ -162,7 +162,12 @@ class NotifyService < BaseService
   end
 
   def send_email!
-    NotificationMailer.public_send(@notification.type, @recipient, @notification).deliver_later(wait: 2.minutes) if NotificationMailer.respond_to?(@notification.type)
+    return unless NotificationMailer.respond_to?(@notification.type)
+
+    NotificationMailer
+      .with(recipient: @recipient)
+      .public_send(@notification.type, @notification)
+      .deliver_later(wait: 2.minutes)
   end
 
   def email_needed?

@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
 class NotificationMailer < ApplicationMailer
-  helper :accounts
-  helper :statuses
+  helper :accounts,
+         :statuses,
+         :routing
 
-  helper RoutingHelper
+  before_action do
+    @me = params[:recipient]
+    @user = @me.user
+  end
 
-  def mention(recipient, notification)
-    @me     = recipient
-    @user   = recipient.user
+  def mention(notification)
     @type   = 'mention'
     @status = notification.target_status
 
@@ -20,9 +22,7 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
-  def follow(recipient, notification)
-    @me      = recipient
-    @user    = recipient.user
+  def follow(notification)
     @type    = 'follow'
     @account = notification.from_account
 
@@ -33,9 +33,7 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
-  def favourite(recipient, notification)
-    @me      = recipient
-    @user    = recipient.user
+  def favourite(notification)
     @type    = 'favourite'
     @account = notification.from_account
     @status  = notification.target_status
@@ -48,9 +46,7 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
-  def reblog(recipient, notification)
-    @me      = recipient
-    @user    = recipient.user
+  def reblog(notification)
     @type    = 'reblog'
     @account = notification.from_account
     @status  = notification.target_status
@@ -63,9 +59,7 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
-  def follow_request(recipient, notification)
-    @me      = recipient
-    @user    = recipient.user
+  def follow_request(notification)
     @type    = 'follow_request'
     @account = notification.from_account
 
