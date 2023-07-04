@@ -6,6 +6,7 @@ class NotificationMailer < ApplicationMailer
          :routing
 
   before_action do
+    @notification = params[:notification]
     @me = params[:recipient]
     @user = @me.user
     @type = action_name
@@ -13,8 +14,8 @@ class NotificationMailer < ApplicationMailer
 
   default to: -> { email_address_with_name(@user.email, @me.username) }
 
-  def mention(notification)
-    @status = notification.target_status
+  def mention
+    @status = @notification.target_status
 
     return unless @user.functional? && @status.present?
 
@@ -24,8 +25,8 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
-  def follow(notification)
-    @account = notification.from_account
+  def follow
+    @account = @notification.from_account
 
     return unless @user.functional?
 
@@ -34,9 +35,9 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
-  def favourite(notification)
-    @account = notification.from_account
-    @status  = notification.target_status
+  def favourite
+    @account = @notification.from_account
+    @status  = @notification.target_status
 
     return unless @user.functional? && @status.present?
 
@@ -46,9 +47,9 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
-  def reblog(notification)
-    @account = notification.from_account
-    @status  = notification.target_status
+  def reblog
+    @account = @notification.from_account
+    @status  = @notification.target_status
 
     return unless @user.functional? && @status.present?
 
@@ -58,8 +59,8 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
-  def follow_request(notification)
-    @account = notification.from_account
+  def follow_request
+    @account = @notification.from_account
 
     return unless @user.functional?
 
