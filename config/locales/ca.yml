@@ -739,6 +739,9 @@ ca:
       branding:
         preamble: La marca del teu servidor el diferencia dels altres servidors de la xarxa. Aquesta informació es pot mostrar en diversos entorns com ara en la interfície web, en les aplicacions natives, en les previsualitzacions dels enllaços en altres webs, dins les aplicacions de missatgeria i d'altres. Per aquesta raó, val més mantenir aquesta informació clara, breu i precisa.
         title: Marca
+      captcha_enabled:
+        desc_html: Això es basa en scripts externs de hCaptcha, que poden ser un problema de privacitat i seguretat. A més, <strong>això pot fer que el procés de registre sigui significativament menys accesible per algunes (especialment discapacitades) persones</strong>. Per aquestes raons, si us plau considera alternatives com ara registre amb aprovació necessària o basada en invitacions.
+        title: Demana als nous usuaris que resolguin un CAPTCHA per a confirmar el seu compte
       content_retention:
         preamble: Controla com es desa a Mastodon el contingut generat per l'usuari.
         title: Retenció de contingut
@@ -989,6 +992,8 @@ ca:
   auth:
     apply_for_account: Sol·licitar un compte
     captcha_confirmation:
+      help_html: Si tens problemes resolguent el CAPTCHA, pots posar-te en contacte amb nosaltres via %{email} i nosaltres podrem ajudar-te.
+      hint_html: Una cosa més! Necessitem confirmar que ets una persona humana (és així com mantenim a ratlla l'spam). Resolt el CAPTCHA inferior i clica a "Segueix".
       title: Revisió de seguretat
     confirmations:
       wrong_email_hint: Si aquesta adreça de correu electrònic no és correcte, pots canviar-la en els ajustos del compte.
@@ -1026,8 +1031,11 @@ ca:
     rules:
       accept: Accepta
       back: Enrere
+      invited_by: 'Pots unir-te a %{domain} gràcies a l''invitació que has rebut de:'
       preamble: Aquestes regles estan establertes i aplicades per els moderadors de %{domain}.
+      preamble_invited: Abans de seguir, si us plau considera les normes establertes pels moderadors de %{domain}.
       title: Algunes regles bàsiques.
+      title_invited: T'han convidat.
     security: Seguretat
     set_new_password: Estableix una contrasenya nova
     setup:
