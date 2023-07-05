@@ -1028,7 +1028,9 @@ tr:
     rules:
       accept: Onayla
       back: Geri
+      invited_by: 'Aşağıdakinden aldığınız davet sayesinde %{domain} sunucusuna katılabilirsiniz:'
       preamble: Bunlar, %{domain} moderatörleri tarafından ayarlanmış ve uygulanmıştır.
+      preamble_invited: Devam etmeden önce, %{domain} yöneticileri tarafından belirlenmiş temel kuralları gözden geçirin.
       title: Bazı temel kurallar.
       title_invited: Davet edildiniz.
     security: Güvenlik
@@ -1145,6 +1147,7 @@ tr:
     invalid_domain: geçerli bir alan adı değil
   edit_profile:
     basic_information: Temel bilgiler
+    hint_html: "<strong>İnsanlara herkese açık profilinizde ve gönderilerinizin yanında ne göstermek istediğinizi düzenleyin.</strong> Dolu bir profile ve bir profil resmine sahip olduğunuzda diğer insanlar daha yüksek ihtimalle sizi takip etmek ve sizinle etkileşime geçmek isteyeceklerdir."
     other: Diğer
     safety_and_privacy: Güvenlik ve gizlilik
   errors:
@@ -1772,7 +1775,11 @@ tr:
     seamless_external_login: Harici bir servis aracılığıyla oturum açtınız, bu nedenle parola ve e-posta ayarları mevcut değildir.
     signed_in_as: 'Oturum açtı:'
   verification:
+    here_is_how: İşte yapmanın yolu
+    hint_html: "<strong>Mastodon'da kendini doğrulamak herkese açık.</strong> Açık web standartlarına dayanır, şimdi ve her zaman ücretsizdir. Tüm gereken insanların sizi onunla tanımladığı bir kişisel websitesidir. Profilinizde bu websitesinin bağlantısını verdiğinizde, websitesinizin profilinize bağlantı verip vermediğini denetleyip üzerinde görsel bir işaret koyacağız."
+    instructions_html: Aşağıdaki kodu kopyalayın ve websitenizin HTML'sine yapıştırın. Daha sonra "Profil Düzenle" sekmesini kullanarak profilinizdeki ek sahalardan birine websitenizin adresini ekleyin ve değişiklikleri kaydedin.
     verification: Doğrulama
+    verified_links: Doğrulanmış bağlantılarınız
   webauthn_credentials:
     add: Yeni güvenlik anahtarı ekle
     create:
