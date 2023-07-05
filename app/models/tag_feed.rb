@@ -39,15 +39,15 @@ class TagFeed < PublicFeed
   private
 
   def tagged_with_any_scope
-    Status.group(:id).tagged_with(tags_for(Array(@tag.name) | Array(options[:any])))
+    Status.group('statuses.id').tagged_with(tags_for(Array(@tag.name) | Array(options[:any])))
   end
 
   def tagged_with_all_scope
-    Status.group(:id).tagged_with_all(tags_for(options[:all]))
+    Status.group('statuses.id').tagged_with_all(tags_for(options[:all]))
   end
 
   def tagged_with_none_scope
-    Status.group(:id).tagged_with_none(tags_for(options[:none]))
+    Status.group('statuses.id').tagged_with_none(tags_for(options[:none]))
   end
 
   def tags_for(names)
