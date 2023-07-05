@@ -1341,6 +1341,13 @@ bg:
     failed_sign_in_html: Неуспешен опит за влизане с %{method} от %{ip} (%{browser})
     successful_sign_in_html: Успешно влизане с %{method} от %{ip} (%{browser})
     title: Историята на удостоверяване
+  mail_subscriptions:
+    unsubscribe:
+      action: Да, да се спре абонамента
+      complete: Спрян абонамент
+      resubscribe_html: Ако погрешка сте спрели абонамента, то може пак да се абонирате от своите <a href="%{settings_path}">настройки за известия по е-поща</a>.
+      success_html: Повече няма да получавате %{type} за Mastodon в %{domain} към имейла си при %{email}.
+      title: Спиране на абонамента
   media_attachments:
     validations:
       images_and_video: Не мога да прикача видеоклип към публикация, която вече съдържа изображения
@@ -1456,6 +1463,7 @@ bg:
       expired: Анкетата вече е приключила
       invalid_choice: Избраната възможност за гласуване не съществува
       over_character_limit: не може по-дълго от %{max} символа всяко
+      self_vote: Не може да гласувате в свои анкети
       too_few_options: трябва да има повече от един елемент
       too_many_options: не може да съдържа повече от %{max} елемента
   preferences:
