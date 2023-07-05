@@ -754,6 +754,7 @@ class Status extends ImmutablePureComponent {
         <Helmet>
           <title>{titleFromStatus(intl, status)}</title>
           <meta name='robots' content={(isLocal && isIndexable) ? 'all' : 'noindex'} />
+          <link rel='canonical' href={status.get('url')} />
         </Helmet>
       </Column>
     );

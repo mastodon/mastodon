@@ -38,11 +38,11 @@
 }
 
 .button {
-  background-color: darken($ui-highlight-color, 3%);
+  background-color: $ui-button-background-color;
   border: 10px none;
   border-radius: 4px;
   box-sizing: border-box;
-  color: $primary-text-color;
+  color: $ui-button-color;
   cursor: pointer;
   display: inline-block;
   font-family: inherit;
@@ -62,14 +62,14 @@
   &:active,
   &:focus,
   &:hover {
-    background-color: $ui-highlight-color;
+    background-color: $ui-button-focus-background-color;
   }
 
   &--destructive {
     &:active,
     &:focus,
     &:hover {
-      background-color: $error-red;
+      background-color: $ui-button-destructive-focus-background-color;
       transition: none;
     }
   }
@@ -79,43 +79,22 @@
     cursor: default;
   }
 
-  &.button-alternative {
-    color: $inverted-text-color;
-    background: $ui-primary-color;
-
-    &:active,
-    &:focus,
-    &:hover {
-      background-color: lighten($ui-primary-color, 4%);
-    }
-  }
-
-  &.button-alternative-2 {
-    background: $ui-base-lighter-color;
-
-    &:active,
-    &:focus,
-    &:hover {
-      background-color: lighten($ui-base-lighter-color, 4%);
-    }
-  }
-
   &.button-secondary {
     font-size: 16px;
     line-height: 36px;
     height: auto;
-    color: $darker-text-color;
+    color: $ui-button-secondary-color;
     text-transform: none;
     background: transparent;
     padding: 6px 17px;
-    border: 1px solid lighten($ui-base-color, 12%);
+    border: 1px solid $ui-button-secondary-border-color;
 
     &:active,
     &:focus,
     &:hover {
-      background: lighten($ui-base-color, 4%);
-      border-color: lighten($ui-base-color, 16%);
-      color: lighten($darker-text-color, 4%);
+      border-color: $ui-button-secondary-focus-background-color;
+      color: $ui-button-secondary-focus-color;
+      background-color: $ui-button-secondary-focus-background-color;
       text-decoration: none;
     }
 
@@ -127,14 +106,14 @@
   &.button-tertiary {
     background: transparent;
     padding: 6px 17px;
-    color: $highlight-text-color;
-    border: 1px solid $highlight-text-color;
+    color: $ui-button-tertiary-color;
+    border: 1px solid $ui-button-tertiary-border-color;
 
     &:active,
     &:focus,
     &:hover {
-      background: $ui-highlight-color;
-      color: $primary-text-color;
+      background-color: $ui-button-tertiary-focus-background-color;
+      color: $ui-button-tertiary-focus-color;
       border: 0;
       padding: 7px 18px;
     }

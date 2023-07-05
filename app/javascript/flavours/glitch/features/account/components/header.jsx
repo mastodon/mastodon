@@ -398,6 +398,7 @@ class Header extends ImmutablePureComponent {
         <Helmet>
           <title>{titleFromAccount(account)}</title>
           <meta name='robots' content={(isLocal && isIndexable) ? 'all' : 'noindex'} />
+          <link rel='canonical' href={account.get('url')} />
         </Helmet>
       </div>
     );
