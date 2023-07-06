@@ -3,8 +3,6 @@
 source 'https://rubygems.org'
 ruby '>= 2.6.0', '< 3.1.0'
 
-gem 'subscription', path: 'subscription'
-
 gem 'pkg-config', '~> 1.4'
 gem 'rexml', '~> 3.2'
 

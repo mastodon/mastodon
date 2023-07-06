@@ -4,13 +4,11 @@ module Subscription
 
     def index
       @subscriptions = StripeSubscription.all.where(user_id: current_account.user.id)
-    end
-
-    def show
-      @subscription = StripeSubscription.find(params[:id])
-      @url = ::Stripe::BillingPortal::Session.create({
-        customer: @subscription.customer_id,
-    }).url
+      @urls = @subscriptions.each_with_object({}) do |sub, hash|
+        hash[sub.id] = ::Stripe::BillingPortal::Session.create({
+          customer: sub.customer_id,
+        }).url
+      end
     end
 
     private

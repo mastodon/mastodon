@@ -20,7 +20,11 @@
                 = fa_icon('cc-stripe')
               .permissions-list__item__text
                 .permissions-list__item__text__title
-                  = link_to sub.subscription_id, settings_subscription.subscription_path(sub)
+                  = sub.subscription_id
+              .permissions-list__item__text
                 .permissions-list__item__text__type
                   = sub.status
+              .permissions-list__item__text
+                .permissions-list__item__text__type
+                  = link_to "Manage", @urls[sub.id], class: 'button'
  
