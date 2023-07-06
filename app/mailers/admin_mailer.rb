@@ -6,9 +6,10 @@ class AdminMailer < ApplicationMailer
   helper :accounts
   helper :languages
 
-  def new_report(recipient, report)
+  before_action { @me = params[:recipient] }
+
+  def new_report(report)
     @report   = report
-    @me       = recipient
     @instance = Rails.configuration.x.local_domain
 
     locale_for_account(@me) do
@@ -16,9 +17,8 @@ class AdminMailer < ApplicationMailer
     end
   end
 
-  def new_appeal(recipient, appeal)
+  def new_appeal(appeal)
     @appeal   = appeal
-    @me       = recipient
     @instance = Rails.configuration.x.local_domain
 
     locale_for_account(@me) do
@@ -26,9 +26,8 @@ class AdminMailer < ApplicationMailer
     end
   end
 
-  def new_pending_account(recipient, user)
+  def new_pending_account(user)
     @account  = user.account
-    @me       = recipient
     @instance = Rails.configuration.x.local_domain
 
     locale_for_account(@me) do
@@ -36,11 +35,10 @@ class AdminMailer < ApplicationMailer
     end
   end
 
-  def new_trends(recipient, links, tags, statuses)
+  def new_trends(links, tags, statuses)
     @links                  = links
     @tags                   = tags
     @statuses               = statuses
-    @me                     = recipient
     @instance               = Rails.configuration.x.local_domain
 
     locale_for_account(@me) do

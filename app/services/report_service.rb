@@ -40,7 +40,7 @@ class ReportService < BaseService
 
     User.those_who_can(:manage_reports).includes(:account).each do |u|
       LocalNotificationWorker.perform_async(u.account_id, @report.id, 'Report', 'admin.report')
-      AdminMailer.new_report(u.account, @report).deliver_later if u.allows_report_emails?
+      AdminMailer.with(recipient: u.account).new_report(@report).deliver_later if u.allows_report_emails?
     end
   end
 
