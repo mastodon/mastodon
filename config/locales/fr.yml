@@ -384,6 +384,12 @@ fr:
       confirm_suspension:
         cancel: Annuler
         confirm: Suspendre
+        permanent_action: Annuler la suspension ne restaure aucune donnée ou relation.
+        preamble_html: Vous êtes sur le point de suspendre <strong>%{domain}</strong> et ses sous-domaines.
+        remove_all_data: Cela supprimera de votre serveur tous les contenus, médias et données de profil pour les comptes de votre serveur.
+        stop_communication: Votre serveur cessera de communiquer avec ces serveurs.
+        title: Confirmer le blocage du domaine pour %{domain}
+        undo_relationships: Cela annulera toute relation de suivi entre les comptes de ces serveurs et le vôtre.
       created_msg: Le blocage de domaine est désormais activé
       destroyed_msg: Le blocage de domaine a été désactivé
       domain: Domaine
@@ -733,6 +739,9 @@ fr:
       branding:
         preamble: L'image de marque de votre serveur la différencie des autres serveurs du réseau. Ces informations peuvent être affichées dans nombre d'environnements, tels que l'interface web de Mastodon, les applications natives, dans les aperçus de liens sur d'autres sites Web et dans les applications de messagerie, etc. C'est pourquoi il est préférable de garder ces informations claires, courtes et concises.
         title: Thème
+      captcha_enabled:
+        desc_html: Ceci se base sur des scripts externes venant de hCaptcha, ce qui peut engendrer des soucis de sécurité et de confidentialité. De plus, <strong>cela peut rendre l'inscription beaucoup moins accessible pour certaines personnes (comme les personnes handicapées)</strong>. Pour ces raisons, veuillez envisager des mesures alternatives telles que l'inscription sur acceptation ou invitation.
+        title: Exiger que les nouveaux utilisateurs résolvent un CAPTCHA pour confirmer leur compte
       content_retention:
         preamble: Contrôle comment le contenu créé par les utilisateurs est enregistré et stocké dans Mastodon.
         title: Rétention du contenu
