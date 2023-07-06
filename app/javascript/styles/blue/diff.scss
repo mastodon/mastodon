@@ -455,6 +455,10 @@ html {
     border: 1px solid $ui-base-color;
   }
   
+  .modal-layout{
+    background: darken($ui-primary-color, 15%);
+  }
+  
   .admin-wrapper .sidebar ul{
     a.selected:not(.simple-navigation-active-leaf a){
       background: lighten($ui-base-color, 8%);
@@ -469,7 +473,8 @@ html {
   }
   
   body.admin,
-  body.app-body{
+  body.app-body,
+  body.lighter{
     background: darken($ui-primary-color, 15%);
   }
   
