@@ -7,12 +7,12 @@ class AdminMailer < ApplicationMailer
   helper :languages
 
   before_action { @me = params[:recipient] }
+  before_action :set_instance
 
   default to: -> { @me.user_email }
 
   def new_report(report)
-    @report   = report
-    @instance = Rails.configuration.x.local_domain
+    @report = report
 
     locale_for_account(@me) do
       mail subject: I18n.t('admin_mailer.new_report.subject', instance: @instance, id: @report.id)
@@ -20,8 +20,7 @@ class AdminMailer < ApplicationMailer
   end
 
   def new_appeal(appeal)
-    @appeal   = appeal
-    @instance = Rails.configuration.x.local_domain
+    @appeal = appeal
 
     locale_for_account(@me) do
       mail subject: I18n.t('admin_mailer.new_appeal.subject', instance: @instance, username: @appeal.account.username)
@@ -29,8 +28,7 @@ class AdminMailer < ApplicationMailer
   end
 
   def new_pending_account(user)
-    @account  = user.account
-    @instance = Rails.configuration.x.local_domain
+    @account = user.account
 
     locale_for_account(@me) do
       mail subject: I18n.t('admin_mailer.new_pending_account.subject', instance: @instance, username: @account.username)
@@ -41,10 +39,15 @@ class AdminMailer < ApplicationMailer
     @links                  = links
     @tags                   = tags
     @statuses               = statuses
-    @instance               = Rails.configuration.x.local_domain
 
     locale_for_account(@me) do
       mail subject: I18n.t('admin_mailer.new_trends.subject', instance: @instance)
     end
+  end
+
+  private
+
+  def set_instance
+    @instance = Rails.configuration.x.local_domain
   end
 end
