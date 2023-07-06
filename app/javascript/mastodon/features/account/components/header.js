@@ -369,7 +369,7 @@ class Header extends ImmutablePureComponent {
                 <div className='account__header__fields'>
                   <dl>
                     <dt><FormattedMessage id='account.joined_short' defaultMessage='Joined' /></dt>
-                    <dd>{intl.formatDate(account.get('created_at'), { year: 'numeric', month: 'short', day: '2-digit' })}</dd>
+                    <dd>{intl.formatDate(account.get('created_at'), { year: 'numeric', month: 'short', day: 'numeric' })}</dd>
                   </dl>
 
                   {fields.map((pair, i) => (
