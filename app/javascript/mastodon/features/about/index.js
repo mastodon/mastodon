@@ -8,6 +8,7 @@ import LinkFooter from 'mastodon/features/ui/components/link_footer';
 import { Helmet } from 'react-helmet';
 import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'mastodon/actions/server';
 import Account from 'mastodon/containers/account_container';
+import ShortNumber from 'mastodon/components/short_number';
 import Skeleton from 'mastodon/components/skeleton';
 import Icon from 'mastodon/components/icon';
 import classNames from 'classnames';
@@ -122,16 +123,46 @@ class About extends React.PureComponent {
           </div>
 
           <div className='about__meta'>
+            <div className='about__meta__singleColumn'>
+              <h4><FormattedMessage id='about.description' defaultMessage='Server description:' /></h4>
+
+              {isLoading ? (
+                <>
+                  <Skeleton width='100%' />
+                  <br />
+                  <Skeleton width='100%' />
+                  <br />
+                  <Skeleton width='70%' />
+                </>
+              ) : server.get('description')}
+            </div>
+
             <div className='about__meta__column'>
               <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
 
               <Account id={server.getIn(['contact', 'account', 'id'])} size={36} />
             </div>
 
-            <hr className='about__meta__divider' />
-
             <div className='about__meta__column'>
-              <h4><FormattedMessage id='about.contact' defaultMessage='Contact:' /></h4>
+            <h4><FormattedMessage id='server_banner.server_stats' defaultMessage='Server stats:' /></h4>
+
+            {isLoading ? (
+              <>
+                <strong className='server-banner__number'><Skeleton width='10ch' /></strong>
+                <br />
+                <span className='server-banner__number-label'><Skeleton width='5ch' /></span>
+              </>
+            ) : (
+              <>
+                <strong className='server-banner__number'><ShortNumber value={server.getIn(['usage', 'users', 'active_month'])} /></strong>
+                <br />
+                <span className='server-banner__number-label'><FormattedMessage id='server_banner.active_users' defaultMessage='active users' /></span>
+              </>
+            )}
+            </div>
+
+            <div className='about__meta__singleColumn'>
+            <h4><FormattedMessage id='about.contact' defaultMessage='Contact:' /></h4>
 
               {isLoading ? <Skeleton width='10ch' /> : <a className='about__mail' href={`mailto:${server.getIn(['contact', 'email'])}`}>{server.getIn(['contact', 'email'])}</a>}
             </div>

@@ -8587,7 +8587,13 @@ noscript {
         align-items: center;
       }
 
-      &__divider {
+      &__singleColumn {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 20px;
+      }
+  
+        &__divider {
         min-height: 0;
         width: 100%;
         border-left-width: 0;
