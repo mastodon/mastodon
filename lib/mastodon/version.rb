@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def suffix
-      ''
+      '-mscdn'
     end
 
     def to_a
