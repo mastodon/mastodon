@@ -62,8 +62,13 @@ export default class DisplayName extends React.PureComponent {
         acct = `${acct}@${localDomain}`;
       }
 
+      let role = null;
+      if (account.getIn(['roles', 0])) {
+        role = (<div key='role' className={`account-role user-role-${account.getIn(['roles', 0, 'id'])}`}>{account.getIn(['roles', 0, 'name'])}</div>);
+      }
+
       displayName = <bdi><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }} /></bdi>;
-      suffix      = <span className='display-name__account'>@{acct}</span>;
+      suffix      = <span className='display-name__account'>@{acct}{role ? ` · ` : ""}{role}</span>;
     } else {
       displayName = <bdi><strong className='display-name__html'><Skeleton width='10ch' /></strong></bdi>;
       suffix = <span className='display-name__account'><Skeleton width='7ch' /></span>;
