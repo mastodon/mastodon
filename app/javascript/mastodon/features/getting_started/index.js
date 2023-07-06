@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, showTrends } from '../../initial_state';
+import { manual_url, me, showTrends } from '../../initial_state';
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import NavigationContainer from '../compose/containers/navigation_container';
@@ -21,6 +21,7 @@ const messages = defineMessages({
   notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
   public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
   settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
+  others_subheading: { id: 'others_subheading.settings', defaultMessage: 'Others' },
   community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   explore: { id: 'navigation_bar.explore', defaultMessage: 'Explore' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
@@ -36,6 +37,7 @@ const messages = defineMessages({
   discover: { id: 'navigation_bar.discover', defaultMessage: 'Discover' },
   personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
   security: { id: 'navigation_bar.security', defaultMessage: 'Security' },
+  manuals: { id: 'navigation_bar.manuals', defaultMessage: 'Manuals' },
   menu: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
 });
 
@@ -127,6 +129,10 @@ class GettingStarted extends ImmutablePureComponent {
         <ColumnLink key='preferences' icon='gears' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
       );
     }
+    navItems.push(
+      <ColumnSubheading key='header-others' text={intl.formatMessage(messages.others_subheading)} />,
+      <ColumnLink target='_blank' key='manuals' icon='book' text={intl.formatMessage(messages.manuals)} href={manual_url} />,
+    );
 
     return (
       <Column>
