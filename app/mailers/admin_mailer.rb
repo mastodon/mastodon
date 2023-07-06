@@ -8,12 +8,14 @@ class AdminMailer < ApplicationMailer
 
   before_action { @me = params[:recipient] }
 
+  default to: -> { @me.user_email }
+
   def new_report(report)
     @report   = report
     @instance = Rails.configuration.x.local_domain
 
     locale_for_account(@me) do
-      mail to: @me.user_email, subject: I18n.t('admin_mailer.new_report.subject', instance: @instance, id: @report.id)
+      mail subject: I18n.t('admin_mailer.new_report.subject', instance: @instance, id: @report.id)
     end
   end
 
@@ -22,7 +24,7 @@ class AdminMailer < ApplicationMailer
     @instance = Rails.configuration.x.local_domain
 
     locale_for_account(@me) do
-      mail to: @me.user_email, subject: I18n.t('admin_mailer.new_appeal.subject', instance: @instance, username: @appeal.account.username)
+      mail subject: I18n.t('admin_mailer.new_appeal.subject', instance: @instance, username: @appeal.account.username)
     end
   end
 
@@ -31,7 +33,7 @@ class AdminMailer < ApplicationMailer
     @instance = Rails.configuration.x.local_domain
 
     locale_for_account(@me) do
-      mail to: @me.user_email, subject: I18n.t('admin_mailer.new_pending_account.subject', instance: @instance, username: @account.username)
+      mail subject: I18n.t('admin_mailer.new_pending_account.subject', instance: @instance, username: @account.username)
     end
   end
 
@@ -42,7 +44,7 @@ class AdminMailer < ApplicationMailer
     @instance               = Rails.configuration.x.local_domain
 
     locale_for_account(@me) do
-      mail to: @me.user_email, subject: I18n.t('admin_mailer.new_trends.subject', instance: @instance)
+      mail subject: I18n.t('admin_mailer.new_trends.subject', instance: @instance)
     end
   end
 end
