@@ -2,8 +2,6 @@ name: Build container image
 on:
   workflow_dispatch:
   push:
-    branches:
-      - 'main'
     tags:
       - '*'
   pull_request:
