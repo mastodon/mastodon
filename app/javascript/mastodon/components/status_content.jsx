@@ -4,7 +4,7 @@ import { PureComponent } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
 import classnames from 'classnames';
-import { Link } from 'react-router-dom';
+import Permalink from './permalink';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
@@ -260,9 +260,9 @@ class StatusContent extends PureComponent {
       let mentionsPlaceholder = '';
 
       const mentionLinks = status.get('mentions').map(item => (
-        <Link to={`/@${item.get('acct')}`} key={item.get('id')} className='status-link mention'>
+        <Permalink to={`/@${item.get('acct')}`} href={item.get('url')} key={item.get('id')} className='status-link mention'>
           @<span>{item.get('username')}</span>
-        </Link>
+        </Permalink>
       )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
 
       const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;

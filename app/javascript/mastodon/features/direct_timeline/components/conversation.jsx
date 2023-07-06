@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
-
+import Permalink from 'mastodon/components/permalink';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
@@ -136,7 +135,7 @@ class Conversation extends ImmutablePureComponent {
 
     menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDelete });
 
-    const names = accounts.map(a => <Link to={`/@${a.get('acct')}`} key={a.get('id')} title={a.get('acct')}><bdi><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }} /></bdi></Link>).reduce((prev, cur) => [prev, ', ', cur]);
+    const names = accounts.map(a => <Permalink to={`/@${a.get('acct')}`} ref={a.get('url')} key={a.get('id')} title={a.get('acct')}><bdi><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }} /></bdi></Permalink>).reduce((prev, cur) => [prev, ', ', cur]);
 
     const handlers = {
       reply: this.handleReply,

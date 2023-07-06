@@ -4,6 +4,7 @@ import { PureComponent } from 'react';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 
 import { Link, withRouter } from 'react-router-dom';
+import Permalink from 'mastodon/components/permalink';
 
 import { connect } from 'react-redux';
 
@@ -17,9 +18,9 @@ import { registrationsOpen, me } from 'mastodon/initial_state';
 const Account = connect(state => ({
   account: state.getIn(['accounts', me]),
 }))(({ account }) => (
-  <Link to={`/@${account.get('acct')}`} title={account.get('acct')}>
+  <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} title={account.get('acct')}>
     <Avatar account={account} size={35} />
-  </Link>
+  </Permalink>
 ));
 
 const messages = defineMessages({
@@ -68,7 +69,7 @@ class Header extends PureComponent {
       content = (
         <>
           {location.pathname !== '/search' && <Link to='/search' className='button button-secondary' aria-label={intl.formatMessage(messages.search)}><Icon id='search' /></Link>}
-          {location.pathname !== '/publish' && <Link to='/publish' className='button button-secondary'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /></Link>}
+          {location.pathname !== '/publish' && <Link to='/publish' className='button bottom_right'><Icon id='pencil' fixedWidth /></Link>}
           <Account />
         </>
       );

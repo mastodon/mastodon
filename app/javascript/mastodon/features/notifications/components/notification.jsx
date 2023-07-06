@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import Permalink from 'mastodon/components/permalink';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';

@@ -5,7 +5,7 @@ import { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import Permalink from './permalink';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
@@ -58,6 +58,7 @@ export const accountsCountRenderer = (displayNumber, pluralReady) => (
 export const ImmutableHashtag = ({ hashtag }) => (
   <Hashtag
     name={hashtag.get('name')}
+    href={hashtag.get('url')}
     to={`/tags/${hashtag.get('name')}`}
     people={hashtag.getIn(['history', 0, 'accounts']) * 1 + hashtag.getIn(['history', 1, 'accounts']) * 1}
     // @ts-expect-error
@@ -70,12 +71,12 @@ ImmutableHashtag.propTypes = {
 };
 
 // @ts-expect-error
-const Hashtag = ({ name, to, people, uses, history, className, description, withGraph }) => (
+const Hashtag = ({ name, href, to, people, uses, history, className, description, withGraph }) => (
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
-      <Link to={to}>
+      <Permalink href={href} to={to}>
         {name ? <>#<span>{name}</span></> : <Skeleton width={50} />}
-      </Link>
+      </Permalink>
 
       {description ? (
         <span>{description}</span>
@@ -104,6 +105,7 @@ const Hashtag = ({ name, to, people, uses, history, className, description, with
 
 Hashtag.propTypes = {
   name: PropTypes.string,
+  href: PropTypes.string,
   to: PropTypes.string,
   people: PropTypes.number,
   description: PropTypes.node,

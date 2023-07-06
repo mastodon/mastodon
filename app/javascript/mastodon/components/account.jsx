@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import Permalink from './permalink';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -151,7 +151,7 @@ class Account extends ImmutablePureComponent {
     return (
       <div className={classNames('account', { 'account--minimal': minimal })}>
         <div className='account__wrapper'>
-          <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`}>
+          <Permalink key={account.get('id')} className='account__display-name' title={account.get('acct')} href={account.get('url')} to={`/@${account.get('acct')}`}>
             <div className='account__avatar-wrapper'>
               <Avatar account={account} size={size} />
             </div>
@@ -164,7 +164,7 @@ class Account extends ImmutablePureComponent {
                 </div>
               )}
             </div>
-          </Link>
+          </Permalink>
 
           {!minimal && (
             <div className='account__relationship'>

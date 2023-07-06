@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import Permalink from 'mastodon/components/permalink';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -174,7 +174,7 @@ class AccountCard extends ImmutablePureComponent {
 
     return (
       <div className='account-card'>
-        <Link to={`/@${account.get('acct')}`} className='account-card__permalink'>
+        <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='account-card__permalink'>
           <div className='account-card__header'>
             <img
               src={
@@ -188,7 +188,7 @@ class AccountCard extends ImmutablePureComponent {
             <div className='account-card__title__avatar'><Avatar account={account} size={56} /></div>
             <DisplayName account={account} />
           </div>
-        </Link>
+        </Permalink>
 
         {account.get('note').length > 0 && (
           <div

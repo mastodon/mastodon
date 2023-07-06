@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import { Link } from 'react-router-dom';
+import Permalink from 'mastodon/components/permalink';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -44,10 +44,10 @@ class FollowRequest extends ImmutablePureComponent {
     return (
       <div className='account'>
         <div className='account__wrapper'>
-          <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`}>
+          <Permalink key={account.get('id')} className='account__display-name' title={account.get('acct')} href={account.get('url')} to={`/@${account.get('acct')}`}>
             <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
             <DisplayName account={account} />
-          </Link>
+          </Permalink>
 
           <div className='account__relationship'>
             <IconButton title={intl.formatMessage(messages.authorize)} icon='check' onClick={onAuthorize} />

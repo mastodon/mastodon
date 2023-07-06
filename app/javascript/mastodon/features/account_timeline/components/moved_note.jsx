@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 
-import { Link } from 'react-router-dom';
+import Permalink from '../../../components/permalink';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -25,12 +25,12 @@ export default class MovedNote extends ImmutablePureComponent {
         </div>
 
         <div className='moved-account-banner__action'>
-          <Link to={`/@${to.get('acct')}`} className='detailed-status__display-name'>
+          <Permalink href={to.get('url')} to={`/@${to.get('acct')}`} className='detailed-status__display-name'>
             <div className='detailed-status__display-avatar'><AvatarOverlay account={to} friend={from} /></div>
             <DisplayName account={to} />
-          </Link>
+          </Permalink>
 
-          <Link to={`/@${to.get('acct')}`} className='button'><FormattedMessage id='account.go_to_profile' defaultMessage='Go to profile' /></Link>
+          <Permalink href={to.get('url')} to={`/@${to.get('acct')}`} className='button'><FormattedMessage id='account.go_to_profile' defaultMessage='Go to profile' /></Permalink>
         </div>
       </div>
     );
