@@ -1112,6 +1112,11 @@ ja:
       your_appeal_rejected: 申し立ては拒否されました
   domain_validator:
     invalid_domain: は無効なドメイン名です
+  edit_profile:
+    basic_information: 基本情報
+    hint_html: "<strong>公開プロフィールやあなたの投稿の隣に表示される内容をカスタマイズしましょう。</strong>プロフィールが記入されていて、アイコン画像が設定されていると、他の人があなたのことをフォローしやすくなり、交流したいと思ってくれるでしょう。"
+    other: その他
+    safety_and_privacy: 安全とプライバシー
   errors:
     '400': 送信されたリクエストは無効であるか、または不正なフォーマットです。
     '403': このページを表示する権限がありません。
@@ -1677,7 +1682,12 @@ ja:
     seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'
   verification:
+    extra_instructions_html: <strong>補足:</strong> リンクはウェブサイト上で不可視にすることができます。重要なのは <code>rel="me"</code> の部分であり、これはユーザー作成コンテンツを持つウェブサイトによるなりすましを防ぐためのものです。<code>a</code> タグの代わりに <code>link</code> タグをページのヘッダー内で使うこともできますが、HTMLはJavaScriptを実行しなくてもアクセスできる必要があります。
+    here_is_how: 設定方法
+    hint_html: "<strong>Mastodonではすべてのユーザーが本人認証を利用できます。</strong> ウェブ標準に基づいており、現在も将来にわたっても永久に無料です。必要なのは人々があなたのものだと認識している個人サイトだけです。あなたのプロフィールからウェブサイトへリンクすれば、サーバーはあなたのウェブサイトからもプロフィールへのリンクがなされていることを確認し、その証を表示します。"
+    instructions_html: 以下のコードをコピーして、あなたのウェブサイトのHTMLに貼り付けます。「プロフィールを編集」タブから補足情報の欄にウェブサイトのアドレスを追加し、変更を保存してください。
     verification: 認証
+    verified_links: 認証済みリンク
   webauthn_credentials:
     add: セキュリティキーを追加
     create:
