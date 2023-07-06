@@ -205,12 +205,18 @@
 .simple_form .recommended,
 .simple_form .not_recommended {
   display: inline-block;
-  padding: 4px 6px;
   cursor: default;
   vertical-align: middle;
   line-height: 12px;
   font-weight: 500;
-  color: var(--user-role-accent, rgba($ui-secondary-color, 1));
+
+  &>svg{
+    width:1.5em;
+  }
+
+  & #mcd_rolebadge{
+    fill:var(--user-role-accent, rgba($ui-secondary-color, 1));
+  }
 
   &.moderator {
     color: $success-green;
