@@ -44,8 +44,12 @@ html {
     border-top: 0;
   }
   
-  .account-card{
-    background: $ui-primary-color;
+  .scrollable .account-card{
+        background: $ui-primary-color;
+  }
+  
+  .scrollable .account-card__bio:after{
+    background: linear-gradient(270deg,$ui-primary-color,transparent);
   }
   
   .getting-started__trends{
