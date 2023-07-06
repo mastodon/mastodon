@@ -40,7 +40,7 @@ html {
   .error-column,
   .regeneration-indicator {
     background: darken($ui-color-mint, 23%);
-    border: 1px solid $ui-color-mint;
+    border: none;
     border-top: 0;
   }
   
@@ -101,8 +101,8 @@ html {
   }
   
   .column-back-button{
-    color: $ui-base-lighter-color;
-  }
+    color: lighten($ui-highlight-color, 8%);
+}
   
   .column-header__back-button,
   .column-header__button,
@@ -113,7 +113,7 @@ html {
   .account__header {
     background: darken($ui-primary-color, 15%);
     &__fields{
-      background: darken($ui-primary-color, 8%) !important;
+        background: darken($ui-color-pink, 3%) !important;
     }
   }
   
@@ -128,8 +128,11 @@ html {
     }
   }
   
-  .account__header__bar .avatar .account__avatar {
-    border-color: $white;
+  .account__header__bar{
+    border-bottom:none;
+    .avatar .account__avatar {
+      border-color: $white;
+    }
   }
   
   .getting-started__footer a {
@@ -152,6 +155,15 @@ html {
   
   .column-subheading {
     background: darken($ui-color-orange, 8%);
+  }
+  
+  .column-link--transparent{
+    &.active{
+      color: lighten($ui-highlight-color, 8%);
+    }
+    .icon-with-badge__badge{
+      border-color: $ui-highlight-color;
+    }
   }
   
   .getting-started {
@@ -195,6 +207,10 @@ html {
     border: 1px solid lighten($ui-color-blue, 8%);
   }
   
+  .compose-form__autosuggest-wrapper{
+    border-bottom:none;
+  }
+  
   .report-dialog-modal .dialog-option .poll__input,
   .status .poll .poll__option .poll__input {
     color: $white;
@@ -217,7 +233,7 @@ html {
   }
   
   .search__input {
-    background-color: $ui-color-pink;
+    background-color: darken($ui-color-pink, 3%);
     border: 1px solid lighten($ui-color-pink, 8%);
   }
   
@@ -238,6 +254,8 @@ html {
     border-radius: 5px;
     hr {
       border-top-color: $ui-color-orange;
+      width:95%;
+      margin: 10px auto;
     }
   }
   
@@ -258,8 +276,12 @@ html {
   }
   
   .notification__filter-bar {
-    border: 1px solid $ui-base-color;
+    border: none;
     border-top: 0;
+  }
+  
+  .account__section-headline a.active:after, .account__section-headline a.active:before, .account__section-headline button.active:after, .account__section-headline button.active:before, .notification__filter-bar a.active:after, .notification__filter-bar a.active:before, .notification__filter-bar button.active:after, .notification__filter-bar button.active:before{
+    border-color:transparent;
   }
   
   .compose-form .compose-form__buttons-wrapper {
@@ -275,7 +297,7 @@ html {
   
   .drawer__inner{
     background: darken($ui-color-pink, 8%);
-    border: 1px solid $ui-base-color;
+    border: none;
   }
   
   .navigation-bar{
@@ -283,8 +305,8 @@ html {
   }
   
   .drawer__header{
-    background: $ui-color-pink;
-    border: 1px solid $ui-color-pink;
+    background: darken($ui-color-pink, 3%);
+    border: none;
   }
   
   .drawer__inner__mastodon {
@@ -544,7 +566,7 @@ html {
   .simple_form .block-button,
   .simple_form .button,
   .simple_form button{
-    background-color: lighten($ui-base-color, 8%);
+    background-color: lighten($ui-base-color, 15%);
   }
   
   .simple_form .hint a,
@@ -816,7 +838,10 @@ html {
   .reply-indicator__content,
   .account__header__bio .account__header__fields {
     a {
-      color: lighten($ui-base-lighter-color, 8%);
+        color: lighten($ui-base-lighter-color, 15%);
+    }
+    dl{
+      border-bottom-color: lighten($ui-color-pink, 8%);
     }
   }
   
@@ -836,13 +861,14 @@ html {
   
   .notification__filter-bar button.active::after,
   .account__section-headline a.active::after {
-    border-color: transparent transparent $white;
+    border-color: transparent transparent darken($ui-color-mint, 23%);
   }
   
   .notification__filter-bar,
   .account__section-headline {
     background: darken($ui-color-orange, 8%);
-  
+    border: none;
+
     button{
       background: darken($ui-color-orange, 8%);
     }
