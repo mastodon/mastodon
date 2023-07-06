@@ -77,11 +77,11 @@ class ManifestSerializer < ActiveModel::Serializer
   def shortcuts
     [
       {
-        name: 'Compose new post',
+        name: '投稿する',
         url: '/publish',
       },
       {
-        name: 'Notifications',
+        name: '通知',
         url: '/notifications',
       },
     ]
