@@ -409,6 +409,8 @@ cy:
       undo: Gwrthod ffedereiddio gyda pharth
     domain_blocks:
       add_new: Ychwanegu bloc parth newydd
+      confirm_suspension:
+        cancel: Canslo
       created_msg: Mae'r bloc parth nawr yn cael ei brosesu
       destroyed_msg: Mae'r bloc parth wedi ei ddadwneud
       domain: Parth
@@ -1037,6 +1039,7 @@ cy:
     notification_preferences: Newid gosodiadau e-bost
     salutation: "%{name},"
     settings: 'Newid gosodiadau e-bost: %{link}'
+    unsubscribe: Datdanysgrifio
     view: 'Gweld:'
     view_profile: Gweld proffil
     view_status: Gweld postiad
@@ -1200,6 +1203,9 @@ cy:
       your_appeal_rejected: Mae eich apêl wedi'i gwrthod
   domain_validator:
     invalid_domain: ddim yn enw parth dilys
+  edit_profile:
+    basic_information: Gwybodaeth Sylfaenol
+    other: Arall
   errors:
     '400': Roedd y cais a gyflwynwyd gennych yn annilys neu wedi'i gamffurfio.
     '403': Nid oes gennych ganiatâd i weld y dudalen hon.
@@ -1426,6 +1432,9 @@ cy:
     failed_sign_in_html: Ymgais mewngofnodi wedi methu gyda %{method} gan %{ip} (%{browser})
     successful_sign_in_html: Mewngofnodi llwyddiannus gyda %{method} o %{ip} (%{browser})
     title: Hanes dilysu
+  mail_subscriptions:
+    unsubscribe:
+      title: Datdanysgrifio
   media_attachments:
     validations:
       images_and_video: Methu atodi fideo i bostiad sydd eisoes yn cynnwys delweddau
