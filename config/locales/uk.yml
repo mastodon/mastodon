@@ -95,6 +95,7 @@ uk:
       moderation:
         active: Активний
         all: Усі
+        disabled: Вимкнено
         pending: Очікують
         silenced: Обмежені
         suspended: Призупинені
@@ -130,7 +131,7 @@ uk:
       removed_header_msg: Зображення обкладинки %{username} вилучено
       resend_confirmation:
         already_confirmed: Цей користувач уже підтверджений
-        send: Надіслати електронний лист-підтвердження ще раз
+        send: Повторно надіслати підтвердження на електронну пошту
         success: Електронний лист-підтвердження успішно надіслано!
       reset: Скинути
       reset_password: Скинути пароль
@@ -139,6 +140,7 @@ uk:
       search: Пошук
       search_same_email_domain: Інші користувачі з тим самим поштовим доменом
       search_same_ip: Інші користувачі з тим самим IP
+      security: Безпека
       security_measures:
         only_password: Лише пароль
         password_and_2fa: Пароль та 2FA
@@ -443,6 +445,7 @@ uk:
         resolve: Розв'язати домен
         title: Нове блокування поштового домену
       no_email_domain_block_selected: Жодні налаштування блокування доменів електронної пошти не було змінено, оскільки жоден з них не було обрано
+      not_permitted: Не дозволено
       resolved_dns_records_hint_html: Ім'я домену резолвиться в наступні домени MX, які в кінцевому рахунку відповідають за прийняття електронної пошти. Блокування домену MX заблокує реєстрацію з будь-якої e-mail адреси, яка використовує однаковий домен MX, навіть якщо доменне ім'я буде інакше. <strong>Будьте обережні, щоб не блокувати великих поштових провайдерів.</strong>
       resolved_through_html: Розв'язано через %{domain}
       title: Чорний список поштових доменів
@@ -493,6 +496,7 @@ uk:
       content_policies:
         comment: Внутрішня примітка
         description_html: Ви можете визначити правила вмісту що буде застосовано до всіх облікових записів із цього домену та будь-якого з його піддоменів.
+        limited_federation_mode_description_html: Ви можете вибрати, чи дозволити федерацію з цим доменом.
         policies:
           reject_media: Відхилити медіа
           reject_reports: Відхилити скарги
@@ -609,11 +613,13 @@ uk:
       assign_to_self: Призначити мені
       assigned: Призначений модератор
       by_target_domain: Домен облікового запису, на який скаржаться
+      cancel: Скасувати
       category: Категорія
       category_description_html: Причина скарги на цей обліковий запис та/або вміст, яку буде вказано у звіті
       comment:
         none: Немає
       comment_description_html: 'Щоб надати більше відомостей, %{name} пише:'
+      confirm: Підтвердити
       confirm_action: Підтвердьте модераційну дію щодо @%{acct}
       created_at: Створено
       delete_and_resolve: Видалити дописи
@@ -820,6 +826,7 @@ uk:
         suspend: "%{name} заморожує обліковий запис %{target}"
       appeal_approved: Оскаржено
       appeal_pending: Оскарження в очікуванні
+      appeal_rejected: Апеляцію відхилено
     system_checks:
       database_schema_check:
         message_html: Існують відкладені перенесення бази даних. Запустіть їх, щоб забезпечити очікувану роботу програми
@@ -833,6 +840,12 @@ uk:
         message_html: Ви не визначили будь-які правила сервера.
       sidekiq_process_check:
         message_html: Не працює процес Sidekiq для %{value} черги. Перегляньте конфігурації вашого Sidekiq
+      upload_check_privacy_error:
+        action: Перегляньте подробиці тут
+        message_html: "<strong>Ваш вебсервер неправильно налаштований. Приватність ваших користувачів піддається ризику</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Перегляньте подробиці тут
+        message_html: "<strong>Ваше сховище об'єктів неправильно налаштоване. Приватність ваших користувачів піддається ризику</strong>"
     tags:
       review: Переглянути допис
       updated_msg: Параметри хештеґів успішно оновлені
@@ -857,6 +870,7 @@ uk:
           other: Поширили %{count} людей за останній тиждень
         title: Популярні посилання
         usage_comparison: Сьогодні поширено %{today} разів, у порівнянні з %{yesterday} вчора
+      not_allowed_to_trend: Не допускається тенденція
       only_allowed: Тільки дозволене
       pending_review: Очікує перевірки
       preview_card_providers:
@@ -994,13 +1008,13 @@ uk:
   applications:
     created: Застосунок успішно створений
     destroyed: Застосунок успішно видалений
+    logout: Вийти
     regenerate_token: Перегенерувати токен доступу
     token_regenerated: Токен доступу успішне перегенеровано
     warning: Будьте дуже обережні з цими даними. Ніколи не діліться ними ні з ким!
     your_token: Ваш токен доступу
   auth:
     apply_for_account: Запит облікового запису
-    change_password: Пароль
     confirmations:
       wrong_email_hint: Якщо ця адреса електронної пошти неправильна, можна змінити її в налаштуваннях облікового запису.
     delete_account: Видалити обліковий запис
@@ -1009,7 +1023,7 @@ uk:
       prefix_invited_by_user: "@%{name} запрошує вас приєднатися до цього сервера Mastodon!"
       prefix_sign_up: Зареєструйтеся на Mastodon сьогодні!
       suffix: Маючи обліковий запис, ви зможете підписуватися на людей, публікувати дописи та листуватися з користувачами будь-якого сервера Mastodon!
-    didnt_get_confirmation: Не отримали інструкції з підтвердження?
+    didnt_get_confirmation: Не отримали посилання для підтвердження?
     dont_have_your_security_key: Не маєте ключа безпеки?
     forgot_password: Забули пароль?
     invalid_reset_password_token: Токен скидання паролю неправильний або просрочений. Спробуйте попросити новий.
@@ -1022,26 +1036,36 @@ uk:
     migrate_account_html: Якщо ви бажаєте переспрямувати цей обліковий запис на інший, ви можете <a href="%{path}">налаштувати це тут</a>.
     or_log_in_with: Або увійдіть з
     privacy_policy_agreement_html: Мною прочитано і я погоджуюся з <a href="%{privacy_policy_path}" target="_blank">політикою приватності</a>
+    progress:
+      confirm: Підтвердити електронну адресу
+      details: Ваші дані
+      review: Наш відгук
+      rules: Погодитися з правилами
     providers:
       cas: CAS
       saml: SAML
     register: Зареєструватися
     registration_closed: "%{instance} не приймає нових членів"
-    resend_confirmation: Повторно відправити інструкції з підтвердження
+    resend_confirmation: Повторно надіслати підтвердження на електронну пошту
     reset_password: Скинути пароль
     rules:
+      accept: Прийняти
+      back: Назад
       preamble: Вони налаштовані та закріплені модераторами %{domain}.
       title: Деякі основні правила.
     security: Зміна паролю
     set_new_password: Встановити новий пароль
     setup:
-      email_below_hint_html: Якщо ця електронна адреса не є вірною, ви можете змінити її тут та отримати новий лист для підтвердження.
-      email_settings_hint_html: Електронний лист-підтвердження було вислано на %{email}. Якщо ця адреса електронної пошти не правильна, ви можете змінити її в налаштуваннях облікового запису.
-      title: Налаштування
+      email_below_hint_html: Перевірте теку "Спам", або зробіть ще один запит. Ви можете виправити свою електронну адресу, якщо вона неправильна.
+      email_settings_hint_html: Натисніть на посилання, яке ми надіслали вам, щоб підтвердити %{email}. Ми чекатимемо прямо тут.
+      link_not_received: Не отримали посилання?
+      new_confirmation_instructions_sent: Ви отримаєте новий лист із посиланням на підтвердження протягом декількох хвилин!
+      title: Перевірте вашу поштову скриньку
     sign_in:
       preamble_html: Увійдіть за допомогою облікових даних <strong>%{domain}</strong>. Якщо ваш обліковий запис розміщений на іншому сервері, ви не зможете увійти тут.
       title: Увійти до %{domain}
     sign_up:
+      manual_review: Реєстрація на %{domain} проходить через ручний розгляд нашими модераторами. Щоб допомогти нам завершити вашу реєстрацію, напишіть трохи про себе і чому ви хочете зареєструватися на %{domain}.
       preamble: За допомогою облікового запису на цьому сервері Mastodon, ви зможете слідкувати за будь-якою іншою людиною в мережі, не зважаючи на те, де розміщений обліковий запис.
       title: Налаштуймо вас на %{domain}.
     status:
@@ -1227,8 +1251,6 @@ uk:
       index:
         hint: Цей фільтр застосовується для вибору окремих дописів, незалежно від інших критеріїв. Ви можете додавати більше дописів до цього фільтра з вебінтерфейсу.
         title: Відфільтровані дописи
-  footer:
-    trending_now: Актуальні
   generic:
     all: Усі
     all_items_on_page_selected_html:
@@ -1259,8 +1281,6 @@ uk:
       many: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
       one: Щось досі не гаразд! Перегляньте повідомлення про помилку
       other: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
-  html_validator:
-    invalid_markup: 'містить неприпустиму HTML розмітку: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Хибний файл CSV. Помилка: %{error}'
@@ -1450,6 +1470,7 @@ uk:
     confirm_remove_selected_followers: Ви дійсно бажаєте видалити вибраних підписників?
     confirm_remove_selected_follows: Ви дійсно хочете вилучити вибрані підписки?
     dormant: Неактивні
+    follow_failure: Не вдалося підписатися на деякі вибрані облікові записи.
     follow_selected_followers: Стежити за вибраними підписниками
     followers: Підписники
     following: Підписник
@@ -1489,6 +1510,7 @@ uk:
       electron: Electron
       firefox: Firefox
       generic: Невідомий браузер
+      huawei_browser: Huawei Браузер
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1498,6 +1520,7 @@ uk:
       qq: QQ Browser
       safari: Сафарі
       uc_browser: UC Browser
+      unknown_browser: Невідомий браузер
       weibo: Weibo
     current_session: Поточний сеанс
     description: "%{browser} на %{platform}"
@@ -1510,9 +1533,10 @@ uk:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: невідома платформа
+      unknown_platform: Невідома Платформа
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1637,7 +1661,7 @@ uk:
       '7889238': 3 місяці
     min_age_label: Поріг давності
     min_favs: Залишати дописи в обраному більше ніж
-    min_favs_hint: Не видаляти ваших дописів, що отримали більше вказаної кількості додавання до закладок. Залиште порожнім, щоб видаляти дописи незалежно від кількості їхнього додавання до обраних
+    min_favs_hint: Не видаляти ваших дописів, що були поширені більш ніж вказану кількість разів. Залиште порожнім, щоб видаляти дописи, попри кількість їхніх поширень
     min_reblogs: Залишати дописи, поширені більше ніж
     min_reblogs_hint: Не видаляти ваших дописів, що були поширені більш ніж вказану кількість разів. Залиште порожнім, щоб видаляти дописи, попри кількість їхніх поширень
   stream_entries:
@@ -1737,12 +1761,12 @@ uk:
       title: Ласкаво просимо, %{name}!
   users:
     follow_limit_reached: Не можна слідкувати більш ніж за %{limit} людей
+    go_to_sso_account_settings: Перейдіть до налаштувань облікового запису постачальника ідентифікації
     invalid_otp_token: Введено неправильний код
     otp_lost_help_html: Якщо ви втратили доступ до обох, ви можете отримати доступ з %{email}
     seamless_external_login: Ви увійшли за допомогою зовнішнього сервісу, тому налаштування паролю та електронної пошти недоступні.
     signed_in_as: 'Ви увійшли як:'
   verification:
-    explanation_html: 'Ви можете <strong>підтвердити володіння посиланнями в метаданих вашого профілю</strong>. Для цього на зазначеному сайті повинне міститися посилання на ваш профіль Mastodon. Посилання <strong>повинне</strong> мати атрибут <code>rel="me"</code>. Текстовий вміст посилання не має значення. Ось приклад:'
     verification: Підтвердження
   webauthn_credentials:
     add: Додати новий ключ безпеки

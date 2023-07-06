@@ -91,6 +91,7 @@ it:
       moderation:
         active: Attivo
         all: Tutto
+        disabled: Disattivato
         pending: In sospeso
         silenced: Limitato
         suspended: Sospeso
@@ -124,8 +125,8 @@ it:
       removed_header_msg: Immagine d'intestazione di %{username} rimossa correttamente
       resend_confirmation:
         already_confirmed: Questo utente è già confermato
-        send: Reinvia l'email di conferma
-        success: Email di conferma inviata correttamente!
+        send: Invia nuovamente il link di conferma
+        success: Link di conferma inviato con successo!
       reset: Ripristina
       reset_password: Ripristina la password
       resubscribe: Reiscriviti
@@ -133,6 +134,7 @@ it:
       search: Cerca
       search_same_email_domain: Altri utenti con lo stesso dominio email
       search_same_ip: Altri utenti con lo stesso IP
+      security: Sicurezza
       security_measures:
         only_password: Solo password
         password_and_2fa: Password e A2F
@@ -427,6 +429,7 @@ it:
         resolve: Risolvi dominio
         title: Nuova voce della lista nera delle email
       no_email_domain_block_selected: Nessun blocco di dominio di posta elettronica è stato modificato in quanto nessuno è stato selezionato
+      not_permitted: Non consentito
       resolved_dns_records_hint_html: Il nome di dominio si risolve ai seguenti domini MX, che sono in ultima analisi responsabili per l'accettazione di e-mail. Il blocco di un dominio MX bloccherà le iscrizioni da qualsiasi indirizzo e-mail che utilizza lo stesso dominio MX, anche se il nome di dominio visibile è diverso. <strong>Fai attenzione a non bloccare i principali provider di posta elettronica.</strong>
       resolved_through_html: Risolto attraverso %{domain}
       title: Lista nera email
@@ -473,6 +476,7 @@ it:
       content_policies:
         comment: Nota interna
         description_html: Puoi definire le politiche del contenuto che saranno applicate a tutti i profili da questo dominio e ognuno dei suoi sottodomini.
+        limited_federation_mode_description_html: Puoi scegliere se consentire la federazione con questo dominio.
         policies:
           reject_media: Rifiuta multimedia
           reject_reports: Rifiuta rapporti
@@ -585,11 +589,13 @@ it:
       assign_to_self: Assegna a me
       assigned: Moderatore assegnato
       by_target_domain: Dominio dell'account segnalato
+      cancel: Annulla
       category: Categoria
       category_description_html: Il motivo per cui questo account e/o contenuto è stato segnalato sarà citato nella comunicazione con l'account segnalato
       comment:
         none: Nessuno
       comment_description_html: 'Per fornire ulteriori informazioni, %{name} ha scritto:'
+      confirm: Conferma
       confirm_action: Conferma l'azione di moderazione contro @%{acct}
       created_at: Segnalato
       delete_and_resolve: Cancella post
@@ -792,6 +798,7 @@ it:
         suspend: "%{name} ha sospeso l'account di %{target}"
       appeal_approved: Sottoposto ad appello
       appeal_pending: Appello in attesa
+      appeal_rejected: Appello respinto
     system_checks:
       database_schema_check:
         message_html: Ci sono migrazioni del database in attesa. Sei pregato di eseguirle per assicurarti che l'applicazione si comporti come previsto
@@ -805,6 +812,12 @@ it:
         message_html: Non hai definito alcuna regola del server.
       sidekiq_process_check:
         message_html: Nessun processo di Sidekiq in esecuzione per le code di %{value}. Sei pregato di revisionare la tua configurazione di Sidekiq
+      upload_check_privacy_error:
+        action: Controlla qui per maggiori informazioni
+        message_html: "<strong>Il tuo server web è mal configurato. La privacy dei tuoi utenti è a rischio.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Controlla qui per maggiori informazioni
+        message_html: "<strong>La tua archiviazione oggetti è mal configurata. La privacy dei tuoi utenti è a rischio.</strong>"
     tags:
       review: Esamina status
       updated_msg: Impostazioni hashtag aggiornate con successo
@@ -827,6 +840,7 @@ it:
           other: Condiviso da %{count} persone nell'ultima settimana
         title: Link in tendenza
         usage_comparison: Condiviso %{today} volte oggi, rispetto a %{yesterday} ieri
+      not_allowed_to_trend: Non è consentito il trend
       only_allowed: Solo consentiti
       pending_review: Revisione in sospeso
       preview_card_providers:
@@ -960,13 +974,13 @@ it:
   applications:
     created: Applicazione creata con successo
     destroyed: Applicazione eliminata con successo
+    logout: Disconnettiti
     regenerate_token: Rigenera il token di accesso
     token_regenerated: Token di accesso rigenerato
     warning: Fa' molta attenzione con questi dati. Non fornirli mai a nessun altro!
     your_token: Il tuo token di accesso
   auth:
     apply_for_account: Richiedi un account
-    change_password: Password
     confirmations:
       wrong_email_hint: Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
     delete_account: Elimina account
@@ -975,7 +989,7 @@ it:
       prefix_invited_by_user: "@%{name} ti invita a iscriverti a questo server Mastodon!"
       prefix_sign_up: Iscriviti oggi a Mastodon!
       suffix: Con un account, sarai in grado di seguire le persone, pubblicare aggiornamenti e scambiare messaggi con gli utenti da qualsiasi server di Mastodon e altro ancora!
-    didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
+    didnt_get_confirmation: Non hai ricevuto un link di conferma?
     dont_have_your_security_key: Non hai la tua chiave di sicurezza?
     forgot_password: Hai dimenticato la tua password?
     invalid_reset_password_token: Il token di reimpostazione della password non è valido o è scaduto. Per favore richiedine uno nuovo.
@@ -988,26 +1002,36 @@ it:
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso, puoi <a href="%{path}">configurarlo qui</a>.
     or_log_in_with: Oppure accedi con
     privacy_policy_agreement_html: Ho letto e accetto l'<a href="%{privacy_policy_path}" target="_blank">informativa sulla privacy</a>
+    progress:
+      confirm: Conferma l'e-mail
+      details: I tuoi dettagli
+      review: La nostra revisione
+      rules: Accetta le regole
     providers:
       cas: CAS
       saml: SAML
     register: Iscriviti
     registration_closed: "%{instance} non accetta nuovi membri"
-    resend_confirmation: Invia di nuovo le istruzioni di conferma
+    resend_confirmation: Invia nuovamente il link di conferma
     reset_password: Resetta la password
     rules:
+      accept: Accetta
+      back: Indietro
       preamble: Questi sono impostati e applicati dai moderatori di %{domain}.
       title: Alcune regole di base.
     security: Credenziali
     set_new_password: Imposta una nuova password
     setup:
-      email_below_hint_html: Se l'indirizzo e-mail sottostante non è corretto, puoi cambiarlo qui e ricevere una nuova e-mail di conferma.
-      email_settings_hint_html: L'email di conferma è stata inviata a %{email}. Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
-      title: Configurazione
+      email_below_hint_html: Controlla la tua cartella spam o richiedine un altro. Puoi correggere il tuo indirizzo e-mail, se fosse sbagliato.
+      email_settings_hint_html: Fai clic sul link che ti abbiamo inviato per verificare %{email}. Aspetteremo proprio qui.
+      link_not_received: Non hai ricevuto un link?
+      new_confirmation_instructions_sent: Riceverai una nuova e-mail con il link di conferma entro pochi minuti!
+      title: Controlla la tua posta in arrivo
     sign_in:
       preamble_html: Accedi con le tue credenziali <strong>%{domain}</strong>. Se il tuo account si trova su un server diverso, non potrai accedere qui.
       title: Accedi a %{domain}
     sign_up:
+      manual_review: Le registrazioni su %{domain} vengono sottoposte a revisione manuale da parte dei nostri moderatori. Per aiutarci a elaborare la tua registrazione, scrivi qualcosa su di te e sul motivo per cui desideri un account su %{domain}.
       preamble: Con un account su questo server Mastodon, sarai in grado di seguire qualsiasi altra persona sulla rete, indipendentemente da dove sia ospitato il suo account.
       title: Lascia che ti configuriamo su %{domain}.
     status:
@@ -1187,8 +1211,6 @@ it:
       index:
         hint: Questo filtro si applica a singoli post indipendentemente da altri criteri. Puoi aggiungere più post a questo filtro dall'interfaccia Web.
         title: Post filtrati
-  footer:
-    trending_now: Di tendenza ora
   generic:
     all: Tutto
     all_items_on_page_selected_html:
@@ -1211,8 +1233,6 @@ it:
     validation_errors:
       one: Qualcosa ancora non va bene! Per favore, controlla l'errore qui sotto
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
-  html_validator:
-    invalid_markup: 'contiene markup HTML non valido: %{error}'
   imports:
     errors:
       invalid_csv_file: 'File CSV non valido. Errore: %{error}'
@@ -1400,6 +1420,7 @@ it:
     confirm_remove_selected_followers: Sei sicuro di voler rimuovere i follower selezionati?
     confirm_remove_selected_follows: Sei sicuro di voler rimuovere i follow selezionati?
     dormant: Dormiente
+    follow_failure: Impossibile seguire alcuni degli account selezionati.
     follow_selected_followers: Segui i seguaci selezionati
     followers: Seguaci
     following: Seguiti
@@ -1439,6 +1460,7 @@ it:
       electron: Electron
       firefox: Firefox
       generic: Browser sconosciuto
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1448,6 +1470,7 @@ it:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Browser sconosciuto
       weibo: Weibo
     current_session: Sessione corrente
     description: "%{browser} su %{platform}"
@@ -1460,9 +1483,10 @@ it:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: piattaforma sconosciuta
+      unknown_platform: Piattaforma sconosciuta
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1575,7 +1599,7 @@ it:
       '7889238': 3 mesi
     min_age_label: Soglia di età
     min_favs: Conserva i post preferiti più di
-    min_favs_hint: Non cancella nessuno dei tuoi post che ha ricevuto più di questo numero di preferiti. Lascia vuoto per cancellare i post indipendentemente dal loro numero di preferiti
+    min_favs_hint: Non cancella nessuno dei tuoi post che ha ricevuto almeno questo numero di preferiti. Lascia vuoto per cancellare i post indipendentemente dal loro numero di preferiti
     min_reblogs: Conserva i post condivisi più di
     min_reblogs_hint: Non cancella nessuno dei tuoi post che è stato condiviso più di questo numero di volte. Lascia vuoto per cancellare i post indipendentemente dal loro numero di condivisioni
   stream_entries:
@@ -1675,12 +1699,12 @@ it:
       title: Benvenuto a bordo, %{name}!
   users:
     follow_limit_reached: Non puoi seguire più di %{limit} persone
+    go_to_sso_account_settings: Vai alle impostazioni dell'account del tuo provider di identità
     invalid_otp_token: Codice d'accesso non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
     seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, quindi le impostazioni di password e e-mail non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
   verification:
-    explanation_html: 'Puoi <strong>certificare te stesso come proprietario dei link nei metadati del tuo profilo</strong>. Per farlo, il sito a cui punta il link deve contenere un link che punta al tuo profilo Mastodon. Il link di ritorno <strong>deve</strong> avere l''attributo <code>rel="me"</code>. Il testo del link non ha importanza. Ecco un esempio:'
     verification: Verifica
   webauthn_credentials:
     add: Aggiungi una nuova chiave di sicurezza

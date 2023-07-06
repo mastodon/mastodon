@@ -7,7 +7,7 @@ class FetchLinkCardService < BaseService
   URL_PATTERN = %r{
     (#{Twitter::TwitterText::Regex[:valid_url_preceding_chars]})                                                                #   $1 preceding chars
     (                                                                                                                           #   $2 URL
-      (https?:\/\/)                                                                                                             #   $3 Protocol (required)
+      (https?://)                                                                                                               #   $3 Protocol (required)
       (#{Twitter::TwitterText::Regex[:valid_domain]})                                                                           #   $4 Domain(s)
       (?::(#{Twitter::TwitterText::Regex[:valid_port_number]}))?                                                                #   $5 Port number (optional)
       (/#{Twitter::TwitterText::Regex[:valid_url_path]}*)?                                                                      #   $6 URL Path and anchor
@@ -23,7 +23,7 @@ class FetchLinkCardService < BaseService
 
     @url = @original_url.to_s
 
-    with_lock("fetch:#{@original_url}") do
+    with_redis_lock("fetch:#{@original_url}") do
       @card = PreviewCard.find_by(url: @url)
       process_url if @card.nil? || @card.updated_at <= 2.weeks.ago || @card.missing_image?
     end
@@ -45,7 +45,7 @@ class FetchLinkCardService < BaseService
   def html
     return @html if defined?(@html)
 
-    Request.new(:get, @url).add_headers('Accept' => 'text/html', 'User-Agent' => Mastodon::Version.user_agent + ' Bot').perform do |res|
+    Request.new(:get, @url).add_headers('Accept' => 'text/html', 'User-Agent' => "#{Mastodon::Version.user_agent} Bot").perform do |res|
       # We follow redirects, and ideally we want to save the preview card for
       # the destination URL and not any link shortener in-between, so here
       # we set the URL to the one of the last response in the redirect chain
@@ -69,16 +69,14 @@ class FetchLinkCardService < BaseService
   end
 
   def parse_urls
-    urls = begin
-      if @status.local?
-        @status.text.scan(URL_PATTERN).map { |array| Addressable::URI.parse(array[1]).normalize }
-      else
-        document = Nokogiri::HTML(@status.text)
-        links    = document.css('a')
+    urls = if @status.local?
+             @status.text.scan(URL_PATTERN).map { |array| Addressable::URI.parse(array[1]).normalize }
+           else
+             document = Nokogiri::HTML(@status.text)
+             links = document.css('a')
 
-        links.filter_map { |a| Addressable::URI.parse(a['href']) unless skip_link?(a) }.filter_map(&:normalize)
-      end
-    end
+             links.filter_map { |a| Addressable::URI.parse(a['href']) unless skip_link?(a) }.filter_map(&:normalize)
+           end
 
     urls.reject { |uri| bad_url?(uri) }.first
   end

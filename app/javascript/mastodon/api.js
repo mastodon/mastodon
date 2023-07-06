@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import LinkHeader from 'http-link-header';
+
 import ready from './ready';
 
 /**
@@ -36,7 +37,7 @@ const setCSRFHeader = () => {
 ready(setCSRFHeader);
 
 /**
- * @param {() => import('immutable').Map} getState
+ * @param {() => import('immutable').Map<string,any>} getState
  * @returns {import('axios').RawAxiosRequestHeaders}
  */
 const authorizationHeaderFromState = getState => {
@@ -52,7 +53,7 @@ const authorizationHeaderFromState = getState => {
 };
 
 /**
- * @param {() => import('immutable').Map} getState
+ * @param {() => import('immutable').Map<string,any>} getState
  * @returns {import('axios').AxiosInstance}
  */
 export default function api(getState) {

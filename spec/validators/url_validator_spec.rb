@@ -10,12 +10,12 @@ RSpec.describe URLValidator, type: :validator do
     end
 
     let(:validator) { described_class.new(attributes: [attribute]) }
-    let(:record)    { double(errors: errors) }
-    let(:errors)    { double(add: nil) }
+    let(:record)    { instance_double(Webhook, errors: errors) }
+    let(:errors)    { instance_double(ActiveModel::Errors, add: nil) }
     let(:value)     { '' }
     let(:attribute) { :foo }
 
-    context 'unless compliant?' do
+    context 'when not compliant?' do
       let(:compliant) { false }
 
       it 'calls errors.add' do
@@ -23,11 +23,11 @@ RSpec.describe URLValidator, type: :validator do
       end
     end
 
-    context 'if compliant?' do
+    context 'when compliant?' do
       let(:compliant) { true }
 
       it 'not calls errors.add' do
-        expect(errors).not_to have_received(:add).with(attribute, any_args)
+        expect(errors).to_not have_received(:add).with(attribute, any_args)
       end
     end
   end

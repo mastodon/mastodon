@@ -23,9 +23,9 @@ class Keys::QueryService < BaseService
 
     def initialize(attributes = {})
       super(
-        device_id:       attributes[:device_id],
-        name:            attributes[:name],
-        identity_key:    attributes[:identity_key],
+        device_id: attributes[:device_id],
+        name: attributes[:name],
+        identity_key: attributes[:identity_key],
         fingerprint_key: attributes[:fingerprint_key],
       )
       @claim_url = attributes[:claim_url]

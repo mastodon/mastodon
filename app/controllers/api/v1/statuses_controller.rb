@@ -24,11 +24,14 @@ class Api::V1::StatusesController < Api::BaseController
   DESCENDANTS_DEPTH_LIMIT = 20
 
   def show
+    cache_if_unauthenticated!
     @status = cache_collection([@status], Status).first
     render json: @status, serializer: REST::StatusSerializer
   end
 
   def context
+    cache_if_unauthenticated!
+
     ancestors_limit         = CONTEXT_LIMIT
     descendants_limit       = CONTEXT_LIMIT
     descendants_depth_limit = nil
@@ -63,11 +66,18 @@ class Api::V1::StatusesController < Api::BaseController
       scheduled_at: status_params[:scheduled_at],
       application: doorkeeper_token.application,
       poll: status_params[:poll],
+      allowed_mentions: status_params[:allowed_mentions],
       idempotency: request.headers['Idempotency-Key'],
       with_rate_limit: true
     )
 
     render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
+  rescue PostStatusService::UnexpectedMentionsError => e
+    unexpected_accounts = ActiveModel::Serializer::CollectionSerializer.new(
+      e.accounts,
+      serializer: REST::AccountSerializer
+    )
+    render json: { error: e.message, unexpected_accounts: unexpected_accounts }, status: 422
   end
 
   def update
@@ -128,6 +138,7 @@ class Api::V1::StatusesController < Api::BaseController
       :visibility,
       :language,
       :scheduled_at,
+      allowed_mentions: [],
       media_ids: [],
       media_attributes: [
         :id,

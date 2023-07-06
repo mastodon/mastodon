@@ -4,6 +4,7 @@ class FetchResourceService < BaseService
   include JsonLdHelper
 
   ACCEPT_HEADER = 'application/activity+json, application/ld+json; profile="https://www.w3.org/ns/activitystreams", text/html;q=0.1'
+  ACTIVITY_STREAM_LINK_TYPES = ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].freeze
 
   attr_reader :response_code
 
@@ -18,7 +19,7 @@ class FetchResourceService < BaseService
 
   private
 
-  def process(url, terminal = false)
+  def process(url, terminal: false)
     @url = url
 
     perform_request { |response| process_response(response, terminal) }
@@ -65,7 +66,7 @@ class FetchResourceService < BaseService
 
   def process_html(response)
     page      = Nokogiri::HTML(response.body_with_limit)
-    json_link = page.xpath('//link[@rel="alternate"]').find { |link| ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(link['type']) }
+    json_link = page.xpath('//link[@rel="alternate"]').find { |link| ACTIVITY_STREAM_LINK_TYPES.include?(link['type']) }
 
     process(json_link['href'], terminal: true) unless json_link.nil?
   end

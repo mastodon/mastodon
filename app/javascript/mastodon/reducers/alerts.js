@@ -1,9 +1,10 @@
+import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+
 import {
   ALERT_SHOW,
   ALERT_DISMISS,
   ALERT_CLEAR,
 } from '../actions/alerts';
-import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
 const initialState = ImmutableList([]);
 

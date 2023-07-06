@@ -12,11 +12,6 @@ Rails.application.configure do
   # preloads Rails for running tests, you may have to set it to true.
   config.eager_load = false
 
-  # Configure public file server for tests with Cache-Control for performance.
-  config.public_file_server.enabled = true
-  config.public_file_server.headers = {
-    'Cache-Control' => "public, max-age=#{1.hour.to_i}"
-  }
   config.assets.digest = false
 
   # Show full error reports and disable caching.
@@ -56,9 +51,15 @@ Rails.application.configure do
 
   config.i18n.default_locale = :en
   config.i18n.fallbacks = true
+
+  config.to_prepare do
+    # Force Status to always be SHAPE_TOO_COMPLEX
+    # Ref: https://github.com/mastodon/mastodon/issues/23644
+    10.times { |i| Status.allocate.instance_variable_set(:"@ivar_#{i}", nil) }
+  end
 end
 
-Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
+Paperclip::Attachment.default_options[:path] = Rails.root.join('spec', 'test_files', ':class', ':id_partition', ':style.:extension')
 
 # set fake_data for pam, don't do real calls, just use fake data
 if ENV['PAM_ENABLED'] == 'true'
@@ -73,3 +74,5 @@ end
 
 # Catch serialization warnings early
 Sidekiq.strict_args!
+
+Redis.raise_deprecations = true

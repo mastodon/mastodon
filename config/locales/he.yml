@@ -95,6 +95,7 @@ he:
       moderation:
         active: פעילים
         all: הכל
+        disabled: מושבת
         pending: בהמתנה
         silenced: מוגבלים
         suspended: מושהים
@@ -130,8 +131,8 @@ he:
       removed_header_msg: תמונת הראשה של %{username} הוסרה בהצלחה
       resend_confirmation:
         already_confirmed: משתמש זה כבר אושר
-        send: שלח מחדש דוא"ל אימות
-        success: הודעת האימייל נשלחה בהצלחה!
+        send: שלח מחדש קישור לאימות
+        success: קישור מאמת נשלח בהצלחה!
       reset: איפוס
       reset_password: איפוס סיסמה
       resubscribe: להרשם מחדש
@@ -139,6 +140,7 @@ he:
       search: חיפוש
       search_same_email_domain: משתמשים אחרים מאותו דומיין דוא"ל
       search_same_ip: משתמשים אחרים מאותה כתובת IP
+      security: אבטחה
       security_measures:
         only_password: סיסמה בלבד
         password_and_2fa: סיסמה ואימות דו-שלבי
@@ -443,6 +445,7 @@ he:
         resolve: פתור דומיין
         title: חסימת דומיין דוא"ל
       no_email_domain_block_selected: לא בוצעו שינויים לחסימת דומייני דוא"ל שכן לא נבחרו דומיינים
+      not_permitted: נאסר
       resolved_dns_records_hint_html: שם הדומיין מוביל לדומייניי ה-MX הבאים, שהם בסופו של דבר אחראיים לקבלת דוא"ל. חסימת דומיין MX תוביל לחסימת הרשמות מכל כתובת דוא"ל שעושה שימוש בדומיין MX זה, אפילו אם הדומיין הגלוי שונה. <strong>יש להמנע מלחסום ספקי דוא"ל מובילים.</strong>
       resolved_through_html: נמצא דרך %{domain}
       title: דומייניי דוא"ל חסומים
@@ -493,6 +496,7 @@ he:
       content_policies:
         comment: הערה פנימית
         description_html: ביכולתך להגדיר מדיניות תוכן שתופעל על כל החשבונות מדומיין זה ומתת-דומייניו.
+        limited_federation_mode_description_html: ניתן לבחור אם להרשות תקשורת הדדית עם שרת זה.
         policies:
           reject_media: דחיית מדיה
           reject_reports: דחיית דו"חות
@@ -535,7 +539,7 @@ he:
       public_comment: תגובה פומבית
       purge: טיהור
       purge_description_html: אם יש יסוד להניח שדומיין זה מנותק לעד, ניתן למחוק את כל רשומות החשבונות והמידע המשוייך לדומיין זה משטח האפסון שלך. זה עשוי לקחת זמן מה.
-      title: שרתים מוכרים
+      title: שרתים בפדרציה
       total_blocked_by_us: חסום על ידינו
       total_followed_by_them: נעקב על ידם
       total_followed_by_us: נעקב על ידינו
@@ -609,11 +613,13 @@ he:
       assign_to_self: הקצה אלי
       assigned: מנחה מוקצה
       by_target_domain: דומיין החשבון המדווח
+      cancel: ביטול
       category: קטגוריה
       category_description_html: הסיבה בגללה חשבון זה ו/או תוכנו דווחו תצוטט בתקשורת עם החשבון המדווח
       comment:
         none: ללא
       comment_description_html: 'על מנת לספק עוד מידע, %{name} כתב\ה:'
+      confirm: אישור
       confirm_action: נא לאשר פעולת משמעת לגבי חשבון %{acct}
       created_at: מדווח
       delete_and_resolve: מחיקת הודעות
@@ -820,6 +826,7 @@ he:
         suspend: "%{name} השעה/תה את חשבונו/ה של %{target}"
       appeal_approved: עורער
       appeal_pending: בהמתנה לערעור
+      appeal_rejected: הערעור נדחה
     system_checks:
       database_schema_check:
         message_html: נדרשות הגירות מבני נתונים. אנא הריצו אותן כדי להבטיח שהיישום מתנהג כצפוי
@@ -833,6 +840,12 @@ he:
         message_html: לא הוגדרו שום כללי שרת.
       sidekiq_process_check:
         message_html: שום הליכי Sidekiq לא רצים עבור %{value} תור(ות). בחנו בבקשה את הגדרות Sidekiq
+      upload_check_privacy_error:
+        action: למידע נוסף
+        message_html: "<strong>שרת הווב שלך אינו מכוון כראוי. פרטיות המשתמשות והמשתמשים שלך בסכנה.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: למידע נוסף
+        message_html: "<strong>שרות אחסון הענן שלך אינו מוגדר כראוי. פרטיות המשתמשות והמשתמשים שלך בסכנה.</strong>"
     tags:
       review: סקירת מצב
       updated_msg: הגדרות תגיות עודכנו בהצלחה
@@ -857,6 +870,7 @@ he:
           two: הופץ על ידי %{count} אנשים בשבוע האחרון
         title: קישוריות חמות
         usage_comparison: הופץ %{today} פעמים היום, לעומת %{yesterday} אתמול
+      not_allowed_to_trend: לא מורשה להופיע כנושא חם
       only_allowed: רק כאלה שהותרו
       pending_review: בהמתנה לבדיקה
       preview_card_providers:
@@ -994,13 +1008,13 @@ he:
   applications:
     created: ישום נוצר בהצלחה
     destroyed: ישום נמחק בהצלחה
+    logout: יציאה
     regenerate_token: יצירת אסימון גישה מחדש
     token_regenerated: אסימון גישה יוצר מחדש בהצלחה
     warning: זהירות רבה נדרשת עם מידע זה. אין לחלוק אותו אף פעם עם אף אחד!
     your_token: אסימון הגישה שלך
   auth:
     apply_for_account: הגשת בקשה לחשבון
-    change_password: סיסמה
     confirmations:
       wrong_email_hint: אם כתובת הדואל הזו איננה נכונה, ניתן לשנות אותה בעמוד ההגדרות.
     delete_account: מחיקת חשבון
@@ -1009,7 +1023,7 @@ he:
       prefix_invited_by_user: "@%{name} רוצה שתצטרף לשרת זה במסטודון!"
       prefix_sign_up: הרשם/י למסטודון היום!
       suffix: כבעל/ת חשבון, תוכל/י לעקוב אחרי אנשים, לפרסם עדכונים ולהחליף חצרוצים עם משתמשים מכל שרת מסטודון ועוד!
-    didnt_get_confirmation: לא התקבלו הוראות אימות?
+    didnt_get_confirmation: לא קיבלת את קישור האימות?
     dont_have_your_security_key: אין לך מפתח אבטחה?
     forgot_password: הנשתכחה סיסמתך?
     invalid_reset_password_token: טוקן איפוס הסיסמה אינו תקין או שפג תוקף. נא לבקש אחד חדש.
@@ -1022,26 +1036,36 @@ he:
     migrate_account_html: אם ברצונך להכווין את החשבון לעבר חשבון אחר, ניתן <a href="%{path}">להגדיר זאת כאן</a>.
     or_log_in_with: או התחבר באמצעות
     privacy_policy_agreement_html: קראתי והסכמתי ל<a href="%{privacy_policy_path}" target="_blank">מדיניות הפרטיות</a>
+    progress:
+      confirm: אימות כתובת הדואל
+      details: הפרטים שלך
+      review: הבדיקה שלנו
+      rules: הסכמה לתקנות
     providers:
       cas: CAS
       saml: SAML
     register: הרשמה
     registration_closed: "%{instance} לא מקבל חברים חדשים"
-    resend_confirmation: שלח הוראות אימות בשנית
+    resend_confirmation: שלח מחדש קישור לאימות
     reset_password: איפוס סיסמה
     rules:
+      accept: הסכמה
+      back: בחזרה
       preamble: אלו נקבעים ונאכפים ע"י המנחים של %{domain}.
       title: כמה חוקים בסיסיים.
     security: אבטחה
     set_new_password: סיסמה חדשה
     setup:
-      email_below_hint_html: אם כתובת הדוא"ל להלן לא נכונה, ניתן לשנותה כאן ולקבל דוא"ל אישור חדש.
-      email_settings_hint_html: דוא"ל האישור נשלח ל-%{email}. אם כתובת הדוא"ל הזו לא נכונה, ניתן לשנותה בהגדרות החשבון.
-      title: הגדרות
+      email_below_hint_html: אנא בדקו בתיקיית הספאם, או בקשו קוד חדש. ניתן לתקן את הכתובת אם נפלה תקלדה.
+      email_settings_hint_html: לחצו על הקישור שנשלח כדי לאשר את הכתובת %{email}. אנו ממתינים פה.
+      link_not_received: לא קיבלת קישור?
+      new_confirmation_instructions_sent: אתם עומדים לקבל הודעת דואל חדשה עם קיש/ור אימות בדקות הקרובות!
+      title: בדוק/בדקי את תיבת הדואר הנכנס שלך
     sign_in:
       preamble_html: הכנס.י עם שם וסיסמא מאתר <strong>%{domain}</strong>. אם חשבונך מתארח בשרת אחר, לא ניתן להתחבר איתו פה.
       title: התחבר אל %{domain}
     sign_up:
+      manual_review: פתיחת חשבון אצל %{domain} עוברת בדיקה ידנית על ידי הצוות שלנו. כדי לסייע בתהליך הרישום שלכןם, כתבו לנו על עצמכןם ולמה אתןם רוצותים חשבון בשרת %{domain}.
       preamble: כיוון שמסטודון מבוזרת, תוכל/י להשתמש בחשבון שלך משרתי מסטודון או רשתות תואמות אחרות אם אין לך חשבון על שרת זה.
       title: הבה ניצור לך חשבון בשרת %{domain}.
     status:
@@ -1177,7 +1201,7 @@ he:
   featured_tags:
     add_new: הוספת חדש
     errors:
-      limit: המספר המירבי של התגיות כבר מוצג
+      limit: הצגת כבר את המספר המירבי של תגיות נבחרות
     hint_html: "<strong>מהן תגיות נבחרות?</strong> הן מוצגות במובלט בפרופיל הפומבי שלך ומאפשר לאנשים לעיין בהודעות הפומביות שלך המסומנות בתגיות אלה. הן כלי אדיר למעקב אחר עבודות יצירה ופרוייקטים לטווח ארוך."
   filters:
     contexts:
@@ -1227,8 +1251,6 @@ he:
       index:
         hint: סנן זה חל באופן של בחירת הודעות בודדות ללא תלות בקריטריונים אחרים. תוכלו להוסיף עוד הודעות לסנן זה ממנשק הווב.
         title: הודעות שסוננו
-  footer:
-    trending_now: נושאים חמים
   generic:
     all: הכל
     all_items_on_page_selected_html:
@@ -1259,8 +1281,6 @@ he:
       one: משהו עדיין לא בסדר! נא לעיין בשגיאה להלן
       other: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן
       two: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן
-  html_validator:
-    invalid_markup: 'מכיל קוד HTML לא תקין: %{error}'
   imports:
     errors:
       invalid_csv_file: 'קובץ CSV שבור. שגיאה: %{error}'
@@ -1305,7 +1325,7 @@ he:
     title: הזמנת אנשים
   lists:
     errors:
-      limit: הגעת למספר הרשימות המירבי.
+      limit: הגעת למספר הרשימות המירבי
   login_activities:
     authentication_methods:
       otp: יישומון אימות דו-שלבי
@@ -1450,6 +1470,7 @@ he:
     confirm_remove_selected_followers: האם את/ה בטוח/ה שברצונך להסיר את העוקבים שסומנו?
     confirm_remove_selected_follows: האם את/ה בטוח/ה שברצונך להסיר את הנעקבים שסומנו?
     dormant: רדומים
+    follow_failure: נכשלה העקיבה אחרי חלק מהחשבונות שבחרת.
     follow_selected_followers: עקוב אחר הנעקבים שנבחרו
     followers: עוקבים
     following: נעקבים
@@ -1489,6 +1510,7 @@ he:
       electron: אלקטרון
       firefox: פיירפוקס
       generic: דפדפן לא ידוע
+      huawei_browser: דפדפן וואווי
       ie: אינטרנט אקספלורר
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1498,6 +1520,7 @@ he:
       qq: דפדפן QQ
       safari: ספארי
       uc_browser: דפדפן UC
+      unknown_browser: דפדפן לא מזוהה
       weibo: Weibo
     current_session: חיבור נוכחי
     description: "%{browser} על %{platform}"
@@ -1510,9 +1533,10 @@ he:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: מערכת הפעלה KaiOS
       linux: לינוקס
       mac: macOS
-      other: סביבה לא ידועה
+      unknown_platform: פלטפורמה לא מזוהה
       windows: חלונות
       windows_mobile: חלונות מובייל
       windows_phone: טלפון חלונות
@@ -1637,7 +1661,7 @@ he:
       '7889238': 3 חודשים
     min_age_label: סף גיל
     min_favs: השאר הודעות מחובבות לפחות
-    min_favs_hint: לא מוחק מי מהודעותיך שקיבלו לפחות את המספר הזה של חיבובים. להשאיר ריק כדי למחוק הודעות ללא קשר למספר החיבובים שקיבלו
+    min_favs_hint: לא תימחקנה הודעות שלך שקיבלו לפחות מספר זה של חיבובים. אם יישאר ריק, הודעות תימחקנה ללא תלות במספר החיבובים שלהן.
     min_reblogs: שמור הודעות מהודהדות לפחות
     min_reblogs_hint: לא מוחק מי מהודעותיך שקיבלו לפחות את המספר הזה של הדהודים. להשאיר ריק כדי למחוק הודעות ללא קשר למספר ההדהודים שקיבלו
   stream_entries:
@@ -1737,12 +1761,12 @@ he:
       title: ברוך/ה הבא/ה, %{name} !
   users:
     follow_limit_reached: לא תוכל לעקוב אחר יותר מ %{limit} אנשים
+    go_to_sso_account_settings: מעבר לאפיוני החשבון שלך בשרת הזהות
     invalid_otp_token: קוד דו-שלבי שגוי
     otp_lost_help_html: אם איבדת גישה לשניהם, ניתן ליצור קשר ב-%{email}
     seamless_external_login: את.ה מחובר דרך שירות חיצוני, לכן אפשרויות הסיסמא והדוא"ל לא מאופשרות.
     signed_in_as: 'מחובר בתור:'
   verification:
-    explanation_html: 'ניתן <strong>לאמת את עצמך כבעלים של הקישורית במטא-נתונים של פרופילך</strong>. כדי לעשות זאת, האתר המקושר חייב להכיל קישורית חוזרת לפרופיל המסטודון שלך. הקישורית החוזרת <strong>חייבת</strong> להכיל תכונת <code>rel="me"</code>. התוכן הטקסטואלי של הקישורית לא משנה. הנה דוגמא:'
     verification: אימות
   webauthn_credentials:
     add: הוספת מפתח אבטחה חדש

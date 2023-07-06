@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe AccountStatusesCleanupService, type: :service do
@@ -18,13 +20,13 @@ describe AccountStatusesCleanupService, type: :service do
       let!(:another_old_status) { Fabricate(:status, created_at: 1.year.ago, account: account) }
       let!(:recent_status)      { Fabricate(:status, created_at: 1.day.ago, account: account) }
 
-      context 'given a budget of 1' do
+      context 'when given a budget of 1' do
         it 'reports 1 deleted toot' do
           expect(subject.call(account_policy, 1)).to eq 1
         end
       end
 
-      context 'given a normal budget of 10' do
+      context 'when given a normal budget of 10' do
         it 'reports 3 deleted statuses' do
           expect(subject.call(account_policy, 10)).to eq 3
         end
@@ -42,8 +44,8 @@ describe AccountStatusesCleanupService, type: :service do
 
       context 'when called repeatedly with a budget of 2' do
         it 'reports 2 then 1 deleted statuses' do
-         expect(subject.call(account_policy, 2)).to eq 2
-         expect(subject.call(account_policy, 2)).to eq 1
+          expect(subject.call(account_policy, 2)).to eq 2
+          expect(subject.call(account_policy, 2)).to eq 1
         end
 
         it 'actually deletes the statuses in the expected order' do

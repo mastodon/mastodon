@@ -37,7 +37,7 @@
       .dashboard__counters__num= number_to_human_size @account.media_attachments.sum('file_file_size')
       .dashboard__counters__label= t 'admin.accounts.media_attachments'
   %div
-    = link_to admin_account_relationships_path(@account.id, location: 'local', relationship: 'followed_by') do
+    = link_to admin_account_relationships_path(@account.id, location: @account.local? ? nil : 'local', relationship: 'followed_by') do
       .dashboard__counters__num= number_with_delimiter @account.local_followers_count
       .dashboard__counters__label= t 'admin.accounts.followers'
   %div
@@ -187,7 +187,7 @@
             %th= t('admin.accounts.shared_inbox_url')
             %td
               = @account.shared_inbox_url
-              = fa_icon DeliveryFailureTracker.available?(@account.shared_inbox_url) ? 'check': 'times'
+              = fa_icon DeliveryFailureTracker.available?(@account.shared_inbox_url) ? 'check' : 'times'
             %td
               - if @domain_block.nil?
                 = table_link_to 'ban', t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @account.domain)
@@ -206,7 +206,7 @@
     - if @deletion_request.present?
       = link_to t('admin.accounts.delete'), admin_account_path(@account.id), method: :delete, class: 'button button--destructive', data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, @account)
   - else
-    %div.action-buttons
+    .action-buttons
       %div
         - if @account.local? && @account.user_approved?
           = link_to t('admin.accounts.warn'), new_admin_account_action_path(@account.id, type: 'none'), class: 'button' if can?(:warn, @account)
@@ -276,9 +276,9 @@
   %hr.spacer/
 
   - if @account.user&.invite_request&.text&.present?
-    %div.speech-bubble
-      %div.speech-bubble__bubble
+    .speech-bubble
+      .speech-bubble__bubble
         = @account.user&.invite_request&.text
-      %div.speech-bubble__owner
+      .speech-bubble__owner
         = admin_account_link_to @account
         = t('admin.accounts.invite_request_text')

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::InstancesController, type: :controller do
+RSpec.describe Api::V1::InstancesController do
   render_views
 
   let(:user)  { Fabricate(:user) }

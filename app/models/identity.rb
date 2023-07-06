@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: identities
@@ -12,7 +13,7 @@
 #
 
 class Identity < ApplicationRecord
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
   validates :uid, presence: true, uniqueness: { scope: :provider }
   validates :provider, presence: true
 

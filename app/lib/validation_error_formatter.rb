@@ -19,7 +19,7 @@ class ValidationErrorFormatter
       messages = errors.messages[attribute_name]
 
       h[@aliases[attribute_name] || attribute_name] = attribute_errors.map.with_index do |error, index|
-        { error: 'ERR_' + error[:error].to_s.upcase, description: messages[index] }
+        { error: "ERR_#{error[:error].to_s.upcase}", description: messages[index] }
       end
     end
 

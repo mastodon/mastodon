@@ -24,7 +24,7 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def dismiss
-    current_account.notifications.find_by!(id: params[:id]).destroy!
+    current_account.notifications.find(params[:id]).destroy!
     render_empty
   end
 
@@ -58,15 +58,11 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def next_path
-    unless @notifications.empty?
-      api_v1_notifications_url pagination_params(max_id: pagination_max_id)
-    end
+    api_v1_notifications_url pagination_params(max_id: pagination_max_id) unless @notifications.empty?
   end
 
   def prev_path
-    unless @notifications.empty?
-      api_v1_notifications_url pagination_params(min_id: pagination_since_id)
-    end
+    api_v1_notifications_url pagination_params(min_id: pagination_since_id) unless @notifications.empty?
   end
 
   def pagination_max_id

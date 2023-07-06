@@ -89,6 +89,7 @@ vi:
       moderation:
         active: Hoạt động
         all: Tất cả
+        disabled: Đã tắt
         pending: Chờ
         silenced: Hạn chế
         suspended: Vô hiệu hóa
@@ -122,7 +123,7 @@ vi:
       resend_confirmation:
         already_confirmed: Người này đã được xác minh
         send: Gửi lại email xác nhận
-        success: Email xác nhận đã gửi thành công!
+        success: Xác nhận đã được gửi đi thành công!
       reset: Đặt lại
       reset_password: Đặt lại mật khẩu
       resubscribe: Đăng ký lại
@@ -130,6 +131,7 @@ vi:
       search: Tìm kiếm
       search_same_email_domain: Tra cứu email
       search_same_ip: Tra cứu IP
+      security: Bảo mật
       security_measures:
         only_password: Chỉ mật khẩu
         password_and_2fa: Mật khẩu và 2FA
@@ -419,6 +421,7 @@ vi:
         resolve: Xử lý tên miền
         title: Chặn tên miền email mới
       no_email_domain_block_selected: Không có chặn e-mail nào thay đổi vì không có mục nào được chọn
+      not_permitted: Không cho phép
       resolved_dns_records_hint_html: Tên miền phân giải thành các tên miền MX sau, các tên miền này chịu trách nhiệm cuối cùng trong việc chấp nhận email. Chặn tên miền MX sẽ chặn đăng ký từ bất kỳ địa chỉ email nào sử dụng cùng một tên miền MX, ngay cả khi tên miền hiển thị là khác. <strong>Cẩn thận đừng chặn những dịch vụ email lớn.</strong>
       resolved_through_html: Đã xử lý thông qua %{domain}
       title: Tên miền email đã chặn
@@ -463,6 +466,7 @@ vi:
       content_policies:
         comment: Lưu ý nội bộ
         description_html: Bạn có thể xác định các chính sách nội dung sẽ được áp dụng cho tất cả các tài khoản trên máy chủ này và bất kỳ tên miền phụ nào của nó.
+        limited_federation_mode_description_html: Bạn có thể chọn nếu muốn cho phép liên hợp với máy chủ này.
         policies:
           reject_media: Từ chối media
           reject_reports: Từ chối báo cáo
@@ -573,11 +577,13 @@ vi:
       assign_to_self: Giao cho tôi
       assigned: Người xử lý
       by_target_domain: Tên tài khoản bị báo cáo
+      cancel: Hủy bỏ
       category: Phân loại
       category_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn khi giao tiếp với họ
       comment:
         none: Không có mô tả
       comment_description_html: "%{name} cho biết thêm:"
+      confirm: Xác nhận
       confirm_action: Xác nhận kiểm duyệt với %{acct}
       created_at: Báo cáo lúc
       delete_and_resolve: Xóa tút
@@ -778,6 +784,7 @@ vi:
         suspend: "%{name} đã vô hiệu hóa %{target}"
       appeal_approved: Đã khiếu nại
       appeal_pending: Đang kháng cáo
+      appeal_rejected: Khiếu nại bị từ chối
     system_checks:
       database_schema_check:
         message_html: Có cơ sở dữ liệu đang chờ xử lý. Xin khởi động nó để ứng dụng có thể hoạt động một cách ổn định nhất
@@ -791,6 +798,12 @@ vi:
         message_html: Bạn chưa cập nhật nội quy máy chủ.
       sidekiq_process_check:
         message_html: Sidekiq không hoạt động khi truy vấn %{value}. Hãy kiểm tra lại cấu hình Sidekiq
+      upload_check_privacy_error:
+        action: Nhấn vào đây để biết thêm thông tin
+        message_html: "<strong>Máy chủ web của bạn bị cấu hình sai. Có nguy cơ ảnh hưởng bảo mật của người dùng.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Nhấn vào đây để biết thêm thông tin
+        message_html: "<strong>Lưu trữ đối tượng của bạn bị cấu hình sai. Có nguy cơ ảnh hưởng bảo mật của người dùng.</strong>"
     tags:
       review: Phê duyệt
       updated_msg: Hashtag đã được cập nhật thành công
@@ -812,6 +825,7 @@ vi:
           other: "%{count} người chia sẻ tuần rồi"
         title: Liên kết nổi bật
         usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
+      not_allowed_to_trend: Không được phép thành xu hướng
       only_allowed: Chỉ cho phép
       pending_review: Đang chờ
       preview_card_providers:
@@ -940,13 +954,13 @@ vi:
   applications:
     created: Đơn đăng ký được tạo thành công
     destroyed: Đã xóa đơn đăng ký
+    logout: Đăng xuất
     regenerate_token: Tạo lại mã truy cập
     token_regenerated: Mã truy cập được tạo lại thành công
     warning: Hãy rất cẩn thận với dữ liệu này. Không bao giờ chia sẻ nó với bất cứ ai!
     your_token: Mã truy cập của bạn
   auth:
     apply_for_account: Xin đăng ký
-    change_password: Mật khẩu
     confirmations:
       wrong_email_hint: Nếu địa chỉ email đó không chính xác, bạn có thể thay đổi nó trong cài đặt tài khoản.
     delete_account: Xóa tài khoản
@@ -955,7 +969,7 @@ vi:
       prefix_invited_by_user: "@%{name} mời bạn tham gia máy chủ Mastodon này!"
       prefix_sign_up: Tham gia Mastodon ngay hôm nay!
       suffix: Với tài khoản, bạn sẽ có thể theo dõi mọi người, đăng tút và nhắn tin với người từ bất kỳ máy chủ Mastodon khác!
-    didnt_get_confirmation: Gửi lại email xác minh?
+    didnt_get_confirmation: Không nhận được email yêu cầu xác thực?
     dont_have_your_security_key: Bạn có khóa bảo mật chưa?
     forgot_password: Quên mật khẩu
     invalid_reset_password_token: Mã đặt lại mật khẩu không hợp lệ hoặc hết hạn. Vui lòng yêu cầu một cái mới.
@@ -968,26 +982,36 @@ vi:
     migrate_account_html: Nếu bạn muốn bỏ tài khoản này để dùng một tài khoản khác, bạn có thể <a href="%{path}">thiết lập tại đây</a>.
     or_log_in_with: Hoặc đăng nhập bằng
     privacy_policy_agreement_html: Tôi đã đọc và đồng ý <a href="%{privacy_policy_path}" target="_blank">chính sách bảo mật</a>
+    progress:
+      confirm: Xác minh email
+      details: Thông tin của bạn
+      review: Đợi duyệt
+      rules: Đọc nội quy
     providers:
       cas: CAS
       saml: SAML
     register: Đăng ký
     registration_closed: "%{instance} tạm ngưng đăng ký mới"
-    resend_confirmation: Gửi lại email xác minh
+    resend_confirmation: Gửi lại email xác nhận
     reset_password: Đặt lại mật khẩu
     rules:
+      accept: Chấp nhận
+      back: Quay lại
       preamble: Được ban hành và áp dụng bởi quản trị máy chủ %{domain}.
       title: Nội quy máy chủ.
     security: Bảo mật
     set_new_password: Đặt mật khẩu mới
     setup:
-      email_below_hint_html: Nếu địa chỉ email dưới đây không chính xác, bạn có thể thay đổi địa chỉ tại đây và nhận email xác nhận mới.
-      email_settings_hint_html: Email xác minh đã được gửi tới %{email}. Nếu địa chỉ email đó không chính xác, bạn có thể thay đổi nó trong cài đặt tài khoản.
-      title: Thiết lập
+      email_below_hint_html: Kiểm tra thư rác của bạn hoặc yêu cầu gửi lại. Bạn có thể sửa địa chỉ email của mình nếu sai.
+      email_settings_hint_html: Nhấn vào liên kết chúng tôi vừa gửi để xác minh %{email}. Nhanh nhé bạn.
+      link_not_received: Không nhận được mã?
+      new_confirmation_instructions_sent: Bạn sẽ nhận được một email mới với liên kết xác nhận sau vài phút!
+      title: Kiểm tra hộp thư của bạn
     sign_in:
       preamble_html: Đăng nhập bằng tài khoản <strong>%{domain}</strong>. Nếu tài khoản của bạn được lưu trữ trên một máy chủ khác, bạn sẽ không thể đăng nhập tại đây.
       title: Đăng nhập %{domain}
     sign_up:
+      manual_review: Đăng ký trên %{domain} cần duyệt thủ công. Để giúp chúng tôi xử lý nhanh, hãy viết một chút về bản thân và lý do bạn muốn có một tài khoản trên %{domain}.
       preamble: Với tài khoản trên máy chủ Mastodon này, bạn sẽ có thể theo dõi bất kỳ người nào trên các máy chủ khác, bất kể tài khoản của họ ở đâu.
       title: Cho phép bạn đăng ký trên %{domain}.
     status:
@@ -1164,8 +1188,6 @@ vi:
       index:
         hint: Bộ lọc này áp dụng để chọn các tút riêng lẻ bất kể các tiêu chí khác. Bạn có thể thêm các tút khác vào bộ lọc này từ giao diện web.
         title: Những tút đã lọc
-  footer:
-    trending_now: Thịnh hành
   generic:
     all: Tất cả
     all_items_on_page_selected_html:
@@ -1184,8 +1206,6 @@ vi:
     today: hôm nay
     validation_errors:
       other: Đã có %{count} lỗi xảy ra! Xem chi tiết bên dưới
-  html_validator:
-    invalid_markup: 'chứa đánh dấu HTML không hợp lệ: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Tập tin CSV không hợp lệ. Lỗi: %{error}'
@@ -1372,6 +1392,7 @@ vi:
     confirm_remove_selected_followers: Bạn có chắc muốn bỏ theo dõi những người đã chọn?
     confirm_remove_selected_follows: Bạn có chắc muốn xoá những người theo dõi bạn đã chọn không?
     dormant: Chưa
+    follow_failure: Không thể theo dõi một số tài khoản đã chọn.
     follow_selected_followers: Theo dõi những người đã chọn
     followers: Người theo dõi
     following: Đang theo dõi
@@ -1411,6 +1432,7 @@ vi:
       electron: Electron
       firefox: Firefox
       generic: Trình duyệt khác
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMes hành khách
       nokia: Trình duyệt Nokia S40 Ovi
@@ -1420,6 +1442,7 @@ vi:
       qq: QQ
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Trình duyệt khác
       weibo: Weibo
     current_session: Phiên hiện tại
     description: "%{browser} trên %{platform}"
@@ -1432,9 +1455,10 @@ vi:
       chrome_os: ChromeOS
       firefox_os: Hệ điều hành Firefox
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: nền tảng khác
+      unknown_platform: Nền tảng khác
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Điện thoại Windows
@@ -1641,12 +1665,12 @@ vi:
       title: Xin chào %{name}!
   users:
     follow_limit_reached: Bạn chỉ có thể theo dõi tối đa %{limit} người
+    go_to_sso_account_settings: Thiết lập tài khoản nhà cung cấp danh tính
     invalid_otp_token: Mã xác minh 2 bước không hợp lệ
     otp_lost_help_html: Nếu bạn mất quyền truy cập vào cả hai, bạn có thể đăng nhập bằng %{email}
     seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy mật khẩu và email không khả dụng.
     signed_in_as: 'Đăng nhập với tư cách là:'
   verification:
-    explanation_html: 'Bạn có thể <strong>xác minh mình là chủ sở hữu của các trang web</strong> ở đầu trang hồ sơ của bạn. Để xác minh, trang web <strong>phải chèn mã</strong> <code>rel="me"</code>. Văn bản thay thế cho liên kết không quan trọng. Đây là một ví dụ:'
     verification: Xác minh
   webauthn_credentials:
     add: Thêm khóa bảo mật mới

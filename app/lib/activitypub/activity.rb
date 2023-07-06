@@ -153,6 +153,7 @@ class ActivityPub::Activity
   def fetch_remote_original_status
     if object_uri.start_with?('http')
       return if ActivityPub::TagManager.instance.local_uri?(object_uri)
+
       ActivityPub::FetchRemoteStatusService.new.call(object_uri, id: true, on_behalf_of: @account.followers.local.first, request_id: @options[:request_id])
     elsif @object['url'].present?
       ::FetchRemoteStatusService.new.call(@object['url'], request_id: @options[:request_id])

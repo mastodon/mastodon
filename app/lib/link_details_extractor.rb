@@ -7,15 +7,15 @@ class LinkDetailsExtractor
   # Some publications wrap their JSON-LD data in their <script> tags
   # in commented-out CDATA blocks, they need to be removed before
   # attempting to parse JSON
-  CDATA_JUNK_PATTERN = %r{^[\s]*(
-    (/\*[\s]*<!\[CDATA\[[\s]*\*/) # Block comment style opening
+  CDATA_JUNK_PATTERN = %r{^\s*(
+    (/\*\s*<!\[CDATA\[\s*\*/) # Block comment style opening
     |
-    (//[\s]*<!\[CDATA\[) # Single-line comment style opening
+    (//\s*<!\[CDATA\[) # Single-line comment style opening
     |
-    (/\*[\s]*\]\]>[\s]*\*/) # Block comment style closing
+    (/\*\s*\]\]>\s*\*/) # Block comment style closing
     |
-    (//[\s]*\]\]>) # Single-line comment style closing
-  )[\s]*$}x
+    (//\s*\]\]>) # Single-line comment style closing
+  )\s*$}x
 
   class StructuredData
     SUPPORTED_TYPES = %w(
@@ -140,7 +140,7 @@ class LinkDetailsExtractor
   end
 
   def html
-    player_url.present? ? content_tag(:iframe, nil, src: player_url, width: width, height: height, allowtransparency: 'true', scrolling: 'no', frameborder: '0') : nil
+    player_url.present? ? content_tag(:iframe, nil, src: player_url, width: width, height: height, allowfullscreen: 'true', allowtransparency: 'true', scrolling: 'no', frameborder: '0') : nil
   end
 
   def width
@@ -188,7 +188,7 @@ class LinkDetailsExtractor
   end
 
   def language
-    valid_locale_or_nil(structured_data&.language || opengraph_tag('og:locale') || document.xpath('//html').map { |element| element['lang'] }.first)
+    valid_locale_or_nil(structured_data&.language || opengraph_tag('og:locale') || document.xpath('//html').pick('lang'))
   end
 
   def icon
@@ -204,7 +204,7 @@ class LinkDetailsExtractor
   def host_to_url(str)
     return if str.blank?
 
-    str.start_with?(/https?:\/\//) ? str : "http://#{str}"
+    str.start_with?(%r{https?://}) ? str : "http://#{str}"
   end
 
   def valid_url_or_nil(str, same_origin_only: false)
@@ -220,38 +220,36 @@ class LinkDetailsExtractor
   end
 
   def link_tag(name)
-    document.xpath("//link[@rel=\"#{name}\"]").map { |link| link['href'] }.first
+    document.xpath("//link[@rel=\"#{name}\"]").pick('href')
   end
 
   def opengraph_tag(name)
-    document.xpath("//meta[@property=\"#{name}\" or @name=\"#{name}\"]").map { |meta| meta['content'] }.first
+    document.xpath("//meta[@property=\"#{name}\" or @name=\"#{name}\"]").pick('content')
   end
 
   def meta_tag(name)
-    document.xpath("//meta[@name=\"#{name}\"]").map { |meta| meta['content'] }.first
+    document.xpath("//meta[@name=\"#{name}\"]").pick('content')
   end
 
   def structured_data
-    @structured_data ||= begin
-      # Some publications have more than one JSON-LD definition on the page,
-      # and some of those definitions aren't valid JSON either, so we have
-      # to loop through here until we find something that is the right type
-      # and doesn't break
-      document.xpath('//script[@type="application/ld+json"]').filter_map do |element|
-        json_ld = element.content&.gsub(CDATA_JUNK_PATTERN, '')
+    # Some publications have more than one JSON-LD definition on the page,
+    # and some of those definitions aren't valid JSON either, so we have
+    # to loop through here until we find something that is the right type
+    # and doesn't break
+    @structured_data ||= document.xpath('//script[@type="application/ld+json"]').filter_map do |element|
+      json_ld = element.content&.gsub(CDATA_JUNK_PATTERN, '')
 
-        next if json_ld.blank?
+      next if json_ld.blank?
 
-        structured_data = StructuredData.new(html_entities.decode(json_ld))
+      structured_data = StructuredData.new(html_entities.decode(json_ld))
 
-        next unless structured_data.valid?
+      next unless structured_data.valid?
 
-        structured_data
-      rescue Oj::ParseError, EncodingError
-        Rails.logger.debug { "Invalid JSON-LD in #{@original_url}" }
-        next
-      end.first
-    end
+      structured_data
+    rescue Oj::ParseError, EncodingError
+      Rails.logger.debug { "Invalid JSON-LD in #{@original_url}" }
+      next
+    end.first
   end
 
   def document

@@ -1,64 +1,26 @@
 // @ts-check
 
-const os = require('os');
-const throng = require('throng');
+const fs = require('fs');
+const http = require('http');
+const url = require('url');
+
 const dotenv = require('dotenv');
 const express = require('express');
-const http = require('http');
-const redis = require('redis');
-const pg = require('pg');
-const log = require('npmlog');
-const url = require('url');
-const uuid = require('uuid');
-const fs = require('fs');
-const WebSocket = require('ws');
 const { JSDOM } = require('jsdom');
+const log = require('npmlog');
+const pg = require('pg');
+const dbUrlToConfig = require('pg-connection-string').parse;
+const redis = require('redis');
+const uuid = require('uuid');
+const WebSocket = require('ws');
 
-const env = process.env.NODE_ENV || 'development';
-const alwaysRequireAuth = process.env.LIMITED_FEDERATION_MODE === 'true' || process.env.WHITELIST_MODE === 'true' || process.env.AUTHORIZED_FETCH === 'true';
+const environment = process.env.NODE_ENV || 'development';
 
 dotenv.config({
-  path: env === 'production' ? '.env.production' : '.env',
+  path: environment === 'production' ? '.env.production' : '.env',
 });
 
 log.level = process.env.LOG_LEVEL || 'verbose';
-
-/**
- * @param {string} dbUrl
- * @return {Object.<string, any>}
- */
-const dbUrlToConfig = (dbUrl) => {
-  if (!dbUrl) {
-    return {};
-  }
-
-  const params = url.parse(dbUrl, true);
-  const config = {};
-
-  if (params.auth) {
-    [config.user, config.password] = params.auth.split(':');
-  }
-
-  if (params.hostname) {
-    config.host = params.hostname;
-  }
-
-  if (params.port) {
-    config.port = params.port;
-  }
-
-  if (params.pathname) {
-    config.database = params.pathname.split('/')[1];
-  }
-
-  const ssl = params.query && params.query.ssl;
-
-  if (ssl && ssl === 'true' || ssl === '1') {
-    config.ssl = true;
-  }
-
-  return config;
-};
 
 /**
  * @param {Object.<string, any>} defaultConfig
@@ -89,75 +51,105 @@ const redisUrlToClient = async (defaultConfig, redisUrl) => {
   return client;
 };
 
-const numWorkers = +process.env.STREAMING_CLUSTER_NUM || (env === 'development' ? 1 : Math.max(os.cpus().length - 1, 1));
-
 /**
+ * Attempts to safely parse a string as JSON, used when both receiving a message
+ * from redis and when receiving a message from a client over a websocket
+ * connection, this is why it accepts a `req` argument.
  * @param {string} json
- * @param {any} req
- * @return {Object.<string, any>|null}
+ * @param {any?} req
+ * @returns {Object.<string, any>|null}
  */
 const parseJSON = (json, req) => {
   try {
     return JSON.parse(json);
   } catch (err) {
-    if (req.accountId) {
-      log.warn(req.requestId, `Error parsing message from user ${req.accountId}: ${err}`);
+    /* FIXME: This logging isn't great, and should probably be done at the
+     * call-site of parseJSON, not in the method, but this would require changing
+     * the signature of parseJSON to return something akin to a Result type:
+     * [Error|null, null|Object<string,any}], and then handling the error
+     * scenarios.
+     */
+    if (req) {
+      if (req.accountId) {
+        log.warn(req.requestId, `Error parsing message from user ${req.accountId}: ${err}`);
+      } else {
+        log.silly(req.requestId, `Error parsing message from ${req.remoteAddress}: ${err}`);
+      }
     } else {
-      log.silly(req.requestId, `Error parsing message from ${req.remoteAddress}: ${err}`);
+      log.warn(`Error parsing message from redis: ${err}`);
     }
     return null;
   }
 };
 
-const startMaster = () => {
-  if (!process.env.SOCKET && process.env.PORT && isNaN(+process.env.PORT)) {
-    log.warn('UNIX domain socket is now supported by using SOCKET. Please migrate from PORT hack.');
-  }
-
-  log.warn(`Starting streaming API server master with ${numWorkers} workers`);
-};
-
-const startWorker = async (workerId) => {
-  log.warn(`Starting worker ${workerId}`);
-
+/**
+ * @param {Object.<string, any>} env the `process.env` value to read configuration from
+ * @returns {Object.<string, any>} the configuration for the PostgreSQL connection
+ */
+const pgConfigFromEnv = (env) => {
   const pgConfigs = {
     development: {
-      user:     process.env.DB_USER || pg.defaults.user,
-      password: process.env.DB_PASS || pg.defaults.password,
-      database: process.env.DB_NAME || 'mastodon_development',
-      host:     process.env.DB_HOST || pg.defaults.host,
-      port:     process.env.DB_PORT || pg.defaults.port,
+      user:     env.DB_USER || pg.defaults.user,
+      password: env.DB_PASS || pg.defaults.password,
+      database: env.DB_NAME || 'mastodon_development',
+      host:     env.DB_HOST || pg.defaults.host,
+      port:     env.DB_PORT || pg.defaults.port,
     },
 
     production: {
-      user:     process.env.DB_USER || 'mastodon',
-      password: process.env.DB_PASS || '',
-      database: process.env.DB_NAME || 'mastodon_production',
-      host:     process.env.DB_HOST || 'localhost',
-      port:     process.env.DB_PORT || 5432,
+      user:     env.DB_USER || 'mastodon',
+      password: env.DB_PASS || '',
+      database: env.DB_NAME || 'mastodon_production',
+      host:     env.DB_HOST || 'localhost',
+      port:     env.DB_PORT || 5432,
     },
   };
 
-  const app = express();
+  let baseConfig;
 
-  app.set('trust proxy', process.env.TRUSTED_PROXY_IP ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/) : 'loopback,uniquelocal');
+  if (env.DATABASE_URL) {
+    baseConfig = dbUrlToConfig(env.DATABASE_URL);
+  } else {
+    baseConfig = pgConfigs[environment];
 
-  const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL), {
-    max: process.env.DB_POOL || 10,
+    if (env.DB_SSLMODE) {
+      switch(env.DB_SSLMODE) {
+      case 'disable':
+      case '':
+        baseConfig.ssl = false;
+        break;
+      case 'no-verify':
+        baseConfig.ssl = { rejectUnauthorized: false };
+        break;
+      default:
+        baseConfig.ssl = {};
+        break;
+      }
+    }
+  }
+
+  return {
+    ...baseConfig,
+    max: env.DB_POOL || 10,
     connectionTimeoutMillis: 15000,
-    ssl: !!process.env.DB_SSLMODE && process.env.DB_SSLMODE !== 'disable',
-  }));
+    application_name: '',
+  };
+};
 
-  const server = http.createServer(app);
-  const redisNamespace = process.env.REDIS_NAMESPACE || null;
+/**
+ * @param {Object.<string, any>} env the `process.env` value to read configuration from
+ * @returns {Object.<string, any>} configuration for the Redis connection
+ */
+const redisConfigFromEnv = (env) => {
+  const redisNamespace = env.REDIS_NAMESPACE || null;
 
   const redisParams = {
     socket: {
-      host: process.env.REDIS_HOST || '127.0.0.1',
-      port: process.env.REDIS_PORT || 6379,
+      host: env.REDIS_HOST || '127.0.0.1',
+      port: env.REDIS_PORT || 6379,
     },
-    database: process.env.REDIS_DB || 0,
-    password: process.env.REDIS_PASSWORD || undefined,
+    database: env.REDIS_DB || 0,
+    password: env.REDIS_PASSWORD || undefined,
   };
 
   if (redisNamespace) {
@@ -166,17 +158,34 @@ const startWorker = async (workerId) => {
 
   const redisPrefix = redisNamespace ? `${redisNamespace}:` : '';
 
+  return {
+    redisParams,
+    redisPrefix,
+    redisUrl: env.REDIS_URL,
+  };
+};
+
+const startServer = async () => {
+  const app = express();
+
+  app.set('trust proxy', process.env.TRUSTED_PROXY_IP ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/) : 'loopback,uniquelocal');
+
+  const pgPool = new pg.Pool(pgConfigFromEnv(process.env));
+  const server = http.createServer(app);
+
+  const { redisParams, redisUrl, redisPrefix } = redisConfigFromEnv(process.env);
+
   /**
-   * @type {Object.<string, Array.<function(string): void>>}
+   * @type {Object.<string, Array.<function(Object<string, any>): void>>}
    */
   const subs = {};
 
-  const redisSubscribeClient = await redisUrlToClient(redisParams, process.env.REDIS_URL);
-  const redisClient = await redisUrlToClient(redisParams, process.env.REDIS_URL);
+  const redisSubscribeClient = await redisUrlToClient(redisParams, redisUrl);
+  const redisClient = await redisUrlToClient(redisParams, redisUrl);
 
   /**
    * @param {string[]} channels
-   * @return {function(): void}
+   * @returns {function(): void}
    */
   const subscriptionHeartbeat = channels => {
     const interval = 6 * 60;
@@ -207,7 +216,10 @@ const startWorker = async (workerId) => {
       return;
     }
 
-    callbacks.forEach(callback => callback(message));
+    const json = parseJSON(message, null);
+    if (!json) return;
+
+    callbacks.forEach(callback => callback(json));
   };
 
   /**
@@ -229,6 +241,7 @@ const startWorker = async (workerId) => {
 
   /**
    * @param {string} channel
+   * @param {function(Object<string, any>): void} callback
    */
   const unsubscribe = (channel, callback) => {
     log.silly(`Removing listener for ${channel}`);
@@ -260,7 +273,7 @@ const startWorker = async (workerId) => {
 
   /**
    * @param {any} value
-   * @return {boolean}
+   * @returns {boolean}
    */
   const isTruthy = value =>
     value && !FALSE_VALUES.includes(value);
@@ -268,7 +281,7 @@ const startWorker = async (workerId) => {
   /**
    * @param {any} req
    * @param {any} res
-   * @param {function(Error=): void}
+   * @param {function(Error=): void} next
    */
   const allowCrossDomain = (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -281,7 +294,7 @@ const startWorker = async (workerId) => {
   /**
    * @param {any} req
    * @param {any} res
-   * @param {function(Error=): void}
+   * @param {function(Error=): void} next
    */
   const setRequestId = (req, res, next) => {
     req.requestId = uuid.v4();
@@ -293,7 +306,7 @@ const startWorker = async (workerId) => {
   /**
    * @param {any} req
    * @param {any} res
-   * @param {function(Error=): void}
+   * @param {function(Error=): void} next
    */
   const setRemoteAddress = (req, res, next) => {
     req.remoteAddress = req.connection.remoteAddress;
@@ -304,7 +317,7 @@ const startWorker = async (workerId) => {
   /**
    * @param {any} req
    * @param {string[]} necessaryScopes
-   * @return {boolean}
+   * @returns {boolean}
    */
   const isInScope = (req, necessaryScopes) =>
     req.scopes.some(scope => necessaryScopes.includes(scope));
@@ -312,7 +325,7 @@ const startWorker = async (workerId) => {
   /**
    * @param {string} token
    * @param {any} req
-   * @return {Promise.<void>}
+   * @returns {Promise.<void>}
    */
   const accountFromToken = (token, req) => new Promise((resolve, reject) => {
     pgPool.connect((err, client, done) => {
@@ -350,25 +363,19 @@ const startWorker = async (workerId) => {
 
   /**
    * @param {any} req
-   * @param {boolean=} required
-   * @return {Promise.<void>}
+   * @returns {Promise.<void>}
    */
-  const accountFromRequest = (req, required = true) => new Promise((resolve, reject) => {
+  const accountFromRequest = (req) => new Promise((resolve, reject) => {
     const authorization = req.headers.authorization;
     const location      = url.parse(req.url, true);
     const accessToken   = location.query.access_token || req.headers['sec-websocket-protocol'];
 
     if (!authorization && !accessToken) {
-      if (required) {
-        const err = new Error('Missing access token');
-        err.status = 401;
+      const err = new Error('Missing access token');
+      err.status = 401;
 
-        reject(err);
-        return;
-      } else {
-        resolve();
-        return;
-      }
+      reject(err);
+      return;
     }
 
     const token = authorization ? authorization.replace(/^Bearer /, '') : accessToken;
@@ -378,7 +385,7 @@ const startWorker = async (workerId) => {
 
   /**
    * @param {any} req
-   * @return {string}
+   * @returns {string|undefined}
    */
   const channelNameFromPath = req => {
     const { path, query } = req;
@@ -422,7 +429,7 @@ const startWorker = async (workerId) => {
   /**
    * @param {any} req
    * @param {string} channelName
-   * @return {Promise.<void>}
+   * @returns {Promise.<void>}
    */
   const checkScopes = (req, channelName) => new Promise((resolve, reject) => {
     log.silly(req.requestId, `Checking OAuth scopes for ${channelName}`);
@@ -471,7 +478,7 @@ const startWorker = async (workerId) => {
     // variables. OAuth scope checks are moved to the point of subscription
     // to a specific stream.
 
-    accountFromRequest(info.req, alwaysRequireAuth).then(() => {
+    accountFromRequest(info.req).then(() => {
       callback(true, undefined, undefined);
     }).catch(err => {
       log.error(info.req.requestId, err.toString());
@@ -487,15 +494,11 @@ const startWorker = async (workerId) => {
   /**
    * @param {any} req
    * @param {SystemMessageHandlers} eventHandlers
-   * @return {function(string): void}
+   * @returns {function(object): void}
    */
   const createSystemMessageListener = (req, eventHandlers) => {
     return message => {
-      const json = parseJSON(message, req);
-
-      if (!json) return;
-
-      const { event } = json;
+      const { event } = message;
 
       log.silly(req.requestId, `System message for ${req.accountId}: ${event}`);
 
@@ -545,7 +548,7 @@ const startWorker = async (workerId) => {
       return;
     }
 
-    accountFromRequest(req, alwaysRequireAuth).then(() => checkScopes(req, channelNameFromPath(req))).then(() => {
+    accountFromRequest(req).then(() => checkScopes(req, channelNameFromPath(req))).then(() => {
       subscribeHttpToSystemChannel(req, res);
     }).then(() => {
       next();
@@ -575,14 +578,14 @@ const startWorker = async (workerId) => {
   /**
    * @param {array} arr
    * @param {number=} shift
-   * @return {string}
+   * @returns {string}
    */
   const placeholders = (arr, shift = 0) => arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
 
   /**
    * @param {string} listId
    * @param {any} req
-   * @return {Promise.<void>}
+   * @returns {Promise.<void>}
    */
   const authorizeListAccess = (listId, req) => new Promise((resolve, reject) => {
     const { accountId } = req;
@@ -612,19 +615,16 @@ const startWorker = async (workerId) => {
    * @param {function(string, string): void} output
    * @param {function(string[], function(string): void): void} attachCloseHandler
    * @param {boolean=} needsFiltering
-   * @return {function(string): void}
+   * @returns {function(object): void}
    */
   const streamFrom = (ids, req, output, attachCloseHandler, needsFiltering = false) => {
     const accountId = req.accountId || req.remoteAddress;
 
     log.verbose(req.requestId, `Starting stream from ${ids.join(', ')} for ${accountId}`);
 
+    // Currently message is of type string, soon it'll be Record<string, any>
     const listener = message => {
-      const json = parseJSON(message, req);
-
-      if (!json) return;
-
-      const { event, payload, queued_at } = json;
+      const { event, payload, queued_at } = message;
 
       const transmit = () => {
         const now = new Date().getTime();
@@ -775,7 +775,7 @@ const startWorker = async (workerId) => {
   /**
    * @param {any} req
    * @param {any} res
-   * @return {function(string, string): void}
+   * @returns {function(string, string): void}
    */
   const streamToHttp = (req, res) => {
     const accountId = req.accountId || req.remoteAddress;
@@ -802,7 +802,7 @@ const startWorker = async (workerId) => {
   /**
    * @param {any} req
    * @param {function(): void} [closeHandler]
-   * @return {function(string[]): void}
+   * @returns {function(string[]): void}
    */
   const streamHttpEnd = (req, closeHandler = undefined) => (ids) => {
     req.on('close', () => {
@@ -820,7 +820,7 @@ const startWorker = async (workerId) => {
    * @param {any} req
    * @param {any} ws
    * @param {string[]} streamName
-   * @return {function(string, string): void}
+   * @returns {function(string, string): void}
    */
   const streamToWs = (req, ws, streamName) => (event, payload) => {
     if (ws.readyState !== ws.OPEN) {
@@ -828,7 +828,11 @@ const startWorker = async (workerId) => {
       return;
     }
 
-    ws.send(JSON.stringify({ stream: streamName, event, payload }));
+    ws.send(JSON.stringify({ stream: streamName, event, payload }), (err) => {
+      if (err) {
+        log.error(req.requestId, `Failed to send to websocket: ${err}`);
+      }
+    });
   };
 
   /**
@@ -895,7 +899,7 @@ const startWorker = async (workerId) => {
 
   /**
    * @param {any} req
-   * @return {string[]}
+   * @returns {string[]}
    */
   const channelsForUserStream = req => {
     const arr = [`timeline:${req.accountId}`];
@@ -920,7 +924,7 @@ const startWorker = async (workerId) => {
 
   /**
    * @param {string} str
-   * @return {string}
+   * @returns {string}
    */
   const foldToASCII = str => {
     const regex = new RegExp(NON_ASCII_CHARS.split('').join('|'), 'g');
@@ -933,7 +937,7 @@ const startWorker = async (workerId) => {
 
   /**
    * @param {string} str
-   * @return {string}
+   * @returns {string}
    */
   const normalizeHashtag = str => {
     return foldToASCII(str.normalize('NFKC').toLowerCase()).replace(/[^\p{L}\p{N}_\u00b7\u200c]/gu, '');
@@ -943,7 +947,7 @@ const startWorker = async (workerId) => {
    * @param {any} req
    * @param {string} name
    * @param {StreamParams} params
-   * @return {Promise.<{ channelIds: string[], options: { needsFiltering: boolean } }>}
+   * @returns {Promise.<{ channelIds: string[], options: { needsFiltering: boolean } }>}
    */
   const channelNameToIds = (req, name, params) => new Promise((resolve, reject) => {
     switch (name) {
@@ -1051,7 +1055,7 @@ const startWorker = async (workerId) => {
   /**
    * @param {string} channelName
    * @param {StreamParams} params
-   * @return {string[]}
+   * @returns {string[]}
    */
   const streamNameFromChannelName = (channelName, params) => {
     if (channelName === 'list') {
@@ -1159,7 +1163,7 @@ const startWorker = async (workerId) => {
 
   /**
    * @param {string|string[]} arrayOrString
-   * @return {string}
+   * @returns {string}
    */
   const firstParam = arrayOrString => {
     if (Array.isArray(arrayOrString)) {
@@ -1207,8 +1211,15 @@ const startWorker = async (workerId) => {
     ws.on('close', onEnd);
     ws.on('error', onEnd);
 
-    ws.on('message', data => {
-      const json = parseJSON(data, session.request);
+    ws.on('message', (data, isBinary) => {
+      if (isBinary) {
+        log.warn('socket', 'Received binary data, closing connection');
+        ws.close(1003, 'The mastodon streaming server does not support binary messages');
+        return;
+      }
+      const message = data.toString('utf8');
+
+      const json = parseJSON(message, session.request);
 
       if (!json) return;
 
@@ -1243,11 +1254,10 @@ const startWorker = async (workerId) => {
   }, 30000);
 
   attachServerWithConfig(server, address => {
-    log.warn(`Worker ${workerId} now listening on ${address}`);
+    log.warn(`Streaming API now listening on ${address}`);
   });
 
   const onExit = () => {
-    log.warn(`Worker ${workerId} exiting`);
     server.close();
     process.exit(0);
   };
@@ -1285,34 +1295,4 @@ const attachServerWithConfig = (server, onSuccess) => {
   }
 };
 
-/**
- * @param {function(Error=): void} onSuccess
- */
-const onPortAvailable = onSuccess => {
-  const testServer = http.createServer();
-
-  testServer.once('error', err => {
-    onSuccess(err);
-  });
-
-  testServer.once('listening', () => {
-    testServer.once('close', () => onSuccess());
-    testServer.close();
-  });
-
-  attachServerWithConfig(testServer);
-};
-
-onPortAvailable(err => {
-  if (err) {
-    log.error('Could not start server, the port or socket is in use');
-    return;
-  }
-
-  throng({
-    workers: numWorkers,
-    lifetime: Infinity,
-    start: startWorker,
-    master: startMaster,
-  });
-});
+startServer();

@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# rubocop:disable Metrics/ModuleLength, Style/WordArray
 
 module LanguagesHelper
   ISO_639_1 = {
@@ -200,7 +199,6 @@ module LanguagesHelper
     sma: ['Southern Sami', 'Åarjelsaemien Gïele'].freeze,
     smj: ['Lule Sami', 'Julevsámegiella'].freeze,
     szl: ['Silesian', 'ślůnsko godka'].freeze,
-    tai: ['Tai', 'ภาษาไท or ภาษาไต'].freeze,
     tok: ['Toki Pona', 'toki pona'].freeze,
     zba: ['Balaibalan', 'باليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
@@ -274,4 +272,4 @@ module LanguagesHelper
   end
 end
 
-# rubocop:enable Metrics/ModuleLength, Style/WordArray
+# rubocop:enable Metrics/ModuleLength

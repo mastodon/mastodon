@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::FetchRemoteActorService, type: :service do
-  subject { ActivityPub::FetchRemoteActorService.new }
+  subject { described_class.new }
 
   let!(:actor) do
     {

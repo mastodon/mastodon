@@ -1,18 +1,19 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Tag do
   describe 'validations' do
     it 'invalid with #' do
-      expect(described_class.new(name: '#hello_world')).not_to be_valid
+      expect(described_class.new(name: '#hello_world')).to_not be_valid
     end
 
     it 'invalid with .' do
-      expect(described_class.new(name: '.abcdef123')).not_to be_valid
+      expect(described_class.new(name: '.abcdef123')).to_not be_valid
     end
 
     it 'invalid with spaces' do
-      expect(described_class.new(name: 'hello world')).not_to be_valid
+      expect(described_class.new(name: 'hello world')).to_not be_valid
     end
 
     it 'valid with ａｅｓｔｈｅｔｉｃ' do

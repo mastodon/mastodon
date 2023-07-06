@@ -19,7 +19,7 @@ class CopyAccountStats < ActiveRecord::Migration[5.2]
 
   def supports_upsert?
     version = select_one("SELECT current_setting('server_version_num') AS v")['v'].to_i
-    version >= 90500
+    version >= 90_500
   end
 
   def up_fast
@@ -43,12 +43,10 @@ class CopyAccountStats < ActiveRecord::Migration[5.2]
     # We cannot use bulk INSERT or overarching transactions here because of possible
     # uniqueness violations that we need to skip over
     Account.unscoped.select('id, statuses_count, following_count, followers_count, created_at, updated_at').find_each do |account|
-      begin
-        params = [[nil, account.id], [nil, account[:statuses_count]], [nil, account[:following_count]], [nil, account[:followers_count]], [nil, account.created_at], [nil, account.updated_at]]
-        exec_insert('INSERT INTO account_stats (account_id, statuses_count, following_count, followers_count, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6)', nil, params)
-      rescue ActiveRecord::RecordNotUnique
-        next
-      end
+      params = [[nil, account.id], [nil, account[:statuses_count]], [nil, account[:following_count]], [nil, account[:followers_count]], [nil, account.created_at], [nil, account.updated_at]]
+      exec_insert('INSERT INTO account_stats (account_id, statuses_count, following_count, followers_count, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6)', nil, params)
+    rescue ActiveRecord::RecordNotUnique
+      next
     end
   end
 end

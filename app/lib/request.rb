@@ -7,10 +7,47 @@ require 'resolv'
 # Monkey-patch the HTTP.rb timeout class to avoid using a timeout block
 # around the Socket#open method, since we use our own timeout blocks inside
 # that method
+#
+# Also changes how the read timeout behaves so that it is cumulative (closer
+# to HTTP::Timeout::Global, but still having distinct timeouts for other
+# operation types)
 class HTTP::Timeout::PerOperation
   def connect(socket_class, host, port, nodelay = false)
     @socket = socket_class.open(host, port)
     @socket.setsockopt(Socket::IPPROTO_TCP, Socket::TCP_NODELAY, 1) if nodelay
+  end
+
+  # Reset deadline when the connection is re-used for different requests
+  def reset_counter
+    @deadline = nil
+  end
+
+  # Read data from the socket
+  def readpartial(size, buffer = nil)
+    @deadline ||= Process.clock_gettime(Process::CLOCK_MONOTONIC) + @read_timeout
+
+    timeout = false
+    loop do
+      result = @socket.read_nonblock(size, buffer, exception: false)
+
+      return :eof if result.nil?
+
+      remaining_time = @deadline - Process.clock_gettime(Process::CLOCK_MONOTONIC)
+      raise HTTP::TimeoutError, "Read timed out after #{@read_timeout} seconds" if timeout || remaining_time <= 0
+      return result if result != :wait_readable
+
+      # marking the socket for timeout. Why is this not being raised immediately?
+      # it seems there is some race-condition on the network level between calling
+      # #read_nonblock and #wait_readable, in which #read_nonblock signalizes waiting
+      # for reads, and when waiting for x seconds, it returns nil suddenly without completing
+      # the x seconds. In a normal case this would be a timeout on wait/read, but it can
+      # also mean that the socket has been closed by the server. Therefore we "mark" the
+      # socket for timeout and try to read more bytes. If it returns :eof, it's all good, no
+      # timeout. Else, the first timeout was a proper timeout.
+      # This hack has to be done because io/wait#wait_readable doesn't provide a value for when
+      # the socket is closed by the server, and HTTP::Parser doesn't provide the limit for the chunks.
+      timeout = true unless @socket.to_io.wait_readable(remaining_time)
+    end
   end
 end
 
@@ -182,6 +219,7 @@ class Request
 
       contents = truncated_body(limit)
       raise Mastodon::LengthValidationError if contents.bytesize > limit
+
       contents
     end
   end
@@ -215,26 +253,24 @@ class Request
         addr_by_socket = {}
 
         addresses.each do |address|
-          begin
-            check_private_address(address, host)
+          check_private_address(address, host)
 
-            sock     = ::Socket.new(address.is_a?(Resolv::IPv6) ? ::Socket::AF_INET6 : ::Socket::AF_INET, ::Socket::SOCK_STREAM, 0)
-            sockaddr = ::Socket.pack_sockaddr_in(port, address.to_s)
+          sock     = ::Socket.new(address.is_a?(Resolv::IPv6) ? ::Socket::AF_INET6 : ::Socket::AF_INET, ::Socket::SOCK_STREAM, 0)
+          sockaddr = ::Socket.pack_sockaddr_in(port, address.to_s)
 
-            sock.setsockopt(::Socket::IPPROTO_TCP, ::Socket::TCP_NODELAY, 1)
+          sock.setsockopt(::Socket::IPPROTO_TCP, ::Socket::TCP_NODELAY, 1)
 
-            sock.connect_nonblock(sockaddr)
+          sock.connect_nonblock(sockaddr)
 
-            # If that hasn't raised an exception, we somehow managed to connect
-            # immediately, close pending sockets and return immediately
-            socks.each(&:close)
-            return sock
-          rescue IO::WaitWritable
-            socks << sock
-            addr_by_socket[sock] = sockaddr
-          rescue => e
-            outer_e = e
-          end
+          # If that hasn't raised an exception, we somehow managed to connect
+          # immediately, close pending sockets and return immediately
+          socks.each(&:close)
+          return sock
+        rescue IO::WaitWritable
+          socks << sock
+          addr_by_socket[sock] = sockaddr
+        rescue => e
+          outer_e = e
         end
 
         until socks.empty?
@@ -274,14 +310,14 @@ class Request
 
       def check_private_address(address, host)
         addr = IPAddr.new(address.to_s)
-        return if private_address_exceptions.any? { |range| range.include?(addr) }
+
+        return if Rails.env.development? || private_address_exceptions.any? { |range| range.include?(addr) }
+
         raise Mastodon::PrivateNetworkAddressError, host if PrivateAddressCheck.private_address?(addr)
       end
 
       def private_address_exceptions
-        @private_address_exceptions = begin
-          (ENV['ALLOWED_PRIVATE_ADDRESSES'] || '').split(',').map { |addr| IPAddr.new(addr) }
-        end
+        @private_address_exceptions = (ENV['ALLOWED_PRIVATE_ADDRESSES'] || '').split(',').map { |addr| IPAddr.new(addr) }
       end
     end
   end

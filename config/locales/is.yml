@@ -91,6 +91,7 @@ is:
       moderation:
         active: Virkur
         all: Allt
+        disabled: Óvirkt
         pending: Í bið
         silenced: Takmarkað
         suspended: Í frysti
@@ -124,8 +125,8 @@ is:
       removed_header_msg: Tókst að fjarlægja forsíðumynd notandans %{username}
       resend_confirmation:
         already_confirmed: Þessi notandi hefur þegar verið staðfestur
-        send: Senda staðfestingartölvupóst aftur
-        success: Það tókst að senda staðfestingartölvupóst!
+        send: Endursenda staðfestingartengil
+        success: Tókst að senda staðfestingartengil!
       reset: Endurstilla
       reset_password: Endurstilla lykilorð
       resubscribe: Gerast áskrifandi aftur
@@ -133,6 +134,7 @@ is:
       search: Leita
       search_same_email_domain: Aðra notendur með sama tölvupóstlén
       search_same_ip: Aðrir notendur með sama IP-vistfang
+      security: Öryggi
       security_measures:
         only_password: Aðeins lykilorð
         password_and_2fa: Lykilorð og 2-þátta auðkenning
@@ -427,6 +429,7 @@ is:
         resolve: Leysa lén
         title: Útiloka nýtt tölvupóstlén
       no_email_domain_block_selected: Engum útilokunum tölvupóstléna var breytt þar sem ekkert var valið
+      not_permitted: Ekki leyft
       resolved_dns_records_hint_html: Heiti lénsins vísar til eftirfarandi MX-léna, sem bera endanlega ábyrgð á að tölvupóstur skili sér. Útilokun á MX-léni mun koma í veg fyrir nýskráningar með hverju því tölvupóstfangi sem notar sama MX-lén, jafnvel þótt sýnilega lénsheitið sé frábrugðið. <strong>Farðu varlega svo þú útilokir ekki algengar tölvupóstþjónustur.</strong>
       resolved_through_html: Leyst í gegnum %{domain}
       title: Útilokuð tölvupóstlén
@@ -473,6 +476,7 @@ is:
       content_policies:
         comment: Innri minnispunktur
         description_html: Þú getur skilgreint stefnu varðandi efni sem verður beitt á alla aðganga frá þessu léni og öllum undirlénum þess.
+        limited_federation_mode_description_html: Þú getur valið hvort leyfa eigi skýjasamband við þetta lén.
         policies:
           reject_media: Hafna myndefni
           reject_reports: Hafna kærum
@@ -585,11 +589,13 @@ is:
       assign_to_self: Úthluta mér
       assigned: Úthlutaður umsjónarmaður
       by_target_domain: Lén kærða notandaaðgangsins
+      cancel: Hætta við
       category: Flokkur
       category_description_html: Ástæðan fyrir því að þessi notandaaðgangur og/eða efni hans var kært mun verða tiltekin í samskiptum við kærðan notandaaðgang
       comment:
         none: Ekkert
       comment_description_html: 'Til að gefa nánari upplýsingar skrifaði %{name}:'
+      confirm: Staðfesta
       confirm_action: Staðfesta umsjónaraðgerðir gagnvart @%{acct}
       created_at: Tilkynnt
       delete_and_resolve: Eyða færslum
@@ -792,6 +798,7 @@ is:
         suspend: "%{name} setti notandaaðganginn %{target} í frysti"
       appeal_approved: Áfrýjað
       appeal_pending: Áfrýjun í bið
+      appeal_rejected: Áfrýjun hafnað
     system_checks:
       database_schema_check:
         message_html: Það eru fyrirliggjandi yfirfærslur á gagnagrunnum. Keyrðu þær til að tryggja að forritið hegði sér eins og skyldi
@@ -805,6 +812,12 @@ is:
         message_html: Þú hefur ekki skilgreint neinar reglur fyrir netþjón.
       sidekiq_process_check:
         message_html: Ekkert Sidekiq-ferli er í gangi fyrir %{value} biðröð/biðraðir. Endilega athugaðu Sidekiq-uppsetninguna þína
+      upload_check_privacy_error:
+        action: Skoðaðu hér til að fá frekari upplýsingar
+        message_html: "<strong>Vefþjónninn þinn er ekki rétt stilltur. Friðhelgi notendanna þinna gæti verið í hættu.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Skoðaðu hér til að fá frekari upplýsingar
+        message_html: "<strong>Gagnageymslan þín er ekki rétt stillt. Friðhelgi notendanna þinna gæti verið í hættu.</strong>"
     tags:
       review: Yfirfara stöðufærslu
       updated_msg: Það tókst að uppfæra stillingar myllumerkja
@@ -827,6 +840,7 @@ is:
           other: Deilt af %{count} aðilum síðustu vikuna
         title: Vinsælir tenglar
         usage_comparison: Deilt %{today} sinnum í dag, samanborið við %{yesterday} í gær
+      not_allowed_to_trend: Ekki leyft að verða vinsælt
       only_allowed: Aðeins leyfð
       pending_review: Bíður eftir yfirlestri
       preview_card_providers:
@@ -958,13 +972,13 @@ is:
   applications:
     created: Það tókst að búa til forrit
     destroyed: Það tókst að eyða forriti
+    logout: Skrá út
     regenerate_token: Endurgera aðgangsteikn
     token_regenerated: Það tókst að endurgera aðgangsteiknið
     warning: Farðu mjög varlega með þessi gögn. Þú skalt aldrei deila þeim með neinum!
     your_token: Aðgangsteiknið þitt
   auth:
     apply_for_account: Biðja um notandaaðgang
-    change_password: Lykilorð
     confirmations:
       wrong_email_hint: Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
     delete_account: Eyða notandaaðgangi
@@ -973,7 +987,7 @@ is:
       prefix_invited_by_user: "@%{name} býður þér að taka þátt á þessum Mastodon-vefþjóni!"
       prefix_sign_up: Skráðu þig á Mastodon strax í dag!
       suffix: Með notandaaðgangi geturðu fylgst með fólki, sent inn færslur og skipst á skilaboðum við notendur á hvaða Mastodon-vefþjóni sem er, auk margs fleira!
-    didnt_get_confirmation: Fékkstu ekki leiðbeiningar um hvernig eigi að staðfesta aðganginn?
+    didnt_get_confirmation: Fékkstu ekki staðfestingartengil?
     dont_have_your_security_key: Ertu ekki með öryggislykilinn þinn?
     forgot_password: Gleymdirðu lykilorðinu?
     invalid_reset_password_token: Teikn fyrir endurstillingu lykilorðs er ógilt eða útrunnið. Biddu um nýtt teikn.
@@ -986,26 +1000,36 @@ is:
     migrate_account_html: Ef þú vilt endurbeina þessum aðgangi á einhvern annan, geturðu <a href="%{path}">stillt það hér</a>.
     or_log_in_with: Eða skráðu inn með
     privacy_policy_agreement_html: Ég hef lesið og samþykkt <a href="%{privacy_policy_path}" target="_blank">persónuverndarstefnuna</a>
+    progress:
+      confirm: Staðfesta tölvupóstfang
+      details: Nánari upplýsingar þínar
+      review: Yfirferð okkar
+      rules: Samþykkja reglur
     providers:
       cas: CAS
       saml: SAML
     register: Nýskrá
     registration_closed: "%{instance} samþykkir ekki nýja meðlimi"
-    resend_confirmation: Senda leiðbeiningar vegna staðfestingar aftur
+    resend_confirmation: Endursenda staðfestingartengil
     reset_password: Endursetja lykilorð
     rules:
+      accept: Samþykkja
+      back: Til baka
       preamble: Þær eru settar og þeim framfylgt af umsjónarmönnum %{domain}.
       title: Nokkrar grunnreglur.
     security: Öryggi
     set_new_password: Stilla nýtt lykilorð
     setup:
-      email_below_hint_html: Ef tölvupóstfangið hér fyrir neðan er rangt, skaltu breyta því hér og fá nýjan staðfestingarpóst.
-      email_settings_hint_html: Staðfestingarpósturinn var sendur til %{email}. Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
-      title: Uppsetning
+      email_below_hint_html: Skoðaðu ruslpóstmöppuna þína, eða biddu um annan póst. Þú getur leiðrétt tölvupóstfangið þitt ef þörf er á.
+      email_settings_hint_html: Ýttu á tengilinn sem við sendum þér til að staðfesta %{email}. Við bíðum á meðan.
+      link_not_received: Fékkstu ekki neinn tengil?
+      new_confirmation_instructions_sent: Þú munt fá nýjan tölvupóst með staðfestingartengli innan skamms!
+      title: Athugaðu pósthólfið þitt
     sign_in:
       preamble_html: Skráðu þig inn með auðkennum þínum fyrir <strong>%{domain}</strong>. Ef aðgangurinn þinn er hýstur á öðrum netþjóni, muntu ekki geta skráð þig inn hér.
       title: Skrá inn á %{domain}
     sign_up:
+      manual_review: Nýskráningar á %{domain} fara í gegnum handvirka yfirferð hjá umsjónarfólkinu okkar. Til að flýta fyrir skráningarferlinu, ættirðu að skrifa smávegis um þig og ástæður þess að þú viljir skrá þig á %{domain}.
       preamble: Með notandaaðgangi á þessum Mastodon-þjóni geturðu fylgst með hverjum sem er á netkerfinu, sama hvar notandaaðgangurinn þeirra er hýstur.
       title: Förum núna að setja þig upp á %{domain}.
     status:
@@ -1141,7 +1165,7 @@ is:
   featured_tags:
     add_new: Bæta við nýju
     errors:
-      limit: Þú ert þegar búin/n að gefa hámarksfjölda myllumerkja aukið vægi
+      limit: Þú hefur þegar gefið hámarksfjölda myllumerkja aukið vægi
     hint_html: "<strong>Hvað eru myllumerki með aukið vægi?</strong> Þau eru birt áberandi á opinbera notandasniðinu þínu og gera fólki kleift að fletta í gegnum opinberu færslurnar þínar sérstaklega undir þessum myllumerkjum. Þau eru frábær aðferð við að halda utan um skapandi vinnu eða langtíma verkefni."
   filters:
     contexts:
@@ -1185,8 +1209,6 @@ is:
       index:
         hint: Þessi sía virkar til að velja stakar færslur án tillits til annarra skilyrða. Þú getur bætt fleiri færslum í þessa síu í vefviðmótinu.
         title: Síaðar færslur
-  footer:
-    trending_now: Í umræðunni núna
   generic:
     all: Allt
     all_items_on_page_selected_html:
@@ -1209,8 +1231,6 @@ is:
     validation_errors:
       one: Ennþá er ekk alvegi allt í lagi! Skoðaðu vel villuna hér fyrir neðan
       other: Ennþá er ekki alveg allt í lagi! Skoðaðu vel villurnar %{count} hér fyrir neðan
-  html_validator:
-    invalid_markup: 'inniheldur ógildar HTML-merkingar: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Ógild CSV-skrá. Villa: %{error}'
@@ -1398,6 +1418,7 @@ is:
     confirm_remove_selected_followers: Ertu viss um að þú viljir fjarlægja valda fylgjendur?
     confirm_remove_selected_follows: Ertu viss um að þú viljir fjarlægja valið sem fylgst er með?
     dormant: Sofandi
+    follow_failure: Gat ekki fylgst með sumum af völdu aðgöngunum.
     follow_selected_followers: Fylgjast með völdum fylgjendum
     followers: Fylgjendur
     following: Fylgist með
@@ -1437,6 +1458,7 @@ is:
       electron: Electron
       firefox: Firefox
       generic: Óþekktur vafri
+      huawei_browser: Huawei-vafri
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi vafri
@@ -1446,6 +1468,7 @@ is:
       qq: QQ vafri
       safari: Safari
       uc_browser: UC-vafrinn
+      unknown_browser: Óþekktur vafri
       weibo: Weibo
     current_session: Núverandi seta
     description: "%{browser} á %{platform}"
@@ -1458,9 +1481,10 @@ is:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: óþekktu stýrikerfi
+      unknown_platform: Óþekkt stýrikerfi
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1673,12 +1697,12 @@ is:
       title: Velkomin/n um borð, %{name}!
   users:
     follow_limit_reached: Þú getur ekki fylgst með fleiri en %{limit} aðilum
+    go_to_sso_account_settings: Fara í stillingar aðgangsins hjá auðkennisveitunni þinni
     invalid_otp_token: Ógildur tveggja-þátta kóði
     otp_lost_help_html: Ef þú hefur misst aðganginn að hvoru tveggja, geturðu sett þig í samband við %{email}
     seamless_external_login: Innskráning þín er í gegnum utanaðkomandi þjónustu, þannig að stillingar fyrir lykilorð og tölvupóst eru ekki aðgengilegar.
     signed_in_as: 'Skráð inn sem:'
   verification:
-    explanation_html: 'Þú getur <strong>vottað að þú sért eigandi og ábyrgur fyrir tenglunum í lýsigögnum notandasniðsins þíns</strong>. Til að það virki, þurfa vefsvæðin sem vísað er í að innihalda tengil til baka í Mastodon-notandasniðið. Tengillinn sem vísar til baka <strong>verður</strong> að vera með <code>rel="me"</code> eigindi. Textinn í tenglinum skiptir ekki máli. Hérna er dæmi:'
     verification: Sannprófun
   webauthn_credentials:
     add: Bæta við nýjum öryggislykli

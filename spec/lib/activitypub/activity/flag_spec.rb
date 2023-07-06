@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Flag do
@@ -33,6 +35,37 @@ RSpec.describe ActivityPub::Activity::Flag do
 
         expect(report).to_not be_nil
         expect(report.comment).to eq 'Boo!!'
+        expect(report.status_ids).to eq [status.id]
+      end
+    end
+
+    context 'when the report comment is excessively long' do
+      subject do
+        described_class.new({
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: flag_id,
+          type: 'Flag',
+          content: long_comment,
+          actor: ActivityPub::TagManager.instance.uri_for(sender),
+          object: [
+            ActivityPub::TagManager.instance.uri_for(flagged),
+            ActivityPub::TagManager.instance.uri_for(status),
+          ],
+        }.with_indifferent_access, sender)
+      end
+
+      let(:long_comment) { Faker::Lorem.characters(number: 6000) }
+
+      before do
+        subject.perform
+      end
+
+      it 'creates a report but with a truncated comment' do
+        report = Report.find_by(account: sender, target_account: flagged)
+
+        expect(report).to_not be_nil
+        expect(report.comment.length).to eq 5000
+        expect(report.comment).to eq long_comment[0...5000]
         expect(report.status_ids).to eq [status.id]
       end
     end
@@ -110,7 +143,8 @@ RSpec.describe ActivityPub::Activity::Flag do
 
   describe '#perform with a defined uri' do
     subject { described_class.new(json, sender) }
-    let (:flag_id) { 'http://example.com/reports/1' }
+
+    let(:flag_id) { 'http://example.com/reports/1' }
 
     before do
       subject.perform

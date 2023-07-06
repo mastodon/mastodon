@@ -91,6 +91,7 @@ fy:
       moderation:
         active: Aktyf
         all: Alle
+        disabled: Utskeakele
         pending: Yn ôfwachting
         silenced: Beheind
         suspended: Utsteld
@@ -124,8 +125,8 @@ fy:
       removed_header_msg: It fuortsmiten fan de omslachfoto fan %{username} is slagge
       resend_confirmation:
         already_confirmed: Dizze brûker is al befêstige
-        send: Befêstigings-e-mailberjocht opnij ferstjoere
-        success: Befêstigings-e-mailberjocht mei sukses ferstjoerd!
+        send: Befêstigingskeppeling opnij ferstjoere
+        success: Befêstigingskeppeling mei sukses ferstjoerd!
       reset: Opnij ynstelle
       reset_password: Wachtwurd opnij ynstelle
       resubscribe: Opnij abonnearje
@@ -133,6 +134,7 @@ fy:
       search: Sykje
       search_same_email_domain: Oare brûkers mei itselde e-maildomein
       search_same_ip: Oare brûkers mei itselde IP-adres
+      security: Befeiliging
       security_measures:
         only_password: Allinnich wachtwurd
         password_and_2fa: Wachtwurd en 2FA
@@ -427,6 +429,7 @@ fy:
         resolve: Domein opsykje
         title: Nije e-maildomein blokkearje
       no_email_domain_block_selected: Der binne gjin e-maildomeinblokkaden wizige, omdat der gjin ien selektearre waard
+      not_permitted: Net tastien
       resolved_dns_records_hint_html: De domeinnamme slacht op de folgjende MX-domeinen dy’t úteinlik ferantwurdlik binne foar it akseptearjen fan e-mail. It blokkearjen fan in MX-domein blokkearret oanmeldingen fan elk e-mailadres dat itselde MX-domein brûkt, sels as de sichtbere domeinnamme oars is. <strong>Pas op dat jo gjin grutte e-mailproviders blokkearje.</strong>
       resolved_through_html: Blokkearre fia %{domain}
       title: Blokkearre e-maildomeinen
@@ -473,6 +476,7 @@ fy:
       content_policies:
         comment: Ynterne reden
         description_html: Jo kinne it belied bepale dat op de accounts fan dit domein en alle subdomeinen fan tapassing is.
+        limited_federation_mode_description_html: Jo kinne kieze oft jo federaasje mei dit domein tastean wolle.
         policies:
           reject_media: Mediabestannen wegerje
           reject_reports: Rapportaazjes wegerje
@@ -585,11 +589,13 @@ fy:
       assign_to_self: Oan my tawize
       assigned: Tawizen moderator
       by_target_domain: Domein fan rapportearre account
+      cancel: Annulearje
       category: Kategory
       category_description_html: De reden wêrom dizze account en/of ynhâld rapportearre waard, wurdt oan it rapportearre account meidield
       comment:
         none: Gjin
       comment_description_html: 'Om mear ynformaasje te jaan, skreau %{name}:'
+      confirm: Befêstigje
       confirm_action: Moderaasjemaatregelen tsjin %{acct} befêstigje
       created_at: Rapportearre op
       delete_and_resolve: Berjocht fuortsmite
@@ -792,6 +798,7 @@ fy:
         suspend: Account %{target} is troch %{name} útsteld
       appeal_approved: Beswier yntsjinne
       appeal_pending: Beswier yn behanneling
+      appeal_rejected: Beswier ôfwêzen
     system_checks:
       database_schema_check:
         message_html: Der binne database migraasjes yn ôfwachting. Jo moatte dizze útfiere om der foar te soargjen dat de applikaasje wurkjen bliuwt sa as it heard
@@ -805,6 +812,12 @@ fy:
         message_html: Jo hawwe foar dizze server gjin regels opsteld.
       sidekiq_process_check:
         message_html: Der draait gjin Sidekiq-proses foar de wachtrige(n) %{value}. Kontrolearje jo Sidekiq-konfiguraasje
+      upload_check_privacy_error:
+        action: Klik hjir foar mear ynformaasje
+        message_html: "<strong>Jo webserver is ferkeard konfigurearre. De privacy fan jo brûkers is yn gefaar.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Klik hjir foar mear ynformaasje
+        message_html: "<strong>Jo objektûnthâld is ferkeard konfigurearre. De privacy fan jo brûkers is yn gefaar.</strong>"
     tags:
       review: Steat beoardiele
       updated_msg: Hashtagynstellingen mei sukses bywurke
@@ -827,6 +840,7 @@ fy:
           other: Dizze wike troch %{count} persoanen dield
         title: Trending keppelingen
         usage_comparison: Hjoed %{today} kear dield, fergelike mei %{yesterday} kear juster
+      not_allowed_to_trend: Trending wurdt net tastien
       only_allowed: Allinnich goedkarre
       pending_review: Moat noch beoardiele wurde
       preview_card_providers:
@@ -958,13 +972,13 @@ fy:
   applications:
     created: Oanmeitsjen tapassing slagge
     destroyed: Fuortsmiten tapassing slagge
+    logout: Ofmelde
     regenerate_token: Tagongskoade opnij oanmeitsje
     token_regenerated: Opnij oanmeitsjen tagongskoade slagge
     warning: Wês foarsichtich mei dizze gegevens. Diel it nea mei in oar!
     your_token: Jo tagongskoade
   auth:
     apply_for_account: Account oanfreegje
-    change_password: Wachtwurd
     confirmations:
       wrong_email_hint: As it e-mailadres net korrekt is, kinne jo dat wizigje yn de accountynstellingen.
     delete_account: Account fuortsmite
@@ -973,7 +987,7 @@ fy:
       prefix_invited_by_user: "@%{name} nûget jo hjirby út om in account oan te meitsjen op dizze Mastodon-server!"
       prefix_sign_up: Registrearje jo hjoed noch op Mastodon!
       suffix: Mei in account binne jo yn steat om minsken te folgjen, berjochten te pleatsen en út te wikseljen mei minsken dy’t op oare Mastodon-servers binne en mear!
-    didnt_get_confirmation: Gjin befêstigingsynstruksjes ûntfongen?
+    didnt_get_confirmation: Gjin befêstigingskeppeling ûntfongen?
     dont_have_your_security_key: Hawwe jo jo befeiligingskaai net by de hân?
     forgot_password: Wachtwurd ferjitten?
     invalid_reset_password_token: De koade om jo wachtwurd opnij yn te stellen is ferrûn. Freegje in nije oan.
@@ -986,26 +1000,36 @@ fy:
     migrate_account_html: Wannear’t jo dizze account nei in oare account trochferwize wolle, kinne jo <a href="%{path}">dit hjir ynstelle</a>.
     or_log_in_with: Of oanmelde mei
     privacy_policy_agreement_html: Ik haw it <a href="%{privacy_policy_path}" target="_blank">privacybelied</a> lêzen en gean dêrmei akkoard
+    progress:
+      confirm: E-mailadres werhelje
+      details: Jo gegevens
+      review: Us beoardieling
+      rules: Regels akseptearje
     providers:
       cas: CAS
       saml: SAML
     register: Registrearje
     registration_closed: "%{instance} lit gjin nije brûkers ta"
-    resend_confirmation: Ferstjoer de befêstigingsynstruksjes nochris
+    resend_confirmation: Befêstigingskeppeling opnij ferstjoere
     reset_password: Wachtwurd opnij ynstelle
     rules:
+      accept: Akseptearje
+      back: Tebek
       preamble: Dizze binne fêststeld en wurde yn stân hâlden troch de moderatoaren fan %{domain}.
       title: Inkelde basisrigels.
     security: Befeiliging
     set_new_password: Nij wachtwurd ynstelle
     setup:
-      email_below_hint_html: Wannear ûndersteand e-mailadres net kloppet, kinne jo dat hjir wizigje. Jo ûntfange dan hjirnei in befêstigings-e-mailberjocht.
-      email_settings_hint_html: It befêstigings-e-mailberjocht is ferstjoerd nei %{email}. Wannear’t dat e-mailadres net kloppet, kinne jo dat wizigje yn jo accountynstellingen.
-      title: Ynstelle
+      email_below_hint_html: Kontrolearje jo map Net-winske, of freegje in nije befêstigingskeppeling oan. Jo kinne jo e-mailadres wizigje as it ferkeard is.
+      email_settings_hint_html: Klik op de keppeling dy’t wy jo stjoerd hawwe om %{email} te ferifiearjen. Wy wachtsje wol even.
+      link_not_received: Gjin keppeling krigen?
+      new_confirmation_instructions_sent: Jo ûntfange binnen inkelde minuten in nij e-mailberjocht mei de befêstigingskeppeling!
+      title: Kontrolearje jo Postfek YN
     sign_in:
       preamble_html: Meld jo oan mei de oanmeldgegevens fan <strong>%{domain}</strong>. As jo account op in oare server stiet, kinne jo hjir net oanmelde.
       title: Oanmelde op %{domain}
     sign_up:
+      manual_review: Ynskriuwingen op %{domain} wurde hânmjittich troch de moderator beoardiele. Skriuw wat oer josels en wêrom jo in account wolle op %{domain} om ús te helpen jo registraasje te ferwurkjen.
       preamble: Jo kinne mei in Mastodon-account elkenien yn it netwurk folgen, wêr’t dizze persoan ek in account hat.
       title: Litte wy jo account op %{domain} ynstelle.
     status:
@@ -1185,8 +1209,6 @@ fy:
       index:
         hint: Dit filter is fan tapassing om yndividuele berjochten te selektearjen, ûnôfhinklik fan oare kritearia. Jo kinne yn de webomjouwing mear berjochten oan dit filter tafoegje.
         title: Filtere berjochten
-  footer:
-    trending_now: Trends
   generic:
     all: Alle
     all_items_on_page_selected_html:
@@ -1209,8 +1231,6 @@ fy:
     validation_errors:
       one: Der is wat net hielendal goed! Besjoch ûndersteande flater
       other: Der is wat net hielendal goed! Besjoch ûndersteande %{count} flaters
-  html_validator:
-    invalid_markup: 'befettet ûnjildige HTML-opmaak: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Unjildich CSV-bestân. Flater: %{error}'
@@ -1398,6 +1418,7 @@ fy:
     confirm_remove_selected_followers: Binne jo wis dat jo de selektearre folgers net mear folgje wolle?
     confirm_remove_selected_follows: Binne jo wis dat jo de selektearre folge accounts net mear folgje wolle?
     dormant: Slommerjend
+    follow_failure: Kin guon fan de selektearre accounts net folgje.
     follow_selected_followers: Selektearre folgers folgje
     followers: Folgers
     following: Folgjend
@@ -1437,6 +1458,7 @@ fy:
       electron: Electron
       firefox: Firefox
       generic: Unbekende browser
+      huawei_browser: Huawei-browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1446,6 +1468,7 @@ fy:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Unbekende browser
       weibo: Weibo
     current_session: Aktuele sesje
     description: "%{browser} op %{platform}"
@@ -1458,9 +1481,10 @@ fy:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: ûnbekend platfoarm
+      unknown_platform: Unbekend platfoarm
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1673,12 +1697,12 @@ fy:
       title: Wolkom oan board %{name}!
   users:
     follow_limit_reached: Jo kinne net mear as %{limit} accounts folgje
+    go_to_sso_account_settings: Gean nei de accountynstellingen fan jo identiteitsprovider
     invalid_otp_token: Unjildige twa-stapstagongskoade
     otp_lost_help_html: As jo tagong ta beide kwytrekke binne, nim dan kontakt op fia %{email}
     seamless_external_login: Jo binne oanmeld fia in eksterne tsjinst, dêrom binne wachtwurden en e-mailynstellingen net beskikber.
     signed_in_as: 'Oanmeld as:'
   verification:
-    explanation_html: 'Jo kinne <strong>josels ferifiearje as de eigener fan de keppelingen yn de metadata fan jo profyl</strong>. Hjirfoar moat op de keppele website in keppeling werom nei jo Mastodon-profyl stean. Dizze keppeling <strong>moat</strong> it <code>rel="me"</code>-attribút befetsje. De omskriuwing fan de keppeling makket net út. Hjir is in foarbyld:'
     verification: Ferifikaasje
   webauthn_credentials:
     add: Nije befeiligingskaai tafoegje

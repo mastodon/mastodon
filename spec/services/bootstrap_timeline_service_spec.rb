@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe BootstrapTimelineService, type: :service do
-  subject { BootstrapTimelineService.new }
+  subject { described_class.new }
 
   context 'when the new user has registered from an invite' do
-    let(:service)    { double }
+    let(:service)    { instance_double(FollowService) }
     let(:autofollow) { false }
     let(:inviter)    { Fabricate(:user, confirmed_at: 2.days.ago) }
     let(:invite)     { Fabricate(:invite, user: inviter, max_uses: nil, expires_at: 1.hour.from_now, autofollow: autofollow) }
@@ -32,6 +34,5 @@ RSpec.describe BootstrapTimelineService, type: :service do
         expect(service).to_not have_received(:call)
       end
     end
-
   end
 end

@@ -89,6 +89,7 @@ zh-CN:
       moderation:
         active: 活跃
         all: 全部
+        disabled: 已禁用
         pending: 待审核
         silenced: 受限
         suspended: 已封禁
@@ -121,8 +122,8 @@ zh-CN:
       removed_header_msg: 成功删除了 %{username} 的横幅图片
       resend_confirmation:
         already_confirmed: 该用户已被确认
-        send: 重发确认邮件
-        success: 确认邮件发送成功！
+        send: 重新发送确认链接
+        success: 确认链接发送成功！
       reset: 重置
       reset_password: 重置密码
       resubscribe: 重新订阅
@@ -130,6 +131,7 @@ zh-CN:
       search: 搜索
       search_same_email_domain: 其他具有相同电子邮箱域名的用户
       search_same_ip: 具有相同IP的其他用户
+      security: 安全性
       security_measures:
         only_password: 仅密码
         password_and_2fa: 密码和双重认证
@@ -305,12 +307,12 @@ zh-CN:
       unpublished_msg: 公告已取消发布！
       updated_msg: 公告已成功更新！
     custom_emojis:
-      assign_category: 指定分类
+      assign_category: 指定类别
       by_domain: 域名
       copied_msg: 已成功将表情复制到本站
       copy: 复制
       copy_failed_msg: 无法将表情复制到本站
-      create_new_category: 新建分类
+      create_new_category: 新建类别
       created_msg: 表情添加成功！
       delete: 删除
       destroyed_msg: 表情删除成功！
@@ -419,6 +421,7 @@ zh-CN:
         resolve: 解析域名
         title: 添加电子邮件域名屏蔽
       no_email_domain_block_selected: 没有任何项目被选中，因此未能更改电子邮件域名屏蔽列表
+      not_permitted: 未允许
       resolved_dns_records_hint_html: 该域名解析的 MX 记录所指向的域名如下，这些域名被用于接收电子邮件。 即使电子邮件地址域名与 MX 域名不同，屏蔽一个 MX 域名意味着阻止任何使用相同 MX 域名的电子邮件地址注册本站账户。 <strong>请小心不要误屏蔽主要的电子邮件提供商。</strong>
       resolved_through_html: 通过 %{domain} 解析
       title: 电子邮件域名屏蔽
@@ -463,6 +466,7 @@ zh-CN:
       content_policies:
         comment: 内部备注
         description_html: 你可以设置应用于此域名所有账号和其所有子域名的内容策略。
+        limited_federation_mode_description_html: 您可以选择是否允许与该联邦联合。
         policies:
           reject_media: 拒收媒体
           reject_reports: 拒收举报
@@ -573,11 +577,13 @@ zh-CN:
       assign_to_self: 接管
       assigned: 已接管的监察员
       by_target_domain: 被举报账户的域名
+      cancel: 取消
       category: 类别
       category_description_html: 在与被举报账户的通信时，将引用该账号和/或内容被举报的原因
       comment:
         none: 没有
       comment_description_html: "%{name} 补充道："
+      confirm: 确认
       confirm_action: 确认对 @%{acct} 的管理操作
       created_at: 举报时间
       delete_and_resolve: 删除嘟文
@@ -778,6 +784,7 @@ zh-CN:
         suspend: "%{name} 封禁了用户 %{target}"
       appeal_approved: 已申诉
       appeal_pending: 申诉待处理
+      appeal_rejected: 申诉已驳回
     system_checks:
       database_schema_check:
         message_html: 有待处理的数据库迁移。请运行它们以确保应用程序正常运行。
@@ -791,6 +798,12 @@ zh-CN:
         message_html: 你没有定义任何服务器规则。
       sidekiq_process_check:
         message_html: "%{value} 队列未运行任何 Sidekiq 进程。请检查你的 Sidekiq 配置"
+      upload_check_privacy_error:
+        action: 点击这里查看更多信息
+        message_html: "<strong>您的网站服务器配置错误，您用户的隐私处于危险中。</strong>"
+      upload_check_privacy_error_object_storage:
+        action: 点击这里查看更多信息
+        message_html: "<strong>您的对象存储空间配置错误，您用户的隐私处于危险中。</strong>"
     tags:
       review: 审核状态
       updated_msg: 话题标签设置更新成功
@@ -812,6 +825,7 @@ zh-CN:
           other: 过去一周内被 %{count} 个人分享过
         title: 热门链接
         usage_comparison: 今日被分享 %{today} 次，前一日为 %{yesterday} 次
+      not_allowed_to_trend: 不允许的趋势
       only_allowed: 仅显示已允许的内容
       pending_review: 待审核
       preview_card_providers:
@@ -940,13 +954,13 @@ zh-CN:
   applications:
     created: 应用创建成功
     destroyed: 应用删除成功
+    logout: 退出登录
     regenerate_token: 重置访问令牌
     token_regenerated: 访问令牌重置成功
     warning: 一定小心，千万不要把它分享给任何人！
     your_token: 你的访问令牌
   auth:
     apply_for_account: 申请账号
-    change_password: 密码
     confirmations:
       wrong_email_hint: 如果该电子邮件地址不正确，您可以在帐户设置中进行更改。
     delete_account: 删除帐户
@@ -955,7 +969,7 @@ zh-CN:
       prefix_invited_by_user: "@%{name} 邀请你加入这个Mastodon服务器！"
       prefix_sign_up: 现在就注册 Mastodon！
       suffix: 注册一个账号，你就可以关注他人、发布嘟文、并和其它任何 Mastodon 服务器上的用户交流，而且还有其它更多功能！
-    didnt_get_confirmation: 没有收到确认邮件？
+    didnt_get_confirmation: 没有收到确认链接？
     dont_have_your_security_key: 没有你的安全密钥？
     forgot_password: 忘记密码？
     invalid_reset_password_token: 密码重置令牌无效或已过期。请重新发起重置密码请求。
@@ -963,32 +977,42 @@ zh-CN:
     link_to_webauth: 使用你的安全密钥设备
     log_in_with: 通过外部服务登录
     login: 登录
-    logout: 登出
+    logout: 退出登录
     migrate_account: 迁移到另一个账户
     migrate_account_html: 如果你希望引导他人关注另一个账号，请<a href="%{path}">点击这里进行设置</a>。
     or_log_in_with: 或通过外部服务登录
     privacy_policy_agreement_html: 我已阅读并同意 <a href="%{privacy_policy_path}" target="_blank">隐私政策</a>
+    progress:
+      confirm: 确认电子邮件地址
+      details: 您的详情
+      review: 我们的复审
+      rules: 接受规则
     providers:
       cas: CAS
       saml: SAML
     register: 注册
     registration_closed: "%{instance} 目前不接收新成员"
-    resend_confirmation: 重新发送确认邮件
+    resend_confirmation: 重新发送确认链接
     reset_password: 重置密码
     rules:
+      accept: 接受
+      back: 返回
       preamble: 这些由 %{domain} 监察员设置和执行。
       title: 一些基本规则。
     security: 账户安全
     set_new_password: 设置新密码
     setup:
-      email_below_hint_html: 如果下面的电子邮箱地址是错误的，你可以在这里修改并重新发送新的确认邮件。
-      email_settings_hint_html: 确认邮件已经发送到%{email}。如果该邮箱地址不对，你可以在账号设置里面修改。
-      title: 初始设置
+      email_below_hint_html: 请检查的垃圾邮件文件夹，或请求再次发送一次。如果您的电子邮件地址不对，您可以更正您的电子邮件地址。
+      email_settings_hint_html: 请点击我们发送给 %{email} 地址中的确认链接。我在这儿等着您。
+      link_not_received: 没有收到链接？
+      new_confirmation_instructions_sent: 您将在几分钟内收到一封带有确认链接的新邮件！
+      title: 请检查你的电子邮件收件箱
     sign_in:
       preamble_html: 使用您在 <strong>%{domain}</strong> 的账户和密码登录。如果您的账户托管在其他的服务器上，您将无法在此登录。
       title: 登录到 %{domain}
     sign_up:
-      preamble: 使用此 Mastodon 服务器上的帐号，您将能够关注网络上的任何其他人，无论他们的帐号托管在哪里的主机。
+      manual_review: 您在 %{domain} 上的注册需要经由管理人员手动审核。 为了帮助我们处理您的注册，请稍微介绍一下您为什么想在 %{domain} 上注册。
+      preamble: 有了这个Mastodon服务器上的账户，您就可以关注Mastodon网络上的任何其他人，无论他们的账户在哪里。
       title: 让我们在 %{domain} 上开始。
     status:
       account_status: 账户状态
@@ -1123,7 +1147,7 @@ zh-CN:
   featured_tags:
     add_new: 添加新条目
     errors:
-      limit: 你所推荐的话题标签数已达上限
+      limit: 您所推荐的话题标签数已达上限
     hint_html: "<strong>什么是精选话题标签？</strong> 它们被显示在你的公开个人资料中的突出位置，人们可以在这些标签下浏览你的公共嘟文。 它们是跟踪创作或长期项目的进度的重要工具。"
   filters:
     contexts:
@@ -1140,7 +1164,7 @@ zh-CN:
       title: 编辑过滤器
     errors:
       deprecated_api_multiple_keywords: 这些参数不能从此应用程序更改，因为它们应用于一个以上的过滤关键字。 使用较新的应用程序或网页界面。
-      invalid_context: 过滤器场景没有或无效
+      invalid_context: 提供的过滤器环境没有或无效
     index:
       contexts: 在 %{contexts} 中的过滤器
       delete: 删除
@@ -1158,14 +1182,12 @@ zh-CN:
       save: 保存新过滤器
       title: 添加新的过滤器
     statuses:
-      back_to_filter: 返回至过滤器
+      back_to_filter: 返回过滤器
       batch:
         remove: 从过滤器中移除
       index:
         hint: 无论其他条件如何，此过滤器适用于选用个别嘟文。你可以从网页界面中向此过滤器加入更多嘟文。
         title: 过滤的嘟文
-  footer:
-    trending_now: 现在流行
   generic:
     all: 全部
     all_items_on_page_selected_html:
@@ -1184,8 +1206,6 @@ zh-CN:
     today: 今天
     validation_errors:
       other: 出错啦！检查一下下面 %{count} 处出错的地方吧
-  html_validator:
-    invalid_markup: '包含无效的 HTML 标记: %{error}'
   imports:
     errors:
       invalid_csv_file: '无效的 CSV 文件。错误: %{error}'
@@ -1227,7 +1247,7 @@ zh-CN:
     title: 邀请用户
   lists:
     errors:
-      limit: 你所建立的列表数量已经达到上限
+      limit: 您已达到列表数量的上限
   login_activities:
     authentication_methods:
       otp: 双因素认证应用
@@ -1372,6 +1392,7 @@ zh-CN:
     confirm_remove_selected_followers: 您确定想要取关所选的关注者吗？
     confirm_remove_selected_follows: 您确定要删除选定的关注着吗？
     dormant: 休眠
+    follow_failure: 无法关注选中的部分账户。
     follow_selected_followers: 关注选中的关注者
     followers: 关注者
     following: 正在关注
@@ -1411,6 +1432,7 @@ zh-CN:
       electron: Electron
       firefox: 火狐
       generic: 未知浏览器
+      huawei_browser: 华为浏览器
       ie: IE 浏览器
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 浏览器
@@ -1420,6 +1442,7 @@ zh-CN:
       qq: QQ浏览器
       safari: Safari
       uc_browser: UC 浏览器
+      unknown_browser: 未知浏览器
       weibo: 新浪微博
     current_session: 当前会话
     description: "%{platform} 上的 %{browser}"
@@ -1432,9 +1455,10 @@ zh-CN:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: 未知平台
+      unknown_platform: 未知平台
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1541,7 +1565,7 @@ zh-CN:
       '7889238': 3个月
     min_age_label: 过期阈值
     min_favs: 保留如下嘟文：喜欢数超过
-    min_favs_hint: 喜欢数超过该阈值的的嘟文不会被删除。如果留空，则无论嘟文获得多少喜欢，都将被删除。
+    min_favs_hint: 喜欢数超过该阈值的的嘟文都不会被删除。如果留空，则无论嘟文获得多少喜欢，都将被删除。
     min_reblogs: 保留如下嘟文：转嘟数超过
     min_reblogs_hint: 转嘟数超过该阈值的的嘟文不会被删除。如果留空，则无论嘟文获得多少转嘟，都将被删除。
   stream_entries:
@@ -1641,12 +1665,12 @@ zh-CN:
       title: "%{name}，欢迎你的加入！"
   users:
     follow_limit_reached: 你不能关注超过 %{limit} 个人
+    go_to_sso_account_settings: 转到您的身份提供商进行账户设置
     invalid_otp_token: 输入的双重认证代码无效
     otp_lost_help_html: 如果你不慎丢失了所有的代码，请联系 %{email} 寻求帮助
     seamless_external_login: 因为你是通过外部服务登录的，所以密码和电子邮件地址设置都不可用。
     signed_in_as: 当前登录的账户：
   verification:
-    explanation_html: 你可以 <strong>验证自己是个人资料元数据中的某个链接的所有者</strong>。 为此，被链接网站必须包含一个到你的 Mastodon 主页的链接。链接中 <strong>必须</strong> 包括 <code>rel="me"</code> 属性。链接的文本内容可以随意填写。例如：
     verification: 验证
   webauthn_credentials:
     add: 添加新的安全密钥
