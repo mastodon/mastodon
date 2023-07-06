@@ -739,7 +739,8 @@ html {
   .dismissable-banner {
     border-left: 1px solid $ui-base-color;
     border-right: 1px solid $ui-base-color;
-  }
+    background-color: darken($ui-base-color, 8%);
+}
   
   .status__content,
   .reply-indicator__content {
