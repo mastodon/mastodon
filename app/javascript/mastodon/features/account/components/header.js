@@ -57,6 +57,8 @@ const messages = defineMessages({
   admin_domain: { id: 'status.admin_domain', defaultMessage: 'Open moderation interface for {domain}' },
   languages: { id: 'account.languages', defaultMessage: 'Change subscribed languages' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
+  newer_profile_information_title: { id: 'account.newer_profile_information_title', defaultMessage: 'Notice' },
+  newer_profile_information: { id: 'account.newer_profile_information', defaultMessage: 'Here you can see the information cached for this instance. To see the latest profiles and toots, click here to view remote profiles.' },
 });
 
 const titleFromAccount = account => {
@@ -359,6 +361,10 @@ class Header extends ImmutablePureComponent {
             </h1>
           </div>
 
+          {(isRemote) && (
+                      <div className="flash-message"><a href={account.get('url')} rel='noopener noreferrer' target='_blank'>{intl.formatMessage(messages.newer_profile_information)}</a></div>
+              )}
+          
           {!(suspended || hidden) && (
             <div className='account__header__extra'>
               <div className='account__header__bio'>
