@@ -111,7 +111,9 @@ const emojify = (str, customEmojis = {}) => {
 
   emojifyNode(wrapper, customEmojis);
 
-  if((wrapper.innerHTML.match('emojione') || []).length==1&&wrapper.innerHTML.replace(/^<p><img [^<]+?><\/p>$/,'')==''){
+  if((wrapper.innerHTML.match('h-card') || []).length==1&&(wrapper.innerHTML.match('emojione') || []).length==1&&wrapper.innerHTML.replace(/^<p><span class=.h-card.>.+<\/span>[ (<br>)]+<img [^<]+?><\/p>$/,'')==''){
+    wrapper.innerHTML = wrapper.innerHTML.replace('emojione','emojione mcd__singleEmoji').replace('<img','<br><img');
+  }else if((wrapper.innerHTML.match('emojione') || []).length==1&&wrapper.innerHTML.replace(/^<p><img [^<]+?><\/p>$/,'')==''){
     wrapper.innerHTML = wrapper.innerHTML.replace('emojione','emojione mcd__singleEmoji');
   }
 
