@@ -234,10 +234,14 @@ html {
     border-top: 0;
   }
   
-  .drawer__header,
   .drawer__inner,
   .navigation-bar {
     background: darken($ui-base-color, 8%);
+    border: 1px solid $ui-base-color;
+  }
+  
+  .drawer__header{
+    background: $ui-base-color;
     border: 1px solid $ui-base-color;
   }
   
