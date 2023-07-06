@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   build-nightly-image:
-    runs-on: ubuntu-latest
+    runs-on: docker-builder
 
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
