@@ -321,7 +321,7 @@ class Header extends ImmutablePureComponent {
 
     let role = null;
     if (account.getIn(['roles', 0])) {
-      role = (<div key='role' className={`account-role user-role-${account.getIn(['roles', 0, 'id'])}`}>{account.getIn(['roles', 0, 'name'])}</div>);
+      role = (<div key='role' className={`account-role user-role-${account.getIn(['roles', 0, 'id'])}`}><i className={account.getIn(['roles', 0, 'name'])}></i></div>);
     }
 
     return (

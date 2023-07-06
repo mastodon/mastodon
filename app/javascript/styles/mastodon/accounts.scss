@@ -207,13 +207,10 @@
   display: inline-block;
   padding: 4px 6px;
   cursor: default;
-  border-radius: 3px;
-  font-size: 12px;
+  vertical-align: middle;
   line-height: 12px;
   font-weight: 500;
-  color: $ui-secondary-color;
-  background-color: var(--user-role-background, rgba($ui-secondary-color, 0.1));
-  border: 1px solid var(--user-role-border, rgba($ui-secondary-color, 0.5));
+  color: var(--user-role-accent, rgba($ui-secondary-color, 1));
 
   &.moderator {
     color: $success-green;
