@@ -32,6 +32,11 @@ class PublicFileServerMiddleware
       end
     end
 
+    # Override the default CSP header set by the CSP middleware
+    headers['Content-Security-Policy'] = "default-src 'none'; form-action 'none'" if request_path.start_with?(paperclip_root_url)
+
+    headers['X-Content-Type-Options'] = 'nosniff'
+
     [status, headers, response]
   end
 
