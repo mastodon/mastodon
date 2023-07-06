@@ -48,10 +48,14 @@ html {
     border-top: 1px solid $ui-base-color;
   }
   
-  .about__meta,
+  .about__meta{
+    background: darken($ui-base-color, 8%);
+    border: 1px solid $ui-base-color;
+  }
+  
   .about__section__title,
   .interaction-modal {
-    background: $white;
+    background: darken($ui-base-color, 8%);
     border: 1px solid $ui-base-color;
   }
   
