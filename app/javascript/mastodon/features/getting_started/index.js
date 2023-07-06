@@ -39,6 +39,7 @@ const messages = defineMessages({
   security: { id: 'navigation_bar.security', defaultMessage: 'Security' },
   manuals: { id: 'navigation_bar.manuals', defaultMessage: 'Manuals' },
   menu: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
+  profile: { id: 'navigation_bar.profile', defaultMessage: 'Profile' },
 });
 
 const mapStateToProps = state => ({
@@ -118,6 +119,7 @@ class GettingStarted extends ImmutablePureComponent {
         <ColumnLink key='bookmark' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />,
         <ColumnLink key='favourites' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
         <ColumnLink key='lists' icon='list-ul' text={intl.formatMessage(messages.lists)} to='/lists' />,
+        <ColumnLink key='profile' icon='user' text={intl.formatMessage(messages.profile)} to={`/@${this.props.myAccount.get('acct')}`} />,
       );
 
       if (myAccount.get('locked') || unreadFollowRequests > 0) {
