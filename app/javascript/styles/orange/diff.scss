@@ -44,11 +44,15 @@ html {
     border-top: 0;
   }
   
+  .account-card{
+    background: darken($ui-base-color, 4%);
+  }
+  
   .getting-started__trends{
     background: $ui-base-color;
   }
   
-    .column > .scrollable.about {
+  .column > .scrollable.about {
     border-top: 1px solid $ui-base-color;
   }
   
@@ -195,10 +199,6 @@ html {
   
   .search__input {
     background-color: darken($ui-base-color, 15%);
-    @media screen and (max-width: $no-gap-breakpoint) {
-      border-top: 0;
-      border-bottom: 0;
-    }
   }
   
   .list-editor .search .search__input {

@@ -44,6 +44,10 @@ html {
     border-top: 0;
   }
   
+  .account-card{
+    background: $ui-primary-color;
+  }
+  
   .getting-started__trends{
     background: $ui-base-color;
   }
@@ -209,9 +213,17 @@ html {
   
   .search__input {
     background-color: darken($ui-primary-color, 8%);
-    @media screen and (max-width: $no-gap-breakpoint) {
-      border-top: 0;
-      border-bottom: 0;
+  }
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    .layout-single-column .ui__header {
+      background: $ui-primary-color;
+    }
+    .columns-area__panels__pane--navigational {
+      .navigation-panel {
+        background: $ui-primary-color;
+        border-left: none;
+      }
     }
   }
   
@@ -320,8 +332,8 @@ html {
   
   .detailed-status,
   .detailed-status__action-bar {
-    background: darken($ui-base-color, 15%);
-  }
+    background: $white;
+}
   
   // Change the background colors of status__content__spoiler-link
   .reply-indicator__content .status__content__spoiler-link,
