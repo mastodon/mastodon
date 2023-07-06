@@ -373,6 +373,7 @@ GEM
       marcel (~> 1.0.1)
       mime-types
       terrapin (~> 0.6.0)
+    language_server-protocol (3.17.0.3)
     launchy (2.5.2)
       addressable (~> 2.8)
     letter_opener (1.8.1)
@@ -411,7 +412,6 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2023.0218.1)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.2)
     minitest (5.18.1)
     msgpack (1.7.1)
     multi_json (1.15.0)
@@ -432,8 +432,7 @@ GEM
       net-protocol
     net-ssh (7.1.0)
     nio4r (2.5.9)
-    nokogiri (1.15.2)
-      mini_portile2 (~> 2.8.2)
+    nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
     oj (3.15.0)
     omniauth (1.9.2)
@@ -478,6 +477,7 @@ GEM
     pg (1.5.3)
     pghero (3.3.3)
       activerecord (>= 6)
+    pkg-config (1.5.2)
     posix-spawn (0.3.15)
     premailer (1.21.0)
       addressable
@@ -591,8 +591,9 @@ GEM
       sidekiq (>= 2.4.0)
     rspec-support (3.12.0)
     rspec_chunked (0.6)
-    rubocop (1.52.1)
+    rubocop (1.54.1)
       json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
       parser (>= 3.2.2.3)
       rainbow (>= 2.2.2, < 4.0)
@@ -756,7 +757,7 @@ GEM
     zeitwerk (2.6.8)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   active_model_serializers (~> 0.10)
@@ -832,6 +833,7 @@ DEPENDENCIES
   parslet
   pg (~> 1.5)
   pghero
+  pkg-config (~> 1.5)
   posix-spawn
   premailer-rails
   private_address_check (~> 0.5)
