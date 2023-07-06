@@ -126,7 +126,7 @@ class PublicTimeline extends React.PureComponent {
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
-          icon='globe'
+          icon='earth-asia'
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}

@@ -95,7 +95,7 @@ module StatusesHelper
   def fa_visibility_icon(status)
     case status.visibility
     when 'public'
-      fa_icon 'globe fw'
+      fa_icon 'earth-asia fw'
     when 'unlisted'
       fa_icon 'unlock fw'
     when 'private'
