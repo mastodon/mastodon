@@ -1,0 +1,52 @@
+// Dependent colors
+$black: #444444;
+$white: #ffffff;
+
+$classic-base-color: #282c37;
+$classic-primary-color: #9baec8;
+$classic-secondary-color: #d9e1e8;
+$classic-highlight-color: #ace93a;
+
+// Differences
+$success-green: lighten(#3caa5d, 8%);
+
+/// Pastel Colors
+$ui-color-pink: #FBE4F0;
+$ui-color-yellow: #F1FECC;
+$ui-color-orange: #FCE5A4;
+$ui-color-mint: #93E7E8;
+$ui-color-blue: #98deff;
+$ui-color-green: #6CD3A5;
+
+$base-overlay-background: $white !default;
+$valid-value-color: $success-green !default;
+
+$ui-base-color: $ui-color-mint !default;
+$ui-base-lighter-color: $ui-color-green;
+$ui-primary-color: $ui-color-blue;
+$ui-secondary-color: $classic-base-color !default;
+$ui-highlight-color: $classic-highlight-color !default;
+
+$primary-text-color: $black !default;
+$darker-text-color: $classic-base-color !default;
+$highlight-text-color: darken($ui-highlight-color, 15%) !default;
+$dark-text-color: #444b5d;
+$action-button-color: #606984;
+
+$inverted-text-color: $black !default;
+$lighter-text-color: $classic-base-color !default;
+$light-text-color: #444b5d;
+
+// Newly added colors
+$account-background-color: $white !default;
+
+// Invert darkened and lightened colors
+@function darken($color, $amount) {
+  @return hsl(hue($color), saturation($color), lightness($color) + $amount);
+}
+
+@function lighten($color, $amount) {
+  @return hsl(hue($color), saturation($color), lightness($color) - $amount);
+}
+
+$emojis-requiring-inversion: 'chains';
