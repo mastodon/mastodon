@@ -6,7 +6,7 @@ class AdminMailer < ApplicationMailer
   helper :accounts
   helper :languages
 
-  before_action { @me = params[:recipient] }
+  before_action :process_params
   before_action :set_instance
 
   default to: -> { @me.user_email }
@@ -46,6 +46,10 @@ class AdminMailer < ApplicationMailer
   end
 
   private
+
+  def process_params
+    @me = params[:recipient]
+  end
 
   def set_instance
     @instance = Rails.configuration.x.local_domain
