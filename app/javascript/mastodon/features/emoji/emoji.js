@@ -111,6 +111,10 @@ const emojify = (str, customEmojis = {}) => {
 
   emojifyNode(wrapper, customEmojis);
 
+  if((wrapper.innerHTML.match('emojione') || []).length==1&&wrapper.innerHTML.replace(/^<p><img [^<]+?><\/p>$/,'')==''){
+    wrapper.innerHTML = wrapper.innerHTML.replace('emojione','emojione mcd__singleEmoji');
+  }
+
   return wrapper.innerHTML;
 };
 
