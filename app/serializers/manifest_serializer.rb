@@ -53,7 +53,7 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def start_url
-    '/home'
+    '/'
   end
 
   def scope
