@@ -963,7 +963,7 @@ fr:
     remove: Détacher l'alias
   appearance:
     advanced_web_interface: Interface web avancée
-    advanced_web_interface_hint: 'Si vous voulez utiliser toute la largeur de votre écran, l’interface web avancée vous permet de configurer plusieurs colonnes différentes pour voir autant d’informations que vous le souhaitez en même temps : Accueil, notifications, fil public fédéré, un nombre illimité de listes et hashtags.'
+    advanced_web_interface_hint: 'Si vous voulez utiliser toute la largeur de votre écran, l’interface web avancée vous permet de configurer plusieurs colonnes différentes pour voir autant d’informations que vous le souhaitez en même temps : Accueil, notifications, fil fédéré, un nombre illimité de listes et hashtags.'
     animations_and_accessibility: Animations et accessibilité
     confirmation_dialogs: Dialogues de confirmation
     discovery: Découverte
@@ -977,6 +977,7 @@ fr:
     notification_preferences: Modifier les préférences de courriel
     salutation: "%{name},"
     settings: 'Changer les préférences courriel : %{link}'
+    unsubscribe: Se désabonner
     view: 'Voir :'
     view_profile: Voir le profil
     view_status: Afficher le message
@@ -990,6 +991,10 @@ fr:
     your_token: Votre jeton d’accès
   auth:
     apply_for_account: Demander un compte
+    captcha_confirmation:
+      help_html: Si vous avez des problèmes pour résoudre le CAPTCHA, vous pouvez nous contacter via %{email} et nous pourrons vous aider.
+      hint_html: Encore une chose ! Nous avons besoin de confirmer que vous êtes un humain (c'est pour que nous puissions empêcher les spams !). Résolvez le CAPTCHA ci-dessous et cliquez sur "Continuer".
+      title: Vérification de sécurité
     confirmations:
       wrong_email_hint: Si cette adresse de courriel est incorrecte, vous pouvez la modifier dans vos paramètres de compte.
     delete_account: Supprimer le compte
@@ -1027,8 +1032,12 @@ fr:
       back: Retour
       preamble: Celles-ci sont définies et appliqués par les modérateurs de %{domain}.
       title: Quelques règles de base.
+      title_invited: Vous avez été invité·e.
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
+    setup:
+      link_not_received: Vous n'avez pas reçu de lien ?
+      title: Vérifiez votre boîte de réception
     sign_in:
       preamble_html: Connectez-vous avec vos identifiants sur <strong>%{domain}</strong>. Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
       title: Se connecter à %{domain}
@@ -1132,6 +1141,10 @@ fr:
       your_appeal_rejected: Votre appel a été rejeté
   domain_validator:
     invalid_domain: n’est pas un nom de domaine valide
+  edit_profile:
+    basic_information: Informations de base
+    other: Autre
+    safety_and_privacy: Sécurité et confidentialité
   errors:
     '400': La demande que vous avez soumise est invalide ou mal formée.
     '403': Vous n’avez pas accès à cette page.
@@ -1238,6 +1251,7 @@ fr:
       other: Certaines choses ne vont pas ! Veuillez vérifier les %{count} erreurs ci-dessous
   imports:
     errors:
+      empty: Fichier CSV vide
       invalid_csv_file: 'Fichier CSV non valide. Erreur : %{error}'
       over_rows_processing_limit: contient plus de %{count} lignes
     modes:
