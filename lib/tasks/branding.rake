@@ -54,8 +54,11 @@ namespace :branding do
       rsvg_convert.run(size: size, input: favicon_source, output: output_path)
     end
 
-    convert.run(input: favicons, output: Rails.public_path.join('favicon.ico'))
-
+    begin
+      convert.run(input: favicons, output: Rails.public_path.join('favicon.ico'))
+    rescue
+      puts "You need to run 'convert '/home/mastodon/live/app/javascript/icons/favicon-16x16.png' '/home/mastodon/live/app/javascript/icons/favicon-32x32.png' '/home/mastodon/live/app/javascript/icons/favicon-48x48.png' '/home/mastodon/live/public/favicon.ico''."
+    end
     apple_icon_sizes.each do |size|
       rsvg_convert.run(size: size, input: app_icon_source, output: output_dest.join("apple-touch-icon-#{size}x#{size}.png"))
     end
