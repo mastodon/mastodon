@@ -17,11 +17,13 @@ ARG RUBY_VERSION="3.2.2-slim"
 ##########################################################################################
 # Ruby image, referenced here for easier alias (ruby-layer) reference later
 ##########################################################################################
+
 FROM ghcr.io/moritzheiber/ruby-jemalloc:${RUBY_VERSION} AS ruby-layer
 
 ##########################################################################################
 # Base layer used for both the build steps and the final runtime image
 ##########################################################################################
+
 FROM node:${NODE_VERSION} AS base
 
 # Linux UID (user id) for the mastodon user, change with [--build-arg UID=1234]
@@ -107,6 +109,7 @@ WORKDIR /opt/mastodon
 ##########################################################################################
 # Shared layer for nodejs and ruby related build steps
 ##########################################################################################
+
 FROM base AS shared-build-layer
 
 # See: https://github.com/hadolint/hadolint/wiki/DL3008
@@ -134,24 +137,23 @@ RUN \
 ##########################################################################################
 # Bundle cache + install layer
 ##########################################################################################
+
 FROM shared-build-layer AS bundle-install
 
 # Download and cache gems without "installing" them
 #
 # Note: Instead of copying Gemfile and Gemfile.lock, we bind them to the container at build time
 RUN \
-  --mount=type=cache,target=/opt/mastodon/vendor/cache,id=bundle-cache-${TARGETPLATFORM},uid=${UID},gid=${GID} \
+  --mount=type=cache,target=/opt/mastodon/vendor/cache,id=bundle-cache-${TARGETPLATFORM} \
   --mount=type=bind,source=Gemfile,target=Gemfile \
   --mount=type=bind,source=Gemfile.lock,target=Gemfile.lock \
   bundle config set --local without 'development test' && \
-  # && bundle config set --local frozen 'true' \
-  # && bundle config set --local cache_path 'vendor/cache' \
   bundle config set silence_root_warning 'true' && \
   bundle cache --no-install
 
-# Install all gems from the cache above, in deployment mode
+# Install gems from the cache above
 RUN \
-  --mount=type=cache,target=/opt/mastodon/vendor/cache,id=bundle-cache-${TARGETPLATFORM},uid=${UID},gid=${GID} \
+  --mount=type=cache,target=/opt/mastodon/vendor/cache,id=bundle-cache-${TARGETPLATFORM} \
   --mount=type=bind,source=Gemfile,target=Gemfile \
   --mount=type=bind,source=Gemfile.lock,target=Gemfile.lock \
   bundle config set --local deployment 'true' && \
@@ -160,12 +162,16 @@ RUN \
 ##########################################################################################
 # Yarn cache + install layer
 ##########################################################################################
+
 FROM shared-build-layer AS yarn-install
 
 ENV YARN_CACHE_FOLDER=/opt/mastodon/cache/.yarn
 
+# Download and install yarn packages
+#
+# Note: Instead of copying package.json and yarn.lock, we bind them to the container at build time
 RUN \
-  --mount=type=cache,target=/opt/mastodon/cache/.yarn,id=yarn-cache-${TARGETPLATFORM},uid=${UID},gid=${GID} \
+  --mount=type=cache,target=/opt/mastodon/cache/.yarn,id=yarn-cache-${TARGETPLATFORM} \
   --mount=type=bind,source=package.json,target=package.json \
   --mount=type=bind,source=yarn.lock,target=yarn.lock \
   yarn install --pure-lockfile --production --network-timeout 600000
@@ -173,6 +179,7 @@ RUN \
 ##########################################################################################
 # Runtime layer, this is the output layer that the end-user will use
 ##########################################################################################
+
 FROM base
 
 # hadolint ignore=DL3008,DL3009
@@ -214,7 +221,7 @@ COPY --chown=mastodon:mastodon --from=yarn-install /opt/mastodon /opt/mastodon
 
 # Precompile assets
 RUN \
-  --mount=type=cache,target=/opt/mastodon/tmp/cache,uid=${UID},gid=${GID} \
+  --mount=type=cache,target=/opt/mastodon/tmp/cache,uid=${UID},gid=${GID},id=assets-cache-${TARGETPLATFORM} \
   OTP_SECRET=precompile_placeholder \
   SECRET_KEY_BASE=precompile_placeholder \
   rails assets:precompile
