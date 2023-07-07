@@ -24,7 +24,7 @@ FROM ghcr.io/moritzheiber/ruby-jemalloc:${RUBY_VERSION} AS ruby-layer
 # Base layer used for both the build steps and the final runtime image
 ##########################################################################################
 
-FROM node:${NODE_VERSION} AS base
+FROM node:${NODE_VERSION} AS base-layer
 
 # Linux UID (user id) for the mastodon user, change with [--build-arg UID=1234]
 ARG UID="991"
@@ -78,12 +78,6 @@ ENV BIND=${BIND}
 # See: https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin
 SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
 
-# We don't want to have the automatic apt docker-clean script running, since we're caching
-# these files between runs to help speed up builds.
-#
-# The way the caching work also mean the apt caches won't be included in the final image anyway
-RUN rm -f /etc/apt/apt.conf.d/docker-clean
-
 # Turn off any and all interactivetity from apt commands
 #
 # See: https://manpages.debian.org/testing/debconf-doc/debconf.7.en.html#noninteractive
@@ -98,8 +92,13 @@ ENV PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
 # ”install" ruby from the ruby layer
 COPY --from=ruby-layer /opt/ruby /opt/ruby
 
-# Create the mastodon user
 RUN \
+  # We don't want to have the automatic apt docker-clean script running, since we're caching
+  # these files between runs to help speed up builds.
+  #
+  # The way the caching work also mean the apt caches won't be included in the final image anyway
+  rm -f /etc/apt/apt.conf.d/docker-clean && \
+  # Create the mastodon user
   groupadd -g "${GID}" mastodon && \
   useradd -l -u "$UID" -g "${GID}" -m -d /opt/mastodon mastodon
 
@@ -110,7 +109,7 @@ WORKDIR /opt/mastodon
 # Shared layer for nodejs and ruby related build steps
 ##########################################################################################
 
-FROM base AS shared-build-layer
+FROM base-layer AS build-layer
 
 # See: https://github.com/hadolint/hadolint/wiki/DL3008
 # hadolint ignore=DL3008,DL3009
@@ -138,7 +137,7 @@ RUN \
 # Bundle cache + install layer
 ##########################################################################################
 
-FROM shared-build-layer AS bundle-install
+FROM build-layer AS bundle-install
 
 # Download and cache gems without "installing" them
 #
@@ -168,7 +167,7 @@ RUN \
 # Yarn cache + install layer
 ##########################################################################################
 
-FROM shared-build-layer AS yarn-install
+FROM build-layer AS yarn-install
 
 ENV YARN_CACHE_FOLDER=/opt/mastodon/cache/.yarn
 
@@ -188,11 +187,11 @@ RUN \
 # Runtime layer, this is the output layer that the end-user will use
 ##########################################################################################
 
-FROM base
+FROM base-layer AS runtime-layer
 
 # hadolint ignore=DL3008,DL3009
 RUN \
-  --mount=type=cache,target=/var/cache/apt,id=runtime-apt-cache-${TARGETPLATFORM} \
+  --mount=type=cache,target=/var/cache/apt,id=runtime-apt-cache-${TARGETPLATFORM},sharing=locked \
   apt-get update && \
   apt-get -y --no-install-recommends install \
     ca-certificates \
@@ -226,6 +225,12 @@ COPY --chown=mastodon:mastodon --from=bundle-install /opt/mastodon /opt/mastodon
 
 # [3/3] Copy output of the "yarn install" build stage into this image layer
 COPY --chown=mastodon:mastodon --from=yarn-install /opt/mastodon /opt/mastodon
+
+##########################################################################################
+# Final layer
+##########################################################################################
+
+FROM --platform=amd64 runtime-layer
 
 # Precompile assets
 RUN \
