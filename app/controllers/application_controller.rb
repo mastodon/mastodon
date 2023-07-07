@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   include CacheConcern
   include DomainControlHelper
   include DatabaseHelper
+  include AuthorizedFetchHelper
 
   helper_method :current_account
   helper_method :current_session
@@ -50,10 +51,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
-  def authorized_fetch_mode?
-    ENV['AUTHORIZED_FETCH'] == 'true' || Rails.configuration.x.limited_federation_mode
-  end
 
   def public_fetch_mode?
     !authorized_fetch_mode?
