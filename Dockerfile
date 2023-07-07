@@ -1,104 +1,225 @@
 # syntax=docker/dockerfile:1.4
-# This needs to be bullseye-slim because the Ruby image is built on bullseye-slim
+
+# Please see https://docs.docker.com/engine/reference/builder for information about
+# the extended buildx capabilities used in this file.
+
+# Node image to use for building and runtime, change with [--build-arg NODE_VERSION=]
+#
+# Note: This needs to be bullseye-slim because the Ruby image is built on bullseye-slim
+# See: https://hub.docker.com/_/node/tags
 ARG NODE_VERSION="16.20-bullseye-slim"
 
-FROM ghcr.io/moritzheiber/ruby-jemalloc:3.2.2-slim as ruby
-FROM node:${NODE_VERSION} as build
+# Ruby image to use for building and runtime, change with [--build-arg RUBY_VERSION=]
+#
+# See: https://github.com/moritzheiber/ruby-jemalloc-docker/pkgs/container/ruby-jemalloc
+ARG RUBY_VERSION="3.2.2-slim"
 
-COPY --link --from=ruby /opt/ruby /opt/ruby
+##########################################################################################
+# Ruby image, referenced here for easier alias (ruby-layer) reference later
+##########################################################################################
+FROM ghcr.io/moritzheiber/ruby-jemalloc:${RUBY_VERSION} AS ruby-layer
 
-ENV DEBIAN_FRONTEND="noninteractive" \
-    PATH="${PATH}:/opt/ruby/bin"
+##########################################################################################
+# Base layer used for both the build steps and the final runtime image
+##########################################################################################
+FROM node:${NODE_VERSION} AS base
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
-WORKDIR /opt/mastodon
-COPY Gemfile* package.json yarn.lock /opt/mastodon/
-
-# hadolint ignore=DL3008
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends build-essential \
-        git \
-        libicu-dev \
-        libidn11-dev \
-        libpq-dev \
-        libjemalloc-dev \
-        zlib1g-dev \
-        libgdbm-dev \
-        libgmp-dev \
-        libssl-dev \
-        libyaml-0-2 \
-        ca-certificates \
-        libreadline8 \
-        python3 \
-        shared-mime-info && \
-    bundle config set --local deployment 'true' && \
-    bundle config set --local without 'development test' && \
-    bundle config set silence_root_warning true && \
-    bundle install -j"$(nproc)" && \
-    yarn install --pure-lockfile --production --network-timeout 600000 && \
-    yarn cache clean
-
-FROM node:${NODE_VERSION}
-
-# Use those args to specify your own version flags & suffixes
-ARG MASTODON_VERSION_FLAGS=""
-ARG MASTODON_VERSION_SUFFIX=""
-
+# Linux UID (user id) for the mastodon user, change with [--build-arg UID=1234]
 ARG UID="991"
+
+# Linux GID (group id) for the mastodon user, change with [--build-arg GID=1234]
 ARG GID="991"
 
-COPY --link --from=ruby /opt/ruby /opt/ruby
+# Timezone used by the Docker container and runtime, change with [--build-arg TZ=Europe/Berlin]
+#
+# NOTE: This will also be written to /etc/localtime
+#
+# See: https://blog.packagecloud.io/set-environment-variable-save-thousands-of-system-calls/
+ARG TZ="Etc/UTC"
+ENV TZ=${TZ}
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+# Allow specifying your own version flags, change with [--build-arg MASTODON_VERSION_FLAGS="hello"]
+ARG MASTODON_VERSION_FLAGS=""
+ENV MASTODON_VERSION_FLAGS=${MASTODON_VERSION_FLAGS}
 
-ENV DEBIAN_FRONTEND="noninteractive" \
-    PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
+# Allow specifying your own version suffix, change with [--build-arg MASTODON_VERSION_SUFFIX="world"]
+ARG MASTODON_VERSION_SUFFIX=""
+ENV MASTODON_VERSION_SUFFIX=${MASTODON_VERSION_SUFFIX}
 
-# Ignoring these here since we don't want to pin any versions and the Debian image removes apt-get content after use
-# hadolint ignore=DL3008,DL3009
-RUN apt-get update && \
-    echo "Etc/UTC" > /etc/localtime && \
-    groupadd -g "${GID}" mastodon && \
-    useradd -l -u "$UID" -g "${GID}" -m -d /opt/mastodon mastodon && \
-    apt-get -y --no-install-recommends install whois \
-        wget \
-        procps \
-        libssl1.1 \
-        libpq5 \
-        imagemagick \
-        ffmpeg \
-        libjemalloc2 \
-        libicu67 \
-        libidn11 \
-        libyaml-0-2 \
-        file \
-        ca-certificates \
-        tzdata \
-        libreadline8 \
-        tini && \
-    ln -s /opt/mastodon /mastodon
+# Add Ruby and Mastodon installation to the PATH
+ENV PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
 
-# Note: no, cleaning here since Debian does this automatically
-# See the file /etc/apt/apt.conf.d/docker-clean within the Docker image's filesystem
+# Use production settings for Ruby on Rails (and thus, Mastodon)
+#
+# See: https://docs.joinmastodon.org/admin/config/#rails_env
+# See: https://guides.rubyonrails.org/configuring.html#rails-environment-settings
+ARG RAILS_ENV="production"
+ENV RAILS_ENV=${RAILS_ENV}
 
-COPY --chown=mastodon:mastodon . /opt/mastodon
-COPY --chown=mastodon:mastodon --from=build /opt/mastodon /opt/mastodon
+# Use production settings for Yarn, Node and related nodejs based tools
+#
+# See: https://docs.joinmastodon.org/admin/config/#node_env
+ARG NODE_ENV="production"
+ENV NODE_ENV=${NODE_ENV}
 
-ENV RAILS_ENV="production" \
-    NODE_ENV="production" \
-    RAILS_SERVE_STATIC_FILES="true" \
-    BIND="0.0.0.0" \
-    MASTODON_VERSION_FLAGS="${MASTODON_VERSION_FLAGS}" \
-    MASTODON_VERSION_SUFFIX="${MASTODON_VERSION_SUFFIX}"
+# Allow Ruby on Rails to serve static files
+#
+# See: https://docs.joinmastodon.org/admin/config/#rails_serve_static_files
+ARG RAILS_SERVE_STATIC_FILES="true"
+ENV RAILS_SERVE_STATIC_FILES=${RAILS_SERVE_STATIC_FILES}
 
-# Set the run user
-USER mastodon
+# Configure the IP to bind Mastodon to when serving traffic
+#
+# See: https://docs.joinmastodon.org/admin/config/#bind
+ARG BIND="0.0.0.0"
+ENV BIND=${BIND}
+
+# Default shell used for running commands
+#
+# See: https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin
+SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
+
+# We don't want to have the automatic apt docker-clean script running, since we're caching
+# these files between runs to help speed up builds.
+#
+# The way the caching work also mean the apt caches won't be included in the final image anyway
+RUN rm -f /etc/apt/apt.conf.d/docker-clean
+
+# Turn off any and all interactivetity from apt commands
+#
+# See: https://manpages.debian.org/testing/debconf-doc/debconf.7.en.html#noninteractive
+ENV DEBIAN_FRONTEND="noninteractive"
+
+# Persist timezone to disk as well
+RUN echo "${TZ}}" > /etc/localtime
+
+# ”install" ruby from the ruby layer
+COPY --from=ruby-layer /opt/ruby /opt/ruby
+
+# Create the mastodon user
+RUN \
+  groupadd -g "${GID}" mastodon && \
+  useradd -l -u "$UID" -g "${GID}" -m -d /opt/mastodon mastodon
+
+# Change the working directory from here on out to the mastodon installation path
 WORKDIR /opt/mastodon
 
+##########################################################################################
+# Shared layer for nodejs and ruby related build steps
+##########################################################################################
+FROM base AS shared-build-layer
+
+# See: https://github.com/hadolint/hadolint/wiki/DL3008
+# hadolint ignore=DL3008,DL3009
+RUN \
+  --mount=type=cache,target=/var/cache/apt,id=build-apt-cache-${TARGETPLATFORM} \
+  apt-get update && \
+  apt-get install -y --no-install-recommends \
+    build-essential \
+    ca-certificates \
+    git \
+    libgdbm-dev \
+    libgmp-dev \
+    libicu-dev \
+    libidn11-dev \
+    libjemalloc-dev \
+    libpq-dev \
+    libreadline8 \
+    libssl-dev \
+    libyaml-0-2 \
+    python3 \
+    shared-mime-info \
+    zlib1g-dev
+
+##########################################################################################
+# Bundle cache + install layer
+##########################################################################################
+FROM shared-build-layer AS bundle-install
+
+# Download and cache gems without "installing" them
+#
+# Note: Instead of copying Gemfile and Gemfile.lock, we bind them to the container at build time
+RUN \
+  --mount=type=cache,target=/opt/mastodon/vendor/cache,id=bundle-cache-${TARGETPLATFORM},uid=${UID},gid=${GID} \
+  --mount=type=bind,source=Gemfile,target=Gemfile \
+  --mount=type=bind,source=Gemfile.lock,target=Gemfile.lock \
+  bundle config set --local without 'development test' && \
+  # && bundle config set --local frozen 'true' \
+  # && bundle config set --local cache_path 'vendor/cache' \
+  bundle config set silence_root_warning 'true' && \
+  bundle cache --no-install
+
+# Install all gems from the cache above, in deployment mode
+RUN \
+  --mount=type=cache,target=/opt/mastodon/vendor/cache,id=bundle-cache-${TARGETPLATFORM},uid=${UID},gid=${GID} \
+  --mount=type=bind,source=Gemfile,target=Gemfile \
+  --mount=type=bind,source=Gemfile.lock,target=Gemfile.lock \
+  bundle config set --local deployment 'true' && \
+  bundle install --local
+
+##########################################################################################
+# Yarn cache + install layer
+##########################################################################################
+FROM shared-build-layer AS yarn-install
+
+ENV YARN_CACHE_FOLDER=/opt/mastodon/cache/.yarn
+
+RUN \
+  --mount=type=cache,target=/opt/mastodon/cache/.yarn,id=yarn-cache-${TARGETPLATFORM},uid=${UID},gid=${GID} \
+  --mount=type=bind,source=package.json,target=package.json \
+  --mount=type=bind,source=yarn.lock,target=yarn.lock \
+  yarn install --pure-lockfile --production --network-timeout 600000
+
+##########################################################################################
+# Runtime layer, this is the output layer that the end-user will use
+##########################################################################################
+FROM base
+
+# hadolint ignore=DL3008,DL3009
+RUN \
+  --mount=type=cache,target=/var/cache/apt,id=runtime-apt-cache-${TARGETPLATFORM} \
+  apt-get update && \
+  apt-get -y --no-install-recommends install \
+    ca-certificates \
+    ffmpeg \
+    file \
+    imagemagick \
+    libicu67 \
+    libidn11 \
+    libjemalloc2 \
+    libpq5 \
+    libreadline8 \
+    libssl1.1 \
+    libyaml-0-2 \
+    procps \
+    tini \
+    tzdata \
+    wget \
+    whois
+
+# Symlink /opt/mastodon to /mastodon
+RUN ln -s /opt/mastodon /mastodon
+
+# Use the mastodon user from here on out
+USER mastodon
+
+# [1/3] Copy the git source code into the image layer
+COPY --chown=mastodon:mastodon . /opt/mastodon
+
+# [2/3] Copy output of the "bundle install" build stage into this layer
+COPY --chown=mastodon:mastodon --from=bundle-install /opt/mastodon /opt/mastodon
+
+# [3/3] Copy output of the "yarn install" build stage into this image layer
+COPY --chown=mastodon:mastodon --from=yarn-install /opt/mastodon /opt/mastodon
+
 # Precompile assets
-RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile
+RUN \
+  --mount=type=cache,target=/opt/mastodon/tmp/cache,uid=${UID},gid=${GID} \
+  OTP_SECRET=precompile_placeholder \
+  SECRET_KEY_BASE=precompile_placeholder \
+  rails assets:precompile
 
 # Set the work dir and the container entry point
 ENTRYPOINT ["/usr/bin/tini", "--"]
+
 EXPOSE 3000 4000
