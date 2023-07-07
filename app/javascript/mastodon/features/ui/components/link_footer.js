@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { title, version, source_url, profile_directory as profileDirectory } from 'mastodon/initial_state';
+import { title, version, source_url, statusPageUrl, profile_directory as profileDirectory } from 'mastodon/initial_state';
 import { logOut } from 'mastodon/utils/log_out';
 import { openModal } from 'mastodon/actions/modal';
 import { PERMISSION_INVITE_USERS } from 'mastodon/permissions';
