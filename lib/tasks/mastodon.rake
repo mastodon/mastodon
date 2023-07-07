@@ -21,7 +21,7 @@ namespace :mastodon do
       env['LOCAL_DOMAIN'] = prompt.ask('Domain name:') do |q|
         q.required true
         q.modify :strip
-        q.validate(/\A[a-z0-9\.\-]+\z/i)
+        q.validate(/\A[a-z0-9.-]+\z/i)
         q.messages[:valid?] = 'Invalid domain. If you intend to use unicode characters, enter punycode here'
       end
 
@@ -240,7 +240,7 @@ namespace :mastodon do
           end
 
           env['S3_PROTOCOL'] = env['S3_ENDPOINT'].start_with?('https') ? 'https' : 'http'
-          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(/\Ahttps?:\/\//, '')
+          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(%r{\Ahttps?://}, '')
 
           env['S3_BUCKET'] = prompt.ask('Minio bucket name:') do |q|
             q.required true
@@ -269,7 +269,7 @@ namespace :mastodon do
           end
 
           env['S3_PROTOCOL'] = env['S3_ENDPOINT'].start_with?('https') ? 'https' : 'http'
-          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(/\Ahttps?:\/\//, '')
+          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(%r{\Ahttps?://}, '')
 
           env['S3_BUCKET'] = prompt.ask('Storj DCS bucket name:') do |q|
             q.required true
@@ -573,7 +573,7 @@ def dotenv_escape(value)
 
   # As long as the value doesn't include single quotes, we can safely
   # rely on single quotes
-  return "'#{value}'" unless /[']/.match?(value)
+  return "'#{value}'" unless value.include?("'")
 
   # If the value contains the string '\n' or '\r' we simply can't use
   # a double-quoted string, because Dotenv will expand \n or \r no

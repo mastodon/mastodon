@@ -128,7 +128,6 @@ $content-width: 840px;
         }
 
         &.selected {
-          background: darken($ui-base-color, 2%);
           border-radius: 4px 0 0;
         }
       }
@@ -146,13 +145,9 @@ $content-width: 840px;
 
       .simple-navigation-active-leaf a {
         color: $primary-text-color;
-        background-color: darken($ui-highlight-color, 2%);
+        background-color: $ui-highlight-color;
         border-bottom: 0;
         border-radius: 0;
-
-        &:hover {
-          background-color: $ui-highlight-color;
-        }
       }
     }
 
@@ -246,12 +241,6 @@ $content-width: 840px;
             font-weight: 700;
             color: $primary-text-color;
             background: $ui-highlight-color;
-
-            &:hover,
-            &:focus,
-            &:active {
-              background: lighten($ui-highlight-color, 4%);
-            }
           }
         }
       }

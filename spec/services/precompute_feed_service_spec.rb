@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PrecomputeFeedService, type: :service do
-  subject { PrecomputeFeedService.new }
+  subject { described_class.new }
 
   describe 'call' do
     let(:account) { Fabricate(:account) }

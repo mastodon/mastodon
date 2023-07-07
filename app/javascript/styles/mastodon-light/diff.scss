@@ -5,19 +5,6 @@ html {
   scrollbar-color: $ui-base-color rgba($ui-base-color, 0.25);
 }
 
-// Change the colors of button texts
-.button {
-  color: $white;
-
-  &.button-alternative-2 {
-    color: $white;
-  }
-
-  &.button-tertiary {
-    color: $highlight-text-color;
-  }
-}
-
 .simple_form .button.button-tertiary {
   color: $highlight-text-color;
 }
@@ -436,26 +423,6 @@ html {
   color: $white;
 }
 
-.button.button-tertiary {
-  &:hover,
-  &:focus,
-  &:active {
-    color: $white;
-  }
-}
-
-.button.button-secondary {
-  border-color: $darker-text-color;
-  color: $darker-text-color;
-
-  &:hover,
-  &:focus,
-  &:active {
-    border-color: darken($darker-text-color, 8%);
-    color: darken($darker-text-color, 8%);
-  }
-}
-
 .flash-message.warning {
   color: lighten($gold-star, 16%);
 }
@@ -651,11 +618,6 @@ html {
 .reply-indicator {
   background: transparent;
   border: 1px solid lighten($ui-base-color, 8%);
-}
-
-.dismissable-banner {
-  border-left: 1px solid lighten($ui-base-color, 8%);
-  border-right: 1px solid lighten($ui-base-color, 8%);
 }
 
 .status__content,

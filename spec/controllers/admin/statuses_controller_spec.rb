@@ -20,7 +20,7 @@ describe Admin::StatusesController do
   end
 
   describe 'GET #index' do
-    context do
+    context 'with a valid account' do
       before do
         get :index, params: { account_id: account.id }
       end
@@ -38,6 +38,16 @@ describe Admin::StatusesController do
       it 'returns http success' do
         expect(response).to have_http_status(200)
       end
+    end
+  end
+
+  describe 'GET #show' do
+    before do
+      get :show, params: { account_id: account.id, id: status.id }
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(200)
     end
   end
 

@@ -19,6 +19,11 @@ class Api::V1::ConversationsController < Api::BaseController
     render json: @conversation, serializer: REST::ConversationSerializer
   end
 
+  def unread
+    @conversation.update!(unread: true)
+    render json: @conversation, serializer: REST::ConversationSerializer
+  end
+
   def destroy
     @conversation.destroy!
     render_empty
@@ -45,7 +50,7 @@ class Api::V1::ConversationsController < Api::BaseController
                            },
                          ]
                        )
-                       .to_a_paginated_by_id(limit_param(LIMIT), **params_slice(:max_id, :since_id, :min_id))
+                       .to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
   end
 
   def insert_pagination_headers

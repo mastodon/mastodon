@@ -160,7 +160,7 @@ RSpec.describe Status do
       reblog = Fabricate(:status, account: bob, reblog: subject)
       expect(subject.reblogs_count).to eq 1
       expect { subject.destroy }.to_not raise_error
-      expect(Status.find_by(id: reblog.id)).to be_nil
+      expect(described_class.find_by(id: reblog.id)).to be_nil
     end
   end
 
@@ -206,7 +206,7 @@ RSpec.describe Status do
   end
 
   describe '.mutes_map' do
-    subject { Status.mutes_map([status.conversation.id], account) }
+    subject { described_class.mutes_map([status.conversation.id], account) }
 
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
@@ -222,7 +222,7 @@ RSpec.describe Status do
   end
 
   describe '.favourites_map' do
-    subject { Status.favourites_map([status], account) }
+    subject { described_class.favourites_map([status], account) }
 
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
@@ -238,7 +238,7 @@ RSpec.describe Status do
   end
 
   describe '.reblogs_map' do
-    subject { Status.reblogs_map([status], account) }
+    subject { described_class.reblogs_map([status], account) }
 
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
@@ -254,82 +254,82 @@ RSpec.describe Status do
   end
 
   describe '.tagged_with' do
-    let(:tag1)     { Fabricate(:tag) }
-    let(:tag2)     { Fabricate(:tag) }
-    let(:tag3)     { Fabricate(:tag) }
-    let!(:status1) { Fabricate(:status, tags: [tag1]) }
-    let!(:status2) { Fabricate(:status, tags: [tag2]) }
-    let!(:status3) { Fabricate(:status, tags: [tag3]) }
-    let!(:status4) { Fabricate(:status, tags: []) }
-    let!(:status5) { Fabricate(:status, tags: [tag1, tag2, tag3]) }
+    let(:tag_cats) { Fabricate(:tag, name: 'cats') }
+    let(:tag_dogs) { Fabricate(:tag, name: 'dogs') }
+    let(:tag_zebras) { Fabricate(:tag, name: 'zebras') }
+    let!(:status_with_tag_cats) { Fabricate(:status, tags: [tag_cats]) }
+    let!(:status_with_tag_dogs) { Fabricate(:status, tags: [tag_dogs]) }
+    let!(:status_tagged_with_zebras) { Fabricate(:status, tags: [tag_zebras]) }
+    let!(:status_without_tags) { Fabricate(:status, tags: []) }
+    let!(:status_with_all_tags) { Fabricate(:status, tags: [tag_cats, tag_dogs, tag_zebras]) }
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with([tag1.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status5.id)
-        expect(Status.tagged_with([tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status5.id)
-        expect(Status.tagged_with([tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status3.id, status5.id)
+        expect(described_class.tagged_with([tag_cats.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_with_tag_cats.id, status_with_all_tags.id)
+        expect(described_class.tagged_with([tag_dogs.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_with_tag_dogs.id, status_with_all_tags.id)
+        expect(described_class.tagged_with([tag_zebras.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_tagged_with_zebras.id, status_with_all_tags.id)
       end
     end
 
     context 'when given multiple tags' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status2.id, status5.id)
-        expect(Status.tagged_with([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status3.id, status5.id)
-        expect(Status.tagged_with([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status3.id, status5.id)
+        expect(described_class.tagged_with([tag_cats.id, tag_dogs.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_with_tag_cats.id, status_with_tag_dogs.id, status_with_all_tags.id)
+        expect(described_class.tagged_with([tag_cats.id, tag_zebras.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_with_tag_cats.id, status_tagged_with_zebras.id, status_with_all_tags.id)
+        expect(described_class.tagged_with([tag_dogs.id, tag_zebras.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_with_tag_dogs.id, status_tagged_with_zebras.id, status_with_all_tags.id)
       end
     end
   end
 
   describe '.tagged_with_all' do
-    let(:tag1)     { Fabricate(:tag) }
-    let(:tag2)     { Fabricate(:tag) }
-    let(:tag3)     { Fabricate(:tag) }
-    let!(:status1) { Fabricate(:status, tags: [tag1]) }
-    let!(:status2) { Fabricate(:status, tags: [tag2]) }
-    let!(:status3) { Fabricate(:status, tags: [tag3]) }
-    let!(:status4) { Fabricate(:status, tags: []) }
-    let!(:status5) { Fabricate(:status, tags: [tag1, tag2]) }
+    let(:tag_cats) { Fabricate(:tag, name: 'cats') }
+    let(:tag_dogs) { Fabricate(:tag, name: 'dogs') }
+    let(:tag_zebras) { Fabricate(:tag, name: 'zebras') }
+    let!(:status_with_tag_cats) { Fabricate(:status, tags: [tag_cats]) }
+    let!(:status_with_tag_dogs) { Fabricate(:status, tags: [tag_dogs]) }
+    let!(:status_tagged_with_zebras) { Fabricate(:status, tags: [tag_zebras]) }
+    let!(:status_without_tags) { Fabricate(:status, tags: []) }
+    let!(:status_with_all_tags) { Fabricate(:status, tags: [tag_cats, tag_dogs]) }
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_all([tag1.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status5.id)
-        expect(Status.tagged_with_all([tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status5.id)
-        expect(Status.tagged_with_all([tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status3.id)
+        expect(described_class.tagged_with_all([tag_cats.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_with_tag_cats.id, status_with_all_tags.id)
+        expect(described_class.tagged_with_all([tag_dogs.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_with_tag_dogs.id, status_with_all_tags.id)
+        expect(described_class.tagged_with_all([tag_zebras.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_tagged_with_zebras.id)
       end
     end
 
     context 'when given multiple tags' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_all([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status5.id)
-        expect(Status.tagged_with_all([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to eq []
-        expect(Status.tagged_with_all([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to eq []
+        expect(described_class.tagged_with_all([tag_cats.id, tag_dogs.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_with_all_tags.id)
+        expect(described_class.tagged_with_all([tag_cats.id, tag_zebras.id]).reorder(:id).pluck(:id).uniq).to eq []
+        expect(described_class.tagged_with_all([tag_dogs.id, tag_zebras.id]).reorder(:id).pluck(:id).uniq).to eq []
       end
     end
   end
 
   describe '.tagged_with_none' do
-    let(:tag1)     { Fabricate(:tag) }
-    let(:tag2)     { Fabricate(:tag) }
-    let(:tag3)     { Fabricate(:tag) }
-    let!(:status1) { Fabricate(:status, tags: [tag1]) }
-    let!(:status2) { Fabricate(:status, tags: [tag2]) }
-    let!(:status3) { Fabricate(:status, tags: [tag3]) }
-    let!(:status4) { Fabricate(:status, tags: []) }
-    let!(:status5) { Fabricate(:status, tags: [tag1, tag2, tag3]) }
+    let(:tag_cats) { Fabricate(:tag, name: 'cats') }
+    let(:tag_dogs) { Fabricate(:tag, name: 'dogs') }
+    let(:tag_zebras) { Fabricate(:tag, name: 'zebras') }
+    let!(:status_with_tag_cats) { Fabricate(:status, tags: [tag_cats]) }
+    let!(:status_with_tag_dogs) { Fabricate(:status, tags: [tag_dogs]) }
+    let!(:status_tagged_with_zebras) { Fabricate(:status, tags: [tag_zebras]) }
+    let!(:status_without_tags) { Fabricate(:status, tags: []) }
+    let!(:status_with_all_tags) { Fabricate(:status, tags: [tag_cats, tag_dogs, tag_zebras]) }
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_none([tag1.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status3.id, status4.id)
-        expect(Status.tagged_with_none([tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status3.id, status4.id)
-        expect(Status.tagged_with_none([tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status2.id, status4.id)
+        expect(described_class.tagged_with_none([tag_cats.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_with_tag_dogs.id, status_tagged_with_zebras.id, status_without_tags.id)
+        expect(described_class.tagged_with_none([tag_dogs.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_with_tag_cats.id, status_tagged_with_zebras.id, status_without_tags.id)
+        expect(described_class.tagged_with_none([tag_zebras.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_with_tag_cats.id, status_with_tag_dogs.id, status_without_tags.id)
       end
     end
 
     context 'when given multiple tags' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_none([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status3.id, status4.id)
-        expect(Status.tagged_with_none([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status4.id)
-        expect(Status.tagged_with_none([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status4.id)
+        expect(described_class.tagged_with_none([tag_cats.id, tag_dogs.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_tagged_with_zebras.id, status_without_tags.id)
+        expect(described_class.tagged_with_none([tag_cats.id, tag_zebras.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_with_tag_dogs.id, status_without_tags.id)
+        expect(described_class.tagged_with_none([tag_dogs.id, tag_zebras.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status_with_tag_cats.id, status_without_tags.id)
       end
     end
   end
@@ -344,21 +344,21 @@ RSpec.describe Status do
     end
 
     it 'creates new conversation for stand-alone status' do
-      expect(Status.create(account: alice, text: 'First').conversation_id).to_not be_nil
+      expect(described_class.create(account: alice, text: 'First').conversation_id).to_not be_nil
     end
 
     it 'keeps conversation of parent node' do
       parent = Fabricate(:status, text: 'First')
-      expect(Status.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
+      expect(described_class.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
     end
 
     it 'sets `local` to true for status by local account' do
-      expect(Status.create(account: alice, text: 'foo').local).to be true
+      expect(described_class.create(account: alice, text: 'foo').local).to be true
     end
 
     it 'sets `local` to false for status by remote account' do
       alice.update(domain: 'example.com')
-      expect(Status.create(account: alice, text: 'foo').local).to be false
+      expect(described_class.create(account: alice, text: 'foo').local).to be false
     end
   end
 
@@ -372,7 +372,7 @@ RSpec.describe Status do
 
   describe 'after_create' do
     it 'saves ActivityPub uri as uri for local status' do
-      status = Status.create(account: alice, text: 'foo')
+      status = described_class.create(account: alice, text: 'foo')
       status.reload
       expect(status.uri).to start_with('https://')
     end
