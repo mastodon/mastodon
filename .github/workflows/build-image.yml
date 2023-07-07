@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - 'main'
+      - 'speed-up-docker-build'
     tags:
       - '*'
   pull_request:
@@ -23,6 +24,10 @@ env:
 jobs:
   build-image:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
 
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
