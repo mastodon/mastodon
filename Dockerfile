@@ -142,7 +142,9 @@ FROM shared-build-layer AS bundle-install
 
 # Download and cache gems without "installing" them
 #
-# Note: Instead of copying Gemfile and Gemfile.lock, we bind them to the container at build time
+# By splitting "cache" from "install" we can avoid [Could not find $GEM_NAME in cached gems or installed locally]
+#
+# NOTE: Instead of copying Gemfile and Gemfile.lock, we bind them to the container at build time
 # this avoids the issue of the files "changing" (e.g. a newline) invalidating the cache,
 # even though the "parsed" content is the same, and makes the file read-only and immutable
 # inside the build step, preventing "quiet" changes to the files
