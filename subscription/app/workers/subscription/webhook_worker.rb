@@ -19,6 +19,14 @@ module Subscription
 
         customer = ::Stripe::Customer.retrieve(event[:data][:object][:customer])
         Subscription::ApplicationMailer.send_invite(customer[:email], invite).deliver_later
+      when 'customer.subscription.updated'
+        stripe_sub = event[:data][:object]
+        subscription = Subscription::StripeSubscription.find_by(subscription_id: stripe_sub[:id])
+        subscription.update(status: stripe_sub[:status])
+      when 'customer.subscription.deleted'
+        stripe_sub = event[:data][:object]
+        subscription = Subscription::StripeSubscription.find_by(subscription_id: stripe_sub[:id])
+        subscription.update(status: stripe_sub[:status])
       end
 
     rescue Stripe::InvalidRequestError
