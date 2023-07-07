@@ -230,7 +230,7 @@ COPY --chown=mastodon:mastodon --from=yarn-install /opt/mastodon /opt/mastodon
 # Final layer
 ##########################################################################################
 
-FROM --platform=amd64 runtime-layer
+FROM --platform=$BUILDPLATFORM runtime-layer
 
 # Precompile assets
 RUN \
