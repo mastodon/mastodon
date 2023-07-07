@@ -16,7 +16,7 @@ class NotificationMailer < ApplicationMailer
 
     locale_for_account(@me) do
       thread_by_conversation(@status.conversation)
-      mail subject: I18n.t('notification_mailer.mention.subject', name: @status.account.acct)
+      mail subject: default_i18n_subject(name: @status.account.acct)
     end
   end
 
@@ -24,7 +24,7 @@ class NotificationMailer < ApplicationMailer
     return unless @user.functional?
 
     locale_for_account(@me) do
-      mail subject: I18n.t('notification_mailer.follow.subject', name: @account.acct)
+      mail subject: default_i18n_subject(name: @account.acct)
     end
   end
 
@@ -33,7 +33,7 @@ class NotificationMailer < ApplicationMailer
 
     locale_for_account(@me) do
       thread_by_conversation(@status.conversation)
-      mail subject: I18n.t('notification_mailer.favourite.subject', name: @account.acct)
+      mail subject: default_i18n_subject(name: @account.acct)
     end
   end
 
@@ -42,7 +42,7 @@ class NotificationMailer < ApplicationMailer
 
     locale_for_account(@me) do
       thread_by_conversation(@status.conversation)
-      mail subject: I18n.t('notification_mailer.reblog.subject', name: @account.acct)
+      mail subject: default_i18n_subject(name: @account.acct)
     end
   end
 
@@ -50,7 +50,7 @@ class NotificationMailer < ApplicationMailer
     return unless @user.functional?
 
     locale_for_account(@me) do
-      mail subject: I18n.t('notification_mailer.follow_request.subject', name: @account.acct)
+      mail subject: default_i18n_subject(name: @account.acct)
     end
   end
 
