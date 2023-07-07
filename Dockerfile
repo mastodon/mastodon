@@ -26,6 +26,16 @@ FROM ghcr.io/moritzheiber/ruby-jemalloc:${RUBY_VERSION} AS ruby-layer
 
 FROM node:${NODE_VERSION} AS base-layer
 
+# Make sure multiarch TARGETPLATFORM is available for interpolation
+#
+# See: https://docs.docker.com/build/building/multi-platform/
+ARG TARGETPLATFORM
+
+# See: https://docs.docker.com/build/building/multi-platform/
+#
+# Make sure multiarch BUILDPLATFORM is available for interpolation
+ARG BUILDPLATFORM
+
 # Linux UID (user id) for the mastodon user, change with [--build-arg UID=1234]
 ARG UID="991"
 
@@ -191,7 +201,7 @@ FROM base-layer AS runtime-layer
 
 # hadolint ignore=DL3008,DL3009
 RUN \
-  --mount=type=cache,target=/var/cache/apt,id=runtime-apt-cache-${TARGETPLATFORM},sharing=locked \
+  --mount=type=cache,target=/var/cache/apt,id=runtime-apt-cache-${TARGETPLATFORM} \
   apt-get update && \
   apt-get -y --no-install-recommends install \
     ca-certificates \
