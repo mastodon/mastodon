@@ -17,6 +17,7 @@ permissions:
 jobs:
   build-image:
     #runs-on: [self-hosted, linux, x64]
+    runs-on: self-hosted
     environment: prod
     steps:
       - uses: actions/checkout@v3
