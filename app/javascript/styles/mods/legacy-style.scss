@@ -4,9 +4,38 @@
         padding-left: 2.15em;
         padding-bottom: 0;
     }
-    .status {
+    .status__line {
+        display: none;
+    }
+    .status:not(.status--in-thread) {
         padding: 0.5em 0.5em 0.5em 4.75em;
         position: relative;
+    }
+    .status .status__info, .status__content {
+        padding-bottom: 0.25em;
+    }
+    .status--in-thread{
+        padding-top: 0.5em;
+    }
+    .status--in-thread .status__info {
+        padding-left: 3.25em;
+        padding-bottom: 0;
+    }
+    .status--in-thread .status__content {
+        padding-top: 0.25em;
+        padding-left: 3.25em;
+        margin-right: 4em;
+    }
+    .status--in-thread .status__content {
+      -webkit-margin-start: 0px;
+      margin-inline-start: 0px;
+      width: calc(100% - 3.5em);
+    }
+    .status__wrapper-direct .status--in-thread .status__avatar {
+        padding-top: 2em;
+    }
+    .status--in-thread .status__action-bar {
+        margin-left: 3.5em;
     }
     .status-reply {
         padding-top: 0.25em;
@@ -30,6 +59,18 @@
     }
     .status .display-name:not(.detailed-status__display-name) {
         display: flex;
+    }
+    .detailed-status {
+        padding-top: 0.25em;
+        padding-left: 0.75em;
+        padding-bottom: 0.5em;
+    }
+    .detailed-status .status__prepend {
+        margin-left: 1.75em;
+        margin-bottom: 0.5em;
+    }
+    .detailed-status__display-name {
+        margin-bottom: 0.5em;
     }
     .detailed-status .status-card {
         padding: 0.25em;
@@ -55,9 +96,6 @@
     }
     .muted {
         padding-top: 0.5em;
-    }
-    .detailed-status__display-name {
-        margin-bottom: 0.5em;
     }
     .mods__announcements__item {
         margin: 10px;   
