@@ -1,19 +1,23 @@
 - content_for :page_title do
-  = "Subscriptions"
+  Subscriptions
 
 .subscriptions.container
-  - if @subscriptions.empty?
-    Your account does not have any subscriptions
-  - else
-    .applications-list__item
-      %strong.announcements-list__item__title
-        %span
-        = "My Subscription"
-      .announcements-list__item__action-bar
-        .announcements-list__item__meta
-          = "manage your current subscription & view past subscriptions"
-      .announcements-list__item__permissions
-        %ul.permissions-list
+  .applications-list__item
+    %strong.announcements-list__item__title
+      %span
+      My Subscription
+    .announcements-list__item__action-bar
+      .announcements-list__item__meta
+        manage your current subscription & view past subscriptions
+    .announcements-list__item__permissions
+      %ul.permissions-list
+        - if @subscriptions.empty?
+          .permissions-list__item
+            %br
+            %br
+            %li.permissions-list__item
+              No current subscription found
+        - else
           - @subscriptions.each do |sub| 
             %li.permissions-list__item
               .permissions-list__item__icon
