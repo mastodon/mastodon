@@ -45,15 +45,7 @@ jobs:
       - uses: docker/metadata-action@v4
         id: meta
         with:
-          images: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          flavor: |
-            latest=auto
-          tags: |
-            type=edge,branch=main
-            type=pep440,pattern={{raw}}
-            type=pep440,pattern=v{{major}}.{{minor}}
-            type=ref,event=pr
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Generate version suffix
         id: version_vars
@@ -64,7 +56,6 @@ jobs:
       - uses: docker/build-push-action@v4
         with:
           context: .
-          build-args: MASTODON_VERSION_SUFFIX=${{ steps.version_vars.outputs.mastodon_version_suffix }}
           platforms: linux/amd64,linux/arm64
           provenance: false
           builder: ${{ steps.buildx.outputs.name }}
