@@ -15,7 +15,7 @@ class AdminMailer < ApplicationMailer
     @report = report
 
     locale_for_account(@me) do
-      mail subject: I18n.t('admin_mailer.new_report.subject', instance: @instance, id: @report.id)
+      mail subject: default_i18n_subject(instance: @instance, id: @report.id)
     end
   end
 
@@ -23,7 +23,7 @@ class AdminMailer < ApplicationMailer
     @appeal = appeal
 
     locale_for_account(@me) do
-      mail subject: I18n.t('admin_mailer.new_appeal.subject', instance: @instance, username: @appeal.account.username)
+      mail subject: default_i18n_subject(instance: @instance, username: @appeal.account.username)
     end
   end
 
@@ -31,7 +31,7 @@ class AdminMailer < ApplicationMailer
     @account = user.account
 
     locale_for_account(@me) do
-      mail subject: I18n.t('admin_mailer.new_pending_account.subject', instance: @instance, username: @account.username)
+      mail subject: default_i18n_subject(instance: @instance, username: @account.username)
     end
   end
 
@@ -41,7 +41,7 @@ class AdminMailer < ApplicationMailer
     @statuses               = statuses
 
     locale_for_account(@me) do
-      mail subject: I18n.t('admin_mailer.new_trends.subject', instance: @instance)
+      mail subject: default_i18n_subject(instance: @instance)
     end
   end
 
