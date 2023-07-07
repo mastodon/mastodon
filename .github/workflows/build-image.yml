@@ -10,9 +10,13 @@ on:
     paths:
       - .github/workflows/build-image.yml
       - Dockerfile
+
 permissions:
   contents: read
   packages: write
+
+env:
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build-image:
@@ -21,6 +25,13 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: true
+
+    # conditionally enable dockerhub login if the credentials are set there. We
+    # just use USERNAME so that we don't accidentally leak secrets in the
+    # environment. Don't just set the username while omitting the TOKEN unless
+    # you want to be sad.
+    env:
+      docker_credentials_set: ${{ secrets.DOCKERHUB_USERNAME }}
 
     steps:
       - uses: actions/checkout@v3
@@ -33,7 +44,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-        if: github.repository == 'mastodon/mastodon' && github.event_name != 'pull_request'
+        if: env.docker_credentials_set != '' && github.event_name != 'pull_request'
 
       - name: Log in to the Github Container registry
         uses: docker/login-action@v2
@@ -41,14 +52,11 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-        if: github.repository == 'mastodon/mastodon' && github.event_name != 'pull_request'
 
       - uses: docker/metadata-action@v4
         id: meta
         with:
-          images: |
-            tootsuite/mastodon
-            ghcr.io/mastodon/mastodon
+          images: ${{ env.IMAGE_NAME }}
           flavor: |
             latest=auto
           tags: |
@@ -70,7 +78,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           provenance: false
           builder: ${{ steps.buildx.outputs.name }}
-          push: ${{ github.repository == 'mastodon/mastodon' && github.event_name != 'pull_request' }}
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
