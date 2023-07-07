@@ -14,6 +14,9 @@ ARG NODE_VERSION="16.20-bullseye-slim"
 # See: https://github.com/moritzheiber/ruby-jemalloc-docker/pkgs/container/ruby-jemalloc
 ARG RUBY_VERSION="3.2.2-slim"
 
+ARG TARGETPLATFORM="${TARGETPLATFORM}"
+ARG BUILDPLATFORM="${BUILDPLATFORM}"
+
 ##########################################################################################
 # Ruby image, referenced here for easier alias (ruby-layer) reference later
 ##########################################################################################

@@ -23,15 +23,15 @@ env:
 
 jobs:
   build-image:
-    runs-on: ubuntu-latest
+    runs-on: macos-13
 
     permissions:
       contents: read
       packages: write
 
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
+    # concurrency:
+    #   group: ${{ github.workflow }}-${{ github.ref }}
+    #   cancel-in-progress: true
 
     steps:
       - uses: actions/checkout@v3
