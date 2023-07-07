@@ -48,9 +48,6 @@ ENV MASTODON_VERSION_FLAGS=${MASTODON_VERSION_FLAGS}
 ARG MASTODON_VERSION_SUFFIX=""
 ENV MASTODON_VERSION_SUFFIX=${MASTODON_VERSION_SUFFIX}
 
-# Add Ruby and Mastodon installation to the PATH
-ENV PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
-
 # Use production settings for Ruby on Rails (and thus, Mastodon)
 #
 # See: https://docs.joinmastodon.org/admin/config/#rails_env
@@ -94,6 +91,9 @@ ENV DEBIAN_FRONTEND="noninteractive"
 
 # Persist timezone to disk as well
 RUN echo "${TZ}}" > /etc/localtime
+
+# Add Ruby and Mastodon installation to the PATH
+ENV PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
 
 # ”install" ruby from the ruby layer
 COPY --from=ruby-layer /opt/ruby /opt/ruby
@@ -143,6 +143,9 @@ FROM shared-build-layer AS bundle-install
 # Download and cache gems without "installing" them
 #
 # Note: Instead of copying Gemfile and Gemfile.lock, we bind them to the container at build time
+# this avoids the issue of the files "changing" (e.g. a newline) invalidating the cache,
+# even though the "parsed" content is the same, and makes the file read-only and immutable
+# inside the build step, preventing "quiet" changes to the files
 RUN \
   --mount=type=cache,target=/opt/mastodon/vendor/cache,id=bundle-cache-${TARGETPLATFORM} \
   --mount=type=bind,source=Gemfile,target=Gemfile \
@@ -170,6 +173,9 @@ ENV YARN_CACHE_FOLDER=/opt/mastodon/cache/.yarn
 # Download and install yarn packages
 #
 # Note: Instead of copying package.json and yarn.lock, we bind them to the container at build time
+# this avoids the issue of the files "changing" (e.g. a newline) invalidating the cache,
+# even though the "parsed" content is the same, and makes the file read-only and immutable
+# inside the build step, preventing "quiet" changes to the files
 RUN \
   --mount=type=cache,target=/opt/mastodon/cache/.yarn,id=yarn-cache-${TARGETPLATFORM} \
   --mount=type=bind,source=package.json,target=package.json \
