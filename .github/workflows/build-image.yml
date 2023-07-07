@@ -23,7 +23,7 @@ env:
 
 jobs:
   build-image:
-    runs-on: macos-13
+    runs-on: ubuntu-latest
 
     permissions:
       contents: read
@@ -35,7 +35,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      # - uses: hadolint/hadolint-action@v3.1.0
+      - uses: hadolint/hadolint-action@v3.1.0
       - uses: docker/setup-qemu-action@v2
       - uses: docker/setup-buildx-action@v2
         id: buildx
