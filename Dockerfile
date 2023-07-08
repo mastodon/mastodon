@@ -260,7 +260,7 @@ RUN \
 
 FROM runtime-layer
 
-COPY --chown=mastodon:mastodon --from=assets-precompile /opt/mastodon /opt/mastodon
+COPY --chown=mastodon:mastodon --from=assets-precompile /opt/mastodon/public /opt/mastodon/public
 
 # Set the work dir and the container entry point
 ENTRYPOINT ["/usr/bin/tini", "--"]
