@@ -124,6 +124,7 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
       openstack_domain_name: ENV.fetch('SWIFT_DOMAIN_NAME') { 'default' },
       openstack_region: ENV['SWIFT_REGION'],
       openstack_cache_ttl: ENV.fetch('SWIFT_CACHE_TTL') { 60 },
+      openstack_temp_url_key: ENV['SWIFT_TEMP_URL_KEY'],
     },
     
     fog_file: { 'Cache-Control' => 'public, max-age=315576000, immutable' },
@@ -153,4 +154,11 @@ unless defined?(Seahorse)
       class NetworkingError < StandardError; end
     end
   end
+end
+
+# Set our ImageMagick security policy, but allow admins to override it
+ENV['MAGICK_CONFIGURE_PATH'] = begin
+  imagemagick_config_paths = ENV.fetch('MAGICK_CONFIGURE_PATH', '').split(File::PATH_SEPARATOR)
+  imagemagick_config_paths << Rails.root.join('config', 'imagemagick').expand_path.to_s
+  imagemagick_config_paths.join(File::PATH_SEPARATOR)
 end
