@@ -1351,6 +1351,8 @@ pt-BR:
       action: Sim, cancelar subscrição
       complete: Desinscrito
       confirmation_html: Tem certeza que deseja cancelar a inscrição de receber %{type} para Mastodon em %{domain} para o seu e-mail em %{email}? Você sempre pode se inscrever novamente de suas <a href="%{settings_path}">configurações de notificação de e-mail</a>.
+      resubscribe_html: Se você cancelou sua inscrição por engano, você pode se inscrever novamente em suas <a href="%{settings_path}"> configurações de notificações por e-mail</a>.
+      title: Cancelar inscrição
   media_attachments:
     validations:
       images_and_video: Não foi possível anexar um vídeo a uma publicação que já contém imagens
@@ -1466,6 +1468,7 @@ pt-BR:
       expired: A enquete já terminou
       invalid_choice: Opção inválida
       over_character_limit: não pode ter mais que %{max} caracteres em cada
+      self_vote: Você não pode votar nas suas próprias enquetes
       too_few_options: deve ter mais que um item
       too_many_options: não pode ter mais que %{max} itens
   preferences:
@@ -1770,6 +1773,7 @@ pt-BR:
     signed_in_as: 'Entrou como:'
   verification:
     verification: Verificação
+    verified_links: Seus links verificados
   webauthn_credentials:
     add: Adicionar nova chave de segurança
     create:
