@@ -7,16 +7,15 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { counterRenderer } from 'flavours/glitch/components/common_counter';
-
 import { EmptyAccount } from 'flavours/glitch/components/empty_account';
-import ShortNumber from 'flavours/glitch/components/short_number';
+import { ShortNumber } from 'flavours/glitch/components/short_number';
 import { VerifiedBadge } from 'flavours/glitch/components/verified_badge';
 
 import { me } from '../initial_state';
 
 import { Avatar } from './avatar';
-import Button from './button';
+import { Button } from './button';
+import { FollowersCounter } from './counters';
 import { DisplayName } from './display_name';
 import { IconButton } from './icon_button';
 import Permalink from './permalink';
@@ -161,7 +160,7 @@ class Account extends ImmutablePureComponent {
               <DisplayName account={account} />
               {!minimal && (
                 <div className='account__details'>
-                  <ShortNumber value={account.get('followers_count')} renderer={counterRenderer('followers')} /> {verification} {muteTimeRemaining}
+                  <ShortNumber value={account.get('followers_count')} renderer={FollowersCounter} /> {verification} {muteTimeRemaining}
                 </div>
               )}
             </div>
