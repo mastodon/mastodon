@@ -240,20 +240,27 @@ COPY --chown=mastodon:mastodon --from=bundle-install /opt/mastodon /opt/mastodon
 COPY --chown=mastodon:mastodon --from=yarn-install /opt/mastodon /opt/mastodon
 
 ##########################################################################################
-# Final layer
+# Assets layer
 ##########################################################################################
 #
 # NOTE: We force the platform to be the "native" build platform (e.g. linux/amd64 in GitHub Actions)
 # for this step, since web assets don't depend on "server-side" CPU architectures, and being able
 # to skip CPU emulation will significantly speed things up
-FROM --platform=$BUILDPLATFORM runtime-layer
+FROM --platform=$BUILDPLATFORM runtime-layer AS assets-precompile
 
-# Precompile assets
 RUN \
   --mount=type=cache,target=/opt/mastodon/tmp/cache,uid=${UID},gid=${GID},id=assets-cache-${BUILDPLATFORM},sharing=locked \
   OTP_SECRET=precompile_placeholder \
   SECRET_KEY_BASE=precompile_placeholder \
   rails assets:precompile
+
+##########################################################################################
+# Final layer
+##########################################################################################
+
+FROM runtime-layer
+
+COPY --chown=mastodon:mastodon --from=assets-precompile /opt/mastodon /opt/mastodon
 
 # Set the work dir and the container entry point
 ENTRYPOINT ["/usr/bin/tini", "--"]
