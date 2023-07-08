@@ -54,7 +54,7 @@ class Report < ApplicationRecord
     spam: 1_000,
     legal: 1_500,
     violation: 2_000,
-    dislike: 3_000
+    dislike: 3_000,
   }
 
   before_validation :set_uri, only: :create
