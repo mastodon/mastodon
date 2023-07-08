@@ -12,7 +12,7 @@ import { connectCommunityStream } from 'flavours/glitch/actions/streaming';
 import { expandCommunityTimeline } from 'flavours/glitch/actions/timelines';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
-import DismissableBanner from 'flavours/glitch/components/dismissable_banner';
+import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
 import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
 import { domain } from 'flavours/glitch/initial_state';
 
