@@ -127,7 +127,7 @@ FROM base-layer AS build-layer
 # See: https://github.com/hadolint/hadolint/wiki/DL3008
 # hadolint ignore=DL3008,DL3009
 RUN \
-  --mount=type=cache,target=/var/cache/apt,id=build-apt-cache-${TARGETPLATFORM} \
+  # --mount=type=cache,target=/var/cache/apt,id=build-apt-cache-${TARGETPLATFORM} \
   apt-get update && \
   apt-get install -y --no-install-recommends \
     build-essential \
@@ -161,7 +161,7 @@ FROM build-layer AS bundle-install
 # even though the "parsed" content is the same, and makes the file read-only and immutable
 # inside the build step, preventing "quiet" changes to the files
 RUN \
-  --mount=type=cache,target=/opt/mastodon/vendor/cache,id=bundle-cache-${TARGETPLATFORM} \
+  # --mount=type=cache,target=/opt/mastodon/vendor/cache,id=bundle-cache-${TARGETPLATFORM} \
   --mount=type=bind,source=Gemfile,target=Gemfile \
   --mount=type=bind,source=Gemfile.lock,target=Gemfile.lock \
   bundle config set --local without 'development test' && \
@@ -170,7 +170,7 @@ RUN \
 
 # Install gems from the cache above
 RUN \
-  --mount=type=cache,target=/opt/mastodon/vendor/cache,id=bundle-cache-${TARGETPLATFORM} \
+  # --mount=type=cache,target=/opt/mastodon/vendor/cache,id=bundle-cache-${TARGETPLATFORM} \
   --mount=type=bind,source=Gemfile,target=Gemfile \
   --mount=type=bind,source=Gemfile.lock,target=Gemfile.lock \
   bundle config set --local deployment 'true' && \
@@ -191,7 +191,7 @@ ENV YARN_CACHE_FOLDER=/opt/mastodon/cache/.yarn
 # even though the "parsed" content is the same, and makes the file read-only and immutable
 # inside the build step, preventing "quiet" changes to the files
 RUN \
-  --mount=type=cache,target=/opt/mastodon/cache/.yarn,id=yarn-cache-${TARGETPLATFORM} \
+  # --mount=type=cache,target=/opt/mastodon/cache/.yarn,id=yarn-cache-${TARGETPLATFORM} \
   --mount=type=bind,source=package.json,target=package.json \
   --mount=type=bind,source=yarn.lock,target=yarn.lock \
   yarn install --pure-lockfile --production --network-timeout 600000
@@ -204,7 +204,7 @@ FROM base-layer AS runtime-layer
 
 # hadolint ignore=DL3008,DL3009
 RUN \
-  --mount=type=cache,target=/var/cache/apt,id=runtime-apt-cache-${TARGETPLATFORM} \
+  # --mount=type=cache,target=/var/cache/apt,id=runtime-apt-cache-${TARGETPLATFORM} \
   apt-get update && \
   apt-get -y --no-install-recommends install \
     ca-certificates \
@@ -249,7 +249,7 @@ COPY --chown=mastodon:mastodon --from=yarn-install /opt/mastodon /opt/mastodon
 FROM --platform=$BUILDPLATFORM runtime-layer AS assets-precompile
 
 RUN \
-  --mount=type=cache,target=/opt/mastodon/tmp/cache,uid=${UID},gid=${GID},id=assets-cache-${BUILDPLATFORM},sharing=locked \
+  # --mount=type=cache,target=/opt/mastodon/tmp/cache,uid=${UID},gid=${GID},id=assets-cache-${BUILDPLATFORM},sharing=locked \
   OTP_SECRET=precompile_placeholder \
   SECRET_KEY_BASE=precompile_placeholder \
   rails assets:precompile
