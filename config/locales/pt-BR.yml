@@ -383,6 +383,13 @@ pt-BR:
       add_new: Adicionar novo bloqueio de domínio
       confirm_suspension:
         cancel: Cancelar
+        confirm: Suspender
+        permanent_action: Desfazer a suspensão não restaurará nenhum dado ou relacionamento.
+        preamble_html: Você está prestes a suspender <strong>%{domain}</strong> e seus subdomínios.
+        remove_all_data: Isto irá remover todo o conteúdo, mídia e dados de perfil para este domínio do seu servidor.
+        stop_communication: Seu servidor irá parar de se comunicar com esses servidores.
+        title: Confirmar bloqueio de domínio para %{domain}
+        undo_relationships: Isso desfará qualquer relação entre as contas desses servidores e as suas.
       created_msg: Domínio está sendo bloqueado
       destroyed_msg: Domínio desbloqueado
       domain: Domínio
@@ -732,6 +739,8 @@ pt-BR:
       branding:
         preamble: A marca do seu servidor o diferencia de outros servidores na rede. Essa informação pode ser exibida em vários ambientes, como a interface web do Mastodon, aplicativos nativos, pré-visualizações de links em outros sites, aplicativos de mensagens, etc. Por isso, é melhor manter essa informação clara, curta e concisa.
         title: Marca
+      captcha_enabled:
+        title: Exigir que novos usuários resolvam um CAPTCHA para confirmar sua conta
       content_retention:
         preamble: Controlar como o conteúdo gerado pelo usuário é armazenado no Mastodon.
         title: Retenção de conteúdo
@@ -967,6 +976,7 @@ pt-BR:
     notification_preferences: Alterar preferências de e-mail
     salutation: "%{name},"
     settings: 'Alterar e-mail de preferência: %{link}'
+    unsubscribe: Desinscrever
     view: 'Ver:'
     view_profile: Ver perfil
     view_status: Ver publicação
@@ -980,6 +990,10 @@ pt-BR:
     your_token: Seu código de acesso
   auth:
     apply_for_account: Solicitar uma conta
+    captcha_confirmation:
+      help_html: Se você tiver problemas para resolver o CAPTCHA, entre em contato conosco através do %{email} e poderemos ajudá-lo.
+      hint_html: Só mais uma coisa! Precisamos confirmar que você é um humano (isso é para que possamos evitar o spam!). Resolva o CAPTCHA abaixo e clique em "Continuar".
+      title: Verificação de segurança
     confirmations:
       wrong_email_hint: Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
     delete_account: Excluir conta
@@ -1016,8 +1030,11 @@ pt-BR:
     rules:
       accept: Aceitar
       back: Voltar
+      invited_by: 'Você pode juntar-se a %{domain} graças ao convite que recebeu de:'
       preamble: Estes são definidos e aplicados pelos moderadores de %{domain}.
+      preamble_invited: Antes de prosseguir, considere as regras de base definidas pelos moderadores de %{domain}.
       title: Algumas regras básicas.
+      title_invited: Você recebeu convite.
     security: Segurança
     set_new_password: Definir uma nova senha
     setup:
@@ -1130,6 +1147,11 @@ pt-BR:
       your_appeal_rejected: Sua revisão foi rejeitada
   domain_validator:
     invalid_domain: não é um nome de domínio válido
+  edit_profile:
+    basic_information: Informações básicas
+    hint_html: "<strong>Personalize o que as pessoas veem no seu perfil público e ao lado de suas publicações.</strong> É mais provável que outras pessoas o sigam de volta e interajam com você quando você tiver um perfil preenchido e uma foto de perfil."
+    other: Outro
+    safety_and_privacy: Segurança e privacidade
   errors:
     '400': A solicitação enviada é inválida ou incorreta.
     '403': Você não tem permissão para ver esta página.
@@ -1324,6 +1346,11 @@ pt-BR:
     failed_sign_in_html: Falha na tentativa de login com %{method} de %{ip} (%{browser})
     successful_sign_in_html: Login bem-sucedido com %{method} de %{ip} (%{browser})
     title: Histórico de autenticação
+  mail_subscriptions:
+    unsubscribe:
+      action: Sim, cancelar subscrição
+      complete: Desinscrito
+      confirmation_html: Tem certeza que deseja cancelar a inscrição de receber %{type} para Mastodon em %{domain} para o seu e-mail em %{email}? Você sempre pode se inscrever novamente de suas <a href="%{settings_path}">configurações de notificação de e-mail</a>.
   media_attachments:
     validations:
       images_and_video: Não foi possível anexar um vídeo a uma publicação que já contém imagens
