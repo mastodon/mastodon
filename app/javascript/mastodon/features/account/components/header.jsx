@@ -14,7 +14,7 @@ import Button from 'mastodon/components/button';
 import { FollowersCounter, FollowingCounter, StatusesCounter } from 'mastodon/components/counters';
 import { Icon }  from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
-import ShortNumber from 'mastodon/components/short_number';
+import { ShortNumber } from 'mastodon/components/short_number';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { autoPlayGif, me, domain } from 'mastodon/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
