@@ -152,52 +152,55 @@ class ActionBar extends PureComponent {
 
     let menu = [];
 
-    if (publicStatus) {
-      if (isRemote) {
-        menu.push({ text: intl.formatMessage(messages.openOriginalPage), href: status.get('url') });
-      }
-
-      menu.push({ text: intl.formatMessage(messages.copy), action: this.handleCopy });
-
-      if ('share' in navigator) {
-        menu.push({ text: intl.formatMessage(messages.share), action: this.handleShare });
-      }
-
-      menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
-      menu.push(null);
+    if (publicStatus && isRemote) {
+      menu.push({ text: intl.formatMessage(messages.openOriginalPage), href: status.get('url') });
     }
 
-    if (writtenByMe) {
-      if (pinnableStatus) {
-        menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
-        menu.push(null);
-      }
+    menu.push({ text: intl.formatMessage(messages.copy), action: this.handleCopy });
 
-      menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
+    if (publicStatus && 'share' in navigator) {
+      menu.push({ text: intl.formatMessage(messages.share), action: this.handleShare });
+    }
+
+    if (publicStatus && (signedIn || !isRemote)) {
+      menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
+    }
+
+    if (signedIn) {
       menu.push(null);
-      menu.push({ text: intl.formatMessage(messages.edit), action: this.handleEditClick });
-      menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick, dangerous: true });
-      menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick, dangerous: true });
-    } else {
-      menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
-      menu.push({ text: intl.formatMessage(messages.direct, { name: status.getIn(['account', 'username']) }), action: this.handleDirectClick });
-      menu.push(null);
-      menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick, dangerous: true });
-      menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick, dangerous: true });
-      menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport, dangerous: true });
-      if (((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && (accountAdminLink || statusAdminLink)) || (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION)) {
-        menu.push(null);
-        if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
-          if (accountAdminLink !== undefined) {
-            menu.push({ text: intl.formatMessage(messages.admin_account, { name: status.getIn(['account', 'username']) }), href: accountAdminLink(status.getIn(['account', 'id'])) });
-          }
-          if (statusAdminLink !== undefined) {
-            menu.push({ text: intl.formatMessage(messages.admin_status), href: statusAdminLink(status.getIn(['account', 'id']), status.get('id')) });
-          }
+
+      if (writtenByMe) {
+        if (pinnableStatus) {
+          menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
+          menu.push(null);
         }
-        if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) {
-          const domain = status.getIn(['account', 'acct']).split('@')[1];
-          menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: domain }), href: `/admin/instances/${domain}` });
+
+        menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
+        menu.push(null);
+        menu.push({ text: intl.formatMessage(messages.edit), action: this.handleEditClick });
+        menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick, dangerous: true });
+        menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick, dangerous: true });
+      } else {
+        menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
+        menu.push({ text: intl.formatMessage(messages.direct, { name: status.getIn(['account', 'username']) }), action: this.handleDirectClick });
+        menu.push(null);
+        menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick, dangerous: true });
+        menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick, dangerous: true });
+        menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport, dangerous: true });
+        if (((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && (accountAdminLink || statusAdminLink)) || (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION)) {
+          menu.push(null);
+          if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
+            if (accountAdminLink !== undefined) {
+              menu.push({ text: intl.formatMessage(messages.admin_account, { name: status.getIn(['account', 'username']) }), href: accountAdminLink(status.getIn(['account', 'id'])) });
+            }
+            if (statusAdminLink !== undefined) {
+              menu.push({ text: intl.formatMessage(messages.admin_status), href: statusAdminLink(status.getIn(['account', 'id']), status.get('id')) });
+            }
+          }
+          if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) {
+            const domain = status.getIn(['account', 'acct']).split('@')[1];
+            menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: domain }), href: `/admin/instances/${domain}` });
+          }
         }
       }
     }
