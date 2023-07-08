@@ -15,6 +15,7 @@ const messages = defineMessages({
   spam: { id: 'report_notification.categories.spam', defaultMessage: 'Spam' },
   legal: { id: 'report_notification.categories.legal', defaultMessage: 'Legal' },
   violation: { id: 'report_notification.categories.violation', defaultMessage: 'Rule violation' },
+  dislike: { id: 'report_notification.categories.dislike', defaultMessage: 'Dislike' },
 });
 
 class Report extends ImmutablePureComponent {
