@@ -541,7 +541,7 @@ ul.rules-list {
   padding-top: 0;
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+@media only screen and (device-width >= 768px) and (device-width <= 1024px) and (orientation: landscape) {
   body {
     min-height: 1024px !important;
   }
