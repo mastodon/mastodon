@@ -1781,6 +1781,8 @@ ca:
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'
   verification:
+    extra_instructions_html: <strong>Consell:</strong> l'enllaç al vostre lloc web pot ser invisible. La part important és <code>rel="me"</code> que evita que us suplantin la identitat a llocs web amb contingut generat pels usuaris. Fins i tot podeu generar una etiqueta <code>link</code> a la capçalera de la pàgina en comptes d'una <code>a</code>, però el codi HTML ha de ser accessible sense requerir executar JavaScript.
+    instructions_html: Copieu i enganxeu el següent codi HTML al vostre lloc web. Després, afegiu l'adreça del vostre lloc web dins d'un dels camps extres del vostre perfil i deseu els canvis.
     verification: Verificació
     verified_links: Els teus enllaços verificats
   webauthn_credentials:
