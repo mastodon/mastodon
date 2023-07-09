@@ -740,6 +740,7 @@ pt-BR:
         preamble: A marca do seu servidor o diferencia de outros servidores na rede. Essa informação pode ser exibida em vários ambientes, como a interface web do Mastodon, aplicativos nativos, pré-visualizações de links em outros sites, aplicativos de mensagens, etc. Por isso, é melhor manter essa informação clara, curta e concisa.
         title: Marca
       captcha_enabled:
+        desc_html: Isso é baseado em scripts externos de hCaptcha, o que pode ser uma preocupação de segurança e privacidade. Além disso, <strong>isso pode tornar o processo de registro significativamente menos acessível para algumas pessoas (especialmente deficientes)</strong>. Por estas razões, favor considerar medidas alternativas como o registro baseado em aprovação ou em convite.
         title: Exigir que novos usuários resolvam um CAPTCHA para confirmar sua conta
       content_retention:
         preamble: Controlar como o conteúdo gerado pelo usuário é armazenado no Mastodon.
@@ -1351,7 +1352,15 @@ pt-BR:
       action: Sim, cancelar subscrição
       complete: Desinscrito
       confirmation_html: Tem certeza que deseja cancelar a inscrição de receber %{type} para Mastodon em %{domain} para o seu e-mail em %{email}? Você sempre pode se inscrever novamente de suas <a href="%{settings_path}">configurações de notificação de e-mail</a>.
+      emails:
+        notification_emails:
+          favourite: e-mails de notificações de favoritos
+          follow: e-mails de novos seguidores
+          follow_request: e-mails de seguidores pendentes
+          mention: e-mails de notificação de menções
+          reblog: e-mails de notificação de impulsos
       resubscribe_html: Se você cancelou sua inscrição por engano, você pode se inscrever novamente em suas <a href="%{settings_path}"> configurações de notificações por e-mail</a>.
+      success_html: Você não receberá mais %{type} do Mastodon em %{domain} para o seu e-mail %{email}.
       title: Cancelar inscrição
   media_attachments:
     validations:
@@ -1772,6 +1781,10 @@ pt-BR:
     seamless_external_login: Você entrou usando um serviço externo, então configurações de e-mail e senha não estão disponíveis.
     signed_in_as: 'Entrou como:'
   verification:
+    extra_instructions_html: <strong>Dica:</strong> O link do seu site não precisa ser visível. O importante é a parte <code>rel="me"</code>, que impede a personificação em sites com conteúdo gerado pelo usuário. Você pode até usar uma tag <code>link</code> no cabeçalho da página ao invés de uma tag <code>a</code>, mas é importante que o HTML esteja acessível sem executar JavaScript.
+    here_is_how: Veja como
+    hint_html: "<strong>Verificar sua identidade no Mastodon é para todos.</strong> Utilizando padrões abertos da web e sem custo, agora e para sempre. Tudo o que você precisa é de um site pessoal pelo qual as pessoas o reconheçam. Você faz um link para este site do seu perfil, e nós verificamos se o site faz links de volta para o seu perfil. Se tudo estiver correto, apresentamos um indicador visual ao lado do link no seu perfil."
+    instructions_html: Copie o código abaixo e cole no HTML do seu site. Em seguida, adicione o endereço do seu site em um dos campos extras em seu perfil, na aba "Editar perfil", e salve as alterações.
     verification: Verificação
     verified_links: Seus links verificados
   webauthn_credentials:
