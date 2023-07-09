@@ -3,6 +3,11 @@
 require_relative '../../lib/mastodon/sidekiq_middleware'
 
 Sidekiq.configure_server do |config|
+  if Rails.configuration.database_configuration.dig('production', 'adapter') == 'postgresql_makara'
+    STDERR.puts 'ERROR: Makara is not supported in Mastodon sidekiq workers'
+    exit 1
+  end
+
   config.redis = REDIS_SIDEKIQ_PARAMS
 
   config.server_middleware do |chain|
