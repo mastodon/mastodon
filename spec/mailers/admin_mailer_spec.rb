@@ -7,7 +7,7 @@ RSpec.describe AdminMailer do
     let(:sender)    { Fabricate(:account, username: 'John') }
     let(:recipient) { Fabricate(:account, username: 'Mike') }
     let(:report)    { Fabricate(:report, account: sender, target_account: recipient) }
-    let(:mail)      { described_class.new_report(recipient, report) }
+    let(:mail)      { described_class.with(recipient: recipient).new_report(report) }
 
     before do
       recipient.user.update(locale: :en)
@@ -27,7 +27,7 @@ RSpec.describe AdminMailer do
   describe '.new_appeal' do
     let(:appeal) { Fabricate(:appeal) }
     let(:recipient) { Fabricate(:account, username: 'Kurt') }
-    let(:mail)      { described_class.new_appeal(recipient, appeal) }
+    let(:mail)      { described_class.with(recipient: recipient).new_appeal(appeal) }
 
     before do
       recipient.user.update(locale: :en)
@@ -47,7 +47,7 @@ RSpec.describe AdminMailer do
   describe '.new_pending_account' do
     let(:recipient) { Fabricate(:account, username: 'Barklums') }
     let(:user) { Fabricate(:user) }
-    let(:mail) { described_class.new_pending_account(recipient, user) }
+    let(:mail) { described_class.with(recipient: recipient).new_pending_account(user) }
 
     before do
       recipient.user.update(locale: :en)
@@ -69,7 +69,7 @@ RSpec.describe AdminMailer do
     let(:links) { [] }
     let(:statuses) { [] }
     let(:tags) { [] }
-    let(:mail) { described_class.new_trends(recipient, links, tags, statuses) }
+    let(:mail) { described_class.with(recipient: recipient).new_trends(links, tags, statuses) }
 
     before do
       recipient.user.update(locale: :en)

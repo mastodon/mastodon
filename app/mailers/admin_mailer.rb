@@ -6,45 +6,52 @@ class AdminMailer < ApplicationMailer
   helper :accounts
   helper :languages
 
-  def new_report(recipient, report)
-    @report   = report
-    @me       = recipient
-    @instance = Rails.configuration.x.local_domain
+  before_action :process_params
+  before_action :set_instance
+
+  default to: -> { @me.user_email }
+
+  def new_report(report)
+    @report = report
 
     locale_for_account(@me) do
-      mail to: @me.user_email, subject: I18n.t('admin_mailer.new_report.subject', instance: @instance, id: @report.id)
+      mail subject: default_i18n_subject(instance: @instance, id: @report.id)
     end
   end
 
-  def new_appeal(recipient, appeal)
-    @appeal   = appeal
-    @me       = recipient
-    @instance = Rails.configuration.x.local_domain
+  def new_appeal(appeal)
+    @appeal = appeal
 
     locale_for_account(@me) do
-      mail to: @me.user_email, subject: I18n.t('admin_mailer.new_appeal.subject', instance: @instance, username: @appeal.account.username)
+      mail subject: default_i18n_subject(instance: @instance, username: @appeal.account.username)
     end
   end
 
-  def new_pending_account(recipient, user)
-    @account  = user.account
-    @me       = recipient
-    @instance = Rails.configuration.x.local_domain
+  def new_pending_account(user)
+    @account = user.account
 
     locale_for_account(@me) do
-      mail to: @me.user_email, subject: I18n.t('admin_mailer.new_pending_account.subject', instance: @instance, username: @account.username)
+      mail subject: default_i18n_subject(instance: @instance, username: @account.username)
     end
   end
 
-  def new_trends(recipient, links, tags, statuses)
+  def new_trends(links, tags, statuses)
     @links                  = links
     @tags                   = tags
     @statuses               = statuses
-    @me                     = recipient
-    @instance               = Rails.configuration.x.local_domain
 
     locale_for_account(@me) do
-      mail to: @me.user_email, subject: I18n.t('admin_mailer.new_trends.subject', instance: @instance)
+      mail subject: default_i18n_subject(instance: @instance)
     end
+  end
+
+  private
+
+  def process_params
+    @me = params[:recipient]
+  end
+
+  def set_instance
+    @instance = Rails.configuration.x.local_domain
   end
 end
