@@ -133,6 +133,7 @@ pt-BR:
         position: Um cargo superior decide a resolução de conflitos em certas situações. Certas ações só podem ser executadas com cargos de menor prioridade
       webhook:
         events: Selecione eventos para enviar
+        template: Elabore seu próprio conteúdo JSON usando interpolação de variáveis. Deixe em branco para utilizar o JSON padrão.
         url: Aonde os eventos serão enviados
     labels:
       account:
@@ -307,6 +308,7 @@ pt-BR:
         position: Prioridade
       webhook:
         events: Eventos habilitados
+        template: Conteúdo JSON
         url: URL do Endpoint
     'no': 'Não'
     not_recommended: Não recomendado
