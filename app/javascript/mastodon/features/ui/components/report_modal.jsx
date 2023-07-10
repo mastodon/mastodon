@@ -89,22 +89,18 @@ class ReportModal extends ImmutablePureComponent {
   };
 
   handleDomainToggle = (domain, checked) => {
-    const { selectedDomains } = this.state;
-
     if (checked) {
-      this.setState({ selectedDomains: selectedDomains.add(domain) });
+      this.setState((state) => ({ selectedDomains: state.selectedDomains.add(domain) }));
     } else {
-      this.setState({ selectedDomains: selectedDomains.remove(domain) });
+      this.setState((state) => ({ selectedDomains: state.selectedDomains.remove(domain) }));
     }
   };
 
   handleRuleToggle = (ruleId, checked) => {
-    const { selectedRuleIds } = this.state;
-
     if (checked) {
-      this.setState({ selectedRuleIds: selectedRuleIds.add(ruleId) });
+      this.setState((state) => ({ selectedRuleIds: state.selectedRuleIds.add(ruleId) }));
     } else {
-      this.setState({ selectedRuleIds: selectedRuleIds.remove(ruleId) });
+      this.setState((state) => ({ selectedRuleIds: state.selectedRuleIds.remove(ruleId) }));
     }
   };
 
