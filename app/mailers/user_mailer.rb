@@ -11,7 +11,7 @@ class UserMailer < Devise::Mailer
   helper :routing
 
   before_action :set_instance
-  before_action :set_resource, only: [:welcome, :backup_ready, :warning, :appeal_approved, :appeal_rejected]
+  before_action :set_resource, only: [:welcome, :backup_ready, :warning, :appeal_approved, :appeal_rejected, :suspicious_sign_in]
 
   default to: -> { @resource.email }
 
@@ -174,8 +174,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def suspicious_sign_in(user, remote_ip, user_agent, timestamp)
-    @resource   = user
+  def suspicious_sign_in(remote_ip, user_agent, timestamp)
     @remote_ip  = remote_ip
     @user_agent = user_agent
     @detection  = Browser.new(user_agent)

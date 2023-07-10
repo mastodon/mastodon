@@ -147,7 +147,7 @@ class Auth::SessionsController < Devise::SessionsController
       user_agent: request.user_agent
     )
 
-    UserMailer.suspicious_sign_in(user, request.remote_ip, request.user_agent, Time.now.utc).deliver_later! if @login_is_suspicious
+    UserMailer.with(user: user).suspicious_sign_in(request.remote_ip, request.user_agent, Time.now.utc).deliver_later! if @login_is_suspicious
   end
 
   def suspicious_sign_in?(user)

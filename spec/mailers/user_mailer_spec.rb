@@ -121,7 +121,7 @@ describe UserMailer do
     let(:ip) { '192.168.0.1' }
     let(:agent) { 'NCSA_Mosaic/2.0 (Windows 3.1)' }
     let(:timestamp) { Time.now.utc }
-    let(:mail) { described_class.suspicious_sign_in(receiver, ip, agent, timestamp) }
+    let(:mail) { described_class.with(user: receiver).suspicious_sign_in(ip, agent, timestamp) }
 
     it 'renders suspicious sign in notification' do
       receiver.update!(locale: nil)
