@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Media' do
+RSpec.describe 'Media', paperclip_processing: true do
   let(:user)    { Fabricate(:user) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:scopes)  { 'write:media' }
@@ -81,8 +81,8 @@ RSpec.describe 'Media' do
       it_behaves_like 'a successful media upload', 'image'
     end
 
-    context 'with video/webm' do
-      let(:params) { { file: fixture_file_upload('attachment.webm', 'video/webm') } }
+    context "when attachment's filename includes a dot but not the expected extensions" do
+      let(:params) { { file: fixture_file_upload('attachment-jpg.123456_abcd', 'image/jpeg') } }
 
       it_behaves_like 'a successful media upload', 'image'
     end
