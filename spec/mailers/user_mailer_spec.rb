@@ -103,7 +103,7 @@ describe UserMailer do
 
   describe '#webauthn_credential_deleted' do
     let(:credential) { Fabricate(:webauthn_credential, user_id: receiver.id) }
-    let(:mail) { described_class.webauthn_credential_deleted(receiver, credential) }
+    let(:mail) { described_class.with(user: receiver).webauthn_credential_deleted(credential) }
 
     it 'renders webauthn credential deleted notification' do
       receiver.update!(locale: nil)
@@ -216,7 +216,7 @@ describe UserMailer do
 
   describe '#webauthn_credential_added' do
     let(:credential) { Fabricate.build(:webauthn_credential) }
-    let(:mail) { described_class.webauthn_credential_added(receiver, credential) }
+    let(:mail) { described_class.with(user: receiver).webauthn_credential_added(credential) }
 
     it 'renders webauthn_credential_added mail' do
       expect(mail)

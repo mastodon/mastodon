@@ -48,13 +48,13 @@ class UserMailerPreview < ActionMailer::Preview
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/webauthn_credential_added
   def webauthn_credential_added
     webauthn_credential = WebauthnCredential.new(nickname: 'USB Key')
-    UserMailer.webauthn_credential_added(User.first, webauthn_credential)
+    UserMailer.with(user: User.first).webauthn_credential_added(webauthn_credential)
   end
 
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/webauthn_credential_deleted
   def webauthn_credential_deleted
     webauthn_credential = WebauthnCredential.new(nickname: 'USB Key')
-    UserMailer.webauthn_credential_deleted(User.first, webauthn_credential)
+    UserMailer.with(user: User.first).webauthn_credential_deleted(webauthn_credential)
   end
 
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/reconfirmation_instructions

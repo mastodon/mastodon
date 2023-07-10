@@ -11,7 +11,7 @@ class UserMailer < Devise::Mailer
   helper :routing
 
   before_action :set_instance
-  before_action :set_resource, only: [:welcome, :backup_ready, :warning, :appeal_approved, :appeal_rejected, :suspicious_sign_in]
+  before_action :set_resource, only: [:welcome, :backup_ready, :warning, :appeal_approved, :appeal_rejected, :suspicious_sign_in, :webauthn_credential_added, :webauthn_credential_deleted]
 
   default to: -> { @resource.email }
 
@@ -109,8 +109,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def webauthn_credential_added(user, webauthn_credential)
-    @resource = user
+  def webauthn_credential_added(webauthn_credential)
     @webauthn_credential = webauthn_credential
 
     return unless @resource.active_for_authentication?
@@ -120,8 +119,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def webauthn_credential_deleted(user, webauthn_credential)
-    @resource = user
+  def webauthn_credential_deleted(webauthn_credential)
     @webauthn_credential = webauthn_credential
 
     return unless @resource.active_for_authentication?

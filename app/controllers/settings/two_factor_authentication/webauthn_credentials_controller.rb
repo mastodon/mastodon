@@ -48,7 +48,7 @@ module Settings
             if current_user.webauthn_credentials.size == 1
               UserMailer.webauthn_enabled(current_user).deliver_later!
             else
-              UserMailer.webauthn_credential_added(current_user, user_credential).deliver_later!
+              UserMailer.with(user: current_user).webauthn_credential_added(user_credential).deliver_later!
             end
           else
             flash[:error] = I18n.t('webauthn_credentials.create.error')
@@ -72,7 +72,7 @@ module Settings
             if current_user.webauthn_credentials.empty?
               UserMailer.webauthn_disabled(current_user).deliver_later!
             else
-              UserMailer.webauthn_credential_deleted(current_user, credential).deliver_later!
+              UserMailer.with(user: current_user).webauthn_credential_deleted(credential).deliver_later!
             end
           else
             flash[:error] = I18n.t('webauthn_credentials.destroy.error')
