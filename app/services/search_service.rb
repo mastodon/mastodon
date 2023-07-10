@@ -33,7 +33,8 @@ class SearchService < BaseService
       resolve: @resolve,
       offset: @offset,
       use_searchable_text: true,
-      following: @following
+      following: @following,
+      start_with_hashtag: @query.start_with?('#')
     )
   end
 
@@ -91,11 +92,11 @@ class SearchService < BaseService
   def full_text_searchable?
     return false unless Chewy.enabled?
 
-    statuses_search? && !@account.nil? && !((@query.start_with?('#') || @query.include?('@')) && !@query.include?(' '))
+    statuses_search? && !@account.nil? && !(@query.include?('@') && !@query.include?(' '))
   end
 
   def account_searchable?
-    account_search? && !(@query.start_with?('#') || (@query.include?('@') && @query.include?(' ')))
+    account_search? && !(@query.include?('@') && @query.include?(' '))
   end
 
   def hashtag_searchable?
