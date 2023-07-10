@@ -5,6 +5,9 @@ on:
     branches: [main]
   pull_request: # TODO: remove me before merging
 
+permissions:
+  pull-requests: write
+
 jobs:
   upload-translations-to-crowdin:
     runs-on: ubuntu-latest
@@ -18,8 +21,14 @@ jobs:
         with:
           upload_sources: true
           upload_translations: false
-          download_translations: false
           dryrun_action: true # TODO: remove me before merging
+          download_translations: true
+          localization_branch_name: i18n/crowdin/translations
+          create_pull_request: true
+          # pull_request_title: 'New Crowdin Translations'
+          # pull_request_body: 'New Crowdin translations by [Crowdin GH Action](https://github.com/crowdin/github-action)'
+          pull_request_labels: 'i18n'
+
         env:
           CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
