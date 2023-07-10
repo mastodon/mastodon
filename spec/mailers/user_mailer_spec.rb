@@ -89,7 +89,7 @@ describe UserMailer do
 
   describe '#warning' do
     let(:strike) { Fabricate(:account_warning, target_account: receiver.account, text: 'dont worry its just the testsuite', action: 'suspend') }
-    let(:mail)   { described_class.warning(receiver, strike) }
+    let(:mail)   { described_class.with(user: receiver).warning(strike) }
 
     it 'renders warning notification' do
       receiver.update!(locale: nil)

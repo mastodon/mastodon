@@ -11,7 +11,7 @@ class UserMailer < Devise::Mailer
   helper :routing
 
   before_action :set_instance
-  before_action :set_resource, only: [:welcome, :backup_ready]
+  before_action :set_resource, only: [:welcome, :backup_ready, :warning]
 
   default to: -> { @resource.email }
 
@@ -149,13 +149,12 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def warning(user, warning)
-    @resource = user
+  def warning(warning)
     @warning  = warning
     @statuses = @warning.statuses.includes(:account, :preloadable_poll, :media_attachments, active_mentions: [:account])
 
     I18n.with_locale(locale) do
-      mail subject: I18n.t("user_mailer.warning.subject.#{@warning.action}", acct: "@#{user.account.local_username_and_domain}")
+      mail subject: I18n.t("user_mailer.warning.subject.#{@warning.action}", acct: "@#{@resource.account.local_username_and_domain}")
     end
   end
 

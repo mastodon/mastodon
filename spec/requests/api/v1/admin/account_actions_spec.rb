@@ -13,7 +13,13 @@ RSpec.describe 'Account actions' do
     it 'notifies the user about the action taken' do
       expect { subject }
         .to have_enqueued_job(ActionMailer::MailDeliveryJob)
-        .with('UserMailer', 'warning', 'deliver_now!', args: [User, AccountWarning])
+        .with(
+          'UserMailer',
+          'warning',
+          'deliver_now!',
+          params: { user: User },
+          args: [AccountWarning]
+        )
     end
   end
 

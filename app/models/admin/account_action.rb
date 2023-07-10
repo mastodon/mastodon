@@ -159,7 +159,7 @@ class Admin::AccountAction
   end
 
   def process_email!
-    UserMailer.warning(target_account.user, warning).deliver_later! if warnable?
+    UserMailer.with(user: target_account.user).warning(warning).deliver_later! if warnable?
   end
 
   def warnable?

@@ -65,7 +65,7 @@ class Admin::StatusBatchAction
       statuses.each { |status| Tombstone.find_or_create_by(uri: status.uri, account: status.account, by_moderator: true) } unless target_account.local?
     end
 
-    UserMailer.warning(target_account.user, @warning).deliver_later! if warnable?
+    UserMailer.with(user: target_account.user).warning(@warning).deliver_later! if warnable?
     RemovalWorker.push_bulk(status_ids) { |status_id| [status_id, { 'preserve' => target_account.local?, 'immediate' => !target_account.local? }] }
   end
 
@@ -101,7 +101,7 @@ class Admin::StatusBatchAction
       text: text
     )
 
-    UserMailer.warning(target_account.user, @warning).deliver_later! if warnable?
+    UserMailer.with(user: target_account.user).warning(@warning).deliver_later! if warnable?
   end
 
   def handle_report!

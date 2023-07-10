@@ -81,7 +81,7 @@ class UserMailerPreview < ActionMailer::Preview
 
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/warning
   def warning
-    UserMailer.warning(User.first, AccountWarning.last)
+    UserMailer.with(user: User.first).warning(AccountWarning.last)
   end
 
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/appeal_approved
