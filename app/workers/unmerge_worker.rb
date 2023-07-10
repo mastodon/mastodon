@@ -2,16 +2,17 @@
 
 class UnmergeWorker
   include Sidekiq::Worker
+  include DatabaseHelper
 
   sidekiq_options queue: 'pull'
 
   def perform(from_account_id, into_account_id)
-    ApplicationRecord.connected_to(role: :primary) do
+    with_primary do
       @from_account = Account.find(from_account_id)
       @into_account = Account.find(into_account_id)
     end
 
-    ApplicationRecord.connected_to(role: :read, prevent_writes: true) do
+    with_read_replica do
       FeedManager.instance.unmerge_from_home(@from_account, @into_account)
     end
   rescue ActiveRecord::RecordNotFound

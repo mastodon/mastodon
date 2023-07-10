@@ -2,15 +2,16 @@
 
 class RegenerationWorker
   include Sidekiq::Worker
+  include DatabaseHelper
 
   sidekiq_options lock: :until_executed
 
   def perform(account_id, _ = :home)
-    ApplicationRecord.connected_to(role: :primary) do
+    with_primary do
       @account = Account.find(account_id)
     end
 
-    ApplicationRecord.connected_to(role: :read, prevent_writes: true) do
+    with_read_replica do
       PrecomputeFeedService.new.call(@account)
     end
   rescue ActiveRecord::RecordNotFound
