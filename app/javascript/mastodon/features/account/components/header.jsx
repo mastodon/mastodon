@@ -457,9 +457,8 @@ class Header extends ImmutablePureComponent {
 
               <div className='account__header__extra__links'>
                 <NavLink isActive={this.isStatusesPageActive} activeClassName='active' to={`/@${account.get('acct')}`} title={intl.formatNumber(account.get('statuses_count'))}>
-                  <ShortNumber
+                  <StatusesCounter
                     value={account.get('statuses_count')}
-                    renderer={StatusesCounter}
                   />
                 </NavLink>
 

@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 
 import type { ShortNumber } from 'mastodon/utils/numbers';
-import { DECIMAL_UNITS } from 'mastodon/utils/numbers';
+import {
+  DECIMAL_UNITS,
+  pluralReady,
+  toShortNumber,
+} from 'mastodon/utils/numbers';
 
 interface GenericCounterRendererProps {
   value: ShortNumber;
@@ -56,19 +60,31 @@ export const GenericCounterRenderer: React.FC<GenericCounterRendererProps> = ({
   }
 };
 
-export const StatusesCounter = (
-  displayNumber: React.ReactNode,
-  pluralReady: number,
-) => (
-  <FormattedMessage
-    id='account.statuses_counter'
-    defaultMessage='{count, plural, one {{counter} Post} other {{counter} Posts}}'
-    values={{
-      count: pluralReady,
-      counter: <strong>{displayNumber}</strong>,
-    }}
-  />
-);
+interface StatusesCounterProps {
+  value: number;
+  children?: never;
+}
+const _StatusesCounter: React.FC<StatusesCounterProps> = ({ value }) => {
+  const shortNumber = toShortNumber(value);
+  const [, division] = shortNumber;
+  const displayNumber = (
+    <strong>
+      <GenericCounterRenderer value={shortNumber} />
+    </strong>
+  );
+
+  return (
+    <FormattedMessage
+      id='account.statuses_counter'
+      defaultMessage='{count, plural, one {{counter} Post} other {{counter} Posts}}'
+      values={{
+        count: pluralReady(value, division),
+        counter: displayNumber,
+      }}
+    />
+  );
+};
+export const StatusesCounter = memo(_StatusesCounter);
 
 export const FollowingCounter = (
   displayNumber: React.ReactNode,
