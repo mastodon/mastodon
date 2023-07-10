@@ -1,4 +1,3 @@
----
 es-MX:
   about:
     about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, diseño ético, y descentralización! ¡Sé dueño de tu información con Mastodon!'
@@ -15,7 +14,7 @@ es-MX:
     instance_actor_flash: Esta cuenta es un actor virtual utilizado para representar al servidor en sí mismo y no a ningún usuario individual. Se utiliza para propósitos de la federación y no se debe suspender.
     last_active: última conexión
     link_verified_on: La propiedad de este vínculo fue verificada el %{date}
-    nothing_here: "¡No hay nada aquí!"
+    nothing_here: '¡No hay nada aquí!'
     pin_errors:
       following: Debes estar siguiendo a la persona a la que quieres aprobar
     posts:
@@ -28,13 +27,13 @@ es-MX:
       title: Moderar %{acct}
     account_moderation_notes:
       create: Crear
-      created_msg: "¡Nota de moderación creada con éxito!"
-      destroyed_msg: "¡Nota de moderación destruida con éxito!"
+      created_msg: '¡Nota de moderación creada con éxito!'
+      destroyed_msg: '¡Nota de moderación destruida con éxito!'
     accounts:
       add_email_domain_block: Poner en lista negra el dominio del correo
       approve: Aprobar
       approved_msg: La solicitud de registro de %{username} ha sido aprobada correctamente
-      are_you_sure: "¿Estás seguro?"
+      are_you_sure: '¿Estás seguro?'
       avatar: Foto de perfil
       by_domain: Dominio
       change_email:
@@ -56,7 +55,7 @@ es-MX:
       delete: Eliminar datos
       deleted: Borrado
       demote: Degradar
-      destroyed_msg: Los datos de %{username} están ahora en cola para ser eliminados inminentemente
+      destroyed_msg: "Los datos de %{username} están ahora en cola para ser eliminados inminentemente"
       disable: Deshabilitar
       disable_sign_in_token_auth: Desactivar la autenticación de doble factor
       disable_two_factor_authentication: Desactivar autenticación de dos factores
@@ -87,7 +86,7 @@ es-MX:
       media_attachments: Multimedia
       memorialize: Convertir en memorial
       memorialized: Cuenta conmemorativa
-      memorialized_msg: "%{username} se convirtió con éxito en una cuenta conmemorativa"
+      memorialized_msg: '%{username} se convirtió con éxito en una cuenta conmemorativa'
       moderation:
         active: Activo
         all: Todos
@@ -126,7 +125,7 @@ es-MX:
       resend_confirmation:
         already_confirmed: Este usuario ya está confirmado
         send: Reenviar enlace de confirmación
-        success: "¡Enlace de confirmación enviado con éxito!"
+        success: '¡Enlace de confirmación enviado con éxito!'
       reset: Reiniciar
       reset_password: Reiniciar contraseña
       resubscribe: Re-suscribir
@@ -293,7 +292,7 @@ es-MX:
       filter_by_user: Filtrar por usuario
       title: Log de auditoría
     announcements:
-      destroyed_msg: "¡Anuncio eliminado con éxito!"
+      destroyed_msg: '¡Anuncio eliminado con éxito!'
       edit:
         title: Editar anuncio
       empty: No se encontraron anuncios.
@@ -302,13 +301,13 @@ es-MX:
         create: Crear anuncio
         title: Nuevo anuncio
       publish: Publicar
-      published_msg: "¡Anuncio publicado con éxito!"
+      published_msg: '¡Anuncio publicado con éxito!'
       scheduled_for: Programado para %{time}
-      scheduled_msg: "¡Anuncio programado para su publicación!"
+      scheduled_msg: '¡Anuncio programado para su publicación!'
       title: Anuncios
       unpublish: Retirar publicación
-      unpublished_msg: "¡Anuncio despublicado con éxito!"
-      updated_msg: "¡Anuncio actualizado con éxito!"
+      unpublished_msg: '¡Anuncio despublicado con éxito!'
+      updated_msg: '¡Anuncio actualizado con éxito!'
     custom_emojis:
       assign_category: Asignar categoría
       by_domain: Dominio
@@ -316,9 +315,9 @@ es-MX:
       copy: Copiar
       copy_failed_msg: No se pudo realizar una copia local de ese emoji
       create_new_category: Crear una nueva categoría
-      created_msg: "¡Emoji creado con éxito!"
+      created_msg: '¡Emoji creado con éxito!'
       delete: Borrar
-      destroyed_msg: "¡Emojo destruido con éxito!"
+      destroyed_msg: '¡Emojo destruido con éxito!'
       disable: Deshabilitar
       disabled: Desactivado
       disabled_msg: Se deshabilitó con éxito ese emoji
@@ -341,7 +340,7 @@ es-MX:
       unlist: No listado
       unlisted: Sin listar
       update_failed_msg: No se pudo actualizar ese emoji
-      updated_msg: "¡Emoji actualizado con éxito!"
+      updated_msg: '¡Emoji actualizado con éxito!'
       upload: Subir
     dashboard:
       active_users: usuarios activos
@@ -382,6 +381,15 @@ es-MX:
       undo: Quitar de la lista blanca
     domain_blocks:
       add_new: Añadir nuevo
+      confirm_suspension:
+        cancel: Cancelar
+        confirm: Suspender
+        permanent_action: Deshacer la suspensión no recuperará ningún dato ni relación.
+        preamble_html: Estás a punto de suspender a <strong>%{domain}</strong> y sus subdominios.
+        remove_all_data: Esto eliminará todo el contenido, multimedia y datos de perfil de las cuentas de este dominio de tu servidor.
+        stop_communication: Tu servidor dejará de comunicarse con estos servidores.
+        title: Confirmar bloqueo del dominio %{domain}
+        undo_relationships: Esto deshará cualquier relación (seguidores y seguidos) entre las cuentas de estos servidores y el tuyo.
       created_msg: El bloque de dominio está siendo procesado
       destroyed_msg: El bloque de dominio se deshizo
       domain: Dominio
@@ -472,7 +480,7 @@ es-MX:
       back_to_limited: Limitados
       back_to_warning: Advertencia
       by_domain: Dominio
-      confirm_purge: "¿Seguro que quieres eliminar permanentemente los datos de este dominio?"
+      confirm_purge: '¿Seguro que quieres eliminar permanentemente los datos de este dominio?'
       content_policies:
         comment: Nota interna
         description_html: Puedes definir políticas de contenido que se aplicarán a todas las cuentas de este dominio y a cualquiera de sus subdominios.
@@ -548,7 +556,7 @@ es-MX:
       no_ip_block_selected: No se han cambiado reglas IP ya que no se ha seleccionado ninguna
       title: Reglas IP
     relationships:
-      title: Relaciones de %{acct}
+      title: "Relaciones de %{acct}"
     relays:
       add_new: Añadir un nuevo relés
       delete: Borrar
@@ -566,8 +574,8 @@ es-MX:
       status: Estado
       title: Releses
     report_notes:
-      created_msg: "¡El registro de la denuncia se ha creado correctamente!"
-      destroyed_msg: "¡El registro de la denuncia se ha borrado correctamente!"
+      created_msg: '¡El registro de la denuncia se ha creado correctamente!'
+      destroyed_msg: '¡El registro de la denuncia se ha borrado correctamente!'
     reports:
       account:
         notes:
@@ -585,7 +593,7 @@ es-MX:
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide qué medidas tomar para resolver este reporte. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
       add_to_report: Añadir más al reporte
-      are_you_sure: "¿Estás seguro?"
+      are_you_sure: '¿Estás seguro?'
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
       by_target_domain: Dominio de la cuenta reportada
@@ -621,7 +629,7 @@ es-MX:
       reported_account: Cuenta reportada
       reported_by: Reportado por
       resolved: Resuelto
-      resolved_msg: "¡La denuncia se ha resuelto correctamente!"
+      resolved_msg: '¡La denuncia se ha resuelto correctamente!'
       skip_to_actions: Ir directamente a las acciones
       status: Estado
       statuses: Contenido reportado
@@ -731,6 +739,9 @@ es-MX:
       branding:
         preamble: La marca de tu servidor lo diferencia de otros servidores de la red. Esta información puede mostrarse a través de una variedad de entornos, como en la interfaz web de Mastodon, en aplicaciones nativas, en previsualizaciones de enlaces en otros sitios web y en aplicaciones de mensajería, etc. Por esta razón, es mejor mantener esta información clara, breve y concisa.
         title: Marca
+      captcha_enabled:
+        desc_html: Esto se basa en scripts externos de hCaptcha, que pueden suponer una preocupación de seguridad y privacidad. Además, <strong>esto puede volver el proceso de registro significativamente menos accesible para algunas personas (especialmente con discapacidades)</strong>. Por estas razones, por favor, considera medidas alternativas como el registro por aprobación manual o con invitación.
+        title: Solicita a los nuevos usuarios que resuelvan un CAPTCHA para confirmar su cuenta
       content_retention:
         preamble: Controlar cómo el contenido generado por el usuario se almacena en Mastodon.
         title: Retención de contenido
@@ -761,7 +772,7 @@ es-MX:
       title: Ajustes del Servidor
     site_uploads:
       delete: Eliminar archivo subido
-      destroyed_msg: "¡Carga del sitio eliminada con éxito!"
+      destroyed_msg: '¡Carga del sitio eliminada con éxito!'
     statuses:
       account: Autor
       application: Aplicación
@@ -878,7 +889,7 @@ es-MX:
         peaked_on_and_decaying: Alcanzó el pico en %{date}, ahora decreciendo
         title: Etiquetas en tendencia
         trendable: Pueden aparecer en tendencias
-        trending_rank: Tendencia n.º %{rank}
+        trending_rank: 'Tendencia n.º %{rank}'
         usable: Pueden usarse
         usage_comparison: Usada %{today} veces hoy, comparado con %{yesterday} ayer
         used_by_over_week:
@@ -931,7 +942,7 @@ es-MX:
     new_report:
       body: "%{reporter} ha reportado a %{target}"
       body_remote: Alguien de %{domain} a reportado a %{target}
-      subject: Nuevo reporte para la %{instance} (#%{id})
+      subject: 'Nuevo reporte para la %{instance} (#%{id})'
     new_trends:
       body: 'Los siguientes elementos necesitan una revisión antes de que se puedan mostrar públicamente:'
       new_trending_links:
@@ -966,6 +977,7 @@ es-MX:
     notification_preferences: Cambiar preferencias de correo electrónico
     salutation: "%{name}:"
     settings: 'Cambiar preferencias de correo: %{link}'
+    unsubscribe: Cancelar suscripción
     view: 'Vista:'
     view_profile: Ver perfil
     view_status: Ver estado
@@ -979,17 +991,21 @@ es-MX:
     your_token: Tu token de acceso
   auth:
     apply_for_account: Solicitar una cuenta
+    captcha_confirmation:
+      help_html: Si tienes problemas resolviendo el CAPTCHA, puedes contactarnos por email en %{email} y te ayudaremos.
+      hint_html: '¡Una última cosita! Necesitamos confirmar que eres humano (¡así podemos evitar el spam!). Resuelve este CAPTCHA de debajo y pulsa en "Continuar".'
+      title: Comprobación de seguridad
     confirmations:
       wrong_email_hint: Si esa dirección de correo electrónico no es correcta, puedes cambiarla en la configuración de la cuenta.
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
     description:
       prefix_invited_by_user: "¡@%{name} te invita a unirte a este servidor de Mastodon!"
-      prefix_sign_up: "¡Únete a Mastodon hoy!"
-      suffix: "¡Con una cuenta podrás seguir a gente, publicar novedades e intercambiar mensajes con usuarios de cualquier servidor de Mastodon y más!"
-    didnt_get_confirmation: "¿No recibiste un enlace de confirmación?"
-    dont_have_your_security_key: "¿No tienes tu clave de seguridad?"
-    forgot_password: "¿Olvidaste tu contraseña?"
+      prefix_sign_up: '¡Únete a Mastodon hoy!'
+      suffix: '¡Con una cuenta podrás seguir a gente, publicar novedades e intercambiar mensajes con usuarios de cualquier servidor de Mastodon y más!'
+    didnt_get_confirmation: '¿No recibiste un enlace de confirmación?'
+    dont_have_your_security_key: '¿No tienes tu clave de seguridad?'
+    forgot_password: '¿Olvidaste tu contraseña?'
     invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
     link_to_otp: Introduce un código de dos factores desde tu teléfono o un código de recuperación
     link_to_webauth: Utilice su dispositivo de clave de seguridad
@@ -1015,15 +1031,18 @@ es-MX:
     rules:
       accept: Aceptar
       back: Atrás
+      invited_by: 'Puedes unirte a %{domain} gracias a la invitación que has recibido de:'
       preamble: Estas son establecidas y aplicadas por los moderadores de %{domain}.
+      preamble_invited: Antes de continuar, por favor, revisa las reglas básicas establecidas por los moderadores de %{domain}.
       title: Algunas reglas básicas.
+      title_invited: Has sido invitado.
     security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
     setup:
       email_below_hint_html: Comprueba tu carpeta de correo no deseado o solicita otro enlace de confirmación. Puedes corregir tu correo electrónico si está mal.
       email_settings_hint_html: Pulsa el enlace que te hemos enviado para verificar %{email}. Esperaremos aquí mismo.
-      link_not_received: "¿No recibiste un enlace?"
-      new_confirmation_instructions_sent: "¡Recibirás un nuevo correo electrónico con el enlace de confirmación en unos minutos!"
+      link_not_received: '¿No recibiste un enlace?'
+      new_confirmation_instructions_sent: '¡Recibirás un nuevo correo electrónico con el enlace de confirmación en unos minutos!'
       title: Revisa tu bandeja de entrada
     sign_in:
       preamble_html: Registrate con tus credenciales de <strong>%{domain}</strong>. Si tu cuenta está alojada en un servidor diferente, no podrás iniciar sesión aquí.
@@ -1047,7 +1066,7 @@ es-MX:
     error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
     follow: Seguir
     follow_request: 'Tienes una solicitud de seguimiento de:'
-    following: "¡Éxito! Ahora estás siguiendo a:"
+    following: '¡Éxito! Ahora estás siguiendo a:'
     post_follow:
       close: O, puedes simplemente cerrar esta ventana.
       return: Regresar al perfil del usuario
@@ -1129,6 +1148,11 @@ es-MX:
       your_appeal_rejected: Tu apelación ha sido rechazada
   domain_validator:
     invalid_domain: no es un nombre de dominio válido
+  edit_profile:
+    basic_information: Información básica
+    hint_html: "<strong>Personaliza lo que la gente ve en tu perfil público junto a tus publicaciones.</strong> Es más probable que otras personas te sigan e interactúen contigo cuando completas tu perfil y foto."
+    other: Otros
+    safety_and_privacy: Seguridad y privacidad
   errors:
     '400': La solicitud que has enviado no es valida o estaba malformada.
     '403': No tienes permiso para acceder a esta página.
@@ -1217,7 +1241,9 @@ es-MX:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> elemento que coincide con su búsqueda está seleccionado."
       other: Todos los <strong>%{count}</strong> elementos que coinciden con su búsqueda están seleccionados.
-    changes_saved_msg: "¡Cambios guardados con éxito!"
+    cancel: Cancelar
+    changes_saved_msg: '¡Cambios guardados con éxito!'
+    confirm: Confirmar
     copy: Copiar
     delete: Eliminar
     deselect: Deseleccionar todo
@@ -1229,19 +1255,55 @@ es-MX:
       other: Seleccionar todos los %{count} elementos que coinciden con tu búsqueda.
     today: hoy
     validation_errors:
-      one: "¡Algo no está bien! Por favor, revisa el error"
-      other: "¡Algo no está bien! Por favor, revise %{count} errores más abajo"
+      one: '¡Algo no está bien! Por favor, revisa el error'
+      other: '¡Algo no está bien! Por favor, revise %{count} errores más abajo'
   imports:
     errors:
+      empty: Archivo CSV vacío
+      incompatible_type: Incompatible con el tipo de importación seleccionado
       invalid_csv_file: 'Archivo CSV no válido. Error: %{error}'
       over_rows_processing_limit: contiene más de %{count} filas
+      too_large: El archivo es demasiado grande
+    failures: Fallos
+    imported: Importado
+    mismatched_types_warning: Parece que podrías haber seleccionado el tipo incorrecto para esta importación, por favor vuelve a verificarlo.
     modes:
       merge: Unir
       merge_long: Mantener registros existentes y añadir nuevos
       overwrite: Sobrescribir
       overwrite_long: Reemplazar registros actuales con los nuevos
+    overwrite_preambles:
+      blocking_html: Estás a punto de <strong>reemplazar tu lista de bloqueos</strong> por hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      bookmarks_html: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{total_items} publicaciones</strong> provenientes de <strong>%{filename}</strong>.
+      domain_blocking_html: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
+      following_html: Estás a punto de <strong>seguir</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong> y <strong>dejar de seguir a cualquier otra cuenta</strong>.
+      muting_html: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con hasta <strong>%{total_items} cuentas</strong> proveninetes de <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} cuentas</strong> proveninetes de <strong>%{filename}</strong>.
+      bookmarks_html: Estás a punto de añadir hasta <strong>%{total_items} publicaciones</strong> proveninetes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
+      domain_blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
+      following_html: Estás a punto de <strong>seguir</strong> hasta <strong>cuentas%{total_items}</strong> provenientes de <strong>%{filename}</strong>.
+      muting_html: Estás a punto de <strong>silenciar</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
     preface: Puedes importar ciertos datos, como todas las personas que estás siguiendo o bloqueando en tu cuenta en esta instancia, desde archivos exportados de otra instancia.
+    recent_imports: Importaciones recientes
+    states:
+      finished: Finalizado
+      in_progress: En curso
+      scheduled: Programado
+      unconfirmed: No confirmado
+    status: Estado
     success: Sus datos se han cargado correctamente y serán procesados en brevedad
+    time_started: Comenzado el
+    titles:
+      blocking: Importando cuentas bloqueadas
+      bookmarks: Importando marcadores
+      domain_blocking: Importando dominios bloqueados
+      following: Importando cuentas seguidas
+      muting: Importando cuentas silenciadas
+    type: Importar tipo
+    type_groups:
+      constructive: Seguidores y marcadores
+      destructive: Bloqueos y silencios
     types:
       blocking: Lista de bloqueados
       bookmarks: Marcadores
@@ -1285,6 +1347,21 @@ es-MX:
     failed_sign_in_html: Intento de inicio de sesión fallido con %{method} de %{ip} (%{browser})
     successful_sign_in_html: Inicio de sesión exitoso con %{method} desde %{ip} (%{browser})
     title: Historial de autenticación
+  mail_subscriptions:
+    unsubscribe:
+      action: Sí, cancelar suscripción
+      complete: Has cancelado tu suscripción
+      confirmation_html: '¿Estás seguro de que quieres dejar de recibir %{type} de Mastodon en %{domain} a tu email %{email}? Siempre podrás volver a suscribirte desde los <a href="%{settings_path}"> ajustes de notificación por correo.</a>.'
+      emails:
+        notification_emails:
+          favourite: notificaciones de me gusta por correo
+          follow: notificaciones de seguidores por correo
+          follow_request: notificaciones de peticiones de seguimiento por correo
+          mention: notificaciones de menciones por correo
+          reblog: notificaciones de impulsos por correo
+      resubscribe_html: Si te has dado de baja por error, puedes volver a darte de alta desde tus <a href="%{settings_path}">ajustes de notificaciones por correo</a>.
+      success_html: Ya no recibirás %{type} de mastodon en %{domain} a tu correo %{email}.
+      title: Cancelar suscripición
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
@@ -1356,7 +1433,7 @@ es-MX:
     poll:
       subject: Una encuesta de %{name} ha terminado
     reblog:
-      body: "%{name} ha retooteado tu estado:"
+      body: '%{name} ha retooteado tu estado:'
       subject: "%{name} ha retooteado tu estado"
       title: Nueva difusión
     status:
@@ -1384,7 +1461,7 @@ es-MX:
     instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en tu teléfono</strong>. A partir de ahora, esta aplicación generará códigos que tendrás que ingresar cuando quieras iniciar sesión."
     manual_instructions: 'Si no puedes escanear el código QR y necesitas introducirlo manualmente, este es el secreto en texto plano:'
     setup: Configurar
-    wrong_code: "¡El código ingresado es inválido! ¿Es correcta la hora del dispositivo y el servidor?"
+    wrong_code: '¡El código ingresado es inválido! ¿Es correcta la hora del dispositivo y el servidor?'
   pagination:
     newer: Más nuevo
     next: Próximo
@@ -1400,6 +1477,7 @@ es-MX:
       expired: La encuesta ya ha terminado
       invalid_choice: La opción de voto seleccionada no existe
       over_character_limit: no puede exceder %{max} caracteres cada uno
+      self_vote: No puedes votar en tus propias encuestas
       too_few_options: debe tener más de un elemento
       too_many_options: no puede contener más de %{max} elementos
   preferences:
@@ -1414,9 +1492,9 @@ es-MX:
       unrecognized_emoji: no es un emoji conocido
   relationships:
     activity: Actividad de la cuenta
-    confirm_follow_selected_followers: "¿Estás seguro de que quieres seguir a las cuentas seleccionadas?"
-    confirm_remove_selected_followers: "¿Estás seguro de que quieres eliminar a los seguidores seleccionados?"
-    confirm_remove_selected_follows: "¿Estás seguro de que quieres eliminar los seguidos seleccionados?"
+    confirm_follow_selected_followers: '¿Estás seguro de que quieres seguir a las cuentas seleccionadas?'
+    confirm_remove_selected_followers: '¿Estás seguro de que quieres eliminar a los seguidores seleccionados?'
+    confirm_remove_selected_follows: '¿Estás seguro de que quieres eliminar los seguidos seleccionados?'
     dormant: Inactivo
     follow_failure: No se pudo seguir algunas de las cuentas seleccionadas.
     follow_selected_followers: Seguir a los seguidores seleccionados
@@ -1545,7 +1623,7 @@ es-MX:
       reblog: Un boost no puede fijarse
     poll:
       total_people:
-        one: persona %{count}
+        one: "persona %{count}"
         other: "%{count} gente"
       total_votes:
         one: "%{count} voto"
@@ -1556,7 +1634,7 @@ es-MX:
     show_older: Mostrar más antiguos
     show_thread: Mostrar discusión
     sign_in_to_participate: Regístrate para participar en la conversación
-    title: "%{name}: «%{quote}»"
+    title: '%{name}: «%{quote}»'
     visibilities:
       direct: Directa
       private: Sólo mostrar a seguidores
@@ -1690,7 +1768,7 @@ es-MX:
       edit_profile_step: Puedes personalizar tu perfil subiendo una foto de perfil, cambiando tu nombre de usuario y mucho más. Puedes optar por revisar a los nuevos seguidores antes de que puedan seguirte.
       explanation: Aquí hay algunos consejos para empezar
       final_action: Empezar a publicar
-      final_step: "¡Empieza a publicar! Incluso sin seguidores, tus publicaciones públicas pueden ser vistas por otros, por ejemplo en la línea de tiempo local o en etiquetas. Tal vez quieras presentarte con la etiqueta de #introducciones."
+      final_step: '¡Empieza a publicar! Incluso sin seguidores, tus publicaciones públicas pueden ser vistas por otros, por ejemplo en la línea de tiempo local o en etiquetas. Tal vez quieras presentarte con la etiqueta de #introducciones.'
       full_handle: Su sobrenombre completo
       full_handle_hint: Esto es lo que le dirías a tus amigos para que ellos puedan enviarte mensajes o seguirte desde otra instancia.
       subject: Bienvenido a Mastodon
@@ -1703,14 +1781,19 @@ es-MX:
     seamless_external_login: Has iniciado sesión desde un servicio externo, así que los ajustes de contraseña y correo no están disponibles.
     signed_in_as: 'Sesión iniciada como:'
   verification:
+    extra_instructions_html: <strong>Consejo:</strong> El enlace en tu web puede ser invisible. La parte importante es <code>rel="me"</code>, que evita la suplantación de identidad en sitios con contenido generado por el usuario. Puedes incluso usar una etiqueta <code>enlace</code> en el encabezado de la página en vez de <code>a</code>, pero el HTML debe ser accesible sin ejecutar JavaScript.
+    here_is_how: Así es como se hace
+    hint_html: "<strong>Verificar tu identidad en Mastodon es para todos.</strong> Basado en estándares web abiertos, ahora y para siempre. Todo lo que necesitas es un sitio web propio que la gente reconozca. Cuando enlaces a este sitio web desde tu perfil, comprobaremos que el sitio web se enlaza a tu perfil y mostraremos un indicador visual en él."
+    instructions_html: Copia y pega el siguiente código en el HTML de tu sitio web. A continuación, añade la dirección de su sitio web en uno de los campos extra de tu perfil desde la pestaña "Editar perfil" y guarda los cambios.
     verification: Verificación
+    verified_links: Tus enlaces verificados
   webauthn_credentials:
     add: Agregar nueva clave de seguridad
     create:
       error: Hubo un problema al añadir su clave de seguridad. Por favor, inténtalo de nuevo.
       success: Su clave de seguridad se ha añadido correctamente.
     delete: Eliminar
-    delete_confirmation: "¿Estás seguro de que quieres eliminar esta clave de seguridad?"
+    delete_confirmation: '¿Estás seguro de que quieres eliminar esta clave de seguridad?'
     description_html: Si habilita la <strong>autenticación de clave de seguridad</strong>, iniciar sesión requerirá que utilice una de sus claves de seguridad.
     destroy:
       error: Hubo un problema al añadir su clave de seguridad. Por favor, inténtalo de nuevo.

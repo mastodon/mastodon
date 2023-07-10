@@ -1,7 +1,6 @@
----
 sk:
   about:
-    about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch a na slobodnom softvéri. Je decentralizovaná, podobne ako email.
+    about_mastodon_html: 'Mastodon je sociálna sieť založená na otvorených webových protokoloch a na slobodnom softvéri. Je decentralizovaná, podobne ako email.'
     contact_missing: Nezadaný
     contact_unavailable: Neuvedený/á
     hosted_on: Mastodon hostovaný na %{domain}
@@ -9,9 +8,9 @@ sk:
   accounts:
     follow: Nasleduj
     followers:
+      one: Sledujúci
       few: Sledovateľov
       many: Sledovateľov
-      one: Sledujúci
       other: Sledovatelia
     following: Nasledujem
     instance_actor_flash: Toto konto je virtuálny aktér, ktorý predstavuje samotný server, a nie konkrétneho používateľa. Používa sa na účely federácie a nemal by byť pozastavený.
@@ -21,9 +20,9 @@ sk:
     pin_errors:
       following: Musíš už následovať toho človeka, ktorého si praješ zviditeľniť
     posts:
+      one: Príspevok
       few: Príspevky
       many: Príspevkov
-      one: Príspevok
       other: Príspevkov
     posts_tab_heading: Príspevky
   admin:
@@ -317,6 +316,10 @@ sk:
       undo: Odober zo zoznamu povolených
     domain_blocks:
       add_new: Blokuj novú doménu
+      confirm_suspension:
+        cancel: Zruš
+        confirm: Vylúč
+        title: Potvrď blokovanie domény %{domain}
       created_msg: Doména je v štádiu blokovania
       destroyed_msg: Blokovanie domény bolo zrušené
       domain: Doména
@@ -440,11 +443,11 @@ sk:
       no_ip_block_selected: Žiadne IP pravidlá neboli zmenené, keďže si žiadne nemal/a zvolené
       title: pravidlá pre IP adresy
     relationships:
-      title: Vzťahy užívateľa %{acct}
+      title: "Vzťahy užívateľa %{acct}"
     relays:
       add_new: Pridaj nový federovací mostík
       delete: Vymaž
-      description_html: "<strong>Federovací mostík</strong> je prechodný server, ktorý obmieňa veľké množstvá verejných príspevkov medzi tými servermi ktoré na od neho odoberajú, aj doňho prispievajú. <strong>Môže to pomôcť malým a stredným instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni užívatelia ručne následovali iných ľudí zo vzdialených instancií."
+      description_html: <strong>Federovací mostík</strong> je prechodný server, ktorý obmieňa veľké množstvá verejných príspevkov medzi tými servermi ktoré na od neho odoberajú, aj doňho prispievajú. <strong>Môže to pomôcť malým a stredným instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni užívatelia ručne následovali iných ľudí zo vzdialených instancií.
       disable: Vypni
       disabled: Vypnutý
       enable: Povoľ
@@ -496,24 +499,28 @@ sk:
       reported_by: Nahlásené užívateľom
       resolved: Vyriešené
       resolved_msg: Hlásenie úspešne vyriešené!
+      skip_to_actions: Prejsť na akcie
       status: Stav
       statuses: Nahlásený obsah
       summary:
+        action_preambles:
+          suspend_html: 'Chystáš sa <strong>vylúčiť</strong> účet <strong>@%{acct}</strong>. To urobí:'
         actions:
           delete_html: Vymaž pohoršujúce príspevky
           mark_as_sensitive_html: Označ médiá pohoršujúcich príspevkov za chúlostivé
         close_report: 'Označ hlásenie #%{id} za vyriešené'
       title: Hlásenia
       unassign: Odober
+      unknown_action_msg: 'Neznáma akcia: %{action}'
       unresolved: Nevyriešené
       updated_at: Aktualizované
       view_profile: Zobraz profil
     roles:
       add_new: Pridaj postavenie
       assigned_users:
+        one: "%{count} užívateľ"
         few: "%{count} užívateľov"
         many: "%{count} užívateľov"
-        one: "%{count} užívateľ"
         other: "%{count} užívatelia"
       categories:
         administration: Spravovanie
@@ -530,6 +537,7 @@ sk:
         manage_appeals: Spravuj námietky
         manage_blocks: Spravuj blokovania
         manage_federation: Spravuj federáciu
+        manage_invites: Spravuj pozvánky
         manage_reports: Spravuj hlásenia
         manage_roles: Spravuj postavenia
         manage_rules: Spravuj pravidlá
@@ -543,9 +551,13 @@ sk:
       empty: Žiadne pravidlá servera ešte neboli určené.
       title: Serverové pravidlá
     settings:
+      about:
+        title: O
       appearance:
         title: Vzhľad
       discovery:
+        follow_recommendations: Odporúčania pre nasledovanie
+        profile_directory: Katalóg profilov
         public_timelines: Verejné časové osi
         publish_discovered_servers: Zverejni objavené servery
         publish_statistics: Zverejni štatistiky
@@ -589,6 +601,7 @@ sk:
       with_media: S médiami
     strikes:
       appeal_approved: Namietnuté
+      appeal_rejected: Námietka zamietnutá
     system_checks:
       rules_check:
         action: Spravuj serverové pravidlá
@@ -617,10 +630,14 @@ sk:
         title: Zverejňovatelia
       rejected: Odmietnuté
       statuses:
+        allow: Povoľ príspevok
+        allow_account: Povoľ autora
         disallow: Zakáž príspevok
         disallow_account: Zakáž autora
         title: Populárne príspevky
       tags:
+        dashboard:
+          tag_uses_measure: užívateľov celkovo
         title: Populárne štítky
         trending_rank: 'Populárne #%{rank}'
         usable: Môže byť použitý
@@ -643,12 +660,14 @@ sk:
     new_report:
       body: "%{reporter} nahlásil/a %{target}"
       body_remote: Niekto z %{domain} nahlásil/a %{target}
-      subject: Nové hlásenie pre %{instance} (#%{id})
+      subject: 'Nové hlásenie pre %{instance} (#%{id})'
     new_trends:
       new_trending_links:
         title: Populárne odkazy
       new_trending_statuses:
         title: Populárne príspevky
+      new_trending_tags:
+        title: Populárne haštagy
   aliases:
     add_new: Vytvor alias
     created_msg: Nový alias úspešne vytvorený. Teraz môžeš začať presun zo starého účtu.
@@ -668,6 +687,7 @@ sk:
   application_mailer:
     notification_preferences: Zmeň emailové voľby
     settings: 'Zmeň emailové voľby: %{link}'
+    unsubscribe: Prestaň odoberať
     view: 'Zobraziť:'
     view_profile: Zobraz profil
     view_status: Zobraz status
@@ -680,6 +700,9 @@ sk:
     warning: Na tieto údaje dávaj ohromný pozor. Nikdy ich s nikým nezďieľaj!
     your_token: Tvoj prístupový token
   auth:
+    apply_for_account: Vyžiadaj si účet
+    captcha_confirmation:
+      title: Bezpečnostná kontrola
     delete_account: Vymaž účet
     delete_account_html: Pokiaľ chceš svoj účet odtiaľto vymazať, môžeš tak <a href="%{path}">urobiť tu</a>. Budeš požiadaný/á o potvrdenie tohto kroku.
     description:
@@ -694,13 +717,21 @@ sk:
     migrate_account: Presúvam sa na iný účet
     migrate_account_html: Ak si želáš presmerovať tento účet na nejaký iný, môžeš si to <a href="%{path}">nastaviť tu</a>.
     or_log_in_with: Alebo prihlás s
+    progress:
+      confirm: Potvrď email
     register: Zaregistruj sa
     registration_closed: "%{instance} neprijíma nových členov"
+    resend_confirmation: Odošli potvrdzovací odkaz znovu
     reset_password: Obnov heslo
     rules:
+      accept: Prijať
       back: Späť
+      title_invited: Bol/a si pozvaný/á.
     security: Zabezpečenie
     set_new_password: Nastav nové heslo
+    setup:
+      link_not_received: Nedostal/a si odkaz?
+      title: Skontroluj svoju schránku
     status:
       account_status: Stav účtu
       confirming: Čaká sa na dokončenie potvrdenia emailom.
@@ -760,6 +791,8 @@ sk:
       appeals:
         submit: Pošli námietku
       approve_appeal: Schváľ námietku
+      created_at: Dátumom
+      recipient: Adresované pre
       title_actions:
         none: Varovanie
         silence: Obmedzenie účtu
@@ -826,9 +859,9 @@ sk:
     order_by: Zoraď podľa
     save_changes: Ulož zmeny
     validation_errors:
+      one: Niečo ešte nieje celkom v poriadku! Prosím skontroluj chybu uvedenú nižšie
       few: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chýb uvedených nižšie
       many: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chýb uvedených nižšie
-      one: Niečo ešte nieje celkom v poriadku! Prosím skontroluj chybu uvedenú nižšie
       other: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chyby uvedené nižšie
   imports:
     errors:
@@ -840,6 +873,8 @@ sk:
       overwrite_long: Nahraď súčasné záznamy novými
     preface: Môžeš nahrať dáta ktoré si exportoval/a z iného Mastodon serveru, ako sú napríklad zoznamy ľudí ktorých sleduješ, alebo blokuješ.
     success: Tvoje dáta boli nahraté úspešne, a teraz budú spracované v danom čase
+    type_groups:
+      constructive: Sledovania a záložky
     types:
       blocking: Zoznam blokovaných
       bookmarks: Záložky
@@ -861,9 +896,9 @@ sk:
     generate: Vygeneruj
     invited_by: 'Bol/a si pozvaný/á užívateľom:'
     max_uses:
+      one: 1 využitie
       few: "%{count} využití"
       many: "%{count} využití"
-      one: 1 využitie
       other: "%{count} využitia"
     max_uses_prompt: Bez obmedzení
     prompt: Vygeneruj a zdieľaj linky s ostatnými, aby mali umožnený prístup k tomuto serveru
@@ -932,11 +967,11 @@ sk:
     follow_request:
       action: Spravuj žiadosti o sledovanie
       body: "%{name} žiada povolenie ťa následovať"
-      subject: "%{name} ťa žiadá o možnosť sledovania"
+      subject: '%{name} ťa žiadá o možnosť sledovania'
       title: Nová žiadosť o následovanie
     mention:
       action: Odpovedať
-      body: "%{name} ťa spomenul/a v:"
+      body: '%{name} ťa spomenul/a v:'
       subject: Bol/a si spomenutý/á užívateľom %{name}
       title: Novo spomenutý/á
     poll:
@@ -1055,16 +1090,16 @@ sk:
     attached:
       description: 'Priložené: %{attached}'
       image:
+        one: "%{count} obrázok"
         few: "%{count} obrázkov"
         many: "%{count} obrázkov"
-        one: "%{count} obrázok"
         other: "%{count} obrázky"
     boosted_from_html: Vyzdvihnuté od %{acct_link}
     content_warning: 'Varovanie o obsahu: %{warning}'
     disallowed_hashtags:
+      one: 'obsahoval nepovolený haštag: %{tags}'
       few: 'obsah nepovolených haštagov: %{tags}'
       many: 'obsah nepovolených haštagov: %{tags}'
-      one: 'obsahoval nepovolený haštag: %{tags}'
       other: 'obsahoval nepovolené haštagy: %{tags}'
     errors:
       in_reply_not_found: Príspevok, na ktorý sa snažíš odpovedať, pravdepodobne neexistuje.
@@ -1076,14 +1111,14 @@ sk:
       reblog: Vyzdvihnutie sa nedá pripnúť
     poll:
       total_people:
+        one: "%{count} človek"
         few: "%{count} ľudí"
         many: "%{count} ľudia"
-        one: "%{count} človek"
         other: "%{count} ľudí"
       total_votes:
+        one: "%{count} hlas"
         few: "%{count} hlasov"
         many: "%{count} hlasov"
-        one: "%{count} hlas"
         other: "%{count} hlasy"
       vote: Hlasuj
     show_more: Ukáž viac

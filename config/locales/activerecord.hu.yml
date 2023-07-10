@@ -1,4 +1,3 @@
----
 hu:
   activerecord:
     attributes:
@@ -53,3 +52,7 @@ hu:
             position:
               elevated: nem lehet magasabb, mint a jelenlegi szereped
               own_role: nem megváltoztatható a jelenlegi szerepköröddel
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: nem lehet olyan eseményeket bevenni, melyekhez nincs jogosultságod

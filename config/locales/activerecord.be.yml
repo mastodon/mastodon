@@ -1,4 +1,3 @@
----
 be:
   activerecord:
     attributes:
@@ -53,3 +52,7 @@ be:
             position:
               elevated: не можа быць вышэй за вашу бягучую ролю
               own_role: не можа быць зменены з вашай бягучай роляй
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: не можа ўключаць у сябе падзеі на якія ў вас няма правоў

@@ -1,5 +1,4 @@
----
-'no':
+"no":
   simple_form:
     hints:
       account_alias:
@@ -105,7 +104,7 @@
       rule:
         text: Beskriv en regel eller krav til brukere på denne serveren. Prøv å holde den kort og enkelt
       sessions:
-        otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+        otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
       tag:
         name: Du kan bare forandre bruken av store/små bokstaver, f.eks. for å gjøre det mer lesbart
       user:
@@ -154,7 +153,7 @@
       defaults:
         autofollow: Inviter til å følge kontoen din
         avatar: Profilbilde
-        bot: Dette er en botkonto
+        bot: Dette er en automatisert konto
         chosen_languages: Filtrer språk
         confirm_new_password: Bekreft nytt passord
         confirm_password: Bekreft passord
@@ -165,8 +164,8 @@
         display_name: Visningsnavn
         email: E-postadresse
         expires_in: Utløper etter
-        fields: Profilmetadata
-        header: Overskrift
+        fields: Ekstrafelt
+        header: Bakgrunnsbilde på profilen
         honeypot: "%{label} (ikke fyll ut)"
         inbox_url: URL til overgangsinnboksen
         irreversible: Forkast i stedet for å skjule
@@ -285,7 +284,7 @@
         position: Prioritet
       webhook:
         events: Aktiverte hendelser
-    'no': Nei
+    'no': 'Nei'
     not_recommended: Ikke anbefalt
     recommended: Anbefalt
     required:
@@ -294,4 +293,4 @@
     title:
       sessions:
         webauthn: Bruk en av sikkerhetsnøklene dine til å logge på
-    'yes': Ja
+    'yes': 'Ja'

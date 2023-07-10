@@ -1,4 +1,3 @@
----
 sr-Latn:
   about:
     about_mastodon_html: 'Društvena mreža budućnosti: bez reklama, bez korporativnog praćenja, etički dizajn, i decentralizacija! Posedujte svoje podatke sa Mastodonom!'
@@ -9,8 +8,8 @@ sr-Latn:
   accounts:
     follow: Zaprati
     followers:
-      few: Pratioca
       one: Pratilac
+      few: Pratioca
       other: Pratilaca
     following: Pratim
     instance_actor_flash: Ovaj nalog je virtuelni akter koji ne predstavlja nijednog korisnika lično, već sâm server. Koristi se u svrhu federacije i ne treba ga suspendovati.
@@ -20,8 +19,8 @@ sr-Latn:
     pin_errors:
       following: Morate pratiti osobu koju želite da preporučite
     posts:
-      few: Objave
       one: Objava
+      few: Objave
       other: Objava
     posts_tab_heading: Objave
   admin:
@@ -58,7 +57,7 @@ sr-Latn:
       delete: Obriši podatke
       deleted: Izbrisano
       demote: Ražaluj
-      destroyed_msg: Podaci korisnika %{username} su nepovratno stavljeni u red za brisanje
+      destroyed_msg: "Podaci korisnika %{username} su nepovratno stavljeni u red za brisanje"
       disable: Zamrzni
       disable_sign_in_token_auth: Onemogući imejl autentifikaciju
       disable_two_factor_authentication: Isključi 2FA
@@ -89,7 +88,7 @@ sr-Latn:
       media_attachments: Multimedijalni prilozi
       memorialize: Prebaci u in memoriam
       memorialized: Podignut spomenik
-      memorialized_msg: "%{username} je uspešno pretvoren u memorijalni nalog"
+      memorialized_msg: '%{username} je uspešno pretvoren u memorijalni nalog'
       moderation:
         active: Aktivan
         all: Svi
@@ -109,8 +108,8 @@ sr-Latn:
       perform_full_suspension: Suspenduj
       previous_strikes: Prethodni prekršaji
       previous_strikes_description_html:
-        few: Ovaj nalog ima <strong>%{count}</strong> prekršaja.
         one: Ovaj nalog ima <strong>jedan</strong> prekršaj.
+        few: Ovaj nalog ima <strong>%{count}</strong> prekršaja.
         other: Ovaj nalog ima <strong>%{count}</strong> prekršaja.
       promote: Unapredi
       protocol: Protokol
@@ -128,6 +127,8 @@ sr-Latn:
       removed_header_msg: Uspešno obrisana slika zaglavlja korisnika %{username}
       resend_confirmation:
         already_confirmed: Ovaj korisnik je već potvrđen
+        send: Ponovo pošalji vezu za potvrdu
+        success: Veza za potvrdu je uspešno poslata!
       reset: Resetuj
       reset_password: Resetuj lozinku
       resubscribe: Ponovo se pretplati
@@ -351,20 +352,20 @@ sr-Latn:
       new_users: novi korisnici
       opened_reports: otvorene prijave
       pending_appeals_html:
-        few: "<strong>%{count}</strong> žalbe na čekanju"
         one: "<strong>%{count}</strong> žalba na čekanju"
+        few: "<strong>%{count}</strong> žalbe na čekanju"
         other: "<strong>%{count}</strong> žalbi na čekanju"
       pending_reports_html:
-        few: "<strong>%{count}</strong> prijave na čekanju"
         one: "<strong>%{count}</strong> prijava na čekanju"
+        few: "<strong>%{count}</strong> prijave na čekanju"
         other: "<strong>%{count}</strong> prijava na čekanju"
       pending_tags_html:
-        few: "<strong>%{count}</strong> heš oznake na čekanju"
         one: "<strong>%{count}</strong> heš oznaka na čekanju"
+        few: "<strong>%{count}</strong> heš oznake na čekanju"
         other: "<strong>%{count}</strong> heš oznaka na čekanju"
       pending_users_html:
-        few: "<strong>%{count}</strong> korisnika na čekanju"
         one: "<strong>%{count}</strong> korisnik na čekanju"
+        few: "<strong>%{count}</strong> korisnika na čekanju"
         other: "<strong>%{count}</strong> korisnika na čekanju"
       resolved_reports: rešene prijave
       software: Softver
@@ -387,6 +388,15 @@ sr-Latn:
       undo: Zabrani federaciju sa domenom
     domain_blocks:
       add_new: Dodaj novi blok domena
+      confirm_suspension:
+        cancel: Otkaži
+        confirm: Obustavi
+        permanent_action: Poništavanje obustave neće vratiti nikakve podatke ili odnos.
+        preamble_html: Obustavićete <strong>%{domain}</strong> i njegove poddomene.
+        remove_all_data: Ovo će ukloniti sav sadržaj, medije i podatke profila za naloge ovog domena sa vašeg servera.
+        stop_communication: Vaš server će prestati da komunicira sa ovim serverima.
+        title: Potvrdi blokiranje domena za %{domain}
+        undo_relationships: Ovo će poništiti svaki odnos praćenja između naloga ovih servera i vašeg.
       created_msg: Blokiranje domena se obrađuje
       destroyed_msg: Blokiranje domena je opozvano
       domain: Domen
@@ -421,8 +431,8 @@ sr-Latn:
     email_domain_blocks:
       add_new: Dodaj novi
       attempts_over_week:
-        few: "%{count} pokušaja tokom prethodne nedelje"
         one: "%{count} pokušaj tokom prethodne nedelje"
+        few: "%{count} pokušaja tokom prethodne nedelje"
         other: "%{count} pokušaja registracije tokom prethodne nedelje"
       created_msg: Uspešno dodao domen E-pošte na crnu listu
       delete: Obriši
@@ -465,13 +475,13 @@ sr-Latn:
     instances:
       availability:
         description_html:
-          few: Ukoliko isporuka domenu ne uspe nijednom tokom <strong>%{count} različitih dana</strong>, dalji pokušaji isporuke neće biti inicirani osim ukoliko se ne primi isporuka <em>sa</em> domena.
           one: Ako isporuka domenu ne uspe nijednom u vremenskom periodu od <strong>%{count} dana</strong>, dalji pokušaji isporuke se neće inicirati osim ukoliko se ne primi isporuka <em>sa</em> domena.
+          few: Ukoliko isporuka domenu ne uspe nijednom tokom <strong>%{count} različitih dana</strong>, dalji pokušaji isporuke neće biti inicirani osim ukoliko se ne primi isporuka <em>sa</em> domena.
           other: Ukoliko isporuka domenu ne uspe nijednom tokom <strong>%{count} različitih dana</strong>, dalji pokušaji isporuke se neće inicirati osim ukoliko se ne primi isporuka <em>sa</em> domena.
         failure_threshold_reached: Prag neuspeha dostignut datuma %{date}.
         failures_recorded:
-          few: Neuspeli pokušaji tokom %{count} različita dana.
           one: Neuspeli pokušaj tokom %{count} dana.
+          few: Neuspeli pokušaji tokom %{count} različita dana.
           other: Neuspeli pokušaji tokom %{count} različitih dana.
         no_failures_recorded: Bez zabeleženih neuspeha.
         title: Dostupnost
@@ -515,8 +525,8 @@ sr-Latn:
       destroyed_msg: Podaci sa %{domain} su sada u redu za čekanje za izvesno brisanje.
       empty: Nijedan domen nije pronađen.
       known_accounts:
-        few: "%{count} poznata naloga"
         one: "%{count} poznat nalog"
+        few: "%{count} poznata naloga"
         other: "%{count} poznatih naloga"
       moderation:
         all: Sve
@@ -557,11 +567,11 @@ sr-Latn:
       no_ip_block_selected: Nijedno IP pravilo nije promenjeno jer nijedno nije izabrano
       title: IP pravila
     relationships:
-      title: Odnosi korisnika %{acct}
+      title: "Odnosi korisnika %{acct}"
     relays:
       add_new: Dodaj novi relej
       delete: Obriši
-      description_html: "<strong>Federalni relej</strong> je posrednički server koji razmenjuje velike količine javnih truba između servera na koji je pretplaćen i na koji objavljuje.<strong>Može pomoći malim i srednjim serverima da otkriju sadržaj iz fediversa</strong>, koji inače zahteva od lokalnih korisnika da ručno pratiti ostale ljude na udaljenim serverima."
+      description_html: <strong>Federalni relej</strong> je posrednički server koji razmenjuje velike količine javnih truba između servera na koji je pretplaćen i na koji objavljuje.<strong>Može pomoći malim i srednjim serverima da otkriju sadržaj iz fediversa</strong>, koji inače zahteva od lokalnih korisnika da ručno pratiti ostale ljude na udaljenim serverima.
       disable: Isključi
       disabled: Isključen
       enable: Uključi
@@ -580,8 +590,8 @@ sr-Latn:
     reports:
       account:
         notes:
-          few: "%{count} beleške"
           one: "%{count} beleška"
+          few: "%{count} beleške"
           other: "%{count} beležaka"
       action_log: Zapisnik
       action_taken_by: Akciju izveo
@@ -664,8 +674,8 @@ sr-Latn:
     roles:
       add_new: Dodaj ulogu
       assigned_users:
-        few: "%{count} korisnika"
         one: "%{count} korisnik"
+        few: "%{count} korisnika"
         other: "%{count} korisnika"
       categories:
         administration: Administracija
@@ -679,8 +689,8 @@ sr-Latn:
       everyone: Podrazumevana ovlašćenja
       everyone_full_description_html: Ovo je <strong>osnovna uloga</strong> koja se odnosi na <strong>sve korisnike</strong>, čak i one kojima nije dodeljena uloga. Sve druge uloge nasleđuju ovlašćenja od osnovne uloge.
       permissions_count:
-        few: "%{count} dozvole"
         one: "%{count} dozvola"
+        few: "%{count} dozvole"
         other: "%{count} dozvola"
       privileges:
         administrator: Administrator
@@ -743,6 +753,9 @@ sr-Latn:
       branding:
         preamble: Brendiranje Vašeg servera ga izdvaja od drugih servera na mreži. Ove informacije mogu biti prikazane u raznim okruženjima, poput Mastodonovog veb interfejsa, nativnih aplikacija, u pregledima linkova na drugim serverima i u aplikacijama za razmenu poruka, itd. Iz ovog razloga, najbolje je da ove informacije budu kratke, jasne i koncizne.
         title: Brendiranje
+      captcha_enabled:
+        desc_html: Ovo se oslanja na eksterne skripte iz hCaptcha, što može predstavljati zabrinutost za bezbednost i privatnost. Pored toga, <strong>ovo može učiniti proces registracije znatno manje dostupnim nekim (posebno osobama sa invaliditetom)</strong>. Iz ovih razloga, razmotrite alternativne mere kao što je registracija zasnovana na odobrenju ili na pozivu.
+        title: Zahtevaj od novih korisnika da reše CAPTCHA da bi potvrdili svoj nalog
       content_retention:
         preamble: Kontrolišite kako se sadržaj generisan od strane korisnika skladišti na Mastodonu.
         title: Zadržavanje sadržaja
@@ -848,8 +861,8 @@ sr-Latn:
         publishers:
           no_publisher_selected: Nijedan izdavač nije promenjen jer nijedan nije izabran
         shared_by_over_week:
-          few: Podeljen od strane %{count} osobe tokom prethodne nedelje
           one: Podeljen od strane jedne osobe tokom prethodne nedelje
+          few: Podeljen od strane %{count} osobe tokom prethodne nedelje
           other: Podeljen od strane %{count} osoba tokom prethodne nedelje
         title: Linkovi u trendu
         usage_comparison: Podeljeno %{today} puta danas, u poređenju sa %{yesterday} puta juče
@@ -871,8 +884,8 @@ sr-Latn:
         no_status_selected: Nijedna objava u trendu nije promenjena jer nijedna nije izabrana
         not_discoverable: Autor nije dao saglasnost da bude preporučen
         shared_by:
-          few: Podeljeno i stavljeno u „omiljene” %{friendly_count} puta
           one: Podeljeno ili stavljeno u „omiljene” jednom
+          few: Podeljeno i stavljeno u „omiljene” %{friendly_count} puta
           other: Podeljeno i stavljeno u „omiljene” %{friendly_count} puta
         title: Objave u trendu
       tags:
@@ -896,8 +909,8 @@ sr-Latn:
         usable: Može se koristiti
         usage_comparison: Upotrebljeno %{today} puta danas, u poređenju sa %{yesterday} puta juče
         used_by_over_week:
-          few: Korišćeno od strane %{count} osobe tokom prethodne nedelje
           one: Korišćeno od strane jedne osobe tokom prethodne nedelje
+          few: Korišćeno od strane %{count} osobe tokom prethodne nedelje
           other: Korišćeno od strane %{count} ljudi tokom prethodne nedelje
       title: Trendovi
       trending: U trendu
@@ -910,7 +923,7 @@ sr-Latn:
     webhooks:
       add_new: Dodaj krajnju tačku
       delete: Izbriši
-      description_html: "<strong>Webhook</strong> omogućava Mastodonu da Vašoj aplikaciji isporučuje <strong>obaveštenja u realnom vremenu</strong> o odabranim događajima, tako da Vaša aplikacija može da <strong>automatski izazove reakciju</strong>."
+      description_html: <strong>Webhook</strong> omogućava Mastodonu da Vašoj aplikaciji isporučuje <strong>obaveštenja u realnom vremenu</strong> o odabranim događajima, tako da Vaša aplikacija može da <strong>automatski izazove reakciju</strong>.
       disable: Onemogući
       disabled: Onemogućeno
       edit: Izmeni krajnju tačku
@@ -918,8 +931,8 @@ sr-Latn:
       enable: Omogući
       enabled: Aktivno
       enabled_events:
-        few: "%{count} omogućena događaja"
         one: 1 omogućen događaj
+        few: "%{count} omogućena događaja"
         other: "%{count} omogućenih događaja"
       events: Događaji
       new: Novi webhook
@@ -947,7 +960,7 @@ sr-Latn:
     new_report:
       body: "%{reporter} je prijavio %{target}"
       body_remote: Neka sa domena %{domain} je prijavio %{target}
-      subject: Nova prijava za %{instance} (#%{id})
+      subject: 'Nova prijava za %{instance} (#%{id})'
     new_trends:
       body: 'Sledeće stavke je potrebno pregledati pre nego što mogu javno da se prikažu:'
       new_trending_links:
@@ -980,8 +993,9 @@ sr-Latn:
     toot_layout: Raspored objava
   application_mailer:
     notification_preferences: Promeni preference E-pošte
-    salutation: Poštovani %{name},
+    salutation: "Poštovani %{name},"
     settings: 'Promeni podešavanja e-pošte: %{link}'
+    unsubscribe: Odjavi se
     view: 'Pogledaj:'
     view_profile: Pogledaj nalog
     view_status: Pogledaj status
@@ -995,6 +1009,10 @@ sr-Latn:
     your_token: Vaš pristupni token
   auth:
     apply_for_account: Zatražite nalog
+    captcha_confirmation:
+      help_html: Ako imate problema sa rešavanjem CAPTCHA, možete nas kontaktirati preko %{email} i možemo vam pomoći.
+      hint_html: Samo još jedna stvar! Moramo da potvrdimo da ste ljudsko biće (ovo je da bismo sprečili neželjenu poštu!). Rešite CAPTCHA ispod i kliknite na „Nastavi”.
+      title: Bezbedonosna provera
     confirmations:
       wrong_email_hint: Ako ta imejl adresa nije ispravna, možete je promeniti u podešavanjima naloga.
     delete_account: Brisanje naloga
@@ -1003,6 +1021,7 @@ sr-Latn:
       prefix_invited_by_user: "@%{name} Vas poziva da se pridružite ovom serveru Mastodona!"
       prefix_sign_up: Pridružite se Mastodonu danas!
       suffix: Sa nalogom, moći ćete da pratite ljude, objavljujete novosti i razmenjujete poruke sa korisnicima bilo kog Mastodon servera i više!
+    didnt_get_confirmation: Niste primili vezu za potvrdu?
     dont_have_your_security_key: Nemate sigurnosni ključ?
     forgot_password: Zaboravili ste lozinku?
     invalid_reset_password_token: Token za resetovanje lozinke je neispravan ili je istekao. Zatražite novi.
@@ -1015,23 +1034,39 @@ sr-Latn:
     migrate_account_html: Ako želite da preusmerite ovaj nalog na neki drugi, možete to <a href="%{path}">podesiti ovde</a>.
     or_log_in_with: Ili se prijavite sa
     privacy_policy_agreement_html: Pročitao/-la sam i saglasan/-a sam sa <a href="%{privacy_policy_path}" target="_blank">politikom privatnosti</a>
+    progress:
+      confirm: Potvrdite e-poštu
+      details: Vaši detalji
+      review: Naš pregled
+      rules: Prihvatite pravila
     providers:
       cas: CAS-om
       saml: SAML-om
     register: Registruj se
     registration_closed: "%{instance} ne prima nove članove"
+    resend_confirmation: Ponovo pošalji vezu za potvrdu
     reset_password: Resetuj lozinku
     rules:
       accept: Prihvati
       back: Nazad
+      invited_by: 'Možete se pridružiti %{domain} zahvaljujući pozivnici koju ste dobili od:'
       preamble: Ovo su pravila koja su uspostavili i koja sprovode moderatori servera %{domain}.
+      preamble_invited: Pre nego što nastavite, razmotrite osnovna pravila koja su postavili moderatori %{domain}.
       title: Neka osnovna pravila.
+      title_invited: Pozvani ste.
     security: Bezbednost
     set_new_password: Postavi novu lozinku
+    setup:
+      email_below_hint_html: Proverite svoju fasciklu neželjene pošte ili zatražite drugu. Možete da ispravite svoju adresu e-pošte ako je pogrešna.
+      email_settings_hint_html: Kliknite na vezu koji smo vam poslali da verifikujete %{email}. Čekaćemo ovde.
+      link_not_received: Niste dobili vezu?
+      new_confirmation_instructions_sent: Za nekoliko minuta primićete novu e-poruku sa vezom za potvrdu!
+      title: Proverite svoje prijemno sanduče
     sign_in:
       preamble_html: Prijavite se sa svojim podacima za <strong>%{domain}</strong>. Ako se Vaš nalog nalazi na drugom serveru, nećete moći da se prijavite ovde.
       title: Prijavite se na %{domain}
     sign_up:
+      manual_review: Naši moderatori ručno pregledaju registracije na %{domain}. Da biste nam pomogli da obradimo vašu registraciju, napišite nešto o sebi i zašto želite nalog na %{domain}.
       preamble: Sa nalogom na ovom Mastodon serveru, moći ćete da pratite bilo koga sa mreže, bez obzira na to na kom serveru se njegov/njen nalog nalazi.
       title: Hajde da Vam namestimo nalog na %{domain}.
     status:
@@ -1131,6 +1166,11 @@ sr-Latn:
       your_appeal_rejected: Vaša žalba je odbijena
   domain_validator:
     invalid_domain: nelegitimno ime domena
+  edit_profile:
+    basic_information: Osnovne informacije
+    hint_html: "<strong>Prilagodite šta ljudi vide na vašem javnom profilu i pored vaših objava.</strong> Veća je verovatnoća da će vas drugi pratiti i komunicirati sa vama kada imate popunjen profil i sliku profila."
+    other: Ostalo
+    safety_and_privacy: Sigurnost i privatnost
   errors:
     '400': Zahtev koji ste podneli je bio nelegitiman ili u pogrešnom formatu.
     '403': Nemate dozvola da vidite ovu stranu.
@@ -1192,16 +1232,16 @@ sr-Latn:
       expires_in: Ističe za %{distance}
       expires_on: Ističe datuma %{date}
       keywords:
-        few: "%{count} ključne reči"
         one: "%{count} ključna reč"
+        few: "%{count} ključne reči"
         other: "%{count} ključnih reči"
       statuses:
-        few: "%{count} objave"
         one: "%{count} objava"
+        few: "%{count} objave"
         other: "%{count} objava"
       statuses_long:
-        few: "%{count} zasebne objave sakrivene"
         one: "%{count} zasebna objava sakrivena"
+        few: "%{count} zasebne objave sakrivene"
         other: "%{count} zasebnih objava sakriveno"
       title: Filteri
     new:
@@ -1217,14 +1257,16 @@ sr-Latn:
   generic:
     all: Svi
     all_items_on_page_selected_html:
-      few: Sve <strong>%{count}</strong> stavke sa ove stranice su izabrane.
       one: "<strong>%{count}</strong> stavka sa ove stranice je izabrana."
+      few: Sve <strong>%{count}</strong> stavke sa ove stranice su izabrane.
       other: Svih <strong>%{count}</strong> stavki sa ove stranice je izabrano.
     all_matching_items_selected_html:
-      few: Sve <strong>%{count}</strong> stavke koje se poklapaju sa Vašom pretragom su izabrane.
       one: "<strong>%{count}</strong> stavka koja se poklapa sa Vašom pretragom je izabrana."
+      few: Sve <strong>%{count}</strong> stavke koje se poklapaju sa Vašom pretragom su izabrane.
       other: Svih <strong>%{count}</strong> stavki koje se poklapaju sa Vašom pretragom su izabrane.
+    cancel: Otkaži
     changes_saved_msg: Izmene uspešno sačuvane!
+    confirm: Potvrdi
     copy: Kopiraj
     delete: Izbriši
     deselect: Poništi sve izbore
@@ -1232,25 +1274,61 @@ sr-Latn:
     order_by: Sortiraj prema
     save_changes: Sačuvaj promene
     select_all_matching_items:
-      few: Odaberite sve %{count} stavke koje se poklapaju sa Vašom pretragom.
       one: Odaberite %{count} stavku koja se poklapa sa Vašom pretragom.
+      few: Odaberite sve %{count} stavke koje se poklapaju sa Vašom pretragom.
       other: Odaberite svih %{count} stavki koje se poklapaju sa Vašom pretragom.
     today: danas
     validation_errors:
-      few: Nešto nije baš kako treba! Pregledajte %{count} greške ispod
       one: Nešto nije baš kako treba! Pregledajte greške ispod
+      few: Nešto nije baš kako treba! Pregledajte %{count} greške ispod
       other: Nešto nije baš kako treba! Pregledajte %{count} grešaka ispod
   imports:
     errors:
+      empty: Prazna CSV datoteka
+      incompatible_type: Nekompatibilno sa izabranim tipom uvoza
       invalid_csv_file: 'Neispravan CSV fajl. Greška: %{error}'
       over_rows_processing_limit: sadrži više od %{count} redova
+      too_large: Datoteka je prevelika
+    failures: Neuspesi
+    imported: Uvezeno
+    mismatched_types_warning: Izgleda da ste možda izabrali pogrešan tip za ovaj uvoz, proverite još jednom.
     modes:
       merge: Stapanje
       merge_long: Zadržite postojeće zapise i dodajte nove
       overwrite: Zameni
       overwrite_long: Zameni trenutne zapise novima
+    overwrite_preambles:
+      blocking_html: Upravo ćete <strong>zameniti svoju listu blokiranih</strong> sa do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
+      bookmarks_html: Upravo ćete <strong>zameniti svoje obeleživače</strong> sa do <strong>%{total_items} objava</strong> iz <strong>%{filename}</strong>.
+      domain_blocking_html: Upravo ćete <strong>zameniti svoju listu blokiranih domena</strong> sa do <strong>%{total_items} domena</strong> iz <strong>%{filename}</strong>.
+      following_html: Upravo ćete <strong>pratiti</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong> and <strong>i prestati sa praćenjem bilo koga drugog</strong>.
+      muting_html: Upravo ćete <strong>zameniti svoju listu ignorisanih naloga</strong> sa do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Upravo ćete <strong>blokirati</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
+      bookmarks_html: Upravo ćete dodati do <strong>%{total_items} objava</strong> iz <strong>%{filename}</strong> u vaše <strong>obeleživače</strong>.
+      domain_blocking_html: Upravo ćete <strong>blokirati</strong> do <strong>%{total_items} domena</strong> iz <strong>%{filename}</strong>.
+      following_html: Upravo ćete <strong>pratiti</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
+      muting_html: Upravo ćete <strong>ignorisati</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
     preface: Možete uvesti podatke koje ste izvezli sa druge instance, kao što su liste ljudi koje ste pratili ili blokirali.
+    recent_imports: Nedavni uvozi
+    states:
+      finished: Završeno
+      in_progress: U toku
+      scheduled: Planirano
+      unconfirmed: Nepotvrđeno
+    status: Status
     success: Vaši podaci su uspešno otpremljeni i biće obrađeni uskoro
+    time_started: Započeto u
+    titles:
+      blocking: Uvoz blokiranih naloga
+      bookmarks: Uvoz obeleživača
+      domain_blocking: Uvoz blokiranih domena
+      following: Uvoz praćenih naloga
+      muting: Uvoz ignorisanih naloga
+    type: Tip uvoza
+    type_groups:
+      constructive: Praćenja i obeleživači
+      destructive: Blokiranja i ignorisanja
     types:
       blocking: Lista blokiranja
       bookmarks: Obeleživači
@@ -1272,8 +1350,8 @@ sr-Latn:
     generate: Generiši
     invited_by: 'Pozvao Vas je:'
     max_uses:
-      few: "%{count} korišćenja"
       one: 1 korišćenje
+      few: "%{count} korišćenja"
       other: "%{count} korišćenja"
     max_uses_prompt: Bez ograničenja
     prompt: Generiši i podeli linkove sa drugima da im odobrite pristup ovoj instanci
@@ -1295,6 +1373,21 @@ sr-Latn:
     failed_sign_in_html: Neuspešan pokušaj prijavljivanja putem %{method} sa %{ip} (%{browser})
     successful_sign_in_html: Uspešan pokušaj prijavljivanja putem %{method} sa %{ip} (%{browser})
     title: Istorija autentifikacije
+  mail_subscriptions:
+    unsubscribe:
+      action: Da, odjavi me
+      complete: Odjavljen
+      confirmation_html: Da li ste sigurni da želite da se odjavite od primanja %{type} za Mastodon na %{domain} na svoju e-poštu na %{email}? Uvek možete ponovo da se prijavite u svojim <a href="%{settings_path}">podešavanjima obaveštenja putem e-pošte</a>.
+      emails:
+        notification_emails:
+          favourite: omiljene e-pošte za obaveštenja
+          follow: omiljene e-pošte za praćenja
+          follow_request: e-pošte za zahteve za praćenja
+          mention: e-pošte za obaveštenje pominjanja
+          reblog: e-pošte za obaveštenje podržavanja
+      resubscribe_html: Ako ste se greškom odjavili, možete ponovo da se prijavite u svojim <a href="%{settings_path}">podešavanjima obaveštenja putem e-pošte</a>.
+      success_html: Više nećete dobijati %{type} za Mastodon na %{domain} na svoju e-poštu na %{email}.
+      title: Odjavi se
   media_attachments:
     validations:
       images_and_video: Ne može da se prikači video na status koji već ima slike
@@ -1346,7 +1439,7 @@ sr-Latn:
       sign_up:
         subject: "%{name} se registrovao/-la"
     favourite:
-      body: "%{name} je postavio kao omiljen Vaš status:"
+      body: '%{name} je postavio kao omiljen Vaš status:'
       subject: "%{name} je postavio kao omiljen Vaš status"
       title: Novi omiljeni
     follow:
@@ -1360,13 +1453,13 @@ sr-Latn:
       title: Novi zahtev za praćenje
     mention:
       action: Odgovori
-      body: "%{name} Vas je pomenuo u:"
-      subject: "%{name} Vas je pomenuo"
+      body: '%{name} Vas je pomenuo u:'
+      subject: '%{name} Vas je pomenuo'
       title: Novo spominjanje
     poll:
       subject: Anketa korisnika %{name} se završila
     reblog:
-      body: "%{name} Vam je podržao/la status:"
+      body: '%{name} Vam je podržao/la status:'
       subject: "%{name} je podržao/la Vaš status"
       title: Nova podrška
     status:
@@ -1410,6 +1503,7 @@ sr-Latn:
       expired: Anketa je već završena
       invalid_choice: Izabrana opcija ne postoji
       over_character_limit: ne može biti duže od po %{max} karaktera
+      self_vote: Ne možete glasati u sopstvenim anketama
       too_few_options: mora imati više od jedne opcije
       too_many_options: ne može da sadrži više od %{max} opcija
   preferences:
@@ -1528,24 +1622,24 @@ sr-Latn:
   statuses:
     attached:
       audio:
-        few: "%{count} audio zapisa"
         one: "%{count} audio zapis"
+        few: "%{count} audio zapisa"
         other: "%{count} audio zapisa"
       description: 'U prilogu: %{attached}'
       image:
-        few: "%{count} slika"
         one: "%{count} sliku"
+        few: "%{count} slika"
         other: "%{count} slika"
       video:
-        few: "%{count} video zapisa"
         one: "%{count} video zapis"
+        few: "%{count} video zapisa"
         other: "%{count} video zapisa"
     boosted_from_html: Podržano od %{acct_link}
     content_warning: 'Upozorenje na sadržaj: %{warning}'
     default_language: Isto kao jezik okruženja
     disallowed_hashtags:
-      few: 'sadrži zabranjene heštegove: %{tags}'
       one: 'sadrži zabranjeni hešteg: %{tags}'
+      few: 'sadrži zabranjene heštegove: %{tags}'
       other: 'sadrži zabranjene heštegove: %{tags}'
     edited_at_html: Izmenjeno %{date}
     errors:
@@ -1559,12 +1653,12 @@ sr-Latn:
       reblog: Podrška ne može da se prikači
     poll:
       total_people:
-        few: "%{count} osobe"
         one: "%{count} osoba"
+        few: "%{count} osobe"
         other: "%{count} ljudi"
       total_votes:
-        few: "%{count} glasa"
         one: "%{count} glas"
+        few: "%{count} glasa"
         other: "%{count} glasova"
       vote: Glasajte
     show_more: Prikaži još
@@ -1572,7 +1666,7 @@ sr-Latn:
     show_older: Prikaži starije
     show_thread: Prikaži niz
     sign_in_to_participate: Prijavite se da učestvujete u razgovoru
-    title: "%{name}: „%{quote}”"
+    title: '%{name}: „%{quote}”'
     visibilities:
       direct: Direktno
       private: Samo pratioci
@@ -1719,7 +1813,12 @@ sr-Latn:
     seamless_external_login: Prijavljeni ste putem spoljašnje usluge, tako da lozinka i podešavanja E-pošte nisu dostupni.
     signed_in_as: 'Prijavljen/a kao:'
   verification:
+    extra_instructions_html: <strong>Savet:</strong>Veza na vašem veb sajtu može da bude nevidljiva. Važan deo je <code>rel="me"</code> koji sprečava lažno predstavljanje na veb sajtovima sa sadržajem koji generiše korisnik. Možete čak da koristite oznaku <code>veze</code> u zaglavlju stranice umesto <code>a</code>, ali HTML mora biti dostupan bez izvršavanja JavaScript-a.
+    here_is_how: Evo kako
+    hint_html: "<strong>Verifikacija vašeg identiteta na Mastodon-u je za svakoga.</strong> Zasnovano na otvorenim veb standardima, sada i zauvek besplatno. Sve što vam treba je lični veb sajt po kome vas ljudi prepoznaju. Kada se povežete sa ovim veb sajtom sa svog profila, proverićemo da li je veb sajt povezan sa vašim profilom i na njemu ćemo prikazati vizuelni indikator."
+    instructions_html: Kopirajte i nalepite kod ispod u HTML svog veb sajta. Zatim dodajte adresu svog veb sajta u jedno od dodatnih polja na svom profilu sa kartice „Uredi profil” i sačuvajte promene.
     verification: Provera
+    verified_links: Vaše verifikovane veze
   webauthn_credentials:
     add: Dodajte novi sigurnosni ključ
     create:

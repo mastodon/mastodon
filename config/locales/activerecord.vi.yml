@@ -1,4 +1,3 @@
----
 vi:
   activerecord:
     attributes:
@@ -53,3 +52,7 @@ vi:
             position:
               elevated: không thể cao hơn vai trò hiện tại của bạn
               own_role: không thể thay đổi vai trò hiện tại của bạn
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: không thể bao gồm các sự kiện mà bạn không có quyền
