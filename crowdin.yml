@@ -4,6 +4,7 @@ api_token_env: CROWDIN_PERSONAL_TOKEN
 
 skip_untranslated_strings: 1
 commit_message: '[ci skip]'
+preserve_hierarchy: true
 files:
   - source: /app/javascript/mastodon/locales/en.json
     translation: /app/javascript/mastodon/locales/%two_letters_code%.json
