@@ -193,4 +193,14 @@ describe UserMailer do
       expect(mail.body.encoded).to include I18n.t('user_mailer.welcome.explanation')
     end
   end
+
+  describe 'backup_ready' do
+    let(:backup) { Fabricate(:backup) }
+    let(:mail) { described_class.backup_ready(receiver, backup) }
+
+    it 'renders backup_ready mail' do
+      expect(mail.subject).to eq I18n.t('user_mailer.backup_ready.subject')
+      expect(mail.body.encoded).to include I18n.t('user_mailer.backup_ready.explanation')
+    end
+  end
 end
