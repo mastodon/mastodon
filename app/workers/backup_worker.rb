@@ -23,6 +23,6 @@ class BackupWorker
     BackupService.new.call(backup)
 
     user.backups.where.not(id: backup.id).destroy_all
-    UserMailer.backup_ready(user, backup).deliver_later
+    UserMailer.with(user: user).backup_ready(backup).deliver_later
   end
 end

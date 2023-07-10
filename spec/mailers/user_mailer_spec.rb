@@ -239,7 +239,7 @@ describe UserMailer do
 
   describe '#backup_ready' do
     let(:backup) { Fabricate(:backup) }
-    let(:mail) { described_class.backup_ready(receiver, backup) }
+    let(:mail) { described_class.with(user: receiver).backup_ready(backup) }
 
     it 'renders backup_ready mail' do
       expect(mail)

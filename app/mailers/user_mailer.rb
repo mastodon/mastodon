@@ -11,7 +11,7 @@ class UserMailer < Devise::Mailer
   helper :routing
 
   before_action :set_instance
-  before_action :set_resource, only: :welcome
+  before_action :set_resource, only: [:welcome, :backup_ready]
 
   default to: -> { @resource.email }
 
@@ -139,9 +139,8 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def backup_ready(user, backup)
-    @resource = user
-    @backup   = backup
+  def backup_ready(backup)
+    @backup = backup
 
     return unless @resource.active_for_authentication?
 
