@@ -32,7 +32,7 @@ class UserMailer < Devise::Mailer
     return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.reset_password_instructions.subject')
+      mail to: @resource.email, subject: default_devise_subject
     end
   end
 
@@ -42,7 +42,7 @@ class UserMailer < Devise::Mailer
     return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.password_change.subject')
+      mail to: @resource.email, subject: default_devise_subject
     end
   end
 
@@ -52,7 +52,7 @@ class UserMailer < Devise::Mailer
     return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.email_changed.subject')
+      mail to: @resource.email, subject: default_devise_subject
     end
   end
 
@@ -62,7 +62,7 @@ class UserMailer < Devise::Mailer
     return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.two_factor_enabled.subject')
+      mail to: @resource.email, subject: default_devise_subject
     end
   end
 
@@ -72,7 +72,7 @@ class UserMailer < Devise::Mailer
     return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.two_factor_disabled.subject')
+      mail to: @resource.email, subject: default_devise_subject
     end
   end
 
@@ -82,7 +82,7 @@ class UserMailer < Devise::Mailer
     return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.two_factor_recovery_codes_changed.subject')
+      mail to: @resource.email, subject: default_devise_subject
     end
   end
 
@@ -92,7 +92,7 @@ class UserMailer < Devise::Mailer
     return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.webauthn_enabled.subject')
+      mail to: @resource.email, subject: default_devise_subject
     end
   end
 
@@ -102,7 +102,7 @@ class UserMailer < Devise::Mailer
     return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.webauthn_disabled.subject')
+      mail to: @resource.email, subject: default_devise_subject
     end
   end
 
@@ -190,6 +190,10 @@ class UserMailer < Devise::Mailer
   end
 
   private
+
+  def default_devise_subject
+    I18n.t(:subject, scope: ['devise.mailer', action_name])
+  end
 
   def set_instance
     @instance = Rails.configuration.x.local_domain
