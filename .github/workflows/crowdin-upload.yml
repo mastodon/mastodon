@@ -1,4 +1,4 @@
-name: Upload translations to Crowdin
+name: Crowdin / Upload translations
 
 on:
   push:
@@ -16,7 +16,7 @@ on:
   pull_request: # TODO: remove me before merging
 
 jobs:
-  upload-translations-to-crowdin:
+  upload-translations:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,6 +29,7 @@ jobs:
           upload_sources: true
           upload_translations: false
           download_translations: false
+          crowdin_branch_name: main
 
         env:
           CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}

@@ -1,5 +1,4 @@
-name: Download Crowdin translations
-
+name: Crowdin / Download translations
 on:
   schedule:
     - cron: '17 4 * * *' # Every day
@@ -10,7 +9,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  upload-translations-to-crowdin:
+  download-translations:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +22,7 @@ jobs:
           upload_sources: false
           upload_translations: false
           download_translations: true
+          crowdin_branch_name: main
           localization_branch_name: i18n/crowdin/translations
           create_pull_request: true
           # pull_request_title: 'New Crowdin Translations'
