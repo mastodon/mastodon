@@ -134,7 +134,7 @@ class UserMailer < Devise::Mailer
     return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale) do
-      mail to: @resource.email, subject: I18n.t('user_mailer.welcome.subject')
+      mail to: @resource.email, subject: default_i18n_subject
     end
   end
 
@@ -145,7 +145,7 @@ class UserMailer < Devise::Mailer
     return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale) do
-      mail to: @resource.email, subject: I18n.t('user_mailer.backup_ready.subject')
+      mail to: @resource.email, subject: default_i18n_subject
     end
   end
 
@@ -164,7 +164,7 @@ class UserMailer < Devise::Mailer
     @appeal   = appeal
 
     I18n.with_locale(locale) do
-      mail to: @resource.email, subject: I18n.t('user_mailer.appeal_approved.subject', date: l(@appeal.created_at))
+      mail to: @resource.email, subject: default_i18n_subject(date: l(@appeal.created_at))
     end
   end
 
@@ -173,7 +173,7 @@ class UserMailer < Devise::Mailer
     @appeal   = appeal
 
     I18n.with_locale(locale) do
-      mail to: @resource.email, subject: I18n.t('user_mailer.appeal_rejected.subject', date: l(@appeal.created_at))
+      mail to: @resource.email, subject: default_i18n_subject(date: l(@appeal.created_at))
     end
   end
 
@@ -185,7 +185,7 @@ class UserMailer < Devise::Mailer
     @timestamp  = timestamp.to_time.utc
 
     I18n.with_locale(locale) do
-      mail to: @resource.email, subject: I18n.t('user_mailer.suspicious_sign_in.subject')
+      mail to: @resource.email, subject: default_i18n_subject
     end
   end
 
