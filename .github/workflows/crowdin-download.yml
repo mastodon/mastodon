@@ -1,0 +1,35 @@
+name: Download Crowdin translations
+
+on:
+  schedule:
+    - cron: '17 4 * * *' # Every day
+  workflow_dispatch:
+  pull_request: # TODO: remove me before merging
+
+permissions:
+  pull-requests: write
+
+jobs:
+  upload-translations-to-crowdin:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: crowdin action
+        uses: crowdin/github-action@v1
+        with:
+          upload_sources: false
+          upload_translations: false
+          download_translations: true
+          localization_branch_name: i18n/crowdin/translations
+          create_pull_request: true
+          # pull_request_title: 'New Crowdin Translations'
+          # pull_request_body: 'New Crowdin translations by [Crowdin GH Action](https://github.com/crowdin/github-action)'
+          pull_request_labels: 'i18n'
+
+        env:
+          CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

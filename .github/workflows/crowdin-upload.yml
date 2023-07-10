@@ -1,12 +1,19 @@
-name: Crowdin Action
+name: Upload translations to Crowdin
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+    paths:
+      - crowdin.yml
+      - app/javascript/mastodon/locales/en.json
+      - config/locales/en.yml
+      - config/locales/simple_form.en.yml
+      - config/locales/activerecord.en.yml
+      - config/locales/devise.en.yml
+      - config/locales/doorkeeper.en.yml
+      - .github/workflows/crowdin-upload.yml
   pull_request: # TODO: remove me before merging
-
-permissions:
-  pull-requests: write
 
 jobs:
   upload-translations-to-crowdin:
@@ -21,15 +28,8 @@ jobs:
         with:
           upload_sources: true
           upload_translations: false
-          dryrun_action: true # TODO: remove me before merging
-          download_translations: true
-          localization_branch_name: i18n/crowdin/translations
-          create_pull_request: true
-          # pull_request_title: 'New Crowdin Translations'
-          # pull_request_body: 'New Crowdin translations by [Crowdin GH Action](https://github.com/crowdin/github-action)'
-          pull_request_labels: 'i18n'
+          download_translations: false
 
         env:
           CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
