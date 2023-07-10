@@ -381,6 +381,15 @@ fo:
       undo: Nokta sameining við navnaøki
     domain_blocks:
       add_new: Legg nýggja navnaøkisblokering afturat
+      confirm_suspension:
+        cancel: Angra
+        confirm: Ógilda
+        permanent_action: Afturkalling av ógilding endurskapar ikki dátur ella sambond.
+        preamble_html: Tú ert um at gera <strong>%{domain}</strong> og tess undirnavnaøki óvirkin.
+        remove_all_data: Hetta fer at strika alt tilfar, miðlar og vangadátur frá kontum hjá hesum navnaøkinum frá tínum ambætara.
+        stop_communication: Ambætarin fer at gevast at samskifta við hesar ambætararnar.
+        title: Vátta navnaøkisbann fyri %{domain}
+        undo_relationships: Hetta ger øll fylgjarasambond millum kontur á hesum ambætarum og tínum ambætara óvirkin.
       created_msg: Navnaøkisblokering verður nú viðgjørd
       destroyed_msg: Navnaøkisblokering er nú gjørd óvirkin
       domain: Økisnavn
@@ -730,6 +739,9 @@ fo:
       branding:
         preamble: Brandingin av tínum ambætara skilir hann út frá øðrum ambætarum í netverkinum. Hesar upplýsingar kunnu vera vístar í nógvum ymiskum umhvørvum, so sum í vev-markamótinum hjá Mastodon, uppruna-appum, í undanvísingum av leinkjum á øðrum vevstøðum, í boðs-appum og so framvegis. Av hesi orsøk er tað best, um hesar upplýsingar eru klárar, stuttar og beinraknar.
         title: Branding
+      captcha_enabled:
+        desc_html: Hetta er bundið at uttanhýsis skriptum frá hCaptcha, sum kann vera ein trygdar- og privatlívsváði. Harafturat, so <strong>kann hetta gera skrásetingartilgongdina munandi minni atkomuliga til summi (brekaði) fólk</strong>. Tískil eigur tú at umhugsa aðrar hættir sosum góðkenningar-grundaða ella innbjóðingar-grundaða skráseting.
+        title: Set krav til nýggjar brúkarar at loysa eina CAPTHA fyri at vátta teirra kontu
       content_retention:
         preamble: Stýr hvussu brúkara-skapt tilfar er goymt í Mastodon.
         title: Varðveitsla av tilfari
@@ -965,6 +977,7 @@ fo:
     notification_preferences: Broyt teldupostastillingar
     salutation: "%{name}"
     settings: 'Broyt teldupostastillingar: %{link}'
+    unsubscribe: Strika hald
     view: 'Vís:'
     view_profile: Vís vanga
     view_status: Vís post
@@ -978,6 +991,10 @@ fo:
     your_token: Títt atgongdstekn
   auth:
     apply_for_account: Bið um eina kontu
+    captcha_confirmation:
+      help_html: Um tú hevur trupulleikar við at loysa CAPTCHA, so kanst tú fáa samband við okkum gjøgnum %{email} og vit kunnu hjálpa tær.
+      hint_html: Bara eitt afturat! Tað er neyðugt hjá okkum at vátta, at tú ert eitt menniskja (fyri at sleppa undan ruskposti!). Loys CAPTCHA niðanfyri og trýst á "Halt fram".
+      title: Trygdarkanning
     confirmations:
       wrong_email_hint: Um hesin teldupoststaðurin ikki er rættur, so kanst tú broyta hann í kontustillingunum.
     delete_account: Strika kontu
@@ -1014,8 +1031,11 @@ fo:
     rules:
       accept: Góðtak
       back: Aftur
+      invited_by: 'Tú kanst binda í %{domain} takkað verið innbjóðingina, sum tú hevur fingið frá:'
       preamble: Hesi eru ásett og uppihildin av umsjónarfólkunum á %{domain}.
+      preamble_invited: Áðrenn tú heldur fram, vinarliga set teg inn í grundreglurnar, sum umsjónarfólkini á %{domain} hava ásett.
       title: Nakrar grundreglur.
+      title_invited: Tú hevur fingið innbjóðing.
     security: Trygd
     set_new_password: Áset nýtt loyniorð
     setup:
@@ -1128,6 +1148,11 @@ fo:
       your_appeal_rejected: Kæra tín er vrakað
   domain_validator:
     invalid_domain: er ikki eitt loyvt økisnavn
+  edit_profile:
+    basic_information: Grundleggjandi upplýsingar
+    hint_html: "<strong>Tillaga tað, sum fólk síggja á tínum almenna vanga og við síðna av tínum postum.</strong> Sannlíkindini fyri, at onnur fylgja tær og virka saman við tær eru størri, tá tú hevur fylt út vangan og eina vangamynd."
+    other: Onnur
+    safety_and_privacy: Trygd og privatlív
   errors:
     '400': Umbønin, sum tú sendi inn, var ógildug ella hevði skeivt skap.
     '403': Tú hevur ikki loyvi at síggja hesa síðuna.
@@ -1322,6 +1347,15 @@ fo:
     failed_sign_in_html: Miseydnað innritanarroynd við %{method} frá %{ip} (%{browser})
     successful_sign_in_html: Eydnað innritan við %{method} frá %{ip} (%{browser})
     title: Samgildissøga
+  mail_subscriptions:
+    unsubscribe:
+      action: Ja, strika hald
+      complete: Hald strikað
+      confirmation_html: Ert tú vís/ur í, at tú vil gevast at móttaka %{type} fyri Mastodon á %{domain} til tína teldupostadressu á %{email}? Tú kanst altíð gera haldið virkið aftur frá tínum <a href="%{settings_path}">teldupostfráboðanarstillingum</a>.
+      emails:
+        notification_emails:
+          favourite: yndisfráboðanarteldupostar
+          follow: fylg fráboðanarteldupostar
   media_attachments:
     validations:
       images_and_video: Kann ikki viðfesta sjónfílu til ein post, sum longu inniheldur myndir
