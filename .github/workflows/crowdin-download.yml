@@ -17,6 +17,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Increase Git http.postBuffer
+        # This is needed due to a bug in Ubuntu's cURL version?
+        # See https://github.com/orgs/community/discussions/55820
+        run: |
+          git config --global http.version HTTP/1.1
+          git config --global http.postBuffer 157286400
+
       - name: crowdin action
         uses: crowdin/github-action@v1
         with:
