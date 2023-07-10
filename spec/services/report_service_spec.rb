@@ -44,9 +44,27 @@ RSpec.describe ReportService, type: :service do
           stub_request(:post, 'http://foo.com/inbox').to_return(status: 200)
         end
 
-        it 'sends ActivityPub payload to the author of the replied-to post' do
-          subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward)
-          expect(a_request(:post, 'http://foo.com/inbox')).to have_been_made
+        context 'when forward_to_domains includes both the replied-to domain and the origin domain' do
+          it 'sends ActivityPub payload to both the author of the replied-to post and the reported user' do
+            subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward, forward_to_domains: [remote_account.domain, remote_thread_account.domain])
+            expect(a_request(:post, 'http://foo.com/inbox')).to have_been_made
+            expect(a_request(:post, 'http://example.com/inbox')).to have_been_made
+          end
+        end
+
+        context 'when forward_to_domains includes only the replied-to domain' do
+          it 'sends ActivityPub payload only to the author of the replied-to post' do
+            subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward, forward_to_domains: [remote_thread_account.domain])
+            expect(a_request(:post, 'http://foo.com/inbox')).to have_been_made
+            expect(a_request(:post, 'http://example.com/inbox')).to_not have_been_made
+          end
+        end
+
+        context 'when forward_to_domains does not include the replied-to domain' do
+          it 'does not send ActivityPub payload to the author of the replied-to post' do
+            subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward)
+            expect(a_request(:post, 'http://foo.com/inbox')).to_not have_been_made
+          end
         end
       end
     end
