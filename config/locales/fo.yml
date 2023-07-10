@@ -1356,6 +1356,12 @@ fo:
         notification_emails:
           favourite: yndisfráboðanarteldupostar
           follow: fylg fráboðanarteldupostar
+          follow_request: fylg umbønir um teldupost
+          mention: nevn fráboðanarteldupostar
+          reblog: stimbra fráboðanarpostar
+      resubscribe_html: Um tú hevur strikað haldið av misgávum, so kanst tú tekna haldið av nýggjum í tínum <a href="%{settings_path}">teldupostfráboðarstillingum</a>.
+      success_html: Tú fer ikki longur at móttaka %{type} fyri Mastodon á %{domain} til tín teldupost á %{email}.
+      title: Strika hald
   media_attachments:
     validations:
       images_and_video: Kann ikki viðfesta sjónfílu til ein post, sum longu inniheldur myndir
@@ -1471,6 +1477,7 @@ fo:
       expired: Atkvøðugreiðslan er longu endað
       invalid_choice: Valmøguleikin finst ikki
       over_character_limit: kann ikki vera longri enn %{max} tekn hvør
+      self_vote: Tú kanst ikki atkvøða í tínum egnum atkvøðugreiðslum
       too_few_options: má hava meiri enn ein valmøguleika
       too_many_options: kann ikki innihalda fleiri enn %{max} valmøguleikar
   preferences:
