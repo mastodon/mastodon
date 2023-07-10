@@ -9,7 +9,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { EmptyAccount } from 'mastodon/components/empty_account';
-import { ShortNumber } from 'mastodon/components/short_number';
 import { VerifiedBadge } from 'mastodon/components/verified_badge';
 
 import { me } from '../initial_state';
@@ -160,7 +159,7 @@ class Account extends ImmutablePureComponent {
               <DisplayName account={account} />
               {!minimal && (
                 <div className='account__details'>
-                  <ShortNumber value={account.get('followers_count')} renderer={FollowersCounter} /> {verification} {muteTimeRemaining}
+                  <FollowersCounter value={account.get('followers_count')} /> {verification} {muteTimeRemaining}
                 </div>
               )}
             </div>

@@ -112,16 +112,28 @@ const _FollowingCounter: React.FC<FollowingCounterProps> = ({ value }) => {
 };
 export const FollowingCounter = memo(_FollowingCounter);
 
-export const FollowersCounter = (
-  displayNumber: React.ReactNode,
-  pluralReady: number,
-) => (
-  <FormattedMessage
-    id='account.followers_counter'
-    defaultMessage='{count, plural, one {{counter} Follower} other {{counter} Followers}}'
-    values={{
-      count: pluralReady,
-      counter: <strong>{displayNumber}</strong>,
-    }}
-  />
-);
+interface FollowersCounterProps {
+  value: number;
+  children?: never;
+}
+const _FollowersCounter: React.FC<FollowersCounterProps> = ({ value }) => {
+  const shortNumber = toShortNumber(value);
+  const [, division] = shortNumber;
+  const displayNumber = (
+    <strong>
+      <GenericCounterRenderer value={shortNumber} />
+    </strong>
+  );
+
+  return (
+    <FormattedMessage
+      id='account.followers_counter'
+      defaultMessage='{count, plural, one {{counter} Follower} other {{counter} Followers}}'
+      values={{
+        count: pluralReady(value, division),
+        counter: <strong>{displayNumber}</strong>,
+      }}
+    />
+  );
+};
+export const FollowersCounter = memo(_FollowersCounter);

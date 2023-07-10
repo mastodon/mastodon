@@ -15,7 +15,6 @@ import Button from 'mastodon/components/button';
 import { FollowersCounter, FollowingCounter, StatusesCounter } from 'mastodon/components/counters';
 import { Icon }  from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
-import { ShortNumber } from 'mastodon/components/short_number';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { autoPlayGif, me, domain } from 'mastodon/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
@@ -469,9 +468,8 @@ class Header extends ImmutablePureComponent {
                 </NavLink>
 
                 <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/followers`} title={intl.formatNumber(account.get('followers_count'))}>
-                  <ShortNumber
+                  <FollowersCounter
                     value={account.get('followers_count')}
-                    renderer={FollowersCounter}
                   />
                 </NavLink>
               </div>
