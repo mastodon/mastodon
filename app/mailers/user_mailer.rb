@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
 class UserMailer < Devise::Mailer
+  DEVISE_ACTIONS = [
+    :confirmation_instructions,
+    :email_changed,
+    :password_change,
+    :reset_password_instructions,
+    :two_factor_disabled,
+    :two_factor_enabled,
+    :two_factor_recovery_codes_changed,
+    :webauthn_disabled,
+    :webauthn_enabled,
+  ].freeze
+
   layout 'mailer'
 
   helper :accounts
@@ -11,7 +23,7 @@ class UserMailer < Devise::Mailer
   helper :routing
 
   before_action :set_instance
-  before_action :set_resource, only: [:welcome, :backup_ready, :warning, :appeal_approved, :appeal_rejected, :suspicious_sign_in, :webauthn_credential_added, :webauthn_credential_deleted]
+  before_action :set_resource, except: DEVISE_ACTIONS
 
   default to: -> { @resource.email }
 
