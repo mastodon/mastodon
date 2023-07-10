@@ -1,0 +1,48 @@
+name: Crowdin / Download translations
+on:
+  schedule:
+    - cron: '17 4 * * *' # Every day
+  workflow_dispatch:
+  pull_request: # TODO: remove me before merging
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  download-translations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Increase Git http.postBuffer
+        # This is needed due to a bug in Ubuntu's cURL version?
+        # See https://github.com/orgs/community/discussions/55820
+        run: |
+          git config --global http.version HTTP/1.1
+          git config --global http.postBuffer 157286400
+
+      - name: crowdin action
+        uses: crowdin/github-action@v1
+        with:
+          upload_sources: false
+          upload_translations: false
+          download_translations: true
+          crowdin_branch_name: main
+          localization_branch_name: i18n/crowdin/translations
+          create_pull_request: true
+          pull_request_title: 'New Crowdin Translations (automated)'
+          pull_request_body: |
+            New Crowdin translations by [Crowdin GH Action](https://github.com/crowdin/github-action)
+
+            See `.github/workflows/crowdin-download.yml
+
+            This PR will be updated every day with new translations.'
+          pull_request_labels: 'i18n'
+
+        env:
+          CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
