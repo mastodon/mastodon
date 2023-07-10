@@ -37,7 +37,6 @@ const messages = defineMessages({
 class NavigationPanel extends Component {
 
   static contextTypes = {
-    router: PropTypes.object.isRequired,
     identity: PropTypes.object.isRequired,
   };
 
