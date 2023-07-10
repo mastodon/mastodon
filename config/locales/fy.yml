@@ -384,6 +384,12 @@ fy:
       confirm_suspension:
         cancel: Annulearje
         confirm: Utstelle
+        permanent_action: It útstellen ûngedien meitsje sil gjin gegevens of folchrelaasjes werstelle.
+        preamble_html: Jo steane op it punt om <strong>%{domain}</strong> en subdomeinen út te stellen.
+        remove_all_data: Dit smyt alle ynhâld, media en profylgegevens fan de accounts fan dit domein fan jo server fuort.
+        stop_communication: Jo server sil net langer mei dizze servers kommunisearje.
+        title: Domeinblokkade foar %{domain} befêstigje
+        undo_relationships: Dit sil elke folchrelaasje tusken de accounts fan dizze servers en dy fan jo ûngedien meitsje.
       created_msg: Domeinblokkade wurdt no ferwurke
       destroyed_msg: Domeinblokkade is ûngedien makke
       domain: Domein
@@ -733,6 +739,9 @@ fy:
       branding:
         preamble: De branding fan jo server lit sjen hoe’t it fan oare servers yn it netwurk ferskilt. Dizze ynformaasje wurdt op ferskate plakken toand, lykas yn de webomjouwing fan Mastodon, yn mobile apps, yn foarfertoaningen op oare websites en berjochte-apps, ensfh. Dêrom is it wichtich om de ynformaasje helder, koart en bûnich te hâlden.
         title: Branding
+      captcha_enabled:
+        desc_html: Dit is ôfhinklik fan eksterne scripts fan hCaptcha, wat feilichheids- en privacyrisiko’s meibringe kin. Boppe dat kin <strong>dit it registraasjeproses bot minder tagonklik meitsje foar guon (foaral handicapte) minsken</strong>. Om dizze redenen kinne jo it beste alternative maatregels oerweagje, lykas registraasje op basis fan goedkarring of op útnûging.
+        title: Nije brûkers moatte in CAPTCHA oplosse om harren account te befêstigjen
       content_retention:
         preamble: Tafersjoch hâlde op hoe’t berjochten en media fan brûkers op Mastodon bewarre wurde.
         title: Bewartermyn berjochten
@@ -968,6 +977,7 @@ fy:
     notification_preferences: E-mailynstellingen wizigje
     salutation: "%{name},"
     settings: 'E-mailynstellingen wizigje: %{link}'
+    unsubscribe: Ofmelde
     view: 'Besjoch:'
     view_profile: Profyl besjen
     view_status: Berjocht besjen
@@ -981,6 +991,10 @@ fy:
     your_token: Jo tagongskoade
   auth:
     apply_for_account: Account oanfreegje
+    captcha_confirmation:
+      help_html: As jo problemen tsjinkomme by it oplossen fan de CAPTCHA, kinne jo kontakt mei ús opnimme fia %{email}, sadat wy jo helpe kinne.
+      hint_html: Noch ien ding! Jo moatte befêstigje dat jo in minske binne (dit is om de spam bûten de doar te hâlden!). Los de ûndersteande CAPTCHA op en klik op ‘Trochgean’.
+      title: Befeiligingskontrôle
     confirmations:
       wrong_email_hint: As it e-mailadres net korrekt is, kinne jo dat wizigje yn de accountynstellingen.
     delete_account: Account fuortsmite
@@ -1017,8 +1031,11 @@ fy:
     rules:
       accept: Akseptearje
       back: Tebek
+      invited_by: 'Jo kinne jo registrearje op %{domain} mei tank oan de útnûging dy’t jo ûntfongen hawwe fan:'
       preamble: Dizze binne fêststeld en wurde yn stân hâlden troch de moderatoaren fan %{domain}.
+      preamble_invited: Eardat jo fierder gean, moatte jo earst yn de kunde komme mei de basisregels dy’t troch de moderatoaren fan %{domain} fêststeld binne.
       title: Inkelde basisrigels.
+      title_invited: Jo binne útnûge.
     security: Befeiliging
     set_new_password: Nij wachtwurd ynstelle
     setup:
@@ -1131,6 +1148,11 @@ fy:
       your_appeal_rejected: Jo beswier is ôfwêzen
   domain_validator:
     invalid_domain: is in ûnjildige domeinnamme
+  edit_profile:
+    basic_information: Algemiene ynformaasje
+    hint_html: "<strong>Pas oan wat minsken op jo iepenbiere profyl en njonken jo berjochten sjogge.</strong> Oare minsken sille jo earder folgje en mei jo kommunisearje wannear’t jo profyl ynfolle is en jo in profylfoto hawwe."
+    other: Oars
+    safety_and_privacy: Feilichheid en privacy
   errors:
     '400': De oanfraach dy’t jo yntsjinne hawwe wie ûnjildich of fout.
     '403': Jo hawwe gjin tastimming om dizze side te besjen.
@@ -1325,6 +1347,21 @@ fy:
     failed_sign_in_html: Mislearre oanmeldbesykjen mei %{method} fan %{ip} (%{browser})
     successful_sign_in_html: Mei sukses oanmeld mei %{method} fan %{ip} (%{browser})
     title: Oanmeldskiednis
+  mail_subscriptions:
+    unsubscribe:
+      action: Ja, ôfmelde
+      complete: Ofmelden
+      confirmation_html: Binne jo wis dat jo jo ôfmelde wolle foar it ûntfangen fan %{type} fan Mastodon op %{domain} op jo e-mailadres %{email}? Jo kinne jo altyd opnij abonnearje yn jo <a href="%{settings_path}">ynstellingen foar e-mailmeldingen</a>.
+      emails:
+        notification_emails:
+          favourite: e-mailmeldingen foar favoriten
+          follow: e-mailmeldingen foar nije folgers
+          follow_request: e-mailmeldingen foar folchfersiken
+          mention: e-mailmeldingen foar fermeldingen
+          reblog: e-mailmeldingen foar boosts
+      resubscribe_html: As jo jo mei fersin ôfmeld hawwe, kinne jo jo opnij abonnearje yn jo <a href="%{settings_path}">ynstellingen foar e-mailmeldingen</a>.
+      success_html: Jo ûntfange net langer %{type} fan Mastodon op %{domain} op jo e-mailadres %{email}.
+      title: Ofmelde
   media_attachments:
     validations:
       images_and_video: In fideo kin net oan in berjocht mei ôfbyldingen keppele wurde
@@ -1440,6 +1477,7 @@ fy:
       expired: De enkête is al beëinige
       invalid_choice: De keazen enkêteopsje bestiet net
       over_character_limit: kin net langer wêze as %{max} tekens
+      self_vote: Jo kinne net op eigen peilingen stimme
       too_few_options: moat mear as ien item befetsje
       too_many_options: kin net mear as %{max} items befetsje
   preferences:
@@ -1743,7 +1781,12 @@ fy:
     seamless_external_login: Jo binne oanmeld fia in eksterne tsjinst, dêrom binne wachtwurden en e-mailynstellingen net beskikber.
     signed_in_as: 'Oanmeld as:'
   verification:
+    extra_instructions_html: <strong>Tip:</strong> De keppeling op jo website kin ûnsichtber wêze. It wichtige part is <code>rel="me"</code> dat ympersonaasje op websites mei user-generated ynhâld foarkomt. Jo kinne sels in <code>link</code>-label brûke yn de header fan de side yn stee fan <code>a</code>, mar de HTML moat ek sûnder JavaScript tagonklik wêze.
+    here_is_how: Sa wurket it
+    hint_html: "<strong>Ferifikaasje fan jo identiteit op Mastodon is foar elkenien.</strong> It is basearre op iepen webstanderts, en is en bliuwt altyd fergees. Alles wat nedich is, is in persoanlike website dêr’t minsken jo oan werkenne kinne. Wannear’t jo fan jo profyl út nei dizze website keppelje, sille wy kontrolearje oft de website nei jo profyl weromkeppelt en dêr in fisuele yndikator fan toane."
+    instructions_html: Kopiearje en plak de ûndersteande koade yn de HTML fan jo website. Foegje dernei it adres fan jo website ta oan ien fan de ekstra fjilden op jo profyl op it ljepblêd ‘Profyl bewurkje’ en bewarje de wizigingen.
     verification: Ferifikaasje
+    verified_links: Jo ferifiearre keppelingen
   webauthn_credentials:
     add: Nije befeiligingskaai tafoegje
     create:
