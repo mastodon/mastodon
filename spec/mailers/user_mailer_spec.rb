@@ -137,7 +137,7 @@ describe UserMailer do
 
   describe '#appeal_approved' do
     let(:appeal) { Fabricate(:appeal, account: receiver.account, approved_at: Time.now.utc) }
-    let(:mail) { described_class.appeal_approved(receiver, appeal) }
+    let(:mail) { described_class.with(user: receiver).appeal_approved(appeal) }
 
     it 'renders appeal_approved notification' do
       expect(mail)
@@ -149,7 +149,7 @@ describe UserMailer do
 
   describe '#appeal_rejected' do
     let(:appeal) { Fabricate(:appeal, account: receiver.account, rejected_at: Time.now.utc) }
-    let(:mail) { described_class.appeal_rejected(receiver, appeal) }
+    let(:mail) { described_class.with(user: receiver).appeal_rejected(appeal) }
 
     it 'renders appeal_rejected notification' do
       expect(mail)

@@ -86,7 +86,7 @@ class UserMailerPreview < ActionMailer::Preview
 
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/appeal_approved
   def appeal_approved
-    UserMailer.appeal_approved(User.first, Appeal.last)
+    UserMailer.with(user: User.first).appeal_approved(Appeal.last)
   end
 
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/suspicious_sign_in

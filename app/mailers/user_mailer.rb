@@ -11,7 +11,7 @@ class UserMailer < Devise::Mailer
   helper :routing
 
   before_action :set_instance
-  before_action :set_resource, only: [:welcome, :backup_ready, :warning]
+  before_action :set_resource, only: [:welcome, :backup_ready, :warning, :appeal_approved, :appeal_rejected]
 
   default to: -> { @resource.email }
 
@@ -158,18 +158,16 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def appeal_approved(user, appeal)
-    @resource = user
-    @appeal   = appeal
+  def appeal_approved(appeal)
+    @appeal = appeal
 
     I18n.with_locale(locale) do
       mail subject: default_i18n_subject(date: l(@appeal.created_at))
     end
   end
 
-  def appeal_rejected(user, appeal)
-    @resource = user
-    @appeal   = appeal
+  def appeal_rejected(appeal)
+    @appeal = appeal
 
     I18n.with_locale(locale) do
       mail subject: default_i18n_subject(date: l(@appeal.created_at))

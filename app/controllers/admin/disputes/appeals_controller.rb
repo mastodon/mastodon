@@ -20,7 +20,7 @@ class Admin::Disputes::AppealsController < Admin::BaseController
     authorize @appeal, :approve?
     log_action :reject, @appeal
     @appeal.reject!(current_account)
-    UserMailer.appeal_rejected(@appeal.account.user, @appeal).deliver_later
+    UserMailer.with(user: @appeal.account.user).appeal_rejected(@appeal).deliver_later
     redirect_to disputes_strike_path(@appeal.strike)
   end
 

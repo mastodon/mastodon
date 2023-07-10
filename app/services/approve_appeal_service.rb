@@ -78,6 +78,6 @@ class ApproveAppealService < BaseService
   end
 
   def notify_target_account!
-    UserMailer.appeal_approved(target_account.user, @appeal).deliver_later
+    UserMailer.with(user: target_account.user).appeal_approved(@appeal).deliver_later
   end
 end
