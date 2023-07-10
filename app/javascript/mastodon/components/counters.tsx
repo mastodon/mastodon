@@ -86,19 +86,31 @@ const _StatusesCounter: React.FC<StatusesCounterProps> = ({ value }) => {
 };
 export const StatusesCounter = memo(_StatusesCounter);
 
-export const FollowingCounter = (
-  displayNumber: React.ReactNode,
-  pluralReady: number,
-) => (
-  <FormattedMessage
-    id='account.following_counter'
-    defaultMessage='{count, plural, one {{counter} Following} other {{counter} Following}}'
-    values={{
-      count: pluralReady,
-      counter: <strong>{displayNumber}</strong>,
-    }}
-  />
-);
+interface FollowingCounterProps {
+  value: number;
+  children?: never;
+}
+const _FollowingCounter: React.FC<FollowingCounterProps> = ({ value }) => {
+  const shortNumber = toShortNumber(value);
+  const [, division] = shortNumber;
+  const displayNumber = (
+    <strong>
+      <GenericCounterRenderer value={shortNumber} />
+    </strong>
+  );
+
+  return (
+    <FormattedMessage
+      id='account.following_counter'
+      defaultMessage='{count, plural, one {{counter} Following} other {{counter} Following}}'
+      values={{
+        count: pluralReady(value, division),
+        counter: displayNumber,
+      }}
+    />
+  );
+};
+export const FollowingCounter = memo(_FollowingCounter);
 
 export const FollowersCounter = (
   displayNumber: React.ReactNode,
