@@ -2,6 +2,7 @@ import { memo } from 'react';
 
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 
+import type { ShortNumber as ShortNumberType } from '../utils/numbers';
 import { toShortNumber, pluralReady, DECIMAL_UNITS } from '../utils/numbers';
 
 type ShortNumberRenderer = (
@@ -30,7 +31,7 @@ export const ShortNumberRenderer: React.FC<ShortNumberProps> = ({
 export const ShortNumber = memo(ShortNumberRenderer);
 
 interface ShortNumberCounterProps {
-  value: number[];
+  value: ShortNumberType;
 }
 const ShortNumberCounter: React.FC<ShortNumberCounterProps> = ({ value }) => {
   const [rawNumber, unit, maxFractionDigits = 0] = value;
