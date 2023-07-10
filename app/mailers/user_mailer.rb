@@ -11,6 +11,7 @@ class UserMailer < Devise::Mailer
   helper :routing
 
   before_action :set_instance
+  before_action :set_resource, only: :welcome
 
   default to: -> { @resource.email }
 
@@ -130,9 +131,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def welcome(user)
-    @resource = user
-
+  def welcome
     return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale) do
@@ -199,6 +198,10 @@ class UserMailer < Devise::Mailer
 
   def set_instance
     @instance = Rails.configuration.x.local_domain
+  end
+
+  def set_resource
+    @resource = params[:user]
   end
 
   def locale

@@ -227,7 +227,7 @@ describe UserMailer do
   end
 
   describe '#welcome' do
-    let(:mail) { described_class.welcome(receiver) }
+    let(:mail) { described_class.with(user: receiver).welcome }
 
     it 'renders welcome mail' do
       expect(mail)
