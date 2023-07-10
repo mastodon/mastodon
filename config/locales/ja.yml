@@ -725,6 +725,8 @@ ja:
       branding:
         preamble: サーバーのブランディングは、ネットワーク上の他のサーバーと区別するためのものです。この情報は、Mastodon の Web インターフェース、ネイティブアプリケーション、他の Web サイトやメッセージングアプリのリンクプレビューなど、様々な所で表示される可能性があります。このため、明確で短く、簡潔に記載することをおすすめします。
         title: ブランディング
+      captcha_enabled:
+        title: 新規ユーザーのアカウント確認にCHAPCHAを要求する
       content_retention:
         preamble: ユーザーが生成したコンテンツがどのように Mastodon に保存されるかを管理します。
         title: コンテンツの保持
@@ -971,6 +973,8 @@ ja:
   auth:
     apply_for_account: アカウントのリクエスト
     captcha_confirmation:
+      help_html: CAPTCHAの解決に問題がある場合は、 %{email} までお問い合わせください。お手伝いいたします。
+      hint_html: もう一つだけ！あなたが人間であることを確認する必要があります(スパムを防ぐためです！)。 以下のCAPTCHAを解き、「続ける」をクリックします。
       title: セキュリティチェック
     confirmations:
       wrong_email_hint: メールアドレスが正しくない場合は、アカウント設定で変更できます。
@@ -1321,6 +1325,9 @@ ja:
         notification_emails:
           favourite: お気に入りの通知メール
           follow: 通知メールをフォローする
+          follow_request: フォローリクエストのメール送信
+          mention: 返信通知のメール送信
+          reblog: ブースト通知のメール送信
       title: 購読の解除
   media_attachments:
     validations:
