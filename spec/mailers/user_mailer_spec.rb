@@ -184,4 +184,13 @@ describe UserMailer do
       expect(mail.body.encoded).to include I18n.t('devise.mailer.webauthn_credential.added.explanation')
     end
   end
+
+  describe 'welcome' do
+    let(:mail) { described_class.welcome(receiver) }
+
+    it 'renders welcome mail' do
+      expect(mail.subject).to eq I18n.t('user_mailer.welcome.subject')
+      expect(mail.body.encoded).to include I18n.t('user_mailer.welcome.explanation')
+    end
+  end
 end
