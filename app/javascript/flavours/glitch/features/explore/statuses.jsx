@@ -52,6 +52,7 @@ class Statuses extends PureComponent {
 
         <StatusList
           trackScroll
+          timelineId='explore'
           statusIds={statusIds}
           scrollKey='explore-statuses'
           hasMore={hasMore}
