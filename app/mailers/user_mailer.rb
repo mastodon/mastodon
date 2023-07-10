@@ -10,10 +10,11 @@ class UserMailer < Devise::Mailer
   helper :formatting
   helper :routing
 
+  before_action :set_instance
+
   def confirmation_instructions(user, token, *, **)
     @resource = user
     @token    = token
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
@@ -27,7 +28,6 @@ class UserMailer < Devise::Mailer
   def reset_password_instructions(user, token, *, **)
     @resource = user
     @token    = token
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
@@ -38,7 +38,6 @@ class UserMailer < Devise::Mailer
 
   def password_change(user, *, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
@@ -49,7 +48,6 @@ class UserMailer < Devise::Mailer
 
   def email_changed(user, *, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
@@ -60,7 +58,6 @@ class UserMailer < Devise::Mailer
 
   def two_factor_enabled(user, *, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
@@ -71,7 +68,6 @@ class UserMailer < Devise::Mailer
 
   def two_factor_disabled(user, *, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
@@ -82,7 +78,6 @@ class UserMailer < Devise::Mailer
 
   def two_factor_recovery_codes_changed(user, *, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
@@ -93,7 +88,6 @@ class UserMailer < Devise::Mailer
 
   def webauthn_enabled(user, *, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
@@ -104,7 +98,6 @@ class UserMailer < Devise::Mailer
 
   def webauthn_disabled(user, *, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
@@ -115,7 +108,6 @@ class UserMailer < Devise::Mailer
 
   def webauthn_credential_added(user, webauthn_credential)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
     @webauthn_credential = webauthn_credential
 
     return unless @resource.active_for_authentication?
@@ -127,7 +119,6 @@ class UserMailer < Devise::Mailer
 
   def webauthn_credential_deleted(user, webauthn_credential)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
     @webauthn_credential = webauthn_credential
 
     return unless @resource.active_for_authentication?
@@ -139,7 +130,6 @@ class UserMailer < Devise::Mailer
 
   def welcome(user)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
@@ -150,7 +140,6 @@ class UserMailer < Devise::Mailer
 
   def backup_ready(user, backup)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
     @backup   = backup
 
     return unless @resource.active_for_authentication?
@@ -163,7 +152,6 @@ class UserMailer < Devise::Mailer
   def warning(user, warning)
     @resource = user
     @warning  = warning
-    @instance = Rails.configuration.x.local_domain
     @statuses = @warning.statuses.includes(:account, :preloadable_poll, :media_attachments, active_mentions: [:account])
 
     I18n.with_locale(locale) do
@@ -173,7 +161,6 @@ class UserMailer < Devise::Mailer
 
   def appeal_approved(user, appeal)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
     @appeal   = appeal
 
     I18n.with_locale(locale) do
@@ -183,7 +170,6 @@ class UserMailer < Devise::Mailer
 
   def appeal_rejected(user, appeal)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
     @appeal   = appeal
 
     I18n.with_locale(locale) do
@@ -193,7 +179,6 @@ class UserMailer < Devise::Mailer
 
   def suspicious_sign_in(user, remote_ip, user_agent, timestamp)
     @resource   = user
-    @instance   = Rails.configuration.x.local_domain
     @remote_ip  = remote_ip
     @user_agent = user_agent
     @detection  = Browser.new(user_agent)
@@ -205,6 +190,10 @@ class UserMailer < Devise::Mailer
   end
 
   private
+
+  def set_instance
+    @instance = Rails.configuration.x.local_domain
+  end
 
   def locale
     @resource.locale.presence || I18n.default_locale
