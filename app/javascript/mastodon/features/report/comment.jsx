@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef } from 'react';
 
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
-import { OrderedSet } from 'immutable';
+import { OrderedSet, List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { shallowEqual } from 'react-redux';
 import { createSelector } from 'reselect';
@@ -46,11 +46,11 @@ const Comment = ({ comment, domain, statusIds, isRemote, isSubmitting, selectedD
   }, [handleClick]);
 
   // Memoize accountIds since we don't want it to trigger `useEffect` on each render
-  const accountIds = useAppSelector((state) => selectRepliedToAccountIds(state, statusIds));
+  const accountIds = useAppSelector((state) => domain ? selectRepliedToAccountIds(state, statusIds) : ImmutableList());
 
   // While we could memoize `availableDomains`, it is pretty inexpensive to recompute
   const accountsMap = useAppSelector((state) => state.get('accounts'));
-  const availableDomains = OrderedSet([domain]).union(accountIds.map((accountId) => accountsMap.getIn([accountId, 'acct'], '').split('@')[1]).filter(domain => !!domain));
+  const availableDomains = domain ? OrderedSet([domain]).union(accountIds.map((accountId) => accountsMap.getIn([accountId, 'acct'], '').split('@')[1]).filter(domain => !!domain)) : OrderedSet();
 
   useEffect(() => {
     if (loadedRef.current) {
