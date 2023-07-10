@@ -110,6 +110,10 @@ class Header extends ImmutablePureComponent {
     ...WithRouterPropTypes,
   };
 
+  static contextTypes = {
+    identity: PropTypes.object,
+  };
+
   setRef = c => {
     this.node = c;
   };

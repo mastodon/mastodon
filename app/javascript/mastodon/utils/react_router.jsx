@@ -1,6 +1,5 @@
 import PropTypes from "prop-types"
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { __RouterContext } from "react-router";
 
 import hoistStatics from "hoist-non-react-statics";

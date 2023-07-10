@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -12,7 +11,7 @@ import { HotKeys } from 'react-hotkeys';
 
 import { Icon }  from 'mastodon/components/icon';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
-import { WithRouterPropTypes } from 'mastodon/utils/react_router';
+import { withOptionalRouter, WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import Card from '../features/status/components/card';
 // We use the component (and not the container) since we do not want
@@ -279,14 +278,14 @@ class Status extends ImmutablePureComponent {
       return;
     }
 
-    const { router } = this.context;
+    const { history } = this.props;
     const status = this._properStatus();
 
-    if (!router) {
+    if (!history) {
       return;
     }
 
-    router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
+    history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
   };
 
   handleHotkeyOpenProfile = () => {
@@ -294,14 +293,14 @@ class Status extends ImmutablePureComponent {
   };
 
   _openProfile = (proper = true) => {
-    const { router } = this.context;
+    const { history } = this.props;
     const status = proper ? this._properStatus() : this.props.status;
 
-    if (!router) {
+    if (!history) {
       return;
     }
 
-    router.history.push(`/@${status.getIn(['account', 'acct'])}`);
+    history.push(`/@${status.getIn(['account', 'acct'])}`);
   };
 
   handleHotkeyMoveUp = e => {
@@ -595,4 +594,4 @@ class Status extends ImmutablePureComponent {
 
 }
 
-export default withRouter(injectIntl(Status));
+export default withOptionalRouter(injectIntl(Status));
