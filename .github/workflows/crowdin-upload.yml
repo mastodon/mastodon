@@ -13,7 +13,6 @@ on:
       - config/locales/devise.en.yml
       - config/locales/doorkeeper.en.yml
       - .github/workflows/crowdin-upload.yml
-  pull_request: # TODO: remove me before merging
 
 jobs:
   upload-translations:

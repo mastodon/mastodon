@@ -26,8 +26,13 @@ jobs:
           crowdin_branch_name: main
           localization_branch_name: i18n/crowdin/translations
           create_pull_request: true
-          # pull_request_title: 'New Crowdin Translations'
-          # pull_request_body: 'New Crowdin translations by [Crowdin GH Action](https://github.com/crowdin/github-action)'
+          pull_request_title: 'New Crowdin Translations (automated)'
+          pull_request_body: |
+            New Crowdin translations by [Crowdin GH Action](https://github.com/crowdin/github-action)
+
+            See `.github/workflows/crowdin-download.yml
+
+            This PR will be updated every day with new translations.'
           pull_request_labels: 'i18n'
 
         env:
