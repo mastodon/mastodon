@@ -25,7 +25,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :authorized_apps, safe_join([fa_icon('list fw'), t('settings.authorized_apps')]), oauth_authorized_applications_path
     end
 
-    n.item :subscription, safe_join([fa_icon('calendar-o'), "   Subscription"]), settings_subscription.subscriptions_path, if: -> { current_user.functional? }, highlights_on: %r{/settings/subscription}
+    n.item :subscription, safe_join([fa_icon('calendar-o'), "   Subscription"]), settings_subscription.subscriptions_path, highlights_on: %r{/settings/subscription}
 
     n.item :data, safe_join([fa_icon('cloud-download fw'), t('settings.import_and_export')]), main_app.settings_export_path do |s|
       s.item :import, safe_join([fa_icon('cloud-upload fw'), t('settings.import')]), settings_import_path, if: -> { current_user.functional? }
