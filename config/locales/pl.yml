@@ -399,6 +399,7 @@ pl:
         cancel: Anuluj
         confirm: Zawieś
         permanent_action: Cofnięcie zawieszenia nie przywróci żadnych danych ani związków.
+        stop_communication: Twój serwer przestanie komunikować się z tymi serwerami.
         title: Potwierdź blokadę domeny %{domain}
       created_msg: Blokada domen jest przetwarzana
       destroyed_msg: Blokada domeny nie może zostać odwrócona
@@ -1006,6 +1007,7 @@ pl:
     notification_preferences: Zmień ustawienia e-maili
     salutation: "%{name},"
     settings: 'Zmień ustawienia powiadamiania: %{link}'
+    unsubscribe: Anuluj subskrypcję
     view: 'Zobacz:'
     view_profile: Wyświetl profil
     view_status: Wyświetl wpis
@@ -1378,6 +1380,10 @@ pl:
     failed_sign_in_html: Próba logowania zakończona niepowodzeniem przy pomocy %{method} z %{ip} (%{browser})
     successful_sign_in_html: Pomyślne logowanie przy pomocy %{method} z %{ip} (%{browser})
     title: Historia uwierzytelniania
+  mail_subscriptions:
+    unsubscribe:
+      complete: Anulowano subskrypcję
+      title: Anuluj subskrypcję
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia
@@ -1493,6 +1499,7 @@ pl:
       expired: To głosowanie już zakończyło się
       invalid_choice: Wybrana opcja głosowania nie istnieje
       over_character_limit: nie może zawierać więcej niż %{max} znaków
+      self_vote: Nie możesz głosować we własnych ankietach
       too_few_options: musi zawierać przynajmniej dwie opcje
       too_many_options: nie może zawierać więcej niż %{max} opcji
   preferences:
