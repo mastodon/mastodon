@@ -1358,6 +1358,10 @@ et:
           follow: jälgimisest teatamise e-kirjad
           follow_request: jälgimise taotluse e-kirjad
           mention: mainimistest teatamise e-kirjad
+          reblog: jagamise teavitamise e-kirjad
+      resubscribe_html: Kui loobusid tellimisest ekslikult, saad uuesti tellida oma <a href="%{settings_path}">e-posti teavituste seadetest</a>.
+      success_html: Sa ei saa rohkem %{domain} Mastodoni jaoks %{type} teavitusi e-postiaadressile %{email}.
+      title: Loobu tellimisest
   media_attachments:
     validations:
       images_and_video: Ei saa lisada video postitusele, milles on juba pildid
@@ -1473,6 +1477,7 @@ et:
       expired: See küsitlus on juba lõppenud
       invalid_choice: Valitud küsitluse valikut pole olemas
       over_character_limit: igaüks ei saa olla rohkem kui %{max} tähemärki
+      self_vote: Sa ei saa enda hääletustel hääletada
       too_few_options: peab olema rohkem kui üks vastus
       too_many_options: ei saa sisaldada rohkem kui %{max} vastust
   preferences:
@@ -1776,6 +1781,8 @@ et:
     seamless_external_login: Välise teenuse kaudu sisse logides pole salasõna ja e-posti sätted saadaval.
     signed_in_as: 'Sisse logitud kasutajana:'
   verification:
+    extra_instructions_html: <strong>Soovitus:</strong> Sinu kodulehel olev link võib olla nähtamatu. Oluline osa on <code>rel="me"</code>, mis väldib kasutaja loodud sisuga lehtedel libaisikustamist. Sa saad isegi kasutada lehe HEADER osas silti <code>link</code> sildi <code>a</code> asemel, kuid HTML peab olema kättesaadav ilma JavaScripti käivitamata.
+    here_is_how: Siin on, kuidas
     verification: Kinnitamine
   webauthn_credentials:
     add: Uue turvavõtme lisamine
