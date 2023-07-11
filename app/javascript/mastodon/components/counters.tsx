@@ -111,11 +111,7 @@ interface FollowersCounterProps {
 const _FollowersCounter: React.FC<FollowersCounterProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
-  const displayNumber = (
-    <strong>
-      <GenericCounterRenderer value={shortNumber} />
-    </strong>
-  );
+  const displayNumber = <GenericCounterRenderer value={shortNumber} />;
 
   return (
     <FormattedMessage
