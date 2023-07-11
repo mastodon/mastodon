@@ -11,11 +11,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
 
-import { GenericCounter } from 'mastodon/components/short_number';
+import { GenericCounter , GenericCounterRenderer } from 'mastodon/components/counters';
 import { Skeleton } from 'mastodon/components/skeleton';
 import { pluralReady, toShortNumber } from 'mastodon/utils/numbers';
 
-import { GenericCounterRenderer } from './counters';
 
 class SilentErrorBoundary extends Component {
 

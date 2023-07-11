@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 
-import { GenericCounter } from 'mastodon/components/short_number';
+import { GenericCounter } from 'mastodon/components/counters';
 
 interface Props {
   tag: {

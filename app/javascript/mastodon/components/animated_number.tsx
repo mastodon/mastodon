@@ -4,7 +4,7 @@ import { TransitionMotion, spring } from 'react-motion';
 
 import { reduceMotion } from '../initial_state';
 
-import { GenericCounter } from './short_number';
+import { GenericCounter } from './counters';
 
 interface Props {
   value: number;

@@ -18,8 +18,8 @@ import {
 import { openModal } from 'mastodon/actions/modal';
 import { Avatar } from 'mastodon/components/avatar';
 import Button from 'mastodon/components/button';
+import { GenericCounter } from 'mastodon/components/counters';
 import { DisplayName } from 'mastodon/components/display_name';
-import { GenericCounter } from 'mastodon/components/short_number';
 import { autoPlayGif, me, unfollowModal } from 'mastodon/initial_state';
 import { makeGetAccount } from 'mastodon/selectors';
 
