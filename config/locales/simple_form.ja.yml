@@ -1,6 +1,8 @@
 ja:
   simple_form:
     hints:
+      account:
+        fields: ホームページ、代名詞、年齢など何でも構いません。
       account_alias:
         acct: 引っ越し元のユーザー名@ドメインを指定してください
       account_migration:
@@ -129,6 +131,7 @@ ja:
         position: 場合により、より高いロールのユーザーが紛争の解決を決定します。特定のアクションは優先度が低いロールでのみ実行できます。
       webhook:
         events: 送信するイベントを選択
+        template: 変数補間を使用して、独自のJSONペイロードを構成します。デフォルトのJSONを使用する場合は空白のままにします。
         url: イベントの送信先
     labels:
       account:
@@ -303,6 +306,7 @@ ja:
         position: 優先度
       webhook:
         events: 有効なイベント
+        template: ペイロードテンプレート
         url: エンドポイントURL
     'no': 'いいえ'
     not_recommended: 非推奨
