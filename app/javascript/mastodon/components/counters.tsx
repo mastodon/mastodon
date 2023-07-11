@@ -60,22 +60,18 @@ export const GenericCounterRenderer: React.FC<GenericCounterRendererProps> = ({
   }
 };
 
-interface GenericCounterProps {
+interface CounterProps {
   value: number;
   children?: never;
 }
 
-const _GenericCounter: React.FC<GenericCounterProps> = ({ value }) => {
+const _GenericCounter: React.FC<CounterProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
   return <GenericCounterRenderer value={shortNumber} />;
 };
 export const GenericCounter = memo(_GenericCounter);
 
-interface StatusesCounterProps {
-  value: number;
-  children?: never;
-}
-const _StatusesCounter: React.FC<StatusesCounterProps> = ({ value }) => {
+const _StatusesCounter: React.FC<CounterProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
   const displayNumber = <GenericCounterRenderer value={shortNumber} />;
@@ -93,11 +89,7 @@ const _StatusesCounter: React.FC<StatusesCounterProps> = ({ value }) => {
 };
 export const StatusesCounter = memo(_StatusesCounter);
 
-interface FollowingCounterProps {
-  value: number;
-  children?: never;
-}
-const _FollowingCounter: React.FC<FollowingCounterProps> = ({ value }) => {
+const _FollowingCounter: React.FC<CounterProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
   const displayNumber = <GenericCounterRenderer value={shortNumber} />;
@@ -115,11 +107,7 @@ const _FollowingCounter: React.FC<FollowingCounterProps> = ({ value }) => {
 };
 export const FollowingCounter = memo(_FollowingCounter);
 
-interface FollowersCounterProps {
-  value: number;
-  children?: never;
-}
-const _FollowersCounter: React.FC<FollowersCounterProps> = ({ value }) => {
+const _FollowersCounter: React.FC<CounterProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
   const displayNumber = <GenericCounterRenderer value={shortNumber} />;
