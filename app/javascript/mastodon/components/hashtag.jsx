@@ -11,7 +11,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
 
-import { GenericCounter , GenericCounterRenderer } from 'mastodon/components/counters';
+import { GenericCounter , ShortNumberRenderer } from 'mastodon/components/counters';
 import { Skeleton } from 'mastodon/components/skeleton';
 import { pluralReady, toShortNumber } from 'mastodon/utils/numbers';
 
@@ -47,7 +47,7 @@ class SilentErrorBoundary extends Component {
 const _AccountsCounter = ({ value }) => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
-  const displayNumber = <GenericCounterRenderer value={shortNumber} />;
+  const displayNumber = <ShortNumberRenderer shortNumber={shortNumber} />;
 
   return (<FormattedMessage
     id='trends.counter_by_accounts'

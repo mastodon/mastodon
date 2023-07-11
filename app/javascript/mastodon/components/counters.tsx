@@ -9,13 +9,13 @@ import {
   toShortNumber,
 } from 'mastodon/utils/numbers';
 
-interface GenericCounterRendererProps {
-  value: ShortNumber;
+interface ShortNumberRendererProps {
+  shortNumber: ShortNumber;
 }
-export const GenericCounterRenderer: React.FC<GenericCounterRendererProps> = ({
-  value,
+export const ShortNumberRenderer: React.FC<ShortNumberRendererProps> = ({
+  shortNumber,
 }) => {
-  const [rawNumber, unit, maxFractionDigits = 0] = value;
+  const [rawNumber, unit, maxFractionDigits = 0] = shortNumber;
 
   const count = (
     <FormattedNumber
@@ -67,14 +67,14 @@ interface CounterProps {
 
 const _GenericCounter: React.FC<CounterProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
-  return <GenericCounterRenderer value={shortNumber} />;
+  return <ShortNumberRenderer shortNumber={shortNumber} />;
 };
 export const GenericCounter = memo(_GenericCounter);
 
 const _StatusesCounter: React.FC<CounterProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
-  const displayNumber = <GenericCounterRenderer value={shortNumber} />;
+  const displayNumber = <ShortNumberRenderer shortNumber={shortNumber} />;
 
   return (
     <FormattedMessage
@@ -92,7 +92,7 @@ export const StatusesCounter = memo(_StatusesCounter);
 const _FollowingCounter: React.FC<CounterProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
-  const displayNumber = <GenericCounterRenderer value={shortNumber} />;
+  const displayNumber = <ShortNumberRenderer shortNumber={shortNumber} />;
 
   return (
     <FormattedMessage
@@ -110,7 +110,7 @@ export const FollowingCounter = memo(_FollowingCounter);
 const _FollowersCounter: React.FC<CounterProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
-  const displayNumber = <GenericCounterRenderer value={shortNumber} />;
+  const displayNumber = <ShortNumberRenderer shortNumber={shortNumber} />;
 
   return (
     <FormattedMessage
