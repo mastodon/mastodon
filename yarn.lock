@@ -2838,6 +2838,7 @@ __metadata:
     "@testing-library/jest-dom": "npm:^6.0.0"
     "@testing-library/react": "npm:^16.0.0"
     "@types/babel__core": "npm:^7.20.1"
+    "@types/dompurify": "npm:^3.0.2"
     "@types/emoji-mart": "npm:^3.0.9"
     "@types/escape-html": "npm:^1.0.2"
     "@types/hoist-non-react-statics": "npm:^3.3.1"
@@ -2887,6 +2888,7 @@ __metadata:
     css-loader: "npm:^5.2.7"
     cssnano: "npm:^7.0.0"
     detect-passive-events: "npm:^2.0.3"
+    dompurify: "npm:^3.0.5"
     emoji-mart: "npm:emoji-mart-lazyload@latest"
     escape-html: "npm:^1.0.3"
     eslint: "npm:^8.41.0"
@@ -3730,6 +3732,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/dompurify@npm:^3.0.2":
+  version: 3.0.5
+  resolution: "@types/dompurify@npm:3.0.5"
+  dependencies:
+    "@types/trusted-types": "npm:*"
+  checksum: 10c0/a34dcc4498ca250815ccf9aecbe82df96ba5db247d0440cf266a876757d47c52519c240db3475e794d7deb0d6b1af23328e02879be368ad0e26b20c0f0865dba
+  languageName: node
+  linkType: hard
+
 "@types/emoji-mart@npm:^3.0.9":
   version: 3.0.14
   resolution: "@types/emoji-mart@npm:3.0.14"
@@ -4230,6 +4241,13 @@ __metadata:
   version: 4.0.2
   resolution: "@types/tough-cookie@npm:4.0.2"
   checksum: 10c0/38d01fc79a9a87166253b8c548bb401599424c57a818bea1b47a68be6dcd37fc3bff381f978354e00221f284937d5066bb92d58bf79952f9d21deb934e8ec9a7
+  languageName: node
+  linkType: hard
+
+"@types/trusted-types@npm:*":
+  version: 2.0.6
+  resolution: "@types/trusted-types@npm:2.0.6"
+  checksum: 10c0/8d942c25bfabd89463170e22f0b3312b776885735a9c259495266b90c590f040b2112cb25e05cc2dee6e397301597b979b8ea8b0d10f2232adf38c542a16324b
   languageName: node
   linkType: hard
 
@@ -7499,6 +7517,13 @@ __metadata:
   dependencies:
     domelementtype: "npm:^2.3.0"
   checksum: 10c0/bba1e5932b3e196ad6862286d76adc89a0dbf0c773e5ced1eb01f9af930c50093a084eff14b8de5ea60b895c56a04d5de8bbc4930c5543d029091916770b2d2a
+  languageName: node
+  linkType: hard
+
+"dompurify@npm:^3.0.5":
+  version: 3.0.6
+  resolution: "dompurify@npm:3.0.6"
+  checksum: 10c0/defc5126e1724bbe5dd5835f0de838c6dc9726a73fc74893e4c661a3c1bd5c65189295013afee74ae7097b3be93499539ff9ec66118d3aa46e788266b1f7514c
   languageName: node
   linkType: hard
 

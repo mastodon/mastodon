@@ -10,6 +10,7 @@ import type {
 } from 'mastodon/api_types/accounts';
 import emojify from 'mastodon/features/emoji/emoji';
 import { unescapeHTML } from 'mastodon/utils/html';
+import { sanitize } from 'mastodon/utils/sanitize';
 
 import { CustomEmojiFactory, makeEmojiMap } from './custom_emoji';
 import type { CustomEmoji, EmojiMap } from './custom_emoji';
@@ -107,11 +108,10 @@ function createAccountField(
 ) {
   return AccountFieldFactory({
     ...jsonField,
-    name_emojified: emojify(
-      escapeTextContentForBrowser(jsonField.name),
-      emojiMap,
+    name_emojified: sanitize(
+      emojify(escapeTextContentForBrowser(jsonField.name), emojiMap),
     ),
-    value_emojified: emojify(jsonField.value, emojiMap),
+    value_emojified: sanitize(emojify(jsonField.value, emojiMap)),
     value_plain: unescapeHTML(jsonField.value),
   });
 }
@@ -138,11 +138,10 @@ export function createAccountFromServerJSON(serverJSON: ApiAccountJSON) {
     roles: ImmutableList(
       serverJSON.roles?.map((role) => AccountRoleFactory(role)),
     ),
-    display_name_html: emojify(
-      escapeTextContentForBrowser(displayName),
-      emojiMap,
+    display_name_html: sanitize(
+      emojify(escapeTextContentForBrowser(displayName), emojiMap),
     ),
-    note_emojified: emojify(accountJSON.note, emojiMap),
+    note_emojified: sanitize(emojify(accountJSON.note, emojiMap)),
     note_plain: unescapeHTML(accountJSON.note),
   });
 }
