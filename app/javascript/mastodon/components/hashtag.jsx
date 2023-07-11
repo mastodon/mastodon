@@ -1,6 +1,6 @@
 // @ts-check
 import PropTypes from 'prop-types';
-import { Component, memo } from 'react';
+import React, { Component, memo } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -42,7 +42,7 @@ class SilentErrorBoundary extends Component {
 
 /**
  * Used to render counter of how much people are talking about hashtag
- * @type {(props: {value: number, children?: never}) => JSX.Element}
+ * @type {React.FC<{value: number, children?: never}>}
  */
 const _AccountsCounter = ({ value }) => {
   const shortNumber = toShortNumber(value);
@@ -62,6 +62,7 @@ const _AccountsCounter = ({ value }) => {
     }}
   />)
 };
+_AccountsCounter.displayName = 'AccountsCounter';
 export const AccountsCounter = memo(_AccountsCounter)
 
 // @ts-expect-error

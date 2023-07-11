@@ -68,6 +68,7 @@ interface CounterProps {
 const _GenericCounter: React.FC<CounterProps> = ({ value }) => (
   <ShortNumberRenderer shortNumber={toShortNumber(value)} />
 );
+_GenericCounter.displayName = 'GenericCounter';
 export const GenericCounter = memo(_GenericCounter);
 
 const _StatusesCounter: React.FC<CounterProps> = ({ value }) => {
@@ -89,6 +90,7 @@ const _StatusesCounter: React.FC<CounterProps> = ({ value }) => {
     />
   );
 };
+_StatusesCounter.displayName = 'StatusesCounter';
 export const StatusesCounter = memo(_StatusesCounter);
 
 const _FollowingCounter: React.FC<CounterProps> = ({ value }) => {
@@ -110,6 +112,7 @@ const _FollowingCounter: React.FC<CounterProps> = ({ value }) => {
     />
   );
 };
+_FollowingCounter.displayName = 'FollowingCounter';
 export const FollowingCounter = memo(_FollowingCounter);
 
 const _FollowersCounter: React.FC<CounterProps> = ({ value }) => {
@@ -131,4 +134,5 @@ const _FollowersCounter: React.FC<CounterProps> = ({ value }) => {
     />
   );
 };
+_FollowersCounter.displayName = 'FollowersCounter';
 export const FollowersCounter = memo(_FollowersCounter);
