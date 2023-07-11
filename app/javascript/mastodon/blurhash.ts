@@ -86,10 +86,9 @@ const DIGIT_CHARACTERS = [
 
 export const decode83 = (str: string) => {
   let value = 0;
-  let c, digit;
+  let digit;
 
-  for (let i = 0; i < str.length; i++) {
-    c = str[i];
+  for (const c of str) {
     digit = DIGIT_CHARACTERS.indexOf(c);
     value = value * 83 + digit;
   }
