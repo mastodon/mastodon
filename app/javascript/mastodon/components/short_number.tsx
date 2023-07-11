@@ -1,30 +1,16 @@
 import { memo } from 'react';
 
-import { toShortNumber, pluralReady } from '../utils/numbers';
+import { toShortNumber } from '../utils/numbers';
 
 import { GenericCounterRenderer } from './counters';
 
-type ShortNumberRenderer = (
-  displayNumber: JSX.Element,
-  pluralReady: number,
-) => JSX.Element;
-
 interface ShortNumberProps {
   value: number;
-  renderer?: ShortNumberRenderer;
   children?: never;
 }
 
-export const ShortNumberRenderer: React.FC<ShortNumberProps> = ({
-  value,
-  renderer,
-}) => {
+export const ShortNumberRenderer: React.FC<ShortNumberProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
-  const [, division] = shortNumber;
-  const displayNumber = <GenericCounterRenderer value={shortNumber} />;
-
-  return (
-    renderer?.(displayNumber, pluralReady(value, division)) ?? displayNumber
-  );
+  return <GenericCounterRenderer value={shortNumber} />;
 };
 export const ShortNumber = memo(ShortNumberRenderer);
