@@ -103,6 +103,30 @@
       "note": ""
     },
     {
+      "warning_type": "Denial of Service",
+      "warning_code": 76,
+      "fingerprint": "7b6abba5699755348e7ee82a4694bfbf574b41c7cce2d0db0f7c11ae3f983c72",
+      "check_name": "RegexDoS",
+      "message": "Model attribute used in regular expression",
+      "file": "lib/mastodon/cli/domains.rb",
+      "line": 128,
+      "link": "https://brakemanscanner.org/docs/warning_types/denial_of_service/",
+      "code": "/\\.?(#{DomainBlock.where(:severity => 1).pluck(:domain).map do\n Regexp.escape(domain)\n end.join(\"|\")})$/",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Mastodon::CLI::Domains",
+        "method": "crawl"
+      },
+      "user_input": "DomainBlock.where(:severity => 1).pluck(:domain)",
+      "confidence": "Weak",
+      "cwe_id": [
+        20,
+        185
+      ],
+      "note": ""
+    },
+    {
       "warning_type": "Mass Assignment",
       "warning_code": 105,
       "fingerprint": "874be88fedf4c680926845e9a588d3197765a6ccbfdd76466b44cc00151c612e",
@@ -140,6 +164,29 @@
         "type": "method",
         "class": "Api::V1::NotificationsController",
         "method": "browserable_params"
+      },
+      "user_input": ":account_id",
+      "confidence": "High",
+      "cwe_id": [
+        915
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 105,
+      "fingerprint": "b0dd0a26d24f5ede9713fe49210e9638be5f5548af9eee0b5a16fe9dbc80ffcd",
+      "check_name": "PermitAttributes",
+      "message": "Potentially dangerous key allowed for mass assignment",
+      "file": "app/controllers/api/v2/search_controller.rb",
+      "line": 42,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.permit(:type, :offset, :min_id, :max_id, :account_id, :following)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Api::V2::SearchController",
+        "method": "search_params"
       },
       "user_input": ":account_id",
       "confidence": "High",
@@ -205,6 +252,6 @@
       "note": ""
     }
   ],
-  "updated": "2023-07-05 14:34:42 -0400",
-  "brakeman_version": "5.4.1"
+  "updated": "2023-07-08 14:48:58 -0400",
+  "brakeman_version": "6.0.0"
 }
