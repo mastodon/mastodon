@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe '/api/web/embed' do
-  subject { post '/api/web/embed', params: { id: id }, headers: headers }
+  subject { get "/api/web/embeds/#{id}", headers: headers }
 
   context 'when accessed anonymously' do
     let(:headers) { {} }

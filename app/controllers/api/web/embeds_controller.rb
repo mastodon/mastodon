@@ -5,7 +5,7 @@ class Api::Web::EmbedsController < Api::Web::BaseController
 
   before_action :set_status
 
-  def create
+  def show
     return not_found if @status.hidden?
 
     if @status.local?

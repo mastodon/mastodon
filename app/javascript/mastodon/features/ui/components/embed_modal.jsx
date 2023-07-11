@@ -30,7 +30,7 @@ class EmbedModal extends ImmutablePureComponent {
 
     this.setState({ loading: true });
 
-    api().post('/api/web/embed', { id }).then(res => {
+    api().get(`/api/web/embeds/${id}`).then(res => {
       this.setState({ loading: false, oembed: res.data });
 
       const iframeDocument = this.iframe.contentWindow.document;
