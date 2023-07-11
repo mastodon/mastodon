@@ -48,15 +48,6 @@ Layout/SpaceInLambdaLiteral:
     - 'config/environments/production.rb'
     - 'config/initializers/content_security_policy.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowedMethods, AllowedPatterns.
-Lint/AmbiguousBlockAssociation:
-  Exclude:
-    - 'spec/controllers/settings/two_factor_authentication/confirmations_controller_spec.rb'
-    - 'spec/controllers/settings/two_factor_authentication/otp_authentication_controller_spec.rb'
-    - 'spec/services/activitypub/process_status_update_service_spec.rb'
-    - 'spec/services/post_status_service_spec.rb'
-
 # Configuration parameters: AllowComments, AllowEmptyLambdas.
 Lint/EmptyBlock:
   Exclude:
