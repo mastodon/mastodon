@@ -67,11 +67,7 @@ interface StatusesCounterProps {
 const _StatusesCounter: React.FC<StatusesCounterProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
-  const displayNumber = (
-    <strong>
-      <GenericCounterRenderer value={shortNumber} />
-    </strong>
-  );
+  const displayNumber = <GenericCounterRenderer value={shortNumber} />;
 
   return (
     <FormattedMessage
@@ -79,7 +75,7 @@ const _StatusesCounter: React.FC<StatusesCounterProps> = ({ value }) => {
       defaultMessage='{count, plural, one {{counter} Post} other {{counter} Posts}}'
       values={{
         count: pluralReady(value, division),
-        counter: displayNumber,
+        counter: <strong>{displayNumber}</strong>,
       }}
     />
   );
