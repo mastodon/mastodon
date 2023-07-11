@@ -6,9 +6,8 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import { Blurhash } from 'mastodon/components/blurhash';
-import { accountsCountRenderer } from 'mastodon/components/hashtag';
+import { AccountsCounter } from 'mastodon/components/hashtag';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
-import { ShortNumber } from 'mastodon/components/short_number';
 import { Skeleton } from 'mastodon/components/skeleton';
 
 export default class Story extends PureComponent {
@@ -43,7 +42,7 @@ export default class Story extends PureComponent {
         <div className='story__details'>
           <div className='story__details__publisher'>{publisher ? <span lang={lang}>{publisher}</span> : <Skeleton width={50} />}{publishedAt && <> · <RelativeTimestamp timestamp={publishedAt} /></>}</div>
           <div className='story__details__title' lang={lang}>{title ? title : <Skeleton />}</div>
-          <div className='story__details__shared'>{author && <><FormattedMessage id='link_preview.author' defaultMessage='By {name}' values={{ name: <strong>{author}</strong> }} /> · </>}{typeof sharedTimes === 'number' ? <ShortNumber value={sharedTimes} renderer={accountsCountRenderer} /> : <Skeleton width={100} />}</div>
+          <div className='story__details__shared'>{author && <><FormattedMessage id='link_preview.author' defaultMessage='By {name}' values={{ name: <strong>{author}</strong> }} /> · </>}{typeof sharedTimes === 'number' ? <AccountsCounter value={sharedTimes} /> : <Skeleton width={100} />}</div>
         </div>
 
         <div className='story__thumbnail'>

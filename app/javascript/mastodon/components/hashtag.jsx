@@ -1,6 +1,6 @@
 // @ts-check
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+import { Component, memo } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -13,6 +13,9 @@ import { Sparklines, SparklinesCurve } from 'react-sparklines';
 
 import { ShortNumber } from 'mastodon/components/short_number';
 import { Skeleton } from 'mastodon/components/skeleton';
+import { pluralReady, toShortNumber } from 'mastodon/utils/numbers';
+
+import { GenericCounterRenderer } from './counters';
 
 class SilentErrorBoundary extends Component {
 
@@ -40,19 +43,24 @@ class SilentErrorBoundary extends Component {
 
 /**
  * Used to render counter of how much people are talking about hashtag
- * @type {(displayNumber: JSX.Element, pluralReady: number) => JSX.Element}
+ * @type {(props: {value: number, children?: never}) => JSX.Element}
  */
-export const accountsCountRenderer = (displayNumber, pluralReady) => (
-  <FormattedMessage
+const _AccountsCounter = ({ value }) => {
+  const shortNumber = toShortNumber(value);
+  const [, division] = shortNumber;
+  const displayNumber = <GenericCounterRenderer value={shortNumber} />;
+
+  return (<FormattedMessage
     id='trends.counter_by_accounts'
     defaultMessage='{count, plural, one {{counter} person} other {{counter} people}} in the past {days, plural, one {day} other {# days}}'
     values={{
-      count: pluralReady,
+      count: pluralReady(value, division),
       counter: <strong>{displayNumber}</strong>,
       days: 2,
     }}
-  />
-);
+  />)
+};
+export const AccountsCounter = memo(_AccountsCounter)
 
 // @ts-expect-error
 export const ImmutableHashtag = ({ hashtag }) => (
@@ -80,7 +88,7 @@ const Hashtag = ({ name, to, people, uses, history, className, description, with
       {description ? (
         <span>{description}</span>
       ) : (
-        typeof people !== 'undefined' ? <ShortNumber value={people} renderer={accountsCountRenderer} /> : <Skeleton width={100} />
+        typeof people !== 'undefined' ? <AccountsCounter value={people} /> : <Skeleton width={100} />
       )}
     </div>
 
