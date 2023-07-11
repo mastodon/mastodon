@@ -65,10 +65,9 @@ interface CounterProps {
   children?: never;
 }
 
-const _GenericCounter: React.FC<CounterProps> = ({ value }) => {
-  const shortNumber = toShortNumber(value);
-  return <ShortNumberRenderer shortNumber={shortNumber} />;
-};
+const _GenericCounter: React.FC<CounterProps> = ({ value }) => (
+  <ShortNumberRenderer shortNumber={toShortNumber(value)} />
+);
 export const GenericCounter = memo(_GenericCounter);
 
 const _StatusesCounter: React.FC<CounterProps> = ({ value }) => {
