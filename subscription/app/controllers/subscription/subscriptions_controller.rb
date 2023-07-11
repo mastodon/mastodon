@@ -1,6 +1,7 @@
 module Subscription
   class SubscriptionsController < ::Settings::BaseController
     before_action :set_user
+    skip_before_action :require_functional!
 
     def index
       @subscriptions = StripeSubscription.all.where(user_id: current_account.user.id)
