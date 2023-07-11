@@ -4,7 +4,7 @@ import { TransitionMotion, spring } from 'react-motion';
 
 import { reduceMotion } from '../initial_state';
 
-import { ShortNumber } from './short_number';
+import { GenericCounter } from './short_number';
 
 interface Props {
   value: number;
@@ -25,7 +25,7 @@ export const AnimatedNumber: React.FC<Props> = ({ value }) => {
   );
 
   if (reduceMotion) {
-    return <ShortNumber value={value} />;
+    return <GenericCounter value={value} />;
   }
 
   const styles = [
@@ -52,7 +52,7 @@ export const AnimatedNumber: React.FC<Props> = ({ value }) => {
                 transform: `translateY(${style.y * 100}%)`,
               }}
             >
-              <ShortNumber value={data as number} />
+              <GenericCounter value={data as number} />
             </span>
           ))}
         </span>

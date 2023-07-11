@@ -4,13 +4,13 @@ import { toShortNumber } from '../utils/numbers';
 
 import { GenericCounterRenderer } from './counters';
 
-interface ShortNumberProps {
+interface GenericCounterProps {
   value: number;
   children?: never;
 }
 
-export const ShortNumberRenderer: React.FC<ShortNumberProps> = ({ value }) => {
+const _GenericCounter: React.FC<GenericCounterProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
   return <GenericCounterRenderer value={shortNumber} />;
 };
-export const ShortNumber = memo(ShortNumberRenderer);
+export const GenericCounter = memo(_GenericCounter);

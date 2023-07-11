@@ -11,7 +11,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
 
-import { ShortNumber } from 'mastodon/components/short_number';
+import { GenericCounter } from 'mastodon/components/short_number';
 import { Skeleton } from 'mastodon/components/skeleton';
 import { pluralReady, toShortNumber } from 'mastodon/utils/numbers';
 
@@ -94,7 +94,7 @@ const Hashtag = ({ name, to, people, uses, history, className, description, with
 
     {typeof uses !== 'undefined' && (
       <div className='trends__item__current'>
-        <ShortNumber value={uses} />
+        <GenericCounter value={uses} />
       </div>
     )}
 

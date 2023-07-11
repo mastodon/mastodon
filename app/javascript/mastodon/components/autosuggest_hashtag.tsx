@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 
-import { ShortNumber } from 'mastodon/components/short_number';
+import { GenericCounter } from 'mastodon/components/short_number';
 
 interface Props {
   tag: {
@@ -18,7 +18,7 @@ interface Props {
 
 export const AutosuggestHashtag: React.FC<Props> = ({ tag }) => {
   const weeklyUses = tag.history && (
-    <ShortNumber
+    <GenericCounter
       value={tag.history.reduce((total, day) => total + day.uses * 1, 0)}
     />
   );

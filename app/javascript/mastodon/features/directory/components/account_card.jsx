@@ -19,7 +19,7 @@ import { openModal } from 'mastodon/actions/modal';
 import { Avatar } from 'mastodon/components/avatar';
 import Button from 'mastodon/components/button';
 import { DisplayName } from 'mastodon/components/display_name';
-import { ShortNumber } from 'mastodon/components/short_number';
+import { GenericCounter } from 'mastodon/components/short_number';
 import { autoPlayGif, me, unfollowModal } from 'mastodon/initial_state';
 import { makeGetAccount } from 'mastodon/selectors';
 
@@ -202,14 +202,14 @@ class AccountCard extends ImmutablePureComponent {
         <div className='account-card__actions'>
           <div className='account-card__counters'>
             <div className='account-card__counters__item'>
-              <ShortNumber value={account.get('statuses_count')} />
+              <GenericCounter value={account.get('statuses_count')} />
               <small>
                 <FormattedMessage id='account.posts' defaultMessage='Posts' />
               </small>
             </div>
 
             <div className='account-card__counters__item'>
-              <ShortNumber value={account.get('followers_count')} />{' '}
+              <GenericCounter value={account.get('followers_count')} />{' '}
               <small>
                 <FormattedMessage
                   id='account.followers'
@@ -219,7 +219,7 @@ class AccountCard extends ImmutablePureComponent {
             </div>
 
             <div className='account-card__counters__item'>
-              <ShortNumber value={account.get('following_count')} />{' '}
+              <GenericCounter value={account.get('following_count')} />{' '}
               <small>
                 <FormattedMessage
                   id='account.following'
