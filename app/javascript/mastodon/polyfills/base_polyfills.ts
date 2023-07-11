@@ -12,7 +12,7 @@ if (!HTMLCanvasElement.prototype.toBlob) {
       this: HTMLCanvasElement,
       callback: BlobCallback,
       type = 'image/png',
-      quality: unknown
+      quality: unknown,
     ) {
       const dataURL: string = this.toDataURL(type, quality);
       let data;
