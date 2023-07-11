@@ -47,14 +47,17 @@ class SilentErrorBoundary extends Component {
 const _AccountsCounter = ({ value }) => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
-  const displayNumber = <ShortNumberRenderer shortNumber={shortNumber} />;
 
   return (<FormattedMessage
     id='trends.counter_by_accounts'
     defaultMessage='{count, plural, one {{counter} person} other {{counter} people}} in the past {days, plural, one {day} other {# days}}'
     values={{
       count: pluralReady(value, division),
-      counter: <strong>{displayNumber}</strong>,
+      counter: (
+        <strong>
+          <ShortNumberRenderer shortNumber={shortNumber} />
+        </strong>
+      ),
       days: 2,
     }}
   />)

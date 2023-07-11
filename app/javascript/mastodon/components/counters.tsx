@@ -73,7 +73,6 @@ export const GenericCounter = memo(_GenericCounter);
 const _StatusesCounter: React.FC<CounterProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
-  const displayNumber = <ShortNumberRenderer shortNumber={shortNumber} />;
 
   return (
     <FormattedMessage
@@ -81,7 +80,11 @@ const _StatusesCounter: React.FC<CounterProps> = ({ value }) => {
       defaultMessage='{count, plural, one {{counter} Post} other {{counter} Posts}}'
       values={{
         count: pluralReady(value, division),
-        counter: <strong>{displayNumber}</strong>,
+        counter: (
+          <strong>
+            <ShortNumberRenderer shortNumber={shortNumber} />
+          </strong>
+        ),
       }}
     />
   );
@@ -91,7 +94,6 @@ export const StatusesCounter = memo(_StatusesCounter);
 const _FollowingCounter: React.FC<CounterProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
-  const displayNumber = <ShortNumberRenderer shortNumber={shortNumber} />;
 
   return (
     <FormattedMessage
@@ -99,7 +101,11 @@ const _FollowingCounter: React.FC<CounterProps> = ({ value }) => {
       defaultMessage='{count, plural, one {{counter} Following} other {{counter} Following}}'
       values={{
         count: pluralReady(value, division),
-        counter: <strong>{displayNumber}</strong>,
+        counter: (
+          <strong>
+            <ShortNumberRenderer shortNumber={shortNumber} />
+          </strong>
+        ),
       }}
     />
   );
@@ -109,7 +115,6 @@ export const FollowingCounter = memo(_FollowingCounter);
 const _FollowersCounter: React.FC<CounterProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
-  const displayNumber = <ShortNumberRenderer shortNumber={shortNumber} />;
 
   return (
     <FormattedMessage
@@ -117,7 +122,11 @@ const _FollowersCounter: React.FC<CounterProps> = ({ value }) => {
       defaultMessage='{count, plural, one {{counter} Follower} other {{counter} Followers}}'
       values={{
         count: pluralReady(value, division),
-        counter: <strong>{displayNumber}</strong>,
+        counter: (
+          <strong>
+            <ShortNumberRenderer shortNumber={shortNumber} />
+          </strong>
+        ),
       }}
     />
   );
