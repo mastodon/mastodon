@@ -89,11 +89,7 @@ interface FollowingCounterProps {
 const _FollowingCounter: React.FC<FollowingCounterProps> = ({ value }) => {
   const shortNumber = toShortNumber(value);
   const [, division] = shortNumber;
-  const displayNumber = (
-    <strong>
-      <GenericCounterRenderer value={shortNumber} />
-    </strong>
-  );
+  const displayNumber = <GenericCounterRenderer value={shortNumber} />;
 
   return (
     <FormattedMessage
@@ -101,7 +97,7 @@ const _FollowingCounter: React.FC<FollowingCounterProps> = ({ value }) => {
       defaultMessage='{count, plural, one {{counter} Following} other {{counter} Following}}'
       values={{
         count: pluralReady(value, division),
-        counter: displayNumber,
+        counter: <strong>{displayNumber}</strong>,
       }}
     />
   );
