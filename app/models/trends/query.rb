@@ -68,7 +68,7 @@ class Trends::Query
   alias to_a to_ary
 
   def to_arel
-    if ids.empty?
+    if ids_for_key.empty?
       klass.none
     else
       scope = klass.joins(sanitized_join_sql).reorder('x.ordering')
@@ -93,8 +93,8 @@ class Trends::Query
     self
   end
 
-  def ids
-    redis.zrevrange(key, 0, -1).map(&:to_i)
+  def ids_for_key
+    @ids_for_key ||= redis.zrevrange(key, 0, -1).map(&:to_i)
   end
 
   def sanitized_join_sql
@@ -102,7 +102,7 @@ class Trends::Query
   end
 
   def join_sql_array
-    [join_sql_query, ids]
+    [join_sql_query, ids_for_key]
   end
 
   def join_sql_query
