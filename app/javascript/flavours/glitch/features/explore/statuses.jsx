@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import { fetchTrendingStatuses, expandTrendingStatuses } from 'flavours/glitch/actions/trends';
-import DismissableBanner from 'flavours/glitch/components/dismissable_banner';
+import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
 import StatusList from 'flavours/glitch/components/status_list';
 import { getStatusList } from 'flavours/glitch/selectors';
 
@@ -52,6 +52,7 @@ class Statuses extends PureComponent {
 
         <StatusList
           trackScroll
+          timelineId='explore'
           statusIds={statusIds}
           scrollKey='explore-statuses'
           hasMore={hasMore}

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import { Blurhash } from 'flavours/glitch/components/blurhash';
 import { accountsCountRenderer } from 'flavours/glitch/components/hashtag';
-import ShortNumber from 'flavours/glitch/components/short_number';
+import { ShortNumber } from 'flavours/glitch/components/short_number';
 import { Skeleton } from 'flavours/glitch/components/skeleton';
 
 

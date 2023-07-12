@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAccountDomainBlocks < ActiveRecord::Migration[5.0]
   def change
     create_table :account_domain_blocks do |t|

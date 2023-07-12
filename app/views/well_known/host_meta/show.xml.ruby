@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 doc = Ox::Document.new(version: '1.0')
 
 doc << Ox::Element.new('XRD').tap do |xrd|

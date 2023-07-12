@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import { fetchTrendingStatuses, expandTrendingStatuses } from 'mastodon/actions/trends';
-import DismissableBanner from 'mastodon/components/dismissable_banner';
+import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import StatusList from 'mastodon/components/status_list';
 import { getStatusList } from 'mastodon/selectors';
 
@@ -52,6 +52,7 @@ class Statuses extends PureComponent {
 
         <StatusList
           trackScroll
+          timelineId='explore'
           statusIds={statusIds}
           scrollKey='explore-statuses'
           hasMore={hasMore}

@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import Search from 'flavours/glitch/features/compose/containers/search_container';
-import { showTrends } from 'flavours/glitch/initial_state';
+import { trendsEnabled } from 'flavours/glitch/initial_state';
 
 import Links from './links';
 import SearchResults from './results';
@@ -28,7 +28,7 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   layout: state.getIn(['meta', 'layout']),
-  isSearching: state.getIn(['search', 'submitted']) || !showTrends,
+  isSearching: state.getIn(['search', 'submitted']) || !trendsEnabled,
 });
 
 class Explore extends PureComponent {

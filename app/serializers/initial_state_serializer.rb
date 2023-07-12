@@ -39,7 +39,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       limited_federation_mode: Rails.configuration.x.whitelist_mode,
       mascot: instance_presenter.mascot&.file&.url,
       profile_directory: Setting.profile_directory,
-      trends: Setting.trends,
+      trends_enabled: Setting.trends,
       registrations_open: Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode,
       timeline_preview: Setting.timeline_preview,
       activity_api_enabled: Setting.activity_api_enabled,
@@ -62,9 +62,9 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:advanced_layout]   = object.current_account.user.setting_advanced_layout
       store[:use_blurhash]      = object.current_account.user.setting_use_blurhash
       store[:use_pending_items] = object.current_account.user.setting_use_pending_items
-      store[:trends]            = Setting.trends && object.current_account.user.setting_trends
       store[:default_content_type] = object.current_account.user.setting_default_content_type
       store[:system_emoji_font] = object.current_account.user.setting_system_emoji_font
+      store[:show_trends]       = Setting.trends && object.current_account.user.setting_trends
       store[:crop_images]       = object.current_account.user.setting_crop_images
     else
       store[:auto_play_gif] = Setting.auto_play_gif

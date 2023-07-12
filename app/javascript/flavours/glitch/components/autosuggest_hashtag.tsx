@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 
-import ShortNumber from 'flavours/glitch/components/short_number';
+import { ShortNumber } from 'flavours/glitch/components/short_number';
 
 interface Props {
   tag: {

@@ -1,5 +1,8 @@
 import type { Middleware, AnyAction } from 'redux';
 
+import ready from 'flavours/glitch/ready';
+import { assetHost } from 'flavours/glitch/utils/config';
+
 import type { RootState } from '..';
 
 interface AudioSource {
@@ -35,18 +38,20 @@ export const soundsMiddleware = (): Middleware<
   Record<string, never>,
   RootState
 > => {
-  const soundCache: { [key: string]: HTMLAudioElement } = {
-    boop: createAudio([
+  const soundCache: { [key: string]: HTMLAudioElement } = {};
+
+  void ready(() => {
+    soundCache.boop = createAudio([
       {
-        src: '/sounds/boop.ogg',
+        src: `${assetHost}/sounds/boop.ogg`,
         type: 'audio/ogg',
       },
       {
-        src: '/sounds/boop.mp3',
+        src: `${assetHost}/sounds/boop.mp3`,
         type: 'audio/mpeg',
       },
-    ]),
-  };
+    ]);
+  });
 
   return () =>
     (next) =>

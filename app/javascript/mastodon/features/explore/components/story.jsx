@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import { Blurhash } from 'mastodon/components/blurhash';
 import { accountsCountRenderer } from 'mastodon/components/hashtag';
-import ShortNumber from 'mastodon/components/short_number';
+import { ShortNumber } from 'mastodon/components/short_number';
 import { Skeleton } from 'mastodon/components/skeleton';
 
 export default class Story extends PureComponent {

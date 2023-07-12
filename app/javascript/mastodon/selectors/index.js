@@ -84,26 +84,16 @@ export const makeGetPictureInPicture = () => {
   }));
 };
 
-const getAlertsBase = state => state.get('alerts');
+const ALERT_DEFAULTS = {
+  dismissAfter: 5000,
+  style: false,
+};
 
-export const getAlerts = createSelector([getAlertsBase], (base) => {
-  let arr = [];
-
-  base.forEach(item => {
-    arr.push({
-      message: item.get('message'),
-      message_values: item.get('message_values'),
-      title: item.get('title'),
-      key: item.get('key'),
-      dismissAfter: 5000,
-      barStyle: {
-        zIndex: 200,
-      },
-    });
-  });
-
-  return arr;
-});
+export const getAlerts = createSelector(state => state.get('alerts'), alerts =>
+  alerts.map(item => ({
+    ...ALERT_DEFAULTS,
+    ...item,
+  })).toArray());
 
 export const makeGetNotification = () => createSelector([
   (_, base)             => base,

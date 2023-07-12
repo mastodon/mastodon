@@ -4,7 +4,7 @@ import { TransitionMotion, spring } from 'react-motion';
 
 import { reduceMotion } from '../initial_state';
 
-import ShortNumber from './short_number';
+import { ShortNumber } from './short_number';
 
 const obfuscatedCount = (count: number) => {
   if (count < 0) {

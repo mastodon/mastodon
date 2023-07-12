@@ -12,7 +12,7 @@ module PremailerWebpackStrategy
     css = if url.start_with?('http')
             HTTP.get(url).to_s
           else
-            url = url[1..-1] if url.start_with?('/')
+            url = url[1..] if url.start_with?('/')
             Rails.public_path.join(url).read
           end
 

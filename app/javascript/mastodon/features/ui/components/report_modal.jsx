@@ -45,25 +45,26 @@ class ReportModal extends ImmutablePureComponent {
   state = {
     step: 'category',
     selectedStatusIds: OrderedSet(this.props.statusId ? [this.props.statusId] : []),
+    selectedDomains: OrderedSet(),
     comment: '',
     category: null,
     selectedRuleIds: OrderedSet(),
-    forward: true,
     isSubmitting: false,
     isSubmitted: false,
   };
 
   handleSubmit = () => {
     const { dispatch, accountId } = this.props;
-    const { selectedStatusIds, comment, category, selectedRuleIds, forward } = this.state;
+    const { selectedStatusIds, selectedDomains, comment, category, selectedRuleIds } = this.state;
 
     this.setState({ isSubmitting: true });
 
     dispatch(submitReport({
       account_id: accountId,
       status_ids: selectedStatusIds.toArray(),
+      selected_domains: selectedDomains.toArray(),
       comment,
-      forward,
+      forward: selectedDomains.size > 0,
       category,
       rule_ids: selectedRuleIds.toArray(),
     }, this.handleSuccess, this.handleFail));
@@ -87,13 +88,19 @@ class ReportModal extends ImmutablePureComponent {
     }
   };
 
-  handleRuleToggle = (ruleId, checked) => {
-    const { selectedRuleIds } = this.state;
-
+  handleDomainToggle = (domain, checked) => {
     if (checked) {
-      this.setState({ selectedRuleIds: selectedRuleIds.add(ruleId) });
+      this.setState((state) => ({ selectedDomains: state.selectedDomains.add(domain) }));
     } else {
-      this.setState({ selectedRuleIds: selectedRuleIds.remove(ruleId) });
+      this.setState((state) => ({ selectedDomains: state.selectedDomains.remove(domain) }));
+    }
+  };
+
+  handleRuleToggle = (ruleId, checked) => {
+    if (checked) {
+      this.setState((state) => ({ selectedRuleIds: state.selectedRuleIds.add(ruleId) }));
+    } else {
+      this.setState((state) => ({ selectedRuleIds: state.selectedRuleIds.remove(ruleId) }));
     }
   };
 
@@ -103,10 +110,6 @@ class ReportModal extends ImmutablePureComponent {
 
   handleChangeComment = comment => {
     this.setState({ comment });
-  };
-
-  handleChangeForward = forward => {
-    this.setState({ forward });
   };
 
   handleNextStep = step => {
@@ -136,8 +139,8 @@ class ReportModal extends ImmutablePureComponent {
       step,
       selectedStatusIds,
       selectedRuleIds,
+      selectedDomains,
       comment,
-      forward,
       category,
       isSubmitting,
       isSubmitted,
@@ -185,10 +188,11 @@ class ReportModal extends ImmutablePureComponent {
           isSubmitting={isSubmitting}
           isRemote={isRemote}
           comment={comment}
-          forward={forward}
           domain={domain}
           onChangeComment={this.handleChangeComment}
-          onChangeForward={this.handleChangeForward}
+          statusIds={selectedStatusIds}
+          selectedDomains={selectedDomains}
+          onToggleDomain={this.handleDomainToggle}
         />
       );
       break;

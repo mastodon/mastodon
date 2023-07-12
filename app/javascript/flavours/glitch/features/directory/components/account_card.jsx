@@ -20,7 +20,7 @@ import Button from 'flavours/glitch/components/button';
 import { DisplayName } from 'flavours/glitch/components/display_name';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import Permalink from 'flavours/glitch/components/permalink';
-import ShortNumber from 'flavours/glitch/components/short_number';
+import { ShortNumber } from 'flavours/glitch/components/short_number';
 import { autoPlayGif, me, unfollowModal } from 'flavours/glitch/initial_state';
 import { makeGetAccount } from 'flavours/glitch/selectors';
 
@@ -171,16 +171,16 @@ class AccountCard extends ImmutablePureComponent {
       if (!account.get('relationship')) { // Wait until the relationship is loaded
         actionBtn = '';
       } else if (account.getIn(['relationship', 'requested'])) {
-        actionBtn = <Button className={classNames('logo-button')} text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.handleFollow} />;
+        actionBtn = <Button  text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.handleFollow} />;
       } else if (account.getIn(['relationship', 'muting'])) {
-        actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unmute)} onClick={this.handleMute} />;
+        actionBtn = <Button  text={intl.formatMessage(messages.unmute)} onClick={this.handleMute} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.handleFollow} />;
+        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames({ 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.handleFollow} />;
       } else if (account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unblock)} onClick={this.handleBlock} />;
+        actionBtn = <Button  text={intl.formatMessage(messages.unblock)} onClick={this.handleBlock} />;
       }
     } else {
-      actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.edit_profile)} onClick={this.handleEditProfile} />;
+      actionBtn = <Button  text={intl.formatMessage(messages.edit_profile)} onClick={this.handleEditProfile} />;
     }
 
     return (

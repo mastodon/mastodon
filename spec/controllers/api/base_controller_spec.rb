@@ -88,10 +88,11 @@ describe Api::BaseController do
       Mastodon::NotPermittedError => 403,
     }.each do |error, code|
       it "Handles error class of #{error}" do
-        expect(FakeService).to receive(:new).and_raise(error)
+        allow(FakeService).to receive(:new).and_raise(error)
 
         get 'error'
         expect(response).to have_http_status(code)
+        expect(FakeService).to have_received(:new)
       end
     end
   end
