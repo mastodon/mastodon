@@ -409,11 +409,6 @@ RSpec/StubbedMock:
     - 'spec/lib/webfinger_resource_spec.rb'
     - 'spec/services/activitypub/process_collection_service_spec.rb'
 
-RSpec/SubjectStub:
-  Exclude:
-    - 'spec/services/unallow_domain_service_spec.rb'
-    - 'spec/validators/blacklisted_email_validator_spec.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Rails/ApplicationController:
   Exclude:
