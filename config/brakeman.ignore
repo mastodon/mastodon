@@ -18,6 +18,9 @@
       },
       "user_input": "id",
       "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
       "note": ""
     },
     {
@@ -38,26 +41,9 @@
       },
       "user_input": "ids.join(\",\")",
       "confidence": "Weak",
-      "note": ""
-    },
-    {
-      "warning_type": "Redirect",
-      "warning_code": 18,
-      "fingerprint": "5fad11cd67f905fab9b1d5739d01384a1748ebe78c5af5ac31518201925265a7",
-      "check_name": "Redirect",
-      "message": "Possible unprotected redirect",
-      "file": "app/controllers/remote_interaction_controller.rb",
-      "line": 24,
-      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
-      "code": "redirect_to(RemoteFollow.new(resource_params).interact_address_for(Status.find(params[:id])))",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "RemoteInteractionController",
-        "method": "create"
-      },
-      "user_input": "RemoteFollow.new(resource_params).interact_address_for(Status.find(params[:id]))",
-      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
       "note": ""
     },
     {
@@ -88,6 +74,9 @@
       },
       "user_input": "(Unresolved Model).new.strike",
       "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
       "note": ""
     },
     {
@@ -108,26 +97,9 @@
       },
       "user_input": "SecureRandom.hex(16)",
       "confidence": "Medium",
-      "note": ""
-    },
-    {
-      "warning_type": "Mass Assignment",
-      "warning_code": 105,
-      "fingerprint": "7631e93d0099506e7c3e5c91ba8d88523b00a41a0834ae30031a5a4e8bb3020a",
-      "check_name": "PermitAttributes",
-      "message": "Potentially dangerous key allowed for mass assignment",
-      "file": "app/controllers/api/v2/search_controller.rb",
-      "line": 28,
-      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
-      "code": "params.permit(:type, :offset, :min_id, :max_id, :account_id)",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Api::V2::SearchController",
-        "method": "search_params"
-      },
-      "user_input": ":account_id",
-      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
       "note": ""
     },
     {
@@ -137,7 +109,7 @@
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/api/v1/admin/reports_controller.rb",
-      "line": 90,
+      "line": 88,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.permit(:resolved, :account_id, :target_account_id)",
       "render_path": null,
@@ -148,6 +120,9 @@
       },
       "user_input": ":account_id",
       "confidence": "High",
+      "cwe_id": [
+        915
+      ],
       "note": ""
     },
     {
@@ -157,7 +132,7 @@
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/api/v1/notifications_controller.rb",
-      "line": 81,
+      "line": 77,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.permit(:account_id, :types => ([]), :exclude_types => ([]))",
       "render_path": null,
@@ -168,26 +143,9 @@
       },
       "user_input": ":account_id",
       "confidence": "High",
-      "note": ""
-    },
-    {
-      "warning_type": "Redirect",
-      "warning_code": 18,
-      "fingerprint": "ba568ac09683f98740f663f3d850c31785900215992e8c090497d359a2563d50",
-      "check_name": "Redirect",
-      "message": "Possible unprotected redirect",
-      "file": "app/controllers/remote_follow_controller.rb",
-      "line": 21,
-      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
-      "code": "redirect_to(RemoteFollow.new(resource_params).subscribe_address_for(@account))",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "RemoteFollowController",
-        "method": "create"
-      },
-      "user_input": "RemoteFollow.new(resource_params).subscribe_address_for(@account)",
-      "confidence": "High",
+      "cwe_id": [
+        915
+      ],
       "note": ""
     },
     {
@@ -218,6 +176,9 @@
       },
       "user_input": "(Unresolved Model).new.url",
       "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
       "note": ""
     },
     {
@@ -238,9 +199,12 @@
       },
       "user_input": ":account_id",
       "confidence": "High",
+      "cwe_id": [
+        915
+      ],
       "note": ""
     }
   ],
-  "updated": "2022-03-22 07:48:32 +0100",
-  "brakeman_version": "5.2.1"
+  "updated": "2023-07-05 14:34:42 -0400",
+  "brakeman_version": "5.4.1"
 }
